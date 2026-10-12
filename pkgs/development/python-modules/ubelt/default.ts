@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["optional", 34, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 41, 3], ["preCheck", 47, 3], ["disabledTests", 51, 3], ["pythonImportsCheck", 57, 3], ["__darwinAllowLocalNetworking", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, wheel: false, numpy: false, "python-dateutil": false, xxhash: false, pytestCheckHook: false, requests: false, xdoctest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["optional", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 41, 3], ["preCheck", 47, 3], ["disabledTests", 51, 3], ["pythonImportsCheck", 57, 3], ["__darwinAllowLocalNetworking", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Erotemic",
           repo: "ubelt",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools, wheel]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         optional: nix.thunk(() => [numpy, python_dateutil, xxhash]),
       }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, requests, xdoctest]);
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["ubelt"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python utility library with a stdlib like feel and extra batteries. Paths, Progress, Dicts, Downloads, Caching, Hashing: ubelt makes it easy",
         homepage: "https://github.com/Erotemic/ubelt",
         changelog: nix.thunk(() => nix.str`https://github.com/Erotemic/ubelt/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

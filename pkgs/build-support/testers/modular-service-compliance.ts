@@ -2,69 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/modular-service-compliance.nix", [[["argv", 31, 17]], [["assertion", 34, 13], ["message", 35, 13]], [["argv", 40, 19]], [["assertion", 43, 15], ["message", 44, 15]], [["process", 40, 11], ["assertions", 41, 11], ["warnings", 47, 11]], [["argv", 51, 19], ["reloadSignal", 52, 19]], [["process", 51, 11]], [["child", 39, 18], ["reloadee", 50, 18]], [["process", 31, 9], ["assertions", 32, 9], ["warnings", 38, 9], ["services", 39, 9]], [["svc", 30, 7]], [["services", 29, 5]], [["expr", 64, 9], ["expected", 65, 9]], [["expr", 69, 9], ["expected", 70, 9]], [["assertion", 75, 11], ["message", 76, 11]], [["expr", 74, 9], ["expected", 78, 9]], [["expr", 82, 9], ["expected", 83, 9]], [["assertion", 88, 11], ["message", 89, 11]], [["expr", 87, 9], ["expected", 91, 9]], [["expr", 95, 9], ["expected", 96, 9]], [["expr", 104, 9], ["expected", 110, 9]], [["expr", 116, 9], ["expected", 117, 9]], [["expr", 122, 9], ["expected", 123, 9]], [["expr", 127, 9], ["expected", 128, 9]], [["expr", 134, 9], ["expected", 140, 9]], [["assertion", 147, 11], ["message", 148, 11]], [["expr", 146, 9], ["expected", 150, 9]], [["testProcessArgv", 63, 7], ["testSubServiceArgv", 68, 7], ["testAssertions", 73, 7], ["testWarnings", 81, 7], ["testSubServiceAssertions", 86, 7], ["testSubServiceWarnings", 94, 7], ["testNoReloadConflict", 103, 7], ["testReloadSignalDerivesCommand", 115, 7], ["testNotificationProtocolSystemdDefault", 121, 7], ["testNotificationProtocolS6Default", 126, 7], ["testReloadConflictFires", 133, 7], ["testFailingAssertionValue", 145, 7]], [["argv", 157, 17], ["reloadSignal", 158, 17], ["reloadCommand", 159, 17]], [["process", 157, 9]], [["conflict", 156, 7]], [["services", 155, 5]], [["argv", 167, 17]], [["assertion", 170, 13], ["message", 171, 13]], [["process", 167, 9], ["assertions", 168, 9]], [["failing", 166, 7]], [["services", 165, 5]], [["name", 244, 7], ["runtimeInputs", 245, 7], ["text", 249, 15]], [["argv", 258, 15]], [["argv", 263, 9], ["reloadSignal", 268, 9]], [["process", 262, 22]], [["inner", 262, 16]], [["process", 258, 7], ["services", 262, 7]], [["reload", 256, 5]], [["tests", 287, 7], ["failures", 288, 7]], [["__structuredAttrs", 281, 5], ["name", 282, 5], ["representative", 285, 5], ["passthru", 286, 5], ["testResults", 290, 5], ["buildCommand", 291, 5]], [["argv", 321, 27]], [["process", 321, 19]], [["test", 321, 14]], [["name", 320, 5], ["services", 321, 5], ["testExe", 325, 5]], [["argv", 336, 15]], [["argv", 338, 17]], [["argv", 339, 28]], [["process", 339, 20]], [["c", 339, 18]], [["process", 338, 9], ["services", 339, 9]], [["b", 337, 16]], [["process", 336, 7], ["services", 337, 7]], [["a", 335, 14]], [["name", 334, 5], ["services", 335, 5], ["testExe", 342, 5]], [["name", 352, 5], ["services", 353, 5], ["testExe", 354, 5]], [["eval", 280, 3], ["basic-argv", 319, 3], ["sub-services", 333, 3], ["reload", 351, 3]]]);
 const formals$1 = { args: { lib: false, coreutils: false, gnugrep: false, writeShellScript: false, writeShellApplication: false, stdenvNoCC: false }, ellipsis: false };
 const formals$2 = { args: { evalConfig: false, mkTest: false, sharedDir: false, callReload: false, namePrefix: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/modular-service-compliance.nix", [["argv", 31, 17]]);
-const pos$2 = nix.positions(here + "/modular-service-compliance.nix", [["assertion", 34, 13], ["message", 35, 13]]);
-const pos$3 = nix.positions(here + "/modular-service-compliance.nix", [["argv", 40, 19]]);
-const pos$4 = nix.positions(here + "/modular-service-compliance.nix", [["assertion", 43, 15], ["message", 44, 15]]);
-const pos$5 = nix.positions(here + "/modular-service-compliance.nix", [["process", 40, 11], ["assertions", 41, 11], ["warnings", 47, 11]]);
-const pos$6 = nix.positions(here + "/modular-service-compliance.nix", [["argv", 51, 19], ["reloadSignal", 52, 19]]);
-const pos$7 = nix.positions(here + "/modular-service-compliance.nix", [["process", 51, 11]]);
-const pos$8 = nix.positions(here + "/modular-service-compliance.nix", [["child", 39, 18], ["reloadee", 50, 18]]);
-const pos$9 = nix.positions(here + "/modular-service-compliance.nix", [["process", 31, 9], ["assertions", 32, 9], ["warnings", 38, 9], ["services", 39, 9]]);
-const pos$10 = nix.positions(here + "/modular-service-compliance.nix", [["svc", 30, 7]]);
-const pos$11 = nix.positions(here + "/modular-service-compliance.nix", [["services", 29, 5]]);
-const pos$12 = nix.positions(here + "/modular-service-compliance.nix", [["expr", 64, 9], ["expected", 65, 9]]);
-const pos$13 = nix.positions(here + "/modular-service-compliance.nix", [["expr", 69, 9], ["expected", 70, 9]]);
-const pos$14 = nix.positions(here + "/modular-service-compliance.nix", [["assertion", 75, 11], ["message", 76, 11]]);
-const pos$15 = nix.positions(here + "/modular-service-compliance.nix", [["expr", 74, 9], ["expected", 78, 9]]);
-const pos$16 = nix.positions(here + "/modular-service-compliance.nix", [["expr", 82, 9], ["expected", 83, 9]]);
-const pos$17 = nix.positions(here + "/modular-service-compliance.nix", [["assertion", 88, 11], ["message", 89, 11]]);
-const pos$18 = nix.positions(here + "/modular-service-compliance.nix", [["expr", 87, 9], ["expected", 91, 9]]);
-const pos$19 = nix.positions(here + "/modular-service-compliance.nix", [["expr", 95, 9], ["expected", 96, 9]]);
-const pos$20 = nix.positions(here + "/modular-service-compliance.nix", [["expr", 104, 9], ["expected", 110, 9]]);
-const pos$21 = nix.positions(here + "/modular-service-compliance.nix", [["expr", 116, 9], ["expected", 117, 9]]);
-const pos$22 = nix.positions(here + "/modular-service-compliance.nix", [["expr", 122, 9], ["expected", 123, 9]]);
-const pos$23 = nix.positions(here + "/modular-service-compliance.nix", [["expr", 127, 9], ["expected", 128, 9]]);
-const pos$24 = nix.positions(here + "/modular-service-compliance.nix", [["expr", 134, 9], ["expected", 140, 9]]);
-const pos$25 = nix.positions(here + "/modular-service-compliance.nix", [["assertion", 147, 11], ["message", 148, 11]]);
-const pos$26 = nix.positions(here + "/modular-service-compliance.nix", [["expr", 146, 9], ["expected", 150, 9]]);
-const pos$27 = nix.positions(here + "/modular-service-compliance.nix", [["testProcessArgv", 63, 7], ["testSubServiceArgv", 68, 7], ["testAssertions", 73, 7], ["testWarnings", 81, 7], ["testSubServiceAssertions", 86, 7], ["testSubServiceWarnings", 94, 7], ["testNoReloadConflict", 103, 7], ["testReloadSignalDerivesCommand", 115, 7], ["testNotificationProtocolSystemdDefault", 121, 7], ["testNotificationProtocolS6Default", 126, 7], ["testReloadConflictFires", 133, 7], ["testFailingAssertionValue", 145, 7]]);
-const pos$28 = nix.positions(here + "/modular-service-compliance.nix", [["argv", 157, 17], ["reloadSignal", 158, 17], ["reloadCommand", 159, 17]]);
-const pos$29 = nix.positions(here + "/modular-service-compliance.nix", [["process", 157, 9]]);
-const pos$30 = nix.positions(here + "/modular-service-compliance.nix", [["conflict", 156, 7]]);
-const pos$31 = nix.positions(here + "/modular-service-compliance.nix", [["services", 155, 5]]);
-const pos$32 = nix.positions(here + "/modular-service-compliance.nix", [["argv", 167, 17]]);
-const pos$33 = nix.positions(here + "/modular-service-compliance.nix", [["assertion", 170, 13], ["message", 171, 13]]);
-const pos$34 = nix.positions(here + "/modular-service-compliance.nix", [["process", 167, 9], ["assertions", 168, 9]]);
-const pos$35 = nix.positions(here + "/modular-service-compliance.nix", [["failing", 166, 7]]);
-const pos$36 = nix.positions(here + "/modular-service-compliance.nix", [["services", 165, 5]]);
-const pos$37 = nix.positions(here + "/modular-service-compliance.nix", [["name", 244, 7], ["runtimeInputs", 245, 7], ["text", 249, 15]]);
-const pos$38 = nix.positions(here + "/modular-service-compliance.nix", [["argv", 258, 15]]);
-const pos$39 = nix.positions(here + "/modular-service-compliance.nix", [["argv", 263, 9], ["reloadSignal", 268, 9]]);
-const pos$40 = nix.positions(here + "/modular-service-compliance.nix", [["process", 262, 22]]);
-const pos$41 = nix.positions(here + "/modular-service-compliance.nix", [["inner", 262, 16]]);
-const pos$42 = nix.positions(here + "/modular-service-compliance.nix", [["process", 258, 7], ["services", 262, 7]]);
-const pos$43 = nix.positions(here + "/modular-service-compliance.nix", [["reload", 256, 5]]);
-const pos$44 = nix.positions(here + "/modular-service-compliance.nix", [["tests", 287, 7], ["failures", 288, 7]]);
-const pos$45 = nix.positions(here + "/modular-service-compliance.nix", [["__structuredAttrs", 281, 5], ["name", 282, 5], ["representative", 285, 5], ["passthru", 286, 5], ["testResults", 290, 5], ["buildCommand", 291, 5]]);
-const pos$46 = nix.positions(here + "/modular-service-compliance.nix", [["argv", 321, 27]]);
-const pos$47 = nix.positions(here + "/modular-service-compliance.nix", [["process", 321, 19]]);
-const pos$48 = nix.positions(here + "/modular-service-compliance.nix", [["test", 321, 14]]);
-const pos$49 = nix.positions(here + "/modular-service-compliance.nix", [["name", 320, 5], ["services", 321, 5], ["testExe", 325, 5]]);
-const pos$50 = nix.positions(here + "/modular-service-compliance.nix", [["argv", 336, 15]]);
-const pos$51 = nix.positions(here + "/modular-service-compliance.nix", [["argv", 338, 17]]);
-const pos$52 = nix.positions(here + "/modular-service-compliance.nix", [["argv", 339, 28]]);
-const pos$53 = nix.positions(here + "/modular-service-compliance.nix", [["process", 339, 20]]);
-const pos$54 = nix.positions(here + "/modular-service-compliance.nix", [["c", 339, 18]]);
-const pos$55 = nix.positions(here + "/modular-service-compliance.nix", [["process", 338, 9], ["services", 339, 9]]);
-const pos$56 = nix.positions(here + "/modular-service-compliance.nix", [["b", 337, 16]]);
-const pos$57 = nix.positions(here + "/modular-service-compliance.nix", [["process", 336, 7], ["services", 337, 7]]);
-const pos$58 = nix.positions(here + "/modular-service-compliance.nix", [["a", 335, 14]]);
-const pos$59 = nix.positions(here + "/modular-service-compliance.nix", [["name", 334, 5], ["services", 335, 5], ["testExe", 342, 5]]);
-const pos$60 = nix.positions(here + "/modular-service-compliance.nix", [["name", 352, 5], ["services", 353, 5], ["testExe", 354, 5]]);
-const pos$61 = nix.positions(here + "/modular-service-compliance.nix", [["eval", 280, 3], ["basic-argv", 319, 3], ["sub-services", 333, 3], ["reload", 351, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -82,36 +22,36 @@ export default nix.lambda((args) => (() => {
     const callReload = nix.arg($_1, "callReload");
     const namePrefix = nix.argOr($_1, "namePrefix", () => "modular-service-compliance");
     const evalResult = nix.thunk(() => nix.app(evalConfig, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           svc: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             process: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               argv: nix.thunk(() => [nix.thunk(() => nix.str`${coreutils}/bin/true`)]),
             })),
             assertions: nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$2, assertion: true, message: "compliance test assertion" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[1], assertion: true, message: "compliance test assertion" })),
             ]),
             warnings: nix.thunk(() => ["compliance test warning"]),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               child: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 process: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   argv: nix.thunk(() => [nix.thunk(() => nix.str`${coreutils}/bin/true`)]),
                 })),
                 assertions: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$4, assertion: true, message: "compliance child assertion" })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[3], assertion: true, message: "compliance child assertion" })),
                 ]),
                 warnings: nix.thunk(() => ["compliance child warning"]),
               })),
               reloadee: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 process: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   argv: nix.thunk(() => [nix.thunk(() => nix.str`${coreutils}/bin/true`)]),
                   reloadSignal: "HUP",
                 })),
@@ -123,77 +63,81 @@ export default nix.lambda((args) => (() => {
     const evalTestDefs = nix.thunk(() => (() => {
       const c = nix.thunk(() => nix.sel(evalResult, "config", "svc"));
       return {
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         testProcessArgv: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           expr: nix.thunk(() => nix.sel(c, "process", "argv")),
           expected: nix.thunk(() => [nix.thunk(() => nix.str`${coreutils}/bin/true`)]),
         })),
         testSubServiceArgv: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           expr: nix.thunk(() => nix.sel(c, "services", "child", "process", "argv")),
           expected: nix.thunk(() => [nix.thunk(() => nix.str`${coreutils}/bin/true`)]),
         })),
         testAssertions: nix.thunk(() => ({
-          [nix.POS]: pos$15,
-          expr: nix.thunk(() => nix.app(nix.sel(lib, "elem"), nix.thunk(() => ({ [nix.POS]: pos$14, assertion: true, message: "compliance test assertion" })), nix.thunk(() => nix.sel(c, "assertions")))),
+          [nix.POS]: $pos[14],
+          expr: nix.thunk(() => nix.app(nix.sel(lib, "elem"), nix.thunk(() => ({ [nix.POS]: $pos[13], assertion: true, message: "compliance test assertion" })), nix.thunk(() => nix.sel(c, "assertions")))),
           expected: true,
         })),
         testWarnings: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           expr: nix.thunk(() => nix.app(nix.sel(lib, "elem"), "compliance test warning", nix.thunk(() => nix.sel(c, "warnings")))),
           expected: true,
         })),
         testSubServiceAssertions: nix.thunk(() => ({
-          [nix.POS]: pos$18,
-          expr: nix.thunk(() => nix.app(nix.sel(lib, "elem"), nix.thunk(() => ({ [nix.POS]: pos$17, assertion: true, message: "compliance child assertion" })), nix.thunk(() => nix.sel(c, "services", "child", "assertions")))),
+          [nix.POS]: $pos[17],
+          expr: nix.thunk(() => nix.app(nix.sel(lib, "elem"), nix.thunk(() => ({ [nix.POS]: $pos[16], assertion: true, message: "compliance child assertion" })), nix.thunk(() => nix.sel(c, "services", "child", "assertions")))),
           expected: true,
         })),
         testSubServiceWarnings: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           expr: nix.thunk(() => nix.app(nix.sel(lib, "elem"), "compliance child warning", nix.thunk(() => nix.sel(c, "services", "child", "warnings")))),
           expected: true,
         })),
         testNoReloadConflict: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           expr: nix.thunk(() => nix.app(nix.sel(lib, "any"), (a) => (nix.asBool(nix.eq(nix.sel(a, "message"), "reloadSignal conflicts with reloadCommand. Please either use reloadSignal or reloadCommand.")) && nix.asBool(!nix.asBool(nix.sel(a, "assertion")))), nix.thunk(() => nix.sel(c, "services", "reloadee", "assertions")))),
           expected: false,
         })),
         testReloadSignalDerivesCommand: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           expr: nix.thunk(() => nix.sel(c, "services", "reloadee", "process", "reloadCommand")),
           expected: nix.thunk(() => nix.str`${coreutils}/bin/kill -HUP $MAINPID`),
         })),
         testNotificationProtocolSystemdDefault: nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           expr: nix.thunk(() => nix.sel(c, "notificationProtocol", "systemd")),
           expected: false,
         })),
         testNotificationProtocolS6Default: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           expr: nix.thunk(() => nix.sel(c, "notificationProtocol", "s6")),
           expected: false,
         })),
         testReloadConflictFires: nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           expr: nix.thunk(() => nix.app(nix.sel(lib, "any"), (a) => (nix.asBool(nix.eq(nix.sel(a, "message"), "reloadSignal conflicts with reloadCommand. Please either use reloadSignal or reloadCommand.")) && nix.asBool(!nix.asBool(nix.sel(a, "assertion")))), nix.thunk(() => nix.sel(conflictEval, "config", "conflict", "assertions")))),
           expected: true,
         })),
         testFailingAssertionValue: nix.thunk(() => ({
-          [nix.POS]: pos$26,
-          expr: nix.thunk(() => nix.app(nix.sel(lib, "elem"), nix.thunk(() => ({ [nix.POS]: pos$25, assertion: false, message: "compliance failing assertion" })), nix.thunk(() => nix.sel(failingEval, "config", "failing", "assertions")))),
+          [nix.POS]: $pos[25],
+          expr: nix.thunk(() => nix.app(nix.sel(lib, "elem"), nix.thunk(() => ({
+              [nix.POS]: $pos[24],
+              assertion: false,
+              message: "compliance failing assertion",
+            })), nix.thunk(() => nix.sel(failingEval, "config", "failing", "assertions")))),
           expected: true,
         })),
       };
     })());
     const conflictEval = nix.thunk(() => nix.app(evalConfig, nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           conflict: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             process: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               argv: nix.thunk(() => [nix.thunk(() => nix.str`${coreutils}/bin/true`)]),
               reloadSignal: "HUP",
               reloadCommand: nix.thunk(() => nix.str`${coreutils}/bin/kill -HUP $MAINPID`),
@@ -202,17 +146,21 @@ export default nix.lambda((args) => (() => {
         })),
       }))));
     const failingEval = nix.thunk(() => nix.app(evalConfig, nix.thunk(() => ({
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           failing: nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             process: nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               argv: nix.thunk(() => [nix.thunk(() => nix.str`${coreutils}/bin/true`)]),
             })),
             assertions: nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$33, assertion: false, message: "compliance failing assertion" })),
+              nix.thunk(() => ({
+                [nix.POS]: $pos[32],
+                assertion: false,
+                message: "compliance failing assertion",
+              })),
             ]),
           })),
         })),
@@ -248,22 +196,22 @@ echo "${id}: started (pid $pid)"
   || { echo "${id}: expected arg ${nix.app(nix.sel(lib, "escapeShellArg"), arg)} not found"; cat "${sharedDir}/${id}/args"; exit 1; }
 `, expectedArgs));
     const mkTestScript = (name) => (text) => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           name: nix.thunk(() => nix.str`${namePrefix}-${name}`),
           runtimeInputs: nix.thunk(() => [coreutils, gnugrep]),
           text: text,
         })))));
     const reloadServices = nix.thunk(() => ({
-      [nix.POS]: pos$43,
+      [nix.POS]: $pos[42],
       reload: nix.thunk(() => ({
-        [nix.POS]: pos$42,
-        process: nix.thunk(() => ({ [nix.POS]: pos$38, argv: nix.thunk(() => [reloadableSvc, "reload-parent"]) })),
+        [nix.POS]: $pos[41],
+        process: nix.thunk(() => ({ [nix.POS]: $pos[37], argv: nix.thunk(() => [reloadableSvc, "reload-parent"]) })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           inner: nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             process: nix.thunk(() => ({
-              [nix.POS]: pos$39,
+              [nix.POS]: $pos[38],
               argv: nix.thunk(() => [reloadableSvc, "reload-inner"]),
               reloadSignal: "HUP",
             })),
@@ -272,14 +220,14 @@ echo "${id}: started (pid $pid)"
       })),
     }));
     return {
-      [nix.POS]: pos$61,
+      [nix.POS]: $pos[60],
       eval: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-          [nix.POS]: pos$45,
+          [nix.POS]: $pos[44],
           __structuredAttrs: true,
           name: nix.thunk(() => nix.str`${namePrefix}-eval-report`),
           representative: nix.thunk(() => nix.sel(evalResult, "checkDrv")),
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$44,
+            [nix.POS]: $pos[43],
             tests: evalTestDefs,
             failures: nix.thunk(() => nix.app(nix.sel(lib, "runTests"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "tests")))),
           })),
@@ -287,14 +235,14 @@ echo "${id}: started (pid $pid)"
           buildCommand: nix.thunk(() => nix.add("touch $out\nfor testName in \"${!testResults[@]}\"; do\n  if [[ -n \"${testResults[$testName]}\" ]]; then\n    echo \"PASS  $testName\"\n  else\n    echo \"FAIL  $testName\"\n  fi\ndone\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "any"), (v) => !nix.asBool(v), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(finalAttrs, "testResults")))))), "{\n  echo \"\"\n  echo \"Eval-level compliance failures:\"\n  for testName in \"${!testResults[@]}\"; do\n    if [[ -z \"${testResults[$testName]}\" ]]; then\n      echo \"- $testName\"\n    fi\n  done\n  echo \"\"\n  echo 'Inspect with: nix eval .#<path>.tests.${testName}'\n} >&2\nexit 1\n"))),
         }))),
       "basic-argv": nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({
-          [nix.POS]: pos$49,
+          [nix.POS]: $pos[48],
           name: nix.thunk(() => nix.str`${namePrefix}-basic-argv`),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$48,
+            [nix.POS]: $pos[47],
             test: nix.thunk(() => ({
-              [nix.POS]: pos$47,
+              [nix.POS]: $pos[46],
               process: nix.thunk(() => ({
-                [nix.POS]: pos$46,
+                [nix.POS]: $pos[45],
                 argv: nix.thunk(() => nix.app(mkArgv, "test", nix.thunk(() => ["--greeting", "hello"]))),
               })),
             })),
@@ -302,30 +250,30 @@ echo "${id}: started (pid $pid)"
           testExe: nix.thunk(() => nix.app(mkTestScript, "basic-argv", nix.thunk(() => nix.app(waitAndCheck, "test", nix.thunk(() => ["--greeting", "hello"]))))),
         })))),
       "sub-services": nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({
-          [nix.POS]: pos$59,
+          [nix.POS]: $pos[58],
           name: nix.thunk(() => nix.str`${namePrefix}-sub-services`),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$58,
+            [nix.POS]: $pos[57],
             a: nix.thunk(() => ({
-              [nix.POS]: pos$57,
+              [nix.POS]: $pos[56],
               process: nix.thunk(() => ({
-                [nix.POS]: pos$50,
+                [nix.POS]: $pos[49],
                 argv: nix.thunk(() => nix.app(mkArgv, "a", nix.thunk(() => ["--depth=0"]))),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$56,
+                [nix.POS]: $pos[55],
                 b: nix.thunk(() => ({
-                  [nix.POS]: pos$55,
+                  [nix.POS]: $pos[54],
                   process: nix.thunk(() => ({
-                    [nix.POS]: pos$51,
+                    [nix.POS]: $pos[50],
                     argv: nix.thunk(() => nix.app(mkArgv, "b", nix.thunk(() => ["--depth=1"]))),
                   })),
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$54,
+                    [nix.POS]: $pos[53],
                     c: nix.thunk(() => ({
-                      [nix.POS]: pos$53,
+                      [nix.POS]: $pos[52],
                       process: nix.thunk(() => ({
-                        [nix.POS]: pos$52,
+                        [nix.POS]: $pos[51],
                         argv: nix.thunk(() => nix.app(mkArgv, "c", nix.thunk(() => ["--depth=2"]))),
                       })),
                     })),
@@ -340,7 +288,7 @@ ${nix.app(waitAndCheck, "c", nix.thunk(() => ["--depth=2"]))}
 `))),
         })))),
       reload: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({
-          [nix.POS]: pos$60,
+          [nix.POS]: $pos[59],
           name: nix.thunk(() => nix.str`${namePrefix}-reload`),
           services: reloadServices,
           testExe: nix.thunk(() => nix.app(mkTestScript, "reload", nix.thunk(() => nix.str`${nix.app(waitAndCheck, "reload-inner", [])}

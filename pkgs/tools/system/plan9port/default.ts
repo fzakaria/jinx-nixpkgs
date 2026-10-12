@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["homepage", 129, 5], ["description", 130, 5], ["longDescription", 131, 5], ["license", 135, 5], ["maintainers", 136, 5], ["mainProgram", 142, 5], ["platforms", 143, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 47, 3], ["configurePhase", 67, 3], ["buildPhase", 89, 3], ["installPhase", 95, 3], ["dontPatchShebangs", 105, 3], ["doInstallCheck", 107, 3], ["installCheckPhase", 108, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fontconfig: false, freetype: false, libx11: false, libxext: false, libxt: false, xorgproto: false, perl: false, which: false, ed: false, DarwinTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 129, 5], ["description", 130, 5], ["longDescription", 131, 5], ["license", 135, 5], ["maintainers", 136, 5], ["mainProgram", 142, 5], ["platforms", 143, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 47, 3], ["configurePhase", 67, 3], ["buildPhase", 89, 3], ["installPhase", 95, 3], ["dontPatchShebangs", 105, 3], ["doInstallCheck", 107, 3], ["installCheckPhase", 108, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const ed = nix.arg($, "ed");
   const DarwinTools = nix.arg($, "DarwinTools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "plan9port",
       version: "0-unstable-2025-11-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "9fans",
           repo: "plan9port",
           rev: "f39a2407b6e6ace6af68e466bfa2f362b9a9dd36",
@@ -77,7 +75,7 @@ runHook postConfigure
       doInstallCheck: true,
       installCheckPhase: "$out/bin/9 rc -c 'echo rc is working.'\n\n# 9l can find and use its libs\ncd $TMP\ncat >test.c <<EOF\n#include <u.h>\n#include <libc.h>\n#include <thread.h>\nvoid\nthreadmain(int argc, char **argv)\n{\n    threadexitsall(nil);\n}\nEOF\n$out/bin/9 9c -o test.o test.c\n$out/bin/9 9l -o test test.o\n./test\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://9fans.github.io/plan9port/",
         description: "Plan 9 from User Space",
         longDescription: "Plan 9 from User Space (aka plan9port) is a port of many Plan 9 programs\nfrom their native Plan 9 environment to Unix-like operating systems.\n",

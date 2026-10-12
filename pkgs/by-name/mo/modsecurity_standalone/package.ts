@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["fetchSubmodules", 32, 5], ["hash", 33, 5]], [["description", 81, 5], ["license", 82, 5], ["homepage", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["configureFlags", 50, 3], ["enableParallelBuilding", 62, 3], ["patches", 64, 3], ["doCheck", 70, 3], ["nativeCheckInputs", 71, 3], ["doInstallCheck", 73, 3], ["nativeInstallCheckInputs", 74, 3], ["versionCheckProgramArg", 77, 3], ["versionCheckProgram", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "pkg-config": false, autoreconfHook: false, curl: false, apacheHttpd: false, pcre2: false, apr: false, aprutil: false, libxml2: false, luaSupport: true, lua5_5: false, perl: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["fetchSubmodules", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 81, 5], ["license", 82, 5], ["homepage", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["configureFlags", 50, 3], ["enableParallelBuilding", 62, 3], ["patches", 64, 3], ["doCheck", 70, 3], ["nativeCheckInputs", 71, 3], ["doInstallCheck", 73, 3], ["nativeInstallCheckInputs", 74, 3], ["versionCheckProgramArg", 77, 3], ["versionCheckProgram", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const luaValue = nix.thunk(() => (nix.asBool(luaSupport) ? nix.force(lua5_5) : "no"));
   const optional = nix.thunk(() => nix.sel(lib, "optional"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "modsecurity",
       version: "2.9.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "owasp-modsecurity",
           repo: "modsecurity",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-v",
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/mlogc`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open source, cross-platform web application firewall (WAF)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://github.com/owasp-modsecurity/ModSecurity",

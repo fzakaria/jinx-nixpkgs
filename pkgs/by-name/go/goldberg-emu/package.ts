@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["broken", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["description", 51, 5], ["longDescription", 52, 5], ["mainProgram", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 23, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["cmakeFlags", 33, 3], ["preFixup", 37, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, protobuf_21: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["description", 51, 5], ["longDescription", 52, 5], ["mainProgram", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 23, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["cmakeFlags", 33, 3], ["preFixup", 37, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const protobuf_21 = nix.arg($, "protobuf_21");
   const protobuf = protobuf_21;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "goldberg-emu",
       version: "0.2.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mr_goldberg",
           repo: "goldberg_emulator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preFixup: "mkdir -p $out/{bin,lib}\nchmod +x $out/share/goldberg/tools/find_interfaces.sh\n\nln -s $out/share/goldberg/libsteam_api.so $out/lib\nln -s $out/share/goldberg/lobby_connect/lobby_connect $out/bin\nln -s $out/share/goldberg/tools/generate_interfaces_file $out/bin\nln -s $out/share/goldberg/tools/find_interfaces.sh $out/bin/find_interfaces\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://gitlab.com/Mr_Goldberg/goldberg_emulator",
         changelog: "https://gitlab.com/Mr_Goldberg/goldberg_emulator/-/releases",

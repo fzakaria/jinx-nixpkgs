@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["package", 111, 7]], [["pkg-config", 110, 11]], [["updateScript", 109, 5], ["tests", 110, 5]], [["description", 117, 5], ["homepage", 118, 5], ["changelog", 119, 5], ["license", 120, 5], ["mainProgram", 121, 5], ["teams", 122, 5], ["platforms", 123, 5], ["pkgConfigModules", 124, 5]], [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 25, 3], ["postPatch", 32, 3], ["strictDeps", 68, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 81, 3], ["dontWrapGApps", 90, 3], ["postConfigure", 93, 3], ["doCheck", 98, 3], ["postInstall", 100, 3], ["preFixup", 104, 3], ["passthru", 108, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gitUpdater: false, testers: false, dbus: false, doxygen: false, glib: false, libsForQt5: false, "pkg-config": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 111, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 110, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 109, 5], ["tests", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 117, 5], ["homepage", 118, 5], ["changelog", 119, 5], ["license", 120, 5], ["mainProgram", 121, 5], ["teams", 122, 5], ["platforms", 123, 5], ["pkgConfigModules", 124, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 25, 3], ["postPatch", 32, 3], ["strictDeps", 68, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 81, 3], ["dontWrapGApps", 90, 3], ["postConfigure", 93, 3], ["doCheck", 98, 3], ["postInstall", 100, 3], ["preFixup", 104, 3], ["passthru", 108, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "buteo-syncfw",
       version: "0.11.11",
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sailfishos",
           repo: "buteo-syncfw",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -90,18 +85,18 @@ substituteInPlace buteo-sync.pro \\
       postInstall: "glib-compile-schemas $out/share/glib-2.0/schemas\n",
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Buteo Synchronization Framework",
         homepage: "https://github.com/sailfishos/buteo-syncfw",
         changelog: nix.thunk(() => nix.str`https://github.com/sailfishos/buteo-syncfw/releases/tag/${nix.sel(finalAttrs, "version")}`),

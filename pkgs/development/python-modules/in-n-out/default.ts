@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 5], ["version", 20, 13], ["hash", 21, 5]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["nativeCheckInputs", 30, 3], ["pythonImportsCheck", 35, 3], ["disabledTestPaths", 37, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cython: false, fetchPypi: false, pytestCheckHook: false, pythonAtLeast: false, hatchling: false, "hatch-vcs": false, toolz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 13], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["nativeCheckInputs", 30, 3], ["pythonImportsCheck", 35, 3], ["disabledTestPaths", 37, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "in_n_out",
           version: version,
           hash: "sha256-Q83it96YHUGm1wYYore9mJSBCVkipT6tTcdfK71d/+o=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
           "tests/test_store.py",
         ])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Module for dependency injection and result processing",
         homepage: "https://github.com/pyapp-kit/in-n-out",
         changelog: nix.thunk(() => nix.str`https://github.com/pyapp-kit/in-n-out/blob/v${version}/CHANGELOG.md`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

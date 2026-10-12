@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["openscenegraph", 60, 25]], [["owner", 118, 9], ["repo", 119, 9], ["tag", 120, 9], ["hash", 121, 9]], [["pname", 114, 7], ["version", 115, 28], ["src", 117, 7], ["dontUnpack", 124, 7], ["installPhase", 126, 7]], [["updateScript", 111, 5], ["data", 113, 5]], [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["maintainers", 139, 5], ["platforms", 144, 5], ["hydraPlatforms", 145, 5], ["license", 146, 5], ["mainProgram", 147, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 55, 3], ["cmakeFlags", 90, 3], ["qtWrapperArgs", 94, 3], ["postInstall", 96, 3], ["passthru", 110, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, callPackage: false, libglut: false, freealut: false, libGLU: false, libGL: false, libice: false, libjpeg: false, openal: false, plib: false, libsm: false, libunwind: false, libx11: false, xorgproto: false, libxext: false, libxi: false, libxmu: false, libxt: false, simgear: false, xz: false, zlib: false, boost: false, cmake: false, libpng: false, udev: false, fltk_1_3: false, apr: false, qt5: false, glew: false, curl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["openscenegraph", 60, 25]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 118, 9], ["repo", 119, 9], ["tag", 120, 9], ["hash", 121, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 114, 7], ["version", 115, 28], ["src", 117, 7], ["dontUnpack", 124, 7], ["installPhase", 126, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 111, 5], ["data", 113, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["maintainers", 139, 5], ["platforms", 144, 5], ["hydraPlatforms", 145, 5], ["license", 146, 5], ["mainProgram", 147, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 55, 3], ["cmakeFlags", 90, 3], ["qtWrapperArgs", 94, 3], ["postInstall", 96, 3], ["passthru", 110, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const openscenegraph = nix.thunk(() => nix.app(callPackage, nix.path(here, "./openscenegraph-flightgear.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "flightgear",
       version: "2024.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flightgear",
           repo: "flightgear",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
         libjpeg,
         openal,
         plib,
-        nix.thunk(() => nix.app(nix.sel(simgear, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, openscenegraph: openscenegraph })))),
+        nix.thunk(() => nix.app(nix.sel(simgear, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], openscenegraph: openscenegraph })))),
         zlib,
         boost,
         libpng,
@@ -98,14 +92,14 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.add("# Remove redundant AppImage artifacts\nrm -rf \"$out/appdir\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# The bundle copies OSG dylib dangling symlinks\nrm -rf \"$out/FlightGear.app/Contents/Frameworks\"\n# Place app bundle where macOS expects it\nmkdir -p \"$out/Applications\"\nmv \"$out/FlightGear.app\" \"$out/Applications/\"\n# Provide fgfs in bin/ for CLI use, pointing into the bundle\nln -s \"$out/Applications/FlightGear.app/Contents/MacOS/FlightGear\" \"$out/bin/fgfs\"\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         data: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname: "flightgear-data",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 owner: "flightgear",
                 repo: "fgdata",
                 tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -116,7 +110,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "A free and highly sophisticated flight simulator",
         homepage: "https://www.flightgear.org/",
         changelog: nix.thunk(() => nix.str`https://www.flightgear.org/download/releases/${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),

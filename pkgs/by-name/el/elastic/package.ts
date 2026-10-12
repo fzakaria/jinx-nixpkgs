@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["updateScript", 51, 5]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["teams", 62, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 42, 3], ["passthru", 50, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, vala: false, gtk4: false, libgee: false, libadwaita: false, gtksourceview5: false, "blueprint-compiler": false, wrapGAppsHook4: false, "desktop-file-utils": false, "template-glib": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["teams", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 42, 3], ["passthru", 50, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const template_glib = nix.arg($, "template-glib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "elastic",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "elastic",
@@ -49,11 +46,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [gtk4, libadwaita, libgee, gtksourceview5, template_glib]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Design spring animations",
         homepage: "https://gitlab.gnome.org/World/elastic/",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/elastic/-/releases/${nix.sel(finalAttrs, "version")}`),

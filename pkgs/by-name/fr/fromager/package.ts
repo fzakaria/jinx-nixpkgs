@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["FROMAGER_HTTP_RETRIES", 61, 7]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 48, 3], ["env", 61, 3], ["pythonImportsCheck", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["FROMAGER_HTTP_RETRIES", 61, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 48, 3], ["env", 61, 3], ["pythonImportsCheck", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fromager",
       version: "0.101.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-wheel-build",
           repo: "fromager",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,10 +67,10 @@ export default nix.lambda((args) => (() => {
           writableTmpDirAsHomeHook,
         ];
       })()),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, FROMAGER_HTTP_RETRIES: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], FROMAGER_HTTP_RETRIES: 0n })),
       pythonImportsCheck: nix.thunk(() => ["fromager"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wheel maker",
         homepage: "https://pypi.org/project/fromager/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

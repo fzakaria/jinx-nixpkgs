@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 31, 5], ["sha256", 32, 5]], [["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["homepage", 63, 5], ["license", 64, 5], ["sourceProvenance", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["dontBuild", 37, 3], ["installPhase", 39, 3], ["preferLocalBuild", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, jdk: true, coreutils: false, ncurses: false, gnused: false, gnugrep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["homepage", 63, 5], ["license", 64, 5], ["sourceProvenance", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["dontBuild", 37, 3], ["installPhase", 39, 3], ["preferLocalBuild", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "grails";
       const version = "7.0.0-M3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/grails/grails-core/releases/download/v${version}/grails-${version}.zip`),
           sha256: "sha256-BM3fxmf86o+Ob63bE9aSCBh2MlkIS4AsYj7CZr/PVWU=",
         }))));
@@ -40,7 +38,7 @@ sed -i -e '2iJAVA_HOME=${nix.sel(jdk, "home")}' "$out"/bin/grails
 `))));
       const preferLocalBuild = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Full stack, web application framework for the JVM",
         mainProgram: "grails",
         longDescription: "Grails is an Open Source, full stack, web application framework for the\nJVM. It takes advantage of the Groovy programming language and convention\nover configuration to provide a productive and stream-lined development\nexperience.\n",
@@ -54,7 +52,7 @@ sed -i -e '2iJAVA_HOME=${nix.sel(jdk, "home")}' "$out"/bin/grails
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bjornfor"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 17, 3], ["version", 18, 3], ["duneVersion", 19, 3], ["src", 20, 3], ["checkInputs", 25, 3], ["doCheck", 29, 11], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, ocaml: false, buildDunePackage: false, ounit: false, qtest: false, doCheck: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["duneVersion", 19, 3], ["src", 20, 3], ["checkInputs", 25, 3], ["doCheck", 29, 11], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const doCheck = nix.argOr($, "doCheck", () => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08"));
   const version = "1.6.0";
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "stringext",
       version: version,
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/rgrinberg/stringext/releases/download/${version}/stringext-${version}.tbz`),
           sha256: "1sh6nafi3i9773j5mlwwz3kxfzdjzsfqj2qibxhigawy5vazahfv",
         })))),
       checkInputs: nix.thunk(() => [ounit, qtest]),
       doCheck: doCheck,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/rgrinberg/stringext",
         description: "Extra string functions for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

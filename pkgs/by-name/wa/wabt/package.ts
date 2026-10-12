@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5], ["fetchSubmodules", 17, 5]], [["description", 27, 5], ["longDescription", 28, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 20, 3], ["cmakeFlags", 21, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5], ["fetchSubmodules", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["longDescription", 28, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 20, 3], ["cmakeFlags", 21, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wabt",
       version: "1.0.41",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "WebAssembly",
           repo: "wabt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DCMAKE_PROJECT_VERSION=${nix.sel(finalAttrs, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "WebAssembly Binary Toolkit",
         longDescription: "WABT (pronounced \"wabbit\") is a suite of tools for WebAssembly, including:\n * wat2wasm: translate from WebAssembly text format to the WebAssembly\n   binary format\n * wasm2wat: the inverse of wat2wasm, translate from the binary format\n   back to the text format (also known as a .wat)\n * wasm-objdump: print information about a wasm binary. Similar to\n   objdump.\n * wasm-interp: decode and run a WebAssembly binary file using a\n   stack-based interpreter\n * wat-desugar: parse .wat text form as supported by the spec interpreter\n   (s-expressions, flat syntax, or mixed) and print \"canonical\" flat\n   format\n * wasm2c: convert a WebAssembly binary file to a C source and header\n",
         homepage: "https://github.com/WebAssembly/wabt",

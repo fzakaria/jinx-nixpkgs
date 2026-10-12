@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["sha256", 24, 5], ["fetchSubmodules", 25, 5]], [["runAllTests", 64, 43]], [["fullTestsuite", 64, 5]], [["tests", 63, 12]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 28, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 49, 3], ["passthru", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, fonttools: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-xdist": false, runAllTests: true, psautohint: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["sha256", 24, 5], ["fetchSubmodules", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["runAllTests", 64, 43]]);
-const pos$3 = nix.positions(here + "/default.nix", [["fullTestsuite", 64, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 63, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 28, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 49, 3], ["passthru", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const runAllTests = nix.argOr($, "runAllTests", () => false);
   const psautohint = nix.arg($, "psautohint");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "psautohint",
       version: "2.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adobe-type-tools",
           repo: "psautohint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,14 +50,14 @@ sed -i '/setup(/a \\     version="${nix.sel(finalAttrs, "version")}",' setup.py
           "test_hashmap_no_version",
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          fullTestsuite: nix.thunk(() => nix.app(nix.sel(psautohint, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, runAllTests: true })))),
+          [nix.POS]: $pos[2],
+          fullTestsuite: nix.thunk(() => nix.app(nix.sel(psautohint, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], runAllTests: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Script to normalize the XML and other data inside of a UFO",
         homepage: "https://github.com/adobe-type-tools/psautohint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/info.nix", [[["description", 29, 8]], [["pname", 8, 3], ["outputs", 10, 3], ["configureFlags", 12, 3], ["extraNativeBuildInputs", 14, 3], ["buildFlags", 19, 3], ["installPhase", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { callPackage: false, texinfo: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/info.nix", [["description", 29, 8]]);
-const pos$2 = nix.positions(here + "/info.nix", [["pname", 8, 3], ["outputs", 10, 3], ["configureFlags", 12, 3], ["extraNativeBuildInputs", 14, 3], ["buildFlags", 19, 3], ["installPhase", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const perl = nix.arg($, "perl");
   return nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({})), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "glibc-info",
       outputs: nix.thunk(() => ["out"]),
       configureFlags: nix.thunk(() => ["--enable-add-ons"]),
       extraNativeBuildInputs: nix.thunk(() => [texinfo, perl]),
       buildFlags: nix.thunk(() => ["info"]),
       installPhase: "mkdir -p \"$out/share/info\"\ncp -v \"manual/\"*.info* \"$out/share/info\"\n",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "GNU Info manual of the GNU C Library" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "GNU Info manual of the GNU C Library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=info.ts.map

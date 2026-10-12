@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 14, 7], ["aarch64-linux", 15, 7], ["aarch64-darwin", 16, 7]], [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5], ["platforms", 91, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 37, 3], ["mvnHash", 43, 3], ["mvnParameters", 46, 3], ["nativeBuildInputs", 48, 3], ["dontWrapGApps", 53, 3], ["installPhase", 55, 3], ["postFixup", 75, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, maven: false, fetchFromGitHub: false, makeWrapper: false, wrapGAppsHook3: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 14, 7], ["aarch64-linux", 15, 7], ["aarch64-darwin", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5], ["platforms", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 37, 3], ["mvnHash", 43, 3], ["mvnParameters", 46, 3], ["nativeBuildInputs", 48, 3], ["dontWrapGApps", 53, 3], ["installPhase", 55, 3], ["postFixup", 75, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const jre = nix.arg($, "jre");
   const platformName = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "linux-x86-64",
     "aarch64-linux": "linux-aarch64",
     "aarch64-darwin": "darwin-aarch64",
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jugglinglab";
       const version = "1.6.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "jkboyce",
           repo: "jugglinglab",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -61,7 +58,7 @@ runHook postInstall
     --add-flags "-jar $out/share/jugglinglab/JugglingLab.jar"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Program to visualize different juggling patterns",
         homepage: "https://jugglinglab.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -76,7 +73,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,28 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 14, 20]], [["hash", 15, 19]], [["hash", 16, 20]], [["hash", 17, 20]], [["hash", 18, 19]], [["hash", 19, 19]], [["hash", 20, 19]], [["hash", 21, 19]], [["hash", 22, 19]], [["10.2.0", 14, 11], ["9.0.0", 15, 11], ["8.11.0", 16, 11], ["8.10.0", 17, 11], ["8.9.0", 18, 11], ["8.8.0", 19, 11], ["8.7.0", 20, 11], ["8.6.0", 21, 11], ["8.5.0", 22, 11]], [["case", 29, 9], ["out", 30, 9]], [["case", 33, 9], ["out", 34, 9]], [["case", 37, 9], ["out", 38, 9]], [["case", 41, 9], ["out", 42, 9]], [["case", 45, 9], ["out", 46, 9]], [["case", 49, 9], ["out", 50, 9]], [["case", 53, 9], ["out", 54, 9]], [["description", 61, 5], ["longDescription", 62, 5], ["maintainers", 67, 5], ["license", 68, 5]], [["pname", 9, 3], ["repo", 10, 3], ["releaseRev", 12, 3], ["release", 14, 3], ["version", 24, 11], ["defaultVersion", 25, 3], ["useDuneifVersion", 58, 3], ["meta", 60, 3]], [["repo", 71, 76]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 14, 20]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 15, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 16, 20]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 17, 20]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 18, 19]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 19, 19]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 20, 19]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hash", 21, 19]]);
-const pos$9 = nix.positions(here + "/default.nix", [["hash", 22, 19]]);
-const pos$10 = nix.positions(here + "/default.nix", [["10.2.0", 14, 11], ["9.0.0", 15, 11], ["8.11.0", 16, 11], ["8.10.0", 17, 11], ["8.9.0", 18, 11], ["8.8.0", 19, 11], ["8.7.0", 20, 11], ["8.6.0", 21, 11], ["8.5.0", 22, 11]]);
-const pos$11 = nix.positions(here + "/default.nix", [["case", 29, 9], ["out", 30, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["case", 33, 9], ["out", 34, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["case", 37, 9], ["out", 38, 9]]);
-const pos$14 = nix.positions(here + "/default.nix", [["case", 41, 9], ["out", 42, 9]]);
-const pos$15 = nix.positions(here + "/default.nix", [["case", 45, 9], ["out", 46, 9]]);
-const pos$16 = nix.positions(here + "/default.nix", [["case", 49, 9], ["out", 50, 9]]);
-const pos$17 = nix.positions(here + "/default.nix", [["case", 53, 9], ["out", 54, 9]]);
-const pos$18 = nix.positions(here + "/default.nix", [["description", 61, 5], ["longDescription", 62, 5], ["maintainers", 67, 5], ["license", 68, 5]]);
-const pos$19 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["repo", 10, 3], ["releaseRev", 12, 3], ["release", 14, 3], ["version", 24, 11], ["defaultVersion", 25, 3], ["useDuneifVersion", 58, 3], ["meta", 60, 3]]);
 const formals$2 = { args: { version: false }, ellipsis: true };
-const pos$20 = nix.positions(here + "/default.nix", [["repo", 71, 76]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,46 +13,46 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(nix.sel(nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       pname: "zorns-lemma",
       repo: "topology",
       releaseRev: (v) => nix.str`v${v}`,
       release: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         "10.2.0": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256-xLi3uRQBKL9KiLd4FBnbTPxh8TjdN8IEW/1D7n2B+xY=",
         })),
         "9.0.0": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256:03lgy53xg9pmrdd3d8qb4087k5qjnk260655svp6d79x4p2lxr8c",
         })),
         "8.11.0": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-2Hf7YwRcFmP/DqwFtF1p78MCNV50qUWfMVQtZbwKd0k=",
         })),
         "8.10.0": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-qLPLK2ZLJQ4SmJX2ADqFiP4kgHuQFJTeNXkBbjiFS+4=",
         })),
         "8.9.0": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256-lEh978cXehglFX9D92RVltEuvN8umfPo/hvmFZm2NGo=",
         })),
         "8.8.0": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256-ikXGzABu8VW7O0xNtCNvIq29c+mlDUm4k/ygVcsgDOI=",
         })),
         "8.7.0": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256-jozvkkKLFBllN6K4oeYD0lNG+MdnOuKrDUPDocHUG6c=",
         })),
         "8.6.0": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hash: "sha256-jozvkkKLFBllN6K4oeYD0lNG+MdnOuKrDUPDocHUG6c=",
         })),
         "8.5.0": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           hash: "sha256-mH/v02ObMjbVPYx2H+Jhz+Xp0XRKN67iMAdA1VNFzso=",
         })),
       })),
@@ -80,25 +61,25 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.12", "8.20")),
               out: "10.2.0",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.10", "8.16")),
               out: "9.0.0",
             })),
-            nix.thunk(() => ({ [nix.POS]: pos$13, case: "8.9", out: "8.9.0" })),
-            nix.thunk(() => ({ [nix.POS]: pos$14, case: "8.8", out: "8.8.0" })),
-            nix.thunk(() => ({ [nix.POS]: pos$15, case: "8.7", out: "8.7.0" })),
-            nix.thunk(() => ({ [nix.POS]: pos$16, case: "8.6", out: "8.6.0" })),
-            nix.thunk(() => ({ [nix.POS]: pos$17, case: "8.5", out: "8.5.0" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[12], case: "8.9", out: "8.9.0" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[13], case: "8.8", out: "8.8.0" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[14], case: "8.7", out: "8.7.0" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[15], case: "8.6", out: "8.6.0" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[16], case: "8.5", out: "8.5.0" })),
           ]), null);
       })()),
       useDuneifVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isGe"), "9.0")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         description: "Development of basic set theory",
         longDescription: "This Coq library develops some basic set theory.  The main\npurpose the author had in writing it was as support for the\nTopology library.\n",
         maintainers: nix.thunk(() => (() => {
@@ -110,7 +91,7 @@ export default nix.lambda((args) => (() => {
     }))), "overrideAttrs"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const version_1 = nix.arg($_1, "version");
-      return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "isGe"), "9.0", version_1)), nix.thunk(() => ({ [nix.POS]: pos$20, repo: "topology" })));
+      return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "isGe"), "9.0", version_1)), nix.thunk(() => ({ [nix.POS]: $pos[19], repo: "topology" })));
     })(), formals$2));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

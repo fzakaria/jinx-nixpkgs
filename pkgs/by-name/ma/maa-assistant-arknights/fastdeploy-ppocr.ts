@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fastdeploy-ppocr.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 72, 5], ["homepage", 73, 5], ["platforms", 74, 5], ["license", 75, 5], ["broken", 76, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["outputs", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["cmakeBuildType", 57, 3], ["cmakeFlags", 59, 3], ["postInstall", 66, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { stdenv: false, config: false, lib: false, fetchFromGitHub: false, cmake: false, eigen: false, onnxruntime: false, opencv: false, cudaSupport: true, cudaPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fastdeploy-ppocr.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/fastdeploy-ppocr.nix", [["description", 72, 5], ["homepage", 73, 5], ["platforms", 74, 5], ["license", 75, 5], ["broken", 76, 5]]);
-const pos$3 = nix.positions(here + "/fastdeploy-ppocr.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["outputs", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["cmakeBuildType", 57, 3], ["cmakeFlags", 59, 3], ["postInstall", 66, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const cudaPackages = nix.argOr($, "cudaPackages", () => ({}));
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.sel(inputs, "stdenv")));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fastdeploy-ppocr",
       version: "0-unstable-2023-10-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MaaAssistantArknights",
           repo: "FastDeploy",
           rev: "0db6000aaac250824266ac37451f43ce272d80a3",
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
 install -Dm644 ${nix.sel(finalAttrs, "src")}/cmake/Findonnxruntime.cmake $cmake/
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MaaAssistantArknights stripped-down version of FastDeploy",
         homepage: "https://github.com/MaaAssistantArknights/FastDeploy",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),

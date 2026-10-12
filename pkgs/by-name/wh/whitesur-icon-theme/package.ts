@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 7], ["repo", 38, 7], ["tag", 39, 7], ["hash", 40, 7]], [["description", 79, 7], ["homepage", 80, 7], ["license", 81, 7], ["platforms", 82, 7], ["maintainers", 83, 7]], [["pname", 33, 13], ["version", 34, 5], ["src", 36, 5], ["nativeBuildInputs", 43, 5], ["buildInputs", 48, 5], ["dontPatchELF", 51, 5], ["dontRewriteSymlinks", 52, 5], ["dontDropIconThemeCache", 53, 5], ["postPatch", 55, 5], ["installPhase", 59, 5], ["postFixup", 74, 5], ["meta", 78, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gtk3: false, "hicolor-icon-theme": false, jdupes: false, boldPanelIcons: true, alternativeIcons: true, themeVariants: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 7], ["repo", 38, 7], ["tag", 39, 7], ["hash", 40, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 79, 7], ["homepage", 80, 7], ["license", 81, 7], ["platforms", 82, 7], ["maintainers", 83, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 13], ["version", 34, 5], ["src", 36, 5], ["nativeBuildInputs", 43, 5], ["buildInputs", 48, 5], ["dontPatchELF", 51, 5], ["dontRewriteSymlinks", 52, 5], ["dontDropIconThemeCache", 53, 5], ["postPatch", 55, 5], ["installPhase", 59, 5], ["postFixup", 74, 5], ["meta", 78, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "2026-09-10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vinceliuice",
           repo: "WhiteSur-icon-theme",
           tag: version,
@@ -60,7 +58,7 @@ runHook postInstall
 `);
       const postFixup = "find $out/share/icons -xtype l -delete\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MacOS Big Sur style icon theme for Linux desktops",
         homepage: "https://github.com/vinceliuice/WhiteSur-icon-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -71,7 +69,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: pname_1,
         version,
         src,

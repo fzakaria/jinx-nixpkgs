@@ -2,27 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/soft-serve.nix", [[["maintainers", 11, 8]], [["source", 22, 11], ["mode", 23, 11]], [["sshKey", 21, 25]], [["systemPackages", 16, 21], ["etc", 21, 21]], [["environment", 16, 9]], [["listen_addr", 34, 17]], [["listen_addr", 35, 17]], [["listen_addr", 36, 18]], [["listen_addr", 37, 19]], [["name", 33, 13], ["ssh", 34, 13], ["git", 35, 13], ["http", 36, 13], ["stats", 37, 13], ["initial_admin_keys", 38, 13]], [["enable", 31, 11], ["settings", 32, 11]], [["soft-serve", 30, 18]], [["allowedTCPPorts", 41, 29]], [["firewall", 41, 20]], [["services", 30, 9], ["networking", 41, 9]], [["client", 13, 5], ["server", 27, 5]], [["name", 10, 3], ["meta", 11, 3], ["nodes", 12, 3], ["testScript", 49, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/soft-serve.nix", [["maintainers", 11, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/soft-serve.nix", [["source", 22, 11], ["mode", 23, 11]]);
-const pos$3 = nix.positions(here + "/soft-serve.nix", [["sshKey", 21, 25]]);
-const pos$4 = nix.positions(here + "/soft-serve.nix", [["systemPackages", 16, 21], ["etc", 21, 21]]);
-const pos$5 = nix.positions(here + "/soft-serve.nix", [["environment", 16, 9]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/soft-serve.nix", [["listen_addr", 34, 17]]);
-const pos$7 = nix.positions(here + "/soft-serve.nix", [["listen_addr", 35, 17]]);
-const pos$8 = nix.positions(here + "/soft-serve.nix", [["listen_addr", 36, 18]]);
-const pos$9 = nix.positions(here + "/soft-serve.nix", [["listen_addr", 37, 19]]);
-const pos$10 = nix.positions(here + "/soft-serve.nix", [["name", 33, 13], ["ssh", 34, 13], ["git", 35, 13], ["http", 36, 13], ["stats", 37, 13], ["initial_admin_keys", 38, 13]]);
-const pos$11 = nix.positions(here + "/soft-serve.nix", [["enable", 31, 11], ["settings", 32, 11]]);
-const pos$12 = nix.positions(here + "/soft-serve.nix", [["soft-serve", 30, 18]]);
-const pos$13 = nix.positions(here + "/soft-serve.nix", [["allowedTCPPorts", 41, 29]]);
-const pos$14 = nix.positions(here + "/soft-serve.nix", [["firewall", 41, 20]]);
-const pos$15 = nix.positions(here + "/soft-serve.nix", [["services", 30, 9], ["networking", 41, 9]]);
-const pos$16 = nix.positions(here + "/soft-serve.nix", [["client", 13, 5], ["server", 27, 5]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$17 = nix.positions(here + "/soft-serve.nix", [["name", 10, 3], ["meta", 11, 3], ["nodes", 12, 3], ["testScript", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,24 +20,24 @@ export default nix.lambda((args) => (() => {
   const statsPort = 8233n;
   const gitPort = 8418n;
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "soft-serve",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "dadada"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -63,8 +47,8 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              sshKey: nix.thunk(() => ({ [nix.POS]: pos$2, source: snakeOilPrivateKey, mode: "0600" })),
+              [nix.POS]: $pos[2],
+              sshKey: nix.thunk(() => ({ [nix.POS]: $pos[1], source: snakeOilPrivateKey, mode: "0600" })),
             })),
           })),
         };
@@ -73,29 +57,29 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             "soft-serve": nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 name: "TestServer",
                 ssh: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   listen_addr: nix.thunk(() => nix.str`:${nix.builtins.toString(sshPort)}`),
                 })),
                 git: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   listen_addr: nix.thunk(() => nix.str`:${nix.builtins.toString(gitPort)}`),
                 })),
                 http: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   listen_addr: nix.thunk(() => nix.str`:${nix.builtins.toString(httpPort)}`),
                 })),
                 stats: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   listen_addr: nix.thunk(() => nix.str`:${nix.builtins.toString(statsPort)}`),
                 })),
                 initial_admin_keys: nix.thunk(() => [snakeOilPublicKey]),
@@ -103,9 +87,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               allowedTCPPorts: nix.thunk(() => [sshPort, httpPort, statsPort]),
             })),
           })),

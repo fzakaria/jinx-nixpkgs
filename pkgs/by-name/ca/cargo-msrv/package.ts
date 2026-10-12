@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5]], [["extraArgs", 27, 5]], [["updateScript", 26, 12]], [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 53, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["passthru", 26, 3], ["doCheck", 31, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 35, 3], ["postInstall", 41, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, rustup: false, openssl: false, stdenv: false, makeWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 26, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["passthru", 26, 3], ["doCheck", 31, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 35, 3], ["postInstall", 41, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cargo-msrv",
       version: "0.19.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "foresterre",
           repo: "cargo-msrv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,9 +29,9 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-cqTSLpmS/9BgtuVXlqBrxpFCPPs+wFhqOalOVhPD5r8=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=^v([0-9.]+)$"]),
           })))),
       })),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/cargo-msrv --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [rustup]))};
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cargo subcommand \"msrv\": assists with finding your minimum supported Rust version (MSRV)",
         mainProgram: "cargo-msrv",
         homepage: "https://github.com/foresterre/cargo-msrv",

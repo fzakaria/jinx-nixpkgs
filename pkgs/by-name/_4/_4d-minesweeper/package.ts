@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["buildPhase", 59, 3], ["dontInstall", 78, 3], ["dontFixup", 79, 3], ["dontStrip", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, unzip: false, "alsa-lib": false, "gcc-unwrapped": false, git: false, "godot3-export-templates": false, "godot3-headless": false, libGLU: false, libx11: false, libxcursor: false, libxext: false, libxfixes: false, libxi: false, libxinerama: false, libxrandr: false, libxrender: false, libglvnd: false, libpulseaudio: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["buildPhase", 59, 3], ["dontInstall", 78, 3], ["dontFixup", 79, 3], ["dontStrip", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "4d-minesweeper",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Alzager",
           repo: "4D-Minesweeper-Archived",
           rev: "db176d8aa5981a597bbae6a1a74aeebf0f376df4",
@@ -80,7 +78,7 @@ runHook postBuild
       dontFixup: true,
       dontStrip: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/Alzager/4D-Minesweeper-Archived",
         description: "4D Minesweeper game written in Godot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

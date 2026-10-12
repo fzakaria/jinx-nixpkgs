@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["fetchSubmodules", 35, 5], ["hash", 36, 5]], [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]], [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["maintainers", 112, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 29, 3], ["src", 31, 3], ["patches", 39, 3], ["nativeBuildInputs", 48, 3], ["build-system", 52, 3], ["dependencies", 57, 3], ["pythonImportsCheck", 66, 3], ["preCheck", 71, 3], ["nativeCheckInputs", 81, 3], ["disabledTests", 85, 3], ["disabledTestPaths", 99, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, pyprojectVersionPatchHook: false, pybind11: false, setuptools: false, ase: false, joblib: false, numpy: false, "scikit-learn": false, scipy: false, sparse: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["fetchSubmodules", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["maintainers", 112, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 29, 3], ["src", 31, 3], ["patches", 39, 3], ["nativeBuildInputs", 48, 3], ["build-system", 52, 3], ["dependencies", 57, 3], ["pythonImportsCheck", 66, 3], ["preCheck", 71, 3], ["nativeCheckInputs", 81, 3], ["disabledTests", 85, 3], ["disabledTestPaths", 99, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "singroup",
           repo: "dscribe",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "dscribe-numpy-compatibility",
             url: "https://github.com/SINGROUP/dscribe/pull/162.patch",
             hash: "sha256-mSKIerAIqdRp6b/ylqcYr8VwLCGxw5fz/5foo0ZQqgk=",
@@ -61,14 +58,14 @@ export default nix.lambda((args) => (() => {
         "tests/test_valle_oganov.py",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Machine learning descriptors for atomistic systems",
         homepage: "https://github.com/SINGROUP/dscribe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sheepforce"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

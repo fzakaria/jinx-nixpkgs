@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 20, 5], ["owner", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["NIX_CFLAGS_COMPILE", 35, 7]], [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["broken", 68, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["cmakeFlags", 30, 3], ["env", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 51, 3], ["hardeningDisable", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, SDL2: false, SDL2_image: false, SDL2_mixer: false, cmake: false, "gtk3-x11": false, python3: false, protobuf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 20, 5], ["owner", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["broken", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["cmakeFlags", 30, 3], ["env", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 51, 3], ["hardeningDisable", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cdogs-sdl",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "cdogs-sdl",
           owner: "cxong",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         "-DCMAKE_C_FLAGS=-Wno-error=array-bounds",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=stringop-overflow"]))),
       })),
       nativeBuildInputs: nix.thunk(() => [
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, SDL2_image, SDL2_mixer, gtk3_x11, protobuf]),
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://cxong.github.io/cdogs-sdl",
         description: "Open source classic overhead run-and-gun game",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

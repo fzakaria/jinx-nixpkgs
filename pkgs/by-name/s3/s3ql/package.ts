@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["version", 44, 85]], [["extraArgs", 84, 5]], [["updateScript", 83, 12]], [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["build-system", 47, 3], ["nativeBuildInputs", 49, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 66, 3], ["preBuild", 72, 3], ["pythonImportsCheck", 76, 3], ["enabledTestPaths", 78, 3], ["disabledTests", 81, 3], ["passthru", 83, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, replaceVars: false, sqlite: false, which: false, "nix-update-script": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 44, 85]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 83, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["build-system", 47, 3], ["nativeBuildInputs", 49, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 66, 3], ["preBuild", 72, 3], ["pythonImportsCheck", 76, 3], ["enabledTestPaths", 78, 3], ["disabledTests", 81, 3], ["passthru", 83, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,19 +31,22 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.thunk(() => nix.attr(from, "pytestCheckHook"));
   const python = nix.thunk(() => nix.attr(from, "python"));
   return nix.app(buildPythonApplication, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "s3ql",
       version: "5.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "s3ql",
           repo: "s3ql",
           tag: nix.thunk(() => nix.str`s3ql-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-SVB+VB508hGXvdHZo5lt09yssjjwHS1tsDU8M4j+swc=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-setup.py-remove-self-reference.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-setup.py-remove-self-reference.patch"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            version: nix.thunk(() => nix.attr(finalAttrs, "version")),
+          })))),
       ]),
       "build-system": nix.thunk(() => [setuptools]),
       nativeBuildInputs: nix.thunk(() => [which, cython]),
@@ -70,14 +68,14 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/"]),
       disabledTests: nix.thunk(() => ["test_aborted_write2"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "s3ql-([0-9.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Full-featured file system for online data storage",
         homepage: "https://github.com/s3ql/s3ql/",
         changelog: nix.thunk(() => nix.str`https://github.com/s3ql/s3ql/releases/tag/s3ql-${nix.sel(finalAttrs, "version")}`),

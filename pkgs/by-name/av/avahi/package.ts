@@ -2,32 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["sha256", 34, 5]], [["name", 46, 7], ["url", 47, 7], ["sha256", 48, 7]], [["name", 52, 7], ["url", 53, 7], ["sha256", 54, 7]], [["name", 57, 7], ["url", 58, 7], ["sha256", 59, 7]], [["name", 64, 7], ["url", 65, 7], ["sha256", 66, 7]], [["name", 70, 7], ["url", 71, 7], ["sha256", 72, 7]], [["name", 77, 7], ["url", 78, 7], ["sha256", 79, 7]], [["name", 84, 7], ["url", 85, 7], ["sha256", 86, 7]], [["name", 91, 7], ["url", 92, 7], ["sha256", 93, 7]], [["name", 97, 7], ["url", 98, 7], ["sha256", 99, 7]], [["name", 104, 7], ["url", 105, 7], ["sha256", 106, 7], ["excludes", 107, 7]], [["name", 111, 7], ["url", 112, 7], ["sha256", 113, 7]], [["name", 117, 7], ["url", 118, 7], ["sha256", 119, 7], ["excludes", 120, 7]], [["name", 124, 7], ["url", 125, 7], ["sha256", 126, 7], ["excludes", 127, 7]], [["name", 134, 7], ["url", 135, 7], ["hash", 136, 7]], [["name", 140, 7], ["url", 141, 7], ["hash", 142, 7]], [["name", 156, 7], ["url", 157, 7], ["hash", 158, 7]], [["name", 161, 7], ["url", 162, 7], ["hash", 163, 7]], [["name", 166, 7], ["url", 167, 7], ["hash", 168, 7]], [["name", 171, 7], ["url", 172, 7], ["hash", 173, 7]], [["name", 177, 7], ["url", 178, 7], ["hash", 179, 7]], [["smoke-test", 274, 5], ["smoke-test-resolved", 275, 5]], [["tests", 273, 12]], [["description", 279, 5], ["homepage", 280, 5], ["license", 281, 5], ["platforms", 282, 5], ["maintainers", 283, 5], ["longDescription", 286, 5], ["knownVulnerabilities", 293, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["outputs", 37, 3], ["patches", 43, 3], ["postPatch", 184, 3], ["depsBuildBuild", 190, 3], ["nativeBuildInputs", 194, 3], ["buildInputs", 202, 3], ["propagatedBuildInputs", 220, 3], ["configureFlags", 229, 3], ["installFlags", 252, 3], ["preBuild", 259, 3], ["postInstall", 265, 3], ["enableParallelBuilding", 271, 3], ["passthru", 273, 3], ["meta", 278, 3]]]);
 const formals$1 = { args: { fetchurl: false, fetchpatch: false, lib: false, config: false, stdenv: false, "pkg-config": false, libdaemon: false, dbus: false, libpcap: false, expat: false, gettext: false, glib: false, "autoconf-archive": false, autoreconfHook: false, libiconv: false, libevent: false, nixosTests: false, gtk3Support: true, gtk3: false, qt5: false, qt5Support: true, withLibdnssdCompat: true, python: true, withPython: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 46, 7], ["url", 47, 7], ["sha256", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 52, 7], ["url", 53, 7], ["sha256", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 57, 7], ["url", 58, 7], ["sha256", 59, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 64, 7], ["url", 65, 7], ["sha256", 66, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 70, 7], ["url", 71, 7], ["sha256", 72, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 77, 7], ["url", 78, 7], ["sha256", 79, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 84, 7], ["url", 85, 7], ["sha256", 86, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 91, 7], ["url", 92, 7], ["sha256", 93, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 97, 7], ["url", 98, 7], ["sha256", 99, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 104, 7], ["url", 105, 7], ["sha256", 106, 7], ["excludes", 107, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["name", 111, 7], ["url", 112, 7], ["sha256", 113, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["name", 117, 7], ["url", 118, 7], ["sha256", 119, 7], ["excludes", 120, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["name", 124, 7], ["url", 125, 7], ["sha256", 126, 7], ["excludes", 127, 7]]);
-const pos$15 = nix.positions(here + "/package.nix", [["name", 134, 7], ["url", 135, 7], ["hash", 136, 7]]);
-const pos$16 = nix.positions(here + "/package.nix", [["name", 140, 7], ["url", 141, 7], ["hash", 142, 7]]);
-const pos$17 = nix.positions(here + "/package.nix", [["name", 156, 7], ["url", 157, 7], ["hash", 158, 7]]);
-const pos$18 = nix.positions(here + "/package.nix", [["name", 161, 7], ["url", 162, 7], ["hash", 163, 7]]);
-const pos$19 = nix.positions(here + "/package.nix", [["name", 166, 7], ["url", 167, 7], ["hash", 168, 7]]);
-const pos$20 = nix.positions(here + "/package.nix", [["name", 171, 7], ["url", 172, 7], ["hash", 173, 7]]);
-const pos$21 = nix.positions(here + "/package.nix", [["name", 177, 7], ["url", 178, 7], ["hash", 179, 7]]);
-const pos$22 = nix.positions(here + "/package.nix", [["smoke-test", 274, 5], ["smoke-test-resolved", 275, 5]]);
-const pos$23 = nix.positions(here + "/package.nix", [["tests", 273, 12]]);
-const pos$24 = nix.positions(here + "/package.nix", [["description", 279, 5], ["homepage", 280, 5], ["license", 281, 5], ["platforms", 282, 5], ["maintainers", 283, 5], ["longDescription", 286, 5], ["knownVulnerabilities", 293, 5]]);
-const pos$25 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["outputs", 37, 3], ["patches", 43, 3], ["postPatch", 184, 3], ["depsBuildBuild", 190, 3], ["nativeBuildInputs", 194, 3], ["buildInputs", 202, 3], ["propagatedBuildInputs", 220, 3], ["configureFlags", 229, 3], ["installFlags", 252, 3], ["preBuild", 259, 3], ["postInstall", 265, 3], ["enableParallelBuilding", 271, 3], ["passthru", 273, 3], ["meta", 278, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,131 +35,131 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`avahi${nix.app(nix.sel(lib, "optionalString"), withLibdnssdCompat, "-compat")}`);
       const version = "0.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/lathiat/avahi/releases/download/v${version}/avahi-${version}.tar.gz`),
           sha256: "1npdixwxxn3s9q1f365x9n9rc5xgfz39hxf23faqvlrklgbhj0q6",
         }))));
       const outputs = nix.thunk(() => ["out", "dev", "man"]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2021-3502.patch",
             url: "https://github.com/lathiat/avahi/commit/9d31939e55280a733d930b15ac9e4dda4497680c.patch",
             sha256: "sha256-BXWmrLWUvDxKPoIPRFBpMS3T4gijRw0J+rndp6iDybU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2021-3468.patch",
             url: "https://github.com/lathiat/avahi/commit/447affe29991ee99c6b9732fc5f2c1048a611d3b.patch",
             sha256: "sha256-qWaCU1ZkCg2PmijNto7t8E3pYRN/36/9FrG8okd6Gu8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "CVE-2023-1981.patch",
             url: "https://github.com/lathiat/avahi/commit/a2696da2f2c50ac43b6c4903f72290d5c3fa9f6f.patch",
             sha256: "sha256-BEYFGCnQngp+OpiKIY/oaKygX7isAnxJpUPCUvg+efc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "CVE-2023-38470.patch",
             url: "https://github.com/lathiat/avahi/commit/94cb6489114636940ac683515417990b55b5d66c.patch",
             sha256: "sha256-Fanh9bvz+uknr5pAmltqijuUAZIG39JR2Lyq5zGKJ58=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "bail-out-unless-escaped-labels-fit.patch",
             url: "https://github.com/avahi/avahi/commit/20dec84b2480821704258bc908e7b2bd2e883b24.patch",
             sha256: "sha256-p/dOuQ/GInIcUwuFhQR3mGc5YBL5J8ho+1gvzcqEN0c=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "CVE-2023-38473.patch",
             url: "https://github.com/lathiat/avahi/commit/b448c9f771bada14ae8de175695a9729f8646797.patch",
             sha256: "sha256-/ZVhsBkf70vjDWWG5KXxvGXIpLOZUXdRkn3413iSlnI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "CVE-2023-38472.patch",
             url: "https://github.com/lathiat/avahi/commit/b024ae5749f4aeba03478e6391687c3c9c8dee40.patch",
             sha256: "sha256-FjR8fmhevgdxR9JQ5iBLFXK0ILp2OZQ8Oo9IKjefCqk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             name: "CVE-2023-38471.patch",
             url: "https://github.com/lathiat/avahi/commit/894f085f402e023a98cbb6f5a3d117bd88d93b09.patch",
             sha256: "sha256-4dG+5ZHDa+A4/CszYS8uXWlpmA89m7/jhbZ7rheMs7U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             name: "CVE-2023-38471-2.patch",
             url: "https://github.com/avahi/avahi/commit/b675f70739f404342f7f78635d6e2dcd85a13460.patch",
             sha256: "sha256-uDtMPWuz1lsu7n0Co/Gpyh369miQ6GWGyC0UPQB/yI8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             name: "CVE-2023-38469.patch",
             url: "https://github.com/avahi/avahi/commit/61b9874ff91dd20a12483db07df29fe7f35db77f.patch",
             sha256: "sha256-qR7scfQqhRGxg2n4HQsxVxCLkXbwZi+PlYxrOSEPsL0=",
             excludes: nix.thunk(() => [".github/workflows/smoke-tests.sh"]),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             name: "fix-compare-rrs-with-zero-length-rdata.patch",
             url: "https://github.com/avahi/avahi/commit/177d75e8c43be45a8383d794ce4084dd5d600a9e.patch",
             sha256: "sha256-uwIyruAWgiWt0yakRrvMdYjjhEhUk5cIGKt6twyXbHw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             name: "reject-non-utf-8-service-names.patch",
             url: "https://github.com/avahi/avahi/commit/2b6d3e99579e3b6e9619708fad8ad8e07ada8218.patch",
             sha256: "sha256-lwSA3eEQgH0g51r0i9/HJMJPRXrhQnTIEDxcYqUuLdI=",
             excludes: nix.thunk(() => ["fuzz/fuzz-domain.c"]),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             name: "core-no-longer-supply-bogus-services-to-callbacks.patch",
             url: "https://github.com/avahi/avahi/commit/93b14365c1c1e04efd1a890e8caa01a2a514bfd8.patch",
             sha256: "sha256-VBm8vsBZkTbbWAK8FI71SL89lZuYd1yFNoB5o+FvlEU=",
             excludes: nix.thunk(() => [".github/workflows/smoke-tests.sh", "fuzz/fuzz-packet.c"]),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             name: "CVE-2024-52616.patch",
             url: "https://github.com/avahi/avahi/commit/f8710bdc8b29ee1176fe3bfaeabebbda1b7a79f7.patch",
             hash: "sha256-BUQOQ4evKLBzV5UV8xW8XL38qk1rg6MJ/vcT5NBckfA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             name: "fix-requires-in-pc-file.patch",
             url: "https://github.com/avahi/avahi/commit/366e3798bdbd6b7bf24e59379f4a9a51af575ce9.patch",
             hash: "sha256-9AdhtzrimmcpMmeyiFcjmDfG5nqr/S8cxWTaM1mzCWA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             name: "CVE-2025-68276.patch",
             url: "https://github.com/avahi/avahi/commit/0c013e2e819be3bda74cecf48b5f64956cf8a760.patch",
             hash: "sha256-kNOwl2DC2FR7CFvPQBBEYaSUSbFnR/ETH9JNGMwzzLE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             name: "CVE-2025-68468.patch",
             url: "https://github.com/avahi/avahi/commit/f66be13d7f31a3ef806d226bf8b67240179d309a.patch",
             hash: "sha256-HkbKSN2LYqPfVnij1/n6ToN4vKugex3ZPxjHz6pN8eA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             name: "CVE-2025-68471.patch",
             url: "https://github.com/avahi/avahi/commit/9c6eb53bf2e290aed84b1f207e3ce35c54cc0aa1.patch",
             hash: "sha256-V0OiC0UkZXhUnOUcrPZ+Xvph7MJMQ9DEXgVafoshSi4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             name: "CVE-2026-24401.patch",
             url: "https://github.com/avahi/avahi/commit/78eab31128479f06e30beb8c1cbf99dd921e2524.patch",
             hash: "sha256-Iq7ghHS8gTJ5OeD6Bemis+wPJzKXb2P44qbtTaAaWZI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             name: "CVE-2026-34933.patch",
             url: "https://github.com/avahi/avahi/compare/0ccadca425af151ebb67f276e5cc88e50266a8e6%5E%5E...0ccadca425af151ebb67f276e5cc88e50266a8e6.patch",
             hash: "sha256-yi40iuQmTAW+nLsOIJhh7kg4vG/lqT/PCaSEBPfF2mw=",
@@ -225,15 +201,15 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withLibdnssdCompat, "ln -s avahi-compat-libdns_sd/dns_sd.h \"$dev/include/dns_sd.h\"\n"));
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "avahi")),
           "smoke-test-resolved": nix.thunk(() => nix.sel(nixosTests, "avahi-with-resolved")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         description: "mDNS/DNS-SD implementation",
         homepage: "http://avahi.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -243,7 +219,7 @@ export default nix.lambda((args) => (() => {
         knownVulnerabilities: [],
       }));
       return {
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         pname,
         version,
         src,

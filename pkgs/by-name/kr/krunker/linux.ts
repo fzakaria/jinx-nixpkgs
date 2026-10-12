@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["url", 10, 5], ["hash", 11, 5]], [["pname", 15, 13], ["version", 15, 19], ["src", 15, 27]], [["pname", 20, 11], ["version", 20, 17], ["src", 20, 25], ["extraInstallCommands", 22, 3]]]);
 const formals$1 = { args: { appimageTools: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["url", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["pname", 15, 13], ["version", 15, 19], ["src", 15, 27]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["pname", 20, 11], ["version", 20, 17], ["src", 20, 25], ["extraInstallCommands", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const version = "2.1.3";
   const appId = "io.krunker.desktop";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://client2.krunker.io/Official%20Krunker.io%20Client-${version}.AppImage`),
       hash: "sha512-a8E5heLsKXOtv/wRKlrnV0GD48cY1mOiSSDW93c7YZ+HoeuBQDxtRaHKg5EqU51Yi+d4tPF5nOh10jZW36c7WQ==",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: src,

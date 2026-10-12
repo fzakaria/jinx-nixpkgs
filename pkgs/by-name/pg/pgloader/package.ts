@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 7], ["sha256", 25, 7]], [["owner", 29, 7], ["repo", 30, 7], ["rev", 31, 7], ["hash", 32, 7]], [["LD_LIBRARY_PATH", 55, 7]], [["homepage", 88, 5], ["description", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5], ["license", 92, 5], ["platforms", 93, 5]], [["pname", 19, 3], ["version", 20, 3], ["srcs", 22, 3], ["sourceRoot", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["env", 55, 3], ["buildPhase", 64, 3], ["dontStrip", 77, 3], ["enableParallelBuilding", 78, 3], ["installPhase", 80, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, installShellFiles: false, makeWrapper: false, sbcl_2_4_6: false, sqlite: false, freetds: false, libzip: false, curl: false, git: false, cacert: false, openssl: false, sphinx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 7], ["sha256", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 29, 7], ["repo", 30, 7], ["rev", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LD_LIBRARY_PATH", 55, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 88, 5], ["description", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5], ["license", 92, 5], ["platforms", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["srcs", 22, 3], ["sourceRoot", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["env", 55, 3], ["buildPhase", 64, 3], ["dontStrip", 77, 3], ["enableParallelBuilding", 78, 3], ["installPhase", 80, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const sphinx = nix.arg($, "sphinx");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pgloader",
       version: "3.6.9",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/dimitri/pgloader/releases/download/v3.6.9/pgloader-bundle-3.6.9.tgz",
             sha256: "sha256-pdCcRmoJnrfVnkhbT0WqLrRbCtOEmRgGRsXK+3uByeA=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "dimitri",
             repo: "pgloader",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [git, makeWrapper, installShellFiles]),
       buildInputs: nix.thunk(() => [sbcl_2_4_6, cacert, sqlite, sphinx, freetds, libzip, curl, openssl]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         LD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [sqlite, libzip, curl, git, openssl, freetds]))),
       })),
       buildPhase: nix.thunk(() => nix.str`export PATH=$PATH:$out/bin
@@ -70,7 +66,7 @@ mkdir -p $out/bin $out/man/man1
 installManPage source/docs/_build/man/*.1
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://pgloader.io/",
         description: "Loads data into PostgreSQL and allows you to implement Continuous Migration from your current database to PostgreSQL",
         mainProgram: "pgloader",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 91, 5], ["longDescription", 92, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 41, 3], ["postPatch", 48, 3], ["nativeCheckInputs", 57, 3], ["preConfigure", 62, 3], ["preCheck", 68, 3], ["cmakeFlags", 78, 3], ["doCheck", 83, 3], ["postInstall", 85, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchFromGitHub: false, cmake: false, fftw: false, fftwFloat: false, enablePython: true, pythonPackages: true, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 91, 5], ["longDescription", 92, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 41, 3], ["postPatch", 48, 3], ["nativeCheckInputs", 57, 3], ["preConfigure", 62, 3], ["preCheck", 68, 3], ["cmakeFlags", 78, 3], ["doCheck", 83, 3], ["postInstall", 85, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const pythonPackages = nix.argOr($, "pythonPackages", () => null);
   const llvmPackages = nix.arg($, "llvmPackages");
   const great_cmake_cookoff = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/UCL/GreatCMakeCookOff/archive/v2.1.9.tar.gz",
       hash: "sha256-ggMcgKfpYHWWgyYY84u4Q79IGCVTVkmIMw+N/soapfk=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "galario",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "mtazzari",
           repo: "galario",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +57,7 @@ ${nix.app(nix.sel(lib, "optionalString"), enablePython, nix.thunk(() => nix.str`
       doCheck: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(enablePython))), "install_name_tool -change libgalario.dylib $out/lib/libgalario.dylib $out/lib/python*/site-packages/galario/double/libcommon.so\ninstall_name_tool -change libgalario_single.dylib $out/lib/libgalario_single.dylib $out/lib/python*/site-packages/galario/single/libcommon.so\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GPU Accelerated Library for Analysing Radio Interferometer Observations",
         longDescription: "Galario is a library that exploits the computing power of modern\ngraphic cards (GPUs) to accelerate the comparison of model\npredictions to radio interferometer observations. Namely, it\nspeeds up the computation of the synthetic visibilities given a\nmodel image (or an axisymmetric brightness profile) and their\ncomparison to the observations.\n",
         homepage: "https://mtazzari.github.io/galario/",

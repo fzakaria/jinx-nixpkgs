@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 19, 13], ["pname", 20, 5], ["hash", 21, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 24, 3], ["build-system", 32, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 36, 3], ["propagatedBuildInputs", 41, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pytestCheckHook: false, "meson-python": false, ninja: false, poppler: false, "pkg-config": false, pybind11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 19, 13], ["pname", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 24, 3], ["build-system", 32, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 36, 3], ["propagatedBuildInputs", 41, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "python_poppler",
           hash: "sha256-5spcI+wCNQvyzvhaa/nxsmF5ZDbbR4F2+dJPsU7uzGo=",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["poppler"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python binding to poppler-cpp",
         homepage: "https://github.com/cbrunet/python-poppler",
         changelog: "https://cbrunet.net/python-poppler/changelog.html",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

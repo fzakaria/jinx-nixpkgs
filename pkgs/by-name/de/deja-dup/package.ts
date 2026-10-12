@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["updateScript", 83, 5]], [["description", 87, 5], ["longDescription", 88, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["teams", 97, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 53, 3], ["mesonFlags", 64, 3], ["preFixup", 73, 3], ["patches", 80, 3], ["passthru", 82, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, vala: false, gettext: false, itstool: false, "blueprint-compiler": false, "desktop-file-utils": false, glib: false, "glib-networking": false, gtk4: false, libsoup_3: false, libsecret: false, libadwaita: false, wrapGAppsHook4: false, "libgpg-error": false, "json-glib": false, borgbackup: false, duplicity: false, rclone: false, restic: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 87, 5], ["longDescription", 88, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["teams", 97, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 53, 3], ["mesonFlags", 64, 3], ["preFixup", 73, 3], ["patches", 80, 3], ["passthru", 82, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const restic = nix.arg($, "restic");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "deja-dup",
       version: "50.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "deja-dup",
@@ -82,11 +79,11 @@ export default nix.lambda((args) => (() => {
 `),
       patches: nix.thunk(() => [nix.path(here, "./find-fusermount-setuid.patch")]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple backup tool",
         longDescription: "Déjà Dup is a simple backup tool. It hides the complexity\nof backing up the Right Way (encrypted, off-site, and regular)\nand uses duplicity as the backend.\n",
         homepage: "https://apps.gnome.org/DejaDup/",

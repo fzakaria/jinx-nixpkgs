@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 25, 8]], [["pname", 10, 3], ["extraNativeBuildInputs", 12, 3], ["extraBuildInputs", 14, 3], ["postFixup", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, "pkg-config": false, qtsensors: false, qtwayland: false, "wayland-protocols": false, dbus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 25, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["extraNativeBuildInputs", 12, 3], ["extraBuildInputs", 14, 3], ["postFixup", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const dbus = nix.arg($, "dbus");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kscreen",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtsensors, qtwayland, wayland_protocols]),
       postFixup: nix.thunk(() => nix.str`substituteInPlace $out/share/kglobalaccel/org.kde.kscreen.desktop \\
   --replace-fail dbus-send ${dbus}/bin/dbus-send
 `),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kscreen-console" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "kscreen-console" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

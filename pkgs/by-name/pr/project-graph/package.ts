@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["pname", 40, 26], ["version", 40, 32], ["src", 40, 40], ["pnpm", 41, 5], ["fetcherVersion", 42, 5], ["hash", 43, 5]], [["updateScript", 100, 12]], [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["mainProgram", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5]], [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["cargoHash", 37, 3], ["pnpmDeps", 39, 3], ["preFixup", 46, 3], ["postPatch", 53, 3], ["preConfigure", 61, 3], ["preBuild", 65, 3], ["nativeBuildInputs", 70, 3], ["dontWrapQtApps", 80, 3], ["buildInputs", 82, 3], ["cargoRoot", 93, 3], ["buildAndTestSubdir", 94, 3], ["doInstallCheck", 96, 3], ["nativeInstallCheckInputs", 98, 3], ["passthru", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpm_10: false, nodejs_24: false, "cargo-tauri": false, openssl: false, "pkg-config": false, webkitgtk_4_1: false, "glib-networking": false, wrapGAppsHook4: false, pnpmConfigHook: false, jq: false, versionCheckHook: false, "nix-update-script": false, libGL: false, gst_all_1: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 40, 26], ["version", 40, 32], ["src", 40, 40], ["pnpm", 41, 5], ["fetcherVersion", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 100, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["mainProgram", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["cargoHash", 37, 3], ["pnpmDeps", 39, 3], ["preFixup", 46, 3], ["postPatch", 53, 3], ["preConfigure", 61, 3], ["preBuild", 65, 3], ["nativeBuildInputs", 70, 3], ["dontWrapQtApps", 80, 3], ["buildInputs", 82, 3], ["cargoRoot", 93, 3], ["buildAndTestSubdir", 94, 3], ["doInstallCheck", 96, 3], ["nativeInstallCheckInputs", 98, 3], ["passthru", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "project-graph",
       version: "3.0.8",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "graphif",
           repo: "project-graph",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-RFYDFZ3NKr/7OxwgApexGnxR8ZQn09DFYNzhnqVYEzE=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -91,11 +87,11 @@ fi
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Node-based visual tool for organizing thoughts and notes",
         homepage: "https://graphif.dev",
         license: nix.thunk(() => (() => {

@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["listsAsDuplicateKeys", 25, 9], ["mkKeyValue", 26, 17]], [["generate", 31, 7], ["__functor", 38, 7]], [["format", 19, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, ini: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["listsAsDuplicateKeys", 25, 9], ["mkKeyValue", 26, 17]]);
 const formals$2 = { args: {  }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["generate", 31, 7], ["__functor", 38, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["format", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "generators"));
   const mkValueStringDefault = nix.thunk(() => nix.attr(from, "mkValueStringDefault"));
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     format: nix.thunk(() => (() => {
       const mkValueString = nix.thunk(() => nix.app(mkValueStringDefault, nix.thunk(() => ({}))));
       const mkKeyValue = (k) => (v) => (nix.asBool(nix.eq(v, null)) ? nix.str`# ${k} is unset` : nix.str`${k} = ${nix.app(mkValueString, v)}`);
-      const rawFormat = nix.thunk(() => nix.app(ini, nix.thunk(() => ({ [nix.POS]: pos$1, listsAsDuplicateKeys: true, mkKeyValue: mkKeyValue }))));
+      const rawFormat = nix.thunk(() => nix.app(ini, nix.thunk(() => ({ [nix.POS]: $pos[0], listsAsDuplicateKeys: true, mkKeyValue: mkKeyValue }))));
       return nix.update(rawFormat, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         generate: (name) => (value) => nix.app(warn, "Direct use of `pkgs.formats.systemd` has been deprecated, please use `pkgs.formats.systemd { }` instead.", nix.thunk(() => nix.sel(rawFormat, "generate")), name, value),
         __functor: (self) => nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);

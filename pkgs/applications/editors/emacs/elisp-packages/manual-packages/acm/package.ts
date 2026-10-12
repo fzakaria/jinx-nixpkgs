@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["packageRequires", 14, 3], ["files", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, melpaBuild: false, "lsp-bridge": false, yasnippet: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["packageRequires", 14, 3], ["files", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const lsp_bridge = nix.arg($, "lsp-bridge");
   const yasnippet = nix.arg($, "yasnippet");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "acm",
       version: nix.thunk(() => nix.sel(lsp_bridge, "version")),
       src: nix.thunk(() => nix.sel(lsp_bridge, "src")),
       packageRequires: nix.thunk(() => [yasnippet]),
       files: "(\"acm/*.el\" \"acm/icons\")",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Asynchronous Completion Menu",
         homepage: "https://github.com/manateelazycat/lsp-bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

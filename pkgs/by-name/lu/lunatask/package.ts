@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["pname", 18, 13], ["version", 18, 19], ["src", 18, 27]], [["updateScript", 32, 12]], [["description", 35, 5], ["longDescription", 36, 5], ["homepage", 39, 5], ["downloadPage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["sourceProvenance", 43, 5], ["maintainers", 44, 5], ["platforms", 48, 5], ["mainProgram", 49, 5]], [["pname", 23, 11], ["version", 23, 17], ["src", 23, 25], ["extraInstallCommands", 25, 3], ["passthru", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 18, 13], ["version", 18, 19], ["src", 18, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 32, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 35, 5], ["longDescription", 36, 5], ["homepage", 39, 5], ["downloadPage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["sourceProvenance", 43, 5], ["maintainers", 44, 5], ["platforms", 48, 5], ["mainProgram", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 11], ["version", 23, 17], ["src", 23, 25], ["extraInstallCommands", 25, 3], ["passthru", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const version = "2.1.29";
   const pname = "lunatask";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/lunatask/lunatask/releases/download/v${version}/Lunatask-${version}.AppImage`),
       hash: "sha256-Ds1aOejeFA4Gl9ysnp1NOgsoJSz5OA/k4gOBRCj5KZo=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -34,11 +30,11 @@ substituteInPlace $out/share/applications/lunatask.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=lunatask'
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "All-in-one encrypted todo list, notebook, habit and mood tracker, pomodoro timer, and journaling app",
         longDescription: "Lunatask is an all-in-one encrypted todo list, notebook, habit and mood tracker, pomodoro timer, and journaling app. It remembers stuff for you and keeps track of your mental health.\n",
         homepage: "https://lunatask.app",

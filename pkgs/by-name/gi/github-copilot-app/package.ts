@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 7], ["hash", 31, 7]], [["url", 34, 7], ["hash", 35, 7]], [["url", 38, 7], ["hash", 39, 7]], [["x86_64-linux", 29, 5], ["aarch64-linux", 33, 5], ["aarch64-darwin", 37, 5]], [["sources", 123, 13], ["updateScript", 124, 5]], [["description", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["maintainers", 131, 5], ["mainProgram", 132, 5], ["platforms", 133, 5], ["sourceProvenance", 134, 5]], [["pname", 48, 11], ["version", 48, 17], ["src", 48, 25], ["nativeBuildInputs", 50, 3], ["buildInputs", 60, 3], ["runtimeDependencies", 77, 3], ["dontStrip", 81, 3], ["strictDeps", 82, 3], ["__structuredAttrs", 83, 3], ["unpackCmd", 85, 3], ["sourceRoot", 86, 3], ["installPhase", 88, 3], ["passthru", 122, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, undmg: false, autoPatchelfHook: false, wrapGAppsHook3: false, "alsa-lib": false, gtk3: false, pango: false, harfbuzz: false, "gdk-pixbuf": false, cairo: false, glib: false, dbus: false, webkitgtk_4_1: false, atk: false, libsoup_3: false, openssl_3_5: false, "libayatana-appindicator": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 29, 5], ["aarch64-linux", 33, 5], ["aarch64-darwin", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sources", 123, 13], ["updateScript", 124, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["maintainers", 131, 5], ["mainProgram", 132, 5], ["platforms", 133, 5], ["sourceProvenance", 134, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 48, 11], ["version", 48, 17], ["src", 48, 25], ["nativeBuildInputs", 50, 3], ["buildInputs", 60, 3], ["runtimeDependencies", 77, 3], ["dontStrip", 81, 3], ["strictDeps", 82, 3], ["__structuredAttrs", 83, 3], ["unpackCmd", 85, 3], ["sourceRoot", 86, 3], ["installPhase", 88, 3], ["passthru", 122, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,26 +30,26 @@ export default nix.lambda((args) => (() => {
   const pname = "github-copilot-app";
   const version = "1.1.23";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/github/app/releases/download/v${version}/GitHub-Copilot-linux-x64.deb`),
         hash: "sha256-HWNnLEliPzGzq8YySicZHNJqzoUr+9PxsRWdCw3pBmM=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/github/app/releases/download/v${version}/GitHub-Copilot-linux-arm64.deb`),
         hash: "sha256-ah2XDAM4HE/myCdVoJ8ErCIAmpw2F8yvO87P5El9RLY=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://github.com/github/app/releases/download/v${version}/GitHub-Copilot-darwin-arm64.dmg`),
         hash: "sha256-f7QvkGpuDMixBZF4DJKyK9zmaig5LgGOqcNyucqZALw=",
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: src,
@@ -84,12 +78,12 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n", (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/Applications\ncp -r *.app $out/Applications/\n\nmkdir -p $out/bin\nln -s \"$out/Applications/\"*.app/Contents/MacOS/git-credential-copilot \"$out\"/bin/git-credential-copilot\nln -s \"$out/Applications/\"*.app/Contents/MacOS/github \"$out\"/bin/github-copilot-app\n" : "mkdir -p $out/bin $out/share $out/lib\n\ncp -r usr/share/* $out/share/\ncp -r usr/lib/* $out/lib/\n\n# Rename the main executable from github to github-copilot-app to avoid conflicts\nmv usr/bin/github $out/bin/github-copilot-app\ncp usr/bin/git-credential-copilot $out/bin/\n\n# Update desktop file to use the new executable name\nsubstituteInPlace $out/share/applications/*.desktop \\\n  --replace-fail \"Exec=github\" \"Exec=github-copilot-app\" \\\n  --replace-fail \"StartupWMClass=github\" \"StartupWMClass=github-copilot-app\"\n")), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         sources: sources,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Agent-native desktop experience for GitHub repositories",
         homepage: "https://github.com/github/app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["0.19.0", 40, 9], ["0.20.0", 41, 9], ["0.20.1", 42, 9], ["0.21.0", 43, 9], ["0.22.4", 44, 9], ["0.23.0", 45, 9], ["0.24.0", 46, 9], ["0.24.1", 47, 9], ["0.25.1", 48, 9], ["0.26.0", 49, 9], ["0.26.1", 50, 9], ["0.26.2", 51, 9], ["0.27.0", 52, 9], ["0.28.1", 53, 9], ["0.29.0", 54, 9]], [["url", 37, 5], ["sha256", 38, 5]], [["version", 62, 5]], [["tarballName", 34, 3], ["src", 36, 3], ["version", 59, 11], ["odoc-parser_v", 61, 3], ["cmdliner_v", 71, 3], ["library_deps", 79, 3]]]);
 const formals$1 = { args: { lib: false, ocaml: false, fetchurl: false, version: true, astring: false, base: false, "camlp-streams": false, cmdliner_1_0: false, cmdliner_1: false, cmdliner: false, csexp: false, "dune-build-info": false, either: false, fix: false, fpath: false, menhirLib: false, menhirSdk: false, "ocaml-version": false, "ocp-indent": false, "odoc-parser": false, result: false, stdio: false, uuseg: false, uutf: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/generic.nix", [["0.19.0", 40, 9], ["0.20.0", 41, 9], ["0.20.1", 42, 9], ["0.21.0", 43, 9], ["0.22.4", 44, 9], ["0.23.0", 45, 9], ["0.24.0", 46, 9], ["0.24.1", 47, 9], ["0.25.1", 48, 9], ["0.26.0", 49, 9], ["0.26.1", 50, 9], ["0.26.2", 51, 9], ["0.27.0", 52, 9], ["0.28.1", 53, 9], ["0.29.0", 54, 9]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["url", 37, 5], ["sha256", 38, 5]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["version", 62, 5]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["tarballName", 34, 3], ["src", 36, 3], ["version", 59, 11], ["odoc-parser_v", 61, 3], ["cmdliner_v", 71, 3], ["library_deps", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,10 +34,10 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const tarballName = nix.thunk(() => nix.str`ocamlformat-${version_1}.tbz`);
     const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/ocaml-ppx/ocamlformat/releases/download/${version_1}/${tarballName}`),
         sha256: nix.thunk(() => nix.sel({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           "0.19.0": "0ihgwl7d489g938m1jvgx8azdgq9f5np5mzqwwya797hx2m4dz32",
           "0.20.0": "sha256-JtmNCgwjbCyUE4bWqdH5Nc2YSit+rekwS43DcviIfgk=",
           "0.20.1": "sha256-fTpRZFQW+ngoc0T6A69reEUAZ6GmHkeQvxspd5zRAjU=",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
       }))));
     const version_1 = version;
     const odoc_parser_v = nix.thunk(() => nix.app(nix.sel(odoc_parser, "override"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "0.24.0")) ? "2.0.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "0.20.1")) ? "1.0.1" : "0.9.0"))),
       }))));
     const cmdliner_v = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "0.28.1")) ? nix.force(cmdliner) : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "0.21.0")) ? nix.force(cmdliner_1) : nix.force(cmdliner_1_0))));
@@ -78,7 +75,7 @@ export default nix.lambda((args) => (() => {
       uutf,
     ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version_1, "0.20.0")), nix.thunk(() => [either, ocaml_version])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version_1, "0.22.4")), nix.thunk(() => [csexp])), (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version_1, "0.25.1")) ? [odoc_parser_v] : [camlp_streams, result, astring])))));
     return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       tarballName,
       src,
       version: version_1,

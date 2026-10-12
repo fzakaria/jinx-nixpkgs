@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 49, 5], ["mainProgram", 50, 5]], [["pname", 14, 3], ["version", 15, 25], ["src", 15, 33], ["sourceRoot", 17, 3], ["nativeBuildInputs", 19, 3], ["installFlags", 21, 3], ["checkTarget", 26, 3], ["nativeCheckInputs", 28, 3], ["checkInputs", 33, 3], ["preCheck", 37, 3], ["doCheck", 45, 3], ["strictDeps", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, which: false, callPackage: false, python3: false, libapparmor: false, "apparmor-parser": false, "apparmor-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 49, 5], ["mainProgram", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 25], ["src", 15, 33], ["sourceRoot", 17, 3], ["nativeBuildInputs", 19, 3], ["installFlags", 21, 3], ["checkTarget", 26, 3], ["nativeCheckInputs", 28, 3], ["checkInputs", 33, 3], ["preCheck", 37, 3], ["doCheck", 45, 3], ["strictDeps", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const apparmor_parser = nix.arg($, "apparmor-parser");
   const apparmor_utils = nix.arg($, "apparmor-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "apparmor-profiles",
       version: nix.thunk(() => nix.attr(libapparmor, "version")),
       src: nix.thunk(() => nix.attr(libapparmor, "src")),
@@ -36,7 +35,7 @@ substituteInPlace ../parser/tst/test_profile.py \\
       doCheck: true,
       strictDeps: true,
       meta: nix.thunk(() => nix.update(nix.sel(libapparmor, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Mandatory access control system - profiles",
         mainProgram: "apparmor_parser",
       })),

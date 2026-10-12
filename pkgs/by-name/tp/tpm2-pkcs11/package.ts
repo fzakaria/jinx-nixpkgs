@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["name", 169, 9], ["pathsToLink", 170, 9], ["paths", 171, 9]], [["abrmdSupport", 229, 7]], [["abrmdSupport", 232, 7]], [["abrmdSupport", 235, 7]], [["esapi", 239, 9], ["fapi", 240, 9], ["abrmd", 241, 9], ["esapi-abrmd", 242, 9], ["fapi-abrmd", 243, 9]], [["esapi", 226, 5], ["fapi", 227, 5], ["abrmd", 228, 5], ["esapi-abrmd", 231, 5], ["fapi-abrmd", 234, 5], ["tests", 237, 5], ["updateScript", 246, 5]], [["description", 250, 5], ["homepage", 253, 5], ["license", 254, 5], ["platforms", 255, 5], ["maintainers", 256, 5], ["mainProgram", 257, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["patches", 59, 3], ["postPatch", 63, 3], ["configureFlags", 86, 3], ["strictDeps", 98, 3], ["nativeBuildInputs", 100, 3], ["buildInputs", 121, 3], ["nativeCheckInputs", 130, 3], ["checkInputs", 148, 3], ["enableParallelBuilding", 153, 3], ["hardeningDisable", 154, 3], ["outputs", 156, 3], ["doCheck", 162, 3], ["dontStrip", 163, 3], ["dontPatchELF", 164, 3], ["preCheck", 166, 3], ["postInstall", 195, 3], ["preFixup", 204, 3], ["passthru", 225, 3], ["meta", 249, 3]]]);
 const formals$1 = { args: { "autoconf-archive": false, autoreconfHook: false, buildEnv: false, clangStdenv: false, cmocka: false, dbus: false, expect: false, fetchFromGitHub: false, glibc: false, gnutls: false, iproute2: false, lib: false, libyaml: false, makeWrapper: false, opensc: false, openssh: false, openssl: false, "nix-update-script": false, nss: false, "p11-kit": false, patchelf: false, "pkg-config": false, python3: false, stdenv: false, sqlite: false, swtpm: false, "tpm2-abrmd": false, "tpm2-openssl": false, "tpm2-pkcs11": false, "tpm2-pkcs11-esapi": false, "tpm2-pkcs11-fapi": false, "tpm2-tools": false, "tpm2-tss": false, which: false, xxd: false, abrmdSupport: true, fapiSupport: true, defaultToFapi: true, enableFuzzing: true, extraDescription: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 169, 9], ["pathsToLink", 170, 9], ["paths", 171, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["abrmdSupport", 229, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["abrmdSupport", 232, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["abrmdSupport", 235, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["esapi", 239, 9], ["fapi", 240, 9], ["abrmd", 241, 9], ["esapi-abrmd", 242, 9], ["fapi-abrmd", 243, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["esapi", 226, 5], ["fapi", 227, 5], ["abrmd", 228, 5], ["esapi-abrmd", 231, 5], ["fapi-abrmd", 234, 5], ["tests", 237, 5], ["updateScript", 246, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 250, 5], ["homepage", 253, 5], ["license", 254, 5], ["platforms", 255, 5], ["maintainers", 256, 5], ["mainProgram", 257, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["patches", 59, 3], ["postPatch", 63, 3], ["configureFlags", 86, 3], ["strictDeps", 98, 3], ["nativeBuildInputs", 100, 3], ["buildInputs", 121, 3], ["nativeCheckInputs", 130, 3], ["checkInputs", 148, 3], ["enableParallelBuilding", 153, 3], ["hardeningDisable", 154, 3], ["outputs", 156, 3], ["doCheck", 162, 3], ["dontStrip", 163, 3], ["dontPatchELF", 164, 3], ["preCheck", 166, 3], ["postInstall", 195, 3], ["preFixup", 204, 3], ["passthru", 225, 3], ["meta", 249, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,11 +49,11 @@ export default nix.lambda((args) => (() => {
   const extraDescription = nix.argOr($, "extraDescription", () => null);
   const chosenStdenv = nix.thunk(() => (nix.asBool(enableFuzzing) ? nix.force(clangStdenv) : nix.force(stdenv)));
   return nix.app(nix.sel(chosenStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "tpm2-pkcs11",
       version: "1.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tpm2-software",
           repo: "tpm2-pkcs11",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -140,7 +132,7 @@ patchShebangs test tools
       dontPatchELF: true,
       preCheck: nix.thunk(() => (() => {
         const openssl_modules = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "openssl-modules",
             pathsToLink: nix.thunk(() => ["/lib/ossl-modules"]),
             paths: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getLib")), nix.thunk(() => [openssl, tpm2_openssl]))),
@@ -169,11 +161,11 @@ makeWrapper $bin/share/tpm2_pkcs11/tpm2_ptool.py $bin/bin/tpm2_ptool \\
       passthru: nix.thunk(() => (() => {
         const esapi = tpm2_pkcs11_esapi;
         const fapi = tpm2_pkcs11_fapi;
-        const abrmd = nix.thunk(() => nix.app(nix.sel(tpm2_pkcs11, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, abrmdSupport: true }))));
-        const esapi_abrmd = nix.thunk(() => nix.app(nix.sel(tpm2_pkcs11_esapi, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, abrmdSupport: true }))));
-        const fapi_abrmd = nix.thunk(() => nix.app(nix.sel(tpm2_pkcs11_fapi, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, abrmdSupport: true }))));
+        const abrmd = nix.thunk(() => nix.app(nix.sel(tpm2_pkcs11, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], abrmdSupport: true }))));
+        const esapi_abrmd = nix.thunk(() => nix.app(nix.sel(tpm2_pkcs11_esapi, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], abrmdSupport: true }))));
+        const fapi_abrmd = nix.thunk(() => nix.app(nix.sel(tpm2_pkcs11_fapi, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], abrmdSupport: true }))));
         const tests = nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           esapi: esapi,
           fapi: fapi,
           abrmd: abrmd,
@@ -182,7 +174,7 @@ makeWrapper $bin/share/tpm2_pkcs11/tpm2_ptool.py $bin/bin/tpm2_ptool \\
         }));
         const updateScript = nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({}))));
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           esapi,
           fapi,
           abrmd,
@@ -193,7 +185,7 @@ makeWrapper $bin/share/tpm2_pkcs11/tpm2_ptool.py $bin/bin/tpm2_ptool \\
         };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: nix.thunk(() => nix.add("PKCS#11 interface for TPM2 hardware", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(extraDescription, null)), nix.thunk(() => nix.str` ${extraDescription}`)))),
         homepage: "https://github.com/tpm2-software/tpm2-pkcs11",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

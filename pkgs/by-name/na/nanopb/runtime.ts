@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/runtime.nix", [[["cond", 44, 19], ["flag", 45, 19]], [["cond", 48, 19], ["flag", 49, 19]], [["cond", 52, 19], ["flag", 53, 19]], [["cond", 56, 19], ["flag", 57, 19]], [["cond", 60, 19], ["flag", 61, 19]], [["cond", 64, 19], ["flag", 65, 19]], [["cond", 68, 19], ["flag", 69, 19]], [["cond", 72, 19], ["flag", 73, 19]], [["cond", 76, 19], ["flag", 77, 19]], [["cond", 80, 19], ["flag", 81, 19]], [["cond", 84, 19], ["flag", 85, 19]], [["cond", 88, 19], ["flag", 89, 19]], [["cond", 92, 19], ["flag", 93, 19]], [["cond", 96, 19], ["flag", 97, 19]], [["pname", 26, 3], ["src", 27, 11], ["version", 27, 15], ["nativeBuildInputs", 29, 3], ["patchPhase", 35, 3], ["cmakeFlags", 112, 3]]]);
 const formals$1 = { args: { cmake: false, lib: false, stdenv: false, protobuf: false, python3: false, src: false, version: false, enableMalloc: false, noPackedStructs: false, maxRequiredFields: false, field32bit: false, noErrmsg: false, bufferOnly: false, systemHeader: false, without64bit: false, encodeArraysUnpacked: false, convertDoubleFloat: false, validateUtf8: false, littleEndian8bit: false, c99StaticAssert: false, noStaticAssert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/runtime.nix", [["cond", 44, 19], ["flag", 45, 19]]);
-const pos$2 = nix.positions(here + "/runtime.nix", [["cond", 48, 19], ["flag", 49, 19]]);
-const pos$3 = nix.positions(here + "/runtime.nix", [["cond", 52, 19], ["flag", 53, 19]]);
-const pos$4 = nix.positions(here + "/runtime.nix", [["cond", 56, 19], ["flag", 57, 19]]);
-const pos$5 = nix.positions(here + "/runtime.nix", [["cond", 60, 19], ["flag", 61, 19]]);
-const pos$6 = nix.positions(here + "/runtime.nix", [["cond", 64, 19], ["flag", 65, 19]]);
-const pos$7 = nix.positions(here + "/runtime.nix", [["cond", 68, 19], ["flag", 69, 19]]);
-const pos$8 = nix.positions(here + "/runtime.nix", [["cond", 72, 19], ["flag", 73, 19]]);
-const pos$9 = nix.positions(here + "/runtime.nix", [["cond", 76, 19], ["flag", 77, 19]]);
-const pos$10 = nix.positions(here + "/runtime.nix", [["cond", 80, 19], ["flag", 81, 19]]);
-const pos$11 = nix.positions(here + "/runtime.nix", [["cond", 84, 19], ["flag", 85, 19]]);
-const pos$12 = nix.positions(here + "/runtime.nix", [["cond", 88, 19], ["flag", 89, 19]]);
-const pos$13 = nix.positions(here + "/runtime.nix", [["cond", 92, 19], ["flag", 93, 19]]);
-const pos$14 = nix.positions(here + "/runtime.nix", [["cond", 96, 19], ["flag", 97, 19]]);
-const pos$15 = nix.positions(here + "/runtime.nix", [["pname", 26, 3], ["src", 27, 11], ["version", 27, 15], ["nativeBuildInputs", 29, 3], ["patchPhase", 35, 3], ["cmakeFlags", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const c99StaticAssert = nix.arg($, "c99StaticAssert");
   const noStaticAssert = nix.arg($, "noStaticAssert");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "nanopb-runtime",
       src: src,
       version: version,
@@ -52,32 +38,32 @@ export default nix.lambda((args) => (() => {
         const compile_definitions = (target) => nix.str`target_compile_definitions(${target}
   PUBLIC
   ${nix.app(nix.sel(lib, "concatStringsSep"), "\n\t", nix.thunk(() => nix.builtins.map((x) => nix.str`PB_${nix.sel(x, "flag")}`, nix.thunk(() => nix.builtins.filter((x) => nix.sel(x, "cond"), nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$1, cond: enableMalloc, flag: "ENABLE_MALLOC=1" })),
-                nix.thunk(() => ({ [nix.POS]: pos$2, cond: noPackedStructs, flag: "NO_PACKED_STRUCTS=1" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[0], cond: enableMalloc, flag: "ENABLE_MALLOC=1" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[1], cond: noPackedStructs, flag: "NO_PACKED_STRUCTS=1" })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   cond: nix.thunk(() => !nix.eq(maxRequiredFields, null)),
                   flag: nix.thunk(() => nix.str`MAX_REQUIRED_FIELDS=${maxRequiredFields}`),
                 })),
-                nix.thunk(() => ({ [nix.POS]: pos$4, cond: field32bit, flag: "FIELD_32BIT=1" })),
-                nix.thunk(() => ({ [nix.POS]: pos$5, cond: noErrmsg, flag: "NO_ERRMSG=1" })),
-                nix.thunk(() => ({ [nix.POS]: pos$6, cond: bufferOnly, flag: "BUFFER_ONLY=1" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[3], cond: field32bit, flag: "FIELD_32BIT=1" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[4], cond: noErrmsg, flag: "NO_ERRMSG=1" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[5], cond: bufferOnly, flag: "BUFFER_ONLY=1" })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   cond: nix.thunk(() => !nix.eq(systemHeader, null)),
                   flag: nix.thunk(() => nix.str`SYSTEM_HEADER=${systemHeader}`),
                 })),
-                nix.thunk(() => ({ [nix.POS]: pos$8, cond: without64bit, flag: "WITHOUT_64BIT=1" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[7], cond: without64bit, flag: "WITHOUT_64BIT=1" })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   cond: encodeArraysUnpacked,
                   flag: "ENCODE_ARRAYS_UNPACKED=1",
                 })),
-                nix.thunk(() => ({ [nix.POS]: pos$10, cond: convertDoubleFloat, flag: "CONVERT_DOUBLE_FLOAT=1" })),
-                nix.thunk(() => ({ [nix.POS]: pos$11, cond: validateUtf8, flag: "VALIDATE_UTF8=1" })),
-                nix.thunk(() => ({ [nix.POS]: pos$12, cond: littleEndian8bit, flag: "LITTLE_ENDIAN_8BIT=1" })),
-                nix.thunk(() => ({ [nix.POS]: pos$13, cond: c99StaticAssert, flag: "C99_STATIC_ASSERT=1" })),
-                nix.thunk(() => ({ [nix.POS]: pos$14, cond: noStaticAssert, flag: "NO_STATIC_ASSERT=1" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[9], cond: convertDoubleFloat, flag: "CONVERT_DOUBLE_FLOAT=1" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[10], cond: validateUtf8, flag: "VALIDATE_UTF8=1" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[11], cond: littleEndian8bit, flag: "LITTLE_ENDIAN_8BIT=1" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[12], cond: c99StaticAssert, flag: "C99_STATIC_ASSERT=1" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[13], cond: noStaticAssert, flag: "NO_STATIC_ASSERT=1" })),
               ]))))))}
 )
 `;

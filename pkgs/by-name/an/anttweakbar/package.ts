@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 26, 5]], [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 12, 3], ["version", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["src", 22, 3], ["postPatch", 29, 3], ["installPhase", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, libx11: false, libGLU: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["src", 22, 3], ["postPatch", 29, 3], ["installPhase", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "AntTweakBar",
       version: "1.16",
       nativeBuildInputs: nix.thunk(() => [unzip]),
       buildInputs: nix.thunk(() => [libx11, libGLU, libGL]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/anttweakbar/AntTweakBar_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           sha256: "0z3frxpzf54cjs07m6kg09p7nljhr7140f4pznwi7srwq4cvgkpv",
         })))),
       postPatch: "cd src",
       installPhase: "mkdir -p $out/lib/\ncp ../lib/{libAntTweakBar.so,libAntTweakBar.so.1,libAntTweakBar.a} $out/lib/\ncp -r ../include $out/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Add a light/intuitive GUI to OpenGL applications",
         longDescription: "A small and easy-to-use C/C++ library that allows to quickly add a light\nand intuitive graphical user interface into graphic applications based on OpenGL\n(compatibility and core profiles), DirectX 9, DirectX 10 or DirectX 11\nto interactively tweak parameters on-screen\n",
         homepage: "https://anttweakbar.sourceforge.net/",

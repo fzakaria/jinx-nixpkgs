@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 13, 20]], [["hash", 14, 20]], [["hash", 15, 20]], [["hash", 16, 19]], [["hash", 17, 19]], [["hash", 18, 19]], [["hash", 19, 19]], [["8.14.0", 13, 11], ["8.13.0", 14, 11], ["8.11.1", 15, 11], ["8.9.0", 16, 11], ["8.8.0", 17, 11], ["8.7.0", 18, 11], ["8.6.0", 19, 11]], [["case", 26, 9], ["out", 27, 9]], [["case", 30, 9], ["out", 31, 9]], [["case", 34, 9], ["out", 35, 9]], [["case", 38, 9], ["out", 39, 9]], [["case", 42, 9], ["out", 43, 9]], [["description", 59, 5], ["longDescription", 60, 5], ["maintainers", 65, 5], ["license", 66, 5]], [["pname", 9, 3], ["owner", 10, 3], ["releaseRev", 11, 3], ["release", 13, 3], ["version", 21, 11], ["defaultVersion", 22, 3], ["mlPlugin", 47, 3], ["nativeBuildInputs", 48, 3], ["propagatedBuildInputs", 49, 3], ["postPatch", 51, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 13, 20]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 14, 20]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 15, 20]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 16, 19]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 17, 19]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 18, 19]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 19, 19]]);
-const pos$8 = nix.positions(here + "/default.nix", [["8.14.0", 13, 11], ["8.13.0", 14, 11], ["8.11.1", 15, 11], ["8.9.0", 16, 11], ["8.8.0", 17, 11], ["8.7.0", 18, 11], ["8.6.0", 19, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["case", 26, 9], ["out", 27, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["case", 30, 9], ["out", 31, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["case", 34, 9], ["out", 35, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["case", 38, 9], ["out", 39, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["case", 42, 9], ["out", 43, 9]]);
-const pos$14 = nix.positions(here + "/default.nix", [["description", 59, 5], ["longDescription", 60, 5], ["maintainers", 65, 5], ["license", 66, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["owner", 10, 3], ["releaseRev", 11, 3], ["release", 13, 3], ["version", 21, 11], ["defaultVersion", 22, 3], ["mlPlugin", 47, 3], ["nativeBuildInputs", 48, 3], ["propagatedBuildInputs", 49, 3], ["postPatch", 51, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,38 +12,38 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "semantics",
       owner: "coq-community",
       releaseRev: (v) => nix.str`v${v}`,
       release: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         "8.14.0": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256-TB12C3hX9XucbsXr+UL+8jM19NOFXASW/lcytwy6uVE=",
         })),
         "8.13.0": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-8bDr/Ovl6s8BFaRcHeS5H33/K/pYdeKfSN+krVuKulQ=",
         })),
         "8.11.1": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-jTPgcXSNn1G2mMDC7ocFcmqs8svB7Yo1emXP15iuxiU=",
         })),
         "8.9.0": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-UBsvzlDEZsZsVkbUI0GbFEhpxnnLCiaqlqDyWVC5I6s=",
         })),
         "8.8.0": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256-k2nQyNw9KT3wY7bGy8KGILF44sLxkBYqdFpzFE9fgyw=",
         })),
         "8.7.0": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256-k2nQyNw9KT3wY7bGy8KGILF44sLxkBYqdFpzFE9fgyw=",
         })),
         "8.6.0": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256-GltkGQ3tJqUPAbdDkqqvKLLhMOap50XvGaCkjshiNdY=",
         })),
       })),
@@ -66,14 +52,14 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.10", "8.18")),
               out: "8.14.0",
             })),
-            nix.thunk(() => ({ [nix.POS]: pos$10, case: "8.9", out: "8.9.0" })),
-            nix.thunk(() => ({ [nix.POS]: pos$11, case: "8.8", out: "8.8.0" })),
-            nix.thunk(() => ({ [nix.POS]: pos$12, case: "8.7", out: "8.7.0" })),
-            nix.thunk(() => ({ [nix.POS]: pos$13, case: "8.6", out: "8.6.0" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[9], case: "8.9", out: "8.9.0" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[10], case: "8.8", out: "8.8.0" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[11], case: "8.7", out: "8.7.0" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[12], case: "8.6", out: "8.6.0" })),
           ]), null);
       })()),
       mlPlugin: true,
@@ -87,7 +73,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postPatch: "for p in Make Makefile.coq.local\ndo\n  substituteInPlace $p --replace \"-libs nums\" \"-use-ocamlfind -package num\" || true\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "Survey of programming language semantics styles in Coq",
         longDescription: "A survey of semantics styles in Coq, from natural semantics through\nstructural operational, axiomatic, and denotational semantics, to\nabstract interpretation\n",
         maintainers: nix.thunk(() => (() => {

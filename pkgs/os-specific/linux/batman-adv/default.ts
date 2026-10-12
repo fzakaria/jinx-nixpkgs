@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["systemd-networkd-batadv", 36, 5]], [["tests", 35, 12]], [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 48, 5], ["broken", 49, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["makeFlags", 24, 3], ["hardeningDisable", 28, 3], ["preBuild", 30, 3], ["passthru", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, kernel: false, kernelModuleMakeFlags: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["systemd-networkd-batadv", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 35, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 48, 5], ["broken", 49, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["makeFlags", 24, 3], ["hardeningDisable", 28, 3], ["preBuild", 30, 3], ["passthru", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "batman-adv";
       const version = nix.thunk(() => nix.str`${nix.sel(cfg, "version")}-${nix.sel(kernel, "version")}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.open-mesh.org/batman/releases/${pname}-${nix.sel(cfg, "version")}/${pname}-${nix.sel(cfg, "version")}.tar.gz`),
           sha256: nix.thunk(() => nix.sel(cfg, "sha256", nix.key(pname))),
         }))));
@@ -33,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const hardeningDisable = nix.thunk(() => ["pic"]);
       const preBuild = "sed -i -e \"s,INSTALL_MOD_DIR=,INSTALL_MOD_PATH=$out INSTALL_MOD_DIR=,\" \\\n  -e /depmod/d Makefile\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "systemd-networkd-batadv": nix.thunk(() => nix.sel(nixosTests, "systemd-networkd-batadv")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.open-mesh.org/projects/batman-adv/wiki/Wiki",
         description: "B.A.T.M.A.N. routing protocol in a linux kernel module for layer 2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(kernel, "version")), nix.thunk(() => nix.sel(cfg, "minKernelVersion")))),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

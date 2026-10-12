@@ -2,22 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["hash", 27, 13], ["patch", 28, 13], ["pname", 29, 13], ["version", 30, 13], ["debianRevision", 32, 11]], [["patch", 40, 9], ["hash", 41, 9]], [["patch", 44, 9], ["hash", 45, 9]], [["patch", 48, 9], ["hash", 49, 9]], [["patch", 52, 9], ["hash", 53, 9]], [["patch", 56, 9], ["hash", 57, 9]], [["patch", 60, 9], ["hash", 61, 9]], [["patch", 64, 9], ["hash", 65, 9]], [["patch", 68, 9], ["hash", 69, 9]], [["patch", 72, 9], ["hash", 73, 9]], [["patch", 76, 9], ["hash", 77, 9]], [["homepage", 86, 5], ["description", 87, 5], ["maintainers", 88, 5], ["license", 89, 5], ["platforms", 90, 5]], [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["patches", 21, 3], ["installPhase", 81, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, fetchDebianPatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
 const formals$2 = { args: { patch: false, hash: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["hash", 27, 13], ["patch", 28, 13], ["pname", 29, 13], ["version", 30, 13], ["debianRevision", 32, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["patch", 40, 9], ["hash", 41, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["patch", 44, 9], ["hash", 45, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["patch", 48, 9], ["hash", 49, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["patch", 52, 9], ["hash", 53, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["patch", 56, 9], ["hash", 57, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["patch", 60, 9], ["hash", 61, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["patch", 64, 9], ["hash", 65, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["patch", 68, 9], ["hash", 69, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["patch", 72, 9], ["hash", 73, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["patch", 76, 9], ["hash", 77, 9]]);
-const pos$13 = nix.positions(here + "/package.nix", [["homepage", 86, 5], ["description", 87, 5], ["maintainers", 88, 5], ["license", 89, 5], ["platforms", 90, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["patches", 21, 3], ["installPhase", 81, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "chntpw";
       const version = "140201";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pogostick.net/~pnh/ntpasswd/chntpw-source-${version}.zip`),
           sha256: "1k1cxsj0221dpsqi5yibq2hr7n8xywnicl8yyaicn91y8h2hkqln",
         }))));
@@ -41,7 +28,7 @@ export default nix.lambda((args) => (() => {
           const patch = nix.arg($_1, "patch");
           const hash = nix.arg($_1, "hash");
           return nix.app(fetchDebianPatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               hash: hash,
               patch: patch,
               pname: pname,
@@ -53,52 +40,52 @@ export default nix.lambda((args) => (() => {
           nix.path(here, "./00-chntpw-build-arch-autodetect.patch"),
           nix.path(here, "./01-chntpw-install-target.patch"),
           nix.thunk(() => nix.app(fetchChntpwDebianPatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               patch: "04_get_abs_path",
               hash: "sha256-FuEEp/nZ3xNIpemcRTXPThxvQ7ZeB0REOqs0/Jl6AJ4=",
             })))),
           nix.thunk(() => nix.app(fetchChntpwDebianPatch, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               patch: "06_correct_test_open_syscall",
               hash: "sha256-DQ55aRPM1uZOA6Q+C3ISJV0JayWFh2MRSnGuGtdAjwI=",
             })))),
           nix.thunk(() => nix.app(fetchChntpwDebianPatch, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               patch: "07_detect_failure_to_write_key",
               hash: "sha256-lPDOY4ZKSZgLvfdPyurgGjvzzUCDU2JJ9/gKmK/tZl4=",
             })))),
           nix.thunk(() => nix.app(fetchChntpwDebianPatch, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               patch: "08_no_deref_null",
               hash: "sha256-+gOoZuPwGp4byaNJ2dpb8kj6pohXDU1M1YIBqWR197w=",
             })))),
           nix.thunk(() => nix.app(fetchChntpwDebianPatch, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               patch: "09_improve_robustness",
               hash: "sha256-SsX94ds80ccDe8pFAEbg8D4r4XK1cXZsVLbHAHybX9s=",
             })))),
           nix.thunk(() => nix.app(fetchChntpwDebianPatch, nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               patch: "11_improve_documentation",
               hash: "sha256-7+FXU7cMEAwtkoWnBRZnsN0Y75T66pyTwexgcSQ0FHs=",
             })))),
           nix.thunk(() => nix.app(fetchChntpwDebianPatch, nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               patch: "12_readonly_filesystem",
               hash: "sha256-RDly35sTVxuzEqH7ZXvh8fFC76B2oSfrw87QK9zxrM8=",
             })))),
           nix.thunk(() => nix.app(fetchChntpwDebianPatch, nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               patch: "13_write_to_hive",
               hash: "sha256-e2bM7TKyItJPaj3wyObuGQNve/QLCTvyqjNP2T2jaJg=",
             })))),
           nix.thunk(() => nix.app(fetchChntpwDebianPatch, nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               patch: "14_improve_description",
               hash: "sha256-OhexHr6rGTqM/XFJ0vS3prtI+RdcgjUtEfsT2AibxYc=",
             })))),
           nix.thunk(() => nix.app(fetchChntpwDebianPatch, nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               patch: "17_hexdump-pointer-type.patch",
               hash: "sha256-ir9LFl8FJq141OwF5SbyVMtjQ1kTMH1NXlHl0XZq7m8=",
             })))),
@@ -106,7 +93,7 @@ export default nix.lambda((args) => (() => {
       })());
       const installPhase = "make install PREFIX=$out\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         homepage: "http://pogostick.net/~pnh/ntpasswd/",
         description: "Utility to reset the password of any user that has a valid local account on a Windows system",
         maintainers: [],
@@ -114,7 +101,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         pname,
         version,
         src,

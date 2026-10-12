@@ -2,66 +2,49 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fpm-modular.nix", [[["maintainers", 6, 8]], [["systemPackages", 13, 19]], [["extraConfig", 24, 35]], [["tryFiles", 31, 15], ["index", 32, 15]], [["~ \\.php$", 24, 23], ["/", 30, 23]], [["root", 23, 13], ["locations", 24, 13]], [["phpfpm", 18, 22]], [["enable", 16, 9], ["virtualHosts", 18, 9]], [["nginx", 15, 16]], [["user", 43, 15], ["listen.group", 44, 15], ["listen.mode", 45, 15], ["listen.owner", 46, 15], ["pm", 47, 15], ["pm.max_children", 48, 15], ["pm.max_requests", 49, 15], ["pm.max_spare_servers", 50, 15], ["pm.min_spare_servers", 51, 15], ["pm.start_servers", 52, 15]], [["foobar", 42, 13]], [["package", 40, 11], ["settings", 41, 11]], [["imports", 38, 9], ["php-fpm", 39, 9]], [["php-fpm", 37, 23]], [["services", 37, 14]], [["environment", 13, 7], ["services", 15, 7], ["system", 37, 7]], [["machine", 10, 14]], [["name", 5, 3], ["meta", 6, 3], ["containers", 10, 3], ["testScript", 58, 3]]]);
 const formals$1 = { args: { lib: false, php: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fpm-modular.nix", [["maintainers", 6, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/fpm-modular.nix", [["systemPackages", 13, 19]]);
-const pos$3 = nix.positions(here + "/fpm-modular.nix", [["extraConfig", 24, 35]]);
-const pos$4 = nix.positions(here + "/fpm-modular.nix", [["tryFiles", 31, 15], ["index", 32, 15]]);
-const pos$5 = nix.positions(here + "/fpm-modular.nix", [["~ \\.php$", 24, 23], ["/", 30, 23]]);
-const pos$6 = nix.positions(here + "/fpm-modular.nix", [["root", 23, 13], ["locations", 24, 13]]);
-const pos$7 = nix.positions(here + "/fpm-modular.nix", [["phpfpm", 18, 22]]);
-const pos$8 = nix.positions(here + "/fpm-modular.nix", [["enable", 16, 9], ["virtualHosts", 18, 9]]);
-const pos$9 = nix.positions(here + "/fpm-modular.nix", [["nginx", 15, 16]]);
-const pos$10 = nix.positions(here + "/fpm-modular.nix", [["user", 43, 15], ["listen.group", 44, 15], ["listen.mode", 45, 15], ["listen.owner", 46, 15], ["pm", 47, 15], ["pm.max_children", 48, 15], ["pm.max_requests", 49, 15], ["pm.max_spare_servers", 50, 15], ["pm.min_spare_servers", 51, 15], ["pm.start_servers", 52, 15]]);
-const pos$11 = nix.positions(here + "/fpm-modular.nix", [["foobar", 42, 13]]);
-const pos$12 = nix.positions(here + "/fpm-modular.nix", [["package", 40, 11], ["settings", 41, 11]]);
-const pos$13 = nix.positions(here + "/fpm-modular.nix", [["imports", 38, 9], ["php-fpm", 39, 9]]);
-const pos$14 = nix.positions(here + "/fpm-modular.nix", [["php-fpm", 37, 23]]);
-const pos$15 = nix.positions(here + "/fpm-modular.nix", [["services", 37, 14]]);
-const pos$16 = nix.positions(here + "/fpm-modular.nix", [["environment", 13, 7], ["services", 15, 7], ["system", 37, 7]]);
-const pos$17 = nix.positions(here + "/fpm-modular.nix", [["machine", 10, 14]]);
-const pos$18 = nix.positions(here + "/fpm-modular.nix", [["name", 5, 3], ["meta", 6, 3], ["containers", 10, 3], ["testScript", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const php = nix.arg($, "php");
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: nix.thunk(() => nix.str`php-${nix.sel(php, "version")}-fpm-modular-nginx-test`),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "aanderse"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$16,
-          environment: nix.thunk(() => ({ [nix.POS]: pos$2, systemPackages: nix.thunk(() => [php]) })),
+          [nix.POS]: $pos[15],
+          environment: nix.thunk(() => ({ [nix.POS]: $pos[1], systemPackages: nix.thunk(() => [php]) })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 phpfpm: nix.thunk(() => (() => {
                   const testdir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "web/index.php", "<?php phpinfo();"));
                   return {
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     root: nix.thunk(() => nix.str`${testdir}/web`),
                     locations: nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       "~ \\.php$": nix.thunk(() => ({
-                        [nix.POS]: pos$3,
+                        [nix.POS]: $pos[2],
                         extraConfig: nix.thunk(() => nix.str`fastcgi_pass unix:${nix.sel(config, "system", "services", "php-fpm", "php-fpm", "settings", "foobar", "listen")};
 fastcgi_index index.php;
 include ${nix.sel(config, "services", "nginx", "package")}/conf/fastcgi_params;
@@ -69,7 +52,7 @@ include ${nix.sel(pkgs, "nginx")}/conf/fastcgi.conf;
 `),
                       })),
                       "/": nix.thunk(() => ({
-                        [nix.POS]: pos$4,
+                        [nix.POS]: $pos[3],
                         tryFiles: "$uri $uri/ index.php",
                         index: "index.php index.html index.htm",
                       })),
@@ -80,19 +63,19 @@ include ${nix.sel(pkgs, "nginx")}/conf/fastcgi.conf;
             })),
           })),
           system: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               "php-fpm": nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 imports: nix.thunk(() => [nix.thunk(() => nix.sel(php, "services", "default"))]),
                 "php-fpm": nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   package: php,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     foobar: nix.thunk(() => ({
-                      [nix.POS]: pos$10,
+                      [nix.POS]: $pos[9],
                       user: "nginx",
                       "listen.group": "nginx",
                       "listen.mode": "0600",

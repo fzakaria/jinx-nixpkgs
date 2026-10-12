@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["pname", 33, 26], ["src", 33, 32], ["version", 33, 36], ["hash", 34, 5]], [["updateScript", 57, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["mainProgram", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5], ["teams", 68, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoDeps", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 50, 3], ["passthru", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, cargo: false, "pkg-config": false, meson: false, ninja: false, "blueprint-compiler": false, glib: false, gtk4: false, libadwaita: false, rustc: false, wrapGAppsHook4: false, "appstream-glib": false, "desktop-file-utils": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 33, 26], ["src", 33, 32], ["version", 33, 36], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["mainProgram", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5], ["teams", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoDeps", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 50, 3], ["passthru", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "eyedropper",
       version: "2.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FineFindus",
           repo: "eyedropper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-008VFC2jjLWW6t6e7C8ZEoD+hFFqJVSmlgovO2RHGjw=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -60,11 +56,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [glib, gtk4, libadwaita]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Pick and format colors",
         homepage: "https://github.com/FineFindus/eyedropper",
         changelog: nix.thunk(() => nix.str`https://github.com/FineFindus/eyedropper/releases/tag/v${nix.sel(finalAttrs, "version")}`),

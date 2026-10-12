@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kguiaddons.nix", [[["homepage", 40, 8]], [["pname", 16, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 26, 3], ["propagatedBuildInputs", 33, 3], ["outputs", 35, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false, cmake: false, "pkg-config": false, "extra-cmake-modules": false, "wayland-scanner": false, qtbase: false, qtx11extras: false, wayland: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kguiaddons.nix", [["homepage", 40, 8]]);
-const pos$2 = nix.positions(here + "/kguiaddons.nix", [["pname", 16, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 26, 3], ["propagatedBuildInputs", 33, 3], ["outputs", 35, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kguiaddons",
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config, extra_cmake_modules], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [wayland_scanner])))),
       buildInputs: nix.thunk(() => nix.concat([qtx11extras], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [wayland, nix.thunk(() => nix.sel(kdePackages, "plasma-wayland-protocols"))])))),
       propagatedBuildInputs: nix.thunk(() => [qtbase]),
       outputs: nix.thunk(() => ["out", "dev"]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, homepage: "https://invent.kde.org/frameworks/kguiaddons" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], homepage: "https://invent.kde.org/frameworks/kguiaddons" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=kguiaddons.ts.map

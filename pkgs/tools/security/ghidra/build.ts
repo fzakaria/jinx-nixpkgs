@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5], ["leaveDotGit", 36, 5], ["postFetch", 37, 5]], [["name", 96, 7], ["exec", 97, 7], ["icon", 98, 7], ["desktopName", 99, 7], ["genericName", 100, 7], ["categories", 101, 7], ["terminal", 102, 7], ["startupWMClass", 103, 7]], [["pname", 126, 13], ["data", 127, 5]], [["ghidra", 191, 43]], [["ghidra", 196, 58]], [["releaseName", 190, 13], ["distroPrefix", 190, 25], ["buildGhidraExtension", 192, 7], ["buildGhidraScripts", 193, 7], ["withExtensions", 196, 5]], [["changelog", 200, 5], ["description", 201, 5], ["mainProgram", 202, 5], ["homepage", 203, 5], ["platforms", 204, 5], ["sourceProvenance", 209, 5], ["license", 213, 5], ["maintainers", 214, 5], ["broken", 219, 5]], [["pname", 81, 5], ["version", 82, 5], ["src", 83, 5], ["patches", 84, 5], ["postPatch", 85, 5], ["patchFlags", 89, 3], ["desktopItems", 94, 3], ["nativeBuildInputs", 107, 3], ["dontStrip", 121, 3], ["__darwinAllowLocalNetworking", 123, 3], ["mitmCache", 125, 3], ["gradleFlags", 130, 3], ["preBuild", 147, 3], ["gradleBuildTask", 152, 3], ["installPhase", 154, 3], ["postFixup", 176, 3], ["passthru", 189, 3], ["meta", 199, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, callPackage: false, gradle: false, makeBinaryWrapper: false, openjdk21: false, unzip: false, makeDesktopItem: false, copyDesktopItems: false, desktopToDarwinBundle: false, xcbuild: false, protobuf: false, "ghidra-extensions": false, python3: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5], ["leaveDotGit", 36, 5], ["postFetch", 37, 5]]);
-const pos$2 = nix.positions(here + "/build.nix", [["name", 96, 7], ["exec", 97, 7], ["icon", 98, 7], ["desktopName", 99, 7], ["genericName", 100, 7], ["categories", 101, 7], ["terminal", 102, 7], ["startupWMClass", 103, 7]]);
-const pos$3 = nix.positions(here + "/build.nix", [["pname", 126, 13], ["data", 127, 5]]);
-const pos$4 = nix.positions(here + "/build.nix", [["ghidra", 191, 43]]);
-const pos$5 = nix.positions(here + "/build.nix", [["ghidra", 196, 58]]);
-const pos$6 = nix.positions(here + "/build.nix", [["releaseName", 190, 13], ["distroPrefix", 190, 25], ["buildGhidraExtension", 192, 7], ["buildGhidraScripts", 193, 7], ["withExtensions", 196, 5]]);
-const pos$7 = nix.positions(here + "/build.nix", [["changelog", 200, 5], ["description", 201, 5], ["mainProgram", 202, 5], ["homepage", 203, 5], ["platforms", 204, 5], ["sourceProvenance", 209, 5], ["license", 213, 5], ["maintainers", 214, 5], ["broken", 219, 5]]);
-const pos$8 = nix.positions(here + "/build.nix", [["pname", 81, 5], ["version", 82, 5], ["src", 83, 5], ["patches", 84, 5], ["postPatch", 85, 5], ["patchFlags", 89, 3], ["desktopItems", 94, 3], ["nativeBuildInputs", 107, 3], ["dontStrip", 121, 3], ["__darwinAllowLocalNetworking", 123, 3], ["mitmCache", 125, 3], ["gradleFlags", 130, 3], ["preBuild", 147, 3], ["gradleBuildTask", 152, 3], ["installPhase", 154, 3], ["postFixup", 176, 3], ["passthru", 189, 3], ["meta", 199, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const releaseName = "NIX";
   const distroPrefix = nix.thunk(() => nix.str`ghidra_${version}_${releaseName}`);
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "NationalSecurityAgency",
       repo: "Ghidra",
       rev: nix.thunk(() => nix.str`Ghidra_${version}_build`),
@@ -68,7 +61,7 @@ protobuf {
 HERE
 `);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       src: src,
@@ -77,7 +70,7 @@ HERE
       patchFlags: nix.thunk(() => ["--no-backup-if-mismatch", "-p1"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ghidra",
             exec: "ghidra",
             icon: "ghidra",
@@ -99,7 +92,7 @@ HERE
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcbuild, desktopToDarwinBundle])))),
       dontStrip: true,
       __darwinAllowLocalNetworking: true,
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, data: nix.path(here, "./deps.json") })))),
       gradleFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`-Dorg.gradle.java.home=${openjdk21}`)], nix.app(nix.sel(lib, "optionals"), isMacArm64, nix.thunk(() => [
           "-x",
           "Decompiler:linkSleighMac_x86_64Executable",
@@ -141,23 +134,23 @@ wrapProgram "${pkg_path}/support/launch.sh" \\
 `),
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.app(nix.sel(ghidra_extensions, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             ghidra: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           }))));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         releaseName: releaseName,
         distroPrefix: distroPrefix,
         buildGhidraExtension: nix.thunk(() => nix.attr(from, "buildGhidraExtension")),
         buildGhidraScripts: nix.thunk(() => nix.attr(from, "buildGhidraScripts")),
         withExtensions: nix.thunk(() => nix.app(callPackage, nix.path(here, "./with-extensions.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             ghidra: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
       };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://htmlpreview.github.io/?https://github.com/NationalSecurityAgency/ghidra/blob/Ghidra_${nix.sel(finalAttrs, "version")}_build/Ghidra/Configurations/Public_Release/src/global/docs/ChangeHistory.html`),
         description: "Software reverse engineering (SRE) suite of tools",
         mainProgram: "ghidra",

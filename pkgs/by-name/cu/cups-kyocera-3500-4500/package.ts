@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 35, 5], ["hash", 39, 5], ["recursiveHash", 40, 5], ["downloadToTemp", 41, 5], ["postFetch", 42, 5]], [["x86_64-linux", 63, 9], ["i686-linux", 64, 9]], [["description", 106, 5], ["homepage", 107, 5], ["sourceProvenance", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5]], [["pname", 21, 3], ["version", 22, 3], ["dontStrip", 24, 3], ["src", 26, 3], ["sourceRoot", 58, 3], ["unpackCmd", 60, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 79, 3], ["propagatedBuildInputs", 83, 3], ["installPhase", 89, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cups: false, autoPatchelfHook: false, python3Packages: false, region: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 35, 5], ["hash", 39, 5], ["recursiveHash", 40, 5], ["downloadToTemp", 41, 5], ["postFetch", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 63, 9], ["i686-linux", 64, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["sourceProvenance", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["dontStrip", 24, 3], ["src", 26, 3], ["sourceRoot", 58, 3], ["unpackCmd", 60, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 79, 3], ["propagatedBuildInputs", 83, 3], ["installPhase", 89, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const kyodialog_version_long = "9.0";
   const date = "20221003";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cups-kyocera-3500-4500",
       version: nix.thunk(() => nix.str`${kyodialog_version_long}-${date}`),
       dontStrip: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             "https://web.archive.org/web/20241123173620/https://www.kyoceradocumentsolutions.us/content/download-center-americas/us/drivers/drivers/MA_PA_4500ci_Linux_gz.download.gz",
             "https://www.kyoceradocumentsolutions.us/content/download-center-americas/us/drivers/drivers/MA_PA_4500ci_Linux_gz.download.gz",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: ".",
       unpackCmd: nix.thunk(() => (() => {
-        const platforms = nix.thunk(() => ({ [nix.POS]: pos$2, "x86_64-linux": "amd64", "i686-linux": "i386" }));
+        const platforms = nix.thunk(() => ({ [nix.POS]: $pos[1], "x86_64-linux": "amd64", "i686-linux": "i386" }));
         const platform = nix.thunk(() => nix.selOr(platforms, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
         return nix.str`ar p "$src/Debian/${region}/kyodialog_${platform}/kyodialog_${kyodialog_version_long}-0_${platform}.deb" data.tar.gz | tar -xz
 `;
@@ -69,7 +66,7 @@ wrapPythonProgramsIn $out/lib/cups/filter "$propagatedBuildInputs"
 install -Dm444 usr/share/doc/kyodialog/copyright $out/share/doc/cups-kyocera-3500-4500/copyright
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CUPS drivers for Kyocera ECOSYS MA3500cix, MA3500cifx, MA4000cix, MA4000cifx, PA3500cx, PA4000cx and PA4500cx, for Kyocera CS MA4500ci and PA4500ci, and for Kyocera TASKalfa MA3500ci, MA4500ci and PI4500ci printers",
         homepage: "https://www.kyoceradocumentsolutions.com",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),

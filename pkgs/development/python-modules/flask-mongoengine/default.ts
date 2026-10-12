@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["SETUPTOOLS_SCM_PRETEND_VERSION", 27, 7]], [["wtf", 42, 5], ["legacy", 50, 5]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["env", 27, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 34, 3], ["optional-dependencies", 41, 3], ["doCheck", 54, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "email-validator": false, fetchFromGitHub: false, flask: false, "flask-wtf": false, markupsafe: false, mongoengine: false, setuptools: false, "setuptools-scm": false, wtforms: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["SETUPTOOLS_SCM_PRETEND_VERSION", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["wtf", 42, 5], ["legacy", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["env", 27, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 34, 3], ["optional-dependencies", 41, 3], ["doCheck", 54, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,24 +23,24 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0-unstable-2022-08-16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MongoEngine",
           repo: "flask-mongoengine",
           rev: "d4526139cb1e2e94111ab7de96bb629d574c1690",
           hash: "sha256-oMQU9Z8boc0q+0KzIQAZ8qSyxiITDY0M9FCg75S9MEY=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: "1.0.0" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], SETUPTOOLS_SCM_PRETEND_VERSION: "1.0.0" }));
       const nativeBuildInputs = nix.thunk(() => [setuptools, setuptools_scm]);
       const propagatedBuildInputs = nix.thunk(() => [email_validator, flask, flask_wtf, mongoengine]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         wtf: nix.thunk(() => nix.concat([flask_wtf, wtforms], nix.sel(wtforms, "optional-dependencies", "email"))),
         legacy: nix.thunk(() => [markupsafe]),
       }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["flask_mongoengine"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Flask extension that provides integration with MongoEngine and WTF model forms",
         homepage: "https://github.com/mongoengine/flask-mongoengine",
         changelog: nix.thunk(() => nix.str`https://github.com/MongoEngine/flask-mongoengine/blob/${nix.sel(src, "rev")}/docs/changelog.rst`),
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

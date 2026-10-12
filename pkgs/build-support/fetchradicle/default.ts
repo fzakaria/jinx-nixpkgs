@@ -2,10 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 24, 7], ["rev", 25, 7]], [["seed", 37, 7], ["repo", 38, 7], ["node", 39, 7], ["rev", 40, 7], ["tag", 41, 7]]]);
 const formals$1 = { args: { lib: false, fetchgit: false }, ellipsis: false };
 const formals$2 = { args: { seed: false, repo: false, node: true, rev: true, tag: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 24, 7], ["rev", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["seed", 37, 7], ["repo", 38, 7], ["node", 39, 7], ["rev", 40, 7], ["tag", 41, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,10 +22,10 @@ export default nix.lambda((args) => (() => {
       const namespacePrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(node, null)), nix.thunk(() => nix.str`refs/namespaces/${node}/`)));
       const rev$ = nix.thunk(() => (nix.asBool(!nix.eq(tag, null)) ? nix.str`refs/tags/${tag}` : nix.force(rev)));
       return nix.update(nix.app(fetchgit, nix.thunk(() => nix.update({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://${seed}/${repo}.git`),
           rev: nix.thunk(() => nix.str`${namespacePrefix}${rev$}`),
-        }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["seed", "repo", "node", "rev", "tag"]))))), { [nix.POS]: pos$2, seed: seed, repo: repo, node: node, rev: rev, tag: tag });
+        }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["seed", "repo", "node", "rev", "tag"]))))), { [nix.POS]: $pos[1], seed: seed, repo: repo, node: node, rev: rev, tag: tag });
     })(), formals$2));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

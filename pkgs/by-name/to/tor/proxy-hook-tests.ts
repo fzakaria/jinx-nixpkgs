@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/proxy-hook-tests.nix", [[["name", 17, 5], ["url", 18, 5], ["rev", 19, 13], ["hash", 19, 17], ["nativeBuildInputs", 20, 5]], [["name", 24, 5], ["url", 25, 5], ["hash", 26, 13], ["nativeBuildInputs", 27, 5]], [["name", 31, 5], ["url", 32, 5], ["hash", 33, 5], ["nativeBuildInputs", 34, 5]], [["name", 38, 5], ["protocol", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["domain", 42, 13], ["rev", 42, 20], ["hash", 42, 24], ["nativeBuildInputs", 43, 5]], [["fetchgit", 16, 3], ["fetchzip", 23, 3], ["fetchurl", 30, 3], ["fetchFromGitLab", 37, 3]]]);
 const formals$1 = { args: { testers: false, fetchFromGitLab: false, fetchgit: false, fetchurl: false, fetchzip: false, linkFarm: false, tor: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/proxy-hook-tests.nix", [["name", 17, 5], ["url", 18, 5], ["rev", 19, 13], ["hash", 19, 17], ["nativeBuildInputs", 20, 5]]);
-const pos$2 = nix.positions(here + "/proxy-hook-tests.nix", [["name", 24, 5], ["url", 25, 5], ["hash", 26, 13], ["nativeBuildInputs", 27, 5]]);
-const pos$3 = nix.positions(here + "/proxy-hook-tests.nix", [["name", 31, 5], ["url", 32, 5], ["hash", 33, 5], ["nativeBuildInputs", 34, 5]]);
-const pos$4 = nix.positions(here + "/proxy-hook-tests.nix", [["name", 38, 5], ["protocol", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["domain", 42, 13], ["rev", 42, 20], ["hash", 42, 24], ["nativeBuildInputs", 43, 5]]);
-const pos$5 = nix.positions(here + "/proxy-hook-tests.nix", [["fetchgit", 16, 3], ["fetchzip", 23, 3], ["fetchurl", 30, 3], ["fetchFromGitLab", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,9 +18,9 @@ export default nix.lambda((args) => (() => {
   const rev = "933c5491db00c703d5d8264fdabd5a5b10aff96f";
   const hash = "sha256-o6Wpso8GSlQH39GpH3IXZyrVhdP8pEYFxLDq9a7yHX0=";
   return nix.app(linkFarm, "tor-proxy-hook-tests", nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       fetchgit: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "fetchgit-tor-source",
           url: nix.thunk(() => nix.str`http://${domain}/tpo/core/tor`),
           rev: rev,
@@ -32,21 +28,21 @@ export default nix.lambda((args) => (() => {
           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(tor, "proxyHook"))]),
         })))),
       fetchzip: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "fetchzip-tor-source",
           url: nix.thunk(() => nix.str`http://${domain}/tpo/core/tor/-/archive/${rev}/tor-${rev}.zip`),
           hash: hash,
           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(tor, "proxyHook"))]),
         })))),
       fetchurl: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "fetchurl-tor-source",
           url: nix.thunk(() => nix.str`http://${domain}/tpo/core/tor/-/raw/${rev}/Cargo.lock`),
           hash: "sha256-oX4WbsscLADgJ5o+czpueyAih7ic0u4lZQs7y1vMA3A=",
           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(tor, "proxyHook"))]),
         })))),
       fetchFromGitLab: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: "gitlab-tor-source",
           protocol: "http",
           owner: "tpo/core",

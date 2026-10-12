@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["PBR_VERSION", 45, 7]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["teams", 94, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["env", 45, 3], ["build-system", 47, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 67, 3], ["checkPhase", 80, 3], ["pythonImportsCheck", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pbr: false, cliff: false, debtcollector: false, netaddr: false, openstacksdk: false, "osc-lib": false, "oslo-i18n": false, "oslo-log": false, "oslo-serialization": false, "oslo-utils": false, keystoneauth1: false, "python-keystoneclient": false, requests: false, hacking: false, fixtures: false, oslotest: false, osprofiler: false, "python-openstackclient": false, "requests-mock": false, stestr: false, testtools: false, testscenarios: false, tempest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PBR_VERSION", 45, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["teams", 94, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["env", 45, 3], ["build-system", 47, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 67, 3], ["checkPhase", 80, 3], ["pythonImportsCheck", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,13 +39,13 @@ export default nix.lambda((args) => (() => {
       const version = "11.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openstack",
           repo: "python-neutronclient",
           tag: version,
           hash: "sha256-wf+ZTLaBEzQPRVQOZ6JaqH88ymgGIgtRKKdJi2UvKdM=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PBR_VERSION: version }));
       const build_system = nix.thunk(() => [setuptools, pbr]);
       const dependencies = nix.thunk(() => [
         cliff,
@@ -79,14 +76,14 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\n\nstestr run\n\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["neutronclient"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python bindings for the OpenStack Networking API",
         homepage: "https://github.com/openstack/python-neutronclient/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

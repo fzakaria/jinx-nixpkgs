@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["cmakeFlags", 47, 3], ["postFixup", 53, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, libnice: false, openssl: false, plog: false, srtp: false, usrsctp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["cmakeFlags", 47, 3], ["postFixup", 53, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const srtp = nix.arg($, "srtp");
   const usrsctp = nix.arg($, "usrsctp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libdatachannel",
       version: "0.24.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "paullouisageneau",
           repo: "libdatachannel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DUSE_NICE=ON", "-DPREFER_SYSTEM_LIB=ON", "-DNO_EXAMPLES=ON"]),
       postFixup: "# Fix include path that will be incorrect due to the \"dev\" output\nsubstituteInPlace \"$dev/lib/cmake/LibDataChannel/LibDataChannelTargets.cmake\" \\\n  --replace-fail \"\\${_IMPORT_PREFIX}/include\" \"$dev/include\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C/C++ WebRTC network library featuring Data Channels, Media Transport, and WebSockets",
         homepage: "https://libdatachannel.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["license", 47, 10]], [["url", 44, 5], ["hash", 45, 5], ["meta", 47, 5]], [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5]], [["name", 157, 7], ["exec", 158, 7], ["icon", 159, 7], ["desktopName", 160, 7], ["genericName", 161, 7], ["categories", 162, 7]], [["extraArgs", 167, 5]], [["updateScript", 166, 12]], [["homepage", 175, 5], ["description", 176, 5], ["mainProgram", 177, 5], ["changelog", 178, 5], ["license", 179, 5], ["maintainers", 180, 5], ["platforms", 184, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["aruco", 41, 3], ["xplaneSdk", 43, 3], ["fusion", 50, 3], ["patches", 57, 3], ["strictDeps", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 79, 3], ["cmakeFlags", 98, 3], ["postInstall", 108, 3], ["dontWrapQtApps", 139, 3], ["qtWrapperArgs", 140, 3], ["preFixup", 147, 3], ["desktopItems", 155, 3], ["passthru", 166, 3], ["meta", 174, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, callPackage: false, fetchzip: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, ninja: false, copyDesktopItems: false, qt6: false, opencv4: false, procps: false, eigen: false, imagemagick: false, libxdmcp: false, libevdev: false, libicns: false, llvmPackages: false, makeDesktopItem: false, wineWow64Packages: false, onnxruntime: false, "nix-update-script": false, "v4l-utils": false, withWine: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 47, 10]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 44, 5], ["hash", 45, 5], ["meta", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 157, 7], ["exec", 158, 7], ["icon", 159, 7], ["desktopName", 160, 7], ["genericName", 161, 7], ["categories", 162, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 167, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 166, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 175, 5], ["description", 176, 5], ["mainProgram", 177, 5], ["changelog", 178, 5], ["license", 179, 5], ["maintainers", 180, 5], ["platforms", 184, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["aruco", 41, 3], ["xplaneSdk", 43, 3], ["fusion", 50, 3], ["patches", 57, 3], ["strictDeps", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 79, 3], ["cmakeFlags", 98, 3], ["postInstall", 108, 3], ["dontWrapQtApps", 139, 3], ["qtWrapperArgs", 140, 3], ["preFixup", 147, 3], ["desktopItems", 155, 3], ["passthru", 166, 3], ["meta", 174, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const isLinux = nix.thunk(() => nix.attr(from, "isLinux"));
   const isDarwin = nix.thunk(() => nix.attr(from, "isDarwin"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "opentrack",
       version: "2026.1.0-unstable-2026-09-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "opentrack",
           repo: "opentrack",
           rev: "043bfc1be415962151217709a101422404ea36a6",
@@ -55,13 +47,16 @@ export default nix.lambda((args) => (() => {
         })))),
       aruco: nix.thunk(() => nix.app(callPackage, nix.path(here, "./aruco.nix"), nix.thunk(() => ({})))),
       xplaneSdk: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://developer.x-plane.com/wp-content/plugins/code-sample-generation/sdk_zip_files/XPSDK411.zip",
           hash: "sha256-zay5QrHJctllVFl+JhlyTDzH68h5UoxncEt+TpW3UgI=",
-          meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "free")) })),
+          meta: nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
+          })),
         })))),
       fusion: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "xioTechnologies",
           repo: "Fusion",
           tag: "v1.2.11",
@@ -129,7 +124,7 @@ rm -rf "$tmp"
       preFixup: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), isLinux, "wrapQtApp $out/bin/opentrack\n"), nix.app(nix.sel(lib, "optionalString"), isDarwin, "wrapQtApp $out/Applications/opentrack.app/Contents/MacOS/opentrack\n"))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isLinux, nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "opentrack",
               exec: "opentrack",
               icon: "opentrack",
@@ -139,14 +134,14 @@ rm -rf "$tmp"
             })))),
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             extraArgs: nix.thunk(() => ["--version=branch", "--version-regex", "^opentrack-(.+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://github.com/opentrack/opentrack",
         description: "Head tracking software for MS Windows, Linux, and Apple OSX",
         mainProgram: "opentrack",

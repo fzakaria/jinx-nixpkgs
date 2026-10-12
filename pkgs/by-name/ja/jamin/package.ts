@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["url", 33, 7], ["hash", 34, 7]], [["NIX_CFLAGS_COMPILE", 77, 7]], [["homepage", 84, 5], ["description", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 31, 3], ["postPatch", 40, 3], ["preConfigure", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 62, 3], ["env", 77, 3], ["postInstall", 79, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, fetchpatch: false, fftwFloat: false, gtk3: false, ladspaPlugins: false, libjack2: false, liblo: false, libxml2: false, autoconf: false, automake: false, intltool: false, libtool: false, makeWrapper: false, "pkg-config": false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 77, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 84, 5], ["description", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 31, 3], ["postPatch", 40, 3], ["preConfigure", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 62, 3], ["env", 77, 3], ["postInstall", 79, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jamin",
       version: "0.98.9-unstable-2015-01-14",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.code.sf.net/p/jamin/code",
           rev: "199091a6e3709e2890eaf2c8b4e57c6749776cdc",
           hash: "sha256-wiIBymvpPxY+z/nZi+dH0hXEuhO5FYQjon6VfJaTwC0=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sources.debian.org/data/main/j/jamin/0.98.9~git20170111~199091~repack1-3/debian/patches/gcc15.patch",
             hash: "sha256-dH0NI12Xfw9Rl7Iwm4QzDvXIHT7XzBC8Ly0lQOpDD84=",
           })))),
@@ -57,13 +53,13 @@ export default nix.lambda((args) => (() => {
       })())),
       buildInputs: nix.thunk(() => [fftwFloat, gtk3, ladspaPlugins, libjack2, liblo, libxml2]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: "-fcommon -Wno-error=incompatible-pointer-types",
       })),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/jamin --set LADSPA_PATH ${ladspaPlugins}/lib/ladspa
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://jamin.sourceforge.net",
         description: "JACK Audio Mastering interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

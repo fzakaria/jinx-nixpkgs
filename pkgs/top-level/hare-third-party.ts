@@ -2,8 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hare-third-party.nix", [[["hare-compress", 9, 5], ["hare-ev", 10, 5], ["hare-http", 11, 5], ["hare-json", 12, 5], ["hare-ssh", 13, 5], ["hare-toml", 14, 5], ["hare-png", 15, 5], ["hare-xml", 16, 5]]]);
 const formals$1 = { args: { lib: false, newScope: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hare-third-party.nix", [["hare-compress", 9, 5], ["hare-ev", 10, 5], ["hare-http", 11, 5], ["hare-json", 12, 5], ["hare-ssh", 13, 5], ["hare-toml", 14, 5], ["hare-png", 15, 5], ["hare-xml", 16, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "hare-compress": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/hare-third-party/hare-compress"), nix.thunk(() => ({})))),
         "hare-ev": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/hare-third-party/hare-ev"), nix.thunk(() => ({})))),
         "hare-http": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/hare-third-party/hare-http"), nix.thunk(() => ({})))),

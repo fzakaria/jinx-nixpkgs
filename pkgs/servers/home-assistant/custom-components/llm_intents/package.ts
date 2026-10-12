@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 26], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["changelog", 44, 5], ["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["owner", 14, 3], ["domain", 15, 3], ["version", 16, 3], ["src", 18, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 29, 3], ["disabledTestPaths", 37, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, sympy: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-freezer": false, "pytest-homeassistant-custom-component": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 26], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 44, 5], ["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 14, 3], ["domain", 15, 3], ["version", 16, 3], ["src", 18, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 29, 3], ["disabledTestPaths", 37, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytest_homeassistant_custom_component = nix.arg($, "pytest-homeassistant-custom-component");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "skye-harris",
       domain: "llm_intents",
       version: "1.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: nix.thunk(() => nix.attr(finalAttrs, "owner")),
           repo: "llm_intents",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["tests/test_home_control.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/skye-harris/llm_intents/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Exposes internet search tools for use by LLM-backed Assist in Home Assistant",
         homepage: "https://github.com/skye-harris/llm_intents",

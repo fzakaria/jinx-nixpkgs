@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["rev-prefix", 86, 21]], [["command", 89, 9], ["supportedFeatures", 93, 9]], [["command", 96, 9], ["supportedFeatures", 100, 9]], [["updateScript", 85, 5]], [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["mainProgram", 109, 5], ["maintainers", 110, 5], ["teams", 111, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["shardsFile", 38, 3], ["copyShardDeps", 39, 3], ["preBuild", 41, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 59, 3], ["buildTargets", 67, 3], ["doCheck", 72, 3], ["doInstallCheck", 73, 3], ["installTargets", 75, 3], ["postInstall", 80, 3], ["passthru", 84, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, crystal: false, wrapGAppsHook4: false, desktopToDarwinBundle: false, "gobject-introspection": false, "nautilus-python": false, python3: false, libadwaita: false, openssl: false, libxml2: false, "pkg-config": false, gitUpdater: false, "_experimental-update-script-combinators": false, runCommand: false, crystal2nix: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 86, 21]]);
-const pos$3 = nix.positions(here + "/package.nix", [["command", 89, 9], ["supportedFeatures", 93, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["command", 96, 9], ["supportedFeatures", 100, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 85, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["mainProgram", 109, 5], ["maintainers", 110, 5], ["teams", 111, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["shardsFile", 38, 3], ["copyShardDeps", 39, 3], ["preBuild", 41, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 59, 3], ["buildTargets", 67, 3], ["doCheck", 72, 3], ["doInstallCheck", 73, 3], ["installTargets", 75, 3], ["postInstall", 80, 3], ["passthru", 84, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "Collision";
       const version = "3.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GeopJr",
           repo: "Collision",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,12 +53,12 @@ export default nix.lambda((args) => (() => {
       const installTargets = nix.thunk(() => ["desktop", "install"]);
       const postInstall = "install -Dm555 ./nautilus-extension/collision-extension.py -t $out/share/nautilus-python/extensions\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
             nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "collision.shardLock", "./shard.lock")),
             nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               command: nix.thunk(() => [
                 nix.thunk(() => nix.app(writeShellScript, "update-lock", nix.thunk(() => nix.str`cd $1; ${nix.app(nix.sel(lib, "getExe"), crystal2nix)}`))),
                 nix.path(here, "./."),
@@ -72,14 +66,14 @@ export default nix.lambda((args) => (() => {
               supportedFeatures: nix.thunk(() => ["silent"]),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               command: nix.thunk(() => ["rm", "./shard.lock"]),
               supportedFeatures: nix.thunk(() => ["silent"]),
             })),
           ]))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Check hashes for your files",
         homepage: "https://github.com/GeopJr/Collision",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -91,7 +85,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome-circle"))]),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

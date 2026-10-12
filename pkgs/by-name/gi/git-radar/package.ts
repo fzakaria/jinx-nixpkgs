@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["homepage", 34, 5], ["license", 35, 5], ["description", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["dontBuild", 22, 3], ["installPhase", 24, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { "coreutils-prefixed": false, lib: false, makeWrapper: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["license", 35, 5], ["description", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["dontBuild", 22, 3], ["installPhase", 24, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "git-radar",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "michaeldfallen",
           repo: "git-radar",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
 `))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/michaeldfallen/git-radar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Tool you can add to your prompt to provide at-a-glance information on your git repo",

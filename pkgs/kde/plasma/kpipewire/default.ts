@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 11, 3], ["extraNativeBuildInputs", 13, 3], ["extraBuildInputs", 14, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qtquick3d: false, "pkg-config": false, pipewire: false, ffmpeg: false, libgbm: false, libva: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["extraNativeBuildInputs", 13, 3], ["extraBuildInputs", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libgbm = nix.arg($, "libgbm");
   const libva = nix.arg($, "libva");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "kpipewire",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtquick3d, pipewire, ffmpeg, libgbm, libva]),

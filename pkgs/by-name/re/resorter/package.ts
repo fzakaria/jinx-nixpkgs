@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["packages", 22, 7]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["installPhase", 29, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rPackages: false, rWrapper: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packages", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["installPhase", 29, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rWrapper = nix.arg($, "rWrapper");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "resorter",
       version: "0-unstable-2023-07-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hiAndrewQuinn",
           repo: "resorter",
           rev: "81f8922d41d062794e1563a468cb5ca78680436b",
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(rWrapper, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packages: nix.thunk(() => (() => {
               const w = nix.withScope(rPackages, null);
               return [
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -pv $out/bin/\ncp -v resorter.r $out/bin/resorter\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to sort a list of items based on pairwise comparisons",
         homepage: "https://github.com/hiAndrewQuinn/resorter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

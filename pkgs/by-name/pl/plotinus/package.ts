@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["plotinus", 48, 43]], [["tests", 48, 12]], [["description", 51, 5], ["homepage", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["license", 56, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 44, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gettext: false, libxml2: false, "pkg-config": false, gtk3: false, cmake: false, ninja: false, vala: false, nixosTests: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["plotinus", 48, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 48, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["license", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 44, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "plotinus",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "p-e-w",
           repo: "plotinus",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,14 +34,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook3, vala, cmake, ninja, gettext, libxml2]),
       buildInputs: nix.thunk(() => [gtk3]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           plotinus: nix.thunk(() => nix.attr(nixosTests, "plotinus")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Searchable command palette in every modern GTK application",
         homepage: "https://github.com/p-e-w/plotinus",
         maintainers: nix.thunk(() => (() => {

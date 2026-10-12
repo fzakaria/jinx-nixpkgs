@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 49, 7], ["homepage", 50, 7], ["license", 51, 7], ["teams", 52, 7]], [["pname", 12, 3], ["pyproject", 13, 3], ["version", 16, 5], ["src", 17, 5], ["sourceRoot", 20, 3], ["postPatch", 22, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 37, 3], ["checkPhase", 39, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, libopaque: false, setuptools: false, pysodium: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 49, 7], ["homepage", 50, 7], ["license", 51, 7], ["teams", 52, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["pyproject", 13, 3], ["version", 16, 5], ["src", 17, 5], ["sourceRoot", 20, 3], ["postPatch", 22, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 37, 3], ["checkPhase", 39, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +40,7 @@ runHook postCheck
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libopaque, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
@@ -49,7 +48,7 @@ runHook postCheck
       };
       })());
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         pyproject,
         version,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 47, 12]], [["description", 50, 5], ["mainProgram", 51, 5], ["longDescription", 52, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["sourceProvenance", 59, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 68, 24]], [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["mvnHash", 26, 3], ["nativeBuildInputs", 28, 3], ["mvnParameters", 33, 3], ["installPhase", 35, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, makeBinaryWrapper: false, jre: false, maven: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 47, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["mainProgram", 51, 5], ["longDescription", 52, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["sourceProvenance", 59, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 68, 24]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["mvnHash", 26, 3], ["nativeBuildInputs", 28, 3], ["mvnParameters", 33, 3], ["installPhase", 35, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const maven = nix.arg($, "maven");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "14.0.0",
       pname: "checkstyle",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "checkstyle",
           repo: "checkstyle",
           tag: nix.thunk(() => nix.str`checkstyle-${nix.sel(finalAttrs, "version")}`),
@@ -42,13 +39,13 @@ makeWrapper ${jre}/bin/java $out/bin/checkstyle \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Checks Java source against a coding standard",
         mainProgram: "checkstyle",
         longDescription: "checkstyle is a development tool to help programmers write Java code that\nadheres to a coding standard. By default it supports the Sun Code\nConventions, but is highly configurable.\n",

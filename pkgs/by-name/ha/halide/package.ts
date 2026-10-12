@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["url", 44, 7], ["hash", 45, 7]], [["url", 49, 7], ["hash", 50, 7]], [["description", 162, 5], ["homepage", 163, 5], ["changelog", 164, 5], ["license", 165, 5], ["platforms", 166, 5], ["maintainers", 167, 5], ["broken", 171, 5], ["badPlatforms", 172, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["postPatch", 54, 3], ["cmakeFlags", 70, 3], ["outputs", 86, 3], ["doCheck", 91, 11], ["disabledTests", 93, 3], ["dontUseNinjaCheck", 109, 3], ["nativeCheckInputs", 110, 3], ["postInstall", 112, 3], ["buildInputs", 128, 3], ["nativeBuildInputs", 145, 3], ["propagatedBuildInputs", 156, 3], ["meta", 161, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, llvmPackages: false, fetchFromGitHub: false, fetchpatch2: false, cmake: false, flatbuffers: false, libffi: false, libpng: false, libjpeg: false, libgbm: false, libGL: false, eigen: false, openblas: false, blas: false, lapack: false, removeReferencesTo: false, ninja: false, pythonSupport: true, python3Packages: false, wasmSupport: true, wabt: false, doCheck: true, ctestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 49, 7], ["hash", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 162, 5], ["homepage", 163, 5], ["changelog", 164, 5], ["license", 165, 5], ["platforms", 166, 5], ["maintainers", 167, 5], ["broken", 171, 5], ["badPlatforms", 172, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["postPatch", 54, 3], ["cmakeFlags", 70, 3], ["outputs", 86, 3], ["doCheck", 91, 11], ["disabledTests", 93, 3], ["dontUseNinjaCheck", 109, 3], ["nativeCheckInputs", 110, 3], ["postInstall", 112, 3], ["buildInputs", 128, 3], ["nativeBuildInputs", 145, 3], ["propagatedBuildInputs", 156, 3], ["meta", 161, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   nix.assert_((nix.asBool(nix.eq(nix.sel(blas, "implementation"), "openblas")) && nix.asBool(nix.eq(nix.sel(lapack, "implementation"), "openblas"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ha/halide/package.nix:28:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "halide",
       version: "21.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "halide",
           repo: "Halide",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,12 +45,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/halide/Halide/commit/acb58504f0ce02e07b8b9008668c8779d3561ec8.patch?full_index=1",
             hash: "sha256-n9avTYe8JFYQKeJQBQQV9xoOoYp0imXD2GQgifRym/A=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/halide/Halide/commit/1b9be55dfaa162fad6a3ed3c6e8d83f966ce8af1.patch?full_index=1",
             hash: "sha256-5f6Q2Q1pvimlFV3lCcMzIHMIze6A8TmnMjVpQ8/ceyg=",
           })))),
@@ -111,7 +107,7 @@ rmdir $lib/lib/python3/
           nix.thunk(() => nix.sel(python3Packages, "imageio")),
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C++ based language for image processing and computational photography",
         homepage: "https://halide-lang.org",
         changelog: nix.thunk(() => nix.str`https://github.com/halide/Halide/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

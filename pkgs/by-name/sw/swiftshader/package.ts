@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5], ["postFetch", 19, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 69, 5], ["maintainers", 70, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 38, 3], ["installPhase", 46, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, python3: false, cmake: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5], ["postFetch", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 38, 3], ["installPhase", 46, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const jq = nix.arg($, "jq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swiftshader",
       version: "2025-10-15",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://swiftshader.googlesource.com/SwiftShader",
           rev: "3d536c0fc62b1cdea0f78c3c38d79be559855b88",
           hash: "sha256-RLc9ZJeq/97mi4/5vRnPPOPBHK2lc9/6Y7p1YVwxWkc=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, python3, jq]),
       installPhase: "runHook preInstall\n\n#\n# Vulkan driver\n#\nvk_so_path=\"$out/lib/libvk_swiftshader.so\"\nmkdir -p \"$(dirname \"$vk_so_path\")\"\nmv Linux/libvk_swiftshader.so \"$vk_so_path\"\n\nvk_icd_json=\"$out/share/vulkan/icd.d/vk_swiftshader_icd.json\"\nmkdir -p \"$(dirname \"$vk_icd_json\")\"\njq \".ICD.library_path = \\\"$vk_so_path\\\"\" <Linux/vk_swiftshader_icd.json >\"$vk_icd_json\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High-performance CPU-based implementation of the Vulkan 1.3 graphics API",
         homepage: "https://opensource.google/projects/swiftshader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

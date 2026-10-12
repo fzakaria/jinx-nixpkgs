@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 30, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, inflection: false, pydantic: false, requests: false, urllib3: false, click: false, pytest: false, "pytest-cov-stub": false, mock: false, "requests-mock": false, tox: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 30, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-apF01DgAlmZgVH4H0Ac2s6D973W1CHt27oug6AnAQu4=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest, pytest_cov_stub, mock, requests_mock, tox]);
       const pythonImportsCheck = nix.thunk(() => ["pyairtable"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python API Client for Airtable",
         homepage: "https://pyairtable.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://pyairtable.readthedocs.io/en/${version}/changelog.html`),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

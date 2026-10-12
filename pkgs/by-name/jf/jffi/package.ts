@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["LIBFFI_LIBS", 36, 7], ["ANT_ARGS", 37, 7]], [["broken", 68, 5], ["description", 69, 5], ["homepage", 70, 5], ["platforms", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 32, 3], ["env", 36, 3], ["buildPhase", 39, 3], ["doCheck", 46, 3], ["checkPhase", 48, 3], ["installPhase", 54, 3], ["postFixup", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ant: false, jdk: false, libffi: false, "pkg-config": false, texinfo: false, stripJavaArchivesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBFFI_LIBS", 36, 7], ["ANT_ARGS", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 68, 5], ["description", 69, 5], ["homepage", 70, 5], ["platforms", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 32, 3], ["env", 36, 3], ["buildPhase", 39, 3], ["doCheck", 46, 3], ["checkPhase", 48, 3], ["installPhase", 54, 3], ["postFixup", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jffi",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jnr",
           repo: "jffi",
           rev: nix.thunk(() => nix.str`jffi-${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [ant, jdk, pkg_config, texinfo, stripJavaArchivesHook]),
       buildInputs: nix.thunk(() => [libffi]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LIBFFI_LIBS: nix.thunk(() => nix.str`${libffi}/lib/libffi${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
         ANT_ARGS: "-Duse.system.libffi=1",
       })),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
 echo ${libffi} > $out/nix-support/depends
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Java Foreign Function Interface",
         homepage: "https://github.com/jnr/jffi",

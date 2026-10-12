@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["postFetch", 30, 5], ["hash", 35, 5]], [["name", 61, 5], ["src", 62, 26], ["patches", 62, 30], ["hash", 63, 5]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["mainProgram", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 38, 3], ["postPatch", 44, 3], ["cargoRoot", 55, 3], ["buildAndTestSubdir", 56, 3], ["cargoHash", 58, 3], ["npmDeps", 60, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 79, 3], ["postInstall", 85, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchNpmDeps: false, "npm-lockfile-fix": false, "cargo-tauri": false, makeBinaryWrapper: false, nodejs: false, npmHooks: false, "pkg-config": false, wrapGAppsHook3: false, "glib-networking": false, udev: false, webkitgtk_4_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["postFetch", 30, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 61, 5], ["src", 62, 26], ["patches", 62, 30], ["hash", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["mainProgram", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 38, 3], ["postPatch", 44, 3], ["cargoRoot", 55, 3], ["buildAndTestSubdir", 56, 3], ["cargoHash", 58, 3], ["npmDeps", 60, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 79, 3], ["postInstall", 85, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zmk-studio",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zmkfirmware",
           repo: "zmk-studio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +42,7 @@ ${nix.app(nix.sel(lib, "getExe"), npm_lockfile_fix)} $out/package-lock.json
       buildAndTestSubdir: "src-tauri",
       cargoHash: "sha256-BNX2vhsHaSk3eiadVPH6To0CgbOEGJ1JVKkW3Hw7QH0=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`zmk-studio-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -59,7 +56,7 @@ ${nix.app(nix.sel(lib, "getExe"), npm_lockfile_fix)} $out/package-lock.json
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [glib_networking, udev, webkitgtk_4_1]))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeWrapper \"$out/Applications/ZMK Studio.app/Contents/MacOS/zmk-studio\" \"$out/bin/zmk-studio\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool for runtime keymap updates on ZMK-powered devices without reflashing firmware",
         homepage: "https://github.com/zmkfirmware/zmk-studio",
         changelog: nix.thunk(() => nix.str`https://github.com/zmkfirmware/zmk-studio/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

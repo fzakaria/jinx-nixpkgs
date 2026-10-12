@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]], [["pykms", 93, 43]], [["tests", 93, 12]], [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["sourceRoot", 48, 3], ["propagatedBuildInputs", 50, 3], ["postPatch", 57, 3], ["pyproject", 64, 3], ["doCheck", 67, 3], ["installPhase", 69, 3], ["passthru", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, writeText: false, writeShellScript: false, sqlite: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pykms", 93, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 93, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["sourceRoot", 48, 3], ["propagatedBuildInputs", 50, 3], ["postPatch", 57, 3], ["pyproject", 64, 3], ["doCheck", 67, 3], ["installPhase", 69, 3], ["passthru", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ if [ ! -e $db ] ; then
 fi
 `)));
   return nix.app(nix.sel(pypkgs, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pykms",
       version: "0-unstable-2024-07-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Py-KMS-Organization",
           repo: "py-kms",
           rev: "465f4d14c728819d4eb00e3419bd1cb98af7f81c",
@@ -79,11 +75,11 @@ ${nix.sel(python3, "interpreter")} -m compileall $siteDir
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, pykms: nix.thunk(() => nix.attr(nixosTests, "pykms")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], pykms: nix.thunk(() => nix.attr(nixosTests, "pykms")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Windows KMS (Key Management Service) server written in Python",
         homepage: "https://github.com/Py-KMS-Organization/py-kms",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

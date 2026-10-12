@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 60, 5], ["sourceProvenance", 61, 5], ["license", 65, 5], ["maintainers", 66, 5], ["teams", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]], [["pname", 17, 3], ["version", 18, 3], ["nativeBuildInputs", 20, 3], ["src", 27, 3], ["patches", 34, 3], ["buildPhase", 39, 3], ["installPhase", 45, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ant: false, jdk8: false, jre8: false, makeWrapper: false, stripJavaArchivesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 60, 5], ["sourceProvenance", 61, 5], ["license", 65, 5], ["maintainers", 66, 5], ["teams", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["nativeBuildInputs", 20, 3], ["src", 27, 3], ["patches", 34, 3], ["buildPhase", 39, 3], ["installPhase", 45, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const jdk = jdk8;
   const jre = jre8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ili2c",
       version: "5.1.1",
       nativeBuildInputs: nix.thunk(() => [ant, jdk, makeWrapper, stripJavaArchivesHook]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "claeis",
           repo: "ili2c",
           rev: nix.thunk(() => nix.str`ili2c-${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ makeWrapper ${jre}/bin/java $out/bin/ili2c \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "INTERLIS Compiler",
         longDescription: "Checks the syntactical correctness of an INTERLIS data model.\n",
         homepage: "https://www.interlis.ch/downloads/ili2c",

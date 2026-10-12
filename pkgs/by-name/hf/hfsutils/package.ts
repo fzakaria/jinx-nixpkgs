@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 19, 5], ["hash", 24, 5]], [["pname", 30, 28], ["version", 30, 34], ["debianRevision", 31, 7], ["patch", 32, 7], ["hash", 33, 7]], [["pname", 38, 28], ["version", 38, 34], ["debianRevision", 39, 7], ["patch", 40, 7], ["hash", 41, 7]], [["pname", 46, 28], ["version", 46, 34], ["debianRevision", 47, 7], ["patch", 48, 7], ["hash", 49, 7]], [["pname", 54, 28], ["version", 54, 34], ["debianRevision", 55, 7], ["patch", 56, 7], ["hash", 57, 7]], [["NIX_CFLAGS_COMPILE", 90, 7]], [["package", 128, 5], ["command", 129, 5]], [["version", 127, 18]], [["tests", 127, 12]], [["description", 133, 5], ["longDescription", 134, 5], ["homepage", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["mainProgram", 142, 5], ["platforms", 143, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 27, 3], ["postPatch", 61, 3], ["strictDeps", 72, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 78, 3], ["configureFlags", 84, 3], ["env", 90, 3], ["enableParallelBuilding", 92, 3], ["preInstall", 95, 3], ["doInstallCheck", 99, 3], ["nativeInstallCheckInputs", 101, 3], ["installCheckPhase", 105, 3], ["passthru", 127, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchDebianPatch: false, testers: false, autoreconfHook: false, bashNonInteractive: false, tcl: false, tk: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 19, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 30, 28], ["version", 30, 34], ["debianRevision", 31, 7], ["patch", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 38, 28], ["version", 38, 34], ["debianRevision", 39, 7], ["patch", 40, 7], ["hash", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 46, 28], ["version", 46, 34], ["debianRevision", 47, 7], ["patch", 48, 7], ["hash", 49, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 54, 28], ["version", 54, 34], ["debianRevision", 55, 7], ["patch", 56, 7], ["hash", 57, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 90, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["package", 128, 5], ["command", 129, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["version", 127, 18]]);
-const pos$9 = nix.positions(here + "/package.nix", [["tests", 127, 12]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 133, 5], ["longDescription", 134, 5], ["homepage", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["mainProgram", 142, 5], ["platforms", 143, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 27, 3], ["postPatch", 61, 3], ["strictDeps", 72, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 78, 3], ["configureFlags", 84, 3], ["env", 90, 3], ["enableParallelBuilding", 92, 3], ["preInstall", 95, 3], ["doInstallCheck", 99, 3], ["nativeInstallCheckInputs", 101, 3], ["installCheckPhase", 105, 3], ["passthru", 127, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const tk = nix.arg($, "tk");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "hfsutils",
       version: "3.2.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://fossies.org/linux/misc/old/hfsutils-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://ftp2.osuosl.org/pub/clfs/conglomeration/hfsutils/hfsutils-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -42,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "15",
@@ -50,7 +40,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-3xOuEFHJeuVBmdqT/fec1jOxdBiXoUFG7ixGztJlxic=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "15",
@@ -58,7 +48,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-vXRjfJE3mJZyt739Ji5PnMnb94X50QhF0gpwCxRYqc4=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "15",
@@ -66,7 +56,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-m0zDWZsMXcytaOyHUqo8Dbb5A9G2DyjX8TCGXvXVpmc=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "16",
@@ -85,7 +75,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "strings", "withFeatureAs"), true, "tk", tk)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       enableParallelBuilding: true,
@@ -112,18 +102,18 @@ runHook postInstallCheck
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "hvol --version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Tools for reading and writing Macintosh volumes",
         longDescription: "HFS is the “Hierarchical File System”, the native volume format used on modern Macintosh computers.\nhfsutils is the name of a comprehensive software package being developed to permit manipulation of\nHFS volumes from UNIX and other systems.\n",
         homepage: "https://www.mars.org/home/rob/proj/hfs/",

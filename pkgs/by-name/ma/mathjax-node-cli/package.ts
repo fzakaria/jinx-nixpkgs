@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["npmDepsHash", 28, 3], ["dontNpmBuild", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["npmDepsHash", 28, 3], ["dontNpmBuild", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mathjax-node-cli";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mathjax",
           repo: "mathjax-node-cli",
           rev: version,
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "add-package-lock.patch",
             url: "https://github.com/mathjax/mathjax-node-cli/commit/ac304d896d840dc5004045f012abab40648d20fd.patch",
             hash: "sha256-kIfxF5II/PHtzBhhMbO2RcEuZQCNFrLeAnL536WBXq8=",
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-gGTRr8CN6aP/T/jUqt4E53DYVaz7ykaoG519+3sPdXo=";
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI tools for mathjax-node",
         homepage: "https://github.com/mathjax/mathjax-node-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

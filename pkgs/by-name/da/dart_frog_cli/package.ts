@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["bin/dart_frog", 25, 5]], [["updateScript", 41, 5], ["tests", 43, 5]], [["cpeParts", 58, 17]], [["mainProgram", 47, 5], ["homepage", 48, 5], ["description", 49, 5], ["longDescription", 50, 5], ["changelog", 53, 5], ["license", 56, 5], ["sourceProvenance", 57, 5], ["identifiers", 58, 5], ["maintainers", 59, 5]], [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 12, 3], ["strictDeps", 13, 3], ["src", 15, 3], ["sourceRoot", 22, 3], ["dartEntryPoints", 24, 3], ["pubspecLock", 28, 3], ["nativeInstallCheckInputs", 30, 3], ["doInstallCheck", 34, 3], ["preBuild", 36, 3], ["passthru", 40, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildDartApplication: false, fetchFromGitHub: false, versionCheckHook: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["bin/dart_frog", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 41, 5], ["tests", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cpeParts", 58, 17]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 47, 5], ["homepage", 48, 5], ["description", 49, 5], ["longDescription", 50, 5], ["changelog", 53, 5], ["license", 56, 5], ["sourceProvenance", 57, 5], ["identifiers", 58, 5], ["maintainers", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 12, 3], ["strictDeps", 13, 3], ["src", 15, 3], ["sourceRoot", 22, 3], ["dartEntryPoints", 24, 3], ["pubspecLock", 28, 3], ["nativeInstallCheckInputs", 30, 3], ["doInstallCheck", 34, 3], ["preBuild", 36, 3], ["passthru", 40, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,31 +13,31 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(buildDartApplication, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dart_frog_cli",
       version: "1.2.14",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dart-frog-dev",
           repo: "dart_frog",
           tag: nix.thunk(() => nix.str`dart_frog_cli-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-B5ET/SwQzYw251Ox/RyuLM27+M//xTehke9JJSD7Gf8=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/packages/dart_frog_cli`),
-      dartEntryPoints: nix.thunk(() => ({ [nix.POS]: pos$2, "bin/dart_frog": "bin/dart_frog.dart" })),
+      dartEntryPoints: nix.thunk(() => ({ [nix.POS]: $pos[1], "bin/dart_frog": "bin/dart_frog.dart" })),
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       preBuild: "rm pubspec_overrides.yaml\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mainProgram: "dart_frog",
         homepage: "https://dart-frog.dev",
         description: "Command line tools for Dart Frog",
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fromSource"))];
         })()),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "dart-frog-dev", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
         maintainers: nix.thunk(() => (() => {

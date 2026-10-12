@@ -2,16 +2,15 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-deps.nix", [[["description", 64, 7]], [["pname", 9, 5], ["nativeBuildInputs", 11, 5], ["nugetDeps", 15, 5], ["nugetSource", 16, 5], ["nugetConfig", 17, 5], ["keepNugetConfig", 19, 5], ["outputs", 21, 5], ["buildPhase", 22, 5], ["installPhase", 23, 5], ["makeDeps", 41, 5], ["meta", 63, 5]]]);
 const formals$1 = { args: { "godot3-mono": false, "nuget-to-json": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-deps.nix", [["description", 64, 7]]);
-const pos$2 = nix.positions(here + "/make-deps.nix", [["pname", 9, 5], ["nativeBuildInputs", 11, 5], ["nugetDeps", 15, 5], ["nugetSource", 16, 5], ["nugetConfig", 17, 5], ["keepNugetConfig", 19, 5], ["outputs", 21, 5], ["buildPhase", 22, 5], ["installPhase", 23, 5], ["makeDeps", 41, 5], ["meta", 63, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const godot3_mono = nix.arg($, "godot3-mono");
   const nuget_to_json = nix.arg($, "nuget-to-json");
   return nix.app(nix.sel(godot3_mono, "overrideAttrs"), (self) => (base) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "godot3-mono-make-deps",
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(base, "nativeBuildInputs"), [nuget_to_json])),
       nugetDeps: null,
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "echo \"No output intended. Run make-deps.sh instead.\" > $out",
       makeDeps: "set -e\noutdir=\"$(pwd)\"\nwrkdir=\"$(mktemp -d)\"\ntrap 'rm -rf -- \"$wrkdir\"' EXIT\npushd \"$wrkdir\" > /dev/null\n  unpackPhase\n  cd source\n  patchPhase\n  configurePhase\n\n  # Without RestorePackagesPath set, it restores packages to a temp directory. Specifying\n  # a path ensures we have a place to run nuget-to-json.\n  nugetRestore() { dotnet msbuild -t:Restore -p:RestorePackagesPath=nugetPackages $1; }\n\n  nugetRestore modules/mono/glue/GodotSharp/GodotSharp.sln\n  nugetRestore modules/mono/editor/GodotTools/GodotTools.sln\n\n  nuget-to-json nugetPackages > \"$outdir\"/deps.json\npopd > /dev/null\n",
       meta: nix.thunk(() => nix.update(nix.sel(base, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Derivation with no output that exists to provide an environment for make-deps.sh",
       })),
     }));

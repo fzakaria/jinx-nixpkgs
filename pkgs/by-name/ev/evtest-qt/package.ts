@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["updateScript", 40, 12]], [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["license", 48, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 23, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, libsForQt5: false, fetchFromGitHub: false, fetchpatch: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["license", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 23, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "evtest-qt",
       version: "0.2.0-unstable-2023-09-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Grumbel",
           repo: "evtest-qt",
           rev: "fb087f4d3d51377790f1ff30681c48031bf23145",
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-13.patch",
             url: "https://github.com/Grumbel/evtest-qt/commit/975dedcfd60853bd329f34d48ce4740add8866eb.patch",
             hash: "sha256-gR/9oVhO4G9i7dn+CjvDAQN0KLXoX/fatpE0W3gXDc0=",
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook"))]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtbase"))]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple input device tester for linux with Qt GUI",
         mainProgram: "evtest-qt",
         homepage: "https://github.com/Grumbel/evtest-qt",

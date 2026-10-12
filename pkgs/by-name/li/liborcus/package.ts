@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["configureFlags", 39, 3], ["preCheck", 43, 3], ["strictDeps", 57, 3], ["doCheck", 58, 3], ["enableParallelBuilding", 59, 3], ["enableParallelChecking", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoreconfHook: false, "pkg-config": false, boost: false, libixion: false, mdds: false, python3: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["configureFlags", 39, 3], ["preCheck", 43, 3], ["strictDeps", 57, 3], ["doCheck", 58, 3], ["enableParallelBuilding", 59, 3], ["enableParallelChecking", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "liborcus",
       version: "0.21.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "orcus",
           repo: "orcus",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       enableParallelChecking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of parsers and import filters for spreadsheet documents",
         homepage: "https://gitlab.com/orcus/orcus",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/orcus/orcus/-/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG`),

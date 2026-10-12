@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/driver-sqlite3.nix", [[["description", 26, 5]], [["pname", 10, 3], ["version", 11, 19], ["src", 11, 27], ["propagatedBuildInputs", 13, 3], ["checkInputs", 18, 3], ["doCheck", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, caqti: false, sqlite3: false, alcotest: false, "dune-site": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/driver-sqlite3.nix", [["description", 26, 5]]);
-const pos$2 = nix.positions(here + "/driver-sqlite3.nix", [["pname", 10, 3], ["version", 11, 19], ["src", 11, 27], ["propagatedBuildInputs", 13, 3], ["checkInputs", 18, 3], ["doCheck", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const dune_site = nix.arg($, "dune-site");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "caqti-driver-sqlite3",
       version: nix.thunk(() => nix.attr(caqti, "version")),
       src: nix.thunk(() => nix.attr(caqti, "src")),
       propagatedBuildInputs: nix.thunk(() => [caqti, sqlite3]),
       checkInputs: nix.thunk(() => [alcotest, dune_site]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(caqti, "meta"), { [nix.POS]: pos$1, description: "Sqlite3 driver for Caqti using C bindings" })),
+      meta: nix.thunk(() => nix.update(nix.sel(caqti, "meta"), { [nix.POS]: $pos[0], description: "Sqlite3 driver for Caqti using C bindings" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=driver-sqlite3.ts.map

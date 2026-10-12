@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 61, 5], ["repo", 62, 5], ["tag", 63, 5], ["hash", 64, 5]], [["NIX_CFLAGS_COMPILE", 68, 5]], [["recommended", 87, 5], ["ipython", 91, 5], ["jupyter", 94, 5], ["all", 101, 5]], [["changelog", 161, 5], ["description", 162, 5], ["homepage", 163, 5], ["license", 164, 5], ["platforms", 165, 5], ["maintainers", 166, 5]], [["pname", 56, 3], ["version", 57, 3], ["pyproject", 58, 3], ["src", 60, 3], ["env", 67, 3], ["build-system", 71, 3], ["dependencies", 78, 3], ["optional-dependencies", 86, 3], ["nativeCheckInputs", 126, 3], ["pythonImportsCheck", 140, 3], ["__darwinAllowLocalNetworking", 142, 3], ["preCheck", 144, 3], ["pytestFlags", 153, 3], ["postCheck", 156, 3], ["meta", 160, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, stdenv: false, cython: false, "extension-helpers": false, setuptools: false, "setuptools-scm": false, "astropy-iers-data": false, numpy: false, packaging: false, pyerfa: false, pyyaml: false, scipy: false, matplotlib: false, ipython: false, ipywidgets: false, ipykernel: false, pandas: false, certifi: false, dask: false, h5py: false, pyarrow: false, beautifulsoup4: false, html5lib: false, sortedcontainers: false, pytz: false, jplephem: false, mpmath: false, asdf: false, "asdf-astropy": false, bottleneck: false, fsspec: false, s3fs: false, uncompresspy: false, hypothesis: false, pytestCheckHook: false, "pytest-xdist": false, "pytest-astropy-header": false, "pytest-doctestplus": false, "pytest-remotedata": false, threadpoolctl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 61, 5], ["repo", 62, 5], ["tag", 63, 5], ["hash", 64, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["recommended", 87, 5], ["ipython", 91, 5], ["jupyter", 94, 5], ["all", 101, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 161, 5], ["description", 162, 5], ["homepage", 163, 5], ["license", 164, 5], ["platforms", 165, 5], ["maintainers", 166, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 56, 3], ["version", 57, 3], ["pyproject", 58, 3], ["src", 60, 3], ["env", 67, 3], ["build-system", 71, 3], ["dependencies", 78, 3], ["optional-dependencies", 86, 3], ["nativeCheckInputs", 126, 3], ["pythonImportsCheck", 140, 3], ["__darwinAllowLocalNetworking", 142, 3], ["preCheck", 144, 3], ["pytestFlags", 153, 3], ["postCheck", 156, 3], ["meta", 160, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,20 +54,20 @@ export default nix.lambda((args) => (() => {
       const version = "8.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "astropy",
           repo: "astropy",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-pKptFnbhiE6DfsEZ557ugd6nrbWGg2FmEdhp78z+bUM=",
         }))));
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-Wno-error=unused-command-line-argument",
         }))));
       const build_system = nix.thunk(() => [cython, extension_helpers, setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [astropy_iers_data, numpy, packaging, pyerfa, pyyaml]);
       const optional_dependencies = nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           recommended: nix.thunk(() => [scipy, matplotlib]),
           ipython: nix.thunk(() => [ipython]),
           jupyter: nix.thunk(() => nix.concat([ipywidgets, ipykernel, pandas], nix.sel(self, "ipython"))),
@@ -110,7 +106,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--hypothesis-profile=ci"]);
       const postCheck = "rm conftest.py\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://docs.astropy.org/en/${nix.sel(src, "tag")}/changelog.html`),
         description: "Astronomy/Astrophysics library for Python",
         homepage: "https://www.astropy.org",
@@ -125,7 +121,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

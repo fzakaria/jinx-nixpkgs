@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["CGO_ENABLED", 15, 25]], [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5], ["maintainers", 34, 5]], [["pname", 8, 3], ["version", 9, 23], ["src", 12, 23], ["vendorHash", 12, 27], ["env", 14, 3], ["subPackages", 18, 3], ["ldflags", 22, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, tailscale: false, buildGo127Module: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 15, 25]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 23], ["src", 12, 23], ["vendorHash", 12, 27], ["env", 14, 3], ["subPackages", 18, 3], ["ldflags", 22, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const tailscale = nix.arg($, "tailscale");
   const buildGo127Module = nix.arg($, "buildGo127Module");
   return nix.app(buildGo127Module, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tailscale-gitops-pusher",
       version: nix.thunk(() => nix.attr(tailscale, "version")),
       src: nix.thunk(() => nix.attr(tailscale, "src")),
       vendorHash: nix.thunk(() => nix.attr(tailscale, "vendorHash")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         CGO_ENABLED: nix.thunk(() => nix.attr(tailscale, "CGO_ENABLED")),
       })),
       subPackages: nix.thunk(() => ["cmd/gitops-pusher"]),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X tailscale.com/version.shortStamp=${nix.sel(tailscale, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://tailscale.com",
         description: "Allows users to use a GitOps flow for managing Tailscale ACLs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

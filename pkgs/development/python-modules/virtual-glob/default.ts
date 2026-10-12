@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["testing", 28, 5]], [["description", 44, 5], ["homepage", 45, 5], ["maintainers", 46, 5], ["license", 47, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["optional-dependencies", 27, 3], ["pythonImportsCheck", 33, 3], ["disabledTests", 37, 3], ["nativeCheckInputs", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, lib: false, pytest: false, pytestCheckHook: false, pythonAtLeast: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["testing", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["maintainers", 46, 5], ["license", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["optional-dependencies", 27, 3], ["pythonImportsCheck", 33, 3], ["disabledTests", 37, 3], ["nativeCheckInputs", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,19 +19,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chrisjsewell",
           repo: "virtual-glob",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-ocCa8m7mPPvzOZHPrraSEdSJZwRJoYO/Q7nyDbhIFu8=",
         }))));
       const build_system = nix.thunk(() => [flit_core]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, testing: nix.thunk(() => [pytest]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], testing: nix.thunk(() => [pytest]) }));
       const pythonImportsCheck = nix.thunk(() => ["virtual_glob"]);
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["test_baseline_pathlib"])));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Globbing of virtual file systems",
         homepage: "https://pypi.org/project/virtual_glob/",
         maintainers: nix.thunk(() => (() => {
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

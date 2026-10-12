@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libutil.nix", [[["MK_TESTS", 44, 7]], [["path", 11, 3], ["extraPaths", 12, 3], ["outputs", 17, 3], ["noLibc", 23, 3], ["buildInputs", 25, 3], ["postPatch", 32, 3], ["preBuild", 40, 3], ["env", 44, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, include: false, libgcc: false, libcMinimal: false, csu: false, withPwdMkdb: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libutil.nix", [["MK_TESTS", 44, 7]]);
-const pos$2 = nix.positions(here + "/libutil.nix", [["path", 11, 3], ["extraPaths", 12, 3], ["outputs", 17, 3], ["noLibc", 23, 3], ["buildInputs", 25, 3], ["postPatch", 32, 3], ["preBuild", 40, 3], ["env", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const csu = nix.arg($, "csu");
   const withPwdMkdb = nix.argOr($, "withPwdMkdb", () => null);
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/libutil",
       extraPaths: nix.thunk(() => ["lib/libc/gen", "lib/libc/Versions.def"]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
 `)),
       preBuild: nix.thunk(() => nix.str`export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -B${csu}/lib"
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, MK_TESTS: "no" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], MK_TESTS: "no" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=libutil.ts.map

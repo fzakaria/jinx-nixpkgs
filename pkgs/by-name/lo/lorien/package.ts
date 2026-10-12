@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["sha256", 46, 5]], [["name", 73, 7], ["exec", 74, 7], ["icon", 75, 7], ["desktopName", 76, 7], ["genericName", 77, 7], ["comment", 78, 7], ["categories", 79, 7], ["keywords", 83, 7]], [["homepage", 130, 5], ["description", 131, 5], ["longDescription", 132, 5], ["license", 136, 5], ["platforms", 137, 5], ["maintainers", 138, 5], ["mainProgram", 139, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 55, 3], ["desktopItems", 71, 3], ["buildPhase", 87, 3], ["installPhase", 105, 3], ["runtimeDependencies", 123, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoPatchelfHook: false, copyDesktopItems: false, makeDesktopItem: false, "godot3-export-templates": false, "godot3-headless": false, "alsa-lib": false, libGL: false, libGLU: false, libpulseaudio: false, libx11: false, libxcursor: false, libxext: false, libxfixes: false, libxi: false, libxinerama: false, libxrandr: false, libxrender: false, zlib: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["sha256", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 73, 7], ["exec", 74, 7], ["icon", 75, 7], ["desktopName", 76, 7], ["genericName", 77, 7], ["comment", 78, 7], ["categories", 79, 7], ["keywords", 83, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 130, 5], ["description", 131, 5], ["longDescription", 132, 5], ["license", 136, 5], ["platforms", 137, 5], ["maintainers", 138, 5], ["mainProgram", 139, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 55, 3], ["desktopItems", 71, 3], ["buildPhase", 87, 3], ["installPhase", 105, 3], ["runtimeDependencies", 123, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lorien";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mbrlabs",
           repo: "Lorien",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "lorien",
             exec: "lorien",
             icon: "lorien",
@@ -106,7 +103,7 @@ runHook postInstall
 `);
       const runtimeDependencies = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getLib")), nix.thunk(() => [alsa_lib, libpulseaudio, udev])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/mbrlabs/Lorien",
         description: "Infinite canvas drawing/note-taking app",
         longDescription: "An infinite canvas drawing/note-taking app that is focused on performance,\nsmall savefiles and simplicity\n",
@@ -116,7 +113,7 @@ runHook postInstall
         mainProgram: "lorien",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

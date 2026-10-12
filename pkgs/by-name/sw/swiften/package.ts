@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["name", 34, 7], ["url", 35, 7], ["sha256", 36, 7]], [["description", 89, 5], ["mainProgram", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 55, 3], ["sconsFlags", 60, 3], ["postPatch", 71, 3], ["installTargets", 80, 3], ["installFlags", 82, 3], ["enableParallelBuilding", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, libidn: false, lua: false, miniupnpc: false, expat: false, zlib: false, fetchurl: false, fetchpatch: false, python312: false, openssl: false, boost186: false, scons: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["sha256", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 89, 5], ["mainProgram", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 55, 3], ["sconsFlags", 60, 3], ["postPatch", 71, 3], ["installTargets", 80, 3], ["installFlags", 82, 3], ["enableParallelBuilding", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const boost186 = nix.arg($, "boost186");
   const scons = nix.arg($, "scons");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "swiften",
       version: "4.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://swift.im/git/swift/snapshot/swift-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-aj+T6AevtR8birbsj+83nfzFC6cf72q+7nwSM0jaZrA=",
         })))),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./scons.patch"),
         nix.path(here, "./build-fix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "3666cbbe30e4d4e25401a5902ae359bc2c24248b.patch",
             url: "https://swift.im/git/swift/patch/Swiften/Base/Platform.h?id=3666cbbe30e4d4e25401a5902ae359bc2c24248b",
             sha256: "Wh8Nnfm0/EppSJ7aH2vTNObHtodE5tM19kV1oDfm70w=",
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "XMPP library for C++, used by the Swift client",
         mainProgram: "swiften-config",
         homepage: "http://swift.im/swiften.html",

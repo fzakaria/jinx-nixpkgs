@@ -2,20 +2,19 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/devctl.nix", [[["mainProgram", 12, 8]], [["path", 6, 3], ["outputs", 7, 3], ["buildInputs", 11, 3], ["meta", 12, 3]]]);
 const formals$1 = { args: { mkDerivation: false, libdevctl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/devctl.nix", [["mainProgram", 12, 8]]);
-const pos$2 = nix.positions(here + "/devctl.nix", [["path", 6, 3], ["outputs", 7, 3], ["buildInputs", 11, 3], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDerivation = nix.arg($, "mkDerivation");
   const libdevctl = nix.arg($, "libdevctl");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.sbin/devctl",
       outputs: nix.thunk(() => ["out", "debug"]),
       buildInputs: nix.thunk(() => [libdevctl]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "devctl" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "devctl" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=devctl.ts.map

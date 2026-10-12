@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["timeout", 8, 8]], [["name", 7, 3], ["meta", 8, 3], ["nativeBuildInputs", 9, 3], ["buildCommand", 13, 3]]]);
 const formals$1 = { args: { stdenv: false, "craftos-pc": false, gnugrep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["timeout", 8, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 7, 3], ["meta", 8, 3], ["nativeBuildInputs", 9, 3], ["buildCommand", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const craftos_pc = nix.arg($, "craftos-pc");
   const gnugrep = nix.arg($, "gnugrep");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "craftos-pc-test-eval-periphemu",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 60n })),
       nativeBuildInputs: nix.thunk(() => [craftos_pc, gnugrep]),
       buildCommand: nix.thunk(() => nix.str`export HOME=$(pwd)
 mkdir $HOME/.local $HOME/.config

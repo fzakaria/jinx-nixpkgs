@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 32, 5], ["mainProgram", 33, 5], ["longDescription", 34, 5], ["homepage", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 19, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["mainProgram", 33, 5], ["longDescription", 34, 5], ["homepage", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 19, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "flockit",
       version: "2012-08-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "smerritt",
           repo: "flockit",
           rev: "5c2b2092f8edcc8e3e2eb6ef66c968675dbfa686",
@@ -35,7 +33,7 @@ EOI
 chmod +x $out/bin/flockit
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "LD_PRELOAD shim to add file locking to programs that don't do it (I'm looking at you, rsync!)",
         mainProgram: "flockit",
         longDescription: "This library and tool exists solely because rsync doesn't have file locking.\n\nIt's not used like a normal library; you don't link against it, and you\ndon't have to patch your source code to use it. It's inserted between your\nprogram and its libraries by use of LD_PRELOAD.\n\nFor example:\n\n  $ env LD_PRELOAD=$(nix-build -A pkgs.flockit)/lib/libflockit.so FLOCKIT_FILE_PREFIX=test rsync SRC DEST\n\nBesides the library a handy executable is provided which can simplify the above to:\n\n  $ $(nix-build -A pkgs.flockit)/bin/flockit test rsync SRC DEST\n\nAlso see the following blog post:\nhttps://www.swiftstack.com/blog/2012/08/15/old-school-monkeypatching/\n",

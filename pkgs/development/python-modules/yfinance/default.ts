@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["nospam", 61, 5], ["repair", 65, 5]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["pythonRelaxDeps", 58, 3], ["optional-dependencies", 60, 3], ["doCheck", 69, 3], ["pythonImportsCheck", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, beautifulsoup4: false, buildPythonPackage: false, cryptography: false, "curl-cffi": false, fetchFromGitHub: false, frozendict: false, html5lib: false, lxml: false, multitasking: false, numpy: false, pandas: false, peewee: false, platformdirs: false, protobuf: false, pytz: false, "requests-cache": false, "requests-ratelimiter": false, requests: false, scipy: false, setuptools: false, websockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nospam", 61, 5], ["repair", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["pythonRelaxDeps", 58, 3], ["optional-dependencies", 60, 3], ["doCheck", 69, 3], ["pythonImportsCheck", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "yfinance",
       version: "1.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ranaroussi",
           repo: "yfinance",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,14 +61,14 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonRelaxDeps: nix.thunk(() => ["curl_cffi"]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         nospam: nix.thunk(() => [requests_cache, requests_ratelimiter]),
         repair: nix.thunk(() => [scipy]),
       })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["yfinance"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Module to doiwnload Yahoo! Finance market data",
         homepage: "https://github.com/ranaroussi/yfinance",
         changelog: nix.thunk(() => nix.str`https://github.com/ranaroussi/yfinance/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

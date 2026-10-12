@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["installPhase", 42, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, curl: false, dialog: false, installShellFiles: false, perl: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["installPhase", 42, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "debian-goodies",
       version: "0.88.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "debian-goodies",
@@ -40,7 +38,7 @@ substituteInPlace dman \\
       buildInputs: nix.thunk(() => [perl, python3]),
       installPhase: "runHook preInstall\n\n# see https://salsa.debian.org/debian/debian-goodies/-/blob/master/debian/install\nfor bin in checkrestart dgrep dglob debget dpigs debman dman popbugs which-pkg-broke which-pkg-broke-build dhomepage debmany/debmany check-enhancements find-dbgsym-packages; do\n  install -Dm755 $bin -t $out/bin\ndone\n\ninstall -Dm644 find-dbgsym-packages-templates/* -t $out/share/debian-goodies/find-dbgsym-packages-templates/\n\ninstallShellCompletion --bash \\\n  debmany/bash_completion/debmany \\\n  debian/bash-completion\n\ninstallManPage \\\n  *.1 \\\n  debmany/man/*.1 \\\n  *.8\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small toolbox-style utilities for Debian systems",
         homepage: "https://salsa.debian.org/debian/debian-goodies",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

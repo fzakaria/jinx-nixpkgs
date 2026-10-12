@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["kubernetes", 43, 5], ["mongodb", 44, 5], ["prometheus", 46, 5]], [["influxdb", 50, 5]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["__darwinAllowLocalNetworking", 33, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 61, 3], ["disabledTests", 64, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "influxdb-client": false, kubernetes: false, mock: false, "prometheus-client": false, pymongo: false, "pytest-cov-stub": false, "pytest-timeout": false, pytestCheckHook: false, pythonAtLeast: false, pythonOlder: false, pyzmq: false, setproctitle: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["kubernetes", 43, 5], ["mongodb", 44, 5], ["prometheus", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["influxdb", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["__darwinAllowLocalNetworking", 33, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 61, 3], ["disabledTests", 64, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "powerapi-ng",
           repo: "powerapi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,16 +39,16 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [pyzmq, setproctitle]);
       const optional_dependencies = nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         kubernetes: nix.thunk(() => [kubernetes]),
         mongodb: nix.thunk(() => [pymongo]),
         prometheus: nix.thunk(() => [prometheus_client]),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(pythonOlder, "3.14")), nix.thunk(() => ({ [nix.POS]: pos$3, influxdb: nix.thunk(() => [influxdb_client]) })))));
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(pythonOlder, "3.14")), nix.thunk(() => ({ [nix.POS]: $pos[2], influxdb: nix.thunk(() => [influxdb_client]) })))));
       const nativeCheckInputs = nix.thunk(() => nix.concat([mock, pytest_cov_stub, pytestCheckHook, pytest_timeout], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["powerapi"]);
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(nix.app(pythonAtLeast, "3.14")))), nix.thunk(() => ["test_puller", "TestDispatcher", "TestK8sProcessor", "TestPusher"])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python framework for building software-defined power meters",
         homepage: "https://github.com/powerapi-ng/powerapi",
         changelog: nix.thunk(() => nix.str`https://github.com/powerapi-ng/powerapi/releases/tag/${nix.sel(src, "tag")}`),
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

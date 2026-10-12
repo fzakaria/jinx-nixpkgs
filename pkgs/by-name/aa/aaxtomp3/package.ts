@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["$call", 64, 10]], [["$AAXTOMP3", 66, 7], ["$FIND", 67, 7], ["$GREP", 68, 7], ["$SED", 69, 7]], [["scripts", 45, 5], ["interpreter", 49, 5], ["inputs", 50, 5], ["keep", 64, 5], ["fix", 65, 5]], [["default", 44, 13]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["installPhase", 39, 3], ["solutions", 44, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { bash: false, bc: false, coreutils: false, fetchFromGitHub: false, ffmpeg: false, findutils: false, gawk: false, gnugrep: false, gnused: false, jq: false, lame: false, lib: false, mediainfo: false, mp4v2: false, ncurses: false, resholve: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["$call", 64, 10]]);
-const pos$3 = nix.positions(here + "/package.nix", [["$AAXTOMP3", 66, 7], ["$FIND", 67, 7], ["$GREP", 68, 7], ["$SED", 69, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["scripts", 45, 5], ["interpreter", 49, 5], ["inputs", 50, 5], ["keep", 64, 5], ["fix", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["default", 44, 13]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["installPhase", 39, 3], ["solutions", 44, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const resholve = nix.arg($, "resholve");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "aaxtomp3",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "krumpetpirate",
           repo: "aaxtomp3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,9 +37,9 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace AAXtoMP3 \\\n  --replace-fail 'AAXtoMP3' 'aaxtomp3'\nsubstituteInPlace interactiveAAXtoMP3 \\\n  --replace-fail 'AAXtoMP3' 'aaxtomp3' \\\n  --replace-fail 'call=\"./aaxtomp3\"' 'call=\"$AAXTOMP3\"'\n",
       installPhase: "install -Dm 755 AAXtoMP3 $out/bin/aaxtomp3\ninstall -Dm 755 interactiveAAXtoMP3 $out/bin/interactiveaaxtomp3\n",
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         default: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           scripts: nix.thunk(() => ["bin/aaxtomp3", "bin/interactiveaaxtomp3"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [
@@ -62,9 +56,9 @@ export default nix.lambda((args) => (() => {
             mp4v2,
             ncurses,
           ]),
-          keep: nix.thunk(() => ({ [nix.POS]: pos$2, $call: true })),
+          keep: nix.thunk(() => ({ [nix.POS]: $pos[1], $call: true })),
           fix: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             $AAXTOMP3: nix.thunk(() => [nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/aaxtomp3`)]),
             $FIND: nix.thunk(() => ["find"]),
             $GREP: nix.thunk(() => ["grep"]),
@@ -73,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Convert Audible's .aax filetype to MP3, FLAC, M4A, or OPUS",
         homepage: "https://krumpetpirate.github.io/AAXtoMP3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),

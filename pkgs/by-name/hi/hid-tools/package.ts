@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["teams", 53, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 21, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 36, 3], ["doCheck", 42, 3], ["postPatch", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { python3Packages: false, lib: false, fetchFromGitLab: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["teams", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 21, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 36, 3], ["doCheck", 42, 3], ["postPatch", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hid-tools",
       version: "0.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "libevdev",
           repo: "hid-tools",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"pypandoc_binary\" \"pypandoc\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python scripts to manipulate HID data",
         homepage: "https://gitlab.freedesktop.org/libevdev/hid-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

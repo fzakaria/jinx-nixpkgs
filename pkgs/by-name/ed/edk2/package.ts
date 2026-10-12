@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["fetchSubmodules", 46, 5], ["hash", 47, 5]], [["name", 51, 5], ["src", 52, 5], ["patches", 54, 5], ["postPatch", 58, 5]], [["NIX_CFLAGS_COMPILE", 102, 5], ["PYTHON_COMMAND", 106, 5]], [["description", 133, 5], ["homepage", 134, 5], ["changelog", 135, 5], ["license", 136, 5], ["platforms", 137, 5], ["maintainers", 138, 5]], [["systemdBootExtraEntries", 144, 7], ["uefiUsb", 145, 7]], [["src", 171, 32], ["depsBuildBuild", 173, 11], ["nativeBuildInputs", 174, 11], ["strictDeps", 179, 11], ["prePatch", 181, 11], ["configurePhase", 186, 11], ["buildPhase", 193, 11], ["installPhase", 199, 11]], [["env", 211, 11]], [["tests", 143, 5], ["updateScript", 148, 5], ["mkDerivation", 162, 5]], [["pname", 39, 3], ["version", 40, 3], ["srcWithVendoring", 42, 3], ["src", 50, 3], ["nativeBuildInputs", 91, 3], ["depsBuildBuild", 92, 3], ["depsHostHost", 96, 3], ["strictDeps", 97, 3], ["makeFlags", 99, 3], ["env", 101, 3], ["hardeningDisable", 110, 3], ["installPhase", 115, 3], ["enableParallelBuilding", 130, 3], ["meta", 132, 3], ["passthru", 141, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, applyPatches: false, libuuid: false, bc: false, lib: false, buildPackages: false, nixosTests: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["fetchSubmodules", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 51, 5], ["src", 52, 5], ["patches", 54, 5], ["postPatch", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 102, 5], ["PYTHON_COMMAND", 106, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 133, 5], ["homepage", 134, 5], ["changelog", 135, 5], ["license", 136, 5], ["platforms", 137, 5], ["maintainers", 138, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["systemdBootExtraEntries", 144, 7], ["uefiUsb", 145, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["src", 171, 32], ["depsBuildBuild", 173, 11], ["nativeBuildInputs", 174, 11], ["strictDeps", 179, 11], ["prePatch", 181, 11], ["configurePhase", 186, 11], ["buildPhase", 193, 11], ["installPhase", 199, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["env", 211, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 143, 5], ["updateScript", 148, 5], ["mkDerivation", 162, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["srcWithVendoring", 42, 3], ["src", 50, 3], ["nativeBuildInputs", 91, 3], ["depsBuildBuild", 92, 3], ["depsHostHost", 96, 3], ["strictDeps", 97, 3], ["makeFlags", 99, 3], ["env", 101, 3], ["hardeningDisable", 110, 3], ["installPhase", 115, 3], ["enableParallelBuilding", 130, 3], ["meta", 132, 3], ["passthru", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const targetArch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")) ? "IA32" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "X64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32")) ? "ARM" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "AARCH64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")) ? "RISCV64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")) ? "LOONGARCH64" : nix.builtins.throw("Unsupported architecture"))))))));
   const targetPrefixes = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => ["GCC_BIN", nix.thunk(() => nix.str`GCC_${targetArch}_PREFIX`)]), nix.thunk(() => nix.app(nix.sel(lib, "const"), nix.thunk(() => nix.sel(stdenv, "cc", "targetPrefix"))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "edk2",
       version: "202608",
       srcWithVendoring: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tianocore",
           repo: "edk2",
           tag: nix.thunk(() => nix.str`edk2-stable${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +32,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-LRq5SGAcqMl9PlSaV/Q2qE1HLMXHghozwgZP4A3FCts=",
         })))),
       src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`edk2-${nix.sel(finalAttrs, "version")}-unvendored-src`),
           src: nix.thunk(() => nix.sel(finalAttrs, "srcWithVendoring")),
           patches: nix.thunk(() => [nix.path(here, "./fix-cross-compilation-antlr-dlg.patch")]),
@@ -81,7 +73,7 @@ substituteInPlace BaseTools/Conf/tools_def.template --replace-fail \\
       strictDeps: true,
       makeFlags: nix.thunk(() => ["--directory=BaseTools"]),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.add("-Wno-return-type", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), " -Wno-error=stringop-truncation")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), " -Wno-error=macro-redefined"))),
         PYTHON_COMMAND: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), pythonEnv)),
       }, targetPrefixes)),
@@ -89,7 +81,7 @@ substituteInPlace BaseTools/Conf/tools_def.template --replace-fail \\
       installPhase: "runHook preInstall\n\nmkdir -vp $out\nmv -v BaseTools $out\nmv -v edksetup.sh $out\n# patchShebangs fails to see these when cross compiling\nfor i in $out/BaseTools/BinWrappers/PosixLike/*; do\n  chmod +x \"$i\"\n  patchShebangs --build \"$i\"\ndone\n\nrunHook postInstall\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Intel EFI development kit",
         homepage: "https://github.com/tianocore/tianocore.github.io/wiki/EDK-II/",
         changelog: nix.thunk(() => nix.str`https://github.com/tianocore/edk2/releases/tag/edk2-stable${nix.sel(finalAttrs, "version")}`),
@@ -101,9 +93,9 @@ substituteInPlace BaseTools/Conf/tools_def.template --replace-fail \\
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mjoerg"))]),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           systemdBootExtraEntries: nix.thunk(() => nix.sel(nixosTests, "systemd-boot", "extraEntries")),
           uefiUsb: nix.thunk(() => nix.sel(nixosTests, "boot", "uefiCdrom")),
         })),
@@ -123,7 +115,7 @@ fi
             const attrs = nix.thunk(() => nix.app(nix.sel(lib, "toFunction"), attrsOrFun, finalAttrsInner));
             const buildType = nix.thunk(() => nix.selOr(attrs, () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "CLANGPDB" : "GCC"), "buildType"));
             return nix.update({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               depsBuildBuild: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))], nix.selOr(attrs, () => [], "depsBuildBuild"))),
               nativeBuildInputs: nix.thunk(() => nix.concat([bc, pythonEnv], nix.selOr(attrs, () => [], "nativeBuildInputs"))),
@@ -142,7 +134,7 @@ runHook postBuild
 `),
               installPhase: "runHook preInstall\nmv -v Build/*/* $out\nrunHook postInstall\n",
             }, nix.update(nix.builtins.removeAttrs(attrs, nix.thunk(() => ["nativeBuildInputs", "depsBuildBuild", "env"])), {
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               env: nix.thunk(() => nix.update(targetPrefixes, nix.selOr(attrs, () => ({}), "env"))),
             }));
           })()),

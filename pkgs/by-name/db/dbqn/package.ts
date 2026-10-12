@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 73, 5], ["description", 74, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 80, 24], ["broken", 81, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["dontConfigure", 26, 3], ["postPatch", 28, 3], ["buildPhase", 32, 3], ["installPhase", 46, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, jre: false, makeWrapper: false, buildNativeImage: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 73, 5], ["description", 74, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 80, 24], ["broken", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["dontConfigure", 26, 3], ["postPatch", 28, 3], ["buildPhase", 32, 3], ["installPhase", 46, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.add("dbqn", nix.app(nix.sel(lib, "optionalString"), buildNativeImage, "-native")));
       const version = "0.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dzaima",
           repo: "BQN",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +39,7 @@ makeWrapper "${nix.app(nix.sel(lib, "getBin"), jre)}/bin/java" "$out/bin/dbqn" \
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/dzaima/BQN",
         description: nix.thunk(() => nix.add("BQN implementation in Java", nix.app(nix.sel(lib, "optionalString"), buildNativeImage, ", compiled as a native image"))),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -54,7 +52,7 @@ makeWrapper "${nix.app(nix.sel(lib, "getBin"), jre)}/bin/java" "$out/bin/dbqn" \
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

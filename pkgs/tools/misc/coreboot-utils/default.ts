@@ -2,39 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 29, 5], ["platforms", 33, 5]], [["url", 48, 11], ["rev", 49, 11], ["hash", 50, 11]], [["pname", 45, 17], ["version", 45, 23], ["src", 47, 9], ["enableParallelBuilding", 53, 9], ["postPatch", 55, 9], ["makeFlags", 61, 9], ["meta", 66, 9]], [["description", 74, 12], ["platforms", 75, 12]], [["pname", 73, 7], ["meta", 74, 7], ["buildInputs", 79, 7], ["preConfigure", 83, 7]], [["description", 87, 12]], [["pname", 86, 7], ["meta", 87, 7]], [["description", 91, 12]], [["pname", 90, 7], ["meta", 91, 7]], [["description", 95, 12], ["platforms", 96, 12]], [["pname", 94, 7], ["meta", 95, 7], ["buildInputs", 100, 7]], [["description", 107, 12]], [["pname", 106, 7], ["meta", 107, 7]], [["description", 111, 12], ["mainProgram", 112, 12], ["platforms", 113, 12]], [["pname", 110, 7], ["meta", 111, 7]], [["description", 120, 12], ["platforms", 121, 12]], [["pname", 119, 7], ["meta", 120, 7], ["buildInputs", 125, 7]], [["description", 132, 12], ["platforms", 133, 12]], [["pname", 131, 7], ["meta", 132, 7], ["preInstall", 137, 7]], [["description", 141, 12], ["platforms", 142, 12]], [["pname", 140, 7], ["meta", 141, 7], ["buildInputs", 146, 7]], [["description", 153, 12]], [["pname", 152, 7], ["meta", 153, 7], ["buildInputs", 154, 7], ["nativeBuildInputs", 155, 7], ["installPhase", 156, 7]], [["description", 167, 12]], [["pname", 165, 7], ["path", 166, 7], ["meta", 167, 7], ["nativeBuildInputs", 168, 7], ["dontBuild", 169, 7], ["installPhase", 170, 7], ["postFixup", 177, 7]], [["VERSION", 195, 9], ["GOCACHE", 196, 9]], [["description", 206, 12]], [["pname", 192, 7], ["version", 193, 7], ["env", 194, 7], ["nativeBuildInputs", 198, 7], ["installPhase", 199, 7], ["meta", 206, 7]], [["msrtool", 72, 5], ["cbmem", 85, 5], ["ifdtool", 89, 5], ["intelmetool", 93, 5], ["cbfstool", 105, 5], ["nvramtool", 109, 5], ["superiotool", 118, 5], ["ectool", 130, 5], ["inteltool", 139, 5], ["amdfwtool", 151, 5], ["acpidump-all", 164, 5], ["intelp2m", 191, 5]], [["pname", 215, 7], ["version", 216, 15], ["meta", 217, 7], ["paths", 218, 7], ["postBuild", 219, 7]], [["coreboot-utils", 213, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, "pkg-config": false, zlib: false, pciutils: false, openssl: false, coreutils: false, "acpica-tools": false, makeWrapper: false, go: false, gnugrep: false, gnused: false, file: false, buildEnv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 29, 5], ["platforms", 33, 5]]);
 const formals$2 = { args: { pname: false, path: true }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["url", 48, 11], ["rev", 49, 11], ["hash", 50, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 45, 17], ["version", 45, 23], ["src", 47, 9], ["enableParallelBuilding", 53, 9], ["postPatch", 55, 9], ["makeFlags", 61, 9], ["meta", 66, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 74, 12], ["platforms", 75, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 73, 7], ["meta", 74, 7], ["buildInputs", 79, 7], ["preConfigure", 83, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 87, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 86, 7], ["meta", 87, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 91, 12]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 90, 7], ["meta", 91, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 95, 12], ["platforms", 96, 12]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 94, 7], ["meta", 95, 7], ["buildInputs", 100, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["description", 107, 12]]);
-const pos$13 = nix.positions(here + "/default.nix", [["pname", 106, 7], ["meta", 107, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["description", 111, 12], ["mainProgram", 112, 12], ["platforms", 113, 12]]);
-const pos$15 = nix.positions(here + "/default.nix", [["pname", 110, 7], ["meta", 111, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["description", 120, 12], ["platforms", 121, 12]]);
-const pos$17 = nix.positions(here + "/default.nix", [["pname", 119, 7], ["meta", 120, 7], ["buildInputs", 125, 7]]);
-const pos$18 = nix.positions(here + "/default.nix", [["description", 132, 12], ["platforms", 133, 12]]);
-const pos$19 = nix.positions(here + "/default.nix", [["pname", 131, 7], ["meta", 132, 7], ["preInstall", 137, 7]]);
-const pos$20 = nix.positions(here + "/default.nix", [["description", 141, 12], ["platforms", 142, 12]]);
-const pos$21 = nix.positions(here + "/default.nix", [["pname", 140, 7], ["meta", 141, 7], ["buildInputs", 146, 7]]);
-const pos$22 = nix.positions(here + "/default.nix", [["description", 153, 12]]);
-const pos$23 = nix.positions(here + "/default.nix", [["pname", 152, 7], ["meta", 153, 7], ["buildInputs", 154, 7], ["nativeBuildInputs", 155, 7], ["installPhase", 156, 7]]);
-const pos$24 = nix.positions(here + "/default.nix", [["description", 167, 12]]);
-const pos$25 = nix.positions(here + "/default.nix", [["pname", 165, 7], ["path", 166, 7], ["meta", 167, 7], ["nativeBuildInputs", 168, 7], ["dontBuild", 169, 7], ["installPhase", 170, 7], ["postFixup", 177, 7]]);
-const pos$26 = nix.positions(here + "/default.nix", [["VERSION", 195, 9], ["GOCACHE", 196, 9]]);
-const pos$27 = nix.positions(here + "/default.nix", [["description", 206, 12]]);
-const pos$28 = nix.positions(here + "/default.nix", [["pname", 192, 7], ["version", 193, 7], ["env", 194, 7], ["nativeBuildInputs", 198, 7], ["installPhase", 199, 7], ["meta", 206, 7]]);
-const pos$29 = nix.positions(here + "/default.nix", [["msrtool", 72, 5], ["cbmem", 85, 5], ["ifdtool", 89, 5], ["intelmetool", 93, 5], ["cbfstool", 105, 5], ["nvramtool", 109, 5], ["superiotool", 118, 5], ["ectool", 130, 5], ["inteltool", 139, 5], ["amdfwtool", 151, 5], ["acpidump-all", 164, 5], ["intelp2m", 191, 5]]);
-const pos$30 = nix.positions(here + "/default.nix", [["pname", 215, 7], ["version", 216, 15], ["meta", 217, 7], ["paths", 218, 7], ["postBuild", 219, 7]]);
-const pos$31 = nix.positions(here + "/default.nix", [["coreboot-utils", 213, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const buildEnv = nix.arg($, "buildEnv");
   const version = "26.06";
   const commonMeta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Various coreboot-related tools",
     homepage: "https://www.coreboot.org",
     license: nix.thunk(() => (() => {
@@ -80,11 +50,11 @@ export default nix.lambda((args) => (() => {
     const pname = nix.arg($_1, "pname");
     const path = nix.argOr($_1, "path", () => nix.str`util/${pname}`);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: pname,
         version: version,
         src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://review.coreboot.org/coreboot",
             rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
             hash: "sha256-rL9txaDXUzjkC2ioYmunoNq2+9rz9wpEJ7z3GZrqOH4=",
@@ -102,12 +72,12 @@ patchShebangs .
       }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["meta"]))));
   })(), formals$2);
   const utils = nix.thunk(() => ({
-    [nix.POS]: pos$29,
+    [nix.POS]: $pos[28],
     msrtool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "msrtool",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Dump chipset-specific MSR registers",
           platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
         })),
@@ -115,90 +85,90 @@ patchShebangs .
         preConfigure: "export INSTALL=install",
       })))),
     cbmem: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "cbmem",
-        meta: nix.thunk(() => ({ [nix.POS]: pos$6, description: "Coreboot console log reader" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[5], description: "Coreboot console log reader" })),
       })))),
     ifdtool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: "ifdtool",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           description: "Extract and dump Intel Firmware Descriptor information",
         })),
       })))),
     intelmetool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname: "intelmetool",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           description: "Dump interesting things about Management Engine",
           platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
         })),
         buildInputs: nix.thunk(() => [pciutils, zlib]),
       })))),
     cbfstool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         pname: "cbfstool",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           description: "Management utility for CBFS formatted ROM images",
         })),
       })))),
     nvramtool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         pname: "nvramtool",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           description: "Read and write coreboot parameters and display information from the coreboot table in CMOS/NVRAM",
           mainProgram: "nvramtool",
           platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
         })),
       })))),
     superiotool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         pname: "superiotool",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           description: "User-space utility to detect Super I/O of a mainboard and provide detailed information about the register contents of the Super I/O",
           platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
         })),
         buildInputs: nix.thunk(() => [pciutils, zlib]),
       })))),
     ectool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         pname: "ectool",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           description: "Dump the RAM of a laptop's Embedded/Environmental Controller (EC)",
           platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
         })),
         preInstall: "mkdir -p $out/sbin",
       })))),
     inteltool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         pname: "inteltool",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           description: "Provides information about Intel CPU/chipset hardware configuration (register contents, MSRs, etc)",
           platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
         })),
         buildInputs: nix.thunk(() => [pciutils, zlib]),
       })))),
     amdfwtool: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         pname: "amdfwtool",
-        meta: nix.thunk(() => ({ [nix.POS]: pos$22, description: "Create AMD firmware combination" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[21], description: "Create AMD firmware combination" })),
         buildInputs: nix.thunk(() => [openssl]),
         nativeBuildInputs: nix.thunk(() => [pkg_config]),
         installPhase: "runHook preInstall\n\ninstall -Dm755 amdfwtool $out/bin/amdfwtool\n\nrunHook postInstall\n",
       })))),
     "acpidump-all": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         pname: "acpidump-all",
         path: "util/acpi",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           description: "Walk through all ACPI tables with their addresses",
         })),
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -209,26 +179,26 @@ patchShebangs .
 `),
       })))),
     intelp2m: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         pname: "intelp2m",
         version: "2.5",
         env: nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           VERSION: nix.thunk(() => nix.str`2.5-${version}`),
           GOCACHE: "/tmp/go-cache",
         })),
         nativeBuildInputs: nix.thunk(() => [go]),
         installPhase: "runHook preInstall\n\ninstall -Dm755 intelp2m $out/bin/intelp2m\n\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           description: "Convert the inteltool register dump to gpio.h with GPIO configuration for porting coreboot",
         })),
       })))),
   }));
   return nix.update(utils, {
-    [nix.POS]: pos$31,
+    [nix.POS]: $pos[30],
     "coreboot-utils": nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         pname: "coreboot-utils",
         version: version,
         meta: commonMeta,

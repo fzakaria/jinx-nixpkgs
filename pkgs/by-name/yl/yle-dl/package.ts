@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5], ["mainProgram", 51, 5]], [["pname", 21, 3], ["version", 22, 11], ["src", 22, 19], ["pyproject", 23, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["pythonPath", 33, 3], ["nativeCheckInputs", 38, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, ffmpeg: false, wget: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5], ["mainProgram", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 11], ["src", 22, 19], ["pyproject", 23, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["pythonPath", 33, 3], ["nativeCheckInputs", 38, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const version = "20260716";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "aajanki",
       repo: "yle-dl",
       tag: nix.thunk(() => nix.str`releases/${version}`),
       hash: "sha256-UU1IWvg6uwsjnnBcv1WgQMxcraBZQwDYVAQ+58DrzFo=",
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "yle-dl",
       version: version,
       src: src,
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       pythonPath: nix.thunk(() => [wget, ffmpeg]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Downloads videos from Yle (Finnish Broadcasting Company) servers",
         homepage: "https://aajanki.github.io/yle-dl/",
         changelog: nix.thunk(() => nix.str`https://github.com/aajanki/yle-dl/blob/${nix.sel(src, "tag")}/ChangeLog`),

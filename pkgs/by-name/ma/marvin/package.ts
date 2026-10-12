@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 26, 5], ["url", 27, 5], ["hash", 28, 5]], [["description", 90, 5], ["homepage", 91, 5], ["maintainers", 92, 5], ["license", 93, 5], ["platforms", 94, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["unpackPhase", 46, 3], ["installPhase", 50, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, makeWrapper: false, coreutils: false, gawk: false, gnugrep: false, gnused: false, openjdk17: false, freetype: false, fontconfig: false, libxi: false, libx11: false, libxext: false, libxtst: false, libxrender: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 26, 5], ["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["maintainers", 92, 5], ["license", 93, 5], ["platforms", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["unpackPhase", 46, 3], ["installPhase", 50, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxtst = nix.arg($, "libxtst");
   const libxrender = nix.arg($, "libxrender");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "marvin",
       version: "26.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`marvin-${nix.sel(finalAttrs, "version")}.deb`),
           url: nix.thunk(() => nix.str`https://dl.chemaxon.com/marvin/${nix.sel(finalAttrs, "version")}/marvin_linux_${nix.sel(finalAttrs, "version")}.deb`),
           hash: "sha256-s52e/J6ohtUv5mSfEXaOGeC1FKkjwgFUH7wLSGqZRFM=",
@@ -61,7 +59,7 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.builtins.map((name)
 `, nix.thunk(() => ["LicenseManager", "MarvinSketch", "MarvinView"]))))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Chemical modelling, analysis and structure drawing program",
         homepage: "https://chemaxon.com/products/marvin",
         maintainers: nix.thunk(() => (() => {

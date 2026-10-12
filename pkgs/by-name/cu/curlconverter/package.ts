@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["mainProgram", 28, 5], ["maintainers", 29, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["npmDepsHash", 17, 3], ["npmFlags", 20, 3], ["npmBuildScript", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["mainProgram", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["npmDepsHash", 17, 3], ["npmFlags", 20, 3], ["npmBuildScript", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (final) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "curlconverter",
       version: "4.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "curlconverter",
           repo: "curlconverter",
           tag: nix.thunk(() => nix.str`v${nix.sel(final, "version")}`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       npmBuildScript: "compile",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Convert curl commands to Python, JavaScript and more",
         homepage: "https://curlconverter.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

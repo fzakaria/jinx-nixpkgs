@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 17, 5], ["homepage", 18, 5], ["license", 19, 5]], [["pname", 23, 13], ["version", 23, 19], ["sha256", 24, 5]], [["LC_ALL", 29, 7]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["meta", 16, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["env", 29, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, glibcLocales: false, celery: false, django: false, psycopg2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 17, 5], ["homepage", 18, 5], ["license", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 23, 13], ["version", 23, 19], ["sha256", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["LC_ALL", 29, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["meta", 16, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["env", 29, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,23 +19,23 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const format = "setuptools";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Simple, powerful and nonobstructive django email middleware",
         homepage: "https://github.com/bameda/djmail",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           sha256: "cf3ce7626305d218a8bf2b6a219266ef8061aceeefc1c70a54170f4105465202",
         }))));
       const nativeBuildInputs = nix.thunk(() => [glibcLocales]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, LC_ALL: "en_US.UTF-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], LC_ALL: "en_US.UTF-8" }));
       const propagatedBuildInputs = nix.thunk(() => [celery, django, psycopg2]);
       const doCheck = false;
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

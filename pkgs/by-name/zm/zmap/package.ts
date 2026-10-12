@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["homepage", 53, 5], ["license", 54, 5], ["description", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["broken", 58, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cmakeFlags", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["outputs", 47, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libjson: false, json_c: false, gengetopt: false, flex: false, byacc: false, gmp: false, libpcap: false, libunistring: false, judy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["license", 54, 5], ["description", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["broken", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cmakeFlags", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["outputs", 47, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libunistring = nix.arg($, "libunistring");
   const judy = nix.arg($, "judy");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zmap",
       version: "4.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zmap",
           repo: "zmap",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libjson, json_c, gmp, libpcap, libunistring, judy]),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://zmap.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         description: "Fast single packet network scanner designed for Internet-wide network surveys",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["buildInputs", 50, 3], ["nativeBuildInputs", 54, 3], ["installPhase", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, git: false, lib: false, python3: false, rpm: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["buildInputs", 50, 3], ["nativeBuildInputs", 54, 3], ["installPhase", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const binaries = nix.thunk(() => ["bfrshlog", "mlx-mkbfb", "bfup"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bfscripts",
       version: "3.9.7-1-unstable-2025-06-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Mellanox",
           repo: "bfscripts",
           rev: "ed8ede79fa002a2d83719a1bef6fbe0f7dcf37a4",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map((b) => nix.str`install -D ${b} $out/bin/${b}`, binaries)))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of scripts used for BlueField SoC system management",
         homepage: "https://github.com/Mellanox/bfscripts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

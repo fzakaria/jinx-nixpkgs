@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["postUnpack", 36, 3], ["postPatch", 42, 3], ["build-system", 47, 3], ["pythonRelaxDeps", 51, 3], ["dependencies", 55, 3], ["pythonImportsCheck", 62, 3], ["nativeCheckInputs", 64, 3], ["disabledTests", 68, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pycryptodome: false, requests: false, urllib3: false, "websocket-client": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["postUnpack", 36, 3], ["postPatch", 42, 3], ["build-system", 47, 3], ["pythonRelaxDeps", 51, 3], ["dependencies", 55, 3], ["pythonImportsCheck", 62, 3], ["nativeCheckInputs", 64, 3], ["disabledTests", 68, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const websocket_client = nix.arg($, "websocket-client");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ibind",
       version: "0.1.22",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Voyz",
           repo: "ibind",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_wait_until_timeout"]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "REST and WebSocket client library for Interactive Brokers Client Portal Web API",
         homepage: "https://github.com/Voyz/ibind",
         changelog: nix.thunk(() => nix.str`https://github.com/Voyz/ibind/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

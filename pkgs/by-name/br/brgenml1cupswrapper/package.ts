@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 70, 5], ["sha256", 71, 5]], [["description", 136, 5], ["homepage", 137, 5], ["platforms", 138, 5], ["license", 139, 5], ["maintainers", 140, 5]], [["pname", 66, 3], ["version", 67, 3], ["src", 69, 3], ["unpackPhase", 74, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 80, 3], ["dontBuild", 89, 3], ["patchPhase", 91, 3], ["installPhase", 111, 3], ["dontPatchELF", 132, 3], ["dontStrip", 133, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, cups: false, perl: false, coreutils: false, gnused: false, gnugrep: false, brgenml1lpr: false, debugLvl: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 70, 5], ["sha256", 71, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 136, 5], ["homepage", 137, 5], ["platforms", 138, 5], ["license", 139, 5], ["maintainers", 140, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 66, 3], ["version", 67, 3], ["src", 69, 3], ["unpackPhase", 74, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 80, 3], ["dontBuild", 89, 3], ["patchPhase", 91, 3], ["installPhase", 111, 3], ["dontPatchELF", 132, 3], ["dontStrip", 133, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "brgenml1cupswrapper";
       const version = "3.1.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf101125/brgenml1cupswrapper-${version}.i386.deb`),
           sha256: "0kd2a2waqr10kfv1s8is3nd5dlphw4d1343srdsbrlbbndja3s6r",
         }))));
@@ -72,7 +70,7 @@ ln -s $out/$CUPSWRAPPER_DIR/brother-BrGenML1-cups-en.ppd $CUPSPPD_DIR
       const dontPatchELF = true;
       const dontStrip = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Brother BrGenML1 CUPS wrapper driver",
         homepage: "http://www.brother.com",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -83,7 +81,7 @@ ln -s $out/$CUPSWRAPPER_DIR/brother-BrGenML1-cups-en.ppd $CUPSPPD_DIR
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

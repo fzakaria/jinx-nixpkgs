@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 48, 5], ["paths", 50, 5]], [["owner", 61, 5], ["repo", 62, 5], ["tag", 63, 5], ["fetchSubmodules", 64, 5], ["hash", 65, 5]], [["ROCM_PATH", 133, 5]], [["libretranslate", 162, 7], ["wyoming-faster-whisper", 163, 7]], [["tests", 160, 12]], [["description", 168, 5], ["mainProgram", 169, 5], ["homepage", 170, 5], ["changelog", 171, 5], ["license", 172, 5], ["maintainers", 173, 5], ["broken", 177, 5]], [["pname", 54, 3], ["version", 55, 3], ["__strutcturedAttrs", 57, 3], ["strictDeps", 58, 3], ["src", 60, 3], ["patches", 68, 3], ["postPatch", 78, 3], ["nativeBuildInputs", 92, 3], ["cmakeFlags", 102, 3], ["env", 132, 3], ["buildInputs", 136, 3], ["passthru", 160, 3], ["meta", 167, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, fetchFromGitHub: false, symlinkJoin: false, cmake: false, llvmPackages: false, withMkl: true, mkl: false, withCUDA: true, withCuDNN: true, cudaPackages: false, withOneDNN: true, onednn: false, withOpenblas: true, openblas: false, withRuy: true, rocmSupport: true, rocmPackages: false, rocmGpuTargets: true, libretranslate: false, "wyoming-faster-whisper": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 48, 5], ["paths", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 61, 5], ["repo", 62, 5], ["tag", 63, 5], ["fetchSubmodules", 64, 5], ["hash", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ROCM_PATH", 133, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["libretranslate", 162, 7], ["wyoming-faster-whisper", 163, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 160, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 168, 5], ["mainProgram", 169, 5], ["homepage", 170, 5], ["changelog", 171, 5], ["license", 172, 5], ["maintainers", 173, 5], ["broken", 177, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 55, 3], ["__strutcturedAttrs", 57, 3], ["strictDeps", 58, 3], ["src", 60, 3], ["patches", 68, 3], ["postPatch", 78, 3], ["nativeBuildInputs", 92, 3], ["cmakeFlags", 102, 3], ["env", 132, 3], ["buildInputs", 136, 3], ["passthru", 160, 3], ["meta", 167, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,15 +43,15 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(rocmPackages, "rocm-runtime")),
     nix.thunk(() => nix.sel(rocmPackages, "rocm-core")),
   ]);
-  const rocmtoolkit_joined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$1, name: "rocm-merged", paths: rocmLibs }))));
+  const rocmtoolkit_joined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: $pos[0], name: "rocm-merged", paths: rocmLibs }))));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "ctranslate2",
       version: "4.8.2",
       __strutcturedAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "OpenNMT",
           repo: "CTranslate2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +82,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_CPU_DISPATCH", false)),
         ]))))))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           ROCM_PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), rocmSupport, rocmtoolkit_joined)),
         })))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withMkl, nix.thunk(() => [mkl])), nix.concat(nix.app(nix.sel(lib, "optionals"), withCUDA, nix.thunk(() => [
@@ -98,15 +92,15 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(cudaPackages, "libcurand")),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(withCUDA) && nix.asBool(withCuDNN))), nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cudnn"))])), nix.concat(nix.app(nix.sel(lib, "optionals"), rocmSupport, rocmLibs), nix.concat(nix.app(nix.sel(lib, "optionals"), withOneDNN, nix.thunk(() => [onednn])), nix.concat(nix.app(nix.sel(lib, "optionals"), withOpenblas, nix.thunk(() => [openblas])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp"))]))))))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           libretranslate: libretranslate,
           "wyoming-faster-whisper": wyoming_faster_whisper,
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Fast inference engine for Transformer models",
         mainProgram: "ct2-translator",
         homepage: "https://github.com/OpenNMT/CTranslate2",

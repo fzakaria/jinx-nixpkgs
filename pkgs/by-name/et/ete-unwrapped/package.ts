@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 42, 3], ["cmakeDir", 59, 3], ["cmakeFlags", 60, 3], ["postInstall", 68, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cjson: false, cmake: false, curl: false, freetype: false, glew: false, libjpeg: false, libogg: false, libpng: false, libtheora: false, libx11: false, minizip: false, openal: false, SDL2: false, sqlite: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 42, 3], ["cmakeDir", 59, 3], ["cmakeFlags", 60, 3], ["postInstall", 68, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")) ? "x86" : "x86_64"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ete-unwrapped",
       version: "0-unstable-2026-06-21",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "etfdevs",
           repo: "ETe",
           rev: "c769004c557e2afabf41f847b32cfb4762ae2521",
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Improved Wolfenstein: Enemy Territory Engine",
         homepage: "https://github.com/etfdevs/ETe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

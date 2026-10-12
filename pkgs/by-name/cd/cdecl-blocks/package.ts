@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["NIX_CFLAGS_COMPILE", 37, 5], ["NIX_LDFLAGS", 47, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["env", 36, 3], ["makeFlags", 50, 3], ["doCheck", 58, 3], ["checkTarget", 59, 3], ["preInstall", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bison: false, flex: false, readline: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 37, 5], ["NIX_LDFLAGS", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["env", 36, 3], ["makeFlags", 50, 3], ["doCheck", 58, 3], ["checkTarget", 59, 3], ["preInstall", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cdecl-blocks",
       version: "2.5-unstable-2024-05-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ridiculousfish",
           repo: "cdecl-blocks",
           rev: "0fdb58f78bdc96409b07fa2945673e2d80c74557",
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [bison, flex]),
       buildInputs: nix.thunk(() => [readline, ncurses]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-DBSD", "-DUSE_READLINE"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
               "-Wno-error=int-conversion",
               "-Wno-error=incompatible-function-pointer-types",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "test",
       preInstall: "mkdir -p $out/bin;\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Translator English -- C/C++ declarations",
         homepage: "https://cdecl.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

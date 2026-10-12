@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["postPatch", 33, 3], ["makeFlags", 38, 3], ["installTargets", 44, 3], ["postInstall", 49, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "pkg-config": false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["postPatch", 33, 3], ["makeFlags", 38, 3], ["installTargets", 44, 3], ["postInstall", 49, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libglibutil",
       version: "1.0.83",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sailfishos",
           repo: "libglibutil",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["install", "install-dev"]),
       postInstall: "sed -i -e \"s@includedir=/usr@includedir=$dev@g\" $dev/lib/pkgconfig/$pname.pc\nsed -i -e \"s@Cflags: @Cflags: $($PKG_CONFIG --cflags glib-2.0) @g\" $dev/lib/pkgconfig/$pname.pc\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library of glib utilities",
         homepage: "https://git.sailfishos.org/mer-core/libglibutil",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

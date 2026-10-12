@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["strictDeps", 43, 3], ["postPatch", 45, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, autoreconfHook: false, "pkg-config": false, wrapGAppsHook3: false, gtk3: false, imlib2: false, libsm: false, libstartup_notification: false, libxml2: false, openbox: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["strictDeps", 43, 3], ["postPatch", 45, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const openbox = nix.arg($, "openbox");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "obconf",
       version: "unstable-2015-02-13",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.openbox.org/dana/obconf",
           rev: "63ec47c5e295ad4f09d1df6d92afb7e10c3fec39",
           hash: "sha256-qwm66VA/ueRMFtSUcrmuObNkz+KYgWRnmR7TnQwpxiE=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`substituteInPlace configure.ac --replace-fail 2.0.4 ${nix.sel(finalAttrs, "version")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GUI configuration tool for openbox",
         homepage: "https://openbox.org/obconf",
         changelog: "https://openbox.org/obconf_changelog",

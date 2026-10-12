@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 40, 5], ["hash", 41, 5]], [["homepage", 127, 5], ["changelog", 128, 5], ["description", 129, 5], ["license", 130, 5], ["platforms", 131, 5], ["mainProgram", 132, 5], ["maintainers", 133, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 53, 3], ["unpackPhase", 79, 3], ["installPhase", 87, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, makeWrapper: false, autoPatchelfHook: false, dpkg: false, gnutar: false, libxrandr: false, libxfixes: false, libxext: false, libxdamage: false, libxcomposite: false, libx11: false, libxcb: false, libxkbcommon: false, glib: false, nss: false, dbus: false, "at-spi2-atk": false, cups: false, gtk3: false, pango: false, cairo: false, expat: false, systemdLibs: false, "alsa-lib": false, nwjs: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 127, 5], ["changelog", 128, 5], ["description", 129, 5], ["license", 130, 5], ["platforms", 131, 5], ["mainProgram", 132, 5], ["maintainers", 133, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 53, 3], ["unpackPhase", 79, 3], ["installPhase", 87, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "deezer-enhanced";
       const version = "1.5.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/duzda/deezer-enhanced/releases/download/v${version}/deezer-enhanced_${version}_amd64.deb`),
           hash: "sha256-iMqQ6mqP5/1nKjqH58kfiQERUeOF54gHvAOiI8narKI=",
         }))));
@@ -97,7 +95,7 @@ wrapProgram $out/bin/${pname} \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/duzda/deezer-enhanced",
         changelog: nix.thunk(() => nix.str`https://github.com/duzda/deezer-enhanced/releases/tag/v${version}`),
         description: "Unofficial application for Deezer with enhanced features",
@@ -110,7 +108,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

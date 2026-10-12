@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["url", 32, 7], ["hash", 33, 7]], [["type", 48, 9], ["name", 49, 9], ["desktopName", 50, 9], ["comment", 51, 9], ["icon", 52, 9], ["exec", 53, 9], ["categories", 54, 9]], [["pname", 28, 13], ["version", 28, 19], ["src", 30, 5], ["nativeBuildInputs", 36, 5], ["buildInputs", 41, 5], ["desktopItems", 46, 5], ["installPhase", 61, 5]], [["description", 94, 5], ["longDescription", 95, 5], ["mainProgram", 100, 5], ["homepage", 101, 5], ["license", 104, 5], ["sourceProvenance", 105, 5], ["platforms", 106, 5], ["maintainers", 107, 5]], [["pname", 76, 28], ["version", 76, 34], ["targetPkgs", 78, 3], ["runScript", 86, 3], ["extraInstallCommands", 88, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchurl: false, makeDesktopItem: false, autoPatchelfHook: false, copyDesktopItems: false, buildFHSEnv: false, "alsa-lib": false, "alsa-plugins": false, freetype: false, nghttp2: false, libx11: false, expat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["type", 48, 9], ["name", 49, 9], ["desktopName", 50, 9], ["comment", 51, 9], ["icon", 52, 9], ["exec", 53, 9], ["categories", 54, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 28, 13], ["version", 28, 19], ["src", 30, 5], ["nativeBuildInputs", 36, 5], ["buildInputs", 41, 5], ["desktopItems", 46, 5], ["installPhase", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 94, 5], ["longDescription", 95, 5], ["mainProgram", 100, 5], ["homepage", 101, 5], ["license", 104, 5], ["sourceProvenance", 105, 5], ["platforms", 106, 5], ["maintainers", 107, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 76, 28], ["version", 76, 34], ["targetPkgs", 78, 3], ["runScript", 86, 3], ["extraInstallCommands", 88, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,16 +24,16 @@ export default nix.lambda((args) => (() => {
   const pname = "decent-sampler";
   const version = "1.18.1";
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://www.decentsamples.com/wp-content/uploads/2018/09/cropped-Favicon_512x512.png",
       hash: "sha256-EXjaHrlXY0HU2EGTrActNbltIiqTLfdkFgP7FXoLzrM=",
     }))));
   const decent_sampler = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://cdn.decentsamples.com/production/builds/ds/${version}/Decent_Sampler-${version}-Linux-Static-x86_64.tar.gz`),
           hash: "sha256-wL9L4I2iw9r3r69TOr37XXEs3iECMuNGX9Ez63P/f8w=",
         })))),
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [alsa_lib, expat]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             type: "Application",
             name: "decent-sampler",
             desktopName: "Decent Sampler",
@@ -67,7 +62,7 @@ runHook postInstall
 `),
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.attr(decent_sampler, "pname")),
       version: nix.thunk(() => nix.attr(decent_sampler, "version")),
       targetPkgs: (pkgs) => [alsa_plugins, decent_sampler, freetype, nghttp2, libx11],
@@ -76,7 +71,7 @@ runHook postInstall
 cp -r ${decent_sampler}/share $out/share
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Audio sample player",
         longDescription: "Decent Sampler is an audio sample player.\nAllowing you to play sample libraries in the DecentSampler format\n(files with extensions: dspreset and dslibrary).\n",
         mainProgram: "decent-sampler",

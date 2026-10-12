@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["sonic-server", 49, 11]], [["tests", 49, 5], ["updateScript", 50, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["postPatch", 28, 3], ["postInstall", 33, 3], ["doCheck", 43, 3], ["nativeInstallCheckInputs", 45, 3], ["doInstallCheck", 46, 3], ["passthru", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, nixosTests: false, rustPlatform: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["sonic-server", 49, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 49, 5], ["updateScript", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["postPatch", 28, 3], ["postInstall", 33, 3], ["doCheck", 43, 3], ["nativeInstallCheckInputs", 45, 3], ["doInstallCheck", 46, 3], ["passthru", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sonic-server";
       const version = "1.10.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "valeriansaliou",
           repo: "sonic",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,15 +32,15 @@ export default nix.lambda((args) => (() => {
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "sonic-server": nix.thunk(() => nix.sel(nixosTests, "sonic-server")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast, lightweight and schema-less search backend",
         homepage: "https://github.com/valeriansaliou/sonic",
         changelog: nix.thunk(() => nix.str`https://github.com/valeriansaliou/sonic/releases/tag/v${version}`),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

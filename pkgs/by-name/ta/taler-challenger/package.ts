@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["teams", 79, 5], ["platforms", 80, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["preAutoreconf", 33, 3], ["strictDeps", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 55, 3], ["preFixup", 69, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, autoreconfHook: false, libgcrypt: false, "pkg-config": false, texinfo: false, curl: false, gnunet: false, jansson: false, libgnurl: false, libmicrohttpd: false, libsodium: false, libtool: false, libpq: false, "taler-exchange": false, "taler-merchant": false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["teams", 79, 5], ["platforms", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["preAutoreconf", 33, 3], ["strictDeps", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 55, 3], ["preFixup", 69, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const taler_merchant = nix.arg($, "taler-merchant");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "taler-challenger",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git-www.taler.net/challenger.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-oomrqpA/V2sNTRzFbHS7rnZdTIs8w+SRYsa9AYDFn5o=",
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail "/bin/bash" "${runtimeShell}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OAuth 2.0-based authentication service that validates user can receive messages at a certain address",
         homepage: "https://git-www.taler.net/challenger.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

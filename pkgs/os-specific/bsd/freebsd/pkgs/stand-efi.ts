@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stand-efi.nix", [[["path", 15, 3], ["extraPaths", 16, 3], ["extraNativeBuildInputs", 29, 3], ["makeFlags", 34, 3], ["hardeningDisable", 42, 3], ["preBuild", 48, 3], ["postPatch", 59, 3], ["postInstall", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false, include: false, buildPackages: false, "freebsd-lib": false, vtfontcvt: false, elfcopy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/stand-efi.nix", [["path", 15, 3], ["extraPaths", 16, 3], ["extraNativeBuildInputs", 29, 3], ["makeFlags", 34, 3], ["hardeningDisable", 42, 3], ["preBuild", 48, 3], ["postPatch", 59, 3], ["postInstall", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const elfcopy = nix.arg($, "elfcopy");
   const hostArchBsd = nix.thunk(() => nix.app(nix.sel(freebsd_lib, "mkBsdArch"), stdenv));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "stand/efi",
       extraPaths: nix.thunk(() => [
         "contrib/bzip2",

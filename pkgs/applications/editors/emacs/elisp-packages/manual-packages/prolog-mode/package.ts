@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["homepage", 23, 5], ["description", 24, 5], ["license", 25, 5]], [["pname", 8, 3], ["ename", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 17, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, melpaBuild: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 23, 5], ["description", 24, 5], ["license", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["ename", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 17, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const melpaBuild = nix.arg($, "melpaBuild");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "prolog-mode",
       ename: "prolog",
       version: "1.28",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://bruda.ca/_media/emacs/prolog.el",
           hash: "sha256-ZzIDFQWPq1vI9z3btgsHgn0axN6uRQn9Tt8TnqGybOk=",
         })))),
       postPatch: "substituteInPlace prolog.el \\\n  --replace-fail \";; prolog.el ---\" \";;; prolog.el ---\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://bruda.ca/emacs/prolog_mode_for_emacs/",
         description: "Prolog mode for Emacs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

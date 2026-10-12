@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 13, 5], ["sourceProvenance", 14, 5]], [["groupId", 8, 3], ["artifactId", 9, 3], ["version", 10, 32], ["hash", 11, 3], ["meta", 12, 3]]]);
 const formals$1 = { args: { fetchMavenArtifact: false, "junixsocket-common": false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 13, 5], ["sourceProvenance", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["groupId", 8, 3], ["artifactId", 9, 3], ["version", 10, 32], ["hash", 11, 3], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const junixsocket_common = nix.arg($, "junixsocket-common");
   const lib = nix.arg($, "lib");
   return nix.app(fetchMavenArtifact, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       groupId: "com.kohlschutter.junixsocket",
       artifactId: "junixsocket-native-common",
       version: nix.thunk(() => nix.attr(junixsocket_common, "version")),
       hash: "sha256-ASbOC68c61de9ReAfU0rFLnzLwYYAgThLsc6tKdyVno=",
       meta: nix.thunk(() => nix.update(nix.sel(junixsocket_common, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Binaries of the native JNI library for junixsocket for common platforms",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       })),

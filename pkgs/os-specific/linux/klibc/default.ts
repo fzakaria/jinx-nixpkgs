@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 23, 5], ["hash", 24, 5]], [["initrd-network-ssh", 64, 26]], [["tests", 62, 12]], [["description", 68, 5], ["mainProgram", 69, 5], ["homepage", 70, 5], ["maintainers", 71, 5], ["license", 72, 5], ["platforms", 73, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["depsBuildBuild", 29, 3], ["nativeBuildInputs", 30, 3], ["strictDeps", 31, 3], ["hardeningDisable", 33, 3], ["makeFlags", 38, 3], ["postInstall", 52, 3], ["passthru", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, buildPackages: false, linuxHeaders: false, perl: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["initrd-network-ssh", 64, 26]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 62, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 68, 5], ["mainProgram", 69, 5], ["homepage", 70, 5], ["maintainers", 71, 5], ["license", 72, 5], ["platforms", 73, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["depsBuildBuild", 29, 3], ["nativeBuildInputs", 30, 3], ["strictDeps", 31, 3], ["hardeningDisable", 33, 3], ["makeFlags", 38, 3], ["postInstall", 52, 3], ["passthru", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "klibc";
       const version = "2.0.14";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kernel/linux/libs/klibc/2.0/klibc-${version}.tar.xz`),
           hash: "sha256-KBv7aD4ZaBhBKvcLiWi3cmR1qA/xxL1nEZ5r9QWfkHU=",
         }))));
@@ -45,14 +41,14 @@ for file in ${linuxHeaders}/include/*; do
 done
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "initrd-network-ssh": nix.thunk(() => nix.attr(nixosTests, "initrd-network-ssh")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Minimalistic libc subset for initramfs usage",
         mainProgram: "klcc",
         homepage: "https://kernel.org/pub/linux/libs/klibc/",
@@ -64,7 +60,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/source.nix", [[["owner", 9, 5], ["repo", 10, 5], ["rev", 11, 5], ["hash", 12, 5]], [["version", 7, 3], ["rSrc", 8, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/source.nix", [["owner", 9, 5], ["repo", 10, 5], ["rev", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/source.nix", [["version", 7, 3], ["rSrc", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const version = "0.10.7";
     const rSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "abathur",
         repo: "resholve",
         rev: nix.thunk(() => nix.str`v${version}`),
         hash: "sha256-aUhxaxniGcmFAawUTXa5QrWUSpw5NUoJO5y4INk5mQU=",
       }))));
-    return { [nix.POS]: pos$2, version, rSrc };
+    return { [nix.POS]: $pos[1], version, rSrc };
   })();
 })(), formals$1);
 //# sourceMappingURL=source.ts.map

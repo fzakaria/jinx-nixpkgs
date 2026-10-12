@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["changelog", 56, 5], ["mainProgram", 57, 5]], [["pname", 15, 3], ["version", 16, 3], ["format", 17, 3], ["src", 19, 3], ["propagatedBuildInputs", 26, 3], ["nativeBuildInputs", 32, 3], ["postInstall", 34, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 46, 3], ["doCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, buildPythonPackage: false, fetchFromGitHub: false, installShellFiles: false, "ruamel-yaml": false, xmltodict: false, pygments: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["changelog", 56, 5], ["mainProgram", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["format", 17, 3], ["src", 19, 3], ["propagatedBuildInputs", 26, 3], ["nativeBuildInputs", 32, 3], ["postInstall", 34, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 46, 3], ["doCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.26.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kellyjonbrazil",
           repo: "jc",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["jc"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "This tool serializes the output of popular command line tools and filetypes to structured JSON output",
         homepage: "https://github.com/kellyjonbrazil/jc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "jc",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

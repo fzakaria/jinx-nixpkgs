@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["jq", 12, 5]], [["license", 14, 8]], [["name", 9, 3], ["propagatedBuildInputs", 10, 3], ["substitutions", 11, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { lib: false, makeSetupHook: false, installShellFiles: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["jq", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 14, 8]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 9, 3], ["propagatedBuildInputs", 10, 3], ["substitutions", 11, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,14 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const jq = nix.arg($, "jq");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "nodejs-install-manuals",
       propagatedBuildInputs: nix.thunk(() => [installShellFiles]),
-      substitutions: nix.thunk(() => ({ [nix.POS]: pos$1, jq: nix.thunk(() => nix.str`${jq}/bin/jq`) })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      substitutions: nix.thunk(() => ({ [nix.POS]: $pos[0], jq: nix.thunk(() => nix.str`${jq}/bin/jq`) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })), nix.path(here, "./hook.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

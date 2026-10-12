@@ -2,22 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/freeform-submodules.nix", [[["default", 6, 5]], [["foo", 13, 19]], [["options", 13, 11]], [["bar", 16, 19]], [["options", 16, 11]], [["freeformType", 11, 22]], [["_module", 11, 14]], [["config", 11, 7]], [["type", 10, 5]], [["fooDeclarations", 5, 11], ["free", 9, 11]], [["foo", 22, 19]], [["bar", 23, 19]], [["xxx", 22, 15], ["yyy", 23, 15]], [["free", 22, 10]], [["options", 5, 3], ["config", 22, 3]]]);
 const formals$1 = { args: { lib: false, options: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/freeform-submodules.nix", [["default", 6, 5]]);
-const pos$2 = nix.positions(here + "/freeform-submodules.nix", [["foo", 13, 19]]);
-const pos$3 = nix.positions(here + "/freeform-submodules.nix", [["options", 13, 11]]);
-const pos$4 = nix.positions(here + "/freeform-submodules.nix", [["bar", 16, 19]]);
-const pos$5 = nix.positions(here + "/freeform-submodules.nix", [["options", 16, 11]]);
-const pos$6 = nix.positions(here + "/freeform-submodules.nix", [["freeformType", 11, 22]]);
-const pos$7 = nix.positions(here + "/freeform-submodules.nix", [["_module", 11, 14]]);
-const pos$8 = nix.positions(here + "/freeform-submodules.nix", [["config", 11, 7]]);
-const pos$9 = nix.positions(here + "/freeform-submodules.nix", [["type", 10, 5]]);
-const pos$10 = nix.positions(here + "/freeform-submodules.nix", [["fooDeclarations", 5, 11], ["free", 9, 11]]);
-const pos$11 = nix.positions(here + "/freeform-submodules.nix", [["foo", 22, 19]]);
-const pos$12 = nix.positions(here + "/freeform-submodules.nix", [["bar", 23, 19]]);
-const pos$13 = nix.positions(here + "/freeform-submodules.nix", [["xxx", 22, 15], ["yyy", 23, 15]]);
-const pos$14 = nix.positions(here + "/freeform-submodules.nix", [["free", 22, 10]]);
-const pos$15 = nix.positions(here + "/freeform-submodules.nix", [["options", 5, 3], ["config", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,33 +11,33 @@ export default nix.lambda((args) => (() => {
   const options = nix.arg($, "options");
   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       fooDeclarations: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           default: nix.thunk(() => nix.sel(nix.app(nix.sel(options, "free", "type", "getSubOptions"), []), "_freeformOptions", "foo", "declarations")),
         })))),
       free: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           type: nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               config: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 _module: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   freeformType: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                            [nix.POS]: pos$3,
+                            [nix.POS]: $pos[2],
                             options: nix.thunk(() => ({
-                              [nix.POS]: pos$2,
+                              [nix.POS]: $pos[1],
                               foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
                             })),
                           })))))),
                       nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                            [nix.POS]: pos$5,
+                            [nix.POS]: $pos[4],
                             options: nix.thunk(() => ({
-                              [nix.POS]: pos$4,
+                              [nix.POS]: $pos[3],
                               bar: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
                             })),
                           })))))),
@@ -62,11 +48,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       free: nix.thunk(() => ({
-        [nix.POS]: pos$13,
-        xxx: nix.thunk(() => ({ [nix.POS]: pos$11, foo: 10n })),
-        yyy: nix.thunk(() => ({ [nix.POS]: pos$12, bar: 10n })),
+        [nix.POS]: $pos[12],
+        xxx: nix.thunk(() => ({ [nix.POS]: $pos[10], foo: 10n })),
+        yyy: nix.thunk(() => ({ [nix.POS]: $pos[11], bar: 10n })),
       })),
     })),
   };

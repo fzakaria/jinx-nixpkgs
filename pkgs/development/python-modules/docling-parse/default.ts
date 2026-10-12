@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["NIX_CFLAGS_COMPILE", 74, 5], ["USE_SYSTEM_DEPS", 75, 5]], [["changelog", 105, 5], ["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["postPatch", 48, 3], ["dontUseCmakeConfigure", 61, 3], ["nativeBuildInputs", 63, 3], ["build-system", 67, 3], ["env", 73, 3], ["buildInputs", 78, 3], ["dependencies", 92, 3], ["pythonImportsCheck", 98, 3], ["doCheck", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, pybind11: false, setuptools: false, "pkg-config": false, blend2d: false, cxxopts: false, freetype: false, lcms2: false, libjpeg: false, "loguru-cpp": false, nlohmann_json: false, openjpeg: false, qpdf: false, utf8cpp: false, zlib: false, "docling-core": false, pillow: false, pydantic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 74, 5], ["USE_SYSTEM_DEPS", 75, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 105, 5], ["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["postPatch", 48, 3], ["dontUseCmakeConfigure", 61, 3], ["nativeBuildInputs", 63, 3], ["build-system", 67, 3], ["env", 73, 3], ["buildInputs", 78, 3], ["dependencies", 92, 3], ["pythonImportsCheck", 98, 3], ["doCheck", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const pillow = nix.arg($, "pillow");
   const pydantic = nix.arg($, "pydantic");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "docling-parse",
       version: "7.8.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "docling-project",
           repo: "docling-parse",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       "build-system": nix.thunk(() => [cmake, pybind11, setuptools]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), utf8cpp)}/include/utf8cpp`),
         USE_SYSTEM_DEPS: "ON",
       })),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["docling_parse"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/DS4SD/docling-parse/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Simple package to extract text with coordinates from programmatic PDFs",
         homepage: "https://github.com/DS4SD/docling-parse",

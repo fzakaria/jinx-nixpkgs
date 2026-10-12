@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["homepage", 104, 5], ["description", 105, 5], ["teams", 106, 5], ["platforms", 107, 5], ["license", 108, 5], ["changelog", 114, 5]], [["pname", 29, 3], ["version", 30, 3], ["outputs", 32, 3], ["src", 38, 3], ["depsBuildBuild", 46, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 69, 3], ["propagatedBuildInputs", 78, 3], ["strictDeps", 85, 3], ["mesonFlags", 87, 3], ["doCheck", 96, 3], ["postPatch", 98, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, "gi-docgen": false, "gobject-introspection": false, "docbook-xsl-nons": false, docbook_xml_dtd_43: false, help2man: false, glib: false, python3: false, mesonEmulatorHook: false, libgudev: false, "bash-completion": false, bashNonInteractive: false, libmbim: false, "libqrtr-glib": false, buildPackages: false, withIntrospection: true, withMan: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 104, 5], ["description", 105, 5], ["teams", 106, 5], ["platforms", 107, 5], ["license", 108, 5], ["changelog", 114, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["outputs", 32, 3], ["src", 38, 3], ["depsBuildBuild", 46, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 69, 3], ["propagatedBuildInputs", 78, 3], ["strictDeps", 85, 3], ["mesonFlags", 87, 3], ["doCheck", 96, 3], ["postPatch", 98, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const withIntrospection = nix.argOr($, "withIntrospection", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gobject_introspection)) && nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages))));
   const withMan = nix.argOr($, "withMan", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libqmi",
       version: "1.38.0",
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "mobile-broadband",
           repo: "libqmi",
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "patchShebangs \\\n  build-aux/qmi-codegen/qmi-codegen\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.freedesktop.org/wiki/Software/libqmi/",
         description: "Modem protocol helper library",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "freedesktop"))]),

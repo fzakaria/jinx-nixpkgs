@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/prettybat.nix", [[["description", 21, 8]], [["name", 15, 3], ["dependencies", 16, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, buildBatExtrasPkg: false, shfmt: false, "clang-tools": false, prettier: false, rustfmt: false, withShFmt: true, withPrettier: true, withClangTools: true, withRustFmt: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/prettybat.nix", [["description", 21, 8]]);
-const pos$2 = nix.positions(here + "/prettybat.nix", [["name", 15, 3], ["dependencies", 16, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const withClangTools = nix.argOr($, "withClangTools", () => true);
   const withRustFmt = nix.argOr($, "withRustFmt", () => true);
   return nix.app(buildBatExtrasPkg, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "prettybat",
       dependencies: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withShFmt, shfmt), nix.concat(nix.app(nix.sel(lib, "optional"), withPrettier, prettier), nix.concat(nix.app(nix.sel(lib, "optional"), withClangTools, clang_tools), nix.app(nix.sel(lib, "optional"), withRustFmt, rustfmt))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Pretty-print source code and highlight it with bat",
       })),
     })));

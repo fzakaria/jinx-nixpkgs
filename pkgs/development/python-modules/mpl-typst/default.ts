@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["updateScript", 75, 12]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 35, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 43, 3], ["pytestFlags", 49, 3], ["pythonImportsCheck", 51, 3], ["disabledTestPaths", 56, 3], ["passthru", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPythonPackage: false, setuptools: false, matplotlib: false, numpy: false, pytestCheckHook: false, pillow: false, "nix-update-script": false, typst: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 75, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 35, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 43, 3], ["pytestFlags", 49, 3], ["pythonImportsCheck", 51, 3], ["disabledTestPaths", 56, 3], ["passthru", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "daskol",
           repo: "mpl-typst",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -55,11 +52,11 @@ substituteInPlace mpl_typst/config.py \\
         "tests/regression/issue32_test.py::TestIssue32::test_reference",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["mpl_typst/backend_test.py"]))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Typst backend for matplotlib",
         homepage: "https://github.com/daskol/mpl-typst",
         changelog: nix.thunk(() => nix.str`https://github.com/daskol/mpl-typst/releases/tag/${nix.sel(src, "tag")}`),
@@ -70,7 +67,7 @@ substituteInPlace mpl_typst/config.py \\
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

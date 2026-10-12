@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["stdenv", 32, 50]], [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["fetchSubmodules", 42, 5], ["hash", 43, 5]], [["owner", 70, 11], ["repo", 71, 11], ["tag", 73, 11], ["hash", 74, 11]], [["name", 79, 21], ["path", 80, 13]], [["SKIA_SOURCE_DIR", 67, 5], ["SKIA_GN_COMMAND", 90, 5], ["SKIA_NINJA_COMMAND", 91, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 93, 5], ["LIBCLANG_PATH", 95, 5], ["GIT_DESCRIBE", 96, 5]], [["description", 146, 5], ["homepage", 147, 5], ["downloadPage", 148, 5], ["changelog", 149, 5], ["license", 150, 5], ["maintainers", 151, 5], ["mainProgram", 155, 5]], [["pname", 33, 3], ["version", 34, 3], ["__structuredAttrs", 36, 3], ["src", 38, 3], ["cargoPatches", 46, 3], ["cargoHash", 57, 3], ["postPatch", 60, 3], ["env", 65, 3], ["nativeBuildInputs", 99, 3], ["buildInputs", 108, 3], ["doCheck", 116, 3], ["installPhase", 118, 3], ["postFixup", 136, 3], ["doInstallCheck", 142, 3], ["nativeInstallCheckInputs", 143, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, linkFarm: false, llvmPackages: false, fetchFromGitHub: false, fetchgit: false, runCommand: false, rustPlatform: false, "cargo-bundle": false, cctools: false, gn: false, ninja: false, "pkg-config": false, python3: false, fontconfig: false, moltenvk: false, sdl3: false, "sdl3-ttf": false, zstd: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["stdenv", 32, 50]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["fetchSubmodules", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 70, 11], ["repo", 71, 11], ["tag", 73, 11], ["hash", 74, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 79, 21], ["path", 80, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["SKIA_SOURCE_DIR", 67, 5], ["SKIA_GN_COMMAND", 90, 5], ["SKIA_NINJA_COMMAND", 91, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 93, 5], ["LIBCLANG_PATH", 95, 5], ["GIT_DESCRIBE", 96, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 146, 5], ["homepage", 147, 5], ["downloadPage", 148, 5], ["changelog", 149, 5], ["license", 150, 5], ["maintainers", 151, 5], ["mainProgram", 155, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["__structuredAttrs", 36, 3], ["src", 38, 3], ["cargoPatches", 46, 3], ["cargoHash", 57, 3], ["postPatch", 60, 3], ["env", 65, 3], ["nativeBuildInputs", 99, 3], ["buildInputs", 108, 3], ["doCheck", 116, 3], ["installPhase", 118, 3], ["postFixup", 136, 3], ["doInstallCheck", 142, 3], ["nativeInstallCheckInputs", 143, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const stdenv = clangStdenv;
-  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv })), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: stdenv })), (finalAttrs) => ({
+      [nix.POS]: $pos[6],
       pname: "gopher64",
       version: "1.1.20",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "gopher64",
           repo: "gopher64",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,17 +51,17 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-rmt2b8lk/9ts8v33yguuSFcbFvUX00icg1onmhCbDTQ=",
       postPatch: "substituteInPlace .cargo/config.toml \\\n  --replace-fail 'rustflags = [\"-C\", \"link-arg=-fuse-ld=lld\"]' \"\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         SKIA_SOURCE_DIR: nix.thunk(() => (() => {
           const repo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               owner: "rust-skia",
               repo: "skia",
               tag: "m142-0.89.1",
               hash: "sha256-J7mBQ124/dODxX6MsuMW1NHizCMATAqdSzwxpP2afgk=",
             }))));
           const externals = nix.thunk(() => nix.app(linkFarm, "skia-externals", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 name: name,
                 path: nix.thunk(() => nix.app(fetchgit, value)),
               }), nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./skia-externals.json")))))));
@@ -107,7 +101,7 @@ runHook postInstall
       doInstallCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "N64 emulator",
         homepage: "https://loganmc10.itch.io/gopher64",
         downloadPage: "https://github.com/gopher64/gopher64/releases",

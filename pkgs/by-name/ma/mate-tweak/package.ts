@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["updateScript", 82, 12]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["teams", 90, 5]], [["pname", 21, 3], ["version", 22, 3], ["format", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 51, 3], ["strictDeps", 58, 3], ["dontWrapGApps", 60, 3], ["postPatch", 62, 3], ["preFixup", 72, 3], ["postFixup", 76, 3], ["passthru", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, intltool: false, "mate-applets": false, "mate-panel": false, marco: false, libmatekbd: false, "mate-session-manager": false, libnotify: false, gtk3: false, "gdk-pixbuf": false, "gobject-introspection": false, wrapGAppsHook3: false, glib: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 82, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["teams", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["format", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 51, 3], ["strictDeps", 58, 3], ["dontWrapGApps", 60, 3], ["postPatch", 62, 3], ["preFixup", 72, 3], ["postFixup", 76, 3], ["passthru", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "22.10.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubuntu-mate",
           repo: "mate-tweak",
           rev: version,
@@ -69,11 +66,11 @@ export default nix.lambda((args) => (() => {
       const preFixup = "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n";
       const postFixup = "for i in bin/.mate-tweak-wrapped lib/mate-tweak/mate-tweak-helper; do\n  sed -i \"s,usr,run/current-system/sw,g\" $out/$i\ndone\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tweak tool for the MATE Desktop",
         homepage: "https://github.com/ubuntu-mate/mate-tweak",
         changelog: nix.thunk(() => nix.str`https://github.com/ubuntu-mate/mate-tweak/releases/tag/${version}`),
@@ -82,7 +79,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "mate"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

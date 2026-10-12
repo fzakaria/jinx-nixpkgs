@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 19, 7], ["aarch64-linux", 20, 7]], [["x64-linux_hash", 26, 7], ["arm64-linux_hash", 27, 7], ["x64-osx_hash", 28, 7]], [["url", 38, 5], ["sha256", 39, 5]], [["smoke-test", 79, 11]], [["updateScript", 78, 5], ["tests", 79, 5]], [["description", 83, 5], ["homepage", 84, 5], ["sourceProvenance", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["mainProgram", 92, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["sourceRoot", 42, 3], ["unpackPhase", 44, 3], ["nativeBuildInputs", 51, 3], ["propagatedBuildInputs", 57, 3], ["installPhase", 63, 3], ["passthru", 77, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, autoPatchelfHook: false, fixDarwinDylibNames: false, zlib: false, krb5: false, openssl: false, icu: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 19, 7], ["aarch64-linux", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x64-linux_hash", 26, 7], ["arm64-linux_hash", 27, 7], ["x64-osx_hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 38, 5], ["sha256", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["smoke-test", 79, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 78, 5], ["tests", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["sourceProvenance", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["mainProgram", 92, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["sourceRoot", 42, 3], ["unpackPhase", 44, 3], ["nativeBuildInputs", 51, 3], ["propagatedBuildInputs", 57, 3], ["installPhase", 63, 3], ["passthru", 77, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,9 +19,9 @@ export default nix.lambda((args) => (() => {
   const icu = nix.arg($, "icu");
   const nixosTests = nix.arg($, "nixosTests");
   const os = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "osx" : "linux"));
-  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "x86_64-linux": "x64", "aarch64-linux": "arm64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
+  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "x86_64-linux": "x64", "aarch64-linux": "arm64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const hash = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x64-linux_hash": "sha256-5pnHuYjT+O/mlGC+arIofwlAwOWOzyYa4/jK+fstkHs=",
     "arm64-linux_hash": "sha256-yBZQuTNPIPCa2LqaRd9rFinJpPvJraAe4xo09mt8RD8=",
     "x64-osx_hash": "sha256-VZTFsjB08/plpwv0ErwHbyIiSBGxsXAz92X2AdACN1E=",
@@ -36,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ombi";
       const version = "4.47.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/Ombi-app/Ombi/releases/download/v${version}/${os}-${arch}.tar.gz`),
           sha256: hash,
         }))));
@@ -52,12 +46,15 @@ makeWrapper $out/share/${pname}-${version}/Ombi $out/bin/Ombi \\
   --chdir "$out/share/${pname}-${version}"
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, "smoke-test": nix.thunk(() => nix.sel(nixosTests, "ombi")) })),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[3],
+          "smoke-test": nix.thunk(() => nix.sel(nixosTests, "ombi")),
+        })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Self-hosted web application that automatically gives your shared Plex or Emby users the ability to request content by themselves",
         homepage: "https://ombi.io/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -73,7 +70,7 @@ makeWrapper $out/share/${pname}-${version}/Ombi $out/bin/Ombi \\
         mainProgram: "Ombi",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

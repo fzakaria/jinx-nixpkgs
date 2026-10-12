@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["license", 30, 24], ["homepage", 30, 32], ["description", 31, 5]], [["pname", 16, 3], ["version", 17, 17], ["paths", 19, 3], ["nativeBuildInputs", 21, 3], ["postBuild", 23, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { symlinkJoin: false, lib: false, makeWrapper: false, vdr: false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["license", 30, 24], ["homepage", 30, 32], ["description", 31, 5]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["pname", 16, 3], ["version", 17, 17], ["paths", 19, 3], ["nativeBuildInputs", 21, 3], ["postBuild", 23, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const makeXinePluginPath = (l) => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.builtins.map((p) => nix.str`${p}/lib/xine/plugins`, l)));
   const requiredXinePlugins = nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.map((p) => nix.selOr(p, () => [], "passthru", "requiredXinePlugins"), plugins))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "vdr-with-plugins",
       version: nix.thunk(() => nix.attr(vdr, "version")),
       paths: nix.thunk(() => nix.concat([vdr], plugins)),
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(vdr, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.attr(from, "license")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: nix.thunk(() => nix.add(nix.add(nix.add(nix.sel(vdr, "meta", "description"), " (with plugins: "), nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.builtins.map((x) => nix.add("", nix.sel(x, "name")), plugins)))), ")")),

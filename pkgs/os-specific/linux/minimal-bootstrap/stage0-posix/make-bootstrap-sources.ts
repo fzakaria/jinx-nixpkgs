@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-bootstrap-sources.nix", [[["hostPlatform", 22, 55]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["teams", 49, 5], ["platforms", 50, 5]], [["name", 26, 22], ["rev", 26, 27], ["owner", 27, 3], ["repo", 28, 3], ["sha256", 29, 3], ["fetchSubmodules", 30, 3], ["postFetch", 31, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, hostPlatform: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-bootstrap-sources.nix", [["hostPlatform", 22, 55]]);
-const pos$2 = nix.positions(here + "/make-bootstrap-sources.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["teams", 49, 5], ["platforms", 50, 5]]);
-const pos$3 = nix.positions(here + "/make-bootstrap-sources.nix", [["name", 26, 22], ["rev", 26, 27], ["owner", 27, 3], ["repo", 28, 3], ["sha256", 29, 3], ["fetchSubmodules", 30, 3], ["postFetch", 31, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const hostPlatform = nix.arg($, "hostPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
-  const expected = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bootstrap-sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, hostPlatform: hostPlatform }))));
+  const expected = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./bootstrap-sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], hostPlatform: hostPlatform }))));
   return nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.attr(expected, "name")),
       rev: nix.thunk(() => nix.attr(expected, "rev")),
       owner: "oriansj",
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
       postFetch: "# Seed binaries will be fetched separately\necho \"Removing seed binaries\"\nrm -rf $out/bootstrap-seeds/*\n\n# Remove vendored/duplicate M2libc's\necho \"Removing duplicate M2libc\"\nrm -rf \\\n  $out/M2-Mesoplanet/M2libc \\\n  $out/M2-Planet/M2libc \\\n  $out/mescc-tools/M2libc \\\n  $out/mescc-tools-extra/M2libc\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Packaged sources for the first bootstrapping stage",
         homepage: "https://github.com/oriansj/stage0-posix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

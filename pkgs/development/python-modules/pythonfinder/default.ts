@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["cli", 30, 5]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["optional-dependencies", 29, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, click: false, fetchFromGitHub: false, packaging: false, "pytest-cov-stub": false, "pytest-timeout": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cli", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["optional-dependencies", 29, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pythonfinder",
       version: "3.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sarugaku",
           repo: "pythonfinder",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [packaging]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [click]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], cli: nix.thunk(() => [click]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_cov_stub, pytest_timeout, pytestCheckHook], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["pythonfinder"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross platform search tool for finding Python",
         homepage: "https://github.com/sarugaku/pythonfinder",
         changelog: nix.thunk(() => nix.str`https://github.com/sarugaku/pythonfinder/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["updateScript", 86, 12]], [["name", 116, 7], ["desktopName", 117, 7], ["comment", 118, 7], ["exec", 119, 7], ["icon", 120, 7], ["categories", 121, 7]], [["description", 129, 5], ["homepage", 130, 5], ["license", 131, 5], ["maintainers", 132, 5], ["platforms", 133, 5], ["mainProgram", 134, 5], ["broken", 136, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["projectFile", 41, 3], ["nugetDeps", 42, 3], ["dotnet-sdk", 44, 3], ["dotnet-runtime", 45, 3], ["executables", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 56, 3], ["runtimeDeps", 71, 3], ["makeWrapperArgs", 81, 3], ["passthru", 86, 3], ["postInstall", 89, 3], ["postFixup", 105, 3], ["desktopItems", 114, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false, "nix-update-script": false, autoPatchelfHook: false, copyDesktopItems: false, makeDesktopItem: false, icoutils: false, aria2: false, ffmpeg: false, fontconfig: false, freetype: false, icu: false, krb5: false, openssl: false, zlib: false, "lttng-ust_2_12": false, libx11: false, libxcursor: false, libxext: false, libxi: false, libxrandr: false, libice: false, libsm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 86, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 116, 7], ["desktopName", 117, 7], ["comment", 118, 7], ["exec", 119, 7], ["icon", 120, 7], ["categories", 121, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 129, 5], ["homepage", 130, 5], ["license", 131, 5], ["maintainers", 132, 5], ["platforms", 133, 5], ["mainProgram", 134, 5], ["broken", 136, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["projectFile", 41, 3], ["nugetDeps", 42, 3], ["dotnet-sdk", 44, 3], ["dotnet-runtime", 45, 3], ["executables", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 56, 3], ["runtimeDeps", 71, 3], ["makeWrapperArgs", 81, 3], ["passthru", 86, 3], ["postInstall", 89, 3], ["postFixup", 105, 3], ["desktopItems", 114, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const libice = nix.arg($, "libice");
   const libsm = nix.arg($, "libsm");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "downkyicore",
       version: "1.0.32",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crazysmile-PhD",
           repo: "downkyicore",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +66,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/downkyicore`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postInstall: nix.thunk(() => nix.add(nix.str`mkdir -p $out/lib/downkyicore/{aria2,ffmpeg}
@@ -85,7 +81,7 @@ printf 'See https://ffmpeg.org/legal.html for FFmpeg licensing information.\\n' 
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "app=\"$out/Applications/DownKyi.app\"\nmkdir -p \"$app/Contents/MacOS\" \"$app/Contents/Resources\"\n\ncp $src/script/macos/Info.plist \"$app/Contents/Info.plist\"\nmakeWrapper \"$out/bin/DownKyi\" \"$app/Contents/MacOS/DownKyi\"\ncp $src/script/macos/logo.icns \"$app/Contents/Resources/logo.icns\"\n")),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "downkyicore",
               desktopName: "DownKyi",
               comment: "Cross-platform Bilibili downloader",
@@ -95,7 +91,7 @@ printf 'See https://ffmpeg.org/legal.html for FFmpeg licensing information.\\n' 
             })))),
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cross-platform Bilibili downloader built with Avalonia",
         homepage: "https://github.com/crazysmile-PhD/downkyicore",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

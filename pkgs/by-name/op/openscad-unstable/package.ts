@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 63, 5], ["repo", 64, 5], ["rev", 65, 5], ["hash", 66, 5], ["fetchSubmodules", 67, 5]], [["description", 181, 5], ["longDescription", 182, 5], ["homepage", 193, 5], ["license", 195, 5], ["platforms", 196, 5], ["maintainers", 197, 5], ["mainProgram", 202, 5]], [["pname", 59, 3], ["unstable_date", 60, 3], ["version", 61, 3], ["src", 62, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 81, 3], ["cmakeFlags", 118, 3], ["doCheck", 140, 3], ["postUnpack", 143, 3], ["postPatch", 150, 3], ["postInstall", 158, 3], ["nativeCheckInputs", 165, 3], ["dontUseNinjaCheck", 171, 3], ["disabledTests", 174, 3], ["meta", 180, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, clangStdenv: false, llvmPackages: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, bison: false, boost: false, cairo: false, catch2_3: false, cgal: false, clipper2: false, "double-conversion": false, eigen: false, flex: false, fontconfig: false, freetype: false, ghostscript: false, glib: false, glm: false, gmp: false, harfbuzz: false, hidapi: false, lib3mf: false, libGLU: false, libice: false, libsm: false, libsForQt5: false, libspnav: false, libzip: false, manifold: false, mesa: false, mpfr: false, python3: false, onetbb: false, wayland: false, "wayland-protocols": false, wrapGAppsHook3: false, libxdmcp: false, mimalloc: false, opencsg: false, ctestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 63, 5], ["repo", 64, 5], ["rev", 65, 5], ["hash", 66, 5], ["fetchSubmodules", 67, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 181, 5], ["longDescription", 182, 5], ["homepage", 193, 5], ["license", 195, 5], ["platforms", 196, 5], ["maintainers", 197, 5], ["mainProgram", 202, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 59, 3], ["unstable_date", 60, 3], ["version", 61, 3], ["src", 62, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 81, 3], ["cmakeFlags", 118, 3], ["doCheck", 140, 3], ["postUnpack", 143, 3], ["postPatch", 150, 3], ["postInstall", 158, 3], ["nativeCheckInputs", 165, 3], ["dontUseNinjaCheck", 171, 3], ["disabledTests", 174, 3], ["meta", 180, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
       const unstable_date = "2026-07-20";
       const version = nix.thunk(() => nix.str`2021.01-unstable-${unstable_date}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openscad",
           repo: "openscad",
           rev: "e4fdec49730103274a4e21c2390b9a12882f01aa",
@@ -143,7 +141,7 @@ export default nix.lambda((args) => (() => {
         "export-svg-fill-only_spec-paths-arcs01",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "3D parametric model compiler (unstable)",
         longDescription: "OpenSCAD is a software for creating solid 3D CAD objects. It is free\nsoftware and available for Linux/UNIX, MS Windows and macOS.\n\nUnlike most free software for creating 3D models (such as the famous\napplication Blender) it does not focus on the artistic aspects of 3D\nmodelling but instead on the CAD aspects. Thus it might be the\napplication you are looking for when you are planning to create 3D models of\nmachine parts but pretty sure is not what you are looking for when you are more\ninterested in creating computer-animated movies.\n",
         homepage: "https://openscad.org/",
@@ -160,7 +158,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "openscad",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         unstable_date,
         version,

@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 45, 7], ["homepage", 46, 7], ["license", 47, 7], ["maintainers", 48, 7], ["platforms", 49, 7]], [["pname", 25, 5], ["version", 26, 5], ["nativeBuildInputs", 27, 5], ["buildInputs", 28, 5], ["src", 34, 5], ["dontBuild", 35, 5], ["installPhase", 36, 5], ["postFixup", 41, 5], ["meta", 44, 5]], [["updateScript", 80, 14]], [["description", 83, 7], ["longDescription", 84, 7], ["homepage", 90, 7], ["downloadPage", 91, 7], ["mainProgram", 92, 7], ["license", 93, 7], ["maintainers", 94, 7], ["platforms", 95, 7]], [["pname", 54, 5], ["version", 55, 5], ["srcs", 56, 5], ["nativeBuildInputs", 57, 5], ["buildInputs", 61, 5], ["installPhase", 69, 5], ["passthru", 80, 5], ["meta", 82, 5]], [["description", 126, 7], ["homepage", 127, 7], ["license", 128, 7], ["maintainers", 129, 7], ["platforms", 130, 7], ["mainProgram", 131, 7]], [["pname", 100, 5], ["version", 101, 5], ["nativeBuildInputs", 102, 5], ["buildInputs", 106, 5], ["src", 108, 5], ["dontUnpack", 109, 5], ["dontBuild", 110, 5], ["installPhase", 111, 5], ["meta", 125, 5]], [["owner", 139, 7], ["repo", 140, 7], ["rev", 141, 7], ["sha256", 142, 7]], [["description", 163, 7], ["longDescription", 164, 7], ["homepage", 171, 7], ["mainProgram", 172, 7], ["license", 173, 7], ["maintainers", 174, 7], ["platforms", 175, 7], ["sourceProvenance", 176, 7]], [["pname", 136, 5], ["version", 137, 5], ["src", 138, 5], ["nativeBuildInputs", 145, 5], ["buildInputs", 146, 5], ["dontBuild", 150, 5], ["installPhase", 151, 5], ["meta", 162, 5]], [["replay-recordreplay", 24, 3], ["replay-io", 53, 3], ["replay-node", 99, 3], ["replay-node-cli", 135, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchFromGitHub: false, autoPatchelfHook: false, makeWrapper: false, libcxx: false, libx11: false, libxt: false, libxdamage: false, glib: false, gtk3: false, "dbus-glib": false, openssl: false, nodejs: false, zlib: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 45, 7], ["homepage", 46, 7], ["license", 47, 7], ["maintainers", 48, 7], ["platforms", 49, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 25, 5], ["version", 26, 5], ["nativeBuildInputs", 27, 5], ["buildInputs", 28, 5], ["src", 34, 5], ["dontBuild", 35, 5], ["installPhase", 36, 5], ["postFixup", 41, 5], ["meta", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 80, 14]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 83, 7], ["longDescription", 84, 7], ["homepage", 90, 7], ["downloadPage", 91, 7], ["mainProgram", 92, 7], ["license", 93, 7], ["maintainers", 94, 7], ["platforms", 95, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 54, 5], ["version", 55, 5], ["srcs", 56, 5], ["nativeBuildInputs", 57, 5], ["buildInputs", 61, 5], ["installPhase", 69, 5], ["passthru", 80, 5], ["meta", 82, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 126, 7], ["homepage", 127, 7], ["license", 128, 7], ["maintainers", 129, 7], ["platforms", 130, 7], ["mainProgram", 131, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 100, 5], ["version", 101, 5], ["nativeBuildInputs", 102, 5], ["buildInputs", 106, 5], ["src", 108, 5], ["dontUnpack", 109, 5], ["dontBuild", 110, 5], ["installPhase", 111, 5], ["meta", 125, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["owner", 139, 7], ["repo", 140, 7], ["rev", 141, 7], ["sha256", 142, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 163, 7], ["longDescription", 164, 7], ["homepage", 171, 7], ["mainProgram", 172, 7], ["license", 173, 7], ["maintainers", 174, 7], ["platforms", 175, 7], ["sourceProvenance", 176, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 136, 5], ["version", 137, 5], ["src", 138, 5], ["nativeBuildInputs", 145, 5], ["buildInputs", 146, 5], ["dontBuild", 150, 5], ["installPhase", 151, 5], ["meta", 162, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["replay-recordreplay", 24, 3], ["replay-io", 53, 3], ["replay-node", 99, 3], ["replay-node-cli", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const metadata = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./meta.json")));
   return (() => {
     const replay_recordreplay = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "replay-recordreplay",
         version: nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.builtins.match(".*/linux-recordreplay-(.*).tgz", nix.thunk(() => nix.sel(metadata, "recordreplay", "url")))))),
         nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
@@ -52,7 +42,7 @@ export default nix.lambda((args) => (() => {
         postFixup: nix.thunk(() => nix.str`patchelf --set-rpath "$(patchelf --print-rpath $out):${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [openssl]))}" $out
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           description: "RecordReplay internal recording library",
           homepage: "https://www.replay.io/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -64,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })),
       }))));
     const replay_io = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "replay-io",
         version: nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.builtins.match(".*/linux-gecko-(.*).tar.bz2", nix.thunk(() => nix.sel(metadata, "replay", "url")))))),
         srcs: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(metadata, "replay")))),
@@ -79,9 +69,9 @@ makeWrapper $out/opt/replay-io/replay \\
   --set "RECORD_REPLAY_DRIVER" "${replay_recordreplay}"
 runHook postInstall
 `),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Time Travel Debugger for Web Development",
           longDescription: "Replay allows you to record and replay web applications with familiar browser dev tools.\nYou can access the browser DevTools at any point of the recording, adding new logger\nstatements and inspecting the status of the DOM, variables and the current call stack.\nYour recordings can be shared with other users for collaborative debugging.\n",
           homepage: "https://www.replay.io/",
@@ -96,7 +86,7 @@ runHook postInstall
         })),
       }))));
     const replay_node = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "replay-node",
         version: nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.builtins.match(".*/linux-node-(.*)", nix.thunk(() => nix.sel(metadata, "replay-node", "url")))))),
         nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, makeWrapper]),
@@ -119,7 +109,7 @@ ln -s $out/opt/replay-node/node $out/bin/replay-node
 runHook postInstall
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: "Event-driven I/O framework for the V8 JavaScript engine, patched for replay",
           homepage: "https://github.com/RecordReplay/node",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -132,11 +122,11 @@ runHook postInstall
         })),
       }))));
     const replay_node_cli = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname: "replay-node-cli",
         version: nix.thunk(() => nix.add("0.1.7-", nix.builtins.head(nix.thunk(() => nix.builtins.match(".*/linux-node-(.*)", nix.thunk(() => nix.sel(metadata, "replay-node", "url"))))))),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             owner: "replayio",
             repo: "replay-node-cli",
             rev: "5269c8b8e7c5c7a9618a68f883d19c11a68be837",
@@ -158,7 +148,7 @@ makeWrapper $out/opt/replay-node-cli/bin/replay-node \\
 runHook postInstall
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           description: "Time Travel Debugger for Web Development - Node Command Line",
           longDescription: "The Replay Node Command Line allows you to record node applications and debug them\nwith familiar browser dev tools.\nYou can access the browser DevTools at any point of the recording, adding new logger\nstatements and inspecting the status of variables and the current call stack.\nYour recordings can be shared with other users for collaborative debugging.\n",
           homepage: "https://www.replay.io/",
@@ -173,7 +163,7 @@ runHook postInstall
         })),
       }))));
     return {
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       "replay-recordreplay": replay_recordreplay,
       "replay-io": replay_io,
       "replay-node": replay_node,

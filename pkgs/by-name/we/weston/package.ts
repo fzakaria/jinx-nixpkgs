@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 59, 5], ["owner", 60, 5], ["repo", 61, 5], ["rev", 62, 5], ["hash", 63, 5]], [["providedSessions", 136, 5], ["updateScript", 137, 5]], [["description", 141, 5], ["longDescription", 142, 5], ["homepage", 152, 5], ["license", 153, 5], ["platforms", 154, 5], ["mainProgram", 155, 5], ["maintainers", 156, 5]], [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["depsBuildBuild", 66, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 76, 3], ["mesonFlags", 115, 3], ["passthru", 135, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, python3: false, "wayland-scanner": false, cairo: false, libGL: false, "libdisplay-info_0_3": false, libdrm: false, libevdev: false, libinput: false, libxkbcommon: false, libgbm: false, seatd: false, wayland: false, "wayland-protocols": false, "libxcb-cursor": false, glslang: false, demoSupport: true, jpegSupport: true, libjpeg: false, lcmsSupport: true, lcms2: false, luaSupport: true, lua5_4_compat: false, pangoSupport: true, pango: false, pipewireSupport: true, pipewire: false, rdpSupport: true, freerdp: false, remotingSupport: true, gst_all_1: false, vncSupport: true, aml: false, neatvnc: false, pam: false, vulkanSupport: true, "vulkan-headers": false, "vulkan-loader": false, webpSupport: true, libwebp: false, xwaylandSupport: true, libxcursor: false, xwayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 59, 5], ["owner", 60, 5], ["repo", 61, 5], ["rev", 62, 5], ["hash", 63, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["providedSessions", 136, 5], ["updateScript", 137, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 141, 5], ["longDescription", 142, 5], ["homepage", 152, 5], ["license", 153, 5], ["platforms", 154, 5], ["mainProgram", 155, 5], ["maintainers", 156, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["depsBuildBuild", 66, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 76, 3], ["mesonFlags", 115, 3], ["passthru", 135, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,11 +57,11 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const xwayland = nix.arg($, "xwayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "weston",
       version: "16.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "wayland",
           repo: "weston",
@@ -108,12 +105,12 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "xwayland-path", nix.thunk(() => nix.app(nix.sel(lib, "getExe"), xwayland)))),
         ])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         providedSessions: nix.thunk(() => ["weston"]),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight and functional Wayland compositor",
         longDescription: "Weston is the reference implementation of a Wayland compositor, as well\nas a useful environment in and of itself.\nOut of the box, Weston provides a very basic desktop, or a full-featured\nenvironment for non-desktop uses such as automotive, embedded, in-flight,\nindustrial, kiosks, set-top boxes and TVs. It also provides a library\nallowing other projects to build their own full-featured environments on\ntop of Weston's core. A small suite of example or demo clients are also\nprovided.\n",
         homepage: "https://gitlab.freedesktop.org/wayland/weston",

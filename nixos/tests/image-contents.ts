@@ -2,79 +2,65 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/image-contents.nix", [[["system", 6, 33], ["config", 6, 40]], [["system", 9, 49], ["pkgs", 9, 56]], [["makeTest", 12, 38], ["pkgs", 12, 47]], [["device", 23, 13], ["fsType", 24, 13]], [["/", 22, 23]], [["device", 26, 28]], [["grub", 26, 23], ["timeout", 27, 23]], [["loader", 26, 16]], [["pkgs", 28, 19]], [["fileSystems", 22, 11], ["boot", 26, 11], ["nixpkgs", 28, 11]], [["system", 17, 7], ["modules", 18, 7]], [["source", 39, 11], ["target", 40, 11], ["user", 41, 11], ["group", 42, 11], ["mode", 43, 11]], [["source", 46, 11], ["target", 47, 11]], [["pkgs", 34, 15], ["config", 34, 20], ["lib", 35, 7], ["format", 36, 7], ["contents", 37, 7]], [["name", 55, 3], ["image", 56, 11], ["script", 57, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/image-contents.nix", [["system", 6, 33], ["config", 6, 40]]);
-const pos$2 = nix.positions(here + "/image-contents.nix", [["system", 9, 49], ["pkgs", 9, 56]]);
-const pos$3 = nix.positions(here + "/image-contents.nix", [["makeTest", 12, 38], ["pkgs", 12, 47]]);
-const pos$4 = nix.positions(here + "/image-contents.nix", [["device", 23, 13], ["fsType", 24, 13]]);
-const pos$5 = nix.positions(here + "/image-contents.nix", [["/", 22, 23]]);
-const pos$6 = nix.positions(here + "/image-contents.nix", [["device", 26, 28]]);
-const pos$7 = nix.positions(here + "/image-contents.nix", [["grub", 26, 23], ["timeout", 27, 23]]);
-const pos$8 = nix.positions(here + "/image-contents.nix", [["loader", 26, 16]]);
-const pos$9 = nix.positions(here + "/image-contents.nix", [["pkgs", 28, 19]]);
-const pos$10 = nix.positions(here + "/image-contents.nix", [["fileSystems", 22, 11], ["boot", 26, 11], ["nixpkgs", 28, 11]]);
-const pos$11 = nix.positions(here + "/image-contents.nix", [["system", 17, 7], ["modules", 18, 7]]);
-const pos$12 = nix.positions(here + "/image-contents.nix", [["source", 39, 11], ["target", 40, 11], ["user", 41, 11], ["group", 42, 11], ["mode", 43, 11]]);
-const pos$13 = nix.positions(here + "/image-contents.nix", [["source", 46, 11], ["target", 47, 11]]);
-const pos$14 = nix.positions(here + "/image-contents.nix", [["pkgs", 34, 15], ["config", 34, 20], ["lib", 35, 7], ["format", 36, 7], ["contents", 37, 7]]);
-const pos$15 = nix.positions(here + "/image-contents.nix", [["name", 55, 3], ["image", 56, 11], ["script", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "common/ec2.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       makeTest: nix.thunk(() => nix.lookup(w_1, "makeTest")),
       pkgs: pkgs,
     })))), w_1);
   const config_1 = nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "../lib/eval-config.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       system: null,
       modules: nix.thunk(() => [
         nix.path(here, "../modules/testing/test-instrumentation.nix"),
         nix.path(here, "../modules/profiles/qemu-guest.nix"),
         nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           fileSystems: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            "/": nix.thunk(() => ({ [nix.POS]: pos$4, device: "/dev/disk/by-label/nixos", fsType: "ext4" })),
+            [nix.POS]: $pos[4],
+            "/": nix.thunk(() => ({ [nix.POS]: $pos[3], device: "/dev/disk/by-label/nixos", fsType: "ext4" })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              grub: nix.thunk(() => ({ [nix.POS]: pos$6, device: "/dev/vda" })),
+              [nix.POS]: $pos[6],
+              grub: nix.thunk(() => ({ [nix.POS]: $pos[5], device: "/dev/vda" })),
               timeout: 0n,
             })),
           })),
-          nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$9, pkgs: pkgs })),
+          nixpkgs: nix.thunk(() => ({ [nix.POS]: $pos[8], pkgs: pkgs })),
         })),
       ]),
     }))), "config"));
   const image = nix.thunk(() => nix.add(nix.app(nix.builtins.import, nix.path(here, "../lib/make-disk-image.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pkgs: pkgs,
       config: config_1,
       lib: nix.thunk(() => nix.sel(pkgs, "lib")),
       format: "qcow2",
       contents: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "testFile", "contents")),
           target: "/testFile",
           user: "1234",
           group: "5678",
           mode: "755",
         })),
-        nix.thunk(() => ({ [nix.POS]: pos$13, source: nix.path(here, "./."), target: "/testDir" })),
+        nix.thunk(() => ({ [nix.POS]: $pos[12], source: nix.path(here, "./."), target: "/testDir" })),
       ]),
     }))), "/nixos.qcow2"));
   return nix.app(nix.lookup(w_2, "makeEc2Test"), nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       name: "image-contents",
       image: image,
       script: "machine.start()\n# Test that if contents includes a file, it is copied to the target.\nassert \"content\" in machine.succeed(\"cat /testFile\")\nfileDetails = machine.succeed(\"ls -l /testFile\")\nassert \"1234\" in fileDetails\nassert \"5678\" in fileDetails\nassert \"rwxr-xr-x\" in fileDetails\n\n# Test that if contents includes a directory, it is copied to the target.\ndirList = machine.succeed(\"ls /testDir\")\nassert \"image-contents.nix\" in dirList\n",

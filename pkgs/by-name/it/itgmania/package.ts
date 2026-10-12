@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["unwrapped", 22, 12]], [["pname", 11, 23], ["version", 11, 29], ["meta", 11, 37], ["paths", 13, 3], ["nativeBuildInputs", 15, 3], ["postBuild", 17, 3], ["passthru", 22, 3]]]);
 const formals$1 = { args: { symlinkJoin: false, makeWrapper: false, itgmaniaPackages: false, extraPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["unwrapped", 22, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 11, 23], ["version", 11, 29], ["meta", 11, 37], ["paths", 13, 3], ["nativeBuildInputs", 15, 3], ["postBuild", 17, 3], ["passthru", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const extraPackages = nix.argOr($, "extraPackages", () => []);
   const unwrapped = nix.thunk(() => nix.sel(itgmaniaPackages, "itgmania-unwrapped"));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(unwrapped, "pname")),
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(unwrapped, "meta")),
       paths: nix.thunk(() => nix.concat([unwrapped], extraPackages)),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postBuild: "makeWrapper $out/itgmania/itgmania $out/bin/itgmania \\\n  --chdir $out/itgmania\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, unwrapped: unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], unwrapped: unwrapped })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

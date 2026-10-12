@@ -2,40 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/installation-device.nix", [[["variant_id", 28, 18]], [["nixos", 28, 12], ["extraDependencies", 106, 12]], [["enable", 34, 25]], [["enable", 31, 19], ["nixos", 34, 19]], [["isNormalUser", 38, 7], ["extraGroups", 39, 7], ["initialHashedPassword", 45, 7]], [["initialHashedPassword", 49, 22]], [["nixos", 37, 17], ["root", 49, 17]], [["users", 37, 11]], [["enable", 52, 21]], [["enable", 56, 7], ["wheelNeedsPassword", 57, 7]], [["polkit", 52, 14], ["sudo", 55, 14]], [["autologinUser", 61, 20], ["helpLine", 64, 20]], [["PermitRootLogin", 86, 16]], [["enable", 85, 7], ["settings", 86, 7]], [["getty", 61, 14], ["openssh", 84, 14]], [["enable", 90, 31]], [["logRefusedConnections", 123, 25]], [["networkmanager", 90, 16], ["firewall", 123, 16]], [["GC_INITIAL_HEAP_SIZE", 95, 27]], [["text", 128, 43]], [["systemd/pstore.conf", 128, 21]], [["variables", 95, 17], ["etc", 128, 17]], [["vm.overcommit_memory", 102, 24]], [["sysctl", 102, 17]], [["enable", 116, 17], ["mdadmConf", 118, 17]], [["kernel", 102, 10], ["swraid", 116, 10]], [["trusted-users", 134, 18]], [["settings", 134, 9]], [["languages", 141, 11]], [["mbrola-voices", 139, 9]], [["overlays", 137, 13]], [["system", 28, 5], ["documentation", 31, 5], ["users", 37, 5], ["security", 52, 5], ["services", 61, 5], ["networking", 90, 5], ["environment", 95, 5], ["boot", 102, 5], ["nix", 134, 5], ["nixpkgs", 137, 5]], [["imports", 12, 3], ["config", 27, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/installation-device.nix", [["variant_id", 28, 18]]);
-const pos$2 = nix.positions(here + "/installation-device.nix", [["nixos", 28, 12], ["extraDependencies", 106, 12]]);
-const pos$3 = nix.positions(here + "/installation-device.nix", [["enable", 34, 25]]);
-const pos$4 = nix.positions(here + "/installation-device.nix", [["enable", 31, 19], ["nixos", 34, 19]]);
-const pos$5 = nix.positions(here + "/installation-device.nix", [["isNormalUser", 38, 7], ["extraGroups", 39, 7], ["initialHashedPassword", 45, 7]]);
-const pos$6 = nix.positions(here + "/installation-device.nix", [["initialHashedPassword", 49, 22]]);
-const pos$7 = nix.positions(here + "/installation-device.nix", [["nixos", 37, 17], ["root", 49, 17]]);
-const pos$8 = nix.positions(here + "/installation-device.nix", [["users", 37, 11]]);
-const pos$9 = nix.positions(here + "/installation-device.nix", [["enable", 52, 21]]);
-const pos$10 = nix.positions(here + "/installation-device.nix", [["enable", 56, 7], ["wheelNeedsPassword", 57, 7]]);
-const pos$11 = nix.positions(here + "/installation-device.nix", [["polkit", 52, 14], ["sudo", 55, 14]]);
-const pos$12 = nix.positions(here + "/installation-device.nix", [["autologinUser", 61, 20], ["helpLine", 64, 20]]);
-const pos$13 = nix.positions(here + "/installation-device.nix", [["PermitRootLogin", 86, 16]]);
-const pos$14 = nix.positions(here + "/installation-device.nix", [["enable", 85, 7], ["settings", 86, 7]]);
-const pos$15 = nix.positions(here + "/installation-device.nix", [["getty", 61, 14], ["openssh", 84, 14]]);
-const pos$16 = nix.positions(here + "/installation-device.nix", [["enable", 90, 31]]);
-const pos$17 = nix.positions(here + "/installation-device.nix", [["logRefusedConnections", 123, 25]]);
-const pos$18 = nix.positions(here + "/installation-device.nix", [["networkmanager", 90, 16], ["firewall", 123, 16]]);
-const pos$19 = nix.positions(here + "/installation-device.nix", [["GC_INITIAL_HEAP_SIZE", 95, 27]]);
-const pos$20 = nix.positions(here + "/installation-device.nix", [["text", 128, 43]]);
-const pos$21 = nix.positions(here + "/installation-device.nix", [["systemd/pstore.conf", 128, 21]]);
-const pos$22 = nix.positions(here + "/installation-device.nix", [["variables", 95, 17], ["etc", 128, 17]]);
-const pos$23 = nix.positions(here + "/installation-device.nix", [["vm.overcommit_memory", 102, 24]]);
-const pos$24 = nix.positions(here + "/installation-device.nix", [["sysctl", 102, 17]]);
-const pos$25 = nix.positions(here + "/installation-device.nix", [["enable", 116, 17], ["mdadmConf", 118, 17]]);
-const pos$26 = nix.positions(here + "/installation-device.nix", [["kernel", 102, 10], ["swraid", 116, 10]]);
-const pos$27 = nix.positions(here + "/installation-device.nix", [["trusted-users", 134, 18]]);
-const pos$28 = nix.positions(here + "/installation-device.nix", [["settings", 134, 9]]);
-const pos$29 = nix.positions(here + "/installation-device.nix", [["languages", 141, 11]]);
-const pos$30 = nix.positions(here + "/installation-device.nix", [["mbrola-voices", 139, 9]]);
-const pos$31 = nix.positions(here + "/installation-device.nix", [["overlays", 137, 13]]);
-const pos$32 = nix.positions(here + "/installation-device.nix", [["system", 28, 5], ["documentation", 31, 5], ["users", 37, 5], ["security", 52, 5], ["services", 61, 5], ["networking", 90, 5], ["environment", 95, 5], ["boot", 102, 5], ["nix", 134, 5], ["nixpkgs", 137, 5]]);
-const pos$33 = nix.positions(here + "/installation-device.nix", [["imports", 12, 3], ["config", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const w = nix.withScope(lib, null);
   return {
-    [nix.POS]: pos$33,
+    [nix.POS]: $pos[32],
     imports: nix.thunk(() => [
       nix.path(here, "../installer/scan/detected.nix"),
       nix.path(here, "../installer/scan/not-detected.nix"),
@@ -52,11 +20,11 @@ export default nix.lambda((args) => (() => {
       nix.path(here, "../installer/cd-dvd/channel.nix"),
     ]),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       system: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         nixos: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           variant_id: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "installer")),
         })),
         extraDependencies: nix.thunk(() => (() => {
@@ -69,89 +37,89 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       documentation: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         enable: nix.thunk(() => nix.app(nix.lookup(w, "mkImageMediaOverride"), true)),
         nixos: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkImageMediaOverride"), true)),
         })),
       })),
       users: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         users: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           nixos: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             isNormalUser: true,
             extraGroups: nix.thunk(() => ["wheel", "networkmanager", "video"]),
             initialHashedPassword: "",
           })),
-          root: nix.thunk(() => ({ [nix.POS]: pos$6, initialHashedPassword: "" })),
+          root: nix.thunk(() => ({ [nix.POS]: $pos[5], initialHashedPassword: "" })),
         })),
       })),
       security: nix.thunk(() => ({
-        [nix.POS]: pos$11,
-        polkit: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+        [nix.POS]: $pos[10],
+        polkit: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
         sudo: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
           wheelNeedsPassword: nix.thunk(() => nix.app(nix.lookup(w, "mkImageMediaOverride"), false)),
         })),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         getty: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           autologinUser: "nixos",
           helpLine: nix.thunk(() => nix.add("The \"nixos\" and \"root\" accounts have empty passwords.\n\nTo log in over ssh you must set a password for either \"nixos\" or \"root\"\nwith `passwd` (prefix with `sudo` for \"root\"), or add your public key to\n/home/nixos/.ssh/authorized_keys or /root/.ssh/authorized_keys.\n\nTo set up a wireless connection, run `nmtui`.\n", nix.app(nix.lookup(w, "optionalString"), nix.thunk(() => nix.sel(config, "services", "xserver", "enable")), "\nType `sudo systemctl start display-manager' to\nstart the graphical user interface.\n"))),
         })),
         openssh: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             PermitRootLogin: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), "yes")),
           })),
         })),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$18,
-        networkmanager: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true })),
+        [nix.POS]: $pos[17],
+        networkmanager: nix.thunk(() => ({ [nix.POS]: $pos[15], enable: true })),
         firewall: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           logRefusedConnections: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), false)),
         })),
       })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$22,
-        variables: nix.thunk(() => ({ [nix.POS]: pos$19, GC_INITIAL_HEAP_SIZE: "1M" })),
+        [nix.POS]: $pos[21],
+        variables: nix.thunk(() => ({ [nix.POS]: $pos[18], GC_INITIAL_HEAP_SIZE: "1M" })),
         etc: nix.thunk(() => ({
-          [nix.POS]: pos$21,
-          "systemd/pstore.conf": nix.thunk(() => ({ [nix.POS]: pos$20, text: "[PStore]\nUnlink=no\n" })),
+          [nix.POS]: $pos[20],
+          "systemd/pstore.conf": nix.thunk(() => ({ [nix.POS]: $pos[19], text: "[PStore]\nUnlink=no\n" })),
         })),
       })),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         kernel: nix.thunk(() => ({
-          [nix.POS]: pos$24,
-          sysctl: nix.thunk(() => ({ [nix.POS]: pos$23, "vm.overcommit_memory": "1" })),
+          [nix.POS]: $pos[23],
+          sysctl: nix.thunk(() => ({ [nix.POS]: $pos[22], "vm.overcommit_memory": "1" })),
         })),
         swraid: nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           enable: true,
           mdadmConf: nix.thunk(() => nix.str`PROGRAM ${nix.sel(pkgs, "coreutils")}/bin/true`),
         })),
       })),
       nix: nix.thunk(() => ({
-        [nix.POS]: pos$28,
-        settings: nix.thunk(() => ({ [nix.POS]: pos$27, "trusted-users": nix.thunk(() => ["nixos"]) })),
+        [nix.POS]: $pos[27],
+        settings: nix.thunk(() => ({ [nix.POS]: $pos[26], "trusted-users": nix.thunk(() => ["nixos"]) })),
       })),
       nixpkgs: nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         overlays: nix.thunk(() => [
           (_) => (prev) => ({
-            [nix.POS]: pos$30,
-            "mbrola-voices": nix.thunk(() => nix.app(nix.sel(prev, "mbrola-voices", "override"), nix.thunk(() => ({ [nix.POS]: pos$29, languages: nix.thunk(() => ["*1"]) })))),
+            [nix.POS]: $pos[29],
+            "mbrola-voices": nix.thunk(() => nix.app(nix.sel(prev, "mbrola-voices", "override"), nix.thunk(() => ({ [nix.POS]: $pos[28], languages: nix.thunk(() => ["*1"]) })))),
           }),
         ]),
       })),

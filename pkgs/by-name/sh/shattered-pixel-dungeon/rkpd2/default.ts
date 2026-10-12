@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["homepage", 20, 5], ["downloadPage", 21, 5], ["description", 22, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["desktopName", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 20, 5], ["downloadPage", 21, 5], ["description", 22, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["desktopName", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rkpd2";
       const version = "2.0.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Zrp200",
           repo: "rkpd2",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const desktopName = "Rat King Pixel Dungeon 2";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/Zrp200/rkpd2",
         downloadPage: "https://github.com/Zrp200/rkpd2/releases",
         description: "Fork of popular roguelike game Shattered Pixel Dungeon that drastically buffs heroes and thus makes the game significantly easier",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, desktopName, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, desktopName, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

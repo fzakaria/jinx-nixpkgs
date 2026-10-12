@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 20, 5], ["nativeBuildInputs", 22, 5], ["buildCommand", 24, 5]], [["NIX_CFLAGS_COMPILE", 90, 7]], [["description", 99, 5], ["mainProgram", 100, 5]], [["releaseName", 71, 3], ["postPatch", 73, 3], ["configureFlags", 80, 3], ["preConfigure", 86, 3], ["env", 90, 3], ["nativeBuildInputs", 92, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, bison: false, bluez: false, flex: false, mkAppleDerivation: false, sourceRelease: false, stdenv: false, stdenvNoCC: false, unifdef: false, withBluez: true, withRemote: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 20, 5], ["nativeBuildInputs", 22, 5], ["buildCommand", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 90, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 99, 5], ["mainProgram", 100, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["releaseName", 71, 3], ["postPatch", 73, 3], ["configureFlags", 80, 3], ["preConfigure", 86, 3], ["env", 90, 3], ["nativeBuildInputs", 92, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const withRemote = nix.argOr($, "withRemote", () => false);
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "libpcap-deps-private-headers",
       nativeBuildInputs: nix.thunk(() => [unifdef]),
       buildCommand: nix.thunk(() => nix.str`mkdir -p "$out/include/net"
@@ -71,7 +68,7 @@ EOF
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       releaseName: "libpcap",
       postPatch: "substituteInPlace libpcap/Makefile.in \\\n  --replace-fail '@PLATFORM_C_SRC@' '@PLATFORM_C_SRC@ pcap-darwin.c pcap-util.c pcapng.c'\nsubstituteInPlace libpcap/pcap/pcap.h \\\n  --replace-fail '#if PRIVATE' '#if 1'\n",
       configureFlags: nix.thunk(() => nix.concat([
@@ -80,12 +77,12 @@ EOF
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), false, "universal"))])))),
       preConfigure: "cd libpcap\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-DHAVE_PKTAP_API -I${privateHeaders}/include`),
       })),
       nativeBuildInputs: nix.thunk(() => nix.concat([bison, flex], nix.app(nix.sel(lib, "optionals"), withBluez, nix.thunk(() => [nix.thunk(() => nix.sel(bluez, "dev"))])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Packet Capture Library (with Apple modifications)",
         mainProgram: "pcap-config",
       })),

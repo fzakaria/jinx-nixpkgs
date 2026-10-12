@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["platforms", 27, 5], ["mainProgram", 28, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromBitbucket: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["platforms", 27, 5], ["mainProgram", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromBitbucket = nix.arg($, "fetchFromBitbucket");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "u9fs",
       version: "unstable-2021-01-25",
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "plan9-from-bell-labs",
           repo: "u9fs",
           rev: "d65923fd17e8b158350d3ccd6a4e32b89b15014a",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "install -Dm644 u9fs.man \"$out/share/man/man4/u9fs.4\"\ninstall -Dm755 u9fs -t \"$out/bin\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Serve 9P from Unix",
         homepage: "http://p9f.org/magic/man2html?man=u9fs&sect=4",
         license: nix.thunk(() => nix.sel(lib, "licenses", "dtoa")),

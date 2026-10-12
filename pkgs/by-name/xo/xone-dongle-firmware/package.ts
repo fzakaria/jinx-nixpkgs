@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 7], ["hash", 14, 7]], [["url", 17, 7], ["hash", 18, 7]], [["url", 21, 7], ["hash", 22, 7]], [["url", 25, 7], ["hash", 26, 7]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 61, 5], ["sourceProvenance", 62, 5]], [["pname", 8, 3], ["version", 9, 3], ["srcs", 11, 3], ["nativeBuildInputs", 30, 3], ["unpackPhase", 32, 3], ["installPhase", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false, cabextract: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 17, 7], ["hash", 18, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 61, 5], ["sourceProvenance", 62, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["srcs", 11, 3], ["nativeBuildInputs", 30, 3], ["unpackPhase", 32, 3], ["installPhase", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,27 +12,27 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cabextract = nix.arg($, "cabextract");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "xone-dongle-firmware",
       version: "0-unstable-2025-12-18",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://catalog.s.download.windowsupdate.com/d/msdownload/update/driver/drvs/2017/03/2ea9591b-f751-442c-80ce-8f4692cdc67b_6b555a3a288153cf04aec6e03cba360afe2fce34.cab",
             hash: "sha256-2Jpy6NwQt8TxbVyIf+f1TDTCIAWsHzYHBNXZRiJY7zI=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://catalog.s.download.windowsupdate.com/c/msdownload/update/driver/drvs/2017/07/1cd6a87c-623f-4407-a52d-c31be49e925c_e19f60808bdcbfbd3c3df6be3e71ffc52e43261e.cab",
             hash: "sha256-ZXNqhP9ANmRbj47GAr7ZGrY1MBnJyzIz3sq5/uwPbwQ=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://catalog.s.download.windowsupdate.com/c/msdownload/update/driver/drvs/2017/06/1dbd7cb4-53bc-4857-a5b0-5955c8acaf71_9081931e7d664429a93ffda0db41b7545b7ac257.cab",
             hash: "sha256-kN2R+2dGDTh0B/2BCcDn0PGPS2Wb4PYtuFihhJ6tLuA=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://catalog.s.download.windowsupdate.com/d/msdownload/update/driver/drvs/2017/08/aeff215c-3bc4-4d36-a3ea-e14bfa8fa9d2_e58550c4f74a27e51e5cb6868b10ff633fa77164.cab",
             hash: "sha256-Wo+62VIeWMxpeoc0cgykl2cwmAItYdkaiL5DMALM2PI=",
           })))),
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "srcs=($srcs)\n\ncabextract -F FW_ACC_00U.bin ${srcs[0]}\nmv FW_ACC_00U.bin xone_dongle_02e6.bin\n\ncabextract -F FW_ACC_00U.bin ${srcs[1]}\nmv FW_ACC_00U.bin xone_dongle_02fe.bin\n\ncabextract -F FW_ACC_CL.bin ${srcs[2]}\nmv FW_ACC_CL.bin xone_dongle_02f9.bin\n\ncabextract -F FW_ACC_BR.bin ${srcs[3]}\nmv FW_ACC_BR.bin xone_dongle_091e.bin\n",
       installPhase: "mkdir -p $out/lib/firmware/\ncp xone_dongle_*.bin $out/lib/firmware/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Xbox One wireless dongle firmware",
         homepage: "https://www.microsoft.com/en-us/d/xbox-wireless-adapter-for-windows/91dqrb97l130",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

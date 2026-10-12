@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["NIX_CFLAGS_COMPILE", 28, 7]], [["rev-prefix", 35, 40]], [["updateScript", 35, 12]], [["license", 38, 5], ["description", 39, 5], ["homepage", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 19, 3], ["enableParallelBuilding", 21, 3], ["preBuild", 23, 3], ["env", 28, 3], ["installPhase", 30, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 35, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 35, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["license", 38, 5], ["description", 39, 5], ["homepage", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 19, 3], ["enableParallelBuilding", 21, 3], ["preBuild", 23, 3], ["env", 28, 3], ["installPhase", 30, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ctrtool",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "3DSGuy",
           repo: "Project_CTR",
           rev: nix.thunk(() => nix.str`ctrtool-v${nix.sel(finalAttrs, "version")}`),
@@ -30,17 +25,17 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/ctrtool`),
       enableParallelBuilding: true,
       preBuild: "make -j $NIX_BUILD_CORES deps\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-O0" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-O0" })),
       installPhase: nix.thunk(() => nix.str`
     mkdir $out/bin -p
     cp bin/ctrtool${nix.sel(stdenv, "hostPlatform", "extensions", "executable")} $out/bin/
   `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "ctrtool-v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "ctrtool-v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Tool to extract data from a 3ds rom",
         homepage: "https://github.com/3DSGuy/Project_CTR",

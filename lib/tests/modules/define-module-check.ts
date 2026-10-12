@@ -2,11 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/define-module-check.nix", [["check", 2, 11]]);
-const pos$2 = nix.positions(here + "/define-module-check.nix", [["_module", 2, 3]]);
+const $pos = nix.positions(here + "/define-module-check.nix", [[["check", 2, 11]], [["_module", 2, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
-  _module: nix.thunk(() => ({ [nix.POS]: pos$1, check: false })),
+  [nix.POS]: $pos[1],
+  _module: nix.thunk(() => ({ [nix.POS]: $pos[0], check: false })),
 }));
 //# sourceMappingURL=define-module-check.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["changelog", 24, 5], ["description", 25, 5], ["longDescription", 26, 5], ["platforms", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["mainProgram", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { rustPlatform: false, lib: false, fetchzip: false, openssl: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 24, 5], ["description", 25, 5], ["longDescription", 26, 5], ["platforms", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["mainProgram", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pr-tracker",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.qyliss.net/pr-tracker/snapshot/pr-tracker-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-lAraMuhAvTV/PX0R/SSga3bebuK0lizcyEK7Qo3iUmc=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://git.qyliss.net/pr-tracker/plain/NEWS?h=${nix.sel(finalAttrs, "version")}`),
         description: "Nixpkgs pull request channel tracker",
         longDescription: "A web server that displays the path a Nixpkgs pull request will take\nthrough the various release channels.\n",

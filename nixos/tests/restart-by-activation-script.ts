@@ -2,102 +2,83 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/restart-by-activation-script.nix", [[["maintainers", 5, 5]], [["enable", 13, 21]], [["supportsDryActivation", 35, 9], ["text", 36, 9]], [["test", 34, 32]], [["switch", 13, 14], ["activationScripts", 34, 14]], [["Type", 18, 11], ["RemainAfterExit", 19, 11], ["ExecStart", 20, 11]], [["wantedBy", 16, 9], ["serviceConfig", 17, 9]], [["Type", 27, 11], ["RemainAfterExit", 28, 11], ["ExecStart", 29, 11], ["ExecReload", 30, 11]], [["wantedBy", 25, 9], ["serviceConfig", 26, 9]], [["restart-me", 15, 24], ["reload-me", 24, 24]], [["services", 15, 15]], [["supportsDryActivation", 53, 11], ["text", 54, 11]], [["long", 52, 34]], [["activationScripts", 52, 16]], [["system", 52, 9]], [["configuration", 51, 33]], [["longscript", 51, 22]], [["imports", 11, 7], ["system", 13, 7], ["systemd", 15, 7], ["specialisation", 51, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 59, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/restart-by-activation-script.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/restart-by-activation-script.nix", [["enable", 13, 21]]);
-const pos$3 = nix.positions(here + "/restart-by-activation-script.nix", [["supportsDryActivation", 35, 9], ["text", 36, 9]]);
-const pos$4 = nix.positions(here + "/restart-by-activation-script.nix", [["test", 34, 32]]);
-const pos$5 = nix.positions(here + "/restart-by-activation-script.nix", [["switch", 13, 14], ["activationScripts", 34, 14]]);
-const pos$6 = nix.positions(here + "/restart-by-activation-script.nix", [["Type", 18, 11], ["RemainAfterExit", 19, 11], ["ExecStart", 20, 11]]);
-const pos$7 = nix.positions(here + "/restart-by-activation-script.nix", [["wantedBy", 16, 9], ["serviceConfig", 17, 9]]);
-const pos$8 = nix.positions(here + "/restart-by-activation-script.nix", [["Type", 27, 11], ["RemainAfterExit", 28, 11], ["ExecStart", 29, 11], ["ExecReload", 30, 11]]);
-const pos$9 = nix.positions(here + "/restart-by-activation-script.nix", [["wantedBy", 25, 9], ["serviceConfig", 26, 9]]);
-const pos$10 = nix.positions(here + "/restart-by-activation-script.nix", [["restart-me", 15, 24], ["reload-me", 24, 24]]);
-const pos$11 = nix.positions(here + "/restart-by-activation-script.nix", [["services", 15, 15]]);
-const pos$12 = nix.positions(here + "/restart-by-activation-script.nix", [["supportsDryActivation", 53, 11], ["text", 54, 11]]);
-const pos$13 = nix.positions(here + "/restart-by-activation-script.nix", [["long", 52, 34]]);
-const pos$14 = nix.positions(here + "/restart-by-activation-script.nix", [["activationScripts", 52, 16]]);
-const pos$15 = nix.positions(here + "/restart-by-activation-script.nix", [["system", 52, 9]]);
-const pos$16 = nix.positions(here + "/restart-by-activation-script.nix", [["configuration", 51, 33]]);
-const pos$17 = nix.positions(here + "/restart-by-activation-script.nix", [["longscript", 51, 22]]);
-const pos$18 = nix.positions(here + "/restart-by-activation-script.nix", [["imports", 11, 7], ["system", 13, 7], ["systemd", 15, 7], ["specialisation", 51, 7]]);
-const pos$19 = nix.positions(here + "/restart-by-activation-script.nix", [["machine", 8, 9]]);
-const pos$20 = nix.positions(here + "/restart-by-activation-script.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "restart-by-activation-script",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "das_j"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
           system: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            switch: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[4],
+            switch: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             activationScripts: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               test: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 supportsDryActivation: true,
                 text: "if [ -e /test-the-activation-script ]; then\n  if [ \"$NIXOS_ACTION\" != dry-activate ]; then\n    touch /activation-was-run\n    echo restart-me.service > /run/nixos/activation-restart-list\n    echo reload-me.service > /run/nixos/activation-reload-list\n  else\n    echo restart-me.service > /run/nixos/dry-activation-restart-list\n    echo reload-me.service > /run/nixos/dry-activation-reload-list\n  fi\nfi\n",
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               "restart-me": nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   Type: "oneshot",
                   RemainAfterExit: true,
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`),
                 })),
               })),
               "reload-me": nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => (() => {
                   const Type = "oneshot";
                   const RemainAfterExit = true;
                   const ExecStart = nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/true`);
                   const ExecReload = ExecStart;
-                  return { [nix.POS]: pos$8, Type, RemainAfterExit, ExecStart, ExecReload };
+                  return { [nix.POS]: $pos[7], Type, RemainAfterExit, ExecStart, ExecReload };
                 })()),
               })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             longscript: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 system: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   activationScripts: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     long: nix.thunk(() => ({
-                      [nix.POS]: pos$12,
+                      [nix.POS]: $pos[11],
                       supportsDryActivation: true,
                       text: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "genList"), (i) => nix.str`# line number ${nix.builtins.toString(i)}`, 1000000n)))),
                     })),

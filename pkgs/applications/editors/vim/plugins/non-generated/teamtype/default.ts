@@ -2,8 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 7, 5], ["version", 8, 5], ["src", 9, 5], ["meta", 10, 5], ["sourceRoot", 13, 3]]]);
 const formals$1 = { args: { vimUtils: false, teamtype: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 7, 5], ["version", 8, 5], ["src", 9, 5], ["meta", 10, 5], ["sourceRoot", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => nix.attr(teamtype, "src"));
       const meta = nix.thunk(() => nix.attr(teamtype, "meta"));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/nvim-plugin`);
-      return { [nix.POS]: pos$1, pname, version, src, meta, sourceRoot };
+      return { [nix.POS]: $pos[0], pname, version, src, meta, sourceRoot };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

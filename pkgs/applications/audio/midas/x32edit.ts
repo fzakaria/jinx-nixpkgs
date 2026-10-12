@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/x32edit.nix", [[["brand", 6, 5], ["type", 7, 5], ["version", 8, 5], ["url", 9, 5], ["hash", 10, 5], ["homepage", 11, 5]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/x32edit.nix", [["brand", 6, 5], ["type", 7, 5], ["version", 8, 5], ["url", 9, 5], ["hash", 10, 5], ["homepage", 11, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const url = nix.thunk(() => nix.str`https://cdn-media.empowertribe.com/23b991ede2e6473d916c7ac56f53d71d/${type}-Edit_LINUX_${version}.tar.gz`);
       const hash = "sha256-HrSPDWnWF2s1U8Khj6VnLptPdcMVyTivewWAIIdArMc=";
       const homepage = "https://www.behringer.com/en/products/0603-ACE";
-      return { [nix.POS]: pos$1, brand, type, version, url, hash, homepage };
+      return { [nix.POS]: $pos[0], brand, type, version, url, hash, homepage };
     })())));
 })(), formals$1);
 //# sourceMappingURL=x32edit.ts.map

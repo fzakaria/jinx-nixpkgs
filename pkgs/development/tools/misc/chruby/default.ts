@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["preferLocalBuild", 10, 41]], [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5]], [["pname", 17, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["postPatch", 32, 3], ["installPhase", 36, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, runCommand: false, rubies: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["preferLocalBuild", 10, 41]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["postPatch", 32, 3], ["installPhase", 36, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const runCommand = nix.arg($, "runCommand");
   const rubies = nix.argOr($, "rubies", () => null);
-  const rubiesEnv = nix.thunk(() => nix.app(runCommand, "chruby-env", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir $out
+  const rubiesEnv = nix.thunk(() => nix.app(runCommand, "chruby-env", nix.thunk(() => ({ [nix.POS]: $pos[0], preferLocalBuild: true })), nix.thunk(() => nix.str`mkdir $out
 ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (path) => nix.str`ln -s ${path} $out/${name}
 `, rubies)))}
 `)));
@@ -23,7 +20,7 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "m
       const pname = "chruby";
       const version = "0.3.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "postmodern",
           repo: "chruby",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +31,7 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "m
 `)));
       const installPhase = "mkdir $out\ncp -r bin $out\ncp -r share $out\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Changes the current Ruby",
         homepage: "https://github.com/postmodern/chruby",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +40,7 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "m
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/agda-packages.nix", [[["Agda", 17, 19], ["self", 17, 24], ["ghcWithPackages", 18, 42]], [["lib", 28, 77]], [["mkLibraryFile", 26, 15], ["mkDerivation", 26, 29], ["lib", 28, 7], ["agda", 30, 7], ["standard-library", 32, 7], ["iowa-stdlib", 34, 7], ["agda-prelude", 36, 7], ["agda-categories", 38, 7], ["agda2hs-base", 40, 7], ["cubical", 42, 7], ["cubical-mini", 44, 7], ["functional-linear-algebra", 46, 7], ["agdarsec", 48, 7], ["_1lab", 50, 7], ["generics", 52, 7]], [["generic", 55, 7]]]);
 const formals$1 = { args: { pkgs: false, config: false, lib: false, newScope: false, Agda: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/agda-packages.nix", [["Agda", 17, 19], ["self", 17, 24], ["ghcWithPackages", 18, 42]]);
-const pos$2 = nix.positions(here + "/agda-packages.nix", [["lib", 28, 77]]);
-const pos$3 = nix.positions(here + "/agda-packages.nix", [["mkLibraryFile", 26, 15], ["mkDerivation", 26, 29], ["lib", 28, 7], ["agda", 30, 7], ["standard-library", 32, 7], ["iowa-stdlib", 34, 7], ["agda-prelude", 36, 7], ["agda-categories", 38, 7], ["agda2hs-base", 40, 7], ["cubical", 42, 7], ["cubical-mini", 44, 7], ["functional-linear-algebra", 46, 7], ["agdarsec", 48, 7], ["_1lab", 50, 7], ["generics", 52, 7]]);
-const pos$4 = nix.positions(here + "/agda-packages.nix", [["generic", 55, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
     const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "../build-support/agda"), nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(pkgs, "haskellPackages"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         Agda: Agda_1,
         self: self,
         ghcWithPackages: nix.thunk(() => nix.attr(from_1, "ghcWithPackages")),
@@ -31,10 +28,10 @@ export default nix.lambda((args) => (() => {
     const mkLibraryFile = nix.thunk(() => nix.attr(from, "mkLibraryFile"));
     const mkDerivation = nix.thunk(() => nix.attr(from, "mkDerivation"));
     return nix.update({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mkLibraryFile: mkLibraryFile,
       mkDerivation: mkDerivation,
-      lib: nix.thunk(() => nix.app(nix.sel(lib, "extend"), (final) => (prev) => nix.app(nix.builtins.import(nix.path(here, "../build-support/agda/lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: prev }))))),
+      lib: nix.thunk(() => nix.app(nix.sel(lib, "extend"), (final) => (prev) => nix.app(nix.builtins.import(nix.path(here, "../build-support/agda/lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: prev }))))),
       agda: nix.thunk(() => nix.app(withPackages, [])),
       "standard-library": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/agda/standard-library"), nix.thunk(() => ({})))),
       "iowa-stdlib": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/agda/iowa-stdlib"), nix.thunk(() => ({})))),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       _1lab: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/agda/1lab"), nix.thunk(() => ({})))),
       generics: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/agda/generics"), nix.thunk(() => ({})))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         generic: nix.thunk(() => nix.builtins.throw("agdaPackages.generic has been removed because it is unmaintained upstream and has been marked as broken since 2021. Consider using agdaPackages.generics instead.")),
       }))));
   })();

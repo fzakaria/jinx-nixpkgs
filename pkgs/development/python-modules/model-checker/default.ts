@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 5], ["version", 18, 26], ["hash", 19, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["pythonRemoveDeps", 23, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["doCheck", 35, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, networkx: false, setuptools: false, tqdm: false, "z3-solver": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 26], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["pythonRemoveDeps", 23, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["doCheck", 35, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const z3_solver = nix.arg($, "z3-solver");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "model-checker",
       version: "1.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "model_checker",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-jEOonA3kmJSW6INkUo4NVzg2Kv4V78QPEJdItYhQ31k=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["model_checker"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Hyperintensional theorem prover for counterfactual conditionals and modal operators",
         homepage: "https://pypi.org/project/model-checker/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

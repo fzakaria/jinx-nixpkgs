@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["name", 11, 5], ["manifest", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["name", 19, 5], ["manifest", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["name", 27, 5], ["manifest", 28, 5], ["rev", 29, 5], ["manifestName", 30, 5], ["hash", 31, 5]], [["manifest-demo-by-rev", 10, 3], ["sel4test-by-tag", 18, 3], ["sel4test-manifestName", 26, 3]]]);
 const formals$1 = { args: { lib: false, testers: false, fetchRepoProject: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tests.nix", [["name", 11, 5], ["manifest", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["name", 19, 5], ["manifest", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["name", 27, 5], ["manifest", 28, 5], ["rev", 29, 5], ["manifestName", 30, 5], ["hash", 31, 5]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["manifest-demo-by-rev", 10, 3], ["sel4test-by-tag", 18, 3], ["sel4test-manifestName", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,23 +11,23 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const fetchRepoProject = nix.arg($, "fetchRepoProject");
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "manifest-demo-by-rev": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchRepoProject, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "manifest-demo-git-repo-by-rev",
         manifest: "https://github.com/iayanpahwa/manifest-demo.git",
         rev: "6f731a3dd689d58333e53e259cd3b7d2242a4dc8",
         hash: "sha256-cMEvM9lqi8Zl/cFLnTHYv/VVxTzBTHkvhs+jp5U7M/g=",
       })))),
     "sel4test-by-tag": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchRepoProject, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "sel4test-by-tag",
         manifest: "https://github.com/seL4/sel4test-manifest.git",
         rev: "refs/tags/16.0.0",
         hash: "sha256-W2vOPWpbcgYPdo+Ife2ddFi3Xpe5Q9jjYqUJd31NQBA=",
       })))),
     "sel4test-manifestName": nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchRepoProject, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "sel4refos-manifestName",
         manifest: "https://github.com/seL4/refos-manifest.git",
         rev: "ccb3225268ec9802a7a23b1d3e1b193067484741",

@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 17, 5], ["aarch64-linux", 18, 5], ["aarch64-darwin", 19, 5]], [["changelog", 25, 5], ["description", 26, 5], ["downloadPage", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["mainProgram", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5], ["sourceProvenance", 37, 5]], [["package", 43, 7], ["command", 44, 7]], [["version", 42, 11]], [["updateScript", 41, 5], ["tests", 42, 5]], [["x86_64-linux", 63, 9], ["aarch64-linux", 64, 9], ["aarch64-darwin", 65, 9]], [["url", 61, 7], ["hash", 62, 7]], [["pname", 56, 5], ["version", 57, 13], ["meta", 57, 21], ["passthru", 57, 26], ["strictDeps", 58, 5], ["src", 60, 5], ["nativeBuildInputs", 69, 5], ["dontConfigure", 74, 5], ["dontBuild", 75, 5], ["dontFixup", 79, 5], ["installPhase", 81, 5], ["postInstall", 90, 5]], [["platforms", 121, 7]], [["pname", 103, 5], ["version", 104, 13], ["passthru", 104, 21], ["targetPkgs", 106, 5], ["runScript", 112, 5], ["extraInstallCommands", 114, 5], ["meta", 120, 5]], [["strictDeps", 127, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, buildFHSEnv: false, git: false, installShellFiles: false, testers: false, "graphite-cli": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 17, 5], ["aarch64-linux", 18, 5], ["aarch64-darwin", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 25, 5], ["description", 26, 5], ["downloadPage", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["mainProgram", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5], ["sourceProvenance", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 43, 7], ["command", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 42, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 41, 5], ["tests", 42, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["x86_64-linux", 63, 9], ["aarch64-linux", 64, 9], ["aarch64-darwin", 65, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 61, 7], ["hash", 62, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 56, 5], ["version", 57, 13], ["meta", 57, 21], ["passthru", 57, 26], ["strictDeps", 58, 5], ["src", 60, 5], ["nativeBuildInputs", 69, 5], ["dontConfigure", 74, 5], ["dontBuild", 75, 5], ["dontFixup", 79, 5], ["installPhase", 81, 5], ["postInstall", 90, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["platforms", 121, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 103, 5], ["version", 104, 13], ["passthru", 104, 21], ["targetPkgs", 106, 5], ["runScript", 112, 5], ["extraInstallCommands", 114, 5], ["meta", 120, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["strictDeps", 127, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const graphite_cli = nix.arg($, "graphite-cli");
   const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
   const suffix = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "x86_64-linux": "linux-x64",
       "aarch64-linux": "linux-arm64",
       "aarch64-darwin": "darwin-arm64",
     }))));
   const version = "1.8.6";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     changelog: "https://graphite.dev/docs/cli-changelog",
     description: "CLI that makes creating stacked git changes fast & intuitive",
     downloadPage: "https://www.npmjs.com/package/@withgraphite/graphite-cli",
@@ -49,26 +39,26 @@ export default nix.lambda((args) => (() => {
     sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
   }));
   const passthru = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     updateScript: nix.path(here, "./update.sh"),
     tests: nix.thunk(() => ({
-      [nix.POS]: pos$4,
-      version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: graphite_cli, command: "gt --version" })))),
+      [nix.POS]: $pos[3],
+      version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: graphite_cli, command: "gt --version" })))),
     })),
   }));
   const shellCompletions = "installShellCompletion --cmd gt \\\n  --bash <($out/bin/gt completion) \\\n  --zsh <(ZSH_NAME=zsh $out/bin/gt completion) \\\n  --fish <($out/bin/gt fish)\n";
   const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "graphite-cli-unwrapped",
       version: version,
       meta: meta,
       passthru: passthru,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/@withgraphite/graphite-cli-${suffix}/-/graphite-cli-${suffix}-${version}.tgz`),
           hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "x86_64-linux": "sha256-YnG3iw35ZEyGbB9vGdcnj0qkvUfyLuaIEB5l09hkRck=",
               "aarch64-linux": "sha256-Z4yY26hXf8++TX5tJcqufsAULTn9oUL90d9tDZj5d/k=",
               "aarch64-darwin": "sha256-6eogi8fMOD5IgRyEdPRxdDa17WytB1JwTpKRzyyhQ2Q=",
@@ -84,7 +74,7 @@ ${shellCompletions}
 `))),
     }))));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.app(nix.sel(nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "graphite-cli",
       version: version,
       passthru: passthru,
@@ -95,9 +85,9 @@ source ${installShellFiles}/nix-support/setup-hook
 ${shellCompletions}
 `),
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       })),
-    }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$11, strictDeps: true }))) : nix.force(unwrapped));
+    }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[10], strictDeps: true }))) : nix.force(unwrapped));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

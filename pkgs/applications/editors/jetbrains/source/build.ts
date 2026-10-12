@@ -2,22 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build.nix", [[["url", 39, 7], ["hash", 40, 7]], [["version", 37, 5], ["src", 38, 5]], [["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]], [["owner", 54, 5], ["repo", 55, 5], ["rev", 56, 5], ["hash", 57, 5]], [["src", 68, 13], ["version", 68, 17]], [["pname", 72, 5], ["version", 73, 5], ["src", 74, 13], ["sourceRoot", 75, 5], ["cargoHash", 77, 5], ["buildInputs", 80, 5]], [["jpsHash", 88, 50], ["src", 88, 58], ["jbr", 88, 62]], [["pname", 91, 5], ["version", 92, 5], ["src", 93, 13], ["sourceRoot", 94, 5], ["nativeBuildInputs", 95, 5], ["patches", 102, 5], ["postPatch", 103, 5], ["buildPhase", 104, 5], ["installPhase", 112, 5]], [["urls", 129, 7], ["curlOptsList", 134, 7], ["sha256", 135, 7]], [["name", 127, 5], ["path", 128, 5]], [["urls", 152, 7], ["hash", 162, 7]], [["urls", 177, 5], ["hash", 181, 5], ["stripRoot", 182, 5]], [["version", 271, 7], ["buildNumber", 272, 7], ["libdbm", 274, 7], ["jps-bootstrap", 275, 7]], [["pname", 187, 3], ["version", 188, 11], ["buildNumber", 188, 19], ["name", 189, 3], ["src", 190, 11], ["nativeBuildInputs", 191, 3], ["repo", 198, 3], ["patches", 200, 3], ["postPatch", 209, 3], ["configurePhase", 235, 3], ["buildPhase", 254, 3], ["installPhase", 263, 3], ["passthru", 269, 3]]]);
 const formals$1 = { args: { ant: false, callPackage: false, fetchFromGitHub: false, fetchurl: false, fetchzip: false, fsnotifier: false, glibc: false, jetbrains: false, "jetbrains-libdbm": false, kotlin: false, lib: false, linkFarm: false, makeWrapper: false, maven: false, p7zip: false, runCommand: false, rustPlatform: false, stdenvNoCC: false }, ellipsis: false };
 const formals$2 = { args: { version: false, buildNumber: false, buildType: false, ideaHash: false, androidHash: false, jpsHash: false, restarterHash: false, mvnDeps: false, repositories: false, "kotlin-jps-plugin": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$2 = nix.positions(here + "/build.nix", [["version", 37, 5], ["src", 38, 5]]);
-const pos$3 = nix.positions(here + "/build.nix", [["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]]);
-const pos$4 = nix.positions(here + "/build.nix", [["owner", 54, 5], ["repo", 55, 5], ["rev", 56, 5], ["hash", 57, 5]]);
-const pos$5 = nix.positions(here + "/build.nix", [["src", 68, 13], ["version", 68, 17]]);
-const pos$6 = nix.positions(here + "/build.nix", [["pname", 72, 5], ["version", 73, 5], ["src", 74, 13], ["sourceRoot", 75, 5], ["cargoHash", 77, 5], ["buildInputs", 80, 5]]);
-const pos$7 = nix.positions(here + "/build.nix", [["jpsHash", 88, 50], ["src", 88, 58], ["jbr", 88, 62]]);
-const pos$8 = nix.positions(here + "/build.nix", [["pname", 91, 5], ["version", 92, 5], ["src", 93, 13], ["sourceRoot", 94, 5], ["nativeBuildInputs", 95, 5], ["patches", 102, 5], ["postPatch", 103, 5], ["buildPhase", 104, 5], ["installPhase", 112, 5]]);
-const pos$9 = nix.positions(here + "/build.nix", [["urls", 129, 7], ["curlOptsList", 134, 7], ["sha256", 135, 7]]);
-const pos$10 = nix.positions(here + "/build.nix", [["name", 127, 5], ["path", 128, 5]]);
-const pos$11 = nix.positions(here + "/build.nix", [["urls", 152, 7], ["hash", 162, 7]]);
-const pos$12 = nix.positions(here + "/build.nix", [["urls", 177, 5], ["hash", 181, 5], ["stripRoot", 182, 5]]);
-const pos$13 = nix.positions(here + "/build.nix", [["version", 271, 7], ["buildNumber", 272, 7], ["libdbm", 274, 7], ["jps-bootstrap", 275, 7]]);
-const pos$14 = nix.positions(here + "/build.nix", [["pname", 187, 3], ["version", 188, 11], ["buildNumber", 188, 19], ["name", 189, 3], ["src", 190, 11], ["nativeBuildInputs", 191, 3], ["repo", 198, 3], ["patches", 200, 3], ["postPatch", 209, 3], ["configurePhase", 235, 3], ["buildPhase", 254, 3], ["installPhase", 263, 3], ["passthru", 269, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,24 +39,24 @@ export default nix.lambda((args) => (() => {
     const repositories = nix.arg($_1, "repositories");
     const kotlin_jps_plugin = nix.arg($_1, "kotlin-jps-plugin");
     const kotlin$ = nix.thunk(() => nix.app(nix.sel(kotlin, "overrideAttrs"), (oldAttrs) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version: "2.2.20",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.sel(oldAttrs, "src", "url")),
             hash: "sha256-gfAmTJBztcu9s/+EGM8sXawHaHn8FW+hpkYvWlrMRCA=",
           })))),
       })));
     const jbr = nix.thunk(() => nix.sel(jetbrains, "jdk-no-jcef-21"));
     const ideaSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner: "jetbrains",
         repo: "intellij-community",
         rev: nix.thunk(() => nix.str`${buildType}/${version}`),
         hash: ideaHash,
       }))));
     const androidSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         owner: "jetbrains",
         repo: "android",
         rev: nix.thunk(() => nix.str`${buildType}/${version}`),
@@ -79,9 +66,9 @@ export default nix.lambda((args) => (() => {
 chmod +w -R $out
 cp -r ${androidSrc} $out/android
 `)));
-    const libdbm = nix.thunk(() => nix.app(nix.sel(jetbrains_libdbm, "overrideAttrs"), (finalAttrs) => ({ [nix.POS]: pos$5, src: src, version: version })));
+    const libdbm = nix.thunk(() => nix.app(nix.sel(jetbrains_libdbm, "overrideAttrs"), (finalAttrs) => ({ [nix.POS]: $pos[4], src: src, version: version })));
     const restarter = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "restarter",
         version: buildNumber,
         src: src,
@@ -89,9 +76,9 @@ cp -r ${androidSrc} $out/android
         cargoHash: restarterHash,
         buildInputs: nix.thunk(() => [glibc, nix.thunk(() => nix.sel(glibc, "static"))]),
       }))));
-    const jpsRepo = nix.thunk(() => nix.app(callPackage, nix.path(here, "./jps_repo.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, jpsHash: jpsHash, src: src, jbr: jbr }))));
+    const jpsRepo = nix.thunk(() => nix.app(callPackage, nix.path(here, "./jps_repo.nix"), nix.thunk(() => ({ [nix.POS]: $pos[6], jpsHash: jpsHash, src: src, jbr: jbr }))));
     const jps_bootstrap = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: "jps-bootstrap",
         version: buildNumber,
         src: src,
@@ -119,10 +106,10 @@ runHook postInstall
       }))));
     const artefactsJson = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), mvnDeps));
     const mkRepoEntry = (entry) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       name: nix.thunk(() => nix.add(".m2/repository/", nix.sel(entry, "path"))),
       path: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           urls: nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (url) => [
               nix.thunk(() => nix.str`https://cache-redirector.jetbrains.com/${url}/${nix.sel(entry, "url")}`),
               nix.thunk(() => nix.str`https://${url}/${nix.sel(entry, "url")}`),
@@ -142,7 +129,7 @@ runHook postInstall
       const artefactId = "kotlin-jps-plugin-classpath";
       const version_1 = nix.thunk(() => nix.sel(kotlin_jps_plugin, "version"));
       return nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           urls: nix.thunk(() => nix.builtins.map((url) => nix.app(nix.sel(lib, "concatStringsSep"), "/", nix.thunk(() => [
                 url,
                 groupId,
@@ -156,7 +143,7 @@ runHook postInstall
     const targetClass = nix.thunk(() => (nix.asBool(nix.eq(buildType, "pycharm")) ? "intellij.pycharm.community.build" : "intellij.idea.community.build"));
     const targetName = nix.thunk(() => (nix.asBool(nix.eq(buildType, "pycharm")) ? "PyCharmCommunityInstallersBuildTarget" : "OpenSourceCommunityInstallersBuildTarget"));
     const xplat_launcher = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         urls: nix.thunk(() => [
           "https://cache-redirector.jetbrains.com/intellij-dependencies/org/jetbrains/intellij/deps/launcher/242.22926/launcher-242.22926.tar.gz",
           "https://packages.jetbrains.team/maven/p/ij/intellij-dependencies/org/jetbrains/intellij/deps/launcher/242.22926/launcher-242.22926.tar.gz",
@@ -165,7 +152,7 @@ runHook postInstall
         stripRoot: false,
       }))));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         pname: nix.thunk(() => nix.str`${buildType}-oss`),
         version: version,
         buildNumber: buildNumber,
@@ -230,7 +217,7 @@ runHook postBuild
 `),
         installPhase: "runHook preInstall\nmv out/*/artifacts/*-no-jbr.tar.gz $out\nrunHook postInstall\n",
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           version: version,
           buildNumber: buildNumber,
           libdbm: libdbm,

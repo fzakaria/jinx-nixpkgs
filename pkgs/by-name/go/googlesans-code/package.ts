@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["buildPhase", 23, 3], ["installPhase", 33, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fontc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["buildPhase", 23, 3], ["installPhase", 33, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fontc = nix.arg($, "fontc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "googlesans-code",
       version: "7.001",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googlefonts",
           repo: "googlesans-code",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nmkdir -p fonts/variable\nfontc sources/GoogleSansCode.glyphspackage --flatten-components --decompose-transformed-components --output-file \"fonts/variable/GoogleSansCode[wght].ttf\"\nfontc sources/GoogleSansCode-Italic.glyphspackage --flatten-components --decompose-transformed-components --output-file \"fonts/variable/GoogleSansCode-Italic[wght].ttf\"\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/googlesans-code\ncp fonts/variable/* $out/share/fonts/googlesans-code/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Google Sans Code font family",
         homepage: "https://github.com/googlefonts/googlesans-code",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/googlesans-code/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

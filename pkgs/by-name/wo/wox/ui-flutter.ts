@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ui-flutter.nix", [[["extended_text_field", 22, 13], ["windows_gpu_recovery", 23, 13]], [["description", 38, 7], ["homepage", 39, 7], ["mainProgram", 40, 7], ["platforms", 41, 7], ["license", 42, 7], ["maintainers", 43, 7]], [["pname", 12, 3], ["version", 14, 5], ["src", 15, 5], ["sourceRoot", 18, 3], ["pubspecLock", 20, 3], ["gitHashes", 22, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, flutter341: false, wox: false, autoPatchelfHook: false, keybinder3: false, xorgproto: false, libx11: false, libxtst: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ui-flutter.nix", [["extended_text_field", 22, 13], ["windows_gpu_recovery", 23, 13]]);
-const pos$2 = nix.positions(here + "/ui-flutter.nix", [["description", 38, 7], ["homepage", 39, 7], ["mainProgram", 40, 7], ["platforms", 41, 7], ["license", 42, 7], ["maintainers", 43, 7]]);
-const pos$3 = nix.positions(here + "/ui-flutter.nix", [["pname", 12, 3], ["version", 14, 5], ["src", 15, 5], ["sourceRoot", 18, 3], ["pubspecLock", 20, 3], ["gitHashes", 22, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxtst = nix.arg($, "libxtst");
   return nix.app(nix.sel(flutter341, "buildFlutterApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wox-ui-flutter",
       version: nix.thunk(() => nix.attr(wox, "version")),
       src: nix.thunk(() => nix.attr(wox, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/wox.ui.flutter/wox`),
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       gitHashes: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         extended_text_field: "sha256-GOvaWGklfmJKRWYbVTvpZfKj9QMxxlaqrJkfDKR2T0o=",
         windows_gpu_recovery: "sha256-+LQV2wgbQ0ADM2KeRfgbvCHPODBBsq5XrPulXl6GWG8=",
       })),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wox, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),

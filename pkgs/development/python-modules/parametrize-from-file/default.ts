@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 22, 13], ["pname", 23, 5], ["hash", 24, 5]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["preBuild", 28, 3], ["nativeBuildInputs", 35, 3], ["nativeCheckInputs", 37, 3], ["propagatedBuildInputs", 42, 3], ["pythonImportsCheck", 51, 3], ["disabledTests", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "flit-core": false, pytestCheckHook: false, numpy: false, decopatch: false, "more-itertools": false, nestedtext: false, pyyaml: false, tidyexc: false, toml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 22, 13], ["pname", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["preBuild", 28, 3], ["nativeBuildInputs", 35, 3], ["nativeCheckInputs", 37, 3], ["propagatedBuildInputs", 42, 3], ["pythonImportsCheck", 51, 3], ["disabledTests", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.21.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "parametrize_from_file",
           hash: "sha256-keKsnkMyk9du7TGvJhZXP2EpLqOKkz8vxrRzWXyGg0U=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["parametrize_from_file"]);
       const disabledTests = nix.thunk(() => ["test_load_suite_params_err"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Read unit test parameters from config files",
         homepage: "https://github.com/kalekundert/parametrize_from_file",
         changelog: nix.thunk(() => nix.str`https://github.com/kalekundert/parametrize_from_file/blob/v${version}/CHANGELOG.md`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

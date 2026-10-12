@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-plugins.nix", [[["version", 17, 23], ["meta", 17, 31], ["name", 18, 3], ["paths", 19, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, qtcreator: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/with-plugins.nix", [["version", 17, 23], ["meta", 17, 31], ["name", 18, 3], ["paths", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
     const qtcreator_runner = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "qtcreator", nix.thunk(() => nix.str`exec ${nix.app(nix.sel(lib, "getExe"), qtcreator)} ${plugins_arg} "$@"
 `)));
     return nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         version: nix.thunk(() => nix.attr(qtcreator, "version")),
         meta: nix.thunk(() => nix.attr(qtcreator, "meta")),
         name: "qtcreator-with-plugins",

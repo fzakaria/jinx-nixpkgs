@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["pname", 79, 26], ["data", 80, 5]], [["nativeBuildInputs", 131, 11], ["src", 135, 11]], [["2dshapes", 128, 11]], [["updateScript", 124, 5], ["bootstrap", 126, 5], ["tests", 128, 5]], [["description", 148, 5], ["mainProgram", 149, 5], ["homepage", 150, 5], ["downloadPage", 151, 5], ["license", 152, 5], ["sourceProvenance", 153, 5], ["maintainers", 157, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["strictDeps", 49, 3], ["__structuredAttrs", 50, 3], ["nativeBuildInputs", 52, 3], ["postPatch", 60, 3], ["mitmCache", 78, 3], ["__darwinAllowLocalNetworking", 83, 3], ["gradleBuildTask", 85, 3], ["gradleFlags", 87, 3], ["postBuild", 97, 3], ["installPhase", 101, 3], ["passthru", 123, 3], ["meta", 147, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, runCommand: false, fetchurl: false, fetchFromGitHub: false, gradle_8: false, installShellFiles: false, makeBinaryWrapper: false, opentxl: false, jre_headless: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 79, 26], ["data", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 131, 11], ["src", 135, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["2dshapes", 128, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 124, 5], ["bootstrap", 126, 5], ["tests", 128, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 148, 5], ["mainProgram", 149, 5], ["homepage", 150, 5], ["downloadPage", 151, 5], ["license", 152, 5], ["sourceProvenance", 153, 5], ["maintainers", 157, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["strictDeps", 49, 3], ["__structuredAttrs", 50, 3], ["nativeBuildInputs", 52, 3], ["postPatch", 60, 3], ["mitmCache", 78, 3], ["__darwinAllowLocalNetworking", 83, 3], ["gradleBuildTask", 85, 3], ["gradleFlags", 87, 3], ["postBuild", 97, 3], ["installPhase", 101, 3], ["passthru", 123, 3], ["meta", 147, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const longVersion = nix.thunk(() => nix.attr(from, "longVersion"));
   const umpleJar = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(versions, "umpleJar"))));
   const joptSimple = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "jopt-simple",
       repo: "jopt-simple",
       tag: "jopt-simple-4.4",
       hash: "sha256-sOQaEq2qzvEwJzwZIcMQus3tetzA6O2VPl8XUJAtupM=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "umple",
       version: "1.37.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "umple",
           repo: "umple",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +70,7 @@ substituteInPlace build/package-files/template.1 \\
 find . -type f \\( -name '*.java' -o -name '*.ump' \\) -exec sed -i "s/@UMPLE_VERSION@/${longVersion}/g" {} +
 `),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle_8, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -112,13 +105,13 @@ popd
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.path(here, "./update.sh"),
         bootstrap: umpleJar,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "2dshapes": nix.thunk(() => nix.app(runCommand, "umple-test", nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 nix.thunk(() => nix.sel(gradle_8, "jdk")),
@@ -128,7 +121,7 @@ runHook postInstall
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Model-oriented programming language and modelling tool for integrating UML constructs into high-level languages",
         mainProgram: "umple",
         homepage: "https://github.com/umple/umple",

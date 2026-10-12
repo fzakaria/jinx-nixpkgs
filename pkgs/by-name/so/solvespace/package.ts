@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5], ["fetchSubmodules", 46, 5]], [["description", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5], ["homepage", 110, 5], ["changelog", 111, 5]], [["pname", 36, 3], ["version", 37, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["postPatch", 85, 3], ["cmakeFlags", 99, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, wrapGAppsHook3: false, "at-spi2-core": false, cairo: false, dbus: false, eigen: false, freetype: false, fontconfig: false, glew: false, gtkmm3: false, json_c: false, libdatrie: false, libepoxy: false, libGLU: false, libpng: false, libselinux: false, libsepol: false, libspnav: false, libthai: false, libxkbcommon: false, pangomm_1_4: false, pcre2: false, "util-linuxMinimal": false, libxtst: false, libxdmcp: false, "libpthread-stubs": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5], ["fetchSubmodules", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5], ["homepage", 110, 5], ["changelog", 111, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["postPatch", 85, 3], ["cmakeFlags", 99, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const libpthread_stubs = nix.arg($, "libpthread-stubs");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "solvespace",
       version: "3.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "solvespace",
           repo: "solvespace",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -85,7 +83,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patch CMakeLists.txt <<EOF\n@@ -20,9 +20,9 @@\n # NOTE TO PACKAGERS: The embedded git commit hash is critical for rapid bug triage when the builds\n # can come from a variety of sources. If you are mirroring the sources or otherwise build when\n # the .git directory is not present, please comment the following line:\n-include(GetGitCommitHash)\n+# include(GetGitCommitHash)\n # and instead uncomment the following, adding the complete git hash of the checkout you are using:\n-# set(GIT_COMMIT_HASH 0000000000000000000000000000000000000000)\n+set(GIT_COMMIT_HASH $version)\nEOF\n",
       cmakeFlags: nix.thunk(() => ["-DENABLE_OPENMP=ON", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Parametric 3d CAD program",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "edef"))]),

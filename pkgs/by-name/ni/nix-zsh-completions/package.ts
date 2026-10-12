@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["strictDeps", 18, 3], ["dontConfigure", 20, 3], ["dontBuild", 21, 3], ["installPhase", 23, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["strictDeps", 18, 3], ["dontConfigure", 20, 3], ["dontBuild", 21, 3], ["installPhase", 23, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nix-zsh-completions",
       version: "0.5.1-unstable-2025-12-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "nix-zsh-completions",
           rev: "d4ae06bedb9a353ac894862d1d83f60ab4e2ccce",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/zsh/{site-functions,plugins/nix}\ncp _* $out/share/zsh/site-functions\ncp *.zsh $out/share/zsh/plugins/nix\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/nix-community/nix-zsh-completions",
         description: "ZSH completions for Nix, NixOS, and NixOps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

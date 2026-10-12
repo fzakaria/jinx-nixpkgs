@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["NIX_CFLAGS_COMPILE", 40, 7]], [["description", 48, 5], ["homepage", 49, 5], ["longDescription", 50, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["makeFlags", 27, 3], ["preBuild", 33, 3], ["env", 40, 3], ["installPhase", 42, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, luajit: false, openssl: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["longDescription", 50, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["makeFlags", 27, 3], ["preBuild", 33, 3], ["env", 40, 3], ["installPhase", 42, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wrk",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wg",
           repo: "wrk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,10 +31,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`VER=${nix.sel(finalAttrs, "version")}`),
       ]),
       preBuild: "for f in src/*.h; do\n  substituteInPlace $f \\\n    --replace \"#include <luajit-2.0/\" \"#include <\"\ndone\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-DluaL_reg=luaL_Reg" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-DluaL_reg=luaL_Reg" })),
       installPhase: "mkdir -p $out/bin\ncp wrk $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "HTTP benchmarking tool",
         homepage: "https://github.com/wg/wrk",
         longDescription: "wrk is a modern HTTP benchmarking tool capable of generating\nsignificant load when run on a single multi-core CPU. It\ncombines a multithreaded design with scalable event notification\nsystems such as epoll and kqueue.\n",

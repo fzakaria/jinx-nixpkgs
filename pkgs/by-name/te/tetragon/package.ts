@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["LOCAL_CLANG", 44, 5], ["LOCAL_CLANG_FORMAT", 45, 5], ["NIX_CFLAGS_COMPILE", 46, 5]], [["extraArgs", 92, 47]], [["updateScript", 92, 12]], [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5], ["platforms", 103, 5], ["sourceProvenance", 104, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["env", 43, 3], ["buildPhase", 49, 3], ["hardeningDisable", 61, 3], ["postPatch", 63, 3], ["installPhase", 68, 3], ["passthru", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, go: false, llvm: false, clang_20: false, bash: false, writableTmpDirAsHomeHook: false, gitMinimal: false, installShellFiles: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LOCAL_CLANG", 44, 5], ["LOCAL_CLANG_FORMAT", 45, 5], ["NIX_CFLAGS_COMPILE", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 92, 47]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 92, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5], ["platforms", 103, 5], ["sourceProvenance", 104, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["env", 43, 3], ["buildPhase", 49, 3], ["hardeningDisable", 61, 3], ["postPatch", 63, 3], ["installPhase", 68, 3], ["passthru", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const clang = clang_20;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tetragon",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cilium",
           repo: "tetragon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, writableTmpDirAsHomeHook, gitMinimal, installShellFiles]),
       buildInputs: nix.thunk(() => [clang, go, llvm]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LOCAL_CLANG: 1n,
         LOCAL_CLANG_FORMAT: 1n,
         NIX_CFLAGS_COMPILE: "-fno-stack-protector -Qunused-arguments -Wno-default-const-init-var-unsafe",
@@ -51,11 +46,11 @@ substituteInPlace pkg/defaults/defaults.go --replace-fail '/var/lib/tetragon/' $
 `),
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n\nmkdir -p $out/lib/tetragon $out/lib/tetragon/tetragon.tp.d/\nsed -i \"s+/usr/local/+$out/+g\" install/linux-tarball/usr/local/lib/tetragon/tetragon.conf.d/bpf-lib\ncp -n -r install/linux-tarball/usr/local/lib/tetragon/tetragon.conf.d/ $out/lib/tetragon/\ncp -n -r ./bpf/objs $out/lib/tetragon/bpf\ninstall -m755 -D ./tetra $out/bin/tetra\ninstall -m755 -D ./tetragon $out/bin/tetragon\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd tetra \\\n  --bash <($out/bin/tetra completion bash) \\\n  --fish <($out/bin/tetra completion fish) \\\n  --zsh <($out/bin/tetra completion zsh)\ninstallShellCompletion --cmd tetragon \\\n  --bash <($out/bin/tetragon completion bash) \\\n  --fish <($out/bin/tetragon completion fish) \\\n  --zsh <($out/bin/tetragon completion zsh)\n")), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Real-time, eBPF-based Security Observability and Runtime Enforcement tool",
         homepage: "https://github.com/cilium/tetragon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

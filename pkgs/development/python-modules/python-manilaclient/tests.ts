@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["pname", 14, 3], ["version", 15, 33], ["src", 15, 41], ["pyproject", 16, 3], ["dontBuild", 18, 3], ["dontInstall", 19, 3], ["nativeCheckInputs", 21, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, ddt: false, fixtures: false, "python-manilaclient": false, "python-openstackclient": false, "requests-mock": false, stestrCheckHook: false, tempest: false, testtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["pname", 14, 3], ["version", 15, 33], ["src", 15, 41], ["pyproject", 16, 3], ["dontBuild", 18, 3], ["dontInstall", 19, 3], ["nativeCheckInputs", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const tempest = nix.arg($, "tempest");
   const testtools = nix.arg($, "testtools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "python-manilaclient-tests",
       version: nix.thunk(() => nix.attr(python_manilaclient, "version")),
       src: nix.thunk(() => nix.attr(python_manilaclient, "src")),

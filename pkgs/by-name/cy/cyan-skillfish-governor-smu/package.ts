@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["CYAN_SKILLFISH_GOVERNOR_VERSION", 29, 7]], [["updateScript", 48, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["env", 29, 3], ["postInstall", 31, 3], ["nativeInstallCheckInputs", 42, 3], ["doInstallCheck", 45, 3], ["passthru", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, libdrm: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CYAN_SKILLFISH_GOVERNOR_VERSION", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["env", 29, 3], ["postInstall", 31, 3], ["nativeInstallCheckInputs", 42, 3], ["doInstallCheck", 45, 3], ["passthru", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cyan-skillfish-governor-smu",
       version: "0.4.13",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "filippor",
           repo: "cyan-skillfish-governor",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,18 +30,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libdrm]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CYAN_SKILLFISH_GOVERNOR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       postInstall: "install -Dm755 scripts/cyan-skillfish-performance-mode \\\n  $out/bin/cyan-skillfish-performance-mode\n\ninstall -Dm644 com.cyanskillfish.Governor.conf \\\n  $out/share/dbus-1/system.d/com.cyanskillfish.Governor.conf\n\ninstall -Dm644 default-config.toml \\\n  $out/share/cyan-skillfish-governor-smu/default-config.toml\n",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "SMU-based GPU governor for the AMD Cyan Skillfish APU (ASRock BC-250)",
         homepage: "https://github.com/filippor/cyan-skillfish-governor",
         changelog: nix.thunk(() => nix.str`https://github.com/filippor/cyan-skillfish-governor/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

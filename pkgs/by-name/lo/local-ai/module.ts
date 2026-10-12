@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/module.nix", [[["type", 18, 7], ["default", 19, 7]], [["type", 23, 7], ["default", 24, 7]], [["type", 28, 7], ["default", 29, 7]], [["type", 33, 7], ["default", 34, 7]], [["type", 38, 7], ["default", 39, 7]], [["type", 43, 7], ["default", 50, 7]], [["enable", 13, 5], ["package", 15, 5], ["extraArgs", 17, 5], ["port", 22, 5], ["threads", 27, 5], ["models", 32, 5], ["parallelRequests", 37, 5], ["logLevel", 42, 5]], [["local-ai", 12, 20]], [["services", 12, 11]], [["LLAMACPP_PARALLEL", 57, 19]], [["DynamicUser", 59, 9], ["ExecStart", 60, 9], ["RuntimeDirectory", 72, 9], ["WorkingDirectory", 73, 9]], [["wantedBy", 56, 7], ["environment", 57, 7], ["serviceConfig", 58, 7]], [["local-ai", 55, 22]], [["services", 55, 13]], [["systemd", 55, 5]], [["options", 12, 3], ["config", 54, 3]]]);
 const formals$1 = { args: { pkgs: false, config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/module.nix", [["type", 18, 7], ["default", 19, 7]]);
-const pos$2 = nix.positions(here + "/module.nix", [["type", 23, 7], ["default", 24, 7]]);
-const pos$3 = nix.positions(here + "/module.nix", [["type", 28, 7], ["default", 29, 7]]);
-const pos$4 = nix.positions(here + "/module.nix", [["type", 33, 7], ["default", 34, 7]]);
-const pos$5 = nix.positions(here + "/module.nix", [["type", 38, 7], ["default", 39, 7]]);
-const pos$6 = nix.positions(here + "/module.nix", [["type", 43, 7], ["default", 50, 7]]);
-const pos$7 = nix.positions(here + "/module.nix", [["enable", 13, 5], ["package", 15, 5], ["extraArgs", 17, 5], ["port", 22, 5], ["threads", 27, 5], ["models", 32, 5], ["parallelRequests", 37, 5], ["logLevel", 42, 5]]);
-const pos$8 = nix.positions(here + "/module.nix", [["local-ai", 12, 20]]);
-const pos$9 = nix.positions(here + "/module.nix", [["services", 12, 11]]);
-const pos$10 = nix.positions(here + "/module.nix", [["LLAMACPP_PARALLEL", 57, 19]]);
-const pos$11 = nix.positions(here + "/module.nix", [["DynamicUser", 59, 9], ["ExecStart", 60, 9], ["RuntimeDirectory", 72, 9], ["WorkingDirectory", 73, 9]]);
-const pos$12 = nix.positions(here + "/module.nix", [["wantedBy", 56, 7], ["environment", 57, 7], ["serviceConfig", 58, 7]]);
-const pos$13 = nix.positions(here + "/module.nix", [["local-ai", 55, 22]]);
-const pos$14 = nix.positions(here + "/module.nix", [["services", 55, 13]]);
-const pos$15 = nix.positions(here + "/module.nix", [["systemd", 55, 5]]);
-const pos$16 = nix.positions(here + "/module.nix", [["options", 12, 3], ["config", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,34 +14,42 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         "local-ai": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Enable service")),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "local-ai", nix.thunk(() => ({})))),
           extraArgs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
               default: [],
             })))),
           port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               type: nix.thunk(() => nix.sel(types, "port")),
               default: 8080n,
             })))),
-          threads: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$3, type: nix.thunk(() => nix.sel(types, "int")), default: 1n })))),
+          threads: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
+              [nix.POS]: $pos[2],
+              type: nix.thunk(() => nix.sel(types, "int")),
+              default: 1n,
+            })))),
           models: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "package")), nix.thunk(() => nix.sel(types, "str")))),
               default: "models",
             })))),
-          parallelRequests: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$5, type: nix.thunk(() => nix.sel(types, "int")), default: 1n })))),
+          parallelRequests: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
+              [nix.POS]: $pos[4],
+              type: nix.thunk(() => nix.sel(types, "int")),
+              default: 1n,
+            })))),
           logLevel: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["error", "warn", "info", "debug", "trace"]))),
               default: "warn",
             })))),
@@ -64,20 +57,20 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             "local-ai": nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 LLAMACPP_PARALLEL: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(cfg, "parallelRequests")))),
               })),
               serviceConfig: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 DynamicUser: true,
                 ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/bin/local-ai`),

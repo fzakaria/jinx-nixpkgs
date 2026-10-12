@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 9, 3], ["patches", 11, 3], ["extraNativeBuildInputs", 15, 3], ["extraBuildInputs", 16, 3], ["extraCmakeFlags", 21, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, "pkg-config": false, libksysguard: false, lm_sensors: false, libnl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["patches", 11, 3], ["extraNativeBuildInputs", 15, 3], ["extraBuildInputs", 16, 3], ["extraCmakeFlags", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lm_sensors = nix.arg($, "lm_sensors");
   const libnl = nix.arg($, "libnl");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "ksystemstats",
       patches: nix.thunk(() => [nix.path(here, "./helper-path.patch")]),
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),

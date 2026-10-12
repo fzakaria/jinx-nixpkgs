@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7]], [["pname", 29, 28], ["version", 29, 34], ["src", 29, 42], ["pnpm", 30, 15], ["fetcherVersion", 31, 7], ["hash", 32, 7]], [["pname", 18, 5], ["version", 19, 5], ["src", 21, 5], ["pnpmDeps", 28, 5], ["nativeBuildInputs", 35, 5], ["buildPhase", 41, 5], ["installPhase", 47, 5]], [["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]], [["pname", 71, 26], ["version", 71, 32], ["src", 71, 40], ["pnpm", 72, 13], ["fetcherVersion", 73, 5], ["hash", 74, 5]], [["build", 103, 11]], [["tests", 103, 5], ["matrix-js-sdk", 108, 26]], [["changelog", 112, 5], ["homepage", 113, 5], ["description", 114, 5], ["license", 115, 5], ["maintainers", 116, 5]], [["pname", 60, 3], ["version", 61, 3], ["src", 63, 3], ["pnpmDeps", 70, 3], ["matrix-js-sdk", 77, 11], ["nativeBuildInputs", 79, 3], ["buildPhase", 85, 3], ["installPhase", 93, 3], ["passthru", 102, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pnpm_11: false, pnpmConfigHook: false, fetchPnpmDeps: false, nodejs: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 28], ["version", 29, 34], ["src", 29, 42], ["pnpm", 30, 15], ["fetcherVersion", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 5], ["version", 19, 5], ["src", 21, 5], ["pnpmDeps", 28, 5], ["nativeBuildInputs", 35, 5], ["buildPhase", 41, 5], ["installPhase", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 71, 26], ["version", 71, 32], ["src", 71, 40], ["pnpm", 72, 13], ["fetcherVersion", 73, 5], ["hash", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["build", 103, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 103, 5], ["matrix-js-sdk", 108, 26]]);
-const pos$8 = nix.positions(here + "/package.nix", [["changelog", 112, 5], ["homepage", 113, 5], ["description", 114, 5], ["license", 115, 5], ["maintainers", 116, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 60, 3], ["version", 61, 3], ["src", 63, 3], ["pnpmDeps", 70, 3], ["matrix-js-sdk", 77, 11], ["nativeBuildInputs", 79, 3], ["buildPhase", 85, 3], ["installPhase", 93, 3], ["passthru", 102, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const pnpm = pnpm_11;
   const matrix_js_sdk = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "matrix-js-sdk",
       version: "42.3.0-rc.0-unstable-2026-08-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matrix-org",
           repo: "matrix-js-sdk",
           rev: "24929be0e741be6a5d0a7226f1c682e245263b8a",
           hash: "sha256-RCGrdF6S+b0uRYFIt2YJ5FjXoyh6zvQyIHovL8SXySE=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,18 +41,18 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir $out\ncp -r src $out/\ncp -r lib $out/\ncp package.json $out/\n\nrunHook postInstall\n",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "element-call",
       version: "0.26.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "element-hq",
           repo: "element-call",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-S47A3l5IEKia06iUqgVo6gWkBLR8ncckNHKvlf591g4=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -78,9 +70,9 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir $out\ncp -r dist/* $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           build: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`test -f ${nix.sel(finalAttrs, "finalPackage")}/index.html
 test -d ${nix.sel(finalAttrs, "finalPackage")}/assets
 touch $out
@@ -89,7 +81,7 @@ touch $out
         "matrix-js-sdk": nix.thunk(() => nix.attr(finalAttrs, "matrix-js-sdk")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: nix.thunk(() => nix.str`https://github.com/element-hq/element-call/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/element-hq/element-call",
         description: "Matrix client for group calls on the web",

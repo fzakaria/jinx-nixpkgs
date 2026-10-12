@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["homepage", 36, 5], ["platforms", 37, 5]], [["name", 9, 3], ["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["buildPhase", 22, 3], ["installPhase", 26, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libuuid: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["homepage", 36, 5], ["platforms", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 9, 3], ["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["buildPhase", 22, 3], ["installPhase", 26, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libuuid = nix.arg($, "libuuid");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.add(nix.add(nix.add("lib", "crossguid"), "-"), nix.sel(finalAttrs, "version"))),
       pname: "crossguid",
       version: "2016-02-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "graeme-hill",
           repo: "crossguid",
           rev: "8f399e8bd4252be9952f3dfa8199924cc8487ca4",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "$CXX -c guid.cpp -o guid.o $CXXFLAGS -std=c++11 -DGUID_LIBUUID\n$AR rvs libcrossguid.a guid.o\n",
       installPhase: "mkdir -p $out/{lib,include}\ninstall -D -m644 libcrossguid.a \"$out/lib/libcrossguid.a\"\ninstall -D -m644 guid.h \"$out/include/guid.h\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight cross platform C++ GUID/UUID library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

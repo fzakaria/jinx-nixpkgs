@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["updateScript", 84, 12]], [["homepage", 87, 5], ["description", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["enableParallelBuilding", 57, 3], ["cmakeFlags", 60, 3], ["installFlags", 69, 3], ["doCheck", 71, 3], ["enableParallelChecking", 73, 3], ["nativeCheckInputs", 75, 3], ["passthru", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, cmake: false, "pkg-config": false, apacheHttpd: false, apr: false, aprutil: false, boost: false, cairo: false, curl: false, glib: false, harfbuzz: false, icu: false, iniparser: false, libmemcached: false, mapnik: false, ps: false, jq: false, memcached: false, "iana-etc": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 84, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 87, 5], ["description", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["enableParallelBuilding", 57, 3], ["cmakeFlags", 60, 3], ["installFlags", 69, 3], ["doCheck", 71, 3], ["enableParallelChecking", 73, 3], ["nativeCheckInputs", 75, 3], ["passthru", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mod_tile";
       const version = "0.8.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openstreetmap",
           repo: "mod_tile",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -70,11 +67,11 @@ export default nix.lambda((args) => (() => {
       const enableParallelChecking = false;
       const nativeCheckInputs = nix.thunk(() => nix.concat([iana_etc, ps], nix.app(nix.sel(lib, "filter"), (pkg) => !nix.asBool(nix.sel(pkg, "meta", "broken")), nix.thunk(() => [jq, memcached]))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/openstreetmap/mod_tile",
         description: "Efficiently render and serve OpenStreetMap tiles using Apache and Mapnik",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -85,7 +82,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

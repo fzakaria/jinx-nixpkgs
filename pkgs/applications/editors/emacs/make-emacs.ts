@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-emacs.nix", [[["backendPath", 170, 9]], [["NATIVE_FULL_AOT", 418, 7], ["LIBRARY_PATH", 419, 7]], [["NIX_CFLAGS_COMPILE", 424, 7]], [["emacs", 489, 9]], [["emacs-daemon", 487, 28], ["withPackages", 488, 7]], [["withNativeCompilation", 482, 13], ["withTreeSitter", 483, 13], ["withXwidgets", 484, 13], ["pkgs", 485, 5], ["tests", 486, 5]], [["broken", 495, 5]], [["pname", 145, 3], ["version", 159, 11], ["src", 161, 11], ["patches", 163, 3], ["postPatch", 194, 3], ["strictDeps", 244, 3], ["nativeBuildInputs", 246, 3], ["buildInputs", 257, 3], ["propagatedUserEnvPkgs", 355, 3], ["hardeningDisable", 359, 3], ["configureFlags", 361, 3], ["__structuredAttrs", 414, 3], ["env", 416, 3], ["enableParallelBuilding", 427, 3], ["installTargets", 429, 3], ["postInstall", 434, 3], ["postFixup", 474, 3], ["setupHook", 479, 3], ["passthru", 481, 3], ["meta", 494, 3]]]);
 const formals$1 = { args: { pname: false, version: false, variant: false, src: false, patches: true, meta: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, stdenv: false, libxaw3d: false, acl: false, "alsa-lib": false, "apple-sdk": false, autoreconfHook: false, cairo: false, dbus: false, emacsPackagesFor: false, fetchpatch: false, gettext: false, giflib: false, "glib-networking": false, gnutls: false, gpm: false, "gsettings-desktop-schemas": false, gtk3: false, "gtk3-x11": false, harfbuzz: false, imagemagick: false, libxaw: false, libxcursor: false, libxft: false, libxi: false, libxpm: false, libxrandr: false, libgccjit: false, libjpeg: false, libotf: false, libpng: false, librsvg: false, libselinux: false, libtiff: false, libwebp: false, libxml2: false, m17n_lib: false, mailcap: false, mailutils: false, makeWrapper: false, motif: false, ncurses: false, nixosTests: false, "pkg-config": false, sigtool: false, sqlite: false, replaceVars: false, systemdLibs: false, "tree-sitter": false, texinfo: false, webkitgtk_4_1: false, wrapGAppsHook3: false, zlib: false, withNativeCompilation: true, noGui: true, srcRepo: true, withAcl: true, withAlsaLib: true, withAthena: true, withCairo: true, withCsrc: true, withDbus: true, withGcMarkTrace: true, withGTK3: true, withGlibNetworking: true, withGpm: true, withImageMagick: true, withMailutils: true, withMotif: true, withNS: true, withPgtk: true, withSelinux: true, withSQLite3: true, withSystemd: true, withToolkitScrollBars: true, withTreeSitter: true, withWebP: true, withX: true, withXinput2: true, withXwidgets: true, withSmallJaDic: true, withCompressInstall: true, siteStart: true, toolkit: true, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-emacs.nix", [["backendPath", 170, 9]]);
-const pos$2 = nix.positions(here + "/make-emacs.nix", [["NATIVE_FULL_AOT", 418, 7], ["LIBRARY_PATH", 419, 7]]);
-const pos$3 = nix.positions(here + "/make-emacs.nix", [["NIX_CFLAGS_COMPILE", 424, 7]]);
-const pos$4 = nix.positions(here + "/make-emacs.nix", [["emacs", 489, 9]]);
-const pos$5 = nix.positions(here + "/make-emacs.nix", [["emacs-daemon", 487, 28], ["withPackages", 488, 7]]);
-const pos$6 = nix.positions(here + "/make-emacs.nix", [["withNativeCompilation", 482, 13], ["withTreeSitter", 483, 13], ["withXwidgets", 484, 13], ["pkgs", 485, 5], ["tests", 486, 5]]);
-const pos$7 = nix.positions(here + "/make-emacs.nix", [["broken", 495, 5]]);
-const pos$8 = nix.positions(here + "/make-emacs.nix", [["pname", 145, 3], ["version", 159, 11], ["src", 161, 11], ["patches", 163, 3], ["postPatch", 194, 3], ["strictDeps", 244, 3], ["nativeBuildInputs", 246, 3], ["buildInputs", 257, 3], ["propagatedUserEnvPkgs", 355, 3], ["hardeningDisable", 359, 3], ["configureFlags", 361, 3], ["__structuredAttrs", 414, 3], ["env", 416, 3], ["enableParallelBuilding", 427, 3], ["installTargets", 429, 3], ["postInstall", 434, 3], ["postFixup", 474, 3], ["setupHook", 479, 3], ["passthru", 481, 3], ["meta", 494, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -125,13 +118,13 @@ export default nix.lambda((args) => (() => {
       ]))));
     const withWebkitgtk = nix.thunk(() => (nix.asBool(withXwidgets) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: nix.thunk(() => nix.add(pname, (nix.asBool(noGui) ? "-nox" : (nix.asBool(nix.eq(variant, "macport")) ? "-macport" : (nix.asBool(withPgtk) ? "-pgtk" : (nix.asBool(withGTK3) ? "-gtk3" : "")))))),
         version: version,
         src: src,
         patches: nix.thunk(() => nix.concat(nix.app(patches, fetchpatch), nix.concat([nix.path(here, "./load-the-early-default-library-after-early-init.el.patch")], nix.app(nix.sel(lib, "optionals"), withNativeCompilation, nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./native-comp-driver-options-30.patch"), nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 backendPath: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.builtins.map((x) => nix.str`"-B${x}"`, nix.thunk(() => nix.concat([nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libgccjit)}/lib`)], nix.concat(libGccJitLibraryPaths, nix.concat([
                       nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/bin`),
                       nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools")))}/bin`),
@@ -212,11 +205,11 @@ done
         ]))))),
         __structuredAttrs: true,
         env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), withNativeCompilation, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             NATIVE_FULL_AOT: "1",
             LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", libGccJitLibraryPaths)),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(variant, "macport")), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-isystem ${nix.path(here, "./macport-noescape-noop")}`),
           }))))),
         enableParallelBuilding: true,
@@ -235,22 +228,22 @@ patchelf --add-needed "libXcursor.so.1" "$out/bin/emacs"
 `))),
         setupHook: nix.path(here, "./setup-hook.sh"),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           withNativeCompilation: withNativeCompilation,
           withTreeSitter: withTreeSitter,
           withXwidgets: withXwidgets,
           pkgs: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(emacsPackagesFor, nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))))),
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "emacs-daemon": nix.thunk(() => nix.attr(nixosTests, "emacs-daemon")),
             withPackages: nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-support/wrapper-test"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 emacs: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           })),
         })),
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           broken: nix.thunk(() => (nix.asBool(withNativeCompilation) && nix.asBool(!nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))))),
         }, meta)),
       }));

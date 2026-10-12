@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["hash", 37, 5]], [["updateScript", 44, 12]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 33, 3], ["zigDeps", 35, 3], ["postConfigure", 40, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, zig_0_14: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 44, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 33, 3], ["zigDeps", 35, 3], ["postConfigure", 40, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const zig = zig_0_14;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "anyzig",
       version: "2026_03_26",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "marler8997",
           repo: "anyzig",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace build.zig.zon --replace-fail \\\n  '12201a08d7eff7619c8eb8284691a3ff959861b4bdd87216f180ed136672fb4ea26f' \\\n  'zipcmdline-0.0.0-AAAAAKBaAAAaCNfv92GcjrgoRpGj_5WYYbS92HIW8YDt'\n",
       nativeBuildInputs: nix.thunk(() => [zig]),
       zigDeps: nix.thunk(() => nix.app(nix.sel(zig, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
       postConfigure: nix.thunk(() => nix.str`ln -s ${nix.sel(finalAttrs, "zigDeps")} "$ZIG_GLOBAL_CACHE_DIR/p"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Universal zig executable that lets you run any version of zig",
         homepage: "https://github.com/marler8997/anyzig",
         changelog: nix.thunk(() => nix.str`https://github.com/marler8997/anyzig/releases/tag/v${nix.sel(finalAttrs, "version")}`),

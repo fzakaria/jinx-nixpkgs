@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcxml.nix", [[["url", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 48, 5], ["homepage", 49, 5], ["downloadPage", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["__structuredAttrs", 44, 3], ["strictDeps", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, wafHook: false, python3: false, gitMinimal: false, "pkg-config": false, libxmlxx: false, boost: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcxml.nix", [["url", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/libcxml.nix", [["description", 48, 5], ["homepage", 49, 5], ["downloadPage", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/libcxml.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["__structuredAttrs", 44, 3], ["strictDeps", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxmlxx = nix.arg($, "libxmlxx");
   const boost = nix.arg($, "boost");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libcxml",
       version: "0.17.17",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.carlh.net/git/libcxml.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-fd6KYSQnFw3aHCQOT6TTcGUvTxIWrJeRT5rmk2CgbrQ=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "libxml++ helper library",
         homepage: "https://git.carlh.net/cgit/libcxml",
         downloadPage: "https://git.carlh.net/cgit/libcxml",

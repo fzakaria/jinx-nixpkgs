@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["homepage", 25, 5], ["description", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["mainProgram", 29, 5]], [["pname", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["src", 12, 3], ["vendorHash", 17, 3], ["ldflags", 19, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { buildGoModule: false, lib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 25, 5], ["description", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["mainProgram", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["src", 12, 3], ["vendorHash", 17, 3], ["ldflags", 19, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,19 +11,19 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "filegive",
       version: "0.8.0-unstable-2022-05-29",
       rev: "5b28e7087a",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://viric.name/cgi-bin/filegive/tarball/${nix.sel(finalAttrs, "rev")}/filegive-${nix.sel(finalAttrs, "rev")}.tar.gz`),
           hash: "sha256-A69oys59GEysZvQLaYsfoX/X2ENMMH2BGfJqXohQjpc=",
         })))),
       vendorHash: "sha256-l7FRl58NWGBynMlGu1SCxeVBEzTdxREvUWzmJDiliZM=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://viric.name/cgi-bin/filegive",
         description: "Easy p2p file sending program",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

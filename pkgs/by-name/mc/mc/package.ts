@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["hash", 34, 5]], [["updateScript", 93, 12]], [["description", 105, 5], ["downloadPage", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["mainProgram", 110, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 47, 3], ["enableParallelBuilding", 63, 3], ["configureFlags", 65, 3], ["outputs", 76, 3], ["postPatch", 81, 3], ["postFixup", 86, 3], ["passthru", 93, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, buildPackages: false, "pkg-config": false, glib: false, gpm: false, file: false, e2fsprogs: false, libice: false, perl: false, zip: false, unzip: false, gettext: false, slang: false, libssh2: false, openssl: false, coreutils: false, darwin: false, x11Support: true, libx11: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 93, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 105, 5], ["downloadPage", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["mainProgram", 110, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 47, 3], ["enableParallelBuilding", 63, 3], ["configureFlags", 65, 3], ["outputs", 76, 3], ["postPatch", 81, 3], ["postFixup", 86, 3], ["passthru", 93, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mc",
       version: "4.8.33",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ftp.osuosl.org/pub/midnightcommander/mc-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-yuFJ1C+ETlGF2MgdfbOROo+iFMZfhSIAqdiWtGivFkw=",
         })))),
@@ -59,11 +56,11 @@ patchelf \\
   $out/bin/mc
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-mc", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\n# Expect the text in format of \"Current version is: 4.8.27; ...\".\nnew_version=\"$(curl -s https://midnight-commander.org/ | pcre2grep -o1 'Current version is: (([0-9]+\\.?)+);')\"\nupdate-source-version mc \"$new_version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "File Manager and User Shell for the GNU Project, known as Midnight Commander",
         downloadPage: "https://ftp.osuosl.org/pub/midnightcommander/",
         homepage: "https://midnight-commander.org",

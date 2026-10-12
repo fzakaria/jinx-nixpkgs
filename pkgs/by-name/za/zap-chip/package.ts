@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 23, 7], ["CYPRESS_INSTALL_BINARY", 24, 7]], [["hash", 46, 9], ["timestamp", 47, 9], ["date", 48, 9], ["zapVersion", 49, 9]], [["description", 67, 5], ["changelog", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["broken", 73, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["npmDepsHash", 21, 3], ["env", 23, 3], ["patches", 26, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 57, 3], ["postInstall", 59, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, writers: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 23, 7], ["CYPRESS_INSTALL_BINARY", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["hash", 46, 9], ["timestamp", 47, 9], ["date", 48, 9], ["zapVersion", 49, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["changelog", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["broken", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["npmDepsHash", 21, 3], ["env", 23, 3], ["patches", 26, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 57, 3], ["postInstall", 59, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zap-chip";
       const version = "2026.05.21";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "project-chip",
           repo: "zap",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-R95ljHvKPGyJh3tlWI1feo9HVE7abPLVLzScqReJBPw=";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         CYPRESS_INSTALL_BINARY: "0",
       }));
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postPatch = nix.thunk(() => (() => {
         const versionJson = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: version,
           timestamp: 1n,
           date: version,
@@ -53,7 +49,7 @@ cat .version.json
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const postInstall = "# this file is also used at runtime\ninstall -m644 .version.json $out/lib/node_modules/zap/\n# home-assistant chip-* python packages need the executable under the name zap-cli\nmv $out/bin/zap $out/bin/zap-cli\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Generic generation engine and user interface for applications and libraries based on Zigbee Cluster Library (ZCL)",
         changelog: nix.thunk(() => nix.str`https://github.com/project-chip/zap/releases/tag/v${version}`),
         homepage: "https://github.com/project-chip/zap",
@@ -66,7 +62,7 @@ cat .version.json
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

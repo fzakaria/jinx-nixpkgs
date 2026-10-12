@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["description", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["license", 61, 5], ["platforms", 62, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["outputBin", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["postFixup", 46, 3], ["mesonFlags", 51, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, vala: false, meson: false, ninja: false, "pkg-config": false, fetchFromGitea: false, "gobject-introspection": false, glib: false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["license", 61, 5], ["platforms", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["outputBin", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["postFixup", 46, 3], ["mesonFlags", 51, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libgflow",
       version: "1.0.4",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       outputBin: "devdoc",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "notabug.org",
           owner: "grindhold",
           repo: "libgtkflow",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       mesonFlags: nix.thunk(() => ["-Denable_valadoc=true", "-Denable_gtk3=false", "-Denable_gtk4=false"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Flow graph widget for GTK 3",
         homepage: "https://notabug.org/grindhold/libgtkflow",
         maintainers: nix.thunk(() => (() => {

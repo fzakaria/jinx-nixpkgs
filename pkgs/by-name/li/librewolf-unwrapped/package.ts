@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 28, 5], ["homepage", 29, 5], ["maintainers", 30, 5], ["platforms", 38, 5], ["broken", 39, 5], ["maxSilent", 42, 5], ["license", 43, 5], ["mainProgram", 44, 5]], [["librewolf", 46, 34]], [["attrPath", 48, 5]], [["pname", 13, 3], ["applicationName", 14, 3], ["binaryName", 15, 3], ["version", 16, 3], ["src", 17, 3], ["branding", 18, 3], ["extraConfigureFlags", 20, 5], ["extraPreConfigure", 21, 5], ["extraPatches", 22, 5], ["extraPostPatch", 23, 5], ["extraPassthru", 24, 5], ["meta", 27, 3], ["tests", 46, 3], ["updateScript", 47, 3]], [["enableAddonSigning", 52, 5], ["enableAddonSideload", 53, 5], ["enableCrashReporter", 55, 5], ["enableOfficialBranding", 60, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, callPackage: false, buildMozillaMach: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["maintainers", 30, 5], ["platforms", 38, 5], ["broken", 39, 5], ["maxSilent", 42, 5], ["license", 43, 5], ["mainProgram", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["librewolf", 46, 34]]);
-const pos$3 = nix.positions(here + "/package.nix", [["attrPath", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["applicationName", 14, 3], ["binaryName", 15, 3], ["version", 16, 3], ["src", 17, 3], ["branding", 18, 3], ["extraConfigureFlags", 20, 5], ["extraPreConfigure", 21, 5], ["extraPatches", 22, 5], ["extraPostPatch", 23, 5], ["extraPassthru", 24, 5], ["meta", 27, 3], ["tests", 46, 3], ["updateScript", 47, 3]]);
-const pos$5 = nix.positions(here + "/package.nix", [["enableAddonSigning", 52, 5], ["enableAddonSideload", 53, 5], ["enableCrashReporter", 55, 5], ["enableOfficialBranding", 60, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const librewolf_src = nix.thunk(() => nix.app(callPackage, nix.path(here, "./librewolf.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(nix.app(buildMozillaMach, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "librewolf",
       applicationName: "LibreWolf",
       binaryName: "librewolf",
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
       extraPostPatch: nix.thunk(() => nix.attr(librewolf_src, "extraPostPatch")),
       extraPassthru: nix.thunk(() => nix.attr(librewolf_src, "extraPassthru")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Fork of Firefox, focused on privacy, security and freedom",
         homepage: "https://librewolf.net/",
         maintainers: nix.thunk(() => (() => {
@@ -52,12 +48,12 @@ export default nix.lambda((args) => (() => {
         mainProgram: "librewolf",
       })),
       tests: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         librewolf: nix.thunk(() => nix.attr(nixosTests, "librewolf")),
       })),
-      updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, attrPath: "librewolf-unwrapped" })))),
+      updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], attrPath: "librewolf-unwrapped" })))),
     }))), "override"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       enableAddonSigning: false,
       enableAddonSideload: true,
       enableCrashReporter: false,

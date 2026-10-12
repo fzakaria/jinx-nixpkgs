@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["updateScript", 58, 5]], [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["teams", 66, 5], ["mainProgram", 67, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["passthru", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, "pkg-config": false, vala: false, wrapGAppsHook3: false, "clutter-gtk": false, "evolution-data-server": false, granite: false, geoclue2: false, "geocode-glib_2": false, gtk3: false, libchamplain_libsoup3: false, libgee: false, libhandy: false, libical: false, "libportal-gtk3": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["teams", 66, 5], ["mainProgram", 67, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["passthru", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elementary-tasks";
       const version = "6.3.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "tasks",
           rev: version,
@@ -55,11 +52,11 @@ export default nix.lambda((args) => (() => {
         libportal_gtk3,
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/elementary/tasks",
         description: "Synced tasks and reminders on elementary OS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "io.elementary.tasks",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

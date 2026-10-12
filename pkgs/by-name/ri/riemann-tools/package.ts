@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 33, 12]], [["description", 36, 5], ["homepage", 37, 5], ["maintainers", 38, 5], ["license", 41, 5]], [["pname", 8, 3], ["gemdir", 9, 3], ["exes", 10, 3], ["passthru", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false, bundlerUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["maintainers", 38, 5], ["license", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["gemdir", 9, 3], ["exes", 10, 3], ["passthru", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "riemann-tools",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => [
@@ -39,11 +37,11 @@ export default nix.lambda((args) => (() => {
         "riemann-zookeeper",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "riemann-tools")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tools to submit data to Riemann",
         homepage: "https://riemann.io",
         maintainers: nix.thunk(() => (() => {

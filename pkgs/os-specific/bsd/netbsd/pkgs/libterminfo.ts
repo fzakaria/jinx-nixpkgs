@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libterminfo.nix", [[["path", 17, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 30, 3], ["SHLIBINSTALLDIR", 31, 3], ["postPatch", 32, 3], ["postBuild", 37, 3], ["postInstall", 40, 3], ["extraPaths", 43, 3]]]);
 const formals$1 = { args: { mkDerivation: false, bsdSetupHook: false, netbsdSetupHook: false, makeMinimal: false, install: false, tsort: false, lorder: false, mandoc: false, statHook: false, nbperf: false, tic: false, compatIfNeeded: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libterminfo.nix", [["path", 17, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 30, 3], ["SHLIBINSTALLDIR", 31, 3], ["postPatch", 32, 3], ["postBuild", 37, 3], ["postInstall", 40, 3], ["extraPaths", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const tic = nix.arg($, "tic");
   const compatIfNeeded = nix.arg($, "compatIfNeeded");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "lib/libterminfo",
       nativeBuildInputs: nix.thunk(() => [
         bsdSetupHook,

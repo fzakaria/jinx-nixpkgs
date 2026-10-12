@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5]], [["updateScript", 150, 12]], [["description", 153, 5], ["homepage", 154, 5], ["changelog", 155, 5], ["license", 156, 5], ["mainProgram", 160, 5], ["maintainers", 161, 5], ["platforms", 165, 5]], [["__structuredAttrs", 57, 3], ["pname", 59, 3], ["version", 60, 3], ["src", 62, 3], ["strictDeps", 69, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 81, 3], ["mesonFlags", 115, 3], ["mesonBuildType", 120, 3], ["postInstall", 122, 3], ["postFixup", 131, 3], ["doCheck", 137, 3], ["nativeCheckInputs", 139, 3], ["doInstallCheck", 144, 3], ["nativeInstallCheckInputs", 146, 3], ["passthru", 150, 3], ["meta", 152, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, "pkg-config": false, "wayland-scanner": false, makeBinaryWrapper: false, autoAddDriverRunpath: false, installShellFiles: false, versionCheckHook: false, cairo: false, curl: false, fontconfig: false, freetype: false, glib: false, harfbuzz: false, jemalloc: false, libGL: false, libical: false, libjxl: false, libqalculate: false, librsvg: false, libsecret: false, libsndfile: false, libsodium: false, libwebp: false, libxkbcommon: false, libxml2: false, md4c: false, nlohmann_json: false, pam: false, pango: false, pipewire: false, polkit: false, "sdbus-cpp_2": false, stb: false, systemdLibs: false, tomlplusplus: false, tzdata: false, wayland: false, "wayland-protocols": false, wireplumber: false, gitMinimal: false, "gsettings-desktop-schemas": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 150, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 153, 5], ["homepage", 154, 5], ["changelog", 155, 5], ["license", 156, 5], ["mainProgram", 160, 5], ["maintainers", 161, 5], ["platforms", 165, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["__structuredAttrs", 57, 3], ["pname", 59, 3], ["version", 60, 3], ["src", 62, 3], ["strictDeps", 69, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 81, 3], ["mesonFlags", 115, 3], ["mesonBuildType", 120, 3], ["postInstall", 122, 3], ["postFixup", 131, 3], ["doCheck", 137, 3], ["nativeCheckInputs", 139, 3], ["doInstallCheck", 144, 3], ["nativeInstallCheckInputs", 146, 3], ["passthru", 150, 3], ["meta", 152, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,12 +54,12 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       __structuredAttrs: true,
       pname: "noctalia",
       version: "5.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "noctalia-dev",
           repo: "noctalia",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -126,11 +123,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sleek, customizable desktop shell crafted for Wayland",
         homepage: "https://noctalia.dev",
         changelog: nix.thunk(() => nix.str`https://noctalia.dev/changelogs#v${nix.sel(finalAttrs, "version")}`),

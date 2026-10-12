@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["name", 55, 7], ["desktopName", 56, 7], ["genericName", 57, 7], ["comment", 58, 7], ["exec", 59, 7], ["icon", 60, 7], ["terminal", 61, 7], ["type", 62, 7], ["categories", 63, 7]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nodejs", 23, 3], ["npmDepsHash", 25, 3], ["makeCacheWritable", 27, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 34, 3], ["desktopItems", 53, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, nodejs_22: false, buildNpmPackage: false, copyDesktopItems: false, imagemagick: false, "xdg-utils": false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 55, 7], ["desktopName", 56, 7], ["genericName", 57, 7], ["comment", 58, 7], ["exec", 59, 7], ["icon", 60, 7], ["terminal", 61, 7], ["type", 62, 7], ["categories", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nodejs", 23, 3], ["npmDepsHash", 25, 3], ["makeCacheWritable", 27, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 34, 3], ["desktopItems", 53, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ariang";
       const version = "1.3.15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mayswind",
           repo: "AriaNg",
           tag: version,
@@ -51,7 +48,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: pname,
             desktopName: "AriaNg",
             genericName: nix.thunk(() => nix.sel(meta, "description")),
@@ -64,7 +61,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Modern web frontend making aria2 easier to use",
         homepage: "http://ariang.mayswind.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -75,7 +72,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

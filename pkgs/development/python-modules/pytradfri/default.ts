@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["async", 30, 5]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["optional-dependencies", 29, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, aiocoap: false, dtlssocket: false, pydantic: false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["async", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["optional-dependencies", 29, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "14.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "home-assistant-libs",
           repo: "pytradfri",
           tag: version,
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [pydantic]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, async: nix.thunk(() => [aiocoap, dtlssocket]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], async: nix.thunk(() => [aiocoap, dtlssocket]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_asyncio, pytestCheckHook], nix.sel(optional_dependencies, "async")));
       const pythonImportsCheck = nix.thunk(() => ["pytradfri"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python package to communicate with the IKEA Trådfri ZigBee Gateway",
         homepage: "https://github.com/home-assistant-libs/pytradfri",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/pytradfri/releases/tag/${nix.sel(src, "tag")}`),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

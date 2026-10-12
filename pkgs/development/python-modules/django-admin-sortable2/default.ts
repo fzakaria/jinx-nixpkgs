@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["pname", 21, 5], ["version", 22, 13], ["src", 22, 21], ["npmDepsHash", 23, 5], ["installPhase", 25, 5]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 36, 11], ["version", 36, 17], ["src", 36, 25], ["pyproject", 37, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["preBuild", 43, 3], ["pythonImportsCheck", 47, 3], ["doCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, django: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 21, 5], ["version", 22, 13], ["src", 22, 21], ["npmDepsHash", 23, 5], ["installPhase", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 36, 11], ["version", 36, 17], ["src", 36, 25], ["pyproject", 37, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["preBuild", 43, 3], ["pythonImportsCheck", 47, 3], ["doCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const pname = "django-admin-sortable2";
   const version = "2.3.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "jrief",
       repo: "django-admin-sortable2",
       tag: version,
       hash: "sha256-noY0SELM+ZBWDoZ/pl1oUV/S0VICtG7sSaCtPGjjOpQ=",
     }))));
   const assets = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${pname}-assets`),
       version: version,
       src: src,
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["adminsortable2"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Generic drag-and-drop ordering for objects in the Django admin interface",
         homepage: "https://github.com/jrief/django-admin-sortable2",
         changelog: nix.thunk(() => nix.str`https://github.com/jrief/django-admin-sortable2/blob/${nix.sel(src_1, "tag")}/CHANGELOG.md`),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname_1,
         version: version_1,
         src: src_1,

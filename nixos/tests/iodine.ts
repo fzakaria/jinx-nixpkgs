@@ -2,29 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/iodine.nix", [[["allowedUDPPorts", 14, 11], ["trustedInterfaces", 15, 11]], [["firewall", 13, 20]], [["net.ipv4.ip_forward", 18, 11], ["net.ipv6.ip_forward", 19, 11]], [["sysctl", 17, 21]], [["kernel", 17, 14]], [["enable", 23, 11], ["ip", 24, 11], ["passwordFile", 25, 11], ["domain", 26, 19]], [["server", 22, 25]], [["enable", 31, 11], ["openFirewall", 32, 11]], [["iodine", 22, 18], ["openssh", 30, 18]], [["networking", 13, 9], ["boot", 17, 9], ["services", 22, 9]], [["passwordFile", 41, 11], ["relay", 42, 11], ["server", 43, 11]], [["testClient", 39, 33]], [["clients", 39, 25]], [["iodine", 39, 18]], [["rules", 45, 26]], [["tmpfiles", 45, 17]], [["systemPackages", 48, 21]], [["services", 39, 9], ["systemd", 45, 9], ["environment", 48, 9]], [["server", 9, 5], ["client", 36, 5]], [["name", 7, 3], ["nodes", 8, 3], ["testScript", 55, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/iodine.nix", [["allowedUDPPorts", 14, 11], ["trustedInterfaces", 15, 11]]);
-const pos$2 = nix.positions(here + "/iodine.nix", [["firewall", 13, 20]]);
-const pos$3 = nix.positions(here + "/iodine.nix", [["net.ipv4.ip_forward", 18, 11], ["net.ipv6.ip_forward", 19, 11]]);
-const pos$4 = nix.positions(here + "/iodine.nix", [["sysctl", 17, 21]]);
-const pos$5 = nix.positions(here + "/iodine.nix", [["kernel", 17, 14]]);
-const pos$6 = nix.positions(here + "/iodine.nix", [["enable", 23, 11], ["ip", 24, 11], ["passwordFile", 25, 11], ["domain", 26, 19]]);
-const pos$7 = nix.positions(here + "/iodine.nix", [["server", 22, 25]]);
-const pos$8 = nix.positions(here + "/iodine.nix", [["enable", 31, 11], ["openFirewall", 32, 11]]);
-const pos$9 = nix.positions(here + "/iodine.nix", [["iodine", 22, 18], ["openssh", 30, 18]]);
-const pos$10 = nix.positions(here + "/iodine.nix", [["networking", 13, 9], ["boot", 17, 9], ["services", 22, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$11 = nix.positions(here + "/iodine.nix", [["passwordFile", 41, 11], ["relay", 42, 11], ["server", 43, 11]]);
-const pos$12 = nix.positions(here + "/iodine.nix", [["testClient", 39, 33]]);
-const pos$13 = nix.positions(here + "/iodine.nix", [["clients", 39, 25]]);
-const pos$14 = nix.positions(here + "/iodine.nix", [["iodine", 39, 18]]);
-const pos$15 = nix.positions(here + "/iodine.nix", [["rules", 45, 26]]);
-const pos$16 = nix.positions(here + "/iodine.nix", [["tmpfiles", 45, 17]]);
-const pos$17 = nix.positions(here + "/iodine.nix", [["systemPackages", 48, 21]]);
-const pos$18 = nix.positions(here + "/iodine.nix", [["services", 39, 9], ["systemd", 45, 9], ["environment", 48, 9]]);
-const pos$19 = nix.positions(here + "/iodine.nix", [["server", 9, 5], ["client", 36, 5]]);
-const pos$20 = nix.positions(here + "/iodine.nix", [["name", 7, 3], ["nodes", 8, 3], ["testScript", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,68 +13,73 @@ export default nix.lambda((args) => (() => {
   const domain = "whatever.example.com";
   const password = "false;foo;exit;withspecialcharacters";
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "iodine",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               allowedUDPPorts: nix.thunk(() => [53n]),
               trustedInterfaces: nix.thunk(() => ["dns0"]),
             })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             kernel: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              sysctl: nix.thunk(() => ({ [nix.POS]: pos$3, "net.ipv4.ip_forward": 1n, "net.ipv6.ip_forward": 1n })),
+              [nix.POS]: $pos[3],
+              sysctl: nix.thunk(() => ({ [nix.POS]: $pos[2], "net.ipv4.ip_forward": 1n, "net.ipv6.ip_forward": 1n })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             iodine: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               server: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 enable: true,
                 ip: "10.53.53.1/24",
                 passwordFile: nix.thunk(() => nix.str`${nix.builtins.toFile("password", password)}`),
                 domain: domain,
               })),
             })),
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true, openFirewall: false })),
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true, openFirewall: false })),
           })),
         };
       })(), formals$2),
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             iodine: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               clients: nix.thunk(() => ({
-                [nix.POS]: pos$12,
-                testClient: nix.thunk(() => ({ [nix.POS]: pos$11, passwordFile: "/root/pw", relay: "server", server: domain })),
+                [nix.POS]: $pos[11],
+                testClient: nix.thunk(() => ({
+                  [nix.POS]: $pos[10],
+                  passwordFile: "/root/pw",
+                  relay: "server",
+                  server: domain,
+                })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               rules: nix.thunk(() => [nix.thunk(() => nix.str`f /root/pw 0666 root root - ${password}`)]),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nagiosPluginsOfficial"))]),
           })),
         };

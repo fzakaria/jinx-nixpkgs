@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 84, 5], ["mainProgram", 85, 5], ["license", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5]], [["pname", 27, 3], ["version", 28, 3], ["__structuredAttrs", 29, 3], ["strictDeps", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 57, 3], ["propagatedBuildInputs", 62, 3], ["outputs", 67, 3], ["doCheck", 72, 3], ["postPatch", 74, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gfortran: false, buildType: true, meson: false, ninja: false, cmake: false, "pkg-config": false, python3: false, blas: false, lapack: false, "mctc-lib": false, mstore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 84, 5], ["mainProgram", 85, 5], ["license", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["__structuredAttrs", 29, 3], ["strictDeps", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 57, 3], ["propagatedBuildInputs", 62, 3], ["outputs", 67, 3], ["doCheck", 72, 3], ["postPatch", 74, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +24,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_((nix.asBool(!nix.asBool(nix.sel(blas, "isILP64"))) && nix.asBool(!nix.asBool(nix.sel(lapack, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mu/multicharge/package.nix:18:1");
   nix.assert_(nix.builtins.elem(buildType, nix.thunk(() => ["meson", "cmake"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mu/multicharge/package.nix:19:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "multicharge",
       version: "0.5.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grimme-lab",
           repo: "multicharge",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "patchShebangs --build config/install-mod.py\n\n# custom blas and lapack need to be explicitly found for transitive dependencies\n# otherwise CMAKE builds can not proceed.\necho 'set(custom-blas_FOUND TRUE)' >> config/cmake/Findcustom-blas.cmake\necho 'set(custom-lapack_FOUND TRUE)' >> config/cmake/Findcustom-lapack.cmake\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Electronegativity equilibration model for atomic partial charges",
         mainProgram: "multicharge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

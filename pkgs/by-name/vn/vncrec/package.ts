@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["description", 66, 5], ["homepage", 67, 5], ["platforms", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["hardeningDisable", 28, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["makeFlags", 56, 3], ["installTargets", 60, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false, xorgproto: false, imake: false, gccmakedep: false, libxt: false, libxmu: false, libxaw: false, libxext: false, libsm: false, libice: false, libxpm: false, libxp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["platforms", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["hardeningDisable", 28, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["makeFlags", 56, 3], ["installTargets", 60, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxpm = nix.arg($, "libxpm");
   const libxp = nix.arg($, "libxp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vncrec",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://ronja.twibright.com/utils/vncrec-twibright.tgz",
           sha256: "1yp6r55fqpdhc8cgrgh9i0mzxmkls16pgf8vfcpng1axr7cigyhc",
         })))),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installTargets: nix.thunk(() => ["install", "install.man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "VNC recorder",
         homepage: "http://ronja.twibright.com/utils/vncrec/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

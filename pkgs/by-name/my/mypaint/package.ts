@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5]], [["url", 47, 7], ["hash", 48, 7]], [["name", 52, 7], ["url", 53, 7], ["hash", 54, 7]], [["url", 58, 7], ["hash", 59, 7]], [["url", 63, 7], ["hash", 64, 7]], [["url", 68, 7], ["hash", 69, 7], ["includes", 70, 7]], [["url", 76, 7], ["hash", 77, 7]], [["url", 81, 7], ["hash", 82, 7], ["includes", 83, 7]], [["url", 90, 7], ["hash", 91, 7]], [["url", 95, 7], ["hash", 96, 7]], [["description", 171, 5], ["homepage", 172, 5], ["license", 173, 5], ["platforms", 174, 5], ["maintainers", 175, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 43, 3], ["nativeBuildInputs", 100, 3], ["buildInputs", 110, 3], ["propagatedBuildInputs", 126, 3], ["nativeCheckInputs", 132, 3], ["buildPhase", 136, 3], ["installPhase", 144, 3], ["doCheck", 154, 3], ["checkPhase", 156, 3], ["postInstall", 164, 3], ["meta", 170, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, gtk3: false, gettext: false, json_c: false, lcms2: false, libpng: false, librsvg: false, "gobject-introspection": false, libmypaint: false, "hicolor-icon-theme": false, "mypaint-brushes": false, "gdk-pixbuf": false, "pkg-config": false, python3: false, swig: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 47, 7], ["hash", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 52, 7], ["url", 53, 7], ["hash", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 58, 7], ["hash", 59, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 63, 7], ["hash", 64, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 68, 7], ["hash", 69, 7], ["includes", 70, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 76, 7], ["hash", 77, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 81, 7], ["hash", 82, 7], ["includes", 83, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["url", 90, 7], ["hash", 91, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["url", 95, 7], ["hash", 96, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 171, 5], ["homepage", 172, 5], ["license", 173, 5], ["platforms", 174, 5], ["maintainers", 175, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 43, 3], ["nativeBuildInputs", 100, 3], ["buildInputs", 110, 3], ["propagatedBuildInputs", 126, 3], ["nativeCheckInputs", 132, 3], ["buildPhase", 136, 3], ["installPhase", 144, 3], ["doCheck", 154, 3], ["checkPhase", 156, 3], ["postInstall", 164, 3], ["meta", 170, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.thunk(() => nix.attr(from, "numpy"));
   const buildPythonApplication = nix.thunk(() => nix.attr(from, "buildPythonApplication"));
   return nix.app(buildPythonApplication, (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "mypaint",
       version: "2.0.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mypaint",
           repo: "mypaint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,50 +45,50 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/mypaint/mypaint/commit/423950bec96d6057eac70442de577364d784a847.patch",
             hash: "sha256-OxJJOi20bFMRibL59zx6svtMrkgeMYyEvbdSXbZHqpc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "python-3.11-compatibility.patch",
             url: "https://github.com/mypaint/mypaint/commit/032a155b72f2b021f66a994050d83f07342d04af.patch",
             hash: "sha256-EI4WJbpZrCtFMKd6QdXlWpRpIHi37gJffDjclzTLaLc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/mypaint/mypaint/commit/66b2ba98bd953afa73d0d6ac71040b14a4ea266b.patch",
             hash: "sha256-4AWXD/JMpNA5otl2ad1ZLVPW49pycuOXGcgfzvj0XEE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/mypaint/mypaint/commit/0b720f8867f18acccc8e6ec770a9cc494aa81dcf.patch",
             hash: "sha256-ahYeERiMLA8yKIXQota6/ApAbOW0XwsHO2JkEEMm1Ow=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://github.com/mypaint/mypaint/commit/d7d2496401a112a178d5fa2e491f0cc7537d24cd.patch",
             hash: "sha256-dIW6qWqY96+bsUDQQtGtjENvypnh//Ep3xW+wooCJ14=",
             includes: nix.thunk(() => ["gui/colors/hcywheel.py"]),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://github.com/mypaint/mypaint/commit/5496b1cd1113fcd46230d87760b7e6b51cc747bc.patch",
             hash: "sha256-h+sE1LW04xDU2rofH5KqXsY1M0jacfBNBC+Zb0i6y1w=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: "https://github.com/mypaint/mypaint/commit/69d1d553034a31c0a466050a4acb323787dd04e6.patch",
             hash: "sha256-nziaPgfZRzPUvQEyQUM4FQbasHLFFT88H8qucbYI0pA=",
             includes: nix.thunk(() => ["lib/strokemap.py", "lib/stroke.py"]),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             url: "https://github.com/mypaint/mypaint/commit/2a92b6baf452aba2cff3cc0a7782b301da3933d7.patch",
             hash: "sha256-IkzdrA3pmeiihDOMzqIfc3uDd/wO3cI6dT+cVVhaQcI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             url: "https://github.com/mypaint/mypaint/commit/ab017e073e83a4930a0fb09608682bf4b7ab1874.patch",
             hash: "sha256-7OFqH75/gJYRJ1vROUDIkUqoBowAolBYQ5anWtp228o=",
           })))),
@@ -149,7 +138,7 @@ runHook postCheck
 `),
       postInstall: "substituteInPlace $out/share/thumbnailers/mypaint-ora.thumbnailer \\\n  --replace-fail \"TryExec=mypaint-ora-thumbnailer\" \"TryExec=$out/bin/mypaint-ora-thumbnailer\" \\\n  --replace-fail \"Exec=mypaint-ora-thumbnailer\" \"Exec=$out/bin/mypaint-ora-thumbnailer\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Graphics application for digital painters",
         homepage: "http://mypaint.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

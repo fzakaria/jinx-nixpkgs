@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 38, 5], ["homepage", 39, 5], ["maintainers", 40, 5], ["license", 41, 5]], [["version", 12, 3], ["pname", 13, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["cmakeFlags", 26, 3], ["makeFlags", 29, 3], ["enableParallelBuilding", 36, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, zlib: false, openssl: false, libre: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["maintainers", 40, 5], ["license", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pname", 13, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["cmakeFlags", 26, 3], ["makeFlags", 29, 3], ["enableParallelBuilding", 36, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libre = nix.arg($, "libre");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "2.12.0",
       pname: "librem",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "baresip",
           repo: "rem",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "cc", "cc"), null)), nix.thunk(() => nix.str`SYSROOT_ALT=${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}`)), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "cc", "libc"), null)), nix.thunk(() => nix.str`SYSROOT=${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(stdenv, "cc", "libc")))}`))))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for real-time audio and video processing",
         homepage: "https://github.com/baresip/rem",
         maintainers: nix.thunk(() => (() => {

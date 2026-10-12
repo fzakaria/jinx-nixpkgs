@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["pythonRelaxDeps", 26, 3], ["build-system", 28, 3], ["buildInputs", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 43, 3], ["pytestFlags", 45, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, chardet: false, docutils: false, fetchPypi: false, pbr: false, pygments: false, pytestCheckHook: false, "restructuredtext-lint": false, "setuptools-scm": false, stevedore: false, wheel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["pythonRelaxDeps", 26, 3], ["build-system", 28, 3], ["buildInputs", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 43, 3], ["pytestFlags", 45, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-EmetMnWJcfvPmRRCQXo5Nce8nlJVDnNiLg5WulXqHUA=",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-Wignore::PendingDeprecationWarning"]);
       const pythonImportsCheck = nix.thunk(() => ["doc8"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Style checker for Sphinx (or other) RST documentation",
         mainProgram: "doc8",
         homepage: "https://github.com/pycqa/doc8",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 35, 5], ["sha256", 36, 5]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 20, 3], ["version", 21, 3], ["format", 22, 3], ["outputs", 24, 3], ["src", 34, 3], ["patches", 39, 3], ["nativeBuildInputs", 41, 3], ["propagatedBuildInputs", 47, 3], ["checkPhase", 55, 3], ["dontWrapGApps", 66, 3], ["preFixup", 68, 3], ["doCheck", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, python: false, pygobject3: false, pyatspi: false, pycairo: false, "at-spi2-core": false, "gobject-introspection": false, gtk3: false, "gsettings-desktop-schemas": false, fetchurl: false, dbus: false, "xvfb-run": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["format", 22, 3], ["outputs", 24, 3], ["src", 34, 3], ["patches", 39, 3], ["nativeBuildInputs", 41, 3], ["propagatedBuildInputs", 47, 3], ["checkPhase", 55, 3], ["dontWrapGApps", 66, 3], ["preFixup", 68, 3], ["doCheck", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dogtail",
       version: "0.9.11",
       format: "setuptools",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gitlab.com/dogtail/dogtail/raw/released/dogtail-0.9.10.tar.gz",
           sha256: "EGyxYopupfXPYtTL9mm9ujZorvh8AGaNXVKBPWsGy3c=",
         })))),
@@ -50,7 +48,7 @@ runHook postCheck
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GUI test tool and automation framework that uses Accessibility technologies to communicate with desktop applications",
         homepage: "https://gitlab.com/dogtail/dogtail",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

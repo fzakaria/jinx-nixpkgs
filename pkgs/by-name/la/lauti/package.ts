@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["src", 17, 51], ["version", 17, 55]], [["lauti", 44, 26]], [["tests", 43, 12]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]], [["pname", 21, 3], ["version", 22, 11], ["src", 22, 19], ["vendorHash", 24, 3], ["ldflags", 26, 3], ["preConfigure", 33, 3], ["preCheck", 37, 3], ["passthru", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromCodeberg: false, callPackage: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 17, 51], ["version", 17, 55]]);
-const pos$3 = nix.positions(here + "/package.nix", [["lauti", 44, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 43, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 11], ["src", 22, 19], ["vendorHash", 24, 3], ["ldflags", 26, 3], ["preConfigure", 33, 3], ["preCheck", 37, 3], ["passthru", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const version = "1.2.0";
   const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Klasse-Methode",
       repo: "lauti",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-llmXXaCy6V4DE0B1a0K0rRCb6XSvC1+EaG9legx0u4I=",
     }))));
-  const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
+  const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], src: src, version: version }))));
   return nix.app(buildGoModule, nix.thunk(() => (() => {
       const pname = "lauti";
       const version_1 = version;
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
 `);
       const preCheck = "# Disable test, requires running Docker daemon\nrm cmd/lauti/main_test.go\nrm service/email/email_test.go\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, lauti: nix.thunk(() => nix.attr(nixosTests, "lauti")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], lauti: nix.thunk(() => nix.attr(nixosTests, "lauti")) })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open source calendar for events, groups and places",
         homepage: "https://lauti.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lauti",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version: version_1,
         src: src_1,

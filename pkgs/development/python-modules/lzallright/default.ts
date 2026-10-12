@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["pname", 23, 26], ["version", 23, 32], ["src", 23, 40], ["hash", 24, 5]], [["pytest", 41, 5]], [["tests", 40, 12]], [["description", 45, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoDeps", 22, 3], ["pyproject", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["pythonImportsCheck", 36, 3], ["doCheck", 38, 3], ["passthru", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, callPackage: false, fetchFromGitHub: false, rustPlatform: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 23, 26], ["version", 23, 32], ["src", 23, 40], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pytest", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 40, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoDeps", 22, 3], ["pyproject", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["pythonImportsCheck", 36, 3], ["doCheck", 38, 3], ["passthru", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lzallright",
       version: "0.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vlaci",
           repo: "lzallright",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-bnGnx+CKcneBWd5tpYWxEPp5f3hvGxM+8QcD2NKX4Tw=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,14 +44,14 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["lzallright"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pytest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "A Python 3.8+ binding for lzokay library which is an MIT licensed\na minimal, C++14 implementation of the LZO compression format.\n",
         homepage: "https://github.com/vlaci/lzallright",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

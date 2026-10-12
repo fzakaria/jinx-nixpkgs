@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["url", 29, 7], ["hash", 30, 7]], [["url", 35, 7], ["hash", 36, 7]], [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 19, 3], ["patches", 26, 3], ["build-system", 40, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch2: false, dill: false, mock: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 19, 3], ["patches", 26, 3], ["build-system", 40, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mailgun",
           repo: "expiringdict",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,12 +28,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/mailgun/expiringdict/commit/1c0f82232d20f8b3b31c9269a4d0e9510c1721a6.patch",
             hash: "sha256-IeeJVb2tOwRhEPNGqM30fNZyz3jFcnZNWC3I6K1+hSY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/mailgun/expiringdict/commit/976faf3664d54049e443aca054f5819db834577b.patch",
             hash: "sha256-FNdnU6iUMyED5j8oAjhmJTR7zQeEc/Z5s64pdeT4F8w=",
           })))),
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [dill, mock, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["expiringdict"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/mailgun/expiringdict/blob/${nix.sel(src, "rev")}/CHANGELOG.rst`),
         description: "Dictionary with auto-expiring values for caching purposes",
         homepage: "https://github.com/mailgun/expiringdict",
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["PGDATABASE", 66, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 35, 3], ["build-system", 37, 3], ["dependencies", 41, 3], ["doCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 55, 3], ["disabledTestPaths", 60, 3], ["env", 65, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, cffi: false, fetchFromGitHub: false, lib: false, libpq: false, postgresql: false, postgresqlTestHook: false, pytestCheckHook: false, pythonAtLeast: false, setuptools: false, six: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PGDATABASE", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 35, 3], ["build-system", 37, 3], ["dependencies", 41, 3], ["doCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 55, 3], ["disabledTestPaths", 60, 3], ["env", 65, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chtd",
           repo: "psycopg2cffi",
           tag: version,
@@ -42,10 +39,10 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [postgresql, postgresqlTestHook, pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["testEmptyArray"]);
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["psycopg2cffi/tests/psycopg2_tests/test_notify.py"])));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PGDATABASE: "psycopg2_test" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PGDATABASE: "psycopg2_test" }));
       const pythonImportsCheck = nix.thunk(() => ["psycopg2cffi"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Implementation of the psycopg2 module using cffi",
         homepage: "https://pypi.org/project/psycopg2cffi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 40, 5], ["url", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["name", 48, 7], ["owner", 49, 7], ["repo", 50, 7], ["rev", 51, 7], ["hash", 52, 7]], [["url", 57, 9], ["hash", 58, 9]], [["src", 47, 5], ["patches", 54, 5]], [["broken", 202, 5], ["description", 204, 5], ["longDescription", 205, 5], ["homepage", 210, 5], ["license", 211, 5], ["maintainers", 212, 5], ["platforms", 213, 5]], [["pname", 65, 3], ["version", 66, 11], ["srcs", 68, 3], ["sourceRoot", 73, 3], ["cmakeFlags", 75, 3], ["enableParallelBuilding", 80, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 101, 3], ["doCheck", 112, 3], ["postPatch", 114, 3], ["nativeCheckInputs", 129, 3], ["checkPhase", 144, 3], ["outputs", 167, 3], ["postInstall", 172, 3], ["meta", 201, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, fetchgit: false, fetchpatch: false, applyPatches: false, lib: false, bison: false, blas: false, cmake: false, flex: false, fftw: false, gfortran: false, lapack: false, libtool_2: false, mpi: false, suitesparse: false, trilinos: false, withMPI: true, texliveMedium: false, enableDocs: true, bash: false, bc: false, openssh: false, perl: false, python3: false, enableTests: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 40, 5], ["url", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 48, 7], ["owner", 49, 7], ["repo", 50, 7], ["rev", 51, 7], ["hash", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 57, 9], ["hash", 58, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 47, 5], ["patches", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["broken", 202, 5], ["description", 204, 5], ["longDescription", 205, 5], ["homepage", 210, 5], ["license", 211, 5], ["maintainers", 212, 5], ["platforms", 213, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 65, 3], ["version", 66, 11], ["srcs", 68, 3], ["sourceRoot", 73, 3], ["cmakeFlags", 75, 3], ["enableParallelBuilding", 80, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 101, 3], ["doCheck", 112, 3], ["postPatch", 114, 3], ["nativeCheckInputs", 129, 3], ["checkPhase", 144, 3], ["outputs", 167, 3], ["postInstall", 172, 3], ["meta", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,16 +36,16 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(withMPI) || nix.asBool(nix.sel(trilinos, "withMPI"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xy/xyce/package.nix:32:1");
   const version = "7.10.0";
   const xyce_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "Xyce",
       url: "https://github.com/Xyce/Xyce.git",
       rev: nix.thunk(() => nix.str`Release-${version}`),
       hash: "sha256-8cvglBCykZVQk3BD7VE3riXfJ0PAEBwsoloqUsrMlBc=",
     }))));
   const regression_src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "Xyce_Regression",
           owner: "Xyce",
           repo: "Xyce_Regression",
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/Xyce/Xyce_Regression/commit/a77e39e409d3ab2ae05d6dcbf08d9e42e3fd0f15.patch",
             hash: "sha256-BJJO2qSwQf+u2HUWhdyBUwP3j4HbMPfXrAhgdzeTZgc=",
           })))),
@@ -162,7 +157,7 @@ done
 popd
 `)));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))),
         description: "High-performance analog circuit simulator",
         longDescription: "Xyce is a SPICE-compatible, high-performance analog circuit simulator,\ncapable of solving extremely large circuit problems by supporting\nlarge-scale parallel computing platforms.\n",
@@ -175,7 +170,7 @@ popd
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version: version_1,
         srcs,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/native.nix", [[["description", 18, 5]], [["pname", 9, 3], ["version", 10, 26], ["src", 10, 34], ["minimalOCamlVersion", 11, 3], ["propagatedBuildInputs", 12, 3], ["doCheck", 16, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "melange-json": false, ppxlib: false, yojson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/native.nix", [["description", 18, 5]]);
-const pos$2 = nix.positions(here + "/native.nix", [["pname", 9, 3], ["version", 10, 26], ["src", 10, 34], ["minimalOCamlVersion", 11, 3], ["propagatedBuildInputs", 12, 3], ["doCheck", 16, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "melange-json-native",
       version: nix.thunk(() => nix.attr(melange_json, "version")),
       src: nix.thunk(() => nix.attr(melange_json, "src")),
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ppxlib, yojson]),
       doCheck: false,
       meta: nix.thunk(() => nix.update(nix.sel(melange_json, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Compositional JSON encode/decode PPX for OCaml",
       })),
     })));

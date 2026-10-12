@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["pkg-config", 56, 11]], [["updateScript", 46, 5], ["tests", 56, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["pkgConfigModules", 67, 5], ["platforms", 69, 5], ["badPlatforms", 77, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["mesonFlags", 40, 3], ["passthru", 45, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, testers: false, writeScript: false, "pkg-config": false, meson: false, ninja: false, zlib: false, netbsd: false, hwdata: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 56, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 46, 5], ["tests", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["pkgConfigModules", 67, 5], ["platforms", 69, 5], ["badPlatforms", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["mesonFlags", 40, 3], ["passthru", 45, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const netbsd = nix.arg($, "netbsd");
   const hwdata = nix.arg($, "hwdata");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libpciaccess",
       version: "0.19",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/lib/libpciaccess-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-PFWqhsguVKTjEJeG8EY1MNU7NrbRz9FGFkVPmF3SqkM=",
         })))),
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "zlib", true)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 
@@ -53,12 +49,12 @@ version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
 update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Generic PCI access library",
         homepage: "https://gitlab.freedesktop.org/xorg/lib/libpciaccess",
         license: nix.thunk(() => (() => {

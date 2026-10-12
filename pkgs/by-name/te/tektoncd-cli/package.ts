@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["sha256", 23, 5]], [["homepage", 85, 5], ["changelog", 86, 5], ["description", 87, 5], ["longDescription", 88, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 100, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["ldflags", 28, 3], ["__darwinAllowLocalNetworking", 35, 3], ["nativeBuildInputs", 37, 3], ["subPackages", 39, 3], ["excludedPackages", 43, 3], ["nativeCheckInputs", 47, 3], ["preCheck", 51, 3], ["postInstall", 59, 3], ["nativeInstallCheckInputs", 78, 3], ["doInstallCheck", 81, 3], ["versionCheckProgramArg", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, writableTmpDirAsHomeHook: false, stdenv: false, buildPackages: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 85, 5], ["changelog", 86, 5], ["description", 87, 5], ["longDescription", 88, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 100, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["ldflags", 28, 3], ["__darwinAllowLocalNetworking", 35, 3], ["nativeBuildInputs", 37, 3], ["subPackages", 39, 3], ["excludedPackages", 43, 3], ["nativeCheckInputs", 47, 3], ["preCheck", 51, 3], ["postInstall", 59, 3], ["nativeInstallCheckInputs", 78, 3], ["doInstallCheck", 81, 3], ["versionCheckProgramArg", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tektoncd-cli",
       version: "0.46.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tektoncd",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://tekton.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/tektoncd/cli/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Provides a CLI for interacting with Tekton - tkn",

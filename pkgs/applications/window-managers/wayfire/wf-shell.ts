@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wf-shell.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 5]], [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 59, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 20, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["mesonFlags", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, "wayland-scanner": false, wayfire: false, "alsa-lib": false, gtkmm3: false, "gtk-layer-shell": false, pulseaudio: false, "libdbusmenu-gtk3": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wf-shell.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/wf-shell.nix", [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 59, 5]]);
-const pos$3 = nix.positions(here + "/wf-shell.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 20, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["mesonFlags", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pulseaudio = nix.arg($, "pulseaudio");
   const libdbusmenu_gtk3 = nix.arg($, "libdbusmenu-gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wf-shell",
       version: "0.10.0",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "WayfireWM",
           repo: "wf-shell",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [wayfire, alsa_lib, gtkmm3, gtk_layer_shell, pulseaudio, libdbusmenu_gtk3]),
       mesonFlags: nix.thunk(() => ["--sysconfdir /etc"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/WayfireWM/wf-shell",
         description: "GTK3-based panel for Wayfire",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

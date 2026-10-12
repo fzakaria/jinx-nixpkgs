@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]], [["description", 98, 5], ["license", 99, 5], ["homepage", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 43, 3], ["extraOutputsToLink", 49, 3], ["preBuild", 51, 3], ["patches", 60, 3], ["postPatch", 65, 3], ["postInstall", 81, 3], ["sourceRoot", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchFromGitHub: false, makeWrapper: false, catch2: false, nodejs: false, libpulseaudio: false, openssl: false, rsync: false, typescript_5: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 98, 5], ["license", 99, 5], ["homepage", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 43, 3], ["extraOutputsToLink", 49, 3], ["preBuild", 51, 3], ["patches", 60, 3], ["postPatch", 65, 3], ["postInstall", 81, 3], ["sourceRoot", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const typescript_5 = nix.arg($, "typescript_5");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "imgbrd-grabber",
       version: "7.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Bionus",
           repo: "imgbrd-grabber",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +65,7 @@ ln -sf ${nix.sel(catch2, "src")} tests/src/
       postInstall: "# move the binaries to the share/Grabber folder so\n# some relative links can be resolved (e.g. settings.ini)\nmv $out/bin/* $out/share/Grabber/\n\ncd ../..\n# run the package.sh with $out/share/Grabber as the $APP_DIR\nsh ./scripts/package.sh $out/share/Grabber\n\n# add symlinks for the binaries to $out/bin\nln -s $out/share/Grabber/Grabber $out/bin/Grabber\nln -s $out/share/Grabber/Grabber-cli $out/bin/Grabber-cli\n",
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Very customizable imageboard/booru downloader with powerful filenaming features",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://bionus.github.io/imgbrd-grabber/",

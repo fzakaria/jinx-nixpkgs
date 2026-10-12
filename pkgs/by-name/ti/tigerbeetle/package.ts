@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["universal-macos", 13, 5], ["x86_64-linux", 14, 5], ["aarch64-linux", 15, 5]], [["url", 23, 5], ["hash", 24, 13]], [["package", 42, 7], ["command", 43, 7]], [["version", 41, 11]], [["tests", 41, 5], ["updateScript", 45, 5]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 56, 5], ["sourceProvenance", 61, 5], ["mainProgram", 62, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["dontUnpack", 27, 3], ["dontConfigure", 28, 3], ["dontBuild", 29, 3], ["installPhase", 31, 3], ["passthru", 40, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, testers: false, tigerbeetle: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["universal-macos", 13, 5], ["x86_64-linux", 14, 5], ["aarch64-linux", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 42, 7], ["command", 43, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 41, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 41, 5], ["updateScript", 45, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 56, 5], ["sourceProvenance", 61, 5], ["mainProgram", 62, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["dontUnpack", 27, 3], ["dontConfigure", 28, 3], ["dontBuild", 29, 3], ["installPhase", 31, 3], ["passthru", 40, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const platform = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? "universal-macos" : nix.sel(stdenvNoCC, "hostPlatform", "system")));
   const hash = nix.thunk(() => nix.builtins.getAttr(platform, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "universal-macos": "sha256-kvTRqAZ1kX9ojZdto5sRxPm/sUU8dRGb31GKszr5KTo=",
       "x86_64-linux": "sha256-fuNmpCZ/0cV+AuOLeG5RvBxFd/hGYrx005QJWCihPpY=",
       "aarch64-linux": "sha256-4mSFOvgoz7d14iKWl6B6jYwkEz1Yud8Apt9yT/E7ynY=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tigerbeetle",
       version: "0.17.9",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/tigerbeetle/tigerbeetle/releases/download/${nix.sel(finalAttrs, "version")}/tigerbeetle-${platform}.zip`),
           hash: hash,
         })))),
@@ -40,15 +34,15 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp $src/tigerbeetle $out/bin/tigerbeetle\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: tigerbeetle, command: "tigerbeetle version" })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: tigerbeetle, command: "tigerbeetle version" })))),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://tigerbeetle.com/",
         description: "Financial accounting database designed to be distributed and fast",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

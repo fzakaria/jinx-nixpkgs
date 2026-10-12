@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["suffix", 20, 7], ["hash", 21, 7]], [["suffix", 24, 7], ["hash", 25, 7]], [["suffix", 28, 7], ["hash", 29, 7]], [["aarch64-darwin", 19, 5], ["aarch64-linux", 23, 5], ["x86_64-linux", 27, 5]], [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["pname", 47, 7], ["version", 48, 7], ["src", 49, 7], ["hash", 51, 5]], [["url", 58, 5], ["hash", 59, 5]], [["url", 69, 7], ["hash", 70, 22]], [["updateScript", 149, 12]], [["description", 152, 5], ["homepage", 153, 5], ["changelog", 154, 5], ["license", 155, 5], ["maintainers", 156, 5], ["platforms", 157, 5]], [["pname", 34, 3], ["pyproject", 35, 3], ["version", 36, 3], ["src", 38, 3], ["cargoDeps", 45, 3], ["buildAndTestSubdir", 54, 3], ["parserManifest", 57, 3], ["parserBundle", 62, 3], ["nativeBuildInputs", 73, 3], ["nativeCheckInputs", 79, 3], ["dependencies", 81, 3], ["disabledTests", 83, 3], ["preCheck", 92, 3], ["enabledTestPaths", 130, 3], ["postInstall", 135, 3], ["pythonImportsCheck", 147, 3], ["passthru", 149, 3], ["meta", 151, 3]]]);
 const formals$1 = { args: { lib: false, buildPackages: false, buildPythonPackage: false, fetchFromGitHub: false, fetchurl: false, python: false, pytestCheckHook: false, rustPlatform: false, stdenv: false, "tree-sitter": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["suffix", 20, 7], ["hash", 21, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["suffix", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["suffix", 28, 7], ["hash", 29, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["aarch64-darwin", 19, 5], ["aarch64-linux", 23, 5], ["x86_64-linux", 27, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 47, 7], ["version", 48, 7], ["src", 49, 7], ["hash", 51, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["url", 58, 5], ["hash", 59, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["url", 69, 7], ["hash", 70, 22]]);
-const pos$9 = nix.positions(here + "/default.nix", [["updateScript", 149, 12]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 152, 5], ["homepage", 153, 5], ["changelog", 154, 5], ["license", 155, 5], ["maintainers", 156, 5], ["platforms", 157, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["pyproject", 35, 3], ["version", 36, 3], ["src", 38, 3], ["cargoDeps", 45, 3], ["buildAndTestSubdir", 54, 3], ["parserManifest", 57, 3], ["parserBundle", 62, 3], ["nativeBuildInputs", 73, 3], ["nativeCheckInputs", 79, 3], ["dependencies", 81, 3], ["disabledTests", 83, 3], ["preCheck", 92, 3], ["enabledTestPaths", 130, 3], ["postInstall", 135, 3], ["pythonImportsCheck", 147, 3], ["passthru", 149, 3], ["meta", 151, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,37 +19,37 @@ export default nix.lambda((args) => (() => {
   const tree_sitter = nix.arg($, "tree-sitter");
   const parserReleaseUrl = (version) => nix.str`https://github.com/kreuzberg-dev/tree-sitter-language-pack/releases/download/v${version}`;
   const parserBundleSpecs = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       suffix: "macos-arm64",
       hash: "sha256-pYrgwhb3BkOEqot5JBi26aXBciGt7/zP/1+HcQT2vsw=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       suffix: "linux-aarch64",
       hash: "sha256-t1rWm19iExYAZXluMQqlt9bOkEC2UumcxDov8YmYEEQ=",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       suffix: "linux-x86_64",
       hash: "sha256-o4IpLZDitTsHfF2KMnyB3Wry7Hig7Byxd0JLcZPybJ0=",
     })),
   }));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "tree-sitter-language-pack",
       pyproject: true,
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "kreuzberg-dev",
           repo: "tree-sitter-language-pack",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-kN2htitEOo+JF6DCrC4RHmHkZXnUA0fUo2jSbMELQHI=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -67,14 +57,14 @@ export default nix.lambda((args) => (() => {
         })))),
       buildAndTestSubdir: "crates/ts-pack-python",
       parserManifest: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: nix.thunk(() => nix.str`${nix.app(parserReleaseUrl, nix.thunk(() => nix.sel(finalAttrs, "version")))}/parsers.json`),
           hash: "sha256-8utASonvrLzOjxZcmRuzuFSGtYe5sEoMU+xz++bfmkk=",
         })))),
       parserBundle: nix.thunk(() => (() => {
         const spec = nix.thunk(() => nix.selOr(parserBundleSpecs, () => nix.builtins.throw(nix.thunk(() => nix.str`tree-sitter-language-pack parser bundle is unavailable for ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: nix.thunk(() => nix.str`${nix.app(parserReleaseUrl, nix.thunk(() => nix.sel(finalAttrs, "version")))}/parsers-${nix.sel(spec, "suffix")}.tar.zst`),
             hash: nix.thunk(() => nix.attr(spec, "hash")),
           })));
@@ -139,9 +129,9 @@ substituteInPlace $out/${nix.sel(python, "sitePackages")}/tree_sitter_language_p
   --replace-fail 'SupportedLanguage: TypeAlias = str' $'configure(cache_dir="'$cacheDir$'")\\n\\nSupportedLanguage: TypeAlias = str'
 `),
       pythonImportsCheck: nix.thunk(() => ["tree_sitter_language_pack"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$9, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[8], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Comprehensive collection of tree-sitter language parsers with polyglot bindings",
         homepage: "https://github.com/kreuzberg-dev/tree-sitter-language-pack",
         changelog: nix.thunk(() => nix.str`https://github.com/kreuzberg-dev/tree-sitter-language-pack/releases/tag/v${nix.sel(finalAttrs, "version")}`),

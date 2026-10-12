@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["LIBCAPNG_LIB_PATH", 27, 5], ["LIBCAPNG_LINK_TYPE", 28, 5]], [["homepage", 50, 5], ["changelog", 51, 5], ["description", 52, 5], ["maintainers", 53, 5], ["mainProgram", 57, 5], ["platforms", 58, 5], ["license", 59, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["separateDebugInfo", 22, 3], ["cargoHash", 24, 3], ["env", 26, 3], ["buildInputs", 31, 3], ["postConfigure", 36, 3], ["postInstall", 40, 3], ["nativeInstallCheckInputs", 44, 3], ["doInstallCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitLab: false, libcap_ng: false, libseccomp: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBCAPNG_LIB_PATH", 27, 5], ["LIBCAPNG_LINK_TYPE", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["changelog", 51, 5], ["description", 52, 5], ["maintainers", 53, 5], ["mainProgram", 57, 5], ["platforms", 58, 5], ["license", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["separateDebugInfo", 22, 3], ["cargoHash", 24, 3], ["env", 26, 3], ["buildInputs", 31, 3], ["postConfigure", 36, 3], ["postInstall", 40, 3], ["nativeInstallCheckInputs", 44, 3], ["doInstallCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libseccomp = nix.arg($, "libseccomp");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "virtiofsd",
       version: "1.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "virtio-fs",
           repo: "virtiofsd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       cargoHash: "sha256-7byiMT2/jf0R7zHr/HBeXKk2T+OQhlVhZ9QJHlEY/Ao=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LIBCAPNG_LIB_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libcap_ng)}/lib`),
         LIBCAPNG_LINK_TYPE: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")) ? "static" : "dylib")),
       })),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gitlab.com/virtio-fs/virtiofsd",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/virtio-fs/virtiofsd/-/releases/v${nix.sel(finalAttrs, "version")}`),
         description: "vhost-user virtio-fs device backend written in Rust",

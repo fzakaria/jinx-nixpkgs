@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 12, 9], ["sha256", 13, 9]], [["url", 16, 9], ["sha256", 17, 9]], [["url", 20, 9], ["sha256", 21, 9]], [["aarch64-darwin", 11, 7], ["aarch64-linux", 15, 7], ["x86_64-linux", 19, 7]], [["description", 50, 5], ["changelog", 51, 5], ["homepage", 52, 5], ["sourceProvenance", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 36, 3], ["version", 37, 3], ["extensionName", 39, 3], ["src", 41, 3], ["installPhase", 43, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, php: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 12, 9], ["sha256", 13, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 16, 9], ["sha256", 17, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 20, 9], ["sha256", 21, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["aarch64-darwin", 11, 7], ["aarch64-linux", 15, 7], ["x86_64-linux", 19, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 50, 5], ["changelog", 51, 5], ["homepage", 52, 5], ["sourceProvenance", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["extensionName", 39, 3], ["src", 41, 3], ["installPhase", 43, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const php = nix.arg($, "php");
   const source = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://web.archive.org/web/20260428124658/https://downloads.ioncube.com/loader_downloads/ioncube_loaders_mac_arm64.tar.gz",
       sha256: "sha256-KzBF5ufljAjjP2V1lUJgW9Z+7G1evafV7pvfADFMkMM=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://web.archive.org/web/20260428121019/https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_aarch64.tar.gz",
       sha256: "sha256-TNw9y8dapjNdNKdW0FpY6pHBrq7oqSK1Ao5oqhy3dvs=",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://web.archive.org/web/20260313061550/https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz",
       sha256: "sha256-uCBEHux1R4FdC7aQa9oJJYgmwTTl3w5JQi+0KBDLZMc=",
     })),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const systemPrefix = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mac" : nix.app(nix.sel(lib, "substring"), 0n, 3n, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")))));
   const filename = nix.thunk(() => nix.str`ioncube_loader_${systemPrefix}_${phpVersion}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(php, "ztsSupport")), "_ts")}.so`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ioncube-loader",
       version: "15.5.0",
       extensionName: "ioncube-loader",
@@ -48,7 +43,7 @@ install -Dm755 '${filename}' $out/lib/php/extensions/ioncube-loader.so
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Use ionCube-encoded files on a web server",
         changelog: "https://www.ioncube.com/loaders.php",
         homepage: "https://www.ioncube.com",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hdr10plus_tool", 101, 13]], [["tests", 100, 12]], [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["pkgConfigModules", 110, 5]], [["__structuredAttrs", 16, 3], ["pname", 18, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 28, 28], ["cargoDeps", 28, 32], ["cargoHash", 28, 42], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["cargoCFlags", 33, 3], ["cargoCBuildFlags", 43, 3], ["cargoCTestFlags", 54, 3], ["configurePhase", 65, 3], ["buildPhase", 76, 3], ["checkPhase", 84, 3], ["installPhase", 92, 3], ["passthru", 100, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, rustPlatform: false, hdr10plus_tool: false, "cargo-c": false, fontconfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hdr10plus_tool", 101, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 100, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["pkgConfigModules", 110, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["__structuredAttrs", 16, 3], ["pname", 18, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 28, 28], ["cargoDeps", 28, 32], ["cargoHash", 28, 42], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["cargoCFlags", 33, 3], ["cargoCBuildFlags", 43, 3], ["cargoCTestFlags", 54, 3], ["configurePhase", 65, 3], ["buildPhase", 76, 3], ["checkPhase", 84, 3], ["installPhase", 92, 3], ["passthru", 100, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(buildPackages, "rust", "envVars"));
   const setEnv = nix.thunk(() => nix.attr(from, "setEnv"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       __structuredAttrs: true,
       pname: "hdr10plus",
       version: "2.1.4",
@@ -66,11 +63,11 @@ ${setEnv} cargo cinstall "\${cargoCFlags[@]}" "\${cargoCBuildFlags[@]}"
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$1, hdr10plus_tool: hdr10plus_tool })),
+        [nix.POS]: $pos[1],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[0], hdr10plus_tool: hdr10plus_tool })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library to work with HDR10+ in HEVC files",
         homepage: "https://github.com/quietvoid/hdr10plus_tool",
         changelog: nix.thunk(() => nix.str`https://github.com/quietvoid/hdr10plus_tool/releases/tag/${nix.sel(hdr10plus_tool, "version")}`),

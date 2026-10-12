@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["updateScript", 59, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["teams", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 44, 3], ["dependencies", 46, 3], ["dontWrapGApps", 48, 3], ["makeWrapperArgs", 49, 3], ["postInstallCheck", 54, 3], ["passthru", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, appstream: false, "blueprint-compiler": false, "desktop-file-utils": false, fetchFromGitHub: false, glib: false, "gobject-introspection": false, gtk4: false, libadwaita: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, python3Packages: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["teams", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 44, 3], ["dependencies", 46, 3], ["dontWrapGApps", 48, 3], ["makeWrapperArgs", 49, 3], ["postInstallCheck", 54, 3], ["passthru", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "binary",
       version: "5.4",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fizzyizzy05",
           repo: "binary",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,11 +55,11 @@ export default nix.lambda((args) => (() => {
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       postInstallCheck: "mesonCheckPhase\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Small and simple app to convert numbers to a different base",
         homepage: "https://github.com/fizzyizzy05/binary",
         changelog: nix.thunk(() => nix.str`https://github.com/fizzyizzy05/binary/releases/tag/${nix.sel(finalAttrs, "version")}`),

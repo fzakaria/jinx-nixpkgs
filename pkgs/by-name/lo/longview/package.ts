@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["homepage", 73, 5], ["description", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["version", 78, 26], ["platforms", 79, 5]], [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["dontBuild", 56, 3], ["installPhase", 58, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perl: false, perlPackages: false, makeWrapper: false, glibc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 73, 5], ["description", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["version", 78, 26], ["platforms", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["dontBuild", 56, 3], ["installPhase", 58, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const glibc = nix.arg($, "glibc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.1.5",
       pname: "longview",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linode",
           repo: "longview",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +59,7 @@ wrapProgram $out/Linode/Longview.pl --prefix PATH : ${perl}/bin:$out/bin \\
  --suffix PERL5LIB : $out --suffix INC : $out
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.linode.com/longview",
         description: "Collects all of your system-level metrics and sends them to Linode",
         mainProgram: "longview",

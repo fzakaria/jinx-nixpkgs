@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["name", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5], ["postFetch", 32, 5]], [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["bash", 57, 7], ["coreutils", 58, 7], ["jre", 59, 7], ["seednodes", 60, 7], ["CLASSPATH", 63, 5]], [["pname", 67, 26], ["data", 68, 5]], [["hyphanet", 93, 26]], [["tests", 92, 12]], [["description", 97, 5], ["homepage", 98, 5], ["sourceProvenance", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["changelog", 103, 5], ["mainProgram", 104, 5]], [["pname", 38, 3], ["version", 39, 3], ["strictDeps", 40, 3], ["__structuredAttrs", 41, 3], ["src", 43, 3], ["nativeBuildInputs", 50, 3], ["wrapper", 55, 3], ["mitmCache", 66, 3], ["gradleInitScript", 72, 3], ["gradleFlags", 74, 3], ["gradleBuildTask", 76, 3], ["installPhase", 78, 3], ["passthru", 92, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, jdk_headless: false, jre: false, gradle_8: false, bash: false, coreutils: false, replaceVars: false, nixosTests: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5], ["postFetch", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["bash", 57, 7], ["coreutils", 58, 7], ["jre", 59, 7], ["seednodes", 60, 7], ["CLASSPATH", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 67, 26], ["data", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["hyphanet", 93, 26]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 92, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["sourceProvenance", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["changelog", 103, 5], ["mainProgram", 104, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["strictDeps", 40, 3], ["__structuredAttrs", 41, 3], ["src", 43, 3], ["nativeBuildInputs", 50, 3], ["wrapper", 55, 3], ["mitmCache", 66, 3], ["gradleInitScript", 72, 3], ["gradleFlags", 74, 3], ["gradleBuildTask", 76, 3], ["installPhase", 78, 3], ["passthru", 92, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const gradle = gradle_8;
   const jdk = jdk_headless;
   const freenet_ext = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/hyphanet/fred/releases/download/build01495/freenet-ext.jar",
       hash: "sha256-MvKz1r7t9UE36i+aPr72dmbXafCWawjNF/19tZuk158=",
     }))));
   const seednodes = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "hyphanet-seednodes",
       owner: "hyphanet",
       repo: "seedrefs",
@@ -45,13 +37,13 @@ export default nix.lambda((args) => (() => {
       postFetch: "cat $out/* > $out/seednodes.fref\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "hyphanet",
       version: nix.thunk(() => nix.str`0.7.5.${version}`),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "hyphanet",
           repo: "fred",
           tag: nix.thunk(() => nix.str`build0${version}`),
@@ -59,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [gradle, jdk]),
       wrapper: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hyphanetWrapper"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           bash: bash,
           coreutils: coreutils,
           jre: jre,
@@ -67,7 +59,7 @@ export default nix.lambda((args) => (() => {
           CLASSPATH: null,
         })))),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -87,14 +79,14 @@ substituteInPlace $out/bin/freenet \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hyphanet: nix.thunk(() => nix.attr(nixosTests, "hyphanet")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Decentralised and censorship-resistant network",
         homepage: "https://www.hyphanet.org/",
         sourceProvenance: nix.thunk(() => (() => {

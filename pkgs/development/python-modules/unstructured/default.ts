@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 129, 5], ["paths", 130, 5]], [["owner", 142, 5], ["repo", 143, 5], ["tag", 144, 5], ["hash", 145, 5]], [["all-docs", 212, 5], ["csv", 213, 5], ["docx", 220, 5], ["epub", 225, 5], ["req-markdown", 226, 5], ["odt", 231, 5], ["org", 237, 5], ["paddleocr", 240, 5], ["pdf", 246, 5], ["pptx", 256, 5], ["xlsx", 262, 5], ["huggingface", 270, 5]], [["description", 303, 5], ["mainProgram", 304, 5], ["homepage", 305, 5], ["changelog", 306, 5], ["license", 307, 5], ["maintainers", 308, 5]], [["pname", 137, 3], ["version", 138, 11], ["pyproject", 139, 3], ["src", 141, 3], ["build-system", 148, 3], ["postPatch", 150, 3], ["dependencies", 155, 3], ["optional-dependencies", 211, 3], ["pythonImportsCheck", 279, 3], ["doCheck", 287, 3], ["nativeCheckInputs", 289, 3], ["meta", 302, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, symlinkJoin: false, setuptools: false, anyio: false, backoff: false, certifi: false, httpcore: false, httpx: false, h11: false, "nest-asyncio": false, requests: false, "requests-toolbelt": false, sniffio: false, urllib3: false, beautifulsoup4: false, chardet: false, "charset-normalizer": false, emoji: false, filetype: false, html5lib: false, idna: false, joblib: false, nltk: false, "nltk-data": false, olefile: false, "orderly-set": false, "python-dateutil": false, "python-iso639": false, "python-magic": false, "python-oxmsg": false, rapidfuzz: false, regex: false, soupsieve: false, webencodings: false, "dataclasses-json": false, deepdiff: false, marshmallow: false, "mypy-extensions": false, packaging: false, "typing-extensions": false, "typing-inspect": false, cffi: false, cryptography: false, psutil: false, pycparser: false, six: false, tqdm: false, wrapt: false, markdown: false, "pdfminer-six": false, pdfplumber: false, pikepdf: false, pypandoc: false, pypdf: false, "python-docx": false, "unstructured-client": false, pytz: false, tzdata: false, "importlib-metadata": false, zipp: false, "opencv-python": false, paddlepaddle: false, pdf2image: false, lxml: false, pillow: false, "python-pptx": false, xlsxwriter: false, "et-xmlfile": false, networkx: false, numpy: false, numba: false, openpyxl: false, pandas: false, xlrd: false, langdetect: false, sacremoses: false, sentencepiece: false, torch: false, transformers: false, "unstructured-inference": false, pytestCheckHook: false, black: false, coverage: false, click: false, freezegun: false, mypy: false, "pytest-cov-stub": false, "pytest-mock": false, vcrpy: false, grpcio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 129, 5], ["paths", 130, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 142, 5], ["repo", 143, 5], ["tag", 144, 5], ["hash", 145, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["all-docs", 212, 5], ["csv", 213, 5], ["docx", 220, 5], ["epub", 225, 5], ["req-markdown", 226, 5], ["odt", 231, 5], ["org", 237, 5], ["paddleocr", 240, 5], ["pdf", 246, 5], ["pptx", 256, 5], ["xlsx", 262, 5], ["huggingface", 270, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 303, 5], ["mainProgram", 304, 5], ["homepage", 305, 5], ["changelog", 306, 5], ["license", 307, 5], ["maintainers", 308, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 137, 3], ["version", 138, 11], ["pyproject", 139, 3], ["src", 141, 3], ["build-system", 148, 3], ["postPatch", 150, 3], ["dependencies", 155, 3], ["optional-dependencies", 211, 3], ["pythonImportsCheck", 279, 3], ["doCheck", 287, 3], ["nativeCheckInputs", 289, 3], ["meta", 302, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -105,7 +101,7 @@ export default nix.lambda((args) => (() => {
   const grpcio = nix.arg($, "grpcio");
   const version = "0.18.31";
   const nltkData = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "nltk_data",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(nltk_data, null);
@@ -120,7 +116,7 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Unstructured-IO",
           repo: "unstructured",
           tag: version_1,
@@ -197,7 +193,7 @@ export default nix.lambda((args) => (() => {
         const xlsx = nix.thunk(() => [et_xmlfile, networkx, numpy, openpyxl, pandas, xlrd]);
         const huggingface = nix.thunk(() => [langdetect, sacremoses, sentencepiece, torch, transformers]);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "all-docs": all_docs,
           csv,
           docx,
@@ -227,7 +223,7 @@ export default nix.lambda((args) => (() => {
         grpcio,
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open source libraries and APIs to build custom preprocessing pipelines for labeling, training, or production machine learning pipelines",
         mainProgram: "unstructured-ingest",
         homepage: "https://github.com/Unstructured-IO/unstructured",
@@ -239,7 +235,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version: version_1,
         pyproject,

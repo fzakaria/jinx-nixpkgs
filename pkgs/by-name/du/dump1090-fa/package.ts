@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["NIX_CFLAGS_COMPILE", 48, 7]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5], ["mainProgram", 72, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["buildFlags", 38, 3], ["env", 48, 3], ["doCheck", 50, 3], ["installPhase", 52, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, hackrf: false, libbladeRF: false, libusb1: false, limesuite: false, ncurses: false, "rtl-sdr": false, "soapysdr-with-plugins": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5], ["mainProgram", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["buildFlags", 38, 3], ["env", 48, 3], ["doCheck", 50, 3], ["installPhase", 52, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const rtl_sdr = nix.arg($, "rtl-sdr");
   const soapysdr_with_plugins = nix.arg($, "soapysdr-with-plugins");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dump1090",
       version: "11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flightaware",
           repo: "dump1090",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +38,11 @@ export default nix.lambda((args) => (() => {
         "view1090",
         "faup1090",
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-truncation" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=format-truncation" })),
       doCheck: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share\ncp -v dump1090 view1090 faup1090 $out/bin\ncp -vr public_html $out/share/dump1090\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple Mode S decoder for RTLSDR devices",
         homepage: "https://github.com/flightaware/dump1090",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

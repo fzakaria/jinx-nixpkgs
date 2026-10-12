@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["elixir", 43, 63]], [["url", 52, 5], ["hash", 53, 5]], [["vm-test", 140, 5]], [["tests", 139, 12]], [["homepage", 144, 5], ["description", 145, 5], ["changelog", 146, 5], ["license", 147, 5], ["platforms", 148, 5], ["maintainers", 149, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 51, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 68, 3], ["prePatch", 76, 3], ["outputs", 85, 3], ["installFlags", 91, 3], ["installTargets", 96, 3], ["preBuild", 101, 3], ["postInstall", 106, 3], ["doInstallCheck", 125, 3], ["installCheckPhase", 126, 3], ["__darwinAllowLocalNetworking", 137, 3], ["passthru", 139, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { lib: false, beam27Packages: false, stdenv: false, fetchurl: false, python3: false, libxml2: false, libxslt: false, git: false, xmlto: false, docbook_xml_dtd_45: false, docbook_xsl: false, zip: false, unzip: false, rsync: false, getconf: false, socat: false, procps: false, coreutils: false, gnused: false, systemd: false, glibcLocales: false, nixosTests: false, which: false, p7zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["elixir", 43, 63]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 52, 5], ["hash", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["vm-test", 140, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 139, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 144, 5], ["description", 145, 5], ["changelog", 146, 5], ["license", 147, 5], ["platforms", 148, 5], ["maintainers", 149, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 51, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 68, 3], ["prePatch", 76, 3], ["outputs", 85, 3], ["installFlags", 91, 3], ["installTargets", 96, 3], ["preBuild", 101, 3], ["postInstall", 106, 3], ["doInstallCheck", 125, 3], ["installCheckPhase", 126, 3], ["__darwinAllowLocalNetworking", 137, 3], ["passthru", 139, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,13 +38,13 @@ export default nix.lambda((args) => (() => {
       gnused,
       coreutils,
     ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [procps, systemd]))))));
-  const beamPackages = nix.thunk(() => nix.app(nix.sel(beam27Packages, "overrideScope"), (final) => (prev) => ({ [nix.POS]: pos$1, elixir: nix.thunk(() => nix.sel(final, "elixir_1_18")) })));
+  const beamPackages = nix.thunk(() => nix.app(nix.sel(beam27Packages, "overrideScope"), (final) => (prev) => ({ [nix.POS]: $pos[0], elixir: nix.thunk(() => nix.sel(final, "elixir_1_18")) })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rabbitmq-server",
       version: "4.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/rabbitmq/rabbitmq-server/releases/download/v${nix.sel(finalAttrs, "version")}/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-LqNnrbMO5dZDnU2e4yMhP/duePh6ETN1AUcqn7+53t4=",
         })))),
@@ -111,14 +106,14 @@ runHook postInstallCheck
 `),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "vm-test": nix.thunk(() => nix.sel(nixosTests, "rabbitmq")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.rabbitmq.com/",
         description: "Implementation of the AMQP messaging protocol",
         changelog: nix.thunk(() => nix.str`https://github.com/rabbitmq/rabbitmq-server/releases/tag/v${nix.sel(finalAttrs, "version")}`),

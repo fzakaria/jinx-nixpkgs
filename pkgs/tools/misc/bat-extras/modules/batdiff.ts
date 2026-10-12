@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/batdiff.nix", [[["description", 18, 8]], [["name", 11, 3], ["dependencies", 12, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, buildBatExtrasPkg: false, less: false, coreutils: false, gitMinimal: false, delta: false, withDelta: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/batdiff.nix", [["description", 18, 8]]);
-const pos$2 = nix.positions(here + "/batdiff.nix", [["name", 11, 3], ["dependencies", 12, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const delta = nix.arg($, "delta");
   const withDelta = nix.argOr($, "withDelta", () => true);
   return nix.app(buildBatExtrasPkg, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "batdiff",
       dependencies: nix.thunk(() => nix.concat([less, coreutils, gitMinimal], nix.app(nix.sel(lib, "optional"), withDelta, delta))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Diff a file against the current git index, or display the diff between two files",
       })),
     })));

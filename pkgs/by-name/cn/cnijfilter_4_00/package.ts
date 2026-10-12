@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 50, 5], ["sha256", 51, 5]], [["NIX_CFLAGS_COMPILE", 70, 7]], [["description", 186, 5], ["homepage", 187, 5], ["sourceProvenance", 188, 5], ["license", 192, 5], ["platforms", 193, 5], ["maintainers", 194, 5]], [["pname", 34, 3], ["version", 47, 3], ["src", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 58, 3], ["env", 70, 3], ["patches", 73, 3], ["postPatch", 82, 3], ["configurePhase", 90, 3], ["preInstall", 137, 3], ["postInstall", 141, 3], ["dontPatchELF", 183, 3], ["meta", 185, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, autoconf: false, automake: false, libtool: false, cups: false, popt: false, libtiff: false, libpng: false, ghostscript: false, glib: false, libusb1: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 50, 5], ["sha256", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 70, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 186, 5], ["homepage", 187, 5], ["sourceProvenance", 188, 5], ["license", 192, 5], ["platforms", 193, 5], ["maintainers", 194, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 47, 3], ["src", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 58, 3], ["env", 70, 3], ["patches", 73, 3], ["postPatch", 82, 3], ["configurePhase", 90, 3], ["preInstall", 137, 3], ["postInstall", 141, 3], ["dontPatchELF", 183, 3], ["meta", 185, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const arch = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? "64" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? "32" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cnijfilter",
       version: "4.00",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gdlp01.c-wss.com/gds/5/0100005515/01/cnijfilter-source-4.00-1.tar.gz",
           sha256: "1f6vpx1z3qa88590i5m0s49j9n90vpk81xmw6pvj0nfd3qbvzkya",
         })))),
       nativeBuildInputs: nix.thunk(() => [autoconf, automake]),
       buildInputs: nix.thunk(() => [libtool, cups, popt, libtiff, libpng, ghostscript, glib, libusb1, libxml2]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: " -std=gnu90" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: " -std=gnu90" })),
       patches: nix.thunk(() => [
         nix.path(here, "./patches/cnijfilter-3.80-1-cups-1.6.patch"),
         nix.path(here, "./patches/cnijfilter-3.80-6-cups-1.6.patch"),
@@ -129,7 +126,7 @@ popd;
 `),
       dontPatchELF: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Canon InkJet printer drivers for the MG2400 MG2500 MG3500 MG5500 MG6400 MG6500 MG7100 and P200 series",
         homepage: "https://www.canon-europe.com/support/consumer_products/products/fax__multifunctionals/inkjet/pixma_mg_series/pixma_mg5550.aspx?type=drivers&driverdetailid=tcm:13-1094072",
         sourceProvenance: nix.thunk(() => (() => {

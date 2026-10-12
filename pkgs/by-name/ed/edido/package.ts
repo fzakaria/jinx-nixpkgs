@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 15, 5], ["license", 16, 5]], [["name", 13, 3], ["meta", 14, 3], ["runtimeInputs", 18, 3], ["text", 24, 3]]]);
 const formals$1 = { args: { lib: false, writeShellApplication: false, bc: false, diffutils: false, findutils: false, coreutils: false, firmwarePaths: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 15, 5], ["license", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 13, 3], ["meta", 14, 3], ["runtimeInputs", 18, 3], ["text", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const firmwarePaths = nix.argOr($, "firmwarePaths", () => ["/run/current-system/firmware"]);
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "edido",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Tool to apply display configuration from `boot.kernelParams`",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["pname", 30, 5], ["yarnLock", 31, 5], ["hash", 32, 5]], [["tests", 61, 12]], [["changelog", 64, 5], ["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["php", 23, 11], ["composerNoDev", 25, 3], ["composerStrictValidation", 26, 3], ["vendorHash", 27, 3], ["yarnOfflineCache", 29, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["preBuild", 43, 3], ["preInstall", 47, 3], ["postInstall", 56, 3], ["passthru", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchYarnDeps: false, nodejs: false, yarn: false, yarnConfigHook: false, nixosTests: false, php: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 30, 5], ["yarnLock", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 61, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 64, 5], ["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["php", 23, 11], ["composerNoDev", 25, 3], ["composerStrictValidation", 26, 3], ["vendorHash", 27, 3], ["yarnOfflineCache", 29, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["preBuild", 43, 3], ["preInstall", 47, 3], ["postInstall", 56, 3], ["passthru", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const php = nix.arg($, "php");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "engelsystem",
       version: "3.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "engelsystem",
           repo: "engelsystem",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       composerStrictValidation: false,
       vendorHash: "sha256-Q1Vr8AywDAI6Apb4ShyV6DhSV3Fm0rX6X0uXlnO3CZo=",
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-yarn-deps`),
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-FRwmsnRsTVphSFurgaLcfNlNvxcC8fTR79G8r6RGB5A=",
@@ -45,9 +41,12 @@ export default nix.lambda((args) => (() => {
       preBuild: "yarn build\n",
       preInstall: "rm -rf node_modules\n\n# link config and storage into FHS locations\nln -sf /etc/engelsystem/config.php ./config/config.php\nrm -rf storage\nln -snf /var/lib/engelsystem/storage/ ./storage\n",
       postInstall: "mkdir $out/bin\nln -s $out/share/php/engelsystem/bin/migrate $out/bin/migrate\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "engelsystem")) })),
+      passthru: nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => nix.sel(nixosTests, "engelsystem")),
+      })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/engelsystem/engelsystem/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Coordinate your volunteers in teams, assign them to work shifts or let them decide for themselves when and where they want to help with what",
         homepage: "https://engelsystem.de",

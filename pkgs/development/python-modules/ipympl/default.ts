@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["src", 44, 26], ["hash", 45, 5]], [["changelog", 81, 5], ["description", 82, 5], ["homepage", 83, 5], ["maintainers", 84, 5], ["license", 87, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["yarnOfflineCache", 43, 3], ["nativeBuildInputs", 48, 3], ["build-system", 53, 3], ["dependencies", 60, 3], ["nativeCheckInputs", 69, 3], ["pythonImportsCheck", 75, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, nodejs: false, "yarn-berry_3": false, "hatch-jupyter-builder": false, "hatch-nodejs-version": false, hatchling: false, jupyterlab: false, ipython: false, ipywidgets: false, matplotlib: false, numpy: false, pillow: false, traitlets: false, "importlib-metadata": false, nbval: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 44, 26], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 81, 5], ["description", 82, 5], ["homepage", 83, 5], ["maintainers", 84, 5], ["license", 87, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["yarnOfflineCache", 43, 3], ["nativeBuildInputs", 48, 3], ["build-system", 53, 3], ["dependencies", 60, 3], ["nativeCheckInputs", 69, 3], ["pythonImportsCheck", 75, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,20 +26,20 @@ export default nix.lambda((args) => (() => {
   const nbval = nix.arg($, "nbval");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ipympl",
       version: "0.10.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matplotlib",
           repo: "ipympl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-IJ7tLUE0Ac4biQc9b87adgDcD8pa9XH1bo8rzDl9DCY=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_3, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-tdfrAf2BSz9n83ctWqRxDHZnhnfhKA3BFNhXVr9wvLY=",
         })))),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [importlib_metadata, nbval, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["ipympl", "ipympl.backend_nbagg"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/matplotlib/ipympl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Matplotlib Jupyter Extension",
         homepage: "https://github.com/matplotlib/jupyter-matplotlib",

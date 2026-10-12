@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 39, 5], ["runtimeInputs", 40, 5], ["text", 45, 5]], [["url", 83, 5], ["hash", 84, 5]], [["packageName", 194, 7], ["versionPolicy", 196, 7]], [["withTpm2Tss", 201, 9], ["abrmdSupport", 202, 9]], [["withTpm2Tss", 206, 9], ["abrmdSupport", 207, 9]], [["libsecret-tpm2", 200, 7], ["libsecret-tpm2-abrmd", 205, 7]], [["updateScript", 193, 5], ["tests", 199, 5]], [["description", 213, 5], ["homepage", 214, 5], ["license", 215, 5], ["mainProgram", 216, 5], ["platforms", 217, 5], ["maintainers", 222, 25], ["teams", 222, 37]], [["pname", 73, 3], ["version", 74, 3], ["outputs", 76, 3], ["src", 82, 3], ["depsBuildBuild", 87, 3], ["nativeBuildInputs", 91, 3], ["buildInputs", 108, 3], ["propagatedBuildInputs", 114, 3], ["nativeCheckInputs", 118, 3], ["mesonFlags", 126, 3], ["doCheck", 133, 3], ["separateDebugInfo", 134, 3], ["postPatch", 136, 3], ["preConfigure", 145, 3], ["preCheck", 151, 3], ["checkPhase", 174, 3], ["postCheck", 182, 3], ["postFixup", 187, 3], ["passthru", 192, 3], ["meta", 212, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, glib: false, meson: false, ninja: false, "pkg-config": false, gettext: false, libxslt: false, python3: false, python3Packages: false, "docbook-xsl-nons": false, docbook_xml_dtd_42: false, libgcrypt: false, "gobject-introspection": false, buildPackages: false, withIntrospection: true, vala: false, "gi-docgen": false, gnome: false, gjs: false, libintl: false, dbus: false, withTpm2Tss: true, abrmdSupport: true, writeShellApplication: false, "tpm2-tss": false, "tpm2-abrmd": false, libsecret: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 39, 5], ["runtimeInputs", 40, 5], ["text", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 83, 5], ["hash", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 194, 7], ["versionPolicy", 196, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["withTpm2Tss", 201, 9], ["abrmdSupport", 202, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["withTpm2Tss", 206, 9], ["abrmdSupport", 207, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["libsecret-tpm2", 200, 7], ["libsecret-tpm2-abrmd", 205, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 193, 5], ["tests", 199, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 213, 5], ["homepage", 214, 5], ["license", 215, 5], ["mainProgram", 216, 5], ["platforms", 217, 5], ["maintainers", 222, 25], ["teams", 222, 37]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 73, 3], ["version", 74, 3], ["outputs", 76, 3], ["src", 82, 3], ["depsBuildBuild", 87, 3], ["nativeBuildInputs", 91, 3], ["buildInputs", 108, 3], ["propagatedBuildInputs", 114, 3], ["nativeCheckInputs", 118, 3], ["mesonFlags", 126, 3], ["doCheck", 133, 3], ["separateDebugInfo", 134, 3], ["postPatch", 136, 3], ["preConfigure", 145, 3], ["preCheck", 151, 3], ["checkPhase", 174, 3], ["postCheck", 182, 3], ["postFixup", 187, 3], ["passthru", 192, 3], ["meta", 212, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,18 +38,18 @@ export default nix.lambda((args) => (() => {
   const libsecret = nix.arg($, "libsecret");
   nix.assert_((!nix.asBool(abrmdSupport) || nix.asBool(withTpm2Tss)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libsecret/package.nix:35:1");
   const tpm_emu = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "tpm-emu",
       runtimeInputs: nix.thunk(() => [dbus, tpm2_abrmd]),
       text: "coproc {\n  # Monitor session bus for name acquisition\n  dbus-monitor \"type='signal',interface='org.freedesktop.DBus',member='NameAcquired',arg0='com.intel.tss2.Tabrmd'\"\n}\n\n# Discard initial dbus-monitor output\nwhile read -r -t 0.1 -u \"${COPROC[0]}\"; do :; done\n\ntpm2-abrmd \\\n  --tcti=libtpms \\\n  --allow-root \\\n  --flush-all \\\n  --session &\n\n# Terminate tpm2-abrmd on exit\n# shellcheck disable=SC2064 # immediate expansion intended\ntrap \"kill '$!'\" EXIT\n\n# Wait for daemon to become available to avoid spurious test failures\nread -r -t 60 -u \"${COPROC[0]}\"\nkill \"$COPROC_PID\"\n\nTCTI=\"tabrmd:bus_type=session\" \"$@\"\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "libsecret",
       version: "0.21.7",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), withIntrospection, "devdoc"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libsecret/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libsecret-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-a0UuR1BZCitWF63EACbyjS9JA94V8SUOHRxAv9aO1V4=",
         })))),
@@ -115,18 +107,18 @@ export LD_LIBRARY_PATH+=":${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk((
       postCheck: "# This is test-only so it won’t be overwritten during installation.\nrm \"$out/lib/libmock-service.so\"\n",
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "libsecret", versionPolicy: "none" })))),
+        [nix.POS]: $pos[6],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "libsecret", versionPolicy: "none" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          "libsecret-tpm2": nix.thunk(() => nix.app(nix.sel(libsecret, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, withTpm2Tss: true, abrmdSupport: false })))),
-          "libsecret-tpm2-abrmd": nix.thunk(() => nix.app(nix.sel(libsecret, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, withTpm2Tss: true, abrmdSupport: true })))),
+          [nix.POS]: $pos[5],
+          "libsecret-tpm2": nix.thunk(() => nix.app(nix.sel(libsecret, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], withTpm2Tss: true, abrmdSupport: false })))),
+          "libsecret-tpm2-abrmd": nix.thunk(() => nix.app(nix.sel(libsecret, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], withTpm2Tss: true, abrmdSupport: true })))),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(glib, "meta"));
         return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Library for storing and retrieving passwords and other secrets",
         homepage: "https://gitlab.gnome.org/GNOME/libsecret",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

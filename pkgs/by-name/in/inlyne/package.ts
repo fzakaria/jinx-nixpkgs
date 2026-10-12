@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["RUSTONIG_SYSTEM_LIBONIG", 55, 7]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoHash", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["env", 55, 3], ["checkFlags", 57, 3], ["postInstall", 63, 3], ["postFixup", 74, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, stdenv: false, "pkg-config": false, fontconfig: false, libxrandr: false, libxi: false, libxcursor: false, libx11: false, libxcb: false, libxkbcommon: false, wayland: false, libGL: false, openssl: false, oniguruma: false, "vulkan-loader": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTONIG_SYSTEM_LIBONIG", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoHash", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["env", 55, 3], ["checkFlags", 57, 3], ["postInstall", 63, 3], ["postFixup", 74, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const oniguruma = nix.arg($, "oniguruma");
   const vulkan_loader = nix.arg($, "vulkan-loader");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "inlyne",
       version: "0.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Inlyne-Project",
           repo: "inlyne",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
           libxkbcommon,
           openssl,
         ])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTONIG_SYSTEM_LIBONIG: 1n })),
       checkFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           "--skip=interpreter::tests::centered_image_with_size_align_and_link",
           "--skip=watcher::tests::the_gauntlet",
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
   --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, libx11, libxkbcommon]))}
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GPU powered browserless markdown viewer",
         homepage: "https://github.com/Inlyne-Project/inlyne",
         changelog: nix.thunk(() => nix.str`https://github.com/Inlyne-Project/inlyne/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["broken", 56, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["disabled", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 45, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, numpy: false, scipy: false, matplotlib: false, pytestCheckHook: false, isPy3k: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["broken", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["disabled", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 45, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const isPy3k = nix.arg($, "isPy3k");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "filterpy",
       version: "1.4.5-unstable-2022-08-23",
       pyproject: true,
       disabled: nix.thunk(() => !nix.asBool(isPy3k)),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rlabbe",
           repo: "filterpy",
           rev: "3b51149ebcff0401ff1e10bf08ffca7b6bbc4a33",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_multivariate_gaussian"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/rlabbe/filterpy",
         description: "Kalman filtering and optimal estimation library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["name", 45, 7], ["exec", 46, 7], ["desktopName", 47, 7], ["comment", 48, 7], ["categories", 49, 7]], [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["makeFlags", 36, 3], ["desktopItems", 43, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gccmakedep: false, imake: false, libxt: false, libxaw: false, libxpm: false, libxext: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 45, 7], ["exec", 46, 7], ["desktopName", 47, 7], ["comment", 48, 7], ["categories", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["makeFlags", 36, 3], ["desktopItems", 43, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xcruiser",
       version: "0.30",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/xcruiser/xcruiser/xcruiser-${nix.sel(finalAttrs, "version")}/xcruiser-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1r8whva38xizqdh7jmn6wcmfmsndc67pkw22wzfzr6rq0vf6hywi",
         })))),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "XCruiser",
             exec: "xcruiser",
             desktopName: "XCruiser",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Filesystem visualization utility",
         longDescription: "XCruiser, formerly known as XCruise, is a filesystem visualization utility.\nIt constructs a virtually 3-D formed universe from a directory\ntree and allows you to \"cruise\" within a visualized filesystem.\n",
         homepage: "https://xcruiser.sourceforge.net/",

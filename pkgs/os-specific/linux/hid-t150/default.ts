@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["sourceRoot", 22, 3], ["makeFlags", 24, 3], ["installPhase", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["sourceRoot", 22, 3], ["makeFlags", 24, 3], ["installPhase", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hid-t150";
       const version = "1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scarburato",
           repo: "t150_driver",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = nix.thunk(() => nix.str`make -C ${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build M=$(pwd) modules_install $makeFlags
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Linux kernel driver for Thrustmaster T150 and TMX Force Feedback wheel",
         homepage: "https://github.com/scarburato/t150_driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

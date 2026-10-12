@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/deps.nix", [[["url", 9, 7], ["hash", 10, 7]], [["name", 7, 5], ["path", 8, 5]]]);
 const formals$1 = { args: { linkFarm: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/deps.nix", [["url", 9, 7], ["hash", 10, 7]]);
-const pos$2 = nix.positions(here + "/deps.nix", [["name", 7, 5], ["path", 8, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "clap-0.12.0-oBajB7foAQDqlSwaSG5g0yq7xGbQARUsBk5T64gAOqP5",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/Hejsil/zig-clap/archive/refs/tags/0.12.0.tar.gz",
             hash: "sha256-HveL7aJBC+/8PNlGYxtNZBrk3ytkM8zuXENO9JpygC0=",
           })))),

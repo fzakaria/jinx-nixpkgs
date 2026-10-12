@@ -2,66 +2,54 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/selfoss.nix", [[["maintainers", 9, 8]], [["127.0.0.1", 12, 22]], [["hosts", 12, 16]], [["enable", 20, 9], ["virtualHost", 21, 9]], [["username", 24, 9], ["password", 27, 9]], [["enable", 18, 7], ["nginx", 19, 7], ["settings", 23, 7]], [["root", 36, 9]], [["feed.local", 31, 33]], [["virtualHosts", 31, 20]], [["selfoss", 17, 14], ["nginx", 31, 14]], [["networking", 12, 5], ["services", 17, 5]], [["machine", 11, 14]], [["name", 7, 3], ["meta", 9, 3], ["containers", 11, 3], ["testScript", 55, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/selfoss.nix", [["maintainers", 9, 8]]);
-const pos$2 = nix.positions(here + "/selfoss.nix", [["127.0.0.1", 12, 22]]);
-const pos$3 = nix.positions(here + "/selfoss.nix", [["hosts", 12, 16]]);
-const pos$4 = nix.positions(here + "/selfoss.nix", [["enable", 20, 9], ["virtualHost", 21, 9]]);
-const pos$5 = nix.positions(here + "/selfoss.nix", [["username", 24, 9], ["password", 27, 9]]);
-const pos$6 = nix.positions(here + "/selfoss.nix", [["enable", 18, 7], ["nginx", 19, 7], ["settings", 23, 7]]);
-const pos$7 = nix.positions(here + "/selfoss.nix", [["root", 36, 9]]);
-const pos$8 = nix.positions(here + "/selfoss.nix", [["feed.local", 31, 33]]);
-const pos$9 = nix.positions(here + "/selfoss.nix", [["virtualHosts", 31, 20]]);
-const pos$10 = nix.positions(here + "/selfoss.nix", [["selfoss", 17, 14], ["nginx", 31, 14]]);
-const pos$11 = nix.positions(here + "/selfoss.nix", [["networking", 12, 5], ["services", 17, 5]]);
-const pos$12 = nix.positions(here + "/selfoss.nix", [["machine", 11, 14]]);
-const pos$13 = nix.positions(here + "/selfoss.nix", [["name", 7, 3], ["meta", 9, 3], ["containers", 11, 3], ["testScript", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const articleTitle = "Hello from the test feed";
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "selfoss",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "h7x4"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hosts: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "127.0.0.1": nix.thunk(() => ["selfoss.local", "feed.local"]),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           selfoss: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             enable: true,
-            nginx: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, virtualHost: "selfoss.local" })),
+            nginx: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, virtualHost: "selfoss.local" })),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               username: "testuser",
               password: "$2y$12$s/LJYwyDbWJWIyQuUEhyHekD9V3mTLZsdwpuWxtTOgO2BtHGu5vyi",
             })),
           })),
           nginx: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             virtualHosts: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               "feed.local": nix.thunk(() => (() => {
                 const url = "http://feed.local/";
                 return {
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   root: nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "rss.xml", nix.thunk(() => nix.str`<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>

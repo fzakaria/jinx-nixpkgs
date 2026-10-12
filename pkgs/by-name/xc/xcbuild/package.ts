@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["sha256", 51, 5]], [["owner", 55, 5], ["repo", 56, 5], ["rev", 57, 5], ["sha256", 58, 5]], [["owner", 71, 5], ["repo", 72, 5], ["rev", 73, 5], ["hash", 74, 5]], [["NIX_CFLAGS_COMPILE", 126, 7]], [["xcbuild", 164, 5]], [["description", 170, 5], ["homepage", 171, 5], ["license", 172, 5], ["teams", 176, 5], ["platforms", 177, 5]], [["pname", 62, 3], ["outputs", 64, 3], ["version", 69, 3], ["src", 70, 3], ["patches", 77, 3], ["prePatch", 90, 3], ["postPatch", 96, 3], ["strictDeps", 124, 3], ["env", 126, 3], ["cmakeFlags", 130, 3], ["nativeBuildInputs", 134, 3], ["buildInputs", 140, 3], ["postInstall", 147, 3], ["__structuredAttrs", 161, 3], ["passthru", 163, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, darwin: false, fetchFromGitHub: false, libpng: false, libxml2: false, makeBinaryWrapper: false, ninja: false, stdenv: false, "stdenv'": true, zlib: false, xcodePlatform: true, xcodeVer: true, sdkVer: true, productBuildVer: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["sha256", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["rev", 57, 5], ["sha256", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 71, 5], ["repo", 72, 5], ["rev", 73, 5], ["hash", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 126, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["xcbuild", 164, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 170, 5], ["homepage", 171, 5], ["license", 172, 5], ["teams", 176, 5], ["platforms", 177, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 62, 3], ["outputs", 64, 3], ["version", 69, 3], ["src", 70, 3], ["patches", 77, 3], ["prePatch", 90, 3], ["postPatch", 96, 3], ["strictDeps", 124, 3], ["env", 126, 3], ["cmakeFlags", 130, 3], ["nativeBuildInputs", 134, 3], ["buildInputs", 140, 3], ["postInstall", 147, 3], ["__structuredAttrs", 161, 3], ["passthru", 163, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,26 +23,26 @@ export default nix.lambda((args) => (() => {
   const sdkVer = nix.argOr($, "sdkVer", () => null);
   const productBuildVer = nix.argOr($, "productBuildVer", () => null);
   const googletest = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "google",
       repo: "googletest",
       rev: "43359642a1c16ad3f4fc575c7edd0cb935810815",
       sha256: "sha256-mKjXaawFHSRrbJBtADJ1Pdk6vtuD+ax0HFk6YaBSnXg=",
     }))));
   const linenoise = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "antirez",
       repo: "linenoise",
       rev: "c894b9e59f02203dbe4e2be657572cf88c4230c3",
       sha256: "sha256-nKxwWuSqr89lvI9Y3QAW5Mo7/iFfMNj/OOQVeA/FWnE=",
     }))));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "xcbuild",
       outputs: nix.thunk(() => ["out", "xcrun"]),
       version: "0.1.1-unstable-2019-11-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "facebookarchive",
           repo: "xcbuild",
           rev: "dbaee552d2f13640773eb1ad3c79c0d2aca7229c",
@@ -67,7 +61,7 @@ cp -r --no-preserve=all ${linenoise} ThirdParty/linenoise
 `),
       postPatch: nix.thunk(() => nix.add(nix.add("substituteInPlace Libraries/pbxbuild/Sources/Tool/TouchResolver.cpp \\\n  --replace-fail \"/usr/bin/touch\" \"touch\"\nsubstituteInPlace Libraries/pbxbuild/Sources/Tool/MakeDirectoryResolver.cpp \\\n  --replace-fail \"/bin/mkdir\" \"mkdir\"\nsubstituteInPlace Libraries/pbxbuild/Sources/Tool/SymlinkResolver.cpp \\\n  --replace-fail \"/bin/ln\" \"ln\"\nsubstituteInPlace Libraries/pbxbuild/Sources/Tool/ScriptResolver.cpp \\\n  --replace-fail \"/bin/sh\" \"sh\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv$, "hostPlatform", "isDarwin"))), "# Fix build on gcc-13 due to missing includes\nsed -e '1i #include <cstdint>' -i \\\n  Libraries/libutil/Headers/libutil/Permissions.h \\\n  Libraries/pbxbuild/Headers/pbxbuild/Tool/AuxiliaryFile.h \\\n  Libraries/pbxbuild/Headers/pbxbuild/Tool/Invocation.h\n\n# Avoid a glibc >= 2.25 deprecation warning that gets fatal via -Werror.\nsed 1i'#include <sys/sysmacros.h>' \\\n  -i Libraries/xcassets/Headers/xcassets/Slot/SystemVersion.h\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv$, "hostPlatform", "isDarwin")), "# Apple Open Sourced LZFSE, but not libcompression, and it isn't\n# part of an impure framework we can add\nsubstituteInPlace Libraries/libcar/Sources/Rendition.cpp \\\n  --replace \"#if HAVE_LIBCOMPRESSION\" \"#if 0\"\n"))),
       strictDeps: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-Wno-error" })),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "3.10")),
       ]),
@@ -76,11 +70,11 @@ cp -r --no-preserve=all ${linenoise} ThirdParty/linenoise
       postInstall: "mv $out/usr/* $out\nrmdir $out/usr\ncp liblinenoise.* $out/lib/\n\nmkdir -p \"$xcrun/bin\"\nln -s \"$out/bin/xcrun\" \"$xcrun/bin/xcrun\"\n\n# xcbuild and xcrun support absolute paths, but they can’t find the SDK with the way it’s set up in\n# the store. Fortunately, the combination of `DEVELOPER_DIR` and a plain `SDKROOT` is enough.\nwrapProgram \"$out/bin/xcbuild\" --set SDKROOT macosx\nwrapProgram \"$out/bin/xcrun\" --set SDKROOT macosx\n",
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         xcbuild: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Xcode-compatible build tool",
         homepage: "https://github.com/facebookarchive/xcbuild",
         license: nix.thunk(() => (() => {

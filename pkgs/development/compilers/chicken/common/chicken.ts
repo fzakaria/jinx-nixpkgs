@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/chicken.nix", [[["url", 41, 5], ["hash", 42, 13]], [["binaryVersion", 46, 5]], [["package", 100, 5], ["command", 101, 5]], [["version", 99, 18]], [["tests", 99, 12]], [["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 113, 5], ["description", 114, 5], ["longDescription", 115, 5]], [["pname", 37, 3], ["version", 38, 11], ["binaryVersion", 38, 19], ["postPatch", 38, 33], ["src", 40, 3], ["setupHook", 45, 3], ["dontConfigure", 56, 3], ["makeFlags", 58, 3], ["nativeBuildInputs", 75, 3], ["doCheck", 87, 3], ["checkTarget", 92, 3], ["postCheck", 94, 3], ["passthru", 99, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, darwin: false, replaceVars: false, testers: false, version: false, hash: false, binaryVersion: false, postPatch: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/chicken.nix", [["url", 41, 5], ["hash", 42, 13]]);
-const pos$2 = nix.positions(here + "/chicken.nix", [["binaryVersion", 46, 5]]);
-const pos$3 = nix.positions(here + "/chicken.nix", [["package", 100, 5], ["command", 101, 5]]);
-const pos$4 = nix.positions(here + "/chicken.nix", [["version", 99, 18]]);
-const pos$5 = nix.positions(here + "/chicken.nix", [["tests", 99, 12]]);
-const pos$6 = nix.positions(here + "/chicken.nix", [["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 113, 5], ["description", 114, 5], ["longDescription", 115, 5]]);
-const pos$7 = nix.positions(here + "/chicken.nix", [["pname", 37, 3], ["version", 38, 11], ["binaryVersion", 38, 19], ["postPatch", 38, 33], ["src", 40, 3], ["setupHook", 45, 3], ["dontConfigure", 56, 3], ["makeFlags", 58, 3], ["nativeBuildInputs", 75, 3], ["doCheck", 87, 3], ["checkTarget", 92, 3], ["postCheck", 94, 3], ["passthru", 99, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,18 +24,18 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.lookup(w, "isDarwin")) ? "macosx" : (nix.asBool(nix.lookup(w, "isCygwin")) ? "cygwin" : (nix.asBool((nix.asBool(nix.lookup(w, "isFreeBSD")) || nix.asBool(nix.lookup(w, "isOpenBSD")))) ? "bsd" : (nix.asBool(nix.lookup(w, "isSunOS")) ? "solaris" : "linux"))));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "chicken",
       version: version,
       binaryVersion: binaryVersion,
       postPatch: postPatch,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://code.call-cc.org/releases/${nix.sel(finalAttrs, "version")}/chicken-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: hash,
         })))),
       setupHook: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup-hook.sh"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           binaryVersion: nix.thunk(() => nix.builtins.toString(binaryVersion)),
         })))),
       dontConfigure: true,
@@ -66,18 +60,18 @@ export default nix.lambda((args) => (() => {
    -p "(assert (equal? \\"${nix.builtins.toString(nix.thunk(() => nix.sel(finalAttrs, "binaryVersion")))}\\" (pathname-file (car (repository-path)))))"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "csi -version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://call-cc.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => (() => {

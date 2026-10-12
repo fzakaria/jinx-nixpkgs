@@ -2,23 +2,21 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pam-lastlog.nix", [[["imports", 9, 7]], [["machine", 6, 9]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 12, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pam-lastlog.nix", [["imports", 9, 7]]);
-const pos$2 = nix.positions(here + "/pam-lastlog.nix", [["machine", 6, 9]]);
-const pos$3 = nix.positions(here + "/pam-lastlog.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     name: "pam-lastlog",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
         };
       })(), formals$2),

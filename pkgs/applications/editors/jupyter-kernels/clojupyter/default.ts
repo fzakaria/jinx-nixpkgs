@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pkgs", 19, 41]], [["description", 30, 5], ["homepage", 31, 5], ["sourceProvenance", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5]], [["owner", 44, 9], ["repo", 45, 9], ["tag", 46, 9], ["sha256", 47, 9]], [["name", 41, 7], ["src", 43, 7], ["buildInputs", 50, 7], ["dontConfigure", 52, 7], ["dontInstall", 53, 7], ["buildPhase", 55, 7], ["meta", 59, 15]], [["pname", 69, 11], ["version", 70, 11], ["meta", 71, 11], ["shellScript", 72, 11]], [["displayName", 81, 5], ["argv", 82, 5], ["language", 86, 5], ["logo32", 87, 5], ["logo64", 88, 5]], [["launcher", 65, 3], ["definition", 80, 3]]]);
 const formals$1 = { args: { pkgs: false, stdenv: false, lib: false, jre: false, fetchFromGitHub: false, writeShellScript: false, runCommand: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pkgs", 19, 41]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["homepage", 31, 5], ["sourceProvenance", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 44, 9], ["repo", 45, 9], ["tag", 46, 9], ["sha256", 47, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 41, 7], ["src", 43, 7], ["buildInputs", 50, 7], ["dontConfigure", 52, 7], ["dontInstall", 53, 7], ["buildPhase", 55, 7], ["meta", 59, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 69, 11], ["version", 70, 11], ["meta", 71, 11], ["shellScript", 72, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["displayName", 81, 5], ["argv", 82, 5], ["language", 86, 5], ["logo32", 87, 5], ["logo64", 88, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["launcher", 65, 3], ["definition", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const runCommand = nix.arg($, "runCommand");
   const imagemagick = nix.arg($, "imagemagick");
-  const cljdeps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs }))));
+  const cljdeps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
   const classp = nix.thunk(() => nix.app(nix.sel(cljdeps, "makeClasspaths"), nix.thunk(() => ({}))));
   const shellScript = nix.thunk(() => nix.app(writeShellScript, "clojupyter", nix.thunk(() => nix.str`${jre}/bin/java -cp ${classp} clojupyter.kernel.core "$@"
 `)));
   const pname = "clojupyter";
   const version = "0.3.3";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "Jupyter kernel for Clojure",
     homepage: "https://github.com/clojupyter/clojupyter",
     sourceProvenance: nix.thunk(() => (() => {
@@ -43,10 +37,10 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.sel(jre, "meta", "platforms")),
   }));
   const sizedLogo = (size) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: nix.thunk(() => nix.str`clojupyter-logo-${size}x${size}.png`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "clojupyter",
           repo: "clojupyter",
           tag: version,
@@ -61,21 +55,21 @@ export default nix.lambda((args) => (() => {
     })));
   return (() => {
     const launcher = nix.thunk(() => nix.app(runCommand, "clojupyter", nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: pname,
         version: version,
         meta: meta,
         shellScript: shellScript,
       })), "mkdir -p $out/bin\nln -s $shellScript $out/bin/clojupyter\n"));
     const definition = nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       displayName: "Clojure",
       argv: nix.thunk(() => [nix.thunk(() => nix.str`${launcher}/bin/clojupyter`), "{connection_file}"]),
       language: "clojure",
       logo32: nix.thunk(() => nix.app(sizedLogo, "32")),
       logo64: nix.thunk(() => nix.app(sizedLogo, "64")),
     }));
-    return { [nix.POS]: pos$7, launcher, definition };
+    return { [nix.POS]: $pos[6], launcher, definition };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

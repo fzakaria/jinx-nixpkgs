@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 24, 26], ["pname", 25, 5], ["hash", 26, 5]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["build-system", 29, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 43, 3], ["preCheck", 45, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, deprecated: false, hopcroftkarp: false, joblib: false, matplotlib: false, numpy: false, "scikit-learn": false, scipy: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 24, 26], ["pname", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["build-system", 29, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 43, 3], ["preCheck", 45, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "persim",
       version: "0.3.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "persim",
           hash: "sha256-4T0YWEF2uKdk0W1+Vt8I3Mi6ZsazJXoHI0W+O9WbpA0=",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# specifically needed for darwin\nexport HOME=$(mktemp -d)\nmkdir -p $HOME/.matplotlib\necho \"backend: ps\" > $HOME/.matplotlib/matplotlibrc\n",
       pythonImportsCheck: nix.thunk(() => ["persim"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Distances and representations of persistence diagrams",
         homepage: "https://persim.scikit-tda.org",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-tda/persim/releases/tag/v${nix.sel(finalAttrs, "version")}`),

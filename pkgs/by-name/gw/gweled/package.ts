@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 44, 5], ["mainProgram", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 34, 3], ["configureFlags", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, "desktop-file-utils": false, clutter: false, "clutter-gtk": false, gsound: false, "libgnome-games-support": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["mainProgram", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 34, 3], ["configureFlags", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gsound = nix.arg($, "gsound");
   const libgnome_games_support = nix.arg($, "libgnome-games-support");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gweled",
       version: "1.0-beta1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.launchpad.net/gweled",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-cm1z6l2tfYBFVFcvsnQ6cI3pQDnJMzn6SUC20gnBF5w=",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [clutter, clutter_gtk, gsound, libgnome_games_support]),
       configureFlags: nix.thunk(() => ["--disable-setgid"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Puzzle game similar to Bejeweled or Diamond Mine",
         mainProgram: "gweled",
         homepage: "https://gweled.org",

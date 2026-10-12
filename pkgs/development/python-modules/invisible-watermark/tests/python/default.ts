@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 23, 5], ["realBuilder", 24, 5], ["args", 25, 5], ["image", 26, 13], ["message", 26, 19], ["method", 26, 27]], [["name", 30, 5], ["realBuilder", 31, 5], ["args", 32, 5], ["method", 33, 13], ["image", 34, 5], ["num_bits", 35, 5]]]);
 const formals$1 = { args: { image: false, "invisible-watermark": false, opencv4: false, python: false, runCommand: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 23, 5], ["realBuilder", 24, 5], ["args", 25, 5], ["image", 26, 13], ["message", 26, 19], ["method", 26, 27]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 30, 5], ["realBuilder", 31, 5], ["args", 32, 5], ["method", 33, 13], ["image", 34, 5], ["num_bits", 35, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const pythonWithPackages = nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (_) => [invisible_watermark, opencv4]));
   const pythonInterpreter = nix.thunk(() => nix.sel(pythonWithPackages, "interpreter"));
   const encode = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "encode",
       realBuilder: pythonInterpreter,
       args: nix.thunk(() => [nix.path(here, "./encode.py")]),
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
       method: method,
     }))));
   const decode = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "decode",
       realBuilder: pythonInterpreter,
       args: nix.thunk(() => [nix.path(here, "./decode.py")]),

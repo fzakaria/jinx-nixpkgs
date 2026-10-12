@@ -2,13 +2,13 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["nativeBuildInputs", 5, 5]]]);
 const formals$1 = { args: { runCommand: false, udpipe1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["nativeBuildInputs", 5, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommand = nix.arg($, "runCommand");
   const udpipe1 = nix.arg($, "udpipe1");
-  return nix.app(runCommand, "udpipe1-test-run", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [udpipe1]) })), "diff -U3 --color=auto <(udpipe --version|head -n1) <(echo 'UDPipe version 1.3.1 (using UniLib 3.3.1,')\ntouch $out\n");
+  return nix.app(runCommand, "udpipe1-test-run", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [udpipe1]) })), "diff -U3 --color=auto <(udpipe --version|head -n1) <(echo 'UDPipe version 1.3.1 (using UniLib 3.3.1,')\ntouch $out\n");
 })(), formals$1);
 //# sourceMappingURL=test.ts.map

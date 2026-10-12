@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 44, 5], ["homepage", 45, 5]], [["version", 17, 43], ["src", 17, 51], ["pname", 18, 3], ["pyproject", 19, 3], ["sourceRoot", 21, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 34, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fastapi: false, hatchling: false, httpx: false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, "opentelemetry-instrumentation-asgi": false, "opentelemetry-semantic-conventions": false, "opentelemetry-test-utils": false, "opentelemetry-util-http": false, pytestCheckHook: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 17, 43], ["src", 17, 51], ["pname", 18, 3], ["pyproject", 19, 3], ["sourceRoot", 21, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 34, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-instrumentation-fastapi",
@@ -39,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [httpx, opentelemetry_test_utils, pytestCheckHook, requests]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.instrumentation.fastapi"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "OpenTelemetry Instrumentation for fastapi",
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-fastapi",
       })),

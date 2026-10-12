@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["vm", 126, 11]], [["rev-prefix", 127, 33]], [["tests", 126, 5], ["updateScript", 127, 5]], [["description", 131, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["teams", 135, 5], ["mainProgram", 136, 5], ["platforms", 137, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["postPatch", 39, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 65, 3], ["nativeCheckInputs", 80, 3], ["dontWrapGApps", 86, 3], ["cmakeFlags", 88, 3], ["doCheck", 94, 3], ["preCheck", 96, 3], ["enableParallelChecking", 116, 3], ["postInstall", 118, 3], ["passthru", 125, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, nixosTests: false, cmake: false, geonames: false, gettext: false, libusermetrics: false, "lomiri-content-hub": false, "lomiri-sounds": false, "lomiri-ui-toolkit": false, makeWrapper: false, mesa: false, "pkg-config": false, qtbase: false, qtdeclarative: false, qtmultimedia: false, qtpositioning: false, qtsystems: false, runtimeShell: false, "u1db-qt": false, wrapQtAppsHook: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["vm", 126, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev-prefix", 127, 33]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 126, 5], ["updateScript", 127, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 131, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["teams", 135, 5], ["mainProgram", 136, 5], ["platforms", 137, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["postPatch", 39, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 65, 3], ["nativeCheckInputs", 80, 3], ["dontWrapGApps", 86, 3], ["cmakeFlags", 88, 3], ["doCheck", 94, 3], ["preCheck", 96, 3], ["enableParallelChecking", 116, 3], ["postInstall", 118, 3], ["passthru", 125, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lomiri-clock-app",
       version: "4.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/apps/lomiri-clock-app",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -92,15 +87,15 @@ export QML2_IMPORT_PATH=${nix.app(listToQtVar, nix.thunk(() => nix.sel(qtbase, "
       enableParallelChecking: false,
       postInstall: "mkdir -p $out/share/{icons/hicolor/scalable/apps,lomiri-app-launch/splash}\n\nln -s $out/share/lomiri-clock-app/clock-app.svg $out/share/icons/hicolor/scalable/apps/lomiri-clock-app.svg\nln -s $out/share/lomiri-clock-app/clock-app-splash.svg $out/share/lomiri-app-launch/splash/lomiri-clock-app.svg\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           vm: nix.thunk(() => nix.sel(nixosTests, "lomiri-clock-app")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple and easy to use clock for Ubuntu Touch, with time zone support for cities and timer and count down functions",
         homepage: "https://gitlab.com/ubports/development/apps/lomiri-clock-app",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/apps/lomiri-clock-app/-/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog`),

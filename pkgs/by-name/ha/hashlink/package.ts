@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["description", 68, 5], ["mainProgram", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 75, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 31, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 51, 3], ["postInstall", 57, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, ninja: false, libGL: false, libGLU: false, libpng: false, libjpeg_turbo: false, libuv: false, libvorbis: false, mbedtls: false, openal: false, SDL2: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["mainProgram", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 31, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 51, 3], ["postInstall", 57, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hashlink";
       const version = "1.15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "HaxeFoundation",
           repo: "hashlink",
           rev: version,
@@ -56,7 +54,7 @@ cp -r ../other/haxelib/* "${haxelibPath}"
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Virtual machine for Haxe",
         mainProgram: "hl",
         homepage: "https://hashlink.haxe.org/",
@@ -72,7 +70,7 @@ cp -r ../other/haxelib/* "${haxelibPath}"
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

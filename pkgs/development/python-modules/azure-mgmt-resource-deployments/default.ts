@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 5], ["version", 20, 26], ["hash", 21, 5]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["doCheck", 34, 3], ["pythonNamespaces", 36, 3], ["pythonImportsCheck", 41, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "azure-mgmt-core": false, "azure-common": false, isodate: false, setuptools: false, "typing-extensions": false, "azure-cli": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 26], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["doCheck", 34, 3], ["pythonNamespaces", 36, 3], ["pythonImportsCheck", 41, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const azure_cli = nix.arg($, "azure-cli");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "azure-mgmt-resource-deployments",
       version: "2.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "azure_mgmt_resource_deployments",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-8DnRSQgY0zcoD2OpFbulQHaytlabg/OSPNXF4vP8Q4c=",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonNamespaces: nix.thunk(() => ["azure.mgmt", "azure.mgmt.resource"]),
       pythonImportsCheck: nix.thunk(() => ["azure.mgmt.resource.deployments", "azure.mgmt.resource.deployments.models"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Microsoft Azure SDK for Python",
         homepage: "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/resources/azure-mgmt-resource-deployments",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/azure-sdk-for-python/blob/azure-mgmt-resource-deployments_${nix.sel(finalAttrs, "version")}/sdk/resources/azure-mgmt-resource-deployments/CHANGELOG.md`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 35, 3], ["nativeCheckInputs", 40, 3], ["checkInputs", 45, 3], ["disabledTests", 50, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, "pytest-asyncio": false, pythonAtLeast: false, defusedxml: false, setuptools: false, sphinx: false, "typing-extensions": false, unidecode: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 35, 3], ["nativeCheckInputs", 40, 3], ["checkInputs", 45, 3], ["disabledTests", 50, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const unidecode = nix.arg($, "unidecode");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "uqbar",
       version: "0.9.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "supriya-project",
           repo: "uqbar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.11")), nix.thunk(() => ["test_sphinx_style"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["objects.get_vars"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_04", "SummarizingClassDocumenter"])))))),
       pythonImportsCheck: nix.thunk(() => ["uqbar"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tools for creating Sphinx and Graphviz documentation",
         homepage: "https://github.com/supriya-project/uqbar",
         changelog: nix.thunk(() => nix.str`https://github.com/supriya-project/uqbar/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

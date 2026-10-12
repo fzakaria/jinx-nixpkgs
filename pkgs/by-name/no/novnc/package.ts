@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["websockify", 24, 17]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["postPatch", 29, 3], ["installPhase", 33, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, stdenv: false, replaceVars: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["websockify", 24, 17]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["postPatch", 29, 3], ["installPhase", 33, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "novnc",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "novnc",
           repo: "noVNC",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,13 +26,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return nix.concat([
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./websockify.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, websockify: nix.thunk(() => nix.lookup(w, "websockify")) })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./websockify.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], websockify: nix.thunk(() => nix.lookup(w, "websockify")) })))),
         ], [nix.path(here, "./fix-paths.patch")]);
       })()),
       postPatch: "substituteAllInPlace utils/novnc_proxy\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 utils/novnc_proxy \"$out/bin/novnc\"\ninstall -dm755 \"$out/share/webapps/novnc/\"\ncp -a app core po vendor vnc.html karma.conf.cjs package.json vnc_lite.html \"$out/share/webapps/novnc/\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "VNC client web application",
         homepage: "https://novnc.com",
         license: nix.thunk(() => (() => {

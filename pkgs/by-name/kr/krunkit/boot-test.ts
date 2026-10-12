@@ -2,27 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/boot-test.nix", [[["system", 11, 5]], [["pkgs", 16, 15]], [["canTouchEfiVariables", 23, 15]], [["enable", 24, 24]], [["efi", 23, 11], ["systemd-boot", 24, 11]], [["kernelParams", 21, 9], ["loader", 22, 9]], [["enable", 28, 21]], [["defaultPackages", 29, 19]], [["device", 33, 11], ["fsType", 34, 11]], [["device", 38, 11], ["fsType", 39, 11]], [["/", 32, 9], ["/boot", 37, 9]], [["Type", 46, 23]], [["wantedBy", 44, 9], ["after", 45, 9], ["serviceConfig", 46, 9], ["script", 47, 9]], [["krunkit-boot-ok", 43, 24]], [["services", 43, 15]], [["stateVersion", 52, 14]], [["nixpkgs", 16, 7], ["imports", 18, 7], ["boot", 20, 7], ["documentation", 28, 7], ["environment", 29, 7], ["fileSystems", 31, 7], ["systemd", 43, 7], ["system", 52, 7]], [["lib", 56, 13], ["config", 57, 5], ["pkgs", 58, 5], ["additionalSpace", 60, 5], ["baseName", 61, 5], ["bootSize", 62, 5], ["copyChannel", 63, 5], ["format", 64, 5], ["partitionTableType", 65, 5]], [["platforms", 72, 10]], [["requiredSystemFeatures", 70, 5], ["meta", 72, 5]]]);
 const formals$1 = { args: { krunkit: false, lib: false, nixos: false, pkgs: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/boot-test.nix", [["system", 11, 5]]);
-const pos$2 = nix.positions(here + "/boot-test.nix", [["pkgs", 16, 15]]);
-const pos$3 = nix.positions(here + "/boot-test.nix", [["canTouchEfiVariables", 23, 15]]);
-const pos$4 = nix.positions(here + "/boot-test.nix", [["enable", 24, 24]]);
-const pos$5 = nix.positions(here + "/boot-test.nix", [["efi", 23, 11], ["systemd-boot", 24, 11]]);
-const pos$6 = nix.positions(here + "/boot-test.nix", [["kernelParams", 21, 9], ["loader", 22, 9]]);
-const pos$7 = nix.positions(here + "/boot-test.nix", [["enable", 28, 21]]);
-const pos$8 = nix.positions(here + "/boot-test.nix", [["defaultPackages", 29, 19]]);
-const pos$9 = nix.positions(here + "/boot-test.nix", [["device", 33, 11], ["fsType", 34, 11]]);
-const pos$10 = nix.positions(here + "/boot-test.nix", [["device", 38, 11], ["fsType", 39, 11]]);
-const pos$11 = nix.positions(here + "/boot-test.nix", [["/", 32, 9], ["/boot", 37, 9]]);
-const pos$12 = nix.positions(here + "/boot-test.nix", [["Type", 46, 23]]);
-const pos$13 = nix.positions(here + "/boot-test.nix", [["wantedBy", 44, 9], ["after", 45, 9], ["serviceConfig", 46, 9], ["script", 47, 9]]);
-const pos$14 = nix.positions(here + "/boot-test.nix", [["krunkit-boot-ok", 43, 24]]);
-const pos$15 = nix.positions(here + "/boot-test.nix", [["services", 43, 15]]);
-const pos$16 = nix.positions(here + "/boot-test.nix", [["stateVersion", 52, 14]]);
-const pos$17 = nix.positions(here + "/boot-test.nix", [["nixpkgs", 16, 7], ["imports", 18, 7], ["boot", 20, 7], ["documentation", 28, 7], ["environment", 29, 7], ["fileSystems", 31, 7], ["systemd", 43, 7], ["system", 52, 7]]);
-const pos$18 = nix.positions(here + "/boot-test.nix", [["lib", 56, 13], ["config", 57, 5], ["pkgs", 58, 5], ["additionalSpace", 60, 5], ["baseName", 61, 5], ["bootSize", 62, 5], ["copyChannel", 63, 5], ["format", 64, 5], ["partitionTableType", 65, 5]]);
-const pos$19 = nix.positions(here + "/boot-test.nix", [["platforms", 72, 10]]);
-const pos$20 = nix.positions(here + "/boot-test.nix", [["requiredSystemFeatures", 70, 5], ["meta", 72, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,49 +12,49 @@ export default nix.lambda((args) => (() => {
   const nixos = nix.arg($, "nixos");
   const pkgs = nix.arg($, "pkgs");
   const runCommand = nix.arg($, "runCommand");
-  const linuxPkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.sel(pkgs, "path"))), nix.thunk(() => ({ [nix.POS]: pos$1, system: "aarch64-linux" }))));
+  const linuxPkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.sel(pkgs, "path"))), nix.thunk(() => ({ [nix.POS]: $pos[0], system: "aarch64-linux" }))));
   const nixosConfig = nix.thunk(() => nix.sel(nix.app(nixos, nix.thunk(() => ({
-      [nix.POS]: pos$17,
-      nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: linuxPkgs })),
+      [nix.POS]: $pos[16],
+      nixpkgs: nix.thunk(() => ({ [nix.POS]: $pos[1], pkgs: linuxPkgs })),
       imports: nix.thunk(() => [
         nix.thunk(() => nix.str`${nix.sel(pkgs, "path")}/nixos/modules/profiles/qemu-guest.nix`),
       ]),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         kernelParams: nix.thunk(() => ["console=hvc0"]),
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          efi: nix.thunk(() => ({ [nix.POS]: pos$3, canTouchEfiVariables: false })),
-          "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+          [nix.POS]: $pos[4],
+          efi: nix.thunk(() => ({ [nix.POS]: $pos[2], canTouchEfiVariables: false })),
+          "systemd-boot": nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
         })),
       })),
-      documentation: nix.thunk(() => ({ [nix.POS]: pos$7, enable: false })),
-      environment: nix.thunk(() => ({ [nix.POS]: pos$8, defaultPackages: [] })),
+      documentation: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: false })),
+      environment: nix.thunk(() => ({ [nix.POS]: $pos[7], defaultPackages: [] })),
       fileSystems: nix.thunk(() => ({
-        [nix.POS]: pos$11,
-        "/": nix.thunk(() => ({ [nix.POS]: pos$9, device: "/dev/disk/by-label/nixos", fsType: "ext4" })),
-        "/boot": nix.thunk(() => ({ [nix.POS]: pos$10, device: "/dev/disk/by-label/ESP", fsType: "vfat" })),
+        [nix.POS]: $pos[10],
+        "/": nix.thunk(() => ({ [nix.POS]: $pos[8], device: "/dev/disk/by-label/nixos", fsType: "ext4" })),
+        "/boot": nix.thunk(() => ({ [nix.POS]: $pos[9], device: "/dev/disk/by-label/ESP", fsType: "vfat" })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           "krunkit-boot-ok": nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             wantedBy: nix.thunk(() => ["multi-user.target"]),
             after: nix.thunk(() => ["multi-user.target"]),
-            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$12, Type: "oneshot" })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[11], Type: "oneshot" })),
             script: "echo krunkit-boot-ok >/dev/hvc0\n",
           })),
         })),
       })),
       system: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       })),
     }))), "config"));
   const image = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${nix.sel(pkgs, "path")}/nixos/lib/make-disk-image.nix`)), nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       lib: lib,
       config: nixosConfig,
       pkgs: linuxPkgs,
@@ -85,9 +66,9 @@ export default nix.lambda((args) => (() => {
       partitionTableType: "efi",
     }))));
   return nix.app(runCommand, "krunkit-nixos-boot-test", nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       requiredSystemFeatures: nix.thunk(() => ["apple-virt"]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$19, platforms: nix.thunk(() => ["aarch64-darwin"]) })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[18], platforms: nix.thunk(() => ["aarch64-darwin"]) })),
     })), nix.thunk(() => nix.str`image=${image}/krunkit-nixos.img
 disk=$TMPDIR/disk.img
 console=$TMPDIR/console.log

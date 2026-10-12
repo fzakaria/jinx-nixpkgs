@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["homepage", 59, 5], ["description", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["postPatch", 28, 3], ["installPhase", 34, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, coreutils: false, cpio: false, findutils: false, gzip: false, makeWrapper: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["postPatch", 28, 3], ["installPhase", 34, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "abootimg",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ggrandou",
           repo: "abootimg",
           rev: "7e127fee6a3981f6b0a50ce9910267cd501e09d4",
@@ -47,7 +45,7 @@ install -D -m 755 abootimg-unpack-initrd $out/bin
 wrapProgram $out/bin/abootimg-unpack-initrd --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cpio, gzip]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ggrandou/abootimg",
         description: "Manipulate Android Boot Images",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

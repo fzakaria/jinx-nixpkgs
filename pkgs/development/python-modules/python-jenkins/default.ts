@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 24, 5], ["version", 25, 13], ["hash", 26, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 19, 3], ["version", 20, 3], ["format", 21, 3], ["src", 23, 3], ["postPatch", 31, 3], ["pythonRelaxDeps", 36, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 39, 3], ["__darwinAllowLocalNetworking", 47, 3], ["nativeCheckInputs", 49, 3], ["checkPhase", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, mock: false, pbr: false, pyyaml: false, six: false, "multi-key-dict": false, testscenarios: false, requests: false, "requests-mock": false, stestr: false, multiprocess: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 24, 5], ["version", 25, 13], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["format", 21, 3], ["src", 23, 3], ["postPatch", 31, 3], ["pythonRelaxDeps", 36, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 39, 3], ["__darwinAllowLocalNetworking", 47, 3], ["nativeCheckInputs", 49, 3], ["checkPhase", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "python_jenkins",
           version: version,
           hash: "sha256-j0dhw5GsEejB8j93EBCSDBBEBJdwWrcXXVI1j1oS3Jg=",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [stestr, testscenarios, requests_mock, multiprocess]);
       const checkPhase = "stestr run\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python bindings for the remote Jenkins API",
         homepage: "https://pypi.org/project/python-jenkins/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

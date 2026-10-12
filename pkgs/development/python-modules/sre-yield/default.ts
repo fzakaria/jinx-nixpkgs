@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 5], ["version", 18, 26], ["hash", 19, 5]], [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["nativeCheckInputs", 24, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, unittestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 26], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["nativeCheckInputs", 24, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sre-yield",
       version: "1.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "sre_yield",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-6U8aKjy6//4dzRXB1U5AGhUX4FKqZMfTFk+I3HYde4o=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [unittestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["sre_yield"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library to efficiently generate all values that can match a given regular expression",
         mainProgram: "demo_sre_yield",
         homepage: "https://github.com/sre-yield/sre-yield",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 18, 5]], [["description", 42, 5], ["license", 43, 5], ["homepage", 44, 5], ["sourceProvenance", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["broken", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["sourceRoot", 27, 3], ["installPhase", 29, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, unzip: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["license", 43, 5], ["homepage", 44, 5], ["sourceProvenance", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["broken", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["sourceRoot", 27, 3], ["installPhase", 29, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "snpeff",
       version: "4.3t",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/snpeff/snpEff_v${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}_core.zip`),
           sha256: "0i12mv93bfv8xjwc3rs2x73d6hkvi7kgbbbx3ry984l3ly4p6nnm",
         })))),
@@ -38,7 +36,7 @@ ln -s $out/bin/snpeff $out/bin/snpEff
 ln -s $out/bin/snpsift $out/bin/snpSift
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Genetic variant annotation and effect prediction toolbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
         homepage: "https://snpeff.sourceforge.net/",

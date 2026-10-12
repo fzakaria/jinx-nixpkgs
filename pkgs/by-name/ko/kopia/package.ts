@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["package", 52, 9]], [["kopia-version", 51, 7]], [["updateScript", 49, 5], ["tests", 50, 5]], [["homepage", 58, 5], ["changelog", 59, 5], ["description", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["__structuredAttrs", 23, 3], ["vendorHash", 25, 3], ["subPackages", 27, 3], ["ldflags", 29, 3], ["nativeBuildInputs", 34, 3], ["postPatch", 36, 3], ["postInstall", 42, 3], ["passthru", 48, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, installShellFiles: false, stdenv: false, testers: false, kopia: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 52, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["kopia-version", 51, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 49, 5], ["tests", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["changelog", 59, 5], ["description", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["__structuredAttrs", 23, 3], ["vendorHash", 25, 3], ["subPackages", 27, 3], ["ldflags", 29, 3], ["nativeBuildInputs", 34, 3], ["postPatch", 36, 3], ["postInstall", 42, 3], ["passthru", 48, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const kopia = nix.arg($, "kopia");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kopia",
       version: "0.23.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kopia",
           repo: "kopia",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,15 +37,15 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace internal/mount/mount_posix_webdav_helper_linux.go \\\n  --replace-fail \"/usr/bin/mount\" \"mount\" \\\n  --replace-fail \"/usr/bin/umount\" \"umount\"\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd kopia \\\n  --bash <($out/bin/kopia --completion-script-bash) \\\n  --zsh <($out/bin/kopia --completion-script-zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          "kopia-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: kopia })))),
+          [nix.POS]: $pos[2],
+          "kopia-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: kopia })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://kopia.io",
         changelog: nix.thunk(() => nix.str`https://github.com/kopia/kopia/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Cross-platform backup tool with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication",

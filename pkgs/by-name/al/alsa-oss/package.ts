@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 32, 5], ["description", 33, 5], ["mainProgram", 34, 5], ["longDescription", 36, 5], ["license", 41, 5], ["platforms", 42, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 25, 3], ["configureFlags", 27, 3], ["installFlags", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "alsa-lib": false, gettext: false, ncurses: false, libsamplerate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 32, 5], ["description", 33, 5], ["mainProgram", 34, 5], ["longDescription", 36, 5], ["license", 41, 5], ["platforms", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 25, 3], ["configureFlags", 27, 3], ["installFlags", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const libsamplerate = nix.arg($, "libsamplerate");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "alsa-oss",
       version: "1.1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://alsa/oss-lib/alsa-oss-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-ZK3O9ZJ+hI0uAk5kxL+FtvOVlk2ZdOxhkFrky4011o4=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--disable-xmlto"]),
       installFlags: nix.thunk(() => ["ASOUND_STATE_DIR=$(TMPDIR)/dummy"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.alsa-project.org/",
         description: "ALSA, the Advanced Linux Sound Architecture alsa-oss emulation",
         mainProgram: "aoss",

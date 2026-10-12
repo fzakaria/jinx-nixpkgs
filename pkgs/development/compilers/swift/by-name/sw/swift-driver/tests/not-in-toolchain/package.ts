@@ -2,8 +2,8 @@
 import * as nix from "../../../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nativeBuildInputs", 10, 5]]]);
 const formals$1 = { args: { runCommand: false, swift: false, swiftpm: false, swift_release: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 10, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const swift = nix.arg($, "swift");
   const swiftpm = nix.arg($, "swiftpm");
   const swift_release = nix.arg($, "swift_release");
-  return nix.app(runCommand, "swift-driver-test-not-in-toolchain", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [swift, swiftpm]) })), nix.thunk(() => nix.str`swift package --version | grep "Swift Package Manager - Swift ${swift_release}"
+  return nix.app(runCommand, "swift-driver-test-not-in-toolchain", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [swift, swiftpm]) })), nix.thunk(() => nix.str`swift package --version | grep "Swift Package Manager - Swift ${swift_release}"
 touch "$out"
 `));
 })(), formals$1);

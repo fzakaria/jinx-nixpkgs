@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["STATIC_VCRUNTIME_NO_BUILD", 55, 7]], [["updateScript", 57, 12]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5]], [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["cargoHash", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["env", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, "pkg-config": false, wrapGAppsHook3: false, webkitgtk_4_1: false, xdotool: false, gtk3: false, cairo: false, pango: false, "gdk-pixbuf": false, glib: false, libsoup_3: false, openssl: false, "glib-networking": false, nss: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["STATIC_VCRUNTIME_NO_BUILD", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["cargoHash", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["env", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const glib_networking = nix.arg($, "glib-networking");
   const nss = nix.arg($, "nss");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tesla_auth",
       version: "0.15.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adriankumpf",
           repo: "tesla_auth",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,13 +51,13 @@ export default nix.lambda((args) => (() => {
         glib_networking,
         nss,
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, STATIC_VCRUNTIME_NO_BUILD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], STATIC_VCRUNTIME_NO_BUILD: "1" })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Securely generate API tokens for third-party access to your Tesla",
         homepage: "https://github.com/adriankumpf/tesla_auth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

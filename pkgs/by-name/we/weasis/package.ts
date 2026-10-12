@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 21, 5], ["aarch64-linux", 22, 5], ["aarch64-darwin", 23, 5]], [["url", 39, 5], ["hash", 40, 5], ["stripRoot", 41, 5]], [["name", 52, 7], ["exec", 53, 7], ["icon", 54, 7], ["desktopName", 55, 7], ["comment", 56, 7]], [["name", 59, 7], ["exec", 60, 7], ["icon", 61, 7], ["desktopName", 62, 7], ["comment", 63, 7]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 110, 5], ["platforms", 111, 5], ["mainProgram", 112, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 38, 3], ["nativeBuildInputs", 44, 3], ["desktopItems", 50, 3], ["postPatch", 67, 3], ["buildPhase", 71, 3], ["installPhase", 79, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, jdk25: false, unzip: false, copyDesktopItems: false, makeDesktopItem: false, makeBinaryWrapper: false, libGL: false, libxxf86vm: false, libxrender: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 21, 5], ["aarch64-linux", 22, 5], ["aarch64-darwin", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 5], ["hash", 40, 5], ["stripRoot", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 52, 7], ["exec", 53, 7], ["icon", 54, 7], ["desktopName", 55, 7], ["comment", 56, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 59, 7], ["exec", 60, 7], ["icon", 61, 7], ["desktopName", 62, 7], ["comment", 63, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 110, 5], ["platforms", 111, 5], ["mainProgram", 112, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 38, 3], ["nativeBuildInputs", 44, 3], ["desktopItems", 50, 3], ["postPatch", 67, 3], ["buildPhase", 71, 3], ["installPhase", 79, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
   const platform = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "x86_64-linux": "linux-x86-64",
       "aarch64-linux": "linux-aarch64",
       "aarch64-darwin": "macosx-aarch64",
     }))));
   const runtimeDeps = nix.thunk(() => [libGL, libx11, libxrender, libxxf86vm]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "weasis",
       version: "4.7.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/nroduit/Weasis/releases/download/v${nix.sel(finalAttrs, "version")}/weasis-native.zip`),
           hash: "sha256-VssbmzOEZVHfzkUS9zyKIgT8kn9JqEoelI8ns15GQD4=",
           stripRoot: false,
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([copyDesktopItems, makeBinaryWrapper], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), unzip))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "DICOMizer",
             exec: "Dicomizer",
             icon: "Dicomizer",
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
             comment: "Convert standard images into DICOM",
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "Weasis",
             exec: "Weasis",
             icon: "Weasis",
@@ -81,7 +76,7 @@ done
 mv weasis-${platform}-jdk${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(jdk25, "version")))}-${nix.sel(finalAttrs, "version")}/Weasis.app $out/Applications/
 `))), "runHook postInstall\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Multipurpose standalone and web-based DICOM viewer with a highly modular architecture",
         homepage: "https://weasis.org",
         changelog: nix.thunk(() => nix.str`https://github.com/nroduit/Weasis/releases/tag/v${nix.sel(finalAttrs, "version")}`),

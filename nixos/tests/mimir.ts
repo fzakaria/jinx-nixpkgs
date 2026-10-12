@@ -2,77 +2,61 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mimir.nix", [[["systemPackages", 8, 21]], [["replication_factor", 11, 25]], [["ring", 11, 20]], [["ingester", 11, 11]], [["enable", 9, 24], ["configuration", 10, 24]], [["interval", 16, 17], ["flush_interval", 17, 17]], [["commands", 19, 13], ["data_format", 22, 13]], [["exec", 18, 18]], [["Content-Type", 33, 17], ["Content-Encoding", 34, 17], ["X-Scope-OrgID", 35, 17], ["X-Prometheus-Remote-Write-Version", 36, 17]], [["url", 27, 15], ["data_format", 30, 15], ["headers", 32, 15]], [["http", 25, 13]], [["agent", 16, 11], ["inputs", 18, 11], ["outputs", 24, 11]], [["enable", 14, 27], ["extraConfig", 15, 27]], [["mimir", 9, 18], ["telegraf", 14, 18]], [["environment", 8, 9], ["services", 9, 9]], [["server", 5, 5]], [["name", 3, 3], ["nodes", 4, 3], ["testScript", 44, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mimir.nix", [["systemPackages", 8, 21]]);
-const pos$2 = nix.positions(here + "/mimir.nix", [["replication_factor", 11, 25]]);
-const pos$3 = nix.positions(here + "/mimir.nix", [["ring", 11, 20]]);
-const pos$4 = nix.positions(here + "/mimir.nix", [["ingester", 11, 11]]);
-const pos$5 = nix.positions(here + "/mimir.nix", [["enable", 9, 24], ["configuration", 10, 24]]);
-const pos$6 = nix.positions(here + "/mimir.nix", [["interval", 16, 17], ["flush_interval", 17, 17]]);
-const pos$7 = nix.positions(here + "/mimir.nix", [["commands", 19, 13], ["data_format", 22, 13]]);
-const pos$8 = nix.positions(here + "/mimir.nix", [["exec", 18, 18]]);
-const pos$9 = nix.positions(here + "/mimir.nix", [["Content-Type", 33, 17], ["Content-Encoding", 34, 17], ["X-Scope-OrgID", 35, 17], ["X-Prometheus-Remote-Write-Version", 36, 17]]);
-const pos$10 = nix.positions(here + "/mimir.nix", [["url", 27, 15], ["data_format", 30, 15], ["headers", 32, 15]]);
-const pos$11 = nix.positions(here + "/mimir.nix", [["http", 25, 13]]);
-const pos$12 = nix.positions(here + "/mimir.nix", [["agent", 16, 11], ["inputs", 18, 11], ["outputs", 24, 11]]);
-const pos$13 = nix.positions(here + "/mimir.nix", [["enable", 14, 27], ["extraConfig", 15, 27]]);
-const pos$14 = nix.positions(here + "/mimir.nix", [["mimir", 9, 18], ["telegraf", 14, 18]]);
-const pos$15 = nix.positions(here + "/mimir.nix", [["environment", 8, 9], ["services", 9, 9]]);
-const pos$16 = nix.positions(here + "/mimir.nix", [["server", 5, 5]]);
-const pos$17 = nix.positions(here + "/mimir.nix", [["name", 3, 3], ["nodes", 4, 3], ["testScript", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "mimir",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             mimir: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 ingester: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
-                  ring: nix.thunk(() => ({ [nix.POS]: pos$2, replication_factor: 1n })),
+                  [nix.POS]: $pos[2],
+                  ring: nix.thunk(() => ({ [nix.POS]: $pos[1], replication_factor: 1n })),
                 })),
               })),
             })),
             telegraf: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               enable: true,
               extraConfig: nix.thunk(() => ({
-                [nix.POS]: pos$12,
-                agent: nix.thunk(() => ({ [nix.POS]: pos$6, interval: "1s", flush_interval: "1s" })),
+                [nix.POS]: $pos[11],
+                agent: nix.thunk(() => ({ [nix.POS]: $pos[5], interval: "1s", flush_interval: "1s" })),
                 inputs: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   exec: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     commands: nix.thunk(() => [nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/echo 'foo i=42i'`)]),
                     data_format: "influx",
                   })),
                 })),
                 outputs: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   http: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     url: "http://localhost:8080/api/v1/push",
                     data_format: "prometheusremotewrite",
                     headers: nix.thunk(() => ({
-                      [nix.POS]: pos$9,
+                      [nix.POS]: $pos[8],
                       "Content-Type": "application/x-protobuf",
                       "Content-Encoding": "snappy",
                       "X-Scope-OrgID": "nixos",

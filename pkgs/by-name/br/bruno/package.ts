@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5], ["postFetch", 32, 5]], [["name", 59, 7], ["desktopName", 60, 7], ["exec", 61, 7], ["icon", 62, 7], ["comment", 63, 7], ["categories", 64, 7], ["startupWMClass", 65, 7]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 91, 7]], [["updateScript", 193, 12]], [["description", 196, 5], ["homepage", 197, 5], ["license", 198, 5], ["mainProgram", 199, 5], ["maintainers", 200, 5], ["platforms", 207, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nodejs", 37, 3], ["npmDepsHash", 39, 3], ["npmFlags", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 51, 3], ["desktopItems", 57, 3], ["postPatch", 69, 3], ["postConfigure", 86, 3], ["env", 91, 3], ["npmRebuildFlags", 94, 3], ["preBuild", 95, 3], ["buildPhase", 104, 3], ["npmPackFlags", 154, 3], ["installPhase", 156, 3], ["passthru", 193, 3], ["meta", 195, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, clang_20: false, fetchFromGitHub: false, buildNpmPackage: false, "nix-update-script": false, nodejs_22: false, electron: false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false, "pkg-config": false, pixman: false, cairo: false, pango: false, "npm-lockfile-fix": false, jq: false, moreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5], ["postFetch", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 59, 7], ["desktopName", 60, 7], ["exec", 61, 7], ["icon", 62, 7], ["comment", 63, 7], ["categories", 64, 7], ["startupWMClass", 65, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 91, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 193, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 196, 5], ["homepage", 197, 5], ["license", 198, 5], ["mainProgram", 199, 5], ["maintainers", 200, 5], ["platforms", 207, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nodejs", 37, 3], ["npmDepsHash", 39, 3], ["npmFlags", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 51, 3], ["desktopItems", 57, 3], ["postPatch", 69, 3], ["postConfigure", 86, 3], ["env", 91, 3], ["npmRebuildFlags", 94, 3], ["preBuild", 95, 3], ["buildPhase", 104, 3], ["npmPackFlags", 154, 3], ["installPhase", 156, 3], ["passthru", 193, 3], ["meta", 195, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bruno";
       const version = "4.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "usebruno",
           repo: "bruno",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [pixman, cairo, pango]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "bruno",
             desktopName: "Bruno",
             exec: "bruno %U",
@@ -75,7 +70,7 @@ substituteInPlace packages/bruno-app/plugins/remote-images/loader.cjs \\
   --replace-fail 'const urls = findRemoteImageUrls(source, domains);' 'const urls = [];'
 `);
       const postConfigure = "# sh: line 1: /build/source/packages/bruno-common/node_modules/.bin/rollup: cannot execute: required file not found\npatchShebangs packages/*/node_modules\n";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n }));
       const npmRebuildFlags = nix.thunk(() => ["--ignore-scripts"]);
       const preBuild = "# upstream keeps removing and adding back canvas, only patch it when it is present\nif [[ -e node_modules/canvas/binding.gyp ]]; then\n  substituteInPlace node_modules/canvas/binding.gyp \\\n    --replace-fail \"'with_gif%': '<!(node ./util/has_lib.js gif)'\" \"'with_gif%': 'false'\"\n  npm rebuild\nfi\n";
       const buildPhase = nix.thunk(() => nix.str`runHook preBuild
@@ -142,11 +137,11 @@ done
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open-source IDE For exploring and testing APIs",
         homepage: "https://www.usebruno.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -164,7 +159,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

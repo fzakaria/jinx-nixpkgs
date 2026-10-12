@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["extraLibraries", 17, 7]], [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["steamRun", 40, 7], ["bash", 41, 7]], [["updateScript", 92, 12]], [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["postPatch", 52, 3], ["build-system", 56, 3], ["dependencies", 58, 3], ["makeWrapperArgs", 63, 3], ["nativeCheckInputs", 75, 3], ["postInstall", 79, 3], ["disabledTests", 83, 3], ["pythonImportsCheck", 90, 3], ["passthru", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, replaceVars: false, writeShellScript: false, steam: false, winetricks: false, yad: false, "nix-update-script": false, extraCompatPaths: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["extraLibraries", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["steamRun", 40, 7], ["bash", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 92, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["postPatch", 52, 3], ["build-system", 56, 3], ["dependencies", 58, 3], ["makeWrapperArgs", 63, 3], ["nativeCheckInputs", 75, 3], ["postInstall", 79, 3], ["disabledTests", 83, 3], ["pythonImportsCheck", 90, 3], ["passthru", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const extraCompatPaths = nix.argOr($, "extraCompatPaths", () => "");
   const steam_run = nix.thunk(() => nix.sel(nix.app(nix.sel(steam, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       extraLibraries: (p) => (() => {
         const w = nix.withScope(p, null);
         return [nix.thunk(() => nix.lookup(w, "freetype"))];
       })(),
     }))), "run-free"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "protontricks",
       version: "1.15.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Matoking",
           repo: "protontricks",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./steam-run.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             steamRun: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), steam_run)),
             bash: nix.thunk(() => nix.app(writeShellScript, "steam-run-bash", nix.thunk(() => nix.str`exec ${nix.app(nix.sel(lib, "getExe"), steam_run)} bash "$@"
 `))),
@@ -74,11 +69,11 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_get_runtime_library_paths"]),
       pythonImportsCheck: nix.thunk(() => ["protontricks"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple wrapper for running Winetricks commands for Proton-enabled games",
         homepage: "https://github.com/Matoking/protontricks",
         changelog: nix.thunk(() => nix.str`https://github.com/Matoking/protontricks/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

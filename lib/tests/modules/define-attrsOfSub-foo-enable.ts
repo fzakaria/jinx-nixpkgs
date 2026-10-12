@@ -2,12 +2,13 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/define-attrsOfSub-foo-enable.nix", [["enable", 2, 18]]);
-const pos$2 = nix.positions(here + "/define-attrsOfSub-foo-enable.nix", [["foo", 2, 14]]);
-const pos$3 = nix.positions(here + "/define-attrsOfSub-foo-enable.nix", [["attrsOfSub", 2, 3]]);
+const $pos = nix.positions(here + "/define-attrsOfSub-foo-enable.nix", [[["enable", 2, 18]], [["foo", 2, 14]], [["attrsOfSub", 2, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$3,
-  attrsOfSub: nix.thunk(() => ({ [nix.POS]: pos$2, foo: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })) })),
+  [nix.POS]: $pos[2],
+  attrsOfSub: nix.thunk(() => ({
+    [nix.POS]: $pos[1],
+    foo: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
+  })),
 }));
 //# sourceMappingURL=define-attrsOfSub-foo-enable.ts.map

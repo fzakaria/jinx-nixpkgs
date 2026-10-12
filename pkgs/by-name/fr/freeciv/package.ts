@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["description", 123, 5], ["longDescription", 124, 5], ["homepage", 130, 5], ["license", 131, 5], ["maintainers", 132, 5], ["platforms", 133, 5], ["hydraPlatforms", 134, 5], ["broken", 135, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["dontWrapQtApps", 87, 3], ["dontWrapGApps", 88, 3], ["preConfigure", 92, 3], ["configureFlags", 95, 3], ["postFixup", 112, 3], ["enableParallelBuilding", 120, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, lua5_3: false, "pkg-config": false, python3: false, zlib: false, bzip2: false, curl: false, xz: false, gettext: false, libiconv: false, icu: false, SDL2: false, SDL2_mixer: false, SDL2_image: false, SDL2_ttf: false, SDL2_gfx: false, freetype: false, fluidsynth: false, sdl2Client: true, gtkClient: true, gtk3: false, wrapGAppsHook3: false, qtClient: true, qt5: false, server: true, readline: false, enableSqlite: true, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 123, 5], ["longDescription", 124, 5], ["homepage", 130, 5], ["license", 131, 5], ["maintainers", 132, 5], ["platforms", 133, 5], ["hydraPlatforms", 134, 5], ["broken", 135, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["dontWrapQtApps", 87, 3], ["dontWrapGApps", 88, 3], ["preConfigure", 92, 3], ["configureFlags", 95, 3], ["postFixup", 112, 3], ["enableParallelBuilding", 120, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const enableSqlite = nix.argOr($, "enableSqlite", () => true);
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "freeciv",
       version: "3.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "freeciv",
           repo: "freeciv",
           tag: nix.thunk(() => nix.str`R${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -72,7 +70,7 @@ done
       postFixup: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), qtClient, "wrapQtApp $out/bin/freeciv-qt\n"), nix.app(nix.sel(lib, "optionalString"), gtkClient, "wrapGApp $out/bin/freeciv-gtk3.22\n"))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Multiplayer (or single player), turn-based strategy game",
         longDescription: "Freeciv is a Free and Open Source empire-building strategy game\ninspired by the history of human civilization. The game commences in\nprehistory and your mission is to lead your tribe from the stone age\nto the space age...\n",
         homepage: "https://freeciv.org/",

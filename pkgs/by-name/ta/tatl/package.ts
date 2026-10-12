@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["duneVersion", 9, 3], ["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, ocamlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["duneVersion", 9, 3], ["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tatl";
       const version = "1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "theoremprover-museum",
           repo: "TATL",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -27,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(ocamlPackages, "menhir"))]);
       const propagatedBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(ocamlPackages, "ocamlgraph"))]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implementation of a tableau-based decision procedure for the full Alternating-time Temporal Logic (ATL*)",
         homepage: "https://atila.ibisc.univ-evry.fr/tableau_ATL_star/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mgttlinger"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         duneVersion,
         pname,
         version,

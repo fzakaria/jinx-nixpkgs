@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["pnpm", 37, 13], ["fetcherVersion", 38, 5], ["hash", 39, 5]], [["updateScript", 67, 12]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["pnpmDeps", 35, 3], ["buildPhase", 42, 3], ["installPhase", 50, 3], ["passthru", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchPnpmDeps: false, lib: false, "nix-update-script": false, nodejs: false, pnpmConfigHook: false, pnpm_11: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["pnpm", 37, 13], ["fetcherVersion", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 67, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["pnpmDeps", 35, 3], ["buildPhase", 42, 3], ["installPhase", 50, 3], ["passthru", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "prettier-plugin-tailwindcss",
       version: "0.8.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tailwindlabs",
           repo: "prettier-plugin-tailwindcss",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpm, pnpmConfigHook]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -46,11 +42,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nNODE_ENV=production pnpm run build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/node_modules/prettier-plugin-tailwindcss\n\n# Required for `pnpm deploy` to work without the `--legacy` flag\npnpm config set --location=project inject-workspace-packages true\n\npnpm --filter=prettier-plugin-tailwindcss --prod \\\n  deploy $out/lib/node_modules/prettier-plugin-tailwindcss/\n\n# Workaround for \"Cannot find package 'prettier' imported from ...\"\ncp -rL node_modules/prettier $out/lib/node_modules/prettier-plugin-tailwindcss/node_modules/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Formatter plugin for Tailwind CSS",
         homepage: "https://github.com/tailwindlabs/prettier-plugin-tailwindcss",
         changelog: nix.thunk(() => nix.str`https://github.com/tailwindlabs/prettier-plugin-tailwindcss/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

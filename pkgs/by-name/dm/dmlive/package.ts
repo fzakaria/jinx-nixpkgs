@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["OPENSSL_NO_VENDOR", 52, 7]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["postInstall", 42, 3], ["env", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, fetchurl: false, "pkg-config": false, makeWrapper: false, openssl: false, mpv: false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["postInstall", 42, 3], ["env", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const mpv = nix.arg($, "mpv");
   const ffmpeg = nix.arg($, "ffmpeg");
   const desktop = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/THMonster/Revda/raw/e1c236f6f940443419b6202735b6f8a0c9cdbe8b/misc/dmlive-mime.desktop",
       hash: "sha256-k4h0cSfjuTZAYLjbaTfcye1aC5obd6D3tAZjgBV8xCI=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dmlive",
       version: "5.7.0-unstable-2026-01-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "THMonster",
           repo: "dmlive",
           rev: "47b06e57fc0fa9cf888f7c054f776a73d65e77ce",
@@ -42,9 +38,9 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/dmlive" --suffix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [mpv, ffmpeg]))}"
 install -Dm644 ${desktop} $out/share/applications/dmlive-mime.desktop
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], OPENSSL_NO_VENDOR: true })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool to play and record videos or live streams with danmaku",
         homepage: "https://github.com/THMonster/dmlive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

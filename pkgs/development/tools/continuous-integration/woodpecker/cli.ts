@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cli.nix", [[["CGO_ENABLED", 24, 7]], [["description", 36, 5], ["mainProgram", 37, 5]], [["pname", 12, 3], ["version", 14, 5], ["src", 15, 5], ["ldflags", 16, 5], ["vendorHash", 17, 5], ["subPackages", 20, 3], ["nativeBuildInputs", 22, 3], ["env", 24, 3], ["postInstall", 25, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { buildGoModule: false, callPackage: false, installShellFiles: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cli.nix", [["CGO_ENABLED", 24, 7]]);
-const pos$2 = nix.positions(here + "/cli.nix", [["description", 36, 5], ["mainProgram", 37, 5]]);
-const pos$3 = nix.positions(here + "/cli.nix", [["pname", 12, 3], ["version", 14, 5], ["src", 15, 5], ["ldflags", 16, 5], ["vendorHash", 17, 5], ["subPackages", 20, 3], ["nativeBuildInputs", 22, 3], ["env", 24, 3], ["postInstall", 25, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "woodpecker-cli",
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.attr(common, "src")),
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: nix.thunk(() => nix.attr(common, "vendorHash")),
       subPackages: "cmd/cli",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], CGO_ENABLED: 0n })),
       postInstall: nix.thunk(() => nix.add(nix.str`${nix.sel(common, "postInstall")}
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd woodpecker-cli \\\n  --bash <($out/bin/woodpecker-cli completion bash) \\\n  --fish <($out/bin/woodpecker-cli completion fish ) \\\n  --zsh <($out/bin/woodpecker-cli completion zsh)\n"))),
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line client for the Woodpecker Continuous Integration server",
         mainProgram: "woodpecker-cli",
       })),

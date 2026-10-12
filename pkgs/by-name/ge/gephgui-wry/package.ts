@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 7], ["repo", 24, 7], ["rev", 25, 7], ["hash", 26, 7]], [["description", 52, 7], ["homepage", 53, 7], ["license", 54, 7], ["mainProgram", 55, 7], ["platforms", 56, 7]], [["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["postPatch", 29, 5], ["nativeBuildInputs", 36, 5], ["buildInputs", 37, 5], ["preBuild", 39, 5], ["installPhase", 43, 5], ["meta", 51, 5]], [["owner", 65, 5], ["repo", 66, 5], ["tag", 67, 5], ["hash", 68, 5], ["fetchSubmodules", 69, 5]], [["pname", 73, 5], ["version", 74, 26], ["src", 74, 34], ["sourceRoot", 76, 5], ["npmDepsHash", 77, 5], ["installPhase", 79, 5]], [["name", 129, 7], ["desktopName", 130, 7], ["icon", 131, 7], ["exec", 132, 7], ["categories", 133, 7], ["comment", 134, 7], ["startupWMClass", 135, 7]], [["extraArgs", 143, 7]], [["pac-cmd", 140, 13], ["gephgui", 141, 26], ["updateScript", 142, 5]], [["description", 150, 5], ["homepage", 151, 5], ["mainProgram", 152, 5], ["platforms", 153, 5], ["license", 154, 5], ["maintainers", 155, 5]], [["pname", 61, 3], ["version", 62, 3], ["src", 64, 3], ["gephgui", 72, 3], ["sourceRoot", 89, 3], ["cargoHash", 90, 3], ["nativeBuildInputs", 92, 3], ["buildInputs", 101, 3], ["preBuild", 105, 3], ["postInstall", 109, 3], ["preFixup", 121, 3], ["desktopItems", 127, 3], ["passthru", 139, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, webkitgtk_4_1: false, "pkg-config": false, openssl: false, buildNpmPackage: false, makeDesktopItem: false, fetchFromGitHub: false, "nix-update-script": false, perl: false, stdenv: false, glib: false, copyDesktopItems: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 7], ["repo", 24, 7], ["rev", 25, 7], ["hash", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 7], ["homepage", 53, 7], ["license", 54, 7], ["mainProgram", 55, 7], ["platforms", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["postPatch", 29, 5], ["nativeBuildInputs", 36, 5], ["buildInputs", 37, 5], ["preBuild", 39, 5], ["installPhase", 43, 5], ["meta", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 65, 5], ["repo", 66, 5], ["tag", 67, 5], ["hash", 68, 5], ["fetchSubmodules", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 73, 5], ["version", 74, 26], ["src", 74, 34], ["sourceRoot", 76, 5], ["npmDepsHash", 77, 5], ["installPhase", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 129, 7], ["desktopName", 130, 7], ["icon", 131, 7], ["exec", 132, 7], ["categories", 133, 7], ["comment", 134, 7], ["startupWMClass", 135, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 143, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pac-cmd", 140, 13], ["gephgui", 141, 26], ["updateScript", 142, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 150, 5], ["homepage", 151, 5], ["mainProgram", 152, 5], ["platforms", 153, 5], ["license", 154, 5], ["maintainers", 155, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 61, 3], ["version", 62, 3], ["src", 64, 3], ["gephgui", 72, 3], ["sourceRoot", 89, 3], ["cargoHash", 90, 3], ["nativeBuildInputs", 92, 3], ["buildInputs", 101, 3], ["preBuild", 105, 3], ["postInstall", 109, 3], ["preFixup", 121, 3], ["desktopItems", 127, 3], ["passthru", 139, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const pac_cmd = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pac-cmd",
       version: "0-unstable-2020-01-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "getlantern",
           repo: "pac-cmd",
           rev: "495bad48b8601385daa8205ec4db504166dff18b",
@@ -47,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "mkdir -p binaries/linux_arm\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 -t $out/bin binaries/*/pac\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Change proxy auto-config settings of operation system",
         homepage: "https://github.com/getlantern/pac-cmd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -56,11 +47,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "gephgui-wry",
       version: "5.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "geph-official",
           repo: "gephgui-pkg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +59,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       gephgui: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: "gephgui",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -89,7 +80,7 @@ export default nix.lambda((args) => (() => {
 `))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: "Geph",
               desktopName: "Geph",
               icon: "geph",
@@ -100,13 +91,13 @@ export default nix.lambda((args) => (() => {
             })))),
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         "pac-cmd": pac_cmd,
         gephgui: nix.thunk(() => nix.attr(finalAttrs, "gephgui")),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$7, extraArgs: nix.thunk(() => ["--subpackage=gephgui"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[6], extraArgs: nix.thunk(() => ["--subpackage=gephgui"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Modular Internet censorship circumvention system designed specifically to deal with national filtering",
         homepage: "https://github.com/geph-official/gephgui-wry",
         mainProgram: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Geph" : "gephgui-wry")),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5], ["fetchSubmodules", 44, 5], ["leaveDotGit", 45, 5], ["postFetch", 46, 5]], [["url", 61, 7], ["hash", 62, 7], ["extraPrefix", 63, 7], ["stripLen", 64, 7]], [["url", 67, 7], ["hash", 68, 7]], [["url", 71, 7], ["hash", 72, 7]], [["extraArgs", 142, 7]], [["updateScript", 141, 5]], [["description", 149, 5], ["homepage", 150, 5], ["downloadPage", 151, 5], ["changelog", 152, 5], ["license", 153, 5], ["platforms", 154, 5], ["maintainers", 158, 5], ["mainProgram", 159, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["patches", 59, 3], ["postPatch", 78, 3], ["nativeBuildInputs", 90, 3], ["buildInputs", 99, 3], ["dontUseQmakeConfigure", 125, 3], ["enableParallelBuilding", 126, 3], ["cmakeFlags", 128, 3], ["preFixup", 136, 3], ["passthru", 140, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, libsForQt5: false, libtool: false, "pkg-config": false, unzip: false, "c-ares": false, cryptopp: false, curl: false, ffmpeg: false, "hicolor-icon-theme": false, icu: false, libmediainfo: false, libsodium: false, libuv: false, libxcb: false, libzen: false, openssl: false, readline: false, sqlite: false, wget: false, xrdb: false, zlib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5], ["fetchSubmodules", 44, 5], ["leaveDotGit", 45, 5], ["postFetch", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 61, 7], ["hash", 62, 7], ["extraPrefix", 63, 7], ["stripLen", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 67, 7], ["hash", 68, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 71, 7], ["hash", 72, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 142, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 141, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 149, 5], ["homepage", 150, 5], ["downloadPage", 151, 5], ["changelog", 152, 5], ["license", 153, 5], ["platforms", 154, 5], ["maintainers", 158, 5], ["mainProgram", 159, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["patches", 59, 3], ["postPatch", 78, 3], ["nativeBuildInputs", 90, 3], ["buildInputs", 99, 3], ["dontUseQmakeConfigure", 125, 3], ["enableParallelBuilding", 126, 3], ["cmakeFlags", 128, 3], ["preFixup", 136, 3], ["passthru", 140, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "megasync",
       version: "6.6.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
@@ -63,7 +56,7 @@ git submodule update --init src/MEGASync/mega
 rm -rf .git
 `);
           return {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner,
             repo,
             tag,
@@ -75,19 +68,19 @@ rm -rf .git
         })()))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/archlinux/aur/raw/ff59780039697591e7e3a966db058b23bee0451c/020-megasync-sdk-fix-cmake-dependencies-detection.patch",
             hash: "sha256-hQY6tMwiV3B6M6WiFdOESdhahAtuWjdoj2eI2mst/K8=",
             extraPrefix: "src/MEGASync/mega/",
             stripLen: true,
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/archlinux/aur/raw/ff59780039697591e7e3a966db058b23bee0451c/030-megasync-app-fix-cmake-dependencies-detection.patch",
             hash: "sha256-11XWctv1veUEguc9Xvz2hMYw26CaCwu6M4hyA+5r81U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/archlinux/aur/raw/c1f647871f5aad7e421971165b07e51b3e7900e9/040-megasync-app-add-missing-link-to-zlib.patch",
             hash: "sha256-HMsS5TlzkQZbfANSIrvH8Cp6mTxLJ04idcWUWeD2A0U=",
           })))),
@@ -149,14 +142,14 @@ done
       preFixup: nix.thunk(() => nix.str`qtWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xrdb]))})
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex=^v(.*)_Linux$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Easy automated syncing between your computers and your MEGA Cloud Drive",
         homepage: "https://mega.nz/",
         downloadPage: "https://github.com/meganz/MEGAsync",

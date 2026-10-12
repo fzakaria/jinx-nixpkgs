@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["doas", 52, 43]], [["tests", 52, 12]], [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["dontDisableStatic", 26, 3], ["configureFlags", 28, 3], ["patches", 33, 3], ["dontAddStaticConfigureFlags", 40, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 50, 3], ["passthru", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bison: false, pam: false, libxcrypt: false, nixosTests: false, withPAM: true, withTimestamp: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["doas", 52, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 52, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["dontDisableStatic", 26, 3], ["configureFlags", 28, 3], ["patches", 33, 3], ["dontAddStaticConfigureFlags", 40, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 50, 3], ["passthru", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const withPAM = nix.argOr($, "withPAM", () => true);
   const withTimestamp = nix.argOr($, "withTimestamp", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "doas",
       version: "6.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Duncaen",
           repo: "OpenDoas",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [bison]),
       buildInputs: nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optional"), withPAM, pam), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withPAM)), libxcrypt)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, doas: nix.thunk(() => nix.attr(nixosTests, "doas")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], doas: nix.thunk(() => nix.attr(nixosTests, "doas")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Executes the given command as another user",
         mainProgram: "doas",
         homepage: "https://github.com/Duncaen/OpenDoas",

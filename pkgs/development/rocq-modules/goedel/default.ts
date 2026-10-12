@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 16, 20]], [["hash", 17, 20]], [["8.12.0", 16, 11], ["8.13.0", 17, 11]], [["case", 24, 9], ["out", 25, 9]], [["description", 35, 5], ["maintainers", 36, 5], ["license", 37, 5], ["platforms", 38, 5]], [["pname", 11, 3], ["owner", 12, 3], ["releaseRev", 14, 3], ["release", 16, 3], ["version", 19, 11], ["defaultVersion", 20, 3], ["propagatedBuildInputs", 29, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, "hydra-battles": false, pocklington: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 16, 20]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 17, 20]]);
-const pos$3 = nix.positions(here + "/default.nix", [["8.12.0", 16, 11], ["8.13.0", 17, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["case", 24, 9], ["out", 25, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 35, 5], ["maintainers", 36, 5], ["license", 37, 5], ["platforms", 38, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["owner", 12, 3], ["releaseRev", 14, 3], ["release", 16, 3], ["version", 19, 11], ["defaultVersion", 20, 3], ["propagatedBuildInputs", 29, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const pocklington = nix.arg($, "pocklington");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "goedel",
       owner: "coq-community",
       releaseRev: (v) => nix.str`v${v}`,
       release: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "8.12.0": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256-4lAwWFHGUzPcfHI9u5b+N+7mQ0sLJ8bH8beqQubfFEQ=",
         })),
         "8.13.0": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256:0sqqkmj6wsk4xmhrnqkhcsbsrqjzn2gnk67nqzgrmjpw5danz8y5",
         })),
       })),
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.11", "8.16")),
               out: "8.13.0",
             })),
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
       })()),
       propagatedBuildInputs: nix.thunk(() => [hydra_battles, pocklington]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Gödel-Rosser 1st incompleteness theorem in Coq",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

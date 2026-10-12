@@ -2,24 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 18, 15], ["name", 18, 22], ["url", 19, 7]], [["url", 33, 5], ["sha256", 34, 5]], [["name", 66, 7], ["debname", 67, 7], ["sha256", 68, 7]], [["name", 71, 7], ["debname", 72, 7], ["sha256", 73, 7]], [["name", 76, 7], ["debname", 77, 7], ["sha256", 78, 7]], [["name", 81, 7], ["debname", 82, 7], ["sha256", 83, 7]], [["name", 86, 7], ["debname", 87, 7], ["sha256", 88, 7]], [["name", 91, 7], ["debname", 92, 7], ["sha256", 93, 7]], [["name", 96, 7], ["debname", 97, 7], ["sha256", 98, 7]], [["name", 101, 7], ["debname", 102, 7], ["sha256", 103, 7]], [["name", 106, 7], ["debname", 107, 7], ["sha256", 108, 7]], [["name", 111, 7], ["debname", 112, 7], ["sha256", 113, 7]], [["name", 116, 7], ["debname", 117, 7], ["sha256", 118, 7]], [["name", 121, 7], ["debname", 122, 7], ["sha256", 123, 7]], [["description", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["maintainers", 131, 5], ["platforms", 132, 5]], [["pname", 25, 3], ["version", 26, 3], ["buildInputs", 28, 3], ["src", 32, 3], ["outputs", 37, 3], ["makeFlags", 44, 3], ["preBuild", 56, 3], ["patches", 61, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, "alsa-lib": false }, ellipsis: false };
 const formals$2 = { args: { name: false, debname: false, sha256: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 18, 15], ["name", 18, 22], ["url", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 5], ["sha256", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 66, 7], ["debname", 67, 7], ["sha256", 68, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 71, 7], ["debname", 72, 7], ["sha256", 73, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 76, 7], ["debname", 77, 7], ["sha256", 78, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 81, 7], ["debname", 82, 7], ["sha256", 83, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 86, 7], ["debname", 87, 7], ["sha256", 88, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 91, 7], ["debname", 92, 7], ["sha256", 93, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 96, 7], ["debname", 97, 7], ["sha256", 98, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 101, 7], ["debname", 102, 7], ["sha256", 103, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 106, 7], ["debname", 107, 7], ["sha256", 108, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["name", 111, 7], ["debname", 112, 7], ["sha256", 113, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["name", 116, 7], ["debname", 117, 7], ["sha256", 118, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["name", 121, 7], ["debname", 122, 7], ["sha256", 123, 7]]);
-const pos$15 = nix.positions(here + "/package.nix", [["description", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["maintainers", 131, 5], ["platforms", 132, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["buildInputs", 28, 3], ["src", 32, 3], ["outputs", 37, 3], ["makeFlags", 44, 3], ["preBuild", 56, 3], ["patches", 61, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,19 +19,19 @@ export default nix.lambda((args) => (() => {
     const debname = nix.arg($_1, "debname");
     const sha256 = nix.arg($_1, "sha256");
     return nix.app(fetchpatch, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         sha256: sha256,
         name: name,
         url: nix.thunk(() => nix.str`https://salsa.debian.org/multimedia-team/audiofile/raw/debian/0.3.6-7/debian/patches/${debname}`),
       })));
   })(), formals$2);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "audiofile",
       version: "0.3.6",
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib]))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://audiofile.68k.org/audiofile-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0rb927zknk9kmhprd8rdr4azql4gn2dp75a36iazx2xhkbqhvind",
         })))),
@@ -57,80 +42,80 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./gcc-6.patch"),
         nix.path(here, "./CVE-2015-7747.patch"),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2017-6829.patch",
             debname: "04_clamp-index-values-to-fix-index-overflow-in-IMA.cpp.patch",
             sha256: "04qxl51i64c53v69q2kx61qdq474f4vapk8rq97cipj7yrar392m",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "CVE-2017-6827+CVE-2017-6828+CVE-2017-6832+CVE-2017-6835+CVE-2017-6837.patch",
             debname: "05_Always-check-the-number-of-coefficients.patch",
             sha256: "1ih03kfkabffi6ymp6832q470i28rsds78941vzqlshnqjb2nnxw",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "CVE-2017-6839.patch",
             debname: "06_Check-for-multiplication-overflow-in-MSADPCM-decodeSam.patch",
             sha256: "0a8s2z8rljlj03p7l1is9s4fml8vyzvyvfrh1m6xj5a8vbi635d0",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "CVE-2017-6830+CVE-2017-6834+CVE-2017-6836+CVE-2017-6838.patch",
             debname: "07_Check-for-multiplication-overflow-in-sfconvert.patch",
             sha256: "0rfba8rkasl5ycvc0kqlzinkl3rvyrrjvjhpc45h423wmjk2za2l",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "audiofile-fix-multiplyCheckOverflow-signature.patch",
             debname: "08_Fix-signature-of-multiplyCheckOverflow.-It-returns-a-b.patch",
             sha256: "032p5jqp7q7jgc5axdnazz00zm7hd26z6m5j55ifs0sykr5lwldb",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "CVE-2017-6831.patch",
             debname: "09_Actually-fail-when-error-occurs-in-parseFormat.patch",
             sha256: "0csikmj8cbiy6cigg0rmh67jrr0sgm56dfrnrxnac3m9635nxlac",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             name: "CVE-2017-6833.patch",
             debname: "10_Check-for-division-by-zero-in-BlockCodec-runPull.patch",
             sha256: "1rlislkjawq98bbcf1dgl741zd508wwsg85r37ca7pfdf6wgl6z7",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             name: "CVE-2018-13440.patch",
             debname: "11_CVE-2018-13440.patch",
             sha256: "sha256-qDfjiBJ4QXgn8588Ra1X0ViH0jBjtFS/+2zEGIUIhuo=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             name: "CVE-2018-17095.patch",
             debname: "12_CVE-2018-17095.patch",
             sha256: "sha256-FC89EFZuRLcj5x4wZVqUlitEMTRPSZk+qzQpIoVk9xY=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             name: "CVE-2022-24599.patch",
             debname: "0013-Fix-CVE-2022-24599.patch",
             sha256: "sha256-DHJQ4B6cvKfSlXy66ZC5RNaCMDaygj8dWLZZhJnhw1E=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             name: "1_CVE-2019-13147.patch",
             debname: "0014-Partial-fix-of-CVE-2019-13147.patch",
             sha256: "sha256-clb/XiIZbmttPr2dT9AZsbQ97W6lwifEwMO4l2ZEh0k=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             name: "2_CVE-2019-13147.patch",
             debname: "0015-Partial-fix-of-CVE-2019-13147.patch",
             sha256: "sha256-JOZIw962ae7ynnjJXGO29i8tuU5Dhk67DmB0o5/vSf4=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "Library for reading and writing audio files in various formats",
         homepage: "http://www.68k.org/~michael/audiofile/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

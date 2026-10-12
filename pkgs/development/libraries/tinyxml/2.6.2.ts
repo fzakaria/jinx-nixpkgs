@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/2.6.2.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["NIX_CFLAGS_COMPILE", 48, 7]], [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["platforms", 96, 5]], [["pname", 14, 3], ["version", 15, 11], ["src", 17, 3], ["patches", 22, 3], ["preConfigure", 44, 3], ["hardeningDisable", 46, 3], ["env", 48, 3], ["nativeBuildInputs", 50, 3], ["buildPhase", 51, 3], ["doCheck", 65, 3], ["checkPhase", 66, 3], ["installPhase", 74, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/2.6.2.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/2.6.2.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/2.6.2.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$4 = nix.positions(here + "/2.6.2.nix", [["NIX_CFLAGS_COMPILE", 48, 7]]);
-const pos$5 = nix.positions(here + "/2.6.2.nix", [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["platforms", 96, 5]]);
-const pos$6 = nix.positions(here + "/2.6.2.nix", [["pname", 14, 3], ["version", 15, 11], ["src", 17, 3], ["patches", 22, 3], ["preConfigure", 44, 3], ["hardeningDisable", 46, 3], ["env", 48, 3], ["nativeBuildInputs", 50, 3], ["buildPhase", 51, 3], ["doCheck", 65, 3], ["checkPhase", 66, 3], ["installPhase", 74, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const version = "2.6.2";
   const SHLIB_EXT = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tinyxml",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/tinyxml/tinyxml/${version}/tinyxml_2_6_2.zip`),
           sha256: "04nmw6im2d1xp12yir8va93xns5iz816pwi25n9cql3g3i8bjsxc",
         })))),
@@ -33,13 +28,13 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./2.6.2-entity.patch"),
         nix.path(here, "./2.6.2-cxx.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2023-34194.patch",
             url: "https://salsa.debian.org/debian/tinyxml/-/raw/2366e1f23d059d4c20c43c54176b6bd78d6a83fc/debian/patches/CVE-2023-34194.patch",
             hash: "sha256-ow4LmLQV24SAU6M1J8PXpW5c95+el3t8weM9JK5xJfg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2021-42260.patch",
             url: "https://salsa.debian.org/debian/tinyxml/-/raw/dc332a9f4e05496c8342b778c14b256083beb1ee/debian/patches/CVE-2021-42260.patch",
             hash: "sha256-pIM0uOnUQOW93w/PEPuW3yKq1mdvNT/ClCYVc2hLoY8=",
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`export LD=${nix.sel(stdenv, "cc", "targetPrefix")}c++`),
       hardeningDisable: nix.thunk(() => ["format"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-mmacosx-version-min=10.9")),
       })),
       nativeBuildInputs: nix.thunk(() => [unzip]),
@@ -80,7 +75,7 @@ cp -v tinyxml.pc $out/lib/pkgconfig/
 cp -v docs/* $out/share/doc/tinyxml/
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool -id $out/lib/libtinyxml.dylib $out/lib/libtinyxml.dylib\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple, small, C++ XML parser that can be easily integrating into other programs",
         homepage: "http://www.grinninglizard.com/tinyxml/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

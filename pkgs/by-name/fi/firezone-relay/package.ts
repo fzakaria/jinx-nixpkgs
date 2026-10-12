@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]], [["RUSTFLAGS", 19, 7]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["mainProgram", 34, 5], ["platforms", 35, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["cargoHash", 16, 3], ["sourceRoot", 17, 3], ["buildAndTestSubdir", 18, 3], ["env", 19, 3], ["postPatch", 22, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["mainProgram", 34, 5], ["platforms", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["cargoHash", 16, 3], ["sourceRoot", 17, 3], ["buildAndTestSubdir", 18, 3], ["env", 19, 3], ["postPatch", 22, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "firezone-relay",
       version: "0-unstable-2025-03-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "firezone",
           repo: "firezone",
           rev: "09fb5f927410503b0d6e7fc6cf6a2ba06cb5a281",
@@ -27,10 +24,10 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-uqy4GgYaSX2kM4a37093lHmhvOtNUhkEs6/ZS1bjuYo=",
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/rust`),
       buildAndTestSubdir: "relay",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "--cfg system_certs" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTFLAGS: "--cfg system_certs" })),
       postPatch: "rm .cargo/config.toml\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "STUN/TURN server for the Firezone zero-trust access platform",
         homepage: "https://github.com/firezone/firezone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

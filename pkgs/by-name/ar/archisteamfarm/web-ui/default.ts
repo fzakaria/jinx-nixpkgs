@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 33, 5], ["license", 34, 5], ["homepage", 35, 5], ["maintainers", 36, 35], ["platforms", 36, 47]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 21, 3], ["installPhase", 23, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildNpmPackage: false, archisteamfarm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 33, 5], ["license", 34, 5], ["homepage", 35, 5], ["maintainers", 36, 35], ["platforms", 36, 47]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 21, 3], ["installPhase", 23, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "asf-ui";
       const version = "2b36125533f41e624b2fdcdec44f37ad60c7daaa";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JustArchiNET",
           repo: "ASF-ui",
           rev: version,
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(archisteamfarm, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Official web interface for ASF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://github.com/JustArchiNET/ASF-ui",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
       };
       })());
-      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, npmDepsHash, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

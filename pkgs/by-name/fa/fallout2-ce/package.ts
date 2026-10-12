@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["url", 61, 7], ["sha256", 62, 7]], [["updateScript", 91, 12]], [["description", 94, 5], ["longDescription", 95, 5], ["homepage", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["patches", 58, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 68, 3], ["hardeningDisable", 73, 3], ["postPatch", 75, 3], ["installPhase", 81, 3], ["passthru", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, fetchpatch2: false, fpattern: false, lib: false, SDL2: false, stdenv: false, writeShellScript: false, zlib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 61, 7], ["sha256", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 91, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 94, 5], ["longDescription", 95, 5], ["homepage", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["patches", 58, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 68, 3], ["hardeningDisable", 73, 3], ["postPatch", 75, 3], ["installPhase", 81, 3], ["passthru", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const launcher = nix.thunk(() => nix.app(writeShellScript, "fallout2-ce", "set -eu\nassetDir=\"${XDG_DATA_HOME:-$HOME/.local/share}/fallout2-ce\"\n[ -d \"$assetDir\" ] || mkdir -p \"$assetDir\"\ncd \"$assetDir\"\n\nnotice=0 fault=0\nrequiredFiles=(master.dat critter.dat)\nfor f in \"${requiredFiles[@]}\"; do\n  if [ ! -f \"$f\" ]; then\n    echo \"Required file $f not found in $PWD, note the files are case-sensitive\"\n    notice=1 fault=1\n  fi\ndone\n\nif [ ! -d \"data/sound/music\" ] && [ ! -d \"sound/music\" ]; then\n  echo \"data/sound/music directory not found in $PWD. This may prevent in-game music from functioning.\"\n  notice=1\nfi\n\nif [ $notice -ne 0 ]; then\n  echo \"Please reference the installation instructions at https://github.com/alexbatalov/fallout2-ce\"\nfi\n\nif [ $fault -ne 0 ]; then\n  exit $fault;\nfi\n\nexec @out@/libexec/fallout2-ce \"$@\"\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fallout2-ce",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alexbatalov",
           repo: "fallout2-ce",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/alexbatalov/fallout2-ce/commit/e770e64a48cd4d0a58a07f8db72839e4747e4c1e.patch?full_index=1",
             sha256: "sha256-49N6uXwOBL/sE+f+W4nX6Gpwwpmbgvy38B1NjECiia0=",
           })))),
@@ -56,11 +52,11 @@ substituteInPlace $out/bin/fallout2-ce --subst-var out
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fallout 2 for modern operating systems",
         longDescription: "Fully working re-implementation of Fallout 2, with the same original gameplay, engine bugfixes, and some quality of life improvements.\nYou must own the game and copy the files to the specified folder to play.\n",
         homepage: "https://github.com/alexbatalov/fallout2-ce",

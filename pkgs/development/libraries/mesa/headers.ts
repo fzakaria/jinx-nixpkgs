@@ -2,18 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/headers.nix", [[["lib", 8, 42], ["fetchFromGitLab", 8, 46]], [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["headers", 37, 24]], [["pname", 16, 3], ["version", 19, 3], ["src", 21, 3], ["dontBuild", 29, 3], ["installPhase", 31, 3], ["passthru", 37, 3], ["meta", 39, 20]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/headers.nix", [["lib", 8, 42], ["fetchFromGitLab", 8, 46]]);
-const pos$2 = nix.positions(here + "/headers.nix", [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/headers.nix", [["headers", 37, 24]]);
-const pos$4 = nix.positions(here + "/headers.nix", [["pname", 16, 3], ["version", 19, 3], ["src", 21, 3], ["dontBuild", 29, 3], ["installPhase", 31, 3], ["passthru", 37, 3], ["meta", 39, 20]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, fetchFromGitLab: fetchFromGitLab }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitLab: fetchFromGitLab }))));
   const headers = nix.thunk(() => [
     "include/GL/internal/dri_interface.h",
     "include/EGL/eglext_angle.h",
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mesa-gl-headers";
       const version = "25.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           domain: "gitlab.freedesktop.org",
           owner: "mesa",
           repo: "mesa",
@@ -35,10 +32,10 @@ export default nix.lambda((args) => (() => {
   install -Dm444 $header $out/$header
 done
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, headers: headers }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], headers: headers }));
       const meta = nix.thunk(() => nix.attr(common, "meta"));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

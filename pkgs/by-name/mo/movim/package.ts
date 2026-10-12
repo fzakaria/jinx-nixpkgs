@@ -2,24 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enable", 21, 7], ["target", 22, 7]], [["enable", 25, 7], ["browserslist", 26, 7]], [["enable", 29, 7]], [["script", 20, 5], ["style", 24, 5], ["svg", 28, 5]], [["enable", 36, 16]], [["enable", 37, 15]], [["enable", 38, 13]], [["script", 36, 9], ["style", 37, 9], ["svg", 38, 9]], [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5]], [["extensions", 59, 7]], [["extraConfig", 83, 7]], [["pname", 98, 7], ["src", 99, 7], ["version", 100, 7], ["vendorHash", 101, 7], ["php", 102, 7], ["postPatch", 105, 5], ["nativeBuildInputs", 108, 5]], [["movim", 196, 36]], [["tests", 196, 5]], [["description", 200, 5], ["homepage", 201, 5], ["license", 202, 5], ["maintainers", 203, 5], ["mainProgram", 204, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["php", 57, 3], ["nativeBuildInputs", 87, 3], ["composerVendor", 96, 3], ["vendorHash", 111, 3], ["postPatch", 113, 3], ["preBuild", 135, 3], ["postInstall", 173, 3], ["passthru", 195, 3], ["meta", 199, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, writeShellScript: false, dash: false, gitMinimal: false, php: false, phpCfg: true, withPostgreSQL: true, withMariaDB: true, minifyStaticFiles: true, esbuild: false, lightningcss: false, scour: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enable", 21, 7], ["target", 22, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enable", 25, 7], ["browserslist", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["enable", 29, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["script", 20, 5], ["style", 24, 5], ["svg", 28, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["enable", 36, 16]]);
-const pos$6 = nix.positions(here + "/package.nix", [["enable", 37, 15]]);
-const pos$7 = nix.positions(here + "/package.nix", [["enable", 38, 13]]);
-const pos$8 = nix.positions(here + "/package.nix", [["script", 36, 9], ["style", 37, 9], ["svg", 38, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5]]);
 const formals$2 = { args: { all: false, enabled: false }, ellipsis: false };
-const pos$10 = nix.positions(here + "/package.nix", [["extensions", 59, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["extraConfig", 83, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 98, 7], ["src", 99, 7], ["version", 100, 7], ["vendorHash", 101, 7], ["php", 102, 7], ["postPatch", 105, 5], ["nativeBuildInputs", 108, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["movim", 196, 36]]);
-const pos$14 = nix.positions(here + "/package.nix", [["tests", 196, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["description", 200, 5], ["homepage", 201, 5], ["license", 202, 5], ["maintainers", 203, 5], ["mainProgram", 204, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["php", 57, 3], ["nativeBuildInputs", 87, 3], ["composerVendor", 96, 3], ["vendorHash", 111, 3], ["postPatch", 113, 3], ["preBuild", 135, 3], ["postInstall", 173, 3], ["passthru", 195, 3], ["meta", 199, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,34 +23,34 @@ export default nix.lambda((args) => (() => {
   const scour = nix.arg($, "scour");
   const nixosTests = nix.arg($, "nixosTests");
   const defaultMinifyOpts = nix.thunk(() => ({
-    [nix.POS]: pos$4,
-    script: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false, target: "es2020" })),
+    [nix.POS]: $pos[3],
+    script: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: false, target: "es2020" })),
     style: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       enable: false,
       browserslist: "defaults, Firefox ESR, Firefox 91, last 20 Firefox major versions, last 20 Chrome major versions, last 3 Safari major versions, last 1 KaiOS version, and supports css-variables",
     })),
-    svg: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+    svg: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
   }));
   const minify = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), defaultMinifyOpts, nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isBool"), minifyStaticFiles)) && nix.asBool(minifyStaticFiles))) ? {
-      [nix.POS]: pos$8,
-      script: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
-      style: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
-      svg: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+      [nix.POS]: $pos[7],
+      script: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
+      style: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
+      svg: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
     } : (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), minifyStaticFiles)) ? nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (v) => !nix.eq(v, null), minifyStaticFiles) : {})))));
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "movim",
       version: "0.35.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           owner: "movim",
           repo: "movim",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-dZCfBDFKlzai3g/XV74l9ualI+WpKXTETH/Gaek5OO8=",
         })))),
       php: nix.thunk(() => nix.app(nix.sel(php, "buildEnv"), nix.thunk(() => nix.update({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           extensions: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const all = nix.arg($_1, "all");
@@ -87,10 +72,10 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(all, "pdo_mysql")),
               ])))));
           })(), formals$2),
-        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(phpCfg, null)), nix.thunk(() => ({ [nix.POS]: pos$11, extraConfig: phpCfg }))))))),
+        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(phpCfg, null)), nix.thunk(() => ({ [nix.POS]: $pos[10], extraConfig: phpCfg }))))))),
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(minify, "script", "enable")), esbuild), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(minify, "style", "enable")), lightningcss), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(minify, "svg", "enable")), scour)))),
       composerVendor: nix.thunk(() => nix.app(nix.sel(php, "mkComposerVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -157,11 +142,11 @@ chmod +x \\
   $out/share/zsh/site-functions/_movim
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$14,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$13, movim: nix.thunk(() => nix.attr(nixosTests, "movim")) })),
+        [nix.POS]: $pos[13],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[12], movim: nix.thunk(() => nix.attr(nixosTests, "movim")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "Federated blogging & chat platform that acts as a web front end for the XMPP protocol",
         homepage: "https://movim.eu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

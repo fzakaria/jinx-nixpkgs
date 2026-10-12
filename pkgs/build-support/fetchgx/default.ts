@@ -2,9 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 19, 5], ["src", 20, 13], ["nativeBuildInputs", 22, 5], ["outputHash", 29, 13], ["outputHashAlgo", 29, 24], ["outputHashMode", 30, 5], ["dontConfigure", 32, 5], ["doCheck", 33, 5], ["doInstallCheck", 34, 5], ["buildPhase", 36, 5], ["installPhase", 42, 5], ["preferLocalBuild", 46, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, gx: false, "gx-go": false, go: false, cacert: false }, ellipsis: false };
 const formals$2 = { args: { name: false, src: false, outputHash: false, outputHashAlgo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 19, 5], ["src", 20, 13], ["nativeBuildInputs", 22, 5], ["outputHash", 29, 13], ["outputHashAlgo", 29, 24], ["outputHashMode", 30, 5], ["dontConfigure", 32, 5], ["doCheck", 33, 5], ["doInstallCheck", 34, 5], ["buildPhase", 36, 5], ["installPhase", 42, 5], ["preferLocalBuild", 46, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const outputHash = nix.arg($_1, "outputHash");
       const outputHashAlgo = nix.arg($_1, "outputHashAlgo");
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`${name}-gxdeps`),
           src: src,
           nativeBuildInputs: nix.thunk(() => [cacert, go, gx, gx_go]),

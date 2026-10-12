@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["yarnLock", 28, 5], ["hash", 29, 5]], [["updateScript", 46, 12]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5], ["platforms", 58, 5]], [["pname", 16, 3], ["version", 17, 3], ["tag", 18, 3], ["src", 20, 3], ["offlineCache", 27, 3], ["cargoHash", 32, 3], ["cargoRoot", 33, 3], ["buildAndTestSubdir", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["passthru", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { "cargo-tauri": false, fetchFromGitHub: false, fetchYarnDeps: false, lib: false, "nix-update-script": false, nodejs: false, "pkg-config": false, rustPlatform: false, webkitgtk_4_1: false, wrapGAppsHook3: false, yarnConfigHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 46, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5], ["platforms", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["tag", 18, 3], ["src", 20, 3], ["offlineCache", 27, 3], ["cargoHash", 32, 3], ["cargoRoot", 33, 3], ["buildAndTestSubdir", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["passthru", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.7";
       const tag = "test-tauri-v2-2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "george-norton",
           repo: "headphones-toolbox",
           rev: nix.thunk(() => nix.str`${tag}`),
           hash: "sha256-X2HTEPxvBzbhfN1vqQVk81Qk1Z+EV+7/SpjZrDHv+fM=",
         }))));
       const offlineCache = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${src}/yarn.lock`),
           hash: "sha256-Ln5U0KKsKm6ZLViZIWfBiBjm/mQNEIxaj4nTR55PcRg=",
         }))));
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [webkitgtk_4_1]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "UI for configuring Ploopy Headphones",
         homepage: "https://github.com/ploopyco/headphones-toolbox/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -70,7 +66,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         tag,

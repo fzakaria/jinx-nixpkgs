@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["updateScript", 49, 12]], [["changelog", 52, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 30, 3], ["pythonRelaxDeps", 38, 3], ["doCheck", 45, 3], ["pythonImportsCheck", 47, 3], ["passthru", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, ebooklib: false, fetchFromGitHub: false, lib: false, lxml: false, "nix-update-script": false, pillow: false, "poetry-core": false, pypdf: false, "python-slugify": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 49, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 52, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 30, 3], ["pythonRelaxDeps", 38, 3], ["doCheck", 45, 3], ["pythonImportsCheck", 47, 3], ["passthru", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "potatoeggy",
           repo: "comicon",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["comicon"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/potatoeggy/comicon/releases/tag/v${version}`),
         description: "Lightweight comic converter library between CBZ, PDF, and EPUB",
         homepage: "https://github.com/potatoeggy/comicon",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

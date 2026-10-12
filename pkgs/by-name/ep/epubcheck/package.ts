@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 40, 5], ["description", 41, 5], ["mainProgram", 42, 5], ["sourceProvenance", 43, 5], ["license", 44, 5], ["platforms", 50, 5], ["maintainers", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["dontBuild", 20, 3], ["installPhase", 22, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, jre: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["mainProgram", 42, 5], ["sourceProvenance", 43, 5], ["license", 44, 5], ["platforms", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["dontBuild", 20, 3], ["installPhase", 22, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "epubcheck",
       version: "5.3.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/w3c/epubcheck/releases/download/v${nix.sel(finalAttrs, "version")}/epubcheck-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-wROsu/s0EuNQQsbMtxWVIwDZvDozBk/kfwxhivCIRAo=",
         })))),
@@ -41,7 +39,7 @@ makeWrapper ${jre}/bin/java $out/bin/epubcheck \\
   --add-flags "-classpath $classpath com.adobe.epubcheck.tool.Checker"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/w3c/epubcheck",
         description: "Validation tool for EPUB",
         mainProgram: "epubcheck",

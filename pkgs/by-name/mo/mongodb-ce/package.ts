@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 61, 9], ["hash", 62, 9]], [["url", 65, 9], ["hash", 66, 9]], [["url", 69, 9], ["hash", 70, 9]], [["x86_64-linux", 60, 7], ["aarch64-linux", 64, 7], ["aarch64-darwin", 68, 7]], [["name", 76, 11], ["runtimeInputs", 78, 11], ["text", 86, 11]], [["command", 107, 9]], [["mongodb-ce", 111, 28]], [["sources", 59, 5], ["updateScript", 73, 5], ["tests", 110, 5]], [["changelog", 116, 5], ["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["longDescription", 120, 5], ["maintainers", 126, 5], ["platforms", 129, 5], ["sourceProvenance", 130, 5]], [["pname", 18, 3], ["version", 19, 3], ["__structuredAttrs", 20, 3], ["strictDeps", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 27, 3], ["dontStrip", 28, 3], ["buildInputs", 30, 3], ["installPhase", 36, 3], ["doInstallCheck", 49, 3], ["nativeInstallCheckInputs", 50, 3], ["versionCheckProgram", 51, 3], ["sandboxProfile", 54, 3], ["passthru", 58, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, autoPatchelfHook: false, curl: false, openssl: false, versionCheckHook: false, writeShellApplication: false, "common-updater-scripts": false, gitMinimal: false, jq: false, "nix-update": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 61, 9], ["hash", 62, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 65, 9], ["hash", 66, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 69, 9], ["hash", 70, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 60, 7], ["aarch64-linux", 64, 7], ["aarch64-darwin", 68, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 76, 11], ["runtimeInputs", 78, 11], ["text", 86, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["command", 107, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["mongodb-ce", 111, 28]]);
-const pos$8 = nix.positions(here + "/package.nix", [["sources", 59, 5], ["updateScript", 73, 5], ["tests", 110, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["changelog", 116, 5], ["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["longDescription", 120, 5], ["maintainers", 126, 5], ["platforms", 129, 5], ["sourceProvenance", 130, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["__structuredAttrs", 20, 3], ["strictDeps", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 27, 3], ["dontStrip", 28, 3], ["buildInputs", 30, 3], ["installPhase", 36, 3], ["doInstallCheck", 49, 3], ["nativeInstallCheckInputs", 50, 3], ["versionCheckProgram", 51, 3], ["sandboxProfile", 54, 3], ["passthru", 58, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "mongodb-ce",
       version: "8.3.11",
       __structuredAttrs: true,
@@ -49,28 +40,28 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/mongod`),
       sandboxProfile: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "(allow file-read* (literal \"/private/etc/ssl/openssl.cnf\"))\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         sources: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2404-${nix.sel(finalAttrs, "version")}.tgz`),
               hash: "sha256-qKpPddwPKmarQhUpuxRSSFIixsmJCbBHqY2QmBw06r4=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://fastdl.mongodb.org/linux/mongodb-linux-aarch64-ubuntu2404-${nix.sel(finalAttrs, "version")}.tgz`),
               hash: "sha256-UlQL+x3nrUFVJMalEX1DT82E8k8j49tW5xl36f7Sjy4=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://fastdl.mongodb.org/osx/mongodb-macos-arm64-${nix.sel(finalAttrs, "version")}.tgz`),
               hash: "sha256-tYbDlyiA/N6pBpCm0iwizSYLCXLecXynEMC8d8ZLA54=",
             })))),
         })),
         updateScript: nix.thunk(() => (() => {
           const script = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-updateScript`),
               runtimeInputs: nix.thunk(() => [common_updater_scripts, curl, gitMinimal, jq, nix_update]),
               text: nix.thunk(() => nix.str`# Pick the newest production (non-RC) release within the current major version from
@@ -92,17 +83,17 @@ done
 `),
             }))));
           return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), script)),
           };
         })()),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "mongodb-ce": nix.thunk(() => nix.attr(nixosTests, "mongodb-ce")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         changelog: nix.thunk(() => nix.str`https://www.mongodb.com/docs/upcoming/release-notes/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/`),
         description: "MongoDB is a general purpose, document-based, distributed database",
         homepage: "https://www.mongodb.com/",

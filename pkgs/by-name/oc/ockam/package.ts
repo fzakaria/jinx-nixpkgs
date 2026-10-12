@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["updateScript", 33, 12]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["passthru", 33, 3], ["doCheck", 36, 3], ["cargoBuildFlags", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, git: false, "nix-update-script": false, "pkg-config": false, openssl: false, dbus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["passthru", 33, 3], ["doCheck", 36, 3], ["cargoBuildFlags", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const dbus = nix.arg($, "dbus");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ockam",
       version: "0.157.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "build-trust",
           repo: "ockam",
           rev: nix.thunk(() => nix.str`ockam_v${nix.sel(finalAttrs, "version")}`),
@@ -33,13 +30,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [git, pkg_config]),
       buildInputs: nix.thunk(() => [openssl, dbus]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       doCheck: false,
       cargoBuildFlags: nix.thunk(() => ["-p ockam"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Orchestrate end-to-end encryption, cryptographic identities, mutual authentication, and authorization policies between distributed applications – at massive scale",
         homepage: "https://github.com/build-trust/ockam",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

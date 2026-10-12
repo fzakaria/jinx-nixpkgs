@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]], [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]], [["version", 12, 3], ["pyproject", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["testAssets", 21, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 36, 3], ["checkInputs", 45, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false, fetchFromGitHub: false, coreutils: false, gitMinimal: false, mercurial: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pyproject", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["testAssets", 21, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 36, 3], ["checkInputs", 45, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +19,13 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const pname = "nbstripout";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-MTu7QhfI44mYVn5deQtr1sOheow5BzsgW4Ta38XXVtw=",
         }))));
       const testAssets = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "kynan",
           repo: "nbstripout",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -57,7 +54,7 @@ substituteInPlace tests/test_end_to_end.py --replace "tests/e2e_notebooks" "$TMP
 `);
       const pythonImportsCheck = nix.thunk(() => ["nbstripout"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Strip output from Jupyter and IPython notebooks",
         homepage: "https://github.com/kynan/nbstripout",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -68,7 +65,7 @@ substituteInPlace tests/test_end_to_end.py --replace "tests/e2e_notebooks" "$TMP
         mainProgram: "nbstripout",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version,
         pyproject,
         pname,

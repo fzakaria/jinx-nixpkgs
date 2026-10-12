@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 16, 13], ["exec", 17, 5], ["desktopName", 18, 5], ["genericName", 19, 5], ["noDisplay", 20, 5], ["mimeTypes", 21, 5], ["categories", 25, 5]], [["appimage-run", 42, 20]], [["tests", 42, 14]], [["mainProgram", 44, 10]], [["name", 33, 13], ["targetPkgs", 35, 5], ["runScript", 36, 5], ["extraInstallCommands", 38, 5], ["passthru", 42, 5], ["meta", 44, 5]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, buildFHSEnv: false, makeDesktopItem: false, extraPkgs: true, "appimage-run-tests": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 16, 13], ["exec", 17, 5], ["desktopName", 18, 5], ["genericName", 19, 5], ["noDisplay", 20, 5], ["mimeTypes", 21, 5], ["categories", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["appimage-run", 42, 20]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 42, 14]]);
-const pos$4 = nix.positions(here + "/default.nix", [["mainProgram", 44, 10]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 33, 13], ["targetPkgs", 35, 5], ["runScript", 36, 5], ["extraInstallCommands", 38, 5], ["passthru", 42, 5], ["meta", 44, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const name = "appimage-run";
   const fhsArgs = nix.thunk(() => nix.sel(appimageTools, "defaultFhsEnvArgs"));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: name,
       exec: name,
       desktopName: name,
@@ -30,17 +26,17 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["PackageManager", "Utility"]),
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), fhsArgs, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: name,
         targetPkgs: (pkgs) => nix.concat([nix.thunk(() => nix.sel(appimageTools, "appimage-exec"))], nix.concat(nix.app(nix.sel(fhsArgs, "targetPkgs"), pkgs), nix.app(extraPkgs, pkgs))),
         runScript: "appimage-exec.sh",
         extraInstallCommands: nix.thunk(() => nix.str`cp --recursive "${desktopItem}/share" "$out/"
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          tests: nix.thunk(() => ({ [nix.POS]: pos$2, "appimage-run": appimage_run_tests })),
+          [nix.POS]: $pos[2],
+          tests: nix.thunk(() => ({ [nix.POS]: $pos[1], "appimage-run": appimage_run_tests })),
         })),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$4, mainProgram: "appimage-run" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[3], mainProgram: "appimage-run" })),
       })))));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

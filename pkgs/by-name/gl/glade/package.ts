@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["sha256", 34, 5]], [["packageName", 77, 7]], [["updateScript", 76, 5]], [["homepage", 82, 5], ["description", 83, 5], ["teams", 84, 5], ["license", 85, 5], ["platforms", 86, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 51, 3], ["mesonFlags", 66, 3], ["postPatch", 70, 3], ["passthru", 75, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, gettext: false, fetchurl: false, python3: false, meson: false, ninja: false, "pkg-config": false, gtk3: false, glib: false, gjs: false, enableWebkit2gtk: true, webkitgtk_4_1: false, "gobject-introspection": false, wrapGAppsHook3: false, itstool: false, libxml2: false, "docbook-xsl-nons": false, docbook_xml_dtd_42: false, gnome: false, "adwaita-icon-theme": false, "gdk-pixbuf": false, libxslt: false, "gsettings-desktop-schemas": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 82, 5], ["description", 83, 5], ["teams", 84, 5], ["license", 85, 5], ["platforms", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 51, 3], ["mesonFlags", 66, 3], ["postPatch", 70, 3], ["passthru", 75, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "glade";
       const version = "3.40.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/glade/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/glade-${version}.tar.xz`),
           sha256: "McmtrqhJlyq5UXtWThmsGZd8qXdYsQntwxZwCPU+PZw=",
         }))));
@@ -72,11 +68,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const postPatch = "substituteInPlace meson.build \\\n  --replace 'webkit2gtk-4.0' 'webkit2gtk-4.1'\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/glade",
         description: "User interface designer for GTK applications",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
@@ -84,7 +80,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

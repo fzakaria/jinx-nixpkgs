@@ -2,15 +2,15 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lib-function-docs.nix", [[["name", 8, 3], ["src", 10, 3], ["nativeBuildInputs", 12, 3], ["buildPhase", 14, 3], ["installPhase", 22, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, nixdoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lib-function-docs.nix", [["name", 8, 3], ["src", 10, 3], ["nativeBuildInputs", 12, 3], ["buildPhase", 14, 3], ["installPhase", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const nixdoc = nix.arg($, "nixdoc");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "nixpkgs-lib-docs",
       src: nix.path(here, "../../lib"),
       nativeBuildInputs: nix.thunk(() => [nixdoc]),

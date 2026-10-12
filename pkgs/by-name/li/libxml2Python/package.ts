@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["license", 27, 8]], [["name", 11, 3], ["paths", 12, 3], ["passthru", 18, 3], ["postBuild", 23, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { buildEnv: false, libxml2: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["license", 27, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 11, 3], ["paths", 12, 3], ["passthru", 18, 3], ["postBuild", 23, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const pythonLibxml2 = nix.thunk(() => nix.sel(python3, "pkgs", "libxml2"));
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`libxml2+py-${nix.sel(libxml2, "version")}`),
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(pythonLibxml2, null);
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
 cp '${nix.sel(pythonLibxml2, "dev")}/nix-support/propagated-build-inputs' "$out/nix-support/"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.sel(pythonLibxml2, "meta", "license")),
       })),
     })));

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]], [["description", 94, 5], ["changelog", 95, 5], ["mainProgram", 96, 5], ["license", 97, 5], ["homepage", 101, 5], ["platforms", 102, 5], ["maintainers", 103, 5]], [["pname", 29, 3], ["version", 30, 3], ["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 65, 3], ["propagatedBuildInputs", 70, 3], ["cmakeFlags", 76, 3], ["outputs", 80, 3], ["doCheck", 85, 3], ["postPatch", 87, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, gfortran: false, buildType: true, cmake: false, meson: false, ninja: false, "pkg-config": false, python3: false, blas: false, lapack: false, "mctc-lib": false, mstore: false, multicharge: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 94, 5], ["changelog", 95, 5], ["mainProgram", 96, 5], ["license", 97, 5], ["homepage", 101, 5], ["platforms", 102, 5], ["maintainers", 103, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 65, 3], ["propagatedBuildInputs", 70, 3], ["cmakeFlags", 76, 3], ["outputs", 80, 3], ["doCheck", 85, 3], ["postPatch", 87, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +26,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_((nix.asBool(!nix.asBool(nix.sel(blas, "isILP64"))) && nix.asBool(!nix.asBool(nix.sel(lapack, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/df/dftd4/package.nix:20:1");
   nix.assert_(nix.builtins.elem(buildType, nix.thunk(() => ["meson", "cmake"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/df/dftd4/package.nix:21:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dftd4",
       version: "4.2.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dftd4",
           repo: "dftd4",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./build-paths.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "add-get_numerical_hessian_api-to-public-api.patch",
             url: "https://github.com/dftd4/dftd4/commit/f84dc4033d9ce036e74e709b9cf42c72249f4f52.patch",
             hash: "sha256-mdKWIKz8A92lI0sMl5rXwhzKd2UDej0yPYiKllH1Asc=",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "patchShebangs --build \\\n  config/install-mod.py \\\n  app/tester.py\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Generally Applicable Atomic-Charge Dependent London Dispersion Correction",
         changelog: nix.thunk(() => nix.str`https://github.com/dftd4/dftd4/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         mainProgram: "dftd4",

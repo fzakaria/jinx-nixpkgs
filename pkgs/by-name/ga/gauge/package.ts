@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["plugins", 54, 39]], [["plugins", 67, 7]], [["allPlugins", 66, 11]], [["withPlugins", 54, 5], ["fromManifest", 55, 5], ["tests", 66, 5]], [["pname", 13, 3], ["version", 14, 29], ["dontUnpack", 16, 3], ["installPhase", 18, 3], ["nativeBuildInputs", 47, 3], ["passthru", 53, 3], ["meta", 71, 29]]]);
 const formals$1 = { args: { "gauge-unwrapped": false, gauge: false, makeWrapper: false, stdenvNoCC: false, lib: false, lndir: false, gaugePlugins: false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["plugins", 54, 39]]);
-const pos$2 = nix.positions(here + "/package.nix", [["plugins", 67, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["allPlugins", 66, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["withPlugins", 54, 5], ["fromManifest", 55, 5], ["tests", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 29], ["dontUnpack", 16, 3], ["installPhase", 18, 3], ["nativeBuildInputs", 47, 3], ["passthru", 53, 3], ["meta", 71, 29]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const gaugePlugins = nix.arg($, "gaugePlugins");
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gauge-wrapped",
       version: nix.thunk(() => nix.attr(gauge_unwrapped, "version")),
       dontUnpack: true,
@@ -52,8 +48,8 @@ makeWrapper ${gauge_unwrapped}/bin/gauge $out/bin/gauge \\
 `),
       nativeBuildInputs: nix.thunk(() => [gauge_unwrapped, makeWrapper, lndir]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        withPlugins: (f) => nix.app(nix.sel(gauge, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, plugins: nix.thunk(() => nix.app(f, gaugePlugins)) }))),
+        [nix.POS]: $pos[3],
+        withPlugins: (f) => nix.app(nix.sel(gauge, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], plugins: nix.thunk(() => nix.app(f, gaugePlugins)) }))),
         fromManifest: (path) => (() => {
           const manifest = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), path));
           const requiredPlugins = nix.thunk(() => (() => {
@@ -64,9 +60,9 @@ makeWrapper ${gauge_unwrapped}/bin/gauge $out/bin/gauge \\
           return nix.app(nix.sel(gauge, "withPlugins"), manifestPlugins);
         })(),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           allPlugins: nix.thunk(() => nix.app(nix.sel(gaugePlugins, "testGaugePlugins"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               plugins: nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.sel(lib, "isDerivation")), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), gaugePlugins)))),
             })))),
         })),

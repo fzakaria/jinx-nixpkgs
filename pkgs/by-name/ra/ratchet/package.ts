@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["execution", 59, 18]], [["tests", 59, 12]], [["description", 62, 5], ["mainProgram", 63, 5], ["downloadPage", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 20, 3], ["proxyVendor", 27, 3], ["vendorHash", 29, 3], ["subPackages", 31, 3], ["ldflags", 33, 3], ["doInstallCheck", 45, 3], ["installCheckPhase", 47, 3], ["installPhase", 51, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["execution", 59, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 59, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 62, 5], ["mainProgram", 63, 5], ["downloadPage", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 20, 3], ["proxyVendor", 27, 3], ["vendorHash", 29, 3], ["subPackages", 31, 3], ["ldflags", 33, 3], ["doInstallCheck", 45, 3], ["installCheckPhase", 47, 3], ["installPhase", 51, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ratchet",
       version: "0.11.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sethvargo",
           repo: "ratchet",
           rev: "8b4ca256dbed184350608a3023620f267f0a5253",
@@ -44,14 +40,14 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\n\ninstall -Dm755 \"$GOPATH/bin/ratchet\" -T $out/bin/ratchet\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           execution: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool for securing CI/CD workflows with version pinning",
         mainProgram: "ratchet",
         downloadPage: "https://github.com/sethvargo/ratchet",

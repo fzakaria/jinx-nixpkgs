@@ -2,94 +2,11 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/http01-builtin.nix", [[["listenHTTP", 14, 5]], [["path", 32, 9]], [["maintainers", 38, 5], ["timeout", 40, 5]], [["imports", 48, 9]], [["allowedTCPPorts", 56, 29]], [["domain", 55, 20], ["firewall", 56, 20]], [["systemPackages", 59, 21]], [["extraDomainNames", 62, 11], ["listenHTTP", 63, 11]], [["certs", 61, 23]], [["acme", 61, 18]], [["path", 68, 71]], [["RefuseManualStart", 75, 22]], [["wantedBy", 73, 11], ["after", 74, 11], ["unitConfig", 75, 11]], [["renew-triggered", 72, 25]], [["services", 68, 17], ["targets", 72, 17]], [["validMinDays", 82, 61]], [["certs", 82, 27]], [["acme", 82, 22]], [["security", 82, 13]], [["configuration", 79, 17]], [["email", 87, 61]], [["certs", 87, 27]], [["acme", 87, 22]], [["security", 87, 13]], [["configuration", 85, 25]], [["email", 93, 61]], [["certs", 93, 27]], [["acme", 93, 22]], [["security", 93, 13]], [["configuration", 90, 28]], [["keyType", 97, 61]], [["certs", 97, 27]], [["acme", 97, 22]], [["security", 97, 13]], [["configuration", 96, 19]], [["server", 106, 36]], [["defaults", 106, 27]], [["acme", 106, 22]], [["security", 106, 13]], [["configuration", 105, 31]], [["ocspMustStaple", 110, 61]], [["certs", 110, 27]], [["acme", 110, 22]], [["security", 110, 13]], [["configuration", 109, 25]], [["configuration", 113, 24]], [["maxConcurrentRenewals", 116, 27], ["certs", 117, 27]], [["acme", 116, 22]], [["services", 118, 21]], [["security", 116, 13], ["systemd", 118, 13]], [["configuration", 115, 28]], [["maxConcurrentRenewals", 122, 27], ["certs", 123, 27]], [["acme", 122, 22]], [["services", 124, 21]], [["security", 122, 13], ["systemd", 124, 13]], [["configuration", 121, 30]], [["extraDomainNames", 130, 17]], [["listenHTTP", 136, 37]], [["certs", 128, 27], ["maxConcurrentRenewals", 139, 27]], [["acme", 128, 22]], [["security", 128, 13]], [["configuration", 127, 31]], [["extraDomainNames", 143, 61]], [["certs", 143, 27]], [["acme", 143, 22]], [["security", 143, 13]], [["configuration", 142, 25]], [["extraDomainNames", 152, 17]], [["extraDomainNames", 157, 17], ["listenHTTP", 158, 17]], [["listenHTTP", 160, 37]], [["maxConcurrentRenewals", 149, 27], ["certs", 150, 27]], [["acme", 149, 22]], [["security", 149, 13]], [["configuration", 146, 23]], [["buildInputs", 187, 21]], [["csr", 199, 17], ["csrKey", 200, 17], ["extraDomainNames", 201, 17]], [["certs", 198, 29]], [["acme", 198, 24]], [["security", 198, 15]], [["configuration", 164, 15]], [["renew", 79, 11], ["accountchange", 85, 11], ["emailplaceholder", 90, 11], ["keytype", 96, 11], ["legacy_account_hash", 105, 11], ["ocsp_stapling", 109, 11], ["preservation", 113, 11], ["migration_serial", 115, 11], ["migration_parallel", 121, 11], ["add_cert_and_domain", 127, 11], ["remove_domain", 142, 11], ["concurrency", 146, 11], ["csr", 164, 11]], [["imports", 54, 9], ["networking", 55, 9], ["environment", 59, 9], ["security", 61, 9], ["systemd", 68, 9], ["specialisation", 78, 9]], [["acme", 45, 5], ["builtin", 51, 5]], [["name", 36, 3], ["meta", 37, 3], ["nodes", 43, 3], ["testScript", 208, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/http01-builtin.nix", [["listenHTTP", 14, 5]]);
-const pos$2 = nix.positions(here + "/http01-builtin.nix", [["path", 32, 9]]);
-const pos$3 = nix.positions(here + "/http01-builtin.nix", [["maintainers", 38, 5], ["timeout", 40, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/http01-builtin.nix", [["imports", 48, 9]]);
 const formals$3 = { args: { nodes: false, config: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/http01-builtin.nix", [["allowedTCPPorts", 56, 29]]);
-const pos$6 = nix.positions(here + "/http01-builtin.nix", [["domain", 55, 20], ["firewall", 56, 20]]);
-const pos$7 = nix.positions(here + "/http01-builtin.nix", [["systemPackages", 59, 21]]);
-const pos$8 = nix.positions(here + "/http01-builtin.nix", [["extraDomainNames", 62, 11], ["listenHTTP", 63, 11]]);
-const pos$9 = nix.positions(here + "/http01-builtin.nix", [["certs", 61, 23]]);
-const pos$10 = nix.positions(here + "/http01-builtin.nix", [["acme", 61, 18]]);
-const pos$11 = nix.positions(here + "/http01-builtin.nix", [["path", 68, 71]]);
-const pos$12 = nix.positions(here + "/http01-builtin.nix", [["RefuseManualStart", 75, 22]]);
-const pos$13 = nix.positions(here + "/http01-builtin.nix", [["wantedBy", 73, 11], ["after", 74, 11], ["unitConfig", 75, 11]]);
-const pos$14 = nix.positions(here + "/http01-builtin.nix", [["renew-triggered", 72, 25]]);
-const pos$15 = nix.positions(here + "/http01-builtin.nix", [["services", 68, 17], ["targets", 72, 17]]);
-const pos$16 = nix.positions(here + "/http01-builtin.nix", [["validMinDays", 82, 61]]);
-const pos$17 = nix.positions(here + "/http01-builtin.nix", [["certs", 82, 27]]);
-const pos$18 = nix.positions(here + "/http01-builtin.nix", [["acme", 82, 22]]);
-const pos$19 = nix.positions(here + "/http01-builtin.nix", [["security", 82, 13]]);
-const pos$20 = nix.positions(here + "/http01-builtin.nix", [["configuration", 79, 17]]);
-const pos$21 = nix.positions(here + "/http01-builtin.nix", [["email", 87, 61]]);
-const pos$22 = nix.positions(here + "/http01-builtin.nix", [["certs", 87, 27]]);
-const pos$23 = nix.positions(here + "/http01-builtin.nix", [["acme", 87, 22]]);
-const pos$24 = nix.positions(here + "/http01-builtin.nix", [["security", 87, 13]]);
-const pos$25 = nix.positions(here + "/http01-builtin.nix", [["configuration", 85, 25]]);
-const pos$26 = nix.positions(here + "/http01-builtin.nix", [["email", 93, 61]]);
-const pos$27 = nix.positions(here + "/http01-builtin.nix", [["certs", 93, 27]]);
-const pos$28 = nix.positions(here + "/http01-builtin.nix", [["acme", 93, 22]]);
-const pos$29 = nix.positions(here + "/http01-builtin.nix", [["security", 93, 13]]);
-const pos$30 = nix.positions(here + "/http01-builtin.nix", [["configuration", 90, 28]]);
-const pos$31 = nix.positions(here + "/http01-builtin.nix", [["keyType", 97, 61]]);
-const pos$32 = nix.positions(here + "/http01-builtin.nix", [["certs", 97, 27]]);
-const pos$33 = nix.positions(here + "/http01-builtin.nix", [["acme", 97, 22]]);
-const pos$34 = nix.positions(here + "/http01-builtin.nix", [["security", 97, 13]]);
-const pos$35 = nix.positions(here + "/http01-builtin.nix", [["configuration", 96, 19]]);
-const pos$36 = nix.positions(here + "/http01-builtin.nix", [["server", 106, 36]]);
-const pos$37 = nix.positions(here + "/http01-builtin.nix", [["defaults", 106, 27]]);
-const pos$38 = nix.positions(here + "/http01-builtin.nix", [["acme", 106, 22]]);
-const pos$39 = nix.positions(here + "/http01-builtin.nix", [["security", 106, 13]]);
-const pos$40 = nix.positions(here + "/http01-builtin.nix", [["configuration", 105, 31]]);
-const pos$41 = nix.positions(here + "/http01-builtin.nix", [["ocspMustStaple", 110, 61]]);
-const pos$42 = nix.positions(here + "/http01-builtin.nix", [["certs", 110, 27]]);
-const pos$43 = nix.positions(here + "/http01-builtin.nix", [["acme", 110, 22]]);
-const pos$44 = nix.positions(here + "/http01-builtin.nix", [["security", 110, 13]]);
-const pos$45 = nix.positions(here + "/http01-builtin.nix", [["configuration", 109, 25]]);
-const pos$46 = nix.positions(here + "/http01-builtin.nix", [["configuration", 113, 24]]);
-const pos$47 = nix.positions(here + "/http01-builtin.nix", [["maxConcurrentRenewals", 116, 27], ["certs", 117, 27]]);
-const pos$48 = nix.positions(here + "/http01-builtin.nix", [["acme", 116, 22]]);
-const pos$49 = nix.positions(here + "/http01-builtin.nix", [["services", 118, 21]]);
-const pos$50 = nix.positions(here + "/http01-builtin.nix", [["security", 116, 13], ["systemd", 118, 13]]);
-const pos$51 = nix.positions(here + "/http01-builtin.nix", [["configuration", 115, 28]]);
-const pos$52 = nix.positions(here + "/http01-builtin.nix", [["maxConcurrentRenewals", 122, 27], ["certs", 123, 27]]);
-const pos$53 = nix.positions(here + "/http01-builtin.nix", [["acme", 122, 22]]);
-const pos$54 = nix.positions(here + "/http01-builtin.nix", [["services", 124, 21]]);
-const pos$55 = nix.positions(here + "/http01-builtin.nix", [["security", 122, 13], ["systemd", 124, 13]]);
-const pos$56 = nix.positions(here + "/http01-builtin.nix", [["configuration", 121, 30]]);
-const pos$57 = nix.positions(here + "/http01-builtin.nix", [["extraDomainNames", 130, 17]]);
-const pos$58 = nix.positions(here + "/http01-builtin.nix", [["listenHTTP", 136, 37]]);
-const pos$59 = nix.positions(here + "/http01-builtin.nix", [["certs", 128, 27], ["maxConcurrentRenewals", 139, 27]]);
-const pos$60 = nix.positions(here + "/http01-builtin.nix", [["acme", 128, 22]]);
-const pos$61 = nix.positions(here + "/http01-builtin.nix", [["security", 128, 13]]);
-const pos$62 = nix.positions(here + "/http01-builtin.nix", [["configuration", 127, 31]]);
-const pos$63 = nix.positions(here + "/http01-builtin.nix", [["extraDomainNames", 143, 61]]);
-const pos$64 = nix.positions(here + "/http01-builtin.nix", [["certs", 143, 27]]);
-const pos$65 = nix.positions(here + "/http01-builtin.nix", [["acme", 143, 22]]);
-const pos$66 = nix.positions(here + "/http01-builtin.nix", [["security", 143, 13]]);
-const pos$67 = nix.positions(here + "/http01-builtin.nix", [["configuration", 142, 25]]);
-const pos$68 = nix.positions(here + "/http01-builtin.nix", [["extraDomainNames", 152, 17]]);
-const pos$69 = nix.positions(here + "/http01-builtin.nix", [["extraDomainNames", 157, 17], ["listenHTTP", 158, 17]]);
-const pos$70 = nix.positions(here + "/http01-builtin.nix", [["listenHTTP", 160, 37]]);
-const pos$71 = nix.positions(here + "/http01-builtin.nix", [["maxConcurrentRenewals", 149, 27], ["certs", 150, 27]]);
-const pos$72 = nix.positions(here + "/http01-builtin.nix", [["acme", 149, 22]]);
-const pos$73 = nix.positions(here + "/http01-builtin.nix", [["security", 149, 13]]);
-const pos$74 = nix.positions(here + "/http01-builtin.nix", [["configuration", 146, 23]]);
-const pos$75 = nix.positions(here + "/http01-builtin.nix", [["buildInputs", 187, 21]]);
-const pos$76 = nix.positions(here + "/http01-builtin.nix", [["csr", 199, 17], ["csrKey", 200, 17], ["extraDomainNames", 201, 17]]);
-const pos$77 = nix.positions(here + "/http01-builtin.nix", [["certs", 198, 29]]);
-const pos$78 = nix.positions(here + "/http01-builtin.nix", [["acme", 198, 24]]);
-const pos$79 = nix.positions(here + "/http01-builtin.nix", [["security", 198, 15]]);
-const pos$80 = nix.positions(here + "/http01-builtin.nix", [["configuration", 164, 15]]);
-const pos$81 = nix.positions(here + "/http01-builtin.nix", [["renew", 79, 11], ["accountchange", 85, 11], ["emailplaceholder", 90, 11], ["keytype", 96, 11], ["legacy_account_hash", 105, 11], ["ocsp_stapling", 109, 11], ["preservation", 113, 11], ["migration_serial", 115, 11], ["migration_parallel", 121, 11], ["add_cert_and_domain", 127, 11], ["remove_domain", 142, 11], ["concurrency", 146, 11], ["csr", 164, 11]]);
-const pos$82 = nix.positions(here + "/http01-builtin.nix", [["imports", 54, 9], ["networking", 55, 9], ["environment", 59, 9], ["security", 61, 9], ["systemd", 68, 9], ["specialisation", 78, 9]]);
-const pos$83 = nix.positions(here + "/http01-builtin.nix", [["acme", 45, 5], ["builtin", 51, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$84 = nix.positions(here + "/http01-builtin.nix", [["name", 36, 3], ["meta", 37, 3], ["nodes", 43, 3], ["testScript", 208, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -101,7 +18,7 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.str`migration-2.${domain}`),
     nix.thunk(() => nix.str`migration-3.${domain}`),
   ]);
-  const migrationCerts = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), migrationCertNames, (_) => ({ [nix.POS]: pos$1, listenHTTP: ":80" })));
+  const migrationCerts = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), migrationCertNames, (_) => ({ [nix.POS]: $pos[0], listenHTTP: ":80" })));
   const migrationTestLego = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "lego", nix.thunk(() => nix.str`if [[ \${1-} == migrate ]]; then
   printf '1\\n' >> /run/acme/test-migration-attempts
   if ! mkdir /run/acme/test-migration-active; then
@@ -115,24 +32,24 @@ fi
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "lego")))} "$@"
 `)));
   const migrationServicePaths = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.builtins.map((name) => nix.str`acme-order-renew-${name}`, migrationCertNames)), (_) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => [migrationTestLego]))),
     })));
   return {
-    [nix.POS]: pos$84,
+    [nix.POS]: $pos[83],
     name: "http01-builtin",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "acme", "members")),
       timeout: 300n,
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$83,
+      [nix.POS]: $pos[82],
       acme: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           imports: nix.thunk(() => [nix.path(here, "../common/acme/server")]),
         };
       })(), formals$2),
@@ -141,120 +58,124 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "lego")))} "$@"
         const nodes = nix.arg($_1, "nodes");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$82,
+          [nix.POS]: $pos[81],
           imports: nix.thunk(() => [nix.path(here, "../common/acme/client")]),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             domain: domain,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             acme: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               certs: nix.thunk(() => nix.attrsDyn({}, [
-                [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: pos$8, extraDomainNames: nix.thunk(() => [ip]), listenHTTP: ":80" }))],
+                [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({
+                  [nix.POS]: $pos[7],
+                  extraDomainNames: nix.thunk(() => [ip]),
+                  listenHTTP: ":80",
+                }))],
               ])),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             services: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`acme-order-renew-${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 path: nix.thunk(() => nix.app(nix.sel(lib, "mkBefore"), nix.thunk(() => [migrationTestLego]))),
               }))],
             ])),
             targets: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               "renew-triggered": nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 wantedBy: nix.thunk(() => [
                   nix.thunk(() => nix.str`acme-order-renew-${nix.sel(config, "networking", "fqdn")}.service`),
                 ]),
                 after: nix.thunk(() => [
                   nix.thunk(() => nix.str`acme-order-renew-${nix.sel(config, "networking", "fqdn")}.service`),
                 ]),
-                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$12, RefuseManualStart: true })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[11], RefuseManualStart: true })),
               })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$81,
+            [nix.POS]: $pos[80],
             renew: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 security: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   acme: nix.thunk(() => ({
-                    [nix.POS]: pos$17,
+                    [nix.POS]: $pos[16],
                     certs: nix.thunk(() => nix.attrsDyn({}, [
-                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: pos$16, validMinDays: 9999n }))],
+                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: $pos[15], validMinDays: 9999n }))],
                     ])),
                   })),
                 })),
               })),
             })),
             accountchange: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 security: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   acme: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
+                    [nix.POS]: $pos[21],
                     certs: nix.thunk(() => nix.attrsDyn({}, [
-                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: pos$21, email: null }))],
+                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: $pos[20], email: null }))],
                     ])),
                   })),
                 })),
               })),
             })),
             emailplaceholder: nix.thunk(() => ({
-              [nix.POS]: pos$30,
+              [nix.POS]: $pos[29],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 security: nix.thunk(() => ({
-                  [nix.POS]: pos$28,
+                  [nix.POS]: $pos[27],
                   acme: nix.thunk(() => ({
-                    [nix.POS]: pos$27,
+                    [nix.POS]: $pos[26],
                     certs: nix.thunk(() => nix.attrsDyn({}, [
-                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: pos$26, email: "noemail@example.com" }))],
+                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: $pos[25], email: "noemail@example.com" }))],
                     ])),
                   })),
                 })),
               })),
             })),
             keytype: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 security: nix.thunk(() => ({
-                  [nix.POS]: pos$33,
+                  [nix.POS]: $pos[32],
                   acme: nix.thunk(() => ({
-                    [nix.POS]: pos$32,
+                    [nix.POS]: $pos[31],
                     certs: nix.thunk(() => nix.attrsDyn({}, [
-                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: pos$31, keyType: "ec384" }))],
+                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: $pos[30], keyType: "ec384" }))],
                     ])),
                   })),
                 })),
               })),
             })),
             legacy_account_hash: nix.thunk(() => ({
-              [nix.POS]: pos$40,
+              [nix.POS]: $pos[39],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$39,
+                [nix.POS]: $pos[38],
                 security: nix.thunk(() => ({
-                  [nix.POS]: pos$38,
+                  [nix.POS]: $pos[37],
                   acme: nix.thunk(() => ({
-                    [nix.POS]: pos$37,
+                    [nix.POS]: $pos[36],
                     defaults: nix.thunk(() => ({
-                      [nix.POS]: pos$36,
+                      [nix.POS]: $pos[35],
                       server: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), null)),
                     })),
                   })),
@@ -262,57 +183,57 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "lego")))} "$@"
               })),
             })),
             ocsp_stapling: nix.thunk(() => ({
-              [nix.POS]: pos$45,
+              [nix.POS]: $pos[44],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$44,
+                [nix.POS]: $pos[43],
                 security: nix.thunk(() => ({
-                  [nix.POS]: pos$43,
+                  [nix.POS]: $pos[42],
                   acme: nix.thunk(() => ({
-                    [nix.POS]: pos$42,
+                    [nix.POS]: $pos[41],
                     certs: nix.thunk(() => nix.attrsDyn({}, [
-                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: pos$41, ocspMustStaple: true }))],
+                      [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({ [nix.POS]: $pos[40], ocspMustStaple: true }))],
                     ])),
                   })),
                 })),
               })),
             })),
-            preservation: nix.thunk(() => ({ [nix.POS]: pos$46, configuration: nix.thunk(() => ({})) })),
+            preservation: nix.thunk(() => ({ [nix.POS]: $pos[45], configuration: nix.thunk(() => ({})) })),
             migration_serial: nix.thunk(() => ({
-              [nix.POS]: pos$51,
+              [nix.POS]: $pos[50],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$50,
+                [nix.POS]: $pos[49],
                 security: nix.thunk(() => ({
-                  [nix.POS]: pos$48,
-                  acme: nix.thunk(() => ({ [nix.POS]: pos$47, maxConcurrentRenewals: 1n, certs: migrationCerts })),
+                  [nix.POS]: $pos[47],
+                  acme: nix.thunk(() => ({ [nix.POS]: $pos[46], maxConcurrentRenewals: 1n, certs: migrationCerts })),
                 })),
-                systemd: nix.thunk(() => ({ [nix.POS]: pos$49, services: migrationServicePaths })),
+                systemd: nix.thunk(() => ({ [nix.POS]: $pos[48], services: migrationServicePaths })),
               })),
             })),
             migration_parallel: nix.thunk(() => ({
-              [nix.POS]: pos$56,
+              [nix.POS]: $pos[55],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$55,
+                [nix.POS]: $pos[54],
                 security: nix.thunk(() => ({
-                  [nix.POS]: pos$53,
-                  acme: nix.thunk(() => ({ [nix.POS]: pos$52, maxConcurrentRenewals: 10n, certs: migrationCerts })),
+                  [nix.POS]: $pos[52],
+                  acme: nix.thunk(() => ({ [nix.POS]: $pos[51], maxConcurrentRenewals: 10n, certs: migrationCerts })),
                 })),
-                systemd: nix.thunk(() => ({ [nix.POS]: pos$54, services: migrationServicePaths })),
+                systemd: nix.thunk(() => ({ [nix.POS]: $pos[53], services: migrationServicePaths })),
               })),
             })),
             add_cert_and_domain: nix.thunk(() => ({
-              [nix.POS]: pos$62,
+              [nix.POS]: $pos[61],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$61,
+                [nix.POS]: $pos[60],
                 security: nix.thunk(() => ({
-                  [nix.POS]: pos$60,
+                  [nix.POS]: $pos[59],
                   acme: nix.thunk(() => ({
-                    [nix.POS]: pos$59,
+                    [nix.POS]: $pos[58],
                     certs: nix.thunk(() => nix.attrsDyn({}, [
                       [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({
-                        [nix.POS]: pos$57,
+                        [nix.POS]: $pos[56],
                         extraDomainNames: nix.thunk(() => [nix.thunk(() => nix.str`builtin-alt.${domain}`)]),
                       }))],
-                      [nix.str`builtin-2.${domain}`, nix.thunk(() => ({ [nix.POS]: pos$58, listenHTTP: ":80" }))],
+                      [nix.str`builtin-2.${domain}`, nix.thunk(() => ({ [nix.POS]: $pos[57], listenHTTP: ":80" }))],
                     ])),
                     maxConcurrentRenewals: 10n,
                   })),
@@ -320,16 +241,16 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "lego")))} "$@"
               })),
             })),
             remove_domain: nix.thunk(() => ({
-              [nix.POS]: pos$67,
+              [nix.POS]: $pos[66],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$66,
+                [nix.POS]: $pos[65],
                 security: nix.thunk(() => ({
-                  [nix.POS]: pos$65,
+                  [nix.POS]: $pos[64],
                   acme: nix.thunk(() => ({
-                    [nix.POS]: pos$64,
+                    [nix.POS]: $pos[63],
                     certs: nix.thunk(() => nix.attrsDyn({}, [
                       [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({
-                        [nix.POS]: pos$63,
+                        [nix.POS]: $pos[62],
                         extraDomainNames: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [ip]))),
                       }))],
                     ])),
@@ -338,32 +259,32 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "lego")))} "$@"
               })),
             })),
             concurrency: nix.thunk(() => ({
-              [nix.POS]: pos$74,
+              [nix.POS]: $pos[73],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$73,
+                [nix.POS]: $pos[72],
                 security: nix.thunk(() => ({
-                  [nix.POS]: pos$72,
+                  [nix.POS]: $pos[71],
                   acme: nix.thunk(() => ({
-                    [nix.POS]: pos$71,
+                    [nix.POS]: $pos[70],
                     maxConcurrentRenewals: 1n,
                     certs: nix.thunk(() => nix.attrsDyn({}, [
                       [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({
-                        [nix.POS]: pos$68,
+                        [nix.POS]: $pos[67],
                         extraDomainNames: nix.thunk(() => [nix.thunk(() => nix.str`builtin-alt.${domain}`)]),
                       }))],
                       [nix.str`builtin-2.${domain}`, nix.thunk(() => ({
-                        [nix.POS]: pos$69,
+                        [nix.POS]: $pos[68],
                         extraDomainNames: nix.thunk(() => [nix.thunk(() => nix.str`builtin-2-alt.${domain}`)]),
                         listenHTTP: ":80",
                       }))],
-                      [nix.str`builtin-3.${domain}`, nix.thunk(() => ({ [nix.POS]: pos$70, listenHTTP: ":80" }))],
+                      [nix.str`builtin-3.${domain}`, nix.thunk(() => ({ [nix.POS]: $pos[69], listenHTTP: ":80" }))],
                     ])),
                   })),
                 })),
               })),
             })),
             csr: nix.thunk(() => ({
-              [nix.POS]: pos$80,
+              [nix.POS]: $pos[79],
               configuration: nix.thunk(() => (() => {
                 const conf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "openssl.csr.conf", nix.thunk(() => nix.str`[req]
 default_bits = 2048
@@ -383,7 +304,7 @@ DNS.1 = ${nix.sel(config, "networking", "fqdn")}
 IP.1 = ${ip}
 `)));
                 const csrData = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "csr-and-key", nix.thunk(() => ({
-                    [nix.POS]: pos$75,
+                    [nix.POS]: $pos[74],
                     buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
                   })), nix.thunk(() => nix.str`mkdir -p $out
 openssl req -new -newkey rsa:2048 -nodes \\
@@ -392,14 +313,14 @@ openssl req -new -newkey rsa:2048 -nodes \\
   -config ${conf}
 `)));
                 return {
-                  [nix.POS]: pos$79,
+                  [nix.POS]: $pos[78],
                   security: nix.thunk(() => ({
-                    [nix.POS]: pos$78,
+                    [nix.POS]: $pos[77],
                     acme: nix.thunk(() => ({
-                      [nix.POS]: pos$77,
+                      [nix.POS]: $pos[76],
                       certs: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.str`${nix.sel(config, "networking", "fqdn")}`, nix.thunk(() => ({
-                          [nix.POS]: pos$76,
+                          [nix.POS]: $pos[75],
                           csr: nix.thunk(() => nix.str`${csrData}/request.csr`),
                           csrKey: nix.thunk(() => nix.str`${csrData}/key.pem`),
                           extraDomainNames: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),

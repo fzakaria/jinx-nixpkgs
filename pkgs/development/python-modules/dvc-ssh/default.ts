@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["version", 19, 26], ["hash", 20, 5]], [["gssapi", 40, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["pythonRemoveDeps", 23, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["optional-dependencies", 39, 3], ["postPatch", 44, 3], ["doCheck", 49, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, bcrypt: false, buildPythonPackage: false, "dvc-objects": false, fetchPypi: false, setuptools: false, "setuptools-scm": false, sshfs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 26], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gssapi", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["pythonRemoveDeps", 23, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["optional-dependencies", 39, 3], ["postPatch", 44, 3], ["doCheck", 49, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const sshfs = nix.arg($, "sshfs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dvc-ssh",
       version: "4.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "dvc_ssh",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-NgfzEZW5WmDaP85apROMvITy545CHse9z94xC/Jw9OA=",
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
       pythonRemoveDeps: nix.thunk(() => ["dvc"]),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [bcrypt, dvc_objects, sshfs]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, gssapi: nix.thunk(() => [sshfs]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], gssapi: nix.thunk(() => [sshfs]) })),
       postPatch: "substituteInPlace setup.cfg --replace \"sshfs[bcrypt]\" \"sshfs\"\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "SSH plugin for dvc",
         homepage: "https://pypi.org/project/dvc-ssh/",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/dvc-ssh/releases/tag/${nix.sel(finalAttrs, "version")}`),

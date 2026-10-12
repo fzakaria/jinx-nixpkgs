@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["src", 32, 28], ["version", 32, 32], ["pname", 32, 40], ["pnpm", 33, 15], ["sourceRoot", 34, 7], ["fetcherVersion", 35, 7], ["hash", 36, 7]], [["pname", 26, 5], ["version", 27, 26], ["src", 27, 34], ["sourceRoot", 29, 5], ["pnpmDeps", 31, 5], ["nativeBuildInputs", 39, 5], ["buildPhase", 45, 5], ["installPhase", 53, 5]], [["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 82, 5], ["mainProgram", 83, 5], ["changelog", 84, 5], ["description", 85, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["webui", 25, 3], ["vendorHash", 63, 3], ["doCheck", 65, 3], ["ldflags", 67, 3], ["preBuild", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { buildGoModule: false, lib: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_10: false, nodejs: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 32, 28], ["version", 32, 32], ["pname", 32, 40], ["pnpm", 33, 15], ["sourceRoot", 34, 7], ["fetcherVersion", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 5], ["version", 27, 26], ["src", 27, 34], ["sourceRoot", 29, 5], ["pnpmDeps", 31, 5], ["nativeBuildInputs", 39, 5], ["buildPhase", 45, 5], ["installPhase", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 82, 5], ["mainProgram", 83, 5], ["changelog", 84, 5], ["description", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["webui", 25, 3], ["vendorHash", 63, 3], ["doCheck", 65, 3], ["ldflags", 67, 3], ["preBuild", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,24 +17,24 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const pnpm = pnpm_10;
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "apache-answer",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "answer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-QTm/6srSn4oF78795ADpW10bZmyEmqTNezB6JSkS2I4=",
         })))),
       webui: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.add("apache-answer", "-webui")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/ui`),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
@@ -60,7 +56,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`cp -r ${nix.sel(finalAttrs, "webui")}/* ui/build/
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://answer.apache.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

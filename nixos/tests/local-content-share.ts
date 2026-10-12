@@ -2,37 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/local-content-share.nix", [[["maintainers", 4, 8]], [["enable", 10, 9], ["port", 11, 9]], [["local-content-share", 9, 16]], [["services", 9, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 15, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/local-content-share.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/local-content-share.nix", [["enable", 10, 9], ["port", 11, 9]]);
-const pos$3 = nix.positions(here + "/local-content-share.nix", [["local-content-share", 9, 16]]);
-const pos$4 = nix.positions(here + "/local-content-share.nix", [["services", 9, 7]]);
-const pos$5 = nix.positions(here + "/local-content-share.nix", [["machine", 6, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/local-content-share.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "local-content-share",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(pkgs, "local-content-share", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            "local-content-share": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, port: 8081n })),
+            [nix.POS]: $pos[2],
+            "local-content-share": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, port: 8081n })),
           })),
         };
       })(), formals$2),

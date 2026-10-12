@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["buildFeatures", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, openssl: false, libiconv: false, stdenv: false, dbBackend: true, libmysqlclient: false, libpq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["buildFeatures", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const libmysqlclient = nix.arg($, "libmysqlclient");
   const libpq = nix.arg($, "libpq");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "oidcwarden",
       version: "2026.4.2-1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Timshel",
           repo: "OIDCWarden",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([openssl], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(dbBackend, "mysql")), libmysqlclient), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(dbBackend, "postgresql")), libpq))))),
       buildFeatures: dbBackend,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unofficial Bitwarden-compatible server with OpenID Connect support",
         homepage: "https://github.com/Timshel/OIDCWarden",
         changelog: nix.thunk(() => nix.str`https://github.com/Timshel/OIDCWarden/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

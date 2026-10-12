@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["extensions", 30, 7]], [["extraConfig", 50, 7]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["php", 27, 3], ["postInstall", 53, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, stdenv: false, php: false, phpCfg: true, withMariaDB: true, withPostgreSQL: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
 const formals$2 = { args: { all: false, enabled: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["extensions", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraConfig", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["php", 27, 3], ["postInstall", 53, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const withPostgreSQL = nix.argOr($, "withPostgreSQL", () => true);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (nix.asBool(withPostgreSQL) || nix.asBool(withMariaDB))), "At least one Flyspray database driver required"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fl/flyspray/package.nix:11:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "flyspray",
       version: "1.0-rc11",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/flyspray/flyspray/releases/download/v${nix.sel(finalAttrs, "version")}/flyspray-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-VNukYtHqf1OqWoyR+GXxgoX2GjTD4RfJ0SaGoDyHLJ4=",
         })))),
       php: nix.thunk(() => nix.update(nix.app(nix.sel(php, "buildEnv"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           extensions: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const all = nix.arg($_1, "all");
@@ -48,10 +44,10 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(all, "pdo_mysql")),
               ])))));
           })(), formals$2),
-        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(phpCfg, null)), nix.thunk(() => ({ [nix.POS]: pos$3, extraConfig: phpCfg }))))),
+        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(phpCfg, null)), nix.thunk(() => ({ [nix.POS]: $pos[2], extraConfig: phpCfg }))))),
       postInstall: "DIR=\"$out/share/php/flyspray\"\nmkdir -p \"$DIR\"\ncp -Tr \"$src\" \"$DIR\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lightweight, web-based bug tracking system written in PHP for assisting with software development and project managements",
         homepage: "https://www.flyspray.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 52, 3], ["pythonImportsCheck", 59, 3], ["disabledTests", 61, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, "absl-py": false, chex: false, distrax: false, "dm-env": false, jax: false, jaxlib: false, numpy: false, "dm-haiku": false, optax: false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 52, 3], ["pythonImportsCheck", 59, 3], ["disabledTests", 61, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rlax",
       version: "0.1.9",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google-deepmind",
           repo: "rlax",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
         "test_unnormalize_linear",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library of reinforcement learning building blocks in JAX",
         homepage: "https://github.com/deepmind/rlax",
         changelog: nix.thunk(() => nix.str`https://github.com/google-deepmind/rlax/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

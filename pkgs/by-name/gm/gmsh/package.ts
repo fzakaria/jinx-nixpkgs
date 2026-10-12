@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 39, 5], ["hash", 40, 5]], [["name", 87, 7], ["exec", 88, 7], ["comment", 89, 7], ["desktopName", 90, 7], ["genericName", 91, 7], ["categories", 92, 7], ["icon", 96, 7]], [["url", 103, 9], ["hash", 104, 9]], [["description", 119, 5], ["mainProgram", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 52, 3], ["cmakeFlags", 77, 3], ["doCheck", 83, 3], ["desktopItems", 85, 3], ["postInstall", 100, 3], ["pythonImportsCheck", 116, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeDesktopItem: false, copyDesktopItems: false, cmake: false, blas: false, lapack: false, gfortran: false, gmm: false, fltk: false, libjpeg: false, zlib: false, libGL: false, libGLU: false, libxrender: false, libxinerama: false, libxft: false, libxfixes: false, libxext: false, libxcursor: false, libx11: false, libsm: false, libice: false, "opencascade-occt": false, llvmPackages: false, python3Packages: false, enablePython: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 87, 7], ["exec", 88, 7], ["comment", 89, 7], ["desktopName", 90, 7], ["genericName", 91, 7], ["categories", 92, 7], ["icon", 96, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 103, 9], ["hash", 104, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 119, 5], ["mainProgram", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 52, 3], ["cmakeFlags", 77, 3], ["doCheck", 83, 3], ["desktopItems", 85, 3], ["postInstall", 100, 3], ["pythonImportsCheck", 116, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const enablePython = nix.argOr($, "enablePython", () => false);
   nix.assert_((nix.asBool(!nix.asBool(nix.sel(blas, "isILP64"))) && nix.asBool(!nix.asBool(nix.sel(lapack, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gm/gmsh/package.nix:32:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gmsh",
       version: "4.15.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gmsh.info/src/gmsh-${nix.sel(finalAttrs, "version")}-source.tgz`),
           hash: "sha256-vj9m8iXSe6n6AU8H6DFpKF2ooFGw6KtxA9iAZrOb3T4=",
         })))),
@@ -71,7 +67,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gmsh",
             exec: "gmsh",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -83,7 +79,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => (() => {
         const logo = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://salsa.debian.org/science-team/gmsh/-/raw/d2d8b4e3488c7b0f51879f809f624b537b4bd28f/debian/gmsh.svg",
             hash: "sha256-p69Cju3bn1ShWmESOSOmJj0x3IYDGI9oD25SFTh2GLo=",
           }))));
@@ -95,7 +91,7 @@ mv $out/lib/*.dist-info $out/${nix.sel(python3Packages, "python", "sitePackages"
       })()),
       pythonImportsCheck: nix.thunk(() => ["gmsh"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Three-dimensional finite element mesh generator",
         mainProgram: "gmsh",
         homepage: "https://gmsh.info/",

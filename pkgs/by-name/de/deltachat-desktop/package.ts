@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 7], ["repo", 27, 7], ["tag", 28, 7], ["hash", 29, 7]], [["pname", 32, 7], ["version", 33, 15], ["src", 33, 23], ["hash", 34, 7]], [["version", 24, 5], ["src", 25, 5], ["cargoDeps", 31, 5]], [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["pname", 52, 26], ["version", 52, 32], ["src", 52, 40], ["pnpm", 53, 5], ["fetcherVersion", 54, 5], ["hash", 55, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 74, 5], ["SKIP_FUSES", 75, 5], ["VERSION_INFO_GIT_REF", 76, 5]], [["name", 127, 5], ["exec", 128, 5], ["icon", 129, 5], ["desktopName", 130, 5], ["genericName", 131, 5], ["comment", 132, 5], ["categories", 133, 5], ["startupWMClass", 138, 5], ["mimeTypes", 139, 5]], [["package", 150, 7]], [["version", 149, 5]], [["tests", 148, 12]], [["description", 155, 5], ["homepage", 156, 5], ["changelog", 157, 5], ["license", 158, 5], ["mainProgram", 159, 5], ["maintainers", 160, 5], ["platforms", 161, 5]], [["pname", 40, 3], ["version", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["pnpmDeps", 51, 3], ["strictDeps", 58, 3], ["nativeBuildInputs", 60, 3], ["env", 73, 3], ["buildPhase", 79, 3], ["installPhase", 110, 3], ["desktopItems", 126, 3], ["passthru", 148, 3], ["meta", 154, 3]]]);
 const formals$1 = { args: { lib: false, copyDesktopItems: false, electron_43: false, fetchFromGitHub: false, "deltachat-rpc-server": false, makeDesktopItem: false, makeWrapper: false, nodejs: false, "pkg-config": false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, python3: false, rustPlatform: false, stdenv: false, testers: false, "deltachat-desktop": false, yq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 7], ["repo", 27, 7], ["tag", 28, 7], ["hash", 29, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 32, 7], ["version", 33, 15], ["src", 33, 23], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 24, 5], ["src", 25, 5], ["cargoDeps", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 52, 26], ["version", 52, 32], ["src", 52, 40], ["pnpm", 53, 5], ["fetcherVersion", 54, 5], ["hash", 55, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 74, 5], ["SKIP_FUSES", 75, 5], ["VERSION_INFO_GIT_REF", 76, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 127, 5], ["exec", 128, 5], ["icon", 129, 5], ["desktopName", 130, 5], ["genericName", 131, 5], ["comment", 132, 5], ["categories", 133, 5], ["startupWMClass", 138, 5], ["mimeTypes", 139, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["package", 150, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["version", 149, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["tests", 148, 12]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 155, 5], ["homepage", 156, 5], ["changelog", 157, 5], ["license", 158, 5], ["mainProgram", 159, 5], ["maintainers", 160, 5], ["platforms", 161, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["pnpmDeps", 51, 3], ["strictDeps", 58, 3], ["nativeBuildInputs", 60, 3], ["env", 73, 3], ["buildPhase", 79, 3], ["installPhase", 110, 3], ["desktopItems", 126, 3], ["passthru", 148, 3], ["meta", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,36 +28,36 @@ export default nix.lambda((args) => (() => {
   const deltachat_rpc_server$ = nix.thunk(() => nix.app(nix.sel(deltachat_rpc_server, "overrideAttrs"), nix.thunk(() => (() => {
       const version = "2.62.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chatmail",
           repo: "core",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-qjbxxcOvHkb8g4IMWXYXmnYhbEx3G5ptiysOvpTcCCI=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "chatmail-core",
           version: version,
           src: src,
           hash: "sha256-ceXhO8/k3+dphPQ74S+ZgEZzUWjgqBm6wcePvTqxHrE=",
         }))));
-      return { [nix.POS]: pos$3, version, src, cargoDeps };
+      return { [nix.POS]: $pos[2], version, src, cargoDeps };
     })())));
   const electron = electron_43;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "deltachat-desktop",
       version: "2.62.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "deltachat",
           repo: "deltachat-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-9n10t0wTraJCFD9S73JTLTj+xMMHaU28e+qrr6GMcqA=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -79,7 +68,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => nix.concat([yq, makeWrapper, nodejs, pkg_config, pnpmConfigHook, pnpm_10, python3], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [copyDesktopItems])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         SKIP_FUSES: true,
         VERSION_INFO_GIT_REF: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
@@ -128,7 +117,7 @@ install -Dt "$out/share/icons/hicolor/scalable/apps" images/tray/deltachat.svg
 runHook postInstall
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "deltachat",
             exec: "deltachat %u",
             icon: "deltachat",
@@ -146,14 +135,14 @@ runHook postInstall
             ]),
           })))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$9,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$8, package: deltachat_desktop })))),
+          [nix.POS]: $pos[8],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[7], package: deltachat_desktop })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Email-based instant messaging for Desktop",
         homepage: "https://github.com/deltachat/deltachat-desktop",
         changelog: nix.thunk(() => nix.str`https://github.com/deltachat/deltachat-desktop/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

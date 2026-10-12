@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sdkVersion", 36, 71]], [["sdkVersion", 44, 59]], [["src", 70, 9], ["substitutions", 71, 9]], [["sdkroot", 102, 7], ["tests", 103, 7]], [["description", 109, 7], ["homepage", 110, 7], ["teams", 111, 7], ["platforms", 112, 7], ["badPlatforms", 113, 7]], [["pname", 54, 5], ["version", 55, 23], ["src", 57, 5], ["dontConfigure", 59, 5], ["strictDeps", 61, 5], ["setupHooks", 63, 5], ["installPhase", 79, 5], ["passthru", 101, 5], ["__structuredAttrs", 106, 5], ["meta", 108, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, substitute: false, darwinSdkMajorVersion: true, enableBootstrap: true, callPackage: false, jq: false, llvm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sdkVersion", 36, 71]]);
-const pos$2 = nix.positions(here + "/package.nix", [["sdkVersion", 44, 59]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 70, 9], ["substitutions", 71, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["sdkroot", 102, 7], ["tests", 103, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 109, 7], ["homepage", 110, 7], ["teams", 111, 7], ["platforms", 112, 7], ["badPlatforms", 113, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 54, 5], ["version", 55, 23], ["src", 57, 5], ["dontConfigure", 59, 5], ["strictDeps", 61, 5], ["setupHooks", 63, 5], ["installPhase", 79, 5], ["passthru", 101, 5], ["__structuredAttrs", 106, 5], ["meta", 108, 5]]);
 
 export default nix.thunk(() => (() => {
   const sdkVersions = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./metadata/versions.json")))));
@@ -29,18 +24,18 @@ export default nix.thunk(() => (() => {
     const phases = nix.thunk(() => nix.app(nix.sel(lib, "composeManyExtensions"), nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(callPackage, nix.path(here, "./common/add-core-symbolication.nix"), nix.thunk(() => ({})))),
         nix.thunk(() => nix.app(callPackage, nix.path(here, "./common/derivation-options.nix"), nix.thunk(() => ({})))),
-        nix.thunk(() => nix.app(callPackage, nix.path(here, "./common/passthru-private-frameworks.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, sdkVersion: sdkVersion })))),
+        nix.thunk(() => nix.app(callPackage, nix.path(here, "./common/passthru-private-frameworks.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], sdkVersion: sdkVersion })))),
         nix.thunk(() => nix.app(callPackage, nix.path(here, "./common/passthru-source-release-files.nix"), nix.thunk(() => ({})))),
         nix.thunk(() => nix.app(callPackage, nix.path(here, "./common/remove-disallowed-packages.nix"), nix.thunk(() => ({})))),
         nix.thunk(() => nix.app(callPackage, nix.path(here, "./common/process-stubs.nix"), nix.thunk(() => ({})))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(enableBootstrap)), nix.thunk(() => [
           nix.thunk(() => nix.app(callPackage, nix.path(here, "./common/propagate-inputs.nix"), nix.thunk(() => ({})))),
-          nix.thunk(() => nix.app(callPackage, nix.path(here, "./common/propagate-xcrun.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, sdkVersion: sdkVersion })))),
+          nix.thunk(() => nix.app(callPackage, nix.path(here, "./common/propagate-xcrun.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], sdkVersion: sdkVersion })))),
         ])), [
         nix.thunk(() => nix.app(callPackage, nix.path(here, "./common/run-build-phase-hooks.nix"), nix.thunk(() => ({})))),
       ])))));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.app(nix.sel(lib, "extends"), phases, (finalAttrs) => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: "apple-sdk",
           version: nix.thunk(() => nix.attr(sdkInfo, "version")),
           src: nix.thunk(() => nix.app(fetchSDK, sdkInfo)),
@@ -49,7 +44,7 @@ export default nix.thunk(() => (() => {
           setupHooks: nix.thunk(() => [
             nix.path(here, "./setup-hooks/role.bash"),
             nix.thunk(() => nix.app(substitute, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 src: nix.path(here, "./setup-hooks/sdk-hook.sh"),
                 substitutions: nix.thunk(() => [
                   "--subst-var-by",
@@ -78,13 +73,13 @@ runHook postInstall
 `;
           })()),
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             sdkroot: nix.thunk(() => nix.add(nix.sel(finalAttrs, "finalPackage"), "/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk")),
             tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests"), nix.thunk(() => ({})))),
           })),
           __structuredAttrs: true,
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             description: "Frameworks and libraries required for building packages on Darwin",
             homepage: "https://developer.apple.com",
             teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "darwin"))]),

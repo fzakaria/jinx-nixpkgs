@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 19, 7], ["aarch64-linux", 20, 7]], [["aarch64-linux", 23, 7]], [["x86_64-linux", 18, 5], ["aarch64-linux", 22, 5]], [["aarch64-linux", 26, 23]], [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["installPhase", 70, 5]], [["sha256", 89, 14]], [["PYTHON_BIN_PATH", 91, 7]], [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["platforms", 120, 5], ["broken", 125, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["bazel", 46, 3], ["nativeBuildInputs", 48, 3], ["bazelTargets", 53, 3], ["bazelFlags", 60, 3], ["bazelBuildFlags", 67, 3], ["buildAttrs", 69, 3], ["fetchAttrs", 89, 3], ["env", 91, 3], ["dontAddBazelOpts", 93, 3], ["removeRulesCC", 94, 3], ["postPatch", 96, 3], ["preConfigure", 104, 3], ["dontAddPrefix", 109, 3], ["configurePlatforms", 110, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { stdenv: false, buildPackages: false, buildBazelPackage: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 19, 7], ["aarch64-linux", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-linux", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 18, 5], ["aarch64-linux", 22, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["aarch64-linux", 26, 23]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["installPhase", 70, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["sha256", 89, 14]]);
-const pos$8 = nix.positions(here + "/package.nix", [["PYTHON_BIN_PATH", 91, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["platforms", 120, 5], ["broken", 125, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["bazel", 46, 3], ["nativeBuildInputs", 48, 3], ["bazelTargets", 53, 3], ["bazelFlags", 60, 3], ["bazelBuildFlags", 67, 3], ["buildAttrs", 69, 3], ["fetchAttrs", 89, 3], ["env", 91, 3], ["dontAddBazelOpts", 93, 3], ["removeRulesCC", 94, 3], ["postPatch", 96, 3], ["preConfigure", 104, 3], ["dontAddPrefix", 109, 3], ["configurePlatforms", 110, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,25 +22,25 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   const bazelDepsSha256ByBuildAndHost = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "x86_64-linux": "sha256-61qmnAB80syYhURWYJOiOnoGOtNa1pPkxfznrFScPAo=",
       "aarch64-linux": "sha256-sOIYpp98wJRz3RGvPasyNEJ05W29913Lsm+oi/aq/Ag=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       "aarch64-linux": "sha256-MJU4y9Dt9xJWKgw7iKW+9Ur856rMIHeFD5u05s+Q7rQ=",
     })),
   }));
-  const bazelHostConfigName = nix.thunk(() => ({ [nix.POS]: pos$4, "aarch64-linux": "elinux_aarch64" }));
+  const bazelHostConfigName = nix.thunk(() => ({ [nix.POS]: $pos[3], "aarch64-linux": "elinux_aarch64" }));
   const bazelDepsSha256ByHost = nix.thunk(() => nix.selOr(bazelDepsSha256ByBuildAndHost, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported build system ${nix.sel(buildPlatform, "system")}`)), nix.key(nix.sel(buildPlatform, "system"))));
   const bazelDepsSha256 = nix.thunk(() => nix.selOr(bazelDepsSha256ByHost, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported host system ${nix.sel(hostPlatform, "system")} with build system ${nix.sel(buildPlatform, "system")}`)), nix.key(nix.sel(hostPlatform, "system"))));
   return nix.app(buildBazelPackage, nix.thunk(() => (() => {
       const pname = "tensorflow-lite";
       const version = "2.13.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "tensorflow",
           repo: "tensorflow",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -68,12 +59,12 @@ export default nix.lambda((args) => (() => {
         ]))));
       const bazelBuildFlags = nix.thunk(() => ["--cxxopt=--std=c++17"]);
       const buildAttrs = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         installPhase: "mkdir -p $out/{bin,lib}\n\n# copy the libs and binaries into the output dir\ncp ./bazel-bin/tensorflow/lite/c/libtensorflowlite_c.so $out/lib\ncp ./bazel-bin/tensorflow/lite/libtensorflowlite.so $out/lib\ncp ./bazel-bin/tensorflow/lite/tools/benchmark/benchmark_model $out/bin\ncp ./bazel-bin/tensorflow/lite/tools/benchmark/benchmark_model_performance_options $out/bin\n\nfind . -type f -name '*.h' | while read f; do\n  path=\"$out/include/${f/.\\//}\"\n  install -D \"$f\" \"$path\"\n\n  # remove executable bit from headers\n  chmod -x \"$path\"\ndone\n",
       }));
-      const fetchAttrs = nix.thunk(() => ({ [nix.POS]: pos$7, sha256: bazelDepsSha256 }));
+      const fetchAttrs = nix.thunk(() => ({ [nix.POS]: $pos[6], sha256: bazelDepsSha256 }));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         PYTHON_BIN_PATH: nix.thunk(() => nix.sel(pythonEnv, "interpreter")),
       }));
       const dontAddBazelOpts = true;
@@ -83,7 +74,7 @@ export default nix.lambda((args) => (() => {
       const dontAddPrefix = true;
       const configurePlatforms = [];
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Open source deep learning framework for on-device inference",
         homepage: "https://www.tensorflow.org/lite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -98,7 +89,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version,
         src,

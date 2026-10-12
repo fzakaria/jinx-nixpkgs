@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 25, 3], ["doCheck", 30, 3], ["checkInputs", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, ocaml: false, fetchFromGitHub: false, buildDunePackage: false, "dune-configurator": false, integers: false, "bigarray-compat": false, ounit2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 25, 3], ["doCheck", 30, 3], ["checkInputs", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bigarray_compat = nix.arg($, "bigarray-compat");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ctypes",
       version: "0.24.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yallop",
           repo: "ocaml-ctypes",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/yallop/ocaml-ctypes",
         description: "Library for binding to C libraries using pure OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,16 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/runtest.nix", [[["description", 23, 5], ["mainProgram", 24, 5]], [["src", 4, 23], ["version", 4, 27], ["pyproject", 5, 3], ["pname", 7, 3], ["dontConfigure", 9, 3], ["dontBuild", 10, 3], ["doCheck", 11, 3], ["pythonPath", 13, 3], ["installPhase", 15, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { python3Packages: false, easycrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/runtest.nix", [["description", 23, 5], ["mainProgram", 24, 5]]);
-const pos$2 = nix.positions(here + "/runtest.nix", [["src", 4, 23], ["version", 4, 27], ["pyproject", 5, 3], ["pname", 7, 3], ["dontConfigure", 9, 3], ["dontBuild", 10, 3], ["doCheck", 11, 3], ["pythonPath", 13, 3], ["installPhase", 15, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const python3Packages = nix.arg($, "python3Packages");
   const easycrypt = nix.arg($, "easycrypt");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.attr(easycrypt, "src")),
       version: nix.thunk(() => nix.attr(easycrypt, "version")),
       pyproject: false,
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp scripts/testing/runtest $out/bin/ec-runtest\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(nix.sel(easycrypt, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Testing program for EasyCrypt formalizations",
         mainProgram: "ec-runtest",
       })),

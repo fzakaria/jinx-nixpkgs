@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 27, 26], ["version", 27, 32], ["hash", 28, 5]], [["pymongo", 48, 5], ["redis", 49, 5], ["websocket", 50, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 26, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["optional-dependencies", 47, 3], ["pythonImportsCheck", 53, 3], ["doCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { beautifulsoup4: false, buildPythonPackage: false, colorama: false, fetchPypi: false, lib: false, pillow: false, pymongo: false, pyotp: false, readerwriterlock: false, redis: false, requests: false, setuptools: false, "tls-client": false, "typing-extensions": false, validators: false, websockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 27, 26], ["version", 27, 32], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pymongo", 48, 5], ["redis", 49, 5], ["websocket", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 26, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["optional-dependencies", 47, 3], ["pythonImportsCheck", 53, 3], ["doCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const validators = nix.arg($, "validators");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "spotapi",
       version: "1.2.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-x4UA65A4UvxqlDN5upHsPPa5yv8gKZw3kqLou/1xVtY=",
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         validators,
       ], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pymongo: nix.thunk(() => [pymongo]),
         redis: nix.thunk(() => [redis]),
         websocket: nix.thunk(() => [websockets]),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["spotapi"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python wrapper for the public & private Spotify API",
         homepage: "https://github.com/Aran404/SpotAPI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

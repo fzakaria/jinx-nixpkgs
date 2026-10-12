@@ -2,41 +2,25 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["sparkPackage", 6, 33]], [["default", 6, 5]], [["override", 13, 16]], [["sparkCluster", 12, 7], ["passthru", 13, 7]], [["enable", 27, 17], ["master", 28, 17]], [["package", 25, 15], ["worker", 26, 15]], [["spark", 24, 22]], [["memorySize", 31, 28]], [["services", 24, 13], ["virtualisation", 31, 13]], [["enable", 39, 17], ["bind", 40, 17]], [["package", 37, 15], ["master", 38, 15]], [["spark", 36, 22]], [["allowedTCPPorts", 43, 33]], [["firewall", 43, 24]], [["services", 36, 13], ["networking", 43, 13]], [["worker", 21, 9], ["master", 33, 9]], [["name", 18, 7], ["nodes", 20, 7], ["testScript", 51, 7]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["sparkPackage", 6, 33]]);
-const pos$2 = nix.positions(here + "/default.nix", [["default", 6, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["override", 13, 16]]);
-const pos$4 = nix.positions(here + "/default.nix", [["sparkCluster", 12, 7], ["passthru", 13, 7]]);
 const formals$2 = { args: { sparkPackage: false }, ellipsis: true };
 const formals$3 = { args: { nodes: false, pkgs: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/default.nix", [["enable", 27, 17], ["master", 28, 17]]);
-const pos$6 = nix.positions(here + "/default.nix", [["package", 25, 15], ["worker", 26, 15]]);
-const pos$7 = nix.positions(here + "/default.nix", [["spark", 24, 22]]);
-const pos$8 = nix.positions(here + "/default.nix", [["memorySize", 31, 28]]);
-const pos$9 = nix.positions(here + "/default.nix", [["services", 24, 13], ["virtualisation", 31, 13]]);
 const formals$4 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/default.nix", [["enable", 39, 17], ["bind", 40, 17]]);
-const pos$11 = nix.positions(here + "/default.nix", [["package", 37, 15], ["master", 38, 15]]);
-const pos$12 = nix.positions(here + "/default.nix", [["spark", 36, 22]]);
-const pos$13 = nix.positions(here + "/default.nix", [["allowedTCPPorts", 43, 33]]);
-const pos$14 = nix.positions(here + "/default.nix", [["firewall", 43, 24]]);
-const pos$15 = nix.positions(here + "/default.nix", [["services", 36, 13], ["networking", 43, 13]]);
-const pos$16 = nix.positions(here + "/default.nix", [["worker", 21, 9], ["master", 33, 9]]);
-const pos$17 = nix.positions(here + "/default.nix", [["name", 18, 7], ["nodes", 20, 7], ["testScript", 51, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const tests = nix.thunk(() => ({
-    [nix.POS]: pos$2,
-    default: nix.thunk(() => nix.app(testsForPackage, nix.thunk(() => ({ [nix.POS]: pos$1, sparkPackage: nix.thunk(() => nix.sel(pkgs, "spark")) })))),
+    [nix.POS]: $pos[1],
+    default: nix.thunk(() => nix.app(testsForPackage, nix.thunk(() => ({ [nix.POS]: $pos[0], sparkPackage: nix.thunk(() => nix.sel(pkgs, "spark")) })))),
   }));
   const testsForPackage = (args_1) => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       sparkCluster: nix.thunk(() => nix.app(testSparkCluster, args_1)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         override: (args$) => nix.app(testsForPackage, nix.thunk(() => nix.update(args_1, args$))),
       })),
     })));
@@ -44,25 +28,25 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const sparkPackage = nix.arg($_1, "sparkPackage");
     return nix.app(nix.sel(pkgs, "testers", "nixosTest"), nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         name: "spark",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           worker: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const nodes = nix.arg($_2, "nodes");
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 spark: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   package: sparkPackage,
-                  worker: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, master: "master:7077" })),
+                  worker: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true, master: "master:7077" })),
                 })),
               })),
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, memorySize: 2048n })),
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[7], memorySize: 2048n })),
             };
           })(), formals$3),
           master: nix.lambda((args_2) => (() => {
@@ -70,18 +54,18 @@ export default nix.lambda((args) => (() => {
             const config = nix.arg($_2, "config");
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 spark: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   package: sparkPackage,
-                  master: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, bind: "0.0.0.0" })),
+                  master: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true, bind: "0.0.0.0" })),
                 })),
               })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$14,
-                firewall: nix.thunk(() => ({ [nix.POS]: pos$13, allowedTCPPorts: nix.thunk(() => [22n, 7077n, 8080n]) })),
+                [nix.POS]: $pos[13],
+                firewall: nix.thunk(() => ({ [nix.POS]: $pos[12], allowedTCPPorts: nix.thunk(() => [22n, 7077n, 8080n]) })),
               })),
             };
           })(), formals$4),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5], ["fetchSubmodules", 42, 5]], [["description", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5], ["platforms", 119, 5]], [["pname", 34, 3], ["version", 35, 11], ["src", 37, 3], ["strictDeps", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 62, 3], ["cmakeFlags", 84, 3], ["patches", 89, 3], ["postFixup", 96, 3], ["postInstall", 102, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, gtk3: false, "yaml-cpp": false, glfw: false, libpng: false, libtirpc: false, liblxi: false, libsigcxx_2_0: false, zlib: false, wrapGAppsHook3: false, makeBinaryWrapper: false, writeDarwinBundle: false, shaderc: false, "vulkan-headers": false, "vulkan-loader": false, glslang: false, "spirv-tools": false, moltenvk: false, llvmPackages: false, hidapi: false, wayland: false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5], ["fetchSubmodules", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5], ["platforms", 119, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 11], ["src", 37, 3], ["strictDeps", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 62, 3], ["cmakeFlags", 84, 3], ["patches", 89, 3], ["postFixup", 96, 3], ["postInstall", 102, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const version = "0.3";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "scopehal-apps",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ngscopeclient",
           repo: "scopehal-apps",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -73,7 +71,7 @@ makeWrapper $out/bin/.ngscopeclient-unwrapped $out/bin/ngscopeclient \\
 `))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications/ngscopeclient.app/Contents/{MacOS,Resources}\n\ninstall -m644 {../src/ngscopeclient/icons/macos,$out/Applications/ngscopeclient.app/Contents/Resources}/ngscopeclient.icns\n\nwrite-darwin-bundle $out ngscopeclient ngscopeclient ngscopeclient\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Advanced test & measurement remote control and analysis suite",
         homepage: "https://www.ngscopeclient.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["login-nosuid", 60, 26]], [["tests", 59, 12]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["priority", 77, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["__structuredAttrs", 32, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["mesonFlags", 52, 3], ["doCheck", 57, 3], ["passthru", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, "linux-pam": false, systemdLibs: false, libcap: false, libxcrypt: false, libeconf: false, libselinux: false, "docbook-xsl-ns": false, libxslt: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["login-nosuid", 60, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 59, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["priority", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["__structuredAttrs", 32, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["mesonFlags", 52, 3], ["doCheck", 57, 3], ["passthru", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const selinuxSupport = nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), libselinux));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "account-utils",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "thkukuk",
           repo: "account-utils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,14 +44,14 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "login-nosuid": nix.thunk(() => nix.attr(nixosTests, "login-nosuid")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Services, utilities and PAM modules, which allow authentication and account management on systems with the NoNewPrivs flag set (no setuid/setgid binaries)",
         homepage: "https://github.com/thkukuk/account-utils",
         changelog: nix.thunk(() => nix.str`https://github.com/thkukuk/account-utils/releases/tag/v${nix.sel(finalAttrs, "version")}`),

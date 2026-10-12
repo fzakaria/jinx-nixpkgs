@@ -2,40 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/netdata.nix", [[["maintainers", 7, 5]], [["systemPackages", 16, 21]], [["recommendedPythonPackages", 24, 18]], [["apps_groups.conf", 26, 21]], [["enable", 22, 11], ["package", 23, 11], ["python", 24, 11], ["configDir", 26, 11]], [["netdata", 21, 18]], [["environment", 16, 9], ["services", 21, 9]], [["netdata", 13, 5]], [["name", 5, 3], ["meta", 6, 3], ["nodes", 12, 3], ["testScript", 33, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/netdata.nix", [["maintainers", 7, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/netdata.nix", [["systemPackages", 16, 21]]);
-const pos$3 = nix.positions(here + "/netdata.nix", [["recommendedPythonPackages", 24, 18]]);
-const pos$4 = nix.positions(here + "/netdata.nix", [["apps_groups.conf", 26, 21]]);
-const pos$5 = nix.positions(here + "/netdata.nix", [["enable", 22, 11], ["package", 23, 11], ["python", 24, 11], ["configDir", 26, 11]]);
-const pos$6 = nix.positions(here + "/netdata.nix", [["netdata", 21, 18]]);
-const pos$7 = nix.positions(here + "/netdata.nix", [["environment", 16, 9], ["services", 21, 9]]);
-const pos$8 = nix.positions(here + "/netdata.nix", [["netdata", 13, 5]]);
-const pos$9 = nix.positions(here + "/netdata.nix", [["name", 5, 3], ["meta", 6, 3], ["nodes", 12, 3], ["testScript", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "netdata",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "cransom"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       netdata: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs_1, null);
               return [
@@ -46,14 +38,14 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             netdata: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs_1, "netdataCloud")),
-              python: nix.thunk(() => ({ [nix.POS]: pos$3, recommendedPythonPackages: true })),
+              python: nix.thunk(() => ({ [nix.POS]: $pos[2], recommendedPythonPackages: true })),
               configDir: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 "apps_groups.conf": nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "apps_groups.conf", "netdata_test: netdata\n")),
               })),
             })),

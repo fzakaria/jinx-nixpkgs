@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["chrony", 64, 26], ["chrony-ptp", 64, 33]], [["tests", 63, 12]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["broken", 80, 5], ["maintainers", 81, 5], ["longDescription", 86, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["configureFlags", 40, 3], ["patches", 47, 3], ["postPatch", 52, 3], ["enableParallelBuilding", 60, 3], ["doCheck", 61, 3], ["passthru", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gnutls: false, libedit: false, libcap: false, libseccomp: false, "pps-tools": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["chrony", 64, 26], ["chrony-ptp", 64, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 63, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["broken", 80, 5], ["maintainers", 81, 5], ["longDescription", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["configureFlags", 40, 3], ["patches", 47, 3], ["postPatch", 52, 3], ["enableParallelBuilding", 60, 3], ["doCheck", 61, 3], ["passthru", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pps_tools = nix.arg($, "pps-tools");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "chrony",
       version: "4.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://chrony-project.org/releases/chrony-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-SSTG9TAQW81bnp4zxIoq4b/YiSIshIC8QWAREO/IZNA=",
         })))),
@@ -39,15 +35,15 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           chrony: nix.thunk(() => nix.attr(nixosTests, "chrony")),
           "chrony-ptp": nix.thunk(() => nix.attr(nixosTests, "chrony-ptp")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Sets your computer's clock from time servers on the Net",
         homepage: "https://chrony-project.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

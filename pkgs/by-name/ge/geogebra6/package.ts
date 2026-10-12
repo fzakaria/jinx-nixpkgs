@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 18, 5], ["longDescription", 19, 5], ["homepage", 24, 5], ["maintainers", 25, 5], ["license", 29, 5], ["sourceProvenance", 30, 5], ["platforms", 34, 5], ["hydraPlatforms", 35, 5]], [["urls", 42, 7], ["hash", 46, 7]], [["pname", 39, 13], ["version", 39, 19], ["meta", 39, 27], ["src", 41, 5], ["dontConfigure", 49, 5], ["dontBuild", 50, 5], ["nativeBuildInputs", 52, 5], ["unpackPhase", 57, 5], ["installPhase", 61, 5]], [["urls", 79, 7], ["hash", 83, 7]], [["sourceProvenance", 96, 7]], [["pname", 76, 13], ["version", 76, 19], ["src", 78, 5], ["dontUnpack", 86, 5], ["nativeBuildInputs", 88, 5], ["installPhase", 90, 5], ["meta", 95, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, unzip: false, fetchurl: false, electron: false, makeWrapper: false, geogebra: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 18, 5], ["longDescription", 19, 5], ["homepage", 24, 5], ["maintainers", 25, 5], ["license", 29, 5], ["sourceProvenance", 30, 5], ["platforms", 34, 5], ["hydraPlatforms", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["urls", 42, 7], ["hash", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 39, 13], ["version", 39, 19], ["meta", 39, 27], ["src", 41, 5], ["dontConfigure", 49, 5], ["dontBuild", 50, 5], ["nativeBuildInputs", 52, 5], ["unpackPhase", 57, 5], ["installPhase", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["urls", 79, 7], ["hash", 83, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sourceProvenance", 96, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 76, 13], ["version", 76, 19], ["src", 78, 5], ["dontUnpack", 86, 5], ["nativeBuildInputs", 88, 5], ["installPhase", 90, 5], ["meta", 95, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const srcIcon = nix.thunk(() => nix.sel(geogebra, "srcIcon"));
   const desktopItem = nix.thunk(() => nix.sel(geogebra, "desktopItem"));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Dynamic mathematics software with graphics, algebra and spreadsheets",
     longDescription: "Dynamic mathematics software for all levels of education that brings\ntogether geometry, algebra, spreadsheets, graphing, statistics and\ncalculus in one easy-to-use package.\n",
     homepage: "https://www.geogebra.org/",
@@ -50,12 +45,12 @@ export default nix.lambda((args) => (() => {
     hydraPlatforms: [],
   }));
   const linuxPkg = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.geogebra.org/installers/6.0/GeoGebra-Linux64-Portable-${version}.zip`),
             nix.thunk(() => nix.str`https://web.archive.org/web/20230824011801/https://download.geogebra.org/installers/6.0/GeoGebra-Linux64-Portable-${version}.zip`),
@@ -79,11 +74,11 @@ install -Dm644 "${srcIcon}" \\
 `),
     }))));
   const darwinPkg = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.geogebra.org/installers/6.0/GeoGebra-Classic-6-MacOS-Portable-${version}.zip`),
             nix.thunk(() => nix.str`https://web.archive.org/web/20230824012900/https://download.geogebra.org/installers/6.0/GeoGebra-Classic-6-MacOS-Portable-${version}.zip`),
@@ -94,7 +89,7 @@ install -Dm644 "${srcIcon}" \\
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "install -dm755 $out/Applications\nunzip $src -d $out/Applications\n",
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];

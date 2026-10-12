@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/language-pack.nix", [[["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["teams", 32, 5]], [["pname", 12, 3], ["pyproject", 13, 3], ["version", 14, 11], ["src", 14, 19], ["build-system", 14, 23], ["prePatch", 16, 3], ["postPatch", 20, 3], ["pythonImportsCheck", 24, 3], ["doCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, lang: false, version: false, src: false, "build-system": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/language-pack.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["teams", 32, 5]]);
-const pos$2 = nix.positions(here + "/language-pack.nix", [["pname", 12, 3], ["pyproject", 13, 3], ["version", 14, 11], ["src", 14, 19], ["build-system", 14, 23], ["prePatch", 16, 3], ["postPatch", 20, 3], ["pythonImportsCheck", 24, 3], ["doCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => [nix.thunk(() => nix.str`gruut_lang_${lang}`)]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Language files for gruut tokenizer/phonemizer",
         homepage: "https://github.com/rhasspy/gruut",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "tts"))]),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         pyproject,
         version: version_1,

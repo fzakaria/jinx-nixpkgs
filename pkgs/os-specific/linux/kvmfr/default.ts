@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 31, 5], ["longDescription", 32, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["broken", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 14, 3], ["hardeningDisable", 15, 3], ["nativeBuildInputs", 19, 3], ["makeFlags", 21, 3], ["installPhase", 26, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, kernel: false, kernelModuleMakeFlags: false, "looking-glass-client": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["broken", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 14, 3], ["hardeningDisable", 15, 3], ["nativeBuildInputs", 19, 3], ["makeFlags", 21, 3], ["installPhase", 26, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const looking_glass_client = nix.arg($, "looking-glass-client");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kvmfr",
       version: nix.thunk(() => nix.sel(looking_glass_client, "version")),
       src: nix.thunk(() => nix.sel(looking_glass_client, "src")),
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`install -D kvmfr.ko -t "$out/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/drivers/misc/"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Optional kernel module for LookingGlass",
         longDescription: "This kernel module implements a basic interface to the IVSHMEM device for LookingGlass when using LookingGlass in VM->VM mode\nAdditionally, in VM->host mode, it can be used to generate a shared memory device on the host machine that supports dmabuf\n",
         homepage: "https://github.com/gnif/LookingGlass",

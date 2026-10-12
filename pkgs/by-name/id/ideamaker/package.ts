@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 5], ["hash", 37, 5]], [["name", 103, 7], ["exec", 104, 7], ["icon", 105, 7], ["desktopName", 106, 7], ["comment", 107, 7], ["categories", 108, 7], ["genericName", 115, 7], ["mimeTypes", 116, 7], ["noDisplay", 123, 7], ["startupNotify", 124, 7], ["terminal", 125, 7], ["type", 126, 7]], [["name", 131, 5], ["runtimeInputs", 132, 5], ["text", 137, 5]], [["updateScript", 130, 12]], [["description", 147, 13], ["changelog", 148, 5], ["homepage", 149, 5], ["license", 150, 5], ["mainProgram", 151, 5], ["maintainers", 152, 5], ["platforms", 153, 5], ["sourceProvenance", 154, 5]], [["pname", 34, 11], ["version", 34, 17], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["dontWrapQtApps", 48, 3], ["buildInputs", 50, 3], ["installPhase", 62, 3], ["preFixup", 86, 3], ["postFixup", 95, 3], ["desktopItems", 101, 3], ["passthru", 130, 3], ["meta", 146, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, "common-updater-scripts": false, copyDesktopItems: false, curl: false, dpkg: false, e2fsprogs: false, fetchurl: false, gnutls: false, gtk3: false, jq: false, lib: false, libGLU: false, libpsl: false, qt5: false, libredirect: false, libx11: false, lz4: false, makeDesktopItem: false, makeWrapper: false, nghttp2: false, "shared-mime-info": false, stdenv: false, writeShellApplication: false, "xkeyboard-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 103, 7], ["exec", 104, 7], ["icon", 105, 7], ["desktopName", 106, 7], ["comment", 107, 7], ["categories", 108, 7], ["genericName", 115, 7], ["mimeTypes", 116, 7], ["noDisplay", 123, 7], ["startupNotify", 124, 7], ["terminal", 125, 7], ["type", 126, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 131, 5], ["runtimeInputs", 132, 5], ["text", 137, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 130, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 147, 13], ["changelog", 148, 5], ["homepage", 149, 5], ["license", 150, 5], ["mainProgram", 151, 5], ["maintainers", 152, 5], ["platforms", 153, 5], ["sourceProvenance", 154, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 34, 11], ["version", 34, 17], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["dontWrapQtApps", 48, 3], ["buildInputs", 50, 3], ["installPhase", 62, 3], ["preFixup", 86, 3], ["postFixup", 95, 3], ["desktopItems", 101, 3], ["passthru", 130, 3], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const semver = nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), ".", nix.thunk(() => nix.app(nix.sel(lib, "lists", "init"), nix.thunk(() => nix.builtins.splitVersion(version))))));
   const description = "Raise3D's 3D slicer software";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downcdn.raise3d.com/ideamaker/release/${semver}/ideaMaker_${version}-ubuntu_amd64.deb`),
           hash: "sha256-kXcgVuuPTMWoOCrEztiedJrZrTbFx1xHyzzh4y2b0UA=",
         })))),
@@ -94,7 +89,7 @@ runHook postInstall
       postFixup: "patchelf \\\n  --add-needed libdbus-1.so.3 \\\n  \"$out/usr/lib/x86_64-linux-gnu/ideamaker/libQt5DBus.so.5.15.2\"\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ideamaker",
             exec: "ideamaker",
             icon: "ideamaker",
@@ -116,16 +111,16 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "ideamaker-update-script",
               runtimeInputs: nix.thunk(() => [curl, common_updater_scripts, jq]),
               text: "update-source-version ideamaker \"$(\n  curl 'https://api.raise3d.com/ideamakerio-v1.1/hq/ofpVersionControl/find' -X 'POST' \\\n  | jq -r '.data.release_version.linux_64_deb_url' \\\n  | sed -E 's#.*/release/([0-9]+\\.[0-9]+\\.[0-9]+)/ideaMaker_\\1\\.([0-9]+).*#\\1.\\2#'\n)\"\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: description,
         changelog: "https://www.raise3d.com/download/ideamaker-release-notes/",
         homepage: "https://www.raise3d.com/ideamaker/",

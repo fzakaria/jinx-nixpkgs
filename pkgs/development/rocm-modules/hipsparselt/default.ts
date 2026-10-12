@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5], ["sparseCheckout", 53, 5]], [["CXX", 63, 7], ["ROCM_PATH", 64, 7], ["TENSILE_ROCM_ASSEMBLER_PATH", 65, 7], ["TENSILE_GEN_ASSEMBLY_TOOLCHAIN", 66, 7]], [["finalAttrs", 114, 54]], [["supportsTargetArches", 113, 12], ["updateScript", 114, 12]], [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["teams", 120, 5], ["platforms", 121, 5]], [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["sourceRoot", 61, 3], ["env", 63, 3], ["requiredSystemFeatures", 67, 3], ["__structuredAttrs", 69, 3], ["strictDeps", 70, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 83, 3], ["cmakeFlags", 96, 3], ["passthru", 113, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, ninja: false, git: false, "pkg-config": false, "rocm-cmake": false, "rocm-smi": false, clr: false, hipsparse: false, openmp: false, llvm: false, "msgpack-cxx": false, libxml2: false, zlib: false, zstd: false, python3: false, python3Packages: false, gpuTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5], ["sparseCheckout", 53, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CXX", 63, 7], ["ROCM_PATH", 64, 7], ["TENSILE_ROCM_ASSEMBLER_PATH", 65, 7], ["TENSILE_GEN_ASSEMBLY_TOOLCHAIN", 66, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["finalAttrs", 114, 54]]);
-const pos$4 = nix.positions(here + "/default.nix", [["supportsTargetArches", 113, 12], ["updateScript", 114, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["teams", 120, 5], ["platforms", 121, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["sourceRoot", 61, 3], ["env", 63, 3], ["requiredSystemFeatures", 67, 3], ["__structuredAttrs", 69, 3], ["strictDeps", 70, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 83, 3], ["cmakeFlags", 96, 3], ["passthru", 113, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,11 +40,11 @@ export default nix.lambda((args) => (() => {
     ]));
   const compiler = "amdclang++";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`hipsparselt${nix.sel(clr, "gpuArchSuffix")}`),
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/projects/hipsparselt`),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXX: compiler,
         ROCM_PATH: nix.thunk(() => nix.str`${clr}`),
         TENSILE_ROCM_ASSEMBLER_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), clr, "amdclang++")),
@@ -103,12 +98,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INSTALL_INCLUDEDIR", "include")),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         supportsTargetArches: supportsTargetArches,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$3, finalAttrs: finalAttrs })))),
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[2], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "ROCm hipSPARSELt - a SPARSE marshalling library",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipsparselt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

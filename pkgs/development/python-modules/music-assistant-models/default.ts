@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["music-assistant", 58, 13], ["music-assistant-client", 58, 29]], [["tests", 57, 12]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 25, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 48, 3], ["pythonImportsCheck", 53, 3], ["passthru", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pyprojectVersionPatchHook: false, setuptools: false, anyascii: false, mashumaro: false, orjson: false, pytestCheckHook: false, "pytest-cov-stub": false, "music-assistant": false, "music-assistant-client": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["music-assistant", 58, 13], ["music-assistant-client", 58, 29]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 57, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 48, 3], ["pythonImportsCheck", 53, 3], ["passthru", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const music_assistant = nix.arg($, "music-assistant");
   const music_assistant_client = nix.arg($, "music-assistant-client");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "music-assistant-models",
       version: "1.1.189",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "music-assistant",
           repo: "models",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,15 +37,15 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["music_assistant_models"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "music-assistant": music_assistant,
           "music-assistant-client": music_assistant_client,
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Models used by Music Assistant (shared by client and server)",
         homepage: "https://github.com/music-assistant/models",
         changelog: nix.thunk(() => nix.str`https://github.com/music-assistant/models/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["pkg-config", 75, 11]], [["tests", 75, 5], ["updateScript", 76, 5]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 86, 5], ["platforms", 90, 5], ["pkgConfigModules", 91, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 30, 3], ["postPatch", 38, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 59, 3], ["checkInputs", 65, 3], ["cmakeFlags", 67, 3], ["doCheck", 72, 3], ["passthru", 74, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, testers: false, gitUpdater: false, boost: false, cmake: false, coreutils: false, doxygen: false, graphviz: false, gtest: false, lomiri: false, "properties-cpp": false, "pkg-config": false, withDocumentation: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 75, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 75, 5], ["updateScript", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 86, 5], ["platforms", 90, 5], ["pkgConfigModules", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 30, 3], ["postPatch", 38, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 59, 3], ["checkInputs", 65, 3], ["cmakeFlags", 67, 3], ["doCheck", 72, 3], ["passthru", 74, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const withDocumentation = nix.argOr($, "withDocumentation", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "process-cpp",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lib-cpp/process-cpp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,15 +52,15 @@ substituteInPlace tests/posix_process_test.cpp \\
       ]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple convenience library for handling processes in C++11",
         homepage: "https://gitlab.com/ubports/development/core/lib-cpp/process-cpp",
         license: nix.thunk(() => (() => {

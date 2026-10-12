@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["lockFile", 25, 5]], [["extraArgs", 43, 47]], [["updateScript", 43, 12]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 58, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoLock", 24, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["passthru", 43, 3], ["doInstallCheck", 45, 3], ["nativeInstallCheckInputs", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, libpulseaudio: false, openssl: false, stdenv: false, "alsa-lib": false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lockFile", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 43, 47]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoLock", 24, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["passthru", 43, 3], ["doInstallCheck", 45, 3], ["nativeInstallCheckInputs", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,29 +18,29 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "camilladsp",
       version: "4.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "HEnquist",
           repo: "camilladsp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-/OnD607xSPXM4AjVOZjaZQJpo7Q847Z8mq6elHmEwAU=",
         })))),
-      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") })),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => nix.concat([libpulseaudio, openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
       })),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Flexible cross-platform IIR and FIR engine for crossovers, room correction etc",
         homepage: "https://github.com/HEnquist/camilladsp",
         changelog: nix.thunk(() => nix.str`https://github.com/HEnquist/camilladsp/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

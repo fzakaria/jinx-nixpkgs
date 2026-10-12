@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 56, 5], ["homepage", 58, 7], ["maintainers", 59, 7], ["license", 60, 7], ["platforms", 61, 7], ["teams", 63, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 33, 3], ["postPatch", 37, 3], ["mesonFlags", 43, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, meson: false, ninja: false, "gnu-efi": false, python3: false, python3Packages: false, fwupd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 58, 7], ["maintainers", 59, 7], ["license", 60, 7], ["platforms", 61, 7], ["teams", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 33, 3], ["postPatch", 37, 3], ["mesonFlags", 43, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fwupd = nix.arg($, "fwupd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fwupd-efi",
       version: "1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fwupd",
           repo: "fwupd-efi",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(fwupd, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "EFI Application used by uefi-capsule plugin in fwupd",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

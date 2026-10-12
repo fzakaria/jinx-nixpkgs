@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/swig.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["PCRE_CONFIG", 21, 7]], [["version", 10, 3], ["src", 12, 3], ["configureFlags", 19, 3], ["env", 21, 3]], [["pcre2", 23, 5]]]);
 const formals$1 = { args: { swig: false, pcre: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/swig.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/swig.nix", [["PCRE_CONFIG", 21, 7]]);
-const pos$3 = nix.positions(here + "/swig.nix", [["version", 10, 3], ["src", 12, 3], ["configureFlags", 19, 3], ["env", 21, 3]]);
-const pos$4 = nix.positions(here + "/swig.nix", [["pcre2", 23, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const pcre = nix.arg($, "pcre");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(nix.app(nix.sel(swig, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "3.0.9-forth",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GeraldWodni",
           repo: "swig",
           rev: "d9a1e4f88bdc6f8829438902aebeeea2ce5d2eee",
@@ -25,9 +22,9 @@ export default nix.lambda((args) => (() => {
         })))),
       configureFlags: nix.thunk(() => nix.concat(nix.sel(old, "configureFlags"), ["--with-forth=yes"])),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PCRE_CONFIG: nix.thunk(() => nix.str`${nix.sel(pcre, "dev")}/bin/pcre-config`),
       })),
-    })), "override"), nix.thunk(() => ({ [nix.POS]: pos$4, pcre2: pcre })));
+    })), "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], pcre2: pcre })));
 })(), formals$1);
 //# sourceMappingURL=swig.ts.map

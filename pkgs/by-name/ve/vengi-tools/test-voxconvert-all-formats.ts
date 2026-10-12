@@ -2,18 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-voxconvert-all-formats.nix", [[["timeout", 8, 8]], [["name", 7, 3], ["meta", 8, 3], ["buildCommand", 9, 3]]]);
 const formals$1 = { args: { stdenv: false, "vengi-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-voxconvert-all-formats.nix", [["timeout", 8, 8]]);
-const pos$2 = nix.positions(here + "/test-voxconvert-all-formats.nix", [["name", 7, 3], ["meta", 8, 3], ["buildCommand", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenv = nix.arg($, "stdenv");
   const vengi_tools = nix.arg($, "vengi-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "vengi-tools-test-voxconvert-all-formats",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 10n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 10n })),
       buildCommand: nix.thunk(() => nix.str`mkdir $out
 for format in vox qef qbt qb vxm vxr binvox gox cub vxl csv; do
   echo Testing $format export

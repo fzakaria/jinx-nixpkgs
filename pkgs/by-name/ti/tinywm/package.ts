@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 45, 5], ["description", 46, 5], ["longDescription", 47, 5], ["license", 61, 5], ["mainProgram", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 27]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["strictDeps", 21, 3], ["dontConfigure", 23, 3], ["buildPhase", 25, 3], ["installPhase", 33, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["longDescription", 47, 5], ["license", 61, 5], ["mainProgram", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["strictDeps", 21, 3], ["dontConfigure", 23, 3], ["buildPhase", 25, 3], ["installPhase", 33, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tinywm",
       version: "1.1-unstable-2014-04-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mackstann",
           repo: "tinywm",
           rev: "9d05612f41fdb8bc359f1fd9cc930bf16315abb1",
@@ -45,7 +43,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://incise.org/tinywm.html",
         description: "Tiny window manager for X11",
         longDescription: "TinyWM is a tiny window manager that I created as an exercise in\nminimalism. It is also maybe helpful in learning some of the very basics\nof creating a window manager. It is only around 50 lines of C. There is\nalso a Python version using python-xlib.\n\nIt lets you do four basic things:\n\n- Move windows interactively with Alt+Button1 drag (left mouse button)\n- Resize windows interactively with Alt+Button3 drag (right mouse button)\n- Raise windows with Alt+F1 (not high on usability I know, but I needed a\n  keybinding in there somewhere)\n- Focus windows with the mouse pointer (X does this on its own)\n",

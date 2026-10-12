@@ -2,9 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetchDockerLayer.nix", [[["fetcher", 16, 5], ["name", 17, 5], ["tag", 18, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, haskellPackages: false, writeText: false, gawk: false }, ellipsis: false };
 const formals$2 = { args: { layerDigest: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fetchDockerLayer.nix", [["fetcher", 16, 5], ["name", 17, 5], ["tag", 18, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
     const args_2 = args_1;
     const layerDigest = nix.arg($_1, "layerDigest");
     return nix.app(generic_fetcher, nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         fetcher: "hocker-layer",
         name: nix.thunk(() => nix.str`docker-layer-${layerDigest}.tar.gz`),
         tag: "unused",

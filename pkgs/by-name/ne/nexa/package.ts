@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 38, 13], ["aarch64-linux", 39, 13], ["aarch64-darwin", 40, 13]], [["x86_64-linux", 47, 9], ["aarch64-linux", 48, 9], ["aarch64-darwin", 49, 9]], [["url", 34, 5], ["hash", 45, 5]], [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]], [["CGO_ENABLED", 133, 7]], [["description", 209, 5], ["homepage", 210, 5], ["changelog", 211, 5], ["license", 212, 5], ["maintainers", 213, 5], ["mainProgram", 214, 5], ["platforms", 215, 5]], [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["modRoot", 65, 3], ["patches", 73, 3], ["vendorHash", 75, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 84, 3], ["autoPatchelfIgnoreMissingDeps", 103, 3], ["subPackages", 124, 3], ["preBuild", 129, 3], ["env", 133, 3], ["ldflags", 135, 3], ["tags", 141, 3], ["doCheck", 146, 3], ["doInstallCheck", 148, 3], ["installCheckPhase", 150, 3], ["postInstall", 159, 3], ["meta", 208, 3]]]);
 const formals$1 = { args: { config: false, lib: false, buildGoModule: false, fetchFromGitHub: false, fetchurl: false, autoPatchelfHook: false, unzip: false, stdenv: false, "vulkan-loader": false, zlib: false, slim: true, enableCuda: true, enableVulkan: true, cudaPackages: false, gfortran: false, pcre2: false, darwinMinVersionHook: false, openssl: false, fftw: false, lame: false, mpg123: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 38, 13], ["aarch64-linux", 39, 13], ["aarch64-darwin", 40, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 47, 9], ["aarch64-linux", 48, 9], ["aarch64-darwin", 49, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 133, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 209, 5], ["homepage", 210, 5], ["changelog", 211, 5], ["license", 212, 5], ["maintainers", 213, 5], ["mainProgram", 214, 5], ["platforms", 215, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["modRoot", 65, 3], ["patches", 73, 3], ["vendorHash", 75, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 84, 3], ["autoPatchelfIgnoreMissingDeps", 103, 3], ["subPackages", 124, 3], ["preBuild", 129, 3], ["env", 133, 3], ["ldflags", 135, 3], ["tags", 141, 3], ["doCheck", 146, 3], ["doInstallCheck", 148, 3], ["installCheckPhase", 150, 3], ["postInstall", 159, 3], ["meta", 208, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,10 +31,10 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const bridgeVersion = "1.0.45-rc1";
   const bridge = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => (() => {
         const platformDir = nix.thunk(() => nix.selOr({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           "x86_64-linux": "linux_x86_64",
           "aarch64-linux": "linux_arm64",
           "aarch64-darwin": "macos_arm64",
@@ -48,18 +42,18 @@ export default nix.lambda((args) => (() => {
         return nix.str`https://nexa-model-hub-bucket.s3.us-west-1.amazonaws.com/public/nexasdk/v${bridgeVersion}/${platformDir}/nexasdk-bridge.zip`;
       })()),
       hash: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "x86_64-linux": "sha256-bvULCeGXNd8Alu7V32M5Me23Rh6of6L7hdPYrkOlxB0=",
         "aarch64-linux": "sha256-KaHNmq776FtE4tF8jROV43QIyUNaYz/V1kkgMwwjcBo=",
         "aarch64-darwin": "sha256-QVh5HutaB/BfCYRgwXdtMVWtDcYzfL9N9qW2GhcK2aY=",
       }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "nexa",
       version: "0.2.73",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "qualcomm",
           repo: "GenieX",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +82,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/nexa-cli", "cmd/nexa-launcher"]),
       preBuild: nix.thunk(() => nix.str`unzip ${bridge} -d build
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, CGO_ENABLED: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], CGO_ENABLED: "1" })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -141,7 +135,7 @@ if [[ -n "$remaining" ]]; then
 fi
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Nexa AI SDK CLI for model management, inference, and server operations",
         homepage: "https://github.com/qualcomm/GenieX",
         changelog: nix.thunk(() => nix.str`https://github.com/qualcomm/GenieX/releases/tag/v${nix.sel(finalAttrs, "version")}`),

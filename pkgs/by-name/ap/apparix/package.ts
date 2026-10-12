@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 19, 5], ["description", 20, 5], ["maintainers", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["mainProgram", 24, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["doCheck", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 19, 5], ["description", 20, 5], ["maintainers", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["mainProgram", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["doCheck", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "apparix",
       version: "11-062",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://micans.org/apparix/src/apparix-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "211bb5f67b32ba7c3e044a13e4e79eb998ca017538e9f4b06bc92d5953615235",
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://micans.org/apparix",
         description: "Add directory bookmarks, distant listing, and distant editing to the command line",
         maintainers: [],

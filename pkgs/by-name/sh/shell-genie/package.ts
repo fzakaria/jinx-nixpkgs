@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["pythonRelaxDeps", 20, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["doCheck", 39, 3], ["pythonImportsCheck", 41, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["pythonRelaxDeps", 20, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["doCheck", 39, 3], ["pythonImportsCheck", 41, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "shell_genie",
           version: version,
           hash: "sha256-z7LiAq2jLzqjg4Q/r9o7M6VbedeT34NyPpgctfqBp+8=",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["shell_genie"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Describe your shell commands in natural language",
         homepage: "https://github.com/dylanjcastillo/shell-genie",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "shell-genie",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

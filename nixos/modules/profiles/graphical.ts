@@ -2,40 +2,32 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/graphical.nix", [[["enable", 9, 28]], [["plasma6", 9, 20]], [["enable", 8, 5], ["desktopManager", 9, 5]], [["enable", 13, 41]], [["plasma-login-manager", 13, 20]], [["enable", 14, 14]], [["xserver", 7, 12], ["displayManager", 13, 5], ["libinput", 14, 5]], [["systemPackages", 17, 15]], [["services", 7, 3], ["environment", 17, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/graphical.nix", [["enable", 9, 28]]);
-const pos$2 = nix.positions(here + "/graphical.nix", [["plasma6", 9, 20]]);
-const pos$3 = nix.positions(here + "/graphical.nix", [["enable", 8, 5], ["desktopManager", 9, 5]]);
-const pos$4 = nix.positions(here + "/graphical.nix", [["enable", 13, 41]]);
-const pos$5 = nix.positions(here + "/graphical.nix", [["plasma-login-manager", 13, 20]]);
-const pos$6 = nix.positions(here + "/graphical.nix", [["enable", 14, 14]]);
-const pos$7 = nix.positions(here + "/graphical.nix", [["xserver", 7, 12], ["displayManager", 13, 5], ["libinput", 14, 5]]);
-const pos$8 = nix.positions(here + "/graphical.nix", [["systemPackages", 17, 15]]);
-const pos$9 = nix.positions(here + "/graphical.nix", [["services", 7, 3], ["environment", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       xserver: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         enable: true,
         desktopManager: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          plasma6: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+          [nix.POS]: $pos[1],
+          plasma6: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         })),
       })),
       displayManager: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        "plasma-login-manager": nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+        [nix.POS]: $pos[4],
+        "plasma-login-manager": nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
       })),
-      libinput: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+      libinput: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       systemPackages: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "mesa-demos")),
         nix.thunk(() => nix.sel(pkgs, "firefox")),

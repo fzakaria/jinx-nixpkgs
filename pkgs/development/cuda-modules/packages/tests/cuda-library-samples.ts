@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda-library-samples.nix", [[["owner", 21, 7], ["repo", 22, 7], ["rev", 23, 7], ["sha256", 24, 7]], [["description", 39, 7], ["longDescription", 40, 7], ["license", 45, 7], ["platforms", 46, 7], ["teams", 47, 7]], [["src", 20, 5], ["version", 26, 5], ["nativeBuildInputs", 28, 5], ["buildInputs", 32, 5], ["postFixup", 33, 5], ["meta", 38, 5]], [["pname", 55, 7], ["sourceRoot", 56, 7]], [["pname", 62, 7], ["sourceRoot", 63, 7]], [["pname", 69, 7], ["sourceRoot", 71, 7], ["buildInputs", 73, 7], ["cmakeFlags", 75, 7], ["postPatch", 80, 7], ["CUTENSOR_ROOT", 85, 7]], [["pname", 91, 7], ["sourceRoot", 93, 7], ["nativeBuildInputs", 95, 7], ["postPatch", 105, 7], ["postInstall", 111, 7], ["CUDA_TOOLKIT_PATH", 117, 7], ["CUSPARSELT_PATH", 118, 7]], [["cublas", 53, 3], ["cusolver", 60, 3], ["cutensor", 67, 3], ["cusparselt", 89, 3]]]);
 const formals$1 = { args: { addDriverRunpath: false, autoAddDriverRunpath: false, autoPatchelfHook: false, backendStdenv: false, cmake: false, cccl: false, cuda_cudart: false, cuda_nvcc: false, cudatoolkit: false, libcusparse_lt: false, libcutensor: false, fetchFromGitHub: false, lib: false, libcusparse: false, setupCudaHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda-library-samples.nix", [["owner", 21, 7], ["repo", 22, 7], ["rev", 23, 7], ["sha256", 24, 7]]);
-const pos$2 = nix.positions(here + "/cuda-library-samples.nix", [["description", 39, 7], ["longDescription", 40, 7], ["license", 45, 7], ["platforms", 46, 7], ["teams", 47, 7]]);
-const pos$3 = nix.positions(here + "/cuda-library-samples.nix", [["src", 20, 5], ["version", 26, 5], ["nativeBuildInputs", 28, 5], ["buildInputs", 32, 5], ["postFixup", 33, 5], ["meta", 38, 5]]);
-const pos$4 = nix.positions(here + "/cuda-library-samples.nix", [["pname", 55, 7], ["sourceRoot", 56, 7]]);
-const pos$5 = nix.positions(here + "/cuda-library-samples.nix", [["pname", 62, 7], ["sourceRoot", 63, 7]]);
-const pos$6 = nix.positions(here + "/cuda-library-samples.nix", [["pname", 69, 7], ["sourceRoot", 71, 7], ["buildInputs", 73, 7], ["cmakeFlags", 75, 7], ["postPatch", 80, 7], ["CUTENSOR_ROOT", 85, 7]]);
-const pos$7 = nix.positions(here + "/cuda-library-samples.nix", [["pname", 91, 7], ["sourceRoot", 93, 7], ["nativeBuildInputs", 95, 7], ["postPatch", 105, 7], ["postInstall", 111, 7], ["CUDA_TOOLKIT_PATH", 117, 7], ["CUSPARSELT_PATH", 118, 7]]);
-const pos$8 = nix.positions(here + "/cuda-library-samples.nix", [["cublas", 53, 3], ["cusolver", 60, 3], ["cutensor", 67, 3], ["cusparselt", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,9 +23,9 @@ export default nix.lambda((args) => (() => {
   const libcusparse = nix.arg($, "libcusparse");
   const setupCudaHook = nix.arg($, "setupCudaHook");
   const base = nix.thunk(() => nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NVIDIA",
           repo: "CUDALibrarySamples",
           rev: "e57b9c483c5384b7b97b7d129457e5a9bdcdb5e1",
@@ -43,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cudatoolkit]),
       postFixup: "for exe in $out/bin/*; do\n  addDriverRunpath $exe\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "examples of using libraries using CUDA",
         longDescription: "CUDA Library Samples contains examples demonstrating the use of\nfeatures in the math and image processing libraries cuBLAS, cuTENSOR,\ncuSPARSE, cuSOLVER, cuFFT, cuRAND, NPP and nvJPEG.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -52,19 +45,19 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     cublas: nix.thunk(() => nix.app(nix.sel(base, "overrideAttrs"), (finalAttrs) => (_) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "cuda-library-samples-cublas",
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/cuBLASLt`),
       }))),
     cusolver: nix.thunk(() => nix.app(nix.sel(base, "overrideAttrs"), (finalAttrs) => (_) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "cuda-library-samples-cusolver",
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/cuSOLVER/gesv`),
       }))),
     cutensor: nix.thunk(() => nix.app(nix.sel(base, "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "cuda-library-samples-cutensor",
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/cuTENSOR`),
         buildInputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "buildInputs"), [libcutensor])),
@@ -77,7 +70,7 @@ export default nix.lambda((args) => (() => {
         CUTENSOR_ROOT: libcutensor,
       }))),
     cusparselt: nix.thunk(() => nix.app(nix.sel(base, "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "cuda-library-samples-cusparselt",
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/cuSPARSELt/matmul`),
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "nativeBuildInputs"), [

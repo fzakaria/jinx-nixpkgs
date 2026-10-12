@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 12, 5], ["hash", 16, 5], ["stripRoot", 17, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 20, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 12, 5], ["hash", 16, 5], ["stripRoot", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 20, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "u001",
       version: "unstable-2016-08-01",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             "https://fontlibrary.org/assets/downloads/u001/3ea00b3c0c8fa6ce4373e5766fafd651/u001.zip",
             "https://web.archive.org/web/20220830085803/https://fontlibrary.org/assets/downloads/u001/3ea00b3c0c8fa6ce4373e5766fafd651/u001.zip",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nTTF_DIR=$out/share/fonts/truetype\n\nmkdir -p $TTF_DIR\n\n# We’ll adjust the nonstandard naming convention here\ncp u001-reg.ttf $TTF_DIR/U001-Regular.ttf\ncp u001-ita.ttf $TTF_DIR/U001-Italic.ttf\ncp u001-bol.ttf $TTF_DIR/U001-Bold.ttf\ncp u001-bolita.ttf $TTF_DIR/U001-BoldItalic.ttf\ncp u001con-reg.ttf $TTF_DIR/U001Condensed-Regular.ttf\ncp u001con-ita.ttf $TTF_DIR/U001Condensed-Italic.ttf\ncp u001con-bol.ttf $TTF_DIR/U001Condensed-Bold.ttf\ncp u001con-bolita.ttf $TTF_DIR/U001Condensed-BoldItalic.ttf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Univers-like typeface that comes with GhostPDL made by URW++",
         homepage: "https://fontlibrary.org/en/font/u001",
         license: nix.thunk(() => nix.sel(lib, "licenses", "aladdin")),

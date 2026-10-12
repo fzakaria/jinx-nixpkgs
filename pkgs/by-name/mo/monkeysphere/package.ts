@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["patches", 28, 5]], [["url", 39, 5], ["sha256", 40, 5]], [["homepage", 126, 5], ["description", 127, 5], ["longDescription", 128, 5], ["license", 137, 5], ["platforms", 138, 5], ["maintainers", 139, 5]], [["pname", 32, 3], ["version", 33, 3], ["disallowedRequisites", 36, 3], ["src", 38, 3], ["patches", 43, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 50, 3], ["makeFlags", 72, 3], ["doCheck", 80, 3], ["preCheck", 81, 3], ["postFixup", 93, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, perl: false, libassuan: false, libgcrypt: false, perlPackages: false, "lockfile-progs": false, gnupg: false, coreutils: false, openssh: false, which: false, socat: false, cpio: false, hexdump: false, procps: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["patches", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 5], ["sha256", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 126, 5], ["description", 127, 5], ["longDescription", 128, 5], ["license", 137, 5], ["platforms", 138, 5], ["maintainers", 139, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["disallowedRequisites", 36, 3], ["src", 38, 3], ["patches", 43, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 50, 3], ["makeFlags", 72, 3], ["doCheck", 80, 3], ["preCheck", 81, 3], ["postFixup", 93, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const openssl = nix.arg($, "openssl");
   const opensshUnsafe = nix.thunk(() => nix.app(nix.sel(openssh, "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       patches: nix.thunk(() => nix.concat(nix.sel(oldAttrs, "patches"), [nix.path(here, "./openssh-nixos-sandbox.patch")])),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.44";
       const disallowedRequisites = nix.thunk(() => [opensshUnsafe]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`http://archive.monkeysphere.info/debian/pool/monkeysphere/m/monkeysphere/monkeysphere_${version}.orig.tar.gz`),
           sha256: "1ah7hy8r9gj96pni8azzjb85454qky5l17m3pqn37854l6grgika",
         }))));
@@ -85,7 +82,7 @@ done
 `);
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://web.monkeysphere.info/",
         description: "Leverage the OpenPGP web of trust for SSH and TLS authentication",
         longDescription: "The Monkeysphere project's goal is to extend OpenPGP's web of\ntrust to new areas of the Internet to help us securely identify\nservers we connect to, as well as each other while we work online.\nThe suite of Monkeysphere utilities provides a framework to\ntransparently leverage the web of trust for authentication of\nTLS/SSL communications through the normal use of tools you are\nfamiliar with, such as your web browser0 or secure shell.\n",
@@ -94,7 +91,7 @@ done
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         disallowedRequisites,

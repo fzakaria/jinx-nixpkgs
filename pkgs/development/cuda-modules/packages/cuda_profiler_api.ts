@@ -2,19 +2,18 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_profiler_api.nix", [[["description", 12, 8]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["meta", 12, 3]]]);
 const formals$1 = { args: { buildRedist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_profiler_api.nix", [["description", 12, 8]]);
-const pos$2 = nix.positions(here + "/cuda_profiler_api.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "cuda_profiler_api",
       outputs: nix.thunk(() => ["out", "dev", "include"]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "API for profiling CUDA runtime" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "API for profiling CUDA runtime" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=cuda_profiler_api.ts.map

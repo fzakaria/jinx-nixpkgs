@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["url", 29, 7], ["hash", 30, 7]], [["type", 50, 7], ["desktopName", 51, 7], ["name", 52, 7], ["comment", 53, 7], ["exec", 54, 7], ["icon", 55, 7], ["categories", 56, 7]], [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["maintainers", 71, 5], ["license", 72, 5], ["platforms", 73, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["desktopItems", 48, 3], ["installPhase", 60, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, fftw: false, liblo: false, libsndfile: false, makeDesktopItem: false, copyDesktopItems: false, portaudio: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["type", 50, 7], ["desktopName", 51, 7], ["name", 52, 7], ["comment", 53, 7], ["exec", 54, 7], ["icon", 55, 7], ["categories", 56, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["maintainers", 71, 5], ["license", 72, 5], ["platforms", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["desktopItems", 48, 3], ["installPhase", 60, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const portaudio = nix.arg($, "portaudio");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "samplebrain",
       version: "0.18.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "then-try-this",
           repo: "samplebrain",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}_release`),
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/then-try-this/samplebrain/-/commit/032fd7c03931d1ca2d5c3d5e29901569aa2b2a86.patch",
             hash: "sha256-aaZJh/vx8fOqrJTuFzQ9+1mXvDQQXLy1k/2SwkMkVk4=",
           })))),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             type: "Application",
             desktopName: "samplebrain",
             name: "samplebrain",
@@ -69,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/bin\ncp samplebrain $out/bin\ninstall -m 444 -D desktop/samplebrain.svg $out/share/icons/hicolor/scalable/apps/samplebrain.svg\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Custom sample mashing app",
         mainProgram: "samplebrain",
         homepage: "https://thentrythis.org/projects/samplebrain",

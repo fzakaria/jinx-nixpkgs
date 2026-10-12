@@ -2,44 +2,36 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/whois.nix", [[["maintainers", 4, 8]], [["pattern", 13, 11], ["server", 14, 11]], [["pattern", 17, 11], ["server", 18, 11]], [["pattern", 21, 11], ["server", 22, 11]], [["enable", 10, 7], ["settings", 11, 7]], [["whois", 9, 14]], [["imports", 7, 5], ["programs", 9, 5]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 28, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/whois.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/whois.nix", [["pattern", 13, 11], ["server", 14, 11]]);
-const pos$3 = nix.positions(here + "/whois.nix", [["pattern", 17, 11], ["server", 18, 11]]);
-const pos$4 = nix.positions(here + "/whois.nix", [["pattern", 21, 11], ["server", 22, 11]]);
-const pos$5 = nix.positions(here + "/whois.nix", [["enable", 10, 7], ["settings", 11, 7]]);
-const pos$6 = nix.positions(here + "/whois.nix", [["whois", 9, 14]]);
-const pos$7 = nix.positions(here + "/whois.nix", [["imports", 7, 5], ["programs", 9, 5]]);
-const pos$8 = nix.positions(here + "/whois.nix", [["machine", 6, 9]]);
-const pos$9 = nix.positions(here + "/whois.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "whois",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Cryolitia"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
         programs: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           whois: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             settings: nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$2, pattern: "\\.dn42$", server: "whois.dn42" })),
-              nix.thunk(() => ({ [nix.POS]: pos$3, pattern: "\\-DN42$", server: "whois.dn42" })),
-              nix.thunk(() => ({ [nix.POS]: pos$4, pattern: "^as424242[0-9]{4}$", server: "whois.dn42" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[1], pattern: "\\.dn42$", server: "whois.dn42" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[2], pattern: "\\-DN42$", server: "whois.dn42" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[3], pattern: "^as424242[0-9]{4}$", server: "whois.dn42" })),
             ]),
           })),
         })),

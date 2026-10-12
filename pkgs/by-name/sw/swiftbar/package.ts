@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5], ["stripRoot", 17, 5]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["mainProgram", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["sourceProvenance", 44, 5], ["maintainers", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dontConfigure", 20, 3], ["dontBuild", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, stdenvNoCC: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5], ["stripRoot", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["mainProgram", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["sourceProvenance", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dontConfigure", 20, 3], ["dontBuild", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const build = "536";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swiftbar",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/swiftbar/SwiftBar/releases/download/v${nix.sel(finalAttrs, "version")}/SwiftBar.v${nix.sel(finalAttrs, "version")}.b${build}.zip`),
           hash: "sha256-K46XQvhLs8rnQ0psveL2dZ/+bTZnaeWVLtrUm29RQYU=",
           stripRoot: false,
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/{Applications,bin}\ncp -r ./SwiftBar.app $out/Applications\n\n# Symlinking doesnt work; The auto-updater will fail to start which renders the app useless\nmakeWrapper $out/Applications/SwiftBar.app/Contents/MacOS/SwiftBar $out/bin/SwiftBar\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Powerful macOS menu bar customization tool",
         homepage: "https://swiftbar.app",
         changelog: nix.thunk(() => nix.str`https://github.com/swiftbar/SwiftBar/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,43 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/munin.nix", [[["maintainers", 8, 5]], [["enable", 17, 13], ["disabledPlugins", 19, 13]], [["enable", 22, 13], ["hosts", 23, 13]], [["munin-node", 16, 11], ["munin-cron", 21, 11]], [["OnCalendar", 31, 47]], [["timerConfig", 31, 35]], [["munin-cron", 31, 24]], [["timers", 31, 17]], [["services", 15, 9], ["systemd", 31, 9]], [["one", 12, 5]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 35, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/munin.nix", [["maintainers", 8, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/munin.nix", [["enable", 17, 13], ["disabledPlugins", 19, 13]]);
-const pos$3 = nix.positions(here + "/munin.nix", [["enable", 22, 13], ["hosts", 23, 13]]);
-const pos$4 = nix.positions(here + "/munin.nix", [["munin-node", 16, 11], ["munin-cron", 21, 11]]);
-const pos$5 = nix.positions(here + "/munin.nix", [["OnCalendar", 31, 47]]);
-const pos$6 = nix.positions(here + "/munin.nix", [["timerConfig", 31, 35]]);
-const pos$7 = nix.positions(here + "/munin.nix", [["munin-cron", 31, 24]]);
-const pos$8 = nix.positions(here + "/munin.nix", [["timers", 31, 17]]);
-const pos$9 = nix.positions(here + "/munin.nix", [["services", 15, 9], ["systemd", 31, 9]]);
-const pos$10 = nix.positions(here + "/munin.nix", [["one", 12, 5]]);
-const pos$11 = nix.positions(here + "/munin.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "munin",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       one: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "munin-node": nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               disabledPlugins: nix.thunk(() => ["apc_nis"]),
             })),
             "munin-cron": nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               hosts: nix.thunk(() => nix.str`[${nix.sel(config, "networking", "hostName")}]
 address localhost
@@ -46,13 +36,13 @@ address localhost
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             timers: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               "munin-cron": nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 timerConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   OnCalendar: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkForce"), "*:*:0/10")),
                 })),
               })),

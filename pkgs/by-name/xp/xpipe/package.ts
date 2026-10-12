@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 36, 7]], [["x86_64-linux", 42, 7]], [["url", 54, 5], ["hash", 55, 13]], [["categories", 90, 5], ["comment", 91, 5], ["desktopName", 92, 5], ["exec", 93, 5], ["genericName", 94, 5], ["icon", 95, 5], ["name", 96, 5]], [["description", 145, 5], ["homepage", 146, 5], ["downloadPage", 147, 5], ["sourceProvenance", 148, 5], ["changelog", 149, 5], ["license", 150, 5], ["maintainers", 154, 5], ["platforms", 155, 5], ["mainProgram", 156, 5]], [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 58, 3], ["autoPatchelfIgnoreMissingDeps", 64, 3], ["buildInputs", 66, 3], ["desktopItem", 89, 3], ["installPhase", 99, 3], ["meta", 144, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchzip: false, makeDesktopItem: false, autoPatchelfHook: false, zlib: false, fontconfig: false, udev: false, gtk3: false, freetype: false, "alsa-lib": false, makeShellWrapper: false, libx11: false, libxext: false, libxdamage: false, libxfixes: false, libxcb: false, libxcomposite: false, libxcursor: false, libxi: false, libxrender: false, libxtst: false, libxxf86vm: false, "util-linux": false, socat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 36, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 54, 5], ["hash", 55, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["categories", 90, 5], ["comment", 91, 5], ["desktopName", 92, 5], ["exec", 93, 5], ["genericName", 94, 5], ["icon", 95, 5], ["name", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 145, 5], ["homepage", 146, 5], ["downloadPage", 147, 5], ["sourceProvenance", 148, 5], ["changelog", 149, 5], ["license", 150, 5], ["maintainers", 154, 5], ["platforms", 155, 5], ["mainProgram", 156, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 58, 3], ["autoPatchelfIgnoreMissingDeps", 64, 3], ["buildInputs", 66, 3], ["desktopItem", 89, 3], ["installPhase", 99, 3], ["meta", 144, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,9 +35,9 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)));
-  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "x86_64-linux": "x86_64" }, () => nix.force(throwSystem), nix.key(nix.force(system))));
+  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "x86_64-linux": "x86_64" }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const hash = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x86_64-linux": "sha256-PRTudHtVhUdvDi0o1PF0rjZP8DW5J5eocCM77lsxd58=",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const displayname = "XPipe";
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xpipe";
       const version = "23.9";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/xpipe-io/xpipe/releases/download/${version}/xpipe-portable-linux-${arch}.tar.gz`),
           hash: hash,
         }))));
@@ -79,7 +74,7 @@ export default nix.lambda((args) => (() => {
         socat,
       ]);
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           categories: nix.thunk(() => ["Network"]),
           comment: "Your entire server infrastructure at your fingertips",
           desktopName: displayname,
@@ -116,7 +111,7 @@ makeShellWrapper "$out/opt/$pkg/scripts/xpiped_debug_raw.sh" "$out/opt/$pkg/scri
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cross-platform shell connection hub and remote file manager",
         homepage: nix.thunk(() => nix.str`https://github.com/xpipe-io/${pname}`),
         downloadPage: nix.thunk(() => nix.str`https://github.com/xpipe-io/${pname}/releases/latest`),
@@ -137,7 +132,7 @@ runHook postInstall
         mainProgram: "xpipe",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

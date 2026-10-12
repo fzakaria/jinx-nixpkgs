@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["description", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["teams", 95, 5], ["platforms", 96, 5], ["homepage", 97, 5], ["downloadPage", 98, 5], ["broken", 100, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 36, 3], ["propagatedBuildInputs", 43, 3], ["buildInputs", 47, 3], ["preConfigure", 65, 3], ["configureFlags", 70, 3], ["enableParallelBuilding", 84, 3], ["enableParallelChecking", 85, 3], ["doCheck", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, windows: false, autoconf: false, automake: false, gettext: false, libtool: false, gmp: false, mpfr: false, ntl: false, blas: false, lapack: false, boehmgc: false, openblas: true, withBlas: true, withNtl: true, withGc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["teams", 95, 5], ["platforms", 96, 5], ["homepage", 97, 5], ["downloadPage", 98, 5], ["broken", 100, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 36, 3], ["propagatedBuildInputs", 43, 3], ["buildInputs", 47, 3], ["preConfigure", 65, 3], ["configureFlags", 70, 3], ["enableParallelBuilding", 84, 3], ["enableParallelChecking", 85, 3], ["doCheck", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const withGc = nix.argOr($, "withGc", () => false);
   nix.assert_((!nix.asBool(withBlas) || nix.asBool((nix.asBool((nix.asBool(!nix.eq(openblas, null)) && nix.asBool(nix.eq(nix.sel(blas, "implementation"), "openblas")))) && nix.asBool(nix.eq(nix.sel(lapack, "implementation"), "openblas"))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fl/flint/package.nix:22:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "flint",
       version: "3.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://flintlib.org/download/flint-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-uV4sd5L17qShyNLULECYQ0dWgy5XoJSyletd/cm0w2s=",
         })))),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       enableParallelChecking: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast Library for Number Theory",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
         maintainers: nix.thunk(() => [

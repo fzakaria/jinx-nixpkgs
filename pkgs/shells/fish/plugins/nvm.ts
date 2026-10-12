@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nvm.nix", [[["owner", 10, 5], ["repo", 11, 5], ["tag", 12, 5], ["hash", 13, 5]], [["description", 17, 5], ["homepage", 18, 5], ["changelog", 19, 5], ["downloadPage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { buildFishPlugin: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nvm.nix", [["owner", 10, 5], ["repo", 11, 5], ["tag", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/nvm.nix", [["description", 17, 5], ["homepage", 18, 5], ["changelog", 19, 5], ["downloadPage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5]]);
-const pos$3 = nix.positions(here + "/nvm.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +14,14 @@ export default nix.lambda((args) => (() => {
       const pname = "nvm";
       const version = "2.2.17";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jorgebucaran",
           repo: "nvm.fish",
           tag: version,
           hash: "sha256-BNnoP9gLQuZQt/0SOOsZaYOexNN2K7PKWT/paS0BJJY=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Node.js version manager you'll adore, crafted just for Fish",
         homepage: "https://github.com/jorgebucaran/nvm.fish",
         changelog: nix.thunk(() => nix.str`https://github.com/jorgebucaran/nvm.fish/releases/tag/${version}/CHANGELOG.md`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "pta2002"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=nvm.ts.map

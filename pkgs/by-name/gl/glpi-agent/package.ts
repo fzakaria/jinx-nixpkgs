@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["updateScript", 126, 5]], [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5], ["mainProgram", 135, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 77, 3], ["doCheck", 91, 3], ["installPhase", 93, 3], ["outputs", 118, 3], ["nativeInstallCheckInputs", 120, 3], ["doInstallCheck", 123, 3], ["passthru", 125, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, perlPackages: false, libiec61850: false, nix: false, dmidecode: false, pciutils: false, usbutils: false, iproute2: false, "net-tools": false, fetchFromGitHub: false, makeWrapper: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 126, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5], ["mainProgram", 135, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 77, 3], ["doCheck", 91, 3], ["installPhase", 93, 3], ["outputs", 118, 3], ["nativeInstallCheckInputs", 120, 3], ["doInstallCheck", 123, 3], ["passthru", 125, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "glpi-agent";
       const version = "1.21";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "glpi-project",
           repo: "glpi-agent",
           tag: version,
@@ -112,11 +109,11 @@ done
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GLPI unified Agent for UNIX, Linux, Windows and MacOSX",
         homepage: "https://glpi-project.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/glpi-project/glpi-agent/releases/tag/${nix.sel(src, "tag")}`),
@@ -128,7 +125,7 @@ done
         mainProgram: "glpi-agent",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

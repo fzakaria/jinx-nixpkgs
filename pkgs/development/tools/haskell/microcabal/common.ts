@@ -2,14 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 13], ["hash", 22, 17]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]], [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 16, 3], ["version", 17, 11], ["src", 19, 3], ["patches", 25, 3], ["makeFlags", 46, 3], ["installPhase", 51, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { version: false, rev: false, hash: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, microhs: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 13], ["hash", 22, 17]]);
-const pos$2 = nix.positions(here + "/common.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/common.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$4 = nix.positions(here + "/common.nix", [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]]);
-const pos$5 = nix.positions(here + "/common.nix", [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$6 = nix.positions(here + "/common.nix", [["pname", 16, 3], ["version", 17, 11], ["src", 19, 3], ["patches", 25, 3], ["makeFlags", 46, 3], ["installPhase", 51, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
     const fetchFromGitHub = nix.arg($_1, "fetchFromGitHub");
     const fetchpatch = nix.arg($_1, "fetchpatch");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "microcabal-stage1",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "augustss",
             repo: "MicroCabal",
             rev: rev,
@@ -36,19 +31,19 @@ export default nix.lambda((args) => (() => {
           })))),
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "remove-mtl-mhs-override.patch",
               url: "https://github.com/AlexandreTunstall/MicroCabal/commit/ad30461aaf3dd295f4f5cf5db12635e42557cbfa.patch",
               hash: "sha256-Gmlt76C19ZtCHpKyNim0ggtjXnVuq5F0ywvX8BW15uM=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "package-install-path.patch",
               url: "https://github.com/augustss/MicroCabal/commit/dc358bbab312e1788564fbb36f835347c21792c0.patch",
               hash: "sha256-aUQwuyp+ihXZ9PeSCqGUylcvzA6/ktZyeyBXiEoVY54=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "package-search-path.patch",
               url: "https://github.com/augustss/MicroCabal/commit/3898e5f0596a7391818a0a2cfa994317cda62479.patch",
               hash: "sha256-76yEUpzH5xZZt3U+BCSqyWsImfpOEowupd5YCaYVTO0=",
@@ -60,7 +55,7 @@ export default nix.lambda((args) => (() => {
         ]),
         installPhase: "runHook preInstall\ninstall -m755 -d $out/bin\ninstall -m755 bin/mcabal $out/bin/mcabal\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           description: "A partial Cabal replacement",
           longDescription: "A portable subset of the Cabal functionality.\n",
           homepage: "https://github.com/augustss/MicroCabal",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 20, 9], ["aarch64-linux", 21, 9], ["x86_64-linux", 22, 9]], [["url", 15, 5], ["hash", 18, 5]], [["updateScript", 37, 12]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 27, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 31, 3], ["passthru", 37, 3], ["nativeInstallCheckInputs", 39, 3], ["versionCheckProgramArg", 43, 3], ["versionCheckKeepEnvironment", 44, 3], ["doInstallCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, versionCheckHook: false, autoPatchelfHook: false, writableTmpDirAsHomeHook: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 20, 9], ["aarch64-linux", 21, 9], ["x86_64-linux", 22, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 27, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 31, 3], ["passthru", 37, 3], ["nativeInstallCheckInputs", 39, 3], ["versionCheckProgramArg", 43, 3], ["versionCheckKeepEnvironment", 44, 3], ["doInstallCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sprite",
       version: "0.0.1-rc48",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://sprites-binaries.t3.storage.dev/client/v${nix.sel(finalAttrs, "version")}/sprite-${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "linux" : "darwin")}-${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "amd64" : "arm64")}.tar.gz`),
           hash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "aarch64-darwin": "sha256-HoYKvupDS4Lak5ce07yZ8VkgafzxlSI0YNb6pg+xRTg=",
             "aarch64-linux": "sha256-taj5QskS1bRgv0QFh9nu/IXUvzJCXGxiDP6lYPaL5tU=",
             "x86_64-linux": "sha256-UlgRQoNfiFTSIgaj67qcNriXEcorM0XPJC1Doy3HnP4=",
@@ -35,13 +31,13 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), autoPatchelfHook))),
       installPhase: "mkdir -p $out/bin\ninstall -m 755 sprite $out/bin/\nwrapProgram $out/bin/sprite --set UPGRADE_CHECK false\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]),
       versionCheckProgramArg: "--version",
       versionCheckKeepEnvironment: "HOME",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command Line Interactive for sprites, stateful sandbox environments with checkpoint & restore",
         homepage: "https://sprites.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

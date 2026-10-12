@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["ar-0.9.0", 34, 7]], [["lockFile", 32, 5], ["outputHashes", 33, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 26, 3], ["cargoDeps", 31, 3], ["buildInputs", 38, 3], ["buildAndTestSubdir", 40, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ar-0.9.0", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["lockFile", 32, 5], ["outputHashes", 33, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 26, 3], ["cargoDeps", 31, 3], ["buildInputs", 38, 3], ["buildAndTestSubdir", 40, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "python-flirt",
       version: "0.9.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "williballenthin",
           repo: "lancelot",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,10 +35,10 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           lockFile: nix.path(here, "./Cargo.lock"),
           outputHashes: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "ar-0.9.0": "sha256-eyi1MlhJVvsiBOsetDHXFpdk+ABeZo/fVXNyvc5mw9s=",
           })),
         })))),
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: "pyflirt",
       pythonImportsCheck: nix.thunk(() => ["flirt"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python library for parsing, compiling, and matching Fast Library Identification and Recognition Technology (FLIRT) signatures",
         homepage: "https://github.com/williballenthin/lancelot/tree/master/pyflirt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

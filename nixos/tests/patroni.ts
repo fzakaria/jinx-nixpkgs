@@ -2,56 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/patroni.nix", [[["address", 20, 13], ["prefixLength", 21, 13]], [["addresses", 18, 41]], [["ipv4", 18, 36]], [["eth1", 18, 31]], [["allowedTCPPorts", 25, 29]], [["interfaces", 18, 20], ["firewall", 25, 20]], [["systemPackages", 31, 21]], [["ttl", 48, 17], ["loop_wait", 49, 17], ["retry_timeout", 50, 17], ["maximum_lag_on_failover", 51, 17]], [["encoding", 54, 19]], [["dcs", 47, 15], ["initdb", 53, 15]], [["username", 64, 19]], [["username", 67, 19]], [["username", 70, 19]], [["replication", 63, 17], ["superuser", 66, 17], ["rewind", 69, 17]], [["listen_addresses", 74, 17], ["wal_level", 75, 17], ["hot_standby_feedback", 76, 17], ["unix_socket_directories", 77, 17]], [["use_pg_rewind", 60, 15], ["use_slots", 61, 15], ["authentication", 62, 15], ["parameters", 73, 15], ["pg_hba", 79, 15]], [["host", 87, 15]], [["bootstrap", 46, 13], ["postgresql", 59, 13], ["etcd3", 86, 13]], [["PATRONI_REPLICATION_PASSWORD", 92, 13], ["PATRONI_SUPERUSER_PASSWORD", 93, 13], ["PATRONI_REWIND_PASSWORD", 94, 13]], [["enable", 35, 11], ["postgresqlPackage", 37, 11], ["scope", 39, 11], ["name", 40, 11], ["nodeIp", 41, 11], ["otherNodesIps", 42, 11], ["softwareWatchdog", 43, 11], ["settings", 45, 11], ["environmentFiles", 91, 11]], [["patroni", 33, 18]], [["StartLimitIntervalSec", 99, 48]], [["serviceConfig", 99, 34]], [["patroni", 99, 26]], [["services", 99, 17]], [["networking", 18, 9], ["environment", 31, 9], ["services", 33, 9], ["systemd", 99, 9]], [["address", 116, 15], ["prefixLength", 117, 15]], [["addresses", 114, 43]], [["ipv4", 114, 38]], [["eth1", 114, 33]], [["allowedTCPPorts", 126, 31]], [["interfaces", 114, 22], ["firewall", 126, 22]], [["enable", 122, 13], ["listenClientUrls", 123, 13]], [["etcd", 121, 20]], [["networking", 114, 11], ["services", 121, 11]], [["systemPackages", 132, 23]], [["address", 136, 15], ["prefixLength", 137, 15]], [["addresses", 134, 43]], [["ipv4", 134, 38]], [["eth1", 134, 33]], [["interfaces", 134, 22]], [["enable", 142, 13], ["config", 143, 13]], [["haproxy", 141, 20]], [["environment", 132, 11], ["networking", 134, 11], ["services", 141, 11]], [["node1", 106, 7], ["node2", 107, 7], ["node3", 108, 7], ["etcd", 110, 7], ["client", 129, 7]], [["name", 103, 5], ["nodes", 105, 5], ["testScript", 169, 5]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/patroni.nix", [["address", 20, 13], ["prefixLength", 21, 13]]);
-const pos$2 = nix.positions(here + "/patroni.nix", [["addresses", 18, 41]]);
-const pos$3 = nix.positions(here + "/patroni.nix", [["ipv4", 18, 36]]);
-const pos$4 = nix.positions(here + "/patroni.nix", [["eth1", 18, 31]]);
-const pos$5 = nix.positions(here + "/patroni.nix", [["allowedTCPPorts", 25, 29]]);
-const pos$6 = nix.positions(here + "/patroni.nix", [["interfaces", 18, 20], ["firewall", 25, 20]]);
-const pos$7 = nix.positions(here + "/patroni.nix", [["systemPackages", 31, 21]]);
-const pos$8 = nix.positions(here + "/patroni.nix", [["ttl", 48, 17], ["loop_wait", 49, 17], ["retry_timeout", 50, 17], ["maximum_lag_on_failover", 51, 17]]);
-const pos$9 = nix.positions(here + "/patroni.nix", [["encoding", 54, 19]]);
-const pos$10 = nix.positions(here + "/patroni.nix", [["dcs", 47, 15], ["initdb", 53, 15]]);
-const pos$11 = nix.positions(here + "/patroni.nix", [["username", 64, 19]]);
-const pos$12 = nix.positions(here + "/patroni.nix", [["username", 67, 19]]);
-const pos$13 = nix.positions(here + "/patroni.nix", [["username", 70, 19]]);
-const pos$14 = nix.positions(here + "/patroni.nix", [["replication", 63, 17], ["superuser", 66, 17], ["rewind", 69, 17]]);
-const pos$15 = nix.positions(here + "/patroni.nix", [["listen_addresses", 74, 17], ["wal_level", 75, 17], ["hot_standby_feedback", 76, 17], ["unix_socket_directories", 77, 17]]);
-const pos$16 = nix.positions(here + "/patroni.nix", [["use_pg_rewind", 60, 15], ["use_slots", 61, 15], ["authentication", 62, 15], ["parameters", 73, 15], ["pg_hba", 79, 15]]);
-const pos$17 = nix.positions(here + "/patroni.nix", [["host", 87, 15]]);
-const pos$18 = nix.positions(here + "/patroni.nix", [["bootstrap", 46, 13], ["postgresql", 59, 13], ["etcd3", 86, 13]]);
-const pos$19 = nix.positions(here + "/patroni.nix", [["PATRONI_REPLICATION_PASSWORD", 92, 13], ["PATRONI_SUPERUSER_PASSWORD", 93, 13], ["PATRONI_REWIND_PASSWORD", 94, 13]]);
-const pos$20 = nix.positions(here + "/patroni.nix", [["enable", 35, 11], ["postgresqlPackage", 37, 11], ["scope", 39, 11], ["name", 40, 11], ["nodeIp", 41, 11], ["otherNodesIps", 42, 11], ["softwareWatchdog", 43, 11], ["settings", 45, 11], ["environmentFiles", 91, 11]]);
-const pos$21 = nix.positions(here + "/patroni.nix", [["patroni", 33, 18]]);
-const pos$22 = nix.positions(here + "/patroni.nix", [["StartLimitIntervalSec", 99, 48]]);
-const pos$23 = nix.positions(here + "/patroni.nix", [["serviceConfig", 99, 34]]);
-const pos$24 = nix.positions(here + "/patroni.nix", [["patroni", 99, 26]]);
-const pos$25 = nix.positions(here + "/patroni.nix", [["services", 99, 17]]);
-const pos$26 = nix.positions(here + "/patroni.nix", [["networking", 18, 9], ["environment", 31, 9], ["services", 33, 9], ["systemd", 99, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$27 = nix.positions(here + "/patroni.nix", [["address", 116, 15], ["prefixLength", 117, 15]]);
-const pos$28 = nix.positions(here + "/patroni.nix", [["addresses", 114, 43]]);
-const pos$29 = nix.positions(here + "/patroni.nix", [["ipv4", 114, 38]]);
-const pos$30 = nix.positions(here + "/patroni.nix", [["eth1", 114, 33]]);
-const pos$31 = nix.positions(here + "/patroni.nix", [["allowedTCPPorts", 126, 31]]);
-const pos$32 = nix.positions(here + "/patroni.nix", [["interfaces", 114, 22], ["firewall", 126, 22]]);
-const pos$33 = nix.positions(here + "/patroni.nix", [["enable", 122, 13], ["listenClientUrls", 123, 13]]);
-const pos$34 = nix.positions(here + "/patroni.nix", [["etcd", 121, 20]]);
-const pos$35 = nix.positions(here + "/patroni.nix", [["networking", 114, 11], ["services", 121, 11]]);
 const formals$4 = { args: { pkgs: false }, ellipsis: true };
-const pos$36 = nix.positions(here + "/patroni.nix", [["systemPackages", 132, 23]]);
-const pos$37 = nix.positions(here + "/patroni.nix", [["address", 136, 15], ["prefixLength", 137, 15]]);
-const pos$38 = nix.positions(here + "/patroni.nix", [["addresses", 134, 43]]);
-const pos$39 = nix.positions(here + "/patroni.nix", [["ipv4", 134, 38]]);
-const pos$40 = nix.positions(here + "/patroni.nix", [["eth1", 134, 33]]);
-const pos$41 = nix.positions(here + "/patroni.nix", [["interfaces", 134, 22]]);
-const pos$42 = nix.positions(here + "/patroni.nix", [["enable", 142, 13], ["config", 143, 13]]);
-const pos$43 = nix.positions(here + "/patroni.nix", [["haproxy", 141, 20]]);
-const pos$44 = nix.positions(here + "/patroni.nix", [["environment", 132, 11], ["networking", 134, 11], ["services", 141, 11]]);
-const pos$45 = nix.positions(here + "/patroni.nix", [["node1", 106, 7], ["node2", 107, 7], ["node3", 108, 7], ["etcd", 110, 7], ["client", 129, 7]]);
-const pos$46 = nix.positions(here + "/patroni.nix", [["name", 103, 5], ["nodes", 105, 5], ["testScript", 169, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
@@ -63,29 +18,29 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
       const pkgs_1 = nix.arg($_1, "pkgs");
       const ip = nix.thunk(() => nix.builtins.elemAt(nodesIps, index));
       return {
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$2,
-                addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, address: ip, prefixLength: 16n }))]))),
+                [nix.POS]: $pos[1],
+                addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[0], address: ip, prefixLength: 16n }))]))),
               })),
             })),
           })),
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [5432n, 8008n, 5010n]) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], allowedTCPPorts: nix.thunk(() => [5432n, 8008n, 5010n]) })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           patroni: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             enable: true,
             postgresqlPackage: nix.thunk(() => nix.app(nix.sel(pkgs_1, "postgresql_14", "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "pg_safeupdate"))])),
             scope: "cluster1",
@@ -94,30 +49,33 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
             otherNodesIps: nix.thunk(() => nix.builtins.filter((h) => !nix.eq(h, ip), nodesIps)),
             softwareWatchdog: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               bootstrap: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 dcs: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   ttl: 30n,
                   loop_wait: 10n,
                   retry_timeout: 10n,
                   maximum_lag_on_failover: 1048576n,
                 })),
-                initdb: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$9, encoding: "UTF8" })), "data-checksums"]),
+                initdb: nix.thunk(() => [
+                  nix.thunk(() => ({ [nix.POS]: $pos[8], encoding: "UTF8" })),
+                  "data-checksums",
+                ]),
               })),
               postgresql: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 use_pg_rewind: true,
                 use_slots: true,
                 authentication: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
-                  replication: nix.thunk(() => ({ [nix.POS]: pos$11, username: "replicator" })),
-                  superuser: nix.thunk(() => ({ [nix.POS]: pos$12, username: "postgres" })),
-                  rewind: nix.thunk(() => ({ [nix.POS]: pos$13, username: "rewind" })),
+                  [nix.POS]: $pos[13],
+                  replication: nix.thunk(() => ({ [nix.POS]: $pos[10], username: "replicator" })),
+                  superuser: nix.thunk(() => ({ [nix.POS]: $pos[11], username: "postgres" })),
+                  rewind: nix.thunk(() => ({ [nix.POS]: $pos[12], username: "rewind" })),
                 })),
                 parameters: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   listen_addresses: nix.thunk(() => nix.str`${ip}`),
                   wal_level: "replica",
                   hot_standby_feedback: "on",
@@ -128,10 +86,10 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
                   "host all all 0.0.0.0/0 trust",
                 ]),
               })),
-              etcd3: nix.thunk(() => ({ [nix.POS]: pos$17, host: "192.168.1.4:2379" })),
+              etcd3: nix.thunk(() => ({ [nix.POS]: $pos[16], host: "192.168.1.4:2379" })),
             })),
             environmentFiles: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               PATRONI_REPLICATION_PASSWORD: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "replication-password", "postgres")),
               PATRONI_SUPERUSER_PASSWORD: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "superuser-password", "postgres")),
               PATRONI_REWIND_PASSWORD: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "rewind-password", "postgres")),
@@ -139,22 +97,22 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             patroni: nix.thunk(() => ({
-              [nix.POS]: pos$23,
-              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$22, StartLimitIntervalSec: 0n })),
+              [nix.POS]: $pos[22],
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[21], StartLimitIntervalSec: 0n })),
             })),
           })),
         })),
       };
     })(), formals$2);
     return {
-      [nix.POS]: pos$46,
+      [nix.POS]: $pos[45],
       name: "patroni",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         node1: nix.thunk(() => nix.app(createNode, 0n)),
         node2: nix.thunk(() => nix.app(createNode, 1n)),
         node3: nix.thunk(() => nix.app(createNode, 2n)),
@@ -162,27 +120,27 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
           const $_1 = nix.formals(args_1, formals$3);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$29,
+                  [nix.POS]: $pos[28],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$28,
+                    [nix.POS]: $pos[27],
                     addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOverride"), 0n, nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$27, address: "192.168.1.4", prefixLength: 16n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[26], address: "192.168.1.4", prefixLength: 16n })),
                       ]))),
                   })),
                 })),
               })),
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$31, allowedTCPPorts: nix.thunk(() => [2379n]) })),
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[30], allowedTCPPorts: nix.thunk(() => [2379n]) })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               etcd: nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 enable: true,
                 listenClientUrls: nix.thunk(() => ["http://192.168.1.4:2379"]),
               })),
@@ -193,30 +151,30 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
           const $_1 = nix.formals(args_1, formals$4);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$44,
+            [nix.POS]: $pos[43],
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "postgresql_14"))]),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$41,
+              [nix.POS]: $pos[40],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$40,
+                [nix.POS]: $pos[39],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$39,
+                  [nix.POS]: $pos[38],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$38,
+                    [nix.POS]: $pos[37],
                     addresses: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOverride"), 0n, nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$37, address: "192.168.2.1", prefixLength: 16n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[36], address: "192.168.2.1", prefixLength: 16n })),
                       ]))),
                   })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$43,
+              [nix.POS]: $pos[42],
               haproxy: nix.thunk(() => ({
-                [nix.POS]: pos$42,
+                [nix.POS]: $pos[41],
                 enable: true,
                 config: nix.thunk(() => nix.str`global
     maxconn 100

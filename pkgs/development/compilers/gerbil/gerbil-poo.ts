@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gerbil-poo.nix", [[["fun", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["maintainers", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["git-version", 11, 3], ["softwareName", 12, 3], ["gerbil-package", 13, 3], ["version-path", 14, 3], ["gerbilInputs", 16, 3], ["pre-src", 18, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, gerbilPackages: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gerbil-poo.nix", [["fun", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/gerbil-poo.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/gerbil-poo.nix", [["pname", 9, 3], ["version", 10, 3], ["git-version", 11, 3], ["softwareName", 12, 3], ["gerbil-package", 13, 3], ["version-path", 14, 3], ["gerbilInputs", 16, 3], ["pre-src", 18, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gerbilPackages = nix.arg($, "gerbilPackages");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     pname: "gerbil-poo",
     version: "unstable-2023-11-29",
     "git-version": "0.2-5-gacf654e",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "gerbil-utils"))];
     })()),
     "pre-src": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fun: fetchFromGitHub,
       owner: "mighty-gerbils",
       repo: "gerbil-poo",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       sha256: "1pxv1j6hwcgjj67bb7vvlnyl3123r43ifldm6alm76v2mfp2vs81",
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       description: "Gerbil POO: Prototype Object Orientation for Gerbil Scheme",
       homepage: "https://github.com/fare/gerbil-poo",
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

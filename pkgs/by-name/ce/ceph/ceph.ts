@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ceph.nix", [[["nss", 139, 5], ["cryptopp", 143, 5], ["none", 144, 5]], [["year", 167, 31]], [["ceph-multi-node-bluestore", 396, 9], ["ceph-multi-node-bluestore-cephfs", 397, 9], ["ceph-single-node-bluestore", 398, 9]], [["version", 390, 24], ["overrideScope", 391, 13], ["arrow-cpp", 392, 13], ["pythonEnv", 393, 5], ["tests", 394, 5]], [["pname", 149, 3], ["version", 150, 22], ["src", 151, 3], ["nativeBuildInputs", 153, 3], ["buildInputs", 173, 3], ["sitePackages", 236, 29], ["pythonPath", 239, 3], ["preConfigure", 255, 3], ["cmakeFlags", 281, 3], ["preBuild", 336, 3], ["postFixup", 344, 3], ["outputs", 373, 3], ["doCheck", 382, 3], ["requiredSystemFeatures", 385, 3], ["meta", 387, 3], ["passthru", 389, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, overrideScope: false, "ceph-meta": false, "ceph-src": false, autoconf: false, automake: false, cmake: false, ensureNewerSourcesHook: false, fmt: false, git: false, libtool: false, makeWrapper: false, nasm: false, "pkg-config": false, which: false, nixosTests: false, "arrow-cpp": false, babeltrace: false, "ceph-boost": false, bzip2: false, cryptsetup: false, cunit: false, e2fsprogs: false, doxygen: false, getopt: false, gperf: false, graphviz: false, gnugrep: false, gtest: false, icu: false, kmod: false, libcap: false, libcap_ng: false, libnbd: false, libnl: false, libxml2: false, lmdb: false, "lttng-ust": false, lua5_4: false, lvm2: false, lz4: false, "oath-toolkit": false, openldap: false, parted: false, "ceph-python-env": false, rdkafka: false, "ceph-rocksdb": false, snappy: false, openssh: false, sqlite: false, utf8proc: false, xfsprogs: false, zlib: false, zstd: false, curl: false, expat: false, fuse3: false, libatomic_ops: false, libedit: false, libs3: false, yasm: false, gperftools: false, jemalloc: false, cryptopp: false, nspr: false, nss: false, linuxHeaders: false, systemd: false, "util-linux": false, libuuid: false, udev: false, keyutils: false, "rdma-core": false, "rabbitmq-c": false, libaio: false, libxfs: false, liburing: false, withSystemd: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ceph.nix", [["nss", 139, 5], ["cryptopp", 143, 5], ["none", 144, 5]]);
-const pos$2 = nix.positions(here + "/ceph.nix", [["year", 167, 31]]);
-const pos$3 = nix.positions(here + "/ceph.nix", [["ceph-multi-node-bluestore", 396, 9], ["ceph-multi-node-bluestore-cephfs", 397, 9], ["ceph-single-node-bluestore", 398, 9]]);
-const pos$4 = nix.positions(here + "/ceph.nix", [["version", 390, 24], ["overrideScope", 391, 13], ["arrow-cpp", 392, 13], ["pythonEnv", 393, 5], ["tests", 394, 5]]);
-const pos$5 = nix.positions(here + "/ceph.nix", [["pname", 149, 3], ["version", 150, 22], ["src", 151, 3], ["nativeBuildInputs", 153, 3], ["buildInputs", 173, 3], ["sitePackages", 236, 29], ["pythonPath", 239, 3], ["preConfigure", 255, 3], ["cmakeFlags", 281, 3], ["preBuild", 336, 3], ["postFixup", 344, 3], ["outputs", 373, 3], ["doCheck", 382, 3], ["requiredSystemFeatures", 385, 3], ["meta", 387, 3], ["passthru", 389, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -110,13 +106,13 @@ export default nix.lambda((args) => (() => {
   const malloc = nix.thunk(() => (nix.asBool(!nix.eq(optJemalloc, null)) ? nix.force(optJemalloc) : nix.force(optGperftools)));
   const cryptoStr = nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(optNss, null)) && nix.asBool(!nix.eq(optNspr, null)))) ? "nss" : (nix.asBool(!nix.eq(optCryptopp, null)) ? "cryptopp" : "none")));
   const cryptoLibsMap = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     nss: nix.thunk(() => [optNss, optNspr]),
     cryptopp: nix.thunk(() => [optCryptopp]),
     none: [],
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ceph",
       version: nix.thunk(() => nix.attr(ceph_src, "version")),
       src: ceph_src,
@@ -134,7 +130,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(ceph_python_env, "pkgs", "python")),
         nix.thunk(() => nix.sel(ceph_python_env, "pkgs", "wrapPython")),
         which,
-        nix.thunk(() => nix.app(ensureNewerSourcesHook, nix.thunk(() => ({ [nix.POS]: pos$2, year: "1980" })))),
+        nix.thunk(() => nix.app(ensureNewerSourcesHook, nix.thunk(() => ({ [nix.POS]: $pos[1], year: "1980" })))),
         doxygen,
         graphviz,
       ]),
@@ -268,13 +264,13 @@ substituteInPlace $client/bin/.ceph-wrapped --replace-fail $out $client
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => nix.app(ceph_meta, "Distributed storage system")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: nix.thunk(() => nix.attr(ceph_src, "version")),
         overrideScope: overrideScope,
         "arrow-cpp": arrow_cpp,
         pythonEnv: ceph_python_env,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "ceph-multi-node-bluestore": nix.thunk(() => nix.attr(nixosTests, "ceph-multi-node-bluestore")),
           "ceph-multi-node-bluestore-cephfs": nix.thunk(() => nix.attr(nixosTests, "ceph-multi-node-bluestore-cephfs")),
           "ceph-single-node-bluestore": nix.thunk(() => nix.attr(nixosTests, "ceph-single-node-bluestore")),

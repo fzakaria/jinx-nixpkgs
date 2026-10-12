@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["changelog", 20, 5], ["description", 21, 5], ["homepage", 22, 5], ["maintainers", 23, 5], ["license", 24, 5]], [["version", 8, 3], ["domain", 9, 3], ["owner", 10, 3], ["src", 12, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 20, 5], ["description", 21, 5], ["homepage", 22, 5], ["maintainers", 23, 5], ["license", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 8, 3], ["domain", 9, 3], ["owner", 10, 3], ["src", 12, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,19 +11,19 @@ export default nix.lambda((args) => (() => {
   const buildHomeAssistantComponent = nix.arg($, "buildHomeAssistantComponent");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.3.3",
       domain: "econet300",
       owner: "jontofront",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jontofront",
           repo: "ecoNET-300-Home-Assistant-Integration",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-nJ0xoSGmvPNqGKl8nYoNGfL5phXRbDzFsG/0HihLRmk=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/jontofront/ecoNET-300-Home-Assistant-Integration/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Home Assistant component for Plum ecoNET300 devices",
         homepage: "https://github.com/jontofront/ecoNET-300-Home-Assistant-Integration",

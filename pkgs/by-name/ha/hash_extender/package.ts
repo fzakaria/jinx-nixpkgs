@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["NIX_CFLAGS_COMPILE", 48, 7]], [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["badPlatforms", 64, 5], ["maintainers", 65, 5]], [["pname", 10, 3], ["version", 11, 3], ["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["buildInputs", 33, 3], ["enableParallelBuilding", 35, 3], ["doCheck", 36, 3], ["checkPhase", 37, 3], ["hardeningDisable", 46, 3], ["env", 48, 3], ["installPhase", 50, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 48, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["badPlatforms", 64, 5], ["maintainers", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["buildInputs", 33, 3], ["enableParallelBuilding", 35, 3], ["doCheck", 36, 3], ["checkPhase", 37, 3], ["hardeningDisable", 46, 3], ["env", 48, 3], ["installPhase", 50, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hash_extender",
       version: "0-unstable-2020-03-24",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iagox86",
           repo: "hash_extender",
           rev: "cb8aaee49f93e9c0d2f03eb3cafb429c9eed723d",
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-15.patch",
             url: "https://github.com/iagox86/hash_extender/commit/84d8d70eb10bcbe4dea2cf5a41d246d59a389e61.patch",
             hash: "sha256-LCzv4FK+4WoJBYYUYB+zsC6358ZpTOxbE91W/1pFe6U=",
@@ -42,10 +38,10 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\n\n./hash_extender --test\n\nrunHook postCheck\n",
       hardeningDisable: nix.thunk(() => ["fortify3"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp hash_extender $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool to automate hash length extension attacks",
         mainProgram: "hash_extender",
         homepage: "https://github.com/iagox86/hash_extender",

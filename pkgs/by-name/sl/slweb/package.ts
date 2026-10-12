@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["FALLBACKVER", 25, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["env", 24, 3], ["nativeInstallCheckInputs", 28, 3], ["doInstallCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["FALLBACKVER", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["env", 24, 3], ["nativeInstallCheckInputs", 28, 3], ["doInstallCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "slweb",
       version: "0.10.2",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~strahinja",
           repo: "slweb",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,13 +24,13 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace config.mk \\\n  --replace-fail \"/usr/local\" \"$out\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         FALLBACKVER: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Static website generator which aims at being simplistic",
         homepage: "https://strahinja.srht.site/slweb/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

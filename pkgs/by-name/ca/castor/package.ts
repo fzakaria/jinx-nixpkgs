@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["postInstall", 42, 3], ["useNextest", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromSourcehut: false, rustPlatform: false, "pkg-config": false, wrapGAppsHook3: false, openssl: false, gtk3: false, "gdk-pixbuf": false, pango: false, atk: false, cairo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["postInstall", 42, 3], ["useNextest", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const atk = nix.arg($, "atk");
   const cairo = nix.arg($, "cairo");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "castor",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~julienxx",
           repo: "castor",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "make PREFIX=$out copy-data",
       useNextest: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graphical client for plain-text protocols written in Rust with GTK. It currently supports the Gemini, Gopher and Finger protocols",
         mainProgram: "castor",
         homepage: "https://sr.ht/~julienxx/Castor",

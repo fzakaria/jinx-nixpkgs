@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5], ["mainProgram", 33, 5]], [["pname", 11, 3], ["version", 12, 11], ["src", 14, 3], ["proxyVendor", 22, 3], ["vendorHash", 23, 3], ["subPackages", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5], ["mainProgram", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 11], ["src", 14, 3], ["proxyVendor", 22, 3], ["vendorHash", 23, 3], ["subPackages", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "0.43.9";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "geesefs",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yandex-cloud",
           repo: "geesefs",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-VwqpiWdUa32dkoltgGxk+3hV9y6z6B0szIaWNLSx3Rs=",
       subPackages: nix.thunk(() => ["."]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/yandex-cloud/geesefs",
         description: "Finally, a good FUSE FS implementation over S3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

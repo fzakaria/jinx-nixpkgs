@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["basic-nixos-module-functionality", 85, 18]], [["tests", 85, 12], ["updateScript", 93, 5]], [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["downloadPage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 107, 5], ["mainProgram", 108, 5]], [["pname", 20, 3], ["appname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 39, 3], ["cmakeFlags", 50, 3], ["postInstall", 58, 3], ["passthru", 85, 3], ["nativeInstallCheckInputs", 87, 3], ["doInstallCheck", 90, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, qt6Packages: false, cmake: false, makeWrapper: false, botan3: false, libgit2: false, "pkg-config": false, nixosTests: false, installShellFiles: false, "xvfb-run": false, versionCheckHook: false, "nix-update-script": false, aspell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["basic-nixos-module-functionality", 85, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 85, 12], ["updateScript", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["downloadPage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 107, 5], ["mainProgram", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["appname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 39, 3], ["cmakeFlags", 50, 3], ["postInstall", 58, 3], ["passthru", 85, 3], ["nativeInstallCheckInputs", 87, 3], ["doInstallCheck", 90, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const aspell = nix.arg($, "aspell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "qownnotes",
       appname: "QOwnNotes",
       version: "26.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/pbek/QOwnNotes/releases/download/v${nix.sel(finalAttrs, "version")}/qownnotes-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-RtWspTbUrk3vkN+ZQKp8XACL8d9EEzVX/w3uaLvgsxg=",
         })))),
@@ -73,9 +69,9 @@ mv $out/bin/${nix.sel(finalAttrs, "appname")} $out/bin/${nix.sel(finalAttrs, "pn
 mv $out/bin/${nix.sel(finalAttrs, "pname")}.bin $out/bin/${nix.sel(finalAttrs, "pname")}
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "basic-nixos-module-functionality": nix.thunk(() => nix.sel(nixosTests, "qownnotes")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
@@ -83,7 +79,7 @@ mv $out/bin/${nix.sel(finalAttrs, "pname")}.bin $out/bin/${nix.sel(finalAttrs, "
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Plain-text file notepad and todo-list manager with markdown support and Nextcloud/ownCloud integration",
         homepage: "https://www.qownnotes.org/",
         changelog: "https://www.qownnotes.org/changelog.html",

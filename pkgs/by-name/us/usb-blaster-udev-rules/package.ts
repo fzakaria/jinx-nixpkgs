@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 24, 5], ["longDescription", 25, 5], ["license", 33, 5], ["platforms", 34, 5]], [["name", 8, 3], ["udevRules", 10, 3], ["dontUnpack", 11, 3], ["nativeBuildInputs", 13, 3], ["doInstallCheck", 17, 3], ["installPhase", 19, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 24, 5], ["longDescription", 25, 5], ["license", 33, 5], ["platforms", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 8, 3], ["udevRules", 10, 3], ["dontUnpack", 11, 3], ["nativeBuildInputs", 13, 3], ["doInstallCheck", 17, 3], ["installPhase", 19, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const installPhase = nix.thunk(() => nix.str`install -Dm 644 "${udevRules}" "$out/lib/udev/rules.d/51-usbblaster.rules"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "udev rules that give NixOS permission to communicate with usb blasters",
         longDescription: "udev rules that give NixOS permission to communicate with usb blasters.\nTo use it under NixOS, add\n\n  services.udev.packages = [ pkgs.usb-blaster-udev-rules ];\n\nto the system configuration.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name,
         udevRules,
         dontUnpack,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 15, 5], ["owner", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["name", 23, 7], ["desktopName", 24, 7], ["icon", 25, 7], ["exec", 26, 7], ["comment", 27, 7], ["categories", 28, 7]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5], ["maintainers", 65, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["desktopItems", 21, 3], ["postInstall", 32, 3], ["pyproject", 36, 3], ["nativeBuildInputs", 38, 3], ["propagatedBuildInputs", 44, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 15, 5], ["owner", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 23, 7], ["desktopName", 24, 7], ["icon", 25, 7], ["exec", 26, 7], ["comment", 27, 7], ["categories", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["desktopItems", 21, 3], ["postInstall", 32, 3], ["pyproject", 36, 3], ["nativeBuildInputs", 38, 3], ["propagatedBuildInputs", 44, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "flashgbx",
       version: "5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "FlashGBX",
           owner: "lesserkuma",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "flashgbx",
             desktopName: "FlashGBX UI",
             icon: "flashgbx",
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(nix.lookup(w, "stdenv"), "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtwayland"))])));
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GUI for reading and writing GB and GBA cartridges with the GBxCart RW",
         homepage: "https://github.com/lesserkuma/FlashGBX",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

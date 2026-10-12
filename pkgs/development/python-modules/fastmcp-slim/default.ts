@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 60, 7], ["includes", 61, 7], ["stripLen", 62, 7], ["hash", 63, 7]], [["anthropic", 83, 5], ["apps", 84, 5], ["azure", 87, 5], ["client", 91, 5], ["code-mode", 98, 5], ["gemini", 99, 5], ["mcp", 103, 5], ["openai", 109, 5], ["server", 110, 5], ["tasks", 131, 5]], [["description", 175, 5], ["changelog", 176, 5], ["homepage", 177, 5], ["license", 178, 5], ["maintainers", 179, 5]], [["pname", 51, 3], ["version", 52, 21], ["src", 52, 29], ["sourceRoot", 53, 3], ["pyproject", 54, 3], ["patches", 56, 3], ["build-system", 67, 3], ["dependencies", 72, 3], ["optional-dependencies", 82, 3], ["pythonImportsCheck", 136, 3], ["nativeInstallCheckInputs", 138, 3], ["installCheckPhase", 145, 3], ["doCheck", 172, 3], ["meta", 174, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchpatch: false, pythonAtLeast: false, fastmcp: false, hatchling: false, "uv-dynamic-versioning": false, anthropic: false, authlib: false, "azure-identity": false, cyclopts: false, exceptiongroup: false, "google-genai": false, griffelib: false, httpx: false, jsonref: false, "jsonschema-path": false, mcp: false, openai: false, "openapi-pydantic": false, "opentelemetry-api": false, packaging: false, platformdirs: false, "py-key-value-aio": false, pydantic: false, "pydantic-monty": false, "pydantic-settings": false, pydocket: false, pyjwt: false, pyperclip: false, "python-dotenv": false, "python-multipart": false, pyyaml: false, rich: false, "typing-extensions": false, "uncalled-for": false, uvicorn: false, watchfiles: false, websockets: false, anyio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 60, 7], ["includes", 61, 7], ["stripLen", 62, 7], ["hash", 63, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["anthropic", 83, 5], ["apps", 84, 5], ["azure", 87, 5], ["client", 91, 5], ["code-mode", 98, 5], ["gemini", 99, 5], ["mcp", 103, 5], ["openai", 109, 5], ["server", 110, 5], ["tasks", 131, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 175, 5], ["changelog", 176, 5], ["homepage", 177, 5], ["license", 178, 5], ["maintainers", 179, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 51, 3], ["version", 52, 21], ["src", 52, 29], ["sourceRoot", 53, 3], ["pyproject", 54, 3], ["patches", 56, 3], ["build-system", 67, 3], ["dependencies", 72, 3], ["optional-dependencies", 82, 3], ["pythonImportsCheck", 136, 3], ["nativeInstallCheckInputs", 138, 3], ["installCheckPhase", 145, 3], ["doCheck", 172, 3], ["meta", 174, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const websockets = nix.arg($, "websockets");
   const anyio = nix.arg($, "anyio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fastmcp-slim",
       version: nix.thunk(() => nix.attr(fastmcp, "version")),
       src: nix.thunk(() => nix.attr(fastmcp, "src")),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       pyproject: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/PrefectHQ/fastmcp/commit/6be0ac8e15d35ff8f5121266855bc34c1158c9a1.patch",
             includes: nix.thunk(() => ["fastmcp/tools/function_tool.py"]),
             stripLen: 1n,
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ], nix.sel(pydantic, "optional-dependencies", "email"))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         anthropic: nix.thunk(() => [anthropic]),
         apps: [],
         azure: nix.thunk(() => [azure_identity, pyjwt]),
@@ -109,7 +106,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "runHook preInstallCheck\n\ncd \"$TMPDIR\"\npython - <<'PY'\nfrom functools import partial\n\nfrom fastmcp.tools.function_tool import _resolve_param_hints\n\n\nclass Item:\n    pass\n\n\nasync def base(prefix: str, items: list[Item]) -> str:\n    return prefix\n\n\nhints = _resolve_param_hints(partial(base, \"bound\"))\nassert hints[\"items\"] == list[Item]\nassert \"prefix\" not in hints\nPY\n\nrunHook postInstallCheck\n",
       doCheck: nix.thunk(() => nix.app(pythonAtLeast, "3.14")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Dependency-slim FastMCP package",
         changelog: nix.thunk(() => nix.str`https://github.com/jlowin/fastmcp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/PrefectHQ/fastmcp/tree/main/fastmcp_slim",

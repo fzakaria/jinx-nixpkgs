@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["bluepy", 25, 5]], [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["optional-dependencies", 24, 3], ["nativeCheckInputs", 28, 3], ["disabledTestPaths", 30, 3], ["pythonImportsCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, bluepy: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["bluepy", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["optional-dependencies", 24, 3], ["nativeCheckInputs", 28, 3], ["disabledTestPaths", 30, 3], ["pythonImportsCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ChristianKuehnel",
           repo: "btlewrap",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-cjPj+Uw/L9kq/BbxlnOCJtaBcnf9VOJKN2NJ3cmKe6U=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, bluepy: nix.thunk(() => [bluepy]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], bluepy: nix.thunk(() => [bluepy]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTestPaths = nix.thunk(() => [
         "test/unit_tests/test_bluepy.py",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["btlewrap"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wrapper around different bluetooth low energy backends",
         homepage: "https://github.com/ChristianKuehnel/btlewrap",
         changelog: nix.thunk(() => nix.str`https://github.com/ChristianKuehnel/btlewrap/releases/tag/v${version}`),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jamiemagee"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["linux", 39, 5], ["darwin", 40, 5]], [["url", 48, 7], ["hash", 49, 7], ["stripRoot", 50, 7]], [["url", 53, 7], ["hash", 54, 7]], [["linux", 47, 5], ["darwin", 52, 5]], [["hashes", 59, 13], ["updateScript", 60, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["sourceProvenance", 69, 5], ["mainProgram", 70, 5]], [["url", 79, 7], ["hash", 80, 7]], [["type", 124, 9], ["name", 125, 9], ["desktopName", 126, 9], ["comment", 127, 9], ["exec", 128, 9], ["icon", 129, 9], ["categories", 130, 9]], [["platforms", 158, 7]], [["pname", 74, 13], ["version", 74, 19], ["passthru", 74, 27], ["src", 76, 5], ["icon", 78, 5], ["nativeBuildInputs", 83, 5], ["buildInputs", 88, 5], ["runtimeDependencies", 110, 5], ["desktopItems", 122, 5], ["preInstall", 134, 5], ["installPhase", 141, 5], ["postFixup", 152, 5], ["meta", 157, 5]], [["platforms", 186, 7]], [["pname", 163, 13], ["version", 163, 19], ["passthru", 163, 27], ["src", 165, 5], ["nativeBuildInputs", 167, 5], ["sourceRoot", 172, 5], ["installPhase", 174, 5], ["meta", 185, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchzip: false, autoPatchelfHook: false, copyDesktopItems: false, makeDesktopItem: false, nss: false, cairo: false, libxrandr: false, libxfixes: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, libxkbcommon: false, "alsa-lib": false, "at-spi2-core": false, libgbm: false, pango: false, libdrm: false, "vivaldi-ffmpeg-codecs": false, gtk3: false, libGL: false, libglvnd: false, systemd: false, patchelf: false, undmg: false, makeWrapper: false, libpulseaudio: false, pipewire: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["linux", 39, 5], ["darwin", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 48, 7], ["hash", 49, 7], ["stripRoot", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 53, 7], ["hash", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["linux", 47, 5], ["darwin", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["hashes", 59, 13], ["updateScript", 60, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["sourceProvenance", 69, 5], ["mainProgram", 70, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 79, 7], ["hash", 80, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["type", 124, 9], ["name", 125, 9], ["desktopName", 126, 9], ["comment", 127, 9], ["exec", 128, 9], ["icon", 129, 9], ["categories", 130, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["platforms", 158, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 74, 13], ["version", 74, 19], ["passthru", 74, 27], ["src", 76, 5], ["icon", 78, 5], ["nativeBuildInputs", 83, 5], ["buildInputs", 88, 5], ["runtimeDependencies", 110, 5], ["desktopItems", 122, 5], ["preInstall", 134, 5], ["installPhase", 141, 5], ["postFixup", 152, 5], ["meta", 157, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["platforms", 186, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 163, 13], ["version", 163, 19], ["passthru", 163, 27], ["src", 165, 5], ["nativeBuildInputs", 167, 5], ["sourceRoot", 172, 5], ["installPhase", 174, 5], ["meta", 185, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,31 +41,31 @@ export default nix.lambda((args) => (() => {
   const pname = "nextcloud-talk-desktop";
   const version = "2.3.2";
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     linux: "sha256-F1PIsiMd+Ve9SX31PRB9D+cbsPZzJof6Yvq70CeqCm4=",
     darwin: "sha256-0/Q6ybJFMxIguwppAwXVylyevdRqcK1xrI/dpwrFhmA=",
   }));
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     linux: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/nextcloud-releases/talk-desktop/releases/download/v${version}/Nextcloud.Talk-linux-x64.zip`),
         hash: nix.thunk(() => nix.sel(hashes, "linux")),
         stripRoot: false,
       })))),
     darwin: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://github.com/nextcloud-releases/talk-desktop/releases/download/v${version}/Nextcloud.Talk-macos-universal.dmg`),
         hash: nix.thunk(() => nix.sel(hashes, "darwin")),
       })))),
   }));
   const passthru = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     hashes: hashes,
     updateScript: nix.path(here, "./update.py"),
   }));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     description: "Nextcloud Talk Desktop Client",
     homepage: "https://github.com/nextcloud/talk-desktop",
     changelog: nix.thunk(() => nix.str`https://github.com/nextcloud/talk-desktop/blob/v${version}/CHANGELOG.md`),
@@ -89,13 +78,13 @@ export default nix.lambda((args) => (() => {
     mainProgram: "nextcloud-talk-desktop",
   }));
   const linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: pname,
       version: version,
       passthru: passthru,
       src: nix.thunk(() => nix.sel(sources, "linux")),
       icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/nextcloud/talk-desktop/refs/tags/v${version}/img/icons/icon.png`),
           hash: "sha256-DteSSuxIs0ukIJrvUO/3Mrh5F2GG5UAVvGRZUuZonkg=",
         })))),
@@ -124,7 +113,7 @@ export default nix.lambda((args) => (() => {
       runtimeDependencies: nix.thunk(() => [systemd, libpulseaudio, pipewire]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             type: "Application",
             name: "nextcloud-talk-desktop",
             desktopName: "Nextcloud Talk",
@@ -140,12 +129,12 @@ export default nix.lambda((args) => (() => {
   "$out/opt/Nextcloud Talk-linux-x64/Nextcloud Talk"
 `),
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "intersectLists"), nix.thunk(() => nix.sel(lib, "platforms", "linux")), nix.thunk(() => nix.sel(lib, "platforms", "x86_64")))),
       })),
     })));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: pname,
       version: version,
       passthru: passthru,
@@ -154,7 +143,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p $out/{Applications,bin}\nmv Nextcloud\\ Talk.app/Contents $out/Applications/\n\nmakeWrapper $out/Applications/Contents/MacOS/Nextcloud\\ Talk $out/bin/nextcloud-talk-desktop\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       })),
     })));

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 16, 5], ["rev", 17, 5], ["repo", 18, 5], ["owner", 19, 5]], [["NIX_CFLAGS_COMPILE", 35, 7]], [["homepage", 46, 35], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 24, 3], ["env", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, boost: false, curl: false, leatherman: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 16, 5], ["rev", 17, 5], ["repo", 18, 5], ["owner", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 46, 35], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 24, 3], ["env", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const leatherman = nix.arg($, "leatherman");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libwhereami",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sha256: "05fc28dri2h858kxbvldk5b6wd5is3fjcdsiqj3nxf95i66bb3xp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           repo: "libwhereami",
           owner: "puppetlabs",
         })))),
       postPatch: "substituteInPlace CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required(VERSION 3.2.2)\" \\\n  \"cmake_minimum_required(VERSION 3.10)\"\n\n# boost 1.89 removed the boost_system stub library\nsubstituteInPlace CMakeLists.txt --replace-fail \\\n  'list(APPEND BOOST_COMPONENTS filesystem regex system thread)' \\\n  'list(APPEND BOOST_COMPONENTS filesystem regex thread)'\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error" })),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [boost, curl, leatherman]),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Library to report hypervisor information from inside a VM",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

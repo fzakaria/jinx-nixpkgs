@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["NIX_CFLAGS_COMPILE", 37, 7]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["prePatch", 28, 3], ["env", 37, 3], ["makeFlags", 39, 3], ["postInstall", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, mozjpeg: false, makeWrapper: false, coreutils: false, parallel: false, findutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["prePatch", 28, 3], ["env", 37, 3], ["makeFlags", 39, 3], ["postInstall", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const parallel = nix.arg($, "parallel");
   const findutils = nix.arg($, "findutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jpeg-archive",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "danielgtaylor",
           repo: "jpeg-archive",
           rev: "8da4bf76b6c3c0e11e4941294bfc1857c119419b",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => [mozjpeg]),
       prePatch: "# allow override LIBJPEG\nsubstituteInPlace Makefile --replace 'LIBJPEG =' 'LIBJPEG ?='\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fcommon" })),
       makeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
         "PREFIX=$(out)",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
   --set PATH "$out/bin:${coreutils}/bin:${parallel}/bin:${findutils}/bin"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utilities for archiving photos for saving to long term storage or serving over the web",
         homepage: "https://github.com/danielgtaylor/jpeg-archive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

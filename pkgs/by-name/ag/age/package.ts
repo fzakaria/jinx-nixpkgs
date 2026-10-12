@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["age-plugin-fido2-hmac", 57, 7], ["age-plugin-ledger", 58, 7], ["age-plugin-se", 59, 7], ["age-plugin-sss", 60, 7], ["age-plugin-tpm", 61, 7], ["age-plugin-yubikey", 62, 7], ["age-plugin-1p", 63, 7]], [["nativeBuildInputs", 70, 59]], [["plugins", 55, 12], ["withPlugins", 68, 12], ["updateScript", 75, 12]], [["changelog", 78, 5], ["homepage", 79, 5], ["description", 80, 5], ["license", 81, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["vendorHash", 30, 3], ["ldflags", 32, 3], ["nativeBuildInputs", 38, 3], ["preInstall", 40, 3], ["nativeInstallCheckInputs", 44, 3], ["versionCheckProgramArg", 45, 3], ["doInstallCheck", 46, 3], ["checkFlags", 49, 3], ["passthru", 55, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, "age-plugin-fido2-hmac": false, "age-plugin-ledger": false, "age-plugin-se": false, "age-plugin-sss": false, "age-plugin-tpm": false, "age-plugin-yubikey": false, "age-plugin-1p": false, makeWrapper: false, runCommand: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["age-plugin-fido2-hmac", 57, 7], ["age-plugin-ledger", 58, 7], ["age-plugin-se", 59, 7], ["age-plugin-sss", 60, 7], ["age-plugin-tpm", 61, 7], ["age-plugin-yubikey", 62, 7], ["age-plugin-1p", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 70, 59]]);
-const pos$4 = nix.positions(here + "/package.nix", [["plugins", 55, 12], ["withPlugins", 68, 12], ["updateScript", 75, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 78, 5], ["homepage", 79, 5], ["description", 80, 5], ["license", 81, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["vendorHash", 30, 3], ["ldflags", 32, 3], ["nativeBuildInputs", 38, 3], ["preInstall", 40, 3], ["nativeInstallCheckInputs", 44, 3], ["versionCheckProgramArg", 45, 3], ["doInstallCheck", 46, 3], ["checkFlags", 49, 3], ["passthru", 55, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "age",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FiloSottile",
           repo: "age",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,9 +46,9 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       checkFlags: nix.thunk(() => ["-skip", "TestScript/plugin"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         plugins: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "age-plugin-fido2-hmac": age_plugin_fido2_hmac,
           "age-plugin-ledger": age_plugin_ledger,
           "age-plugin-se": age_plugin_se,
@@ -62,13 +57,13 @@ export default nix.lambda((args) => (() => {
           "age-plugin-yubikey": age_plugin_yubikey,
           "age-plugin-1p": age_plugin_1p,
         })),
-        withPlugins: (filter) => nix.app(runCommand, nix.thunk(() => nix.str`age-${nix.sel(finalAttrs, "version")}-with-plugins`), nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))}/bin/age $out/bin/age \\
+        withPlugins: (filter) => nix.app(runCommand, nix.thunk(() => nix.str`age-${nix.sel(finalAttrs, "version")}-with-plugins`), nix.thunk(() => ({ [nix.POS]: $pos[2], nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))}/bin/age $out/bin/age \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.app(filter, nix.thunk(() => nix.sel(finalAttrs, "passthru", "plugins")))))}"
 `)),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/FiloSottile/age/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://age-encryption.org/",
         description: "Modern encryption tool with small explicit keys",

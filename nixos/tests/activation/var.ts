@@ -2,25 +2,23 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/var.nix", [[["maintainers", 7, 8]], [["machine", 9, 9]], [["name", 5, 3], ["meta", 7, 3], ["nodes", 9, 3], ["testScript", 11, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/var.nix", [["maintainers", 7, 8]]);
-const pos$2 = nix.positions(here + "/var.nix", [["machine", 9, 9]]);
-const pos$3 = nix.positions(here + "/var.nix", [["name", 5, 3], ["meta", 7, 3], ["nodes", 9, 3], ["testScript", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     name: "activation-var",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
-    nodes: nix.thunk(() => ({ [nix.POS]: pos$2, machine: nix.thunk(() => ({})) })),
+    nodes: nix.thunk(() => ({ [nix.POS]: $pos[1], machine: nix.thunk(() => ({})) })),
     testScript: "assert machine.succeed(\"stat -c '%a' /var/tmp\") == \"1777\\n\"\nassert machine.succeed(\"stat -c '%a' /var/empty\") == \"555\\n\"\nassert machine.succeed(\"stat -c '%U' /var/empty\") == \"root\\n\"\nassert machine.succeed(\"stat -c '%G' /var/empty\") == \"root\\n\"\nassert \"i\" in machine.succeed(\"lsattr -d /var/empty\")\n",
   };
 })(), formals$1);

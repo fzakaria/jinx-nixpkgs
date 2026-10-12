@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["NIX_CFLAGS_COMPILE", 49, 7]], [["name", 53, 5], ["exec", 54, 5], ["icon", 55, 5], ["desktopName", 56, 5], ["genericName", 57, 5], ["categories", 58, 5], ["comment", 63, 5]], [["description", 83, 5], ["longDescription", 84, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["hardeningDisable", 43, 3], ["cmakeFlags", 46, 3], ["env", 49, 3], ["ivanDesktop", 52, 3], ["postInstall", 67, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, SDL2: false, SDL2_mixer: false, "alsa-lib": false, libpng: false, pcre: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 53, 5], ["exec", 54, 5], ["icon", 55, 5], ["desktopName", 56, 5], ["genericName", 57, 5], ["categories", 58, 5], ["comment", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 83, 5], ["longDescription", 84, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["hardeningDisable", 43, 3], ["cmakeFlags", 46, 3], ["env", 49, 3], ["ivanDesktop", 52, 3], ["postInstall", 67, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ivan";
       const version = "059-unstable-2025-02-20";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Attnam",
           repo: "ivan",
           rev: "0000b8621bb767b594802e663686d3a1da2c5060",
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
       const hardeningDisable = nix.thunk(() => ["all"]);
       const cmakeFlags = nix.thunk(() => ["-DCMAKE_CXX_FLAGS=-DWIZARD"]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2_mixer)}/include/SDL2`),
       }));
       const ivanDesktop = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: pname,
           exec: pname,
           icon: "ivan.png",
@@ -65,7 +61,7 @@ cp $src/Graphics/icons/shadowless.iconset/icon_512x512.png $out/share/icons/hico
 cp ${ivanDesktop}/share/applications/* $out/share/applications
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Graphical roguelike game",
         longDescription: "Iter Vehemens ad Necem (IVAN) is a graphical roguelike game, which currently\nruns in Windows, DOS, Linux, and OS X. It features advanced bodypart and\nmaterial handling, multi-colored lighting and, above all, deep gameplay.\n\nThis is a fan continuation of IVAN by members of Attnam.com\n",
         homepage: "https://attnam.com/",
@@ -75,7 +71,7 @@ cp ${ivanDesktop}/share/applications/* $out/share/applications
         mainProgram: "ivan",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

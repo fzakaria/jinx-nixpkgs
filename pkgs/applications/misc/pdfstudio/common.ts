@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["name", 40, 9], ["desktopName", 41, 9], ["genericName", 42, 9], ["exec", 43, 9], ["icon", 44, 9], ["comment", 45, 9], ["mimeTypes", 46, 9], ["categories", 47, 9]], [["pname", 24, 13], ["src", 24, 19], ["version", 24, 23], ["strictDeps", 25, 5], ["buildInputs", 27, 5], ["nativeBuildInputs", 32, 5], ["desktopItems", 38, 5], ["dontBuild", 51, 5], ["postPatch", 53, 5], ["installPhase", 58, 5]], [["broken", 92, 13], ["homepage", 93, 5], ["description", 94, 5], ["longDescription", 95, 5], ["sourceProvenance", 96, 5], ["license", 100, 5], ["platforms", 101, 5], ["mainProgram", 102, 5], ["maintainers", 103, 5]], [["pname", 74, 11], ["version", 74, 17], ["targetPkgs", 76, 3], ["runScript", 81, 3], ["extraInstallCommands", 84, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { pname: false, program: false, src: false, year: false, version: false, desktopName: false, longDescription: false, broken: true, buildFHSEnv: false, extraBuildInputs: true, jdk: false, stdenv: false, lib: false, dpkg: false, makeDesktopItem: false, copyDesktopItems: false, autoPatchelfHook: false, "sane-backends": false, cups: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["name", 40, 9], ["desktopName", 41, 9], ["genericName", 42, 9], ["exec", 43, 9], ["icon", 44, 9], ["comment", 45, 9], ["mimeTypes", 46, 9], ["categories", 47, 9]]);
-const pos$2 = nix.positions(here + "/common.nix", [["pname", 24, 13], ["src", 24, 19], ["version", 24, 23], ["strictDeps", 25, 5], ["buildInputs", 27, 5], ["nativeBuildInputs", 32, 5], ["desktopItems", 38, 5], ["dontBuild", 51, 5], ["postPatch", 53, 5], ["installPhase", 58, 5]]);
-const pos$3 = nix.positions(here + "/common.nix", [["broken", 92, 13], ["homepage", 93, 5], ["description", 94, 5], ["longDescription", 95, 5], ["sourceProvenance", 96, 5], ["license", 100, 5], ["platforms", 101, 5], ["mainProgram", 102, 5], ["maintainers", 103, 5]]);
-const pos$4 = nix.positions(here + "/common.nix", [["pname", 74, 11], ["version", 74, 17], ["targetPkgs", 76, 3], ["runScript", 81, 3], ["extraInstallCommands", 84, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook, dpkg, copyDesktopItems]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: nix.thunk(() => nix.str`${pname_1}`),
             desktopName: desktopName,
             genericName: "View and edit PDF files",
@@ -64,7 +61,7 @@ ln -s $out/share/${program}${year}/${program}${year} $out/bin/
 runHook postInstall
 `);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: pname_1,
         src: src_1,
         version: version_1,
@@ -78,7 +75,7 @@ runHook postInstall
       };
     })())));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       targetPkgs: (pkgs) => [cups, thisPackage],
@@ -89,7 +86,7 @@ ln -s ${thisPackage}/share/applications/*.desktop "$out/share/applications/"
 ln -s ${thisPackage}/share/pixmaps/*.png "$out/share/pixmaps/"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: broken,
         homepage: nix.thunk(() => nix.str`https://www.qoppa.com/${pname}/`),
         description: "Easy to use, full-featured PDF editing software",

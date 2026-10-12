@@ -2,25 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containers-imperative.nix", [[["maintainers", 10, 5]], [["type", 17, 9], ["description", 18, 9], ["default", 23, 9]], [["test-nix-in-container", 16, 15]], [["options", 16, 7]], [["enableContainers", 38, 12]], [["sandbox", 43, 20], ["substituters", 44, 20]], [["enable", 40, 11], ["settings", 43, 11]], [["system", 54, 75]], [["hostPlatform", 54, 23]], [["config", 56, 30]], [["foo", 56, 26]], [["nixpkgs", 54, 15], ["containers", 56, 15]], [["modules", 53, 13], ["system", 61, 13]], [["memorySize", 46, 22], ["writableStore", 47, 22], ["additionalPaths", 50, 22]], [["imports", 36, 7], ["boot", 38, 7], ["nix", 40, 7], ["virtualisation", 46, 7]], [["machine", 28, 9]], [["name", 8, 3], ["meta", 9, 3], ["imports", 14, 3], ["nodes", 28, 3], ["testScript", 82, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/containers-imperative.nix", [["maintainers", 10, 5]]);
-const pos$2 = nix.positions(here + "/containers-imperative.nix", [["type", 17, 9], ["description", 18, 9], ["default", 23, 9]]);
-const pos$3 = nix.positions(here + "/containers-imperative.nix", [["test-nix-in-container", 16, 15]]);
-const pos$4 = nix.positions(here + "/containers-imperative.nix", [["options", 16, 7]]);
 const formals$2 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/containers-imperative.nix", [["enableContainers", 38, 12]]);
-const pos$6 = nix.positions(here + "/containers-imperative.nix", [["sandbox", 43, 20], ["substituters", 44, 20]]);
-const pos$7 = nix.positions(here + "/containers-imperative.nix", [["enable", 40, 11], ["settings", 43, 11]]);
-const pos$8 = nix.positions(here + "/containers-imperative.nix", [["system", 54, 75]]);
-const pos$9 = nix.positions(here + "/containers-imperative.nix", [["hostPlatform", 54, 23]]);
-const pos$10 = nix.positions(here + "/containers-imperative.nix", [["config", 56, 30]]);
-const pos$11 = nix.positions(here + "/containers-imperative.nix", [["foo", 56, 26]]);
-const pos$12 = nix.positions(here + "/containers-imperative.nix", [["nixpkgs", 54, 15], ["containers", 56, 15]]);
-const pos$13 = nix.positions(here + "/containers-imperative.nix", [["modules", 53, 13], ["system", 61, 13]]);
-const pos$14 = nix.positions(here + "/containers-imperative.nix", [["memorySize", 46, 22], ["writableStore", 47, 22], ["additionalPaths", 50, 22]]);
-const pos$15 = nix.positions(here + "/containers-imperative.nix", [["imports", 36, 7], ["boot", 38, 7], ["nix", 40, 7], ["virtualisation", 46, 7]]);
-const pos$16 = nix.positions(here + "/containers-imperative.nix", [["machine", 28, 9]]);
-const pos$17 = nix.positions(here + "/containers-imperative.nix", [["name", 8, 3], ["meta", 9, 3], ["imports", 14, 3], ["nodes", 28, 3], ["testScript", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "containers-imperative",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "aszlig"))];
@@ -40,11 +24,11 @@ export default nix.lambda((args) => (() => {
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "test-nix-in-container": nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               description: "Whether to test nix inside the container.\nWe also run this test without daemon, in which case that won't work.\nActivated by `./containers-imperative-no-daemon.nix`.\n",
               default: true,
@@ -53,40 +37,40 @@ export default nix.lambda((args) => (() => {
       })),
     ]),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config_1 = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           imports: nix.thunk(() => [nix.path(here, "../modules/installer/cd-dvd/channel.nix")]),
-          boot: nix.thunk(() => ({ [nix.POS]: pos$5, enableContainers: true })),
+          boot: nix.thunk(() => ({ [nix.POS]: $pos[4], enableContainers: true })),
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             enable: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$6, sandbox: false, substituters: [] })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[5], sandbox: false, substituters: [] })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             memorySize: 2048n,
             writableStore: true,
             additionalPaths: nix.thunk(() => (() => {
               const emptyContainer = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/eval-config.nix")), nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   modules: nix.thunk(() => nix.app(nix.sel(lib_1, "singleton"), nix.thunk(() => ({
-                      [nix.POS]: pos$12,
+                      [nix.POS]: $pos[11],
                       nixpkgs: nix.thunk(() => ({
-                        [nix.POS]: pos$9,
+                        [nix.POS]: $pos[8],
                         hostPlatform: nix.thunk(() => (() => {
                           const from = nix.thunk(() => nix.sel(pkgs_1, "stdenv", "hostPlatform"));
-                          return { [nix.POS]: pos$8, system: nix.thunk(() => nix.attr(from, "system")) };
+                          return { [nix.POS]: $pos[7], system: nix.thunk(() => nix.attr(from, "system")) };
                         })()),
                       })),
                       containers: nix.thunk(() => ({
-                        [nix.POS]: pos$11,
-                        foo: nix.thunk(() => ({ [nix.POS]: pos$10, config: nix.thunk(() => ({})) })),
+                        [nix.POS]: $pos[10],
+                        foo: nix.thunk(() => ({ [nix.POS]: $pos[9], config: nix.thunk(() => ({})) })),
                       })),
                     })))),
                   system: null,

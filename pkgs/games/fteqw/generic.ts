@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["description", 57, 13], ["homepage", 58, 5], ["longDescription", 59, 5], ["maintainers", 66, 5], ["license", 67, 5], ["platforms", 68, 5]], [["pname", 19, 5], ["buildFlags", 20, 5], ["buildInputs", 21, 5], ["nativeBuildInputs", 22, 5], ["postFixup", 23, 5], ["version", 25, 3], ["src", 27, 3], ["makeFlags", 34, 3], ["enableParallelBuilding", 40, 3], ["postPatch", 41, 3], ["installPhase", 48, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, libopus: false, libxrandr: false, pname: false, releaseFile: true, buildFlags: false, buildInputs: false, nativeBuildInputs: true, postFixup: true, description: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/generic.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["description", 57, 13], ["homepage", 58, 5], ["longDescription", 59, 5], ["maintainers", 66, 5], ["license", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["pname", 19, 5], ["buildFlags", 20, 5], ["buildInputs", 21, 5], ["nativeBuildInputs", 22, 5], ["postFixup", 23, 5], ["version", 25, 3], ["src", 27, 3], ["makeFlags", 34, 3], ["enableParallelBuilding", 40, 3], ["postPatch", 41, 3], ["installPhase", 48, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const postFixup = nix.argOr($, "postFixup", () => "");
   const description = nix.arg($, "description");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       buildFlags: buildFlags,
       buildInputs: buildInputs,
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postFixup: postFixup,
       version: "0-unstable-2025-06-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fte-team",
           repo: "fteqw",
           rev: "41f35720eda2d1e54d039975db28f46d68a963cb",
@@ -50,7 +48,7 @@ install -Dm755 engine/release/${releaseFile} $out/bin/${pname}
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: description,
         homepage: "https://fteqw.org",
         longDescription: "FTE is a game engine baed on QuakeWorld able to\nplay games such as Quake 1, 2, 3, and Hexen 2.\nIt includes various features such as extended map\nlimits, vulkan and OpenGL renderers, a dedicated\nserver, and fteqcc, for easier QuakeC development\n",

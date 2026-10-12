@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 70, 5], ["homepage", 71, 5], ["downloadPage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["build-system", 29, 3], ["dependencies", 33, 3], ["pythonRelaxDeps", 45, 3], ["pythonRemoveDeps", 52, 3], ["pythonImportsCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["checkPhase", 61, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["downloadPage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["build-system", 29, 3], ["dependencies", 33, 3], ["pythonRelaxDeps", 45, 3], ["pythonRemoveDeps", 52, 3], ["pythonImportsCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["checkPhase", 61, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "compare50",
       version: "1.2.13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cs50",
           repo: "compare50",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +50,7 @@ ${nix.sel(python3Packages, "python", "interpreter")} -m tests
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for detecting similarity in code supporting over 300 languages",
         homepage: "https://cs50.readthedocs.io/projects/compare50/en/latest/",
         downloadPage: "https://github.com/cs50/compare50",

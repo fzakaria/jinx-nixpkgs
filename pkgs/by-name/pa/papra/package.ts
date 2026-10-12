@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs-slim", 20, 29]], [["nodejs-slim_24", 22, 25]], [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["pnpm", 37, 5], ["fetcherVersion", 38, 5], ["hash", 39, 5], ["pnpmWorkspaces", 40, 5]], [["SHARP_FORCE_GLOBAL_LIBVIPS", 60, 7], ["npm_config_nodedir", 61, 7]], [["nixos", 101, 11]], [["updateScript", 100, 5], ["tests", 101, 5]], [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["pnpmDeps", 35, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 56, 3], ["env", 60, 3], ["postPatch", 63, 3], ["buildPhase", 69, 3], ["installPhase", 78, 3], ["passthru", 99, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { makeBinaryWrapper: false, nodejs_26: false, "nodejs-slim_26": false, "node-gyp": false, fetchPnpmDeps: false, fetchFromGitHub: false, pnpm_11: false, pnpmConfigHook: false, stdenv: false, lib: false, vips: false, "pkg-config": false, python3: false, "nix-update-script": false, tsx: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs-slim", 20, 29]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nodejs-slim_24", 22, 25]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["pnpm", 37, 5], ["fetcherVersion", 38, 5], ["hash", 39, 5], ["pnpmWorkspaces", 40, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["SHARP_FORCE_GLOBAL_LIBVIPS", 60, 7], ["npm_config_nodedir", 61, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["nixos", 101, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 100, 5], ["tests", 101, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["pnpmDeps", 35, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 56, 3], ["env", 60, 3], ["postPatch", 63, 3], ["buildPhase", 69, 3], ["installPhase", 78, 3], ["passthru", 99, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,22 +23,22 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const tsx = nix.arg($, "tsx");
   const nixosTests = nix.arg($, "nixosTests");
-  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim_26 }))));
+  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], "nodejs-slim": nodejs_slim_26 }))));
   const nodejs = nodejs_26;
-  const tsx$ = nix.thunk(() => nix.app(nix.sel(tsx, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "nodejs-slim_24": nodejs_slim_26 }))));
+  const tsx$ = nix.thunk(() => nix.app(nix.sel(tsx, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], "nodejs-slim_24": nodejs_slim_26 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "papra",
       version: "26.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "papra-hq",
           repo: "papra",
           tag: nix.thunk(() => nix.str`@papra/app@${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4Kcfv6bcKM7SXTmKn0cjXjhUXEZSypSFWyr7jIP/4+E=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -65,7 +57,11 @@ export default nix.lambda((args) => (() => {
         pnpm,
       ]),
       buildInputs: nix.thunk(() => [vips]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, SHARP_FORCE_GLOBAL_LIBVIPS: 1n, npm_config_nodedir: nodejs })),
+      env: nix.thunk(() => ({
+        [nix.POS]: $pos[4],
+        SHARP_FORCE_GLOBAL_LIBVIPS: 1n,
+        npm_config_nodedir: nodejs,
+      })),
       postPatch: "substituteInPlace apps/papra-server/src/modules/app/static-assets/static-assets.routes.ts \\\n  --replace-fail \"./public\" \"$out/lib/public\" \\\n  --replace-fail \"public/index.html\" \"$out/lib/public/index.html\"\n",
       buildPhase: "runHook preBuild\n\npnpm --filter \"@papra/app-client...\" run build\npnpm --filter \"@papra/app-server...\" run build\n\nrunHook postBuild\n",
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -88,12 +84,12 @@ makeWrapper "${nix.app(nix.sel(lib, "getExe"), tsx$)}" $out/bin/papra-migrate-up
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$6, nixos: nix.thunk(() => nix.sel(nixosTests, "papra")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[5], nixos: nix.thunk(() => nix.sel(nixosTests, "papra")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Open-source document management platform designed to help you organize, secure, and archive your files effortlessly.",
         homepage: "https://papra.app/",
         changelog: "https://github.com/papra-hq/papra/releases",

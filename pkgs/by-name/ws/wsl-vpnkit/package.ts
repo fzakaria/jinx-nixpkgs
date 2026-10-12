@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["buildPhase", 21, 5]], [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["$VMEXEC_PATH", 63, 7], ["$GVPROXY_PATH", 64, 7]], [["aliases", 73, 7], ["ping", 74, 7]], [["scripts", 49, 5], ["interpreter", 50, 5], ["inputs", 51, 5], ["keep", 62, 5], ["execer", 67, 5], ["fix", 72, 5]], [["wsl-vpnkit", 48, 13]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5]], [["pname", 27, 3], ["version", 28, 11], ["src", 30, 3], ["postPatch", 37, 3], ["installPhase", 43, 3], ["solutions", 48, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, resholve: false, fetchFromGitHub: false, coreutils: false, dnsutils: false, gawk: false, gnugrep: false, gvproxy: false, iproute2: false, iptables: false, iputils: false, wget: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["buildPhase", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["$VMEXEC_PATH", 63, 7], ["$GVPROXY_PATH", 64, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["aliases", 73, 7], ["ping", 74, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["scripts", 49, 5], ["interpreter", 50, 5], ["inputs", 51, 5], ["keep", 62, 5], ["execer", 67, 5], ["fix", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["wsl-vpnkit", 48, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 11], ["src", 30, 3], ["postPatch", 37, 3], ["installPhase", 43, 3], ["solutions", 48, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,15 +21,15 @@ export default nix.lambda((args) => (() => {
   const wget = nix.arg($, "wget");
   const version = "0.4.1";
   const gvproxyWin = nix.thunk(() => nix.app(nix.sel(gvproxy, "overrideAttrs"), (_) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildPhase: "GOARCH=amd64 GOOS=windows go build -ldflags '-s -w' -o bin/gvproxy-windows.exe ./cmd/gvproxy\n",
     })));
   return nix.app(nix.sel(resholve, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "wsl-vpnkit",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "sakai135",
           repo: "wsl-vpnkit",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,26 +41,26 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "mkdir -p $out/bin\ncp wsl-vpnkit $out/bin\n",
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "wsl-vpnkit": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           scripts: nix.thunk(() => ["bin/wsl-vpnkit"]),
           interpreter: "none",
           inputs: nix.thunk(() => [coreutils, dnsutils, gawk, gnugrep, iproute2, iptables, iputils, wget]),
-          keep: nix.thunk(() => ({ [nix.POS]: pos$3, $VMEXEC_PATH: true, $GVPROXY_PATH: true })),
+          keep: nix.thunk(() => ({ [nix.POS]: $pos[2], $VMEXEC_PATH: true, $GVPROXY_PATH: true })),
           execer: nix.thunk(() => [
             nix.thunk(() => nix.str`cannot:${iproute2}/bin/ip`),
             nix.thunk(() => nix.str`cannot:${wget}/bin/wget`),
           ]),
           fix: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             aliases: true,
             ping: nix.thunk(() => nix.str`${iputils}/bin/ping`),
           })),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Provides network connectivity to Windows Subsystem for Linux (WSL) when blocked by VPN",
         homepage: "https://github.com/sakai135/wsl-vpnkit",
         changelog: nix.thunk(() => nix.str`https://github.com/sakai135/wsl-vpnkit/releases/tag/v${version}`),

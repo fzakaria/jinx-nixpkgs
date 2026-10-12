@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/outposts.nix", [[["apiGoVendorHook", 8, 43], ["vendorHash", 8, 59]], [["apiGoVendorHook", 9, 45], ["vendorHash", 9, 61]], [["apiGoVendorHook", 10, 47], ["vendorHash", 10, 63]], [["ldap", 8, 3], ["proxy", 9, 3], ["radius", 10, 3]]]);
 const formals$1 = { args: { callPackage: false, authentik: false, apiGoVendorHook: true, vendorHash: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/outposts.nix", [["apiGoVendorHook", 8, 43], ["vendorHash", 8, 59]]);
-const pos$2 = nix.positions(here + "/outposts.nix", [["apiGoVendorHook", 9, 45], ["vendorHash", 9, 61]]);
-const pos$3 = nix.positions(here + "/outposts.nix", [["apiGoVendorHook", 10, 47], ["vendorHash", 10, 63]]);
-const pos$4 = nix.positions(here + "/outposts.nix", [["ldap", 8, 3], ["proxy", 9, 3], ["radius", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const apiGoVendorHook = nix.argOr($, "apiGoVendorHook", () => nix.sel(authentik, "apiGoVendorHook"));
   const vendorHash = nix.argOr($, "vendorHash", () => nix.sel(authentik, "proxy", "vendorHash"));
   return {
-    [nix.POS]: pos$4,
-    ldap: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ldap.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, apiGoVendorHook: apiGoVendorHook, vendorHash: vendorHash })))),
-    proxy: nix.thunk(() => nix.app(callPackage, nix.path(here, "./proxy.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, apiGoVendorHook: apiGoVendorHook, vendorHash: vendorHash })))),
-    radius: nix.thunk(() => nix.app(callPackage, nix.path(here, "./radius.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, apiGoVendorHook: apiGoVendorHook, vendorHash: vendorHash })))),
+    [nix.POS]: $pos[3],
+    ldap: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ldap.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], apiGoVendorHook: apiGoVendorHook, vendorHash: vendorHash })))),
+    proxy: nix.thunk(() => nix.app(callPackage, nix.path(here, "./proxy.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], apiGoVendorHook: apiGoVendorHook, vendorHash: vendorHash })))),
+    radius: nix.thunk(() => nix.app(callPackage, nix.path(here, "./radius.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], apiGoVendorHook: apiGoVendorHook, vendorHash: vendorHash })))),
   };
 })(), formals$1);
 //# sourceMappingURL=outposts.ts.map

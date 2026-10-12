@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["hash", 36, 5]], [["NIX_CFLAGS_COMPILE", 78, 5]], [["description", 82, 5], ["homepage", 83, 5], ["maintainers", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5]], [["version", 31, 3], ["pname", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["patches", 64, 3], ["enableParallelBuilding", 66, 3], ["configureFlags", 68, 3], ["preFixup", 73, 3], ["env", 77, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, gtk3: false, itstool: false, gst_all_1: false, libxml2: false, libnotify: false, "libcanberra-gtk3": false, intltool: false, dvdauthor: false, libburn: false, libisofs: false, vcdimager: false, wrapGAppsHook3: false, "hicolor-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["maintainers", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 31, 3], ["pname", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["patches", 64, 3], ["enableParallelBuilding", 66, 3], ["configureFlags", 68, 3], ["preFixup", 73, 3], ["env", 77, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const minor = "3";
   const binpath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [dvdauthor, vcdimager])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: nix.thunk(() => nix.str`${major}.${minor}`),
       pname: "brasero",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/brasero/${major}/brasero-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-h3SerjOhQSB9GwC+IzttgEWYLtMkntS5ja4fOpdf6hU=",
         })))),
@@ -64,11 +61,11 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix PATH : "${binpath}")
 `),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Gnome CD/DVD Burner",
         homepage: "https://gitlab.gnome.org/GNOME/brasero",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bdimcheff"))]),

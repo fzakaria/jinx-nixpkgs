@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["url", 29, 5], ["sha256", 30, 5]], [["NIX_CFLAGS_COMPILE", 39, 5], ["NIX_CFLAGS_LINK", 40, 5]], [["homepage", 73, 5], ["description", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5], ["hydraPlatforms", 78, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 23, 3], ["srcData", 28, 3], ["env", 33, 3], ["preConfigure", 49, 3], ["configureFlags", 51, 3], ["buildInputs", 57, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libtheora: false, xvidcore: false, libGLU: false, libGL: false, SDL: false, SDL_ttf: false, SDL_mixer: false, curl: false, libjpeg: false, libpng: false, gettext: false, cunit: false, enableEditor: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 5], ["sha256", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 39, 5], ["NIX_CFLAGS_LINK", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 73, 5], ["description", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5], ["hydraPlatforms", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 23, 3], ["srcData", 28, 3], ["env", 33, 3], ["preConfigure", 49, 3], ["configureFlags", 51, 3], ["buildInputs", 57, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,21 +24,21 @@ export default nix.lambda((args) => (() => {
   const cunit = nix.arg($, "cunit");
   const enableEditor = nix.argOr($, "enableEditor", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ufoai",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/ufoai/ufoai-${nix.sel(finalAttrs, "version")}-source.tar.bz2`),
           sha256: "0kxrbcjrharcwz319s90m789i4my9285ihp5ax6kfhgif2vn2ji5",
         })))),
       srcData: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://sourceforge/ufoai/ufoai-${nix.sel(finalAttrs, "version")}-data.tar`),
           sha256: "1drhh08cqqkwv1yz3z4ngkplr23pqqrdx6cp8c3isy320gy25cvb",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: "-fcommon",
         NIX_CFLAGS_LINK: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lgcc_s", "-lm"]))),
       })),
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
         cunit,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://ufoai.org",
         description: "Squad-based tactical strategy game in the tradition of X-Com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

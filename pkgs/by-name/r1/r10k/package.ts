@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["command", 32, 7], ["package", 33, 7], ["version", 34, 7]], [["version", 31, 11]], [["tests", 31, 5], ["updateScript", 36, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 48, 5], ["mainProgram", 49, 5]], [["pname", 14, 3], ["gemdir", 15, 3], ["exes", 16, 3], ["nativeBuildInputs", 18, 3], ["postBuild", 20, 3], ["passthru", 30, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { bundlerApp: false, bundlerUpdateScript: false, git: false, gnutar: false, gzip: false, lib: false, makeWrapper: false, r10k: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["command", 32, 7], ["package", 33, 7], ["version", 34, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 31, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 31, 5], ["updateScript", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 48, 5], ["mainProgram", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["gemdir", 15, 3], ["exes", 16, 3], ["nativeBuildInputs", 18, 3], ["postBuild", 20, 3], ["passthru", 30, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
       const postBuild = nix.thunk(() => nix.str`wrapProgram $out/bin/r10k --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git, gnutar, gzip]))}
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), r10k)} version`),
               package: r10k,
               version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "r10k", "version")),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, pname)),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Puppet environment and module deployment",
         homepage: "https://github.com/puppetlabs/r10k",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "r10k",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         gemdir,
         exes,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 21, 5], ["license", 22, 5], ["homepage", 23, 5], ["maintainers", 24, 5], ["broken", 25, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, ocaml: false, "dune-configurator": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 21, 5], ["license", 22, 5], ["homepage", 23, 5], ["maintainers", 24, 5], ["broken", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,20 +16,20 @@ export default nix.lambda((args) => (() => {
       const pname = "vlq";
       const version = "0.2.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/flowtype/ocaml-vlq/releases/download/v${version}/vlq-v${version}.tbz`),
           sha256: "02wr9ph4q0nxmqgbc67ydf165hmrdv9b655krm2glc3ahb6larxi",
         }))));
       const buildInputs = nix.thunk(() => [dune_configurator]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Encoding variable-length quantities, in particular base64",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/flowtype/ocaml-vlq",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "nomeata"))]),
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

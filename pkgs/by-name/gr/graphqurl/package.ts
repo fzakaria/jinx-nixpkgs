@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["package", 29, 9]], [["graphqurl-version", 28, 7]], [["updateScript", 26, 5], ["tests", 27, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["mainProgram", 38, 5], ["maintainers", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["npmDepsHash", 21, 3], ["dontNpmBuild", 23, 3], ["passthru", 25, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "nix-update-script": false, testers: false, graphqurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 29, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["graphqurl-version", 28, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 26, 5], ["tests", 27, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["mainProgram", 38, 5], ["maintainers", 39, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["npmDepsHash", 21, 3], ["dontNpmBuild", 23, 3], ["passthru", 25, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "graphqurl";
       const version = "2.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hasura",
           repo: "graphqurl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,15 +26,15 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-TfKQWghcsVPPfn/a1A84sh0FT57WSnQt9uuiO1ScoAY=";
       const dontNpmBuild = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          "graphqurl-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: graphqurl })))),
+          [nix.POS]: $pos[2],
+          "graphqurl-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: graphqurl })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CLI and JS library for making GraphQL queries",
         homepage: "https://github.com/hasura/graphqurl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

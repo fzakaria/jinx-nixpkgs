@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 24, 5], ["maintainers", 25, 5]], [["pname", 7, 3], ["version", 8, 28], ["src", 8, 36], ["strictDeps", 10, 3], ["__structuredAttrs", 11, 3], ["dontBuild", 12, 3], ["installPhase", 14, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "base16-schemes": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 24, 5], ["maintainers", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 28], ["src", 8, 36], ["strictDeps", 10, 3], ["__structuredAttrs", 11, 3], ["dontBuild", 12, 3], ["installPhase", 14, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const base16_schemes = nix.arg($, "base16-schemes");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "base24-schemes",
       version: nix.thunk(() => nix.attr(base16_schemes, "version")),
       src: nix.thunk(() => nix.attr(base16_schemes, "src")),
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/themes\ninstall base24/*.yaml $out/share/themes/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(nix.sel(base16_schemes, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Base24 color schemes from Tinted Theming",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

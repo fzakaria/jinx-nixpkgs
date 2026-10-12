@@ -2,18 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pkgs", 46, 50]], [["broken", 63, 68]], [["meta", 63, 63]], [["mainProgram", 92, 12]], [["name", 71, 7], ["paths", 72, 7], ["nativeBuildInputs", 73, 7], ["buildInputs", 74, 7], ["postBuild", 76, 7], ["meta", 92, 7]], [["url", 102, 5], ["sha256", 103, 5]], [["pass", 207, 28]], [["extensions", 206, 5], ["withExtensions", 207, 5]], [["description", 211, 5], ["homepage", 212, 5], ["license", 213, 5], ["mainProgram", 214, 5], ["maintainers", 215, 5], ["platforms", 221, 5], ["longDescription", 223, 5]], [["version", 98, 3], ["pname", 99, 3], ["src", 101, 3], ["patches", 106, 3], ["nativeBuildInputs", 112, 3], ["buildInputs", 114, 3], ["installFlags", 116, 3], ["postInstall", 121, 3], ["wrapperPathPrefix", 125, 3], ["wrapperPathSuffix", 151, 3], ["postFixup", 156, 3], ["postPatch", 176, 3], ["doCheck", 199, 3], ["doInstallCheck", 201, 3], ["nativeInstallCheckInputs", 202, 3], ["installCheckTarget", 203, 3], ["passthru", 205, 3], ["meta", 210, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, pkgs: false, fetchurl: false, bash: false, buildEnv: false, coreutils: false, findutils: false, gnugrep: false, gnused: false, getopt: false, git: false, tree: false, gnupg: false, openssl: false, which: false, openssh: false, procps: false, qrencode: false, makeWrapper: false, pass: false, xclip: true, xdotool: true, dmenu: true, x11Support: true, dmenuSupport: true, waylandSupport: true, "wl-clipboard": true, ydotool: true, "dmenu-wayland": true, tombPluginSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pkgs", 46, 50]]);
 const formals$2 = { args: { pass: false, brokenExtensions: true }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 63, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["meta", 63, 63]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 92, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 71, 7], ["paths", 72, 7], ["nativeBuildInputs", 73, 7], ["buildInputs", 74, 7], ["postBuild", 76, 7], ["meta", 92, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 102, 5], ["sha256", 103, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pass", 207, 28]]);
-const pos$8 = nix.positions(here + "/package.nix", [["extensions", 206, 5], ["withExtensions", 207, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 211, 5], ["homepage", 212, 5], ["license", 213, 5], ["mainProgram", 214, 5], ["maintainers", 215, 5], ["platforms", 221, 5], ["longDescription", 223, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["version", 98, 3], ["pname", 99, 3], ["src", 101, 3], ["patches", 106, 3], ["nativeBuildInputs", 112, 3], ["buildInputs", 114, 3], ["installFlags", 116, 3], ["postInstall", 121, 3], ["wrapperPathPrefix", 125, 3], ["wrapperPathSuffix", 151, 3], ["postFixup", 156, 3], ["postPatch", 176, 3], ["doCheck", 199, 3], ["doInstallCheck", 201, 3], ["nativeInstallCheckInputs", 202, 3], ["installCheckTarget", 203, 3], ["passthru", 205, 3], ["meta", 210, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,18 +44,18 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(dmenuSupport) || nix.asBool((nix.asBool(x11Support) || nix.asBool(waylandSupport)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pa/pass/package.nix:41:1");
   nix.assert_((!nix.asBool((nix.asBool(dmenuSupport) && nix.asBool(x11Support))) || nix.asBool((nix.asBool(!nix.eq(dmenu, null)) && nix.asBool(!nix.eq(xdotool, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pa/pass/package.nix:42:1");
   nix.assert_((!nix.asBool((nix.asBool(dmenuSupport) && nix.asBool(waylandSupport))) || nix.asBool((nix.asBool(!nix.eq(dmenu_wayland, null)) && nix.asBool(!nix.eq(ydotool, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pa/pass/package.nix:43:1");
-  const passExtensions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./extensions")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs }))));
+  const passExtensions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./extensions")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
   const env = nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const pass_1 = nix.arg($_1, "pass");
       const brokenExtensions = nix.argOr($_1, "brokenExtensions", () => []);
       return (extensions) => (() => {
         const selected = nix.thunk(() => nix.concat([pass_1], nix.concat(nix.app(extensions, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (extensionName) => (extensionDerivation) => (nix.asBool(nix.app(nix.sel(lib, "lists", "elem"), extensionName, brokenExtensions)) ? nix.app(nix.sel(extensionDerivation, "overrideAttrs"), (prev) => (final) => ({
-                [nix.POS]: pos$3,
-                meta: nix.thunk(() => ({ [nix.POS]: pos$2, broken: true })),
+                [nix.POS]: $pos[2],
+                meta: nix.thunk(() => ({ [nix.POS]: $pos[1], broken: true })),
               })) : nix.force(extensionDerivation)), passExtensions))), nix.app(nix.sel(lib, "optional"), tombPluginSupport, nix.thunk(() => nix.sel(passExtensions, "tomb"))))));
         return nix.app(buildEnv, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: nix.thunk(() => nix.str`${nix.sel(pass_1, "meta", "mainProgram")}-env`),
             paths: selected,
             nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -85,7 +76,7 @@ wrapProgram $out/bin/${nix.sel(pass_1, "meta", "mainProgram")} \\
   --set SYSTEM_EXTENSION_DIR "$out/lib/password-store/extensions"
 `),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               mainProgram: nix.thunk(() => nix.sel(pass_1, "meta", "mainProgram")),
             })),
           })));
@@ -95,7 +86,7 @@ wrapProgram $out/bin/${nix.sel(pass_1, "meta", "mainProgram")} \\
       const version = "1.7.4";
       const pname = "password-store";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: nix.thunk(() => nix.str`https://git.zx2c4.com/password-store/snapshot/${pname}-${version}.tar.xz`),
           sha256: "1h4k6w7g8pr169p5w9n6mkdhxl3pw51zphx7www6pvgjb7vgmafg",
         }))));
@@ -150,12 +141,12 @@ sed -i -e 's@^PASS=.*$@PASS=$out/bin/pass@' \\
       const nativeInstallCheckInputs = nix.thunk(() => [git]);
       const installCheckTarget = "test";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         extensions: passExtensions,
-        withExtensions: nix.thunk(() => nix.app(env, nix.thunk(() => ({ [nix.POS]: pos$7, pass: pass })))),
+        withExtensions: nix.thunk(() => nix.app(env, nix.thunk(() => ({ [nix.POS]: $pos[6], pass: pass })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Stores, retrieves, generates, and synchronizes passwords securely",
         homepage: "https://www.passwordstore.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -173,7 +164,7 @@ sed -i -e 's@^PASS=.*$@PASS=$out/bin/pass@' \\
         longDescription: "pass is a very simple password store that keeps passwords inside gpg2\nencrypted files inside a simple directory tree residing at\n~/.password-store. The pass utility provides a series of commands for\nmanipulating the password store, allowing the user to add, remove, edit,\nsynchronize, generate, and manipulate passwords.\n",
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         version,
         pname,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["sha256", 45, 5]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["broken", 63, 5]], [["pname", 11, 3], ["version", 12, 3], ["preConfigure", 14, 3], ["enableParallelBuilding", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["makeFlags", 27, 3], ["doInstallCheck", 33, 3], ["installFlags", 35, 3], ["src", 41, 3], ["postInstall", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, numactl: false, "pkg-config": false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["sha256", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["broken", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["preConfigure", 14, 3], ["enableParallelBuilding", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["makeFlags", 27, 3], ["doInstallCheck", 33, 3], ["installFlags", 35, 3], ["src", 41, 3], ["postInstall", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libpsm2",
       version: "12.0.1",
       preConfigure: "export UDEVDIR=$out/etc/udev\nsubstituteInPlace ./Makefile --replace \"udevrulesdir}\" \"prefix}/etc/udev\";\n",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installFlags: nix.thunk(() => ["DESTDIR=$(out)", "UDEVDIR=/etc/udev", "LIBPSM2_COMPAT_CONF_DIR=/etc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cornelisnetworks",
           repo: "opa-psm2",
           rev: nix.thunk(() => nix.str`PSM2_${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postInstall: "mv $out/usr/* $out\nrmdir $out/usr\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/cornelisnetworks/opa-psm2",
         description: "PSM2 library supports a number of fabric media and stacks",
         license: nix.thunk(() => (() => {

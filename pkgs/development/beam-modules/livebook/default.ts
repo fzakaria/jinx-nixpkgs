@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["pname", 36, 5], ["src", 37, 13], ["version", 37, 17], ["hash", 38, 5]], [["pname", 42, 5], ["src", 43, 13], ["version", 43, 17], ["nativeBuildInputs", 44, 5], ["dontBuild", 48, 5], ["dontFixup", 49, 5], ["installPhase", 50, 5], ["outputHashMode", 70, 5], ["outputHashAlgo", 71, 5], ["outputHash", 72, 5]], [["livebook-service", 120, 7]], [["updateScript", 118, 5], ["tests", 119, 5]], [["license", 125, 5], ["homepage", 126, 5], ["description", 127, 5], ["mainProgram", 128, 5], ["maintainers", 129, 5], ["platforms", 133, 5], ["teams", 134, 5]], [["pname", 17, 3], ["version", 18, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 22, 3], ["src", 28, 3], ["mixFodDeps", 35, 3], ["node_modules", 41, 3], ["postPatch", 75, 3], ["preBuild", 82, 3], ["postInstall", 93, 3], ["nativeInstallCheckInputs", 109, 3], ["versionCheckProgramArg", 113, 3], ["versionCheckKeepEnvironment", 114, 3], ["doInstallCheck", 115, 3], ["passthru", 117, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, fetchFromGitHub: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, bun: false, beamPackages: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 36, 5], ["src", 37, 13], ["version", 37, 17], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 42, 5], ["src", 43, 13], ["version", 43, 17], ["nativeBuildInputs", 44, 5], ["dontBuild", 48, 5], ["dontFixup", 49, 5], ["installPhase", 50, 5], ["outputHashMode", 70, 5], ["outputHashAlgo", 71, 5], ["outputHash", 72, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["livebook-service", 120, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 118, 5], ["tests", 119, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["license", 125, 5], ["homepage", 126, 5], ["description", 127, 5], ["mainProgram", 128, 5], ["maintainers", 129, 5], ["platforms", 133, 5], ["teams", 134, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 22, 3], ["src", 28, 3], ["mixFodDeps", 35, 3], ["node_modules", 41, 3], ["postPatch", 75, 3], ["preBuild", 82, 3], ["postInstall", 93, 3], ["nativeInstallCheckInputs", 109, 3], ["versionCheckProgramArg", 113, 3], ["versionCheckKeepEnvironment", 114, 3], ["doInstallCheck", 115, 3], ["passthru", 117, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,21 +23,21 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(beamPackages, "erlang"))]);
       const nativeBuildInputs = nix.thunk(() => [bun, makeWrapper, writableTmpDirAsHomeHook]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "livebook-dev",
           repo: "livebook",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-VpYxsbfQl5sS4G1iqD/gkEohqlwiFi/Wyj8kiG0Pc4I=",
         }))));
       const mixFodDeps = nix.thunk(() => nix.app(nix.sel(beamPackages, "fetchMixDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.str`mix-deps-${pname}`),
           src: src,
           version: version,
           hash: "sha256-T74RmUORPdNibxdl+bRGyYyOdnKs1TyjtdutLtfLNLM=",
         }))));
       const node_modules = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.str`${pname}-node_modules`),
           src: src,
           version: version,
@@ -83,15 +77,15 @@ wrapProgram $out/bin/server \\
       const versionCheckKeepEnvironment = nix.thunk(() => ["HOME"]);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "livebook-service": nix.thunk(() => nix.sel(nixosTests, "livebook-service")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://livebook.dev/",
         description: "Automate code & data workflows with interactive Elixir notebooks",
@@ -110,7 +104,7 @@ wrapProgram $out/bin/server \\
         ]),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         buildInputs,

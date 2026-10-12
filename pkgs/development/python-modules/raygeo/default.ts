@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]], [["pname", 27, 13], ["version", 27, 19], ["src", 27, 27], ["hash", 28, 5]], [["fontDirectories", 50, 41]], [["FONTCONFIG_FILE", 50, 7]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["cargoDeps", 26, 3], ["nativeBuildInputs", 31, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 43, 3], ["env", 50, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, cargo: false, rustc: false, rustPlatform: false, msgpack: false, numpy: false, dejavu_fonts: false, makeFontsConf: false, pycairo: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 27, 13], ["version", 27, 19], ["src", 27, 27], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["fontDirectories", 50, 41]]);
-const pos$4 = nix.positions(here + "/default.nix", [["FONTCONFIG_FILE", 50, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["cargoDeps", 26, 3], ["nativeBuildInputs", 31, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 43, 3], ["env", 50, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +24,13 @@ export default nix.lambda((args) => (() => {
       const version = "1.53.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-J+K+dj+72RLkV2DQgbGMQanf23HdQnHfBYkTRnC9F5w=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -50,12 +45,12 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [msgpack, numpy]);
       const nativeCheckInputs = nix.thunk(() => [pycairo, pytestCheckHook]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$3, fontDirectories: nix.thunk(() => [dejavu_fonts]) })))),
+        [nix.POS]: $pos[3],
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[2], fontDirectories: nix.thunk(() => [dejavu_fonts]) })))),
       }));
       const pythonImportsCheck = nix.thunk(() => ["raygeo"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "High-performance 2D/3D geometry library backed by Rust",
         homepage: "https://github.com/barebaric/raygeo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -65,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["url", 29, 7], ["sha256", 30, 7], ["excludes", 33, 7]], [["url", 38, 7], ["sha256", 39, 7]], [["url", 42, 7], ["sha256", 43, 7]], [["url", 46, 7], ["sha256", 47, 7]], [["url", 50, 7], ["sha256", 51, 7]], [["url", 55, 7], ["hash", 56, 7]], [["nixos-etc", 87, 7]], [["tests", 85, 5]], [["homepage", 96, 5], ["description", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 27, 3], ["postPatch", 60, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 74, 3], ["configureFlags", 79, 3], ["passthru", 84, 3], ["preFixup", 91, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, bash: false, buildPackages: false, coreutils: false, nixosTests: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["sha256", 30, 7], ["excludes", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 38, 7], ["sha256", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 42, 7], ["sha256", 43, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 46, 7], ["sha256", 47, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 50, 7], ["sha256", 51, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 55, 7], ["hash", 56, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["nixos-etc", 87, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["tests", 85, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["homepage", 96, 5], ["description", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 27, 3], ["postPatch", 60, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 74, 3], ["configureFlags", 79, 3], ["passthru", 84, 3], ["preFixup", 91, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "fakechroot",
       version: "2.20.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dex4er",
           repo: "fakechroot",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,33 +30,33 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/dex4er/fakechroot/pull/46/commits/dcc0cfe3941e328538f9e62b2c0b15430d393ec1.patch",
             sha256: "1mk8j2njd94s7vf2wggi08xxxzx8dxrvdricl9cbspvkyp715w2m",
             excludes: nix.thunk(() => ["NEWS.md"]),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/dex4er/fakechroot/commit/534e6d555736b97211523970d378dfb0db2608e9.patch",
             sha256: "sha256-bUlGJZvOSrATPt8bxGqU1UETTUD9V/HhJyA5ZxsOLQU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/dex4er/fakechroot/commit/75d7e6fa191c11a791faff06a0de86eaa7801d05.patch",
             sha256: "sha256-vWN7zFkKlBd/F+h/66z21RiZqkSCn3UIzy9NHV7TYDg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/dex4er/fakechroot/commit/693a3597ea7fccfb62f357503ff177bd3e3d5a89.patch",
             sha256: "sha256-bFXsT0hWocJFbtS1cpzo7oIy/x66iUw6QE1/cEoZ+3k=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://github.com/dex4er/fakechroot/commit/e7c1f3a446e594a4d0cce5f5d499c9439ce1d5c5.patch",
             sha256: "sha256-eX6kB4U1ZlXoRtkSVEIBTRjO/cTS/7z5a9S366DiRMg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://github.com/dex4er/fakechroot/pull/115/commits/15479d9436b534cee0115064bd8deb8d4ece9b8c.patch",
             hash: "sha256-wMIZ3hW5XkRXQYBMADlN6kxhDSiEr84PGWBW+f4b4Ko=",
           })))),
@@ -87,15 +77,15 @@ done
         nix.thunk(() => nix.str`ac_cv_path_POD2MAN=${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(buildPackages, "perl")), "pod2man")}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           "nixos-etc": nix.thunk(() => nix.sel(nixosTests, "etc", "test-etc-fakeroot")),
         })),
       })),
       preFixup: "patchShebangs --host $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         homepage: "https://github.com/dex4er/fakechroot",
         description: "Give a fake chroot environment through LD_PRELOAD",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

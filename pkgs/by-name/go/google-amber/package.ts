@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]], [["owner", 59, 5], ["repo", 60, 5], ["rev", 61, 5], ["hash", 62, 5]], [["nativeBuildInputs", 111, 9]], [["lavapipe", 108, 18]], [["tests", 108, 12]], [["description", 158, 5], ["homepage", 159, 5], ["license", 160, 5], ["maintainers", 161, 5]], [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["buildInputs", 65, 3], ["nativeBuildInputs", 70, 3], ["cmakeFlags", 81, 3], ["prePatch", 86, 3], ["installPhase", 98, 3], ["passthru", 108, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, cctools: false, makeWrapper: false, mesa: false, python3: false, runCommand: false, "vulkan-headers": false, "vulkan-loader": false, "vulkan-validation-layers": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 59, 5], ["repo", 60, 5], ["rev", 61, 5], ["hash", 62, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 111, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["lavapipe", 108, 18]]);
-const pos$9 = nix.positions(here + "/package.nix", [["tests", 108, 12]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 158, 5], ["homepage", 159, 5], ["license", 160, 5], ["maintainers", 161, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["buildInputs", 65, 3], ["nativeBuildInputs", 70, 3], ["cmakeFlags", 81, 3], ["prePatch", 86, 3], ["installPhase", 98, 3], ["passthru", 108, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,46 +21,46 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const vulkan_validation_layers = nix.arg($, "vulkan-validation-layers");
   const glslang = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "KhronosGroup",
       repo: "glslang",
       rev: "340bf88f3fdb4f4a25b7071cd2c1205035fc6eaa",
       hash: "sha256-3h27yE6k4BgUAugQCkpUYO5aIHpK6Anyh90y3q+aYpM=",
     }))));
   const lodepng = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "lvandeve",
       repo: "lodepng",
       rev: "5601b8272a6850b7c5d693dd0c0e16da50be8d8d",
       hash: "sha256-dD8QoyOoGov6VENFNTXWRmen4nYYleoZ8+4TpICNSpo=",
     }))));
   const shaderc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "google",
       repo: "shaderc",
       rev: "690d259384193c90c01b52288e280b05a8481121",
       hash: "sha256-p4tP/8lRy0tpdDHIuh2/tWPIBBr2ludFRSr+Q2TbUic=",
     }))));
   const spirv_headers = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "KhronosGroup",
       repo: "SPIRV-Headers",
       rev: "babee77020ff82b571d723ce2c0262e2ec0ee3f1",
       hash: "sha256-GWcNNw08XoKaZs/BTW9nPAEMHL8wqbhbUm56PUtEan4=",
     }))));
   const spirv_tools = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       owner: "KhronosGroup",
       repo: "SPIRV-Tools",
       rev: "4c1ae3cd6f9076271cd64acde8cbef1d1287f27f",
       hash: "sha256-x7OXe0q9ml8PIxWyTEx3j3tvSgIPp8kg5HwlLWIzNuk=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "amber",
       version: "0-unstable-2026-04-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           owner: "google",
           repo: "amber",
           rev: "fc02f9bad7ddaf5ca685ad01c3a0668d19910fbf",
@@ -98,11 +88,11 @@ wrapProgram $out/bin/amber \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           lavapipe: nix.thunk(() => nix.app(runCommand, "vulkan-cts-tests-lavapipe", nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 nix.thunk(() => nix.sel(mesa, "llvmpipeHook")),
@@ -111,7 +101,7 @@ runHook postInstall
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Multi-API shader test framework",
         homepage: "https://github.com/google/amber",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["fetchSubmodules", 53, 5], ["hash", 54, 5]], [["qt6libexec", 59, 7]], [["cvode", 62, 31]], [["owner", 153, 11], ["repo", 154, 11], ["tag", 155, 11], ["hash", 156, 11]], [["BUILD_CVODE", 171, 13], ["BUILD_CVODES", 173, 13], ["BUILD_ARKODE", 174, 13], ["BUILD_IDA", 175, 13], ["BUILD_IDAS", 176, 13], ["BUILD_KINSOL", 177, 13], ["BUILD_SHARED_LIBS", 179, 13]], [["version", 151, 9], ["src", 152, 9], ["postPatch", 160, 9], ["cmakeFlags", 167, 9], ["postFixup", 184, 9]], [["isILP64", 194, 18]], [["lapackSupport", 193, 11], ["lapack", 194, 11], ["blas", 195, 11], ["kluSupport", 196, 11]], [["simulate-reference-fmus", 204, 11]], [["cvode", 148, 5], ["tests", 204, 5]], [["broken", 223, 5], ["description", 224, 5], ["homepage", 225, 5], ["license", 226, 5], ["maintainers", 227, 5], ["platforms", 232, 5], ["mainProgram", 233, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 49, 3], ["patches", 57, 3], ["postPatch", 74, 3], ["nativeBuildInputs", 79, 3], ["build-system", 83, 3], ["dependencies", 87, 3], ["dontUseCmakeConfigure", 99, 3], ["dontUseCmakeBuildDir", 100, 3], ["preBuild", 106, 3], ["pythonImportsCheck", 128, 3], ["nativeCheckInputs", 141, 3], ["passthru", 145, 3], ["meta", 219, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, qt6: false, fmpy: false, replaceVars: false, cmake: false, hatchling: false, attrs: false, jinja2: false, lark: false, lxml: false, msgpack: false, nbformat: false, numpy: false, pyside6: false, rpclib: false, versionCheckHook: false, sundials: false, lapack: false, runCommand: false, "fmi-reference-fmus": false, enableRemoting: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["fetchSubmodules", 53, 5], ["hash", 54, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["qt6libexec", 59, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cvode", 62, 31]]);
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 153, 11], ["repo", 154, 11], ["tag", 155, 11], ["hash", 156, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["BUILD_CVODE", 171, 13], ["BUILD_CVODES", 173, 13], ["BUILD_ARKODE", 174, 13], ["BUILD_IDA", 175, 13], ["BUILD_IDAS", 176, 13], ["BUILD_KINSOL", 177, 13], ["BUILD_SHARED_LIBS", 179, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 151, 9], ["src", 152, 9], ["postPatch", 160, 9], ["cmakeFlags", 167, 9], ["postFixup", 184, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["isILP64", 194, 18]]);
-const pos$8 = nix.positions(here + "/default.nix", [["lapackSupport", 193, 11], ["lapack", 194, 11], ["blas", 195, 11], ["kluSupport", 196, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["simulate-reference-fmus", 204, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["cvode", 148, 5], ["tests", 204, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["broken", 223, 5], ["description", 224, 5], ["homepage", 225, 5], ["license", 226, 5], ["maintainers", 227, 5], ["platforms", 232, 5], ["mainProgram", 233, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 49, 3], ["patches", 57, 3], ["postPatch", 74, 3], ["nativeBuildInputs", 79, 3], ["build-system", 83, 3], ["dependencies", 87, 3], ["dontUseCmakeConfigure", 99, 3], ["dontUseCmakeBuildDir", 100, 3], ["preBuild", 106, 3], ["pythonImportsCheck", 128, 3], ["nativeCheckInputs", 141, 3], ["passthru", 145, 3], ["meta", 219, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.27";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CATIA-Systems",
           repo: "FMPy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -56,12 +45,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-gui-override-Qt6-libexec-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             qt6libexec: nix.thunk(() => nix.str`${nix.sel(qt6, "qtbase")}/libexec/`),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-sundials-override-shared-object-paths.patch"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(fmpy, "passthru"));
-            return { [nix.POS]: pos$3, cvode: nix.thunk(() => nix.attr(from, "cvode")) };
+            return { [nix.POS]: $pos[2], cvode: nix.thunk(() => nix.attr(from, "cvode")) };
           })()))),
         nix.path(here, "./0003-remoting-client-create-lockfile-with-explicit-r-w.patch"),
       ]);
@@ -92,11 +81,11 @@ cmake --build remoting/linux64 --config Release
       ]);
       const nativeCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         cvode: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(sundials, "overrideAttrs"), (prev) => (() => {
             const version_1 = "5.3.0";
             const src_1 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 owner: "LLNL",
                 repo: "sundials",
                 tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -104,7 +93,7 @@ cmake --build remoting/linux64 --config Release
               }))));
             const postPatch_1 = "substituteInPlace config/SundialsPOSIXTimers.cmake \\\n  --replace-fail \\\n    \"CMAKE_MINIMUM_REQUIRED(VERSION 3.0.2)\" \\\n    \"CMAKE_MINIMUM_REQUIRED(VERSION 3.10)\"\n";
             const cmakeFlags = nix.thunk(() => nix.concat(nix.sel(prev, "cmakeFlags"), nix.app(nix.sel(lib, "mapAttrsToList"), (option) => (enable) => nix.app(nix.sel(lib, "cmakeBool"), option, enable), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 BUILD_CVODE: true,
                 BUILD_CVODES: false,
                 BUILD_ARKODE: false,
@@ -115,7 +104,7 @@ cmake --build remoting/linux64 --config Release
               })))));
             const postFixup = "pushd $out/lib\nfor so in *.so; do\n  ln --verbose --symbolic $so ${so#lib}\ndone\npopd\n";
             return {
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               version: version_1,
               src: src_1,
               postPatch: postPatch_1,
@@ -123,17 +112,17 @@ cmake --build remoting/linux64 --config Release
               postFixup,
             };
           })()), "override"), nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             lapackSupport: false,
             lapack: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               isILP64: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is64bit")),
             })),
             blas: lapack,
             kluSupport: false,
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           "simulate-reference-fmus": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-simulate-reference-fmus`), nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 # NB(find ! -name): Clocks.fmu is marked TODO upstream and is of a
 # FMI type that FMPy doesn't support currently (ModelExchange)
@@ -149,7 +138,7 @@ done
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Simulate Functional Mockup Units (FMUs) in Python",
         homepage: "https://github.com/CATIA-Systems/FMPy",
@@ -162,7 +151,7 @@ done
         mainProgram: "fmpy",
       }));
       return {
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname,
         version,
         pyproject,

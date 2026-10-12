@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["vm", 72, 11]], [["rev-prefix", 73, 33]], [["tests", 72, 5], ["updateScript", 73, 5]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 82, 5], ["mainProgram", 83, 5], ["teams", 84, 5], ["platforms", 85, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["cmakeFlags", 56, 3], ["doCheck", 62, 3], ["postInstall", 64, 3], ["passthru", 71, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, nixosTests: false, cmake: false, gettext: false, "lomiri-ui-toolkit": false, "pkg-config": false, "qqc2-suru-style": false, qtbase: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["vm", 72, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev-prefix", 73, 33]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 72, 5], ["updateScript", 73, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 82, 5], ["mainProgram", 83, 5], ["teams", 84, 5], ["platforms", 85, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["cmakeFlags", 56, 3], ["doCheck", 62, 3], ["postInstall", 64, 3], ["passthru", 71, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lomiri-calculator-app",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/apps/lomiri-calculator-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,15 +41,15 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "mkdir -p $out/share/{icons/hicolor/scalable/apps,lomiri-app-launch/splash}\n\nln -s $out/share/{lomiri-calculator-app,icons/hicolor/scalable/apps}/lomiri-calculator-app.svg\nln -s $out/share/{lomiri-calculator-app/lomiri-calculator-app-splash.svg,lomiri-app-launch/splash/lomiri-calculator-app.svg}\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           vm: nix.thunk(() => nix.sel(nixosTests, "lomiri-calculator-app")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Powerful and easy to use calculator for Ubuntu Touch, with calculations history and formula validation",
         homepage: "https://gitlab.com/ubports/development/apps/lomiri-calculator-app",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/apps/lomiri-calculator-app/-/blob/${(nix.asBool(!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(finalAttrs, "src", "tag"))))) ? nix.sel(finalAttrs, "src", "tag") : nix.sel(finalAttrs, "src", "rev"))}/ChangeLog`),

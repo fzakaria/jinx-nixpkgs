@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["description", 28, 5], ["homepage", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["mainProgram", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["__darwinAllowLocalNetworking", 18, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["mainProgram", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["__darwinAllowLocalNetworking", 18, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gobuster";
       const version = "3.8.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OJ",
           repo: "gobuster",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-rTN8omPTfSVfp/ythGWxVyq6rR7tJCN2znwMGixiw90=";
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool used to brute-force URIs, DNS subdomains, Virtual Host names on target web servers",
         homepage: "https://github.com/OJ/gobuster",
         changelog: nix.thunk(() => nix.str`https://github.com/OJ/gobuster/releases/tag/${nix.sel(src, "tag")}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gobuster",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

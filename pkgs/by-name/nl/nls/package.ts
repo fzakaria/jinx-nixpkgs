@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 15, 7], ["changelog", 16, 7], ["license", 17, 7], ["maintainers", 18, 7], ["description", 20, 5], ["mainProgram", 21, 5], ["longDescription", 22, 5]], [["name", 7, 3], ["pname", 8, 3], ["version", 9, 20], ["paths", 11, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { symlinkJoin: false, nickel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 15, 7], ["changelog", 16, 7], ["license", 17, 7], ["maintainers", 18, 7], ["description", 20, 5], ["mainProgram", 21, 5], ["longDescription", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 7, 3], ["pname", 8, 3], ["version", 9, 20], ["paths", 11, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const nickel = nix.arg($, "nickel");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`nls-${nix.sel(nickel, "version")}`),
       pname: "nls",
       version: nix.thunk(() => nix.attr(nickel, "version")),
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nickel, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         license: nix.thunk(() => nix.attr(from, "license")),

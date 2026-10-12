@@ -2,32 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sssd-ldap.nix", [[["maintainers", 18, 7]], [["makeHomeDir", 27, 44]], [["systemd-user", 27, 31]], [["services", 27, 22]], [["pam", 27, 18]], [["text", 28, 36]], [["text", 29, 35]], [["cert.pem", 28, 25], ["key.pem", 29, 25]], [["etc", 28, 21]], [["olcTLSCACertificateFile", 38, 15], ["olcTLSCertificateFile", 39, 15], ["olcTLSCertificateKeyFile", 40, 15], ["olcTLSCipherSuite", 41, 15], ["olcTLSCRLCheck", 42, 15], ["olcTLSVerifyClient", 43, 15], ["olcTLSProtocolMin", 44, 15]], [["includes", 47, 27]], [["objectClass", 55, 19], ["olcDatabase", 59, 19], ["olcDbDirectory", 60, 19], ["olcSuffix", 61, 19], ["olcRootDN", 62, 19], ["olcRootPW", 63, 19], ["olcAccess", 64, 19]], [["attrs", 54, 17]], [["cn=schema", 47, 15], ["olcDatabase={1}mdb", 53, 15]], [["attrs", 37, 13], ["children", 46, 13]], [["enable", 31, 11], ["urlList", 32, 11], ["settings", 36, 11], ["declarativeContents", 81, 11]], [["config_file_version", 117, 15], ["services", 118, 15], ["domains", 119, 15]], [["auth_provider", 123, 15], ["id_provider", 124, 15], ["ldap_uri", 125, 15], ["ldap_tls_reqcert", 126, 15], ["ldap_tls_cacert", 127, 15], ["ldap_search_base", 128, 15], ["ldap_default_bind_dn", 129, 15], ["ldap_default_authtok_type", 130, 15], ["ldap_default_authtok", 131, 15]], [["sssd", 116, 13]], [["enable", 112, 11], ["environmentFile", 114, 11], ["settings", 115, 11]], [["openldap", 30, 18], ["sssd", 111, 18]], [["security", 27, 9], ["environment", 28, 9], ["services", 30, 9]], [["machine", 24, 11]], [["name", 15, 5], ["meta", 17, 5], ["nodes", 24, 5], ["testScript", 137, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sssd-ldap.nix", [["maintainers", 18, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/sssd-ldap.nix", [["makeHomeDir", 27, 44]]);
-const pos$3 = nix.positions(here + "/sssd-ldap.nix", [["systemd-user", 27, 31]]);
-const pos$4 = nix.positions(here + "/sssd-ldap.nix", [["services", 27, 22]]);
-const pos$5 = nix.positions(here + "/sssd-ldap.nix", [["pam", 27, 18]]);
-const pos$6 = nix.positions(here + "/sssd-ldap.nix", [["text", 28, 36]]);
-const pos$7 = nix.positions(here + "/sssd-ldap.nix", [["text", 29, 35]]);
-const pos$8 = nix.positions(here + "/sssd-ldap.nix", [["cert.pem", 28, 25], ["key.pem", 29, 25]]);
-const pos$9 = nix.positions(here + "/sssd-ldap.nix", [["etc", 28, 21]]);
-const pos$10 = nix.positions(here + "/sssd-ldap.nix", [["olcTLSCACertificateFile", 38, 15], ["olcTLSCertificateFile", 39, 15], ["olcTLSCertificateKeyFile", 40, 15], ["olcTLSCipherSuite", 41, 15], ["olcTLSCRLCheck", 42, 15], ["olcTLSVerifyClient", 43, 15], ["olcTLSProtocolMin", 44, 15]]);
-const pos$11 = nix.positions(here + "/sssd-ldap.nix", [["includes", 47, 27]]);
-const pos$12 = nix.positions(here + "/sssd-ldap.nix", [["objectClass", 55, 19], ["olcDatabase", 59, 19], ["olcDbDirectory", 60, 19], ["olcSuffix", 61, 19], ["olcRootDN", 62, 19], ["olcRootPW", 63, 19], ["olcAccess", 64, 19]]);
-const pos$13 = nix.positions(here + "/sssd-ldap.nix", [["attrs", 54, 17]]);
-const pos$14 = nix.positions(here + "/sssd-ldap.nix", [["cn=schema", 47, 15], ["olcDatabase={1}mdb", 53, 15]]);
-const pos$15 = nix.positions(here + "/sssd-ldap.nix", [["attrs", 37, 13], ["children", 46, 13]]);
-const pos$16 = nix.positions(here + "/sssd-ldap.nix", [["enable", 31, 11], ["urlList", 32, 11], ["settings", 36, 11], ["declarativeContents", 81, 11]]);
-const pos$17 = nix.positions(here + "/sssd-ldap.nix", [["config_file_version", 117, 15], ["services", 118, 15], ["domains", 119, 15]]);
-const pos$18 = nix.positions(here + "/sssd-ldap.nix", [["auth_provider", 123, 15], ["id_provider", 124, 15], ["ldap_uri", 125, 15], ["ldap_tls_reqcert", 126, 15], ["ldap_tls_cacert", 127, 15], ["ldap_search_base", 128, 15], ["ldap_default_bind_dn", 129, 15], ["ldap_default_authtok_type", 130, 15], ["ldap_default_authtok", 131, 15]]);
-const pos$19 = nix.positions(here + "/sssd-ldap.nix", [["sssd", 116, 13]]);
-const pos$20 = nix.positions(here + "/sssd-ldap.nix", [["enable", 112, 11], ["environmentFile", 114, 11], ["settings", 115, 11]]);
-const pos$21 = nix.positions(here + "/sssd-ldap.nix", [["openldap", 30, 18], ["sssd", 111, 18]]);
-const pos$22 = nix.positions(here + "/sssd-ldap.nix", [["security", 27, 9], ["environment", 28, 9], ["services", 30, 9]]);
-const pos$23 = nix.positions(here + "/sssd-ldap.nix", [["machine", 24, 11]]);
-const pos$24 = nix.positions(here + "/sssd-ldap.nix", [["name", 15, 5], ["meta", 17, 5], ["nodes", 24, 5], ["testScript", 137, 5]]);
 
 export default nix.thunk(() => (() => {
   const dbDomain = "example.org";
@@ -41,12 +18,12 @@ export default nix.thunk(() => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         name: "sssd-ldap",
         meta: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
           return {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             maintainers: nix.thunk(() => [
               nix.thunk(() => nix.lookup(w, "bbigras")),
               nix.thunk(() => nix.lookup(w, "s1341")),
@@ -54,46 +31,46 @@ export default nix.thunk(() => (() => {
           };
         })()),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               security: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 pam: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$3,
-                    "systemd-user": nix.thunk(() => ({ [nix.POS]: pos$2, makeHomeDir: true })),
+                    [nix.POS]: $pos[2],
+                    "systemd-user": nix.thunk(() => ({ [nix.POS]: $pos[1], makeHomeDir: true })),
                   })),
                 })),
               })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 etc: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   "cert.pem": nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./common/acme/server/acme.test.cert.pem"))),
                   })),
                   "key.pem": nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./common/acme/server/acme.test.key.pem"))),
                   })),
                 })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 openldap: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   enable: true,
                   urlList: nix.thunk(() => ["ldap:///", "ldaps:///"]),
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     attrs: nix.thunk(() => ({
-                      [nix.POS]: pos$10,
+                      [nix.POS]: $pos[9],
                       olcTLSCACertificateFile: "/etc/cert.pem",
                       olcTLSCertificateFile: "/etc/cert.pem",
                       olcTLSCertificateKeyFile: "/etc/key.pem",
@@ -103,9 +80,9 @@ export default nix.thunk(() => (() => {
                       olcTLSProtocolMin: "3.1",
                     })),
                     children: nix.thunk(() => ({
-                      [nix.POS]: pos$14,
+                      [nix.POS]: $pos[13],
                       "cn=schema": nix.thunk(() => ({
-                        [nix.POS]: pos$11,
+                        [nix.POS]: $pos[10],
                         includes: nix.thunk(() => [
                           nix.thunk(() => nix.str`${nix.sel(pkgs_1, "openldap")}/etc/schema/core.ldif`),
                           nix.thunk(() => nix.str`${nix.sel(pkgs_1, "openldap")}/etc/schema/cosine.ldif`),
@@ -114,9 +91,9 @@ export default nix.thunk(() => (() => {
                         ]),
                       })),
                       "olcDatabase={1}mdb": nix.thunk(() => ({
-                        [nix.POS]: pos$13,
+                        [nix.POS]: $pos[12],
                         attrs: nix.thunk(() => ({
-                          [nix.POS]: pos$12,
+                          [nix.POS]: $pos[11],
                           objectClass: nix.thunk(() => ["olcDatabaseConfig", "olcMdbConfig"]),
                           olcDatabase: "{1}mdb",
                           olcDbDirectory: "/var/lib/openldap/db",
@@ -160,20 +137,20 @@ sn: ""
                   ])),
                 })),
                 sssd: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   enable: true,
                   environmentFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs_1, "writeText"), "ldap-root", nix.thunk(() => nix.str`LDAP_BIND_PW=${ldapRootPassword}`))}`),
                   settings: nix.thunk(() => nix.attrsDyn({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     sssd: nix.thunk(() => ({
-                      [nix.POS]: pos$17,
+                      [nix.POS]: $pos[16],
                       config_file_version: 2n,
                       services: "nss, pam, sudo",
                       domains: dbDomain,
                     })),
                   }, [
                     [nix.str`domain/${dbDomain}`, nix.thunk(() => ({
-                      [nix.POS]: pos$18,
+                      [nix.POS]: $pos[17],
                       auth_provider: "ldap",
                       id_provider: "ldap",
                       ldap_uri: "ldaps://127.0.0.1:636",

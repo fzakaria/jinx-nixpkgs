@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]], [["ROFI_PLUGINS_DIR", 45, 7]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 23, 3], ["prePatch", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["env", 45, 3], ["dontUseCmakeBuildDir", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, rofi: false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ROFI_PLUGINS_DIR", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 23, 3], ["prePatch", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["env", 45, 3], ["dontUseCmakeBuildDir", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rofi = nix.arg($, "rofi");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rofi-file-browser-extended",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "marvinkreis",
           repo: "rofi-file-browser-extended",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,10 +35,10 @@ export default nix.lambda((args) => (() => {
       prePatch: "substituteInPlace ./CMakeLists.txt \\\n  --replace ' ${ROFI_PLUGINS_DIR}' \" $out/lib/rofi\" \\\n  --replace \"/usr/share/\" \"$out/share/\"\n",
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [rofi, gtk3]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ROFI_PLUGINS_DIR: "$out/lib/rofi" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ROFI_PLUGINS_DIR: "$out/lib/rofi" })),
       dontUseCmakeBuildDir: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Use rofi to quickly open files",
         homepage: "https://github.com/marvinkreis/rofi-file-browser-extended",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

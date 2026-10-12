@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]], [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["disabled", 12, 3], ["src", 14, 3], ["doCheck", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, isPy3k: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["disabled", 12, 3], ["src", 14, 3], ["doCheck", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-O8iqgJExVZ96XA4fESm0LHGt423wMyET9cV3k4SjmvE=",
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python package for the generation of PostScript, PDF, and SVG files",
         homepage: "https://pyx.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
-      return { [nix.POS]: pos$3, pname, version, format, disabled, src, doCheck, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, disabled, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

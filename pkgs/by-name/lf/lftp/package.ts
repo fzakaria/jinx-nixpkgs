@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 21, 5], ["sha256", 25, 5]], [["NIX_CFLAGS_COMPILE", 45, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["hardeningDisable", 41, 3], ["env", 43, 3], ["configureFlags", 48, 3], ["installFlags", 55, 3], ["enableParallelBuilding", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openssl: false, "pkg-config": false, readline: false, zlib: false, libidn2: false, gmp: false, libiconv: false, libunistring: false, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 21, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["hardeningDisable", 41, 3], ["env", 43, 3], ["configureFlags", 48, 3], ["installFlags", 55, 3], ["enableParallelBuilding", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lftp";
       const version = "4.9.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://lftp.yar.ru/ftp/${pname}-${version}.tar.xz`),
             nix.thunk(() => nix.str`https://ftp.st.ryukoku.ac.jp/pub/network/ftp/lftp/${pname}-${version}.tar.xz`),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [openssl, readline, zlib, libidn2, gmp, libiconv, libunistring, gettext]);
       const hardeningDisable = nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "format"));
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         }))));
       const configureFlags = nix.thunk(() => [
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const installFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "File transfer program supporting a number of network protocols",
         homepage: "https://lftp.yar.ru/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bjornfor"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

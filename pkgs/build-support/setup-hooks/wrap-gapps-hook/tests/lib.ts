@@ -2,16 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lib.nix", [[["strictDeps", 6, 23]], [["runTest", 4, 3], ["skip", 12, 3], ["fail", 21, 3], ["expectSomeLineContainingYInFileXToMentionZ", 26, 3]]]);
 const formals$1 = { args: { lib: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lib.nix", [["strictDeps", 6, 23]]);
-const pos$2 = nix.positions(here + "/lib.nix", [["runTest", 4, 3], ["skip", 12, 3], ["fail", 21, 3], ["expectSomeLineContainingYInFileXToMentionZ", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const runCommand = nix.arg($, "runCommand");
   return (() => {
-    const runTest = (name) => (body) => nix.app(runCommand, name, nix.thunk(() => ({ [nix.POS]: pos$1, strictDeps: true })), nix.thunk(() => nix.str`set -o errexit
+    const runTest = (name) => (body) => nix.app(runCommand, name, nix.thunk(() => ({ [nix.POS]: $pos[0], strictDeps: true })), nix.thunk(() => nix.str`set -o errexit
 ${body}
 touch $out
 `));
@@ -30,7 +29,7 @@ if ! grep --text "$filter" "$file" | grep --text --quiet "$expected"; then
 fi
 `;
     return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       runTest,
       skip,
       fail,

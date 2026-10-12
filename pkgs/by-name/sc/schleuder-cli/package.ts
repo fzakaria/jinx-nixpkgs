@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 21, 12]], [["description", 24, 5], ["longDescription", 25, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5]], [["ruby", 9, 11], ["pname", 11, 3], ["gemdir", 13, 3], ["installManpages", 15, 3], ["exes", 17, 3], ["passthru", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false, ruby: false, bundlerUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 21, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["longDescription", 25, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ruby", 9, 11], ["pname", 11, 3], ["gemdir", 13, 3], ["installManpages", 15, 3], ["exes", 17, 3], ["passthru", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       ruby: ruby,
       pname: "schleuder-cli",
       gemdir: nix.path(here, "./."),
       installManpages: false,
       exes: nix.thunk(() => ["schleuder-cli"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "schleuder-cli")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line tool to create and manage schleuder-lists",
         longDescription: "Schleuder-cli enables creating, configuring, and deleting lists,\nsubscriptions, keys, etc. It uses the Schleuder API, provided by\nschleuder-api-daemon (part of Schleuder).\n",
         homepage: "https://schleuder.org",

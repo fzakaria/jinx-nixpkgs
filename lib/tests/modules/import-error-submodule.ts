@@ -2,34 +2,29 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/import-error-submodule.nix", [[["modules", 3, 30]], [["type", 7, 5], ["default", 8, 5]], [["foo", 6, 11]], [["imports", 13, 7]], [["foo", 10, 10]], [["options", 6, 3], ["config", 10, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/import-error-submodule.nix", [["modules", 3, 30]]);
-const pos$2 = nix.positions(here + "/import-error-submodule.nix", [["type", 7, 5], ["default", 8, 5]]);
-const pos$3 = nix.positions(here + "/import-error-submodule.nix", [["foo", 6, 11]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$4 = nix.positions(here + "/import-error-submodule.nix", [["imports", 13, 7]]);
-const pos$5 = nix.positions(here + "/import-error-submodule.nix", [["foo", 10, 10]]);
-const pos$6 = nix.positions(here + "/import-error-submodule.nix", [["options", 6, 3], ["config", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const myconf = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({ [nix.POS]: pos$1, modules: nix.thunk(() => [nix.thunk(() => ({}))]) }))));
+  const myconf = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({ [nix.POS]: $pos[0], modules: nix.thunk(() => [nix.thunk(() => ({}))]) }))));
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({})))),
           default: nix.thunk(() => ({})),
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       foo: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
-        return { [nix.POS]: pos$4, imports: nix.thunk(() => [myconf]) };
+        return { [nix.POS]: $pos[3], imports: nix.thunk(() => [myconf]) };
       })(), formals$2),
     })),
   };

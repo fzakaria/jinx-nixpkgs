@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["src", 48, 11], ["substitutions", 49, 11]], [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["postFetch", 44, 5]], [["version", 68, 13], ["yarn-berry", 68, 21], ["src", 69, 5]], [["description", 121, 5], ["homepage", 122, 5], ["changelog", 123, 5], ["license", 124, 5], ["maintainers", 125, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["postPatch", 59, 3], ["webui", 67, 3], ["preBuild", 72, 3], ["build-system", 77, 3], ["pythonRelaxDeps", 82, 3], ["dependencies", 90, 3], ["pythonImportsCheck", 107, 3], ["nativeCheckInputs", 109, 3], ["doCheck", 118, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, python: false, callPackage: false, fetchFromGitHub: false, substitute: false, hatchling: false, "hatch-vcs": false, pytestCheckHook: false, configargparse: false, cryptography: false, flask: false, "flask-cors": false, "flask-login": false, gevent: false, geventhttpclient: false, msgpack: false, "locust-cloud": false, psutil: false, pyquery: false, pytest: false, pyzmq: false, requests: false, retry: false, tomli: false, werkzeug: false, "yarn-berry": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["src", 48, 11], ["substitutions", 49, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["postFetch", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 68, 13], ["yarn-berry", 68, 21], ["src", 69, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 121, 5], ["homepage", 122, 5], ["changelog", 123, 5], ["license", 124, 5], ["maintainers", 125, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["postPatch", 59, 3], ["webui", 67, 3], ["preBuild", 72, 3], ["build-system", 77, 3], ["pythonRelaxDeps", 82, 3], ["dependencies", 90, 3], ["pythonImportsCheck", 107, 3], ["nativeCheckInputs", 109, 3], ["doCheck", 118, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,14 +39,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.46.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "locustio",
           repo: "locust",
           tag: version,
           hash: "sha256-IFKphE/RuGXsCmddXNppnHzayTSETaFLrOm26+6tyBI=",
           postFetch: nix.thunk(() => nix.str`cd $out/locust/webui
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -67,7 +63,7 @@ substituteInPlace locust/test/test_log.py \\
   --replace-fail '"locust"' '"${nix.builtins.placeholder("out")}/bin/locust"'
 `);
       const webui = nix.thunk(() => nix.app(callPackage, nix.path(here, "./webui.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: version,
           "yarn-berry": yarn_berry,
           src: nix.thunk(() => nix.str`${src}/locust/webui`),
@@ -97,7 +93,7 @@ ln -sf ${webui}/dist/* $out/${nix.sel(python, "sitePackages")}/locust/webui/dist
       const nativeCheckInputs = nix.thunk(() => [cryptography, pyquery, pytestCheckHook, retry]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Developer-friendly load testing framework",
         homepage: "https://docs.locust.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/locustio/locust/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -108,7 +104,7 @@ ln -sf ${webui}/dist/* $out/${nix.sel(python, "sitePackages")}/locust/webui/dist
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

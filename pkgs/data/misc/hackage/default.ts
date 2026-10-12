@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["updateScript", 12, 12]], [["license", 14, 5]], [["url", 8, 17], ["sha256", 8, 21], ["name", 9, 3], ["pname", 10, 3], ["version", 11, 3], ["passthru", 12, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["updateScript", 12, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 14, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 8, 17], ["sha256", 8, 21], ["name", 9, 3], ["pname", 10, 3], ["version", 11, 3], ["passthru", 12, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,20 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const pin = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pin.json")));
   return nix.app(fetchurl, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.attr(pin, "url")),
       sha256: nix.thunk(() => nix.attr(pin, "sha256")),
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
       pname: "all-cabal-hashes",
       version: nix.thunk(() => nix.app(nix.sel(lib, "substring"), 0n, 7n, nix.thunk(() => nix.sel(pin, "commit")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.path(here, "../../../../maintainers/scripts/haskell/update-hackage.sh"),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

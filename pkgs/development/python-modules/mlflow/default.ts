@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 38, 5], ["version", 39, 26], ["format", 40, 5], ["dist", 41, 5], ["python", 42, 5], ["hash", 43, 5]], [["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["sourceProvenance", 92, 5], ["maintainers", 95, 5]], [["pname", 30, 3], ["version", 31, 3], ["format", 32, 3], ["__structuredAttrs", 33, 3], ["src", 37, 3], ["postInstall", 50, 3], ["dependencies", 54, 3], ["pythonImportsCheck", 77, 3], ["doCheck", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, aiohttp: false, alembic: false, anyio: false, cryptography: false, docker: false, flask: false, "flask-cors": false, graphene: false, gunicorn: false, huey: false, matplotlib: false, "mlflow-skinny": false, "mlflow-tracing": false, numpy: false, pandas: false, pyarrow: false, "scikit-learn": false, scipy: false, skops: false, sqlalchemy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 38, 5], ["version", 39, 26], ["format", 40, 5], ["dist", 41, 5], ["python", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["sourceProvenance", 92, 5], ["maintainers", 95, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["format", 32, 3], ["__structuredAttrs", 33, 3], ["src", 37, 3], ["postInstall", 50, 3], ["dependencies", 54, 3], ["pythonImportsCheck", 77, 3], ["doCheck", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const skops = nix.arg($, "skops");
   const sqlalchemy = nix.arg($, "sqlalchemy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mlflow",
       version: "3.16.1",
       format: "wheel",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "mlflow",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           format: "wheel",
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["mlflow"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open source platform for the machine learning lifecycle",
         mainProgram: "mlflow",
         homepage: "https://github.com/mlflow/mlflow",

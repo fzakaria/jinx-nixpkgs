@@ -2,22 +2,21 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["platforms", 20, 5], ["maintainers", 21, 5]], [["pname", 4, 3], ["buildInputs", 6, 3], ["configureFlags", 8, 3], ["postInstall", 14, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, collectd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["platforms", 20, 5], ["maintainers", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 4, 3], ["buildInputs", 6, 3], ["configureFlags", 8, 3], ["postInstall", 14, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const collectd = nix.arg($, "collectd");
   return nix.app(nix.sel(collectd, "overrideAttrs"), (prevAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "libcollectdclient",
       buildInputs: [],
       configureFlags: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "configureFlags"), ["--with-perl-bindings=no", "--disable-daemon", "--disable-all-plugins"])),
       postInstall: "rm -rf $out/{bin,etc,sbin,share}",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "C Library for collectd, a daemon which collects system performance statistics periodically",
         homepage: "https://collectd.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

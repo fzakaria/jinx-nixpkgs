@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["NIX_CFLAGS_COMPILE", 77, 7]], [["package", 93, 50]], [["version", 93, 18]], [["tests", 93, 12]], [["homepage", 96, 5], ["description", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5], ["mainProgram", 101, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["prePatch", 31, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["configureFlags", 58, 3], ["env", 77, 3], ["installFlags", 79, 3], ["postInstall", 81, 3], ["passthru", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { stdenv: false, testers: false, fetchurl: false, autoreconfHook: false, makeWrapper: false, "pkg-config": false, "bash-completion": false, gnutls: false, libtool: false, curl: false, xz: false, "zlib-ng": false, libssh: false, libnbd: false, lib: false, cdrkit: false, e2fsprogs: false, useFsync: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 93, 50]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 93, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 93, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 96, 5], ["description", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5], ["mainProgram", 101, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["prePatch", 31, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["configureFlags", 58, 3], ["env", 77, 3], ["installFlags", 79, 3], ["postInstall", 81, 3], ["passthru", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const e2fsprogs = nix.arg($, "e2fsprogs");
   const useFsync = nix.argOr($, "useFsync", () => nix.sel(stdenv, "hostPlatform", "isDarwin"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "nbdkit",
       version: "1.48.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.libguestfs.org/nbdkit/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}-stable/nbdkit-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-W5DtgnfFFIieVOK3A8z4UIYBXXF0u/EN0W4W9eNdnO8=",
         })))),
@@ -73,7 +67,7 @@ export default nix.lambda((args) => (() => {
         "--disable-example4",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), useFsync, "-Dfdatasync=fsync")),
       })),
       installFlags: nix.thunk(() => ["bashcompdir=$(out)/share/bash-completion/completions"]),
@@ -83,17 +77,17 @@ export default nix.lambda((args) => (() => {
 done
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://gitlab.com/nbdkit/nbdkit",
         description: "NBD server with stable plugin ABI and permissive license",
         license: nix.thunk(() => (() => {

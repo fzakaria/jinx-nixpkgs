@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 13, 15], ["src", 13, 21], ["version", 14, 7], ["turnCompilationWarningToError", 15, 7]], [["storeDir", 25, 30]], [["INFOPATH", 35, 7], ["EMACS_TEST_VERBOSE", 36, 7]], [["nativeBuildInputs", 20, 5], ["env", 33, 5]]]);
 const formals$1 = { args: { runCommand: false, emacs: false, writeText: false, cowsay: false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 13, 15], ["src", 13, 21], ["version", 14, 7], ["turnCompilationWarningToError", 15, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["storeDir", 25, 30]]);
-const pos$3 = nix.positions(here + "/default.nix", [["INFOPATH", 35, 7], ["EMACS_TEST_VERBOSE", 36, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 20, 5], ["env", 33, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const cowsay = nix.arg($, "cowsay");
   const replaceVars = nix.arg($, "replaceVars");
   const mkEpkg = (pname) => (src) => (melpaBuild) => nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: pname,
       src: src,
       version: "0.1.0",
       turnCompilationWarningToError: true,
     })));
   return nix.app(runCommand, "test-emacs-withPackages-wrapper", nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(emacs, "pkgs", "withPackages"), (epkgs) => [
             nix.thunk(() => nix.sel(epkgs, "dash")),
             nix.thunk(() => nix.sel(epkgs, "flx-ido")),
             nix.thunk(() => nix.app(mkEpkg, "with-packages", nix.thunk(() => nix.app(replaceVars, nix.path(here, "./with-packages.el"), nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   storeDir: nix.thunk(() => nix.attr(nix.builtins, "storeDir")),
                 })))), nix.thunk(() => nix.sel(epkgs, "melpaBuild")))),
             nix.thunk(() => nix.app(mkEpkg, "early-default", nix.path(here, "./early-default.el"), nix.thunk(() => nix.sel(epkgs, "melpaBuild")))),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
           ])),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         INFOPATH: "/fake-info-dir1:/fake-info-dir2",
         EMACS_TEST_VERBOSE: 1n,
       })),

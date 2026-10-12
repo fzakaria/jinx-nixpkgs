@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5], ["fetchSubmodules", 26, 5]], [["NIX_CFLAGS_COMPILE", 49, 5]], [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["platforms", 75, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["makeFlags", 41, 3], ["env", 48, 3], ["postPatch", 52, 3], ["enableParallelBuilding", 64, 3], ["enableParallelInstalling", 68, 3], ["strictDeps", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bash: false, buildPackages: false, fetchFromGitHub: false, makeWrapper: false, "pkg-config": false, perl: false, gnutls: false, libgcrypt: false, "vpnc-scripts": false, opensslSupport: true, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5], ["fetchSubmodules", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["platforms", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["makeFlags", 41, 3], ["env", 48, 3], ["postPatch", 52, 3], ["enableParallelBuilding", 64, 3], ["enableParallelInstalling", 68, 3], ["strictDeps", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const opensslSupport = nix.argOr($, "opensslSupport", () => false);
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vpnc",
       version: "0-unstable-2025-06-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "streambinder",
           repo: "vpnc",
           rev: "6a70db13f6e9201101e1c4890393566be6000e6a",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`SCRIPT_PATH=${vpnc_scripts}/bin/vpnc-script`),
       ], nix.app(nix.sel(lib, "optional"), opensslSupport, "OPENSSL_GPL_VIOLATION=yes"))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       postPatch: nix.thunk(() => nix.add(nix.str`substituteInPlace src/vpnc-disconnect \\
@@ -58,7 +55,7 @@ substituteInPlace src/makeman.pl --replace-fail \\
       enableParallelInstalling: false,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://davidepucci.it/doc/vpnc/",
         description: "Virtual private network (VPN) client for Cisco's VPN concentrators",
         license: nix.thunk(() => (nix.asBool(opensslSupport) ? nix.sel(lib, "licenses", "unfree") : nix.sel(lib, "licenses", "gpl2Plus"))),

@@ -2,22 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["lib", 30, 11], ["stdenv", 31, 11], ["autoconf", 32, 11], ["automake", 33, 11], ["libtool", 34, 11]], [["lib", 46, 17], ["stdenv", 46, 21]], [["lib", 55, 17], ["stdenv", 55, 21]], [["lib", 64, 17], ["stdenv", 64, 21]], [["lcov", 73, 17], ["enableGCOVInstrumentation", 73, 22], ["makeGCOVReport", 73, 48], ["doCoverageAnalysis", 74, 9]], [["clang-analyzer", 83, 17], ["doClangAnalysis", 84, 9]], [["cov-build", 93, 17], ["xz", 93, 27], ["doCoverityAnalysis", 94, 9]], [["lib", 103, 17], ["vmTools", 103, 21]], [["lib", 113, 11], ["stdenv", 114, 11], ["vmTools", 115, 11], ["checkinstall", 116, 11]], [["constituents", 130, 17], ["meta", 130, 30], ["preferLocalBuild", 131, 9], ["_hydraAggregate", 132, 9]], [["isHydraChannel", 204, 11]], [["preferLocalBuild", 175, 9], ["_hydraAggregate", 176, 9], ["dontConfigure", 178, 9], ["dontBuild", 179, 9], ["patchPhase", 181, 9], ["installPhase", 185, 9], ["meta", 203, 9]], [["sourceTarball", 25, 3], ["makeSourceTarball", 40, 3], ["binaryTarball", 42, 3], ["mvnBuild", 51, 3], ["nixBuild", 60, 3], ["coverageAnalysis", 69, 3], ["clangAnalysis", 79, 3], ["coverityAnalysis", 89, 3], ["rpmBuild", 99, 3], ["debBuild", 108, 3], ["aggregate", 122, 3], ["channel", 164, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["lib", 30, 11], ["stdenv", 31, 11], ["autoconf", 32, 11], ["automake", 33, 11], ["libtool", 34, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lib", 46, 17], ["stdenv", 46, 21]]);
-const pos$3 = nix.positions(here + "/default.nix", [["lib", 55, 17], ["stdenv", 55, 21]]);
-const pos$4 = nix.positions(here + "/default.nix", [["lib", 64, 17], ["stdenv", 64, 21]]);
-const pos$5 = nix.positions(here + "/default.nix", [["lcov", 73, 17], ["enableGCOVInstrumentation", 73, 22], ["makeGCOVReport", 73, 48], ["doCoverageAnalysis", 74, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["clang-analyzer", 83, 17], ["doClangAnalysis", 84, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["cov-build", 93, 17], ["xz", 93, 27], ["doCoverityAnalysis", 94, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["lib", 103, 17], ["vmTools", 103, 21]]);
-const pos$9 = nix.positions(here + "/default.nix", [["lib", 113, 11], ["stdenv", 114, 11], ["vmTools", 115, 11], ["checkinstall", 116, 11]]);
 const formals$2 = { args: { name: false, constituents: false, meta: true }, ellipsis: false };
-const pos$10 = nix.positions(here + "/default.nix", [["constituents", 130, 17], ["meta", 130, 30], ["preferLocalBuild", 131, 9], ["_hydraAggregate", 132, 9]]);
 const formals$3 = { args: { name: false, src: false, constituents: true, meta: true, isNixOS: true }, ellipsis: true };
-const pos$11 = nix.positions(here + "/default.nix", [["isHydraChannel", 204, 11]]);
-const pos$12 = nix.positions(here + "/default.nix", [["preferLocalBuild", 175, 9], ["_hydraAggregate", 176, 9], ["dontConfigure", 178, 9], ["dontBuild", 179, 9], ["patchPhase", 181, 9], ["installPhase", 185, 9], ["meta", 203, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["sourceTarball", 25, 3], ["makeSourceTarball", 40, 3], ["binaryTarball", 42, 3], ["mvnBuild", 51, 3], ["nixBuild", 60, 3], ["coverageAnalysis", 69, 3], ["clangAnalysis", 79, 3], ["coverityAnalysis", 89, 3], ["rpmBuild", 99, 3], ["debBuild", 108, 3], ["aggregate", 122, 3], ["channel", 164, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const xz = nix.thunk(() => nix.attr(pkgs, "xz"));
   return (() => {
     const sourceTarball = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./source-tarball.nix")), nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         lib: lib,
         stdenv: stdenv,
         autoconf: autoconf,
@@ -47,21 +35,21 @@ export default nix.lambda((args) => (() => {
         libtool: libtool,
       }, args_1)));
     const makeSourceTarball = sourceTarball;
-    const binaryTarball = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./binary-tarball.nix")), nix.thunk(() => nix.update({ [nix.POS]: pos$2, lib: lib, stdenv: stdenv }, args_1)));
-    const mvnBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./maven-build.nix")), nix.thunk(() => nix.update({ [nix.POS]: pos$3, lib: lib, stdenv: stdenv }, args_1)));
-    const nixBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./nix-build.nix")), nix.thunk(() => nix.update({ [nix.POS]: pos$4, lib: lib, stdenv: stdenv }, args_1)));
+    const binaryTarball = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./binary-tarball.nix")), nix.thunk(() => nix.update({ [nix.POS]: $pos[1], lib: lib, stdenv: stdenv }, args_1)));
+    const mvnBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./maven-build.nix")), nix.thunk(() => nix.update({ [nix.POS]: $pos[2], lib: lib, stdenv: stdenv }, args_1)));
+    const nixBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./nix-build.nix")), nix.thunk(() => nix.update({ [nix.POS]: $pos[3], lib: lib, stdenv: stdenv }, args_1)));
     const coverageAnalysis = (args_1) => nix.app(nixBuild, nix.thunk(() => nix.update({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         lcov: lcov,
         enableGCOVInstrumentation: enableGCOVInstrumentation,
         makeGCOVReport: makeGCOVReport,
         doCoverageAnalysis: true,
       }, args_1)));
-    const clangAnalysis = (args_1) => nix.app(nixBuild, nix.thunk(() => nix.update({ [nix.POS]: pos$6, "clang-analyzer": clang_analyzer, doClangAnalysis: true }, args_1)));
-    const coverityAnalysis = (args_1) => nix.app(nixBuild, nix.thunk(() => nix.update({ [nix.POS]: pos$7, "cov-build": cov_build, xz: xz, doCoverityAnalysis: true }, args_1)));
-    const rpmBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./rpm-build.nix")), nix.thunk(() => nix.update({ [nix.POS]: pos$8, lib: lib, vmTools: vmTools }, args_1)));
+    const clangAnalysis = (args_1) => nix.app(nixBuild, nix.thunk(() => nix.update({ [nix.POS]: $pos[5], "clang-analyzer": clang_analyzer, doClangAnalysis: true }, args_1)));
+    const coverityAnalysis = (args_1) => nix.app(nixBuild, nix.thunk(() => nix.update({ [nix.POS]: $pos[6], "cov-build": cov_build, xz: xz, doCoverityAnalysis: true }, args_1)));
+    const rpmBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./rpm-build.nix")), nix.thunk(() => nix.update({ [nix.POS]: $pos[7], lib: lib, vmTools: vmTools }, args_1)));
     const debBuild = (args_1) => nix.app(nix.builtins.import(nix.path(here, "./debian-build.nix")), nix.thunk(() => nix.update({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         lib: lib,
         stdenv: stdenv,
         vmTools: vmTools,
@@ -73,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const constituents = nix.arg($_1, "constituents");
       const meta = nix.argOr($_1, "meta", () => ({}));
       return nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           constituents: constituents,
           meta: meta,
           preferLocalBuild: true,
@@ -89,7 +77,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.argOr($_1, "meta", () => ({}));
       const isNixOS = nix.argOr($_1, "isNixOS", () => true);
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           preferLocalBuild: true,
           _hydraAggregate: true,
           dontConfigure: true,
@@ -111,11 +99,11 @@ for i in $constituents; do
   fi
 done
 `),
-          meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$11, isHydraChannel: true })),
+          meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[10], isHydraChannel: true })),
         }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["meta"])))));
     })(), formals$3);
     return {
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       sourceTarball,
       makeSourceTarball,
       binaryTarball,

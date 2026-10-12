@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["extraArgs", 57, 47]], [["updateScript", 57, 12]], [["description", 60, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["license", 63, 5], ["maintainers", 66, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["prePatch", 22, 3], ["patches", 27, 3], ["preConfigure", 32, 3], ["cmakeBuildType", 36, 3], ["cmakeFlags", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["installPhase", 48, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, cmake: false, "nix-update-script": false, "vst2-sdk": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 57, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["license", 63, 5], ["maintainers", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["prePatch", 22, 3], ["patches", 27, 3], ["preConfigure", 32, 3], ["cmakeBuildType", 36, 3], ["cmakeFlags", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["installPhase", 48, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const vst2_sdk = nix.arg($, "vst2-sdk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "airwindows",
       version: "0-unstable-2026-08-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "airwindows",
           repo: "airwindows",
           rev: "1a6b436df99cbfced21a8850305bb1135a4efb4f",
@@ -39,11 +35,11 @@ ln -s ${vst2_sdk} plugins/LinuxVST/include/vstsdk
       buildInputs: nix.thunk(() => [vst2_sdk]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/vst/airwindows\nfind \"$PWD\" -type f -name \"*.so\" -exec install -Dm755 {} $out/lib/vst/airwindows \\;\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "All Airwindows VST Plugins",
         homepage: "https://airwindows.com/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

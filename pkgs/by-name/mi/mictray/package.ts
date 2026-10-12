@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["homepage", 45, 5], ["description", 46, 5], ["longDescription", 47, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["doCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, gtk3: false, lib: false, libgee: false, libnotify: false, meson: false, ninja: false, "pkg-config": false, pulseaudio: false, stdenv: false, vala: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["longDescription", 47, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["doCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mictray",
       version: "0.2.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Junker",
           repo: "mictray",
           rev: "1f879aeda03fbe87ae5a761f46c042e09912e1c0",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, libgee, libnotify, pulseaudio]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/Junker/mictray",
         description: "System tray application for microphone",
         longDescription: "MicTray is a Lightweight system tray application which lets you control the microphone state and volume.\n",

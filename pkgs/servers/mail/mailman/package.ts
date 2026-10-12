@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 19, 26], ["version", 19, 32], ["hash", 20, 5]], [["url", 54, 7], ["sha256", 55, 7]], [["url", 58, 7], ["sha256", 59, 7]], [["name", 62, 7], ["url", 63, 7], ["hash", 64, 7]], [["mailman", 90, 43]], [["tests", 90, 12]], [["homepage", 93, 5], ["description", 94, 5], ["license", 95, 5], ["maintainers", 96, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 23, 3], ["dependencies", 27, 3], ["checkInputs", 48, 3], ["patches", 52, 3], ["postPatch", 69, 3], ["dontWrapPythonPrograms", 88, 3], ["passthru", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, fetchpatch: false, python3: false, fetchPypi: false, postfix: false, lynx: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 19, 26], ["version", 19, 32], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 54, 7], ["sha256", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 58, 7], ["sha256", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 62, 7], ["url", 63, 7], ["hash", 64, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mailman", 90, 43]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 90, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 93, 5], ["description", 94, 5], ["license", 95, 5], ["maintainers", 96, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 23, 3], ["dependencies", 27, 3], ["checkInputs", 48, 3], ["patches", 52, 3], ["postPatch", 69, 3], ["dontWrapPythonPrograms", 88, 3], ["passthru", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const w = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
   return nix.app(nix.lookup(w, "buildPythonPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "mailman",
       version: "3.3.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-DeR4/PMm8l2TGTjDdE5hxc1nWWtG5bHjuyq/mdVEVjI=",
@@ -63,17 +56,17 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "sphinx"))]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/mailman/mailman/-/commit/4b206e2a5267a0e17f345fd7b2d957122ba57566.patch",
             sha256: "06axmrn74p81wvcki36c7gfj5fp5q15zxz2yl3lrvijic7hbs4n2",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.com/mailman/mailman/-/commit/9613154f3c04fa2383fbf017031ef263c291418d.patch",
             sha256: "0vyw87s857vfxbf7kihwb6w094xyxmxbi1bpdqi3ybjamjycp55r",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "python-3.13.patch",
             url: "https://gitlab.com/mailman/mailman/-/commit/685d9a7bdbd382d9e8d4a2da74bd973e93356e05.patch",
             hash: "sha256-KCXVP+5zqgluUXQCGmMRC+G1hEDnFBlTUETGpmFDOOk=",
@@ -92,11 +85,14 @@ substituteInPlace pyproject.toml \\
 `),
       dontWrapPythonPrograms: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, mailman: nix.thunk(() => nix.attr(nixosTests, "mailman")) })),
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[4],
+          mailman: nix.thunk(() => nix.attr(nixosTests, "mailman")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://www.gnu.org/software/mailman/",
         description: "Free software for managing electronic mail discussion and newsletter lists",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

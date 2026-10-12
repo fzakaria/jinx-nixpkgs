@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["arch", 14, 11], ["hash", 15, 11]], [["arch", 18, 11], ["hash", 19, 11]], [["arch", 22, 11], ["hash", 23, 11]], [["x86_64-linux", 13, 9], ["aarch64-linux", 17, 9], ["aarch64-darwin", 21, 9]], [["name", 28, 7], ["publisher", 29, 7], ["version", 30, 7]], [["updateScript", 44, 12]], [["license", 47, 5], ["changelog", 48, 5], ["description", 49, 5], ["downloadPage", 50, 5], ["homepage", 51, 5], ["platforms", 52, 5], ["maintainers", 57, 5]], [["mktplcRef", 10, 3], ["postInstall", 35, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, "vscode-utils": false, ruff: false, "vscode-extension-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["arch", 14, 11], ["hash", 15, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arch", 18, 11], ["hash", 19, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["arch", 22, 11], ["hash", 23, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 13, 9], ["aarch64-linux", 17, 9], ["aarch64-darwin", 21, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 28, 7], ["publisher", 29, 7], ["version", 30, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 44, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["license", 47, 5], ["changelog", 48, 5], ["description", 49, 5], ["downloadPage", 50, 5], ["homepage", 51, 5], ["platforms", 52, 5], ["maintainers", 57, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["mktplcRef", 10, 3], ["postInstall", 35, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,28 +13,28 @@ export default nix.lambda((args) => (() => {
   const ruff = nix.arg($, "ruff");
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       mktplcRef: nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             arch: "linux-x64",
             hash: "sha256-rcF2hINVWsnGkOoGz/pCbUngaK9p/Wan03qSTnxB/Xs=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             arch: "linux-arm64",
             hash: "sha256-j7pv4MICFzqfFCI+dmgB7xtnMRIXkgRYyEBzIZaJwNI=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             arch: "darwin-arm64",
             hash: "sha256-ef52k2aBnFnTdrUWyw5n4tIaMHXaOpWTW+3DWIai1+o=",
           })),
         }));
         return nix.update({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: "ruff",
           publisher: "charliermarsh",
           version: "2026.84.0",
@@ -55,11 +48,11 @@ export default nix.lambda((args) => (() => {
 ln -sf ${nix.app(nix.sel(lib, "getExe"), ruff)} "$out/$installPrefix/bundled/libs/bin/ruff"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         changelog: "https://marketplace.visualstudio.com/items/charliermarsh.ruff/changelog",
         description: "Visual Studio Code extension with support for the Ruff linter",

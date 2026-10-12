@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 17, 31]], [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["pname", 43, 13], ["version", 43, 19], ["src", 43, 27], ["hash", 44, 5]], [["extraArgs", 71, 5]], [["updateScript", 70, 12]], [["description", 75, 5], ["homepage", 76, 5], ["downloadPage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 83, 5], ["sourceProvenance", 84, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["dontConfigure", 30, 3], ["postPatch", 32, 3], ["cargoDeps", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 57, 3], ["cargoBuildType", 64, 3], ["pythonImportsCheck", 66, 3], ["hardeningDisable", 68, 3], ["passthru", 70, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "nix-update-script": false, "setuptools-rust": false, rustPlatform: false, cargo: false, rustc: false, "pkg-config": false, llvmPackages: false, libxml2: false, ncurses: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 17, 31]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 43, 13], ["version", 43, 19], ["src", 43, 27], ["hash", 44, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["extraArgs", 71, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 70, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["downloadPage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 83, 5], ["sourceProvenance", 84, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["dontConfigure", 30, 3], ["postPatch", 32, 3], ["cargoDeps", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 57, 3], ["cargoBuildType", 64, 3], ["pythonImportsCheck", 66, 3], ["hardeningDisable", 68, 3], ["passthru", 70, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const ncurses = nix.arg($, "ncurses");
   const zlib = nix.arg($, "zlib");
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.sel(llvmPackages, "stdenv")) })), nix.thunk(() => (() => {
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: nix.thunk(() => nix.sel(llvmPackages, "stdenv")) })), nix.thunk(() => (() => {
       const pname = "verilogae";
       const version = "24.0.0mob-unstable-2026-08-01";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "OpenVAF",
           repo: "OpenVAF-Reloaded",
           rev: "3369a83f9c626f6d298f9f881379f561ce432e27",
@@ -47,7 +41,7 @@ substituteInPlace setup.py \\
     'binding=Binding.NoBinding, features=["llvm${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(llvmPackages, "llvm", "version")))}"],'
 `);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: pname,
           version: version,
           src: src,
@@ -72,11 +66,11 @@ substituteInPlace setup.py \\
       const pythonImportsCheck = nix.thunk(() => ["verilogae"]);
       const hardeningDisable = nix.thunk(() => ["pic"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Verilog-A tool useful for compact model parameter extraction",
         homepage: "https://man.sr.ht/~dspom/openvaf_doc/verilogae/",
         downloadPage: "https://github.com/OpenVAF/OpenVAF-Reloaded",
@@ -92,7 +86,7 @@ substituteInPlace setup.py \\
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

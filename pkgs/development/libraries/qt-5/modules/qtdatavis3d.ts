@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtdatavis3d.nix", [[["NIX_CFLAGS_COMPILE", 21, 7]], [["pname", 10, 3], ["propagatedBuildInputs", 11, 3], ["outputs", 15, 3], ["env", 21, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, qtModule: false, qtbase: false, qtdeclarative: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtdatavis3d.nix", [["NIX_CFLAGS_COMPILE", 21, 7]]);
-const pos$2 = nix.positions(here + "/qtdatavis3d.nix", [["pname", 10, 3], ["propagatedBuildInputs", 11, 3], ["outputs", 15, 3], ["env", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtdeclarative = nix.arg($, "qtdeclarative");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qtdatavis3d",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative]),
       outputs: nix.thunk(() => ["out", "dev", "bin"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), "-Dstat64=stat")),
       })),
     })));

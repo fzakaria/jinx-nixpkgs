@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["teams", 92, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["nativeCheckInputs", 57, 3], ["disabledTests", 68, 3], ["disabledTestPaths", 79, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, branca: false, fetchFromGitHub: false, fetchpatch2: false, geodatasets: false, geopandas: false, jinja2: false, nbconvert: false, numpy: false, pandas: false, pillow: false, pixelmatch: false, pytestCheckHook: false, requests: false, selenium: false, setuptools: false, "setuptools-scm": false, xyzservices: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["teams", 92, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["nativeCheckInputs", 57, 3], ["disabledTests", 68, 3], ["disabledTestPaths", 79, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.20.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-visualization",
           repo: "folium",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "folium-fix-tests-proj-9.8.1",
             url: "https://github.com/python-visualization/folium/commit/b4ea8aa12d0808536c4f50b63eddd006e68680cb.patch?full_index=1",
             hash: "sha256-e6PFvK/qAfVTPs8LF2XgojwFJ/s2PDrIuwEkxRUzSkE=",
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/snapshots/test_snapshots.py", "tests/selenium"]);
       const pythonImportsCheck = nix.thunk(() => ["folium"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Make beautiful maps with Leaflet.js & Python",
         homepage: "https://github.com/python-visualization/folium",
         changelog: nix.thunk(() => nix.str`https://github.com/python-visualization/folium/releases/tag/${nix.sel(src, "tag")}`),
@@ -78,7 +75,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

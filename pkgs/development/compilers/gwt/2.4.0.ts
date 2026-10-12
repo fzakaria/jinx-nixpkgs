@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/2.4.0.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5], ["platforms", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["installPhase", 19, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/2.4.0.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/2.4.0.nix", [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5], ["platforms", 29, 5]]);
-const pos$3 = nix.positions(here + "/2.4.0.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["installPhase", 19, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +15,28 @@ export default nix.lambda((args) => (() => {
       const pname = "gwt-java";
       const version = "2.4.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/google-web-toolkit/gwt-${version}.zip`),
           sha256: "1gvyg00vx7fdqgfl2w7nhql78clg3abs6fxxy7m03pprdm5qmm17",
         }))));
       const nativeBuildInputs = nix.thunk(() => [unzip]);
       const installPhase = "mkdir -p $out\nunzip $src\nmv gwt-2.4.0 $out/bin\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.gwtproject.org/",
         description: "Development toolkit for building and optimizing complex browser-based applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        src,
+        nativeBuildInputs,
+        installPhase,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=2.4.0.ts.map

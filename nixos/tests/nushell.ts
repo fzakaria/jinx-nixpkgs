@@ -2,49 +2,31 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nushell.nix", [[["maintainers", 3, 8]], [["enable", 8, 7], ["plugins", 9, 7]], [["nushell", 7, 14]], [["isNormalUser", 16, 7], ["password", 17, 7], ["shell", 18, 7]], [["test", 15, 17]], [["users", 15, 11]], [["autologinUser", 20, 20]], [["getty", 20, 14]], [["programs", 7, 5], ["users", 15, 5], ["services", 20, 5]], [["enable", 26, 7], ["plugins", 27, 7]], [["nushell", 25, 14]], [["isNormalUser", 30, 7], ["password", 31, 7], ["shell", 32, 7]], [["test", 29, 17]], [["users", 29, 11]], [["autologinUser", 34, 20]], [["getty", 34, 14]], [["programs", 25, 5], ["users", 29, 5], ["services", 34, 5]], [["machine", 6, 9], ["noPlugins", 24, 9]], [["name", 2, 3], ["meta", 3, 3], ["nodes", 6, 3], ["testScript", 37, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nushell.nix", [["maintainers", 3, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/nushell.nix", [["enable", 8, 7], ["plugins", 9, 7]]);
-const pos$3 = nix.positions(here + "/nushell.nix", [["nushell", 7, 14]]);
-const pos$4 = nix.positions(here + "/nushell.nix", [["isNormalUser", 16, 7], ["password", 17, 7], ["shell", 18, 7]]);
-const pos$5 = nix.positions(here + "/nushell.nix", [["test", 15, 17]]);
-const pos$6 = nix.positions(here + "/nushell.nix", [["users", 15, 11]]);
-const pos$7 = nix.positions(here + "/nushell.nix", [["autologinUser", 20, 20]]);
-const pos$8 = nix.positions(here + "/nushell.nix", [["getty", 20, 14]]);
-const pos$9 = nix.positions(here + "/nushell.nix", [["programs", 7, 5], ["users", 15, 5], ["services", 20, 5]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$10 = nix.positions(here + "/nushell.nix", [["enable", 26, 7], ["plugins", 27, 7]]);
-const pos$11 = nix.positions(here + "/nushell.nix", [["nushell", 25, 14]]);
-const pos$12 = nix.positions(here + "/nushell.nix", [["isNormalUser", 30, 7], ["password", 31, 7], ["shell", 32, 7]]);
-const pos$13 = nix.positions(here + "/nushell.nix", [["test", 29, 17]]);
-const pos$14 = nix.positions(here + "/nushell.nix", [["users", 29, 11]]);
-const pos$15 = nix.positions(here + "/nushell.nix", [["autologinUser", 34, 20]]);
-const pos$16 = nix.positions(here + "/nushell.nix", [["getty", 34, 14]]);
-const pos$17 = nix.positions(here + "/nushell.nix", [["programs", 25, 5], ["users", 29, 5], ["services", 34, 5]]);
-const pos$18 = nix.positions(here + "/nushell.nix", [["machine", 6, 9], ["noPlugins", 24, 9]]);
-const pos$19 = nix.positions(here + "/nushell.nix", [["name", 2, 3], ["meta", 3, 3], ["nodes", 6, 3], ["testScript", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "nushell",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(pkgs, "nushell", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             nushell: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               plugins: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "nushellPlugins")), null);
@@ -56,11 +38,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               test: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 isNormalUser: true,
                 password: "test",
                 shell: nix.thunk(() => nix.sel(pkgs, "nushell")),
@@ -68,25 +50,25 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            getty: nix.thunk(() => ({ [nix.POS]: pos$7, autologinUser: "test" })),
+            [nix.POS]: $pos[7],
+            getty: nix.thunk(() => ({ [nix.POS]: $pos[6], autologinUser: "test" })),
           })),
         };
       })(), formals$2),
       noPlugins: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            nushell: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, plugins: [] })),
+            [nix.POS]: $pos[10],
+            nushell: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true, plugins: [] })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               test: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 isNormalUser: true,
                 password: "test",
                 shell: nix.thunk(() => nix.sel(pkgs, "nushell")),
@@ -94,8 +76,8 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$16,
-            getty: nix.thunk(() => ({ [nix.POS]: pos$15, autologinUser: "test" })),
+            [nix.POS]: $pos[15],
+            getty: nix.thunk(() => ({ [nix.POS]: $pos[14], autologinUser: "test" })),
           })),
         };
       })(), formals$3),

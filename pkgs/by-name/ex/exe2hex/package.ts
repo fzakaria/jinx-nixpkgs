@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 34, 5], ["homepage", 35, 5], ["mainProgram", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 20, 3], ["postPatch", 24, 3], ["postInstall", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, expect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["mainProgram", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 20, 3], ["postPatch", 24, 3], ["postInstall", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const expect = nix.arg($, "expect");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "exe2hex",
       version: "1.5.2-unstable-2020-04-27",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "g0tmi1k",
           repo: "exe2hex",
           rev: "e563b353306a0f34d96150b8992f543931f907ea",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "install -Dm 555 exe2hex.py $out/bin/exe2hex\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Inline file transfer using in-built Windows tools",
         homepage: "https://github.com/g0tmi1k/exe2hex",
         mainProgram: "exe2hex",

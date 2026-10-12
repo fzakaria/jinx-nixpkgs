@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["version", 15, 26], ["format", 16, 5], ["pname", 17, 5], ["dist", 18, 5], ["python", 19, 5], ["hash", 20, 5]], [["changelog", 30, 5], ["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["teams", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["dontStrip", 24, 3], ["doCheck", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["version", 15, 26], ["format", 16, 5], ["pname", 17, 5], ["dist", 18, 5], ["python", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["changelog", 30, 5], ["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["teams", 34, 5]]);
-const pos$3 = nix.positions(here + "/frontend.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["dontStrip", 24, 3], ["doCheck", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "home-assistant-frontend",
       version: "20260826.7",
       format: "wheel",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           format: "wheel",
           pname: "home_assistant_frontend",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant/frontend/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Frontend for Home Assistant",
         homepage: "https://github.com/home-assistant/frontend",

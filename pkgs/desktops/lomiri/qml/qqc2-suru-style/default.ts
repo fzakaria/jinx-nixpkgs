@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["updateScript", 70, 12]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["teams", 81, 5], ["platforms", 82, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 46, 3], ["propagatedBuildInputs", 48, 3], ["cmakeFlags", 63, 3], ["dontWrapQtApps", 68, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, cmake: false, qmake: false, qtbase: false, qtdeclarative: false, qtgraphicaleffects: true, qtquickcontrols2: true, qt5compat: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 70, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["teams", 81, 5], ["platforms", 82, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 46, 3], ["propagatedBuildInputs", 48, 3], ["cmakeFlags", 63, 3], ["dontWrapQtApps", 68, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const qt5compat = nix.argOr($, "qt5compat", () => null);
   const withQt6 = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qqc2-suru-style",
       version: "0.20260619",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/qqc2-suru-style",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,11 +46,11 @@ substituteInPlace CMakeLists.txt \\
       ]),
       dontWrapQtApps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Suru Style for QtQuick Controls 2",
         homepage: "https://gitlab.com/ubports/development/core/qqc2-suru-style",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/qqc2-suru-style/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

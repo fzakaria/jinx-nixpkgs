@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structureAttrs", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 27, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 40, 3], ["enabledTestPaths", 42, 3], ["nativeCheckInputs", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pillow: false, pytestCheckHook: false, pythonAtLeast: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["__structureAttrs", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 27, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 40, 3], ["enabledTestPaths", 42, 3], ["nativeCheckInputs", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "diffimg",
       version: "0.3.0",
       __structureAttrs: true,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nicolashahn",
           repo: "diffimg",
           rev: "b82f0bb416f100f9105ccccf1995872b29302461",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["diffimg/test.py"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Differentiate images in python - get a ratio or percentage difference, and generate a diff image",
         homepage: "https://github.com/nicolashahn/diffimg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

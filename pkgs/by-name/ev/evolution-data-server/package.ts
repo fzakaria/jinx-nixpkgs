@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 61, 5], ["hash", 62, 5]], [["org.gnome.Evolution.DefaultSources", 175, 9], ["org.gnome.evolution.shell.network-config", 176, 9], ["org.gnome.evolution-data-server.addressbook", 177, 9], ["org.gnome.evolution-data-server.calendar", 178, 9], ["org.gnome.evolution-data-server", 179, 9], ["org.gnome.desktop.interface", 180, 9]], [["schemaIdToVariableMapping", 174, 7], ["src", 182, 28], ["patches", 182, 32]], [["packageName", 187, 11], ["versionPolicy", 188, 11]], [["hardcodeGsettingsPatch", 173, 5], ["updateScript", 184, 5]], [["description", 199, 5], ["homepage", 200, 5], ["changelog", 201, 5], ["license", 202, 5], ["teams", 203, 5], ["platforms", 204, 5]], [["pname", 52, 3], ["version", 53, 3], ["outputs", 55, 3], ["src", 60, 3], ["patches", 65, 3], ["prePatch", 71, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 90, 3], ["propagatedBuildInputs", 124, 3], ["cmakeFlags", 134, 3], ["strictDeps", 150, 3], ["postPatch", 152, 3], ["postInstall", 168, 3], ["passthru", 172, 3], ["meta", 198, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPackages: false, fetchurl: false, "pkg-config": false, gnome: false, "_experimental-update-script-combinators": false, python3: false, "gobject-introspection": false, gettext: false, libsoup_3: false, libxml2: false, libsecret: false, icu: false, sqlite: false, "libcanberra-gtk3": false, "p11-kit": false, db: false, nspr: false, nss: false, libical: false, gperf: false, wrapGAppsHook3: false, "glib-networking": false, "gsettings-desktop-schemas": false, vala: false, cmake: false, ninja: false, libkrb5: false, openldap: false, enableOAuth2: true, webkitgtk_4_1: false, webkitgtk_6_0: false, "json-glib": false, glib: false, gtk3: false, gtk4: false, withGtk3: true, withGtk4: true, libphonenumber: false, libuuid: false, "gnome-online-accounts": false, libgweather: false, boost: false, protobuf: false, libiconv: false, makeHardcodeGsettingsPatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 61, 5], ["hash", 62, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["org.gnome.Evolution.DefaultSources", 175, 9], ["org.gnome.evolution.shell.network-config", 176, 9], ["org.gnome.evolution-data-server.addressbook", 177, 9], ["org.gnome.evolution-data-server.calendar", 178, 9], ["org.gnome.evolution-data-server", 179, 9], ["org.gnome.desktop.interface", 180, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["schemaIdToVariableMapping", 174, 7], ["src", 182, 28], ["patches", 182, 32]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageName", 187, 11], ["versionPolicy", 188, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["hardcodeGsettingsPatch", 173, 5], ["updateScript", 184, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 199, 5], ["homepage", 200, 5], ["changelog", 201, 5], ["license", 202, 5], ["teams", 203, 5], ["platforms", 204, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["outputs", 55, 3], ["src", 60, 3], ["patches", 65, 3], ["prePatch", 71, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 90, 3], ["propagatedBuildInputs", 124, 3], ["cmakeFlags", 134, 3], ["strictDeps", 150, 3], ["postPatch", 152, 3], ["postInstall", 168, 3], ["passthru", 172, 3], ["meta", 198, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,12 +55,12 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const makeHardcodeGsettingsPatch = nix.arg($, "makeHardcodeGsettingsPatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "evolution-data-server",
       version: "3.60.2",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/evolution-data-server/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/evolution-data-server-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-IITb2sOWNxs2XVBMH/RYZrqNyi8SUuXaHT2cM6vcEoY=",
         })))),
@@ -130,11 +124,11 @@ substituteInPlace src/camel/CMakeLists.txt --replace-fail \\
 `)))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -s $out/lib/evolution-data-server/*.dylib $out/lib/\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         hardcodeGsettingsPatch: nix.thunk(() => nix.app(makeHardcodeGsettingsPatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             schemaIdToVariableMapping: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               "org.gnome.Evolution.DefaultSources": "EDS",
               "org.gnome.evolution.shell.network-config": "EDS",
               "org.gnome.evolution-data-server.addressbook": "EDS",
@@ -147,7 +141,7 @@ substituteInPlace src/camel/CMakeLists.txt --replace-fail \\
           })))),
         updateScript: nix.thunk(() => (() => {
           const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               packageName: "evolution-data-server",
               versionPolicy: "odd-unstable",
             }))));
@@ -156,7 +150,7 @@ substituteInPlace src/camel/CMakeLists.txt --replace-fail \\
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Unified backend for programs that work with contacts, tasks, and calendar information",
         homepage: "https://gitlab.gnome.org/GNOME/evolution-data-server",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/evolution-data-server/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

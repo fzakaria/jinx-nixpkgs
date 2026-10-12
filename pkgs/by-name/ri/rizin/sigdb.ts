@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sigdb.nix", [[["owner", 12, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildPhase", 20, 3], ["installPhase", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sigdb.nix", [["owner", 12, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/sigdb.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/sigdb.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildPhase", 20, 3], ["installPhase", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rizin-sigdb";
       const version = "0-unstable-2023-08-23";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rizinorg",
           repo: "sigdb",
           rev: "4addbed50cd3b50eeef5a41d72533d079ebbfbf8",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "mkdir installdir\ncp -r elf pe installdir\n.scripts/verify-sigs-install.sh\n";
       const installPhase = "mkdir -p $out/share/rizin\nmv installdir $out/share/rizin/sigdb\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Rizin FLIRT Signature Database",
         homepage: nix.thunk(() => nix.sel(src, "meta", "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "chayleaf"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildPhase, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, buildPhase, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=sigdb.ts.map

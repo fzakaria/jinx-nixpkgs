@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 7], ["sha256", 17, 7], ["stripRoot", 18, 7]], [["description", 22, 7], ["homepage", 23, 7], ["platforms", 24, 7], ["license", 25, 7], ["maintainers", 26, 7]], [["pname", 12, 5], ["version", 13, 13], ["src", 15, 5], ["meta", 21, 5], ["pluginFilename", 29, 5], ["installPhase", 31, 5]], [["pname", 39, 17], ["version", 39, 23], ["paths", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildEnv: false, fetchzip: false, mono: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 7], ["sha256", 17, 7], ["stripRoot", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 22, 7], ["homepage", 23, 7], ["platforms", 24, 7], ["license", 25, 7], ["maintainers", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 5], ["version", 13, 13], ["src", 15, 5], ["meta", 21, 5], ["pluginFilename", 29, 5], ["installPhase", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 39, 17], ["version", 39, 23], ["paths", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const mono = nix.arg($, "mono");
   const version = "2.6";
   const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "otpkeyprov",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://keepass.info/extensions/v2/otpkeyprov/OtpKeyProv-${version}.zip`),
           sha256: "1p60k55v2sxnv1varmp0dgbsi2rhjg9kj19cf54mkc87nss5h1ki",
           stripRoot: false,
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Key provider based on one-time passwords",
         homepage: "https://keepass.info/plugins.html#otpkeyprov",
         platforms: nix.thunk(() => (() => {
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/lib/dotnet/keepass/\ncp $pluginFilename $out/lib/dotnet/keepass/$pluginFilename\n",
     }))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.attr(drv, "pname")),
       version: nix.thunk(() => nix.attr(drv, "version")),
       paths: nix.thunk(() => [mono, drv]),

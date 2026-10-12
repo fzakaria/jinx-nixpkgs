@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generator-out.nix", [[["name", 13, 5], ["text", 14, 5]], [["pname", 40, 3], ["src", 41, 11], ["version", 41, 15], ["nativeBuildInputs", 43, 3], ["preConfigure", 49, 3], ["cmakeFlags", 53, 3], ["postInstall", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, cmake: false, python3: false, writeTextFile: false, protobuf: false, src: false, version: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generator-out.nix", [["name", 13, 5], ["text", 14, 5]]);
-const pos$2 = nix.positions(here + "/generator-out.nix", [["pname", 40, 3], ["src", 41, 11], ["version", 41, 15], ["nativeBuildInputs", 43, 3], ["preConfigure", 49, 3], ["cmakeFlags", 53, 3], ["postInstall", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const version = nix.arg($, "version");
   const pyproject_toml = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "pyproject.toml",
       text: nix.thunk(() => nix.str`[build-system]
 requires = ["setuptools"]
@@ -42,7 +41,7 @@ dependencies = [
 `),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "nanopb-generator-out",
       src: src,
       version: version,

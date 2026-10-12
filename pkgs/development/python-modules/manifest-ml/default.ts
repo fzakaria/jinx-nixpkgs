@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["api", 61, 5], ["app", 70, 5], ["diffusers", 74, 5], ["gcp", 75, 5]], [["description", 115, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["__darwinAllowLocalNetworking", 40, 3], ["pythonRelaxDeps", 42, 3], ["build-system", 44, 3], ["dependencies", 48, 3], ["optional-dependencies", 60, 3], ["nativeCheckInputs", 82, 3], ["preCheck", 87, 3], ["disabledTestPaths", 91, 3], ["disabledTests", 96, 3], ["pythonImportsCheck", 112, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, accelerate: false, aiohttp: false, buildPythonPackage: false, fastapi: false, fetchFromGitHub: false, flask: false, numpy: false, pg8000: false, pillow: false, pydantic: false, pytestCheckHook: false, redis: false, requests: false, "sentence-transformers": false, setuptools: false, sqlalchemy: false, sqlitedict: false, tenacity: false, tiktoken: false, torch: false, transformers: false, uvicorn: false, xxhash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["api", 61, 5], ["app", 70, 5], ["diffusers", 74, 5], ["gcp", 75, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 115, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["__darwinAllowLocalNetworking", 40, 3], ["pythonRelaxDeps", 42, 3], ["build-system", 44, 3], ["dependencies", 48, 3], ["optional-dependencies", 60, 3], ["nativeCheckInputs", 82, 3], ["preCheck", 87, 3], ["disabledTestPaths", 91, 3], ["disabledTests", 96, 3], ["pythonImportsCheck", 112, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "HazyResearch",
           repo: "manifest",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         xxhash,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         api: nix.thunk(() => [accelerate, flask, sentence_transformers, torch, transformers]),
         app: nix.thunk(() => [fastapi, uvicorn]),
         diffusers: nix.thunk(() => [pillow]),
@@ -83,7 +80,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["manifest"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Manifest for Prompting Foundation Models",
         homepage: "https://github.com/HazyResearch/manifest",
         changelog: nix.thunk(() => nix.str`https://github.com/HazyResearch/manifest/releases/tag/v${version}`),
@@ -94,7 +91,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

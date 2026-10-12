@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["updateScript", 53, 12]], [["broken", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 27, 3], ["prePatch", 33, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, cmake: false, "pkg-config": false, httrack: false, qt6Packages: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 27, 3], ["prePatch", 33, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "httraqt",
       version: "1.4.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/httraqt/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-HfnUlJifpzWiP1rb+Kn3I/H6nYBeEB6cXVI5pu28K5E=",
         })))),
@@ -52,11 +49,11 @@ substituteInPlace sources/main/httraqt.cpp \\
   --replace-fail /usr/share/httraqt/ $out/share/httraqt
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Easy-to-use offline browser / website mirroring utility - QT frontend",
         mainProgram: "httraqt",

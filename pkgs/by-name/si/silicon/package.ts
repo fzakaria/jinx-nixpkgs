@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["RUSTONIG_SYSTEM_LIBONIG", 35, 7]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 68, 5], ["mainProgram", 72, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["env", 35, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 50, 3], ["preCheck", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, oniguruma: false, expat: false, freetype: false, libxcb: false, python3: false, libiconv: false, "fira-code": false, fontconfig: false, harfbuzz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTONIG_SYSTEM_LIBONIG", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 68, 5], ["mainProgram", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["env", 35, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 50, 3], ["preCheck", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,23 +23,23 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const harfbuzz = nix.arg($, "harfbuzz");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "silicon",
       version: "0.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Aloxaf",
           repo: "silicon",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-lwwbjSXW5uonJNZTAqTK14Ib4QDOD4puxY2CsiJk4/Q=",
         })))),
       cargoHash: "sha256-MpmGLhg00quz4mYkidLofpcZTVwxbgIThg5v2r4HIfs=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTONIG_SYSTEM_LIBONIG: true })),
       buildInputs: nix.thunk(() => nix.concat([expat, freetype, fira_code, fontconfig, harfbuzz, oniguruma], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libxcb])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))))),
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [python3])))),
       preCheck: "export HOME=$TMPDIR\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Create beautiful image of your source code",
         homepage: "https://github.com/Aloxaf/silicon",
         license: nix.thunk(() => (() => {

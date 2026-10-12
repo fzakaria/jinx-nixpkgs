@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 11, 7], ["sha256", 15, 7]], [["urls", 18, 7], ["sha256", 22, 7]], [["urls", 25, 7], ["sha256", 29, 7]], [["urls", 32, 7], ["sha256", 36, 7]], [["x86_64-linux", 10, 5], ["i686-linux", 17, 5], ["aarch64-linux", 24, 5], ["armv7l-linux", 31, 5]], [["description", 61, 5], ["homepage", 62, 5], ["sourceProvenance", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["dontUnpack", 47, 3], ["dontBuild", 48, 3], ["nativeBuildInputs", 50, 3], ["installPhase", 52, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 11, 7], ["sha256", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["urls", 18, 7], ["sha256", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["urls", 25, 7], ["sha256", 29, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["urls", 32, 7], ["sha256", 36, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["x86_64-linux", 10, 5], ["i686-linux", 17, 5], ["aarch64-linux", 24, 5], ["armv7l-linux", 31, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["sourceProvenance", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["dontUnpack", 47, 3], ["dontBuild", 48, 3], ["nativeBuildInputs", 50, 3], ["installPhase", 52, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         urls: nix.thunk(() => [
           "https://videomap.it/script/dms-ubuntu-x64",
           "https://archive.org/download/videomap/dms-ubuntu-x64",
@@ -28,7 +22,7 @@ export default nix.lambda((args) => (() => {
         sha256: "1x7pp6k27lr206a8j2pn0wf4wjb0zi28s0g1g3rb08jmr8fh1jnh",
       })))),
     "i686-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         urls: nix.thunk(() => [
           "https://videomap.it/script/dms-ubuntu-x32",
           "https://archive.org/download/videomap/dms-ubuntu-x32",
@@ -36,7 +30,7 @@ export default nix.lambda((args) => (() => {
         sha256: "1d62d7jz50wzk5rqqm3xab66jdzi9i1j6mwxf7r7nsgm6j5zz8r4",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         urls: nix.thunk(() => [
           "https://videomap.it/script/dms-ubuntu-arm64",
           "https://archive.org/download/videomap/dms-ubuntu-arm64",
@@ -44,7 +38,7 @@ export default nix.lambda((args) => (() => {
         sha256: "1l1x7iqbxn6zsh3d37yb5x15qsxlwy3cz8g2g8vnzkgaafw9vva0",
       })))),
     "armv7l-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         urls: nix.thunk(() => [
           "https://videomap.it/script/dms-ubuntu-arm",
           "https://archive.org/download/videomap/dms-ubuntu-arm",
@@ -53,7 +47,7 @@ export default nix.lambda((args) => (() => {
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "droidmote",
       version: "3.0.6",
       src: nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -62,7 +56,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       installPhase: "runHook preInstall\n\ninstall -m755 -D $src $out/bin/droidmote\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Control your computer from your couch",
         homepage: "https://www.videomap.it/",
         sourceProvenance: nix.thunk(() => (() => {

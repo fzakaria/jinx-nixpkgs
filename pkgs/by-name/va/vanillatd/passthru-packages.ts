@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/passthru-packages.nix", [[["sourceProvenance", 16, 9], ["license", 19, 9]], [["name", 13, 15], ["buildCommand", 13, 20], ["nativeBuildInputs", 14, 7], ["meta", 15, 7]], [["url", 29, 11], ["hash", 30, 11]], [["url", 33, 11], ["hash", 34, 11]], [["demo", 49, 17]], [["url", 54, 11], ["hash", 55, 11]], [["url", 63, 11], ["hash", 64, 11]], [["url", 67, 11], ["hash", 68, 11]], [["demo", 94, 11], ["retail-allied", 95, 11], ["retail-soviet", 96, 11], ["retail", 97, 11]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, unar: false, appName: false, fetchurl: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/passthru-packages.nix", [["sourceProvenance", 16, 9], ["license", 19, 9]]);
-const pos$2 = nix.positions(here + "/passthru-packages.nix", [["name", 13, 15], ["buildCommand", 13, 20], ["nativeBuildInputs", 14, 7], ["meta", 15, 7]]);
-const pos$3 = nix.positions(here + "/passthru-packages.nix", [["url", 29, 11], ["hash", 30, 11]]);
-const pos$4 = nix.positions(here + "/passthru-packages.nix", [["url", 33, 11], ["hash", 34, 11]]);
-const pos$5 = nix.positions(here + "/passthru-packages.nix", [["demo", 49, 17]]);
-const pos$6 = nix.positions(here + "/passthru-packages.nix", [["url", 54, 11], ["hash", 55, 11]]);
-const pos$7 = nix.positions(here + "/passthru-packages.nix", [["url", 63, 11], ["hash", 64, 11]]);
-const pos$8 = nix.positions(here + "/passthru-packages.nix", [["url", 67, 11], ["hash", 68, 11]]);
-const pos$9 = nix.positions(here + "/passthru-packages.nix", [["demo", 94, 11], ["retail-allied", 95, 11], ["retail-soviet", 96, 11], ["retail", 97, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const appName = nix.arg($, "appName");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.builtins.mapAttrs((name) => (buildCommand) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: name,
         buildCommand: buildCommand,
         nativeBuildInputs: nix.thunk(() => [unar]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sourceProvenance: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
             return [nix.thunk(() => nix.lookup(w, "binaryBytecode"))];
@@ -38,12 +30,12 @@ export default nix.lambda((args) => (() => {
         })),
       }))), nix.thunk(() => (nix.asBool(nix.eq(appName, "vanillatd")) ? (() => {
       const CCDEMO1_ZIP = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://archive.org/download/CommandConquerDemo/cc1demo1.zip",
           hash: "sha256-KdM4SctFCocmJCbMWbJbql4DO5TC40leyU+BPzvAn4c=",
         }))));
       const CCDEMO2_ZIP = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: "https://archive.org/download/CommandConquerDemo/cc1demo2.zip",
           hash: "sha256-pCgEuE5AFcJur3qUOTmP3GCb/Wp7p7JyVn8Yeq17PEg=",
         }))));
@@ -56,10 +48,10 @@ mv SOUNDS.MIX $out/sounds.mix
 mv SPEECH.MIX $out/speech.mix
 mv DEMOM.MIX $out/demom.mix
 `);
-      return { [nix.POS]: pos$5, demo: demo };
+      return { [nix.POS]: $pos[4], demo: demo };
     })() : (nix.asBool(nix.eq(appName, "vanillara")) ? (() => {
       const RA95DEMO_ZIP = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: "https://archive.org/download/CommandConquerRedAlert_1020/ra95demo.zip",
           hash: "sha256-jEi9tTUj6k01OnkU2SNM5OPm9YMu60eztrAFhT6HSNI=",
         }))));
@@ -68,12 +60,12 @@ install -D ra95demo/INSTALL/REDALERT.MIX $out/redalert.mix
 install -D ra95demo/INSTALL/MAIN.MIX $out/main.mix
 `);
       const REDALERT_ALLIED_ISO = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: "https://archive.org/download/cnc-red-alert/redalert_allied.iso",
           hash: "sha256-Npx6hSTJetFlcb/Fi3UQEGuP0iLk9LIrRmAI7WgEtdw=",
         }))));
       const REDALERT_SOVIETS_ISO = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           url: "https://archive.org/download/cnc-red-alert/redalert_soviets.iso",
           hash: "sha256-aJGr+w1BaGaLwX/pU0lMmu6Cgn9pZ2D/aVafBdtds2Q=",
         }))));
@@ -95,7 +87,7 @@ mv allied/MAIN.MIX $out/allied/main.mix
 mv soviet/MAIN.MIX $out/soviet/main.mix
 `);
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         demo: demo,
         "retail-allied": retail_allied,
         "retail-soviet": retail_soviet,

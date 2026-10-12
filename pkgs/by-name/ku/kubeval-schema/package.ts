@@ -2,24 +2,22 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 7, 3], ["owner", 8, 3], ["repo", 9, 3], ["rev", 10, 3], ["sha256", 11, 3]], [["hydraPlatforms", 15, 8]], [["meta", 15, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 7, 3], ["owner", 8, 3], ["repo", 9, 3], ["rev", 10, 3], ["sha256", 11, 3]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hydraPlatforms", 15, 8]]);
-const pos$3 = nix.positions(here + "/package.nix", [["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.update(nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "kubeval-schema",
       owner: "instrumenta",
       repo: "kubernetes-json-schema",
       rev: "6a498a60dc68c5f6a1cc248f94b5cd1e7241d699",
       sha256: "1y9m2ma3n4h7sf2lg788vjw6pkfyi0fa7gzc870faqv326n6x2jr",
     }))), {
-    [nix.POS]: pos$3,
-    meta: nix.thunk(() => ({ [nix.POS]: pos$2, hydraPlatforms: [] })),
+    [nix.POS]: $pos[2],
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[1], hydraPlatforms: [] })),
   });
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

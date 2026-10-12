@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]], [["doCheck", 41, 7]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["__darwinAllowLocalNetworking", 31, 3], ["pythonImportsCheck", 33, 3], ["nativeCheckInputs", 35, 3], ["disabledTestPaths", 45, 3], ["disabledTests", 50, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cssselect: false, fetchPypi: false, lxml: false, pytestCheckHook: false, requests: false, setuptools: false, webob: false, webtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 41, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["__darwinAllowLocalNetworking", 31, 3], ["pythonImportsCheck", 33, 3], ["nativeCheckInputs", 35, 3], ["disabledTestPaths", 45, 3], ["disabledTests", 50, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-AZS7JwaxLQN9sSxRko/p67NrctnnGVZdq6WmxZUyL68=",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         pytestCheckHook,
         requests,
         webob,
-        nix.thunk(() => nix.app(nix.sel(webtest, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: false }))),
+        nix.thunk(() => nix.app(nix.sel(webtest, "overridePythonAttrs"), (_) => ({ [nix.POS]: $pos[1], doCheck: false }))),
       ]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_pyquery.py::TestWebScrappingEncoding::test_get"]);
       const disabledTests = nix.thunk(() => [
@@ -50,14 +47,14 @@ export default nix.lambda((args) => (() => {
         "test_session",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Jquery-like library for Python",
         homepage: "https://github.com/gawel/pyquery",
         changelog: nix.thunk(() => nix.str`https://github.com/gawel/pyquery/blob/${version}/CHANGES.rst`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,26 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/writeShellApplication.nix", [[["name", 20, 9], ["text", 21, 9]], [["description", 41, 14]], [["name", 39, 9], ["text", 40, 9], ["meta", 41, 9]], [["name", 50, 5], ["text", 51, 5], ["runtimeInputs", 54, 5], ["expected", 55, 5]], [["a", 72, 9], ["b", 73, 9]], [["MY_COOL_ENV_VAR", 61, 7], ["MY_OTHER_COOL_ENV_VAR", 62, 7], ["BOOL", 64, 7], ["INT", 65, 7], ["LIST", 66, 7], ["MAP", 71, 7]], [["name", 59, 5], ["runtimeEnv", 60, 5], ["text", 76, 5], ["expected", 80, 5]], [["name", 87, 5], ["inheritPath", 88, 5], ["runtimeInputs", 89, 5], ["text", 90, 5], ["expected", 95, 5]], [["name", 99, 5], ["inheritPath", 100, 5], ["runtimeInputs", 101, 5], ["text", 102, 5], ["expected", 111, 5]], [["name", 115, 5], ["inheritPath", 116, 5], ["runtimeInputs", 117, 5], ["text", 118, 5], ["expected", 127, 5]], [["name", 131, 5], ["text", 132, 5], ["checkPhase", 133, 5], ["expected", 136, 5]], [["MY_BUILD_TIME_VARIABLE", 142, 20], ["postCheck", 143, 20]], [["description", 149, 10]], [["name", 140, 5], ["text", 141, 5], ["derivationArgs", 142, 5], ["meta", 149, 5], ["expected", 150, 5]], [["name", 154, 5], ["excludeShellChecks", 155, 5], ["text", 156, 5]], [["name", 164, 5], ["text", 165, 5], ["bashOptions", 172, 5], ["expected", 176, 5]], [["name", 180, 5], ["text", 181, 5], ["bashOptions", 185, 5], ["excludeShellChecks", 187, 5], ["expected", 188, 5]], [["test-meta", 36, 3], ["test-runtime-inputs", 49, 3], ["test-runtime-env", 58, 3], ["test-no-inherit-path-no-runtimeInputs", 86, 3], ["test-no-inherit-path-runtimeInputs", 98, 3], ["test-inherit-path-no-runtimeInputs", 114, 3], ["test-check-phase", 130, 3], ["test-argument-forwarding", 139, 3], ["test-exclude-shell-checks", 153, 3], ["test-bash-options-pipefail", 163, 3], ["test-bash-options-nounset", 179, 3]]]);
 const formals$1 = { args: { writeShellApplication: false, writeTextFile: false, runCommand: false, lib: false, linkFarm: false, diffutils: false, hello: false }, ellipsis: false };
 const formals$2 = { args: { name: false, expected: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/writeShellApplication.nix", [["name", 20, 9], ["text", 21, 9]]);
-const pos$2 = nix.positions(here + "/writeShellApplication.nix", [["description", 41, 14]]);
-const pos$3 = nix.positions(here + "/writeShellApplication.nix", [["name", 39, 9], ["text", 40, 9], ["meta", 41, 9]]);
-const pos$4 = nix.positions(here + "/writeShellApplication.nix", [["name", 50, 5], ["text", 51, 5], ["runtimeInputs", 54, 5], ["expected", 55, 5]]);
-const pos$5 = nix.positions(here + "/writeShellApplication.nix", [["a", 72, 9], ["b", 73, 9]]);
-const pos$6 = nix.positions(here + "/writeShellApplication.nix", [["MY_COOL_ENV_VAR", 61, 7], ["MY_OTHER_COOL_ENV_VAR", 62, 7], ["BOOL", 64, 7], ["INT", 65, 7], ["LIST", 66, 7], ["MAP", 71, 7]]);
-const pos$7 = nix.positions(here + "/writeShellApplication.nix", [["name", 59, 5], ["runtimeEnv", 60, 5], ["text", 76, 5], ["expected", 80, 5]]);
-const pos$8 = nix.positions(here + "/writeShellApplication.nix", [["name", 87, 5], ["inheritPath", 88, 5], ["runtimeInputs", 89, 5], ["text", 90, 5], ["expected", 95, 5]]);
-const pos$9 = nix.positions(here + "/writeShellApplication.nix", [["name", 99, 5], ["inheritPath", 100, 5], ["runtimeInputs", 101, 5], ["text", 102, 5], ["expected", 111, 5]]);
-const pos$10 = nix.positions(here + "/writeShellApplication.nix", [["name", 115, 5], ["inheritPath", 116, 5], ["runtimeInputs", 117, 5], ["text", 118, 5], ["expected", 127, 5]]);
-const pos$11 = nix.positions(here + "/writeShellApplication.nix", [["name", 131, 5], ["text", 132, 5], ["checkPhase", 133, 5], ["expected", 136, 5]]);
-const pos$12 = nix.positions(here + "/writeShellApplication.nix", [["MY_BUILD_TIME_VARIABLE", 142, 20], ["postCheck", 143, 20]]);
-const pos$13 = nix.positions(here + "/writeShellApplication.nix", [["description", 149, 10]]);
-const pos$14 = nix.positions(here + "/writeShellApplication.nix", [["name", 140, 5], ["text", 141, 5], ["derivationArgs", 142, 5], ["meta", 149, 5], ["expected", 150, 5]]);
-const pos$15 = nix.positions(here + "/writeShellApplication.nix", [["name", 154, 5], ["excludeShellChecks", 155, 5], ["text", 156, 5]]);
-const pos$16 = nix.positions(here + "/writeShellApplication.nix", [["name", 164, 5], ["text", 165, 5], ["bashOptions", 172, 5], ["expected", 176, 5]]);
-const pos$17 = nix.positions(here + "/writeShellApplication.nix", [["name", 180, 5], ["text", 181, 5], ["bashOptions", 185, 5], ["excludeShellChecks", 187, 5], ["expected", 188, 5]]);
-const pos$18 = nix.positions(here + "/writeShellApplication.nix", [["test-meta", 36, 3], ["test-runtime-inputs", 49, 3], ["test-runtime-env", 58, 3], ["test-no-inherit-path-no-runtimeInputs", 86, 3], ["test-no-inherit-path-runtimeInputs", 98, 3], ["test-inherit-path-no-runtimeInputs", 114, 3], ["test-check-phase", 130, 3], ["test-argument-forwarding", 139, 3], ["test-exclude-shell-checks", 153, 3], ["test-bash-options-pipefail", 163, 3], ["test-bash-options-nounset", 179, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +24,7 @@ export default nix.lambda((args) => (() => {
     const script = nix.thunk(() => nix.app(writeShellApplication, writeShellApplicationArgs));
     const executable = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), script));
     const expected$ = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.str`${name}-expected`),
         text: expected,
       }))));
@@ -56,14 +39,14 @@ touch $out
 `));
   })(), formals$2);
   return nix.app(linkFarm, "writeShellApplication-tests", nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       "test-meta": nix.thunk(() => (() => {
         const args_1 = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "test-meta",
           text: "",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             description: "Test for the `writeShellApplication` `meta` argument",
           })),
         }));
@@ -73,29 +56,29 @@ touch $out
         return nix.force(script);
       })()),
       "test-runtime-inputs": nix.thunk(() => nix.app(checkShellApplication, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: "test-runtime-inputs",
           text: "hello\n",
           runtimeInputs: nix.thunk(() => [hello]),
           expected: "Hello, world!\n",
         })))),
       "test-runtime-env": nix.thunk(() => nix.app(checkShellApplication, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           name: "test-runtime-env",
           runtimeEnv: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             MY_COOL_ENV_VAR: "my-cool-env-value",
             MY_OTHER_COOL_ENV_VAR: "my-other-cool-env-value",
             BOOL: true,
             INT: 1n,
             LIST: nix.thunk(() => [1n, 2n, 3n]),
-            MAP: nix.thunk(() => ({ [nix.POS]: pos$5, a: "a", b: "b" })),
+            MAP: nix.thunk(() => ({ [nix.POS]: $pos[4], a: "a", b: "b" })),
           })),
           text: "echo \"$MY_COOL_ENV_VAR\"\necho \"$MY_OTHER_COOL_ENV_VAR\"\n",
           expected: "my-cool-env-value\nmy-other-cool-env-value\n",
         })))),
       "test-no-inherit-path-no-runtimeInputs": nix.thunk(() => nix.app(checkShellApplication, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           name: "test-no-inherit-path-no-runtimeInputs",
           inheritPath: false,
           runtimeInputs: [],
@@ -103,7 +86,7 @@ touch $out
           expected: "PATH is empty",
         })))),
       "test-no-inherit-path-runtimeInputs": nix.thunk(() => nix.app(checkShellApplication, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           name: "test-no-inherit-path-runtimeInputs",
           inheritPath: false,
           runtimeInputs: nix.thunk(() => [hello]),
@@ -111,7 +94,7 @@ touch $out
           expected: "PATH is not empty",
         })))),
       "test-inherit-path-no-runtimeInputs": nix.thunk(() => nix.app(checkShellApplication, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           name: "test-inherit-path-no-runtimeInputs",
           inheritPath: true,
           runtimeInputs: [],
@@ -119,42 +102,42 @@ touch $out
           expected: "PATH is not empty",
         })))),
       "test-check-phase": nix.thunk(() => nix.app(checkShellApplication, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           name: "test-check-phase",
           text: "",
           checkPhase: "echo \"echo -n hello\" > $target\n",
           expected: "hello",
         })))),
       "test-argument-forwarding": nix.thunk(() => nix.app(checkShellApplication, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           name: "test-argument-forwarding",
           text: "",
           derivationArgs: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             MY_BUILD_TIME_VARIABLE: "puppy",
             postCheck: "if [[ \"$MY_BUILD_TIME_VARIABLE\" != puppy ]]; then\n  echo \"\\$MY_BUILD_TIME_VARIABLE is not set to 'puppy'!\"\n  exit 1\nfi\n",
           })),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             description: "Test checking that `writeShellApplication` forwards extra arguments to `stdenv.mkDerivation`",
           })),
           expected: "",
         })))),
       "test-exclude-shell-checks": nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           name: "test-exclude-shell-checks",
           excludeShellChecks: nix.thunk(() => ["SC2016"]),
           text: "# Triggers SC2016: Expressions don't expand in single quotes, use double\n# quotes for that.\necho '$SHELL'\n",
         })))),
       "test-bash-options-pipefail": nix.thunk(() => nix.app(checkShellApplication, nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           name: "test-bash-options-pipefail",
           text: "touch my-test-file\necho puppy | grep doggy | sed 's/doggy/puppy/g'\n#            ^^^^^^^^^^ This will fail.\ntrue\n",
           bashOptions: nix.thunk(() => ["errexit", "nounset"]),
           expected: "",
         })))),
       "test-bash-options-nounset": nix.thunk(() => nix.app(checkShellApplication, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           name: "test-bash-options-nounset",
           text: "echo -n \"$someUndefinedVariable\"\n",
           bashOptions: [],

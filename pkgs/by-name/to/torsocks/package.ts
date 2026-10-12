@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 17, 5], ["group", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["url", 30, 7], ["hash", 31, 7]], [["updateScript", 46, 12]], [["changelog", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 25, 3], ["patches", 27, 3], ["postPatch", 37, 3], ["doInstallCheck", 42, 3], ["installCheckTarget", 43, 3], ["nativeInstallCheckInputs", 44, 3], ["passthru", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, autoreconfHook: false, libcap: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 17, 5], ["group", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 46, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 25, 3], ["patches", 27, 3], ["postPatch", 37, 3], ["doInstallCheck", 42, 3], ["installCheckTarget", 43, 3], ["nativeInstallCheckInputs", 44, 3], ["passthru", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "torsocks",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.torproject.org",
           group: "tpo",
           owner: "core",
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.torproject.org/tpo/core/torsocks/uploads/eeec9833512850306a42a0890d283d77/0001-Fix-macros-for-accept4-2.patch",
             hash: "sha256-XWi8+UFB8XgBFSl5QDJ+hLu/dH4CvAwYbeZz7KB10Bs=",
           })))),
@@ -48,11 +44,11 @@ export default nix.lambda((args) => (() => {
       installCheckTarget: "check-recursive",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://gitlab.torproject.org/tpo/core/torsocks/-/releases/v${nix.sel(finalAttrs, "version")}`),
         description: "Wrapper to safely torify applications",
         homepage: "https://gitlab.torproject.org/tpo/core/torsocks",

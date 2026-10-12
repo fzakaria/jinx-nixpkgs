@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["NIX_CFLAGS_COMPILE", 63, 7]], [["rev-prefix", 69, 21]], [["command", 71, 9], ["supportedFeatures", 83, 9]], [["updateScript", 68, 5]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 96, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["sourceRoot", 32, 3], ["gitHashes", 34, 3], ["cmakeFlags", 36, 3], ["targetFlutterPlatform", 40, 3], ["pubspecLock", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 50, 3], ["env", 63, 3], ["passthru", 67, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "pkg-config": false, flutter338: false, gst_all_1: false, libunwind: false, makeWrapper: false, mimalloc: false, orc: false, python3: false, nix: false, gitUpdater: false, "nix-prefetch-git": false, "mpv-unwrapped": false, libplacebo: false, "_experimental-update-script-combinators": false, fletTarget: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 69, 21]]);
-const pos$4 = nix.positions(here + "/package.nix", [["command", 71, 9], ["supportedFeatures", 83, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 96, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["sourceRoot", 32, 3], ["gitHashes", 34, 3], ["cmakeFlags", 36, 3], ["targetFlutterPlatform", 40, 3], ["pubspecLock", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 50, 3], ["env", 63, 3], ["passthru", 67, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "flet-client-flutter";
       const version = "0.80.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flet-dev",
           repo: "flet",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -57,15 +51,15 @@ export default nix.lambda((args) => (() => {
         mimalloc,
       ], nix.concat(nix.sel(mpv_unwrapped, "buildInputs"), nix.sel(libplacebo, "buildInputs"))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=nontrivial-memcall"]))),
       }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
             nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               command: nix.thunk(() => [
                 "env",
                 nix.thunk(() => nix.str`PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
@@ -81,7 +75,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Framework that enables you to easily build realtime web, mobile, and desktop apps in Python. The frontend part",
         homepage: "https://flet.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/flet-dev/flet/releases/tag/v${version}`),
@@ -93,7 +87,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "flet",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

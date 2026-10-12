@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["PKG_CONFIG_DBUS_1_SESSION_BUS_SERVICES_DIR", 45, 7]], [["updateScript", 48, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["teams", 56, 5], ["mainProgram", 57, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 39, 3], ["env", 45, 3], ["passthru", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, python3: false, ninja: false, "pkg-config": false, vala: false, glib: false, libgee: false, dbus: false, "glib-networking": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PKG_CONFIG_DBUS_1_SESSION_BUS_SERVICES_DIR", 45, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["teams", 56, 5], ["mainProgram", 57, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 39, 3], ["env", 45, 3], ["passthru", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "contractor";
       const version = "0.3.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "contractor",
           rev: version,
@@ -38,15 +34,15 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [dbus, meson, ninja, pkg_config, python3, vala, wrapGAppsHook3]);
       const buildInputs = nix.thunk(() => [glib, glib_networking, libgee]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_DBUS_1_SESSION_BUS_SERVICES_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/dbus-1/services`),
       }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Desktop-wide extension service used by elementary OS",
         homepage: "https://github.com/elementary/contractor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "contractor",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

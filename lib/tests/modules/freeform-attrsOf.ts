@@ -2,14 +2,14 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/freeform-attrsOf.nix", [[["freeformType", 3, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/freeform-attrsOf.nix", [["freeformType", 3, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     freeformType: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
       return nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "either"), nix.thunk(() => nix.lookup(w, "str")), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")))))));

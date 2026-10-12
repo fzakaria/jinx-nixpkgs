@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/greet.nix", [[["description", 12, 8]], [["name", 7, 3], ["buildInputs", 8, 3], ["meta", 12, 3]]]);
 const formals$1 = { args: { buildAstalModule: false, "json-glib": false, quarrel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/greet.nix", [["description", 12, 8]]);
-const pos$2 = nix.positions(here + "/greet.nix", [["name", 7, 3], ["buildInputs", 8, 3], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const json_glib = nix.arg($, "json-glib");
   const quarrel = nix.arg($, "quarrel");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "greet",
       buildInputs: nix.thunk(() => [json_glib, quarrel]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for greetd using IPC" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "Astal module for greetd using IPC" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=greet.ts.map

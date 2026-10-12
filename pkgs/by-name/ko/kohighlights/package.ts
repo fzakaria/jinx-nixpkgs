@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 53, 7], ["desktopName", 54, 7], ["exec", 55, 7], ["comment", 56, 7], ["categories", 57, 7]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["dontWrapPythonPrograms", 27, 3], ["dontBuild", 28, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 37, 3], ["dependencies", 43, 3], ["desktopItems", 51, 3], ["dontWrapQtApps", 61, 3], ["installPhase", 63, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, python312Packages: false, qt5: false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 53, 7], ["desktopName", 54, 7], ["exec", 55, 7], ["comment", 56, 7], ["categories", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["dontWrapPythonPrograms", 27, 3], ["dontBuild", 28, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 37, 3], ["dependencies", 43, 3], ["desktopItems", 51, 3], ["dontWrapQtApps", 61, 3], ["installPhase", 63, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.1.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "noembryo",
           repo: "KoHighlights",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       })());
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "kohighlights",
             desktopName: "KoHighlights",
             exec: nix.thunk(() => nix.sel(meta, "mainProgram")),
@@ -72,7 +69,7 @@ makeWrapper ${nix.sel(python3Packages, "python", "interpreter")} $out/bin/KoHigh
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utility for viewing and/or exporting KOReader's highlights",
         homepage: "https://github.com/noembryo/KoHighlights",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -83,7 +80,7 @@ runHook postInstall
         mainProgram: "KoHighlights",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 22, 26], ["version", 22, 32], ["hash", 23, 5]], [["package", 59, 5], ["command", 60, 5]], [["version", 58, 18]], [["tests", 58, 12], ["updateScript", 63, 12]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 75, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 21, 3], ["cargoHash", 26, 3], ["buildNoDefaultFeatures", 28, 3], ["buildFeatures", 29, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["postInstall", 51, 3], ["passthru", 58, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, rustPlatform: false, fetchCrate: false, installShellFiles: false, "pkg-config": false, openssl: false, libiconv: false, testers: false, "sqlx-cli": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 22, 26], ["version", 22, 32], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 59, 5], ["command", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 58, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 58, 12], ["updateScript", 63, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 21, 3], ["cargoHash", 26, 3], ["buildNoDefaultFeatures", 28, 3], ["buildFeatures", 29, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["postInstall", 51, 3], ["passthru", 58, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const sqlx_cli = nix.arg($, "sqlx-cli");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sqlx-cli",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-XariusjsCgn0Qai0XWtr7EzSzDDTp1cCzjff1kJNO9Y=",
@@ -40,15 +35,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [openssl])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       postInstall: "for shell in bash fish zsh; do\n  $out/bin/sqlx completions $shell > sqlx.$shell\n  installShellCompletion sqlx.$shell\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: sqlx_cli, command: "sqlx --version" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: sqlx_cli, command: "sqlx --version" })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CLI for managing databases, migrations, and enabling offline mode with `sqlx::query!()` and friends",
         homepage: "https://github.com/transact-rs/sqlx",
         changelog: nix.thunk(() => nix.str`https://github.com/transact-rs/sqlx/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -2,46 +2,41 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/source.nix", [["os", 4, 5], ["name", 5, 5], ["ext", 6, 5], ["hash", 7, 5]]);
-const pos$2 = nix.positions(here + "/source.nix", [["os", 10, 5], ["name", 11, 5], ["ext", 12, 5], ["hash", 13, 5]]);
-const pos$3 = nix.positions(here + "/source.nix", [["os", 16, 5], ["name", 17, 5], ["ext", 18, 5], ["hash", 19, 5]]);
-const pos$4 = nix.positions(here + "/source.nix", [["os", 22, 5], ["name", 23, 5], ["ext", 24, 5], ["hash", 25, 5]]);
-const pos$5 = nix.positions(here + "/source.nix", [["os", 28, 5], ["name", 29, 5], ["ext", 30, 5], ["hash", 31, 5]]);
-const pos$6 = nix.positions(here + "/source.nix", [["version", 2, 3], ["x86_64-linux", 3, 3], ["i686-linux", 9, 3], ["aarch64-linux", 15, 3], ["armv7l-linux", 21, 3], ["aarch64-darwin", 27, 3]]);
+const $pos = nix.positions(here + "/source.nix", [[["os", 4, 5], ["name", 5, 5], ["ext", 6, 5], ["hash", 7, 5]], [["os", 10, 5], ["name", 11, 5], ["ext", 12, 5], ["hash", 13, 5]], [["os", 16, 5], ["name", 17, 5], ["ext", 18, 5], ["hash", 19, 5]], [["os", 22, 5], ["name", 23, 5], ["ext", 24, 5], ["hash", 25, 5]], [["os", 28, 5], ["name", 29, 5], ["ext", 30, 5], ["hash", 31, 5]], [["version", 2, 3], ["x86_64-linux", 3, 3], ["i686-linux", 9, 3], ["aarch64-linux", 15, 3], ["armv7l-linux", 21, 3], ["aarch64-darwin", 27, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$6,
+  [nix.POS]: $pos[5],
   version: "970",
   "x86_64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     os: "Linux",
     name: "x86_64",
     ext: "tgz",
     hash: "sha256-oYDvdsSIw/rlM/foZRUuD/0TzvONOtQL5fr3XmJkowI=",
   })),
   "i686-linux": nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     os: "Linux",
     name: "i386",
     ext: "tgz",
     hash: "sha256-CyazbUsfjXsSFIvM5Nw1zvDdaiLec+4pPkbXixuQkpg=",
   })),
   "aarch64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     os: "Linux",
     name: "arm64",
     ext: "tgz",
     hash: "sha256-nkM7QzYMu8Zs85/AFUGHySXK2isFhZghSxeLFRRPaRA=",
   })),
   "armv7l-linux": nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     os: "Linux",
     name: "arm",
     ext: "tgz",
     hash: "sha256-rXvdkXZj4WQwvxmX+ArkMcjdaytPDcwcQ15nvwg2gW0=",
   })),
   "aarch64-darwin": nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     os: "MacOSX",
     name: "arm64",
     ext: "pkg",

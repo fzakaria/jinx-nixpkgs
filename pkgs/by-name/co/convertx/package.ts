@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["pname", 47, 5], ["version", 48, 13], ["src", 48, 21], ["dontConfigure", 50, 5], ["dontFixup", 51, 5], ["nativeBuildInputs", 53, 5], ["buildPhase", 57, 5], ["installPhase", 65, 5], ["outputHash", 74, 5], ["outputHashMode", 75, 5]], [["description", 152, 5], ["homepage", 153, 5], ["license", 154, 5], ["platforms", 155, 5], ["changelog", 159, 5], ["mainProgram", 160, 5], ["maintainers", 161, 5]], [["pname", 79, 11], ["version", 79, 17], ["src", 79, 25], ["postPatch", 83, 3], ["nativeBuildInputs", 88, 3], ["dontConfigure", 94, 3], ["buildPhase", 96, 3], ["installPhase", 109, 3], ["meta", 151, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, bun: false, tailwindcss_4: false, typescript_7: false, makeBinaryWrapper: false, assimp: false, calibre: false, dasel: false, "ffmpeg-headless": false, graphicsmagick: false, imagemagick: false, inkscape: false, libheif: false, libjxl: false, libreoffice: false, libva: false, pandoc: false, perl5Packages: false, potrace: false, python3: false, resvg: false, texliveBasic: false, vips: false, vtracer: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 47, 5], ["version", 48, 13], ["src", 48, 21], ["dontConfigure", 50, 5], ["dontFixup", 51, 5], ["nativeBuildInputs", 53, 5], ["buildPhase", 57, 5], ["installPhase", 65, 5], ["outputHash", 74, 5], ["outputHashMode", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 152, 5], ["homepage", 153, 5], ["license", 154, 5], ["platforms", 155, 5], ["changelog", 159, 5], ["mainProgram", 160, 5], ["maintainers", 161, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 79, 11], ["version", 79, 17], ["src", 79, 25], ["postPatch", 83, 3], ["nativeBuildInputs", 88, 3], ["dontConfigure", 94, 3], ["buildPhase", 96, 3], ["installPhase", 109, 3], ["meta", 151, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,14 +37,14 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.attr(pin, "version"));
   const pname = "convertx";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "C4illin",
       repo: "ConvertX",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: nix.thunk(() => nix.sel(pin, "srcHash")),
     }))));
   const node_modules = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${pname}-node_modules`),
       version: version,
       src: src,
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
     })));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -117,7 +114,7 @@ makeBinaryWrapper ${bun}/bin/bun $out/bin/convertx \\
         ]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Self-hosted online file converter",
         homepage: "https://github.com/C4illin/ConvertX/tree/main",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

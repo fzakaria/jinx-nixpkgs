@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 17, 3], ["version", 18, 3], ["minimalOCamlVersion", 19, 3], ["src", 20, 3], ["propagatedBuildInputs", 25, 3], ["checkInputs", 36, 3], ["doCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { alcotest: false, buildDunePackage: false, "camlp-streams": false, fetchurl: false, hex: false, ipaddr: false, lib: false, ppx_compare: false, ppx_custom_printf: false, ppx_sexp_conv: false, re: false, uuidm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["minimalOCamlVersion", 19, 3], ["src", 20, 3], ["propagatedBuildInputs", 25, 3], ["checkInputs", 36, 3], ["doCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const uuidm = nix.arg($, "uuidm");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pgx",
       version: "2.3",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/pgx-ocaml/pgx/archive/refs/tags/${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Rp9PXsWI4cBc1YHD7uqKATrRt5tgNJowbaAFg1aeVKM=",
         })))),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pure-OCaml PostgreSQL client library",
         homepage: "https://github.com/pgx-ocaml/pgx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

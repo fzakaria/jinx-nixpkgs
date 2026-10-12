@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 5], ["group", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["extraArgs", 54, 47]], [["updateScript", 54, 12]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 31, 3], ["hardeningDisable", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["installFlags", 52, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "pkg-config": false, "util-macros": false, autoreconfHook: false, wrapWithXFileSearchPathHook: false, libx11: false, libxaw: false, libxkbfile: false, libxmu: false, libxres: false, libxt: false, xorgproto: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 5], ["group", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 54, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 31, 3], ["hardeningDisable", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["installFlags", 52, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "editres",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "app",
@@ -45,14 +41,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxaw, libxkbfile, libxmu, libxres, libxt, xorgproto]),
       installFlags: nix.thunk(() => ["appdefaultdir=$(out)/share/X11/app-defaults"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=editres-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Dynamic resource editor for X Toolkit applications",
         longDescription: "Editres is a tool that allows users and application developers to view the full widget\nhierarchy of any Xt Toolkit application that speaks the Editres protocol. In addition, editres\nwill help the user construct resource specifications, allow the user to apply the resource\nto the application and view the results dynamically. Once the user is happy with a resource\nspecification editres will append the resource string to the user's X Resources file.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/app/editres",

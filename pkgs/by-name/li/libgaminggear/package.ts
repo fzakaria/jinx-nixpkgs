@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["url", 29, 7], ["hash", 30, 7]], [["NIX_CFLAGS_COMPILE", 62, 7]], [["description", 69, 5], ["homepage", 70, 5], ["platforms", 71, 5], ["license", 72, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["outputs", 34, 3], ["nativeBuildInputs", 40, 3], ["propagatedBuildInputs", 46, 3], ["cmakeFlags", 55, 3], ["env", 62, 3], ["postFixup", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch2: false, fetchurl: false, cmake: false, "pkg-config": false, gettext: false, gtk2: false, libcanberra: false, libnotify: false, sqlite: false, libxdmcp: false, "libpthread-stubs": false, harfbuzz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 62, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["platforms", 71, 5], ["license", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["outputs", 34, 3], ["nativeBuildInputs", 40, 3], ["propagatedBuildInputs", 46, 3], ["cmakeFlags", 55, 3], ["env", 62, 3], ["postFixup", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const libpthread_stubs = nix.arg($, "libpthread-stubs");
   const harfbuzz = nix.arg($, "harfbuzz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libgaminggear",
       version: "0.15.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/libgaminggear/libgaminggear-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0jf5i1iv8j842imgiixbhwcr6qcwa93m27lzr6gb01ri5v35kggz",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://aur.archlinux.org/cgit/aur.git/plain/cmake_min_version.patch?h=libgaminggear&id=bfe7db62db76dbcefa8ba47640a35c80183f91d3",
             hash: "sha256-loznfqxlucYlDUSYotMdUBmivKu+DD+OYhRIWpcrSgE=",
           })))),
@@ -50,12 +46,12 @@ export default nix.lambda((args) => (() => {
         "-DINSTALL_LIBDIR=lib",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-I${nix.sel(harfbuzz, "dev")}/include/harfbuzz`)]))),
       })),
       postFixup: "moveToOutput bin \"$bin\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Provides functionality for gaming input devices",
         homepage: "https://sourceforge.net/projects/libgaminggear/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

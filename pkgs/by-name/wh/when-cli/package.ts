@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 11, 26], ["version", 11, 32], ["hash", 12, 5]], [["description", 18, 5], ["homepage", 19, 5], ["mainProgram", 20, 5], ["license", 21, 5], ["maintainers", 22, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["cargoHash", 15, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, fetchCrate: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 11, 26], ["version", 11, 32], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 18, 5], ["homepage", 19, 5], ["mainProgram", 20, 5], ["license", 21, 5], ["maintainers", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["cargoHash", 15, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const fetchCrate = nix.arg($, "fetchCrate");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "when-cli",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-LWssrLl2HKul24N3bJdf2ePqeR4PCROrTiVY5sqzB2M=",
         })))),
       cargoHash: "sha256-ArrKKcTPfp71ltLh1eeEmanFa7B3nLj+jgj4CzINBY0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line tool for converting between timezones",
         homepage: "https://github.com/mitsuhiko/when",
         mainProgram: "when",

@@ -2,10 +2,10 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/redist.nix", [["redistNames", 11, 3], ["redistSystems", 38, 3], ["redistUrlPrefix", 55, 3]]);
+const $pos = nix.positions(here + "/redist.nix", [[["redistNames", 11, 3], ["redistSystems", 38, 3], ["redistUrlPrefix", 55, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$1,
+  [nix.POS]: $pos[0],
   redistNames: nix.thunk(() => [
     "cublasmp",
     "cuda",

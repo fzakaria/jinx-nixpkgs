@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["name", 8, 3], ["buildInputs", 9, 3], ["nativeCheckInputs", 10, 3], ["dontUnpack", 11, 3], ["doCheck", 12, 3], ["sql", 13, 3], ["postgresqlTestSetupPost", 20, 3], ["checkPhase", 23, 3], ["installPhase", 31, 3], ["__structuredAttrs", 35, 3]]]);
 const formals$1 = { args: { postgresql: false, postgresqlTestHook: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["name", 8, 3], ["buildInputs", 9, 3], ["nativeCheckInputs", 10, 3], ["dontUnpack", 11, 3], ["doCheck", 12, 3], ["sql", 13, 3], ["postgresqlTestSetupPost", 20, 3], ["checkPhase", 23, 3], ["installPhase", 31, 3], ["__structuredAttrs", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestHook = nix.arg($, "postgresqlTestHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "postgresql-test-hook-test",
       buildInputs: nix.thunk(() => [postgresqlTestHook]),
       nativeCheckInputs: nix.thunk(() => [postgresql]),

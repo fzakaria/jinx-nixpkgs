@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 77, 7], ["repo", 78, 7], ["tag", 79, 7], ["hash", 80, 7]], [["updateScript", 102, 14]], [["description", 128, 7], ["homepage", 129, 7], ["license", 130, 7], ["maintainers", 131, 7], ["platforms", 135, 7]], [["pname", 73, 5], ["version", 74, 5], ["src", 76, 5], ["nativeBuildInputs", 83, 5], ["postPatch", 88, 5], ["dontBuild", 100, 5], ["passthru", 102, 5], ["installPhase", 104, 5], ["meta", 127, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, jdupes: false, "nix-update-script": false, sassc: false, accent: true, shade: true, size: true, tweaks: true, radius: true, shell_radius: true, shell_float: true, shell_opacity: true, "shell_no-border": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 77, 7], ["repo", 78, 7], ["tag", 79, 7], ["hash", 80, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 102, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 128, 7], ["homepage", 129, 7], ["license", 130, 7], ["maintainers", 131, 7], ["platforms", 135, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 73, 5], ["version", 74, 5], ["src", 76, 5], ["nativeBuildInputs", 83, 5], ["postPatch", 88, 5], ["dontBuild", 100, 5], ["passthru", 102, 5], ["installPhase", 104, 5], ["meta", 127, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,11 +47,11 @@ export default nix.lambda((args) => (() => {
   const single = (x) => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(x, null)), x);
   const pname = "Catppuccin-GTK";
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname} Valid theme accent(s)`), validAccents, accent, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname} Valid shades`), validShades, nix.thunk(() => nix.app(single, shade)), nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname} Valid sizes`), validSizes, nix.thunk(() => nix.app(single, size)), nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname} Valid tweaks`), validTweaks, tweaks, nix.thunk(() => nix.sel(stdenv, "mkDerivation")), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`magnetic-${nix.app(nix.sel(lib, "toLower"), pname)}`),
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Fausto-Korpsvart",
           repo: "Catppuccin-GTK-Theme",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "find -name \"*.sh\" -print0 | while IFS= read -r -d '' file; do\n  patchShebangs \"$file\"\ndone\n\nrm -r themes/src/main/gtk-2.0\nsed -i '/gtk-2/Is/^.*$/:/' themes/lib/installers/gtk.sh themes/lib/gtkrc.sh\n\nsubstituteInPlace themes/lib/utils.sh \\\n  --replace-fail 'LOG_FILE=\"${HOME}/.cache/catppuccin-install.log\"' 'LOG_FILE=/dev/null'\n",
       dontBuild: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -89,7 +86,7 @@ jdupes --quiet --link-soft --recurse $out/share
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GTK Theme with Catppuccin colour scheme",
         homepage: "https://github.com/Fausto-Korpsvart/Catppuccin-GTK-Theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

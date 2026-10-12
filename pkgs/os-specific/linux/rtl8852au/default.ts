@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["NIX_CFLAGS_COMPILE", 64, 7]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["broken", 74, 5], ["maintainers", 75, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["hardeningDisable", 26, 3], ["patches", 31, 3], ["postPatch", 36, 3], ["makeFlags", 45, 3], ["preInstall", 54, 3], ["postInstall", 59, 3], ["env", 64, 3], ["enableParallelBuilding", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false, bc: false, nukeReferences: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 64, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["broken", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["hardeningDisable", 26, 3], ["patches", 31, 3], ["postPatch", 36, 3], ["makeFlags", 45, 3], ["preInstall", 54, 3], ["postInstall", 59, 3], ["env", 64, 3], ["enableParallelBuilding", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const bc = nix.arg($, "bc");
   const nukeReferences = nix.arg($, "nukeReferences");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rtl8852au",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-unstable-2024-05-06`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lwfinger",
           repo: "rtl8852au",
           rev: "865ab0fa91471d595c283d2f3db323f7f15455f5",
@@ -48,10 +45,10 @@ substituteInPlace ./platform/i386_pc.mk \\
 mkdir -p "$out/usr/lib/systemd/system-sleep"
 `),
       postInstall: "nuke-refs $out/lib/modules/*/kernel/net/wireless/*.ko\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-designated-init" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-designated-init" })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Driver for Realtek 802.11ac, rtl8852au, provides the 8852au mod",
         homepage: "https://github.com/lwfinger/rtl8852au",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["preInstall", 25, 3], ["makeFlags", 31, 3], ["buildInputs", 37, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, motif: false, libxt: false, libxext: false, libx11: false, withAudioTracking: true, libpulseaudio: false, aubio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["preInstall", 25, 3], ["makeFlags", 31, 3], ["buildInputs", 37, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const aubio = nix.arg($, "aubio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "catclock",
       version: "0-unstable-2021-11-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BarkyTheDog",
           repo: "catclock",
           rev: "b2f277974b5a80667647303cabf8a89d6d6a4290",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat(["DESTINATION=$(out)/bin/", "CFLAGS=-Wno-incompatible-pointer-types"], nix.app(nix.sel(lib, "optional"), withAudioTracking, "WITH_TEMPO_TRACKER=1"))),
       buildInputs: nix.thunk(() => nix.concat([motif, libx11, libxext, libxt], nix.app(nix.sel(lib, "optionals"), withAudioTracking, nix.thunk(() => [libpulseaudio, aubio])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://codefromabove.com/2014/05/catclock/",
         description: "Analog / Digital / Cat clock for X",
         license: nix.thunk(() => (() => {

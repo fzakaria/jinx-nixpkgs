@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["postPatch", 40, 3], ["preBuild", 48, 3], ["installPhase", 53, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ffmpeg: false, libjpeg_turbo: false, gtk3: false, "alsa-lib": false, speex: false, libusbmuxd: false, libappindicator: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["postPatch", 40, 3], ["preBuild", 48, 3], ["installPhase", 53, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libappindicator = nix.arg($, "libappindicator");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "droidcam",
       version: "2.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dev47apps",
           repo: "droidcam-linux-client",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "makeFlagsArray+=(\"JPEG=$(pkg-config --libs --cflags libturbojpeg)\")\nmakeFlagsArray+=(\"USBMUXD=$(pkg-config --libs --cflags libusbmuxd-2.0)\")\n",
       installPhase: "runHook preInstall\n\ninstall -Dt $out/bin droidcam droidcam-cli\ninstall -D icon2.png $out/share/icons/hicolor/96x96/apps/droidcam.png\ninstall -D droidcam.desktop $out/share/applications/droidcam.desktop\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Linux client for DroidCam app",
         homepage: "https://github.com/dev47apps/droidcam-linux-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

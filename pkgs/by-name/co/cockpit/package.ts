@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5], ["fetchSubmodules", 57, 5]], [["cockpit", 299, 36]], [["python3Packages", 298, 13], ["tests", 299, 5], ["updateScript", 300, 5], ["cockpitPath", 301, 5]], [["description", 310, 5], ["mainProgram", 311, 5], ["homepage", 312, 5], ["changelog", 313, 5], ["license", 314, 5], ["teams", 315, 5]], [["pname", 49, 3], ["version", 50, 3], ["src", 52, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 80, 3], ["postPatch", 94, 3], ["configureFlags", 169, 3], ["enableParallelBuilding", 184, 3], ["fixupPhase", 186, 3], ["disallowedRequisites", 266, 3], ["nativeCheckInputs", 276, 3], ["checkInputs", 278, 3], ["preCheck", 286, 3], ["passthru", 297, 3], ["meta", 309, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, asciidoctor: false, autoreconfHook: false, bashInteractive: false, cacert: false, coreutils: false, dbus: false, docbook_xml_dtd_43: false, docbook_xsl: false, findutils: false, gettext: false, git: false, glib: false, "glib-networking": false, "gobject-introspection": false, gnused: false, gnutls: false, hostname: false, iproute2: false, "json-glib": false, krb5: false, libssh: false, libxcrypt: false, libxslt: false, makeWrapper: false, nodejs: false, nixosTests: false, "nix-update-script": false, openssh: false, openssl: false, pam: false, "pkg-config": false, polkit: false, python3Packages: false, removeReferencesTo: false, sscg: false, systemdLibs: false, udev: false, "util-linux": false, xmlto: false, withBranding: true, "nixos-icons": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5], ["fetchSubmodules", 57, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cockpit", 299, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["python3Packages", 298, 13], ["tests", 299, 5], ["updateScript", 300, 5], ["cockpitPath", 301, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 310, 5], ["mainProgram", 311, 5], ["homepage", 312, 5], ["changelog", 313, 5], ["license", 314, 5], ["teams", 315, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 49, 3], ["version", 50, 3], ["src", 52, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 80, 3], ["postPatch", 94, 3], ["configureFlags", 169, 3], ["enableParallelBuilding", 184, 3], ["fixupPhase", 186, 3], ["disallowedRequisites", 266, 3], ["nativeCheckInputs", 276, 3], ["checkInputs", 278, 3], ["preCheck", 286, 3], ["passthru", 297, 3], ["meta", 309, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,11 +52,11 @@ export default nix.lambda((args) => (() => {
   const withBranding = nix.argOr($, "withBranding", () => true);
   const nixos_icons = nix.arg($, "nixos-icons");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cockpit",
       version: "368",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cockpit-project",
           repo: "cockpit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -266,9 +262,12 @@ npm run eslint
 npm run stylelint
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         python3Packages: python3Packages,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, cockpit: nix.thunk(() => nix.attr(nixosTests, "cockpit")) })),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          cockpit: nix.thunk(() => nix.attr(nixosTests, "cockpit")),
+        })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         cockpitPath: nix.thunk(() => [
           glib,
@@ -278,7 +277,7 @@ npm run stylelint
         ]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Web-based graphical interface for servers",
         mainProgram: "cockpit-bridge",
         homepage: "https://cockpit-project.org/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["extensionUuid", 22, 5], ["extensionPortalSlug", 23, 5]], [["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["homepage", 47, 5], ["broken", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["passthru", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["buildPhase", 30, 3], ["installPhase", 36, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, "gnome-shell": false, fetchFromGitHub: false, xprop: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extensionUuid", 22, 5], ["extensionPortalSlug", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["homepage", 47, 5], ["broken", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["passthru", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["buildPhase", 30, 3], ["installPhase", 36, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const xprop = nix.arg($, "xprop");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gnome-shell-extension-unite",
       version: "85",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hardpixel",
           repo: "unite-shell",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-SN5DYyyZux3jeGgrOc/fd9QcjPRReb2rVZk987saXmQ=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         extensionUuid: "unite@hardpixel.eu",
         extensionPortalSlug: "unite",
       })),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nglib-compile-schemas --strict --targetdir=\"unite@hardpixel.eu/schemas/\" \"unite@hardpixel.eu/schemas\"\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out/share/gnome-shell/extensions\ncp -r \"unite@hardpixel.eu\" $out/share/gnome-shell/extensions\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Unite is a GNOME Shell extension which makes a few layout tweaks to the top panel and removes window decorations to make it look like Ubuntu Unity Shell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         maintainers: nix.thunk(() => (() => {

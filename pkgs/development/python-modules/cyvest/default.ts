@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["visualization", 46, 5]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["pythonRelaxDeps", 33, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 45, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, click: false, fetchFromGitHub: false, logurich: false, pydantic: false, "pytest-cov-stub": false, pytestCheckHook: false, pyvis: false, rich: false, "typing-extensions": false, "uv-build": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["visualization", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["pythonRelaxDeps", 33, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 45, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const uv_build = nix.arg($, "uv-build");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cyvest",
       version: "6.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PakitoSec",
           repo: "cyvest",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["pydantic"]),
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [click, logurich, pydantic, rich, typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, visualization: nix.thunk(() => [pyvis]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], visualization: nix.thunk(() => [pyvis]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["cyvest"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cybersecurity Investigation Model",
         homepage: "https://github.com/PakitoSec/cyvest",
         changelog: nix.thunk(() => nix.str`https://github.com/PakitoSec/cyvest/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

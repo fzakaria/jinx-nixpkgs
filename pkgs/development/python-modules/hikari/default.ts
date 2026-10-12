@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5], ["leaveDotGit", 32, 5], ["postFetch", 33, 5]], [["server", 52, 5]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 40, 3], ["propagatedBuildInputs", 42, 3], ["pythonRelaxDeps", 49, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 55, 3], ["pythonImportsCheck", 64, 3], ["postPatch", 66, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, hatchling: false, aiohttp: false, "async-timeout": false, attrs: false, multidict: false, colorlog: false, pynacl: false, "pytest-cov-stub": false, "pytest-randomly": false, "pytest-asyncio": false, mock: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5], ["leaveDotGit", 32, 5], ["postFetch", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["server", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 40, 3], ["propagatedBuildInputs", 42, 3], ["pythonRelaxDeps", 49, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 55, 3], ["pythonImportsCheck", 64, 3], ["postPatch", 66, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const mock = nix.arg($, "mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hikari",
       version: "2.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hikari-py",
           repo: "hikari",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       propagatedBuildInputs: nix.thunk(() => [aiohttp, attrs, multidict, colorlog]),
       pythonRelaxDeps: true,
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, server: nix.thunk(() => [pynacl]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], server: nix.thunk(() => [pynacl]) })),
       nativeCheckInputs: nix.thunk(() => [
         pytestCheckHook,
         pytest_asyncio,
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["hikari"]),
       postPatch: "substituteInPlace hikari/_about.py \\\n  --replace-fail \"__git_sha1__: typing.Final[str] = \\\"HEAD\\\"\" \"__git_sha1__: typing.Final[str] = \\\"$(cat $src/COMMIT)\\\"\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Discord API wrapper for Python written with asyncio",
         homepage: "https://www.hikari-py.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/hikari-py/hikari/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

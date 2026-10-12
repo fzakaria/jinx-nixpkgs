@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["checkPhase", 45, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, beautifulsoup4: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, filelock: false, lxml: false, requests: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["checkPhase", 45, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0.20230622";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JustAnotherArchivist",
           repo: "snscrape",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-find-module.patch",
             url: "https://github.com/JustAnotherArchivist/snscrape/commit/7f4717aaaaa8d4c96fa1dbe72ded799a722732ee.patch",
             hash: "sha256-6O9bZ5GlTPuR0MML/O4DDRBcDX/CJbU54ZE551cfPHo=",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "export PATH=$PATH:$out/bin\nsnscrape --help\n";
       const pythonImportsCheck = nix.thunk(() => ["snscrape"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Social networking service scraper",
         homepage: "https://github.com/JustAnotherArchivist/snscrape",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "snscrape",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

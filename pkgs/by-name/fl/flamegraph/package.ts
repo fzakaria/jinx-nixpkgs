@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["license", 48, 5], ["homepage", 53, 5], ["description", 54, 5], ["mainProgram", 55, 5], ["platforms", 56, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["strictDeps", 21, 3], ["installPhase", 23, 3], ["doCheck", 34, 3], ["nativeCheckInputs", 36, 3], ["checkPhase", 40, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 48, 5], ["homepage", 53, 5], ["description", 54, 5], ["mainProgram", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["strictDeps", 21, 3], ["installPhase", 23, 3], ["doCheck", 34, 3], ["nativeCheckInputs", 36, 3], ["checkPhase", 40, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "FlameGraph",
       version: "2023-11-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "brendangregg",
           repo: "FlameGraph",
           rev: "a96184c6939f8c6281fcd7285b54fba80555ac74",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [perl]),
       checkPhase: "runHook preCheck\npatchShebangs --build ./test.sh\n./test.sh\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [

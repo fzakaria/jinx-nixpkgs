@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["did", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["pname", 26, 7], ["version", 27, 7], ["src", 28, 7], ["sourceRoot", 29, 7], ["pnpm", 31, 13], ["fetcherVersion", 32, 5], ["hash", 33, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["sourceRoot", 22, 3], ["pnpmDeps", 24, 3], ["strictDeps", 36, 3], ["__structuredAttrs", 37, 3], ["nativeBuildInputs", 39, 3], ["buildPhase", 45, 3], ["installPhase", 51, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromTangled: false, nodejs: false, pnpm_11: false, pnpmConfigHook: false, fetchPnpmDeps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["did", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 26, 7], ["version", 27, 7], ["src", 28, 7], ["sourceRoot", 29, 7], ["pnpm", 31, 13], ["fetcherVersion", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["sourceRoot", 22, 3], ["pnpmDeps", 24, 3], ["strictDeps", 36, 3], ["__structuredAttrs", 37, 3], ["nativeBuildInputs", 39, 3], ["buildPhase", 45, 3], ["installPhase", 51, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const fetchPnpmDeps = nix.arg($, "fetchPnpmDeps");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tranquil-frontend",
       version: "0.6.7",
       src: nix.thunk(() => nix.app(fetchFromTangled, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           did: "did:plc:jj6ajj6duxnlthwtnob4qyuv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-bhG5ydQZ9nHXQSlrM2jZaUpEP8ZW3Xx6r5O83vLDf8k=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/frontend`),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\npnpm build\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ncp -r ./dist $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "First party frontend for the Tranquil PDS implementation",
         homepage: "https://tangled.org/tranquil.farm/tranquil-pds",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

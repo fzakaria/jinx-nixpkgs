@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/repl.nix", [[["nativeBuildInputs", 37, 5], ["nixpkgs", 43, 5]]]);
 const formals$1 = { args: { lib: false, expect: false, nix: false, "nixos-rebuild-ng": false, path: false, runCommand: false, stdenv: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/repl.nix", [["nativeBuildInputs", 37, 5], ["nixpkgs", 43, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const expectSetup = "set timeout 300\nproc expect_simple { pattern } {\n  puts \"Expecting: $pattern\"\n  expect {\n    timeout {\n      puts \"\\nTimeout waiting for: $pattern\\n\"\n      exit 1\n    }\n    $pattern\n  }\n}\n";
   const linuxSystem = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["darwin"]), nix.thunk(() => ["linux"]), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(runCommand, "test-nixos-rebuild-repl", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [expect, nix$, nixos_rebuild_ng]),
       nixpkgs: nix.thunk(() => (nix.asBool(nix.builtins.pathExists(nix.thunk(() => nix.add(path, "/.git")))) ? nix.app(nix.sel(lib, "cleanSource"), path) : nix.force(path))),
     })), nix.thunk(() => nix.str`export HOME=$(mktemp -d)

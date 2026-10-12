@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 31, 5], ["sha256", 32, 5]], [["homepage", 63, 5], ["description", 64, 5], ["longDescription", 65, 5], ["license", 72, 5], ["platforms", 73, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 35, 3], ["__structuredAttrs", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 48, 3], ["preConfigure", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "pkg-config": false, "gtk-doc": false, autoconf: false, automake: false, which: false, libtool: false, "gobject-introspection": false, glib: false, gtk2: false, libGLU: false, libGL: false, pango: false, libxmu: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["longDescription", 65, 5], ["license", 72, 5], ["platforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 35, 3], ["__structuredAttrs", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 48, 3], ["preConfigure", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxmu = nix.arg($, "libxmu");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gtkglext",
       version: "unstable-2019-12-19",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "Archive",
           repo: "gtkglext",
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gtk2, libGLU, libGL, pango, libx11, libxmu]),
       preConfigure: "NOCONFIGURE=1 ./autogen.sh\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://projects.gnome.org/gtkglext/",
         description: "GtkGLExt, an OpenGL extension to GTK",
         longDescription: "GtkGLExt is an OpenGL extension to GTK. It provides additional GDK\nobjects which support OpenGL rendering in GTK and GtkWidget API\nadd-ons to make GTK widgets OpenGL-capable.  In contrast to Janne\nLöf's GtkGLArea, GtkGLExt provides a GtkWidget API that enables\nOpenGL drawing for standard and custom GTK widgets.\n",

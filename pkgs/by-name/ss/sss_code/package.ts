@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["RUSTONIG_SYSTEM_LIBONIG", 49, 5]], [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 62, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["cargoBuildFlags", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 42, 3], ["env", 48, 3], ["doCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, fontconfig: false, libiconv: false, writableTmpDirAsHomeHook: false, oniguruma: false, stdenv: false, libxcb: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTONIG_SYSTEM_LIBONIG", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["cargoBuildFlags", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 42, 3], ["env", 48, 3], ["doCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sss_code",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SergioRibera",
           repo: "sss",
           rev: nix.thunk(() => nix.str`sss_code/v${nix.sel(finalAttrs, "version")}`),
@@ -35,10 +32,10 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["-p", "sss_code"]),
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "buildPlatform", "isDarwin")), nix.thunk(() => [libiconv])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [writableTmpDirAsHomeHook]))))),
       buildInputs: nix.thunk(() => [fontconfig, libxcb, oniguruma]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTONIG_SYSTEM_LIBONIG: true })),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Libraries and tools for building screenshots in a high-performance image format",
         mainProgram: "sss_code",
         homepage: "https://github.com/SergioRibera/sss",

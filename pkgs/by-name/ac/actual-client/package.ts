@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 127, 7], ["desktopName", 128, 7], ["exec", 129, 7], ["terminal", 130, 7], ["type", 131, 7], ["icon", 132, 7], ["startupWMClass", 133, 7], ["comment", 134, 7], ["categories", 135, 7], ["keywords", 139, 7]], [["offlineCache", 150, 26]], [["changelog", 154, 5], ["description", 155, 5], ["homepage", 156, 5], ["mainProgram", 157, 5], ["license", 158, 5], ["platforms", 160, 5], ["maintainers", 164, 5]], [["pname", 17, 3], ["srcs", 20, 5], ["version", 21, 5], ["sourceRoot", 22, 5], ["offlineCache", 23, 5], ["env", 24, 5], ["patches", 25, 5], ["missingHashes", 27, 40], ["__structuredAttrs", 29, 3], ["strictDeps", 30, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 40, 3], ["buildPhase", 45, 3], ["installPhase", 89, 3], ["desktopItems", 125, 3], ["passthru", 149, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { lib: false, "actual-server": false, copyDesktopItems: false, electron_42: false, imagemagick: false, jq: false, makeDesktopItem: false, makeWrapper: false, removeReferencesTo: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 127, 7], ["desktopName", 128, 7], ["exec", 129, 7], ["terminal", 130, 7], ["type", 131, 7], ["icon", 132, 7], ["startupWMClass", 133, 7], ["comment", 134, 7], ["categories", 135, 7], ["keywords", 139, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["offlineCache", 150, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 154, 5], ["description", 155, 5], ["homepage", 156, 5], ["mainProgram", 157, 5], ["license", 158, 5], ["platforms", 160, 5], ["maintainers", 164, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["srcs", 20, 5], ["version", 21, 5], ["sourceRoot", 22, 5], ["offlineCache", 23, 5], ["env", 24, 5], ["patches", 25, 5], ["missingHashes", 27, 40], ["__structuredAttrs", 29, 3], ["strictDeps", 30, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 40, 3], ["buildPhase", 45, 3], ["installPhase", 89, 3], ["desktopItems", 125, 3], ["passthru", 149, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(actual_server, "offlineCache"));
       return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "actual-client",
       srcs: nix.thunk(() => nix.attr(actual_server, "srcs")),
       version: nix.thunk(() => nix.attr(actual_server, "version")),
@@ -116,7 +113,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "com.actualbudget.actual",
             desktopName: "Actual",
             exec: "actual %U",
@@ -130,11 +127,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         offlineCache: nix.thunk(() => nix.attr(finalAttrs, "offlineCache")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: "https://actualbudget.org/docs/releases",
         description: "Super fast privacy-focused app for managing your finances",
         homepage: "https://actualbudget.org/",

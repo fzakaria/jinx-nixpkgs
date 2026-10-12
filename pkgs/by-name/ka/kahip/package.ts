@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pname", 39, 28], ["version", 39, 34], ["meta", 39, 42]], [["homepage", 64, 5], ["downloadPage", 65, 5], ["changelog", 66, 5], ["description", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 37, 3], ["cmakeFlags", 43, 3], ["postInstall", 50, 3], ["doInstallCheck", 55, 3], ["nativeInstallCheckInputs", 57, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, mpi: false, metis: false, llvmPackages: false, python3Packages: false, pythonSupport: true, isILP64: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 39, 28], ["version", 39, 34], ["meta", 39, 42]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["downloadPage", 65, 5], ["changelog", 66, 5], ["description", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 37, 3], ["cmakeFlags", 43, 3], ["postInstall", 50, 3], ["doInstallCheck", 55, 3], ["nativeInstallCheckInputs", 57, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pythonSupport = nix.argOr($, "pythonSupport", () => false);
   const isILP64 = nix.argOr($, "isILP64", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kahip",
       version: "3.23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KaHIP",
           repo: "KaHIP",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake], nix.app(nix.sel(lib, "optional"), pythonSupport, nix.thunk(() => nix.sel(python3Packages, "python"))))),
       buildInputs: nix.thunk(() => nix.concat([mpi, metis], nix.concat(nix.app(nix.sel(lib, "optional"), pythonSupport, nix.thunk(() => nix.sel(python3Packages, "pybind11"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => nix.sel(llvmPackages, "openmp")))))),
       propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), pythonSupport, nix.thunk(() => nix.app(nix.sel(python3Packages, "mkPythonMetaPackage"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
@@ -52,7 +49,7 @@ echo "__version__= '${nix.sel(finalAttrs, "version")}'" > $out/${nix.sel(python3
       nativeInstallCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), pythonSupport, nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pythonImportsCheckHook"))]))),
       pythonImportsCheck: nix.thunk(() => ["kahip"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://kahip.github.io/",
         downloadPage: "https://github.com/KaHIP/KaHIP/",
         changelog: nix.thunk(() => nix.str`https://github.com/KaHIP/KaHIP/releases/tag/v${nix.sel(finalAttrs, "version")}`),

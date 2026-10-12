@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pname", 29, 26], ["version", 29, 32], ["src", 29, 40], ["hash", 30, 5]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5], ["mainProgram", 81, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoDeps", 28, 3], ["strictDeps", 33, 3], ["__structuredAttrs", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 45, 3], ["makeFlags", 52, 3], ["postPatch", 54, 3], ["postInstall", 60, 3], ["dontStrip", 68, 3], ["postFixup", 70, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, asciidoctor: false, buildah: false, "buildah-unwrapped": false, cargo: false, darwin: false, libiconv: false, libkrun: false, makeWrapper: false, rustc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 26], ["version", 29, 32], ["src", 29, 40], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5], ["mainProgram", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoDeps", 28, 3], ["strictDeps", 33, 3], ["__structuredAttrs", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 45, 3], ["makeFlags", 52, 3], ["postPatch", 54, 3], ["postInstall", 60, 3], ["dontStrip", 68, 3], ["postFixup", 70, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const rustc = nix.arg($, "rustc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "krunvm",
       version: "0.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libkrun",
           repo: "krunvm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-peOaPivQKOwioh5skPNFiA3ptHv9pSsnjpy43cms8O8=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -62,7 +59,7 @@ install -D -m755 ${nix.sel(buildah_unwrapped, "src")}/tests/policy.json $out/sha
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [buildah]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI-based utility for creating microVMs from OCI images",
         homepage: "https://github.com/libkrun/krunvm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

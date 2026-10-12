@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["swift-corelibs-libdispatch", 19, 44], ["swift-foundation", 19, 71]], [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 54]], [["updateScript", 91, 12]], [["homepage", 94, 5], ["description", 95, 5], ["platforms", 96, 5], ["license", 97, 5], ["teams", 98, 5]], [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 43, 3], ["strictDeps", 50, 3], ["preConfigure", 52, 3], ["nativeBuildInputs", 57, 3], ["postInstall", 64, 3], ["__structuredAttrs", 89, 3], ["passthru", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, gitUpdater: false, llvm_libtool: false, ninja: false, stdenv: false, "swift-corelibs-libdispatch": false, "swift-foundation": false, "swift-minimal": false, swift_release: false, swift_sources: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["swift-corelibs-libdispatch", 19, 44], ["swift-foundation", 19, 71]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 54]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 91, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 94, 5], ["description", 95, 5], ["platforms", 96, 5], ["license", 97, 5], ["teams", 98, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 43, 3], ["strictDeps", 50, 3], ["preConfigure", 52, 3], ["nativeBuildInputs", 57, 3], ["postInstall", 64, 3], ["__structuredAttrs", 89, 3], ["passthru", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const swift_sources = nix.arg($, "swift_sources");
   const swiftPlatform = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "swift", "platform"));
   const swift = nix.thunk(() => nix.app(nix.sel(swift_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "swift-corelibs-libdispatch": swift_corelibs_libdispatch,
       "swift-foundation": swift_foundation,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "swift-tools-support-core",
       version: swift_release,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-tools-support-core"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "swiftlang",
           repo: "swift-tools-support-core",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -73,11 +69,11 @@ done
 `)))),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/swiftlang/swift-tools-support-core",
         description: "Common infrastructure code used by SwiftPM and llbuild",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "linux"))),

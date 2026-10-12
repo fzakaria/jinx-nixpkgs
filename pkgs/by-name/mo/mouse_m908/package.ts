@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["doInstallCheck", 28, 3], ["installPhase", 31, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, libusb1: false, installShellFiles: false, fetchFromGitHub: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["doInstallCheck", 28, 3], ["installPhase", 31, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mouse_m908",
       version: "3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dokutan",
           repo: "mouse_m908",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin \\\n  $out/share/doc \\\n  $out/share/doc/mouse_m908 \\\n  $out/lib/udev/rules.d\n\ncp mouse_m908 $out/bin/mouse_m908\ncp mouse_m908.rules $out/lib/udev/rules.d\ncp examples/* $out/share/doc/mouse_m908\ncp README.md $out/share/doc/mouse_m908\ncp keymap.md $out/share/doc/mouse_m908\ninstallManPage mouse_m908.1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/dokutan/mouse_m908",
         description: "Control various Redragon gaming mice from Linux, BSD and Haiku",
         mainProgram: "mouse_m908",

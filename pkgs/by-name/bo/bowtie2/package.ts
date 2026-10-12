@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]], [["ctest", 53, 5]], [["tests", 52, 12]], [["description", 64, 5], ["license", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5], ["mainProgram", 70, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["cmakeFlags", 45, 3], ["doCheck", 50, 3], ["passthru", 52, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, perl: false, python3: false, onetbb: false, zlib: false, runCommand: false, bowtie2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ctest", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 52, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["license", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5], ["mainProgram", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["cmakeFlags", 45, 3], ["doCheck", 50, 3], ["passthru", 52, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const bowtie2 = nix.arg($, "bowtie2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bowtie2",
       version: "2.5.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BenLangmead",
           repo: "bowtie2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,9 +37,9 @@ export default nix.lambda((args) => (() => {
         ]))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           ctest: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 ${nix.app(nix.sel(lib, "getExe"), bowtie2)} -x ${nix.sel(finalAttrs, "src")}/example/index/lambda_virus ${nix.sel(finalAttrs, "src")}/example/reads/longreads.fq -u 10
 ${bowtie2}/bin/bowtie2-build-s -c GGGCGGCGACCTCGCGGGTTTTCGCTA $out/small
@@ -54,7 +50,7 @@ ${bowtie2}/bin/bowtie2-inspect-l $out/large
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Ultrafast and memory-efficient tool for aligning sequencing reads to long reference sequences",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         homepage: "http://bowtie-bio.sf.net/bowtie2",

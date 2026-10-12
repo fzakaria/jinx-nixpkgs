@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 5], ["version", 21, 13], ["hash", 22, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 15, 3], ["version", 16, 11], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 25, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, pycryptodome: false, six: false, crc32c: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 13], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 11], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 25, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const crc32c = nix.arg($, "crc32c");
   const version = "0.9.76";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bce-python-sdk",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "bce_python_sdk",
           version: version,
           hash: "sha256-AcYwzo3L+L4FY9ZfGLUgHqrGvZVLPcd2BArsJo+Btv8=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pycryptodome, six, crc32c]),
       pythonImportsCheck: nix.thunk(() => ["baidubce"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Baidu Cloud Engine SDK for python",
         homepage: "https://github.com/baidubce/bce-sdk-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

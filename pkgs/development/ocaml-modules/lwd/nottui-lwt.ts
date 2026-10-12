@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nottui-lwt.nix", [[["description", 20, 5], ["license", 21, 5], ["maintainers", 22, 5], ["homepage", 23, 5]], [["pname", 10, 3], ["version", 12, 17], ["src", 12, 25], ["propagatedBuildInputs", 14, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, lwd: false, lwt: false, nottui: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nottui-lwt.nix", [["description", 20, 5], ["license", 21, 5], ["maintainers", 22, 5], ["homepage", 23, 5]]);
-const pos$2 = nix.positions(here + "/nottui-lwt.nix", [["pname", 10, 3], ["version", 12, 17], ["src", 12, 25], ["propagatedBuildInputs", 14, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const nottui = nix.arg($, "nottui");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "nottui-lwt",
       version: nix.thunk(() => nix.attr(lwd, "version")),
       src: nix.thunk(() => nix.attr(lwd, "src")),
       propagatedBuildInputs: nix.thunk(() => [lwt, nottui]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Run Nottui UIs in Lwt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "alizter"))]),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 9], ["hash", 28, 9]], [["url", 32, 9], ["hash", 33, 9]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 88, 5], ["sourceProvenance", 92, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["runtimeDependencies", 55, 3], ["unpackPhase", 57, 3], ["installPhase", 66, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenv: false, wrapGAppsHook3: false, dpkg: false, autoPatchelfHook: false, glibc: false, "gcc-unwrapped": false, nss: false, libdrm: false, libgbm: false, "alsa-lib": false, "xdg-utils": false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 9], ["hash", 28, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 9], ["hash", 33, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 88, 5], ["sourceProvenance", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["runtimeDependencies", 55, 3], ["unpackPhase", 57, 3], ["installPhase", 66, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,15 +23,15 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const baseUrl = "https://d2atcrkye2ik4e.cloudfront.net/download";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ticktick",
       version: "8.0.11",
       src: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`${baseUrl}/linux/linux_deb_x64/ticktick-${nix.sel(finalAttrs, "version")}-amd64.deb`),
           hash: "sha256-zXZF3n2lqdF8pTdR/giN8iQ3fubxnUYo4u5lwkJd2k4=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`${baseUrl}/linux/linux_deb_arm64/ticktick-${nix.sel(finalAttrs, "version")}-arm64.deb`),
           hash: "sha256-LEiomT1Xw/5KYuSGXBH1lgPzBAI1gRxC5C/jZysPqYM=",
         }))) : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`))))),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "runHook preUnpack\n\nmkdir -p \"$out/share\" \"$out/opt/ticktick\" \"$out/bin\"\ndpkg-deb --fsys-tarfile \"$src\" | tar --extract --directory=\"$out\"\n\nrunHook postUnpack\n",
       installPhase: "runHook preInstall\n\ncp -av $out/opt/TickTick/* $out/opt/ticktick\ncp -av $out/usr/share/* $out/share\nrm -rf $out/usr $out/opt/TickTick\nln -sf \"$out/opt/ticktick/ticktick\" \"$out/bin/ticktick\"\n\nsubstituteInPlace \"$out/share/applications/ticktick.desktop\" \\\n  --replace \"Exec=/opt/TickTick/ticktick\" \"Exec=$out/bin/ticktick\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Powerful to-do & task management app with seamless cloud synchronization across all your devices",
         homepage: "https://ticktick.com/home/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

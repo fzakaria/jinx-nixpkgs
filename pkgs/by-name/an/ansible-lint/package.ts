@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 15, 26], ["pname", 16, 5], ["hash", 17, 5]], [["description", 93, 5], ["mainProgram", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["postPatch", 20, 3], ["build-system", 26, 3], ["dependencies", 31, 3], ["pythonRelaxDeps", 48, 3], ["doCheck", 51, 3], ["nativeCheckInputs", 53, 3], ["preCheck", 65, 3], ["disabledTests", 75, 3], ["makeWrapperArgs", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, ansible: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 15, 26], ["pname", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 93, 5], ["mainProgram", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["postPatch", 20, 3], ["build-system", 26, 3], ["dependencies", 31, 3], ["pythonRelaxDeps", 48, 3], ["doCheck", 51, 3], ["nativeCheckInputs", 53, 3], ["preCheck", 65, 3], ["disabledTests", 75, 3], ["makeWrapperArgs", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const ansible = nix.arg($, "ansible");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ansible-lint",
       version: "25.8.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "ansible_lint",
           hash: "sha256-Nd093RLYBjh2kVvy8GuaG4D9J6fLHKTOUcjOu4RpCSI=",
@@ -78,7 +76,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ansible]))}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Best practices checker for Ansible",
         mainProgram: "ansible-lint",
         homepage: "https://github.com/ansible/ansible-lint",

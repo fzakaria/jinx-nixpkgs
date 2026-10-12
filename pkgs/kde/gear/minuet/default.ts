@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 22, 8]], [["pname", 11, 3], ["extraNativeBuildInputs", 13, 3], ["extraBuildInputs", 14, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, "pkg-config": false, qtdeclarative: false, qtsvg: false, kirigami: false, aubio: false, fluidsynth: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 22, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["extraNativeBuildInputs", 13, 3], ["extraBuildInputs", 14, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const aubio = nix.arg($, "aubio");
   const fluidsynth = nix.arg($, "fluidsynth");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "minuet",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtdeclarative, qtsvg, kirigami, aubio, fluidsynth]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "minuet" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "minuet" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unified-runtime.nix", [[["name", 36, 5], ["paths", 38, 5]], [["name", 50, 5], ["paths", 51, 5]], [["name", 58, 5], ["paths", 60, 5]], [["useJemalloc", 87, 42]], [["ROCM_PATH", 168, 37]], [["CUDA_PATH", 169, 40]], [["setupVars", 167, 12], ["backends", 171, 12]], [["description", 182, 5], ["longDescription", 183, 5], ["homepage", 187, 5], ["license", 188, 5], ["maintainers", 192, 5], ["platforms", 193, 5]], [["name", 71, 3], ["version", 72, 3], ["src", 74, 3], ["sourceRoot", 75, 3], ["doCheck", 77, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 86, 3], ["nativeCheckInputs", 108, 3], ["postPatch", 114, 3], ["preCheck", 132, 3], ["cmakeFlags", 136, 3], ["passthru", 167, 3], ["meta", 181, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, cmake: false, ninja: false, "unified-memory-framework": false, zlib: false, libbacktrace: false, hwloc: false, python3: false, symlinkJoin: false, "level-zero": false, "intel-compute-runtime": false, "opencl-headers": false, "ocl-icd": false, hdrhistogram_c: false, gtest: false, "pkg-config": false, lit: false, filecheck: false, buildPackages: false, rocmPackages: true, rocmGpuTargets: true, cudaPackages: true, "intel-llvm-src": false, levelZeroSupport: false, openclSupport: false, cudaSupport: false, rocmSupport: false, nativeCpuSupport: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unified-runtime.nix", [["name", 36, 5], ["paths", 38, 5]]);
-const pos$2 = nix.positions(here + "/unified-runtime.nix", [["name", 50, 5], ["paths", 51, 5]]);
-const pos$3 = nix.positions(here + "/unified-runtime.nix", [["name", 58, 5], ["paths", 60, 5]]);
-const pos$4 = nix.positions(here + "/unified-runtime.nix", [["useJemalloc", 87, 42]]);
-const pos$5 = nix.positions(here + "/unified-runtime.nix", [["ROCM_PATH", 168, 37]]);
-const pos$6 = nix.positions(here + "/unified-runtime.nix", [["CUDA_PATH", 169, 40]]);
-const pos$7 = nix.positions(here + "/unified-runtime.nix", [["setupVars", 167, 12], ["backends", 171, 12]]);
-const pos$8 = nix.positions(here + "/unified-runtime.nix", [["description", 182, 5], ["longDescription", 183, 5], ["homepage", 187, 5], ["license", 188, 5], ["maintainers", 192, 5], ["platforms", 193, 5]]);
-const pos$9 = nix.positions(here + "/unified-runtime.nix", [["name", 71, 3], ["version", 72, 3], ["src", 74, 3], ["sourceRoot", 75, 3], ["doCheck", 77, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 86, 3], ["nativeCheckInputs", 108, 3], ["postPatch", 114, 3], ["preCheck", 132, 3], ["cmakeFlags", 136, 3], ["passthru", 167, 3], ["meta", 181, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const rocmSupport = nix.arg($, "rocmSupport");
   const nativeCpuSupport = nix.arg($, "nativeCpuSupport");
   const rocmtoolkit_joined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "rocm-merged",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(rocmPackages, null);
@@ -57,7 +49,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   const rocmPath = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "rocm-path",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(rocmPackages, null);
@@ -68,7 +60,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   const cudatoolkit_joined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "cuda-merged",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(buildPackages, "cudaPackages")), null);
@@ -83,7 +75,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       name: "unified-runtime",
       version: "0.12.0",
       src: intel_llvm_src,
@@ -91,7 +83,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, python3, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(nix.sel(unified_memory_framework, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, useJemalloc: false })))),
+        nix.thunk(() => nix.app(nix.sel(unified_memory_framework, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], useJemalloc: false })))),
         zlib,
         libbacktrace,
         hwloc,
@@ -138,12 +130,12 @@ EOF
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CUDA_cupti_LIBRARY", nix.thunk(() => nix.str`${cudatoolkit_joined}/lib/libcupti.so`))),
         ]))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        setupVars: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({ [nix.POS]: pos$5, ROCM_PATH: rocmPath }))), nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({ [nix.POS]: pos$6, CUDA_PATH: cudatoolkit_joined }))))),
+        [nix.POS]: $pos[6],
+        setupVars: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), rocmSupport, nix.thunk(() => ({ [nix.POS]: $pos[4], ROCM_PATH: rocmPath }))), nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({ [nix.POS]: $pos[5], CUDA_PATH: cudatoolkit_joined }))))),
         backends: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), levelZeroSupport, nix.thunk(() => ["level_zero", "level_zero_v2"])), nix.concat(nix.app(nix.sel(lib, "optional"), cudaSupport, "cuda"), nix.concat(nix.app(nix.sel(lib, "optional"), rocmSupport, "hip"), nix.concat(nix.app(nix.sel(lib, "optional"), nativeCpuSupport, "native_cpu"), nix.app(nix.sel(lib, "optional"), openclSupport, "opencl")))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Intel LLVM-based compiler with SYCL support",
         longDescription: "Intel's LLVM-based compiler toolchain with Data Parallel C++ (DPC++)\nand SYCL support for heterogeneous computing across CPUs, GPUs, and FPGAs.\n",
         homepage: "https://github.com/intel/llvm",

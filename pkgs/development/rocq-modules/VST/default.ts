@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["coq", 30, 5]], [["case", 37, 35], ["out", 37, 40]], [["hash", 50, 18]], [["hash", 51, 18]], [["hash", 52, 18]], [["hash", 53, 18]], [["hash", 54, 18]], [["hash", 55, 18]], [["hash", 56, 20]], [["hash", 57, 18]], [["hash", 58, 17]], [["hash", 59, 17]], [["2.17", 50, 11], ["2.16", 51, 11], ["2.15", 52, 11], ["2.14", 53, 11], ["2.13", 54, 11], ["2.12", 55, 11], ["2.11.1", 56, 11], ["2.10", 57, 11], ["2.9", 58, 11], ["2.8", 59, 11]], [["description", 92, 5], ["homepage", 93, 5], ["platforms", 94, 29]], [["pname", 27, 3], ["namePrefix", 28, 3], ["displayVersion", 29, 3], ["owner", 32, 3], ["repo", 33, 3], ["version", 34, 11], ["defaultVersion", 35, 3], ["release", 50, 3], ["releaseRev", 60, 3], ["buildInputs", 61, 3], ["propagatedBuildInputs", 62, 3], ["preConfigure", 64, 3], ["makeFlags", 75, 3], ["postInstall", 84, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, compcert: false, ITree: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["coq", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["case", 37, 35], ["out", 37, 40]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 50, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 51, 18]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 52, 18]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 53, 18]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 54, 18]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hash", 55, 18]]);
-const pos$9 = nix.positions(here + "/default.nix", [["hash", 56, 20]]);
-const pos$10 = nix.positions(here + "/default.nix", [["hash", 57, 18]]);
-const pos$11 = nix.positions(here + "/default.nix", [["hash", 58, 17]]);
-const pos$12 = nix.positions(here + "/default.nix", [["hash", 59, 17]]);
-const pos$13 = nix.positions(here + "/default.nix", [["2.17", 50, 11], ["2.16", 51, 11], ["2.15", 52, 11], ["2.14", 53, 11], ["2.13", 54, 11], ["2.12", 55, 11], ["2.11.1", 56, 11], ["2.10", 57, 11], ["2.9", 58, 11], ["2.8", 59, 11]]);
-const pos$14 = nix.positions(here + "/default.nix", [["description", 92, 5], ["homepage", 93, 5], ["platforms", 94, 29]]);
-const pos$15 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["namePrefix", 28, 3], ["displayVersion", 29, 3], ["owner", 32, 3], ["repo", 33, 3], ["version", 34, 11], ["defaultVersion", 35, 3], ["release", 50, 3], ["releaseRev", 60, 3], ["buildInputs", 61, 3], ["propagatedBuildInputs", 62, 3], ["preConfigure", 64, 3], ["makeFlags", 75, 3], ["postInstall", 84, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,15 +15,15 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const extra_floyd_files = nix.thunk(() => nix.concat(["ASTsize.v", "io_events.v", "powerlater.v"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "versions", "isGe"), "8.13", nix.thunk(() => nix.sel(coq, "coq-version"))))), "printf.v"), ["quickprogram.v"])));
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: nix.thunk(() => nix.str`coq${nix.sel(coq, "coq-version")}-VST`),
       namePrefix: [],
-      displayVersion: nix.thunk(() => ({ [nix.POS]: pos$1, coq: false })),
+      displayVersion: nix.thunk(() => ({ [nix.POS]: $pos[0], coq: false })),
       owner: "PrincetonUniversity",
       repo: "VST",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$2, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[1], case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "9.1", "9.2")), "2.17")),
@@ -51,45 +37,45 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         "2.17": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-iDrX3uA6yOilwtg/9hIVx7e9U18pA2h5TXBh0bvBQkY=",
         })),
         "2.16": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-/IlFLiojtuENHE9d+j55Z2rYw5HUkltwVim75w/UFVE=",
         })),
         "2.15": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256-51k2W4efMaEO4nZ0rdkRT9rA8ZJLpot1YpFmd6RIAXw=",
         })),
         "2.14": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256-NHc1ZQ2VmXZy4lK2+mtyeNz1Qr9Nhj2QLxkPhhQB7Iw=",
         })),
         "2.13": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256-i6rvP3cpayBln5KHZOpeNfraYU5h0O9uciBQ4jRH4XA=",
         })),
         "2.12": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hash: "sha256-4HL0U4HA5/usKNXC0Dis1UZY/Hb/LRd2IGOrqrvdWkw=",
         })),
         "2.11.1": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           hash: "sha256-unpNstZBnRT4dIqAYOv9n1J0tWJMeRuaaa2RG1U0Xs0=",
         })),
         "2.10": nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           hash: "sha256-RIxfPWoHnV1CFkpxCusoGY/LIk07TgC7wWGRP4BSq8w=",
         })),
         "2.9": nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           hash: "sha256:1adwzbl1pprrrwrm7cm493098fizxanxpv7nyfbvwdhgbhcnv6qf",
         })),
         "2.8": nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           hash: "sha256-cyK88uzorRfjapNQ6XgQEmlbWnDsiyLve5po1VG52q0=",
         })),
       })),
@@ -115,7 +101,7 @@ done
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(compcert, "meta"));
         return {
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "Verified Software Toolchain",
         homepage: "https://vst.cs.princeton.edu/",
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

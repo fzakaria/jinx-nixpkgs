@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["INSTALL_DIR", 25, 7]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["teams", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["env", 25, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["preInstall", 43, 3], ["preFixup", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, meson: false, ninja: false, "pkg-config": false, gnunet: false, libsodium: false, libgcrypt: false, libgnunetchat: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["INSTALL_DIR", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["teams", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["env", 25, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["preInstall", 43, 3], ["preFixup", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const libgnunetchat = nix.arg($, "libgnunetchat");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gnunet-messenger-cli",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git-www.taler.net/messenger-cli.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-8Iby3IZXEZJ1dqVV62xDzXx/qq7JKhVtn6ZLb697ZSw=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         INSTALL_DIR: nix.thunk(() => nix.add(nix.builtins.placeholder("out"), "/")),
       })),
       strictDeps: true,
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin",
       preFixup: "mv $out/bin/messenger-cli $out/bin/gnunet-messenger-cli",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Decentralized, privacy-preserving networking framework for secure peer-to-peer communication",
         homepage: "https://git-www.taler.net/messenger-cli.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

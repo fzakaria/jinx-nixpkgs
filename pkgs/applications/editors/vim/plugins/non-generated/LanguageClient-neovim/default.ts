@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["pname", 17, 5], ["version", 18, 13], ["src", 18, 21], ["cargoPatches", 20, 5], ["cargoHash", 24, 5]], [["extraArgs", 42, 7], ["attrPath", 43, 7]], [["updateScript", 41, 5], ["LanguageClient-neovim-bin", 47, 13]], [["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5]], [["pname", 28, 3], ["version", 29, 11], ["src", 29, 19], ["propagatedBuildInputs", 31, 3], ["preFixup", 33, 3], ["passthru", 40, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "nix-update-script": false, rustPlatform: false, vimUtils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 13], ["src", 18, 21], ["cargoPatches", 20, 5], ["cargoHash", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraArgs", 42, 7], ["attrPath", 43, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 41, 5], ["LanguageClient-neovim-bin", 47, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 11], ["src", 29, 19], ["propagatedBuildInputs", 31, 3], ["preFixup", 33, 3], ["passthru", 40, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const version = "0.1.161";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "autozimu",
       repo: "LanguageClient-neovim",
       tag: version,
       hash: "sha256-Z9S2ie9RxJCIbmjSV/Tto4lK04cZfWmK3IAy8YaySVI=",
     }))));
   const LanguageClient_neovim_bin = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "LanguageClient-neovim-bin",
       version: version,
       src: src,
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-43alR84MktYTmsKeUMm4gK8AjUIkGqcsuFeQPusBKD0=",
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "LanguageClient-neovim",
       version: version,
       src: src,
@@ -45,16 +40,16 @@ export default nix.lambda((args) => (() => {
   "let l:path = '${LanguageClient_neovim_bin}' . '/bin/'"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex=(\\d+\\.\\d+\\.\\d+)"]),
             attrPath: "vimPlugins.LanguageClient-neovim.LanguageClient-neovim-bin",
           })))),
         "LanguageClient-neovim-bin": LanguageClient_neovim_bin,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/autozimu/LanguageClient-neovim/",
         changelog: nix.thunk(() => nix.str`https://github.com/autozimu/LanguageClient-neovim/releases/tag/${nix.sel(src, "tag")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

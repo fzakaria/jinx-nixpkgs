@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["pname", 21, 5], ["version", 22, 13], ["src", 22, 21], ["npmDepsHash", 23, 5], ["makeCacheWritable", 24, 5], ["postPatch", 25, 5], ["installPhase", 28, 5]], [["workout-tracker", 59, 26]], [["updateScript", 56, 12], ["tests", 58, 12]], [["changelog", 63, 5], ["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5]], [["pname", 36, 11], ["version", 36, 17], ["src", 36, 25], ["vendorHash", 38, 3], ["postPatch", 40, 3], ["ldflags", 45, 3], ["__darwinAllowLocalNetworking", 54, 3], ["passthru", 56, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, buildNpmPackage: false, fetchFromGitHub: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 21, 5], ["version", 22, 13], ["src", 22, 21], ["npmDepsHash", 23, 5], ["makeCacheWritable", 24, 5], ["postPatch", 25, 5], ["installPhase", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["workout-tracker", 59, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 56, 12], ["tests", 58, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 63, 5], ["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 36, 11], ["version", 36, 17], ["src", 36, 25], ["vendorHash", 38, 3], ["postPatch", 40, 3], ["ldflags", 45, 3], ["__darwinAllowLocalNetworking", 54, 3], ["passthru", 56, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const pname = "workout-tracker";
   const version = "2.9.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "jovandeginste",
       repo: "workout-tracker",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-xsVPAZYrsD27pGhb0cuCZDJLgaI/4w6uDvXsameMt00=",
     }))));
   const assets = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${pname}-assets`),
       version: version,
       src: src,
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ncp -r ../assets \"$out\"\nrunHook postInstall\n",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -56,15 +51,15 @@ ln -s ${assets} ./assets
       ]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "workout-tracker": nix.thunk(() => nix.attr(nixosTests, "workout-tracker")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/jovandeginste/workout-tracker/releases/tag/v${version}`),
         description: "Workout tracking web application for personal use",
         homepage: "https://github.com/jovandeginste/workout-tracker",

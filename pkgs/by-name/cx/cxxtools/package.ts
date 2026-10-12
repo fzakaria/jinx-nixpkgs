@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["url", 24, 7], ["hash", 25, 7]], [["url", 28, 7], ["hash", 29, 7]], [["homepage", 49, 5], ["description", 50, 5], ["platforms", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 42, 3], ["enableParallelBuilding", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, tzdata: false, autoreconfHook: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["platforms", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 42, 3], ["enableParallelBuilding", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cxxtools",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "maekitalo",
           repo: "cxxtools",
           rev: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -31,12 +27,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/maekitalo/cxxtools/commit/b773c01fc13d2ae67abc0839888e383be23562fd.patch",
             hash: "sha256-9yRkD+vMRhc4n/Xh6SKtmllBrmfDx3IBVOtHQV6s7Tw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/maekitalo/cxxtools/commit/6e1439a108ce3892428e95f341f2d23ae32a590e.patch",
             hash: "sha256-ZnlbdWBjL9lEtNLEF/ZPa0IzvJ7i4xWI4GbY8KeA6A4=",
           })))),
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://www.tntnet.org/cxxtools.html",
         description: "Comprehensive C++ class library for Unix and Linux",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

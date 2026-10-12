@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["extraArgs", 45, 5]], [["updateScript", 44, 12]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["forceEmptyCache", 23, 3], ["dontNpmBuild", 24, 3], ["npmDepsHash", 26, 3], ["doCheck", 28, 3], ["__darwinAllowLocalNetworking", 31, 3], ["checkPhase", 33, 3], ["preCheck", 39, 3], ["passthru", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 44, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["forceEmptyCache", 23, 3], ["dontNpmBuild", 24, 3], ["npmDepsHash", 26, 3], ["doCheck", 28, 3], ["__darwinAllowLocalNetworking", 31, 3], ["checkPhase", 33, 3], ["preCheck", 39, 3], ["passthru", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "thunderbird-mcp",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TKasperczyk",
           repo: "thunderbird-mcp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\nnpm test\nrunHook postCheck\n",
       preCheck: "# This is a test for the project's CI\nrm test/release-workflow.test.cjs\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "MCP server for Thunderbird - enables AI assistants to access email, contacts, and calendars",
         homepage: "https://github.com/TKasperczyk/thunderbird-mcp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

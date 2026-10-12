@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["packageName", 56, 41]], [["updateScript", 56, 5]], [["homepage", 60, 5], ["changelog", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["teams", 64, 5], ["license", 65, 5], ["platforms", 66, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 47, 3], ["passthru", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, vala: false, "pkg-config": false, "gobject-introspection": false, gettext: false, gtk4: false, gnome: false, "blueprint-compiler": false, wrapGAppsHook4: false, libadwaita: false, libgee: false, "json-glib": false, qqwing: false, itstool: false, libxml2: false, "desktop-file-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 56, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["changelog", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["teams", 64, 5], ["license", 65, 5], ["platforms", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 47, 3], ["passthru", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-sudoku",
       version: "50.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-sudoku/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-sudoku-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ZKtGEAg+eMiV4T4C/pUHj5f44DwKj6h83EKFv3KzO58=",
         })))),
@@ -55,11 +51,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [gtk4, libadwaita, libgee, json_glib, qqwing]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-sudoku" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-sudoku" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-sudoku",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-sudoku/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Test your logic skills in this number grid puzzle",

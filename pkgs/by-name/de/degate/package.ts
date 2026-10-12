@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableStatic", 12, 38]], [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["name", 29, 7], ["url", 30, 7], ["includes", 31, 7], ["hash", 32, 7]], [["name", 36, 7], ["url", 37, 7], ["includes", 38, 7], ["hash", 39, 7]], [["description", 75, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["doCheck", 58, 3], ["checkPhase", 59, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, boost183: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableStatic", 12, 38]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["includes", 31, 7], ["hash", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 36, 7], ["url", 37, 7], ["includes", 38, 7], ["hash", 39, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 75, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["doCheck", 58, 3], ["checkPhase", 59, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const boost183 = nix.arg($, "boost183");
   const libsForQt5 = nix.arg($, "libsForQt5");
-  const boost_static = nix.thunk(() => nix.app(nix.sel(boost183, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableStatic: true }))));
+  const boost_static = nix.thunk(() => nix.app(nix.sel(boost183, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableStatic: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "degate";
       const version = "2.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "DegateCommunity",
           repo: "Degate",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +27,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "catch2-2.13.9.patch",
             url: "https://github.com/DegateCommunity/Degate/commit/06346dde4312cbb867854899eacf58679d6ac7e2.patch",
             includes: nix.thunk(() => ["tests/catch2/catch.hpp"]),
             hash: "sha256-SbSA813QI8RRVy1lvAOGMGAC2KUQKjwYR2imqX40pvU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "memorymap-macos.patch",
             url: "https://github.com/DegateCommunity/Degate/commit/04685b088f485b3b73c55b7bfb989d2f0c88e4ca.patch",
             includes: nix.thunk(() => ["src/Core/Utils/MemoryMap.h"]),
@@ -68,7 +63,7 @@ export default nix.lambda((args) => (() => {
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Modern and open-source cross-platform software for chips reverse engineering",
         mainProgram: "Degate",
         homepage: "https://degate.readthedocs.io/",
@@ -80,7 +75,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 36, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postUnpack", 20, 3], ["propagatedBuildInputs", 22, 3], ["nativeBuildInputs", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, zlib: false, curl: false, autoreconfHook: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postUnpack", 20, 3], ["propagatedBuildInputs", 22, 3], ["nativeBuildInputs", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "funambol-client-cpp",
       version: "9.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/funambol/funambol-client-sdk-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "1667gahz30i5r8kbv7w415z0hbgm6f6pln1137l5skapi1if6r73",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [zlib, curl]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, unzip]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SyncML client sdk by Funambol project",
         homepage: "https://www.funambol.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

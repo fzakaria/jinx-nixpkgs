@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["homepage", 42, 5], ["description", 43, 5], ["longDescription", 44, 5], ["platforms", 52, 5], ["license", 53, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 28, 3], ["configureFlags", 35, 3], ["postInstall", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, openssl: false, python3: false, autoreconfHook: false, "pkg-config": false, bison: false, flex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["longDescription", 44, 5], ["platforms", 52, 5], ["license", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 28, 3], ["configureFlags", 35, 3], ["postInstall", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fetchmail",
       version: "7.0.0-alpha11",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fetchmail",
           repo: "fetchmail",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-ssl=${nix.sel(openssl, "dev")}`)]),
       postInstall: "cp -a contrib/. $out/share/fetchmail-contrib\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.fetchmail.info/",
         description: "Full-featured remote-mail retrieval and forwarding utility",
         longDescription: "A full-featured, robust, well-documented remote-mail retrieval and\nforwarding utility intended to be used over on-demand TCP/IP links\n(such as SLIP or PPP connections). It supports every remote-mail\nprotocol now in use on the Internet: POP2, POP3, RPOP, APOP, KPOP,\nall flavors of IMAP, ETRN, and ODMR. It can even support IPv6 and\nIPSEC.\n",

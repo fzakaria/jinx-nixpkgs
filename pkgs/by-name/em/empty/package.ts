@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5], ["stripRoot", 15, 5]], [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["longDescription", 35, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 18, 3], ["nativeBuildInputs", 22, 3], ["makeFlags", 24, 3], ["postPatch", 26, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { fetchzip: false, lib: false, stdenv: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5], ["stripRoot", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["longDescription", 35, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 18, 3], ["nativeBuildInputs", 22, 3], ["makeFlags", 24, 3], ["postPatch", 26, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "empty",
       version: "0.6.21b",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/empty/empty/empty-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1rkixh2byr70pdxrwr4lj1ckh191rjny1m5xbjsa7nqw1fw6c2xs",
           stripRoot: false,
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       postPatch: "rm empty\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://empty.sourceforge.net",
         description: "Simple tool to automate interactive terminal applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

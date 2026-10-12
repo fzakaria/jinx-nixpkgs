@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["mysql", 51, 5], ["postgres", 54, 5]], [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["optional-dependencies", 50, 3], ["pythonImportsCheck", 59, 3], ["doCheck", 62, 3], ["nativeCheckInputs", 64, 3], ["disabledTests", 73, 3], ["preCheck", 88, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, django: false, "django-stubs-ext": false, "typing-extensions": false, mysqlclient: false, psycopg: false, "dj-database-url": false, "django-rq": false, fakeredis: false, pytestCheckHook: false, "pytest-django": false, redisTestHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mysql", 51, 5], ["postgres", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["optional-dependencies", 50, 3], ["pythonImportsCheck", 59, 3], ["doCheck", 62, 3], ["nativeCheckInputs", 64, 3], ["disabledTests", 73, 3], ["preCheck", 88, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytest_django = nix.arg($, "pytest-django");
   const redisTestHook = nix.arg($, "redisTestHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "django-tasks",
       version: "0.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RealOrangeOne",
           repo: "django-tasks",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [django, django_stubs_ext, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mysql: nix.thunk(() => [mysqlclient]),
         postgres: nix.thunk(() => [psycopg]),
       })),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preCheck: "export DJANGO_SETTINGS_MODULE=\"tests.settings\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Reference implementation and backport of background workers and tasks in Django",
         homepage: "https://github.com/RealOrangeOne/django-tasks",
         changelog: nix.thunk(() => nix.str`https://github.com/RealOrangeOne/django-tasks/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

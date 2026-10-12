@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["name", 61, 7], ["url", 62, 7], ["hash", 63, 7]], [["snappy-15-knots", 108, 25]], [["extraPythonPackages", 132, 9], ["requireSageTests", 133, 9]], [["nativeBuildInputs", 138, 9]], [["sage", 129, 18]], [["extraArgs", 149, 5]], [["tests", 129, 12], ["updateScript", 148, 12]], [["description", 156, 5], ["changelog", 157, 5], ["mainProgram", 158, 5], ["homepage", 159, 5], ["license", 160, 5], ["maintainers", 161, 5], ["platforms", 165, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["outputs", 47, 3], ["src", 52, 3], ["patches", 59, 3], ["postPatch", 67, 3], ["build-system", 79, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 89, 3], ["dependencies", 93, 3], ["optional-dependencies", 108, 3], ["postInstall", 110, 3], ["sphinxRoot", 115, 3], ["postInstallSphinx", 117, 3], ["pythonImportsCheck", 121, 3], ["checkPhase", 123, 3], ["passthru", 129, 3], ["meta", 155, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python: false, buildPythonPackage: false, fetchpatch: false, "nix-update-script": false, setuptools: false, cython: false, libGL: false, cypari: false, fxrays: false, ipython: false, "low-index": false, packaging: false, pickleshare: false, plink: false, pypng: false, pyx: false, "snappy-15-knots": false, "snappy-manifolds": false, spherogram: false, "tkinter-gl": false, sphinxHook: false, "sphinx-rtd-theme": false, runCommand: false, sage: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 61, 7], ["url", 62, 7], ["hash", 63, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["snappy-15-knots", 108, 25]]);
-const pos$4 = nix.positions(here + "/default.nix", [["extraPythonPackages", 132, 9], ["requireSageTests", 133, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 138, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["sage", 129, 18]]);
-const pos$7 = nix.positions(here + "/default.nix", [["extraArgs", 149, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["tests", 129, 12], ["updateScript", 148, 12]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 156, 5], ["changelog", 157, 5], ["mainProgram", 158, 5], ["homepage", 159, 5], ["license", 160, 5], ["maintainers", 161, 5], ["platforms", 165, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["outputs", 47, 3], ["src", 52, 3], ["patches", 59, 3], ["postPatch", 67, 3], ["build-system", 79, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 89, 3], ["dependencies", 93, 3], ["optional-dependencies", 108, 3], ["postInstall", 110, 3], ["sphinxRoot", 115, 3], ["postInstallSphinx", 117, 3], ["pythonImportsCheck", 121, 3], ["checkPhase", 123, 3], ["passthru", 129, 3], ["meta", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const outputs = nix.thunk(() => ["out", "doc"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "3-manifolds",
           repo: "SnapPy",
           tag: nix.thunk(() => nix.str`${version}_as_released`),
@@ -58,7 +49,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "no-copy-doc.patch",
             url: "https://github.com/3-manifolds/SnapPy/commit/c6aeeaaec7010a54e4ebdf2e8dad7b384c2ce8e5.patch",
             hash: "sha256-OV3Qr5wO5UHNzVFTPTujIpp5ptel6gvAlcMgrJ8C0KY=",
@@ -86,7 +77,7 @@ substituteInPlace freedesktop/share/applications/snappy.desktop \\
         spherogram,
         tkinter_gl,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, "snappy-15-knots": nix.thunk(() => [snappy_15_knots]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[2], "snappy-15-knots": nix.thunk(() => [snappy_15_knots]) }));
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mkdir -p $out/share\ncp -r freedesktop/share/{applications,icons} $out/share\n"));
       const sphinxRoot = "doc_src";
       const postInstallSphinx = nix.thunk(() => nix.str`ln -s \${!outputDoc}/share/doc/$name/html $out/${nix.sel(python, "sitePackages")}/snappy/doc
@@ -97,28 +88,28 @@ ${nix.sel(python, "interpreter")} -m snappy.test --skip-gui
 runHook postCheck
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           sage: nix.thunk(() => (() => {
             const sage$ = nix.thunk(() => nix.app(nix.sel(sage, "override"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 extraPythonPackages: (ps) => [nix.thunk(() => nix.sel(ps, "snappy"))],
                 requireSageTests: false,
               }))));
             return nix.app(runCommand, "snappy-sage-tests", nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 nativeBuildInputs: nix.thunk(() => [sage$, writableTmpDirAsHomeHook]),
               })), "sage -python -m snappy.test --skip-gui\ntouch $out\n");
           })()),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             extraArgs: nix.thunk(() => ["--version-regex", "(.*)_as_released"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Studying the topology and geometry of 3-manifolds, with a focus on hyperbolic structures",
         changelog: "https://snappy.computop.org/news.html",
         mainProgram: "SnapPy",
@@ -134,7 +125,7 @@ runHook postCheck
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version,
         pyproject,

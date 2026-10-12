@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["stripRoot", 14, 5], ["hash", 15, 5]], [["homepage", 21, 5], ["description", 22, 5], ["license", 23, 5], ["platforms", 24, 5], ["maintainers", 25, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["stripRoot", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 21, 5], ["description", 22, 5], ["license", 23, 5], ["platforms", 24, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,21 +15,21 @@ export default nix.lambda((args) => (() => {
       const pname = "stix-otf";
       const version = "1.1.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://sources.debian.org/src/fonts-stix/1.1.1-4.1/STIXv${version}-word.zip`),
           stripRoot: false,
           hash: "sha256-M3STue+RPHi8JgZZupV0dVLZYKBiFutbBOlanuKkD08=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.stixfonts.org/",
         description: "Fonts for Scientific and Technical Information eXchange",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rycee"))]),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

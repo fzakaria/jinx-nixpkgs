@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["NIX_CFLAGS_COMPILE", 46, 7]], [["homepage", 63, 5], ["description", 64, 5], ["platforms", 65, 5], ["license", 66, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["configureFlags", 42, 3], ["env", 46, 3], ["hardeningDisable", 51, 3], ["enableParallelBuilding", 53, 3], ["postPatch", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, zlib: false, imagemagick: false, libpng: false, glib: false, "pkg-config": false, libgsf: false, libxml2: false, bzip2: false, autoreconfHook: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["platforms", 65, 5], ["license", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["configureFlags", 42, 3], ["env", 46, 3], ["hardeningDisable", 51, 3], ["enableParallelBuilding", 53, 3], ["postPatch", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wv",
       version: "1.2.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AbiWord",
           repo: "wv",
           rev: nix.thunk(() => nix.str`wv-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -40,14 +37,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`PKG_CONFIG=${nix.sel(buildPackages, "pkg-config")}/bin/${nix.sel(buildPackages, "pkg-config", "targetPrefix")}pkg-config`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion")),
       })),
       hardeningDisable: nix.thunk(() => ["format"]),
       enableParallelBuilding: true,
       postPatch: "touch AUTHORS\nmv CHANGELOG ChangeLog~ && mv ChangeLog~ ChangeLog\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/AbiWord/wv",
         description: "Converter from Microsoft Word formats to human-editable ones",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

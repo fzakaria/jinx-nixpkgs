@@ -2,25 +2,18 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/doRename-warnings.nix", [[["from", 5, 7], ["to", 9, 7], ["warn", 14, 7], ["use", 15, 7], ["visible", 16, 7]], [["type", 20, 31]], [["e", 21, 9]], [["d", 21, 7]], [["warnings", 20, 5], ["c", 21, 5], ["result", 22, 5]], [["b", 25, 7]], [["a", 25, 5], ["result", 26, 5]], [["imports", 3, 3], ["options", 19, 3], ["config", 24, 3]]]);
 const formals$1 = { args: { lib: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/doRename-warnings.nix", [["from", 5, 7], ["to", 9, 7], ["warn", 14, 7], ["use", 15, 7], ["visible", 16, 7]]);
-const pos$2 = nix.positions(here + "/doRename-warnings.nix", [["type", 20, 31]]);
-const pos$3 = nix.positions(here + "/doRename-warnings.nix", [["e", 21, 9]]);
-const pos$4 = nix.positions(here + "/doRename-warnings.nix", [["d", 21, 7]]);
-const pos$5 = nix.positions(here + "/doRename-warnings.nix", [["warnings", 20, 5], ["c", 21, 5], ["result", 22, 5]]);
-const pos$6 = nix.positions(here + "/doRename-warnings.nix", [["b", 25, 7]]);
-const pos$7 = nix.positions(here + "/doRename-warnings.nix", [["a", 25, 5], ["result", 26, 5]]);
-const pos$8 = nix.positions(here + "/doRename-warnings.nix", [["imports", 3, 3], ["options", 19, 3], ["config", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "doRename"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           from: nix.thunk(() => ["a", "b"]),
           to: nix.thunk(() => ["c", "d", "e"]),
           warn: true,
@@ -29,23 +22,23 @@ export default nix.lambda((args) => (() => {
         })))),
     ]),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       warnings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
         })))),
       c: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         d: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           e: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
         })),
       })),
       result: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$7,
-      a: nix.thunk(() => ({ [nix.POS]: pos$6, b: 1234n })),
+      [nix.POS]: $pos[6],
+      a: nix.thunk(() => ({ [nix.POS]: $pos[5], b: 1234n })),
       result: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "%", nix.thunk(() => nix.sel(config, "warnings")))),
     })),
   };

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["homepage", 86, 5], ["description", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["teams", 90, 5], ["maintainers", 91, 5]], [["pname", 18, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 29, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 55, 3], ["mesonFlags", 59, 3], ["doCheck", 64, 3], ["preCheck", 66, 3], ["postFixup", 80, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, exiv2: false, glib: false, "gobject-introspection": false, vala: false, "gi-docgen": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 86, 5], ["description", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["teams", 90, 5], ["maintainers", 91, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 29, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 55, 3], ["mesonFlags", 59, 3], ["doCheck", 64, 3], ["preCheck", 66, 3], ["postFixup", 80, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const gi_docgen = nix.arg($, "gi-docgen");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gexiv2",
       __structuredAttrs: true,
       strictDeps: true,
       version: "0.16.2",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gexiv2/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gexiv2-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-qtniQP3/voXjkPRu4KVn4lG66lwpw9hpAmA4hoPcjQo=",
         })))),
@@ -61,7 +59,7 @@ export GI_TYPELIB_PATH=$PWD/gexiv2
       })()),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.gnome.org/GNOME/gexiv2",
         description: "GObject wrapper around the Exiv2 photo metadata library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

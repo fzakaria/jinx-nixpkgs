@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["vlm", 76, 5], ["rq", 77, 5], ["ray", 81, 5], ["gdrive", 91, 5], ["gcloudstorage", 95, 5], ["azure", 98, 5], ["opensearch", 101, 5]], [["description", 142, 5], ["homepage", 143, 5], ["changelog", 144, 5], ["license", 145, 5], ["maintainers", 146, 5]], [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["__structuredAttrs", 50, 3], ["src", 52, 3], ["build-system", 59, 3], ["pythonRelaxDeps", 63, 3], ["dependencies", 66, 3], ["optional-dependencies", 75, 3], ["pythonImportsCheck", 106, 3], ["nativeCheckInputs", 111, 3], ["disabledTests", 122, 3], ["__darwinAllowLocalNetworking", 139, 3], ["meta", 141, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, pythonOlder: false, hatchling: false, boto3: false, "docling-slim": false, httpx: false, pandas: false, "pydantic-settings": false, rq: false, msgpack: false, redis: false, psutil: false, ray: false, "google-api-python-client": false, "google-auth-oauthlib": false, "google-cloud-storage": false, "azure-storage-blob": false, "opensearch-py": false, aiohttp: false, "pytest-asyncio": false, pytestCheckHook: false, starlette: false, redisTestHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["vlm", 76, 5], ["rq", 77, 5], ["ray", 81, 5], ["gdrive", 91, 5], ["gcloudstorage", 95, 5], ["azure", 98, 5], ["opensearch", 101, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 142, 5], ["homepage", 143, 5], ["changelog", 144, 5], ["license", 145, 5], ["maintainers", 146, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["__structuredAttrs", 50, 3], ["src", 52, 3], ["build-system", 59, 3], ["pythonRelaxDeps", 63, 3], ["dependencies", 66, 3], ["optional-dependencies", 75, 3], ["pythonImportsCheck", 106, 3], ["nativeCheckInputs", 111, 3], ["disabledTests", 122, 3], ["__darwinAllowLocalNetworking", 139, 3], ["meta", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const redisTestHook = nix.arg($, "redisTestHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "docling-jobkit",
       version: "3.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "docling-project",
           repo: "docling-jobkit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["pandas"]),
       dependencies: nix.thunk(() => nix.concat([boto3, docling_slim, httpx, pandas, pydantic_settings], nix.sel(docling_slim, "optional-dependencies", "standard"))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         vlm: nix.thunk(() => nix.sel(docling_slim, "optional-dependencies", "models-vlm-inline")),
         rq: nix.thunk(() => [rq, msgpack]),
         ray: nix.thunk(() => nix.concat([msgpack, psutil, ray], nix.concat(nix.sel(ray, "optional-dependencies", "serve"), nix.concat(nix.sel(redis, "optional-dependencies", "hiredis"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(pythonAtLeast, "3.11")) && nix.asBool(nix.app(pythonOlder, "3.14")))), []))))),
@@ -86,7 +83,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_options_validator"])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Running a distributed job processing documents with Docling",
         homepage: "https://github.com/docling-project/docling-jobkit",
         changelog: nix.thunk(() => nix.str`https://github.com/docling-project/docling-jobkit/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

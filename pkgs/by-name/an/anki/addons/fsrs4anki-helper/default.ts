@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["updateScript", 27, 12]], [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 57, 5], ["downloadPage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postFixup", 20, 3], ["passthru", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, "anki-utils": false, fetchFromGitHub: false, unstableGitUpdater: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 27, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 57, 5], ["downloadPage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postFixup", 20, 3], ["passthru", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fsrs4anki-helper",
       version: "26.06.12-unstable-2026-06-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-spaced-repetition",
           repo: "fsrs4anki-helper",
           rev: "29208f220f21ff994c199712a6aaac47636773bf",
@@ -32,11 +29,11 @@ ln -s \\
   $out/share/anki/addons/fsrs4anki-helper/python_i18n
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Anki add-on that supports the FSRS algorithm",
         longDescription: nix.thunk(() => nix.str`FSRS Helper is an Anki add-on that supports the FSRS algorithm. It has eight main features:
 

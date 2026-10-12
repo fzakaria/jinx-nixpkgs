@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5], ["fetchLFS", 56, 5]], [["full", 87, 5], ["yara", 109, 5], ["smb", 110, 5], ["mqtt", 111, 5]], [["description", 178, 5], ["homepage", 179, 5], ["changelog", 180, 5], ["license", 181, 5], ["maintainers", 182, 5]], [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["src", 51, 3], ["disabled", 59, 3], ["postPatch", 61, 3], ["build-system", 66, 3], ["dependencies", 71, 3], ["optional-dependencies", 86, 3], ["nativeCheckInputs", 114, 3], ["pythonImportsCheck", 120, 3], ["disabledTests", 122, 3], ["disabledTestPaths", 161, 3], ["meta", 177, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, asn1crypto: false, "backports-zstd": false, buildPythonPackage: false, defusedxml: false, "dissect-btrfs": false, "dissect-cim": false, "dissect-clfs": false, "dissect-cstruct": false, "dissect-database": false, "dissect-esedb": false, "dissect-etl": false, "dissect-eventlog": false, "dissect-evidence": false, "dissect-extfs": false, "dissect-fat": false, "dissect-ffs": false, "dissect-hypervisor": false, "dissect-ntfs": false, "dissect-regf": false, "dissect-shellitem": false, "dissect-sql": false, "dissect-thumbcache": false, "dissect-util": false, "dissect-volume": false, "dissect-xfs": false, docutils: false, fetchFromGitHub: false, "flow-record": false, fusepy: false, impacket: false, ipython: false, "paho-mqtt": false, pycryptodome: false, pytestCheckHook: false, pythonAtLeast: false, "ruamel-yaml": false, setuptools: false, "setuptools-scm": false, structlog: false, "yara-python": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5], ["fetchLFS", 56, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["full", 87, 5], ["yara", 109, 5], ["smb", 110, 5], ["mqtt", 111, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 178, 5], ["homepage", 179, 5], ["changelog", 180, 5], ["license", 181, 5], ["maintainers", 182, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["src", 51, 3], ["disabled", 59, 3], ["postPatch", 61, 3], ["build-system", 66, 3], ["dependencies", 71, 3], ["optional-dependencies", 86, 3], ["nativeCheckInputs", 114, 3], ["pythonImportsCheck", 120, 3], ["disabledTests", 122, 3], ["disabledTestPaths", 161, 3], ["meta", 177, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.25.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fox-it",
           repo: "dissect.target",
           tag: version,
@@ -82,7 +79,7 @@ export default nix.lambda((args) => (() => {
         structlog,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         full: nix.thunk(() => [
           asn1crypto,
           backports_zstd,
@@ -155,7 +152,7 @@ export default nix.lambda((args) => (() => {
         "tests/loaders/",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Dissect module that provides a programming API and command line tools",
         homepage: "https://github.com/fox-it/dissect.target",
         changelog: nix.thunk(() => nix.str`https://github.com/fox-it/dissect.target/releases/tag/${nix.sel(src, "tag")}`),
@@ -166,7 +163,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 7], ["sha256", 15, 7], ["name", 16, 7]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 26, 11], ["version", 26, 17], ["srcs", 27, 3], ["sourceRoot", 28, 3], ["dontUnpack", 30, 3], ["installPhase", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 7], ["sha256", 15, 7], ["name", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 11], ["version", 26, 17], ["srcs", 27, 3], ["sourceRoot", 28, 3], ["dontUnpack", 30, 3], ["installPhase", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pname = "agave";
   const version = "37";
   const mkAg = (name) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/agarick/agave/releases/download/v${version}/Agave-${name}.ttf`),
       sha256: hash,
       name: nix.thunk(() => nix.str`Agave-${name}.ttf`),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.app(mkAg, "Bold", "sha256-Ax/l/RKyc03law0ThiLac/7HHV4+YxibKzcZnjZs6VI=")),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       srcs: fonts,
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "install -D $srcs -t $out/share/fonts/truetype/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "TrueType monospaced typeface designed for X environments",
         homepage: "https://b.agaric.net/page/agave",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

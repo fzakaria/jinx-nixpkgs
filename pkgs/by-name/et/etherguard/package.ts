@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]], [["mainProgram", 19, 5], ["maintainers", 20, 5], ["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["platforms", 24, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["vendorHash", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, buildGoModule: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 19, 5], ["maintainers", 20, 5], ["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["platforms", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["vendorHash", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "etherguard",
       version: "0.3.5-f5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KusakabeShi",
           repo: "EtherGuard-VPN",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-9+zpQ/AhprMMfC4Om64GfQLgms6eluTOB6DdnSTNOlk=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "EtherGuard-VPN",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

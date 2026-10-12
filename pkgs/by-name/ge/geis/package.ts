@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["NIX_CFLAGS_COMPILE", 35, 7]], [["package", 81, 5], ["versionCheck", 82, 5]], [["pkg-config", 80, 18]], [["tests", 80, 12]], [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["pkgConfigModules", 90, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["env", 35, 3], ["hardeningDisable", 37, 3], ["pythonPath", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["prePatch", 66, 3], ["preFixup", 75, 3], ["passthru", 80, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, python3Packages: false, wrapGAppsHook3: false, atk: false, dbus: false, evemu: false, frame: false, "gdk-pixbuf": false, "gobject-introspection": false, grail: false, gtk3: false, libxtst: false, libxi: false, libxext: false, libx11: false, pango: false, "xorg-server": false, testers: false, validatePkgConfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 81, 5], ["versionCheck", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 80, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 80, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["pkgConfigModules", 90, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["env", 35, 3], ["hardeningDisable", 37, 3], ["pythonPath", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["prePatch", 66, 3], ["preFixup", 75, 3], ["passthru", 80, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,16 +30,16 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "geis",
       version: "2.2.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://launchpad.net/geis/trunk/${nix.sel(finalAttrs, "version")}/+download/geis-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-imD1aDhSCUA4kE5pDSPMWpCpgPxS2mfw8oiQuqJccOs=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=misleading-indentation -Wno-error=pointer-compare",
       })),
       hardeningDisable: nix.thunk(() => ["format"]),
@@ -79,18 +73,18 @@ export default nix.lambda((args) => (() => {
       prePatch: "substituteInPlace python/geis/geis_v2.py --replace-fail \\\n  \"ctypes.util.find_library(\\\"geis\\\")\" \"'$out/lib/libgeis.so'\"\nsubstituteInPlace config.aux/py-compile \\\n  --replace-fail \"import sys, os, py_compile, imp\" \"import sys, os, py_compile, importlib\" \\\n  --replace-fail \"imp.\" \"importlib.\" \\\n  --replace-fail \"hasattr(imp\" \"hasattr(importlib\"\n",
       preFixup: "buildPythonPath \"$out ${pythonPath[*]}\"\ngappsWrapperArgs+=(--set PYTHONPATH \"$program_PYTHONPATH\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Library for input gesture recognition",
         homepage: "https://launchpad.net/geis",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

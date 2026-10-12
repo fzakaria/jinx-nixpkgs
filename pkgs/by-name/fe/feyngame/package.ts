@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["leaveDotGit", 20, 5], ["hash", 21, 5], ["postFetch", 22, 5]], [["updateScript", 54, 12]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 28, 3], ["dontBuild", 37, 3], ["installPhase", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 51, 3], ["strictDeps", 52, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitLab: false, jdk: false, jre: false, "desktop-file-utils": false, git: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["leaveDotGit", 20, 5], ["hash", 21, 5], ["postFetch", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 28, 3], ["dontBuild", 37, 3], ["installPhase", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 51, 3], ["strictDeps", 52, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "feyngame",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "feyngame",
           repo: "FeynGame",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,11 +40,11 @@ runHook postInstall
       buildInputs: nix.thunk(() => [jre]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Java-based graphical tool for drawing Feynman diagrams",
         homepage: "https://gitlab.com/feyngame/FeynGame",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

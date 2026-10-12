@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pname", 37, 26], ["version", 37, 32], ["src", 37, 40], ["pnpm", 38, 5], ["fetcherVersion", 39, 5], ["hash", 40, 5]], [["OPENSSL_NO_VENDOR", 61, 5]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoRoot", 31, 3], ["buildAndTestSubdir", 32, 3], ["cargoHash", 34, 3], ["pnpmDeps", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["env", 60, 3], ["postPatch", 64, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "cargo-tauri": false, jq: false, moreutils: false, nodejs: false, "pkg-config": false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, "libayatana-appindicator": false, libsoup_3: false, openssl: false, webkitgtk_4_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 37, 26], ["version", 37, 32], ["src", 37, 40], ["pnpm", 38, 5], ["fetcherVersion", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoRoot", 31, 3], ["buildAndTestSubdir", 32, 3], ["cargoHash", 34, 3], ["pnpmDeps", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["env", 60, 3], ["postPatch", 64, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "overlayed",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "overlayeddev",
           repo: "overlayed",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: "apps/desktop/src-tauri",
       cargoHash: "sha256-6wN4nZQWrY0J5E+auj17B3iJ/84hzBXYA/bJsX/N5pk=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         pnpm_10,
       ]),
       buildInputs: nix.thunk(() => [libayatana_appindicator, libsoup_3, openssl, webkitgtk_4_1]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], OPENSSL_NO_VENDOR: 1n })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace $cargoDepsCopy/*/libappindicator-sys-*/src/lib.rs \\
   --replace-fail "libayatana-appindicator3.so.1" "${libayatana_appindicator}/lib/libayatana-appindicator3.so.1"
 
@@ -68,7 +64,7 @@ jq '.plugins.updater.endpoints = [ ] | .bundle.createUpdaterArtifacts = false' \
   apps/desktop/src-tauri/tauri.conf.json | sponge apps/desktop/src-tauri/tauri.conf.json
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Modern discord voice chat overlay",
         homepage: "https://github.com/overlayeddev/overlayed",
         changelog: nix.thunk(() => nix.str`https://github.com/overlayeddev/overlayed/releases/tag/v${nix.sel(finalAttrs, "version")}`),

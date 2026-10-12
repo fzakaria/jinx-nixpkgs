@@ -2,27 +2,25 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/doRename-condition-enable.nix", [[["enable", 4, 18], ["bar", 5, 18]], [["foo", 4, 14]], [["bar", 10, 13]], [["", 9, 11]], [["services", 4, 5], ["result", 6, 5]], [["config", 3, 3]]]);
 const formals$1 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/doRename-condition-enable.nix", [["enable", 4, 18], ["bar", 5, 18]]);
-const pos$2 = nix.positions(here + "/doRename-condition-enable.nix", [["foo", 4, 14]]);
-const pos$3 = nix.positions(here + "/doRename-condition-enable.nix", [["bar", 10, 13]]);
-const pos$4 = nix.positions(here + "/doRename-condition-enable.nix", [["", 9, 11]]);
-const pos$5 = nix.positions(here + "/doRename-condition-enable.nix", [["services", 4, 5], ["result", 6, 5]]);
-const pos$6 = nix.positions(here + "/doRename-condition-enable.nix", [["config", 3, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     config: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        foo: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, bar: "baz" })),
+        [nix.POS]: $pos[1],
+        foo: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true, bar: "baz" })),
       })),
       result: nix.thunk(() => (() => {
-        nix.assert_(nix.eq(nix.sel(config, "services", "foos"), { [nix.POS]: pos$4, "": nix.thunk(() => ({ [nix.POS]: pos$3, bar: "baz" })) }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/doRename-condition-enable.nix:7:7");
+        nix.assert_(nix.eq(nix.sel(config, "services", "foos"), {
+          [nix.POS]: $pos[3],
+          "": nix.thunk(() => ({ [nix.POS]: $pos[2], bar: "baz" })),
+        }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/doRename-condition-enable.nix:7:7");
         return true;
       })()),
     })),

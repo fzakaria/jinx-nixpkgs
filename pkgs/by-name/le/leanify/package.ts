@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["extraArgs", 48, 47]], [["updateScript", 48, 12]], [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["buildInputs", 27, 3], ["doCheck", 29, 3], ["checkPhase", 31, 3], ["installPhase", 39, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libiconv: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 48, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["buildInputs", 27, 3], ["doCheck", 29, 3], ["checkPhase", 31, 3], ["installPhase", 39, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "leanify",
       version: "0.4.3-unstable-2026-06-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JayXon",
           repo: "Leanify",
           rev: "dc557c4027fc8a7479c4a71506c75c98ea8829f9",
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\n./leanify /dev/null\n\nrunHook postCheck\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp leanify $out/bin/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lightweight lossless file minifier/optimizer",
         longDescription: "Leanify is a lightweight lossless file minifier/optimizer.\nIt removes unnecessary data (debug information, comments, metadata, etc.) and recompress the file to reduce file size.\nIt will not reduce image quality at all.\n",
         homepage: "https://github.com/JayXon/Leanify",

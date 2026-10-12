@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["sourceRoot", 25, 3], ["postPatch", 27, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["buildPhase", 49, 3], ["installPhase", 58, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, icmake: false, yodl: false, libmilter: false, libx11: false, openssl: false, readline: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["sourceRoot", 25, 3], ["postPatch", 27, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["buildPhase", 49, 3], ["installPhase", 58, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bobcat",
       version: "5.11.01",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fbb-git",
           repo: "bobcat",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n./build libraries all\n./build man\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\n./build install x\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Brokken's Own Base Classes And Templates",
         homepage: "https://fbb-git.gitlab.io/bobcat/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

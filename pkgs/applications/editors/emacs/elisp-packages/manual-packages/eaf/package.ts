@@ -2,14 +2,13 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enabledApps", 10, 15]], [["withApplications", 16, 11]]]);
 const formals$1 = { args: { "emacs-application-framework": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enabledApps", 10, 15]]);
-const pos$2 = nix.positions(here + "/package.nix", [["withApplications", 16, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const emacs_application_framework = nix.arg($, "emacs-application-framework");
-  const withApplications = (enabledApps) => nix.app(nix.sel(emacs_application_framework, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enabledApps: enabledApps })));
-  return { [nix.POS]: pos$2, withApplications: withApplications };
+  const withApplications = (enabledApps) => nix.app(nix.sel(emacs_application_framework, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enabledApps: enabledApps })));
+  return { [nix.POS]: $pos[1], withApplications: withApplications };
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

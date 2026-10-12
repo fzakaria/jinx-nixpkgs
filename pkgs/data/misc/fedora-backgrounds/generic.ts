@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]], [["patches", 14, 11], ["src", 14, 19], ["version", 14, 23], ["pname", 16, 3], ["dontBuild", 18, 3], ["postPatch", 20, 3], ["installFlags", 34, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, coreutils: false }, ellipsis: false };
 const formals$2 = { args: { version: false, src: false, patches: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["patches", 14, 11], ["src", 14, 19], ["version", 14, 23], ["pname", 16, 3], ["dontBuild", 18, 3], ["postPatch", 20, 3], ["installFlags", 34, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const patches = nix.argOr($_1, "patches", () => []);
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         patches: patches,
         src: src,
         version: version,
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
         postPatch: "for f in default/Makefile extras/Makefile; do\n  substituteInPlace $f \\\n    --replace-fail \"usr/share\" \"share\" \\\n    --replace-fail \"/usr/bin/\" \"\" \\\n    --replace-fail \"/bin/\" \"\"\ndone\n\nfor f in $(find . -name '*.xml'); do\n  substituteInPlace $f \\\n    --replace-fail \"/usr/share\" \"$out/share\"\ndone;\n",
         installFlags: nix.thunk(() => ["DESTDIR=$(out)", "WP_DIR_LN=$(DESTDIR)/share/backgrounds/$(WP_NAME)"]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           homepage: "https://github.com/fedoradesign/backgrounds",
           description: "Set of default and supplemental wallpapers for Fedora",
           license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["changelog", 25, 5], ["description", 26, 5], ["homepage", 27, 5], ["maintainers", 28, 5], ["license", 29, 5]], [["owner", 9, 3], ["domain", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dependencies", 20, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildHomeAssistantComponent: false, pyopensprinkler: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 25, 5], ["description", 26, 5], ["homepage", 27, 5], ["maintainers", 28, 5], ["license", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 9, 3], ["domain", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dependencies", 20, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const domain = "opensprinkler";
       const version = "1.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vinteo",
           repo: "hass-opensprinkler",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [pyopensprinkler]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/vinteo/hass-opensprinkler/releases/tag/${nix.sel(src, "tag")}`),
         description: "OpenSprinkler Integration for Home Assistant",
         homepage: "https://github.com/vinteo/hass-opensprinkler",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, meta };
+      return { [nix.POS]: $pos[2], owner, domain, version, src, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["url", 23, 7], ["includes", 24, 7], ["hash", 25, 7]], [["description", 58, 5], ["mainProgram", 59, 5], ["longDescription", 60, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["strictDeps", 29, 3], ["__structuredAttrs", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 41, 3], ["installPhase", 46, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, rsync: false, ocamlPackages: false, dune: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 7], ["includes", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 58, 5], ["mainProgram", 59, 5], ["longDescription", 60, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["strictDeps", 29, 3], ["__structuredAttrs", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 41, 3], ["installPhase", 46, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const ocamlPackages = nix.arg($, "ocamlPackages");
   const dune = nix.arg($, "dune");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "abella",
       version: "2.0.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://abella-prover.org/distributions/abella-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-80b/RUpE3KRY0Qu8eeTxAbk6mwGG6jVTPOP0qFjyj2M=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/abella-prover/abella/commit/85dd329c03bf8866975ca0ea7278553d64f8d17f.patch",
             includes: nix.thunk(() => ["src/*.ml"]),
             hash: "sha256-adS2QGwqhLjiZo/Q4KUbpJVp8D/eNy/Ux17/nY3XMh4=",
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "mkdir -p $out/bin\nrsync -av _build/default/src/abella.exe    $out/bin/abella\n\nmkdir -p $out/share/emacs/site-lisp/abella/\nrsync -av emacs/    $out/share/emacs/site-lisp/abella/\n\nmkdir -p $out/share/abella/examples\nrsync -av examples/ $out/share/abella/examples/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Interactive theorem prover",
         mainProgram: "abella",
         longDescription: "Abella is an interactive theorem prover based on lambda-tree syntax.\nThis means that Abella is well-suited for reasoning about the meta-theory\nof programming languages and other logical systems which manipulate\nobjects with binding.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["disabled", 33, 3], ["src", 35, 3], ["pythonRelaxDeps", 42, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 66, 3], ["doCheck", 77, 3], ["pythonImportsCheck", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, deprecated: false, ipython: false, "matplotlib-inline": false, "nest-asyncio": false, networkx: false, numpy: false, packaging: false, "poetry-core": false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, pythonAtLeast: false, "qcs-sdk-python": false, respx: false, rpcq: false, scipy: false, syrupy: false, "types-deprecated": false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["disabled", 33, 3], ["src", 35, 3], ["pythonRelaxDeps", 42, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 66, 3], ["doCheck", 77, 3], ["pythonImportsCheck", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.13"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rigetti",
           repo: "pyquil",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pyquil"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for creating Quantum Instruction Language (Quil) programs",
         homepage: "https://github.com/rigetti/pyquil",
         changelog: nix.thunk(() => nix.str`https://github.com/rigetti/pyquil/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -80,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

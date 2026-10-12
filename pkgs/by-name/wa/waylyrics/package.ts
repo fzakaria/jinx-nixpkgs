@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["WAYLYRICS_THEME_PRESETS_DIR", 39, 7]], [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 73, 5], ["platforms", 77, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["checkFlags", 33, 3], ["env", 39, 3], ["postInstall", 41, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, wrapGAppsHook4: false, openssl: false, dbus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["WAYLYRICS_THEME_PRESETS_DIR", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 73, 5], ["platforms", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["checkFlags", 33, 3], ["env", 39, 3], ["postInstall", 41, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const dbus = nix.arg($, "dbus");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "waylyrics",
       version: "0.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "waylyrics",
           repo: "waylyrics",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,12 +34,12 @@ export default nix.lambda((args) => (() => {
         "--skip=tests::netease_lyric::get_netease_lyric",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         WAYLYRICS_THEME_PRESETS_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/waylyrics/themes`),
       })),
       postInstall: "# Install themes\ninstall -d $WAYLYRICS_THEME_PRESETS_DIR\ncp -vr themes/* $WAYLYRICS_THEME_PRESETS_DIR\n# Install desktop entry\ninstall -Dm644 metainfo/io.github.waylyrics.Waylyrics.desktop -t $out/share/applications\n# Install schema\ninstall -Dm644 metainfo/io.github.waylyrics.Waylyrics.gschema.xml -t $out/share/gsettings-schemas/$name/glib-2.0/schemas\nglib-compile-schemas $out/share/gsettings-schemas/$name/glib-2.0/schemas/\n# Install metainfo\ninstall -Dm644 metainfo/io.github.waylyrics.Waylyrics.metainfo.xml -t $out/share/metainfo\n# Install icons\ninstall -d $out/share/icons\ncp -vr res/icons/hicolor $out/share/icons/hicolor\n# Install translations\npushd locales\nfor po in $(find . -type f -name '*.po')\ndo\n  install -d $(dirname \"$out/share/locale/$po\")\n  msgfmt -o $out/share/locale/${po%.po}.mo $po\ndone\npopd\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Desktop lyrics with QQ and NetEase Music source",
         mainProgram: "waylyrics",
         homepage: "https://github.com/waylyrics/waylyrics",

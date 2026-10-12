@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 26], ["version", 23, 32], ["hash", 24, 5]], [["description", 57, 5], ["changelog", 58, 5], ["license", 59, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 27, 3], ["propagatedBuildInputs", 29, 3], ["pythonRelaxDeps", 38, 3], ["nativeCheckInputs", 40, 3], ["unittestFlagsArray", 46, 3], ["doCheck", 52, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, numpy: false, scipy: false, setuptools: false, protobuf: false, onnx: false, "scikit-learn": false, "onnxconverter-common": false, onnxruntime: false, pandas: false, unittestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 26], ["version", 23, 32], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 5], ["changelog", 58, 5], ["license", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 27, 3], ["propagatedBuildInputs", 29, 3], ["pythonRelaxDeps", 38, 3], ["nativeCheckInputs", 40, 3], ["unittestFlagsArray", 46, 3], ["doCheck", 52, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "skl2onnx",
       version: "1.20.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-x06oJ9kroYb+ZZaV6PyYnNl7/DIO3OPTK5k2pYeNoQo=",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["skl2onnx"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Convert scikit-learn models to ONNX",
         changelog: nix.thunk(() => nix.str`https://github.com/onnx/sklearn-onnx/releases/tag/${nix.sel(finalAttrs, "version")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

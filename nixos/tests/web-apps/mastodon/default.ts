@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["system", 16, 69], ["pkgs", 16, 76]], [["system", 17, 85], ["pkgs", 17, 92]], [["standard", 16, 3], ["remote-databases", 17, 3]]]);
 const formals$1 = { args: { system: true, pkgs: false, handleTestOn: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["system", 16, 69], ["pkgs", 16, 76]]);
-const pos$2 = nix.positions(here + "/default.nix", [["system", 17, 85], ["pkgs", 17, 92]]);
-const pos$3 = nix.positions(here + "/default.nix", [["standard", 16, 3], ["remote-databases", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const handleTestOn = nix.arg($, "handleTestOn");
   const supportedSystems = nix.thunk(() => ["x86_64-linux", "i686-linux", "aarch64-linux"]);
   return {
-    [nix.POS]: pos$3,
-    standard: nix.thunk(() => nix.app(handleTestOn, supportedSystems, nix.path(here, "./standard.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, pkgs: pkgs })))),
-    "remote-databases": nix.thunk(() => nix.app(handleTestOn, supportedSystems, nix.path(here, "./remote-databases.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))),
+    [nix.POS]: $pos[2],
+    standard: nix.thunk(() => nix.app(handleTestOn, supportedSystems, nix.path(here, "./standard.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, pkgs: pkgs })))),
+    "remote-databases": nix.thunk(() => nix.app(handleTestOn, supportedSystems, nix.path(here, "./remote-databases.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

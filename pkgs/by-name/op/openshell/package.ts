@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["OPENSHELL_IMAGE_TAG", 49, 5]], [["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["longDescription", 62, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5], ["platforms", 71, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["nativeCheckInputs", 33, 3], ["postPatch", 38, 3], ["env", 47, 3], ["doCheck", 52, 3], ["nativeInstallCheckInputs", 54, 3], ["doInstallCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, versionCheckHook: false, cacert: false, gitMinimal: false, "pkg-config": false, z3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSHELL_IMAGE_TAG", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["longDescription", 62, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5], ["platforms", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["nativeCheckInputs", 33, 3], ["postPatch", 38, 3], ["env", 47, 3], ["doCheck", 52, 3], ["nativeInstallCheckInputs", 54, 3], ["doInstallCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const z3 = nix.arg($, "z3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openshell",
       version: "0.0.116",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NVIDIA",
           repo: "OpenShell",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,14 +39,14 @@ substituteInPlace Cargo.toml \\
   --replace-fail 'members = ["crates/*"]' 'members = ["crates/openshell-cli"]'
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OPENSHELL_IMAGE_TAG: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/OpenShell/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "The safe, private runtime for autonomous AI agents.",
         homepage: "https://docs.nvidia.com/openshell/index.html",

@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["license", 31, 12]], [["url", 28, 7], ["hash", 29, 7], ["name", 30, 7], ["meta", 31, 7]], [["license", 38, 12]], [["url", 36, 7], ["hash", 37, 7], ["meta", 38, 7]], [["url", 48, 5], ["hash", 49, 5], ["stripRoot", 50, 5]], [["name", 94, 7], ["desktopName", 95, 7], ["comment", 96, 7], ["icon", 97, 7], ["exec", 98, 7], ["categories", 99, 7]], [["extraArgs", 104, 5]], [["updateScript", 103, 12]], [["homepage", 108, 5], ["description", 109, 5], ["longDescription", 110, 5], ["changelog", 121, 5], ["mainProgram", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["platforms", 125, 5]], [["pname", 43, 11], ["zipVersion", 44, 3], ["version", 45, 3], ["src", 47, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 58, 3], ["strictDeps", 73, 3], ["installPhase", 75, 3], ["appendRunpaths", 90, 3], ["desktopItems", 92, 3], ["passthru", 103, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, autoPatchelfHook: false, copyDesktopItems: false, fetchurl: false, fetchzip: false, lib: false, libGL: false, libpulseaudio: false, "libudev0-shim": false, libxcursor: false, libxi: false, libxinerama: false, libxrandr: false, libxscrnsaver: false, libxxf86vm: false, makeDesktopItem: false, "nix-update-script": false, stdenv: false, "vulkan-loader": false, zlib: false, pname: true, includeUnfree: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["license", 31, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7], ["name", 30, 7], ["meta", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["license", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 36, 7], ["hash", 37, 7], ["meta", 38, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 48, 5], ["hash", 49, 5], ["stripRoot", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 94, 7], ["desktopName", 95, 7], ["comment", 96, 7], ["icon", 97, 7], ["exec", 98, 7], ["categories", 99, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 104, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 103, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 108, 5], ["description", 109, 5], ["longDescription", 110, 5], ["changelog", 121, 5], ["mainProgram", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["platforms", 125, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 43, 11], ["zipVersion", 44, 3], ["version", 45, 3], ["src", 47, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 58, 3], ["strictDeps", 73, 3], ["installPhase", 75, 3], ["appendRunpaths", 90, 3], ["desktopItems", 92, 3], ["passthru", 103, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,30 +31,33 @@ export default nix.lambda((args) => (() => {
   const includeUnfree = nix.argOr($, "includeUnfree", () => false);
   const docFiles = nix.thunk(() => nix.concat([
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "https://www.dfworkshop.net/static_files/daggerfallunity/Daggerfall%20Unity%20Manual.pdf",
         hash: "sha256-FywlD0K5b4vUWzyzANlF9575XTDLivbsym7F+qe0Dm8=",
         name: "Daggerfall Unity Manual.pdf",
-        meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[0],
+          license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+        })),
       })))),
   ], nix.app(nix.sel(lib, "optionals"), includeUnfree, nix.thunk(() => [
       nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: "https://cdn.bethsoft.com/bethsoft.com/manuals/Daggerfall/daggerfall-en.pdf",
           hash: "sha256-24KSP/E7+KvSRTMDq63NVlVWTFZnQj1yya8wc36yrC0=",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
           })),
         })))),
     ]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: pname,
       zipVersion: "1.1.1",
       version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "zipVersion")}-cve-2025`),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`https://github.com/Interkarma/daggerfall-unity/releases/download/v${nix.sel(finalAttrs, "version")}/dfu_linux_64bit-v${nix.sel(finalAttrs, "zipVersion")}.zip`),
           hash: "sha256-JuhhVLpREM9e9UtlDttvFUhHWpH7Sh79OEo1OM4ggKA=",
           stripRoot: false,
@@ -101,7 +95,7 @@ runHook postInstall
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "daggerfall-unity",
             desktopName: "Daggerfall Unity",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -111,14 +105,14 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             extraArgs: nix.thunk(() => ["--version-regex=^v(\\d+(\\.\\d+)*)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://www.dfworkshop.net/",
         description: "Open source recreation of Daggerfall in the Unity engine",
         longDescription: nix.thunk(() => nix.str`Daggerfall Unity is an open source recreation of Daggerfall in the Unity engine created by Daggerfall Workshop.

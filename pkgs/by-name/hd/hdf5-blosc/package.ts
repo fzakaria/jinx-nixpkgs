@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["updateScript", 58, 12]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["outputs", 24, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["preConfigure", 36, 3], ["cmakeFlags", 40, 3], ["postPatch", 46, 3], ["postInstall", 51, 3], ["doCheck", 56, 3], ["passthru", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "c-blosc": false, cmake: false, hdf5: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 58, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["outputs", 24, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["preConfigure", 36, 3], ["cmakeFlags", 40, 3], ["postPatch", 46, 3], ["postInstall", 51, 3], ["doCheck", 56, 3], ["passthru", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hdf5-blosc",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Blosc",
           repo: "hdf5-blosc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,11 +42,11 @@ substituteAll ${nix.path(here, "./blosc_filter.pc.in")} $out/lib/pkgconfig/blosc
 `),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Filter for HDF5 that uses the Blosc compressor",
         homepage: "https://github.com/Blosc/hdf5-blosc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

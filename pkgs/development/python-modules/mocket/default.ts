@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 44, 13], ["version", 44, 19], ["hash", 45, 5]], [["pook", 59, 5], ["speedups", 60, 5]], [["SKIP_TRUE_HTTP", 81, 7]], [["changelog", 104, 5], ["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["optional-dependencies", 58, 3], ["nativeCheckInputs", 63, 3], ["env", 81, 3], ["__darwinAllowLocalNetworking", 83, 3], ["disabledTests", 85, 3], ["pythonImportsCheck", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, stdenv: false, fetchPypi: false, hatchling: false, decorator: false, h11: false, puremagic: false, "typing-extensions": false, urllib3: false, xxhash: false, pook: false, aiohttp: false, asgiref: false, fastapi: false, gevent: false, httpx: false, psutil: false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, redis: false, redisTestHook: false, requests: false, sure: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 44, 13], ["version", 44, 19], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pook", 59, 5], ["speedups", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["SKIP_TRUE_HTTP", 81, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 104, 5], ["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["optional-dependencies", 58, 3], ["nativeCheckInputs", 63, 3], ["env", 81, 3], ["__darwinAllowLocalNetworking", 83, 3], ["disabledTests", 85, 3], ["pythonImportsCheck", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.14.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-lDDPfk8a1/HPxIzgCKv4eq+asnJkFsWBCUROnF6g+wg=",
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [decorator, h11, puremagic, typing_extensions, urllib3]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pook: nix.thunk(() => [pook]),
         speedups: nix.thunk(() => [xxhash]),
       }));
@@ -68,7 +64,7 @@ export default nix.lambda((args) => (() => {
         requests,
         sure,
       ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, SKIP_TRUE_HTTP: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], SKIP_TRUE_HTTP: true }));
       const __darwinAllowLocalNetworking = true;
       const disabledTests = nix.thunk(() => nix.concat([
         "test_truesendall_with_dump_from_recording",
@@ -80,7 +76,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_httprettish_httpx_session"]))));
       const pythonImportsCheck = nix.thunk(() => ["mocket"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/mindflayer/python-mocket/releases/tag/${version}`),
         description: "Socket mock framework for all kinds of sockets including web-clients",
         homepage: "https://github.com/mindflayer/python-mocket",
@@ -88,7 +84,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

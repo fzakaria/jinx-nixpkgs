@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["updateScript", 89, 12]], [["description", 92, 5], ["mainProgram", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["maintainers", 96, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["namePrefix", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 57, 3], ["postPatch", 72, 3], ["dontWrapGApps", 83, 3], ["preFixup", 85, 3], ["passthru", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, python3Packages: false, ffmpeg: false, mplayer: false, vcdimager: false, cdrkit: false, dvdauthor: false, gtk3: false, wrapGAppsHook3: false, "gdk-pixbuf": false, "gobject-introspection": false, overrideFont: true, liberation_ttf: false, fontPath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 89, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 92, 5], ["mainProgram", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["maintainers", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["namePrefix", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 57, 3], ["postPatch", 72, 3], ["dontWrapGApps", 83, 3], ["preFixup", 85, 3], ["passthru", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const setuptools_gettext = nix.thunk(() => nix.attr(python3Packages, "setuptools-gettext"));
   const importlib_metadata = nix.thunk(() => nix.attr(python3Packages, "importlib-metadata"));
   return nix.app(buildPythonApplication, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "devede",
       version: "4.22.1",
       pyproject: true,
       namePrefix: "",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rastersoft",
           repo: "devedeng",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,9 +63,9 @@ export default nix.lambda((args) => (() => {
 `)))),
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "DVD Creator for Linux",
         mainProgram: "devede_ng",
         homepage: "https://www.rastersoft.com/programas/devede.html",

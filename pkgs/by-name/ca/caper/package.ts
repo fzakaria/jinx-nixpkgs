@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 28, 3], ["strictDeps", 32, 3], ["buildPhase", 34, 3], ["installPhase", 40, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, ocaml: false, ocamlPackages: false, gnum4: false, fetchFromGitLab: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 28, 3], ["strictDeps", 32, 3], ["buildPhase", 34, 3], ["installPhase", 40, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gnum4 = nix.arg($, "gnum4");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "caper",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "niksu",
           repo: "caper",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nCAPER_WITH_ENGLISH=yes bash build.sh caper.native\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp caper.native $out/bin/caper\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for understanding and processing pcap (packet capture) expressions",
         longDescription: "Caper is a tool for understanding and processing \"pcap expressions\" (also known as *tcpdump filters*) which are used for network packet analysis.\nCaper can be used for:\n* Expanding out pcap expressions \"in full\" to understand their implicit features.\n* Reasoning about whether two expressions accept the same set of packets, or how their accepted packets differ.\n* Converting pcap expressions into BPF programs.\n* Converting between pcap expressions and English.\n\nMore info can be found in the Caper paper (https://www.nik.network/caper/pcap_semantics.pdf).\n",
         homepage: "https://gitlab.com/niksu/caper",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 20, 5], ["i686-linux", 21, 5], ["aarch64-linux", 22, 5], ["armv7l-linux", 23, 5], ["aarch64-darwin", 24, 5]], [["url", 30, 5], ["hash", 31, 5]], [["urls", 40, 5], ["hash", 45, 5]], [["name", 75, 11], ["exec", 76, 11], ["desktopName", 77, 11], ["genericName", 78, 11], ["comment", 79, 11], ["icon", 80, 11], ["categories", 81, 11]], [["description", 144, 5], ["license", 145, 5], ["sourceProvenance", 146, 5], ["homepage", 147, 5], ["maintainers", 148, 5], ["platforms", 152, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 58, 3], ["runtimeDependencies", 66, 3], ["desktopItems", 70, 3], ["dontConfigure", 100, 3], ["dontBuild", 101, 3], ["installPhase", 103, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, "alsa-lib": false, autoPatchelfHook: false, copyDesktopItems: false, libglvnd: false, libjack2: false, libx11: false, libxi: false, makeDesktopItem: false, makeWrapper: false, SDL2: false, fetchurl: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 20, 5], ["i686-linux", 21, 5], ["aarch64-linux", 22, 5], ["armv7l-linux", 23, 5], ["aarch64-darwin", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["urls", 40, 5], ["hash", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 75, 11], ["exec", 76, 11], ["desktopName", 77, 11], ["genericName", 78, 11], ["comment", 79, 11], ["icon", 80, 11], ["categories", 81, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 144, 5], ["license", 145, 5], ["sourceProvenance", 146, 5], ["homepage", 147, 5], ["maintainers", 148, 5], ["platforms", 152, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 58, 3], ["runtimeDependencies", 66, 3], ["desktopItems", 70, 3], ["dontConfigure", 100, 3], ["dontBuild", 101, 3], ["installPhase", 103, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const imagemagick = nix.arg($, "imagemagick");
   const platforms = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "linux_x86_64",
     "i686-linux": "linux_x86",
     "aarch64-linux": "linux_arm64",
@@ -37,16 +32,16 @@ export default nix.lambda((args) => (() => {
   }));
   const bindir = nix.thunk(() => nix.selOr(platforms, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://warmplace.ru/soft/sunvox/images/icon.png",
       hash: "sha256-ld2GCOhBhMThuUYBNa+2iTdY2HsYBRyApWiHTPuVgKA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sunvox",
       version: "2.1.4d",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://www.warmplace.ru/soft/sunvox/sunvox-${nix.sel(finalAttrs, "version")}.zip`),
             nix.thunk(() => nix.str`https://web.archive.org/web/20260501043715/https://www.warmplace.ru/soft/sunvox/sunvox-${nix.sel(finalAttrs, "version")}.zip`),
@@ -58,7 +53,7 @@ export default nix.lambda((args) => (() => {
       runtimeDependencies: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libjack2]))),
       desktopItems: nix.thunk(() => (() => {
         const sunvoxDesktop = (variant) => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: nix.thunk(() => nix.add("sunvox", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(variant, null)), nix.thunk(() => nix.str`-${nix.app(nix.sel(lib, "strings", "toLower"), variant)}`)))),
             exec: nix.thunk(() => nix.add("sunvox", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(variant, null)), nix.thunk(() => nix.str`_${nix.app(nix.sel(lib, "strings", "toLower"), variant)}`)))),
             desktopName: nix.thunk(() => nix.add("SunVox", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(variant, null)), nix.thunk(() => nix.str` (${variant})`)))),
@@ -102,7 +97,7 @@ ln -s $out/share/sunvox/sunvox/${bindir}/reset_sunvox $out/bin/
 makeWrapper $out/Applications/SunVox.app/Contents/MacOS/SunVox $out/bin/sunvox
 `))), "\nrunHook postInstall\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Small, fast and powerful modular synthesizer with pattern-based sequencer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         sourceProvenance: nix.thunk(() => (() => {

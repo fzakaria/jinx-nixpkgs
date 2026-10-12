@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 63, 5]], [["pname", 18, 3], ["version", 19, 33], ["src", 19, 41], ["pyproject", 20, 3], ["sourceRoot", 22, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["pythonRelaxDeps", 35, 3], ["makeWrapperArgs", 40, 3], ["postInstall", 47, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "flet-client-flutter": false, "poetry-core": false, flet: false, "flet-desktop": false, "flet-web": false, qrcode: false, toml: false, watchdog: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 63, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 33], ["src", 19, 41], ["pyproject", 20, 3], ["sourceRoot", 22, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["pythonRelaxDeps", 35, 3], ["makeWrapperArgs", 40, 3], ["postInstall", 47, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +33,7 @@ makeWrapper ${flet}/bin/flet $out/bin/flet \\
 `);
       const pythonImportsCheck = nix.thunk(() => ["flet_cli"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Command-line interface tool for Flet, a framework for building interactive multi-platform applications using Python",
         homepage: "https://flet.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/flet-dev/flet/releases/tag/v${version}`),
@@ -46,7 +45,7 @@ makeWrapper ${flet}/bin/flet $out/bin/flet \\
         mainProgram: "flet",
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

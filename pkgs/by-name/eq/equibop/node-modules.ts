@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/node-modules.nix", [[["x86_64-linux", 53, 7], ["aarch64-linux", 54, 7]], [["version", 11, 21], ["src", 11, 29], ["pname", 12, 3], ["impureEnvVars", 14, 3], ["nativeBuildInputs", 19, 3], ["dontConfigure", 24, 3], ["dontFixup", 25, 3], ["buildPhase", 27, 3], ["installPhase", 43, 3], ["outputHash", 51, 3], ["outputHashAlgo", 58, 3], ["outputHashMode", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, equibop: false, bun: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/node-modules.nix", [["x86_64-linux", 53, 7], ["aarch64-linux", 54, 7]]);
-const pos$2 = nix.positions(here + "/node-modules.nix", [["version", 11, 21], ["src", 11, 29], ["pname", 12, 3], ["impureEnvVars", 14, 3], ["nativeBuildInputs", 19, 3], ["dontConfigure", 24, 3], ["dontFixup", 25, 3], ["buildPhase", 27, 3], ["installPhase", 43, 3], ["outputHash", 51, 3], ["outputHashAlgo", 58, 3], ["outputHashMode", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const bun = nix.arg($, "bun");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(equibop, "version")),
       src: nix.thunk(() => nix.attr(equibop, "src")),
       pname: nix.thunk(() => nix.add(nix.sel(equibop, "pname"), "-modules")),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nexport BUN_INSTALL_CACHE_DIR=$(mktemp -d)\n\nbun install \\\n    --filter=equibop \\\n    --force \\\n    --frozen-lockfile \\\n    --ignore-scripts \\\n    --linker=hoisted \\\n    --no-progress\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ncp -R ./node_modules $out\n\nrunHook postInstall\n",
       outputHash: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "x86_64-linux": "sha256-TKFL47b+Xh8ChlSyXdhRY+zmPAnkHJss2vNblBvOSmw=",
         "aarch64-linux": "sha256-S5JNtQvDLFrOT+XCSMqFltrTlcRAzWcbXbRZk4CEkrA=",
       }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["dontConfigure", 26, 3], ["dontBuild", 27, 3], ["doCheck", 28, 3], ["installPhase", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["dontConfigure", 26, 3], ["dontBuild", 27, 3], ["doCheck", 28, 3], ["installPhase", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zpool-iostat-viz",
       version: "unstable-2021-11-13",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chadmiller",
           repo: "zpool-iostat-viz",
           rev: "cdd8f3d882ab7a9990fb2d26af3e5b2bcc4bb312",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       installPhase: "wrapPythonPrograms\ninstall -D zpool-iostat-viz $out/bin/zpool-iostat-viz\ninstallManPage zpool-iostat-viz.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "\"zpool iostats\" for humans; find the slow parts of your ZFS pool",
         homepage: "https://github.com/chadmiller/zpool-iostat-viz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

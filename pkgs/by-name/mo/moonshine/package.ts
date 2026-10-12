@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["updateScript", 112, 12]], [["description", 115, 5], ["longDescription", 116, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["mainProgram", 128, 5], ["platforms", 129, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["__structuredAttrs", 41, 3], ["cargoHash", 43, 3], ["cargoBuildFlags", 46, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 59, 3], ["postPatch", 69, 3], ["postInstall", 80, 3], ["postFixup", 96, 3], ["nativeInstallCheckInputs", 108, 3], ["doInstallCheck", 109, 3], ["passthru", 112, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, "pkg-config": false, lib: false, libevdev: false, libgbm: false, libGL: false, libopus: false, libx11: false, libxkbcommon: false, libxres: false, "nix-update-script": false, rustPlatform: false, versionCheckHook: false, "vulkan-loader": false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 112, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 115, 5], ["longDescription", 116, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["mainProgram", 128, 5], ["platforms", 129, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["__structuredAttrs", 41, 3], ["cargoHash", 43, 3], ["cargoBuildFlags", 46, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 59, 3], ["postPatch", 69, 3], ["postInstall", 80, 3], ["postFixup", 96, 3], ["nativeInstallCheckInputs", 108, 3], ["doInstallCheck", 109, 3], ["passthru", 112, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const wayland = nix.arg($, "wayland");
   const inputtino_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "games-on-whales",
       repo: "inputtino",
       rev: "d28ec79eb63324e68d73a7de22bcb5ff0a6f6bf8",
       hash: "sha256-xzDsJggQVX5e1twwNvqw5hDXei6OMYA4s5zU4zfp/H0=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "moonshine",
       version: "0.16.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "hgaiser",
           repo: "moonshine",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,11 +61,11 @@ substituteInPlace $cargoDepsCopy/*/inputtino-sys-*/build.rs \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Headless streaming server for Moonlight clients",
         longDescription: "Moonshine lets you stream games from your PC to any device running Moonlight.\nYour keyboard, mouse, and controller inputs are sent back to the host so you\ncan play games remotely as if you were sitting in front of it.\n",
         homepage: "https://github.com/hgaiser/moonshine",

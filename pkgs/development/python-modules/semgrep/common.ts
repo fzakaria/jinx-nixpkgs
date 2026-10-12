@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["owner", 18, 7], ["repo", 19, 7], ["rev", 20, 7], ["hash", 21, 7]], [["cli/src/semgrep/semgrep_interfaces", 17, 5]], [["platform", 31, 7], ["hash", 32, 7]], [["platform", 35, 7], ["hash", 36, 7]], [["platform", 39, 7], ["hash", 40, 7]], [["x86_64-linux", 30, 5], ["aarch64-linux", 34, 5], ["aarch64-darwin", 38, 5]], [["homepage", 45, 5], ["downloadPage", 46, 5], ["changelog", 47, 5], ["description", 48, 5], ["longDescription", 49, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["version", 4, 3], ["srcHash", 6, 3], ["pythonWheelTag", 10, 3], ["submodules", 16, 3], ["core", 29, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["owner", 18, 7], ["repo", 19, 7], ["rev", 20, 7], ["hash", 21, 7]]);
-const pos$2 = nix.positions(here + "/common.nix", [["cli/src/semgrep/semgrep_interfaces", 17, 5]]);
-const pos$3 = nix.positions(here + "/common.nix", [["platform", 31, 7], ["hash", 32, 7]]);
-const pos$4 = nix.positions(here + "/common.nix", [["platform", 35, 7], ["hash", 36, 7]]);
-const pos$5 = nix.positions(here + "/common.nix", [["platform", 39, 7], ["hash", 40, 7]]);
-const pos$6 = nix.positions(here + "/common.nix", [["x86_64-linux", 30, 5], ["aarch64-linux", 34, 5], ["aarch64-darwin", 38, 5]]);
-const pos$7 = nix.positions(here + "/common.nix", [["homepage", 45, 5], ["downloadPage", 46, 5], ["changelog", 47, 5], ["description", 48, 5], ["longDescription", 49, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$8 = nix.positions(here + "/common.nix", [["version", 4, 3], ["srcHash", 6, 3], ["pythonWheelTag", 10, 3], ["submodules", 16, 3], ["core", 29, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,9 +13,9 @@ export default nix.lambda((args) => (() => {
     const srcHash = "sha256-ItGRNjp0ITe50ctef6pkIdefRlUPqgo27PcqfDx5I4A=";
     const pythonWheelTag = "cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314";
     const submodules = nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       "cli/src/semgrep/semgrep_interfaces": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "semgrep",
         repo: "semgrep-interfaces",
         rev: "73a6a4201803db5dbee3c29ed362805574f279cc",
@@ -30,25 +23,25 @@ export default nix.lambda((args) => (() => {
       })),
     }));
     const core = nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         platform: "manylinux_2_34_x86_64",
         hash: "sha256-tSnE22Pyk5GJibhM5GQPEvGx5GgNnn/KtfNVT5ET38U=",
       })),
       "aarch64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         platform: "manylinux_2_34_aarch64",
         hash: "sha256-wj15xIOVQDcqzDm1mq0WfBx/PcIbrKyyfxmqLt150nE=",
       })),
       "aarch64-darwin": nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         platform: "macosx_11_0_arm64",
         hash: "sha256-m1cCb1h6S8eDO8orbk1neAcqedzwufLl4B09XfOcd1k=",
       })),
     }));
     const meta = nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       homepage: "https://semgrep.dev/",
       downloadPage: "https://github.com/semgrep/semgrep/",
       changelog: nix.thunk(() => nix.str`https://github.com/semgrep/semgrep/blob/v${version}/CHANGELOG.md`),
@@ -64,7 +57,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
     }));
-    return { [nix.POS]: pos$8, version, srcHash, pythonWheelTag, submodules, core, meta };
+    return { [nix.POS]: $pos[7], version, srcHash, pythonWheelTag, submodules, core, meta };
   })();
 })(), formals$1);
 //# sourceMappingURL=common.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["url", 39, 7], ["hash", 40, 7]], [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]], [["pname", 14, 3], ["version", 15, 3], ["versionUrl", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 29, 3], ["__structuredAttrs", 33, 3], ["strictDeps", 35, 3], ["patches", 37, 3], ["postPatch", 44, 3], ["configureFlags", 49, 3], ["enableParallelBuilding", 53, 3], ["doCheck", 55, 3], ["installCheckPhase", 57, 3], ["doInstallCheck", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { fetchpatch: false, fetchzip: false, lib: false, stdenv: false, autoreconfHook: false, cddlib: false, gmpxx: false, programPrefix: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["versionUrl", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 29, 3], ["__structuredAttrs", 33, 3], ["strictDeps", 35, 3], ["patches", 37, 3], ["postPatch", 44, 3], ["configureFlags", 49, 3], ["enableParallelBuilding", 53, 3], ["doCheck", 55, 3], ["installCheckPhase", 57, 3], ["doInstallCheck", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const gmpxx = nix.arg($, "gmpxx");
   const programPrefix = nix.argOr($, "programPrefix", () => "topcom-");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "topcom",
       version: "1.1.2",
       versionUrl: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.wm.uni-bayreuth.de/de/team/rambau_joerg/TOPCOM-Downloads/TOPCOM-${nix.sel(finalAttrs, "versionUrl")}.tgz`),
           hash: "sha256-r6dA2rQzxMu0Xxq5yl9rBZ5MJTRnmWVLav/F/QpkZ1A=",
         })))),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/topcom/-/raw/67c9a20c8e1597898f3950b486b4287641823363/system-libs.patch",
             hash: "sha256-F+1ZtluGL3i+LKWp0poQnx2ZlV5TSp6WSK5yl2FmOP4",
           })))),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "runHook preInstallCheck\nfor prog in $(find \"$out/bin\" -type f); do\n  echo \"Checking $prog\"\n  grep -q '^usage: ' <(echo \"\" | \"$prog\" 2>&1) && continue\n  \"$prog\" --help &>/dev/null && continue\n  echo \"$prog doesn't seem to be working\" >&2\n  exit 1\ndone\nrunHook postInstallCheck\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Package for computing Triangulations Of Point Configurations and Oriented Matroid",
         longDescription: "TOPCOM is a package for computing Triangulations Of Point Configurations\nand Oriented Matroids. It was very much inspired by the maple program\nPUNTOS, which was written by Jesus de Loera. TOPCOM is entirely written\nin C++, so there is a significant speed up compared to PUNTOS.\n",
         homepage: "https://www.wm.uni-bayreuth.de/de/team/rambau_joerg/TOPCOM/index.html",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["optionals", 31, 25]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 31, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 45, 3], ["disabledTests", 47, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, jinja2: false, jsonschema: false, napalm: false, "poetry-core": false, pytestCheckHook: false, pyyaml: false, "rpds-py": false, toml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["optionals", 31, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 31, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 45, 3], ["disabledTests", 47, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const rpds_py = nix.arg($, "rpds-py");
   const toml = nix.arg($, "toml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "netutils",
       version: "1.19.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "networktocode",
           repo: "netutils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [jsonschema]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         optionals: nix.thunk(() => [jinja2, jsonschema, napalm, rpds_py]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, pyyaml, toml], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         "test_encrypt_cisco_type5",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library that is a collection of objects for common network automation tasks",
         homepage: "https://github.com/networktocode/netutils",
         changelog: nix.thunk(() => nix.str`https://github.com/networktocode/netutils/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

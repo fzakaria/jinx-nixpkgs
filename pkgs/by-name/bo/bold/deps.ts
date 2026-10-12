@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/deps.nix", [[["url", 9, 7], ["hash", 10, 7]], [["name", 7, 5], ["path", 8, 5]], [["url", 16, 7], ["hash", 17, 7]], [["name", 14, 5], ["path", 15, 5]]]);
 const formals$1 = { args: { linkFarm: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/deps.nix", [["url", 9, 7], ["hash", 10, 7]]);
-const pos$2 = nix.positions(here + "/deps.nix", [["name", 7, 5], ["path", 8, 5]]);
-const pos$3 = nix.positions(here + "/deps.nix", [["url", 16, 7], ["hash", 17, 7]]);
-const pos$4 = nix.positions(here + "/deps.nix", [["name", 14, 5], ["path", 15, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,19 +11,19 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "zig_dis_x86_64-0.0.1-bnhOUXf6AwDf1MpMgHZImLwqhFbUp2Fl_MoxhtPEeo4N",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/kubkon/zig-dis-x86_64/archive/48c399d7f9d879f46a69d4a06af3fa0699286ba5.tar.gz",
             hash: "sha256-JsuAWOZnwtBikyHQma4SFfkDP7kPDE1qxPnQpCzx8m0=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "zig_yaml-0.1.0-C1161miEAgBCwL3YAEQZwV_4GyaaT2Xqj9nKB6hNe_TL",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/kubkon/zig-yaml/archive/refs/tags/0.1.1.tar.gz",
             hash: "sha256-HfxM1MgdlnnD13LG9AWULu/jy5zMRa3nkLUqkKj1RC4=",
           })))),

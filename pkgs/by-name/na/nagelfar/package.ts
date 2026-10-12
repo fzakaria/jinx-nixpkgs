@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 18, 5]], [["homepage", 37, 5], ["description", 38, 5], ["longDescription", 39, 5], ["mainProgram", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["installPhase", 28, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, bashNonInteractive: false, tcl: false, tclPackages: false, tk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["longDescription", 39, 5], ["mainProgram", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["installPhase", 28, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const tclPackages = nix.arg($, "tclPackages");
   const tk = nix.arg($, "tk");
   return nix.app(nix.sel(tcl, "mkTclDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nagelfar",
       version: "1.3.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://sourceforge.net/projects/nagelfar/files/Rel_${nix.app(nix.sel(lib, "replaceString"), ".", "", nix.thunk(() => nix.sel(finalAttrs, "version")))}/nagelfar${nix.app(nix.sel(lib, "replaceString"), ".", "", nix.thunk(() => nix.sel(finalAttrs, "version")))}.tar.gz`),
           hash: "sha256-O6+SD7NLc+MgZxGDZdB02FkpjivON0itlFhiS+zoWyM=",
         })))),
       buildInputs: nix.thunk(() => [bashNonInteractive, tcl, nix.thunk(() => nix.sel(tclPackages, "tcllib")), tk]),
       installPhase: "runHook preInstall\n\ninstall -Dm 755 nagelfar.tcl $out/bin/nagelfar\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://nagelfar.sourceforge.net/",
         description: "Static syntax checker (linter) for Tcl",
         longDescription: "Provides static syntax checking, code coverage instrumentation,\nand is very extendable through its syntax database and plugins.\n",

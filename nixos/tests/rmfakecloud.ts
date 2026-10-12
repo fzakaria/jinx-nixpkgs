@@ -2,34 +2,29 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rmfakecloud.nix", [[["maintainers", 5, 5]], [["enable", 10, 7], ["storageUrl", 11, 7]], [["rmfakecloud", 9, 14]], [["services", 9, 5]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 15, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/rmfakecloud.nix", [["maintainers", 5, 5]]);
-const pos$2 = nix.positions(here + "/rmfakecloud.nix", [["enable", 10, 7], ["storageUrl", 11, 7]]);
-const pos$3 = nix.positions(here + "/rmfakecloud.nix", [["rmfakecloud", 9, 14]]);
-const pos$4 = nix.positions(here + "/rmfakecloud.nix", [["services", 9, 5]]);
-const pos$5 = nix.positions(here + "/rmfakecloud.nix", [["machine", 8, 9]]);
-const pos$6 = nix.positions(here + "/rmfakecloud.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "rmfakecloud",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "martinetd"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          rmfakecloud: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, storageUrl: "https://local.appspot.com" })),
+          [nix.POS]: $pos[2],
+          rmfakecloud: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, storageUrl: "https://local.appspot.com" })),
         })),
       })),
     })),

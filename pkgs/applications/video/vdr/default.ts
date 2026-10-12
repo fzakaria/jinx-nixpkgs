@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["homepage", 83, 5], ["description", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5], ["license", 87, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["enableParallelBuilding", 28, 3], ["postPatch", 30, 3], ["buildInputs", 32, 3], ["buildFlags", 42, 3], ["nativeBuildInputs", 49, 3], ["propagatedNativeBuildInputs", 52, 3], ["installFlags", 57, 3], ["installTargets", 62, 3], ["postInstall", 70, 3], ["outputs", 76, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchgit: false, fontconfig: false, libjpeg: false, libcap: false, freetype: false, fribidi: false, "pkg-config": false, gettext: false, systemd: false, perl: false, lib: false, enableSystemd: true, enableBidi: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 83, 5], ["description", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5], ["license", 87, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["enableParallelBuilding", 28, 3], ["postPatch", 30, 3], ["buildInputs", 32, 3], ["buildFlags", 42, 3], ["nativeBuildInputs", 49, 3], ["propagatedNativeBuildInputs", 52, 3], ["installFlags", 57, 3], ["installTargets", 62, 3], ["postInstall", 70, 3], ["outputs", 76, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vdr";
       const version = "2.8.3";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.tvdr.de/vdr.git",
           rev: version,
           hash: "sha256-7ofaDmuE6rLhzfVLU5GHc79vVN+xgGzQvJtztgXRDtA=",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "mkdir -p $out/lib/vdr # only needed if vdr is started without any plugin\nmkdir -p $out/share/vdr/conf\ncp *.conf $out/share/vdr/conf\n";
       const outputs = nix.thunk(() => ["out", "dev", "man"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.tvdr.de/",
         description: "Video Disc Recorder",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ck3d"))]),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["homepage", 28, 5], ["changelog", 29, 5], ["description", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["doCheck", 19, 11], ["configureFlags", 21, 3], ["cmakeFlags", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, doCheck: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 28, 5], ["changelog", 29, 5], ["description", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["doCheck", 19, 11], ["configureFlags", 21, 3], ["cmakeFlags", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
     return !nix.asBool((nix.asBool(nix.lookup(w, "isWindows")) && nix.asBool(nix.lookup(w, "isStatic"))));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libconfig",
       version: "1.8.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://hyperrealm.github.io/libconfig/dist/libconfig-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-5Z/7kC3Vcx1dTk+4HTuYlpdhX+q3Lf18MGGBZ7kaQu4=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))), "--disable-examples"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(finalAttrs, "finalPackage", "doCheck"))), "--disable-tests"))),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(finalAttrs, "finalPackage", "doCheck"))), nix.thunk(() => ["-DBUILD_TESTS:BOOL=OFF"]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://hyperrealm.github.io/libconfig/",
         changelog: nix.thunk(() => nix.str`https://github.com/hyperrealm/libconfig/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog`),
         description: "C/C++ library for processing configuration files",

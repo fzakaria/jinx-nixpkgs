@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mirage.nix", [[["description", 22, 5]], [["pname", 10, 3], ["version", 12, 25], ["src", 12, 33], ["propagatedBuildInputs", 14, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, letsencrypt: false, emile: false, "http-mirage-client": false, paf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mirage.nix", [["description", 22, 5]]);
-const pos$2 = nix.positions(here + "/mirage.nix", [["pname", 10, 3], ["version", 12, 25], ["src", 12, 33], ["propagatedBuildInputs", 14, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const http_mirage_client = nix.arg($, "http-mirage-client");
   const paf = nix.arg($, "paf");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "letsencrypt-mirage",
       version: nix.thunk(() => nix.attr(letsencrypt, "version")),
       src: nix.thunk(() => nix.attr(letsencrypt, "src")),
       propagatedBuildInputs: nix.thunk(() => [emile, http_mirage_client, letsencrypt, paf]),
-      meta: nix.thunk(() => nix.update(nix.sel(letsencrypt, "meta"), { [nix.POS]: pos$1, description: "ACME implementation in OCaml for MirageOS" })),
+      meta: nix.thunk(() => nix.update(nix.sel(letsencrypt, "meta"), { [nix.POS]: $pos[0], description: "ACME implementation in OCaml for MirageOS" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=mirage.ts.map

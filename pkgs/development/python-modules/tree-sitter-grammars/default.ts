@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["tree_sitter_org_nvim", 34, 5], ["tree_sitter_go_template_helm", 35, 5]], [["name", 46, 5], ["paths", 47, 5]], [["description", 206, 5], ["license", 207, 5], ["maintainers", 208, 5]], [["version", 40, 11], ["pname", 41, 3], ["pyproject", 42, 3], ["build-system", 43, 3], ["src", 45, 3], ["dependencies", 189, 3], ["preCheck", 193, 3], ["nativeCheckInputs", 198, 3], ["pythonImportsCheck", 203, 3], ["meta", 205, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, setuptools: false, pytestCheckHook: false, "tree-sitter": false, "tree-sitter-config": false, symlinkJoin: false, writeTextDir: false, name: false, grammarDrv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["tree_sitter_org_nvim", 34, 5], ["tree_sitter_go_template_helm", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 46, 5], ["paths", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 206, 5], ["license", 207, 5], ["maintainers", 208, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 40, 11], ["pname", 41, 3], ["pyproject", 42, 3], ["build-system", 43, 3], ["src", 45, 3], ["dependencies", 189, 3], ["preCheck", 193, 3], ["nativeCheckInputs", 198, 3], ["pythonImportsCheck", 203, 3], ["meta", 205, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,19 +28,19 @@ export default nix.lambda((args) => (() => {
     ])));
   const snakeCaseName = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), name));
   const langIdentOverrides = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     tree_sitter_org_nvim: "tree_sitter_org",
     tree_sitter_go_template_helm: "tree_sitter_helm",
   }));
   const langIdent = nix.thunk(() => nix.selOr(langIdentOverrides, () => nix.force(snakeCaseName), nix.key(nix.force(snakeCaseName))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: version,
       pname: name,
       pyproject: true,
       "build-system": nix.thunk(() => [setuptools]),
       src: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${name}-source`),
           paths: nix.thunk(() => [
             nix.thunk(() => nix.app(writeTextDir, nix.thunk(() => nix.str`${snakeCaseName}/__init__.py`), nix.thunk(() => nix.str`# AUTO-GENERATED DO NOT EDIT
@@ -188,7 +185,7 @@ rm -r ${snakeCaseName}
       nativeCheckInputs: nix.thunk(() => [tree_sitter, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => [snakeCaseName]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: nix.thunk(() => nix.str`Python bindings for ${name}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

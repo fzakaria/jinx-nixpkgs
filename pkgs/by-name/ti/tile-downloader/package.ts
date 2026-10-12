@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["updateScript", 26, 5]], [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 23, 3], ["passthru", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 32, 3], ["doInstallCheck", 36, 3], ["nativeInstallCheckInputs", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitLab: false, "nix-update-script": false, openssl: false, "pkg-config": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 23, 3], ["passthru", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 32, 3], ["doInstallCheck", 36, 3], ["nativeInstallCheckInputs", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tile-downloader",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.scd31.com",
           owner: "sophie",
           repo: "tile-downloader",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-jKNp+YJKZ3qpaDzwi3DvFaZAipRhm1+sTtKBtQEj7qI=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Multi-threaded raster tile downloader, primarily designed for downloading OSM tiles for usage offline",
         mainProgram: "tile-downloader",
         homepage: "https://gitlab.scd31.com/sophie/tile-downloader",

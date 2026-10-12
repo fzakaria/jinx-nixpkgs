@@ -2,11 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/define-bare-submodule-values.nix", [["nested", 2, 18], ["deep", 3, 18]]);
-const pos$2 = nix.positions(here + "/define-bare-submodule-values.nix", [["bare-submodule", 2, 3]]);
+const $pos = nix.positions(here + "/define-bare-submodule-values.nix", [[["nested", 2, 18], ["deep", 3, 18]], [["bare-submodule", 2, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
-  "bare-submodule": nix.thunk(() => ({ [nix.POS]: pos$1, nested: 42n, deep: 420n })),
+  [nix.POS]: $pos[1],
+  "bare-submodule": nix.thunk(() => ({ [nix.POS]: $pos[0], nested: 42n, deep: 420n })),
 }));
 //# sourceMappingURL=define-bare-submodule-values.ts.map

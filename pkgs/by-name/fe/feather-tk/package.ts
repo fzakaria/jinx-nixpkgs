@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5], ["badPlatforms", 96, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["cmakeFlags", 64, 3], ["doCheck", 75, 3], ["nativeCheckInputs", 77, 3], ["checkPhase", 81, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchFromGitHub: false, "pkg-config": false, python3: false, freetype: false, glfw: false, gtk3: false, libGL: false, libpng: false, lunasvg: false, "nativefiledialog-extended": false, nlohmann_json: false, plutovg: false, "xvfb-run": false, zlib: false, python3Packages: true, enableNFD: true, enablePython: true, enableTests: true, enableExamples: true, enableShared: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5], ["badPlatforms", 96, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["cmakeFlags", 64, 3], ["doCheck", 75, 3], ["nativeCheckInputs", 77, 3], ["checkPhase", 81, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const enableExamples = nix.argOr($, "enableExamples", () => false);
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "feather-tk",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grizzlypeak3d",
           repo: "feather-tk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +63,7 @@ ${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "xvfb-run" : "")} ct
 runHook postCheck
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight toolkit for building cross-platform applications",
         homepage: "https://github.com/grizzlypeak3d/feather-tk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

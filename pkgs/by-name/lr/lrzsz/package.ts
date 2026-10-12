@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["name", 20, 7], ["url", 21, 7], ["sha256", 22, 7]], [["NIX_CFLAGS_COMPILE", 34, 7]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["makeFlags", 26, 3], ["nativeBuildInputs", 28, 3], ["hardeningDisable", 30, 3], ["configureFlags", 32, 3], ["env", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gettext: false, fetchurl: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 20, 7], ["url", 21, 7], ["sha256", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["makeFlags", 26, 3], ["nativeBuildInputs", 28, 3], ["hardeningDisable", 30, 3], ["configureFlags", 32, 3], ["env", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lrzsz",
       version: "0.12.20",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ohse.de/uwe/releases/lrzsz-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1wcgfa9fsigf1gri74gq0pa7pyajk12m4z69x7ci9c6x9fqkd2y2",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2018-10195.patch",
             url: "https://bugzilla.redhat.com/attachment.cgi?id=79507",
             sha256: "0jlh8w0cjaz6k56f0h3a0h4wgc51axmrdn3mdspk7apjfzqcvx3c",
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       configureFlags: nix.thunk(() => ["--program-transform-name=s/^l//"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=incompatible-pointer-types -std=gnu17",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://ohse.de/uwe/software/lrzsz.html",
         description: "Communication package providing the XMODEM, YMODEM ZMODEM file transfer protocols",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["url", 39, 5], ["hash", 40, 5]], [["CFLAGS", 104, 7], ["CPPFLAGS", 105, 7]], [["nativeBuildInputs", 145, 9]], [["hello", 142, 18]], [["tests", 142, 12]], [["description", 156, 5], ["homepage", 157, 5], ["license", 158, 5], ["mainProgram", 162, 5], ["maintainers", 163, 5], ["teams", 169, 5], ["platforms", 170, 5]], [["pname", 32, 3], ["version", 33, 3], ["__structuredAttrs", 35, 3], ["strictDeps", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["outputs", 64, 3], ["propagatedBuildOutputs", 71, 3], ["patches", 73, 3], ["postPatch", 78, 3], ["preAutoreconf", 90, 3], ["preConfigure", 94, 3], ["env", 104, 3], ["enableParallelBuilding", 106, 3], ["configureFlags", 108, 3], ["installFlags", 118, 3], ["doCheck", 125, 3], ["doInstallCheck", 126, 3], ["nativeInstallCheckInputs", 127, 3], ["versionCheckProgram", 128, 3], ["installCheckPhase", 129, 3], ["passthru", 142, 3], ["meta", 155, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, libtool: false, "pkg-config": false, cjson: false, db: false, gmp: false, libxml2: false, ncurses: false, unixodbc: false, help2man: false, texinfo: false, texliveBasic: false, perl: false, runCommandCC: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CFLAGS", 104, 7], ["CPPFLAGS", 105, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 145, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["hello", 142, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 142, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 156, 5], ["homepage", 157, 5], ["license", 158, 5], ["mainProgram", 162, 5], ["maintainers", 163, 5], ["teams", 169, 5], ["platforms", 170, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["__structuredAttrs", 35, 3], ["strictDeps", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["outputs", 64, 3], ["propagatedBuildOutputs", 71, 3], ["patches", 73, 3], ["postPatch", 78, 3], ["preAutoreconf", 90, 3], ["preConfigure", 94, 3], ["env", 104, 3], ["enableParallelBuilding", 106, 3], ["configureFlags", 108, 3], ["installFlags", 118, 3], ["doCheck", 125, 3], ["doInstallCheck", 126, 3], ["nativeInstallCheckInputs", 127, 3], ["versionCheckProgram", 128, 3], ["installCheckPhase", 129, 3], ["passthru", 142, 3], ["meta", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const runCommandCC = nix.arg($, "runCommandCC");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nistTestSuite = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "mirror://sourceforge/gnucobol/newcob.val.tar.gz",
       hash: "sha256-5FE/JqmziRH3v4gv49MzmoC0XKvCyvheswVbD1zofuA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "gnucobol",
       version: "3.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://gnu/gnucobol/gnucobol-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-O7SK9GztR3n6z0H9wu5g5My4bqqZ0BCzZoUxXfOcLuI=",
         })))),
@@ -57,7 +50,7 @@ export default nix.lambda((args) => (() => {
       preAutoreconf: "gettextize --force\n",
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# when building with nix on darwin, configure will use GNU strip,\n# which fails due to using --strip-unneeded, which is not supported\nsubstituteInPlace configure --replace-fail '\"GNU strip\"' '\"FAKE GNU strip\"'\n")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CFLAGS: "-std=gnu17",
         CPPFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DREAD_WRITE_NEEDS_FLUSH")),
       })),
@@ -85,11 +78,11 @@ make test --jobs=$NIX_BUILD_CORES
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hello: nix.thunk(() => nix.app(runCommandCC, "hello-cobol", nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "bin"))]),
             })), nix.thunk(() => nix.str`cp ${nix.path(here, "./hello.cbl")} hello.cbl
 cobc -x -o hello-cobol "hello.cbl"
@@ -100,7 +93,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Free/libre COBOL compiler",
         homepage: "https://gnu.org/software/gnucobol/",
         license: nix.thunk(() => (() => {

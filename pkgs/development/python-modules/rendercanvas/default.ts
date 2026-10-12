@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["CI", 37, 5]], [["doInstallCheck", 51, 27]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["platforms", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["env", 35, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 44, 3], ["disabledTests", 54, 3], ["disabledTestPaths", 68, 3], ["pythonImportsCheck", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, "flit-core": false, numpy: false, pytestCheckHook: false, imageio: false, glfw: false, trio: false, wgpu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CI", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doInstallCheck", 51, 27]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["platforms", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["env", 35, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 44, 3], ["disabledTests", 54, 3], ["disabledTestPaths", 68, 3], ["pythonImportsCheck", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pygfx",
           repo: "rendercanvas",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-ht9oFB1pQu+NGQ7CIE+5iWM6NSd8gpgrSgeclGDZJDs=",
         }))));
       const postPatch = "rm -r rendercanvas/__pyinstaller\n";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CI: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CI: "1" }));
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [numpy]);
       const nativeCheckInputs = nix.thunk(() => [
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
         imageio,
         numpy,
         trio,
-        nix.thunk(() => nix.app(nix.sel(wgpu, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doInstallCheck: false })))),
+        nix.thunk(() => nix.app(nix.sel(wgpu, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], doInstallCheck: false })))),
       ]);
       const disabledTests = nix.thunk(() => [
         "test_offscreen_event_loop",
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_loop.py", "tests/test_scheduling.py"]);
       const pythonImportsCheck = nix.thunk(() => ["rendercanvas"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "One canvas API, multiple backends",
         homepage: "https://github.com/pygfx/rendercanvas",
         changelog: nix.thunk(() => nix.str`https://github.com/pygfx/rendercanvas/releases/tag/${nix.sel(src, "tag")}`),
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bengsparks"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

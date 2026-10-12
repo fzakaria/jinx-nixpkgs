@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["name", 46, 7], ["url", 47, 7], ["includes", 48, 7], ["hash", 52, 7]], [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["postPatch", 56, 3], ["build-system", 62, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 71, 3], ["dependencies", 78, 3], ["nativeCheckInputs", 80, 3], ["disabledTestPaths", 85, 3], ["disabledTests", 90, 3], ["pythonImportsCheck", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, pkgconfig: false, "setuptools-scm": false, "pkg-config": false, libtool: false, libxml2: false, libxslt: false, xmlsec: false, lxml: false, hypothesis: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 46, 7], ["url", 47, 7], ["includes", 48, 7], ["hash", 52, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["postPatch", 56, 3], ["build-system", 62, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 71, 3], ["dependencies", 78, 3], ["nativeCheckInputs", 80, 3], ["disabledTestPaths", 85, 3], ["disabledTests", 90, 3], ["pythonImportsCheck", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const hypothesis = nix.arg($, "hypothesis");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xmlsec",
       version: "1.3.17",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xmlsec",
           repo: "python-xmlsec",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "xmlsec-1.3.11-test-compatibility.patch",
             url: "https://github.com/xmlsec/python-xmlsec/commit/5e8b4e6aa133c358b8aaf8e17ceb5b3b7fea78e8.patch",
             includes: nix.thunk(() => ["src/*", "tests/*"]),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["test_reinitialize_module"]))),
       pythonImportsCheck: nix.thunk(() => ["xmlsec"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python bindings for the XML Security Library",
         homepage: "https://github.com/xmlsec/python-xmlsec",
         changelog: nix.thunk(() => nix.str`https://github.com/xmlsec/python-xmlsec/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

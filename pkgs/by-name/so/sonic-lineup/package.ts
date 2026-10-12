@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 5], ["sha256", 37, 5]], [["url", 42, 7], ["stripLen", 43, 7], ["extraPrefix", 44, 7], ["hash", 45, 7]], [["url", 49, 7], ["stripLen", 50, 7], ["extraPrefix", 51, 7], ["hash", 52, 7]], [["description", 98, 5], ["mainProgram", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 40, 3], ["buildInputs", 56, 3], ["nativeBuildInputs", 82, 3], ["strictDeps", 88, 3], ["enableParallelBuilding", 90, 3], ["preConfigure", 93, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch2: false, "alsa-lib": false, boost: false, bzip2: false, fftw: false, fftwFloat: false, libfishsound: false, libid3tag: false, libjack2: false, liblo: false, libmad: false, liboggz: false, libpulseaudio: false, libsamplerate: false, libsndfile: false, lrdf: false, opusfile: false, portaudio: false, rubberband: false, serd: false, sord: false, capnproto: false, libsForQt5: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 5], ["sha256", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 7], ["stripLen", 43, 7], ["extraPrefix", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 49, 7], ["stripLen", 50, 7], ["extraPrefix", 51, 7], ["hash", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 98, 5], ["mainProgram", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 40, 3], ["buildInputs", 56, 3], ["nativeBuildInputs", 82, 3], ["strictDeps", 88, 3], ["enableParallelBuilding", 90, 3], ["preConfigure", 93, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,17 +35,17 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sonic-lineup",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://code.soundsoftware.ac.uk/attachments/download/2765/sonic-lineup-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0k45k9fawcm4s5yy05x00pgww7j8m7k2cxcc7g0fn9vqy7vcbq9h",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/sonic-visualiser/svcore/commit/5a7b517e43b7f0b3f03b7fc3145102cf4e5b0ffc.patch?full_index=1",
             stripLen: 1n,
             extraPrefix: "svcore/",
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
           })))),
         nix.path(here, "./match-vamp.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/piper-audio/piper-vamp-cpp/commit/6f16a09b78b995b3cf2844f00033bde90e5e0936.patch?full_index=1",
             stripLen: 1n,
             extraPrefix: "piper-vamp-cpp/",
@@ -98,7 +94,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       preConfigure: "sed -i 's/sub_test_svcore_/#sub_test_svcore_/' sonic-lineup.pro\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Comparative visualisation of related audio recordings",
         mainProgram: "sonic-lineup",
         homepage: "https://www.sonicvisualiser.org/sonic-lineup/",

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["sparseCheckout", 29, 5], ["hash", 33, 5]], [["pname", 73, 7], ["version", 74, 28], ["src", 74, 36], ["sourceRoot", 76, 7], ["nativeBuildInputs", 78, 7], ["buildInputs", 84, 7], ["postInstall", 95, 7]], [["pname", 102, 7], ["version", 103, 28], ["src", 103, 36], ["sourceRoot", 105, 7], ["nativeBuildInputs", 107, 7], ["buildInputs", 113, 7], ["postInstall", 126, 7]], [["pname", 132, 7], ["version", 133, 28], ["src", 133, 36], ["sourceRoot", 135, 7], ["nativeBuildInputs", 137, 7], ["buildInputs", 143, 7], ["installPhase", 150, 7]], [["finalAttrs", 158, 47]], [["test", 72, 5], ["benchmark", 101, 5], ["samples", 131, 5], ["updateScript", 158, 5]], [["description", 164, 5], ["homepage", 165, 5], ["license", 166, 5], ["teams", 167, 5], ["platforms", 168, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["sourceRoot", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["patches", 49, 3], ["cmakeFlags", 54, 3], ["passthru", 71, 3], ["requiredSystemFeatures", 161, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, clr: false, python3: false, "rocm-cmake": false, sqlite: false, boost: false, fftw: false, fftwFloat: false, gtest: false, openmp: false, rocrand: false, hiprand: false, gpuTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["sparseCheckout", 29, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 73, 7], ["version", 74, 28], ["src", 74, 36], ["sourceRoot", 76, 7], ["nativeBuildInputs", 78, 7], ["buildInputs", 84, 7], ["postInstall", 95, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 102, 7], ["version", 103, 28], ["src", 103, 36], ["sourceRoot", 105, 7], ["nativeBuildInputs", 107, 7], ["buildInputs", 113, 7], ["postInstall", 126, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 132, 7], ["version", 133, 28], ["src", 133, 36], ["sourceRoot", 135, 7], ["nativeBuildInputs", 137, 7], ["buildInputs", 143, 7], ["installPhase", 150, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["finalAttrs", 158, 47]]);
-const pos$6 = nix.positions(here + "/default.nix", [["test", 72, 5], ["benchmark", 101, 5], ["samples", 131, 5], ["updateScript", 158, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 164, 5], ["homepage", 165, 5], ["license", 166, 5], ["teams", 167, 5], ["platforms", 168, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["sourceRoot", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["patches", 49, 3], ["cmakeFlags", 54, 3], ["passthru", 71, 3], ["requiredSystemFeatures", 161, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const hiprand = nix.arg($, "hiprand");
   const gpuTargets = nix.argOr($, "gpuTargets", () => nix.selOr(clr, () => nix.sel(clr, "gpuTargets"), "localGpuTargets"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: nix.thunk(() => nix.str`rocfft${nix.sel(clr, "gpuArchSuffix")}`),
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -61,9 +54,9 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-DGPU_TARGETS=${nix.app(nix.sel(lib, "concatStringsSep"), ";", gpuTargets)}`),
         ])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         test: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -82,7 +75,7 @@ export default nix.lambda((args) => (() => {
             postInstall: "rm -r \"$out/lib/fftw\"\nrmdir \"$out/lib\"\n",
           })))),
         benchmark: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-benchmark`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -104,7 +97,7 @@ export default nix.lambda((args) => (() => {
             postInstall: "cp -a ../../../scripts/perf \"$out/bin\"\n",
           })))),
         samples: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-samples`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -113,11 +106,11 @@ export default nix.lambda((args) => (() => {
             buildInputs: nix.thunk(() => [boost, nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), openmp, rocrand]),
             installPhase: "runHook preInstall\nmkdir \"$out\"\ncp -a bin \"$out\"\nrunHook postInstall\n",
           })))),
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$5, finalAttrs: finalAttrs })))),
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[4], finalAttrs: finalAttrs })))),
       })),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "FFT implementation for ROCm",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocfft",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

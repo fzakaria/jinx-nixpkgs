@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["nativeBuildInputs", 39, 11]], [["run", 36, 11]], [["tests", 36, 5]], [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5], ["platforms", 72, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["installPhase", 24, 3], ["passthru", 35, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 39, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["run", 36, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 36, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5], ["platforms", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["installPhase", 24, 3], ["passthru", 35, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cbmbasic",
       version: "0-unstable-2022-12-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mist64",
           repo: "cbmbasic",
           rev: "352a313313dd0a15a47288c8f8031b54ac8c92a2",
@@ -30,11 +25,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace cbmbasic.c \\\n  --replace-fail \"typedef unsigned char bool;\" \"\"\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin/\nmv cbmbasic $out/bin/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           run: nix.thunk(() => nix.app(runCommand, "cbmbasic-test-run", nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`echo '#!${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))}' > helloI.bas;
 echo 'PRINT"Hello, World!"' >> helloI.bas;
@@ -53,7 +48,7 @@ touch $out;
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Portable version of Commodore's version of Microsoft BASIC 6502 as found on the Commodore 64",
         longDescription: "\"Commodore BASIC\" (cbmbasic) is a 100% compatible version of Commodore's\nversion of Microsoft BASIC 6502 as found on the Commodore 64. You can use\nit in interactive mode or pass a BASIC file as a command line parameter.\n\nThis source does not emulate 6502 code; all code is completely native. On\na 1 GHz CPU you get about 1000x speed compared to a 1 MHz 6502.\n",
         homepage: "https://github.com/mist64/cbmbasic",

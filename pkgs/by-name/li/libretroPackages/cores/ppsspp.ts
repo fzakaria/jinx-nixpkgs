@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ppsspp.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["badPlatforms", 54, 5]], [["core", 15, 3], ["version", 16, 3], ["src", 18, 3], ["extraNativeBuildInputs", 26, 3], ["extraBuildInputs", 31, 3], ["makefile", 38, 3], ["cmakeFlags", 39, 3], ["postBuild", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, libGL: false, libGLU: false, libzip: false, mkLibretroCore: false, "pkg-config": false, python3: false, snappy: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ppsspp.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]]);
-const pos$2 = nix.positions(here + "/ppsspp.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["badPlatforms", 54, 5]]);
-const pos$3 = nix.positions(here + "/ppsspp.nix", [["core", 15, 3], ["version", 16, 3], ["src", 18, 3], ["extraNativeBuildInputs", 26, 3], ["extraBuildInputs", 31, 3], ["makefile", 38, 3], ["cmakeFlags", 39, 3], ["postBuild", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const snappy = nix.arg($, "snappy");
   const libx11 = nix.arg($, "libx11");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       core: "ppsspp",
       version: "0-unstable-2026-09-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hrydgard",
           repo: "ppsspp",
           rev: "7c18ad3d1e2e32b26901d1779bccaee41269bc5a",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postBuild: "cd lib",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PPSSPP libretro port",
         homepage: "https://github.com/hrydgard/ppsspp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

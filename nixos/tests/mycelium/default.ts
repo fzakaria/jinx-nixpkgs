@@ -2,28 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainers", 8, 8]], [["vlans", 12, 22]], [["address", 15, 11], ["prefixLength", 16, 11]], [["addresses", 13, 39]], [["ipv4", 13, 34]], [["eth1", 13, 29]], [["interfaces", 13, 18]], [["enable", 21, 9], ["addHostedPublicNodes", 22, 9], ["openFirewall", 23, 9], ["keyFile", 24, 9], ["peers", 25, 9]], [["mycelium", 20, 16]], [["virtualisation", 12, 7], ["networking", 13, 7], ["services", 20, 7]], [["vlans", 33, 22]], [["address", 36, 11], ["prefixLength", 37, 11]], [["addresses", 34, 39]], [["ipv4", 34, 34]], [["eth1", 34, 29]], [["interfaces", 34, 18]], [["enable", 42, 9], ["addHostedPublicNodes", 43, 9], ["openFirewall", 44, 9], ["keyFile", 45, 9]], [["mycelium", 41, 16]], [["virtualisation", 33, 7], ["networking", 34, 7], ["services", 41, 7]], [["peer1", 11, 5], ["peer2", 32, 5]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 50, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainers", 8, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["vlans", 12, 22]]);
-const pos$3 = nix.positions(here + "/default.nix", [["address", 15, 11], ["prefixLength", 16, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["addresses", 13, 39]]);
-const pos$5 = nix.positions(here + "/default.nix", [["ipv4", 13, 34]]);
-const pos$6 = nix.positions(here + "/default.nix", [["eth1", 13, 29]]);
-const pos$7 = nix.positions(here + "/default.nix", [["interfaces", 13, 18]]);
-const pos$8 = nix.positions(here + "/default.nix", [["enable", 21, 9], ["addHostedPublicNodes", 22, 9], ["openFirewall", 23, 9], ["keyFile", 24, 9], ["peers", 25, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["mycelium", 20, 16]]);
-const pos$10 = nix.positions(here + "/default.nix", [["virtualisation", 12, 7], ["networking", 13, 7], ["services", 20, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["vlans", 33, 22]]);
-const pos$12 = nix.positions(here + "/default.nix", [["address", 36, 11], ["prefixLength", 37, 11]]);
-const pos$13 = nix.positions(here + "/default.nix", [["addresses", 34, 39]]);
-const pos$14 = nix.positions(here + "/default.nix", [["ipv4", 34, 34]]);
-const pos$15 = nix.positions(here + "/default.nix", [["eth1", 34, 29]]);
-const pos$16 = nix.positions(here + "/default.nix", [["interfaces", 34, 18]]);
-const pos$17 = nix.positions(here + "/default.nix", [["enable", 42, 9], ["addHostedPublicNodes", 43, 9], ["openFirewall", 44, 9], ["keyFile", 45, 9]]);
-const pos$18 = nix.positions(here + "/default.nix", [["mycelium", 41, 16]]);
-const pos$19 = nix.positions(here + "/default.nix", [["virtualisation", 33, 7], ["networking", 34, 7], ["services", 41, 7]]);
-const pos$20 = nix.positions(here + "/default.nix", [["peer1", 11, 5], ["peer2", 32, 5]]);
-const pos$21 = nix.positions(here + "/default.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,39 +11,39 @@ export default nix.lambda((args) => (() => {
   const peer1_ip = "538:f40f:1c51:9bd9:9569:d3f6:d0a1:b2df";
   const peer2_ip = "5b6:6776:fee0:c1f3:db00:b6a8:d013:d38f";
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "mycelium",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "lassulus"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       peer1: nix.thunk(() => ({
-        [nix.POS]: pos$10,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: $pos[9],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$3, address: "192.168.1.11", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[2], address: "192.168.1.11", prefixLength: 24n })),
                 ]),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           mycelium: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             enable: true,
             addHostedPublicNodes: false,
             openFirewall: true,
@@ -73,27 +53,27 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       peer2: nix.thunk(() => ({
-        [nix.POS]: pos$19,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$11, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: $pos[18],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[10], vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$12, address: "192.168.1.12", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[11], address: "192.168.1.12", prefixLength: 24n })),
                 ]),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           mycelium: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             enable: true,
             addHostedPublicNodes: false,
             openFirewall: true,

@@ -2,41 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/papra.nix", [[["maintainers", 4, 8]], [["AUTH_IS_EMAIL_VERIFICATION_REQUIRED", 10, 9], ["AUTH_FIRST_USER_AS_ADMIN", 11, 9]], [["enable", 8, 7], ["environment", 9, 7]], [["papra", 7, 14]], [["services", 7, 5]], [["machine", 6, 14]], [["email", 38, 19], ["password", 39, 19], ["name", 40, 19]], [["name", 50, 38]], [["name", 3, 3], ["meta", 4, 3], ["containers", 6, 3], ["testScript", 16, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/papra.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/papra.nix", [["AUTH_IS_EMAIL_VERIFICATION_REQUIRED", 10, 9], ["AUTH_FIRST_USER_AS_ADMIN", 11, 9]]);
-const pos$3 = nix.positions(here + "/papra.nix", [["enable", 8, 7], ["environment", 9, 7]]);
-const pos$4 = nix.positions(here + "/papra.nix", [["papra", 7, 14]]);
-const pos$5 = nix.positions(here + "/papra.nix", [["services", 7, 5]]);
-const pos$6 = nix.positions(here + "/papra.nix", [["machine", 6, 14]]);
-const pos$7 = nix.positions(here + "/papra.nix", [["email", 38, 19], ["password", 39, 19], ["name", 40, 19]]);
-const pos$8 = nix.positions(here + "/papra.nix", [["name", 50, 38]]);
-const pos$9 = nix.positions(here + "/papra.nix", [["name", 3, 3], ["meta", 4, 3], ["containers", 6, 3], ["testScript", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "papra",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "h7x4"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           papra: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               AUTH_IS_EMAIL_VERIFICATION_REQUIRED: false,
               AUTH_FIRST_USER_AS_ADMIN: true,
             })),
@@ -61,7 +53,7 @@ with subtest("Register a user"):
         "curl --fail --silent"
         + " --cookie-jar ${cookieJar}"
         + " --json ${nix.app(jsonArg, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           email: "admin@example.com",
           password: "correct horse battery staple",
           name: "Admin",
@@ -73,7 +65,7 @@ with subtest("Create an organization"):
     organization = json.loads(machine.succeed(
         "curl --fail --silent"
         + " --cookie ${cookieJar}"
-        + " --json ${nix.app(jsonArg, nix.thunk(() => ({ [nix.POS]: pos$8, name: "Test Org" })))}"
+        + " --json ${nix.app(jsonArg, nix.thunk(() => ({ [nix.POS]: $pos[7], name: "Test Org" })))}"
         + " ${serverBaseUrl}/api/organizations"
     ))
     org_id = organization["organization"]["id"]

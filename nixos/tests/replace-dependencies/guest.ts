@@ -2,24 +2,7 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/guest.nix", [["__contentAddressed", 24, 52]]);
-const pos$2 = nix.positions(here + "/guest.nix", [["__contentAddressed", 28, 52]]);
-const pos$3 = nix.positions(here + "/guest.nix", [["drv", 62, 5], ["oldDependency", 63, 13], ["newDependency", 63, 27]]);
-const pos$4 = nix.positions(here + "/guest.nix", [["drv", 67, 5], ["oldDependency", 68, 5], ["newDependency", 69, 13]]);
-const pos$5 = nix.positions(here + "/guest.nix", [["drv", 73, 5], ["oldDependency", 74, 13], ["newDependency", 75, 5]]);
-const pos$6 = nix.positions(here + "/guest.nix", [["drv", 79, 5], ["oldDependency", 80, 13], ["newDependency", 80, 27]]);
-const pos$7 = nix.positions(here + "/guest.nix", [["drv", 86, 9], ["oldDependency", 87, 17], ["newDependency", 88, 9]]);
-const pos$8 = nix.positions(here + "/guest.nix", [["oldDependency", 97, 34], ["newDependency", 97, 48]]);
-const pos$9 = nix.positions(here + "/guest.nix", [["drv", 96, 7], ["replacements", 97, 7], ["cutoffPackages", 98, 7]]);
-const pos$10 = nix.positions(here + "/guest.nix", [["oldDependency", 106, 17], ["newDependency", 107, 9]]);
-const pos$11 = nix.positions(here + "/guest.nix", [["drv", 103, 5], ["replacements", 104, 5]]);
-const pos$12 = nix.positions(here + "/guest.nix", [["oldDependency", 118, 13], ["newDependency", 119, 13]]);
-const pos$13 = nix.positions(here + "/guest.nix", [["oldDependency", 122, 13], ["newDependency", 123, 13]]);
-const pos$14 = nix.positions(here + "/guest.nix", [["drv", 115, 9], ["replacements", 116, 9]]);
-const pos$15 = nix.positions(here + "/guest.nix", [["oldDependency", 137, 13], ["newDependency", 138, 13]]);
-const pos$16 = nix.positions(here + "/guest.nix", [["oldDependency", 141, 13], ["newDependency", 142, 13]]);
-const pos$17 = nix.positions(here + "/guest.nix", [["drv", 134, 9], ["replacements", 135, 9]]);
-const pos$18 = nix.positions(here + "/guest.nix", [["replacedependency-basic", 61, 3], ["replacedependency-basic-old-ca", 66, 3], ["replacedependency-basic-new-ca", 72, 3], ["replacedependency-transitive", 78, 3], ["replacedependency-weird", 83, 3], ["replacedependencies-precedence", 94, 3], ["replacedependencies-self", 102, 3], ["replacedependencies-deep-order1", 112, 3], ["replacedependencies-deep-order2", 131, 3]]);
+const $pos = nix.positions(here + "/guest.nix", [[["__contentAddressed", 24, 52]], [["__contentAddressed", 28, 52]], [["drv", 62, 5], ["oldDependency", 63, 13], ["newDependency", 63, 27]], [["drv", 67, 5], ["oldDependency", 68, 5], ["newDependency", 69, 13]], [["drv", 73, 5], ["oldDependency", 74, 13], ["newDependency", 75, 5]], [["drv", 79, 5], ["oldDependency", 80, 13], ["newDependency", 80, 27]], [["drv", 86, 9], ["oldDependency", 87, 17], ["newDependency", 88, 9]], [["oldDependency", 97, 34], ["newDependency", 97, 48]], [["drv", 96, 7], ["replacements", 97, 7], ["cutoffPackages", 98, 7]], [["oldDependency", 106, 17], ["newDependency", 107, 9]], [["drv", 103, 5], ["replacements", 104, 5]], [["oldDependency", 118, 13], ["newDependency", 119, 13]], [["oldDependency", 122, 13], ["newDependency", 123, 13]], [["drv", 115, 9], ["replacements", 116, 9]], [["oldDependency", 137, 13], ["newDependency", 138, 13]], [["oldDependency", 141, 13], ["newDependency", 142, 13]], [["drv", 134, 9], ["replacements", 135, 9]], [["replacedependency-basic", 61, 3], ["replacedependency-basic-old-ca", 66, 3], ["replacedependency-basic-new-ca", 72, 3], ["replacedependency-transitive", 78, 3], ["replacedependency-weird", 83, 3], ["replacedependencies-precedence", 94, 3], ["replacedependencies-self", 102, 3], ["replacedependencies-deep-order1", 112, 3], ["replacedependencies-deep-order2", 131, 3]]]);
 
 export default nix.thunk(() => (() => {
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({}))));
@@ -37,9 +20,9 @@ fi
 touch "$out"
 `));
   const oldDependency = nix.thunk(() => nix.app(writeShellScriptBin, "dependency", "echo \"got old dependency\"\n"));
-  const oldDependency_ca = nix.thunk(() => nix.app(nix.sel(oldDependency, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, __contentAddressed: true }))));
+  const oldDependency_ca = nix.thunk(() => nix.app(nix.sel(oldDependency, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[0], __contentAddressed: true }))));
   const newDependency = nix.thunk(() => nix.app(writeShellScriptBin, "dependency", "echo \"got new dependency\"\n"));
-  const newDependency_ca = nix.thunk(() => nix.app(nix.sel(newDependency, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, __contentAddressed: true }))));
+  const newDependency_ca = nix.thunk(() => nix.app(nix.sel(newDependency, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], __contentAddressed: true }))));
   const basic = nix.thunk(() => nix.app(writeShellScriptBin, "test", nix.thunk(() => nix.str`${oldDependency}/bin/dependency
 `)));
   const basic_ca = nix.thunk(() => nix.app(writeShellScriptBin, "test", nix.thunk(() => nix.str`${oldDependency_ca}/bin/dependency
@@ -60,83 +43,87 @@ ${basic}/bin/test
   const deep = nix.thunk(() => nix.app(writeShellScriptBin, "test", nix.thunk(() => nix.str`${oldDependency2}/bin/dependency2
 `)));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     "replacedependency-basic": nix.thunk(() => nix.app(mkCheckOutput, "replacedependency-basic", nix.thunk(() => nix.app(replaceDependency, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           drv: basic,
           oldDependency: oldDependency,
           newDependency: newDependency,
         })))), "got new dependency")),
     "replacedependency-basic-old-ca": nix.thunk(() => nix.app(mkCheckOutput, "replacedependency-basic", nix.thunk(() => nix.app(replaceDependency, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           drv: basic_ca,
           oldDependency: oldDependency_ca,
           newDependency: newDependency,
         })))), "got new dependency")),
     "replacedependency-basic-new-ca": nix.thunk(() => nix.app(mkCheckOutput, "replacedependency-basic", nix.thunk(() => nix.app(replaceDependency, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           drv: basic,
           oldDependency: oldDependency,
           newDependency: newDependency_ca,
         })))), "got new dependency")),
     "replacedependency-transitive": nix.thunk(() => nix.app(mkCheckOutput, "replacedependency-transitive", nix.thunk(() => nix.app(replaceDependency, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           drv: transitive,
           oldDependency: oldDependency,
           newDependency: newDependency,
         })))), "got new dependency")),
     "replacedependency-weird": nix.thunk(() => nix.app(mkCheckOutput, "replacedependency-weird", nix.thunk(() => nix.app(replaceDependency, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           drv: basic,
           oldDependency: oldDependency,
           newDependency: weirdDependency,
         })))), "got weird dependency\ngot old dependency")),
     "replacedependencies-precedence": nix.thunk(() => nix.app(mkCheckOutput, "replacedependencies-precedence", nix.thunk(() => nix.app(replaceDependencies, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           drv: basic,
           replacements: nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$8, oldDependency: oldDependency, newDependency: newDependency })),
+            nix.thunk(() => ({
+              [nix.POS]: $pos[7],
+              oldDependency: oldDependency,
+              newDependency: newDependency,
+            })),
           ]),
           cutoffPackages: nix.thunk(() => [oldDependency]),
         })))), "got new dependency")),
     "replacedependencies-self": nix.thunk(() => nix.app(mkCheckOutput, "replacedependencies-self", nix.thunk(() => nix.app(replaceDependencies, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           drv: basic,
           replacements: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               oldDependency: oldDependency,
               newDependency: oldDependency,
             })),
           ]),
         })))), "got old dependency")),
     "replacedependencies-deep-order1": nix.thunk(() => nix.app(mkCheckOutput, "replacedependencies-deep-order1", nix.thunk(() => nix.app(replaceDependencies, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           drv: deep,
           replacements: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               oldDependency: oldDependency1,
               newDependency: newDependency1,
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               oldDependency: oldDependency2,
               newDependency: newDependency2,
             })),
           ]),
         })))), "got new dependency 1\ngot new dependency 2")),
     "replacedependencies-deep-order2": nix.thunk(() => nix.app(mkCheckOutput, "replacedependencies-deep-order2", nix.thunk(() => nix.app(replaceDependencies, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           drv: deep,
           replacements: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               oldDependency: oldDependency2,
               newDependency: newDependency2,
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               oldDependency: oldDependency1,
               newDependency: newDependency1,
             })),

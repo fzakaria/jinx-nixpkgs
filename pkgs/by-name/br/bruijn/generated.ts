@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generated.nix", [[["url", 27, 5], ["sha256", 28, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 26, 3], ["isLibrary", 30, 3], ["isExecutable", 31, 3], ["enableSeparateDataOutput", 32, 3], ["libraryHaskellDepends", 33, 3], ["executableHaskellDepends", 52, 3], ["homepage", 71, 3], ["license", 72, 3], ["mainProgram", 73, 3], ["maintainers", 74, 3]]]);
 const formals$1 = { args: { mkDerivation: false, array: false, base: false, binary: false, bitstring: false, bytestring: false, clock: false, containers: false, deepseq: false, directory: false, fetchzip: false, filepath: false, haskeline: false, lib: false, megaparsec: false, mtl: false, "optparse-applicative": false, process: false, random: false, time: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generated.nix", [["url", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/generated.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 26, 3], ["isLibrary", 30, 3], ["isExecutable", 31, 3], ["enableSeparateDataOutput", 32, 3], ["libraryHaskellDepends", 33, 3], ["executableHaskellDepends", 52, 3], ["homepage", 71, 3], ["license", 72, 3], ["mainProgram", 73, 3], ["maintainers", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const random = nix.arg($, "random");
   const time = nix.arg($, "time");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "bruijn",
       version: "0-unstable-2026-07-16",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/marvinborner/bruijn/archive/9f1ac8856d09666a7444874f80b91b876929eecf.tar.gz",
           sha256: "18mcwp2xn7wgr81mgqr38irvkf24rf0nvwzi8janasq5favim0vy",
         })))),

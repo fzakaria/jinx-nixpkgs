@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["enableParallelBuilding", 24, 3], ["configureFlags", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, autoreconfHook: false, readline: false, withReadline: true, enableEmu: true, enableSpy: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["enableParallelBuilding", 24, 3], ["configureFlags", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const enableEmu = nix.argOr($, "enableEmu", () => true);
   const enableSpy = nix.argOr($, "enableSpy", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ngadmin",
       version: "unstable-2020-10-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Alkorin",
           repo: "ngadmin",
           rev: "5bf8650ce6d465b8cb1e570548819f0cefe9a87d",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       configureFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withReadline)), "--without-readline"), nix.concat(nix.app(nix.sel(lib, "optional"), enableEmu, "--enable-emu"), nix.app(nix.sel(lib, "optional"), enableSpy, "--enable-spy")))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Netgear switch (NSDP) administration tool",
         homepage: "https://www.netgeek.ovh/wiki/projets:ngadmin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

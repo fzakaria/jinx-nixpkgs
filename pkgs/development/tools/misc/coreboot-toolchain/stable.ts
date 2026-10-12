@@ -2,96 +2,81 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stable.nix", [[["sha256", 6, 7], ["url", 7, 7]], [["name", 4, 5], ["archive", 5, 5]], [["sha256", 13, 7], ["url", 14, 7]], [["name", 11, 5], ["archive", 12, 5]], [["sha256", 20, 7], ["url", 21, 7]], [["name", 18, 5], ["archive", 19, 5]], [["sha256", 27, 7], ["url", 28, 7]], [["name", 25, 5], ["archive", 26, 5]], [["sha256", 34, 7], ["url", 35, 7]], [["name", 32, 5], ["archive", 33, 5]], [["sha256", 41, 7], ["url", 42, 7]], [["name", 39, 5], ["archive", 40, 5]], [["sha256", 48, 7], ["url", 49, 7]], [["name", 46, 5], ["archive", 47, 5]], [["sha256", 55, 7], ["url", 56, 7]], [["name", 53, 5], ["archive", 54, 5]]]);
 const formals$1 = { args: { fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/stable.nix", [["sha256", 6, 7], ["url", 7, 7]]);
-const pos$2 = nix.positions(here + "/stable.nix", [["name", 4, 5], ["archive", 5, 5]]);
-const pos$3 = nix.positions(here + "/stable.nix", [["sha256", 13, 7], ["url", 14, 7]]);
-const pos$4 = nix.positions(here + "/stable.nix", [["name", 11, 5], ["archive", 12, 5]]);
-const pos$5 = nix.positions(here + "/stable.nix", [["sha256", 20, 7], ["url", 21, 7]]);
-const pos$6 = nix.positions(here + "/stable.nix", [["name", 18, 5], ["archive", 19, 5]]);
-const pos$7 = nix.positions(here + "/stable.nix", [["sha256", 27, 7], ["url", 28, 7]]);
-const pos$8 = nix.positions(here + "/stable.nix", [["name", 25, 5], ["archive", 26, 5]]);
-const pos$9 = nix.positions(here + "/stable.nix", [["sha256", 34, 7], ["url", 35, 7]]);
-const pos$10 = nix.positions(here + "/stable.nix", [["name", 32, 5], ["archive", 33, 5]]);
-const pos$11 = nix.positions(here + "/stable.nix", [["sha256", 41, 7], ["url", 42, 7]]);
-const pos$12 = nix.positions(here + "/stable.nix", [["name", 39, 5], ["archive", 40, 5]]);
-const pos$13 = nix.positions(here + "/stable.nix", [["sha256", 48, 7], ["url", 49, 7]]);
-const pos$14 = nix.positions(here + "/stable.nix", [["name", 46, 5], ["archive", 47, 5]]);
-const pos$15 = nix.positions(here + "/stable.nix", [["sha256", 55, 7], ["url", 56, 7]]);
-const pos$16 = nix.positions(here + "/stable.nix", [["name", 53, 5], ["archive", 54, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchurl = nix.arg($, "fetchurl");
   return [
     nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "gmp-6.3.0.tar.xz",
       archive: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sha256: "1648ad1mr7c1r8lkkqshrv1jfjgfdb30plsadxhni7mq041bihm3",
           url: "mirror://gnu/gmp/gmp-6.3.0.tar.xz",
         })))),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "mpfr-4.2.2.tar.xz",
       archive: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           sha256: "00ffqs0sssb81bx007d0k2wc7hsyxy4yiqil6xbais7p7qwa0yxn",
           url: "mirror://gnu/mpfr/mpfr-4.2.2.tar.xz",
         })))),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "mpc-1.4.1.tar.xz",
       archive: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           sha256: "0cg9ff6vzl42d65zfc5bmld526b5rsladm4jr6vx6jqn5z9lq84i",
           url: "mirror://gnu/mpc/mpc-1.4.1.tar.xz",
         })))),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "gcc-15.2.0.tar.xz",
       archive: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           sha256: "0knj4ph6y7r7yhnp1v4339af7mki5nkh7ni9b948433bhabdk3s3",
           url: "mirror://gnu/gcc/gcc-15.2.0/gcc-15.2.0.tar.xz",
         })))),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       name: "binutils-2.46.1.tar.xz",
       archive: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           sha256: "1r4l2bmp36ziwa9080gb6z6ji3vnvn1p1jrni7g7ck52rc4sf9z1",
           url: "mirror://gnu/binutils/binutils-2.46.1.tar.xz",
         })))),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       name: "acpica-unix-20251212.tar.gz",
       archive: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           sha256: "06azmpymppycmri6wf64pgf100k7gl2sxaddnl5xsm41bwj26r28",
           url: "https://github.com/acpica/acpica/releases/download/20251212/acpica-unix-20251212.tar.gz",
         })))),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       name: "cmake-4.3.4.tar.gz",
       archive: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           sha256: "1nmd67lrk14pq6bqlrr5yc6l9qdpdvf1wawzadjdfjgbp6bzivzx",
           url: "https://cmake.org/files/v4.3/cmake-4.3.4.tar.gz",
         })))),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       name: "nasm-3.02.tar.bz2",
       archive: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           sha256: "1brrwa9hpkqniwabwvb9rbaw2yaaqq1nbrylm7j7jlv1h4rdjznf",
           url: "https://www.nasm.us/pub/nasm/releasebuilds/3.02/nasm-3.02.tar.bz2",
         })))),

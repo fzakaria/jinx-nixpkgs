@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/6_1.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 39, 5], ["platforms", 43, 5], ["maintainers", 44, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["nativeBuildInputs", 25, 3], ["postPatch", 27, 3], ["qmakeFlags", 31, 3], ["dontWrapQtApps", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, qtbase: false, qtsvg: false, qttools: false, qmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/6_1.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/6_1.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 39, 5], ["platforms", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/6_1.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["nativeBuildInputs", 25, 3], ["postPatch", 27, 3], ["qmakeFlags", 31, 3], ["dontWrapQtApps", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qwt";
       const version = "6.1.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/qwt/qwt-${version}.tar.bz2`),
           sha256: "sha256-mUYNMcEV7kEXsBddiF9HwsWQ14QgbwmBXcBY++Xt4fY=",
         }))));
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const qmakeFlags = nix.thunk(() => [nix.thunk(() => nix.str`-after doc.path=$out/share/doc/qwt-${version}`)]);
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt widgets for technical applications",
         homepage: "http://qwt.sourceforge.net/",
         license: nix.thunk(() => (() => {
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bjornfor"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

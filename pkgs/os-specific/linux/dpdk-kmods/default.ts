@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["hash", 15, 5]], [["KSRC", 24, 7]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["hardeningDisable", 18, 3], ["makeFlags", 20, 3], ["env", 24, 3], ["nativeBuildInputs", 26, 3], ["preBuild", 28, 3], ["installPhase", 30, 3], ["enableParallelBuilding", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, kernel: false, kernelModuleMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["KSRC", 24, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["hardeningDisable", 18, 3], ["makeFlags", 20, 3], ["env", 24, 3], ["nativeBuildInputs", 26, 3], ["preBuild", 28, 3], ["installPhase", 30, 3], ["enableParallelBuilding", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dpdk-kmods",
       version: "2023-02-05",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.dpdk.org/dpdk-kmods/snapshot/dpdk-kmods-e721c733cd24206399bebb8f0751b0387c4c1595.tar.xz",
           hash: "sha256-AG5Lthp+CPR4R7I23DUmoWAmET8gLEFHHdjk2TUbQn4=",
         })))),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`INSTALL_MOD_PATH=${nix.builtins.placeholder("out")}`),
       ])),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         KSRC: nix.thunk(() => nix.str`${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`),
       })),
       nativeBuildInputs: nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies")),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Kernel modules for DPDK",
         homepage: "https://git.dpdk.org/dpdk-kmods/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

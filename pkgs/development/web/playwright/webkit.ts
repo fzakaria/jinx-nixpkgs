@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/webkit.nix", [[["name", 60, 7], ["revision", 61, 15]], [["owner", 67, 9], ["repo", 68, 9], ["rev", 69, 9], ["sha256", 70, 9]], [["version", 65, 7], ["src", 66, 7]], [["owner", 78, 9], ["repo", 79, 9], ["rev", 80, 9], ["hash", 81, 9], ["fetchSubmodules", 82, 9]], [["url", 95, 11], ["hash", 96, 11]], [["version", 76, 7], ["src", 77, 7], ["outputs", 86, 7], ["patches", 91, 7], ["postPatch", 99, 7], ["postInstall", 112, 7], ["cmakeFlags", 114, 7]], [["x86_64-linux", 133, 11], ["aarch64-linux", 134, 11]], [["url", 130, 26], ["stripRoot", 130, 30], ["hash", 131, 7]], [["name", 128, 5], ["src", 129, 5], ["nativeBuildInputs", 139, 5], ["buildInputs", 144, 5], ["patchelfFlags", 191, 5], ["buildPhase", 192, 5]], [["aarch64-darwin", 209, 9]], [["url", 206, 24], ["stripRoot", 206, 28], ["hash", 207, 5]], [["x86_64-linux", 215, 3], ["aarch64-linux", 216, 3], ["aarch64-darwin", 217, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchFromGitHub: false, makeWrapper: false, autoPatchelfHook: false, patchelfUnstable: false, fetchpatch: false, libjxl: false, brotli: false, "at-spi2-atk": false, cairo: false, enchant_2: false, flite: false, fontconfig: false, freetype: false, glib: false, "glib-networking": false, gst_all_1: false, harfbuzz: false, harfbuzzFull: false, hyphen: false, icu74: false, lcms: false, libavif: false, libbacktrace: false, libdrm: false, libepoxy: false, libevent: false, libgcc: false, libgcrypt: false, "libgpg-error": false, libjpeg8: false, libmanette: false, libopus: false, libpng: false, libsoup_3: false, libtasn1: false, libvpx: false, libwebp: false, libwpe: false, "libwpe-fdo": false, libxkbcommon: false, libxml2_13: false, libxslt: false, libgbm: false, sqlite: false, systemdLibs: false, "wayland-scanner": false, woff2: false, zlib: false, revision: false, system: false, throwSystem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/webkit.nix", [["name", 60, 7], ["revision", 61, 15]]);
-const pos$2 = nix.positions(here + "/webkit.nix", [["owner", 67, 9], ["repo", 68, 9], ["rev", 69, 9], ["sha256", 70, 9]]);
-const pos$3 = nix.positions(here + "/webkit.nix", [["version", 65, 7], ["src", 66, 7]]);
-const pos$4 = nix.positions(here + "/webkit.nix", [["owner", 78, 9], ["repo", 79, 9], ["rev", 80, 9], ["hash", 81, 9], ["fetchSubmodules", 82, 9]]);
-const pos$5 = nix.positions(here + "/webkit.nix", [["url", 95, 11], ["hash", 96, 11]]);
-const pos$6 = nix.positions(here + "/webkit.nix", [["version", 76, 7], ["src", 77, 7], ["outputs", 86, 7], ["patches", 91, 7], ["postPatch", 99, 7], ["postInstall", 112, 7], ["cmakeFlags", 114, 7]]);
-const pos$7 = nix.positions(here + "/webkit.nix", [["x86_64-linux", 133, 11], ["aarch64-linux", 134, 11]]);
-const pos$8 = nix.positions(here + "/webkit.nix", [["url", 130, 26], ["stripRoot", 130, 30], ["hash", 131, 7]]);
-const pos$9 = nix.positions(here + "/webkit.nix", [["name", 128, 5], ["src", 129, 5], ["nativeBuildInputs", 139, 5], ["buildInputs", 144, 5], ["patchelfFlags", 191, 5], ["buildPhase", 192, 5]]);
-const pos$10 = nix.positions(here + "/webkit.nix", [["aarch64-darwin", 209, 9]]);
-const pos$11 = nix.positions(here + "/webkit.nix", [["url", 206, 24], ["stripRoot", 206, 28], ["hash", 207, 5]]);
-const pos$12 = nix.positions(here + "/webkit.nix", [["x86_64-linux", 215, 3], ["aarch64-linux", 216, 3], ["aarch64-darwin", 217, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -72,12 +61,12 @@ export default nix.lambda((args) => (() => {
   const revision = nix.arg($, "revision");
   const system = nix.arg($, "system");
   const throwSystem = nix.arg($, "throwSystem");
-  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, name: "webkit", revision: revision }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
+  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], name: "webkit", revision: revision }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
   const libvpx$ = nix.thunk(() => nix.app(nix.sel(libvpx, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "webmproject",
           repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -85,10 +74,10 @@ export default nix.lambda((args) => (() => {
         })))),
     })));
   const libjxl$ = nix.thunk(() => nix.app(nix.sel(libjxl, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "libjxl",
           repo: "libjxl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -98,7 +87,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/libjxl/libjxl/commit/22d12d74e7bc56b09cfb1973aa89ec8d714fa3fc.patch",
             hash: "sha256-X4fbYTMS+kHfZRbeGzSdBW5jQKw8UN44FEyFRUtw0qo=",
           })))),
@@ -112,14 +101,14 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ["-DJPEGXL_STATIC=ON"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch32")), nix.thunk(() => ["-DJPEGXL_FORCE_NEON=ON"]))))),
     })));
   const webkit_linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       name: "playwright-webkit",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           url: nix.thunk(() => nix.attr(download, "url")),
           stripRoot: nix.thunk(() => nix.attr(download, "stripRoot")),
           hash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             "x86_64-linux": "sha256-My6nSOMD2NfPGUmOJKZgWpkjktEsj+P+CPeVmKy1VAQ=",
             "aarch64-linux": "sha256-5CCcWiZN1lVoiiSEO1OvxLcuKhSOIQrD5GH1TYr7XIY=",
           }, () => nix.force(throwSystem), nix.key(nix.force(system)))),
@@ -185,16 +174,16 @@ wrapProgram $out/minibrowser-wpe/bin/MiniBrowser \\
 `),
     }))));
   const webkit_darwin = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       url: nix.thunk(() => nix.attr(download, "url")),
       stripRoot: nix.thunk(() => nix.attr(download, "stripRoot")),
       hash: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         "aarch64-darwin": "sha256-EjI0TdmQfB2qT2bBtbJFpsa+bplkJ5YyyVxNoOgsnZc=",
       }, () => nix.force(throwSystem), nix.key(nix.force(system)))),
     }))));
   return nix.selOr({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     "x86_64-linux": webkit_linux,
     "aarch64-linux": webkit_linux,
     "aarch64-darwin": webkit_darwin,

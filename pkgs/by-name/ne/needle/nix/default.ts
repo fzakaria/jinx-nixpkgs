@@ -2,14 +2,13 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/default.nix", [["swift-common", 5, 5], ["swift-concurrency", 6, 5], ["swift-syntax", 7, 5], ["swift-system", 8, 5], ["swift-tools-support-core", 9, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["workspaceStateFile", 3, 3], ["hashes", 4, 3]]);
+const $pos = nix.positions(here + "/default.nix", [[["swift-common", 5, 5], ["swift-concurrency", 6, 5], ["swift-syntax", 7, 5], ["swift-system", 8, 5], ["swift-tools-support-core", 9, 5]], [["workspaceStateFile", 3, 3], ["hashes", 4, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
+  [nix.POS]: $pos[1],
   workspaceStateFile: nix.path(here, "./workspace-state.json"),
   hashes: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "swift-common": "1zqdiwz934kpdlig22ikvmklhb720hv3i70wnznhhxfg2v4c115j",
     "swift-concurrency": "06x9fc8gwyvg5ymf889rfqs3jp89l1pbpm3m9553nq75vwcia6d3",
     "swift-syntax": "0sc29acwxv6rl3i8nwfazk0p0cm41figxls8n4aks84vww7m2in1",

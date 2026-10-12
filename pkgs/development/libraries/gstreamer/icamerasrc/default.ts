@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["ipu6", 18, 7], ["ipu7", 19, 7]], [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["NIX_CFLAGS_COMPILE", 64, 7]], [["ipuVersion", 73, 30]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["preConfigure", 39, 3], ["separateDebugInfo", 43, 3], ["__structuredAttrs", 45, 3], ["strictDeps", 46, 3], ["configureFlags", 48, 3], ["buildInputs", 52, 3], ["env", 64, 3], ["enableParallelBuilding", 70, 3], ["passthru", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, gst_all_1: false, "ipu6-camera-hal": false, "ipu7x-camera-hal": false, ipuVariant: true, libdrm: false, libva: false, "apple-sdk_gstreamer": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["ipu6", 18, 7], ["ipu7", 19, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 64, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["ipuVersion", 73, 30]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["preConfigure", 39, 3], ["separateDebugInfo", 43, 3], ["__structuredAttrs", 45, 3], ["strictDeps", 46, 3], ["configureFlags", 48, 3], ["buildInputs", 52, 3], ["env", 64, 3], ["enableParallelBuilding", 70, 3], ["passthru", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const libdrm = nix.arg($, "libdrm");
   const libva = nix.arg($, "libva");
   const apple_sdk_gstreamer = nix.arg($, "apple-sdk_gstreamer");
-  const ipu_camera_hal = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, ipu6: ipu6_camera_hal, ipu7: ipu7x_camera_hal }, nix.key(nix.force(ipuVariant))));
+  const ipu_camera_hal = nix.thunk(() => nix.sel({ [nix.POS]: $pos[0], ipu6: ipu6_camera_hal, ipu7: ipu7x_camera_hal }, nix.key(nix.force(ipuVariant))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`icamerasrc-${nix.sel(ipu_camera_hal, "ipuVersion")}`),
       version: "20251226_1140_191_PTL_PV_IoT",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "intel",
           repo: "icamerasrc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
         libva,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_gstreamer])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error",
             nix.thunk(() => nix.str`-I${nix.sel(gst_all_1, "gst-plugins-base", "dev")}/include/gstreamer-1.0`),
@@ -59,11 +54,11 @@ export default nix.lambda((args) => (() => {
       })),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         ipuVersion: nix.thunk(() => nix.attr(ipu_camera_hal, "ipuVersion")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GStreamer Plugin for MIPI camera support through the IPU6/IPU7 on Intel platforms",
         homepage: "https://github.com/intel/icamerasrc/tree/icamerasrc_slim_api",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

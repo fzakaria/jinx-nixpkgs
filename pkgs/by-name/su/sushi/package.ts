@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["gtkSupport", 60, 44]], [["packageName", 81, 7]], [["updateScript", 80, 5]], [["homepage", 88, 5], ["changelog", 89, 5], ["description", 90, 5], ["mainProgram", 91, 5], ["teams", 92, 5], ["license", 93, 5], ["platforms", 94, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 45, 3], ["postPatch", 65, 3], ["postInstall", 71, 3], ["passthru", 79, 3], ["strictDeps", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, meson: false, gettext: false, "gobject-introspection": false, evince: false, glib: false, gnome: false, gtksourceview4: false, gjs: false, libsoup_3: false, webkitgtk_4_1: false, icu: false, wrapGAppsHook3: false, gst_all_1: false, "gdk-pixbuf": false, librsvg: false, gtk3: false, harfbuzz: false, ninja: false, libepoxy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gtkSupport", 60, 44]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 81, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 88, 5], ["changelog", 89, 5], ["description", 90, 5], ["mainProgram", 91, 5], ["teams", 92, 5], ["license", 93, 5], ["platforms", 94, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 45, 3], ["postPatch", 65, 3], ["postInstall", 71, 3], ["passthru", 79, 3], ["strictDeps", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const libepoxy = nix.arg($, "libepoxy");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sushi",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/sushi/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/sushi-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-qyUXeQjVzMWFaHaageubTzIwZ4bmxzYYGT6/YaEn7gA=",
         })))),
@@ -60,7 +55,7 @@ export default nix.lambda((args) => (() => {
         libepoxy,
         nix.thunk(() => nix.sel(gst_all_1, "gstreamer")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], gtkSupport: true })))),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-ugly")),
       ]),
@@ -69,12 +64,12 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "for file in $out/libexec/org.gnome.NautilusPreviewer\ndo\n  sed -e $\"2iimports.package._findEffectiveEntryPointName = () => \\'$(basename $file)\\' \" \\\n    -i $file\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "sushi" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "sushi" })))),
       })),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.gnome.org/GNOME/sushi",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/sushi/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Quick previewer for Nautilus",

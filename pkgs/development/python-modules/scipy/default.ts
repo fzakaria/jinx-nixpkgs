@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5], ["fetchSubmodules", 55, 5]], [["url", 61, 7], ["hash", 62, 7], ["excludes", 63, 7]], [["sage", 196, 15]], [["ascent", 204, 7], ["ecg", 205, 7], ["face", 206, 7]], [["url", 211, 9], ["hash", 212, 17]], [["numpy-include-dir", 218, 9], ["pythran-include-dir", 219, 9], ["host-python-path", 220, 9], ["host-python-version", 221, 9]], [["properties", 217, 7]], [["mkValueString", 228, 11]], [["mkKeyValue", 227, 9]], [["name", 225, 7], ["text", 226, 7]], [["blas", 194, 13], ["tests", 195, 5], ["datasetsHashes", 203, 5], ["datasets", 208, 5], ["buildConfig", 216, 5], ["crossFile", 224, 5]], [["SCIPY_USE_G77_ABI_WRAPPER", 234, 7]], [["changelog", 237, 5], ["description", 238, 5], ["downloadPage", 239, 5], ["homepage", 240, 5], ["license", 241, 5], ["maintainers", 242, 5]], [["pname", 46, 3], ["version", 47, 3], ["pyproject", 48, 3], ["src", 50, 3], ["patches", 58, 3], ["postPatch", 66, 3], ["build-system", 73, 3], ["buildInputs", 83, 3], ["dependencies", 93, 3], ["__darwinAllowLocalNetworking", 95, 3], ["nativeCheckInputs", 97, 3], ["disabledTests", 103, 3], ["doCheck", 140, 3], ["preConfigure", 142, 3], ["mesonFlags", 159, 3], ["hardeningDisable", 177, 3], ["postInstall", 182, 3], ["preCheck", 187, 3], ["requiredSystemFeatures", 191, 3], ["passthru", 193, 3], ["env", 234, 3], ["meta", 236, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, writeTextFile: false, python: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, cython: false, gfortran: false, "meson-python": false, nukeReferences: false, pythran: false, "pkg-config": false, setuptools: false, blas: false, lapack: false, pybind11: false, pooch: false, xsimd: false, boost191: false, qhull: false, numpy: false, hypothesis: false, pytestCheckHook: false, "pytest-xdist": false, sage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5], ["fetchSubmodules", 55, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 61, 7], ["hash", 62, 7], ["excludes", 63, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["sage", 196, 15]]);
-const pos$4 = nix.positions(here + "/default.nix", [["ascent", 204, 7], ["ecg", 205, 7], ["face", 206, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 211, 9], ["hash", 212, 17]]);
-const pos$6 = nix.positions(here + "/default.nix", [["numpy-include-dir", 218, 9], ["pythran-include-dir", 219, 9], ["host-python-path", 220, 9], ["host-python-version", 221, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["properties", 217, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["mkValueString", 228, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["mkKeyValue", 227, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 225, 7], ["text", 226, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["blas", 194, 13], ["tests", 195, 5], ["datasetsHashes", 203, 5], ["datasets", 208, 5], ["buildConfig", 216, 5], ["crossFile", 224, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["SCIPY_USE_G77_ABI_WRAPPER", 234, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["changelog", 237, 5], ["description", 238, 5], ["downloadPage", 239, 5], ["homepage", 240, 5], ["license", 241, 5], ["maintainers", 242, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["pname", 46, 3], ["version", 47, 3], ["pyproject", 48, 3], ["src", 50, 3], ["patches", 58, 3], ["postPatch", 66, 3], ["build-system", 73, 3], ["buildInputs", 83, 3], ["dependencies", 93, 3], ["__darwinAllowLocalNetworking", 95, 3], ["nativeCheckInputs", 97, 3], ["disabledTests", 103, 3], ["doCheck", 140, 3], ["preConfigure", 142, 3], ["mesonFlags", 159, 3], ["hardeningDisable", 177, 3], ["postInstall", 182, 3], ["preCheck", 187, 3], ["requiredSystemFeatures", 191, 3], ["passthru", 193, 3], ["env", 234, 3], ["meta", 236, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const sage = nix.arg($, "sage");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: "scipy",
       version: "1.18.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scipy",
           repo: "scipy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/scipy/scipy/commit/33696c545b74d6fda6f6f39e818d26c2b7631498.patch",
             hash: "sha256-R5rgSz/9+T2+fpDFTfZQLTvdISTGUAuHEBAWT39x9LQ=",
             excludes: nix.thunk(() => ["doc/source/building/cross_compilation.rst"]),
@@ -118,24 +105,24 @@ rm $out/${nix.sel(python, "sitePackages")}/scipy/__pycache__/__config__.*.opt-1.
       preCheck: "cd $out\n",
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         blas: blas,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, sage: sage })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], sage: sage })),
         datasetsHashes: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           ascent: "sha256-A84STBr8iA+HtV9rBhEQ4uHpOWeRhPVhTjjazGwZV+I=",
           ecg: "sha256-8grTNl+5t/hF0OXEi2/mcIE3fuRmw6Igt/afNciVi68=",
           face: "sha256-nYsLTQgTE+K0hXSMdwRy5ale0XOBRog9hMcDBJPoKIY=",
         })),
         datasets: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (d) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/scipy/dataset-${d}/main/${d}.dat`),
               hash: hash,
             }))), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "datasetsHashes")))),
         buildConfig: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           properties: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "numpy-include-dir": nix.thunk(() => nix.sel(numpy, "coreIncludeDir")),
             "pythran-include-dir": nix.thunk(() => nix.str`${pythran}/${nix.sel(python, "sitePackages")}/pythran`),
             "host-python-path": nix.thunk(() => nix.sel(python, "interpreter")),
@@ -143,17 +130,17 @@ rm $out/${nix.sel(python, "sitePackages")}/scipy/__pycache__/__config__.*.opt-1.
           })),
         })),
         crossFile: nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             name: "cross-file-scipy.conf",
             text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({
-                [nix.POS]: pos$9,
-                mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({ [nix.POS]: pos$8, mkValueString: (v) => nix.str`'${v}'` })), " = ")),
+                [nix.POS]: $pos[8],
+                mkKeyValue: nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkKeyValueDefault"), nix.thunk(() => ({ [nix.POS]: $pos[7], mkValueString: (v) => nix.str`'${v}'` })), " = ")),
               })), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "buildConfig")))),
           })))),
       })),
-      env: nix.thunk(() => ({ [nix.POS]: pos$12, SCIPY_USE_G77_ABI_WRAPPER: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[11], SCIPY_USE_G77_ABI_WRAPPER: 1n })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         changelog: nix.thunk(() => nix.str`https://github.com/scipy/scipy/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "SciPy (pronounced 'Sigh Pie') is open-source software for mathematics, science, and engineering",
         downloadPage: "https://github.com/scipy/scipy",

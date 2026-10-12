@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/2.x.nix", [[["url", 36, 5], ["hash", 37, 5]], [["pythonPaths", 43, 7]], [["LUA_CPATH", 82, 7], ["LUA_PATH", 83, 7]], [["attrPath", 106, 7], ["packageName", 107, 7], ["versionPolicy", 108, 7]], [["cross", 111, 11]], [["updateScript", 105, 5], ["tests", 111, 5]], [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["teams", 119, 5]], [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 35, 3], ["patches", 40, 3], ["depsBuildBuild", 49, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 62, 3], ["propagatedBuildInputs", 71, 3], ["mesonFlags", 76, 3], ["env", 82, 3], ["strictDeps", 85, 3], ["postPatch", 87, 3], ["postFixup", 99, 3], ["passthru", 104, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPackages: false, fetchurl: false, pkgsCross: false, replaceVars: false, "pkg-config": false, "gi-docgen": false, "gobject-introspection": false, meson: false, ninja: false, vala: false, gjs: false, glib: false, lua5_1: false, python3: false, spidermonkey_140: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/2.x.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/2.x.nix", [["pythonPaths", 43, 7]]);
-const pos$3 = nix.positions(here + "/2.x.nix", [["LUA_CPATH", 82, 7], ["LUA_PATH", 83, 7]]);
-const pos$4 = nix.positions(here + "/2.x.nix", [["attrPath", 106, 7], ["packageName", 107, 7], ["versionPolicy", 108, 7]]);
-const pos$5 = nix.positions(here + "/2.x.nix", [["cross", 111, 11]]);
-const pos$6 = nix.positions(here + "/2.x.nix", [["updateScript", 105, 5], ["tests", 111, 5]]);
-const pos$7 = nix.positions(here + "/2.x.nix", [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["teams", 119, 5]]);
-const pos$8 = nix.positions(here + "/2.x.nix", [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 35, 3], ["patches", 40, 3], ["depsBuildBuild", 49, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 62, 3], ["propagatedBuildInputs", 71, 3], ["mesonFlags", 76, 3], ["env", 82, 3], ["strictDeps", 85, 3], ["postPatch", 87, 3], ["postFixup", 99, 3], ["passthru", 104, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,13 +34,13 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.1";
       const outputs = nix.thunk(() => ["out", "dev", "devdoc"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/${pname}/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${pname}-${version}.tar.xz`),
           hash: "sha256-WJ7KibQ3AG7fN1VHjfA3x0CiqEz6XSAtutYJXoKOJIg=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pythonPaths: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", (pkg) => nix.str`'${pkg}/${nix.sel(python3, "sitePackages")}'`, nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pygobject3"))]))),
           })))),
       ]);
@@ -64,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [glib]);
       const mesonFlags = nix.thunk(() => ["-Dgtk_doc=true", "-Dvapi=true"]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         LUA_CPATH: nix.thunk(() => nix.str`${luaEnv}/lib/lua/${nix.sel(luaEnv, "luaversion")}/?.so`),
         LUA_PATH: nix.thunk(() => nix.str`${luaEnv}/share/lua/${nix.sel(luaEnv, "luaversion")}/?.lua`),
       }));
@@ -81,20 +74,20 @@ substituteInPlace meson.build \\
 `);
       const postFixup = "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             attrPath: "libpeas2",
             packageName: "libpeas",
             versionPolicy: "odd-unstable",
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           cross: nix.thunk(() => nix.sel(pkgsCross, "aarch64-multiplatform", "libpeas2")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "GObject-based plugins engine",
         homepage: "https://gitlab.gnome.org/GNOME/libpeas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -102,7 +95,7 @@ substituteInPlace meson.build \\
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         outputs,

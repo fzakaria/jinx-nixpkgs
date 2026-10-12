@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["description", 70, 5], ["homepage", 71, 5], ["maintainers", 72, 5], ["license", 73, 5], ["platforms", 74, 5]], [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["mesonFlags", 56, 3], ["preConfigure", 62, 3], ["doCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, bash: false, json_c: false, keyutils: false, lib: false, meson: false, ninja: false, openssl: false, perl: false, "pkg-config": false, python3: false, stdenv: false, swig: false, systemd: false, withDocs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["maintainers", 72, 5], ["license", 73, 5], ["platforms", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["mesonFlags", 56, 3], ["preConfigure", 62, 3], ["doCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const withDocs = nix.argOr($, "withDocs", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libnvme",
       version: "1.16.1",
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), withDocs, nix.thunk(() => ["man"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linux-nvme",
           repo: "libnvme",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +55,7 @@ substituteInPlace test/sysfs/tree-diff.sh test/config/config-diff.sh \\
       preConfigure: "export KBUILD_BUILD_TIMESTAMP=\"$(date -u -d @$SOURCE_DATE_EPOCH)\"\n",
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C Library for NVM Express on Linux",
         homepage: "https://github.com/linux-nvme/libnvme",
         maintainers: nix.thunk(() => (() => {

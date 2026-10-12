@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["package", 49, 5], ["command", 50, 5], ["version", 51, 5]], [["version", 48, 18]], [["tests", 48, 12]], [["changelog", 55, 5], ["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["nativeBuildInputs", 26, 3], ["ldflags", 28, 3], ["postInstall", 38, 3], ["passthru", 48, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, testers: false, clusterctl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 49, 5], ["command", 50, 5], ["version", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 48, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 48, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 55, 5], ["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["nativeBuildInputs", 26, 3], ["ldflags", 28, 3], ["postInstall", 38, 3], ["passthru", 48, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const clusterctl = nix.arg($, "clusterctl");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "clusterctl",
       version: "1.13.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kubernetes-sigs",
           repo: "cluster-api",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,11 +38,11 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "# errors attempting to write config to read-only $HOME\nexport HOME=$TMPDIR\n\ninstallShellCompletion --cmd clusterctl \\\n  --bash <($out/bin/clusterctl completion bash) \\\n  --fish <($out/bin/clusterctl completion fish) \\\n  --zsh <($out/bin/clusterctl completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: clusterctl,
               command: "HOME=$TMPDIR clusterctl version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/kubernetes-sigs/cluster-api/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Kubernetes cluster API tool",
         mainProgram: "clusterctl",

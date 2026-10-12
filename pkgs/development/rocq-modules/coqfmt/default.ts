@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["coqfmt", 16, 18]], [["rev", 19, 5], ["hash", 20, 5]], [["master", 18, 11]], [["case", 30, 9], ["out", 31, 9]], [["description", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 12, 3], ["owner", 13, 3], ["version", 15, 11], ["displayVersion", 16, 3], ["release", 18, 3], ["namePrefix", 22, 3], ["useDune", 24, 3], ["defaultVersion", 26, 3], ["installPhase", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { coq: false, "coq-lsp": false, ocamlPackages: false, lib: false, mkCoqDerivation: false, version: true, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["coqfmt", 16, 18]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev", 19, 5], ["hash", 20, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["master", 18, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["case", 30, 9], ["out", 31, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["owner", 13, 3], ["version", 15, 11], ["displayVersion", 16, 3], ["release", 18, 3], ["namePrefix", 22, 3], ["useDune", 24, 3], ["defaultVersion", 26, 3], ["installPhase", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
       const pname = "coqfmt";
       const owner = "toku-sa-n";
       const version_1 = version;
-      const displayVersion = nix.thunk(() => ({ [nix.POS]: pos$1, coqfmt: (v) => nix.str`master-${v}` }));
+      const displayVersion = nix.thunk(() => ({ [nix.POS]: $pos[0], coqfmt: (v) => nix.str`master-${v}` }));
       const release = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         master: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           rev: "c26ce64d6ad1a1c3cafee38ab4889ad3b68a5c33",
           hash: "sha256-4Q0z/KUHrJZKeKJDqa9mkxfy9LrGh2xPt561muUFYAY=",
         })),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               case: nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.20")),
               out: "master",
             })),
@@ -55,7 +50,7 @@ runHook postInstall
         return [nix.thunk(() => nix.lookup(w_1, "dune-build-info")), coq_lsp];
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CLI tool to format your Coq source code",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         maintainers: nix.thunk(() => (() => {
@@ -64,7 +59,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         owner,
         version: version_1,

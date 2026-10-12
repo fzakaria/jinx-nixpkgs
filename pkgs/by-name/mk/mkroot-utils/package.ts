@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["rev-prefix", 40, 5]], [["updateScript", 39, 12]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["teams", 47, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["prePatch", 30, 3], ["nativeCheckInputs", 35, 3], ["doCheck", 37, 3], ["passthru", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { busybox: false, cmake: false, fakeroot: false, fetchFromGitLab: false, gitUpdater: false, lib: false, python3: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 39, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["teams", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["prePatch", 30, 3], ["nativeCheckInputs", 35, 3], ["doCheck", 37, 3], ["passthru", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mkroot-utils",
       version: "0.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arpa2",
           repo: "mkroot-utils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +35,11 @@ patchShebangs test
       nativeCheckInputs: nix.thunk(() => [fakeroot]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple utilities to extend RunC and \"mkroot\"",
         homepage: "https://gitlab.com/arpa2/mkroot-utils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

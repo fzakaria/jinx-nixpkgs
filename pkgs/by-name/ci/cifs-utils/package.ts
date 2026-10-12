@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["homepage", 59, 5], ["description", 60, 5], ["platforms", 61, 5], ["license", 62, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["configureFlags", 42, 3], ["outputs", 51, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, autoreconfHook: false, docutils: false, "pkg-config": false, libcap: false, libkrb5: false, keyutils: false, pam: false, samba: false, talloc: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["platforms", 61, 5], ["license", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["configureFlags", 42, 3], ["outputs", 51, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const talloc = nix.arg($, "talloc");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cifs-utils",
       version: "7.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.samba.org/pub/linux-cifs/cifs-utils/cifs-utils-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-f6zoXj0tXrXnrb0YGt7mdZCX8TWxDW+zC+jgcK9+cFQ=",
         })))),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["ROOTSBINDIR=$(bin)/sbin"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ["ac_cv_func_malloc_0_nonnull=yes", "ac_cv_func_realloc_0_nonnull=yes"])))),
       outputs: nix.thunk(() => ["out", "bin", "man", "dev"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://wiki.samba.org/index.php/LinuxCIFS_utils",
         description: "Tools for managing Linux CIFS client filesystems",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

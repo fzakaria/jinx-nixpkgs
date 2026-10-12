@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["updateScript", 62, 12]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 72, 5]], [["pname", 13, 3], ["version", 14, 3], ["gitCommit", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 28, 3], ["ldflags", 33, 3], ["doCheck", 40, 3], ["postInstall", 42, 3], ["doInstallCheck", 58, 3], ["nativeInstallCheckInputs", 59, 3], ["versionCheckProgramArg", 60, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, gpgme: false, installShellFiles: false, "pkg-config": false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["gitCommit", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 28, 3], ["ldflags", 33, 3], ["doCheck", 40, 3], ["postInstall", 42, 3], ["doInstallCheck", 58, 3], ["nativeInstallCheckInputs", 59, 3], ["versionCheckProgramArg", 60, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openshift",
       version: "4.22.0-202605222050",
       gitCommit: "8f1c8b5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openshift",
           repo: "oc",
           tag: nix.thunk(() => nix.str`openshift-clients-${nix.sel(finalAttrs, "version")}`),
@@ -45,11 +42,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Build, deploy, and manage your applications with Docker and Kubernetes",
         homepage: "http://www.openshift.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

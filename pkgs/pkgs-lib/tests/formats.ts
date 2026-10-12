@@ -2,229 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/formats.nix", [[["value", 14, 11], ["file", 19, 11]], [["passAsFile", 28, 9], ["expected", 29, 17], ["drv", 29, 26]], [["name", 50, 7], ["path", 51, 7]], [["file", 67, 11], ["value", 68, 11]], [["passAsFile", 79, 13], ["testName", 80, 13], ["inputText", 83, 13]], [["name", 94, 7], ["path", 95, 7]], [["foo", 118, 13]], [["null", 112, 7], ["false", 113, 7], ["true", 114, 7], ["int", 115, 7], ["float", 116, 7], ["str", 117, 7], ["attrs", 118, 7], ["list", 119, 7], ["path", 123, 7]], [["format", 110, 5], ["input", 111, 5], ["expected", 125, 5]], [["format", 146, 5], ["input", 147, 5], ["expected", 148, 5]], [["foo", 161, 13]], [["null", 156, 7], ["false", 157, 7], ["true", 158, 7], ["float", 159, 7], ["str", 160, 7], ["attrs", 161, 7], ["list", 162, 7], ["path", 166, 7], ["no", 167, 7], ["time", 168, 7]], [["format", 154, 5], ["input", 155, 5], ["expected", 170, 5]], [["format", 190, 5], ["input", 191, 5], ["expected", 192, 5]], [["foo", 207, 13]], [["null", 202, 7], ["false", 203, 7], ["true", 204, 7], ["float", 205, 7], ["str", 206, 7], ["attrs", 207, 7], ["list", 208, 7], ["path", 212, 7], ["no", 213, 7], ["time", 214, 7]], [["format", 200, 5], ["input", 201, 5], ["expected", 216, 5]], [["format", 234, 5], ["input", 235, 5], ["expected", 237, 5]], [["tags", 244, 33]], [["k1", 248, 11]], [["!mytag", 247, 9]], [["!anothertag", 252, 9]], [["tag1", 246, 7], ["tag2", 251, 7]], [["format", 244, 5], ["input", 245, 5], ["expected", 255, 5]], [["tags", 265, 33]], [["k1", 269, 11]], [["!mytag", 268, 9]], [["!anothertag", 273, 9]], [["tag1", 267, 7], ["tag2", 272, 7]], [["format", 265, 5], ["input", 266, 5], ["expected", 276, 5]], [["bool", 287, 9], ["int", 288, 9], ["float", 289, 9], ["str", 290, 9]], [["foo", 286, 7]], [["format", 284, 5], ["input", 285, 5], ["expected", 293, 5]], [["bool", 305, 7], ["int", 306, 7], ["float", 307, 7], ["str", 308, 7]], [["format", 303, 5], ["input", 304, 5], ["expected", 310, 5]], [["items", 321, 7]], [["format", 319, 5], ["input", 320, 5], ["expected", 327, 5]], [["host", 336, 9], ["port", 337, 9], ["enabled", 338, 9], ["tags", 339, 9]], [["level", 347, 9], ["rotate", 348, 9]], [["foo", 355, 13]], [["address", 353, 11], ["coin", 354, 11]], [["address", 359, 11]], [["local", 352, 9], ["remote", 358, 9]], [["server", 335, 7], ["logging", 346, 7], ["interfaces", 351, 7]], [["format", 333, 5], ["input", 334, 5], ["expected", 363, 5]], [["keep", 387, 9], ["missing", 388, 9]], [["nullable", 385, 7], ["nested", 386, 7]], [["format", 383, 5], ["input", 384, 5], ["expected", 391, 5]], [["function", 402, 7]], [["format", 400, 5], ["input", 401, 5]], [["function", 410, 9]], [["foo", 409, 7]], [["format", 407, 5], ["input", 408, 5]], [["bar", 419, 9], ["baz", 426, 9], ["qux", 427, 9]], [["foo", 418, 7]], [["format", 416, 5], ["input", 417, 5]], [["listsAsDuplicateKeys", 433, 28]], [["bar", 436, 9], ["baz", 443, 9], ["qux", 444, 9]], [["foo", 435, 7]], [["format", 433, 5], ["input", 434, 5], ["expected", 447, 5]], [["listToValue", 461, 7]], [["bar", 465, 9], ["baz", 472, 9], ["qux", 473, 9]], [["foo", 464, 7]], [["format", 460, 5], ["input", 463, 5], ["expected", 476, 5]], [["listsAsDuplicateKeys", 486, 7], ["atomsCoercedToLists", 487, 7]], [["bar", 497, 17]], [["foo", 496, 15]], [["file", 494, 13], ["value", 495, 13]], [["bar", 505, 17]], [["foo", 504, 15]], [["file", 502, 13], ["value", 503, 13]], [["format", 485, 5], ["input", 489, 5], ["expected", 510, 5]], [["listToValue", 519, 7], ["atomsCoercedToLists", 520, 7]], [["bar", 530, 17]], [["foo", 529, 15]], [["file", 527, 13], ["value", 528, 13]], [["bar", 538, 17]], [["foo", 537, 15]], [["file", 535, 13], ["value", 536, 13]], [["format", 518, 5], ["input", 522, 5], ["expected", 543, 5]], [["atomsCoercedToLists", 550, 28]], [["bar", 553, 9]], [["foo", 552, 7]], [["format", 550, 5], ["input", 551, 5]], [["atomsCoercedToLists", 559, 28]], [["bar", 562, 9]], [["foo", 561, 7]], [["format", 559, 5], ["input", 560, 5]], [["format", 568, 5], ["input", 569, 5], ["expected", 570, 5]], [["bar", 578, 11]], [["foo", 577, 9]], [["sections", 576, 7]], [["format", 574, 5], ["input", 575, 5], ["expected", 582, 5]], [["bar", 592, 9]], [["globalSection", 591, 7]], [["format", 589, 5], ["input", 590, 5], ["expected", 595, 5]], [["foo", 604, 7]], [["format", 602, 5], ["input", 603, 5]], [["bar", 612, 9]], [["bool", 616, 11], ["int", 617, 11], ["float", 618, 11], ["str", 619, 11]], [["foo", 615, 9]], [["globalSection", 611, 7], ["sections", 614, 7]], [["format", 609, 5], ["input", 610, 5], ["expected", 623, 5]], [["listToValue", 636, 7]], [["bar", 640, 9], ["baz", 647, 9], ["qux", 648, 9]], [["bar", 652, 11], ["baz", 659, 11], ["qux", 660, 11]], [["foo", 651, 9]], [["globalSection", 639, 7], ["sections", 650, 7]], [["format", 635, 5], ["input", 638, 5], ["expected", 664, 5]], [["listsAsDuplicateKeys", 678, 7], ["atomsCoercedToLists", 679, 7]], [["baz", 689, 17]], [["bar", 693, 19]], [["foo", 692, 17]], [["globalSection", 688, 15], ["sections", 691, 15]], [["file", 686, 13], ["value", 687, 13]], [["baz", 702, 17]], [["bar", 706, 19]], [["foo", 705, 17]], [["globalSection", 701, 15], ["sections", 704, 15]], [["file", 699, 13], ["value", 700, 13]], [["format", 677, 5], ["input", 681, 5], ["expected", 712, 5]], [["listToValue", 724, 7], ["atomsCoercedToLists", 725, 7]], [["baz", 735, 17]], [["bar", 739, 19]], [["foo", 738, 17]], [["globalSection", 734, 15], ["sections", 737, 15]], [["file", 732, 13], ["value", 733, 13]], [["baz", 748, 17]], [["bar", 752, 19]], [["foo", 751, 17]], [["globalSection", 747, 15], ["sections", 750, 15]], [["file", 745, 13], ["value", 746, 13]], [["format", 723, 5], ["input", 727, 5], ["expected", 758, 5]], [["atomsCoercedToLists", 767, 45]], [["baz", 770, 9]], [["bar", 773, 9]], [["globalSection", 769, 7], ["foo", 772, 7]], [["format", 767, 5], ["input", 768, 5]], [["atomsCoercedToLists", 779, 45]], [["baz", 782, 9]], [["bar", 785, 9]], [["globalSection", 781, 7], ["foo", 784, 7]], [["format", 779, 5], ["input", 780, 5]], [["bool", 793, 7], ["int", 794, 7], ["float", 795, 7], ["str", 796, 7]], [["format", 791, 5], ["input", 792, 5], ["expected", 798, 5]], [["listsAsDuplicateKeys", 807, 33]], [["bar", 809, 7], ["baz", 816, 7], ["qux", 817, 7]], [["format", 807, 5], ["input", 808, 5], ["expected", 819, 5]], [["listToValue", 832, 7]], [["bar", 835, 7], ["baz", 842, 7], ["qux", 843, 7]], [["format", 831, 5], ["input", 834, 5], ["expected", 845, 5]], [["foo", 860, 13]], [["level4", 865, 28]], [["level3", 865, 21]], [["level2", 865, 14]], [["false", 855, 7], ["true", 856, 7], ["int", 857, 7], ["float", 858, 7], ["str", 859, 7], ["attrs", 860, 7], ["list", 861, 7], ["level1", 865, 7]], [["format", 853, 5], ["input", 854, 5], ["expected", 867, 5]], [["name", 894, 11], ["except-features", 895, 11]], [["language-server", 891, 7]], [["format", 889, 5], ["input", 890, 5], ["expected", 899, 5]], [["stack(x,n)", 911, 7]], [["format", 909, 5], ["input", 910, 5], ["expected", 913, 5]], [["format", 919, 5], ["input", 920, 5]], [["foo", 932, 13]], [["null", 926, 7], ["false", 927, 7], ["true", 928, 7], ["int", 929, 7], ["float", 930, 7], ["str", 931, 7], ["attrs", 932, 7], ["list", 933, 7], ["path", 937, 7]], [["format", 924, 5], ["input", 925, 5], ["expected", 939, 5]], [["format", 958, 5], ["input", 959, 5], ["expected", 960, 5]], [["floaty", 972, 7], ["tautologies", 973, 7], ["contradictions", 974, 7], ["foo", 975, 7], ["1", 979, 7], ["package", 980, 7], ["ütf 8", 981, 7], ["الجبر", 983, 7]], [["format", 970, 5], ["input", 971, 5], ["expected", 985, 5]], [["foo", 1008, 13]], [["null", 1002, 7], ["false", 1003, 7], ["true", 1004, 7], ["int", 1005, 7], ["float", 1006, 7], ["str", 1007, 7], ["attrs", 1008, 7], ["list", 1009, 7], ["path", 1013, 7], ["inline", 1014, 7]], [["format", 1000, 5], ["input", 1001, 5], ["expected", 1016, 5]], [["asBindings", 1039, 7]], [["foo", 1048, 13]], [["null", 1042, 7], ["_false", 1043, 7], ["_true", 1044, 7], ["int", 1045, 7], ["float", 1046, 7], ["str", 1047, 7], ["attrs", 1048, 7], ["list", 1049, 7], ["path", 1053, 7], ["inline", 1054, 7]], [["format", 1038, 5], ["input", 1041, 5], ["expected", 1056, 5]], [["format", 1076, 5], ["input", 1077, 5], ["expected", 1078, 5]], [["package", 1085, 7], ["version", 1086, 7], ["extraOptions", 1087, 7]], [["auto-optimise-store", 1090, 7], ["cores", 1091, 7], ["store", 1092, 7]], [["format", 1084, 5], ["input", 1089, 5], ["expected", 1096, 5]], [["package", 1110, 7], ["version", 1111, 7], ["extraOptions", 1112, 7]], [["format", 1109, 5], ["input", 1114, 5]], [["finalVariable", 1118, 28]], [["foo", 1127, 13]], [["foo", 1134, 15]], [["str", 1133, 9], ["attrs", 1134, 9]], [["null", 1120, 7], ["false", 1121, 7], ["true", 1122, 7], ["int", 1123, 7], ["float", 1124, 7], ["str", 1125, 7], ["str_special", 1126, 7], ["attrs", 1127, 7], ["list", 1128, 7], ["mixed", 1132, 7], ["raw", 1136, 7]], [["format", 1118, 5], ["input", 1119, 5], ["expected", 1138, 5]], [["finalVariable", 1147, 28]], [["format", 1147, 5], ["input", 1148, 5], ["expected", 1149, 5]], [["foo", 1182, 11], ["conditional", 1183, 11]], [["_imports", 1163, 9], ["int", 1168, 9], ["float", 1169, 9], ["bool", 1170, 9], ["str", 1171, 9], ["str_special", 1172, 9], ["null", 1173, 9], ["list", 1174, 9], ["attrs", 1181, 9], ["func", 1185, 9]], [["format", 1161, 15], ["input", 1162, 7], ["expected", 1187, 7]], [["format", 1205, 5], ["input", 1206, 5]], [["foo", 1216, 13]], [["int", 1212, 7], ["float", 1213, 7], ["str", 1214, 7], ["str_special", 1215, 7], ["attrs", 1216, 7]], [["format", 1210, 5], ["input", 1211, 5], ["expected", 1218, 5]], [["@name", 1233, 11], ["#text", 1234, 11]], [["grandchild", 1237, 11]], [["@id", 1230, 9], ["@class", 1231, 9], ["child1", 1232, 9], ["child2", 1236, 9], ["nulltest", 1239, 9]], [["root", 1229, 7]], [["format", 1227, 5], ["input", 1228, 5], ["expected", 1242, 5]], [["format", 1255, 5], ["input", 1256, 5]], [["foo", 1268, 13]], [["value", 1275, 15]], [["key", 1274, 13]], [["attrs", 1273, 11]], [["null", 1262, 7], ["false", 1263, 7], ["true", 1264, 7], ["int", 1265, 7], ["float", 1266, 7], ["str", 1267, 7], ["attrs", 1268, 7], ["list", 1269, 7]], [["format", 1260, 5], ["input", 1261, 5], ["expected", 1288, 5]], [["format", 1335, 5], ["input", 1336, 5], ["expected", 1337, 5]], [["ami", 1351, 13], ["instance_type", 1352, 13]], [["example", 1350, 11]], [["aws_instance", 1349, 9]], [["default", 1358, 11]], [["region", 1357, 9]], [["value", 1363, 11]], [["ip", 1362, 9]], [["resource", 1348, 7], ["variable", 1356, 7], ["output", 1361, 7], ["primitive", 1366, 7], ["number", 1367, 7], ["enabled", 1368, 7]], [["format", 1346, 5], ["input", 1347, 5], ["expected", 1370, 5]], [["jsonAtoms", 109, 3], ["jsonNull", 145, 3], ["yaml_1_1Atoms", 153, 3], ["yaml_1_1Null", 189, 3], ["yaml_1_2Atoms", 199, 3], ["yaml_1_2Null", 233, 3], ["yaml_1_1Tags", 243, 3], ["yaml_1_2Tags", 264, 3], ["iniAtoms", 283, 3], ["configobjAtoms", 302, 3], ["configobjListWithoutListToValue", 318, 3], ["configobjNestedAttrsets", 332, 3], ["configobjNullableValues", 382, 3], ["configobjInvalidAtom", 399, 3], ["iniInvalidAtom", 406, 3], ["iniDuplicateKeysWithoutList", 415, 3], ["iniDuplicateKeys", 432, 3], ["iniListToValue", 459, 3], ["iniCoercedDuplicateKeys", 484, 3], ["iniCoercedListToValue", 517, 3], ["iniCoercedNoLists", 549, 3], ["iniNoCoercedNoLists", 558, 3], ["iniWithGlobalNoSections", 567, 3], ["iniWithGlobalOnlySections", 573, 3], ["iniWithGlobalOnlyGlobal", 588, 3], ["iniWithGlobalWrongSections", 601, 3], ["iniWithGlobalEverything", 608, 3], ["iniWithGlobalListToValue", 634, 3], ["iniWithGlobalCoercedDuplicateKeys", 676, 3], ["iniWithGlobalCoercedListToValue", 722, 3], ["iniWithGlobalCoercedNoLists", 766, 3], ["iniWithGlobalNoCoercedNoLists", 778, 3], ["keyValueAtoms", 790, 3], ["keyValueDuplicateKeys", 806, 3], ["keyValueListToValue", 830, 3], ["tomlAtoms", 852, 3], ["tomlHeterogeneousArray", 888, 3], ["tomlCommaInKey", 908, 3], ["tomlNull", 918, 3], ["cdnAtoms", 923, 3], ["cdnNull", 957, 3], ["javaProperties", 969, 3], ["luaTable", 999, 3], ["luaBindings", 1037, 3], ["luaNull", 1075, 3], ["nixConfAtoms", 1083, 3], ["nixConfNull", 1108, 3], ["phpAtoms", 1117, 3], ["phpNull", 1146, 3], ["pythonVars", 1156, 3], ["pythonVarsNull", 1204, 3], ["phpReturn", 1209, 3], ["badgerfishToXmlGenerate", 1226, 3], ["xmlNull", 1254, 3], ["PlistGenerate", 1259, 3], ["PlistNull", 1334, 3], ["hcl1Atoms", 1345, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/formats.nix", [["value", 14, 11], ["file", 19, 11]]);
-const pos$2 = nix.positions(here + "/formats.nix", [["passAsFile", 28, 9], ["expected", 29, 17], ["drv", 29, 26]]);
 const formals$2 = { args: { format: false, input: false, expected: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/formats.nix", [["name", 50, 7], ["path", 51, 7]]);
 const formals$3 = { args: { format: false, input: false }, ellipsis: false };
-const pos$4 = nix.positions(here + "/formats.nix", [["file", 67, 11], ["value", 68, 11]]);
-const pos$5 = nix.positions(here + "/formats.nix", [["passAsFile", 79, 13], ["testName", 80, 13], ["inputText", 83, 13]]);
-const pos$6 = nix.positions(here + "/formats.nix", [["name", 94, 7], ["path", 95, 7]]);
-const pos$7 = nix.positions(here + "/formats.nix", [["foo", 118, 13]]);
-const pos$8 = nix.positions(here + "/formats.nix", [["null", 112, 7], ["false", 113, 7], ["true", 114, 7], ["int", 115, 7], ["float", 116, 7], ["str", 117, 7], ["attrs", 118, 7], ["list", 119, 7], ["path", 123, 7]]);
-const pos$9 = nix.positions(here + "/formats.nix", [["format", 110, 5], ["input", 111, 5], ["expected", 125, 5]]);
-const pos$10 = nix.positions(here + "/formats.nix", [["format", 146, 5], ["input", 147, 5], ["expected", 148, 5]]);
-const pos$11 = nix.positions(here + "/formats.nix", [["foo", 161, 13]]);
-const pos$12 = nix.positions(here + "/formats.nix", [["null", 156, 7], ["false", 157, 7], ["true", 158, 7], ["float", 159, 7], ["str", 160, 7], ["attrs", 161, 7], ["list", 162, 7], ["path", 166, 7], ["no", 167, 7], ["time", 168, 7]]);
-const pos$13 = nix.positions(here + "/formats.nix", [["format", 154, 5], ["input", 155, 5], ["expected", 170, 5]]);
-const pos$14 = nix.positions(here + "/formats.nix", [["format", 190, 5], ["input", 191, 5], ["expected", 192, 5]]);
-const pos$15 = nix.positions(here + "/formats.nix", [["foo", 207, 13]]);
-const pos$16 = nix.positions(here + "/formats.nix", [["null", 202, 7], ["false", 203, 7], ["true", 204, 7], ["float", 205, 7], ["str", 206, 7], ["attrs", 207, 7], ["list", 208, 7], ["path", 212, 7], ["no", 213, 7], ["time", 214, 7]]);
-const pos$17 = nix.positions(here + "/formats.nix", [["format", 200, 5], ["input", 201, 5], ["expected", 216, 5]]);
-const pos$18 = nix.positions(here + "/formats.nix", [["format", 234, 5], ["input", 235, 5], ["expected", 237, 5]]);
-const pos$19 = nix.positions(here + "/formats.nix", [["tags", 244, 33]]);
-const pos$20 = nix.positions(here + "/formats.nix", [["k1", 248, 11]]);
-const pos$21 = nix.positions(here + "/formats.nix", [["!mytag", 247, 9]]);
-const pos$22 = nix.positions(here + "/formats.nix", [["!anothertag", 252, 9]]);
-const pos$23 = nix.positions(here + "/formats.nix", [["tag1", 246, 7], ["tag2", 251, 7]]);
-const pos$24 = nix.positions(here + "/formats.nix", [["format", 244, 5], ["input", 245, 5], ["expected", 255, 5]]);
-const pos$25 = nix.positions(here + "/formats.nix", [["tags", 265, 33]]);
-const pos$26 = nix.positions(here + "/formats.nix", [["k1", 269, 11]]);
-const pos$27 = nix.positions(here + "/formats.nix", [["!mytag", 268, 9]]);
-const pos$28 = nix.positions(here + "/formats.nix", [["!anothertag", 273, 9]]);
-const pos$29 = nix.positions(here + "/formats.nix", [["tag1", 267, 7], ["tag2", 272, 7]]);
-const pos$30 = nix.positions(here + "/formats.nix", [["format", 265, 5], ["input", 266, 5], ["expected", 276, 5]]);
-const pos$31 = nix.positions(here + "/formats.nix", [["bool", 287, 9], ["int", 288, 9], ["float", 289, 9], ["str", 290, 9]]);
-const pos$32 = nix.positions(here + "/formats.nix", [["foo", 286, 7]]);
-const pos$33 = nix.positions(here + "/formats.nix", [["format", 284, 5], ["input", 285, 5], ["expected", 293, 5]]);
-const pos$34 = nix.positions(here + "/formats.nix", [["bool", 305, 7], ["int", 306, 7], ["float", 307, 7], ["str", 308, 7]]);
-const pos$35 = nix.positions(here + "/formats.nix", [["format", 303, 5], ["input", 304, 5], ["expected", 310, 5]]);
-const pos$36 = nix.positions(here + "/formats.nix", [["items", 321, 7]]);
-const pos$37 = nix.positions(here + "/formats.nix", [["format", 319, 5], ["input", 320, 5], ["expected", 327, 5]]);
-const pos$38 = nix.positions(here + "/formats.nix", [["host", 336, 9], ["port", 337, 9], ["enabled", 338, 9], ["tags", 339, 9]]);
-const pos$39 = nix.positions(here + "/formats.nix", [["level", 347, 9], ["rotate", 348, 9]]);
-const pos$40 = nix.positions(here + "/formats.nix", [["foo", 355, 13]]);
-const pos$41 = nix.positions(here + "/formats.nix", [["address", 353, 11], ["coin", 354, 11]]);
-const pos$42 = nix.positions(here + "/formats.nix", [["address", 359, 11]]);
-const pos$43 = nix.positions(here + "/formats.nix", [["local", 352, 9], ["remote", 358, 9]]);
-const pos$44 = nix.positions(here + "/formats.nix", [["server", 335, 7], ["logging", 346, 7], ["interfaces", 351, 7]]);
-const pos$45 = nix.positions(here + "/formats.nix", [["format", 333, 5], ["input", 334, 5], ["expected", 363, 5]]);
-const pos$46 = nix.positions(here + "/formats.nix", [["keep", 387, 9], ["missing", 388, 9]]);
-const pos$47 = nix.positions(here + "/formats.nix", [["nullable", 385, 7], ["nested", 386, 7]]);
-const pos$48 = nix.positions(here + "/formats.nix", [["format", 383, 5], ["input", 384, 5], ["expected", 391, 5]]);
-const pos$49 = nix.positions(here + "/formats.nix", [["function", 402, 7]]);
-const pos$50 = nix.positions(here + "/formats.nix", [["format", 400, 5], ["input", 401, 5]]);
-const pos$51 = nix.positions(here + "/formats.nix", [["function", 410, 9]]);
-const pos$52 = nix.positions(here + "/formats.nix", [["foo", 409, 7]]);
-const pos$53 = nix.positions(here + "/formats.nix", [["format", 407, 5], ["input", 408, 5]]);
-const pos$54 = nix.positions(here + "/formats.nix", [["bar", 419, 9], ["baz", 426, 9], ["qux", 427, 9]]);
-const pos$55 = nix.positions(here + "/formats.nix", [["foo", 418, 7]]);
-const pos$56 = nix.positions(here + "/formats.nix", [["format", 416, 5], ["input", 417, 5]]);
-const pos$57 = nix.positions(here + "/formats.nix", [["listsAsDuplicateKeys", 433, 28]]);
-const pos$58 = nix.positions(here + "/formats.nix", [["bar", 436, 9], ["baz", 443, 9], ["qux", 444, 9]]);
-const pos$59 = nix.positions(here + "/formats.nix", [["foo", 435, 7]]);
-const pos$60 = nix.positions(here + "/formats.nix", [["format", 433, 5], ["input", 434, 5], ["expected", 447, 5]]);
-const pos$61 = nix.positions(here + "/formats.nix", [["listToValue", 461, 7]]);
-const pos$62 = nix.positions(here + "/formats.nix", [["bar", 465, 9], ["baz", 472, 9], ["qux", 473, 9]]);
-const pos$63 = nix.positions(here + "/formats.nix", [["foo", 464, 7]]);
-const pos$64 = nix.positions(here + "/formats.nix", [["format", 460, 5], ["input", 463, 5], ["expected", 476, 5]]);
-const pos$65 = nix.positions(here + "/formats.nix", [["listsAsDuplicateKeys", 486, 7], ["atomsCoercedToLists", 487, 7]]);
-const pos$66 = nix.positions(here + "/formats.nix", [["bar", 497, 17]]);
-const pos$67 = nix.positions(here + "/formats.nix", [["foo", 496, 15]]);
-const pos$68 = nix.positions(here + "/formats.nix", [["file", 494, 13], ["value", 495, 13]]);
-const pos$69 = nix.positions(here + "/formats.nix", [["bar", 505, 17]]);
-const pos$70 = nix.positions(here + "/formats.nix", [["foo", 504, 15]]);
-const pos$71 = nix.positions(here + "/formats.nix", [["file", 502, 13], ["value", 503, 13]]);
-const pos$72 = nix.positions(here + "/formats.nix", [["format", 485, 5], ["input", 489, 5], ["expected", 510, 5]]);
-const pos$73 = nix.positions(here + "/formats.nix", [["listToValue", 519, 7], ["atomsCoercedToLists", 520, 7]]);
-const pos$74 = nix.positions(here + "/formats.nix", [["bar", 530, 17]]);
-const pos$75 = nix.positions(here + "/formats.nix", [["foo", 529, 15]]);
-const pos$76 = nix.positions(here + "/formats.nix", [["file", 527, 13], ["value", 528, 13]]);
-const pos$77 = nix.positions(here + "/formats.nix", [["bar", 538, 17]]);
-const pos$78 = nix.positions(here + "/formats.nix", [["foo", 537, 15]]);
-const pos$79 = nix.positions(here + "/formats.nix", [["file", 535, 13], ["value", 536, 13]]);
-const pos$80 = nix.positions(here + "/formats.nix", [["format", 518, 5], ["input", 522, 5], ["expected", 543, 5]]);
-const pos$81 = nix.positions(here + "/formats.nix", [["atomsCoercedToLists", 550, 28]]);
-const pos$82 = nix.positions(here + "/formats.nix", [["bar", 553, 9]]);
-const pos$83 = nix.positions(here + "/formats.nix", [["foo", 552, 7]]);
-const pos$84 = nix.positions(here + "/formats.nix", [["format", 550, 5], ["input", 551, 5]]);
-const pos$85 = nix.positions(here + "/formats.nix", [["atomsCoercedToLists", 559, 28]]);
-const pos$86 = nix.positions(here + "/formats.nix", [["bar", 562, 9]]);
-const pos$87 = nix.positions(here + "/formats.nix", [["foo", 561, 7]]);
-const pos$88 = nix.positions(here + "/formats.nix", [["format", 559, 5], ["input", 560, 5]]);
-const pos$89 = nix.positions(here + "/formats.nix", [["format", 568, 5], ["input", 569, 5], ["expected", 570, 5]]);
-const pos$90 = nix.positions(here + "/formats.nix", [["bar", 578, 11]]);
-const pos$91 = nix.positions(here + "/formats.nix", [["foo", 577, 9]]);
-const pos$92 = nix.positions(here + "/formats.nix", [["sections", 576, 7]]);
-const pos$93 = nix.positions(here + "/formats.nix", [["format", 574, 5], ["input", 575, 5], ["expected", 582, 5]]);
-const pos$94 = nix.positions(here + "/formats.nix", [["bar", 592, 9]]);
-const pos$95 = nix.positions(here + "/formats.nix", [["globalSection", 591, 7]]);
-const pos$96 = nix.positions(here + "/formats.nix", [["format", 589, 5], ["input", 590, 5], ["expected", 595, 5]]);
-const pos$97 = nix.positions(here + "/formats.nix", [["foo", 604, 7]]);
-const pos$98 = nix.positions(here + "/formats.nix", [["format", 602, 5], ["input", 603, 5]]);
-const pos$99 = nix.positions(here + "/formats.nix", [["bar", 612, 9]]);
-const pos$100 = nix.positions(here + "/formats.nix", [["bool", 616, 11], ["int", 617, 11], ["float", 618, 11], ["str", 619, 11]]);
-const pos$101 = nix.positions(here + "/formats.nix", [["foo", 615, 9]]);
-const pos$102 = nix.positions(here + "/formats.nix", [["globalSection", 611, 7], ["sections", 614, 7]]);
-const pos$103 = nix.positions(here + "/formats.nix", [["format", 609, 5], ["input", 610, 5], ["expected", 623, 5]]);
-const pos$104 = nix.positions(here + "/formats.nix", [["listToValue", 636, 7]]);
-const pos$105 = nix.positions(here + "/formats.nix", [["bar", 640, 9], ["baz", 647, 9], ["qux", 648, 9]]);
-const pos$106 = nix.positions(here + "/formats.nix", [["bar", 652, 11], ["baz", 659, 11], ["qux", 660, 11]]);
-const pos$107 = nix.positions(here + "/formats.nix", [["foo", 651, 9]]);
-const pos$108 = nix.positions(here + "/formats.nix", [["globalSection", 639, 7], ["sections", 650, 7]]);
-const pos$109 = nix.positions(here + "/formats.nix", [["format", 635, 5], ["input", 638, 5], ["expected", 664, 5]]);
-const pos$110 = nix.positions(here + "/formats.nix", [["listsAsDuplicateKeys", 678, 7], ["atomsCoercedToLists", 679, 7]]);
-const pos$111 = nix.positions(here + "/formats.nix", [["baz", 689, 17]]);
-const pos$112 = nix.positions(here + "/formats.nix", [["bar", 693, 19]]);
-const pos$113 = nix.positions(here + "/formats.nix", [["foo", 692, 17]]);
-const pos$114 = nix.positions(here + "/formats.nix", [["globalSection", 688, 15], ["sections", 691, 15]]);
-const pos$115 = nix.positions(here + "/formats.nix", [["file", 686, 13], ["value", 687, 13]]);
-const pos$116 = nix.positions(here + "/formats.nix", [["baz", 702, 17]]);
-const pos$117 = nix.positions(here + "/formats.nix", [["bar", 706, 19]]);
-const pos$118 = nix.positions(here + "/formats.nix", [["foo", 705, 17]]);
-const pos$119 = nix.positions(here + "/formats.nix", [["globalSection", 701, 15], ["sections", 704, 15]]);
-const pos$120 = nix.positions(here + "/formats.nix", [["file", 699, 13], ["value", 700, 13]]);
-const pos$121 = nix.positions(here + "/formats.nix", [["format", 677, 5], ["input", 681, 5], ["expected", 712, 5]]);
-const pos$122 = nix.positions(here + "/formats.nix", [["listToValue", 724, 7], ["atomsCoercedToLists", 725, 7]]);
-const pos$123 = nix.positions(here + "/formats.nix", [["baz", 735, 17]]);
-const pos$124 = nix.positions(here + "/formats.nix", [["bar", 739, 19]]);
-const pos$125 = nix.positions(here + "/formats.nix", [["foo", 738, 17]]);
-const pos$126 = nix.positions(here + "/formats.nix", [["globalSection", 734, 15], ["sections", 737, 15]]);
-const pos$127 = nix.positions(here + "/formats.nix", [["file", 732, 13], ["value", 733, 13]]);
-const pos$128 = nix.positions(here + "/formats.nix", [["baz", 748, 17]]);
-const pos$129 = nix.positions(here + "/formats.nix", [["bar", 752, 19]]);
-const pos$130 = nix.positions(here + "/formats.nix", [["foo", 751, 17]]);
-const pos$131 = nix.positions(here + "/formats.nix", [["globalSection", 747, 15], ["sections", 750, 15]]);
-const pos$132 = nix.positions(here + "/formats.nix", [["file", 745, 13], ["value", 746, 13]]);
-const pos$133 = nix.positions(here + "/formats.nix", [["format", 723, 5], ["input", 727, 5], ["expected", 758, 5]]);
-const pos$134 = nix.positions(here + "/formats.nix", [["atomsCoercedToLists", 767, 45]]);
-const pos$135 = nix.positions(here + "/formats.nix", [["baz", 770, 9]]);
-const pos$136 = nix.positions(here + "/formats.nix", [["bar", 773, 9]]);
-const pos$137 = nix.positions(here + "/formats.nix", [["globalSection", 769, 7], ["foo", 772, 7]]);
-const pos$138 = nix.positions(here + "/formats.nix", [["format", 767, 5], ["input", 768, 5]]);
-const pos$139 = nix.positions(here + "/formats.nix", [["atomsCoercedToLists", 779, 45]]);
-const pos$140 = nix.positions(here + "/formats.nix", [["baz", 782, 9]]);
-const pos$141 = nix.positions(here + "/formats.nix", [["bar", 785, 9]]);
-const pos$142 = nix.positions(here + "/formats.nix", [["globalSection", 781, 7], ["foo", 784, 7]]);
-const pos$143 = nix.positions(here + "/formats.nix", [["format", 779, 5], ["input", 780, 5]]);
-const pos$144 = nix.positions(here + "/formats.nix", [["bool", 793, 7], ["int", 794, 7], ["float", 795, 7], ["str", 796, 7]]);
-const pos$145 = nix.positions(here + "/formats.nix", [["format", 791, 5], ["input", 792, 5], ["expected", 798, 5]]);
-const pos$146 = nix.positions(here + "/formats.nix", [["listsAsDuplicateKeys", 807, 33]]);
-const pos$147 = nix.positions(here + "/formats.nix", [["bar", 809, 7], ["baz", 816, 7], ["qux", 817, 7]]);
-const pos$148 = nix.positions(here + "/formats.nix", [["format", 807, 5], ["input", 808, 5], ["expected", 819, 5]]);
-const pos$149 = nix.positions(here + "/formats.nix", [["listToValue", 832, 7]]);
-const pos$150 = nix.positions(here + "/formats.nix", [["bar", 835, 7], ["baz", 842, 7], ["qux", 843, 7]]);
-const pos$151 = nix.positions(here + "/formats.nix", [["format", 831, 5], ["input", 834, 5], ["expected", 845, 5]]);
-const pos$152 = nix.positions(here + "/formats.nix", [["foo", 860, 13]]);
-const pos$153 = nix.positions(here + "/formats.nix", [["level4", 865, 28]]);
-const pos$154 = nix.positions(here + "/formats.nix", [["level3", 865, 21]]);
-const pos$155 = nix.positions(here + "/formats.nix", [["level2", 865, 14]]);
-const pos$156 = nix.positions(here + "/formats.nix", [["false", 855, 7], ["true", 856, 7], ["int", 857, 7], ["float", 858, 7], ["str", 859, 7], ["attrs", 860, 7], ["list", 861, 7], ["level1", 865, 7]]);
-const pos$157 = nix.positions(here + "/formats.nix", [["format", 853, 5], ["input", 854, 5], ["expected", 867, 5]]);
-const pos$158 = nix.positions(here + "/formats.nix", [["name", 894, 11], ["except-features", 895, 11]]);
-const pos$159 = nix.positions(here + "/formats.nix", [["language-server", 891, 7]]);
-const pos$160 = nix.positions(here + "/formats.nix", [["format", 889, 5], ["input", 890, 5], ["expected", 899, 5]]);
-const pos$161 = nix.positions(here + "/formats.nix", [["stack(x,n)", 911, 7]]);
-const pos$162 = nix.positions(here + "/formats.nix", [["format", 909, 5], ["input", 910, 5], ["expected", 913, 5]]);
-const pos$163 = nix.positions(here + "/formats.nix", [["format", 919, 5], ["input", 920, 5]]);
-const pos$164 = nix.positions(here + "/formats.nix", [["foo", 932, 13]]);
-const pos$165 = nix.positions(here + "/formats.nix", [["null", 926, 7], ["false", 927, 7], ["true", 928, 7], ["int", 929, 7], ["float", 930, 7], ["str", 931, 7], ["attrs", 932, 7], ["list", 933, 7], ["path", 937, 7]]);
-const pos$166 = nix.positions(here + "/formats.nix", [["format", 924, 5], ["input", 925, 5], ["expected", 939, 5]]);
-const pos$167 = nix.positions(here + "/formats.nix", [["format", 958, 5], ["input", 959, 5], ["expected", 960, 5]]);
-const pos$168 = nix.positions(here + "/formats.nix", [["floaty", 972, 7], ["tautologies", 973, 7], ["contradictions", 974, 7], ["foo", 975, 7], ["1", 979, 7], ["package", 980, 7], ["ütf 8", 981, 7], ["الجبر", 983, 7]]);
-const pos$169 = nix.positions(here + "/formats.nix", [["format", 970, 5], ["input", 971, 5], ["expected", 985, 5]]);
-const pos$170 = nix.positions(here + "/formats.nix", [["foo", 1008, 13]]);
-const pos$171 = nix.positions(here + "/formats.nix", [["null", 1002, 7], ["false", 1003, 7], ["true", 1004, 7], ["int", 1005, 7], ["float", 1006, 7], ["str", 1007, 7], ["attrs", 1008, 7], ["list", 1009, 7], ["path", 1013, 7], ["inline", 1014, 7]]);
-const pos$172 = nix.positions(here + "/formats.nix", [["format", 1000, 5], ["input", 1001, 5], ["expected", 1016, 5]]);
-const pos$173 = nix.positions(here + "/formats.nix", [["asBindings", 1039, 7]]);
-const pos$174 = nix.positions(here + "/formats.nix", [["foo", 1048, 13]]);
-const pos$175 = nix.positions(here + "/formats.nix", [["null", 1042, 7], ["_false", 1043, 7], ["_true", 1044, 7], ["int", 1045, 7], ["float", 1046, 7], ["str", 1047, 7], ["attrs", 1048, 7], ["list", 1049, 7], ["path", 1053, 7], ["inline", 1054, 7]]);
-const pos$176 = nix.positions(here + "/formats.nix", [["format", 1038, 5], ["input", 1041, 5], ["expected", 1056, 5]]);
-const pos$177 = nix.positions(here + "/formats.nix", [["format", 1076, 5], ["input", 1077, 5], ["expected", 1078, 5]]);
-const pos$178 = nix.positions(here + "/formats.nix", [["package", 1085, 7], ["version", 1086, 7], ["extraOptions", 1087, 7]]);
-const pos$179 = nix.positions(here + "/formats.nix", [["auto-optimise-store", 1090, 7], ["cores", 1091, 7], ["store", 1092, 7]]);
-const pos$180 = nix.positions(here + "/formats.nix", [["format", 1084, 5], ["input", 1089, 5], ["expected", 1096, 5]]);
-const pos$181 = nix.positions(here + "/formats.nix", [["package", 1110, 7], ["version", 1111, 7], ["extraOptions", 1112, 7]]);
-const pos$182 = nix.positions(here + "/formats.nix", [["format", 1109, 5], ["input", 1114, 5]]);
-const pos$183 = nix.positions(here + "/formats.nix", [["finalVariable", 1118, 28]]);
-const pos$184 = nix.positions(here + "/formats.nix", [["foo", 1127, 13]]);
-const pos$185 = nix.positions(here + "/formats.nix", [["foo", 1134, 15]]);
-const pos$186 = nix.positions(here + "/formats.nix", [["str", 1133, 9], ["attrs", 1134, 9]]);
-const pos$187 = nix.positions(here + "/formats.nix", [["null", 1120, 7], ["false", 1121, 7], ["true", 1122, 7], ["int", 1123, 7], ["float", 1124, 7], ["str", 1125, 7], ["str_special", 1126, 7], ["attrs", 1127, 7], ["list", 1128, 7], ["mixed", 1132, 7], ["raw", 1136, 7]]);
-const pos$188 = nix.positions(here + "/formats.nix", [["format", 1118, 5], ["input", 1119, 5], ["expected", 1138, 5]]);
-const pos$189 = nix.positions(here + "/formats.nix", [["finalVariable", 1147, 28]]);
-const pos$190 = nix.positions(here + "/formats.nix", [["format", 1147, 5], ["input", 1148, 5], ["expected", 1149, 5]]);
-const pos$191 = nix.positions(here + "/formats.nix", [["foo", 1182, 11], ["conditional", 1183, 11]]);
-const pos$192 = nix.positions(here + "/formats.nix", [["_imports", 1163, 9], ["int", 1168, 9], ["float", 1169, 9], ["bool", 1170, 9], ["str", 1171, 9], ["str_special", 1172, 9], ["null", 1173, 9], ["list", 1174, 9], ["attrs", 1181, 9], ["func", 1185, 9]]);
-const pos$193 = nix.positions(here + "/formats.nix", [["format", 1161, 15], ["input", 1162, 7], ["expected", 1187, 7]]);
-const pos$194 = nix.positions(here + "/formats.nix", [["format", 1205, 5], ["input", 1206, 5]]);
-const pos$195 = nix.positions(here + "/formats.nix", [["foo", 1216, 13]]);
-const pos$196 = nix.positions(here + "/formats.nix", [["int", 1212, 7], ["float", 1213, 7], ["str", 1214, 7], ["str_special", 1215, 7], ["attrs", 1216, 7]]);
-const pos$197 = nix.positions(here + "/formats.nix", [["format", 1210, 5], ["input", 1211, 5], ["expected", 1218, 5]]);
-const pos$198 = nix.positions(here + "/formats.nix", [["@name", 1233, 11], ["#text", 1234, 11]]);
-const pos$199 = nix.positions(here + "/formats.nix", [["grandchild", 1237, 11]]);
-const pos$200 = nix.positions(here + "/formats.nix", [["@id", 1230, 9], ["@class", 1231, 9], ["child1", 1232, 9], ["child2", 1236, 9], ["nulltest", 1239, 9]]);
-const pos$201 = nix.positions(here + "/formats.nix", [["root", 1229, 7]]);
-const pos$202 = nix.positions(here + "/formats.nix", [["format", 1227, 5], ["input", 1228, 5], ["expected", 1242, 5]]);
-const pos$203 = nix.positions(here + "/formats.nix", [["format", 1255, 5], ["input", 1256, 5]]);
-const pos$204 = nix.positions(here + "/formats.nix", [["foo", 1268, 13]]);
-const pos$205 = nix.positions(here + "/formats.nix", [["value", 1275, 15]]);
-const pos$206 = nix.positions(here + "/formats.nix", [["key", 1274, 13]]);
-const pos$207 = nix.positions(here + "/formats.nix", [["attrs", 1273, 11]]);
-const pos$208 = nix.positions(here + "/formats.nix", [["null", 1262, 7], ["false", 1263, 7], ["true", 1264, 7], ["int", 1265, 7], ["float", 1266, 7], ["str", 1267, 7], ["attrs", 1268, 7], ["list", 1269, 7]]);
-const pos$209 = nix.positions(here + "/formats.nix", [["format", 1260, 5], ["input", 1261, 5], ["expected", 1288, 5]]);
-const pos$210 = nix.positions(here + "/formats.nix", [["format", 1335, 5], ["input", 1336, 5], ["expected", 1337, 5]]);
-const pos$211 = nix.positions(here + "/formats.nix", [["ami", 1351, 13], ["instance_type", 1352, 13]]);
-const pos$212 = nix.positions(here + "/formats.nix", [["example", 1350, 11]]);
-const pos$213 = nix.positions(here + "/formats.nix", [["aws_instance", 1349, 9]]);
-const pos$214 = nix.positions(here + "/formats.nix", [["default", 1358, 11]]);
-const pos$215 = nix.positions(here + "/formats.nix", [["region", 1357, 9]]);
-const pos$216 = nix.positions(here + "/formats.nix", [["value", 1363, 11]]);
-const pos$217 = nix.positions(here + "/formats.nix", [["ip", 1362, 9]]);
-const pos$218 = nix.positions(here + "/formats.nix", [["resource", 1348, 7], ["variable", 1356, 7], ["output", 1361, 7], ["primitive", 1366, 7], ["number", 1367, 7], ["enabled", 1368, 7]]);
-const pos$219 = nix.positions(here + "/formats.nix", [["format", 1346, 5], ["input", 1347, 5], ["expected", 1370, 5]]);
-const pos$220 = nix.positions(here + "/formats.nix", [["jsonAtoms", 109, 3], ["jsonNull", 145, 3], ["yaml_1_1Atoms", 153, 3], ["yaml_1_1Null", 189, 3], ["yaml_1_2Atoms", 199, 3], ["yaml_1_2Null", 233, 3], ["yaml_1_1Tags", 243, 3], ["yaml_1_2Tags", 264, 3], ["iniAtoms", 283, 3], ["configobjAtoms", 302, 3], ["configobjListWithoutListToValue", 318, 3], ["configobjNestedAttrsets", 332, 3], ["configobjNullableValues", 382, 3], ["configobjInvalidAtom", 399, 3], ["iniInvalidAtom", 406, 3], ["iniDuplicateKeysWithoutList", 415, 3], ["iniDuplicateKeys", 432, 3], ["iniListToValue", 459, 3], ["iniCoercedDuplicateKeys", 484, 3], ["iniCoercedListToValue", 517, 3], ["iniCoercedNoLists", 549, 3], ["iniNoCoercedNoLists", 558, 3], ["iniWithGlobalNoSections", 567, 3], ["iniWithGlobalOnlySections", 573, 3], ["iniWithGlobalOnlyGlobal", 588, 3], ["iniWithGlobalWrongSections", 601, 3], ["iniWithGlobalEverything", 608, 3], ["iniWithGlobalListToValue", 634, 3], ["iniWithGlobalCoercedDuplicateKeys", 676, 3], ["iniWithGlobalCoercedListToValue", 722, 3], ["iniWithGlobalCoercedNoLists", 766, 3], ["iniWithGlobalNoCoercedNoLists", 778, 3], ["keyValueAtoms", 790, 3], ["keyValueDuplicateKeys", 806, 3], ["keyValueListToValue", 830, 3], ["tomlAtoms", 852, 3], ["tomlHeterogeneousArray", 888, 3], ["tomlCommaInKey", 908, 3], ["tomlNull", 918, 3], ["cdnAtoms", 923, 3], ["cdnNull", 957, 3], ["javaProperties", 969, 3], ["luaTable", 999, 3], ["luaBindings", 1037, 3], ["luaNull", 1075, 3], ["nixConfAtoms", 1083, 3], ["nixConfNull", 1108, 3], ["phpAtoms", 1117, 3], ["phpNull", 1146, 3], ["pythonVars", 1156, 3], ["pythonVarsNull", 1204, 3], ["phpReturn", 1209, 3], ["badgerfishToXmlGenerate", 1226, 3], ["xmlNull", 1254, 3], ["PlistGenerate", 1259, 3], ["PlistNull", 1334, 3], ["hcl1Atoms", 1345, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -233,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const formats = nix.thunk(() => nix.attr(pkgs, "formats"));
   const mergeInput = (name) => (format) => (input) => nix.app(nix.sel(format, "type", "merge"), [], nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         value: nix.thunk(() => nix.app(nix.sel(lib, "throwIfNot"), nix.thunk(() => nix.app(nix.sel(format, "type", "check"), input)), nix.thunk(() => nix.builtins.trace(input, "definition does not pass the type's check function")), input)),
         file: nix.thunk(() => nix.str`format-test-${name}`),
       })),
     ]));
   const runDiff = (name) => (drv) => (expected) => nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       passAsFile: nix.thunk(() => ["expected"]),
       expected: expected,
       drv: drv,
@@ -250,7 +31,7 @@ export default nix.lambda((args) => (() => {
     const input = nix.arg($_1, "input");
     const expected = nix.arg($_1, "expected");
     return (name) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`pass-${name}`),
       path: nix.thunk(() => nix.app(runDiff, nix.thunk(() => nix.str`test-format-${name}`), nix.thunk(() => nix.app(nix.sel(format, "generate"), nix.thunk(() => nix.str`test-format-${name}`), nix.thunk(() => nix.app(mergeInput, name, format, input)))), expected)),
     });
@@ -262,7 +43,7 @@ export default nix.lambda((args) => (() => {
     return (name) => (() => {
       const typeCheck = nix.thunk(() => nix.app(nix.sel(lib, "modules", "mergeDefinitions"), nix.thunk(() => ["tests", name]), nix.thunk(() => nix.sel(format, "type")), nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             file: nix.thunk(() => nix.str`format-test-${name}`),
             value: input,
           })),
@@ -270,13 +51,13 @@ export default nix.lambda((args) => (() => {
       const eval$ = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.eq(nix.sel(typeCheck, "mergedValue"), input))));
       const typeFails = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`test-format-${name}`), nix.thunk(() => ({})), "touch $out"));
       const typeSucceeds = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`test-format-${name}`), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           passAsFile: nix.thunk(() => ["inputText"]),
           testName: name,
           inputText: nix.thunk(() => nix.builtins.toJSON(input)),
         })), "echo \"Type check $testName passed when it shouldn't.\"\necho \"The following data was used as input:\"\necho\ncat \"$inputTextPath\"\nexit 1\n"));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: nix.thunk(() => nix.str`fail-${name}`),
         path: nix.thunk(() => (nix.asBool(nix.sel(eval$, "success")) ? nix.force(typeSucceeds) : nix.force(typeFails))),
       };
@@ -287,19 +68,19 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "nixpkgs-pkgs-lib-format-tests")),
     ])));
   return nix.app(runBuildTests, nix.thunk(() => ({
-      [nix.POS]: pos$220,
+      [nix.POS]: $pos[219],
       jsonAtoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           format: nix.thunk(() => nix.app(nix.sel(formats, "json"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             null: null,
             false: false,
             true: true,
             int: 10n,
             float: 3.141,
             str: "foo",
-            attrs: nix.thunk(() => ({ [nix.POS]: pos$7, foo: null })),
+            attrs: nix.thunk(() => ({ [nix.POS]: $pos[6], foo: null })),
             list: nix.thunk(() => [null, null]),
             path: nix.path(here, "./testfile"),
           })),
@@ -322,22 +103,22 @@ export default nix.lambda((args) => (() => {
 `),
         })))),
       jsonNull: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           format: nix.thunk(() => nix.app(nix.sel(formats, "json"), nix.thunk(() => ({})))),
           input: null,
           expected: "null\n",
         })))),
       yaml_1_1Atoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           format: nix.thunk(() => nix.app(nix.sel(formats, "yaml_1_1"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             null: null,
             false: false,
             true: true,
             float: 3.141,
             str: "foo",
-            attrs: nix.thunk(() => ({ [nix.POS]: pos$11, foo: null })),
+            attrs: nix.thunk(() => ({ [nix.POS]: $pos[10], foo: null })),
             list: nix.thunk(() => [null, null]),
             path: nix.path(here, "./testfile"),
             no: "no",
@@ -361,22 +142,22 @@ time: '22:30:00'
 `),
         })))),
       yaml_1_1Null: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           format: nix.thunk(() => nix.app(nix.sel(formats, "yaml_1_1"), nix.thunk(() => ({})))),
           input: null,
           expected: "%YAML 1.1\n---\n  null\n",
         })))),
       yaml_1_2Atoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           format: nix.thunk(() => nix.app(nix.sel(formats, "yaml_1_2"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             null: null,
             false: false,
             true: true,
             float: 3.141,
             str: "foo",
-            attrs: nix.thunk(() => ({ [nix.POS]: pos$15, foo: null })),
+            attrs: nix.thunk(() => ({ [nix.POS]: $pos[14], foo: null })),
             list: nix.thunk(() => [null, null]),
             path: nix.path(here, "./testfile"),
             no: "no",
@@ -398,7 +179,7 @@ time: 22:30:00
 `),
         })))),
       yaml_1_2Null: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           format: nix.thunk(() => nix.app(nix.sel(formats, "yaml_1_2"), nix.thunk(() => ({})))),
           input: null,
           expected: nix.thunk(() => nix.str`
@@ -406,107 +187,107 @@ ${"  "}null
 `),
         })))),
       yaml_1_1Tags: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$24,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "yaml_1_1"), nix.thunk(() => ({ [nix.POS]: pos$19, tags: true })))),
+          [nix.POS]: $pos[23],
+          format: nix.thunk(() => nix.app(nix.sel(formats, "yaml_1_1"), nix.thunk(() => ({ [nix.POS]: $pos[18], tags: true })))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             tag1: nix.thunk(() => ({
-              [nix.POS]: pos$21,
-              "!mytag": nix.thunk(() => ({ [nix.POS]: pos$20, k1: "v1" })),
+              [nix.POS]: $pos[20],
+              "!mytag": nix.thunk(() => ({ [nix.POS]: $pos[19], k1: "v1" })),
             })),
-            tag2: nix.thunk(() => ({ [nix.POS]: pos$22, "!anothertag": true })),
+            tag2: nix.thunk(() => ({ [nix.POS]: $pos[21], "!anothertag": true })),
           })),
           expected: "%YAML 1.1\n---\ntag1: !mytag\n  k1: v1\ntag2: !anothertag true\n",
         })))),
       yaml_1_2Tags: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$30,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "yaml_1_2"), nix.thunk(() => ({ [nix.POS]: pos$25, tags: true })))),
+          [nix.POS]: $pos[29],
+          format: nix.thunk(() => nix.app(nix.sel(formats, "yaml_1_2"), nix.thunk(() => ({ [nix.POS]: $pos[24], tags: true })))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             tag1: nix.thunk(() => ({
-              [nix.POS]: pos$27,
-              "!mytag": nix.thunk(() => ({ [nix.POS]: pos$26, k1: "v1" })),
+              [nix.POS]: $pos[26],
+              "!mytag": nix.thunk(() => ({ [nix.POS]: $pos[25], k1: "v1" })),
             })),
-            tag2: nix.thunk(() => ({ [nix.POS]: pos$28, "!anothertag": true })),
+            tag2: nix.thunk(() => ({ [nix.POS]: $pos[27], "!anothertag": true })),
           })),
           expected: "tag1: !mytag\n  k1: v1\ntag2: !anothertag true\n",
         })))),
       iniAtoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$32,
-            foo: nix.thunk(() => ({ [nix.POS]: pos$31, bool: true, int: 10n, float: 3.141, str: "string" })),
+            [nix.POS]: $pos[31],
+            foo: nix.thunk(() => ({ [nix.POS]: $pos[30], bool: true, int: 10n, float: 3.141, str: "string" })),
           })),
           expected: "[foo]\nbool=true\nfloat=3.141000\nint=10\nstr=string\n",
         })))),
       configobjAtoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           format: nix.thunk(() => nix.app(nix.sel(formats, "configobj"), nix.thunk(() => ({})))),
-          input: nix.thunk(() => ({ [nix.POS]: pos$34, bool: true, int: 10n, float: 3.141, str: "string" })),
+          input: nix.thunk(() => ({ [nix.POS]: $pos[33], bool: true, int: 10n, float: 3.141, str: "string" })),
           expected: "bool = True\nfloat = 3.141\nint = 10\nstr = string\n",
         })))),
       configobjListWithoutListToValue: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           format: nix.thunk(() => nix.app(nix.sel(formats, "configobj"), nix.thunk(() => ({})))),
-          input: nix.thunk(() => ({ [nix.POS]: pos$36, items: nix.thunk(() => [1n, true, "x"]) })),
+          input: nix.thunk(() => ({ [nix.POS]: $pos[35], items: nix.thunk(() => [1n, true, "x"]) })),
           expected: "items = 1, True, x\n",
         })))),
       configobjNestedAttrsets: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$45,
+          [nix.POS]: $pos[44],
           format: nix.thunk(() => nix.app(nix.sel(formats, "configobj"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$44,
+            [nix.POS]: $pos[43],
             server: nix.thunk(() => ({
-              [nix.POS]: pos$38,
+              [nix.POS]: $pos[37],
               host: "127.0.0.1",
               port: 8080n,
               enabled: true,
               tags: nix.thunk(() => ["web", "nix", 42n]),
             })),
-            logging: nix.thunk(() => ({ [nix.POS]: pos$39, level: "info", rotate: true })),
+            logging: nix.thunk(() => ({ [nix.POS]: $pos[38], level: "info", rotate: true })),
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$43,
+              [nix.POS]: $pos[42],
               local: nix.thunk(() => ({
-                [nix.POS]: pos$41,
+                [nix.POS]: $pos[40],
                 address: "123",
-                coin: nix.thunk(() => ({ [nix.POS]: pos$40, foo: "bar" })),
+                coin: nix.thunk(() => ({ [nix.POS]: $pos[39], foo: "bar" })),
               })),
-              remote: nix.thunk(() => ({ [nix.POS]: pos$42, address: "456" })),
+              remote: nix.thunk(() => ({ [nix.POS]: $pos[41], address: "456" })),
             })),
           })),
           expected: "[interfaces]\n[[local]]\naddress = 123\n[[[coin]]]\nfoo = bar\n[[remote]]\naddress = 456\n[logging]\nlevel = info\nrotate = True\n[server]\nenabled = True\nhost = 127.0.0.1\nport = 8080\ntags = web, nix, 42\n",
         })))),
       configobjNullableValues: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$48,
+          [nix.POS]: $pos[47],
           format: nix.thunk(() => nix.app(nix.sel(formats, "configobj"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$47,
+            [nix.POS]: $pos[46],
             nullable: null,
-            nested: nix.thunk(() => ({ [nix.POS]: pos$46, keep: "ok", missing: null })),
+            nested: nix.thunk(() => ({ [nix.POS]: $pos[45], keep: "ok", missing: null })),
           })),
           expected: "nullable = None\n[nested]\nkeep = ok\nmissing = None\n",
         })))),
       configobjInvalidAtom: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          [nix.POS]: pos$50,
+          [nix.POS]: $pos[49],
           format: nix.thunk(() => nix.app(nix.sel(formats, "configobj"), nix.thunk(() => ({})))),
-          input: nix.thunk(() => ({ [nix.POS]: pos$49, function: (_) => 1n })),
+          input: nix.thunk(() => ({ [nix.POS]: $pos[48], function: (_) => 1n })),
         })))),
       iniInvalidAtom: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          [nix.POS]: pos$53,
+          [nix.POS]: $pos[52],
           format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$52,
-            foo: nix.thunk(() => ({ [nix.POS]: pos$51, function: (_) => 1n })),
+            [nix.POS]: $pos[51],
+            foo: nix.thunk(() => ({ [nix.POS]: $pos[50], function: (_) => 1n })),
           })),
         })))),
       iniDuplicateKeysWithoutList: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          [nix.POS]: pos$56,
+          [nix.POS]: $pos[55],
           format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$55,
+            [nix.POS]: $pos[54],
             foo: nix.thunk(() => ({
-              [nix.POS]: pos$54,
+              [nix.POS]: $pos[53],
               bar: nix.thunk(() => [null, true, "test", 1.2, 10n]),
               baz: false,
               qux: "qux",
@@ -514,12 +295,12 @@ ${"  "}null
           })),
         })))),
       iniDuplicateKeys: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$60,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({ [nix.POS]: pos$57, listsAsDuplicateKeys: true })))),
+          [nix.POS]: $pos[59],
+          format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({ [nix.POS]: $pos[56], listsAsDuplicateKeys: true })))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$59,
+            [nix.POS]: $pos[58],
             foo: nix.thunk(() => ({
-              [nix.POS]: pos$58,
+              [nix.POS]: $pos[57],
               bar: nix.thunk(() => [null, true, "test", 1.2, 10n]),
               baz: false,
               qux: "qux",
@@ -528,15 +309,15 @@ ${"  "}null
           expected: "[foo]\nbar=null\nbar=true\nbar=test\nbar=1.200000\nbar=10\nbaz=false\nqux=qux\n",
         })))),
       iniListToValue: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$64,
+          [nix.POS]: $pos[63],
           format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({
-              [nix.POS]: pos$61,
+              [nix.POS]: $pos[60],
               listToValue: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})))))),
             })))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$63,
+            [nix.POS]: $pos[62],
             foo: nix.thunk(() => ({
-              [nix.POS]: pos$62,
+              [nix.POS]: $pos[61],
               bar: nix.thunk(() => [null, true, "test", 1.2, 10n]),
               baz: false,
               qux: "qux",
@@ -545,113 +326,134 @@ ${"  "}null
           expected: "[foo]\nbar=null, true, test, 1.200000, 10\nbaz=false\nqux=qux\n",
         })))),
       iniCoercedDuplicateKeys: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => (() => {
-          const format = nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({ [nix.POS]: pos$65, listsAsDuplicateKeys: true, atomsCoercedToLists: true }))));
+          const format = nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({ [nix.POS]: $pos[64], listsAsDuplicateKeys: true, atomsCoercedToLists: true }))));
           const input = nix.thunk(() => nix.app(nix.sel(format, "type", "merge"), [], nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$68,
+                [nix.POS]: $pos[67],
                 file: "format-test-inner-iniCoercedDuplicateKeys",
-                value: nix.thunk(() => ({ [nix.POS]: pos$67, foo: nix.thunk(() => ({ [nix.POS]: pos$66, bar: 1n })) })),
+                value: nix.thunk(() => ({
+                  [nix.POS]: $pos[66],
+                  foo: nix.thunk(() => ({ [nix.POS]: $pos[65], bar: 1n })),
+                })),
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$71,
+                [nix.POS]: $pos[70],
                 file: "format-test-inner-iniCoercedDuplicateKeys",
-                value: nix.thunk(() => ({ [nix.POS]: pos$70, foo: nix.thunk(() => ({ [nix.POS]: pos$69, bar: 2n })) })),
+                value: nix.thunk(() => ({
+                  [nix.POS]: $pos[69],
+                  foo: nix.thunk(() => ({ [nix.POS]: $pos[68], bar: 2n })),
+                })),
               })),
             ])));
           const expected = "[foo]\nbar=1\nbar=2\n";
-          return { [nix.POS]: pos$72, format, input, expected };
+          return { [nix.POS]: $pos[71], format, input, expected };
         })()))),
       iniCoercedListToValue: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => (() => {
           const format = nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({
-              [nix.POS]: pos$73,
+              [nix.POS]: $pos[72],
               listToValue: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})))))),
               atomsCoercedToLists: true,
             }))));
           const input = nix.thunk(() => nix.app(nix.sel(format, "type", "merge"), [], nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$76,
+                [nix.POS]: $pos[75],
                 file: "format-test-inner-iniCoercedListToValue",
-                value: nix.thunk(() => ({ [nix.POS]: pos$75, foo: nix.thunk(() => ({ [nix.POS]: pos$74, bar: 1n })) })),
+                value: nix.thunk(() => ({
+                  [nix.POS]: $pos[74],
+                  foo: nix.thunk(() => ({ [nix.POS]: $pos[73], bar: 1n })),
+                })),
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$79,
+                [nix.POS]: $pos[78],
                 file: "format-test-inner-iniCoercedListToValue",
-                value: nix.thunk(() => ({ [nix.POS]: pos$78, foo: nix.thunk(() => ({ [nix.POS]: pos$77, bar: 2n })) })),
+                value: nix.thunk(() => ({
+                  [nix.POS]: $pos[77],
+                  foo: nix.thunk(() => ({ [nix.POS]: $pos[76], bar: 2n })),
+                })),
               })),
             ])));
           const expected = "[foo]\nbar=1, 2\n";
-          return { [nix.POS]: pos$80, format, input, expected };
+          return { [nix.POS]: $pos[79], format, input, expected };
         })()))),
       iniCoercedNoLists: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          [nix.POS]: pos$84,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({ [nix.POS]: pos$81, atomsCoercedToLists: true })))),
-          input: nix.thunk(() => ({ [nix.POS]: pos$83, foo: nix.thunk(() => ({ [nix.POS]: pos$82, bar: 1n })) })),
+          [nix.POS]: $pos[83],
+          format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({ [nix.POS]: $pos[80], atomsCoercedToLists: true })))),
+          input: nix.thunk(() => ({
+            [nix.POS]: $pos[82],
+            foo: nix.thunk(() => ({ [nix.POS]: $pos[81], bar: 1n })),
+          })),
         })))),
       iniNoCoercedNoLists: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          [nix.POS]: pos$88,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({ [nix.POS]: pos$85, atomsCoercedToLists: false })))),
-          input: nix.thunk(() => ({ [nix.POS]: pos$87, foo: nix.thunk(() => ({ [nix.POS]: pos$86, bar: 1n })) })),
+          [nix.POS]: $pos[87],
+          format: nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({ [nix.POS]: $pos[84], atomsCoercedToLists: false })))),
+          input: nix.thunk(() => ({
+            [nix.POS]: $pos[86],
+            foo: nix.thunk(() => ({ [nix.POS]: $pos[85], bar: 1n })),
+          })),
         })))),
       iniWithGlobalNoSections: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$89,
+          [nix.POS]: $pos[88],
           format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({})),
           expected: "",
         })))),
       iniWithGlobalOnlySections: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$93,
+          [nix.POS]: $pos[92],
           format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$92,
-            sections: nix.thunk(() => ({ [nix.POS]: pos$91, foo: nix.thunk(() => ({ [nix.POS]: pos$90, bar: "baz" })) })),
+            [nix.POS]: $pos[91],
+            sections: nix.thunk(() => ({
+              [nix.POS]: $pos[90],
+              foo: nix.thunk(() => ({ [nix.POS]: $pos[89], bar: "baz" })),
+            })),
           })),
           expected: "[foo]\nbar=baz\n",
         })))),
       iniWithGlobalOnlyGlobal: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$96,
+          [nix.POS]: $pos[95],
           format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$95,
-            globalSection: nix.thunk(() => ({ [nix.POS]: pos$94, bar: "baz" })),
+            [nix.POS]: $pos[94],
+            globalSection: nix.thunk(() => ({ [nix.POS]: $pos[93], bar: "baz" })),
           })),
           expected: "bar=baz\n\n",
         })))),
       iniWithGlobalWrongSections: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          [nix.POS]: pos$98,
+          [nix.POS]: $pos[97],
           format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({})))),
-          input: nix.thunk(() => ({ [nix.POS]: pos$97, foo: nix.thunk(() => ({})) })),
+          input: nix.thunk(() => ({ [nix.POS]: $pos[96], foo: nix.thunk(() => ({})) })),
         })))),
       iniWithGlobalEverything: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$103,
+          [nix.POS]: $pos[102],
           format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$102,
-            globalSection: nix.thunk(() => ({ [nix.POS]: pos$99, bar: true })),
+            [nix.POS]: $pos[101],
+            globalSection: nix.thunk(() => ({ [nix.POS]: $pos[98], bar: true })),
             sections: nix.thunk(() => ({
-              [nix.POS]: pos$101,
-              foo: nix.thunk(() => ({ [nix.POS]: pos$100, bool: true, int: 10n, float: 3.141, str: "string" })),
+              [nix.POS]: $pos[100],
+              foo: nix.thunk(() => ({ [nix.POS]: $pos[99], bool: true, int: 10n, float: 3.141, str: "string" })),
             })),
           })),
           expected: "bar=true\n\n[foo]\nbool=true\nfloat=3.141000\nint=10\nstr=string\n",
         })))),
       iniWithGlobalListToValue: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$109,
+          [nix.POS]: $pos[108],
           format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({
-              [nix.POS]: pos$104,
+              [nix.POS]: $pos[103],
               listToValue: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})))))),
             })))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$108,
+            [nix.POS]: $pos[107],
             globalSection: nix.thunk(() => ({
-              [nix.POS]: pos$105,
+              [nix.POS]: $pos[104],
               bar: nix.thunk(() => [null, true, "test", 1.2, 10n]),
               baz: false,
               qux: "qux",
             })),
             sections: nix.thunk(() => ({
-              [nix.POS]: pos$107,
+              [nix.POS]: $pos[106],
               foo: nix.thunk(() => ({
-                [nix.POS]: pos$106,
+                [nix.POS]: $pos[105],
                 bar: nix.thunk(() => [null, true, "test", 1.2, 10n]),
                 baz: false,
                 qux: "qux",
@@ -661,88 +463,100 @@ ${"  "}null
           expected: "bar=null, true, test, 1.200000, 10\nbaz=false\nqux=qux\n\n[foo]\nbar=null, true, test, 1.200000, 10\nbaz=false\nqux=qux\n",
         })))),
       iniWithGlobalCoercedDuplicateKeys: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => (() => {
-          const format = nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({ [nix.POS]: pos$110, listsAsDuplicateKeys: true, atomsCoercedToLists: true }))));
+          const format = nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({ [nix.POS]: $pos[109], listsAsDuplicateKeys: true, atomsCoercedToLists: true }))));
           const input = nix.thunk(() => nix.app(nix.sel(format, "type", "merge"), [], nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$115,
+                [nix.POS]: $pos[114],
                 file: "format-test-inner-iniWithGlobalCoercedDuplicateKeys",
                 value: nix.thunk(() => ({
-                  [nix.POS]: pos$114,
-                  globalSection: nix.thunk(() => ({ [nix.POS]: pos$111, baz: 4n })),
-                  sections: nix.thunk(() => ({ [nix.POS]: pos$113, foo: nix.thunk(() => ({ [nix.POS]: pos$112, bar: 1n })) })),
+                  [nix.POS]: $pos[113],
+                  globalSection: nix.thunk(() => ({ [nix.POS]: $pos[110], baz: 4n })),
+                  sections: nix.thunk(() => ({
+                    [nix.POS]: $pos[112],
+                    foo: nix.thunk(() => ({ [nix.POS]: $pos[111], bar: 1n })),
+                  })),
                 })),
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$120,
+                [nix.POS]: $pos[119],
                 file: "format-test-inner-iniWithGlobalCoercedDuplicateKeys",
                 value: nix.thunk(() => ({
-                  [nix.POS]: pos$119,
-                  globalSection: nix.thunk(() => ({ [nix.POS]: pos$116, baz: 3n })),
-                  sections: nix.thunk(() => ({ [nix.POS]: pos$118, foo: nix.thunk(() => ({ [nix.POS]: pos$117, bar: 2n })) })),
+                  [nix.POS]: $pos[118],
+                  globalSection: nix.thunk(() => ({ [nix.POS]: $pos[115], baz: 3n })),
+                  sections: nix.thunk(() => ({
+                    [nix.POS]: $pos[117],
+                    foo: nix.thunk(() => ({ [nix.POS]: $pos[116], bar: 2n })),
+                  })),
                 })),
               })),
             ])));
           const expected = "baz=3\nbaz=4\n\n[foo]\nbar=2\nbar=1\n";
-          return { [nix.POS]: pos$121, format, input, expected };
+          return { [nix.POS]: $pos[120], format, input, expected };
         })()))),
       iniWithGlobalCoercedListToValue: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => (() => {
           const format = nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({
-              [nix.POS]: pos$122,
+              [nix.POS]: $pos[121],
               listToValue: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})))))),
               atomsCoercedToLists: true,
             }))));
           const input = nix.thunk(() => nix.app(nix.sel(format, "type", "merge"), [], nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$127,
+                [nix.POS]: $pos[126],
                 file: "format-test-inner-iniWithGlobalCoercedListToValue",
                 value: nix.thunk(() => ({
-                  [nix.POS]: pos$126,
-                  globalSection: nix.thunk(() => ({ [nix.POS]: pos$123, baz: 4n })),
-                  sections: nix.thunk(() => ({ [nix.POS]: pos$125, foo: nix.thunk(() => ({ [nix.POS]: pos$124, bar: 1n })) })),
+                  [nix.POS]: $pos[125],
+                  globalSection: nix.thunk(() => ({ [nix.POS]: $pos[122], baz: 4n })),
+                  sections: nix.thunk(() => ({
+                    [nix.POS]: $pos[124],
+                    foo: nix.thunk(() => ({ [nix.POS]: $pos[123], bar: 1n })),
+                  })),
                 })),
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$132,
+                [nix.POS]: $pos[131],
                 file: "format-test-inner-iniWithGlobalCoercedListToValue",
                 value: nix.thunk(() => ({
-                  [nix.POS]: pos$131,
-                  globalSection: nix.thunk(() => ({ [nix.POS]: pos$128, baz: 3n })),
-                  sections: nix.thunk(() => ({ [nix.POS]: pos$130, foo: nix.thunk(() => ({ [nix.POS]: pos$129, bar: 2n })) })),
+                  [nix.POS]: $pos[130],
+                  globalSection: nix.thunk(() => ({ [nix.POS]: $pos[127], baz: 3n })),
+                  sections: nix.thunk(() => ({
+                    [nix.POS]: $pos[129],
+                    foo: nix.thunk(() => ({ [nix.POS]: $pos[128], bar: 2n })),
+                  })),
                 })),
               })),
             ])));
           const expected = "baz=3, 4\n\n[foo]\nbar=2, 1\n";
-          return { [nix.POS]: pos$133, format, input, expected };
+          return { [nix.POS]: $pos[132], format, input, expected };
         })()))),
       iniWithGlobalCoercedNoLists: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          [nix.POS]: pos$138,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({ [nix.POS]: pos$134, atomsCoercedToLists: true })))),
+          [nix.POS]: $pos[137],
+          format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({ [nix.POS]: $pos[133], atomsCoercedToLists: true })))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$137,
-            globalSection: nix.thunk(() => ({ [nix.POS]: pos$135, baz: 4n })),
-            foo: nix.thunk(() => ({ [nix.POS]: pos$136, bar: 1n })),
+            [nix.POS]: $pos[136],
+            globalSection: nix.thunk(() => ({ [nix.POS]: $pos[134], baz: 4n })),
+            foo: nix.thunk(() => ({ [nix.POS]: $pos[135], bar: 1n })),
           })),
         })))),
       iniWithGlobalNoCoercedNoLists: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          [nix.POS]: pos$143,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({ [nix.POS]: pos$139, atomsCoercedToLists: false })))),
+          [nix.POS]: $pos[142],
+          format: nix.thunk(() => nix.app(nix.sel(formats, "iniWithGlobalSection"), nix.thunk(() => ({ [nix.POS]: $pos[138], atomsCoercedToLists: false })))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$142,
-            globalSection: nix.thunk(() => ({ [nix.POS]: pos$140, baz: 4n })),
-            foo: nix.thunk(() => ({ [nix.POS]: pos$141, bar: 1n })),
+            [nix.POS]: $pos[141],
+            globalSection: nix.thunk(() => ({ [nix.POS]: $pos[139], baz: 4n })),
+            foo: nix.thunk(() => ({ [nix.POS]: $pos[140], bar: 1n })),
           })),
         })))),
       keyValueAtoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$145,
+          [nix.POS]: $pos[144],
           format: nix.thunk(() => nix.app(nix.sel(formats, "keyValue"), nix.thunk(() => ({})))),
-          input: nix.thunk(() => ({ [nix.POS]: pos$144, bool: true, int: 10n, float: 3.141, str: "string" })),
+          input: nix.thunk(() => ({ [nix.POS]: $pos[143], bool: true, int: 10n, float: 3.141, str: "string" })),
           expected: "bool=true\nfloat=3.141000\nint=10\nstr=string\n",
         })))),
       keyValueDuplicateKeys: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$148,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "keyValue"), nix.thunk(() => ({ [nix.POS]: pos$146, listsAsDuplicateKeys: true })))),
+          [nix.POS]: $pos[147],
+          format: nix.thunk(() => nix.app(nix.sel(formats, "keyValue"), nix.thunk(() => ({ [nix.POS]: $pos[145], listsAsDuplicateKeys: true })))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$147,
+            [nix.POS]: $pos[146],
             bar: nix.thunk(() => [null, true, "test", 1.2, 10n]),
             baz: false,
             qux: "qux",
@@ -750,13 +564,13 @@ ${"  "}null
           expected: "bar=null\nbar=true\nbar=test\nbar=1.200000\nbar=10\nbaz=false\nqux=qux\n",
         })))),
       keyValueListToValue: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$151,
+          [nix.POS]: $pos[150],
           format: nix.thunk(() => nix.app(nix.sel(formats, "keyValue"), nix.thunk(() => ({
-              [nix.POS]: pos$149,
+              [nix.POS]: $pos[148],
               listToValue: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "generators", "mkValueStringDefault"), nix.thunk(() => ({})))))),
             })))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$150,
+            [nix.POS]: $pos[149],
             bar: nix.thunk(() => [null, true, "test", 1.2, 10n]),
             baz: false,
             qux: "qux",
@@ -764,36 +578,36 @@ ${"  "}null
           expected: "bar=null, true, test, 1.200000, 10\nbaz=false\nqux=qux\n",
         })))),
       tomlAtoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$157,
+          [nix.POS]: $pos[156],
           format: nix.thunk(() => nix.app(nix.sel(formats, "toml"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$156,
+            [nix.POS]: $pos[155],
             false: false,
             true: true,
             int: 10n,
             float: 3.141,
             str: "foo",
-            attrs: nix.thunk(() => ({ [nix.POS]: pos$152, foo: "foo" })),
+            attrs: nix.thunk(() => ({ [nix.POS]: $pos[151], foo: "foo" })),
             list: nix.thunk(() => [1n, 2n]),
             level1: nix.thunk(() => ({
-              [nix.POS]: pos$155,
+              [nix.POS]: $pos[154],
               level2: nix.thunk(() => ({
-                [nix.POS]: pos$154,
-                level3: nix.thunk(() => ({ [nix.POS]: pos$153, level4: "deep" })),
+                [nix.POS]: $pos[153],
+                level3: nix.thunk(() => ({ [nix.POS]: $pos[152], level4: "deep" })),
               })),
             })),
           })),
           expected: "false = false\nfloat = 3.141\nint = 10\nlist = [1, 2]\nstr = \"foo\"\ntrue = true\n\n[attrs]\nfoo = \"foo\"\n\n[level1.level2.level3]\nlevel4 = \"deep\"\n",
         })))),
       tomlHeterogeneousArray: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$160,
+          [nix.POS]: $pos[159],
           format: nix.thunk(() => nix.app(nix.sel(formats, "toml"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$159,
+            [nix.POS]: $pos[158],
             "language-server": nix.thunk(() => [
               "bash-language-server",
               nix.thunk(() => ({
-                [nix.POS]: pos$158,
+                [nix.POS]: $pos[157],
                 name: "typescript-language-server",
                 "except-features": nix.thunk(() => ["diagnostics"]),
               })),
@@ -802,28 +616,28 @@ ${"  "}null
           expected: "language-server = [\"bash-language-server\", { except-features = [\"diagnostics\"], name = \"typescript-language-server\" }]\n",
         })))),
       tomlCommaInKey: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$162,
+          [nix.POS]: $pos[161],
           format: nix.thunk(() => nix.app(nix.sel(formats, "toml"), nix.thunk(() => ({})))),
-          input: nix.thunk(() => ({ [nix.POS]: pos$161, "stack(x,n)": "foobar" })),
+          input: nix.thunk(() => ({ [nix.POS]: $pos[160], "stack(x,n)": "foobar" })),
           expected: "\"stack(x,n)\" = \"foobar\"\n",
         })))),
       tomlNull: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          [nix.POS]: pos$163,
+          [nix.POS]: $pos[162],
           format: nix.thunk(() => nix.app(nix.sel(formats, "toml"), nix.thunk(() => ({})))),
           input: null,
         })))),
       cdnAtoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$166,
+          [nix.POS]: $pos[165],
           format: nix.thunk(() => nix.app(nix.sel(formats, "cdn"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$165,
+            [nix.POS]: $pos[164],
             null: null,
             false: false,
             true: true,
             int: 10n,
             float: 3.141,
             str: "foo",
-            attrs: nix.thunk(() => ({ [nix.POS]: pos$164, foo: null })),
+            attrs: nix.thunk(() => ({ [nix.POS]: $pos[163], foo: null })),
             list: nix.thunk(() => [1n, null]),
             path: nix.path(here, "./testfile"),
           })),
@@ -844,16 +658,16 @@ list [
 `),
         })))),
       cdnNull: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$167,
+          [nix.POS]: $pos[166],
           format: nix.thunk(() => nix.app(nix.sel(formats, "cdn"), nix.thunk(() => ({})))),
           input: null,
           expected: "null: null\n",
         })))),
       javaProperties: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$169,
+          [nix.POS]: $pos[168],
           format: nix.thunk(() => nix.app(nix.sel(formats, "javaProperties"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$168,
+            [nix.POS]: $pos[167],
             floaty: 3.1415,
             tautologies: true,
             contradictions: false,
@@ -876,17 +690,17 @@ tautologies = true
 `),
         })))),
       luaTable: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$172,
+          [nix.POS]: $pos[171],
           format: nix.thunk(() => nix.app(nix.sel(formats, "lua"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$171,
+            [nix.POS]: $pos[170],
             null: null,
             false: false,
             true: true,
             int: 10n,
             float: 3.141,
             str: "foo",
-            attrs: nix.thunk(() => ({ [nix.POS]: pos$170, foo: null })),
+            attrs: nix.thunk(() => ({ [nix.POS]: $pos[169], foo: null })),
             list: nix.thunk(() => [null, null]),
             path: nix.path(here, "./testfile"),
             inline: nix.thunk(() => nix.app(nix.sel(lib, "mkLuaInline"), "hello('world')")),
@@ -911,17 +725,17 @@ tautologies = true
 `),
         })))),
       luaBindings: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$176,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "lua"), nix.thunk(() => ({ [nix.POS]: pos$173, asBindings: true })))),
+          [nix.POS]: $pos[175],
+          format: nix.thunk(() => nix.app(nix.sel(formats, "lua"), nix.thunk(() => ({ [nix.POS]: $pos[172], asBindings: true })))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$175,
+            [nix.POS]: $pos[174],
             null: null,
             _false: false,
             _true: true,
             int: 10n,
             float: 3.141,
             str: "foo",
-            attrs: nix.thunk(() => ({ [nix.POS]: pos$174, foo: null })),
+            attrs: nix.thunk(() => ({ [nix.POS]: $pos[173], foo: null })),
             list: nix.thunk(() => [null, null]),
             path: nix.path(here, "./testfile"),
             inline: nix.thunk(() => nix.app(nix.sel(lib, "mkLuaInline"), "hello('world')")),
@@ -944,26 +758,26 @@ str = "foo"
 `),
         })))),
       luaNull: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$177,
+          [nix.POS]: $pos[176],
           format: nix.thunk(() => nix.app(nix.sel(formats, "lua"), nix.thunk(() => ({})))),
           input: null,
           expected: "return nil\n",
         })))),
       nixConfAtoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$180,
+          [nix.POS]: $pos[179],
           format: nix.thunk(() => nix.app(nix.sel(formats, "nixConf"), nix.thunk(() => ({
-              [nix.POS]: pos$178,
+              [nix.POS]: $pos[177],
               package: nix.thunk(() => nix.sel(pkgs, "nix")),
               version: nix.thunk(() => nix.sel(pkgs, "nix", "version")),
               extraOptions: "ignore-try = false",
             })))),
-          input: nix.thunk(() => ({ [nix.POS]: pos$179, "auto-optimise-store": true, cores: 0n, store: "auto" })),
+          input: nix.thunk(() => ({ [nix.POS]: $pos[178], "auto-optimise-store": true, cores: 0n, store: "auto" })),
           expected: "# WARNING: this file is generated from the nix.* options in\n# your NixOS configuration, typically\n# /etc/nixos/configuration.nix.  Do not edit it!\nauto-optimise-store = true\ncores = 0\nstore = auto\n\nignore-try = false\n",
         })))),
       nixConfNull: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          [nix.POS]: pos$182,
+          [nix.POS]: $pos[181],
           format: nix.thunk(() => nix.app(nix.sel(formats, "nixConf"), nix.thunk(() => ({
-              [nix.POS]: pos$181,
+              [nix.POS]: $pos[180],
               package: nix.thunk(() => nix.sel(pkgs, "nix")),
               version: nix.thunk(() => nix.sel(pkgs, "nix", "version")),
               extraOptions: "ignore-try = false",
@@ -971,9 +785,9 @@ str = "foo"
           input: null,
         })))),
       phpAtoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => (() => {
-          const format = nix.thunk(() => nix.app(nix.sel(formats, "php"), nix.thunk(() => ({ [nix.POS]: pos$183, finalVariable: "config" }))));
+          const format = nix.thunk(() => nix.app(nix.sel(formats, "php"), nix.thunk(() => ({ [nix.POS]: $pos[182], finalVariable: "config" }))));
           const input = nix.thunk(() => ({
-            [nix.POS]: pos$187,
+            [nix.POS]: $pos[186],
             null: null,
             false: false,
             true: true,
@@ -981,12 +795,12 @@ str = "foo"
             float: 3.141,
             str: "foo",
             str_special: "foo\ntesthello'''",
-            attrs: nix.thunk(() => ({ [nix.POS]: pos$184, foo: null })),
+            attrs: nix.thunk(() => ({ [nix.POS]: $pos[183], foo: null })),
             list: nix.thunk(() => [null, null]),
             mixed: nix.thunk(() => nix.app(nix.sel(format, "lib", "mkMixedArray"), nix.thunk(() => [10n, 3.141]), nix.thunk(() => ({
-                [nix.POS]: pos$186,
+                [nix.POS]: $pos[185],
                 str: "foo",
-                attrs: nix.thunk(() => ({ [nix.POS]: pos$185, foo: null })),
+                attrs: nix.thunk(() => ({ [nix.POS]: $pos[184], foo: null })),
               })))),
             raw: nix.thunk(() => nix.app(nix.sel(format, "lib", "mkRaw"), "random_function()")),
           }));
@@ -995,21 +809,21 @@ declare(strict_types=1);
 $config = ['attrs' => ['foo' => null], 'false' => false, 'float' => 3.141000, 'int' => 10, 'list' => [null, null], 'mixed' => [10, 3.141000, 'attrs' => ['foo' => null], 'str' => 'foo'], 'null' => null, 'raw' => random_function(), 'str' => 'foo', 'str_special' => 'foo
 testhello\\'\\'\\'${"'"}, 'true' => true];
 `);
-          return { [nix.POS]: pos$188, format, input, expected };
+          return { [nix.POS]: $pos[187], format, input, expected };
         })()))),
       phpNull: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$190,
-          format: nix.thunk(() => nix.app(nix.sel(formats, "php"), nix.thunk(() => ({ [nix.POS]: pos$189, finalVariable: "config" })))),
+          [nix.POS]: $pos[189],
+          format: nix.thunk(() => nix.app(nix.sel(formats, "php"), nix.thunk(() => ({ [nix.POS]: $pos[188], finalVariable: "config" })))),
           input: null,
           expected: "<?php\ndeclare(strict_types=1);\n$config = null;\n",
         })))),
       pythonVars: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => (() => {
           const format = nix.thunk(() => nix.app(nix.sel(formats, "pythonVars"), nix.thunk(() => ({}))));
           return {
-            [nix.POS]: pos$193,
+            [nix.POS]: $pos[192],
             format: format,
             input: nix.thunk(() => ({
-              [nix.POS]: pos$192,
+              [nix.POS]: $pos[191],
               _imports: nix.thunk(() => ["re", "a.b.c"]),
               int: 10n,
               float: 3.141,
@@ -1025,7 +839,7 @@ testhello\\'\\'\\'${"'"}, 'true' => true];
                 nix.thunk(() => nix.app(nix.sel(format, "lib", "mkRaw"), "1 if True else 2")),
               ]),
               attrs: nix.thunk(() => ({
-                [nix.POS]: pos$191,
+                [nix.POS]: $pos[190],
                 foo: null,
                 conditional: nix.thunk(() => nix.app(nix.sel(format, "lib", "mkRaw"), "1 if True else 2")),
               })),
@@ -1035,20 +849,20 @@ testhello\\'\\'\\'${"'"}, 'true' => true];
           };
         })()))),
       pythonVarsNull: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          [nix.POS]: pos$194,
+          [nix.POS]: $pos[193],
           format: nix.thunk(() => nix.app(nix.sel(formats, "pythonVars"), nix.thunk(() => ({})))),
           input: null,
         })))),
       phpReturn: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$197,
+          [nix.POS]: $pos[196],
           format: nix.thunk(() => nix.app(nix.sel(formats, "php"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$196,
+            [nix.POS]: $pos[195],
             int: 10n,
             float: 3.141,
             str: "foo",
             str_special: "foo\ntesthello'''",
-            attrs: nix.thunk(() => ({ [nix.POS]: pos$195, foo: null })),
+            attrs: nix.thunk(() => ({ [nix.POS]: $pos[194], foo: null })),
           })),
           expected: nix.thunk(() => nix.str`<?php
 declare(strict_types=1);
@@ -1057,47 +871,47 @@ testhello\\'\\'\\'${"'"}];
 `),
         })))),
       badgerfishToXmlGenerate: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$202,
+          [nix.POS]: $pos[201],
           format: nix.thunk(() => nix.app(nix.sel(formats, "xml"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$201,
+            [nix.POS]: $pos[200],
             root: nix.thunk(() => ({
-              [nix.POS]: pos$200,
+              [nix.POS]: $pos[199],
               "@id": "123",
               "@class": "example",
-              child1: nix.thunk(() => ({ [nix.POS]: pos$198, "@name": "child1Name", "#text": "text node" })),
-              child2: nix.thunk(() => ({ [nix.POS]: pos$199, grandchild: "This is a grandchild text node." })),
+              child1: nix.thunk(() => ({ [nix.POS]: $pos[197], "@name": "child1Name", "#text": "text node" })),
+              child2: nix.thunk(() => ({ [nix.POS]: $pos[198], grandchild: "This is a grandchild text node." })),
               nulltest: null,
             })),
           })),
           expected: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<root class=\"example\" id=\"123\">\n  <child1 name=\"child1Name\">text node</child1>\n  <child2>\n    <grandchild>This is a grandchild text node.</grandchild>\n  </child2>\n  <nulltest></nulltest>\n</root>\n",
         })))),
       xmlNull: nix.thunk(() => nix.app(shouldFail, nix.thunk(() => ({
-          [nix.POS]: pos$203,
+          [nix.POS]: $pos[202],
           format: nix.thunk(() => nix.app(nix.sel(formats, "xml"), nix.thunk(() => ({})))),
           input: null,
         })))),
       PlistGenerate: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$209,
+          [nix.POS]: $pos[208],
           format: nix.thunk(() => nix.app(nix.sel(formats, "plist"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$208,
+            [nix.POS]: $pos[207],
             null: null,
             false: false,
             true: true,
             int: 10n,
             float: 3.141,
             str: "foo",
-            attrs: nix.thunk(() => ({ [nix.POS]: pos$204, foo: 0n })),
+            attrs: nix.thunk(() => ({ [nix.POS]: $pos[203], foo: 0n })),
             list: nix.thunk(() => [
               1n,
               "hello",
               nix.thunk(() => ({
-                [nix.POS]: pos$207,
+                [nix.POS]: $pos[206],
                 attrs: nix.thunk(() => ({
-                  [nix.POS]: pos$206,
+                  [nix.POS]: $pos[205],
                   key: nix.thunk(() => ({
-                    [nix.POS]: pos$205,
+                    [nix.POS]: $pos[204],
                     value: nix.thunk(() => [nix.thunk(() => [1n, 2n, 3n]), "test"]),
                   })),
                 })),
@@ -1107,30 +921,30 @@ testhello\\'\\'\\'${"'"}];
           expected: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n\t<key>attrs</key>\n\t<dict>\n\t\t<key>foo</key>\n\t\t<integer>0</integer>\n\t</dict>\n\t<key>false</key>\n\t<false/>\n\t<key>float</key>\n\t<real>3.141000</real>\n\t<key>int</key>\n\t<integer>10</integer>\n\t<key>list</key>\n\t<array>\n\t\t<integer>1</integer>\n\t\t<string>hello</string>\n\t\t<dict>\n\t\t\t<key>attrs</key>\n\t\t\t<dict>\n\t\t\t\t<key>key</key>\n\t\t\t\t<dict>\n\t\t\t\t\t<key>value</key>\n\t\t\t\t\t<array>\n\t\t\t\t\t\t<array>\n\t\t\t\t\t\t\t<integer>1</integer>\n\t\t\t\t\t\t\t<integer>2</integer>\n\t\t\t\t\t\t\t<integer>3</integer>\n\t\t\t\t\t\t</array>\n\t\t\t\t\t\t<string>test</string>\n\t\t\t\t\t</array>\n\t\t\t\t</dict>\n\t\t\t</dict>\n\t\t</dict>\n\t</array>\n\t<key>str</key>\n\t<string>foo</string>\n\t<key>true</key>\n\t<true/>\n</dict>\n</plist>",
         })))),
       PlistNull: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$210,
+          [nix.POS]: $pos[209],
           format: nix.thunk(() => nix.app(nix.sel(formats, "plist"), nix.thunk(() => ({})))),
           input: null,
           expected: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n\n</plist>",
         })))),
       hcl1Atoms: nix.thunk(() => nix.app(shouldPass, nix.thunk(() => ({
-          [nix.POS]: pos$219,
+          [nix.POS]: $pos[218],
           format: nix.thunk(() => nix.app(nix.sel(formats, "hcl1"), nix.thunk(() => ({})))),
           input: nix.thunk(() => ({
-            [nix.POS]: pos$218,
+            [nix.POS]: $pos[217],
             resource: nix.thunk(() => ({
-              [nix.POS]: pos$213,
+              [nix.POS]: $pos[212],
               aws_instance: nix.thunk(() => ({
-                [nix.POS]: pos$212,
-                example: nix.thunk(() => ({ [nix.POS]: pos$211, ami: "ami-12345", instance_type: "t2.micro" })),
+                [nix.POS]: $pos[211],
+                example: nix.thunk(() => ({ [nix.POS]: $pos[210], ami: "ami-12345", instance_type: "t2.micro" })),
               })),
             })),
             variable: nix.thunk(() => ({
-              [nix.POS]: pos$215,
-              region: nix.thunk(() => ({ [nix.POS]: pos$214, default: "us-east-1" })),
+              [nix.POS]: $pos[214],
+              region: nix.thunk(() => ({ [nix.POS]: $pos[213], default: "us-east-1" })),
             })),
             output: nix.thunk(() => ({
-              [nix.POS]: pos$217,
-              ip: nix.thunk(() => ({ [nix.POS]: pos$216, value: "127.0.0.1" })),
+              [nix.POS]: $pos[216],
+              ip: nix.thunk(() => ({ [nix.POS]: $pos[215], value: "127.0.0.1" })),
             })),
             primitive: "just a string",
             number: 42n,

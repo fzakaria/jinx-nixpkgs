@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["updateScript", 114, 12]], [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["platforms", 120, 5], ["maintainers", 121, 5]], [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["propagatedBuildInputs", 52, 3], ["nativeCheckInputs", 56, 3], ["checkInputs", 60, 3], ["hardeningDisable", 64, 3], ["cmakeFlags", 71, 3], ["__darwinAllowLocalNetworking", 86, 3], ["doCheck", 88, 3], ["dontUseNinjaCheck", 90, 3], ["postPatch", 92, 3], ["disabledTests", 97, 3], ["passthru", 114, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, folly: false, gflags: false, glog: false, openssl: false, fizz: false, ctestCheckHook: false, gtest: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 114, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["platforms", 120, 5], ["maintainers", 121, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["propagatedBuildInputs", 52, 3], ["nativeCheckInputs", 56, 3], ["checkInputs", 60, 3], ["hardeningDisable", 64, 3], ["cmakeFlags", 71, 3], ["__darwinAllowLocalNetworking", 86, 3], ["doCheck", 88, 3], ["dontUseNinjaCheck", 90, 3], ["postPatch", 92, 3], ["disabledTests", 97, 3], ["passthru", 114, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mvfst",
       version: "2026.07.27.00",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebook",
           repo: "mvfst",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,11 +67,11 @@ export default nix.lambda((args) => (() => {
         "*/QuicClientTransportIntegrationTest.TestStatelessResetToken/*",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Implementation of the QUIC transport protocol",
         homepage: "https://github.com/facebook/mvfst",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

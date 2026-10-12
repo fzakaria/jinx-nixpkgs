@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["NIX_CFLAGS_COMPILE", 21, 7]], [["shortName", 27, 7], ["fullName", 28, 7], ["url", 29, 7]], [["homepage", 24, 5], ["description", 25, 5], ["license", 26, 5], ["platforms", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["env", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["shortName", 27, 7], ["fullName", 28, 7], ["url", 29, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 24, 5], ["description", 25, 5], ["license", 26, 5], ["platforms", 31, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["env", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,25 +12,25 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "idnkit",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://jprs.co.jp/idn/idnkit-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-JtBxF2UAQqtGk/DgCWAnXVihvnc+bRPFA7o4RxDz6X4=",
         })))),
       buildInputs: nix.thunk(() => [libiconv]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://jprs.co.jp/idn/index-e.html",
         description: "Provides functionalities about i18n domain name processing",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             shortName: "oscl11",
             fullName: "Open Source Code License version 1.1",
             url: "https://jprs.co.jp/idn/idnkit2-OSCL.txt",

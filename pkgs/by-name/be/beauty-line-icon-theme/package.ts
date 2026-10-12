@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 56, 5], ["homepage", 57, 5], ["platforms", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 30, 3], ["dontDropIconThemeCache", 37, 3], ["dontPatchELF", 39, 3], ["dontRewriteSymlinks", 40, 3], ["dontWrapQtApps", 41, 3], ["installPhase", 43, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitLab: false, gtk3: false, "hicolor-icon-theme": false, "mint-x-icons": false, pantheon: false, jdupes: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["platforms", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["propagatedBuildInputs", 30, 3], ["dontDropIconThemeCache", 37, 3], ["dontPatchELF", 39, 3], ["dontRewriteSymlinks", 40, 3], ["dontWrapQtApps", 41, 3], ["installPhase", 43, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const jdupes = nix.arg($, "jdupes");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "BeautyLine",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "garuda-linux",
           repo: "themes-and-settings/artwork/beautyline",
           rev: "0df6f5df71c19496f9a873f8a52fbb5e84e95b12",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/icons/BeautyLine\ncp -r * $out/share/icons/BeautyLine/\ngtk-update-icon-cache $out/share/icons/BeautyLine\n\njdupes --link-soft --recurse $out/share\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "BeautyLine icon theme",
         homepage: "https://www.gnome-look.org/p/1425426/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

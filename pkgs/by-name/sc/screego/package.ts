@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["yarnLock", 29, 7], ["hash", 30, 7]], [["pname", 23, 5], ["version", 24, 13], ["src", 26, 5], ["offlineCache", 28, 5], ["nativeBuildInputs", 33, 5], ["preConfigure", 39, 5], ["installPhase", 43, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]], [["src", 52, 11], ["version", 52, 15], ["pname", 54, 3], ["vendorHash", 56, 3], ["ldflags", 58, 3], ["postPatch", 66, 3], ["postInstall", 71, 3], ["__darwinAllowLocalNetworking", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchYarnDeps: false, yarnConfigHook: false, yarnBuildHook: false, nodejs: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 5], ["version", 24, 13], ["src", 26, 5], ["offlineCache", 28, 5], ["nativeBuildInputs", 33, 5], ["preConfigure", 39, 5], ["installPhase", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["src", 52, 11], ["version", 52, 15], ["pname", 54, 3], ["vendorHash", 56, 3], ["ldflags", 58, 3], ["postPatch", 66, 3], ["postInstall", 71, 3], ["__darwinAllowLocalNetworking", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const version = "1.12.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "screego",
       repo: "server",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-xWy7aqpUznIYeBPqdpYdRMJxxfiPNa4JmjS3o5i3xxY=",
     }))));
   const ui = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "screego-ui",
       version: version,
       src: nix.thunk(() => nix.add(src, "/ui")),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${src}/ui/yarn.lock`),
           hash: "sha256-JPSbBUny5unUHVkaVGlHyA90IpT9ahcSmt9R1hxERRk=",
         })))),
@@ -59,7 +55,7 @@ cp -r "${ui}" ./ui/build
       const postInstall = "mv $out/bin/server $out/bin/screego\n";
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Screen sharing for developers",
         homepage: "https://screego.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -70,7 +66,7 @@ cp -r "${ui}" ./ui/build
         mainProgram: "screego",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         src: src_1,
         version: version_1,
         pname,

@@ -2,49 +2,41 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rshim.nix", [[["system", 4, 33], ["config", 4, 40]], [["system", 7, 49], ["pkgs", 7, 56]], [["maintainers", 13, 10]], [["enable", 18, 24]], [["rshim", 18, 18]], [["services", 18, 9]], [["machine", 15, 11]], [["name", 12, 5], ["meta", 13, 5], ["nodes", 15, 5], ["testScript", 21, 5]], [["basic", 11, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rshim.nix", [["system", 4, 33], ["config", 4, 40]]);
-const pos$2 = nix.positions(here + "/rshim.nix", [["system", 7, 49], ["pkgs", 7, 56]]);
-const pos$3 = nix.positions(here + "/rshim.nix", [["maintainers", 13, 10]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/rshim.nix", [["enable", 18, 24]]);
-const pos$5 = nix.positions(here + "/rshim.nix", [["rshim", 18, 18]]);
-const pos$6 = nix.positions(here + "/rshim.nix", [["services", 18, 9]]);
-const pos$7 = nix.positions(here + "/rshim.nix", [["machine", 15, 11]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/rshim.nix", [["name", 12, 5], ["meta", 13, 5], ["nodes", 15, 5], ["testScript", 21, 5]]);
-const pos$9 = nix.positions(here + "/rshim.nix", [["basic", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     basic: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: "rshim",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "nikstur"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const config_1 = nix.arg($_1, "config");
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                rshim: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+                [nix.POS]: $pos[4],
+                rshim: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
               })),
             };
           })(), formals$2),

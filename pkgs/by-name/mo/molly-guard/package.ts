@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5], ["priority", 40, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["postFixup", 28, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, busybox: false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5], ["priority", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["postFixup", 28, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const busybox = nix.arg($, "busybox");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "molly-guard",
       version: "0.7.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://launchpad.net/ubuntu/+archive/primary/+files/molly-guard_${nix.sel(finalAttrs, "version")}_all.deb`),
           sha256: "1k6b1hn8lc4rj9n036imsl7s9lqj6ny3acdhnbnamsdkkndmxrw7",
         })))),
@@ -32,7 +30,7 @@ cp -r ./ $out/
 `),
       postFixup: "for modus in init halt poweroff reboot runlevel shutdown telinit; do\n   ln -sf $out/lib/molly-guard/molly-guard $out/bin/$modus;\ndone;\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Attempts to prevent you from accidentally shutting down or rebooting machines",
         homepage: "https://salsa.debian.org/debian/molly-guard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),

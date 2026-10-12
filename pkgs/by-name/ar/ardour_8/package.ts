@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 79, 7], ["rev", 80, 7], ["hash", 81, 7]], [["url", 85, 7], ["hash", 86, 7], ["stripRoot", 88, 7]], [["LINKFLAGS", 219, 9]], [["description", 222, 7], ["longDescription", 223, 7], ["homepage", 232, 7], ["license", 233, 7], ["mainProgram", 234, 7], ["platforms", 235, 7], ["maintainers", 236, 7]], [["pname", 73, 5], ["version", 74, 5], ["src", 78, 5], ["bundledContent", 84, 5], ["patches", 91, 5], ["postPatch", 99, 5], ["nativeBuildInputs", 108, 5], ["buildInputs", 119, 5], ["wafConfigureFlags", 176, 5], ["postInstall", 193, 5], ["env", 219, 5], ["meta", 221, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, fetchzip: false, "alsa-lib": false, aubio: false, boost: false, cairomm_1_0: false, cppunit: false, curl: false, dbus: false, doxygen: false, ffmpeg: false, fftw: false, fftwSinglePrec: false, flac: false, fluidsynth: false, glibc: false, glibmm_2_4: false, graphviz: false, harvid: false, hidapi: false, itstool: false, kissfft: false, libarchive: false, libjack2: false, liblo: false, libltc: false, libogg: false, libpulseaudio: false, librdf_rasqal: false, libsamplerate: false, libsigcxx_2_0: false, libsndfile: false, libusb1: false, libuv: false, libwebsockets: false, libxml2: false, libxslt: false, lilv: false, lrdf: false, lv2: false, makeWrapper: false, pango: false, pangomm_1_4: false, perl: false, "pkg-config": false, python3: false, "qm-dsp": false, readline: false, rubberband: false, serd: false, sord: false, soundtouch: false, sratom: false, suil: false, taglib: false, "vamp-plugin-sdk": false, wafHook: false, xjadeo: false, libxrandr: false, libxinerama: false, optimize: true, videoSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 79, 7], ["rev", 80, 7], ["hash", 81, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 85, 7], ["hash", 86, 7], ["stripRoot", 88, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LINKFLAGS", 219, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 222, 7], ["longDescription", 223, 7], ["homepage", 232, 7], ["license", 233, 7], ["mainProgram", 234, 7], ["platforms", 235, 7], ["maintainers", 236, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 73, 5], ["version", 74, 5], ["src", 78, 5], ["bundledContent", 84, 5], ["patches", 91, 5], ["postPatch", 99, 5], ["nativeBuildInputs", 108, 5], ["buildInputs", 119, 5], ["wafConfigureFlags", 176, 5], ["postInstall", 193, 5], ["env", 219, 5], ["meta", 221, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -78,17 +74,17 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "ardour",
         version: "8.12",
         src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "git://git.ardour.org/ardour/ardour.git",
             rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
             hash: "sha256-4IgBQ53cwPA35YwNQyo+qBqsMGv+TLn6w1zaDX97erE=",
           })))),
         bundledContent: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://web.archive.org/web/20221026200824/http://stuff.ardour.org/loops/ArdourBundledMedia.zip",
             hash: "sha256-IbPQWFeyMuvCoghFl1ZwZNNcSvLNsH84rGArXnw+t7A=",
             stripRoot: false,
@@ -183,9 +179,9 @@ cp -rp "${nix.sel(finalAttrs, "bundledContent")}"/* "$out/share/ardour${majorVer
 wrapProgram "$out/bin/ardour${majorVersion}" \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [harvid, xjadeo]))}"
 `)))),
-        env: nix.thunk(() => ({ [nix.POS]: pos$3, LINKFLAGS: "-lpthread" })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[2], LINKFLAGS: "-lpthread" })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Multi-track hard disk recording software",
           longDescription: "Ardour is a digital audio workstation (DAW), You can use it to\nrecord, edit and mix multi-track audio and midi. Produce your\nown CDs. Mix video soundtracks. Experiment with new ideas about\nmusic and sound.\n\nPlease consider supporting the ardour project financially:\nhttps://community.ardour.org/donate\n",
           homepage: "https://ardour.org/",

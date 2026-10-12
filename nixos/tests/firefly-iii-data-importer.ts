@@ -2,40 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/firefly-iii-data-importer.nix", [[["maintainers", 5, 5], ["platforms", 6, 5]], [["LOG_CHANNEL", 16, 11], ["USE_CACHE", 17, 11]], [["enable", 13, 9], ["enableNginx", 14, 9], ["settings", 15, 9]], [["firefly-iii-data-importer", 12, 16]], [["services", 12, 7]], [["dataImporter", 9, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 9, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/firefly-iii-data-importer.nix", [["maintainers", 5, 5], ["platforms", 6, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/firefly-iii-data-importer.nix", [["LOG_CHANNEL", 16, 11], ["USE_CACHE", 17, 11]]);
-const pos$3 = nix.positions(here + "/firefly-iii-data-importer.nix", [["enable", 13, 9], ["enableNginx", 14, 9], ["settings", 15, 9]]);
-const pos$4 = nix.positions(here + "/firefly-iii-data-importer.nix", [["firefly-iii-data-importer", 12, 16]]);
-const pos$5 = nix.positions(here + "/firefly-iii-data-importer.nix", [["services", 12, 7]]);
-const pos$6 = nix.positions(here + "/firefly-iii-data-importer.nix", [["dataImporter", 9, 9]]);
-const pos$7 = nix.positions(here + "/firefly-iii-data-importer.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 9, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "firefly-iii-data-importer",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "savyajha"))]),
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       dataImporter: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "firefly-iii-data-importer": nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               enableNginx: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$2, LOG_CHANNEL: "stdout", USE_CACHE: true })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[1], LOG_CHANNEL: "stdout", USE_CACHE: true })),
             })),
           })),
         };

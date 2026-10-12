@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 13], ["version", 14, 19], ["hash", 15, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 29, 5], ["mainProgram", 30, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 13, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["nativeCheckInputs", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 13], ["version", 14, 19], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 29, 5], ["mainProgram", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 13, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["nativeCheckInputs", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-LZU2YPdJiepaCH/TWNrtJiuyPlJP6t1+c3a2uHL0fmo=",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "setuptools"))]);
       const nativeCheckInputs = nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pytestCheckHook"))]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Print license based on selection and user options",
         homepage: "https://github.com/licenses/lice",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lice",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

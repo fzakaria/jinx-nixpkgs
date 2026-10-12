@@ -2,112 +2,87 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/etc-overlay-mutable.nix", [[["maintainers", 6, 8]], [["enable", 11, 26], ["mutable", 12, 26]], [["overlay", 11, 18]], [["etc", 11, 14]], [["text", 16, 11], ["mode", 17, 11]], [["text", 20, 11], ["mode", 21, 11]], [["text", 25, 11], ["mode", 26, 11]], [["text", 31, 11], ["mode", 32, 11]], [["text", 37, 11], ["mode", 38, 11]], [["modetest", 15, 9], ["modetest2", 19, 9], ["inlinetest", 24, 9], ["emptytest", 30, 9], ["bigfile", 36, 9]], [["etc", 14, 19]], [["enable", 43, 27]], [["systemd", 43, 19]], [["initrd", 43, 12]], [["text", 46, 34]], [["source", 52, 41]], [["newgen", 46, 25], ["nixos/newlink", 52, 25]], [["etc", 46, 21]], [["environment", 46, 9]], [["configuration", 45, 37]], [["text", 55, 36]], [["newergen", 55, 25]], [["etc", 55, 21]], [["environment", 55, 9]], [["configuration", 54, 39]], [["new-generation", 45, 22], ["newer-generation", 54, 22]], [["system", 11, 7], ["environment", 14, 7], ["boot", 43, 7], ["specialisation", 45, 7]], [["machine", 8, 9]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 8, 3], ["testScript", 59, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/etc-overlay-mutable.nix", [["maintainers", 6, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/etc-overlay-mutable.nix", [["enable", 11, 26], ["mutable", 12, 26]]);
-const pos$3 = nix.positions(here + "/etc-overlay-mutable.nix", [["overlay", 11, 18]]);
-const pos$4 = nix.positions(here + "/etc-overlay-mutable.nix", [["etc", 11, 14]]);
-const pos$5 = nix.positions(here + "/etc-overlay-mutable.nix", [["text", 16, 11], ["mode", 17, 11]]);
-const pos$6 = nix.positions(here + "/etc-overlay-mutable.nix", [["text", 20, 11], ["mode", 21, 11]]);
-const pos$7 = nix.positions(here + "/etc-overlay-mutable.nix", [["text", 25, 11], ["mode", 26, 11]]);
-const pos$8 = nix.positions(here + "/etc-overlay-mutable.nix", [["text", 31, 11], ["mode", 32, 11]]);
-const pos$9 = nix.positions(here + "/etc-overlay-mutable.nix", [["text", 37, 11], ["mode", 38, 11]]);
-const pos$10 = nix.positions(here + "/etc-overlay-mutable.nix", [["modetest", 15, 9], ["modetest2", 19, 9], ["inlinetest", 24, 9], ["emptytest", 30, 9], ["bigfile", 36, 9]]);
-const pos$11 = nix.positions(here + "/etc-overlay-mutable.nix", [["etc", 14, 19]]);
-const pos$12 = nix.positions(here + "/etc-overlay-mutable.nix", [["enable", 43, 27]]);
-const pos$13 = nix.positions(here + "/etc-overlay-mutable.nix", [["systemd", 43, 19]]);
-const pos$14 = nix.positions(here + "/etc-overlay-mutable.nix", [["initrd", 43, 12]]);
-const pos$15 = nix.positions(here + "/etc-overlay-mutable.nix", [["text", 46, 34]]);
-const pos$16 = nix.positions(here + "/etc-overlay-mutable.nix", [["source", 52, 41]]);
-const pos$17 = nix.positions(here + "/etc-overlay-mutable.nix", [["newgen", 46, 25], ["nixos/newlink", 52, 25]]);
-const pos$18 = nix.positions(here + "/etc-overlay-mutable.nix", [["etc", 46, 21]]);
-const pos$19 = nix.positions(here + "/etc-overlay-mutable.nix", [["environment", 46, 9]]);
-const pos$20 = nix.positions(here + "/etc-overlay-mutable.nix", [["configuration", 45, 37]]);
-const pos$21 = nix.positions(here + "/etc-overlay-mutable.nix", [["text", 55, 36]]);
-const pos$22 = nix.positions(here + "/etc-overlay-mutable.nix", [["newergen", 55, 25]]);
-const pos$23 = nix.positions(here + "/etc-overlay-mutable.nix", [["etc", 55, 21]]);
-const pos$24 = nix.positions(here + "/etc-overlay-mutable.nix", [["environment", 55, 9]]);
-const pos$25 = nix.positions(here + "/etc-overlay-mutable.nix", [["configuration", 54, 39]]);
-const pos$26 = nix.positions(here + "/etc-overlay-mutable.nix", [["new-generation", 45, 22], ["newer-generation", 54, 22]]);
-const pos$27 = nix.positions(here + "/etc-overlay-mutable.nix", [["system", 11, 7], ["environment", 14, 7], ["boot", 43, 7], ["specialisation", 45, 7]]);
-const pos$28 = nix.positions(here + "/etc-overlay-mutable.nix", [["machine", 8, 9]]);
-const pos$29 = nix.positions(here + "/etc-overlay-mutable.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 8, 3], ["testScript", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$29,
+    [nix.POS]: $pos[28],
     name: "activation-etc-overlay-mutable",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           system: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              overlay: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, mutable: true })),
+              [nix.POS]: $pos[2],
+              overlay: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, mutable: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$10,
-              modetest: nix.thunk(() => ({ [nix.POS]: pos$5, text: "foo", mode: "300" })),
-              modetest2: nix.thunk(() => ({ [nix.POS]: pos$6, text: "foo", mode: "0300" })),
-              inlinetest: nix.thunk(() => ({ [nix.POS]: pos$7, text: "inline-content\n", mode: "0640" })),
-              emptytest: nix.thunk(() => ({ [nix.POS]: pos$8, text: "", mode: "0644" })),
+              [nix.POS]: $pos[9],
+              modetest: nix.thunk(() => ({ [nix.POS]: $pos[4], text: "foo", mode: "300" })),
+              modetest2: nix.thunk(() => ({ [nix.POS]: $pos[5], text: "foo", mode: "0300" })),
+              inlinetest: nix.thunk(() => ({ [nix.POS]: $pos[6], text: "inline-content\n", mode: "0640" })),
+              emptytest: nix.thunk(() => ({ [nix.POS]: $pos[7], text: "", mode: "0644" })),
               bigfile: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 text: nix.thunk(() => nix.app(nix.sel(lib, "strings", "replicate"), 5000n, "a")),
                 mode: "0644",
               })),
             })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$13,
-              systemd: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
+              [nix.POS]: $pos[12],
+              systemd: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: true })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             "new-generation": nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   etc: nix.thunk(() => ({
-                    [nix.POS]: pos$17,
-                    newgen: nix.thunk(() => ({ [nix.POS]: pos$15, text: "newgen" })),
-                    "nixos/newlink": nix.thunk(() => ({ [nix.POS]: pos$16, source: nix.thunk(() => nix.sel(pkgs, "emptyDirectory")) })),
+                    [nix.POS]: $pos[16],
+                    newgen: nix.thunk(() => ({ [nix.POS]: $pos[14], text: "newgen" })),
+                    "nixos/newlink": nix.thunk(() => ({
+                      [nix.POS]: $pos[15],
+                      source: nix.thunk(() => nix.sel(pkgs, "emptyDirectory")),
+                    })),
                   })),
                 })),
               })),
             })),
             "newer-generation": nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   etc: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
-                    newergen: nix.thunk(() => ({ [nix.POS]: pos$21, text: "newergen" })),
+                    [nix.POS]: $pos[21],
+                    newergen: nix.thunk(() => ({ [nix.POS]: $pos[20], text: "newergen" })),
                   })),
                 })),
               })),

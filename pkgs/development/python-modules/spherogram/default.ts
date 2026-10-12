@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["snappy-15-knots", 49, 25]], [["extraPythonPackages", 62, 9], ["requireSageTests", 63, 9]], [["nativeBuildInputs", 68, 9]], [["sage", 59, 18]], [["extraArgs", 79, 5]], [["tests", 59, 12], ["updateScript", 78, 12]], [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["optional-dependencies", 49, 3], ["pythonImportsCheck", 51, 3], ["checkPhase", 53, 3], ["passthru", 59, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python: false, buildPythonPackage: false, "nix-update-script": false, setuptools: false, cython: false, decorator: false, "knot-floer-homology": false, networkx: false, "snappy-15-knots": false, "snappy-manifolds": false, runCommand: false, sage: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["snappy-15-knots", 49, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraPythonPackages", 62, 9], ["requireSageTests", 63, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 68, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["sage", 59, 18]]);
-const pos$6 = nix.positions(here + "/default.nix", [["extraArgs", 79, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["tests", 59, 12], ["updateScript", 78, 12]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["optional-dependencies", 49, 3], ["pythonImportsCheck", 51, 3], ["checkPhase", 53, 3], ["passthru", 59, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "3-manifolds",
           repo: "spherogram",
           tag: nix.thunk(() => nix.str`${version}_as_released`),
@@ -43,35 +35,35 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools, cython]);
       const dependencies = nix.thunk(() => [networkx, decorator, snappy_manifolds, knot_floer_homology]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, "snappy-15-knots": nix.thunk(() => [snappy_15_knots]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], "snappy-15-knots": nix.thunk(() => [snappy_15_knots]) }));
       const pythonImportsCheck = nix.thunk(() => ["spherogram"]);
       const checkPhase = nix.thunk(() => nix.str`runHook preCheck
 ${nix.sel(python, "interpreter")} -m spherogram.test
 runHook postCheck
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           sage: nix.thunk(() => (() => {
             const sage$ = nix.thunk(() => nix.app(nix.sel(sage, "override"), nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 extraPythonPackages: (ps) => [nix.thunk(() => nix.sel(ps, "spherogram"))],
                 requireSageTests: false,
               }))));
             return nix.app(runCommand, "spherogram-sage-tests", nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 nativeBuildInputs: nix.thunk(() => [sage$, writableTmpDirAsHomeHook]),
               })), "sage -python -m spherogram.test\ntouch $out\n");
           })()),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             extraArgs: nix.thunk(() => ["--version-regex", "(.*)_as_released"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Spherical diagrams for 3-manifold topology",
         homepage: "https://snappy.computop.org/spherogram.html",
         changelog: nix.thunk(() => nix.str`https://github.com/3-manifolds/Spherogram/releases/tag/${nix.sel(src, "tag")}`),
@@ -85,7 +77,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         pyproject,

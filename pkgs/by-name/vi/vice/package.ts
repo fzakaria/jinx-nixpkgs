@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["sha256", 36, 5]], [["LIBS", 78, 7]], [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 54, 3], ["configureFlags", 70, 3], ["env", 78, 3], ["preConfigure", 80, 3], ["enableParallelBuilding", 84, 3], ["preInstall", 86, 3], ["postInstall", 92, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bison: false, flex: false, perl: false, curl: false, libpng: false, giflib: false, "alsa-lib": false, readline: false, libGLU: false, libGL: false, "pkg-config": false, gtk3: false, glew: false, SDL: false, SDL_image: false, dos2unix: false, xa: false, file: false, wrapGAppsHook3: false, "xdg-utils": false, libevdev: false, pulseaudio: false, "desktop-file-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBS", 78, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 54, 3], ["configureFlags", 70, 3], ["env", 78, 3], ["preConfigure", 80, 3], ["enableParallelBuilding", 84, 3], ["preInstall", 86, 3], ["postInstall", 92, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const pulseaudio = nix.arg($, "pulseaudio");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vice",
       version: "3.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/vice-emu/vice-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-jlusGMvLnxkjgK0++IH4eQ9bdcQdez2mXYMZhdhk1tE=",
         })))),
@@ -80,13 +77,13 @@ export default nix.lambda((args) => (() => {
         "--disable-pdf-docs",
         "--with-gif",
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBS: "-lGL" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBS: "-lGL" })),
       preConfigure: "patchShebangs .\n",
       enableParallelBuilding: true,
       preInstall: "# env var for `desktop-file-install`\nexport DESKTOP_FILE_INSTALL_DIR=$out/share/applications\nmkdir -p $DESKTOP_FILE_INSTALL_DIR\n",
       postInstall: "for binary in vsid x128 x64 x64dtv xcbm2 xpet xplus4 xscpu64 xvic; do\n  for size in 16 24 32 48 64 256; do\n    install -D data/common/vice-${binary}_${size}.png $out/share/icons/hicolor/${size}x${size}/apps/vice-${binary}.png\n  done\n  install -D data/common/vice-${binary}_1024.svg $out/share/icons/hicolor/scalable/apps/vice-${binary}.svg\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Emulators for a variety of 8-bit Commodore computers",
         homepage: "https://vice-emu.sourceforge.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

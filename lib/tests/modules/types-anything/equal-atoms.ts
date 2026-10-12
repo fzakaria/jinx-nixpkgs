@@ -2,51 +2,43 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/equal-atoms.nix", [[["type", 5, 5]], [["value", 4, 11]], [["x", 19, 11]], [["int", 10, 13], ["bool", 11, 13], ["string", 12, 13], ["path", 13, 13], ["null", 14, 13], ["float", 15, 13], ["list", 16, 13]], [["value", 10, 7]], [["x", 32, 11]], [["int", 23, 13], ["bool", 24, 13], ["string", 25, 13], ["path", 26, 13], ["null", 27, 13], ["float", 28, 13], ["list", 29, 13]], [["value", 23, 7]], [["options", 4, 3], ["config", 8, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/equal-atoms.nix", [["type", 5, 5]]);
-const pos$2 = nix.positions(here + "/equal-atoms.nix", [["value", 4, 11]]);
-const pos$3 = nix.positions(here + "/equal-atoms.nix", [["x", 19, 11]]);
-const pos$4 = nix.positions(here + "/equal-atoms.nix", [["int", 10, 13], ["bool", 11, 13], ["string", 12, 13], ["path", 13, 13], ["null", 14, 13], ["float", 15, 13], ["list", 16, 13]]);
-const pos$5 = nix.positions(here + "/equal-atoms.nix", [["value", 10, 7]]);
-const pos$6 = nix.positions(here + "/equal-atoms.nix", [["x", 32, 11]]);
-const pos$7 = nix.positions(here + "/equal-atoms.nix", [["int", 23, 13], ["bool", 24, 13], ["string", 25, 13], ["path", 26, 13], ["null", 27, 13], ["float", 28, 13], ["list", 29, 13]]);
-const pos$8 = nix.positions(here + "/equal-atoms.nix", [["value", 23, 7]]);
-const pos$9 = nix.positions(here + "/equal-atoms.nix", [["options", 4, 3], ["config", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "anything")) })))),
+      [nix.POS]: $pos[1],
+      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[0], type: nix.thunk(() => nix.sel(lib, "types", "anything")) })))),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           value: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             int: 0n,
             bool: false,
             string: "",
             path: nix.path(here, "./."),
             null: null,
             float: 0.1,
-            list: nix.thunk(() => [1n, "a", nix.thunk(() => ({ [nix.POS]: pos$3, x: null }))]),
+            list: nix.thunk(() => [1n, "a", nix.thunk(() => ({ [nix.POS]: $pos[2], x: null }))]),
           })),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           value: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             int: 0n,
             bool: false,
             string: "",
             path: nix.path(here, "./."),
             null: null,
             float: 0.1,
-            list: nix.thunk(() => [1n, "a", nix.thunk(() => ({ [nix.POS]: pos$6, x: null }))]),
+            list: nix.thunk(() => [1n, "a", nix.thunk(() => ({ [nix.POS]: $pos[5], x: null }))]),
           })),
         })),
       ]))),

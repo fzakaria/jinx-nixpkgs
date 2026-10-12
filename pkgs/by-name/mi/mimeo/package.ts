@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5], ["mainProgram", 45, 5]], [["pname", 13, 3], ["version", 14, 11], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["postPatch", 26, 3], ["doInstallCheck", 34, 3], ["installCheckPhase", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, "desktop-file-utils": false, file: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5], ["mainProgram", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 11], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["postPatch", 26, 3], ["doInstallCheck", 34, 3], ["installCheckPhase", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const version = "2023";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mimeo",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://xyne.dev/projects/mimeo/src/mimeo-${version}.tar.xz`),
           hash: "sha256-CahvSypwR1aHVDHTdtty1ZfaKBWPolxc73uZ5OyeqZA=",
         })))),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "$out/bin/mimeo --help > /dev/null\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open files by MIME-type or file name using regular expressions",
         homepage: "https://xyne.dev/projects/mimeo/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

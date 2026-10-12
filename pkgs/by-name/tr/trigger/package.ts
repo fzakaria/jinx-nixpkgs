@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["sha256", 26, 5]], [["name", 72, 7], ["exec", 73, 7], ["icon", 74, 7], ["desktopName", 75, 7], ["comment", 76, 7], ["categories", 77, 7]], [["description", 85, 5], ["mainProgram", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["preConfigure", 44, 3], ["makeFlags", 53, 3], ["enableParallelBuilding", 57, 3], ["postInstall", 59, 3], ["desktopItems", 70, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenv: false, runtimeShell: false, SDL2: false, freealut: false, SDL2_image: false, openal: false, physfs: false, zlib: false, libGLU: false, libGL: false, glew: false, "tinyxml-2": false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 72, 7], ["exec", 73, 7], ["icon", 74, 7], ["desktopName", 75, 7], ["comment", 76, 7], ["categories", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["mainProgram", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["preConfigure", 44, 3], ["makeFlags", 53, 3], ["enableParallelBuilding", 57, 3], ["postInstall", 59, 3], ["desktopItems", 70, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "trigger-rally",
       version: "0.6.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/trigger-rally/trigger-rally-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "016bc2hczqscfmngacim870hjcsmwl8r3aq8x03vpf22s49nw23z",
         })))),
@@ -68,7 +65,7 @@ install -Dm644 $out/share/games/trigger-rally/icon/trigger-rally-icons.svg $out/
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Trigger",
             exec: "trigger-rally",
             icon: "trigger",
@@ -78,7 +75,7 @@ install -Dm644 $out/share/games/trigger-rally/icon/trigger-rally-icons.svg $out/
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast-paced single-player racing game",
         mainProgram: "trigger-rally",
         homepage: "http://trigger-rally.sourceforge.net/",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["orangefs", 84, 43]], [["tests", 84, 12]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["platforms", 97, 5], ["maintainers", 98, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 26, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["postPatch", 48, 3], ["configureFlags", 62, 3], ["enableParallelBuilding", 69, 3], ["postInstall", 71, 3], ["postFixup", 76, 3], ["passthru", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, bison: false, flex: false, autoreconfHook: false, openssl: false, db: false, attr: false, perl: false, tcsh: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["orangefs", 84, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 84, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["platforms", 97, 5], ["maintainers", 98, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 26, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["postPatch", 48, 3], ["configureFlags", 62, 3], ["enableParallelBuilding", 69, 3], ["postInstall", 71, 3], ["postFixup", 76, 3], ["passthru", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const tcsh = nix.arg($, "tcsh");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "orangefs",
       version: "2.9.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://download.orangefs.org/current/source/orangefs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-WJ97bEyOqblrYUJ/kAWtC+JYy0NwK0fZ8wTIEoyiXjA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fno-common.patch",
             url: "https://github.com/waltligon/orangefs/commit/f472beb50356bea657d1c32f1ca8a73e4718fd57.patch",
             hash: "sha256-UTUIVBFW+y5P42T7somLi9uDMoLI69Yik9W/3pwLWEk=",
@@ -60,14 +55,14 @@ done
 sed -i 's:openssl:${openssl}/bin/openssl:' $out/bin/pvfs2-gen-keys.sh
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           orangefs: nix.thunk(() => nix.attr(nixosTests, "orangefs")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Scale-out network file system for use on high-end computing systems",
         homepage: "http://www.orangefs.org/",
         license: nix.thunk(() => (() => {

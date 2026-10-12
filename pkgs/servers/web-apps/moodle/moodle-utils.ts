@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/moodle-utils.nix", [[["name", 18, 9], ["pluginType", 20, 17], ["configurePhase", 21, 17], ["buildPhase", 21, 32], ["buildInputs", 21, 43], ["nativeBuildInputs", 23, 9], ["installPhase", 25, 9]], [["buildMoodlePlugin", 37, 11]]]);
 const formals$1 = { args: { stdenv: false, unzip: false }, ellipsis: true };
 const formals$2 = { args: { name: false, src: false, pluginType: false, configurePhase: true, buildPhase: true, buildInputs: true, nativeBuildInputs: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/moodle-utils.nix", [["name", 18, 9], ["pluginType", 20, 17], ["configurePhase", 21, 17], ["buildPhase", 21, 32], ["buildInputs", 21, 43], ["nativeBuildInputs", 23, 9], ["installPhase", 25, 9]]);
-const pos$2 = nix.positions(here + "/moodle-utils.nix", [["buildMoodlePlugin", 37, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
     const buildInputs = nix.argOr($_1, "buildInputs", () => []);
     const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(a, {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: name,
         pluginType: pluginType,
         configurePhase: configurePhase,
@@ -32,6 +31,6 @@ export default nix.lambda((args) => (() => {
         installPhase: "runHook preInstall\n\nmkdir -p \"$out\"\nmv * $out/\n\nrunHook postInstall\n",
       })));
   })(), formals$2);
-  return { [nix.POS]: pos$2, buildMoodlePlugin: buildMoodlePlugin };
+  return { [nix.POS]: $pos[1], buildMoodlePlugin: buildMoodlePlugin };
 })(), formals$1);
 //# sourceMappingURL=moodle-utils.ts.map

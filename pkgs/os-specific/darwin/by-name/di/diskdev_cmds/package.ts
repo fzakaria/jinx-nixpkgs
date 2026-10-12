@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 15, 5], ["buildCommand", 17, 5]], [["NIX_CFLAGS_COMPILE", 61, 7]], [["description", 69, 8]], [["releaseName", 44, 3], ["outputs", 46, 3], ["xcodeHash", 51, 3], ["postPatch", 53, 3], ["env", 61, 3], ["buildInputs", 63, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { "apple-sdk": false, libutil: false, mkAppleDerivation: false, removefile: false, sourceRelease: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 15, 5], ["buildCommand", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 61, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 8]]);
-const pos$4 = nix.positions(here + "/package.nix", [["releaseName", 44, 3], ["outputs", 46, 3], ["xcodeHash", 51, 3], ["postPatch", 53, 3], ["env", 61, 3], ["buildInputs", 63, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const Libc = nix.thunk(() => nix.app(sourceRelease, "Libc"));
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "diskdev_cmds-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -t "$out/include" \\
   '${Libc}/include/_bounds.h'
@@ -46,13 +43,13 @@ substituteInPlace "$out/include/os/variant_private.h" \\
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       releaseName: "diskdev_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-mlTUd9eTBQhJa1hzAKzBpw6+702C4dwUjwZvJs/EKyw=",
       postPatch: "substituteInPlace mount.tproj/mount.c \\\n  --replace-fail 'sysctlbyname (\"vfs.generic.apfs.rosp\", &is_rosp, &rospsize, NULL, NULL);' 'sysctlbyname (\"vfs.generic.apfs.rosp\", &is_rosp, &rospsize, NULL, 0);'\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
       buildInputs: nix.thunk(() => [
@@ -60,7 +57,7 @@ substituteInPlace "$out/include/os/variant_private.h" \\
         libutil,
         removefile,
       ]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: "Disk commands for Darwin" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[2], description: "Disk commands for Darwin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

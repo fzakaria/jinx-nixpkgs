@@ -2,20 +2,18 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/default.nix", [["exportTemplatesHash", 5, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["exportTemplatesHash", 8, 5], ["nugetDeps", 9, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 2, 3], ["hash", 3, 3], ["default", 4, 3], ["mono", 7, 3]]);
+const $pos = nix.positions(here + "/default.nix", [[["exportTemplatesHash", 5, 5]], [["exportTemplatesHash", 8, 5], ["nugetDeps", 9, 5]], [["version", 2, 3], ["hash", 3, 3], ["default", 4, 3], ["mono", 7, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$3,
+  [nix.POS]: $pos[2],
   version: "4.6.3-stable",
   hash: "sha256-BNivdlGk1jTOR68U0Mhs53xp7jhvR90xKaoIBT7ixaE=",
   default: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     exportTemplatesHash: "sha256-P74sDi3snVN6ueyXvPjakdzyM1f8UfZwkt0GjYOSkKg=",
   })),
   mono: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     exportTemplatesHash: "sha256-ZDb0dO4IX7CpTT0pa5ghc2vdZjtukbIij993Bm8dFAA=",
     nugetDeps: nix.path(here, "./deps.json"),
   })),

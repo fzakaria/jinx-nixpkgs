@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 31, 5], ["homepage", 32, 5], ["changelog", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["doCheck", 20, 3], ["checkInputs", 22, 3], ["nativeCheckInputs", 26, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, ocaml: false, buildDunePackage: false, fetchurl: false, mdx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 31, 5], ["homepage", 32, 5], ["changelog", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["doCheck", 20, 3], ["checkInputs", 22, 3], ["nativeCheckInputs", 26, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const mdx = nix.arg($, "mdx");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "colors",
       version: "0.0.1",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/leostera/colors/releases/download/${nix.sel(finalAttrs, "version")}/colors-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-fY1j9FODVnifwsI8qkKm0QSmssgWqYFXJ7y8o7/KmEY=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [mdx]),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pure OCaml library for manipulating colors across color spaces",
         homepage: "https://github.com/leostera/colors",
         changelog: nix.thunk(() => nix.str`https://github.com/leostera/colors/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 7], ["repo", 20, 7], ["rev", 21, 7], ["hash", 22, 7], ["fetchSubmodules", 23, 7]], [["description", 27, 7], ["longDescription", 28, 7], ["license", 33, 7], ["platforms", 34, 7], ["homepage", 35, 7], ["changelog", 36, 7], ["maintainers", 37, 7], ["mainProgram", 38, 7]], [["pname", 15, 5], ["version", 16, 5], ["src", 18, 5], ["meta", 26, 5]], [["pname", 12, 3], ["withWebkit", 13, 11], ["unwrapped", 14, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "telegram-desktop": false, withWebkit: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 7], ["repo", 20, 7], ["rev", 21, 7], ["hash", 22, 7], ["fetchSubmodules", 23, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 27, 7], ["longDescription", 28, 7], ["license", 33, 7], ["platforms", 34, 7], ["homepage", 35, 7], ["changelog", 36, 7], ["maintainers", 37, 7], ["mainProgram", 38, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 5], ["version", 16, 5], ["src", 18, 5], ["meta", 26, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["withWebkit", 13, 11], ["unwrapped", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,15 +13,15 @@ export default nix.lambda((args) => (() => {
   const withWebkit = nix.argOr($, "withWebkit", () => true);
   const version = "1.4.9";
   return nix.app(nix.sel(telegram_desktop, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kotatogram-desktop",
       withWebkit: withWebkit,
       unwrapped: nix.thunk(() => nix.app(nix.sel(telegram_desktop, "unwrapped", "overrideAttrs"), (old) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "kotatogram-desktop-unwrapped",
           version: nix.thunk(() => nix.str`${version}-unstable-2026-10-06`),
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "kotatogram",
               repo: "kotatogram-desktop",
               rev: "4561e1a33bb55feb692282d8ae5ba1bf6f7a72f3",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
               fetchSubmodules: true,
             })))),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             description: "Kotatogram – experimental Telegram Desktop fork",
             longDescription: "Unofficial desktop client for the Telegram messenger, based on Telegram Desktop.\n\nIt contains some useful (or purely cosmetic) features, but they could be unstable. A detailed list is available here: https://kotatogram.github.io/changes\n",
             license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

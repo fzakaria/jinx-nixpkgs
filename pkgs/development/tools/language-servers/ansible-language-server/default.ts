@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pnpmWorkspaces", 34, 7], ["pname", 35, 7], ["version", 36, 7], ["src", 37, 7], ["pnpm", 39, 5], ["fetcherVersion", 40, 5], ["hash", 41, 5]], [["changelog", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 13, 3], ["version", 14, 3], ["vscodeAnsibleVersion", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["pnpmWorkspaces", 31, 3], ["pnpmDeps", 32, 3], ["buildPhase", 44, 3], ["installPhase", 50, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, makeWrapper: false, nodejs: false, pnpm_11: false, pnpmConfigHook: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pnpmWorkspaces", 34, 7], ["pname", 35, 7], ["version", 36, 7], ["src", 37, 7], ["pnpm", 39, 5], ["fetcherVersion", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["vscodeAnsibleVersion", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["pnpmWorkspaces", 31, 3], ["pnpmDeps", 32, 3], ["buildPhase", 44, 3], ["installPhase", 50, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ansible-language-server",
       version: nix.thunk(() => nix.sel(finalAttrs, "vscodeAnsibleVersion")),
       vscodeAnsibleVersion: "26.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ansible",
           repo: "vscode-ansible",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "vscodeAnsibleVersion")}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, nodejs, pnpmConfigHook, pnpm_11]),
       pnpmWorkspaces: nix.thunk(() => ["@ansible/ansible-language-server"]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pnpmWorkspaces: nix.thunk(() => nix.attr(finalAttrs, "pnpmWorkspaces")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -58,7 +55,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/ansible-language
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/ansible/vscode-ansible/releases/tag/v${nix.sel(finalAttrs, "vscodeAnsibleVersion")}`),
         description: "Ansible Language Server",
         mainProgram: "ansible-language-server",

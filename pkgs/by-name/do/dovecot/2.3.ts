@@ -2,23 +2,21 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/2.3.nix", [["url", 9, 7], ["hash", 10, 7]]);
-const pos$2 = nix.positions(here + "/2.3.nix", [["name", 13, 7], ["url", 14, 7], ["hash", 15, 7]]);
-const pos$3 = nix.positions(here + "/2.3.nix", [["version", 2, 3], ["hash", 3, 3], ["patches", 4, 3]]);
+const $pos = nix.positions(here + "/2.3.nix", [[["url", 9, 7], ["hash", 10, 7]], [["name", 13, 7], ["url", 14, 7], ["hash", 15, 7]], [["version", 2, 3], ["hash", 3, 3], ["patches", 4, 3]]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     version: "2.3.21.1",
     hash: "sha256-1THBB401r6AnZbnHGhIq+o+nR8v94O0mIX68Pv0miiE=",
     patches: (fetchpatch) => [
       nix.path(here, "./load-extended-modules.patch"),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://salsa.debian.org/debian/dovecot/-/raw/debian/1%252.3.19.1+dfsg1-2/debian/patches/Support-openssl-3.0.patch",
           hash: "sha256-PbBB1jIY3jIC8Js1NY93zkV0gISGUq7Nc67Ul5tN7sw=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "dovecot-test-data-stack-drop-bogus-assertion.patch",
           url: "https://github.com/dovecot/core/commit/9f642dd868db6e7401f24e4fb4031b5bdca8aae7.patch",
           hash: "sha256-dAX80dRqOba9Fkzl11ChYJ6vqcgfkaw/o+TOQKCnnns=",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 13], ["sha256", 16, 5]], [["description", 24, 5], ["mainProgram", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["pname", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["subPackages", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 13], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["mainProgram", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["subPackages", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.str`20210523-${nix.app(nix.sel(lib, "strings", "substring"), 0n, 7n, rev)}`);
       const rev = "259b9fc6155f40758e5fa480683467c35df746e7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "redcode-labs",
           repo: "Sammler",
           rev: rev,
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-0ZBPLONUZyazZ22oLO097hdX5xuHx2G6rZCAsCwqq4s=";
       const subPackages = nix.thunk(() => ["."]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to extract useful data from documents",
         mainProgram: "sammler",
         homepage: "https://github.com/redcode-labs/Sammler",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fab"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, rev, src, vendorHash, subPackages, meta };
+      return { [nix.POS]: $pos[2], pname, version, rev, src, vendorHash, subPackages, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["sourceRoot", 22, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["checkPhase", 31, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pymupdf: false, tabulate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["sourceRoot", 22, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["checkPhase", 31, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const pymupdf = nix.arg($, "pymupdf");
   const tabulate = nix.arg($, "tabulate");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pymupdf4llm",
       version: "0.3.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pymupdf",
           repo: "RAG",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\npython3 - <<'EOF'\nimport fitz\nimport pymupdf4llm\n\ndoc = fitz.open()\npage = doc.new_page()\npage.insert_text((72, 72), \"Hello, Nix!\")\ndoc.save(\"input.pdf\")\n\nmd = pymupdf4llm.to_markdown(\"input.pdf\")\nassert isinstance(md, str), \"Returned value is not a string\"\nassert \"Hello, Nix!\" in md, \"Returned value does not contain the expected text\"\nEOF\n\nrunHook postCheck\n",
       pythonImportsCheck: nix.thunk(() => ["pymupdf4llm"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PyMuPDF Utilities for LLM/RAG - converts PDF pages to Markdown format for Retrieval-Augmented Generation",
         homepage: "https://github.com/pymupdf/RAG",
         changelog: nix.thunk(() => nix.str`https://github.com/pymupdf/RAG/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

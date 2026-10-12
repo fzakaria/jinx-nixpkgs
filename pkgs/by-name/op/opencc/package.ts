@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["rev-prefix", 42, 33]], [["updateScript", 42, 5]], [["homepage", 46, 5], ["license", 47, 5], ["description", 48, 5], ["longDescription", 49, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 32, 3], ["cmakeFlags", 37, 3], ["passthru", 41, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, python3: false, opencc: false, rapidjson: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 42, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["license", 47, 5], ["description", 48, 5], ["longDescription", 49, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 32, 3], ["cmakeFlags", 37, 3], ["passthru", 41, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const rapidjson = nix.arg($, "rapidjson");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "opencc",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BYVoid",
           repo: "OpenCC",
           tag: nix.thunk(() => nix.str`ver.${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_SYSTEM_RAPIDJSON", true)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "ver." })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "ver." })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/BYVoid/OpenCC",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         description: "Project for conversion between Traditional and Simplified Chinese",

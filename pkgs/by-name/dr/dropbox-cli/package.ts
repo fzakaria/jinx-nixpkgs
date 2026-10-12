@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["dropboxd", 38, 15], ["DESKTOP_FILE_DIR", 40, 7]], [["homepage", 74, 5], ["description", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5], ["platforms", 80, 5]], [["pname", 21, 3], ["version", 22, 11], ["outputs", 24, 3], ["src", 29, 3], ["strictDeps", 34, 3], ["patches", 36, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 59, 3], ["configureFlags", 65, 3], ["makeFlags", 69, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, replaceVars: false, autoreconfHook: false, "pkg-config": false, fetchurl: false, python3: false, dropbox: false, gtk4: false, nautilus: false, "gdk-pixbuf": false, "gobject-introspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["dropboxd", 38, 15], ["DESKTOP_FILE_DIR", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["description", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5], ["platforms", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 11], ["outputs", 24, 3], ["src", 29, 3], ["strictDeps", 34, 3], ["patches", 36, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 59, 3], ["configureFlags", 65, 3], ["makeFlags", 69, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const version = "2024.04.17";
   const dropboxd = nix.thunk(() => nix.str`${dropbox}/bin/dropbox`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dropbox-cli",
       version: version,
       outputs: nix.thunk(() => ["out", "nautilusExtension"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://linux.dropbox.com/packages/nautilus-dropbox-${version}.tar.bz2`),
           hash: "sha256-pqCYzxaqR0f0CBaseT1Z436K47cIDQswYR1sK4Zj8sE=",
         })))),
       strictDeps: true,
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-cli-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, dropboxd: dropboxd, DESKTOP_FILE_DIR: null })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-cli-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], dropboxd: dropboxd, DESKTOP_FILE_DIR: null })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [
         autoreconfHook,
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`EMBLEM_DIR=${nix.builtins.placeholder("nautilusExtension")}/share/nautilus-dropbox/emblems`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.dropbox.com",
         description: "Command line client for the dropbox daemon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

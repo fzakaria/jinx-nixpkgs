@@ -2,9 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/attr.nix", [[["maintainers", 25, 7]], [["nativeCheckInputs", 14, 5], ["preCheck", 15, 5], ["doCheck", 21, 5], ["memSize", 22, 5], ["meta", 24, 5]]]);
 const formals$1 = { args: { lib: false, vmTools: false, attr: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/attr.nix", [["maintainers", 25, 7]]);
-const pos$2 = nix.positions(here + "/attr.nix", [["nativeCheckInputs", 14, 5], ["preCheck", 15, 5], ["doCheck", 21, 5], ["memSize", 22, 5], ["meta", 24, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const attr = nix.arg($, "attr");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(vmTools, "runInLinuxVM"), nix.thunk(() => nix.app(nix.sel(attr, "overrideAttrs"), (oa) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         nativeCheckInputs: nix.thunk(() => [perl]),
         preCheck: "patchShebangs test",
         doCheck: true,
         memSize: 4096n,
         meta: nix.thunk(() => nix.update(nix.sel(oa, "meta"), {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => nix.concat(nix.selOr(oa, () => [], "meta", "maintainers"), [nix.thunk(() => nix.sel(lib, "maintainers", "balsoft"))])),
         })),
       }))));

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gen.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["duneVersion", 20, 3], ["minimalOCamlVersion", 22, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, buildDunePackage: false, "ff-sig": false, zarith: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/gen.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/gen.nix", [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/gen.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["duneVersion", 20, 3], ["minimalOCamlVersion", 22, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const ff_sig = nix.arg($, "ff-sig");
   const zarith = nix.arg($, "zarith");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bls12-381-gen",
       version: "0.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dannywillems",
           repo: "ocaml-bls12-381",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-legacy`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ff_sig, zarith]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.com/dannywillems/ocaml-bls12-381",
         description: "Functors to generate BLS12-381 primitives based on stubs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

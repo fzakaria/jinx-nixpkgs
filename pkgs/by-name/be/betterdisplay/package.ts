@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["updateScript", 47, 12]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["sourceProvenance", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["dontPatch", 21, 3], ["dontConfigure", 22, 3], ["dontBuild", 23, 3], ["dontFixup", 24, 3], ["buildInputs", 26, 3], ["sourceRoot", 28, 3], ["installPhase", 29, 3], ["nativeInstallCheckInputs", 38, 3], ["versionCheckProgram", 39, 3], ["versionCheckProgramArg", 42, 3], ["doInstallCheck", 45, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, undmg: false, "nix-update-script": false, versionCheckHook: false, writeShellScript: false, "re-plistbuddy": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 47, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["sourceProvenance", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["dontPatch", 21, 3], ["dontConfigure", 22, 3], ["dontBuild", 23, 3], ["dontFixup", 24, 3], ["buildInputs", 26, 3], ["sourceRoot", 28, 3], ["installPhase", 29, 3], ["nativeInstallCheckInputs", 38, 3], ["versionCheckProgram", 39, 3], ["versionCheckProgramArg", 42, 3], ["doInstallCheck", 45, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const re_plistbuddy = nix.arg($, "re-plistbuddy");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "betterdisplay",
       version: "4.3.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/waydabber/BetterDisplay/releases/download/v${nix.sel(finalAttrs, "version")}/BetterDisplay-v${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-I0Ei9+TsbmsA6iFD1CwScgrU7OO9mL3fl3/uvCYS4JI=",
         })))),
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Unlock your displays on your Mac! Flexible HiDPI scaling, XDR/HDR extra brightness, virtual screens, DDC control, extra dimming, PIP/streaming, EDID override and lots more",
         homepage: "https://betterdisplay.pro/",
         changelog: nix.thunk(() => nix.str`https://github.com/waydabber/BetterDisplay/releases/tag/v${nix.sel(finalAttrs, "version")}`),

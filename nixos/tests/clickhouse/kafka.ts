@@ -2,29 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kafka.nix", [[["maintainers", 31, 8]], [["source", 40, 11]], [["clickhouse-server/config.d/kafka.xml", 39, 9]], [["etc", 38, 19]], [["enable", 45, 9], ["package", 46, 17]], [["clickhouse", 44, 16]], [["memorySize", 48, 22]], [["environment", 38, 7], ["services", 44, 7], ["virtualisation", 48, 7]], [["allowedTCPPorts", 52, 27]], [["firewall", 52, 18]], [["systemPackages", 57, 19]], [["listeners", 72, 11], ["listener.security.protocol.map", 76, 11], ["controller.quorum.voters", 80, 11], ["controller.listener.names", 83, 11], ["node.id", 85, 11], ["broker.rack", 86, 11], ["process.roles", 88, 11], ["log.dirs", 93, 11], ["num.partitions", 94, 11], ["offsets.topic.replication.factor", 95, 11], ["transaction.state.log.replication.factor", 96, 11], ["transaction.state.log.min.isr", 97, 11]], [["enable", 63, 9], ["clusterId", 67, 9], ["formatLogDirs", 69, 9], ["settings", 71, 9]], [["apache-kafka", 62, 16]], [["StateDirectory", 101, 51]], [["serviceConfig", 101, 37]], [["apache-kafka", 101, 24]], [["services", 101, 15]], [["memorySize", 103, 22]], [["networking", 52, 7], ["environment", 57, 7], ["services", 62, 7], ["systemd", 101, 7], ["virtualisation", 103, 7]], [["clickhouse", 37, 5], ["kafka", 51, 5]], [["name", 30, 3], ["meta", 31, 3], ["nodes", 36, 3], ["testScript", 107, 3]]]);
 const formals$1 = { args: { pkgs: false, package: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/kafka.nix", [["maintainers", 31, 8]]);
-const pos$2 = nix.positions(here + "/kafka.nix", [["source", 40, 11]]);
-const pos$3 = nix.positions(here + "/kafka.nix", [["clickhouse-server/config.d/kafka.xml", 39, 9]]);
-const pos$4 = nix.positions(here + "/kafka.nix", [["etc", 38, 19]]);
-const pos$5 = nix.positions(here + "/kafka.nix", [["enable", 45, 9], ["package", 46, 17]]);
-const pos$6 = nix.positions(here + "/kafka.nix", [["clickhouse", 44, 16]]);
-const pos$7 = nix.positions(here + "/kafka.nix", [["memorySize", 48, 22]]);
-const pos$8 = nix.positions(here + "/kafka.nix", [["environment", 38, 7], ["services", 44, 7], ["virtualisation", 48, 7]]);
-const pos$9 = nix.positions(here + "/kafka.nix", [["allowedTCPPorts", 52, 27]]);
-const pos$10 = nix.positions(here + "/kafka.nix", [["firewall", 52, 18]]);
-const pos$11 = nix.positions(here + "/kafka.nix", [["systemPackages", 57, 19]]);
-const pos$12 = nix.positions(here + "/kafka.nix", [["listeners", 72, 11], ["listener.security.protocol.map", 76, 11], ["controller.quorum.voters", 80, 11], ["controller.listener.names", 83, 11], ["node.id", 85, 11], ["broker.rack", 86, 11], ["process.roles", 88, 11], ["log.dirs", 93, 11], ["num.partitions", 94, 11], ["offsets.topic.replication.factor", 95, 11], ["transaction.state.log.replication.factor", 96, 11], ["transaction.state.log.min.isr", 97, 11]]);
-const pos$13 = nix.positions(here + "/kafka.nix", [["enable", 63, 9], ["clusterId", 67, 9], ["formatLogDirs", 69, 9], ["settings", 71, 9]]);
-const pos$14 = nix.positions(here + "/kafka.nix", [["apache-kafka", 62, 16]]);
-const pos$15 = nix.positions(here + "/kafka.nix", [["StateDirectory", 101, 51]]);
-const pos$16 = nix.positions(here + "/kafka.nix", [["serviceConfig", 101, 37]]);
-const pos$17 = nix.positions(here + "/kafka.nix", [["apache-kafka", 101, 24]]);
-const pos$18 = nix.positions(here + "/kafka.nix", [["services", 101, 15]]);
-const pos$19 = nix.positions(here + "/kafka.nix", [["memorySize", 103, 22]]);
-const pos$20 = nix.positions(here + "/kafka.nix", [["networking", 52, 7], ["environment", 57, 7], ["services", 62, 7], ["systemd", 101, 7], ["virtualisation", 103, 7]]);
-const pos$21 = nix.positions(here + "/kafka.nix", [["clickhouse", 37, 5], ["kafka", 51, 5]]);
-const pos$22 = nix.positions(here + "/kafka.nix", [["name", 30, 3], ["meta", 31, 3], ["nodes", 36, 3], ["testScript", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const kafkaNamedCollectionConfig = "<clickhouse>\n  <named_collections>\n    <cluster_1>\n        <!-- ClickHouse Kafka engine parameters -->\n        <kafka_broker_list>kafka:9092</kafka_broker_list>\n        <kafka_topic_list>test_topic</kafka_topic_list>\n        <kafka_group_name>clickhouse</kafka_group_name>\n        <kafka_format>JSONEachRow</kafka_format>\n        <kafka_commit_every_batch>0</kafka_commit_every_batch>\n        <kafka_num_consumers>1</kafka_num_consumers>\n        <kafka_thread_per_consumer>1</kafka_thread_per_consumer>\n\n        <!-- Kafka extended configuration -->\n        <kafka>\n          <debug>all</debug>\n          <auto_offset_reset>earliest</auto_offset_reset>\n        </kafka>\n    </cluster_1>\n  </named_collections>\n</clickhouse>\n";
   const kafkaNamedCollection = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "kafka.xml", kafkaNamedCollectionConfig));
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     name: nix.thunk(() => nix.str`clickhouse-${nix.sel(package$, "version")}-kafka`),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -46,44 +25,47 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       clickhouse: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            "clickhouse-server/config.d/kafka.xml": nix.thunk(() => ({ [nix.POS]: pos$2, source: nix.thunk(() => nix.str`${kafkaNamedCollection}`) })),
+            [nix.POS]: $pos[2],
+            "clickhouse-server/config.d/kafka.xml": nix.thunk(() => ({
+              [nix.POS]: $pos[1],
+              source: nix.thunk(() => nix.str`${kafkaNamedCollection}`),
+            })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          clickhouse: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, package: package$ })),
+          [nix.POS]: $pos[5],
+          clickhouse: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true, package: package$ })),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, memorySize: 4096n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[6], memorySize: 4096n })),
       })),
       kafka: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$10,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$9, allowedTCPPorts: nix.thunk(() => [9092n, 9093n]) })),
+          [nix.POS]: $pos[9],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[8], allowedTCPPorts: nix.thunk(() => [9092n, 9093n]) })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "apacheKafka")),
             nix.thunk(() => nix.sel(pkgs, "jq")),
           ]),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           "apache-kafka": nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             enable: true,
             clusterId: "b81s-MuGSwyt_B9_h37wtQ",
             formatLogDirs: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               listeners: nix.thunk(() => ["PLAINTEXT://:9092", "CONTROLLER://:9093"]),
               "listener.security.protocol.map": nix.thunk(() => ["PLAINTEXT:PLAINTEXT", "CONTROLLER:PLAINTEXT"]),
               "controller.quorum.voters": nix.thunk(() => ["1@kafka:9093"]),
@@ -100,16 +82,16 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             "apache-kafka": nix.thunk(() => ({
-              [nix.POS]: pos$16,
-              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$15, StateDirectory: "apache-kafka" })),
+              [nix.POS]: $pos[15],
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[14], StateDirectory: "apache-kafka" })),
             })),
           })),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$19, memorySize: nix.thunk(() => nix.mul(1024n, 2n)) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[18], memorySize: nix.thunk(() => nix.mul(1024n, 2n)) })),
       })),
     })),
     testScript: nix.thunk(() => (() => {

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["updateScript", 41, 12]], [["changelog", 44, 5], ["description", 45, 5], ["homepage", 46, 5], ["maintainers", 47, 5], ["license", 48, 5], ["platforms", 49, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["nativeBuildInputs", 32, 3], ["nativeCheckInputs", 36, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, setuptools: false, ytmusicapi: false, "yt-dlp": false, "beets-minimal": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 41, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 44, 5], ["description", 45, 5], ["homepage", 46, 5], ["maintainers", 47, 5], ["license", 48, 5], ["platforms", 49, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["nativeBuildInputs", 32, 3], ["nativeCheckInputs", 36, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.13.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mgoltzsche",
           repo: "beets-ytimport",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [beets_minimal]);
       const nativeCheckInputs = nix.thunk(() => [writableTmpDirAsHomeHook, pytestCheckHook]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/mgoltzsche/beets-ytimport/releases/tag/v${version}`),
         description: "Beets plugin to import music from Youtube and SoundCloud",
         homepage: "https://github.com/mgoltzsche/beets-ytimport",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

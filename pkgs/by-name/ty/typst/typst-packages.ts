@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/typst-packages.nix", [[["typstPackages", 13, 76]], [["homepage", 20, 9], ["pname", 21, 17], ["version", 21, 23], ["hash", 23, 11], ["description", 24, 11], ["license", 25, 11], ["typstDeps", 26, 11]], [["name", 17, 7], ["value", 19, 7]]]);
 const formals$1 = { args: { lib: false, callPackage: false, newScope: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/typst-packages.nix", [["typstPackages", 13, 76]]);
-const pos$2 = nix.positions(here + "/typst-packages.nix", [["homepage", 20, 9], ["pname", 21, 17], ["version", 21, 23], ["hash", 23, 11], ["description", 24, 11], ["license", 25, 11], ["typstDeps", 26, 11]]);
-const pos$3 = nix.positions(here + "/typst-packages.nix", [["name", 17, 7], ["value", 19, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const newScope = nix.arg($, "newScope");
   const toPackageName = (name) => (version) => nix.str`${name}_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`;
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
-      const buildUniversePackage = nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./build-universe-package.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, typstPackages: self }))));
+      const buildUniversePackage = nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./build-universe-package.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], typstPackages: self }))));
       const makeVersionedPackage = (pname) => (version) => (packageSpec) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: nix.thunk(() => nix.app(toPackageName, pname, version)),
         value: nix.thunk(() => nix.app(buildUniversePackage, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             homepage: nix.thunk(() => nix.selOr(packageSpec, () => null, "homepage")),
             pname: pname,
             version: version,

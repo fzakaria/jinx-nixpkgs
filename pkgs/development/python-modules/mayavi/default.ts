@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]], [["NIX_CFLAGS_COMPILE", 41, 7]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]], [["pname", 18, 3], ["version", 19, 3], ["format", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 29, 3], ["env", 41, 3], ["doCheck", 44, 3], ["pythonImportsCheck", 46, 3], ["preFixup", 48, 3], ["stripExclude", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, apptools: false, buildPythonPackage: false, envisage: false, fetchPypi: false, numpy: false, packaging: false, pyface: false, pygments: false, pyqt5: false, qt5: false, traitsui: false, vtk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 41, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["format", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 29, 3], ["env", 41, 3], ["doCheck", 44, 3], ["pythonImportsCheck", 46, 3], ["preFixup", 48, 3], ["stripExclude", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,20 +25,20 @@ export default nix.lambda((args) => (() => {
       const version = "4.8.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-72nMvfWPIPGzlJMNXjoW3aSxo5rcvHb3mr0mSD0prPU=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]);
       const propagatedBuildInputs = nix.thunk(() => [apptools, envisage, numpy, packaging, pyface, pygments, pyqt5, traitsui, vtk]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error" }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["mayavi"]);
       const preFixup = "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n";
       const stripExclude = nix.thunk(() => ["*.ico"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "3D visualization of scientific data in Python",
         homepage: "https://github.com/enthought/mayavi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mayavi2",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

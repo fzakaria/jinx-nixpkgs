@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["name", 30, 5], ["message", 31, 5], ["sha256", 43, 5]], [["NIX_CFLAGS_COMPILE", 70, 7]], [["description", 94, 5], ["mainProgram", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 100, 5]], [["pname", 48, 11], ["version", 48, 17], ["srcs", 50, 3], ["sourceRoot", 52, 3], ["postUnpack", 54, 3], ["buildInputs", 58, 3], ["env", 70, 3], ["enableParallelBuilding", 74, 3], ["makeFlags", 76, 3], ["installPhase", 84, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, requireFile: false, openal: false, curl: false, libogg: false, libvorbis: false, SDL2: false, SDL2_image: false, zlib: false, clang: false, libtheora: false, unfree_assets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 5], ["message", 31, 5], ["sha256", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 70, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 94, 5], ["mainProgram", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 48, 11], ["version", 48, 17], ["srcs", 50, 3], ["sourceRoot", 52, 3], ["postUnpack", 54, 3], ["buildInputs", 58, 3], ["env", 70, 3], ["enableParallelBuilding", 74, 3], ["makeFlags", 76, 3], ["installPhase", 84, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const pname = "keeperrl";
   const version = "alpha34";
   const free_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "miki151",
       repo: "keeperrl",
       rev: version,
@@ -48,10 +44,10 @@ Then add this archive to the nix store with
 "nix-prefetch-url file://$PWD/${name}".
 `);
       const sha256 = "0115pxdzdyma2vicxgr0j21pp82gxdyrlj090s8ihp0b50f0nlll";
-      return { [nix.POS]: pos$2, name, message, sha256 };
+      return { [nix.POS]: $pos[1], name, message, sha256 };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       srcs: nix.thunk(() => nix.concat([free_src], nix.app(nix.sel(lib, "optional"), unfree_assets, assets))),
@@ -59,7 +55,7 @@ Then add this archive to the nix store with
       postUnpack: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), unfree_assets, "mv data $sourceRoot\n")),
       buildInputs: nix.thunk(() => [openal, curl, libogg, libvorbis, libtheora, SDL2, SDL2_image, zlib, clang]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), SDL2)}/include/SDL2`),
           ]))),
@@ -80,7 +76,7 @@ cp -r data_contrib $out/share
 ${nix.app(nix.sel(lib, "optionalString"), unfree_assets, "cp -r data $out/share")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Dungeon management rogue-like",
         mainProgram: "keeper",
         homepage: "https://keeperrl.com/",

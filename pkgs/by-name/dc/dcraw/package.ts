@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["knownVulnerabilities", 47, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["patchPhase", 29, 3], ["buildPhase", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libjpeg: false, lcms2: false, gettext: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["knownVulnerabilities", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["patchPhase", 29, 3], ["buildPhase", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dcraw";
       const version = "9.28.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.dechifro.org/dcraw/archive/dcraw-${version}.tar.gz`),
           sha256: "1fdl3xa1fbm71xzc3760rsjkvf0x5jdjrvdzyg2l9ka24vdc7418",
         }))));
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const patchPhase = "substituteInPlace install \\\n  --replace 'prefix=/usr/local' 'prefix=$out' \\\n  --replace gcc '$CC' \\\n  --replace '-ljasper' '-DNO_JASPER=1'\n";
       const buildPhase = "mkdir -p $out/bin\nsh -e install\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.dechifro.org/dcraw/",
         description: "Decoder for many camera raw picture formats",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

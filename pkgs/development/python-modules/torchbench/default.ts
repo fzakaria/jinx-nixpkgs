@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 19, 11], ["version", 19, 17], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 28, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 45, 3], ["doCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, numpy: false, opencv4: false, sotabenchapi: false, torch: false, torchvision: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 11], ["version", 19, 17], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 28, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 45, 3], ["doCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const version = "0.0.31";
   const pname = "torchbench";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-EBZzcnRT50KREIOPrr/OZTJ4639ZUEejcelh3QSBcZ8=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["torchbench"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Easily benchmark machine learning models in PyTorch",
         homepage: "https://github.com/paperswithcode/torchbench",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 48, 5], ["license", 49, 5], ["description", 50, 5], ["platforms", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["depsBuildBuild", 19, 3], ["patches", 20, 3], ["enableParallelBuilding", 31, 3], ["doCheck", 33, 3], ["checkPhase", 35, 3], ["outputs", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, pkgsBuildBuild: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["license", 49, 5], ["description", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["depsBuildBuild", 19, 3], ["patches", 20, 3], ["enableParallelBuilding", 31, 3], ["doCheck", 33, 3], ["checkPhase", 35, 3], ["outputs", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkgsBuildBuild = nix.arg($, "pkgsBuildBuild");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "judy",
       version: "1.0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/judy/Judy-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1sv3990vsx8hrza1mvq3bhvv9m6ff08y4yz7swn6znszz24l0w6j",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\nmake -C test check-TESTS\nrunHook postCheck\n",
       outputs: nix.thunk(() => ["out", "man", "dev"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://judy.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         description: "State-of-the-art C library that implements a sparse dynamic array",

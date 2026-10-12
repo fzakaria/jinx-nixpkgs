@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 45, 5], ["license", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 19, 3], ["vendorHash", 25, 3], ["subPackages", 27, 3], ["nativeBuildInputs", 29, 3], ["postBuild", 35, 3], ["postInstall", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildGoModule: false, asciidoctor: false, ruby: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["license", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 19, 3], ["vendorHash", 25, 3], ["subPackages", 27, 3], ["nativeBuildInputs", 29, 3], ["postBuild", 35, 3], ["postInstall", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const which = nix.arg($, "which");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "reposurgeon",
       version: "5.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.catb.org/~esr/reposurgeon/reposurgeon-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-XEPpZyBlTfLGtFQSCHND8OrIPB6ml8HDdg0DSvnmWh8=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "patchShebangs .\nmake all HTMLFILES=\n",
       postInstall: "make install prefix=$out HTMLFILES=\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for editing version-control repository history",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "http://www.catb.org/esr/reposurgeon/",

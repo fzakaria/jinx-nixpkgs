@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["packages", 33, 9], ["targetPackages", 34, 9]], [["updateScript", 45, 5]], [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 62, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["projectFile", 20, 3], ["nugetDeps", 21, 3], ["dotnet-sdk", 23, 3], ["dotnetBuildFlags", 38, 3], ["dotnetInstallFlags", 42, 3], ["passthru", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packages", 33, 9], ["targetPackages", 34, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["projectFile", 20, 3], ["nugetDeps", 21, 3], ["dotnet-sdk", 23, 3], ["dotnetBuildFlags", 38, 3], ["dotnetInstallFlags", 42, 3], ["passthru", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "garnet";
       const version = "2.1.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "garnet",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.lookup(w, "sdk_8_0")),
             ])));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           packages: nix.thunk(() => nix.attr(from, "packages")),
           targetPackages: nix.thunk(() => nix.attr(from, "targetPackages")),
         };
@@ -46,11 +42,11 @@ export default nix.lambda((args) => (() => {
       const dotnetBuildFlags = nix.thunk(() => ["-f", "net10.0"]);
       const dotnetInstallFlags = dotnetBuildFlags;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Remote cache-store from Microsoft Research",
         longDescription: "A remote cache-store that offers strong performance, scalability,\nstorage, recovery, cluster sharding, key migration, replication features,\nand compatibility with existing Redis clients\n",
         homepage: "https://microsoft.github.io/garnet/",
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "GarnetServer",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

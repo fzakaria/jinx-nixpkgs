@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["updateScript", 32, 12]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5], ["broken", 44, 5]], [["pname", 13, 3], ["version", 14, 3], ["minimalOCamlVersion", 16, 3], ["duneVersion", 17, 3], ["src", 19, 3], ["propagatedBuildInputs", 26, 3], ["passthru", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, ocaml: false, buildDunePackage: false, fix: false, menhirLib: false, menhirSdk: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 32, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5], ["broken", 44, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["minimalOCamlVersion", 16, 3], ["duneVersion", 17, 3], ["src", 19, 3], ["propagatedBuildInputs", 26, 3], ["passthru", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const minimalOCamlVersion = "4.08";
       const duneVersion = "3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "serokell",
           repo: pname,
           rev: version,
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const propagatedBuildInputs = nix.thunk(() => [fix, menhirLib, menhirSdk]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple fork of OCaml parser with support for error recovery",
         homepage: "https://github.com/serokell/ocaml-recovery-parser",
         license: nix.thunk(() => (() => {
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         minimalOCamlVersion,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5], ["fetchSubmodules", 43, 5], ["preFetch", 44, 5]], [["type", 54, 7], ["name", 55, 7], ["desktopName", 56, 7], ["comment", 57, 7], ["icon", 58, 7], ["exec", 59, 7], ["categories", 60, 7]], [["NIX_LDFLAGS", 130, 7]], [["updateScript", 141, 12]], [["description", 144, 5], ["homepage", 145, 5], ["mainProgram", 146, 5], ["platforms", 147, 5], ["license", 148, 5], ["maintainers", 149, 5]], [["pname", 35, 3], ["version", 36, 11], ["src", 38, 3], ["desktopItems", 52, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 75, 3], ["cmakeFlags", 94, 3], ["postPatch", 99, 3], ["strictDeps", 104, 3], ["preBuild", 106, 3], ["installPhase", 110, 3], ["env", 130, 3], ["passthru", 141, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, cmake: false, "pkg-config": false, "alsa-lib": false, copyDesktopItems: false, makeDesktopItem: false, libx11: false, libxcomposite: false, libxcursor: false, libxinerama: false, libxrandr: false, libxtst: false, libxdmcp: false, libxext: false, xvfb: false, freetype: false, fontconfig: false, expat: false, libGL: false, libjack2: false, curl: false, ninja: false, writableTmpDirAsHomeHook: false, "nix-update-script": false, enableVST2: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5], ["fetchSubmodules", 43, 5], ["preFetch", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["type", 54, 7], ["name", 55, 7], ["desktopName", 56, 7], ["comment", 57, 7], ["icon", 58, 7], ["exec", 59, 7], ["categories", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 130, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 141, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 144, 5], ["homepage", 145, 5], ["mainProgram", 146, 5], ["platforms", 147, 5], ["license", 148, 5], ["maintainers", 149, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 11], ["src", 38, 3], ["desktopItems", 52, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 75, 3], ["cmakeFlags", 94, 3], ["postPatch", 99, 3], ["strictDeps", 104, 3], ["preBuild", 106, 3], ["installPhase", 110, 3], ["env", 130, 3], ["passthru", 141, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const enableVST2 = nix.argOr($, "enableVST2", () => false);
   const version = "1.1.7";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "socalabs-sn76489",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FigBug",
           repo: "SN76489",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             type: "Application",
             name: "socalabs-sn76489",
             desktopName: "Socalabs SN76489",
@@ -109,7 +104,7 @@ install -Dm444 $src/plugin/Resources/logo.png $out/share/pixmaps/SN76489.png
 runHook postInstall
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lX11",
             "-lXext",
@@ -122,11 +117,11 @@ runHook postInstall
           ]))),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Socalabs Texas Instruments SN76489 Emulation Plugin",
         homepage: "https://socalabs.com/synths/sn76489/",
         mainProgram: "SN76489",

@@ -2,17 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["arch", 23, 11], ["hash", 24, 11]], [["arch", 27, 11], ["hash", 28, 11]], [["arch", 31, 11], ["hash", 32, 11]], [["x86_64-linux", 22, 9], ["aarch64-linux", 26, 9], ["aarch64-darwin", 30, 9]], [["name", 37, 7], ["publisher", 38, 7], ["version", 39, 7]], [["package", 45, 5], ["command", 46, 5]], [["bundled-claude-runs", 44, 18]], [["tests", 44, 12]], [["description", 50, 5], ["homepage", 51, 5], ["downloadPage", 52, 5], ["license", 53, 5], ["sourceProvenance", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["nativeBuildInputs", 12, 3], ["buildInputs", 14, 3], ["mktplcRef", 19, 3], ["passthru", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, autoPatchelfHook: false, "alsa-lib": false, testers: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["arch", 23, 11], ["hash", 24, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arch", 27, 11], ["hash", 28, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["arch", 31, 11], ["hash", 32, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 22, 9], ["aarch64-linux", 26, 9], ["aarch64-darwin", 30, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 37, 7], ["publisher", 38, 7], ["version", 39, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["package", 45, 5], ["command", 46, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["bundled-claude-runs", 44, 18]]);
-const pos$8 = nix.positions(here + "/default.nix", [["tests", 44, 12]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["downloadPage", 52, 5], ["license", 53, 5], ["sourceProvenance", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 12, 3], ["buildInputs", 14, 3], ["mktplcRef", 19, 3], ["passthru", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
@@ -32,43 +23,43 @@ export default nix.lambda((args) => (() => {
         ]))),
       mktplcRef: nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             arch: "linux-x64",
             hash: "sha256-QBFTvXGLTtq/IMi1jsRo7Haa++7dI65z6jm7TzL6TiE=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             arch: "linux-arm64",
             hash: "sha256-aNNkJQWsyp4AJQXJ0BZhX0c0+Yd9Sgdxt4qz39DH93M=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             arch: "darwin-arm64",
             hash: "sha256-sONS1iqQApuIPanIlTGyIkwNnbvvTZow2NluFlKAyvw=",
           })),
         }));
         return nix.update({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: "claude-code",
           publisher: "anthropic",
           version: "2.1.295",
         }, nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "bundled-claude-runs": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/vscode/extensions/anthropic.claude-code/resources/native-binary/claude --version`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Harness the power of Claude Code without leaving your IDE",
         homepage: "https://docs.anthropic.com/s/claude-code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code",

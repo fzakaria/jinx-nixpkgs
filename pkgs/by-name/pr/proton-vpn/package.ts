@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 8, 5], ["homepage", 9, 5], ["license", 10, 5], ["maintainers", 11, 5]], [["meta", 19, 38]], [["meta", 21, 37]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 8, 5], ["homepage", 9, 5], ["license", 10, 5], ["maintainers", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["meta", 19, 38]]);
-const pos$3 = nix.positions(here + "/package.nix", [["meta", 21, 37]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const callPackage = nix.arg($, "callPackage");
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Official Proton VPN client",
     homepage: "https://protonvpn.com/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -26,6 +24,6 @@ export default nix.lambda((args) => (() => {
       ];
     })()),
   }));
-  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, meta: meta }))));
+  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], meta: meta }))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

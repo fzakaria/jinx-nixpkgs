@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 25, 5], ["hash", 26, 5], ["repo", 27, 5], ["owner", 28, 5]], [["name", 57, 7], ["exec", 58, 7], ["type", 59, 7], ["icon", 60, 7], ["comment", 61, 7], ["desktopName", 62, 7], ["genericName", 63, 7], ["categories", 64, 7], ["mimeTypes", 69, 7], ["startupNotify", 73, 7], ["terminal", 74, 7]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5], ["mainProgram", 84, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["postInstall", 48, 3], ["desktopItems", 55, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false, ncurses: false, libtermkey: false, lua: false, tre: false, acl: false, libselinux: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 25, 5], ["hash", 26, 5], ["repo", 27, 5], ["owner", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 57, 7], ["exec", 58, 7], ["type", 59, 7], ["icon", 60, 7], ["comment", 61, 7], ["desktopName", 62, 7], ["genericName", 63, 7], ["categories", 64, 7], ["mimeTypes", 69, 7], ["startupNotify", 73, 7], ["terminal", 74, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5], ["mainProgram", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["postInstall", 48, 3], ["desktopItems", 55, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vis";
       const version = "0.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-SYM3zlzhp3NdyOjtXc+pOiWY4/WA/Ax+qAWe18ggq3g=",
           repo: "vis",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "vis",
             exec: "vis %U",
             type: "Application",
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Vim like editor",
         homepage: "https://github.com/martanne/vis",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "vis",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

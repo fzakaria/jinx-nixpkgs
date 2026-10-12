@@ -2,40 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/systemd-initrd-credentials.nix", [["initrdBackdoor", 5, 13]]);
-const pos$2 = nix.positions(here + "/systemd-initrd-credentials.nix", [["text", 7, 42]]);
-const pos$3 = nix.positions(here + "/systemd-initrd-credentials.nix", [["mechanism", 9, 7], ["text", 10, 7]]);
-const pos$4 = nix.positions(here + "/systemd-initrd-credentials.nix", [["cred-test", 7, 32], ["cred-test-fw_cfg", 8, 32]]);
-const pos$5 = nix.positions(here + "/systemd-initrd-credentials.nix", [["credentials", 7, 20]]);
-const pos$6 = nix.positions(here + "/systemd-initrd-credentials.nix", [["enable", 20, 25]]);
-const pos$7 = nix.positions(here + "/systemd-initrd-credentials.nix", [["availableKernelModules", 13, 17], ["systemd", 20, 17]]);
-const pos$8 = nix.positions(here + "/systemd-initrd-credentials.nix", [["initrd", 13, 10], ["kernelParams", 18, 10]]);
-const pos$9 = nix.positions(here + "/systemd-initrd-credentials.nix", [["testing", 5, 5], ["virtualisation", 7, 5], ["boot", 13, 5]]);
-const pos$10 = nix.positions(here + "/systemd-initrd-credentials.nix", [["machine", 4, 9]]);
-const pos$11 = nix.positions(here + "/systemd-initrd-credentials.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 23, 3]]);
+const $pos = nix.positions(here + "/systemd-initrd-credentials.nix", [[["initrdBackdoor", 5, 13]], [["text", 7, 42]], [["mechanism", 9, 7], ["text", 10, 7]], [["cred-test", 7, 32], ["cred-test-fw_cfg", 8, 32]], [["credentials", 7, 20]], [["enable", 20, 25]], [["availableKernelModules", 13, 17], ["systemd", 20, 17]], [["initrd", 13, 10], ["kernelParams", 18, 10]], [["testing", 5, 5], ["virtualisation", 7, 5], ["boot", 13, 5]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 23, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$11,
+  [nix.POS]: $pos[10],
   name: "systemd-initrd-credentials",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     machine: nix.thunk(() => ({
-      [nix.POS]: pos$9,
-      testing: nix.thunk(() => ({ [nix.POS]: pos$1, initrdBackdoor: true })),
+      [nix.POS]: $pos[8],
+      testing: nix.thunk(() => ({ [nix.POS]: $pos[0], initrdBackdoor: true })),
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         credentials: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          "cred-test": nix.thunk(() => ({ [nix.POS]: pos$2, text: "secret-test" })),
-          "cred-test-fw_cfg": nix.thunk(() => ({ [nix.POS]: pos$3, mechanism: "fw_cfg", text: "secret-fw_cfg" })),
+          [nix.POS]: $pos[3],
+          "cred-test": nix.thunk(() => ({ [nix.POS]: $pos[1], text: "secret-test" })),
+          "cred-test-fw_cfg": nix.thunk(() => ({ [nix.POS]: $pos[2], mechanism: "fw_cfg", text: "secret-fw_cfg" })),
         })),
       })),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         initrd: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           availableKernelModules: nix.thunk(() => ["dmi_sysfs", "qemu_fw_cfg"]),
-          systemd: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+          systemd: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
         })),
         kernelParams: nix.thunk(() => ["systemd.set_credential=cred-cmdline:secret-cmdline"]),
       })),

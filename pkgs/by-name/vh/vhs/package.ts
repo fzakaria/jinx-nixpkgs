@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["nativeBuildInputs", 26, 3], ["ldflags", 31, 3], ["postInstall", 37, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, installShellFiles: false, fetchFromGitHub: false, ffmpeg: false, ttyd: false, chromium: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["nativeBuildInputs", 26, 3], ["ldflags", 31, 3], ["postInstall", 37, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const chromium = nix.arg($, "chromium");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vhs",
       version: "0.12.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "charmbracelet",
           repo: "vhs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add(nix.str`wrapProgram $out/bin/vhs --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([ffmpeg, ttyd], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [chromium])))))}
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "$out/bin/vhs man > vhs.1\ninstallManPage vhs.1\ninstallShellCompletion --cmd vhs \\\n  --bash <($out/bin/vhs completion bash) \\\n  --fish <($out/bin/vhs completion fish) \\\n  --zsh <($out/bin/vhs completion zsh)\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for generating terminal GIFs with code",
         mainProgram: "vhs",
         homepage: "https://github.com/charmbracelet/vhs",

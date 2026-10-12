@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["teams", 68, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["dontConfigure", 29, 3], ["build-system", 31, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 45, 3], ["disabledTests", 50, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, setuptools: false, "setuptools-scm": false, attrs: false, "pdfminer-six": false, commoncode: false, plugincode: false, binaryornot: false, "typecode-libmagic": false, pytestCheckHook: false, "pytest-xdist": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["teams", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["dontConfigure", 29, 3], ["build-system", 31, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 45, 3], ["disabledTests", 50, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_xdist = nix.arg($, "pytest-xdist");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "typecode",
       version: "30.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aboutcode-org",
           repo: "typecode",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["TestFileTypesDataDriven", "test_media_image_img"]),
       pythonImportsCheck: nix.thunk(() => ["typecode"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Comprehensive filetype and mimetype detection using libmagic and Pygments",
         homepage: "https://github.com/aboutcode-org/typecode",
         changelog: nix.thunk(() => nix.str`https://github.com/aboutcode-org/typecode/releases/tag/v${nix.sel(finalAttrs, "version")}`),

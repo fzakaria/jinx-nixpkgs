@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["src", 43, 26], ["pname", 43, 30], ["version", 43, 36], ["fetchAll", 44, 5], ["hash", 45, 5]], [["updateScript", 90, 12]], [["homepage", 93, 5], ["description", 94, 5], ["longDescription", 95, 5], ["license", 101, 5], ["maintainers", 102, 5], ["mainProgram", 106, 5], ["platforms", 107, 5]], [["pname", 30, 3], ["version", 31, 3], ["__structuredAttrs", 32, 3], ["strictDeps", 33, 3], ["src", 35, 3], ["zigDeps", 42, 3], ["postConfigure", 48, 3], ["nativeBuildInputs", 54, 3], ["doCheck", 63, 3], ["nativeCheckInputs", 65, 3], ["preCheck", 72, 3], ["postCheck", 76, 3], ["postInstall", 80, 3], ["doInstallCheck", 87, 3], ["nativeInstallCheckInputs", 88, 3], ["passthru", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "apple-sdk": false, installShellFiles: false, writeShellScriptBin: false, zig_0_16: false, "nix-update-script": false, bats: false, python3: false, unixtools: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 43, 26], ["pname", 43, 30], ["version", 43, 36], ["fetchAll", 44, 5], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 90, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 93, 5], ["description", 94, 5], ["longDescription", 95, 5], ["license", 101, 5], ["maintainers", 102, 5], ["mainProgram", 106, 5], ["platforms", 107, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["__structuredAttrs", 32, 3], ["strictDeps", 33, 3], ["src", 35, 3], ["zigDeps", 42, 3], ["postConfigure", 48, 3], ["nativeBuildInputs", 54, 3], ["doCheck", 63, 3], ["nativeCheckInputs", 65, 3], ["preCheck", 72, 3], ["postCheck", 76, 3], ["postInstall", 80, 3], ["doInstallCheck", 87, 3], ["nativeInstallCheckInputs", 88, 3], ["passthru", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,20 +26,20 @@ export default nix.lambda((args) => (() => {
   const xcodeselectWrapper = nix.thunk(() => nix.app(writeShellScriptBin, "xcode-select", nix.thunk(() => nix.str`echo "${sdkRoot}"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "zmx",
       version: "0.8.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "neurosnap",
           repo: "zmx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-0gxaoup7boFMm4NQCQ8mHusX1oS8h/MacFxhSPLi2XM=",
         })))),
       zigDeps: nix.thunk(() => nix.app(nix.sel(zig, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -67,11 +63,11 @@ chmod -R u+w "$ZIG_GLOBAL_CACHE_DIR/p"
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/neurosnap/zmx",
         description: "Session persistence for terminal processes",
         longDescription: "zmx provides session persistence for terminal shell sessions (pty processes).\nFeatures include ability to attach and detach from shell sessions without killing them,\nnative terminal scrollback, multiple client connections to the same session,\nand restoration of previous terminal state and output when re-attaching.\n",

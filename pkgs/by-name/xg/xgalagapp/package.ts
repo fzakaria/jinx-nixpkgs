@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 39, 5], ["description", 40, 5], ["mainProgram", 41, 5], ["license", 42, 5], ["platforms", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["buildFlags", 22, 3], ["installPhase", 28, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false, libxpm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 39, 5], ["description", 40, 5], ["mainProgram", 41, 5], ["license", 42, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["buildFlags", 22, 3], ["installPhase", 28, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxpm = nix.arg($, "libxpm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xgalaga++",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://marc.mongenet.ch/OSS/XGalaga/xgalaga++_${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-yNtLuYCMHLvQAVM7CDGPardrh3q27TE9l31qhUbMf8k=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/man\nmv xgalaga++ $out/bin\nmv xgalaga++.6x $out/share/man\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://marc.mongenet.ch/OSS/XGalaga/",
         description: "XGalaga++ is a classic single screen vertical shoot ’em up. It is inspired by XGalaga and reuses most of its sprites",
         mainProgram: "xgalaga++",

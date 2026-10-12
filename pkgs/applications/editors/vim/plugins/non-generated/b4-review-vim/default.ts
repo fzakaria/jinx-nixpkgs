@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 14, 5], ["homepage", 15, 5], ["license", 16, 5], ["maintainers", 17, 5]], [["pname", 7, 3], ["version", 8, 16], ["src", 10, 3], ["sourceRoot", 11, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { lib: false, vimUtils: false, b4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 14, 5], ["homepage", 15, 5], ["license", 16, 5], ["maintainers", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 16], ["src", 10, 3], ["sourceRoot", 11, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const b4 = nix.arg($, "b4");
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "b4-review-vim",
       version: nix.thunk(() => nix.attr(b4, "version")),
       src: nix.thunk(() => nix.sel(b4, "src-misc")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(b4, "src-misc", "name")}/misc/vim`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Vim syntax highlighting for the b4 review reply editor",
         homepage: "https://git.kernel.org/pub/scm/utils/b4/b4.git/about",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["perl", 20, 60]], [["description", 25, 5], ["homepage", 26, 5], ["license", 29, 5], ["maintainers", 34, 5], ["mainProgram", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["cargoHash", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, replaceVars: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["perl", 20, 60]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 29, 5], ["maintainers", 34, 5], ["mainProgram", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["cargoHash", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,22 +13,22 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kakoune-lsp",
       version: "22.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kakoune-lsp",
           repo: "kakoune-lsp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-G4L9FOS097U7pLpYTnsUF0FK7UjQ9oQRTtH0ifsL5Ks=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./Hardcode-perl.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, perl: perl })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./Hardcode-perl.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], perl: perl })))),
       ]),
       cargoHash: "sha256-QL2uE0hZtrZFJm3KpnTDXACjPY4gNefP76QjD0ZOLMo=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Kakoune Language Server Protocol Client",
         homepage: "https://github.com/kakoune-lsp/kakoune-lsp",
         license: nix.thunk(() => (() => {

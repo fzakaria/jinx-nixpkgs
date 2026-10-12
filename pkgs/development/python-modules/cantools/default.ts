@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 26], ["version", 25, 32], ["hash", 26, 5]], [["plot", 43, 25]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["optional-dependencies", 43, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, "argparse-addons": false, bitstruct: false, buildPythonPackage: false, "python-can": false, crccheck: false, diskcache: false, fetchPypi: false, matplotlib: false, parameterized: false, "pytest-freezegun": false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, textparser: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 26], ["version", 25, 32], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["plot", 43, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["optional-dependencies", 43, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,23 +23,23 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const textparser = nix.arg($, "textparser");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cantools",
       version: "41.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Y5ZbAorAKrG0yGeqIH7Zn5D1WziuEHq+KH19ZtVDXZ8=",
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [argparse_addons, bitstruct, python_can, crccheck, diskcache, textparser]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, plot: nix.thunk(() => [matplotlib]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], plot: nix.thunk(() => [matplotlib]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([parameterized, pytest_freezegun, pytestCheckHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "plot"))),
       pythonImportsCheck: nix.thunk(() => ["cantools"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tools to work with CAN bus",
         homepage: "https://github.com/cantools/cantools",
         changelog: nix.thunk(() => nix.str`https://github.com/cantools/cantools/releases/tag/${nix.sel(finalAttrs, "version")}`),

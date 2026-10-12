@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["ergo", 27, 43]], [["tests", 27, 12]], [["description", 30, 5], ["homepage", 31, 5], ["sourceProvenance", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["dontUnpack", 21, 3], ["installPhase", 23, 3], ["passthru", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jre: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ergo", 27, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 27, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["sourceProvenance", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["dontUnpack", 21, 3], ["installPhase", 23, 3], ["passthru", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ergo",
       version: "6.0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ergoplatform/ergo/releases/download/v${nix.sel(finalAttrs, "version")}/ergo-${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "sha256-hhb0BRM1zzt+4/MJmCG3snsZE7zYu1lX7X/ELd4m6fo=",
         })))),
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`makeWrapper ${jre}/bin/java $out/bin/ergo --add-flags "-jar $src"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, ergo: nix.thunk(() => nix.attr(nixosTests, "ergo")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], ergo: nix.thunk(() => nix.attr(nixosTests, "ergo")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open protocol that implements modern scientific ideas in the blockchain area",
         homepage: "https://ergoplatform.org/en/",
         sourceProvenance: nix.thunk(() => (() => {

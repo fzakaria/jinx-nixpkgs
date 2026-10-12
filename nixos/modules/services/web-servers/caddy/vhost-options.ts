@@ -2,16 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vhost-options.nix", [[["type", 15, 7], ["default", 16, 7], ["description", 17, 7]], [["type", 21, 7], ["default", 22, 7], ["example", 23, 7], ["description", 27, 7]], [["type", 33, 7], ["description", 34, 7], ["default", 37, 7], ["example", 38, 7]], [["type", 45, 7], ["default", 46, 7], ["description", 47, 7]], [["type", 59, 7], ["default", 60, 7], ["defaultText", 63, 7], ["example", 66, 7], ["description", 71, 7]], [["type", 79, 7], ["default", 80, 7], ["description", 81, 7]], [["hostName", 14, 5], ["serverAliases", 20, 5], ["listenAddresses", 32, 5], ["useACMEHost", 44, 5], ["logFormat", 58, 5], ["extraConfig", 78, 5]], [["options", 12, 3]]]);
 const formals$1 = { args: { cfg: false }, ellipsis: false };
 const formals$2 = { args: { config: false, lib: false, name: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/vhost-options.nix", [["type", 15, 7], ["default", 16, 7], ["description", 17, 7]]);
-const pos$2 = nix.positions(here + "/vhost-options.nix", [["type", 21, 7], ["default", 22, 7], ["example", 23, 7], ["description", 27, 7]]);
-const pos$3 = nix.positions(here + "/vhost-options.nix", [["type", 33, 7], ["description", 34, 7], ["default", 37, 7], ["example", 38, 7]]);
-const pos$4 = nix.positions(here + "/vhost-options.nix", [["type", 45, 7], ["default", 46, 7], ["description", 47, 7]]);
-const pos$5 = nix.positions(here + "/vhost-options.nix", [["type", 59, 7], ["default", 60, 7], ["defaultText", 63, 7], ["example", 66, 7], ["description", 71, 7]]);
-const pos$6 = nix.positions(here + "/vhost-options.nix", [["type", 79, 7], ["default", 80, 7], ["description", 81, 7]]);
-const pos$7 = nix.positions(here + "/vhost-options.nix", [["hostName", 14, 5], ["serverAliases", 20, 5], ["listenAddresses", 32, 5], ["useACMEHost", 44, 5], ["logFormat", 58, 5], ["extraConfig", 78, 5]]);
-const pos$8 = nix.positions(here + "/vhost-options.nix", [["options", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,17 +18,17 @@ export default nix.lambda((args) => (() => {
     const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
     const types = nix.thunk(() => nix.attr(lib, "types"));
     return {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       options: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         hostName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             type: nix.thunk(() => nix.sel(types, "str")),
             default: name,
             description: "Canonical hostname for the server.",
           })))),
         serverAliases: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -45,7 +38,7 @@ export default nix.lambda((args) => (() => {
             description: "Additional names of virtual hosts served by this virtual host configuration.\n",
           })))),
         listenAddresses: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             type: nix.thunk(() => (() => {
               const w = nix.withScope(types, null);
               return nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "str")));
@@ -55,13 +48,13 @@ export default nix.lambda((args) => (() => {
             example: nix.thunk(() => ["127.0.0.1", "::1"]),
           })))),
         useACMEHost: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
             default: null,
             description: "A host of an existing Let's Encrypt certificate to use.\nThis is mostly useful if you use DNS challenges but Caddy does not\ncurrently support your provider.\n\n*Note that this option does not create any certificates, nor\ndoes it add subdomains to existing ones – you will need to create them\nmanually using [](#opt-security.acme.certs).*\n",
           })))),
         logFormat: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "lines")))),
             default: nix.thunk(() => nix.str`output file ${nix.sel(cfg, "logDir")}/access-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["/", " "]), nix.thunk(() => ["_", "_"]), nix.thunk(() => nix.sel(config, "hostName")))}.log
 `),
@@ -70,7 +63,7 @@ export default nix.lambda((args) => (() => {
             description: "Configuration for HTTP request logging (also known as access logs). See\n<https://caddyserver.com/docs/caddyfile/directives/log#log>\nfor details.\n",
           })))),
         extraConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             type: nix.thunk(() => nix.sel(types, "lines")),
             default: "",
             description: "Additional lines of configuration appended to this virtual host in the\nautomatically generated `Caddyfile`.\n",

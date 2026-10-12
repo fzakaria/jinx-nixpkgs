@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]], [["mainProgram", 61, 5], ["description", 62, 5], ["longDescription", 63, 5], ["homepage", 67, 5], ["platforms", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["changelog", 71, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["postPatch", 34, 3], ["qmakeFlags", 43, 3], ["installFlags", 48, 3], ["postInstall", 50, 3], ["qtWrapperArgs", 54, 3], ["enableParallelBuilding", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "ocl-icd": false, "opencl-headers": false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 61, 5], ["description", 62, 5], ["longDescription", 63, 5], ["homepage", 67, 5], ["platforms", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["changelog", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["postPatch", 34, 3], ["qmakeFlags", 43, 3], ["installFlags", 48, 3], ["postInstall", 50, 3], ["qtWrapperArgs", 54, 3], ["enableParallelBuilding", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const opencl_headers = nix.arg($, "opencl-headers");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "opencl-caps-viewer",
       version: "1.30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SaschaWillems",
           repo: "OpenCLCapsViewer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       qtWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--prefix LD_LIBRARY_PATH : ${ocl_icd}/lib`)]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "OpenCLCapsViewer",
         description: "OpenCL hardware capability viewer",
         longDescription: "Client application to display hardware implementation details for devices supporting the OpenCL API by Khronos.\nThe hardware reports can be submitted to a public online database that allows comparing different devices, browsing available features, extensions, formats, etc.\n",

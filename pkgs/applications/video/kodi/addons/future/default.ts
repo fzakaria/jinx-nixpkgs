@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["attrPath", 22, 7]], [["pythonPath", 20, 5], ["updateScript", 21, 5]], [["homepage", 27, 5], ["description", 28, 5], ["license", 29, 5], ["teams", 30, 5]], [["pname", 10, 3], ["namespace", 11, 3], ["version", 12, 3], ["src", 14, 3], ["passthru", 19, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, rel: false, buildKodiAddon: false, fetchzip: false, addonUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["attrPath", 22, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pythonPath", 20, 5], ["updateScript", 21, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 27, 5], ["description", 28, 5], ["license", 29, 5], ["teams", 30, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["namespace", 11, 3], ["version", 12, 3], ["src", 14, 3], ["passthru", 19, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,23 +17,23 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.module.future";
       const version = "1.0.0+matrix.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mirrors.kodi.tv/addons/${nix.app(nix.sel(lib, "toLower"), rel)}/${namespace}/${namespace}-${version}.zip`),
           sha256: "sha256-BsDgCAZuJBRBpe6EmfSynhrXS3ktQRZsEwf9CdF0VCg=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pythonPath: "lib",
-        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "kodi.packages.future" })))),
+        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], attrPath: "kodi.packages.future" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://python-future.org",
         description: "Missing compatibility layer between Python 2 and Python 3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
-      return { [nix.POS]: pos$5, pname, namespace, version, src, passthru, meta };
+      return { [nix.POS]: $pos[4], pname, namespace, version, src, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

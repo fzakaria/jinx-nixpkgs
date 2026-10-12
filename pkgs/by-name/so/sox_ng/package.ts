@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]], [["description", 108, 5], ["homepage", 109, 5], ["maintainers", 110, 5], ["license", 111, 5], ["platforms", 112, 5]], [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["strictDeps", 60, 3], ["__structuredAttrs", 61, 3], ["outputs", 63, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 76, 3], ["configureFlags", 101, 3], ["enableParallelBuilding", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, fetchFromCodeberg: false, autoreconfHook: false, "autoconf-archive": false, "pkg-config": false, enableReplace: true, enableAMR: true, "opencore-amr": false, enableAlsa: true, "alsa-lib": false, enableFLAC: true, flac: false, enableFFTW: true, fftw: false, enableLadspa: true, "ladspa-sdk": false, enableLame: true, lame: false, enableLibao: true, libao: false, enableLibid3tag: true, libid3tag: false, enableLibmad: true, libmad: false, enableLibogg: true, libogg: false, libvorbis: false, enableLibpulseaudio: true, libpulseaudio: false, enableLibsndfile: true, libsndfile: false, enableOpusfile: true, opusfile: false, enablePNG: true, libpng: false, enableSpeex: true, speex: false, speexdsp: false, enableTwolame: true, twolame: false, enableWavpack: true, wavpack: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 108, 5], ["homepage", 109, 5], ["maintainers", 110, 5], ["license", 111, 5], ["platforms", 112, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["strictDeps", 60, 3], ["__structuredAttrs", 61, 3], ["outputs", 63, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 76, 3], ["configureFlags", 101, 3], ["enableParallelBuilding", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,11 +52,11 @@ export default nix.lambda((args) => (() => {
   const enableWavpack = nix.argOr($, "enableWavpack", () => true);
   const wavpack = nix.arg($, "wavpack");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sox",
       version: "14.7.1.2",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sox_ng",
           repo: "sox_ng",
           tag: nix.thunk(() => nix.str`sox_ng-${nix.sel(finalAttrs, "version")}`),
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Another Swiss Army Knife of sound processing utilities",
         homepage: "https://codeberg.org/sox_ng/sox_ng",
         maintainers: nix.thunk(() => (() => {

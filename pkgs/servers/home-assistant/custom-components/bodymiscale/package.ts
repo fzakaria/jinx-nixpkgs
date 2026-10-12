@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 13], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["owner", 10, 3], ["domain", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dependencies", 21, 3], ["ignoreVersionRequirement", 25, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, cachetools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 13], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 10, 3], ["domain", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dependencies", 21, 3], ["ignoreVersionRequirement", 25, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const domain = "bodymiscale";
       const version = "2026.9.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: owner,
           repo: domain,
           rev: version,
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [cachetools]);
       const ignoreVersionRequirement = nix.thunk(() => ["cachetools"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Home Assistant custom component providing body metrics for Xiaomi Mi Scale 1 and 2",
         homepage: "https://github.com/dckiller51/bodymiscale",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner,
         domain,
         version,

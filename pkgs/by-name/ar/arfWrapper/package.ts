@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["recommendedPackages", 50, 26]], [["hydraPlatforms", 54, 7], ["priority", 56, 7]], [["strictDeps", 33, 5], ["__structuredAttrs", 34, 5], ["preferLocalBuild", 36, 5], ["allowSubstitutes", 37, 5], ["buildInputs", 39, 5], ["nativeBuildInputs", 45, 5], ["passthru", 50, 5], ["meta", 52, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, R: false, arf: false, makeBinaryWrapper: false, rPackages: false, recommendedPackages: true, packages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["recommendedPackages", 50, 26]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hydraPlatforms", 54, 7], ["priority", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["strictDeps", 33, 5], ["__structuredAttrs", 34, 5], ["preferLocalBuild", 36, 5], ["allowSubstitutes", 37, 5], ["buildInputs", 39, 5], ["nativeBuildInputs", 45, 5], ["passthru", 50, 5], ["meta", 52, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,16 +35,16 @@ export default nix.lambda((args) => (() => {
   })());
   const packages = nix.argOr($, "packages", () => []);
   return nix.app(runCommand, nix.thunk(() => nix.add(nix.sel(arf, "name"), "-wrapper")), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       strictDeps: true,
       __structuredAttrs: true,
       preferLocalBuild: true,
       allowSubstitutes: false,
       buildInputs: nix.thunk(() => nix.concat([arf], nix.concat(recommendedPackages, packages))),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, R]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, recommendedPackages: recommendedPackages })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], recommendedPackages: recommendedPackages })),
       meta: nix.thunk(() => nix.update(nix.sel(arf, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         hydraPlatforms: [],
         priority: nix.thunk(() => nix.sub(nix.selOr(arf, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
       })),

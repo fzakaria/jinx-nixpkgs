@@ -2,122 +2,91 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/v2-check-coherence.nix", [[["check", 9, 5]], [["check", 20, 5]], [["check", 25, 5]], [["check", 30, 5]], [["check", 35, 5]], [["check", 39, 68]], [["type", 44, 5], ["default", 45, 5]], [["type", 53, 5], ["default", 54, 5]], [["type", 60, 5]], [["check", 66, 69]], [["type", 66, 5]], [["bar", 72, 51]], [["type", 72, 5]], [["type", 80, 5]], [["type", 86, 5]], [["type", 92, 5], ["default", 93, 5]], [["type", 99, 5], ["default", 100, 5]], [["type", 106, 5], ["default", 107, 5]], [["type", 113, 5], ["default", 114, 5]], [["adhocFail", 43, 11], ["adhocOuterFail", 52, 11], ["eitherLeftFail", 59, 11], ["eitherRightFail", 65, 11], ["coercedFromFail", 71, 11], ["coercedToFail", 79, 11], ["addCheckNested", 85, 11], ["addCheckPass", 91, 11], ["addCheckFail", 98, 11], ["normalPass", 105, 11], ["result", 112, 11]], [["foo", 48, 5]], [["bar", 56, 25]], [["foo", 62, 25]], [["foo", 68, 26]], [["foo", 75, 5]], [["foo", 82, 24]], [["foo", 88, 25]], [["foo", 95, 27]], [["bar", 95, 23]], [["baz", 102, 27]], [["bar", 102, 23]], [["bar", 109, 25]], [["foo", 109, 21]], [["adhocFail", 47, 10], ["adhocOuterFail", 56, 10], ["eitherLeftFail", 62, 10], ["eitherRightFail", 68, 10], ["coercedFromFail", 74, 10], ["coercedToFail", 82, 10], ["addCheckNested", 88, 10], ["addCheckPass", 95, 10], ["addCheckFail", 102, 10], ["normalPass", 109, 10], ["result", 116, 10]], [["options", 43, 3], ["config", 47, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/v2-check-coherence.nix", [["check", 9, 5]]);
-const pos$2 = nix.positions(here + "/v2-check-coherence.nix", [["check", 20, 5]]);
-const pos$3 = nix.positions(here + "/v2-check-coherence.nix", [["check", 25, 5]]);
-const pos$4 = nix.positions(here + "/v2-check-coherence.nix", [["check", 30, 5]]);
-const pos$5 = nix.positions(here + "/v2-check-coherence.nix", [["check", 35, 5]]);
-const pos$6 = nix.positions(here + "/v2-check-coherence.nix", [["check", 39, 68]]);
-const pos$7 = nix.positions(here + "/v2-check-coherence.nix", [["type", 44, 5], ["default", 45, 5]]);
-const pos$8 = nix.positions(here + "/v2-check-coherence.nix", [["type", 53, 5], ["default", 54, 5]]);
-const pos$9 = nix.positions(here + "/v2-check-coherence.nix", [["type", 60, 5]]);
-const pos$10 = nix.positions(here + "/v2-check-coherence.nix", [["check", 66, 69]]);
-const pos$11 = nix.positions(here + "/v2-check-coherence.nix", [["type", 66, 5]]);
-const pos$12 = nix.positions(here + "/v2-check-coherence.nix", [["bar", 72, 51]]);
-const pos$13 = nix.positions(here + "/v2-check-coherence.nix", [["type", 72, 5]]);
-const pos$14 = nix.positions(here + "/v2-check-coherence.nix", [["type", 80, 5]]);
-const pos$15 = nix.positions(here + "/v2-check-coherence.nix", [["type", 86, 5]]);
-const pos$16 = nix.positions(here + "/v2-check-coherence.nix", [["type", 92, 5], ["default", 93, 5]]);
-const pos$17 = nix.positions(here + "/v2-check-coherence.nix", [["type", 99, 5], ["default", 100, 5]]);
-const pos$18 = nix.positions(here + "/v2-check-coherence.nix", [["type", 106, 5], ["default", 107, 5]]);
-const pos$19 = nix.positions(here + "/v2-check-coherence.nix", [["type", 113, 5], ["default", 114, 5]]);
-const pos$20 = nix.positions(here + "/v2-check-coherence.nix", [["adhocFail", 43, 11], ["adhocOuterFail", 52, 11], ["eitherLeftFail", 59, 11], ["eitherRightFail", 65, 11], ["coercedFromFail", 71, 11], ["coercedToFail", 79, 11], ["addCheckNested", 85, 11], ["addCheckPass", 91, 11], ["addCheckFail", 98, 11], ["normalPass", 105, 11], ["result", 112, 11]]);
-const pos$21 = nix.positions(here + "/v2-check-coherence.nix", [["foo", 48, 5]]);
-const pos$22 = nix.positions(here + "/v2-check-coherence.nix", [["bar", 56, 25]]);
-const pos$23 = nix.positions(here + "/v2-check-coherence.nix", [["foo", 62, 25]]);
-const pos$24 = nix.positions(here + "/v2-check-coherence.nix", [["foo", 68, 26]]);
-const pos$25 = nix.positions(here + "/v2-check-coherence.nix", [["foo", 75, 5]]);
-const pos$26 = nix.positions(here + "/v2-check-coherence.nix", [["foo", 82, 24]]);
-const pos$27 = nix.positions(here + "/v2-check-coherence.nix", [["foo", 88, 25]]);
-const pos$28 = nix.positions(here + "/v2-check-coherence.nix", [["foo", 95, 27]]);
-const pos$29 = nix.positions(here + "/v2-check-coherence.nix", [["bar", 95, 23]]);
-const pos$30 = nix.positions(here + "/v2-check-coherence.nix", [["baz", 102, 27]]);
-const pos$31 = nix.positions(here + "/v2-check-coherence.nix", [["bar", 102, 23]]);
-const pos$32 = nix.positions(here + "/v2-check-coherence.nix", [["bar", 109, 25]]);
-const pos$33 = nix.positions(here + "/v2-check-coherence.nix", [["foo", 109, 21]]);
-const pos$34 = nix.positions(here + "/v2-check-coherence.nix", [["adhocFail", 47, 10], ["adhocOuterFail", 56, 10], ["eitherLeftFail", 62, 10], ["eitherRightFail", 68, 10], ["coercedFromFail", 74, 10], ["coercedToFail", 82, 10], ["addCheckNested", 88, 10], ["addCheckPass", 95, 10], ["addCheckFail", 102, 10], ["normalPass", 109, 10], ["result", 116, 10]]);
-const pos$35 = nix.positions(here + "/v2-check-coherence.nix", [["options", 43, 3], ["config", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
-  const adhocOverrideType = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: pos$1, check: (_) => false }));
+  const adhocOverrideType = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: $pos[0], check: (_) => false }));
   const properlyCheckedType = nix.thunk(() => nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw")))), (v) => nix.has(v, "foo")));
   const failingCheckedType = nix.thunk(() => nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw")))), (v) => nix.has(v, "foo")));
-  const adhocOuterType = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "int"))), { [nix.POS]: pos$2, check: (_) => false }));
-  const adhocEitherLeft = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: pos$3, check: (_) => false }));
-  const adhocCoercedFrom = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: pos$4, check: (_) => false }));
-  const adhocCoercedTo = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: pos$5, check: (_) => false }));
-  const adhocAddCheck = nix.thunk(() => nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: pos$6, check: (_) => false })), (v) => true));
+  const adhocOuterType = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "int"))), { [nix.POS]: $pos[1], check: (_) => false }));
+  const adhocEitherLeft = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: $pos[2], check: (_) => false }));
+  const adhocCoercedFrom = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: $pos[3], check: (_) => false }));
+  const adhocCoercedTo = nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: $pos[4], check: (_) => false }));
+  const adhocAddCheck = nix.thunk(() => nix.app(nix.sel(types, "addCheck"), nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: $pos[5], check: (_) => false })), (v) => true));
   return {
-    [nix.POS]: pos$35,
+    [nix.POS]: $pos[34],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       adhocFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), adhocOverrideType)),
           default: nix.thunk(() => ({})),
         })))),
-      adhocOuterFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$8, type: adhocOuterType, default: nix.thunk(() => ({})) })))),
+      adhocOuterFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[7], type: adhocOuterType, default: nix.thunk(() => ({})) })))),
       eitherLeftFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           type: nix.thunk(() => nix.app(nix.sel(types, "either"), adhocEitherLeft, nix.thunk(() => nix.sel(types, "int")))),
         })))),
       eitherRightFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$11,
-          type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "int")), nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: pos$10, check: (_) => false })))),
+          [nix.POS]: $pos[10],
+          type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "int")), nix.thunk(() => nix.update(nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw"))), { [nix.POS]: $pos[9], check: (_) => false })))),
         })))),
       coercedFromFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$13,
-          type: nix.thunk(() => nix.app(nix.sel(types, "coercedTo"), adhocCoercedFrom, (x) => ({ [nix.POS]: pos$12, bar: 1n }), nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "int")))))),
+          [nix.POS]: $pos[12],
+          type: nix.thunk(() => nix.app(nix.sel(types, "coercedTo"), adhocCoercedFrom, (x) => ({ [nix.POS]: $pos[11], bar: 1n }), nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "int")))))),
         })))),
       coercedToFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           type: nix.thunk(() => nix.app(nix.sel(types, "coercedTo"), nix.thunk(() => nix.sel(types, "str")), (x) => ({}), adhocCoercedTo)),
         })))),
-      addCheckNested: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$15, type: adhocAddCheck })))),
+      addCheckNested: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[14], type: adhocAddCheck })))),
       addCheckPass: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), properlyCheckedType)),
           default: nix.thunk(() => ({})),
         })))),
       addCheckFail: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), failingCheckedType)),
           default: nix.thunk(() => ({})),
         })))),
       normalPass: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "int")))))),
           default: nix.thunk(() => ({})),
         })))),
       result: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           type: nix.thunk(() => nix.sel(types, "bool")),
           default: false,
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$34,
-      adhocFail: nix.thunk(() => ({ [nix.POS]: pos$21, foo: nix.thunk(() => ({})) })),
-      adhocOuterFail: nix.thunk(() => ({ [nix.POS]: pos$22, bar: 42n })),
-      eitherLeftFail: nix.thunk(() => ({ [nix.POS]: pos$23, foo: nix.thunk(() => ({})) })),
-      eitherRightFail: nix.thunk(() => ({ [nix.POS]: pos$24, foo: nix.thunk(() => ({})) })),
-      coercedFromFail: nix.thunk(() => ({ [nix.POS]: pos$25, foo: nix.thunk(() => ({})) })),
-      coercedToFail: nix.thunk(() => ({ [nix.POS]: pos$26, foo: nix.thunk(() => ({})) })),
-      addCheckNested: nix.thunk(() => ({ [nix.POS]: pos$27, foo: nix.thunk(() => ({})) })),
+      [nix.POS]: $pos[33],
+      adhocFail: nix.thunk(() => ({ [nix.POS]: $pos[20], foo: nix.thunk(() => ({})) })),
+      adhocOuterFail: nix.thunk(() => ({ [nix.POS]: $pos[21], bar: 42n })),
+      eitherLeftFail: nix.thunk(() => ({ [nix.POS]: $pos[22], foo: nix.thunk(() => ({})) })),
+      eitherRightFail: nix.thunk(() => ({ [nix.POS]: $pos[23], foo: nix.thunk(() => ({})) })),
+      coercedFromFail: nix.thunk(() => ({ [nix.POS]: $pos[24], foo: nix.thunk(() => ({})) })),
+      coercedToFail: nix.thunk(() => ({ [nix.POS]: $pos[25], foo: nix.thunk(() => ({})) })),
+      addCheckNested: nix.thunk(() => ({ [nix.POS]: $pos[26], foo: nix.thunk(() => ({})) })),
       addCheckPass: nix.thunk(() => ({
-        [nix.POS]: pos$29,
-        bar: nix.thunk(() => ({ [nix.POS]: pos$28, foo: "value" })),
+        [nix.POS]: $pos[28],
+        bar: nix.thunk(() => ({ [nix.POS]: $pos[27], foo: "value" })),
       })),
       addCheckFail: nix.thunk(() => ({
-        [nix.POS]: pos$31,
-        bar: nix.thunk(() => ({ [nix.POS]: pos$30, baz: "value" })),
+        [nix.POS]: $pos[30],
+        bar: nix.thunk(() => ({ [nix.POS]: $pos[29], baz: "value" })),
       })),
-      normalPass: nix.thunk(() => ({ [nix.POS]: pos$33, foo: nix.thunk(() => ({ [nix.POS]: pos$32, bar: 42n })) })),
+      normalPass: nix.thunk(() => ({
+        [nix.POS]: $pos[32],
+        foo: nix.thunk(() => ({ [nix.POS]: $pos[31], bar: 42n })),
+      })),
       result: true,
     })),
   };

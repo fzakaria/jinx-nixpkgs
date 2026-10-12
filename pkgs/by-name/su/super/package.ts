@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["hello-world", 32, 5]], [["tests", 31, 12]], [["shortName", 43, 7], ["free", 44, 7], ["fullName", 45, 7], ["redistributable", 46, 7], ["url", 47, 7]], [["changelog", 39, 5], ["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["subPackages", 27, 3], ["passthru", 31, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false, runCommand: false, super: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hello-world", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 31, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["shortName", 43, 7], ["free", 44, 7], ["fullName", 45, 7], ["redistributable", 46, 7], ["url", 47, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 39, 5], ["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["subPackages", 27, 3], ["passthru", 31, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const super$ = nix.arg($, "super");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "super",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "brimdata",
           repo: "super",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,21 +31,21 @@ export default nix.lambda((args) => (() => {
       ]),
       subPackages: nix.thunk(() => ["cmd/super"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "hello-world": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`echo \\"'hello, world'\\" | ${super$}/bin/super -color=false -f=line - > $out
 [ "$(cat $out)" = 'hello, world' ]
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/brimdata/super/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Analytics database that puts JSON and relational tables on equal footing",
         homepage: "https://superdb.org",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             shortName: "superDB10",
             free: false,
             fullName: "SuperDB Source Available License version 1.0",

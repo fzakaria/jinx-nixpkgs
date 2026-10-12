@@ -2,61 +2,47 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/castopod.nix", [[["maintainers", 5, 5]], [["diskSize", 12, 22]], [["allowedTCPPorts", 14, 27]], [["firewall", 14, 18], ["extraHosts", 15, 18]], [["createLocally", 23, 18]], [["enable", 22, 9], ["database", 23, 9], ["localDomain", 24, 9], ["maxUploadSize", 25, 9]], [["castopod", 21, 16]], [["virtualisation", 12, 7], ["networking", 14, 7], ["services", 21, 7]], [["extraHosts", 70, 18]], [["libraries", 86, 17], ["flakeIgnore", 87, 17]], [["name", 217, 13], ["runtimeInputs", 218, 13], ["text", 222, 13]], [["systemPackages", 76, 19]], [["networking", 70, 7], ["environment", 76, 7]], [["castopod", 8, 9], ["client", 29, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 234, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/castopod.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/castopod.nix", [["diskSize", 12, 22]]);
-const pos$3 = nix.positions(here + "/castopod.nix", [["allowedTCPPorts", 14, 27]]);
-const pos$4 = nix.positions(here + "/castopod.nix", [["firewall", 14, 18], ["extraHosts", 15, 18]]);
-const pos$5 = nix.positions(here + "/castopod.nix", [["createLocally", 23, 18]]);
-const pos$6 = nix.positions(here + "/castopod.nix", [["enable", 22, 9], ["database", 23, 9], ["localDomain", 24, 9], ["maxUploadSize", 25, 9]]);
-const pos$7 = nix.positions(here + "/castopod.nix", [["castopod", 21, 16]]);
-const pos$8 = nix.positions(here + "/castopod.nix", [["virtualisation", 12, 7], ["networking", 14, 7], ["services", 21, 7]]);
 const formals$3 = { args: { nodes: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/castopod.nix", [["extraHosts", 70, 18]]);
-const pos$10 = nix.positions(here + "/castopod.nix", [["libraries", 86, 17], ["flakeIgnore", 87, 17]]);
-const pos$11 = nix.positions(here + "/castopod.nix", [["name", 217, 13], ["runtimeInputs", 218, 13], ["text", 222, 13]]);
-const pos$12 = nix.positions(here + "/castopod.nix", [["systemPackages", 76, 19]]);
-const pos$13 = nix.positions(here + "/castopod.nix", [["networking", 70, 7], ["environment", 76, 7]]);
-const pos$14 = nix.positions(here + "/castopod.nix", [["castopod", 8, 9], ["client", 29, 9]]);
-const pos$15 = nix.positions(here + "/castopod.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 234, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "castopod",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "alexoundos"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       castopod: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             diskSize: nix.thunk(() => nix.add(512n, nix.mul(3n, 512n))),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: $pos[3],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[2], allowedTCPPorts: nix.thunk(() => [80n]) })),
             extraHosts: nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), (name) => (_) => nix.str`127.0.0.1 ${name}`, nix.thunk(() => nix.sel(nodes, "castopod", "services", "nginx", "virtualHosts")))))),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             castopod: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
-              database: nix.thunk(() => ({ [nix.POS]: pos$5, createLocally: true })),
+              database: nix.thunk(() => ({ [nix.POS]: $pos[4], createLocally: true })),
               localDomain: "castopod.example.com",
               maxUploadSize: "512M",
             })),
@@ -95,13 +81,13 @@ export default nix.lambda((args) => (() => {
 \`-resize ${coverWidth} -quality 1 $out
 `)));
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             extraHosts: nix.thunk(() => nix.app(nix.sel(lib_1, "strings", "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib_1, "attrsets", "mapAttrsToList"), (name) => (_) => nix.str`${nix.app(getIP, nix.thunk(() => nix.sel(nodes, "castopod")))} ${name}`, nix.thunk(() => nix.sel(nodes, "castopod", "services", "nginx", "virtualHosts")))))),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => (() => {
               const username = "admin";
               const email = nix.thunk(() => nix.str`admin@${domain}`);
@@ -109,7 +95,7 @@ export default nix.lambda((args) => (() => {
               const podcastTitle = "Some Title";
               const episodeTitle = "Episode Title";
               const browser_test = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "browser-test", nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "selenium"))]),
                   flakeIgnore: nix.thunk(() => ["E124", "E501"]),
                 })), nix.thunk(() => nix.str`from selenium.webdriver.common.by import By
@@ -235,7 +221,7 @@ driver.quit()
                 nix.thunk(() => nix.sel(pkgs_1, "geckodriver")),
                 browser_test,
                 nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeShellApplication"), nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     name: "build-mp3",
                     runtimeInputs: nix.thunk(() => (() => {
                       const w_1 = nix.withScope(pkgs_1, null);

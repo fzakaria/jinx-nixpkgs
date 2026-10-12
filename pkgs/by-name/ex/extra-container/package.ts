@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildCommand", 21, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, "nixos-container": false, openssh: false, glibcLocales: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildCommand", 21, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const glibcLocales = nix.arg($, "glibcLocales");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "extra-container",
       version: "0.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "erikarvstedt",
           repo: "extra-container",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +40,7 @@ sed -i "
 " $out/bin/extra-container
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Run declarative containers without full system rebuilds",
         homepage: "https://github.com/erikarvstedt/extra-container",
         changelog: nix.thunk(() => nix.str`https://github.com/erikarvstedt/extra-container/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

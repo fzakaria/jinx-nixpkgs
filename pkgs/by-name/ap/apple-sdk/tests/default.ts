@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 25, 10]], [["name", 12, 5], ["src", 14, 5], ["nativeBuildInputs", 16, 5], ["buildInputs", 21, 5], ["meta", 25, 5]], [["mainProgram", 42, 10]], [["name", 29, 5], ["src", 31, 5], ["nativeBuildInputs", 33, 5], ["buildInputs", 38, 5], ["meta", 42, 5]], [["mainProgram", 59, 10]], [["name", 46, 5], ["src", 48, 5], ["nativeBuildInputs", 50, 5], ["buildInputs", 55, 5], ["meta", 59, 5]], [["apple-sdk_15", 11, 3], ["apple-sdk_26", 28, 3], ["apple-sdk_27", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, ninja: false, meson: false, "apple-sdk_15": false, "apple-sdk_26": false, "apple-sdk_27": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 25, 10]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 12, 5], ["src", 14, 5], ["nativeBuildInputs", 16, 5], ["buildInputs", 21, 5], ["meta", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mainProgram", 42, 10]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 29, 5], ["src", 31, 5], ["nativeBuildInputs", 33, 5], ["buildInputs", 38, 5], ["meta", 42, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["mainProgram", 59, 10]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 46, 5], ["src", 48, 5], ["nativeBuildInputs", 50, 5], ["buildInputs", 55, 5], ["meta", 59, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["apple-sdk_15", 11, 3], ["apple-sdk_26", 28, 3], ["apple-sdk_27", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,30 +15,30 @@ export default nix.lambda((args) => (() => {
   const apple_sdk_26 = nix.arg($, "apple-sdk_26");
   const apple_sdk_27 = nix.arg($, "apple-sdk_27");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     "apple-sdk_15": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "apple-sdk_15-test",
         src: nix.path(here, "./15"),
         nativeBuildInputs: nix.thunk(() => [meson, ninja]),
         buildInputs: nix.thunk(() => [apple_sdk_15]),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "apple-sdk_15-test" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "apple-sdk_15-test" })),
       })))),
     "apple-sdk_26": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "apple-sdk_26-test",
         src: nix.path(here, "./26"),
         nativeBuildInputs: nix.thunk(() => [meson, ninja]),
         buildInputs: nix.thunk(() => [apple_sdk_26]),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$3, mainProgram: "apple-sdk_26-test" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[2], mainProgram: "apple-sdk_26-test" })),
       })))),
     "apple-sdk_27": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "apple-sdk_27-test",
         src: nix.path(here, "./27"),
         nativeBuildInputs: nix.thunk(() => [meson, ninja]),
         buildInputs: nix.thunk(() => [apple_sdk_27]),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$5, mainProgram: "apple-sdk_27-test" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[4], mainProgram: "apple-sdk_27-test" })),
       })))),
   };
 })(), formals$1);

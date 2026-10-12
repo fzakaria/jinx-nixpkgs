@@ -2,15 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/default.nix", [["developer_cmds", 3, 27], ["DarwinTools", 3, 42], ["protobuf", 5, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["percona-server_8_4", 2, 3], ["percona-server", 7, 3]]);
+const $pos = nix.positions(here + "/default.nix", [[["developer_cmds", 3, 27], ["DarwinTools", 3, 42], ["protobuf", 5, 5]], [["percona-server_8_4", 2, 3], ["percona-server", 7, 3]]]);
 
 export default (pkgs) => ({
-  [nix.POS]: pos$2,
+  [nix.POS]: $pos[1],
   "percona-server_8_4": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./8_4.nix"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "darwin"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       developer_cmds: nix.thunk(() => nix.attr(from, "developer_cmds")),
       DarwinTools: nix.thunk(() => nix.attr(from, "DarwinTools")),
       protobuf: nix.thunk(() => nix.sel(pkgs, "protobuf_21")),

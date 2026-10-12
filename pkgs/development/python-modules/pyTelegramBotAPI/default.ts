@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["json", 34, 5], ["PIL", 35, 5], ["redis", 36, 5], ["aiohttp", 37, 5], ["fastapi", 38, 5], ["uvicorn", 39, 5], ["psutil", 40, 5], ["coloredlogs", 41, 5], ["watchdog", 42, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, coloredlogs: false, fastapi: false, fetchFromGitHub: false, hatchling: false, pillow: false, psutil: false, pytestCheckHook: false, redis: false, requests: false, ujson: false, uvicorn: false, watchdog: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["json", 34, 5], ["PIL", 35, 5], ["redis", 36, 5], ["aiohttp", 37, 5], ["fastapi", 38, 5], ["uvicorn", 39, 5], ["psutil", 40, 5], ["coloredlogs", 41, 5], ["watchdog", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const uvicorn = nix.arg($, "uvicorn");
   const watchdog = nix.arg($, "watchdog");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pytelegrambotapi",
       version: "4.37.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eternnoir",
           repo: "pyTelegramBotAPI",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         json: nix.thunk(() => [ujson]),
         PIL: nix.thunk(() => [pillow]),
         redis: nix.thunk(() => [redis]),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, requests], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["telebot"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python implementation for the Telegram Bot API",
         homepage: "https://github.com/eternnoir/pyTelegramBotAPI",
         changelog: nix.thunk(() => nix.str`https://github.com/eternnoir/pyTelegramBotAPI/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

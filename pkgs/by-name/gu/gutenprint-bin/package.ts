@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 41, 9], ["sha256", 42, 9]], [["sourceProvenance", 83, 5], ["description", 84, 5], ["platforms", 85, 5], ["license", 86, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["buildInputs", 47, 3], ["dontUnpack", 52, 3], ["dontInstall", 53, 3], ["dontFixup", 54, 3], ["libPath", 56, 3], ["buildPhase", 61, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, rpm: false, cpio: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 41, 9], ["sha256", 42, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["sourceProvenance", 83, 5], ["description", 84, 5], ["platforms", 85, 5], ["license", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["buildInputs", 47, 3], ["dontUnpack", 52, 3], ["dontInstall", 53, 3], ["dontFixup", 54, 3], ["libPath", 56, 3], ["buildPhase", 61, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cpio = nix.arg($, "cpio");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cups-gutenprint-binary",
       version: "5.0.1",
       src: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.openprinting.org/download/printdriver/debian/dists/lsb3.1/main/binary-amd64/gutenprint_5.0.1-1lsb3.1_amd64.deb",
           sha256: "0an5gba6r6v54r53s2gj2fjk8fzpl4lrksjas2333528b0k8gbbc",
         }))) : nix.builtins.throw("TODO"))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       libPath: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc")), zlib]))),
       buildPhase: "ar -x $src data.tar.gz\ntar xfz data.tar.gz\ncp -r opt/gutenprint $out\n\nfor p in \\\n    $out/cups/lib/driver/gutenprint.5.0 \\\n    $out/bin/{escputil,cups-calibrate} \\\n    $out/cups/lib/driver/gutenprint.5.0 \\\n    $out/cups/lib/filter/{rastertogutenprint.5.0,commandtocanon,commandtoepson} \\\n    $out/cups/lib/backend/{canon,epson} \\\n    $out/sbin/cups-genppd.5.0 \\\n  ; do\n  patchelf --interpreter \"$(cat $NIX_CC/nix-support/dynamic-linker)\" \\\n      --set-rpath $libPath $p\ndone\n\nmkdir $out/lib\nln -s $out/cups/lib $out/lib/cups\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];

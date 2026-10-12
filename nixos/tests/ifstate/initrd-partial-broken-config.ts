@@ -2,100 +2,72 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/initrd-partial-broken-config.nix", [["state", 7, 9], ["kind", 8, 9]]);
-const pos$2 = nix.positions(here + "/initrd-partial-broken-config.nix", [["addresses", 5, 7], ["link", 6, 7]]);
-const pos$3 = nix.positions(here + "/initrd-partial-broken-config.nix", [["eth1", 4, 25]]);
-const pos$4 = nix.positions(here + "/initrd-partial-broken-config.nix", [["interfaces", 4, 14]]);
-const pos$5 = nix.positions(here + "/initrd-partial-broken-config.nix", [["enable", 3, 5], ["settings", 4, 5]]);
+const $pos = nix.positions(here + "/initrd-partial-broken-config.nix", [[["state", 7, 9], ["kind", 8, 9]], [["addresses", 5, 7], ["link", 6, 7]], [["eth1", 4, 25]], [["interfaces", 4, 14]], [["enable", 3, 5], ["settings", 4, 5]], [["vlan", 22, 40]], [["eth1", 22, 35]], [["interfaces", 22, 24]], [["interfaces", 27, 20]], [["enable", 26, 11], ["settings", 27, 11]], [["ifstate", 25, 20]], [["state", 45, 21], ["kind", 46, 21]], [["addresses", 43, 19], ["link", 44, 19]], [["eth2", 42, 37]], [["interfaces", 42, 26]], [["allowIfstateToDrasticlyIncreaseInitrdSize", 39, 17], ["settings", 42, 17]], [["enable", 35, 13], ["ifstate", 36, 13]], [["enable", 55, 21]], [["Type", 60, 29]], [["before", 57, 15], ["wantedBy", 58, 15], ["script", 59, 15], ["serviceConfig", 60, 15]], [["boot-blocker", 56, 22]], [["enable", 54, 13], ["network", 55, 13], ["services", 56, 13]], [["kernelModules", 32, 11], ["network", 34, 11], ["systemd", 53, 11]], [["initrd", 30, 14]], [["imports", 20, 9], ["virtualisation", 22, 9], ["networking", 25, 9], ["boot", 30, 9]], [["vlan", 69, 38]], [["eth1", 69, 33]], [["interfaces", 69, 22]], [["ifstate", 71, 18]], [["imports", 67, 7], ["virtualisation", 69, 7], ["networking", 71, 7]], [["server", 17, 5], ["client", 66, 5]], [["name", 14, 3], ["nodes", 16, 3], ["testScript", 75, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/initrd-partial-broken-config.nix", [["vlan", 22, 40]]);
-const pos$7 = nix.positions(here + "/initrd-partial-broken-config.nix", [["eth1", 22, 35]]);
-const pos$8 = nix.positions(here + "/initrd-partial-broken-config.nix", [["interfaces", 22, 24]]);
-const pos$9 = nix.positions(here + "/initrd-partial-broken-config.nix", [["interfaces", 27, 20]]);
-const pos$10 = nix.positions(here + "/initrd-partial-broken-config.nix", [["enable", 26, 11], ["settings", 27, 11]]);
-const pos$11 = nix.positions(here + "/initrd-partial-broken-config.nix", [["ifstate", 25, 20]]);
-const pos$12 = nix.positions(here + "/initrd-partial-broken-config.nix", [["state", 45, 21], ["kind", 46, 21]]);
-const pos$13 = nix.positions(here + "/initrd-partial-broken-config.nix", [["addresses", 43, 19], ["link", 44, 19]]);
-const pos$14 = nix.positions(here + "/initrd-partial-broken-config.nix", [["eth2", 42, 37]]);
-const pos$15 = nix.positions(here + "/initrd-partial-broken-config.nix", [["interfaces", 42, 26]]);
-const pos$16 = nix.positions(here + "/initrd-partial-broken-config.nix", [["allowIfstateToDrasticlyIncreaseInitrdSize", 39, 17], ["settings", 42, 17]]);
-const pos$17 = nix.positions(here + "/initrd-partial-broken-config.nix", [["enable", 35, 13], ["ifstate", 36, 13]]);
-const pos$18 = nix.positions(here + "/initrd-partial-broken-config.nix", [["enable", 55, 21]]);
-const pos$19 = nix.positions(here + "/initrd-partial-broken-config.nix", [["Type", 60, 29]]);
-const pos$20 = nix.positions(here + "/initrd-partial-broken-config.nix", [["before", 57, 15], ["wantedBy", 58, 15], ["script", 59, 15], ["serviceConfig", 60, 15]]);
-const pos$21 = nix.positions(here + "/initrd-partial-broken-config.nix", [["boot-blocker", 56, 22]]);
-const pos$22 = nix.positions(here + "/initrd-partial-broken-config.nix", [["enable", 54, 13], ["network", 55, 13], ["services", 56, 13]]);
-const pos$23 = nix.positions(here + "/initrd-partial-broken-config.nix", [["kernelModules", 32, 11], ["network", 34, 11], ["systemd", 53, 11]]);
-const pos$24 = nix.positions(here + "/initrd-partial-broken-config.nix", [["initrd", 30, 14]]);
-const pos$25 = nix.positions(here + "/initrd-partial-broken-config.nix", [["imports", 20, 9], ["virtualisation", 22, 9], ["networking", 25, 9], ["boot", 30, 9]]);
-const pos$26 = nix.positions(here + "/initrd-partial-broken-config.nix", [["vlan", 69, 38]]);
-const pos$27 = nix.positions(here + "/initrd-partial-broken-config.nix", [["eth1", 69, 33]]);
-const pos$28 = nix.positions(here + "/initrd-partial-broken-config.nix", [["interfaces", 69, 22]]);
-const pos$29 = nix.positions(here + "/initrd-partial-broken-config.nix", [["ifstate", 71, 18]]);
-const pos$30 = nix.positions(here + "/initrd-partial-broken-config.nix", [["imports", 67, 7], ["virtualisation", 69, 7], ["networking", 71, 7]]);
-const pos$31 = nix.positions(here + "/initrd-partial-broken-config.nix", [["server", 17, 5], ["client", 66, 5]]);
-const pos$32 = nix.positions(here + "/initrd-partial-broken-config.nix", [["name", 14, 3], ["nodes", 16, 3], ["testScript", 75, 3]]);
 
 export default nix.thunk(() => (() => {
   const mkIfStateConfig = (id) => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     enable: true,
     settings: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       interfaces: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         eth1: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           addresses: nix.thunk(() => [nix.thunk(() => nix.str`2001:0db8::${nix.builtins.toString(id)}/64`)]),
-          link: nix.thunk(() => ({ [nix.POS]: pos$1, state: "up", kind: "physical" })),
+          link: nix.thunk(() => ({ [nix.POS]: $pos[0], state: "up", kind: "physical" })),
         })),
       })),
     })),
   });
   return {
-    [nix.POS]: pos$32,
+    [nix.POS]: $pos[31],
     name: "ifstate-initrd-partial-broken-config",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       server: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const lib = nix.arg($, "lib");
         return {
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           imports: nix.thunk(() => [nix.path(here, "../../modules/profiles/minimal.nix")]),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            interfaces: nix.thunk(() => ({ [nix.POS]: pos$7, eth1: nix.thunk(() => ({ [nix.POS]: pos$6, vlan: 1n })) })),
+            [nix.POS]: $pos[7],
+            interfaces: nix.thunk(() => ({
+              [nix.POS]: $pos[6],
+              eth1: nix.thunk(() => ({ [nix.POS]: $pos[5], vlan: 1n })),
+            })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             ifstate: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$9, interfaces: nix.thunk(() => ({})) })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[8], interfaces: nix.thunk(() => ({})) })),
             })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               kernelModules: nix.thunk(() => ["virtio_net"]),
               network: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 enable: true,
                 ifstate: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                     nix.thunk(() => nix.app(mkIfStateConfig, 1n)),
                     nix.thunk(() => ({
-                      [nix.POS]: pos$16,
+                      [nix.POS]: $pos[15],
                       allowIfstateToDrasticlyIncreaseInitrdSize: true,
                       settings: nix.thunk(() => ({
-                        [nix.POS]: pos$15,
+                        [nix.POS]: $pos[14],
                         interfaces: nix.thunk(() => ({
-                          [nix.POS]: pos$14,
+                          [nix.POS]: $pos[13],
                           eth2: nix.thunk(() => ({
-                            [nix.POS]: pos$13,
+                            [nix.POS]: $pos[12],
                             addresses: nix.thunk(() => ["2001:0db8:b::dead:beef/64"]),
-                            link: nix.thunk(() => ({ [nix.POS]: pos$12, state: "up", kind: "physical" })),
+                            link: nix.thunk(() => ({ [nix.POS]: $pos[11], state: "up", kind: "physical" })),
                           })),
                         })),
                       })),
@@ -103,17 +75,17 @@ export default nix.thunk(() => (() => {
                   ]))),
               })),
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 enable: true,
-                network: nix.thunk(() => ({ [nix.POS]: pos$18, enable: false })),
+                network: nix.thunk(() => ({ [nix.POS]: $pos[17], enable: false })),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   "boot-blocker": nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     before: nix.thunk(() => ["initrd.target"]),
                     wantedBy: nix.thunk(() => ["initrd.target"]),
                     script: "sleep infinity",
-                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$19, Type: "oneshot" })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[18], Type: "oneshot" })),
                   })),
                 })),
               })),
@@ -122,13 +94,16 @@ export default nix.thunk(() => (() => {
         };
       })(), formals$1),
       client: nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         imports: nix.thunk(() => [nix.path(here, "../../modules/profiles/minimal.nix")]),
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$28,
-          interfaces: nix.thunk(() => ({ [nix.POS]: pos$27, eth1: nix.thunk(() => ({ [nix.POS]: pos$26, vlan: 1n })) })),
+          [nix.POS]: $pos[27],
+          interfaces: nix.thunk(() => ({
+            [nix.POS]: $pos[26],
+            eth1: nix.thunk(() => ({ [nix.POS]: $pos[25], vlan: 1n })),
+          })),
         })),
-        networking: nix.thunk(() => ({ [nix.POS]: pos$29, ifstate: nix.thunk(() => nix.app(mkIfStateConfig, 2n)) })),
+        networking: nix.thunk(() => ({ [nix.POS]: $pos[28], ifstate: nix.thunk(() => nix.app(mkIfStateConfig, 2n)) })),
       })),
     })),
     testScript: "start_all()\nclient.wait_for_unit(\"network.target\")\n\n# try to ping the server from the client\nclient.wait_until_succeeds(\"ping -c 1 2001:0db8::1\")\n",

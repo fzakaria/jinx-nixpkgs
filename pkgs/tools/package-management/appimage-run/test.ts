@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["url", 16, 5], ["sha256", 17, 5]], [["platforms", 28, 10]], [["buildInputs", 22, 5], ["meta", 28, 5]]]);
 const formals$1 = { args: { runCommand: false, fetchurl: false, "appimage-run": false, glibcLocales: false, file: false, "xdg-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/test.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$3 = nix.positions(here + "/test.nix", [["platforms", 28, 10]]);
-const pos$4 = nix.positions(here + "/test.nix", [["buildInputs", 22, 5], ["meta", 28, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const file = nix.arg($, "file");
   const xdg_utils = nix.arg($, "xdg-utils");
   const sample_appImage = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/AppImage/AppImageKit/releases/download/12/appimagetool-x86_64.AppImage",
       sha256: "04ws94q71bwskmhizhwmaf41ma4wabvfgjgkagr8wf3vakgv866r",
     }))));
   const owdtest = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://github.com/NixOS/nixpkgs/files/10099048/owdtest.AppImage.gz",
       sha256: "sha256-EEp9dxz/+l5XkNaVBFgv5v64sizQILnljRAzwXv/yV8=",
     }))));
   return nix.app(runCommand, "appimage-run-tests", nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       buildInputs: nix.thunk(() => [appimage_run, glibcLocales, file, xdg_utils]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$3, platforms: nix.thunk(() => ["x86_64-linux"]) })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[2], platforms: nix.thunk(() => ["x86_64-linux"]) })),
     })), nix.thunk(() => nix.str`export HOME=$(mktemp -d)
 set -x
 

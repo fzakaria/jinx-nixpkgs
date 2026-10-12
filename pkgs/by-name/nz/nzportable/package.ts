@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 72, 7], ["assets", 73, 15], ["quakec", 73, 22], ["fteqw", 73, 29]], [["pname", 69, 5], ["version", 70, 13], ["passthru", 71, 5]], [["platforms", 78, 26], ["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]], [["name", 32, 3], ["text", 34, 3], ["derivationArgs", 68, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, writeShellApplication: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 72, 7], ["assets", 73, 15], ["quakec", 73, 22], ["fteqw", 73, 29]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 69, 5], ["version", 70, 13], ["passthru", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["platforms", 78, 26], ["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 32, 3], ["text", 34, 3], ["derivationArgs", 68, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
     ])));
   const version = nix.thunk(() => nix.str`2.0.0-indev+${dateString}`);
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "nzportable",
       text: nix.thunk(() => nix.str`runDir=\${XDG_DATA_HOME:-$HOME/.local/share}/nzportable
 data=${nix.sel(assets, "pc")}
@@ -59,11 +56,11 @@ fi
 exec ${nix.app(nix.sel(lib, "getExe"), fteqw)} -basedir "$runDir" "$@"
 `),
       derivationArgs: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "nzportable",
         version: version,
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))),
           assets: assets,
           quakec: quakec,
@@ -73,7 +70,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), fteqw)} -basedir "$runDir" "$@"
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(fteqw, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Call of Duty: Zombies demake, powered by various Quake sourceports (PC version)",
         homepage: "https://docs.nzp.gay",

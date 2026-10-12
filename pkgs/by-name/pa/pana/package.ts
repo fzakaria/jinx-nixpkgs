@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["bin/pana", 22, 5]], [["updateScript", 51, 5], ["tests", 52, 5]], [["vendor", 73, 9], ["product", 74, 9], ["version", 75, 9], ["update", 76, 9]], [["cpeParts", 65, 17]], [["mainProgram", 56, 5], ["homepage", 57, 5], ["description", 58, 5], ["longDescription", 59, 5], ["changelog", 62, 5], ["license", 63, 5], ["sourceProvenance", 64, 5], ["identifiers", 65, 5], ["maintainers", 78, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dartEntryPoints", 21, 3], ["pubspecLock", 25, 3], ["nativeBuildInputs", 27, 3], ["postInstall", 29, 3], ["passthru", 50, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildDartApplication: false, fetchFromGitHub: false, callPackage: false, makeWrapper: false, flutter: false, dart: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["bin/pana", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 51, 5], ["tests", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["vendor", 73, 9], ["product", 74, 9], ["version", 75, 9], ["update", 76, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["cpeParts", 65, 17]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mainProgram", 56, 5], ["homepage", 57, 5], ["description", 58, 5], ["longDescription", 59, 5], ["changelog", 62, 5], ["license", 63, 5], ["sourceProvenance", 64, 5], ["identifiers", 65, 5], ["maintainers", 78, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dartEntryPoints", 21, 3], ["pubspecLock", 25, 3], ["nativeBuildInputs", 27, 3], ["postInstall", 29, 3], ["passthru", 50, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +18,13 @@ export default nix.lambda((args) => (() => {
       const pname = "pana";
       const version = "0.23.19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dart-lang",
           repo: "pana",
           tag: version,
           hash: "sha256-J3c/aB2yRt4tRqKEaB8gMry7lSzF3R6M1kXZ10aFC3Q=",
         }))));
-      const dartEntryPoints = nix.thunk(() => ({ [nix.POS]: pos$2, "bin/pana": "bin/pana.dart" }));
+      const dartEntryPoints = nix.thunk(() => ({ [nix.POS]: $pos[1], "bin/pana": "bin/pana.dart" }));
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const postInstall = nix.thunk(() => nix.str`# 1. Create a directory in the store to hold the license text files
@@ -48,12 +42,12 @@ wrapProgram $out/bin/pana \\
   --add-flags "--dart-sdk ${dart} --flutter-sdk ${flutter} --license-data $out/share/pana/spdx-licenses"
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         mainProgram: "pana",
         homepage: "https://pub.dev/packages/pana",
         description: "Package ANAlysis for Dart",
@@ -65,13 +59,13 @@ wrapProgram $out/bin/pana \\
           return [nix.thunk(() => nix.lookup(w, "fromSource"))];
         })()),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           cpeParts: nix.thunk(() => (() => {
             const versionSplit = nix.thunk(() => nix.app(nix.sel(lib, "split"), "\\+", version));
             const versionPart = nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), versionSplit, 0n));
             const updatePart = nix.thunk(() => (nix.asBool(nix.gt(nix.app(nix.sel(lib, "count"), (x) => nix.app(nix.sel(lib, "isList"), x), versionSplit), 0n)) ? nix.app(nix.sel(lib, "elemAt"), versionSplit, 2n) : "*"));
             return {
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               vendor: "dart-lang",
               product: "pana",
               version: versionPart,
@@ -85,7 +79,7 @@ wrapProgram $out/bin/pana \\
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

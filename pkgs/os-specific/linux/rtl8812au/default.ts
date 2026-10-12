@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5], ["broken", 63, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["hardeningDisable", 26, 3], ["prePatch", 31, 3], ["makeFlags", 38, 3], ["preInstall", 47, 3], ["postInstall", 51, 3], ["enableParallelBuilding", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false, bc: false, nukeReferences: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5], ["broken", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["hardeningDisable", 26, 3], ["prePatch", 31, 3], ["makeFlags", 38, 3], ["preInstall", 47, 3], ["postInstall", 51, 3], ["enableParallelBuilding", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const bc = nix.arg($, "bc");
   const nukeReferences = nix.arg($, "nukeReferences");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rtl8812au",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-unstable-2024-06-13`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "morrownr",
           repo: "8812au-20210820",
           rev: "c0efee9cd121d9f0c815d9771475f76339a8f7d3",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "nuke-refs $out/lib/modules/*/kernel/net/wireless/*.ko\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Driver for Realtek 802.11ac, rtl8812au, provides the 8812au mod",
         homepage: "https://github.com/morrownr/8812au-20210820",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

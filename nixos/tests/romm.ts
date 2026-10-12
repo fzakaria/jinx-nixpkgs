@@ -2,74 +2,58 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/romm.nix", [[["maintainers", 5, 8]], [["virtualHost", 10, 13]], [["enable", 9, 7], ["nginx", 10, 7]], [["romm", 8, 14]], [["memorySize", 13, 20], ["cores", 14, 20]], [["services", 8, 5], ["virtualisation", 13, 5]], [["machine", 7, 9]], [["port", 21, 14]], [["port", 22, 15]], [["from", 20, 9], ["host", 21, 9], ["guest", 22, 9]], [["forwardPorts", 18, 20]], [["allowedTCPPorts", 25, 25]], [["firewall", 25, 16]], [["virtualisation", 18, 5], ["networking", 25, 5]], [["machine", 17, 21]], [["nodes", 17, 15]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["interactive", 17, 3], ["testScript", 28, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/romm.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/romm.nix", [["virtualHost", 10, 13]]);
-const pos$3 = nix.positions(here + "/romm.nix", [["enable", 9, 7], ["nginx", 10, 7]]);
-const pos$4 = nix.positions(here + "/romm.nix", [["romm", 8, 14]]);
-const pos$5 = nix.positions(here + "/romm.nix", [["memorySize", 13, 20], ["cores", 14, 20]]);
-const pos$6 = nix.positions(here + "/romm.nix", [["services", 8, 5], ["virtualisation", 13, 5]]);
-const pos$7 = nix.positions(here + "/romm.nix", [["machine", 7, 9]]);
-const pos$8 = nix.positions(here + "/romm.nix", [["port", 21, 14]]);
-const pos$9 = nix.positions(here + "/romm.nix", [["port", 22, 15]]);
-const pos$10 = nix.positions(here + "/romm.nix", [["from", 20, 9], ["host", 21, 9], ["guest", 22, 9]]);
-const pos$11 = nix.positions(here + "/romm.nix", [["forwardPorts", 18, 20]]);
-const pos$12 = nix.positions(here + "/romm.nix", [["allowedTCPPorts", 25, 25]]);
-const pos$13 = nix.positions(here + "/romm.nix", [["firewall", 25, 16]]);
-const pos$14 = nix.positions(here + "/romm.nix", [["virtualisation", 18, 5], ["networking", 25, 5]]);
-const pos$15 = nix.positions(here + "/romm.nix", [["machine", 17, 21]]);
-const pos$16 = nix.positions(here + "/romm.nix", [["nodes", 17, 15]]);
-const pos$17 = nix.positions(here + "/romm.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["interactive", 17, 3], ["testScript", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "romm",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "denzonl"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           romm: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
-            nginx: nix.thunk(() => ({ [nix.POS]: pos$2, virtualHost: "localhost" })),
+            nginx: nix.thunk(() => ({ [nix.POS]: $pos[1], virtualHost: "localhost" })),
           })),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$5, memorySize: 2048n, cores: 2n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[4], memorySize: 2048n, cores: 2n })),
       })),
     })),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 from: "host",
-                host: nix.thunk(() => ({ [nix.POS]: pos$8, port: 8080n })),
-                guest: nix.thunk(() => ({ [nix.POS]: pos$9, port: 80n })),
+                host: nix.thunk(() => ({ [nix.POS]: $pos[7], port: 8080n })),
+                guest: nix.thunk(() => ({ [nix.POS]: $pos[8], port: 80n })),
               })),
             ]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$12, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: $pos[12],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[11], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
         })),
       })),

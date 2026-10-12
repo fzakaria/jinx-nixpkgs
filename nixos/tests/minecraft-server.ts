@@ -2,17 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/minecraft-server.nix", [[["pkgsReadOnly", 10, 8]], [["systemPackages", 15, 19]], [["enable-rcon", 22, 11], ["level-seed", 23, 11], ["level-type", 24, 11], ["generate-structures", 25, 11], ["online-mode", 26, 11], ["rcon.password", 27, 11], ["rcon.port", 28, 11]], [["declarative", 18, 9], ["enable", 19, 9], ["eula", 20, 9], ["serverProperties", 21, 9]], [["minecraft-server", 17, 16]], [["memorySize", 32, 22]], [["environment", 15, 7], ["services", 17, 7], ["virtualisation", 32, 7]], [["server", 12, 9]], [["name", 8, 3], ["node", 10, 3], ["nodes", 12, 3], ["testScript", 35, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/minecraft-server.nix", [["pkgsReadOnly", 10, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/minecraft-server.nix", [["systemPackages", 15, 19]]);
-const pos$3 = nix.positions(here + "/minecraft-server.nix", [["enable-rcon", 22, 11], ["level-seed", 23, 11], ["level-type", 24, 11], ["generate-structures", 25, 11], ["online-mode", 26, 11], ["rcon.password", 27, 11], ["rcon.port", 28, 11]]);
-const pos$4 = nix.positions(here + "/minecraft-server.nix", [["declarative", 18, 9], ["enable", 19, 9], ["eula", 20, 9], ["serverProperties", 21, 9]]);
-const pos$5 = nix.positions(here + "/minecraft-server.nix", [["minecraft-server", 17, 16]]);
-const pos$6 = nix.positions(here + "/minecraft-server.nix", [["memorySize", 32, 22]]);
-const pos$7 = nix.positions(here + "/minecraft-server.nix", [["environment", 15, 7], ["services", 17, 7], ["virtualisation", 32, 7]]);
-const pos$8 = nix.positions(here + "/minecraft-server.nix", [["server", 12, 9]]);
-const pos$9 = nix.positions(here + "/minecraft-server.nix", [["name", 8, 3], ["node", 10, 3], ["nodes", 12, 3], ["testScript", 35, 3]]);
 
 export default nix.thunk(() => (() => {
   const seed = "2151901553968352745";
@@ -23,28 +15,28 @@ export default nix.thunk(() => (() => {
     const lib = nix.arg($, "lib");
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       name: "minecraft-server",
-      node: nix.thunk(() => ({ [nix.POS]: pos$1, pkgsReadOnly: false })),
+      node: nix.thunk(() => ({ [nix.POS]: $pos[0], pkgsReadOnly: false })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return {
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mcrcon"))]),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               "minecraft-server": nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 declarative: true,
                 enable: true,
                 eula: true,
                 serverProperties: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   "enable-rcon": true,
                   "level-seed": seed,
                   "level-type": "flat",
@@ -55,7 +47,7 @@ export default nix.thunk(() => (() => {
                 })),
               })),
             })),
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, memorySize: 2047n })),
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[5], memorySize: 2047n })),
           };
         })(), formals$2),
       })),

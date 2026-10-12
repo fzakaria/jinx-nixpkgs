@@ -2,14 +2,13 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/default.nix", [["big-num", 5, 5], ["data", 6, 5], ["Foundation", 7, 5], ["KeychainAccess", 8, 5], ["LegibleError", 9, 5], ["Path.swift", 10, 5], ["PromiseKit", 11, 5], ["Rainbow", 12, 5], ["swift-argument-parser", 13, 5], ["swift-crypto", 14, 5], ["swift-srp", 15, 5], ["SwiftSoup", 16, 5], ["Version", 17, 5], ["Yams", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["workspaceStateFile", 3, 3], ["hashes", 4, 3]]);
+const $pos = nix.positions(here + "/default.nix", [[["big-num", 5, 5], ["data", 6, 5], ["Foundation", 7, 5], ["KeychainAccess", 8, 5], ["LegibleError", 9, 5], ["Path.swift", 10, 5], ["PromiseKit", 11, 5], ["Rainbow", 12, 5], ["swift-argument-parser", 13, 5], ["swift-crypto", 14, 5], ["swift-srp", 15, 5], ["SwiftSoup", 16, 5], ["Version", 17, 5], ["Yams", 18, 5]], [["workspaceStateFile", 3, 3], ["hashes", 4, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
+  [nix.POS]: $pos[1],
   workspaceStateFile: nix.path(here, "./workspace-state.json"),
   hashes: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "big-num": "0wj45pmiafhbj5ch7b4s41ldycps0hcj29d0z6fanhiy7ljlhk35",
     data: "1jf2y9dbg1qvxkkabdkihdnr1kmznq79h18j65a7iw1hljdp8hyg",
     Foundation: "0hcpc15v38l32qc2sh4gqj909b1f90knln9yz3mfiyf6xi7iy6q7",

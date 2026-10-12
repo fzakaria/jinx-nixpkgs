@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ffmpeg-avfilter.nix", [[["description", 28, 5]], [["pname", 12, 3], ["minimalOCamlVersion", 14, 3], ["version", 16, 25], ["src", 16, 33], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["propagatedBuildInputs", 20, 3], ["doCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "dune-configurator": false, "pkg-config": false, callPackage: false, "ffmpeg-base": true, "ffmpeg-avutil": false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ffmpeg-avfilter.nix", [["description", 28, 5]]);
-const pos$2 = nix.positions(here + "/ffmpeg-avfilter.nix", [["pname", 12, 3], ["minimalOCamlVersion", 14, 3], ["version", 16, 25], ["src", 16, 33], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["propagatedBuildInputs", 20, 3], ["doCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_avutil = nix.arg($, "ffmpeg-avutil");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ffmpeg-avfilter",
       minimalOCamlVersion: "4.12",
       version: nix.thunk(() => nix.attr(ffmpeg_base, "version")),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ffmpeg_avutil, nix.thunk(() => nix.sel(ffmpeg, "dev"))]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(ffmpeg_base, "meta"), { [nix.POS]: pos$1, description: "Bindings for the ffmpeg avfilter library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ffmpeg_base, "meta"), { [nix.POS]: $pos[0], description: "Bindings for the ffmpeg avfilter library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=ffmpeg-avfilter.ts.map

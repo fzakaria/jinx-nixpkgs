@@ -2,13 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-grammar.nix", [[["CFLAGS", 41, 7], ["CXXFLAGS", 51, 7], ["language", 60, 15]], [["description", 163, 7]], [["homepage", 166, 7]], [["pname", 26, 5], ["version", 28, 13], ["src", 28, 21], ["__structuredAttrs", 30, 5], ["nativeBuildInputs", 32, 5], ["env", 40, 5], ["stripDebugList", 63, 5], ["postPatch", 68, 5], ["configurePhase", 77, 5], ["preBuild", 110, 5], ["buildPhase", 114, 5], ["installPhase", 148, 5], ["meta", 162, 5]], [["setSourceRoot", 174, 5]]]);
 const formals$1 = { args: { stdenv: false, nodejs: false, "tree-sitter": false, jq: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { language: false, version: false, src: false, meta: true, generate: true, excludeBrokenTreeSitterJson: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-grammar.nix", [["CFLAGS", 41, 7], ["CXXFLAGS", 51, 7], ["language", 60, 15]]);
-const pos$2 = nix.positions(here + "/build-grammar.nix", [["description", 163, 7]]);
-const pos$3 = nix.positions(here + "/build-grammar.nix", [["homepage", 166, 7]]);
-const pos$4 = nix.positions(here + "/build-grammar.nix", [["pname", 26, 5], ["version", 28, 13], ["src", 28, 21], ["__structuredAttrs", 30, 5], ["nativeBuildInputs", 32, 5], ["env", 40, 5], ["stripDebugList", 63, 5], ["postPatch", 68, 5], ["configurePhase", 77, 5], ["preBuild", 110, 5], ["buildPhase", 114, 5], ["installPhase", 148, 5], ["meta", 162, 5]]);
-const pos$5 = nix.positions(here + "/build-grammar.nix", [["setSourceRoot", 174, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +26,14 @@ export default nix.lambda((args) => (() => {
     const parserOutput = nix.thunk(() => (nix.asBool(isWasi) ? "parser.wasm" : "parser"));
     const exportSymbol = nix.thunk(() => nix.str`tree_sitter_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), language)}`);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: nix.thunk(() => nix.str`tree-sitter-${language}`),
         version: version,
         src: src,
         __structuredAttrs: true,
         nativeBuildInputs: nix.thunk(() => nix.concat([jq], nix.app(nix.sel(lib, "optionals"), generate, nix.thunk(() => [nodejs, tree_sitter])))),
         env: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "env"), {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Isrc", nix.thunk(() => (nix.asBool(isWasi) ? "-Os" : "-O2"))], nix.app(nix.sel(lib, "optionals"), isWasi, nix.thunk(() => ["-fvisibility=hidden"])))))),
           CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Isrc", nix.thunk(() => (nix.asBool(isWasi) ? "-Os" : "-O2"))], nix.app(nix.sel(lib, "optionals"), isWasi, nix.thunk(() => ["-fvisibility=hidden"])))))),
           language: language,
@@ -102,14 +98,14 @@ fi
 runHook postInstall
 `),
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: nix.thunk(() => nix.str`Tree-sitter grammar for ${language}`),
         }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(src, "meta", "homepage")), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             homepage: nix.thunk(() => nix.sel(src, "meta", "homepage")),
           }))), meta))),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.has(args_2, "location")) && nix.asBool(!nix.eq(nix.sel(args_2, "location"), null)))), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           setSourceRoot: nix.thunk(() => nix.str`sourceRoot=$(echo */${nix.sel(args_2, "location")})`),
         }))), nix.builtins.removeAttrs(args_2, nix.thunk(() => ["generate", "excludeBrokenTreeSitterJson", "meta", "language", "env"]))))));
   })(), formals$2);

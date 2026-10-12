@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["hash", 20, 5], ["rev", 21, 5]], [["owner", 34, 9], ["repo", 35, 9], ["rev", 36, 9], ["hash", 37, 9]], [["version", 32, 7], ["src", 33, 7], ["outputs", 39, 7], ["patches", 40, 7], ["postPatch", 41, 7]], [["homepage", 58, 5], ["maintainers", 59, 5], ["license", 60, 5], ["description", 61, 5], ["broken", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["sourceRoot", 49, 3], ["installPhase", 51, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ninja: false, cmake: false, libpng: false, libhwy: false, lcms2: false, giflib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["hash", 20, 5], ["rev", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 34, 9], ["repo", 35, 9], ["rev", 36, 9], ["hash", 37, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 32, 7], ["src", 33, 7], ["outputs", 39, 7], ["patches", 40, 7], ["postPatch", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["maintainers", 59, 5], ["license", 60, 5], ["description", 61, 5], ["broken", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["sourceRoot", 49, 3], ["installPhase", 51, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const lcms2 = nix.arg($, "lcms2");
   const giflib = nix.arg($, "giflib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ssimulacra2",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cloudinary",
           repo: "ssimulacra2",
           hash: "sha256-gOo8WCWMdXOSmny0mQSzCvHgURQTCNBFD4G4sxfmXik=",
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(libhwy, "overrideAttrs"), nix.thunk(() => (() => {
             const version = "0.15.0";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 owner: "google",
                 repo: "highway",
                 rev: version,
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
             const outputs = nix.thunk(() => ["out"]);
             const patches = [];
             const postPatch = "substituteInPlace CMakeLists.txt --replace-fail \"set(CMAKE_CXX_STANDARD 11)\" \"set(CMAKE_CXX_STANDARD 17)\"\n";
-            return { [nix.POS]: pos$3, version, src, outputs, patches, postPatch };
+            return { [nix.POS]: $pos[2], version, src, outputs, patches, postPatch };
           })()))),
         lcms2,
         giflib,
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src`),
       installPhase: "runHook preInstall\ninstall -m 755 -D ssimulacra2 -t $out/bin/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/cloudinary/ssimulacra2",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "viraptor"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

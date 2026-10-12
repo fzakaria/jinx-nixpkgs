@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["platforms", 35, 26], ["maintainers", 36, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["strictDeps", 27, 3], ["buildPhase", 29, 19], ["installPhase", 29, 30], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, findlib: false, topkg: false, ocamlbuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["platforms", 35, 26], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["strictDeps", 27, 3], ["buildPhase", 29, 19], ["installPhase", 29, 30], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ocaml-react";
       const version = "1.2.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://erratique.ch/software/react/releases/react-${version}.tbz`),
           sha256: "sha256-xK3TFdbx8VPRFe58qN1gwSZf9NQIwmYSX8tRJP0ij5k=",
         }))));
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://erratique.ch/software/react",
         description: "Applicative events and signals for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

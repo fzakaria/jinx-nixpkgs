@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["modules", 16, 5]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["pname", 65, 26], ["data", 66, 5]], [["updateScript", 107, 12]], [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["sourceProvenance", 115, 5], ["platforms", 120, 5], ["mainProgram", 127, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 47, 3], ["__darwinAllowLocalNetworking", 52, 3], ["gradleBuildTask", 54, 3], ["gradleFlags", 59, 3], ["mitmCache", 64, 3], ["postPatch", 70, 3], ["postBuild", 76, 3], ["installPhase", 85, 3], ["passthru", 107, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, gradle_9: false, makeBinaryWrapper: false, jdk25: false, jre25_minimal: false, libGL: false, "nix-update-script": false, help2man: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["modules", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 65, 26], ["data", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 107, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["sourceProvenance", 115, 5], ["platforms", 120, 5], ["mainProgram", 127, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 47, 3], ["__darwinAllowLocalNetworking", 52, 3], ["gradleBuildTask", 54, 3], ["gradleFlags", 59, 3], ["mitmCache", 64, 3], ["postPatch", 70, 3], ["postBuild", 76, 3], ["installPhase", 85, 3], ["passthru", 107, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const help2man = nix.arg($, "help2man");
   const jre = nix.thunk(() => nix.app(nix.sel(jre25_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => [
         "java.base",
         "java.desktop",
@@ -38,11 +33,11 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gaiasky",
       version: "3.7.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "gaiasky",
           repo: "gaiasky",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
       gradleBuildTask: "core:dist",
       gradleFlags: nix.thunk(() => ["-x :core:generateManPage", "-x :core:gzipManPage"]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle_9, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -90,11 +85,11 @@ makeWrapper $out/share/gaiasky/gaiasky \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open source 3D universe visualization software for desktop and VR with support for more than a billion objects",
         homepage: "https://gaiasky.space",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/gaiasky/gaiasky/releases/tag/${nix.sel(finalAttrs, "version")}`),

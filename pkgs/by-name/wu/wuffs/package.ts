@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["LIB", 51, 9], ["DEV", 52, 9], ["DESCRIPTION", 53, 9], ["VERSION", 54, 9]], [["pkg-config", 71, 18]], [["tests", 71, 12]], [["homepage", 74, 5], ["description", 75, 5], ["mainProgram", 76, 5], ["pkgConfigModules", 77, 5], ["license", 78, 5], ["maintainers", 82, 5]], [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 29, 3], ["vendorHash", 36, 3], ["nativeBuildInputs", 38, 3], ["subPackages", 40, 3], ["doCheck", 46, 3], ["postInstall", 48, 3], ["passthru", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildGoModule: false, makeBinaryWrapper: false, replaceVars: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIB", 51, 9], ["DEV", 52, 9], ["DESCRIPTION", 53, 9], ["VERSION", 54, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 71, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 71, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["description", 75, 5], ["mainProgram", 76, 5], ["pkgConfigModules", 77, 5], ["license", 78, 5], ["maintainers", 82, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 29, 3], ["vendorHash", 36, 3], ["nativeBuildInputs", 38, 3], ["subPackages", 40, 3], ["doCheck", 46, 3], ["postInstall", 48, 3], ["passthru", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const compiler = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) ? "clang" : (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? "gcc" : nix.builtins.throw("unsupported compiler"))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "wuffs",
       version: "0.4.0-alpha.9",
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "wuffs",
           tag: nix.thunk(() => nix.add("v", nix.sel(finalAttrs, "version"))),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: nix.thunk(() => (() => {
         const pkgconfig = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./wuffs.pc"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             LIB: nix.thunk(() => nix.builtins.placeholder("lib")),
             DEV: nix.thunk(() => nix.builtins.placeholder("dev")),
             DESCRIPTION: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -58,14 +53,14 @@ install -Dm444 ${pkgconfig} "$dev/lib/pkgconfig/wuffs.pc"
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/google/wuffs",
         description: "memory-safe programming language and standard library for wrangling untrusted data",
         mainProgram: "wuffs",

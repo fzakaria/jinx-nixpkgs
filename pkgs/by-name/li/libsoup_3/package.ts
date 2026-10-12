@@ -2,28 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 37, 5], ["hash", 38, 5]], [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]], [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]], [["name", 53, 7], ["url", 54, 7], ["hash", 55, 7]], [["name", 58, 7], ["url", 59, 7], ["hash", 60, 7]], [["name", 63, 7], ["url", 64, 7], ["hash", 65, 7]], [["name", 68, 7], ["url", 69, 7], ["hash", 70, 7]], [["name", 73, 7], ["url", 74, 7], ["hash", 75, 7]], [["name", 78, 7], ["url", 79, 7], ["hash", 80, 7]], [["name", 83, 7], ["url", 84, 7], ["hash", 85, 7]], [["name", 88, 7], ["url", 89, 7], ["hash", 90, 7]], [["name", 93, 7], ["url", 94, 7], ["hash", 95, 7]], [["name", 98, 7], ["url", 99, 7], ["hash", 100, 7]], [["name", 103, 7], ["url", 104, 7], ["hash", 105, 7]], [["name", 108, 7], ["url", 109, 7], ["hash", 110, 7]], [["name", 113, 7], ["url", 114, 7], ["hash", 115, 7]], [["PKG_CONFIG_PATH", 169, 7]], [["attrPath", 186, 7], ["packageName", 187, 7], ["versionPolicy", 188, 7]], [["updateScript", 185, 5]], [["description", 195, 5], ["homepage", 196, 5], ["license", 197, 5], ["changelog", 198, 5], ["maintainers", 199, 25], ["platforms", 199, 37], ["teams", 199, 47]], [["pname", 27, 3], ["version", 28, 3], ["outputs", 30, 3], ["src", 36, 3], ["patches", 41, 3], ["depsBuildBuild", 119, 3], ["nativeBuildInputs", 123, 3], ["buildInputs", 136, 3], ["propagatedBuildInputs", 147, 3], ["strictDeps", 151, 3], ["mesonFlags", 153, 3], ["env", 169, 3], ["doCheck", 172, 3], ["separateDebugInfo", 173, 3], ["postPatch", 175, 3], ["postFixup", 179, 3], ["passthru", 184, 3], ["__structuredAttrs", 192, 3], ["meta", 194, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, glib: false, meson: false, ninja: false, "pkg-config": false, gnome: false, "libsysprof-capture": false, sqlite: false, buildPackages: false, "gobject-introspection": false, withIntrospection: true, vala: false, libpsl: false, python3: false, "gi-docgen": false, brotli: false, libnghttp2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 53, 7], ["url", 54, 7], ["hash", 55, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 58, 7], ["url", 59, 7], ["hash", 60, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 63, 7], ["url", 64, 7], ["hash", 65, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 68, 7], ["url", 69, 7], ["hash", 70, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 73, 7], ["url", 74, 7], ["hash", 75, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 78, 7], ["url", 79, 7], ["hash", 80, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 83, 7], ["url", 84, 7], ["hash", 85, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 88, 7], ["url", 89, 7], ["hash", 90, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["name", 93, 7], ["url", 94, 7], ["hash", 95, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["name", 98, 7], ["url", 99, 7], ["hash", 100, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["name", 103, 7], ["url", 104, 7], ["hash", 105, 7]]);
-const pos$15 = nix.positions(here + "/package.nix", [["name", 108, 7], ["url", 109, 7], ["hash", 110, 7]]);
-const pos$16 = nix.positions(here + "/package.nix", [["name", 113, 7], ["url", 114, 7], ["hash", 115, 7]]);
-const pos$17 = nix.positions(here + "/package.nix", [["PKG_CONFIG_PATH", 169, 7]]);
-const pos$18 = nix.positions(here + "/package.nix", [["attrPath", 186, 7], ["packageName", 187, 7], ["versionPolicy", 188, 7]]);
-const pos$19 = nix.positions(here + "/package.nix", [["updateScript", 185, 5]]);
-const pos$20 = nix.positions(here + "/package.nix", [["description", 195, 5], ["homepage", 196, 5], ["license", 197, 5], ["changelog", 198, 5], ["maintainers", 199, 25], ["platforms", 199, 37], ["teams", 199, 47]]);
-const pos$21 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["outputs", 30, 3], ["src", 36, 3], ["patches", 41, 3], ["depsBuildBuild", 119, 3], ["nativeBuildInputs", 123, 3], ["buildInputs", 136, 3], ["propagatedBuildInputs", 147, 3], ["strictDeps", 151, 3], ["mesonFlags", 153, 3], ["env", 169, 3], ["doCheck", 172, 3], ["separateDebugInfo", 173, 3], ["postPatch", 175, 3], ["postFixup", 179, 3], ["passthru", 184, 3], ["__structuredAttrs", 192, 3], ["meta", 194, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,102 +28,102 @@ export default nix.lambda((args) => (() => {
   const brotli = nix.arg($, "brotli");
   const libnghttp2 = nix.arg($, "libnghttp2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       pname: "libsoup",
       version: "3.6.6",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), withIntrospection, "devdoc"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libsoup/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libsoup-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Ue0K4G+dWkD0Af9Fni5fZS+aUQt3MOE1nuZtFNSHJ0A=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2026-1539.patch",
             url: "https://gitlab.gnome.org/GNOME/libsoup/-/commit/98c1285d9d78662c38bf14b4a128af01ccfdb446.patch",
             hash: "sha256-gEqCeGx49/egPlMcvmOTslszJb/FlVlw+BhQznr5sv0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2026-0719.patch",
             url: "https://gitlab.gnome.org/GNOME/libsoup/-/commit/1972635264f1d9ab1823c8b6becf921b4125b513.patch",
             hash: "sha256-k7inbIk0HyijAtTWXFxJYfDTDBif/izWrsYQmdg7z4A=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "CVE-2026-12478.patch",
             url: "https://gitlab.gnome.org/GNOME/libsoup/-/commit/303256edac53bd9321fb6ec61924ea82f04ed284.patch",
             hash: "sha256-83teXanQTc6MC5/KBtfz0zgDjatSeiomIbmTFelc3d0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "CVE-2026-6324.patch",
             url: "https://gitlab.gnome.org/GNOME/libsoup/-/commit/96ac392b444d01bd5de1d1276b187c3ed49d048c.patch",
             hash: "sha256-Y4MzqjroDnUFgDd9NRW/bHRRjWaSphB5dU5DnMdIG6I=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "Regression-fix-after-CVE-2026-6324-fix.patch",
             url: "https://gitlab.gnome.org/GNOME/libsoup/-/merge_requests/538.patch",
             hash: "sha256-v5xvd7XLHCROeec2bid/5V7Livd1uMHki39Oi+OokLg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "CVE-2026-5119.patch",
             url: "https://gitlab.gnome.org/GNOME/libsoup/-/commit/b0626fff8538e3dd4a52f148d91c8348d51d64d1.patch",
             hash: "sha256-fLTmSp+Z8ZEVbqiaSOjG1iNhg16FS5ul8fP9y0uBeqY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "CVE-2026-4271.patch",
             url: "https://gitlab.gnome.org/GNOME/libsoup/-/commit/489affa74c8a229b8a4dd541710d4a5debedb7b4.patch",
             hash: "sha256-XuFJMHtAiQiJ26KQ51JDQdJ/NdVkuccZCHQMOyzzdF0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             name: "CVE-2026-2708.patch",
             url: "https://gitlab.gnome.org/GNOME/libsoup/-/commit/e032d3e9b0a27d10597398023532dd8f9b6654cf.patch",
             hash: "sha256-r30VFpkOqJRiEhl63uavmKecbk8tpTuCvL9YbIozyZg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             name: "CVE-2026-15711.patch",
             url: "https://gitlab.gnome.org/GNOME/libsoup/-/commit/60aa1ce2bdc7bb5da33be9062f50bcec7db67fca.patch",
             hash: "sha256-13fU7zuzkb7wIH3BxylBaVyw6s/X6f4/ji9yYqYIcVg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             name: "CVE-2026-12548.patch",
             url: "https://gitlab.gnome.org/GNOME/libsoup/-/commit/7334c38f1f6aa5e64207cb415cf2509838c52b37.patch",
             hash: "sha256-eDsYtL6NHyouaVEHptZy2Gy/34guZJA7LUtj+YgWWQE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             name: "CVE-2026-12549.patch",
             url: "https://gitlab.gnome.org/GNOME/libsoup/-/merge_requests/550.patch",
             hash: "sha256-Dpd1qyJlIqNp6MzqyCKQ6anQr887e4J3CAGXEyzQOYU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             name: "CVE-2026-15713.patch",
             url: "https://gitlab.gnome.org/GNOME/libsoup/-/commit/24fb645fa949ece7d7e10363b77cf2d5fa2c2469.patch",
             hash: "sha256-TdWCOo2QnCnTbV0dPk4iGnNuwZO+LKSH1YFp2XAenwY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             name: "CVE-2026-15712.patch",
             url: "https://gitlab.gnome.org/GNOME/libsoup/-/commit/3a6fb56a0cba42d11f5fd1db6dedcc7c2e92757b.patch",
             hash: "sha256-IPYr77720+LOi3fp+x2M4MTKOm62As0dh8lZ5hKsuTU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             name: "CVE-2026-15714.patch",
             url: "https://gitlab.gnome.org/GNOME/libsoup/-/commit/79a52cadc490360e249cc2b23038d532b44dbf23.patch",
             hash: "sha256-p5J1QlfU+/be5YVahVTKt2QsxlRttrf62AYOa1QrwEo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             name: "CVE-2026-85534.patch",
             url: "https://gitlab.gnome.org/GNOME/libsoup/-/commit/5f656cd97b8a6f4a5b8b7a30efb7c2cc8ef498fb.patch",
             hash: "sha256-DD5HO+ZCn9Q/lVWWG9WnTBSeOe37Y3GD4dvsP4YuCLI=",
@@ -166,7 +146,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "vapi", withIntrospection)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         PKG_CONFIG_PATH: nix.thunk(() => nix.str`${nix.sel(libnghttp2, "dev")}/lib/pkgconfig`),
       })),
       doCheck: false,
@@ -174,9 +154,9 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs libsoup/\n",
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             attrPath: "libsoup_3",
             packageName: "libsoup",
             versionPolicy: "odd-unstable",
@@ -186,7 +166,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(glib, "meta"));
         return {
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         description: "HTTP client/server library for GNOME",
         homepage: "https://gitlab.gnome.org/GNOME/libsoup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

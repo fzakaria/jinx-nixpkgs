@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tester.nix", [[["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["name", 18, 3], ["src", 23, 11], ["dontUnpack", 24, 3], ["nativeBuildInputs", 25, 3], ["doCheck", 26, 3], ["dontConfigure", 27, 3], ["dontBuild", 28, 3], ["checkPhase", 29, 3], ["installPhase", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, shellcheck: false }, ellipsis: false };
 const formals$2 = { args: { name: true, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tester.nix", [["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["name", 18, 3], ["src", 23, 11], ["dontUnpack", 24, 3], ["nativeBuildInputs", 25, 3], ["doCheck", 26, 3], ["dontConfigure", 27, 3], ["dontBuild", 28, 3], ["checkPhase", 29, 3], ["installPhase", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
     const name = nix.argOr($_1, "name", () => null);
     const src = nix.arg($_1, "src");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         __structuredAttrs: true,
         strictDeps: true,
         name: nix.thunk(() => (nix.asBool(nix.eq(name, null)) ? nix.app(nix.sel(lib, "warn"), "testers.shellcheck: name will be required in a future release, defaulting to run-shellcheck", "run-shellcheck") : nix.str`shellcheck-${name}`)),

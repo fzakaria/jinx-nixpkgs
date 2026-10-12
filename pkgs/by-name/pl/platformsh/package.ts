@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hash", 37, 28], ["url", 37, 33]], [["version", 57, 28], ["package", 58, 7]], [["version", 56, 11]], [["updateScript", 55, 5], ["tests", 56, 5]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5], ["platforms", 70, 5], ["sourceProvenance", 75, 5]], [["pname", 31, 3], ["version", 32, 22], ["nativeBuildInputs", 34, 3], ["src", 37, 3], ["dontConfigure", 39, 3], ["dontBuild", 40, 3], ["sourceRoot", 42, 3], ["installPhase", 43, 3], ["passthru", 54, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false, testers: false, installShellFiles: false, platformsh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hash", 37, 28], ["url", 37, 33]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 57, 28], ["package", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 56, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 55, 5], ["tests", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5], ["platforms", 70, 5], ["sourceProvenance", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 22], ["nativeBuildInputs", 34, 3], ["src", 37, 3], ["dontConfigure", 39, 3], ["dontBuild", 40, 3], ["sourceRoot", 42, 3], ["installPhase", 43, 3], ["passthru", 54, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,29 +20,29 @@ export default nix.lambda((args) => (() => {
   const hash = nix.thunk(() => nix.attr(versionInfo, "hash"));
   const url = nix.thunk(() => nix.attr(versionInfo, "url"));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "platformsh",
       version: nix.thunk(() => nix.attr(versions, "version")),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, hash: hash, url: url })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], hash: hash, url: url })))),
       dontConfigure: true,
       dontBuild: true,
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\ninstall -Dm755 platform $out/bin/platform\n\ninstallShellCompletion completion/bash/platform.bash \\\n    completion/zsh/_platform\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: platformsh,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Unified tool for managing your Platform.sh services from the command line",
         homepage: "https://github.com/platformsh/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

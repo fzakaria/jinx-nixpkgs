@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 38, 5], ["homepage", 39, 5], ["downloadPage", 40, 5], ["mainProgram", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["sourceProvenance", 44, 5], ["maintainers", 45, 5]], [["pname", 8, 3], ["version", 9, 3], ["tag", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["unpackPhase", 22, 3], ["installPhase", 28, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, zstd: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["downloadPage", 40, 5], ["mainProgram", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["sourceProvenance", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["tag", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["unpackPhase", 22, 3], ["installPhase", 28, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "docker-init",
       version: "1.4.0",
       tag: "175267",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://desktop.docker.com/linux/main/amd64/${nix.sel(finalAttrs, "tag")}/docker-desktop-x86_64.pkg.tar.zst`),
           hash: "sha256-pxxlSN2sQqlPUzUPufcK8T+pvdr0cK+9hWTYzwMJv5I=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "runHook preUnpack\ntar --zstd -xvf $src\nrunHook postUnpack\n",
       installPhase: "runHook preInstall\nmkdir -p $out/{bin,libexec/docker/cli-plugins}\n\ncp usr/lib/docker/cli-plugins/docker-init $out/libexec/docker/cli-plugins\nln -s $out/libexec/docker/cli-plugins/docker-init $out/bin/docker-init\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Creates Docker-related starter files for your project",
         homepage: "https://docs.docker.com/reference/cli/docker/init",
         downloadPage: "https://docs.docker.com/desktop/release-notes",

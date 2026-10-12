@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]], [["widget", 40, 5], ["jupyterlab", 41, 5]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["pythonRelaxDeps", 30, 3], ["propagatedBuildInputs", 32, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 44, 3], ["disabledTestPaths", 49, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, altair: false, ipytablewidgets: false, ipywidgets: false, jupyter: false, "jupyter-core": false, jupyterlab: false, pandas: false, "poetry-core": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["widget", 40, 5], ["jupyterlab", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["pythonRelaxDeps", 30, 3], ["propagatedBuildInputs", 32, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 44, 3], ["disabledTestPaths", 49, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-8lrmhCvwczqBpiQRCkPjmiYsJPHEFnZab/Azkh+i7ls=",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["pandas"]);
       const propagatedBuildInputs = nix.thunk(() => [ipytablewidgets, jupyter, jupyter_core, pandas]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         widget: nix.thunk(() => [ipywidgets]),
         jupyterlab: nix.thunk(() => [jupyterlab]),
       }));
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["vega/tests/test_entrypoint.py"]);
       const pythonImportsCheck = nix.thunk(() => ["vega"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "IPython/Jupyter widget for Vega and Vega-Lite",
         longDescription: "To use this you have to enter a nix-shell with vega. Then run:\n\njupyter nbextension install --user --py vega\njupyter nbextension enable --user vega\n",
         homepage: "https://github.com/vega/ipyvega",
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["updateScript", 57, 12]], [["description", 60, 5], ["license", 61, 5], ["homepage", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["mesonBuildType", 49, 3], ["buildInputs", 51, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, unstableGitUpdater: false, cairo: false, glib: false, json_c: false, libGL: false, libepoxy: false, libpng: false, libxkbcommon: false, meson: false, ninja: false, pango: false, "pkg-config": false, scdoc: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["license", 61, 5], ["homepage", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["mesonBuildType", 49, 3], ["buildInputs", 51, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "greetd-mini-wl-greeter",
       version: "0-unstable-2024-12-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "philj56",
           repo: "greetd-mini-wl-greeter",
           rev: "61f25ed34a1a35a061c2f3605fc3d4b37a7d0d8e",
@@ -57,11 +54,11 @@ export default nix.lambda((args) => (() => {
       mesonBuildType: "release",
       buildInputs: nix.thunk(() => [meson, ninja, scdoc]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Extremely minimal raw Wayland greeter for greetd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/philj56/greetd-mini-wl-greeter",

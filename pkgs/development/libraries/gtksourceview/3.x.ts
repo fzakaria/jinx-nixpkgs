@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/3.x.nix", [[["url", 35, 7], ["sha256", 36, 7]], [["NIX_CFLAGS_COMPILE", 81, 5]], [["pkg-config", 99, 18]], [["tests", 99, 12]], [["homepage", 102, 5], ["pkgConfigModules", 103, 5], ["platforms", 104, 5], ["license", 105, 5], ["teams", 106, 5]], [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["src", 30, 3], ["propagatedBuildInputs", 39, 3], ["outputs", 46, 3], ["nativeBuildInputs", 51, 3], ["nativeCheckInputs", 60, 3], ["buildInputs", 65, 3], ["preBuild", 74, 3], ["patches", 78, 3], ["env", 80, 3], ["enableParallelBuilding", 84, 3], ["doCheck", 86, 3], ["checkPhase", 87, 3], ["passthru", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, atk: false, cairo: false, glib: false, gtk3: false, pango: false, vala: false, libxml2: false, perl: false, intltool: false, gettext: false, "gobject-introspection": false, dbus: false, "xvfb-run": false, "shared-mime-info": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/3.x.nix", [["url", 35, 7], ["sha256", 36, 7]]);
-const pos$2 = nix.positions(here + "/3.x.nix", [["NIX_CFLAGS_COMPILE", 81, 5]]);
-const pos$3 = nix.positions(here + "/3.x.nix", [["pkg-config", 99, 18]]);
-const pos$4 = nix.positions(here + "/3.x.nix", [["tests", 99, 12]]);
-const pos$5 = nix.positions(here + "/3.x.nix", [["homepage", 102, 5], ["pkgConfigModules", 103, 5], ["platforms", 104, 5], ["license", 105, 5], ["teams", 106, 5]]);
-const pos$6 = nix.positions(here + "/3.x.nix", [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["src", 30, 3], ["propagatedBuildInputs", 39, 3], ["outputs", 46, 3], ["nativeBuildInputs", 51, 3], ["nativeCheckInputs", 60, 3], ["buildInputs", 65, 3], ["preBuild", 74, 3], ["patches", 78, 3], ["env", 80, 3], ["enableParallelBuilding", 84, 3], ["doCheck", 86, 3], ["checkPhase", 87, 3], ["passthru", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gtksourceview",
       version: "3.24.11",
       __structuredAttrs: true,
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
         const pname = nix.thunk(() => nix.attr(finalAttrs, "pname"));
         const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`mirror://gnome/sources/${pname}/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${pname}-${version}.tar.xz`),
             sha256: "1zbpj283b5ycz767hqz5kdq02wzsga65pp4fykvhg8xj6x50f6v9",
           })));
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "substituteInPlace gtksourceview/gtksourceview-utils.c --replace \"@NIX_SHARE_PATH@\" \"$out/share\"\n",
       patches: nix.thunk(() => [nix.path(here, "./3.x-nix_share_path.patch")]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         })))),
       enableParallelBuilding: true,
@@ -70,14 +65,14 @@ xvfb-run -s '-screen 0 800x600x24' dbus-run-session \\
 runHook postCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.gnome.org/GNOME/gtksourceview",
         pkgConfigModules: nix.thunk(() => ["gtksourceview-3.0"]),
         platforms: nix.thunk(() => (() => {

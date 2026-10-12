@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["updateScript", 17, 12]], [["homepage", 20, 5], ["description", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["passthru", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, unstableGitUpdater: false, melpaBuild: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 17, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 20, 5], ["description", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["passthru", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,22 +12,22 @@ export default nix.lambda((args) => (() => {
   const melpaBuild = nix.arg($, "melpaBuild");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cognitive-complexity",
       version: "0-unstable-2026-04-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emacs-vs",
           repo: "cognitive-complexity",
           rev: "b45afe9bf65943f985b645cea514212dc734349b",
           hash: "sha256-wPS/2yIQjqFWqlyf1qpd+FrvVH5KBL+kpSCW3bgmDL8=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/emacs-vs/cognitive-complexity",
         description: "Show cognitive complexity of code",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

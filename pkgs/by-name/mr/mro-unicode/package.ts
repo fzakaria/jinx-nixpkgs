@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["homepage", 27, 5], ["description", 28, 5], ["maintainers", 29, 5], ["license", 30, 5], ["platforms", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontUnpack", 16, 3], ["installPhase", 18, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["maintainers", 29, 5], ["license", 30, 5], ["platforms", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontUnpack", 16, 3], ["installPhase", 18, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mro-unicode",
       version: "unstable-2013-05-25",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/phjamr/MroUnicode/raw/f297de070f7eba721a47c850e08efc119d3bfbe8/MroUnicode-Regular.ttf",
           hash: "sha256-hcQmTuRWxaU5KEMXg/O0b1olE8YxXWz0PAlqAJknR/0=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\ninstall -Dm644 $src $out/share/fonts/truetype/MroUnicode-Regular.ttf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/phjamr/MroUnicode",
         description: "Unicode-compliant Mro font",
         maintainers: nix.thunk(() => (() => {

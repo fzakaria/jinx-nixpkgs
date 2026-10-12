@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["sha256", 18, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5]], [["version", 12, 3], ["pname", 13, 3], ["format", 14, 3], ["src", 16, 3], ["nativeCheckInputs", 21, 3], ["propagatedBuildInputs", 22, 3], ["preInstall", 24, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, "python-dateutil": false, pkgs: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 12, 3], ["pname", 13, 3], ["format", 14, 3], ["src", 16, 3], ["nativeCheckInputs", 21, 3], ["propagatedBuildInputs", 22, 3], ["preInstall", 24, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pync";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "38b9e61735a3161f9211a5773c5f5ea698f36af4ff7f77fa03e8d1ff0caa117f",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const preInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`sed -i 's|^\\([ ]*\\)self.bin_path.*$|\\1self.bin_path = "${nix.sel(pkgs, "terminal-notifier")}/bin/terminal-notifier"|' build/lib/pync/TerminalNotifier.py
 `)));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python Wrapper for Mac OS 10.8 Notification Center",
         homepage: "https://pypi.org/project/pync/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         format,

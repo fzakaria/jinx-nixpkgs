@@ -2,86 +2,43 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/non-default-filesystems.nix", [[["system", 4, 33], ["config", 4, 40]], [["system", 7, 49], ["pkgs", 7, 56]], [["device", 19, 11], ["neededForBoot", 20, 11], ["fsType", 21, 11], ["options", 22, 11]], [["depends", 26, 11], ["device", 27, 11], ["neededForBoot", 28, 11], ["fsType", 29, 11], ["options", 30, 11]], [["/test-bind-dir/bind", 18, 36], ["/test-bind-file/bind", 25, 36]], [["writableStore", 16, 24], ["fileSystems", 18, 24]], [["virtualisation", 16, 9]], [["machine", 13, 11]], [["name", 11, 5], ["nodes", 13, 5], ["testScript", 34, 5]], [["device", 80, 15], ["fsType", 81, 15], ["options", 82, 15]], [["device", 86, 15], ["fsType", 87, 15], ["options", 88, 15]], [["/", 79, 13], ["/home", 85, 13]], [["rootDevice", 50, 26], ["useDefaultFilesystems", 51, 26], ["fileSystems", 78, 26]], [["Type", 54, 13], ["Format", 55, 13], ["Label", 56, 13], ["Subvolumes", 57, 13], ["MakeDirectories", 61, 13]], [["00-root", 53, 37]], [["partitions", 53, 26]], [["repart", 53, 19]], [["enable", 72, 15], ["device", 73, 15], ["empty", 74, 15]], [["enable", 70, 13], ["repart", 71, 13]], [["supportedFilesystems", 67, 23], ["systemd", 69, 23]], [["initrd", 67, 16]], [["virtualisation", 50, 11], ["systemd", 53, 11], ["boot", 67, 11]], [["machine", 47, 13]], [["name", 45, 7], ["nodes", 47, 7], ["testScript", 93, 7]], [["maintainers", 111, 12]], [["name", 116, 13], ["file", 117, 13]], [["drives", 114, 29]], [["device", 122, 11], ["fsType", 123, 11], ["neededForBoot", 124, 11]], [["/non-default", 121, 36]], [["qemu", 114, 24], ["fileSystems", 121, 24]], [["virtualisation", 114, 9]], [["machine", 113, 13]], [["name", 109, 7], ["meta", 111, 7], ["nodes", 113, 7], ["testScript", 128, 7]], [["maintainers", 157, 12]], [["serial", 164, 29]], [["name", 162, 13], ["file", 163, 13], ["deviceExtraOpts", 164, 13]], [["drives", 160, 29]], [["device", 169, 11], ["fsType", 170, 11], ["neededForBoot", 171, 11]], [["/non-default", 168, 36]], [["qemu", 160, 24], ["fileSystems", 168, 24]], [["virtualisation", 160, 9]], [["machine", 159, 13]], [["name", 155, 7], ["meta", 157, 7], ["nodes", 159, 7], ["testScript", 175, 7]], [["bind", 10, 3], ["btrfs", 39, 3], ["erofs", 104, 3], ["squashfs", 150, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/non-default-filesystems.nix", [["system", 4, 33], ["config", 4, 40]]);
-const pos$2 = nix.positions(here + "/non-default-filesystems.nix", [["system", 7, 49], ["pkgs", 7, 56]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$3 = nix.positions(here + "/non-default-filesystems.nix", [["device", 19, 11], ["neededForBoot", 20, 11], ["fsType", 21, 11], ["options", 22, 11]]);
-const pos$4 = nix.positions(here + "/non-default-filesystems.nix", [["depends", 26, 11], ["device", 27, 11], ["neededForBoot", 28, 11], ["fsType", 29, 11], ["options", 30, 11]]);
-const pos$5 = nix.positions(here + "/non-default-filesystems.nix", [["/test-bind-dir/bind", 18, 36], ["/test-bind-file/bind", 25, 36]]);
-const pos$6 = nix.positions(here + "/non-default-filesystems.nix", [["writableStore", 16, 24], ["fileSystems", 18, 24]]);
-const pos$7 = nix.positions(here + "/non-default-filesystems.nix", [["virtualisation", 16, 9]]);
-const pos$8 = nix.positions(here + "/non-default-filesystems.nix", [["machine", 13, 11]]);
-const pos$9 = nix.positions(here + "/non-default-filesystems.nix", [["name", 11, 5], ["nodes", 13, 5], ["testScript", 34, 5]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$10 = nix.positions(here + "/non-default-filesystems.nix", [["device", 80, 15], ["fsType", 81, 15], ["options", 82, 15]]);
-const pos$11 = nix.positions(here + "/non-default-filesystems.nix", [["device", 86, 15], ["fsType", 87, 15], ["options", 88, 15]]);
-const pos$12 = nix.positions(here + "/non-default-filesystems.nix", [["/", 79, 13], ["/home", 85, 13]]);
-const pos$13 = nix.positions(here + "/non-default-filesystems.nix", [["rootDevice", 50, 26], ["useDefaultFilesystems", 51, 26], ["fileSystems", 78, 26]]);
-const pos$14 = nix.positions(here + "/non-default-filesystems.nix", [["Type", 54, 13], ["Format", 55, 13], ["Label", 56, 13], ["Subvolumes", 57, 13], ["MakeDirectories", 61, 13]]);
-const pos$15 = nix.positions(here + "/non-default-filesystems.nix", [["00-root", 53, 37]]);
-const pos$16 = nix.positions(here + "/non-default-filesystems.nix", [["partitions", 53, 26]]);
-const pos$17 = nix.positions(here + "/non-default-filesystems.nix", [["repart", 53, 19]]);
-const pos$18 = nix.positions(here + "/non-default-filesystems.nix", [["enable", 72, 15], ["device", 73, 15], ["empty", 74, 15]]);
-const pos$19 = nix.positions(here + "/non-default-filesystems.nix", [["enable", 70, 13], ["repart", 71, 13]]);
-const pos$20 = nix.positions(here + "/non-default-filesystems.nix", [["supportedFilesystems", 67, 23], ["systemd", 69, 23]]);
-const pos$21 = nix.positions(here + "/non-default-filesystems.nix", [["initrd", 67, 16]]);
-const pos$22 = nix.positions(here + "/non-default-filesystems.nix", [["virtualisation", 50, 11], ["systemd", 53, 11], ["boot", 67, 11]]);
-const pos$23 = nix.positions(here + "/non-default-filesystems.nix", [["machine", 47, 13]]);
-const pos$24 = nix.positions(here + "/non-default-filesystems.nix", [["name", 45, 7], ["nodes", 47, 7], ["testScript", 93, 7]]);
-const pos$25 = nix.positions(here + "/non-default-filesystems.nix", [["maintainers", 111, 12]]);
-const pos$26 = nix.positions(here + "/non-default-filesystems.nix", [["name", 116, 13], ["file", 117, 13]]);
-const pos$27 = nix.positions(here + "/non-default-filesystems.nix", [["drives", 114, 29]]);
-const pos$28 = nix.positions(here + "/non-default-filesystems.nix", [["device", 122, 11], ["fsType", 123, 11], ["neededForBoot", 124, 11]]);
-const pos$29 = nix.positions(here + "/non-default-filesystems.nix", [["/non-default", 121, 36]]);
-const pos$30 = nix.positions(here + "/non-default-filesystems.nix", [["qemu", 114, 24], ["fileSystems", 121, 24]]);
-const pos$31 = nix.positions(here + "/non-default-filesystems.nix", [["virtualisation", 114, 9]]);
-const pos$32 = nix.positions(here + "/non-default-filesystems.nix", [["machine", 113, 13]]);
-const pos$33 = nix.positions(here + "/non-default-filesystems.nix", [["name", 109, 7], ["meta", 111, 7], ["nodes", 113, 7], ["testScript", 128, 7]]);
-const pos$34 = nix.positions(here + "/non-default-filesystems.nix", [["maintainers", 157, 12]]);
-const pos$35 = nix.positions(here + "/non-default-filesystems.nix", [["serial", 164, 29]]);
-const pos$36 = nix.positions(here + "/non-default-filesystems.nix", [["name", 162, 13], ["file", 163, 13], ["deviceExtraOpts", 164, 13]]);
-const pos$37 = nix.positions(here + "/non-default-filesystems.nix", [["drives", 160, 29]]);
-const pos$38 = nix.positions(here + "/non-default-filesystems.nix", [["device", 169, 11], ["fsType", 170, 11], ["neededForBoot", 171, 11]]);
-const pos$39 = nix.positions(here + "/non-default-filesystems.nix", [["/non-default", 168, 36]]);
-const pos$40 = nix.positions(here + "/non-default-filesystems.nix", [["qemu", 160, 24], ["fileSystems", 168, 24]]);
-const pos$41 = nix.positions(here + "/non-default-filesystems.nix", [["virtualisation", 160, 9]]);
-const pos$42 = nix.positions(here + "/non-default-filesystems.nix", [["machine", 159, 13]]);
-const pos$43 = nix.positions(here + "/non-default-filesystems.nix", [["name", 155, 7], ["meta", 157, 7], ["nodes", 159, 7], ["testScript", 175, 7]]);
-const pos$44 = nix.positions(here + "/non-default-filesystems.nix", [["bind", 10, 3], ["btrfs", 39, 3], ["erofs", 104, 3], ["squashfs", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   return {
-    [nix.POS]: pos$44,
+    [nix.POS]: $pos[43],
     bind: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         name: "non-default-filesystem-bind",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             return {
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               virtualisation: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 writableStore: false,
                 fileSystems: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   "/test-bind-dir/bind": nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     device: "/",
                     neededForBoot: true,
                     fsType: "none",
                     options: nix.thunk(() => ["bind"]),
                   })),
                   "/test-bind-file/bind": nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     depends: nix.thunk(() => ["/nix/store"]),
                     device: nix.thunk(() => nix.app(nix.sel(nix.builtins, "toFile"), "empty", "")),
                     neededForBoot: true,
@@ -99,28 +56,28 @@ export default nix.lambda((args) => (() => {
       const disk = "/dev/vda";
       const partition = "/dev/disk/by-label/storage";
       return nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           name: "non-default-filesystems-btrfs",
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             machine: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$3);
               return {
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 virtualisation: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   rootDevice: disk,
                   useDefaultFilesystems: false,
                   fileSystems: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     "/": nix.thunk(() => ({
-                      [nix.POS]: pos$10,
+                      [nix.POS]: $pos[9],
                       device: partition,
                       fsType: "btrfs",
                       options: nix.thunk(() => ["subvol=/root"]),
                     })),
                     "/home": nix.thunk(() => ({
-                      [nix.POS]: pos$11,
+                      [nix.POS]: $pos[10],
                       device: partition,
                       fsType: "btrfs",
                       options: nix.thunk(() => ["subvol=/home"]),
@@ -128,13 +85,13 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 systemd: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   repart: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     partitions: nix.thunk(() => ({
-                      [nix.POS]: pos$15,
+                      [nix.POS]: $pos[14],
                       "00-root": nix.thunk(() => ({
-                        [nix.POS]: pos$14,
+                        [nix.POS]: $pos[13],
                         Type: "linux-generic",
                         Format: "btrfs",
                         Label: "storage",
@@ -145,14 +102,14 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 boot: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   initrd: nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     supportedFilesystems: nix.thunk(() => ["btrfs"]),
                     systemd: nix.thunk(() => ({
-                      [nix.POS]: pos$19,
+                      [nix.POS]: $pos[18],
                       enable: true,
-                      repart: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true, device: disk, empty: "allow" })),
+                      repart: nix.thunk(() => ({ [nix.POS]: $pos[17], enable: true, device: disk, empty: "allow" })),
                     })),
                   })),
                 })),
@@ -172,30 +129,35 @@ with subtest("BTRFS filesystems are mounted correctly"):
     erofs: nix.thunk(() => (() => {
       const fsImage = "/tmp/non-default-filesystem.img";
       return nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           name: "non-default-filesystems-erofs",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             maintainers: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "maintainers")), w_1);
               return [nix.thunk(() => nix.lookup(w_2, "nikstur"))];
             })()),
           })),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             machine: (_) => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               virtualisation: nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 qemu: nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   drives: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$26, name: "non-default-filesystem", file: fsImage })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[25], name: "non-default-filesystem", file: fsImage })),
                   ]),
                 })),
                 fileSystems: nix.thunk(() => ({
-                  [nix.POS]: pos$29,
-                  "/non-default": nix.thunk(() => ({ [nix.POS]: pos$28, device: "/dev/vdb", fsType: "erofs", neededForBoot: true })),
+                  [nix.POS]: $pos[28],
+                  "/non-default": nix.thunk(() => ({
+                    [nix.POS]: $pos[27],
+                    device: "/dev/vdb",
+                    fsType: "erofs",
+                    neededForBoot: true,
+                  })),
                 })),
               })),
             }),
@@ -224,36 +186,36 @@ assert "erofs" in file_contents
     squashfs: nix.thunk(() => (() => {
       const fsImage = "/tmp/non-default-filesystem.img";
       return nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           name: "non-default-filesystems-squashfs",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             maintainers: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "maintainers")), w_1);
               return [nix.thunk(() => nix.lookup(w_2, "nikstur"))];
             })()),
           })),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             machine: nix.thunk(() => ({
-              [nix.POS]: pos$41,
+              [nix.POS]: $pos[40],
               virtualisation: nix.thunk(() => ({
-                [nix.POS]: pos$40,
+                [nix.POS]: $pos[39],
                 qemu: nix.thunk(() => ({
-                  [nix.POS]: pos$37,
+                  [nix.POS]: $pos[36],
                   drives: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$36,
+                      [nix.POS]: $pos[35],
                       name: "non-default-filesystem",
                       file: fsImage,
-                      deviceExtraOpts: nix.thunk(() => ({ [nix.POS]: pos$35, serial: "non-default" })),
+                      deviceExtraOpts: nix.thunk(() => ({ [nix.POS]: $pos[34], serial: "non-default" })),
                     })),
                   ]),
                 })),
                 fileSystems: nix.thunk(() => ({
-                  [nix.POS]: pos$39,
+                  [nix.POS]: $pos[38],
                   "/non-default": nix.thunk(() => ({
-                    [nix.POS]: pos$38,
+                    [nix.POS]: $pos[37],
                     device: "/dev/disk/by-id/virtio-non-default",
                     fsType: "squashfs",
                     neededForBoot: true,

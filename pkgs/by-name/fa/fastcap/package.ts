@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5], ["stripRoot", 16, 5]], [["NIX_CFLAGS_COMPILE", 58, 7]], [["description", 96, 5], ["longDescription", 97, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5], ["mainProgram", 106, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 19, 3], ["nativeBuildInputs", 25, 3], ["postPatch", 30, 3], ["dontConfigure", 50, 3], ["makeFlags", 52, 3], ["env", 58, 3], ["outputs", 67, 3], ["postBuild", 72, 3], ["installPhase", 79, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchzip: false, ghostscript: false, lib: false, texliveMedium: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5], ["stripRoot", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 96, 5], ["longDescription", 97, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5], ["mainProgram", 106, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 19, 3], ["nativeBuildInputs", 25, 3], ["postPatch", 30, 3], ["dontConfigure", 50, 3], ["makeFlags", 52, 3], ["env", 58, 3], ["outputs", 67, 3], ["postBuild", 72, 3], ["installPhase", 79, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const texliveMedium = nix.arg($, "texliveMedium");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fastcap",
       version: "2.0-18Sep92",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.rle.mit.edu/cpg/codes/fastcap-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-fnmC6WNd7xk8fphxkMZUq2+Qz+2mWIP2lvBUBAmUvHI",
           stripRoot: false,
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       makeFlags: nix.thunk(() => ["RM=rm", "SHELL=sh", "all"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=implicit-function-declaration",
             "-Wno-error=return-mismatch",
@@ -60,7 +57,7 @@ mv examples $out/share/fastcap
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Multipole-accelerated capacitance extraction program",
         longDescription: "Fastcap is  a three dimensional capacitance extraction program that\ncompute self and mutual capacitances between conductors of arbitrary\nshapes, sizes and orientations.\n",
         homepage: "https://www.rle.mit.edu/cpg/research_codes.htm",

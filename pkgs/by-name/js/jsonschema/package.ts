@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["GOWORK", 20, 7]], [["extraArgs", 22, 5]], [["updateScript", 21, 12]], [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["mainProgram", 37, 5], ["maintainers", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 19, 3], ["env", 20, 3], ["passthru", 21, 3], ["vendorHash", 25, 3], ["ldflags", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GOWORK", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 22, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 21, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["mainProgram", 37, 5], ["maintainers", 38, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 19, 3], ["env", 20, 3], ["passthru", 21, 3], ["vendorHash", 25, 3], ["ldflags", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,29 +12,29 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "jsonschema",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "santhosh-tekuri",
           repo: "jsonschema",
           tag: nix.thunk(() => nix.str`cmd/jv/v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-bMDDji5daBmjSeGxeS4PZfmTg+b8OVHsP8+m3jtpQJc=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/cmd/jv`),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GOWORK: "off" })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex=cmd/jv/v([\\d\\.]+)"]),
           })))),
       })),
       vendorHash: "sha256-s7kEdA4yuExuzwN3hHgeZmtkES3Zw1SALoEHSNtdAww=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "JSON schema compilation and validation",
         homepage: "https://github.com/santhosh-tekuri/jsonschema",
         changelog: nix.thunk(() => nix.str`https://github.com/santhosh-tekuri/jsonschema/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

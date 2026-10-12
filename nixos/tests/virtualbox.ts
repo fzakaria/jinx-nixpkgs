@@ -2,73 +2,21 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/virtualbox.nix", [[["system", 4, 33], ["config", 4, 40]], [["system", 11, 49], ["pkgs", 11, 56]], [["enable", 80, 27]], [["systemd", 80, 19], ["kernelModules", 82, 19], ["extraUtilsCommands", 92, 19], ["postMountCommands", 98, 19]], [["kernelParams", 63, 12], ["initrd", 80, 12]], [["device", 74, 9], ["fsType", 75, 9]], [["/", 73, 19]], [["enable", 78, 39]], [["guest", 78, 33]], [["virtualbox", 78, 22]], [["requiredKernelConfig", 109, 14]], [["usePredictableInterfaceNames", 114, 18]], [["boot", 63, 7], ["fileSystems", 73, 7], ["virtualisation", 78, 7], ["system", 109, 7], ["networking", 114, 7]], [["system", 131, 11], ["modules", 132, 11]], [["preVM", 140, 11], ["postVM", 146, 11], ["buildInputs", 152, 11]], [["ListenStream", 234, 24], ["Accept", 235, 24]], [["description", 231, 11], ["wantedBy", 232, 11], ["before", 233, 11], ["socketConfig", 234, 11]], [["StandardInput", 240, 25], ["StandardOutput", 241, 25], ["SyslogIdentifier", 242, 25], ["ExecStart", 243, 25]], [["description", 239, 11], ["serviceConfig", 240, 11]], [["sockets", 230, 17], ["services", 238, 17]], [["systemd", 230, 9]], [["machine", 229, 7], ["testSubs", 247, 7]], [["vmScript", 377, 16]], [["vmFlags", 379, 11], ["vmScript", 380, 11]], [["vmFlags", 382, 11], ["vmScript", 383, 11]], [["headless", 385, 40]], [["virtualbox", 385, 29]], [["enable", 386, 31]], [["xserver", 386, 23]], [["virtualisation", 385, 14], ["services", 386, 14]], [["simple", 375, 5], ["detectvirt", 377, 5], ["test1", 379, 5], ["test2", 382, 5], ["headless", 385, 5]], [["vmFlags", 390, 23]], [["testExtensionPack", 390, 5]], [["key", 403, 54]], [["options", 413, 31]], [["enable", 432, 13]], [["host", 431, 37]], [["memorySize", 411, 26], ["qemu", 413, 26], ["virtualbox", 431, 26]], [["user", 424, 44]], [["auto", 424, 39]], [["displayManager", 424, 24]], [["extraGroups", 425, 29]], [["alice", 425, 23]], [["users", 425, 17]], [["imports", 401, 11], ["virtualisation", 411, 11], ["test-support", 424, 11], ["users", 425, 11]], [["machine", 398, 13]], [["maintainers", 464, 9]], [["name", 396, 7], ["nodes", 398, 7], ["testScript", 437, 7], ["meta", 463, 7]], [["enableExtensionPack", 468, 40]], [["enable-extension-pack", 469, 5]], [["enableKvm", 490, 9], ["addNetworkInterface", 493, 9], ["enableHardening", 494, 9]], [["kvm-headless", 497, 9]], [["simple-gui", 509, 3], ["simple-cli", 537, 3], ["headless", 554, 3], ["host-usb-permissions", 563, 3], ["systemd-detect-virt", 577, 3], ["net-hostonlyif", 589, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true, debug: true, enableUnfree: true, enableKvm: true, use64bitGuest: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/virtualbox.nix", [["system", 4, 33], ["config", 4, 40]]);
-const pos$2 = nix.positions(here + "/virtualbox.nix", [["system", 11, 49], ["pkgs", 11, 56]]);
 const formals$2 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/virtualbox.nix", [["enable", 80, 27]]);
-const pos$4 = nix.positions(here + "/virtualbox.nix", [["systemd", 80, 19], ["kernelModules", 82, 19], ["extraUtilsCommands", 92, 19], ["postMountCommands", 98, 19]]);
-const pos$5 = nix.positions(here + "/virtualbox.nix", [["kernelParams", 63, 12], ["initrd", 80, 12]]);
-const pos$6 = nix.positions(here + "/virtualbox.nix", [["device", 74, 9], ["fsType", 75, 9]]);
-const pos$7 = nix.positions(here + "/virtualbox.nix", [["/", 73, 19]]);
-const pos$8 = nix.positions(here + "/virtualbox.nix", [["enable", 78, 39]]);
-const pos$9 = nix.positions(here + "/virtualbox.nix", [["guest", 78, 33]]);
-const pos$10 = nix.positions(here + "/virtualbox.nix", [["virtualbox", 78, 22]]);
-const pos$11 = nix.positions(here + "/virtualbox.nix", [["requiredKernelConfig", 109, 14]]);
-const pos$12 = nix.positions(here + "/virtualbox.nix", [["usePredictableInterfaceNames", 114, 18]]);
-const pos$13 = nix.positions(here + "/virtualbox.nix", [["boot", 63, 7], ["fileSystems", 73, 7], ["virtualisation", 78, 7], ["system", 109, 7], ["networking", 114, 7]]);
-const pos$14 = nix.positions(here + "/virtualbox.nix", [["system", 131, 11], ["modules", 132, 11]]);
-const pos$15 = nix.positions(here + "/virtualbox.nix", [["preVM", 140, 11], ["postVM", 146, 11], ["buildInputs", 152, 11]]);
-const pos$16 = nix.positions(here + "/virtualbox.nix", [["ListenStream", 234, 24], ["Accept", 235, 24]]);
-const pos$17 = nix.positions(here + "/virtualbox.nix", [["description", 231, 11], ["wantedBy", 232, 11], ["before", 233, 11], ["socketConfig", 234, 11]]);
-const pos$18 = nix.positions(here + "/virtualbox.nix", [["StandardInput", 240, 25], ["StandardOutput", 241, 25], ["SyslogIdentifier", 242, 25], ["ExecStart", 243, 25]]);
-const pos$19 = nix.positions(here + "/virtualbox.nix", [["description", 239, 11], ["serviceConfig", 240, 11]]);
-const pos$20 = nix.positions(here + "/virtualbox.nix", [["sockets", 230, 17], ["services", 238, 17]]);
-const pos$21 = nix.positions(here + "/virtualbox.nix", [["systemd", 230, 9]]);
-const pos$22 = nix.positions(here + "/virtualbox.nix", [["machine", 229, 7], ["testSubs", 247, 7]]);
-const pos$23 = nix.positions(here + "/virtualbox.nix", [["vmScript", 377, 16]]);
-const pos$24 = nix.positions(here + "/virtualbox.nix", [["vmFlags", 379, 11], ["vmScript", 380, 11]]);
-const pos$25 = nix.positions(here + "/virtualbox.nix", [["vmFlags", 382, 11], ["vmScript", 383, 11]]);
-const pos$26 = nix.positions(here + "/virtualbox.nix", [["headless", 385, 40]]);
-const pos$27 = nix.positions(here + "/virtualbox.nix", [["virtualbox", 385, 29]]);
-const pos$28 = nix.positions(here + "/virtualbox.nix", [["enable", 386, 31]]);
-const pos$29 = nix.positions(here + "/virtualbox.nix", [["xserver", 386, 23]]);
-const pos$30 = nix.positions(here + "/virtualbox.nix", [["virtualisation", 385, 14], ["services", 386, 14]]);
-const pos$31 = nix.positions(here + "/virtualbox.nix", [["simple", 375, 5], ["detectvirt", 377, 5], ["test1", 379, 5], ["test2", 382, 5], ["headless", 385, 5]]);
-const pos$32 = nix.positions(here + "/virtualbox.nix", [["vmFlags", 390, 23]]);
-const pos$33 = nix.positions(here + "/virtualbox.nix", [["testExtensionPack", 390, 5]]);
 const formals$3 = { args: { lib: false, config: false }, ellipsis: true };
-const pos$34 = nix.positions(here + "/virtualbox.nix", [["key", 403, 54]]);
-const pos$35 = nix.positions(here + "/virtualbox.nix", [["options", 413, 31]]);
-const pos$36 = nix.positions(here + "/virtualbox.nix", [["enable", 432, 13]]);
-const pos$37 = nix.positions(here + "/virtualbox.nix", [["host", 431, 37]]);
-const pos$38 = nix.positions(here + "/virtualbox.nix", [["memorySize", 411, 26], ["qemu", 413, 26], ["virtualbox", 431, 26]]);
-const pos$39 = nix.positions(here + "/virtualbox.nix", [["user", 424, 44]]);
-const pos$40 = nix.positions(here + "/virtualbox.nix", [["auto", 424, 39]]);
-const pos$41 = nix.positions(here + "/virtualbox.nix", [["displayManager", 424, 24]]);
-const pos$42 = nix.positions(here + "/virtualbox.nix", [["extraGroups", 425, 29]]);
-const pos$43 = nix.positions(here + "/virtualbox.nix", [["alice", 425, 23]]);
-const pos$44 = nix.positions(here + "/virtualbox.nix", [["users", 425, 17]]);
-const pos$45 = nix.positions(here + "/virtualbox.nix", [["imports", 401, 11], ["virtualisation", 411, 11], ["test-support", 424, 11], ["users", 425, 11]]);
-const pos$46 = nix.positions(here + "/virtualbox.nix", [["machine", 398, 13]]);
-const pos$47 = nix.positions(here + "/virtualbox.nix", [["maintainers", 464, 9]]);
-const pos$48 = nix.positions(here + "/virtualbox.nix", [["name", 396, 7], ["nodes", 398, 7], ["testScript", 437, 7], ["meta", 463, 7]]);
-const pos$49 = nix.positions(here + "/virtualbox.nix", [["enableExtensionPack", 468, 40]]);
-const pos$50 = nix.positions(here + "/virtualbox.nix", [["enable-extension-pack", 469, 5]]);
-const pos$51 = nix.positions(here + "/virtualbox.nix", [["enableKvm", 490, 9], ["addNetworkInterface", 493, 9], ["enableHardening", 494, 9]]);
-const pos$52 = nix.positions(here + "/virtualbox.nix", [["kvm-headless", 497, 9]]);
-const pos$53 = nix.positions(here + "/virtualbox.nix", [["simple-gui", 509, 3], ["simple-cli", 537, 3], ["headless", 554, 3], ["host-usb-permissions", 563, 3], ["systemd-detect-virt", 577, 3], ["net-hostonlyif", 589, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
   const debug = nix.argOr($, "debug", () => false);
   const enableUnfree = nix.argOr($, "enableUnfree", () => false);
   const enableKvm = nix.argOr($, "enableKvm", () => false);
   const use64bitGuest = nix.argOr($, "use64bitGuest", () => true);
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const testVMConfig = (vmName) => (attrs) => nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
@@ -109,9 +57,9 @@ done
 rm -f /mnt-root/boot-done /mnt-root/shutdown
 `);
     return {
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         kernelParams: nix.thunk(() => [
           "console=tty0",
           "console=ttyS0",
@@ -122,8 +70,8 @@ rm -f /mnt-root/boot-done /mnt-root/shutdown
           nix.thunk(() => nix.str`init=${nix.app(nix.sel(pkgs_1, "writeScript"), "mini-init.sh", miniInit)}`),
         ]),
         initrd: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          systemd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+          [nix.POS]: $pos[3],
+          systemd: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
           kernelModules: nix.thunk(() => [
             "af_packet",
             "vboxsf",
@@ -149,18 +97,18 @@ poweroff -f
         })),
       })),
       fileSystems: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        "/": nix.thunk(() => ({ [nix.POS]: pos$6, device: "vboxshare", fsType: "vboxsf" })),
+        [nix.POS]: $pos[6],
+        "/": nix.thunk(() => ({ [nix.POS]: $pos[5], device: "vboxshare", fsType: "vboxsf" })),
       })),
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         virtualbox: nix.thunk(() => ({
-          [nix.POS]: pos$9,
-          guest: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
+          [nix.POS]: $pos[8],
+          guest: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true })),
         })),
       })),
       system: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         requiredKernelConfig: nix.thunk(() => (() => {
           const w_2 = nix.withScope(nix.thunk(() => nix.sel(config_1, "lib", "kernelConfig")), w_1);
           return [
@@ -169,7 +117,7 @@ poweroff -f
           ];
         })()),
       })),
-      networking: nix.thunk(() => ({ [nix.POS]: pos$12, usePredictableInterfaceNames: false })),
+      networking: nix.thunk(() => ({ [nix.POS]: $pos[11], usePredictableInterfaceNames: false })),
     };
   })(), formals$2);
   const mkLog = (logfile) => (tag) => (() => {
@@ -180,12 +128,12 @@ poweroff -f
   })();
   const testVM = (vmName) => (vmScript) => (() => {
     const cfg = nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "../lib/eval-config.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         system: nix.thunk(() => (nix.asBool(use64bitGuest) ? "x86_64-linux" : "i686-linux")),
         modules: nix.thunk(() => [nix.thunk(() => nix.app(testVMConfig, vmName, vmScript))]),
       }))), "config"));
     return nix.app(nix.sel(pkgs, "vmTools", "runInLinuxVM"), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "virtualbox-image", nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           preVM: nix.thunk(() => nix.str`mkdir -p "$out"
 diskImage="$(pwd)/qimage"
 ${nix.sel(pkgs, "vmTools", "qemu")}/bin/qemu-img create -f raw "$diskImage" 100M
@@ -243,19 +191,19 @@ umount /mnt
     const sharedFlags = nix.thunk(() => nix.app(mkFlags, nix.thunk(() => ["--name vboxshare", nix.thunk(() => nix.str`--hostpath ${sharePath}`)])));
     const nixstoreFlags = nix.thunk(() => nix.app(mkFlags, nix.thunk(() => ["--name nixstore", "--hostpath /nix/store", "--readonly"])));
     return {
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           sockets: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`vboxtestlog-${name}`, nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               description: nix.thunk(() => nix.str`VirtualBox Test Machine Log Socket For ${name}`),
               wantedBy: nix.thunk(() => ["sockets.target"]),
               before: nix.thunk(() => ["multi-user.target"]),
               socketConfig: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 ListenStream: nix.thunk(() => nix.str`/run/virtualbox-log-${name}.sock`),
                 Accept: true,
               })),
@@ -263,10 +211,10 @@ umount /mnt
           ])),
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`vboxtestlog-${name}@`, nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               description: nix.thunk(() => nix.str`VirtualBox Test Machine Log For ${name}`),
               serviceConfig: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 StandardInput: "socket",
                 StandardOutput: "journal",
                 SyslogIdentifier: nix.thunk(() => nix.str`GUEST-${name}`),
@@ -394,40 +342,40 @@ echo "$otherIP reachable" | ${nix.sel(pkgs_1, "netcat")}/bin/nc -l 5678 || :
   const sysdDetectVirt = (pkgs_1) => nix.str`${nix.sel(pkgs_1, "systemd")}/bin/systemd-detect-virt > /mnt-root/result
 `;
   const vboxVMs = nix.thunk(() => nix.app(nix.lookup(w_1, "mapAttrs"), createVM, nix.thunk(() => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       simple: nix.thunk(() => ({})),
-      detectvirt: nix.thunk(() => ({ [nix.POS]: pos$23, vmScript: sysdDetectVirt })),
-      test1: nix.thunk(() => ({ [nix.POS]: pos$24, vmFlags: hostonlyVMFlags, vmScript: dhcpScript })),
-      test2: nix.thunk(() => ({ [nix.POS]: pos$25, vmFlags: hostonlyVMFlags, vmScript: dhcpScript })),
+      detectvirt: nix.thunk(() => ({ [nix.POS]: $pos[22], vmScript: sysdDetectVirt })),
+      test1: nix.thunk(() => ({ [nix.POS]: $pos[23], vmFlags: hostonlyVMFlags, vmScript: dhcpScript })),
+      test2: nix.thunk(() => ({ [nix.POS]: $pos[24], vmFlags: hostonlyVMFlags, vmScript: dhcpScript })),
       headless: nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$27,
-          virtualbox: nix.thunk(() => ({ [nix.POS]: pos$26, headless: true })),
+          [nix.POS]: $pos[26],
+          virtualbox: nix.thunk(() => ({ [nix.POS]: $pos[25], headless: true })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$29,
-          xserver: nix.thunk(() => ({ [nix.POS]: pos$28, enable: false })),
+          [nix.POS]: $pos[28],
+          xserver: nix.thunk(() => ({ [nix.POS]: $pos[27], enable: false })),
         })),
       })),
     }))));
   const vboxVMsWithExtpack = nix.thunk(() => nix.app(nix.lookup(w_1, "mapAttrs"), createVM, nix.thunk(() => ({
-      [nix.POS]: pos$33,
-      testExtensionPack: nix.thunk(() => ({ [nix.POS]: pos$32, vmFlags: enableExtensionPackVMFlags })),
+      [nix.POS]: $pos[32],
+      testExtensionPack: nix.thunk(() => ({ [nix.POS]: $pos[31], vmFlags: enableExtensionPackVMFlags })),
     }))));
   const mkVBoxTest = (vboxHostConfig) => (vms) => (name) => (testScript) => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-      [nix.POS]: pos$48,
+      [nix.POS]: $pos[47],
       name: nix.thunk(() => nix.str`virtualbox-${name}`),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$46,
+        [nix.POS]: $pos[45],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const lib = nix.arg($_1, "lib");
           const config_1 = nix.arg($_1, "config");
           return {
-            [nix.POS]: pos$45,
+            [nix.POS]: $pos[44],
             imports: nix.thunk(() => (() => {
-              const mkVMConf = (name_1) => (val) => nix.update(nix.sel(val, "machine"), { [nix.POS]: pos$34, key: nix.thunk(() => nix.str`${name_1}-config`) });
+              const mkVMConf = (name_1) => (val) => nix.update(nix.sel(val, "machine"), { [nix.POS]: $pos[33], key: nix.thunk(() => nix.str`${name_1}-config`) });
               const vmConfigs = nix.thunk(() => nix.app(nix.lookup(w_1, "mapAttrsToList"), mkVMConf, vms));
               return nix.concat([
                 nix.path(here, "./common/user-account.nix"),
@@ -435,33 +383,33 @@ echo "$otherIP reachable" | ${nix.sel(pkgs_1, "netcat")}/bin/nc -l 5678 || :
               ], vmConfigs);
             })()),
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$38,
+              [nix.POS]: $pos[37],
               memorySize: 2048n,
               qemu: nix.thunk(() => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 options: nix.thunk(() => (() => {
                   const guestCpu = nix.thunk(() => (nix.asBool(nix.sel(config_1, "virtualisation", "virtualbox", "host", "enableKvm")) ? "IvyBridge" : "kvm64"));
                   return ["-cpu", nix.thunk(() => nix.str`${guestCpu},svm=on,vmx=on`)];
                 })()),
               })),
               virtualbox: nix.thunk(() => ({
-                [nix.POS]: pos$37,
-                host: nix.thunk(() => nix.update({ [nix.POS]: pos$36, enable: true }, vboxHostConfig)),
+                [nix.POS]: $pos[36],
+                host: nix.thunk(() => nix.update({ [nix.POS]: $pos[35], enable: true }, vboxHostConfig)),
               })),
             })),
             "test-support": nix.thunk(() => ({
-              [nix.POS]: pos$41,
+              [nix.POS]: $pos[40],
               displayManager: nix.thunk(() => ({
-                [nix.POS]: pos$40,
-                auto: nix.thunk(() => ({ [nix.POS]: pos$39, user: "alice" })),
+                [nix.POS]: $pos[39],
+                auto: nix.thunk(() => ({ [nix.POS]: $pos[38], user: "alice" })),
               })),
             })),
             users: nix.thunk(() => ({
-              [nix.POS]: pos$44,
+              [nix.POS]: $pos[43],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$43,
+                [nix.POS]: $pos[42],
                 alice: nix.thunk(() => ({
-                  [nix.POS]: pos$42,
+                  [nix.POS]: $pos[41],
                   extraGroups: nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(config_1, "virtualisation", "virtualbox", "host"));
                     const enableHardening = nix.thunk(() => nix.attr(from, "enableHardening"));
@@ -500,26 +448,26 @@ ${testScript}
       meta: nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
         return {
-          [nix.POS]: pos$47,
+          [nix.POS]: $pos[46],
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "aszlig"))]),
         };
       })()),
     })));
-  const unfreeTests = nix.thunk(() => nix.app(nix.lookup(w_1, "mapAttrs"), nix.thunk(() => nix.app(mkVBoxTest, nix.thunk(() => ({ [nix.POS]: pos$49, enableExtensionPack: true })), vboxVMsWithExtpack)), nix.thunk(() => ({
-      [nix.POS]: pos$50,
+  const unfreeTests = nix.thunk(() => nix.app(nix.lookup(w_1, "mapAttrs"), nix.thunk(() => nix.app(mkVBoxTest, nix.thunk(() => ({ [nix.POS]: $pos[48], enableExtensionPack: true })), vboxVMsWithExtpack)), nix.thunk(() => ({
+      [nix.POS]: $pos[49],
       "enable-extension-pack": "create_vm_testExtensionPack()\nvbm(\"startvm testExtensionPack\")\nwait_for_startup_testExtensionPack()\nmachine.screenshot(\"cli_started\")\nwait_for_vm_boot_testExtensionPack()\nmachine.screenshot(\"cli_booted\")\n\nwith machine.nested(\"Checking for privilege escalation\"):\n    machine.fail(\"test -e '/root/VirtualBox VMs'\")\n    machine.fail(\"test -e '/root/.config/VirtualBox'\")\n    machine.succeed(\"test -e '/home/alice/VirtualBox VMs'\")\n\nshutdown_vm_testExtensionPack()\ndestroy_vm_testExtensionPack()\n",
     }))));
   const kvmTests = nix.thunk(() => nix.app(nix.lookup(w_1, "mapAttrs"), nix.thunk(() => nix.app(mkVBoxTest, nix.thunk(() => ({
-        [nix.POS]: pos$51,
+        [nix.POS]: $pos[50],
         enableKvm: true,
         addNetworkInterface: false,
         enableHardening: false,
       })), vboxVMs)), nix.thunk(() => ({
-      [nix.POS]: pos$52,
+      [nix.POS]: $pos[51],
       "kvm-headless": "create_vm_headless()\nmachine.succeed(ru(\"VBoxHeadless --startvm headless >&2 & disown %1\"))\nwait_for_startup_headless()\nwait_for_vm_boot_headless()\nshutdown_vm_headless()\ndestroy_vm_headless()\n",
     }))));
   return nix.update(nix.app(nix.lookup(w_1, "mapAttrs"), nix.thunk(() => nix.app(mkVBoxTest, nix.thunk(() => ({})), vboxVMs)), nix.thunk(() => ({
-      [nix.POS]: pos$53,
+      [nix.POS]: $pos[52],
       "simple-gui": "# Home to select Tools, down to move to the VM, enter to start it.\ndef send_vm_startup():\n    machine.send_key(\"ctrl-m\")\n    machine.send_key(\"ret\")\n\n\ncreate_vm_simple()\nmachine.succeed(ru(\"VBoxManage setextradata global \\\"GUI/Input/SelectorShortcuts\\\" \\\"ToolsGlobalMachineManager=Ctrl+M\\\"\"))\nmachine.succeed(ru(\"VirtualBox >&2 &\"))\nmachine.wait_until_succeeds(ru(\"xprop -name 'Oracle VirtualBox Manager'\"))\nmachine.sleep(5)\nmachine.screenshot(\"gui_manager_started\")\nsend_vm_startup()\nmachine.screenshot(\"gui_manager_sent_startup\")\nwait_for_startup_simple(send_vm_startup)\nmachine.screenshot(\"gui_started\")\nwait_for_vm_boot_simple()\nmachine.screenshot(\"gui_booted\")\nshutdown_vm_simple()\nmachine.sleep(5)\nmachine.screenshot(\"gui_stopped\")\nmachine.send_key(\"ctrl-q\")\nmachine.sleep(5)\nmachine.screenshot(\"gui_manager_stopped\")\ndestroy_vm_simple()\n",
       "simple-cli": "create_vm_simple()\nvbm(\"startvm simple\")\nwait_for_startup_simple()\nmachine.screenshot(\"cli_started\")\nwait_for_vm_boot_simple()\nmachine.screenshot(\"cli_booted\")\n\nwith machine.nested(\"Checking for privilege escalation\"):\n    machine.fail(\"test -e '/root/VirtualBox VMs'\")\n    machine.fail(\"test -e '/root/.config/VirtualBox'\")\n    machine.succeed(\"test -e '/home/alice/VirtualBox VMs'\")\n\nshutdown_vm_simple()\ndestroy_vm_simple()\n",
       headless: "create_vm_headless()\nmachine.succeed(ru(\"VBoxHeadless --startvm headless >&2 & disown %1\"))\nwait_for_startup_headless()\nwait_for_vm_boot_headless()\nshutdown_vm_headless()\ndestroy_vm_headless()\n",

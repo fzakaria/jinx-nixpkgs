@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["NIX_CFLAGS_COMPILE", 71, 5], ["RUST_MIN_STACK", 74, 5], ["PROTOC", 77, 5], ["RUSTONIG_SYSTEM_LIBONIG", 78, 5], ["OPENSSL_NO_VENDOR", 81, 5], ["TZDIR", 83, 5], ["CARGO_FEATURE_DYNAMIC_LINKING", 86, 5], ["CARGO_PROFILE_RELEASE_LTO", 88, 5], ["CARGO_PROFILE_RELEASE_CODEGEN_UNITS", 89, 5]], [["tests", 161, 5], ["updateScript", 162, 5]], [["description", 166, 5], ["homepage", 167, 5], ["changelog", 168, 5], ["license", 169, 5], ["maintainers", 170, 5], ["platforms", 175, 5], ["mainProgram", 176, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["cargoHash", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["env", 68, 3], ["postPatch", 93, 3], ["doCheck", 97, 3], ["checkType", 98, 3], ["checkFlags", 100, 3], ["postInstall", 149, 3], ["nativeInstallCheckInputs", 155, 3], ["doInstallCheck", 158, 3], ["passthru", 160, 3], ["meta", 165, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, installShellFiles: false, rustPlatform: false, "pkg-config": false, openssl: false, protobuf: false, rdkafka: false, oniguruma: false, zstd: false, "rust-jemalloc-sys": false, "rust-jemalloc-sys-unprefixed": false, libiconv: false, coreutils: false, tzdata: false, cmake: false, cyrus_sasl: false, perl: false, git: false, nixosTests: false, "nix-update-script": false, darwin: false, versionCheckHook: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 71, 5], ["RUST_MIN_STACK", 74, 5], ["PROTOC", 77, 5], ["RUSTONIG_SYSTEM_LIBONIG", 78, 5], ["OPENSSL_NO_VENDOR", 81, 5], ["TZDIR", 83, 5], ["CARGO_FEATURE_DYNAMIC_LINKING", 86, 5], ["CARGO_PROFILE_RELEASE_LTO", 88, 5], ["CARGO_PROFILE_RELEASE_CODEGEN_UNITS", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 161, 5], ["updateScript", 162, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 166, 5], ["homepage", 167, 5], ["changelog", 168, 5], ["license", 169, 5], ["maintainers", 170, 5], ["platforms", 175, 5], ["mainProgram", 176, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["cargoHash", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["env", 68, 3], ["postPatch", 93, 3], ["doCheck", 97, 3], ["checkType", 98, 3], ["checkFlags", 100, 3], ["postInstall", 149, 3], ["nativeInstallCheckInputs", 155, 3], ["doInstallCheck", 158, 3], ["passthru", 160, 3], ["meta", 165, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vector",
       version: "0.59.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vectordotdev",
           repo: "vector",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.sel(darwin, "bootstrap_cmds"))))),
       buildInputs: nix.thunk(() => nix.concat([cyrus_sasl, oniguruma, openssl, protobuf, rdkafka, zstd], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [rust_jemalloc_sys_unprefixed])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [rust_jemalloc_sys, libiconv, coreutils, zlib]))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-std=gnu17",
         RUST_MIN_STACK: 33554432n,
         PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`),
@@ -112,12 +108,12 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => nix.sel(nixosTests, "vector")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "High-performance observability data pipeline",
         homepage: "https://github.com/vectordotdev/vector",
         changelog: nix.thunk(() => nix.str`https://github.com/vectordotdev/vector/releases/tag/v${nix.sel(finalAttrs, "version")}`),

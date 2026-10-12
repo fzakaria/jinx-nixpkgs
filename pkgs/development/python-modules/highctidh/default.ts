@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["rev-prefix", 36, 5]], [["updateScript", 35, 12]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["teams", 43, 5], ["maintainers", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["build-system", 23, 3], ["nativeCheckInputs", 27, 3], ["pythonImportsCheck", 31, 3], ["passthru", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, setuptools: false, pytestCheckHook: false, fetchFromCodeberg: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 35, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["teams", 43, 5], ["maintainers", 44, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["build-system", 23, 3], ["nativeCheckInputs", 27, 3], ["pythonImportsCheck", 31, 3], ["passthru", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.2025051200";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vula",
           repo: "highctidh",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["highctidh"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fork of high-ctidh as a portable shared library with Python bindings",
         homepage: "https://codeberg.org/vula/highctidh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

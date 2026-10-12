@@ -2,197 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["rtp", 17, 7]], [["overrideAttrs", 20, 7]], [["updateScript", 50, 22]], [["pname", 45, 13], ["strictDeps", 47, 13], ["__structuredAttrs", 48, 13], ["passthru", 50, 13], ["pluginName", 53, 15], ["unpackPhase", 54, 15], ["configurePhase", 55, 15], ["buildPhase", 56, 15], ["addonInfo", 57, 15], ["preInstall", 58, 15], ["postInstall", 59, 15], ["installPhase", 62, 13]], [["owner", 86, 7], ["repo", 87, 7], ["tag", 88, 7], ["hash", 89, 7]], [["homepage", 92, 7]], [["pluginName", 83, 5], ["version", 84, 5], ["src", 85, 5], ["meta", 91, 5]], [["owner", 100, 7], ["repo", 101, 7], ["rev", 102, 7], ["hash", 103, 7]], [["homepage", 107, 7], ["description", 108, 7], ["longDescription", 109, 7], ["license", 116, 7], ["platforms", 117, 7], ["maintainers", 118, 7]], [["pluginName", 97, 5], ["version", 98, 5], ["src", 99, 5], ["rtpFilePath", 105, 5], ["meta", 106, 5]], [["owner", 126, 7], ["repo", 127, 7], ["rev", 128, 7], ["hash", 129, 7]], [["homepage", 135, 7], ["description", 136, 7], ["license", 137, 7], ["platforms", 138, 7], ["maintainers", 139, 7]], [["pluginName", 123, 5], ["version", 124, 5], ["src", 125, 5], ["postInstall", 131, 5], ["meta", 134, 5]], [["owner", 147, 7], ["repo", 148, 7], ["rev", 149, 7], ["hash", 150, 7]], [["homepage", 153, 7], ["description", 154, 7], ["longDescription", 155, 7], ["license", 165, 7], ["platforms", 166, 7], ["maintainers", 167, 7]], [["pluginName", 144, 5], ["version", 145, 5], ["src", 146, 5], ["meta", 152, 5]], [["owner", 176, 7], ["repo", 177, 7], ["rev", 178, 7], ["hash", 179, 7]], [["homepage", 186, 7], ["description", 187, 7], ["license", 188, 7], ["platforms", 189, 7], ["maintainers", 190, 7]], [["pluginName", 172, 5], ["rtpFilePath", 173, 5], ["version", 174, 5], ["src", 175, 5], ["postInstall", 181, 5], ["meta", 185, 5]], [["owner", 201, 7], ["repo", 202, 7], ["rev", 203, 7], ["hash", 204, 7]], [["homepage", 207, 7]], [["pluginName", 198, 5], ["version", 199, 5], ["src", 200, 5], ["meta", 206, 5]], [["owner", 215, 7], ["repo", 216, 7], ["rev", 217, 7], ["hash", 218, 7]], [["homepage", 221, 7]], [["pluginName", 212, 5], ["version", 213, 5], ["src", 214, 5], ["meta", 220, 5]], [["owner", 229, 7], ["repo", 230, 7], ["rev", 231, 7], ["hash", 232, 7]], [["homepage", 235, 7]], [["pluginName", 226, 5], ["version", 227, 5], ["src", 228, 5], ["meta", 234, 5]], [["owner", 243, 7], ["repo", 244, 7], ["tag", 245, 7], ["hash", 246, 7]], [["homepage", 249, 7], ["downloadPage", 250, 7], ["description", 251, 7], ["changelog", 252, 7], ["license", 253, 7], ["platforms", 254, 7], ["maintainers", 255, 7]], [["pluginName", 240, 5], ["version", 241, 5], ["src", 242, 5], ["meta", 248, 5]], [["owner", 263, 7], ["repo", 264, 7], ["tag", 265, 7], ["hash", 266, 7]], [["homepage", 269, 7], ["downloadPage", 270, 7], ["description", 271, 7], ["changelog", 272, 7], ["license", 273, 7], ["platforms", 274, 7], ["maintainers", 275, 7]], [["pluginName", 260, 5], ["version", 261, 5], ["src", 262, 5], ["meta", 268, 5]], [["owner", 283, 7], ["repo", 284, 7], ["rev", 285, 7], ["hash", 286, 7]], [["homepage", 306, 7], ["description", 307, 7], ["license", 308, 7], ["platforms", 309, 7], ["maintainers", 310, 7]], [["pluginName", 280, 5], ["version", 281, 5], ["src", 282, 5], ["nativeBuildInputs", 288, 5], ["buildInputs", 289, 5], ["postInstall", 290, 5], ["meta", 305, 5]], [["mkTmuxPlugin", 319, 13]], [["owner", 326, 7], ["repo", 327, 7], ["rev", 328, 7], ["hash", 329, 7]], [["homepage", 335, 7]], [["pluginName", 323, 5], ["version", 324, 5], ["src", 325, 5], ["postInstall", 331, 5], ["meta", 334, 5]], [["owner", 343, 7], ["repo", 344, 7], ["rev", 345, 7], ["hash", 346, 7]], [["homepage", 365, 7], ["description", 366, 7], ["license", 367, 7], ["platforms", 368, 7], ["maintainers", 369, 7]], [["pluginName", 340, 5], ["version", 341, 5], ["src", 342, 5], ["nativeBuildInputs", 348, 5], ["postInstall", 349, 5], ["meta", 364, 5]], [["owner", 378, 7], ["repo", 379, 7], ["rev", 380, 7], ["hash", 381, 7]], [["homepage", 384, 7], ["description", 385, 7], ["license", 386, 7], ["platforms", 387, 7]], [["pluginName", 374, 5], ["rtpFilePath", 375, 5], ["version", 376, 5], ["src", 377, 5], ["meta", 383, 5]], [["owner", 396, 7], ["repo", 397, 7], ["tag", 398, 7], ["hash", 399, 7]], [["homepage", 402, 7], ["description", 403, 7], ["license", 404, 7], ["platforms", 405, 7], ["maintainers", 406, 7]], [["pluginName", 392, 5], ["rtpFilePath", 393, 5], ["version", 394, 5], ["src", 395, 5], ["meta", 401, 5]], [["owner", 415, 7], ["repo", 416, 7], ["rev", 417, 7], ["hash", 418, 7]], [["homepage", 421, 7], ["downloadPage", 422, 7], ["description", 423, 7], ["license", 424, 7], ["platforms", 425, 7], ["maintainers", 426, 7]], [["pluginName", 411, 5], ["rtpFilePath", 412, 5], ["version", 413, 5], ["src", 414, 5], ["meta", 420, 5]], [["owner", 435, 7], ["repo", 436, 7], ["rev", 437, 7], ["hash", 438, 7]], [["homepage", 444, 7], ["description", 445, 7], ["license", 446, 7], ["platforms", 447, 7], ["maintainers", 448, 7]], [["pluginName", 431, 5], ["version", 432, 5], ["rtpFilePath", 433, 5], ["src", 434, 5], ["postInstall", 440, 5], ["meta", 443, 5]], [["owner", 456, 7], ["repo", 457, 7], ["rev", 458, 7], ["hash", 459, 7]], [["homepage", 462, 7], ["downloadPage", 463, 7], ["description", 464, 7], ["license", 465, 7], ["platforms", 466, 7], ["maintainers", 467, 7]], [["pluginName", 453, 5], ["version", 454, 5], ["src", 455, 5], ["meta", 461, 5]], [["owner", 476, 7], ["repo", 477, 7], ["tag", 478, 7], ["hash", 479, 7]], [["homepage", 500, 7], ["description", 501, 7], ["license", 502, 7], ["platforms", 503, 7], ["maintainers", 504, 7]], [["pluginName", 472, 5], ["rtpFilePath", 473, 5], ["version", 474, 5], ["src", 475, 5], ["nativeBuildInputs", 481, 5], ["postInstall", 482, 5], ["meta", 499, 5]], [["owner", 512, 7], ["repo", 513, 7], ["rev", 514, 7], ["hash", 515, 7]], [["homepage", 518, 7]], [["pluginName", 509, 5], ["version", 510, 5], ["src", 511, 5], ["meta", 517, 5]], [["owner", 527, 7], ["repo", 528, 7], ["rev", 529, 7], ["hash", 530, 7]], [["description", 533, 7], ["longDescription", 534, 7], ["homepage", 540, 7], ["license", 541, 7], ["maintainers", 542, 7], ["platforms", 545, 7]], [["pluginName", 523, 5], ["rtpFilePath", 524, 5], ["version", 525, 5], ["src", 526, 5], ["meta", 532, 5]], [["owner", 553, 7], ["repo", 554, 7], ["rev", 555, 7], ["hash", 556, 7]], [["homepage", 559, 7], ["description", 560, 7], ["license", 561, 7], ["platforms", 562, 7], ["maintainers", 563, 7]], [["pluginName", 550, 5], ["version", 551, 5], ["src", 552, 5], ["meta", 558, 5]], [["owner", 571, 7], ["repo", 572, 7], ["rev", 573, 7], ["hash", 574, 7]], [["homepage", 577, 7]], [["pluginName", 568, 5], ["version", 569, 5], ["src", 570, 5], ["meta", 576, 5]], [["owner", 585, 7], ["repo", 586, 7], ["rev", 587, 7], ["hash", 588, 7]], [["homepage", 591, 7], ["description", 592, 7], ["longDescription", 593, 7], ["license", 600, 7], ["maintainers", 601, 7]], [["pluginName", 582, 5], ["version", 583, 5], ["src", 584, 5], ["meta", 590, 5]], [["owner", 609, 7], ["repo", 610, 7], ["rev", 611, 7], ["hash", 612, 7]], [["homepage", 615, 7]], [["pluginName", 606, 5], ["version", 607, 5], ["src", 608, 5], ["meta", 614, 5]], [["owner", 623, 7], ["repo", 624, 7], ["rev", 625, 7], ["hash", 626, 7]], [["homepage", 629, 7]], [["pluginName", 620, 5], ["version", 621, 5], ["src", 622, 5], ["meta", 628, 5]], [["owner", 637, 7], ["repo", 638, 7], ["rev", 639, 7], ["hash", 640, 7]], [["homepage", 643, 7]], [["pluginName", 634, 5], ["version", 635, 5], ["src", 636, 5], ["meta", 642, 5]], [["owner", 652, 7], ["repo", 653, 7], ["rev", 654, 7], ["hash", 655, 7]], [["homepage", 658, 7]], [["pluginName", 648, 5], ["rtpFilePath", 649, 5], ["version", 650, 5], ["src", 651, 5], ["meta", 657, 5]], [["owner", 666, 7], ["repo", 667, 7], ["rev", 668, 7], ["hash", 669, 7]], [["homepage", 672, 7]], [["pluginName", 663, 5], ["version", 664, 5], ["src", 665, 5], ["meta", 671, 5]], [["owner", 681, 7], ["repo", 682, 7], ["rev", 683, 7], ["hash", 684, 7]], [["description", 708, 7], ["homepage", 709, 7], ["license", 710, 7], ["maintainers", 711, 7]], [["pluginName", 677, 5], ["version", 678, 5], ["rtpFilePath", 679, 5], ["src", 680, 5], ["nativeBuildInputs", 687, 5], ["postInstall", 688, 5], ["meta", 707, 5]], [["owner", 719, 7], ["repo", 720, 7], ["rev", 721, 7], ["hash", 722, 7]], [["homepage", 728, 7]], [["pluginName", 716, 5], ["version", 717, 5], ["src", 718, 5], ["postInstall", 724, 5], ["meta", 727, 5]], [["owner", 737, 7], ["repo", 738, 7], ["rev", 739, 7], ["hash", 740, 7]], [["description", 743, 7], ["homepage", 744, 7], ["license", 745, 7], ["platforms", 746, 7]], [["pluginName", 733, 5], ["rtpFilePath", 734, 5], ["version", 735, 5], ["src", 736, 5], ["meta", 742, 5]], [["owner", 754, 7], ["repo", 755, 7], ["rev", 756, 7], ["hash", 757, 7]], [["homepage", 760, 7]], [["pluginName", 751, 5], ["version", 752, 5], ["src", 753, 5], ["meta", 759, 5]], [["owner", 768, 7], ["repo", 769, 7], ["rev", 770, 7], ["hash", 771, 7], ["fetchSubmodules", 772, 7]], [["homepage", 775, 7], ["description", 776, 7], ["longDescription", 777, 7], ["license", 795, 7], ["platforms", 796, 7], ["maintainers", 797, 7]], [["pluginName", 765, 5], ["version", 766, 5], ["src", 767, 5], ["meta", 774, 5]], [["owner", 806, 7], ["repo", 807, 7], ["rev", 808, 7], ["hash", 809, 7]], [["homepage", 812, 7], ["description", 813, 7], ["license", 814, 7]], [["pluginName", 802, 5], ["version", 803, 5], ["rtpFilePath", 804, 5], ["src", 805, 5], ["meta", 811, 5]], [["owner", 822, 7], ["repo", 823, 7], ["rev", 824, 7], ["hash", 825, 7]], [["homepage", 846, 7], ["description", 847, 7], ["license", 848, 7], ["platforms", 849, 7], ["maintainers", 850, 7]], [["pluginName", 819, 5], ["version", 820, 5], ["src", 821, 5], ["rtpFilePath", 827, 5], ["nativeBuildInputs", 828, 5], ["postInstall", 829, 5], ["meta", 845, 5]], [["owner", 858, 7], ["repo", 859, 7], ["rev", 860, 7], ["hash", 861, 7]], [["homepage", 867, 7]], [["pluginName", 855, 5], ["version", 856, 5], ["src", 857, 5], ["postInstall", 863, 5], ["meta", 866, 5]], [["owner", 876, 7], ["repo", 877, 7], ["rev", 878, 7], ["hash", 879, 7]], [["homepage", 882, 7], ["description", 883, 7], ["longDescription", 884, 7], ["license", 891, 7], ["platforms", 892, 7], ["maintainers", 893, 7]], [["pluginName", 872, 5], ["rtpFilePath", 873, 5], ["version", 874, 5], ["src", 875, 5], ["meta", 881, 5], ["nativeBuildInputs", 895, 5], ["postInstall", 896, 5]], [["owner", 919, 7], ["repo", 920, 7], ["rev", 921, 7], ["hash", 922, 7]], [["homepage", 925, 7]], [["pluginName", 916, 5], ["version", 917, 5], ["src", 918, 5], ["meta", 924, 5]], [["owner", 933, 7], ["repo", 934, 7], ["rev", 935, 7], ["hash", 936, 7]], [["homepage", 939, 7]], [["pluginName", 930, 5], ["version", 931, 5], ["src", 932, 5], ["meta", 938, 5]], [["owner", 947, 7], ["repo", 948, 7], ["rev", 949, 7], ["hash", 950, 7]], [["homepage", 953, 7]], [["pluginName", 944, 5], ["version", 945, 5], ["src", 946, 5], ["meta", 952, 5]], [["owner", 961, 7], ["repo", 962, 7], ["rev", 963, 7], ["hash", 964, 7]], [["homepage", 968, 7], ["description", 969, 7], ["license", 970, 7], ["platforms", 971, 7], ["maintainers", 972, 7]], [["pluginName", 958, 5], ["version", 959, 5], ["src", 960, 5], ["meta", 967, 5]], [["owner", 981, 7], ["repo", 982, 7], ["rev", 983, 7], ["hash", 984, 7]], [["homepage", 987, 7], ["description", 988, 7], ["license", 989, 7], ["platforms", 990, 7], ["maintainers", 991, 7]], [["pluginName", 977, 5], ["rtpFilePath", 978, 5], ["version", 979, 5], ["src", 980, 5], ["meta", 986, 5]], [["owner", 999, 7], ["repo", 1000, 7], ["rev", 1001, 7], ["hash", 1002, 7]], [["homepage", 1005, 7]], [["pluginName", 996, 5], ["version", 997, 5], ["src", 998, 5], ["meta", 1004, 5]], [["owner", 1014, 7], ["repo", 1015, 7], ["rev", 1016, 7], ["hash", 1017, 7]], [["description", 1020, 7], ["homepage", 1021, 7], ["license", 1022, 7], ["maintainers", 1023, 7], ["mainProgram", 1024, 7], ["platforms", 1025, 7]], [["pluginName", 1010, 5], ["rtpFilePath", 1011, 5], ["version", 1012, 5], ["src", 1013, 5], ["meta", 1019, 5]], [["owner", 1034, 7], ["repo", 1035, 7], ["rev", 1036, 7], ["hash", 1037, 7]], [["homepage", 1045, 7], ["description", 1046, 7], ["longDescription", 1047, 7], ["license", 1058, 7], ["platforms", 1059, 7], ["maintainers", 1060, 7]], [["pluginName", 1030, 5], ["rtpFilePath", 1031, 5], ["version", 1032, 5], ["src", 1033, 5], ["postInstall", 1039, 5], ["meta", 1044, 5]], [["owner", 1068, 7], ["repo", 1069, 7], ["rev", 1070, 7], ["hash", 1071, 7]], [["homepage", 1075, 7], ["description", 1076, 7], ["longDescription", 1077, 7], ["license", 1078, 7], ["platforms", 1079, 7], ["maintainers", 1080, 7]], [["pluginName", 1065, 5], ["version", 1066, 5], ["src", 1067, 5], ["rtpFilePath", 1073, 5], ["meta", 1074, 5]], [["owner", 1088, 7], ["repo", 1089, 7], ["tag", 1090, 7], ["hash", 1091, 7]], [["homepage", 1095, 7], ["description", 1096, 7], ["license", 1097, 7], ["maintainers", 1098, 7]], [["pluginName", 1085, 5], ["version", 1086, 5], ["src", 1087, 5], ["rtpFilePath", 1093, 5], ["meta", 1094, 5]], [["owner", 1106, 7], ["repo", 1107, 7], ["rev", 1108, 7], ["hash", 1109, 7]], [["description", 1155, 7], ["homepage", 1156, 7], ["license", 1157, 7], ["maintainers", 1158, 7], ["platforms", 1159, 7]], [["pluginName", 1103, 5], ["version", 1104, 5], ["src", 1105, 5], ["nativeBuildInputs", 1111, 5], ["postPatch", 1112, 5], ["postInstall", 1120, 5], ["meta", 1154, 5]], [["owner", 1167, 7], ["repo", 1168, 7], ["rev", 1169, 7], ["hash", 1170, 7]], [["homepage", 1198, 7], ["description", 1199, 7], ["license", 1200, 7], ["platforms", 1201, 7], ["maintainers", 1202, 7]], [["pluginName", 1164, 5], ["version", 1165, 5], ["src", 1166, 5], ["nativeBuildInputs", 1172, 5], ["rtpFilePath", 1173, 5], ["postInstall", 1174, 5], ["meta", 1197, 5]], [["mkTmuxPlugin", 1207, 13]], [["owner", 1215, 7], ["repo", 1216, 7], ["rev", 1217, 7], ["hash", 1218, 7]], [["homepage", 1235, 7]], [["pluginName", 1211, 5], ["version", 1212, 5], ["rtpFilePath", 1213, 5], ["src", 1214, 5], ["nativeBuildInputs", 1220, 5], ["postInstall", 1221, 5], ["meta", 1234, 5]], [["owner", 1243, 7], ["repo", 1244, 7], ["rev", 1245, 7], ["hash", 1246, 7]], [["homepage", 1252, 7]], [["pluginName", 1240, 5], ["version", 1241, 5], ["src", 1242, 5], ["postInstall", 1248, 5], ["meta", 1251, 5]], [["owner", 1260, 7], ["repo", 1261, 7], ["rev", 1262, 7], ["hash", 1263, 7]], [["homepage", 1267, 7], ["description", 1268, 7], ["license", 1269, 7], ["platforms", 1270, 7], ["maintainers", 1271, 7]], [["pluginName", 1257, 5], ["version", 1258, 5], ["src", 1259, 5], ["meta", 1266, 5]], [["owner", 1280, 7], ["repo", 1281, 7], ["rev", 1282, 7], ["hash", 1283, 7]], [["homepage", 1286, 7]], [["pluginName", 1276, 5], ["rtpFilePath", 1277, 5], ["version", 1278, 5], ["src", 1279, 5], ["meta", 1285, 5]], [["owner", 1295, 7], ["repo", 1296, 7], ["rev", 1297, 7], ["hash", 1298, 7]], [["homepage", 1302, 7], ["description", 1303, 7], ["license", 1304, 7], ["platforms", 1305, 7], ["maintainers", 1306, 7]], [["pluginName", 1291, 5], ["rtpFilePath", 1292, 5], ["version", 1293, 5], ["src", 1294, 5], ["meta", 1301, 5]], [["mkTmuxPlugin", 1311, 13]], [["owner", 1318, 7], ["repo", 1319, 7], ["rev", 1320, 7], ["hash", 1321, 7]], [["homepage", 1324, 7]], [["pluginName", 1315, 5], ["version", 1316, 5], ["src", 1317, 5], ["meta", 1323, 5]], [["owner", 1333, 7], ["repo", 1334, 7], ["rev", 1335, 7], ["hash", 1336, 7]], [["homepage", 1339, 7], ["description", 1340, 7], ["license", 1341, 7], ["platforms", 1342, 7], ["maintainers", 1343, 7]], [["pluginName", 1329, 5], ["rtpFilePath", 1330, 5], ["version", 1331, 5], ["src", 1332, 5], ["meta", 1338, 5]], [["owner", 1352, 7], ["repo", 1353, 7], ["tag", 1354, 7], ["hash", 1355, 7]], [["homepage", 1358, 7], ["description", 1359, 7], ["license", 1360, 7], ["platforms", 1361, 7], ["maintainers", 1362, 7]], [["pluginName", 1348, 5], ["rtpFilePath", 1349, 5], ["version", 1350, 5], ["src", 1351, 5], ["meta", 1357, 5]], [["owner", 1371, 7], ["repo", 1372, 7], ["rev", 1373, 7], ["hash", 1374, 7]], [["homepage", 1377, 7], ["description", 1378, 7], ["license", 1379, 7], ["platforms", 1380, 7], ["maintainers", 1381, 7]], [["pluginName", 1367, 5], ["rtpFilePath", 1368, 5], ["version", 1369, 5], ["src", 1370, 5], ["meta", 1376, 5]], [["owner", 1389, 7], ["repo", 1390, 7], ["rev", 1391, 7], ["sha256", 1392, 7]], [["homepage", 1420, 7], ["description", 1421, 7], ["license", 1422, 7], ["platforms", 1423, 7], ["maintainers", 1424, 7]], [["pluginName", 1386, 5], ["version", 1387, 5], ["src", 1388, 5], ["nativeBuildInputs", 1394, 5], ["rtpFilePath", 1395, 5], ["postInstall", 1396, 5], ["meta", 1419, 5]], [["mkTmuxPlugin", 80, 11], ["battery", 82, 3], ["better-mouse-mode", 96, 3], ["catppuccin", 122, 3], ["continuum", 143, 3], ["copy-toolkit", 171, 3], ["copycat", 197, 3], ["cpu", 211, 3], ["ctrlw", 225, 3], ["dracula", 239, 3], ["dotbar", 259, 3], ["extrakto", 279, 3], ["fingers", 318, 3], ["fpp", 322, 3], ["fuzzback", 339, 3], ["fzf-tmux-url", 373, 3], ["gruvbox", 391, 3], ["harpoon", 410, 3], ["jump", 430, 3], ["ukiyo", 452, 3], ["lazy-restore", 471, 3], ["logging", 508, 3], ["minimal-tmux-status", 522, 3], ["mode-indicator", 549, 3], ["net-speed", 567, 3], ["nord", 581, 3], ["maildir-counter", 605, 3], ["online-status", 619, 3], ["open", 633, 3], ["onedark-theme", 647, 3], ["pain-control", 662, 3], ["pass", 676, 3], ["plumb", 715, 3], ["power-theme", 732, 3], ["prefix-highlight", 750, 3], ["resurrect", 764, 3], ["rose-pine", 801, 3], ["search-panes", 818, 3], ["sensible", 854, 3], ["session-wizard", 871, 3], ["sessionist", 915, 3], ["sidebar", 929, 3], ["sysstat", 943, 3], ["tilish", 957, 3], ["tokyo-night-tmux", 976, 3], ["tmux-colors-solarized", 995, 3], ["tmux-floax", 1009, 3], ["tmux-fzf", 1029, 3], ["tmux-powerline", 1064, 3], ["tmux-session-manager", 1084, 3], ["tmux-sessionx", 1102, 3], ["tmux-sm", 1163, 3], ["tmux-thumbs", 1206, 3], ["t-smart-tmux-session-manager", 1210, 3], ["urlview", 1239, 3], ["vim-tmux-focus-events", 1256, 3], ["vim-tmux-navigator", 1275, 3], ["weather", 1290, 3], ["tmux-which-key", 1310, 3], ["yank", 1314, 3], ["tmux-nova", 1328, 3], ["tmux-toggle-popup", 1347, 3], ["tmux-tpad", 1366, 3], ["tmux-window-name", 1385, 3]], [["mkDerivation", 1429, 3], ["kanagawa", 1431, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, pkgs: false, stdenv: false, config: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["rtp", 17, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["overrideAttrs", 20, 7]]);
 const formals$2 = { args: { pluginName: false, rtpFilePath: true, namePrefix: true, src: false, unpackPhase: true, configurePhase: true, buildPhase: true, addonInfo: true, preInstall: true, postInstall: true, path: true }, ellipsis: true };
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 50, 22]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 45, 13], ["strictDeps", 47, 13], ["__structuredAttrs", 48, 13], ["passthru", 50, 13], ["pluginName", 53, 15], ["unpackPhase", 54, 15], ["configurePhase", 55, 15], ["buildPhase", 56, 15], ["addonInfo", 57, 15], ["preInstall", 58, 15], ["postInstall", 59, 15], ["installPhase", 62, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["owner", 86, 7], ["repo", 87, 7], ["tag", 88, 7], ["hash", 89, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 92, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pluginName", 83, 5], ["version", 84, 5], ["src", 85, 5], ["meta", 91, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["owner", 100, 7], ["repo", 101, 7], ["rev", 102, 7], ["hash", 103, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["homepage", 107, 7], ["description", 108, 7], ["longDescription", 109, 7], ["license", 116, 7], ["platforms", 117, 7], ["maintainers", 118, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pluginName", 97, 5], ["version", 98, 5], ["src", 99, 5], ["rtpFilePath", 105, 5], ["meta", 106, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["owner", 126, 7], ["repo", 127, 7], ["rev", 128, 7], ["hash", 129, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["homepage", 135, 7], ["description", 136, 7], ["license", 137, 7], ["platforms", 138, 7], ["maintainers", 139, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["pluginName", 123, 5], ["version", 124, 5], ["src", 125, 5], ["postInstall", 131, 5], ["meta", 134, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["owner", 147, 7], ["repo", 148, 7], ["rev", 149, 7], ["hash", 150, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["homepage", 153, 7], ["description", 154, 7], ["longDescription", 155, 7], ["license", 165, 7], ["platforms", 166, 7], ["maintainers", 167, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["pluginName", 144, 5], ["version", 145, 5], ["src", 146, 5], ["meta", 152, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["owner", 176, 7], ["repo", 177, 7], ["rev", 178, 7], ["hash", 179, 7]]);
-const pos$18 = nix.positions(here + "/default.nix", [["homepage", 186, 7], ["description", 187, 7], ["license", 188, 7], ["platforms", 189, 7], ["maintainers", 190, 7]]);
-const pos$19 = nix.positions(here + "/default.nix", [["pluginName", 172, 5], ["rtpFilePath", 173, 5], ["version", 174, 5], ["src", 175, 5], ["postInstall", 181, 5], ["meta", 185, 5]]);
-const pos$20 = nix.positions(here + "/default.nix", [["owner", 201, 7], ["repo", 202, 7], ["rev", 203, 7], ["hash", 204, 7]]);
-const pos$21 = nix.positions(here + "/default.nix", [["homepage", 207, 7]]);
-const pos$22 = nix.positions(here + "/default.nix", [["pluginName", 198, 5], ["version", 199, 5], ["src", 200, 5], ["meta", 206, 5]]);
-const pos$23 = nix.positions(here + "/default.nix", [["owner", 215, 7], ["repo", 216, 7], ["rev", 217, 7], ["hash", 218, 7]]);
-const pos$24 = nix.positions(here + "/default.nix", [["homepage", 221, 7]]);
-const pos$25 = nix.positions(here + "/default.nix", [["pluginName", 212, 5], ["version", 213, 5], ["src", 214, 5], ["meta", 220, 5]]);
-const pos$26 = nix.positions(here + "/default.nix", [["owner", 229, 7], ["repo", 230, 7], ["rev", 231, 7], ["hash", 232, 7]]);
-const pos$27 = nix.positions(here + "/default.nix", [["homepage", 235, 7]]);
-const pos$28 = nix.positions(here + "/default.nix", [["pluginName", 226, 5], ["version", 227, 5], ["src", 228, 5], ["meta", 234, 5]]);
-const pos$29 = nix.positions(here + "/default.nix", [["owner", 243, 7], ["repo", 244, 7], ["tag", 245, 7], ["hash", 246, 7]]);
-const pos$30 = nix.positions(here + "/default.nix", [["homepage", 249, 7], ["downloadPage", 250, 7], ["description", 251, 7], ["changelog", 252, 7], ["license", 253, 7], ["platforms", 254, 7], ["maintainers", 255, 7]]);
-const pos$31 = nix.positions(here + "/default.nix", [["pluginName", 240, 5], ["version", 241, 5], ["src", 242, 5], ["meta", 248, 5]]);
-const pos$32 = nix.positions(here + "/default.nix", [["owner", 263, 7], ["repo", 264, 7], ["tag", 265, 7], ["hash", 266, 7]]);
-const pos$33 = nix.positions(here + "/default.nix", [["homepage", 269, 7], ["downloadPage", 270, 7], ["description", 271, 7], ["changelog", 272, 7], ["license", 273, 7], ["platforms", 274, 7], ["maintainers", 275, 7]]);
-const pos$34 = nix.positions(here + "/default.nix", [["pluginName", 260, 5], ["version", 261, 5], ["src", 262, 5], ["meta", 268, 5]]);
-const pos$35 = nix.positions(here + "/default.nix", [["owner", 283, 7], ["repo", 284, 7], ["rev", 285, 7], ["hash", 286, 7]]);
-const pos$36 = nix.positions(here + "/default.nix", [["homepage", 306, 7], ["description", 307, 7], ["license", 308, 7], ["platforms", 309, 7], ["maintainers", 310, 7]]);
-const pos$37 = nix.positions(here + "/default.nix", [["pluginName", 280, 5], ["version", 281, 5], ["src", 282, 5], ["nativeBuildInputs", 288, 5], ["buildInputs", 289, 5], ["postInstall", 290, 5], ["meta", 305, 5]]);
-const pos$38 = nix.positions(here + "/default.nix", [["mkTmuxPlugin", 319, 13]]);
-const pos$39 = nix.positions(here + "/default.nix", [["owner", 326, 7], ["repo", 327, 7], ["rev", 328, 7], ["hash", 329, 7]]);
-const pos$40 = nix.positions(here + "/default.nix", [["homepage", 335, 7]]);
-const pos$41 = nix.positions(here + "/default.nix", [["pluginName", 323, 5], ["version", 324, 5], ["src", 325, 5], ["postInstall", 331, 5], ["meta", 334, 5]]);
-const pos$42 = nix.positions(here + "/default.nix", [["owner", 343, 7], ["repo", 344, 7], ["rev", 345, 7], ["hash", 346, 7]]);
-const pos$43 = nix.positions(here + "/default.nix", [["homepage", 365, 7], ["description", 366, 7], ["license", 367, 7], ["platforms", 368, 7], ["maintainers", 369, 7]]);
-const pos$44 = nix.positions(here + "/default.nix", [["pluginName", 340, 5], ["version", 341, 5], ["src", 342, 5], ["nativeBuildInputs", 348, 5], ["postInstall", 349, 5], ["meta", 364, 5]]);
-const pos$45 = nix.positions(here + "/default.nix", [["owner", 378, 7], ["repo", 379, 7], ["rev", 380, 7], ["hash", 381, 7]]);
-const pos$46 = nix.positions(here + "/default.nix", [["homepage", 384, 7], ["description", 385, 7], ["license", 386, 7], ["platforms", 387, 7]]);
-const pos$47 = nix.positions(here + "/default.nix", [["pluginName", 374, 5], ["rtpFilePath", 375, 5], ["version", 376, 5], ["src", 377, 5], ["meta", 383, 5]]);
-const pos$48 = nix.positions(here + "/default.nix", [["owner", 396, 7], ["repo", 397, 7], ["tag", 398, 7], ["hash", 399, 7]]);
-const pos$49 = nix.positions(here + "/default.nix", [["homepage", 402, 7], ["description", 403, 7], ["license", 404, 7], ["platforms", 405, 7], ["maintainers", 406, 7]]);
-const pos$50 = nix.positions(here + "/default.nix", [["pluginName", 392, 5], ["rtpFilePath", 393, 5], ["version", 394, 5], ["src", 395, 5], ["meta", 401, 5]]);
-const pos$51 = nix.positions(here + "/default.nix", [["owner", 415, 7], ["repo", 416, 7], ["rev", 417, 7], ["hash", 418, 7]]);
-const pos$52 = nix.positions(here + "/default.nix", [["homepage", 421, 7], ["downloadPage", 422, 7], ["description", 423, 7], ["license", 424, 7], ["platforms", 425, 7], ["maintainers", 426, 7]]);
-const pos$53 = nix.positions(here + "/default.nix", [["pluginName", 411, 5], ["rtpFilePath", 412, 5], ["version", 413, 5], ["src", 414, 5], ["meta", 420, 5]]);
-const pos$54 = nix.positions(here + "/default.nix", [["owner", 435, 7], ["repo", 436, 7], ["rev", 437, 7], ["hash", 438, 7]]);
-const pos$55 = nix.positions(here + "/default.nix", [["homepage", 444, 7], ["description", 445, 7], ["license", 446, 7], ["platforms", 447, 7], ["maintainers", 448, 7]]);
-const pos$56 = nix.positions(here + "/default.nix", [["pluginName", 431, 5], ["version", 432, 5], ["rtpFilePath", 433, 5], ["src", 434, 5], ["postInstall", 440, 5], ["meta", 443, 5]]);
-const pos$57 = nix.positions(here + "/default.nix", [["owner", 456, 7], ["repo", 457, 7], ["rev", 458, 7], ["hash", 459, 7]]);
-const pos$58 = nix.positions(here + "/default.nix", [["homepage", 462, 7], ["downloadPage", 463, 7], ["description", 464, 7], ["license", 465, 7], ["platforms", 466, 7], ["maintainers", 467, 7]]);
-const pos$59 = nix.positions(here + "/default.nix", [["pluginName", 453, 5], ["version", 454, 5], ["src", 455, 5], ["meta", 461, 5]]);
-const pos$60 = nix.positions(here + "/default.nix", [["owner", 476, 7], ["repo", 477, 7], ["tag", 478, 7], ["hash", 479, 7]]);
-const pos$61 = nix.positions(here + "/default.nix", [["homepage", 500, 7], ["description", 501, 7], ["license", 502, 7], ["platforms", 503, 7], ["maintainers", 504, 7]]);
-const pos$62 = nix.positions(here + "/default.nix", [["pluginName", 472, 5], ["rtpFilePath", 473, 5], ["version", 474, 5], ["src", 475, 5], ["nativeBuildInputs", 481, 5], ["postInstall", 482, 5], ["meta", 499, 5]]);
-const pos$63 = nix.positions(here + "/default.nix", [["owner", 512, 7], ["repo", 513, 7], ["rev", 514, 7], ["hash", 515, 7]]);
-const pos$64 = nix.positions(here + "/default.nix", [["homepage", 518, 7]]);
-const pos$65 = nix.positions(here + "/default.nix", [["pluginName", 509, 5], ["version", 510, 5], ["src", 511, 5], ["meta", 517, 5]]);
-const pos$66 = nix.positions(here + "/default.nix", [["owner", 527, 7], ["repo", 528, 7], ["rev", 529, 7], ["hash", 530, 7]]);
-const pos$67 = nix.positions(here + "/default.nix", [["description", 533, 7], ["longDescription", 534, 7], ["homepage", 540, 7], ["license", 541, 7], ["maintainers", 542, 7], ["platforms", 545, 7]]);
-const pos$68 = nix.positions(here + "/default.nix", [["pluginName", 523, 5], ["rtpFilePath", 524, 5], ["version", 525, 5], ["src", 526, 5], ["meta", 532, 5]]);
-const pos$69 = nix.positions(here + "/default.nix", [["owner", 553, 7], ["repo", 554, 7], ["rev", 555, 7], ["hash", 556, 7]]);
-const pos$70 = nix.positions(here + "/default.nix", [["homepage", 559, 7], ["description", 560, 7], ["license", 561, 7], ["platforms", 562, 7], ["maintainers", 563, 7]]);
-const pos$71 = nix.positions(here + "/default.nix", [["pluginName", 550, 5], ["version", 551, 5], ["src", 552, 5], ["meta", 558, 5]]);
-const pos$72 = nix.positions(here + "/default.nix", [["owner", 571, 7], ["repo", 572, 7], ["rev", 573, 7], ["hash", 574, 7]]);
-const pos$73 = nix.positions(here + "/default.nix", [["homepage", 577, 7]]);
-const pos$74 = nix.positions(here + "/default.nix", [["pluginName", 568, 5], ["version", 569, 5], ["src", 570, 5], ["meta", 576, 5]]);
-const pos$75 = nix.positions(here + "/default.nix", [["owner", 585, 7], ["repo", 586, 7], ["rev", 587, 7], ["hash", 588, 7]]);
-const pos$76 = nix.positions(here + "/default.nix", [["homepage", 591, 7], ["description", 592, 7], ["longDescription", 593, 7], ["license", 600, 7], ["maintainers", 601, 7]]);
-const pos$77 = nix.positions(here + "/default.nix", [["pluginName", 582, 5], ["version", 583, 5], ["src", 584, 5], ["meta", 590, 5]]);
-const pos$78 = nix.positions(here + "/default.nix", [["owner", 609, 7], ["repo", 610, 7], ["rev", 611, 7], ["hash", 612, 7]]);
-const pos$79 = nix.positions(here + "/default.nix", [["homepage", 615, 7]]);
-const pos$80 = nix.positions(here + "/default.nix", [["pluginName", 606, 5], ["version", 607, 5], ["src", 608, 5], ["meta", 614, 5]]);
-const pos$81 = nix.positions(here + "/default.nix", [["owner", 623, 7], ["repo", 624, 7], ["rev", 625, 7], ["hash", 626, 7]]);
-const pos$82 = nix.positions(here + "/default.nix", [["homepage", 629, 7]]);
-const pos$83 = nix.positions(here + "/default.nix", [["pluginName", 620, 5], ["version", 621, 5], ["src", 622, 5], ["meta", 628, 5]]);
-const pos$84 = nix.positions(here + "/default.nix", [["owner", 637, 7], ["repo", 638, 7], ["rev", 639, 7], ["hash", 640, 7]]);
-const pos$85 = nix.positions(here + "/default.nix", [["homepage", 643, 7]]);
-const pos$86 = nix.positions(here + "/default.nix", [["pluginName", 634, 5], ["version", 635, 5], ["src", 636, 5], ["meta", 642, 5]]);
-const pos$87 = nix.positions(here + "/default.nix", [["owner", 652, 7], ["repo", 653, 7], ["rev", 654, 7], ["hash", 655, 7]]);
-const pos$88 = nix.positions(here + "/default.nix", [["homepage", 658, 7]]);
-const pos$89 = nix.positions(here + "/default.nix", [["pluginName", 648, 5], ["rtpFilePath", 649, 5], ["version", 650, 5], ["src", 651, 5], ["meta", 657, 5]]);
-const pos$90 = nix.positions(here + "/default.nix", [["owner", 666, 7], ["repo", 667, 7], ["rev", 668, 7], ["hash", 669, 7]]);
-const pos$91 = nix.positions(here + "/default.nix", [["homepage", 672, 7]]);
-const pos$92 = nix.positions(here + "/default.nix", [["pluginName", 663, 5], ["version", 664, 5], ["src", 665, 5], ["meta", 671, 5]]);
-const pos$93 = nix.positions(here + "/default.nix", [["owner", 681, 7], ["repo", 682, 7], ["rev", 683, 7], ["hash", 684, 7]]);
-const pos$94 = nix.positions(here + "/default.nix", [["description", 708, 7], ["homepage", 709, 7], ["license", 710, 7], ["maintainers", 711, 7]]);
-const pos$95 = nix.positions(here + "/default.nix", [["pluginName", 677, 5], ["version", 678, 5], ["rtpFilePath", 679, 5], ["src", 680, 5], ["nativeBuildInputs", 687, 5], ["postInstall", 688, 5], ["meta", 707, 5]]);
-const pos$96 = nix.positions(here + "/default.nix", [["owner", 719, 7], ["repo", 720, 7], ["rev", 721, 7], ["hash", 722, 7]]);
-const pos$97 = nix.positions(here + "/default.nix", [["homepage", 728, 7]]);
-const pos$98 = nix.positions(here + "/default.nix", [["pluginName", 716, 5], ["version", 717, 5], ["src", 718, 5], ["postInstall", 724, 5], ["meta", 727, 5]]);
-const pos$99 = nix.positions(here + "/default.nix", [["owner", 737, 7], ["repo", 738, 7], ["rev", 739, 7], ["hash", 740, 7]]);
-const pos$100 = nix.positions(here + "/default.nix", [["description", 743, 7], ["homepage", 744, 7], ["license", 745, 7], ["platforms", 746, 7]]);
-const pos$101 = nix.positions(here + "/default.nix", [["pluginName", 733, 5], ["rtpFilePath", 734, 5], ["version", 735, 5], ["src", 736, 5], ["meta", 742, 5]]);
-const pos$102 = nix.positions(here + "/default.nix", [["owner", 754, 7], ["repo", 755, 7], ["rev", 756, 7], ["hash", 757, 7]]);
-const pos$103 = nix.positions(here + "/default.nix", [["homepage", 760, 7]]);
-const pos$104 = nix.positions(here + "/default.nix", [["pluginName", 751, 5], ["version", 752, 5], ["src", 753, 5], ["meta", 759, 5]]);
-const pos$105 = nix.positions(here + "/default.nix", [["owner", 768, 7], ["repo", 769, 7], ["rev", 770, 7], ["hash", 771, 7], ["fetchSubmodules", 772, 7]]);
-const pos$106 = nix.positions(here + "/default.nix", [["homepage", 775, 7], ["description", 776, 7], ["longDescription", 777, 7], ["license", 795, 7], ["platforms", 796, 7], ["maintainers", 797, 7]]);
-const pos$107 = nix.positions(here + "/default.nix", [["pluginName", 765, 5], ["version", 766, 5], ["src", 767, 5], ["meta", 774, 5]]);
-const pos$108 = nix.positions(here + "/default.nix", [["owner", 806, 7], ["repo", 807, 7], ["rev", 808, 7], ["hash", 809, 7]]);
-const pos$109 = nix.positions(here + "/default.nix", [["homepage", 812, 7], ["description", 813, 7], ["license", 814, 7]]);
-const pos$110 = nix.positions(here + "/default.nix", [["pluginName", 802, 5], ["version", 803, 5], ["rtpFilePath", 804, 5], ["src", 805, 5], ["meta", 811, 5]]);
-const pos$111 = nix.positions(here + "/default.nix", [["owner", 822, 7], ["repo", 823, 7], ["rev", 824, 7], ["hash", 825, 7]]);
-const pos$112 = nix.positions(here + "/default.nix", [["homepage", 846, 7], ["description", 847, 7], ["license", 848, 7], ["platforms", 849, 7], ["maintainers", 850, 7]]);
-const pos$113 = nix.positions(here + "/default.nix", [["pluginName", 819, 5], ["version", 820, 5], ["src", 821, 5], ["rtpFilePath", 827, 5], ["nativeBuildInputs", 828, 5], ["postInstall", 829, 5], ["meta", 845, 5]]);
-const pos$114 = nix.positions(here + "/default.nix", [["owner", 858, 7], ["repo", 859, 7], ["rev", 860, 7], ["hash", 861, 7]]);
-const pos$115 = nix.positions(here + "/default.nix", [["homepage", 867, 7]]);
-const pos$116 = nix.positions(here + "/default.nix", [["pluginName", 855, 5], ["version", 856, 5], ["src", 857, 5], ["postInstall", 863, 5], ["meta", 866, 5]]);
-const pos$117 = nix.positions(here + "/default.nix", [["owner", 876, 7], ["repo", 877, 7], ["rev", 878, 7], ["hash", 879, 7]]);
-const pos$118 = nix.positions(here + "/default.nix", [["homepage", 882, 7], ["description", 883, 7], ["longDescription", 884, 7], ["license", 891, 7], ["platforms", 892, 7], ["maintainers", 893, 7]]);
-const pos$119 = nix.positions(here + "/default.nix", [["pluginName", 872, 5], ["rtpFilePath", 873, 5], ["version", 874, 5], ["src", 875, 5], ["meta", 881, 5], ["nativeBuildInputs", 895, 5], ["postInstall", 896, 5]]);
-const pos$120 = nix.positions(here + "/default.nix", [["owner", 919, 7], ["repo", 920, 7], ["rev", 921, 7], ["hash", 922, 7]]);
-const pos$121 = nix.positions(here + "/default.nix", [["homepage", 925, 7]]);
-const pos$122 = nix.positions(here + "/default.nix", [["pluginName", 916, 5], ["version", 917, 5], ["src", 918, 5], ["meta", 924, 5]]);
-const pos$123 = nix.positions(here + "/default.nix", [["owner", 933, 7], ["repo", 934, 7], ["rev", 935, 7], ["hash", 936, 7]]);
-const pos$124 = nix.positions(here + "/default.nix", [["homepage", 939, 7]]);
-const pos$125 = nix.positions(here + "/default.nix", [["pluginName", 930, 5], ["version", 931, 5], ["src", 932, 5], ["meta", 938, 5]]);
-const pos$126 = nix.positions(here + "/default.nix", [["owner", 947, 7], ["repo", 948, 7], ["rev", 949, 7], ["hash", 950, 7]]);
-const pos$127 = nix.positions(here + "/default.nix", [["homepage", 953, 7]]);
-const pos$128 = nix.positions(here + "/default.nix", [["pluginName", 944, 5], ["version", 945, 5], ["src", 946, 5], ["meta", 952, 5]]);
-const pos$129 = nix.positions(here + "/default.nix", [["owner", 961, 7], ["repo", 962, 7], ["rev", 963, 7], ["hash", 964, 7]]);
-const pos$130 = nix.positions(here + "/default.nix", [["homepage", 968, 7], ["description", 969, 7], ["license", 970, 7], ["platforms", 971, 7], ["maintainers", 972, 7]]);
-const pos$131 = nix.positions(here + "/default.nix", [["pluginName", 958, 5], ["version", 959, 5], ["src", 960, 5], ["meta", 967, 5]]);
-const pos$132 = nix.positions(here + "/default.nix", [["owner", 981, 7], ["repo", 982, 7], ["rev", 983, 7], ["hash", 984, 7]]);
-const pos$133 = nix.positions(here + "/default.nix", [["homepage", 987, 7], ["description", 988, 7], ["license", 989, 7], ["platforms", 990, 7], ["maintainers", 991, 7]]);
-const pos$134 = nix.positions(here + "/default.nix", [["pluginName", 977, 5], ["rtpFilePath", 978, 5], ["version", 979, 5], ["src", 980, 5], ["meta", 986, 5]]);
-const pos$135 = nix.positions(here + "/default.nix", [["owner", 999, 7], ["repo", 1000, 7], ["rev", 1001, 7], ["hash", 1002, 7]]);
-const pos$136 = nix.positions(here + "/default.nix", [["homepage", 1005, 7]]);
-const pos$137 = nix.positions(here + "/default.nix", [["pluginName", 996, 5], ["version", 997, 5], ["src", 998, 5], ["meta", 1004, 5]]);
-const pos$138 = nix.positions(here + "/default.nix", [["owner", 1014, 7], ["repo", 1015, 7], ["rev", 1016, 7], ["hash", 1017, 7]]);
-const pos$139 = nix.positions(here + "/default.nix", [["description", 1020, 7], ["homepage", 1021, 7], ["license", 1022, 7], ["maintainers", 1023, 7], ["mainProgram", 1024, 7], ["platforms", 1025, 7]]);
-const pos$140 = nix.positions(here + "/default.nix", [["pluginName", 1010, 5], ["rtpFilePath", 1011, 5], ["version", 1012, 5], ["src", 1013, 5], ["meta", 1019, 5]]);
-const pos$141 = nix.positions(here + "/default.nix", [["owner", 1034, 7], ["repo", 1035, 7], ["rev", 1036, 7], ["hash", 1037, 7]]);
-const pos$142 = nix.positions(here + "/default.nix", [["homepage", 1045, 7], ["description", 1046, 7], ["longDescription", 1047, 7], ["license", 1058, 7], ["platforms", 1059, 7], ["maintainers", 1060, 7]]);
-const pos$143 = nix.positions(here + "/default.nix", [["pluginName", 1030, 5], ["rtpFilePath", 1031, 5], ["version", 1032, 5], ["src", 1033, 5], ["postInstall", 1039, 5], ["meta", 1044, 5]]);
-const pos$144 = nix.positions(here + "/default.nix", [["owner", 1068, 7], ["repo", 1069, 7], ["rev", 1070, 7], ["hash", 1071, 7]]);
-const pos$145 = nix.positions(here + "/default.nix", [["homepage", 1075, 7], ["description", 1076, 7], ["longDescription", 1077, 7], ["license", 1078, 7], ["platforms", 1079, 7], ["maintainers", 1080, 7]]);
-const pos$146 = nix.positions(here + "/default.nix", [["pluginName", 1065, 5], ["version", 1066, 5], ["src", 1067, 5], ["rtpFilePath", 1073, 5], ["meta", 1074, 5]]);
-const pos$147 = nix.positions(here + "/default.nix", [["owner", 1088, 7], ["repo", 1089, 7], ["tag", 1090, 7], ["hash", 1091, 7]]);
-const pos$148 = nix.positions(here + "/default.nix", [["homepage", 1095, 7], ["description", 1096, 7], ["license", 1097, 7], ["maintainers", 1098, 7]]);
-const pos$149 = nix.positions(here + "/default.nix", [["pluginName", 1085, 5], ["version", 1086, 5], ["src", 1087, 5], ["rtpFilePath", 1093, 5], ["meta", 1094, 5]]);
-const pos$150 = nix.positions(here + "/default.nix", [["owner", 1106, 7], ["repo", 1107, 7], ["rev", 1108, 7], ["hash", 1109, 7]]);
-const pos$151 = nix.positions(here + "/default.nix", [["description", 1155, 7], ["homepage", 1156, 7], ["license", 1157, 7], ["maintainers", 1158, 7], ["platforms", 1159, 7]]);
-const pos$152 = nix.positions(here + "/default.nix", [["pluginName", 1103, 5], ["version", 1104, 5], ["src", 1105, 5], ["nativeBuildInputs", 1111, 5], ["postPatch", 1112, 5], ["postInstall", 1120, 5], ["meta", 1154, 5]]);
-const pos$153 = nix.positions(here + "/default.nix", [["owner", 1167, 7], ["repo", 1168, 7], ["rev", 1169, 7], ["hash", 1170, 7]]);
-const pos$154 = nix.positions(here + "/default.nix", [["homepage", 1198, 7], ["description", 1199, 7], ["license", 1200, 7], ["platforms", 1201, 7], ["maintainers", 1202, 7]]);
-const pos$155 = nix.positions(here + "/default.nix", [["pluginName", 1164, 5], ["version", 1165, 5], ["src", 1166, 5], ["nativeBuildInputs", 1172, 5], ["rtpFilePath", 1173, 5], ["postInstall", 1174, 5], ["meta", 1197, 5]]);
-const pos$156 = nix.positions(here + "/default.nix", [["mkTmuxPlugin", 1207, 13]]);
-const pos$157 = nix.positions(here + "/default.nix", [["owner", 1215, 7], ["repo", 1216, 7], ["rev", 1217, 7], ["hash", 1218, 7]]);
-const pos$158 = nix.positions(here + "/default.nix", [["homepage", 1235, 7]]);
-const pos$159 = nix.positions(here + "/default.nix", [["pluginName", 1211, 5], ["version", 1212, 5], ["rtpFilePath", 1213, 5], ["src", 1214, 5], ["nativeBuildInputs", 1220, 5], ["postInstall", 1221, 5], ["meta", 1234, 5]]);
-const pos$160 = nix.positions(here + "/default.nix", [["owner", 1243, 7], ["repo", 1244, 7], ["rev", 1245, 7], ["hash", 1246, 7]]);
-const pos$161 = nix.positions(here + "/default.nix", [["homepage", 1252, 7]]);
-const pos$162 = nix.positions(here + "/default.nix", [["pluginName", 1240, 5], ["version", 1241, 5], ["src", 1242, 5], ["postInstall", 1248, 5], ["meta", 1251, 5]]);
-const pos$163 = nix.positions(here + "/default.nix", [["owner", 1260, 7], ["repo", 1261, 7], ["rev", 1262, 7], ["hash", 1263, 7]]);
-const pos$164 = nix.positions(here + "/default.nix", [["homepage", 1267, 7], ["description", 1268, 7], ["license", 1269, 7], ["platforms", 1270, 7], ["maintainers", 1271, 7]]);
-const pos$165 = nix.positions(here + "/default.nix", [["pluginName", 1257, 5], ["version", 1258, 5], ["src", 1259, 5], ["meta", 1266, 5]]);
-const pos$166 = nix.positions(here + "/default.nix", [["owner", 1280, 7], ["repo", 1281, 7], ["rev", 1282, 7], ["hash", 1283, 7]]);
-const pos$167 = nix.positions(here + "/default.nix", [["homepage", 1286, 7]]);
-const pos$168 = nix.positions(here + "/default.nix", [["pluginName", 1276, 5], ["rtpFilePath", 1277, 5], ["version", 1278, 5], ["src", 1279, 5], ["meta", 1285, 5]]);
-const pos$169 = nix.positions(here + "/default.nix", [["owner", 1295, 7], ["repo", 1296, 7], ["rev", 1297, 7], ["hash", 1298, 7]]);
-const pos$170 = nix.positions(here + "/default.nix", [["homepage", 1302, 7], ["description", 1303, 7], ["license", 1304, 7], ["platforms", 1305, 7], ["maintainers", 1306, 7]]);
-const pos$171 = nix.positions(here + "/default.nix", [["pluginName", 1291, 5], ["rtpFilePath", 1292, 5], ["version", 1293, 5], ["src", 1294, 5], ["meta", 1301, 5]]);
-const pos$172 = nix.positions(here + "/default.nix", [["mkTmuxPlugin", 1311, 13]]);
-const pos$173 = nix.positions(here + "/default.nix", [["owner", 1318, 7], ["repo", 1319, 7], ["rev", 1320, 7], ["hash", 1321, 7]]);
-const pos$174 = nix.positions(here + "/default.nix", [["homepage", 1324, 7]]);
-const pos$175 = nix.positions(here + "/default.nix", [["pluginName", 1315, 5], ["version", 1316, 5], ["src", 1317, 5], ["meta", 1323, 5]]);
-const pos$176 = nix.positions(here + "/default.nix", [["owner", 1333, 7], ["repo", 1334, 7], ["rev", 1335, 7], ["hash", 1336, 7]]);
-const pos$177 = nix.positions(here + "/default.nix", [["homepage", 1339, 7], ["description", 1340, 7], ["license", 1341, 7], ["platforms", 1342, 7], ["maintainers", 1343, 7]]);
-const pos$178 = nix.positions(here + "/default.nix", [["pluginName", 1329, 5], ["rtpFilePath", 1330, 5], ["version", 1331, 5], ["src", 1332, 5], ["meta", 1338, 5]]);
-const pos$179 = nix.positions(here + "/default.nix", [["owner", 1352, 7], ["repo", 1353, 7], ["tag", 1354, 7], ["hash", 1355, 7]]);
-const pos$180 = nix.positions(here + "/default.nix", [["homepage", 1358, 7], ["description", 1359, 7], ["license", 1360, 7], ["platforms", 1361, 7], ["maintainers", 1362, 7]]);
-const pos$181 = nix.positions(here + "/default.nix", [["pluginName", 1348, 5], ["rtpFilePath", 1349, 5], ["version", 1350, 5], ["src", 1351, 5], ["meta", 1357, 5]]);
-const pos$182 = nix.positions(here + "/default.nix", [["owner", 1371, 7], ["repo", 1372, 7], ["rev", 1373, 7], ["hash", 1374, 7]]);
-const pos$183 = nix.positions(here + "/default.nix", [["homepage", 1377, 7], ["description", 1378, 7], ["license", 1379, 7], ["platforms", 1380, 7], ["maintainers", 1381, 7]]);
-const pos$184 = nix.positions(here + "/default.nix", [["pluginName", 1367, 5], ["rtpFilePath", 1368, 5], ["version", 1369, 5], ["src", 1370, 5], ["meta", 1376, 5]]);
-const pos$185 = nix.positions(here + "/default.nix", [["owner", 1389, 7], ["repo", 1390, 7], ["rev", 1391, 7], ["sha256", 1392, 7]]);
-const pos$186 = nix.positions(here + "/default.nix", [["homepage", 1420, 7], ["description", 1421, 7], ["license", 1422, 7], ["platforms", 1423, 7], ["maintainers", 1424, 7]]);
-const pos$187 = nix.positions(here + "/default.nix", [["pluginName", 1386, 5], ["version", 1387, 5], ["src", 1388, 5], ["nativeBuildInputs", 1394, 5], ["rtpFilePath", 1395, 5], ["postInstall", 1396, 5], ["meta", 1419, 5]]);
-const pos$188 = nix.positions(here + "/default.nix", [["mkTmuxPlugin", 80, 11], ["battery", 82, 3], ["better-mouse-mode", 96, 3], ["catppuccin", 122, 3], ["continuum", 143, 3], ["copy-toolkit", 171, 3], ["copycat", 197, 3], ["cpu", 211, 3], ["ctrlw", 225, 3], ["dracula", 239, 3], ["dotbar", 259, 3], ["extrakto", 279, 3], ["fingers", 318, 3], ["fpp", 322, 3], ["fuzzback", 339, 3], ["fzf-tmux-url", 373, 3], ["gruvbox", 391, 3], ["harpoon", 410, 3], ["jump", 430, 3], ["ukiyo", 452, 3], ["lazy-restore", 471, 3], ["logging", 508, 3], ["minimal-tmux-status", 522, 3], ["mode-indicator", 549, 3], ["net-speed", 567, 3], ["nord", 581, 3], ["maildir-counter", 605, 3], ["online-status", 619, 3], ["open", 633, 3], ["onedark-theme", 647, 3], ["pain-control", 662, 3], ["pass", 676, 3], ["plumb", 715, 3], ["power-theme", 732, 3], ["prefix-highlight", 750, 3], ["resurrect", 764, 3], ["rose-pine", 801, 3], ["search-panes", 818, 3], ["sensible", 854, 3], ["session-wizard", 871, 3], ["sessionist", 915, 3], ["sidebar", 929, 3], ["sysstat", 943, 3], ["tilish", 957, 3], ["tokyo-night-tmux", 976, 3], ["tmux-colors-solarized", 995, 3], ["tmux-floax", 1009, 3], ["tmux-fzf", 1029, 3], ["tmux-powerline", 1064, 3], ["tmux-session-manager", 1084, 3], ["tmux-sessionx", 1102, 3], ["tmux-sm", 1163, 3], ["tmux-thumbs", 1206, 3], ["t-smart-tmux-session-manager", 1210, 3], ["urlview", 1239, 3], ["vim-tmux-focus-events", 1256, 3], ["vim-tmux-navigator", 1275, 3], ["weather", 1290, 3], ["tmux-which-key", 1310, 3], ["yank", 1314, 3], ["tmux-nova", 1328, 3], ["tmux-toggle-popup", 1347, 3], ["tmux-tpad", 1366, 3], ["tmux-window-name", 1385, 3]]);
-const pos$189 = nix.positions(here + "/default.nix", [["mkDerivation", 1429, 3], ["kanagawa", 1431, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -204,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const rtpPath = "share/tmux-plugins";
   const addRtp = (path) => (rtpFilePath) => (attrs) => (derivation) => nix.update(derivation, nix.update({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     rtp: nix.thunk(() => nix.str`${derivation}/${path}/${rtpFilePath}`),
   }, {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     overrideAttrs: (f) => nix.app(mkTmuxPlugin, nix.thunk(() => nix.update(attrs, (nix.asBool(nix.app(nix.sel(lib, "isFunction"), f)) ? nix.app(f, attrs) : nix.force(f))))),
   }));
   const mkTmuxPlugin = nix.lambda((args_1) => (() => {
@@ -225,12 +37,12 @@ export default nix.lambda((args) => (() => {
     const postInstall = nix.argOr($_1, "postInstall", () => "");
     const path = nix.argOr($_1, "path", () => nix.app(nix.sel(lib, "getName"), pluginName));
     return (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "dependencies", a)) ? nix.builtins.throw("dependencies attribute is obselete. see NixOS/nixpkgs#118034") : nix.app(addRtp, nix.thunk(() => nix.str`${rtpPath}/${path}`), rtpFilePath, a, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(a, {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.add(namePrefix, pluginName)),
           strictDeps: true,
           __structuredAttrs: true,
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
           })),
           pluginName: pluginName,
@@ -254,27 +66,27 @@ runHook postInstall
         }))))));
   })(), formals$2);
   return nix.update({
-    [nix.POS]: pos$188,
+    [nix.POS]: $pos[187],
     mkTmuxPlugin: mkTmuxPlugin,
     battery: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => (() => {
         const pluginName = "battery";
         const version = "2.0.0";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             owner: "tmux-plugins",
             repo: "tmux-battery",
             tag: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-kyUrJdraDDye8WEBP2RgHN7kHmafToYtLmrMJ9u0f+0=",
           }))));
-        const meta = nix.thunk(() => ({ [nix.POS]: pos$6, homepage: "https://github.com/tmux-plugins/tmux-battery" }));
-        return { [nix.POS]: pos$7, pluginName, version, src, meta };
+        const meta = nix.thunk(() => ({ [nix.POS]: $pos[5], homepage: "https://github.com/tmux-plugins/tmux-battery" }));
+        return { [nix.POS]: $pos[6], pluginName, version, src, meta };
       })()))),
     "better-mouse-mode": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pluginName: "better-mouse-mode",
         version: "unstable-2021-08-02",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             owner: "NHDaly",
             repo: "tmux-better-mouse-mode",
             rev: "aa59077c635ab21b251bd8cb4dc24c415e64a58e",
@@ -282,7 +94,7 @@ runHook postInstall
           })))),
         rtpFilePath: "scroll_copy_mode.tmux",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           homepage: "https://github.com/NHDaly/tmux-better-mouse-mode",
           description: "Better mouse support for tmux",
           longDescription: "Features:\n\n  * Emulate mouse-support for full-screen programs like less that don't provide built in mouse support.\n  * Exit copy-mode and return to your prompt by scrolling back all the way down to the bottom.\n  * Adjust your scrolling speed.\n",
@@ -298,7 +110,7 @@ runHook postInstall
         const pluginName = "catppuccin";
         const version = "2.1.3";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             owner: "catppuccin",
             repo: "tmux",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -306,28 +118,28 @@ runHook postInstall
           }))));
         const postInstall = "sed -i -e 's|${PLUGIN_DIR}/catppuccin-selected-theme.tmuxtheme|${TMUX_TMPDIR}/catppuccin-selected-theme.tmuxtheme|g' $target/catppuccin.tmux\n";
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           homepage: "https://github.com/catppuccin/tmux",
           description: "Soothing pastel theme for Tmux",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
           maintainers: [],
         }));
-        return { [nix.POS]: pos$13, pluginName, version, src, postInstall, meta };
+        return { [nix.POS]: $pos[12], pluginName, version, src, postInstall, meta };
       })()))),
     continuum: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         pluginName: "continuum",
         version: "unstable-2022-01-25",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             owner: "tmux-plugins",
             repo: "tmux-continuum",
             rev: "fc2f31d79537a5b349f55b74c8ca69abaac1ddbb",
             hash: "sha256-S1YuZHX4SnSVlMZKv/a87/qj0seRdaWyOXz5ONCVIRo=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           homepage: "https://github.com/tmux-plugins/tmux-continuum",
           description: "Continuous saving of tmux environment",
           longDescription: "Features:\n* continuous saving of tmux environment\n* automatic tmux start when computer/server is turned on\n* automatic restore when tmux is started\n\nTogether, these features enable uninterrupted tmux usage. No matter the\ncomputer or server restarts, if the machine is on, tmux will be there how\nyou left it off the last time it was used.\n",
@@ -340,12 +152,12 @@ runHook postInstall
         })),
       })))),
     "copy-toolkit": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         pluginName: "copy-toolkit",
         rtpFilePath: "copytk.tmux",
         version: "2021-12-20",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             owner: "CrispyConductor",
             repo: "tmux-copy-toolkit",
             rev: "c80c2c068059fe04f840ea9f125c21b83cb6f81f",
@@ -355,7 +167,7 @@ runHook postInstall
 sed -i -e 's|python3|${nix.sel(pkgs, "python3")}/bin/python3|g;s|/bin/bash|${nix.sel(pkgs, "bash")}/bin/bash|g;s|/bin/cat|${nix.sel(pkgs, "coreutils")}/bin/cat|g' $target/copytk.py
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           homepage: "https://github.com/CrispyConductor/tmux-copy-toolkit",
           description: "Various copy-mode tools",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -370,56 +182,59 @@ sed -i -e 's|python3|${nix.sel(pkgs, "python3")}/bin/python3|g;s|/bin/bash|${nix
         })),
       })))),
     copycat: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         pluginName: "copycat",
         version: "unstable-2020-01-09",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             owner: "tmux-plugins",
             repo: "tmux-copycat",
             rev: "77ca3aab2aed8ede3e2b941079b1c92dd221cf5f",
             hash: "sha256-ugVk1zpKeUjOlDWi3LEkJPFsCqyZEivGzGWiqODnkK0=",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$21, homepage: "https://github.com/tmux-plugins/tmux-copycat" })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[20],
+          homepage: "https://github.com/tmux-plugins/tmux-copycat",
+        })),
       })))),
     cpu: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         pluginName: "cpu",
         version: "unstable-2023-01-06",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             owner: "tmux-plugins",
             repo: "tmux-cpu",
             rev: "98d787191bc3e8f19c3de54b96ba1caf61385861",
             hash: "sha256-ymmCI6VYvf94Ot7h2GAboTRBXPIREP+EB33+px5aaJk=",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$24, homepage: "https://github.com/tmux-plugins/tmux-cpu" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[23], homepage: "https://github.com/tmux-plugins/tmux-cpu" })),
       })))),
     ctrlw: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => (() => {
         const pluginName = "ctrlw";
         const version = "0.1.1";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             owner: "eraserhd",
             repo: "tmux-ctrlw",
             rev: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-YYbPkGQmukIDD1fcYleioETFai/SOJni+aZ9Jh2+Zc8=",
           }))));
-        const meta = nix.thunk(() => ({ [nix.POS]: pos$27, homepage: "https://github.com/eraserhd/tmux-ctrlw" }));
-        return { [nix.POS]: pos$28, pluginName, version, src, meta };
+        const meta = nix.thunk(() => ({ [nix.POS]: $pos[26], homepage: "https://github.com/eraserhd/tmux-ctrlw" }));
+        return { [nix.POS]: $pos[27], pluginName, version, src, meta };
       })()))),
     dracula: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => (() => {
         const pluginName = "dracula";
         const version = "3.3.1";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             owner: "dracula",
             repo: "tmux",
             tag: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-UFK0PJFgGIBdpjuSn3stAJ7z73FgEj0yK6F+ETRQ5f4=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           homepage: "https://draculatheme.com/tmux",
           downloadPage: "https://github.com/dracula/tmux",
           description: "Feature packed Dracula theme for tmux",
@@ -431,20 +246,20 @@ sed -i -e 's|python3|${nix.sel(pkgs, "python3")}/bin/python3|g;s|/bin/bash|${nix
             return [nix.thunk(() => nix.lookup(w, "ethancedwards8"))];
           })()),
         }));
-        return { [nix.POS]: pos$31, pluginName, version, src, meta };
+        return { [nix.POS]: $pos[30], pluginName, version, src, meta };
       })()))),
     dotbar: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => (() => {
         const pluginName = "dotbar";
         const version = "0.3.3";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             owner: "vaaleyard",
             repo: "tmux-dotbar",
             tag: version,
             hash: "sha256-CAKEN8Sk3t0nonV2R9df/DFTTUrVnbso0ZVGgeeGINM=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           homepage: "https://github.com/vaaleyard/tmux-dotbar",
           downloadPage: "https://github.com/vaaleyard/tmux-dotbar",
           description: "Simple and minimalist status bar for tmux",
@@ -456,14 +271,14 @@ sed -i -e 's|python3|${nix.sel(pkgs, "python3")}/bin/python3|g;s|/bin/bash|${nix
             return [nix.thunk(() => nix.lookup(w, "FKouhai"))];
           })()),
         }));
-        return { [nix.POS]: pos$34, pluginName, version, src, meta };
+        return { [nix.POS]: $pos[33], pluginName, version, src, meta };
       })()))),
     extrakto: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         pluginName: "extrakto",
         version: "0-unstable-2025-07-27",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             owner: "laktak",
             repo: "extrakto",
             rev: "b04dcf14496ffda629d8aa3a2ac63e4e08d2fdc9",
@@ -483,7 +298,7 @@ sed -i -e 's|python3|${nix.sel(pkgs, "python3")}/bin/python3|g;s|/bin/bash|${nix
         })()}
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           homepage: "https://github.com/laktak/extrakto",
           description: "Fuzzy find your text with fzf instead of selecting it by hand ",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -498,13 +313,13 @@ sed -i -e 's|python3|${nix.sel(pkgs, "python3")}/bin/python3|g;s|/bin/bash|${nix
           })()),
         })),
       })))),
-    fingers: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./tmux-fingers"), nix.thunk(() => ({ [nix.POS]: pos$38, mkTmuxPlugin: mkTmuxPlugin })))),
+    fingers: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./tmux-fingers"), nix.thunk(() => ({ [nix.POS]: $pos[37], mkTmuxPlugin: mkTmuxPlugin })))),
     fpp: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$41,
+        [nix.POS]: $pos[40],
         pluginName: "fpp",
         version: "unstable-2016-03-08",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             owner: "tmux-plugins",
             repo: "tmux-fpp",
             rev: "ca125d5a9c80bb156ac114ac3f3d5951a795c80e",
@@ -512,14 +327,14 @@ sed -i -e 's|python3|${nix.sel(pkgs, "python3")}/bin/python3|g;s|/bin/bash|${nix
           })))),
         postInstall: nix.thunk(() => nix.str`sed -i -e 's|fpp |${nix.sel(pkgs, "fpp")}/bin/fpp |g' $target/fpp.tmux
 `),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$40, homepage: "https://github.com/tmux-plugins/tmux-fpp" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[39], homepage: "https://github.com/tmux-plugins/tmux-fpp" })),
       })))),
     fuzzback: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$44,
+        [nix.POS]: $pos[43],
         pluginName: "fuzzback",
         version: "unstable-2022-11-21",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             owner: "roosta",
             repo: "tmux-fuzzback",
             rev: "bfd9cf0ef1c35488f0080f0c5ca4fddfdd7e18ec",
@@ -541,7 +356,7 @@ sed -i -e 's|python3|${nix.sel(pkgs, "python3")}/bin/python3|g;s|/bin/bash|${nix
 done
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           homepage: "https://github.com/roosta/tmux-fuzzback",
           description: "Fuzzy search for terminal scrollback",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -553,19 +368,19 @@ done
         })),
       })))),
     "fzf-tmux-url": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         pluginName: "fzf-tmux-url",
         rtpFilePath: "fzf-url.tmux",
         version: "unstable-2024-04-14",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$45,
+            [nix.POS]: $pos[44],
             owner: "wfxr",
             repo: "tmux-fzf-url",
             rev: "28ed7ce3c73a328d8463d4f4aaa6ccb851e520fa",
             hash: "sha256-tl0SjG/CeolrN7OIHj6MgkB9lFmFgEuJevsSuwVs+78=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$46,
+          [nix.POS]: $pos[45],
           homepage: "https://github.com/wfxr/tmux-fzf-url",
           description: "Quickly open urls on your terminal screen",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -577,14 +392,14 @@ done
         const rtpFilePath = "gruvbox-tpm.tmux";
         const version = "2.0.1";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$48,
+            [nix.POS]: $pos[47],
             owner: "egel",
             repo: "tmux-gruvbox",
             tag: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-TuWPw6sk61k7GnHwN2zH6x6mGurTHiA9f0E6NJfMa6g=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$49,
+          [nix.POS]: $pos[48],
           homepage: "https://github.com/egel/tmux-gruvbox",
           description: "Gruvbox colorscheme for Tmux",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -594,22 +409,22 @@ done
             return [nix.thunk(() => nix.lookup(w, "viena"))];
           })()),
         }));
-        return { [nix.POS]: pos$50, pluginName, rtpFilePath, version, src, meta };
+        return { [nix.POS]: $pos[49], pluginName, rtpFilePath, version, src, meta };
       })()))),
     harpoon: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$53,
+        [nix.POS]: $pos[52],
         pluginName: "harpoon",
         rtpFilePath: "harpoon.tmux",
         version: "0.5.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$51,
+            [nix.POS]: $pos[50],
             owner: "chaitanyabsprip",
             repo: "tmux-harpoon",
             rev: "v0.5.0",
             hash: "sha256-eqzf3hEaliF1t7zwZlj1YDGvn0jKdbBTgy5PoOPVMEU=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$52,
+          [nix.POS]: $pos[51],
           homepage: "https://github.com/Chaitanyabsprip/tmux-harpoon",
           downloadPage: "https://github.com/Chaitanyabsprip/tmux-harpoon",
           description: "Tool to bookmark session supporting auto create for sessions",
@@ -622,12 +437,12 @@ done
         })),
       })))),
     jump: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$56,
+        [nix.POS]: $pos[55],
         pluginName: "jump",
         version: "2020-06-26",
         rtpFilePath: "tmux-jump.tmux",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$54,
+            [nix.POS]: $pos[53],
             owner: "schasse",
             repo: "tmux-jump",
             rev: "416f613d3eaadbe1f6f9eda77c49430527ebaffb",
@@ -636,7 +451,7 @@ done
         postInstall: nix.thunk(() => nix.str`sed -i -e 's|ruby|${nix.sel(pkgs, "ruby")}/bin/ruby|g' $target/scripts/tmux-jump.sh
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$55,
+          [nix.POS]: $pos[54],
           homepage: "https://github.com/schasse/tmux-jump",
           description: "Vimium/Easymotion like navigation for tmux",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -648,18 +463,18 @@ done
         })),
       })))),
     ukiyo: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$59,
+        [nix.POS]: $pos[58],
         pluginName: "ukiyo",
         version: "0-unstable-2026-02-02",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$57,
+            [nix.POS]: $pos[56],
             owner: "Nybkox",
             repo: "tmux-ukiyo",
             rev: "dd8730a2a41da79425c11c0cea69e0bd81545e19",
             hash: "sha256-jOcGNKb8QrIgT7l3D3RiJOPIC9JU1rOy8tk0x5ULrdc=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$58,
+          [nix.POS]: $pos[57],
           homepage: "https://github.com/Nybkox/tmux-ukiyo",
           downloadPage: "https://github.com/Nybkox/tmux-ukiyo",
           description: "Feature packed ukiyo theme for tmux",
@@ -676,7 +491,7 @@ done
         const rtpFilePath = "tmux-lazy-restore.tmux";
         const version = "0.1.2";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$60,
+            [nix.POS]: $pos[59],
             owner: "bcampolo",
             repo: "tmux-lazy-restore",
             tag: nix.thunk(() => nix.str`v${version}`),
@@ -700,7 +515,7 @@ wrapProgram $target/scripts/tmux-session-manager.sh \\
         })()}
 `);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$61,
+          [nix.POS]: $pos[60],
           homepage: "https://github.com/bcampolo/tmux-lazy-restore",
           description: "session manager plugin that allows sessions to be lazily restored in order to save memory and processing power",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -711,7 +526,7 @@ wrapProgram $target/scripts/tmux-session-manager.sh \\
           })()),
         }));
         return {
-          [nix.POS]: pos$62,
+          [nix.POS]: $pos[61],
           pluginName,
           rtpFilePath,
           version,
@@ -722,32 +537,35 @@ wrapProgram $target/scripts/tmux-session-manager.sh \\
         };
       })()))),
     logging: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$65,
+        [nix.POS]: $pos[64],
         pluginName: "logging",
         version: "unstable-2019-04-19",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$63,
+            [nix.POS]: $pos[62],
             owner: "tmux-plugins",
             repo: "tmux-logging",
             rev: "b085ad423b5d59a2c8b8d71772352e7028b8e1d0",
             hash: "sha256-Wp4xY2nxv4jl/G7bjNokYk3TcbS9waLERBFSpT1XGlw=",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$64, homepage: "https://github.com/tmux-plugins/tmux-logging" })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[63],
+          homepage: "https://github.com/tmux-plugins/tmux-logging",
+        })),
       })))),
     "minimal-tmux-status": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$68,
+        [nix.POS]: $pos[67],
         pluginName: "minimal-tmux-status",
         rtpFilePath: "minimal.tmux",
         version: "0-unstable-2026-09-07",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$66,
+            [nix.POS]: $pos[65],
             owner: "semi710",
             repo: "minimal-tmux-status",
             rev: "4e6fa277e6e3aa0bd7849012ecd6b70258627920",
             hash: "sha256-4JE+08Ppb/OcIWKWeH0mjp7bO2SCosVHWTJ/fEwt1QU=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$67,
+          [nix.POS]: $pos[66],
           description: "Minimal tmux status line plugin with prefix key indicator",
           longDescription: "minimal-tmux-status is a lightweight plugin for tmux that provides a simple, customizable status line.\nIn addition to basic session info, it shows whether the tmux prefix key is currently pressed, helping users\nquickly identify the prefix state. Designed to be minimal in appearance and dependencies, it is ideal for users\nwho want essential information without clutter.\n",
           homepage: "https://github.com/semi710/minimal-tmux-status",
@@ -760,18 +578,18 @@ wrapProgram $target/scripts/tmux-session-manager.sh \\
         })),
       })))),
     "mode-indicator": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$71,
+        [nix.POS]: $pos[70],
         pluginName: "mode-indicator",
         version: "unstable-2021-10-01",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$69,
+            [nix.POS]: $pos[68],
             owner: "MunifTanjim",
             repo: "tmux-mode-indicator",
             rev: "11520829210a34dc9c7e5be9dead152eaf3a4423",
             hash: "sha256-hlhBKC6UzkpUrCanJehs2FxK5SoYBoiGiioXdx6trC4=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$70,
+          [nix.POS]: $pos[69],
           homepage: "https://github.com/MunifTanjim/tmux-mode-indicator",
           description: "Plugin that displays prompt indicating currently active Tmux mode",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -783,34 +601,34 @@ wrapProgram $target/scripts/tmux-session-manager.sh \\
         })),
       })))),
     "net-speed": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$74,
+        [nix.POS]: $pos[73],
         pluginName: "net-speed",
         version: "unstable-2018-12-02",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$72,
+            [nix.POS]: $pos[71],
             owner: "tmux-plugins",
             repo: "tmux-net-speed",
             rev: "58abb615971cb617821e2e7e41c660334f55a92d",
             hash: "sha256-LFPcPDBiSvsOhOhlAScajr/Y/Uw2CPdl87qzD9szQKo=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$73,
+          [nix.POS]: $pos[72],
           homepage: "https://github.com/tmux-plugins/tmux-net-speed",
         })),
       })))),
     nord: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$77,
+        [nix.POS]: $pos[76],
         pluginName: "nord",
         version: "0.3.0-unstable-2023-03-03",
         src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-            [nix.POS]: pos$75,
+            [nix.POS]: $pos[74],
             owner: "nordtheme",
             repo: "tmux",
             rev: "f7b6da07ab55fe32ee5f7d62da56d8e5ac691a92",
             hash: "sha256-mcmVYNWOUoQLiu4eM/EUudRg67Gcou13xuC6zv9aMKA=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$76,
+          [nix.POS]: $pos[75],
           homepage: "https://www.nordtheme.com/ports/tmux",
           description: "Nord Tmux theme with plugin support",
           longDescription: "> An arctic, north-bluish clean and elegant tmux theme.\n> Designed for a fluent and clear workflow with support for third-party plugins.\n\nThis plugin requires that tmux be used with a Nord terminal emulator\ntheme in order to work properly.\n",
@@ -819,87 +637,90 @@ wrapProgram $target/scripts/tmux-session-manager.sh \\
         })),
       })))),
     "maildir-counter": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$80,
+        [nix.POS]: $pos[79],
         pluginName: "maildir-counter",
         version: "unstable-2016-11-25",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$78,
+            [nix.POS]: $pos[77],
             owner: "tmux-plugins",
             repo: "tmux-maildir-counter",
             rev: "9415f0207e71e37cbd870c9443426dbea6da78b9",
             hash: "sha256-RFdnF/ScOPoeVgGXWhQs28tS7CmsRA0DyFyutCPEmzc=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$79,
+          [nix.POS]: $pos[78],
           homepage: "https://github.com/tmux-plugins/tmux-maildir-counter",
         })),
       })))),
     "online-status": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$83,
+        [nix.POS]: $pos[82],
         pluginName: "online-status",
         version: "unstable-2018-11-30",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$81,
+            [nix.POS]: $pos[80],
             owner: "tmux-plugins",
             repo: "tmux-online-status",
             rev: "ea86704ced8a20f4a431116aa43f57edcf5a6312",
             hash: "sha256-OQW2WcNDVBMgX5IIlykn7f1wI8miXuqLQTlqsdHbw8M=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$82,
+          [nix.POS]: $pos[81],
           homepage: "https://github.com/tmux-plugins/tmux-online-status",
         })),
       })))),
     open: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$86,
+        [nix.POS]: $pos[85],
         pluginName: "open",
         version: "unstable-2019-12-02",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$84,
+            [nix.POS]: $pos[83],
             owner: "tmux-plugins",
             repo: "tmux-open",
             rev: "cedb4584908bd8458fadc8d3e64101d3cbb48d46",
             hash: "sha256-sFl+wkvQ498irwKWXXAT6/XBrziYLT+CvLCBV2HrQIM=",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$85, homepage: "https://github.com/tmux-plugins/tmux-open" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[84], homepage: "https://github.com/tmux-plugins/tmux-open" })),
       })))),
     "onedark-theme": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$89,
+        [nix.POS]: $pos[88],
         pluginName: "onedark-theme",
         rtpFilePath: "tmux-onedark-theme.tmux",
         version: "unstable-2020-06-07",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$87,
+            [nix.POS]: $pos[86],
             owner: "odedlaz",
             repo: "tmux-onedark-theme",
             rev: "3607ef889a47dd3b4b31f66cda7f36da6f81b85c",
             hash: "sha256-pQooiDEeB8NvBOQ1IKUgPSSQDK+hMTLMGuiKy6GWVKY=",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$88, homepage: "https://github.com/odedlaz/tmux-onedark-theme" })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[87],
+          homepage: "https://github.com/odedlaz/tmux-onedark-theme",
+        })),
       })))),
     "pain-control": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$92,
+        [nix.POS]: $pos[91],
         pluginName: "pain-control",
         version: "unstable-2020-02-18",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$90,
+            [nix.POS]: $pos[89],
             owner: "tmux-plugins",
             repo: "tmux-pain-control",
             rev: "2db63de3b08fc64831d833240749133cecb67d92",
             hash: "sha256-84NJtxoz4KTVv+i3cde235WcHhRSBIkZjtobZIk16nA=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$91,
+          [nix.POS]: $pos[90],
           homepage: "https://github.com/tmux-plugins/tmux-pain-control",
         })),
       })))),
     pass: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$95,
+        [nix.POS]: $pos[94],
         pluginName: "pass",
         version: "0-unstable-2025-02-20",
         rtpFilePath: "plugin.tmux",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$93,
+            [nix.POS]: $pos[92],
             owner: "rafi",
             repo: "tmux-pass",
             rev: "c853c8b5e31dea93d17551ef3e18be16c063e28e",
@@ -924,7 +745,7 @@ wrapProgram $target/scripts/main.sh \\
         })()}
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$94,
+          [nix.POS]: $pos[93],
           description: "Password-store browser using fzf in tmux",
           homepage: "https://github.com/rafi/tmux-pass",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -935,7 +756,7 @@ wrapProgram $target/scripts/main.sh \\
         const pluginName = "plumb";
         const version = "0.1.1";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$96,
+            [nix.POS]: $pos[95],
             owner: "eraserhd",
             repo: "tmux-plumb",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -943,23 +764,23 @@ wrapProgram $target/scripts/main.sh \\
           }))));
         const postInstall = nix.thunk(() => nix.str`sed -i -e 's,9 plumb,${nix.sel(pkgs, "plan9port")}/bin/9 plumb,' $target/scripts/plumb
 `);
-        const meta = nix.thunk(() => ({ [nix.POS]: pos$97, homepage: "https://github.com/eraserhd/tmux-plumb" }));
-        return { [nix.POS]: pos$98, pluginName, version, src, postInstall, meta };
+        const meta = nix.thunk(() => ({ [nix.POS]: $pos[96], homepage: "https://github.com/eraserhd/tmux-plumb" }));
+        return { [nix.POS]: $pos[97], pluginName, version, src, postInstall, meta };
       })()))),
     "power-theme": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$101,
+        [nix.POS]: $pos[100],
         pluginName: "power",
         rtpFilePath: "tmux-power.tmux",
         version: "unstable-2024-05-12",
         src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-            [nix.POS]: pos$99,
+            [nix.POS]: $pos[98],
             owner: "wfxr",
             repo: "tmux-power",
             rev: "16bbde801378a70512059541d104c5ae35be32b9",
             hash: "sha256-IyYQyIONMnVBwhhcI3anOPxKpv2TfI2KZgJ5o5JtZ8I=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$100,
+          [nix.POS]: $pos[99],
           description: "Tmux powerline theme",
           homepage: "https://github.com/wfxr/tmux-power",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -967,27 +788,27 @@ wrapProgram $target/scripts/main.sh \\
         })),
       })))),
     "prefix-highlight": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$104,
+        [nix.POS]: $pos[103],
         pluginName: "prefix-highlight",
         version: "unstable-2021-03-30",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$102,
+            [nix.POS]: $pos[101],
             owner: "tmux-plugins",
             repo: "tmux-prefix-highlight",
             rev: "15acc6172300bc2eb13c81718dc53da6ae69de4f",
             hash: "sha256-9LWRV0Hw8MmDwn5hWl3DrBuYUqBjLCO02K9bbx11MyM=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$103,
+          [nix.POS]: $pos[102],
           homepage: "https://github.com/tmux-plugins/tmux-prefix-highlight",
         })),
       })))),
     resurrect: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$107,
+        [nix.POS]: $pos[106],
         pluginName: "resurrect",
         version: "unstable-2022-05-01",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$105,
+            [nix.POS]: $pos[104],
             owner: "tmux-plugins",
             repo: "tmux-resurrect",
             rev: "ca6468e2deef11efadfe3a62832ae67742505432",
@@ -995,7 +816,7 @@ wrapProgram $target/scripts/main.sh \\
             fetchSubmodules: true,
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$106,
+          [nix.POS]: $pos[105],
           homepage: "https://github.com/tmux-plugins/tmux-resurrect",
           description: "Restore tmux environment after system restart",
           longDescription: "This plugin goes to great lengths to save and restore all the details\nfrom your tmux environment. Here's what's been taken care of:\n\n* all sessions, windows, panes and their order\n* current working directory for each pane\n* exact pane layouts within windows (even when zoomed)\n* active and alternative session\n* active and alternative window for each session\n* windows with focus\n* active pane for each window\n* \"grouped sessions\" (useful feature when using tmux with multiple monitors)\n* programs running within a pane! More details in the restoring programs doc.\n\nOptional:\n* restoring vim and neovim sessions\n* restoring pane contents\n",
@@ -1008,30 +829,30 @@ wrapProgram $target/scripts/main.sh \\
         })),
       })))),
     "rose-pine": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$110,
+        [nix.POS]: $pos[109],
         pluginName: "rose-pine",
         version: "unstable-2024-01-08",
         rtpFilePath: "rose-pine.tmux",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$108,
+            [nix.POS]: $pos[107],
             owner: "rose-pine",
             repo: "tmux",
             rev: "dd6d01338ac4afeb96542dcf24e4a7fe179b69e6",
             hash: "sha256-Tccb4VjdotOSw7flJV4N0H4557NxRhXiCecZBPU9ICQ=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$109,
+          [nix.POS]: $pos[108],
           homepage: "https://github.com/rose-pine/tmux",
           description: "Rosé Pine theme for tmux",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         })),
       })))),
     "search-panes": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$113,
+        [nix.POS]: $pos[112],
         pluginName: "search-panes",
         version: "0-unstable-2025-07-27",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$111,
+            [nix.POS]: $pos[110],
             owner: "multi-io",
             repo: "tmux-search-panes",
             rev: "3996b5c56c6be69d3a85ef26065b1877d9ac71c6",
@@ -1055,7 +876,7 @@ wrapProgram $target/scripts/main.sh \\
 done
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$112,
+          [nix.POS]: $pos[111],
           homepage: "https://github.com/multi-io/tmux-search-panes",
           description: "Tmux plugin that allows you to perform a fulltext search",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -1064,11 +885,11 @@ done
         })),
       })))),
     sensible: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$116,
+        [nix.POS]: $pos[115],
         pluginName: "sensible",
         version: "unstable-2022-08-14",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$114,
+            [nix.POS]: $pos[113],
             owner: "tmux-plugins",
             repo: "tmux-sensible",
             rev: "25cb91f42d020f675bb0a2ce3fbd3a5d96119efa",
@@ -1077,7 +898,7 @@ done
         postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`sed -e 's:reattach-to-user-namespace:${nix.sel(pkgs, "reattach-to-user-namespace")}/bin/reattach-to-user-namespace:g' -i $target/sensible.tmux
 `))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$115,
+          [nix.POS]: $pos[114],
           homepage: "https://github.com/tmux-plugins/tmux-sensible",
         })),
       })))),
@@ -1086,14 +907,14 @@ done
         const rtpFilePath = "session-wizard.tmux";
         const version = "1.4.0";
         const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-            [nix.POS]: pos$117,
+            [nix.POS]: $pos[116],
             owner: "27medkamal",
             repo: "tmux-session-wizard",
             rev: nix.thunk(() => nix.str`V${version}`),
             hash: "sha256-mLpZQSo8nildawsPxGwkcETNwlRq6O1pfy/VusMNMaw=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$118,
+          [nix.POS]: $pos[117],
           homepage: "https://github.com/27medkamal/tmux-session-wizard",
           description: "Tmux plugin for creating and switching between sessions based on recently accessed directories",
           longDescription: "Session Wizard is using fzf and zoxide to do all the magic. Features:\n* Creating a new session from a list of recently accessed directories\n* Naming a session after a folder/project\n* Switching sessions\n* Viewing current or creating new sessions in one popup\n",
@@ -1122,7 +943,7 @@ wrapProgram $target/bin/t \\
         })()}
 `);
         return {
-          [nix.POS]: pos$119,
+          [nix.POS]: $pos[118],
           pluginName,
           rtpFilePath,
           version,
@@ -1133,63 +954,66 @@ wrapProgram $target/bin/t \\
         };
       })()))),
     sessionist: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$122,
+        [nix.POS]: $pos[121],
         pluginName: "sessionist",
         version: "unstable-2023-05-02",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$120,
+            [nix.POS]: $pos[119],
             owner: "tmux-plugins",
             repo: "tmux-sessionist",
             rev: "a315c423328d9bdf5cf796435ce7075fa5e1bffb",
             hash: "sha256-iC8NvuLujTXw4yZBaenHJ+2uM+HA9aW5b2rQTA8e69s=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$121,
+          [nix.POS]: $pos[120],
           homepage: "https://github.com/tmux-plugins/tmux-sessionist",
         })),
       })))),
     sidebar: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$125,
+        [nix.POS]: $pos[124],
         pluginName: "sidebar",
         version: "unstable-2018-11-30",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$123,
+            [nix.POS]: $pos[122],
             owner: "tmux-plugins",
             repo: "tmux-sidebar",
             rev: "aacbdb45bc5ab69db448a72de4155d0b8dbac677",
             hash: "sha256-7MCouewjpTCMGmWMaTWWQevlR0LrLTBjXGumsNcH6a4=",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$124, homepage: "https://github.com/tmux-plugins/tmux-sidebar" })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[123],
+          homepage: "https://github.com/tmux-plugins/tmux-sidebar",
+        })),
       })))),
     sysstat: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$128,
+        [nix.POS]: $pos[127],
         pluginName: "sysstat",
         version: "unstable-2017-12-12",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$126,
+            [nix.POS]: $pos[125],
             owner: "samoshkin",
             repo: "tmux-plugin-sysstat",
             rev: "29e150f403151f2341f3abcb2b2487a5f011dd23",
             hash: "sha256-2EMSV6z9FZHq20dkPna0qELSVIOIAnOHpiCLbG7adQQ=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$127,
+          [nix.POS]: $pos[126],
           homepage: "https://github.com/samoshkin/tmux-plugin-sysstat",
         })),
       })))),
     tilish: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$131,
+        [nix.POS]: $pos[130],
         pluginName: "tilish",
         version: "unstable-2023-09-20",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$129,
+            [nix.POS]: $pos[128],
             owner: "jabirali",
             repo: "tmux-tilish",
             rev: "22f7920837d827dc6cb31143ea916afa677c24c1",
             hash: "sha256-wP3c+p/DM6ve7GUhi0QEzggct7NS4XUa78sVQFSKrfo=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$130,
+          [nix.POS]: $pos[129],
           homepage: "https://github.com/jabirali/tmux-tilish",
           description: "Plugin which makes tmux work and feel like i3wm",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -1201,19 +1025,19 @@ wrapProgram $target/bin/t \\
         })),
       })))),
     "tokyo-night-tmux": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$134,
+        [nix.POS]: $pos[133],
         pluginName: "tokyo-night-tmux",
         rtpFilePath: "tokyo-night.tmux",
         version: "1.8.1",
         src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-            [nix.POS]: pos$132,
+            [nix.POS]: $pos[131],
             owner: "janoamaral",
             repo: "tokyo-night-tmux",
             rev: "a39e00bf01fea05f916e4b7707bad5e64adee02c",
             hash: "sha256-tmS0MBANSsTg53E2GB0TnjwGcZXboTRFNeDE6Ehn+bM=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$133,
+          [nix.POS]: $pos[132],
           homepage: "https://github.com/janoamaral/tokyo-night-tmux",
           description: "Clean, dark Tmux theme that celebrates the lights of Downtown Tokyo at night",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -1225,35 +1049,35 @@ wrapProgram $target/bin/t \\
         })),
       })))),
     "tmux-colors-solarized": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$137,
+        [nix.POS]: $pos[136],
         pluginName: "tmuxcolors",
         version: "unstable-2019-07-14",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$135,
+            [nix.POS]: $pos[134],
             owner: "seebi",
             repo: "tmux-colors-solarized",
             rev: "e5e7b4f1af37f8f3fc81ca17eadee5ae5d82cd09",
             hash: "sha256-nVA4fkmxf8he3lxG6P0sASvH6HlSt8dKGovEv5RAcdA=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$136,
+          [nix.POS]: $pos[135],
           homepage: "https://github.com/seebi/tmux-colors-solarized",
         })),
       })))),
     "tmux-floax": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$140,
+        [nix.POS]: $pos[139],
         pluginName: "tmux-floax",
         rtpFilePath: "floax.tmux",
         version: "0-unstable-2024-07-24",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$138,
+            [nix.POS]: $pos[137],
             owner: "omerxx",
             repo: "tmux-floax",
             rev: "46c0a6a8c3cf79b83d1b338f547acbbd1d306301",
             hash: "sha256-bALZfVWcoAzcTeWwkBHhi7TzUQJicOBTNdeJh3O/Bj8=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$139,
+          [nix.POS]: $pos[138],
           description: "Floating pane for Tmux",
           homepage: "https://github.com/omerxx/tmux-floax",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -1266,12 +1090,12 @@ wrapProgram $target/bin/t \\
         })),
       })))),
     "tmux-fzf": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$143,
+        [nix.POS]: $pos[142],
         pluginName: "tmux-fzf",
         rtpFilePath: "main.tmux",
         version: "unstable-2025-09-24",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$141,
+            [nix.POS]: $pos[140],
             owner: "sainnhe",
             repo: "tmux-fzf",
             rev: "05af76daa2487575b93a4f604693b00969f19c2f",
@@ -1282,7 +1106,7 @@ find $target -type f -print0 | xargs -0 sed -i -e 's|sed |${nix.sel(pkgs, "gnuse
 find $target -type f -print0 | xargs -0 sed -i -e 's|tput |${nix.sel(pkgs, "ncurses")}/bin/tput |g'
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$142,
+          [nix.POS]: $pos[141],
           homepage: "https://github.com/sainnhe/tmux-fzf",
           description: "Use fzf to manage your tmux work environment! ",
           longDescription: "Features:\n* Manage sessions (attach, detach*, rename, kill*).\n* Manage windows (switch, link, move, swap, rename, kill*).\n* Manage panes (switch, break, join*, swap, layout, kill*, resize).\n* Multiple selection (support for actions marked by *).\n* Search commands and append to command prompt.\n* Search key bindings and execute.\n* User menu.\n* Popup window support.\n",
@@ -1295,11 +1119,11 @@ find $target -type f -print0 | xargs -0 sed -i -e 's|tput |${nix.sel(pkgs, "ncur
         })),
       })))),
     "tmux-powerline": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$146,
+        [nix.POS]: $pos[145],
         pluginName: "powerline",
         version: "3.0.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$144,
+            [nix.POS]: $pos[143],
             owner: "erikw",
             repo: "tmux-powerline",
             rev: "2480e5531e0027e49a90eaf540f973e624443937",
@@ -1307,7 +1131,7 @@ find $target -type f -print0 | xargs -0 sed -i -e 's|tput |${nix.sel(pkgs, "ncur
           })))),
         rtpFilePath: "main.tmux",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$145,
+          [nix.POS]: $pos[144],
           homepage: "https://github.com/erikw/tmux-powerline",
           description: "Empowering your tmux (status bar) experience",
           longDescription: "A tmux plugin giving you a hackable status bar consisting of dynamic & beautiful looking powerline segments, written purely in bash.",
@@ -1323,7 +1147,7 @@ find $target -type f -print0 | xargs -0 sed -i -e 's|tput |${nix.sel(pkgs, "ncur
         const pluginName = "tmux-session-manager";
         const version = "1.1.2";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$147,
+            [nix.POS]: $pos[146],
             owner: "PhilVoel",
             repo: "tmux-session-manager",
             tag: nix.thunk(() => nix.str`v${version}`),
@@ -1331,7 +1155,7 @@ find $target -type f -print0 | xargs -0 sed -i -e 's|tput |${nix.sel(pkgs, "ncur
           }))));
         const rtpFilePath = "session_manager.tmux";
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$148,
+          [nix.POS]: $pos[147],
           homepage: "https://github.com/PhilVoel/tmux-session-manager",
           description: "Save and restore your tmux sessions, one by one",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -1340,14 +1164,14 @@ find $target -type f -print0 | xargs -0 sed -i -e 's|tput |${nix.sel(pkgs, "ncur
             return [nix.thunk(() => nix.lookup(w, "PhilVoel"))];
           })()),
         }));
-        return { [nix.POS]: pos$149, pluginName, version, src, rtpFilePath, meta };
+        return { [nix.POS]: $pos[148], pluginName, version, src, rtpFilePath, meta };
       })()))),
     "tmux-sessionx": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$152,
+        [nix.POS]: $pos[151],
         pluginName: "sessionx",
         version: "0-unstable-2024-09-22",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$150,
+            [nix.POS]: $pos[149],
             owner: "omerxx",
             repo: "tmux-sessionx",
             rev: "508359b8a6e2e242a9270292160624406be3bbca",
@@ -1389,7 +1213,7 @@ wrapProgram $target/scripts/reload_sessions.sh \\
         })()}
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$151,
+          [nix.POS]: $pos[150],
           description: "Tmux session manager, with preview, fuzzy finding, and MORE",
           homepage: "https://github.com/omerxx/tmux-sessionx",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -1401,11 +1225,11 @@ wrapProgram $target/scripts/reload_sessions.sh \\
         })),
       })))),
     "tmux-sm": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$155,
+        [nix.POS]: $pos[154],
         pluginName: "tmux-sm",
         version: "0-unstable-2026-06-06",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$153,
+            [nix.POS]: $pos[152],
             owner: "vimlinuz",
             repo: "tmux-sm",
             rev: "33b4841531eefcc30ebaa52438d7073b0066164b",
@@ -1436,7 +1260,7 @@ wrapProgram $target/scripts/sessionizer \\
         })()}
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$154,
+          [nix.POS]: $pos[153],
           homepage: "https://github.com/vimlinuz/tmux-sm",
           description: "Fuzzy terminal popup to manage tmux sessions using `fzf`",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -1447,13 +1271,13 @@ wrapProgram $target/scripts/sessionizer \\
           })()),
         })),
       })))),
-    "tmux-thumbs": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./tmux-thumbs"), nix.thunk(() => ({ [nix.POS]: pos$156, mkTmuxPlugin: mkTmuxPlugin })))),
+    "tmux-thumbs": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./tmux-thumbs"), nix.thunk(() => ({ [nix.POS]: $pos[155], mkTmuxPlugin: mkTmuxPlugin })))),
     "t-smart-tmux-session-manager": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => (() => {
         const pluginName = "t-smart-tmux-session-manager";
         const version = "2.11.1";
         const rtpFilePath = "t-smart-tmux-session-manager.tmux";
         const src = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-            [nix.POS]: pos$157,
+            [nix.POS]: $pos[156],
             owner: "joshmedeski",
             repo: "t-smart-tmux-session-manager",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -1470,11 +1294,11 @@ find $target -type f -print0 | xargs -0 sed -i -e 's|fzf |${nix.sel(pkgs, "fzf")
 find $target -type f -print0 | xargs -0 sed -i -e 's|zoxide |${nix.sel(pkgs, "zoxide")}/bin/zoxide |g'
 `);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$158,
+          [nix.POS]: $pos[157],
           homepage: "https://github.com/joshmedeski/t-smart-tmux-session-manager",
         }));
         return {
-          [nix.POS]: pos$159,
+          [nix.POS]: $pos[158],
           pluginName,
           version,
           rtpFilePath,
@@ -1485,11 +1309,11 @@ find $target -type f -print0 | xargs -0 sed -i -e 's|zoxide |${nix.sel(pkgs, "zo
         };
       })()))),
     urlview: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$162,
+        [nix.POS]: $pos[161],
         pluginName: "urlview",
         version: "unstable-2016-01-06",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$160,
+            [nix.POS]: $pos[159],
             owner: "tmux-plugins",
             repo: "tmux-urlview",
             rev: "b84c876cffdd22990b4ab51247e795cbd7813d53",
@@ -1497,21 +1321,24 @@ find $target -type f -print0 | xargs -0 sed -i -e 's|zoxide |${nix.sel(pkgs, "zo
           })))),
         postInstall: nix.thunk(() => nix.str`sed -i -e '14,20{s|extract_url|${nix.sel(pkgs, "extract_url")}/bin/extract_url|g}' $target/urlview.tmux
 `),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$161, homepage: "https://github.com/tmux-plugins/tmux-urlview" })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[160],
+          homepage: "https://github.com/tmux-plugins/tmux-urlview",
+        })),
       })))),
     "vim-tmux-focus-events": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$165,
+        [nix.POS]: $pos[164],
         pluginName: "vim-tmux-focus-events",
         version: "unstable-2020-10-05",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$163,
+            [nix.POS]: $pos[162],
             owner: "tmux-plugins",
             repo: "vim-tmux-focus-events",
             rev: "a568192ca0de4ca0bd7b3cd0249aad491625c941",
             hash: "sha256-ITZMu2q80deOf0zqgYJDDgWQHWhJEzZlK6lVFPY4FIw=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$164,
+          [nix.POS]: $pos[163],
           homepage: "https://github.com/tmux-plugins/vim-tmux-focus-events",
           description: "Makes FocusGained and FocusLost autocommand events work in vim when using tmux",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -1523,36 +1350,36 @@ find $target -type f -print0 | xargs -0 sed -i -e 's|zoxide |${nix.sel(pkgs, "zo
         })),
       })))),
     "vim-tmux-navigator": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$168,
+        [nix.POS]: $pos[167],
         pluginName: "vim-tmux-navigator",
         rtpFilePath: "vim-tmux-navigator.tmux",
         version: "unstable-2025-07-15",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$166,
+            [nix.POS]: $pos[165],
             owner: "christoomey",
             repo: "vim-tmux-navigator",
             rev: "c45243dc1f32ac6bcf6068e5300f3b2b237e576a",
             hash: "sha256-IEPnr/GdsAnHzdTjFnXCuMyoNLm3/Jz4cBAM0AJBrj8=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$167,
+          [nix.POS]: $pos[166],
           homepage: "https://github.com/christoomey/vim-tmux-navigator",
         })),
       })))),
     weather: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$171,
+        [nix.POS]: $pos[170],
         pluginName: "weather",
         rtpFilePath: "tmux-weather.tmux",
         version: "unstable-2020-02-08",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$169,
+            [nix.POS]: $pos[168],
             owner: "xamut",
             repo: "tmux-weather",
             rev: "28a5fbe75bb25a408193d454304e28ddd75e9338",
             hash: "sha256-of9E/npEsF1JVc9ttwrbC5WkIAwCNBJAgTfExfj79i4=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$170,
+          [nix.POS]: $pos[169],
           homepage: "https://github.com/xamut/tmux-weather",
           description: "Shows weather in the status line",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -1563,33 +1390,33 @@ find $target -type f -print0 | xargs -0 sed -i -e 's|zoxide |${nix.sel(pkgs, "zo
           })()),
         })),
       })))),
-    "tmux-which-key": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./tmux-which-key"), nix.thunk(() => ({ [nix.POS]: pos$172, mkTmuxPlugin: mkTmuxPlugin })))),
+    "tmux-which-key": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./tmux-which-key"), nix.thunk(() => ({ [nix.POS]: $pos[171], mkTmuxPlugin: mkTmuxPlugin })))),
     yank: nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$175,
+        [nix.POS]: $pos[174],
         pluginName: "yank",
         version: "unstable-2023-07-19",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$173,
+            [nix.POS]: $pos[172],
             owner: "tmux-plugins",
             repo: "tmux-yank",
             rev: "acfd36e4fcba99f8310a7dfb432111c242fe7392",
             hash: "sha256-/5HPaoOx2U2d8lZZJo5dKmemu6hKgHJYq23hxkddXpA=",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$174, homepage: "https://github.com/tmux-plugins/tmux-yank" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[173], homepage: "https://github.com/tmux-plugins/tmux-yank" })),
       })))),
     "tmux-nova": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => (() => {
         const pluginName = "tmux-nova";
         const rtpFilePath = "nova.tmux";
         const version = "1.2.0";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$176,
+            [nix.POS]: $pos[175],
             owner: "o0th",
             repo: "tmux-nova",
             rev: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-0LIql8as2+OendEHVqR0F3pmQTxC1oqapwhxT+34lJo=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$177,
+          [nix.POS]: $pos[176],
           homepage: "https://github.com/o0th/tmux-nova",
           description: "Tmux-nova theme",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -1599,21 +1426,21 @@ find $target -type f -print0 | xargs -0 sed -i -e 's|zoxide |${nix.sel(pkgs, "zo
             return [nix.thunk(() => nix.lookup(w, "o0th"))];
           })()),
         }));
-        return { [nix.POS]: pos$178, pluginName, rtpFilePath, version, src, meta };
+        return { [nix.POS]: $pos[177], pluginName, rtpFilePath, version, src, meta };
       })()))),
     "tmux-toggle-popup": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => (() => {
         const pluginName = "tmux-toggle-popup";
         const rtpFilePath = "toggle-popup.tmux";
         const version = "0.5.1";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$179,
+            [nix.POS]: $pos[178],
             owner: "loichyan",
             repo: "tmux-toggle-popup",
             tag: nix.thunk(() => nix.str`v${version}`),
             hash: "sha256-daUCkt1Np8ZYvLc3Bx0HvhnI988q7lIayJju/GB6Klw=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$180,
+          [nix.POS]: $pos[179],
           homepage: "https://github.com/loichyan/tmux-toggle-popup",
           description: "Handy plugin to create toggleable popups",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -1623,22 +1450,22 @@ find $target -type f -print0 | xargs -0 sed -i -e 's|zoxide |${nix.sel(pkgs, "zo
             return [nix.thunk(() => nix.lookup(w, "szaffarano"))];
           })()),
         }));
-        return { [nix.POS]: pos$181, pluginName, rtpFilePath, version, src, meta };
+        return { [nix.POS]: $pos[180], pluginName, rtpFilePath, version, src, meta };
       })()))),
     "tmux-tpad": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$184,
+        [nix.POS]: $pos[183],
         pluginName: "tmux-tpad",
         rtpFilePath: "tpad.tmux",
         version: "0.4.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$182,
+            [nix.POS]: $pos[181],
             owner: "Subbeh",
             repo: "tmux-tpad",
             rev: "v0.4.0",
             hash: "sha256-VSQJKKAL0iMq7RXlZGaiidT/ABVsgUY/TbjRUFMN7KE=",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$183,
+          [nix.POS]: $pos[182],
           homepage: "https://github.com/Subbeh/tmux-tpad",
           description: "Tmux scratchpad plugin",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -1650,11 +1477,11 @@ find $target -type f -print0 | xargs -0 sed -i -e 's|zoxide |${nix.sel(pkgs, "zo
         })),
       })))),
     "tmux-window-name": nix.thunk(() => nix.app(mkTmuxPlugin, nix.thunk(() => ({
-        [nix.POS]: pos$187,
+        [nix.POS]: $pos[186],
         pluginName: "tmux-window-name",
         version: "2024-03-08",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$185,
+            [nix.POS]: $pos[184],
             owner: "ofirgall",
             repo: "tmux-window-name",
             rev: "34026b6f442ceb07628bf25ae1b04a0cd475e9ae",
@@ -1686,7 +1513,7 @@ done
         meta: nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            [nix.POS]: pos$186,
+            [nix.POS]: $pos[185],
             homepage: "https://github.com/ofirgall/tmux-window-name",
             description: "Tmux plugin to name your windows smartly, like IDE's",
             license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "mit")),
@@ -1699,7 +1526,7 @@ done
         })()),
       })))),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      [nix.POS]: pos$189,
+      [nix.POS]: $pos[188],
       mkDerivation: nix.thunk(() => nix.builtins.throw("tmuxPlugins.mkDerivation is deprecated, use tmuxPlugins.mkTmuxPlugin instead")),
       kanagawa: nix.thunk(() => nix.builtins.throw("'tmuxPlugins.kanagawa' has been renamed to/replaced by 'tmuxPlugins.ukiyo'")),
     }))));

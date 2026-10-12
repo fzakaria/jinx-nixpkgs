@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["sha256", 32, 5]], [["basedir", 70, 9], ["gio_extra_modules", 71, 9], ["gst_plugin_scanner", 72, 9], ["gst_plugin_system_path", 73, 9], ["dcv_sasl_plugin_dir", 74, 9]], [["description", 110, 5], ["homepage", 111, 5], ["sourceProvenance", 112, 5], ["license", 113, 5], ["platforms", 114, 5], ["maintainers", 115, 5]], [["version", 28, 11], ["pname", 28, 19], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["unpackPhase", 41, 3], ["buildInputs", 45, 3], ["installPhase", 59, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, replaceVars: false, wrapGAppsHook4: false, python3Packages: false, cpio: false, cups: false, cyrus_sasl: false, "gdk-pixbuf": false, glib: false, "glib-networking": false, gst_all_1: false, gtk4: false, libfido2: false, libva: false, lz4: false, pcsclite: false, protobufc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["basedir", 70, 9], ["gio_extra_modules", 71, 9], ["gst_plugin_scanner", 72, 9], ["gst_plugin_system_path", 73, 9], ["dcv_sasl_plugin_dir", 74, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["sourceProvenance", 112, 5], ["license", 113, 5], ["platforms", 114, 5], ["maintainers", 115, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 28, 11], ["pname", 28, 19], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["unpackPhase", 41, 3], ["buildInputs", 45, 3], ["installPhase", 59, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const pname = "nice-dcv-client";
   const version = "2025.0.8846-1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: version,
       pname: pname,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://d1uj6qtbmh3dt5.cloudfront.net/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/Clients/nice-dcv-viewer-${version}.el9.x86_64.rpm`),
           sha256: "sha256-JYvOxwSQQKjTLvpfpAQe1tqHS4QsshYJyzC5kIFEZLc=",
         })))),
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
             ];
           })())));
         const fixPathsPatch = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             basedir: null,
             gio_extra_modules: nix.thunk(() => nix.str`${glib_networking}/lib/gio/modules`),
             gst_plugin_scanner: nix.thunk(() => nix.str`${nix.sel(gst_all_1, "gstreamer", "out")}/libexec/gstreamer-1.0/gst-plugin-scanner`),
@@ -112,7 +109,7 @@ ${nix.sel(glib, "dev")}/bin/glib-compile-schemas $out/share/glib-2.0/schemas
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: "High-performance remote display protocol",
           homepage: "https://aws.amazon.com/hpc/dcv/",
           sourceProvenance: nix.thunk(() => (() => {

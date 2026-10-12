@@ -2,18 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mk-kde-derivation.nix", [[["LicenseRef-KDE-Accepted-GPL", 20, 5], ["LicenseRef-KFQF-Accepted-GPL", 21, 5], ["LicenseRef-KDE-Accepted-LGPL", 22, 5], ["LicenseRef-SJFonts", 25, 5], ["LicenseRef-EDRDG", 28, 5], ["LicenseRef-MIT-KDevelop-Ideal", 31, 5], ["ICS", 34, 5], ["BSD-3-Clauses", 35, 5], ["Qt-Commercial-exception-1.0", 38, 5], ["LicenseRef-Qt-Commercial", 39, 5], ["LicenseRef-Qt-Commercial-exception-1.0", 40, 5], ["LicenseRef-Qt-LGPL-exception-1.0", 43, 5], ["LicenseRef-Qt-exception", 44, 5], ["None", 45, 5]], [["license", 50, 10]], [["name", 49, 5], ["meta", 50, 5]], [["qmllint", 56, 7], ["jq", 57, 7]], [["license", 59, 10]], [["name", 54, 5], ["substitutions", 55, 5], ["meta", 59, 5]], [["LANG", 150, 9]], [["version", 102, 13], ["src", 102, 21], ["outputs", 104, 5], ["nativeBuildInputs", 111, 5], ["buildInputs", 128, 5], ["propagatedBuildInputs", 141, 5], ["strictDeps", 142, 5], ["cmakeFlags", 144, 5], ["doInstallCheck", 146, 5], ["separateDebugInfo", 148, 5], ["env", 150, 5]], [["description", 164, 5], ["homepage", 165, 5], ["donationPage", 166, 5], ["license", 167, 5], ["teams", 168, 5], ["platforms", 170, 5]], [["meta", 176, 83], ["pos", 176, 88]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeSetupHook: false, cmake: false, ninja: false, qt6: false, python3: false, python3Packages: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mk-kde-derivation.nix", [["LicenseRef-KDE-Accepted-GPL", 20, 5], ["LicenseRef-KFQF-Accepted-GPL", 21, 5], ["LicenseRef-KDE-Accepted-LGPL", 22, 5], ["LicenseRef-SJFonts", 25, 5], ["LicenseRef-EDRDG", 28, 5], ["LicenseRef-MIT-KDevelop-Ideal", 31, 5], ["ICS", 34, 5], ["BSD-3-Clauses", 35, 5], ["Qt-Commercial-exception-1.0", 38, 5], ["LicenseRef-Qt-Commercial", 39, 5], ["LicenseRef-Qt-Commercial-exception-1.0", 40, 5], ["LicenseRef-Qt-LGPL-exception-1.0", 43, 5], ["LicenseRef-Qt-exception", 44, 5], ["None", 45, 5]]);
-const pos$2 = nix.positions(here + "/mk-kde-derivation.nix", [["license", 50, 10]]);
-const pos$3 = nix.positions(here + "/mk-kde-derivation.nix", [["name", 49, 5], ["meta", 50, 5]]);
-const pos$4 = nix.positions(here + "/mk-kde-derivation.nix", [["qmllint", 56, 7], ["jq", 57, 7]]);
-const pos$5 = nix.positions(here + "/mk-kde-derivation.nix", [["license", 59, 10]]);
-const pos$6 = nix.positions(here + "/mk-kde-derivation.nix", [["name", 54, 5], ["substitutions", 55, 5], ["meta", 59, 5]]);
 const formals$2 = { args: { pname: false, version: true, src: true, extraBuildInputs: true, extraNativeBuildInputs: true, extraPropagatedBuildInputs: true, extraCmakeFlags: true, excludeDependencies: true, hasPythonBindings: true }, ellipsis: true };
-const pos$7 = nix.positions(here + "/mk-kde-derivation.nix", [["LANG", 150, 9]]);
-const pos$8 = nix.positions(here + "/mk-kde-derivation.nix", [["version", 102, 13], ["src", 102, 21], ["outputs", 104, 5], ["nativeBuildInputs", 111, 5], ["buildInputs", 128, 5], ["propagatedBuildInputs", 141, 5], ["strictDeps", 142, 5], ["cmakeFlags", 144, 5], ["doInstallCheck", 146, 5], ["separateDebugInfo", 148, 5], ["env", 150, 5]]);
-const pos$9 = nix.positions(here + "/mk-kde-derivation.nix", [["description", 164, 5], ["homepage", 165, 5], ["donationPage", 166, 5], ["license", 167, 5], ["teams", 168, 5], ["platforms", 170, 5]]);
-const pos$10 = nix.positions(here + "/mk-kde-derivation.nix", [["meta", 176, 83], ["pos", 176, 88]]);
 
 export default (self) => nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +21,7 @@ export default (self) => nix.lambda((args) => (() => {
   const projectInfo = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "../generated/projects.json")));
   const licenseInfo = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "../generated/licenses.json")));
   const licensesBySpdxId = nix.thunk(() => nix.update(nix.sel(lib, "licensesSpdx"), {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "LicenseRef-KDE-Accepted-GPL": nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
     "LicenseRef-KFQF-Accepted-GPL": nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
     "LicenseRef-KDE-Accepted-LGPL": nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -47,19 +38,25 @@ export default (self) => nix.lambda((args) => (() => {
     None: null,
   }));
   const moveOutputsHook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "kf6-move-outputs-hook",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })), nix.path(here, "./move-outputs-hook.sh")));
   const qmllintHook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "qmllint-validate-hook",
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         qmllint: nix.thunk(() => nix.str`${nix.sel(qt6, "qtdeclarative")}/bin/qmllint`),
         jq: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), jq)),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[4],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })), nix.path(here, "./qmllint-hook.sh")));
   return nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
@@ -87,7 +84,7 @@ export default (self) => nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(traceDuplicateDeps, "extraPropagatedBuildInputs", extraPropagatedBuildInputs)),
       ])));
     const defaultArgs = nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       version: version,
       src: src,
       outputs: nix.thunk(() => nix.concat(["out", "dev", "devtools"], nix.app(nix.sel(lib, "optionals"), hasPythonBindings, nix.thunk(() => ["python"])))),
@@ -111,7 +108,7 @@ export default (self) => nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat(["-DQT_MAJOR_VERSION=6"], extraCmakeFlags)),
       doInstallCheck: true,
       separateDebugInfo: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$7, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[6], LANG: "C.UTF-8" })),
     }));
     const cleanArgs = nix.thunk(() => nix.builtins.removeAttrs(args_2, nix.thunk(() => [
         "extraBuildInputs",
@@ -123,7 +120,7 @@ export default (self) => nix.lambda((args) => (() => {
         "meta",
       ])));
     const meta = nix.thunk(() => nix.update({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       description: nix.thunk(() => nix.sel(projectInfo, nix.key(nix.force(pname)), "description")),
       homepage: nix.thunk(() => nix.str`https://invent.kde.org/${nix.sel(projectInfo, nix.key(nix.force(pname)), "repo_path")}`),
       donationPage: "https://kde.org/donate/",
@@ -132,7 +129,7 @@ export default (self) => nix.lambda((args) => (() => {
       platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "freebsd"))),
     }, nix.selOr(args_2, () => ({}), "meta")));
     const pos = nix.thunk(() => nix.builtins.unsafeGetAttrPos("pname", args_2));
-    return nix.app(traceAllDuplicateDeps, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(defaultArgs, nix.update(cleanArgs, { [nix.POS]: pos$10, meta: meta, pos: pos }))))));
+    return nix.app(traceAllDuplicateDeps, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(defaultArgs, nix.update(cleanArgs, { [nix.POS]: $pos[9], meta: meta, pos: pos }))))));
   })(), formals$2);
 })(), formals$1);
 //# sourceMappingURL=mk-kde-derivation.ts.map

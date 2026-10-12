@@ -2,19 +2,16 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/get-version-and-variant.nix", [[["nativeBuildInputs", 9, 5]], [["expectation", 29, 13], ["output", 30, 13]], [["expectation", 33, 13], ["output", 34, 13]], [["expectation", 37, 13], ["output", 38, 13]]]);
 const formals$1 = { args: { lib: false, runCommandLocal: false, racket: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/get-version-and-variant.nix", [["nativeBuildInputs", 9, 5]]);
 const formals$2 = { args: { expectation: false, output: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/get-version-and-variant.nix", [["expectation", 29, 13], ["output", 30, 13]]);
-const pos$3 = nix.positions(here + "/get-version-and-variant.nix", [["expectation", 33, 13], ["output", 34, 13]]);
-const pos$4 = nix.positions(here + "/get-version-and-variant.nix", [["expectation", 37, 13], ["output", 38, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   const racket = nix.arg($, "racket");
-  return nix.app(runCommandLocal, "racket-test-get-version-and-variant", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [racket]) })), nix.thunk(() => nix.add(nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.builtins.map(nix.lambda((args_1) => (() => {
+  return nix.app(runCommandLocal, "racket-test-get-version-and-variant", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [racket]) })), nix.thunk(() => nix.add(nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.builtins.map(nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const expectation = nix.arg($_1, "expectation");
           const output = nix.arg($_1, "output");
@@ -29,17 +26,17 @@ fi
 `;
         })(), formals$2), nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             expectation: nix.thunk(() => nix.sel(racket, "version")),
             output: "$(racket -e '(display (version))')",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             expectation: "cs",
             output: "$(racket -e '(require launcher/launcher) (display (current-launcher-variant))')",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             expectation: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), racket)}`),
             output: "$(racket -e '(require compiler/find-exe) (display (find-exe))')",
           })),

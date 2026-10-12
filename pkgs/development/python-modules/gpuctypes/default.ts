@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 30, 5], ["owner", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["driverLink", 38, 34], ["libnvrtc", 39, 7]], [["cudaSupport", 103, 7], ["testCudaRuntime", 104, 7]], [["testOpenclRuntime", 106, 35]], [["rocmSupport", 108, 7], ["testRocmRuntime", 109, 7]], [["cuda", 102, 5], ["opencl", 106, 5], ["rocm", 107, 5]], [["gpuChecks", 101, 12]], [["description", 121, 5], ["homepage", 122, 5], ["changelog", 123, 5], ["license", 124, 5], ["maintainers", 125, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["build-system", 47, 3], ["postPatch", 49, 3], ["pythonImportsCheck", 72, 3], ["nativeCheckInputs", 74, 3], ["disabledTestPaths", 76, 3], ["disabledTests", 82, 3], ["pytestFlags", 90, 3], ["requiredSystemFeatures", 96, 3], ["passthru", 101, 3], ["preCheck", 113, 3], ["dontUsePytestCheck", 118, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, config: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, addDriverRunpath: false, cudaSupport: true, rocmSupport: true, cudaPackages: false, setuptools: false, "ocl-icd": false, rocmPackages: false, pytestCheckHook: false, gpuctypes: false, testCudaRuntime: true, testOpenclRuntime: true, testRocmRuntime: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 30, 5], ["owner", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["driverLink", 38, 34], ["libnvrtc", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cudaSupport", 103, 7], ["testCudaRuntime", 104, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["testOpenclRuntime", 106, 35]]);
-const pos$5 = nix.positions(here + "/default.nix", [["rocmSupport", 108, 7], ["testRocmRuntime", 109, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["cuda", 102, 5], ["opencl", 106, 5], ["rocm", 107, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["gpuChecks", 101, 12]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 121, 5], ["homepage", 122, 5], ["changelog", 123, 5], ["license", 124, 5], ["maintainers", 125, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["build-system", 47, 3], ["postPatch", 49, 3], ["pythonImportsCheck", 72, 3], ["nativeCheckInputs", 74, 3], ["disabledTestPaths", 76, 3], ["disabledTests", 82, 3], ["pytestFlags", 90, 3], ["requiredSystemFeatures", 96, 3], ["passthru", 101, 3], ["preCheck", 113, 3], ["dontUsePytestCheck", 118, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,13 +27,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(testCudaRuntime) || nix.asBool(cudaSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/gpuctypes/default.nix:20:1");
   nix.assert_((!nix.asBool(testRocmRuntime) || nix.asBool(rocmSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/gpuctypes/default.nix:21:1");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "gpuctypes",
       version: "0.3.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "gpuctypes",
           owner: "tinygrad",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-fix-dlopen-cuda.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
             libnvrtc: nix.thunk(() => (nix.asBool(cudaSupport) ? nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvrtc")))}/lib/libnvrtc.so` : "Please import nixpkgs with `config.cudaSupport = true`")),
           })))),
@@ -79,19 +71,19 @@ substituteInPlace gpuctypes/comgr.py \\
       pytestFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(testCudaRuntime) || nix.asBool(testOpenclRuntime))) || nix.asBool(testRocmRuntime))), nix.thunk(() => ["-v"]))),
       requiredSystemFeatures: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), testCudaRuntime, nix.thunk(() => ["cuda"])), nix.concat(nix.app(nix.sel(lib, "optionals"), testOpenclRuntime, nix.thunk(() => ["opencl"])), nix.app(nix.sel(lib, "optionals"), testRocmRuntime, nix.thunk(() => ["rocm"]))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         gpuChecks: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          cuda: nix.thunk(() => nix.app(nix.sel(gpuctypes, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, cudaSupport: true, testCudaRuntime: true })))),
-          opencl: nix.thunk(() => nix.app(nix.sel(gpuctypes, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, testOpenclRuntime: true })))),
-          rocm: nix.thunk(() => nix.app(nix.sel(gpuctypes, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, rocmSupport: true, testRocmRuntime: true })))),
+          [nix.POS]: $pos[5],
+          cuda: nix.thunk(() => nix.app(nix.sel(gpuctypes, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], cudaSupport: true, testCudaRuntime: true })))),
+          opencl: nix.thunk(() => nix.app(nix.sel(gpuctypes, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], testOpenclRuntime: true })))),
+          rocm: nix.thunk(() => nix.app(nix.sel(gpuctypes, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], rocmSupport: true, testRocmRuntime: true })))),
         })),
       })),
       preCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(cudaSupport) && nix.asBool(!nix.asBool(testCudaRuntime)))), nix.thunk(() => nix.str`addToSearchPath LD_LIBRARY_PATH ${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib/stubs
 `))),
       dontUsePytestCheck: nix.thunk(() => (nix.asBool(!nix.asBool((nix.asBool(rocmSupport) || nix.asBool(cudaSupport)))) && nix.asBool(!nix.asBool(testOpenclRuntime)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Ctypes wrappers for HIP, CUDA, and OpenCL",
         homepage: "https://github.com/tinygrad/gpuctypes",
         changelog: nix.thunk(() => nix.str`https://github.com/tinygrad/gpuctypes/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

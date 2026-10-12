@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["NIX_CFLAGS_COMPILE", 102, 7]], [["description", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["longDescription", 121, 5], ["license", 131, 5], ["platforms", 132, 5], ["maintainers", 133, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["sourceRoot", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["preAutoreconf", 75, 3], ["configureFlags", 79, 3], ["preConfigure", 93, 3], ["env", 102, 3], ["installTargets", 106, 3], ["postInstall", 112, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, autoreconfHook: false, "pkg-config": false, bison: false, libiconv: false, pcre2: false, libgcrypt: false, "libxcrypt-legacy": false, json_c: false, libxml2: false, ipv6Support: true, mccpSupport: true, zlib: false, mysqlSupport: true, libmysqlclient: false, postgresSupport: true, libpq: false, sqliteSupport: true, sqlite: false, tlsSupport: true, openssl: false, pythonSupport: true, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 102, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["longDescription", 121, 5], ["license", 131, 5], ["platforms", 132, 5], ["maintainers", 133, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["sourceRoot", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["preAutoreconf", 75, 3], ["configureFlags", 79, 3], ["preConfigure", 93, 3], ["env", 102, 3], ["installTargets", 106, 3], ["postInstall", 112, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const pythonSupport = nix.argOr($, "pythonSupport", () => false);
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ldmud",
       version: "3.6.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ldmud",
           repo: "ldmud",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,11 +65,11 @@ export default nix.lambda((args) => (() => {
 export LDFLAGS="-L${libmysqlclient}/lib/mysql"
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`export LDFLAGS="$LDFLAGS -L${libiconv}/lib -liconv"
 `)))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu99" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu99" })),
       installTargets: nix.thunk(() => ["install-driver", "install-utils", "install-headers"]),
       postInstall: "mkdir -p \"$out/share/\"\ncp -v ../COPYRIGHT $out/share/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Gamedriver for LPMuds including a LPC compiler, interpreter and runtime",
         homepage: "https://github.com/ldmud/ldmud",
         changelog: nix.thunk(() => nix.str`https://github.com/ldmud/ldmud/blob/${nix.sel(finalAttrs, "version")}/HISTORY`),

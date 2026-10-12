@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 25, 13], ["pname", 26, 5], ["hash", 27, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["pythonImportsCheck", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "flit-core": false, "importlib-metadata": false, ipython: false, "jupyter-cache": false, nbclient: false, "myst-parser": false, nbformat: false, pyyaml: false, sphinx: false, "sphinx-togglebutton": false, "typing-extensions": false, ipykernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 25, 13], ["pname", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["pythonImportsCheck", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "myst_nb",
           hash: "sha256-3zzUaA9Rpa9nP9RrOLVivjVZrvFHXpBu0PLmbkWHzks=",
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["myst_nb", "myst_nb.sphinx_ext"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Jupyter Notebook Sphinx reader built on top of the MyST markdown parser",
         homepage: "https://github.com/executablebooks/MyST-NB",
         changelog: nix.thunk(() => nix.str`https://github.com/executablebooks/MyST-NB/raw/v${version}/CHANGELOG.md`),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

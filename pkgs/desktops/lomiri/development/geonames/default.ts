@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["LC_ALL", 72, 7]], [["package", 104, 7], ["versionCheck", 105, 7]], [["pkg-config", 103, 11]], [["tests", 103, 5], ["updateScript", 107, 5]], [["description", 111, 5], ["mainProgram", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["teams", 116, 5], ["platforms", 117, 5], ["broken", 120, 5], ["pkgConfigModules", 123, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 34, 3], ["postPatch", 45, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 64, 3], ["env", 72, 3], ["nativeCheckInputs", 74, 3], ["makeFlags", 78, 3], ["cmakeFlags", 83, 3], ["preInstall", 95, 3], ["doCheck", 100, 3], ["passthru", 102, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, testers: false, buildPackages: false, cmake: false, "docbook-xsl-nons": false, docbook_xml_dtd_45: false, gettext: false, glib: false, glibcLocales: false, withExamples: true, gtk3: false, withDocumentation: true, "gtk-doc": false, "pkg-config": false, validatePkgConfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["LC_ALL", 72, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["package", 104, 7], ["versionCheck", 105, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pkg-config", 103, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 103, 5], ["updateScript", 107, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 111, 5], ["mainProgram", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["teams", 116, 5], ["platforms", 117, 5], ["broken", 120, 5], ["pkgConfigModules", 123, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 34, 3], ["postPatch", 45, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 64, 3], ["env", 72, 3], ["nativeCheckInputs", 74, 3], ["makeFlags", 78, 3], ["cmakeFlags", 83, 3], ["preInstall", 95, 3], ["doCheck", 100, 3], ["passthru", 102, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "geonames",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/geonames",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, gettext, glib, pkg_config, validatePkgConfig], nix.app(nix.sel(lib, "optionals"), withDocumentation, nix.thunk(() => [docbook_xsl_nons, docbook_xml_dtd_45, gtk_doc])))),
       buildInputs: nix.thunk(() => nix.concat([glib], nix.app(nix.sel(lib, "optionals"), withExamples, nix.thunk(() => [gtk3])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LC_ALL: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), "en_US.UTF-8")),
       })),
       nativeCheckInputs: nix.thunk(() => [glibcLocales]),
@@ -64,11 +58,11 @@ export default nix.lambda((args) => (() => {
       preInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withDocumentation, "# gtkdoc-mkhtml generates images without write permissions, errors out during install\nchmod +w doc/reference/html/*\n")),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -76,7 +70,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Parse and query the geonames database dump",
         mainProgram: "geonames-demo",
         homepage: "https://gitlab.com/ubports/development/core/geonames",

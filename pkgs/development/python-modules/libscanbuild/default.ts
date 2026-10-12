@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 40, 5]], [["pname", 11, 3], ["version", 12, 29], ["pyproject", 14, 3], ["src", 16, 3], ["dontUnpack", 18, 3], ["dependencies", 20, 3], ["installPhase", 24, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, llvmPackages: false, buildPythonPackage: false, libear: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 29], ["pyproject", 14, 3], ["src", 16, 3], ["dontUnpack", 18, 3], ["dependencies", 20, 3], ["installPhase", 24, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "LIBPATH=\"$(toPythonPath \"$out\")/libscanbuild\"\nmkdir -p \"$LIBPATH\"\n\ncp -r \"$src/\"* \"$LIBPATH\"\n";
       const pythonImportsCheck = nix.thunk(() => ["libscanbuild"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Captures all child process creation and log information about it",
         homepage: nix.thunk(() => nix.str`https://github.com/llvm/llvm-project/tree/llvmorg-${version}/clang/tools/scan-build-py/lib/libscanbuild`),
         license: nix.thunk(() => (() => {
@@ -36,7 +35,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         pyproject,

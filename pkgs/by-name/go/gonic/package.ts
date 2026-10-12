@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]], [["gonic", 61, 11]], [["tests", 61, 5]], [["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 27, 3], ["vendorHash", 34, 3], ["postPatch", 38, 3], ["passthru", 60, 3], ["__darwinAllowLocalNetworking", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false, "pkg-config": false, taglib: false, zlib: false, transcodingSupport: true, ffmpeg: false, jukeboxSupport: true, mpv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gonic", 61, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 27, 3], ["vendorHash", 34, 3], ["postPatch", 38, 3], ["passthru", 60, 3], ["__darwinAllowLocalNetworking", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const jukeboxSupport = nix.argOr($, "jukeboxSupport", () => true);
   const mpv = nix.arg($, "mpv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gonic",
       version: "0.22.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sentriz",
           repo: "gonic",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,12 +42,12 @@ export default nix.lambda((args) => (() => {
     '"${nix.app(nix.sel(lib, "getBin"), mpv)}/bin/mpv"'
 `))), "substituteInPlace server/ctrlsubsonic/testdata/test* \\\n  --replace-quiet \\\n    '\"audio/flac\"' \\\n    '\"audio/x-flac\"'\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, gonic: nix.thunk(() => nix.sel(nixosTests, "gonic")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], gonic: nix.thunk(() => nix.sel(nixosTests, "gonic")) })),
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/sentriz/gonic",
         description: "Music streaming server / subsonic server API implementation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 78, 5], ["broken", 81, 5]], [["name", 86, 5], ["paths", 87, 5]], [["name", 95, 5], ["paths", 96, 5]], [["name", 108, 5], ["paths", 109, 5]], [["name", 134, 5], ["paths", 135, 5]], [["owner", 200, 7], ["repo", 201, 7], ["rev", 203, 7], ["hash", 204, 7]], [["pname", 196, 5], ["version", 197, 5], ["src", 199, 5], ["dontBuild", 207, 5], ["nativeBuildInputs", 210, 5], ["postPatch", 213, 5], ["installPhase", 217, 5]], [["owner", 230, 7], ["repo", 231, 7], ["tag", 233, 7], ["hash", 234, 7]], [["x86_64-linux", 388, 15]], [["x86_64-linux", 391, 15], ["aarch64-linux", 392, 15]], [["TF_SYSTEM_LIBS", 365, 7], ["bazelTargets", 367, 7], ["bazelFlags", 371, 7], ["sha256", 385, 7], ["preInstall", 397, 7]], [["outputs", 405, 7], ["TF_SYSTEM_LIBS", 407, 7], ["preBuild", 416, 7]], [["name", 223, 5], ["bazel", 227, 5], ["src", 229, 5], ["nativeBuildInputs", 237, 5], ["buildInputs", 248, 5], ["postPatch", 267, 5], ["bazelRunTarget", 271, 5], ["runTargetFlags", 272, 5], ["removeRulesCC", 279, 5], ["GCC_HOST_COMPILER_PREFIX", 281, 5], ["GCC_HOST_COMPILER_PATH", 282, 5], ["JAXLIB_RELEASE", 286, 5], ["preConfigure", 288, 5], ["bazelFlags", 347, 5], ["fetchAttrs", 364, 5], ["buildAttrs", 404, 5], ["meta", 424, 13]], [["bazel-build", 496, 13]], [["pname", 437, 11], ["version", 437, 17], ["format", 438, 3], ["src", 440, 3], ["postInstall", 448, 3], ["nativeBuildInputs", 463, 3], ["dependencies", 465, 3], ["buildInputs", 479, 3], ["pythonImportsCheck", 483, 3], ["dontPatchELF", 492, 3], ["passthru", 494, 3], ["meta", 499, 11]]]);
 const formals$1 = { args: { lib: false, pkgs: false, stdenv: false, autoAddDriverRunpath: false, bazel_7: false, binutils: false, buildBazelPackage: false, buildPythonPackage: false, cctools: false, curl: false, cython: false, fetchFromGitHub: false, git: false, jsoncpp: false, nsync: false, openssl: false, pybind11: false, setuptools: false, symlinkJoin: false, wheel: false, build: false, which: false, "absl-py": false, flatbuffers: false, "ml-dtypes": false, numpy: false, scipy: false, six: false, "double-conversion": false, giflib: false, libjpeg_turbo: false, python: false, "snappy-cpp": false, zlib: false, config: false, cudaSupport: true, cudaPackages: false, mklSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 78, 5], ["broken", 81, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 86, 5], ["paths", 87, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 95, 5], ["paths", 96, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 108, 5], ["paths", 109, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 134, 5], ["paths", 135, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["owner", 200, 7], ["repo", 201, 7], ["rev", 203, 7], ["hash", 204, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 196, 5], ["version", 197, 5], ["src", 199, 5], ["dontBuild", 207, 5], ["nativeBuildInputs", 210, 5], ["postPatch", 213, 5], ["installPhase", 217, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["owner", 230, 7], ["repo", 231, 7], ["tag", 233, 7], ["hash", 234, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["x86_64-linux", 388, 15]]);
-const pos$10 = nix.positions(here + "/default.nix", [["x86_64-linux", 391, 15], ["aarch64-linux", 392, 15]]);
-const pos$11 = nix.positions(here + "/default.nix", [["TF_SYSTEM_LIBS", 365, 7], ["bazelTargets", 367, 7], ["bazelFlags", 371, 7], ["sha256", 385, 7], ["preInstall", 397, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["outputs", 405, 7], ["TF_SYSTEM_LIBS", 407, 7], ["preBuild", 416, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["name", 223, 5], ["bazel", 227, 5], ["src", 229, 5], ["nativeBuildInputs", 237, 5], ["buildInputs", 248, 5], ["postPatch", 267, 5], ["bazelRunTarget", 271, 5], ["runTargetFlags", 272, 5], ["removeRulesCC", 279, 5], ["GCC_HOST_COMPILER_PREFIX", 281, 5], ["GCC_HOST_COMPILER_PATH", 282, 5], ["JAXLIB_RELEASE", 286, 5], ["preConfigure", 288, 5], ["bazelFlags", 347, 5], ["fetchAttrs", 364, 5], ["buildAttrs", 404, 5], ["meta", 424, 13]]);
-const pos$14 = nix.positions(here + "/default.nix", [["bazel-build", 496, 13]]);
-const pos$15 = nix.positions(here + "/default.nix", [["pname", 437, 11], ["version", 437, 17], ["format", 438, 3], ["src", 440, 3], ["postInstall", 448, 3], ["nativeBuildInputs", 463, 3], ["dependencies", 465, 3], ["buildInputs", 479, 3], ["pythonImportsCheck", 483, 3], ["dontPatchELF", 492, 3], ["passthru", 494, 3], ["meta", 499, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -68,7 +54,7 @@ export default nix.lambda((args) => (() => {
   const stdenv_1 = nix.thunk(() => nix.builtins.throw("Use effectiveStdenv instead"));
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.sel(inputs, "stdenv")));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Source-built JAX backend. JAX is Autograd and XLA, brought together for high-performance machine learning research",
     homepage: "https://github.com/jax-ml/jax",
     license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -80,7 +66,7 @@ export default nix.lambda((args) => (() => {
     broken: true,
   }));
   const cudnnMerged = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "cudnn-merged",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(cudaPackages, null);
@@ -91,7 +77,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   const cuda_libs_joined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "cuda-joined",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(cudaPackages, null);
@@ -107,7 +93,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   const cuda_build_deps_joined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "cuda-build-deps-joined",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(cudaPackages, null);
@@ -130,7 +116,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   const backend_cc_joined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "cuda-cc-joined",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(effectiveStdenv, "cc")),
@@ -169,11 +155,11 @@ export default nix.lambda((args) => (() => {
   ]);
   const arch = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(effectiveStdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.eq(nix.sel(effectiveStdenv, "hostPlatform", "linuxArch"), "arm64")))) ? "aarch64" : nix.sel(effectiveStdenv, "hostPlatform", "linuxArch")));
   const xla = nix.thunk(() => nix.app(nix.sel(effectiveStdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "xla-src",
       version: "unstable",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           owner: "openxla",
           repo: "xla",
           rev: "e8247c3ea1d4d7f31cf27def4c7ac6f2ce64ecd4",
@@ -188,7 +174,7 @@ export default nix.lambda((args) => (() => {
       const name = nix.thunk(() => nix.str`bazel-build-${pname}-${version}`);
       const bazel = bazel_7;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           owner: "google",
           repo: "jax",
           tag: nix.thunk(() => nix.str`${pname}-v${version}`),
@@ -251,22 +237,22 @@ build:cuda --action_env TF_CUDA_COMPUTE_CAPABILITIES="${nix.builtins.concatStrin
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(effectiveStdenv, "hostPlatform", "avxSupport")) && nix.asBool(nix.sel(effectiveStdenv, "hostPlatform", "isUnix")))), "build --config=avx_posix\n")), nix.app(nix.sel(lib, "optionalString"), mklSupport, "build --config=mkl_open_source_only\n")), "CFG\n"));
       const bazelFlags = nix.thunk(() => nix.concat(["-c opt", nix.thunk(() => nix.str`--override_repository=xla=${xla}`)], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(effectiveStdenv, "cc", "isClang")), nix.thunk(() => ["--cxxopt=-x", "--cxxopt=c++", "--host_cxxopt=-x", "--host_cxxopt=c++"]))));
       const fetchAttrs = nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         TF_SYSTEM_LIBS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", tf_system_libs)),
         bazelTargets: nix.thunk(() => [bazelRunTarget, "@mkl_dnn_v1//:mkl_dnn"]),
         bazelFlags: nix.thunk(() => nix.concat(bazelFlags, nix.concat(["--config=avx_posix", "--config=mkl_open_source_only"], nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => ["--config=cuda"]))))),
         sha256: nix.thunk(() => nix.selOr((nix.asBool(cudaSupport) ? {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           "x86_64-linux": "sha256-Uf0VMRE0jgaWEYiuphWkWloZ5jMeqaWBl3lSvk2y1HI=",
         } : {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           "x86_64-linux": "sha256-NzJJg6NlrPGMiR8Fn8u4+fu0m+AulfmN5Xqk63Um6sw=",
           "aarch64-linux": "sha256-Ro3qzrUxSR+3TH6ROoJTq+dLSufrDN/9oEo2MRkx7wM=",
         }), () => nix.builtins.throw(nix.thunk(() => nix.str`jaxlib: unsupported system: ${nix.sel(effectiveStdenv, "system")}`)), nix.key(nix.sel(effectiveStdenv, "system")))),
         preInstall: "cat << \\EOF > \"$bazelOut/external/go_sdk/versions.json\"\n[]\nEOF\n",
       }));
       const buildAttrs = nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         outputs: nix.thunk(() => ["out"]),
         TF_SYSTEM_LIBS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.concat(tf_system_libs, nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(effectiveStdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ["nsync"])))))),
         preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(effectiveStdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`substituteInPlace ../output/external/rules_cc/cc/private/toolchain/osx_cc_wrapper.sh.tpl \\
@@ -277,7 +263,7 @@ substituteInPlace ../output/external/rules_cc/cc/private/toolchain/unix_cc_confi
       }));
       const meta_1 = meta;
       return {
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         name,
         bazel,
         src,
@@ -299,7 +285,7 @@ substituteInPlace ../output/external/rules_cc/cc/private/toolchain/unix_cc_confi
     })())));
   const platformTag = nix.thunk(() => (nix.asBool(nix.sel(effectiveStdenv, "hostPlatform", "isLinux")) ? nix.str`manylinux2014_${arch}` : (nix.asBool(nix.eq(nix.sel(effectiveStdenv, "system"), "x86_64-darwin")) ? nix.str`macosx_10_9_${arch}` : (nix.asBool(nix.eq(nix.sel(effectiveStdenv, "system"), "aarch64-darwin")) ? nix.str`macosx_11_0_${arch}` : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported target platform: ${nix.sel(effectiveStdenv, "hostPlatform")}`))))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: pname,
       version: version,
       format: "wheel",
@@ -335,7 +321,7 @@ done
       buildInputs: nix.thunk(() => [snappy_cpp]),
       pythonImportsCheck: nix.thunk(() => ["jaxlib", "jaxlib.cpu_feature_guard", "jaxlib.xla_client"]),
       dontPatchELF: cudaSupport,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$14, "bazel-build": bazel_build })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[13], "bazel-build": bazel_build })),
       meta: meta,
     })));
 })(), formals$1);

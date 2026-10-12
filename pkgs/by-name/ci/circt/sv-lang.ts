@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sv-lang.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 48, 3], ["cmakeFlags", 52, 3], ["doCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, boost: false, catch2_3: false, cmake: false, ninja: false, fmt: false, llvmPackages: false, mimalloc: false, python3: false, tomlplusplus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sv-lang.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/sv-lang.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/sv-lang.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 48, 3], ["cmakeFlags", 52, 3], ["doCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const tomlplusplus = nix.arg($, "tomlplusplus");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "circt-sv-lang",
       version: "11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MikePopoloski",
           repo: "slang",
           rev: "44dc55f99b9c64971893013e7931e643fbedcf23",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SystemVerilog compiler and language services pinned for CIRCT",
         homepage: "https://github.com/MikePopoloski/slang",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

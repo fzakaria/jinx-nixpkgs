@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 49, 3], ["disabledTestPaths", 60, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aioresponses: false, awesomeversion: false, buildPythonPackage: false, "envoy-utils": false, fetchFromGitHub: false, lxml: false, orjson: false, "poetry-core": false, pyjwt: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-timeout": false, pytestCheckHook: false, "python-jsonpath": false, respx: false, syrupy: false, tenacity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 49, 3], ["disabledTestPaths", 60, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const syrupy = nix.arg($, "syrupy");
   const tenacity = nix.arg($, "tenacity");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pyenphase",
       version: "4.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyenphase",
           repo: "pyenphase",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_retries.py"]),
       pythonImportsCheck: nix.thunk(() => ["pyenphase"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to control enphase envoy",
         homepage: "https://github.com/pyenphase/pyenphase",
         changelog: nix.thunk(() => nix.str`https://github.com/pyenphase/pyenphase/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

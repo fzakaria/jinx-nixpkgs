@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["url", 23, 7], ["hash", 24, 7]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["buildPhase", 34, 3], ["installPhase", 39, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, smlnj: false, rsync: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["buildPhase", 34, 3], ["installPhase", 39, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const smlnj = nix.arg($, "smlnj");
   const rsync = nix.arg($, "rsync");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "twelf",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://twelf.plparty.org/releases/twelf-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0fi1kbs9hrdrm1x4k13angpjasxlyd1gc3ys8ah54i75qbcd9c4i",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/standardml/twelf/commit/7b3f3dbb8b8ec8d16d843875fce1e2bd6a50e3ae.patch",
             hash: "sha256-cSrgQFRPL+4zRtFXv3rLsAasjLfal0TZpXasEUtUSHc=",
           })))),
@@ -54,7 +51,7 @@ mkdir -p $out/share/twelf/vim
 rsync -av vim/ $out/share/twelf/vim/
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Logic proof assistant",
         longDescription: "Twelf is a language used to specify, implement, and prove properties of\ndeductive systems such as programming languages and logics. Large\nresearch projects using Twelf include the TALT typed assembly language,\na foundational proof-carrying-code system, and a type safety proof for\nStandard ML.\n",
         homepage: "http://twelf.org/wiki/Main_Page",

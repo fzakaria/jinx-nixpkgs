@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["versions", 29, 49]], [["owner", 37, 5], ["repo", 38, 5], ["fetchSubmodules", 39, 5], ["rev", 40, 5], ["hash", 41, 34]], [["src", 109, 5], ["options", 110, 5]], [["invidious", 108, 19]], [["invidious", 143, 28]], [["tests", 142, 5], ["updateScript", 145, 5]], [["description", 149, 5], ["mainProgram", 150, 5], ["homepage", 151, 5], ["downloadPage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5], ["platforms", 160, 5]], [["pname", 32, 3], ["version", 33, 32], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 100, 3], ["format", 106, 3], ["shardsFile", 107, 3], ["crystalBinaries", 108, 3], ["postInstall", 119, 3], ["installCheckPhase", 131, 3], ["passthru", 141, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, crystal: false, fetchFromGitHub: false, librsvg: false, "pkg-config": false, libxml2: false, openssl: false, shards: false, sqlite: false, nixosTests: false, versions: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["versions", 29, 49]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["fetchSubmodules", 39, 5], ["rev", 40, 5], ["hash", 41, 34]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 109, 5], ["options", 110, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["invidious", 108, 19]]);
-const pos$5 = nix.positions(here + "/package.nix", [["invidious", 143, 28]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 142, 5], ["updateScript", 145, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 149, 5], ["mainProgram", 150, 5], ["homepage", 151, 5], ["downloadPage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5], ["platforms", 160, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 32], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 100, 3], ["format", 106, 3], ["shardsFile", 107, 3], ["crystalBinaries", 108, 3], ["postInstall", 119, 3], ["installCheckPhase", 131, 3], ["passthru", 141, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const nixosTests = nix.arg($, "nixosTests");
   const versions = nix.argOr($, "versions", () => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./versions.json")));
-  const videojs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./videojs.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, versions: versions }))));
+  const videojs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./videojs.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], versions: versions }))));
   return nix.app(nix.sel(crystal, "buildCrystalPackage"), nix.thunk(() => (() => {
       const pname = "invidious";
       const from = nix.thunk(() => nix.sel(versions, "invidious"));
@@ -35,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(versions, "invidious"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "iv-org",
           repo: "invidious",
           fetchSubmodules: true,
@@ -84,9 +77,9 @@ substituteInPlace src/invidious/user/captcha.cr \\
       const format = "crystal";
       const shardsFile = nix.path(here, "./shards.nix");
       const crystalBinaries = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         invidious: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: "src/invidious.cr",
           options: nix.thunk(() => [
             "--release",
@@ -100,15 +93,15 @@ substituteInPlace src/invidious/user/captcha.cr \\
       const postInstall = "mkdir -p $out/share/invidious/config\n\n# Copy static parts\ncp -r assets locales $out/share/invidious\ncp -r config/sql $out/share/invidious/config\n";
       const installCheckPhase = "export INVIDIOUS_CONFIG=\"$(cat <<EOF\ndatabase_url: sqlite3:///dev/null\nhmac_key: \"this-is-required\"\nEOF\n)\"\n$out/bin/invidious --help\n$out/bin/invidious --version\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           invidious: nix.thunk(() => nix.attr(nixosTests, "invidious")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Open source alternative front-end to YouTube",
         mainProgram: "invidious",
         homepage: "https://invidious.io/",
@@ -126,7 +119,7 @@ substituteInPlace src/invidious/user/captcha.cr \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         __structuredAttrs,

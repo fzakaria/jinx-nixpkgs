@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["pythonRelaxDeps", 42, 3], ["nativeCheckInputs", 48, 3], ["disabledTestPaths", 54, 3], ["disabledTests", 74, 3], ["pythonImportsCheck", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, appdirs: false, buildPythonPackage: false, certifi: false, fetchFromGitHub: false, "importlib-metadata": false, "poetry-core": false, pyee: false, "pytest-xdist": false, pytestCheckHook: false, syncer: false, tqdm: false, urllib3: false, websockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["pythonRelaxDeps", 42, 3], ["nativeCheckInputs", 48, 3], ["disabledTestPaths", 54, 3], ["disabledTests", 74, 3], ["pythonImportsCheck", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyppeteer",
           repo: "pyppeteer",
           tag: version,
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["TestScreenShot", "TestBrowserCrash", "TestPDF"]);
       const pythonImportsCheck = nix.thunk(() => ["pyppeteer"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Headless chrome/chromium automation library (unofficial port of puppeteer)",
         mainProgram: "pyppeteer-install",
         homepage: "https://github.com/pyppeteer/pyppeteer",
@@ -71,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

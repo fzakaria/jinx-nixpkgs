@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 37, 3], ["checkInputs", 47, 3], ["nativeCheckInputs", 49, 3], ["preCheck", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitLab: false, setuptools: false, "setuptools-scm": false, unittestCheckHook: false, hledger: false, perl: false, rich: false, pandas: false, scipy: false, psutil: false, matplotlib: false, drawilleplot: false, asteval: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 37, 3], ["checkInputs", 47, 3], ["nativeCheckInputs", 49, 3], ["preCheck", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nobodyinperson",
           repo: "hledger-utils",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [hledger, perl]);
       const preCheck = "export PATH=$out/bin:$PATH\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utilities extending hledger",
         homepage: "https://gitlab.com/nobodyinperson/hledger-utils",
         license: nix.thunk(() => (() => {
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

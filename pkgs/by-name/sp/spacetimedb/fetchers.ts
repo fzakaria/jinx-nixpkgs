@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetchers.nix", [[["version", 17, 24], ["sourceProvenance", 18, 9]], [["name", 13, 7], ["url", 14, 7], ["sha256", 15, 7], ["meta", 16, 7]], [["fetchLibrustyV8", 10, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fetchers.nix", [["version", 17, 24], ["sourceProvenance", 18, 9]]);
-const pos$2 = nix.positions(here + "/fetchers.nix", [["name", 13, 7], ["url", 14, 7], ["sha256", 15, 7], ["meta", 16, 7]]);
-const pos$3 = nix.positions(here + "/fetchers.nix", [["fetchLibrustyV8", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     fetchLibrustyV8: (args_1) => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.str`librusty_v8-${nix.sel(args_1, "version")}`),
         url: nix.thunk(() => nix.str`https://github.com/denoland/rusty_v8/releases/download/v${nix.sel(args_1, "version")}/librusty_v8_release_${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}.a.gz`),
         sha256: nix.thunk(() => nix.sel(args_1, "shas", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(args_1, "version")),
           sourceProvenance: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

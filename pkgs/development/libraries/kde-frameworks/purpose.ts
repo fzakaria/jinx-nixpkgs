@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/purpose.nix", [[["pname", 18, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 24, 3]]]);
 const formals$1 = { args: { mkDerivation: false, cmake: false, "extra-cmake-modules": false, intltool: false, qtbase: false, "accounts-qt": false, qtdeclarative: false, kconfig: false, kcoreaddons: false, ki18n: false, kio: false, kirigami2: false, signond: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/purpose.nix", [["pname", 18, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const kirigami2 = nix.arg($, "kirigami2");
   const signond = nix.arg($, "signond");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "purpose",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules, intltool]),
       buildInputs: nix.thunk(() => [

@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mkDerivation.nix", [[["enableParallelBuilding", 31, 11], ["nativeBuildInputs", 32, 11], ["buildInputs", 36, 11]]]);
 const formals$1 = { args: { lib: false, unwrapped: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mkDerivation.nix", [["enableParallelBuilding", 31, 11], ["nativeBuildInputs", 32, 11], ["buildInputs", 36, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
 Use \`disabled = gnuradioAtLeast "${nix.sel(args_2, "disabledForGRafter")}";\` instead.
 `)) : (() => {
       const args_ = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         enableParallelBuilding: nix.thunk(() => nix.selOr(args_2, () => true, "enableParallelBuilding")),
         nativeBuildInputs: nix.thunk(() => nix.selOr(args_2, () => [], "nativeBuildInputs")),
         buildInputs: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "buildInputs"), [unwrapped, nix.thunk(() => nix.sel(unwrapped, "volk"))])),

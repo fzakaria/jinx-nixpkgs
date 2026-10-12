@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]], [["name", 49, 7], ["url", 50, 7], ["hash", 51, 7]], [["h5py", 135, 28]], [["cppSupport", 57, 7], ["fortranSupport", 58, 7], ["fortran", 59, 7], ["zlibSupport", 60, 7], ["zlib", 61, 7], ["szipSupport", 62, 7], ["libaec", 63, 7], ["mpiSupport", 64, 7], ["mpi", 65, 7], ["tests", 134, 12]], [["description", 139, 5], ["longDescription", 140, 5], ["license", 146, 5], ["maintainers", 147, 5], ["homepage", 148, 5], ["platforms", 149, 5]], [["version", 32, 3], ["pname", 33, 3], ["src", 40, 3], ["patches", 47, 3], ["passthru", 55, 3], ["outputs", 69, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 82, 3], ["propagatedBuildInputs", 85, 3], ["cmakeFlags", 87, 3], ["postInstall", 106, 3], ["enableParallelBuilding", 132, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, fixDarwinDylibNames: false, removeReferencesTo: false, cppSupport: true, fortranSupport: true, fortran: false, zlibSupport: true, zlib: false, szipSupport: true, libaec: false, mpiSupport: true, mpi: false, enableShared: true, enableStatic: true, javaSupport: true, jdk: false, apiVersion: true, threadsafe: true, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 49, 7], ["url", 50, 7], ["hash", 51, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["h5py", 135, 28]]);
-const pos$4 = nix.positions(here + "/default.nix", [["cppSupport", 57, 7], ["fortranSupport", 58, 7], ["fortran", 59, 7], ["zlibSupport", 60, 7], ["zlib", 61, 7], ["szipSupport", 62, 7], ["libaec", 63, 7], ["mpiSupport", 64, 7], ["mpi", 65, 7], ["tests", 134, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 139, 5], ["longDescription", 140, 5], ["license", 146, 5], ["maintainers", 147, 5], ["homepage", 148, 5], ["platforms", 149, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 32, 3], ["pname", 33, 3], ["src", 40, 3], ["patches", 47, 3], ["passthru", 55, 3], ["outputs", 69, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 82, 3], ["propagatedBuildInputs", 85, 3], ["cmakeFlags", 87, 3], ["postInstall", 106, 3], ["enableParallelBuilding", 132, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.6";
       const pname = nix.thunk(() => nix.add(nix.add(nix.add(nix.add("hdf5", nix.app(nix.sel(lib, "optionalString"), cppSupport, "-cpp")), nix.app(nix.sel(lib, "optionalString"), fortranSupport, "-fortran")), nix.app(nix.sel(lib, "optionalString"), mpiSupport, "-mpi")), nix.app(nix.sel(lib, "optionalString"), threadsafe, "-threadsafe")));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "HDFGroup",
           repo: "hdf5",
           rev: nix.thunk(() => nix.str`hdf5_${version}`),
@@ -49,14 +44,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "reproducible-build.patch",
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/hdf5/-/raw/721d33408db902ff738db18f1e977611d49b4ba8/hdf5-make-reproducible.patch",
             hash: "sha256-Z31dCsLjYpqjoGXooOXI81EPjPwyTK8890xCENTh8aM=",
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         cppSupport: cppSupport,
         fortranSupport: fortranSupport,
         fortran: fortran,
@@ -68,7 +63,7 @@ export default nix.lambda((args) => (() => {
         mpi: mpi,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
-          return { [nix.POS]: pos$3, h5py: nix.thunk(() => nix.attr(from, "h5py")) };
+          return { [nix.POS]: $pos[2], h5py: nix.thunk(() => nix.attr(from, "h5py")) };
         })()),
       }));
       const outputs = nix.thunk(() => ["out", "dev", "bin"]);
@@ -106,7 +101,7 @@ find "$out" -type f -exec remove-references-to -t ${fortran} '{}' +
 `))));
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Data model, library, and file format for storing and managing data",
         longDescription: "HDF5 supports an unlimited variety of datatypes, and is designed for flexible and efficient\nI/O and for high volume and complex data. HDF5 is portable and is extensible, allowing\napplications to evolve in their use of HDF5. The HDF5 Technology suite includes tools and\napplications for managing, manipulating, viewing, and analyzing data in the HDF5 format.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -115,7 +110,7 @@ find "$out" -type f -exec remove-references-to -t ${fortran} '{}' +
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version,
         pname,
         src,

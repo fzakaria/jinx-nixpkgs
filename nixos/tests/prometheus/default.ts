@@ -2,14 +2,14 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["alertmanager", 4, 3], ["alertmanager-ntfy", 5, 3], ["config-reload", 6, 3], ["federation", 7, 3], ["prometheus-pair", 8, 3], ["pushgateway", 9, 3], ["remote-write", 10, 3], ["ui", 11, 3]]]);
 const formals$1 = { args: { runTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["alertmanager", 4, 3], ["alertmanager-ntfy", 5, 3], ["config-reload", 6, 3], ["federation", 7, 3], ["prometheus-pair", 8, 3], ["pushgateway", 9, 3], ["remote-write", 10, 3], ["ui", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     alertmanager: nix.thunk(() => nix.app(runTest, nix.path(here, "./alertmanager.nix"))),
     "alertmanager-ntfy": nix.thunk(() => nix.app(runTest, nix.path(here, "./alertmanager-ntfy.nix"))),
     "config-reload": nix.thunk(() => nix.app(runTest, nix.path(here, "./config-reload.nix"))),

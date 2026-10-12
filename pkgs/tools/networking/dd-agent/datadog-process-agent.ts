@@ -2,19 +2,18 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/datadog-process-agent.nix", [[["description", 7, 7], ["mainProgram", 8, 7], ["maintainers", 9, 7]], [["pname", 3, 3], ["meta", 4, 3], ["subPackages", 11, 3], ["postInstall", 12, 3]]]);
 const formals$1 = { args: { lib: false, "datadog-agent": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/datadog-process-agent.nix", [["description", 7, 7], ["mainProgram", 8, 7], ["maintainers", 9, 7]]);
-const pos$2 = nix.positions(here + "/datadog-process-agent.nix", [["pname", 3, 3], ["meta", 4, 3], ["subPackages", 11, 3], ["postInstall", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const datadog_agent = nix.arg($, "datadog-agent");
   return nix.app(nix.sel(datadog_agent, "overrideAttrs"), (attrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "datadog-process-agent",
       meta: nix.thunk(() => nix.update(nix.sel(attrs, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Live process collector for the DataDog Agent v7",
         mainProgram: "process-agent",
         maintainers: [],

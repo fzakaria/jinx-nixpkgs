@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["rev-prefix", 66, 7]], [["skipBulkUpdate", 64, 5], ["updateScript", 65, 5]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["sourceRoot", 30, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["pythonRelaxDeps", 44, 3], ["nativeCheckInputs", 46, 3], ["disabledTestPaths", 52, 3], ["pythonImportsCheck", 57, 3], ["passthru", 62, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, gitUpdater: false, "google-api-core": false, "google-auth": false, "grpc-google-iam-v1": false, libcst: false, mock: false, "proto-plus": false, protobuf: false, "pytest-asyncio": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 66, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 64, 5], ["updateScript", 65, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["sourceRoot", 30, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["pythonRelaxDeps", 44, 3], ["nativeCheckInputs", 46, 3], ["disabledTestPaths", 52, 3], ["pythonImportsCheck", 57, 3], ["passthru", 62, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.24.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "google-cloud-python",
           tag: nix.thunk(() => nix.str`google-cloud-iam-v${version}`),
@@ -51,12 +47,12 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/unit/gapic/iam_admin_v1/test_iam.py"]);
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.iam_credentials", "google.cloud.iam_credentials_v1"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdate: true,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "google-cloud-iam-v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "google-cloud-iam-v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "IAM Service Account Credentials API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-iam",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/${nix.sel(src, "tag")}/packages/google-cloud-iam/CHANGELOG.md`),
@@ -70,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

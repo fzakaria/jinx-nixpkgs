@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 12, 5], ["publisher", 13, 5], ["version", 14, 5], ["hash", 15, 5]], [["updateScript", 35, 12]], [["changelog", 38, 5], ["description", 39, 5], ["downloadPage", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["mktplcRef", 11, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["postInstall", 28, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { jq: false, lib: false, moreutils: false, ripgrep: false, "vscode-utils": false, "vscode-extension-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 12, 5], ["publisher", 13, 5], ["version", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 35, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 38, 5], ["description", 39, 5], ["downloadPage", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["mktplcRef", 11, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["postInstall", 28, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "todo-tree",
         publisher: "Gruntfuggly",
         version: "0.0.226",
@@ -35,11 +32,11 @@ jq '(.contributes.configuration[] | select(.title == "%todo-tree.configuration.r
   package.json | sponge package.json
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: "https://marketplace.visualstudio.com/items/Gruntfuggly.todo-tree/changelog",
         description: "Show TODO, FIXME, etc. comment tags in a tree view",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree",

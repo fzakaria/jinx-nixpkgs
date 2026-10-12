@@ -2,13 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["defaultConfig", 10, 39]], [["pkgs", 26, 59]], [["lib", 29, 17], ["nativeTools", 30, 9], ["nativePrefix", 31, 9], ["nativeLibc", 32, 9], ["stdenvNoCC", 34, 11], ["binutils", 35, 11], ["coreutils", 36, 11], ["gnugrep", 37, 11], ["cc", 39, 9], ["isGNU", 40, 9], ["shell", 41, 9]], [["cc", 49, 17], ["binutils", 50, 22], ["gzip", 52, 11], ["bzip2", 53, 11], ["xz", 54, 11], ["bash", 55, 11], ["coreutils", 56, 11], ["diffutils", 57, 11], ["findutils", 58, 11], ["gawk", 59, 11], ["gnumake", 60, 11], ["gnused", 61, 11], ["gnutar", 62, 11], ["gnugrep", 63, 11], ["gnupatch", 64, 11], ["perl", 65, 11]], [["buildPlatform", 18, 34], ["hostPlatform", 18, 48], ["targetPlatform", 18, 61], ["preHook", 20, 7], ["initialPath", 26, 7], ["cc", 28, 7], ["shell", 44, 7], ["fetchurlBoot", 46, 7], ["overrides", 48, 7]], [["config", 15, 13], ["overlays", 15, 20], ["stdenv", 17, 5]]]);
 const formals$1 = { args: { lib: false, localSystem: false, config: false, overlays: false, bootStages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["defaultConfig", 10, 39]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkgs", 26, 59]]);
-const pos$3 = nix.positions(here + "/default.nix", [["lib", 29, 17], ["nativeTools", 30, 9], ["nativePrefix", 31, 9], ["nativeLibc", 32, 9], ["stdenvNoCC", 34, 11], ["binutils", 35, 11], ["coreutils", 36, 11], ["gnugrep", 37, 11], ["cc", 39, 9], ["isGNU", 40, 9], ["shell", 41, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["cc", 49, 17], ["binutils", 50, 22], ["gzip", 52, 11], ["bzip2", 53, 11], ["xz", 54, 11], ["bash", 55, 11], ["coreutils", 56, 11], ["diffutils", 57, 11], ["findutils", 58, 11], ["gawk", 59, 11], ["gnumake", 60, 11], ["gnused", 61, 11], ["gnutar", 62, 11], ["gnugrep", 63, 11], ["gnupatch", 64, 11], ["perl", 65, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["buildPlatform", 18, 34], ["hostPlatform", 18, 48], ["targetPlatform", 18, 61], ["preHook", 20, 7], ["initialPath", 26, 7], ["cc", 28, 7], ["shell", 44, 7], ["fetchurlBoot", 46, 7], ["overrides", 48, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["config", 15, 13], ["overlays", 15, 20], ["stdenv", 17, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const overlays = nix.arg($, "overlays");
   const bootStages = nix.arg($, "bootStages");
-  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")), nix.thunk(() => ({ [nix.POS]: pos$1, defaultConfig: config }))));
+  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")), nix.thunk(() => ({ [nix.POS]: $pos[0], defaultConfig: config }))));
   return nix.concat(bootStages, [
     (prevStage) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       config: config,
       overlays: overlays,
       stdenv: nix.thunk(() => nix.app(genericStdenv, nix.thunk(() => (() => {
@@ -29,9 +24,9 @@ export default nix.lambda((args) => (() => {
           const hostPlatform = nix.thunk(() => nix.attr(from, "hostPlatform"));
           const targetPlatform = nix.thunk(() => nix.attr(from, "targetPlatform"));
           const preHook = "export NIX_ENFORCE_PURITY=\"${NIX_ENFORCE_PURITY-1}\"\nexport NIX_ENFORCE_NO_NATIVE=\"${NIX_ENFORCE_NO_NATIVE-1}\"\nexport NIX_IGNORE_LD_THROUGH_GCC=1\n";
-          const initialPath = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic/common-path.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: prevStage }))));
+          const initialPath = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic/common-path.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], pkgs: prevStage }))));
           const cc = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/cc-wrapper")), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               lib: lib,
               nativeTools: false,
               nativePrefix: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(hostPlatform, "isSunOS")), "/usr")),
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
           const shell = nix.thunk(() => nix.add(nix.sel(prevStage, "bash"), "/bin/sh"));
           const fetchurlBoot = nix.thunk(() => nix.sel(prevStage, "stdenv", "fetchurlBoot"));
           const overrides = (self) => (super$) => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             cc: cc,
             binutils: nix.thunk(() => nix.attr(cc, "binutils")),
             gzip: nix.thunk(() => nix.attr(prevStage, "gzip")),
@@ -66,7 +61,7 @@ export default nix.lambda((args) => (() => {
             perl: nix.thunk(() => nix.attr(prevStage, "perl")),
           });
           return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             buildPlatform,
             hostPlatform,
             targetPlatform,

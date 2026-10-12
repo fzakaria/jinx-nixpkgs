@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-defaultPkgConfigPackages.nix", [[["allTests", 22, 9]], [["moduleNames", 52, 9], ["package", 53, 9]], [["tests-combined", 57, 44]]]);
 const formals$1 = { args: { lib: false, "pkg-config": false, defaultPkgConfigPackages: false, runCommand: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-defaultPkgConfigPackages.nix", [["allTests", 22, 9]]);
-const pos$2 = nix.positions(here + "/test-defaultPkgConfigPackages.nix", [["moduleNames", 52, 9], ["package", 53, 9]]);
-const pos$3 = nix.positions(here + "/test-defaultPkgConfigPackages.nix", [["tests-combined", 57, 44]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const escapeNixIdentifier = nix.thunk(() => nix.attr(from, "escapeNixIdentifier"));
   const allTests = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (k) => (v) => (nix.asBool(nix.eq(v, null)) ? null : nix.app(makePkgConfigTestMaybe, k, v)), nix.thunk(() => nix.builtins.removeAttrs(defaultPkgConfigPackages, nix.thunk(() => ["recurseForDerivations"])))));
   const tests_combined = nix.thunk(() => nix.app(runCommand, "pkg-config-checks", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       allTests: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), allTests)),
     })), "touch $out\n"));
-  const makePkgConfigTestMaybe = (moduleName) => (pkg) => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isDerivation"), pkg))) ? nix.builtins.throw(nix.thunk(() => nix.str`pkg-config module \`${nix.app(escapeNixIdentifier, moduleName)}\` is not defined to be a derivation. Please check the attribute value for \`${nix.app(escapeNixIdentifier, moduleName)}\` in \`pkgs/top-level/pkg-config-packages.nix\` in Nixpkgs.`)) : (nix.asBool(!nix.asBool(nix.has(pkg, "meta", "unsupported"))) ? nix.builtins.throw(nix.thunk(() => nix.str`pkg-config module \`${nix.app(escapeNixIdentifier, moduleName)}\` does not have a \`meta.unsupported\` attribute. This can't be right. Please check the attribute value for \`${nix.app(escapeNixIdentifier, moduleName)}\` in \`pkgs/top-level/pkg-config-packages.nix\` in Nixpkgs.`)) : (nix.asBool(nix.sel(pkg, "meta", "unsupported")) ? null : (nix.asBool(!nix.asBool(nix.has(pkg, "meta", "broken"))) ? nix.builtins.throw(nix.thunk(() => nix.str`pkg-config module \`${nix.app(escapeNixIdentifier, moduleName)}\` does not have a \`meta.broken\` attribute. This can't be right. Please check the attribute value for \`${nix.app(escapeNixIdentifier, moduleName)}\` in \`pkgs/top-level/pkg-config.packages.nix\` in Nixpkgs.`)) : (nix.asBool(nix.sel(pkg, "meta", "broken")) ? null : nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$2, moduleNames: nix.thunk(() => [moduleName]), package: pkg }))))))));
-  return nix.update(nix.app(nix.sel(lib, "recurseIntoAttrs"), allTests), { [nix.POS]: pos$3, "tests-combined": tests_combined });
+  const makePkgConfigTestMaybe = (moduleName) => (pkg) => (nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isDerivation"), pkg))) ? nix.builtins.throw(nix.thunk(() => nix.str`pkg-config module \`${nix.app(escapeNixIdentifier, moduleName)}\` is not defined to be a derivation. Please check the attribute value for \`${nix.app(escapeNixIdentifier, moduleName)}\` in \`pkgs/top-level/pkg-config-packages.nix\` in Nixpkgs.`)) : (nix.asBool(!nix.asBool(nix.has(pkg, "meta", "unsupported"))) ? nix.builtins.throw(nix.thunk(() => nix.str`pkg-config module \`${nix.app(escapeNixIdentifier, moduleName)}\` does not have a \`meta.unsupported\` attribute. This can't be right. Please check the attribute value for \`${nix.app(escapeNixIdentifier, moduleName)}\` in \`pkgs/top-level/pkg-config-packages.nix\` in Nixpkgs.`)) : (nix.asBool(nix.sel(pkg, "meta", "unsupported")) ? null : (nix.asBool(!nix.asBool(nix.has(pkg, "meta", "broken"))) ? nix.builtins.throw(nix.thunk(() => nix.str`pkg-config module \`${nix.app(escapeNixIdentifier, moduleName)}\` does not have a \`meta.broken\` attribute. This can't be right. Please check the attribute value for \`${nix.app(escapeNixIdentifier, moduleName)}\` in \`pkgs/top-level/pkg-config.packages.nix\` in Nixpkgs.`)) : (nix.asBool(nix.sel(pkg, "meta", "broken")) ? null : nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: $pos[1], moduleNames: nix.thunk(() => [moduleName]), package: pkg }))))))));
+  return nix.update(nix.app(nix.sel(lib, "recurseIntoAttrs"), allTests), { [nix.POS]: $pos[2], "tests-combined": tests_combined });
 })(), formals$1);
 //# sourceMappingURL=test-defaultPkgConfigPackages.ts.map

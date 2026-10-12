@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["extraArgs", 77, 7]], [["pass-secret-service", 79, 11]], [["updateScript", 76, 5], ["tests", 79, 5]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5]], [["pname", 13, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 29, 3], ["postInstall", 40, 3], ["build-system", 46, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 59, 3], ["checkTarget", 71, 3], ["pythonImportsCheck", 73, 3], ["passthru", 75, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, dbus: false, gnupg: false, coreutils: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pass-secret-service", 79, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 76, 5], ["tests", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 29, 3], ["postInstall", 40, 3], ["build-system", 46, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 59, 3], ["checkTarget", 71, 3], ["pythonImportsCheck", 73, 3], ["passthru", 75, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pass-secret-service",
       version: "0-unstable-2026-07-15",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mdellweg",
           repo: "pass_secret_service",
           rev: "4ba0f4b6c0667192263c385c13b5ec42a87af9ff",
@@ -70,15 +65,15 @@ substituteInPlace systemd/dbus-org.freedesktop.secrets.service \\
       checkTarget: "test",
       pythonImportsCheck: nix.thunk(() => ["pass_secret_service"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pass-secret-service": nix.thunk(() => nix.sel(nixosTests, "pass-secret-service")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Libsecret D-Bus API with pass as the backend",
         homepage: "https://github.com/mdellweg/pass_secret_service/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

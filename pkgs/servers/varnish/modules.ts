@@ -2,13 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/modules.nix", [[["owner", 23, 9], ["repo", 24, 9], ["tag", 25, 9], ["hash", 26, 17]], [["description", 47, 9], ["homepage", 48, 9], ["license", 49, 32], ["platforms", 49, 40]], [["pname", 19, 7], ["version", 20, 15], ["src", 22, 7], ["nativeBuildInputs", 29, 7], ["buildInputs", 37, 7], ["postPatch", 39, 7], ["postInstall", 44, 7], ["meta", 46, 7]], [["version", 55, 5], ["hash", 56, 5]], [["modules27", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, varnish: false, docutils: false, removeReferencesTo: false }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false, extraNativeBuildInputs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/modules.nix", [["owner", 23, 9], ["repo", 24, 9], ["tag", 25, 9], ["hash", 26, 17]]);
-const pos$2 = nix.positions(here + "/modules.nix", [["description", 47, 9], ["homepage", 48, 9], ["license", 49, 32], ["platforms", 49, 40]]);
-const pos$3 = nix.positions(here + "/modules.nix", [["pname", 19, 7], ["version", 20, 15], ["src", 22, 7], ["nativeBuildInputs", 29, 7], ["buildInputs", 37, 7], ["postPatch", 39, 7], ["postInstall", 44, 7], ["meta", 46, 7]]);
-const pos$4 = nix.positions(here + "/modules.nix", [["version", 55, 5], ["hash", 56, 5]]);
-const pos$5 = nix.positions(here + "/modules.nix", [["modules27", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
         const pname = nix.thunk(() => nix.str`${nix.sel(varnish, "name")}-modules`);
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "varnish",
             repo: "varnish-modules",
             tag: version_1,
@@ -50,7 +46,7 @@ substituteInPlace Makefile.am --replace "\${LIBVARNISHAPI_DATAROOTDIR}/aclocal" 
         const meta = nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(varnish, "meta"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Collection of Varnish Cache modules (vmods) by Varnish Software",
           homepage: "https://github.com/varnish/varnish-modules",
           license: nix.thunk(() => nix.attr(from, "license")),
@@ -58,7 +54,7 @@ substituteInPlace Makefile.am --replace "\${LIBVARNISHAPI_DATAROOTDIR}/aclocal" 
         };
         })());
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname,
           version: version_1,
           src,
@@ -71,9 +67,9 @@ substituteInPlace Makefile.am --replace "\${LIBVARNISHAPI_DATAROOTDIR}/aclocal" 
       })()));
   })(), formals$2);
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     modules27: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: "0.27.0",
         hash: "sha256-1hE+AKsC6Td+Al7LFN6bgPicU8dtWd3A8PP7VKZLvYM=",
       })))),

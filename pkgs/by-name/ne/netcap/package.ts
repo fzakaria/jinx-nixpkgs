@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["CGO_LDFLAGS", 83, 5], ["CGO_CFLAGS", 90, 5]], [["updateScript", 115, 12]], [["description", 118, 5], ["homepage", 119, 5], ["downloadPage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["mainProgram", 124, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["vendorHash", 33, 3], ["nativeBuildInputs", 35, 3], ["postPatch", 41, 3], ["preBuild", 45, 3], ["subPackages", 60, 3], ["buildInputs", 62, 3], ["ldflags", 73, 3], ["tags", 78, 3], ["env", 82, 3], ["postInstall", 96, 3], ["checkFlags", 100, 3], ["nativeInstallCheckInputs", 111, 3], ["versionCheckProgram", 112, 3], ["doInstallCheck", 113, 3], ["passthru", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, buildGoModule: false, fetchFromGitHub: false, withDpi: true, libpcap: false, libprotoident: false, libflowmanager: false, libtrace: false, ndpi: false, "pkg-config": false, protobuf: false, "protoc-gen-go": false, "yara-x": false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_LDFLAGS", 83, 5], ["CGO_CFLAGS", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 115, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 118, 5], ["homepage", 119, 5], ["downloadPage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["mainProgram", 124, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["vendorHash", 33, 3], ["nativeBuildInputs", 35, 3], ["postPatch", 41, 3], ["preBuild", 45, 3], ["subPackages", 60, 3], ["buildInputs", 62, 3], ["ldflags", 73, 3], ["tags", 78, 3], ["env", 82, 3], ["postInstall", 96, 3], ["checkFlags", 100, 3], ["nativeInstallCheckInputs", 111, 3], ["versionCheckProgram", 112, 3], ["doInstallCheck", 113, 3], ["passthru", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const ndpi_4_14 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./ndpi_4_14.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "netcap",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dreadl0ck",
           repo: "netcap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s", "-w"]),
       tags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withDpi)), nix.thunk(() => ["nodpi"]))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withDpi, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           CGO_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               nix.thunk(() => nix.str`-L${ndpi_4_14}/lib`),
               "-lndpi",
@@ -71,11 +67,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/net`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Framework for secure and scalable network traffic analysis",
         homepage: "https://netcap.io",
         downloadPage: "https://github.com/dreadl0ck/netcap",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["preBuild", 33, 5], ["postUnpack", 34, 5]], [["updateScript", 84, 12]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5], ["platforms", 93, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["overrideModAttrs", 32, 3], ["nativeBuildInputs", 39, 3], ["preBuild", 49, 3], ["subPackages", 56, 3], ["ldflags", 61, 3], ["postInstall", 74, 3], ["passthru", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, bash: false, protobuf: false, "protoc-gen-go": false, "protoc-gen-go-grpc": false, "kubernetes-controller-tools": false, installShellFiles: false, "nix-update-script": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["preBuild", 33, 5], ["postUnpack", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 84, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5], ["platforms", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["overrideModAttrs", 32, 3], ["nativeBuildInputs", 39, 3], ["preBuild", 49, 3], ["subPackages", 56, 3], ["ldflags", 61, 3], ["postInstall", 74, 3], ["passthru", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +20,22 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dcp",
       version: "0.25.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "dcp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-dbgvKAsUw6950ig1/eUewUS++P803Bdg5qYmFYnqaGQ=",
         })))),
       vendorHash: "sha256-WBre4iBMYzx1unqz9+F1wDogYbPEsm3DyUgeceB8yko=",
-      overrideModAttrs: (_) => ({ [nix.POS]: pos$2, preBuild: null, postUnpack: "rm -rf $sourceRoot/vendor\n" }),
+      overrideModAttrs: (_) => ({
+        [nix.POS]: $pos[1],
+        preBuild: null,
+        postUnpack: "rm -rf $sourceRoot/vendor\n",
+      }),
       nativeBuildInputs: nix.thunk(() => [
         installShellFiles,
         protoc_gen_go,
@@ -59,11 +59,11 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: nix.thunk(() => nix.add("mv $out/bin/dcptun $out/bin/dcptun_c\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd dcp \\\n  --bash <($out/bin/dcp completion bash) \\\n  --fish <($out/bin/dcp completion fish) \\\n  --zsh <($out/bin/dcp completion zsh)\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Developer Control Plane - API server and CLI for managing developer workloads",
         homepage: "https://github.com/microsoft/dcp",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/dcp/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["extraArgs", 67, 7]], [["package", 75, 9], ["command", 76, 9]], [["pkg-config", 73, 7], ["version", 74, 7]], [["updateScript", 66, 5], ["tests", 72, 5]], [["homepage", 82, 5], ["changelog", 83, 5], ["description", 84, 5], ["longDescription", 88, 5], ["license", 95, 5], ["platforms", 96, 5], ["maintainers", 97, 5], ["mainProgram", 101, 5], ["pkgConfigModules", 102, 5]], [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 28, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["cmakeFlags", 52, 3], ["doCheck", 61, 3], ["nativeCheckInputs", 63, 3], ["passthru", 65, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, check: false, cmake: false, fetchFromGitHub: false, gengetopt: false, help2man: false, "nix-update-script": false, openssl: false, pcsclite: false, "pkg-config": false, stdenv: false, testers: false, zlib: false, withApplePCSC: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 67, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 75, 9], ["command", 76, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 73, 7], ["version", 74, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 66, 5], ["tests", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 82, 5], ["changelog", 83, 5], ["description", 84, 5], ["longDescription", 88, 5], ["license", 95, 5], ["platforms", 96, 5], ["maintainers", 97, 5], ["mainProgram", 101, 5], ["pkgConfigModules", 102, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 28, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["cmakeFlags", 52, 3], ["doCheck", 61, 3], ["nativeCheckInputs", 63, 3], ["passthru", 65, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withApplePCSC = nix.argOr($, "withApplePCSC", () => nix.sel(stdenv, "hostPlatform", "isDarwin"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "yubico-piv-tool",
       version: "2.7.3",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Yubico",
           repo: "yubico-piv-tool",
           tag: nix.thunk(() => nix.str`yubico-piv-tool-${nix.sel(finalAttrs, "version")}`),
@@ -53,23 +47,23 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [check]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "yubico-piv-tool-([0-9.]+)$"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "yubico-piv-tool --version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://developers.yubico.com/yubico-piv-tool/",
         changelog: "https://developers.yubico.com/yubico-piv-tool/Release_Notes.html",
         description: "Used for interacting with the Privilege and Identification Card (PIV)\napplication on a YubiKey\n",

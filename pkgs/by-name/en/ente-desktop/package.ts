@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["fetchSubmodules", 30, 5], ["sparseCheckout", 31, 5], ["tag", 37, 5], ["hash", 38, 5]], [["src", 50, 13], ["name", 51, 5], ["sourceRoot", 52, 5], ["hash", 53, 5]], [["src", 57, 13], ["name", 58, 5], ["sourceRoot", 59, 5], ["hash", 60, 5]], [["_ENTE_IS_DESKTOP", 68, 9]], [["wasm-bindgen-cli_0_2_125", 66, 7], ["extraBuildEnv", 67, 7]], [["version", 72, 17], ["src", 72, 25], ["npmDeps", 73, 9], ["cargoDeps", 74, 9]], [["name", 162, 7], ["desktopName", 163, 7], ["exec", 164, 7], ["terminal", 165, 7], ["type", 166, 7], ["icon", 167, 7], ["mimeTypes", 168, 7], ["categories", 171, 7]], [["extraArgs", 180, 7]], [["webApp", 178, 13], ["updateScript", 179, 5]], [["description", 190, 5], ["homepage", 191, 5], ["changelog", 192, 5], ["license", 193, 5], ["maintainers", 194, 5], ["platforms", 200, 5]], [["pname", 78, 3], ["version", 79, 11], ["src", 79, 19], ["sourceRoot", 81, 3], ["npmDepsHash", 83, 3], ["nativeBuildInputs", 85, 3], ["buildInputs", 94, 3], ["postPatch", 99, 3], ["preConfigure", 104, 3], ["npmBuildScript", 111, 3], ["npmBuildFlags", 113, 3], ["installPhase", 124, 3], ["desktopItems", 160, 3], ["passthru", 177, 3], ["meta", 189, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoPatchelfHook: false, buildNpmPackage: false, copyDesktopItems: false, fetchFromGitHub: false, fetchNpmDeps: false, makeDesktopItem: false, rustPlatform: false, electron_42: false, "ente-web": false, ffmpeg: false, imagemagick: false, makeWrapper: false, vips: false, "wasm-bindgen-cli_0_2_125": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["fetchSubmodules", 30, 5], ["sparseCheckout", 31, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 50, 13], ["name", 51, 5], ["sourceRoot", 52, 5], ["hash", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 57, 13], ["name", 58, 5], ["sourceRoot", 59, 5], ["hash", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["_ENTE_IS_DESKTOP", 68, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["wasm-bindgen-cli_0_2_125", 66, 7], ["extraBuildEnv", 67, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 72, 17], ["src", 72, 25], ["npmDeps", 73, 9], ["cargoDeps", 74, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 162, 7], ["desktopName", 163, 7], ["exec", 164, 7], ["terminal", 165, 7], ["type", 166, 7], ["icon", 167, 7], ["mimeTypes", 168, 7], ["categories", 171, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["extraArgs", 180, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["webApp", 178, 13], ["updateScript", 179, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 190, 5], ["homepage", 191, 5], ["changelog", 192, 5], ["license", 193, 5], ["maintainers", 194, 5], ["platforms", 200, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 78, 3], ["version", 79, 11], ["src", 79, 19], ["sourceRoot", 81, 3], ["npmDepsHash", 83, 3], ["nativeBuildInputs", 85, 3], ["buildInputs", 94, 3], ["postPatch", 99, 3], ["preConfigure", 104, 3], ["npmBuildScript", 111, 3], ["npmBuildFlags", 113, 3], ["installPhase", 124, 3], ["desktopItems", 160, 3], ["passthru", 177, 3], ["meta", 189, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "1.7.27";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "ente",
       repo: "ente",
       fetchSubmodules: true,
@@ -47,32 +37,32 @@ export default nix.lambda((args) => (() => {
   const electron = electron_42;
   const resourcesDir = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "$out/Applications/ente.app/Contents/Resources" : "$out/share/ente-desktop/resources"));
   const webCargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: src,
       name: "ente-desktop-web-cargo-deps",
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/rust`),
       hash: "sha256-RWemVZmH/NAQ+yDv2jwLhpHZpcp8BK3lZ4GjHMVLGLA=",
     }))));
   const webNpmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: src,
       name: "ente-desktop-web-npm-deps",
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/web`),
       hash: "sha256-iSqxANhb/DC/57Ltw4F9YKjTlJaAeZG3K4NrUN/+omA=",
     }))));
   const webApp = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(ente_web, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       "wasm-bindgen-cli_0_2_125": wasm_bindgen_cli_0_2_125,
-      extraBuildEnv: nix.thunk(() => ({ [nix.POS]: pos$4, _ENTE_IS_DESKTOP: "1" })),
+      extraBuildEnv: nix.thunk(() => ({ [nix.POS]: $pos[3], _ENTE_IS_DESKTOP: "1" })),
     }))), "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: version,
       src: src,
       npmDeps: webNpmDeps,
       cargoDeps: webCargoDeps,
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "ente-desktop",
       version: version,
       src: src,
@@ -124,7 +114,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               name: "ente-desktop",
               desktopName: "Ente",
               exec: "ente-desktop %U",
@@ -136,15 +126,15 @@ runHook postInstall
             })))),
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         webApp: webApp,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             extraArgs: nix.thunk(() => ["--version-regex", "photos-desktop-v(.*)", "--subpackage", "webApp"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Desktop (Electron) client for Ente Photos",
         homepage: "https://ente.io/",
         changelog: "https://github.com/ente-io/photos-desktop/releases",

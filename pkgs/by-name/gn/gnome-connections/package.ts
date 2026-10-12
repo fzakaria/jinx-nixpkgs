@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["packageName", 60, 7]], [["updateScript", 59, 5]], [["homepage", 65, 5], ["changelog", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["teams", 69, 5], ["license", 70, 5], ["platforms", 71, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 46, 3], ["passthru", 58, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, vala: false, gettext: false, itstool: false, "desktop-file-utils": false, wrapGAppsHook3: false, glib: false, gtk3: false, libhandy: false, libsecret: false, libxml2: false, "gtk-vnc": false, "gtk-frdp": false, "spice-gtk": false, "spice-protocol": false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["changelog", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["teams", 69, 5], ["license", 70, 5], ["platforms", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 46, 3], ["passthru", 58, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const spice_protocol = nix.arg($, "spice-protocol");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-connections",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-connections/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-connections-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Vnv2NcbTA66Ex083yE35+4/Pal6d/0UuFBTGcXRNldA=",
         })))),
@@ -64,11 +60,11 @@ export default nix.lambda((args) => (() => {
         spice_protocol,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-connections" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-connections" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-connections",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-connections/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Remote desktop client for the GNOME desktop environment",

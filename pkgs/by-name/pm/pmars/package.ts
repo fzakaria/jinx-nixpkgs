@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["stripRoot", 28, 5], ["hash", 29, 5]], [["options", 85, 13]], [["description", 89, 5], ["longDescription", 90, 5], ["homepage", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5], ["broken", 102, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 32, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 57, 3], ["preConfigure", 60, 3], ["hardeningDisable", 64, 3], ["enableParallelBuilding", 66, 3], ["installPhase", 68, 3], ["passthru", 84, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, installShellFiles: false, libx11: false, ncurses: false, "pkg-config": false, enableXwinGraphics: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["stripRoot", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["options", 85, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 89, 5], ["longDescription", 90, 5], ["homepage", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5], ["broken", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 32, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 57, 3], ["preConfigure", 60, 3], ["hardeningDisable", 64, 3], ["enableParallelBuilding", 66, 3], ["installPhase", 68, 3], ["passthru", 84, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   ]);
   const pkgConfigLibs = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), enableXwinGraphics, nix.thunk(() => ["x11"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(enableXwinGraphics)), nix.thunk(() => ["ncurses"]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pmars",
       version: "0.9.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.koth.org/pmars/pmars-${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-p6iZkb0Nrcj7LtAxtS6Ics5CS9taPHbsoIdE5C1QYnI=",
@@ -48,9 +45,9 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\n\ninstall -Dm755 pmars $out/bin/pmars\n\nmkdir -p $out/share/pmars\ncp -R -t $out/share/pmars/ ../{AUTHORS,COPYING,README,config,warriors}\n\ninstallManPage ../doc/pmars.6\n\nmkdir -p $out/share/doc/pmars\ncp -t $out/share/doc/pmars/ ../doc/{primer.*,redcode.ref}\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, options: options })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], options: options })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Official Core War simulator",
         longDescription: "Portable MARS is the official Core War simulator of the ICWS and the rec.games.corewar newsgroup. pMARS serves as\na test bed for new Redcode standards and tournament styles. It has also been used in genetic algorithm experiments\nand as an assembly language teaching aid. pMARS is under active development by a group of Core War enthusiasts who\nput a lot of time into this project.\n",
         homepage: "http://www.koth.org/pmars/",

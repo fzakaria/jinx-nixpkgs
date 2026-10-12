@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["url", 45, 7], ["hash", 46, 7]], [["url", 49, 7], ["hash", 50, 7]], [["changelog", 78, 5], ["description", 79, 5], ["mainProgram", 80, 5], ["longDescription", 81, 5], ["license", 86, 7], ["homepage", 87, 7], ["platforms", 88, 7], ["maintainers", 89, 7]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["patches", 43, 3], ["postPatch", 54, 3], ["postInstall", 58, 3], ["enableParallelBuilding", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, makeWrapper: false, imagemagick: false, libxpm: false, libxmu: false, libxi: false, libxp: false, libxaw3d: false, libxaw: false, libxft: false, fig2dev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 45, 7], ["hash", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 49, 7], ["hash", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 78, 5], ["description", 79, 5], ["mainProgram", 80, 5], ["longDescription", 81, 5], ["license", 86, 7], ["homepage", 87, 7], ["platforms", 88, 7], ["maintainers", 89, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["patches", 43, 3], ["postPatch", 54, 3], ["postInstall", 58, 3], ["enableParallelBuilding", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xfig";
       const version = "3.2.9a";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/mcj/xfig-${version}.tar.xz`),
           hash: "sha256-vFcqGIHl4gmHrFkBWLBBq3gDhFqWkQNtO6XpgvZtnKM=",
         }))));
@@ -37,12 +33,12 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libxpm, libxmu, libxi, libxp, libxaw3d, libxaw, libxft]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://www-user.tu-chemnitz.de/~hamari/distfiles/xfig-3.2.9a-modern-c.patch",
             hash: "sha256-brUonsrWP97QnIkHnAHa2PSAiV9JUVOzmu0kvuLNFGw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://sources.debian.org/data/main/x/xfig/1%3A3.2.9a-4/debian/patches/19_boolean.patch",
             hash: "sha256-cMUyp/93bCva4gT349IThhuYmOGZBd0EZ38Y4JrxZn8=",
           })))),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(fig2dev, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://sourceforge.net/p/mcj/xfig/ci/${version}/tree/CHANGES`),
         description: "Interactive drawing tool for X11",
         mainProgram: "xfig",
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

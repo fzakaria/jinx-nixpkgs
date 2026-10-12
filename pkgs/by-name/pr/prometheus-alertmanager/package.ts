@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["alertmanager", 66, 47]], [["name", 68, 7], ["runtimeInputs", 69, 7], ["text", 76, 7]], [["elmUi", 65, 13], ["tests", 66, 5], ["updateScript", 67, 5]], [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["vendorHash", 35, 3], ["subPackages", 37, 3], ["ldflags", 42, 3], ["nativeBuildInputs", 55, 3], ["postInstall", 57, 3], ["passthru", 64, 3], ["nativeInstallCheckInputs", 93, 3], ["doInstallCheck", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, go: false, buildGoModule: false, callPackage: false, fetchFromGitHub: false, installShellFiles: false, nixosTests: false, versionCheckHook: false, "common-updater-scripts": false, curlMinimal: false, elm2nix: false, "nix-update": false, nixfmt: false, writeShellApplication: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["alertmanager", 66, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 68, 7], ["runtimeInputs", 69, 7], ["text", 76, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["elmUi", 65, 13], ["tests", 66, 5], ["updateScript", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["vendorHash", 35, 3], ["subPackages", 37, 3], ["ldflags", 42, 3], ["nativeBuildInputs", 55, 3], ["postInstall", 57, 3], ["passthru", 64, 3], ["nativeInstallCheckInputs", 93, 3], ["doInstallCheck", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const elmUi = nix.thunk(() => nix.app(callPackage, nix.path(here, "./elm-ui.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "alertmanager",
       version: "0.33.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "prometheus",
           repo: "alertmanager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,17 +51,17 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "$out/bin/amtool --completion-script-bash > amtool.bash\ninstallShellCompletion amtool.bash\n$out/bin/amtool --completion-script-zsh > amtool.zsh\ninstallShellCompletion amtool.zsh\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         elmUi: elmUi,
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           alertmanager: nix.thunk(() => nix.attr(from, "alertmanager")),
         };
         })()),
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "alertmanager-update",
               runtimeInputs: nix.thunk(() => [curlMinimal, common_updater_scripts, elm2nix, nix_update, nixfmt]),
               text: nix.thunk(() => nix.str`TAG=$(list-git-tags --url="https://github.com/${nix.sel(finalAttrs, "src", "owner")}/${nix.sel(finalAttrs, "src", "repo")}" | sort -V | tail -n1)
@@ -87,7 +82,7 @@ nix-update prometheus-alertmanager.elmUi
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Alert dispatcher for the Prometheus monitoring system",
         homepage: "https://github.com/prometheus/alertmanager",
         changelog: nix.thunk(() => nix.str`https://github.com/prometheus/alertmanager/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -2,17 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 42, 5], ["hash", 43, 5]], [["url", 48, 7], ["hash", 49, 7]], [["url", 140, 9], ["sha256", 141, 9]], [["name", 216, 7], ["paths", 217, 7], ["pathsToLink", 218, 7]], [["package", 223, 43]], [["version", 223, 11]], [["url", 226, 7], ["ignoredVersions", 227, 7]], [["pythonSourceRoot", 214, 5], ["gemEnv", 215, 5], ["tests", 223, 5], ["updateScript", 225, 5]], [["description", 232, 5], ["homepage", 233, 5], ["changelog", 234, 5], ["license", 235, 5], ["maintainers", 236, 5], ["platforms", 240, 5], ["mainProgram", 241, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["patches", 46, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 64, 3], ["postPatch", 76, 3], ["configureFlags", 102, 3], ["setOutputFlags", 113, 3], ["enableParallelBuilding", 114, 3], ["makeFlags", 115, 3], ["postConfigure", 117, 3], ["outputs", 122, 3], ["postBuild", 133, 3], ["preCheck", 137, 3], ["doCheck", 157, 3], ["checkTarget", 158, 3], ["nativeCheckInputs", 159, 3], ["installTargets", 172, 3], ["postInstall", 178, 3], ["passthru", 213, 3], ["meta", 231, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, makeWrapper: false, buildEnv: false, "pkg-config": false, gnupg: false, xapian: false, gmime3: false, sfsexp: false, talloc: false, zlib: false, doxygen: false, perl: false, texinfo: false, pythonPackages: false, emacs: false, ruby: false, testers: false, gitUpdater: false, which: false, dtach: false, openssl: false, bash: false, fetchpatch: false, gdb: false, man: false, git: false, withEmacs: true, withRuby: true, withSfsexp: true, withVim: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 48, 7], ["hash", 49, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 140, 9], ["sha256", 141, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 216, 7], ["paths", 217, 7], ["pathsToLink", 218, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["package", 223, 43]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 223, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["url", 226, 7], ["ignoredVersions", 227, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pythonSourceRoot", 214, 5], ["gemEnv", 215, 5], ["tests", 223, 5], ["updateScript", 225, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 232, 5], ["homepage", 233, 5], ["changelog", 234, 5], ["license", 235, 5], ["maintainers", 236, 5], ["platforms", 240, 5], ["mainProgram", 241, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["patches", 46, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 64, 3], ["postPatch", 76, 3], ["configureFlags", 102, 3], ["setOutputFlags", 113, 3], ["enableParallelBuilding", 114, 3], ["makeFlags", 115, 3], ["postConfigure", 117, 3], ["outputs", 122, 3], ["postBuild", 133, 3], ["preCheck", 137, 3], ["doCheck", 157, 3], ["checkTarget", 158, 3], ["nativeCheckInputs", 159, 3], ["installTargets", 172, 3], ["postInstall", 178, 3], ["passthru", 213, 3], ["meta", 231, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,17 +40,17 @@ export default nix.lambda((args) => (() => {
   const withSfsexp = nix.argOr($, "withSfsexp", () => true);
   const withVim = nix.argOr($, "withVim", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "notmuch",
       version: "0.40",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://notmuchmail.org/releases/notmuch-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-S0MUu/HCAp/feTY35se7FcGxcw0ivpqgSAPJjFu8RG8=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/notmuch/notmuch/commit/f5e58cdb9b93b10ac32379b36b452532a32b8ece.patch",
             hash: "sha256-x+WHarE752IQzic/CTT26YuSi5Oox3lcQJP1FYNR6AE=",
           })))),
@@ -99,7 +90,7 @@ cp bindings/python-cffi/_notmuch_config.py ${nix.builtins.placeholder("bindingco
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withSfsexp, "patchShebangs notmuch-git\n")),
       preCheck: nix.thunk(() => (() => {
         const test_database = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://notmuchmail.org/releases/test-databases/database-v1.tar.xz",
             sha256: "1lk91s00y4qy4pjh8638b5lfkgwyl282g1m27srsf7qfn58y16a2",
           }))));
@@ -125,10 +116,10 @@ done
 echo 'endif' >> $PLUG
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pythonSourceRoot: nix.thunk(() => nix.str`notmuch-${nix.sel(finalAttrs, "version")}/contrib/python-legacy`),
         gemEnv: nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "notmuch-vim-gems",
             paths: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(ruby, "gems")), null);
@@ -137,20 +128,20 @@ echo 'endif' >> $PLUG
             pathsToLink: nix.thunk(() => ["/lib", "/nix-support"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://git.notmuchmail.org/git/notmuch",
             ignoredVersions: "_(rc|pre).*",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Mail indexer",
         homepage: "https://notmuchmail.org/",
         changelog: nix.thunk(() => nix.str`https://notmuchmail.org/news/release-${nix.sel(finalAttrs, "version")}`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 32, 5], ["hash", 33, 5]], [["odd-unstable", 77, 46]], [["updateScript", 77, 5]], [["cpeParts", 87, 17]], [["description", 81, 5], ["homepage", 82, 5], ["longDescription", 83, 5], ["license", 86, 5], ["identifiers", 87, 5], ["platforms", 88, 5], ["maintainers", 89, 5]], [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 31, 3], ["separateDebugInfo", 36, 3], ["__structuredAttrs", 38, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 53, 3], ["mesonFlags", 61, 3], ["postPatch", 67, 3], ["preFixup", 72, 3], ["passthru", 76, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, python3: false, gettext: false, "gobject-introspection": false, "gst-plugins-base": false, "gst-plugins-bad": false, gstreamer: false, enableDocumentation: true, hotdoc: false, directoryListingUpdater: false, "apple-sdk_gstreamer": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["odd-unstable", 77, 46]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 77, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["cpeParts", 87, 17]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 81, 5], ["homepage", 82, 5], ["longDescription", 83, 5], ["license", 86, 5], ["identifiers", 87, 5], ["platforms", 88, 5], ["maintainers", 89, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 31, 3], ["separateDebugInfo", 36, 3], ["__structuredAttrs", 38, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 53, 3], ["mesonFlags", 61, 3], ["postPatch", 67, 3], ["preFixup", 72, 3], ["passthru", 76, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const directoryListingUpdater = nix.arg($, "directoryListingUpdater");
   const apple_sdk_gstreamer = nix.arg($, "apple-sdk_gstreamer");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gst-rtsp-server",
       version: "1.28.7",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gstreamer.freedesktop.org/src/gst-rtsp-server/gst-rtsp-server-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-3kOlmgyJoU6xwUro6B5bRcTp17H5MLDrqtNg+bXgtcQ=",
         })))),
@@ -51,17 +46,17 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs \\\n  scripts/extract-release-date-from-doap-file.py\n",
       preFixup: "moveToOutput \"lib/gstreamer-1.0/pkgconfig\" \"$dev\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "odd-unstable": true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GStreamer RTSP server",
         homepage: "https://gstreamer.freedesktop.org",
         longDescription: "A library on top of GStreamer for building an RTSP server.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           cpeParts: nix.thunk(() => nix.app(nix.sel(gstreamer, "passthru", "gstreamerCpeParts"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

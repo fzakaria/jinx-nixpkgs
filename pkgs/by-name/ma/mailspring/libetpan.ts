@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libetpan.nix", [[["CFLAGS", 38, 7]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5]], [["pname", 16, 3], ["src", 17, 11], ["version", 17, 15], ["sourceRoot", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["configureFlags", 32, 3], ["env", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, src: false, version: false, autoreconfHook: false, "pkg-config": false, cyrus_sasl: false, openssl: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libetpan.nix", [["CFLAGS", 38, 7]]);
-const pos$2 = nix.positions(here + "/libetpan.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/libetpan.nix", [["pname", 16, 3], ["src", 17, 11], ["version", 17, 15], ["sourceRoot", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["configureFlags", 32, 3], ["env", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mailspring-libetpan",
       src: src,
       version: version,
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-openssl=${nix.sel(openssl, "dev")}`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=gnu17", "-Wno-error=incompatible-pointer-types"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modified fork of the libetpan mail framework",
         homepage: "https://github.com/Foundry376/Mailspring-Sync",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

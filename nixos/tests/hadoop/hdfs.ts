@@ -2,57 +2,42 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hdfs.nix", [[["fs.defaultFS", 10, 11], ["hadoop.proxyuser.httpfs.groups", 11, 11], ["hadoop.proxyuser.httpfs.hosts", 12, 11]], [["enable", 23, 19], ["openFirewall", 24, 19], ["formatOnInit", 25, 19]], [["enable", 29, 19], ["openFirewall", 30, 19]], [["namenode", 22, 17], ["httpfs", 27, 17]], [["package", 20, 23], ["hdfs", 21, 15], ["coreSite", 33, 23]], [["hadoop", 19, 22]], [["services", 19, 13]], [["diskSize", 39, 28]], [["type", 47, 21], ["path", 48, 21]], [["enable", 43, 17], ["openFirewall", 44, 17], ["dataDirs", 45, 17]], [["datanode", 42, 20]], [["package", 41, 23], ["hdfs", 42, 15], ["coreSite", 52, 23]], [["hadoop", 40, 22]], [["virtualisation", 39, 13], ["services", 40, 13]], [["namenode", 16, 9], ["datanode", 36, 9]], [["name", 5, 5], ["nodes", 7, 5], ["testScript", 57, 5]]]);
 const formals$1 = { args: { package: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/hdfs.nix", [["fs.defaultFS", 10, 11], ["hadoop.proxyuser.httpfs.groups", 11, 11], ["hadoop.proxyuser.httpfs.hosts", 12, 11]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/hdfs.nix", [["enable", 23, 19], ["openFirewall", 24, 19], ["formatOnInit", 25, 19]]);
-const pos$3 = nix.positions(here + "/hdfs.nix", [["enable", 29, 19], ["openFirewall", 30, 19]]);
-const pos$4 = nix.positions(here + "/hdfs.nix", [["namenode", 22, 17], ["httpfs", 27, 17]]);
-const pos$5 = nix.positions(here + "/hdfs.nix", [["package", 20, 23], ["hdfs", 21, 15], ["coreSite", 33, 23]]);
-const pos$6 = nix.positions(here + "/hdfs.nix", [["hadoop", 19, 22]]);
-const pos$7 = nix.positions(here + "/hdfs.nix", [["services", 19, 13]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/hdfs.nix", [["diskSize", 39, 28]]);
-const pos$9 = nix.positions(here + "/hdfs.nix", [["type", 47, 21], ["path", 48, 21]]);
-const pos$10 = nix.positions(here + "/hdfs.nix", [["enable", 43, 17], ["openFirewall", 44, 17], ["dataDirs", 45, 17]]);
-const pos$11 = nix.positions(here + "/hdfs.nix", [["datanode", 42, 20]]);
-const pos$12 = nix.positions(here + "/hdfs.nix", [["package", 41, 23], ["hdfs", 42, 15], ["coreSite", 52, 23]]);
-const pos$13 = nix.positions(here + "/hdfs.nix", [["hadoop", 40, 22]]);
-const pos$14 = nix.positions(here + "/hdfs.nix", [["virtualisation", 39, 13], ["services", 40, 13]]);
-const pos$15 = nix.positions(here + "/hdfs.nix", [["namenode", 16, 9], ["datanode", 36, 9]]);
-const pos$16 = nix.positions(here + "/hdfs.nix", [["name", 5, 5], ["nodes", 7, 5], ["testScript", 57, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const package$ = nix.arg($, "package");
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       name: nix.thunk(() => nix.str`hadoop-${nix.sel(package$, "version")}-hdfs`),
       nodes: nix.thunk(() => (() => {
         const coreSite = nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           "fs.defaultFS": "hdfs://namenode:8020",
           "hadoop.proxyuser.httpfs.groups": "*",
           "hadoop.proxyuser.httpfs.hosts": "*",
         }));
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           namenode: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const pkgs = nix.arg($_1, "pkgs");
             return {
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   package: package$,
                   hdfs: nix.thunk(() => ({
-                    [nix.POS]: pos$4,
-                    namenode: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, openFirewall: true, formatOnInit: true })),
+                    [nix.POS]: $pos[3],
+                    namenode: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, openFirewall: true, formatOnInit: true })),
                     httpfs: nix.thunk(() => ({
-                      [nix.POS]: pos$3,
+                      [nix.POS]: $pos[2],
                       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(package$, "version")), "3.3")), true)),
                       openFirewall: true,
                     })),
@@ -66,20 +51,20 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
             const $_1 = nix.formals(args_1, formals$3);
             const pkgs = nix.arg($_1, "pkgs");
             return {
-              [nix.POS]: pos$14,
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, diskSize: 4096n })),
+              [nix.POS]: $pos[13],
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[7], diskSize: 4096n })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   package: package$,
                   hdfs: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     datanode: nix.thunk(() => ({
-                      [nix.POS]: pos$10,
+                      [nix.POS]: $pos[9],
                       enable: true,
                       openFirewall: true,
-                      dataDirs: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$9, type: "DISK", path: "/tmp/dn1" }))]),
+                      dataDirs: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[8], type: "DISK", path: "/tmp/dn1" }))]),
                     })),
                   })),
                   coreSite: coreSite,

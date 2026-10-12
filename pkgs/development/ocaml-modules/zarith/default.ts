@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["1.13", 21, 9], ["1.14", 22, 9]], [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["platforms", 47, 26], ["maintainers", 48, 5], ["broken", 52, 5]], [["pname", 13, 3], ["version", 14, 11], ["src", 15, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 32, 3], ["strictDeps", 33, 3], ["dontAddPrefix", 35, 3], ["dontAddStaticConfigureFlags", 36, 3], ["configurePlatforms", 37, 3], ["configureFlags", 38, 3], ["preInstall", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ocaml: false, findlib: false, "pkg-config": false, gmp: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["1.13", 21, 9], ["1.14", 22, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["platforms", 47, 26], ["maintainers", 48, 5], ["broken", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 11], ["src", 15, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 32, 3], ["strictDeps", 33, 3], ["dontAddPrefix", 35, 3], ["dontAddStaticConfigureFlags", 36, 3], ["configurePlatforms", 37, 3], ["configureFlags", 38, 3], ["preInstall", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")) ? "1.14" : "1.13"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-zarith`),
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ocaml",
           repo: "Zarith",
           rev: nix.thunk(() => nix.str`release-${version}`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "1.13": "sha256-CNVKoJeO3fsmWaV/dwnUA8lgI4ZlxR/LKCXpCXUrpSg=",
             "1.14": "sha256-xUrBDr+M8uW2KOy7DZieO/vDgsSOnyBnpOzQDlXJ0oE=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast, arbitrary precision OCaml integers",
         homepage: "https://github.com/ocaml/Zarith",
         changelog: nix.thunk(() => nix.str`https://github.com/ocaml/Zarith/raw/${nix.sel(finalAttrs, "src", "rev")}/Changes`),

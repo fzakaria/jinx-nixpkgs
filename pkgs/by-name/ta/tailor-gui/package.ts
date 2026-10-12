@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 34, 7], ["version", 35, 7], ["src", 36, 7], ["sourceRoot", 37, 7], ["hash", 39, 5]], [["description", 60, 5], ["mainProgram", 61, 5], ["longDescription", 62, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 71, 5]], [["src", 26, 5], ["sourceRoot", 27, 5], ["pname", 28, 5], ["version", 29, 5], ["cargoDeps", 32, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, rustPlatform: false, cargo: false, rustc: false, "pkg-config": false, "desktop-file-utils": false, "appstream-glib": false, wrapGAppsHook4: false, meson: false, ninja: false, libadwaita: false, gtk4: false, "tuxedo-rs": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 34, 7], ["version", 35, 7], ["src", 36, 7], ["sourceRoot", 37, 7], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["longDescription", 62, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 26, 5], ["sourceRoot", 27, 5], ["pname", 28, 5], ["version", 29, 5], ["cargoDeps", 32, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const pname = "tailor_gui";
   const version = "0.2.3";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: src,
       sourceRoot: sourceRoot,
       pname: pname,
       version: version,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           src: src,
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [cargo, rustc, meson, ninja, libadwaita, gtk4]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Rust GUI for interacting with hardware from TUXEDO Computers",
         mainProgram: "tailor_gui",
         longDescription: "An alternative to the TUXEDO Control Center (https://www.tuxedocomputers.com/en/TUXEDO-Control-Center.tuxedo),\nwritten in Rust.\n",

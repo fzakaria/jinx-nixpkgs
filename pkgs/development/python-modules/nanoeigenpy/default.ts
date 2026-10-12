@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["updateScript", 82, 12]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["postPatch", 39, 3], ["outputs", 45, 3], ["cmakeFlags", 51, 3], ["buildInputs", 61, 3], ["nativeBuildInputs", 62, 3], ["propagatedBuildInputs", 63, 3], ["dependencies", 68, 3], ["checkInputs", 72, 3], ["preInstallCheck", 78, 3], ["pythonImportsCheck", 80, 3], ["passthru", 82, 3], ["postFixup", 84, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "nix-update-script": false, python: false, nanobind: false, suitesparse: false, eigen: false, "jrl-cmakemodules": false, numpy: false, pytest: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 82, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["postPatch", 39, 3], ["outputs", 45, 3], ["cmakeFlags", 51, 3], ["buildInputs", 61, 3], ["nativeBuildInputs", 62, 3], ["propagatedBuildInputs", 63, 3], ["dependencies", 68, 3], ["checkInputs", 72, 3], ["preInstallCheck", 78, 3], ["pythonImportsCheck", 80, 3], ["passthru", 82, 3], ["postFixup", 84, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nanoeigenpy",
       version: "0.5.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Simple-Robotics",
           repo: "nanoeigenpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,12 +49,12 @@ export default nix.lambda((args) => (() => {
       preInstallCheck: "make test",
       pythonImportsCheck: nix.thunk(() => ["nanoeigenpy"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postFixup: "substituteInPlace $dev/lib/cmake/nanoeigenpy/nanoeigenpyConfig.cmake \\\n  --replace-fail $out $dev\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Support library for bindings between Eigen in C++ and Python, based on nanobind",
         homepage: "https://github.com/Simple-Robotics/nanoeigenpy",
         changelog: nix.thunk(() => nix.str`https://github.com/Simple-Robotics/nanoeigenpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

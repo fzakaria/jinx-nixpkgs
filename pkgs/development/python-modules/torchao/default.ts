@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["openmp", 59, 30]], [["USE_SYSTEM_LIBS", 81, 5], ["VERSION_SUFFIX", 83, 5]], [["description", 329, 5], ["homepage", 330, 5], ["changelog", 331, 5], ["license", 332, 5], ["maintainers", 333, 5], ["badPlatforms", 337, 5]], [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["src", 49, 3], ["patches", 56, 3], ["build-system", 63, 3], ["nativeBuildInputs", 67, 3], ["dontUseCmakeConfigure", 70, 3], ["buildInputs", 72, 3], ["dependencies", 76, 3], ["env", 80, 3], ["preCheck", 87, 3], ["pythonImportsCheck", 91, 3], ["nativeCheckInputs", 93, 3], ["disabledTests", 107, 3], ["disabledTestPaths", 301, 3], ["__darwinAllowLocalNetworking", 326, 3], ["meta", 328, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, setuptools: false, cmake: false, cpuinfo: false, llvmPackages: false, torch: false, bitsandbytes: false, datasets: false, expecttest: false, fire: false, "pytest-xdist": false, pytestCheckHook: false, parameterized: false, tabulate: false, torchvision: false, transformers: false, "unittest-xml-reporting": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["openmp", 59, 30]]);
-const pos$3 = nix.positions(here + "/default.nix", [["USE_SYSTEM_LIBS", 81, 5], ["VERSION_SUFFIX", 83, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 329, 5], ["homepage", 330, 5], ["changelog", 331, 5], ["license", 332, 5], ["maintainers", 333, 5], ["badPlatforms", 337, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["src", 49, 3], ["patches", 56, 3], ["build-system", 63, 3], ["nativeBuildInputs", 67, 3], ["dontUseCmakeConfigure", 70, 3], ["buildInputs", 72, 3], ["dependencies", 76, 3], ["env", 80, 3], ["preCheck", 87, 3], ["pythonImportsCheck", 91, 3], ["nativeCheckInputs", 93, 3], ["disabledTests", 107, 3], ["disabledTestPaths", 301, 3], ["__darwinAllowLocalNetworking", 326, 3], ["meta", 328, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const isAarch64Darwin = nix.thunk(() => (nix.asBool(isDarwin) && nix.asBool(isAarch64)));
   const isAarch64Linux = nix.thunk(() => (nix.asBool(isLinux) && nix.asBool(isAarch64)));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "torchao",
       version: "0.18.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pytorch",
           repo: "ao",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,14 +49,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isAarch64Darwin, nix.thunk(() => [
           nix.path(here, "./use-system-cpuinfo.patch"),
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-llvm-openmp.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, openmp: nix.thunk(() => nix.attr(llvmPackages, "openmp")) })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-llvm-openmp.patch"), nix.thunk(() => ({
+              [nix.POS]: $pos[1],
+              openmp: nix.thunk(() => nix.attr(llvmPackages, "openmp")),
+            })))),
         ]))),
       "build-system": nix.thunk(() => [setuptools]),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isAarch64Darwin, nix.thunk(() => [cmake]))),
       dontUseCmakeConfigure: true,
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isAarch64Darwin, nix.thunk(() => [cpuinfo]))),
       dependencies: nix.thunk(() => [torch]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, USE_SYSTEM_LIBS: true, VERSION_SUFFIX: "" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], USE_SYSTEM_LIBS: true, VERSION_SUFFIX: "" })),
       preCheck: "rm -rf torchao\n",
       pythonImportsCheck: nix.thunk(() => ["torchao"]),
       nativeCheckInputs: nix.thunk(() => [
@@ -237,7 +236,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "PyTorch native quantization and sparsity for training and inference",
         homepage: "https://github.com/pytorch/ao",
         changelog: nix.thunk(() => nix.str`https://github.com/pytorch/ao/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

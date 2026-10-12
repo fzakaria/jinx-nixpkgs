@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 10, 3], ["pyproject", 11, 3], ["version", 12, 23], ["src", 12, 31], ["meta", 12, 35], ["sourceRoot", 14, 3], ["build-system", 16, 3], ["dependencies", 18, 3], ["nativeCheckInputs", 20, 3], ["disabledTestPaths", 28, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "cirq-core": false, "pytest-benchmark": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["pyproject", 11, 3], ["version", 12, 23], ["src", 12, 31], ["meta", 12, 35], ["sourceRoot", 14, 3], ["build-system", 16, 3], ["dependencies", 18, 3], ["nativeCheckInputs", 20, 3], ["disabledTestPaths", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "cirq-web",
       pyproject: true,
       version: nix.thunk(() => nix.attr(cirq_core, "version")),

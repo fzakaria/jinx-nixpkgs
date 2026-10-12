@@ -2,50 +2,39 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lomiri-docviewer-app.nix", [[["maintainers", 7, 8]], [["enable", 14, 24]], [["xserver", 14, 16]], [["text", 17, 40]], [["docviewer-sampletext.txt", 17, 13]], [["UITK_ICON_THEME", 28, 11]], [["etc", 17, 9], ["systemPackages", 18, 9], ["variables", 27, 9]], [["supportedLocales", 32, 12]], [["packages", 35, 9]], [["imports", 12, 7], ["services", 14, 7], ["environment", 16, 7], ["i18n", 32, 7], ["fonts", 34, 7]], [["machine", 9, 9]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 9, 3], ["enableOCR", 42, 3], ["testScript", 44, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lomiri-docviewer-app.nix", [["maintainers", 7, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/lomiri-docviewer-app.nix", [["enable", 14, 24]]);
-const pos$3 = nix.positions(here + "/lomiri-docviewer-app.nix", [["xserver", 14, 16]]);
-const pos$4 = nix.positions(here + "/lomiri-docviewer-app.nix", [["text", 17, 40]]);
-const pos$5 = nix.positions(here + "/lomiri-docviewer-app.nix", [["docviewer-sampletext.txt", 17, 13]]);
-const pos$6 = nix.positions(here + "/lomiri-docviewer-app.nix", [["UITK_ICON_THEME", 28, 11]]);
-const pos$7 = nix.positions(here + "/lomiri-docviewer-app.nix", [["etc", 17, 9], ["systemPackages", 18, 9], ["variables", 27, 9]]);
-const pos$8 = nix.positions(here + "/lomiri-docviewer-app.nix", [["supportedLocales", 32, 12]]);
-const pos$9 = nix.positions(here + "/lomiri-docviewer-app.nix", [["packages", 35, 9]]);
-const pos$10 = nix.positions(here + "/lomiri-docviewer-app.nix", [["imports", 12, 7], ["services", 14, 7], ["environment", 16, 7], ["i18n", 32, 7], ["fonts", 34, 7]]);
-const pos$11 = nix.positions(here + "/lomiri-docviewer-app.nix", [["machine", 9, 9]]);
-const pos$12 = nix.positions(here + "/lomiri-docviewer-app.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 9, 3], ["enableOCR", 42, 3], ["testScript", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const exampleText = "Lorem ipsum dolor sit amet";
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "lomiri-docviewer-app-standalone",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              "docviewer-sampletext.txt": nix.thunk(() => ({ [nix.POS]: pos$4, text: exampleText })),
+              [nix.POS]: $pos[4],
+              "docviewer-sampletext.txt": nix.thunk(() => ({ [nix.POS]: $pos[3], text: exampleText })),
             })),
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
@@ -57,11 +46,11 @@ export default nix.lambda((args) => (() => {
                 ];
               })());
             })()),
-            variables: nix.thunk(() => ({ [nix.POS]: pos$6, UITK_ICON_THEME: "suru" })),
+            variables: nix.thunk(() => ({ [nix.POS]: $pos[5], UITK_ICON_THEME: "suru" })),
           })),
-          i18n: nix.thunk(() => ({ [nix.POS]: pos$8, supportedLocales: nix.thunk(() => ["all"]) })),
+          i18n: nix.thunk(() => ({ [nix.POS]: $pos[7], supportedLocales: nix.thunk(() => ["all"]) })),
           fonts: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             packages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "ubuntu-classic"))];

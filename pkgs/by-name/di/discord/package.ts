@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 73, 63], ["hash", 73, 67]], [["installedVersion", 96, 54]], [["mainProgram", 106, 14]], [["pythonInterpreter", 103, 9], ["configDirName", 104, 9], ["skipModuleUpdate", 105, 9], ["meta", 106, 9]], [["pname", 133, 13], ["passthru", 134, 13], ["disableBreakingUpdates", 135, 13], ["stageModules", 136, 13], ["moduleSrcs", 137, 13]], [["command", 148, 7], ["supportedFeatures", 149, 7]], [["withVencord", 156, 9]], [["withEquicord", 159, 9]], [["withMoonlight", 162, 9]], [["withOpenASAR", 165, 9]], [["useFHSEnv", 168, 9]], [["withVencord", 155, 7], ["withEquicord", 158, 7], ["withMoonlight", 161, 7], ["withOpenASAR", 164, 7], ["noFHSEnv", 167, 7]], [["disableBreakingUpdates", 144, 13], ["stageModules", 144, 36], ["source", 146, 13], ["moduleVersions", 146, 20], ["updateScript", 147, 5], ["unwrappedDiscord", 152, 5], ["tests", 154, 5]], [["url", 192, 46], ["hash", 192, 50]], [["source", 181, 7], ["pname", 182, 7], ["meta", 183, 7], ["version", 184, 7], ["passthru", 185, 7], ["stageModules", 186, 7], ["disableBreakingUpdates", 187, 7], ["targetPkgs", 190, 39], ["src", 192, 5], ["extraInstallCommands", 194, 5], ["executableName", 201, 5], ["runScript", 203, 5]], [["passthru", 207, 5]]]);
 const formals$1 = { args: { pname: true, withOpenASAR: true, withVencord: true, withEquicord: true, withMoonlight: true, disableUpdates: true, withTTS: true, enableAutoscroll: true, useFHSEnv: true, commandLineArgs: true, unwrappedDiscord: true, lib: false, stdenv: false, buildFHSEnv: false, writeShellScript: false, runCommand: false, callPackage: false, fetchurl: false, python3: false, openasar: false, vencord: false, equicord: false, moonlight: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 73, 63], ["hash", 73, 67]]);
-const pos$2 = nix.positions(here + "/package.nix", [["installedVersion", 96, 54]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 106, 14]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pythonInterpreter", 103, 9], ["configDirName", 104, 9], ["skipModuleUpdate", 105, 9], ["meta", 106, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 133, 13], ["passthru", 134, 13], ["disableBreakingUpdates", 135, 13], ["stageModules", 136, 13], ["moduleSrcs", 137, 13]]);
-const pos$6 = nix.positions(here + "/package.nix", [["command", 148, 7], ["supportedFeatures", 149, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["withVencord", 156, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["withEquicord", 159, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["withMoonlight", 162, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["withOpenASAR", 165, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["useFHSEnv", 168, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["withVencord", 155, 7], ["withEquicord", 158, 7], ["withMoonlight", 161, 7], ["withOpenASAR", 164, 7], ["noFHSEnv", 167, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["disableBreakingUpdates", 144, 13], ["stageModules", 144, 36], ["source", 146, 13], ["moduleVersions", 146, 20], ["updateScript", 147, 5], ["unwrappedDiscord", 152, 5], ["tests", 154, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["url", 192, 46], ["hash", 192, 50]]);
-const pos$15 = nix.positions(here + "/package.nix", [["source", 181, 7], ["pname", 182, 7], ["meta", 183, 7], ["version", 184, 7], ["passthru", 185, 7], ["stageModules", 186, 7], ["disableBreakingUpdates", 187, 7], ["targetPkgs", 190, 39], ["src", 192, 5], ["extraInstallCommands", 194, 5], ["executableName", 201, 5], ["runScript", 203, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["passthru", 207, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -69,7 +54,7 @@ export default nix.lambda((args) => (() => {
   const enabledDiscordModsCount = nix.thunk(() => nix.builtins.length(nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => nix.force(x), discordMods))));
   const version = nix.thunk(() => nix.attr(source, "version"));
   const moduleSrcs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (mod) => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.attr(mod, "url")),
         hash: nix.thunk(() => nix.attr(mod, "hash")),
       }))), nix.thunk(() => nix.sel(source, "modules"))));
@@ -85,15 +70,15 @@ mkdir -p "$modules_dir"
 for m in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), moduleSrcs)))}; do
   ln -sn "$store_modules/$m" "$modules_dir/$m"
 done
-echo '${nix.builtins.toJSON(nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (mod) => ({ [nix.POS]: pos$2, installedVersion: mod }), moduleVersions)))}' \\
+echo '${nix.builtins.toJSON(nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (mod) => ({ [nix.POS]: $pos[1], installedVersion: mod }), moduleVersions)))}' \\
   > "$modules_dir/installed.json"
 `)));
   const disableBreakingUpdates = nix.thunk(() => nix.app(runCommand, "disable-breaking-updates.py", nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pythonInterpreter: nix.thunk(() => nix.sel(python3, "interpreter")),
       configDirName: nix.thunk(() => nix.app(nix.sel(lib, "toLower"), binaryName)),
       skipModuleUpdate: nix.thunk(() => nix.app(nix.sel(lib, "boolToString"), withOpenASAR)),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$3, mainProgram: "disable-breaking-updates.py" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[2], mainProgram: "disable-breaking-updates.py" })),
     })), nix.thunk(() => nix.str`mkdir -p $out/bin
 cp ${nix.path(here, "./disable-breaking-updates.py")} $out/bin/disable-breaking-updates.py
 substituteAllInPlace $out/bin/disable-breaking-updates.py
@@ -101,7 +86,7 @@ chmod +x $out/bin/disable-breaking-updates.py
 `)));
   const platformPkgArgs = nix.thunk(() => (nix.asBool(isLinux) ? nix.force(pkgArgs) : nix.builtins.removeAttrs(pkgArgs, nix.thunk(() => ["withTTS", "enableAutoscroll", "useFHSEnv"]))));
   const finalUnwrapped = nix.thunk(() => (nix.asBool(!nix.eq(unwrappedDiscord, null)) ? nix.force(unwrappedDiscord) : nix.app(callPackage, nix.thunk(() => (nix.asBool(isLinux) ? nix.path(here, "./linux.nix") : nix.path(here, "./darwin.nix"))), nix.thunk(() => nix.update(platformPkgArgs, {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       passthru: passthru,
       disableBreakingUpdates: disableBreakingUpdates,
@@ -109,24 +94,24 @@ chmod +x $out/bin/disable-breaking-updates.py
       moduleSrcs: moduleSrcs,
     })))));
   const passthru = nix.thunk(() => ({
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     disableBreakingUpdates: disableBreakingUpdates,
     stageModules: stageModules,
     source: source,
     moduleVersions: moduleVersions,
     updateScript: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       command: nix.path(here, "./update.py"),
       supportedFeatures: nix.thunk(() => ["commit"]),
     })),
     unwrappedDiscord: finalUnwrapped,
     tests: nix.thunk(() => ({
-      [nix.POS]: pos$12,
-      withVencord: nix.thunk(() => nix.app(nix.sel(self, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, withVencord: true })))),
-      withEquicord: nix.thunk(() => nix.app(nix.sel(self, "override"), nix.thunk(() => ({ [nix.POS]: pos$8, withEquicord: true })))),
-      withMoonlight: nix.thunk(() => nix.app(nix.sel(self, "override"), nix.thunk(() => ({ [nix.POS]: pos$9, withMoonlight: true })))),
-      withOpenASAR: nix.thunk(() => nix.app(nix.sel(self, "override"), nix.thunk(() => ({ [nix.POS]: pos$10, withOpenASAR: true })))),
-      noFHSEnv: nix.thunk(() => nix.app(nix.sel(self, "override"), nix.thunk(() => ({ [nix.POS]: pos$11, useFHSEnv: false })))),
+      [nix.POS]: $pos[11],
+      withVencord: nix.thunk(() => nix.app(nix.sel(self, "override"), nix.thunk(() => ({ [nix.POS]: $pos[6], withVencord: true })))),
+      withEquicord: nix.thunk(() => nix.app(nix.sel(self, "override"), nix.thunk(() => ({ [nix.POS]: $pos[7], withEquicord: true })))),
+      withMoonlight: nix.thunk(() => nix.app(nix.sel(self, "override"), nix.thunk(() => ({ [nix.POS]: $pos[8], withMoonlight: true })))),
+      withOpenASAR: nix.thunk(() => nix.app(nix.sel(self, "override"), nix.thunk(() => ({ [nix.POS]: $pos[9], withOpenASAR: true })))),
+      noFHSEnv: nix.thunk(() => nix.app(nix.sel(self, "override"), nix.thunk(() => ({ [nix.POS]: $pos[10], useFHSEnv: false })))),
     })),
   }));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.le(enabledDiscordModsCount, 1n)), "discord: Only one of Vencord, Equicord, or Moonlight can be enabled at the same time"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/di/discord/package.nix:174:1");
@@ -135,7 +120,7 @@ chmod +x $out/bin/disable-breaking-updates.py
     return nix.app(buildFHSEnv, nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(finalUnwrapped, "passthru"));
         return {
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         source: source,
         pname: pname,
         meta: meta,
@@ -147,7 +132,7 @@ chmod +x $out/bin/disable-breaking-updates.py
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const from_2 = nix.thunk(() => nix.sel(source, "distro"));
             return {
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             url: nix.thunk(() => nix.attr(from_2, "url")),
             hash: nix.thunk(() => nix.attr(from_2, "hash")),
           };
@@ -162,7 +147,7 @@ ln -s $out/bin/${binaryName} $out/bin/${nix.app(nix.sel(lib, "strings", "toLower
       };
       })()));
   })() : nix.app(nix.sel(finalUnwrapped, "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), passthru)),
     })));
 })(), formals$1);

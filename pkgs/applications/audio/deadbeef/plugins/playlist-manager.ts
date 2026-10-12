@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/playlist-manager.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["installPhase", 30, 3], ["buildFlags", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, deadbeef: false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/playlist-manager.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/playlist-manager.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/playlist-manager.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["installPhase", 30, 3], ["buildFlags", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const deadbeef = nix.arg($, "deadbeef");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "deadbeef-playlist-manager-plugin",
       version: "1-unstable-2021-05-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kpcee",
           repo: "deadbeef-playlist-manager",
           rev: "b1393022b2d9ea0a19b845420146e0fc56cd9c0a",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/deadbeef/\ncp *.so $out/lib/deadbeef/\n\nrunHook postInstall\n",
       buildFlags: nix.thunk(() => [nix.thunk(() => nix.str`CFLAGS=-I${deadbeef}/include/deadbeef`), "gtk3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Removes duplicate and vanished files from the current playlist",
         homepage: "https://github.com/kpcee/deadbeef-playlist-manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

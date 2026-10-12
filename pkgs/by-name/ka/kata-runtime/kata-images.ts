@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kata-images.nix", [[["suffix", 12, 7], ["hash", 13, 7]], [["suffix", 16, 7], ["hash", 17, 7]], [["x86_64-linux", 11, 5], ["aarch64-linux", 15, 5]], [["description", 37, 9], ["homepage", 38, 9], ["changelog", 39, 9], ["license", 40, 9], ["maintainers", 41, 9], ["platforms", 42, 9], ["sourceProvenance", 43, 9]], [["name", 24, 7], ["url", 25, 7], ["hash", 26, 15], ["nativeBuildInputs", 27, 7], ["postFetch", 29, 7], ["meta", 36, 7]]]);
 const formals$1 = { args: { fetchzip: false, lib: false, version: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kata-images.nix", [["suffix", 12, 7], ["hash", 13, 7]]);
-const pos$2 = nix.positions(here + "/kata-images.nix", [["suffix", 16, 7], ["hash", 17, 7]]);
-const pos$3 = nix.positions(here + "/kata-images.nix", [["x86_64-linux", 11, 5], ["aarch64-linux", 15, 5]]);
 const formals$2 = { args: { suffix: false, hash: false }, ellipsis: false };
-const pos$4 = nix.positions(here + "/kata-images.nix", [["description", 37, 9], ["homepage", 38, 9], ["changelog", 39, 9], ["license", 40, 9], ["maintainers", 41, 9], ["platforms", 42, 9], ["sourceProvenance", 43, 9]]);
-const pos$5 = nix.positions(here + "/kata-images.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 15], ["nativeBuildInputs", 27, 7], ["postFetch", 29, 7], ["meta", 36, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const zstd = nix.arg($, "zstd");
   const images = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       suffix: "amd64",
       hash: "sha256-ea4/6xjuoiqFebGF+NegGa4B+3Imf/4uULfQbJxqKtc=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       suffix: "arm64",
       hash: "sha256-cPx6uHXyMZ0x56dLUKx91FjhgkJaYW0nUtLrnfHz0as=",
     })),
@@ -34,14 +30,14 @@ export default nix.lambda((args) => (() => {
     const suffix = nix.arg($_1, "suffix");
     const hash = nix.arg($_1, "hash");
     return nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: nix.thunk(() => nix.str`kata-images-${version}`),
         url: nix.thunk(() => nix.str`https://github.com/kata-containers/kata-containers/releases/download/${version}/kata-static-${version}-${suffix}.tar.zst`),
         hash: hash,
         nativeBuildInputs: nix.thunk(() => [zstd]),
         postFetch: "mv $out/kata/share/kata-containers kata-containers\nrm -r $out\nmkdir -p $out/share\nmv kata-containers $out/share/kata-containers\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Lightweight Virtual Machines like containers that provide the workload isolation and security of VMs",
           homepage: "https://github.com/kata-containers/kata-containers",
           changelog: nix.thunk(() => nix.str`https://github.com/kata-containers/kata-containers/releases/tag/${version}`),

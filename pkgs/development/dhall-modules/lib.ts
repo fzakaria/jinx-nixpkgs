@@ -2,9 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lib.nix", [[["overridePackage", 17, 25]], [["makePackageOverridable", 22, 11]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lib.nix", [["overridePackage", 17, 25]]);
-const pos$2 = nix.positions(here + "/lib.nix", [["makePackageOverridable", 22, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,8 +12,8 @@ export default nix.lambda((args) => (() => {
     const result = nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), f, args_1));
     const overrideWith = (update) => nix.update(args_1, (nix.asBool(nix.app(nix.sel(lib, "isFunction"), update)) ? nix.app(update, args_1) : nix.force(update)));
     const overridePackage = nix.thunk(() => nix.app(nix.sel(lib, "mirrorFunctionArgs"), f, (update) => nix.app(makePackageOverridable, f, nix.thunk(() => nix.app(overrideWith, update)))));
-    return nix.update(result, { [nix.POS]: pos$1, overridePackage: overridePackage });
+    return nix.update(result, { [nix.POS]: $pos[0], overridePackage: overridePackage });
   })();
-  return nix.update(lib, { [nix.POS]: pos$2, makePackageOverridable: makePackageOverridable });
+  return nix.update(lib, { [nix.POS]: $pos[1], makePackageOverridable: makePackageOverridable });
 })(), formals$1);
 //# sourceMappingURL=lib.ts.map

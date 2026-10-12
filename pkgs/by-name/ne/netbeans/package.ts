@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 18, 5], ["exec", 19, 5], ["comment", 20, 5], ["desktopName", 21, 5], ["genericName", 22, 5], ["categories", 23, 5], ["icon", 24, 5]], [["url", 31, 5], ["hash", 32, 5]], [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["sourceProvenance", 89, 5], ["maintainers", 93, 5], ["platforms", 97, 5], ["mainProgram", 98, 5]], [["pname", 28, 3], ["version", 29, 11], ["src", 30, 3], ["buildCommand", 35, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 79, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, makeDesktopItem: false, which: false, unzip: false, libicns: false, imagemagick: false, jdk21: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 18, 5], ["exec", 19, 5], ["comment", 20, 5], ["desktopName", 21, 5], ["genericName", 22, 5], ["categories", 23, 5], ["icon", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["sourceProvenance", 89, 5], ["maintainers", 93, 5], ["platforms", 97, 5], ["mainProgram", 98, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 11], ["src", 30, 3], ["buildCommand", 35, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 79, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const version = "31";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "netbeans",
       exec: "netbeans",
       comment: "Integrated Development Environment",
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
       icon: "netbeans",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "netbeans",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://apache/netbeans/netbeans/${version}/netbeans-${version}-bin.zip`),
           hash: "sha256-HV8+tA9YjFot8ZVpvJ2Z/Q+AKO654Iv8jInGgsOhtfs=",
         })))),
@@ -77,7 +74,7 @@ ln -s ${desktopItem}/share/applications/* $out/share/applications
       nativeBuildInputs: nix.thunk(() => [makeWrapper, unzip]),
       buildInputs: nix.thunk(() => [perl, libicns, imagemagick]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Integrated development environment for Java, C, C++ and PHP",
         homepage: "https://netbeans.apache.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

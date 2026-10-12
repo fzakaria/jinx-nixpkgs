@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["updateScript", 86, 5]], [["description", 90, 5], ["changelog", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["maintainers", 95, 5], ["mainProgram", 98, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["vendorHash", 43, 3], ["buildInputs", 45, 3], ["nativeBuildInputs", 46, 3], ["subPackages", 51, 3], ["postBuild", 53, 3], ["postInstall", 79, 3], ["passthru", 85, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { enabledProviders: true, bluez: false, buildGoModule: false, fd: false, fetchFromGitHub: false, imagemagick: false, lib: false, libqalculate: false, makeWrapper: false, "nix-update-script": false, protobuf: false, "protoc-gen-go": false, "wl-clipboard": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 90, 5], ["changelog", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["maintainers", 95, 5], ["mainProgram", 98, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["vendorHash", 43, 3], ["buildInputs", 45, 3], ["nativeBuildInputs", 46, 3], ["subPackages", 51, 3], ["postBuild", 53, 3], ["postInstall", 79, 3], ["passthru", 85, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const providerEnabled = (provider) => (nix.asBool(nix.eq(enabledProviders, null)) || nix.asBool(nix.app(nix.sel(lib, "elem"), provider, enabledProviders)));
   const runtimeDeps = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(providerEnabled, "files")), nix.thunk(() => [fd])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(providerEnabled, "bluetooth")), nix.thunk(() => [bluez])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(providerEnabled, "calc")), nix.thunk(() => [libqalculate])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(providerEnabled, "clipboard")), nix.thunk(() => [wl_clipboard, imagemagick]))))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "elephant",
       version: "2.22.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "abenz1267",
           repo: "elephant",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,11 +44,11 @@ export default nix.lambda((args) => (() => {
   --set ELEPHANT_PROVIDER_DIR "$out/lib/elephant/providers"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Data provider service and backend for building custom application launchers",
         changelog: nix.thunk(() => nix.str`https://github.com/abenz1267/elephant/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/abenz1267/elephant",

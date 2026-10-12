@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]], [["description", 24, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["buildPhase", 15, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, "anki-utils": false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 24, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["buildPhase", 15, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const anki_utils = nix.arg($, "anki-utils");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "passfail2",
       version: "0.3.0-unstable-2024-10-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lambdadog",
           repo: "passfail2",
           rev: "d5313e4f1217e968b36edbc0a4fe92386209ffe6",
@@ -31,7 +29,7 @@ substitute build_info.py.in build_info.py \\
 runHook postBuild
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Replaces the default Anki review buttons with only two options:\n“Fail” and “Pass”\n",
         homepage: "https://github.com/lambdadog/passfail2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

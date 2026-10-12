@@ -2,39 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nativeBuildInputs", 34, 11], ["text", 35, 11]], [["nixpkgsTlpdbNix", 57, 9], ["tlpdbNix", 58, 9]], [["name", 70, 7], ["format", 71, 7], ["texLive", 72, 7], ["text", 73, 7]], [["name", 83, 7], ["format", 84, 7]], [["lualatex", 69, 5], ["xelatex", 82, 5]], [["nativeBuildInputs", 91, 9], ["input", 94, 9]], [["name", 110, 5], ["format", 111, 5], ["texLive", 112, 5], ["postTest", 115, 5], ["text", 121, 5]], [["name", 140, 13], ["url", 141, 13], ["sha256", 142, 13]], [["nativeBuildInputs", 135, 11], ["input", 139, 11]], [["nativeBuildInputs", 163, 11], ["input", 167, 11], ["gs_trap", 182, 11]], [["basic", 132, 5], ["ghostscript", 160, 5]], [["nativeBuildInputs", 210, 9], ["input", 214, 9]], [["withDocs", 242, 71]], [["nativeBuildInputs", 241, 9]], [["name", 256, 7], ["format", 257, 7], ["text", 258, 7]], [["name", 269, 7], ["format", 270, 7], ["text", 271, 7]], [["name", 282, 7], ["format", 283, 7]], [["etex", 255, 5], ["latex", 268, 5], ["luatex", 281, 5]], [["name", 296, 9], ["format", 297, 9], ["hyphenBase", 298, 17], ["texLive", 298, 28], ["text", 299, 9], ["preTest", 309, 9]], [["name", 317, 9], ["format", 318, 9], ["hyphenBase", 319, 17], ["texLive", 319, 28], ["text", 320, 9], ["preTest", 331, 9]], [["name", 339, 9], ["format", 340, 9], ["hyphenBase", 341, 17], ["texLive", 341, 28], ["text", 342, 9], ["preTest", 357, 9]], [["etex", 295, 7], ["latex", 316, 7], ["luatex", 338, 7]], [["hyphenBase", 369, 9], ["schemeFull", 370, 9], ["schemeInfraOnly", 371, 9]], [["nativeBuildInputs", 405, 9]], [["nativeBuildInputs", 429, 9]], [["nativeBuildInputs", 442, 9]], [["name", 778, 9], ["paths", 779, 9]], [["binaries", 785, 11], ["contextTestTex", 786, 11], ["latexTestTex", 787, 11], ["texTestTex", 788, 11], ["texliveScheme", 790, 9]], [["errorText", 966, 17]], [["errorText", 999, 17], ["passAsFile", 1000, 9]], [["mkTeXTest", 20, 3], ["tlpdbNix", 54, 3], ["opentype-fonts", 68, 3], ["chktex", 88, 3], ["context", 109, 3], ["dvipng", 130, 3], ["dvisvgm", 207, 3], ["texdoc", 238, 3], ["defaultLanguage", 253, 3], ["allLanguages", 288, 3], ["hyphen-base", 366, 3], ["l3build", 402, 3], ["repstopdf", 426, 3], ["rpdfcrop", 439, 3], ["binaries", 456, 3], ["shebangs", 900, 3], ["licenses", 935, 3], ["fixedHashes", 981, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildEnv: false, runCommand: false, fetchurl: false, file: false, texlive: false, writeShellScript: false, writeText: false, texliveInfraOnly: false, texliveConTeXt: false, texliveSmall: false, texliveMedium: false, texliveFull: false }, ellipsis: false };
 const formals$2 = { args: { name: false, format: false, text: false, texLive: true, options: true, preTest: true, postTest: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 34, 11], ["text", 35, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nixpkgsTlpdbNix", 57, 9], ["tlpdbNix", 58, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 70, 7], ["format", 71, 7], ["texLive", 72, 7], ["text", 73, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 83, 7], ["format", 84, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["lualatex", 69, 5], ["xelatex", 82, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 91, 9], ["input", 94, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 110, 5], ["format", 111, 5], ["texLive", 112, 5], ["postTest", 115, 5], ["text", 121, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["name", 140, 13], ["url", 141, 13], ["sha256", 142, 13]]);
-const pos$9 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 135, 11], ["input", 139, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 163, 11], ["input", 167, 11], ["gs_trap", 182, 11]]);
-const pos$11 = nix.positions(here + "/default.nix", [["basic", 132, 5], ["ghostscript", 160, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 210, 9], ["input", 214, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["withDocs", 242, 71]]);
-const pos$14 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 241, 9]]);
-const pos$15 = nix.positions(here + "/default.nix", [["name", 256, 7], ["format", 257, 7], ["text", 258, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["name", 269, 7], ["format", 270, 7], ["text", 271, 7]]);
-const pos$17 = nix.positions(here + "/default.nix", [["name", 282, 7], ["format", 283, 7]]);
-const pos$18 = nix.positions(here + "/default.nix", [["etex", 255, 5], ["latex", 268, 5], ["luatex", 281, 5]]);
-const pos$19 = nix.positions(here + "/default.nix", [["name", 296, 9], ["format", 297, 9], ["hyphenBase", 298, 17], ["texLive", 298, 28], ["text", 299, 9], ["preTest", 309, 9]]);
-const pos$20 = nix.positions(here + "/default.nix", [["name", 317, 9], ["format", 318, 9], ["hyphenBase", 319, 17], ["texLive", 319, 28], ["text", 320, 9], ["preTest", 331, 9]]);
-const pos$21 = nix.positions(here + "/default.nix", [["name", 339, 9], ["format", 340, 9], ["hyphenBase", 341, 17], ["texLive", 341, 28], ["text", 342, 9], ["preTest", 357, 9]]);
-const pos$22 = nix.positions(here + "/default.nix", [["etex", 295, 7], ["latex", 316, 7], ["luatex", 338, 7]]);
-const pos$23 = nix.positions(here + "/default.nix", [["hyphenBase", 369, 9], ["schemeFull", 370, 9], ["schemeInfraOnly", 371, 9]]);
-const pos$24 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 405, 9]]);
-const pos$25 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 429, 9]]);
-const pos$26 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 442, 9]]);
-const pos$27 = nix.positions(here + "/default.nix", [["name", 778, 9], ["paths", 779, 9]]);
-const pos$28 = nix.positions(here + "/default.nix", [["binaries", 785, 11], ["contextTestTex", 786, 11], ["latexTestTex", 787, 11], ["texTestTex", 788, 11], ["texliveScheme", 790, 9]]);
-const pos$29 = nix.positions(here + "/default.nix", [["errorText", 966, 17]]);
-const pos$30 = nix.positions(here + "/default.nix", [["errorText", 999, 17], ["passAsFile", 1000, 9]]);
-const pos$31 = nix.positions(here + "/default.nix", [["mkTeXTest", 20, 3], ["tlpdbNix", 54, 3], ["opentype-fonts", 68, 3], ["chktex", 88, 3], ["context", 109, 3], ["dvipng", 130, 3], ["dvisvgm", 207, 3], ["texdoc", 238, 3], ["defaultLanguage", 253, 3], ["allLanguages", 288, 3], ["hyphen-base", 366, 3], ["l3build", 402, 3], ["repstopdf", 426, 3], ["rpdfcrop", 439, 3], ["binaries", 456, 3], ["shebangs", 900, 3], ["licenses", 935, 3], ["fixedHashes", 981, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -64,7 +34,7 @@ export default nix.lambda((args) => (() => {
         const preTest = nix.argOr($_1, "preTest", () => "");
         const postTest = nix.argOr($_1, "postTest", () => "");
         return nix.app(runCommand, nix.thunk(() => nix.str`texlive-test-tex-${name}`), nix.thunk(() => nix.update({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             nativeBuildInputs: nix.thunk(() => nix.concat([texLive], nix.selOr(attrs, () => [], "nativeBuildInputs"))),
             text: nix.thunk(() => nix.builtins.toFile(nix.thunk(() => nix.str`${name}.tex`), text)),
           }, nix.builtins.removeAttrs(attrs, nix.thunk(() => ["nativeBuildInputs", "text", "texLive"])))), nix.thunk(() => nix.str`export HOME="$(mktemp -d)"
@@ -77,30 +47,30 @@ ${postTest}
 `));
       })(), formals$2)));
     const tlpdbNix = nix.thunk(() => nix.app(runCommand, "texlive-test-tlpdb-nix", nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         nixpkgsTlpdbNix: nix.path(here, "../../tools/typesetting/tex/texlive/tlpdb.nix"),
         tlpdbNix: nix.thunk(() => nix.sel(texlive, "tlpdb", "nix")),
       })), "mkdir -p \"$out\"\ndiff -u \"${nixpkgsTlpdbNix}\" \"${tlpdbNix}\" | tee \"$out/tlpdb.nix.patch\"\n"));
     const opentype_fonts = nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
         const lualatex = nix.thunk(() => nix.app(mkTeXTest, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "opentype-fonts-lualatex",
             format: "lualatex",
             texLive: nix.thunk(() => nix.app(nix.sel(texliveSmall, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "libertinus-fonts"))])),
             text: "\\documentclass{article}\n\\usepackage{fontspec}\n\\setmainfont{Libertinus Serif}\n\\begin{document}\n  \\LaTeX{} is great\n\\end{document}\n",
           }))));
-        const xelatex = nix.thunk(() => nix.app(nix.sel(lualatex, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, name: "opentype-fonts-xelatex", format: "xelatex" }))));
-        return { [nix.POS]: pos$5, lualatex, xelatex };
+        const xelatex = nix.thunk(() => nix.app(nix.sel(lualatex, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], name: "opentype-fonts-xelatex", format: "xelatex" }))));
+        return { [nix.POS]: $pos[4], lualatex, xelatex };
       })())));
     const chktex = nix.thunk(() => nix.app(runCommand, "texlive-test-chktex", nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         nativeBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(texlive, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "chktex"))])),
         ]),
         input: nix.thunk(() => nix.builtins.toFile("chktex-sample.tex", "\\documentclass{article}\n\\begin{document}\n  \\LaTeX is great\n\\end{document}\n")),
       })), "# chktex is supposed to return 2 when it (successfully) finds warnings, but no errors,\n# see http://git.savannah.nongnu.org/cgit/chktex.git/commit/?id=ec0fb9b58f02a62ff0bfec98b997208e9d7a5998\n(set +e; chktex -v -nall -w1 \"$input\" 2>&1; [ $? = 2 ] || exit 1; set -e)  | tee \"$out\"\n# also check that the output does indeed contain \"One warning printed\"\ngrep \"One warning printed\" \"$out\"\n"));
     const context = nix.thunk(() => nix.app(mkTeXTest, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: "texlive-test-context",
         format: "context",
         texLive: texliveConTeXt,
@@ -108,19 +78,19 @@ ${postTest}
         text: "\\starttext\n\\startsection[title={ConTeXt test document}]\n  This is an {\\em incredibly} simple ConTeXt document.\n\\stopsection\n\\stoptext\n",
       }))));
     const dvipng = nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         basic: nix.thunk(() => nix.app(runCommand, "texlive-test-dvipng-basic", nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             nativeBuildInputs: nix.thunk(() => [file, texliveMedium]),
             input: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 name: "test_dvipng.tex",
                 url: "http://git.savannah.nongnu.org/cgit/dvipng.git/plain/test_dvipng.tex?id=b872753590a18605260078f56cbd6f28d39dc035",
                 sha256: "1pjpf1jvwj2pv5crzdgcrzvbmn7kfmgxa39pcvskl4pa0c9hl88n",
               })))),
           })), "cp \"$input\" ./document.tex\n\nlatex document.tex\ndvipng -T tight -strict -picky document.dvi\nfor f in document*.png; do\n  file \"$f\" | tee output\n  grep PNG output\ndone\n\nmkdir \"$out\"\nmv document*.png \"$out\"/\n")),
         ghostscript: nix.thunk(() => nix.app(runCommand, "texlive-test-ghostscript", nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             nativeBuildInputs: nix.thunk(() => [
               file,
               nix.thunk(() => nix.app(nix.sel(texliveSmall, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "dvipng"))])),
@@ -130,39 +100,39 @@ ${postTest}
           })), "cp \"$gs_trap\" ./gs\nexport PATH=$PWD:$PATH\n# check that the trap works\ngs && exit 1\n\ncp \"$input\" ./document.tex\n\nlatex document.tex\ndvipng -T 1in,1in -strict -picky document.dvi\nfor f in document*.png; do\n  file \"$f\" | tee output\n  grep PNG output\ndone\n\nmkdir \"$out\"\nmv document*.png \"$out\"/\n")),
       }))));
     const dvisvgm = nix.thunk(() => nix.app(runCommand, "texlive-test-dvisvgm", nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         nativeBuildInputs: nix.thunk(() => [file, texliveMedium]),
         input: nix.thunk(() => nix.builtins.toFile("dvisvgm-sample.tex", "\\documentclass{article}\n\\begin{document}\n  mwe\n\\end{document}\n")),
       })), "cp \"$input\" ./document.tex\n\nlatex document.tex\ndvisvgm document.dvi -n -o document_dvi.svg\ncat document_dvi.svg\nfile document_dvi.svg | grep SVG\n\npdflatex document.tex\ndvisvgm -P document.pdf -n -o document_pdf.svg\ncat document_pdf.svg\nfile document_pdf.svg | grep SVG\n\nmkdir \"$out\"\nmv document*.svg \"$out\"/\n"));
     const texdoc = nix.thunk(() => nix.app(runCommand, "texlive-test-texdoc", nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         nativeBuildInputs: nix.thunk(() => [
-          nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(texlive, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "texdoc"))]), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$13, withDocs: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(texlive, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "texdoc"))]), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[12], withDocs: true })))),
         ]),
       })), "texdoc --version\n\ntexdoc --debug --list texdoc | tee \"$out\"\ngrep texdoc.pdf \"$out\"\n"));
     const defaultLanguage = nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
         const etex = nix.thunk(() => nix.app(mkTeXTest, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             name: "default-language-etex",
             format: "etex",
             text: "\\catcode`\\@=11\n\\ifnum\\language=\\lang@USenglish \\message{[tests.texlive] Default language is US English.}\n\\else\\errmessage{[tests.texlive] Error: default language is NOT US English.}\\fi\n\\ifnum\\language=0\\message{[tests.texlive] Default language has id 0.}\n\\else\\errmessage{[tests.texlive] Error: default language does NOT have id 0.}\\fi\n\\bye\n",
           }))));
         const latex = nix.thunk(() => nix.app(mkTeXTest, nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             name: "default-language-latex",
             format: "latex",
             text: "\\makeatletter\n\\ifnum\\language=\\l@USenglish \\GenericWarning{}{[tests.texlive] Default language is US English}\n\\else\\GenericError{}{[tests.texlive] Error: default language is NOT US English}{}{}\\fi\n\\ifnum\\language=0\\GenericWarning{}{[tests.texlive] Default language has id 0}\n\\else\\GenericError{}{[tests.texlive] Error: default language does NOT have id 0}{}{}\\fi\n\\stop\n",
           }))));
-        const luatex = nix.thunk(() => nix.app(nix.sel(etex, "override"), nix.thunk(() => ({ [nix.POS]: pos$17, name: "default-language-luatex", format: "luatex" }))));
-        return { [nix.POS]: pos$18, etex, latex, luatex };
+        const luatex = nix.thunk(() => nix.app(nix.sel(etex, "override"), nix.thunk(() => ({ [nix.POS]: $pos[16], name: "default-language-luatex", format: "luatex" }))));
+        return { [nix.POS]: $pos[17], etex, latex, luatex };
       })())));
     const allLanguages = nix.thunk(() => (() => {
       const hyphenBase = nix.thunk(() => nix.sel(texlive, "pkgs", "hyphen-base"));
       const texLive = texliveFull;
       return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           etex: nix.thunk(() => nix.app(mkTeXTest, nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               name: "all-languages-etex",
               format: "etex",
               hyphenBase: hyphenBase,
@@ -171,7 +141,7 @@ ${postTest}
               preTest: "texLanguages=\"$(sed -n -E 's/^\\\\addlanguage\\s*\\{([^}]+)\\}.*$/\\1/p' < \"$hyphenBase\"/tex/generic/config/language.def)\"\ntexLanguages=\"${texLanguages//$'\\n'/,}\"\nsubstituteInPlace \"$name.tex\" --subst-var texLanguages\n",
             })))),
           latex: nix.thunk(() => nix.app(mkTeXTest, nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               name: "all-languages-latex",
               format: "latex",
               hyphenBase: hyphenBase,
@@ -180,7 +150,7 @@ ${postTest}
               preTest: "texLanguages=\"$(sed -n -E 's/^([^%= \\t]+).*$/\\1/p' < \"$hyphenBase\"/tex/generic/config/language.dat)\"\ntexLanguages=\"${texLanguages//$'\\n'/,}\"\nsubstituteInPlace \"$name.tex\" --subst-var texLanguages\n",
             })))),
           luatex: nix.thunk(() => nix.app(mkTeXTest, nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               name: "all-languages-luatex",
               format: "luatex",
               hyphenBase: hyphenBase,
@@ -191,25 +161,25 @@ ${postTest}
         })));
     })());
     const hyphen_base = nix.thunk(() => nix.app(runCommand, "texlive-test-hyphen-base", nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         hyphenBase: nix.thunk(() => nix.sel(texlive, "pkgs", "hyphen-base")),
         schemeFull: texliveFull,
         schemeInfraOnly: texliveInfraOnly,
       })), "mkdir -p \"$out\"/{scheme-infraonly,scheme-full}\n\n# create language files with no hyphenation patterns\ncat \"$hyphenBase\"/tex/generic/config/language.us >language.dat\ncat \"$hyphenBase\"/tex/generic/config/language.us.def >language.def\ncat \"$hyphenBase\"/tex/generic/config/language.us.lua >language.dat.lua\n\ncat >>language.dat.lua <<EOF\n}\nEOF\n\ncat >>language.def <<EOF\n%%% No changes may be made beyond this point.\n\n\\uselanguage {USenglish}             %%% This MUST be the last line of the file.\nEOF\n\nfor fname in language.{dat,def,dat.lua} ; do\n  diff --ignore-matching-lines='^\\(%\\|--\\) Generated by ' -u \\\n    {\"$hyphenBase\",\"$schemeFull\"/share/texmf-var}/tex/generic/config/\"$fname\" \\\n    | tee \"$out/scheme-full/$fname.patch\"\n  diff --ignore-matching-lines='^\\(%\\|--\\) Generated by ' -u \\\n    {,\"$schemeInfraOnly\"/share/texmf-var/tex/generic/config/}\"$fname\" \\\n    | tee \"$out/scheme-infraonly/$fname.patch\"\ndone\n"));
     const l3build = nix.thunk(() => nix.app(runCommand, "texlive-test-l3build", nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         nativeBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(texliveSmall, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "l3build"))])),
         ]),
       })), "cat >>build.lua <<EOF\nmodule = \"texlive-test-l3build\"\ntypesetfiles = {\"*.tex\"}\nEOF\n\ncat >>test-l3build.tex <<EOF\n\\documentclass{article}\n\\begin{document}\nl3build ran successfully.\n\\end{document}\nEOF\n\nl3build doc\nl3build install --full --texmfhome \"$out\"\n"));
     const repstopdf = nix.thunk(() => nix.app(runCommand, "texlive-test-repstopdf", nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         nativeBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(texlive, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "epstopdf"))])),
         ]),
       })), "! (epstopdf --gscmd echo /dev/null 2>&1 || true) | grep forbidden >/dev/null\n(repstopdf --gscmd echo /dev/null 2>&1 || true) | grep forbidden >/dev/null\nmkdir \"$out\"\n"));
     const rpdfcrop = nix.thunk(() => nix.app(runCommand, "texlive-test-rpdfcrop", nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         nativeBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(texlive, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "pdfcrop"))])),
         ]),
@@ -461,9 +431,9 @@ ${postTest}
       const latexTestTex = nix.thunk(() => nix.app(writeText, "latex-test.tex", "\\documentclass{article}\n\\begin{document}\n  A simple test file.\n\\end{document}\n"));
       const texTestTex = nix.thunk(() => nix.app(writeText, "tex-test.tex", "Hello.\n\\bye\n"));
       const binPackages = nix.thunk(() => nix.app(nix.sel(lib, "catAttrs"), "out", nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(texlive, "pkgs"))))));
-      const binaries_1 = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({ [nix.POS]: pos$27, name: "texlive-binaries", paths: binPackages }))));
+      const binaries_1 = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({ [nix.POS]: $pos[26], name: "texlive-binaries", paths: binPackages }))));
       return nix.app(runCommand, "texlive-test-binaries", nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           binaries: binaries_1,
           contextTestTex: contextTestTex,
           latexTestTex: latexTestTex,
@@ -605,20 +575,20 @@ saved: [ ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.ap
 correct: [ ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.app(correctLicensesAttrNames, scheme)))} ]
 `;
       const errorText = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), prettyPrint, incorrectSchemes))));
-      return nix.app(runCommand, "texlive-test-license", nix.thunk(() => ({ [nix.POS]: pos$29, errorText: errorText })), nix.thunk(() => (nix.asBool(nix.eq(incorrectSchemes, {})) ? "echo everything is fine! > $out" : "echo \"$errorText\"\nfalse\n")));
+      return nix.app(runCommand, "texlive-test-license", nix.thunk(() => ({ [nix.POS]: $pos[28], errorText: errorText })), nix.thunk(() => (nix.asBool(nix.eq(incorrectSchemes, {})) ? "echo everything is fine! > $out" : "echo \"$errorText\"\nfalse\n")));
     })());
     const fixedHashes = nix.thunk(() => (() => {
       const fods = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (p) => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.has(p, "tex")) && nix.asBool(nix.app(nix.sel(lib, "isDerivation"), nix.thunk(() => nix.sel(p, "tex")))))), nix.thunk(() => nix.sel(p, "tex"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(p, "texdoc")), nix.thunk(() => nix.sel(p, "texdoc"))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(p, "texsource")), nix.thunk(() => nix.sel(p, "texsource"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(p, "tlpkg")), nix.thunk(() => nix.sel(p, "tlpkg")))))), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(texlive, "pkgs"))))));
       const errorText = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (p) => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.has(p, "outputHash"))), nix.thunk(() => nix.str`${nix.sel(p, "pname")}-${nix.sel(p, "tlOutputName")} does not have a fixed output hash
 `)), fods));
       return nix.app(runCommand, "texlive-test-fixed-hashes", nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           errorText: errorText,
           passAsFile: nix.thunk(() => ["errorText"]),
         })), "if [[ -s \"$errorTextPath\" ]] ; then\n  cat \"$errorTextPath\"\n  echo Failed: some TeX Live packages do not have fixed output hashes. Please read UPGRADING.md for how to generate a new fixed-hashes.nix.\n  exit 1\nelse\n  touch \"$out\"\nfi\n");
     })());
     return {
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       mkTeXTest,
       tlpdbNix,
       "opentype-fonts": opentype_fonts,

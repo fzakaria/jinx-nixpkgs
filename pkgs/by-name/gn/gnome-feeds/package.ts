@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]], [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]], [["description", 85, 5], ["mainProgram", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 92, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 34, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 58, 3], ["dependencies", 64, 3], ["dontWrapGApps", 78, 3], ["preFixup", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitLab: false, fetchpatch: false, appstream: false, "gobject-introspection": false, meson: false, ninja: false, "pkg-config": false, "blueprint-compiler": false, wrapGAppsHook4: false, "glib-networking": false, libadwaita: false, webkitgtk_6_0: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 85, 5], ["mainProgram", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 34, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 58, 3], ["dependencies", 64, 3], ["dontWrapGApps", 78, 3], ["preFixup", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const webkitgtk_6_0 = nix.arg($, "webkitgtk_6_0");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-feeds",
       version: "2.2.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "gfeeds",
@@ -40,13 +36,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-for-blueprint-0.8.patch",
             url: "https://gitlab.gnome.org/World/gfeeds/-/commit/cfe860f44f685be302e2ad9f30b55bab08e078ce.patch",
             hash: "sha256-exkq9KykB60/X8u3+T1/sShrhGP8BvNkaBWPzm2mchc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "upgrade-blueprint-0.8-syntax.patch",
             url: "https://gitlab.gnome.org/World/gfeeds/-/commit/d099fda0c62e338080061683a154f711cc487b30.patch",
             hash: "sha256-M6QLRTj+CItk3XPDeexf3/+B1YHJoHsTjwdE6iw1xjM=",
@@ -81,7 +77,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "RSS/Atom feed reader for GNOME",
         mainProgram: "gfeeds",
         homepage: "https://gitlab.gnome.org/World/gfeeds",

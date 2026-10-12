@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["doCheck", 49, 55]], [["pytest", 49, 18]], [["tests", 49, 12]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["nativeBuildInputs", 29, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 39, 3], ["doCheck", 45, 3], ["pythonImportsCheck", 47, 3], ["passthru", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, jinja2: false, lark: false, pyprojectVersionPatchHook: false, pysmi: false, pysnmp: false, pytestCheckHook: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 49, 55]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pytest", 49, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 49, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["nativeBuildInputs", 29, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 39, 3], ["doCheck", 45, 3], ["pythonImportsCheck", 47, 3], ["passthru", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pysmi",
       version: "2.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lextudio",
           repo: "pysmi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,14 +37,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pysmi"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(pysmi, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
+          [nix.POS]: $pos[2],
+          pytest: nix.thunk(() => nix.app(nix.sel(pysmi, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "SNMP MIB parser",
         homepage: "https://github.com/lextudio/pysmi",
         changelog: nix.thunk(() => nix.str`https://github.com/lextudio/pysmi/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

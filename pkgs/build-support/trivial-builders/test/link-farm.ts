@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/link-farm.nix", [[["name", 9, 5], ["text", 10, 5]], [["name", 15, 7], ["path", 16, 7]], [["name", 19, 7], ["path", 20, 7]], [["name", 26, 7], ["path", 27, 7]], [["name", 30, 7], ["path", 31, 7]], [["name", 34, 7], ["path", 35, 7]], [["foo", 40, 13], ["hello", 40, 17]], [["-foo", 44, 5], ["-hello", 45, 5]]]);
 const formals$1 = { args: { linkFarm: false, hello: false, writeTextFile: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/link-farm.nix", [["name", 9, 5], ["text", 10, 5]]);
-const pos$2 = nix.positions(here + "/link-farm.nix", [["name", 15, 7], ["path", 16, 7]]);
-const pos$3 = nix.positions(here + "/link-farm.nix", [["name", 19, 7], ["path", 20, 7]]);
-const pos$4 = nix.positions(here + "/link-farm.nix", [["name", 26, 7], ["path", 27, 7]]);
-const pos$5 = nix.positions(here + "/link-farm.nix", [["name", 30, 7], ["path", 31, 7]]);
-const pos$6 = nix.positions(here + "/link-farm.nix", [["name", 34, 7], ["path", 35, 7]]);
-const pos$7 = nix.positions(here + "/link-farm.nix", [["foo", 40, 13], ["hello", 40, 17]]);
-const pos$8 = nix.positions(here + "/link-farm.nix", [["-foo", 44, 5], ["-hello", 45, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const hello = nix.arg($, "hello");
   const writeTextFile = nix.arg($, "writeTextFile");
   const runCommand = nix.arg($, "runCommand");
-  const foo = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({ [nix.POS]: pos$1, name: "foo", text: "foo" }))));
+  const foo = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({ [nix.POS]: $pos[0], name: "foo", text: "foo" }))));
   const linkFarmFromList = nix.thunk(() => nix.app(linkFarm, "linkFarmFromList", nix.thunk(() => [
-      nix.thunk(() => ({ [nix.POS]: pos$2, name: "foo", path: foo })),
-      nix.thunk(() => ({ [nix.POS]: pos$3, name: "hello", path: hello })),
+      nix.thunk(() => ({ [nix.POS]: $pos[1], name: "foo", path: foo })),
+      nix.thunk(() => ({ [nix.POS]: $pos[2], name: "hello", path: hello })),
     ])));
   const linkFarmWithRepeats = nix.thunk(() => nix.app(linkFarm, "linkFarmWithRepeats", nix.thunk(() => [
-      nix.thunk(() => ({ [nix.POS]: pos$4, name: "foo", path: foo })),
-      nix.thunk(() => ({ [nix.POS]: pos$5, name: "hello", path: hello })),
-      nix.thunk(() => ({ [nix.POS]: pos$6, name: "foo", path: hello })),
+      nix.thunk(() => ({ [nix.POS]: $pos[3], name: "foo", path: foo })),
+      nix.thunk(() => ({ [nix.POS]: $pos[4], name: "hello", path: hello })),
+      nix.thunk(() => ({ [nix.POS]: $pos[5], name: "foo", path: hello })),
     ])));
-  const linkFarmFromAttrs = nix.thunk(() => nix.app(linkFarm, "linkFarmFromAttrs", nix.thunk(() => ({ [nix.POS]: pos$7, foo: foo, hello: hello }))));
-  const linkFarmDelimitOptionList = nix.thunk(() => nix.app(linkFarm, "linkFarmDelimitOptionList", nix.thunk(() => ({ [nix.POS]: pos$8, "-foo": foo, "-hello": hello }))));
+  const linkFarmFromAttrs = nix.thunk(() => nix.app(linkFarm, "linkFarmFromAttrs", nix.thunk(() => ({ [nix.POS]: $pos[6], foo: foo, hello: hello }))));
+  const linkFarmDelimitOptionList = nix.thunk(() => nix.app(linkFarm, "linkFarmDelimitOptionList", nix.thunk(() => ({ [nix.POS]: $pos[7], "-foo": foo, "-hello": hello }))));
   return nix.app(runCommand, "test-linkFarm", nix.thunk(() => ({})), nix.thunk(() => nix.str`function assertPathEquals() {
   local a b;
   a="$(realpath "$1")"

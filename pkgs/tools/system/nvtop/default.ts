@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 27, 7], ["value", 28, 7]], [["full", 35, 3]], [["name", 40, 5], ["value", 41, 5]]]);
 const formals$1 = { args: { callPackage: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 27, 7], ["value", 28, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["full", 35, 3]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 40, 5], ["value", 41, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,15 +24,15 @@ export default nix.lambda((args) => (() => {
   ]);
   const additionalGPUFamilies = nix.thunk(() => ["ascend", "tpu"]);
   const defaultSupport = nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((gpu) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: gpu,
         value: nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.eq(gpu, "apple")) && nix.asBool(nix.sel(stdenv, "buildPlatform", "isDarwin")))) && nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))))) || nix.asBool((nix.asBool(!nix.eq(gpu, "apple")) && nix.asBool(nix.sel(stdenv, "buildPlatform", "isLinux")))))),
       }), defaultGPUFamilies))));
   return nix.update({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     full: nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-nvtop.nix"), defaultSupport)),
   }, nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((gpu) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: gpu,
         value: nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-nvtop.nix"), nix.thunk(() => nix.attrsDyn({}, [[nix.str`${gpu}`, true]])))),
       }), defaultGPUFamilies))));

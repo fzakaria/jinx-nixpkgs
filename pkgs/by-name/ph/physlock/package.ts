@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 35, 5], ["homepage", 36, 5], ["mainProgram", 37, 5], ["license", 38, 5], ["platforms", 39, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["preConfigure", 24, 3], ["makeFlags", 29, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pam: false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["mainProgram", 37, 5], ["license", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["preConfigure", 24, 3], ["makeFlags", 29, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "13",
       pname: "physlock",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xyb3rt",
           repo: "physlock",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "substituteInPlace Makefile \\\n  --replace \"-m 4755 -o root -g root\" \"\"\n",
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "SESSION=systemd"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Secure suspend/hibernate-friendly alternative to `vlock -an`",
         homepage: "https://github.com/xyb3rt/physlock",
         mainProgram: "physlock",

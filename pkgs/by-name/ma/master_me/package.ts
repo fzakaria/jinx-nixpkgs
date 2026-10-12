@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["fetchSubmodules", 20, 5], ["hash", 21, 5]], [["homepage", 44, 5], ["description", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["broken", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["enableParallelBuilding", 35, 3], ["postPatch", 37, 3], ["makeFlags", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libGL: false, libx11: false, libxext: false, libxrandr: false, "pkg-config": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["fetchSubmodules", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["broken", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["enableParallelBuilding", 35, 3], ["postPatch", 37, 3], ["makeFlags", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "master_me",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trummerschlunk",
           repo: "master_me",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs ./dpf/utils/\n",
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/trummerschlunk/master_me",
         description: "Automatic mastering plugin for live streaming, podcasts and internet radio",
         maintainers: nix.thunk(() => (() => {

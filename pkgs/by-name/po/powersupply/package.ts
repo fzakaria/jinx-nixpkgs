@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 44, 3], ["dependencies", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitLab: false, "desktop-file-utils": false, "gobject-introspection": false, gtk4: false, libadwaita: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 44, 3], ["dependencies", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "powersupply",
       version: "0.10.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.postmarketos.org",
           owner: "postmarketOS",
           repo: "powersupply",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "pygobject3"))];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graphical app to display power status of mobile Linux platforms",
         homepage: "https://gitlab.postmarketos.org/postmarketOS/powersupply",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

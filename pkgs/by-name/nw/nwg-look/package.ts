@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["CGO_ENABLED", 47, 7]], [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["ldflags", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["env", 47, 3], ["postInstall", 49, 3], ["preFixup", 57, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, wrapGAppsHook3: false, buildGoModule: false, glib: false, "pkg-config": false, cairo: false, gtk3: false, xcur2png: false, libx11: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["ldflags", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["env", 47, 3], ["postInstall", 49, 3], ["preFixup", 57, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nwg-look",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nwg-piotr",
           repo: "nwg-look",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s", "-w"]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [glib, cairo, xcur2png, nix.thunk(() => nix.sel(libx11, "dev")), zlib, gtk3]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 1n })),
       postInstall: "mkdir -p $out/share/nwg-look/langs\ncp stuff/main.glade $out/share/nwg-look/\ncp langs/* $out/share/nwg-look/langs\ninstall -D -m 644 stuff/nwg-look.desktop -t $out/share/applications\ninstall -D -m 644 stuff/nwg-look.svg -t $out/share/icons/hicolor/scalable/apps\n",
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(
   --prefix PATH : "${nix.sel(glib, "bin")}/bin"
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/nwg-piotr/nwg-look",
         description: "GTK settings editor, designed to work properly in wlroots-based Wayland environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

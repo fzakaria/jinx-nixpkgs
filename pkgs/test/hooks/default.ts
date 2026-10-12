@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["default-stdenv-hooks", 11, 3]]]);
 const formals$1 = { args: { stdenv: false, tests: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["default-stdenv-hooks", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const tests = nix.arg($, "tests");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "default-stdenv-hooks": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.sel(tests, "stdenv", "hooks")))),
   };
 })(), formals$1);

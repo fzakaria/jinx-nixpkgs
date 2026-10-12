@@ -2,17 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pgaudit.nix", [[["version", 13, 7], ["hash", 14, 7]], [["version", 17, 7], ["hash", 18, 7]], [["version", 21, 7], ["hash", 22, 7]], [["version", 25, 7], ["hash", 26, 7]], [["version", 29, 7], ["hash", 30, 7]], [["18", 12, 5], ["17", 16, 5], ["16", 20, 5], ["15", 24, 5], ["14", 28, 5]], [["version", 36, 7], ["hash", 37, 7]], [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 22]], [["broken", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["license", 67, 5]], [["pname", 41, 3], ["version", 42, 20], ["src", 44, 3], ["buildInputs", 51, 3], ["makeFlags", 56, 3], ["enableUpdateScript", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, libkrb5: false, openssl: false, postgresql: false, postgresqlBuildExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pgaudit.nix", [["version", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/pgaudit.nix", [["version", 17, 7], ["hash", 18, 7]]);
-const pos$3 = nix.positions(here + "/pgaudit.nix", [["version", 21, 7], ["hash", 22, 7]]);
-const pos$4 = nix.positions(here + "/pgaudit.nix", [["version", 25, 7], ["hash", 26, 7]]);
-const pos$5 = nix.positions(here + "/pgaudit.nix", [["version", 29, 7], ["hash", 30, 7]]);
-const pos$6 = nix.positions(here + "/pgaudit.nix", [["18", 12, 5], ["17", 16, 5], ["16", 20, 5], ["15", 24, 5], ["14", 28, 5]]);
-const pos$7 = nix.positions(here + "/pgaudit.nix", [["version", 36, 7], ["hash", 37, 7]]);
-const pos$8 = nix.positions(here + "/pgaudit.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 22]]);
-const pos$9 = nix.positions(here + "/pgaudit.nix", [["broken", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["license", 67, 5]]);
-const pos$10 = nix.positions(here + "/pgaudit.nix", [["pname", 41, 3], ["version", 42, 20], ["src", 44, 3], ["buildInputs", 51, 3], ["makeFlags", 56, 3], ["enableUpdateScript", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,44 +14,44 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     "18": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "18.0",
       hash: "sha256-+1YKJxMFkok7MsYeA9GRkc2FLxuBGRLpC+JzdK/xqoM=",
     })),
     "17": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "17.1",
       hash: "sha256-9St/ESPiFq2NiPKqbwHLwkIyATKUkOGxFcUrWgT+Iqo=",
     })),
     "16": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "16.1",
       hash: "sha256-fzoAcXEKmA+xD4HtcHZgcduh1XmSgL8ZS4R72og7RGQ=",
     })),
     "15": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "1.7.1",
       hash: "sha256-emwoTowT7WKFX0RQDqJXjIblrzqaUIUkzqSqBCHVKQ8=",
     })),
     "14": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "1.6.3",
       hash: "sha256-KgLidJHjUK9BTp6ffmGUj1chcwIe6IzlcadRpGCfNdM=",
     })),
   }));
   const source = nix.thunk(() => nix.selOr(sources, () => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: "",
       hash: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Source for pgaudit is not available for ${nix.sel(postgresql, "version")}`))),
     }), nix.key(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version"))))));
   return nix.app(postgresqlBuildExtension, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "pgaudit",
       version: nix.thunk(() => nix.attr(source, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           owner: "pgaudit",
           repo: "pgaudit",
           tag: nix.thunk(() => nix.sel(source, "version")),
@@ -70,7 +61,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["USE_PGXS=1"]),
       enableUpdateScript: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         broken: nix.thunk(() => !nix.asBool(nix.builtins.elem(nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version")))), nix.thunk(() => nix.builtins.attrNames(sources))))),
         description: "Open Source PostgreSQL Audit Logging",
         homepage: "https://github.com/pgaudit/pgaudit",

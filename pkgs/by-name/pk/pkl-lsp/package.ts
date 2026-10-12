@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["java", 16, 37]], [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5], ["leaveDotGit", 28, 5], ["postFetch", 29, 5]], [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]], [["pname", 74, 26], ["data", 75, 5]], [["updateScript", 133, 12]], [["description", 136, 5], ["homepage", 137, 5], ["downloadPage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["mainProgram", 142, 5], ["platforms", 143, 5], ["sourceProvenance", 146, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["treeSitterSrc", 38, 3], ["treeSitterPklSrc", 44, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 67, 3], ["mitmCache", 73, 3], ["__darwinAllowLocalNetworking", 78, 3], ["gradleFlags", 80, 3], ["preBuild", 87, 3], ["preGradleUpdate", 93, 3], ["doCheck", 113, 3], ["postInstallCheck", 115, 3], ["installPhase", 119, 3], ["nativeInstallCheckInputs", 130, 3], ["doInstallCheck", 131, 3], ["passthru", 133, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gradle_9: false, jdk25_headless: false, makeBinaryWrapper: false, "nix-update-script": false, versionCheckHook: false, zig_0_16: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["java", 16, 37]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5], ["leaveDotGit", 28, 5], ["postFetch", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 74, 26], ["data", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 133, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 136, 5], ["homepage", 137, 5], ["downloadPage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["mainProgram", 142, 5], ["platforms", 143, 5], ["sourceProvenance", 146, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["treeSitterSrc", 38, 3], ["treeSitterPklSrc", 44, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 67, 3], ["mitmCache", 73, 3], ["__darwinAllowLocalNetworking", 78, 3], ["gradleFlags", 80, 3], ["preBuild", 87, 3], ["preGradleUpdate", 93, 3], ["doCheck", 113, 3], ["postInstallCheck", 115, 3], ["installPhase", 119, 3], ["nativeInstallCheckInputs", 130, 3], ["doInstallCheck", 131, 3], ["passthru", 133, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const zig_0_16 = nix.arg($, "zig_0_16");
   const jdk = jdk25_headless;
   const gradle = gradle_9;
-  const gradleOverlay = nix.thunk(() => nix.app(nix.sel(gradle, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, java: jdk }))));
+  const gradleOverlay = nix.thunk(() => nix.app(nix.sel(gradle, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], java: jdk }))));
   const zig = zig_0_16;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "pkl-lsp",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "apple",
           repo: "pkl-lsp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,14 +34,14 @@ export default nix.lambda((args) => (() => {
           postFetch: "pushd $out\ngit rev-parse HEAD | tr -d '\\n' > .commit-hash\nrm -rf .git\npopd\n",
         })))),
       treeSitterSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "tree-sitter",
           repo: "tree-sitter",
           rev: "v0.25.3",
           hash: "sha256-xafeni6Z6QgPiKzvhCT2SyfPn0agLHo47y+6ExQXkzE=",
         })))),
       treeSitterPklSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "apple",
           repo: "tree-sitter-pkl",
           rev: "f9405e40597d7dac637a6b49e7d26c4515cb2a34",
@@ -70,7 +63,7 @@ chmod +w -R build/repos/{tree-sitter,tree-sitter-pkl}
 `),
       nativeBuildInputs: nix.thunk(() => [gradleOverlay, makeBinaryWrapper, zig]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -97,11 +90,11 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "The Pkl Language Server",
         homepage: "https://pkl-lang.org/lsp/current/index.html",
         downloadPage: "https://github.com/apple/pkl-lsp",

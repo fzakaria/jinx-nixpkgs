@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["withOpenssl", 11, 24]], [["mainProgram", 13, 8]], [["pname", 7, 3], ["extraBuildInputs", 9, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, libarchive: false, libzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["withOpenssl", 11, 24]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mainProgram", 13, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["extraBuildInputs", 9, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const libarchive = nix.arg($, "libarchive");
   const libzip = nix.arg($, "libzip");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ark",
       extraBuildInputs: nix.thunk(() => [
         libarchive,
-        nix.thunk(() => nix.app(nix.sel(libzip, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withOpenssl: true })))),
+        nix.thunk(() => nix.app(nix.sel(libzip, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withOpenssl: true })))),
       ]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "ark" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[1], mainProgram: "ark" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

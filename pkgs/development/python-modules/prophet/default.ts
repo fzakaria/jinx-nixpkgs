@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["PROPHET_REPACKAGE_CMDSTAN", 35, 7]], [["parallel", 49, 25]], [["changelog", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["sourceRoot", 33, 3], ["env", 35, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 39, 3], ["optional-dependencies", 49, 3], ["preCheck", 55, 3], ["nativeCheckInputs", 61, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, cmdstanpy: false, numpy: false, matplotlib: false, pandas: false, holidays: false, tqdm: false, "importlib-resources": false, dask: false, distributed: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PROPHET_REPACKAGE_CMDSTAN", 35, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["parallel", 49, 25]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["sourceRoot", 33, 3], ["env", 35, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 39, 3], ["optional-dependencies", 49, 3], ["preCheck", 55, 3], ["nativeCheckInputs", 61, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,30 +22,30 @@ export default nix.lambda((args) => (() => {
   const distributed = nix.arg($, "distributed");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "prophet",
       version: "1.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebook",
           repo: "prophet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Bu+ztg6sj1jh2iair6v1CdbF0Fi4b+h8yLzB3xTMD3Y=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/python`),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PROPHET_REPACKAGE_CMDSTAN: "false" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PROPHET_REPACKAGE_CMDSTAN: "false" })),
       nativeBuildInputs: nix.thunk(() => [setuptools]),
       propagatedBuildInputs: nix.thunk(() => [cmdstanpy, numpy, matplotlib, pandas, holidays, tqdm, importlib_resources]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         parallel: nix.thunk(() => nix.concat([dask, distributed], nix.sel(dask, "optional-dependencies", "dataframe"))),
       })),
       preCheck: "# use the generated files from $out for testing\nmv prophet/tests .\nrm -r prophet\n",
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["prophet"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/facebook/prophet/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Tool for producing high quality forecasts for time series data that has multiple seasonality with linear or non-linear growth",
         homepage: "https://facebook.github.io/prophet/",

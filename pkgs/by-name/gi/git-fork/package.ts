@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["updateScript", 31, 12]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["sourceProvenance", 39, 5], ["mainProgram", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["sourceRoot", 17, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["passthru", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, undmg: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 31, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["sourceProvenance", 39, 5], ["mainProgram", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["sourceRoot", 17, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["passthru", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "git-fork",
       version: "2.57.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://cdn.fork.dev/mac/Fork-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-hIrR655lCKBDkZS6cF7BD+WMvX13T9180rpAfUYc8YA=",
         })))),
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [undmg]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/\"{bin,Applications}\nmv Fork.app \"$out/Applications/\"\nln -s \"$out/Applications/Fork.app/Contents/Resources/fork_cli\" \"$out/bin/fork\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Git client",
         homepage: "https://git-fork.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

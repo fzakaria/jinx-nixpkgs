@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["version", 26, 28]], [["homepage", 52, 5], ["changelog", 53, 5], ["description", 54, 5], ["longDescription", 55, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 64, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["patches", 24, 3], ["subPackages", 30, 3], ["ldflags", 32, 3], ["nativeBuildInputs", 37, 3], ["postBuild", 42, 3], ["doInstallCheck", 47, 3], ["nativeInstallCheckInputs", 48, 3], ["versionCheckProgramArg", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, replaceVars: false, scdoc: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 26, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["changelog", 53, 5], ["description", 54, 5], ["longDescription", 55, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["patches", 24, 3], ["subPackages", 30, 3], ["ldflags", 32, 3], ["nativeBuildInputs", 37, 3], ["postBuild", 42, 3], ["doInstallCheck", 47, 3], ["nativeInstallCheckInputs", 48, 3], ["versionCheckProgramArg", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "shfmt",
       version: "3.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mvdan",
           repo: "sh",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +27,10 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-OfdXhgPyRRifRK4CylmOqWh0qmZ80mNAhBZtqJlwPPY=",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./version.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./version.patch"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            version: nix.thunk(() => nix.attr(finalAttrs, "version")),
+          })))),
       ]),
       subPackages: nix.thunk(() => ["cmd/shfmt"]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/mvdan/sh",
         changelog: nix.thunk(() => nix.str`https://github.com/mvdan/sh/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Shell parser and formatter",

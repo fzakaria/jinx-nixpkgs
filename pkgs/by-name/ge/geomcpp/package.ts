@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["license", 46, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 27, 3], ["cmakeFlags", 29, 3], ["doCheck", 35, 3], ["postPatch", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, glm: false, gtest: false, tinycmmc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["license", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 27, 3], ["cmakeFlags", 29, 3], ["doCheck", 35, 3], ["postPatch", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const tinycmmc = nix.arg($, "tinycmmc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "geomcpp",
       version: "0.0.0-unstable-2025-06-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Grumbel",
           repo: "geomcpp",
           rev: "282e3710fbe6dacee630391e4af8ffe03181f8a9",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "echo $version > VERSION\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of point, size and rect classes",
         homepage: "https://github.com/Grumbel/geomcpp",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "SchweGELBin"))]),

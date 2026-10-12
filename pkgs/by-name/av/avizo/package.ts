@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 42, 3], ["postInstall", 52, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, vala: false, gtk3: false, glib: false, "gtk-layer-shell": false, dbus: false, "dbus-glib": false, librsvg: false, "gobject-introspection": false, "gdk-pixbuf": false, wrapGAppsHook3: false, pamixer: false, brightnessctl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 42, 3], ["postInstall", 52, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const pamixer = nix.arg($, "pamixer");
   const brightnessctl = nix.arg($, "brightnessctl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "avizo",
       version: "1.3-unstable-2024-11-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "heyjuvi",
           repo: "avizo",
           rev: "5efaa22968b2cc1a3c15a304cac3f22ec2727b17",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/lightctl --suffix PATH : $out/bin:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [brightnessctl]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Neat notification daemon for Wayland",
         homepage: "https://github.com/heyjuvi/avizo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

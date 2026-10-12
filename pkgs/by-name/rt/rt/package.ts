@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 19, 5], ["rev", 20, 5], ["owner", 21, 5], ["hash", 22, 5]], [["name", 38, 7], ["paths", 39, 7]], [["homepage", 184, 5], ["platforms", 185, 5], ["license", 186, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["preAutoreconf", 140, 3], ["preConfigure", 143, 3], ["configureFlags", 151, 3], ["buildPhase", 159, 3], ["postFixup", 163, 3], ["meta", 183, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, buildEnv: false, fetchFromGitHub: false, perl: false, perlPackages: false, makeWrapper: false, gnupg: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 19, 5], ["rev", 20, 5], ["owner", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 7], ["paths", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 184, 5], ["platforms", 185, 5], ["license", 186, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["preAutoreconf", 140, 3], ["preConfigure", 143, 3], ["configureFlags", 151, 3], ["buildPhase", 159, 3], ["postFixup", 163, 3], ["meta", 183, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gnupg = nix.arg($, "gnupg");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rt",
       version: "6.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "rt",
           rev: nix.thunk(() => nix.str`rt-${nix.sel(finalAttrs, "version")}`),
           owner: "bestpractical",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [
         perl,
         nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "rt-perl-deps",
             paths: nix.thunk(() => (() => {
               const w = nix.withScope(perlPackages, null);
@@ -167,7 +164,7 @@ ln -s /var/lib/rt/smime $out/var/data/smime
 ln -s /var/lib/rt/gpg $out/var/data/gpg
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/bestpractical/rt",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

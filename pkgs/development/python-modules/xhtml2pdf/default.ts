@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["changelog", 64, 5], ["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["pythonRelaxDeps", 34, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 52, 3], ["pythonImportsCheck", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, "arabic-reshaper": false, buildPythonPackage: false, fetchFromGitHub: false, html5lib: false, pillow: false, pyhanko: false, "pyhanko-certvalidator": false, pypdf: false, pytestCheckHook: false, "python-bidi": false, reportlab: false, setuptools: false, svglib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 64, 5], ["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["pythonRelaxDeps", 34, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 52, 3], ["pythonImportsCheck", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.17";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xhtml2pdf",
           repo: "xhtml2pdf",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_document_cannot_identify_image", "test_document_with_broken_image"]);
       const pythonImportsCheck = nix.thunk(() => ["xhtml2pdf", "xhtml2pdf.pisa"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/xhtml2pdf/xhtml2pdf/releases/tag/${nix.sel(src, "tag")}`),
         description: "PDF generator using HTML and CSS",
         homepage: "https://github.com/xhtml2pdf/xhtml2pdf",
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

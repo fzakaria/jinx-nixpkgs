@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 62, 5], ["repo", 63, 5], ["tag", 64, 5], ["hash", 65, 5]], [["CXXFLAGS", 144, 7]], [["description", 186, 5], ["homepage", 187, 5], ["license", 188, 5], ["platforms", 189, 5], ["maintainers", 190, 5]], [["pname", 55, 3], ["version", 56, 3], ["strictDeps", 58, 3], ["__structuredAttrs", 59, 3], ["src", 61, 3], ["outputs", 68, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 82, 3], ["propagatedBuildInputs", 129, 3], ["env", 144, 3], ["cmakeFlags", 149, 3], ["doCheck", 170, 3], ["checkFlags", 175, 3], ["nativeCheckInputs", 180, 3], ["meta", 185, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, mpi: false, mpiCheckPhaseHook: false, ctestCheckHook: false, gfortran: false, blas: false, lapack: false, gsl: false, libxc: false, hdf5: false, spglib: false, spfft: false, spla: false, costa: false, umpire: false, scalapack: false, boost: false, eigen: false, libvdwxc: false, dftd4: false, "simple-dftd3": false, "mctc-lib": false, jonquil: false, "toml-f": false, multicharge: false, enablePython: true, pythonPackages: true, llvmPackages: false, cudaPackages: false, rocmPackages: false, config: false, gpuBackend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 62, 5], ["repo", 63, 5], ["tag", 64, 5], ["hash", 65, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 144, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 186, 5], ["homepage", 187, 5], ["license", 188, 5], ["platforms", 189, 5], ["maintainers", 190, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 3], ["strictDeps", 58, 3], ["__structuredAttrs", 59, 3], ["src", 61, 3], ["outputs", 68, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 82, 3], ["propagatedBuildInputs", 129, 3], ["env", 144, 3], ["cmakeFlags", 149, 3], ["doCheck", 170, 3], ["checkFlags", 175, 3], ["nativeCheckInputs", 180, 3], ["meta", 185, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,13 +46,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.builtins.elem(gpuBackend, nix.thunk(() => ["none", "cuda", "rocm"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/si/sirius/package.nix:47:1");
   nix.assert_((!nix.asBool(enablePython) || nix.asBool(!nix.eq(pythonPackages, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/si/sirius/package.nix:52:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "SIRIUS",
       version: "7.10.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "electronic-structure",
           repo: "SIRIUS",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -115,7 +112,7 @@ export default nix.lambda((args) => (() => {
           ];
         })())))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-include cstdint"]))),
       })),
       cmakeFlags: nix.thunk(() => nix.concat([
@@ -137,7 +134,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["--label-exclude", "integration_test"]),
       nativeCheckInputs: nix.thunk(() => [mpiCheckPhaseHook, ctestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Domain specific library for electronic structure calculations",
         homepage: "https://github.com/electronic-structure/SIRIUS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

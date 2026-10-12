@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["rev-prefix", 56, 5], ["odd-unstable", 57, 5]], [["updateScript", 55, 12]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5], ["platforms", 65, 5], ["teams", 66, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["postPatch", 47, 3], ["configureFlags", 52, 3], ["enableParallelBuilding", 53, 3], ["passthru", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gettext: false, "pkg-config": false, "xfce4-dev-tools": false, wrapGAppsHook3: false, glib: false, gtk3: false, libical: false, libnotify: false, libxfce4ui: false, libxfce4util: false, tzdata: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 56, 5], ["odd-unstable", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 55, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5], ["platforms", 65, 5], ["teams", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["postPatch", 47, 3], ["configureFlags", 52, 3], ["enableParallelBuilding", 53, 3], ["passthru", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const tzdata = nix.arg($, "tzdata");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "orage",
       version: "4.20.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.xfce.org",
           owner: "apps",
           repo: "orage",
@@ -46,11 +42,11 @@ substituteInPlace src/tz_zoneinfo_read.c  --replace-fail "/usr/share/zoneinfo" "
       configureFlags: nix.thunk(() => ["--enable-maintainer-mode"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "orage-", "odd-unstable": true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "orage-", "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple calendar application for Xfce",
         homepage: "https://gitlab.xfce.org/apps/orage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["updateScript", 130, 5]], [["description", 134, 5], ["mainProgram", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["platforms", 142, 5], ["maintainers", 143, 5]], [["pname", 29, 3], ["version", 30, 3], ["__structuredAttrs", 32, 3], ["strictDeps", 33, 3], ["src", 35, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 68, 3], ["propagatedBuildInputs", 82, 3], ["cmakeFlags", 92, 3], ["postInstall", 118, 3], ["doCheck", 127, 3], ["passthru", 129, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gfortran: false, fftwSinglePrec: false, doxygen: false, swig: false, graphviz: false, enablePython: true, python3Packages: false, enableOpencl: true, "opencl-headers": false, "ocl-icd": false, config: false, enableCuda: true, cudaPackages: false, autoAddDriverRunpath: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 130, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 134, 5], ["mainProgram", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["platforms", 142, 5], ["maintainers", 143, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["__structuredAttrs", 32, 3], ["strictDeps", 33, 3], ["src", 35, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 68, 3], ["propagatedBuildInputs", 82, 3], ["cmakeFlags", 92, 3], ["postInstall", 118, 3], ["doCheck", 127, 3], ["passthru", 129, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const effectiveStdenv = nix.thunk(() => (nix.asBool(enableCuda) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openmm",
       version: "8.6.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openmm",
           repo: "openmm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -101,11 +98,11 @@ ${nix.sel(python3Packages, "python", "pythonOnBuildForHost", "interpreter")} -m 
 `))),
       doCheck: nix.thunk(() => (nix.asBool(!nix.asBool(enableCuda)) && nix.asBool(!nix.asBool(enableOpencl)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Toolkit for molecular simulation using high performance GPU code",
         mainProgram: "TestReferenceHarmonicBondForce",
         homepage: "https://openmm.org/",

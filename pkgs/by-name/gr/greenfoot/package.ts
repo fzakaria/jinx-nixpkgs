@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withWebKit", 14, 40]], [["enableJavaFX", 13, 5], ["openjfx_jdk", 14, 5]], [["url", 25, 5], ["hash", 28, 5]], [["description", 61, 5], ["homepage", 62, 5], ["sourceProvenance", 63, 5], ["license", 64, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["dontWrapGApps", 37, 3], ["installPhase", 39, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openjdk21: false, openjfx21: false, glib: false, dpkg: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withWebKit", 14, 40]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enableJavaFX", 13, 5], ["openjfx_jdk", 14, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["sourceProvenance", 63, 5], ["license", 64, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["dontWrapGApps", 37, 3], ["installPhase", 39, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const dpkg = nix.arg($, "dpkg");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const openjdk = nix.thunk(() => nix.app(nix.sel(openjdk21, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       enableJavaFX: true,
-      openjfx_jdk: nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withWebKit: true })))),
+      openjfx_jdk: nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withWebKit: true })))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "greenfoot",
       version: "3.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://www.greenfoot.org/download/files/Greenfoot-linux-arm64-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.deb`),
           hash: "sha256-d5bkK+teTA4fxFb46ovbZE28l8WILGStv3Vg3nJZfv0=",
         })))),
@@ -56,7 +52,7 @@ makeWrapper ${openjdk}/bin/java $out/bin/greenfoot \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple integrated development environment for Java",
         homepage: "https://www.greenfoot.org/",
         sourceProvenance: nix.thunk(() => (() => {

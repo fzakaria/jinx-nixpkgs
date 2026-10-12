@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["array", 82, 5], ["complete", 83, 5], ["dataframe", 91, 5], ["distributed", 96, 5], ["diagnostics", 97, 5]], [["description", 163, 5], ["mainProgram", 164, 5], ["homepage", 165, 5], ["changelog", 166, 5], ["license", 167, 5], ["maintainers", 168, 5]], [["pname", 46, 3], ["version", 47, 3], ["pyproject", 48, 3], ["__structuredAttrs", 49, 3], ["src", 51, 3], ["postPatch", 58, 3], ["build-system", 65, 3], ["dependencies", 70, 3], ["optional-dependencies", 81, 3], ["nativeCheckInputs", 103, 3], ["pytestFlags", 119, 3], ["disabledTestMarks", 128, 3], ["disabledTests", 133, 3], ["__darwinAllowLocalNetworking", 146, 3], ["pythonImportsCheck", 148, 3], ["meta", 162, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, "util-linux": false, setuptools: false, "setuptools-scm": false, click: false, cloudpickle: false, fsspec: false, "importlib-metadata": false, packaging: false, partd: false, pyyaml: false, toolz: false, numpy: false, pyarrow: false, lz4: false, pandas: false, distributed: false, bokeh: false, jinja2: false, hypothesis: false, psutil: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-mock": false, "pytest-rerunfailures": false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["array", 82, 5], ["complete", 83, 5], ["dataframe", 91, 5], ["distributed", 96, 5], ["diagnostics", 97, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 163, 5], ["mainProgram", 164, 5], ["homepage", 165, 5], ["changelog", 166, 5], ["license", 167, 5], ["maintainers", 168, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 46, 3], ["version", 47, 3], ["pyproject", 48, 3], ["__structuredAttrs", 49, 3], ["src", 51, 3], ["postPatch", 58, 3], ["build-system", 65, 3], ["dependencies", 70, 3], ["optional-dependencies", 81, 3], ["nativeCheckInputs", 103, 3], ["pytestFlags", 119, 3], ["disabledTestMarks", 128, 3], ["disabledTests", 133, 3], ["__darwinAllowLocalNetworking", 146, 3], ["pythonImportsCheck", 148, 3], ["meta", 162, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,13 +41,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dask",
       version: "2026.8.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dask",
           repo: "dask",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,7 +70,7 @@ export default nix.lambda((args) => (() => {
         toolz,
       ]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           array: nix.thunk(() => [numpy]),
           complete: nix.thunk(() => nix.concat([pyarrow, lz4], nix.concat(nix.sel(self, "array"), nix.concat(nix.sel(self, "dataframe"), nix.concat(nix.sel(self, "distributed"), nix.sel(self, "diagnostics")))))),
           dataframe: nix.thunk(() => nix.concat([pandas, pyarrow], nix.sel(self, "array"))),
@@ -108,7 +105,7 @@ export default nix.lambda((args) => (() => {
         "dask.dataframe.tseries",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Minimal task scheduling abstraction",
         mainProgram: "dask",
         homepage: "https://dask.org/",

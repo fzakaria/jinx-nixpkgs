@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["doInstallCheck", 153, 5]], [["tests", 152, 12]], [["changelog", 157, 5], ["description", 158, 5], ["homepage", 159, 5], ["license", 160, 5], ["maintainers", 161, 5]], [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["__structuredAttrs", 45, 3], ["src", 47, 3], ["build-system", 54, 3], ["dependencies", 59, 3], ["pythonImportsCheck", 75, 3], ["nativeCheckInputs", 77, 3], ["preCheck", 100, 3], ["disabledTestPaths", 104, 3], ["disabledTests", 109, 3], ["__darwinAllowLocalNetworking", 148, 3], ["doCheck", 150, 3], ["passthru", 152, 3], ["meta", 156, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, "array-api-compat": false, h5py: false, "legacy-api-wrap": false, natsort: false, numpy: false, pandas: false, scipy: false, "scverse-misc": false, zarr: false, pythonOlder: false, "typing-extensions": false, awkward: false, boltons: false, dask: false, distributed: false, filelock: false, joblib: false, jsonschema: false, numba: false, openpyxl: false, pyarrow: false, "pytest-mock": false, "pytest-xdist": false, pytestCheckHook: false, scanpy: false, "scikit-learn": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doInstallCheck", 153, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 152, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 157, 5], ["description", 158, 5], ["homepage", 159, 5], ["license", 160, 5], ["maintainers", 161, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["__structuredAttrs", 45, 3], ["src", 47, 3], ["build-system", 54, 3], ["dependencies", 59, 3], ["pythonImportsCheck", 75, 3], ["nativeCheckInputs", 77, 3], ["preCheck", 100, 3], ["disabledTestPaths", 104, 3], ["disabledTests", 109, 3], ["__darwinAllowLocalNetworking", 148, 3], ["doCheck", 150, 3], ["passthru", 152, 3], ["meta", 156, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const scanpy = nix.arg($, "scanpy");
   const scikit_learn = nix.arg($, "scikit-learn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "anndata",
       version: "0.13.3.post0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scverse",
           repo: "anndata",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -119,11 +115,11 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doInstallCheck: true })))),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doInstallCheck: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/scverse/anndata/blob/main/docs/release-notes/${nix.sel(finalAttrs, "src", "tag")}.md`),
         description: "Python package for handling annotated data matrices in memory and on disk",
         homepage: "https://anndata.readthedocs.io/",

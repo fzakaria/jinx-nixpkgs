@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["fetchSubmodules", 26, 5], ["hash", 27, 5]], [["NIX_LDFLAGS", 63, 5], ["NIX_CFLAGS_COMPILE", 71, 5]], [["rev-prefix", 122, 40]], [["updateScript", 122, 12]], [["description", 125, 5], ["mainProgram", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["platforms", 129, 5], ["maintainers", 130, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 30, 3], ["postPatch", 35, 3], ["strictDeps", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["env", 61, 3], ["installPhase", 83, 3], ["passthru", 122, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gitUpdater: false, cmake: false, "pkg-config": false, libx11: false, libxrandr: false, libxinerama: false, libxext: false, libxcursor: false, freetype: false, "alsa-lib": false, libjack2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["fetchSubmodules", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 63, 5], ["NIX_CFLAGS_COMPILE", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 122, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 122, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 125, 5], ["mainProgram", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["platforms", 129, 5], ["maintainers", 130, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 30, 3], ["postPatch", 35, 3], ["strictDeps", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["env", 61, 3], ["installPhase", 83, 3], ["passthru", 122, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const libjack2 = nix.arg($, "libjack2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dexed",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "asb2m10",
           repo: "dexed",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
           libjack2,
         ]))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXext", "-lXcursor", "-lXinerama", "-lXrandr", "-ljack"]))),
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))),
         })))),
@@ -69,11 +64,11 @@ mv Source/Dexed_artefacts/Release/AU/* ${auDir}
 `))), "\nrunHook postInstall\n");
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "DX7 FM multi platform/multi format plugin",
         mainProgram: "Dexed",
         homepage: "https://asb2m10.github.io/dexed",

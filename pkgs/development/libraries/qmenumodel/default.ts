@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["pkg-config", 94, 11]], [["tests", 94, 5], ["updateScript", 95, 5]], [["description", 99, 5], ["longDescription", 100, 5], ["homepage", 104, 5], ["license", 105, 5], ["teams", 106, 5], ["platforms", 107, 5], ["pkgConfigModules", 108, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["outputs", 33, 3], ["postPatch", 38, 3], ["strictDeps", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 57, 3], ["nativeCheckInputs", 64, 3], ["dontWrapQtApps", 76, 3], ["cmakeFlags", 78, 3], ["doCheck", 83, 3], ["enableParallelChecking", 86, 3], ["preCheck", 88, 3], ["passthru", 93, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gitUpdater: false, testers: false, cmake: false, "cmake-extras": false, dbus: false, "dbus-test-runner": false, glib: false, "pkg-config": false, python3: false, qtbase: false, qtdeclarative: false, "gobject-introspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg-config", 94, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 94, 5], ["updateScript", 95, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 99, 5], ["longDescription", 100, 5], ["homepage", 104, 5], ["license", 105, 5], ["teams", 106, 5], ["platforms", 107, 5], ["pkgConfigModules", 108, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["outputs", 33, 3], ["postPatch", 38, 3], ["strictDeps", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 57, 3], ["nativeCheckInputs", 64, 3], ["dontWrapQtApps", 76, 3], ["cmakeFlags", 78, 3], ["doCheck", 83, 3], ["enableParallelChecking", 86, 3], ["preCheck", 88, 3], ["passthru", 93, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const withQt6 = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "qmenumodel",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AyatanaIndicators",
           repo: "qmenumodel",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,15 +68,15 @@ substituteInPlace libqmenumodel/QMenuModel/CMakeLists.txt \\
 export QT_PLUGIN_PATH=${nix.app(nix.sel(lib, "getBin"), qtbase)}/${nix.sel(qtbase, "qtPluginPrefix")}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Qt renderer for Ayatana Indicators",
         longDescription: "QMenuModel - a Qt/QML binding for GMenuModel\n(see http://developer.gnome.org/gio/unstable/GMenuModel.html)\n",
         homepage: "https://github.com/AyatanaIndicators/qmenumodel",

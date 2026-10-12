@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["fetchSubmodules", 27, 5], ["hash", 28, 5]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["broken", 67, 5], ["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 31, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["cmakeFlags", 57, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, libevent: false, libsodium: false, libuv: false, nlohmann_json: false, "pkg-config": false, spdlog: false, sqlite: false, systemdLibs: false, unbound: false, zeromq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["fetchSubmodules", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 67, 5], ["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 31, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["cmakeFlags", 57, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lokinet";
       const version = "0.9.13";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oxen-io",
           repo: "lokinet",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-13.patch",
             url: "https://github.com/oxen-io/lokinet/commit/89c5c73be48788ba14a55cb6d82d57208b487eaf.patch",
             hash: "sha256-yCy4WXs6p67TMe4uPNAuQyJvtP3IbpJS81AeomNu9lU=",
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         "-DWITH_SETCAP=OFF",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: true,
         description: "Anonymous, decentralized and IP based overlay network for the internet",
         homepage: "https://lokinet.org/",
@@ -74,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

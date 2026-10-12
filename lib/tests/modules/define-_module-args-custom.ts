@@ -2,21 +2,18 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/define-_module-args-custom.nix", [[["custom", 5, 18]], [["args", 5, 13]], [["_module", 5, 5]], [["config", 4, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/define-_module-args-custom.nix", [["custom", 5, 18]]);
-const pos$2 = nix.positions(here + "/define-_module-args-custom.nix", [["args", 5, 13]]);
-const pos$3 = nix.positions(here + "/define-_module-args-custom.nix", [["_module", 5, 5]]);
-const pos$4 = nix.positions(here + "/define-_module-args-custom.nix", [["config", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     config: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       _module: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        args: nix.thunk(() => ({ [nix.POS]: pos$1, custom: true })),
+        [nix.POS]: $pos[1],
+        args: nix.thunk(() => ({ [nix.POS]: $pos[0], custom: true })),
       })),
     })),
   };

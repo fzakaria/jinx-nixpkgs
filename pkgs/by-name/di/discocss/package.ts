@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 37, 5], ["changelog", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dontBuild", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, discordAlias: true, discord: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["changelog", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dontBuild", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "discocss";
       const version = "0.2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mlvzk",
           repo: "discocss",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +32,7 @@ mkdir -p $out/share
 ln -s ${discord}/share/* $out/share
 `))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tiny Discord css-injector",
         changelog: nix.thunk(() => nix.str`https://github.com/mlvzk/discocss/releases/tag/v${version}`),
         homepage: "https://github.com/mlvzk/discocss",
@@ -47,7 +45,7 @@ ln -s ${discord}/share/* $out/share
         mainProgram: "discocss",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 24, 13], ["version", 24, 19], ["hash", 25, 5]], [["changelog", 42, 5], ["description", 43, 5], ["homepage", 44, 5], ["maintainers", 45, 5], ["license", 46, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["doCheck", 31, 3], ["nativeCheckInputs", 33, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pythonOlder: false, setuptools: false, aiounittest: false, mock: false, pytestCheckHook: false, pyyaml: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 24, 13], ["version", 24, 19], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 42, 5], ["description", 43, 5], ["homepage", 44, 5], ["maintainers", 45, 5], ["license", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["doCheck", 31, 3], ["nativeCheckInputs", 33, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-0hXWsIOWMBPEoZseTc1qlugOQ6t3UZWXpqz88umj4Es=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const nativeCheckInputs = nix.thunk(() => [aiounittest, mock, pytestCheckHook, pyyaml, six]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/datadriventests/ddt/releases/tag/${version}`),
         description: "Data-Driven/Decorated Tests, a library to multiply test cases",
         homepage: "https://github.com/txels/ddt",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

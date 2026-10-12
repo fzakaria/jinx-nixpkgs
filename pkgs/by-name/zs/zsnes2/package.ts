@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["doCheck", 27, 7]], [["NIX_CFLAGS_COMPILE", 38, 7]], [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 25, 3], ["dontConfigure", 36, 3], ["env", 38, 3], ["installFlags", 43, 3], ["postInstall", 47, 3], ["doInstallCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, pkgsi686Linux: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["doCheck", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 25, 3], ["dontConfigure", 36, 3], ["env", 38, 3], ["installFlags", 43, 3], ["postInstall", 47, 3], ["doInstallCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pkgsi686Linux = nix.arg($, "pkgsi686Linux");
   return nix.app(nix.sel(pkgsi686Linux, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "zsnes2",
       version: "2.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xyproto",
           repo: "zsnes",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(pkgsi686Linux, "udevCheckHook")),
       ]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(pkgsi686Linux, "sdl3", "overrideAttrs"), (oldAttrs) => ({ [nix.POS]: pos$2, doCheck: false }))),
+        nix.thunk(() => nix.app(nix.sel(pkgsi686Linux, "sdl3", "overrideAttrs"), (oldAttrs) => ({ [nix.POS]: $pos[1], doCheck: false }))),
         nix.thunk(() => nix.sel(pkgsi686Linux, "libGL")),
         nix.thunk(() => nix.sel(pkgsi686Linux, "libGLU")),
         nix.thunk(() => nix.sel(pkgsi686Linux, "libpng")),
@@ -41,14 +37,14 @@ export default nix.lambda((args) => (() => {
       ]),
       dontConfigure: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wp,-D_FORTIFY_SOURCE=0"]))),
       })),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       postInstall: "install -Dm644 linux/zsnes.desktop $out/share/applications/zsnes.desktop\ninstall -Dm644 icons/16x16x32.png $out/share/icons/hicolor/16x16/apps/zsnes.png\ninstall -Dm644 icons/32x32x32.png $out/share/icons/hicolor/32x32/apps/zsnes.png\ninstall -Dm644 icons/48x48x32.png $out/share/icons/hicolor/48x48/apps/zsnes.png\ninstall -Dm644 icons/64x64x32.png $out/share/icons/hicolor/64x64/apps/zsnes.png\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/xyproto/zsnes",
         description: "Maintained fork of zsnes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kactivities-stats.nix", [[["platforms", 28, 8]], [["pname", 13, 3], ["nativeBuildInputs", 14, 3], ["buildInputs", 18, 3], ["propagatedBuildInputs", 23, 3], ["outputs", 24, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false, cmake: false, "extra-cmake-modules": false, boost: false, kactivities: false, kconfig: false, qtbase: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kactivities-stats.nix", [["platforms", 28, 8]]);
-const pos$2 = nix.positions(here + "/kactivities-stats.nix", [["pname", 13, 3], ["nativeBuildInputs", 14, 3], ["buildInputs", 18, 3], ["propagatedBuildInputs", 23, 3], ["outputs", 24, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const kconfig = nix.arg($, "kconfig");
   const qtbase = nix.arg($, "qtbase");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kactivities-stats",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),
       buildInputs: nix.thunk(() => [boost, kactivities, kconfig]),
       propagatedBuildInputs: nix.thunk(() => [qtbase]),
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "freebsd"))),
       })),
     })));

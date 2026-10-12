@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["yarnLock", 24, 5], ["hash", 25, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["offlineCache", 23, 3], ["nativeBuildInputs", 28, 3], ["preBuild", 36, 3], ["postInstall", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchYarnDeps: false, yarnConfigHook: false, yarnBuildHook: false, nodejs: false, npmHooks: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["offlineCache", 23, 3], ["nativeBuildInputs", 28, 3], ["preBuild", 36, 3], ["postInstall", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const npmHooks = nix.arg($, "npmHooks");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vim-language-server",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iamcco",
           repo: "vim-language-server",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-NfBKNCTvCMIJrSiTlCG+LtVoMBMdCc3rzpDb9Vp2CGM=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-mo8urQaWIHu33+r0Y7mL9mJ/aSe/5CihuIetTeDHEUQ=",
         })))),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "export NODE_OPTIONS=--openssl-legacy-provider\n",
       postInstall: "rm $out/lib/node_modules/vim-language-server/node_modules/.bin/node-which\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "VImScript language server, LSP for vim script",
         homepage: "https://github.com/iamcco/vim-language-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

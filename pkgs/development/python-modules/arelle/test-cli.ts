@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-cli.nix", [[["nativeBuildInputs", 14, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, arelle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-cli.nix", [["nativeBuildInputs", 14, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const runCommand = nix.arg($, "runCommand");
   const arelle = nix.arg($, "arelle");
-  return nix.app(runCommand, nix.thunk(() => nix.str`arelle-test-cli${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(arelle, "hasGUI"))), "-headless")}`), nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [arelle]) })), nix.thunk(() => nix.str`# Set up temporary home directory
+  return nix.app(runCommand, nix.thunk(() => nix.str`arelle-test-cli${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(arelle, "hasGUI"))), "-headless")}`), nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [arelle]) })), nix.thunk(() => nix.str`# Set up temporary home directory
 export HOME=$(mktemp -d)
 
 # Test basic CLI commands work with proper assertions

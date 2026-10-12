@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["updateScript", 36, 12]], [["changelog", 55, 5], ["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["sourceProvenance", 63, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["dontBuild", 21, 3], ["nativeBuildInputs", 23, 3], ["sourceRoot", 25, 3], ["installPhase", 27, 3], ["passthru", 36, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, writeShellScript: false, jq: false, "ast-grep": false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 36, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 55, 5], ["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["sourceProvenance", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["dontBuild", 21, 3], ["nativeBuildInputs", 23, 3], ["sourceRoot", 25, 3], ["installPhase", 27, 3], ["passthru", 36, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ast_grep = nix.arg($, "ast-grep");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tidgi",
       version: "0.12.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/tiddly-gittly/TidGi-Desktop/releases/download/v${nix.sel(finalAttrs, "version")}/TidGi-darwin-arm64-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-bSJFM67+KVECUqjwu1HYipn+zOps1ahNzM721yZL52c=",
         })))),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -r *.app \"$out/Applications\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-tidgi", nix.thunk(() => nix.str`version=$(nix eval --raw --file . tidgi.version)
 latestVersion=$(curl \${GITHUB_TOKEN:+-u ":$GITHUB_TOKEN"} --fail --silent https://api.github.com/repos/tiddly-gittly/TidGi-Desktop/releases/latest | ${nix.app(nix.sel(lib, "getExe"), jq)} --raw-output .tag_name | sed 's/^v//')
 if [[ "$latestVersion" == "$version" ]]; then
@@ -51,7 +48,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/tiddly-gittly/TidGi-Desktop/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Customizable personal knowledge-base and blogging platform with git as backup manager",
         homepage: "https://github.com/tiddly-gittly/TidGi-Desktop",

@@ -2,64 +2,52 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-daemon-unprivileged.nix", [[["maintainers", 4, 8]], [["nix-daemon", 7, 18]], [["isSystemUser", 9, 7], ["group", 10, 7]], [["nix-daemon", 8, 17]], [["groups", 7, 11], ["users", 8, 11]], [["experimental-features", 17, 16]], [["package", 14, 7], ["daemonUser", 15, 7], ["daemonGroup", 16, 7], ["settings", 17, 7], ["enable", 22, 9]], [["text", 25, 32]], [["test.nix", 25, 21]], [["etc", 25, 17]], [["users", 7, 5], ["nix", 13, 5], ["environment", 25, 5]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 34, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nix-daemon-unprivileged.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/nix-daemon-unprivileged.nix", [["nix-daemon", 7, 18]]);
-const pos$3 = nix.positions(here + "/nix-daemon-unprivileged.nix", [["isSystemUser", 9, 7], ["group", 10, 7]]);
-const pos$4 = nix.positions(here + "/nix-daemon-unprivileged.nix", [["nix-daemon", 8, 17]]);
-const pos$5 = nix.positions(here + "/nix-daemon-unprivileged.nix", [["groups", 7, 11], ["users", 8, 11]]);
-const pos$6 = nix.positions(here + "/nix-daemon-unprivileged.nix", [["experimental-features", 17, 16]]);
-const pos$7 = nix.positions(here + "/nix-daemon-unprivileged.nix", [["package", 14, 7], ["daemonUser", 15, 7], ["daemonGroup", 16, 7], ["settings", 17, 7], ["enable", 22, 9]]);
-const pos$8 = nix.positions(here + "/nix-daemon-unprivileged.nix", [["text", 25, 32]]);
-const pos$9 = nix.positions(here + "/nix-daemon-unprivileged.nix", [["test.nix", 25, 21]]);
-const pos$10 = nix.positions(here + "/nix-daemon-unprivileged.nix", [["etc", 25, 17]]);
-const pos$11 = nix.positions(here + "/nix-daemon-unprivileged.nix", [["users", 7, 5], ["nix", 13, 5], ["environment", 25, 5]]);
-const pos$12 = nix.positions(here + "/nix-daemon-unprivileged.nix", [["machine", 6, 9]]);
-const pos$13 = nix.positions(here + "/nix-daemon-unprivileged.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "nix-daemon-unprivileged",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "artemist"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         users: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          groups: nix.thunk(() => ({ [nix.POS]: pos$2, "nix-daemon": nix.thunk(() => ({})) })),
+          [nix.POS]: $pos[4],
+          groups: nix.thunk(() => ({ [nix.POS]: $pos[1], "nix-daemon": nix.thunk(() => ({})) })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            "nix-daemon": nix.thunk(() => ({ [nix.POS]: pos$3, isSystemUser: true, group: "nix-daemon" })),
+            [nix.POS]: $pos[3],
+            "nix-daemon": nix.thunk(() => ({ [nix.POS]: $pos[2], isSystemUser: true, group: "nix-daemon" })),
           })),
         })),
         nix: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           package: nix.thunk(() => nix.sel(pkgs, "nixVersions", "git")),
           daemonUser: "nix-daemon",
           daemonGroup: "nix-daemon",
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "experimental-features": nix.thunk(() => ["local-overlay-store", "auto-allocate-uids"]),
           })),
           enable: true,
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             "test.nix": nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               text: nix.thunk(() => nix.str`derivation {
   name = "test";
   builder = "/bin/sh";

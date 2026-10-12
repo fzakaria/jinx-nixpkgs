@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 70, 5], ["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["hash", 74, 5]], [["name", 81, 7], ["url", 82, 7], ["hash", 83, 7]], [["basic-service", 165, 11]], [["updateScript", 164, 5], ["tests", 165, 5]], [["description", 169, 5], ["homepage", 170, 5], ["license", 171, 5], ["maintainers", 172, 5], ["platforms", 173, 5], ["mainProgram", 174, 5]], [["pname", 66, 3], ["version", 67, 3], ["src", 69, 3], ["patches", 77, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 101, 3], ["cmakeFlags", 151, 3], ["setupHook", 159, 3], ["passthru", 163, 3], ["meta", 168, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, writeText: false, bluez: false, cjson: false, cmake: false, config: false, dbus: false, doxygen: false, eigen: false, elfutils: false, glslang: false, gst_all_1: false, hidapi: false, libbsd: false, libdrm: false, libffi: false, libGL: false, libjpeg: false, librealsense: false, libsurvive: false, libunwind: false, libusb1: false, libuv: false, libuvc: false, libv4l: false, libxau: false, libxcb: false, libxdmcp: false, libxext: false, libxrandr: false, "nix-update-script": false, onnxruntime: false, opencv4: false, openvr: false, orc: false, pcre2: false, "pkg-config": false, python3: false, SDL2: false, shaderc: false, tracy: false, udev: false, "vulkan-headers": false, "vulkan-loader": false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, zlib: false, zstd: false, nixosTests: false, cudaPackages: false, enableCuda: true, serviceSupport: true, tracingSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 70, 5], ["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["hash", 74, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 81, 7], ["url", 82, 7], ["hash", 83, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["basic-service", 165, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 164, 5], ["tests", 165, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 169, 5], ["homepage", 170, 5], ["license", 171, 5], ["maintainers", 172, 5], ["platforms", 173, 5], ["mainProgram", 174, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 66, 3], ["version", 67, 3], ["src", 69, 3], ["patches", 77, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 101, 3], ["cmakeFlags", 151, 3], ["setupHook", 159, 3], ["passthru", 163, 3], ["meta", 168, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -70,11 +65,11 @@ export default nix.lambda((args) => (() => {
   const serviceSupport = nix.argOr($, "serviceSupport", () => true);
   const tracingSupport = nix.argOr($, "tracingSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "monado",
       version: "25.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "monado",
           repo: "monado",
@@ -83,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "monado-cylinder-aspectRatio.patch",
             url: "https://gitlab.freedesktop.org/monado/monado/-/commit/69834fe93b84640170f8efa54b4700e5e0dc03c1.diff",
             hash: "sha256-6lD4j7CMQk52btfxD8hOm0GWZaOxSgc1jel9hyXqktA=",
@@ -143,15 +138,15 @@ export default nix.lambda((args) => (() => {
       ]),
       setupHook: nix.thunk(() => nix.app(writeText, "setup-hook", "export XDG_CONFIG_DIRS=@out@/etc/xdg${XDG_CONFIG_DIRS:+:${XDG_CONFIG_DIRS}}\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "basic-service": nix.thunk(() => nix.sel(nixosTests, "monado")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open source XR runtime",
         homepage: "https://monado.freedesktop.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

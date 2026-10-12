@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["postPatch", 35, 3], ["build-system", 41, 3], ["dontUseCmakeConfigure", 48, 3], ["buildInputs", 50, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 54, 3], ["disabledTestPaths", 59, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cmake: false, fetchFromGitHub: false, fetchpatch: false, libsamplerate: false, numpy: false, pybind11: false, "pytest-asyncio": false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["postPatch", 35, 3], ["build-system", 41, 3], ["dontUseCmakeConfigure", 48, 3], ["buildInputs", 50, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 54, 3], ["disabledTestPaths", 59, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "samplerate-ledfx",
       version: "0.2.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LedFx",
           repo: "python-samplerate-ledfx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["samplerate"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bindings for libsamplerate based on CFFI and NumPy",
         homepage: "https://github.com/LedFx/python-samplerate-ledfx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["preCheck", 32, 3], ["disabledTestPaths", 36, 3], ["pythonImportsCheck", 41, 3], ["nativeCheckInputs", 45, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, django: false, fetchFromGitHub: false, lib: false, "pytest-django": false, pytestCheckHook: false, "setuptools-scm": false, icalendar: false, "django-recurrence": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["preCheck", 32, 3], ["disabledTestPaths", 36, 3], ["pythonImportsCheck", 41, 3], ["nativeCheckInputs", 45, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const icalendar = nix.arg($, "icalendar");
   const django_recurrence = nix.arg($, "django-recurrence");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "django-ical",
       version: "1.9.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jazzband",
           repo: "django-ical",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["django_ical"]),
       nativeCheckInputs: nix.thunk(() => [pytest_django, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "iCal feeds for Django based on Django's syndication feed framework",
         homepage: "https://github.com/jazzband/django-ical",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-ical/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

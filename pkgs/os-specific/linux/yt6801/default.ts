@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stripRoot", 24, 7], ["url", 25, 7], ["sha256", 26, 7]], [["homepage", 57, 5], ["description", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["sourceProvenance", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 29, 3], ["patches", 31, 3], ["postPatch", 39, 3], ["makeFlags", 46, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, kmod: false, kernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stripRoot", 24, 7], ["url", 25, 7], ["sha256", 26, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 57, 5], ["description", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["sourceProvenance", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 29, 3], ["patches", 31, 3], ["postPatch", 39, 3], ["makeFlags", 46, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const modDestDir = nix.thunk(() => nix.str`$(out)/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/drivers/net/ethernet/motorcomm`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "yt6801",
       version: "1.0.30-20250430",
       src: nix.thunk(() => (() => {
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
         const versionName = nix.thunk(() => nix.builtins.elemAt(version_split, 0n));
         const uploadDate = nix.thunk(() => nix.builtins.elemAt(version_split, 1n));
         return nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             stripRoot: false,
             url: nix.thunk(() => nix.str`https://www.motor-comm.com/Public/Uploads/uploadfile/files/${uploadDate}/yt6801-linux-driver-${versionName}.zip`),
             sha256: "sha256-6HeU3bbTaKOCy3X+nMpC9/bBc+0c4Ip5TdG+LGUGTKk=",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`ko_full=${modDestDir}/yt6801.ko.xz`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.motor-comm.com/product/ethernet-control-chip",
         description: "YT6801 Gigabit PCIe Ethernet controller chip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

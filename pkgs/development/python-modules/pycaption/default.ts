@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["transcript", 35, 5]], [["changelog", 44, 5], ["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, beautifulsoup4: false, lxml: false, cssutils: false, nltk: false, "pytest-lazy-fixture": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["transcript", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 44, 5], ["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest_lazy_fixture = nix.arg($, "pytest-lazy-fixture");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pycaption",
       version: "2.3.13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pbs",
           repo: "pycaption",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,10 +31,10 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [beautifulsoup4, lxml, cssutils]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, transcript: nix.thunk(() => [nltk]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], transcript: nix.thunk(() => [nltk]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_lazy_fixture, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/pbs/pycaption/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/changelog.rst`),
         description: "Closed caption converter",
         homepage: "https://github.com/pbs/pycaption",

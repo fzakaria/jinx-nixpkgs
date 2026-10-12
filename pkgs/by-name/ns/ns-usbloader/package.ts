@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableJavaFX", 21, 34]], [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]], [["x86_64-linux", 42, 5], ["aarch64-linux", 43, 5]], [["type", 94, 7], ["name", 95, 7], ["desktopName", 96, 7], ["comment", 97, 7], ["exec", 98, 7], ["icon", 99, 7], ["categories", 100, 7], ["terminal", 101, 7], ["keywords", 102, 7]], [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["maintainers", 113, 5], ["platforms", 114, 5], ["mainProgram", 118, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["mvnHash", 41, 3], ["nativeBuildInputs", 46, 3], ["doCheck", 54, 3], ["doInstallCheck", 56, 3], ["dontWrapGApps", 59, 3], ["installPhase", 67, 3], ["preFixup", 85, 3], ["desktopItems", 92, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, wrapGAppsHook3: false, gvfs: false, maven: false, jre: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableJavaFX", 21, 34]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 42, 5], ["aarch64-linux", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["type", 94, 7], ["name", 95, 7], ["desktopName", 96, 7], ["comment", 97, 7], ["exec", 98, 7], ["icon", 99, 7], ["categories", 100, 7], ["terminal", 101, 7], ["keywords", 102, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["maintainers", 113, 5], ["platforms", 114, 5], ["mainProgram", 118, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["mvnHash", 41, 3], ["nativeBuildInputs", 46, 3], ["doCheck", 54, 3], ["doInstallCheck", 56, 3], ["dontWrapGApps", 59, 3], ["installPhase", 67, 3], ["preFixup", 85, 3], ["desktopItems", 92, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const pkgDescription = "All-in-one tool for managing Nintendo Switch homebrew";
   const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
-  const jreWithJavaFX = nix.thunk(() => nix.app(nix.sel(jre, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
+  const jreWithJavaFX = nix.thunk(() => nix.app(nix.sel(jre, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableJavaFX: true }))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => (() => {
       const pname = "ns-usbloader";
       const version = "7.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "developersu",
           repo: "ns-usbloader",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./make-deterministic.patch"),
       ]);
       const mvnHash = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "x86_64-linux": "sha256-vXZAlZOh9pXNF1RL78oQRal5pkXFRKDz/7SP9LibgiA=",
           "aarch64-linux": "sha256-xC+feb41EPi30gBrVR8usanVULI2Pt0knztzNagPQiw=",
         }))));
@@ -72,7 +67,7 @@ makeWrapper ${jreWithJavaFX}/bin/java $out/bin/ns-usbloader \\
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             type: "Application",
             name: "ns-usbloader",
             desktopName: "NS-USBLoader",
@@ -85,7 +80,7 @@ makeWrapper ${jreWithJavaFX}/bin/java $out/bin/ns-usbloader \\
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: pkgDescription,
         homepage: "https://github.com/developersu/ns-usbloader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -97,7 +92,7 @@ makeWrapper ${jreWithJavaFX}/bin/java $out/bin/ns-usbloader \\
         mainProgram: "ns-usbloader",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

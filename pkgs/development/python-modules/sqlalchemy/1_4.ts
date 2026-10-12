@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/1_4.nix", [[["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]], [["asyncio", 58, 5], ["mypy", 59, 5], ["mssql", 60, 5], ["mssql_pymysql", 61, 5], ["mssql_pyodbc", 64, 5], ["mysql", 65, 5], ["mysql_connector", 66, 5], ["mariadb_connector", 67, 5], ["oracle", 68, 5], ["postgresql", 69, 5], ["postgresql_pg8000", 70, 5], ["postgresql_asyncpg", 71, 5], ["postgresql_psycopg2binary", 72, 5], ["postgresql_psycopg2cffi", 73, 5], ["pymysql", 74, 5], ["aiomysql", 75, 5], ["asyncmy", 76, 5], ["aiosqlite", 77, 5], ["sqlcipher", 82, 5]], [["changelog", 103, 5], ["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5]], [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["postPatch", 49, 3], ["nativeBuildInputs", 53, 3], ["propagatedBuildInputs", 55, 3], ["optional-dependencies", 57, 3], ["nativeCheckInputs", 87, 3], ["disabledTestPaths", 93, 3], ["pythonImportsCheck", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, greenlet: false, aiomysql: false, aiosqlite: false, asyncmy: false, asyncpg: false, "cx-oracle": false, mariadb: false, mypy: false, "mysql-connector-python": false, mysqlclient: false, pg8000: false, psycopg2: false, psycopg2cffi: false, pymysql: false, pyodbc: false, "typing-extensions": false, mock: false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/1_4.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/1_4.nix", [["asyncio", 58, 5], ["mypy", 59, 5], ["mssql", 60, 5], ["mssql_pymysql", 61, 5], ["mssql_pyodbc", 64, 5], ["mysql", 65, 5], ["mysql_connector", 66, 5], ["mariadb_connector", 67, 5], ["oracle", 68, 5], ["postgresql", 69, 5], ["postgresql_pg8000", 70, 5], ["postgresql_asyncpg", 71, 5], ["postgresql_psycopg2binary", 72, 5], ["postgresql_psycopg2cffi", 73, 5], ["pymysql", 74, 5], ["aiomysql", 75, 5], ["asyncmy", 76, 5], ["aiosqlite", 77, 5], ["sqlcipher", 82, 5]]);
-const pos$3 = nix.positions(here + "/1_4.nix", [["changelog", 103, 5], ["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5]]);
-const pos$4 = nix.positions(here + "/1_4.nix", [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["postPatch", 49, 3], ["nativeBuildInputs", 53, 3], ["propagatedBuildInputs", 55, 3], ["optional-dependencies", 57, 3], ["nativeCheckInputs", 87, 3], ["disabledTestPaths", 93, 3], ["pythonImportsCheck", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.54-unstable-2025-08-16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sqlalchemy",
           repo: "sqlalchemy",
           rev: "1712b81a5b8d9d3abd5a85fbb089470f0bc38cdd",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [greenlet]);
       const optional_dependencies = nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           asyncio: nix.thunk(() => [greenlet]),
           mypy: nix.thunk(() => [mypy]),
           mssql: nix.thunk(() => [pyodbc]),
@@ -73,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["test/ext/mypy", "test/aaa_profiling"]);
       const pythonImportsCheck = nix.thunk(() => ["sqlalchemy"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => (() => {
           const shortVersion = nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), ".", "", nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version))));
           return nix.str`https://github.com/sqlalchemy/sqlalchemy/blob/${nix.sel(src, "rev")}/doc/build/changelog/changelog_${shortVersion}.rst`;
@@ -83,7 +80,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["url", 48, 7], ["includes", 49, 7], ["hash", 50, 7]], [["anthropic", 71, 5], ["apps", 72, 5], ["azure", 73, 5], ["code-mode", 74, 5], ["gemini", 75, 5], ["openai", 76, 5], ["tasks", 77, 5]], [["description", 168, 5], ["changelog", 169, 5], ["homepage", 170, 5], ["license", 171, 5], ["maintainers", 172, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["postPatch", 54, 3], ["build-system", 59, 3], ["dependencies", 64, 3], ["optional-dependencies", 70, 3], ["pythonImportsCheck", 80, 3], ["nativeCheckInputs", 82, 3], ["disabledTests", 106, 3], ["disabledTestPaths", 156, 3], ["__darwinAllowLocalNetworking", 165, 3], ["meta", 167, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, writableTmpDirAsHomeHook: false, hatchling: false, "uv-dynamic-versioning": false, "fastmcp-slim": false, "dirty-equals": false, fastapi: false, "inline-snapshot": false, "opentelemetry-sdk": false, psutil: false, "pytest-asyncio": false, "pytest-examples": false, "pytest-httpx": false, "pytest-rerunfailures": false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 48, 7], ["includes", 49, 7], ["hash", 50, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["anthropic", 71, 5], ["apps", 72, 5], ["azure", 73, 5], ["code-mode", 74, 5], ["gemini", 75, 5], ["openai", 76, 5], ["tasks", 77, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 168, 5], ["changelog", 169, 5], ["homepage", 170, 5], ["license", 171, 5], ["maintainers", 172, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["postPatch", 54, 3], ["build-system", 59, 3], ["dependencies", 64, 3], ["optional-dependencies", 70, 3], ["pythonImportsCheck", 80, 3], ["nativeCheckInputs", 82, 3], ["disabledTests", 106, 3], ["disabledTestPaths", 156, 3], ["__darwinAllowLocalNetworking", 165, 3], ["meta", 167, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fastmcp",
       version: "3.4.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PrefectHQ",
           repo: "fastmcp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/PrefectHQ/fastmcp/commit/6be0ac8e15d35ff8f5121266855bc34c1158c9a1.patch",
             includes: nix.thunk(() => ["fastmcp_slim/fastmcp/tools/function_tool.py"]),
             hash: "sha256-7N86b5sslWLgoB2dS2Xh3JfZX3oTHeXfeSJOaWKI5b0=",
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, uv_dynamic_versioning]),
       dependencies: nix.thunk(() => nix.concat([fastmcp_slim], nix.concat(nix.sel(fastmcp_slim, "optional-dependencies", "client"), nix.sel(fastmcp_slim, "optional-dependencies", "server")))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         anthropic: nix.thunk(() => nix.sel(fastmcp_slim, "optional-dependencies", "anthropic")),
         apps: nix.thunk(() => nix.sel(fastmcp_slim, "optional-dependencies", "apps")),
         azure: nix.thunk(() => nix.sel(fastmcp_slim, "optional-dependencies", "azure")),
@@ -115,7 +111,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast, Pythonic way to build MCP servers and clients",
         changelog: nix.thunk(() => nix.str`https://github.com/PrefectHQ/fastmcp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/PrefectHQ/fastmcp",

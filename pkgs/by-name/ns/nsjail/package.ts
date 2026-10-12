@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["fetchSubmodules", 30, 5], ["hash", 31, 5]], [["NIX_CFLAGS_COMPILE", 50, 7]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["enableParallelBuilding", 48, 3], ["env", 50, 3], ["preBuild", 52, 3], ["installPhase", 56, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, bison: false, flex: false, libtool: false, "pkg-config": false, which: false, libnl: false, protobuf_21: false, protobufc: false, shadow: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["fetchSubmodules", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["enableParallelBuilding", 48, 3], ["env", 50, 3], ["preBuild", 52, 3], ["installPhase", 56, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nsjail";
       const version = "3.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "nsjail",
           rev: version,
@@ -40,14 +37,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libnl, protobuf, protobufc]);
       const enableParallelBuilding = true;
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error"]))),
       }));
       const preBuild = nix.thunk(() => nix.str`makeFlagsArray+=(USER_DEFINES='-DNEWUIDMAP_PATH=${shadow}/bin/newuidmap -DNEWGIDMAP_PATH=${shadow}/bin/newgidmap')
 `);
       const installPhase = "runHook preInstall\ninstall -Dm755 nsjail \"$out/bin/nsjail\"\ninstallManPage nsjail.1\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Light-weight process isolation tool, making use of Linux namespaces and seccomp-bpf syscall filters",
         homepage: "https://nsjail.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/google/nsjail/releases/tag/${version}`),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "nsjail",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

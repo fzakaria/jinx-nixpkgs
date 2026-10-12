@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["updateScript", 81, 12]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 92, 5], ["mainProgram", 93, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["buildFlags", 68, 3], ["postInstall", 70, 3], ["preFixup", 75, 3], ["passthru", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gettext: false, wrapGAppsHook3: false, "pkg-config": false, help2man: false, "adwaita-icon-theme": false, "alsa-lib": false, glib: false, "gsettings-desktop-schemas": false, gtk3: false, gtksourceview4: false, librsvg: false, libsndfile: false, libxml2: false, libzip: false, poppler: false, portaudio: false, qpdf: false, zlib: false, withLua: true, lua5_3: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 81, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 92, 5], ["mainProgram", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["buildFlags", 68, 3], ["postInstall", 70, 3], ["preFixup", 75, 3], ["passthru", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const lua5_3 = nix.arg($, "lua5_3");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xournalpp",
       version: "1.3.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xournalpp",
           repo: "xournalpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,11 +65,11 @@ export default nix.lambda((args) => (() => {
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Xournal++ is a handwriting Notetaking software with PDF annotation support",
         homepage: "https://xournalpp.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/xournalpp/xournalpp/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

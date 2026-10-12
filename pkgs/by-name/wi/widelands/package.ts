@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["sha256", 40, 5]], [["description", 100, 5], ["homepage", 101, 5], ["longDescription", 102, 5], ["changelog", 107, 5], ["mainProgram", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 114, 5], ["hydraPlatforms", 115, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["cmakeFlags", 48, 3], ["nativeBuildInputs", 55, 3], ["enableParallelBuilding", 64, 3], ["buildInputs", 66, 3], ["postInstall", 87, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, SDL2: false, SDL2_image: false, SDL2_mixer: false, SDL2_net: false, SDL2_ttf: false, cmake: false, curl: false, doxygen: false, gettext: false, glew: false, graphviz: false, icu: false, installShellFiles: false, libpng: false, lua: false, python3: false, zlib: false, minizip: false, asio: false, libsm: false, libice: false, libxext: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["sha256", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["longDescription", 102, 5], ["changelog", 107, 5], ["mainProgram", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 114, 5], ["hydraPlatforms", 115, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["cmakeFlags", 48, 3], ["nativeBuildInputs", 55, 3], ["enableParallelBuilding", 64, 3], ["buildInputs", 66, 3], ["postInstall", 87, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "widelands";
       const version = "1.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "widelands",
           repo: "widelands",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -77,7 +75,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), libxext)));
       const postInstall = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -Dm444 -t $out/share/applications ../xdg/org.widelands.Widelands.desktop\n\nfor s in 16 32 48 64 128; do\n  install -Dm444 ../data/images/logos/wl-ico-${s}.png $out/share/icons/hicolor/${s}x${s}/org.widelands.Widelands.png\ndone\n"), "installManPage ../xdg/widelands.6\n"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "RTS with multiple-goods economy",
         homepage: "https://widelands.org/",
         longDescription: "Widelands is a real time strategy game based on \"The Settlers\" and \"The\nSettlers II\". It has a single player campaign mode, as well as a networked\nmultiplayer mode.\n",
@@ -95,7 +93,7 @@ export default nix.lambda((args) => (() => {
         hydraPlatforms: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

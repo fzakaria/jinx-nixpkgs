@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["tag", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["hash", 17, 5]], [["updateScript", 22, 12]], [["homepage", 25, 5], ["longDescription", 26, 5], ["changelog", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["license", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["passthru", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, autoreconfHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["tag", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 22, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 25, 5], ["longDescription", 26, 5], ["changelog", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["license", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["passthru", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libhx",
       version: "5.4",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "jengelh",
           repo: "libhx",
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://inai.de/projects/libhx/",
         longDescription: "libHX is a C library (with some C++ bindings available) that provides data structures\nand functions commonly needed, such as maps, deques, linked lists, string formatting\nand autoresizing, option and config file parsing, type checking casts and more.\n",
         changelog: "https://codeberg.org/jengelh/libhx/src/branch/master/doc/changelog.rst",

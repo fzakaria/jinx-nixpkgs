@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["CMAKE_CXX_FLAGS", 107, 5], ["CXXFLAGS", 113, 5]], [["description", 120, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["mainProgram", 124, 5], ["platforms", 125, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["postPatch", 52, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 65, 3], ["cmakeFlags", 98, 3], ["env", 106, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, "util-linux": false, libselinux: false, libsepol: false, libthai: false, libdatrie: false, lerc: false, libxkbcommon: false, libepoxy: false, libxtst: false, wrapGAppsHook3: false, pixman: false, "libpthread-stubs": false, gtkmm3: false, libxau: false, libxdmcp: false, lcms2: false, libraw: false, libiptcdata: false, fftwSinglePrec: false, expat: false, pcre2: false, libsigcxx_2_0: false, lensfun: false, librsvg: false, "libcanberra-gtk3": false, exiv2: false, exiftool: false, mimalloc: false, openexr: false, opencolorio: false, "color-transformation-language": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CMAKE_CXX_FLAGS", 107, 5], ["CXXFLAGS", 113, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 120, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["mainProgram", 124, 5], ["platforms", 125, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["postPatch", 52, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 65, 3], ["cmakeFlags", 98, 3], ["env", 106, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const opencolorio = nix.arg($, "opencolorio");
   const color_transformation_language = nix.arg($, "color-transformation-language");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "art",
       version: "1.26.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "artraweditor",
           repo: "ART",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -99,12 +96,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DCTL_INCLUDE_DIR=${color_transformation_language}/include/CTL`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CMAKE_CXX_FLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++11", "-Wno-deprecated-declarations", "-Wno-unused-result"]))),
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-include", "cstdint"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Raw converter based on RawTherapee",
         homepage: "https://artraweditor.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

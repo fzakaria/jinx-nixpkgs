@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["description", 114, 5], ["longDescription", 115, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 126, 5], ["platforms", 127, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["cargoHash", 53, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 64, 3], ["postInstall", 104, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { cmake: false, "alsa-lib": false, atk: false, cairo: false, "directx-shader-compiler": false, expat: false, fetchFromGitHub: false, fontconfig: false, freetype: false, "gdk-pixbuf": false, glib: false, gtk3: false, harfbuzz: false, lib: false, libGL: false, libx11: false, libxcb: false, libxcursor: false, libxi: false, libxkbcommon: false, libxrandr: false, makeWrapper: false, mold: false, pango: false, "pkg-config": false, python3: false, rustPlatform: false, shaderc: false, "vulkan-extension-layer": false, "vulkan-headers": false, "vulkan-loader": false, "vulkan-tools": false, "vulkan-tools-lunarg": false, "vulkan-validation-layers": false, wayland: false, wrapGAppsHook3: false, yq: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 114, 5], ["longDescription", 115, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 126, 5], ["platforms", 127, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["cargoHash", 53, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 64, 3], ["postInstall", 104, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const yq = nix.arg($, "yq");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hyperspeedcube",
       version: "1.0.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "HactarCE",
           repo: "Hyperspeedcube",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -106,7 +104,7 @@ wrapProgram $out/bin/hyperspeedcube --set WAYLAND_DISPLAY "" --set XDG_SESSION_T
 touch $out/bin/nonportable
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "3D and 4D Rubik's cube simulator",
         longDescription: "Hyperspeedcube is a modern, beginner-friendly 3D and 4D Rubik's cube\nsimulator with customizable mouse and keyboard controls and advanced\nfeatures for speedsolving. It's been used to break numerous speedsolving\nrecords and runs on all major operating systems plus the web.\n",
         homepage: "https://ajfarkas.dev/hyperspeedcube/",

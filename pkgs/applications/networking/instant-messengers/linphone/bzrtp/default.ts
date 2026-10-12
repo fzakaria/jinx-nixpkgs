@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["NIX_CFLAGS_COMPILE", 15, 7]], [["description", 21, 5], ["license", 22, 5]], [["pname", 8, 3], ["buildInputs", 10, 3], ["env", 15, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { bctoolbox: false, sqlite: false, lib: false, mkLinphoneDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 15, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 21, 5], ["license", 22, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["buildInputs", 10, 3], ["env", 15, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,15 +12,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkLinphoneDerivation = nix.arg($, "mkLinphoneDerivation");
   return nix.app(mkLinphoneDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bzrtp",
       buildInputs: nix.thunk(() => [bctoolbox, sqlite]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=stringop-overflow"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Opensource implementation of ZRTP keys exchange protocol. Part of the Linphone project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       })),

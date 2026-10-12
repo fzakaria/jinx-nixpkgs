@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 43, 5]], [["pname", 13, 3], ["version", 14, 22], ["format", 15, 3], ["src", 17, 3], ["dontBuild", 19, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 23, 3], ["propagatedBuildInputs", 30, 3], ["pythonImportsCheck", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, lndir: false, "or-tools": false, immutabledict: false, numpy: false, pandas: false, protobuf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 22], ["format", 15, 3], ["src", 17, 3], ["dontBuild", 19, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 23, 3], ["propagatedBuildInputs", 30, 3], ["pythonImportsCheck", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ortools",
       version: nix.thunk(() => nix.attr(or_tools, "version")),
       format: "other",
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out\nlndir -silent $src $out\nrunHook postInstall\n",
       propagatedBuildInputs: nix.thunk(() => [immutabledict, numpy, pandas, protobuf]),
       pythonImportsCheck: nix.thunk(() => ["ortools", "ortools.sat.python.cp_model"]),
-      meta: nix.thunk(() => nix.update(nix.sel(or_tools, "meta"), { [nix.POS]: pos$1, description: "Python bindings for Google's or-tools" })),
+      meta: nix.thunk(() => nix.update(nix.sel(or_tools, "meta"), { [nix.POS]: $pos[0], description: "Python bindings for Google's or-tools" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

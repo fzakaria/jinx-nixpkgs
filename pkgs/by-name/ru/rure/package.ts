@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["lockFile", 24, 13]], [["haskell-bindings", 42, 11]], [["updateScript", 41, 5], ["tests", 42, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 52, 5]], [["pname", 15, 17], ["version", 15, 23], ["src", 17, 3], ["postPatch", 20, 3], ["cargoLock", 24, 3], ["outputs", 26, 3], ["postInstall", 32, 3], ["nativeBuildInputs", 36, 3], ["passthru", 40, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchCrate: false, fixDarwinDylibNames: false, haskellPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["lockFile", 24, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["haskell-bindings", 42, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 41, 5], ["tests", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 17], ["version", 15, 23], ["src", 17, 3], ["postPatch", 20, 3], ["cargoLock", 24, 3], ["outputs", 26, 3], ["postInstall", 32, 3], ["nativeBuildInputs", 36, 3], ["passthru", 40, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,26 +15,26 @@ export default nix.lambda((args) => (() => {
   const haskellPackages = nix.arg($, "haskellPackages");
   const pin = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pin.json")));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.attr(pin, "pname")),
       version: nix.thunk(() => nix.attr(pin, "version")),
       src: nix.thunk(() => nix.app(fetchCrate, pin)),
       postPatch: nix.thunk(() => nix.str`cp ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
-      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$1, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[0], lockFile: nix.path(here, "./Cargo.lock") })),
       outputs: nix.thunk(() => ["out", "dev"]),
       postInstall: "install -Dm644 include/rure.h -t \"$dev/include\"\n",
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [fixDarwinDylibNames]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "haskell-bindings": nix.thunk(() => nix.sel(haskellPackages, "regex-rure")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C API for Rust's regular expression library",
         homepage: "https://crates.io/crates/rure",
         license: nix.thunk(() => [

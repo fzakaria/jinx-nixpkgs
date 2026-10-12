@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["pname", 28, 5], ["version", 29, 13], ["src", 29, 21], ["sourceRoot", 31, 5], ["npmDepsHash", 33, 5], ["buildPhase", 35, 5], ["installPhase", 39, 5]], [["frontend", 92, 13], ["updateScript", 93, 5]], [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["mainProgram", 100, 5], ["maintainers", 101, 5], ["broken", 105, 5]], [["pname", 47, 3], ["version", 48, 11], ["src", 48, 19], ["__structuredAttrs", 50, 3], ["vendorHash", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 61, 3], ["tags", 67, 3], ["preBuild", 75, 3], ["postInstall", 80, 3], ["passthru", 91, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, buildNpmPackage: false, fetchFromGitHub: false, "pkg-config": false, wrapGAppsHook3: false, gtk3: false, webkitgtk_4_1: false, glib: false, "aerion-creds": false, withOAuth: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 5], ["version", 29, 13], ["src", 29, 21], ["sourceRoot", 31, 5], ["npmDepsHash", 33, 5], ["buildPhase", 35, 5], ["installPhase", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["frontend", 92, 13], ["updateScript", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["mainProgram", 100, 5], ["maintainers", 101, 5], ["broken", 105, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 11], ["src", 48, 19], ["__structuredAttrs", 50, 3], ["vendorHash", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 61, 3], ["tags", 67, 3], ["preBuild", 75, 3], ["postInstall", 80, 3], ["passthru", 91, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const withOAuth = nix.argOr($, "withOAuth", () => false);
   const version = "0.3.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "hkdb",
       repo: "aerion",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-LeYOgP1aLWBB2lRkaBOMT3LfqXk0uuQxNnkKfooqWC8=",
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "aerion-frontend",
       version: version,
       src: src,
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out\ncp -r dist/* $out/\n",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "aerion",
       version: version,
       src: src,
@@ -58,12 +54,12 @@ cp -r ${frontend}/* frontend/dist/
 ln -s ${aerion_creds}/bin/aerion-creds $out/bin/aerion-creds
 `)))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         frontend: frontend,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "An Open Source Lightweight E-Mail Client",
         homepage: "https://github.com/hkdb/aerion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

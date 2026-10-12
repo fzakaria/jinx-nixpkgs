@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 38, 5], ["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["updateScript", 132, 12]], [["homepage", 135, 5], ["changelog", 137, 5], ["description", 138, 5], ["longDescription", 139, 5], ["license", 147, 5], ["maintainers", 148, 5], ["platforms", 153, 5], ["mainProgram", 158, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 45, 3], ["enableParallelBuilding", 52, 3], ["dotnet-sdk", 54, 3], ["dotnet-runtime", 55, 3], ["nugetDeps", 57, 3], ["runtimeDeps", 59, 3], ["projectFile", 89, 3], ["testProjectFile", 90, 3], ["doCheck", 93, 3], ["dotnetFlags", 95, 3], ["executables", 99, 3], ["makeWrapperArgs", 103, 3], ["preInstall", 108, 3], ["preFixup", 114, 3], ["passthru", 132, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, cctools: false, darwin: false, dotnetCorePackages: false, fetchFromForgejo: false, libx11: false, libgdiplus: false, moltenvk: false, ffmpeg: false, openal: false, libsoundio: false, sndio: false, stdenv: false, pulseaudio: false, "vulkan-loader": false, glew: false, libGL: false, libice: false, libsm: false, libxcursor: false, libxext: false, libxi: false, libxrandr: false, udev: false, SDL2: false, SDL2_mixer: false, gtk3: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 38, 5], ["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 132, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 135, 5], ["changelog", 137, 5], ["description", 138, 5], ["longDescription", 139, 5], ["license", 147, 5], ["maintainers", 148, 5], ["platforms", 153, 5], ["mainProgram", 158, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 45, 3], ["enableParallelBuilding", 52, 3], ["dotnet-sdk", 54, 3], ["dotnet-runtime", 55, 3], ["nugetDeps", 57, 3], ["runtimeDeps", 59, 3], ["projectFile", 89, 3], ["testProjectFile", 90, 3], ["doCheck", 93, 3], ["dotnetFlags", 95, 3], ["executables", 99, 3], ["makeWrapperArgs", 103, 3], ["preInstall", 108, 3], ["preFixup", 114, 3], ["passthru", 132, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ryubing";
       const version = "1.3.3";
       const src = nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.ryujinx.app",
           owner: "projects",
           repo: "Ryubing",
@@ -100,9 +97,9 @@ popd
 # Don't make a softlink on OSX because of its case insensitivity
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "ln -s $out/bin/Ryujinx $out/bin/ryujinx")}
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./updater.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./updater.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://ryujinx.app",
         changelog: nix.thunk(() => nix.str`https://git.ryujinx.app/projects/Ryubing/releases/tag/${nix.sel(src, "tag")}`),
         description: "Experimental Nintendo Switch Emulator written in C# (community fork of Ryujinx)",
@@ -120,7 +117,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(st
         mainProgram: "Ryujinx",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

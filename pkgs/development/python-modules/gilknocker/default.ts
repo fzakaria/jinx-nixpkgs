@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["pname", 46, 26], ["version", 46, 32], ["src", 46, 40], ["hash", 47, 5]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 95, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["postPatch", 38, 3], ["cargoDeps", 45, 3], ["nativeBuildInputs", 50, 3], ["pythonImportsCheck", 57, 3], ["nativeCheckInputs", 59, 3], ["enabledTestPaths", 66, 3], ["disabledTestPaths", 72, 3], ["disabledTests", 78, 3], ["pytestFlags", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, pythonAtLeast: false, "pkg-config": false, pyprojectVersionPatchHook: false, rustc: false, numpy: false, pytestCheckHook: false, "pytest-benchmark": false, "pytest-rerunfailures": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 46, 26], ["version", 46, 32], ["src", 46, 40], ["hash", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 95, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["postPatch", 38, 3], ["cargoDeps", 45, 3], ["nativeBuildInputs", 50, 3], ["pythonImportsCheck", 57, 3], ["nativeCheckInputs", 59, 3], ["enabledTestPaths", 66, 3], ["disabledTestPaths", 72, 3], ["disabledTests", 78, 3], ["pytestFlags", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pytest_benchmark = nix.arg($, "pytest-benchmark");
   const pytest_rerunfailures = nix.arg($, "pytest-rerunfailures");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gilknocker",
       version: "0.4.2-post3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "milesgranger",
           repo: "gilknocker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
     'version = "${nix.sel(finalAttrs, "version")}"'
 `),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_knockknock_busy", "test_knockknock_some_gil"]))),
       pytestFlags: nix.thunk(() => ["--benchmark-disable"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Knock on the Python GIL, determine how busy it is",
         homepage: "https://github.com/milesgranger/gilknocker",
         changelog: nix.thunk(() => nix.str`https://github.com/milesgranger/gilknocker/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

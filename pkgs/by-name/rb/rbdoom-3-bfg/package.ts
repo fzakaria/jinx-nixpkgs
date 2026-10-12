@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]], [["homepage", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["cmakeDir", 50, 3], ["cmakeFlags", 51, 3], ["hardeningDisable", 59, 3], ["installPhase", 61, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "directx-shader-compiler": false, ispc: false, ncurses: false, openal: false, rapidjson: false, SDL2: false, "vulkan-headers": false, "vulkan-loader": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["cmakeDir", 50, 3], ["cmakeFlags", 51, 3], ["hardeningDisable", 59, 3], ["installPhase", 61, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rbdoom-3-bfg",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RobertBeckebans",
           repo: "rbdoom-3-bfg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ninstall RBDoom3BFG $out/bin/RBDoom3BFG\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/RobertBeckebans/RBDOOM-3-BFG",
         description: "Doom 3 BFG Edition with modern engine features",
         mainProgram: "RBDoom3BFG",

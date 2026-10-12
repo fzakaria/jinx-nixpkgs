@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]], [["pname", 35, 3], ["version", 36, 11], ["pyproject", 37, 3], ["src", 39, 3], ["build-system", 46, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 58, 3], ["dependencies", 74, 3], ["prePatch", 78, 3], ["nativeCheckInputs", 84, 3], ["pythonImportsCheck", 88, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, numpy: false, setuptools: false, pkgs: false, lcms2: false, openjpeg: false, jxrlib: false, lerc: false, libdeflate: false, libjpeg: false, libpng: false, libtiff: false, libwebp: false, xz: false, zlib: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 11], ["pyproject", 37, 3], ["src", 39, 3], ["build-system", 46, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 58, 3], ["dependencies", 74, 3], ["prePatch", 78, 3], ["nativeCheckInputs", 84, 3], ["pythonImportsCheck", 88, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cgohlke",
           repo: "imagecodecs",
           tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["imagecodecs"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Image transformation, compression, and decompression codecs",
         homepage: "https://github.com/cgohlke/imagecodecs",
         changelog: nix.thunk(() => nix.str`https://github.com/cgohlke/imagecodecs/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -80,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version: version_1,
         pyproject,

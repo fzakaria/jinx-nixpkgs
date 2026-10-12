@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["pkg-config", 92, 11]], [["tests", 92, 5], ["updateScript", 93, 5]], [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["teams", 101, 5], ["platforms", 102, 5], ["pkgConfigModules", 103, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["outputs", 33, 3], ["postPatch", 41, 3], ["strictDeps", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 64, 3], ["nativeCheckInputs", 69, 3], ["cmakeFlags", 74, 3], ["dontWrapQtApps", 82, 3], ["doCheck", 84, 3], ["preCheck", 86, 3], ["passthru", 91, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, testers: false, cmake: false, dbus: false, "dbus-test-runner": false, doxygen: false, "pkg-config": false, qtbase: false, qtdeclarative: false, qttools: false, validatePkgConfig: false, withDocumentation: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg-config", 92, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 92, 5], ["updateScript", 93, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["teams", 101, 5], ["platforms", 102, 5], ["pkgConfigModules", 103, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["outputs", 33, 3], ["postPatch", 41, 3], ["strictDeps", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 64, 3], ["nativeCheckInputs", 69, 3], ["cmakeFlags", 74, 3], ["dontWrapQtApps", 82, 3], ["doCheck", 84, 3], ["preCheck", 86, 3], ["passthru", 91, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const withDocumentation = nix.argOr($, "withDocumentation", () => true);
   const withQt6 = nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionAtLeast"), nix.thunk(() => nix.sel(qtbase, "version")), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lomiri-action-api",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-action-api",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,15 +59,15 @@ substituteInPlace documentation/qml/pages/* \\
 export QML2_IMPORT_PATH=${nix.app(nix.sel(lib, "getBin"), qtdeclarative)}/${nix.sel(qtbase, "qtQmlPrefix")}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Allow applications to export actions in various forms to the Lomiri Shell",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-action-api",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-action-api/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

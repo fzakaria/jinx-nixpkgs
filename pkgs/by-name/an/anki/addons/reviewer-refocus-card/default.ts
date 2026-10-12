@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sparseCheckout", 14, 5], ["hash", 15, 5]], [["extraArgs", 19, 5]], [["updateScript", 18, 12]], [["description", 22, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["sourceRoot", 17, 3], ["passthru", 18, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, "anki-utils": false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sparseCheckout", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 19, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 18, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 22, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["sourceRoot", 17, 3], ["passthru", 18, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "reviewer-refocus-card",
       version: "0.3.0-unstable-2022-12-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "glutanimate",
           repo: "anki-addons-misc",
           rev: "7b981836e0a6637a1853f3e8d73d022ab95fed31",
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src/reviewer_refocus_card`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Set focus to the card area, allowing you to scroll through your cards using\nPage Up / Page Down, etc\n",
         homepage: "https://github.com/glutanimate/anki-addons-misc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

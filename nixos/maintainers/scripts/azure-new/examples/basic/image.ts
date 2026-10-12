@@ -2,20 +2,22 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/image.nix", [[["imports", 9, 11]], [["system", 4, 5], ["modules", 5, 5]]]);
 const formals$1 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/image.nix", [["imports", 9, 11]]);
-const pos$2 = nix.positions(here + "/image.nix", [["system", 4, 5], ["modules", 5, 5]]);
 
 export default nix.thunk(() => (() => {
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../../../default.nix")), nix.thunk(() => ({}))));
   const machine = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.add(nix.sel(pkgs, "path"), "/nixos/lib/eval-config.nix"))), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       system: "x86_64-linux",
       modules: nix.thunk(() => [
         nix.lambda((args) => (() => {
           const $ = nix.formals(args, formals$1);
           const config = nix.arg($, "config");
-          return { [nix.POS]: pos$1, imports: nix.thunk(() => [nix.path(here, "./system.nix")]) };
+          return {
+            [nix.POS]: $pos[0],
+            imports: nix.thunk(() => [nix.path(here, "./system.nix")]),
+          };
         })(), formals$1),
       ]),
     }))));

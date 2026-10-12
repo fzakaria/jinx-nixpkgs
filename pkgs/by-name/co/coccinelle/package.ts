@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 18, 5], ["tag", 19, 5], ["owner", 20, 5], ["hash", 21, 5]], [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 32, 3], ["strictDeps", 39, 3], ["__structuredAttrs", 40, 3], ["postPatch", 42, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "ocaml-ng": false, "pkg-config": false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 18, 5], ["tag", 19, 5], ["owner", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 32, 3], ["strictDeps", 39, 3], ["__structuredAttrs", 40, 3], ["postPatch", 42, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const ocamlPackages = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_4_14"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "coccinelle",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "coccinelle",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           owner: "coccinelle",
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       postPatch: "# Ensure dependencies from Nixpkgs are picked up.\nrm -rf bundles/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Program to apply semantic patches to C code",
         longDescription: "Coccinelle is a program matching and transformation engine which\nprovides the language SmPL (Semantic Patch Language) for\nspecifying desired matches and transformations in C code.\nCoccinelle was initially targeted towards performing collateral\nevolutions in Linux.  Such evolutions comprise the changes that\nare needed in client code in response to evolutions in library\nAPIs, and may include modifications such as renaming a function,\nadding a function argument whose value is somehow\ncontext-dependent, and reorganizing a data structure.  Beyond\ncollateral evolutions, Coccinelle is successfully used (by us\nand others) for finding and fixing bugs in systems code.\n",
         homepage: "https://coccinelle.gitlabpages.inria.fr/website/",

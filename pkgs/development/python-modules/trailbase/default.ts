@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 26], ["version", 25, 32], ["hash", 26, 5]], [["updateScript", 72, 12]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 82, 5], ["teams", 83, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["disabled", 22, 3], ["src", 24, 3], ["prePatch", 30, 3], ["patches", 35, 3], ["build-system", 37, 3], ["pythonRelaxDeps", 39, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 50, 3], ["preCheck", 57, 3], ["pythonImportsCheck", 70, 3], ["passthru", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "poetry-core": false, pythonOlder: false, httpx: false, pyjwt: false, cryptography: false, pytestCheckHook: false, mintotp: false, trailbase: false, writableTmpDirAsHomeHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 26], ["version", 25, 32], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 72, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 82, 5], ["teams", 83, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["disabled", 22, 3], ["src", 24, 3], ["prePatch", 30, 3], ["patches", 35, 3], ["build-system", 37, 3], ["pythonRelaxDeps", 39, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 50, 3], ["preCheck", 57, 3], ["pythonImportsCheck", 70, 3], ["passthru", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "trailbase",
       version: "0.7.2",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.13")),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-iWdxMgjEPd5RkCRY3JnzuaJ1nW6LOESciTB6j2lzPzM=",
@@ -56,11 +53,11 @@ export PATH="$TMPDIR/bin:$PATH"
 `),
       pythonImportsCheck: nix.thunk(() => ["trailbase"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "TrailBase client for Python",
         homepage: "https://pypi.org/project/trailbase/",
         changelog: "https://github.com/trailbaseio/trailbase/releases",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["libName", 12, 5]], [["buildCommand", 26, 5]]]);
 const formals$1 = { args: { lib: false, wrapFirefox: false, gpgme: false, gnupg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["libName", 12, 5]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["buildCommand", 26, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,8 +11,8 @@ export default nix.lambda((args) => (() => {
   const wrapFirefox = nix.arg($, "wrapFirefox");
   const gpgme = nix.arg($, "gpgme");
   const gnupg = nix.arg($, "gnupg");
-  return (browser) => (args_1) => nix.app(nix.sel(nix.app(wrapFirefox, browser, nix.thunk(() => nix.update({ [nix.POS]: pos$1, libName: "thunderbird" }, args_1))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+  return (browser) => (args_1) => nix.app(nix.sel(nix.app(wrapFirefox, browser, nix.thunk(() => nix.update({ [nix.POS]: $pos[0], libName: "thunderbird" }, args_1))), "overrideAttrs"), (old) => ({
+      [nix.POS]: $pos[1],
       buildCommand: nix.thunk(() => nix.add(nix.sel(old, "buildCommand"), nix.str`wrapProgram "$executablePath" \\
   --prefix LD_LIBRARY_PATH ':' "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [gpgme]))}" \\
   --prefix PATH ':' "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnupg]))}"

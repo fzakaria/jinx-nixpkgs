@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 29, 5], ["hash", 30, 5]], [["lib", 95, 69], ["tracee", 95, 73], ["makeWrapper", 95, 80]], [["package", 97, 7], ["version", 98, 7], ["command", 99, 7]], [["integration", 94, 5], ["integration-test-cli", 95, 5], ["version", 96, 5]], [["tests", 93, 12]], [["homepage", 104, 5], ["changelog", 105, 5], ["description", 106, 5], ["mainProgram", 107, 5], ["longDescription", 108, 5], ["license", 115, 5], ["maintainers", 121, 5], ["platforms", 122, 5], ["outputsToInstall", 126, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 25, 3], ["vendorHash", 32, 3], ["patches", 34, 3], ["enableParallelBuilding", 38, 3], ["hardeningDisable", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 49, 3], ["makeFlags", 56, 3], ["buildPhase", 63, 3], ["doCheck", 73, 3], ["outputs", 75, 3], ["installPhase", 81, 3], ["passthru", 93, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, clang: false, "pkg-config": false, elfutils: false, libbpf: false, zlib: false, zstd: false, nixosTests: false, testers: false, tracee: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lib", 95, 69], ["tracee", 95, 73], ["makeWrapper", 95, 80]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 97, 7], ["version", 98, 7], ["command", 99, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["integration", 94, 5], ["integration-test-cli", 95, 5], ["version", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 93, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 104, 5], ["changelog", 105, 5], ["description", 106, 5], ["mainProgram", 107, 5], ["longDescription", 108, 5], ["license", 115, 5], ["maintainers", 121, 5], ["platforms", 122, 5], ["outputsToInstall", 126, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 25, 3], ["vendorHash", 32, 3], ["patches", 34, 3], ["enableParallelBuilding", 38, 3], ["hardeningDisable", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 49, 3], ["makeFlags", 56, 3], ["buildPhase", 63, 3], ["doCheck", 73, 3], ["outputs", 75, 3], ["installPhase", 81, 3], ["passthru", 93, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const tracee = nix.arg($, "tracee");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tracee",
       version: "0.23.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aquasecurity",
           repo: "tracee",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,13 +52,13 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "lib", "share"]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $lib/lib/tracee $share/share/tracee\n\nmv ./dist/{tracee,signatures} $out/bin/\nmv ./dist/tracee.bpf.o $lib/lib/tracee/\nmv ./cmd/tracee-rules/templates $share/share/tracee/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           integration: nix.thunk(() => nix.sel(nixosTests, "tracee")),
-          "integration-test-cli": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./integration-tests.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib, tracee: tracee, makeWrapper: makeWrapper })))),
+          "integration-test-cli": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./integration-tests.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib, tracee: tracee, makeWrapper: makeWrapper })))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: tracee,
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
               command: "tracee version",
@@ -72,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://aquasecurity.github.io/tracee/latest/",
         changelog: nix.thunk(() => nix.str`https://github.com/aquasecurity/tracee/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Linux Runtime Security and Forensics using eBPF",

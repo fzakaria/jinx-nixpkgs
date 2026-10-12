@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ui.nix", [[["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]], [["pname", 24, 3], ["version", 26, 24], ["src", 26, 32], ["outputs", 28, 3], ["patches", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["propagatedBuildInputs", 60, 3], ["mesonFlags", 68, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, itstool: false, wrapGAppsHook4: false, glib: false, accountsservice: false, dbus: false, flatpak: false, malcontent: false, gtk4: false, libadwaita: false, appstream: false, "desktop-file-utils": false, polkit: false, "glib-testing": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ui.nix", [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]]);
-const pos$2 = nix.positions(here + "/ui.nix", [["pname", 24, 3], ["version", 26, 24], ["src", 26, 32], ["outputs", 28, 3], ["patches", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["propagatedBuildInputs", 60, 3], ["mesonFlags", 68, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const polkit = nix.arg($, "polkit");
   const glib_testing = nix.arg($, "glib-testing");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "malcontent-ui",
       version: nix.thunk(() => nix.attr(malcontent, "version")),
       src: nix.thunk(() => nix.attr(malcontent, "src")),
@@ -55,7 +54,7 @@ export default nix.lambda((args) => (() => {
         "-Dui=enabled",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "UI components for parental controls library",
         mainProgram: "malcontent-control",
         homepage: "https://gitlab.freedesktop.org/pwithnall/malcontent",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["tensorflow", 52, 5]], [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 55, 3], ["preCheck", 66, 3], ["enabledTestPaths", 70, 3], ["disabledTests", 76, 3], ["pythonImportsCheck", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "dm-tree": false, etils: false, numpy: false, tabulate: false, wrapt: false, click: false, docutils: false, keras: false, pytestCheckHook: false, tensorflow: false, "tensorflow-datasets": false, "tf-keras": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tensorflow", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 55, 3], ["preCheck", 66, 3], ["enabledTestPaths", 70, 3], ["disabledTests", 76, 3], ["pythonImportsCheck", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "deepmind",
           repo: "sonnet",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => nix.concat([dm_tree, etils, numpy, tabulate, wrapt], nix.sel(etils, "optional-dependencies", "epath")));
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, tensorflow: nix.thunk(() => [tensorflow]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], tensorflow: nix.thunk(() => [tensorflow]) }));
       const nativeCheckInputs = nix.thunk(() => [
         click,
         docutils,
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["sonnet"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for building neural networks in TensorFlow",
         homepage: "https://github.com/deepmind/sonnet",
         changelog: nix.thunk(() => nix.str`https://github.com/google-deepmind/sonnet/releases/tag/v${version}`),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

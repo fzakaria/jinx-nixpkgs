@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["aws", 56, 5], ["consul", 57, 5], ["etcd", 58, 5], ["etcd3", 59, 5], ["exhibitor", 60, 5], ["jsonlogger", 61, 5], ["kubernetes", 62, 5], ["psycopg2", 63, 5], ["psycopg2-binary", 64, 5], ["psycopg3", 65, 5], ["raft", 66, 5], ["systemd", 70, 5], ["zookeeper", 71, 5]], [["patroni", 86, 11]], [["tests", 86, 5], ["updateScript", 88, 5]], [["changelog", 92, 5], ["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5], ["platforms", 101, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["pythonRelaxDeps", 38, 3], ["dependencies", 42, 3], ["optional-dependencies", 55, 3], ["pythonImportsCheck", 74, 3], ["nativeCheckInputs", 76, 3], ["__darwinAllowLocalNetworking", 83, 3], ["passthru", 85, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, "nix-update-script": false, nixosTests: false, python3Packages: false, versionCheckHook: false, extras: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aws", 56, 5], ["consul", 57, 5], ["etcd", 58, 5], ["etcd3", 59, 5], ["exhibitor", 60, 5], ["jsonlogger", 61, 5], ["kubernetes", 62, 5], ["psycopg2", 63, 5], ["psycopg2-binary", 64, 5], ["psycopg3", 65, 5], ["raft", 66, 5], ["systemd", 70, 5], ["zookeeper", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["patroni", 86, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 86, 5], ["updateScript", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 92, 5], ["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5], ["platforms", 101, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["pythonRelaxDeps", 38, 3], ["dependencies", 42, 3], ["optional-dependencies", 55, 3], ["pythonImportsCheck", 74, 3], ["nativeCheckInputs", 76, 3], ["__darwinAllowLocalNetworking", 83, 3], ["passthru", 85, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +24,12 @@ export default nix.lambda((args) => (() => {
     "zookeeper",
   ]);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "patroni",
       version: "4.1.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "patroni",
           repo: "patroni",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +56,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           aws: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "boto3"))]),
           consul: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "consul"))]),
           etcd: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "python-etcd"))]),
@@ -87,12 +82,12 @@ export default nix.lambda((args) => (() => {
       })(), nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, patroni: nix.thunk(() => nix.sel(nixosTests, "patroni")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], patroni: nix.thunk(() => nix.sel(nixosTests, "patroni")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/patroni/patroni/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/releases.rst`),
         description: "Template for PostgreSQL HA with ZooKeeper, etcd or Consul",
         homepage: "https://patroni.readthedocs.io/en/latest/",

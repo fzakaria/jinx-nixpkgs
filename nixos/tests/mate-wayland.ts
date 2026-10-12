@@ -2,67 +2,54 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mate-wayland.nix", [[["maintainers", 5, 8]], [["enableWaylandSession", 24, 44]], [["mate", 24, 39]], [["enable", 14, 24], ["desktopManager", 24, 24]], [["enable", 17, 22]], [["enable", 16, 14], ["wayland", 17, 14]], [["enable", 20, 11], ["user", 21, 11]], [["sddm", 16, 9], ["defaultSession", 18, 9], ["autoLogin", 19, 9]], [["xserver", 14, 16], ["displayManager", 15, 16]], [["options", 27, 27]], [["qemu", 27, 22]], [["imports", 10, 7], ["services", 14, 7], ["virtualisation", 27, 7]], [["machine", 7, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["enableOCR", 30, 3], ["testScript", 32, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mate-wayland.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/mate-wayland.nix", [["enableWaylandSession", 24, 44]]);
-const pos$3 = nix.positions(here + "/mate-wayland.nix", [["mate", 24, 39]]);
-const pos$4 = nix.positions(here + "/mate-wayland.nix", [["enable", 14, 24], ["desktopManager", 24, 24]]);
-const pos$5 = nix.positions(here + "/mate-wayland.nix", [["enable", 17, 22]]);
-const pos$6 = nix.positions(here + "/mate-wayland.nix", [["enable", 16, 14], ["wayland", 17, 14]]);
-const pos$7 = nix.positions(here + "/mate-wayland.nix", [["enable", 20, 11], ["user", 21, 11]]);
-const pos$8 = nix.positions(here + "/mate-wayland.nix", [["sddm", 16, 9], ["defaultSession", 18, 9], ["autoLogin", 19, 9]]);
-const pos$9 = nix.positions(here + "/mate-wayland.nix", [["xserver", 14, 16], ["displayManager", 15, 16]]);
-const pos$10 = nix.positions(here + "/mate-wayland.nix", [["options", 27, 27]]);
-const pos$11 = nix.positions(here + "/mate-wayland.nix", [["qemu", 27, 22]]);
-const pos$12 = nix.positions(here + "/mate-wayland.nix", [["imports", 10, 7], ["services", 14, 7], ["virtualisation", 27, 7]]);
-const pos$13 = nix.positions(here + "/mate-wayland.nix", [["machine", 7, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/mate-wayland.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["enableOCR", 30, 3], ["testScript", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "mate-wayland",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "mate", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               desktopManager: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                mate: nix.thunk(() => ({ [nix.POS]: pos$2, enableWaylandSession: true })),
+                [nix.POS]: $pos[2],
+                mate: nix.thunk(() => ({ [nix.POS]: $pos[1], enableWaylandSession: true })),
               })),
             })),
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               sddm: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 enable: true,
-                wayland: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+                wayland: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
               })),
               defaultSession: "MATE",
-              autoLogin: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true, user: "alice" })),
+              autoLogin: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true, user: "alice" })),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             qemu: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               options: nix.thunk(() => ["-vga none -device virtio-gpu-pci"]),
             })),
           })),

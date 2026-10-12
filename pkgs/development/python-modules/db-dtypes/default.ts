@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["name", 30, 7], ["url", 31, 7], ["relative", 32, 7], ["hash", 33, 7]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["patches", 28, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 46, 3], ["pytestFlags", 48, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, numpy: false, packaging: false, pandas: false, pyarrow: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 30, 7], ["url", 31, 7], ["relative", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["patches", 28, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 46, 3], ["pytestFlags", 48, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "db-dtypes",
       version: "1.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "google-cloud-python",
           tag: nix.thunk(() => nix.str`db-dtypes-v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/packages/db-dtypes`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "support-pandas-3.0.patch",
             url: "https://github.com/googleapis/google-cloud-python/commit/2086b34d8b3418462c9bc89b96eac779a25a3afd.patch",
             relative: "packages/db-dtypes",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["-Wignore::DeprecationWarning"]),
       pythonImportsCheck: nix.thunk(() => ["db_dtypes"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pandas Data Types for SQL systems (BigQuery, Spanner)",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/db-dtypes",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/${nix.sel(finalAttrs, "src", "tag")}/packages/db-dtypes/CHANGELOG.md`),

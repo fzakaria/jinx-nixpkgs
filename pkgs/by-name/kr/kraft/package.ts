@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["extraArgs", 92, 7]], [["updateScript", 91, 5]], [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["mainProgram", 106, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["vendorHash", 42, 3], ["ldflags", 44, 3], ["tags", 53, 3], ["subPackages", 63, 3], ["excludedPackages", 68, 3], ["preCheck", 74, 3], ["postInstall", 79, 3], ["passthru", 90, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, writableTmpDirAsHomeHook: false, "pkg-config": false, "btrfs-progs": false, gpgme: false, xen: false, yajl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 92, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["mainProgram", 106, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["vendorHash", 42, 3], ["ldflags", 44, 3], ["tags", 53, 3], ["subPackages", 63, 3], ["excludedPackages", 68, 3], ["preCheck", 74, 3], ["postInstall", 79, 3], ["passthru", 90, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const yajl = nix.arg($, "yajl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kraft",
       version: "0.12.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "unikraft",
           repo: "kraftkit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,14 +52,14 @@ export default nix.lambda((args) => (() => {
       preCheck: "# Run all tests.\nunset subPackages\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "$out/bin/genman generate ./docs/man/\nrm $out/bin/genman\ninstallManPage ./docs/man/*\n\ninstallShellCompletion --cmd kraft \\\n  --bash <($out/bin/kraft completion bash) \\\n  --fish <($out/bin/kraft completion fish) \\\n  --zsh <($out/bin/kraft completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Build and use highly customized and ultra-lightweight unikernel VMs",
         homepage: "https://github.com/unikraft/kraftkit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

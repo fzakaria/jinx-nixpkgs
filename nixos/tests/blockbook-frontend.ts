@@ -2,58 +2,47 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/blockbook-frontend.nix", [[["maintainers", 5, 5]], [["enable", 12, 9]], [["test", 11, 35]], [["passwordHMAC", 18, 21]], [["rpc", 18, 17]], [["port", 17, 11], ["users", 18, 11]], [["enable", 15, 9], ["rpc", 16, 9]], [["mainnet", 14, 25]], [["blockbook-frontend", 11, 16], ["bitcoind", 14, 16]], [["services", 11, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 23, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/blockbook-frontend.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/blockbook-frontend.nix", [["enable", 12, 9]]);
-const pos$3 = nix.positions(here + "/blockbook-frontend.nix", [["test", 11, 35]]);
-const pos$4 = nix.positions(here + "/blockbook-frontend.nix", [["passwordHMAC", 18, 21]]);
-const pos$5 = nix.positions(here + "/blockbook-frontend.nix", [["rpc", 18, 17]]);
-const pos$6 = nix.positions(here + "/blockbook-frontend.nix", [["port", 17, 11], ["users", 18, 11]]);
-const pos$7 = nix.positions(here + "/blockbook-frontend.nix", [["enable", 15, 9], ["rpc", 16, 9]]);
-const pos$8 = nix.positions(here + "/blockbook-frontend.nix", [["mainnet", 14, 25]]);
-const pos$9 = nix.positions(here + "/blockbook-frontend.nix", [["blockbook-frontend", 11, 16], ["bitcoind", 14, 16]]);
-const pos$10 = nix.positions(here + "/blockbook-frontend.nix", [["services", 11, 7]]);
-const pos$11 = nix.positions(here + "/blockbook-frontend.nix", [["machine", 8, 9]]);
-const pos$12 = nix.positions(here + "/blockbook-frontend.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "blockbook-frontend",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "_1000101"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             "blockbook-frontend": nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              test: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+              [nix.POS]: $pos[2],
+              test: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             })),
             bitcoind: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               mainnet: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 enable: true,
                 rpc: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   port: 8030n,
                   users: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     rpc: nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       passwordHMAC: "acc2374e5f9ba9e62a5204d3686616cf$53abdba5e67a9005be6a27ca03a93ce09e58854bc2b871523a0d239a72968033",
                     })),
                   })),

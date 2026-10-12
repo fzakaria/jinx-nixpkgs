@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 22, 5], ["homepage", 23, 5], ["downloadPage", 24, 5], ["changelog", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["pname", 8, 3], ["version", 9, 3], ["minimalOCamlVersion", 11, 3], ["src", 14, 3], ["doCheck", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 22, 5], ["homepage", 23, 5], ["downloadPage", 24, 5], ["changelog", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["minimalOCamlVersion", 11, 3], ["src", 14, 3], ["doCheck", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "prelude",
       version: "0.5",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.zapashcanon.fr/zapashcanon/prelude/archive/${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-lti+q1U/eEasAXo0O5YEu4iw7947V9bdvSHA0IEMS8M=",
         })))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to enforce good stdlib practices",
         homepage: "https://ocaml.org/p/prelude/",
         downloadPage: "https://git.zapashcanon.fr/zapashcanon/prelude",

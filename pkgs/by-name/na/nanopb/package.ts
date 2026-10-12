@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 25, 84], ["version", 25, 88]], [["version", 27, 22], ["generator-out", 28, 31]], [["nanopb-proto", 33, 9]], [["self", 31, 7], ["packageOverrides", 32, 7]], [["python3", 37, 15], ["version", 38, 22], ["generator-out", 39, 31]], [["python3", 42, 15], ["src", 43, 22], ["version", 43, 26], ["enableMalloc", 45, 9], ["noPackedStructs", 46, 9], ["maxRequiredFields", 47, 9], ["field32bit", 48, 9], ["noErrmsg", 49, 9], ["bufferOnly", 50, 9], ["systemHeader", 51, 9], ["without64bit", 52, 9], ["encodeArraysUnpacked", 53, 9], ["convertDoubleFloat", 54, 9], ["validateUtf8", 55, 9], ["littleEndian8bit", 56, 9], ["c99StaticAssert", 57, 9], ["noStaticAssert", 58, 9]], [["owner", 67, 7], ["repo", 68, 7], ["rev", 69, 7], ["hash", 70, 7]], [["simple-proto2", 97, 9], ["simple-proto3", 98, 9], ["message-with-annotations", 99, 9], ["message-with-options", 100, 9]], [["runtime", 91, 9], ["generator-out", 92, 9], ["python-module", 93, 9], ["generator", 94, 9], ["tests", 96, 7]], [["platforms", 105, 7], ["description", 107, 7], ["homepage", 108, 7], ["license", 109, 7], ["maintainers", 110, 7], ["longDescription", 115, 7]], [["pname", 63, 5], ["version", 64, 5], ["src", 66, 5], ["dontPatch", 73, 5], ["dontUnpack", 74, 5], ["propagatedNativeBuildInputs", 76, 5], ["propagatedBuildInputs", 78, 5], ["postInstall", 80, 5], ["passthru", 89, 5], ["meta", 104, 5]]]);
 const formals$1 = { args: { stdenvNoCC: false, callPackage: false, fetchFromGitHub: false, buildPackages: false, lib: false, enableMalloc: true, noPackedStructs: true, maxRequiredFields: true, field32bit: true, noErrmsg: true, bufferOnly: true, systemHeader: true, without64bit: true, encodeArraysUnpacked: true, convertDoubleFloat: true, validateUtf8: true, littleEndian8bit: true, c99StaticAssert: true, noStaticAssert: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 25, 84], ["version", 25, 88]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 27, 22], ["generator-out", 28, 31]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nanopb-proto", 33, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["self", 31, 7], ["packageOverrides", 32, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["python3", 37, 15], ["version", 38, 22], ["generator-out", 39, 31]]);
-const pos$6 = nix.positions(here + "/package.nix", [["python3", 42, 15], ["src", 43, 22], ["version", 43, 26], ["enableMalloc", 45, 9], ["noPackedStructs", 46, 9], ["maxRequiredFields", 47, 9], ["field32bit", 48, 9], ["noErrmsg", 49, 9], ["bufferOnly", 50, 9], ["systemHeader", 51, 9], ["without64bit", 52, 9], ["encodeArraysUnpacked", 53, 9], ["convertDoubleFloat", 54, 9], ["validateUtf8", 55, 9], ["littleEndian8bit", 56, 9], ["c99StaticAssert", 57, 9], ["noStaticAssert", 58, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 67, 7], ["repo", 68, 7], ["rev", 69, 7], ["hash", 70, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["simple-proto2", 97, 9], ["simple-proto3", 98, 9], ["message-with-annotations", 99, 9], ["message-with-options", 100, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["runtime", 91, 9], ["generator-out", 92, 9], ["python-module", 93, 9], ["generator", 94, 9], ["tests", 96, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["platforms", 105, 7], ["description", 107, 7], ["homepage", 108, 7], ["license", 109, 7], ["maintainers", 110, 7], ["longDescription", 115, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 63, 5], ["version", 64, 5], ["src", 66, 5], ["dontPatch", 73, 5], ["dontUnpack", 74, 5], ["propagatedNativeBuildInputs", 76, 5], ["propagatedBuildInputs", 78, 5], ["postInstall", 80, 5], ["passthru", 89, 5], ["meta", 104, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,37 +28,37 @@ export default nix.lambda((args) => (() => {
   const noStaticAssert = nix.argOr($, "noStaticAssert", () => false);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (self) => (() => {
       const generator_out = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./generator-out.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           src: nix.thunk(() => nix.attr(self, "src")),
           version: nix.thunk(() => nix.attr(self, "version")),
         }))));
       const python_module = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./python-module.nix"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(self, "passthru"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: nix.thunk(() => nix.attr(self, "version")),
           "generator-out": nix.thunk(() => nix.attr(from, "generator-out")),
         };
         })())));
       const python3 = nix.thunk(() => nix.app(nix.sel(buildPackages, "python3", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           self: python3,
           packageOverrides: (_) => (__1) => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "nanopb-proto": nix.thunk(() => nix.sel(self, "passthru", "python-module")),
           }),
         }))));
       const generator = nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./generator.nix"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(self, "passthru"));
           return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           python3: python3,
           version: nix.thunk(() => nix.attr(self, "version")),
           "generator-out": nix.thunk(() => nix.attr(from, "generator-out")),
         };
         })())));
       const runtime = nix.thunk(() => nix.app(callPackage, nix.path(here, "./runtime.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           python3: python3,
           src: nix.thunk(() => nix.attr(self, "src")),
           version: nix.thunk(() => nix.attr(self, "version")),
@@ -88,11 +78,11 @@ export default nix.lambda((args) => (() => {
           noStaticAssert: noStaticAssert,
         }))));
       return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname: "nanopb",
         version: "0.4.9.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             owner: "nanopb",
             repo: "nanopb",
             rev: nix.thunk(() => nix.sel(self, "version")),
@@ -110,13 +100,13 @@ mkdir -p $out/share/nanopb/generator/proto
 ln -s ${nix.sel(self, "src")}/generator/proto/nanopb.proto $out/share/nanopb/generator/proto/nanopb.proto
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           runtime: runtime,
           "generator-out": generator_out,
           "python-module": python_module,
           generator: generator,
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             "simple-proto2": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-simple-proto2"), nix.thunk(() => ({})))),
             "simple-proto3": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-simple-proto3"), nix.thunk(() => ({})))),
             "message-with-annotations": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-message-with-annotations"), nix.thunk(() => ({})))),
@@ -124,7 +114,7 @@ ln -s ${nix.sel(self, "src")}/generator/proto/nanopb.proto $out/share/nanopb/gen
           })),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           description: "Protocol Buffers with small code size",
           homepage: "https://jpa.kapsi.fi/nanopb/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["all", 37, 5], ["gevent", 38, 5], ["redis", 39, 5]], [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, gevent: false, pytestCheckHook: false, "pytest-cov-stub": false, dramatiq: false, redis: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 37, 5], ["gevent", 38, 5], ["redis", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Flared",
           repo: "dramatiq-abort",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [dramatiq]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), optional_dependencies, nix.thunk(() => ["all"]))))),
         gevent: nix.thunk(() => [gevent]),
         redis: nix.thunk(() => [redis]),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [redis, pytestCheckHook, pytest_cov_stub]);
       const pythonImportsCheck = nix.thunk(() => ["dramatiq_abort"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/Flared/dramatiq-abort/releases/tag/v${version}`),
         description: "Dramatiq extension to abort message",
         homepage: "https://github.com/Flared/dramatiq-abort",
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

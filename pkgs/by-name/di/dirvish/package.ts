@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["executables", 29, 3], ["manpages", 35, 3], ["buildPhase", 43, 3], ["installPhase", 59, 3], ["postFixup", 75, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, makeWrapper: false, perl: false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["executables", 29, 3], ["manpages", 35, 3], ["buildPhase", 43, 3], ["installPhase", 59, 3], ["postFixup", 75, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dirvish",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://dirvish.org/dirvish${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "6b7f29c3541448db3d317607bda3eb9bac9fb3c51f970611ffe27e9d63507dcd",
         })))),
@@ -58,7 +56,7 @@ done
       installPhase: "mkdir -p $out/bin\ncp --target-directory=$out/bin $executables\n\nfor manpage in $manpages; do\n  if [[ $manpage =~ \\.([[:digit:]]+)$ ]]; then\n    section=${BASH_REMATCH[1]}\n    mkdir -p $out/man/man$section\n    cp --target-directory=$out/man/man$section $manpage\n  else\n    echo \"Couldn't determine man page section by filename\"\n    exit 1\n  fi\ndone\n",
       postFixup: "for executable in $executables; do\n  wrapProgram $out/bin/$executable \\\n    --set PERL5LIB \"$PERL5LIB\"\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast, disk based, rotating network backup system",
         homepage: "http://dirvish.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "osl2")),

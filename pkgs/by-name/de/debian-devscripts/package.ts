@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 38, 5], ["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["extraArgs", 170, 5]], [["nativeBuildInputs", 179, 9]], [["helpVersion", 176, 18]], [["updateScript", 169, 12], ["tests", 176, 12]], [["description", 260, 5], ["homepage", 261, 5], ["license", 262, 5], ["maintainers", 263, 5], ["platforms", 264, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 45, 3], ["postPatch", 55, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 75, 3], ["pythonPath", 106, 3], ["preConfigure", 115, 3], ["makeFlags", 137, 3], ["preFixup", 144, 3], ["passthru", 169, 3], ["meta", 259, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, xz: false, dpkg: false, libxslt: false, docbook_xsl: false, makeWrapper: false, writeShellScript: false, python3Packages: false, perlPackages: false, curl: false, gnupg: false, diffutils: false, nano: false, "pkg-config": false, "bash-completion": false, help2man: false, "nix-update-script": false, sendmailPath: true, runCommand: false, coreutils: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 38, 5], ["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 170, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 179, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["helpVersion", 176, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 169, 12], ["tests", 176, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 260, 5], ["homepage", 261, 5], ["license", 262, 5], ["maintainers", 263, 5], ["platforms", 264, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 45, 3], ["postPatch", 55, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 75, 3], ["pythonPath", 106, 3], ["preConfigure", 115, 3], ["makeFlags", 137, 3], ["preFixup", 144, 3], ["passthru", 169, 3], ["meta", 259, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const sensible_editor = nix.thunk(() => nix.app(writeShellScript, "sensible-editor", nix.thunk(() => nix.str`exec \${EDITOR-${nano}/bin/nano} "$@"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "debian-devscripts",
       version: "2.26.8",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "devscripts",
@@ -160,15 +154,15 @@ for i in "$out/.bin-wrapped"/*; do
 done
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           helpVersion: nix.thunk(() => nix.app(runCommand, "debian-devscripts-test-help-version", nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`export HOME=/tmp
 
@@ -249,7 +243,7 @@ done
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Debian package maintenance scripts",
         homepage: "https://salsa.debian.org/debian/devscripts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/resolver.nix", [[["description", 52, 5]], [["pname", 23, 3], ["version", 25, 17], ["src", 25, 25], ["propagatedBuildInputs", 27, 3], ["doCheck", 46, 3], ["checkInputs", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, dns: false, "dns-server": false, "dns-mirage": false, lru: false, duration: false, randomconv: false, lwt: false, "mirage-sleep": false, "mirage-mtime": false, "mirage-ptime": false, "mirage-crypto-rng": false, tcpip: false, tls: false, "tls-mirage": false, dnssec: false, "ca-certs-nss": false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/resolver.nix", [["description", 52, 5]]);
-const pos$2 = nix.positions(here + "/resolver.nix", [["pname", 23, 3], ["version", 25, 17], ["src", 25, 25], ["propagatedBuildInputs", 27, 3], ["doCheck", 46, 3], ["checkInputs", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const ca_certs_nss = nix.arg($, "ca-certs-nss");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dns-resolver",
       version: nix.thunk(() => nix.attr(dns, "version")),
       src: nix.thunk(() => nix.attr(dns, "src")),
@@ -51,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
-      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { [nix.POS]: pos$1, description: "DNS resolver business logic" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { [nix.POS]: $pos[0], description: "DNS resolver business logic" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=resolver.ts.map

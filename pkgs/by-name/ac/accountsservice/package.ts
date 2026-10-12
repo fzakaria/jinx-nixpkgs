@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["shadow", 44, 15]], [["NIX_CFLAGS_COMPILE", 89, 9]], [["accountsservice", 110, 43]], [["tests", 110, 12]], [["changelog", 113, 5], ["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["teams", 118, 5], ["platforms", 119, 5]], [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["src", 33, 3], ["patches", 41, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 76, 3], ["env", 86, 3], ["mesonFlags", 96, 3], ["postPatch", 102, 3], ["passthru", 110, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, replaceVars: false, "pkg-config": false, glib: false, shadow: false, "gobject-introspection": false, polkit: false, systemdLibs: false, meson: false, mesonEmulatorHook: false, dbus: false, json_c: false, ninja: false, python3: false, vala: false, gettext: false, libxcrypt: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["shadow", 44, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 89, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["accountsservice", 110, 43]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 110, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 113, 5], ["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["teams", 118, 5], ["platforms", 119, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["src", 33, 3], ["patches", 41, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 76, 3], ["env", 86, 3], ["mesonFlags", 96, 3], ["postPatch", 102, 3], ["passthru", 110, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "accountsservice",
       version: "26.27.3",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "accountsservice",
           repo: "accountsservice",
@@ -47,7 +41,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-/n0YCPZaf1SsTScidFUZcxfJkpv/+Bnb6Z7oKL+clgE=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, shadow: shadow })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], shadow: shadow })))),
         nix.path(here, "./no-create-dirs.patch"),
         nix.path(here, "./Disable-methods-that-change-files-in-etc.patch"),
         nix.path(here, "./drop-prefix-check-extensions.patch"),
@@ -56,7 +50,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([gettext, gobject_introspection, meson, ninja, pkg_config, python3, vala], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => [mesonEmulatorHook])))),
       buildInputs: nix.thunk(() => [dbus, gettext, glib, json_c, polkit, systemdLibs, libxcrypt]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))), "14")))), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               "-Wno-error=deprecated-declarations",
               "-Wno-error=implicit-function-declaration",
@@ -75,14 +69,14 @@ substituteInPlace meson.build \\
   --replace-fail "run_command(['./generate-version.sh'], check: true).stdout().strip()" "'${nix.sel(finalAttrs, "version")}'"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           accountsservice: nix.thunk(() => nix.attr(nixosTests, "accountsservice")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/accountsservice/accountsservice/-/releases/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "D-Bus interface for user account query and manipulation",
         homepage: "https://www.freedesktop.org/wiki/Software/AccountsService",

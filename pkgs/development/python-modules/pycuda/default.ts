@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mkDerivation", 21, 44], ["fetchFromGitHub", 21, 57]], [["name", 24, 5], ["paths", 25, 5]], [["pname", 40, 13], ["version", 40, 19], ["hash", 41, 5]], [["homepage", 89, 5], ["description", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 35, 3], ["version", 36, 3], ["format", 37, 3], ["src", 39, 3], ["preConfigure", 44, 3], ["postInstall", 52, 3], ["postFixup", 56, 3], ["doCheck", 64, 3], ["checkPhase", 66, 3], ["nativeBuildInputs", 70, 3], ["propagatedBuildInputs", 72, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, addDriverRunpath: false, fetchPypi: false, fetchFromGitHub: false, mako: false, boost: false, numpy: false, pytools: false, pytest: false, decorator: false, appdirs: false, six: false, cudaPackages: false, python: false, mkDerivation: false, lib: false, symlinkJoin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mkDerivation", 21, 44], ["fetchFromGitHub", 21, 57]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 24, 5], ["paths", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 40, 13], ["version", 40, 19], ["hash", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 89, 5], ["description", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["format", 37, 3], ["src", 39, 3], ["preConfigure", 44, 3], ["postInstall", 52, 3], ["postFixup", 56, 3], ["doCheck", 64, 3], ["checkPhase", 66, 3], ["nativeBuildInputs", 70, 3], ["propagatedBuildInputs", 72, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const compyte = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./compyte.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       mkDerivation: mkDerivation,
       fetchFromGitHub: fetchFromGitHub,
     }))));
   const cudaRoot = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "pycuda-cuda-root",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(cudaPackages, null);
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: pname,
           version: version,
           hash: "sha256-dZUWFgYougbzLOflY+P1uSFGkdyVKKA+qZ6hBz9OFLo=",
@@ -88,14 +84,14 @@ export default nix.lambda((args) => (() => {
         mako,
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/inducer/pycuda/",
         description: "CUDA integration for Python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         format,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 21, 5], ["homepage", 22, 5], ["changelog", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["mainProgram", 26, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 21, 5], ["homepage", 22, 5], ["changelog", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["mainProgram", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "twspace-crawler";
       const version = "1.12.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "HitomaruKonpaku",
           repo: "twspace-crawler",
           rev: "7875e534b257d4ba5a0cf8179a4772c87005fee6",
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-2fsYeSZYzadLmikUJbuHE4XMAp38jTZvtRo9xgaZVzg=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Script to monitor & download Twitter Spaces 24/7",
         homepage: "https://github.com/HitomaruKonpaku/twspace-crawler",
         changelog: nix.thunk(() => nix.str`https://github.com/HitomaruKonpaku/twspace-crawler/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         mainProgram: "twspace-crawler",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, npmDepsHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

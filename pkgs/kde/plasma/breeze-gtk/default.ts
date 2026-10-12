@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 8, 3], ["patches", 11, 3], ["extraNativeBuildInputs", 13, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, sass: false, python3: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["patches", 11, 3], ["extraNativeBuildInputs", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "breeze-gtk",
       patches: nix.thunk(() => [nix.path(here, "./0001-fix-add-executable-bit.patch")]),
       extraNativeBuildInputs: nix.thunk(() => [sass, python3, nix.thunk(() => nix.sel(python3Packages, "pycairo"))]),

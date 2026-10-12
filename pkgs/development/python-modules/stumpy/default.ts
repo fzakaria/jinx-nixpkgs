@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 61, 5], ["changelog", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["badPlatforms", 66, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 52, 3], ["enabledTestPaths", 54, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, numba: false, numpy: false, scipy: false, dask: false, distributed: false, pandas: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 61, 5], ["changelog", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["badPlatforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 52, 3], ["enabledTestPaths", 54, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TDAmeritrade",
           repo: "stumpy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["stumpy"]);
       const enabledTestPaths = nix.thunk(() => ["tests/test_core.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library that can be used for a variety of time series data mining tasks",
         changelog: nix.thunk(() => nix.str`https://github.com/TDAmeritrade/stumpy/blob/v${version}/CHANGELOG.md`),
         homepage: "https://github.com/TDAmeritrade/stumpy",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         badPlatforms: nix.thunk(() => ["aarch64-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

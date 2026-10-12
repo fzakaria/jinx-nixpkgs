@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["name", 49, 7], ["desktopName", 50, 7], ["comment", 51, 7], ["exec", 52, 7], ["categories", 53, 7]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["desktopItems", 47, 3], ["postPatch", 60, 3], ["makeFlags", 67, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gettext: false, "fltk-minimal": false, "alsa-lib": false, opendht: false, "msgpack-cxx": false, fmt: false, gnutls: false, nlohmann_json: false, curl: false, copyDesktopItems: false, makeDesktopItem: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 49, 7], ["desktopName", 50, 7], ["comment", 51, 7], ["exec", 52, 7], ["categories", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["desktopItems", 47, 3], ["postPatch", 60, 3], ["makeFlags", 67, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mvoice",
       version: "0-unstable-2025-09-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "n7tae",
           repo: "mvoice",
           rev: "aef3662ee6ef86ecb10a71dd686ca41a067162c0",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "mvoice",
             desktopName: "MVoice",
             comment: "MVoice by N7TAE - M17 figital voice gateway",
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
         "USE_DHT=true",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "M17 digital voice gateway and module for voice and data modes",
         homepage: "https://github.com/n7tae/mvoice",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

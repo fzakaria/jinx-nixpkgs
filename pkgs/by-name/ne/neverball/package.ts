@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["name", 30, 7], ["url", 31, 7], ["sha256", 32, 7]], [["homepage", 105, 5], ["description", 106, 5], ["license", 107, 5], ["maintainers", 113, 5], ["platforms", 114, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 22, 3], ["patches", 26, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["dontPatchELF", 54, 3], ["postPatch", 56, 3], ["preConfigure", 77, 3], ["installPhase", 79, 3], ["enableParallelBuilding", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, SDL2: false, libGL: false, libpng: false, libjpeg: false, libx11: false, SDL2_ttf: false, libvorbis: false, gettext: false, physfs: false, iconv: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 7], ["url", 31, 7], ["sha256", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 105, 5], ["description", 106, 5], ["license", 107, 5], ["maintainers", 113, 5], ["platforms", 114, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 22, 3], ["patches", 26, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["dontPatchELF", 54, 3], ["postPatch", 56, 3], ["preConfigure", 77, 3], ["installPhase", 79, 3], ["enableParallelBuilding", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const iconv = nix.arg($, "iconv");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "neverball",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://neverball.org/neverball-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "184gm36c6p6vaa6gwrfzmfh86klhnb03pl40ahsjsvprlk667zkk",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fno-common.patch",
             url: "https://github.com/Neverball/neverball/commit/a42492b8db06934c7a794630db92e3ff6ebaadaa.patch",
             sha256: "0sqyxfwpl4xxra8iz87j5rxzwani16xra2xl4l5z61shvq30308h",
@@ -57,7 +54,7 @@ cp mapc $out/bin
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://neverball.org/",
         description: "Tilt the floor to roll a ball",
         license: nix.thunk(() => (() => {

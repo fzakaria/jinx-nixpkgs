@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 7], ["relative", 32, 7], ["hash", 33, 7]], [["url", 37, 7], ["relative", 38, 7], ["hash", 39, 7]], [["changelog", 112, 5], ["description", 113, 5], ["downloadPage", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["longDescription", 117, 5], ["mainProgram", 123, 5], ["maintainers", 124, 5], ["platforms", 125, 5]], [["pname", 22, 3], ["version", 24, 31], ["src", 24, 39], ["patches", 26, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 54, 3], ["sourceRoot", 63, 3], ["postPatch", 65, 3], ["cmakeFlags", 82, 3], ["installPhase", 91, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "pkg-config": false, libsecret: false, cmake: false, ninja: false, qt6: false, grpc: false, protobuf: false, zlib: false, gtest: false, "sentry-native": false, "protonmail-bridge": false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 7], ["relative", 32, 7], ["hash", 33, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 37, 7], ["relative", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 112, 5], ["description", 113, 5], ["downloadPage", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["longDescription", 117, 5], ["mainProgram", 123, 5], ["maintainers", 124, 5], ["platforms", 125, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 24, 31], ["src", 24, 39], ["patches", 26, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 54, 3], ["sourceRoot", 63, 3], ["postPatch", 65, 3], ["cmakeFlags", 82, 3], ["installPhase", 91, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,20 +23,20 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const guiSourcePath = "internal/frontend/bridge-gui";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "protonmail-bridge-gui",
       version: nix.thunk(() => nix.attr(protonmail_bridge, "version")),
       src: nix.thunk(() => nix.attr(protonmail_bridge, "src")),
       patches: nix.thunk(() => [
         nix.path(here, "./use-nix-googletest.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/daniel-fahey/proton-bridge/commit/9b282369523ce2aabcf95369a2ed3867efb5a4ac.patch?full_index=1",
             relative: guiSourcePath,
             hash: "sha256-CGBelsplAqLI+6GtDR+VELfVsLoHPN0324gfZ3obKpI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/daniel-fahey/proton-bridge/commit/7823fe4904186253798fc633724988d43dd642e0.patch?full_index=1",
             relative: guiSourcePath,
             hash: "sha256-2heMfZdXLL8/uyM0jZ860Jw76c+gHtc0G6pWmIRCONY=",
@@ -85,7 +82,7 @@ install -Dm644 ../../../../dist/bridge.svg $out/share/icons/hicolor/scalable/app
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/ProtonMail/proton-bridge/blob/${nix.sel(finalAttrs, "src", "rev")}/Changelog.md`),
         description: "Qt-based GUI to use your ProtonMail account with your local e-mail client",
         downloadPage: "https://github.com/ProtonMail/proton-bridge/releases",

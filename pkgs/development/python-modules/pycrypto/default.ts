@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["SOURCE_DATE_EPOCH", 12, 7]], [["homepage", 25, 5], ["description", 26, 5], ["platforms", 27, 5]], [["pname", 7, 3], ["version", 8, 3], ["format", 9, 3], ["env", 12, 3], ["unpackPhase", 15, 3], ["propagatedBuildInputs", 19, 3], ["doCheck", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, pycryptodome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["SOURCE_DATE_EPOCH", 12, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 25, 5], ["description", 26, 5], ["platforms", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 3], ["format", 9, 3], ["env", 12, 3], ["unpackPhase", 15, 3], ["propagatedBuildInputs", 19, 3], ["doCheck", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,19 +13,19 @@ export default nix.lambda((args) => (() => {
       const pname = "pycrypto";
       const version = nix.thunk(() => nix.sel(pycryptodome, "version"));
       const format = "setuptools";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$1, SOURCE_DATE_EPOCH: 315532800n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[0], SOURCE_DATE_EPOCH: 315532800n }));
       const unpackPhase = nix.thunk(() => nix.str`echo "from setuptools import setup; setup(name='${pname}', version='${version}', install_requires=['pycryptodome'])" > setup.py
 `);
       const propagatedBuildInputs = nix.thunk(() => [pycryptodome]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.pycrypto.org/",
         description: "Drop-in replacement for pycrypto using pycryptodome",
         platforms: nix.thunk(() => nix.sel(pycryptodome, "meta", "platforms")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

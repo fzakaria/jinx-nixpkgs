@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["broken", 39, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 18, 3], ["dontConfigure", 23, 3], ["makeFlags", 25, 3], ["installPhase", 27, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["broken", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 18, 3], ["dontConfigure", 23, 3], ["makeFlags", 25, 3], ["installPhase", 27, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bdf2ttf",
       version: "2.0-unstable-2016-07-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "koron",
           repo: "bdf2ttf",
           rev: "1baae7b70a432153e3d876966e47a78f0e572eac",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["gcc"]),
       installPhase: "runHook preInstall\ninstall -Dm755 bdf2ttf $out/bin/bdf2ttf\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Convert BDF font file to TTF (embed bitmap as is, not convert to vector)",
         homepage: "https://github.com/koron/bdf2ttf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

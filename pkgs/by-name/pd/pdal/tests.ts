@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["timeout", 6, 36]], [["meta", 6, 31]]]);
 const formals$1 = { args: { runCommand: false, pdal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["timeout", 6, 36]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["meta", 6, 31]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,8 +11,8 @@ export default nix.lambda((args) => (() => {
   const pdal = nix.arg($, "pdal");
   const pname = nix.thunk(() => nix.attr(pdal, "pname"));
   return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-tests`), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
+      [nix.POS]: $pos[1],
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 60n })),
     })), nix.thunk(() => nix.str`${pdal}/bin/pdal --drivers
 touch $out
 `));

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["src", 32, 13], ["hash", 33, 5]], [["RUSTC_BOOTSTRAP", 44, 7]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 69, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["cargoDeps", 31, 3], ["build-system", 36, 3], ["env", 44, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 50, 3], ["pythonImportsCheck", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cargo: false, rustPlatform: false, rustc: false, msgpack: false, pydantic: false, pytestCheckHook: false, "python-dateutil": false, pytz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 32, 13], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["RUSTC_BOOTSTRAP", 44, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 69, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["cargoDeps", 31, 3], ["build-system", 36, 3], ["env", 44, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 50, 3], ["pythonImportsCheck", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.12.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aviramha",
           repo: "ormsgpack",
           tag: version,
           hash: "sha256-a2PgCCIPPJt6YNW7UFl9urYZkAoVj5Np0lbv4QfzMAs=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           hash: "sha256-PLLSVoQLsbTOIMqOsaaei/dm8SybfyqP0WLJW8hTOoo=",
         }))));
@@ -44,12 +40,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
         rustc,
       ]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, RUSTC_BOOTSTRAP: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], RUSTC_BOOTSTRAP: true }));
       const dependencies = nix.thunk(() => [msgpack]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pydantic, python_dateutil, pytz]);
       const pythonImportsCheck = nix.thunk(() => ["ormsgpack"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast msgpack serialization library for Python derived from orjson",
         homepage: "https://github.com/aviramha/ormsgpack",
         changelog: nix.thunk(() => nix.str`https://github.com/aviramha/ormsgpack/releases/tag/${version}`),
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["fetchSubmodules", 41, 5], ["hash", 42, 5]], [["url", 141, 9]], [["homepage", 130, 7], ["description", 131, 7], ["longDescription", 132, 7], ["license", 140, 7], ["mainProgram", 143, 7], ["maintainers", 144, 7], ["platforms", 149, 7], ["broken", 150, 7]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 45, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 59, 3], ["hardeningDisable", 86, 3], ["configureFlags", 88, 3], ["postPatch", 96, 3], ["preConfigure", 108, 3], ["installPhase", 112, 3], ["enableParallelBuilding", 123, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, "alsa-lib": false, cmake: false, fetchFromGitHub: false, gtkmm3: false, libGLX: false, libx11: false, libxdmcp: false, libxext: false, libxinerama: false, libxrandr: false, libxv: false, libepoxy: false, libpng: false, libselinux: false, minizip: false, ninja: false, pcre2: false, "pkg-config": false, portaudio: false, pulseaudio: false, python3: false, stdenv: false, "util-linuxMinimal": false, wrapGAppsHook3: false, zlib: false, withGtk: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["fetchSubmodules", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 141, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 130, 7], ["description", 131, 7], ["longDescription", 132, 7], ["license", 140, 7], ["mainProgram", 143, 7], ["maintainers", 144, 7], ["platforms", 149, 7], ["broken", 150, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 45, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 59, 3], ["hardeningDisable", 86, 3], ["configureFlags", 88, 3], ["postPatch", 96, 3], ["preConfigure", 108, 3], ["installPhase", 112, 3], ["enableParallelBuilding", 123, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withGtk = nix.argOr($, "withGtk", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.add("snes9x", nix.app(nix.sel(lib, "optionalString"), withGtk, "-gtk"))),
       version: "1.63",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "snes9xgit",
           repo: "snes9x",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,7 +69,7 @@ substituteInPlace external/glad/src/glx.c \\
       meta: nix.thunk(() => (() => {
         const interface$ = nix.thunk(() => (nix.asBool(withGtk) ? "GTK" : "X11"));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           homepage: "https://www.snes9x.com",
           description: nix.thunk(() => nix.str`Super Nintendo Entertainment System (SNES) emulator, ${interface$} version`),
           longDescription: nix.thunk(() => nix.str`Snes9x is a portable, freeware Super Nintendo Entertainment System (SNES)
@@ -83,7 +80,7 @@ includes some real gems that were only ever released in Japan.
 Version build with ${interface$} interface.
 `),
           license: nix.thunk(() => nix.update(nix.sel(lib, "licenses", "unfreeRedistributable"), {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://github.com/snes9xgit/snes9x/blob/${nix.sel(finalAttrs, "src", "tag")}/LICENSE`),
           })),
           mainProgram: "snes9x",

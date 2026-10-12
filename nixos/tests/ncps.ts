@@ -2,32 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ncps.nix", [[["maintainers", 11, 5]], [["priority", 24, 18]], [["enable", 20, 9], ["signKeyPaths", 21, 9], ["settings", 24, 9]], [["harmonia", 19, 16]], [["allowedTCPPorts", 27, 27]], [["firewall", 27, 18]], [["extraDependencies", 28, 14]], [["enable", 30, 11]], [["services", 19, 7], ["networking", 27, 7], ["system", 28, 7], ["nix", 30, 7]], [["enable", 37, 29]], [["reporting", 37, 19]], [["urls", 46, 13], ["publicKeys", 47, 13]], [["hostName", 40, 11], ["secretKeyPath", 41, 11], ["upstream", 45, 11]], [["enable", 35, 9], ["analytics", 37, 9], ["cache", 39, 9]], [["ncps", 34, 16]], [["allowedTCPPorts", 54, 27]], [["firewall", 54, 18]], [["enable", 56, 11]], [["services", 34, 7], ["networking", 54, 7], ["nix", 56, 7]], [["substituters", 61, 9], ["trusted-public-keys", 62, 9]], [["settings", 60, 11], ["enable", 66, 11]], [["nix", 60, 7]], [["harmonia", 18, 5], ["ncps", 33, 5], ["client", 59, 5]], [["name", 9, 3], ["meta", 10, 3], ["nodes", 17, 3], ["testScript", 70, 3]]]);
 const formals$1 = { args: { testName: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ncps.nix", [["maintainers", 11, 5]]);
-const pos$2 = nix.positions(here + "/ncps.nix", [["priority", 24, 18]]);
-const pos$3 = nix.positions(here + "/ncps.nix", [["enable", 20, 9], ["signKeyPaths", 21, 9], ["settings", 24, 9]]);
-const pos$4 = nix.positions(here + "/ncps.nix", [["harmonia", 19, 16]]);
-const pos$5 = nix.positions(here + "/ncps.nix", [["allowedTCPPorts", 27, 27]]);
-const pos$6 = nix.positions(here + "/ncps.nix", [["firewall", 27, 18]]);
-const pos$7 = nix.positions(here + "/ncps.nix", [["extraDependencies", 28, 14]]);
-const pos$8 = nix.positions(here + "/ncps.nix", [["enable", 30, 11]]);
-const pos$9 = nix.positions(here + "/ncps.nix", [["services", 19, 7], ["networking", 27, 7], ["system", 28, 7], ["nix", 30, 7]]);
-const pos$10 = nix.positions(here + "/ncps.nix", [["enable", 37, 29]]);
-const pos$11 = nix.positions(here + "/ncps.nix", [["reporting", 37, 19]]);
-const pos$12 = nix.positions(here + "/ncps.nix", [["urls", 46, 13], ["publicKeys", 47, 13]]);
-const pos$13 = nix.positions(here + "/ncps.nix", [["hostName", 40, 11], ["secretKeyPath", 41, 11], ["upstream", 45, 11]]);
-const pos$14 = nix.positions(here + "/ncps.nix", [["enable", 35, 9], ["analytics", 37, 9], ["cache", 39, 9]]);
-const pos$15 = nix.positions(here + "/ncps.nix", [["ncps", 34, 16]]);
-const pos$16 = nix.positions(here + "/ncps.nix", [["allowedTCPPorts", 54, 27]]);
-const pos$17 = nix.positions(here + "/ncps.nix", [["firewall", 54, 18]]);
-const pos$18 = nix.positions(here + "/ncps.nix", [["enable", 56, 11]]);
-const pos$19 = nix.positions(here + "/ncps.nix", [["services", 34, 7], ["networking", 54, 7], ["nix", 56, 7]]);
-const pos$20 = nix.positions(here + "/ncps.nix", [["substituters", 61, 9], ["trusted-public-keys", 62, 9]]);
-const pos$21 = nix.positions(here + "/ncps.nix", [["settings", 60, 11], ["enable", 66, 11]]);
-const pos$22 = nix.positions(here + "/ncps.nix", [["nix", 60, 7]]);
-const pos$23 = nix.positions(here + "/ncps.nix", [["harmonia", 18, 5], ["ncps", 33, 5], ["client", 59, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$24 = nix.positions(here + "/ncps.nix", [["name", 9, 3], ["meta", 10, 3], ["nodes", 17, 3], ["testScript", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$24,
+    [nix.POS]: $pos[23],
     name: testName,
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "aciceri")),
           nix.thunk(() => nix.lookup(w, "kalbasit")),
@@ -48,47 +25,47 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       harmonia: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           harmonia: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             signKeyPaths: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "cache-key", "cache.example.com-1:9FhO0w+7HjZrhvmzT1VlAZw4OSAlFGTgC24Seg3tmPl4gZBdwZClzTTHr9cVzJpwsRSYLTu7hEAQe3ljy92CWg==")),
             ]),
-            settings: nix.thunk(() => ({ [nix.POS]: pos$2, priority: 35n })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[1], priority: 35n })),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [5000n]) })),
+          [nix.POS]: $pos[5],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], allowedTCPPorts: nix.thunk(() => [5000n]) })),
         })),
         system: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           extraDependencies: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "emptyFile"))]),
         })),
-        nix: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
+        nix: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true })),
       })),
       ncps: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           ncps: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             enable: true,
             analytics: nix.thunk(() => ({
-              [nix.POS]: pos$11,
-              reporting: nix.thunk(() => ({ [nix.POS]: pos$10, enable: false })),
+              [nix.POS]: $pos[10],
+              reporting: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: false })),
             })),
             cache: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               hostName: "ncps",
               secretKeyPath: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ncps-cache-key", "ncps:dcrGsrku0KvltFhrR5lVIMqyloAdo0y8vYZOeIFUSLJS2IToL7dPHSSCk/fi+PJf8EorpBn8PU7MNhfvZoI8mA==")))),
               upstream: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 urls: nix.thunk(() => ["http://harmonia:5000"]),
                 publicKeys: nix.thunk(() => ["cache.example.com-1:eIGQXcGQpc00x6/XFcyacLEUmC07u4RAEHt5Y8vdglo="]),
               })),
@@ -96,17 +73,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$17,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$16, allowedTCPPorts: nix.thunk(() => [8501n]) })),
+          [nix.POS]: $pos[16],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[15], allowedTCPPorts: nix.thunk(() => [8501n]) })),
         })),
-        nix: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true })),
+        nix: nix.thunk(() => ({ [nix.POS]: $pos[17], enable: true })),
       })),
       client: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         nix: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ["http://ncps:8501"]))),
             "trusted-public-keys": nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ["ncps:UtiE6C+3Tx0kgpP34vjyX/BKK6QZ/D1OzDYX72aCPJg="]))),
           })),

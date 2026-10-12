@@ -2,21 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/snapcast.nix", [[["maintainers", 17, 5]], [["source", 26, 13], ["buffer", 32, 13]], [["enabled", 35, 13], ["port", 36, 13]], [["enabled", 39, 13], ["port", 40, 13]], [["enabled", 43, 13], ["port", 44, 13]], [["stream", 25, 11], ["tcp-streaming", 34, 11], ["tcp-control", 38, 11], ["http", 42, 11]], [["enable", 23, 9], ["settings", 24, 9], ["openFirewall", 47, 9]], [["snapserver", 22, 16]], [["systemPackages", 49, 19]], [["services", 22, 7], ["environment", 49, 7]], [["systemPackages", 52, 19]], [["environment", 52, 7]], [["server", 21, 5], ["client", 51, 5]], [["name", 15, 3], ["meta", 16, 3], ["containers", 20, 3], ["testScript", 56, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/snapcast.nix", [["maintainers", 17, 5]]);
-const pos$2 = nix.positions(here + "/snapcast.nix", [["source", 26, 13], ["buffer", 32, 13]]);
-const pos$3 = nix.positions(here + "/snapcast.nix", [["enabled", 35, 13], ["port", 36, 13]]);
-const pos$4 = nix.positions(here + "/snapcast.nix", [["enabled", 39, 13], ["port", 40, 13]]);
-const pos$5 = nix.positions(here + "/snapcast.nix", [["enabled", 43, 13], ["port", 44, 13]]);
-const pos$6 = nix.positions(here + "/snapcast.nix", [["stream", 25, 11], ["tcp-streaming", 34, 11], ["tcp-control", 38, 11], ["http", 42, 11]]);
-const pos$7 = nix.positions(here + "/snapcast.nix", [["enable", 23, 9], ["settings", 24, 9], ["openFirewall", 47, 9]]);
-const pos$8 = nix.positions(here + "/snapcast.nix", [["snapserver", 22, 16]]);
-const pos$9 = nix.positions(here + "/snapcast.nix", [["systemPackages", 49, 19]]);
-const pos$10 = nix.positions(here + "/snapcast.nix", [["services", 22, 7], ["environment", 49, 7]]);
-const pos$11 = nix.positions(here + "/snapcast.nix", [["systemPackages", 52, 19]]);
-const pos$12 = nix.positions(here + "/snapcast.nix", [["environment", 52, 7]]);
-const pos$13 = nix.positions(here + "/snapcast.nix", [["server", 21, 5], ["client", 51, 5]]);
-const pos$14 = nix.positions(here + "/snapcast.nix", [["name", 15, 3], ["meta", 16, 3], ["containers", 20, 3], ["testScript", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,28 +15,28 @@ export default nix.lambda((args) => (() => {
   const tcpStreamPort = 10006n;
   const bufferSize = 742n;
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "snapcast",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "hexa"))]),
       };
     })()),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           snapserver: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               stream: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 source: nix.thunk(() => [
                   "pipe:///run/snapserver/mpd?name=mpd&mode=create",
                   "pipe:///run/snapserver/bluetooth?name=bluetooth",
@@ -58,22 +45,22 @@ export default nix.lambda((args) => (() => {
                 ]),
                 buffer: bufferSize,
               })),
-              "tcp-streaming": nix.thunk(() => ({ [nix.POS]: pos$3, enabled: true, port: port })),
-              "tcp-control": nix.thunk(() => ({ [nix.POS]: pos$4, enabled: true, port: tcpPort })),
-              http: nix.thunk(() => ({ [nix.POS]: pos$5, enabled: true, port: httpPort })),
+              "tcp-streaming": nix.thunk(() => ({ [nix.POS]: $pos[2], enabled: true, port: port })),
+              "tcp-control": nix.thunk(() => ({ [nix.POS]: $pos[3], enabled: true, port: tcpPort })),
+              http: nix.thunk(() => ({ [nix.POS]: $pos[4], enabled: true, port: httpPort })),
             })),
             openFirewall: true,
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "snapcast"))]),
         })),
       })),
       client: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "snapcast"))]),
         })),
       })),

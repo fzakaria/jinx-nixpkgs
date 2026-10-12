@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]], [["qttools", 28, 7]], [["name", 31, 7], ["url", 32, 7], ["sha256", 33, 7]], [["homepage", 78, 5], ["description", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5], ["license", 82, 5], ["mainProgram", 83, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 44, 3], ["preConfigure", 49, 3], ["installPhase", 57, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, libGLU: false, zlib: false, libsForQt5: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["qttools", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 31, 7], ["url", 32, 7], ["sha256", 33, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 78, 5], ["description", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5], ["license", 82, 5], ["mainProgram", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 44, 3], ["preConfigure", 49, 3], ["installPhase", 57, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nifskope",
       version: "2.0.dev7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "niftools",
           repo: "nifskope",
           rev: "47b788d26ae0fa12e60e8e7a4f0fa945a510c7b2",
@@ -35,11 +31,11 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./external-lib-paths.patch"),
         nix.path(here, "./zlib.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./qttools-bins.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             qttools: nix.thunk(() => nix.str`${nix.sel(libsForQt5, "qttools", "dev")}/bin`),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "qt512-build-fix.patch",
             url: "https://github.com/niftools/nifskope/commit/30954e7f01f3d779a2a1fd37d363e8a6ad560bd3.patch",
             sha256: "0d6xjj2mjjhdd7w1aig5f75jksjni16jyj0lxsz51pys6xqb6fpj",
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "shopt -s globstar\nfor i in **/*.cpp; do\n  substituteInPlace $i --replace /usr/share/nifskope $out/share/nifskope\ndone\n",
       installPhase: "runHook preInstall\n\nd=$out/share/nifskope\nmkdir -p $out/bin $out/share/applications $d/{shaders,lang}\ncp release/NifSkope $out/bin/\ninstall -D ./res/nifskope.png -t $out/share/icons/hicolor/128x128/apps\ncp release/{nif.xml,kfm.xml,style.qss} $d/\ncp res/shaders/*.frag res/shaders/*.prog res/shaders/*.vert $d/shaders/\ncp ./res/lang/*.ts ./res/lang/*.tm $d/lang/\ncp ./install/linux-install/nifskope.desktop $out/share/applications\n\nsubstituteInPlace $out/share/applications/nifskope.desktop \\\n  --replace-fail 'Exec=nifskope' \"Exec=NifSkope\" \\\n\nfind $out/share -type f -exec chmod -x {} \\;\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/niftools/nifskope",
         description: "Tool for analyzing and editing NetImmerse/Gamebryo '*.nif' files",
         maintainers: [],

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 8, 5], ["repo", 9, 5], ["rev", 10, 5], ["hash", 11, 5]], [["zip-0.6.4", 22, 7]], [["lockFile", 20, 5], ["outputHashes", 21, 5]], [["homepage", 31, 24], ["description", 32, 5], ["license", 33, 5], ["mainProgram", 34, 5], ["maintainers", 35, 5]], [["src", 15, 11], ["pname", 16, 3], ["version", 17, 3], ["cargoLock", 19, 3], ["postPatch", 26, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 8, 5], ["repo", 9, 5], ["rev", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["zip-0.6.4", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["lockFile", 20, 5], ["outputHashes", 21, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 31, 24], ["description", 32, 5], ["license", 33, 5], ["mainProgram", 34, 5], ["maintainers", 35, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["src", 15, 11], ["pname", 16, 3], ["version", 17, 3], ["cargoLock", 19, 3], ["postPatch", 26, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,22 +11,22 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Storyyeller",
       repo: "Krakatau",
       rev: "6da0abc20603fecaaa0e3300ebd97e04f07c2fb6",
       hash: "sha256-4ROx/XAWRzP8NWDYndDMBUXPw+nAu4nH4ukkyzS8eZ8=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       src: src,
       pname: "krakatau2",
       version: "0-unstable-2025-02-01",
       cargoLock: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         lockFile: nix.path(here, "./Cargo.lock"),
         outputHashes: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "zip-0.6.4": "sha256-x56JHdFdoLNhT/TC9sQQD4Ouu2LZ+D5CrS1mMyFVJBg=",
         })),
       })),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Java decompiler, assembler, and disassembler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

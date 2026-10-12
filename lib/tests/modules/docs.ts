@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/docs.nix", [[["type", 22, 5], ["description", 23, 5]], [["docs", 21, 11]], [["docs", 27, 10]], [["options", 21, 3], ["config", 27, 3]]]);
 const formals$1 = { args: { lib: false, options: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/docs.nix", [["type", 22, 5], ["description", 23, 5]]);
-const pos$2 = nix.positions(here + "/docs.nix", [["docs", 21, 11]]);
-const pos$3 = nix.positions(here + "/docs.nix", [["docs", 27, 10]]);
-const pos$4 = nix.positions(here + "/docs.nix", [["options", 21, 3], ["config", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const traceListSeq = (l) => (v) => nix.app(nix.sel(lib, "foldl'"), (a) => (b) => nix.app(nix.sel(lib, "traceSeq"), b, a), v, l);
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       docs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.app(nix.sel(types, "lazyAttrsOf"), nix.thunk(() => nix.sel(types, "raw")))),
           description: "All options to be rendered, without any visibility filtering applied.\n",
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       docs: nix.thunk(() => nix.app(nix.sel(lib, "zipAttrsWith"), (name) => (values) => (nix.asBool(nix.gt(nix.app(length, values), 1n)) ? nix.app(traceListSeq, values, nix.builtins.abort, nix.thunk(() => nix.str`Multiple options with the same name: ${name}`)) : (() => {
           nix.assert_(nix.eq(nix.app(length, values), 1n), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/docs.nix:32:7");
           return nix.app(head, values);

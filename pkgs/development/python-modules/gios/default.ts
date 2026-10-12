@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["disabled", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 50, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aiointercept: false, buildPythonPackage: false, dacite: false, fetchFromGitHub: false, pyprojectVersionPatchHook: false, "pytest-asyncio": false, "pytest-error-for-skips": false, pytestCheckHook: false, pythonOlder: false, setuptools: false, syrupy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["disabled", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 50, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.13"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bieniu",
           repo: "gios",
           tag: version,
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_invalid_station_id"]);
       const pythonImportsCheck = nix.thunk(() => ["gios"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python client for getting air quality data from GIOS",
         homepage: "https://github.com/bieniu/gios",
         changelog: nix.thunk(() => nix.str`https://github.com/bieniu/gios/releases/tag/${nix.sel(src, "tag")}`),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

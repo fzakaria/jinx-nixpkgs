@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 54, 5], ["hash", 55, 5]], [["packageName", 163, 5]], [["updateScript", 162, 12]], [["description", 167, 5], ["longDescription", 168, 5], ["homepage", 178, 5], ["license", 179, 5], ["teams", 180, 5], ["platforms", 181, 5], ["mainProgram", 182, 5]], [["pname", 45, 3], ["version", 46, 3], ["outputs", 48, 3], ["src", 53, 3], ["patches", 58, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 83, 3], ["nativeCheckInputs", 112, 3], ["mesonFlags", 117, 3], ["doCheck", 128, 3], ["postPatch", 130, 3], ["checkPhase", 136, 3], ["preFixup", 143, 3], ["postFixup", 157, 3], ["passthru", 162, 3], ["meta", 166, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, ctags: false, cmark: false, "desktop-file-utils": false, "editorconfig-core-c": false, fetchurl: false, flatpak: false, gnome: false, "libgit2-glib": false, "gi-docgen": false, "gobject-introspection": false, gom: false, gtk4: false, gtksourceview5: false, "json-glib": false, "jsonrpc-glib": false, libadwaita: false, libdex: false, libpanel: false, libpeas2: false, "libportal-gtk4": false, libspelling: false, "libsysprof-capture": false, libxml2: false, libyaml: false, meson: false, ninja: false, ostree: false, pcre2: false, "pkg-config": false, python3: false, sysprof: false, "template-glib": false, vala: false, "vte-gtk4": false, webkitgtk_6_0: false, wrapGAppsHook4: false, dbus: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 163, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 162, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 167, 5], ["longDescription", 168, 5], ["homepage", 178, 5], ["license", 179, 5], ["teams", 180, 5], ["platforms", 181, 5], ["mainProgram", 182, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["outputs", 48, 3], ["src", 53, 3], ["patches", 58, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 83, 3], ["nativeCheckInputs", 112, 3], ["mesonFlags", 117, 3], ["doCheck", 128, 3], ["postPatch", 130, 3], ["checkPhase", 136, 3], ["preFixup", 143, 3], ["postFixup", 157, 3], ["passthru", 162, 3], ["meta", 166, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,12 +48,12 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-builder",
       version: "50.0",
       outputs: nix.thunk(() => ["out", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-builder/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-builder-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-RtVP0T9PS9tu7X0AS0mdC22adqb6/GitFsOJlT/ZL0Y=",
         })))),
@@ -123,11 +119,11 @@ done
 `),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput share/doc/libide \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-builder" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-builder" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "IDE for writing GNOME-based software",
         longDescription: "Global search, auto-completion, source code map, documentation\nreference, and other features expected in an IDE, but with a focus\non streamlining GNOME-based development projects.\n\nThis package does not pull in the dependencies needed for every\nplugin. If you find that a plugin you wish to use doesn't work, we\ncurrently recommend running gnome-builder inside a nix-shell with\nappropriate dependencies loaded.\n",
         homepage: "https://apps.gnome.org/Builder/",

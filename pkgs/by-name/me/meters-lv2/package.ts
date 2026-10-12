@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5]], [["pname", 17, 3], ["version", 18, 3], ["robtkVersion", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["src", 32, 3], ["robtkSrc", 39, 3], ["postUnpack", 46, 3], ["postPatch", 51, 3], ["meter_VERSION", 55, 3], ["enableParallelBuilding", 56, 3], ["makeFlags", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, lv2: false, libGLU: false, libGL: false, gtk2: false, cairo: false, pango: false, fftwFloat: false, libjack2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["robtkVersion", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["src", 32, 3], ["robtkSrc", 39, 3], ["postUnpack", 46, 3], ["postPatch", 51, 3], ["meter_VERSION", 55, 3], ["enableParallelBuilding", 56, 3], ["makeFlags", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,21 +20,21 @@ export default nix.lambda((args) => (() => {
   const fftwFloat = nix.arg($, "fftwFloat");
   const libjack2 = nix.arg($, "libjack2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "meters-lv2",
       version: "0.9.28",
       robtkVersion: "0.8.6",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [lv2, libGLU, libGL, cairo, pango, fftwFloat, libjack2]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "x42",
           repo: "meters.lv2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-vNLo16ZFBrbV5AYDGu9CIb+pXW7fAzc8IDDryuAeeLM=",
         })))),
       robtkSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "x42",
           repo: "robtk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "robtkVersion")}`),
@@ -51,7 +48,7 @@ ln -s ${nix.sel(finalAttrs, "robtkSrc")} $sourceRoot/robtk
       enableParallelBuilding: true,
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Collection of audio level meters with GUI in LV2 plugin format",
         mainProgram: "x42-meter",
         homepage: "https://x42.github.io/meters.lv2/",

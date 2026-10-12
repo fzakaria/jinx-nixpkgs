@@ -2,14 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/beanstalkd.nix", [[["maintainers", 29, 8]], [["enable", 34, 27]], [["beanstalkd", 34, 16]], [["services", 34, 7]], [["machine", 31, 9]], [["name", 28, 3], ["meta", 29, 3], ["nodes", 31, 3], ["testScript", 37, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/beanstalkd.nix", [["maintainers", 29, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/beanstalkd.nix", [["enable", 34, 27]]);
-const pos$3 = nix.positions(here + "/beanstalkd.nix", [["beanstalkd", 34, 16]]);
-const pos$4 = nix.positions(here + "/beanstalkd.nix", [["services", 34, 7]]);
-const pos$5 = nix.positions(here + "/beanstalkd.nix", [["machine", 31, 9]]);
-const pos$6 = nix.positions(here + "/beanstalkd.nix", [["name", 28, 3], ["meta", 29, 3], ["nodes", 31, 3], ["testScript", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,21 +28,21 @@ print(job.body.decode('utf-8'))
 job.delete()
 `)));
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "beanstalkd",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "aanderse"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            beanstalkd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            beanstalkd: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
         };
       })(), formals$2),

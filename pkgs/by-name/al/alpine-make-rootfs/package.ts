@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["homepage", 51, 5], ["description", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["license", 55, 5], ["platforms", 56, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["dontBuild", 30, 3], ["makeFlags", 31, 3], ["postInstall", 33, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, makeWrapper: false, "apk-tools": false, coreutils: false, findutils: false, gnugrep: false, gnused: false, gnutar: false, gzip: false, rsync: false, "util-linux": false, wget: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["license", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["dontBuild", 30, 3], ["makeFlags", 31, 3], ["postInstall", 33, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const wget = nix.arg($, "wget");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "alpine-make-rootfs",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alpinelinux",
           repo: "alpine-make-rootfs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         ]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/alpinelinux/alpine-make-rootfs",
         description: "Make customized Alpine Linux rootfs (base image) for containers",
         mainProgram: "alpine-make-rootfs",

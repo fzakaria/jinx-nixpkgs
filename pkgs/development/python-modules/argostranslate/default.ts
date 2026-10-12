@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["withOneDNN", 27, 7], ["withOpenblas", 28, 7]], [["ctranslate2-cpp", 25, 5]], [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["pythonRelaxDeps", 49, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 61, 3], ["pythonImportsCheck", 68, 3], ["doCheck", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, ctranslate2: false, "ctranslate2-cpp": false, minisbd: false, sacremoses: false, sentencepiece: false, spacy: false, stanza: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["withOneDNN", 27, 7], ["withOpenblas", 28, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ctranslate2-cpp", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["pythonRelaxDeps", 49, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 61, 3], ["pythonImportsCheck", 68, 3], ["doCheck", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,8 +22,8 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const ctranslate2OneDNN = nix.thunk(() => nix.app(nix.sel(ctranslate2, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      "ctranslate2-cpp": nix.thunk(() => nix.app(nix.sel(ctranslate2_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withOneDNN: true, withOpenblas: false })))),
+      [nix.POS]: $pos[1],
+      "ctranslate2-cpp": nix.thunk(() => nix.app(nix.sel(ctranslate2_cpp, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withOneDNN: true, withOpenblas: false })))),
     }))));
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const isDarwin = nix.thunk(() => nix.attr(from, "isDarwin"));
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const isAarch64 = nix.thunk(() => nix.attr(from, "isAarch64"));
   const isAarch64Linux = nix.thunk(() => (nix.asBool(isLinux) && nix.asBool(isAarch64)));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "argostranslate",
       version: "1.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "argosopentech",
           repo: "argos-translate",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(isAarch64Linux)), nix.thunk(() => ["argostranslate", "argostranslate.translate"]))),
       doCheck: nix.thunk(() => !nix.asBool(isAarch64Linux)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open-source offline translation library written in Python",
         homepage: "https://www.argosopentech.com",
         changelog: nix.thunk(() => nix.str`https://github.com/argosopentech/argos-translate/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

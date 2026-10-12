@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 8, 3], ["version", 10, 3], ["src", 12, 3], ["leanPackageName", 19, 3], ["postPatch", 23, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildLakePackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 10, 3], ["src", 12, 3], ["leanPackageName", 19, 3], ["postPatch", 23, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildLakePackage = nix.arg($, "buildLakePackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildLakePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lean4-batteries",
       version: "4.34.0-unstable-2026-09-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "leanprover-community",
           repo: "batteries",
           rev: "f2effa3d803fda822b1f97b806c47cf2adfbcbc2",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       leanPackageName: "batteries",
       postPatch: "substituteInPlace lakefile.toml \\\n  --replace-fail '[[lean_lib]]\nname = \"Batteries\"' '[[lean_lib]]\nname = \"Batteries\"\ndefaultFacets = [\"static\"]'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "The batteries-included extended library for Lean 4",
         homepage: "https://github.com/leanprover-community/batteries",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

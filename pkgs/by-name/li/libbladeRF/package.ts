@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]], [["url", 36, 7], ["hash", 37, 7]], [["NIX_CFLAGS_COMPILE", 77, 5]], [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 30, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["prePatch", 58, 3], ["postPatch", 61, 3], ["doInstallCheck", 65, 3], ["cmakeFlags", 67, 3], ["env", 76, 3], ["hardeningDisable", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, git: false, doxygen: false, help2man: false, ncurses: false, tecla: false, libusb1: false, curl: false, udev: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 30, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["prePatch", 58, 3], ["postPatch", 61, 3], ["doInstallCheck", 65, 3], ["cmakeFlags", 67, 3], ["env", 76, 3], ["hardeningDisable", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libbladeRF",
       version: "2025.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Nuand",
           repo: "bladeRF",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./clang-fix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/Nuand/bladeRF/commit/87bdb1a4bbbc45b749bb90db504fe9cf8fe7a595.patch",
             hash: "sha256-/sB18hwBSIqMkjaC7J0rb4STUrq4BWlJKnyy0Szac9c=",
           })))),
@@ -56,12 +52,12 @@ export default nix.lambda((args) => (() => {
           "-DBLADERF_GROUP=bladerf",
         ])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           NIX_CFLAGS_COMPILE: "-Wno-error=unused-but-set-variable -Wno-error=tautological-overlap-compare",
         })))),
       hardeningDisable: nix.thunk(() => ["fortify"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://nuand.com/libbladeRF-doc",
         description: "Supporting library of the BladeRF SDR opensource hardware",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

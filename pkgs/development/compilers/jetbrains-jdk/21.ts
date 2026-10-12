@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/21.nix", [[["jdk", 11, 13], ["debugBuild", 11, 17], ["withJcef", 11, 28]], [["javaVersion", 19, 5], ["build", 20, 5], ["sourceDateEpoch", 22, 5], ["srcHash", 23, 5], ["jcefPackage", 24, 5]]]);
 const formals$1 = { args: { callPackage: false, jetbrains: false, jdk: false, debugBuild: true, withJcef: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/21.nix", [["jdk", 11, 13], ["debugBuild", 11, 17], ["withJcef", 11, 28]]);
-const pos$2 = nix.positions(here + "/21.nix", [["javaVersion", 19, 5], ["build", 20, 5], ["sourceDateEpoch", 22, 5], ["srcHash", 23, 5], ["jcefPackage", 24, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,8 +12,8 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const debugBuild = nix.argOr($, "debugBuild", () => false);
   const withJcef = nix.argOr($, "withJcef", () => true);
-  return nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, jdk: jdk, debugBuild: debugBuild, withJcef: withJcef })), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+  return nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], jdk: jdk, debugBuild: debugBuild, withJcef: withJcef })), nix.thunk(() => ({
+      [nix.POS]: $pos[1],
       javaVersion: "21.0.10",
       build: "1163.110",
       sourceDateEpoch: 1765114563n,

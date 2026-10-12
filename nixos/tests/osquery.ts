@@ -2,17 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/osquery.nix", [[["maintainers", 11, 10]], [["nullvalue", 20, 38], ["utc", 20, 48]], [["options", 20, 18]], [["config_refresh", 22, 19], ["nullvalue", 23, 11]], [["enable", 18, 9], ["settings", 20, 9], ["flags", 21, 9]], [["osquery", 17, 16]], [["services", 17, 7]], [["machine", 16, 11]], [["name", 10, 5], ["meta", 11, 5], ["nodes", 16, 5], ["testScript", 28, 5]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/osquery.nix", [["maintainers", 11, 10]]);
-const pos$2 = nix.positions(here + "/osquery.nix", [["nullvalue", 20, 38], ["utc", 20, 48]]);
-const pos$3 = nix.positions(here + "/osquery.nix", [["options", 20, 18]]);
-const pos$4 = nix.positions(here + "/osquery.nix", [["config_refresh", 22, 19], ["nullvalue", 23, 11]]);
-const pos$5 = nix.positions(here + "/osquery.nix", [["enable", 18, 9], ["settings", 20, 9], ["flags", 21, 9]]);
-const pos$6 = nix.positions(here + "/osquery.nix", [["osquery", 17, 16]]);
-const pos$7 = nix.positions(here + "/osquery.nix", [["services", 17, 7]]);
-const pos$8 = nix.positions(here + "/osquery.nix", [["machine", 16, 11]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/osquery.nix", [["name", 10, 5], ["meta", 11, 5], ["nodes", 16, 5], ["testScript", 28, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
@@ -21,10 +13,10 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
     const nullvalue = "NULL";
     const utc = false;
     return {
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       name: "osquery",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [
@@ -34,19 +26,19 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
         })()),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         machine: (_) => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             osquery: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                options: nix.thunk(() => ({ [nix.POS]: pos$2, nullvalue: nullvalue, utc: utc })),
+                [nix.POS]: $pos[2],
+                options: nix.thunk(() => ({ [nix.POS]: $pos[1], nullvalue: nullvalue, utc: utc })),
               })),
-              flags: nix.thunk(() => ({ [nix.POS]: pos$4, config_refresh: config_refresh, nullvalue: "IGNORED" })),
+              flags: nix.thunk(() => ({ [nix.POS]: $pos[3], config_refresh: config_refresh, nullvalue: "IGNORED" })),
             })),
           })),
         }),

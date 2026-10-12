@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 48, 5], ["mainProgram", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["runtimeDependencies", 35, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, stdenv: false, wayland: false, libxkbcommon: false, fontconfig: false, "pkg-config": false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 48, 5], ["mainProgram", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["runtimeDependencies", 35, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wl-gammarelay-applet",
       version: "0.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lgbishop",
           repo: "wl-gammarelay-applet",
           rev: "8a0d9e6364d7445fc69c59b2f168cfec91c2fe87",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]),
       runtimeDependencies: nix.thunk(() => [wayland, libxkbcommon, nix.thunk(() => nix.sel(fontconfig, "lib"))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Control wl-gammarelay-rs via applet",
         longDescription: "wl-gammarelay-applet is a small desktop applet for controlling\nwl-gammarelay-rs via DBus. This applet is written in Rust and\nprovides a Slint UI.\n",
         homepage: "https://github.com/lgbishop/wl-gammarelay-applet",

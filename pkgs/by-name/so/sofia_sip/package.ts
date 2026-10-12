@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]], [["package", 92, 7], ["versionCheck", 93, 7]], [["pkg-config", 91, 11]], [["rev-prefix", 96, 7]], [["tests", 91, 5], ["updateScript", 95, 5]], [["description", 101, 5], ["homepage", 102, 5], ["platforms", 103, 5], ["license", 104, 5], ["teams", 105, 5], ["pkgConfigModules", 106, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 50, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 64, 3], ["nativeCheckInputs", 69, 3], ["checkInputs", 73, 3], ["preConfigure", 78, 3], ["configureFlags", 82, 3], ["enableParallelBuilding", 86, 3], ["doCheck", 88, 3], ["passthru", 90, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, gitUpdater: false, testers: false, autoconf: false, automake: false, check: false, glib: false, libtool: false, openssl: false, "pkg-config": false, valgrind: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 92, 7], ["versionCheck", 93, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 91, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["rev-prefix", 96, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 91, 5], ["updateScript", 95, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["platforms", 103, 5], ["license", 104, 5], ["teams", 105, 5], ["pkgConfigModules", 106, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 50, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 64, 3], ["nativeCheckInputs", 69, 3], ["checkInputs", 73, 3], ["preConfigure", 78, 3], ["configureFlags", 82, 3], ["enableParallelBuilding", 86, 3], ["doCheck", 88, 3], ["passthru", 90, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const valgrind = nix.arg($, "valgrind");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "sofia-sip",
       version: "1.13.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "freeswitch",
           repo: "sofia-sip",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "sofia-sip-fix-incompatible-pointer-type.patch",
             url: "https://github.com/freeswitch/sofia-sip/commit/46b02f0655af0a9594e805f09a8ee99278f84777.patch?full_index=1",
             hash: "sha256-bZzjg7GBxR2wSlPH81krZRCK43OirGLWH/lrLRZ0L0k=",
@@ -62,19 +55,19 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Open-source SIP User-Agent library, compliant with the IETF RFC3261 specification",
         homepage: "https://github.com/freeswitch/sofia-sip",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/shrunk.nix", [[["pname", 8, 19], ["version", 8, 25], ["buildCommand", 9, 3], ["allowedReferences", 23, 3], ["meta", 25, 19]]]);
 const formals$1 = { args: { stdenv: false, klibc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/shrunk.nix", [["pname", 8, 19], ["version", 8, 25], ["buildCommand", 9, 3], ["allowedReferences", 23, 3], ["meta", 25, 19]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenv = nix.arg($, "stdenv");
   const klibc = nix.arg($, "klibc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.attr(klibc, "pname")),
       version: nix.thunk(() => nix.attr(klibc, "version")),
       buildCommand: nix.thunk(() => nix.str`mkdir -p $out/lib

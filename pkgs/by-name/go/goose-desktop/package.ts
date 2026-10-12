@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs-slim", 33, 29]], [["pname", 59, 7], ["prePnpmInstall", 60, 7], ["version", 61, 7], ["src", 62, 7], ["pnpmInstallFlags", 63, 7], ["pnpmWorkspaces", 64, 7], ["pnpm", 66, 13], ["fetcherVersion", 67, 5], ["hash", 68, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 74, 5]], [["name", 184, 7], ["desktopName", 185, 7], ["comment", 186, 7], ["exec", 187, 7], ["icon", 188, 7], ["categories", 189, 7], ["startupWMClass", 190, 7], ["mimeTypes", 191, 7]], [["smoke", 195, 18]], [["tests", 195, 12]], [["description", 201, 5], ["homepage", 202, 5], ["changelog", 203, 5], ["license", 204, 5], ["mainProgram", 205, 5], ["maintainers", 206, 5], ["platforms", 207, 5]], [["pname", 37, 3], ["version", 38, 23], ["__structuredAttrs", 39, 3], ["src", 40, 3], ["pnpmWorkspaces", 42, 3], ["pnpmInstallFlags", 48, 3], ["prePnpmInstall", 53, 3], ["pnpmDeps", 57, 3], ["strictDeps", 71, 3], ["env", 73, 3], ["nativeBuildInputs", 77, 3], ["postPatch", 88, 3], ["buildPhase", 106, 3], ["installPhase", 142, 3], ["desktopItems", 182, 3], ["passthru", 195, 3], ["meta", 200, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchPnpmDeps: false, pnpmConfigHook: false, nodejs_24: false, pnpm_10: false, electron_43: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, gitMinimal: false, python3: false, zip: false, bash: false, coreutils: false, curl: false, gnused: false, gzip: false, which: false, xdotool: false, wmctrl: false, xclip: false, xwininfo: false, wtype: false, "wl-clipboard": false, "goose-cli": false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs-slim", 33, 29]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 59, 7], ["prePnpmInstall", 60, 7], ["version", 61, 7], ["src", 62, 7], ["pnpmInstallFlags", 63, 7], ["pnpmWorkspaces", 64, 7], ["pnpm", 66, 13], ["fetcherVersion", 67, 5], ["hash", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 184, 7], ["desktopName", 185, 7], ["comment", 186, 7], ["exec", 187, 7], ["icon", 188, 7], ["categories", 189, 7], ["startupWMClass", 190, 7], ["mimeTypes", 191, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["smoke", 195, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 195, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 201, 5], ["homepage", 202, 5], ["changelog", 203, 5], ["license", 204, 5], ["mainProgram", 205, 5], ["maintainers", 206, 5], ["platforms", 207, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 23], ["__structuredAttrs", 39, 3], ["src", 40, 3], ["pnpmWorkspaces", 42, 3], ["pnpmInstallFlags", 48, 3], ["prePnpmInstall", 53, 3], ["pnpmDeps", 57, 3], ["strictDeps", 71, 3], ["env", 73, 3], ["nativeBuildInputs", 77, 3], ["postPatch", 88, 3], ["buildPhase", 106, 3], ["installPhase", 142, 3], ["desktopItems", 182, 3], ["passthru", 195, 3], ["meta", 200, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,10 +35,10 @@ export default nix.lambda((args) => (() => {
   const goose_cli = nix.arg($, "goose-cli");
   const runCommand = nix.arg($, "runCommand");
   const nodejs = nodejs_24;
-  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs }))));
+  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], "nodejs-slim": nodejs }))));
   const electron = electron_43;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "goose-desktop",
       version: nix.thunk(() => nix.attr(goose_cli, "version")),
       __structuredAttrs: true,
@@ -54,7 +47,7 @@ export default nix.lambda((args) => (() => {
       pnpmInstallFlags: nix.thunk(() => ["--cpu=x64", "--libc=glibc", "--os=linux"]),
       prePnpmInstall: "pnpm config set --json supportedArchitectures '{\"os\":[\"linux\"],\"cpu\":[\"x64\"],\"libc\":[\"glibc\"]}'\n",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           prePnpmInstall: nix.thunk(() => nix.attr(finalAttrs, "prePnpmInstall")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -66,7 +59,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-FpnWCJsytxJ5w9yqWayU2ZNDCm7RgubU34ouIeNWqfA=",
         })))),
       strictDeps: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       nativeBuildInputs: nix.thunk(() => [
         copyDesktopItems,
         gitMinimal,
@@ -165,7 +158,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "goose-desktop",
             desktopName: "Goose",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -177,16 +170,16 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           smoke: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-smoke`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/opt/goose-desktop/resources/bin/goose --version >/dev/null
 touch "$out"
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Desktop client for Goose",
         homepage: "https://github.com/aaif-goose/goose",
         changelog: nix.thunk(() => nix.str`https://github.com/aaif-goose/goose/releases/tag/${nix.sel(goose_cli, "src", "tag")}`),

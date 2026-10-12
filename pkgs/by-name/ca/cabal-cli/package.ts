@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["NODE_OPTIONS", 22, 7]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["dontNpmBuild", 20, 3], ["env", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NODE_OPTIONS", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["dontNpmBuild", 20, 3], ["env", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cabal-cli",
       version: "15.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cabal-club",
           repo: "cabal-cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,9 +23,9 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-Oqyx6pytDrYg1JbHawKxnnWEJxaFUaM9LcREizh3LFQ=",
       dontNpmBuild: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NODE_OPTIONS: "--openssl-legacy-provider" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NODE_OPTIONS: "--openssl-legacy-provider" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Terminal client for Cabal, the p2p chat platform",
         homepage: "https://cabal.chat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

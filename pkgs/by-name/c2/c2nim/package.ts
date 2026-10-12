@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["description", 17, 5], ["mainProgram", 18, 5], ["license", 19, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, buildNimPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 17, 5], ["mainProgram", 18, 5], ["license", 19, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const buildNimPackage = nix.arg($, "buildNimPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "c2nim",
       version: "0.9.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nim-lang",
           repo: "c2nim",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-E8sAhTFIWAnlfWyuvqK8h8g7Puf5ejLEqgLNb5N17os=",
         })))),
       meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "src", "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to translate Ansi C code to Nim",
         mainProgram: "c2nim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

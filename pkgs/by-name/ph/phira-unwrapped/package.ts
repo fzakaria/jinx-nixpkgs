@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["name", 63, 7], ["desktopName", 64, 7], ["exec", 65, 7], ["icon", 66, 7], ["comment", 67, 7], ["categories", 68, 7]], [["updateScript", 76, 12]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["changelog", 83, 5], ["platforms", 84, 5], ["mainProgram", 85, 5]], [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 37, 3], ["patches", 45, 3], ["cargoHash", 56, 3], ["checkFlags", 59, 3], ["desktopItems", 61, 3], ["postInstall", 72, 3], ["passthru", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, rustPlatform: false, "pkg-config": false, perl: false, ffmpeg: false, "alsa-lib": false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 63, 7], ["desktopName", 64, 7], ["exec", 65, 7], ["icon", 66, 7], ["comment", 67, 7], ["categories", 68, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 76, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["changelog", 83, 5], ["platforms", 84, 5], ["mainProgram", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 37, 3], ["patches", 45, 3], ["cargoHash", 56, 3], ["checkFlags", 59, 3], ["desktopItems", 61, 3], ["postInstall", 72, 3], ["passthru", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "phira-unwrapped",
       version: "0.8.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TeamFlos",
           repo: "phira",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["--skip=test_parse_chart"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "phira",
             desktopName: "Phira",
             exec: "phira-main",
@@ -55,9 +51,9 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       postInstall: "install -Dm644 assets/icon.png $out/share/icons/hicolor/128x128/apps/phira.png\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Rhythm game with custom charts and multiplayer",
         homepage: "https://github.com/TeamFlos/phira",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

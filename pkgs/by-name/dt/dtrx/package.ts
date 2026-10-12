@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 57, 5], ["repo", 58, 5], ["rev", 59, 5], ["sha256", 60, 5]], [["arjSupport", 89, 5], ["unrarSupport", 90, 5], ["unzipSupport", 91, 5]], [["dtrx-full", 88, 18]], [["updateScript", 87, 12], ["tests", 88, 12]], [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["mainProgram", 99, 5]], [["pname", 52, 3], ["version", 53, 3], ["pyproject", 54, 3], ["src", 56, 3], ["makeWrapperArgs", 63, 3], ["build-system", 67, 3], ["nativeCheckInputs", 71, 3], ["postPatch", 75, 3], ["checkPhase", 79, 3], ["doCheck", 85, 3], ["passthru", 87, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { arj: false, "binutils-unwrapped": false, brotli: false, bzip2: false, cabextract: false, cpio: false, dtrx: false, fetchFromGitHub: false, gitUpdater: false, gnutar: false, gzip: false, lhasa: false, lib: false, lrzip: false, lzip: false, p7zip: false, python3Packages: false, rpm: false, unrar: false, unshield: false, unzip: false, xz: false, zstd: false, arjSupport: true, unrarSupport: true, unzipSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 57, 5], ["repo", 58, 5], ["rev", 59, 5], ["sha256", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["arjSupport", 89, 5], ["unrarSupport", 90, 5], ["unzipSupport", 91, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["dtrx-full", 88, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 87, 12], ["tests", 88, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["mainProgram", 99, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["pyproject", 54, 3], ["src", 56, 3], ["makeWrapperArgs", 63, 3], ["build-system", 67, 3], ["nativeCheckInputs", 71, 3], ["postPatch", 75, 3], ["checkPhase", 79, 3], ["doCheck", 85, 3], ["passthru", 87, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,12 +51,12 @@ export default nix.lambda((args) => (() => {
     zstd,
   ], nix.concat(nix.app(nix.sel(lib, "optional"), arjSupport, arj), nix.concat(nix.app(nix.sel(lib, "optional"), unrarSupport, unrar), nix.app(nix.sel(lib, "optional"), unzipSupport, unzip)))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dtrx",
       version: "8.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dtrx-py",
           repo: "dtrx",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,15 +71,15 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\ntests/compare.py '^(?!download and extract$)(?!password zip noninteractive$).*'\nrunHook postCheck\n",
       doCheck: nix.thunk(() => (nix.asBool((nix.asBool(arjSupport) && nix.asBool(unrarSupport))) && nix.asBool(unzipSupport))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          "dtrx-full": nix.thunk(() => nix.app(nix.sel(dtrx, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, arjSupport: true, unrarSupport: true, unzipSupport: true })))),
+          [nix.POS]: $pos[2],
+          "dtrx-full": nix.thunk(() => nix.app(nix.sel(dtrx, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], arjSupport: true, unrarSupport: true, unzipSupport: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Do The Right Extraction: A tool for taking the hassle out of extracting archives",
         homepage: "https://github.com/dtrx-py/dtrx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

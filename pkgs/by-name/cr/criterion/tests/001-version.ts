@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/001-version.nix", [[["mainProgram", 24, 8]], [["name", 7, 3], ["version", 8, 23], ["src", 9, 3], ["dontUnpack", 11, 3], ["buildInputs", 12, 3], ["nativeBuildInputs", 13, 3], ["buildPhase", 15, 3], ["installPhase", 19, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { stdenv: false, "pkg-config": false, criterion: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/001-version.nix", [["mainProgram", 24, 8]]);
-const pos$2 = nix.positions(here + "/001-version.nix", [["name", 7, 3], ["version", 8, 23], ["src", 9, 3], ["dontUnpack", 11, 3], ["buildInputs", 12, 3], ["nativeBuildInputs", 13, 3], ["buildPhase", 15, 3], ["installPhase", 19, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,9 +22,9 @@ export default nix.lambda((args) => (() => {
       const installPhase = nix.thunk(() => nix.str`mkdir -p $out/bin
 cp ${name} $out/bin/${name}
 `);
-      const meta = nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: name }));
+      const meta = nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: name }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name,
         version,
         src,

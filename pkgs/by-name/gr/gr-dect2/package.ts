@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gnuradio: false, spdlog: false, mpir: false, boost: false, volk: false, python3Packages: false, gmpxx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const gmpxx = nix.arg($, "gmpxx");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gr-dect2",
       version: "0-unstable-2025-03-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pavelyazev",
           repo: "gr-dect2",
           rev: "0d973fe433eebfe3eee6e7f2eeb1322f8976ab42",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(python3Packages, "numpy")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Gnuradio module for real-time decoding of unencrypted DECT voice chnanels",
         homepage: "https://github.com/pavelyazev/gr-dect2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

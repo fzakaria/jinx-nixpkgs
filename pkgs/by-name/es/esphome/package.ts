@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["paho-mqtt", 20, 7]], [["self", 18, 5], ["packageOverrides", 19, 5]], [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["ESPHOME_USE_SUBPROCESS", 70, 7]], [["python3", 86, 49]], [["esphome", 189, 36]], [["tests", 189, 5]], [["changelog", 193, 5], ["description", 194, 5], ["homepage", 195, 5], ["license", 196, 5], ["maintainers", 200, 5], ["mainProgram", 206, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["build-system", 48, 3], ["nativeBuildInputs", 52, 3], ["pythonRelaxDeps", 56, 3], ["pythonRemoveDeps", 58, 3], ["postPatch", 63, 3], ["env", 70, 3], ["dependencies", 72, 3], ["makeWrapperArgs", 103, 3], ["__darwinAllowLocalNetworking", 124, 3], ["nativeCheckInputs", 126, 3], ["disabledTestPaths", 144, 3], ["postInstall", 153, 3], ["disabledTests", 164, 3], ["passthru", 188, 3], ["meta", 192, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, installShellFiles: false, platformio: false, "platformio-core": false, esptool: false, git: false, versionCheckHook: false, addBinToPathHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["paho-mqtt", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["self", 18, 5], ["packageOverrides", 19, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ESPHOME_USE_SUBPROCESS", 70, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["python3", 86, 49]]);
-const pos$6 = nix.positions(here + "/package.nix", [["esphome", 189, 36]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 189, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["changelog", 193, 5], ["description", 194, 5], ["homepage", 195, 5], ["license", 196, 5], ["maintainers", 200, 5], ["mainProgram", 206, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["build-system", 48, 3], ["nativeBuildInputs", 52, 3], ["pythonRelaxDeps", 56, 3], ["pythonRemoveDeps", 58, 3], ["postPatch", 63, 3], ["env", 70, 3], ["dependencies", 72, 3], ["makeWrapperArgs", 103, 3], ["__darwinAllowLocalNetworking", 124, 3], ["nativeCheckInputs", 126, 3], ["disabledTestPaths", 144, 3], ["postInstall", 153, 3], ["disabledTests", 164, 3], ["passthru", 188, 3], ["meta", 192, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,17 +20,20 @@ export default nix.lambda((args) => (() => {
   const addBinToPathHook = nix.arg($, "addBinToPathHook");
   const nixosTests = nix.arg($, "nixosTests");
   const python = nix.thunk(() => nix.app(nix.sel(python3Packages, "python", "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       self: python,
-      packageOverrides: (self) => (super$) => ({ [nix.POS]: pos$1, "paho-mqtt": nix.thunk(() => nix.sel(self, "paho-mqtt_1")) }),
+      packageOverrides: (self) => (super$) => ({
+        [nix.POS]: $pos[0],
+        "paho-mqtt": nix.thunk(() => nix.sel(self, "paho-mqtt_1")),
+      }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "esphome",
       version: "2026.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "esphome",
           repo: "esphome",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +51,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: true,
       pythonRemoveDeps: nix.thunk(() => ["esptool", "platformio"]),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"setuptools==84.0.0\" \"setuptools\" \\\n  --replace-fail \"wheel>=0.43,<0.48\" \"wheel\"\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, ESPHOME_USE_SUBPROCESS: "" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], ESPHOME_USE_SUBPROCESS: "" })),
       dependencies: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
         return [
@@ -73,7 +68,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "paho-mqtt")),
           nix.thunk(() => nix.lookup(w_1, "pillow")),
           nix.thunk(() => nix.lookup(w_1, "platformdirs")),
-          nix.thunk(() => nix.app(nix.lookup(w_1, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(platformio_core, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, python3: python })))))),
+          nix.thunk(() => nix.app(nix.lookup(w_1, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(platformio_core, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], python3: python })))))),
           nix.thunk(() => nix.lookup(w_1, "puremagic")),
           nix.thunk(() => nix.lookup(w_1, "py7zr")),
           nix.thunk(() => nix.lookup(w_1, "pyparsing")),
@@ -143,11 +138,14 @@ export default nix.lambda((args) => (() => {
         "test_patch_file_downloader_recovers_against_real_server",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$6, esphome: nix.thunk(() => nix.attr(nixosTests, "esphome")) })),
+        [nix.POS]: $pos[6],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[5],
+          esphome: nix.thunk(() => nix.attr(nixosTests, "esphome")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: nix.thunk(() => nix.str`https://github.com/esphome/esphome/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Make creating custom firmwares for ESP32/ESP8266 super easy",
         homepage: "https://esphome.io/",

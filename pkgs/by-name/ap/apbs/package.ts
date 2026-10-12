@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 7], ["repo", 21, 7], ["tag", 22, 7], ["hash", 23, 7]], [["NIX_CFLAGS_COMPILE", 32, 7]], [["description", 49, 7], ["homepage", 50, 7], ["changelog", 51, 7], ["license", 52, 7], ["maintainers", 53, 7], ["platforms", 54, 7]], [["pname", 16, 5], ["version", 17, 5], ["src", 19, 5], ["nativeBuildInputs", 26, 5], ["env", 30, 5], ["cmakeFlags", 35, 5], ["buildInputs", 42, 5], ["meta", 48, 5]], [["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5]], [["description", 105, 5], ["mainProgram", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5]], [["pname", 59, 3], ["version", 60, 3], ["src", 62, 3], ["postPatch", 69, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 84, 3], ["cmakeFlags", 94, 3], ["doCheck", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, blas: false, superlu: false, suitesparse: false, python3: false, libintl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 7], ["repo", 21, 7], ["tag", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 7], ["homepage", 50, 7], ["changelog", 51, 7], ["license", 52, 7], ["maintainers", 53, 7], ["platforms", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 5], ["version", 17, 5], ["src", 19, 5], ["nativeBuildInputs", 26, 5], ["env", 30, 5], ["cmakeFlags", 35, 5], ["buildInputs", 42, 5], ["meta", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 105, 5], ["mainProgram", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 59, 3], ["version", 60, 3], ["src", 62, 3], ["postPatch", 69, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 84, 3], ["cmakeFlags", 94, 3], ["doCheck", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const libintl = nix.arg($, "libintl");
   const fetk = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fetk",
       version: "1.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Electrostatics",
           repo: "fetk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-uFA1JRR05cNcUGaJj9IyGNONB2hU9IOBPzOj/HucNH4=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })))),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`-DBLAS_LIBRARIES=${blas}/lib`),
         "-DBLA_STATIC=OFF",
@@ -43,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [blas, superlu, suitesparse]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fork of the Finite Element ToolKit from fetk.org",
         homepage: "https://github.com/Electrostatics/FETK",
         changelog: nix.thunk(() => nix.str`https://github.com/Electrostatics/FETK/releases/tag/${nix.sel(finalAttrs, "version")}`),
@@ -56,11 +50,11 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "apbs",
       version: "3.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "Electrostatics",
           repo: "apbs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,7 +72,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Software for biomolecular electrostatics and solvation calculations",
         mainProgram: "apbs",
         homepage: "https://www.poissonboltzmann.org/",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 100, 7], ["hash", 101, 7]], [["url", 104, 7], ["hash", 105, 7]], [["x86_64-linux", 99, 5], ["aarch64-linux", 103, 5]], [["srcs", 98, 12], ["updateScript", 262, 12]], [["name", 247, 7], ["desktopName", 248, 7], ["exec", 249, 7], ["icon", 250, 7], ["comment", 251, 7], ["genericName", 252, 7], ["categories", 253, 7], ["mimeTypes", 258, 7]], [["description", 279, 5], ["longDescription", 280, 5], ["homepage", 284, 5], ["changelog", 285, 5], ["sourceProvenance", 286, 5], ["license", 287, 5], ["platforms", 288, 5], ["maintainers", 289, 5], ["knownVulnerabilities", 295, 5]], [["pname", 91, 3], ["version", 92, 3], ["src", 94, 3], ["passthru", 98, 3], ["postPatch", 112, 3], ["nativeBuildInputs", 119, 3], ["buildInputs", 125, 3], ["dontBuild", 130, 3], ["dontConfigure", 131, 3], ["installPhase", 133, 3], ["preFixup", 142, 3], ["postFixup", 153, 3], ["desktopItems", 245, 3], ["meta", 278, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, writeShellScript: false, "nix-update": false, curl: false, jq: false, git: false, "git-lfs": false, fetchurl: false, wrapGAppsHook3: false, "alsa-lib": false, "at-spi2-atk": false, cairo: false, coreutils: false, cups: false, dbus: false, expat: false, "gdk-pixbuf": false, glib: false, gtk3: false, libgbm: false, nss: false, nspr: false, libxrandr: false, libxfixes: false, libxext: false, libxdamage: false, libxcomposite: false, libx11: false, libxshmfence: false, libxkbfile: false, libxcb: false, libdrm: false, libsecret: false, libxkbcommon: false, pango: false, systemd: false, hunspellDicts: false, useHunspell: true, languages: true, withNemoAction: true, makeDesktopItem: false, copyDesktopItems: false, asar: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 100, 7], ["hash", 101, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 104, 7], ["hash", 105, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 99, 5], ["aarch64-linux", 103, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["srcs", 98, 12], ["updateScript", 262, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 247, 7], ["desktopName", 248, 7], ["exec", 249, 7], ["icon", 250, 7], ["comment", 251, 7], ["genericName", 252, 7], ["categories", 253, 7], ["mimeTypes", 258, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 279, 5], ["longDescription", 280, 5], ["homepage", 284, 5], ["changelog", 285, 5], ["sourceProvenance", 286, 5], ["license", 287, 5], ["platforms", 288, 5], ["maintainers", 289, 5], ["knownVulnerabilities", 295, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 91, 3], ["version", 92, 3], ["src", 94, 3], ["passthru", 98, 3], ["postPatch", 112, 3], ["nativeBuildInputs", 119, 3], ["buildInputs", 125, 3], ["dontBuild", 130, 3], ["dontConfigure", 131, 3], ["installPhase", 133, 3], ["preFixup", 142, 3], ["postFixup", 153, 3], ["desktopItems", 245, 3], ["meta", 278, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -91,21 +85,21 @@ export default nix.lambda((args) => (() => {
   const hunspellTargetDirs = "$out/opt/Pulsar/resources/app.asar.unpacked/node_modules/spellchecker/vendor/hunspell_dictionaries";
   const hunspellCopyCommands = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (lang) => nix.str`cp -r ${lang}/* ${hunspellTargetDirs};`, hunspellDirs));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pulsar",
       version: "1.132.1",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), "passthru", "srcs", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         srcs: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://github.com/pulsar-edit/pulsar/releases/download/v${nix.sel(finalAttrs, "version")}/Linux.pulsar-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: "sha256-66kubyDMEHgRdT38TTESMIZ+wQPPXWHBc0jYY3aMSkU=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://github.com/pulsar-edit/pulsar/releases/download/v${nix.sel(finalAttrs, "version")}/ARM.Linux.pulsar-${nix.sel(finalAttrs, "version")}-arm64.tar.gz`),
               hash: "sha256-MTWqUlbfjJlIQVy0YBLbenMzA7Xgnkr34nr2t8nhofc=",
             })))),
@@ -216,7 +210,7 @@ cp ${nix.path(here, "./pulsar.nemo_action")} $out/share/nemo/actions/pulsar.nemo
 `)))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "Pulsar",
             desktopName: "Pulsar",
             exec: "pulsar",
@@ -228,7 +222,7 @@ cp ${nix.path(here, "./pulsar.nemo_action")} $out/share/nemo/actions/pulsar.nemo
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Community-led Hyper-Hackable Text Editor",
         longDescription: "A Community-led Hyper-Hackable Text Editor, Forked from Atom, built on Electron.\nDesigned to be deeply customizable, but still approachable using the default configuration.\n",
         homepage: "https://github.com/pulsar-edit/pulsar",

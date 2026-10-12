@@ -2,42 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fsck.nix", [[["device", 11, 9], ["fsType", 12, 9], ["autoFormat", 13, 9]], [["/mnt", 10, 7]], [["emptyDiskImages", 7, 20], ["fileSystems", 9, 20]], [["enable", 17, 25]], [["systemd", 17, 17]], [["initrd", 17, 10]], [["virtualisation", 7, 5], ["boot", 17, 5]], [["machine", 6, 9]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 20, 3]]]);
 const formals$1 = { args: { lib: false, systemdStage1: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fsck.nix", [["device", 11, 9], ["fsType", 12, 9], ["autoFormat", 13, 9]]);
-const pos$2 = nix.positions(here + "/fsck.nix", [["/mnt", 10, 7]]);
-const pos$3 = nix.positions(here + "/fsck.nix", [["emptyDiskImages", 7, 20], ["fileSystems", 9, 20]]);
-const pos$4 = nix.positions(here + "/fsck.nix", [["enable", 17, 25]]);
-const pos$5 = nix.positions(here + "/fsck.nix", [["systemd", 17, 17]]);
-const pos$6 = nix.positions(here + "/fsck.nix", [["initrd", 17, 10]]);
-const pos$7 = nix.positions(here + "/fsck.nix", [["virtualisation", 7, 5], ["boot", 17, 5]]);
-const pos$8 = nix.positions(here + "/fsck.nix", [["machine", 6, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/fsck.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const systemdStage1 = nix.arg($, "systemdStage1");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: nix.thunk(() => nix.add("fsck", nix.app(nix.sel(lib, "optionalString"), systemdStage1, "-systemd-stage-1"))),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           emptyDiskImages: nix.thunk(() => [1n]),
           fileSystems: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            "/mnt": nix.thunk(() => ({ [nix.POS]: pos$1, device: "/dev/vdb", fsType: "ext4", autoFormat: true })),
+            [nix.POS]: $pos[1],
+            "/mnt": nix.thunk(() => ({ [nix.POS]: $pos[0], device: "/dev/vdb", fsType: "ext4", autoFormat: true })),
           })),
         })),
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           initrd: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            systemd: nix.thunk(() => ({ [nix.POS]: pos$4, enable: systemdStage1 })),
+            [nix.POS]: $pos[4],
+            systemd: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: systemdStage1 })),
           })),
         })),
       })),

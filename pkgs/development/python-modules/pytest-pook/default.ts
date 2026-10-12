@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["doCheck", 32, 33]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["buildInputs", 27, 3], ["dependencies", 31, 3], ["doCheck", 36, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 42, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromSourcehut: false, hatchling: false, pook: false, pytest: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 32, 33]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["buildInputs", 27, 3], ["dependencies", 31, 3], ["doCheck", 36, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 42, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pytest-pook",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~sara",
           repo: "pytest-pook",
           rev: "a7c2d0ca4287af671ebd065b0f6415bb4110f338",
@@ -32,13 +29,13 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       buildInputs: nix.thunk(() => [pytest]),
       dependencies: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(pook, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: false })))),
+        nix.thunk(() => nix.app(nix.sel(pook, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: false })))),
       ]),
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pytest_pook"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pytest plugin for pook",
         homepage: "https://git.sr.ht/~sara/pytest-pook",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

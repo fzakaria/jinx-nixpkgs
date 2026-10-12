@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["badPlatforms", 89, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["postPatch", 42, 3], ["build-system", 49, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 67, 3], ["disabledTests", 72, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, aiofiles: false, aiohttp: false, "importlib-metadata": false, "nest-asyncio": false, numpy: false, psutil: false, pyyaml: false, torch: false, "typing-extensions": false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["badPlatforms", 89, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["postPatch", 42, 3], ["build-system", 49, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 67, 3], ["disabledTests", 72, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "torchsnapshot",
       version: "0.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pytorch",
           repo: "torchsnapshot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       disabledTests: nix.thunk(() => nix.concat(["test_linear_barrier_timeout"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_tensor_copy"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Performant, memory-efficient checkpointing library for PyTorch applications, designed with large, complex distributed workloads in mind",
         homepage: "https://github.com/pytorch/torchsnapshot/",
         changelog: nix.thunk(() => nix.str`https://github.com/pytorch/torchsnapshot/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

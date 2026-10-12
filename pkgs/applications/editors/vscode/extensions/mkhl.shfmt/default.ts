@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 10, 5], ["publisher", 11, 5], ["version", 12, 5], ["hash", 13, 5]], [["description", 22, 5], ["downloadPage", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]], [["mktplcRef", 9, 3], ["postInstall", 16, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, jq: false, shfmt: false, moreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 10, 5], ["publisher", 11, 5], ["version", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 22, 5], ["downloadPage", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 9, 3], ["postInstall", 16, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const shfmt = nix.arg($, "shfmt");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "shfmt",
         publisher: "mkhl",
         version: "1.5.2",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "getExe"), jq)} '.contributes.configuration.properties."shfmt.executablePath".default = "${nix.app(nix.sel(lib, "getExe"), shfmt)}"' package.json | ${nix.app(nix.sel(lib, "getExe'"), moreutils, "sponge")} package.json
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extension uses shfmt to provide a formatter for shell script documents",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=mkhl.shfmt",
         homepage: "https://codeberg.org/mkhl/vscode-shfmt",

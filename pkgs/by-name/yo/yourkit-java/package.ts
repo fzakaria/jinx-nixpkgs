@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-linux", 18, 5], ["x86_64-linux", 19, 5]], [["arm64", 25, 5], ["x64", 26, 5]], [["name", 30, 5], ["desktopName", 31, 5], ["type", 32, 5], ["exec", 33, 5], ["icon", 34, 5], ["categories", 35, 5], ["terminal", 40, 5], ["startupWMClass", 41, 5]], [["url", 50, 5], ["hash", 51, 5]], [["updateScript", 92, 12]], [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["mainProgram", 99, 5], ["platforms", 100, 5], ["sourceProvenance", 101, 5], ["maintainers", 102, 5]], [["version", 45, 11], ["pname", 47, 3], ["src", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 59, 3], ["desktopItems", 61, 3], ["installPhase", 63, 3], ["passthru", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { fetchzip: false, lib: false, stdenvNoCC: false, copyDesktopItems: false, imagemagick: false, makeDesktopItem: false, jdk21: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-linux", 18, 5], ["x86_64-linux", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["arm64", 25, 5], ["x64", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 30, 5], ["desktopName", 31, 5], ["type", 32, 5], ["exec", 33, 5], ["icon", 34, 5], ["categories", 35, 5], ["terminal", 40, 5], ["startupWMClass", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 50, 5], ["hash", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 92, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["mainProgram", 99, 5], ["platforms", 100, 5], ["sourceProvenance", 101, 5], ["maintainers", 102, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 45, 11], ["pname", 47, 3], ["src", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 59, 3], ["desktopItems", 61, 3], ["installPhase", 63, 3], ["passthru", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,15 +17,15 @@ export default nix.lambda((args) => (() => {
   const jre = jdk21;
   const vPath = (v) => nix.app(nix.sel(lib, "elemAt"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", v)), 0n);
   const version = "2025.9-b191";
-  const arches = nix.thunk(() => ({ [nix.POS]: pos$1, "aarch64-linux": "arm64", "x86_64-linux": "x64" }));
+  const arches = nix.thunk(() => ({ [nix.POS]: $pos[0], "aarch64-linux": "arm64", "x86_64-linux": "x64" }));
   const arch = nix.thunk(() => nix.selOr(arches, () => nix.builtins.throw("Unsupported system"), nix.key(nix.sel(stdenvNoCC, "targetPlatform", "system"))));
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     arm64: "sha256-gBvz+SsiVIjFtqra8BZ3fsmpLPn/vk1PSN57pDm9lA4=",
     x64: "sha256-0jgWKQyJkbE2Dd/s6wq2wwIgvGZQmnAKtqXN4ISuofc=",
   }));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "YourKit Java Profiler",
       desktopName: nix.thunk(() => nix.add("YourKit Java Profiler ", version)),
       type: "Application",
@@ -42,11 +36,11 @@ export default nix.lambda((args) => (() => {
       startupWMClass: "YourKit Java Profiler",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: version,
       pname: "yourkit-java",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://download.yourkit.com/yjp/${nix.app(vPath, version)}/YourKit-JavaProfiler-${version}-${arch}.zip`),
           hash: nix.thunk(() => nix.sel(hashes, nix.key(nix.force(arch)))),
         })))),
@@ -80,9 +74,9 @@ sed -i -e "/^YD=/isource $out/bin/forbid-desktop-item-creation\\\\
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Award winning, fully featured low overhead profiler for Java EE and Java SE platforms",
         homepage: "https://www.yourkit.com",
         changelog: "https://www.yourkit.com/changes/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["build-system", 24, 3], ["src", 26, 3], ["dependencies", 33, 3], ["pythonRelaxDeps", 41, 3], ["pythonImportsCheck", 45, 3], ["nativeCheckInputs", 47, 3], ["disabledTestPaths", 55, 3], ["disabledTests", 66, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPythonPackage: false, pytestCheckHook: false, setuptools: false, matplotlib: false, numpy: false, packaging: false, torch: false, tqdm: false, flask: false, "flask-compress": false, parameterized: false, "scikit-learn": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["build-system", 24, 3], ["src", 26, 3], ["dependencies", 33, 3], ["pythonRelaxDeps", 41, 3], ["pythonImportsCheck", 45, 3], ["nativeCheckInputs", 47, 3], ["disabledTestPaths", 55, 3], ["disabledTests", 66, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pytorch",
           repo: "captum",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,14 +44,14 @@ export default nix.lambda((args) => (() => {
         "test_tracin_identity_regression_9_check_idx_none_ArnoldiInfluenceFunction",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Model interpretability and understanding for PyTorch",
         homepage: "https://github.com/pytorch/captum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["maintainers", 9, 5], ["configureFlags", 13, 5], ["buildDepends", 15, 5]]]);
 const formals$1 = { args: { haskell: false, haskellPackages: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["maintainers", 9, 5], ["configureFlags", 13, 5], ["buildDepends", 15, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const haskellPackages = nix.arg($, "haskellPackages");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(haskell, "lib", "compose", "justStaticExecutables"), nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), (oldAttrs) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "maintainers"), [nix.thunk(() => nix.sel(lib, "maintainers", "cdepillabout"))])),
         configureFlags: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "configureFlags"), ["-fbuildexe"])),
         buildDepends: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "buildDepends"), [nix.thunk(() => nix.sel(haskellPackages, "optparse-applicative"))])),

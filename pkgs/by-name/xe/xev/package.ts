@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["updateScript", 29, 5]], [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["passthru", 28, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, xorgproto: false, libx11: false, libxrandr: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["passthru", 28, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xev",
       version: "1.2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/app/xev-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-lRZ4lZJN5Y40sQE7KwyEdukNCIjGw5566bw146GdugQ=",
         })))),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [xorgproto, libx11, libxrandr]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
@@ -41,7 +38,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "X event monitor",
         longDescription: "xev creates a window and then asks the X server to send it X11 events whenever anything\nhappens to the window (such as it being moved, resized, typed in, clicked in, etc.).\nYou can also attach it to an existing window. It is useful for seeing what causes events to\noccur and to display the information that they contain; it is essentially a debugging and\ndevelopment tool, and should not be needed in normal usage.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/app/xev",

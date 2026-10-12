@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["CI", 42, 7]], [["changelog", 47, 5], ["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 40, 3], ["env", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, httpx: false, pycryptodome: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CI", 42, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 47, 5], ["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 40, 3], ["env", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mill1000",
           repo: "midea-msmart",
           tag: version,
@@ -32,10 +29,10 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [httpx, pycryptodome]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CI: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CI: true }));
       const pythonImportsCheck = nix.thunk(() => ["msmart"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/mill1000/midea-msmart/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python library for local control of Midea (and associated brands) smart air conditioners",
         homepage: "https://github.com/mill1000/midea-msmart",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

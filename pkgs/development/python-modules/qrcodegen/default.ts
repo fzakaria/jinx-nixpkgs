@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 34, 7], ["homepage", 35, 7], ["license", 36, 7], ["maintainers", 37, 7], ["platforms", 38, 7]], [["pname", 10, 3], ["pyproject", 11, 3], ["version", 14, 5], ["src", 15, 5], ["sourceRoot", 18, 3], ["build-system", 20, 3], ["pythonImportsCheck", 22, 3], ["checkPhase", 24, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, qrcodegen: false, setuptools: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 34, 7], ["homepage", 35, 7], ["license", 36, 7], ["maintainers", 37, 7], ["platforms", 38, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["pyproject", 11, 3], ["version", 14, 5], ["src", 15, 5], ["sourceRoot", 18, 3], ["build-system", 20, 3], ["pythonImportsCheck", 22, 3], ["checkPhase", 24, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qrcodegen",
       pyproject: true,
       version: nix.thunk(() => nix.attr(qrcodegen, "version")),
@@ -31,7 +30,7 @@ runHook postCheck
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(qrcodegen, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

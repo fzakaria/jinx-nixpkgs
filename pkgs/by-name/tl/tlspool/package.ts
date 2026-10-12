@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["rev-prefix", 56, 40]], [["updateScript", 56, 12]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["teams", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5], ["mainProgram", 70, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, "pkg-config": false, arpa2cm: false, arpa2common: false, db: false, gnutls: false, ldns: false, libkrb5: false, libtasn1: false, openldap: false, "p11-kit": false, quickder: false, unbound: false, openssl: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 56, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 56, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["teams", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5], ["mainProgram", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tlspool",
       version: "0.9.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arpa2",
           repo: "tlspool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,11 +53,11 @@ export default nix.lambda((args) => (() => {
         openssl,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "TLS daemon with PKCS #11 backend",
         homepage: "https://gitlab.com/arpa2/tlspool",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/arpa2/tlspool/-/blob/v${nix.sel(finalAttrs, "version")}/CHANGES`),

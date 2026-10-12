@@ -2,13 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mongodb.nix", [[["maintainers", 19, 8]], [["enable", 25, 22]], [["mongodb", 25, 14]], [["services", 25, 5]], [["mongodb", 24, 9]], [["name", 18, 3], ["meta", 19, 3], ["nodes", 24, 3], ["testScript", 28, 3]]]);
 const formals$1 = { args: { testName: false, config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mongodb.nix", [["maintainers", 19, 8]]);
-const pos$2 = nix.positions(here + "/mongodb.nix", [["enable", 25, 22]]);
-const pos$3 = nix.positions(here + "/mongodb.nix", [["mongodb", 25, 14]]);
-const pos$4 = nix.positions(here + "/mongodb.nix", [["services", 25, 5]]);
-const pos$5 = nix.positions(here + "/mongodb.nix", [["mongodb", 24, 9]]);
-const pos$6 = nix.positions(here + "/mongodb.nix", [["name", 18, 3], ["meta", 19, 3], ["nodes", 24, 3], ["testScript", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const testQuery = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScript"), "nixtest.js", "db.greetings.insertOne({ \"greeting\": \"hello\" });\nprint(db.greetings.findOne().greeting);\n"));
   const mongoshExe = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "mongosh"))));
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: testName,
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -32,12 +27,12 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       mongodb: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          mongodb: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          mongodb: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
       })),
     })),

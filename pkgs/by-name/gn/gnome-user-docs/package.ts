@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["packageName", 32, 7]], [["updateScript", 31, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["teams", 40, 5], ["platforms", 41, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["enableParallelBuilding", 28, 3], ["passthru", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gettext: false, gnome: false, itstool: false, libxml2: false, "yelp-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["teams", 40, 5], ["platforms", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["enableParallelBuilding", 28, 3], ["passthru", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const yelp_tools = nix.arg($, "yelp-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-user-docs",
       version: "50.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-user-docs/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-user-docs-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-zYdoQ1NDY1uy3P9pygORZxVTJGnEZd9IBMN63ZihNJc=",
         })))),
       nativeBuildInputs: nix.thunk(() => [gettext, itstool, libxml2, yelp_tools]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-user-docs" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-user-docs" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "User and system administration help for the GNOME desktop",
         homepage: "https://help.gnome.org/users/gnome-help/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-30")),

@@ -2,19 +2,18 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 10, 8]], [["pname", 6, 3], ["extraNativeBuildInputs", 8, 3], ["meta", 10, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 10, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 6, 3], ["extraNativeBuildInputs", 8, 3], ["meta", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const _7zz = nix.arg($, "_7zz");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kolf",
       extraNativeBuildInputs: nix.thunk(() => [_7zz]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kolf" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "kolf" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

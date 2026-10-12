@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["hash", 14, 5]], [["license", 20, 8]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["extraNativeBuildInputs", 17, 3], ["extraBuildInputs", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, fetchurl: false, "pkg-config": false, fuse3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 20, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["extraNativeBuildInputs", 17, 3], ["extraBuildInputs", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +16,18 @@ export default nix.lambda((args) => (() => {
       const pname = "kio-fuse";
       const version = "5.1.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kde/stable/kio-fuse/kio-fuse-${version}.tar.xz`),
           hash: "sha256-rfaqfOBVwJh+cWqTrAHzwKl8EoBCFEPNayHg5x12PRQ=",
         }))));
       const extraNativeBuildInputs = nix.thunk(() => [pkg_config]);
       const extraBuildInputs = nix.thunk(() => [fuse3]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

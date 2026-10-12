@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 52, 5], ["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["package", 95, 7]], [["version", 94, 11]], [["updateScript", 93, 5], ["tests", 94, 5]], [["changelog", 100, 5], ["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5], ["mainProgram", 106, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["nativeBuildInputs", 59, 3], ["dontBuild", 61, 3], ["installPhase", 63, 3], ["passthru", 92, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, dpkg: false, gawk: false, perl: false, wget: false, binutils: false, bzip2: false, coreutils: false, "util-linux": false, gnugrep: false, gnupg: false, gnutar: false, gnused: false, gzip: false, xz: false, zstd: false, makeWrapper: false, "nix-update-script": false, testers: false, debootstrap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 52, 5], ["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 95, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 94, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 93, 5], ["tests", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 100, 5], ["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5], ["mainProgram", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["nativeBuildInputs", 59, 3], ["dontBuild", 61, 3], ["installPhase", 63, 3], ["passthru", 92, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,11 +47,11 @@ export default nix.lambda((args) => (() => {
       zstd,
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "debootstrap",
       version: "1.0.140_bpo12+1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "installer-team",
           repo: "debootstrap",
@@ -93,15 +88,15 @@ rm -rf $d/debian
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: debootstrap })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: debootstrap })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://salsa.debian.org/installer-team/debootstrap/-/blob/${nix.sel(finalAttrs, "version")}/debian/changelog`),
         description: "Tool to create a Debian system in a chroot",
         homepage: "https://wiki.debian.org/Debootstrap",

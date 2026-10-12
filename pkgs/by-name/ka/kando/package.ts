@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 66, 5], ["NIX_CFLAGS_COMPILE", 68, 5], ["CI", 70, 5]], [["name", 127, 7], ["exec", 128, 7], ["icon", 129, 7], ["desktopName", 130, 7], ["genericName", 131, 7], ["comment", 132, 7], ["categories", 133, 7], ["mimeTypes", 134, 7]], [["changelog", 139, 5], ["description", 140, 5], ["homepage", 141, 5], ["license", 142, 5], ["mainProgram", 143, 5], ["maintainers", 144, 5], ["platforms", 145, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["npmDepsHash", 39, 3], ["npmFlags", 41, 3], ["makeCacheWritable", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["dontUseCmakeConfigure", 63, 3], ["env", 65, 3], ["postConfigure", 73, 3], ["preBuild", 95, 3], ["npmBuildScript", 99, 3], ["installPhase", 101, 3], ["desktopItems", 125, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, electron: false, nodejs: false, cmake: false, zip: false, makeWrapper: false, "wayland-scanner": false, copyDesktopItems: false, makeDesktopItem: false, libxkbcommon: false, libx11: false, libxtst: false, libxi: false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 66, 5], ["NIX_CFLAGS_COMPILE", 68, 5], ["CI", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 127, 7], ["exec", 128, 7], ["icon", 129, 7], ["desktopName", 130, 7], ["genericName", 131, 7], ["comment", 132, 7], ["categories", 133, 7], ["mimeTypes", 134, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 139, 5], ["description", 140, 5], ["homepage", 141, 5], ["license", 142, 5], ["mainProgram", 143, 5], ["maintainers", 144, 5], ["platforms", 145, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["npmDepsHash", 39, 3], ["npmFlags", 41, 3], ["makeCacheWritable", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["dontUseCmakeConfigure", 63, 3], ["env", 65, 3], ["postConfigure", 73, 3], ["preBuild", 95, 3], ["npmBuildScript", 99, 3], ["installPhase", 101, 3], ["desktopItems", 125, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const wayland = nix.arg($, "wayland");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kando",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kando-menu",
           repo: "kando",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libxkbcommon, libx11, libxtst, libxi, wayland]))),
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nodejs}/include/node`),
         CI: "1",
@@ -91,7 +87,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "kando",
             exec: "kando %U",
             icon: "kando",
@@ -103,7 +99,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/kando-menu/kando/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Cross-Platform Pie Menu",
         homepage: "https://github.com/kando-menu/kando",

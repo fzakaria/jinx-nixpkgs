@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 94, 7], ["desktopName", 95, 7], ["genericName", 96, 7], ["comment", 97, 7], ["exec", 98, 7], ["icon", 99, 7], ["startupWMClass", 100, 7], ["startupNotify", 101, 7], ["categories", 102, 7], ["keywords", 106, 7]], [["updateScript", 116, 12]], [["homepage", 119, 5], ["changelog", 120, 5], ["description", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["platforms", 124, 5], ["mainProgram", 125, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["propagatedBuildInputs", 29, 3], ["nativeBuildInputs", 41, 3], ["pythonRelaxDeps", 48, 3], ["preBuild", 56, 3], ["preInstall", 78, 3], ["dontWrapGApps", 86, 3], ["preFixup", 87, 3], ["desktopItems", 92, 3], ["passthru", 116, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, gtk4: false, libadwaita: false, python3Packages: false, "gobject-introspection": false, wrapGAppsHook4: false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 94, 7], ["desktopName", 95, 7], ["genericName", 96, 7], ["comment", 97, 7], ["exec", 98, 7], ["icon", 99, 7], ["startupWMClass", 100, 7], ["startupNotify", 101, 7], ["categories", 102, 7], ["keywords", 106, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 116, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 119, 5], ["changelog", 120, 5], ["description", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["platforms", 124, 5], ["mainProgram", 125, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["propagatedBuildInputs", 29, 3], ["nativeBuildInputs", 41, 3], ["pythonRelaxDeps", 48, 3], ["preBuild", 56, 3], ["preInstall", 78, 3], ["dontWrapGApps", 86, 3], ["preFixup", 87, 3], ["desktopItems", 92, 3], ["passthru", 116, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "boxflat",
       version: "1.35.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Lawstorant",
           repo: "boxflat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -83,7 +79,7 @@ EOF
             const categories = nix.thunk(() => ["Game", "Utility"]);
             const keywords = nix.thunk(() => ["game", "racing", "cars", "wheels", "moza"]);
             return {
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name,
               desktopName,
               genericName,
@@ -98,11 +94,11 @@ EOF
           })()))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/Lawstorant/boxflat",
         changelog: nix.thunk(() => nix.str`https://github.com/Lawstorant/boxflat/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Control your Moza gear settings",

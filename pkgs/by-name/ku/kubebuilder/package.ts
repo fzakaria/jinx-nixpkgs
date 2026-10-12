@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["command", 61, 5], ["package", 62, 5], ["version", 63, 5]], [["version", 60, 18]], [["tests", 60, 12]], [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["subPackages", 26, 3], ["allowGoReference", 31, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 38, 3], ["postInstall", 44, 3], ["passthru", 60, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, makeWrapper: false, git: false, go: false, gnumake: false, installShellFiles: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["command", 61, 5], ["package", 62, 5], ["version", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 60, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 60, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["subPackages", 26, 3], ["allowGoReference", 31, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 38, 3], ["postInstall", 44, 3], ["passthru", 60, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kubebuilder",
       version: "4.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kubernetes-sigs",
           repo: "kubebuilder",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +43,11 @@ installShellCompletion --cmd kubebuilder \\
   --zsh <($out/bin/kubebuilder completion zsh)
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               command: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/bin/kubebuilder version`),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +55,7 @@ installShellCompletion --cmd kubebuilder \\
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "SDK for building Kubernetes APIs using CRDs",
         mainProgram: "kubebuilder",
         homepage: "https://github.com/kubernetes-sigs/kubebuilder",

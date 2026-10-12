@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["name", 54, 7], ["url", 55, 7], ["hash", 56, 7]], [["rev-prefix", 118, 5], ["ignoredVersions", 119, 5]], [["updateScript", 117, 12]], [["homepage", 123, 5], ["description", 124, 5], ["changelog", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 131, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["outputs", 46, 3], ["patches", 51, 3], ["strictDeps", 60, 3], ["__structuredAttrs", 61, 3], ["postPatch", 65, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 76, 3], ["propagatedBuildInputs", 86, 3], ["postInstall", 95, 3], ["postFixup", 100, 3], ["cmakeFlags", 107, 3], ["passthru", 117, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, qt6: false, "pkg-config": false, eigen: false, libxt: false, libpcap: false, libusb1: false, llvmPackages: false, nanoflann: false, boost: false, flann: false, libpng: false, libtiff: false, qhull: false, vtk: false, gitUpdater: false, cudaSupport: true, cudaPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 54, 7], ["url", 55, 7], ["hash", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 118, 5], ["ignoredVersions", 119, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 117, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 123, 5], ["description", 124, 5], ["changelog", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 131, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["outputs", 46, 3], ["patches", 51, 3], ["strictDeps", 60, 3], ["__structuredAttrs", 61, 3], ["postPatch", 65, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 76, 3], ["propagatedBuildInputs", 86, 3], ["postInstall", 95, 3], ["postFixup", 100, 3], ["cmakeFlags", 107, 3], ["passthru", 117, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const cudaPackages = nix.arg($, "cudaPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pcl",
       version: "1.15.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PointCloudLibrary",
           repo: "pcl",
           tag: nix.thunk(() => nix.str`pcl-${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "boost-1.89.patch",
             url: "https://github.com/PointCloudLibrary/pcl/commit/99333442ac63971297b4cdd05fab9d2bd2ff57a4.patch",
             hash: "sha256-5vg8VjxoAfEOx9n7Tby1DXe1u4rn+zharkefUovLHv0=",
@@ -79,11 +74,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CUDA_ARCH_BIN", nix.thunk(() => nix.sel(cudaPackages, "flags", "cmakeCudaArchitecturesString")))),
         ])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "pcl-", ignoredVersions: "rc" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "pcl-", ignoredVersions: "rc" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://pointclouds.org/",
         description: "Open project for 2D/3D image and point cloud processing",
         changelog: nix.thunk(() => nix.str`https://github.com/PointCloudLibrary/pcl/blob/pcl-${nix.sel(finalAttrs, "version")}/CHANGES.md`),

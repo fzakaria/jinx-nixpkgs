@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 36, 3], ["nativeCheckInputs", 43, 3], ["disabledTestPaths", 56, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, botocore: false, bottle: false, buildPythonPackage: false, django: false, fetchFromGitHub: false, httpx: false, jsonpickle: false, pymysql: false, "pytest-asyncio_0": false, pynamodb: false, pytestCheckHook: false, requests: false, setuptools: false, sqlalchemy: false, webtest: false, wrapt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 36, 3], ["nativeCheckInputs", 43, 3], ["disabledTestPaths", 56, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.15.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aws",
           repo: "aws-xray-sdk-python",
           tag: version,
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["aws_xray_sdk"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "AWS X-Ray SDK for the Python programming language",
         homepage: "https://github.com/aws/aws-xray-sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/aws-xray-sdk-python/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

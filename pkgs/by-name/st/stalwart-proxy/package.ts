@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["__structuredAttrs", 16, 3], ["__darwinAllowLocalNetworking", 17, 3], ["cargoHash", 18, 3], ["nativeCheckInputs", 20, 3], ["checkFlags", 23, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, cacert: false, fetchFromGitHub: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["__structuredAttrs", 16, 3], ["__darwinAllowLocalNetworking", 17, 3], ["cargoHash", 18, 3], ["nativeCheckInputs", 20, 3], ["checkFlags", 23, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "proxy",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stalwartlabs",
           repo: "proxy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
           "tests::sql_store::sql_store_upsert_and_remove",
         ]), (test) => nix.str`--skip=${test}`)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Multi-protocol e-mail migration proxy",
         longDescription: " The migration proxy sits in front of one or more mail backends and decides, on a per-account basis, which backend a given connection belongs to. It terminates IMAP, POP3, ManageSieve, SMTP submission, SMTP/LMTP and HTTP (JMAP) sessions, identifies the account behind each connection from the credentials the client already presents, looks up the destination that account is assigned to, replays the authentication to that backend, and bridges the session. Because the routing decision is made from the existing credentials, no client reconfiguration is required: users keep the same server name, ports and passwords while the proxy routes them to the correct system.\n\nIt is built for three scenarios: migrating from legacy servers (Dovecot, Cyrus and other IMAP/POP3/SMTP servers) onto Stalwart one mailbox at a time, migrating between Stalwart versions by running an old and a new deployment side by side, and acting as a cache-locality router in front of a Stalwart cluster so each account is consistently pinned to the same node.\n",
         homepage: "https://github.com/stalwartlabs/proxy",

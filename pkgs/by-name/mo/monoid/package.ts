@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["url", 31, 7], ["hash", 32, 7]], [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["platforms", 58, 5], ["maintainers", 59, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["patches", 28, 3], ["buildPhase", 36, 3], ["installPhase", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["platforms", 58, 5], ["maintainers", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["patches", 28, 3], ["buildPhase", 36, 3], ["installPhase", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "monoid",
       version: "2020-10-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "larsenwork",
           repo: "monoid",
           rev: "0673c8d6728df093faee9f183b6dfa62939df8c0",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/fonts-team/fonts-monoid/-/raw/master/debian/patches/0002-fontbuilder.py-Fix-FTBFS-with-non-int-bearing-value.patch",
             hash: "sha256-IG3KXvOFZfi8dhVuKDYo0onl6ruEe24aFHBgSoMKf9c=",
           })))),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "local _d=\"\"\nlocal _l=\"\"\nfor _d in {Monoisome,Source}/*.sfdir; do\n  _l=\"${_d##*/}.log\"\n  echo \"Building $_d (log at $_l)\"\n  python Scripts/build.py 1 0 $_d > $_l\ndone\n",
       installPhase: "install -m444 -Dt $out/share/fonts/truetype _release/*\ninstall -m444 -Dt $out/share/doc            Readme.md\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://larsenwork.com/monoid",
         description: "Customisable coding font with alternates, ligatures and contextual positioning",
         license: nix.thunk(() => [

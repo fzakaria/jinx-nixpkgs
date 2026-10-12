@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 23, 5], ["sha256", 27, 5]], [["homepage", 67, 5], ["description", 68, 5], ["longDescription", 69, 5], ["license", 89, 5], ["maintainers", 93, 5], ["platforms", 94, 5]], [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["unpackPhase", 41, 3], ["preConfigure", 52, 3], ["postInstall", 57, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, rpmextract: false, autoreconfHook: false, file: false, libjpeg: false, cups: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 23, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["longDescription", 69, 5], ["license", 89, 5], ["maintainers", 93, 5], ["platforms", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["unpackPhase", 41, 3], ["preConfigure", 52, 3], ["postInstall", 57, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const version = "1.0.1";
   const filterVersion = "1.0.2";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "epson_201207w",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             "https://download3.ebz.epson.net/dsc/f/03/00/15/64/87/25d34a13841e5e95d80266e6fd8dfcdf67c95634/epson-inkjet-printer-201207w-1.0.1-1.src.rpm",
             "https://web.archive.org/web/https://download3.ebz.epson.net/dsc/f/03/00/15/64/87/25d34a13841e5e95d80266e6fd8dfcdf67c95634/epson-inkjet-printer-201207w-1.0.1-1.src.rpm",
@@ -51,7 +49,7 @@ cp -a Manual.txt $out/doc/
 cp -a README $out/doc/README.driver
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.openprinting.org/driver/epson-201207w",
         description: "Epson printer driver (L110, L210, L300, L350, L355, L550, L555)",
         longDescription: "This software is a filter program used with the Common UNIX Printing\nSystem (CUPS) under Linux. It supplies high quality printing with\nSeiko Epson Color Ink Jet Printers.\n\nList of printers supported by this package:\n   Epson L110 Series\n   Epson L210 Series\n   Epson L300 Series\n   Epson L350 Series\n   Epson L355 Series\n   Epson L550 Series\n   Epson L555 Series\n\nTo use the driver adjust your configuration.nix file:\n  services.printing = {\n    enable = true;\n    drivers = [ pkgs.epson_201207w ];\n  };\n",

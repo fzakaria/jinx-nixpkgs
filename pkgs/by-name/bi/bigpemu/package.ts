@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 7], ["hash", 19, 7]], [["pname", 13, 5], ["version", 14, 5], ["src", 15, 5], ["installPhase", 22, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 46, 5]], [["unwrapped", 50, 5], ["updateScript", 51, 5]], [["pname", 30, 3], ["version", 31, 3], ["targetPkgs", 32, 3], ["meta", 38, 3], ["runScript", 48, 3], ["passthru", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, SDL2: false, glui: false, libGLU: false, libGL: false, buildFHSEnv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 5], ["version", 14, 5], ["src", 15, 5], ["installPhase", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["unwrapped", 50, 5], ["updateScript", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["targetPkgs", 32, 3], ["meta", 38, 3], ["runScript", 48, 3], ["passthru", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,20 +19,20 @@ export default nix.lambda((args) => (() => {
       const pname = "BigPEmu";
       const version = "1.221";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.richwhitehouse.com/jaguar/builds/BigPEmu_Linux64_v${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}.tar.gz`),
           hash: "sha256-wP9hDyHV9VwBxATvmR2J92mls7iTyFcMAzvO9EEh7lc=",
         }))));
       const installPhase = "mkdir -p $out/bin\ntar -xvf $src -C $out/bin --strip-components=1\n";
-      return { [nix.POS]: pos$2, pname, version, src, installPhase };
+      return { [nix.POS]: $pos[1], pname, version, src, installPhase };
     })())));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bigpemu",
       version: nix.thunk(() => nix.sel(bigpemu_unwrapped, "version")),
       targetPkgs: (pkgs) => [glui, libGL, libGLU, SDL2],
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Atari Jaguar Emulator (BigPEmu) by Richard Whitehouse",
         homepage: "https://www.richwhitehouse.com/jaguar/index.php",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
       })),
       runScript: nix.thunk(() => nix.str`${bigpemu_unwrapped}/bin/bigpemu`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         unwrapped: bigpemu_unwrapped,
         updateScript: nix.path(here, "./update.sh"),
       })),

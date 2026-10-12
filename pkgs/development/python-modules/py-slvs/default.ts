@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["version", 19, 13], ["hash", 20, 5]], [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 23, 3], ["pyproject", 32, 3], ["nativeBuildInputs", 34, 3], ["build-system", 38, 3], ["dontUseCmakeConfigure", 45, 3], ["pythonImportsCheck", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch: false, swig: false, cmake: false, ninja: false, setuptools: false, "scikit-build": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 13], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 23, 3], ["pyproject", 32, 3], ["nativeBuildInputs", 34, 3], ["build-system", 38, 3], ["dontUseCmakeConfigure", 45, 3], ["pythonImportsCheck", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +20,14 @@ export default nix.lambda((args) => (() => {
       const pname = "py-slvs";
       const version = "1.0.6";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "py_slvs",
           version: version,
           hash: "sha256-U6T/aXy0JTC1ptL5oBmch0ytSPmIkRA8XOi31NpArnI=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "cmake-4.patch",
             url: "https://github.com/realthunder/slvs_py/compare/ab95814...ad0e1f7.patch",
             hash: "sha256-LqDDx7uWq5VOkbE/aRu1JAau/DVfr40KK+L8PbBeGoU=",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const dontUseCmakeConfigure = true;
       const pythonImportsCheck = nix.thunk(() => ["py_slvs"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python binding of SOLVESPACE geometry constraint solver",
         homepage: "https://github.com/realthunder/slvs_py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

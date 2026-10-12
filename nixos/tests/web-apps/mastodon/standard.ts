@@ -2,54 +2,24 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/standard.nix", [[["buildInputs", 6, 43]], [["maintainers", 19, 10]], [["memorySize", 30, 26]], [["address", 36, 19], ["prefixLength", 37, 19]], [["addresses", 34, 20]], [["ipv4", 34, 15]], [["eth1", 33, 24]], [["allowedTCPPorts", 42, 22]], [["interfaces", 33, 13], ["extraHosts", 41, 13], ["firewall", 42, 13]], [["certificateFiles", 49, 17]], [["pki", 49, 13]], [["createLocally", 59, 15], ["fromAddress", 60, 15]], [["EMAIL_DOMAIN_ALLOWLIST", 63, 15]], [["enable", 53, 13], ["configureNginx", 54, 13], ["localDomain", 55, 13], ["enableUnixSocket", 56, 13], ["streamingProcesses", 57, 13], ["smtp", 58, 13], ["extraConfig", 62, 13]], [["enableACME", 69, 15], ["sslCertificate", 70, 15], ["sslCertificateKey", 71, 15]], [["mastodon.local", 68, 26]], [["virtualHosts", 68, 13]], [["mastodon", 52, 20], ["nginx", 67, 20]], [["virtualisation", 30, 11], ["networking", 32, 11], ["security", 48, 11], ["services", 52, 11]], [["systemPackages", 79, 23]], [["address", 84, 19], ["prefixLength", 85, 19]], [["addresses", 82, 20]], [["ipv4", 82, 15]], [["eth1", 81, 24]], [["interfaces", 81, 13], ["extraHosts", 89, 13]], [["certificateFiles", 93, 17]], [["pki", 93, 13]], [["environment", 79, 11], ["networking", 80, 11], ["security", 92, 11]], [["server", 26, 7], ["client", 76, 7]], [["pkgs", 99, 15], ["extraInit", 100, 7]], [["name", 18, 5], ["meta", 19, 5], ["nodes", 25, 5], ["testScript", 98, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/standard.nix", [["buildInputs", 6, 43]]);
-const pos$2 = nix.positions(here + "/standard.nix", [["maintainers", 19, 10]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/standard.nix", [["memorySize", 30, 26]]);
-const pos$4 = nix.positions(here + "/standard.nix", [["address", 36, 19], ["prefixLength", 37, 19]]);
-const pos$5 = nix.positions(here + "/standard.nix", [["addresses", 34, 20]]);
-const pos$6 = nix.positions(here + "/standard.nix", [["ipv4", 34, 15]]);
-const pos$7 = nix.positions(here + "/standard.nix", [["eth1", 33, 24]]);
-const pos$8 = nix.positions(here + "/standard.nix", [["allowedTCPPorts", 42, 22]]);
-const pos$9 = nix.positions(here + "/standard.nix", [["interfaces", 33, 13], ["extraHosts", 41, 13], ["firewall", 42, 13]]);
-const pos$10 = nix.positions(here + "/standard.nix", [["certificateFiles", 49, 17]]);
-const pos$11 = nix.positions(here + "/standard.nix", [["pki", 49, 13]]);
-const pos$12 = nix.positions(here + "/standard.nix", [["createLocally", 59, 15], ["fromAddress", 60, 15]]);
-const pos$13 = nix.positions(here + "/standard.nix", [["EMAIL_DOMAIN_ALLOWLIST", 63, 15]]);
-const pos$14 = nix.positions(here + "/standard.nix", [["enable", 53, 13], ["configureNginx", 54, 13], ["localDomain", 55, 13], ["enableUnixSocket", 56, 13], ["streamingProcesses", 57, 13], ["smtp", 58, 13], ["extraConfig", 62, 13]]);
-const pos$15 = nix.positions(here + "/standard.nix", [["enableACME", 69, 15], ["sslCertificate", 70, 15], ["sslCertificateKey", 71, 15]]);
-const pos$16 = nix.positions(here + "/standard.nix", [["mastodon.local", 68, 26]]);
-const pos$17 = nix.positions(here + "/standard.nix", [["virtualHosts", 68, 13]]);
-const pos$18 = nix.positions(here + "/standard.nix", [["mastodon", 52, 20], ["nginx", 67, 20]]);
-const pos$19 = nix.positions(here + "/standard.nix", [["virtualisation", 30, 11], ["networking", 32, 11], ["security", 48, 11], ["services", 52, 11]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$20 = nix.positions(here + "/standard.nix", [["systemPackages", 79, 23]]);
-const pos$21 = nix.positions(here + "/standard.nix", [["address", 84, 19], ["prefixLength", 85, 19]]);
-const pos$22 = nix.positions(here + "/standard.nix", [["addresses", 82, 20]]);
-const pos$23 = nix.positions(here + "/standard.nix", [["ipv4", 82, 15]]);
-const pos$24 = nix.positions(here + "/standard.nix", [["eth1", 81, 24]]);
-const pos$25 = nix.positions(here + "/standard.nix", [["interfaces", 81, 13], ["extraHosts", 89, 13]]);
-const pos$26 = nix.positions(here + "/standard.nix", [["certificateFiles", 93, 17]]);
-const pos$27 = nix.positions(here + "/standard.nix", [["pki", 93, 13]]);
-const pos$28 = nix.positions(here + "/standard.nix", [["environment", 79, 11], ["networking", 80, 11], ["security", 92, 11]]);
-const pos$29 = nix.positions(here + "/standard.nix", [["server", 26, 7], ["client", 76, 7]]);
-const pos$30 = nix.positions(here + "/standard.nix", [["pkgs", 99, 15], ["extraInit", 100, 7]]);
-const pos$31 = nix.positions(here + "/standard.nix", [["name", 18, 5], ["meta", 19, 5], ["nodes", 25, 5], ["testScript", 98, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     const cert = (pkgs_1) => nix.app(nix.sel(pkgs_1, "runCommand"), "selfSignedCerts", nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "openssl"))]),
       })), "openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -nodes -subj '/CN=mastodon.local' -days 36500\nmkdir -p $out\ncp key.pem cert.pem $out\n");
     const hosts = "192.168.2.101 mastodon.local\n";
     return {
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       name: "mastodon-standard",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
           return [
@@ -60,59 +30,59 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..
         })()),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$19,
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, memorySize: 2048n })),
+            [nix.POS]: $pos[18],
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[2], memorySize: 2048n })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$4, address: "192.168.2.101", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[3], address: "192.168.2.101", prefixLength: 24n })),
                     ]),
                   })),
                 })),
               })),
               extraHosts: hosts,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$8, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[7], allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
             })),
             security: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               pki: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${nix.app(cert, pkgs_1)}/cert.pem`)]),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               mastodon: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 enable: true,
                 configureNginx: true,
                 localDomain: "mastodon.local",
                 enableUnixSocket: false,
                 streamingProcesses: 2n,
                 smtp: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   createLocally: false,
                   fromAddress: "mastodon@mastodon.local",
                 })),
-                extraConfig: nix.thunk(() => ({ [nix.POS]: pos$13, EMAIL_DOMAIN_ALLOWLIST: "example.com" })),
+                extraConfig: nix.thunk(() => ({ [nix.POS]: $pos[12], EMAIL_DOMAIN_ALLOWLIST: "example.com" })),
               })),
               nginx: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 virtualHosts: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   "mastodon.local": nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     enableACME: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkForce"), false)),
                     sslCertificate: nix.thunk(() => nix.str`${nix.app(cert, pkgs_1)}/cert.pem`),
                     sslCertificateKey: nix.thunk(() => nix.str`${nix.app(cert, pkgs_1)}/key.pem`),
@@ -126,21 +96,21 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..
           const $_1 = nix.formals(args_1, formals$3);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
+                    [nix.POS]: $pos[21],
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$21, address: "192.168.2.102", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[20], address: "192.168.2.102", prefixLength: 24n })),
                     ]),
                   })),
                 })),
@@ -148,9 +118,9 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..
               extraHosts: hosts,
             })),
             security: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               pki: nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${nix.app(cert, pkgs_1)}/cert.pem`)]),
               })),
             })),
@@ -158,7 +128,7 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..
         })(), formals$3),
       })),
       testScript: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./script.nix")), nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           pkgs: pkgs,
           extraInit: "server.wait_for_unit(\"nginx.service\")\nserver.wait_for_open_port(443)\nserver.wait_for_unit(\"redis-mastodon.service\")\nserver.wait_for_unit(\"postgresql.target\")\nserver.wait_for_open_port(5432)\n",
         })))),

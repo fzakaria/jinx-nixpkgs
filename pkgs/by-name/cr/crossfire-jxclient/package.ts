@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 21, 5]], [["url", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["sounds", 24, 3], ["nativeBuildInputs", 30, 3], ["patchPhase", 37, 3], ["buildPhase", 46, 3], ["installPhase", 52, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, makeWrapper: false, gradle: false, jre: false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["sounds", 24, 3], ["nativeBuildInputs", 30, 3], ["patchPhase", 37, 3], ["buildPhase", 46, 3], ["installPhase", 52, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const pname = "crossfire-jxclient";
       const version = "2025-01";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.code.sf.net/p/crossfire/jxclient",
           rev: "01471f0fdf7a5fd8b4ea6d5b49bde7edead5c505",
           hash: "sha256-NGBj3NUBZIfS9J3FHqER8lblPuFEEH9dsTKFBqioiik=",
           fetchSubmodules: false,
         }))));
       const sounds = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://git.code.sf.net/p/crossfire/crossfire-sounds",
           rev: "b53f436e1d1cca098c641f34c46f15c828ea9c8f",
           hash: "sha256-zA+SaQAaNxNroHESCSonDiUsCuCzjZp+WZNzvsJHNXY=",
@@ -55,7 +52,7 @@ makeWrapper ${jre}/bin/java $out/bin/crossfire-jxclient \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Java-based fullscreen client for the Crossfire free MMORPG",
         homepage: "http://crossfire.real-time.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -63,7 +60,7 @@ runHook postInstall
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

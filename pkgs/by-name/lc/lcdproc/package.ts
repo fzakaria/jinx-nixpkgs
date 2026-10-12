@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["name", 36, 7], ["url", 37, 7], ["sha256", 38, 7]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5], ["broken", 91, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 43, 3], ["configureFlags", 48, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 63, 3], ["enableParallelBuilding", 71, 3], ["postFixup", 73, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, makeWrapper: false, "pkg-config": false, doxygen: false, freetype: false, libx11: false, libftdi: false, "libusb-compat-0_1": false, libusb1: false, ncurses: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 36, 7], ["url", 37, 7], ["sha256", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5], ["broken", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 43, 3], ["configureFlags", 48, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 63, 3], ["enableParallelBuilding", 71, 3], ["postFixup", 73, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lcdproc",
       version: "0.5.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lcdproc",
           repo: "lcdproc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./hardcode_mtab.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fno-common.patch",
             url: "https://github.com/lcdproc/lcdproc/commit/fda5302878692da933dc03cd011f8ddffefa07a4.patch",
             sha256: "0ld6p1r4rjsnjr63afw3lp5lx25jxjs07lsp9yc3q96r91r835cy",
@@ -60,7 +57,7 @@ substituteInPlace $out/etc/LCDd.conf \\
   --replace server/drivers/ $out/lib/lcdproc/
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Client/server suite for controlling a wide variety of LCD devices",
         homepage: "https://lcdproc.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

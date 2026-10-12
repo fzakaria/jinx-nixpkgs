@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["stdenv", 28, 7], ["lib", 29, 7], ["requireFile", 30, 7], ["writeText", 31, 7], ["fetchFromGitHub", 32, 7], ["haskellPackages", 33, 7]], [["name", 42, 11], ["url", 43, 11], ["sha256", 44, 19]], [["url", 60, 5], ["sha256", 61, 5]], [["url", 65, 5], ["sha256", 66, 5]], [["url", 70, 5], ["sha256", 71, 5]], [["url", 75, 5], ["sha256", 76, 5]], [["description", 137, 5], ["mainProgram", 138, 5], ["longDescription", 139, 5], ["homepage", 147, 5], ["license", 148, 5], ["maintainers", 149, 5], ["platforms", 153, 5]], [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["content", 64, 3], ["voice", 69, 3], ["music", 74, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 80, 3], ["postUnpack", 90, 3], ["postPatch", 106, 3], ["configurePhase", 115, 3], ["buildPhase", 127, 3], ["installPhase", 131, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchFromGitHub: false, "pkg-config": false, libGLU: false, libGL: false, SDL2: false, libpng: false, libvorbis: false, libogg: false, libmikmod: false, use3DOVideos: true, requireFile: true, writeText: true, haskellPackages: true, useRemixPacks: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["stdenv", 28, 7], ["lib", 29, 7], ["requireFile", 30, 7], ["writeText", 31, 7], ["fetchFromGitHub", 32, 7], ["haskellPackages", 33, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 42, 11], ["url", 43, 11], ["sha256", 44, 19]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 60, 5], ["sha256", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 65, 5], ["sha256", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 70, 5], ["sha256", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 75, 5], ["sha256", 76, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 137, 5], ["mainProgram", 138, 5], ["longDescription", 139, 5], ["homepage", 147, 5], ["license", 148, 5], ["maintainers", 149, 5], ["platforms", 153, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["content", 64, 3], ["voice", 69, 3], ["music", 74, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 80, 3], ["postUnpack", 90, 3], ["postPatch", 106, 3], ["configurePhase", 115, 3], ["buildPhase", 127, 3], ["installPhase", 131, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const useRemixPacks = nix.argOr($, "useRemixPacks", () => false);
   nix.assert_((!nix.asBool(use3DOVideos) || nix.asBool((nix.asBool((nix.asBool(!nix.eq(requireFile, null)) && nix.asBool(!nix.eq(writeText, null)))) && nix.asBool(!nix.eq(haskellPackages, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/uq/uqm/package.nix:23:1");
   const videos = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./3dovideo.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       stdenv: stdenv,
       lib: lib,
       requireFile: requireFile,
@@ -45,7 +38,7 @@ export default nix.lambda((args) => (() => {
         const name = nix.thunk(() => nix.str`uqm-remix-disc${nix.builtins.toString(num)}.uqm`);
         const url = nix.thunk(() => nix.str`mirror://sourceforge/sc2/${name}`);
         const sha256_1 = sha256;
-        return { [nix.POS]: pos$2, name, url, sha256: sha256_1 };
+        return { [nix.POS]: $pos[1], name, url, sha256: sha256_1 };
       })())), nix.thunk(() => [
       "1s470i6hm53l214f2rkrbp111q4jyvnxbzdziqg32ffr8m3nk5xn",
       "1pmsq65k8gk4jcbyk3qjgi9yqlm0dlaimc2r8hz2fc9f2124gfvz",
@@ -53,26 +46,26 @@ export default nix.lambda((args) => (() => {
       "1l46k9aqlcp7d3fjkjb3n05cjfkxx8rjlypgqy0jmdx529vikj54",
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "uqm",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`mirror://sourceforge/sc2/uqm-${nix.sel(finalAttrs, "version")}-src.tgz`),
           sha256: "JPL325z3+vU7lfniWA5vWWIFqY7QwzXP6DTGR4WtT1o=",
         })))),
       content: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`mirror://sourceforge/sc2/uqm-${nix.sel(finalAttrs, "version")}-content.uqm`),
           sha256: "d9dawl5vt1WjPEujs4p7e8Qfy8AolokbDMmskhS3Lu8=",
         })))),
       voice: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`mirror://sourceforge/sc2/uqm-${nix.sel(finalAttrs, "version")}-voice.uqm`),
           sha256: "ntv1HXfYtTM5nF86+1STFKghDXqrccosUbTySDIzekU=",
         })))),
       music: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: nix.thunk(() => nix.str`mirror://sourceforge/sc2/uqm-${nix.sel(finalAttrs, "version")}-3domusic.uqm`),
           sha256: "RM087H6VabQRettNd/FSKJCXJWYmc5GuCWMUhdIx2Lk=",
         })))),
@@ -91,7 +84,7 @@ ln -s "$voice" "uqm-${nix.sel(finalAttrs, "version")}/content/addons/uqm-${nix.s
       buildPhase: "./build.sh uqm\n",
       installPhase: "./build.sh uqm install\nsed -i $out/bin/uqm -e \"s%/usr/local/games/%$out%g\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Remake of Star Control II",
         mainProgram: "uqm",
         longDescription: "The goals for the The Ur-Quan Masters project are:\n  - to bring Star Control II to modern platforms, thereby making a lot of\n    people happy\n  - to make game translations easy, thereby making even more people happy\n  - to adapt the code so that people can more easily make their own\n    spin-offs, thereby making zillions more people happy!\n",

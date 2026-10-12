@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["tagPrefix", 69, 5]], [["updateScript", 68, 12]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["teams", 77, 5]], [["pname", 24, 3], ["version", 25, 3], ["minimalOCamlVersion", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["dunePackages", 37, 3], ["nativeBuildInputs", 43, 3], ["propagatedBuildInputs", 48, 3], ["doCheck", 58, 3], ["checkInputs", 59, 3], ["passthru", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromCodeberg: false, unstableGitUpdater: false, zig: false, ctypes: false, fmt: false, base32: false, monocypher: false, js_of_ocaml: false, crunch: false, lwt: false, cborl: false, benchmark: false, bos: false, "decoders-yojson": false, alcotest: false, qcheck: false, "qcheck-alcotest": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tagPrefix", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 68, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["teams", 77, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["minimalOCamlVersion", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["dunePackages", 37, 3], ["nativeBuildInputs", 43, 3], ["propagatedBuildInputs", 48, 3], ["doCheck", 58, 3], ["checkInputs", 59, 3], ["passthru", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const qcheck = nix.arg($, "qcheck");
   const qcheck_alcotest = nix.arg($, "qcheck-alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "eris",
       version: "1.0.0-unstable-2026-09-30",
       minimalOCamlVersion: "4.14",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eris",
           repo: "ocaml-eris",
           rev: "142882564bb587375e690182e48cb438e207173a",
@@ -49,11 +45,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [benchmark, bos, decoders_yojson, alcotest, qcheck, qcheck_alcotest]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "OCaml implementation of the Encoding for Robust Immutable Storage (ERIS)",
         homepage: "https://codeberg.org/eris/ocaml-eris",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

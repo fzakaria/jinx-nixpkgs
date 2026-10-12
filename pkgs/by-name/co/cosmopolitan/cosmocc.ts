@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cosmocc.nix", [[["url", 11, 5], ["sha256", 12, 5]], [["nativeBuildInputs", 24, 38]], [["cc", 24, 11]], [["tests", 23, 18]], [["description", 31, 11]], [["pname", 18, 9], ["version", 19, 32], ["nativeBuildInputs", 21, 9], ["passthru", 23, 9], ["meta", 30, 9]]]);
 const formals$1 = { args: { runCommand: false, cosmopolitan: false, unzip: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cosmocc.nix", [["url", 11, 5], ["sha256", 12, 5]]);
-const pos$2 = nix.positions(here + "/cosmocc.nix", [["nativeBuildInputs", 24, 38]]);
-const pos$3 = nix.positions(here + "/cosmocc.nix", [["cc", 24, 11]]);
-const pos$4 = nix.positions(here + "/cosmocc.nix", [["tests", 23, 18]]);
-const pos$5 = nix.positions(here + "/cosmocc.nix", [["description", 31, 11]]);
-const pos$6 = nix.positions(here + "/cosmocc.nix", [["pname", 18, 9], ["version", 19, 32], ["nativeBuildInputs", 21, 9], ["passthru", 23, 9], ["meta", 30, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,25 +13,25 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "3.9.2";
   const cosmocc_zip = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/jart/cosmopolitan/releases/download/${version}/cosmocc-${version}.zip`),
       sha256: "sha256-9P8Tr2X80wnz8c/QQnWZb7f3KkiXcmYoqMnPcy6FAZM=",
     }))));
   const cosmocc = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`cosmocc-${nix.sel(cosmopolitan, "version")}`), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cosmocc",
       version: nix.thunk(() => nix.attr(cosmopolitan, "version")),
       nativeBuildInputs: nix.thunk(() => [unzip]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          cc: nix.thunk(() => nix.app(runCommand, "c-test", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [unzip]) })), nix.thunk(() => nix.str`${cosmocc}/bin/cosmocc ${nix.path(here, "./hello.c")}
+          [nix.POS]: $pos[2],
+          cc: nix.thunk(() => nix.app(runCommand, "c-test", nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [unzip]) })), nix.thunk(() => nix.str`${cosmocc}/bin/cosmocc ${nix.path(here, "./hello.c")}
 ./a.out > $out
 `))),
         })),
       })),
-      meta: nix.thunk(() => nix.update(nix.sel(cosmopolitan, "meta"), { [nix.POS]: pos$5, description: "Compilers for Cosmopolitan C/C++ programs" })),
+      meta: nix.thunk(() => nix.update(nix.sel(cosmopolitan, "meta"), { [nix.POS]: $pos[4], description: "Compilers for Cosmopolitan C/C++ programs" })),
     })), nix.thunk(() => nix.str`mkdir -p $out
 unzip -qo ${cosmocc_zip} -d $out
 `)));

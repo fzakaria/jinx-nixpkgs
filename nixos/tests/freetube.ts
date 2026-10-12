@@ -2,47 +2,31 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/freetube.nix", [[["program", 7, 23]], [["cage", 7, 18]], [["memorySize", 8, 24]], [["NIXOS_OZONE_WL", 9, 31], ["DISPLAY", 10, 31]], [["variables", 9, 21]], [["imports", 6, 9], ["services", 7, 9], ["virtualisation", 8, 9], ["environment", 9, 9]], [["memorySize", 19, 24]], [["sessionCommands", 21, 41]], [["enable", 20, 26], ["displayManager", 21, 26]], [["xserver", 20, 18]], [["user", 24, 42]], [["auto", 24, 37]], [["displayManager", 24, 22]], [["imports", 15, 9], ["virtualisation", 19, 9], ["services", 20, 9], ["test-support", 24, 9]], [["wayland", 3, 5], ["xorg", 12, 5]], [["maintainers", 37, 14], ["broken", 39, 14]], [["name", 33, 17], ["nodes", 34, 9], ["meta", 37, 9], ["enableOCR", 40, 9], ["testScript", 42, 9]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/freetube.nix", [["program", 7, 23]]);
-const pos$2 = nix.positions(here + "/freetube.nix", [["cage", 7, 18]]);
-const pos$3 = nix.positions(here + "/freetube.nix", [["memorySize", 8, 24]]);
-const pos$4 = nix.positions(here + "/freetube.nix", [["NIXOS_OZONE_WL", 9, 31], ["DISPLAY", 10, 31]]);
-const pos$5 = nix.positions(here + "/freetube.nix", [["variables", 9, 21]]);
-const pos$6 = nix.positions(here + "/freetube.nix", [["imports", 6, 9], ["services", 7, 9], ["virtualisation", 8, 9], ["environment", 9, 9]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/freetube.nix", [["memorySize", 19, 24]]);
-const pos$8 = nix.positions(here + "/freetube.nix", [["sessionCommands", 21, 41]]);
-const pos$9 = nix.positions(here + "/freetube.nix", [["enable", 20, 26], ["displayManager", 21, 26]]);
-const pos$10 = nix.positions(here + "/freetube.nix", [["xserver", 20, 18]]);
-const pos$11 = nix.positions(here + "/freetube.nix", [["user", 24, 42]]);
-const pos$12 = nix.positions(here + "/freetube.nix", [["auto", 24, 37]]);
-const pos$13 = nix.positions(here + "/freetube.nix", [["displayManager", 24, 22]]);
-const pos$14 = nix.positions(here + "/freetube.nix", [["imports", 15, 9], ["virtualisation", 19, 9], ["services", 20, 9], ["test-support", 24, 9]]);
-const pos$15 = nix.positions(here + "/freetube.nix", [["wayland", 3, 5], ["xorg", 12, 5]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/freetube.nix", [["maintainers", 37, 14], ["broken", 39, 14]]);
-const pos$17 = nix.positions(here + "/freetube.nix", [["name", 33, 17], ["nodes", 34, 9], ["meta", 37, 9], ["enableOCR", 40, 9], ["testScript", 42, 9]]);
 
 export default nix.thunk(() => (() => {
   const tests = nix.thunk(() => ({
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     wayland: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         imports: nix.thunk(() => [nix.path(here, "./common/wayland-cage.nix")]),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           cage: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             program: nix.thunk(() => nix.str`${nix.sel(pkgs, "freetube")}/bin/freetube`),
           })),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, memorySize: 2047n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[2], memorySize: 2047n })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          variables: nix.thunk(() => ({ [nix.POS]: pos$4, NIXOS_OZONE_WL: "1", DISPLAY: "do not use" })),
+          [nix.POS]: $pos[4],
+          variables: nix.thunk(() => ({ [nix.POS]: $pos[3], NIXOS_OZONE_WL: "1", DISPLAY: "do not use" })),
         })),
       };
     })(), formals$1),
@@ -50,29 +34,29 @@ export default nix.thunk(() => (() => {
       const $ = nix.formals(args, formals$2);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         imports: nix.thunk(() => [
           nix.path(here, "./common/user-account.nix"),
           nix.path(here, "./common/x11.nix"),
         ]),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, memorySize: 2047n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[6], memorySize: 2047n })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           xserver: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             enable: true,
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               sessionCommands: nix.thunk(() => nix.str`${nix.sel(pkgs, "freetube")}/bin/freetube
 `),
             })),
           })),
         })),
         "test-support": nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           displayManager: nix.thunk(() => ({
-            [nix.POS]: pos$12,
-            auto: nix.thunk(() => ({ [nix.POS]: pos$11, user: "alice" })),
+            [nix.POS]: $pos[11],
+            auto: nix.thunk(() => ({ [nix.POS]: $pos[10], user: "alice" })),
           })),
         })),
       };
@@ -82,11 +66,11 @@ export default nix.thunk(() => (() => {
       const $ = nix.formals(args, formals$3);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         name: name,
         nodes: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${name}`, machine]])),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "kirillrdy"))];

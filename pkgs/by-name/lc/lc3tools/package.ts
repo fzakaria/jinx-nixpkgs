@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["LIBS", 47, 5], ["INCLUDES", 48, 5]], [["longDescription", 62, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5], ["platforms", 71, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["env", 44, 3], ["prefixKey", 52, 3], ["postInstall", 54, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, flex: false, tk: false, ncurses: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBS", 47, 5], ["INCLUDES", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["longDescription", 62, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5], ["platforms", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["env", 44, 3], ["prefixKey", 52, 3], ["postInstall", 54, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lc3tools",
       version: "0.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://highered.mheducation.com/sites/dl/free/0072467509/104652/lc3tools_v12.zip",
           hash: "sha256-PTM0ole8pHiJmUaahjPwcBQY8/hVVgQhADZ4bSABt3I=",
         })))),
@@ -36,14 +33,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       buildInputs: nix.thunk(() => [flex, tk, ncurses, readline]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LIBS: nix.thunk(() => nix.str`${flex}/lib:${ncurses}/lib:${readline}/lib`),
         INCLUDES: nix.thunk(() => nix.str`${flex}/include:${ncurses}/include:${readline}/include`),
       })),
       prefixKey: "--installdir ",
       postInstall: "mkdir -p $out/{bin,share/lc3tools}\n\nmv -t $out/share/lc3tools $out/{COPYING,NO_WARRANTY,README} $out/lc3os*\nmv -t $out/bin $out/lc3*\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         longDescription: "The LC-3 tools package contains the lc3as assembler, the lc3sim simulator,\nand lc3sim-tk, a Tcl/Tk-based GUI frontend to the simulator.\n",
         description: "Toolchain and emulator for the LC-3 architecture",
         homepage: "https://highered.mheducation.com/sites/0072467509/student_view0/lc-3_simulator.html",

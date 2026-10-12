@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 46, 3], ["postInstall", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, python: false, unittestCheckHook: false, setuptools: false, fire: false, "python-crfsuite": false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 46, 3], ["postInstall", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const python_crfsuite = nix.arg($, "python-crfsuite");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ssg",
       version: "0.0.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ponrawee",
           repo: "ssg",
           rev: "d1b811ef4f8ac08ba1db839f426ba6b6a8e0eb38",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-deprecation-warnings-and-bump-version",
             url: "https://patch-diff.githubusercontent.com/raw/ponrawee/ssg/pull/10.patch",
             hash: "sha256-4O1fpI0FBUG/3RN+PAi7I8vpgYmPPL5ZMXhoZUFsQy8=",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["ssg"]),
       postInstall: nix.thunk(() => nix.str`rm -rf $out/${nix.sel(python, "sitePackages")}/scripts`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "TCRF syllable segmenter for Thai",
         homepage: "https://github.com/ponrawee/ssg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

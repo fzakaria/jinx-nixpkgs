@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["url", 33, 7], ["hash", 34, 7]], [["updateScript", 57, 12]], [["homepage", 60, 5], ["description", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 28], ["broken", 67, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["depsBuildBuild", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 47, 3], ["strictDeps", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch2: false, freetype: false, gitUpdater: false, libglvnd: false, libxkbcommon: false, meson: false, ninja: false, "pkg-config": false, stdenv: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 28], ["broken", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["depsBuildBuild", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 47, 3], ["strictDeps", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sov",
       version: "0.94",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "milgra",
           repo: "sov",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/milgra/sov/commit/8677dcfc47e440157388a8f15bdda9419d84db04.patch",
             hash: "sha256-P1k1zosHcVO7hyhD1JWbj07h7pQ7ybgDHfoufBinEys=",
           })))),
@@ -48,13 +44,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [freetype, libglvnd, libxkbcommon, wayland, wayland_protocols]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/milgra/sov",
         description: "Workspace overview app for sway",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

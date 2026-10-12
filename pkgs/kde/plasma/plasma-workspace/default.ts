@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["fcMatch", 34, 7], ["lsof", 35, 7], ["qdbus", 36, 7], ["xmessage", 37, 7], ["xrdb", 38, 7], ["QtBinariesDir", 40, 7]], [["providedSessions", 105, 12]], [["pname", 30, 3], ["patches", 32, 3], ["outputs", 47, 3], ["postInstall", 54, 3], ["extraCmakeFlags", 59, 3], ["extraNativeBuildInputs", 64, 3], ["extraBuildInputs", 68, 3], ["extraPropagatedBuildInputs", 90, 3], ["qtWrapperArgs", 94, 3], ["postFixup", 97, 3], ["passthru", 105, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, replaceVars: false, flatpak: false, fontconfig: false, libxtst: false, libxft: false, libxcursor: false, libsm: false, xrdb: false, xmessage: false, lsof: false, "pkg-config": false, "spirv-tools": false, qtlocation: false, qtpositioning: false, qtsvg: false, qttools: false, qtvirtualkeyboard: false, qtwayland: false, plasma5support: false, "qqc2-breeze-style": false, libcanberra: false, libqalculate: false, pipewire: false, gpsd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["fcMatch", 34, 7], ["lsof", 35, 7], ["qdbus", 36, 7], ["xmessage", 37, 7], ["xrdb", 38, 7], ["QtBinariesDir", 40, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["providedSessions", 105, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["patches", 32, 3], ["outputs", 47, 3], ["postInstall", 54, 3], ["extraCmakeFlags", 59, 3], ["extraNativeBuildInputs", 64, 3], ["extraBuildInputs", 68, 3], ["extraPropagatedBuildInputs", 90, 3], ["qtWrapperArgs", 94, 3], ["postFixup", 97, 3], ["passthru", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const gpsd = nix.arg($, "gpsd");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "plasma-workspace",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dependency-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             fcMatch: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), fontconfig, "fc-match")),
             lsof: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), lsof)),
             qdbus: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), qttools, "qdbus")),
@@ -79,7 +77,10 @@ echo "${lsof} ${xmessage} ${xrdb}" > $out/nix-support/depends
 moveToOutput share/xsessions $sessions
 moveToOutput share/wayland-sessions $sessions
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, providedSessions: nix.thunk(() => ["plasma", "plasmax11"]) })),
+      passthru: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        providedSessions: nix.thunk(() => ["plasma", "plasmax11"]),
+      })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

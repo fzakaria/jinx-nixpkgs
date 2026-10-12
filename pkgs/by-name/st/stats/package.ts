@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["escape", 30, 38]], [["CFBundleExecutable", 35, 7], ["CFBundleIdentifier", 36, 7], ["CFBundleInfoDictionaryVersion", 37, 7], ["CFBundleName", 38, 7], ["CFBundlePackageType", 39, 7], ["CFBundleVersion", 40, 7]], [["NSAllowsArbitraryLoads", 61, 9]], [["CFBundleDevelopmentRegion", 46, 7], ["CFBundleExecutable", 47, 7], ["CFBundleIconFile", 48, 7], ["CFBundleIconName", 49, 7], ["CFBundleIdentifier", 50, 7], ["CFBundleInfoDictionaryVersion", 51, 7], ["CFBundleName", 52, 7], ["CFBundlePackageType", 53, 7], ["CFBundleShortVersionString", 54, 7], ["Description", 56, 7], ["LSApplicationCategoryType", 57, 7], ["LSMinimumSystemVersion", 58, 7], ["LSUIElement", 59, 7], ["NSAppTransportSecurity", 60, 7], ["NSBluetoothAlwaysUsageDescription", 63, 7], ["NSHumanReadableCopyright", 64, 7], ["NSPrincipalClass", 65, 7], ["NSUserNotificationAlertStyle", 66, 7], ["TeamId", 67, 7]], [["owner", 78, 5], ["repo", 79, 5], ["tag", 80, 5], ["hash", 81, 5]], [["NIX_LDFLAGS", 95, 7]], [["updateScript", 345, 12]], [["changelog", 348, 5], ["description", 349, 5], ["homepage", 350, 5], ["license", 351, 5], ["maintainers", 352, 5], ["platforms", 357, 5]], [["pname", 71, 3], ["version", 72, 3], ["__structuredAttrs", 74, 3], ["strictDeps", 75, 3], ["src", 77, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 92, 3], ["env", 95, 3], ["postPatch", 99, 3], ["dontConfigure", 110, 3], ["buildPhase", 112, 3], ["installPhase", 290, 3], ["postFixup", 341, 3], ["passthru", 345, 3], ["meta", 347, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, leveldb: false, perl: false, stdenv: false, swift: false, actool: false, makeWrapper: false, rcodesign: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["escape", 30, 38]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFBundleExecutable", 35, 7], ["CFBundleIdentifier", 36, 7], ["CFBundleInfoDictionaryVersion", 37, 7], ["CFBundleName", 38, 7], ["CFBundlePackageType", 39, 7], ["CFBundleVersion", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NSAllowsArbitraryLoads", 61, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CFBundleDevelopmentRegion", 46, 7], ["CFBundleExecutable", 47, 7], ["CFBundleIconFile", 48, 7], ["CFBundleIconName", 49, 7], ["CFBundleIdentifier", 50, 7], ["CFBundleInfoDictionaryVersion", 51, 7], ["CFBundleName", 52, 7], ["CFBundlePackageType", 53, 7], ["CFBundleShortVersionString", 54, 7], ["Description", 56, 7], ["LSApplicationCategoryType", 57, 7], ["LSMinimumSystemVersion", 58, 7], ["LSUIElement", 59, 7], ["NSAppTransportSecurity", 60, 7], ["NSBluetoothAlwaysUsageDescription", 63, 7], ["NSHumanReadableCopyright", 64, 7], ["NSPrincipalClass", 65, 7], ["NSUserNotificationAlertStyle", 66, 7], ["TeamId", 67, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 78, 5], ["repo", 79, 5], ["tag", 80, 5], ["hash", 81, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 95, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 345, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["changelog", 348, 5], ["description", 349, 5], ["homepage", 350, 5], ["license", 351, 5], ["maintainers", 352, 5], ["platforms", 357, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 71, 3], ["version", 72, 3], ["__structuredAttrs", 74, 3], ["strictDeps", 75, 3], ["src", 77, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 92, 3], ["env", 95, 3], ["postPatch", 99, 3], ["dontConfigure", 110, 3], ["buildPhase", 112, 3], ["installPhase", 290, 3], ["postFixup", 341, 3], ["passthru", 345, 3], ["meta", 347, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,9 +31,9 @@ export default nix.lambda((args) => (() => {
     "Remote",
   ]);
   const modules = nix.thunk(() => nix.app(nix.sel(lib, "tail"), frameworks));
-  const toPlist = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$1, escape: true }))));
+  const toPlist = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: $pos[0], escape: true }))));
   const frameworkPlist = (name) => nix.app(toPlist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       CFBundleExecutable: name,
       CFBundleIdentifier: nix.thunk(() => nix.str`eu.exelban.Stats.${name}`),
       CFBundleInfoDictionaryVersion: "6.0",
@@ -50,7 +42,7 @@ export default nix.lambda((args) => (() => {
       CFBundleVersion: "1",
     })));
   const mainInfoPlist = (version) => nix.app(toPlist, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       CFBundleDevelopmentRegion: "en",
       CFBundleExecutable: "Stats",
       CFBundleIconFile: "AppIcon",
@@ -64,7 +56,7 @@ export default nix.lambda((args) => (() => {
       LSApplicationCategoryType: "public.app-category.utilities",
       LSMinimumSystemVersion: "12.0",
       LSUIElement: true,
-      NSAppTransportSecurity: nix.thunk(() => ({ [nix.POS]: pos$3, NSAllowsArbitraryLoads: true })),
+      NSAppTransportSecurity: nix.thunk(() => ({ [nix.POS]: $pos[2], NSAllowsArbitraryLoads: true })),
       NSBluetoothAlwaysUsageDescription: "This permission allows obtaining battery level of Bluetooth devices",
       NSHumanReadableCopyright: "Copyright © 2020 Serhiy Mytrovtsiy. All rights reserved.",
       NSPrincipalClass: "NSApplication",
@@ -72,13 +64,13 @@ export default nix.lambda((args) => (() => {
       TeamId: "RP2S87B72W",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "stats",
       version: "3.0.13",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "exelban",
           repo: "Stats",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [swift, perl, actool, makeWrapper, rcodesign]),
       buildInputs: nix.thunk(() => [leveldb]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$6, NIX_LDFLAGS: "-lIOReport" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[5], NIX_LDFLAGS: "-lIOReport" })),
       postPatch: "find . -name '*.swift' -exec perl -0777 -pi -e '\n  s/,(\\s*\\))/$1/g;\n  s/\\@retroactive //g;\n' {} +\n\n# CWPHYMode.mode11be (WiFi 7) requires macOS 15+ SDK; @unknown default covers it\nsed -i '/mode11be/d' Modules/Net/readers.swift\n\n",
       dontConfigure: true,
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -314,11 +306,11 @@ runHook postInstall
       postFixup: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), rcodesign)} sign "$out/Applications/Stats.app"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: nix.thunk(() => nix.str`https://github.com/exelban/stats/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "macOS system monitor in your menu bar",
         homepage: "https://github.com/exelban/stats",

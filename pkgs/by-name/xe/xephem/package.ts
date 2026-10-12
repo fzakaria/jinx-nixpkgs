@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["NIX_CFLAGS_COMPILE", 50, 7]], [["name", 86, 7], ["exec", 87, 7], ["icon", 88, 7], ["desktopName", 89, 7], ["categories", 90, 7]], [["description", 98, 5], ["longDescription", 99, 5], ["mainProgram", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["patches", 41, 3], ["postPatch", 45, 3], ["env", 50, 3], ["enableParallelBuilding", 52, 3], ["doCheck", 54, 3], ["checkFlags", 56, 3], ["checkTarget", 58, 3], ["makeFlags", 60, 3], ["installPhase", 66, 3], ["desktopItems", 84, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, installShellFiles: false, motif: false, openssl: false, groff: false, libxt: false, libxmu: false, libxext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 86, 7], ["exec", 87, 7], ["icon", 88, 7], ["desktopName", 89, 7], ["categories", 90, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 98, 5], ["longDescription", 99, 5], ["mainProgram", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["patches", 41, 3], ["postPatch", 45, 3], ["env", 50, 3], ["enableParallelBuilding", 52, 3], ["doCheck", 54, 3], ["checkFlags", 56, 3], ["checkTarget", 58, 3], ["makeFlags", 60, 3], ["installPhase", 66, 3], ["desktopItems", 84, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxmu = nix.arg($, "libxmu");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xephem",
       version: "4.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "XEphem",
           repo: "XEphem",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`cd GUI/xephem
 substituteInPlace xephem.c splash.c --replace-fail '/etc/XEphem' '${nix.builtins.placeholder("out")}/etc/XEphem'
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       enableParallelBuilding: true,
       doCheck: true,
       checkFlags: "-C ../../tests",
@@ -53,7 +49,7 @@ substituteInPlace xephem.c splash.c --replace-fail '/etc/XEphem' '${nix.builtins
       installPhase: "runHook preInstall\ninstallBin xephem\nmkdir -p $out/share/xephem\ncp -R auxil $out/share/xephem/\ncp -R catalogs $out/share/xephem/\ncp -R fifos $out/share/xephem/\ncp -R fits $out/share/xephem/\ncp -R gallery $out/share/xephem/\ncp -R help $out/share/xephem/\ncp -R lo $out/share/xephem/\nmkdir $out/etc\necho \"XEphem.ShareDir: $out/share/xephem\" > $out/etc/XEphem\ninstallManPage xephem.1\ninstall -Dm644 XEphem.png -t $out/share/icons/hicolor/128x128/apps\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "xephem",
             exec: "xephem",
             icon: "XEphem",
@@ -62,7 +58,7 @@ substituteInPlace xephem.c splash.c --replace-fail '/etc/XEphem' '${nix.builtins
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Interactive astronomy program for all UNIX platforms",
         longDescription: "Xephem is an interactive astronomical ephemeris program for X Windows systems. It computes\nheliocentric, geocentric and topocentric information for fixed celestial objects and objects\nin heliocentric and geocentric orbits; has built-in support for all planet positions; the\nmoons of Jupiter, Saturn and Earth; Mars' and Jupiter's central meridian longitude; Saturn's\nrings; and Jupiter's Great Red Spot.\n",
         mainProgram: "xephem",

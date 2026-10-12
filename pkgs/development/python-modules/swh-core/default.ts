@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 58, 5], ["group", 59, 5], ["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]], [["changelog", 142, 5], ["description", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["mainProgram", 146, 5], ["maintainers", 147, 5]], [["pname", 53, 3], ["version", 54, 3], ["pyproject", 55, 3], ["src", 57, 3], ["build-system", 66, 3], ["pythonRelaxDeps", 71, 3], ["dependencies", 76, 3], ["pythonImportsCheck", 87, 3], ["__darwinAllowLocalNetworking", 89, 3], ["doCheck", 92, 3], ["nativeCheckInputs", 94, 3], ["disabledTestPaths", 124, 3], ["disabledTests", 131, 3], ["meta", 141, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitLab: false, pythonAtLeast: false, setuptools: false, "setuptools-scm": false, "backports-entry-points-selectable": false, click: false, deprecated: false, "python-magic": false, pyyaml: false, requests: false, "sentry-sdk": false, tenacity: false, "aiohttp-utils": false, flask: false, hypothesis: false, iso8601: false, lzip: false, moto: false, msgpack: false, postgresql: false, postgresqlTestHook: false, psycopg: false, pylzma: false, pytestCheckHook: false, "pytest-aiohttp": false, "pytest-mock": false, "pytest-postgresql": false, pytz: false, "requests-mock": false, "swh-model": false, "systemd-python": false, tqdm: false, "types-deprecated": false, "types-psycopg2": false, "types-pytz": false, "types-pyyaml": false, "types-requests": false, unzip: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 58, 5], ["group", 59, 5], ["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 142, 5], ["description", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["mainProgram", 146, 5], ["maintainers", 147, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 53, 3], ["version", 54, 3], ["pyproject", 55, 3], ["src", 57, 3], ["build-system", 66, 3], ["pythonRelaxDeps", 71, 3], ["dependencies", 76, 3], ["pythonImportsCheck", 87, 3], ["__darwinAllowLocalNetworking", 89, 3], ["doCheck", 92, 3], ["nativeCheckInputs", 94, 3], ["disabledTestPaths", 124, 3], ["disabledTests", 131, 3], ["meta", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,12 +50,12 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swh-core",
       version: "4.6.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -121,7 +119,7 @@ export default nix.lambda((args) => (() => {
           "test_timed_no_metric",
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://gitlab.softwareheritage.org/swh/devel/swh-core/-/tags/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Low-level utilities and helpers used by almost all other modules in the stack",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-core",

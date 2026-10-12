@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ui.nix", [[["pname", 23, 26], ["version", 23, 32], ["src", 23, 40], ["pnpm", 24, 5], ["sourceRoot", 25, 5], ["fetcherVersion", 26, 5], ["hash", 27, 5]], [["description", 39, 5]], [["pname", 11, 3], ["version", 12, 26], ["src", 12, 34], ["sourceRoot", 14, 3], ["nativeBuildInputs", 16, 3], ["pnpmDeps", 22, 3], ["installPhase", 30, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { stdenv: false, "moonfire-nvr": false, nodejs: false, pnpmConfigHook: false, pnpm_10: false, fetchPnpmDeps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ui.nix", [["pname", 23, 26], ["version", 23, 32], ["src", 23, 40], ["pnpm", 24, 5], ["sourceRoot", 25, 5], ["fetcherVersion", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/ui.nix", [["description", 39, 5]]);
-const pos$3 = nix.positions(here + "/ui.nix", [["pname", 11, 3], ["version", 12, 26], ["src", 12, 34], ["sourceRoot", 14, 3], ["nativeBuildInputs", 16, 3], ["pnpmDeps", 22, 3], ["installPhase", 30, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const pnpm_10 = nix.arg($, "pnpm_10");
   const fetchPnpmDeps = nix.arg($, "fetchPnpmDeps");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "moonfire-nvr-ui",
       version: nix.thunk(() => nix.attr(moonfire_nvr, "version")),
       src: nix.thunk(() => nix.attr(moonfire_nvr, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/ui`),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_10]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-U/SHOVlx0kj1hfl09KcPg3CQZX9HZE5SghVEThWL1RA=",
         })))),
       installPhase: "runHook preInstall\n\ncp -r public $out\n\nrunHook postInstall\n",
-      meta: nix.thunk(() => nix.update(nix.sel(moonfire_nvr, "meta"), { [nix.POS]: pos$2, description: "Moonfire UI" })),
+      meta: nix.thunk(() => nix.update(nix.sel(moonfire_nvr, "meta"), { [nix.POS]: $pos[1], description: "Moonfire UI" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=ui.ts.map

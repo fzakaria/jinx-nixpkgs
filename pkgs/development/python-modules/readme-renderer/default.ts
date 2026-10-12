@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 5], ["version", 21, 13], ["hash", 22, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]], [["md", 47, 25]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 25, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 51, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cmarkgfm: false, docutils: false, fetchPypi: false, fetchpatch2: false, nh3: false, pygments: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 13], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["md", 47, 25]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 25, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 51, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,20 +22,20 @@ export default nix.lambda((args) => (() => {
       const version = "44.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "readme_renderer",
           version: version,
           hash: "sha256-hxIDTqu/poBcrPFAK07rKnMCj3LRFm1vXLf5wEfF0eE=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "pygment-2_19-compatibility.patch",
             url: "https://github.com/pypa/readme_renderer/commit/04d5cfe76850192364eff344be7fe27730af8484.patch",
             hash: "sha256-QBU3zL3DB8gYYwtKrIC8+H8798pU9Sz3T9e/Q/dXksw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "docutils-0.22-compat.patch",
             url: "https://github.com/pypa/readme_renderer/commit/d047a29755a204afca8873a6ecf30e686ccf6a27.patch",
             hash: "sha256-GHTfRuOZr5c4mwu4s8K5IpvG1ZP1o/qd0U4H09BzhE8=",
@@ -48,12 +43,12 @@ export default nix.lambda((args) => (() => {
       ]);
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [docutils, nh3, pygments]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$4, md: nix.thunk(() => [cmarkgfm]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[3], md: nix.thunk(() => [cmarkgfm]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "md")));
       const disabledTests = nix.thunk(() => ["test_rst_fixtures", "test_rst_008.rst"]);
       const pythonImportsCheck = nix.thunk(() => ["readme_renderer"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python library for rendering readme descriptions",
         homepage: "https://github.com/pypa/readme_renderer",
         changelog: nix.thunk(() => nix.str`https://github.com/pypa/readme_renderer/releases/tag/${version}`),
@@ -64,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["CGO_ENABLED", 37, 7]], [["homepage", 60, 5], ["description", 61, 5], ["mainProgram", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["vendorHash", 30, 3], ["postConfigure", 32, 3], ["env", 37, 3], ["ldflags", 39, 3], ["postInstall", 45, 3], ["nativeInstallCheckInputs", 55, 3], ["versionCheckProgramArg", 56, 3], ["doInstallCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, makeWrapper: false, installShellFiles: false, bash: false, openssh: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["mainProgram", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["vendorHash", 30, 3], ["postConfigure", 32, 3], ["env", 37, 3], ["ldflags", 39, 3], ["postInstall", 45, 3], ["nativeInstallCheckInputs", 55, 3], ["versionCheckProgramArg", 56, 3], ["doInstallCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "k3sup",
       version: "0.13.13",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alexellis",
           repo: "k3sup",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postConfigure: nix.thunk(() => nix.str`substituteInPlace vendor/github.com/alexellis/go-execute/v2/exec.go \\
   --replace "/bin/bash" "${bash}/bin/bash"
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         nix.thunk(() => nix.str`-X github.com/alexellis/k3sup/cmd.GitCommit=ref/tags/${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +50,7 @@ installShellCompletion --cmd k3sup \\
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/alexellis/k3sup",
         description: "Bootstrap Kubernetes with k3s over SSH",
         mainProgram: "k3sup",

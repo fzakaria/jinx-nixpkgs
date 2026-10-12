@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["graphviz", 37, 5], ["index", 38, 5], ["rich", 43, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 70, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 54, 3], ["disabledTests", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, graphviz: false, hatchling: false, "hatch-vcs": false, packaging: false, "pip-requirements-parser": false, pytestCheckHook: false, "pytest-mock": false, "pytest-subprocess": false, rich: false, virtualenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["graphviz", 37, 5], ["index", 38, 5], ["rich", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 54, 3], ["disabledTests", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const rich = nix.arg($, "rich");
   const virtualenv = nix.arg($, "virtualenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pipdeptree",
       version: "3.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tox-dev",
           repo: "pipdeptree",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
       dependencies: nix.thunk(() => [packaging]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         graphviz: nix.thunk(() => [graphviz]),
         index: nix.thunk(() => [pip_requirements_parser]),
         rich: nix.thunk(() => [rich]),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pipdeptree"]),
       disabledTests: nix.thunk(() => ["test_console"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command line utility to show dependency tree of packages",
         homepage: "https://github.com/tox-dev/pipdeptree",
         changelog: nix.thunk(() => nix.str`https://github.com/tox-dev/pipdeptree/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

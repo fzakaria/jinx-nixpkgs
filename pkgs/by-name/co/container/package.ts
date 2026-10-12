@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["container-runtime-linux", 24, 5], ["container-network-vmnet", 25, 5], ["container-core-images", 26, 5], ["machine-apiserver", 27, 5], ["k8s", 28, 5]], [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["pname", 61, 26], ["version", 61, 32], ["src", 61, 40], ["hash", 62, 5]], [["extraArgs", 120, 7]], [["swiftpmVendor", 118, 5], ["updateScript", 119, 5]], [["description", 128, 5], ["homepage", 129, 5], ["changelog", 130, 5], ["license", 131, 5], ["mainProgram", 132, 5], ["maintainers", 133, 5], ["platforms", 137, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["swiftpmDeps", 60, 3], ["dontPatchShebangs", 68, 3], ["RELEASE_VERSION", 70, 3], ["GIT_COMMIT", 73, 3], ["installPhase", 76, 3], ["postFixup", 94, 3], ["nativeInstallCheckInputs", 112, 3], ["doInstallCheck", 114, 3], ["passthru", 116, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, swift: false, swiftpm: false, fetchSwiftPMDeps: false, "apple-sdk_26": false, darwinMinVersionHook: false, libarchive: false, zlib: false, bzip2: false, xz: false, libiconv: false, installShellFiles: false, makeBinaryWrapper: false, rcodesign: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["container-runtime-linux", 24, 5], ["container-network-vmnet", 25, 5], ["container-core-images", 26, 5], ["machine-apiserver", 27, 5], ["k8s", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 61, 26], ["version", 61, 32], ["src", 61, 40], ["hash", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 120, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["swiftpmVendor", 118, 5], ["updateScript", 119, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 128, 5], ["homepage", 129, 5], ["changelog", 130, 5], ["license", 131, 5], ["mainProgram", 132, 5], ["maintainers", 133, 5], ["platforms", 137, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["swiftpmDeps", 60, 3], ["dontPatchShebangs", 68, 3], ["RELEASE_VERSION", 70, 3], ["GIT_COMMIT", 73, 3], ["installPhase", 76, 3], ["postFixup", 94, 3], ["nativeInstallCheckInputs", 112, 3], ["doInstallCheck", 114, 3], ["passthru", 116, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   const plugins = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "container-runtime-linux": "RuntimeLinux",
     "container-network-vmnet": "NetworkVmnet",
     "container-core-images": "CoreImages",
@@ -40,11 +34,11 @@ export default nix.lambda((args) => (() => {
     k8s: "K8s",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "container",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "apple",
           repo: "container",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,7 +55,7 @@ export default nix.lambda((args) => (() => {
         libiconv,
       ]),
       swiftpmDeps: nix.thunk(() => nix.app(fetchSwiftPMDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -87,15 +81,15 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         swiftpmVendor: nix.thunk(() => nix.sel(finalAttrs, "swiftpmDeps", "vendorStaging")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--custom-dep", "swiftpmVendor"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Create and run Linux containers using lightweight virtual machines on a Mac",
         homepage: "https://github.com/apple/container",
         changelog: nix.thunk(() => nix.str`https://github.com/apple/container/releases/tag/${nix.sel(finalAttrs, "version")}`),

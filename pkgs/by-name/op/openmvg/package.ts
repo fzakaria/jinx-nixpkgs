@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["updateScript", 88, 12]], [["description", 91, 5], ["homepage", 92, 5], ["downloadPage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["platforms", 96, 5], ["maintainers", 97, 5]], [["version", 26, 3], ["pname", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["buildInputs", 41, 3], ["nativeBuildInputs", 56, 3], ["cmakeFlags", 62, 3], ["cmakeDir", 78, 3], ["dontUseCmakeBuildDir", 80, 3], ["enableParallelBuilding", 83, 3], ["hardeningDisable", 86, 3], ["passthru", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, cereal: false, "ceres-solver": false, clp: false, "coin-utils": false, eigen: false, "lemon-graph": false, libjpeg: false, libpng: false, libtiff: false, "nix-update-script": false, llvmPackages: false, osi: false, zlib: false, enableShared: true, enableExamples: true, enableDocs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 88, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["downloadPage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["platforms", 96, 5], ["maintainers", 97, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 26, 3], ["pname", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["buildInputs", 41, 3], ["nativeBuildInputs", 56, 3], ["cmakeFlags", 62, 3], ["cmakeDir", 78, 3], ["dontUseCmakeBuildDir", 80, 3], ["enableParallelBuilding", 83, 3], ["hardeningDisable", 86, 3], ["passthru", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const enableExamples = nix.argOr($, "enableExamples", () => false);
   const enableDocs = nix.argOr($, "enableDocs", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "2.1",
       pname: "openmvg",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openmvg",
           repo: "openmvg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,11 +72,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: false,
       hardeningDisable: nix.thunk(() => ["all"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for computer-vision scientists and targeted for the Multiple View Geometry community",
         homepage: "https://openmvg.readthedocs.io/en/latest/",
         downloadPage: "https://github.com/openMVG/openMVG",

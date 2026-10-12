@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5], ["stripRoot", 14, 5]], [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontPatch", 17, 3], ["dontConfigure", 18, 3], ["dontBuild", 19, 3], ["doCheck", 20, 3], ["dontFixup", 21, 3], ["installPhase", 23, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5], ["stripRoot", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontPatch", 17, 3], ["dontConfigure", 18, 3], ["dontBuild", 19, 3], ["doCheck", 20, 3], ["dontFixup", 21, 3], ["installPhase", 23, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "3270font";
       const version = "3.0.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/rbanffy/3270font/releases/download/v${version}/3270_fonts_d916271.zip`),
           sha256: "sha256-Zi6Lp5+sqfjIaHmnaaemaw3i+hXq9mqIsK/81lTkwfM=",
           stripRoot: false,
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const dontFixup = true;
       const installPhase = "runHook preInstall\n\ninstall -Dm644 -t $out/share/fonts/opentype/ *.otf\ninstall -Dm644 -t $out/share/fonts/truetype/ *.ttf\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Monospaced font based on IBM 3270 terminals",
         homepage: "https://github.com/rbanffy/3270font",
         changelog: nix.thunk(() => nix.str`https://github.com/rbanffy/3270font/blob/v${version}/CHANGELOG.md`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

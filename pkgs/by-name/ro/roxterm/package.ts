@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["test", 73, 18]], [["tests", 73, 12]], [["homepage", 76, 5], ["description", 77, 5], ["longDescription", 78, 5], ["changelog", 92, 5], ["license", 93, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["passthru", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { "at-spi2-core": false, cmake: false, dbus: false, "dbus-glib": false, docbook_xsl: false, fetchFromGitHub: false, glib: false, gtk3: false, harfbuzz: false, lib: false, libxdmcp: false, libxtst: false, libepoxy: false, "libpthread-stubs": false, libselinux: false, libsepol: false, libtasn1: false, libxkbcommon: false, libxslt: false, nixosTests: false, "p11-kit": false, pcre2: false, "pkg-config": false, stdenv: false, "util-linuxMinimal": false, vte: false, wrapGAppsHook3: false, xmlto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["test", 73, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 73, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["description", 77, 5], ["longDescription", 78, 5], ["changelog", 92, 5], ["license", 93, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["passthru", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const xmlto = nix.arg($, "xmlto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "roxterm",
       version: "3.18.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "realh",
           repo: "roxterm",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -74,14 +70,14 @@ export default nix.lambda((args) => (() => {
         xmlto,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "roxterm")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/realh/roxterm",
         description: "Highly configurable terminal emulator",
         longDescription: "ROXTerm is a terminal emulator intended to provide similar features to\ngnome-terminal, based on the same VTE library. It was originally designed\nto have a smaller footprint and quicker start-up time by not using the\nGnome libraries and by using a separate applet to provide the\nconfiguration GUI, but thanks to all the features it's acquired over the\nyears ROXTerm can probably now be accused of bloat. However, it is more\nconfigurable than gnome-terminal and aimed more at \"power\" users who make\nheavy use of terminals.\n\nIt still supports the ROX desktop application layout it was named after,\nbut can also be installed in a more conventional manner for use in other\ndesktop environments.\n",

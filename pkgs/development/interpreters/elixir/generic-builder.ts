@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic-builder.nix", [[["owner", 75, 7], ["repo", 76, 7], ["rev", 77, 7], ["hash", 78, 15]], [["LANG", 87, 7], ["LC_TYPE", 88, 7], ["DESTDIR", 89, 7], ["PREFIX", 90, 7], ["ERL_COMPILER_OPTIONS", 91, 7]], [["extraArgs", 128, 7]], [["updateScript", 127, 14]], [["homepage", 137, 7], ["description", 138, 7], ["changelog", 139, 7], ["longDescription", 141, 7], ["license", 149, 7], ["platforms", 150, 7], ["teams", 151, 7]], [["pname", 72, 5], ["src", 74, 5], ["version", 81, 13], ["debugInfo", 81, 21], ["nativeBuildInputs", 83, 5], ["buildInputs", 84, 5], ["env", 86, 5], ["preBuild", 94, 5], ["postInstall", 99, 5], ["postFixup", 105, 5], ["passthru", 127, 5], ["meta", 136, 5]]]);
 const formals$1 = { args: { version: false, hash: false, minimumOTPVersion: false, maximumOTPVersion: true }, ellipsis: false };
 const formals$2 = { args: { bash: false, config: false, coreutils: false, curl: false, debugInfo: true, erlang: false, fetchFromGitHub: false, lib: false, makeWrapper: false, "nix-update-script": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic-builder.nix", [["owner", 75, 7], ["repo", 76, 7], ["rev", 77, 7], ["hash", 78, 15]]);
-const pos$2 = nix.positions(here + "/generic-builder.nix", [["LANG", 87, 7], ["LC_TYPE", 88, 7], ["DESTDIR", 89, 7], ["PREFIX", 90, 7], ["ERL_COMPILER_OPTIONS", 91, 7]]);
-const pos$3 = nix.positions(here + "/generic-builder.nix", [["extraArgs", 128, 7]]);
-const pos$4 = nix.positions(here + "/generic-builder.nix", [["updateScript", 127, 14]]);
-const pos$5 = nix.positions(here + "/generic-builder.nix", [["homepage", 137, 7], ["description", 138, 7], ["changelog", 139, 7], ["longDescription", 141, 7], ["license", 149, 7], ["platforms", 150, 7], ["teams", 151, 7]]);
-const pos$6 = nix.positions(here + "/generic-builder.nix", [["pname", 72, 5], ["src", 74, 5], ["version", 81, 13], ["debugInfo", 81, 21], ["nativeBuildInputs", 83, 5], ["buildInputs", 84, 5], ["env", 86, 5], ["preBuild", 94, 5], ["postInstall", 99, 5], ["postFixup", 105, 5], ["passthru", 127, 5], ["meta", 136, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,10 +50,10 @@ See https://hexdocs.pm/elixir/${version}/compatibility-and-deprecations.html
     return (nix.asBool((nix.asBool(!nix.asBool(nix.sel(config, "allowAliases"))) && nix.asBool(!nix.asBool(bothAssert)))) ? null : (() => {
       nix.assert_(nix.app(assertMsg, bothAssert, compatibilityMsg), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/interpreters/elixir/generic-builder.nix:70:3");
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: "elixir",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "elixir-lang",
               repo: "elixir",
               rev: nix.thunk(() => nix.str`v${version}`),
@@ -69,7 +64,7 @@ See https://hexdocs.pm/elixir/${version}/compatibility-and-deprecations.html
           nativeBuildInputs: nix.thunk(() => [makeWrapper]),
           buildInputs: nix.thunk(() => [erlang]),
           env: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             LANG: "C.UTF-8",
             LC_TYPE: "C.UTF-8",
             DESTDIR: nix.thunk(() => nix.builtins.placeholder("out")),
@@ -92,9 +87,9 @@ substituteInPlace $out/bin/mix \\
   --replace "/usr/bin/env elixir" "${elixirShebang}"
 `),
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 extraArgs: nix.thunk(() => [
                   "--version-regex",
                   nix.thunk(() => nix.str`v(${nix.app(nix.sel(lib, "versions", "major"), version)}\\.${nix.app(nix.sel(lib, "versions", "minor"), version)}\\.[0-9\\-rc.]+)`),
@@ -104,7 +99,7 @@ substituteInPlace $out/bin/mix \\
               })))),
           })),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             homepage: "https://elixir-lang.org/",
             description: "Functional, meta-programming aware language built on top of the Erlang VM",
             changelog: nix.thunk(() => nix.str`https://github.com/elixir-lang/elixir/releases/tag/v${version}`),

@@ -2,15 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sysctl.nix", [[["path", 6, 3], ["buildInputs", 7, 3], ["MK_TESTS", 10, 3]]]);
 const formals$1 = { args: { mkDerivation: false, libjail: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sysctl.nix", [["path", 6, 3], ["buildInputs", 7, 3], ["MK_TESTS", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDerivation = nix.arg($, "mkDerivation");
   const libjail = nix.arg($, "libjail");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "sbin/sysctl",
       buildInputs: nix.thunk(() => [libjail]),
       MK_TESTS: "no",

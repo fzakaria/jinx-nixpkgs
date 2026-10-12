@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["blurhash", 44, 5], ["grapheme", 45, 5], ["webpush", 46, 5]], [["changelog", 64, 5], ["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 43, 3], ["nativeCheckInputs", 52, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, blurhash: false, cryptography: false, decorator: false, graphemeu: false, "http-ece": false, "python-dateutil": false, "python-magic": false, requests: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-mock": false, "pytest-vcr": false, "requests-mock": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["blurhash", 44, 5], ["grapheme", 45, 5], ["webpush", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 64, 5], ["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 43, 3], ["nativeCheckInputs", 52, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "halcy",
           repo: "Mastodon.py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [blurhash, decorator, python_dateutil, python_magic, requests]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         blurhash: nix.thunk(() => [blurhash]),
         grapheme: nix.thunk(() => [graphemeu]),
         webpush: nix.thunk(() => [http_ece, cryptography]),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pytest_cov_stub, pytest_mock, pytest_vcr, requests_mock], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["mastodon"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/halcy/Mastodon.py/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         description: "Python wrapper for the Mastodon API",
         homepage: "https://github.com/halcy/Mastodon.py",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["description", 106, 5], ["license", 107, 5], ["homepage", 108, 5], ["maintainers", 109, 29], ["platforms", 110, 5]], [["pname", 22, 3], ["version", 23, 3], ["se_url", 25, 22], ["src", 27, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["pythonPath", 46, 3], ["postPatch", 52, 3], ["makeFlags", 62, 3], ["preFixup", 74, 3], ["postFixup", 78, 3], ["doInstallCheck", 82, 3], ["installCheckPhase", 84, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, python3: false, gettext: false, libselinux: false, libsemanage: false, libsepol: false, setools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 106, 5], ["license", 107, 5], ["homepage", 108, 5], ["maintainers", 109, 29], ["platforms", 110, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["se_url", 25, 22], ["src", 27, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["pythonPath", 46, 3], ["postPatch", 52, 3], ["makeFlags", 62, 3], ["preFixup", 74, 3], ["postFixup", 78, 3], ["doInstallCheck", 82, 3], ["installCheckPhase", 84, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "selinux-python",
       version: "3.10",
       se_url: nix.thunk(() => nix.attr(libsepol, "se_url")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "se_url")}/${nix.sel(finalAttrs, "version")}/selinux-python-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-nQpbafL7zOjlzNjg8X1W9x5gBadWOG+Ps2wx+UJBkaI=",
         })))),
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libsepol, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SELinux policy core utilities written in Python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://github.com/SELinuxProject/selinux",

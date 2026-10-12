@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["sha256", 24, 5]], [["spire", 90, 26]], [["tests", 89, 12]], [["description", 94, 5], ["homepage", 95, 5], ["downloadPage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]], [["pname", 10, 3], ["version", 11, 3], ["outputs", 13, 3], ["src", 20, 3], ["proxyVendor", 28, 3], ["vendorHash", 29, 3], ["buildInputs", 31, 3], ["ldflags", 33, 3], ["subPackages", 39, 3], ["__darwinAllowLocalNetworking", 45, 3], ["checkFlags", 47, 3], ["preCheck", 57, 3], ["postInstall", 63, 3], ["doInstallCheck", 74, 3], ["installCheckPhase", 75, 3], ["passthru", 89, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["spire", 90, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 89, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["downloadPage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["outputs", 13, 3], ["src", 20, 3], ["proxyVendor", 28, 3], ["vendorHash", 29, 3], ["buildInputs", 31, 3], ["ldflags", 33, 3], ["subPackages", 39, 3], ["__darwinAllowLocalNetworking", 45, 3], ["checkFlags", 47, 3], ["preCheck", 57, 3], ["postInstall", 63, 3], ["doInstallCheck", 74, 3], ["installCheckPhase", 75, 3], ["passthru", 89, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const openssl = nix.arg($, "openssl");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "spire",
       version: "1.15.3",
       outputs: nix.thunk(() => ["out", "agent", "server", "oidc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "spiffe",
           repo: "spire",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,11 +56,11 @@ done
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, spire: nix.thunk(() => nix.attr(nixosTests, "spire")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], spire: nix.thunk(() => nix.attr(nixosTests, "spire")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "SPIFFE Runtime Environment",
         homepage: "https://spiffe.io/",
         downloadPage: "https://github.com/spiffe/spire",

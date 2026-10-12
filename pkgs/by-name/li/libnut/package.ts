@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["rev", 12, 5], ["sha256", 13, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["sourceRoot", 16, 3], ["makeFlags", 17, 3], ["installTargets", 18, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["rev", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["sourceRoot", 16, 3], ["makeFlags", 17, 3], ["installTargets", 18, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libnut",
       version: "0-unstable-2020-11-06",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.ffmpeg.org/nut.git",
           rev: "12f6a7af3e0f34fd957cf078b66f072d3dc695b3",
           sha256: "1wgl2mb9482c1j3yac0v2ilfjs7gb9mhw9kjnrmlj9kp0whm4l1j",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       installTargets: nix.thunk(() => ["install-libnut", "install-nututils"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to read/write the NUT video container format",
         homepage: "https://git.ffmpeg.org/gitweb/nut.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

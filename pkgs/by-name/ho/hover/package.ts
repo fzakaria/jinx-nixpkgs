@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 49, 7], ["homepage", 50, 7], ["license", 51, 7], ["platforms", 52, 7], ["maintainers", 53, 7]], [["tag", 61, 7], ["owner", 62, 7], ["repo", 63, 7], ["sha256", 64, 7]], [["pname", 46, 13], ["version", 46, 19], ["meta", 48, 5], ["subPackages", 56, 5], ["vendorHash", 58, 5], ["src", 60, 5], ["nativeBuildInputs", 67, 5], ["buildInputs", 72, 5], ["checkRun", 74, 5], ["postInstall", 76, 5], ["postFixup", 81, 5]], [["pname", 88, 11], ["version", 88, 17], ["targetPkgs", 89, 3], ["runScript", 103, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, buildFHSEnv: false, binutils: false, dejavu_fonts: false, "pkg-config": false, fetchFromGitHub: false, roboto: false, libxxf86vm: false, libxrender: false, libxrandr: false, libxi: false, libxinerama: false, libxfixes: false, libxext: false, libxcursor: false, libx11: false, xorgproto: false, libglvnd: false, addDriverRunpath: false, makeWrapper: false, gcc: false, go: false, flutter: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 49, 7], ["homepage", 50, 7], ["license", 51, 7], ["platforms", 52, 7], ["maintainers", 53, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tag", 61, 7], ["owner", 62, 7], ["repo", 63, 7], ["sha256", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 46, 13], ["version", 46, 19], ["meta", 48, 5], ["subPackages", 56, 5], ["vendorHash", 58, 5], ["src", 60, 5], ["nativeBuildInputs", 67, 5], ["buildInputs", 72, 5], ["checkRun", 74, 5], ["postInstall", 76, 5], ["postFixup", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 88, 11], ["version", 88, 17], ["targetPkgs", 89, 3], ["runScript", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,11 +47,11 @@ export default nix.lambda((args) => (() => {
     xorgproto,
   ]);
   const hover = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Build tool to run Flutter applications on desktop",
         homepage: "https://github.com/go-flutter-desktop/hover",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["."]),
       vendorHash: "sha256-LDVF1vt1kTm7G/zqWHcjtGK+BsydgmJUET61+sILiE0=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           tag: nix.thunk(() => nix.str`v${version}`),
           owner: "go-flutter-desktop",
           repo: "hover",
@@ -79,7 +76,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "addDriverRunpath $out/bin/hover\n",
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       targetPkgs: (pkgs) => nix.concat([binutils, dejavu_fonts, flutter, gcc, go, hover, pkg_config, roboto], libs),

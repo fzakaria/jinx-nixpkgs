@@ -2,13 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-brave.nix", [[["url", 192, 38], ["sha256", 192, 42]], [["makeWrapper", 207, 48]], [["updateScript", 315, 12]], [["homepage", 318, 5], ["description", 319, 5], ["changelog", 322, 5], ["longDescription", 325, 5], ["sourceProvenance", 339, 5], ["license", 340, 5], ["maintainers", 341, 5], ["platforms", 348, 5], ["mainProgram", 349, 5]], [["pname", 187, 11], ["version", 187, 17], ["__structuredAttrs", 189, 3], ["strictDeps", 190, 3], ["src", 192, 3], ["sourceRoot", 194, 3], ["dontConfigure", 196, 3], ["dontBuild", 197, 3], ["dontPatchELF", 198, 3], ["dontStrip", 199, 3], ["doInstallCheck", 200, 3], ["nativeBuildInputs", 202, 3], ["buildInputs", 214, 3], ["installPhase", 225, 3], ["preFixup", 284, 3], ["installCheckPhase", 310, 3], ["passthru", 315, 3], ["meta", 317, 3]]]);
 const formals$1 = { args: { pname: false, version: false, archives: false, flavor: true, optStem: false, fileStem: false, appIdStem: false, darwinStem: false, changelogFile: false, homepage: false, innerBinary: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, stdenv: false, fetchurl: false, buildPackages: false, "alsa-lib": false, "at-spi2-atk": false, "at-spi2-core": false, atk: false, cairo: false, cups: false, dbus: false, dpkg: false, expat: false, fontconfig: false, freetype: false, "gdk-pixbuf": false, glib: false, "adwaita-icon-theme": false, "gsettings-desktop-schemas": false, gtk3: false, gtk4: false, qt6: false, libx11: false, libxscrnsaver: false, libxcomposite: false, libxcursor: false, libxdamage: false, libxext: false, libxfixes: false, libxi: false, libxrandr: false, libxrender: false, libxtst: false, libdrm: false, libkrb5: false, libuuid: false, libxkbcommon: false, libxshmfence: false, libgbm: false, nspr: false, nss: false, pango: false, pipewire: false, snappy: false, udev: false, wayland: false, "xdg-utils": false, coreutils: false, libxcb: false, zlib: false, undmg: false, makeWrapper: false, commandLineArgs: true, pulseSupport: true, libpulseaudio: false, libGL: false, libvaSupport: true, libva: false, enableVideoAcceleration: true, vulkanSupport: true, addDriverRunpath: false, enableVulkan: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-brave.nix", [["url", 192, 38], ["sha256", 192, 42]]);
-const pos$2 = nix.positions(here + "/make-brave.nix", [["makeWrapper", 207, 48]]);
-const pos$3 = nix.positions(here + "/make-brave.nix", [["updateScript", 315, 12]]);
-const pos$4 = nix.positions(here + "/make-brave.nix", [["homepage", 318, 5], ["description", 319, 5], ["changelog", 322, 5], ["longDescription", 325, 5], ["sourceProvenance", 339, 5], ["license", 340, 5], ["maintainers", 341, 5], ["platforms", 348, 5], ["mainProgram", 349, 5]]);
-const pos$5 = nix.positions(here + "/make-brave.nix", [["pname", 187, 11], ["version", 187, 17], ["__structuredAttrs", 189, 3], ["strictDeps", 190, 3], ["src", 192, 3], ["sourceRoot", 194, 3], ["dontConfigure", 196, 3], ["dontBuild", 197, 3], ["dontPatchELF", 198, 3], ["dontStrip", 199, 3], ["doInstallCheck", 200, 3], ["nativeBuildInputs", 202, 3], ["buildInputs", 214, 3], ["installPhase", 225, 3], ["preFixup", 284, 3], ["installCheckPhase", 310, 3], ["passthru", 315, 3], ["meta", 317, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -154,13 +150,13 @@ export default nix.lambda((args) => (() => {
       return nix.sel(archives, nix.key(nix.sel(stdenv, "hostPlatform", "system")));
     })());
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: pname,
         version: version,
         __structuredAttrs: true,
         strictDeps: true,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.attr(archive, "url")),
             sha256: nix.thunk(() => nix.attr(archive, "sha256")),
           })))),
@@ -173,7 +169,7 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
             dpkg,
             nix.thunk(() => nix.app(nix.sel(buildPackages, "wrapGAppsHook3", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 makeWrapper: nix.thunk(() => nix.sel(buildPackages, "makeShellWrapper")),
               })))),
           ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [undmg, makeWrapper])))),
@@ -251,9 +247,9 @@ gappsWrapperArgs+=(
         installCheckPhase: nix.thunk(() => nix.str`# Bypass upstream wrapper which suppresses errors
 $out/opt/brave.com/${optName}/brave --version
 `),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.py") })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.py") })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           homepage: homepage,
           description: nix.thunk(() => nix.add("Privacy-oriented browser for Desktop and Laptop computers", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(flavor, "origin")), " (Origin variant)"))),
           changelog: nix.thunk(() => nix.add(nix.str`https://github.com/brave/brave-browser/blob/master/${changelogFile}#`, nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), version))),

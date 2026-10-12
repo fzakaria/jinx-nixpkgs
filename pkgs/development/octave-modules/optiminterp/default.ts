@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["description", 25, 5], ["longDescription", 26, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { buildOctavePackage: false, lib: false, fetchurl: false, gfortran: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["description", 25, 5], ["longDescription", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
       const pname = "optiminterp";
       const version = "0.3.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "sha256-ubh/iOZlWTOYsTA6hJfPOituNBKTn2LbBnx+tmmSEug=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [gfortran]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gnu-octave.github.io/packages/optiminterp/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
         description: "Optimal interpolation toolbox for octave",
         longDescription: "An optimal interpolation toolbox for octave. This package provides\nfunctions to perform a n-dimensional optimal interpolations of\narbitrarily distributed data points.\n",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

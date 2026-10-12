@@ -2,14 +2,13 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/source.nix", [["url", 4, 5], ["hash", 5, 5]]);
-const pos$2 = nix.positions(here + "/source.nix", [["version", 2, 3], ["src", 3, 3]]);
+const $pos = nix.positions(here + "/source.nix", [[["url", 4, 5], ["hash", 5, 5]], [["version", 2, 3], ["src", 3, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
+  [nix.POS]: $pos[1],
   version: "1.2026.184",
   src: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     url: "https://persistent.oaistatic.com/sidekick/public/ChatGPT_Classic.pkg",
     hash: "sha256-uj7mpU4tSsEBr2Ypwnu7bdeogCVrrMQs/MWW34CS5Jk=",
   })),

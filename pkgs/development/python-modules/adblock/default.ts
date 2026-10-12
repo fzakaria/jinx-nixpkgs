@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]], [["pname", 44, 13], ["version", 44, 19], ["src", 44, 27], ["hash", 45, 5]], [["PSL_PATH", 63, 7]], [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["maintainers", 89, 5], ["license", 90, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 38, 3], ["cargoDeps", 43, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 56, 3], ["env", 63, 3], ["nativeCheckInputs", 65, 3], ["preCheck", 70, 3], ["disabledTestPaths", 75, 3], ["pythonImportsCheck", 80, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, buildPythonPackage: false, rustPlatform: false, "pkg-config": false, openssl: false, "publicsuffix-list": false, libiconv: false, pytestCheckHook: false, toml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 44, 13], ["version", 44, 19], ["src", 44, 27], ["hash", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["PSL_PATH", 63, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["maintainers", 89, 5], ["license", 90, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 38, 3], ["cargoDeps", 43, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 56, 3], ["env", 63, 3], ["nativeCheckInputs", 65, 3], ["preCheck", 70, 3], ["disabledTestPaths", 75, 3], ["pythonImportsCheck", 80, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ArniDagur",
           repo: "python-adblock",
           tag: version,
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "pep-621-compat.patch",
             url: "https://github.com/ArniDagur/python-adblock/commit/2a8716e0723b60390f0aefd0e05f40ba598ac73f.patch",
             hash: "sha256-n9+LDs0no66OdNZxw3aU57ngWrAbmm6hx4qIuxXoatM=",
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
   --replace "0.0.0" "${version}"
 `);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: pname,
           version: version,
           src: src,
@@ -62,7 +57,7 @@ export default nix.lambda((args) => (() => {
       })()));
       const buildInputs = nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         PSL_PATH: nix.thunk(() => nix.str`${publicsuffix_list}/share/publicsuffix/public_suffix_list.dat`),
       }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, toml]);
@@ -70,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_typestubs.py"]);
       const pythonImportsCheck = nix.thunk(() => ["adblock", "adblock.adblock"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python wrapper for Brave's adblocking library",
         homepage: "https://github.com/ArniDagur/python-adblock/",
         changelog: nix.thunk(() => nix.str`https://github.com/ArniDagur/python-adblock/blob/${version}/CHANGELOG.md`),
@@ -87,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

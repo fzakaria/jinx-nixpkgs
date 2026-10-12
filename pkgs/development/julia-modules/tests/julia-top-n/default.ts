@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["root", 17, 5], ["fileset", 18, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 16, 3], ["isLibrary", 26, 3], ["isExecutable", 27, 3], ["executableHaskellDepends", 28, 3], ["license", 38, 3], ["mainProgram", 39, 3]]]);
 const formals$1 = { args: { mkDerivation: false, aeson: false, base: false, filepath: false, lib: false, "optparse-applicative": false, sandwich: false, text: false, unliftio: false, yaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["root", 17, 5], ["fileset", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 16, 3], ["isLibrary", 26, 3], ["isExecutable", 27, 3], ["executableHaskellDepends", 28, 3], ["license", 38, 3], ["mainProgram", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const unliftio = nix.arg($, "unliftio");
   const yaml = nix.arg($, "yaml");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "julia-top-n",
       version: "0.1.0.0",
       src: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "toSource"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           root: nix.path(here, "./."),
           fileset: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "unions"), nix.thunk(() => [
               nix.path(here, "./app"),

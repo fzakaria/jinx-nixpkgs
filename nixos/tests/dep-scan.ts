@@ -2,43 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dep-scan.nix", [[["maintainers", 10, 8]], [["source", 25, 39]], [["url", 31, 7], ["hash", 32, 7]], [["source", 30, 43]], [["url", 35, 7], ["hash", 36, 7]], [["source", 34, 37]], [["url", 39, 7], ["hash", 40, 7]], [["source", 38, 36]], [["dep-scan-source", 25, 21], ["vdb/data.index.vdb6", 30, 21], ["vdb/data.vdb6", 34, 21], ["vdb/vdb.meta", 38, 21]], [["VDB_HOME", 43, 7], ["VDB_AGE_HOURS", 45, 7]], [["systemPackages", 18, 17], ["etc", 25, 17], ["variables", 42, 17]], [["environment", 18, 5]], [["machine", 17, 14]], [["name", 8, 3], ["meta", 10, 3], ["containers", 17, 3], ["testScript", 49, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/dep-scan.nix", [["maintainers", 10, 8]]);
-const pos$2 = nix.positions(here + "/dep-scan.nix", [["source", 25, 39]]);
-const pos$3 = nix.positions(here + "/dep-scan.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$4 = nix.positions(here + "/dep-scan.nix", [["source", 30, 43]]);
-const pos$5 = nix.positions(here + "/dep-scan.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$6 = nix.positions(here + "/dep-scan.nix", [["source", 34, 37]]);
-const pos$7 = nix.positions(here + "/dep-scan.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$8 = nix.positions(here + "/dep-scan.nix", [["source", 38, 36]]);
-const pos$9 = nix.positions(here + "/dep-scan.nix", [["dep-scan-source", 25, 21], ["vdb/data.index.vdb6", 30, 21], ["vdb/data.vdb6", 34, 21], ["vdb/vdb.meta", 38, 21]]);
-const pos$10 = nix.positions(here + "/dep-scan.nix", [["VDB_HOME", 43, 7], ["VDB_AGE_HOURS", 45, 7]]);
-const pos$11 = nix.positions(here + "/dep-scan.nix", [["systemPackages", 18, 17], ["etc", 25, 17], ["variables", 42, 17]]);
-const pos$12 = nix.positions(here + "/dep-scan.nix", [["environment", 18, 5]]);
-const pos$13 = nix.positions(here + "/dep-scan.nix", [["machine", 17, 14]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/dep-scan.nix", [["name", 8, 3], ["meta", 10, 3], ["containers", 17, 3], ["testScript", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "owasp dep-scan test",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return nix.concat([nix.thunk(() => nix.sel(nix.lookup(w, "maintainers"), "ethancedwards8"))], nix.sel(nix.lookup(w, "teams"), "ngi", "members"));
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -47,34 +34,37 @@ export default nix.lambda((args) => (() => {
             ];
           })()),
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            "dep-scan-source": nix.thunk(() => ({ [nix.POS]: pos$2, source: nix.thunk(() => nix.sel(pkgs, "dep-scan", "src")) })),
+            [nix.POS]: $pos[8],
+            "dep-scan-source": nix.thunk(() => ({
+              [nix.POS]: $pos[1],
+              source: nix.thunk(() => nix.sel(pkgs, "dep-scan", "src")),
+            })),
             "vdb/data.index.vdb6": nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   url: "https://huggingface.co/datasets/AppThreat/vdb/resolve/40609f230dd7c83178e054e0219c367b49a2c920/app-2y/data.index.vdb6",
                   hash: "sha256-UyE0xiLT0T4ygBdEvDi4VQW/vxwalN6YV9EJ9RoLYy4=",
                 })))),
             })),
             "vdb/data.vdb6": nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   url: "https://huggingface.co/datasets/AppThreat/vdb/resolve/40609f230dd7c83178e054e0219c367b49a2c920/app-2y/data.vdb6",
                   hash: "sha256-k5QIowFD8H/hwaRz1p8RXlFEIrKjnFUtxtZTfD67B+U=",
                 })))),
             })),
             "vdb/vdb.meta": nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   url: "https://huggingface.co/datasets/AppThreat/vdb/resolve/40609f230dd7c83178e054e0219c367b49a2c920/app-2y/vdb.meta",
                   hash: "sha256-eQB0dHlNw31sKsRcVUByhIfuIN35+m3VAcBHIfusNPY=",
                 })))),
             })),
           })),
-          variables: nix.thunk(() => ({ [nix.POS]: pos$10, VDB_HOME: "/tmp/vdb", VDB_AGE_HOURS: 999999n })),
+          variables: nix.thunk(() => ({ [nix.POS]: $pos[9], VDB_HOME: "/tmp/vdb", VDB_AGE_HOURS: 999999n })),
         })),
       })),
     })),

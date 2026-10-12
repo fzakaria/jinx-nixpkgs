@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/softmaker-office.nix", [[["version", 10, 5], ["edition", 11, 5], ["hash", 12, 5]], [["hash", 27, 31], ["url", 28, 7]], [["version", 21, 29], ["edition", 21, 37], ["pname", 23, 5], ["suiteName", 24, 5], ["src", 26, 5], ["archive", 31, 5]]]);
 const formals$1 = { args: { callPackage: false, fetchurl: false, officeVersion: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/softmaker-office.nix", [["version", 10, 5], ["edition", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/softmaker-office.nix", [["hash", 27, 31], ["url", 28, 7]]);
-const pos$3 = nix.positions(here + "/softmaker-office.nix", [["version", 21, 29], ["edition", 21, 37], ["pname", 23, 5], ["suiteName", 24, 5], ["src", 26, 5], ["archive", 31, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const fetchurl = nix.arg($, "fetchurl");
   const officeVersion = nix.argOr($, "officeVersion", () => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "1234",
     edition: "2024",
     hash: "sha256-oIO/p52ASIU0qjQqxp/l9GVrUK+LQNQxX1wKheKHT3w=",
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
       const pname = "softmaker-office";
       const suiteName = "SoftMaker Office";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: nix.thunk(() => nix.attr(officeVersion, "hash")),
           url: nix.thunk(() => nix.str`https://www.softmaker.net/down/softmaker-office-${edition}-${version}-amd64.tgz`),
         }))));
       const archive = nix.thunk(() => nix.str`office${edition}.tar.lzma`);
-      return { [nix.POS]: pos$3, version, edition, pname, suiteName, src, archive };
+      return { [nix.POS]: $pos[2], version, edition, pname, suiteName, src, archive };
     })())));
 })(), formals$1);
 //# sourceMappingURL=softmaker-office.ts.map

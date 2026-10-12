@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 9], ["repo", 23, 9], ["rev", 24, 17], ["hash", 24, 21]], [["homepage", 44, 9], ["changelog", 45, 9], ["description", 46, 9], ["longDescription", 47, 9], ["license", 56, 9], ["maintainers", 57, 9], ["platforms", 58, 9], ["mainProgram", 59, 9]], [["pname", 18, 7], ["version", 19, 15], ["src", 21, 7], ["nativeBuildInputs", 27, 7], ["buildInputs", 32, 7], ["cmakeFlags", 37, 7], ["meta", 43, 7]], [["version", 65, 5], ["hash", 66, 5]], [["version", 70, 5], ["hash", 71, 5]], [["sdbus-cpp", 64, 3], ["sdbus-cpp_2", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, expat: false, "pkg-config": false, systemdLibs: false }, ellipsis: false };
 const formals$2 = { args: { version: false, rev: true, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 9], ["repo", 23, 9], ["rev", 24, 17], ["hash", 24, 21]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 44, 9], ["changelog", 45, 9], ["description", 46, 9], ["longDescription", 47, 9], ["license", 56, 9], ["maintainers", 57, 9], ["platforms", 58, 9], ["mainProgram", 59, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 7], ["version", 19, 15], ["src", 21, 7], ["nativeBuildInputs", 27, 7], ["buildInputs", 32, 7], ["cmakeFlags", 37, 7], ["meta", 43, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 65, 5], ["hash", 66, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 70, 5], ["hash", 71, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["sdbus-cpp", 64, 3], ["sdbus-cpp_2", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
     const rev = nix.argOr($_1, "rev", () => nix.str`v${version}`);
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "sdbus-cpp",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "kistler-group",
             repo: "sdbus-cpp",
             rev: rev,
@@ -42,7 +37,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "2.0.0")) ? "BUILD_CODE_GEN" : "SDBUSCPP_BUILD_CODEGEN")), true)),
         ]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://github.com/Kistler-Group/sdbus-cpp",
           changelog: nix.thunk(() => nix.str`https://github.com/Kistler-Group/sdbus-cpp/blob/v${version}/ChangeLog`),
           description: "High-level C++ D-Bus library designed to provide easy-to-use yet powerful API",
@@ -58,14 +53,14 @@ export default nix.lambda((args) => (() => {
       }));
   })(), formals$2);
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     "sdbus-cpp": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: "1.5.0",
         hash: "sha256-oO8QNffwNI245AEPdutOGqxj4qyusZYK3bZWLh2Lcag=",
       })))),
     "sdbus-cpp_2": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version: "2.2.1",
         hash: "sha256-uC31StWk3qATPyshX7MkwrxEcBASeIv4e5/jtgzZzMQ=",
       })))),

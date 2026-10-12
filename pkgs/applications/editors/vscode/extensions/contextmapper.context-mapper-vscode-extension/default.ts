@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 11, 5], ["publisher", 12, 5], ["version", 13, 5], ["hash", 14, 5]], [["description", 27, 5], ["downloadPage", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["mktplcRef", 10, 3], ["nativeBuildInputs", 17, 3], ["buildInputs", 19, 3], ["postInstall", 21, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { graphviz: false, jre: false, lib: false, makeWrapper: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 11, 5], ["publisher", 12, 5], ["version", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 27, 5], ["downloadPage", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 10, 3], ["nativeBuildInputs", 17, 3], ["buildInputs", 19, 3], ["postInstall", 21, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => (() => {
       const mktplcRef = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "context-mapper-vscode-extension",
         publisher: "contextmapper",
         version: "6.12.0",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
   --set JAVA_HOME "${jre}"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "VSCode extension for Context Mapper",
         downloadPage: nix.thunk(() => nix.str`https://marketplace.visualstudio.com/items?itemName=${nix.sel(mktplcRef, "publisher")}.${nix.sel(mktplcRef, "name")}`),
         homepage: "https://github.com/ContextMapper/vscode-extension",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rhoriguchi"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mktplcRef,
         nativeBuildInputs,
         buildInputs,

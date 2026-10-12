@@ -2,40 +2,30 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pretix.nix", [[["maintainers", 8, 8]], [["extraHosts", 11, 16]], [["domain", 17, 13]], [["instance_name", 25, 11], ["url", 26, 11]], [["from", 28, 14]], [["pretix", 24, 9], ["mail", 28, 9]], [["enable", 16, 7], ["nginx", 17, 7], ["plugins", 18, 7], ["settings", 23, 7]], [["pretix", 15, 14]], [["networking", 11, 5], ["services", 15, 5]], [["pretix", 10, 14]], [["name", 7, 3], ["meta", 8, 3], ["containers", 10, 3], ["testScript", 33, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pretix.nix", [["maintainers", 8, 8]]);
-const pos$2 = nix.positions(here + "/pretix.nix", [["extraHosts", 11, 16]]);
-const pos$3 = nix.positions(here + "/pretix.nix", [["domain", 17, 13]]);
-const pos$4 = nix.positions(here + "/pretix.nix", [["instance_name", 25, 11], ["url", 26, 11]]);
-const pos$5 = nix.positions(here + "/pretix.nix", [["from", 28, 14]]);
-const pos$6 = nix.positions(here + "/pretix.nix", [["pretix", 24, 9], ["mail", 28, 9]]);
-const pos$7 = nix.positions(here + "/pretix.nix", [["enable", 16, 7], ["nginx", 17, 7], ["plugins", 18, 7], ["settings", 23, 7]]);
-const pos$8 = nix.positions(here + "/pretix.nix", [["pretix", 15, 14]]);
-const pos$9 = nix.positions(here + "/pretix.nix", [["networking", 11, 5], ["services", 15, 5]]);
-const pos$10 = nix.positions(here + "/pretix.nix", [["pretix", 10, 14]]);
-const pos$11 = nix.positions(here + "/pretix.nix", [["name", 7, 3], ["meta", 8, 3], ["containers", 10, 3], ["testScript", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "pretix",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(pkgs, "pretix", "meta", "maintainers")),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pretix: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        networking: nix.thunk(() => ({ [nix.POS]: pos$2, extraHosts: "127.0.0.1 tickets.local\n" })),
+        [nix.POS]: $pos[8],
+        networking: nix.thunk(() => ({ [nix.POS]: $pos[1], extraHosts: "127.0.0.1 tickets.local\n" })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           pretix: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             enable: true,
-            nginx: nix.thunk(() => ({ [nix.POS]: pos$3, domain: "tickets.local" })),
+            nginx: nix.thunk(() => ({ [nix.POS]: $pos[2], domain: "tickets.local" })),
             plugins: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "pretix", "plugins")), null);
               return [
@@ -45,9 +35,9 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              pretix: nix.thunk(() => ({ [nix.POS]: pos$4, instance_name: "NixOS Test", url: "http://tickets.local" })),
-              mail: nix.thunk(() => ({ [nix.POS]: pos$5, from: "hello@tickets.local" })),
+              [nix.POS]: $pos[5],
+              pretix: nix.thunk(() => ({ [nix.POS]: $pos[3], instance_name: "NixOS Test", url: "http://tickets.local" })),
+              mail: nix.thunk(() => ({ [nix.POS]: $pos[4], from: "hello@tickets.local" })),
             })),
           })),
         })),

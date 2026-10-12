@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 41, 8]], [["releaseName", 13, 3], ["xcodeHash", 15, 3], ["patches", 17, 3], ["postPatch", 24, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { libutil: false, mkAppleDerivation: false, ncurses: false, "pkg-config": false, sourceRelease: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 41, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["releaseName", 13, 3], ["xcodeHash", 15, 3], ["patches", 17, 3], ["postPatch", 24, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const sourceRelease = nix.arg($, "sourceRelease");
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       releaseName: "top",
       xcodeHash: "sha256-YeBhEstvPh8IX8ArVc7U8IRU6vqPoOE6kBTqcqZonGc=",
       patches: nix.thunk(() => [
@@ -31,7 +30,7 @@ cp ${xnu}/bsd/sys/{kern_memorystatus.h,reason.h} sys/
 `),
       buildInputs: nix.thunk(() => [libutil, ncurses]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Display information about processes" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "Display information about processes" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["url", 23, 7], ["sha256", 24, 7]], [["url", 27, 7], ["sha256", 28, 7], ["postFetch", 29, 7]], [["NIX_CFLAGS_COMPILE", 51, 7]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["buildInputs", 35, 3], ["makefile", 39, 3], ["makeFlags", 41, 3], ["postInstall", 46, 3], ["env", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, kissfft: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 7], ["sha256", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 27, 7], ["sha256", 28, 7], ["postFetch", 29, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 51, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["buildInputs", 35, 3], ["makefile", 39, 3], ["makeFlags", 41, 3], ["postInstall", 46, 3], ["env", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const kissfft = nix.arg($, "kissfft");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "qm-dsp",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "c4dm",
           repo: "qm-dsp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,12 +25,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://src.fedoraproject.org/rpms/qm-dsp/raw/6eb385e2f970c4150f9c8eba73b558318475ed15/f/qm-dsp-install.patch",
             sha256: "071g30p17ya0pknzqa950pb93vrgp2024ray8axn22c44gvy147c",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://src.fedoraproject.org/rpms/qm-dsp/raw/6eb385e2f970c4150f9c8eba73b558318475ed15/f/qm-dsp-flags.patch",
             sha256: "127n6j5bsp94kf2m1zqfvkf4iqk1h5f7w778bk7w02vi45nm4x6q",
             postFetch: "sed -i 's~/Makefile~/build/linux/Makefile.linux32~g' \"$out\"\n",
@@ -49,11 +44,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mv $out/include/qm-dsp/* $out/include\nrmdir $out/include/qm-dsp\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), kissfft)}/include/kissfft`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "C++ library of functions for DSP and Music Informatics purposes",
         homepage: "https://code.soundsoftware.ac.uk/projects/qm-dsp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

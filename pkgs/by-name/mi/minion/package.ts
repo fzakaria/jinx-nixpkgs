@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withWebKit", 13, 38]], [["enableJavaFX", 15, 5], ["openjfx_jdk", 16, 13]], [["url", 32, 5], ["hash", 33, 5], ["stripRoot", 34, 5]], [["name", 59, 7], ["exec", 60, 7], ["comment", 61, 7], ["desktopName", 62, 7], ["categories", 63, 7]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5], ["sourceProvenance", 74, 5]], [["version", 28, 3], ["pname", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 37, 3], ["dontWrapGApps", 42, 3], ["installPhase", 44, 3], ["desktopItems", 57, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchzip: false, openjfx21: false, openjdk21: false, makeDesktopItem: false, wrapGAppsHook3: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withWebKit", 13, 38]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enableJavaFX", 15, 5], ["openjfx_jdk", 16, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5], ["stripRoot", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 59, 7], ["exec", 60, 7], ["comment", 61, 7], ["desktopName", 62, 7], ["categories", 63, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5], ["sourceProvenance", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 28, 3], ["pname", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 37, 3], ["dontWrapGApps", 42, 3], ["installPhase", 44, 3], ["desktopItems", 57, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,8 +15,8 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
-  const openjfx_jdk = nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withWebKit: true }))));
-  const openjdk = nix.thunk(() => nix.app(nix.sel(openjdk21, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableJavaFX: true, openjfx_jdk: openjfx_jdk }))));
+  const openjfx_jdk = nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withWebKit: true }))));
+  const openjdk = nix.thunk(() => nix.app(nix.sel(openjdk21, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], enableJavaFX: true, openjfx_jdk: openjfx_jdk }))));
   const jvmArgs = nix.thunk(() => [
     "-cp $out/share/minion/lib",
     "--add-exports=javafx.graphics/com.sun.javafx.css=ALL-UNNAMED",
@@ -33,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.12";
       const pname = "minion";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://cdn.mmoui.com/minion/v3/Minion${version}-java.zip`),
           hash: "sha256-KjSj3TBMY3y5kgIywtIDeil0L17dau/Rb2HuXAulSO8=",
           stripRoot: false,
@@ -53,7 +48,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "minion",
             exec: "minion",
             comment: "MMO Addon manager for Elder Scrolls Online and World of Warcraft",
@@ -62,7 +57,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Addon manager for World of Warcraft and The Elder Scrolls Online",
         homepage: "https://minion.mmoui.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -78,7 +73,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version,
         pname,
         src,

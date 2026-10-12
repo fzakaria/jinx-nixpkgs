@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["pname", 62, 26], ["data", 63, 5]], [["updateScript", 116, 5]], [["description", 120, 5], ["homepage", 121, 5], ["license", 123, 5], ["mainProgram", 124, 5], ["maintainers", 125, 5], ["platforms", 129, 5], ["sourceProvenance", 130, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["postPatch", 32, 3], ["__darwinAllowLocalNetworking", 59, 3], ["mitmCache", 61, 3], ["gradleBuildTask", 66, 3], ["doCheck", 68, 3], ["excludedTests", 70, 3], ["installPhase", 84, 3], ["doInstallCheck", 98, 3], ["nativeInstallCheckInputs", 99, 3], ["installCheckPhase", 101, 3], ["preGradleUpdate", 111, 3], ["passthru", 115, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gradle: false, jdk: false, jre: false, graphviz: false, makeBinaryWrapper: false, testers: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 62, 26], ["data", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 116, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 120, 5], ["homepage", 121, 5], ["license", 123, 5], ["mainProgram", 124, 5], ["maintainers", 125, 5], ["platforms", 129, 5], ["sourceProvenance", 130, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["postPatch", 32, 3], ["__darwinAllowLocalNetworking", 59, 3], ["mitmCache", 61, 3], ["gradleBuildTask", 66, 3], ["doCheck", 68, 3], ["excludedTests", 70, 3], ["installPhase", 84, 3], ["doInstallCheck", 98, 3], ["nativeInstallCheckInputs", 99, 3], ["installCheckPhase", 101, 3], ["preGradleUpdate", 111, 3], ["passthru", 115, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "plantuml",
       version: "1.2026.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "plantuml",
           repo: "plantuml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +55,7 @@ EOF
 `),
       __darwinAllowLocalNetworking: true,
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -90,11 +86,11 @@ runHook postInstall
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/plantuml -help\n$out/bin/plantuml -testdot\n\nrunHook postInstallCheck\n",
       preGradleUpdate: "gradleFlagsArray+=('-x:plantuml-natif:nixDownloadDeps' '-x:plantuml-mcp-js:nixDownloadDeps')\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Draw UML diagrams using a simple and human readable text description",
         homepage: "https://plantuml.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

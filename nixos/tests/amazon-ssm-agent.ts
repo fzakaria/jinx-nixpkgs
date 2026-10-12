@@ -2,31 +2,26 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/amazon-ssm-agent.nix", [[["maintainers", 4, 8]], [["enable", 7, 31]], [["amazon-ssm-agent", 7, 14]], [["services", 7, 5]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 10, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/amazon-ssm-agent.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/amazon-ssm-agent.nix", [["enable", 7, 31]]);
-const pos$3 = nix.positions(here + "/amazon-ssm-agent.nix", [["amazon-ssm-agent", 7, 14]]);
-const pos$4 = nix.positions(here + "/amazon-ssm-agent.nix", [["services", 7, 5]]);
-const pos$5 = nix.positions(here + "/amazon-ssm-agent.nix", [["machine", 6, 9]]);
-const pos$6 = nix.positions(here + "/amazon-ssm-agent.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "amazon-ssm-agent",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anthonyroussel"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          "amazon-ssm-agent": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          "amazon-ssm-agent": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
       })),
     })),

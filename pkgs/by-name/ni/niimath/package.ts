@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["cmakeFlags", 43, 3], ["doCheck", 45, 3], ["checkPhase", 46, 3], ["nativeCheckInputs", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, coreutils: false, git: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["cmakeFlags", 43, 3], ["doCheck", 45, 3], ["checkPhase", 46, 3], ["nativeCheckInputs", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const zlib = nix.arg($, "zlib");
   const niimathTestsSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "rordenlab",
       repo: "niimath_tests",
       rev: "e482edf54fb5bea6e08047ba731600d26925d493",
       hash: "sha256-FC9NHogt4Cmq7/9mao12LN7du9CoXVnonkwhafIpIQo=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "niimath",
       version: "1.0.20250804",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "rordenlab",
           repo: "niimath",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +43,7 @@ patchShebangs niimath_tests/canonical_test.sh
       checkPhase: "PATH=bin:$PATH ../niimath_tests/canonical_test.sh\n",
       nativeCheckInputs: nix.thunk(() => [coreutils]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open-source clone of fslmaths",
         homepage: "https://github.com/rordenlab/niimath",
         changelog: nix.thunk(() => nix.str`https://github.com/rordenlab/niimath/releases/tag/v${nix.sel(finalAttrs, "version")}`),

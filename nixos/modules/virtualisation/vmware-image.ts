@@ -2,30 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vmware-image.nix", [[["sinceRelease", 24, 7], ["from", 25, 7], ["to", 29, 7]], [["sinceRelease", 35, 7], ["from", 36, 7], ["to", 40, 7]], [["type", 50, 9], ["default", 51, 9], ["description", 52, 9]], [["type", 57, 9], ["default", 58, 9], ["description", 59, 9]], [["type", 62, 9], ["default", 63, 9], ["example", 64, 9], ["description", 65, 9]], [["vmDerivationName", 49, 7], ["vmSubformat", 56, 7], ["vmCompat6", 61, 7]], [["vmware", 48, 5]], [["tags", 71, 18]], [["name", 75, 7], ["baseName", 76, 7], ["postVM", 77, 7], ["format", 81, 7], ["diskSize", 82, 7], ["partitionTableType", 83, 7], ["config", 84, 15], ["lib", 84, 22], ["pkgs", 84, 26]], [["image", 73, 18], ["vmwareImage", 74, 18]], [["nixos", 71, 12], ["build", 73, 12]], [["extension", 72, 11]], [["device", 88, 7], ["autoResize", 89, 7], ["fsType", 90, 7]], [["device", 94, 7], ["fsType", 95, 7]], [["/", 87, 17], ["/boot", 93, 17]], [["device", 101, 7], ["efiSupport", 102, 7], ["efiInstallAsRemovable", 103, 7]], [["grub", 100, 17]], [["growPartition", 98, 10], ["loader", 100, 10]], [["enable", 106, 33]], [["guest", 106, 27]], [["vmware", 106, 20]], [["system", 71, 5], ["image", 72, 5], ["fileSystems", 87, 5], ["boot", 98, 5], ["virtualisation", 106, 5]], [["imports", 21, 3], ["options", 47, 3], ["config", 70, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/vmware-image.nix", [["sinceRelease", 24, 7], ["from", 25, 7], ["to", 29, 7]]);
-const pos$2 = nix.positions(here + "/vmware-image.nix", [["sinceRelease", 35, 7], ["from", 36, 7], ["to", 40, 7]]);
-const pos$3 = nix.positions(here + "/vmware-image.nix", [["type", 50, 9], ["default", 51, 9], ["description", 52, 9]]);
-const pos$4 = nix.positions(here + "/vmware-image.nix", [["type", 57, 9], ["default", 58, 9], ["description", 59, 9]]);
-const pos$5 = nix.positions(here + "/vmware-image.nix", [["type", 62, 9], ["default", 63, 9], ["example", 64, 9], ["description", 65, 9]]);
-const pos$6 = nix.positions(here + "/vmware-image.nix", [["vmDerivationName", 49, 7], ["vmSubformat", 56, 7], ["vmCompat6", 61, 7]]);
-const pos$7 = nix.positions(here + "/vmware-image.nix", [["vmware", 48, 5]]);
-const pos$8 = nix.positions(here + "/vmware-image.nix", [["tags", 71, 18]]);
-const pos$9 = nix.positions(here + "/vmware-image.nix", [["name", 75, 7], ["baseName", 76, 7], ["postVM", 77, 7], ["format", 81, 7], ["diskSize", 82, 7], ["partitionTableType", 83, 7], ["config", 84, 15], ["lib", 84, 22], ["pkgs", 84, 26]]);
-const pos$10 = nix.positions(here + "/vmware-image.nix", [["image", 73, 18], ["vmwareImage", 74, 18]]);
-const pos$11 = nix.positions(here + "/vmware-image.nix", [["nixos", 71, 12], ["build", 73, 12]]);
-const pos$12 = nix.positions(here + "/vmware-image.nix", [["extension", 72, 11]]);
-const pos$13 = nix.positions(here + "/vmware-image.nix", [["device", 88, 7], ["autoResize", 89, 7], ["fsType", 90, 7]]);
-const pos$14 = nix.positions(here + "/vmware-image.nix", [["device", 94, 7], ["fsType", 95, 7]]);
-const pos$15 = nix.positions(here + "/vmware-image.nix", [["/", 87, 17], ["/boot", 93, 17]]);
-const pos$16 = nix.positions(here + "/vmware-image.nix", [["device", 101, 7], ["efiSupport", 102, 7], ["efiInstallAsRemovable", 103, 7]]);
-const pos$17 = nix.positions(here + "/vmware-image.nix", [["grub", 100, 17]]);
-const pos$18 = nix.positions(here + "/vmware-image.nix", [["growPartition", 98, 10], ["loader", 100, 10]]);
-const pos$19 = nix.positions(here + "/vmware-image.nix", [["enable", 106, 33]]);
-const pos$20 = nix.positions(here + "/vmware-image.nix", [["guest", 106, 27]]);
-const pos$21 = nix.positions(here + "/vmware-image.nix", [["vmware", 106, 20]]);
-const pos$22 = nix.positions(here + "/vmware-image.nix", [["system", 71, 5], ["image", 72, 5], ["fileSystems", 87, 5], ["boot", 98, 5], ["virtualisation", 106, 5]]);
-const pos$23 = nix.positions(here + "/vmware-image.nix", [["imports", 21, 3], ["options", 47, 3], ["config", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,40 +20,40 @@ export default nix.lambda((args) => (() => {
     "streamOptimized",
   ]);
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     imports: nix.thunk(() => [
       nix.path(here, "../image/file-options.nix"),
       nix.thunk(() => nix.app(nix.sel(lib, "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sinceRelease: 2505n,
           from: nix.thunk(() => ["vmware", "vmFileName"]),
           to: nix.thunk(() => ["image", "fileName"]),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "modules", "mkRenamedOptionModuleWith"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           sinceRelease: 2605n,
           from: nix.thunk(() => ["vmware", "baseImageSize"]),
           to: nix.thunk(() => ["virtualisation", "diskSize"]),
         })))),
     ]),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       vmware: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         vmDerivationName: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             type: nix.thunk(() => nix.sel(lib, "types", "str")),
             default: nix.thunk(() => nix.str`nixos-vmware-${nix.sel(config, "system", "nixos", "label")}-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}`),
             description: "The name of the derivation for the VMWare appliance.\n",
           })))),
         vmSubformat: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), subformats)),
             default: "monolithicSparse",
             description: "Specifies which VMDK subformat to use.",
           })))),
         vmCompat6: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
             example: true,
@@ -84,15 +62,15 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       system: nix.thunk(() => ({
-        [nix.POS]: pos$11,
-        nixos: nix.thunk(() => ({ [nix.POS]: pos$8, tags: nix.thunk(() => ["vmware"]) })),
+        [nix.POS]: $pos[10],
+        nixos: nix.thunk(() => ({ [nix.POS]: $pos[7], tags: nix.thunk(() => ["vmware"]) })),
         build: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           image: nix.thunk(() => nix.sel(config, "system", "build", "vmwareImage")),
           vmwareImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")), nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               name: nix.thunk(() => nix.sel(cfg, "vmDerivationName")),
               baseName: nix.thunk(() => nix.sel(config, "image", "baseName")),
               postVM: nix.thunk(() => nix.str`${nix.sel(pkgs, "vmTools", "qemu")}/bin/qemu-img convert -f raw -o compat6=${nix.app(boolToStr, nix.thunk(() => nix.sel(cfg, "vmCompat6")))},subformat=${nix.sel(cfg, "vmSubformat")} -O vmdk $diskImage $out/${nix.sel(config, "image", "fileName")}
@@ -107,24 +85,24 @@ rm $diskImage
             })))),
         })),
       })),
-      image: nix.thunk(() => ({ [nix.POS]: pos$12, extension: "vmdk" })),
+      image: nix.thunk(() => ({ [nix.POS]: $pos[11], extension: "vmdk" })),
       fileSystems: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         "/": nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           device: "/dev/disk/by-label/nixos",
           autoResize: true,
           fsType: "ext4",
         })),
-        "/boot": nix.thunk(() => ({ [nix.POS]: pos$14, device: "/dev/disk/by-label/ESP", fsType: "vfat" })),
+        "/boot": nix.thunk(() => ({ [nix.POS]: $pos[13], device: "/dev/disk/by-label/ESP", fsType: "vfat" })),
       })),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         growPartition: true,
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           grub: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             device: "nodev",
             efiSupport: true,
             efiInstallAsRemovable: true,
@@ -132,10 +110,10 @@ rm $diskImage
         })),
       })),
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         vmware: nix.thunk(() => ({
-          [nix.POS]: pos$20,
-          guest: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true })),
+          [nix.POS]: $pos[19],
+          guest: nix.thunk(() => ({ [nix.POS]: $pos[18], enable: true })),
         })),
       })),
     })),

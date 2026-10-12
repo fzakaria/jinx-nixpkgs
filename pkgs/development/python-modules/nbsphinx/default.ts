@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]], [["JUPYTER_PATH", 42, 7]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["dependencies", 30, 3], ["doCheck", 40, 3], ["env", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, docutils: false, jinja2: false, nbconvert: false, nbformat: false, sphinx: false, traitlets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["JUPYTER_PATH", 42, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["dependencies", 30, 3], ["doCheck", 40, 3], ["env", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-0HZZCDmajuK1e+euiBzy6ljWbbOve78z5utI+DvqVJU=",
@@ -35,12 +32,12 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [docutils, jinja2, nbconvert, nbformat, sphinx, traitlets]);
       const doCheck = false;
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         JUPYTER_PATH: nix.thunk(() => nix.str`${nbconvert}/share/jupyter`),
       }));
       const pythonImportsCheck = nix.thunk(() => ["nbsphinx"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Jupyter Notebook Tools for Sphinx",
         homepage: "https://nbsphinx.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/spatialaudio/nbsphinx/blob/${version}/NEWS.rst`),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

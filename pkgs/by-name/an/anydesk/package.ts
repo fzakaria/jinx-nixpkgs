@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 69, 13], ["hash", 69, 17]], [["name", 118, 7], ["exec", 119, 7], ["icon", 120, 7], ["desktopName", 121, 7], ["genericName", 122, 7], ["categories", 123, 7], ["startupNotify", 124, 7]], [["updateScript", 167, 5]], [["description", 171, 13], ["homepage", 172, 5], ["sourceProvenance", 173, 5], ["license", 174, 5], ["platforms", 175, 5], ["mainProgram", 179, 5], ["maintainers", 180, 5]], [["pname", 65, 3], ["version", 66, 11], ["src", 68, 3], ["buildInputs", 72, 3], ["nativeBuildInputs", 111, 3], ["desktopItems", 116, 3], ["postPatch", 128, 3], ["installPhase", 132, 3], ["postFixup", 144, 3], ["passthru", 166, 3], ["meta", 170, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, makeDesktopItem: false, writeShellScript: false, jq: false, atk: false, cairo: false, "gdk-pixbuf": false, glib: false, gtk3: false, dbus: false, harfbuzz: false, libz: false, libGLU: false, libGL: false, pango: false, libxt: false, libxtst: false, libxrender: false, libxrandr: false, libxmu: false, libxi: false, libxfixes: false, libxext: false, libxdamage: false, libx11: false, libsm: false, libice: false, libxkbfile: false, libxcb: false, libevdev: false, minizip: false, "net-tools": false, "lsb-release": false, freetype: false, fontconfig: false, polkit: false, pciutils: false, copyDesktopItems: false, pulseaudio: false, udev: false, libxkbcommon: false, wayland: false, libepoxy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 69, 13], ["hash", 69, 17]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 118, 7], ["exec", 119, 7], ["icon", 120, 7], ["desktopName", 121, 7], ["genericName", 122, 7], ["categories", 123, 7], ["startupNotify", 124, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 167, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 171, 13], ["homepage", 172, 5], ["sourceProvenance", 173, 5], ["license", 174, 5], ["platforms", 175, 5], ["mainProgram", 179, 5], ["maintainers", 180, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 65, 3], ["version", 66, 11], ["src", 68, 3], ["buildInputs", 72, 3], ["nativeBuildInputs", 111, 3], ["desktopItems", 116, 3], ["postPatch", 128, 3], ["installPhase", 132, 3], ["postFixup", 144, 3], ["passthru", 166, 3], ["meta", 170, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,10 +61,10 @@ export default nix.lambda((args) => (() => {
   const url = nix.thunk(() => (nix.asBool(nix.eq(system, "x86_64-linux")) ? nix.str`https://download.anydesk.com/linux/anydesk-${version}-amd64.tar.gz` : (nix.asBool(nix.eq(system, "aarch64-linux")) ? nix.str`https://download.anydesk.com/rpi/anydesk-${version}-arm64.tar.gz` : nix.builtins.throw(nix.thunk(() => nix.str`cannot install AnyDesk on ${system}`)))));
   const hash = nix.thunk(() => nix.sel(pin, nix.key(nix.force(system))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "anydesk",
       version: version,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, hash: hash })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, hash: hash })))),
       buildInputs: nix.thunk(() => [
         atk,
         cairo,
@@ -110,7 +106,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "AnyDesk",
             exec: "anydesk %u",
             icon: "anydesk",
@@ -133,9 +129,9 @@ wrapProgram $out/bin/anydesk \\
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [net_tools]))} \\
   --set GTK_THEME Adwaita
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: description,
         homepage: "https://www.anydesk.com",
         sourceProvenance: nix.thunk(() => (() => {

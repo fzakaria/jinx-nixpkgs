@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 7], ["hash", 21, 7]], [["description", 38, 7], ["homepage", 39, 7], ["license", 40, 7], ["platforms", 41, 7], ["sourceProvenance", 42, 7]], [["pname", 16, 5], ["version", 17, 13], ["src", 19, 5], ["nativeBuildInputs", 24, 5], ["dontConfigure", 26, 5], ["dontBuild", 27, 5], ["dontStrip", 28, 5], ["dontPatchELF", 29, 5], ["installPhase", 31, 5], ["meta", 37, 5]], [["attrPath", 90, 7], ["extraArgs", 91, 7]], [["unsloth-desktop-unwrapped", 88, 13], ["updateScript", 89, 5]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5], ["mainProgram", 102, 5], ["sourceProvenance", 103, 5], ["longDescription", 104, 5]], [["pname", 47, 3], ["version", 48, 11], ["includeClosures", 50, 3], ["targetPkgs", 52, 3], ["profile", 69, 3], ["runScript", 76, 3], ["extraInstallCommands", 78, 3], ["passthru", 87, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cacert: false, buildFHSEnv: false, "nix-update-script": false, fetchurl: false, dpkg: false, "glib-networking": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 7], ["homepage", 39, 7], ["license", 40, 7], ["platforms", 41, 7], ["sourceProvenance", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 5], ["version", 17, 13], ["src", 19, 5], ["nativeBuildInputs", 24, 5], ["dontConfigure", 26, 5], ["dontBuild", 27, 5], ["dontStrip", 28, 5], ["dontPatchELF", 29, 5], ["installPhase", 31, 5], ["meta", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["attrPath", 90, 7], ["extraArgs", 91, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["unsloth-desktop-unwrapped", 88, 13], ["updateScript", 89, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5], ["mainProgram", 102, 5], ["sourceProvenance", 103, 5], ["longDescription", 104, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 11], ["includeClosures", 50, 3], ["targetPkgs", 52, 3], ["profile", 69, 3], ["runScript", 76, 3], ["extraInstallCommands", 78, 3], ["passthru", 87, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const glib_networking = nix.arg($, "glib-networking");
   const version = "0.1.808-beta";
   const unsloth_desktop_unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "unsloth-desktop-unwrapped",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/unslothai/unsloth/releases/download/v${version}/Unsloth-Desktop-Ubuntu.deb`),
           hash: "sha256-cyKUax4L5foIOT6RyOeGnbH72kpLFKjWtYv0cJszkLw=",
         })))),
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dontPatchELF: true,
       installPhase: "runHook preInstall\ndpkg-deb -x $src $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unsloth Studio desktop payload from the upstream .deb (unwrapped)",
         homepage: "https://unsloth.ai/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -50,7 +44,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "unsloth-desktop",
       version: version,
       includeClosures: true,
@@ -86,16 +80,16 @@ install -Dm644 ${unsloth_desktop_unwrapped}/usr/share/icons/hicolor/128x128/apps
   $out/share/icons/hicolor/128x128/apps/unsloth-studio.png
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "unsloth-desktop-unwrapped": unsloth_desktop_unwrapped,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             attrPath: "unsloth-desktop.unsloth-desktop-unwrapped",
             extraArgs: nix.thunk(() => ["--version=unstable"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Desktop application for running and training AI models locally",
         homepage: "https://unsloth.ai/",
         changelog: "https://github.com/unslothai/unsloth/releases",

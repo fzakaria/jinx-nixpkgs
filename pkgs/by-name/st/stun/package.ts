@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["url", 17, 5], ["name", 18, 5], ["sha256", 19, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 48, 5], ["mainProgram", 49, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["srcManpages", 16, 3], ["outputs", 22, 3], ["preBuild", 27, 3], ["installPhase", 33, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 17, 5], ["name", 18, 5], ["sha256", 19, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 48, 5], ["mainProgram", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["srcManpages", 16, 3], ["outputs", 22, 3], ["preBuild", 27, 3], ["installPhase", 33, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,16 +11,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "stun",
       version: "0.97",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/stun/stund-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1mxirnnqfqdwb9x8hfjjsscp6lx3468ph6ddx32l94ir46fbzqc3",
         })))),
       srcManpages: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "mirror://ubuntu/pool/universe/s/stun/stun_0.97~dfsg-2.debian.tar.xz",
           name: "stun-debian.tar.xz",
           sha256: "1pr6zrdhia0aafsvywl1hrhlgl00vahp63bw1z2mzvdxri7q88f0",
@@ -35,7 +32,7 @@ gzip -9n debian/manpages/stund.8
 `),
       installPhase: "mkdir -p $out/bin $server/bin $out/man/man1 $server/man/man8\ncp -v client $out/bin/stun\ncp -v server $server/bin/stund\ncp -v debian/manpages/stun.1.gz  $out/man/man1\ncp -v debian/manpages/stund.8.gz $server/man/man8\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Stun server and test client",
         homepage: "https://sourceforge.net/projects/stun/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "vsl10")),

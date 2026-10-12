@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 13, 7], ["homepage", 14, 7], ["platforms", 15, 7], ["maintainers", 16, 7]], [["version", 10, 5], ["dontBuild", 11, 5], ["meta", 12, 5]], [["owner", 23, 9], ["repo", 24, 9], ["rev", 25, 9], ["hash", 26, 17], ["sparseCheckout", 27, 9]], [["pname", 33, 17], ["src", 33, 23], ["version", 34, 9], ["installPhase", 35, 9]], [["pname", 48, 5], ["hash", 49, 5]], [["exercise", 47, 3]]]);
 const formals$1 = { args: { lib: false, newScope: false, fetchFromGitHub: false, unzip: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 13, 7], ["homepage", 14, 7], ["platforms", 15, 7], ["maintainers", 16, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 10, 5], ["dontBuild", 11, 5], ["meta", 12, 5]]);
 const formals$2 = { args: { pname: false, hash: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 23, 9], ["repo", 24, 9], ["rev", 25, 9], ["hash", 26, 17], ["sparseCheckout", 27, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 17], ["src", 33, 23], ["version", 34, 9], ["installPhase", 35, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 48, 5], ["hash", 49, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["exercise", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const base = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "unstable-2023-01-26",
     dontBuild: true,
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       description: "Data repository for seaborn examples",
       homepage: "https://github.com/mwaskom/seaborn-data",
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
     const pname = nix.arg($_1, "pname");
     const hash = nix.arg($_1, "hash");
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner: "mwaskom",
         repo: "seaborn-data",
         rev: "2b29313169bf8dfa77d8dc930f7bd3eba559a906",
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
         sparseCheckout: nix.thunk(() => [nix.thunk(() => nix.str`${pname}.csv`)]),
       }))));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update(base, {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname,
         src: src,
         version: nix.thunk(() => nix.sel(base, "version")),
@@ -57,9 +52,9 @@ runHook postInstall
       })));
   })(), formals$2);
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       exercise: nix.thunk(() => nix.app(makeSeabornDataPackage, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: "exercise",
           hash: "sha256-icoc2HkG303A8hCoW6kZxD5qhOKIpdxErLr288o04wE=",
         })))),

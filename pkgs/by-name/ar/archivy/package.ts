@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 11], ["version", 16, 19], ["sha256", 17, 11]], [["version", 12, 9], ["src", 14, 9], ["doCheck", 20, 9]], [["wtforms", 11, 7]], [["self", 9, 5], ["packageOverrides", 10, 5]], [["pname", 31, 13], ["version", 31, 19], ["hash", 32, 5]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 35, 3], ["pythonRelaxDeps", 39, 3], ["dependencies", 41, 3], ["doCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 11], ["version", 16, 19], ["sha256", 17, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 12, 9], ["src", 14, 9], ["doCheck", 20, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["wtforms", 11, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["self", 9, 5], ["packageOverrides", 10, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 13], ["version", 31, 19], ["hash", 32, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 35, 3], ["pythonRelaxDeps", 39, 3], ["dependencies", 41, 3], ["doCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +11,20 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchPypi = nix.arg($, "fetchPypi");
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       self: py,
       packageOverrides: (self) => (super$) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         wtforms: nix.thunk(() => nix.app(nix.sel(super$, "wtforms", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "2.3.1";
             const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 pname: "WTForms",
                 version: version,
                 sha256: "sha256-hhoTs65SHWcA2sOydxlwvTVKY7pwQ+zDqCtSiFlqGXI=",
               }))));
             const doCheck = false;
-            return { [nix.POS]: pos$2, version, src, doCheck };
+            return { [nix.POS]: $pos[1], version, src, doCheck };
           })())),
       }),
     }))));
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: pname,
           version: version,
           hash: "sha256-XFzWD4KAW5jt5BwXZvO0iZdJKpzC6dRkxNLv5N8XUfc=",
@@ -73,7 +67,7 @@ export default nix.lambda((args) => (() => {
       })());
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Self-hosted knowledge repository",
         homepage: "https://archivy.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -84,7 +78,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

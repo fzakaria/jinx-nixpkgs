@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["stripRoot", 14, 5], ["sha256", 15, 5]], [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 90, 5], ["platforms", 92, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 57, 3], ["installPhase", 62, 3], ["doInstallCheck", 72, 3], ["installCheckPhase", 73, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchzip: false, cmake: false, gmp: false, mpfr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["stripRoot", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 90, 5], ["platforms", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 57, 3], ["installPhase", 62, 3], ["doInstallCheck", 72, 3], ["installCheckPhase", 73, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const mpfr = nix.arg($, "mpfr");
   const satlib_bmc = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://www.cs.ubc.ca/~hoos/SATLIB/Benchmarks/SAT/BMC/bmc.tar.gz",
       stripRoot: false,
       sha256: "sha256-F1Jfrj4iMMf/3LFCShIDMs4JfLkJ51Z4wkL1FDT9b/A=",
     }))));
   const mpreal = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "advanpix",
       repo: "mpreal",
       rev: "mpfrc++-3.6.9",
       sha256: "sha256-l61SKEx4pBocADrEGPVacQ6F2ep9IuvNZ8W08dKeZKg=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sharpsat-td",
       version: "0-unstable-2021-09-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "Laakeri",
           repo: "sharpsat-td",
           rev: "b9bb015305ea5d4e1ac7141691d0fe55ca983d31",
@@ -71,7 +67,7 @@ $out/bin/sharpSAT-td -decot 1 -decow 100 -cs 3500 -tmpdir "$TMPDIR" \\
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast solver for the #SAT model counting problem",
         homepage: "https://github.com/Laakeri/sharpsat-td",
         license: nix.thunk(() => (() => {

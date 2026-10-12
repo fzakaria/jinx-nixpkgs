@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sc3-plugins.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["url", 43, 5], ["rev-prefix", 44, 5], ["ignoredVersions", 45, 5]], [["updateScript", 42, 12]], [["description", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["license", 54, 5], ["platforms", 55, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["cmakeFlags", 32, 3], ["stripDebugList", 37, 3], ["passthru", 42, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchpatch2: false, fetchurl: false, cmake: false, supercollider: false, fftw: false, fftwFloat: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sc3-plugins.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/sc3-plugins.nix", [["url", 43, 5], ["rev-prefix", 44, 5], ["ignoredVersions", 45, 5]]);
-const pos$3 = nix.positions(here + "/sc3-plugins.nix", [["updateScript", 42, 12]]);
-const pos$4 = nix.positions(here + "/sc3-plugins.nix", [["description", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["license", 54, 5], ["platforms", 55, 5]]);
-const pos$5 = nix.positions(here + "/sc3-plugins.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["cmakeFlags", 32, 3], ["stripDebugList", 37, 3], ["passthru", 42, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sc3-plugins";
       const version = "3.14.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/supercollider/sc3-plugins/releases/download/Version-${version}/sc3-plugins-${version}-Source.tar.bz2`),
           sha256: "sha256-Thaj0XjMLnKMYTiA3HK2Lk8xTcIOOhnR2oSUeY0SKvI=",
         }))));
@@ -37,16 +33,16 @@ export default nix.lambda((args) => (() => {
       ]);
       const stripDebugList = nix.thunk(() => ["lib", "share"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/supercollider/sc3-plugins.git",
             "rev-prefix": "Version-",
             ignoredVersions: "rc|beta",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Community plugins for SuperCollider",
         homepage: "https://supercollider.github.io/sc3-plugins/",
         maintainers: nix.thunk(() => (() => {
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

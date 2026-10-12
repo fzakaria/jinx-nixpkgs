@@ -2,16 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bind.nix", [[["name", 9, 5], ["master", 10, 5], ["file", 11, 5]], [["enable", 29, 9], ["extraOptions", 31, 9], ["zones", 32, 17]], [["bind", 28, 16]], [["services", 28, 7]], [["enable", 38, 9], ["extraOptions", 40, 9], ["zones", 41, 17], ["listenOnPort", 43, 9]], [["bind", 37, 16]], [["services", 37, 7]], [["machine", 27, 5], ["machineNonDefaultPort", 36, 5]], [["name", 24, 3], ["nodes", 26, 3], ["testScript", 48, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/bind.nix", [["name", 9, 5], ["master", 10, 5], ["file", 11, 5]]);
-const pos$2 = nix.positions(here + "/bind.nix", [["enable", 29, 9], ["extraOptions", 31, 9], ["zones", 32, 17]]);
-const pos$3 = nix.positions(here + "/bind.nix", [["bind", 28, 16]]);
-const pos$4 = nix.positions(here + "/bind.nix", [["services", 28, 7]]);
-const pos$5 = nix.positions(here + "/bind.nix", [["enable", 38, 9], ["extraOptions", 40, 9], ["zones", 41, 17], ["listenOnPort", 43, 9]]);
-const pos$6 = nix.positions(here + "/bind.nix", [["bind", 37, 16]]);
-const pos$7 = nix.positions(here + "/bind.nix", [["services", 37, 7]]);
-const pos$8 = nix.positions(here + "/bind.nix", [["machine", 27, 5], ["machineNonDefaultPort", 36, 5]]);
-const pos$9 = nix.positions(here + "/bind.nix", [["name", 24, 3], ["nodes", 26, 3], ["testScript", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,22 +11,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const zones = nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: ".",
       master: true,
       file: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "root.zone", "$TTL 3600\n. IN SOA ns.example.org. admin.example.org. ( 1 3h 1h 1w 1d )\n. IN NS ns.example.org.\n\nns.example.org. IN A    192.168.0.1\nns.example.org. IN AAAA abcd::1\n\n1.0.168.192.in-addr.arpa IN PTR ns.example.org.\n")),
     }))));
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "bind",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           bind: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             enable: true,
             extraOptions: "empty-zones-enable no;",
             zones: zones,
@@ -42,11 +34,11 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       machineNonDefaultPort: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           bind: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             extraOptions: "empty-zones-enable no;",
             zones: zones,

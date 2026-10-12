@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 13, 5], ["version", 14, 13], ["sha256", 15, 5]], [["homepage", 19, 5], ["description", 20, 5], ["license", 21, 5]], [["pname", 8, 3], ["version", 9, 3], ["format", 10, 3], ["src", 12, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 13, 5], ["version", 14, 13], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 19, 5], ["description", 20, 5], ["license", 21, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["format", 10, 3], ["src", 12, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +15,18 @@ export default nix.lambda((args) => (() => {
       const version = "1.01";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "SocksiPy-branch",
           version: version,
           sha256: "01l41v4g7fy9fzvinmjxy6zcbhgqaif8dhdqm4w90fwcw9h51a8p",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://code.google.com/p/socksipy-branch/",
         description: "This Python module allows you to create TCP connections through a SOCKS proxy without any special effort",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
-      return { [nix.POS]: pos$3, pname, version, format, src, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

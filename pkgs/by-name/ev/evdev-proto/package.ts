@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ARCH", 23, 5], ["OPSYS", 24, 5], ["_OSRELEASE", 25, 5], ["AWK", 27, 5], ["CHMOD", 28, 5], ["FIND", 29, 5], ["MKDIR", 30, 5], ["PKG_BIN", 31, 5], ["RM", 32, 5], ["SED", 33, 5], ["SETENV", 34, 5], ["SH", 35, 5], ["TOUCH", 36, 5], ["XARGS", 37, 5], ["ABI_FILE", 39, 5], ["CLEAN_FETCH_ENV", 40, 5], ["INSTALL_AS_USER", 41, 5], ["NO_CHECKSUM", 42, 5], ["NO_MTREE", 43, 5], ["SRC_BASE", 44, 5]], [["description", 68, 5], ["homepage", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5], ["license", 72, 5]], [["pname", 11, 3], ["version", 12, 26], ["src", 14, 3], ["sourceRoot", 16, 3], ["useTempPrefix", 18, 3], ["nativeBuildInputs", 20, 3], ["env", 22, 3], ["preUnpack", 47, 3], ["makeFlags", 61, 3], ["postInstall", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, linuxHeaders: false, freebsd: false, runCommandCC: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ARCH", 23, 5], ["OPSYS", 24, 5], ["_OSRELEASE", 25, 5], ["AWK", 27, 5], ["CHMOD", 28, 5], ["FIND", 29, 5], ["MKDIR", 30, 5], ["PKG_BIN", 31, 5], ["RM", 32, 5], ["SED", 33, 5], ["SETENV", 34, 5], ["SH", 35, 5], ["TOUCH", 36, 5], ["XARGS", 37, 5], ["ABI_FILE", 39, 5], ["CLEAN_FETCH_ENV", 40, 5], ["INSTALL_AS_USER", 41, 5], ["NO_CHECKSUM", 42, 5], ["NO_MTREE", 43, 5], ["SRC_BASE", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5], ["license", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 26], ["src", 14, 3], ["sourceRoot", 16, 3], ["useTempPrefix", 18, 3], ["nativeBuildInputs", 20, 3], ["env", 22, 3], ["preUnpack", 47, 3], ["makeFlags", 61, 3], ["postInstall", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const runCommandCC = nix.arg($, "runCommandCC");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "evdev-proto",
       version: nix.thunk(() => nix.attr(linuxHeaders, "version")),
       src: nix.thunk(() => nix.sel(freebsd, "ports")),
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       useTempPrefix: true,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(freebsd, "makeMinimal"))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         ARCH: nix.thunk(() => nix.sel(freebsd, "makeMinimal", "MACHINE_ARCH")),
         OPSYS: "FreeBSD",
         _OSRELEASE: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(freebsd, "makeMinimal", "version")))}-RELEASE`),
@@ -61,7 +59,7 @@ tar -C "$DISTDIR/evdev-proto" \\
       makeFlags: nix.thunk(() => ["DIST_SUBDIR=evdev-proto"]),
       postInstall: "mv $prefix $out\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Input event device header files for FreeBSD",
         homepage: "https://cgit.freebsd.org/ports",
         maintainers: nix.thunk(() => (() => {

@@ -2,82 +2,25 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [[["pkgsReadOnly", 17, 8]], [["enable", 20, 16]], [["nix", 20, 12]], [["substituters", 39, 11], ["hashed-mirrors", 40, 11], ["connect-timeout", 41, 11]], [["settings", 38, 13]], [["privateKey", 54, 22], ["publicKey", 55, 22]], [["enable", 56, 23]], [["includeBuildDependencies", 44, 16], ["build", 54, 16], ["switch", 56, 16]], [["cores", 47, 11], ["memorySize", 48, 11]], [["enable", 51, 26]], [["autologinUser", 58, 24]], [["openssh", 51, 18], ["getty", 58, 18]], [["keys", 52, 49]], [["authorizedKeys", 52, 34]], [["openssh", 52, 26]], [["root", 52, 21]], [["users", 52, 15]], [["imports", 34, 9], ["nix", 38, 9], ["system", 44, 9], ["virtualisation", 46, 9], ["services", 51, 9], ["users", 52, 9]], [["enable", 71, 25]], [["enable", 72, 28]], [["user", 108, 13], ["destination", 109, 13], ["extraArguments", 110, 13], ["hostKeyChecking", 111, 13]], [["will-be-interrupted-by-rebuild", 107, 40]], [["sessions", 107, 31]], [["openssh", 72, 20], ["autossh-ng", 107, 20]], [["privateKey", 73, 24], ["publicKey", 74, 24]], [["build", 73, 18]], [["keys", 76, 51]], [["authorizedKeys", 76, 36]], [["openssh", 76, 28]], [["keys", 77, 52]], [["authorizedKeys", 77, 37]], [["openssh", 77, 29], ["extraGroups", 80, 29]], [["keys", 78, 50]], [["authorizedKeys", 78, 35]], [["openssh", 78, 27], ["extraGroups", 81, 27]], [["root", 76, 23], ["alice", 77, 23], ["bob", 78, 23]], [["users", 76, 17]], [["command", 87, 30]], [["groups", 86, 15], ["commands", 87, 15]], [["command", 93, 19], ["options", 94, 19]], [["users", 90, 15], ["commands", 91, 15]], [["extraRules", 84, 25]], [["sudo", 84, 20]], [["trusted-users", 100, 24]], [["settings", 100, 15]], [["source", 103, 13], ["mode", 104, 13]], [["autossh-identity.key", 102, 27]], [["etc", 102, 23]], [["RestartSec", 114, 84]], [["serviceConfig", 114, 70]], [["autossh-ng-will-be-interrupted-by-rebuild", 114, 28]], [["services", 114, 19]], [["documentation", 71, 11], ["services", 72, 11], ["system", 73, 11], ["users", 76, 11], ["security", 84, 11], ["nix", 100, 11], ["environment", 102, 11], ["systemd", 114, 11]], [["targetConfig", 125, 23]], [["enable", 127, 27]], [["build", 124, 20], ["switch", 127, 20]], [["hostName", 129, 24]], [["system", 124, 13], ["networking", 129, 13]], [["imports", 119, 9], ["config", 121, 9]], [["deployer", 23, 5], ["target", 61, 5]], [["name", 13, 3], ["node", 17, 3], ["defaults", 20, 3], ["nodes", 22, 3], ["testScript", 135, 3]]]);
 const formals$1 = { args: { hostPkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["pkgsReadOnly", 17, 8]]);
-const pos$2 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["enable", 20, 16]]);
-const pos$3 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["nix", 20, 12]]);
 const formals$2 = { args: { nodes: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["substituters", 39, 11], ["hashed-mirrors", 40, 11], ["connect-timeout", 41, 11]]);
-const pos$5 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["settings", 38, 13]]);
-const pos$6 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["privateKey", 54, 22], ["publicKey", 55, 22]]);
-const pos$7 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["enable", 56, 23]]);
-const pos$8 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["includeBuildDependencies", 44, 16], ["build", 54, 16], ["switch", 56, 16]]);
-const pos$9 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["cores", 47, 11], ["memorySize", 48, 11]]);
-const pos$10 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["enable", 51, 26]]);
-const pos$11 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["autologinUser", 58, 24]]);
-const pos$12 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["openssh", 51, 18], ["getty", 58, 18]]);
-const pos$13 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["keys", 52, 49]]);
-const pos$14 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["authorizedKeys", 52, 34]]);
-const pos$15 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["openssh", 52, 26]]);
-const pos$16 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["root", 52, 21]]);
-const pos$17 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["users", 52, 15]]);
-const pos$18 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["imports", 34, 9], ["nix", 38, 9], ["system", 44, 9], ["virtualisation", 46, 9], ["services", 51, 9], ["users", 52, 9]]);
 const formals$3 = { args: { nodes: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["enable", 71, 25]]);
-const pos$20 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["enable", 72, 28]]);
-const pos$21 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["user", 108, 13], ["destination", 109, 13], ["extraArguments", 110, 13], ["hostKeyChecking", 111, 13]]);
-const pos$22 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["will-be-interrupted-by-rebuild", 107, 40]]);
-const pos$23 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["sessions", 107, 31]]);
-const pos$24 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["openssh", 72, 20], ["autossh-ng", 107, 20]]);
-const pos$25 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["privateKey", 73, 24], ["publicKey", 74, 24]]);
-const pos$26 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["build", 73, 18]]);
-const pos$27 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["keys", 76, 51]]);
-const pos$28 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["authorizedKeys", 76, 36]]);
-const pos$29 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["openssh", 76, 28]]);
-const pos$30 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["keys", 77, 52]]);
-const pos$31 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["authorizedKeys", 77, 37]]);
-const pos$32 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["openssh", 77, 29], ["extraGroups", 80, 29]]);
-const pos$33 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["keys", 78, 50]]);
-const pos$34 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["authorizedKeys", 78, 35]]);
-const pos$35 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["openssh", 78, 27], ["extraGroups", 81, 27]]);
-const pos$36 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["root", 76, 23], ["alice", 77, 23], ["bob", 78, 23]]);
-const pos$37 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["users", 76, 17]]);
-const pos$38 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["command", 87, 30]]);
-const pos$39 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["groups", 86, 15], ["commands", 87, 15]]);
-const pos$40 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["command", 93, 19], ["options", 94, 19]]);
-const pos$41 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["users", 90, 15], ["commands", 91, 15]]);
-const pos$42 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["extraRules", 84, 25]]);
-const pos$43 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["sudo", 84, 20]]);
-const pos$44 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["trusted-users", 100, 24]]);
-const pos$45 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["settings", 100, 15]]);
-const pos$46 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["source", 103, 13], ["mode", 104, 13]]);
-const pos$47 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["autossh-identity.key", 102, 27]]);
-const pos$48 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["etc", 102, 23]]);
-const pos$49 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["RestartSec", 114, 84]]);
-const pos$50 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["serviceConfig", 114, 70]]);
-const pos$51 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["autossh-ng-will-be-interrupted-by-rebuild", 114, 28]]);
-const pos$52 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["services", 114, 19]]);
-const pos$53 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["documentation", 71, 11], ["services", 72, 11], ["system", 73, 11], ["users", 76, 11], ["security", 84, 11], ["nix", 100, 11], ["environment", 102, 11], ["systemd", 114, 11]]);
-const pos$54 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["targetConfig", 125, 23]]);
-const pos$55 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["enable", 127, 27]]);
-const pos$56 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["build", 124, 20], ["switch", 127, 20]]);
-const pos$57 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["hostName", 129, 24]]);
-const pos$58 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["system", 124, 13], ["networking", 129, 13]]);
-const pos$59 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["imports", 119, 9], ["config", 121, 9]]);
-const pos$60 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["deployer", 23, 5], ["target", 61, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$61 = nix.positions(here + "/nixos-rebuild-target-host-interrupted.nix", [["name", 13, 3], ["node", 17, 3], ["defaults", 20, 3], ["nodes", 22, 3], ["testScript", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const hostPkgs = nix.arg($, "hostPkgs");
   return {
-    [nix.POS]: pos$61,
+    [nix.POS]: $pos[60],
     name: "nixos-rebuild-target-host-interrupted",
-    node: nix.thunk(() => ({ [nix.POS]: pos$1, pkgsReadOnly: false })),
-    defaults: nix.thunk(() => ({ [nix.POS]: pos$3, nix: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })) })),
+    node: nix.thunk(() => ({ [nix.POS]: $pos[0], pkgsReadOnly: false })),
+    defaults: nix.thunk(() => ({
+      [nix.POS]: $pos[2],
+      nix: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+    })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$60,
+      [nix.POS]: $pos[59],
       deployer: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
@@ -87,46 +30,46 @@ export default nix.lambda((args) => (() => {
         const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
         const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/installation-device.nix")]),
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               "hashed-mirrors": null,
               "connect-timeout": 1n,
             })),
           })),
           system: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             includeBuildDependencies: true,
             build: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               privateKey: snakeOilPrivateKey,
               publicKey: snakeOilPublicKey,
             })),
-            switch: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            switch: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$9, cores: 2n, memorySize: 3072n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[8], cores: 2n, memorySize: 3072n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+            [nix.POS]: $pos[11],
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
             getty: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               autologinUser: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "root")),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               root: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   authorizedKeys: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     keys: nix.thunk(() => [nix.thunk(() => nix.sel(nodes, "target", "system", "build", "publicKey"))]),
                   })),
                 })),
@@ -144,17 +87,17 @@ export default nix.lambda((args) => (() => {
         const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
         const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
         const targetConfig = nix.thunk(() => ({
-          [nix.POS]: pos$53,
-          documentation: nix.thunk(() => ({ [nix.POS]: pos$19, enable: false })),
+          [nix.POS]: $pos[52],
+          documentation: nix.thunk(() => ({ [nix.POS]: $pos[18], enable: false })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$24,
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$20, enable: true })),
+            [nix.POS]: $pos[23],
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[19], enable: true })),
             "autossh-ng": nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               sessions: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 "will-be-interrupted-by-rebuild": nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   user: "root",
                   destination: "deployer",
                   extraArguments: "-R2222:localhost:22 -i/etc/autossh-identity.key",
@@ -164,44 +107,44 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           system: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             build: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               privateKey: snakeOilPrivateKey,
               publicKey: snakeOilPublicKey,
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               root: nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$28,
+                  [nix.POS]: $pos[27],
                   authorizedKeys: nix.thunk(() => ({
-                    [nix.POS]: pos$27,
+                    [nix.POS]: $pos[26],
                     keys: nix.thunk(() => [nix.thunk(() => nix.sel(nodes, "deployer", "system", "build", "publicKey"))]),
                   })),
                 })),
               })),
               alice: nix.thunk(() => ({
-                [nix.POS]: pos$32,
+                [nix.POS]: $pos[31],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$31,
+                  [nix.POS]: $pos[30],
                   authorizedKeys: nix.thunk(() => ({
-                    [nix.POS]: pos$30,
+                    [nix.POS]: $pos[29],
                     keys: nix.thunk(() => [nix.thunk(() => nix.sel(nodes, "deployer", "system", "build", "publicKey"))]),
                   })),
                 })),
                 extraGroups: nix.thunk(() => ["wheel"]),
               })),
               bob: nix.thunk(() => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$34,
+                  [nix.POS]: $pos[33],
                   authorizedKeys: nix.thunk(() => ({
-                    [nix.POS]: pos$33,
+                    [nix.POS]: $pos[32],
                     keys: nix.thunk(() => [nix.thunk(() => nix.sel(nodes, "deployer", "system", "build", "publicKey"))]),
                   })),
                 })),
@@ -210,48 +153,48 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$43,
+            [nix.POS]: $pos[42],
             sudo: nix.thunk(() => ({
-              [nix.POS]: pos$42,
+              [nix.POS]: $pos[41],
               extraRules: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$39,
+                    [nix.POS]: $pos[38],
                     groups: nix.thunk(() => ["wheel"]),
-                    commands: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$38, command: "ALL" }))]),
+                    commands: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[37], command: "ALL" }))]),
                   })),
                   nix.thunk(() => ({
-                    [nix.POS]: pos$41,
+                    [nix.POS]: $pos[40],
                     users: nix.thunk(() => ["alice"]),
                     commands: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$40, command: "ALL", options: nix.thunk(() => ["NOPASSWD"]) })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[39], command: "ALL", options: nix.thunk(() => ["NOPASSWD"]) })),
                     ]),
                   })),
                 ]))),
             })),
           })),
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$45,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$44, "trusted-users": nix.thunk(() => ["@wheel"]) })),
+            [nix.POS]: $pos[44],
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[43], "trusted-users": nix.thunk(() => ["@wheel"]) })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$48,
+            [nix.POS]: $pos[47],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$47,
+              [nix.POS]: $pos[46],
               "autossh-identity.key": nix.thunk(() => ({
-                [nix.POS]: pos$46,
+                [nix.POS]: $pos[45],
                 source: nix.thunk(() => nix.sel(nodes, "target", "system", "build", "privateKey")),
                 mode: "0600",
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$51,
+              [nix.POS]: $pos[50],
               "autossh-ng-will-be-interrupted-by-rebuild": nix.thunk(() => ({
-                [nix.POS]: pos$50,
+                [nix.POS]: $pos[49],
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$49,
+                  [nix.POS]: $pos[48],
                   RestartSec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "1s")),
                 })),
               })),
@@ -259,18 +202,18 @@ export default nix.lambda((args) => (() => {
           })),
         }));
         return {
-          [nix.POS]: pos$59,
+          [nix.POS]: $pos[58],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               targetConfig,
               nix.thunk(() => ({
-                [nix.POS]: pos$58,
+                [nix.POS]: $pos[57],
                 system: nix.thunk(() => ({
-                  [nix.POS]: pos$56,
-                  build: nix.thunk(() => ({ [nix.POS]: pos$54, targetConfig: targetConfig })),
-                  switch: nix.thunk(() => ({ [nix.POS]: pos$55, enable: true })),
+                  [nix.POS]: $pos[55],
+                  build: nix.thunk(() => ({ [nix.POS]: $pos[53], targetConfig: targetConfig })),
+                  switch: nix.thunk(() => ({ [nix.POS]: $pos[54], enable: true })),
                 })),
-                networking: nix.thunk(() => ({ [nix.POS]: pos$57, hostName: "target" })),
+                networking: nix.thunk(() => ({ [nix.POS]: $pos[56], hostName: "target" })),
               })),
             ]))),
         };

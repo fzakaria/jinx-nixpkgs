@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["broken", 48, 5], ["mainProgram", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 30, 3], ["installPhase", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, "pkg-config": false, libGL: false, glfw: false, soil: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["broken", 48, 5], ["mainProgram", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 30, 3], ["installPhase", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const soil = nix.arg($, "soil");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "esshader",
       version: "0-unstable-2020-08-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chrismcfee",
           repo: "esshader",
           rev: "506eb02f3de52d3d1f4d81ac9ee145655216dee5",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libGL, glfw, soil]),
       installPhase: "mkdir -p $out/bin\ncp -a esshader $out/bin/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Offline ShaderToy-compatible GLSL shader viewer using OpenGL ES 2.0",
         homepage: "https://github.com/chrismcfee/esshader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

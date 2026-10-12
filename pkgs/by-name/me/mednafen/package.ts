@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["homepage", 77, 5], ["description", 78, 5], ["longDescription", 79, 5], ["license", 110, 5], ["mainProgram", 111, 5], ["maintainers", 112, 5], ["platforms", 113, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["outputs", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["hardeningDisable", 62, 3], ["enableParallelBuilding", 67, 3], ["strictDeps", 69, 3], ["postInstall", 71, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, SDL2_net: false, "alsa-lib": false, fetchurl: false, flac: false, libglut: false, libGL: false, libGLU: false, libx11: false, libcdio: false, libiconv: false, libjack2: false, libsamplerate: false, libsndfile: false, "pkg-config": false, stdenv: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["longDescription", 79, 5], ["license", 110, 5], ["mainProgram", 111, 5], ["maintainers", 112, 5], ["platforms", 113, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["outputs", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["hardeningDisable", 62, 3], ["enableParallelBuilding", 67, 3], ["strictDeps", 69, 3], ["postInstall", 71, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mednafen",
       version: "1.32.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mednafen.github.io/releases/files/mednafen-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-3n65SrZiEq53WDdlJDaKirIII0szeWYlymMFR9vIODI=",
         })))),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       postInstall: "mkdir -p $doc/share/doc\nmv Documentation $doc/share/doc/mednafen\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://mednafen.github.io/",
         description: "Portable, CLI-driven, SDL+OpenGL-based, multi-system emulator",
         longDescription: "Mednafen is a portable, utilizing OpenGL and SDL,\nargument(command-line)-driven multi-system emulator. Mednafen has the\nability to remap hotkey functions and virtual system inputs to a keyboard,\na joystick, or both simultaneously. Save states are supported, as is\nreal-time game rewinding. Screen snapshots may be taken, in the PNG file\nformat, at the press of a button. Mednafen can record audiovisual movies\nin the QuickTime file format, with several different lossless codecs\nsupported.\n\nThe following systems are supported (refer to the emulation module\ndocumentation for more details):\n\n- Apple II/II+\n- Atari Lynx\n- Neo Geo Pocket (Color)\n- WonderSwan\n- GameBoy (Color)\n- GameBoy Advance\n- Nintendo Entertainment System\n- Super Nintendo Entertainment System/Super Famicom\n- Virtual Boy\n- PC Engine/TurboGrafx 16 (CD)\n- SuperGrafx\n- PC-FX\n- Sega Game Gear\n- Sega Genesis/Megadrive\n- Sega Master System\n- Sega Saturn (experimental, x86_64 only)\n- Sony PlayStation\n",

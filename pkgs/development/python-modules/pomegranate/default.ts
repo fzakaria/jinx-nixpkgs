@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 23, 5], ["owner", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["name", 49, 7], ["url", 50, 7], ["hash", 51, 7]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["pythonImportsCheck", 40, 3], ["nativeCheckInputs", 42, 3], ["patches", 46, 3], ["disabledTestPaths", 55, 3], ["disabledTests", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, pytestCheckHook: false, setuptools: false, "apricot-select": false, networkx: false, numpy: false, "scikit-learn": false, scipy: false, torch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 23, 5], ["owner", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 49, 7], ["url", 50, 7], ["hash", 51, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["pythonImportsCheck", 40, 3], ["nativeCheckInputs", 42, 3], ["patches", 46, 3], ["disabledTestPaths", 55, 3], ["disabledTests", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "pomegranate",
           owner: "jmschrei",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "python-2.6.patch",
             url: "https://github.com/jmschrei/pomegranate/pull/1142/commits/9ff5d5e2c959b44e569937e777b26184d1752a7b.patch",
             hash: "sha256-BXsVhkuL27QqK/n6Fa9oJCzrzNcL3EF6FblBeKXXSts=",
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         ])));
       const disabledTests = nix.thunk(() => ["test_sample"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Probabilistic and graphical models for Python, implemented in cython for speed",
         homepage: "https://github.com/jmschrei/pomegranate",
         changelog: nix.thunk(() => nix.str`https://github.com/jmschrei/pomegranate/releases/tag/v${version}`),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

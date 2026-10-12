@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["5", 23, 5], ["6", 24, 5]], [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["homepage", 72, 5], ["description", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["cmakeFlags", 61, 3], ["strictDeps", 63, 3], ["postInstall", 65, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, SDL2: false, cmake: false, fetchFromGitHub: false, ffmpeg_8: false, libx11: false, libxdmcp: false, libxcb: false, lua5_1: false, minizip: false, "pkg-config": false, qt5: false, qt6: false, x264: false, ___qtVersion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["5", 23, 5], ["6", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["cmakeFlags", 61, 3], ["strictDeps", 63, 3], ["postInstall", 65, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const x264 = nix.arg($, "x264");
   const ___qtVersion = nix.argOr($, "___qtVersion", () => "5");
-  const qtVersionDictionary = nix.thunk(() => ({ [nix.POS]: pos$1, "5": qt5, "6": qt6 }));
+  const qtVersionDictionary = nix.thunk(() => ({ [nix.POS]: $pos[0], "5": qt5, "6": qt6 }));
   const from = nix.thunk(() => nix.sel(qtVersionDictionary, nix.key(nix.force(___qtVersion))));
   const qttools = nix.thunk(() => nix.attr(from, "qttools"));
   const wrapQtAppsHook = nix.thunk(() => nix.attr(from, "wrapQtAppsHook"));
   nix.assert_(nix.app(nix.sel(lib, "elem"), ___qtVersion, nix.thunk(() => ["5", "6"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fc/fceux/package.nix:28:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fceux",
       version: "2.6.6-unstable-2026-05-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "TASEmulators",
           repo: "fceux",
           rev: "a62b868e9247c4aafd66f597cdfa8d2609704087",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       postInstall: "substituteInPlace $out/share/applications/fceux.desktop \\\n  --replace-fail \"/usr/bin/\" \"\" \\\n  --replace-fail \"/usr/share/pixmaps/\" \"\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.fceux.com",
         description: "Nintendo Entertainment System (NES) Emulator",
         changelog: nix.thunk(() => nix.str`https://github.com/TASEmulators/fceux/blob/${nix.sel(finalAttrs, "src", "rev")}/changelog.txt`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 11, 5], ["publisher", 12, 5], ["version", 13, 5], ["hash", 14, 5]], [["changelog", 26, 5], ["description", 27, 5], ["downloadPage", 28, 5], ["homepage", 29, 5], ["license", 30, 5]], [["mktplcRef", 10, 3], ["nativeBuildInputs", 16, 3], ["postInstall", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, jq: false, moreutils: false, racket: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 11, 5], ["publisher", 12, 5], ["version", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 26, 5], ["description", 27, 5], ["downloadPage", 28, 5], ["homepage", 29, 5], ["license", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 10, 3], ["nativeBuildInputs", 16, 3], ["postInstall", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const racket = nix.arg($, "racket");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "magic-racket",
         publisher: "evzen-wybitul",
         version: "0.9.0",
@@ -29,7 +27,7 @@ jq '.contributes.configuration.properties."magicRacket.general.racketPath".defau
 jq '.contributes.configuration.properties."magicRacket.general.racoPath".default = "${racket}/bin/raco"' package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://marketplace.visualstudio.com/items/evzen-wybitul.magic-racket/changelog",
         description: "Best coding experience for Racket in VS Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=evzen-wybitul.magic-racket",

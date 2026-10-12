@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-packages.nix", [[["extraLibs", 8, 21]]]);
 const formals$1 = { args: { buildEnv: false, luaPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/with-packages.nix", [["extraLibs", 8, 21]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const luaPackages = nix.arg($, "luaPackages");
   return (f) => (() => {
     const packages = nix.thunk(() => nix.app(f, luaPackages));
-    return nix.app(nix.sel(buildEnv, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, extraLibs: packages })));
+    return nix.app(nix.sel(buildEnv, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], extraLibs: packages })));
   })();
 })(), formals$1);
 //# sourceMappingURL=with-packages.ts.map

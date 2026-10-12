@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nativeBuildInputs", 19, 9]], [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 81, 5]], [["name", 86, 7], ["exec", 87, 7], ["desktopName", 88, 7], ["icon", 89, 7], ["categories", 90, 7], ["comment", 94, 7]], [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["mainProgram", 106, 5], ["platforms", 107, 29]], [["pname", 33, 3], ["version", 34, 3], ["nodejs", 37, 3], ["src", 39, 3], ["npmDepsHash", 46, 3], ["nativeBuildInputs", 48, 3], ["npmBuildScript", 50, 3], ["npmBuildFlags", 51, 3], ["installPhase", 53, 3], ["env", 80, 3], ["desktopItems", 84, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, nodejs_22: false, buildNpmPackage: false, fetchFromGitHub: false, electron: false, makeDesktopItem: false, copyDesktopItems: false, runCommand: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 19, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 86, 7], ["exec", 87, 7], ["desktopName", 88, 7], ["icon", 89, 7], ["categories", 90, 7], ["comment", 94, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["mainProgram", 106, 5], ["platforms", 107, 29]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["nodejs", 37, 3], ["src", 39, 3], ["npmDepsHash", 46, 3], ["nativeBuildInputs", 48, 3], ["npmBuildScript", 50, 3], ["npmBuildFlags", 51, 3], ["installPhase", 53, 3], ["env", 80, 3], ["desktopItems", 84, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const zip = nix.arg($, "zip");
   const electronArch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "arm64" : "x64"));
-  const electronZip = nix.thunk(() => nix.app(runCommand, "electronZip", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [zip]) })), nix.thunk(() => nix.str`mkdir $out
+  const electronZip = nix.thunk(() => nix.app(runCommand, "electronZip", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [zip]) })), nix.thunk(() => nix.str`mkdir $out
 
 cp -r ${nix.sel(electron, "dist")} electron-dist
 chmod -R u+w electron-dist
@@ -32,12 +27,12 @@ cd electron-dist
 zip -0Xqr $out/electron-v${nix.sel(electron, "version")}-darwin-${electronArch}.zip .
 `)));
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sieve-editor-gui",
       version: "0.6.1-unstable-2025-03-12",
       nodejs: nodejs_22,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "thsmi",
           repo: "sieve",
           rev: "4bcefba15314177521a45a833e53969b50f4351e",
@@ -64,10 +59,10 @@ cp -r sieve-darwin-*/sieve.app $out/Applications/
 
 makeWrapper $out/Applications/sieve.app/Contents/MacOS/Sieve $out/bin/sieve-editor-gui
 `))), "runHook postInstall\n")),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "sieve-editor-gui",
             exec: "sieve-editor-gui",
             desktopName: "Sieve Editor",
@@ -79,7 +74,7 @@ makeWrapper $out/Applications/sieve.app/Contents/MacOS/Sieve $out/bin/sieve-edit
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Activate, edit, delete and add Sieve scripts with a convenient interface",
         homepage: "https://github.com/thsmi/sieve",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

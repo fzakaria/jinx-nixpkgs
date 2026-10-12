@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 4, 3], ["meta", 5, 22], ["src", 5, 27], ["version", 5, 31], ["dontConfigure", 7, 3], ["dontBuild", 8, 3], ["dontFixup", 9, 3], ["installPhase", 11, 3]]]);
 const formals$1 = { args: { stdenv: false, collectd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 4, 3], ["meta", 5, 22], ["src", 5, 27], ["version", 5, 31], ["dontConfigure", 7, 3], ["dontBuild", 8, 3], ["dontFixup", 9, 3], ["installPhase", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenv = nix.arg($, "stdenv");
   const collectd = nix.arg($, "collectd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "collectd-data",
       meta: nix.thunk(() => nix.attr(collectd, "meta")),
       src: nix.thunk(() => nix.attr(collectd, "src")),

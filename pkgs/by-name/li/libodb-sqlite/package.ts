@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 32, 3], ["build2ConfigureFlags", 36, 3], ["doCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, build2: false, fetchurl: false, libodb: false, sqlite: false, enableShared: true, enableStatic: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 32, 3], ["build2ConfigureFlags", 36, 3], ["doCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const enableStatic = nix.argOr($, "enableStatic", () => !nix.asBool(enableShared));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libodb-sqlite",
       version: "2.5.0",
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pkg.cppget.org/1/stable/odb/libodb-sqlite-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-soq3OpAlVLum65um9MkJnR4Vgm3nofpPumRRpBCFb70=",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SQLite ODB runtime library",
         longDescription: "ODB is an object-relational mapping (ORM) system for C++. It provides\ntools, APIs, and library support that allow you to persist C++ objects\nto a relational database (RDBMS) without having to deal with tables,\ncolumns, or SQL and without manually writing any of the mapping code.\nFor more information see:\n\nhttp://www.codesynthesis.com/products/odb/\n\nThis package contains the SQLite ODB runtime library. Every application\nthat includes code generated for the SQLite database will need to link\nto this library.\n",
         homepage: "https://www.codesynthesis.com/products/odb/",

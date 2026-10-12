@@ -2,10 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["SVN_SSH", 73, 7]], [["name", 60, 13], ["builder", 61, 5], ["nativeBuildInputs", 62, 5], ["strictDeps", 69, 5], ["__structuredAttrs", 70, 5], ["env", 72, 5], ["outputHashAlgo", 76, 5], ["outputHashMode", 77, 5], ["outputHash", 78, 5], ["url", 87, 7], ["rev", 88, 7], ["ignoreExternals", 89, 7], ["ignoreKeywords", 90, 7], ["impureEnvVars", 93, 5], ["preferLocalBuild", 94, 13]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, buildPackages: false, cacert: false, subversion: false, glibcLocales: false, sshSupport: true, openssh: true }, ellipsis: false };
 const formals$2 = { args: { url: false, rev: true, name: true, sha256: true, hash: true, ignoreExternals: true, ignoreKeywords: true, preferLocalBuild: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["SVN_SSH", 73, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 60, 13], ["builder", 61, 5], ["nativeBuildInputs", 62, 5], ["strictDeps", 69, 5], ["__structuredAttrs", 70, 5], ["env", 72, 5], ["outputHashAlgo", 76, 5], ["outputHashMode", 77, 5], ["outputHash", 78, 5], ["url", 87, 7], ["rev", 88, 7], ["ignoreExternals", 89, 7], ["ignoreKeywords", 90, 7], ["impureEnvVars", 93, 5], ["preferLocalBuild", 94, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,14 +40,14 @@ export default nix.lambda((args) => (() => {
     const preferLocalBuild = nix.argOr($_1, "preferLocalBuild", () => true);
     nix.assert_((!nix.asBool(sshSupport) || nix.asBool(!nix.eq(openssh, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/fetchsvn/default.nix:54:1");
     return (nix.asBool((nix.asBool(!nix.eq(hash, "")) && nix.asBool(!nix.eq(sha256, "")))) ? nix.builtins.throw("Only one of sha256 or hash can be set") : nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: name,
         builder: nix.path(here, "./builder.sh"),
         nativeBuildInputs: nix.thunk(() => nix.concat([cacert, subversion, glibcLocales], nix.app(nix.sel(lib, "optional"), sshSupport, openssh))),
         strictDeps: true,
         __structuredAttrs: true,
         env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), sshSupport, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             SVN_SSH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "openssh")))),
           })))),
         outputHashAlgo: nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? null : "sha256")),

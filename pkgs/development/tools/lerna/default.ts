@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 11, 7], ["hash", 12, 7], ["npmDepsHash", 13, 7], ["packageLockFile", 14, 7]], [["version", 17, 7], ["hash", 18, 7], ["npmDepsHash", 19, 7], ["packageLockFile", 20, 7]], [["6", 10, 5], ["8", 16, 5]], [["version", 28, 9], ["hash", 29, 9], ["npmDepsHash", 30, 9], ["packageLockFile", 31, 9]]]);
 const formals$1 = { args: { lib: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 11, 7], ["hash", 12, 7], ["npmDepsHash", 13, 7], ["packageLockFile", 14, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 17, 7], ["hash", 18, 7], ["npmDepsHash", 19, 7], ["packageLockFile", 20, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["6", 10, 5], ["8", 16, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 28, 9], ["hash", 29, 9], ["npmDepsHash", 30, 9], ["packageLockFile", 31, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const mapAttrs$ = nix.thunk(() => nix.attr(lib, "mapAttrs'"));
   const nameValuePair = nix.thunk(() => nix.attr(lib, "nameValuePair"));
   const variants = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "6": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "6.6.2",
       hash: "sha256-B+o6SwVTrotHNYJW6CUXU/rJLK2VeGHvZYQZqbhYWjg=",
       npmDepsHash: "sha256-yR3MUcmAVj0/+lLQk5+hmyGFnyqhzw1xjVsu7ciYccs=",
       packageLockFile: nix.path(here, "./package-lock.v6.json"),
     })),
     "8": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "8.1.9",
       hash: "sha256-Rs6utL5dsL2h+rpOwjbtwEyU5pRdaAWHexfOm18o6BA=",
       npmDepsHash: "sha256-o3mLG0mBDIdkjusCKTSoradYlD8r4xdMyHH2HtOG9KQ=",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const callLerna = (variant) => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: nix.thunk(() => nix.attr(variant, "version")),
       hash: nix.thunk(() => nix.attr(variant, "hash")),
       npmDepsHash: nix.thunk(() => nix.attr(variant, "npmDepsHash")),

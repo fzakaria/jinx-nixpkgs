@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["name", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["homepage", 79, 5], ["description", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["priority", 83, 5], ["broken", 84, 5]], [["pname", 30, 3], ["version", 31, 3], ["srcs", 33, 3], ["sourceRoot", 37, 3], ["preConfigure", 40, 3], ["postPatch", 49, 3], ["buildFlags", 62, 3], ["installFlags", 63, 3], ["hardeningDisable", 65, 3], ["nativeBuildInputs", 67, 3], ["postInstall", 74, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, kernel: false, kmod: false, patchutils: false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 79, 5], ["description", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["priority", 83, 5], ["broken", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["srcs", 33, 3], ["sourceRoot", 37, 3], ["preConfigure", 40, 3], ["postPatch", 49, 3], ["buildFlags", 62, 3], ["installFlags", 63, 3], ["hardeningDisable", 65, 3], ["nativeBuildInputs", 67, 3], ["postInstall", 74, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const owner = "tbsdtv";
       const rev = "3f1faba3930568fd2d472a2fe8c57af8d7084672";
       const hash = "sha256-tq92yqJVJgAYy7PTY/nk0Q6sWJ0kdSrw38JEOOhfwGQ=";
-      return { [nix.POS]: pos$1, name, owner, repo, rev, hash };
+      return { [nix.POS]: $pos[0], name, owner, repo, rev, hash };
     })())));
   const build = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
       const repo = "media_build";
@@ -31,10 +28,10 @@ export default nix.lambda((args) => (() => {
       const owner = "tbsdtv";
       const rev = "bc02baf59046b02e3eb71653d8aa8d98e79dc4e1";
       const hash = "sha256-P0ASmWro3j3dk7LZQbUKXcGL+2c9fdjM7RgEfk0iDMs=";
-      return { [nix.POS]: pos$2, name, owner, repo, rev, hash };
+      return { [nix.POS]: $pos[1], name, owner, repo, rev, hash };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tbs",
       version: nix.thunk(() => nix.str`20250510-${nix.sel(kernel, "version")}`),
       srcs: nix.thunk(() => [media, build]),
@@ -64,7 +61,7 @@ sed -i v4l/Makefile \\
       postInstall: nix.thunk(() => nix.str`find $out/lib/modules/${nix.sel(kernel, "modDirVersion")} -name "*.ko" -exec xz {} \\;
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.tbsdtv.com/",
         description: "Linux driver for TBSDTV cards",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

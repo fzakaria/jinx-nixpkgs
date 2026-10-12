@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 61, 5], ["homepage", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["license", 65, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["configureFlags", 38, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libtool: false, perl: false, "pkg-config": false, python3: false, zlib: false, gnutls: false, libidn2: false, libunistring: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["license", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["configureFlags", 38, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libidn2 = nix.arg($, "libidn2");
   const libunistring = nix.arg($, "libunistring");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libgnurl",
       version: "7.72.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/gnunet/gnurl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1y4laraq37kw8hc8jlzgcw7y37bfd0n71q0sy3d3z6yg7zh2prxi",
         })))),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
         "--without-librtmp",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fork of libcurl used by GNUnet",
         homepage: "https://gnunet.org/en/gnurl.html",
         maintainers: [],

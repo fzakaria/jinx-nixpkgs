@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 108, 5], ["longDescription", 109, 5], ["homepage", 113, 5], ["license", 114, 5], ["maintainers", 118, 5], ["platforms", 119, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cmakeFlags", 31, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 58, 3], ["postInstall", 72, 3], ["disabledTests", 79, 3], ["nativeCheckInputs", 99, 3], ["doCheck", 103, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, enableVTK: true, vtk: false, darwin: false, enablePython: true, python: true, swig: false, expat: false, libuuid: false, openjpeg: false, zlib: false, "pkg-config": false, ctestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 108, 5], ["longDescription", 109, 5], ["homepage", 113, 5], ["license", 114, 5], ["maintainers", 118, 5], ["platforms", 119, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cmakeFlags", 31, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 58, 3], ["postInstall", 72, 3], ["disabledTests", 79, 3], ["nativeCheckInputs", 99, 3], ["doCheck", 103, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => (nix.asBool(enablePython) ? "python-gdcm" : "gdcm")),
       version: "3.2.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "malaterre",
           repo: "GDCM",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,7 +70,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [ctestCheckHook]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Grassroots cross-platform DICOM implementation",
         longDescription: "Grassroots DICOM (GDCM) is an implementation of the DICOM standard designed to be open source so that researchers may access clinical data directly.\nGDCM includes a file format definition and a network communications protocol, both of which should be extended to provide a full set of tools for a researcher or small medical imaging vendor to interface with an existing medical database.\n",
         homepage: "https://gdcm.sourceforge.net",

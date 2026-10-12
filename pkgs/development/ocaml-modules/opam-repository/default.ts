@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 22, 5], ["maintainers", 23, 5]], [["pname", 10, 3], ["src", 12, 25], ["version", 12, 29], ["propagatedBuildInputs", 14, 3], ["configureFlags", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, "opam-format": false, curl: false, patch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 22, 5], ["maintainers", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["src", 12, 25], ["version", 12, 29], ["propagatedBuildInputs", 14, 3], ["configureFlags", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const patch = nix.arg($, "patch");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "opam-repository",
       src: nix.thunk(() => nix.attr(opam_format, "src")),
       version: nix.thunk(() => nix.attr(opam_format, "version")),
       propagatedBuildInputs: nix.thunk(() => [opam_format, patch]),
       configureFlags: nix.thunk(() => ["--disable-checks"]),
       meta: nix.thunk(() => nix.update(nix.sel(opam_format, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "OPAM repository and remote sources handling, including curl/wget, rsync, git, mercurial, darcs backends",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

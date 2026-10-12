@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 29, 3], ["preConfigure", 33, 3], ["buildPhase", 37, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, guile: false, "guile-irregex": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 29, 3], ["preConfigure", 33, 3], ["buildPhase", 37, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const guile = nix.arg($, "guile");
   const guile_irregex = nix.arg($, "guile-irregex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "guile-srfi-145",
       version: "0-unstable-2025-08-11",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rgherdt",
           repo: "srfi",
           rev: "1f78a684e73c8d82fdd116716e341bc177e8d229",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "export GUILE_AUTO_COMPILE=0\n",
       buildPhase: "runHook preBuild\n\nsite_dir=\"$out/share/guile/site/3.0\"\nlib_dir=\"$out/lib/guile/3.0/site-ccache\"\n\nexport GUILE_LOAD_PATH=.:$site_dir:...:$GUILE_LOAD_PATH\nexport GUILE_LOAD_COMPILED_PATH=.:$lib_dir:...:$GUILE_LOAD_COMPILED_PATH\n\nmkdir -p $site_dir/srfi\ncp $src/srfi/srfi-145.scm $site_dir/srfi/\nguild compile --r7rs $site_dir/srfi/srfi-145.scm -o $lib_dir/srfi/srfi-145.go\n\nrunHook postBuild\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Scheme SRFI-145 implementations in portable R7RS scheme",
         homepage: "https://codeberg.org/rgherdt/srfi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

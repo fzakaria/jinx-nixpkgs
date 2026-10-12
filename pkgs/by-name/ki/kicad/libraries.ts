@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libraries.nix", [[["license", 42, 9], ["platforms", 43, 9]], [["pname", 16, 7], ["version", 17, 7], ["src", 19, 7], ["nativeBuildInputs", 21, 7], ["postInstall", 33, 7], ["meta", 41, 7]], [["symbols", 48, 3], ["templates", 49, 3], ["footprints", 50, 3], ["packages3d", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, libSrc: false, compressStep: false, stepreduce: false, parallel: false, python3: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libraries.nix", [["license", 42, 9], ["platforms", 43, 9]]);
-const pos$2 = nix.positions(here + "/libraries.nix", [["pname", 16, 7], ["version", 17, 7], ["src", 19, 7], ["nativeBuildInputs", 21, 7], ["postInstall", 33, 7], ["meta", 41, 7]]);
-const pos$3 = nix.positions(here + "/libraries.nix", [["symbols", 48, 3], ["templates", 49, 3], ["footprints", 50, 3], ["packages3d", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const zip = nix.arg($, "zip");
   const mkLib = (name) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`kicad-${name}`),
       version: nix.thunk(() => nix.builtins.substring(0n, 10n, nix.thunk(() => nix.sel(nix.app(libSrc, name), "rev")))),
       src: nix.thunk(() => nix.app(libSrc, name)),
@@ -27,13 +25,13 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(name, "packages3d")), nix.thunk(() => nix.str`find $out -type f -name '*.step' | parallel 'stepreduce {} {} ${nix.app(nix.sel(lib, "optionalString"), compressStep, "&& zip -j -9 {.}.stpZ {} && rm {}")}'
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.eq(name, "footprints")) && nix.asBool(compressStep))), "grep -rl '\\.step' $out | xargs sed -i 's/\\.step/.stpZ/g'\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })));
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     symbols: nix.thunk(() => nix.app(mkLib, "symbols")),
     templates: nix.thunk(() => nix.app(mkLib, "templates")),
     footprints: nix.thunk(() => nix.app(mkLib, "footprints")),

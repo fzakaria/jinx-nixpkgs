@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 15, 9], ["out", 16, 9]], [["hash", 20, 13]], [["1.0.6", 20, 5]], [["homepage", 23, 5], ["description", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]], [["owner", 8, 3], ["pname", 9, 3], ["version", 10, 11], ["defaultVersion", 11, 3], ["release", 19, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 15, 9], ["out", 16, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 20, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["1.0.6", 20, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 23, 5], ["description", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["owner", 8, 3], ["pname", 9, 3], ["version", 10, 11], ["defaultVersion", 11, 3], ["release", 19, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       owner: "zhengpushi",
       pname: "CoqMatrix",
       version: version,
@@ -24,21 +20,21 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.11", "8.18")),
               out: "1.0.6",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "1.0.6": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-XsM3fSstvB6GE5OqT7CFro+RWiYEgJsoQ5gXd74VaK0=",
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/zhengpushi/CoqMatrix",
         description: "Matrix math",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

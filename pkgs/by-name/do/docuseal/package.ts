@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["postFetch", 27, 5]], [["name", 31, 5], ["ruby", 32, 5], ["gemdir", 33, 5]], [["src", 45, 28], ["hash", 46, 7]], [["pname", 37, 5], ["version", 39, 7], ["src", 40, 7], ["meta", 41, 7], ["offlineCache", 44, 5], ["nativeBuildInputs", 49, 5], ["RAILS_ENV", 56, 5], ["NODE_ENV", 57, 5], ["buildPhase", 60, 5], ["installPhase", 71, 5]], [["RAILS_ENV", 87, 5], ["BUNDLE_WITHOUT", 88, 5]], [["docuseal-psql", 121, 28], ["docuseal-sqlite", 121, 42]], [["tests", 120, 5], ["updateScript", 123, 5]], [["description", 127, 5], ["homepage", 128, 5], ["license", 129, 5], ["maintainers", 130, 5], ["platforms", 131, 5], ["broken", 132, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["rubyEnv", 30, 3], ["docusealWeb", 36, 3], ["buildInputs", 80, 3], ["propagatedBuildInputs", 81, 3], ["nativeBuildInputs", 82, 3], ["env", 86, 3], ["installPhase", 91, 3], ["postInstall", 104, 3], ["postFixup", 109, 3], ["passthru", 119, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, bundlerEnv: false, nixosTests: false, ruby_4_0: false, pdfium: false, leptonica: false, makeWrapper: false, fetchYarnDeps: false, yarn: false, yarnConfigHook: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["postFetch", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 31, 5], ["ruby", 32, 5], ["gemdir", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 45, 28], ["hash", 46, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 37, 5], ["version", 39, 7], ["src", 40, 7], ["meta", 41, 7], ["offlineCache", 44, 5], ["nativeBuildInputs", 49, 5], ["RAILS_ENV", 56, 5], ["NODE_ENV", 57, 5], ["buildPhase", 60, 5], ["installPhase", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["RAILS_ENV", 87, 5], ["BUNDLE_WITHOUT", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["docuseal-psql", 121, 28], ["docuseal-sqlite", 121, 42]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 120, 5], ["updateScript", 123, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 127, 5], ["homepage", 128, 5], ["license", 129, 5], ["maintainers", 130, 5], ["platforms", 131, 5], ["broken", 132, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["rubyEnv", 30, 3], ["docusealWeb", 36, 3], ["buildInputs", 80, 3], ["propagatedBuildInputs", 81, 3], ["nativeBuildInputs", 82, 3], ["env", 86, 3], ["installPhase", 91, 3], ["postInstall", 104, 3], ["postFixup", 109, 3], ["passthru", 119, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "docuseal",
       version: "3.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "docusealco",
           repo: "docuseal",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,19 +33,19 @@ export default nix.lambda((args) => (() => {
           postFetch: "rm $out/db/schema.rb",
         })))),
       rubyEnv: nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "docuseal-gems",
           ruby: ruby_4_0,
           gemdir: nix.path(here, "./."),
         })))),
       docusealWeb: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: "docuseal-web",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
           offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               hash: "sha256-62nI/QUzlpI1VyZ6PWPz2kSp4S2GUIQDaf4jUwzyj24=",
             })))),
@@ -72,7 +64,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "rubyEnv", "wrappedRuby"))]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         RAILS_ENV: "production",
         BUNDLE_WITHOUT: "development:test",
       })),
@@ -91,16 +83,16 @@ runHook postInstall
   --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [pdfium, leptonica]))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "docuseal-psql": nix.thunk(() => nix.attr(nixosTests, "docuseal-psql")),
           "docuseal-sqlite": nix.thunk(() => nix.attr(nixosTests, "docuseal-sqlite")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Open source tool for creating, filling and signing digital documents",
         homepage: "https://www.docuseal.co/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

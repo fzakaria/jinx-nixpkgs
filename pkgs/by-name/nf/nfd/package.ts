@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["prePatch", 29, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["wafConfigureFlags", 45, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, boost186: false, fetchFromGitHub: false, libpcap: false, "ndn-cxx": false, openssl: false, "pkg-config": false, sphinx: false, systemdLibs: false, wafHook: false, websocketpp: false, withSystemd: true, withWebSocket: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["prePatch", 29, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["wafConfigureFlags", 45, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdLibs));
   const withWebSocket = nix.argOr($, "withWebSocket", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nfd",
       version: "24.07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "named-data",
           repo: "NFD",
           rev: nix.thunk(() => nix.str`NFD-${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--boost-libs=${nix.sel(boost186, "out")}/lib`),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withWebSocket)), "--without-websocket"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://named-data.net/",
         description: "Named Data Networking (NDN) Forwarding Daemon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

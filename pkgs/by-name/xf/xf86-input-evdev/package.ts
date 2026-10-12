@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 27, 5], ["group", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["extraArgs", 56, 40]], [["pkg-config", 57, 11]], [["updateScript", 56, 5], ["tests", 57, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 67, 5], ["pkgConfigModules", 70, 5], ["platforms", 71, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 21, 3], ["src", 26, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["configureFlags", 51, 3], ["passthru", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoreconfHook: false, "pkg-config": false, "util-macros": false, xorgproto: false, libevdev: false, udev: false, mtdev: false, "xorg-server": false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 27, 5], ["group", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 56, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 57, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 56, 5], ["tests", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 67, 5], ["pkgConfigModules", 70, 5], ["platforms", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 21, 3], ["src", 26, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["configureFlags", 51, 3], ["passthru", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "xf86-input-evdev",
       version: "2.11.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "driver",
@@ -46,18 +41,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-sdkdir=${nix.builtins.placeholder("dev")}/include/xorg`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=xf86-input-evdev-(.*)"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Generic Linux input driver for the Xorg X server",
         homepage: "https://gitlab.freedesktop.org/xorg/driver/xf86-input-evdev",
         license: nix.thunk(() => (() => {

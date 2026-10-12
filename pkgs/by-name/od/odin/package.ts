@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 9], ["hash", 20, 9]], [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["LLVM_CONFIG", 59, 7]], [["updateScript", 108, 12]], [["description", 111, 5], ["downloadPage", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["mainProgram", 116, 5], ["maintainers", 117, 5], ["platforms", 122, 5], ["broken", 123, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["postPatch", 46, 3], ["env", 59, 3], ["dontConfigure", 61, 3], ["buildFlags", 63, 3], ["nativeBuildInputs", 65, 3], ["installPhase", 71, 3], ["passthru", 108, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchurl: false, makeBinaryWrapper: false, which: false, cmake: false, "nix-update-script": false, llvmPackages: false, enableBox2d: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 9], ["hash", 20, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LLVM_CONFIG", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 108, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 111, 5], ["downloadPage", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["mainProgram", 116, 5], ["maintainers", 117, 5], ["platforms", 122, 5], ["broken", 123, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["postPatch", 46, 3], ["env", 59, 3], ["dontConfigure", 61, 3], ["buildFlags", 63, 3], ["nativeBuildInputs", 65, 3], ["installPhase", 71, 3], ["passthru", 108, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.thunk(() => nix.attr(llvmPackages, "stdenv"));
   const box2dVersion = "3.1.1";
   const box2dTarball = nix.thunk(() => (nix.asBool(enableBox2d) ? nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/erincatto/box2d/archive/refs/tags/v${box2dVersion}.tar.gz`),
       hash: "sha256-+275FLUPQxLX2SGmAOq8EjGLs8VaC4wLkGCPpEiO8uQ=",
     }))) : null));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "odin",
       version: "dev-2026-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "odin-lang",
           repo: "Odin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "# Odin is still using 'arm64-apple-macos' as the target name on\n# aarch64-darwin architectures. This results in a warning whenever the\n# Odin compiler runs a build. Replacing the target in the Odin compiler\n# removes the nix warning when the Odin compiler is ran on aarch64-darwin.\nsubstituteInPlace src/build_settings.cpp \\\n  --replace-fail \"arm64-apple-macosx\" \"arm64-apple-darwin\"\n\nrm -r vendor/raylib/{linux,macos,wasm,windows}\n\npatchShebangs --build build_odin.sh\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         LLVM_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(llvmPackages, "llvm", "dev")), "llvm-config")),
       })),
       dontConfigure: true,
@@ -86,11 +81,11 @@ fi
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Fast, concise, readable, pragmatic and open sourced programming language",
         downloadPage: "https://github.com/odin-lang/Odin",
         homepage: "https://odin-lang.org/",

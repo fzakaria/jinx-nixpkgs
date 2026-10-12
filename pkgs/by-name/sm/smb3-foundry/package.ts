@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["changelog", 44, 5], ["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 29, 3], ["installPhase", 31, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 44, 5], ["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 29, 3], ["installPhase", 31, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "smb3-foundry",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mchlnix",
           repo: "SMB3-Foundry",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [python]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/smb3-foundry $out/bin\ncp -r smb3parse foundry scribe data doc VERSION smb3-foundry.py smb3-scribe.py $out/share/smb3-foundry\n\nln -s $out/share/smb3-foundry/smb3-foundry.py $out/bin/smb3-foundry\nln -s $out/share/smb3-foundry/smb3-scribe.py $out/bin/smb3-scribe\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/mchlnix/SMB3-Foundry/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Modern Super Mario Bros. 3 Level Editor",
         homepage: "https://github.com/mchlnix/SMB3-Foundry",

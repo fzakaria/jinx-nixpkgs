@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 9], ["sha256", 18, 9], ["rev", 19, 17]], [["release", 13, 7], ["rev", 14, 7], ["src", 15, 7]], [["url", 26, 9], ["sha256", 27, 9], ["rev", 28, 17]], [["release", 23, 7], ["rev", 24, 7], ["src", 25, 7]], [["owner", 35, 9], ["repo", 36, 9], ["rev", 37, 17], ["hash", 38, 9]], [["release", 32, 7], ["rev", 33, 7], ["src", 34, 7]], [["owner", 45, 9], ["repo", 46, 9], ["hash", 47, 9], ["rev", 48, 17]], [["release", 42, 7], ["rev", 43, 7], ["src", 44, 7]], [["0.4.15", 12, 5], ["1.0.0", 22, 5], ["1.1.0", 31, 5], ["1.2.0", 41, 5]], [["description", 164, 5], ["longDescription", 165, 5], ["homepage", 170, 5], ["license", 171, 5], ["mainProgram", 173, 5], ["maintainers", 174, 5], ["platforms", 178, 5]], [["pname", 67, 3], ["version", 68, 3], ["src", 69, 11], ["patches", 71, 3], ["postPatch", 78, 3], ["preConfigure", 102, 3], ["nativeBuildInputs", 106, 3], ["buildInputs", 111, 3], ["installPhase", 120, 3], ["dontWrapQtApps", 155, 3], ["postFixup", 157, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchbzr: false, fetchFromGitHub: false, libsForQt5: false, versionNum: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 9], ["sha256", 18, 9], ["rev", 19, 17]]);
-const pos$2 = nix.positions(here + "/package.nix", [["release", 13, 7], ["rev", 14, 7], ["src", 15, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 26, 9], ["sha256", 27, 9], ["rev", 28, 17]]);
-const pos$4 = nix.positions(here + "/package.nix", [["release", 23, 7], ["rev", 24, 7], ["src", 25, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 35, 9], ["repo", 36, 9], ["rev", 37, 17], ["hash", 38, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["release", 32, 7], ["rev", 33, 7], ["src", 34, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 45, 9], ["repo", 46, 9], ["hash", 47, 9], ["rev", 48, 17]]);
-const pos$8 = nix.positions(here + "/package.nix", [["release", 42, 7], ["rev", 43, 7], ["src", 44, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["0.4.15", 12, 5], ["1.0.0", 22, 5], ["1.1.0", 31, 5], ["1.2.0", 41, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 164, 5], ["longDescription", 165, 5], ["homepage", 170, 5], ["license", 171, 5], ["mainProgram", 173, 5], ["maintainers", 174, 5], ["platforms", 178, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 67, 3], ["version", 68, 3], ["src", 69, 11], ["patches", 71, 3], ["postPatch", 78, 3], ["preConfigure", 102, 3], ["nativeBuildInputs", 106, 3], ["buildInputs", 111, 3], ["installPhase", 120, 3], ["dontWrapQtApps", 155, 3], ["postFixup", 157, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,52 +14,52 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const versionNum = nix.argOr($, "versionNum", () => "1.1.0");
   const versionInfo = nix.thunk(() => ({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     "0.4.15": nix.thunk(() => (() => {
       const release = "SR10";
       const rev = "291";
       const src = nix.thunk(() => nix.app(fetchbzr, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://code.launchpad.net/~arcachofo/simulide/simulide_0.4.14",
           sha256: "sha256-BBoZr/S2pif0Jft5wrem8y00dXl08jq3kFiIUtOr3LM=",
           rev: rev,
         }))));
-      return { [nix.POS]: pos$2, release, rev, src };
+      return { [nix.POS]: $pos[1], release, rev, src };
     })()),
     "1.0.0": nix.thunk(() => (() => {
       const release = "SR2";
       const rev = "1449";
       const src = nix.thunk(() => nix.app(fetchbzr, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://code.launchpad.net/~arcachofo/simulide/1.0.0",
           sha256: "sha256-rJWZvnjVzaKXU2ktbde1w8LSNvu0jWkDIk4dq2l7t5g=",
           rev: rev,
         }))));
-      return { [nix.POS]: pos$4, release, rev, src };
+      return { [nix.POS]: $pos[3], release, rev, src };
     })()),
     "1.1.0": nix.thunk(() => (() => {
       const release = "SR2";
       const rev = "28965e3bd6dd118598db1f5639ce1cf2e3c56e36";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "Arcachofo",
           repo: "SimuliDE_110",
           rev: rev,
           hash: "sha256-Ec72OE4xBlanFFzrrGu0lTY2BEVu7slc1+ZDFr8lUT8=",
         }))));
-      return { [nix.POS]: pos$6, release, rev, src };
+      return { [nix.POS]: $pos[5], release, rev, src };
     })()),
     "1.2.0": nix.thunk(() => (() => {
       const release = "RC1";
       const rev = "da3a925491fab9fa2a8633d18e45f8e1b576c9d2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "Arcachofo",
           repo: "SimulIDE-dev",
           hash: "sha256-6Gh0efBizDK1rUNkyU+/ysj7QwkAs3kTA1mQZYFb/pI=",
           rev: rev,
         }))));
-      return { [nix.POS]: pos$8, release, rev, src };
+      return { [nix.POS]: $pos[7], release, rev, src };
     })()),
   }));
   const from = nix.thunk(() => nix.selOr(versionInfo, () => nix.builtins.throw("Unsupported versionNum"), nix.key(nix.force(versionNum))));
@@ -79,7 +69,7 @@ export default nix.lambda((args) => (() => {
   const iconPath = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), versionNum, "1.0.0")) ? "resources/icons/hicolor/256x256/simulide.png" : "resources/icons/simulide.png"));
   const release$ = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), versionNum, "1.2.0")), "-"), release));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "simulide",
       version: nix.thunk(() => nix.str`${versionNum}-${release}`),
       src: src,
@@ -127,7 +117,7 @@ runHook postInstall
       dontWrapQtApps: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/bin\nwrapQtApp $out/Applications/simulide.app/Contents/MacOs/simulide\nln -s $out/Applications/simulide.app/Contents/MacOs/simulide $out/bin/simulide\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Simple real time electronic circuit simulator",
         longDescription: "SimulIDE is a simple real time electronic circuit simulator, intended for hobbyist or students\nto learn and experiment with analog and digital electronic circuits and microcontrollers.\nIt supports PIC, AVR, Arduino and other MCUs and MPUs.\n",
         homepage: "https://simulide.com/",

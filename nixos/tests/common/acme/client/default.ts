@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["server", 11, 7], ["email", 12, 7]], [["acceptTerms", 9, 5], ["defaults", 10, 5]], [["certificateFiles", 16, 16]], [["acme", 8, 12], ["pki", 16, 12]], [["security", 8, 3]]]);
 const formals$1 = { args: { nodes: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["server", 11, 7], ["email", 12, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["acceptTerms", 9, 5], ["defaults", 10, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["certificateFiles", 16, 16]]);
-const pos$4 = nix.positions(here + "/default.nix", [["acme", 8, 12], ["pki", 16, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["security", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,19 +11,19 @@ export default nix.lambda((args) => (() => {
   const caCert = nix.thunk(() => nix.sel(nodes, "acme", "test-support", "acme", "caCert"));
   const caDomain = nix.thunk(() => nix.sel(nodes, "acme", "test-support", "acme", "caDomain"));
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     security: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       acme: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         acceptTerms: true,
         defaults: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           server: nix.thunk(() => nix.str`https://${caDomain}/dir`),
           email: "hostmaster@example.test",
         })),
       })),
-      pki: nix.thunk(() => ({ [nix.POS]: pos$3, certificateFiles: nix.thunk(() => [caCert]) })),
+      pki: nix.thunk(() => ({ [nix.POS]: $pos[2], certificateFiles: nix.thunk(() => [caCert]) })),
     })),
   };
 })(), formals$1);

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["fetchSubmodules", 52, 5], ["hash", 53, 5]], [["url", 102, 7], ["hash", 103, 7], ["stripLen", 104, 7], ["extraPrefix", 105, 7]], [["url", 111, 7], ["hash", 112, 7], ["stripLen", 113, 7], ["extraPrefix", 114, 7]], [["url", 120, 7], ["hash", 121, 7]], [["description", 179, 5], ["homepage", 180, 5], ["license", 181, 5], ["mainProgram", 182, 5], ["maintainers", 183, 5], ["platforms", 186, 5]], [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 68, 3], ["patches", 97, 3], ["postPatch", 125, 3], ["cmakeFlags", 143, 3], ["qtWrapperArgs", 160, 3], ["doCheck", 163, 3], ["checkPhase", 165, 3], ["nativeInstallCheckInputs", 171, 3], ["doInstallCheck", 175, 3], ["versionCheckProgramArg", 176, 3], ["meta", 178, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "yaml-cpp": false, bison: false, cmake: false, doxygen: false, flex: false, gitMinimal: false, gtest: false, libsForQt5: false, "pkg-config": false, swig: false, versionCheckHook: false, boost: false, cbc: false, cimg: false, clp: false, cudd: false, eigen: false, glpk: false, lcov: false, "lemon-graph": false, libjpeg: false, "or-tools": false, python3: false, re2: false, readline: false, spdlog: false, tcl: false, tclPackages: false, yosys: false, zlib: false, libx11: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["fetchSubmodules", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 102, 7], ["hash", 103, 7], ["stripLen", 104, 7], ["extraPrefix", 105, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 111, 7], ["hash", 112, 7], ["stripLen", 113, 7], ["extraPrefix", 114, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 120, 7], ["hash", 121, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 179, 5], ["homepage", 180, 5], ["license", 181, 5], ["mainProgram", 182, 5], ["maintainers", 183, 5], ["platforms", 186, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 68, 3], ["patches", 97, 3], ["postPatch", 125, 3], ["cmakeFlags", 143, 3], ["qtWrapperArgs", 160, 3], ["doCheck", 163, 3], ["checkPhase", 165, 3], ["nativeInstallCheckInputs", 171, 3], ["doInstallCheck", 175, 3], ["versionCheckProgramArg", 176, 3], ["meta", 178, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "openroad",
       version: "26Q2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "The-OpenROAD-Project",
           repo: "OpenROAD",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -99,21 +94,21 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libx11])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp"))]))))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/gonsolo/OpenSTA/commit/0e40b4f8a1c4b6af7225da31cd88a1d29d8a04a2.patch",
             hash: "sha256-W9USjqp/hL1s3w3nKVMo/a5aSkeQ4Lp7gqASbZSlo9Y=",
             stripLen: 1n,
             extraPrefix: "src/sta/",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/The-OpenROAD-Project/OpenSTA/commit/a5921d1ca964971ada83be2c7c65bb84504fe179.patch",
             hash: "sha256-j9BneXSIya/euYiol16swmrFkXTDZNTQwq3tPFkCLH0=",
             stripLen: 1n,
             extraPrefix: "src/sta/",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/The-OpenROAD-Project/OpenROAD/commit/2a9191bc5b2841a0c357886a2a1bc3ac0fe5271a.patch",
             hash: "sha256-lxFZvybfG0Qpg1TyKdfZhKLYI3DSCYDE54ta6EnDBDo=",
           })))),
@@ -142,7 +137,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgramArg: "-version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "OpenROAD's unified application implementing an RTL-to-GDS flow",
         homepage: "https://theopenroadproject.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["sha256", 28, 5]], [["name", 35, 7], ["url", 36, 7], ["sha256", 37, 7]], [["CXXFLAGS", 61, 7]], [["description", 74, 5], ["license", 75, 5], ["homepage", 79, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 31, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 45, 3], ["strictDeps", 59, 3], ["env", 61, 3], ["configureFlags", 62, 3], ["postPatch", 66, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, "alsa-lib": false, audiofile: false, libjack2: false, liblo: false, liboil: false, libsamplerate: false, libsndfile: false, lilv: false, lv2: false, ncurses: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 7], ["url", 36, 7], ["sha256", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CXXFLAGS", 61, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 74, 5], ["license", 75, 5], ["homepage", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 31, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 45, 3], ["strictDeps", 59, 3], ["env", 61, 3], ["configureFlags", 62, 3], ["postPatch", 66, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ecasound",
       version: "2.9.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ecasound.seul.org/download/ecasound-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1m7njfjdb7sqf0lhgc4swihgdr4snkg8v02wcly08wb5ar2fr2s6",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ncursdes-6.3.patch",
             url: "https://sourceforge.net/p/ecasound/bugs/54/attachment/0001-ecasignalview.cpp-always-use-s-style-format-for-prin.patch",
             sha256: "1x1gsjzd43lh19mhpmwrbq269h56s8bxgyv0yfi5yf0sqjf9vaq0",
@@ -59,11 +55,11 @@ export default nix.lambda((args) => (() => {
         readline,
       ]),
       strictDeps: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CXXFLAGS: "-std=c++11" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CXXFLAGS: "-std=c++11" })),
       configureFlags: nix.thunk(() => ["--enable-liblilv"]),
       postPatch: "sed -i -e '\n  s@^#include <readline.h>@#include <readline/readline.h>@\n  s@^#include <history.h>@#include <readline/history.h>@\n  ' ecasound/eca-curses.cpp\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Software package designed for multitrack audio processing",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

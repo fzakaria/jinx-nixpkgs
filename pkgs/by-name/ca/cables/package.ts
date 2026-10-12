@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["pname", 18, 13], ["version", 18, 19], ["src", 18, 27], ["postExtract", 19, 5]], [["description", 34, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["broken", 40, 5], ["mainProgram", 41, 5]], [["pname", 26, 11], ["version", 26, 17], ["src", 26, 25], ["extraInstallCommands", 28, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 18, 13], ["version", 18, 19], ["src", 18, 27], ["postExtract", 19, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["broken", 40, 5], ["mainProgram", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 11], ["version", 26, 17], ["src", 26, 25], ["extraInstallCommands", 28, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const pname = "cables";
   const version = "0.10.6";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/cables-gl/cables_electron/releases/download/v${version}/cables-${version}-linux-x64.AppImage`),
       sha256: "sha256-Pk6rtWzIWzAlp5WwI7cKAjAlhjqLZJUO+39v44ZD93k=",
     }))));
   const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: src,
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
 `),
     }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
 install -m 444 -D ${appimageContents}/cables-${version}.png $out/share/icons/hicolor/512x512/apps/cables.png
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Standalone version of cables, a tool for creating beautiful interactive content",
         homepage: "https://cables.gl",
         changelog: "https://cables.gl/changelog",

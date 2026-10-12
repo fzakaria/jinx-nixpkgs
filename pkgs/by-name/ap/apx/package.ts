@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["updateScript", 83, 12]], [["description", 104, 5], ["longDescription", 105, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 119, 5]], [["pname", 16, 3], ["version", 17, 3], ["versionConfig", 18, 3], ["src", 20, 3], ["configsSrc", 28, 3], ["vendorHash", 35, 3], ["nativeBuildInputs", 38, 3], ["nativeCheckInputs", 43, 3], ["ldflags", 47, 3], ["postPatch", 53, 3], ["postInstall", 61, 3], ["passthru", 83, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, distrobox: false, podman: false, writableTmpDirAsHomeHook: false, curl: false, jq: false, "common-updater-scripts": false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 83, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 104, 5], ["longDescription", 105, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 119, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["versionConfig", 18, 3], ["src", 20, 3], ["configsSrc", 28, 3], ["vendorHash", 35, 3], ["nativeBuildInputs", 38, 3], ["nativeCheckInputs", 43, 3], ["ldflags", 47, 3], ["postPatch", 53, 3], ["postInstall", 61, 3], ["passthru", 83, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const writeShellScript = nix.arg($, "writeShellScript");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "apx",
       version: "2.4.5",
       versionConfig: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Vanilla-OS",
           repo: "apx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-0Rfj7hrH26R9GHOPPVdCaeb1bfAw9KnPpJYXyiei90U=",
         })))),
       configsSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Vanilla-OS",
           repo: "vanilla-apx-configs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "versionConfig")}`),
@@ -76,7 +72,7 @@ installShellCompletion --cmd apx \\
   --zsh <($out/bin/apx completion zsh)
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-apx", nix.thunk(() => nix.str`set -euo pipefail
     PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, jq, common_updater_scripts]))}:$PATH
 
@@ -91,7 +87,7 @@ nix-update apx
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Vanilla OS package manager",
         longDescription: "Apx is the Vanilla OS package manager that allows you to install packages\nfrom multiple sources inside managed containers without altering the host system.\n\nNote: This package requires Podman to be enabled in your NixOS configuration.\nAdd the following to your configuration.nix:\n\n  virtualisation.podman.enable = true;\n  environment.systemPackages = with pkgs; [ apx ];\n",
         homepage: "https://github.com/Vanilla-OS/apx",

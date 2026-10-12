@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/closure.nix", [[["storeDir", 33, 7], ["shallowConfigPath", 34, 7]], [["nativeBuildInputs", 15, 5], ["exportReferencesGraph", 16, 5], ["env", 32, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, python3Packages: false, allowedPatterns: false, formats: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/closure.nix", [["storeDir", 33, 7], ["shallowConfigPath", 34, 7]]);
-const pos$2 = nix.positions(here + "/closure.nix", [["nativeBuildInputs", 15, 5], ["exportReferencesGraph", 16, 5], ["env", 32, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const allowedPatterns = nix.arg($, "allowedPatterns");
   const formats = nix.arg($, "formats");
   return nix.app(runCommand, "allowed-patterns.json", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "python"))]),
       exportReferencesGraph: nix.thunk(() => nix.builtins.concatMap((name) => nix.builtins.concatMap((path) => (() => {
             const prefix = nix.thunk(() => nix.str`${nix.builtins.storeDir}/`);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
             return nix.app(nix.sel(lib, "optionals"), isStorePath, nix.thunk(() => [exportName, path]));
           })(), nix.thunk(() => nix.sel(allowedPatterns, nix.key(nix.force(name)), "paths"))), nix.thunk(() => nix.builtins.attrNames(allowedPatterns)))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         storeDir: nix.thunk(() => nix.str`${nix.builtins.storeDir}/`),
         shallowConfigPath: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(formats, "json"), nix.thunk(() => ({}))), "generate"), "shallow-config.json", allowedPatterns)),
       })),

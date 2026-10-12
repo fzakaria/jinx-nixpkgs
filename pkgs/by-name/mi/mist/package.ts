@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["updateScript", 33, 12]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5], ["sourceProvenance", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 17, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 24, 3], ["passthru", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, undmg: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5], ["sourceProvenance", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 17, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 24, 3], ["passthru", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mist",
       version: "0.30",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ninxsoft/Mist/releases/download/v${nix.sel(finalAttrs, "version")}/Mist.${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-J3Oxtw+yFV2Mpzqc6NqPPJR76r0DwywJdAU1FSvbYKE=",
         })))),
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [undmg]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -r *.app \"$out/Applications\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utility that automatically downloads macOS firmwares and installers",
         homepage: "https://github.com/ninxsoft/Mist",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

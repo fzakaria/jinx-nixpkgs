@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["CGO_ENABLED", 32, 5], ["GOWORK", 37, 5]], [["homepage", 99, 5], ["description", 100, 5], ["maintainers", 101, 5], ["mainProgram", 105, 5], ["license", 106, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["proxyVendor", 22, 3], ["vendorHash", 23, 3], ["ldflags", 25, 3], ["env", 31, 3], ["subPackages", 40, 3], ["nativeCheckInputs", 42, 3], ["__darwinAllowLocalNetworking", 50, 3], ["prePatch", 52, 3], ["checkPhase", 79, 3], ["doInstallCheck", 94, 3], ["versionCheckProgram", 95, 3], ["versionCheckProgramArg", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false, "go-task": false, gotestsum: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 32, 5], ["GOWORK", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 99, 5], ["description", 100, 5], ["maintainers", 101, 5], ["mainProgram", 105, 5], ["license", 106, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["proxyVendor", 22, 3], ["vendorHash", 23, 3], ["ldflags", 25, 3], ["env", 31, 3], ["subPackages", 40, 3], ["nativeCheckInputs", 42, 3], ["__darwinAllowLocalNetworking", 50, 3], ["prePatch", 52, 3], ["checkPhase", 79, 3], ["doInstallCheck", 94, 3], ["versionCheckProgram", 95, 3], ["versionCheckProgramArg", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const go_task = nix.arg($, "go-task");
   const gotestsum = nix.arg($, "gotestsum");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "go-mockery",
       version: "3.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vektra",
           repo: "mockery",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         "-w",
         nix.thunk(() => nix.str`-X github.com/vektra/mockery/v${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/internal/logging.SemVer=v${nix.sel(finalAttrs, "version")}`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n, GOWORK: "off" })),
       subPackages: nix.thunk(() => ["."]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook, go_task, gotestsum]),
       __darwinAllowLocalNetworking: true,
@@ -52,7 +49,7 @@ runHook postCheck
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/mockery`),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/vektra/mockery",
         description: "Mock code autogenerator for Golang",
         maintainers: nix.thunk(() => (() => {

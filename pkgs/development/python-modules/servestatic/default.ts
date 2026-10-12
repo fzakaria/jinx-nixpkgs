@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 44, 5], ["homepage", 45, 5], ["maintainers", 46, 5], ["license", 47, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 30, 3], ["disabledTests", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, fetchFromGitHub: false, hatchling: false, asgiref: false, brotli: false, django: false, httpx: false, pytestCheckHook: false, "pytest-timeout": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["maintainers", 46, 5], ["license", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 30, 3], ["disabledTests", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_timeout = nix.arg($, "pytest-timeout");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "servestatic",
       version: "4.3.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Archmonger",
           repo: "ServeStatic",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [brotli, django, httpx, pytestCheckHook, pytest_timeout]),
       disabledTests: nix.thunk(() => ["test_modified"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Production-grade Python static file server. Middleware or standalone.",
         homepage: "https://github.com/Archmonger/ServeStatic",
         maintainers: nix.thunk(() => (() => {

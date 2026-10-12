@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 52, 5], ["repo", 53, 5], ["rev", 54, 5], ["hash", 55, 5]], [["extraArgs", 137, 47]], [["updateScript", 137, 12]], [["description", 140, 5], ["homepage", 141, 5], ["license", 142, 5], ["maintainers", 143, 5], ["platforms", 144, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 66, 3], ["postPatch", 96, 3], ["cmakeFlags", 101, 3], ["runtimeDeps", 115, 3], ["postInstall", 125, 3], ["passthru", 137, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchFromGitHub: false, makeWrapper: false, cmake: false, ninja: false, "pkg-config": false, perl: false, bash: false, "xdg-utils": false, zip: false, unzip: false, gzip: false, bzip2: false, gnutar: false, _7zz: false, xz: false, "nix-update-script": false, withTTYX: true, libx11: false, withGUI: true, wxwidgets_3_2: false, withUCD: true, libuchardet: false, withColorer: true, spdlog: false, libxml2: false, withMultiArc: true, libarchive: false, withNetRocks: true, openssl: false, libssh: false, samba: false, libnfs: false, neon: false, withPython: true, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["rev", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 137, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 137, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 140, 5], ["homepage", 141, 5], ["license", 142, 5], ["maintainers", 143, 5], ["platforms", 144, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 66, 3], ["postPatch", 96, 3], ["cmakeFlags", 101, 3], ["runtimeDeps", 115, 3], ["postInstall", 125, 3], ["passthru", 137, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const withPython = nix.argOr($, "withPython", () => false);
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "far2l",
       version: "_2.9.0-unstable-2026-09-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elfmz",
           repo: "far2l",
           rev: "c12197bceb57b645dcbac99af6c51be815cb756b",
@@ -95,11 +91,11 @@ for file in ${nix.sel(_7zz, "lib")}/lib/*; do
 done
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Linux port of FAR Manager v2 with enhanced plugin support",
         homepage: "https://github.com/elfmz/far2l",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

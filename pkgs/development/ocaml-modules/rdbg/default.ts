@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["NIX_CFLAGS_COMPILE", 23, 9]], [["url", 27, 5], ["hash", 28, 5]], [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 12, 3], ["version", 13, 3], ["env", 15, 3], ["src", 26, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, ocaml: false, buildDunePackage: false, fetchurl: false, num: false, lutils: false, ounit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 23, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["env", 15, 3], ["src", 26, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const lutils = nix.arg($, "lutils");
   const ounit = nix.arg($, "ounit");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rdbg",
       version: "1.199.0",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.10")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")))) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")))), nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.10")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")))) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")))), nix.thunk(() => ({ [nix.POS]: $pos[0], NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://www-verimag.imag.fr/DIST-TOOLS/SYNCHRONE/pool/rdbg.v${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha512:6076eaa3608a313f8ac71a4f5aa4fcc64aeb0c646d581e5035110d4c80f94de34f2ba26f90a9a1e92a7f788c9e799f1f7b0e3728c853a21983ad732f0ee60352",
         })))),
       buildInputs: nix.thunk(() => [num, ounit]),
       propagatedBuildInputs: nix.thunk(() => [lutils]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gricad-gitlab.univ-grenoble-alpes.fr/verimag/synchrone/rdbg",
         description: "Programmable debugger that targets reactive programs for which a rdbg-plugin exists. Currently two plugins exist : one for Lustre, and one for Lutin (nb: both are synchronous programming languages)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill21")),

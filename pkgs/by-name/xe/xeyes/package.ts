@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["updateScript", 41, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["mainProgram", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["passthru", 40, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, xorgproto: false, libx11: false, libxcb: false, libxext: false, libxi: false, libxmu: false, libxrender: false, libxt: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["mainProgram", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["passthru", 40, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xeyes",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/app/xeyes-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-VgjXa3sarF7X8i8ba1rXTvmMhpMiDzK0uH3M7kqVbqo=",
         })))),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [xorgproto, libx11, libxcb, libxext, libxi, libxmu, libxrender, libxt]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
@@ -46,7 +43,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "A \"follow the mouse\" X demo, using the X SHAPE extension",
         homepage: "https://gitlab.freedesktop.org/xorg/app/xeyes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "x11")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["url", 25, 7], ["hash", 26, 7]], [["url", 31, 7], ["hash", 32, 7]], [["homepage", 59, 5], ["description", 60, 5], ["license", 61, 5], ["platforms", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["propagatedBuildInputs", 44, 3], ["postPatch", 46, 3], ["preFixup", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, libpng: false, perl: false, perlPackages: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["license", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["propagatedBuildInputs", 44, 3], ["postPatch", 46, 3], ["preFixup", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,22 +17,22 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "icoutils",
       version: "0.32.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/icoutils/icoutils-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1q66cksms4l62y0wizb8vfavhmf7kyfgcfkynil3n99s0hny1aqp",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.savannah.nongnu.org/cgit/icoutils.git/patch/?id=aa3572119bfe34484025f37dbbc4d5070f735908",
             hash: "sha256-4YCI+SYT2bCBNegkpN5jcfi6gOeec65TmCABr98HHB4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://git.savannah.nongnu.org/cgit/icoutils.git/patch/?id=298da402990ebe1279fb82b63ae2dc66ad78fd36",
             hash: "sha256-XQXhc1GkKhm4RJZPvkV8DYULziuBo0Dpt6hscM2Qcus=",
           })))),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs extresso/extresso\npatchShebangs extresso/extresso.in\npatchShebangs extresso/genresscript\npatchShebangs extresso/genresscript.in\n",
       preFixup: "wrapProgram $out/bin/extresso --prefix PERL5LIB : $PERL5LIB\nwrapProgram $out/bin/genresscript --prefix PERL5LIB : $PERL5LIB\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.nongnu.org/icoutils/",
         description: "Set of programs to deal with Microsoft Windows(R) icon and cursor files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

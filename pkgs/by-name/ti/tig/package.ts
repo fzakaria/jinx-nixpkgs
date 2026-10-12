@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["homepage", 88, 5], ["description", 89, 5], ["maintainers", 90, 5], ["license", 96, 5], ["platforms", 97, 5], ["mainProgram", 98, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["autoreconfFlags", 41, 3], ["buildInputs", 47, 3], ["postPatch", 55, 3], ["enableParallelBuilding", 59, 3], ["installPhase", 61, 3], ["outputs", 81, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ncurses: false, asciidoc: false, xmlto: false, docbook_xsl: false, docbook_xml_dtd_45: false, readline: false, makeWrapper: false, git: false, libiconv: false, autoreconfHook: false, findXMLCatalogs: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 88, 5], ["description", 89, 5], ["maintainers", 90, 5], ["license", 96, 5], ["platforms", 97, 5], ["mainProgram", 98, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["autoreconfFlags", 41, 3], ["buildInputs", 47, 3], ["postPatch", 55, 3], ["enableParallelBuilding", 59, 3], ["installPhase", 61, 3], ["outputs", 81, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const findXMLCatalogs = nix.arg($, "findXMLCatalogs");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tig",
       version: "2.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jonas",
           repo: "tig",
           rev: nix.thunk(() => nix.str`tig-${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +67,7 @@ wrapProgram $out/bin/tig \\
 `),
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://jonas.github.io/tig/",
         description: "Text-mode interface for git",
         maintainers: nix.thunk(() => (() => {

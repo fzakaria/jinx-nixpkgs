@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["doCheck", 26, 3], ["propagatedBuildInputs", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pyperclip: false, fetchFromGitHub: false, "python-xlib": false, pillow: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["doCheck", 26, 3], ["propagatedBuildInputs", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python_xlib = nix.arg($, "python-xlib");
   const pillow = nix.arg($, "pillow");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mouseinfo",
       version: "0.1.3",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "asweigart",
           repo: "mouseinfo",
           rev: "1876ad5cd311b4352d46bc64a12edfb4da49974e",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       propagatedBuildInputs: nix.thunk(() => [pyperclip, python_xlib, pillow]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Application to display XY position and RGB color information for the pixel currently under the mouse. Works on Python 2 and 3",
         homepage: "https://github.com/asweigart/mouseinfo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

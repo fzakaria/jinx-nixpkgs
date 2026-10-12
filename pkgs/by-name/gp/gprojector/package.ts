@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["name", 23, 7], ["exec", 24, 7], ["desktopName", 25, 7], ["comment", 26, 7], ["categories", 27, 7], ["startupWMClass", 28, 7]], [["description", 54, 5], ["homepage", 55, 5], ["sourceProvenance", 56, 5], ["maintainers", 57, 5], ["license", 58, 5], ["platforms", 59, 24]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["desktopItems", 21, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 33, 3], ["dontConfigure", 38, 3], ["dontBuild", 39, 3], ["dontFixup", 40, 3], ["installPhase", 42, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchzip: false, jre: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, extraJavaArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 23, 7], ["exec", 24, 7], ["desktopName", 25, 7], ["comment", 26, 7], ["categories", 27, 7], ["startupWMClass", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["sourceProvenance", 56, 5], ["maintainers", 57, 5], ["license", 58, 5], ["platforms", 59, 24]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["desktopItems", 21, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 33, 3], ["dontConfigure", 38, 3], ["dontBuild", 39, 3], ["dontFixup", 40, 3], ["installPhase", 42, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +19,13 @@ export default nix.lambda((args) => (() => {
       const pname = "gprojector";
       const version = "3.4.8";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.giss.nasa.gov/tools/gprojector/download/G.ProjectorJ-${version}.tgz`),
           hash: "sha256-56CWuPp9Nu63yGn13AAZrvwE1xvKDZ7Idjbn2hbk0sI=",
         }))));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gprojector",
             exec: "gprojector",
             desktopName: "G.Projector",
@@ -54,7 +51,7 @@ runHook postInstall
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "G.Projector transforms an input map image into any of about 200 global and regional map projections",
         homepage: "https://www.giss.nasa.gov/tools/gprojector/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -70,7 +67,7 @@ runHook postInstall
       };
       })());
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

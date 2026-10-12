@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 7], ["repo", 30, 7], ["rev", 31, 7], ["hash", 32, 7]], [["hardcodeZeroVersion", 71, 50]], [["updateScript", 71, 14]], [["description", 74, 7], ["homepage", 75, 7], ["license", 76, 7], ["platforms", 77, 7], ["maintainers", 78, 7]], [["pname", 25, 13], ["version", 26, 5], ["src", 28, 5], ["nativeBuildInputs", 35, 5], ["propagatedBuildInputs", 40, 5], ["dontDropIconThemeCache", 42, 5], ["dontPatchELF", 45, 5], ["dontRewriteSymlinks", 46, 5], ["patches", 48, 5], ["postPatch", 52, 5], ["installPhase", 56, 5], ["passthru", 71, 5], ["meta", 73, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, unstableGitUpdater: false, gtk3: false, "hicolor-icon-theme": false, jdupes: false, colorVariants: true, themeVariants: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 7], ["repo", 30, 7], ["rev", 31, 7], ["hash", 32, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 71, 50]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 71, 14]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 74, 7], ["homepage", 75, 7], ["license", 76, 7], ["platforms", 77, 7], ["maintainers", 78, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 13], ["version", 26, 5], ["src", 28, 5], ["nativeBuildInputs", 35, 5], ["propagatedBuildInputs", 40, 5], ["dontDropIconThemeCache", 42, 5], ["dontPatchELF", 45, 5], ["dontRewriteSymlinks", 46, 5], ["patches", 48, 5], ["postPatch", 52, 5], ["installPhase", 56, 5], ["passthru", 71, 5], ["meta", 73, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const themeVariants = nix.argOr($, "themeVariants", () => []);
   const pname = "qogir-icon-theme";
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: color variants`), nix.thunk(() => ["standard", "dark", "all"]), colorVariants, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: theme variants`), nix.thunk(() => ["default", "manjaro", "ubuntu", "all"]), themeVariants, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: "0-unstable-2025-11-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vinceliuice",
           repo: "qogir-icon-theme",
           rev: "c633057ba0d27a504b3255144071c9691ed0264a",
@@ -53,11 +49,11 @@ jdupes --quiet --link-soft --recurse $out/share
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Flat colorful design icon theme",
         homepage: "https://github.com/vinceliuice/Qogir-icon-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

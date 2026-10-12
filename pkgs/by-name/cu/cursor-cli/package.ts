@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 7], ["hash", 14, 7]], [["url", 17, 7], ["hash", 18, 7]], [["url", 21, 7], ["hash", 22, 7]], [["x86_64-linux", 12, 5], ["aarch64-linux", 16, 5], ["aarch64-darwin", 20, 5]], [["sources", 52, 13], ["updateScript", 53, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 64, 5], ["mainProgram", 65, 5], ["sourceProvenance", 66, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 36, 3], ["installPhase", 41, 3], ["passthru", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenv: false, autoPatchelfHook: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 17, 7], ["hash", 18, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 12, 5], ["aarch64-linux", 16, 5], ["aarch64-darwin", 20, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sources", 52, 13], ["updateScript", 53, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 64, 5], ["mainProgram", 65, 5], ["sourceProvenance", 66, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 36, 3], ["installPhase", 41, 3], ["passthru", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,25 +14,25 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const hostPlatform = nix.thunk(() => nix.attr(stdenv, "hostPlatform"));
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "https://downloads.cursor.com/lab/2026.10.01-e373342/linux/x64/agent-cli-package.tar.gz",
         hash: "sha256-p5cmxuZEUg6ZOXC+TEV3WmiJgCtnq+RhpnelMhmuKOg=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "https://downloads.cursor.com/lab/2026.10.01-e373342/linux/arm64/agent-cli-package.tar.gz",
         hash: "sha256-eFxfa/KmDrESHiftjBT17gftG1tmkjJPLZqZcjgkXrU=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: "https://downloads.cursor.com/lab/2026.10.01-e373342/darwin/arm64/agent-cli-package.tar.gz",
         hash: "sha256-Yp5R3kOgt/s7hvXrx+V59999+UGznynoKUXN51AUWvw=",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cursor-cli",
       version: "0-unstable-2026-10-01",
       src: nix.thunk(() => nix.sel(sources, nix.key(nix.sel(hostPlatform, "system")))),
@@ -46,12 +40,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(hostPlatform, "isLinux")), nix.thunk(() => [autoPatchelfHook, nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib"))]))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/cursor-agent\ncp -r * $out/share/cursor-agent/\nln -s $out/share/cursor-agent/cursor-agent $out/bin/cursor-agent\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         sources: sources,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Cursor CLI",
         homepage: "https://cursor.com/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

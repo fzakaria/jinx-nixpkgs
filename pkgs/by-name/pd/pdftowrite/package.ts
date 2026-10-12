@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["updateScript", 81, 12]], [["homepage", 84, 5], ["description", 85, 5], ["platforms", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["dependencies", 35, 3], ["build-system", 40, 3], ["patches", 46, 3], ["postInstall", 51, 3], ["nativeCheckInputs", 80, 3], ["passthru", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, makeWrapper: false, versionCheckHook: false, "nix-update-script": false, gzip: false, "poppler-utils": false, inkscape: false, ghostscript: false, imagemagick: false, libxml2: false, libxslt: false, wkhtmltopdf: false, pdftk: false, librsvg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 81, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 84, 5], ["description", 85, 5], ["platforms", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["dependencies", 35, 3], ["build-system", 40, 3], ["patches", 46, 3], ["postInstall", 51, 3], ["nativeCheckInputs", 80, 3], ["passthru", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pdftk = nix.arg($, "pdftk");
   const librsvg = nix.arg($, "librsvg");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pdftowrite",
       version: "2021.05.03",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apebl",
           repo: "pdftowrite",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,11 +55,11 @@ wrapProgram $out/bin/writetopdf --prefix PATH : ${writetopdfPath}
       })()),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/apebl/pdftowrite",
         description: "Utility that converts PDF to Stylus Labs Write documents, and vice versa",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nccl-ep.nix", [[["cudaCapabilityToInfo", 23, 24], ["cudaForwardCompat", 24, 29], ["cudaCapabilities", 25, 5]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 25], ["badPlatforms", 84, 35]], [["name", 32, 3], ["pname", 33, 3], ["src", 34, 18], ["version", 34, 22], ["sourceRoot", 35, 3], ["__structuredAttrs", 37, 3], ["strictDeps", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["makeFlags", 55, 3], ["buildFlags", 65, 3], ["installPhase", 67, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { _cuda: false, backendStdenv: false, cudaAtLeast: false, cudaNamePrefix: false, cudaOlder: false, lib: false, autoAddDriverRunpath: false, cuda_nvcc: false, which: false, cccl: false, cuda_crt: true, cuda_cudart: false, nccl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nccl-ep.nix", [["cudaCapabilityToInfo", 23, 24], ["cudaForwardCompat", 24, 29], ["cudaCapabilities", 25, 5]]);
-const pos$2 = nix.positions(here + "/nccl-ep.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 25], ["badPlatforms", 84, 35]]);
-const pos$3 = nix.positions(here + "/nccl-ep.nix", [["name", 32, 3], ["pname", 33, 3], ["src", 34, 18], ["version", 34, 22], ["sourceRoot", 35, 3], ["__structuredAttrs", 37, 3], ["strictDeps", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["makeFlags", 55, 3], ["buildFlags", 65, 3], ["installPhase", 67, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const epFlags = nix.thunk(() => nix.app(nix.sel(_cuda, "lib", "formatCapabilities"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(_cuda, "db"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       cudaCapabilityToInfo: nix.thunk(() => nix.attr(from, "cudaCapabilityToInfo")),
       cudaForwardCompat: nix.thunk(() => nix.attr(backendStdenv, "cudaForwardCompat")),
       cudaCapabilities: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (cudaCapability) => nix.app(nix.sel(lib, "versionAtLeast"), cudaCapability, "9.0"), nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities")))),
     };
     })())));
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "nccl-ep",
       src: nix.thunk(() => nix.attr(nccl, "src")),
@@ -65,7 +63,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nccl, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Expert-parallelism (MoE dispatch/combine) extension library for NCCL",
         homepage: "https://github.com/NVIDIA/nccl/blob/master/contrib/nccl_ep/README.md",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

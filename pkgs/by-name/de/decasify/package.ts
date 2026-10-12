@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["dontConfigure", 29, 5], ["nativeBuildInputs", 30, 5], ["hash", 31, 5]], [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5], ["license", 67, 5], ["mainProgram", 68, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoDeps", 27, 3], ["nativeBuildInputs", 34, 3], ["outputs", 43, 3], ["enableParallelBuilding", 50, 3], ["nativeInstallCheckInputs", 52, 3], ["doInstallCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, zstd: false, "pkg-config": false, jq: false, cargo: false, rustc: false, rustPlatform: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["dontConfigure", 29, 5], ["nativeBuildInputs", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5], ["license", 67, 5], ["mainProgram", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoDeps", 27, 3], ["nativeBuildInputs", 34, 3], ["outputs", 43, 3], ["enableParallelBuilding", 50, 3], ["nativeInstallCheckInputs", 52, 3], ["doInstallCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "decasify",
       version: "0.11.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/alerque/decasify/releases/download/v${nix.sel(finalAttrs, "version")}/decasify-${nix.sel(finalAttrs, "version")}.tar.zst`),
           hash: "sha256-N+VnUMfMvnJfRN0GXG28Fw+Sr6lQwzXn+CVvIbo7j8w=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utility to change the case of prose strings following natural language style guides",
         longDescription: "A CLI utility to cast strings to title-case (and other cases) according\nto locale specific style guides including Turkish support.\n",
         homepage: "https://github.com/alerque/decasify",

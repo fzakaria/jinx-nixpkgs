@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 7], ["repo", 26, 7], ["tag", 27, 7], ["hash", 28, 7]], [["HELIX_DISABLE_AUTO_GRAMMAR_BUILD", 40, 7], ["HELIX_DEFAULT_RUNTIME", 41, 7]], [["updateScript", 52, 14]], [["description", 55, 7], ["homepage", 56, 7], ["license", 57, 7], ["mainProgram", 58, 7], ["maintainers", 59, 7]], [["pname", 21, 5], ["version", 22, 5], ["src", 24, 5], ["cargoHash", 31, 5], ["nativeBuildInputs", 33, 5], ["env", 38, 5], ["postInstall", 44, 5], ["passthru", 52, 5], ["meta", 54, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, helix: false, installShellFiles: false, "nix-update-script": false, rustPlatform: false, runCommand: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 7], ["repo", 26, 7], ["tag", 27, 7], ["hash", 28, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["HELIX_DISABLE_AUTO_GRAMMAR_BUILD", 40, 7], ["HELIX_DEFAULT_RUNTIME", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 52, 14]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 55, 7], ["homepage", 56, 7], ["license", 57, 7], ["mainProgram", 58, 7], ["maintainers", 59, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 5], ["version", 22, 5], ["src", 24, 5], ["cargoHash", 31, 5], ["nativeBuildInputs", 33, 5], ["env", 38, 5], ["postInstall", 44, 5], ["passthru", 52, 5], ["meta", 54, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
 rm -rf $out/grammars $out/queries
 `)));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "evil-helix",
         version: "20250915",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "usagi-flow",
             repo: "evil-helix",
             tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +33,7 @@ rm -rf $out/grammars $out/queries
         cargoHash: "sha256-Mf0nrgMk1MlZkSyUN6mlM5lmTcrOHn3xBNzmVGtApEU=",
         nativeBuildInputs: nix.thunk(() => [installShellFiles, makeBinaryWrapper]),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           HELIX_DISABLE_AUTO_GRAMMAR_BUILD: "1",
           HELIX_DEFAULT_RUNTIME: defaultRuntimeDir,
         })),
@@ -48,11 +44,11 @@ cp contrib/helix.png $out/share/icons/hicolor/256x256/apps
 wrapProgram $out/bin/hx --set HELIX_RUNTIME ${nix.sel(helix, "runtime")}
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Post-modern modal text editor, with vim keybindings",
           homepage: "https://github.com/usagi-flow/evil-helix",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

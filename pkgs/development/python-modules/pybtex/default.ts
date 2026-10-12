@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 23, 13], ["pname", 23, 21], ["sha256", 24, 5]], [["homepage", 43, 5], ["changelog", 44, 5], ["description", 45, 5], ["license", 46, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 27, 3], ["dependencies", 31, 3], ["pythonImportsCheck", 36, 3], ["nativeCheckInputs", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, latexcodec: false, pyyaml: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 23, 13], ["pname", 23, 21], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 43, 5], ["changelog", 44, 5], ["description", 45, 5], ["license", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 27, 3], ["dependencies", 31, 3], ["pythonImportsCheck", 36, 3], ["nativeCheckInputs", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.25.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: pname,
           sha256: "sha256-nq+QJnx+g+Ilr4n+plw3Cvv2X0WCINOUap4wSeHspJE=",
@@ -31,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pybtex"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://pybtex.org/",
         changelog: "https://bitbucket.org/pybtex-devs/pybtex/src/master/CHANGES",
         description: "BibTeX-compatible bibliography processor written in Python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

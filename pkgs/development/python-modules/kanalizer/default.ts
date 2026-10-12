@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["url", 29, 7], ["hash", 30, 7]], [["pname", 42, 7], ["version", 43, 7], ["src", 44, 7], ["sourceRoot", 45, 7], ["hash", 47, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["sourceProvenance", 66, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["sourceRoot", 22, 3], ["model", 24, 3], ["prePatch", 33, 3], ["cargoDeps", 40, 3], ["buildAndTestSubdir", 50, 3], ["nativeBuildInputs", 52, 3], ["nativeCheckInputs", 57, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchurl: false, fetchFromGitHub: false, rustPlatform: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 42, 7], ["version", 43, 7], ["src", 44, 7], ["sourceRoot", 45, 7], ["hash", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["sourceProvenance", 66, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["sourceRoot", 22, 3], ["model", 24, 3], ["prePatch", 33, 3], ["cargoDeps", 40, 3], ["buildAndTestSubdir", 50, 3], ["nativeBuildInputs", 52, 3], ["nativeCheckInputs", 57, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kanalizer",
       version: "0.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "VOICEVOX",
           repo: "kanalizer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       model: nix.thunk(() => (() => {
         const modelTag = "v5";
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://huggingface.co/VOICEVOX/kanalizer-model/resolve/${modelTag}/model/c2k.safetensors`),
             hash: "sha256-sKhunAsN9Uwz2O1+eFQN8fh09eq67cFotTtLHsWJBRM=",
           })));
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
 ln -s "$model" crates/kanalizer-rs/models/model-c2k.safetensors
 `),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -59,7 +55,7 @@ ln -s "$model" crates/kanalizer-rs/models/model-c2k.safetensors
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["kanalizer"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library that guesses the Japanese pronunciation of English words",
         homepage: "https://github.com/VOICEVOX/kanalizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

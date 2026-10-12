@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/git.nix", [[["pname", 15, 3], ["version", 17, 20], ["src", 17, 28], ["postPatch", 17, 32], ["duneVersion", 18, 3], ["propagatedBuildInputs", 20, 3], ["meta", 32, 20]]]);
 const formals$1 = { args: { buildDunePackage: false, carton: false, "carton-lwt": false, bigstringaf: false, lwt: false, fpath: false, result: false, fmt: false, decompress: false, astring: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/git.nix", [["pname", 15, 3], ["version", 17, 20], ["src", 17, 28], ["postPatch", 17, 32], ["duneVersion", 18, 3], ["propagatedBuildInputs", 20, 3], ["meta", 32, 20]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const decompress = nix.arg($, "decompress");
   const astring = nix.arg($, "astring");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "carton-git",
       version: nix.thunk(() => nix.attr(carton, "version")),
       src: nix.thunk(() => nix.attr(carton, "src")),

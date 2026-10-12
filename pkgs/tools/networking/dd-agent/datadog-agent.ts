@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/datadog-agent.nix", [[["withCompression", 28, 41]], [["owner", 31, 13], ["repo", 31, 19], ["tag", 32, 5], ["hash", 33, 5]], [["pname", 36, 5], ["src", 37, 5], ["version", 38, 13], ["nativeBuildInputs", 39, 5], ["buildInputs", 40, 5], ["cmakeFlags", 41, 5]], [["PKG_CONFIG_PATH", 71, 7]], [["package", 125, 5], ["command", 126, 5]], [["version", 124, 18]], [["tests", 124, 12]], [["description", 130, 5], ["homepage", 134, 5], ["license", 135, 5], ["maintainers", 136, 5]], [["pname", 49, 3], ["src", 50, 11], ["version", 50, 15], ["doCheck", 52, 3], ["vendorHash", 54, 3], ["subPackages", 56, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 67, 3], ["proxyVendor", 69, 3], ["env", 71, 3], ["tags", 73, 3], ["ldflags", 86, 3], ["postPatch", 99, 3], ["postInstall", 109, 3], ["passthru", 124, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, buildGoModule: false, makeWrapper: false, fetchFromGitHub: false, pythonPackages: false, "pkg-config": false, systemdLibs: false, hostname: false, withSystemd: true, withDocker: true, extraTags: true, testers: false, "datadog-agent": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/datadog-agent.nix", [["withCompression", 28, 41]]);
-const pos$2 = nix.positions(here + "/datadog-agent.nix", [["owner", 31, 13], ["repo", 31, 19], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/datadog-agent.nix", [["pname", 36, 5], ["src", 37, 5], ["version", 38, 13], ["nativeBuildInputs", 39, 5], ["buildInputs", 40, 5], ["cmakeFlags", 41, 5]]);
-const pos$4 = nix.positions(here + "/datadog-agent.nix", [["PKG_CONFIG_PATH", 71, 7]]);
-const pos$5 = nix.positions(here + "/datadog-agent.nix", [["package", 125, 5], ["command", 126, 5]]);
-const pos$6 = nix.positions(here + "/datadog-agent.nix", [["version", 124, 18]]);
-const pos$7 = nix.positions(here + "/datadog-agent.nix", [["tests", 124, 12]]);
-const pos$8 = nix.positions(here + "/datadog-agent.nix", [["description", 130, 5], ["homepage", 134, 5], ["license", 135, 5], ["maintainers", 136, 5]]);
-const pos$9 = nix.positions(here + "/datadog-agent.nix", [["pname", 49, 3], ["src", 50, 11], ["version", 50, 15], ["doCheck", 52, 3], ["vendorHash", 54, 3], ["subPackages", 56, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 67, 3], ["proxyVendor", 69, 3], ["env", 71, 3], ["tags", 73, 3], ["ldflags", 86, 3], ["postPatch", 99, 3], ["postInstall", 109, 3], ["passthru", 124, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,16 +28,16 @@ export default nix.lambda((args) => (() => {
   const repo = "datadog-agent";
   const goPackagePath = nix.thunk(() => nix.str`github.com/${owner}/${repo}`);
   const version = "7.75.0";
-  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCompression: true }))));
+  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withCompression: true }))));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: owner,
       repo: repo,
       tag: version,
       hash: "sha256-oj4LFQiaEeSHcSx0Bar4vU7w/8gi0fgBGSAUjaD4SFc=",
     }))));
   const rtloader = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "datadog-agent-rtloader",
       src: nix.thunk(() => nix.str`${src}/rtloader`),
       version: version,
@@ -64,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat([rtloader], nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => [systemdLibs$]))));
       const proxyVendor = true;
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         PKG_CONFIG_PATH: nix.thunk(() => nix.str`${python}/lib/pkgconfig`),
       }));
       const tags = nix.thunk(() => nix.concat(["ec2", "kubelet", "python", "process", "log", "secrets", "zlib"], nix.concat(nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => ["systemd"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withDocker, nix.thunk(() => ["docker"])), extraTags))));
@@ -90,14 +82,14 @@ cp -R $src/cmd/agent/dist/{checks,utils,config.py} $out/${nix.sel(python, "siteP
 wrapProgram "$out/bin/agent" \\
   --set PYTHONPATH "$out/${nix.sel(python, "sitePackages")}"`, nix.app(nix.sel(lib, "optionalString"), withSystemd, nix.thunk(() => nix.str` --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getLib"), systemdLibs$)), rtloader]))}`))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$5, package: datadog_agent, command: "agent version" })))),
+          [nix.POS]: $pos[5],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[4], package: datadog_agent, command: "agent version" })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Event collector for the DataDog analysis service\n-- v6 new golang implementation.\n",
         homepage: "https://www.datadoghq.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -107,7 +99,7 @@ wrapProgram "$out/bin/agent" \\
         })()),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         src: src_1,
         version: version_1,

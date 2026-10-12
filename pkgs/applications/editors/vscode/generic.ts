@@ -2,24 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["executableName", 171, 21], ["pname", 172, 47], ["version", 172, 53]], [["description", 176, 13]], [["pname", 104, 11], ["version", 105, 19], ["targetPkgs", 108, 11], ["extraBwrapArgs", 153, 11], ["extraInstallCommands", 160, 11], ["runScript", 164, 11], ["dieWithParent", 168, 11], ["passthru", 170, 11], ["meta", 175, 11]], [["strictDeps", 202, 9], ["__structuredAttrs", 203, 9]], [["additionalPkgs", 207, 16]], [["strictDeps", 208, 11], ["__structuredAttrs", 209, 11]], [["executableName", 194, 9], ["iconName", 195, 9], ["longName", 196, 9], ["tests", 197, 9], ["updateScript", 198, 9], ["vscodeVersion", 199, 9], ["fhs", 201, 7], ["fhsWithPackages", 205, 7]], [["rev", 213, 15], ["vscodeServer", 213, 19]], [["name", 239, 11], ["exec", 240, 11], ["icon", 241, 11]], [["new-empty-window", 238, 17]], [["name", 218, 9], ["desktopName", 219, 9], ["comment", 220, 9], ["genericName", 221, 9], ["exec", 222, 9], ["icon", 223, 9], ["startupNotify", 224, 9], ["startupWMClass", 225, 9], ["categories", 226, 9], ["mimeTypes", 232, 9], ["keywords", 237, 9], ["actions", 238, 9]], [["name", 245, 9], ["desktopName", 246, 9], ["comment", 247, 9], ["genericName", 248, 9], ["exec", 249, 9], ["icon", 250, 9], ["startupNotify", 251, 9], ["categories", 252, 9], ["mimeTypes", 258, 9], ["keywords", 259, 9], ["noDisplay", 260, 9]], [["makeWrapper", 305, 48]], [["aarch64-darwin", 454, 15], ["armv7l-linux", 455, 15], ["aarch64-linux", 456, 15], ["i686-linux", 457, 15], ["loongarch64-linux", 458, 15], ["powerpc64-linux", 459, 15], ["riscv64-linux", 460, 15], ["s390x-linux", 461, 15], ["x86_64-linux", 462, 15]], [["pname", 185, 7], ["version", 186, 7], ["src", 187, 7], ["sourceRoot", 188, 7], ["dontFixup", 189, 7], ["passthru", 192, 5], ["desktopItems", 216, 5], ["strictDeps", 264, 5], ["__structuredAttrs", 265, 5], ["buildInputs", 267, 5], ["runtimeDependencies", 285, 5], ["nativeBuildInputs", 293, 5], ["autoPatchelfIgnoreMissingDeps", 312, 5], ["appendRunpaths", 315, 5], ["dontBuild", 319, 5], ["dontConfigure", 320, 5], ["noDumpEnvVars", 321, 5], ["installPhase", 323, 5], ["preFixup", 371, 5], ["postPatch", 404, 5], ["postFixup", 486, 5], ["meta", 504, 13]]]);
 const formals$1 = { args: { stdenv: false, lib: false, coreutils: false, gawk: false, getconf: false, gnugrep: false, gnused: false, jq: false, copyDesktopItems: false, makeDesktopItem: false, unzip: false, libsecret: false, buildPackages: false, "at-spi2-atk": false, autoPatchelfHook: false, buildFHSEnv: false, "alsa-lib": false, libgbm: false, nss: false, nspr: false, libxrandr: false, libxfixes: false, libxext: false, libxdamage: false, libxcomposite: false, libx11: false, libxkbfile: false, libxcb: false, systemdLibs: false, fontconfig: false, imagemagick: false, libdbusmenu: false, glib: false, wayland: false, libglvnd: false, openssl: false, webkitgtk_4_1: false, ripgrep: false, which: false, libxtst: false, libjpeg8: false, pipewire: false, libei: false, asar: false, bash: false }, ellipsis: false };
 const formals$2 = { args: { version: false, vscodeVersion: true, src: false, meta: false, sourceRoot: false, commandLineArgs: false, executableName: false, longName: false, shortName: false, pname: false, libraryName: true, iconName: true, updateScript: false, dontFixup: true, rev: true, vscodeServer: true, sourceExecutableName: true, useVSCodeRipgrep: true, hasVsceSign: true, patchVSCodePath: true, tests: false, extraNativeBuildInputs: true, customizeFHSEnv: true }, ellipsis: false };
 const formals$3 = { args: { additionalPkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["executableName", 171, 21], ["pname", 172, 47], ["version", 172, 53]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["description", 176, 13]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["pname", 104, 11], ["version", 105, 19], ["targetPkgs", 108, 11], ["extraBwrapArgs", 153, 11], ["extraInstallCommands", 160, 11], ["runScript", 164, 11], ["dieWithParent", 168, 11], ["passthru", 170, 11], ["meta", 175, 11]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["strictDeps", 202, 9], ["__structuredAttrs", 203, 9]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["additionalPkgs", 207, 16]]);
-const pos$6 = nix.positions(here + "/generic.nix", [["strictDeps", 208, 11], ["__structuredAttrs", 209, 11]]);
-const pos$7 = nix.positions(here + "/generic.nix", [["executableName", 194, 9], ["iconName", 195, 9], ["longName", 196, 9], ["tests", 197, 9], ["updateScript", 198, 9], ["vscodeVersion", 199, 9], ["fhs", 201, 7], ["fhsWithPackages", 205, 7]]);
-const pos$8 = nix.positions(here + "/generic.nix", [["rev", 213, 15], ["vscodeServer", 213, 19]]);
-const pos$9 = nix.positions(here + "/generic.nix", [["name", 239, 11], ["exec", 240, 11], ["icon", 241, 11]]);
-const pos$10 = nix.positions(here + "/generic.nix", [["new-empty-window", 238, 17]]);
-const pos$11 = nix.positions(here + "/generic.nix", [["name", 218, 9], ["desktopName", 219, 9], ["comment", 220, 9], ["genericName", 221, 9], ["exec", 222, 9], ["icon", 223, 9], ["startupNotify", 224, 9], ["startupWMClass", 225, 9], ["categories", 226, 9], ["mimeTypes", 232, 9], ["keywords", 237, 9], ["actions", 238, 9]]);
-const pos$12 = nix.positions(here + "/generic.nix", [["name", 245, 9], ["desktopName", 246, 9], ["comment", 247, 9], ["genericName", 248, 9], ["exec", 249, 9], ["icon", 250, 9], ["startupNotify", 251, 9], ["categories", 252, 9], ["mimeTypes", 258, 9], ["keywords", 259, 9], ["noDisplay", 260, 9]]);
-const pos$13 = nix.positions(here + "/generic.nix", [["makeWrapper", 305, 48]]);
-const pos$14 = nix.positions(here + "/generic.nix", [["aarch64-darwin", 454, 15], ["armv7l-linux", 455, 15], ["aarch64-linux", 456, 15], ["i686-linux", 457, 15], ["loongarch64-linux", 458, 15], ["powerpc64-linux", 459, 15], ["riscv64-linux", 460, 15], ["s390x-linux", 461, 15], ["x86_64-linux", 462, 15]]);
-const pos$15 = nix.positions(here + "/generic.nix", [["pname", 185, 7], ["version", 186, 7], ["src", 187, 7], ["sourceRoot", 188, 7], ["dontFixup", 189, 7], ["passthru", 192, 5], ["desktopItems", 216, 5], ["strictDeps", 264, 5], ["__structuredAttrs", 265, 5], ["buildInputs", 267, 5], ["runtimeDependencies", 285, 5], ["nativeBuildInputs", 293, 5], ["autoPatchelfIgnoreMissingDeps", 312, 5], ["appendRunpaths", 315, 5], ["dontBuild", 319, 5], ["dontConfigure", 320, 5], ["noDumpEnvVars", 321, 5], ["installPhase", 323, 5], ["preFixup", 371, 5], ["postPatch", 404, 5], ["postFixup", 486, 5], ["meta", 504, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -98,7 +84,7 @@ export default nix.lambda((args) => (() => {
           const $_2 = nix.formals(args_2, formals$3);
           const additionalPkgs = nix.argOr($_2, "additionalPkgs", () => (pkgs) => []);
           const defaultArgs = nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: executableName,
             version: version,
             targetPkgs: (pkgs) => nix.concat((() => {
@@ -148,14 +134,14 @@ export default nix.lambda((args) => (() => {
             passthru: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
               return {
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               executableName: executableName,
               pname: nix.thunk(() => nix.attr(from, "pname")),
               version: nix.thunk(() => nix.attr(from, "version")),
             };
             })()),
             meta: nix.thunk(() => nix.update(meta, {
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               description: nix.thunk(() => nix.str`Wrapped variant of ${pname} which launches in a FHS compatible environment, should allow for easy usage of extensions without nix-specific modifications`),
             })),
           }));
@@ -163,26 +149,26 @@ export default nix.lambda((args) => (() => {
           return nix.app(buildFHSEnv, customizedArgs);
         })(), formals$3);
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           pname: pname,
           version: version,
           src: src,
           sourceRoot: sourceRoot,
           dontFixup: dontFixup,
           passthru: nix.thunk(() => nix.update({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             executableName: executableName,
             iconName: iconName,
             longName: longName,
             tests: tests,
             updateScript: updateScript,
             vscodeVersion: vscodeVersion,
-            fhs: nix.thunk(() => nix.app(nix.sel(nix.app(fhs, nix.thunk(() => ({}))), "overrideAttrs"), (old) => ({ [nix.POS]: pos$4, strictDeps: true, __structuredAttrs: true }))),
-            fhsWithPackages: (f) => nix.app(nix.sel(nix.app(fhs, nix.thunk(() => ({ [nix.POS]: pos$5, additionalPkgs: f }))), "overrideAttrs"), (old) => ({ [nix.POS]: pos$6, strictDeps: true, __structuredAttrs: true })),
-          }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(vscodeServer, null)), nix.thunk(() => ({ [nix.POS]: pos$8, rev: rev, vscodeServer: vscodeServer }))))),
+            fhs: nix.thunk(() => nix.app(nix.sel(nix.app(fhs, nix.thunk(() => ({}))), "overrideAttrs"), (old) => ({ [nix.POS]: $pos[3], strictDeps: true, __structuredAttrs: true }))),
+            fhsWithPackages: (f) => nix.app(nix.sel(nix.app(fhs, nix.thunk(() => ({ [nix.POS]: $pos[4], additionalPkgs: f }))), "overrideAttrs"), (old) => ({ [nix.POS]: $pos[5], strictDeps: true, __structuredAttrs: true })),
+          }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(vscodeServer, null)), nix.thunk(() => ({ [nix.POS]: $pos[7], rev: rev, vscodeServer: vscodeServer }))))),
           desktopItems: nix.thunk(() => [
             nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 name: executableName,
                 desktopName: longName,
                 comment: "Code Editing. Redefined.",
@@ -195,9 +181,9 @@ export default nix.lambda((args) => (() => {
                 mimeTypes: nix.thunk(() => ["application/x-code-workspace", "text/plain", "inode/directory"]),
                 keywords: nix.thunk(() => ["vscode"]),
                 actions: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   "new-empty-window": nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     name: "New Empty Window",
                     exec: nix.thunk(() => nix.str`${executableName} --new-window %F`),
                     icon: iconName,
@@ -205,7 +191,7 @@ export default nix.lambda((args) => (() => {
                 })),
               })))),
             nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 name: nix.thunk(() => nix.add(executableName, "-url-handler")),
                 desktopName: nix.thunk(() => nix.add(longName, " - URL Handler")),
                 comment: "Code Editing. Redefined.",
@@ -248,7 +234,7 @@ export default nix.lambda((args) => (() => {
               copyDesktopItems,
               jq,
               nix.thunk(() => nix.app(nix.sel(buildPackages, "wrapGAppsHook3", "override"), nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   makeWrapper: nix.thunk(() => nix.sel(buildPackages, "makeShellWrapper")),
                 })))),
             ]))))),
@@ -294,7 +280,7 @@ rm -rf "$packed"
 `), "ln -rs \"$unpacked\" \"$packed\"\n"), "rm -rf \"resources/app/node_modules.asar.unpacked\"\nln -rs \"$unpacked\" \"resources/app/node_modules.asar.unpacked\"\n"))), (() => {
             const nodeModulesPath = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), vscodeVersion, "1.129.0")) ? "Contents/Resources/app/node_modules.asar.unpacked" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), vscodeVersion, "1.94.0")) ? "Contents/Resources/app/node_modules" : "Contents/Resources/app/node_modules.asar.unpacked")) : "resources/app/node_modules"));
             const ripgrepSystem = nix.thunk(() => nix.selOr({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               "aarch64-darwin": "darwin-arm64",
               "armv7l-linux": "linux-arm",
               "aarch64-linux": "linux-arm64",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 69, 5], ["repo", 70, 5], ["tag", 71, 5], ["hash", 72, 5]], [["homepage", 137, 5], ["description", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["platforms", 141, 5], ["mainProgram", 142, 5]], [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["pyproject", 75, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 88, 3], ["dependencies", 108, 3], ["postPatch", 123, 3], ["dontWrapGApps", 129, 3], ["makeWrapperArgs", 130, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { python3Packages: false, lib: false, fetchFromGitHub: false, atk: false, file: false, glib: false, "gdk-pixbuf": false, "glib-networking": false, "gnome-desktop": false, "gobject-introspection": false, gst_all_1: false, gtk3: false, libnotify: false, pango: false, webkitgtk_4_1: false, wrapGAppsHook3: false, meson: false, ninja: false, xrandr: false, pciutils: false, psmisc: false, "mesa-demos": false, "vulkan-tools": false, pulseaudio: false, p7zip: false, xgamma: false, gettext: false, libstrangle: false, fluidsynth: false, "xorg-server": false, xkbcomp: false, setxkbmap: false, "util-linux": false, "pkg-config": false, "desktop-file-utils": false, "appstream-glib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 69, 5], ["repo", 70, 5], ["tag", 71, 5], ["hash", 72, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 137, 5], ["description", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["platforms", 141, 5], ["mainProgram", 142, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["pyproject", 75, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 88, 3], ["dependencies", 108, 3], ["postPatch", 123, 3], ["dontWrapGApps", 129, 3], ["makeWrapperArgs", 130, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -62,11 +60,11 @@ export default nix.lambda((args) => (() => {
     util_linux,
   ]);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lutris-unwrapped",
       version: "0.5.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lutris",
           repo: "lutris",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -131,7 +129,7 @@ export default nix.lambda((args) => (() => {
         "${gappsWrapperArgs[@]}",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://lutris.net",
         description: "Open Source gaming platform for GNU/Linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

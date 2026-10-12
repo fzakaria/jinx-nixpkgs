@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test_jre_minimal_with_logging.nix", [[["modules", 12, 7]], [["jdk", 10, 5], ["jre", 11, 5]]]);
 const formals$1 = { args: { runCommand: false, callPackage: false, jdk: false, jre_minimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test_jre_minimal_with_logging.nix", [["modules", 12, 7]]);
-const pos$2 = nix.positions(here + "/test_jre_minimal_with_logging.nix", [["jdk", 10, 5], ["jre", 11, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const jre_minimal = nix.arg($, "jre_minimal");
   const hello_logging = nix.thunk(() => nix.app(callPackage, nix.path(here, "./hello-logging.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       jdk: jdk,
-      jre: nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, modules: nix.thunk(() => ["java.base", "java.logging"]) })))),
+      jre: nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], modules: nix.thunk(() => ["java.base", "java.logging"]) })))),
     }))));
   return nix.app(runCommand, "test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${hello_logging}/bin/hello &>/dev/stdout | grep "Hello, world!"
 touch $out

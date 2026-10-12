@@ -2,33 +2,29 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/brave.nix", [["url", 8, 7], ["sha256", 9, 7]]);
-const pos$2 = nix.positions(here + "/brave.nix", [["url", 12, 7], ["sha256", 13, 7]]);
-const pos$3 = nix.positions(here + "/brave.nix", [["url", 16, 7], ["sha256", 17, 7]]);
-const pos$4 = nix.positions(here + "/brave.nix", [["aarch64-linux", 7, 5], ["x86_64-linux", 11, 5], ["aarch64-darwin", 15, 5]]);
-const pos$5 = nix.positions(here + "/brave.nix", [["pname", 3, 3], ["version", 4, 3], ["archives", 6, 3]]);
+const $pos = nix.positions(here + "/brave.nix", [[["url", 8, 7], ["sha256", 9, 7]], [["url", 12, 7], ["sha256", 13, 7]], [["url", 16, 7], ["sha256", 17, 7]], [["aarch64-linux", 7, 5], ["x86_64-linux", 11, 5], ["aarch64-darwin", 15, 5]], [["pname", 3, 3], ["version", 4, 3], ["archives", 6, 3]]]);
 
 export default nix.thunk(() => (() => {
   const pname = "brave";
   const version = "1.97.56";
   const archives = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/brave/brave-browser/releases/download/v${version}/brave-browser_${version}_arm64.deb`),
       sha256: "19d78ac52c1956c7d254a4ca3bb24f91d2f4a47e6fb6b1dcc5b43681818a5d3b",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://github.com/brave/brave-browser/releases/download/v${version}/brave-browser_${version}_amd64.deb`),
       sha256: "30e4cb89db380567e6fcdaab7110a17d6250517e22860c6bdb02eadf8993b669",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://github.com/brave/brave-browser/releases/download/v${version}/Brave-Browser-arm64.dmg`),
       sha256: "3da1fb6e8b369c9dd1152afdf4d3cb24cb3c6215fabc520f8bff7cbb87f08587",
     })),
   }));
-  return { [nix.POS]: pos$5, pname, version, archives };
+  return { [nix.POS]: $pos[4], pname, version, archives };
 })());
 //# sourceMappingURL=brave.ts.map

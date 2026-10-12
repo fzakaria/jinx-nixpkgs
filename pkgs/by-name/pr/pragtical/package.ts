@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["fetchSubmodules", 36, 5], ["postFetch", 39, 5], ["hash", 55, 5]], [["changelog", 90, 5], ["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["mainProgram", 94, 5], ["maintainers", 95, 5], ["platforms", 99, 5]], [["pname", 27, 3], ["version", 28, 3], ["pluginManagerRev", 29, 3], ["linenoiseRev", 30, 3], ["src", 32, 3], ["strictDeps", 58, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 67, 3], ["mesonFlags", 85, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cacert: false, meson: false, ninja: false, "pkg-config": false, freetype: false, harfbuzz: false, libgit2: false, libkqueue: false, libuchardet: false, libzip: false, lua5_4: false, luajit: false, mbedtls_4: false, pcre2: false, sdl3: false, "sdl3-image": false, "sdl3-net": false, xz: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["fetchSubmodules", 36, 5], ["postFetch", 39, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 90, 5], ["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["mainProgram", 94, 5], ["maintainers", 95, 5], ["platforms", 99, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["pluginManagerRev", 29, 3], ["linenoiseRev", 30, 3], ["src", 32, 3], ["strictDeps", 58, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 67, 3], ["mesonFlags", 85, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pragtical",
       version: "3.11.2",
       pluginManagerRev: "v1.5.2",
       linenoiseRev: "e78e236c8d85c078fdd9fc4e1f08716058aa1a42",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pragtical",
           repo: "pragtical",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +78,7 @@ find subprojects -type d -name .git -prune -execdir rm -r {} +
       ]),
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "use_system_lua", true))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/pragtical/pragtical/blob/${nix.sel(finalAttrs, "src", "rev")}/changelog.md`),
         description: "Practical and pragmatic code editor",
         homepage: "https://pragtical.dev",

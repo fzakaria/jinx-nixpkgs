@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["name", 48, 7], ["exec", 49, 7], ["comment", 50, 7], ["type", 51, 7], ["desktopName", 53, 7], ["terminal", 54, 7], ["categories", 55, 7]], [["description", 60, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 28, 3], ["makeWrapperArgs", 34, 3], ["propagatedBuildInputs", 38, 3], ["desktopItems", 46, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, desktopToDarwinBundle: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 48, 7], ["exec", 49, 7], ["comment", 50, 7], ["type", 51, 7], ["desktopName", 53, 7], ["terminal", 54, 7], ["categories", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 28, 3], ["makeWrapperArgs", 34, 3], ["propagatedBuildInputs", 38, 3], ["desktopItems", 46, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "opcua-client-gui",
       version: "0.8.4",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FreeOpcUa",
           repo: "opcua-client-gui",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       })()),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "opcua-client",
             exec: "opcua-client",
             comment: "OPC UA Client",
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OPC UA GUI Client",
         homepage: "https://github.com/FreeOpcUa/opcua-client-gui",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

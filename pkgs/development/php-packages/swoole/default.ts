@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["changelog", 31, 5], ["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["teams", 35, 5], ["broken", 36, 5]], [["version", 15, 11], ["pname", 16, 3], ["src", 18, 3], ["buildInputs", 25, 3], ["doCheck", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPecl: false, php: false, valgrind: false, pcre2: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 31, 5], ["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["teams", 35, 5], ["broken", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 15, 11], ["pname", 16, 3], ["src", 18, 3], ["buildInputs", 25, 3], ["doCheck", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "6.1.8";
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       pname: "swoole",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "swoole",
           repo: "swoole-src",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([pcre2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [valgrind])))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/swoole/swoole-src/releases/tag/v${version}`),
         description: "Coroutine-based concurrency library for PHP",
         homepage: "https://www.swoole.com",

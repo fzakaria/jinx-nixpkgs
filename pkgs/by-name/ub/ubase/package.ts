@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["name", 35, 9], ["buildInputs", 36, 9], ["script", 37, 9]], [["name", 46, 9], ["buildInputs", 47, 9], ["script", 48, 9]], [["name", 55, 9], ["buildInputs", 56, 9], ["script", 57, 9]], [["name", 64, 9], ["buildInputs", 65, 9], ["script", 69, 9]], [["ddCopiesBytes", 34, 7], ["idMatchesUid", 45, 7], ["pagesizePositive", 54, 7], ["whichIdIsBox", 63, 7]], [["updateScript", 31, 5], ["tests", 33, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 21, 3], ["enableParallelBuilding", 22, 3], ["buildInputs", 24, 3], ["makeFlags", 26, 3], ["buildFlags", 27, 3], ["installTargets", 28, 3], ["passthru", 30, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, libxcrypt: false, testers: false, unstableGitUpdater: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 9], ["buildInputs", 36, 9], ["script", 37, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 46, 9], ["buildInputs", 47, 9], ["script", 48, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 55, 9], ["buildInputs", 56, 9], ["script", 57, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 64, 9], ["buildInputs", 65, 9], ["script", 69, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ddCopiesBytes", 34, 7], ["idMatchesUid", 45, 7], ["pagesizePositive", 54, 7], ["whichIdIsBox", 63, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 31, 5], ["tests", 33, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 21, 3], ["enableParallelBuilding", 22, 3], ["buildInputs", 24, 3], ["makeFlags", 26, 3], ["buildFlags", 27, 3], ["installTargets", 28, 3], ["passthru", 30, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "ubase",
       version: "0-unstable-2025-12-30",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.suckless.org/ubase",
           rev: "e8249b49ca3e02032dece5e0cdac3d236667a6d9",
           hash: "sha256-/XwDmhIBjISUyS1hBMcfBe5i4ISKj6sJTGb4lYfJqO0=",
@@ -39,30 +31,30 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["ubase-box"]),
       installTargets: nix.thunk(() => ["ubase-box-install"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           ddCopiesBytes: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "ubase-dd-copies-bytes",
               buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "dd if=/dev/zero of=test.bin bs=1 count=4\nset -- $(stat -t test.bin)\n[ \"$1\" = \"test.bin\" ] && [ \"$2\" = \"4\" ]\ntouch $out\n",
             })))),
           idMatchesUid: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "ubase-id-matches-uid",
               buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "[ \"$(id -u)\" = \"$UID\" ]\ntouch $out\n",
             })))),
           pagesizePositive: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "ubase-pagesize-positive",
               buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "[ \"$(pagesize)\" -gt 0 ]\ntouch $out\n",
             })))),
           whichIdIsBox: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "ubase-which-id-is-box",
               buildInputs: nix.thunk(() => [which, nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "[ $(which id) -ef $(which ubase-box) ]\ntouch $out\n",
@@ -70,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Linux base utilities from suckless.org",
         homepage: "https://core.suckless.org/ubase/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

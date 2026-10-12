@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["updateScript", 134, 12]], [["description", 137, 5], ["homepage", 138, 5], ["downloadPage", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["platforms", 146, 5], ["mainProgram", 147, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["patches", 49, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 76, 3], ["propagatedBuildInputs", 83, 3], ["pyproject", 127, 3], ["dontWrapGApps", 128, 3], ["preFixup", 130, 3], ["passthru", 134, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, "blueprint-compiler": false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, "appstream-glib": false, "desktop-file-utils": false, fvs2: false, gtk4: false, gtksourceview5: false, libadwaita: false, cabextract: false, p7zip: false, xdpyinfo: false, imagemagick: false, "lsb-release": false, pciutils: false, procps: false, gamemode: false, gamescope: false, mangohud: false, "vkbasalt-cli": false, "vulkan-tools": false, vmtouch: false, "libportal-gtk4": false, "obs-studio-plugins": false, libxml2: false, "umu-launcher": false, "nix-update-script": false, removeWarningPopup: true, withObsVkCapture: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 134, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 137, 5], ["homepage", 138, 5], ["downloadPage", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["platforms", 146, 5], ["mainProgram", 147, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["patches", 49, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 76, 3], ["propagatedBuildInputs", 83, 3], ["pyproject", 127, 3], ["dontWrapGApps", 128, 3], ["preFixup", 130, 3], ["passthru", 134, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const removeWarningPopup = nix.argOr($, "removeWarningPopup", () => false);
   const withObsVkCapture = nix.argOr($, "withObsVkCapture", () => false);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bottles-unwrapped",
       version: "67.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bottlesdevs",
           repo: "bottles",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -115,11 +112,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Easy-to-use wineprefix manager",
         homepage: "https://usebottles.com/",
         downloadPage: "https://github.com/bottlesdevs/Bottles/releases",

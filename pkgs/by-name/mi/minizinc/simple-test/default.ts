@@ -2,16 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["timeout", 21, 8]], [["name", 8, 3], ["nativeBuildInputs", 10, 3], ["dontInstall", 12, 3], ["buildCommand", 14, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { stdenv: false, minizinc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["timeout", 21, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 8, 3], ["nativeBuildInputs", 10, 3], ["dontInstall", 12, 3], ["buildCommand", 14, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenv = nix.arg($, "stdenv");
   const minizinc = nix.arg($, "minizinc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "minizinc-simple-test",
       nativeBuildInputs: nix.thunk(() => [minizinc]),
       dontInstall: true,
@@ -20,7 +19,7 @@ minizinc --solver gecode ${nix.path(here, "./aust.mzn")} | tee $out/aust.log
 minizinc --solver gecode ${nix.path(here, "./nqueens.mzn")} | tee $out/nqueens.log
 minizinc --solver cbc ${nix.path(here, "./loan.mzn")} ${nix.path(here, "./loan1.dzn")} | tee $out/loan.log
 `),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 10n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 10n })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

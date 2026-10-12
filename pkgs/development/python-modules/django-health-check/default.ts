@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["psutil", 47, 5], ["celery", 48, 5], ["kafka", 49, 5], ["rabbitmq", 50, 5], ["redis", 51, 5], ["rss", 52, 5], ["atlassian", 56, 5]], [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 59, 3], ["disabledTests", 70, 3], ["pythonImportsCheck", 91, 3], ["preCheck", 93, 3], ["preInstallCheck", 98, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, celery: false, fetchFromGitHub: false, "flit-core": false, "flit-scm": false, "pytest-cov-stub": false, "pytest-django": false, pytestCheckHook: false, redis: false, psutil: false, dnspython: false, "pytest-asyncio": false, libredirect: false, "confluent-kafka": false, "aio-pika": false, httpx: false, feedparser: false, fakeredis: false, testcontainers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["psutil", 47, 5], ["celery", 48, 5], ["kafka", 49, 5], ["rabbitmq", 50, 5], ["redis", 51, 5], ["rss", 52, 5], ["atlassian", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 59, 3], ["disabledTests", 70, 3], ["pythonImportsCheck", 91, 3], ["preCheck", 93, 3], ["preInstallCheck", 98, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const fakeredis = nix.arg($, "fakeredis");
   const testcontainers = nix.arg($, "testcontainers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "django-health-check",
       version: "4.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "codingjoe",
           repo: "django-health-check",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core, flit_scm]),
       dependencies: nix.thunk(() => [dnspython]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         psutil: nix.thunk(() => [psutil]),
         celery: nix.thunk(() => [celery]),
         kafka: nix.thunk(() => [confluent_kafka]),
@@ -79,7 +76,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "echo \"nameserver 127.0.0.1\" > resolv.conf\nexport NIX_REDIRECTS=/etc/resolv.conf=$(realpath resolv.conf)\n",
       preInstallCheck: "export PYTHONPATH=$PWD:$PYTHONPATH\nexport DJANGO_SETTINGS_MODULE=tests.testapp.settings\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pluggable app that runs a full check on the deployment",
         homepage: "https://github.com/codingjoe/django-health-check",
         changelog: nix.thunk(() => nix.str`https://github.com/codingjoe/django-health-check/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

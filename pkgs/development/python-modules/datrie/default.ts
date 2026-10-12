@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]], [["CFLAGS", 34, 7]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 22, 3], ["dependencies", 27, 3], ["env", 34, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, wheel: false, cython: false, pytestCheckHook: false, hypothesis: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CFLAGS", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 22, 3], ["dependencies", 27, 3], ["env", 34, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +20,18 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-6gIa1MiovxTginHHhypiKqOZpRD5gSloJQkcfKBDboA=",
         }))));
       const postPatch = "substituteInPlace setup.py \\\n  --replace '\"pytest-runner\", ' \"\"\n";
       const dependencies = nix.thunk(() => [setuptools, wheel, cython]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-Wno-error=incompatible-pointer-types" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CFLAGS: "-Wno-error=incompatible-pointer-types" }));
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["datrie"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Super-fast, efficiently stored Trie for Python",
         homepage: "https://github.com/kmike/datrie",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

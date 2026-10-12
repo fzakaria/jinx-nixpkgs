@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["targetPrefix", 9, 56]], [["platforms", 11, 5], ["license", 12, 5]], [["name", 8, 3], ["substitutions", 9, 3], ["meta", 10, 3]]]);
 const formals$1 = { args: { lib: false, targetPackages: false, makeSetupHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["targetPrefix", 9, 56]]);
-const pos$2 = nix.positions(here + "/package.nix", [["platforms", 11, 5], ["license", 12, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 8, 3], ["substitutions", 9, 3], ["meta", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const targetPackages = nix.arg($, "targetPackages");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "fix-darwin-dylib-names-hook",
       substitutions: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(targetPackages, "stdenv", "cc"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         targetPrefix: nix.thunk(() => nix.attr(from, "targetPrefix")),
       };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/python.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["build-system", 51, 3], ["buildInputs", 56, 3], ["postInstall", 58, 3], ["nativeCheckInputs", 64, 3], ["pythonImportsCheck", 70, 3], ["preCheck", 72, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, python: false, pkgs: false, pycparser: false, pytestCheckHook: false, "setuptools-git-versioning": false, setuptools: false, writableTmpDirAsHomeHook: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/python.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/python.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$3 = nix.positions(here + "/python.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["build-system", 51, 3], ["buildInputs", 56, 3], ["postInstall", 58, 3], ["nativeCheckInputs", 64, 3], ["pythonImportsCheck", 70, 3], ["preCheck", 72, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const systemDir = nix.thunk(() => nix.str`${nix.sel(targetPlatform, "parsed", "kernel", "name")}-${nix.sel(targetPlatform, "parsed", "cpu", "name")}`);
   const libExt = nix.thunk(() => nix.sel(targetPlatform, "extensions", "sharedLibrary"));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wasmtime",
       version: "49.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bytecodealliance",
           repo: "wasmtime-py",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -71,7 +69,7 @@ export NIX_HARDENING_ENABLE=""
 export PYTHONPATH="$PWD:$PYTHONPATH"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python WebAssembly runtime powered by Wasmtime",
         homepage: "https://github.com/bytecodealliance/wasmtime-py",
         changelog: nix.thunk(() => nix.str`https://github.com/bytecodealliance/wasmtime-py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

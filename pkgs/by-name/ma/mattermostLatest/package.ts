@@ -2,18 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["regex", 17, 7], ["version", 18, 7], ["srcHash", 19, 7], ["vendorHash", 20, 7], ["npmDepsHash", 21, 7], ["autoUpdate", 22, 7]], [["latestVersionInfo", 8, 5]]]);
 const formals$1 = { args: { mattermost: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["regex", 17, 7], ["version", 18, 7], ["srcHash", 19, 7], ["vendorHash", 20, 7], ["npmDepsHash", 21, 7], ["autoUpdate", 22, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["latestVersionInfo", 8, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const mattermost = nix.arg($, "mattermost");
   return nix.app(nix.sel(mattermost, "override"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       latestVersionInfo: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         regex: "^v(11\\.[0-9]+\\.[0-9]+)$",
         version: "11.11.1",
         srcHash: "sha256-kbupWQe7pN9D01gpPcuc6sPfElcQZMZ39JClHqoaNG0=",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["pname", 13, 13], ["version", 13, 19], ["src", 13, 27]], [["pname", 18, 5], ["version", 19, 5], ["src", 20, 5], ["meta", 21, 5], ["nativeBuildInputs", 24, 3], ["extraPkgs", 28, 3], ["extraInstallCommands", 33, 3]]]);
 const formals$1 = { args: { appimageTools: false, makeWrapper: false, pname: false, version: false, meta: false, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["pname", 13, 13], ["version", 13, 19], ["src", 13, 27]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["pname", 18, 5], ["version", 19, 5], ["src", 20, 5], ["meta", 21, 5], ["nativeBuildInputs", 24, 3], ["extraPkgs", 28, 3], ["extraInstallCommands", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const meta = nix.arg($, "meta");
   const src = nix.arg($, "src");
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$1, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[0], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: src,

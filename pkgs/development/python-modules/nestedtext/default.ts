@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["doCheck", 52, 7]], [["runTests", 51, 5]], [["tests", 50, 12]], [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 31, 3], ["doCheck", 41, 3], ["disabledTestPaths", 43, 3], ["passthru", 50, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, docopt: false, fetchFromGitHub: false, "flit-core": false, hypothesis: false, inform: false, nestedtext: false, pytestCheckHook: false, quantiphy: false, voluptuous: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 52, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["runTests", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 50, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 31, 3], ["doCheck", 41, 3], ["disabledTestPaths", 43, 3], ["passthru", 50, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const quantiphy = nix.arg($, "quantiphy");
   const voluptuous = nix.arg($, "voluptuous");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nestedtext",
       version: "3.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KenKundert",
           repo: "nestedtext",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,15 +36,15 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       disabledTestPaths: nix.thunk(() => ["build", "examples/"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          runTests: nix.thunk(() => nix.app(nix.sel(nestedtext, "overrideAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
+          [nix.POS]: $pos[2],
+          runTests: nix.thunk(() => nix.app(nix.sel(nestedtext, "overrideAttrs"), (_) => ({ [nix.POS]: $pos[1], doCheck: true }))),
         })),
       })),
       pythonImportsCheck: nix.thunk(() => ["nestedtext"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Human friendly data format",
         longDescription: "NestedText is a file format for holding data that is to be entered,\nedited, or viewed by people. It allows data to be organized into a nested\ncollection of dictionaries, lists, and strings. In this way it is similar\nto JSON, YAML and TOML, but without the complexity and risk of YAML and\nwithout the syntactic clutter of JSON and TOML. NestedText is both simple\nand natural. Only a small number of concepts and rules must be kept in\nmind when creating it. It is easily created, modified, or viewed with a\ntext editor and easily understood and used by both programmers and\nnon-programmers.\n",
         homepage: "https://nestedtext.org",

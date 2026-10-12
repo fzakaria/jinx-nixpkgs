@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sourceview3.nix", [[["pname", 8, 3], ["buildInputs", 9, 3], ["propagatedBuildInputs", 10, 3], ["src", 12, 5], ["version", 13, 5], ["meta", 14, 5], ["nativeBuildInputs", 15, 5]]]);
 const formals$1 = { args: { buildDunePackage: false, gtksourceview3: false, lablgtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sourceview3.nix", [["pname", 8, 3], ["buildInputs", 9, 3], ["propagatedBuildInputs", 10, 3], ["src", 12, 5], ["version", 13, 5], ["meta", 14, 5], ["nativeBuildInputs", 15, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const gtksourceview3 = nix.arg($, "gtksourceview3");
   const lablgtk3 = nix.arg($, "lablgtk3");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "lablgtk3-sourceview3",
       buildInputs: nix.thunk(() => nix.concat(nix.sel(lablgtk3, "buildInputs"), [gtksourceview3])),
       propagatedBuildInputs: nix.thunk(() => [lablgtk3]),

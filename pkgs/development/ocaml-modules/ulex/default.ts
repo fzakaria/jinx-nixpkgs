@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 16, 9], ["sha256", 17, 9]], [["version", 21, 9], ["sha256", 22, 9]], [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 21]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 57, 26], ["maintainers", 58, 5], ["broken", 59, 5]], [["pname", 26, 3], ["version", 27, 19], ["src", 29, 3], ["createFindlibDestdir", 36, 3], ["nativeBuildInputs", 38, 3], ["propagatedBuildInputs", 44, 3], ["strictDeps", 46, 3], ["buildFlags", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, ocaml: false, findlib: false, ocamlbuild: false, camlp4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 16, 9], ["sha256", 17, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 21, 9], ["sha256", 22, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 21]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 57, 26], ["maintainers", 58, 5], ["broken", 59, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 19], ["src", 29, 3], ["createFindlibDestdir", 36, 3], ["nativeBuildInputs", 38, 3], ["propagatedBuildInputs", 44, 3], ["strictDeps", 46, 3], ["buildFlags", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const camlp4 = nix.arg($, "camlp4");
   const pname = "ulex";
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.02")) ? {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "1.2",
     sha256: "08yf2x9a52l2y4savjqfjd2xy4pjd1rpla2ylrr9qrz1drpfw4ic",
   } : {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "1.1",
     sha256: "0cmscxcmcxhlshh4jd0lzw5ffzns12x3bj7h27smbc8waxkwffhl",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}`),
       version: nix.thunk(() => nix.attr(param, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "ocaml-community",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${nix.sel(param, "version")}`),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://opam.ocaml.org/packages/ulex/",
         description: "Lexer generator for Unicode and OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

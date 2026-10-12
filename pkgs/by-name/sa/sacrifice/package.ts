@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["homepage", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5], ["broken", 67, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 27, 3], ["patches", 29, 3], ["preConfigure", 34, 3], ["configureFlags", 41, 3], ["postInstall", 46, 3], ["enableParallelBuilding", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, boost: false, hepmc2: false, lhapdf: false, pythia: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["homepage", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5], ["broken", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 27, 3], ["patches", 29, 3], ["preConfigure", 34, 3], ["configureFlags", 41, 3], ["postInstall", 46, 3], ["enableParallelBuilding", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pythia = nix.arg($, "pythia");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sacrifice",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.hepforge.org/archive/agile/Sacrifice-1.0.0.tar.gz",
           sha256: "10bvpq63kmszy1habydwncm0j1dgvam0fkrmvkgbkvf804dcjp6g",
         })))),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
 `)),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Standalone contribution to AGILe for steering Pythia 8",
         mainProgram: "run-pythia",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 38, 5], ["hash", 39, 5]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["mainProgram", 89, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["patches", 76, 3], ["enableParallelBuilding", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "alsa-lib": false, bzip2: false, fftw: false, libjack2: false, libx11: false, liblo: false, libmad: false, lrdf: false, libsamplerate: false, libsndfile: false, "pkg-config": false, libpulseaudio: false, redland: false, rubberband: false, serd: false, sord: false, "vamp-plugin-sdk": false, fftwFloat: false, capnproto: false, liboggz: false, libfishsound: false, libid3tag: false, opusfile: false, meson: false, ninja: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["mainProgram", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["patches", 76, 3], ["enableParallelBuilding", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sonic-visualiser",
       version: "5.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/sonic-visualiser/sonic-visualiser/releases/download/sv_v${nix.sel(finalAttrs, "version")}/sonic-visualiser-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-LzOK8CMekwU5xeXgTax8M4QleGbMKf2hEiFfjEEImMk=",
         })))),
@@ -80,7 +78,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "View and analyse contents of music audio files",
         homepage: "https://www.sonicvisualiser.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

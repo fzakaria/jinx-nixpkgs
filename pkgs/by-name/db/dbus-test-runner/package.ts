@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["pkg-config", 77, 18]], [["tests", 77, 12]], [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["teams", 85, 5], ["pkgConfigModules", 86, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 28, 3], ["postPatch", 33, 3], ["strictDeps", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["nativeCheckInputs", 58, 3], ["enableParallelBuilding", 69, 3], ["doCheck", 71, 3], ["checkFlags", 73, 3], ["passthru", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchbzr: false, testers: false, autoreconfHook: false, bash: false, dbus: false, "dbus-glib": false, glib: false, intltool: false, "pkg-config": false, python3: false, "xvfb-run": false, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 77, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 77, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["teams", 85, 5], ["pkgConfigModules", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 28, 3], ["postPatch", 33, 3], ["strictDeps", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["nativeCheckInputs", 58, 3], ["enableParallelBuilding", 69, 3], ["doCheck", 71, 3], ["checkFlags", 73, 3], ["passthru", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dbus-test-runner",
       version: "19.04.0-unstable-2019-10-02",
       src: nix.thunk(() => nix.app(fetchbzr, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "lp:dbus-test-runner",
           rev: "109",
           hash: "sha256-4yH19X98SVqpviCBIWzIX6FYHWxCbREpuKCNjQuTFDk=",
@@ -62,14 +58,14 @@ substituteInPlace tests/Makefile.am \\
         nix.thunk(() => nix.str`XVFB_RUN=${nix.app(nix.sel(lib, "getExe"), xvfb_run)}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Small little utility to run a couple of executables under a new DBus session for testing",
         mainProgram: "dbus-test-runner",
         homepage: "https://launchpad.net/dbus-test-runner",

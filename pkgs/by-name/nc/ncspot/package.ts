@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["NIX_CFLAGS_COMPILE", 58, 7]], [["updateScript", 85, 12]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["mainProgram", 97, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["cargoHash", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 47, 3], ["env", 58, 3], ["buildNoDefaultFeatures", 60, 3], ["buildFeatures", 62, 3], ["postInstall", 77, 3], ["doInstallCheck", 82, 3], ["nativeInstallCheckInputs", 83, 3], ["passthru", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "alsa-lib": false, config: false, dbus: false, fetchFromGitHub: false, libpulseaudio: false, libxcb: false, ncurses: false, "nix-update-script": false, openssl: false, "pkg-config": false, portaudio: false, python3: false, rustPlatform: false, versionCheckHook: false, withALSA: true, withClipboard: true, withCover: true, withCrossterm: true, withMPRIS: true, withNcurses: true, withNotify: true, withPancurses: true, withPortAudio: true, withPulseAudio: true, withRodio: true, withShareSelection: true, withTermion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 85, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["mainProgram", 97, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["cargoHash", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 47, 3], ["env", 58, 3], ["buildNoDefaultFeatures", 60, 3], ["buildFeatures", 62, 3], ["postInstall", 77, 3], ["doInstallCheck", 82, 3], ["nativeInstallCheckInputs", 83, 3], ["passthru", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const withShareSelection = nix.argOr($, "withShareSelection", () => false);
   const withTermion = nix.argOr($, "withTermion", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ncspot",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hrkfdn",
           repo: "ncspot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optional"), withClipboard, python3))),
       buildInputs: nix.thunk(() => nix.concat([ncurses], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), openssl), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(withALSA) || nix.asBool(withRodio))), alsa_lib), nix.concat(nix.app(nix.sel(lib, "optional"), withClipboard, libxcb), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(withMPRIS) || nix.asBool(withNotify))), dbus), nix.concat(nix.app(nix.sel(lib, "optional"), withNcurses, ncurses), nix.concat(nix.app(nix.sel(lib, "optional"), withPortAudio, portaudio), nix.app(nix.sel(lib, "optional"), withPulseAudio, libpulseaudio))))))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DNCURSES_UNCTRL_H_incl")),
       })),
       buildNoDefaultFeatures: true,
@@ -64,11 +60,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cross-platform ncurses Spotify client written in Rust, inspired by ncmpc and the likes",
         homepage: "https://github.com/hrkfdn/ncspot",
         changelog: nix.thunk(() => nix.str`https://github.com/hrkfdn/ncspot/releases/tag/v${nix.sel(finalAttrs, "version")}`),

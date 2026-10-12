@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["description", 52, 5], ["longDescription", 53, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["preConfigure", 45, 3], ["enableParallelBuilding", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fox_1_6: false, fontconfig: false, freetype: false, "pkg-config": false, gettext: false, "libxcb-util": false, gcc: false, intltool: false, file: false, libpng: false, libxft: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["longDescription", 53, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["preConfigure", 45, 3], ["enableParallelBuilding", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxft = nix.arg($, "libxft");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xfe",
       version: "2.1.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/xfe/xfe-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-6ooSp7A7wOCHZZZ/n9jipr0MXrkAkvfwIMf5x2RWqO0=",
         })))),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "sed -i s,/usr/share/xfe,$out/share/xfe, src/xfedefs.h\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MS-Explorer like file manager for X",
         longDescription: "X File Explorer (Xfe) is an MS-Explorer like file manager for X.\nIt is based on the popular, but discontinued, X Win Commander, which was developed by Maxim Baranov.\nXfe aims to be the filemanager of choice for all the Unix addicts!\n",
         homepage: "https://sourceforge.net/projects/xfe/",

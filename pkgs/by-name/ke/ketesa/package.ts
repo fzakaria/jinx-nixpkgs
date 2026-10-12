@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["yarnLock", 30, 5], ["hash", 31, 5]], [["NODE_ENV", 41, 5], ["KETESA_VERSION", 42, 5]], [["version", 58, 30], ["meta", 58, 38], ["pname", 59, 9], ["dontUnpack", 60, 9], ["configFile", 61, 9], ["installPhase", 62, 9]], [["withConfig", 55, 5], ["updateScript", 71, 5]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["yarnOfflineCache", 29, 3], ["nativeBuildInputs", 34, 3], ["env", 40, 3], ["installPhase", 45, 3], ["__darwinAllowLocalNetworking", 51, 3], ["passthru", 53, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchYarnDeps: false, yarnConfigHook: false, yarnBuildHook: false, nodejs: false, "nix-update-script": false, writers: false, baseUrl: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NODE_ENV", 41, 5], ["KETESA_VERSION", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 58, 30], ["meta", 58, 38], ["pname", 59, 9], ["dontUnpack", 60, 9], ["configFile", 61, 9], ["installPhase", 62, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["withConfig", 55, 5], ["updateScript", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["yarnOfflineCache", 29, 3], ["nativeBuildInputs", 34, 3], ["env", 40, 3], ["installPhase", 45, 3], ["__darwinAllowLocalNetworking", 51, 3], ["passthru", 53, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,33 +19,33 @@ export default nix.lambda((args) => (() => {
   const baseUrl = nix.argOr($, "baseUrl", () => null);
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertMsg"), nix.thunk(() => nix.eq(baseUrl, null)), "The baseUrl parameter is deprecated, please use .withConfig instead"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ke/ketesa/package.nix:14:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "ketesa",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "etkecc",
           repo: "ketesa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-LB+e19nyIlXJ4hQJnN+G/eN8khZjj7andVzbeFpAGCg=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-KYDQiMGeY5jwnL4iQBoCHwvbI4bHoQo08/63r6i8K0Q=",
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, yarnConfigHook, yarnBuildHook]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NODE_ENV: "production",
         KETESA_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       installPhase: "runHook preInstall\ncp -r dist $out\nrunHook postInstall\n",
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         withConfig: (config) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
             pname: "ketesa-with-config",
@@ -67,7 +61,7 @@ runHook postInstall
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Admin UI for Matrix servers, formerly Synapse Admin. Drop-in replacement with extended features, multi-backend support, and visual customization",
         homepage: "https://github.com/etkecc/ketesa",
         changelog: nix.thunk(() => nix.str`https://github.com/etkecc/ketesa/releases/tag/v${nix.sel(finalAttrs, "version")}`),

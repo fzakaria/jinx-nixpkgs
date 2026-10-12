@@ -2,91 +2,25 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["druid.zk.service.host", 5, 5], ["druid.extensions.loadList", 6, 5], ["druid.startup.logging.logProperties", 8, 5], ["druid.metadata.storage.connector.connectURI", 9, 5], ["druid.metadata.storage.connector.user", 10, 5], ["druid.metadata.storage.connector.password", 11, 5], ["druid.request.logging.type", 12, 5], ["druid.request.logging.dir", 13, 5], ["druid.javascript.enabled", 14, 5], ["druid.sql.enable", 15, 5], ["druid.metadata.storage.type", 16, 5], ["druid.storage.type", 17, 5], ["druid.storage.storageDirectory", 18, 5]], [["fs.defaultFS", 37, 5]], [["druidPackage", 41, 7], ["hadoopPackage", 42, 7]], [["default", 40, 5]], [["override", 49, 16]], [["druidCluster", 48, 7], ["passthru", 49, 7]], [["enable", 59, 32]], [["zookeeper", 59, 22]], [["allowedTCPPorts", 60, 33]], [["firewall", 60, 24]], [["services", 59, 13], ["networking", 60, 13]], [["enable", 69, 19], ["openFirewall", 70, 19], ["formatOnInit", 71, 19]], [["namenode", 68, 17]], [["package", 66, 15], ["hdfs", 67, 15], ["coreSite", 74, 23]], [["hadoop", 65, 22]], [["services", 65, 13]], [["enable", 83, 17], ["openFirewall", 84, 17]], [["datanode", 82, 20]], [["package", 81, 15], ["hdfs", 82, 15], ["coreSite", 86, 23]], [["hadoop", 80, 22]], [["services", 80, 13]], [["memorySize", 92, 28]], [["druid.indexer.task.baseTaskDir", 99, 19], ["druid.worker.capacity", 100, 19], ["druid.indexer.logs.type", 101, 19], ["druid.indexer.logs.directory", 102, 19], ["druid.indexer.runner.startPort", 103, 19], ["druid.indexer.runner.endPort", 104, 19]], [["config", 98, 17], ["enable", 106, 17], ["openFirewall", 107, 17]], [["commonConfig", 94, 23], ["log4j", 94, 36], ["package", 95, 15], ["extraClassPaths", 96, 15], ["middleManager", 97, 15]], [["enable", 111, 27]], [["gatewayRole", 111, 15], ["package", 112, 15], ["coreSite", 113, 23]], [["druid", 93, 22], ["hadoop", 110, 22]], [["virtualisation", 92, 13], ["services", 93, 13]], [["druid.indexer.runner.type", 125, 19], ["druid.indexer.storage.type", 126, 19]], [["config", 124, 17], ["enable", 128, 17], ["openFirewall", 129, 17]], [["commonConfig", 120, 23], ["log4j", 120, 36], ["package", 121, 15], ["extraClassPaths", 122, 15], ["overlord", 123, 15]], [["enable", 133, 27]], [["gatewayRole", 133, 15], ["package", 134, 15], ["coreSite", 135, 23]], [["druid", 119, 22], ["hadoop", 132, 22]], [["services", 119, 13]], [["druid.plaintextPort", 147, 19], ["druid.broker.http.numConnections", 148, 19], ["druid.server.http.numThreads", 149, 19], ["druid.processing.buffer.sizeBytes", 150, 19], ["druid.processing.numThreads", 151, 19], ["druid.processing.numMergeBuffers", 152, 19], ["druid.broker.cache.unCacheable", 153, 19], ["druid.lookup.snapshotWorkingDir", 154, 19]], [["config", 146, 17], ["enable", 156, 17], ["openFirewall", 157, 17]], [["package", 142, 15], ["commonConfig", 143, 23], ["log4j", 143, 36], ["extraClassPaths", 144, 15], ["broker", 145, 15]], [["enable", 161, 27]], [["gatewayRole", 161, 15], ["package", 162, 15], ["coreSite", 163, 23]], [["druid", 141, 22], ["hadoop", 160, 22]], [["services", 141, 13]], [["maxSize", 176, 19], ["druid.lookup.snapshotWorkingDir", 177, 19]], [["path", 181, 21], ["maxSize", 182, 21]], [["path", 185, 21], ["maxSize", 186, 21]], [["config", 175, 17], ["segmentLocations", 179, 17], ["enable", 189, 17], ["openFirewall", 190, 17]], [["package", 171, 15], ["commonConfig", 172, 23], ["log4j", 172, 36], ["extraClassPaths", 173, 15], ["historical", 174, 15]], [["enable", 194, 27]], [["gatewayRole", 194, 15], ["package", 195, 15], ["coreSite", 196, 23]], [["druid", 170, 22], ["hadoop", 193, 22]], [["services", 170, 13]], [["druid.plaintextPort", 209, 19], ["druid.service", 210, 19], ["druid.coordinator.startDelay", 211, 19], ["druid.coordinator.period", 212, 19], ["druid.manager.config.pollDuration", 213, 19], ["druid.manager.segments.pollDuration", 214, 19], ["druid.manager.rules.pollDuration", 215, 19]], [["config", 208, 17], ["enable", 217, 17], ["openFirewall", 218, 17]], [["package", 204, 15], ["commonConfig", 205, 23], ["log4j", 205, 36], ["extraClassPaths", 206, 15], ["coordinator", 207, 15]], [["enable", 222, 27]], [["gatewayRole", 222, 15], ["package", 223, 15], ["coreSite", 224, 23]], [["druid", 203, 22], ["hadoop", 221, 22]], [["services", 203, 13]], [["name", 235, 38]], [["enable", 233, 15], ["package", 234, 15], ["initialDatabases", 235, 15], ["initialScript", 236, 15]], [["mysql", 232, 22]], [["allowedTCPPorts", 241, 33]], [["firewall", 241, 24]], [["services", 232, 13], ["networking", 241, 13]], [["zk1", 56, 9], ["namenode", 62, 9], ["datanode", 77, 9], ["mm", 89, 9], ["overlord", 116, 9], ["broker", 138, 9], ["historical", 167, 9], ["coordinator", 200, 9], ["mysql", 229, 9]], [["name", 54, 7], ["nodes", 55, 7], ["testScript", 245, 7]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["druid.zk.service.host", 5, 5], ["druid.extensions.loadList", 6, 5], ["druid.startup.logging.logProperties", 8, 5], ["druid.metadata.storage.connector.connectURI", 9, 5], ["druid.metadata.storage.connector.user", 10, 5], ["druid.metadata.storage.connector.password", 11, 5], ["druid.request.logging.type", 12, 5], ["druid.request.logging.dir", 13, 5], ["druid.javascript.enabled", 14, 5], ["druid.sql.enable", 15, 5], ["druid.metadata.storage.type", 16, 5], ["druid.storage.type", 17, 5], ["druid.storage.storageDirectory", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fs.defaultFS", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["druidPackage", 41, 7], ["hadoopPackage", 42, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["default", 40, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["override", 49, 16]]);
-const pos$6 = nix.positions(here + "/default.nix", [["druidCluster", 48, 7], ["passthru", 49, 7]]);
 const formals$2 = { args: { druidPackage: false, hadoopPackage: false }, ellipsis: true };
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$7 = nix.positions(here + "/default.nix", [["enable", 59, 32]]);
-const pos$8 = nix.positions(here + "/default.nix", [["zookeeper", 59, 22]]);
-const pos$9 = nix.positions(here + "/default.nix", [["allowedTCPPorts", 60, 33]]);
-const pos$10 = nix.positions(here + "/default.nix", [["firewall", 60, 24]]);
-const pos$11 = nix.positions(here + "/default.nix", [["services", 59, 13], ["networking", 60, 13]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$12 = nix.positions(here + "/default.nix", [["enable", 69, 19], ["openFirewall", 70, 19], ["formatOnInit", 71, 19]]);
-const pos$13 = nix.positions(here + "/default.nix", [["namenode", 68, 17]]);
-const pos$14 = nix.positions(here + "/default.nix", [["package", 66, 15], ["hdfs", 67, 15], ["coreSite", 74, 23]]);
-const pos$15 = nix.positions(here + "/default.nix", [["hadoop", 65, 22]]);
-const pos$16 = nix.positions(here + "/default.nix", [["services", 65, 13]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$17 = nix.positions(here + "/default.nix", [["enable", 83, 17], ["openFirewall", 84, 17]]);
-const pos$18 = nix.positions(here + "/default.nix", [["datanode", 82, 20]]);
-const pos$19 = nix.positions(here + "/default.nix", [["package", 81, 15], ["hdfs", 82, 15], ["coreSite", 86, 23]]);
-const pos$20 = nix.positions(here + "/default.nix", [["hadoop", 80, 22]]);
-const pos$21 = nix.positions(here + "/default.nix", [["services", 80, 13]]);
 const formals$6 = { args: {  }, ellipsis: true };
-const pos$22 = nix.positions(here + "/default.nix", [["memorySize", 92, 28]]);
-const pos$23 = nix.positions(here + "/default.nix", [["druid.indexer.task.baseTaskDir", 99, 19], ["druid.worker.capacity", 100, 19], ["druid.indexer.logs.type", 101, 19], ["druid.indexer.logs.directory", 102, 19], ["druid.indexer.runner.startPort", 103, 19], ["druid.indexer.runner.endPort", 104, 19]]);
-const pos$24 = nix.positions(here + "/default.nix", [["config", 98, 17], ["enable", 106, 17], ["openFirewall", 107, 17]]);
-const pos$25 = nix.positions(here + "/default.nix", [["commonConfig", 94, 23], ["log4j", 94, 36], ["package", 95, 15], ["extraClassPaths", 96, 15], ["middleManager", 97, 15]]);
-const pos$26 = nix.positions(here + "/default.nix", [["enable", 111, 27]]);
-const pos$27 = nix.positions(here + "/default.nix", [["gatewayRole", 111, 15], ["package", 112, 15], ["coreSite", 113, 23]]);
-const pos$28 = nix.positions(here + "/default.nix", [["druid", 93, 22], ["hadoop", 110, 22]]);
-const pos$29 = nix.positions(here + "/default.nix", [["virtualisation", 92, 13], ["services", 93, 13]]);
 const formals$7 = { args: {  }, ellipsis: true };
-const pos$30 = nix.positions(here + "/default.nix", [["druid.indexer.runner.type", 125, 19], ["druid.indexer.storage.type", 126, 19]]);
-const pos$31 = nix.positions(here + "/default.nix", [["config", 124, 17], ["enable", 128, 17], ["openFirewall", 129, 17]]);
-const pos$32 = nix.positions(here + "/default.nix", [["commonConfig", 120, 23], ["log4j", 120, 36], ["package", 121, 15], ["extraClassPaths", 122, 15], ["overlord", 123, 15]]);
-const pos$33 = nix.positions(here + "/default.nix", [["enable", 133, 27]]);
-const pos$34 = nix.positions(here + "/default.nix", [["gatewayRole", 133, 15], ["package", 134, 15], ["coreSite", 135, 23]]);
-const pos$35 = nix.positions(here + "/default.nix", [["druid", 119, 22], ["hadoop", 132, 22]]);
-const pos$36 = nix.positions(here + "/default.nix", [["services", 119, 13]]);
 const formals$8 = { args: {  }, ellipsis: true };
-const pos$37 = nix.positions(here + "/default.nix", [["druid.plaintextPort", 147, 19], ["druid.broker.http.numConnections", 148, 19], ["druid.server.http.numThreads", 149, 19], ["druid.processing.buffer.sizeBytes", 150, 19], ["druid.processing.numThreads", 151, 19], ["druid.processing.numMergeBuffers", 152, 19], ["druid.broker.cache.unCacheable", 153, 19], ["druid.lookup.snapshotWorkingDir", 154, 19]]);
-const pos$38 = nix.positions(here + "/default.nix", [["config", 146, 17], ["enable", 156, 17], ["openFirewall", 157, 17]]);
-const pos$39 = nix.positions(here + "/default.nix", [["package", 142, 15], ["commonConfig", 143, 23], ["log4j", 143, 36], ["extraClassPaths", 144, 15], ["broker", 145, 15]]);
-const pos$40 = nix.positions(here + "/default.nix", [["enable", 161, 27]]);
-const pos$41 = nix.positions(here + "/default.nix", [["gatewayRole", 161, 15], ["package", 162, 15], ["coreSite", 163, 23]]);
-const pos$42 = nix.positions(here + "/default.nix", [["druid", 141, 22], ["hadoop", 160, 22]]);
-const pos$43 = nix.positions(here + "/default.nix", [["services", 141, 13]]);
 const formals$9 = { args: {  }, ellipsis: true };
-const pos$44 = nix.positions(here + "/default.nix", [["maxSize", 176, 19], ["druid.lookup.snapshotWorkingDir", 177, 19]]);
-const pos$45 = nix.positions(here + "/default.nix", [["path", 181, 21], ["maxSize", 182, 21]]);
-const pos$46 = nix.positions(here + "/default.nix", [["path", 185, 21], ["maxSize", 186, 21]]);
-const pos$47 = nix.positions(here + "/default.nix", [["config", 175, 17], ["segmentLocations", 179, 17], ["enable", 189, 17], ["openFirewall", 190, 17]]);
-const pos$48 = nix.positions(here + "/default.nix", [["package", 171, 15], ["commonConfig", 172, 23], ["log4j", 172, 36], ["extraClassPaths", 173, 15], ["historical", 174, 15]]);
-const pos$49 = nix.positions(here + "/default.nix", [["enable", 194, 27]]);
-const pos$50 = nix.positions(here + "/default.nix", [["gatewayRole", 194, 15], ["package", 195, 15], ["coreSite", 196, 23]]);
-const pos$51 = nix.positions(here + "/default.nix", [["druid", 170, 22], ["hadoop", 193, 22]]);
-const pos$52 = nix.positions(here + "/default.nix", [["services", 170, 13]]);
 const formals$10 = { args: {  }, ellipsis: true };
-const pos$53 = nix.positions(here + "/default.nix", [["druid.plaintextPort", 209, 19], ["druid.service", 210, 19], ["druid.coordinator.startDelay", 211, 19], ["druid.coordinator.period", 212, 19], ["druid.manager.config.pollDuration", 213, 19], ["druid.manager.segments.pollDuration", 214, 19], ["druid.manager.rules.pollDuration", 215, 19]]);
-const pos$54 = nix.positions(here + "/default.nix", [["config", 208, 17], ["enable", 217, 17], ["openFirewall", 218, 17]]);
-const pos$55 = nix.positions(here + "/default.nix", [["package", 204, 15], ["commonConfig", 205, 23], ["log4j", 205, 36], ["extraClassPaths", 206, 15], ["coordinator", 207, 15]]);
-const pos$56 = nix.positions(here + "/default.nix", [["enable", 222, 27]]);
-const pos$57 = nix.positions(here + "/default.nix", [["gatewayRole", 222, 15], ["package", 223, 15], ["coreSite", 224, 23]]);
-const pos$58 = nix.positions(here + "/default.nix", [["druid", 203, 22], ["hadoop", 221, 22]]);
-const pos$59 = nix.positions(here + "/default.nix", [["services", 203, 13]]);
 const formals$11 = { args: {  }, ellipsis: true };
-const pos$60 = nix.positions(here + "/default.nix", [["name", 235, 38]]);
-const pos$61 = nix.positions(here + "/default.nix", [["enable", 233, 15], ["package", 234, 15], ["initialDatabases", 235, 15], ["initialScript", 236, 15]]);
-const pos$62 = nix.positions(here + "/default.nix", [["mysql", 232, 22]]);
-const pos$63 = nix.positions(here + "/default.nix", [["allowedTCPPorts", 241, 33]]);
-const pos$64 = nix.positions(here + "/default.nix", [["firewall", 241, 24]]);
-const pos$65 = nix.positions(here + "/default.nix", [["services", 232, 13], ["networking", 241, 13]]);
-const pos$66 = nix.positions(here + "/default.nix", [["zk1", 56, 9], ["namenode", 62, 9], ["datanode", 77, 9], ["mm", 89, 9], ["overlord", 116, 9], ["broker", 138, 9], ["historical", 167, 9], ["coordinator", 200, 9], ["mysql", 229, 9]]);
-const pos$67 = nix.positions(here + "/default.nix", [["name", 54, 7], ["nodes", 55, 7], ["testScript", 245, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const commonConfig = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "druid.zk.service.host": "zk1:2181",
     "druid.extensions.loadList": "[ \"druid-histogram\", \"druid-datasketches\",  \"mysql-metadata-storage\", \"druid-avro-extensions\", \"druid-parquet-extensions\", \"druid-lookups-cached-global\", \"druid-hdfs-storage\",\"druid-kafka-indexing-service\",\"druid-basic-security\",\"druid-kinesis-indexing-service\"]",
     "druid.startup.logging.logProperties": "true",
@@ -103,20 +37,20 @@ export default nix.lambda((args) => (() => {
   }));
   const log4jConfig = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<Configuration status=\"WARN\">\n <Appenders>\n    <Console name=\"Console\" target=\"SYSTEM_OUT\">\n      <PatternLayout pattern=\"%d{ISO8601} %p [%t] %c - %m%n\"/>\n    </Console>\n  </Appenders>\n  <Loggers>\n    <Root level=\"error\">\n      <AppenderRef ref=\"Console\"/>\n    </Root>\n  </Loggers>\n</Configuration>\n";
   const log4j = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "log4j2.xml", log4jConfig));
-  const coreSite = nix.thunk(() => ({ [nix.POS]: pos$2, "fs.defaultFS": "hdfs://namenode:8020" }));
+  const coreSite = nix.thunk(() => ({ [nix.POS]: $pos[1], "fs.defaultFS": "hdfs://namenode:8020" }));
   const tests = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     default: nix.thunk(() => nix.app(testsForPackage, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         druidPackage: nix.thunk(() => nix.sel(pkgs, "druid")),
         hadoopPackage: nix.thunk(() => nix.sel(pkgs, "hadoop_3_3")),
       })))),
   }));
   const testsForPackage = (args_1) => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       druidCluster: nix.thunk(() => nix.app(testDruidCluster, args_1)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         override: (args$) => nix.app(testsForPackage, nix.thunk(() => nix.update(args_1, args$))),
       })),
     })));
@@ -125,36 +59,36 @@ export default nix.lambda((args) => (() => {
     const druidPackage = nix.arg($_1, "druidPackage");
     const hadoopPackage = nix.arg($_1, "hadoopPackage");
     return nix.app(nix.sel(pkgs, "testers", "nixosTest"), nix.thunk(() => ({
-        [nix.POS]: pos$67,
+        [nix.POS]: $pos[66],
         name: "druid-hdfs",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$66,
+          [nix.POS]: $pos[65],
           zk1: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             return {
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                zookeeper: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+                [nix.POS]: $pos[7],
+                zookeeper: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
               })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                firewall: nix.thunk(() => ({ [nix.POS]: pos$9, allowedTCPPorts: nix.thunk(() => [2181n]) })),
+                [nix.POS]: $pos[9],
+                firewall: nix.thunk(() => ({ [nix.POS]: $pos[8], allowedTCPPorts: nix.thunk(() => [2181n]) })),
               })),
             };
           })(), formals$3),
           namenode: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$4);
             return {
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   package: hadoopPackage,
                   hdfs: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
-                    namenode: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true, openFirewall: true, formatOnInit: true })),
+                    [nix.POS]: $pos[12],
+                    namenode: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: true, openFirewall: true, formatOnInit: true })),
                   })),
                   coreSite: coreSite,
                 })),
@@ -164,15 +98,15 @@ export default nix.lambda((args) => (() => {
           datanode: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$5);
             return {
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   package: hadoopPackage,
                   hdfs: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
-                    datanode: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true, openFirewall: true })),
+                    [nix.POS]: $pos[17],
+                    datanode: nix.thunk(() => ({ [nix.POS]: $pos[16], enable: true, openFirewall: true })),
                   })),
                   coreSite: coreSite,
                 })),
@@ -182,20 +116,20 @@ export default nix.lambda((args) => (() => {
           mm: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$6);
             return {
-              [nix.POS]: pos$29,
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$22, memorySize: 1024n })),
+              [nix.POS]: $pos[28],
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[21], memorySize: 1024n })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 druid: nix.thunk(() => ({
-                  [nix.POS]: pos$25,
+                  [nix.POS]: $pos[24],
                   commonConfig: commonConfig,
                   log4j: log4j,
                   package: druidPackage,
                   extraClassPaths: nix.thunk(() => ["/etc/hadoop-conf"]),
                   middleManager: nix.thunk(() => ({
-                    [nix.POS]: pos$24,
+                    [nix.POS]: $pos[23],
                     config: nix.thunk(() => ({
-                      [nix.POS]: pos$23,
+                      [nix.POS]: $pos[22],
                       "druid.indexer.task.baseTaskDir": "/tmp/druid/persistent/task",
                       "druid.worker.capacity": 1n,
                       "druid.indexer.logs.type": "file",
@@ -208,8 +142,8 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$27,
-                  gatewayRole: nix.thunk(() => ({ [nix.POS]: pos$26, enable: true })),
+                  [nix.POS]: $pos[26],
+                  gatewayRole: nix.thunk(() => ({ [nix.POS]: $pos[25], enable: true })),
                   package: hadoopPackage,
                   coreSite: coreSite,
                 })),
@@ -219,19 +153,19 @@ export default nix.lambda((args) => (() => {
           overlord: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$7);
             return {
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 druid: nix.thunk(() => ({
-                  [nix.POS]: pos$32,
+                  [nix.POS]: $pos[31],
                   commonConfig: commonConfig,
                   log4j: log4j,
                   package: druidPackage,
                   extraClassPaths: nix.thunk(() => ["/etc/hadoop-conf"]),
                   overlord: nix.thunk(() => ({
-                    [nix.POS]: pos$31,
+                    [nix.POS]: $pos[30],
                     config: nix.thunk(() => ({
-                      [nix.POS]: pos$30,
+                      [nix.POS]: $pos[29],
                       "druid.indexer.runner.type": "remote",
                       "druid.indexer.storage.type": "metadata",
                     })),
@@ -240,8 +174,8 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$34,
-                  gatewayRole: nix.thunk(() => ({ [nix.POS]: pos$33, enable: true })),
+                  [nix.POS]: $pos[33],
+                  gatewayRole: nix.thunk(() => ({ [nix.POS]: $pos[32], enable: true })),
                   package: hadoopPackage,
                   coreSite: coreSite,
                 })),
@@ -251,19 +185,19 @@ export default nix.lambda((args) => (() => {
           broker: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$8);
             return {
-              [nix.POS]: pos$43,
+              [nix.POS]: $pos[42],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$42,
+                [nix.POS]: $pos[41],
                 druid: nix.thunk(() => ({
-                  [nix.POS]: pos$39,
+                  [nix.POS]: $pos[38],
                   package: druidPackage,
                   commonConfig: commonConfig,
                   log4j: log4j,
                   extraClassPaths: nix.thunk(() => ["/etc/hadoop-conf"]),
                   broker: nix.thunk(() => ({
-                    [nix.POS]: pos$38,
+                    [nix.POS]: $pos[37],
                     config: nix.thunk(() => ({
-                      [nix.POS]: pos$37,
+                      [nix.POS]: $pos[36],
                       "druid.plaintextPort": 8082n,
                       "druid.broker.http.numConnections": "2",
                       "druid.server.http.numThreads": "2",
@@ -278,8 +212,8 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$41,
-                  gatewayRole: nix.thunk(() => ({ [nix.POS]: pos$40, enable: true })),
+                  [nix.POS]: $pos[40],
+                  gatewayRole: nix.thunk(() => ({ [nix.POS]: $pos[39], enable: true })),
                   package: hadoopPackage,
                   coreSite: coreSite,
                 })),
@@ -289,33 +223,33 @@ export default nix.lambda((args) => (() => {
           historical: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$9);
             return {
-              [nix.POS]: pos$52,
+              [nix.POS]: $pos[51],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$51,
+                [nix.POS]: $pos[50],
                 druid: nix.thunk(() => ({
-                  [nix.POS]: pos$48,
+                  [nix.POS]: $pos[47],
                   package: druidPackage,
                   commonConfig: commonConfig,
                   log4j: log4j,
                   extraClassPaths: nix.thunk(() => ["/etc/hadoop-conf"]),
                   historical: nix.thunk(() => ({
-                    [nix.POS]: pos$47,
+                    [nix.POS]: $pos[46],
                     config: nix.thunk(() => ({
-                      [nix.POS]: pos$44,
+                      [nix.POS]: $pos[43],
                       maxSize: 200000000n,
                       "druid.lookup.snapshotWorkingDir": "/opt/historical/lookups",
                     })),
                     segmentLocations: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$45, path: "/tmp/1", maxSize: "100000000" })),
-                      nix.thunk(() => ({ [nix.POS]: pos$46, path: "/tmp/2", maxSize: "100000000" })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[44], path: "/tmp/1", maxSize: "100000000" })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[45], path: "/tmp/2", maxSize: "100000000" })),
                     ]),
                     enable: true,
                     openFirewall: true,
                   })),
                 })),
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$50,
-                  gatewayRole: nix.thunk(() => ({ [nix.POS]: pos$49, enable: true })),
+                  [nix.POS]: $pos[49],
+                  gatewayRole: nix.thunk(() => ({ [nix.POS]: $pos[48], enable: true })),
                   package: hadoopPackage,
                   coreSite: coreSite,
                 })),
@@ -325,19 +259,19 @@ export default nix.lambda((args) => (() => {
           coordinator: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$10);
             return {
-              [nix.POS]: pos$59,
+              [nix.POS]: $pos[58],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$58,
+                [nix.POS]: $pos[57],
                 druid: nix.thunk(() => ({
-                  [nix.POS]: pos$55,
+                  [nix.POS]: $pos[54],
                   package: druidPackage,
                   commonConfig: commonConfig,
                   log4j: log4j,
                   extraClassPaths: nix.thunk(() => ["/etc/hadoop-conf"]),
                   coordinator: nix.thunk(() => ({
-                    [nix.POS]: pos$54,
+                    [nix.POS]: $pos[53],
                     config: nix.thunk(() => ({
-                      [nix.POS]: pos$53,
+                      [nix.POS]: $pos[52],
                       "druid.plaintextPort": 9091n,
                       "druid.service": "coordinator",
                       "druid.coordinator.startDelay": "PT10S",
@@ -351,8 +285,8 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$57,
-                  gatewayRole: nix.thunk(() => ({ [nix.POS]: pos$56, enable: true })),
+                  [nix.POS]: $pos[56],
+                  gatewayRole: nix.thunk(() => ({ [nix.POS]: $pos[55], enable: true })),
                   package: hadoopPackage,
                   coreSite: coreSite,
                 })),
@@ -362,20 +296,20 @@ export default nix.lambda((args) => (() => {
           mysql: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$11);
             return {
-              [nix.POS]: pos$65,
+              [nix.POS]: $pos[64],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$62,
+                [nix.POS]: $pos[61],
                 mysql: nix.thunk(() => ({
-                  [nix.POS]: pos$61,
+                  [nix.POS]: $pos[60],
                   enable: true,
                   package: nix.thunk(() => nix.sel(pkgs, "mariadb")),
-                  initialDatabases: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$60, name: "druid" }))]),
+                  initialDatabases: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[59], name: "druid" }))]),
                   initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mysql-init.sql", "CREATE USER 'druid'@'%' IDENTIFIED BY 'druid';\nGRANT ALL PRIVILEGES ON druid.* TO 'druid'@'%';\n")),
                 })),
               })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$64,
-                firewall: nix.thunk(() => ({ [nix.POS]: pos$63, allowedTCPPorts: nix.thunk(() => [3306n]) })),
+                [nix.POS]: $pos[63],
+                firewall: nix.thunk(() => ({ [nix.POS]: $pos[62], allowedTCPPorts: nix.thunk(() => [3306n]) })),
               })),
             };
           })(), formals$11),

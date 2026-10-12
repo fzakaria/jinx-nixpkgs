@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 29, 5], ["hash", 30, 5]], [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["pythonRemoveDeps", 46, 3], ["nativeCheckInputs", 48, 3], ["preCheck", 52, 3], ["unittestFlags", 57, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, beautifulsoup4: false, pandas: false, python: false, numpy: false, "scikit-learn": false, scipy: false, lxml: false, matplotlib: false, sarge: false, unittestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["pythonRemoveDeps", 46, 3], ["nativeCheckInputs", 48, 3], ["preCheck", 52, 3], ["unittestFlags", 57, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "trectools",
       version: "0.0.50",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "joaopalotti",
           repo: "trectools",
           rev: "8a896def007e3d657eb29f820ee3de98e2f32691",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       unittestFlags: nix.thunk(() => ["unittests/"]),
       pythonImportsCheck: nix.thunk(() => ["trectools"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/joaopalotti/trectools",
         description: "Library for assisting Information Retrieval (IR) practitioners with TREC-like campaigns",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

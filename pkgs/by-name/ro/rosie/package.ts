@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5], ["fetchSubmodules", 16, 5]], [["broken", 60, 5], ["homepage", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postUnpack", 19, 3], ["preConfigure", 24, 3], ["preInstall", 36, 3], ["postInstall", 41, 3], ["dontPatchELF", 49, 3], ["makeFlags", 51, 3], ["buildInputs", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, libbsd: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5], ["fetchSubmodules", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 60, 5], ["homepage", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postUnpack", 19, 3], ["preConfigure", 24, 3], ["preInstall", 36, 3], ["postInstall", 41, 3], ["dontPatchELF", 49, 3], ["makeFlags", 51, 3], ["buildInputs", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libbsd = nix.arg($, "libbsd");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rosie",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gitlab.com/rosie-pattern-language/rosie",
           rev: "79605830e32dff33544f9ebe7d7be752c29424b5",
           sha256: "sha256-n7Tem/4ZjizfCPT21teYK2wZ/gVpgjHUim9s7soEwbM=",
@@ -35,7 +33,7 @@ touch ${nix.sel(finalAttrs, "src", "name")}/submodules/~~present~~
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`DESTDIR=${nix.builtins.placeholder("out")}`)]),
       buildInputs: nix.thunk(() => [libbsd, readline]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://rosie-lang.org",
         description: "Tools for searching using parsing expression grammars",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 11, 5], ["buildCommand", 13, 5]], [["NIX_CFLAGS_COMPILE", 73, 7]], [["description", 75, 8]], [["releaseName", 63, 3], ["outputs", 65, 3], ["xcodeHash", 71, 3], ["env", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { mkAppleDerivation: false, sourceRelease: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 11, 5], ["buildCommand", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 73, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 75, 8]]);
-const pos$4 = nix.positions(here + "/package.nix", [["releaseName", 63, 3], ["outputs", 65, 3], ["xcodeHash", 71, 3], ["env", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "copyfile-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -t "$out/include/Kernel/sys" \\
   '${xnu}/bsd/sys/decmpfs.h'
@@ -65,15 +62,15 @@ EOF
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       releaseName: "copyfile",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       xcodeHash: "sha256-SYW6pBlCQkcbkBqCq+W/mDYZZ7/co2HlPZwXzgh/LnI=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: "Darwin file copying library" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[2], description: "Darwin file copying library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["updateScript", 64, 12]], [["description", 67, 5], ["homepage", 68, 5], ["mainProgram", 69, 5], ["license", 70, 5], ["changelog", 71, 5], ["maintainers", 72, 5], ["platforms", 76, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["dotnet-sdk", 27, 3], ["dotnet-runtime", 28, 3], ["projectFile", 30, 3], ["nugetDeps", 31, 3], ["executables", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["postInstall", 50, 3], ["runtimeDeps", 57, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false, gtk4: false, libadwaita: false, "pkg-config": false, wrapGAppsHook4: false, glib: false, "shared-mime-info": false, "gdk-pixbuf": false, "blueprint-compiler": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 64, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["mainProgram", 69, 5], ["license", 70, 5], ["changelog", 71, 5], ["maintainers", 72, 5], ["platforms", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["dotnet-sdk", 27, 3], ["dotnet-runtime", 28, 3], ["projectFile", 30, 3], ["nugetDeps", 31, 3], ["executables", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["postInstall", 50, 3], ["runtimeDeps", 57, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "denaro";
       const version = "2024.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NickvisionApps",
           repo: "Denaro",
           rev: version,
@@ -48,9 +45,9 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gtk4, libadwaita]);
       const postInstall = "substituteInPlace NickvisionMoney.Shared/Linux/org.nickvision.money.desktop.in --replace '@EXEC@' \"NickvisionMoney.GNOME\"\ninstall -Dm444 NickvisionMoney.Shared/Resources/org.nickvision.money.svg -t $out/share/icons/hicolor/scalable/apps/\ninstall -Dm444 NickvisionMoney.Shared/Resources/org.nickvision.money-symbolic.svg -t $out/share/icons/hicolor/symbolic/apps/\ninstall -Dm444 NickvisionMoney.Shared/Linux/org.nickvision.money.desktop.in -T $out/share/applications/org.nickvision.money.desktop\n";
       const runtimeDeps = nix.thunk(() => [gtk4, libadwaita, glib, gdk_pixbuf]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Personal finance manager for GNOME",
         homepage: "https://github.com/nlogozzo/NickvisionMoney",
         mainProgram: "NickvisionMoney.GNOME",
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

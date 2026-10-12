@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/idris-wrapper.nix", [[["pname", 12, 5], ["version", 13, 5], ["src", 14, 5], ["meta", 15, 5], ["paths", 17, 3], ["nativeBuildInputs", 18, 3], ["postBuild", 19, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, symlinkJoin: false, makeWrapper: false, "idris-no-deps": false, gmp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/idris-wrapper.nix", [["pname", 12, 5], ["version", 13, 5], ["src", 14, 5], ["meta", 15, 5], ["paths", 17, 3], ["nativeBuildInputs", 18, 3], ["postBuild", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const idris_no_deps = nix.arg($, "idris-no-deps");
   const gmp = nix.arg($, "gmp");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.attr(idris_no_deps, "pname")),
       version: nix.thunk(() => nix.attr(idris_no_deps, "version")),
       src: nix.thunk(() => nix.attr(idris_no_deps, "src")),

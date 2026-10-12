@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["CGO_ENABLED", 29, 7]], [["updateScript", 86, 5]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["env", 29, 3], ["ldflags", 31, 3], ["nativeBuildInputs", 36, 3], ["checkPhase", 42, 3], ["postInstall", 50, 3], ["nativeInstallCheckInputs", 67, 3], ["doInstallCheck", 71, 3], ["installCheckPhase", 72, 3], ["passthru", 85, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "pkg-config": false, makeBinaryWrapper: false, "poppler-utils": false, tesseract: false, catdoc: false, unrtf: false, python3Packages: false, "nix-update-script": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["env", 29, 3], ["ldflags", 31, 3], ["nativeBuildInputs", 36, 3], ["checkPhase", 42, 3], ["postInstall", 50, 3], ["nativeInstallCheckInputs", 67, 3], ["doInstallCheck", 71, 3], ["installCheckPhase", 72, 3], ["passthru", 85, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rlama",
       version: "0.1.39",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dontizi",
           repo: "rlama",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-9qm9QSMko+ZHfKMMaTesA26X4OuemyB/w1w+0QOEpyE=",
         })))),
       vendorHash: "sha256-GHmLCgL79BdGw/5zz50Y1kR/6JYNalvOj2zjIHQ9IF0=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: "0" })),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeBinaryWrapper]),
       checkPhase: "runHook preCheck\n\ngo test -v ./internal/domain/... ./pkg/vector/... ./internal/repository/...\n\nrunHook postCheck\n",
@@ -66,11 +62,11 @@ fi
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Retrieval-Augmented Language Model Adapter",
         homepage: "https://github.com/dontizi/rlama",
         changelog: nix.thunk(() => nix.str`https://github.com/dontizi/rlama/releases/tag/v${nix.sel(finalAttrs, "version")}`),

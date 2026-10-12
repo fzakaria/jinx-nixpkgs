@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["buildGoModule", 15, 28]], [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["preBuild", 28, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 57, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["nativeBuildInputs", 14, 3], ["src", 19, 3], ["overrideModAttrs", 27, 3], ["preBuild", 31, 3], ["vendorHash", 35, 3], ["ldflags", 37, 3], ["nativeInstallCheckInputs", 43, 3], ["versionCheckKeepEnvironment", 44, 3], ["doInstallCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGo127Module: false, "go-mockery": false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["buildGoModule", 15, 28]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["preBuild", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["nativeBuildInputs", 14, 3], ["src", 19, 3], ["overrideModAttrs", 27, 3], ["preBuild", 31, 3], ["vendorHash", 35, 3], ["ldflags", 37, 3], ["nativeInstallCheckInputs", 43, 3], ["versionCheckKeepEnvironment", 44, 3], ["doInstallCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sesh",
       version: "2.32.0",
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(go_mockery, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, buildGoModule: buildGo127Module })))),
+        nix.thunk(() => nix.app(nix.sel(go_mockery, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], buildGoModule: buildGo127Module })))),
         writableTmpDirAsHomeHook,
       ]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "joshmedeski",
           repo: "sesh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-pHsRKndjE2U+Gl0oKW5d+rRST0jDEp61sXm+tRTiD3w=",
         })))),
-      overrideModAttrs: (_) => ({ [nix.POS]: pos$3, preBuild: "" }),
+      overrideModAttrs: (_) => ({ [nix.POS]: $pos[2], preBuild: "" }),
       preBuild: "mockery\n",
       vendorHash: "sha256-7wfg53djcty9R8WGo1H4C2VkGDraTu/n1w5c/62/YTc=",
       ldflags: nix.thunk(() => [
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Smart session manager for the terminal",
         homepage: "https://github.com/joshmedeski/sesh",
         changelog: nix.thunk(() => nix.str`https://github.com/joshmedeski/sesh/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

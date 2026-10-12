@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["updateScript", 37, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["enableParallelBuilding", 34, 3], ["passthru", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, glib: false, autoreconfHook: false, "pkg-config": false, systemd: false, fetchFromGitLab: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["enableParallelBuilding", 34, 3], ["passthru", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gnome-desktop-testing",
       version: "2021.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "gnome-desktop-testing",
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, systemd]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GNOME test runner for installed tests",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-desktop-testing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

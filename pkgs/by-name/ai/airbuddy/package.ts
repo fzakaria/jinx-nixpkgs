@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]], [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["sourceProvenance", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontPatch", 18, 3], ["dontConfigure", 19, 3], ["dontBuild", 20, 3], ["dontFixup", 21, 3], ["nativeBuildInputs", 24, 3], ["sourceRoot", 26, 3], ["installPhase", 28, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["sourceProvenance", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontPatch", 18, 3], ["dontConfigure", 19, 3], ["dontBuild", 20, 3], ["dontFixup", 21, 3], ["nativeBuildInputs", 24, 3], ["sourceRoot", 26, 3], ["installPhase", 28, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const _7zz = nix.arg($, "_7zz");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "airbuddy",
       version: "2.8.1-660",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "AirBuddy.dmg",
           url: nix.thunk(() => nix.str`https://su.airbuddy.app/kCRSAmcjBc/AirBuddy_v${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-YeO1zmPRNF46EmuRp142J9SRvWzHraWr1+VuqthJzsQ=",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "AirBuddy.app",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications/AirBuddy.app\ncp -R . $out/Applications/AirBuddy.app\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Take Control of Your Wireless Devices on macOS",
         longDescription: "Open your AirPods case next to your Mac to see the status right away, just like it works on your iPhone or iPad.\nAirBuddy lives in your Menu Bar and can also show battery information for your iPhone, iPad, Apple Watch, Mouse, Keyboard, and more.\n",
         homepage: "https://v2.airbuddy.app",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["postPatch", 26, 3], ["makeFlags", 54, 3], ["installFlags", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libbsd: false, "pkg-config": false, coreutils: false, iproute2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["postPatch", 26, 3], ["makeFlags", 54, 3], ["installFlags", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const iproute2 = nix.arg($, "iproute2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ifupdown-ng",
       version: "unstable-2025-09-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ifupdown-ng",
           repo: "ifupdown-ng",
           rev: "fb07d0824b20d178e7acca9e85296822ac2539ac",
@@ -53,7 +51,7 @@ substituteInPlace executors/linux/wifi \\
       makeFlags: nix.thunk(() => ["SBINDIR=/bin", "EXECUTOR_PATH=/libexec/ifupdown-ng"]),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`DESTDIR=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Next-generation network interface configuration tool",
         longDescription: "ifupdown-ng is a network device manager that is largely compatible\nwith Debian ifupdown, BusyBox ifupdown, and other implementations.\nIt is used by Alpine Linux as its network management solution.\n",
         homepage: "https://github.com/ifupdown-ng/ifupdown-ng",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 20, 5]], [["description", 51, 5], ["mainProgram", 52, 5], ["sourceProvenance", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["version", 14, 3], ["pname", 15, 3], ["src", 16, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["dontStrip", 46, 3], ["dontBuild", 47, 3], ["dontConfigure", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { fetchzip: false, lib: false, stdenv: false, jdk17: false, runtimeShell: false, glib: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["mainProgram", 52, 5], ["sourceProvenance", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 14, 3], ["pname", 15, 3], ["src", 16, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["dontStrip", 46, 3], ["dontBuild", 47, 3], ["dontConfigure", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const jdk = jdk17;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "5.7.0",
       pname: "keystore-explorer",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/kaikramer/keystore-explorer/releases/download/v${nix.sel(finalAttrs, "version")}/kse-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           sha256: "sha256-yYekrnutgy2KFmQDRAU2BUrj6XqmsE9i9AhnAB/U2ko=",
         })))),
@@ -49,7 +47,7 @@ runHook postInstall
       dontBuild: true,
       dontConfigure: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open source GUI replacement for the Java command-line utilities keytool and jarsigner",
         mainProgram: "keystore-explorer",
         sourceProvenance: nix.thunk(() => (() => {

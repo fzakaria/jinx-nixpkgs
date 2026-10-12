@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["leaveDotGit", 27, 5], ["postFetch", 28, 5]], [["description", 133, 5], ["homepage", 134, 5], ["changelog", 135, 5], ["longDescription", 136, 5], ["license", 140, 5], ["maintainers", 141, 5], ["mainProgram", 146, 5]], [["pname", 14, 3], ["version", 15, 3], ["__darwinAllowLocalNetworking", 18, 3], ["src", 20, 3], ["proxyVendor", 37, 3], ["vendorHash", 39, 3], ["patches", 41, 3], ["nativeBuildInputs", 47, 3], ["nativeCheckInputs", 49, 3], ["subPackages", 56, 3], ["excludedPackages", 58, 3], ["ldflags", 60, 3], ["preBuild", 67, 3], ["preCheck", 76, 3], ["checkFlags", 93, 3], ["postInstall", 125, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, git: false, installShellFiles: false, openssl: false, "net-tools": false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["leaveDotGit", 27, 5], ["postFetch", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 133, 5], ["homepage", 134, 5], ["changelog", 135, 5], ["longDescription", 136, 5], ["license", 140, 5], ["maintainers", 141, 5], ["mainProgram", 146, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__darwinAllowLocalNetworking", 18, 3], ["src", 20, 3], ["proxyVendor", 37, 3], ["vendorHash", 39, 3], ["patches", 41, 3], ["nativeBuildInputs", 47, 3], ["nativeCheckInputs", 49, 3], ["subPackages", 56, 3], ["excludedPackages", 58, 3], ["ldflags", 60, 3], ["preBuild", 67, 3], ["preCheck", 76, 3], ["checkFlags", 93, 3], ["postInstall", 125, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const net_tools = nix.arg($, "net-tools");
   const zstd = nix.arg($, "zstd");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "grype",
       version: "0.120.0",
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "anchore",
           repo: "grype",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd grype \\\n  --bash <($out/bin/grype completion bash) \\\n  --fish <($out/bin/grype completion fish) \\\n  --zsh <($out/bin/grype completion zsh)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Vulnerability scanner for container images and filesystems",
         homepage: "https://github.com/anchore/grype",
         changelog: nix.thunk(() => nix.str`https://github.com/anchore/grype/releases/tag/v${nix.sel(finalAttrs, "version")}`),

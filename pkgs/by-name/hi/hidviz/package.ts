@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, stdenv: false, qt6: false, libusb1: false, protobuf: false, asio_1_32_0: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const asio_1_32_0 = nix.arg($, "asio_1_32_0");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hidviz",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hidviz",
           repo: "hidviz",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ substituteInPlace libhidx/libhidx/src/Connector.cc --replace-fail '/usr/local/li
       ]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtwebengine")), libusb1, protobuf, asio_1_32_0]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/hidviz/hidviz",
         description: "GUI application for in-depth analysis of USB HID class devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

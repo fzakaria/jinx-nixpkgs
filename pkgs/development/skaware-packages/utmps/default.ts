@@ -2,20 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 8, 8]], [["pname", 4, 3], ["version", 5, 3], ["sha256", 6, 3], ["meta", 8, 3], ["buildInputs", 10, 3], ["configureFlags", 12, 3], ["postInstall", 22, 3]]]);
 const formals$1 = { args: { skawarePackages: false, skalibs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 8, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 4, 3], ["version", 5, 3], ["sha256", 6, 3], ["meta", 8, 3], ["buildInputs", 10, 3], ["configureFlags", 12, 3], ["postInstall", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const skawarePackages = nix.arg($, "skawarePackages");
   const skalibs = nix.arg($, "skalibs");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "utmps",
       version: "0.1.3.4",
       sha256: "sha256-EtzBAq1qyB+BrsxJUHM9uU81CBlHBUubFHPKxckIELw=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Secure utmpx and wtmp implementation" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "Secure utmpx and wtmp implementation" })),
       buildInputs: nix.thunk(() => [skalibs]),
       configureFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--libdir=${nix.builtins.placeholder("lib")}/lib`),

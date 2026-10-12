@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["openidconnect", 50, 5], ["saml", 51, 5], ["azuread", 55, 5]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 58, 3], ["disabledTestPaths", 68, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cryptography: false, defusedxml: false, fetchFromGitHub: false, httpretty: false, lxml: false, oauthlib: false, pyjwt: false, "pytest-cov-stub": false, "pytest-xdist": false, pytestCheckHook: false, "python-jose": false, "python3-openid": false, "python3-saml": false, requests: false, "requests-oauthlib": false, responses: false, setuptools: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["openidconnect", 50, 5], ["saml", 51, 5], ["azuread", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 58, 3], ["disabledTestPaths", 68, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "social-auth-core",
       version: "5.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-social-auth",
           repo: "social-core",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         requests_oauthlib,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         openidconnect: nix.thunk(() => [python_jose]),
         saml: nix.thunk(() => [lxml, python3_saml]),
         azuread: nix.thunk(() => [cryptography]),
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["social_core"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Module for social authentication/registration mechanisms",
         homepage: "https://github.com/python-social-auth/social-core",
         changelog: nix.thunk(() => nix.str`https://github.com/python-social-auth/social-core/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

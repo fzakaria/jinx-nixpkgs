@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["preConfigure", 44, 3], ["makeFlags", 49, 3], ["doCheck", 55, 3], ["preCheck", 56, 3], ["postCheck", 59, 3], ["preInstall", 63, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchsvn: false, imake: false, bison: false, flex: false, libxt: false, libxpm: false, libxmu: false, libxext: false, libxaw: false, libx11: false, libsm: false, libice: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["preConfigure", 44, 3], ["makeFlags", 49, 3], ["doCheck", 55, 3], ["preCheck", 56, 3], ["postCheck", 59, 3], ["preInstall", 63, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libsm = nix.arg($, "libsm");
   const libice = nix.arg($, "libice");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xspim",
       version: "9.1.22",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://svn.code.sf.net/p/spimsimulator/code/",
           rev: "r739",
           sha256: "1kazfgrbmi4xq7nrkmnqw1280rhdyc1hmr82flrsa3g1b1rlmj1s",
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       postCheck: "popd\n",
       preInstall: "mkdir -p $out/share/spim\ninstall -D ../spim/spim $out/bin/spim\ninstall -D ../Documentation/spim.man $out/share/man/man1/spim.1\ninstall -D ../Documentation/xspim.man $out/share/man/man1/xspim.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MIPS32 simulator",
         homepage: "https://spimsimulator.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

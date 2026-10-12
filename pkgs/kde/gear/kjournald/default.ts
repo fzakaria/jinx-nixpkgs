@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 15, 8]], [["pname", 8, 3], ["extraNativeBuildInputs", 10, 3], ["extraBuildInputs", 11, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qtdeclarative: false, "pkg-config": false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 15, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["extraNativeBuildInputs", 10, 3], ["extraBuildInputs", 11, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const systemd = nix.arg($, "systemd");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kjournald",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtdeclarative, systemd]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kjournaldbrowser" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "kjournaldbrowser" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

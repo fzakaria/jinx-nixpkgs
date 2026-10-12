@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 5], ["version", 16, 26], ["hash", 17, 5]], [["changelog", 28, 5], ["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 14, 3], ["build-system", 20, 3], ["pythonImportsCheck", 22, 3], ["doCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 5], ["version", 16, 26], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 28, 5], ["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 14, 3], ["build-system", 20, 3], ["pythonImportsCheck", 22, 3], ["doCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "knx-frontend",
       version: "2026.10.5.160528",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "knx_frontend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-q1k8t9PzAvhqKmk7T0Lk/UMLkjxo4fLI22B2EsLhXIA=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["knx_frontend"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/XKNX/knx-frontend/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Home Assistant Panel for managing the KNX integration",
         homepage: "https://github.com/XKNX/knx-frontend",

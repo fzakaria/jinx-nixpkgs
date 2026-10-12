@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["homepage", 95, 5], ["description", 96, 5], ["platforms", 97, 5], ["sourceProvenance", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]], [["pname", 13, 3], ["version", 14, 3], ["debName", 16, 3], ["src", 19, 3], ["dontBuild", 25, 3], ["dontConfigure", 26, 3], ["unpackPhase", 28, 3], ["buildInputs", 32, 3], ["runtimeDependencies", 38, 3], ["nativeBuildInputs", 42, 3], ["installPhase", 47, 3], ["dontAutoPatchelf", 80, 3], ["postFixup", 83, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, autoPatchelfHook: false, dpkg: false, gtk3: false, openssl: false, pcsclite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["description", 96, 5], ["platforms", 97, 5], ["sourceProvenance", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["debName", 16, 3], ["src", 19, 3], ["dontBuild", 25, 3], ["dontConfigure", 26, 3], ["unpackPhase", 28, 3], ["buildInputs", 32, 3], ["runtimeDependencies", 38, 3], ["nativeBuildInputs", 42, 3], ["installPhase", 47, 3], ["dontAutoPatchelf", 80, 3], ["postFixup", 83, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "10.8.1050";
       const debName = nix.thunk(() => nix.str`Installation/Standard/Ubuntu-2204/safenetauthenticationclient_${version}_amd64.deb`);
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.digicert.com/StaticFiles/Linux_SAC_10_8_R1_GA.zip",
           hash: "sha256-Wh2Ax4ZVFKqn0yDwZmwvtUqwQNYyBng08IPfemHzZC0=",
         }))));
@@ -74,7 +72,7 @@ for mod in $(find "$out" -type f -name '*.so.*'); do
 done;
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://safenet.gemalto.com/multi-factor-authentication/security-applications/authentication-client-token-management",
         description: "Safenet Authentication Client",
         platforms: nix.thunk(() => ["x86_64-linux"]),
@@ -89,7 +87,7 @@ done;
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         debName,

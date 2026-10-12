@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 5], ["hash", 37, 5]], [["pname", 43, 13], ["version", 43, 19], ["src", 44, 13], ["cargoRoot", 44, 17], ["hash", 45, 5]], [["package", 89, 5]], [["version", 88, 18]], [["tests", 88, 12]], [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 97, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["cargoRoot", 40, 3], ["cargoDeps", 42, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 63, 3], ["dontUseCmakeConfigure", 79, 3], ["makeFlags", 81, 3], ["passthru", 88, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "vulkan-headers": false, "vulkan-tools": false, "vulkan-loader": false, glslang: false, glfw: false, libjpeg: false, "pkg-config": false, rsync: false, cmake: false, clang: false, llvm: false, llvmPackages: false, pugixml: false, freetype: false, exiv2: false, ffmpeg: false, libvorbis: false, libmad: false, testers: false, vkdt: false, xxd: false, "alsa-lib": false, cargo: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 43, 13], ["version", 43, 19], ["src", 44, 13], ["cargoRoot", 44, 17], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 88, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 88, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 97, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["cargoRoot", 40, 3], ["cargoDeps", 42, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 63, 3], ["dontUseCmakeConfigure", 79, 3], ["makeFlags", 81, 3], ["passthru", 88, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,13 +38,13 @@ export default nix.lambda((args) => (() => {
       const pname = "vkdt";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/hanatos/vkdt/releases/download/${version}/vkdt-${version}.tar.xz`),
           hash: "sha256-oLJ5IlWOJoe2vUBaI9nyAhfjuw/lF63ZCdhMSF5D0pE=",
         }))));
       const cargoRoot = "src/pipe/modules/i-raw/rawloader-c";
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -88,14 +82,14 @@ export default nix.lambda((args) => (() => {
       const dontUseCmakeConfigure = true;
       const makeFlags = nix.thunk(() => ["DESTDIR=$(out)", "prefix=", "VKDT_USE_RAWINPUT=2", "VKDT_USE_MCRAW=false"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: vkdt })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: vkdt })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Vulkan-powered raw image processor",
         homepage: "https://github.com/hanatos/vkdt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -106,7 +100,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/miou-unix.nix", [[["description", 36, 5]], [["pname", 15, 3], ["src", 16, 28], ["version", 16, 32], ["buildInputs", 18, 3], ["propagatedBuildInputs", 26, 3], ["doCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "happy-eyeballs": false, cmdliner: false, duration: false, "domain-name": false, fmt: false, ipaddr: false, logs: false, miou: false, mtime: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/miou-unix.nix", [["description", 36, 5]]);
-const pos$2 = nix.positions(here + "/miou-unix.nix", [["pname", 15, 3], ["src", 16, 28], ["version", 16, 32], ["buildInputs", 18, 3], ["propagatedBuildInputs", 26, 3], ["doCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const miou = nix.arg($, "miou");
   const mtime = nix.arg($, "mtime");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "happy-eyeballs-miou-unix",
       src: nix.thunk(() => nix.attr(happy_eyeballs, "src")),
       version: nix.thunk(() => nix.attr(happy_eyeballs, "version")),
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [happy_eyeballs, ipaddr, miou, mtime]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(happy_eyeballs, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Connecting to a remote host via IP version 4 or 6 using Miou",
       })),
     })));

@@ -2,25 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 12, 7], ["hash", 13, 7]], [["name", 16, 7], ["hash", 17, 7]], [["name", 20, 7], ["hash", 21, 7]], [["name", 24, 7], ["hash", 25, 7]], [["name", 28, 7], ["hash", 29, 7]], [["name", 32, 7], ["hash", 33, 7]], [["name", 36, 7], ["hash", 37, 7]], [["name", 40, 7], ["hash", 41, 7]], [["name", 44, 7], ["hash", 45, 7]], [["name", 48, 7], ["hash", 49, 7]], [["name", 52, 7], ["hash", 53, 7]], [["name", 56, 7], ["hash", 57, 7]], [["url", 62, 5], ["hash", 63, 5]], [["url", 74, 9], ["hash", 75, 17]], [["exes", 70, 7]], [["homepage", 151, 5], ["description", 152, 5], ["platforms", 153, 5], ["license", 154, 5], ["priority", 157, 5]], [["pname", 67, 3], ["version", 68, 3], ["env", 70, 3], ["nativeBuildInputs", 80, 3], ["buildCommand", 85, 3], ["__structuredAttrs", 148, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cabextract: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 12, 7], ["hash", 13, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 16, 7], ["hash", 17, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 20, 7], ["hash", 21, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 24, 7], ["hash", 25, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 28, 7], ["hash", 29, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 32, 7], ["hash", 33, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 36, 7], ["hash", 37, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 40, 7], ["hash", 41, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 44, 7], ["hash", 45, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 48, 7], ["hash", 49, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 52, 7], ["hash", 53, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["name", 56, 7], ["hash", 57, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["url", 62, 5], ["hash", 63, 5]]);
 const formals$2 = { args: { name: false, hash: false }, ellipsis: false };
-const pos$14 = nix.positions(here + "/package.nix", [["url", 74, 9], ["hash", 75, 17]]);
-const pos$15 = nix.positions(here + "/package.nix", [["exes", 70, 7]]);
-const pos$16 = nix.positions(here + "/package.nix", [["homepage", 151, 5], ["description", 152, 5], ["platforms", 153, 5], ["license", 154, 5], ["priority", 157, 5]]);
-const pos$17 = nix.positions(here + "/package.nix", [["pname", 67, 3], ["version", 68, 3], ["env", 70, 3], ["nativeBuildInputs", 80, 3], ["buildCommand", 85, 3], ["__structuredAttrs", 148, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,83 +15,83 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const fonts = nix.thunk(() => [
     nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "andale",
       hash: "sha256-BST+QpUa3Dp+uHDjLwkgMTxx8XDIWbX3cNgrTuER6XA=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "arial",
       hash: "sha256-hSl6TRRunIesb3SCJzS97l9LKnItfqpYS38sv3b0ePY=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "arialb",
       hash: "sha256-pCXw/7ahpe3luXntYXf09PT972rnwwKnt3IO8zL+wKg=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "comic",
       hash: "sha256-nG3z/u/eJtTkHUpP5dsqifkSOncllNf1mv0GJiXNIE4=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "courie",
       hash: "sha256-u1EdhhZV3eh5rlUuuGsTTW+uZ8tYUC5v9z7F2RUfM4Q=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "georgi",
       hash: "sha256-LCx9zaZgbqXPCJGPt80/M1np6EM43GkAE/IM1C6TAwE=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "impact",
       hash: "sha256-YGHvO3QB2WQvXf218rN2qhRmP2J15gpRIHrU+s8vzPs=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "times",
       hash: "sha256-21ZZXsbvXT3lwkmU8AHwOyoT43zuJ7wlxY9vQ+j4B6s=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       name: "trebuc",
       hash: "sha256-WmkNm7hRC+G4tP5J8fIxllH+UbvlR3Xd3djvC9B/2sk=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       name: "webdin",
       hash: "sha256-ZFlbWrwQgPuoYQxcNPq1hjQI6Aaq/oRlPKhXW+0X11o=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       name: "verdan",
       hash: "sha256-wcthJV42MWZ5TkdmTi8hr446JstjRuuNKuL6hd1arZY=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       name: "wd97vwr",
       hash: "sha256-9hEmptF7LRJqfzGxQlBNzkk095icVfHBPGR3s/6As9I=",
     })),
   ]);
   const eula = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       url: "https://corefonts.sourceforge.net/eula.htm",
       hash: "sha256-LOgNEsM+dANEreP2LsFi+pAnBNDMFB9Pg+KJAahlC6s=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       pname: "corefonts",
       version: "1",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         exes: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.builtins.map(nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
               const name = nix.arg($_1, "name");
               const hash = nix.arg($_1, "hash");
               return nix.app(fetchurl, nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   url: nix.thunk(() => nix.str`mirror://sourceforge/corefonts/the%20fonts/final/${name}32.exe`),
                   hash: hash,
                 })));
@@ -177,7 +161,7 @@ done
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         homepage: "https://corefonts.sourceforge.net/",
         description: "Microsoft's TrueType core fonts for the Web",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

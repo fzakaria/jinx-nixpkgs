@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["broken", 113, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["disabled", 29, 3], ["src", 31, 3], ["postPatch", 39, 3], ["build-system", 46, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 48, 3], ["propagatedBuildInputs", 49, 3], ["pythonImportsCheck", 58, 3], ["preCheck", 67, 3], ["nativeCheckInputs", 71, 3], ["disabledTestPaths", 79, 3], ["disabledTests", 86, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, pythonAtLeast: false, fetchFromGitHub: false, setuptools: false, lib: false, libjpeg: false, numba: false, "opencv-python": false, pandas: false, "pkg-config": false, "pytorch-pfn-extras": false, terminaltables: false, tqdm: false, pytestCheckHook: false, assertpy: false, psutil: false, torchvision: false, webdataset: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["broken", 113, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["disabled", 29, 3], ["src", 31, 3], ["postPatch", 39, 3], ["build-system", 46, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 48, 3], ["propagatedBuildInputs", 49, 3], ["pythonImportsCheck", 58, 3], ["preCheck", 67, 3], ["nativeCheckInputs", 71, 3], ["disabledTestPaths", 79, 3], ["disabledTests", 86, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libffcv",
           repo: pname,
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
         "test_traversal_random_distributed_with_indices",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "FFCV: Fast Forward Computer Vision",
         homepage: "https://ffcv.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -77,7 +75,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

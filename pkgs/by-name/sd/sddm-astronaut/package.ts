@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["General", 13, 48]], [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["extraArgs", 59, 47]], [["updateScript", 59, 12]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["dontWrapQtApps", 28, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["installPhase", 39, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, installFonts: false, kdePackages: false, formats: false, "nix-update-script": false, themeConfig: true, embeddedTheme: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["General", 13, 48]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 59, 47]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["dontWrapQtApps", 28, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["installPhase", 39, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,15 +16,15 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const themeConfig = nix.argOr($, "themeConfig", () => null);
   const embeddedTheme = nix.argOr($, "embeddedTheme", () => "astronaut");
-  const configFile = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({}))), "generate"), "", nix.thunk(() => ({ [nix.POS]: pos$1, General: themeConfig }))));
+  const configFile = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({}))), "generate"), "", nix.thunk(() => ({ [nix.POS]: $pos[0], General: themeConfig }))));
   const basePath = "$out/share/sddm/themes/sddm-astronaut-theme";
   const sedString = "ConfigFile=Themes/";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sddm-astronaut",
       version: "0-unstable-2026-09-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Keyitdev",
           repo: "sddm-astronaut-theme",
           rev: "abb3163c724935af888ba5ea9ac0c4f22afd8048",
@@ -57,11 +52,11 @@ sed -i "s|^${sedString}.*\\\\.conf$|${sedString}${embeddedTheme}.conf|" ${basePa
 ln -sf ${configFile} ${basePath}/Themes/${embeddedTheme}.conf.user
 `))), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Modern looking qt6 sddm theme",
         homepage: "https://github.com/Keyitdev/sddm-astronaut-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

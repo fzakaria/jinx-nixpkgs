@@ -2,22 +2,21 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 12, 5], ["description", 13, 5], ["license", 14, 5], ["sourceProvenance", 15, 5], ["maintainers", 16, 5]], [["groupId", 7, 3], ["artifactId", 8, 3], ["version", 9, 3], ["hash", 10, 3], ["meta", 11, 3]]]);
 const formals$1 = { args: { fetchMavenArtifact: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 12, 5], ["description", 13, 5], ["license", 14, 5], ["sourceProvenance", 15, 5], ["maintainers", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["groupId", 7, 3], ["artifactId", 8, 3], ["version", 9, 3], ["hash", 10, 3], ["meta", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchMavenArtifact = nix.arg($, "fetchMavenArtifact");
   const lib = nix.arg($, "lib");
   return nix.app(fetchMavenArtifact, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       groupId: "com.kohlschutter.junixsocket",
       artifactId: "junixsocket-common",
       version: "2.10.1",
       hash: "sha256-GeX3YVrSKT81Mrw/mRsxOWwRYYNOidmmqgx975OcZyk=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://kohlschutter.github.io/junixsocket/",
         description: "Java/JNI library that allows the use of Unix Domain Sockets (AF_UNIX sockets) and other socket types, such as AF_TIPC and AF_VSOCK, from Java, using the standard Socket API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

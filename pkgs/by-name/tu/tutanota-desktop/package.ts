@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["url", 20, 5], ["hash", 21, 5]], [["updateScript", 24, 12]], [["description", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["sourceProvenance", 31, 5], ["maintainers", 32, 5], ["mainProgram", 33, 5], ["platforms", 34, 5]], [["pname", 53, 19], ["version", 53, 25], ["src", 54, 11]], [["pname", 39, 7], ["version", 40, 7], ["passthru", 41, 7], ["meta", 42, 7], ["src", 44, 5], ["extraPkgs", 46, 5], ["nativeBuildInputs", 48, 5], ["extraInstallCommands", 50, 5]], [["pname", 71, 7], ["version", 72, 7], ["passthru", 73, 7], ["meta", 74, 7], ["src", 76, 5], ["sourceRoot", 78, 5], ["nativeBuildInputs", 80, 5], ["installPhase", 85, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, appimageTools: false, fetchurl: false, makeWrapper: false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 24, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["sourceProvenance", 31, 5], ["maintainers", 32, 5], ["mainProgram", 33, 5], ["platforms", 34, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 53, 19], ["version", 53, 25], ["src", 54, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 39, 7], ["version", 40, 7], ["passthru", 41, 7], ["meta", 42, 7], ["src", 44, 5], ["extraPkgs", 46, 5], ["nativeBuildInputs", 48, 5], ["extraInstallCommands", 50, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 71, 7], ["version", 72, 7], ["passthru", 73, 7], ["meta", 74, 7], ["src", 76, 5], ["sourceRoot", 78, 5], ["nativeBuildInputs", 80, 5], ["installPhase", 85, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const pname = "tutanota-desktop";
   const version = "359.260904.0";
   const linuxSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/tutao/tutanota/releases/download/tutanota-desktop-release-${version}/tutanota-desktop-linux.AppImage`),
       hash: "sha256-bhgKpOVkx5NdnhbfDawZp3cvE9sjdZYu0TKcUSgi6w4=",
     }))));
   const darwinSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://github.com/tutao/tutanota/releases/download/tutanota-desktop-release-${version}/tutanota-desktop-mac.dmg`),
       hash: "sha256-l0M1p/9HNOS7Z0+ljnDeX0eHeyLHc6rM4//EjDsWzo4=",
     }))));
-  const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") }));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     description: "Tuta official desktop client",
     homepage: "https://tuta.com/",
     changelog: nix.thunk(() => nix.str`https://github.com/tutao/tutanota/releases/tag/tutanota-desktop-release-${version}`),
@@ -50,7 +44,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), ["x86_64-linux"])),
   }));
   const linux = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       passthru: passthru,
@@ -59,7 +53,7 @@ export default nix.lambda((args) => (() => {
       extraPkgs: (pkgs) => [nix.thunk(() => nix.sel(pkgs, "libsecret"))],
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       extraInstallCommands: nix.thunk(() => (() => {
-        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$5, pname: pname, version: version, src: linuxSrc }))));
+        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[4], pname: pname, version: version, src: linuxSrc }))));
         return nix.str`install -Dm 444 ${appimageContents}/tutanota-desktop.desktop -t $out/share/applications
 cp -r ${appimageContents}/usr/share/icons/. $out/share/icons
 
@@ -72,7 +66,7 @@ wrapProgram $out/bin/tutanota-desktop \\
       })()),
     }))));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       passthru: passthru,

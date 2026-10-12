@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/elm-ui.nix", [[["elmPackages", 22, 7], ["elmVersion", 23, 7], ["registryDat", 25, 7]], [["pname", 8, 3], ["src", 9, 37], ["version", 9, 41], ["meta", 9, 49], ["sourceRoot", 11, 3], ["postPatch", 13, 3], ["postConfigure", 19, 3], ["npmDepsHash", 29, 3], ["nativeBuildInputs", 31, 3], ["installPhase", 35, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, elmPackages: false, "prometheus-alertmanager": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/elm-ui.nix", [["elmPackages", 22, 7], ["elmVersion", 23, 7], ["registryDat", 25, 7]]);
-const pos$2 = nix.positions(here + "/elm-ui.nix", [["pname", 8, 3], ["src", 9, 37], ["version", 9, 41], ["meta", 9, 49], ["sourceRoot", 11, 3], ["postPatch", 13, 3], ["postConfigure", 19, 3], ["npmDepsHash", 29, 3], ["nativeBuildInputs", 31, 3], ["installPhase", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const elmPackages = nix.arg($, "elmPackages");
   const prometheus_alertmanager = nix.arg($, "prometheus-alertmanager");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "alertmanager-elm-ui",
       src: nix.thunk(() => nix.attr(prometheus_alertmanager, "src")),
       version: nix.thunk(() => nix.attr(prometheus_alertmanager, "version")),
@@ -23,7 +22,7 @@ sed -i '/"elm":/d' package.json
 substituteInPlace elm.json --replace-fail "0.19.1" "${nix.sel(elmPackages, "elm", "version")}"
 `),
       postConfigure: nix.thunk(() => nix.app(nix.sel(elmPackages, "fetchElmDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           elmPackages: nix.thunk(() => nix.builtins.import(nix.path(here, "./elm-srcs.nix"))),
           elmVersion: nix.thunk(() => nix.sel(elmPackages, "elm", "version")),
           registryDat: nix.path(here, "./registry.dat"),

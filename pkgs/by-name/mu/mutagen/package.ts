@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["name", 23, 5], ["url", 25, 5], ["stripRoot", 26, 5], ["postFetch", 27, 5], ["hash", 30, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["maintainers", 67, 5], ["sourceProvenance", 68, 5], ["license", 69, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["agents", 22, 3], ["nativeBuildInputs", 33, 3], ["doCheck", 35, 3], ["subPackages", 37, 3], ["tags", 42, 3], ["postInstall", 47, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchzip: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 23, 5], ["url", 25, 5], ["stripRoot", 26, 5], ["postFetch", 27, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["maintainers", 67, 5], ["sourceProvenance", 68, 5], ["license", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["agents", 22, 3], ["nativeBuildInputs", 33, 3], ["doCheck", 35, 3], ["subPackages", 37, 3], ["tags", 42, 3], ["postInstall", 47, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mutagen";
       const version = "0.18.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mutagen-io",
           repo: "mutagen",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-RVVUeNfp/HWd3/5uCyaDGw6bXFJvfomhu//829jO+qE=";
       const agents = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`mutagen-agents-${version}`),
           url: nix.thunk(() => nix.str`https://github.com/mutagen-io/mutagen/releases/download/v${version}/mutagen_linux_amd64_v${version}.tar.gz`),
           stripRoot: false,
@@ -53,7 +50,7 @@ installShellCompletion \\
   --zsh mutagen.zsh
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Make remote development work with your local tools",
         homepage: "https://mutagen.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/mutagen-io/mutagen/releases/tag/v${version}`),
@@ -65,7 +62,7 @@ installShellCompletion \\
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

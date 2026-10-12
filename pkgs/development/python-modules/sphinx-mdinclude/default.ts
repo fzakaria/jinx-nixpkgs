@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 5], ["version", 26, 13], ["hash", 27, 5]], [["homepage", 42, 5], ["changelog", 43, 5], ["description", 44, 5], ["longDescription", 45, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["nativeCheckInputs", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "flit-core": false, docutils: false, mistune: false, pygments: false, sphinx: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 5], ["version", 26, 13], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 42, 5], ["changelog", 43, 5], ["description", 44, 5], ["longDescription", 45, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["nativeCheckInputs", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "sphinx_mdinclude",
           version: version,
           hash: "sha256-RHRi6Cy4vmFASiIEIn+SB2nrkj0vV2COMyXzu4goa0w=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [docutils, mistune, pygments, sphinx]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/omnilib/sphinx-mdinclude",
         changelog: nix.thunk(() => nix.str`https://github.com/omnilib/sphinx-mdinclude/blob/v${version}/CHANGELOG.md`),
         description: "Sphinx extension for including or writing pages in Markdown format",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

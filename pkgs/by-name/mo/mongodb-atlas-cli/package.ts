@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["extraArgs", 45, 7]], [["package", 48, 7], ["version", 49, 7]], [["version", 47, 11]], [["updateScript", 44, 5], ["tests", 47, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 61, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["ldflags", 27, 3], ["subPackages", 34, 3], ["postInstall", 36, 3], ["passthru", 43, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, buildGoModule: false, installShellFiles: false, "nix-update-script": false, testers: false, "mongodb-atlas-cli": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 48, 7], ["version", 49, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 47, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 44, 5], ["tests", 47, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 61, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["ldflags", 27, 3], ["subPackages", 34, 3], ["postInstall", 36, 3], ["passthru", 43, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const mongodb_atlas_cli = nix.arg($, "mongodb-atlas-cli");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "mongodb-atlas-cli",
       version: "1.59.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mongodb",
           repo: "mongodb-atlas-cli",
           tag: nix.thunk(() => nix.str`atlascli/v${nix.sel(finalAttrs, "version")}`),
@@ -43,22 +37,22 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/atlas"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd atlas \\\n  --bash <($out/bin/atlas completion bash) \\\n  --fish <($out/bin/atlas completion fish) \\\n  --zsh <($out/bin/atlas completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=atlascli/v(.+)"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: mongodb_atlas_cli,
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "CLI utility to manage MongoDB Atlas from the terminal",
         homepage: "https://github.com/mongodb/mongodb-atlas-cli",
         changelog: nix.thunk(() => nix.str`https://www.mongodb.com/docs/atlas/cli/current/atlas-cli-changelog/#atlas-cli-${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["longDescription", 66, 5], ["maintainers", 71, 5], ["license", 72, 5], ["platforms", 73, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 54, 3], ["postPatch", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, "gobject-introspection": false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, "cinnamon-gsettings-overrides": false, "desktop-file-utils": false, glib: false, gnome: false, gtk3: false, "mate-desktop": false, "mate-settings-daemon": false, python3: false, "gsettings-desktop-schemas": false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["longDescription", 66, 5], ["maintainers", 71, 5], ["license", 72, 5], ["platforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 54, 3], ["postPatch", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "themechanger",
       version: "0.12.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ALEX11BR",
           repo: "ThemeChanger",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postPatch: "patchShebangs postinstall.py\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ALEX11BR/ThemeChanger",
         description: "Theme changing utility for Linux",
         mainProgram: "themechanger",

@@ -2,9 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/replace-direct-dependencies.nix", [[["nativeBuildInputs", 53, 29]]]);
 const formals$1 = { args: { lib: false, runCommandLocal: false, nix: false }, ellipsis: false };
 const formals$2 = { args: { drv: false, replacements: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/replace-direct-dependencies.nix", [["nativeBuildInputs", 53, 29]]);
 const formals$3 = { args: { oldDependency: false, newDependency: false }, ellipsis: false };
 
 export default nix.lambda((args) => (() => {
@@ -32,7 +32,7 @@ export default nix.lambda((args) => (() => {
         return nix.app(optionalString, nix.thunk(() => !nix.eq(outputName, "out")), nix.thunk(() => nix.str`-${outputName}`));
       })()) : nix.builtins.throw(nix.thunk(() => nix.str`cannot reconstruct the derivation name from ${drv}`)))));
       return nix.app(runCommandLocal, drvName, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(nix$, "out"))]),
         })), nix.thunk(() => nix.str`createRewriteScript() {
     while [ $# -ne 0 ]; do

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 47, 3], ["preFixup", 52, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "appstream-glib": false, "desktop-file-utils": false, "gobject-introspection": false, libadwaita: false, meson: false, ninja: false, "pkg-config": false, python3: false, wrapGAppsHook4: false, apx: false, "gnome-console": false, "vte-gtk4": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 47, 3], ["preFixup", 52, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gnome_console = nix.arg($, "gnome-console");
   const vte_gtk4 = nix.arg($, "vte-gtk4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "apx-gui",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Vanilla-OS",
           repo: "apx-gui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GUI frontend for Apx in GTK 4 and Libadwaita",
         homepage: "https://github.com/Vanilla-OS/apx-gui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

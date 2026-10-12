@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["enablePython", 59, 11], ["python", 60, 11]], [["updateScript", 94, 12]], [["description", 97, 5], ["mainProgram", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["longDescription", 102, 5], ["platforms", 108, 5], ["maintainers", 109, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["prePatch", 34, 3], ["outputs", 39, 3], ["buildInputs", 45, 3], ["nativeBuildInputs", 67, 3], ["cmakeFlags", 73, 3], ["installTargets", 80, 3], ["postInstall", 85, 3], ["nativeInstallCheckInputs", 89, 3], ["doInstallCheck", 92, 3], ["passthru", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, boost: false, gmp: false, mpfr: false, libedit: false, python3: false, gpgme: false, installShellFiles: false, texinfo: false, gnused: false, versionCheckHook: false, "nix-update-script": false, usePython: true, gpgmeSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enablePython", 59, 11], ["python", 60, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 94, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 97, 5], ["mainProgram", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["longDescription", 102, 5], ["platforms", 108, 5], ["maintainers", 109, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["prePatch", 34, 3], ["outputs", 39, 3], ["buildInputs", 45, 3], ["nativeBuildInputs", 67, 3], ["cmakeFlags", 73, 3], ["installTargets", 80, 3], ["postInstall", 85, 3], ["nativeInstallCheckInputs", 89, 3], ["doInstallCheck", 92, 3], ["passthru", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const usePython = nix.argOr($, "usePython", () => false);
   const gpgmeSupport = nix.argOr($, "gpgmeSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ledger",
       version: "3.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ledger",
           repo: "ledger",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), usePython, nix.thunk(() => ["py"])))),
       buildInputs: nix.thunk(() => nix.concat([gmp, mpfr, libedit, gnused], nix.concat(nix.app(nix.sel(lib, "optionals"), gpgmeSupport, nix.thunk(() => [gpgme])), (nix.asBool(usePython) ? [
         python3,
-        nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enablePython: true, python: python3 })))),
+        nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], enablePython: true, python: python3 })))),
       ] : [boost])))),
       nativeBuildInputs: nix.thunk(() => [cmake, texinfo, installShellFiles]),
       cmakeFlags: nix.thunk(() => [
@@ -59,11 +55,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Double-entry accounting system with a command-line reporting interface",
         mainProgram: "ledger",
         homepage: "https://www.ledger-cli.org/",

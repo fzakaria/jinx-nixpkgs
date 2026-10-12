@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["updateScript", 65, 12]], [["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 25]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["strictDeps", 33, 3], ["postPatch", 35, 3], ["buildPhase", 44, 3], ["installPhase", 54, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, SDL2: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 25]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["strictDeps", 33, 3], ["postPatch", 35, 3], ["buildPhase", 44, 3], ["installPhase", 54, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "uxn",
       version: "1.0-unstable-2025-11-20",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~rabbits",
           repo: "uxn",
           rev: "5dce902ef8d360310d1b9b29084b63c71aabb0fa",
@@ -34,13 +31,13 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n./build.sh --no-run\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -d $out/bin/\ncp bin/uxnasm bin/uxncli bin/uxnemu $out/bin/\ninstall -d $projects/share/uxn/\ncp -r projects $projects/share/uxn/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL2, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://wiki.xxiivv.com/site/uxn.html",
         description: "Assembler and emulator for the Uxn stack machine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

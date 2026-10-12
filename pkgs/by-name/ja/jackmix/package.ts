@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 45, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["installPhase", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "pkg-config": false, scons: false, libjack2: false, jack: true, "alsa-lib": false, libsForQt5: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["installPhase", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jackmix",
       version: "0.6.1-unstable-2024-03-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kampfschlaefer",
           repo: "jackmix",
           rev: "f0f29a7111f704f369f1ecd6c29a713ce21f767a",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtbase")), jack, alsa_lib]),
       installPhase: "install -D jackmix/jackmix $out/bin/jackmix\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Matrix-Mixer for the Jack-Audio-connection-Kit",
         mainProgram: "jackmix",
         homepage: "https://github.com/kampfschlaefer/jackmix",

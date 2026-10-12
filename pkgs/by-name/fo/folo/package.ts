@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 37, 7], ["version", 38, 7], ["src", 39, 7], ["pnpmInstallFlags", 40, 7], ["pnpm", 42, 5], ["fetcherVersion", 43, 5], ["hash", 44, 5]], [["apiKey", 63, 7], ["authDomain", 64, 7], ["projectId", 65, 7], ["storageBucket", 66, 7], ["messagingSenderId", 67, 7], ["appId", 68, 7], ["measurementId", 69, 7]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 51, 5], ["VITE_WEB_URL", 57, 5], ["VITE_API_URL", 58, 5], ["VITE_SENTRY_DSN", 59, 5], ["VITE_OPENPANEL_CLIENT_ID", 60, 5], ["VITE_OPENPANEL_API_URL", 61, 5], ["VITE_FIREBASE_CONFIG", 62, 5]], [["name", 88, 5], ["desktopName", 89, 5], ["comment", 90, 5], ["icon", 91, 5], ["exec", 92, 5], ["categories", 93, 5], ["mimeTypes", 94, 5]], [["extraArgs", 141, 5]], [["updateScript", 140, 12]], [["description", 148, 5], ["homepage", 149, 5], ["changelog", 150, 5], ["license", 151, 5], ["maintainers", 152, 5], ["platforms", 156, 5], ["mainProgram", 157, 5]], [["pname", 16, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["pnpmDeps", 35, 3], ["__structuredAttrs", 47, 3], ["strictDeps", 48, 3], ["env", 50, 3], ["dontCheckForBrokenSymlinks", 73, 3], ["pnpmInstallFlags", 77, 3], ["patches", 79, 3], ["postPatch", 81, 3], ["desktopItem", 87, 3], ["icon", 97, 3], ["buildPhase", 99, 3], ["installPhase", 117, 3], ["passthru", 140, 3], ["meta", 147, 3]]]);
 const formals$1 = { args: { electron: false, fetchFromGitHub: false, "nix-update-script": false, imagemagick: false, lib: false, makeDesktopItem: false, makeWrapper: false, nodejs: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 37, 7], ["version", 38, 7], ["src", 39, 7], ["pnpmInstallFlags", 40, 7], ["pnpm", 42, 5], ["fetcherVersion", 43, 5], ["hash", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["apiKey", 63, 7], ["authDomain", 64, 7], ["projectId", 65, 7], ["storageBucket", 66, 7], ["messagingSenderId", 67, 7], ["appId", 68, 7], ["measurementId", 69, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 51, 5], ["VITE_WEB_URL", 57, 5], ["VITE_API_URL", 58, 5], ["VITE_SENTRY_DSN", 59, 5], ["VITE_OPENPANEL_CLIENT_ID", 60, 5], ["VITE_OPENPANEL_API_URL", 61, 5], ["VITE_FIREBASE_CONFIG", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 88, 5], ["desktopName", 89, 5], ["comment", 90, 5], ["icon", 91, 5], ["exec", 92, 5], ["categories", 93, 5], ["mimeTypes", 94, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 141, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 140, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 148, 5], ["homepage", 149, 5], ["changelog", 150, 5], ["license", 151, 5], ["maintainers", 152, 5], ["platforms", 156, 5], ["mainProgram", 157, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["pnpmDeps", 35, 3], ["__structuredAttrs", 47, 3], ["strictDeps", 48, 3], ["env", 50, 3], ["dontCheckForBrokenSymlinks", 73, 3], ["pnpmInstallFlags", 77, 3], ["patches", 79, 3], ["postPatch", 81, 3], ["desktopItem", 87, 3], ["icon", 97, 3], ["buildPhase", 99, 3], ["installPhase", 117, 3], ["passthru", 140, 3], ["meta", 147, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "folo",
       version: "1.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RSSNext",
           repo: "Folo",
           tag: nix.thunk(() => nix.str`desktop/v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11, makeWrapper, imagemagick]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -52,7 +44,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         VITE_WEB_URL: "https://app.follow.is",
         VITE_API_URL: "https://api.follow.is",
@@ -60,7 +52,7 @@ export default nix.lambda((args) => (() => {
         VITE_OPENPANEL_CLIENT_ID: "0e477ab4-d92d-4d6e-b889-b09d86ab908e",
         VITE_OPENPANEL_API_URL: "https://openpanel.follow.is/api",
         VITE_FIREBASE_CONFIG: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             apiKey: "AIzaSyDuM93019tp8VI7wsszJv8ChOs7b1EE5Hk",
             authDomain: "follow-428106.firebaseapp.com",
             projectId: "follow-428106",
@@ -75,7 +67,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./runtime-jsdom.patch")]),
       postPatch: "# pnpm 11 verifies node_modules before every `pnpm run` which conflicts\n# with --shamefully-hoist\necho 'verifyDepsBeforeRun: false' >> pnpm-workspace.yaml\n",
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: "folo",
           desktopName: "Folo",
           comment: "Next generation information browser",
@@ -108,14 +100,14 @@ done
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             extraArgs: nix.thunk(() => ["--version-regex", "^desktop/v([0-9]+\\.[0-9]+\\.[0-9]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Next generation information browser",
         homepage: "https://github.com/RSSNext/Folo",
         changelog: nix.thunk(() => nix.str`https://github.com/RSSNext/Folo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

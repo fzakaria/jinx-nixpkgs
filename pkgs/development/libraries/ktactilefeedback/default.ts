@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["updateScript", 54, 12]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 63, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["dontWrapQtApps", 41, 3], ["cmakeFlags", 43, 3], ["doInstallCheck", 48, 3], ["installCheckTarget", 49, 3], ["preInstallCheck", 50, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, unstableGitUpdater: false, cmake: false, "extra-cmake-modules": false, qtbase: false, qtdeclarative: false, qtmultimedia: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 54, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 63, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["dontWrapQtApps", 41, 3], ["cmakeFlags", 43, 3], ["doInstallCheck", 48, 3], ["installCheckTarget", 49, 3], ["preInstallCheck", 50, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const qtmultimedia = nix.arg($, "qtmultimedia");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ktactilefeedback",
       version: "0-unstable-2025-07-25",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "invent.kde.org",
           owner: "jbbgameich",
           repo: "ktactilefeedback",
@@ -43,11 +40,11 @@ export default nix.lambda((args) => (() => {
       preInstallCheck: nix.thunk(() => nix.str`export QML2_IMPORT_PATH=$out/${nix.sel(qtbase, "qtQmlPrefix")}:${nix.app(nix.sel(lib, "getBin"), qtdeclarative)}/${nix.sel(qtbase, "qtQmlPrefix")}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tactile feedback library for Qt",
         homepage: "https://invent.kde.org/jbbgameich/ktactilefeedback",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

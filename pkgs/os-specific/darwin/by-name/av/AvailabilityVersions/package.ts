@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 101, 5], ["mainProgram", 102, 5], ["platforms", 103, 5]], [["releaseName", 15, 3], ["patches", 17, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 26, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, bashNonInteractive: false, buildPackages: false, mkAppleDerivation: false, sourceRelease: false, unifdef: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 101, 5], ["mainProgram", 102, 5], ["platforms", 103, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["releaseName", 15, 3], ["patches", 17, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 26, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.thunk(() => nix.attr(buildPackages, "python3"));
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   return nix.app(mkAppleDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       releaseName: "AvailabilityVersions",
       patches: nix.thunk(() => [
         nix.path(here, "./patches/0001-Support-setting-an-upper-bound-on-versions.patch"),
@@ -93,7 +92,7 @@ patchShebangs "$out/bin"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Generates Darwin Availability headers",
         mainProgram: "gen-headers",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

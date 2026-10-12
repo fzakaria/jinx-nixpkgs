@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]], [["PBR_VERSION", 25, 7]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["teams", 61, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["env", 25, 3], ["build-system", 27, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 38, 3], ["preCheck", 45, 3], ["pytestFlags", 52, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, distro: false, fetchPypi: false, fixtures: false, libredirect: false, packaging: false, parsley: false, pbr: false, pytestCheckHook: false, testtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PBR_VERSION", 25, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["teams", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["env", 25, 3], ["build-system", 27, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 38, 3], ["preCheck", 45, 3], ["pytestFlags", 52, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
       const version = "2.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-DIBMfkjdF9skyzkSGt5xcfaE+0Y8iqAdAzjNEdJUNko=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PBR_VERSION: version }));
       const build_system = nix.thunk(() => [pbr]);
       const dependencies = nix.thunk(() => [parsley, pbr, packaging, distro]);
       const nativeCheckInputs = nix.thunk(() => [
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-s"]);
       const pythonImportsCheck = nix.thunk(() => ["bindep"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Bindep is a tool for checking the presence of binary packages needed to use an application / library",
         homepage: "https://opendev.org/opendev/bindep",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

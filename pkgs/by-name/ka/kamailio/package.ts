@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["kamailio-bin", 102, 5]], [["tests", 101, 12]], [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 41, 3], ["modules", 48, 3], ["configurePhase", 76, 3], ["preInstall", 84, 3], ["postInstall", 88, 3], ["enableParallelBuilding", 99, 3], ["passthru", 101, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchurl: false, lib: false, stdenv: false, "pkg-config": false, which: false, bison: false, flex: false, json_c: false, libevent: false, libxml2: false, "mariadb-connector-c": false, pcre2: false, gnugrep: false, gawk: false, coreutils: false, gdb: false, gnused: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["kamailio-bin", 102, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 101, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 41, 3], ["modules", 48, 3], ["configurePhase", 76, 3], ["preInstall", 84, 3], ["postInstall", 88, 3], ["enableParallelBuilding", 99, 3], ["passthru", 101, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const gnused = nix.arg($, "gnused");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kamailio",
       version: "6.1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.kamailio.org/pub/kamailio/${nix.sel(finalAttrs, "version")}/src/kamailio-${nix.sel(finalAttrs, "version")}_src.tar.gz`),
           hash: "sha256-49s9IWb0TY892Q2wkGP3C1W77M4pWr1/McNNi53XlyE=",
         })))),
@@ -87,14 +83,14 @@ echo 'EXPR="${gnugrep}/bin/expr"' >> $out/etc/kamailio/kamctlrc
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "kamailio-bin": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-kamailio-bin"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast and flexible SIP server, proxy, SBC, and load balancer",
         homepage: "https://www.kamailio.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

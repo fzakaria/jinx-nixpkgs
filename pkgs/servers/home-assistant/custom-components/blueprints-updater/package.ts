@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 13], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["maintainers", 58, 5], ["license", 59, 5]], [["owner", 15, 3], ["domain", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 32, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 40, 3], ["disabledTests", 49, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, "home-assistant": false, httpx: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-homeassistant-custom-component": false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 13], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["maintainers", 58, 5], ["license", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 15, 3], ["domain", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 32, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 40, 3], ["disabledTests", 49, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const domain = "blueprints_updater";
       const version = "2.15.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: owner,
           repo: "blueprints-updater",
           tag: version,
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTests = nix.thunk(() => ["test_compatibility_main_configures_global_uv_before_verification"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Automatically update Home Assistant blueprints via native update entities",
         homepage: "https://github.com/luuquangvu/blueprints-updater/",
         changelog: nix.thunk(() => nix.str`https://github.com/luuquangvu/blueprints-updater/releases/tag/${nix.sel(src, "tag")}`),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner,
         domain,
         version,

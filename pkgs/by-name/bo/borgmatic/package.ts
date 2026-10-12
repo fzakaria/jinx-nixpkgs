@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 24, 26], ["version", 24, 32], ["hash", 25, 5]], [["package", 95, 37]], [["version", 95, 5], ["borgmatic", 96, 26]], [["updateScript", 28, 12], ["tests", 94, 12]], [["apprise", 69, 5], ["browse", 70, 5]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["mainProgram", 107, 5], ["maintainers", 108, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["passthru", 28, 3], ["nativeCheckInputs", 30, 3], ["disabledTests", 50, 3], ["nativeBuildInputs", 55, 3], ["build-system", 57, 3], ["dependencies", 59, 3], ["optional-dependencies", 68, 3], ["postInstall", 76, 3], ["__darwinAllowLocalNetworking", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { borgbackup: false, borgmatic: false, coreutils: false, enableSystemd: true, fetchPypi: false, "nix-update-script": false, installShellFiles: false, lib: false, python3Packages: false, stdenv: false, systemd: false, testers: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 24, 26], ["version", 24, 32], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 95, 37]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 95, 5], ["borgmatic", 96, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 28, 12], ["tests", 94, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["apprise", 69, 5], ["browse", 70, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["mainProgram", 107, 5], ["maintainers", 108, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["passthru", 28, 3], ["nativeCheckInputs", 30, 3], ["disabledTests", 50, 3], ["nativeBuildInputs", 55, 3], ["build-system", 57, 3], ["dependencies", 59, 3], ["optional-dependencies", 68, 3], ["postInstall", 76, 3], ["__darwinAllowLocalNetworking", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,23 +21,23 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "borgmatic",
       version: "2.1.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-qsB8564wCWBemsxn7vIBmntdabzK1j7agP8ZK2nzdc8=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: borgmatic })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: borgmatic })))),
           borgmatic: nix.thunk(() => nix.attr(nixosTests, "borgmatic")),
         })),
       })),
@@ -75,7 +69,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         apprise: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "apprise"))]),
         browse: nix.thunk(() => (() => {
           const w_2 = nix.withScope(python3Packages, null);
@@ -97,7 +91,7 @@ substitute sample/systemd/borgmatic.service \\
 `)))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Simple, configuration-driven backup software for servers and workstations",
         homepage: "https://torsion.org/borgmatic/",
         changelog: nix.thunk(() => nix.str`https://projects.torsion.org/borgmatic-collective/borgmatic/src/tag/${nix.sel(finalAttrs, "version")}/NEWS`),

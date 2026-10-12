@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["callPackage", 17, 17], ["directory", 18, 9]], [["worktrunk", 22, 17], ["hunk", 22, 27], ["gh-stack", 22, 32]], [["tests", 15, 5]], [["description", 26, 5], ["license", 27, 5]], [["name", 13, 3], ["passthru", 14, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, makeSetupHook: false, hunk: false, worktrunk: false, "gh-stack": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["callPackage", 17, 17], ["directory", 18, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["worktrunk", 22, 17], ["hunk", 22, 27], ["gh-stack", 22, 32]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 15, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 26, 5], ["license", 27, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 13, 3], ["passthru", 14, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const worktrunk = nix.arg($, "worktrunk");
   const gh_stack = nix.arg($, "gh-stack");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "install-agent-skills",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             callPackage: callPackage,
             directory: nix.path(here, "./tests"),
-          }))), { [nix.POS]: pos$2, worktrunk: worktrunk, hunk: hunk, "gh-stack": gh_stack })),
+          }))), { [nix.POS]: $pos[1], worktrunk: worktrunk, hunk: hunk, "gh-stack": gh_stack })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tools to install Agent skills into the correct directories",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["buildTools", 35, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["propagatedBuildInputs", 61, 3], ["doCheck", 71, 3], ["installPhase", 73, 3], ["outputs", 97, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, perlPackages: false, nix: false, dmidecode: false, pciutils: false, usbutils: false, iproute2: false, "net-tools": false, fetchFromGitHub: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["buildTools", 35, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["propagatedBuildInputs", 61, 3], ["doCheck", 71, 3], ["installPhase", 73, 3], ["outputs", 97, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fusioninventory-agent";
       const version = "2.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fusioninventory",
           repo: "fusioninventory-agent",
           rev: version,
@@ -90,14 +88,14 @@ done
 `);
       const outputs = nix.thunk(() => ["out"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.fusioninventory.org",
         description: "FusionInventory unified Agent for UNIX, Linux, Windows and MacOSX",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "phile314"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

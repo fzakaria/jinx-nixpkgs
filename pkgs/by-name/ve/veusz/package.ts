@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]], [["description", 75, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["dontUseQmakeConfigure", 25, 3], ["buildInputs", 27, 3], ["dontWrapQtApps", 31, 3], ["preFixup", 32, 3], ["patches", 37, 3], ["postPatch", 41, 3], ["setupPyBuildFlags", 49, 3], ["dependencies", 55, 3], ["installCheckPhase", 65, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 75, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["dontUseQmakeConfigure", 25, 3], ["buildInputs", 27, 3], ["dontWrapQtApps", 31, 3], ["preFixup", 32, 3], ["patches", 37, 3], ["postPatch", 41, 3], ["setupPyBuildFlags", 49, 3], ["dependencies", 55, 3], ["installCheckPhase", 65, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "veusz",
       version: "4.2.1",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-+txG1MQWbZaVq322p4ZctzanPw+geEf9ilu5kGQI3Qk=",
@@ -51,7 +49,7 @@ patchShebangs tests/runselftest.py
       })()),
       installCheckPhase: "runHook preInstallCheck\n\nwrapQtApp \"tests/runselftest.py\"\nQT_QPA_PLATFORM=minimal tests/runselftest.py\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Scientific plotting and graphing program with a GUI",
         mainProgram: "veusz",
         homepage: "https://veusz.github.io/",

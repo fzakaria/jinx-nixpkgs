@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 31, 5]], [["updateScript", 94, 12]], [["homepage", 97, 5], ["description", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 105, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["env", 30, 3], ["configurePhase", 38, 3], ["buildPhase", 65, 3], ["installPhase", 75, 3], ["passthru", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, zsh: false, ncurses: false, autoconf: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 94, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 97, 5], ["description", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 105, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["env", 30, 3], ["configurePhase", 38, 3], ["buildPhase", 65, 3], ["installPhase", 75, 3], ["passthru", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const INSTALL_PATH = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/fzf-tab`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "zsh-fzf-tab",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Aloxaf",
           repo: "fzf-tab",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoconf]),
       buildInputs: nix.thunk(() => [ncurses]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-function-declaration", "-Wno-error=implicit-int"]))),
         })))),
       configurePhase: nix.thunk(() => nix.str`runHook preConfigure
@@ -88,11 +84,11 @@ popd
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/Aloxaf/fzf-tab",
         description: "Replace zsh's default completion selection menu with fzf",
         changelog: nix.thunk(() => nix.str`https://github.com/Aloxaf/fzf-tab/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,199 +2,19 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["R", 27, 13]], [["name", 62, 44], ["version", 62, 49]], [["sha256", 61, 19], ["urls", 62, 11]], [["name", 66, 55]], [["homepage", 66, 14], ["platforms", 67, 14], ["hydraPlatforms", 68, 14], ["broken", 69, 14], ["maintainers", 70, 14]], [["pname", 58, 9], ["version", 59, 17], ["src", 60, 9], ["doCheck", 64, 17], ["requireX", 64, 25], ["propagatedBuildInputs", 65, 9], ["meta", 66, 9]], [["mkHomepage", 78, 5], ["mkUrls", 80, 5]], [["mkHomepage", 93, 5], ["mkUrls", 96, 5], ["hydraPlatforms", 105, 5]], [["mkHomepage", 108, 5], ["mkUrls", 111, 5], ["hydraPlatforms", 120, 5]], [["mkHomepage", 123, 5], ["mkUrls", 124, 5]], [["nativeBuildInputs", 151, 9]], [["buildInputs", 174, 9]], [["maintainers", 197, 9]], [["propagatedBuildInputs", 220, 9]], [["requireX", 243, 9]], [["preInstall", 270, 9]], [["doCheck", 296, 9]], [["broken", 319, 9]], [["buildRPackage", 347, 13]], [["depends", 362, 16]], [["BiocManager", 370, 5], ["RQuantLib", 371, 5], ["StructuralVariantAnnotation", 372, 5], ["XLConnect", 373, 5], ["data_table", 374, 5], ["ggplot2", 375, 5], ["iscream", 376, 5], ["svaNUMT", 377, 5], ["svaRetro", 378, 5]], [["BayesPET", 384, 5], ["TriDimRegression", 385, 5], ["bayesdfa", 386, 5], ["bbmix", 387, 5], ["disbayes", 388, 5], ["gastempt", 389, 5], ["interactiveDisplay", 390, 5], ["pliman", 391, 5], ["rmsb", 392, 5], ["spectralGraphTopology", 393, 5], ["survextrap", 394, 5], ["tipsae", 395, 5]], [["Apollonius", 401, 5], ["BayesXsrc", 402, 5], ["BigDataStatMeth", 403, 5], ["BiocCheck", 404, 5], ["CBN2Path", 405, 5], ["CLVTools", 406, 5], ["Cairo", 407, 5], ["Cardinal", 408, 5], ["ChemmineOB", 409, 5], ["CytoML", 410, 5], ["DirichletMultinomial", 411, 5], ["GLAD", 412, 5], ["GPBayes", 413, 5], ["JMcmprsk", 414, 5], ["KSgeneral", 415, 5], ["LCMCR", 416, 5], ["PEPBVS", 417, 5], ["PICS", 418, 5], ["QF", 419, 5], ["R2SWF", 420, 5], ["RAppArmor", 421, 5], ["RCurl", 422, 5], ["RDieHarder", 423, 5], ["RFIF", 424, 5], ["RGtk2", 425, 5], ["RJMCMCNucleosomes", 426, 5], ["RKHSMetaMod", 427, 5], ["RMariaDB", 428, 5], ["RMySQL", 429, 5], ["RNetCDF", 430, 5], ["RPesto", 431, 5], ["RPostgreSQL", 435, 5], ["RProtoBuf", 436, 5], ["RQuantLib", 437, 5], ["RationalMatrix", 438, 5], ["RcppCWB", 439, 5], ["RcppDPR", 443, 5], ["RcppGSL", 444, 5], ["RcppMeCab", 445, 5], ["RcppPlanc", 446, 5], ["RcppZiggurat", 451, 5], ["Rhdf5lib", 452, 5], ["Rhisat2", 455, 5], ["Rhpc", 459, 5], ["Rigraphlib", 469, 5], ["Rlibeemd", 470, 5], ["RmecabKo", 471, 5], ["Rmpi", 472, 5], ["RoBMA", 476, 5], ["RoBSA", 477, 5], ["Rpoppler", 478, 5], ["Rsubbotools", 479, 5], ["Rsymphony", 480, 5], ["SQLFormatteR", 481, 5], ["SimInf", 485, 5], ["SuperGauss", 486, 5], ["SymTS", 487, 5], ["Uno", 488, 5], ["V8", 492, 5], ["VBLPCM", 493, 5], ["XBRL", 494, 5], ["XML", 495, 5], ["a5R", 499, 5], ["abn", 503, 5], ["adimpro", 507, 5], ["ahocorasick", 508, 5], ["alcyon", 512, 5], ["animation", 516, 5], ["apcf", 517, 5], ["apsimx", 518, 5], ["arcgisgeocode", 519, 5], ["arcgisplaces", 523, 5], ["arcgisutils", 528, 5], ["arcpbf", 532, 5], ["arrow", 536, 5], ["astgrepr", 543, 5], ["automerge", 547, 5], ["awdb", 552, 5], ["b32", 556, 5], ["b64", 560, 5], ["bigGP", 564, 5], ["bigrquerystorage", 565, 5], ["bioacoustics", 570, 5], ["blosc", 571, 5], ["cairoDevice", 572, 5], ["cartogramR", 573, 5], ["catSurv", 574, 5], ["caugi", 575, 5], ["caviarpd", 579, 5], ["chebpol", 583, 5], ["ciflyr", 584, 5], ["cit", 588, 5], ["clarabel", 589, 5], ["cld3", 590, 5], ["clustermq", 591, 5], ["coga", 592, 5], ["cpp11bigwig", 593, 5], ["crc32c", 594, 5], ["data_table", 598, 5], ["datefixR", 599, 5], ["diseq", 603, 5], ["diversitree", 604, 5], ["drogonR", 605, 5], ["dynr", 606, 5], ["eaf", 607, 5], ["econetwork", 608, 5], ["enderecobr", 609, 5], ["eulerr", 613, 5], ["exactextractr", 617, 5], ["excursions", 618, 5], ["fRLR", 619, 5], ["fangs", 620, 5], ["fastgeojson", 624, 5], ["fcl", 628, 5], ["fftw", 632, 5], ["fftwtools", 633, 5], ["fingerPro", 634, 5], ["fio", 635, 5], ["flan", 639, 5], ["flint", 640, 5], ["flowPeaks", 641, 5], ["fozziejoin", 642, 5], ["frailtyMMpen", 646, 5], ["fraq", 647, 5], ["fru", 648, 5], ["gadjid", 652, 5], ["gdalcubes", 656, 5], ["gdalraster", 661, 5], ["gdtools", 665, 5], ["gert", 666, 5], ["gglinedensity", 667, 5], ["gifski", 668, 5], ["git2r", 672, 5], ["glpkAPI", 673, 5], ["gridmicrotex", 674, 5], ["gsl", 675, 5], ["gslnls", 676, 5], ["gtfsrealtime", 677, 5], ["h3o", 681, 5], ["hSDM", 685, 5], ["harbinger", 686, 5], ["heck", 687, 5], ["hellorust", 691, 5], ["hgwrr", 692, 5], ["highs", 693, 5], ["httpuv", 697, 5], ["hypergeo2", 698, 5], ["iBMQ", 699, 5], ["image_textlinedetector", 700, 5], ["imager", 701, 5], ["immunoClust", 702, 5], ["interpolation", 703, 5], ["iscream", 704, 5], ["island", 708, 5], ["jSDM", 709, 5], ["jack", 710, 5], ["kza", 711, 5], ["libdeflate", 712, 5], ["libimath", 716, 5], ["libipldr", 717, 5], ["llmjson", 721, 5], ["lnmixsurv", 725, 5], ["lpsymphony", 726, 5], ["lwgeom", 731, 5], ["magick", 735, 5], ["markets", 736, 5], ["mashr", 737, 5], ["mcrPioda", 738, 5], ["minimaxALT", 739, 5], ["mixlink", 740, 5], ["mixture", 741, 5], ["mmpca", 742, 5], ["mongolite", 743, 5], ["monoreg", 744, 5], ["multibridge", 745, 5], ["mvabund", 746, 5], ["mvst", 747, 5], ["mwaved", 748, 5], ["mx_crypto", 749, 5], ["n1qn1", 753, 5], ["ncdf4", 754, 5], ["neojags", 755, 5], ["netboost", 756, 5], ["nloptr", 757, 5], ["npRmpi", 758, 5], ["odbc", 762, 5], ["opencv", 763, 5], ["openssl", 764, 5], ["orbweaver", 765, 5], ["osmnxr", 769, 5], ["otelsdk", 773, 5], ["pander", 777, 5], ["pbdMPI", 781, 5], ["pbdPROF", 782, 5], ["pbdZMQ", 783, 5], ["pcaL1", 784, 5], ["pdfsigner", 785, 5], ["pdftools", 789, 5], ["pexm", 790, 5], ["phytools", 791, 5], ["png", 792, 5], ["protolite", 793, 5], ["prqlr", 794, 5], ["qqconf", 798, 5], ["qspray", 799, 5], ["rGEDI", 800, 5], ["rJava", 801, 5], ["ragg", 802, 5], ["rapport", 803, 5], ["rapportools", 804, 5], ["ratioOfQsprays", 805, 5], ["ravetools", 806, 5], ["rbedrock", 807, 5], ["rbm25", 811, 5], ["rcontroll", 815, 5], ["redux", 816, 5], ["reprex", 817, 5], ["resultant", 818, 5], ["rgdal", 819, 5], ["rgeos", 820, 5], ["ridge", 821, 5], ["rip_opencv", 822, 5], ["rjags", 823, 5], ["rlas", 824, 5], ["rlibkriging", 829, 5], ["rmatio", 830, 5], ["rnetcarto", 831, 5], ["roxigraph", 832, 5], ["rrd", 836, 5], ["rsamplr", 837, 5], ["rsbml", 841, 5], ["rsgeo", 842, 5], ["rshift", 846, 5], ["rsvg", 850, 5], ["rswipl", 851, 5], ["rtiktoken", 855, 5], ["rtracklayer", 859, 5], ["runjags", 860, 5], ["rzmq", 861, 5], ["s2", 862, 5], ["salso", 863, 5], ["sbrl", 867, 5], ["sceua", 868, 5], ["scip", 872, 5], ["scorematchingad", 876, 5], ["sf", 877, 5], ["showtext", 882, 5], ["shrinkTVP", 883, 5], ["smam", 884, 5], ["smcryptoR", 885, 5], ["smoothbp", 890, 5], ["socratadata", 894, 5], ["sodium", 898, 5], ["spate", 899, 5], ["sphereTessellation", 900, 5], ["spopt", 901, 5], ["stpphawkes", 905, 5], ["string2path", 906, 5], ["stringfish", 907, 5], ["stringi", 908, 5], ["sundialr", 909, 5], ["survSNP", 910, 5], ["surveyvoi", 911, 5], ["symbolicQspray", 912, 5], ["sysfonts", 913, 5], ["systemfonts", 914, 5], ["talib", 915, 5], ["tergo", 916, 5], ["terra", 920, 5], ["tesseract", 925, 5], ["textshaping", 926, 5], ["tfevents", 927, 5], ["tinyimg", 928, 5], ["tok", 932, 5], ["tomledit", 936, 5], ["unigd", 940, 5], ["unix", 941, 5], ["unsum", 942, 5], ["uuidx", 946, 5], ["vapour", 950, 5], ["watcher", 954, 5], ["waysign", 958, 5], ["webp", 962, 5], ["websocket", 963, 5], ["xactonomial", 964, 5], ["xml2", 968, 5], ["xslt", 969, 5], ["yaml12", 970, 5], ["ymd", 974, 5], ["zoomerjoin", 978, 5]], [["AMOUNTAIN", 987, 5], ["Apollonius", 988, 5], ["ArrayExpressHTS", 992, 5], ["BNSP", 997, 5], ["BayesChange", 998, 5], ["BayesSAE", 999, 5], ["BayesVarSel", 1000, 5], ["BigDataStatMeth", 1001, 5], ["BinaryDosage", 1002, 5], ["BitSeq", 1003, 5], ["CNEr", 1004, 5], ["Cairo", 1005, 5], ["CellBarcode", 1006, 5], ["ChemmineOB", 1007, 5], ["DEploid", 1012, 5], ["DEploid_utils", 1013, 5], ["DGP4LCF", 1014, 5], ["DiffBind", 1018, 5], ["DropletUtils", 1023, 5], ["EHRmuse", 1024, 5], ["FLAMES", 1025, 5], ["GLAD", 1030, 5], ["GMMAT", 1031, 5], ["GRAB", 1035, 5], ["GeneralizedWendland", 1036, 5], ["GeoFIS", 1037, 5], ["GrafGen", 1041, 5], ["HDF5Array", 1042, 5], ["HiCDCPlus", 1043, 5], ["HiCParser", 1044, 5], ["HiCseg", 1045, 5], ["HiSpaR", 1046, 5], ["KFKSDS", 1047, 5], ["KSgeneral", 1048, 5], ["LOMAR", 1049, 5], ["Libra", 1050, 5], ["MAGEE", 1051, 5], ["MedianaDesigner", 1055, 5], ["MethScope", 1056, 5], ["ModelMetrics", 1060, 5], ["NanoMethViz", 1061, 5], ["OpenCL", 1062, 5], ["PING", 1066, 5], ["PKI", 1067, 5], ["PROJ", 1068, 5], ["PoissonBinomial", 1069, 5], ["PoissonMultinomial", 1070, 5], ["PopGenome", 1071, 5], ["QuasR", 1072, 5], ["R2SWF", 1077, 5], ["RAppArmor", 1082, 5], ["RFIF", 1083, 5], ["RGtk2", 1084, 5], ["RITCH", 1085, 5], ["RKHSMetaMod", 1086, 5], ["RMark", 1087, 5], ["RNetCDF", 1088, 5], ["RNifti", 1092, 5], ["RNiftyReg", 1093, 5], ["RODBC", 1094, 5], ["RPostgres", 1095, 5], ["RProtoBuf", 1096, 5], ["RPushbullet", 1100, 5], ["RQuantLib", 1101, 5], ["RSclient", 1105, 5], ["RVowpalWabbit", 1106, 5], ["Rarr", 1110, 5], ["RationalMatrix", 1111, 5], ["Rbowtie", 1112, 5], ["Rbowtie2", 1113, 5], ["Rbwa", 1114, 5], ["RcppAlgos", 1115, 5], ["RcppBigIntAlgos", 1116, 5], ["RcppCNPy", 1117, 5], ["RcppCWB", 1118, 5], ["RcppPlanc", 1122, 5], ["RcppZiggurat", 1126, 5], ["Rfastp", 1127, 5], ["Rglpk", 1132, 5], ["Rhdf5lib", 1133, 5], ["Rhtslib", 1137, 5], ["Rlibeemd", 1143, 5], ["Rmmquant", 1144, 5], ["Rmpfr", 1145, 5], ["Rmpi", 1149, 5], ["RoBMA", 1150, 5], ["RoBSA", 1151, 5], ["Rpoppler", 1152, 5], ["Rsamtools", 1153, 5], ["Rserve", 1158, 5], ["Rssa", 1159, 5], ["Rsubread", 1160, 5], ["Rsymphony", 1161, 5], ["Rwbo", 1169, 5], ["SICtools", 1170, 5], ["SLmetrics", 1174, 5], ["SPARSEMODr", 1175, 5], ["SemiCompRisks", 1176, 5], ["ShortRead", 1177, 5], ["Signac", 1178, 5], ["SuperGauss", 1179, 5], ["SynExtend", 1180, 5], ["TAQMNGR", 1181, 5], ["TDA", 1182, 5], ["TransView", 1183, 5], ["V8", 1188, 5], ["VariantAnnotation", 1194, 5], ["XML", 1200, 5], ["XVector", 1206, 5], ["XYomics", 1207, 5], ["adbcpostgresql", 1208, 5], ["adimpro", 1216, 5], ["affyPLM", 1220, 5], ["affyio", 1221, 5], ["arcgisplaces", 1222, 5], ["archive", 1223, 5], ["arrangements", 1224, 5], ["asciicast", 1225, 5], ["audio", 1234, 5], ["bamsignals", 1235, 5], ["baseline", 1240, 5], ["bayesWatch", 1241, 5], ["bbl", 1242, 5], ["bgx", 1243, 5], ["bigmemory", 1244, 5], ["bigrquerystorage", 1245, 5], ["bigsnpr", 1249, 5], ["bio3d", 1250, 5], ["bioacoustics", 1251, 5], ["blosc", 1252, 5], ["bnpmr", 1253, 5], ["cairoDevice", 1254, 5], ["cartogramR", 1255, 5], ["catSurv", 1256, 5], ["ccfindR", 1257, 5], ["chebpol", 1258, 5], ["cit", 1262, 5], ["cld3", 1263, 5], ["clustermq", 1264, 5], ["cmtkr", 1265, 5], ["cpp11bigwig", 1266, 5], ["cpp11qpdf", 1267, 5], ["crandep", 1271, 5], ["csaw", 1272, 5], ["curl", 1278, 5], ["data_table", 1279, 5], ["deepSNV", 1286, 5], ["devEMF", 1291, 5], ["diffHic", 1292, 5], ["diversitree", 1296, 5], ["divest", 1297, 5], ["drogonR", 1298, 5], ["econetwork", 1302, 5], ["eds", 1303, 5], ["epialleleR", 1304, 5], ["fastpng", 1309, 5], ["fftw", 1310, 5], ["fftwtools", 1311, 5], ["fingerPro", 1312, 5], ["flan", 1313, 5], ["flint", 1314, 5], ["flowWorkspace", 1319, 5], ["frailtyMMpen", 1320, 5], ["fraq", 1321, 5], ["fs", 1325, 5], ["gamstransfer", 1326, 5], ["gaston", 1327, 5], ["gdalcubes", 1328, 5], ["gdalraster", 1332, 5], ["gdtools", 1333, 5], ["gert", 1344, 5], ["gfilogisreg", 1345, 5], ["ggiraph", 1346, 5], ["git2r", 1347, 5], ["glpkAPI", 1348, 5], ["gmapR", 1349, 5], ["gmp", 1350, 5], ["gpg", 1351, 5], ["gpuMagic", 1352, 5], ["gridGraphics", 1353, 5], ["gridmicrotex", 1354, 5], ["h5vc", 1355, 5], ["hadron", 1360, 5], ["haven", 1361, 5], ["hipread", 1362, 5], ["httpuv", 1363, 5], ["hypergeo2", 1367, 5], ["iBMQ", 1371, 5], ["igraph", 1372, 5], ["ijtiff", 1377, 5], ["image_CannyEdges", 1382, 5], ["image_textlinedetector", 1386, 5], ["imager", 1387, 5], ["imbibe", 1392, 5], ["immunoClust", 1393, 5], ["impARI", 1394, 5], ["interpolation", 1395, 5], ["iscream", 1399, 5], ["jack", 1404, 5], ["jackalope", 1408, 5], ["jpeg", 1413, 5], ["jqr", 1414, 5], ["knowYourCG", 1415, 5], ["kza", 1419, 5], ["landsepi", 1420, 5], ["largeList", 1421, 5], ["leidenAlg", 1422, 5], ["libdeflate", 1423, 5], ["libstable4u", 1424, 5], ["libstableR", 1425, 5], ["littler", 1426, 5], ["lpsymphony", 1435, 5], ["lstar", 1440, 5], ["lwgeom", 1441, 5], ["mBvs", 1442, 5], ["maftools", 1443, 5], ["magick", 1448, 5], ["mappoly", 1449, 5], ["markets", 1450, 5], ["matchingMarkets", 1451, 5], ["methylKit", 1452, 5], ["milorGWAS", 1457, 5], ["minimaxALT", 1458, 5], ["mitoClone2", 1459, 5], ["mixcat", 1464, 5], ["mongolite", 1465, 5], ["multibridge", 1470, 5], ["mutscan", 1471, 5], ["mvabund", 1472, 5], ["mwaved", 1473, 5], ["nanonext", 1474, 5], ["nat", 1478, 5], ["nat_templatebrains", 1479, 5], ["ncdfFlow", 1480, 5], ["ndjson", 1481, 5], ["neojags", 1482, 5], ["nloptr", 1483, 5], ["npRmpi", 1484, 5], ["odbc", 1485, 5], ["oligo", 1486, 5], ["openssl", 1487, 5], ["otelsdk", 1488, 5], ["pak", 1493, 5], ["parseLatex", 1494, 5], ["pbdZMQ", 1495, 5], ["pcaL1", 1496, 5], ["pdftools", 1497, 5], ["pgenlibr", 1498, 5], ["pliman", 1499, 5], ["png", 1503, 5], ["podkat", 1504, 5], ["poisbinom", 1509, 5], ["pqsfinder", 1510, 5], ["proj4", 1511, 5], ["protolite", 1512, 5], ["psbcGroup", 1513, 5], ["qckitfastq", 1514, 5], ["qpdf", 1515, 5], ["qqconf", 1519, 5], ["qrqc", 1520, 5], ["qspray", 1521, 5], ["rDEA", 1525, 5], ["rGEDI", 1526, 5], ["rJPSGCS", 1532, 5], ["rJava", 1533, 5], ["raer", 1542, 5], ["ragg", 1547, 5], ["ratioOfQsprays", 1559, 5], ["ravetools", 1563, 5], ["rawrr", 1564, 5], ["rbedrock", 1565, 5], ["rcdd", 1566, 5], ["redux", 1567, 5], ["resultant", 1568, 5], ["rgdal", 1572, 5], ["rgl", 1573, 5], ["rhdf5filters", 1580, 5], ["ridge", 1584, 5], ["rip_opencv", 1585, 5], ["rjags", 1586, 5], ["rlas", 1587, 5], ["rmatio", 1591, 5], ["rmumps", 1592, 5], ["rrd", 1593, 5], ["rsbml", 1594, 5], ["rsvg", 1595, 5], ["rswipl", 1596, 5], ["rtk", 1601, 5], ["rtmpt", 1602, 5], ["rtracklayer", 1603, 5], ["runjags", 1607, 5], ["rvMF", 1608, 5], ["rvg", 1609, 5], ["rzmq", 1610, 5], ["s2", 1611, 5], ["saeMSPE", 1615, 5], ["sbrl", 1616, 5], ["scModels", 1617, 5], ["scPipe", 1618, 5], ["screenCounter", 1623, 5], ["sdcTable", 1624, 5], ["seqTools", 1628, 5], ["seqbias", 1629, 5], ["seqinr", 1634, 5], ["seqminer", 1635, 5], ["sf", 1641, 5], ["showtext", 1645, 5], ["simplexreg", 1650, 5], ["snpStats", 1651, 5], ["sodium", 1652, 5], ["spFW", 1653, 5], ["spaMM", 1654, 5], ["sparkwarc", 1655, 5], ["spate", 1656, 5], ["specklestar", 1657, 5], ["sphereTessellation", 1658, 5], ["spp", 1662, 5], ["ssh", 1663, 5], ["strawr", 1664, 5], ["stringfish", 1665, 5], ["stringi", 1666, 5], ["stsm", 1667, 5], ["sundialr", 1668, 5], ["surveyvoi", 1669, 5], ["svKomodo", 1673, 5], ["svglite", 1674, 5], ["symbolicQspray", 1675, 5], ["symengine", 1679, 5], ["sysfonts", 1684, 5], ["systemfonts", 1689, 5], ["talib", 1693, 5], ["tcltk2", 1694, 5], ["telegramR", 1698, 5], ["terra", 1699, 5], ["tesseract", 1703, 5], ["textshaping", 1707, 5], ["tfevents", 1713, 5], ["themetagenomics", 1714, 5], ["tidypopgen", 1715, 5], ["tiff", 1716, 5], ["tikzDevice", 1717, 5], ["tkrplot", 1721, 5], ["topicmodels", 1725, 5], ["transmogR", 1726, 5], ["udunits2", 1727, 5], ["ulid", 1731, 5], ["unigd", 1732, 5], ["units", 1742, 5], ["unix", 1743, 5], ["unrtf", 1744, 5], ["vapour", 1753, 5], ["vcfR", 1754, 5], ["vcfppR", 1755, 5], ["vdiffr", 1762, 5], ["webp", 1763, 5], ["websocket", 1764, 5], ["writexl", 1765, 5], ["xdvir", 1766, 5], ["xml2", 1767, 5], ["xslt", 1768, 5], ["yyjsonr", 1775, 5], ["zlib", 1776, 5]], [["NIX_CFLAGS_COMPILE", 2006, 9]], [["env", 2004, 7]], [["postPatch", 2011, 7]], [["NIX_CFLAGS_COMPILE", 2020, 9]], [["env", 2019, 7]], [["hydraPlatforms", 2026, 44]], [["NIX_CFLAGS_COMPILE", 2046, 9]], [["postPatch", 2033, 7], ["env", 2045, 7]], [["patches", 2053, 7]], [["NIX_CFLAGS_COMPILE", 2059, 9]], [["env", 2057, 7], ["enableParallelBuilding", 2063, 7]], [["hardeningDisable", 2067, 7]], [["preConfigure", 2071, 7]], [["hardeningDisable", 2078, 7]], [["NIX_CFLAGS_COMPILE", 2083, 9]], [["env", 2082, 7]], [["postPatch", 2089, 7]], [["NIX_CFLAGS_COMPILE", 2099, 9]], [["env", 2097, 7]], [["postPatch", 2104, 7]], [["postPatch", 2112, 7]], [["propagatedBuildInputs", 2123, 7], ["postPatch", 2125, 7], ["preInstall", 2135, 7]], [["configureFlags", 2148, 7]], [["configureFlags", 2155, 7]], [["configureFlags", 2159, 7]], [["platforms", 2166, 7]], [["postPatch", 2171, 7]], [["hardeningDisable", 2179, 7]], [["cmakeFlags", 2185, 11], ["buildInputs", 2186, 11], ["postInstall", 2187, 11]], [["hdf5", 2198, 18]], [["propagatedBuildInputs", 2193, 9], ["patches", 2197, 9], ["passthru", 2198, 9]], [["enableParallelBuilding", 2202, 7]], [["preConfigure", 2206, 7]], [["platforms", 2211, 38]], [["configureFlags", 2214, 7], ["patches", 2219, 7], ["postInstall", 2225, 7]], [["NIX_CFLAGS_COMPILE", 2233, 9]], [["env", 2232, 7]], [["postPatch", 2238, 7], ["hardeningDisable", 2241, 7]], [["PKG_LIBS", 2246, 9]], [["env", 2245, 7]], [["postPatch", 2251, 7]], [["enableParallelBuilding", 2260, 7]], [["R_MAKEVARS_SITE", 2270, 9]], [["preConfigure", 2264, 7], ["env", 2269, 7]], [["url", 2281, 11], ["hash", 2282, 11]], [["url", 2285, 11], ["hash", 2286, 11]], [["url", 2289, 11], ["hash", 2290, 11]], [["url", 2293, 11], ["hash", 2294, 11]], [["url", 2297, 11], ["hash", 2298, 11]], [["url", 2301, 11], ["hash", 2302, 11]], [["url", 2305, 11], ["hash", 2306, 11]], [["url", 2309, 11], ["hash", 2310, 11]], [["url", 2313, 11], ["hash", 2314, 11]], [["url", 2317, 11], ["hash", 2318, 11]], [["url", 2321, 11], ["hash", 2322, 11]], [["url", 2325, 11], ["hash", 2326, 11]], [["preConfigure", 2330, 9], ["postPatch", 2345, 9]], [["configureFlags", 2356, 7]], [["src", 2371, 7], ["name", 2372, 7], ["prePatch", 2373, 7], ["buildInputs", 2374, 7]], [["hardeningDisable", 2380, 7]], [["preConfigure", 2384, 7]], [["enableParallelBuilding", 2388, 7]], [["NIX_CFLAGS_COMPILE", 2393, 9]], [["env", 2392, 7]], [["platforms", 2397, 36]], [["postPatch", 2400, 7]], [["postPatch", 2415, 7]], [["enableParallelBuilding", 2424, 7]], [["platforms", 2427, 42]], [["NIX_LDFLAGS", 2431, 9]], [["env", 2430, 7]], [["postPatch", 2436, 7]], [["buildInputs", 2445, 7]], [["RGL_USE_NULL", 2450, 9]], [["env", 2449, 7]], [["NIX_CFLAGS_COMPILE", 2457, 9]], [["env", 2455, 7]], [["hardeningDisable", 2464, 7]], [["preConfigure", 2468, 7]], [["LC_ALL", 2482, 9]], [["env", 2481, 7]], [["nativeBuildInputs", 2487, 7], ["buildInputs", 2488, 7]], [["url", 2494, 11], ["hash", 2495, 11]], [["url", 2499, 11], ["hash", 2500, 11]], [["url", 2511, 11], ["hash", 2512, 11]], [["mhc41_allele_list", 2518, 13], ["mhcii40_alleles_name_list", 2519, 13], ["valid_geographics", 2520, 13]], [["patches", 2516, 9]], [["propagatedBuildInputs", 2528, 7], ["buildInputs", 2530, 7], ["postPatch", 2532, 7]], [["postInstall", 2539, 7]], [["postPatch", 2550, 7]], [["hardeningDisable", 2558, 7]], [["NIX_CFLAGS_COMPILE", 2564, 9]], [["env", 2562, 7]], [["NIX_LDFLAGS", 2570, 9]], [["env", 2569, 7]], [["url", 2577, 11], ["hash", 2578, 11]], [["postPatch", 2582, 9]], [["NIX_CFLAGS_COMPILE", 2591, 9]], [["env", 2589, 7], ["enableParallelBuilding", 2595, 7]], [["hardeningDisable", 2599, 7]], [["enableGtk3", 2605, 11]], [["buildInputs", 2609, 9]], [["postPatch", 2614, 7]], [["preConfigure", 2621, 7]], [["postPatch", 2627, 7]], [["propagatedBuildInputs", 2635, 7], ["postPatch", 2636, 7]], [["hardeningDisable", 2643, 7]], [["preConfigure", 2647, 7]], [["postPatch", 2658, 7]], [["name", 2680, 13], ["url", 2681, 13], ["hash", 2682, 21]], [["platform", 2689, 15], ["hash", 2690, 15]], [["platform", 2693, 15], ["hash", 2694, 15]], [["x86_64-linux", 2688, 13], ["aarch64-darwin", 2692, 13]], [["redatam-core-per-system", 2687, 11], ["redatam-core", 2698, 11]], [["platforms", 2713, 11], ["license", 2714, 11]], [["passthru", 2686, 9], ["postPatch", 2703, 9], ["preConfigure", 2708, 9], ["meta", 2712, 9]], [["PKGCONFIG_CFLAGS", 2721, 9], ["PKGCONFIG_LIBS", 2722, 9]], [["env", 2720, 7]], [["postPatch", 2729, 7]], [["RGL_USE_NULL", 2739, 9]], [["env", 2738, 7]], [["enableParallelBuilding", 2744, 7]], [["NIX_CFLAGS_COMPILE", 2749, 11]], [["patches", 2748, 7], ["env", 2749, 7]], [["patches", 2754, 7]], [["preConfigure", 2758, 7]], [["preConfigure", 2764, 7]], [["LIBCLANG_PATH", 2772, 9]], [["env", 2771, 7]], [["postPatch", 2777, 7]], [["NIX_CFLAGS_COMPILE", 2788, 9]], [["env", 2787, 7]], [["NIX_CFLAGS_COMPILE", 2795, 9]], [["env", 2793, 7]], [["postPatch", 2800, 7]], [["preConfigure", 2809, 7]], [["PKG_LIBS", 2817, 9]], [["env", 2816, 7]], [["preConfigure", 2823, 7]], [["preConfigure", 2839, 7]], [["NIX_LDFLAGS", 2851, 9]], [["env", 2850, 7]], [["preConfigure", 2856, 7]], [["NIX_LDFLAGS", 2863, 11]], [["env", 2863, 7]], [["src", 2868, 9], ["sourceRoot", 2869, 9], ["hash", 2870, 9]], [["cargoDeps", 2867, 7], ["cargoRoot", 2873, 7], ["nativeBuildInputs", 2875, 7]], [["patches", 2882, 7]], [["postPatch", 2886, 7]], [["patches", 2895, 7]], [["postPatch", 2899, 7]], [["RGL_USE_NULL", 2908, 9]], [["env", 2907, 7]], [["postPatch", 2914, 7]], [["NIX_CFLAGS_COMPILE", 2922, 9]], [["env", 2921, 7]], [["ACME", 2003, 5], ["AneuFinder", 2010, 5], ["BiocParallel", 2018, 5], ["ChIPXpress", 2026, 5], ["ChemmineOB", 2028, 5], ["FLAMES", 2052, 5], ["FlexReg", 2056, 5], ["HilbertVis", 2066, 5], ["JavaGD", 2070, 5], ["MANOR", 2077, 5], ["ModelMetrics", 2081, 5], ["NGCHM", 2088, 5], ["OpenMx", 2096, 5], ["PICS", 2103, 5], ["RAppArmor", 2111, 5], ["RBioFormats", 2119, 5], ["ROracle", 2147, 5], ["RProtoBuf", 2154, 5], ["RVowpalWabbit", 2158, 5], ["RandomFieldsUtils", 2165, 5], ["Rbwa", 2169, 5], ["Rdisop", 2178, 5], ["Rhdf5lib", 2182, 5], ["Rhisat2", 2201, 5], ["Rhtslib", 2205, 5], ["Rrdrand", 2211, 5], ["Rserve", 2213, 5], ["SAIGEgds", 2231, 5], ["SICtools", 2237, 5], ["SamplerCompare", 2244, 5], ["SingleR", 2250, 5], ["SynExtend", 2258, 5], ["V8", 2263, 5], ["XLConnect", 2278, 5], ["alcyon", 2355, 5], ["arrow", 2370, 5], ["cisPath", 2379, 5], ["covidsymptom", 2383, 5], ["cubature", 2387, 5], ["data_table", 2391, 5], ["dbarts", 2397, 5], ["exifr", 2399, 5], ["findpython", 2414, 5], ["float", 2423, 5], ["flowClust", 2427, 5], ["gdtools", 2429, 5], ["genoCN", 2435, 5], ["geojsonio", 2444, 5], ["geomorph", 2448, 5], ["gmapR", 2454, 5], ["gpuMagic", 2463, 5], ["h2o", 2467, 5], ["harbinger", 2480, 5], ["hdf5r", 2486, 5], ["immunotation", 2491, 5], ["iscream", 2525, 5], ["littler", 2538, 5], ["lpsymphony", 2549, 5], ["luajr", 2557, 5], ["metahdep", 2561, 5], ["nanonext", 2568, 5], ["nearfar", 2574, 5], ["networkscaleup", 2588, 5], ["oligo", 2598, 5], ["opencv", 2602, 5], ["openssl", 2612, 5], ["pak", 2620, 5], ["pbdZMQ", 2626, 5], ["quarto", 2634, 5], ["rGADEM", 2642, 5], ["rJava", 2646, 5], ["rawrr", 2657, 5], ["redatamx", 2674, 5], ["redland", 2719, 5], ["rextendr", 2728, 5], ["rgl", 2737, 5], ["rgoslin", 2743, 5], ["rhdf5", 2747, 5], ["rhdf5filters", 2753, 5], ["rlibkriging", 2757, 5], ["rmarkdown", 2763, 5], ["roxigraph", 2770, 5], ["rpanel", 2776, 5], ["rstan", 2786, 5], ["rstanarm", 2792, 5], ["rvisidata", 2799, 5], ["s2", 2808, 5], ["slfm", 2815, 5], ["sparklyr", 2821, 5], ["symengine", 2838, 5], ["talib", 2848, 5], ["tesseract", 2855, 5], ["textshaping", 2862, 5], ["timeless", 2866, 5], ["trajeR", 2881, 5], ["trigger", 2885, 5], ["universalmotif", 2894, 5], ["unix", 2898, 5], ["vegan3d", 2906, 5], ["websocket", 2912, 5], ["xslt", 2920, 5]]]);
 const formals$1 = { args: { R: false, pkgs: false, overrides: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["R", 27, 13]]);
 const formals$2 = { args: { mkHomepage: false, mkUrls: false, hydraPlatforms: true }, ellipsis: false };
 const formals$3 = { args: { name: false, version: false, sha256: false, depends: true, doCheck: true, requireX: true, broken: true, platforms: true, hydraPlatforms: true, maintainers: true }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["name", 62, 44], ["version", 62, 49]]);
-const pos$3 = nix.positions(here + "/default.nix", [["sha256", 61, 19], ["urls", 62, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 66, 55]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 66, 14], ["platforms", 67, 14], ["hydraPlatforms", 68, 14], ["broken", 69, 14], ["maintainers", 70, 14]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 58, 9], ["version", 59, 17], ["src", 60, 9], ["doCheck", 64, 17], ["requireX", 64, 25], ["propagatedBuildInputs", 65, 9], ["meta", 66, 9]]);
 const formals$4 = { args: { name: false, biocVersion: false }, ellipsis: false };
 const formals$5 = { args: { name: false, version: false, biocVersion: false }, ellipsis: false };
-const pos$7 = nix.positions(here + "/default.nix", [["mkHomepage", 78, 5], ["mkUrls", 80, 5]]);
 const formals$6 = { args: { name: false, biocVersion: false }, ellipsis: false };
 const formals$7 = { args: { name: false, version: false, biocVersion: false }, ellipsis: false };
-const pos$8 = nix.positions(here + "/default.nix", [["mkHomepage", 93, 5], ["mkUrls", 96, 5], ["hydraPlatforms", 105, 5]]);
 const formals$8 = { args: { name: false, biocVersion: false }, ellipsis: false };
 const formals$9 = { args: { name: false, version: false, biocVersion: false }, ellipsis: false };
-const pos$9 = nix.positions(here + "/default.nix", [["mkHomepage", 108, 5], ["mkUrls", 111, 5], ["hydraPlatforms", 120, 5]]);
 const formals$10 = { args: { name: false }, ellipsis: false };
 const formals$11 = { args: { name: false, version: false }, ellipsis: false };
-const pos$10 = nix.positions(here + "/default.nix", [["mkHomepage", 123, 5], ["mkUrls", 124, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 151, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["buildInputs", 174, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["maintainers", 197, 9]]);
-const pos$14 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 220, 9]]);
-const pos$15 = nix.positions(here + "/default.nix", [["requireX", 243, 9]]);
-const pos$16 = nix.positions(here + "/default.nix", [["preInstall", 270, 9]]);
-const pos$17 = nix.positions(here + "/default.nix", [["doCheck", 296, 9]]);
-const pos$18 = nix.positions(here + "/default.nix", [["broken", 319, 9]]);
-const pos$19 = nix.positions(here + "/default.nix", [["buildRPackage", 347, 13]]);
-const pos$20 = nix.positions(here + "/default.nix", [["depends", 362, 16]]);
-const pos$21 = nix.positions(here + "/default.nix", [["BiocManager", 370, 5], ["RQuantLib", 371, 5], ["StructuralVariantAnnotation", 372, 5], ["XLConnect", 373, 5], ["data_table", 374, 5], ["ggplot2", 375, 5], ["iscream", 376, 5], ["svaNUMT", 377, 5], ["svaRetro", 378, 5]]);
-const pos$22 = nix.positions(here + "/default.nix", [["BayesPET", 384, 5], ["TriDimRegression", 385, 5], ["bayesdfa", 386, 5], ["bbmix", 387, 5], ["disbayes", 388, 5], ["gastempt", 389, 5], ["interactiveDisplay", 390, 5], ["pliman", 391, 5], ["rmsb", 392, 5], ["spectralGraphTopology", 393, 5], ["survextrap", 394, 5], ["tipsae", 395, 5]]);
-const pos$23 = nix.positions(here + "/default.nix", [["Apollonius", 401, 5], ["BayesXsrc", 402, 5], ["BigDataStatMeth", 403, 5], ["BiocCheck", 404, 5], ["CBN2Path", 405, 5], ["CLVTools", 406, 5], ["Cairo", 407, 5], ["Cardinal", 408, 5], ["ChemmineOB", 409, 5], ["CytoML", 410, 5], ["DirichletMultinomial", 411, 5], ["GLAD", 412, 5], ["GPBayes", 413, 5], ["JMcmprsk", 414, 5], ["KSgeneral", 415, 5], ["LCMCR", 416, 5], ["PEPBVS", 417, 5], ["PICS", 418, 5], ["QF", 419, 5], ["R2SWF", 420, 5], ["RAppArmor", 421, 5], ["RCurl", 422, 5], ["RDieHarder", 423, 5], ["RFIF", 424, 5], ["RGtk2", 425, 5], ["RJMCMCNucleosomes", 426, 5], ["RKHSMetaMod", 427, 5], ["RMariaDB", 428, 5], ["RMySQL", 429, 5], ["RNetCDF", 430, 5], ["RPesto", 431, 5], ["RPostgreSQL", 435, 5], ["RProtoBuf", 436, 5], ["RQuantLib", 437, 5], ["RationalMatrix", 438, 5], ["RcppCWB", 439, 5], ["RcppDPR", 443, 5], ["RcppGSL", 444, 5], ["RcppMeCab", 445, 5], ["RcppPlanc", 446, 5], ["RcppZiggurat", 451, 5], ["Rhdf5lib", 452, 5], ["Rhisat2", 455, 5], ["Rhpc", 459, 5], ["Rigraphlib", 469, 5], ["Rlibeemd", 470, 5], ["RmecabKo", 471, 5], ["Rmpi", 472, 5], ["RoBMA", 476, 5], ["RoBSA", 477, 5], ["Rpoppler", 478, 5], ["Rsubbotools", 479, 5], ["Rsymphony", 480, 5], ["SQLFormatteR", 481, 5], ["SimInf", 485, 5], ["SuperGauss", 486, 5], ["SymTS", 487, 5], ["Uno", 488, 5], ["V8", 492, 5], ["VBLPCM", 493, 5], ["XBRL", 494, 5], ["XML", 495, 5], ["a5R", 499, 5], ["abn", 503, 5], ["adimpro", 507, 5], ["ahocorasick", 508, 5], ["alcyon", 512, 5], ["animation", 516, 5], ["apcf", 517, 5], ["apsimx", 518, 5], ["arcgisgeocode", 519, 5], ["arcgisplaces", 523, 5], ["arcgisutils", 528, 5], ["arcpbf", 532, 5], ["arrow", 536, 5], ["astgrepr", 543, 5], ["automerge", 547, 5], ["awdb", 552, 5], ["b32", 556, 5], ["b64", 560, 5], ["bigGP", 564, 5], ["bigrquerystorage", 565, 5], ["bioacoustics", 570, 5], ["blosc", 571, 5], ["cairoDevice", 572, 5], ["cartogramR", 573, 5], ["catSurv", 574, 5], ["caugi", 575, 5], ["caviarpd", 579, 5], ["chebpol", 583, 5], ["ciflyr", 584, 5], ["cit", 588, 5], ["clarabel", 589, 5], ["cld3", 590, 5], ["clustermq", 591, 5], ["coga", 592, 5], ["cpp11bigwig", 593, 5], ["crc32c", 594, 5], ["data_table", 598, 5], ["datefixR", 599, 5], ["diseq", 603, 5], ["diversitree", 604, 5], ["drogonR", 605, 5], ["dynr", 606, 5], ["eaf", 607, 5], ["econetwork", 608, 5], ["enderecobr", 609, 5], ["eulerr", 613, 5], ["exactextractr", 617, 5], ["excursions", 618, 5], ["fRLR", 619, 5], ["fangs", 620, 5], ["fastgeojson", 624, 5], ["fcl", 628, 5], ["fftw", 632, 5], ["fftwtools", 633, 5], ["fingerPro", 634, 5], ["fio", 635, 5], ["flan", 639, 5], ["flint", 640, 5], ["flowPeaks", 641, 5], ["fozziejoin", 642, 5], ["frailtyMMpen", 646, 5], ["fraq", 647, 5], ["fru", 648, 5], ["gadjid", 652, 5], ["gdalcubes", 656, 5], ["gdalraster", 661, 5], ["gdtools", 665, 5], ["gert", 666, 5], ["gglinedensity", 667, 5], ["gifski", 668, 5], ["git2r", 672, 5], ["glpkAPI", 673, 5], ["gridmicrotex", 674, 5], ["gsl", 675, 5], ["gslnls", 676, 5], ["gtfsrealtime", 677, 5], ["h3o", 681, 5], ["hSDM", 685, 5], ["harbinger", 686, 5], ["heck", 687, 5], ["hellorust", 691, 5], ["hgwrr", 692, 5], ["highs", 693, 5], ["httpuv", 697, 5], ["hypergeo2", 698, 5], ["iBMQ", 699, 5], ["image_textlinedetector", 700, 5], ["imager", 701, 5], ["immunoClust", 702, 5], ["interpolation", 703, 5], ["iscream", 704, 5], ["island", 708, 5], ["jSDM", 709, 5], ["jack", 710, 5], ["kza", 711, 5], ["libdeflate", 712, 5], ["libimath", 716, 5], ["libipldr", 717, 5], ["llmjson", 721, 5], ["lnmixsurv", 725, 5], ["lpsymphony", 726, 5], ["lwgeom", 731, 5], ["magick", 735, 5], ["markets", 736, 5], ["mashr", 737, 5], ["mcrPioda", 738, 5], ["minimaxALT", 739, 5], ["mixlink", 740, 5], ["mixture", 741, 5], ["mmpca", 742, 5], ["mongolite", 743, 5], ["monoreg", 744, 5], ["multibridge", 745, 5], ["mvabund", 746, 5], ["mvst", 747, 5], ["mwaved", 748, 5], ["mx_crypto", 749, 5], ["n1qn1", 753, 5], ["ncdf4", 754, 5], ["neojags", 755, 5], ["netboost", 756, 5], ["nloptr", 757, 5], ["npRmpi", 758, 5], ["odbc", 762, 5], ["opencv", 763, 5], ["openssl", 764, 5], ["orbweaver", 765, 5], ["osmnxr", 769, 5], ["otelsdk", 773, 5], ["pander", 777, 5], ["pbdMPI", 781, 5], ["pbdPROF", 782, 5], ["pbdZMQ", 783, 5], ["pcaL1", 784, 5], ["pdfsigner", 785, 5], ["pdftools", 789, 5], ["pexm", 790, 5], ["phytools", 791, 5], ["png", 792, 5], ["protolite", 793, 5], ["prqlr", 794, 5], ["qqconf", 798, 5], ["qspray", 799, 5], ["rGEDI", 800, 5], ["rJava", 801, 5], ["ragg", 802, 5], ["rapport", 803, 5], ["rapportools", 804, 5], ["ratioOfQsprays", 805, 5], ["ravetools", 806, 5], ["rbedrock", 807, 5], ["rbm25", 811, 5], ["rcontroll", 815, 5], ["redux", 816, 5], ["reprex", 817, 5], ["resultant", 818, 5], ["rgdal", 819, 5], ["rgeos", 820, 5], ["ridge", 821, 5], ["rip_opencv", 822, 5], ["rjags", 823, 5], ["rlas", 824, 5], ["rlibkriging", 829, 5], ["rmatio", 830, 5], ["rnetcarto", 831, 5], ["roxigraph", 832, 5], ["rrd", 836, 5], ["rsamplr", 837, 5], ["rsbml", 841, 5], ["rsgeo", 842, 5], ["rshift", 846, 5], ["rsvg", 850, 5], ["rswipl", 851, 5], ["rtiktoken", 855, 5], ["rtracklayer", 859, 5], ["runjags", 860, 5], ["rzmq", 861, 5], ["s2", 862, 5], ["salso", 863, 5], ["sbrl", 867, 5], ["sceua", 868, 5], ["scip", 872, 5], ["scorematchingad", 876, 5], ["sf", 877, 5], ["showtext", 882, 5], ["shrinkTVP", 883, 5], ["smam", 884, 5], ["smcryptoR", 885, 5], ["smoothbp", 890, 5], ["socratadata", 894, 5], ["sodium", 898, 5], ["spate", 899, 5], ["sphereTessellation", 900, 5], ["spopt", 901, 5], ["stpphawkes", 905, 5], ["string2path", 906, 5], ["stringfish", 907, 5], ["stringi", 908, 5], ["sundialr", 909, 5], ["survSNP", 910, 5], ["surveyvoi", 911, 5], ["symbolicQspray", 912, 5], ["sysfonts", 913, 5], ["systemfonts", 914, 5], ["talib", 915, 5], ["tergo", 916, 5], ["terra", 920, 5], ["tesseract", 925, 5], ["textshaping", 926, 5], ["tfevents", 927, 5], ["tinyimg", 928, 5], ["tok", 932, 5], ["tomledit", 936, 5], ["unigd", 940, 5], ["unix", 941, 5], ["unsum", 942, 5], ["uuidx", 946, 5], ["vapour", 950, 5], ["watcher", 954, 5], ["waysign", 958, 5], ["webp", 962, 5], ["websocket", 963, 5], ["xactonomial", 964, 5], ["xml2", 968, 5], ["xslt", 969, 5], ["yaml12", 970, 5], ["ymd", 974, 5], ["zoomerjoin", 978, 5]]);
-const pos$24 = nix.positions(here + "/default.nix", [["AMOUNTAIN", 987, 5], ["Apollonius", 988, 5], ["ArrayExpressHTS", 992, 5], ["BNSP", 997, 5], ["BayesChange", 998, 5], ["BayesSAE", 999, 5], ["BayesVarSel", 1000, 5], ["BigDataStatMeth", 1001, 5], ["BinaryDosage", 1002, 5], ["BitSeq", 1003, 5], ["CNEr", 1004, 5], ["Cairo", 1005, 5], ["CellBarcode", 1006, 5], ["ChemmineOB", 1007, 5], ["DEploid", 1012, 5], ["DEploid_utils", 1013, 5], ["DGP4LCF", 1014, 5], ["DiffBind", 1018, 5], ["DropletUtils", 1023, 5], ["EHRmuse", 1024, 5], ["FLAMES", 1025, 5], ["GLAD", 1030, 5], ["GMMAT", 1031, 5], ["GRAB", 1035, 5], ["GeneralizedWendland", 1036, 5], ["GeoFIS", 1037, 5], ["GrafGen", 1041, 5], ["HDF5Array", 1042, 5], ["HiCDCPlus", 1043, 5], ["HiCParser", 1044, 5], ["HiCseg", 1045, 5], ["HiSpaR", 1046, 5], ["KFKSDS", 1047, 5], ["KSgeneral", 1048, 5], ["LOMAR", 1049, 5], ["Libra", 1050, 5], ["MAGEE", 1051, 5], ["MedianaDesigner", 1055, 5], ["MethScope", 1056, 5], ["ModelMetrics", 1060, 5], ["NanoMethViz", 1061, 5], ["OpenCL", 1062, 5], ["PING", 1066, 5], ["PKI", 1067, 5], ["PROJ", 1068, 5], ["PoissonBinomial", 1069, 5], ["PoissonMultinomial", 1070, 5], ["PopGenome", 1071, 5], ["QuasR", 1072, 5], ["R2SWF", 1077, 5], ["RAppArmor", 1082, 5], ["RFIF", 1083, 5], ["RGtk2", 1084, 5], ["RITCH", 1085, 5], ["RKHSMetaMod", 1086, 5], ["RMark", 1087, 5], ["RNetCDF", 1088, 5], ["RNifti", 1092, 5], ["RNiftyReg", 1093, 5], ["RODBC", 1094, 5], ["RPostgres", 1095, 5], ["RProtoBuf", 1096, 5], ["RPushbullet", 1100, 5], ["RQuantLib", 1101, 5], ["RSclient", 1105, 5], ["RVowpalWabbit", 1106, 5], ["Rarr", 1110, 5], ["RationalMatrix", 1111, 5], ["Rbowtie", 1112, 5], ["Rbowtie2", 1113, 5], ["Rbwa", 1114, 5], ["RcppAlgos", 1115, 5], ["RcppBigIntAlgos", 1116, 5], ["RcppCNPy", 1117, 5], ["RcppCWB", 1118, 5], ["RcppPlanc", 1122, 5], ["RcppZiggurat", 1126, 5], ["Rfastp", 1127, 5], ["Rglpk", 1132, 5], ["Rhdf5lib", 1133, 5], ["Rhtslib", 1137, 5], ["Rlibeemd", 1143, 5], ["Rmmquant", 1144, 5], ["Rmpfr", 1145, 5], ["Rmpi", 1149, 5], ["RoBMA", 1150, 5], ["RoBSA", 1151, 5], ["Rpoppler", 1152, 5], ["Rsamtools", 1153, 5], ["Rserve", 1158, 5], ["Rssa", 1159, 5], ["Rsubread", 1160, 5], ["Rsymphony", 1161, 5], ["Rwbo", 1169, 5], ["SICtools", 1170, 5], ["SLmetrics", 1174, 5], ["SPARSEMODr", 1175, 5], ["SemiCompRisks", 1176, 5], ["ShortRead", 1177, 5], ["Signac", 1178, 5], ["SuperGauss", 1179, 5], ["SynExtend", 1180, 5], ["TAQMNGR", 1181, 5], ["TDA", 1182, 5], ["TransView", 1183, 5], ["V8", 1188, 5], ["VariantAnnotation", 1194, 5], ["XML", 1200, 5], ["XVector", 1206, 5], ["XYomics", 1207, 5], ["adbcpostgresql", 1208, 5], ["adimpro", 1216, 5], ["affyPLM", 1220, 5], ["affyio", 1221, 5], ["arcgisplaces", 1222, 5], ["archive", 1223, 5], ["arrangements", 1224, 5], ["asciicast", 1225, 5], ["audio", 1234, 5], ["bamsignals", 1235, 5], ["baseline", 1240, 5], ["bayesWatch", 1241, 5], ["bbl", 1242, 5], ["bgx", 1243, 5], ["bigmemory", 1244, 5], ["bigrquerystorage", 1245, 5], ["bigsnpr", 1249, 5], ["bio3d", 1250, 5], ["bioacoustics", 1251, 5], ["blosc", 1252, 5], ["bnpmr", 1253, 5], ["cairoDevice", 1254, 5], ["cartogramR", 1255, 5], ["catSurv", 1256, 5], ["ccfindR", 1257, 5], ["chebpol", 1258, 5], ["cit", 1262, 5], ["cld3", 1263, 5], ["clustermq", 1264, 5], ["cmtkr", 1265, 5], ["cpp11bigwig", 1266, 5], ["cpp11qpdf", 1267, 5], ["crandep", 1271, 5], ["csaw", 1272, 5], ["curl", 1278, 5], ["data_table", 1279, 5], ["deepSNV", 1286, 5], ["devEMF", 1291, 5], ["diffHic", 1292, 5], ["diversitree", 1296, 5], ["divest", 1297, 5], ["drogonR", 1298, 5], ["econetwork", 1302, 5], ["eds", 1303, 5], ["epialleleR", 1304, 5], ["fastpng", 1309, 5], ["fftw", 1310, 5], ["fftwtools", 1311, 5], ["fingerPro", 1312, 5], ["flan", 1313, 5], ["flint", 1314, 5], ["flowWorkspace", 1319, 5], ["frailtyMMpen", 1320, 5], ["fraq", 1321, 5], ["fs", 1325, 5], ["gamstransfer", 1326, 5], ["gaston", 1327, 5], ["gdalcubes", 1328, 5], ["gdalraster", 1332, 5], ["gdtools", 1333, 5], ["gert", 1344, 5], ["gfilogisreg", 1345, 5], ["ggiraph", 1346, 5], ["git2r", 1347, 5], ["glpkAPI", 1348, 5], ["gmapR", 1349, 5], ["gmp", 1350, 5], ["gpg", 1351, 5], ["gpuMagic", 1352, 5], ["gridGraphics", 1353, 5], ["gridmicrotex", 1354, 5], ["h5vc", 1355, 5], ["hadron", 1360, 5], ["haven", 1361, 5], ["hipread", 1362, 5], ["httpuv", 1363, 5], ["hypergeo2", 1367, 5], ["iBMQ", 1371, 5], ["igraph", 1372, 5], ["ijtiff", 1377, 5], ["image_CannyEdges", 1382, 5], ["image_textlinedetector", 1386, 5], ["imager", 1387, 5], ["imbibe", 1392, 5], ["immunoClust", 1393, 5], ["impARI", 1394, 5], ["interpolation", 1395, 5], ["iscream", 1399, 5], ["jack", 1404, 5], ["jackalope", 1408, 5], ["jpeg", 1413, 5], ["jqr", 1414, 5], ["knowYourCG", 1415, 5], ["kza", 1419, 5], ["landsepi", 1420, 5], ["largeList", 1421, 5], ["leidenAlg", 1422, 5], ["libdeflate", 1423, 5], ["libstable4u", 1424, 5], ["libstableR", 1425, 5], ["littler", 1426, 5], ["lpsymphony", 1435, 5], ["lstar", 1440, 5], ["lwgeom", 1441, 5], ["mBvs", 1442, 5], ["maftools", 1443, 5], ["magick", 1448, 5], ["mappoly", 1449, 5], ["markets", 1450, 5], ["matchingMarkets", 1451, 5], ["methylKit", 1452, 5], ["milorGWAS", 1457, 5], ["minimaxALT", 1458, 5], ["mitoClone2", 1459, 5], ["mixcat", 1464, 5], ["mongolite", 1465, 5], ["multibridge", 1470, 5], ["mutscan", 1471, 5], ["mvabund", 1472, 5], ["mwaved", 1473, 5], ["nanonext", 1474, 5], ["nat", 1478, 5], ["nat_templatebrains", 1479, 5], ["ncdfFlow", 1480, 5], ["ndjson", 1481, 5], ["neojags", 1482, 5], ["nloptr", 1483, 5], ["npRmpi", 1484, 5], ["odbc", 1485, 5], ["oligo", 1486, 5], ["openssl", 1487, 5], ["otelsdk", 1488, 5], ["pak", 1493, 5], ["parseLatex", 1494, 5], ["pbdZMQ", 1495, 5], ["pcaL1", 1496, 5], ["pdftools", 1497, 5], ["pgenlibr", 1498, 5], ["pliman", 1499, 5], ["png", 1503, 5], ["podkat", 1504, 5], ["poisbinom", 1509, 5], ["pqsfinder", 1510, 5], ["proj4", 1511, 5], ["protolite", 1512, 5], ["psbcGroup", 1513, 5], ["qckitfastq", 1514, 5], ["qpdf", 1515, 5], ["qqconf", 1519, 5], ["qrqc", 1520, 5], ["qspray", 1521, 5], ["rDEA", 1525, 5], ["rGEDI", 1526, 5], ["rJPSGCS", 1532, 5], ["rJava", 1533, 5], ["raer", 1542, 5], ["ragg", 1547, 5], ["ratioOfQsprays", 1559, 5], ["ravetools", 1563, 5], ["rawrr", 1564, 5], ["rbedrock", 1565, 5], ["rcdd", 1566, 5], ["redux", 1567, 5], ["resultant", 1568, 5], ["rgdal", 1572, 5], ["rgl", 1573, 5], ["rhdf5filters", 1580, 5], ["ridge", 1584, 5], ["rip_opencv", 1585, 5], ["rjags", 1586, 5], ["rlas", 1587, 5], ["rmatio", 1591, 5], ["rmumps", 1592, 5], ["rrd", 1593, 5], ["rsbml", 1594, 5], ["rsvg", 1595, 5], ["rswipl", 1596, 5], ["rtk", 1601, 5], ["rtmpt", 1602, 5], ["rtracklayer", 1603, 5], ["runjags", 1607, 5], ["rvMF", 1608, 5], ["rvg", 1609, 5], ["rzmq", 1610, 5], ["s2", 1611, 5], ["saeMSPE", 1615, 5], ["sbrl", 1616, 5], ["scModels", 1617, 5], ["scPipe", 1618, 5], ["screenCounter", 1623, 5], ["sdcTable", 1624, 5], ["seqTools", 1628, 5], ["seqbias", 1629, 5], ["seqinr", 1634, 5], ["seqminer", 1635, 5], ["sf", 1641, 5], ["showtext", 1645, 5], ["simplexreg", 1650, 5], ["snpStats", 1651, 5], ["sodium", 1652, 5], ["spFW", 1653, 5], ["spaMM", 1654, 5], ["sparkwarc", 1655, 5], ["spate", 1656, 5], ["specklestar", 1657, 5], ["sphereTessellation", 1658, 5], ["spp", 1662, 5], ["ssh", 1663, 5], ["strawr", 1664, 5], ["stringfish", 1665, 5], ["stringi", 1666, 5], ["stsm", 1667, 5], ["sundialr", 1668, 5], ["surveyvoi", 1669, 5], ["svKomodo", 1673, 5], ["svglite", 1674, 5], ["symbolicQspray", 1675, 5], ["symengine", 1679, 5], ["sysfonts", 1684, 5], ["systemfonts", 1689, 5], ["talib", 1693, 5], ["tcltk2", 1694, 5], ["telegramR", 1698, 5], ["terra", 1699, 5], ["tesseract", 1703, 5], ["textshaping", 1707, 5], ["tfevents", 1713, 5], ["themetagenomics", 1714, 5], ["tidypopgen", 1715, 5], ["tiff", 1716, 5], ["tikzDevice", 1717, 5], ["tkrplot", 1721, 5], ["topicmodels", 1725, 5], ["transmogR", 1726, 5], ["udunits2", 1727, 5], ["ulid", 1731, 5], ["unigd", 1732, 5], ["units", 1742, 5], ["unix", 1743, 5], ["unrtf", 1744, 5], ["vapour", 1753, 5], ["vcfR", 1754, 5], ["vcfppR", 1755, 5], ["vdiffr", 1762, 5], ["webp", 1763, 5], ["websocket", 1764, 5], ["writexl", 1765, 5], ["xdvir", 1766, 5], ["xml2", 1767, 5], ["xslt", 1768, 5], ["yyjsonr", 1775, 5], ["zlib", 1776, 5]]);
-const pos$25 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 2006, 9]]);
-const pos$26 = nix.positions(here + "/default.nix", [["env", 2004, 7]]);
-const pos$27 = nix.positions(here + "/default.nix", [["postPatch", 2011, 7]]);
-const pos$28 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 2020, 9]]);
-const pos$29 = nix.positions(here + "/default.nix", [["env", 2019, 7]]);
-const pos$30 = nix.positions(here + "/default.nix", [["hydraPlatforms", 2026, 44]]);
-const pos$31 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 2046, 9]]);
-const pos$32 = nix.positions(here + "/default.nix", [["postPatch", 2033, 7], ["env", 2045, 7]]);
-const pos$33 = nix.positions(here + "/default.nix", [["patches", 2053, 7]]);
-const pos$34 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 2059, 9]]);
-const pos$35 = nix.positions(here + "/default.nix", [["env", 2057, 7], ["enableParallelBuilding", 2063, 7]]);
-const pos$36 = nix.positions(here + "/default.nix", [["hardeningDisable", 2067, 7]]);
-const pos$37 = nix.positions(here + "/default.nix", [["preConfigure", 2071, 7]]);
-const pos$38 = nix.positions(here + "/default.nix", [["hardeningDisable", 2078, 7]]);
-const pos$39 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 2083, 9]]);
-const pos$40 = nix.positions(here + "/default.nix", [["env", 2082, 7]]);
-const pos$41 = nix.positions(here + "/default.nix", [["postPatch", 2089, 7]]);
-const pos$42 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 2099, 9]]);
-const pos$43 = nix.positions(here + "/default.nix", [["env", 2097, 7]]);
-const pos$44 = nix.positions(here + "/default.nix", [["postPatch", 2104, 7]]);
-const pos$45 = nix.positions(here + "/default.nix", [["postPatch", 2112, 7]]);
-const pos$46 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 2123, 7], ["postPatch", 2125, 7], ["preInstall", 2135, 7]]);
-const pos$47 = nix.positions(here + "/default.nix", [["configureFlags", 2148, 7]]);
-const pos$48 = nix.positions(here + "/default.nix", [["configureFlags", 2155, 7]]);
-const pos$49 = nix.positions(here + "/default.nix", [["configureFlags", 2159, 7]]);
-const pos$50 = nix.positions(here + "/default.nix", [["platforms", 2166, 7]]);
-const pos$51 = nix.positions(here + "/default.nix", [["postPatch", 2171, 7]]);
-const pos$52 = nix.positions(here + "/default.nix", [["hardeningDisable", 2179, 7]]);
-const pos$53 = nix.positions(here + "/default.nix", [["cmakeFlags", 2185, 11], ["buildInputs", 2186, 11], ["postInstall", 2187, 11]]);
-const pos$54 = nix.positions(here + "/default.nix", [["hdf5", 2198, 18]]);
-const pos$55 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 2193, 9], ["patches", 2197, 9], ["passthru", 2198, 9]]);
-const pos$56 = nix.positions(here + "/default.nix", [["enableParallelBuilding", 2202, 7]]);
-const pos$57 = nix.positions(here + "/default.nix", [["preConfigure", 2206, 7]]);
-const pos$58 = nix.positions(here + "/default.nix", [["platforms", 2211, 38]]);
-const pos$59 = nix.positions(here + "/default.nix", [["configureFlags", 2214, 7], ["patches", 2219, 7], ["postInstall", 2225, 7]]);
-const pos$60 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 2233, 9]]);
-const pos$61 = nix.positions(here + "/default.nix", [["env", 2232, 7]]);
-const pos$62 = nix.positions(here + "/default.nix", [["postPatch", 2238, 7], ["hardeningDisable", 2241, 7]]);
-const pos$63 = nix.positions(here + "/default.nix", [["PKG_LIBS", 2246, 9]]);
-const pos$64 = nix.positions(here + "/default.nix", [["env", 2245, 7]]);
-const pos$65 = nix.positions(here + "/default.nix", [["postPatch", 2251, 7]]);
-const pos$66 = nix.positions(here + "/default.nix", [["enableParallelBuilding", 2260, 7]]);
-const pos$67 = nix.positions(here + "/default.nix", [["R_MAKEVARS_SITE", 2270, 9]]);
-const pos$68 = nix.positions(here + "/default.nix", [["preConfigure", 2264, 7], ["env", 2269, 7]]);
-const pos$69 = nix.positions(here + "/default.nix", [["url", 2281, 11], ["hash", 2282, 11]]);
-const pos$70 = nix.positions(here + "/default.nix", [["url", 2285, 11], ["hash", 2286, 11]]);
-const pos$71 = nix.positions(here + "/default.nix", [["url", 2289, 11], ["hash", 2290, 11]]);
-const pos$72 = nix.positions(here + "/default.nix", [["url", 2293, 11], ["hash", 2294, 11]]);
-const pos$73 = nix.positions(here + "/default.nix", [["url", 2297, 11], ["hash", 2298, 11]]);
-const pos$74 = nix.positions(here + "/default.nix", [["url", 2301, 11], ["hash", 2302, 11]]);
-const pos$75 = nix.positions(here + "/default.nix", [["url", 2305, 11], ["hash", 2306, 11]]);
-const pos$76 = nix.positions(here + "/default.nix", [["url", 2309, 11], ["hash", 2310, 11]]);
-const pos$77 = nix.positions(here + "/default.nix", [["url", 2313, 11], ["hash", 2314, 11]]);
-const pos$78 = nix.positions(here + "/default.nix", [["url", 2317, 11], ["hash", 2318, 11]]);
-const pos$79 = nix.positions(here + "/default.nix", [["url", 2321, 11], ["hash", 2322, 11]]);
-const pos$80 = nix.positions(here + "/default.nix", [["url", 2325, 11], ["hash", 2326, 11]]);
-const pos$81 = nix.positions(here + "/default.nix", [["preConfigure", 2330, 9], ["postPatch", 2345, 9]]);
-const pos$82 = nix.positions(here + "/default.nix", [["configureFlags", 2356, 7]]);
-const pos$83 = nix.positions(here + "/default.nix", [["src", 2371, 7], ["name", 2372, 7], ["prePatch", 2373, 7], ["buildInputs", 2374, 7]]);
-const pos$84 = nix.positions(here + "/default.nix", [["hardeningDisable", 2380, 7]]);
-const pos$85 = nix.positions(here + "/default.nix", [["preConfigure", 2384, 7]]);
-const pos$86 = nix.positions(here + "/default.nix", [["enableParallelBuilding", 2388, 7]]);
-const pos$87 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 2393, 9]]);
-const pos$88 = nix.positions(here + "/default.nix", [["env", 2392, 7]]);
-const pos$89 = nix.positions(here + "/default.nix", [["platforms", 2397, 36]]);
-const pos$90 = nix.positions(here + "/default.nix", [["postPatch", 2400, 7]]);
-const pos$91 = nix.positions(here + "/default.nix", [["postPatch", 2415, 7]]);
-const pos$92 = nix.positions(here + "/default.nix", [["enableParallelBuilding", 2424, 7]]);
-const pos$93 = nix.positions(here + "/default.nix", [["platforms", 2427, 42]]);
-const pos$94 = nix.positions(here + "/default.nix", [["NIX_LDFLAGS", 2431, 9]]);
-const pos$95 = nix.positions(here + "/default.nix", [["env", 2430, 7]]);
-const pos$96 = nix.positions(here + "/default.nix", [["postPatch", 2436, 7]]);
-const pos$97 = nix.positions(here + "/default.nix", [["buildInputs", 2445, 7]]);
-const pos$98 = nix.positions(here + "/default.nix", [["RGL_USE_NULL", 2450, 9]]);
-const pos$99 = nix.positions(here + "/default.nix", [["env", 2449, 7]]);
-const pos$100 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 2457, 9]]);
-const pos$101 = nix.positions(here + "/default.nix", [["env", 2455, 7]]);
-const pos$102 = nix.positions(here + "/default.nix", [["hardeningDisable", 2464, 7]]);
-const pos$103 = nix.positions(here + "/default.nix", [["preConfigure", 2468, 7]]);
-const pos$104 = nix.positions(here + "/default.nix", [["LC_ALL", 2482, 9]]);
-const pos$105 = nix.positions(here + "/default.nix", [["env", 2481, 7]]);
-const pos$106 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 2487, 7], ["buildInputs", 2488, 7]]);
-const pos$107 = nix.positions(here + "/default.nix", [["url", 2494, 11], ["hash", 2495, 11]]);
-const pos$108 = nix.positions(here + "/default.nix", [["url", 2499, 11], ["hash", 2500, 11]]);
-const pos$109 = nix.positions(here + "/default.nix", [["url", 2511, 11], ["hash", 2512, 11]]);
-const pos$110 = nix.positions(here + "/default.nix", [["mhc41_allele_list", 2518, 13], ["mhcii40_alleles_name_list", 2519, 13], ["valid_geographics", 2520, 13]]);
-const pos$111 = nix.positions(here + "/default.nix", [["patches", 2516, 9]]);
-const pos$112 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 2528, 7], ["buildInputs", 2530, 7], ["postPatch", 2532, 7]]);
-const pos$113 = nix.positions(here + "/default.nix", [["postInstall", 2539, 7]]);
-const pos$114 = nix.positions(here + "/default.nix", [["postPatch", 2550, 7]]);
-const pos$115 = nix.positions(here + "/default.nix", [["hardeningDisable", 2558, 7]]);
-const pos$116 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 2564, 9]]);
-const pos$117 = nix.positions(here + "/default.nix", [["env", 2562, 7]]);
-const pos$118 = nix.positions(here + "/default.nix", [["NIX_LDFLAGS", 2570, 9]]);
-const pos$119 = nix.positions(here + "/default.nix", [["env", 2569, 7]]);
-const pos$120 = nix.positions(here + "/default.nix", [["url", 2577, 11], ["hash", 2578, 11]]);
-const pos$121 = nix.positions(here + "/default.nix", [["postPatch", 2582, 9]]);
-const pos$122 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 2591, 9]]);
-const pos$123 = nix.positions(here + "/default.nix", [["env", 2589, 7], ["enableParallelBuilding", 2595, 7]]);
-const pos$124 = nix.positions(here + "/default.nix", [["hardeningDisable", 2599, 7]]);
-const pos$125 = nix.positions(here + "/default.nix", [["enableGtk3", 2605, 11]]);
-const pos$126 = nix.positions(here + "/default.nix", [["buildInputs", 2609, 9]]);
-const pos$127 = nix.positions(here + "/default.nix", [["postPatch", 2614, 7]]);
-const pos$128 = nix.positions(here + "/default.nix", [["preConfigure", 2621, 7]]);
-const pos$129 = nix.positions(here + "/default.nix", [["postPatch", 2627, 7]]);
-const pos$130 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 2635, 7], ["postPatch", 2636, 7]]);
-const pos$131 = nix.positions(here + "/default.nix", [["hardeningDisable", 2643, 7]]);
-const pos$132 = nix.positions(here + "/default.nix", [["preConfigure", 2647, 7]]);
-const pos$133 = nix.positions(here + "/default.nix", [["postPatch", 2658, 7]]);
 const formals$12 = { args: { platform: false, hash: false }, ellipsis: false };
-const pos$134 = nix.positions(here + "/default.nix", [["name", 2680, 13], ["url", 2681, 13], ["hash", 2682, 21]]);
-const pos$135 = nix.positions(here + "/default.nix", [["platform", 2689, 15], ["hash", 2690, 15]]);
-const pos$136 = nix.positions(here + "/default.nix", [["platform", 2693, 15], ["hash", 2694, 15]]);
-const pos$137 = nix.positions(here + "/default.nix", [["x86_64-linux", 2688, 13], ["aarch64-darwin", 2692, 13]]);
-const pos$138 = nix.positions(here + "/default.nix", [["redatam-core-per-system", 2687, 11], ["redatam-core", 2698, 11]]);
-const pos$139 = nix.positions(here + "/default.nix", [["platforms", 2713, 11], ["license", 2714, 11]]);
-const pos$140 = nix.positions(here + "/default.nix", [["passthru", 2686, 9], ["postPatch", 2703, 9], ["preConfigure", 2708, 9], ["meta", 2712, 9]]);
-const pos$141 = nix.positions(here + "/default.nix", [["PKGCONFIG_CFLAGS", 2721, 9], ["PKGCONFIG_LIBS", 2722, 9]]);
-const pos$142 = nix.positions(here + "/default.nix", [["env", 2720, 7]]);
-const pos$143 = nix.positions(here + "/default.nix", [["postPatch", 2729, 7]]);
-const pos$144 = nix.positions(here + "/default.nix", [["RGL_USE_NULL", 2739, 9]]);
-const pos$145 = nix.positions(here + "/default.nix", [["env", 2738, 7]]);
-const pos$146 = nix.positions(here + "/default.nix", [["enableParallelBuilding", 2744, 7]]);
-const pos$147 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 2749, 11]]);
-const pos$148 = nix.positions(here + "/default.nix", [["patches", 2748, 7], ["env", 2749, 7]]);
-const pos$149 = nix.positions(here + "/default.nix", [["patches", 2754, 7]]);
-const pos$150 = nix.positions(here + "/default.nix", [["preConfigure", 2758, 7]]);
-const pos$151 = nix.positions(here + "/default.nix", [["preConfigure", 2764, 7]]);
-const pos$152 = nix.positions(here + "/default.nix", [["LIBCLANG_PATH", 2772, 9]]);
-const pos$153 = nix.positions(here + "/default.nix", [["env", 2771, 7]]);
-const pos$154 = nix.positions(here + "/default.nix", [["postPatch", 2777, 7]]);
-const pos$155 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 2788, 9]]);
-const pos$156 = nix.positions(here + "/default.nix", [["env", 2787, 7]]);
-const pos$157 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 2795, 9]]);
-const pos$158 = nix.positions(here + "/default.nix", [["env", 2793, 7]]);
-const pos$159 = nix.positions(here + "/default.nix", [["postPatch", 2800, 7]]);
-const pos$160 = nix.positions(here + "/default.nix", [["preConfigure", 2809, 7]]);
-const pos$161 = nix.positions(here + "/default.nix", [["PKG_LIBS", 2817, 9]]);
-const pos$162 = nix.positions(here + "/default.nix", [["env", 2816, 7]]);
-const pos$163 = nix.positions(here + "/default.nix", [["preConfigure", 2823, 7]]);
-const pos$164 = nix.positions(here + "/default.nix", [["preConfigure", 2839, 7]]);
-const pos$165 = nix.positions(here + "/default.nix", [["NIX_LDFLAGS", 2851, 9]]);
-const pos$166 = nix.positions(here + "/default.nix", [["env", 2850, 7]]);
-const pos$167 = nix.positions(here + "/default.nix", [["preConfigure", 2856, 7]]);
-const pos$168 = nix.positions(here + "/default.nix", [["NIX_LDFLAGS", 2863, 11]]);
-const pos$169 = nix.positions(here + "/default.nix", [["env", 2863, 7]]);
-const pos$170 = nix.positions(here + "/default.nix", [["src", 2868, 9], ["sourceRoot", 2869, 9], ["hash", 2870, 9]]);
-const pos$171 = nix.positions(here + "/default.nix", [["cargoDeps", 2867, 7], ["cargoRoot", 2873, 7], ["nativeBuildInputs", 2875, 7]]);
-const pos$172 = nix.positions(here + "/default.nix", [["patches", 2882, 7]]);
-const pos$173 = nix.positions(here + "/default.nix", [["postPatch", 2886, 7]]);
-const pos$174 = nix.positions(here + "/default.nix", [["patches", 2895, 7]]);
-const pos$175 = nix.positions(here + "/default.nix", [["postPatch", 2899, 7]]);
-const pos$176 = nix.positions(here + "/default.nix", [["RGL_USE_NULL", 2908, 9]]);
-const pos$177 = nix.positions(here + "/default.nix", [["env", 2907, 7]]);
-const pos$178 = nix.positions(here + "/default.nix", [["postPatch", 2914, 7]]);
-const pos$179 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 2922, 9]]);
-const pos$180 = nix.positions(here + "/default.nix", [["env", 2921, 7]]);
-const pos$181 = nix.positions(here + "/default.nix", [["ACME", 2003, 5], ["AneuFinder", 2010, 5], ["BiocParallel", 2018, 5], ["ChIPXpress", 2026, 5], ["ChemmineOB", 2028, 5], ["FLAMES", 2052, 5], ["FlexReg", 2056, 5], ["HilbertVis", 2066, 5], ["JavaGD", 2070, 5], ["MANOR", 2077, 5], ["ModelMetrics", 2081, 5], ["NGCHM", 2088, 5], ["OpenMx", 2096, 5], ["PICS", 2103, 5], ["RAppArmor", 2111, 5], ["RBioFormats", 2119, 5], ["ROracle", 2147, 5], ["RProtoBuf", 2154, 5], ["RVowpalWabbit", 2158, 5], ["RandomFieldsUtils", 2165, 5], ["Rbwa", 2169, 5], ["Rdisop", 2178, 5], ["Rhdf5lib", 2182, 5], ["Rhisat2", 2201, 5], ["Rhtslib", 2205, 5], ["Rrdrand", 2211, 5], ["Rserve", 2213, 5], ["SAIGEgds", 2231, 5], ["SICtools", 2237, 5], ["SamplerCompare", 2244, 5], ["SingleR", 2250, 5], ["SynExtend", 2258, 5], ["V8", 2263, 5], ["XLConnect", 2278, 5], ["alcyon", 2355, 5], ["arrow", 2370, 5], ["cisPath", 2379, 5], ["covidsymptom", 2383, 5], ["cubature", 2387, 5], ["data_table", 2391, 5], ["dbarts", 2397, 5], ["exifr", 2399, 5], ["findpython", 2414, 5], ["float", 2423, 5], ["flowClust", 2427, 5], ["gdtools", 2429, 5], ["genoCN", 2435, 5], ["geojsonio", 2444, 5], ["geomorph", 2448, 5], ["gmapR", 2454, 5], ["gpuMagic", 2463, 5], ["h2o", 2467, 5], ["harbinger", 2480, 5], ["hdf5r", 2486, 5], ["immunotation", 2491, 5], ["iscream", 2525, 5], ["littler", 2538, 5], ["lpsymphony", 2549, 5], ["luajr", 2557, 5], ["metahdep", 2561, 5], ["nanonext", 2568, 5], ["nearfar", 2574, 5], ["networkscaleup", 2588, 5], ["oligo", 2598, 5], ["opencv", 2602, 5], ["openssl", 2612, 5], ["pak", 2620, 5], ["pbdZMQ", 2626, 5], ["quarto", 2634, 5], ["rGADEM", 2642, 5], ["rJava", 2646, 5], ["rawrr", 2657, 5], ["redatamx", 2674, 5], ["redland", 2719, 5], ["rextendr", 2728, 5], ["rgl", 2737, 5], ["rgoslin", 2743, 5], ["rhdf5", 2747, 5], ["rhdf5filters", 2753, 5], ["rlibkriging", 2757, 5], ["rmarkdown", 2763, 5], ["roxigraph", 2770, 5], ["rpanel", 2776, 5], ["rstan", 2786, 5], ["rstanarm", 2792, 5], ["rvisidata", 2799, 5], ["s2", 2808, 5], ["slfm", 2815, 5], ["sparklyr", 2821, 5], ["symengine", 2838, 5], ["talib", 2848, 5], ["tesseract", 2855, 5], ["textshaping", 2862, 5], ["timeless", 2866, 5], ["trajeR", 2881, 5], ["trigger", 2885, 5], ["universalmotif", 2894, 5], ["unix", 2898, 5], ["vegan3d", 2906, 5], ["websocket", 2912, 5], ["xslt", 2920, 5]]);
 
 export default nix.thunk(() => (() => {
   const importJSON = (f) => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(f)));
@@ -211,7 +31,7 @@ export default nix.thunk(() => (() => {
     const fetchurl = nix.thunk(() => nix.attr(pkgs, "fetchurl"));
     const stdenv = nix.thunk(() => nix.attr(pkgs, "stdenv"));
     const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
-    const buildRPackage = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./generic-builder.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, R: R }))));
+    const buildRPackage = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./generic-builder.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], R: R }))));
     const mkDerive = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const mkHomepage = nix.arg($_1, "mkHomepage");
@@ -232,20 +52,20 @@ export default nix.thunk(() => (() => {
             const hydraPlatforms_1 = nix.argOr($_2, "hydraPlatforms", () => (nix.asBool(!nix.eq(hydraPlatforms$, null)) ? nix.force(hydraPlatforms$) : nix.force(platforms)));
             const maintainers = nix.argOr($_2, "maintainers", () => []);
             return nix.app(buildRPackage, nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 pname: name,
                 version: version,
                 src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     sha256: sha256,
-                    urls: nix.thunk(() => nix.app(mkUrls, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$2, name: name, version: version })))),
+                    urls: nix.thunk(() => nix.app(mkUrls, nix.thunk(() => nix.update(args_2, { [nix.POS]: $pos[1], name: name, version: version })))),
                   })))),
                 doCheck: doCheck,
                 requireX: requireX,
                 propagatedBuildInputs: depends,
                 meta: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  homepage: nix.thunk(() => nix.app(mkHomepage, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$4, name: name })))),
+                  [nix.POS]: $pos[4],
+                  homepage: nix.thunk(() => nix.app(mkHomepage, nix.thunk(() => nix.update(args_2, { [nix.POS]: $pos[3], name: name })))),
                   platforms: platforms,
                   hydraPlatforms: hydraPlatforms_1,
                   broken: broken,
@@ -256,7 +76,7 @@ export default nix.thunk(() => (() => {
       })();
     })(), formals$2);
     const deriveBioc = nix.thunk(() => nix.app(mkDerive, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         mkHomepage: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           const name = nix.arg($_1, "name");
@@ -276,7 +96,7 @@ export default nix.thunk(() => (() => {
         })(), formals$5),
       }))));
     const deriveBiocAnn = nix.thunk(() => nix.app(mkDerive, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         mkHomepage: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$6);
           const name = nix.arg($_1, "name");
@@ -295,7 +115,7 @@ export default nix.thunk(() => (() => {
         hydraPlatforms: [],
       }))));
     const deriveBiocExp = nix.thunk(() => nix.app(mkDerive, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         mkHomepage: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$8);
           const name = nix.arg($_1, "name");
@@ -314,7 +134,7 @@ export default nix.thunk(() => (() => {
         hydraPlatforms: [],
       }))));
     const deriveCran = nix.thunk(() => nix.app(mkDerive, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         mkHomepage: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$10);
           const name = nix.arg($_1, "name");
@@ -331,27 +151,27 @@ export default nix.thunk(() => (() => {
         })(), formals$11),
       }))));
     const overrideNativeBuildInputs = (overrides_1) => (old) => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.app(nix.sel(nix.builtins.getAttr(name, old), "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeBuildInputs"), value)),
         })), overrides_1);
     const overrideBuildInputs = (overrides_1) => (old) => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.app(nix.sel(nix.builtins.getAttr(name, old), "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), value)),
         })), overrides_1);
-    const overrideMaintainers = (overrides_1) => (old) => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.app(nix.sel(nix.builtins.getAttr(name, old), "override"), nix.thunk(() => ({ [nix.POS]: pos$13, maintainers: value }))), overrides_1);
+    const overrideMaintainers = (overrides_1) => (old) => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.app(nix.sel(nix.builtins.getAttr(name, old), "override"), nix.thunk(() => ({ [nix.POS]: $pos[12], maintainers: value }))), overrides_1);
     const overrideRDepends = (overrides_1) => (old) => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.app(nix.sel(nix.builtins.getAttr(name, old), "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "propagatedBuildInputs"), value)),
         })), overrides_1);
-    const overrideRequireX = (packageNames) => (old) => nix.app(nix.sel(lib, "genAttrs"), packageNames, (name) => nix.app(nix.sel(old, nix.key(nix.force(name)), "override"), nix.thunk(() => ({ [nix.POS]: pos$15, requireX: true }))));
+    const overrideRequireX = (packageNames) => (old) => nix.app(nix.sel(lib, "genAttrs"), packageNames, (name) => nix.app(nix.sel(old, nix.key(nix.force(name)), "override"), nix.thunk(() => ({ [nix.POS]: $pos[14], requireX: true }))));
     const overrideRequireHome = (packageNames) => (old) => nix.app(nix.sel(lib, "genAttrs"), packageNames, (name) => nix.app(nix.sel(old, nix.key(nix.force(name)), "overrideAttrs"), (oldAttrs) => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           preInstall: nix.thunk(() => nix.str`${nix.selOr(oldAttrs, () => "", "preInstall")}
 export HOME=$(mktemp -d)
 `),
         })));
-    const overrideSkipCheck = (packageNames) => (old) => nix.app(nix.sel(lib, "genAttrs"), packageNames, (name) => nix.app(nix.sel(old, nix.key(nix.force(name)), "override"), nix.thunk(() => ({ [nix.POS]: pos$17, doCheck: false }))));
-    const overrideBroken = (packageNames) => (old) => nix.app(nix.sel(lib, "genAttrs"), packageNames, (name) => nix.app(nix.sel(old, nix.key(nix.force(name)), "override"), nix.thunk(() => ({ [nix.POS]: pos$18, broken: true }))));
+    const overrideSkipCheck = (packageNames) => (old) => nix.app(nix.sel(lib, "genAttrs"), packageNames, (name) => nix.app(nix.sel(old, nix.key(nix.force(name)), "override"), nix.thunk(() => ({ [nix.POS]: $pos[16], doCheck: false }))));
+    const overrideBroken = (packageNames) => (old) => nix.app(nix.sel(lib, "genAttrs"), packageNames, (name) => nix.app(nix.sel(old, nix.key(nix.force(name)), "override"), nix.thunk(() => ({ [nix.POS]: $pos[17], broken: true }))));
     const defaultOverrides = (old) => (new$) => (() => {
       const old0 = old;
       const old1 = nix.thunk(() => nix.update(old0, nix.app(overrideRequireX, packagesRequiringX, old0)));
@@ -366,15 +186,15 @@ export HOME=$(mktemp -d)
       return nix.update(old_1, nix.app(otherOverrides, old_1, new$));
     })();
     const self = nix.thunk(() => nix.update(nix.app(defaultOverrides, _self, self), overrides));
-    const _self = nix.thunk(() => nix.update({ [nix.POS]: pos$19, buildRPackage: buildRPackage }, nix.update(nix.app(mkPackageSet, deriveBioc, biocPackagesGenerated), nix.update(nix.app(mkPackageSet, deriveBiocAnn, biocAnnotationPackagesGenerated), nix.update(nix.app(mkPackageSet, deriveBiocExp, biocExperimentPackagesGenerated), nix.app(mkPackageSet, deriveCran, cranPackagesGenerated))))));
+    const _self = nix.thunk(() => nix.update({ [nix.POS]: $pos[18], buildRPackage: buildRPackage }, nix.update(nix.app(mkPackageSet, deriveBioc, biocPackagesGenerated), nix.update(nix.app(mkPackageSet, deriveBiocAnn, biocAnnotationPackagesGenerated), nix.update(nix.app(mkPackageSet, deriveBiocExp, biocExperimentPackagesGenerated), nix.app(mkPackageSet, deriveCran, cranPackagesGenerated))))));
     const mkPackageSet = (derive) => (packagesJSON) => nix.app(nix.sel(lib, "mapAttrs"), (k) => (v) => nix.app(derive, nix.thunk(() => nix.sel(packagesJSON, "extraArgs")), nix.thunk(() => nix.update(v, {
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           depends: nix.thunk(() => nix.app(nix.sel(lib, "map"), (name) => nix.builtins.getAttr(name, self), nix.thunk(() => nix.sel(v, "depends")))),
         }))), nix.thunk(() => nix.sel(packagesJSON, "packages")));
     const packagesWithMaintainers = nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         BiocManager: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "jbedo"))]),
         RQuantLib: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "kupac"))]),
         StructuralVariantAnnotation: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "jbedo"))]),
@@ -387,7 +207,7 @@ export HOME=$(mktemp -d)
       };
     })());
     const packagesWithRDepends = nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       BayesPET: nix.thunk(() => [nix.thunk(() => nix.sel(self, "rstantools"))]),
       TriDimRegression: nix.thunk(() => [nix.thunk(() => nix.sel(self, "rstantools"))]),
       bayesdfa: nix.thunk(() => [nix.thunk(() => nix.sel(self, "rstantools"))]),
@@ -402,7 +222,7 @@ export HOME=$(mktemp -d)
       tipsae: nix.thunk(() => [nix.thunk(() => nix.sel(self, "rstantools"))]),
     }));
     const packagesWithNativeBuildInputs = nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       Apollonius: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pkg-config"))]),
       BayesXsrc: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gsl"))]),
       BigDataStatMeth: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pkg-config"))]),
@@ -1250,7 +1070,7 @@ export HOME=$(mktemp -d)
       })()),
     }));
     const packagesWithBuildInputs = nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       AMOUNTAIN: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gsl"))]),
       Apollonius: nix.thunk(() => (() => {
         const w_1 = nix.withScope(pkgs, null);
@@ -2558,28 +2378,28 @@ export HOME=$(mktemp -d)
       "signatureSearch",
     ]);
     const otherOverrides = (old) => (new$) => ({
-      [nix.POS]: pos$181,
+      [nix.POS]: $pos[180],
       ACME: nix.thunk(() => nix.app(nix.sel(old, "ACME", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -Wno-incompatible-pointer-types")),
           })),
         }))),
       AneuFinder: nix.thunk(() => nix.app(nix.sel(old, "AneuFinder", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           postPatch: "substituteInPlace src/utility.cpp src/densities.cpp src/loghmm.cpp src/scalehmm.cpp \\\n  --replace-fail \"Calloc(\" \"R_Calloc(\" \\\n  --replace-fail \"Free(\" \"R_Free(\"\n",
         }))),
       BiocParallel: nix.thunk(() => nix.app(nix.sel(old, "BiocParallel", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), " -Wno-error=missing-template-arg-list-after-template-kw"))),
           })),
         }))),
-      ChIPXpress: nix.thunk(() => nix.app(nix.sel(old, "ChIPXpress", "override"), nix.thunk(() => ({ [nix.POS]: pos$30, hydraPlatforms: [] })))),
+      ChIPXpress: nix.thunk(() => nix.app(nix.sel(old, "ChIPXpress", "override"), nix.thunk(() => ({ [nix.POS]: $pos[29], hydraPlatforms: [] })))),
       ChemmineOB: nix.thunk(() => nix.app(nix.sel(old, "ChemmineOB", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           postPatch: nix.thunk(() => nix.str`substituteInPlace configure \\
   --replace-fail openbabel-3.0 openbabel-3
 substituteInPlace src/Makevars.in \\
@@ -2588,61 +2408,61 @@ substituteInPlace src/ChemmineOB.cpp \\
   --replace-fail "obsharedptr<" "std::shared_ptr<"
 `),
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$31,
+            [nix.POS]: $pos[30],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), " -D_LIBCPP_ENABLE_CXX17_REMOVED_FEATURES"))),
           })),
         }))),
       FLAMES: nix.thunk(() => nix.app(nix.sel(old, "FLAMES", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           patches: nix.thunk(() => [nix.path(here, "./patches/FLAMES.patch")]),
         }))),
       FlexReg: nix.thunk(() => nix.app(nix.sel(old, "FlexReg", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -Wno-ignored-attributes")),
           })),
           enableParallelBuilding: false,
         }))),
-      HilbertVis: nix.thunk(() => nix.app(nix.sel(old, "HilbertVis", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$36, hardeningDisable: nix.thunk(() => ["format"]) }))),
+      HilbertVis: nix.thunk(() => nix.app(nix.sel(old, "HilbertVis", "overrideAttrs"), (attrs) => ({ [nix.POS]: $pos[35], hardeningDisable: nix.thunk(() => ["format"]) }))),
       JavaGD: nix.thunk(() => nix.app(nix.sel(old, "JavaGD", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           preConfigure: nix.thunk(() => nix.str`export JAVA_CPPFLAGS=-I${nix.sel(pkgs, "jdk")}/include/
 export JAVA_HOME=${nix.sel(pkgs, "jdk")}
 `),
         }))),
-      MANOR: nix.thunk(() => nix.app(nix.sel(old, "MANOR", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$38, hardeningDisable: nix.thunk(() => ["format"]) }))),
+      MANOR: nix.thunk(() => nix.app(nix.sel(old, "MANOR", "overrideAttrs"), (attrs) => ({ [nix.POS]: $pos[37], hardeningDisable: nix.thunk(() => ["format"]) }))),
       ModelMetrics: nix.thunk(() => nix.app(nix.sel(old, "ModelMetrics", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$40,
+          [nix.POS]: $pos[39],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), " -fopenmp"))),
           })),
         }))),
       NGCHM: nix.thunk(() => nix.app(nix.sel(old, "NGCHM", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           postPatch: nix.thunk(() => nix.str`substituteInPlace "inst/base.config/conf.d/01-server-protocol-scl.R" \\
   --replace-fail \\
   "/bin/hostname" "${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "hostname")))}/bin/hostname"
 `),
         }))),
       OpenMx: nix.thunk(() => nix.app(nix.sel(old, "OpenMx", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -Wno-ignored-attributes")),
           })),
         }))),
       PICS: nix.thunk(() => nix.app(nix.sel(old, "PICS", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$44,
+          [nix.POS]: $pos[43],
           postPatch: "# https://developer.r-project.org/blosxom.cgi/R-devel/NEWS/2025/01/08#n2025-01-08\nsubstituteInPlace \"src/segment.c\" \\\n--replace-fail \"Calloc\" \"R_Calloc\"\n",
         }))),
       RAppArmor: nix.thunk(() => nix.app(nix.sel(old, "RAppArmor", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$45,
+          [nix.POS]: $pos[44],
           postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "# ignore apparmor detection logic\nsubstituteInPlace configure \\\n  --replace-fail '[ ! -e \"/sys/module/apparmor\" ]' 'false'\n")),
         }))),
       RBioFormats: nix.thunk(() => nix.app(nix.sel(old, "RBioFormats", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$46,
+          [nix.POS]: $pos[45],
           propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "propagatedBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "bftools"))])),
           postPatch: nix.thunk(() => nix.str`substituteInPlace "R/zzz.R" \\
   --replace-fail '!file.exists(bf_jar)' 'FALSE' \\
@@ -2662,157 +2482,157 @@ fi
 `),
         }))),
       ROracle: nix.thunk(() => nix.app(nix.sel(old, "ROracle", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$47,
+          [nix.POS]: $pos[46],
           configureFlags: nix.thunk(() => [
             nix.thunk(() => nix.str`--with-oci-lib=${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "oracle-instantclient")))}/lib`),
             nix.thunk(() => nix.str`--with-oci-inc=${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(pkgs, "oracle-instantclient")))}/include`),
           ]),
         }))),
       RProtoBuf: nix.thunk(() => nix.app(nix.sel(old, "RProtoBuf", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$48,
+          [nix.POS]: $pos[47],
           configureFlags: nix.thunk(() => ["ac_cv_prog_cxx_cxx11="]),
         }))),
       RVowpalWabbit: nix.thunk(() => nix.app(nix.sel(old, "RVowpalWabbit", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$49,
+          [nix.POS]: $pos[48],
           configureFlags: nix.thunk(() => [
             nix.thunk(() => nix.str`--with-boost=${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(pkgs, "boost")))}`),
             nix.thunk(() => nix.str`--with-boost-libdir=${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "boost")))}/lib`),
           ]),
         }))),
       RandomFieldsUtils: nix.thunk(() => nix.app(nix.sel(old, "RandomFieldsUtils", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$50,
+          [nix.POS]: $pos[49],
           platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "x86_64"), nix.sel(lib, "platforms", "x86"))),
         })))),
       Rbwa: nix.thunk(() => nix.app(nix.sel(old, "Rbwa", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$51,
+          [nix.POS]: $pos[50],
           postPatch: "substituteInPlace src/Makefile --replace-fail \\\n  \"all:\\$(PROG) ../inst/bwa clean\" \\\n  \"all:\\$(PROG) ../inst/bwa\"\n",
         }))),
-      Rdisop: nix.thunk(() => nix.app(nix.sel(old, "Rdisop", "overrideAttrs"), (_) => ({ [nix.POS]: pos$52, hardeningDisable: nix.thunk(() => ["format"]) }))),
+      Rdisop: nix.thunk(() => nix.app(nix.sel(old, "Rdisop", "overrideAttrs"), (_) => ({ [nix.POS]: $pos[51], hardeningDisable: nix.thunk(() => ["format"]) }))),
       Rhdf5lib: nix.thunk(() => (() => {
         const hdf5 = nix.thunk(() => nix.app(nix.sel(pkgs, "hdf5", "overrideAttrs"), (attrs) => ({
-            [nix.POS]: pos$53,
+            [nix.POS]: $pos[52],
             cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "cmakeFlags"), ["-DHDF5_ENABLE_ROS3_VFD:BOOL=TRUE"])),
             buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "curl"))])),
             postInstall: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postInstall"), "cp src/libhdf5.settings $dev/lib\n")),
           })));
         return nix.app(nix.sel(old, "Rhdf5lib", "overrideAttrs"), (attrs) => ({
-            [nix.POS]: pos$55,
+            [nix.POS]: $pos[54],
             propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "propagatedBuildInputs"), [hdf5, nix.thunk(() => nix.sel(pkgs, "libaec"))])),
             patches: nix.thunk(() => [nix.path(here, "./patches/Rhdf5lib.patch")]),
-            passthru: nix.thunk(() => ({ [nix.POS]: pos$54, hdf5: hdf5 })),
+            passthru: nix.thunk(() => ({ [nix.POS]: $pos[53], hdf5: hdf5 })),
           }));
       })()),
-      Rhisat2: nix.thunk(() => nix.app(nix.sel(old, "Rhisat2", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$56, enableParallelBuilding: false }))),
+      Rhisat2: nix.thunk(() => nix.app(nix.sel(old, "Rhisat2", "overrideAttrs"), (attrs) => ({ [nix.POS]: $pos[55], enableParallelBuilding: false }))),
       Rhtslib: nix.thunk(() => nix.app(nix.sel(old, "Rhtslib", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$57,
+          [nix.POS]: $pos[56],
           preConfigure: nix.thunk(() => nix.str`substituteInPlace R/zzz.R --replace-fail "-lcurl" "-L${nix.sel(pkgs, "curl", "out")}/lib -lcurl"
 `),
         }))),
       Rrdrand: nix.thunk(() => nix.app(nix.sel(old, "Rrdrand", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$58,
+          [nix.POS]: $pos[57],
           platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "x86_64"), nix.sel(lib, "platforms", "x86"))),
         })))),
       Rserve: nix.thunk(() => nix.app(nix.sel(old, "Rserve", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$59,
+          [nix.POS]: $pos[58],
           configureFlags: nix.thunk(() => ["--with-server", "--with-client"]),
           patches: nix.thunk(() => [nix.path(here, "./patches/Rserve.patch")]),
           postInstall: "mkdir -p \"$out/bin/\"\nln -s \"$out\"/library/Rserve/libs/Rserve{,.dbg} \"$out/bin/\"\n",
         }))),
       SAIGEgds: nix.thunk(() => nix.app(nix.sel(old, "SAIGEgds", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$61,
+          [nix.POS]: $pos[60],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$60,
+            [nix.POS]: $pos[59],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -fpermissive")),
           })),
         }))),
       SICtools: nix.thunk(() => nix.app(nix.sel(old, "SICtools", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$62,
+          [nix.POS]: $pos[61],
           postPatch: "substituteInPlace src/Makefile --replace-fail \"-lcurses\" \"-lncurses\"\n",
           hardeningDisable: nix.thunk(() => ["format"]),
         }))),
       SamplerCompare: nix.thunk(() => nix.app(nix.sel(old, "SamplerCompare", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$64,
+          [nix.POS]: $pos[63],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$63,
+            [nix.POS]: $pos[62],
             PKG_LIBS: nix.thunk(() => nix.str`-L${nix.sel(pkgs, "blas")}/lib -lblas -L${nix.sel(pkgs, "lapack")}/lib -llapack`),
           })),
         }))),
       SingleR: nix.thunk(() => nix.app(nix.sel(old, "SingleR", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$65,
+          [nix.POS]: $pos[64],
           postPatch: "substituteInPlace src/find_classic_markers.cpp --replace-fail \\\n  \"Rcpp::IntegerVector val(de_n);\" \\\n  \"Rcpp::IntegerVector val(static_cast<int>(de_n));\"\n",
         }))),
-      SynExtend: nix.thunk(() => nix.app(nix.sel(old, "SynExtend", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$66, enableParallelBuilding: false }))),
+      SynExtend: nix.thunk(() => nix.app(nix.sel(old, "SynExtend", "overrideAttrs"), (attrs) => ({ [nix.POS]: $pos[65], enableParallelBuilding: false }))),
       V8: nix.thunk(() => nix.app(nix.sel(old, "V8", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$68,
+          [nix.POS]: $pos[67],
           preConfigure: "export V8_PKG_CFLAGS=\"$(pkg-config --cflags v8)\";\nexport V8_PKG_LIBS=\"$(pkg-config --libs v8)\";\n",
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$67,
+            [nix.POS]: $pos[66],
             R_MAKEVARS_SITE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(pkgs, "stdenv", "system"), "aarch64-linux")), nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "Makevars", "CXX14PICFLAGS = -fPIC\n")))),
           })),
         }))),
       XLConnect: nix.thunk(() => (() => {
         const poi_ooxml_full = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$69,
+            [nix.POS]: $pos[68],
             url: "https://repo1.maven.org/maven2/org/apache/poi/poi-ooxml-full/5.4.1/poi-ooxml-full-5.4.1.jar",
             hash: "sha256-xRsFFlXVjXTV64nn03NscFLCV09Dx52wyKg60hb23Tc=",
           }))));
         const poi_ooxml = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$70,
+            [nix.POS]: $pos[69],
             url: "https://repo1.maven.org/maven2/org/apache/poi/poi-ooxml/5.4.1/poi-ooxml-5.4.1.jar",
             hash: "sha256-/SAMnm901wQWCpfp1SBBmV7YdDlFRTAAHt2SBojxn1M=",
           }))));
         const poi = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$71,
+            [nix.POS]: $pos[70],
             url: "https://repo1.maven.org/maven2/org/apache/poi/poi/5.4.1/poi-5.4.1.jar",
             hash: "sha256-2lq/QtpGBMWnvKOJVq9unW8ZbZttTLfqvuT0gLWA1QU=",
           }))));
         const commons_compress = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$72,
+            [nix.POS]: $pos[71],
             url: "https://repo1.maven.org/maven2/org/apache/commons/commons-compress/1.27.1/commons-compress-1.27.1.jar",
             hash: "sha256-KT2A9UtTa3QJXc1+o88KKbv8NAJRkoEzJJX0Qg03DRY=",
           }))));
         const commons_lang3 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$73,
+            [nix.POS]: $pos[72],
             url: "https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.16.0/commons-lang3-3.16.0.jar",
             hash: "sha256-CHCd101gK3Bc5AF9JlRCEAVqS6WD1bIMCTc0Bv56APg=",
           }))));
         const xmlbeans = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$74,
+            [nix.POS]: $pos[73],
             url: "https://repo1.maven.org/maven2/org/apache/xmlbeans/xmlbeans/5.3.0/xmlbeans-5.3.0.jar",
             hash: "sha256-bMado7TTW4PF5HfNTauiBORBCYM+NK8rmoosh4gomRc=",
           }))));
         const commons_collections4 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$75,
+            [nix.POS]: $pos[74],
             url: "https://repo1.maven.org/maven2/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar",
             hash: "sha256-Hfi5QwtcjtFD14FeQD4z71NxskAKrb6b2giDdi4IRtE=",
           }))));
         const commons_math3 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$76,
+            [nix.POS]: $pos[75],
             url: "https://repo1.maven.org/maven2/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar",
             hash: "sha256-HlbXsFjSi2Wr0la4RY44hbZ0wdWI+kPNfRy7nH7yswg=",
           }))));
         const log4j_api = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$77,
+            [nix.POS]: $pos[76],
             url: "https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.24.3/log4j-api-2.24.3.jar",
             hash: "sha256-W0oKDNDnUd7UMcFiRCvb3VMyjR+Lsrrl/Bu+7g9m2A8=",
           }))));
         const commons_codec = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$78,
+            [nix.POS]: $pos[77],
             url: "https://repo1.maven.org/maven2/commons-codec/commons-codec/1.18.0/commons-codec-1.18.0.jar",
             hash: "sha256-ugBfMEzvkqPe3iSjitWsm4r8zw2PdYOdbBM4Y0z39uQ=",
           }))));
         const commons_io = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$79,
+            [nix.POS]: $pos[78],
             url: "https://repo1.maven.org/maven2/commons-io/commons-io/2.18.0/commons-io-2.18.0.jar",
             hash: "sha256-88oPjWPEDiOlbVQQHGDV7e4Ta0LYS/uFvHljCTEJz4s=",
           }))));
         const SparseBitSet = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$80,
+            [nix.POS]: $pos[79],
             url: "https://repo1.maven.org/maven2/com/zaxxer/SparseBitSet/1.3/SparseBitSet-1.3.jar",
             hash: "sha256-92uFrbDAByGuJnt8/eTaf3HTEhzCFgyfwAwMifjFPIo=",
           }))));
         return nix.app(nix.sel(old, "XLConnect", "overrideAttrs"), (attrs) => ({
-            [nix.POS]: pos$81,
+            [nix.POS]: $pos[80],
             preConfigure: nix.thunk(() => nix.str`cp ${poi_ooxml_full} inst/java/poi-ooxml-full-5.4.1.jar
 cp ${poi_ooxml} inst/java/poi-ooxml-5.4.1.jar
 cp ${poi} inst/java/poi-5.4.1.jar
@@ -2836,32 +2656,32 @@ substituteInPlace R/onAttach.R \\
           }));
       })()),
       alcyon: nix.thunk(() => nix.app(nix.sel(old, "alcyon", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$82,
+          [nix.POS]: $pos[81],
           configureFlags: nix.thunk(() => ["--enable-force-openmp"]),
         }))),
       arrow: nix.thunk(() => nix.app(nix.sel(old, "arrow", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$83,
+          [nix.POS]: $pos[82],
           src: nix.thunk(() => nix.sel(pkgs, "arrow-cpp", "src")),
           name: nix.thunk(() => nix.str`r-arrow-${nix.sel(pkgs, "arrow-cpp", "version")}`),
           prePatch: "cd r",
           buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "arrow-cpp"))])),
         }))),
-      cisPath: nix.thunk(() => nix.app(nix.sel(old, "cisPath", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$84, hardeningDisable: nix.thunk(() => ["format"]) }))),
-      covidsymptom: nix.thunk(() => nix.app(nix.sel(old, "covidsymptom", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$85, preConfigure: "rm R/covidsymptomdata.R" }))),
-      cubature: nix.thunk(() => nix.app(nix.sel(old, "cubature", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$86, enableParallelBuilding: false }))),
+      cisPath: nix.thunk(() => nix.app(nix.sel(old, "cisPath", "overrideAttrs"), (attrs) => ({ [nix.POS]: $pos[83], hardeningDisable: nix.thunk(() => ["format"]) }))),
+      covidsymptom: nix.thunk(() => nix.app(nix.sel(old, "covidsymptom", "overrideAttrs"), (attrs) => ({ [nix.POS]: $pos[84], preConfigure: "rm R/covidsymptomdata.R" }))),
+      cubature: nix.thunk(() => nix.app(nix.sel(old, "cubature", "overrideAttrs"), (attrs) => ({ [nix.POS]: $pos[85], enableParallelBuilding: false }))),
       data_table: nix.thunk(() => nix.app(nix.sel(old, "data_table", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$88,
+          [nix.POS]: $pos[87],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$87,
+            [nix.POS]: $pos[86],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -fopenmp")),
           })),
         }))),
       dbarts: nix.thunk(() => nix.app(nix.sel(old, "dbarts", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$89,
+          [nix.POS]: $pos[88],
           platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "x86_64"), nix.sel(lib, "platforms", "x86"))),
         })))),
       exifr: nix.thunk(() => nix.app(nix.sel(old, "exifr", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$90,
+          [nix.POS]: $pos[89],
           postPatch: nix.thunk(() => nix.str`for f in .onLoad .onAttach ; do
   substituteInPlace R/load_hook.R \\
     --replace-fail \\
@@ -2875,76 +2695,76 @@ done
 `),
         }))),
       findpython: nix.thunk(() => nix.app(nix.sel(old, "findpython", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$91,
+          [nix.POS]: $pos[90],
           postPatch: nix.thunk(() => nix.str`substituteInPlace "R/find_python_cmd.r" \\
   --replace-fail 'python_cmds[which(python_cmds != "")]' \\
   'python_cmds <- c(python_cmds, file.path("${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "python3")))}", "bin", "python3"))
    python_cmds[which(python_cmds != "")]'
 `),
         }))),
-      float: nix.thunk(() => nix.app(nix.sel(old, "float", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$92, enableParallelBuilding: false }))),
+      float: nix.thunk(() => nix.app(nix.sel(old, "float", "overrideAttrs"), (attrs) => ({ [nix.POS]: $pos[91], enableParallelBuilding: false }))),
       flowClust: nix.thunk(() => nix.app(nix.sel(old, "flowClust", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$93,
+          [nix.POS]: $pos[92],
           platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "x86_64"), nix.sel(lib, "platforms", "x86"))),
         })))),
       gdtools: nix.thunk(() => nix.app(nix.sel(old, "gdtools", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$95,
-          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$94, NIX_LDFLAGS: "-lfontconfig -lfreetype" })),
+          [nix.POS]: $pos[94],
+          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: $pos[93], NIX_LDFLAGS: "-lfontconfig -lfreetype" })),
         }))),
       genoCN: nix.thunk(() => nix.app(nix.sel(old, "genoCN", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$96,
+          [nix.POS]: $pos[95],
           postPatch: "# https://developer.r-project.org/blosxom.cgi/R-devel/NEWS/2025/01/08#n2025-01-08\nsubstituteInPlace \"src/xCNV.c\" \\\n--replace-fail \"Calloc\" \"R_Calloc\" \\\n--replace-fail \"Free\" \"R_Free\"\n",
         }))),
       geojsonio: nix.thunk(() => nix.app(nix.sel(old, "geojsonio", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$97,
+          [nix.POS]: $pos[96],
           buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), [cacert])),
         }))),
       geomorph: nix.thunk(() => nix.app(nix.sel(old, "geomorph", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$99,
-          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$98, RGL_USE_NULL: "true" })),
+          [nix.POS]: $pos[98],
+          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: $pos[97], RGL_USE_NULL: "true" })),
         }))),
       gmapR: nix.thunk(() => nix.app(nix.sel(old, "gmapR", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$101,
+          [nix.POS]: $pos[100],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$100,
+            [nix.POS]: $pos[99],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -Wno-implicit-function-declaration -Wno-incompatible-pointer-types")),
           })),
         }))),
-      gpuMagic: nix.thunk(() => nix.app(nix.sel(old, "gpuMagic", "overrideAttrs"), (_) => ({ [nix.POS]: pos$102, hardeningDisable: nix.thunk(() => ["format"]) }))),
+      gpuMagic: nix.thunk(() => nix.app(nix.sel(old, "gpuMagic", "overrideAttrs"), (_) => ({ [nix.POS]: $pos[101], hardeningDisable: nix.thunk(() => ["format"]) }))),
       h2o: nix.thunk(() => nix.app(nix.sel(old, "h2o", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$103,
+          [nix.POS]: $pos[102],
           preConfigure: "# prevent download of jar file during install and postpone to first use\nsed -i '/downloadJar()/d' R/zzz.R\n\n# during runtime the package directory is not writable as it's in the\n# nix store, so store the jar in the user's cache directory instead\nsubstituteInPlace R/connection.R --replace-fail \\\n  'dest_file <- file.path(dest_folder, \"h2o.jar\")' \\\n  'dest_file <- file.path(\"~/.cache/\", \"h2o.jar\")'\n",
         }))),
       harbinger: nix.thunk(() => nix.app(nix.sel(old, "harbinger", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$105,
-          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$104, LC_ALL: "en_US.UTF-8" })),
+          [nix.POS]: $pos[104],
+          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: $pos[103], LC_ALL: "en_US.UTF-8" })),
         }))),
       hdf5r: nix.thunk(() => nix.app(nix.sel(old, "hdf5r", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$106,
+          [nix.POS]: $pos[105],
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(new$, "Rhdf5lib", "hdf5"))])),
           buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), [nix.thunk(() => nix.sel(new$, "Rhdf5lib", "hdf5"))])),
         }))),
       immunotation: nix.thunk(() => (() => {
         const MHC41alleleList = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$107,
+            [nix.POS]: $pos[106],
             url: "https://services.healthtech.dtu.dk/services/NetMHCpan-4.1/allele.list",
             hash: "sha256-CRZ+0uHzcq5zK5eONucAChXIXO8tnq5sSEAS80Z7jhg=",
           }))));
         const MHCII40alleleList = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$108,
+            [nix.POS]: $pos[107],
             url: "https://services.healthtech.dtu.dk/services/NetMHCIIpan-4.0/alleles_name.list",
             hash: "sha256-K4Ic2NUs3P4IkvOODwZ0c4Yh8caex5Ih0uO5jXRHp40=",
           }))));
         const validGeographics = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$109,
+            [nix.POS]: $pos[108],
             url: "https://web.archive.org/web/20240418194005id_/http://www.allelefrequencies.net/hla6006a.asp",
             hash: "sha256-m7Wkmh/cPxeqn94LwoznIh+fcFXskmSGErUYj6kTqak=",
           }))));
         return nix.app(nix.sel(old, "immunotation", "overrideAttrs"), (attrs) => ({
-            [nix.POS]: pos$111,
+            [nix.POS]: $pos[110],
             patches: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "replaceVars"), nix.path(here, "./patches/immunotation.patch"), nix.thunk(() => ({
-                  [nix.POS]: pos$110,
+                  [nix.POS]: $pos[109],
                   mhc41_allele_list: MHC41alleleList,
                   mhcii40_alleles_name_list: MHCII40alleleList,
                   valid_geographics: validGeographics,
@@ -2953,82 +2773,85 @@ done
           }));
       })()),
       iscream: nix.thunk(() => nix.app(nix.sel(old, "iscream", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$112,
+          [nix.POS]: $pos[111],
           propagatedBuildInputs: nix.thunk(() => nix.builtins.filter((el) => !nix.eq(nix.sel(el, "pname"), "Rhtslib"), nix.thunk(() => nix.sel(attrs, "propagatedBuildInputs")))),
           buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "htslib"))])),
           postPatch: "substituteInPlace \"DESCRIPTION\" \\\n  --replace-fail \", Rhtslib\" \"\"\n",
         }))),
       littler: nix.thunk(() => nix.app(nix.sel(old, "littler", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$113,
+          [nix.POS]: $pos[112],
           postInstall: "install -d $out/bin $out/share/man/man1\nln -s ../library/littler/bin/r $out/bin/r\nln -s ../library/littler/bin/r $out/bin/lr\nln -s ../../../library/littler/man-page/r.1 $out/share/man/man1\n# these won't run without special provisions, so better remove them\nrm -r $out/library/littler/script-tests\n",
         }))),
       lpsymphony: nix.thunk(() => nix.app(nix.sel(old, "lpsymphony", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$114,
+          [nix.POS]: $pos[113],
           postPatch: "substituteInPlace configure \\\n  --replace-fail '--libs SYMPHONY' '--libs symphony' \\\n  --replace-fail '--cflags SYMPHONY' '--cflags symphony'\n",
         }))),
-      luajr: nix.thunk(() => nix.app(nix.sel(old, "luajr", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$115, hardeningDisable: nix.thunk(() => ["format"]) }))),
+      luajr: nix.thunk(() => nix.app(nix.sel(old, "luajr", "overrideAttrs"), (attrs) => ({ [nix.POS]: $pos[114], hardeningDisable: nix.thunk(() => ["format"]) }))),
       metahdep: nix.thunk(() => nix.app(nix.sel(old, "metahdep", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$117,
+          [nix.POS]: $pos[116],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$116,
+            [nix.POS]: $pos[115],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -Wno-int-conversion")),
           })),
         }))),
       nanonext: nix.thunk(() => nix.app(nix.sel(old, "nanonext", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$119,
-          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$118, NIX_LDFLAGS: "-lnng -lmbedtls -lmbedx509 -lmbedcrypto" })),
+          [nix.POS]: $pos[118],
+          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: $pos[117], NIX_LDFLAGS: "-lnng -lmbedtls -lmbedx509 -lmbedcrypto" })),
         }))),
       nearfar: nix.thunk(() => (() => {
         const angrist = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$120,
+            [nix.POS]: $pos[119],
             url: "https://raw.githubusercontent.com/joerigdon/nearfar/master/angrist.csv",
             hash: "sha256-lb+HMHnRGonc26merFGB0B7Vk1Lk+sIJlay+JtQC8m4=",
           }))));
         return nix.app(nix.sel(old, "nearfar", "overrideAttrs"), (attrs) => ({
-            [nix.POS]: pos$121,
+            [nix.POS]: $pos[120],
             postPatch: nix.thunk(() => nix.str`substituteInPlace "R/nearfar.R" --replace-fail \\
  'url("https://raw.githubusercontent.com/joerigdon/nearfar/master/angrist.csv")'  '"${angrist}"'
 `),
           }));
       })()),
       networkscaleup: nix.thunk(() => nix.app(nix.sel(old, "networkscaleup", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$123,
+          [nix.POS]: $pos[122],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$122,
+            [nix.POS]: $pos[121],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -Wno-ignored-attributes")),
           })),
           enableParallelBuilding: false,
         }))),
-      oligo: nix.thunk(() => nix.app(nix.sel(old, "oligo", "overrideAttrs"), (_) => ({ [nix.POS]: pos$124, hardeningDisable: nix.thunk(() => ["format"]) }))),
+      oligo: nix.thunk(() => nix.app(nix.sel(old, "oligo", "overrideAttrs"), (_) => ({ [nix.POS]: $pos[123], hardeningDisable: nix.thunk(() => ["format"]) }))),
       opencv: nix.thunk(() => (() => {
-        const opencvGtk = nix.thunk(() => nix.app(nix.sel(pkgs, "opencv", "override"), (old_1) => ({ [nix.POS]: pos$125, enableGtk3: true })));
+        const opencvGtk = nix.thunk(() => nix.app(nix.sel(pkgs, "opencv", "override"), (old_1) => ({ [nix.POS]: $pos[124], enableGtk3: true })));
         return nix.app(nix.sel(old, "opencv", "overrideAttrs"), (attrs) => ({
-            [nix.POS]: pos$126,
+            [nix.POS]: $pos[125],
             buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), [opencvGtk])),
           }));
       })()),
       openssl: nix.thunk(() => nix.app(nix.sel(old, "openssl", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$127,
+          [nix.POS]: $pos[126],
           postPatch: "substituteInPlace configure \\\n  --replace-fail 'PKG_LIBS=\"${PKG_LIBS_VERSIONED}\"' ':'\n",
         }))),
-      pak: nix.thunk(() => nix.app(nix.sel(old, "pak", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$128, preConfigure: "patchShebangs src/library/*/configure\n" }))),
+      pak: nix.thunk(() => nix.app(nix.sel(old, "pak", "overrideAttrs"), (attrs) => ({
+          [nix.POS]: $pos[127],
+          preConfigure: "patchShebangs src/library/*/configure\n",
+        }))),
       pbdZMQ: nix.thunk(() => nix.app(nix.sel(old, "pbdZMQ", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$129,
+          [nix.POS]: $pos[128],
           postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`for file in R/*.{r,r.in}; do
     sed -i 's#system("which \\(\\w\\+\\)"[^)]*)#"${nix.sel(pkgs, "cctools")}/bin/\\1"#g' $file
 done
 `))),
         }))),
       quarto: nix.thunk(() => nix.app(nix.sel(old, "quarto", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$130,
+          [nix.POS]: $pos[129],
           propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(attrs, "propagatedBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "quarto"))])),
           postPatch: nix.thunk(() => nix.str`substituteInPlace "R/quarto.R" \\
   --replace-fail "Sys.getenv(\\"QUARTO_PATH\\", unset = NA_character_)" "Sys.getenv(\\"QUARTO_PATH\\", unset = '${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "quarto")))}/bin/quarto')"
 `),
         }))),
-      rGADEM: nix.thunk(() => nix.app(nix.sel(old, "rGADEM", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$131, hardeningDisable: nix.thunk(() => ["format"]) }))),
+      rGADEM: nix.thunk(() => nix.app(nix.sel(old, "rGADEM", "overrideAttrs"), (attrs) => ({ [nix.POS]: $pos[130], hardeningDisable: nix.thunk(() => ["format"]) }))),
       rJava: nix.thunk(() => nix.app(nix.sel(old, "rJava", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$132,
+          [nix.POS]: $pos[131],
           preConfigure: nix.thunk(() => nix.str`export JAVA_CPPFLAGS=-I${nix.sel(pkgs, "jdk")}/include/
 export JAVA_HOME=${nix.sel(pkgs, "jdk")}
 substituteInPlace R/zzz.R.in \\
@@ -3038,7 +2861,7 @@ substituteInPlace R/zzz.R.in \\
 `),
         }))),
       rawrr: nix.thunk(() => nix.app(nix.sel(old, "rawrr", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$133,
+          [nix.POS]: $pos[132],
           postPatch: nix.thunk(() => nix.str`substituteInPlace "R/zzz.R" "R/dotNetAssembly.R" --replace-warn \\
   "Sys.which('mono')" "'${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "mono")))}/bin/mono'"
 
@@ -3059,25 +2882,25 @@ substituteInPlace "R/rawrr.R" --replace-warn \\
             const platform = nix.arg($_1, "platform");
             const hash = nix.arg($_1, "hash");
             return nix.app(nix.sel(pkgs, "fetchzip"), nix.thunk(() => ({
-                [nix.POS]: pos$134,
+                [nix.POS]: $pos[133],
                 name: nix.thunk(() => nix.str`redatam-core-${platform}-${nix.sel(finalAttrs, "version")}`),
                 url: nix.thunk(() => nix.str`https://redatam-core.s3.us-west-2.amazonaws.com/core-dev/${platform}/redatamx-core-${platform}-${nix.sel(finalAttrs, "version")}-final.zip`),
                 hash: hash,
               })));
           })(), formals$12);
           return {
-            [nix.POS]: pos$140,
+            [nix.POS]: $pos[139],
             passthru: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "passthru"), {
-              [nix.POS]: pos$138,
+              [nix.POS]: $pos[137],
               "redatam-core-per-system": nix.thunk(() => ({
-                [nix.POS]: pos$137,
+                [nix.POS]: $pos[136],
                 "x86_64-linux": nix.thunk(() => nix.app(fetchCore, nix.thunk(() => ({
-                    [nix.POS]: pos$135,
+                    [nix.POS]: $pos[134],
                     platform: "linux",
                     hash: "sha256-LNusDc4K6B+kAd+qWo789eiQG0dToEwu/RWwoFEjgRo=",
                   })))),
                 "aarch64-darwin": nix.thunk(() => nix.app(fetchCore, nix.thunk(() => ({
-                    [nix.POS]: pos$136,
+                    [nix.POS]: $pos[135],
                     platform: "macos-arm64",
                     hash: "sha256-l7qLjM6jDtytAPgY7qVuVPEE6HUnZ1fPFxAzS6VnFY4=",
                   })))),
@@ -3088,22 +2911,22 @@ substituteInPlace "R/rawrr.R" --replace-warn \\
             preConfigure: nix.thunk(() => nix.str`install -Dm755 ${nix.sel(finalAttrs, "passthru", "redatam-core")}/lib/libredengine* -t ./inst/redengine/
 `),
             meta: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "meta"), {
-              [nix.POS]: pos$139,
+              [nix.POS]: $pos[138],
               platforms: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "redatam-core-per-system")))),
               license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
             })),
           };
         })())),
       redland: nix.thunk(() => nix.app(nix.sel(old, "redland", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$142,
+          [nix.POS]: $pos[141],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$141,
+            [nix.POS]: $pos[140],
             PKGCONFIG_CFLAGS: nix.thunk(() => nix.str`-I${nix.sel(pkgs, "redland")}/include -I${nix.sel(pkgs, "librdf_raptor2")}/include/raptor2 -I${nix.sel(pkgs, "librdf_rasqal")}/include/rasqal`),
             PKGCONFIG_LIBS: nix.thunk(() => nix.str`-L${nix.sel(pkgs, "redland")}/lib -L${nix.sel(pkgs, "librdf_raptor2")}/lib -L${nix.sel(pkgs, "librdf_rasqal")}/lib -lrdf -lraptor2 -lrasqal`),
           })),
         }))),
       rextendr: nix.thunk(() => nix.app(nix.sel(old, "rextendr", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$143,
+          [nix.POS]: $pos[142],
           postPatch: nix.thunk(() => nix.str`substituteInPlace R/zzz.R --replace-fail \\
   ".onLoad <- function(...) {" \\
   '.onLoad <- function(...) {
@@ -3111,38 +2934,38 @@ substituteInPlace "R/rawrr.R" --replace-warn \\
 `),
         }))),
       rgl: nix.thunk(() => nix.app(nix.sel(old, "rgl", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$145,
-          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$144, RGL_USE_NULL: "true" })),
+          [nix.POS]: $pos[144],
+          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: $pos[143], RGL_USE_NULL: "true" })),
         }))),
-      rgoslin: nix.thunk(() => nix.app(nix.sel(old, "rgoslin", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$146, enableParallelBuilding: false }))),
+      rgoslin: nix.thunk(() => nix.app(nix.sel(old, "rgoslin", "overrideAttrs"), (attrs) => ({ [nix.POS]: $pos[145], enableParallelBuilding: false }))),
       rhdf5: nix.thunk(() => nix.app(nix.sel(old, "rhdf5", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$148,
+          [nix.POS]: $pos[147],
           patches: nix.thunk(() => [nix.path(here, "./patches/rhdf5.patch")]),
           env: nix.thunk(() => ({
-            [nix.POS]: pos$147,
+            [nix.POS]: $pos[146],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -Wno-error=implicit-function-declaration")),
           })),
         }))),
       rhdf5filters: nix.thunk(() => nix.app(nix.sel(old, "rhdf5filters", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$149,
+          [nix.POS]: $pos[148],
           patches: nix.thunk(() => [nix.path(here, "./patches/rhdf5filters.patch")]),
         }))),
-      rlibkriging: nix.thunk(() => nix.app(nix.sel(old, "rlibkriging", "overrideAttrs"), (attrs) => ({ [nix.POS]: pos$150, preConfigure: "patchShebangs tools/ src/libK/tools/\n" }))),
+      rlibkriging: nix.thunk(() => nix.app(nix.sel(old, "rlibkriging", "overrideAttrs"), (attrs) => ({ [nix.POS]: $pos[149], preConfigure: "patchShebangs tools/ src/libK/tools/\n" }))),
       rmarkdown: nix.thunk(() => nix.app(nix.sel(old, "rmarkdown", "overrideAttrs"), (_) => ({
-          [nix.POS]: pos$151,
+          [nix.POS]: $pos[150],
           preConfigure: nix.thunk(() => nix.str`substituteInPlace R/pandoc.R \\
   --replace-fail '"~/opt/pandoc"' '"~/opt/pandoc", "${nix.sel(pkgs, "pandoc")}/bin"'
 `),
         }))),
       roxigraph: nix.thunk(() => nix.app(nix.sel(old, "roxigraph", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$153,
+          [nix.POS]: $pos[152],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$152,
+            [nix.POS]: $pos[151],
             LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "libclang")))}/lib`),
           })),
         }))),
       rpanel: nix.thunk(() => nix.app(nix.sel(old, "rpanel", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$154,
+          [nix.POS]: $pos[153],
           postPatch: nix.thunk(() => nix.str`cat >> R/zzz.R <<EOF
 .onLoad <- function(...) {
   tcltk::tcl("lappend", "auto_path", "${nix.sel(pkgs, "tclPackages", "bwidget")}/lib/bwidget${nix.sel(pkgs, "tclPackages", "bwidget", "version")}")
@@ -3151,21 +2974,21 @@ EOF
 `),
         }))),
       rstan: nix.thunk(() => nix.app(nix.sel(old, "rstan", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$156,
+          [nix.POS]: $pos[155],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$155,
+            [nix.POS]: $pos[154],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -DBOOST_PHOENIX_NO_VARIADIC_EXPRESSION")),
           })),
         }))),
       rstanarm: nix.thunk(() => nix.app(nix.sel(old, "rstanarm", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$158,
+          [nix.POS]: $pos[157],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$157,
+            [nix.POS]: $pos[156],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -Wno-ignored-attributes")),
           })),
         }))),
       rvisidata: nix.thunk(() => nix.app(nix.sel(old, "rvisidata", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$159,
+          [nix.POS]: $pos[158],
           postPatch: nix.thunk(() => nix.str`substituteInPlace R/main.r --replace-fail \\
   "system(\\"vd" "system(\\"${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "visidata")))}/bin/vd"
 substituteInPlace R/tmux.r --replace-fail \\
@@ -3173,18 +2996,18 @@ substituteInPlace R/tmux.r --replace-fail \\
 `),
         }))),
       s2: nix.thunk(() => nix.app(nix.sel(old, "s2", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$160,
+          [nix.POS]: $pos[159],
           preConfigure: "substituteInPlace \"configure\" \\\n  --replace-fail \"absl_s2\" \"absl_flags absl_check\"\n",
         }))),
       slfm: nix.thunk(() => nix.app(nix.sel(old, "slfm", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$162,
+          [nix.POS]: $pos[161],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$161,
+            [nix.POS]: $pos[160],
             PKG_LIBS: nix.thunk(() => nix.str`-L${nix.sel(pkgs, "blas")}/lib -lblas -L${nix.sel(pkgs, "lapack")}/lib -llapack`),
           })),
         }))),
       sparklyr: nix.thunk(() => nix.app(nix.sel(old, "sparklyr", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$163,
+          [nix.POS]: $pos[162],
           preConfigure: nix.thunk(() => nix.str`if grep "onLoad" R/zzz.R; then
   echo "onLoad is already present, patch needs to be updated!"
   exit 1
@@ -3199,28 +3022,28 @@ EOF
 `),
         }))),
       symengine: nix.thunk(() => nix.app(nix.sel(old, "symengine", "overrideAttrs"), (_) => ({
-          [nix.POS]: pos$164,
+          [nix.POS]: $pos[163],
           preConfigure: "rm configure\ncat > src/Makevars << EOF\nPKG_LIBS=-lsymengine\nall: $(SHLIB)\nEOF\n",
         }))),
       talib: nix.thunk(() => nix.app(nix.sel(old, "talib", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$166,
+          [nix.POS]: $pos[165],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$165,
+            [nix.POS]: $pos[164],
             NIX_LDFLAGS: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_LDFLAGS"), " -lm")),
           })),
         }))),
       tesseract: nix.thunk(() => nix.app(nix.sel(old, "tesseract", "overrideAttrs"), (_) => ({
-          [nix.POS]: pos$167,
+          [nix.POS]: $pos[166],
           preConfigure: "substituteInPlace configure \\\n  --replace-fail 'PKG_CONFIG_NAME=\"tesseract\"' 'PKG_CONFIG_NAME=\"tesseract lept\"'\n",
         }))),
       textshaping: nix.thunk(() => nix.app(nix.sel(old, "textshaping", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$169,
-          env: nix.thunk(() => ({ [nix.POS]: pos$168, NIX_LDFLAGS: "-lfribidi -lharfbuzz" })),
+          [nix.POS]: $pos[168],
+          env: nix.thunk(() => ({ [nix.POS]: $pos[167], NIX_LDFLAGS: "-lfribidi -lharfbuzz" })),
         }))),
       timeless: nix.thunk(() => nix.app(nix.sel(old, "timeless", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$171,
+          [nix.POS]: $pos[170],
           cargoDeps: nix.thunk(() => nix.app(nix.sel(pkgs, "rustPlatform", "fetchCargoVendor"), nix.thunk(() => ({
-              [nix.POS]: pos$170,
+              [nix.POS]: $pos[169],
               src: nix.thunk(() => nix.sel(attrs, "src")),
               sourceRoot: "timeless/src/rust",
               hash: "sha256-5TV7iCzaaFwROfJNO6pvSUbJBzV+wZlU5+ZK4AMT6X0=",
@@ -3232,33 +3055,33 @@ EOF
           ])),
         }))),
       trajeR: nix.thunk(() => nix.app(nix.sel(old, "trajeR", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$172,
+          [nix.POS]: $pos[171],
           patches: nix.thunk(() => [nix.path(here, "./patches/trajeR.patch")]),
         }))),
       trigger: nix.thunk(() => nix.app(nix.sel(old, "trigger", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$173,
+          [nix.POS]: $pos[172],
           postPatch: "# https://developer.r-project.org/blosxom.cgi/R-devel/NEWS/2025/01/08#n2025-01-08\nsubstituteInPlace \"src/trigger.c\" \\\n--replace-fail \"Calloc\" \"R_Calloc\" \\\n--replace-fail \"Free\" \"R_Free\"\n",
         }))),
       universalmotif: nix.thunk(() => nix.app(nix.sel(old, "universalmotif", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$174,
+          [nix.POS]: $pos[173],
           patches: nix.thunk(() => [nix.path(here, "./patches/universalmotif.patch")]),
         }))),
       unix: nix.thunk(() => nix.app(nix.sel(old, "unix", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$175,
+          [nix.POS]: $pos[174],
           postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "# ignore apparmor detection logic\nsubstituteInPlace configure \\\n  --replace-fail '[ ! -d \"/sys/module/apparmor\" ]' 'false'\n")),
         }))),
       vegan3d: nix.thunk(() => nix.app(nix.sel(old, "vegan3d", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$177,
-          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$176, RGL_USE_NULL: "true" })),
+          [nix.POS]: $pos[176],
+          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: $pos[175], RGL_USE_NULL: "true" })),
         }))),
       websocket: nix.thunk(() => nix.app(nix.sel(old, "websocket", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$178,
+          [nix.POS]: $pos[177],
           postPatch: "substituteInPlace configure \\\n  --replace-fail 'PKG_LIBS=\"${PKG_LIBS_VERSIONED}\"' ':'\n",
         }))),
       xslt: nix.thunk(() => nix.app(nix.sel(old, "xslt", "overrideAttrs"), (attrs) => ({
-          [nix.POS]: pos$180,
+          [nix.POS]: $pos[179],
           env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
-            [nix.POS]: pos$179,
+            [nix.POS]: $pos[178],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -fpermissive")),
           })),
         }))),

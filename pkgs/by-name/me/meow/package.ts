@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 13, 26], ["crateName", 14, 5], ["sha256", 15, 5]], [["updateScript", 24, 12]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["mainProgram", 30, 5], ["maintainers", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 18, 3], ["postInstall", 20, 3], ["passthru", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, fetchCrate: false, rustPlatform: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 13, 26], ["crateName", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 24, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["mainProgram", 30, 5], ["maintainers", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 18, 3], ["postInstall", 20, 3], ["passthru", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "meow",
       version: "2.1.5",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           crateName: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-cli`),
           sha256: "sha256-6tf4/KRZj+1zlxnNgz3kw/HYR2QKg0kEwu+TbKah3e8=",
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-Z3qAeIAiLJEHsqlDLvQXzX287dZSLhPg2V6clfI0Egs=",
       postInstall: "mv $out/bin/meow-cli $out/bin/meow\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Print ASCII cats to your terminal",
         homepage: "https://github.com/PixelSergey/meow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

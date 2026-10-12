@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["0.8.0", 26, 9], ["0.7.0", 27, 9]], [["url", 23, 5], ["hash", 24, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 19, 3], ["version", 20, 11], ["src", 22, 3], ["propagatedBuildInputs", 32, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, base64: false, either: false, fmt: false, jsonm: false, uutf: false, optint: false, ppxlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["0.8.0", 26, 9], ["0.7.0", 27, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 11], ["src", 22, 3], ["propagatedBuildInputs", 32, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,21 +19,21 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? "0.8.0" : "0.7.0"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "repr",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/mirage/repr/releases/download/${version}/repr-${version}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "0.8.0": "sha256-FyhCO4sCCPmwMq0+Bd2WpDuSzXZBb5FG45TwsLoTM0c=",
             "0.7.0": "sha256-itrJ/oW/ig4g7raBDXIW6Y4bf02b05nmG7ECSs4lAaw=",
           }, nix.key(nix.str`${version}`))),
         })))),
       propagatedBuildInputs: nix.thunk(() => [base64, either, fmt, jsonm, uutf, optint]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Dynamic type representations. Provides no stability guarantee",
         homepage: "https://github.com/mirage/repr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

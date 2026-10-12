@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["url", 62, 7], ["hash", 63, 7], ["excludes", 64, 7]], [["homepage", 151, 5], ["platforms", 152, 5], ["license", 153, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["strictDeps", 48, 3], ["__structuredAttrs", 49, 3], ["prePatch", 51, 3], ["patches", 58, 3], ["buildInputs", 74, 3], ["nativeBuildInputs", 88, 3], ["pythonPath", 108, 3], ["configureFlags", 119, 3], ["stripDebugList", 125, 3], ["doCheck", 131, 3], ["doInstallCheck", 132, 3], ["postInstall", 134, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, udev: false, "pkg-config": false, glib: false, xmlto: false, wrapGAppsHook3: false, docbook_xml_dtd_412: false, docbook_xsl: false, libxml2Python: false, "desktop-file-utils": false, libusb1: false, cups: false, "gdk-pixbuf": false, pango: false, atk: false, libnotify: false, "gobject-introspection": false, libsecret: false, packagekit: false, libcupsfilters: false, gettext: false, libtool: false, "autoconf-archive": false, python3Packages: false, autoreconfHook: false, bash: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 62, 7], ["hash", 63, 7], ["excludes", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 151, 5], ["platforms", 152, 5], ["license", 153, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["strictDeps", 48, 3], ["__structuredAttrs", 49, 3], ["prePatch", 51, 3], ["patches", 58, 3], ["buildInputs", 74, 3], ["nativeBuildInputs", 88, 3], ["pythonPath", 108, 3], ["configureFlags", 119, 3], ["stripDebugList", 125, 3], ["doCheck", 131, 3], ["doInstallCheck", 132, 3], ["postInstall", 134, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const libxml2 = libxml2Python;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "system-config-printer",
       version: "1.5.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openPrinting",
           repo: "system-config-printer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +58,7 @@ substituteInPlace Makefile.am --replace /bin/bash ${bash}/bin/bash
       patches: nix.thunk(() => [
         nix.path(here, "./detect_serverbindir.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/OpenPrinting/system-config-printer/commit/399b3334d6519639cfe7f1c0457e2475b8ee5230.patch",
             hash: "sha256-JCdGmZk2vRn3X1BDxOJaY3Aw8dr0ODVzi0oY20ZWfRs=",
             excludes: nix.thunk(() => ["NEWS"]),
@@ -135,7 +132,7 @@ substituteInPlace $out/etc/udev/rules.d/70-printers.rules \\
   --replace "udev-configure-printer" "$out/etc/udev/udev-configure-printer"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/openprinting/system-config-printer",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

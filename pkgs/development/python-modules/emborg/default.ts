@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["MISSING_DEPENDENCIES", 53, 7]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 34, 3], ["nativeCheckInputs", 43, 3], ["env", 53, 3], ["postPatch", 55, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, pytestCheckHook: false, borgbackup: false, appdirs: false, arrow: false, docopt: false, inform: false, nestedtext: false, "parametrize-from-file": false, quantiphy: false, requests: false, shlib: false, voluptuous: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["MISSING_DEPENDENCIES", 53, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 34, 3], ["nativeCheckInputs", 43, 3], ["env", 53, 3], ["postPatch", 55, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.43";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KenKundert",
           repo: "emborg",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,11 +44,11 @@ export default nix.lambda((args) => (() => {
         voluptuous,
         borgbackup,
       ]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, MISSING_DEPENDENCIES: "fuse" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], MISSING_DEPENDENCIES: "fuse" }));
       const postPatch = "patchShebangs .\n";
       const pythonImportsCheck = nix.thunk(() => ["emborg"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Interactive command line interface to Borg Backup",
         homepage: "https://github.com/KenKundert/emborg",
         changelog: nix.thunk(() => nix.str`https://github.com/KenKundert/emborg/releases/tag/${nix.sel(src, "tag")}`),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

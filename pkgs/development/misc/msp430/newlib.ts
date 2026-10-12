@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/newlib.nix", [[["incdir", 25, 22], ["libdir", 25, 29]], [["platforms", 29, 5]], [["pname", 9, 3], ["version", 10, 20], ["newlib", 11, 11], ["msp430GccSupport", 12, 11], ["preferLocalBuild", 14, 3], ["allowSubstitutes", 15, 3], ["buildCommand", 17, 3], ["passthru", 24, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lndir: false, newlib: false, msp430GccSupport: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/newlib.nix", [["incdir", 25, 22], ["libdir", 25, 29]]);
-const pos$2 = nix.positions(here + "/newlib.nix", [["platforms", 29, 5]]);
-const pos$3 = nix.positions(here + "/newlib.nix", [["pname", 9, 3], ["version", 10, 20], ["newlib", 11, 11], ["msp430GccSupport", 12, 11], ["preferLocalBuild", 14, 3], ["allowSubstitutes", 15, 3], ["buildCommand", 17, 3], ["passthru", 24, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const newlib = nix.arg($, "newlib");
   const msp430GccSupport = nix.arg($, "msp430GccSupport");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`msp430-${nix.sel(newlib, "pname")}`),
       version: nix.thunk(() => nix.attr(newlib, "version")),
       newlib: newlib,
@@ -27,11 +25,11 @@ ${lndir}/bin/lndir -silent $msp430GccSupport/include $out/${nix.sel(newlib, "inc
 ${lndir}/bin/lndir -silent $msp430GccSupport/lib $out/${nix.sel(newlib, "libdir")}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         incdir: nix.thunk(() => nix.attr(newlib, "incdir")),
         libdir: nix.thunk(() => nix.attr(newlib, "libdir")),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, platforms: nix.thunk(() => ["msp430-none"]) })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[1], platforms: nix.thunk(() => ["msp430-none"]) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=newlib.ts.map

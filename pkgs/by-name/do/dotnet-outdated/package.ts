@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 16, 5], ["downloadPage", 17, 5], ["homepage", 18, 5], ["changelog", 19, 5], ["license", 20, 5], ["maintainers", 21, 5], ["mainProgram", 22, 5]], [["pname", 7, 3], ["nugetName", 8, 3], ["version", 9, 3], ["dotnet-sdk", 11, 3], ["nugetHash", 13, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetGlobalTool: false, dotnetCorePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 16, 5], ["downloadPage", 17, 5], ["homepage", 18, 5], ["changelog", 19, 5], ["license", 20, 5], ["maintainers", 21, 5], ["mainProgram", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["nugetName", 8, 3], ["version", 9, 3], ["dotnet-sdk", 11, 3], ["nugetHash", 13, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0"));
       const nugetHash = "sha256-f5su1er+1wP35rrU3S+qvwfPp/C55tR7xZ4bv4z7zL0=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: ".NET Core global tool to display and update outdated NuGet packages in a project",
         downloadPage: "https://www.nuget.org/packages/dotnet-outdated-tool",
         homepage: "https://github.com/dotnet-outdated/dotnet-outdated",
@@ -31,7 +30,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "dotnet-outdated",
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         nugetName,
         version,

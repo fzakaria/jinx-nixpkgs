@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 88, 5], ["mainProgram", 89, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 32, 3], ["depsBuildBuild", 33, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["mesonFlags", 51, 3], ["preFixup", 56, 3], ["postInstall", 68, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, scdoc: false, systemdMinimal: false, pango: false, cairo: false, "gdk-pixbuf": false, jq: false, bash: false, wayland: false, "wayland-scanner": false, "wayland-protocols": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 88, 5], ["mainProgram", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 32, 3], ["depsBuildBuild", 33, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["mesonFlags", 51, 3], ["preFixup", 56, 3], ["postInstall", 68, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mako",
       version: "1.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emersion",
           repo: "mako",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "mkdir -p $out/lib/systemd/user\nsubstitute $src/contrib/systemd/mako.service $out/lib/systemd/user/mako.service \\\n  --replace-fail '/usr/bin' \"$out/bin\"\nchmod 0644 $out/lib/systemd/user/mako.service\n\n# Route D-Bus activation through the unit installed above, so it\n# waits for graphical-session.target instead of exec'ing mako\n# before the compositor is up.\necho \"SystemdService=mako.service\" \\\n  >> $out/share/dbus-1/services/fr.emersion.mako.service\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight Wayland notification daemon",
         homepage: "https://github.com/emersion/mako",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

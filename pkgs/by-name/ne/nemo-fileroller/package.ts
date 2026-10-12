@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["PKG_CONFIG_LIBNEMO_EXTENSION_EXTENSIONDIR", 46, 7]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["teams", 53, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["postPatch", 40, 3], ["env", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, "pkg-config": false, ninja: false, glib: false, gtk3: false, nemo: false, "file-roller": false, "cinnamon-translations": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_LIBNEMO_EXTENSION_EXTENSIONDIR", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["teams", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["postPatch", 40, 3], ["env", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const file_roller = nix.arg($, "file-roller");
   const cinnamon_translations = nix.arg($, "cinnamon-translations");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nemo-fileroller",
       version: "6.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "nemo-extensions",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,11 +37,11 @@ export default nix.lambda((args) => (() => {
   --replace "GNOMELOCALEDIR" "${cinnamon_translations}/share/locale"
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_LIBNEMO_EXTENSION_EXTENSIONDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${nix.sel(nemo, "extensiondir")}`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/linuxmint/nemo-extensions/tree/master/nemo-fileroller",
         description: "Nemo file roller extension",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

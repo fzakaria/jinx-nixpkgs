@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 5], ["version", 18, 13], ["hash", 19, 5]], [["ots_sanitize", 27, 7]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["patches", 22, 3], ["propagatedBuildInputs", 31, 3], ["nativeBuildInputs", 32, 3], ["nativeCheckInputs", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, replaceVars: false, "opentype-sanitizer": false, "setuptools-scm": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 13], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ots_sanitize", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["patches", 22, 3], ["propagatedBuildInputs", 31, 3], ["nativeBuildInputs", 32, 3], ["nativeCheckInputs", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const version = "9.1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "opentype-sanitizer",
           version: version,
           hash: "sha256-1Zdd+eRECimZl8L8CCkm7pCjN0TafSsc5i2Y6/oH88I=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-use-packaged-ots.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             ots_sanitize: nix.thunk(() => nix.str`${opentype_sanitizer}/bin/ots-sanitize`),
           })))),
       ]);
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools_scm]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python wrapper for ots (OpenType Sanitizer)",
         homepage: "https://github.com/googlefonts/ots-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

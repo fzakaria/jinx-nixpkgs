@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["changelog", 54, 5], ["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { aiofiles: false, aiohttp: false, aioresponses: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, lib: false, lxml: false, pyprojectVersionPatchHook: false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, "python-dateutil": false, yarl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 54, 5], ["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jpbede",
           repo: "aiowebdav2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["aiowebdav2"]);
       const nativeCheckInputs = nix.thunk(() => [aioresponses, pytest_asyncio, pytest_cov_stub, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/jpbede/aiowebdav2/releases/tag/${nix.sel(src, "tag")}`),
         description: "Async Python 3 client for WebDAV",
         homepage: "https://github.com/jpbede/aiowebdav2",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

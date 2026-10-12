@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["package", 85, 7]], [["pkg-config", 84, 11]], [["tests", 84, 5]], [["description", 90, 5], ["longDescription", 91, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["mainProgram", 102, 5], ["platforms", 103, 5], ["pkgConfigModules", 104, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["outputs", 38, 3], ["depsBuildBuild", 44, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["nativeCheckInputs", 64, 3], ["mesonFlags", 70, 3], ["doCheck", 78, 3], ["preCheck", 79, 3], ["passthru", 83, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, bison: false, doxygen: false, xkeyboard_config: false, libxcb: false, libxml2: false, python3: false, setxkbmap: false, xkbcomp: false, libx11: false, xvfb: false, withWaylandTools: true, wayland: false, "wayland-protocols": false, "wayland-scanner": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 85, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 84, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 90, 5], ["longDescription", 91, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["mainProgram", 102, 5], ["platforms", 103, 5], ["pkgConfigModules", 104, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["outputs", 38, 3], ["depsBuildBuild", 44, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["nativeCheckInputs", 64, 3], ["mesonFlags", 70, 3], ["doCheck", 78, 3], ["preCheck", 79, 3], ["passthru", 83, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libxkbcommon",
       version: "1.13.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xkbcommon",
           repo: "libxkbcommon",
           tag: nix.thunk(() => nix.str`xkbcommon-${nix.sel(finalAttrs, "version")}`),
@@ -59,17 +54,17 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       preCheck: "patchShebangs ../test/\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Library to handle keyboard descriptions",
         longDescription: "libxkbcommon is a keyboard keymap compiler and support library which\nprocesses a reduced subset of keymaps as defined by the XKB (X Keyboard\nExtension) specification. It also contains a module for handling Compose\nand dead keys.\n",
         homepage: "https://xkbcommon.org",

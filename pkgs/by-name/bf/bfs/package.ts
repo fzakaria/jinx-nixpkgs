@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 17, 5], ["owner", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5], ["mainProgram", 54, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["configurePhase", 34, 3], ["makeFlags", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, attr: false, acl: false, libcap: false, liburing: false, oniguruma: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 17, 5], ["owner", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5], ["mainProgram", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["configurePhase", 34, 3], ["makeFlags", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const liburing = nix.arg($, "liburing");
   const oniguruma = nix.arg($, "oniguruma");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bfs",
       version: "4.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "bfs",
           owner: "tavianator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n./configure --prefix=$out --enable-release\nrunHook postConfigure\n",
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Breadth-first version of the UNIX find command",
         longDescription: "bfs is a variant of the UNIX find command that operates breadth-first rather than\ndepth-first. It is otherwise intended to be compatible with many versions of find.\n",
         homepage: "https://github.com/tavianator/bfs",

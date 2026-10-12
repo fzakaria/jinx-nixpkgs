@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 26], ["version", 28, 32], ["hash", 29, 5]], [["plots", 42, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 24, 3], ["src", 27, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["optional-dependencies", 41, 3], ["pythonImportsCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, numpy: false, pandas: false, matplotlib: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 26], ["version", 28, 32], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["plots", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 24, 3], ["src", 27, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["optional-dependencies", 41, 3], ["pythonImportsCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const matplotlib = nix.arg($, "matplotlib");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cutlass",
       version: "0.5.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-dAxt/1EROwJix/Sz889XJ9MXfN1FBFQYSNeB3H43g7E=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [numpy, pandas]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, plots: nix.thunk(() => [matplotlib]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], plots: nix.thunk(() => [matplotlib]) })),
       pythonImportsCheck: nix.thunk(() => ["cutlass"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Rectified L1 logistic regression with CUTLASS critical range encoding",
         homepage: "https://github.com/jworender/cutlass",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

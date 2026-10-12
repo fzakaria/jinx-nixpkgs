@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["pythonRelaxDeps", 34, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 53, 3], ["enabledTestPaths", 55, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, agate: false, "dbt-adapters": false, "dbt-common": false, "dbt-core": false, "google-cloud-bigquery": false, "google-cloud-dataproc": false, "google-cloud-storage": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["pythonRelaxDeps", 34, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 53, 3], ["enabledTestPaths", 55, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dbt-labs",
           repo: "dbt-bigquery",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,14 +45,14 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/unit"]);
       const pythonImportsCheck = nix.thunk(() => ["dbt.adapters.bigquery"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Plugin enabling dbt to operate on a BigQuery database",
         homepage: "https://github.com/dbt-labs/dbt-bigquery",
         changelog: nix.thunk(() => nix.str`https://github.com/dbt-labs/dbt-bigquery/blob/v${version}/CHANGELOG.md`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

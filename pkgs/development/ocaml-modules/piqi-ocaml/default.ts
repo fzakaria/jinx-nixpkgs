@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["version", 13, 3], ["pname", 14, 3], ["name", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["checkInputs", 33, 3], ["strictDeps", 35, 3], ["createFindlibDestdir", 37, 3], ["installPhase", 39, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ocaml: false, findlib: false, piqi: false, "stdlib-shims": false, num: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 13, 3], ["pname", 14, 3], ["name", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["checkInputs", 33, 3], ["strictDeps", 35, 3], ["createFindlibDestdir", 37, 3], ["installPhase", 39, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "piqi-ocaml";
       const name = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}-${version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alavrik",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const createFindlibDestdir = true;
       const installPhase = "runHook preInstall\nDESTDIR=$out make install\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Universal schema language and a collection of tools built around it. These are the ocaml bindings",
         homepage: "https://github.com/alavrik/piqi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "piqic-ocaml",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         name,

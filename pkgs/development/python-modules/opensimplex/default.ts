@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["forceFetchGit", 22, 5], ["sha256", 23, 5]], [["description", 35, 5], ["longDescription", 36, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 30, 3], ["enabledTestPaths", 31, 3], ["pythonImportsCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromForgejo: false, setuptools: false, numpy: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["forceFetchGit", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 35, 5], ["longDescription", 36, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 30, 3], ["enabledTestPaths", 31, 3], ["pythonImportsCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "opensimplex",
       version: "0.4.5.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "code.larus.se",
           owner: "lmas",
           repo: "opensimplex",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/test_opensimplex.py"]),
       pythonImportsCheck: nix.thunk(() => ["opensimplex"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OpenSimplex Noise functions for 2D, 3D and 4D",
         longDescription: "OpenSimplex noise is an n-dimensional gradient noise function that was\ndeveloped in order to overcome the patent-related issues surrounding\nSimplex noise, while continuing to also avoid the visually-significant\ndirectional artifacts characteristic of Perlin noise.\n",
         homepage: "https://github.com/lmas/opensimplex",

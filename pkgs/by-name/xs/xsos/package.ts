@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]], [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 58, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["installPhase", 42, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeWrapper: false, installShellFiles: false, dmidecode: false, ethtool: false, pciutils: false, "multipath-tools": false, iproute2: false, sysvinit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["installPhase", 42, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const sysvinit = nix.arg($, "sysvinit");
   const binPath = nix.thunk(() => [iproute2, dmidecode, ethtool, pciutils, multipath_tools, iproute2, sysvinit]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xsos",
       version: "0.7.33",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ryran",
           repo: "xsos",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ wrapProgram "$out/bin/xsos" --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"
 installShellCompletion --bash --name xsos.bash xsos-bash-completion.bash
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Summarize system info from sosreports",
         mainProgram: "xsos",
         homepage: "https://github.com/ryran/xsos",

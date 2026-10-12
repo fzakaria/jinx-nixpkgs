@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["updateScript", 77, 12]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["mainProgram", 89, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["sourceRoot", 36, 3], ["cargoHash", 38, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["runtimeDependencies", 61, 3], ["postFixup", 66, 3], ["nativeInstallCheckInputs", 72, 3], ["doInstallCheck", 75, 3], ["passthru", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, makeWrapper: false, "pkg-config": false, autoPatchelfHook: false, fontconfig: false, libgcc: false, libxkbcommon: false, libxi: false, libxcursor: false, libx11: false, libGL: false, wayland: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 77, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["mainProgram", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["sourceRoot", 36, 3], ["cargoHash", 38, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["runtimeDependencies", 61, 3], ["postFixup", 66, 3], ["nativeInstallCheckInputs", 72, 3], ["doInstallCheck", 75, 3], ["passthru", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "crusader",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Zoxc",
           repo: "crusader",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +47,11 @@ wrapProgram $out/bin/crusader-gui \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Network throughput and latency tester",
         homepage: "https://github.com/Zoxc/crusader",
         changelog: nix.thunk(() => nix.str`https://github.com/Zoxc/crusader/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

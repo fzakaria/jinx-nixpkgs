@@ -2,13 +2,13 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/faxq-default.nix", [[["ModemGroup", 7, 3], ["ServerTracing", 8, 3], ["SessionTracing", 9, 3], ["UUCPLockDir", 10, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/faxq-default.nix", [["ModemGroup", 7, 3], ["ServerTracing", 8, 3], ["SessionTracing", 9, 3], ["UUCPLockDir", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     ModemGroup: nix.thunk(() => ["\"any:0:.*\""]),
     ServerTracing: "0x78701",
     SessionTracing: "0x78701",

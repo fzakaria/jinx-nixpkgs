@@ -2,26 +2,24 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 8, 5], ["publisher", 9, 5], ["version", 10, 5], ["hash", 11, 5]], [["description", 16, 5], ["downloadPage", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["maintainers", 20, 5]], [["mktplcRef", 7, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 8, 5], ["publisher", 9, 5], ["version", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 16, 5], ["downloadPage", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["maintainers", 20, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 7, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "amazon-q-vscode",
         publisher: "AmazonWebServices",
         version: "2.8.0",
         hash: "sha256-QloFWdBDcFccs+SHYS9NSUjsnxr4nDFYuL/ox7JiJes=",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Amazon Q, CodeCatalyst, Local Lambda debug, SAM/CFN syntax, ECS Terminal, AWS resources",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.amazon-q-vscode",
         homepage: "https://github.com/aws/aws-toolkit-vscode",

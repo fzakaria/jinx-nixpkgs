@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 7], ["repo", 31, 7], ["rev", 32, 7], ["hash", 33, 7]], [["extraArgs", 151, 9]], [["package", 158, 9]], [["version", 157, 13], ["nixos", 161, 13]], [["updateScript", 150, 7], ["tests", 157, 7]], [["changelog", 165, 7], ["description", 166, 7], ["homepage", 167, 7], ["license", 168, 7], ["mainProgram", 169, 7], ["maintainers", 170, 7]], [["pname", 25, 5], ["version", 26, 5], ["format", 27, 5], ["src", 29, 5], ["patches", 36, 5], ["postPatch", 40, 5], ["disabledTests", 55, 5], ["nativeBuildInputs", 63, 5], ["buildInputs", 73, 5], ["pythonPath", 79, 5], ["nativeCheckInputs", 91, 5], ["dontWrapGApps", 112, 5], ["preFixup", 114, 5], ["postFixup", 135, 5], ["preCheck", 140, 5], ["doCheck", 147, 5], ["passthru", 149, 5], ["meta", 164, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, python3: false, librsync: false, glib: false, ncftp: false, gnupg: false, gnutar: false, par2cmdline: false, "util-linux": false, rsync: false, makeWrapper: false, wrapGAppsNoGuiHook: false, gettext: false, getconf: false, testers: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 7], ["repo", 31, 7], ["rev", 32, 7], ["hash", 33, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 151, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 158, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 157, 13], ["nixos", 161, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 150, 7], ["tests", 157, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 165, 7], ["description", 166, 7], ["homepage", 167, 7], ["license", 168, 7], ["mainProgram", 169, 7], ["maintainers", 170, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 25, 5], ["version", 26, 5], ["format", 27, 5], ["src", 29, 5], ["patches", 36, 5], ["postPatch", 40, 5], ["disabledTests", 55, 5], ["nativeBuildInputs", 63, 5], ["buildInputs", 73, 5], ["pythonPath", 79, 5], ["nativeCheckInputs", 91, 5], ["dontWrapGApps", 112, 5], ["preFixup", 114, 5], ["postFixup", 135, 5], ["preCheck", 140, 5], ["doCheck", 147, 5], ["passthru", 149, 5], ["meta", 164, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.7";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "duplicity",
           repo: "duplicity",
           rev: nix.thunk(() => nix.str`rel.${version}`),
@@ -92,19 +86,19 @@ makeWrapperArgs+=(
       const preCheck = "# tests need writable $HOME\nHOME=$PWD/.home\n\nwrapPythonProgramsIn \"$PWD/testing/overrides/bin\" \"${pythonPath[*]}\"\n";
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "rel\\.(.*)"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: self })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: self })))),
           nixos: nix.thunk(() => nix.sel(nixosTests, "duplicity")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://gitlab.com/duplicity/duplicity/-/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Encrypted bandwidth-efficient backup using the rsync algorithm",
         homepage: "https://duplicity.gitlab.io/duplicity-web/",
@@ -116,7 +110,7 @@ makeWrapperArgs+=(
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         format,

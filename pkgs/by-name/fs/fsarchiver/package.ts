@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]], [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["mainProgram", 68, 5]], [["pname", 24, 3], ["version", 25, 11], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, zlib: false, bzip2: false, lzo: false, lz4: false, zstd: false, xz: false, libgcrypt: false, e2fsprogs: false, "util-linux": false, "libgpg-error": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["mainProgram", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 11], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libgpg_error = nix.arg($, "libgpg-error");
   const version = "0.8.9";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fsarchiver",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fdupoux",
           repo: "fsarchiver",
           rev: version,
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         libgpg_error,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "File system archiver for linux",
         longDescription: "FSArchiver is a system tool that allows you to save the contents of a\nfile-system to a compressed archive file. The file-system can be restored\non a partition which has a different size and it can be restored on a\ndifferent file-system. Unlike tar/dar, FSArchiver also creates the\nfile-system when it extracts the data to partitions. Everything is\nchecksummed in the archive in order to protect the data. If the archive is\ncorrupt, you just loose the current file, not the whole archive.\n",
         homepage: "https://www.fsarchiver.org/",

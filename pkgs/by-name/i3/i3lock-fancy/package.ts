@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 76, 5], ["homepage", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5], ["license", 80, 5], ["platforms", 81, 5]], [["pname", 19, 3], ["version", 20, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["postPatch", 37, 3], ["installPhase", 48, 3], ["postInstall", 60, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { coreutils: false, fetchFromGitHub: false, fontconfig: false, gawk: false, getopt: false, "i3lock-color": false, imagemagick: false, installShellFiles: false, lib: false, makeWrapper: false, scrot: false, stdenv: false, screenshotCommand: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5], ["license", 80, 5], ["platforms", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["postPatch", 37, 3], ["installPhase", 48, 3], ["postInstall", 60, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const screenshotCommand = nix.argOr($, "screenshotCommand", () => "");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "i3lock-fancy",
       version: "0.2-unstable-2023-04-28",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "meskarune",
           repo: "i3lock-fancy",
           rev: "55f5c30071403faf5ae4363a54b6d1f63876d5ce",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, fontconfig, gawk, getopt, i3lock_color, imagemagick, scrot]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bash script that takes a screenshot of the desktop, blurs the background and adds a lock icon and text",
         homepage: "https://github.com/meskarune/i3lock-fancy",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "reedrw"))]),

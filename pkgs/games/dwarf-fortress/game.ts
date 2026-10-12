@@ -2,13 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/game.nix", [[["x86_64-linux", 39, 5]], [["url", 84, 19], ["hash", 85, 5]], [["command", 181, 7], ["attrPath", 182, 7], ["supportedFeatures", 183, 7]], [["baseVersion", 175, 7], ["patchVersion", 176, 7], ["dfVersion", 177, 7], ["exe", 178, 7], ["updateScript", 180, 5]], [["description", 188, 5], ["homepage", 189, 5], ["license", 190, 5], ["platforms", 191, 5], ["maintainers", 192, 5], ["sourceProvenance", 199, 5]], [["pname", 80, 3], ["version", 81, 3], ["src", 83, 3], ["sourceRoot", 88, 3], ["postUnpack", 90, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 105, 3], ["installPhase", 115, 3], ["preFixup", 161, 3], ["passthru", 173, 3], ["meta", 187, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, SDL: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, fmodex: false, "dwarf-fortress-unfuck": false, autoPatchelfHook: false, ncurses: false, gcc: false, dfVersion: false, dfVersions: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/game.nix", [["x86_64-linux", 39, 5]]);
-const pos$2 = nix.positions(here + "/game.nix", [["url", 84, 19], ["hash", 85, 5]]);
-const pos$3 = nix.positions(here + "/game.nix", [["command", 181, 7], ["attrPath", 182, 7], ["supportedFeatures", 183, 7]]);
-const pos$4 = nix.positions(here + "/game.nix", [["baseVersion", 175, 7], ["patchVersion", 176, 7], ["dfVersion", 177, 7], ["exe", 178, 7], ["updateScript", 180, 5]]);
-const pos$5 = nix.positions(here + "/game.nix", [["description", 188, 5], ["homepage", 189, 5], ["license", 190, 5], ["platforms", 191, 5], ["maintainers", 192, 5], ["sourceProvenance", 199, 5]]);
-const pos$6 = nix.positions(here + "/game.nix", [["pname", 80, 3], ["version", 81, 3], ["src", 83, 3], ["sourceRoot", 88, 3], ["postUnpack", 90, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 105, 3], ["installPhase", 115, 3], ["preFixup", 161, 3], ["passthru", 173, 3], ["meta", 187, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const splitVersion = nix.thunk(() => nix.attr(lib, "splitVersion"));
   const toInt = nix.thunk(() => nix.attr(lib, "toInt"));
-  const platforms = nix.thunk(() => ({ [nix.POS]: pos$1, "x86_64-linux": "linux" }));
+  const platforms = nix.thunk(() => ({ [nix.POS]: $pos[0], "x86_64-linux": "linux" }));
   const dfVersionTuple = nix.thunk(() => nix.app(splitVersion, dfVersion));
   const dfVersionBaseIndex = nix.thunk(() => (() => {
     const x = nix.thunk(() => nix.sub(nix.builtins.length(dfVersionTuple), 2n));
@@ -53,11 +48,11 @@ export default nix.lambda((args) => (() => {
   const url = nix.thunk(() => (nix.asBool(nix.app(hasAttr, dfPlatform, nix.thunk(() => nix.sel(game, "urls")))) ? nix.app(getAttr, dfPlatform, nix.thunk(() => nix.sel(game, "urls"))) : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported dfPlatform: ${dfPlatform}`))));
   const exe = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? (nix.asBool(nix.ge(baseVersion, 50n)) ? "dwarfort" : "libs/Dwarf_Fortress") : "dwarfort.exe"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dwarf-fortress",
       version: dfVersion,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.attr(url, "url")),
           hash: nix.thunk(() => nix.sel(url, "outputHash")),
         })))),
@@ -121,20 +116,20 @@ install_name_tool \\
 trap recompute_hash EXIT
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         baseVersion: baseVersion,
         patchVersion: patchVersion,
         dfVersion: dfVersion,
         exe: exe,
         updateScript: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           command: nix.thunk(() => [nix.path(here, "./update.rb")]),
           attrPath: "dwarf-fortress-packages",
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Single-player fantasy game with a randomly generated adventure world",
         homepage: "https://www.bay12games.com/dwarves/",
         license: nix.thunk(() => nix.sel(licenses, "unfreeRedistributable")),

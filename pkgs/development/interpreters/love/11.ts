@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/11.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["sha256", 32, 5]], [["NIX_CFLAGS_COMPILE", 69, 7]], [["homepage", 108, 5], ["description", 109, 5], ["mainProgram", 110, 5], ["license", 111, 5], ["platforms", 112, 5], ["maintainers", 113, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["cmakeFlags", 62, 3], ["env", 69, 3], ["installPhase", 72, 3], ["postFixup", 102, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, SDL2: false, libGLU: false, libGL: false, openal: false, luajit: false, freetype: false, physfs: false, libmodplug: false, mpg123: false, libvorbis: false, libogg: false, libtheora: false, which: false, libtool: false, libx11: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/11.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/11.nix", [["NIX_CFLAGS_COMPILE", 69, 7]]);
-const pos$3 = nix.positions(here + "/11.nix", [["homepage", 108, 5], ["description", 109, 5], ["mainProgram", 110, 5], ["license", 111, 5], ["platforms", 112, 5], ["maintainers", 113, 5]]);
-const pos$4 = nix.positions(here + "/11.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["cmakeFlags", 62, 3], ["env", 69, 3], ["installPhase", 72, 3], ["postFixup", 102, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "love",
       version: "11.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "love2d",
           repo: "love",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,11 +59,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CMAKE_BUILD_WITH_INSTALL_RPATH", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "LOVE_JIT", true)),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-DluaL_reg=luaL_Reg" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-DluaL_reg=luaL_Reg" })),
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n\nmkdir -p $out/bin $out/lib\ncp love $out/bin/\ncp libliblove.* $out/lib/\n\n# Install man page (both Linux and Darwin)\nmkdir -p $out/share/man/man1\ncp $src/platform/unix/love.6 $out/share/man/man1/love.1\ngzip -9n $out/share/man/man1/love.1\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "# Install Linux-specific files (desktop, mime, icons)\nmkdir -p $out/share/applications\nmkdir -p $out/share/mime/packages\nmkdir -p $out/share/icons/hicolor/scalable/{apps,mimetypes}\n\n# Generate desktop file from template\nsubstitute $src/platform/unix/love.desktop.in $out/share/applications/love.desktop \\\n  --replace-fail '@bindir@' \"$out/bin\"\n\ncp $src/platform/unix/love.xml $out/share/mime/packages/\ncp $src/platform/unix/love.svg $out/share/icons/hicolor/scalable/apps\ncp $src/platform/unix/application-x-love-game.svg $out/share/icons/hicolor/scalable/mimetypes/\n")), "runHook postInstall\n")),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# Fix rpath so love binary can find libliblove.dylib\ninstall_name_tool -change \"@rpath/libliblove.dylib\" \"$out/lib/libliblove.dylib\" \"$out/bin/love\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://love2d.org",
         description: "Lua-based 2D game engine/scripting language",
         mainProgram: "love",

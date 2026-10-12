@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 25, 5], ["description", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 29, 5]], [["version", 8, 3], ["pname", 9, 3], ["src", 11, 3], ["patches", 16, 3], ["buildFlags", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 25, 5], ["description", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 8, 3], ["pname", 9, 3], ["src", 11, 3], ["patches", 16, 3], ["buildFlags", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.5.1",
       pname: "libmpeg2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://libmpeg2.sourceforge.net/files/libmpeg2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1m3i322n2fwgrvbs1yck7g5md1dbg22bhq5xdqmjpz5m7j4jxqny",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./getopt-getenv-signatures.patch")]),
       buildFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "CFLAGS=-std=gnu89")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://libmpeg2.sourceforge.net/",
         description: "Free library for decoding mpeg-2 and mpeg-1 video streams",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

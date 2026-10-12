@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 67, 5], ["license", 68, 5], ["homepage", 69, 5], ["maintainers", 70, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["qmakeFlags", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["preBuild", 49, 3], ["installPhase", 54, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, gst_all_1: false, libx11: false, pipewire: false, pulseaudio: false, qt6: false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["license", 68, 5], ["homepage", 69, 5], ["maintainers", 70, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["qmakeFlags", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["preBuild", 49, 3], ["installPhase", 54, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vokoscreen-ng",
       version: "4.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vkohaupt",
           repo: "vokoscreenNG",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "lrelease src/language/*.ts\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 -t $out/bin vokoscreenNG\ninstall -Dm644 -t $out/share/applications src/applications/vokoscreenNG.desktop\ninstall -Dm644 -t $out/share/icons src/applications/vokoscreenNG.png\n\nqtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\")\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "User friendly Open Source screencaster for Linux and Windows",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://github.com/vkohaupt/vokoscreenNG",

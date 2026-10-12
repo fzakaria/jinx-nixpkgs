@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["mainProgram", 77, 5], ["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["propagatedBuildInputs", 24, 3], ["nativeCheckInputs", 38, 3], ["enabledTestPaths", 42, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 61, 3], ["preCheck", 66, 3], ["postPatch", 71, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 77, 5], ["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["propagatedBuildInputs", 24, 3], ["nativeCheckInputs", 38, 3], ["enabledTestPaths", 42, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 61, 3], ["preCheck", 66, 3], ["postPatch", 71, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "castero",
       version: "0.9.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xgi",
           repo: "castero",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export HOME=$(mktemp -d)\n",
       postPatch: "substituteInPlace setup.py --replace-fail \"python-mpv\" \"mpv\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "castero",
         description: "TUI podcast client for the terminal",
         homepage: "https://github.com/xgi/castero",

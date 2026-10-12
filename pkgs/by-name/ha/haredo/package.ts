@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["bash", 31, 15]], [["PREFIX", 43, 7]], [["updateScript", 79, 12]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5], ["platforms", 87, 29], ["badPlatforms", 87, 39]], [["pname", 13, 3], ["version", 14, 3], ["outputs", 16, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 35, 3], ["enableParallelChecking", 41, 3], ["env", 43, 3], ["doCheck", 45, 3], ["dontConfigure", 47, 3], ["buildPhase", 49, 3], ["checkPhase", 58, 3], ["installPhase", 66, 3], ["setupHook", 77, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromSourcehut: false, hareHook: false, scdoc: false, "nix-update-script": false, makeWrapper: false, bash: false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["bash", 31, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PREFIX", 43, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 79, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5], ["platforms", 87, 29], ["badPlatforms", 87, 39]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["outputs", 16, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 35, 3], ["enableParallelChecking", 41, 3], ["env", 43, 3], ["doCheck", 45, 3], ["dontConfigure", 47, 3], ["buildPhase", 49, 3], ["checkPhase", 58, 3], ["installPhase", 66, 3], ["setupHook", 77, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,23 +17,23 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "haredo",
       version: "1.0.6",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~autumnull",
           repo: "haredo",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-wjowPlSIotP8RSV0whiVWne+irtDdoPD+iSC2F9GVfs=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./001-use-nix-store-sh.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, bash: bash })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./001-use-nix-store-sh.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], bash: bash })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [hareHook, makeWrapper, scdoc]),
       enableParallelChecking: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       dontConfigure: true,
       buildPhase: "runHook preBuild\n\nhare build -o bin/haredo ./src\nscdoc <doc/haredo.1.scd >doc/haredo.1\n\nrunHook postBuild\n",
@@ -46,13 +41,13 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/share/man/man1\ncp ./bin/haredo $out/bin\ncp ./doc/haredo.1 $out/share/man/man1\n\nrunHook postInstall\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hareHook, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple and unix-idiomatic build automator",
         homepage: "https://sr.ht/~autumnull/haredo/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),

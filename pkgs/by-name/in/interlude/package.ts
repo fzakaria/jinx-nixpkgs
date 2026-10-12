@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["fetchSubmodules", 28, 5], ["hash", 29, 5]], [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]], [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]], [["name", 89, 7], ["exec", 90, 7], ["comment", 91, 7], ["icon", 92, 7], ["desktopName", 93, 7], ["genericName", 94, 7], ["categories", 95, 7]], [["updateScript", 102, 12]], [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 112, 5], ["platforms", 113, 5], ["mainProgram", 114, 5]], [["pname", 21, 3], ["version", 22, 11], ["src", 24, 3], ["patches", 32, 3], ["nativeBuildInputs", 50, 3], ["projectFile", 55, 3], ["nugetDeps", 56, 3], ["dotnet-sdk", 57, 3], ["dotnet-runtime", 58, 3], ["runtimeDeps", 60, 3], ["executables", 70, 3], ["postInstall", 72, 3], ["preFixup", 82, 3], ["desktopItems", 87, 3], ["passthru", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, fetchpatch: false, dotnetCorePackages: false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false, imagemagick: false, libbass: false, libbass_fx: false, glfw: false, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["fetchSubmodules", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 89, 7], ["exec", 90, 7], ["comment", 91, 7], ["icon", 92, 7], ["desktopName", 93, 7], ["genericName", 94, 7], ["categories", 95, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 102, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 112, 5], ["platforms", 113, 5], ["mainProgram", 114, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 11], ["src", 24, 3], ["patches", 32, 3], ["nativeBuildInputs", 50, 3], ["projectFile", 55, 3], ["nugetDeps", 56, 3], ["dotnet-sdk", 57, 3], ["dotnet-runtime", 58, 3], ["runtimeDeps", 60, 3], ["executables", 70, 3], ["postInstall", 72, 3], ["preFixup", 82, 3], ["desktopItems", 87, 3], ["passthru", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const version = "0.7.28.2";
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "interlude",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "YAVSRG",
           repo: "YAVSRG",
           tag: nix.thunk(() => nix.str`interlude-v${version}`),
@@ -41,13 +35,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "log-path.patch",
             url: "https://github.com/YAVSRG/YAVSRG/commit/6e56a3d78caf4cbc8e17190fea3adb4d061d5284.patch",
             hash: "sha256-eyvq2GIAZuHYhtAdYLe0csJxHZCrw9soXmRl2eJA7Bg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "library-path.patch",
             url: "https://github.com/YAVSRG/YAVSRG/commit/911a8b7f3931823d9fee99f0cb679a3c03298286.patch",
             hash: "sha256-WUbI38EMGvlVl8h7YLJLPsGczhX5PWMLTmy94IRxaBM=",
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "# Remove bundled GLFW and use the one from nixpkgs instead.\nrm $out/lib/interlude/libglfw* || true\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "Interlude",
             exec: "Interlude %U",
             comment: "A keyboard rhythm game, built for fun",
@@ -75,11 +69,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Keyboard rhythm game built for fun, part of the YAVSRG project",
         homepage: "https://www.yavsrg.net",
         changelog: "https://www.yavsrg.net/interlude/changelog.html",

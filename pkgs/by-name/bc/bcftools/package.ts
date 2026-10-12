@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 64, 5], ["license", 65, 5], ["homepage", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["nativeCheckInputs", 41, 3], ["strictDeps", 45, 3], ["makeFlags", 47, 3], ["preCheck", 53, 3], ["enableParallelBuilding", 59, 3], ["doCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, htslib: false, zlib: false, bzip2: false, xz: false, curl: false, perl: false, python3: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["license", 65, 5], ["homepage", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["nativeCheckInputs", 41, 3], ["strictDeps", 45, 3], ["makeFlags", 47, 3], ["preCheck", 53, 3], ["enableParallelBuilding", 59, 3], ["doCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bcftools",
       version: "1.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "samtools",
           repo: "bcftools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +46,7 @@ sed -i -e 's|/bin/bash|${bash}/bin/bash|' test/test.pl
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tools for manipulating BCF2/VCF/gVCF format, SNP and short indel sequence variants",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "http://www.htslib.org/",

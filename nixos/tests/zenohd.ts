@@ -2,54 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zenohd.nix", [[["maintainers", 5, 8]], [["allowedTCPPorts", 15, 29]], [["firewall", 15, 20]], [["port", 37, 17], ["allow", 38, 17]], [["http_port", 40, 25]], [["fs", 43, 19], ["rocksdb", 44, 19]], [["key_expr", 48, 21], ["volume", 49, 21]], [["id", 54, 23], ["dir", 55, 23], ["strip_prefix", 56, 23]], [["key_expr", 52, 21], ["volume", 53, 21]], [["id", 62, 23], ["dir", 63, 23], ["strip_prefix", 64, 23], ["create_db", 65, 23]], [["key_expr", 60, 21], ["volume", 61, 21]], [["mem", 47, 19], ["fs", 51, 19], ["rocksdb", 59, 19]], [["volumes", 42, 17], ["storages", 46, 17]], [["mqtt", 36, 15], ["webserver", 40, 15], ["storage_manager", 41, 15]], [["plugins", 35, 13]], [["enable", 22, 11], ["plugins", 24, 11], ["backends", 29, 11], ["settings", 34, 11]], [["zenohd", 21, 18]], [["networking", 15, 9], ["services", 21, 9]], [["systemPackages", 76, 19]], [["environment", 76, 7]], [["router", 8, 5], ["client", 75, 5]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 82, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/zenohd.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { pkgs: false, config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/zenohd.nix", [["allowedTCPPorts", 15, 29]]);
-const pos$3 = nix.positions(here + "/zenohd.nix", [["firewall", 15, 20]]);
-const pos$4 = nix.positions(here + "/zenohd.nix", [["port", 37, 17], ["allow", 38, 17]]);
-const pos$5 = nix.positions(here + "/zenohd.nix", [["http_port", 40, 25]]);
-const pos$6 = nix.positions(here + "/zenohd.nix", [["fs", 43, 19], ["rocksdb", 44, 19]]);
-const pos$7 = nix.positions(here + "/zenohd.nix", [["key_expr", 48, 21], ["volume", 49, 21]]);
-const pos$8 = nix.positions(here + "/zenohd.nix", [["id", 54, 23], ["dir", 55, 23], ["strip_prefix", 56, 23]]);
-const pos$9 = nix.positions(here + "/zenohd.nix", [["key_expr", 52, 21], ["volume", 53, 21]]);
-const pos$10 = nix.positions(here + "/zenohd.nix", [["id", 62, 23], ["dir", 63, 23], ["strip_prefix", 64, 23], ["create_db", 65, 23]]);
-const pos$11 = nix.positions(here + "/zenohd.nix", [["key_expr", 60, 21], ["volume", 61, 21]]);
-const pos$12 = nix.positions(here + "/zenohd.nix", [["mem", 47, 19], ["fs", 51, 19], ["rocksdb", 59, 19]]);
-const pos$13 = nix.positions(here + "/zenohd.nix", [["volumes", 42, 17], ["storages", 46, 17]]);
-const pos$14 = nix.positions(here + "/zenohd.nix", [["mqtt", 36, 15], ["webserver", 40, 15], ["storage_manager", 41, 15]]);
-const pos$15 = nix.positions(here + "/zenohd.nix", [["plugins", 35, 13]]);
-const pos$16 = nix.positions(here + "/zenohd.nix", [["enable", 22, 11], ["plugins", 24, 11], ["backends", 29, 11], ["settings", 34, 11]]);
-const pos$17 = nix.positions(here + "/zenohd.nix", [["zenohd", 21, 18]]);
-const pos$18 = nix.positions(here + "/zenohd.nix", [["networking", 15, 9], ["services", 21, 9]]);
-const pos$19 = nix.positions(here + "/zenohd.nix", [["systemPackages", 76, 19]]);
-const pos$20 = nix.positions(here + "/zenohd.nix", [["environment", 76, 7]]);
-const pos$21 = nix.positions(here + "/zenohd.nix", [["router", 8, 5], ["client", 75, 5]]);
-const pos$22 = nix.positions(here + "/zenohd.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     name: "zenohd",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "markuskowa"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       router: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               allowedTCPPorts: nix.thunk(() => [
                 7447n,
                 nix.thunk(() => nix.sel(config, "services", "zenohd", "settings", "plugins", "mqtt", "port")),
@@ -58,9 +37,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             zenohd: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               enable: true,
               plugins: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs_1, null);
@@ -77,27 +56,31 @@ export default nix.lambda((args) => (() => {
                 ];
               })()),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 plugins: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
-                  mqtt: nix.thunk(() => ({ [nix.POS]: pos$4, port: 1883n, allow: ".*" })),
-                  webserver: nix.thunk(() => ({ [nix.POS]: pos$5, http_port: 8000n })),
+                  [nix.POS]: $pos[13],
+                  mqtt: nix.thunk(() => ({ [nix.POS]: $pos[3], port: 1883n, allow: ".*" })),
+                  webserver: nix.thunk(() => ({ [nix.POS]: $pos[4], http_port: 8000n })),
                   storage_manager: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
-                    volumes: nix.thunk(() => ({ [nix.POS]: pos$6, fs: nix.thunk(() => ({})), rocksdb: nix.thunk(() => ({})) })),
+                    [nix.POS]: $pos[12],
+                    volumes: nix.thunk(() => ({
+                      [nix.POS]: $pos[5],
+                      fs: nix.thunk(() => ({})),
+                      rocksdb: nix.thunk(() => ({})),
+                    })),
                     storages: nix.thunk(() => ({
-                      [nix.POS]: pos$12,
-                      mem: nix.thunk(() => ({ [nix.POS]: pos$7, key_expr: "mem/**", volume: "memory" })),
+                      [nix.POS]: $pos[11],
+                      mem: nix.thunk(() => ({ [nix.POS]: $pos[6], key_expr: "mem/**", volume: "memory" })),
                       fs: nix.thunk(() => ({
-                        [nix.POS]: pos$9,
+                        [nix.POS]: $pos[8],
                         key_expr: "fs/**",
-                        volume: nix.thunk(() => ({ [nix.POS]: pos$8, id: "fs", dir: "zenoh-fs", strip_prefix: "fs" })),
+                        volume: nix.thunk(() => ({ [nix.POS]: $pos[7], id: "fs", dir: "zenoh-fs", strip_prefix: "fs" })),
                       })),
                       rocksdb: nix.thunk(() => ({
-                        [nix.POS]: pos$11,
+                        [nix.POS]: $pos[10],
                         key_expr: "rocksdb/**",
                         volume: nix.thunk(() => ({
-                          [nix.POS]: pos$10,
+                          [nix.POS]: $pos[9],
                           id: "rocksdb",
                           dir: "zenoh-rocksdb",
                           strip_prefix: "rocksdb",
@@ -113,9 +96,9 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$2),
       client: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mosquitto"))]),
         })),
       })),

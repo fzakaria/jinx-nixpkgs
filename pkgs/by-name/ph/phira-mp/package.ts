@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 29, 5], ["homepage", 30, 5], ["maintainers", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]], [["pname", 11, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["cargoHash", 24, 3], ["buildInputs", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["maintainers", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["cargoHash", 24, 3], ["buildInputs", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "phira-mp",
       version: "0.1.0-unstable-2025-06-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TeamFlos",
           repo: "phira-mp",
           rev: "30b481117af8d17cbfcca88de460e4a407a4cb67",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-fkGB9qgOxroOjfQMwXfJqSVWB1S7T+ndYVYEmGrqtIs=",
       buildInputs: nix.thunk(() => [openssl]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Multiplayer server for the rhythm game Phira",
         homepage: "https://github.com/TeamFlos/phira-mp",
         maintainers: nix.thunk(() => (() => {

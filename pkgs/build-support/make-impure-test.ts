@@ -2,11 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-impure-test.nix", [[["runScript", 71, 18]], [["name", 55, 9], ["requiredSystemFeatures", 57, 9], ["buildCommand", 59, 9], ["passthru", 71, 9]], [["testDerivation", 100, 24]], [["passthru", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, writeShellScript: false, name: false, testedPackage: true, testPath: true, sandboxPaths: true, prepareRunCommands: true, nixFlags: true, testScript: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/make-impure-test.nix", [["runScript", 71, 18]]);
-const pos$2 = nix.positions(here + "/make-impure-test.nix", [["name", 55, 9], ["requiredSystemFeatures", 57, 9], ["buildCommand", 59, 9], ["passthru", 71, 9]]);
-const pos$3 = nix.positions(here + "/make-impure-test.nix", [["testDerivation", 100, 24]]);
-const pos$4 = nix.positions(here + "/make-impure-test.nix", [["passthru", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const sandboxPathsTest = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " || ", sandboxPathsTests));
   const sandboxPathsList = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", sandboxPaths));
   const testDerivation = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.str`test-run-${name}`),
         requiredSystemFeatures: nix.thunk(() => ["nixos-test"]),
         buildCommand: nix.thunk(() => nix.str`mkdir -p $out
@@ -38,7 +35,7 @@ fi
 # Run test
 ${testScript}
 `),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$1, runScript: runScript })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], runScript: runScript })),
       })), nix.thunk(() => nix.builtins.removeAttrs(args_1, nix.thunk(() => [
           "lib",
           "stdenv",
@@ -58,8 +55,8 @@ ${prepareRunCommands}
 sudo --preserve-env=NIXPKGS_ALLOW_UNFREE nix-build --option extra-sandbox-paths '${sandboxPathsList}' ${nix.app(nix.sel(lib, "escapeShellArgs"), nixFlags)} -A ${testPath} "$@"
 `)));
   return nix.app(nix.sel(runScript, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$4,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, testDerivation: testDerivation })),
+      [nix.POS]: $pos[3],
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], testDerivation: testDerivation })),
     }));
 })(), formals$1);
 //# sourceMappingURL=make-impure-test.ts.map

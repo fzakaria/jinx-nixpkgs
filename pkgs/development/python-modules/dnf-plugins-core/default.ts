@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["url", 45, 7], ["hash", 46, 7]], [["description", 123, 5], ["homepage", 124, 5], ["changelog", 125, 5], ["license", 126, 5], ["maintainers", 127, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["outputs", 30, 3], ["src", 35, 3], ["patches", 42, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 58, 3], ["propagatedBuildInputs", 64, 3], ["cmakeFlags", 74, 3], ["postBuild", 80, 3], ["pythonImportsCheck", 84, 3], ["postInstall", 90, 3], ["makeWrapperArgs", 120, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "python-dateutil": false, "dbus-python": false, dnf4: false, gettext: false, libcomps: false, libdnf: false, python: false, rpm: false, sphinx: false, "systemd-python": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 45, 7], ["hash", 46, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 123, 5], ["homepage", 124, 5], ["changelog", 125, 5], ["license", 126, 5], ["maintainers", 127, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["outputs", 30, 3], ["src", 35, 3], ["patches", 42, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 58, 3], ["propagatedBuildInputs", 64, 3], ["cmakeFlags", 74, 3], ["postBuild", 80, 3], ["pythonImportsCheck", 84, 3], ["postInstall", 90, 3], ["makeWrapperArgs", 120, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const outputs = nix.thunk(() => ["out", "man"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rpm-software-management",
           repo: "dnf-plugins-core",
           tag: version,
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/rpm-software-management/dnf-plugins-core/commit/1f5d725d857b61760174dd09165e885dd63762c5.patch?full_index=1",
             hash: "sha256-dI6tVokgenb4aaLH5YuG3EZ1Ehgf/NwwPprcDWcHt2Q=",
           })))),
@@ -100,7 +97,7 @@ done
         nix.thunk(() => nix.str`--add-flags "--setopt=pluginpath=$out/${nix.sel(python, "sitePackages")}/dnf-plugins"`),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Core plugins to use with DNF package manager",
         homepage: "https://github.com/rpm-software-management/dnf-plugins-core",
         changelog: nix.thunk(() => nix.str`https://github.com/rpm-software-management/dnf-plugins-core/releases/tag/${version}`),
@@ -111,7 +108,7 @@ done
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

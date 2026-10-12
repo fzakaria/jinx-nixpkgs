@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["eap", 107, 7], ["eapFiles", 108, 7]], [["tests", 105, 12]], [["homepage", 113, 5], ["description", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["platforms", 117, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 53, 3], ["configureFlags", 72, 3], ["postPatch", 78, 3], ["makeFlags", 90, 3], ["installFlags", 92, 3], ["outputs", 98, 3], ["passthru", 105, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "bsd-finger": false, perl: false, talloc: false, linkOpenssl: true, openssl: false, withCap: true, libcap: false, withCollectd: true, collectd: false, withJson: true, json_c: false, withLdap: true, openldap: false, withMemcached: true, libmemcached: false, withMysql: true, libmysqlclient: false, withPostgresql: true, libpq: false, withPcap: true, libpcap: false, withRedis: true, hiredis: false, withRest: true, curl: false, withSqlite: true, sqlite: false, withYubikey: true, libyubikey: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["eap", 107, 7], ["eapFiles", 108, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 105, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 113, 5], ["description", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["platforms", 117, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 53, 3], ["configureFlags", 72, 3], ["postPatch", 78, 3], ["makeFlags", 90, 3], ["installFlags", 92, 3], ["outputs", 98, 3], ["passthru", 105, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const pname = "freeradius";
       const version = "3.2.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FreeRADIUS",
           repo: "freeradius-server",
           tag: nix.thunk(() => nix.str`release_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`),
@@ -66,18 +62,18 @@ export default nix.lambda((args) => (() => {
       const installFlags = nix.thunk(() => ["sysconfdir=${out}/etc", "localstatedir=${TMPDIR}", "INSTALL_CERT_FILES="]);
       const outputs = nix.thunk(() => ["out", "dev", "man", "doc"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "networking", "networkmanager"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           eap: nix.thunk(() => nix.attr(from, "eap")),
           eapFiles: nix.thunk(() => nix.attr(from, "eapFiles")),
         };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://freeradius.org/",
         description: "Modular, high performance free RADIUS suite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -88,7 +84,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

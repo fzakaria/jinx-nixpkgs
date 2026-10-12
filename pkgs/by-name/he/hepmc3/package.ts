@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["python3", 17, 50]], [["url", 25, 5], ["hash", 26, 5]], [["description", 65, 5], ["mainProgram", 66, 5], ["license", 67, 5], ["homepage", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["preConfigure", 40, 3], ["cmakeFlags", 47, 3], ["postInstall", 56, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, coreutils: false, root: false, enablePython: true, python: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["python3", 17, 50]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["mainProgram", 66, 5], ["license", 67, 5], ["homepage", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["preConfigure", 40, 3], ["cmakeFlags", 47, 3], ["postInstall", 56, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +20,13 @@ export default nix.lambda((args) => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
     return nix.str`${nix.app(nix.lookup(w, "major"), nix.thunk(() => nix.sel(python, "version")))}${nix.app(nix.lookup(w, "minor"), nix.thunk(() => nix.sel(python, "version")))}`;
   })());
-  const root_py = nix.thunk(() => (nix.asBool(enablePython) ? nix.app(nix.sel(root, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3: python }))) : nix.force(root)));
+  const root_py = nix.thunk(() => (nix.asBool(enablePython) ? nix.app(nix.sel(root, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], python3: python }))) : nix.force(root)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hepmc3",
       version: "3.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://hepmc.web.cern.ch/hepmc/releases/HepMC3-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-CCQBYLDyjcMpOqTWHOZeLWfNWXrPb6ykOfLkZiX355M=",
         })))),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
 `),
       pythonImportsCheck: nix.thunk(() => ["pyHepMC3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "HepMC package is an object oriented, C++ event record for High Energy Physics Monte Carlo generators and simulation",
         mainProgram: "HepMC3-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

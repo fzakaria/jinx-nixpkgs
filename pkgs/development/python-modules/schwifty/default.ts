@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 30, 13], ["version", 33, 5], ["hash", 34, 5]], [["pydantic", 50, 5]], [["changelog", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, "hatch-vcs": false, "importlib-resources": false, iso3166: false, pycountry: false, rstr: false, pydantic: false, pytestCheckHook: false, pythonOlder: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 30, 13], ["version", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pydantic", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,18 +24,18 @@ export default nix.lambda((args) => (() => {
       const version = "2026.07.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: "2026.7.1",
           hash: "sha256-Rux0m5MQG5aBrEiQAEjalxdbabYWAU33qFSuN+rddEA=",
         }))));
       const build_system = nix.thunk(() => [hatchling, hatch_vcs]);
       const dependencies = nix.thunk(() => nix.concat([iso3166, pycountry, rstr], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.12")), nix.thunk(() => [importlib_resources]))));
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, pydantic: nix.thunk(() => [pydantic]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], pydantic: nix.thunk(() => [pydantic]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["schwifty"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/mdomke/schwifty/blob/${version}/CHANGELOG.rst`),
         description: "Validate/generate IBANs and BICs",
         homepage: "https://github.com/mdomke/schwifty",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

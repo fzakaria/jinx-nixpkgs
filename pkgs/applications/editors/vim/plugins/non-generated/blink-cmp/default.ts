@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["RUSTC_BOOTSTRAP", 28, 7], ["RUSTFLAGS", 30, 7]], [["version", 19, 13], ["src", 19, 21], ["pname", 20, 5], ["cargoHash", 22, 5], ["nativeBuildInputs", 24, 5], ["env", 26, 5]], [["attrPath", 48, 7]], [["updateScript", 47, 5], ["blink-fuzzy-lib", 52, 13]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 35, 3], ["version", 36, 11], ["src", 36, 19], ["preInstall", 37, 3], ["passthru", 46, 3], ["meta", 55, 3], ["nvimSkipModules", 67, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, stdenv: false, vimUtils: false, "nix-update-script": false, gitMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["RUSTC_BOOTSTRAP", 28, 7], ["RUSTFLAGS", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 19, 13], ["src", 19, 21], ["pname", 20, 5], ["cargoHash", 22, 5], ["nativeBuildInputs", 24, 5], ["env", 26, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["attrPath", 48, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 47, 5], ["blink-fuzzy-lib", 52, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 11], ["src", 36, 19], ["preInstall", 37, 3], ["passthru", 46, 3], ["meta", 55, 3], ["nvimSkipModules", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,27 +16,27 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const version = "1.10.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Saghen",
       repo: "blink.cmp",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-C1FpyGw0f35NdHvDUGPXxmKdOgw3SpIteK1gAjVy6Ns=",
     }))));
   const blink_fuzzy_lib = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       src: src,
       pname: "blink-fuzzy-lib",
       cargoHash: "sha256-z8koRYVM9mkgKB6rdZAKIfjZfinVUUpYAW0IvPgmjZ4=",
       nativeBuildInputs: nix.thunk(() => [gitMinimal]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RUSTC_BOOTSTRAP: true,
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
       })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "blink.cmp",
       version: version,
       src: src,
@@ -53,12 +47,12 @@ ln -s ${blink_fuzzy_lib}/lib/libblink_cmp_fuzzy${ext} target/release/libblink_cm
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "vimPlugins.blink-cmp.blink-fuzzy-lib" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], attrPath: "vimPlugins.blink-cmp.blink-fuzzy-lib" })))),
         "blink-fuzzy-lib": blink_fuzzy_lib,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Performant, batteries-included completion plugin for Neovim",
         homepage: "https://github.com/saghen/blink.cmp",
         changelog: nix.thunk(() => nix.str`https://github.com/Saghen/blink.cmp/blob/v${version}/CHANGELOG.md`),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["name", 12, 5], ["nativeBuildInputs", 13, 5], ["script", 19, 5]], [["pytest-network", 11, 3]]]);
 const formals$1 = { args: { testers: false, bork: false, cacert: false, git: false, pytest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["name", 12, 5], ["nativeBuildInputs", 13, 5], ["script", 19, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["pytest-network", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const pytest = nix.arg($, "pytest");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "pytest-network": nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "bork-pytest-network",
         nativeBuildInputs: nix.thunk(() => [bork, cacert, git, pytest]),
         script: nix.thunk(() => nix.str`# Copy the source tree over, and make it writeable

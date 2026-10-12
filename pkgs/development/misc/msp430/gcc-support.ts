@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gcc-support.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 28, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["buildCommand", 18, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/gcc-support.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/gcc-support.nix", [["description", 28, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/gcc-support.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["buildCommand", 18, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
       const pname = "msp430-gcc-support-files";
       const version = "1.207";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSPGCC/${mspgccVersion}/exports/msp430-gcc-support-files-${version}.zip`),
           sha256: "1gyi9zc5vh9c1lxd22dwvk6b17dcd17hah2rayr062p4l51kzam1",
         }))));
       const buildCommand = "find $src/include -name '*.ld' | xargs install -Dm0644 -t $out/lib\nfind $src/include -name '*.h' | xargs install -Dm0644 -t $out/include\ninstall -Dm0644 -t $out/include $src/include/devices.csv\n\n# appease bintoolsWrapper_addLDVars, search path needed for ld scripts\ntouch $out/lib/lib\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Development headers and linker scripts for TI MSP430 microcontrollers\n",
         homepage: "https://www.ti.com/tool/msp430-gcc-opensource",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "aerialx"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildCommand, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, buildCommand, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=gcc-support.ts.map

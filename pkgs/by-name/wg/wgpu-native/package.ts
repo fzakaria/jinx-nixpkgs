@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]], [["WGPU_NATIVE_VERSION", 40, 7]], [["version", 51, 28], ["src", 51, 36]], [["updateScript", 49, 5], ["examples", 50, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 62, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 24, 3], ["cargoHash", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["env", 40, 3], ["postInstall", 42, 3], ["passthru", 48, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, fixDarwinDylibNames: false, "vulkan-loader": false, "nix-update-script": false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["WGPU_NATIVE_VERSION", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 51, 28], ["src", 51, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 49, 5], ["examples", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 62, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 24, 3], ["cargoHash", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["env", 40, 3], ["postInstall", 42, 3], ["passthru", 48, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "wgpu-native",
       version: "27.0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gfx-rs",
           repo: "wgpu-native",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,21 +32,21 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), fixDarwinDylibNames))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [vulkan_loader]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         WGPU_NATIVE_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       postInstall: "rm $out/lib/libwgpu_native.a\ninstall -Dm644 ./ffi/wgpu.h -t $dev/include/webgpu\ninstall -Dm644 ./ffi/webgpu-headers/webgpu.h -t $dev/include/webgpu\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         examples: nix.thunk(() => nix.app(callPackage, nix.path(here, "./examples.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Native WebGPU implementation based on wgpu-core",
         homepage: "https://github.com/gfx-rs/wgpu-native",
         license: nix.thunk(() => (() => {

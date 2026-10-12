@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pname", 26, 7], ["version", 27, 7], ["src", 28, 7], ["pnpm", 30, 5], ["fetcherVersion", 31, 5], ["hash", 32, 5]], [["updateScript", 80, 12]], [["changelog", 83, 5], ["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["pnpmDeps", 24, 3], ["nativeBuildInputs", 35, 3], ["buildPhase", 42, 3], ["preInstall", 50, 3], ["installPhase", 61, 3], ["nativeInstallCheckInputs", 74, 3], ["versionCheckProgramArg", 77, 3], ["doInstallCheck", 78, 3], ["passthru", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, nodejs: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 26, 7], ["version", 27, 7], ["src", 28, 7], ["pnpm", 30, 5], ["fetcherVersion", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 80, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 83, 5], ["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["pnpmDeps", 24, 3], ["nativeBuildInputs", 35, 3], ["buildPhase", 42, 3], ["preInstall", 50, 3], ["installPhase", 61, 3], ["nativeInstallCheckInputs", 74, 3], ["versionCheckProgramArg", 77, 3], ["doInstallCheck", 78, 3], ["passthru", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "concurrently",
       version: "9.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-cli-tools",
           repo: "concurrently",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-PKbrYgQ6D0vxMSxx+aHBo09NJZh5YYfb9Fx9L5Ue8vM=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -59,11 +55,11 @@ runHook postInstall
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/open-cli-tools/concurrently/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Run commands concurrently",
         homepage: "https://github.com/open-cli-tools/concurrently",

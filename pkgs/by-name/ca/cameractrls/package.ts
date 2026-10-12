@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]], [["cameractrls-gtk3", 111, 13], ["cameractrls-gtk4", 111, 30]], [["tests", 109, 12]], [["description", 115, 5], ["longDescription", 116, 5], ["homepage", 127, 5], ["license", 128, 5], ["mainProgram", 129, 5], ["maintainers", 130, 5], ["platforms", 131, 5]], [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["src", 46, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 66, 3], ["dependencies", 75, 3], ["installPhase", 77, 3], ["dontWrapGApps", 100, 3], ["dontWrapPythonPrograms", 101, 3], ["postFixup", 103, 3], ["passthru", 109, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, glibc: false, SDL2: false, libjpeg_turbo: false, "alsa-lib": false, libspnav: false, "desktop-file-utils": false, "gobject-introspection": false, wrapGAppsHook3: false, wrapGAppsHook4: false, "cameractrls-gtk3": false, "cameractrls-gtk4": false, withGtk: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cameractrls-gtk3", 111, 13], ["cameractrls-gtk4", 111, 30]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 109, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 115, 5], ["longDescription", 116, 5], ["homepage", 127, 5], ["license", 128, 5], ["mainProgram", 129, 5], ["maintainers", 130, 5], ["platforms", 131, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["src", 46, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 66, 3], ["dependencies", 75, 3], ["installPhase", 77, 3], ["dontWrapGApps", 100, 3], ["dontWrapPythonPrograms", 101, 3], ["postFixup", 103, 3], ["passthru", 109, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +34,12 @@ export default nix.lambda((args) => (() => {
     "cameraview",
   ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(withGtk, null)), nix.thunk(() => [mainExecutable]))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cameractrls",
       version: "0.6.10",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "soyersoyer",
           repo: "cameractrls",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,15 +84,15 @@ patchPythonScript ${modulePath}/${mainExecutable}.py
 wrapProgram $out/bin/${mainExecutable} \${makeWrapperArgs[@]} \${gappsWrapperArgs[@]}
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "cameractrls-gtk3": cameractrls_gtk3,
           "cameractrls-gtk4": cameractrls_gtk4,
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Camera controls for Linux",
         longDescription: "It's a standalone Python CLI and GUI (GTK3, GTK4) and\ncamera Viewer (SDL) to set the camera controls in Linux.\nIt can set the V4L2 controls and it is extendable with\nthe non standard controls. Currently it has a Logitech\nextension (LED mode, LED frequency, BRIO FoV, Relative\nPan/Tilt, PTZ presets), Kiyo Pro extension (HDR, HDR\nmode, FoV, AF mode, Save), Preset extension (Save and\nrestore controls), Control Restore Daemon (to restore\npresets at device connection).\n",
         homepage: "https://github.com/soyersoyer/cameractrls",

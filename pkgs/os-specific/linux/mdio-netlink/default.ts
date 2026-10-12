@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["platforms", 27, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 24], ["sourceRoot", 13, 3], ["nativeBuildInputs", 15, 3], ["makeFlags", 17, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, kernel: false, "mdio-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["platforms", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 24], ["sourceRoot", 13, 3], ["nativeBuildInputs", 15, 3], ["makeFlags", 17, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const mdio_tools = nix.arg($, "mdio-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mdio-netlink",
       version: nix.thunk(() => nix.str`${nix.sel(mdio_tools, "version")}-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.attr(mdio_tools, "src")),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`INSTALL_MOD_PATH=${nix.builtins.placeholder("out")}`),
       ])),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Netlink support for MDIO devices",
         homepage: "https://github.com/wkz/mdio-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

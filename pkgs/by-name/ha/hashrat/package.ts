@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["updateScript", 38, 12]], [["description", 41, 5], ["mainProgram", 42, 5], ["longDescription", 43, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["configureFlags", 31, 3], ["makeFlags", 33, 3], ["nativeInstallCheckInputs", 35, 3], ["doInstallCheck", 36, 3], ["passthru", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["longDescription", 43, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["configureFlags", 31, 3], ["makeFlags", 33, 3], ["nativeInstallCheckInputs", 35, 3], ["doInstallCheck", 36, 3], ["passthru", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hashrat",
       version: "1.25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ColumPaget",
           repo: "Hashrat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-15.patch",
             url: "https://github.com/ColumPaget/Hashrat/commit/5add4a28f34237bf49f37febcf3366d45d4cea4f.patch",
             hash: "sha256-+ydRQJfoZx7g6VzDDs2RWKRmWs5kBNgYfFKfzsAaskE=",
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command-line hash-generation utility",
         mainProgram: "hashrat",
         longDescription: "Hashing tool supporting md5,sha1,sha256,sha512,whirlpool,jh and hmac versions of these.\nIncludes recursive file hashing and other features.\n",

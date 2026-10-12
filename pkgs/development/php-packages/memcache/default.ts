@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 29, 5], ["license", 30, 5], ["homepage", 31, 5], ["maintainers", 32, 5], ["teams", 33, 5], ["broken", 34, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["internalDeps", 21, 3], ["configureFlags", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false, fetchFromGitHub: false, php: false, zlib: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 29, 5], ["license", 30, 5], ["homepage", 31, 5], ["maintainers", 32, 5], ["teams", 33, 5], ["broken", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["internalDeps", 21, 3], ["configureFlags", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "memcache";
       const version = "8.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "websupport-sk",
           repo: "pecl-memcache",
           rev: version,
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [zlib]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PHP extension for interfacing with memcached",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),
         homepage: "https://github.com/websupport-sk/pecl-memcache",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(php, "version")), "8.5")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

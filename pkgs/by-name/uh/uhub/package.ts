@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["postPatch", 36, 3], ["cmakeFlags", 43, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, openssl: false, sqlite: false, "pkg-config": false, systemdLibs: false, tlsSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["postPatch", 36, 3], ["cmakeFlags", 43, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const tlsSupport = nix.argOr($, "tlsSupport", () => false);
   nix.assert_((!nix.asBool(tlsSupport) || nix.asBool(!nix.eq(openssl, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/uh/uhub/package.nix:13:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "uhub",
       version: "unstable-2019-12-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "janvidar",
           repo: "uhub",
           rev: "35d8088b447527f56609b85b444bd0b10cd67b5c",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DSSL_SUPPORT=${(nix.asBool(tlsSupport) ? "ON" : "OFF")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High performance peer-to-peer hub for the ADC network",
         homepage: "https://www.uhub.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

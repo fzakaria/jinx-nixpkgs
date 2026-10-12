@@ -2,10 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/strings.nix", [[["cudaCapabilities", 150, 9], ["cudaForwardCompat", 151, 9], ["gencode", 152, 9], ["realArches", 153, 9], ["virtualArches", 154, 9], ["archNames", 167, 7], ["arches", 185, 7], ["cmakeCudaArchitecturesString", 196, 7], ["gencodeString", 207, 7]], [["dotsToUnderscores", 32, 3], ["dropDots", 60, 3], ["formatCapabilities", 100, 3], ["mkCmakeCudaArchitecturesString", 236, 3], ["mkGencodeFlag", 273, 3], ["mkRealArchitecture", 311, 3], ["mkVersionedName", 348, 3], ["mkVirtualArchitecture", 381, 3]]]);
 const formals$1 = { args: { _cuda: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { cudaCapabilityToInfo: false, cudaCapabilities: false, cudaForwardCompat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/strings.nix", [["cudaCapabilities", 150, 9], ["cudaForwardCompat", 151, 9], ["gencode", 152, 9], ["realArches", 153, 9], ["virtualArches", 154, 9], ["archNames", 167, 7], ["arches", 185, 7], ["cmakeCudaArchitecturesString", 196, 7], ["gencodeString", 207, 7]]);
-const pos$2 = nix.positions(here + "/strings.nix", [["dotsToUnderscores", 32, 3], ["dropDots", 60, 3], ["formatCapabilities", 100, 3], ["mkCmakeCudaArchitecturesString", 236, 3], ["mkGencodeFlag", 273, 3], ["mkRealArchitecture", 311, 3], ["mkVersionedName", 348, 3], ["mkVirtualArchitecture", 381, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cudaLib = nix.thunk(() => nix.sel(_cuda, "lib"));
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     dotsToUnderscores: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]))),
     dropDots: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]))),
     formatCapabilities: nix.lambda((args_1) => (() => {
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
         return nix.concat(base, nix.app(nix.sel(lib, "optionals"), cudaForwardCompat, nix.thunk(() => [forward])));
       })());
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         cudaCapabilities: cudaCapabilities,
         cudaForwardCompat: cudaForwardCompat,
         gencode: gencode,

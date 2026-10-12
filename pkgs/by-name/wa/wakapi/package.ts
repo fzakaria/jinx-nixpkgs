@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["GOEXPERIMENT", 36, 7]], [["nixos", 56, 5], ["updateScript", 57, 5]], [["homepage", 61, 5], ["changelog", 62, 5], ["description", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 69, 5]], [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["vendorHash", 22, 3], ["excludedPackages", 25, 3], ["postPatch", 28, 3], ["ldflags", 30, 3], ["env", 36, 3], ["checkFlags", 38, 3], ["passthru", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildGoLatestModule: false, fetchFromGitHub: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GOEXPERIMENT", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nixos", 56, 5], ["updateScript", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["changelog", 62, 5], ["description", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["vendorHash", 22, 3], ["excludedPackages", 25, 3], ["postPatch", 28, 3], ["ldflags", 30, 3], ["env", 36, 3], ["checkFlags", 38, 3], ["passthru", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "2.18.1";
   return nix.app(buildGoLatestModule, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "wakapi",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "muety",
           repo: "wakapi",
           tag: version,
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       excludedPackages: nix.thunk(() => ["scripts"]),
       postPatch: nix.thunk(() => nix.str`echo ${version} > version.txt`),
       ldflags: nix.thunk(() => ["-s", "-w"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOEXPERIMENT: "greenteagc,jsonv2" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GOEXPERIMENT: "greenteagc,jsonv2" })),
       checkFlags: nix.thunk(() => (() => {
         const skippedTests = nix.thunk(() => [
           "TestLoginHandlerTestSuite",
@@ -50,12 +46,12 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         nixos: nix.thunk(() => nix.sel(nixosTests, "wakapi")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://wakapi.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/muety/wakapi/releases/tag/${version}`),
         description: "Minimalist self-hosted WakaTime-compatible backend for coding statistics",

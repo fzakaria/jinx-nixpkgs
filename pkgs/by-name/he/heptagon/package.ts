@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["url", 26, 7], ["hash", 27, 7]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5], ["platforms", 65, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 42, 3], ["postInstall", 50, 3], ["postFixup", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, makeWrapper: false, "ocaml-ng": false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5], ["platforms", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 42, 3], ["postInstall", 50, 3], ["postFixup", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const ocamlPackages = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_5_3"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "heptagon",
       version: "1.05.00",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.inria.fr",
           owner: "synchrone",
           repo: "heptagon",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.inria.fr/synchrone/heptagon/-/commit/f10405e385ca25dc737727e0c210a44986929bf0.patch",
             hash: "sha256-Sn55jEoRDYnEUg4SjuBDCNN4TNl2Dwn1fTjb9O8O1bo=",
           })))),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Compiler for the Heptagon/BZR synchronous programming language",
         homepage: "https://gitlab.inria.fr/synchrone/heptagon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["changelog", 25, 5], ["homepage", 26, 5]], [["version", 10, 11], ["pname", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, ptime: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["changelog", 25, 5], ["homepage", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 10, 11], ["pname", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const ptime = nix.arg($, "ptime");
   const version = nix.argOr($, "version", () => "5.2.0");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       pname: "mirage-ptime",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-ptime/releases/download/v${version}/mirage-ptime-${version}.tbz`),
           hash: "sha256-YOWpJrfQKG9khCwPb5lZXtf+fip4N0B1AAn2Y9zRLyg=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [ptime]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "POSIX clock for MirageOS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

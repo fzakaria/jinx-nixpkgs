@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]], [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5]], [["pname", 53, 3], ["version", 54, 3], ["pyproject", 55, 3], ["__structuredAttrs", 56, 3], ["src", 58, 3], ["build-system", 65, 3], ["pythonRelaxDeps", 67, 3], ["dependencies", 73, 3], ["doCheck", 117, 3], ["pythonImportsCheck", 119, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, attrs: false, "azure-common": false, "azure-core": false, "azure-identity": false, "azure-keyvault-secrets": false, "azure-kusto-data": false, "azure-mgmt-keyvault": false, "azure-mgmt-subscription": false, "azure-monitor-query": false, beautifulsoup4: false, bokeh: false, cryptography: false, deprecated: false, dnspython: false, folium: false, geoip2: false, html5lib: false, httpx: false, "importlib-resources": false, ipython: false, ipywidgets: false, keyring: false, lxml: false, msal: false, "msal-extensions": false, msrest: false, msrestazure: false, "nest-asyncio": false, networkx: false, packaging: false, pandas: false, panel: false, pydantic: false, pygments: false, pyjwt: false, pyyaml: false, tldextract: false, tqdm: false, "typing-extensions": false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 53, 3], ["version", 54, 3], ["pyproject", 55, 3], ["__structuredAttrs", 56, 3], ["src", 58, 3], ["build-system", 65, 3], ["pythonRelaxDeps", 67, 3], ["dependencies", 73, 3], ["doCheck", 117, 3], ["pythonImportsCheck", 119, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,13 +52,13 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "msticpy",
       version: "3.0.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "msticpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -113,7 +111,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["msticpy"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Microsoft Threat Intelligence Security Tools",
         homepage: "https://github.com/microsoft/msticpy",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/msticpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

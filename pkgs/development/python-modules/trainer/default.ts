@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["teams", 63, 5]], [["pname", 24, 11], ["version", 24, 17], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 38, 3], ["doCheck", 49, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, coqpit: false, fsspec: false, torch: false, tensorboard: false, protobuf: false, psutil: false, pytestCheckHook: false, soundfile: false, torchvision: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["teams", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 11], ["version", 24, 17], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 38, 3], ["doCheck", 49, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pname = "coqui-tts-trainer";
   const version = "0.3.2";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "idiap",
           repo: "coqui-ai-Trainer",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, torchvision]),
       pythonImportsCheck: nix.thunk(() => ["trainer"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "General purpose model trainer, as flexible as it gets",
         homepage: "https://github.com/idiap/coqui-ai-Trainer",
         changelog: nix.thunk(() => nix.str`https://github.com/idiap/coqui-ai-Trainer/releases/tag/v${version}`),

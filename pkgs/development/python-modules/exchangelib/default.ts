@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["complete", 58, 5], ["kerberos", 62, 5]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["pythonRelaxDeps", 38, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 57, 3], ["nativeCheckInputs", 68, 3], ["pythonImportsCheck", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "cached-property": false, defusedxml: false, dnspython: false, fetchFromGitHub: false, isodate: false, lxml: false, oauthlib: false, psutil: false, pygments: false, "python-dateutil": false, pytz: false, pyyaml: false, requests: false, "requests-ntlm": false, "requests-gssapi": false, "requests-oauthlib": false, "requests-mock": false, setuptools: false, tzdata: false, tzlocal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["complete", 58, 5], ["kerberos", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["pythonRelaxDeps", 38, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 57, 3], ["nativeCheckInputs", 68, 3], ["pythonImportsCheck", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ecederstrand",
           repo: "exchangelib",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -60,21 +57,21 @@ export default nix.lambda((args) => (() => {
         tzlocal,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         complete: nix.thunk(() => [requests_gssapi]),
         kerberos: nix.thunk(() => [requests_gssapi]),
       }));
       const nativeCheckInputs = nix.thunk(() => [psutil, python_dateutil, pytz, pyyaml, requests_mock]);
       const pythonImportsCheck = nix.thunk(() => ["exchangelib"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Client for Microsoft Exchange Web Services (EWS)",
         homepage: "https://github.com/ecederstrand/exchangelib",
         changelog: nix.thunk(() => nix.str`https://github.com/ecederstrand/exchangelib/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

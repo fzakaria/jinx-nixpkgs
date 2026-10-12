@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["name", 53, 5]], [["glslang", 103, 13]], [["allTerminfo", 165, 28], ["nixos", 166, 7]], [["tests", 164, 5], ["updateScript", 168, 5]], [["description", 172, 5], ["longDescription", 173, 5], ["homepage", 179, 5], ["donationPage", 180, 5], ["downloadPage", 181, 5], ["changelog", 182, 5], ["license", 185, 5], ["mainProgram", 186, 5], ["maintainers", 187, 5], ["outputsToInstall", 192, 5], ["platforms", 195, 5]], [["pname", 34, 3], ["version", 35, 3], ["outputs", 37, 3], ["src", 45, 3], ["deps", 52, 3], ["strictDeps", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 72, 3], ["dontSetZigDefaultFlags", 94, 3], ["zigCheckFlags", 96, 3], ["zigBuildFlags", 109, 3], ["doCheck", 113, 3], ["postFixup", 138, 3], ["nativeInstallCheckInputs", 157, 3], ["doInstallCheck", 161, 3], ["passthru", 163, 3], ["meta", 171, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "blueprint-compiler": false, bzip2: false, callPackage: false, fetchFromGitHub: false, fontconfig: false, freetype: false, glib: false, glslang: false, gst_all_1: false, "gtk4-layer-shell": false, harfbuzz: false, libadwaita: false, libGL: false, libx11: false, libxml2: false, ncurses: false, nixosTests: false, oniguruma: false, pandoc: false, "pkg-config": false, removeReferencesTo: false, versionCheckHook: false, wrapGAppsHook4: false, zig_0_15: false, optimizeLevel: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["glslang", 103, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["allTerminfo", 165, 28], ["nixos", 166, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 164, 5], ["updateScript", 168, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 172, 5], ["longDescription", 173, 5], ["homepage", 179, 5], ["donationPage", 180, 5], ["downloadPage", 181, 5], ["changelog", 182, 5], ["license", 185, 5], ["mainProgram", 186, 5], ["maintainers", 187, 5], ["outputsToInstall", 192, 5], ["platforms", 195, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["outputs", 37, 3], ["src", 45, 3], ["deps", 52, 3], ["strictDeps", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 72, 3], ["dontSetZigDefaultFlags", 94, 3], ["zigCheckFlags", 96, 3], ["zigBuildFlags", 109, 3], ["doCheck", 113, 3], ["postFixup", 138, 3], ["nativeInstallCheckInputs", 157, 3], ["doInstallCheck", 161, 3], ["passthru", 163, 3], ["meta", 171, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,19 +35,19 @@ export default nix.lambda((args) => (() => {
   const zig_0_15 = nix.arg($, "zig_0_15");
   const optimizeLevel = nix.argOr($, "optimizeLevel", () => "ReleaseFast");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "ghostty",
       version: "1.3.1",
       outputs: nix.thunk(() => ["out", "man", "shell_integration", "terminfo", "vim"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ghostty-org",
           repo: "ghostty",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+ddMmUe9Jjkun4qqW8XFXVgwVZdVHsGWcQzndgIlBjQ=",
         })))),
       deps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./deps.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-cache-${nix.sel(finalAttrs, "version")}`),
         })))),
       strictDeps: true,
@@ -89,7 +83,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${nix.sel(finalAttrs, "deps")}`),
         nix.thunk(() => nix.str`-Dversion-string=${nix.sel(finalAttrs, "version")}`),
         "-Dcpu=baseline",
-      ], nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (package$) => nix.str`-fsys=${name} --search-prefix ${nix.app(nix.sel(lib, "getLib"), package$)}`, nix.thunk(() => ({ [nix.POS]: pos$3, glslang: glslang }))))),
+      ], nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (package$) => nix.str`-fsys=${name} --search-prefix ${nix.app(nix.sel(lib, "getLib"), package$)}`, nix.thunk(() => ({ [nix.POS]: $pos[2], glslang: glslang }))))),
       zigBuildFlags: nix.thunk(() => nix.concat(nix.sel(finalAttrs, "zigCheckFlags"), [nix.thunk(() => nix.str`-Doptimize=${optimizeLevel}`)])),
       doCheck: true,
       postFixup: nix.thunk(() => nix.str`ln -s $man/share/man $out/share/man
@@ -112,16 +106,16 @@ substituteInPlace $out/share/applications/com.mitchellh.ghostty.desktop \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             allTerminfo: nix.thunk(() => nix.attr(nixosTests, "allTerminfo")),
             nixos: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "ghostty")),
           })))),
         updateScript: nix.path(here, "./update.nu"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Fast, native, feature-rich terminal emulator pushing modern features",
         longDescription: "Ghostty is a terminal emulator that differentiates itself by being\nfast, feature-rich, and native. While there are many excellent terminal\nemulators available, they all force you to choose between speed,\nfeatures, or native UIs. Ghostty provides all three.\n",
         homepage: "https://ghostty.org/",

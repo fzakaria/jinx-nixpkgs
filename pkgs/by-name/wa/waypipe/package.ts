@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["hash", 37, 5]], [["LIBCLANG_PATH", 41, 7]], [["updateScript", 74, 12]], [["description", 77, 5], ["longDescription", 78, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["cargoDeps", 35, 3], ["strictDeps", 40, 3], ["env", 41, 3], ["depsBuildBuild", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 58, 3], ["runtimeDependencies", 68, 3], ["passthru", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, scdoc: false, libgbm: false, lz4: false, zstd: false, ffmpeg_8: false, cargo: false, rustc: false, "vulkan-headers": false, "vulkan-loader": false, shaderc: false, llvmPackages: false, autoPatchelfHook: false, "wayland-scanner": false, "rust-bindgen": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LIBCLANG_PATH", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 74, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 77, 5], ["longDescription", 78, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["cargoDeps", 35, 3], ["strictDeps", 40, 3], ["env", 41, 3], ["depsBuildBuild", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 58, 3], ["runtimeDependencies", 68, 3], ["passthru", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const rust_bindgen = nix.arg($, "rust-bindgen");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "waypipe",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "mstoeckl",
           repo: "waypipe",
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-Tbd/yY90yb2+/ODYVL3SudHaJCGJKatZ9FuGM2uAX+8=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       strictDeps: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.sel(llvmPackages, "libclang", "lib")}/lib`),
       })),
       depsBuildBuild: nix.thunk(() => [pkg_config]),
@@ -74,11 +69,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libgbm, lz4, zstd, ffmpeg_8, vulkan_headers, vulkan_loader]),
       runtimeDependencies: nix.thunk(() => [libgbm, nix.thunk(() => nix.sel(ffmpeg_8, "lib")), vulkan_loader]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Network proxy for Wayland clients (applications)",
         longDescription: "waypipe is a proxy for Wayland clients. It forwards Wayland messages and\nserializes changes to shared memory buffers over a single socket. This\nmakes application forwarding similar to ssh -X feasible.\n",
         homepage: "https://mstoeckl.com/notes/gsoc/blog.html",

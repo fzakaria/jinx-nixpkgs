@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 9, 3], ["sourceRoot", 10, 3], ["version", 12, 5], ["src", 13, 5], ["cargoDeps", 14, 5]]]);
 const formals$1 = { args: { src: false, rustPlatform: false, version: false, cargoDeps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["sourceRoot", 10, 3], ["version", 12, 5], ["src", 13, 5], ["cargoDeps", 14, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const cargoDeps = nix.arg($, "cargoDeps");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "lix-doc",
       sourceRoot: nix.thunk(() => nix.str`${nix.selOr(src, () => nix.force(src), "name")}/lix-doc`),
       version: version,

@@ -2,45 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/deps.nix", [[["owner", 10, 7], ["repo", 11, 7], ["tag", 12, 7], ["hash", 13, 7]], [["src", 9, 5], ["patches", 15, 5]], [["owner", 21, 7], ["repo", 22, 7], ["tag", 23, 7], ["hash", 24, 7]], [["src", 20, 5], ["patches", 26, 5]], [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]], [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["owner", 62, 7], ["repo", 63, 7], ["tag", 64, 7], ["hash", 65, 7]], [["src", 61, 5], ["patches", 67, 5]], [["owner", 72, 5], ["repo", 73, 5], ["rev", 74, 5], ["fetchSubmodules", 75, 5], ["hash", 76, 5]], [["owner", 79, 5], ["repo", 80, 5], ["tag", 81, 5], ["hash", 82, 5]], [["owner", 86, 7], ["repo", 87, 7], ["tag", 88, 7], ["hash", 89, 7]], [["src", 85, 5], ["patches", 91, 5]], [["owner", 97, 7], ["repo", 98, 7], ["tag", 99, 7], ["hash", 100, 7]], [["src", 96, 5], ["patches", 102, 5]], [["owner", 108, 7], ["repo", 109, 7], ["tag", 110, 7], ["hash", 111, 7]], [["src", 107, 5], ["patches", 113, 5]], [["owner", 118, 5], ["repo", 119, 5], ["tag", 120, 5], ["hash", 121, 5]], [["owner", 124, 5], ["repo", 125, 5], ["tag", 126, 5], ["hash", 127, 5]], [["owner", 130, 5], ["repo", 131, 5], ["tag", 132, 5], ["hash", 133, 5]], [["owner", 136, 5], ["repo", 137, 5], ["tag", 138, 5], ["hash", 139, 5]], [["owner", 142, 5], ["repo", 143, 5], ["tag", 144, 5], ["hash", 145, 5]], [["owner", 148, 5], ["repo", 149, 5], ["tag", 150, 5], ["hash", 151, 5]], [["owner", 155, 7], ["repo", 156, 7], ["tag", 157, 7], ["hash", 158, 7]], [["src", 154, 5], ["patches", 160, 5]], [["owner", 166, 7], ["repo", 167, 7], ["rev", 168, 7], ["hash", 169, 7]], [["src", 165, 5], ["patches", 171, 5]], [["owner", 177, 5], ["repo", 178, 5], ["rev", 179, 5], ["hash", 180, 5]], [["owner", 185, 5], ["repo", 186, 5], ["tag", 187, 5], ["hash", 188, 5]], [["owner", 192, 7], ["repo", 193, 7], ["tag", 194, 7], ["hash", 195, 7]], [["src", 191, 5], ["patches", 197, 5]], [["owner", 204, 5], ["repo", 205, 5], ["tag", 206, 5], ["hash", 207, 5]], [["owner", 210, 5], ["repo", 211, 5], ["tag", 212, 5], ["hash", 213, 5]], [["owner", 216, 5], ["repo", 217, 5], ["rev", 218, 5], ["hash", 219, 5]], [["owner", 222, 5], ["repo", 223, 5], ["tag", 224, 5], ["hash", 225, 5]], [["blake3", 8, 3], ["protobuf", 19, 3], ["yaml-cpp", 30, 3], ["gtest", 36, 3], ["reflect", 42, 3], ["enchantum", 48, 3], ["fmt", 54, 3], ["range-v3", 60, 3], ["nanobind", 71, 3], ["nlohmann_json", 78, 3], ["xtl", 84, 3], ["xtensor", 95, 3], ["xtensor-blas", 106, 3], ["benchmark", 117, 3], ["taskflow", 123, 3], ["flatbuffers", 129, 3], ["simd-everywhere", 135, 3], ["spdlog", 141, 3], ["tt-logger", 147, 3], ["cadical", 153, 3], ["capnproto", 164, 3], ["ttexalens", 176, 3], ["libdwarf", 184, 3], ["elfio", 190, 3], ["nanomsg", 203, 3], ["libuv", 209, 3], ["cxxopts", 215, 3], ["umd_asio", 221, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, applyPatches: false, ttMetalSrc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/deps.nix", [["owner", 10, 7], ["repo", 11, 7], ["tag", 12, 7], ["hash", 13, 7]]);
-const pos$2 = nix.positions(here + "/deps.nix", [["src", 9, 5], ["patches", 15, 5]]);
-const pos$3 = nix.positions(here + "/deps.nix", [["owner", 21, 7], ["repo", 22, 7], ["tag", 23, 7], ["hash", 24, 7]]);
-const pos$4 = nix.positions(here + "/deps.nix", [["src", 20, 5], ["patches", 26, 5]]);
-const pos$5 = nix.positions(here + "/deps.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$6 = nix.positions(here + "/deps.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$7 = nix.positions(here + "/deps.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$8 = nix.positions(here + "/deps.nix", [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]]);
-const pos$9 = nix.positions(here + "/deps.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$10 = nix.positions(here + "/deps.nix", [["owner", 62, 7], ["repo", 63, 7], ["tag", 64, 7], ["hash", 65, 7]]);
-const pos$11 = nix.positions(here + "/deps.nix", [["src", 61, 5], ["patches", 67, 5]]);
-const pos$12 = nix.positions(here + "/deps.nix", [["owner", 72, 5], ["repo", 73, 5], ["rev", 74, 5], ["fetchSubmodules", 75, 5], ["hash", 76, 5]]);
-const pos$13 = nix.positions(here + "/deps.nix", [["owner", 79, 5], ["repo", 80, 5], ["tag", 81, 5], ["hash", 82, 5]]);
-const pos$14 = nix.positions(here + "/deps.nix", [["owner", 86, 7], ["repo", 87, 7], ["tag", 88, 7], ["hash", 89, 7]]);
-const pos$15 = nix.positions(here + "/deps.nix", [["src", 85, 5], ["patches", 91, 5]]);
-const pos$16 = nix.positions(here + "/deps.nix", [["owner", 97, 7], ["repo", 98, 7], ["tag", 99, 7], ["hash", 100, 7]]);
-const pos$17 = nix.positions(here + "/deps.nix", [["src", 96, 5], ["patches", 102, 5]]);
-const pos$18 = nix.positions(here + "/deps.nix", [["owner", 108, 7], ["repo", 109, 7], ["tag", 110, 7], ["hash", 111, 7]]);
-const pos$19 = nix.positions(here + "/deps.nix", [["src", 107, 5], ["patches", 113, 5]]);
-const pos$20 = nix.positions(here + "/deps.nix", [["owner", 118, 5], ["repo", 119, 5], ["tag", 120, 5], ["hash", 121, 5]]);
-const pos$21 = nix.positions(here + "/deps.nix", [["owner", 124, 5], ["repo", 125, 5], ["tag", 126, 5], ["hash", 127, 5]]);
-const pos$22 = nix.positions(here + "/deps.nix", [["owner", 130, 5], ["repo", 131, 5], ["tag", 132, 5], ["hash", 133, 5]]);
-const pos$23 = nix.positions(here + "/deps.nix", [["owner", 136, 5], ["repo", 137, 5], ["tag", 138, 5], ["hash", 139, 5]]);
-const pos$24 = nix.positions(here + "/deps.nix", [["owner", 142, 5], ["repo", 143, 5], ["tag", 144, 5], ["hash", 145, 5]]);
-const pos$25 = nix.positions(here + "/deps.nix", [["owner", 148, 5], ["repo", 149, 5], ["tag", 150, 5], ["hash", 151, 5]]);
-const pos$26 = nix.positions(here + "/deps.nix", [["owner", 155, 7], ["repo", 156, 7], ["tag", 157, 7], ["hash", 158, 7]]);
-const pos$27 = nix.positions(here + "/deps.nix", [["src", 154, 5], ["patches", 160, 5]]);
-const pos$28 = nix.positions(here + "/deps.nix", [["owner", 166, 7], ["repo", 167, 7], ["rev", 168, 7], ["hash", 169, 7]]);
-const pos$29 = nix.positions(here + "/deps.nix", [["src", 165, 5], ["patches", 171, 5]]);
-const pos$30 = nix.positions(here + "/deps.nix", [["owner", 177, 5], ["repo", 178, 5], ["rev", 179, 5], ["hash", 180, 5]]);
-const pos$31 = nix.positions(here + "/deps.nix", [["owner", 185, 5], ["repo", 186, 5], ["tag", 187, 5], ["hash", 188, 5]]);
-const pos$32 = nix.positions(here + "/deps.nix", [["owner", 192, 7], ["repo", 193, 7], ["tag", 194, 7], ["hash", 195, 7]]);
-const pos$33 = nix.positions(here + "/deps.nix", [["src", 191, 5], ["patches", 197, 5]]);
-const pos$34 = nix.positions(here + "/deps.nix", [["owner", 204, 5], ["repo", 205, 5], ["tag", 206, 5], ["hash", 207, 5]]);
-const pos$35 = nix.positions(here + "/deps.nix", [["owner", 210, 5], ["repo", 211, 5], ["tag", 212, 5], ["hash", 213, 5]]);
-const pos$36 = nix.positions(here + "/deps.nix", [["owner", 216, 5], ["repo", 217, 5], ["rev", 218, 5], ["hash", 219, 5]]);
-const pos$37 = nix.positions(here + "/deps.nix", [["owner", 222, 5], ["repo", 223, 5], ["tag", 224, 5], ["hash", 225, 5]]);
-const pos$38 = nix.positions(here + "/deps.nix", [["blake3", 8, 3], ["protobuf", 19, 3], ["yaml-cpp", 30, 3], ["gtest", 36, 3], ["reflect", 42, 3], ["enchantum", 48, 3], ["fmt", 54, 3], ["range-v3", 60, 3], ["nanobind", 71, 3], ["nlohmann_json", 78, 3], ["xtl", 84, 3], ["xtensor", 95, 3], ["xtensor-blas", 106, 3], ["benchmark", 117, 3], ["taskflow", 123, 3], ["flatbuffers", 129, 3], ["simd-everywhere", 135, 3], ["spdlog", 141, 3], ["tt-logger", 147, 3], ["cadical", 153, 3], ["capnproto", 164, 3], ["ttexalens", 176, 3], ["libdwarf", 184, 3], ["elfio", 190, 3], ["nanomsg", 203, 3], ["libuv", 209, 3], ["cxxopts", 215, 3], ["umd_asio", 221, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const applyPatches = nix.arg($, "applyPatches");
   const ttMetalSrc = nix.arg($, "ttMetalSrc");
   return {
-    [nix.POS]: pos$38,
+    [nix.POS]: $pos[37],
     blake3: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "BLAKE3-team",
             repo: "BLAKE3",
             tag: "1.8.4",
@@ -61,9 +24,9 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => [nix.thunk(() => nix.str`${ttMetalSrc}/third_party/blake3_install_dir.patch`)]),
       })))),
     protobuf: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "protocolbuffers",
             repo: "protobuf",
             tag: "v21.12",
@@ -72,44 +35,44 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => [nix.thunk(() => nix.str`${ttMetalSrc}/third_party/protobuf_noreturn.patch`)]),
       })))),
     "yaml-cpp": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         owner: "jbeder",
         repo: "yaml-cpp",
         rev: "2f86d13775d119edbb69af52e5f566fd65c6953b",
         hash: "sha256-GtUTbEaRR3+GfVkt3t8EsqBHVffVKOl8urtQTaHozIo=",
       })))),
     gtest: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         owner: "google",
         repo: "googletest",
         tag: "v1.13.0",
         hash: "sha256-LVLEn+e7c8013pwiLzJiiIObyrlbBHYaioO/SWbItPQ=",
       })))),
     reflect: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         owner: "boost-ext",
         repo: "reflect",
         tag: "v1.2.6",
         hash: "sha256-qjy5KyAm7/WeCyxMu/5QrBVjDSJPs0q/ZPyQwXp0WLA=",
       })))),
     enchantum: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         owner: "ZXShady",
         repo: "enchantum",
         rev: "8ca5b0eb7e7ebe0252e5bc6915083f1dd1b8294e",
         hash: "sha256-q2bbNAMpNJYedekEDtTQ2qI2+GPdkTsuxAHCBaAnuTA=",
       })))),
     fmt: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         owner: "fmtlib",
         repo: "fmt",
         tag: "11.1.4",
         hash: "sha256-sUbxlYi/Aupaox3JjWFqXIjcaQa0LFjclQAOleT+FRA=",
       })))),
     "range-v3": nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             owner: "ericniebler",
             repo: "range-v3",
             tag: "0.12.0",
@@ -118,7 +81,7 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => [nix.thunk(() => nix.str`${ttMetalSrc}/third_party/range-v3.patch`)]),
       })))),
     nanobind: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         owner: "wjakob",
         repo: "nanobind",
         rev: "86e5626728fc282637a6c338597120913dded1bb",
@@ -126,16 +89,16 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-jAg/CotM361gc+5Ymsz8jP0ddLBzrFTxCkssJKFe0NY=",
       })))),
     nlohmann_json: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         owner: "nlohmann",
         repo: "json",
         tag: "v3.11.3",
         hash: "sha256-7F0Jon+1oWL7uqet5i1IgHX0fUw/+z0QwEcA3zs5xHg=",
       })))),
     xtl: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             owner: "xtensor-stack",
             repo: "xtl",
             tag: "0.8.0",
@@ -144,9 +107,9 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => [nix.thunk(() => nix.str`${ttMetalSrc}/third_party/xtl.patch`)]),
       })))),
     xtensor: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             owner: "xtensor-stack",
             repo: "xtensor",
             tag: "0.26.0",
@@ -155,9 +118,9 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => [nix.thunk(() => nix.str`${ttMetalSrc}/third_party/xtensor.patch`)]),
       })))),
     "xtensor-blas": nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             owner: "xtensor-stack",
             repo: "xtensor-blas",
             tag: "0.22.0",
@@ -166,51 +129,51 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => [nix.thunk(() => nix.str`${ttMetalSrc}/third_party/xtensor-blas.patch`)]),
       })))),
     benchmark: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         owner: "google",
         repo: "benchmark",
         tag: "v1.9.1",
         hash: "sha256-5xDg1duixLoWIuy59WT0r5ZBAvTR6RPP7YrhBYkMxc8=",
       })))),
     taskflow: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         owner: "taskflow",
         repo: "taskflow",
         tag: "v3.7.0",
         hash: "sha256-q2IYhG84hPIZhuogWf6ojDG9S9ZyuJz9s14kQyIc6t0=",
       })))),
     flatbuffers: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         owner: "google",
         repo: "flatbuffers",
         tag: "v24.3.25",
         hash: "sha256-uE9CQnhzVgOweYLhWPn2hvzXHyBbFiFVESJ1AEM3BmA=",
       })))),
     "simd-everywhere": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         owner: "simd-everywhere",
         repo: "simde",
         tag: "v0.8.2",
         hash: "sha256-igjDHCpKXy6EbA9Mf6peL4OTVRPYTV0Y2jbgYQuWMT4=",
       })))),
     spdlog: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         owner: "gabime",
         repo: "spdlog",
         tag: "v1.15.2",
         hash: "sha256-9RhB4GdFjZbCIfMOWWriLAUf9DE/i/+FTXczr0pD0Vg=",
       })))),
     "tt-logger": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         owner: "tenstorrent",
         repo: "tt-logger",
         tag: "v1.1.8",
         hash: "sha256-cAQLxxwxRkRh1hwDVyDPOr3wsiC2DStUP0UMSiY0vHg=",
       })))),
     cadical: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             owner: "arminbiere",
             repo: "cadical",
             tag: "rel-2.2.1",
@@ -221,9 +184,9 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     capnproto: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             owner: "capnproto",
             repo: "capnproto",
             rev: "d135c9ca5e15219eaf131dfce1a41afdbaea9aab",
@@ -235,23 +198,23 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ttexalens: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         owner: "tenstorrent",
         repo: "tt-exalens",
         rev: "6f5720240b7254b25cb3d78aef81769fc12a30f9",
         hash: "sha256-QX9fh4KPJEj4AQjDViPQgVW1JxOADWJk0SlASLJTUCY=",
       })))),
     libdwarf: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         owner: "davea42",
         repo: "libdwarf-code",
         tag: "v2.3.1",
         hash: "sha256-azVCzQt9oA40YACa9PkdNt0D8vWRNHXXGoSFOYNJxgA=",
       })))),
     elfio: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             owner: "serge1",
             repo: "ELFIO",
             tag: "Release_3.12",
@@ -260,28 +223,28 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => [nix.path(here, "./elfio-cstdint.patch")]),
       })))),
     nanomsg: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         owner: "nanomsg",
         repo: "nng",
         tag: "v1.8.0",
         hash: "sha256-E2uosZrmxO3fqwlLuu5e36P70iGj5xUlvhEb+1aSvOA=",
       })))),
     libuv: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         owner: "libuv",
         repo: "libuv",
         tag: "v1.51.0",
         hash: "sha256-ayTk3qkeeAjrGj5ab7wF7vpWI8XWS1EeKKUqzaD/LY0=",
       })))),
     cxxopts: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         owner: "jarro2783",
         repo: "cxxopts",
         rev: "dbf4c6a66816f6c3872b46cc6af119ad227e04e1",
         hash: "sha256-2Z8DT9ihlmbiqCi8gcNzW4C5AUh4xCrpCKrGbRYcreQ=",
       })))),
     umd_asio: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         owner: "chriskohlhoff",
         repo: "asio",
         tag: "asio-1-30-2",

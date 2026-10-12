@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 37, 13], ["version", 37, 19], ["hash", 38, 5]], [["ble", 60, 5], ["extra", 61, 5], ["hidapi", 62, 5], ["ethereum", 63, 5], ["qt-widgets", 64, 5], ["full", 66, 5]], [["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 69, 3], ["disabledTestPaths", 74, 3], ["pythonImportsCheck", 79, 3], ["postCheck", 81, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchPypi: false, "flit-core": false, pytestCheckHook: false, "pytest-random-order": false, click: false, construct: false, "construct-classes": false, cryptography: false, keyring: false, libusb1: false, mnemonic: false, noiseprotocol: false, platformdirs: false, requests: false, "shamir-mnemonic": false, slip10: false, "typing-extensions": false, bleak: false, pillow: false, hidapi: false, web3: false, pyqt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 37, 13], ["version", 37, 19], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ble", 60, 5], ["extra", 61, 5], ["hidapi", 62, 5], ["ethereum", 63, 5], ["qt-widgets", 64, 5], ["full", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 69, 3], ["disabledTestPaths", 74, 3], ["pythonImportsCheck", 79, 3], ["postCheck", 81, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.20.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-CrPOu0T+y1Mrd9WitAG1AYeh1wtyUabMLfVJTlL/31c=",
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ble: nix.thunk(() => [bleak]),
         extra: nix.thunk(() => [pillow]),
         hidapi: nix.thunk(() => [hidapi]),
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["trezorlib"]);
       const postCheck = "$out/bin/trezorctl --version\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library for communicating with Trezor Hardware Wallet",
         mainProgram: "trezorctl",
         homepage: "https://github.com/trezor/trezor-firmware/tree/master/python",
@@ -91,7 +88,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

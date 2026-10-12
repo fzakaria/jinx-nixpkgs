@@ -2,48 +2,39 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/binary-cache.nix", [[["maintainers", 4, 8]], [["enable", 11, 11], ["extraOptions", 37, 11]], [["allowReferences", 24, 13], ["nativeBuildInputs", 25, 13]], [["rootPaths", 30, 17], ["compression", 31, 25]], [["source", 20, 55]], [["binary-cache.tar.gz.encrypted", 20, 23]], [["systemPackages", 13, 19], ["etc", 20, 19]], [["imports", 9, 7], ["nix", 11, 7], ["environment", 13, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 42, 3]]]);
 const formals$1 = { args: { lib: false, compression: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/binary-cache.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/binary-cache.nix", [["enable", 11, 11], ["extraOptions", 37, 11]]);
-const pos$3 = nix.positions(here + "/binary-cache.nix", [["allowReferences", 24, 13], ["nativeBuildInputs", 25, 13]]);
-const pos$4 = nix.positions(here + "/binary-cache.nix", [["rootPaths", 30, 17], ["compression", 31, 25]]);
-const pos$5 = nix.positions(here + "/binary-cache.nix", [["source", 20, 55]]);
-const pos$6 = nix.positions(here + "/binary-cache.nix", [["binary-cache.tar.gz.encrypted", 20, 23]]);
-const pos$7 = nix.positions(here + "/binary-cache.nix", [["systemPackages", 13, 19], ["etc", 20, 19]]);
-const pos$8 = nix.positions(here + "/binary-cache.nix", [["imports", 9, 7], ["nix", 11, 7], ["environment", 13, 7]]);
-const pos$9 = nix.positions(here + "/binary-cache.nix", [["machine", 6, 9]]);
-const pos$10 = nix.positions(here + "/binary-cache.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const compression = nix.arg($, "compression");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: nix.thunk(() => nix.add("binary-cache-", compression)),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "thomasjm"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           imports: nix.thunk(() => [nix.path(here, "../modules/installer/cd-dvd/channel.nix")]),
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             enable: true,
             extraOptions: "experimental-features = nix-command\n",
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -52,17 +43,17 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "binary-cache.tar.gz.encrypted": nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 source: nix.thunk(() => (() => {
                   const w_1 = nix.withScope(pkgs, null);
                   return nix.app(nix.lookup(w_1, "runCommand"), "binary-cache.tar.gz.encrypted", nix.thunk(() => ({
-                      [nix.POS]: pos$3,
+                      [nix.POS]: $pos[2],
                       allowReferences: [],
                       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "openssl"))]),
                     })), nix.thunk(() => nix.str`tar -czf tmp.tar.gz -C "${nix.app(nix.lookup(w_1, "mkBinaryCache"), nix.thunk(() => ({
-                        [nix.POS]: pos$4,
+                        [nix.POS]: $pos[3],
                         rootPaths: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "hello"))]),
                         compression: compression,
                       })))}" .

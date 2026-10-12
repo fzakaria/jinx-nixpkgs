@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["pkg-config", 53, 18]], [["tests", 53, 12]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["pkgConfigModules", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5], ["longDescription", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 23, 3], ["strictDeps", 28, 3], ["propagatedBuildInputs", 29, 3], ["nativeBuildInputs", 35, 3], ["configureFlags", 40, 3], ["postPatch", 46, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, glib: false, dbus: false, libgcrypt: false, "pkg-config": false, intltool: false, "gobject-introspection": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 53, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 53, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["pkgConfigModules", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5], ["longDescription", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 23, 3], ["strictDeps", 28, 3], ["propagatedBuildInputs", 29, 3], ["nativeBuildInputs", 35, 3], ["configureFlags", 40, 3], ["postPatch", 46, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libgnome-keyring",
       version: "3.12.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgnome-keyring/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libgnome-keyring-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-xMF4+7BfcqzEhNIt2wVo91MsQJsKE+BlE/9UuR6Ud4M=",
         })))),
@@ -39,14 +35,14 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "# uses pkg-config in some places and uses the correct $PKG_CONFIG in some\n# it's an ancient library so it has very old configure scripts and m4\nsubstituteInPlace ./configure \\\n  --replace \"pkg-config\" \"$PKG_CONFIG\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Framework for managing passwords and other secrets",
         homepage: "https://gitlab.gnome.org/Archive/libgnome-keyring",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/Archive/libgnome-keyring/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

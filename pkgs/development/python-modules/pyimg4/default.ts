@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["broken", 70, 5], ["changelog", 71, 5], ["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["pythonRelaxDeps", 35, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["disabledTests", 59, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { "apple-compress": false, asn1: false, buildPythonPackage: false, click: false, fetchFromGitHub: false, hatchling: false, lib: false, lzfse: false, pycryptodome: false, pylzss: false, pytestCheckHook: false, remotezip: false, stdenv: false, "uv-dynamic-versioning": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["broken", 70, 5], ["changelog", 71, 5], ["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["pythonRelaxDeps", 35, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["disabledTests", 59, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "m1stadev",
           repo: "PyIMG4",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         "test_read_payp",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(asn1, "version")), "3")),
         changelog: nix.thunk(() => nix.str`https://github.com/m1stadev/PyIMG4/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python library/CLI tool for parsing Apple's Image4 format",
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

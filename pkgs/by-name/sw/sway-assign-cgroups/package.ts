@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["description", 34, 5], ["mainProgram", 35, 5], ["longDescription", 36, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["pyproject", 16, 3], ["propagatedBuildInputs", 18, 3], ["installPhase", 26, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["mainProgram", 35, 5], ["longDescription", 36, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["pyproject", 16, 3], ["propagatedBuildInputs", 18, 3], ["installPhase", 26, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sway-assign-cgroups",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alebastr",
           repo: "sway-systemd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp src/assign-cgroups.py $out/bin/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Place GUI applications into systemd scopes for systemd-oomd compatibility",
         mainProgram: "assign-cgroups.py",
         longDescription: "Automatically assign a dedicated systemd scope to the GUI applications\nlaunched in the same cgroup as the compositor. This could be helpful for\nimplementing cgroup-based resource management and would be necessary when\n`systemd-oomd` is in use.\n\nLimitations: The script is using i3ipc window:new event to detect application\nlaunches and would fail to detect background apps or special surfaces.\nTherefore it's recommended to supplement the script with use of systemd user\nservices for such background apps.\n",

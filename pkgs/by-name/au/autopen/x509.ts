@@ -2,24 +2,11 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/x509.nix", [[["output", 44, 13]], [["verificationKey", 48, 50]], [["name", 38, 9], ["autopenArgs", 40, 9], ["passthru", 47, 9], ["pos", 52, 17]], [["constructDrv", 27, 5], ["extendDrvArgs", 29, 5]], [["signature", 79, 21], ["output", 80, 13]], [["verificationKey", 85, 36], ["certificateParams", 85, 52], ["tbsCertificate", 86, 19], ["signature", 86, 34]], [["name", 72, 9], ["autopenArgs", 74, 9], ["passthru", 84, 9], ["pos", 90, 17]], [["constructDrv", 57, 5], ["extendDrvArgs", 59, 5]], [["verificationKey", 118, 36]], [["name", 115, 21], ["certificateParams", 117, 13], ["pos", 121, 21], ["meta", 123, 13]], [["signingKey", 112, 19], ["message", 114, 11], ["pos", 128, 19], ["meta", 130, 11]], [["signature", 111, 9], ["pos", 135, 17], ["meta", 135, 21]], [["constructDrv", 95, 5], ["excludeDrvArgNames", 98, 5], ["extendDrvArgs", 100, 5]], [["mkTbsCertificateForSelfSigning", 26, 3], ["attachSignature", 56, 3], ["mkSelfSignedCertificate", 94, 3]]]);
 const formals$1 = { args: { lib: false, autopen: false }, ellipsis: false };
 const formals$2 = { args: { name: false, passthru: true, pos: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/x509.nix", [["output", 44, 13]]);
-const pos$2 = nix.positions(here + "/x509.nix", [["verificationKey", 48, 50]]);
-const pos$3 = nix.positions(here + "/x509.nix", [["name", 38, 9], ["autopenArgs", 40, 9], ["passthru", 47, 9], ["pos", 52, 17]]);
-const pos$4 = nix.positions(here + "/x509.nix", [["constructDrv", 27, 5], ["extendDrvArgs", 29, 5]]);
 const formals$3 = { args: { name: false, signature: false, passthru: true, pos: true }, ellipsis: true };
-const pos$5 = nix.positions(here + "/x509.nix", [["signature", 79, 21], ["output", 80, 13]]);
-const pos$6 = nix.positions(here + "/x509.nix", [["verificationKey", 85, 36], ["certificateParams", 85, 52], ["tbsCertificate", 86, 19], ["signature", 86, 34]]);
-const pos$7 = nix.positions(here + "/x509.nix", [["name", 72, 9], ["autopenArgs", 74, 9], ["passthru", 84, 9], ["pos", 90, 17]]);
-const pos$8 = nix.positions(here + "/x509.nix", [["constructDrv", 57, 5], ["extendDrvArgs", 59, 5]]);
 const formals$4 = { args: { name: false, signingKey: false, certificateParams: false, pos: true, meta: true }, ellipsis: true };
-const pos$9 = nix.positions(here + "/x509.nix", [["verificationKey", 118, 36]]);
-const pos$10 = nix.positions(here + "/x509.nix", [["name", 115, 21], ["certificateParams", 117, 13], ["pos", 121, 21], ["meta", 123, 13]]);
-const pos$11 = nix.positions(here + "/x509.nix", [["signingKey", 112, 19], ["message", 114, 11], ["pos", 128, 19], ["meta", 130, 11]]);
-const pos$12 = nix.positions(here + "/x509.nix", [["signature", 111, 9], ["pos", 135, 17], ["meta", 135, 21]]);
-const pos$13 = nix.positions(here + "/x509.nix", [["constructDrv", 95, 5], ["excludeDrvArgNames", 98, 5], ["extendDrvArgs", 100, 5]]);
-const pos$14 = nix.positions(here + "/x509.nix", [["mkTbsCertificateForSelfSigning", 26, 3], ["attachSignature", 56, 3], ["mkSelfSignedCertificate", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,9 +21,9 @@ export default nix.lambda((args) => (() => {
   const attachSignature = nix.thunk(() => nix.attr(from_1, "attachSignature"));
   const mkTbsCertificateForSelfSigning = nix.thunk(() => nix.attr(from_1, "mkTbsCertificateForSelfSigning"));
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     mkTbsCertificateForSelfSigning: nix.thunk(() => nix.app(extendMkDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         constructDrv: mkAutopenDerivation,
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
@@ -45,18 +32,18 @@ export default nix.lambda((args) => (() => {
           const passthru = nix.argOr($_1, "passthru", () => ({}));
           const pos = nix.argOr($_1, "pos", () => nix.app(unsafeGetAttrPos, "name", args_2));
           return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: nix.thunk(() => nix.str`${name}.tbs-certificate.der`),
             autopenArgs: nix.thunk(() => [
               "x509",
               "create-tbs-certificate",
               nix.thunk(() => nix.sel(finalAttrs, "certificateParams")),
-              nix.thunk(() => ({ [nix.POS]: pos$1, output: nix.thunk(() => nix.builtins.placeholder("out")) })),
+              nix.thunk(() => ({ [nix.POS]: $pos[0], output: nix.thunk(() => nix.builtins.placeholder("out")) })),
             ]),
             passthru: nix.thunk(() => nix.update((() => {
               const from_2 = nix.thunk(() => nix.sel(finalAttrs, "certificateParams"));
               return {
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               verificationKey: nix.thunk(() => nix.attr(from_2, "verificationKey")),
             };
             })(), passthru)),
@@ -65,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })(), formals$2),
       })))),
     attachSignature: nix.thunk(() => nix.app(extendMkDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         constructDrv: mkAutopenDerivation,
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
@@ -76,20 +63,20 @@ export default nix.lambda((args) => (() => {
           const pos = nix.argOr($_1, "pos", () => nix.app(unsafeGetAttrPos, "name", args_2));
           const tbsCertificate = nix.thunk(() => nix.sel(signature, "message"));
           return {
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: nix.thunk(() => nix.str`${name}.cer`),
             autopenArgs: nix.thunk(() => [
               "x509",
               "create-certificate",
               nix.thunk(() => nix.sel(tbsCertificate, "certificateParams")),
               nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 signature: signature,
                 output: nix.thunk(() => nix.builtins.placeholder("out")),
               })),
             ]),
             passthru: nix.thunk(() => nix.update({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               verificationKey: nix.thunk(() => nix.attr(tbsCertificate, "verificationKey")),
               certificateParams: nix.thunk(() => nix.attr(tbsCertificate, "certificateParams")),
               tbsCertificate: tbsCertificate,
@@ -100,7 +87,7 @@ export default nix.lambda((args) => (() => {
         })(), formals$3),
       })))),
     mkSelfSignedCertificate: nix.thunk(() => nix.app(extendMkDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         constructDrv: attachSignature,
         excludeDrvArgNames: nix.thunk(() => ["signingKey"]),
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -112,15 +99,15 @@ export default nix.lambda((args) => (() => {
           const pos = nix.argOr($_1, "pos", () => nix.app(unsafeGetAttrPos, "name", args_2));
           const meta = nix.argOr($_1, "meta", () => ({}));
           return {
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             signature: nix.thunk(() => nix.app(sign, nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 signingKey: signingKey,
                 message: nix.thunk(() => nix.app(mkTbsCertificateForSelfSigning, nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     name: name,
                     certificateParams: nix.thunk(() => nix.update(certificateParams, {
-                      [nix.POS]: pos$9,
+                      [nix.POS]: $pos[8],
                       verificationKey: nix.thunk(() => nix.attr(signingKey, "verificationKey")),
                     })),
                     pos: pos,

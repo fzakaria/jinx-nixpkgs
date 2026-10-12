@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["homepage", 33, 5], ["description", 34, 5], ["mainProgram", 35, 5], ["sourceProvenance", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["jarName", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["dontUnpack", 23, 3], ["installPhase", 25, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["mainProgram", 35, 5], ["sourceProvenance", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["jarName", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["dontUnpack", 23, 3], ["installPhase", 25, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.15.0";
       const jarName = nix.thunk(() => nix.str`jmx_prometheus_httpserver-${version}-jar-with-dependencies.jar`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://maven/io/prometheus/jmx/jmx_prometheus_httpserver/${version}/${jarName}`),
           sha256: "0fr3svn8kjp7bq1wzbkvv5awylwn8b01bngj04zvk7fpzqpgs7mz",
         }))));
@@ -32,7 +30,7 @@ cp $src $out/libexec/$jarName
 makeWrapper "${jre}/bin/java" $out/bin/jmx_prometheus_httpserver --add-flags "-jar $out/libexec/$jarName"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/prometheus/jmx_exporter",
         description: "Process for exposing JMX Beans via HTTP for Prometheus consumption",
         mainProgram: "jmx_prometheus_httpserver",
@@ -45,7 +43,7 @@ makeWrapper "${jre}/bin/java" $out/bin/jmx_prometheus_httpserver --add-flags "-j
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         jarName,

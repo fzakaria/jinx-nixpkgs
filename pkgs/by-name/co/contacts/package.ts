@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5], ["hydraPlatforms", 37, 5]], [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, xcbuildHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5], ["hydraPlatforms", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const xcbuildHook = nix.arg($, "xcbuildHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.1a-3",
       pname: "contacts",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dhess",
           repo: "contacts",
           rev: "4092a3c6615d7a22852a3bafc44e4aeeb698aa8f",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [xcbuildHook]),
       installPhase: "mkdir -p $out/bin\ncp Products/Default/contacts $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Access contacts from the Mac address book from command-line",
         homepage: "http://www.gnufoo.org/contacts/contacts.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

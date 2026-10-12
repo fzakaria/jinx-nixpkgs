@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 73, 5], ["homepage", 74, 5], ["platforms", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["cmakeFlags", 45, 3], ["outputs", 47, 3], ["postPatch", 56, 3], ["postInstall", 61, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, python3: false, libx11: false, libxxf86vm: false, libxrandr: false, "vulkan-headers": false, libGL: false, "vulkan-loader": false, wayland: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["platforms", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["cmakeFlags", 45, 3], ["outputs", 47, 3], ["postPatch", 56, 3], ["postInstall", 61, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openxr-loader",
       version: "1.1.62",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KhronosGroup",
           repo: "OpenXR-SDK-Source",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/loader/openxr.pc.in \\\n  --replace '$'{exec_prefix}/@CMAKE_INSTALL_LIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "mkdir -p \"$layers/share\"\nmv \"$out/share/openxr\" \"$layers/share\"\n# Use absolute paths in manifests so no LD_LIBRARY_PATH shenanigans are necessary\nfor file in \"$layers/share/openxr/1/api_layers/explicit.d/\"*; do\n    substituteInPlace \"$file\" --replace '\"library_path\": \"lib' \"\\\"library_path\\\": \\\"$layers/lib/lib\"\ndone\nmkdir -p \"$layers/lib\"\nmv \"$out/lib/libXrApiLayer\"* \"$layers/lib\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Khronos OpenXR loader",
         homepage: "https://www.khronos.org/openxr",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),

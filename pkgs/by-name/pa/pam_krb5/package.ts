@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 24, 5], ["description", 25, 5], ["longDescription", 26, 5], ["platforms", 30, 5], ["license", 31, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, pam: false, libkrb5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 24, 5], ["description", 25, 5], ["longDescription", 26, 5], ["platforms", 30, 5], ["license", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const libkrb5 = nix.arg($, "libkrb5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pam-krb5",
       version: "4.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://archives.eyrie.org/software/kerberos/pam-krb5-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-UDy+LLGv9L39o7z3+T+U+2ulLCbXCJNOcDmyGC/hCyA=",
         })))),
       buildInputs: nix.thunk(() => [pam, libkrb5]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.eyrie.org/~eagle/software/pam-krb5/",
         description: "PAM module allowing PAM-aware applications to authenticate users by performing an AS exchange with a Kerberos KDC",
         longDescription: "pam_krb5 can optionally convert Kerberos 5 credentials to Kerberos IV\ncredentials and/or use them to set up AFS tokens for a user's session.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 26, 5], ["mainProgram", 27, 5], ["longDescription", 28, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["unpackPhase", 16, 3], ["installPhase", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["mainProgram", 27, 5], ["longDescription", 28, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["unpackPhase", 16, 3], ["installPhase", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wavrsocvt",
       version: "1.0.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://bricxcc.sourceforge.net/wavrsocvt.tgz",
           sha256: "15qlvdfwbiclljj7075ycm78yzqahzrgl4ky8pymix5179acm05h",
         })))),
       unpackPhase: "tar -zxf $src\n",
       installPhase: "mkdir -p $out/bin\ncp wavrsocvt $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Convert .wav files into sound files for Lego NXT brick",
         mainProgram: "wavrsocvt",
         longDescription: "wavrsocvt is a command-line utility which can be used from a\nterminal window or script to convert .wav files into sound\nfiles for the NXT brick (.rso files). It can also convert the\nother direction (i.e., .rso -> .wav). It can produce RSO files\nwith a sample rate between 2000 and 16000 (the min/max range of\nsupported sample rates in the standard NXT firmware).\nYou can then upload these with e.g. nxt-python.\n",

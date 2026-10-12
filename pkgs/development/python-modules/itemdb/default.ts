@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["sha256", 22, 5]], [["description", 26, 5], ["license", 27, 5], ["homepage", 28, 5], ["maintainers", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["nativeBuildInputs", 13, 3], ["src", 18, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 26, 5], ["license", 27, 5], ["homepage", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["nativeBuildInputs", 13, 3], ["src", 18, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,20 +17,20 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const nativeBuildInputs = nix.thunk(() => [flit_core]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "almarklein",
           repo: "itemdb",
           tag: nix.thunk(() => nix.str`v${version}`),
           sha256: "sha256-HXdOERq2td6CME8zWN0DRVkSlmdqTg2po7aJrOuITHE=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Easy transactional database for Python dicts, backed by SQLite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         homepage: "https://itemdb.readthedocs.io",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "matthiasbeyer"))]),
       }));
-      return { [nix.POS]: pos$3, pname, version, pyproject, nativeBuildInputs, src, meta };
+      return { [nix.POS]: $pos[2], pname, version, pyproject, nativeBuildInputs, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

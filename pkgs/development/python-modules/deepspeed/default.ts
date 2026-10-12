@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 42, 5], ["paths", 43, 5]], [["stdenv", 52, 47]], [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["fetchSubmodules", 62, 5], ["hash", 63, 5]], [["TORCH_CUDA_ARCH_LIST", 145, 5]], [["requiredSystemFeatures", 233, 5]], [["gpuCheck", 232, 12]], [["description", 237, 5], ["homepage", 238, 5], ["downloadPage", 239, 5], ["changelog", 240, 5], ["license", 241, 5], ["mainProgram", 242, 5], ["maintainers", 243, 5], ["teams", 244, 5]], [["pname", 53, 3], ["version", 54, 3], ["pyproject", 55, 3], ["__structuredAttrs", 56, 3], ["src", 58, 3], ["patches", 66, 3], ["postPatch", 73, 3], ["build-system", 112, 3], ["preBuild", 119, 3], ["buildInputs", 123, 3], ["dependencies", 127, 3], ["env", 144, 3], ["preCheck", 148, 3], ["pythonImportsCheck", 158, 3], ["nativeCheckInputs", 160, 3], ["pytestFlags", 171, 3], ["enabledTestPaths", 177, 3], ["disabledTestPaths", 182, 3], ["disabledTests", 193, 3], ["__darwinAllowLocalNetworking", 229, 3], ["passthru", 232, 3], ["meta", 236, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, symlinkJoin: false, cudaPackages: false, llvmPackages: false, setuptools: false, torch: false, einops: false, hjson: false, msgpack: false, ninja: false, numpy: false, packaging: false, psutil: false, "py-cpuinfo": false, pydantic: false, tqdm: false, "nvidia-ml-py": false, accelerate: false, addBinToPathHook: false, "pytest-xdist": false, pytestCheckHook: false, tabulate: false, transformers: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 42, 5], ["paths", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["stdenv", 52, 47]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["fetchSubmodules", 62, 5], ["hash", 63, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["TORCH_CUDA_ARCH_LIST", 145, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["requiredSystemFeatures", 233, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["gpuCheck", 232, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 237, 5], ["homepage", 238, 5], ["downloadPage", 239, 5], ["changelog", 240, 5], ["license", 241, 5], ["mainProgram", 242, 5], ["maintainers", 243, 5], ["teams", 244, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 53, 3], ["version", 54, 3], ["pyproject", 55, 3], ["__structuredAttrs", 56, 3], ["src", 58, 3], ["patches", 66, 3], ["postPatch", 73, 3], ["build-system", 112, 3], ["preBuild", 119, 3], ["buildInputs", 123, 3], ["dependencies", 127, 3], ["env", 144, 3], ["preCheck", 148, 3], ["pythonImportsCheck", 158, 3], ["nativeCheckInputs", 160, 3], ["pytestFlags", 171, 3], ["enabledTestPaths", 177, 3], ["disabledTestPaths", 182, 3], ["disabledTests", 193, 3], ["__darwinAllowLocalNetworking", 229, 3], ["passthru", 232, 3], ["meta", 236, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const cudaCapabilities = nix.thunk(() => nix.attr(torch, "cudaCapabilities"));
   const cudaSupport = nix.thunk(() => nix.attr(torch, "cudaSupport"));
   const cuda_native_redist = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "cuda-native-redist",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(cudaPackages, null);
@@ -56,14 +49,14 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
     }))));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: $pos[7],
       pname: "deepspeed",
       version: "0.19.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "deepspeedai",
           repo: "DeepSpeed",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -97,7 +90,7 @@ export default nix.lambda((args) => (() => {
         tqdm,
       ], nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nvidia_ml_py])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", cudaCapabilities)),
         })))),
       preCheck: nix.thunk(() => nix.add("rm -rf deepspeed\n", "export NIX_ENFORCE_NO_NATIVE=0\n")),
@@ -143,11 +136,11 @@ export default nix.lambda((args) => (() => {
         ])))),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        gpuCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$5, requiredSystemFeatures: nix.thunk(() => ["cuda"]) })))),
+        [nix.POS]: $pos[5],
+        gpuCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[4], requiredSystemFeatures: nix.thunk(() => ["cuda"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Deep learning optimization library that makes distributed training and inference easy, efficient, and effective",
         homepage: "https://www.deepspeed.ai/",
         downloadPage: "https://github.com/deepspeedai/deepspeed",

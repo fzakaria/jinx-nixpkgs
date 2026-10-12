@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["homepage", 84, 5], ["description", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["mainProgram", 88, 5], ["maintainers", 89, 5]], [["pname", 23, 3], ["version", 24, 11], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 36, 3], ["nativeBuildInputs", 38, 3], ["propagatedBuildInputs", 45, 3], ["dependencies", 52, 3], ["postInstall", 60, 3], ["dontWrapGApps", 77, 3], ["preFixup", 79, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, glib: false, python3Packages: false, "gobject-introspection": false, "gsettings-desktop-schemas": false, tor: false, obfs4: false, snowflake: false, "conjure-tor": false, wrapGAppsHook4: false, withObfs4: true, withSnowflake: true, withConjure: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 84, 5], ["description", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["mainProgram", 88, 5], ["maintainers", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 11], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 36, 3], ["nativeBuildInputs", 38, 3], ["propagatedBuildInputs", 45, 3], ["dependencies", 52, 3], ["postInstall", 60, 3], ["dontWrapGApps", 77, 3], ["preFixup", 79, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const withConjure = nix.argOr($, "withConjure", () => true);
   const version = "5.1.0";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tractor",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "framagit.org",
           owner: "tractor",
           repo: "tractor",
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://framagit.org/tractor/tractor",
         description: "Setup a proxy with Onion Routing via TOR and optionally obfs4proxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

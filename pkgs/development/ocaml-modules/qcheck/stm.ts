@@ -2,23 +2,22 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stm.nix", [[["description", 16, 5]], [["pname", 7, 3], ["src", 9, 40], ["version", 9, 44], ["propagatedBuildInputs", 11, 3], ["doCheck", 13, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "qcheck-multicoretests-util": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/stm.nix", [["description", 16, 5]]);
-const pos$2 = nix.positions(here + "/stm.nix", [["pname", 7, 3], ["src", 9, 40], ["version", 9, 44], ["propagatedBuildInputs", 11, 3], ["doCheck", 13, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const qcheck_multicoretests_util = nix.arg($, "qcheck-multicoretests-util");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qcheck-stm",
       src: nix.thunk(() => nix.attr(qcheck_multicoretests_util, "src")),
       version: nix.thunk(() => nix.attr(qcheck_multicoretests_util, "version")),
       propagatedBuildInputs: nix.thunk(() => [qcheck_multicoretests_util]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(qcheck_multicoretests_util, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "State-machine testing library for sequential and parallel model-based tests",
       })),
     })));

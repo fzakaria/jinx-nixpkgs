@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["extraArgs", 61, 5]], [["updateScript", 60, 12]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["sourceRoot", 32, 3], ["postPatch", 34, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 58, 3], ["passthru", 60, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "nix-update-script": false, asn1crypto: false, cryptography: false, oscrypto: false, requests: false, uritools: false, aiohttp: false, freezegun: false, "pytest-asyncio": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 60, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["sourceRoot", 32, 3], ["postPatch", 34, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 58, 3], ["passthru", 60, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.31.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MatthiasValvekens",
           repo: "pyhanko",
           tag: nix.thunk(() => nix.str`pyhanko-certvalidator/v${version}`),
@@ -47,14 +43,14 @@ substituteInPlace pyproject.toml --replace-fail "0.0.0.dev1" "${version}"
       const nativeCheckInputs = nix.thunk(() => [aiohttp, freezegun, pytest_asyncio, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pyhanko_certvalidator"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=pyhanko-certvalidator/v(.*)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python library for validating X.509 certificates and paths",
         homepage: "https://github.com/MatthiasValvekens/pyHanko/tree/master/pkgs/pyhanko-certvalidator",
         changelog: nix.thunk(() => nix.str`https://github.com/MatthiasValvekens/pyhanko/blob/${nix.sel(src, "tag")}/docs/changelog.rst#pyhanko-certvalidator`),
@@ -62,7 +58,7 @@ substituteInPlace pyproject.toml --replace-fail "0.0.0.dev1" "${version}"
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "antonmosich"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

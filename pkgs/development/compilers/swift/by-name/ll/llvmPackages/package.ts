@@ -2,22 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 29, 19]], [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 42]], [["path", 48, 44]], [["path", 50, 58]], [["path", 52, 57]], [["path", 54, 61]], [["clang/gnu-install-dirs.patch", 48, 7], ["lldb/backport-ParseTrieEntries-fixes.patch", 50, 7], ["llvm/backport-darwin-triple-parsing.patch", 52, 7], ["llvm/backport-minimal-arm64e_x1-support.patch", 54, 7]], [["officialRelease", 29, 3], ["monorepoSrc", 31, 3], ["otherSplices", 38, 3], ["patchesFn", 43, 3]], [["separateDebugInfo", 65, 13], ["postInstall", 66, 13]], [["stdenv", 71, 64]], [["stdenv", 78, 21], ["enableSharedLibraries", 79, 13]], [["patches", 87, 13], ["doCheck", 91, 13], ["postInstall", 93, 13]], [["patches", 104, 13], ["buildInputs", 116, 13], ["nativeBuildInputs", 124, 13], ["cmakeFlags", 134, 13], ["postInstall", 151, 13]], [["stdenv", 173, 56]], [["version", 59, 7], ["release_version", 60, 7], ["libclang", 62, 7], ["libllvm", 73, 7], ["lldb", 99, 7]]]);
 const formals$1 = { args: { lib: false, "apple-sdk_26": false, darwin: false, fetchFromGitHub: false, generateSplicesForMkScope: false, libuuid: false, lld: false, llvmPackages_19: false, python3: false, stdenv: false, stdlib: false, "swift-cmark": false, swiftc: false, swift_release: false, swift_sources: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 29, 19]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 42]]);
-const pos$3 = nix.positions(here + "/package.nix", [["path", 48, 44]]);
-const pos$4 = nix.positions(here + "/package.nix", [["path", 50, 58]]);
-const pos$5 = nix.positions(here + "/package.nix", [["path", 52, 57]]);
-const pos$6 = nix.positions(here + "/package.nix", [["path", 54, 61]]);
-const pos$7 = nix.positions(here + "/package.nix", [["clang/gnu-install-dirs.patch", 48, 7], ["lldb/backport-ParseTrieEntries-fixes.patch", 50, 7], ["llvm/backport-darwin-triple-parsing.patch", 52, 7], ["llvm/backport-minimal-arm64e_x1-support.patch", 54, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["officialRelease", 29, 3], ["monorepoSrc", 31, 3], ["otherSplices", 38, 3], ["patchesFn", 43, 3]]);
-const pos$9 = nix.positions(here + "/package.nix", [["separateDebugInfo", 65, 13], ["postInstall", 66, 13]]);
-const pos$10 = nix.positions(here + "/package.nix", [["stdenv", 71, 64]]);
-const pos$11 = nix.positions(here + "/package.nix", [["stdenv", 78, 21], ["enableSharedLibraries", 79, 13]]);
-const pos$12 = nix.positions(here + "/package.nix", [["patches", 87, 13], ["doCheck", 91, 13], ["postInstall", 93, 13]]);
-const pos$13 = nix.positions(here + "/package.nix", [["patches", 104, 13], ["buildInputs", 116, 13], ["nativeBuildInputs", 124, 13], ["cmakeFlags", 134, 13], ["postInstall", 151, 13]]);
-const pos$14 = nix.positions(here + "/package.nix", [["stdenv", 173, 56]]);
-const pos$15 = nix.positions(here + "/package.nix", [["version", 59, 7], ["release_version", 60, 7], ["libclang", 62, 7], ["libllvm", 73, 7], ["lldb", 99, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const swiftLlvmVersion = "17.0.0";
   const llvmVersion = "19.1.5";
   return nix.app(nix.sel(nix.app(nix.sel(llvmPackages_19, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
-      officialRelease: nix.thunk(() => ({ [nix.POS]: pos$1, version: llvmVersion })),
+      [nix.POS]: $pos[7],
+      officialRelease: nix.thunk(() => ({ [nix.POS]: $pos[0], version: llvmVersion })),
       monorepoSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "llvm-project"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "swiftlang",
           repo: "llvm-project",
           tag: nix.thunk(() => nix.str`swift-${swift_release}-RELEASE`),
@@ -53,28 +39,28 @@ export default nix.lambda((args) => (() => {
         })()))),
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, nix.thunk(() => ["swiftPackages", "llvmPackages"]))),
       patchesFn: (patches) => nix.update(patches, {
-        [nix.POS]: pos$7,
-        "clang/gnu-install-dirs.patch": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$3, path: nix.path(here, "./patches") }))]),
-        "lldb/backport-ParseTrieEntries-fixes.patch": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$4, path: nix.path(here, "./patches") }))]),
-        "llvm/backport-darwin-triple-parsing.patch": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$5, path: nix.path(here, "./patches") }))]),
-        "llvm/backport-minimal-arm64e_x1-support.patch": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$6, path: nix.path(here, "./patches") }))]),
+        [nix.POS]: $pos[6],
+        "clang/gnu-install-dirs.patch": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[2], path: nix.path(here, "./patches") }))]),
+        "lldb/backport-ParseTrieEntries-fixes.patch": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[3], path: nix.path(here, "./patches") }))]),
+        "llvm/backport-darwin-triple-parsing.patch": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[4], path: nix.path(here, "./patches") }))]),
+        "llvm/backport-minimal-arm64e_x1-support.patch": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[5], path: nix.path(here, "./patches") }))]),
       }),
     }))), "overrideScope"), (final) => (prev) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       version: swiftLlvmVersion,
       release_version: llvmVersion,
       libclang: nix.thunk(() => (() => {
         const clangWithLauncher = nix.thunk(() => nix.app(nix.sel(prev, "libclang", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             separateDebugInfo: false,
             postInstall: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postInstall"), "moveToOutput bin/clang-deps-launcher.py \"$python\"\n")),
           })));
-        return nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(clangWithLauncher, "override")), nix.thunk(() => ({ [nix.POS]: pos$10, stdenv: stdenv })));
+        return nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(clangWithLauncher, "override")), nix.thunk(() => ({ [nix.POS]: $pos[9], stdenv: stdenv })));
       })()),
       libllvm: nix.thunk(() => (() => {
-        const staticLibllvm = nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(prev, "libllvm", "override")), nix.thunk(() => ({ [nix.POS]: pos$11, stdenv: stdenv, enableSharedLibraries: false }))));
+        const staticLibllvm = nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(prev, "libllvm", "override")), nix.thunk(() => ({ [nix.POS]: $pos[10], stdenv: stdenv, enableSharedLibraries: false }))));
         return nix.app(nix.sel(staticLibllvm, "overrideAttrs"), (old) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(old, "pname"), "llvm-manpages")), nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [nix.path(here, "./patches/llvm/module-cache.patch")])),
               doCheck: false,
               postInstall: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postInstall"), "cp include/llvm/Config/config.h \"$dev/include/llvm/Config/config.h\"\n")),
@@ -83,7 +69,7 @@ export default nix.lambda((args) => (() => {
       lldb: nix.thunk(() => (() => {
         const python3_with_distutils = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (pkgs) => [nix.thunk(() => nix.sel(pkgs, "distutils"))]));
         const swiftLLDB = nix.thunk(() => nix.app(nix.sel(prev, "lldb", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
               nix.path(here, "./patches/lldb/0001-Set-stdlib-path-on-Linux.patch"),
               nix.path(here, "./patches/lldb/0002-Link-lldb-server-to-swiftCore.patch"),
@@ -115,7 +101,7 @@ rm -rf "$out/lib/swift"
 ln -s ${nix.app(nix.sel(lib, "escapeShellArg"), swiftc)}/lib/swift "$out/lib/swift"
 `)))),
           })));
-        return nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(swiftLLDB, "override")), nix.thunk(() => ({ [nix.POS]: pos$14, stdenv: stdenv })));
+        return nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(swiftLLDB, "override")), nix.thunk(() => ({ [nix.POS]: $pos[13], stdenv: stdenv })));
       })()),
     }));
 })(), formals$1);

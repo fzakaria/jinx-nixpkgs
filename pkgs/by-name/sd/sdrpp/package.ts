@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 90, 5], ["repo", 91, 5], ["rev", 92, 5], ["hash", 93, 5]], [["NIX_CFLAGS_COMPILE", 196, 7]], [["description", 201, 5], ["homepage", 202, 5], ["license", 203, 5], ["broken", 205, 5], ["maintainers", 206, 5], ["mainProgram", 210, 5]], [["pname", 84, 3], ["upstreamVersion", 86, 3], ["version", 87, 3], ["src", 89, 3], ["patches", 96, 3], ["postPatch", 100, 3], ["nativeBuildInputs", 108, 3], ["buildInputs", 113, 3], ["cmakeFlags", 145, 3], ["env", 196, 3], ["hardeningDisable", 198, 3], ["meta", 200, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libx11: false, glfw: false, glew: false, fftwFloat: false, volk: false, zstd: false, airspy_source: true, airspy: false, airspyhf_source: true, airspyhf: false, audio_source: true, bladerf_source: true, libbladeRF: false, dragonlabs_source: true, libdlcr: false, file_source: true, hackrf_source: true, hackrf: false, hermes_source: true, limesdr_source: true, limesuite: false, network_source: true, perseus_source: true, plutosdr_source: true, libiio: false, libad9361: false, rfspace_source: true, rtl_sdr_source: true, "rtl-sdr-osmocom": false, libusb1: false, rtl_tcp_source: true, sdrplay_source: true, sdrplay: false, sdrpp_server_source: true, soapy_source: true, "soapysdr-with-plugins": false, spectran_http_source: true, spyserver_source: true, usrp_source: true, uhd: false, boost: false, audio_sink: true, rtaudio: false, network_sink: true, portaudio_sink: true, portaudio: false, atv_decoder: true, dab_decoder: true, falcon9_decoder: true, kg_sstv_decoder: true, m17_decoder: true, codec2: false, meteor_demodulator: true, pager_decoder: true, radio: true, vor_receiver: true, weather_sat_decoder: true, discord_presence: true, frequency_manager: true, iq_exporter: true, recorder: true, rigctl_client: true, rigctl_server: true, scanner: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 90, 5], ["repo", 91, 5], ["rev", 92, 5], ["hash", 93, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 196, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 201, 5], ["homepage", 202, 5], ["license", 203, 5], ["broken", 205, 5], ["maintainers", 206, 5], ["mainProgram", 210, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 84, 3], ["upstreamVersion", 86, 3], ["version", 87, 3], ["src", 89, 3], ["patches", 96, 3], ["postPatch", 100, 3], ["nativeBuildInputs", 108, 3], ["buildInputs", 113, 3], ["cmakeFlags", 145, 3], ["env", 196, 3], ["hardeningDisable", 198, 3], ["meta", 200, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -80,12 +77,12 @@ export default nix.lambda((args) => (() => {
   const rigctl_server = nix.argOr($, "rigctl_server", () => true);
   const scanner = nix.argOr($, "scanner", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sdrpp",
       upstreamVersion: "1.3.0",
       version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "upstreamVersion")}-unstable-2026-03-24`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AlexandreRouma",
           repo: "SDRPlusPlus",
           rev: "a6df4d58e5f6b3045883a70aeb8fb41fd5dbf1d9",
@@ -145,10 +142,10 @@ substituteInPlace core/src/version.h \\
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "OPT_BUILD_RIGCTL_SERVER", rigctl_server)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "OPT_BUILD_SCANNER", scanner)),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fpermissive" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fpermissive" })),
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "format")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross-Platform SDR Software",
         homepage: "https://github.com/AlexandreRouma/SDRPlusPlus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

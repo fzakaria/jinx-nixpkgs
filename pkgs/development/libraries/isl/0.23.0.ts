@@ -2,7 +2,7 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/0.23.0.nix", [["version", 2, 3], ["urls", 3, 3], ["sha256", 7, 3], ["configureFlags", 8, 3]]);
+const $pos = nix.positions(here + "/0.23.0.nix", [[["version", 2, 3], ["urls", 3, 3], ["sha256", 7, 3], ["configureFlags", 8, 3]]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => (() => {
     const version = "0.23";
@@ -12,6 +12,6 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./gen
     ]);
     const sha256 = "sha256-XvxT767xUTAfTn3eOFa2aBLYFT3t4k+rF2c/gByGmPI=";
     const configureFlags = nix.thunk(() => ["--with-gcc-arch=generic"]);
-    return { [nix.POS]: pos$1, version, urls, sha256, configureFlags };
+    return { [nix.POS]: $pos[0], version, urls, sha256, configureFlags };
   })())));
 //# sourceMappingURL=0.23.0.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5]], [["pname", 14, 54], ["version", 14, 60], ["src", 14, 68]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5], ["mainProgram", 32, 5]], [["pname", 18, 11], ["version", 18, 17], ["src", 18, 25], ["extraInstallCommands", 19, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { appimageTools: false, lib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 14, 54], ["version", 14, 60], ["src", 14, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5], ["mainProgram", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 11], ["version", 18, 17], ["src", 18, 25], ["extraInstallCommands", 19, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const version = "3.4.6";
   const pname = "sunsama";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://download.todesktop.com/2003096gmmnl0g1/sunsama-${version}-build-260521zej1bgvs1-x86_64.AppImage`),
       hash: "sha512-Stb0Mcap4KmRkj/s5jf1uZLm8sR5KNKGpZKXa2VtBIFxKofS1CxQJDWiJiPSNGsqtezLxmvsC4VSI45isYQSpQ==",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -32,7 +29,7 @@ substituteInPlace $out/share/applications/sunsama.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=sunsama'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Digital daily planner that helps you feel calm and stay focused",
         homepage: "https://sunsama.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["obsWrapperArguments", 40, 12]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["maintainers", 62, 5], ["license", 66, 5], ["platforms", 67, 31]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["passthru", 40, 3], ["postInstall", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gst_all_1: false, pciutils: false, "pkg-config": false, meson: false, ninja: false, "obs-studio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["obsWrapperArguments", 40, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["maintainers", 62, 5], ["license", 66, 5], ["platforms", 67, 31]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["passthru", 40, 3], ["postInstall", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-vaapi";
       const version = "0.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fzwoch",
           repo: "obs-vaapi",
           rev: version,
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         obsWrapperArguments: nix.thunk(() => (() => {
           const gstreamerHook = (package$) => nix.str`--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : ${nix.app(nix.sel(lib, "getLib"), package$)}/lib/gstreamer-1.0`;
           const w_1 = nix.withScope(gst_all_1, null);
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OBS Studio VAAPI support via GStreamer",
         homepage: "https://github.com/fzwoch/obs-vaapi",
         changelog: nix.thunk(() => nix.str`https://github.com/fzwoch/obs-vaapi/releases/tag/${version}`),
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

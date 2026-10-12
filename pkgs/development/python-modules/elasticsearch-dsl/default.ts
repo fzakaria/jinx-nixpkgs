@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 5], ["version", 18, 13], ["hash", 19, 5]], [["async", 31, 5]], [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["optional-dependencies", 30, 3], ["doCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, elasticsearch: false, fetchPypi: false, "python-dateutil": false, setuptools: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 13], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["async", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["optional-dependencies", 30, 3], ["doCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.18.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "elasticsearch_dsl",
           version: version,
           hash: "sha256-djRl26nq4Wat0QVn6STGVzCqEigZsIv+mgd+kbE7MNE=",
@@ -30,12 +27,12 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [elasticsearch, python_dateutil, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         async: nix.thunk(() => nix.concat([elasticsearch], nix.sel(elasticsearch, "optional-dependencies", "async"))),
       }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "High level Python client for Elasticsearch",
         longDescription: "Elasticsearch DSL is a high-level library whose aim is to help with\nwriting and running queries against Elasticsearch. It is built on top of\nthe official low-level client (elasticsearch-py).\n",
         homepage: "https://github.com/elasticsearch/elasticsearch-dsl-py",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

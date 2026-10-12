@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 13], ["hash", 30, 5]], [["CGO_LDFLAGS", 46, 5]], [["homepage", 74, 5], ["description", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 82, 5]], [["pname", 22, 3], ["version", 23, 3], ["tag", 24, 3], ["src", 26, 3], ["buildInputs", 33, 3], ["tags", 43, 3], ["env", 45, 3], ["vendorHash", 49, 3], ["ldflags", 51, 3], ["doCheck", 56, 3], ["preCheck", 57, 3], ["postCheck", 66, 3], ["doInstallCheck", 70, 3], ["nativeInstallCheckInputs", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, olm: false, "libsignal-ffi": false, zlib: false, versionCheckHook: false, withGoolm: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 13], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_LDFLAGS", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["description", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["tag", 24, 3], ["src", 26, 3], ["buildInputs", 33, 3], ["tags", 43, 3], ["env", 45, 3], ["vendorHash", 49, 3], ["ldflags", 51, 3], ["doCheck", 56, 3], ["preCheck", 57, 3], ["postCheck", 66, 3], ["doInstallCheck", 70, 3], ["nativeInstallCheckInputs", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.09";
       const tag = "v0.2609.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mautrix",
           repo: "signal",
           tag: tag,
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withGoolm)), olm), nix.concat(nix.app(nix.sel(lib, "optional"), withGoolm, nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib"))), [libsignal_ffi, zlib])));
       const tags = nix.thunk(() => nix.app(nix.sel(lib, "optional"), withGoolm, "goolm"));
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withGoolm, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           CGO_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [cppStdLib]))),
         }))));
       const vendorHash = "sha256-/dHtn1QTQb2kf/scULECU6NquyNdMwgmF4gyeuMiHgg=";
@@ -49,7 +46,7 @@ export CGO_LDFLAGS="${cppStdLib}"
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/mautrix/signal",
         description: "Matrix-Signal puppeting bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -64,7 +61,7 @@ export CGO_LDFLAGS="${cppStdLib}"
         mainProgram: "mautrix-signal",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         tag,

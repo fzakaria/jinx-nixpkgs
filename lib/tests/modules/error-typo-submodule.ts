@@ -2,38 +2,29 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/error-typo-submodule.nix", [[["default", 9, 13], ["type", 10, 13]], [["default", 13, 13], ["type", 14, 13]], [["enable", 8, 11], ["port", 12, 11]], [["options", 7, 9]], [["type", 5, 5], ["default", 19, 5]], [["services", 4, 11]], [["prot", 25, 7]], [["myservice", 23, 14]], [["services", 23, 5]], [["options", 4, 3], ["config", 22, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/error-typo-submodule.nix", [["default", 9, 13], ["type", 10, 13]]);
-const pos$2 = nix.positions(here + "/error-typo-submodule.nix", [["default", 13, 13], ["type", 14, 13]]);
-const pos$3 = nix.positions(here + "/error-typo-submodule.nix", [["enable", 8, 11], ["port", 12, 11]]);
-const pos$4 = nix.positions(here + "/error-typo-submodule.nix", [["options", 7, 9]]);
-const pos$5 = nix.positions(here + "/error-typo-submodule.nix", [["type", 5, 5], ["default", 19, 5]]);
-const pos$6 = nix.positions(here + "/error-typo-submodule.nix", [["services", 4, 11]]);
-const pos$7 = nix.positions(here + "/error-typo-submodule.nix", [["prot", 25, 7]]);
-const pos$8 = nix.positions(here + "/error-typo-submodule.nix", [["myservice", 23, 14]]);
-const pos$9 = nix.positions(here + "/error-typo-submodule.nix", [["services", 23, 5]]);
-const pos$10 = nix.positions(here + "/error-typo-submodule.nix", [["options", 4, 3], ["config", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       services: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 options: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      [nix.POS]: pos$1,
+                      [nix.POS]: $pos[0],
                       default: false,
                       type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                     })))),
                   port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                      [nix.POS]: pos$2,
+                      [nix.POS]: $pos[1],
                       default: 8080n,
                       type: nix.thunk(() => nix.sel(lib, "types", "int")),
                     })))),
@@ -43,10 +34,10 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        myservice: nix.thunk(() => ({ [nix.POS]: pos$7, prot: 9000n })),
+        [nix.POS]: $pos[7],
+        myservice: nix.thunk(() => ({ [nix.POS]: $pos[6], prot: 9000n })),
       })),
     })),
   };

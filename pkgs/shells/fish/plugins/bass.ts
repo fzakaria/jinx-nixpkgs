@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bass.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postInstall", 20, 3], ["nativeCheckInputs", 24, 3], ["checkPhase", 25, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildFishPlugin: false, fetchFromGitHub: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bass.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/bass.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5]]);
-const pos$3 = nix.positions(here + "/bass.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postInstall", 20, 3], ["nativeCheckInputs", 24, 3], ["checkPhase", 25, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bass",
       version: "1.0-unstable-2023-12-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "edc",
           repo: "bass",
           rev: "79b62958ecf4e87334f24d6743e5766475bcf4d0",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [python3]),
       checkPhase: "make test\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fish function making it easy to use utilities written for Bash in Fish shell",
         homepage: "https://github.com/edc/bass",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

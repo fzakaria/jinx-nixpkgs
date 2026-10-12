@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 7], ["rev", 34, 7], ["sha256", 35, 7]], [["url", 43, 9], ["hash", 44, 9]], [["pname", 30, 5], ["version", 31, 5], ["src", 32, 5], ["patches", 38, 5], ["postPatch", 48, 5], ["dontBuild", 54, 5], ["dontFixup", 55, 5], ["installPhase", 56, 5]], [["rootSrc", 62, 52]], [["updateScript", 134, 12]], [["description", 137, 5], ["homepage", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["mainProgram", 144, 5], ["platforms", 145, 5]], [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["nativeBuildInputs", 70, 3], ["cmakeFlags", 80, 3], ["buildInputs", 88, 3], ["postInstall", 111, 3], ["installCheckPhase", 120, 3], ["doInstallCheck", 129, 3], ["enableParallelBuilding", 131, 3], ["__structuredAttrs", 132, 3], ["passthru", 134, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, fetchpatch: false, callPackages: false, cmake: false, ninja: false, flex: false, bison: false, zlib: false, tcl: false, boost: false, eigen: false, "yaml-cpp": false, libunwind: false, glog: false, gtest: false, gflags: false, metis: false, gmp: false, python3: false, onnxruntime: false, "pkg-config": false, curl: false, onetbb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 7], ["rev", 34, 7], ["sha256", 35, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 43, 9], ["hash", 44, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 5], ["version", 31, 5], ["src", 32, 5], ["patches", 38, 5], ["postPatch", 48, 5], ["dontBuild", 54, 5], ["dontFixup", 55, 5], ["installPhase", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["rootSrc", 62, 52]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 134, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 137, 5], ["homepage", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["mainProgram", 144, 5], ["platforms", 145, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["nativeBuildInputs", 70, 3], ["cmakeFlags", 80, 3], ["buildInputs", 88, 3], ["postInstall", 111, 3], ["installCheckPhase", 120, 3], ["doInstallCheck", 129, 3], ["enableParallelBuilding", 131, 3], ["__structuredAttrs", 132, 3], ["passthru", 134, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,18 +33,18 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const onetbb = nix.arg($, "onetbb");
   const rootSrc = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "iEDA-src",
       version: "0.1.0-unstable-2025-12-23",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gitee.com/oscc-project/iEDA",
           rev: "59662dcd768165f3957003522cb929d42b252023",
           sha256: "sha256-LaFGp9U7K+HmvHW1XK6HyUB/WM5O3y/tngul+cdbCP4=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/Emin017/iEDA/commit/e5f3ce024965df5e1d400b6a1d7f8b5b307a4bf3.patch",
             hash: "sha256-YJnY+r9A887WT0a/H/Zf++r1PpD7t567NpkesDmIsD0=",
           })))),
@@ -60,9 +54,9 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "cp -r . $out\n",
     }))));
-  const rustpkgs = nix.thunk(() => nix.app(callPackages, nix.path(here, "./rustpkgs.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, rootSrc: rootSrc }))));
+  const rustpkgs = nix.thunk(() => nix.app(callPackages, nix.path(here, "./rustpkgs.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], rootSrc: rootSrc }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "iEDA",
       version: nix.thunk(() => nix.sel(rootSrc, "version")),
       src: rootSrc,
@@ -101,9 +95,9 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))),
       enableParallelBuilding: true,
       __structuredAttrs: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Open-source EDA infracstructure and tools from Netlist to GDS for ASIC design",
         homepage: "https://gitee.com/oscc-project/iEDA",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mulan-psl2")),

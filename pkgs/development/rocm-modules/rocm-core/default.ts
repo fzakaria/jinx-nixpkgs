@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["sparseCheckout", 26, 5], ["hash", 30, 5]], [["ROCM_LIBPATCH_VERSION", 40, 5], ["BUILD_ID", 41, 5], ["ROCM_BUILD_ID", 42, 5]], [["finalAttrs", 86, 54]], [["ROCM_LIBPATCH_VERSION", 85, 12], ["updateScript", 86, 12]], [["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["teams", 92, 5], ["platforms", 93, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["sourceRoot", 32, 3], ["patches", 34, 3], ["nativeBuildInputs", 38, 3], ["env", 39, 3], ["cmakeFlags", 44, 3], ["setupHook", 54, 3], ["doInstallCheck", 60, 3], ["preInstallCheck", 61, 3], ["passthru", 85, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["sparseCheckout", 26, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ROCM_LIBPATCH_VERSION", 40, 5], ["BUILD_ID", 41, 5], ["ROCM_BUILD_ID", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["finalAttrs", 86, 54]]);
-const pos$4 = nix.positions(here + "/default.nix", [["ROCM_LIBPATCH_VERSION", 85, 12], ["updateScript", 86, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["teams", 92, 5], ["platforms", 93, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["sourceRoot", 32, 3], ["patches", 34, 3], ["nativeBuildInputs", 38, 3], ["env", 39, 3], ["cmakeFlags", 44, 3], ["setupHook", 54, 3], ["doInstallCheck", 60, 3], ["preInstallCheck", 61, 3], ["passthru", 85, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const padIfSingle = (s) => (nix.asBool(nix.eq(nix.app(nix.sel(lib, "stringLength"), s), 1n)) ? nix.str`0${s}` : nix.force(s));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rocm-core",
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-systems",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./env-rocm-path.patch")]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ROCM_LIBPATCH_VERSION: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}${nix.app(padIfSingle, nix.thunk(() => nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))))}${nix.app(padIfSingle, nix.thunk(() => nix.app(nix.sel(lib, "versions", "patch"), nix.thunk(() => nix.sel(finalAttrs, "version")))))}`),
         BUILD_ID: nix.thunk(() => nix.str`nixpkgs-${nix.sel(finalAttrs, "env", "ROCM_LIBPATCH_VERSION")}`),
         ROCM_BUILD_ID: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "env", "BUILD_ID")}`),
@@ -56,12 +51,12 @@ export ROCM_BUILD_ID="${nix.sel(finalAttrs, "env", "ROCM_BUILD_ID")}"
       doInstallCheck: true,
       preInstallCheck: "mkdir test_project\npushd test_project\n\necho '\n  cmake_minimum_required(VERSION 3.16)\n  project(test_rocm_core)\n  find_package(rocm-core REQUIRED)\n  if(NOT DEFINED ROCM_CORE_INCLUDE_DIR)\n    message(FATAL_ERROR \"ROCM_CORE_INCLUDE_DIR not set\")\n  endif()\n  message(STATUS \"Found ROCM_CORE_INCLUDE_DIR: ${ROCM_CORE_INCLUDE_DIR}\")\n  message(STATUS \"Found ROCM_PATH: ${ROCM_PATH}\")\n' > CMakeLists.txt\n\nCMAKE_PREFIX_PATH=\"$out\" cmake .\npopd\n\n. $out/nix-support/setup-hook\nenv | grep '^ROCM'\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         ROCM_LIBPATCH_VERSION: nix.thunk(() => nix.sel(finalAttrs, "env", "ROCM_LIBPATCH_VERSION")),
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$3, finalAttrs: finalAttrs })))),
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[2], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Utility for getting the ROCm release version",
         homepage: "https://github.com/ROCm/rocm-systems/tree/develop/projects/rocm-core",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

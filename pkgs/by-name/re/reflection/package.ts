@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["pname", 39, 26], ["version", 39, 32], ["src", 39, 40], ["hash", 40, 5]], [["LIBSQLITE3_SYS_USE_PKG_CONFIG", 44, 5]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5], ["teams", 83, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoDeps", 38, 3], ["env", 43, 3], ["strictDeps", 47, 3], ["__structuredAttrs", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 63, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, wrapGAppsHook4: false, rustPlatform: false, "pkg-config": false, meson: false, ninja: false, cargo: false, rustc: false, cairo: false, "gdk-pixbuf": false, gtk4: false, gtksourceview5: false, libadwaita: false, pango: false, sqlite: false, glib: false, openssl: false, libspelling: false, "blueprint-compiler": false, "desktop-file-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 39, 26], ["version", 39, 32], ["src", 39, 40], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LIBSQLITE3_SYS_USE_PKG_CONFIG", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5], ["teams", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoDeps", 38, 3], ["env", 43, 3], ["strictDeps", 47, 3], ["__structuredAttrs", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 63, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,24 +30,24 @@ export default nix.lambda((args) => (() => {
   const blueprint_compiler = nix.arg($, "blueprint-compiler");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "reflection",
       version: "0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "p2panda",
           repo: "reflection",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-VPfYbMAyKv+2lWJ/TcQ7Em6kbutnJQIgbBTEqOnEDcc=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-3RR/YfJsq0eaRhaVVnocV5R1fbQ6YKsQ3QVZ1dc5HsI=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, LIBSQLITE3_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], LIBSQLITE3_SYS_USE_PKG_CONFIG: true })),
       strictDeps: true,
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [
@@ -79,7 +75,7 @@ export default nix.lambda((args) => (() => {
         sqlite,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Collaborative, local-first GTK text editor",
         homepage: "https://github.com/p2panda/reflection",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

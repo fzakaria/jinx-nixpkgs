@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["patchPhase", 28, 3], ["build-system", 42, 3], ["nativeCheckInputs", 44, 3], ["checkPhase", 46, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pygments: false, gitMinimal: false, mercurial: false, subversion: false, p4: false, less: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["patchPhase", 28, 3], ["build-system", 42, 3], ["nativeCheckInputs", 44, 3], ["checkPhase", 46, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const p4 = nix.arg($, "p4");
   const less = nix.arg($, "less");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ydiff",
       version: "1.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ymattw",
           repo: "ydiff",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +47,7 @@ patchShebangs tests/*.sh
       checkPhase: "runHook preCheck\nmake reg # We don't want the linter or coverage check.\nrunHook postCheck\n",
       pythonImportsCheck: nix.thunk(() => ["ydiff"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "View colored, incremental diff in workspace or from stdin with side by side and auto pager support (Was \"cdiff\")",
         mainProgram: "ydiff",
         longDescription: "Term based tool to view colored, incremental diff in a version\ncontrolled workspace (supports Git, Mercurial, Perforce and Svn\nso far) or from stdin, with side by side (similar to diff -y)\nand auto pager support.\n",

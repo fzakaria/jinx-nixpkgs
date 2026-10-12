@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["conf", 33, 15]], [["pname", 14, 5], ["version", 15, 37], ["meta", 15, 45], ["dontUnpack", 17, 5], ["nativeBuildInputs", 19, 5], ["installPhase", 21, 5], ["passthru", 32, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, jq: false, "element-web-unwrapped": false, config: false, conf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["conf", 33, 15]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 14, 5], ["version", 15, 37], ["meta", 15, 45], ["dontUnpack", 17, 5], ["nativeBuildInputs", 19, 5], ["installPhase", 21, 5], ["passthru", 32, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const conf = nix.argOr($, "conf", () => nix.selOr(config, () => ({}), "element-web", "conf"));
   return (nix.asBool(nix.eq(conf, {})) ? nix.force(element_web_unwrapped) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${nix.sel(element_web_unwrapped, "pname")}-wrapped`),
       version: nix.thunk(() => nix.attr(element_web_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(element_web_unwrapped, "meta")),
@@ -30,7 +29,7 @@ jq -s '.[0] * $conf' "${element_web_unwrapped}/config.json" --argjson "conf" ${n
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, conf: conf })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], conf: conf })),
     }))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,19 +2,18 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dub-support.nix", [[["dub-to-nix", 4, 3], ["importDubLock", 5, 3], ["buildDubPackage", 6, 3]], [["lib", 8, 45], ["callPackage", 8, 49]]]);
 const formals$1 = { args: { lib: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dub-support.nix", [["dub-to-nix", 4, 3], ["importDubLock", 5, 3], ["buildDubPackage", 6, 3]]);
-const pos$2 = nix.positions(here + "/dub-support.nix", [["lib", 8, 45], ["callPackage", 8, 49]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const callPackage = nix.arg($, "callPackage");
   return nix.update({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "dub-to-nix": nix.thunk(() => nix.app(callPackage, nix.path(here, "./dub-to-nix"), nix.thunk(() => ({})))),
     importDubLock: nix.thunk(() => nix.app(callPackage, nix.path(here, "./builddubpackage/import-dub-lock.nix"), nix.thunk(() => ({})))),
     buildDubPackage: nix.thunk(() => nix.app(callPackage, nix.path(here, "./builddubpackage"), nix.thunk(() => ({})))),
-  }, nix.app(nix.builtins.import(nix.path(here, "./builddubpackage/hooks")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib, callPackage: callPackage }))));
+  }, nix.app(nix.builtins.import(nix.path(here, "./builddubpackage/hooks")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib, callPackage: callPackage }))));
 })(), formals$1);
 //# sourceMappingURL=dub-support.ts.map

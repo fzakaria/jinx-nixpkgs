@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["dependencies", 6, 5]]]);
 const formals$1 = { args: { python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["dependencies", 6, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const python3 = nix.arg($, "python3");
   const w = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
   return nix.app(nix.lookup(w, "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "pynitrokey"), "overridePythonAttrs"), (old) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         dependencies: nix.thunk(() => nix.concat(nix.sel(old, "dependencies"), nix.sel(nix.lookup(w, "pynitrokey"), "passthru", "optional-dependencies", "pcsc"))),
       }))));
 })(), formals$1);

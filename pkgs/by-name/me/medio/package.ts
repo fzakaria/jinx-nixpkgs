@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5], ["stripRoot", 19, 5]], [["homepage", 25, 5], ["description", 26, 5], ["longDescription", 27, 5], ["platforms", 32, 5], ["maintainers", 33, 5], ["license", 36, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5], ["stripRoot", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 25, 5], ["description", 26, 5], ["longDescription", 27, 5], ["platforms", 32, 5], ["maintainers", 33, 5], ["license", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const majorVersion = "0";
   const minorVersion = "200";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "medio",
       version: nix.thunk(() => nix.str`${majorVersion}.${minorVersion}`),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dotcolon.net/files/fonts/medio_${majorVersion}${minorVersion}.zip`),
           hash: "sha256-S+CcwD4zGVk7cIFD6K4NnpE/0mrJq4RnDJC576rhcLQ=",
           stripRoot: false,
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://dotcolon.net/font/medio/",
         description: "Serif font designed by Sora Sagano",
         longDescription: "Medio is a serif font designed by Sora Sagano, based roughly\non the proportions of the font Tenderness (from the same designer),\nbut with hairline serifs in the style of a Didone.\n",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 13], ["repo", 22, 13], ["rev", 23, 13], ["sha256", 24, 13]], [["src", 20, 11], ["nativeBuildInputs", 27, 11], ["configurePhase", 29, 11], ["postInstall", 35, 11]], [["owner", 43, 9], ["repo", 44, 9], ["rev", 45, 9], ["hash", 46, 9]], [["src", 42, 7], ["nativeBuildInputs", 49, 7], ["propagatedBuildInputs", 51, 7]], [["1.0.2", 16, 5], ["2.0.0", 41, 5]], [["homepage", 66, 7], ["maintainers", 67, 7], ["license", 68, 7], ["description", 69, 7]], [["pname", 62, 5], ["version", 63, 13], ["meta", 65, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, darwin: false, fetchFromGitHub: false, buildDunePackage: false, ocaml: false, cppo: false, "camlp-streams": false, "dune-site": false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 13], ["repo", 22, 13], ["rev", 23, 13], ["sha256", 24, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 20, 11], ["nativeBuildInputs", 27, 11], ["configurePhase", 29, 11], ["postInstall", 35, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 43, 9], ["repo", 44, 9], ["rev", 45, 9], ["hash", 46, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["src", 42, 7], ["nativeBuildInputs", 49, 7], ["propagatedBuildInputs", 51, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["1.0.2", 16, 5], ["2.0.0", 41, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 66, 7], ["maintainers", 67, 7], ["license", 68, 7], ["description", 69, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 62, 5], ["version", 63, 13], ["meta", 65, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const dune_site = nix.arg($, "dune-site");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")) ? "2.0.0" : "1.0.2"));
   const params = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     "1.0.2": nix.thunk(() => nix.app(nix.sel(lib, "throwIf"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")), nix.thunk(() => nix.str`camomile 1 is not available for OCaml ${nix.sel(ocaml, "version")}`), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "yoriyuki",
             repo: "camomile",
             rev: version,
@@ -40,9 +34,9 @@ export default nix.lambda((args) => (() => {
 `),
       })))),
     "2.0.0": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "ocaml-community",
           repo: "camomile",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -53,11 +47,11 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return nix.app(buildDunePackage, nix.thunk(() => nix.update(nix.sel(params, nix.key(nix.str`${version}`)), {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "camomile",
       version: version,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/ocaml-community/Camomile",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["pname", 23, 5], ["version", 24, 26], ["src", 24, 34], ["npmDepsHash", 26, 5], ["postPatch", 28, 5], ["installPhase", 34, 5]], [["updateScript", 51, 12]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["app", 22, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 40, 3], ["postPatch", 44, 3], ["dontBuild", 49, 3], ["passthru", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "pkg-config": false, vips: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 23, 5], ["version", 24, 26], ["src", 24, 34], ["npmDepsHash", 26, 5], ["postPatch", 28, 5], ["installPhase", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 51, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["app", 22, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 40, 3], ["postPatch", 44, 3], ["dontBuild", 49, 3], ["passthru", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const vips = nix.arg($, "vips");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "psitransfer",
       version: "2.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "psi-4ward",
           repo: "psitransfer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-IgPqX6nxxTWA6gLr2NP42vnGS+e98mWUWBIMSsIriRY=",
       app: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "psitransfer-app",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -43,9 +39,9 @@ export default nix.lambda((args) => (() => {
 cp -r ${nix.sel(finalAttrs, "app")} public/app
 `),
       dontBuild: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple open source self-hosted file sharing solution",
         homepage: "https://github.com/psi-4ward/psitransfer",
         changelog: nix.thunk(() => nix.str`https://github.com/psi-4ward/psitransfer/releases/tag/v${nix.sel(finalAttrs, "version")}`),

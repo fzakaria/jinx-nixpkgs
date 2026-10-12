@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["name", 34, 7], ["url", 35, 7], ["sha256", 36, 7]], [["NIX_CFLAGS_COMPILE", 55, 7]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["env", 55, 3], ["postInstall", 64, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, autoreconfHook: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, makeWrapper: false, "alsa-lib": false, "alsa-plugins": false, libtool: false, icu: false, pcre2: false, pulseaudioSupport: true, libpulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["sha256", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 55, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["env", 55, 3], ["postInstall", 64, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pulseaudioSupport = nix.argOr($, "pulseaudioSupport", () => nix.selOr(config, () => false, "pulseaudio"));
   const libpulseaudio = nix.arg($, "libpulseaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mimic",
       version: "1.3.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MycroftAI",
           repo: "mimic1",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fno-common",
             url: "https://github.com/MycroftAI/mimic1/commit/77b36eaeb2c38eba571b8db7e9bb0fd507774e6d.patch",
             sha256: "0n3hqrfpbdp44y0c8bq55ay9m4c96r09k18hjxka4x54j5c7lw1m",
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, makeWrapper]),
       buildInputs: nix.thunk(() => nix.concat([alsa_lib, alsa_plugins, libtool, icu, pcre2], nix.app(nix.sel(lib, "optional"), pulseaudioSupport, libpulseaudio))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=free-nonheap-object",
             "-Wno-error=discarded-qualifiers",
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
   --run "export ALSA_PLUGIN_DIR=${alsa_plugins}/lib/alsa-lib"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Mycroft's TTS engine, based on CMU's Flite (Festival Lite)",
         homepage: "https://mimic.mycroft.ai/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

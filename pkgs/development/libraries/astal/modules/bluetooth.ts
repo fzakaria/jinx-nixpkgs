@@ -2,17 +2,16 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bluetooth.nix", [[["description", 4, 8]], [["name", 3, 3], ["meta", 4, 3]]]);
 const formals$1 = { args: { buildAstalModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bluetooth.nix", [["description", 4, 8]]);
-const pos$2 = nix.positions(here + "/bluetooth.nix", [["name", 3, 3], ["meta", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildAstalModule = nix.arg($, "buildAstalModule");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "bluetooth",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for bluez using DBus" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "Astal module for bluez using DBus" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=bluetooth.ts.map

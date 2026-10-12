@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["changelog", 89, 5], ["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["pythonRelaxDeps", 46, 3], ["dependencies", 51, 3], ["pythonImportsCheck", 72, 3], ["nativeCheckInputs", 74, 3], ["pytestFlags", 79, 3], ["__darwinAllowLocalNetworking", 80, 3], ["disabledTests", 82, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { aiohttp: false, appdirs: false, buildPythonPackage: false, click: false, cryptography: false, fetchFromGitHub: false, grpcio: false, humanize: false, lib: false, "libusb-package": false, libusb1: false, platformdirs: false, prettytable: false, "prompt-toolkit": false, protobuf: false, pyee: false, pyserial: false, "pyserial-asyncio": false, "pytest-asyncio": false, pytestCheckHook: false, pyusb: false, setuptools: false, "setuptools-scm": false, tomli: false, websockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 89, 5], ["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["pythonRelaxDeps", 46, 3], ["dependencies", 51, 3], ["pythonImportsCheck", 72, 3], ["nativeCheckInputs", 74, 3], ["pytestFlags", 79, 3], ["__darwinAllowLocalNetworking", 80, 3], ["disabledTests", 82, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.234";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "bumble",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -73,7 +71,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const disabledTests = nix.thunk(() => ["test_android_netsim_connection", "test_open_transport_with_metadata"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/google/bumble/releases/tag/${nix.sel(src, "tag")}`),
         description: "Bluetooth Stack for Apps, Emulation, Test and Experimentation",
         homepage: "https://github.com/google/bumble",
@@ -81,7 +79,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

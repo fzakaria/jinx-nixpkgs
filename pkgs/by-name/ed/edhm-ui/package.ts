@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 5], ["hash", 37, 5]], [["name", 65, 7], ["exec", 66, 7], ["icon", 67, 7], ["desktopName", 68, 7], ["comment", 69, 7], ["categories", 70, 7], ["startupWMClass", 74, 7]], [["shortName", 118, 9], ["fullName", 119, 9], ["free", 120, 9], ["redistributable", 121, 9]], [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["maintainers", 124, 5], ["platforms", 128, 5], ["sourceProvenance", 129, 5], ["mainProgram", 130, 5], ["longDescription", 131, 5]], [["pname", 30, 3], ["version", 31, 3], ["strictDeps", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 47, 3], ["runtimeDependencies", 59, 3], ["desktopItems", 63, 3], ["installPhase", 78, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, autoPatchelfHook: false, unzip: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, "alsa-lib": false, "at-spi2-atk": false, cups: false, dbus: false, glib: false, gtk3: false, libgbm: false, libglvnd: false, nss: false, "vivaldi-ffmpeg-codecs": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 65, 7], ["exec", 66, 7], ["icon", 67, 7], ["desktopName", 68, 7], ["comment", 69, 7], ["categories", 70, 7], ["startupWMClass", 74, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["shortName", 118, 9], ["fullName", 119, 9], ["free", 120, 9], ["redistributable", 121, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["maintainers", 124, 5], ["platforms", 128, 5], ["sourceProvenance", 129, 5], ["mainProgram", 130, 5], ["longDescription", 131, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["strictDeps", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 47, 3], ["runtimeDependencies", 59, 3], ["desktopItems", 63, 3], ["installPhase", 78, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const nss = nix.arg($, "nss");
   const vivaldi_ffmpeg_codecs = nix.arg($, "vivaldi-ffmpeg-codecs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "edhm-ui",
       version: "3.0.72",
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/BlueMystical/EDHM_UI/releases/download/v${nix.sel(finalAttrs, "version")}/edhm-ui-v3-linux-x64.zip`),
           hash: "sha256-bpYNl/I2T3sNbhjqqbYXo7c8JWi9tUBBDX/aRSIz+rA=",
         })))),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       runtimeDependencies: nix.thunk(() => [libglvnd]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "edhm-ui",
             exec: "edhm-ui",
             icon: "edhm-ui",
@@ -97,13 +93,13 @@ install -Dm644 $out/opt/edhm-ui/resources/images/icon.png $out/share/icons/hicol
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "HUD modification manager for Elite Dangerous",
         homepage: "https://github.com/BlueMystical/EDHM_UI",
         license: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
           nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               shortName: "edhm-custom",
               fullName: "EDHM Custom Restrictive License - Non-redistributable",
               free: false,

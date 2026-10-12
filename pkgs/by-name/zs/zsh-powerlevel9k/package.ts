@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]], [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 33, 5], ["maintainers", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["strictDeps", 17, 3], ["installPhase", 18, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["strictDeps", 17, 3], ["installPhase", 18, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "powerlevel9k",
       version: "2017-11-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Powerlevel9k",
           repo: "powerlevel9k",
           rev: "87acc51acab3ed4fd33cda2386abed6f98c80720",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "install -D powerlevel9k.zsh-theme --target-directory=$out/share/zsh/themes/powerlevel9k\ninstall -D functions/* --target-directory=$out/share/zsh/themes/powerlevel9k/functions\nln -s $out/share/zsh/themes/powerlevel9k $out/share/zsh-powerlevel9k\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Beautiful theme for zsh",
         longDescription: "To make use of this derivation, use\n`programs.zsh.promptInit = \"source ${pkgs.zsh-powerlevel9k}/share/zsh-powerlevel9k/powerlevel9k.zsh-theme\";`\n",
         homepage: "https://github.com/Powerlevel9k/powerlevel9k",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libedit.nix", [[["NIX_CFLAGS_COMPILE", 24, 7]], [["path", 10, 3], ["buildInputs", 11, 3], ["propagatedBuildInputs", 15, 3], ["SHLIBINSTALLDIR", 16, 3], ["makeFlags", 17, 3], ["postPatch", 18, 3], ["env", 24, 3]]]);
 const formals$1 = { args: { mkDerivation: false, libterminfo: false, libcurses: false, compatIfNeeded: false, defaultMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libedit.nix", [["NIX_CFLAGS_COMPILE", 24, 7]]);
-const pos$2 = nix.positions(here + "/libedit.nix", [["path", 10, 3], ["buildInputs", 11, 3], ["propagatedBuildInputs", 15, 3], ["SHLIBINSTALLDIR", 16, 3], ["makeFlags", 17, 3], ["postPatch", 18, 3], ["env", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const compatIfNeeded = nix.arg($, "compatIfNeeded");
   const defaultMakeFlags = nix.arg($, "defaultMakeFlags");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/libedit",
       buildInputs: nix.thunk(() => [libterminfo, libcurses]),
       propagatedBuildInputs: compatIfNeeded,
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat(defaultMakeFlags, [nix.thunk(() => nix.str`LIBDO.terminfo=${libterminfo}/lib`)])),
       postPatch: "sed -i '1i #undef bool_t' $COMPONENT_PATH/el.h\nsubstituteInPlace $COMPONENT_PATH/config.h \\\n  --replace \"#define HAVE_STRUCT_DIRENT_D_NAMLEN 1\" \"\"\nsubstituteInPlace $COMPONENT_PATH/readline/Makefile --replace /usr/include \"$out/include\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-D__noinline=", "-D__scanflike(a,b)=", "-D__va_list=va_list"]))),
       })),
     })));

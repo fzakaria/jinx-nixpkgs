@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["url", 25, 7], ["hash", 26, 7]], [["url", 29, 7], ["hash", 30, 7]], [["url", 33, 7], ["hash", 34, 7]], [["url", 37, 7], ["hash", 38, 7]], [["url", 41, 7], ["hash", 42, 7]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["postPatch", 46, 3], ["configureFlags", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 59, 3], ["makeFlags", 66, 3], ["postInstall", 68, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, expat: false, fetchpatch: false, fetchurl: false, glib: false, "gtk3-x11": false, lib: false, "pkg-config": false, stdenv: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["postPatch", 46, 3], ["configureFlags", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 59, 3], ["makeFlags", 66, 3], ["postInstall", 68, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,37 +18,37 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "rfdump",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.rfdump.org/dl/rfdump-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-fbEmh7i3ug5GCeyJ2wT45bbDq0ZEOv8yH+MOJwzER4U=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/pkg-security-team/rfdump/-/raw/debian/master/debian/patches/01_fix_desktop_file.patch",
             hash: "sha256-r6BR+eAg963GjcFvV6/1heW7uKi8tmi7j8LyxtpcgYk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://salsa.debian.org/pkg-security-team/rfdump/-/raw/debian/master/debian/patches/03_fix-format-security-errors.patch",
             hash: "sha256-rQKvFeSQ09P46lhvlov51Oej0HurlR++5Yv4kCLn9J8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://salsa.debian.org/pkg-security-team/rfdump/-/raw/debian/master/debian/patches/02_configure.in-preserve-CFLAGS.patch",
             hash: "sha256-4+Yj5I019ZkHbtE3s67miAlMeuV8aZdc9RzJrySLmgM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://salsa.debian.org/pkg-security-team/rfdump/-/raw/debian/master/debian/patches/04_gcc10.patch",
             hash: "sha256-LTsBkdwvmZ11+gwfe/XaapxzLaEVu7CdtCw8mqJcXr4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://salsa.debian.org/pkg-security-team/rfdump/-/raw/debian/master/debian/patches/05_gtk3.patch",
             hash: "sha256-1y/JFePfnQMMVwqLYgUQyP/SNZRMHgV+cHjbHP6szQs=",
           })))),
@@ -67,7 +60,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["LIBS=-lexpat"]),
       postInstall: "install -D $out/share/pixmaps/rfdump.png -t $out/share/icons/hicolor/128x128/apps\nrm -r $out/share/pixmaps\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Tool to detect RFID-Tags and show their meta information",
         homepage: "https://www.rfdump.org/",
         changelog: "https://salsa.debian.org/pkg-security-team/rfdump/-/blob/debian/master/ChangeLog",

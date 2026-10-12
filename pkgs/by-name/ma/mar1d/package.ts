@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hash", 20, 5], ["rev", 21, 5], ["repo", 22, 5], ["owner", 23, 5]], [["NIXPKGS_CFLAGS_COMPILE", 27, 5]], [["url", 49, 7], ["hash", 50, 7]], [["description", 57, 5], ["mainProgram", 58, 5], ["longDescription", 59, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["env", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["patches", 45, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, SDL2: false, SDL2_mixer: false, libGLU: false, libconfig: false, meson: false, ninja: false, "pkg-config": false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hash", 20, 5], ["rev", 21, 5], ["repo", 22, 5], ["owner", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIXPKGS_CFLAGS_COMPILE", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 49, 7], ["hash", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 57, 5], ["mainProgram", 58, 5], ["longDescription", 59, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["env", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["patches", 45, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,32 +19,32 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "MAR1D",
       version: "unstable-2023-02-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256-kZERhwnTpBhjx6MLdf1bYCWMjtTiId/5a69kRt+/6oY=",
           rev: "fa5dc36e1819a15539ced339ad01672e5a498c5c",
           repo: "MAR1D",
           owner: "Radvendii",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIXPKGS_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=array-parameter"]))),
       })),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [SDL2, SDL2_mixer, libconfig, libGLU]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/Radvendii/MAR1D/commit/baf3269e90eca69f154a43c4c1ef14677a6300fd.patch",
             hash: "sha256-ybdLA2sO8e0J7w4roSdMWn72OkttD3y+cJ3ScuGiHCI=",
           })))),
         nix.path(here, "./fix-aarch64.patch"),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "First person Super Mario Bros",
         mainProgram: "MAR1D",
         longDescription: "The original Super Mario Bros as you've never seen it. Step into Mario's\nshoes in this first person clone of the classic Mario game. True to the\noriginal, however, the game still takes place in a two dimensional world.\nYou must view the world as mario does, as a one dimensional line.\n",

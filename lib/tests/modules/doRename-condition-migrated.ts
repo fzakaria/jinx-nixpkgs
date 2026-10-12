@@ -2,28 +2,28 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/doRename-condition-migrated.nix", [[["bar", 4, 22]], [["", 4, 19]], [["foos", 4, 14]], [["bar", 9, 13]], [["", 8, 11]], [["services", 4, 5], ["result", 5, 5]], [["config", 3, 3]]]);
 const formals$1 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/doRename-condition-migrated.nix", [["bar", 4, 22]]);
-const pos$2 = nix.positions(here + "/doRename-condition-migrated.nix", [["", 4, 19]]);
-const pos$3 = nix.positions(here + "/doRename-condition-migrated.nix", [["foos", 4, 14]]);
-const pos$4 = nix.positions(here + "/doRename-condition-migrated.nix", [["bar", 9, 13]]);
-const pos$5 = nix.positions(here + "/doRename-condition-migrated.nix", [["", 8, 11]]);
-const pos$6 = nix.positions(here + "/doRename-condition-migrated.nix", [["services", 4, 5], ["result", 5, 5]]);
-const pos$7 = nix.positions(here + "/doRename-condition-migrated.nix", [["config", 3, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     config: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        foos: nix.thunk(() => ({ [nix.POS]: pos$2, "": nix.thunk(() => ({ [nix.POS]: pos$1, bar: "baz" })) })),
+        [nix.POS]: $pos[2],
+        foos: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          "": nix.thunk(() => ({ [nix.POS]: $pos[0], bar: "baz" })),
+        })),
       })),
       result: nix.thunk(() => (() => {
-        nix.assert_(nix.eq(nix.sel(config, "services", "foos"), { [nix.POS]: pos$5, "": nix.thunk(() => ({ [nix.POS]: pos$4, bar: "baz" })) }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/doRename-condition-migrated.nix:6:7");
+        nix.assert_(nix.eq(nix.sel(config, "services", "foos"), {
+          [nix.POS]: $pos[4],
+          "": nix.thunk(() => ({ [nix.POS]: $pos[3], bar: "baz" })),
+        }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/doRename-condition-migrated.nix:6:7");
         nix.assert_(nix.eq(nix.sel(config, "services", "foo", "bar"), "baz"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/doRename-condition-migrated.nix:12:7");
         return true;
       })()),

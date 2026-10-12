@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["url", 38, 7], ["hash", 39, 7]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["teams", 85, 5], ["platforms", 86, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["cmakeFlags", 64, 3], ["postInstall", 72, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, gdal: false, proj: false, protobuf: false, qt6: false, withGeoimage: true, exiv2: false, withGpsdlib: true, gpsd: false, withLibproxy: true, libproxy: false, withZbar: true, zbar: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["teams", 85, 5], ["platforms", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["cmakeFlags", 64, 3], ["postInstall", 72, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const withZbar = nix.argOr($, "withZbar", () => false);
   const zbar = nix.arg($, "zbar");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "merkaartor",
       version: "0.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openstreetmap",
           repo: "merkaartor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/openstreetmap/merkaartor/commit/28cca84e9f5db0aaba87c2084ed32f9677598823.diff",
             hash: "sha256-so0La5djYhWF6NqLpShWa3vGl5A2jkS3Xwg5Pe1yse4=",
           })))),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv $out/merkaartor.app $out/Applications\n# Prevent wrapping, otherwise plugins will not be loaded\nchmod -x $out/Applications/merkaartor.app/Contents/plugins/background/*.dylib\nmakeWrapper $out/{Applications/merkaartor.app/Contents/MacOS,bin}/merkaartor\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OpenStreetMap editor",
         homepage: "https://merkaartor.be/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

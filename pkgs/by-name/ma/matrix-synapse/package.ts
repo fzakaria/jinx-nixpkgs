@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["extraLibs", 20, 5]], [["unwrapped", 42, 5], ["plugins", 45, 40], ["tests", 45, 48]], [["pname", 26, 3], ["version", 27, 38], ["nativeBuildInputs", 29, 3], ["buildCommand", 33, 3], ["passthru", 41, 3], ["meta", 49, 38]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, "matrix-synapse-unwrapped": false, extras: true, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["extraLibs", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["unwrapped", 42, 5], ["plugins", 45, 40], ["tests", 45, 48]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 38], ["nativeBuildInputs", 29, 3], ["buildCommand", 33, 3], ["passthru", 41, 3], ["meta", 49, 38]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const plugins = nix.argOr($, "plugins", () => []);
   const extraPackages = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (extra) => nix.sel(matrix_synapse_unwrapped, "optional-dependencies", nix.key(nix.force(extra))), nix.thunk(() => nix.app(nix.sel(lib, "unique"), extras))));
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(matrix_synapse_unwrapped, "python", "buildEnv", "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       extraLibs: nix.thunk(() => nix.concat(extraPackages, plugins)),
     }))));
   const searchPath = nix.thunk(() => nix.str`${pythonEnv}/${nix.sel(matrix_synapse_unwrapped, "python", "sitePackages")}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "appendToName"), "wrapped", matrix_synapse_unwrapped), "pname")),
       version: nix.thunk(() => nix.attr(matrix_synapse_unwrapped, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
 done;
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         unwrapped: matrix_synapse_unwrapped,
         plugins: nix.thunk(() => nix.attr(matrix_synapse_unwrapped, "plugins")),
         tests: nix.thunk(() => nix.attr(matrix_synapse_unwrapped, "tests")),

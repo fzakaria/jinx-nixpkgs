@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cases", 22, 9], ["out", 26, 17]], [["hash", 37, 19]], [["1.0.2", 37, 11]], [["description", 49, 5], ["license", 50, 5]], [["pname", 16, 3], ["version", 18, 11], ["defaultVersion", 19, 3], ["release", 37, 3], ["propagatedBuildInputs", 39, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { coq: false, mkCoqDerivation: false, mathcomp: false, coqeal: false, "mathcomp-real-closed": false, "mathcomp-bigenough": false, "mathcomp-zify": false, "mathcomp-algebra-tactics": false, lib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cases", 22, 9], ["out", 26, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 37, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["1.0.2", 37, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 49, 5], ["license", 50, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 18, 11], ["defaultVersion", 19, 3], ["release", 37, 3], ["propagatedBuildInputs", 39, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "apery",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: $pos[0], cases: nix.thunk(() => [coq_1, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -36,9 +32,9 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "1.0.2": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-llxyMKYvWUA7fyroG1S/jtpioAoArmarR1edi3cikcY=",
         })),
       })),
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
         mathcomp_algebra_tactics,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Formally verified proof in Coq, by computer algebra, that ζ(3) is irrational",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-c")),
       })),

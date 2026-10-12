@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["rev-prefix", 70, 7]], [["updateScript", 69, 5]], [["description", 75, 5], ["longDescription", 76, 5], ["homepage", 80, 5], ["license", 81, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 42, 3], ["strictDeps", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 56, 3], ["installPhase", 60, 3], ["passthru", 68, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, gitUpdater: false, cmake: false, SDL2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 70, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 75, 5], ["longDescription", 76, 5], ["homepage", 80, 5], ["license", 81, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 42, 3], ["strictDeps", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 56, 3], ["installPhase", 60, 3], ["passthru", 68, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nuked-md",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nukeykt",
           repo: "Nuked-MD",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-nuked-md-Fix-missing-string-h-include.patch",
             url: "https://github.com/nukeykt/Nuked-MD/commit/b875cd79104217af581131b22f4111409273617a.patch",
             hash: "sha256-Mx3jmrlBbxdz3ZBr4XhmBk1S04xB0uaxzPXpXSlipV4=",
@@ -44,11 +39,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 Nuked-MD $out/bin/Nuked-MD\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cycle accurate Mega Drive emulator",
         longDescription: "Cycle accurate Mega Drive core. The goal of this project is to emulate Sega Mega Drive chipset as accurately as\npossible using decapped chips photos.\n",
         homepage: "https://github.com/nukeykt/Nuked-MD",

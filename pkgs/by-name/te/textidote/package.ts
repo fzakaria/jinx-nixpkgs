@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 7], ["repo", 27, 7], ["tag", 28, 7], ["hash", 29, 7]], [["pname", 22, 5], ["version", 23, 13], ["src", 25, 5], ["nativeBuildInputs", 32, 5], ["buildPhase", 38, 5], ["installPhase", 47, 5], ["dontFixup", 55, 5], ["outputHashMode", 56, 5], ["outputHash", 57, 5]], [["ANT_OPTS", 76, 7]], [["package", 110, 7], ["version", 111, 7]], [["version", 109, 5]], [["tests", 108, 12]], [["homepage", 116, 5], ["downloadPage", 117, 5], ["description", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["mainProgram", 121, 5], ["platforms", 122, 24]], [["pname", 61, 11], ["version", 61, 17], ["src", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 71, 3], ["env", 76, 3], ["buildPhase", 78, 3], ["doCheck", 86, 3], ["checkPhase", 87, 3], ["installPhase", 97, 3], ["passthru", 108, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ant: false, jdk11: false, makeWrapper: false, stripJavaArchivesHook: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 7], ["repo", 27, 7], ["tag", 28, 7], ["hash", 29, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 22, 5], ["version", 23, 13], ["src", 25, 5], ["nativeBuildInputs", 32, 5], ["buildPhase", 38, 5], ["installPhase", 47, 5], ["dontFixup", 55, 5], ["outputHashMode", 56, 5], ["outputHash", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ANT_OPTS", 76, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 110, 7], ["version", 111, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 109, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 108, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 116, 5], ["downloadPage", 117, 5], ["description", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["mainProgram", 121, 5], ["platforms", 122, 24]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 61, 11], ["version", 61, 17], ["src", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 71, 3], ["env", 76, 3], ["buildPhase", 78, 3], ["doCheck", 86, 3], ["checkPhase", 87, 3], ["installPhase", 97, 3], ["passthru", 108, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const version = "0.8.3";
   const jdk = jdk11;
   const populated_src = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "textidote-populated-src",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sylvainhalle",
           repo: "textidote",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,13 +37,13 @@ export default nix.lambda((args) => (() => {
       outputHash: "sha256-LrFClt8zN/ma42+Yoqwoy03TCuC3JfAeb02vehkljBo=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       src: populated_src,
       nativeBuildInputs: nix.thunk(() => [ant, makeWrapper, stripJavaArchivesHook]),
       buildInputs: nix.thunk(() => [jdk]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ANT_OPTS: "-Dfile.encoding=utf8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ANT_OPTS: "-Dfile.encoding=utf8" })),
       buildPhase: "runHook preBuild\n\nant jar\n\nrunHook postBuild\n",
       doCheck: true,
       checkPhase: "runHook preCheck\n\nant test\n\nrunHook postCheck\n",
@@ -64,11 +57,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jdk)} $out/bin/textidote \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`TeXtidote v${nix.sel(finalAttrs, "version")}`),
             })))),
@@ -77,7 +70,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jdk, "meta"));
         return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://sylvainhalle.github.io/textidote/",
         downloadPage: "https://github.com/sylvainhalle/textidote/releases",
         description: "Correction tool for LaTeX documents",

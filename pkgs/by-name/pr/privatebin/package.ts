@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["tests", 27, 5], ["updateScript", 28, 5]], [["changelog", 32, 5], ["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 45, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 19, 3], ["passthru", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 27, 5], ["updateScript", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 32, 5], ["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 19, 3], ["passthru", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "privatebin",
       version: "2.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PrivateBin",
           repo: "PrivateBin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\nmkdir -p $out\ncp -R $src/* $out\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => nix.sel(nixosTests, "privatebin")),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/PrivateBin/PrivateBin/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Minimalist, open source online pastebin where the server has zero knowledge of pasted data",
         homepage: "https://privatebin.info",

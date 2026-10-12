@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["homepage", 44, 5], ["description", 45, 5], ["platforms", 46, 5], ["license", 47, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, boost: false, doxygen: false, gperf: false, "pkg-config": false, librevenge: false, libxml2: false, perl: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["platforms", 46, 5], ["license", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libabw",
       version: "0.1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dev-www.libreoffice.org/src/libabw/libabw-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-+iaFo0QNpuA6Zqd4SA2Ty5X2Bk5FQeWONzl2gHYP1qA=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [doxygen, gperf, perl, pkg_config]),
       buildInputs: nix.thunk(() => [boost, librevenge, libxml2, zlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://wiki.documentfoundation.org/DLP/Libraries/libabw",
         description: "Library parsing abiword documents",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

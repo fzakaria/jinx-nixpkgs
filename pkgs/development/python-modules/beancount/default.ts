@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["homepage", 72, 5], ["changelog", 73, 5], ["description", 74, 5], ["longDescription", 75, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["version", 19, 3], ["pname", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["nativeBuildInputs", 48, 3], ["nativeCheckInputs", 53, 3], ["preCheck", 58, 3], ["disabledTests", 63, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bison: false, buildPythonPackage: false, click: false, fetchFromGitHub: false, fetchpatch2: false, flex: false, gnupg: false, meson: false, "meson-python": false, pytestCheckHook: false, "python-dateutil": false, regex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 72, 5], ["changelog", 73, 5], ["description", 74, 5], ["longDescription", 75, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 19, 3], ["pname", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["nativeBuildInputs", 48, 3], ["nativeCheckInputs", 53, 3], ["preCheck", 58, 3], ["disabledTests", 63, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "beancount";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "beancount",
           repo: "beancount",
           tag: version,
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_read_encrypted_file", "test_include_encrypted"])));
       const pythonImportsCheck = nix.thunk(() => ["beancount"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/beancount/beancount",
         changelog: nix.thunk(() => nix.str`https://github.com/beancount/beancount/releases/tag/${nix.sel(src, "tag")}`),
         description: "Double-entry bookkeeping computer language",
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         pyproject,

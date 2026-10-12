@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]], [["pname", 16, 5], ["version", 17, 13], ["src", 17, 21], ["sourceRoot", 18, 5], ["npmDepsHash", 19, 5], ["dontNpmBuild", 20, 5], ["installPhase", 21, 5]], [["pname", 26, 5], ["version", 27, 13], ["src", 27, 21], ["sourceRoot", 28, 5], ["npmDepsHash", 29, 5], ["dontNpmBuild", 30, 5], ["installPhase", 31, 5]], [["pname", 36, 5], ["version", 37, 13], ["src", 37, 21], ["sourceRoot", 38, 5], ["npmDepsHash", 39, 5], ["dontNpmBuild", 40, 5], ["installPhase", 41, 5]], [["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 63, 5]], [["changelog", 75, 5], ["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5]], [["pname", 47, 3], ["version", 48, 11], ["src", 48, 19], ["npmDepsHash", 50, 3], ["postPatch", 52, 3], ["env", 62, 3], ["npmBuildScript", 66, 3], ["postInstall", 68, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 16, 5], ["version", 17, 13], ["src", 17, 21], ["sourceRoot", 18, 5], ["npmDepsHash", 19, 5], ["dontNpmBuild", 20, 5], ["installPhase", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 5], ["version", 27, 13], ["src", 27, 21], ["sourceRoot", 28, 5], ["npmDepsHash", 29, 5], ["dontNpmBuild", 30, 5], ["installPhase", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 36, 5], ["version", 37, 13], ["src", 37, 21], ["sourceRoot", 38, 5], ["npmDepsHash", 39, 5], ["dontNpmBuild", 40, 5], ["installPhase", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 75, 5], ["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 11], ["src", 48, 19], ["npmDepsHash", 50, 3], ["postPatch", 52, 3], ["env", 62, 3], ["npmBuildScript", 66, 3], ["postInstall", 68, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "0.6.3";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "bscan",
       repo: "PerlNavigator",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-CNsgFf+W7YQwAR++GwfTka4Cy8woRu02BQIJRmRAxK4=",
     }))));
   const browser_ext = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "perlnavigator-web-server",
       version: version,
       src: src,
@@ -35,7 +29,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "cp -r . \"$out\"\n",
     }))));
   const client = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "perlnavigator-client",
       version: version,
       src: src,
@@ -45,7 +39,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "cp -r . \"$out\"\n",
     }))));
   const server = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "perlnavigator-server",
       version: version,
       src: src,
@@ -67,14 +61,14 @@ cp -r ${client} client
 cp -r ${server} server
 chmod +w browser-ext client server
 `);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$5, PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[4], PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1n }));
       const npmBuildScript = "compile";
       const postInstall = nix.thunk(() => nix.str`cp -r ${browser_ext}/node_modules "$out/lib/node_modules/perlnavigator/browser-ext"
 cp -r ${client}/node_modules "$out/lib/node_modules/perlnavigator/client"
 cp -r ${server}/node_modules "$out/lib/node_modules/perlnavigator/server"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/bscan/PerlNavigator/blob/${nix.sel(src_1, "rev")}/CHANGELOG.md`),
         description: "Perl Language Server that includes syntax checking, perl critic, and code navigation",
         homepage: "https://github.com/bscan/PerlNavigator/tree/main/server",
@@ -83,7 +77,7 @@ cp -r ${server}/node_modules "$out/lib/node_modules/perlnavigator/server"
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version: version_1,
         src: src_1,

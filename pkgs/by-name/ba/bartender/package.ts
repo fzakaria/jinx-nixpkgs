@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 20, 5]], [["name", 40, 5], ["runtimeInputs", 41, 5], ["text", 47, 5]], [["updateScript", 39, 12]], [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 65, 5], ["sourceProvenance", 66, 5], ["maintainers", 67, 5], ["platforms", 71, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["dontPatch", 23, 3], ["dontConfigure", 24, 3], ["dontBuild", 25, 3], ["dontFixup", 26, 3], ["appName", 28, 3], ["installPhase", 30, 3], ["passthru", 39, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, curl: false, cacert: false, xmlstarlet: false, writeShellApplication: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 40, 5], ["runtimeInputs", 41, 5], ["text", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 39, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 65, 5], ["sourceProvenance", 66, 5], ["maintainers", 67, 5], ["platforms", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["dontPatch", 23, 3], ["dontConfigure", 24, 3], ["dontBuild", 25, 3], ["dontFixup", 26, 3], ["appName", 28, 3], ["installPhase", 30, 3], ["passthru", 39, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bartender",
       version: "6.6.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.macbartender.com/B2/updates/${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/Bartender%20${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           hash: "sha256-anIvq/M0/LcnRfVcOq0F7LWx5NSNVyqjfpWfmC/XmkY=",
         })))),
@@ -41,9 +37,9 @@ cp -R . "$out/Applications/${nix.sel(finalAttrs, "appName")}"
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "bartender-update-script",
               runtimeInputs: nix.thunk(() => [curl, cacert, xmlstarlet, common_updater_scripts]),
               text: nix.thunk(() => nix.str`version_major="${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}"
@@ -54,7 +50,7 @@ update-source-version bartender "$version"
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Take control of your menu bar",
         longDescription: "Bartender is an award-winning app for macOS that superpowers your menu bar, giving you total control over your menu bar items, what's displayed, and when, with menu bar items only showing when you need them.\nBartender improves your workflow with quick reveal, search, custom hotkeys and triggers, and lots more.\n",
         homepage: "https://www.macbartender.com",

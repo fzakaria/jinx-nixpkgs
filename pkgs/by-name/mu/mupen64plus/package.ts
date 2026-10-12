@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["description", 56, 5], ["license", 57, 5], ["homepage", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["buildPhase", 48, 3], ["installPhase", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, boost: false, dash: false, freetype: false, libpng: false, libGLU: false, "pkg-config": false, SDL2: false, which: false, zlib: false, nasm: false, "vulkan-loader": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["license", 57, 5], ["homepage", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["buildPhase", 48, 3], ["installPhase", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nasm = nix.arg($, "nasm");
   const vulkan_loader = nix.arg($, "vulkan-loader");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mupen64plus",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mupen64plus/mupen64plus-core/releases/download/${nix.sel(finalAttrs, "version")}/mupen64plus-bundle-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-KX4XGAzXanuOqAnRob4smO1cc1LccWllqA3rWYsh4TE=",
         })))),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "dash m64p_build.sh PREFIX=\"$out\" COREDIR=\"$out/lib/\" PLUGINDIR=\"$out/lib/mupen64plus\" SHAREDIR=\"$out/share/mupen64plus\"\n",
       installPhase: "dash m64p_install.sh DESTDIR=\"$out\" PREFIX=\"\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Nintendo 64 Emulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "http://www.mupen64plus.org/",

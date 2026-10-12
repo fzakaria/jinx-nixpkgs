@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["buildInputs", 29, 5]], [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["fetchSubmodules", 40, 5], ["hash", 41, 5]], [["updateScript", 100, 12]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["platforms", 107, 5], ["maintainers", 108, 5]], [["version", 33, 3], ["pname", 34, 3], ["src", 36, 3], ["postPatch", 44, 3], ["cmakeFlags", 50, 3], ["buildInputs", 58, 3], ["nativeBuildInputs", 76, 3], ["postInstall", 82, 3], ["doCheck", 88, 3], ["checkPhase", 90, 3], ["passthru", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, boost: false, "ceres-solver": false, cgal: false, cmake: false, eigen: false, fetchFromGitHub: false, glfw: false, gmp: false, libjxl: false, libjpeg: false, libpng: false, libtiff: false, mpfr: false, nanoflann: false, "nix-update-script": false, llvmPackages: false, opencv: false, "pkg-config": false, python3Packages: false, stdenv: false, vcg: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["buildInputs", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["fetchSubmodules", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 100, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["platforms", 107, 5], ["maintainers", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 33, 3], ["pname", 34, 3], ["src", 36, 3], ["postPatch", 44, 3], ["cmakeFlags", 50, 3], ["buildInputs", 58, 3], ["nativeBuildInputs", 76, 3], ["postInstall", 82, 3], ["doCheck", 88, 3], ["checkPhase", 90, 3], ["passthru", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,15 +31,15 @@ export default nix.lambda((args) => (() => {
   const vcg = nix.arg($, "vcg");
   const zstd = nix.arg($, "zstd");
   const boostWithZstd = nix.thunk(() => nix.app(nix.sel(boost, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [zstd])),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "2.4.0",
       pname: "openmvs",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "cdcseacave",
           repo: "openmvs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,11 +78,11 @@ ctest --output-on-failure
 runHook postCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open Multi-View Stereo reconstruction library",
         homepage: "https://github.com/cdcseacave/openMVS",
         changelog: nix.thunk(() => nix.str`https://github.com/cdcseacave/openMVS/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

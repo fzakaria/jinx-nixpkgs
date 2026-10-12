@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["basic", 108, 9], ["format-mp4", 109, 9], ["format-gif", 110, 9], ["format-bmp", 111, 9], ["format-jpg", 112, 9], ["format-png", 113, 9]], [["rev-prefix", 116, 33]], [["tests", 106, 5], ["updateScript", 116, 5]], [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 125, 5], ["teams", 129, 5], ["mainProgram", 130, 5], ["platforms", 131, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 36, 3], ["strictDeps", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 60, 3], ["cmakeFlags", 77, 3], ["doCheck", 83, 3], ["preCheck", 85, 3], ["postInstall", 99, 3], ["passthru", 105, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, nixosTests: false, cmake: false, exiv2: false, imagemagick: false, libglvnd: false, libmediainfo: false, "lomiri-content-hub": false, "lomiri-thumbnailer": false, "lomiri-ui-extras": false, "lomiri-ui-toolkit": false, "pkg-config": false, "qqc2-suru-style": false, qtbase: false, qtdeclarative: false, qtmultimedia: false, qtsvg: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["basic", 108, 9], ["format-mp4", 109, 9], ["format-gif", 110, 9], ["format-bmp", 111, 9], ["format-jpg", 112, 9], ["format-png", 113, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev-prefix", 116, 33]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 106, 5], ["updateScript", 116, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 125, 5], ["teams", 129, 5], ["mainProgram", 130, 5], ["platforms", 131, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 36, 3], ["strictDeps", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 60, 3], ["cmakeFlags", 77, 3], ["doCheck", 83, 3], ["preCheck", 85, 3], ["postInstall", 99, 3], ["passthru", 105, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lomiri-gallery-app",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/apps/lomiri-gallery-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,11 +70,11 @@ export XDG_RUNTIME_DIR=$TMP
       })()),
       postInstall: "# Link splash to splash dir\nmkdir -p $out/share/lomiri-app-launch/splash\nln -s $out/share/{lomiri-gallery-app/lomiri-gallery-app-splash.svg,lomiri-app-launch/splash/lomiri-gallery-app.svg}\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "lomiri-gallery-app"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           basic: nix.thunk(() => nix.attr(from, "basic")),
           "format-mp4": nix.thunk(() => nix.attr(from, "format-mp4")),
           "format-gif": nix.thunk(() => nix.attr(from, "format-gif")),
@@ -88,10 +83,10 @@ export XDG_RUNTIME_DIR=$TMP
           "format-png": nix.thunk(() => nix.attr(from, "format-png")),
         };
         })()),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Photo gallery application for Ubuntu Touch devices",
         homepage: "https://gitlab.com/ubports/development/apps/lomiri-gallery-app",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/apps/lomiri-gallery-app/-/blob/${(nix.asBool(!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(finalAttrs, "src", "tag"))))) ? nix.sel(finalAttrs, "src", "tag") : nix.sel(finalAttrs, "src", "rev"))}/ChangeLog`),

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 3], ["patches", 24, 3], ["postPatch", 29, 3], ["qtWrapperArgs", 35, 3], ["extraNativeBuildInputs", 39, 3], ["extraBuildInputs", 43, 3], ["dontQmlLint", 65, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, "pkg-config": false, qtquick3d: false, qtsensors: false, qttools: false, qtvirtualkeyboard: false, qtwayland: false, libinput: false, libxcvt: false, xwayland: false, libcanberra: false, "libdisplay-info": false, libei: false, libevdev: false, libgbm: false, lcms2: false, pipewire: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["patches", 24, 3], ["postPatch", 29, 3], ["qtWrapperArgs", 35, 3], ["extraNativeBuildInputs", 39, 3], ["extraBuildInputs", 43, 3], ["dontQmlLint", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const python3 = nix.arg($, "python3");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "kwin",
       patches: nix.thunk(() => [
         nix.path(here, "./0003-plugins-qpa-allow-using-nixos-wrapper.patch"),

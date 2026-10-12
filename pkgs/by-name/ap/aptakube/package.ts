@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 25, 9], ["hash", 26, 9]], [["name", 29, 9], ["hash", 30, 9]], [["aarch64-darwin", 24, 7], ["x86_64-linux", 28, 7]], [["url", 51, 7], ["hash", 52, 24]], [["sources", 106, 15], ["updateScript", 107, 7]], [["description", 111, 7], ["longDescription", 112, 7], ["homepage", 122, 7], ["downloadPage", 123, 7], ["changelog", 124, 7], ["license", 126, 7], ["sourceProvenance", 127, 7], ["mainProgram", 129, 7], ["maintainers", 130, 7], ["platforms", 134, 7]], [["pname", 44, 5], ["version", 45, 5], ["__structuredAttrs", 47, 5], ["strictDeps", 48, 5], ["src", 50, 5], ["sourceRoot", 55, 5], ["nativeBuildInputs", 57, 5], ["buildInputs", 68, 5], ["dontConfigure", 73, 5], ["dontBuild", 74, 5], ["installPhase", 76, 5], ["preFixup", 101, 5], ["passthru", 105, 5], ["meta", 110, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, autoPatchelfHook: false, dpkg: false, makeBinaryWrapper: false, undmg: false, wrapGAppsHook3: false, "glib-networking": false, webkitgtk_4_1: false, kubectl: false, "kubernetes-helm": false, extraPath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 25, 9], ["hash", 26, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 9], ["hash", 30, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-darwin", 24, 7], ["x86_64-linux", 28, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 51, 7], ["hash", 52, 24]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sources", 106, 15], ["updateScript", 107, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 111, 7], ["longDescription", 112, 7], ["homepage", 122, 7], ["downloadPage", 123, 7], ["changelog", 124, 7], ["license", 126, 7], ["sourceProvenance", 127, 7], ["mainProgram", 129, 7], ["maintainers", 130, 7], ["platforms", 134, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 44, 5], ["version", 45, 5], ["__structuredAttrs", 47, 5], ["strictDeps", 48, 5], ["src", 50, 5], ["sourceRoot", 55, 5], ["nativeBuildInputs", 57, 5], ["buildInputs", 68, 5], ["dontConfigure", 73, 5], ["dontBuild", 74, 5], ["installPhase", 76, 5], ["preFixup", 101, 5], ["passthru", 105, 5], ["meta", 110, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const extraPath = nix.argOr($, "extraPath", () => []);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => (() => {
       const sources = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "aarch64-darwin": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`Aptakube_${nix.sel(finalAttrs, "version")}_universal.dmg`),
           hash: "sha256-qIaTUvZ1RLCucB1FG92rh8rApltstxaq8XEXblnFKrI=",
         })),
         "x86_64-linux": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`aptakube_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-YDPEy3wiPohl0Ql5ITNA2UxdpuG4tjGnA0WN6Qt9pd8=",
         })),
@@ -43,13 +37,13 @@ export default nix.lambda((args) => (() => {
       const source = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`aptakube: unsupported system ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
       const runtimePath = nix.thunk(() => nix.concat(extraPath, [kubectl, kubernetes_helm]));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "aptakube",
         version: "1.20.5",
         __structuredAttrs: true,
         strictDeps: true,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: nix.thunk(() => nix.str`https://github.com/aptakube/aptakube/releases/download/${nix.sel(finalAttrs, "version")}/${nix.sel(source, "name")}`),
             hash: nix.thunk(() => nix.attr(source, "hash")),
           })))),
@@ -71,12 +65,12 @@ runHook postInstall
         preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`gappsWrapperArgs+=(--suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), runtimePath)})
 `))),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           sources: sources,
           updateScript: nix.path(here, "./update.sh"),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: "Multi-cluster Kubernetes UI",
           longDescription: "Aptakube is proprietary software with a 15-day free trial.\n\nSome operations use `kubectl` or Helm from `PATH`. If they are not in\n`PATH`, packaged binaries will be used.\n\nAny kubeconfig exec-auth helpers are loaded from `PATH`. Use `extraPath`\nto modify `PATH` specifically for this package.\n",
           homepage: "https://aptakube.com/",

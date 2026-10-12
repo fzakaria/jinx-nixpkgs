@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 30, 5], ["mainProgram", 31, 5], ["homepage", 32, 5], ["sourceProvenance", 33, 5], ["license", 34, 5], ["platforms", 35, 5]], [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["dontUnpack", 21, 3], ["installPhase", 23, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["mainProgram", 31, 5], ["homepage", 32, 5], ["sourceProvenance", 33, 5], ["license", 34, 5], ["platforms", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["dontUnpack", 21, 3], ["installPhase", 23, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jython",
       version: "2.7.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://search.maven.org/remotecontent?filepath=org/python/jython-standalone/${nix.sel(finalAttrs, "version")}/jython-standalone-${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "sha256-H7oXae/8yLGfXhBDa8gnShWM6YhVnyV5J8JMc7sTfzw=",
         })))),
@@ -30,7 +28,7 @@ cp $src $out/jython.jar
 makeWrapper ${jre}/bin/java $out/bin/jython --add-flags "-jar $out/jython.jar"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python interpreter written in Java",
         mainProgram: "jython",
         homepage: "https://jython.org/",

@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["x11Support", 34, 31]], [["withIntrospection", 35, 33]], [["name", 38, 7], ["paths", 39, 7]], [["rev-prefix", 96, 21]], [["command", 99, 9], ["supportedFeatures", 103, 9]], [["command", 106, 9], ["supportedFeatures", 110, 9]], [["src", 113, 51]], [["updateScript", 95, 5], ["shardLock", 113, 5]], [["description", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["mainProgram", 122, 5], ["maintainers", 123, 5], ["platforms", 124, 5]], [["pname", 49, 3], ["version", 50, 11], ["src", 50, 19], ["shardsFile", 52, 3], ["copyShardDeps", 53, 3], ["postPatch", 55, 3], ["preBuild", 65, 3], ["buildTargets", 72, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 80, 3], ["postInstall", 88, 3], ["doInstallCheck", 92, 3], ["passthru", 94, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, crystal: false, wrapGAppsHook4: false, "gobject-introspection": false, desktopToDarwinBundle: false, webkitgtk_6_0: false, sqlite: false, libadwaita: false, gtk4: false, glib: false, pango: false, symlinkJoin: false, gitUpdater: false, "_experimental-update-script-combinators": false, runCommand: false, crystal2nix: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x11Support", 34, 31]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withIntrospection", 35, 33]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 38, 7], ["paths", 39, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["rev-prefix", 96, 21]]);
-const pos$6 = nix.positions(here + "/package.nix", [["command", 99, 9], ["supportedFeatures", 103, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["command", 106, 9], ["supportedFeatures", 110, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["src", 113, 51]]);
-const pos$9 = nix.positions(here + "/package.nix", [["updateScript", 95, 5], ["shardLock", 113, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["mainProgram", 122, 5], ["maintainers", 123, 5], ["platforms", 124, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 49, 3], ["version", 50, 11], ["src", 50, 19], ["shardsFile", 52, 3], ["copyShardDeps", 53, 3], ["postPatch", 55, 3], ["preBuild", 65, 3], ["buildTargets", 72, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 80, 3], ["postInstall", 88, 3], ["doInstallCheck", 92, 3], ["passthru", 94, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,17 +28,17 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const version = "0.6.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "hugopl",
       repo: "rtfm",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-0yKldVTZdFV1Tj1MUI7TCqF3Ho/D7NOGR9UuLaLUFdo=",
     }))));
   const gtk_doc = nix.thunk(() => (() => {
-    const gtk4$ = nix.thunk(() => nix.app(nix.sel(gtk4, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, x11Support: true }))));
-    const pango$ = nix.thunk(() => nix.app(nix.sel(pango, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withIntrospection: true }))));
+    const gtk4$ = nix.thunk(() => nix.app(nix.sel(gtk4, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], x11Support: true }))));
+    const pango$ = nix.thunk(() => nix.app(nix.sel(pango, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], withIntrospection: true }))));
     return nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "gtk-doc",
         paths: nix.thunk(() => [
           nix.thunk(() => nix.sel(gtk4$, "devdoc")),
@@ -60,7 +50,7 @@ export default nix.lambda((args) => (() => {
       })));
   })());
   return nix.app(nix.sel(crystal, "buildCrystalPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "rtfm",
       version: version,
       src: src,
@@ -81,12 +71,12 @@ substituteInPlace src/doc2dash/docset_builder.cr \\
       postInstall: "glib-compile-schemas $out/share/glib-2.0/schemas\n",
       doInstallCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v" })))),
+            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], "rev-prefix": "v" })))),
             nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "rtfm.shardLock", "./shard.lock")),
             nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               command: nix.thunk(() => [
                 nix.thunk(() => nix.app(writeShellScript, "update-lock", nix.thunk(() => nix.str`cd $1; ${nix.app(nix.sel(lib, "getExe"), crystal2nix)}`))),
                 nix.path(here, "./."),
@@ -94,15 +84,15 @@ substituteInPlace src/doc2dash/docset_builder.cr \\
               supportedFeatures: nix.thunk(() => ["silent"]),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               command: nix.thunk(() => ["rm", "./shard.lock"]),
               supportedFeatures: nix.thunk(() => ["silent"]),
             })),
           ]))),
-        shardLock: nix.thunk(() => nix.app(runCommand, "shard.lock", nix.thunk(() => ({ [nix.POS]: pos$8, src: src })), "cp $src/shard.lock $out\n")),
+        shardLock: nix.thunk(() => nix.app(runCommand, "shard.lock", nix.thunk(() => ({ [nix.POS]: $pos[7], src: src })), "cp $src/shard.lock $out\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Dash/docset reader with built in documentation for Crystal and GTK APIs",
         homepage: "https://github.com/hugopl/rtfm/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

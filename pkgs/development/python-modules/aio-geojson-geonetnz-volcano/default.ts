@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 46, 3], ["__darwinAllowLocalNetworking", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, "aio-geojson-client": false, aiohttp: false, aiointercept: false, aioresponses: false, mock: false, buildPythonPackage: false, fetchFromGitHub: false, "pytest-asyncio": false, "pytest-xdist": false, pytestCheckHook: false, pytz: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 46, 3], ["__darwinAllowLocalNetworking", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aio-geojson-geonetnz-volcano",
       version: "2026.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "exxamalte",
           repo: "python-aio-geojson-geonetnz-volcano",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aio_geojson_geonetnz_volcano"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python module for accessing the GeoNet NZ Volcanic GeoJSON feeds",
         homepage: "https://github.com/exxamalte/python-aio-geojson-geonetnz-volcano",
         changelog: nix.thunk(() => nix.str`https://github.com/exxamalte/python-aio-geojson-geonetnz-volcano/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

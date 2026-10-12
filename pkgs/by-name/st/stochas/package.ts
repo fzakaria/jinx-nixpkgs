@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["installPhase", 50, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libx11: false, libxrandr: false, libxinerama: false, libxext: false, libxcursor: false, freetype: false, "alsa-lib": false, libjack2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["installPhase", 50, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const libjack2 = nix.arg($, "libjack2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "stochas",
       version: "1.3.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "surge-synthesizer",
           repo: "stochas",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/lib/vst3\ncp -r stochas_artefacts/Release/VST3/Stochas.vst3 $out/lib/vst3\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Probabilistic polyrhythmic sequencer plugin",
         homepage: "https://stochas.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

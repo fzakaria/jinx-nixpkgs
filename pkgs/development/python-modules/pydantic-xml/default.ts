@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["lxml", 34, 5]], [["updateScript", 44, 12]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 42, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, lxml: false, "nix-update-script": false, "poetry-core": false, "pydantic-core": false, pydantic: false, pytestCheckHook: false, xmldiff: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lxml", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 44, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 42, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const xmldiff = nix.arg($, "xmldiff");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pydantic-xml",
       version: "2.21.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dapper91",
           repo: "pydantic-xml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,15 +31,15 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [pydantic, pydantic_core]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, lxml: nix.thunk(() => [lxml]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], lxml: nix.thunk(() => [lxml]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, xmldiff]),
       pythonImportsCheck: nix.thunk(() => ["pydantic_xml"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python xml for humans",
         homepage: "https://github.com/dapper91/pydantic-xml",
         changelog: nix.thunk(() => nix.str`https://github.com/dapper91/pydantic-xml/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.rst`),

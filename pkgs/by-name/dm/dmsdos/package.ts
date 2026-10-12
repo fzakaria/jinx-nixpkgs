@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5], ["platforms", 44, 5], ["badPlatforms", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["nativeBuildInputs", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5], ["platforms", 44, 5], ["badPlatforms", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["nativeBuildInputs", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dmsdos",
       version: "0.9.2.3-unstable-2021-02-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sandsmark",
           repo: "dmsdos",
           rev: "c9044d509969d3d1467b781c08233e15c1da7a13",
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "cmake-4.patch",
             url: "https://github.com/sandsmark/dmsdos/commit/94076ab27800e9cba41ab05e6bb2edbb421154d9.patch",
             hash: "sha256-olpnzPg/kbveUl0muwHKwI+DMGqXzxLrruFomf/SXjE=",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Linux utilities to handle dos/win95 doublespace/drivespace/stacker",
         homepage: "https://github.com/sandsmark/dmsdos.git",
         changelog: nix.thunk(() => nix.str`https://github.com/sandsmark/dmsdos/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

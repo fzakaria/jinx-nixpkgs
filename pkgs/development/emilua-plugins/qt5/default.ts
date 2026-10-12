@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["rev-prefix", 56, 33]], [["buildInputs", 60, 11], ["dontWrapQtApps", 66, 11]], [["basic", 57, 11]], [["updateScript", 56, 5], ["tests", 57, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 85, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 44, 3], ["passthru", 55, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, meson: false, ninja: false, fetchFromGitLab: false, gperf: false, gawk: false, gitUpdater: false, "pkg-config": false, boost: false, luajit_openresty: false, asciidoctor: false, libsForQt5: false, emilua: false, liburing: false, fmt: false, runCommand: false, "xvfb-run": false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 56, 33]]);
-const pos$3 = nix.positions(here + "/default.nix", [["buildInputs", 60, 11], ["dontWrapQtApps", 66, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["basic", 57, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 56, 5], ["tests", 57, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 85, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 44, 3], ["passthru", 55, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "emilua-qt5";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emilua",
           repo: "qt5",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -62,12 +56,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libsForQt5, "qttools")),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           basic: nix.thunk(() => nix.app(runCommand, "test-basic-qt5", nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               buildInputs: nix.thunk(() => [
                 emilua,
                 qt5,
@@ -84,7 +78,7 @@ touch $out
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Qt5 bindings for Emilua",
         homepage: "https://emilua.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),
@@ -98,7 +92,7 @@ touch $out
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

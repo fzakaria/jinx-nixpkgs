@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 12, 26], ["version", 12, 32], ["sha256", 13, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5]], [["pname", 7, 3], ["version", 8, 3], ["pyproject", 9, 3], ["src", 11, 3], ["build-system", 16, 3], ["propagatedBuildInputs", 21, 3], ["nativeCheckInputs", 26, 3], ["checkPhase", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 12, 26], ["version", 12, 32], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["pyproject", 9, 3], ["src", 11, 3], ["build-system", 16, 3], ["propagatedBuildInputs", 21, 3], ["nativeCheckInputs", 26, 3], ["checkPhase", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "psrecord",
       version: "1.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "sha256-WXcYVIi1ZwI5xziVGcqEy5BN3fEQH/825EWJjYcUVLE=",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       })()),
       checkPhase: "runHook preCheck\npytest psrecord\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Record the CPU and memory activity of a process",
         homepage: "https://github.com/astrofrog/psrecord",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["name", 34, 7], ["desktopName", 35, 7], ["exec", 36, 7], ["icon", 37, 7], ["comment", 38, 7], ["categories", 39, 7]], [["homepage", 60, 5], ["description", 61, 5], ["mainProgram", 62, 5], ["maintainers", 63, 5], ["sourceProvenance", 64, 5], ["license", 65, 5], ["platforms", 66, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dontUnpack", 21, 3], ["nativeBuildInputs", 23, 3], ["desktopItems", 32, 3], ["installPhase", 43, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, makeBinaryWrapper: false, copyDesktopItems: false, makeDesktopItem: false, desktopToDarwinBundle: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 7], ["desktopName", 35, 7], ["exec", 36, 7], ["icon", 37, 7], ["comment", 38, 7], ["categories", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["mainProgram", 62, 5], ["maintainers", 63, 5], ["sourceProvenance", 64, 5], ["license", 65, 5], ["platforms", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dontUnpack", 21, 3], ["nativeBuildInputs", 23, 3], ["desktopItems", 32, 3], ["installPhase", 43, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "logisim",
       version: "2.7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/circuit/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.x/${nix.sel(finalAttrs, "version")}/logisim-generic-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-Nip4wSrRjCA/7YaIcsSgHNnBIUE3nZLokrviw35ie8I=",
         })))),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([makeBinaryWrapper, copyDesktopItems, unzip], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [desktopToDarwinBundle])))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "logisim",
             desktopName: "Logisim",
             exec: "logisim",
@@ -56,7 +53,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.cburch.com/logisim/",
         description: "Educational tool for designing and simulating digital logic circuits",
         mainProgram: "logisim",

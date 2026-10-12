@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["maintainers", 84, 5], ["license", 85, 5]], [["owner", 20, 3], ["domain", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 45, 3], ["disabledTests", 56, 3], ["disabledTestPaths", 75, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildHomeAssistantComponent: false, "hass-web-proxy-lib": false, titlecase: false, homeassistant: false, "pytest-aiohttp": false, "pytest-cov-stub": false, "pytest-homeassistant-custom-component": false, "pytest-timeout": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["maintainers", 84, 5], ["license", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 20, 3], ["domain", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 45, 3], ["disabledTests", 56, 3], ["disabledTestPaths", 75, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const domain = "frigate";
       const version = "5.15.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "blakeblackshear",
           repo: "frigate-hass-integration",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_media_source.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Provides Home Assistant integration to interface with a separately running Frigate service",
         homepage: "https://github.com/blakeblackshear/frigate-hass-integration",
         changelog: nix.thunk(() => nix.str`https://github.com/blakeblackshear/frigate-hass-integration/releases/tag/v${version}`),
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner,
         domain,
         version,

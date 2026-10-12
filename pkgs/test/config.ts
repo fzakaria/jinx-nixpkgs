@@ -2,10 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/config.nix", [[["permittedInsecurePackages", 22, 11]], [["system", 20, 9], ["config", 21, 9]], [["allowPkgsInPermittedInsecurePackages", 17, 3]]]);
 const formals$1 = { args: { lib: false, config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/config.nix", [["permittedInsecurePackages", 22, 11]]);
-const pos$2 = nix.positions(here + "/config.nix", [["system", 20, 9], ["config", 21, 9]]);
-const pos$3 = nix.positions(here + "/config.nix", [["allowPkgsInPermittedInsecurePackages", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       allowPkgsInPermittedInsecurePackages: nix.thunk(() => (() => {
         const pkgs$ = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             system: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "system")),
             config: nix.thunk(() => nix.update(config, {
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               permittedInsecurePackages: nix.thunk(() => nix.builtins.seq(nix.thunk(() => nix.sel(pkgs$, "glibc", "version")), [])),
             })),
           }))));

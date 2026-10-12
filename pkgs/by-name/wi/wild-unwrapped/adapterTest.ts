@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/adapterTest.nix", [[["name", 32, 19], ["dontUnpack", 33, 5], ["dontConfigure", 34, 5], ["dontInstall", 35, 5], ["buildInputs", 37, 5], ["buildPhase", 38, 5]], [["dontUnpack", 50, 5], ["dontConfigure", 51, 5], ["dontInstall", 52, 5], ["name", 54, 5], ["buildInputs", 55, 5], ["buildPhase", 56, 5]], [["helloWild", 74, 61]], [["passthru", 74, 40]], [["pname", 100, 5], ["doCheck", 101, 5], ["doInstallCheck", 102, 5], ["dontBuild", 103, 5], ["buildType", 104, 5], ["checkInputs", 106, 5], ["nativeCheckInputs", 111, 5], ["checkFlags", 116, 5], ["preCheck", 125, 5], ["installPhase", 144, 5]], [["stdenv", 150, 7]], [["stdenv", 157, 7]], [["rustc", 165, 17], ["cargo", 165, 23], ["stdenv", 166, 9]], [["rustPlatform", 164, 7]], [["testWild", 99, 3], ["adapterGcc", 148, 3], ["adapter-llvm", 155, 3], ["adapter-rust", 162, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gccStdenv: false, clangStdenv: false, buildPackages: false, runCommandCC: false, makeBinaryWrapper: false, gcc: false, "wild-unwrapped": false, "binutils-unwrapped-all-targets": false, clang: false, lld: false, "clang-tools": false, useWildLinker: false, makeRustPlatform: false, rustc: false, cargo: false, fd: false, hello: false, taplo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/adapterTest.nix", [["name", 32, 19], ["dontUnpack", 33, 5], ["dontConfigure", 34, 5], ["dontInstall", 35, 5], ["buildInputs", 37, 5], ["buildPhase", 38, 5]]);
-const pos$2 = nix.positions(here + "/adapterTest.nix", [["dontUnpack", 50, 5], ["dontConfigure", 51, 5], ["dontInstall", 52, 5], ["name", 54, 5], ["buildInputs", 55, 5], ["buildPhase", 56, 5]]);
-const pos$3 = nix.positions(here + "/adapterTest.nix", [["helloWild", 74, 61]]);
-const pos$4 = nix.positions(here + "/adapterTest.nix", [["passthru", 74, 40]]);
-const pos$5 = nix.positions(here + "/adapterTest.nix", [["pname", 100, 5], ["doCheck", 101, 5], ["doInstallCheck", 102, 5], ["dontBuild", 103, 5], ["buildType", 104, 5], ["checkInputs", 106, 5], ["nativeCheckInputs", 111, 5], ["checkFlags", 116, 5], ["preCheck", 125, 5], ["installPhase", 144, 5]]);
-const pos$6 = nix.positions(here + "/adapterTest.nix", [["stdenv", 150, 7]]);
-const pos$7 = nix.positions(here + "/adapterTest.nix", [["stdenv", 157, 7]]);
-const pos$8 = nix.positions(here + "/adapterTest.nix", [["rustc", 165, 17], ["cargo", 165, 23], ["stdenv", 166, 9]]);
-const pos$9 = nix.positions(here + "/adapterTest.nix", [["rustPlatform", 164, 7]]);
-const pos$10 = nix.positions(here + "/adapterTest.nix", [["testWild", 99, 3], ["adapterGcc", 148, 3], ["adapter-llvm", 155, 3], ["adapter-rust", 162, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const hello = nix.arg($, "hello");
   const taplo = nix.arg($, "taplo");
   const gccWrapper = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.attr(gcc, "name")),
       dontUnpack: true,
       dontConfigure: true,
@@ -52,7 +43,7 @@ runHook postBuild
 `),
     }))));
   const gppWrapper = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       dontUnpack: true,
       dontConfigure: true,
       dontInstall: true,
@@ -70,8 +61,8 @@ runHook postBuild
     const command = nix.thunk(() => nix.str`$READELF -p .comment ${nix.app(nix.sel(lib, "getExe"), helloWild)}`);
     const emulator = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages));
     return nix.app(runCommandCC, nix.thunk(() => nix.str`wild-${name}-test`), nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$3, helloWild: helloWild })),
+        [nix.POS]: $pos[3],
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], helloWild: helloWild })),
       })), nix.thunk(() => nix.str`echo "Testing running the 'hello' binary which should be linked with 'wild'" >&2
 ${emulator} ${nix.app(nix.sel(lib, "getExe"), helloWild)}
 
@@ -96,9 +87,9 @@ fi
 `));
   })();
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     testWild: nix.thunk(() => nix.app(nix.sel(wild_unwrapped, "overrideAttrs"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "wild-tests",
         doCheck: true,
         doInstallCheck: false,
@@ -123,15 +114,18 @@ export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
 `),
         installPhase: "touch $out",
       })))),
-    adapterGcc: nix.thunk(() => nix.app(helloTest, "adapter-gcc", nix.thunk(() => nix.app(nix.sel(hello, "override"), (_) => ({ [nix.POS]: pos$6, stdenv: nix.thunk(() => nix.app(useWildLinker, gccStdenv)) }))))),
+    adapterGcc: nix.thunk(() => nix.app(helloTest, "adapter-gcc", nix.thunk(() => nix.app(nix.sel(hello, "override"), (_) => ({
+          [nix.POS]: $pos[5],
+          stdenv: nix.thunk(() => nix.app(useWildLinker, gccStdenv)),
+        }))))),
     "adapter-llvm": nix.thunk(() => nix.app(helloTest, "adapter-llvm", nix.thunk(() => nix.app(nix.sel(hello, "override"), (_) => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           stdenv: nix.thunk(() => nix.app(useWildLinker, clangStdenv)),
         }))))),
     "adapter-rust": nix.thunk(() => nix.app(helloTest, "adapter-rust", nix.thunk(() => nix.app(nix.sel(fd, "override"), (_) => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           rustPlatform: nix.thunk(() => nix.app(makeRustPlatform, nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               rustc: rustc,
               cargo: cargo,
               stdenv: nix.thunk(() => nix.app(useWildLinker, stdenv)),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["ROCKSDB_INCLUDE_DIR", 44, 5], ["ROCKSDB_LIB_DIR", 45, 5]], [["matrix-conduit", 52, 26]], [["tests", 51, 12]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 64, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["preBuild", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["env", 43, 3], ["doCheck", 49, 3], ["passthru", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitLab: false, "pkg-config": false, sqlite: false, stdenv: false, nixosTests: false, rocksdb: false, "rust-jemalloc-sys": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ROCKSDB_INCLUDE_DIR", 44, 5], ["ROCKSDB_LIB_DIR", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["matrix-conduit", 52, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 51, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["preBuild", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["env", 43, 3], ["doCheck", 49, 3], ["passthru", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const rocksdb = nix.arg($, "rocksdb");
   const rust_jemalloc_sys = nix.arg($, "rust-jemalloc-sys");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "matrix-conduit",
       version: "0.10.14",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "famedly",
           repo: "conduit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,20 +32,20 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook")), pkg_config]),
       buildInputs: nix.thunk(() => [sqlite, rust_jemalloc_sys, rocksdb]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ROCKSDB_INCLUDE_DIR: nix.thunk(() => nix.str`${rocksdb}/include`),
         ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${rocksdb}/lib`),
       })),
       doCheck: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "matrix-conduit": nix.thunk(() => nix.attr(nixosTests, "matrix-conduit")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Matrix homeserver written in Rust",
         homepage: "https://conduit.rs/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

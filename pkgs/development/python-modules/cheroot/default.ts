@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]], [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 42, 3], ["preCheck", 60, 3], ["disabledTests", 64, 3], ["disabledTestPaths", 74, 3], ["pythonImportsCheck", 82, 3], ["__darwinAllowLocalNetworking", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, "jaraco-functools": false, "jaraco-text": false, "more-itertools": false, portend: false, pypytools: false, "pytest-mock": false, pytestCheckHook: false, requests: false, "requests-toolbelt": false, "requests-unixsocket": false, setuptools: false, "setuptools-scm": false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 42, 3], ["preCheck", 60, 3], ["disabledTests", 64, 3], ["disabledTestPaths", 74, 3], ["pythonImportsCheck", 82, 3], ["__darwinAllowLocalNetworking", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "11.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-v7cMSWY/Y7BEDytU28aw0WUOVt/k4mQfWbLG9ye0Sso=",
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["cheroot"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High-performance, pure-Python HTTP",
         mainProgram: "cheroot",
         homepage: "https://github.com/cherrypy/cheroot",
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

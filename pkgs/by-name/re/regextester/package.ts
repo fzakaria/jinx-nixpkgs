@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["license", 62, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 44, 3], ["postInstall", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, vala: false, gettext: false, libxml2: false, "pkg-config": false, glib: false, gtk3: false, libgee: false, meson: false, ninja: false, "gobject-introspection": false, "gsettings-desktop-schemas": false, "desktop-file-utils": false, pantheon: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["license", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 44, 3], ["postInstall", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const pantheon = nix.arg($, "pantheon");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "regextester",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "artemanufrij",
           repo: "regextester",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`${nix.sel(glib, "dev")}/bin/glib-compile-schemas $out/share/glib-2.0/schemas
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Desktop application to test regular expressions interactively",
         mainProgram: "com.github.artemanufrij.regextester",
         homepage: "https://github.com/artemanufrij/regextester",

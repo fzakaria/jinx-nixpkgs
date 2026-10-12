@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/depot.nix", [[["nativeBuildInputs", 40, 5], ["precompile", 47, 13], ["project", 47, 24], ["registry", 47, 32]]]);
 const formals$1 = { args: { lib: false, runCommand: false, cacert: false, curl: false, git: false, julia: false, python3: false, stdenv: false, closureYaml: false, extraLibs: false, juliaCpuTarget: false, overridesToml: false, packageImplications: false, project: false, precompile: false, registry: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/depot.nix", [["nativeBuildInputs", 40, 5], ["precompile", 47, 13], ["project", 47, 24], ["registry", 47, 32]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const registry = nix.arg($, "registry");
   const setJuliaSslCaRootsPath = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin")) ? "export JULIA_SSL_CA_ROOTS_PATH=\"\"" : nix.str`export JULIA_SSL_CA_ROOTS_PATH="${cacert}/etc/ssl/certs/ca-bundle.crt"`));
   return nix.app(runCommand, "julia-depot", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => nix.concat([
         curl,
         git,

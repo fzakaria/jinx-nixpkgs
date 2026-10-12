@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["fetchSubmodules", 34, 5], ["hash", 35, 5]], [["name", 90, 7], ["exec", 91, 7], ["desktopName", 92, 7], ["comment", 93, 7], ["icon", 94, 7], ["categories", 95, 7]], [["homepage", 117, 5], ["description", 118, 5], ["mainProgram", 119, 5], ["longDescription", 120, 5], ["license", 124, 5], ["platforms", 125, 5], ["maintainers", 126, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["outputs", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["postPatch", 68, 3], ["cmakeFlags", 78, 3], ["desktopItems", 88, 3], ["installPhase", 99, 3], ["postInstall", 104, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, SDL2: false, bzip2: false, cmake: false, "game-music-emu": false, gtk3: false, imagemagick: false, libGL: false, libjpeg: false, libvpx: false, libwebp: false, ninja: false, openal: false, "pkg-config": false, "vulkan-loader": false, zlib: false, zmusic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["fetchSubmodules", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 90, 7], ["exec", 91, 7], ["desktopName", 92, 7], ["comment", 93, 7], ["icon", 94, 7], ["categories", 95, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 117, 5], ["description", 118, 5], ["mainProgram", 119, 5], ["longDescription", 120, 5], ["license", 124, 5], ["platforms", 125, 5], ["maintainers", 126, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["outputs", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["postPatch", 68, 3], ["cmakeFlags", 78, 3], ["desktopItems", 88, 3], ["installPhase", 99, 3], ["postInstall", 104, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zmusic = nix.arg($, "zmusic");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gzdoom",
       version: "4.14.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ZDoom",
           repo: "gzdoom",
           rev: nix.thunk(() => nix.str`g${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "gzdoom",
               exec: "gzdoom",
               desktopName: "GZDoom",
@@ -97,7 +94,7 @@ for size in 16 24 32 48 64 128; do
 done;
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/ZDoom/gzdoom",
         description: "Modder-friendly OpenGL and Vulkan source port based on the DOOM engine",
         mainProgram: "gzdoom",

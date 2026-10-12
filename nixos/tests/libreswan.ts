@@ -2,76 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libreswan.nix", [[["tunnel", 13, 36]], [["enable", 12, 24], ["connections", 13, 24]], [["libreswan", 12, 14]], [["text", 22, 7], ["mode", 23, 7]], [["ipsec.d/tunnel.secrets", 21, 21]], [["etc", 21, 17]], [["services", 12, 5], ["environment", 21, 5]], [["addresses", 37, 26]], [["addresses", 39, 26]], [["ipv4", 37, 21], ["ipv6", 39, 21]], [["addresses", 38, 26]], [["addresses", 40, 26]], [["ipv4", 38, 21], ["ipv6", 40, 21]], [["eth1", 37, 16], ["eth2", 38, 16]], [["allowedUDPPorts", 42, 14]], [["extraHosts", 30, 5], ["useDHCP", 36, 5], ["interfaces", 37, 5], ["firewall", 42, 5]], [["address", 49, 9], ["prefixLength", 50, 9]], [["address", 55, 9], ["prefixLength", 56, 9], ["via", 57, 9]], [["addresses", 47, 26], ["routes", 53, 26]], [["ipv6", 47, 21]], [["eth1", 47, 16]], [["interfaces", 47, 5]], [["maintainers", 67, 5]], [["vlans", 74, 22]], [["virtualisation", 74, 7], ["networking", 75, 7]], [["vlans", 83, 22]], [["virtualisation", 83, 7], ["networking", 84, 7]], [["vlans", 92, 22]], [["address", 101, 15], ["prefixLength", 102, 15]], [["addresses", 99, 31]], [["ipv6", 99, 26]], [["br0", 99, 22]], [["interfaces", 105, 23]], [["br0", 105, 19]], [["interfaces", 99, 11], ["bridges", 105, 11]], [["systemPackages", 111, 19]], [["net.ipv6.conf.all.forwarding", 112, 26]], [["sysctl", 112, 19]], [["kernel", 112, 12]], [["virtualisation", 92, 7], ["networking", 96, 7], ["environment", 111, 7], ["boot", 112, 7]], [["alice", 71, 9], ["bob", 80, 9], ["eve", 89, 9]], [["name", 65, 3], ["meta", 66, 3], ["nodes", 71, 3], ["testScript", 115, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/libreswan.nix", [["tunnel", 13, 36]]);
-const pos$2 = nix.positions(here + "/libreswan.nix", [["enable", 12, 24], ["connections", 13, 24]]);
-const pos$3 = nix.positions(here + "/libreswan.nix", [["libreswan", 12, 14]]);
-const pos$4 = nix.positions(here + "/libreswan.nix", [["text", 22, 7], ["mode", 23, 7]]);
-const pos$5 = nix.positions(here + "/libreswan.nix", [["ipsec.d/tunnel.secrets", 21, 21]]);
-const pos$6 = nix.positions(here + "/libreswan.nix", [["etc", 21, 17]]);
-const pos$7 = nix.positions(here + "/libreswan.nix", [["services", 12, 5], ["environment", 21, 5]]);
-const pos$8 = nix.positions(here + "/libreswan.nix", [["addresses", 37, 26]]);
-const pos$9 = nix.positions(here + "/libreswan.nix", [["addresses", 39, 26]]);
-const pos$10 = nix.positions(here + "/libreswan.nix", [["ipv4", 37, 21], ["ipv6", 39, 21]]);
-const pos$11 = nix.positions(here + "/libreswan.nix", [["addresses", 38, 26]]);
-const pos$12 = nix.positions(here + "/libreswan.nix", [["addresses", 40, 26]]);
-const pos$13 = nix.positions(here + "/libreswan.nix", [["ipv4", 38, 21], ["ipv6", 40, 21]]);
-const pos$14 = nix.positions(here + "/libreswan.nix", [["eth1", 37, 16], ["eth2", 38, 16]]);
-const pos$15 = nix.positions(here + "/libreswan.nix", [["allowedUDPPorts", 42, 14]]);
-const pos$16 = nix.positions(here + "/libreswan.nix", [["extraHosts", 30, 5], ["useDHCP", 36, 5], ["interfaces", 37, 5], ["firewall", 42, 5]]);
-const pos$17 = nix.positions(here + "/libreswan.nix", [["address", 49, 9], ["prefixLength", 50, 9]]);
-const pos$18 = nix.positions(here + "/libreswan.nix", [["address", 55, 9], ["prefixLength", 56, 9], ["via", 57, 9]]);
-const pos$19 = nix.positions(here + "/libreswan.nix", [["addresses", 47, 26], ["routes", 53, 26]]);
-const pos$20 = nix.positions(here + "/libreswan.nix", [["ipv6", 47, 21]]);
-const pos$21 = nix.positions(here + "/libreswan.nix", [["eth1", 47, 16]]);
-const pos$22 = nix.positions(here + "/libreswan.nix", [["interfaces", 47, 5]]);
-const pos$23 = nix.positions(here + "/libreswan.nix", [["maintainers", 67, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$24 = nix.positions(here + "/libreswan.nix", [["vlans", 74, 22]]);
-const pos$25 = nix.positions(here + "/libreswan.nix", [["virtualisation", 74, 7], ["networking", 75, 7]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$26 = nix.positions(here + "/libreswan.nix", [["vlans", 83, 22]]);
-const pos$27 = nix.positions(here + "/libreswan.nix", [["virtualisation", 83, 7], ["networking", 84, 7]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$28 = nix.positions(here + "/libreswan.nix", [["vlans", 92, 22]]);
-const pos$29 = nix.positions(here + "/libreswan.nix", [["address", 101, 15], ["prefixLength", 102, 15]]);
-const pos$30 = nix.positions(here + "/libreswan.nix", [["addresses", 99, 31]]);
-const pos$31 = nix.positions(here + "/libreswan.nix", [["ipv6", 99, 26]]);
-const pos$32 = nix.positions(here + "/libreswan.nix", [["br0", 99, 22]]);
-const pos$33 = nix.positions(here + "/libreswan.nix", [["interfaces", 105, 23]]);
-const pos$34 = nix.positions(here + "/libreswan.nix", [["br0", 105, 19]]);
-const pos$35 = nix.positions(here + "/libreswan.nix", [["interfaces", 99, 11], ["bridges", 105, 11]]);
-const pos$36 = nix.positions(here + "/libreswan.nix", [["systemPackages", 111, 19]]);
-const pos$37 = nix.positions(here + "/libreswan.nix", [["net.ipv6.conf.all.forwarding", 112, 26]]);
-const pos$38 = nix.positions(here + "/libreswan.nix", [["sysctl", 112, 19]]);
-const pos$39 = nix.positions(here + "/libreswan.nix", [["kernel", 112, 12]]);
-const pos$40 = nix.positions(here + "/libreswan.nix", [["virtualisation", 92, 7], ["networking", 96, 7], ["environment", 111, 7], ["boot", 112, 7]]);
-const pos$41 = nix.positions(here + "/libreswan.nix", [["alice", 71, 9], ["bob", 80, 9], ["eve", 89, 9]]);
-const pos$42 = nix.positions(here + "/libreswan.nix", [["name", 65, 3], ["meta", 66, 3], ["nodes", 71, 3], ["testScript", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const tunnelConfig = nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       libreswan: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         enable: true,
         connections: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           tunnel: "leftid=@alice\nleft=fd::a\nrightid=@bob\nright=fd::b\nauthby=secret\nauto=add\n",
         })),
       })),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       etc: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "ipsec.d/tunnel.secrets": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           text: "@alice @bob : PSK \"j1JbIi9WY07rxwcNQ6nbyThKCf9DGxWOyokXIQcAQUnafsNTUJxfsxwk9WYK8fHj\"",
           mode: "600",
         })),
@@ -79,116 +38,116 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const baseNetwork = nix.thunk(() => ({
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     extraHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), "fd::a alice\nfd::b bob\nfd::e eve\n")),
     useDHCP: false,
     interfaces: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       eth1: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         ipv4: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), [])),
         })),
         ipv6: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), [])),
         })),
       })),
       eth2: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         ipv4: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), [])),
         })),
         ipv6: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), [])),
         })),
       })),
     })),
-    firewall: nix.thunk(() => ({ [nix.POS]: pos$15, allowedUDPPorts: nix.thunk(() => [1234n]) })),
+    firewall: nix.thunk(() => ({ [nix.POS]: $pos[14], allowedUDPPorts: nix.thunk(() => [1234n]) })),
   }));
   const addRoute = (a) => (b) => ({
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     interfaces: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       eth1: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         ipv6: nix.thunk(() => ({
-          [nix.POS]: pos$19,
-          addresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$17, address: a, prefixLength: 64n }))]),
+          [nix.POS]: $pos[18],
+          addresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[16], address: a, prefixLength: 64n }))]),
           routes: nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$18, address: b, prefixLength: 128n, via: "fd::e" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[17], address: b, prefixLength: 128n, via: "fd::e" })),
           ]),
         })),
       })),
     })),
   });
   return {
-    [nix.POS]: pos$42,
+    [nix.POS]: $pos[41],
     name: "libreswan",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "rnhmjoj"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$41,
+      [nix.POS]: $pos[40],
       alice: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return nix.update({
-          [nix.POS]: pos$25,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$24, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[24],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[23], vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => nix.update(baseNetwork, nix.app(addRoute, "fd::a", "fd::b"))),
         }, tunnelConfig);
       })(), formals$2),
       bob: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return nix.update({
-          [nix.POS]: pos$27,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$26, vlans: nix.thunk(() => [2n]) })),
+          [nix.POS]: $pos[26],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[25], vlans: nix.thunk(() => [2n]) })),
           networking: nix.thunk(() => nix.update(baseNetwork, nix.app(addRoute, "fd::b", "fd::a"))),
         }, tunnelConfig);
       })(), formals$3),
       eve: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          [nix.POS]: pos$40,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$28, vlans: nix.thunk(() => [1n, 2n]) })),
+          [nix.POS]: $pos[39],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[27], vlans: nix.thunk(() => [1n, 2n]) })),
           networking: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               baseNetwork,
               nix.thunk(() => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 interfaces: nix.thunk(() => ({
-                  [nix.POS]: pos$32,
+                  [nix.POS]: $pos[31],
                   br0: nix.thunk(() => ({
-                    [nix.POS]: pos$31,
+                    [nix.POS]: $pos[30],
                     ipv6: nix.thunk(() => ({
-                      [nix.POS]: pos$30,
+                      [nix.POS]: $pos[29],
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$29, address: "fd::e", prefixLength: 64n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[28], address: "fd::e", prefixLength: 64n })),
                       ]),
                     })),
                   })),
                 })),
                 bridges: nix.thunk(() => ({
-                  [nix.POS]: pos$34,
-                  br0: nix.thunk(() => ({ [nix.POS]: pos$33, interfaces: nix.thunk(() => ["eth1", "eth2"]) })),
+                  [nix.POS]: $pos[33],
+                  br0: nix.thunk(() => ({ [nix.POS]: $pos[32], interfaces: nix.thunk(() => ["eth1", "eth2"]) })),
                 })),
               })),
             ]))),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "tcpdump"))]),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             kernel: nix.thunk(() => ({
-              [nix.POS]: pos$38,
-              sysctl: nix.thunk(() => ({ [nix.POS]: pos$37, "net.ipv6.conf.all.forwarding": true })),
+              [nix.POS]: $pos[37],
+              sysctl: nix.thunk(() => ({ [nix.POS]: $pos[36], "net.ipv6.conf.all.forwarding": true })),
             })),
           })),
         };

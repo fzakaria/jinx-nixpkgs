@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["extraArgs", 53, 5]], [["updateScript", 52, 12]], [["description", 60, 5], ["changelog", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["postInstall", 41, 3], ["pythonImportsCheck", 50, 3], ["passthru", 52, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python: false, buildPythonPackage: false, setuptools: false, "setuptools-scm": false, tkgl: false, tkinter: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 52, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 60, 5], ["changelog", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["postInstall", 41, 3], ["pythonImportsCheck", 50, 3], ["passthru", 52, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "3-manifolds",
           repo: "tkinter_gl",
           tag: nix.thunk(() => nix.str`v${version}_as_released`),
@@ -42,14 +38,14 @@ ln -s ${tkgl}/lib/Tkgl* ${pkgDir}
       })());
       const pythonImportsCheck = nix.thunk(() => ["tkinter_gl"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "v(.*)_as_released"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Base class for GL rendering surfaces in tkinter",
         changelog: nix.thunk(() => nix.str`https://github.com/3-manifolds/tkinter_gl/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/3-manifolds/tkinter_gl",
@@ -63,7 +59,7 @@ ln -s ${tkgl}/lib/Tkgl* ${pkgDir}
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

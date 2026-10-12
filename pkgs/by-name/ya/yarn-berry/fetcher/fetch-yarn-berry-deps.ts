@@ -2,13 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetch-yarn-berry-deps.nix", [[["outputHashAlgo", 21, 9], ["outputHash", 22, 9]], [["outputHashAlgo", 26, 9], ["outputHash", 27, 9]], [["outputHashAlgo", 31, 9], ["outputHash", 32, 9]], [["berryVersion", 66, 15]], [["name", 39, 5], ["dontUnpack", 41, 5], ["dontInstall", 42, 5], ["nativeBuildInputs", 44, 5], ["impureEnvVars", 50, 5], ["buildPhase", 52, 5], ["outputHashMode", 61, 5], ["dontFixup", 63, 5], ["passthru", 65, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "yarn-berry-fetcher": false, "nix-prefetch-git": false, cacert: false, berryVersion: false }, ellipsis: false };
 const formals$2 = { args: { src: true, hash: true, sha256: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fetch-yarn-berry-deps.nix", [["outputHashAlgo", 21, 9], ["outputHash", 22, 9]]);
-const pos$2 = nix.positions(here + "/fetch-yarn-berry-deps.nix", [["outputHashAlgo", 26, 9], ["outputHash", 27, 9]]);
-const pos$3 = nix.positions(here + "/fetch-yarn-berry-deps.nix", [["outputHashAlgo", 31, 9], ["outputHash", 32, 9]]);
-const pos$4 = nix.positions(here + "/fetch-yarn-berry-deps.nix", [["berryVersion", 66, 15]]);
-const pos$5 = nix.positions(here + "/fetch-yarn-berry-deps.nix", [["name", 39, 5], ["dontUnpack", 41, 5], ["dontInstall", 42, 5], ["nativeBuildInputs", 44, 5], ["impureEnvVars", 50, 5], ["buildPhase", 52, 5], ["outputHashMode", 61, 5], ["dontFixup", 63, 5], ["passthru", 65, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +20,13 @@ export default nix.lambda((args) => (() => {
     const src = nix.argOr($_1, "src", () => null);
     const hash = nix.argOr($_1, "hash", () => "");
     const sha256 = nix.argOr($_1, "sha256", () => "");
-    const hash_ = nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? { [nix.POS]: pos$1, outputHashAlgo: null, outputHash: hash } : (nix.asBool(!nix.eq(sha256, "")) ? { [nix.POS]: pos$2, outputHashAlgo: "sha256", outputHash: sha256 } : {
-      [nix.POS]: pos$3,
+    const hash_ = nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? { [nix.POS]: $pos[0], outputHashAlgo: null, outputHash: hash } : (nix.asBool(!nix.eq(sha256, "")) ? { [nix.POS]: $pos[1], outputHashAlgo: "sha256", outputHash: sha256 } : {
+      [nix.POS]: $pos[2],
       outputHashAlgo: "sha256",
       outputHash: nix.thunk(() => nix.sel(lib, "fakeSha256")),
     })));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "offline",
         dontUnpack: nix.thunk(() => nix.eq(src, null)),
         dontInstall: true,
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
         buildPhase: "runHook preBuild\n\nyarnLock=${yarnLock:=$PWD/yarn.lock}\nyarn-berry-fetcher fetch $yarnLock $missingHashes\n\nrunHook postBuild\n",
         outputHashMode: "recursive",
         dontFixup: true,
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$4, berryVersion: berryVersion })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], berryVersion: berryVersion })),
       }, nix.update(hash_, nix.builtins.removeAttrs(args_2, nix.thunk(() => nix.concat(["name", "pname", "version", "hash", "sha256"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(src, null)), "src"))))))));
   })(), formals$2);
 })(), formals$1);

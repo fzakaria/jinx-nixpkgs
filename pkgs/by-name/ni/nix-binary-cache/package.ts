@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 59, 5], ["longDescription", 60, 5], ["maintainers", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["hydraPlatforms", 69, 5]], [["version", 16, 3], ["pname", 17, 3], ["dontUnpack", 19, 3], ["installPhase", 21, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, coreutils: false, findutils: false, nix: false, xz: false, bzip2: false, gnused: false, gnugrep: false, openssl: false, lighttpd: false, iproute2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 59, 5], ["longDescription", 60, 5], ["maintainers", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["hydraPlatforms", 69, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 16, 3], ["pname", 17, 3], ["dontUnpack", 19, 3], ["installPhase", 21, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const lighttpd = nix.arg($, "lighttpd");
   const iproute2 = nix.arg($, "iproute2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "2014-06-29-1",
       pname: "nix-binary-cache",
       dontUnpack: true,
@@ -61,7 +60,7 @@ substitute "${nix.path(here, "./nix-binary-cache-start.in")}" "$out"/bin/nix-bin
 chmod a+x "$out/bin/nix-binary-cache-start"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Set of scripts to serve the Nix store as a binary cache",
         longDescription: "This package installs a CGI script that serves Nix store path in the\nbinary cache format. It also installs a launcher called\nnix-binary-cache-start that can be run without any setup to launch\na binary cache and get the example arguments for its usage.\n",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

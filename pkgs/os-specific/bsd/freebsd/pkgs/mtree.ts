@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mtree.nix", [[["bootstrapInstallation", 13, 5]], [["platforms", 50, 8]], [["path", 18, 3], ["extraPaths", 19, 3], ["buildInputs", 20, 3], ["postPatch", 29, 3], ["preBuild", 37, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false, compatIfNeeded: false, compatIsNeeded: false, libnetbsd: false, libmd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mtree.nix", [["bootstrapInstallation", 13, 5]]);
-const pos$2 = nix.positions(here + "/mtree.nix", [["platforms", 50, 8]]);
-const pos$3 = nix.positions(here + "/mtree.nix", [["path", 18, 3], ["extraPaths", 19, 3], ["buildInputs", 20, 3], ["postPatch", 29, 3], ["preBuild", 37, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const compatIsNeeded = nix.arg($, "compatIsNeeded");
   const libnetbsd = nix.arg($, "libnetbsd");
   const libmd = nix.arg($, "libmd");
-  const libmd$ = nix.thunk(() => nix.app(nix.sel(libmd, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, bootstrapInstallation: true }))));
+  const libmd$ = nix.thunk(() => nix.app(nix.sel(libmd, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], bootstrapInstallation: true }))));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       path: "contrib/mtree",
       extraPaths: nix.thunk(() => ["contrib/mknod"]),
       buildInputs: nix.thunk(() => nix.concat(compatIfNeeded, nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD"))), nix.thunk(() => [libmd$])), [libnetbsd]))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`export NIX_LDFLAGS="$NIX_LDFLAGS ${nix.builtins.toString(nix.thunk(() => nix.concat(["-lmd", "-lnetbsd"], nix.concat(nix.app(nix.sel(lib, "optional"), compatIsNeeded, "-legacy"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), "-lutil")))))}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

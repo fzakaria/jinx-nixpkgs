@@ -2,54 +2,43 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-userdbd.nix", [[["enable", 7, 24]], [["userdbd", 7, 16]], [["isNormalUser", 10, 9]], [["test-user-nss", 9, 19]], [["users", 9, 13]], [["userName", 14, 9]], [["text", 13, 54]], [["userdb/test-user-dropin.user", 13, 23]], [["etc", 13, 19], ["systemPackages", 17, 19]], [["services", 7, 7], ["users", 9, 7], ["environment", 13, 7]], [["machine", 4, 9]], [["name", 3, 3], ["nodes", 4, 3], ["testScript", 19, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-userdbd.nix", [["enable", 7, 24]]);
-const pos$2 = nix.positions(here + "/systemd-userdbd.nix", [["userdbd", 7, 16]]);
-const pos$3 = nix.positions(here + "/systemd-userdbd.nix", [["isNormalUser", 10, 9]]);
-const pos$4 = nix.positions(here + "/systemd-userdbd.nix", [["test-user-nss", 9, 19]]);
-const pos$5 = nix.positions(here + "/systemd-userdbd.nix", [["users", 9, 13]]);
-const pos$6 = nix.positions(here + "/systemd-userdbd.nix", [["userName", 14, 9]]);
-const pos$7 = nix.positions(here + "/systemd-userdbd.nix", [["text", 13, 54]]);
-const pos$8 = nix.positions(here + "/systemd-userdbd.nix", [["userdb/test-user-dropin.user", 13, 23]]);
-const pos$9 = nix.positions(here + "/systemd-userdbd.nix", [["etc", 13, 19], ["systemPackages", 17, 19]]);
-const pos$10 = nix.positions(here + "/systemd-userdbd.nix", [["services", 7, 7], ["users", 9, 7], ["environment", 13, 7]]);
-const pos$11 = nix.positions(here + "/systemd-userdbd.nix", [["machine", 4, 9]]);
-const pos$12 = nix.positions(here + "/systemd-userdbd.nix", [["name", 3, 3], ["nodes", 4, 3], ["testScript", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "systemd-userdbd",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            userdbd: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+            [nix.POS]: $pos[1],
+            userdbd: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              "test-user-nss": nix.thunk(() => ({ [nix.POS]: pos$3, isNormalUser: true })),
+              [nix.POS]: $pos[3],
+              "test-user-nss": nix.thunk(() => ({ [nix.POS]: $pos[2], isNormalUser: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               "userdb/test-user-dropin.user": nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$6, userName: "test-user-dropin" })))),
+                [nix.POS]: $pos[6],
+                text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[5], userName: "test-user-dropin" })))),
               })),
             })),
             systemPackages: nix.thunk(() => (() => {

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["0.5.1", 18, 9], ["0.6", 19, 9]], [["url", 15, 5], ["hash", 16, 5]], [["homepage", 30, 5], ["changelog", 31, 5], ["description", 32, 5], ["license", 33, 5]], [["pname", 9, 3], ["version", 10, 3], ["minimalOCamlVersion", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, eio: false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["0.5.1", 18, 9], ["0.6", 19, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 30, 5], ["changelog", 31, 5], ["description", 32, 5], ["license", 33, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["minimalOCamlVersion", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,22 +13,22 @@ export default nix.lambda((args) => (() => {
   const eio = nix.arg($, "eio");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lwt_eio",
       version: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(lwt, "version")), "6.0.0")) ? "0.6" : "0.5.1")),
       minimalOCamlVersion: "5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/lwt_eio/releases/download/v${nix.sel(finalAttrs, "version")}/lwt_eio-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "0.5.1": "sha256-dlJnhHh4VNO60NZJZqc1HS8wPR95WhdeBJTK37pPbCE=",
             "0.6": "sha256-6xyIQyMRUE5Q+FQCzAkvaXZqqo8LSFzG6U1A7GZwSLw=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
         })))),
       propagatedBuildInputs: nix.thunk(() => [eio, lwt]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/ocaml-multicore/lwt_eio",
         changelog: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/lwt_eio/raw/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),
         description: "Use Lwt libraries from within Eio",

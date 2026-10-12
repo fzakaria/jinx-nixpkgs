@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5], ["leaveDotGit", 41, 5], ["postFetch", 44, 5]], [["calendar_view", 57, 5], ["desktop_webview_window", 58, 5], ["dynamic_color", 59, 5], ["flutter_highlighter", 60, 5], ["flutter_html", 61, 5], ["flutter_local_notifications", 62, 5], ["flutter_local_notifications_linux", 63, 5], ["markdown", 64, 5], ["matrix", 65, 5], ["matrix_dart_sdk_drift_db", 66, 5], ["receive_intent", 67, 5], ["signal_sticker_api", 68, 5], ["starfield", 69, 5], ["launcher_entry", 70, 5]], [["NIX_LDFLAGS", 85, 7], ["COMMET_PROD", 86, 7]], [["pname", 94, 9], ["version", 95, 17], ["src", 95, 25], ["passthru", 96, 23], ["postPatch", 98, 9], ["installPhase", 104, 9]], [["flutter_webrtc", 91, 5]], [["homepage", 157, 5], ["description", 158, 5], ["platforms", 159, 5], ["license", 160, 5], ["maintainers", 161, 5], ["mainProgram", 162, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["strictDeps", 50, 3], ["sourceRoot", 51, 3], ["pubspecLockFilePath", 53, 3], ["pubspecLock", 54, 3], ["gitHashes", 56, 3], ["buildInputs", 73, 3], ["env", 85, 3], ["targetFlutterPlatform", 88, 3], ["customSourceBuilders", 90, 3], ["patches", 116, 3], ["flutterBuildFlags", 120, 3], ["preBuild", 127, 3], ["extraWrapProgramArgs", 139, 3], ["postInstall", 141, 3], ["__structuredAttrs", 155, 3], ["meta", 156, 3]]]);
 const formals$1 = { args: { lib: false, flutter341: false, stdenv: false, fetchFromGitHub: false, fetchzip: false, webkitgtk_4_1: false, mimalloc: false, keybinder3: false, "mpv-unwrapped": false, libdovi: false, libdvdcss: false, libunwind: false, libgbm: false, libdrm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5], ["leaveDotGit", 41, 5], ["postFetch", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["calendar_view", 57, 5], ["desktop_webview_window", 58, 5], ["dynamic_color", 59, 5], ["flutter_highlighter", 60, 5], ["flutter_html", 61, 5], ["flutter_local_notifications", 62, 5], ["flutter_local_notifications_linux", 63, 5], ["markdown", 64, 5], ["matrix", 65, 5], ["matrix_dart_sdk_drift_db", 66, 5], ["receive_intent", 67, 5], ["signal_sticker_api", 68, 5], ["starfield", 69, 5], ["launcher_entry", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 85, 7], ["COMMET_PROD", 86, 7]]);
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 94, 9], ["version", 95, 17], ["src", 95, 25], ["passthru", 96, 23], ["postPatch", 98, 9], ["installPhase", 104, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["flutter_webrtc", 91, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 157, 5], ["description", 158, 5], ["platforms", 159, 5], ["license", 160, 5], ["maintainers", 161, 5], ["mainProgram", 162, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["strictDeps", 50, 3], ["sourceRoot", 51, 3], ["pubspecLockFilePath", 53, 3], ["pubspecLock", 54, 3], ["gitHashes", 56, 3], ["buildInputs", 73, 3], ["env", 85, 3], ["targetFlutterPlatform", 88, 3], ["customSourceBuilders", 90, 3], ["patches", 116, 3], ["flutterBuildFlags", 120, 3], ["preBuild", 127, 3], ["extraWrapProgramArgs", 139, 3], ["postInstall", 141, 3], ["__structuredAttrs", 155, 3], ["meta", 156, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,16 +24,16 @@ export default nix.lambda((args) => (() => {
   const libdrm = nix.arg($, "libdrm");
   const libwebrtcRpath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libgbm, libdrm])));
   const libwebrtc = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/flutter-webrtc/flutter-webrtc/releases/download/v1.2.0/libwebrtc.zip",
       hash: "sha256-i4LRG44f//SDIOl072yZavkYoTZdiydPZndeOm6/fBM=",
     }))));
   return nix.app(nix.sel(flutter341, "buildFlutterApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "commet-chat",
       version: "0.4.2+hotfix.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "commetchat",
           repo: "commet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +47,7 @@ export default nix.lambda((args) => (() => {
       pubspecLockFilePath: "../pubspec.lock",
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       gitHashes: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         calendar_view: "sha256-tGAMK89VsgqfKQy+t8x5zl6dbQEf5h4HxSUR8crB1oM=",
         desktop_webview_window: "sha256-EOh5QoOuAxiYn0IcdxY7taN2Twu8GshY9zAoGCztPnA=",
         dynamic_color: "sha256-4zSTiXplkBjtPtzssj3VaHTVo9YlYKNTMLgBIM5MMe4=",
@@ -80,19 +73,19 @@ export default nix.lambda((args) => (() => {
         libunwind,
       ], nix.sel(mpv_unwrapped, "buildInputs"))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_LDFLAGS: nix.thunk(() => nix.str`-rpath-link ${libwebrtcRpath}`),
         COMMET_PROD: 1n,
       })),
       targetFlutterPlatform: "linux",
       customSourceBuilders: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         flutter_webrtc: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const version = nix.arg($_1, "version");
           const src = nix.arg($_1, "src");
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               pname: "flutter_webrtc",
               version: version,
               src: src,
@@ -128,7 +121,7 @@ patchelf --add-rpath ${libwebrtcRpath} $out/app/commet-chat/lib/libwebrtc.so
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://commet.chat",
         description: "Client for Matrix focused on providing a feature rich experience while maintaining a simple interface",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

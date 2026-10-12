@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-linux", 12, 5], ["armv6l-linux", 13, 5], ["armv7l-linux", 14, 5], ["i686-linux", 15, 5], ["x86_64-linux", 16, 5]], [["url", 29, 5], ["hash", 30, 5]], [["description", 65, 5], ["downloadPage", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["longDescription", 69, 5], ["maintainers", 72, 5], ["platforms", 73, 5], ["sourceProvenance", 74, 5]], [["pname", 21, 3], ["version", 22, 3], ["arch", 24, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["unpackPhase", 39, 3], ["installPhase", 51, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, cups: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-linux", 12, 5], ["armv6l-linux", 13, 5], ["armv7l-linux", 14, 5], ["i686-linux", 15, 5], ["x86_64-linux", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["downloadPage", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["longDescription", 69, 5], ["maintainers", 72, 5], ["platforms", 73, 5], ["sourceProvenance", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["arch", 24, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["unpackPhase", 39, 3], ["installPhase", 51, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const cups = nix.arg($, "cups");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const archAttrset = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-linux": "aarch64",
     "armv6l-linux": "arm",
     "armv7l-linux": "armhf",
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   }));
   const archiveSnapshot = "20260804054912";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "labelife-label-printer",
       version: "2.3.2.002",
       arch: nix.thunk(() => nix.selOr(archAttrset, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://web.archive.org/web/${archiveSnapshot}/https://oss.qu-in.ltd/Labelife/Label_Printer_Driver_Linux.zip`),
           hash: "sha256-UJ2wHQllvj1nY/rwrINwBzyCQP/KwwTSrlyuNXguq5o=",
         })))),
@@ -59,7 +56,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CUPS driver for Labelife-compatible thermal label printers",
         downloadPage: "https://labelife.net/#/chart",
         homepage: "https://labelife.net",

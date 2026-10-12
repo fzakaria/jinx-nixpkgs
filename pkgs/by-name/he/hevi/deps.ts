@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/deps.nix", [[["url", 9, 7], ["rev", 10, 7], ["hash", 11, 7]], [["name", 7, 5], ["path", 8, 5]], [["url", 17, 7], ["rev", 18, 7], ["hash", 19, 7]], [["name", 15, 5], ["path", 16, 5]], [["url", 25, 7], ["rev", 26, 7], ["hash", 27, 7]], [["name", 23, 5], ["path", 24, 5]], [["url", 33, 7], ["rev", 34, 7], ["hash", 35, 7]], [["name", 31, 5], ["path", 32, 5]]]);
 const formals$1 = { args: { linkFarm: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/deps.nix", [["url", 9, 7], ["rev", 10, 7], ["hash", 11, 7]]);
-const pos$2 = nix.positions(here + "/deps.nix", [["name", 7, 5], ["path", 8, 5]]);
-const pos$3 = nix.positions(here + "/deps.nix", [["url", 17, 7], ["rev", 18, 7], ["hash", 19, 7]]);
-const pos$4 = nix.positions(here + "/deps.nix", [["name", 15, 5], ["path", 16, 5]]);
-const pos$5 = nix.positions(here + "/deps.nix", [["url", 25, 7], ["rev", 26, 7], ["hash", 27, 7]]);
-const pos$6 = nix.positions(here + "/deps.nix", [["name", 23, 5], ["path", 24, 5]]);
-const pos$7 = nix.positions(here + "/deps.nix", [["url", 33, 7], ["rev", 34, 7], ["hash", 35, 7]]);
-const pos$8 = nix.positions(here + "/deps.nix", [["name", 31, 5], ["path", 32, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,40 +11,40 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "known_folders-0.0.0-Fy-PJk7KAAC41mQXzmFyGa0Q7tvmQjatENkREa6Gc4zu",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/ziglibs/known-folders",
             rev: "175f5596b3d2ee3c658282bb07885580895a0e73",
             hash: "sha256-gTnTyqkAAT5AYXxbG80ybiiRk+pOkm7dvqThcNWGmpo=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "lsp_kit-0.1.0-bi_PL_kyDACVTEhLaMq2-PJx0MocqRyjXDAN0ybMUyQQ",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/zigtools/lsp-kit",
             rev: "ec325a3c33d1da7708cf513355208f74d9560580",
             hash: "sha256-60F2BOCrl3CreQFmpH3HAz6zzxd3VgJ3iSEkP39gtgQ=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "pennant-0.1.0-MwI8MKRGAABMDdwYvJNkdeWgU4iQ9JHqA9fTxk1zsFFq",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/Arnau478/pennant",
             rev: "8441e0ca7ad9e140293d6692c82e59bcabe82205",
             hash: "sha256-zZqXO9tI44xkbq4yVU9OEadAVRFn0YtF/vuvUQXcEfE=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: "ziggy-0.1.0-kTg8v1ZWBgDLi7Y-AtdRRzqEvmYJiOq4I9r4mB2wLaKQ",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://github.com/kristoff-it/ziggy",
             rev: "6760f0f4c4fc1ae01428bc6d87109e32124eeeb7",
             hash: "sha256-uhC4Wg/yAZPdivQ49nwekKwLqwFYxikO/8j8+U2EK5Q=",

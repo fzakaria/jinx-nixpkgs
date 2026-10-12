@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 11, 5], ["hash", 12, 5]], [["license", 15, 8]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 15, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
       const pname = "kirigami-app-components";
       const version = "1.1.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kde/stable/kirigami-app-components/kirigami-app-components-${version}.tar.xz`),
           hash: "sha256-+D+S7Pq4n6i3WGfEfCkfFhnho5cK/DBDezN0qnX2Uw8=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["badPlatforms", 11, 10]], [["nativeBuildInputs", 10, 5], ["meta", 11, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, swift: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["badPlatforms", 11, 10]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 10, 5], ["meta", 11, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const swift = nix.arg($, "swift");
   return nix.app(runCommand, "swift-test-repl", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => [swift]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         badPlatforms: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isDarwin"))]),
       })),
     })), "swift repl <<EOF | grep \"Saying: Hello, Nixpkgs!\"\n  func say(message: String) { print(\"Saying: \\(message)\") }\n  say(message: \"Hello, Nixpkgs!\")\nEOF\ntouch \"$out\"\n");

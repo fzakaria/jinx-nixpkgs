@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["fetchSubmodules", 37, 5], ["hash", 38, 5]], [["updateScript", 90, 12]], [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["mainProgram", 97, 5], ["platforms", 98, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 54, 3], ["postPatch", 68, 3], ["strictDeps", 81, 3], ["preFixup", 83, 3], ["passthru", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, glib: false, gjs: false, ninja: false, gtk4: false, "gsettings-desktop-schemas": false, wrapGAppsHook4: false, "desktop-file-utils": false, "gobject-introspection": false, "glib-networking": false, "pkg-config": false, libadwaita: false, appstream: false, "blueprint-compiler": false, gettext: false, "libportal-gtk4": false, languagetool: false, libsoup_3: false, openjdk: false, "xdg-desktop-portal": false, dbus: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["fetchSubmodules", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 90, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["mainProgram", 97, 5], ["platforms", 98, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 54, 3], ["postPatch", 68, 3], ["strictDeps", 81, 3], ["preFixup", 83, 3], ["passthru", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "eloquent",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sonnyp",
           repo: "Eloquent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,11 +87,11 @@ patchShebangs .
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Proofreading software for English, Spanish, French, German, and more than 20 other languages",
         homepage: "https://github.com/sonnyp/eloquent",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

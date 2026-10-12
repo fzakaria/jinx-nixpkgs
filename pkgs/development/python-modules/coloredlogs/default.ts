@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]], [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 41, 3], ["doCheck", 51, 3], ["preCheck", 53, 3], ["disabledTests", 58, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch2: false, setuptools: false, humanfriendly: false, verboselogs: false, capturer: false, pytestCheckHook: false, mock: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 41, 3], ["doCheck", 51, 3], ["preCheck", 53, 3], ["disabledTests", 58, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "15.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xolox",
           repo: "python-coloredlogs",
           rev: version,
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "python313-compat.patch",
             url: "https://github.com/xolox/python-coloredlogs/commit/9d4f4020897fcf48d381de8e099dc29b53fc9531.patch?full_index=1",
             hash: "sha256-Z7MYzyoQBMLBS7c0r5zITuHpl5yn4Vg7Xf/CiG7jTSs=",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_plain_text_output_format", "test_auto_install"]);
       const pythonImportsCheck = nix.thunk(() => ["coloredlogs"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Colored stream handler for Python's logging module",
         mainProgram: "coloredlogs",
         homepage: "https://github.com/xolox/python-coloredlogs",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

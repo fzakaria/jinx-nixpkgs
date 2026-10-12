@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 28, 5], ["description", 29, 5], ["longDescription", 30, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["postPatch", 23, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "ladspa-sdk": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 28, 5], ["description", 29, 5], ["longDescription", 30, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["postPatch", 23, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ladspa_sdk = nix.arg($, "ladspa-sdk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tap-plugins",
       version: "0-unstable-2020-12-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tomscii",
           repo: "tap-plugins",
           rev: "5d882799f37dffe37fc73451f2c5b4fb24316f3b",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ladspa_sdk]),
       postPatch: "substituteInPlace Makefile --replace /usr/local \"$out\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://tomscii.sig7.se/tap-plugins/",
         description: "Tom's Audio Processing plugins",
         longDescription: "A number of LADSPA plugins including: TAP AutoPanner, TAP Chorus/Flanger,\nTAP DeEsser, TAP Dynamics (Mono & Stereo), TAP Equalizer and TAP\nEqualizer/BW, TAP Fractal Doubler, TAP Pink/Fractal Noise, TAP Pitch\nShifter, TAP Reflector, TAP Reverberator, TAP Rotary Speaker, TAP Scaling\nLimiter, TAP Sigmoid Booster, TAP Stereo Echo, TAP Tremolo, TAP\nTubeWarmth, TAP Vibrato.\n",

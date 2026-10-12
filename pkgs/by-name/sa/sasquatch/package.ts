@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 7], ["repo", 21, 7], ["rev", 22, 7], ["hash", 23, 7]], [["NIX_CFLAGS_COMPILE", 57, 9]], [["homepage", 64, 7], ["description", 65, 7], ["license", 66, 7], ["maintainers", 67, 7], ["platforms", 68, 7], ["mainProgram", 69, 7]], [["pname", 16, 5], ["version", 17, 5], ["src", 19, 5], ["patches", 26, 5], ["strictDeps", 28, 5], ["nativeBuildInputs", 29, 5], ["buildInputs", 30, 5], ["preBuild", 38, 5], ["installFlags", 42, 5], ["makeFlags", 47, 5], ["env", 57, 5], ["postInstall", 59, 5], ["meta", 63, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, lz4: false, lzo: false, which: false, xz: false, zlib: false, zstd: false, bigEndian: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 7], ["repo", 21, 7], ["rev", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 57, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 64, 7], ["description", 65, 7], ["license", 66, 7], ["maintainers", 67, 7], ["platforms", 68, 7], ["mainProgram", 69, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 5], ["version", 17, 5], ["src", 19, 5], ["patches", 26, 5], ["strictDeps", 28, 5], ["nativeBuildInputs", 29, 5], ["buildInputs", 30, 5], ["preBuild", 38, 5], ["installFlags", 42, 5], ["makeFlags", 47, 5], ["env", 57, 5], ["postInstall", 59, 5], ["meta", 63, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const bigEndian = nix.argOr($, "bigEndian", () => false);
   const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sasquatch",
       version: "4.5.1-6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "onekey-sec",
           repo: "sasquatch",
           rev: nix.thunk(() => nix.str`sasquatch-v${nix.sel(finalAttrs, "version")}`),
@@ -50,12 +47,12 @@ export default nix.lambda((args) => (() => {
         "AR:=$(AR)",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), bigEndian, "-DFIX_BE")),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), bigEndian, "mv $out/bin/sasquatch{,-v4be}\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/onekey-sec/sasquatch",
         description: "Set of patches to the standard unsquashfs utility (part of squashfs-tools) that attempts to add support for as many hacked-up vendor-specific SquashFS implementations as possible",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

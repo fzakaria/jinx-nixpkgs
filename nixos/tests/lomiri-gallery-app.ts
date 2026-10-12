@@ -2,47 +2,13 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lomiri-gallery-app.nix", [[["maintainers", 26, 14]], [["enable", 33, 30]], [["xserver", 33, 22]], [["ghostscriptSupport", 41, 47]], [["nativeBuildInputs", 39, 21]], [["source", 36, 37]], [["UITK_ICON_THEME", 78, 17]], [["etc", 36, 15], ["systemPackages", 65, 15], ["variables", 77, 15]], [["Type", 85, 17], ["BusName", 86, 17], ["ExecStart", 87, 17]], [["serviceConfig", 84, 15]], [["dbus-com.lomiri.Thumbnailer", 83, 35]], [["services", 83, 26]], [["user", 83, 21]], [["packages", 92, 15]], [["imports", 31, 13], ["services", 33, 13], ["environment", 35, 13], ["systemd", 83, 13], ["fonts", 91, 13]], [["machine", 28, 15]], [["name", 25, 9], ["meta", 26, 9], ["nodes", 28, 9], ["enableOCR", 99, 9], ["testScript", 101, 9]], [["file", 188, 15], ["buttonIsOffset", 189, 15], ["customTest", 190, 15]], [["name", 185, 11], ["value", 186, 11]], [["maintainers", 202, 12]], [["enable", 209, 28]], [["xserver", 209, 20]], [["UITK_ICON_THEME", 222, 15]], [["systemPackages", 212, 13], ["variables", 221, 13]], [["supportedLocales", 226, 16]], [["packages", 229, 13]], [["imports", 207, 11], ["services", 209, 11], ["environment", 211, 11], ["i18n", 226, 11], ["fonts", 228, 11]], [["machine", 204, 13]], [["name", 201, 7], ["meta", 202, 7], ["nodes", 204, 7], ["enableOCR", 236, 7], ["testScript", 238, 7]], [["basic", 198, 3]], [["name", 269, 5], ["file", 270, 5], ["customTest", 272, 5]], [["name", 291, 5], ["file", 292, 5], ["buttonIsOffset", 293, 5]], [["name", 296, 5], ["file", 297, 5], ["buttonIsOffset", 298, 5]], [["name", 301, 5], ["file", 302, 5], ["buttonIsOffset", 303, 5]], [["name", 306, 5], ["file", 307, 5], ["buttonIsOffset", 308, 5]]]);
 const formals$1 = { args: { file: false, buttonIsOffset: true, customTest: true }, ellipsis: false };
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lomiri-gallery-app.nix", [["maintainers", 26, 14]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/lomiri-gallery-app.nix", [["enable", 33, 30]]);
-const pos$3 = nix.positions(here + "/lomiri-gallery-app.nix", [["xserver", 33, 22]]);
-const pos$4 = nix.positions(here + "/lomiri-gallery-app.nix", [["ghostscriptSupport", 41, 47]]);
-const pos$5 = nix.positions(here + "/lomiri-gallery-app.nix", [["nativeBuildInputs", 39, 21]]);
-const pos$6 = nix.positions(here + "/lomiri-gallery-app.nix", [["source", 36, 37]]);
-const pos$7 = nix.positions(here + "/lomiri-gallery-app.nix", [["UITK_ICON_THEME", 78, 17]]);
-const pos$8 = nix.positions(here + "/lomiri-gallery-app.nix", [["etc", 36, 15], ["systemPackages", 65, 15], ["variables", 77, 15]]);
-const pos$9 = nix.positions(here + "/lomiri-gallery-app.nix", [["Type", 85, 17], ["BusName", 86, 17], ["ExecStart", 87, 17]]);
-const pos$10 = nix.positions(here + "/lomiri-gallery-app.nix", [["serviceConfig", 84, 15]]);
-const pos$11 = nix.positions(here + "/lomiri-gallery-app.nix", [["dbus-com.lomiri.Thumbnailer", 83, 35]]);
-const pos$12 = nix.positions(here + "/lomiri-gallery-app.nix", [["services", 83, 26]]);
-const pos$13 = nix.positions(here + "/lomiri-gallery-app.nix", [["user", 83, 21]]);
-const pos$14 = nix.positions(here + "/lomiri-gallery-app.nix", [["packages", 92, 15]]);
-const pos$15 = nix.positions(here + "/lomiri-gallery-app.nix", [["imports", 31, 13], ["services", 33, 13], ["environment", 35, 13], ["systemd", 83, 13], ["fonts", 91, 13]]);
-const pos$16 = nix.positions(here + "/lomiri-gallery-app.nix", [["machine", 28, 15]]);
-const pos$17 = nix.positions(here + "/lomiri-gallery-app.nix", [["name", 25, 9], ["meta", 26, 9], ["nodes", 28, 9], ["enableOCR", 99, 9], ["testScript", 101, 9]]);
 const formals$4 = { args: { name: false, file: false, buttonIsOffset: true, customTest: true }, ellipsis: false };
-const pos$18 = nix.positions(here + "/lomiri-gallery-app.nix", [["file", 188, 15], ["buttonIsOffset", 189, 15], ["customTest", 190, 15]]);
-const pos$19 = nix.positions(here + "/lomiri-gallery-app.nix", [["name", 185, 11], ["value", 186, 11]]);
 const formals$5 = { args: { lib: false }, ellipsis: true };
-const pos$20 = nix.positions(here + "/lomiri-gallery-app.nix", [["maintainers", 202, 12]]);
 const formals$6 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$21 = nix.positions(here + "/lomiri-gallery-app.nix", [["enable", 209, 28]]);
-const pos$22 = nix.positions(here + "/lomiri-gallery-app.nix", [["xserver", 209, 20]]);
-const pos$23 = nix.positions(here + "/lomiri-gallery-app.nix", [["UITK_ICON_THEME", 222, 15]]);
-const pos$24 = nix.positions(here + "/lomiri-gallery-app.nix", [["systemPackages", 212, 13], ["variables", 221, 13]]);
-const pos$25 = nix.positions(here + "/lomiri-gallery-app.nix", [["supportedLocales", 226, 16]]);
-const pos$26 = nix.positions(here + "/lomiri-gallery-app.nix", [["packages", 229, 13]]);
-const pos$27 = nix.positions(here + "/lomiri-gallery-app.nix", [["imports", 207, 11], ["services", 209, 11], ["environment", 211, 11], ["i18n", 226, 11], ["fonts", 228, 11]]);
-const pos$28 = nix.positions(here + "/lomiri-gallery-app.nix", [["machine", 204, 13]]);
-const pos$29 = nix.positions(here + "/lomiri-gallery-app.nix", [["name", 201, 7], ["meta", 202, 7], ["nodes", 204, 7], ["enableOCR", 236, 7], ["testScript", 238, 7]]);
-const pos$30 = nix.positions(here + "/lomiri-gallery-app.nix", [["basic", 198, 3]]);
-const pos$31 = nix.positions(here + "/lomiri-gallery-app.nix", [["name", 269, 5], ["file", 270, 5], ["customTest", 272, 5]]);
-const pos$32 = nix.positions(here + "/lomiri-gallery-app.nix", [["name", 291, 5], ["file", 292, 5], ["buttonIsOffset", 293, 5]]);
-const pos$33 = nix.positions(here + "/lomiri-gallery-app.nix", [["name", 296, 5], ["file", 297, 5], ["buttonIsOffset", 298, 5]]);
-const pos$34 = nix.positions(here + "/lomiri-gallery-app.nix", [["name", 301, 5], ["file", 302, 5], ["buttonIsOffset", 303, 5]]);
-const pos$35 = nix.positions(here + "/lomiri-gallery-app.nix", [["name", 306, 5], ["file", 307, 5], ["buttonIsOffset", 308, 5]]);
 
 export default nix.thunk(() => (() => {
   const makeTest = nix.thunk(() => nix.builtins.import(nix.path(here, "./make-test-python.nix")));
@@ -60,37 +26,37 @@ export default nix.thunk(() => (() => {
         nix.assert_(nix.app(nix.sel(lib, "asserts", "assertMsg"), nix.thunk(() => (nix.asBool(!nix.eq(buttonIsOffset, null)) || nix.asBool(!nix.eq(customTest, null)))), "Must either clarify button position, or define custom test code"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/lomiri-gallery-app.nix:16:7");
         const format = nix.thunk(() => nix.app(nix.sel(lib, "lists", "last"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), ".", file))));
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           name: nix.thunk(() => nix.str`lomiri-gallery-app-standalone-format-${format}`),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
           })),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$3);
               const config = nix.arg($_2, "config");
               const pkgs_1 = nix.arg($_2, "pkgs");
               return {
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
-                  xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+                  [nix.POS]: $pos[2],
+                  xserver: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
                 })),
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   etc: nix.thunk(() => nix.attrsDyn({}, [
                     [nix.str`${imageDataDir}`, nix.thunk(() => ({
-                      [nix.POS]: pos$6,
+                      [nix.POS]: $pos[5],
                       source: nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), imageDataDir, nix.thunk(() => ({
-                          [nix.POS]: pos$5,
+                          [nix.POS]: $pos[4],
                           nativeBuildInputs: nix.thunk(() => (() => {
                             const w = nix.withScope(pkgs_1, null);
                             return [
                               nix.thunk(() => nix.lookup(w, "ffmpeg")),
-                              nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "imagemagick"), "override"), nix.thunk(() => ({ [nix.POS]: pos$4, ghostscriptSupport: true })))),
+                              nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "imagemagick"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], ghostscriptSupport: true })))),
                             ];
                           })()),
                         })), nix.thunk(() => nix.str`mkdir -p $out/{Pictures,Videos}
@@ -130,18 +96,18 @@ ffmpeg -loop 1 -r 1 -i $out/Pictures/output.PNG -t 100 -pix_fmt yuv420p $out/Vid
                       ];
                     })());
                   })()),
-                  variables: nix.thunk(() => ({ [nix.POS]: pos$7, UITK_ICON_THEME: "suru" })),
+                  variables: nix.thunk(() => ({ [nix.POS]: $pos[6], UITK_ICON_THEME: "suru" })),
                 })),
                 systemd: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   user: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$11,
+                      [nix.POS]: $pos[10],
                       "dbus-com.lomiri.Thumbnailer": nix.thunk(() => ({
-                        [nix.POS]: pos$10,
+                        [nix.POS]: $pos[9],
                         serviceConfig: nix.thunk(() => ({
-                          [nix.POS]: pos$9,
+                          [nix.POS]: $pos[8],
                           Type: "dbus",
                           BusName: "com.lomiri.Thumbnailer",
                           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "lomiri", "lomiri-thumbnailer")}/libexec/lomiri-thumbnailer/thumbnailer-service`),
@@ -151,7 +117,7 @@ ffmpeg -loop 1 -r 1 -i $out/Pictures/output.PNG -t 100 -pix_fmt yuv420p $out/Vid
                   })),
                 })),
                 fonts: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   packages: nix.thunk(() => (() => {
                     const w = nix.withScope(pkgs_1, null);
                     return [nix.thunk(() => nix.lookup(w, "ubuntu-classic"))];
@@ -231,10 +197,10 @@ machine.sleep(2)
         const buttonIsOffset = nix.argOr($, "buttonIsOffset", () => null);
         const customTest = nix.argOr($, "customTest", () => null);
         return {
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           name: nix.thunk(() => nix.str`format-${name}`),
           value: nix.thunk(() => nix.app(makeFormatTest, nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               file: file,
               buttonIsOffset: buttonIsOffset,
               customTest: customTest,
@@ -242,32 +208,32 @@ machine.sleep(2)
         };
       })(), formals$4), detailsList)));
   return nix.update({
-    [nix.POS]: pos$30,
+    [nix.POS]: $pos[29],
     basic: nix.thunk(() => nix.app(makeTest, nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$5);
         const lib = nix.arg($, "lib");
         return {
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           name: "lomiri-gallery-app-standalone-basic",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
           })),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             machine: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$6);
               const config = nix.arg($_1, "config");
               const pkgs = nix.arg($_1, "pkgs");
               return {
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
-                  xserver: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
+                  [nix.POS]: $pos[21],
+                  xserver: nix.thunk(() => ({ [nix.POS]: $pos[20], enable: true })),
                 })),
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   systemPackages: nix.thunk(() => (() => {
                     const w = nix.withScope(pkgs, null);
                     return nix.concat([nix.thunk(() => nix.lookup(w, "xdotool"))], (() => {
@@ -278,11 +244,11 @@ machine.sleep(2)
                       ];
                     })());
                   })()),
-                  variables: nix.thunk(() => ({ [nix.POS]: pos$23, UITK_ICON_THEME: "suru" })),
+                  variables: nix.thunk(() => ({ [nix.POS]: $pos[22], UITK_ICON_THEME: "suru" })),
                 })),
-                i18n: nix.thunk(() => ({ [nix.POS]: pos$25, supportedLocales: nix.thunk(() => ["all"]) })),
+                i18n: nix.thunk(() => ({ [nix.POS]: $pos[24], supportedLocales: nix.thunk(() => ["all"]) })),
                 fonts: nix.thunk(() => ({
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   packages: nix.thunk(() => (() => {
                     const w = nix.withScope(pkgs, null);
                     return [nix.thunk(() => nix.lookup(w, "ubuntu-classic"))];
@@ -297,7 +263,7 @@ machine.sleep(2)
       })(), formals$5))),
   }, nix.app(makeFormatTests, nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         name: "mp4",
         file: "Videos/output.MP4",
         customTest: nix.thunk(() => nix.str`with subtest("lomiri gallery handles mp4"):
@@ -318,25 +284,25 @@ machine.sleep(2)
 `),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         name: "gif",
         file: "Pictures/output.GIF",
         buttonIsOffset: false,
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         name: "bmp",
         file: "Pictures/output.BMP",
         buttonIsOffset: true,
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         name: "jpg",
         file: "Pictures/output.JPG",
         buttonIsOffset: true,
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         name: "png",
         file: "Pictures/output.PNG",
         buttonIsOffset: true,

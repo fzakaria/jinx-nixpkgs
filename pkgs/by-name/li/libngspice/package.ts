@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["description", 72, 5], ["mainProgram", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 80, 5], ["platforms", 81, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["configureFlags", 59, 3], ["enableParallelBuilding", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, flex: false, bison: false, fftw: false, withNgshared: true, libxaw: false, libxext: false, llvmPackages: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 72, 5], ["mainProgram", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 80, 5], ["platforms", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["configureFlags", 59, 3], ["enableParallelBuilding", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), withNgshared, "lib")}ngspice`),
       version: "45",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/ngspice/ngspice-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-8arYq6woKKe3HaZkEd6OQGUk518wZuRnVUOcSQRC1zQ=",
         })))),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withNgshared, nix.thunk(() => ["--with-ngshared"])), ["--enable-xspice", "--enable-cider", "--enable-osdi"])),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Next Generation Spice (Electronic Circuit Simulator)",
         mainProgram: "ngspice",
         homepage: "http://ngspice.sourceforge.net",

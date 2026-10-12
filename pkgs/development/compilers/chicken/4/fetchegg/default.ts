@@ -2,9 +2,9 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 20, 5], ["builder", 21, 5], ["nativeBuildInputs", 22, 5], ["outputHashAlgo", 24, 5], ["outputHashMode", 25, 5], ["outputHash", 26, 5], ["version", 28, 13], ["eggName", 30, 5], ["impureEnvVars", 32, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, chicken: false }, ellipsis: false };
 const formals$2 = { args: { name: false, version: false, md5: true, sha256: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 20, 5], ["builder", 21, 5], ["nativeBuildInputs", 22, 5], ["outputHashAlgo", 24, 5], ["outputHashMode", 25, 5], ["outputHash", 26, 5], ["version", 28, 13], ["eggName", 30, 5], ["impureEnvVars", 32, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
     const md5 = nix.argOr($_1, "md5", () => "");
     const sha256 = nix.argOr($_1, "sha256", () => "");
     return (nix.asBool(!nix.eq(md5, "")) ? nix.builtins.throw("fetchegg does not support md5 anymore, please use sha256") : nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.str`chicken-${name}-export-${version}`),
         builder: nix.path(here, "./builder.sh"),
         nativeBuildInputs: nix.thunk(() => [chicken]),

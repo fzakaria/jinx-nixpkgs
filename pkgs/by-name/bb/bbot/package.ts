@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 13, 26], ["version", 13, 32], ["hash", 14, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 86, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["pythonRelaxDeps", 17, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["doCheck", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 13, 26], ["version", 13, 32], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["pythonRelaxDeps", 17, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["doCheck", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bbot",
       version: "3.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-kr1nKzBtUA2LJHh+43UP8DF6NHtmMish2uQyOvzxHEU=",
@@ -85,7 +83,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OSINT automation for hackers",
         homepage: "https://github.com/blacklanternsecurity/bbot",
         changelog: nix.thunk(() => nix.str`https://github.com/blacklanternsecurity/bbot/releases/tag/v${nix.sel(finalAttrs, "version")}`),

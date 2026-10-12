@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["enableVideo", 15, 5], ["withXorg", 16, 5]], [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["sha256", 28, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["buildInputs", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 40, 3], ["postPatch", 44, 3], ["disabledTests", 51, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, numpy: false, pillow: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["enableVideo", 15, 5], ["withXorg", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["sha256", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["buildInputs", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 40, 3], ["postPatch", 44, 3], ["disabledTests", 51, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pillow = nix.arg($, "pillow");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
-  const zbar$ = nix.thunk(() => nix.app(nix.sel(pkgs, "zbar", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableVideo: false, withXorg: false }))));
+  const zbar$ = nix.thunk(() => nix.app(nix.sel(pkgs, "zbar", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableVideo: false, withXorg: false }))));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname = "pyzbar";
       const version = "0.1.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "NaturalHistoryMuseum",
           repo: "pyzbar",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_found_non_windows", "test_not_found_non_windows"]);
       const pythonImportsCheck = nix.thunk(() => ["pyzbar"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Read one-dimensional barcodes and QR codes from Python using the zbar library",
         homepage: "https://github.com/NaturalHistoryMuseum/pyzbar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

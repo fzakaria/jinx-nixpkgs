@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["sha256", 36, 5]], [["name", 42, 5], ["exec", 43, 5], ["desktopName", 44, 5], ["genericName", 45, 5], ["comment", 46, 5], ["categories", 47, 5]], [["description", 77, 5], ["homepage", 78, 5], ["sourceProvenance", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["dontBuild", 39, 3], ["desktopItem", 41, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 57, 3], ["installPhase", 61, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoPatchelfHook: false, makeWrapper: false, fetchurl: false, makeDesktopItem: false, "lttng-ust_2_12": false, fontconfig: false, openssl: false, libx11: false, libsm: false, libice: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 42, 5], ["exec", 43, 5], ["desktopName", 44, 5], ["genericName", 45, 5], ["comment", 46, 5], ["categories", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["sourceProvenance", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["dontBuild", 39, 3], ["desktopItem", 41, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 57, 3], ["installPhase", 61, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,13 +33,13 @@ export default nix.lambda((args) => (() => {
       const pname = "wasabiwallet";
       const version = "2.7.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/WalletWasabi/WalletWasabi/releases/download/v${version}/Wasabi-${version}-linux-x64.tar.gz`),
           sha256: "sha256-o2e2NDG2aMrEYc/7x5iFex9oRlrQXeKIINuW80ZwWcI=",
         }))));
       const dontBuild = true;
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "wasabi",
           exec: "wasabiwallet-desktop",
           desktopName: "Wasabi",
@@ -66,7 +63,7 @@ done
 cp -v $desktopItem/share/applications/* $out/share/applications
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Privacy focused Bitcoin wallet",
         homepage: "https://wasabiwallet.io/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -81,7 +78,7 @@ cp -v $desktopItem/share/applications/* $out/share/applications
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

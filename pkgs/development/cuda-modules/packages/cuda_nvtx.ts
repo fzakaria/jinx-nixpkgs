@@ -2,20 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_nvtx.nix", [[["description", 14, 5], ["longDescription", 15, 5], ["homepage", 20, 5], ["changelog", 21, 5]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { buildRedist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_nvtx.nix", [["description", 14, 5], ["longDescription", 15, 5], ["homepage", 20, 5], ["changelog", 21, 5]]);
-const pos$2 = nix.positions(here + "/cuda_nvtx.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "cuda_nvtx",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "C-based Application Programming Interface (API) for annotating events, code ranges, and resources in your applications",
         longDescription: "NVTX is a cross-platform API for annotating source code to provide contextual information to developer tools.\n\nThe NVTX API is written in C, with wrappers provided for C++ and Python.\n",
         homepage: "https://github.com/NVIDIA/NVTX",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 7], ["sha256", 18, 7]], [["url", 21, 7], ["sha256", 22, 7]], [["url", 25, 7], ["sha256", 26, 7]], [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 12, 3], ["version", 13, 3], ["srcs", 15, 3], ["sourceRoot", 30, 3], ["nativeBuildInputs", 32, 3], ["buildPhase", 39, 3], ["installPhase", 52, 3], ["outputs", 60, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bdftopcf: false, libfaketime: false, mkfontscale: false, fonttosfnt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 7], ["sha256", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 7], ["sha256", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 25, 7], ["sha256", 26, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["srcs", 15, 3], ["sourceRoot", 30, 3], ["nativeBuildInputs", 32, 3], ["buildPhase", 39, 3], ["installPhase", 52, 3], ["outputs", 60, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const mkfontscale = nix.arg($, "mkfontscale");
   const fonttosfnt = nix.arg($, "fonttosfnt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ucs-fonts",
       version: "20090406",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "http://www.cl.cam.ac.uk/~mgk25/download/ucs-fonts.tar.gz",
             sha256: "12hgizg25fzmk10wjl0c88x97h3pg5r9ga122s3y28wixz6x2bvh",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "http://www.cl.cam.ac.uk/~mgk25/download/ucs-fonts-asian.tar.gz",
             sha256: "0ibjy4xpz5j373hsdr8bx99czfpclqmviwwv768j8n7z12z3wa51",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "http://www.cl.cam.ac.uk/~mgk25/download/ucs-fonts-75dpi100dpi.tar.gz",
             sha256: "08vqr8yb636xa1s28vf3pm22dzkia0gisvsi2svqjqh4kk290pzh",
           })))),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "install -m 644 -D *.otb *.pcf.gz -t \"$out/share/fonts/misc\"\ninstall -m 644 -D *.bdf -t \"$bdf/share/fonts/misc\"\n\nmkfontdir \"$out/share/fonts/misc\"\nmkfontdir \"$bdf/share/fonts/misc\"\n",
       outputs: nix.thunk(() => ["out", "bdf"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.cl.cam.ac.uk/~mgk25/ucs-fonts.html",
         description: "Unicode bitmap fonts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["updateScript", 27, 12]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["changelog", 61, 5], ["maintainers", 62, 5], ["mainProgram", 65, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["passthru", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["checkFlags", 43, 3], ["nativeInstallCheckInputs", 48, 3], ["cargoHash", 52, 3], ["doInstallCheck", 54, 3], ["versionCheckProgram", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, glib: false, gtk4: false, kdePackages: false, lib: false, openssl: false, "pkg-config": false, rustPlatform: false, wrapGAppsHook4: false, graphene: false, sqlite: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 27, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["changelog", 61, 5], ["maintainers", 62, 5], ["mainProgram", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["passthru", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["checkFlags", 43, 3], ["nativeInstallCheckInputs", 48, 3], ["cargoHash", 52, 3], ["doInstallCheck", 54, 3], ["versionCheckProgram", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "snx-rs",
       version: "6.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ancwrd1",
           repo: "snx-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-J0wjLavv6OCdYzIMsRnQEoK4OJU68QLvTbIL4hTOOCU=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook4]),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/snx-rs`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open source Linux client for Checkpoint VPN tunnels",
         homepage: "https://github.com/ancwrd1/snx-rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

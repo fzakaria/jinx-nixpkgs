@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 5], ["hash", 21, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 14, 3], ["version", 15, 3], ["minimalOCamlVersion", 17, 3], ["src", 19, 3], ["propagatedBuildInputs", 24, 3], ["checkInputs", 32, 3], ["doCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, ppxlib: false, rio: false, sedlex: false, spices: false, uutf: false, qcheck: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["minimalOCamlVersion", 17, 3], ["src", 19, 3], ["propagatedBuildInputs", 24, 3], ["checkInputs", 32, 3], ["doCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const uutf = nix.arg($, "uutf");
   const qcheck = nix.arg($, "qcheck");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bytestring",
       version: "0.0.8",
       minimalOCamlVersion: "5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/riot-ml/riot/releases/download/${nix.sel(finalAttrs, "version")}/riot-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-SsiDz53b9bMIT9Q3IwDdB3WKy98WSd9fiieU41qZpeE=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [qcheck]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Efficient, immutable, pattern-matchable, UTF friendly byte strings",
         homepage: "https://github.com/riot-ml/riot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

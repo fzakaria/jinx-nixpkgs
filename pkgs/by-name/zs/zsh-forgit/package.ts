@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["homepage", 64, 5], ["description", 65, 5], ["mainProgram", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 28, 3], ["postPatch", 30, 3], ["dontBuild", 35, 3], ["nativeBuildInputs", 37, 3], ["installPhase", 39, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, bash: false, coreutils: false, findutils: false, fetchFromGitHub: false, fzf: false, gawk: false, git: false, gnugrep: false, gnused: false, makeWrapper: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["mainProgram", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 28, 3], ["postPatch", 30, 3], ["dontBuild", 35, 3], ["nativeBuildInputs", 37, 3], ["installPhase", 39, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zsh-forgit",
       version: "26.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wfxr",
           repo: "forgit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +46,7 @@ wrapProgram $out/bin/git-forgit \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/wfxr/forgit",
         description: "Utility tool powered by fzf for using git interactively",
         mainProgram: "git-forgit",

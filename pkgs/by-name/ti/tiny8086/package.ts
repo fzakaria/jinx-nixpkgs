@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["homepage", 53, 5], ["description", 54, 5], ["longDescription", 55, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["makeFlags", 24, 3], ["postBuild", 26, 3], ["installPhase", 32, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, localBios: true, nasm: false, sdlSupport: true, SDL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["longDescription", 55, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["makeFlags", 24, 3], ["postBuild", 26, 3], ["installPhase", 32, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const sdlSupport = nix.argOr($, "sdlSupport", () => true);
   const SDL = nix.arg($, "SDL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "8086tiny",
       version: "1.25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adriancable",
           repo: "8086tiny",
           rev: "c79ca2a34d96931d55ef724c815b289d0767ae3a",
@@ -49,7 +47,7 @@ install -m 644 ${nix.app(nix.sel(lib, "optionalString"), localBios, "bios_source
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/adriancable/8086tiny",
         description: "Open-source small 8086 emulator",
         longDescription: "8086tiny is a tiny, open-source (MIT), portable (little-endian hosts)\nIntel PC emulator, powerful enough to run DOS, Windows 3.0, Excel, MS\nFlight Simulator, AutoCAD, Lotus 1-2-3, and similar applications. 8086tiny\nemulates a \"late 80's era\" PC XT-type machine.\n\n8086tiny is based on an IOCCC 2013 winning entry. In fact that is the\n\"unobfuscated\" version :)\n",

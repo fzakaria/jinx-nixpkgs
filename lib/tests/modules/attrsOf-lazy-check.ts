@@ -2,29 +2,25 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/attrsOf-lazy-check.nix", [[["default", 4, 5]], [["isLazy", 3, 11]], [["bar", 7, 16]], [["value", 7, 10]], [["options", 3, 3], ["config", 7, 3]]]);
 const formals$1 = { args: { lib: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/attrsOf-lazy-check.nix", [["default", 4, 5]]);
-const pos$2 = nix.positions(here + "/attrsOf-lazy-check.nix", [["isLazy", 3, 11]]);
-const pos$3 = nix.positions(here + "/attrsOf-lazy-check.nix", [["bar", 7, 16]]);
-const pos$4 = nix.positions(here + "/attrsOf-lazy-check.nix", [["value", 7, 10]]);
-const pos$5 = nix.positions(here + "/attrsOf-lazy-check.nix", [["options", 3, 3], ["config", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       isLazy: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           default: nix.thunk(() => !nix.asBool(nix.has(nix.sel(config, "value"), "foo"))),
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$4,
-      value: nix.thunk(() => ({ [nix.POS]: pos$3, bar: nix.thunk(() => nix.builtins.throw("is not lazy")) })),
+      [nix.POS]: $pos[3],
+      value: nix.thunk(() => ({ [nix.POS]: $pos[2], bar: nix.thunk(() => nix.builtins.throw("is not lazy")) })),
     })),
   };
 })(), formals$1);

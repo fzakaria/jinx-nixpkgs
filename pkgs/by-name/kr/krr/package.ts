@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pydantic", 15, 45]], [["prometrix", 15, 7]], [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["package", 99, 5], ["command", 100, 5]], [["version", 98, 18]], [["tests", 98, 12]], [["description", 104, 5], ["longDescription", 105, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["pythonRelaxDeps", 39, 3], ["pythonRemoveDeps", 53, 3], ["build-system", 61, 3], ["dependencies", 65, 3], ["nativeCheckInputs", 82, 3], ["disabledTestPaths", 87, 3], ["pythonImportsCheck", 94, 3], ["passthru", 98, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, python313Packages: false, fetchFromGitHub: false, testers: false, krr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pydantic", 15, 45]]);
-const pos$2 = nix.positions(here + "/package.nix", [["prometrix", 15, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 99, 5], ["command", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 98, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 98, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 104, 5], ["longDescription", 105, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["pythonRelaxDeps", 39, 3], ["pythonRemoveDeps", 53, 3], ["build-system", 61, 3], ["dependencies", 65, 3], ["nativeCheckInputs", 82, 3], ["disabledTestPaths", 87, 3], ["pythonImportsCheck", 94, 3], ["passthru", 98, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const krr = nix.arg($, "krr");
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python313Packages, "overrideScope"), (final) => (prev) => ({
-      [nix.POS]: pos$2,
-      prometrix: nix.thunk(() => nix.app(nix.sel(prev, "prometrix", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, pydantic: nix.thunk(() => nix.sel(final, "pydantic_1")) })))),
+      [nix.POS]: $pos[1],
+      prometrix: nix.thunk(() => nix.app(nix.sel(prev, "prometrix", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], pydantic: nix.thunk(() => nix.sel(final, "pydantic_1")) })))),
     })));
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "krr",
       version: "1.28.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "robusta-dev",
           repo: "krr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,14 +79,14 @@ substituteInPlace pyproject.toml \\
       disabledTestPaths: nix.thunk(() => ["tests/test_krr.py", "tests/test_runner.py"]),
       pythonImportsCheck: nix.thunk(() => ["robusta_krr"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: krr, command: "krr version" })))),
+          [nix.POS]: $pos[4],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[3], package: krr, command: "krr version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Prometheus-based Kubernetes resource recommendations",
         longDescription: "Robusta KRR (Kubernetes Resource Recommender) is a CLI tool for optimizing\nresource allocation in Kubernetes clusters. It gathers Pod usage data from\nPrometheus and recommends requests and limits for CPU and memory. This\nreduces costs and improves performance.\n",
         homepage: "https://github.com/robusta-dev/krr",

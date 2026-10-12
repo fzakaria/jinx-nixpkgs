@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5], ["stripRoot", 14, 5]], [["updateScript", 30, 12]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 39, 5], ["sourceProvenance", 40, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontConfigure", 17, 3], ["dontBuild", 18, 3], ["doInstallCheck", 19, 3], ["installPhase", 21, 3], ["passthru", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5], ["stripRoot", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 30, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 39, 5], ["sourceProvenance", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontConfigure", 17, 3], ["dontBuild", 18, 3], ["doInstallCheck", 19, 3], ["installPhase", 21, 3], ["passthru", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "launchnext",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/RoversX/LaunchNext/releases/download/${nix.sel(finalAttrs, "version")}/LaunchNext${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-o52vYFr2j3AtFOpTyZ4jBnPhpfRGjyBXp5ZM4hlXqvU=",
           stripRoot: false,
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -R LaunchNext.app $out/Applications/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Bring Launchpad back in MacOS26+, highly customizable, powerful, free",
         homepage: "https://closex.org/launchnext/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

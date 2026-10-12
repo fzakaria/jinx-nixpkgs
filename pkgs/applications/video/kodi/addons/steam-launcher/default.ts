@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["homepage", 38, 5], ["description", 39, 5], ["longDescription", 40, 5], ["license", 47, 5], ["teams", 48, 5]], [["pname", 12, 3], ["namespace", 13, 3], ["version", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 23, 3], ["postInstall", 29, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildKodiAddon: false, fetchFromGitHub: false, steam: false, which: false, xdotool: false, dos2unix: false, wmctrl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 38, 5], ["description", 39, 5], ["longDescription", 40, 5], ["license", 47, 5], ["teams", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["namespace", 13, 3], ["version", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 23, 3], ["postInstall", 29, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const dos2unix = nix.arg($, "dos2unix");
   const wmctrl = nix.arg($, "wmctrl");
   return nix.app(buildKodiAddon, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "steam-launcher",
       namespace: "script.steam.launcher",
       version: "3.7.11",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
           const repo = nix.thunk(() => nix.add(owner, "-xbmc-repo"));
           const rev = "76d728bb51ad265a28d4945af99c7fa2626df624";
           const sha256 = "sha256-i8plXt+Fu+O42JPo/FJI365IAUCNvWhREy2eZuG44lQ=";
-          return { [nix.POS]: pos$1, owner, repo, rev, sha256 };
+          return { [nix.POS]: $pos[0], owner, repo, rev, sha256 };
         })()))),
       propagatedBuildInputs: nix.thunk(() => [steam, which, xdotool]),
       postInstall: nix.thunk(() => nix.str`substituteInPlace $out/share/kodi/addons/script.steam.launcher/resources/main.py \\
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
 ${dos2unix}/bin/dos2unix $out/share/kodi/addons/script.steam.launcher/resources/scripts/steam-launcher.sh
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://forum.kodi.tv/showthread.php?tid=157499",
         description: "Launch Steam in Big Picture Mode from Kodi",
         longDescription: "This add-on will close/minimise Kodi, launch Steam in Big\nPicture Mode and when Steam BPM is exited (either by quitting\nSteam or returning to the desktop) Kodi will\nrestart/maximise. Running pre/post Steam scripts can be\nconfigured via the addon.\n",

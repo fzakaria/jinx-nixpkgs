@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["pam_u2f", 41, 5]], [["tests", 40, 12]], [["homepage", 45, 5], ["description", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["preConfigure", 28, 3], ["postConfigure", 33, 3], ["passthru", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libfido2: false, pam: false, openssl: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pam_u2f", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 40, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["preConfigure", 28, 3], ["postConfigure", 33, 3], ["passthru", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pam_u2f",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://developers.yubico.com/pam-u2f/Releases/pam_u2f-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-pZknzqOOqNkaaDagTiD8Yp7d5CBLFggvcD9ts3jpxjQ=",
         })))),
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
       preConfigure: "configureFlagsArray+=(\"--with-pam-dir=$out/lib/security\")\n",
       postConfigure: "cat > fuzz/Makefile <<EOF\nall:\ninstall:\nEOF\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, pam_u2f: nix.thunk(() => nix.sel(nixosTests, "pam-u2f")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], pam_u2f: nix.thunk(() => nix.sel(nixosTests, "pam-u2f")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://developers.yubico.com/pam-u2f/",
         description: "PAM module for allowing authentication with a U2F device",
         changelog: nix.thunk(() => nix.str`https://github.com/Yubico/pam-u2f/raw/pam_u2f-${nix.sel(finalAttrs, "version")}/NEWS`),

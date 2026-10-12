@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["sourceRoot", 42, 3], ["postPatch", 45, 3], ["pythonRelaxDeps", 50, 3], ["build-system", 52, 3], ["dependencies", 56, 3], ["pythonImportsCheck", 71, 3], ["nativeCheckInputs", 73, 3], ["enabledTestPaths", 81, 3], ["preCheck", 84, 3], ["__darwinAllowLocalNetworking", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "uv-build": false, attrs: false, connectrpc: false, "dockerfile-parse": false, h2: false, httpx: false, packaging: false, "protobuf-py": false, pyqwest: false, "python-dateutil": false, rich: false, "typing-extensions": false, wcmatch: false, "pytest-asyncio": false, "pytest-timeout": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["sourceRoot", 42, 3], ["postPatch", 45, 3], ["pythonRelaxDeps", 50, 3], ["build-system", 52, 3], ["dependencies", 56, 3], ["pythonImportsCheck", 71, 3], ["nativeCheckInputs", 73, 3], ["enabledTestPaths", 81, 3], ["preCheck", 84, 3], ["__darwinAllowLocalNetworking", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const pytest_timeout = nix.arg($, "pytest-timeout");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "e2b",
       version: "2.51.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "e2b-dev",
           repo: "E2B",
           tag: nix.thunk(() => nix.str`@e2b/python-sdk@${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -r e2b\n",
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cloud environments for AI agents",
         homepage: "https://github.com/e2b-dev/E2B/blob/main/packages/python-sdk",
         changelog: nix.thunk(() => nix.str`https://github.com/e2b-dev/E2B/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

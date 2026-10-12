@@ -2,63 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gitlab.nix", [[["maintainers", 35, 8]], [["systemPackages", 45, 21]], [["127.0.0.1", 47, 26]], [["hosts", 47, 20]], [["memorySize", 51, 24], ["cores", 52, 24], ["useNixStoreImage", 53, 24], ["writableStore", 54, 24]], [["Restart", 56, 47]], [["serviceConfig", 56, 33]], [["Restart", 57, 57]], [["serviceConfig", 57, 43]], [["Restart", 58, 47]], [["serviceConfig", 58, 33]], [["Restart", 59, 55]], [["serviceConfig", 59, 41]], [["BACKUP", 91, 52]], [["environment", 91, 40]], [["gitlab", 56, 26], ["gitlab-workhorse", 57, 26], ["gitaly", 58, 26], ["gitlab-sidekiq", 59, 26], ["gitlab-backup", 91, 26]], [["services", 56, 17]], [["proxyPass", 66, 29]], [["/", 66, 25]], [["locations", 66, 15]], [["proxyPass", 69, 29]], [["/", 69, 25]], [["locations", 69, 15]], [["proxyPass", 72, 29]], [["/", 72, 25]], [["locations", 72, 15]], [["localhost", 65, 13], ["pages.localhost", 68, 13], ["registry.localhost", 71, 13]], [["enable", 62, 11], ["recommendedProxySettings", 63, 11], ["virtualHosts", 64, 11]], [["enable", 77, 26]], [["imap", 85, 23]], [["dovecot_config_version", 83, 13], ["dovecot_storage_version", 84, 13], ["protocols", 85, 13], ["mail_driver", 86, 13], ["mail_path", 87, 13]], [["enable", 80, 11], ["enablePAM", 81, 11], ["settings", 82, 11]], [["enable", 97, 16]], [["pages-domain", 100, 22]], [["enable", 99, 13], ["settings", 100, 13]], [["enabled", 104, 15], ["mailbox", 105, 15], ["address", 106, 15], ["user", 107, 15], ["password", 108, 15], ["host", 109, 15], ["port", 110, 15]], [["incoming_email", 103, 13]], [["secretFile", 114, 13], ["otpFile", 115, 13], ["dbFile", 116, 13], ["jwsFile", 117, 13], ["activeRecordPrimaryKeyFile", 118, 13], ["activeRecordDeterministicKeyFile", 119, 13], ["activeRecordSaltFile", 120, 13]], [["enable", 124, 13], ["certFile", 125, 13], ["keyFile", 126, 13], ["externalAddress", 127, 13], ["externalPort", 128, 13]], [["concurrency", 132, 19]], [["workers", 133, 16]], [["enable", 94, 11], ["databasePasswordFile", 95, 11], ["initialRootPasswordFile", 96, 11], ["smtp", 97, 11], ["pages", 98, 11], ["extraConfig", 102, 11], ["secrets", 113, 11], ["registry", 123, 11], ["sidekiq", 132, 11], ["puma", 133, 11]], [["nginx", 61, 18], ["openssh", 77, 18], ["dovecot2", 79, 18], ["gitlab", 93, 18]], [["imports", 43, 9], ["environment", 45, 9], ["networking", 47, 9], ["virtualisation", 51, 9], ["systemd", 56, 9], ["services", 61, 9]], [["gitlab", 40, 5]], [["username", 143, 11], ["name", 144, 11], ["email", 145, 11], ["password", 146, 11], ["skip_confirmation", 147, 11]], [["username", 153, 11], ["name", 154, 11], ["email", 155, 11], ["password", 156, 11], ["skip_confirmation", 157, 11]], [["id", 163, 11], ["title", 164, 11], ["key", 165, 11]], [["name", 171, 11], ["visibility", 172, 11]], [["branch", 178, 11], ["author_email", 179, 11], ["author_name", 180, 11], ["content", 181, 11], ["commit_message", 182, 11]], [["id", 188, 11], ["target_project_id", 189, 11], ["source_branch", 190, 11], ["target_branch", 191, 11], ["title", 192, 11]], [["title", 198, 11]], [["issue_iid", 204, 11], ["state_event", 205, 11]], [["name", 34, 3], ["meta", 35, 3], ["nodes", 39, 3], ["testScript", 138, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gitlab.nix", [["maintainers", 35, 8]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/gitlab.nix", [["systemPackages", 45, 21]]);
-const pos$3 = nix.positions(here + "/gitlab.nix", [["127.0.0.1", 47, 26]]);
-const pos$4 = nix.positions(here + "/gitlab.nix", [["hosts", 47, 20]]);
-const pos$5 = nix.positions(here + "/gitlab.nix", [["memorySize", 51, 24], ["cores", 52, 24], ["useNixStoreImage", 53, 24], ["writableStore", 54, 24]]);
-const pos$6 = nix.positions(here + "/gitlab.nix", [["Restart", 56, 47]]);
-const pos$7 = nix.positions(here + "/gitlab.nix", [["serviceConfig", 56, 33]]);
-const pos$8 = nix.positions(here + "/gitlab.nix", [["Restart", 57, 57]]);
-const pos$9 = nix.positions(here + "/gitlab.nix", [["serviceConfig", 57, 43]]);
-const pos$10 = nix.positions(here + "/gitlab.nix", [["Restart", 58, 47]]);
-const pos$11 = nix.positions(here + "/gitlab.nix", [["serviceConfig", 58, 33]]);
-const pos$12 = nix.positions(here + "/gitlab.nix", [["Restart", 59, 55]]);
-const pos$13 = nix.positions(here + "/gitlab.nix", [["serviceConfig", 59, 41]]);
-const pos$14 = nix.positions(here + "/gitlab.nix", [["BACKUP", 91, 52]]);
-const pos$15 = nix.positions(here + "/gitlab.nix", [["environment", 91, 40]]);
-const pos$16 = nix.positions(here + "/gitlab.nix", [["gitlab", 56, 26], ["gitlab-workhorse", 57, 26], ["gitaly", 58, 26], ["gitlab-sidekiq", 59, 26], ["gitlab-backup", 91, 26]]);
-const pos$17 = nix.positions(here + "/gitlab.nix", [["services", 56, 17]]);
-const pos$18 = nix.positions(here + "/gitlab.nix", [["proxyPass", 66, 29]]);
-const pos$19 = nix.positions(here + "/gitlab.nix", [["/", 66, 25]]);
-const pos$20 = nix.positions(here + "/gitlab.nix", [["locations", 66, 15]]);
-const pos$21 = nix.positions(here + "/gitlab.nix", [["proxyPass", 69, 29]]);
-const pos$22 = nix.positions(here + "/gitlab.nix", [["/", 69, 25]]);
-const pos$23 = nix.positions(here + "/gitlab.nix", [["locations", 69, 15]]);
-const pos$24 = nix.positions(here + "/gitlab.nix", [["proxyPass", 72, 29]]);
-const pos$25 = nix.positions(here + "/gitlab.nix", [["/", 72, 25]]);
-const pos$26 = nix.positions(here + "/gitlab.nix", [["locations", 72, 15]]);
-const pos$27 = nix.positions(here + "/gitlab.nix", [["localhost", 65, 13], ["pages.localhost", 68, 13], ["registry.localhost", 71, 13]]);
-const pos$28 = nix.positions(here + "/gitlab.nix", [["enable", 62, 11], ["recommendedProxySettings", 63, 11], ["virtualHosts", 64, 11]]);
-const pos$29 = nix.positions(here + "/gitlab.nix", [["enable", 77, 26]]);
-const pos$30 = nix.positions(here + "/gitlab.nix", [["imap", 85, 23]]);
-const pos$31 = nix.positions(here + "/gitlab.nix", [["dovecot_config_version", 83, 13], ["dovecot_storage_version", 84, 13], ["protocols", 85, 13], ["mail_driver", 86, 13], ["mail_path", 87, 13]]);
-const pos$32 = nix.positions(here + "/gitlab.nix", [["enable", 80, 11], ["enablePAM", 81, 11], ["settings", 82, 11]]);
-const pos$33 = nix.positions(here + "/gitlab.nix", [["enable", 97, 16]]);
-const pos$34 = nix.positions(here + "/gitlab.nix", [["pages-domain", 100, 22]]);
-const pos$35 = nix.positions(here + "/gitlab.nix", [["enable", 99, 13], ["settings", 100, 13]]);
-const pos$36 = nix.positions(here + "/gitlab.nix", [["enabled", 104, 15], ["mailbox", 105, 15], ["address", 106, 15], ["user", 107, 15], ["password", 108, 15], ["host", 109, 15], ["port", 110, 15]]);
-const pos$37 = nix.positions(here + "/gitlab.nix", [["incoming_email", 103, 13]]);
-const pos$38 = nix.positions(here + "/gitlab.nix", [["secretFile", 114, 13], ["otpFile", 115, 13], ["dbFile", 116, 13], ["jwsFile", 117, 13], ["activeRecordPrimaryKeyFile", 118, 13], ["activeRecordDeterministicKeyFile", 119, 13], ["activeRecordSaltFile", 120, 13]]);
-const pos$39 = nix.positions(here + "/gitlab.nix", [["enable", 124, 13], ["certFile", 125, 13], ["keyFile", 126, 13], ["externalAddress", 127, 13], ["externalPort", 128, 13]]);
-const pos$40 = nix.positions(here + "/gitlab.nix", [["concurrency", 132, 19]]);
-const pos$41 = nix.positions(here + "/gitlab.nix", [["workers", 133, 16]]);
-const pos$42 = nix.positions(here + "/gitlab.nix", [["enable", 94, 11], ["databasePasswordFile", 95, 11], ["initialRootPasswordFile", 96, 11], ["smtp", 97, 11], ["pages", 98, 11], ["extraConfig", 102, 11], ["secrets", 113, 11], ["registry", 123, 11], ["sidekiq", 132, 11], ["puma", 133, 11]]);
-const pos$43 = nix.positions(here + "/gitlab.nix", [["nginx", 61, 18], ["openssh", 77, 18], ["dovecot2", 79, 18], ["gitlab", 93, 18]]);
-const pos$44 = nix.positions(here + "/gitlab.nix", [["imports", 43, 9], ["environment", 45, 9], ["networking", 47, 9], ["virtualisation", 51, 9], ["systemd", 56, 9], ["services", 61, 9]]);
-const pos$45 = nix.positions(here + "/gitlab.nix", [["gitlab", 40, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$46 = nix.positions(here + "/gitlab.nix", [["username", 143, 11], ["name", 144, 11], ["email", 145, 11], ["password", 146, 11], ["skip_confirmation", 147, 11]]);
-const pos$47 = nix.positions(here + "/gitlab.nix", [["username", 153, 11], ["name", 154, 11], ["email", 155, 11], ["password", 156, 11], ["skip_confirmation", 157, 11]]);
-const pos$48 = nix.positions(here + "/gitlab.nix", [["id", 163, 11], ["title", 164, 11], ["key", 165, 11]]);
-const pos$49 = nix.positions(here + "/gitlab.nix", [["name", 171, 11], ["visibility", 172, 11]]);
-const pos$50 = nix.positions(here + "/gitlab.nix", [["branch", 178, 11], ["author_email", 179, 11], ["author_name", 180, 11], ["content", 181, 11], ["commit_message", 182, 11]]);
-const pos$51 = nix.positions(here + "/gitlab.nix", [["id", 188, 11], ["target_project_id", 189, 11], ["source_branch", 190, 11], ["target_branch", 191, 11], ["title", 192, 11]]);
-const pos$52 = nix.positions(here + "/gitlab.nix", [["title", 198, 11]]);
-const pos$53 = nix.positions(here + "/gitlab.nix", [["issue_iid", 204, 11], ["state_event", 205, 11]]);
-const pos$54 = nix.positions(here + "/gitlab.nix", [["name", 34, 3], ["meta", 35, 3], ["nodes", 39, 3], ["testScript", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -82,145 +29,145 @@ export default nix.lambda((args) => (() => {
   const bobProjectId = "2";
   const bobPAT = "bob-PAT-012345678901";
   return {
-    [nix.POS]: pos$54,
+    [nix.POS]: $pos[53],
     name: "gitlab",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "yayayayaka"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$45,
+      [nix.POS]: $pos[44],
       gitlab: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$44,
+          [nix.POS]: $pos[43],
           imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "git"))];
             })()),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             hosts: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               "127.0.0.1": nix.thunk(() => ["registry.localhost", "pages.localhost"]),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             memorySize: 6144n,
             cores: 4n,
             useNixStoreImage: true,
             writableStore: false,
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               gitlab: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "no")),
                 })),
               })),
               "gitlab-workhorse": nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "no")),
                 })),
               })),
               gitaly: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "no")),
                 })),
               })),
               "gitlab-sidekiq": nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "no")),
                 })),
               })),
               "gitlab-backup": nix.thunk(() => ({
-                [nix.POS]: pos$15,
-                environment: nix.thunk(() => ({ [nix.POS]: pos$14, BACKUP: "dump" })),
+                [nix.POS]: $pos[14],
+                environment: nix.thunk(() => ({ [nix.POS]: $pos[13], BACKUP: "dump" })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$43,
+            [nix.POS]: $pos[42],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               enable: true,
               recommendedProxySettings: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 localhost: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     "/": nix.thunk(() => ({
-                      [nix.POS]: pos$18,
+                      [nix.POS]: $pos[17],
                       proxyPass: "http://unix:/run/gitlab/gitlab-workhorse.socket",
                     })),
                   })),
                 })),
                 "pages.localhost": nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
-                    "/": nix.thunk(() => ({ [nix.POS]: pos$21, proxyPass: "http://localhost:8090" })),
+                    [nix.POS]: $pos[21],
+                    "/": nix.thunk(() => ({ [nix.POS]: $pos[20], proxyPass: "http://localhost:8090" })),
                   })),
                 })),
                 "registry.localhost": nix.thunk(() => ({
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$25,
-                    "/": nix.thunk(() => ({ [nix.POS]: pos$24, proxyPass: "http://localhost:4567" })),
+                    [nix.POS]: $pos[24],
+                    "/": nix.thunk(() => ({ [nix.POS]: $pos[23], proxyPass: "http://localhost:4567" })),
                   })),
                 })),
               })),
             })),
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$29, enable: true })),
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[28], enable: true })),
             dovecot2: nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               enable: true,
               enablePAM: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 dovecot_config_version: "2.4.3",
                 dovecot_storage_version: nix.thunk(() => nix.sel(config, "services", "dovecot2", "package", "version")),
-                protocols: nix.thunk(() => ({ [nix.POS]: pos$30, imap: true })),
+                protocols: nix.thunk(() => ({ [nix.POS]: $pos[29], imap: true })),
                 mail_driver: "maildir",
                 mail_path: "~/mail",
               })),
             })),
             gitlab: nix.thunk(() => ({
-              [nix.POS]: pos$42,
+              [nix.POS]: $pos[41],
               enable: true,
               databasePasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "dbPassword", "xo0daiF4")),
               initialRootPasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "rootPassword", initialRootPassword)),
-              smtp: nix.thunk(() => ({ [nix.POS]: pos$33, enable: true })),
+              smtp: nix.thunk(() => ({ [nix.POS]: $pos[32], enable: true })),
               pages: nix.thunk(() => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 enable: true,
-                settings: nix.thunk(() => ({ [nix.POS]: pos$34, "pages-domain": "pages.localhost" })),
+                settings: nix.thunk(() => ({ [nix.POS]: $pos[33], "pages-domain": "pages.localhost" })),
               })),
               extraConfig: nix.thunk(() => ({
-                [nix.POS]: pos$37,
+                [nix.POS]: $pos[36],
                 incoming_email: nix.thunk(() => ({
-                  [nix.POS]: pos$36,
+                  [nix.POS]: $pos[35],
                   enabled: true,
                   mailbox: "inbox",
                   address: "alice@localhost",
@@ -231,7 +178,7 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               secrets: nix.thunk(() => ({
-                [nix.POS]: pos$38,
+                [nix.POS]: $pos[37],
                 secretFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secret", "Aig5zaic")),
                 otpFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "otpsecret", "Riew9mue")),
                 dbFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "dbsecret", "we2quaeZ")),
@@ -241,15 +188,15 @@ export default nix.lambda((args) => (() => {
                 activeRecordSaltFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "arsalt", "QkgR9CfFU3MXEWGqa7LbP24AntK5ZeYw")),
               })),
               registry: nix.thunk(() => ({
-                [nix.POS]: pos$39,
+                [nix.POS]: $pos[38],
                 enable: true,
                 certFile: "/var/lib/gitlab/registry_auth_cert",
                 keyFile: "/var/lib/gitlab/registry_auth_key",
                 externalAddress: "registry.localhost",
                 externalPort: 443n,
               })),
-              sidekiq: nix.thunk(() => ({ [nix.POS]: pos$40, concurrency: 1n })),
-              puma: nix.thunk(() => ({ [nix.POS]: pos$41, workers: 2n })),
+              sidekiq: nix.thunk(() => ({ [nix.POS]: $pos[39], concurrency: 1n })),
+              puma: nix.thunk(() => ({ [nix.POS]: $pos[40], workers: 2n })),
             })),
           })),
         };
@@ -264,7 +211,7 @@ export default nix.lambda((args) => (() => {
             const email = "alice@localhost";
             const password = alicePassword;
             const skip_confirmation = true;
-            return { [nix.POS]: pos$46, username, name, email, password, skip_confirmation };
+            return { [nix.POS]: $pos[45], username, name, email, password, skip_confirmation };
           })())))));
       const createUserBob = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "create-user-bob.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => (() => {
             const username = bobUsername;
@@ -272,17 +219,17 @@ export default nix.lambda((args) => (() => {
             const email = "bob@localhost";
             const password = bobPassword;
             const skip_confirmation = true;
-            return { [nix.POS]: pos$47, username, name, email, password, skip_confirmation };
+            return { [nix.POS]: $pos[46], username, name, email, password, skip_confirmation };
           })())))));
       const aliceAddSSHKey = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "alice-add-ssh-key.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-            [nix.POS]: pos$48,
+            [nix.POS]: $pos[47],
             id: aliceUserId,
             title: "snakeoil@nixos",
             key: snakeOilPublicKey,
           }))))));
-      const createProjectAlice = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "create-project-alice.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$49, name: aliceProjectName, visibility: "public" }))))));
+      const createProjectAlice = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "create-project-alice.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[48], name: aliceProjectName, visibility: "public" }))))));
       const putFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "put-file.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-            [nix.POS]: pos$50,
+            [nix.POS]: $pos[49],
             branch: "master",
             author_email: "author@example.com",
             author_name: "Firstname Lastname",
@@ -290,15 +237,15 @@ export default nix.lambda((args) => (() => {
             commit_message: "create a new file",
           }))))));
       const mergeRequest = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "merge-request.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-            [nix.POS]: pos$51,
+            [nix.POS]: $pos[50],
             id: bobProjectId,
             target_project_id: aliceProjectId,
             source_branch: "master",
             target_branch: "master",
             title: "Add some other file",
           }))))));
-      const newIssue = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "new-issue.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$52, title: "useful issue title" }))))));
-      const closeIssue = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "close-issue.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$53, issue_iid: 1n, state_event: "close" }))))));
+      const newIssue = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "new-issue.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[51], title: "useful issue title" }))))));
+      const closeIssue = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "close-issue.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[52], issue_iid: 1n, state_event: "close" }))))));
       const waitForServices = nix.thunk(() => nix.str`gitlab.wait_for_unit("gitaly.service")
 gitlab.wait_for_unit("gitlab-workhorse.service")
 gitlab.wait_for_unit("gitlab-mailroom.service")

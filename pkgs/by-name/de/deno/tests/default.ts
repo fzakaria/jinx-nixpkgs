@@ -2,16 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["timeout", 22, 14]], [["nativeBuildInputs", 21, 9], ["meta", 22, 9]], [["dir", 54, 5], ["file", 55, 5], ["expected", 56, 5]], [["expected", 59, 5]], [["expected", 62, 5]], [["args", 65, 5], ["expected", 66, 5]], [["expectFailure", 69, 5], ["dir", 70, 5]], [["basic", 53, 3], ["import-json", 58, 3], ["import-ts", 61, 3], ["read-file", 64, 3], ["fail-read-file", 68, 3]]]);
 const formals$1 = { args: { deno: false, runCommand: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { args: true, dir: true, file: true, expected: true, expectFailure: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["timeout", 22, 14]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 21, 9], ["meta", 22, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["dir", 54, 5], ["file", 55, 5], ["expected", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["expected", 59, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["expected", 62, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["args", 65, 5], ["expected", 66, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["expectFailure", 69, 5], ["dir", 70, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["basic", 53, 3], ["import-json", 58, 3], ["import-ts", 61, 3], ["read-file", 64, 3], ["fail-read-file", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,9 +20,9 @@ export default nix.lambda((args) => (() => {
     const expectFailure = nix.argOr($_1, "expectFailure", () => false);
     const command = nix.thunk(() => nix.str`deno run ${args_2} ${dir}/${file}`);
     return nix.app(runCommand, nix.thunk(() => nix.str`deno-test-${name}`), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         nativeBuildInputs: nix.thunk(() => [deno]),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 60n })),
       })), nix.thunk(() => nix.str`HOME=$(mktemp -d)
 if output=$(${command} 2>&1); then
   if [[ $output =~ '${expected}' ]]; then
@@ -58,17 +51,17 @@ fi
 `));
   })(), formals$2);
   return nix.app(nix.sel(lib, "mapAttrs"), testDenoRun, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       basic: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         dir: nix.path(here, "./."),
         file: "basic.ts",
         expected: "2",
       })),
-      "import-json": nix.thunk(() => ({ [nix.POS]: pos$4, expected: "hello from JSON" })),
-      "import-ts": nix.thunk(() => ({ [nix.POS]: pos$5, expected: "hello from ts" })),
-      "read-file": nix.thunk(() => ({ [nix.POS]: pos$6, args: "--allow-read", expected: "hello from a file" })),
-      "fail-read-file": nix.thunk(() => ({ [nix.POS]: pos$7, expectFailure: true, dir: nix.path(here, "./read-file") })),
+      "import-json": nix.thunk(() => ({ [nix.POS]: $pos[3], expected: "hello from JSON" })),
+      "import-ts": nix.thunk(() => ({ [nix.POS]: $pos[4], expected: "hello from ts" })),
+      "read-file": nix.thunk(() => ({ [nix.POS]: $pos[5], args: "--allow-read", expected: "hello from a file" })),
+      "fail-read-file": nix.thunk(() => ({ [nix.POS]: $pos[6], expectFailure: true, dir: nix.path(here, "./read-file") })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

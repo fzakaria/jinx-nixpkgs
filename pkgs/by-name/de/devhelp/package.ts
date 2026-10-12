@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["packageName", 79, 7]], [["updateScript", 78, 5]], [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["teams", 89, 5], ["platforms", 90, 5]], [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 50, 3], ["mesonFlags", 58, 3], ["doCheck", 62, 3], ["preFixup", 64, 3], ["postFixup", 72, 3], ["passthru", 77, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, gnome: false, "adwaita-icon-theme": false, gtk3: false, wrapGAppsHook3: false, glib: false, "gobject-introspection": false, "gi-docgen": false, webkitgtk_4_1: false, gettext: false, itstool: false, "gsettings-desktop-schemas": false, "shared-mime-info": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 79, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["teams", 89, 5], ["platforms", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 50, 3], ["mesonFlags", 58, 3], ["doCheck", 62, 3], ["preFixup", 64, 3], ["postFixup", 72, 3], ["passthru", 77, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const shared_mime_info = nix.arg($, "shared-mime-info");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "devhelp",
       version: "43.0",
       outputs: nix.thunk(() => ["out", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/devhelp/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/devhelp-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Y87u/QU5LgIESIHvHs1yQpNVPaVzW378CCstE/6F3QQ=",
         })))),
@@ -62,11 +58,11 @@ export default nix.lambda((args) => (() => {
 `),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput share/doc/devhelp-3 \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "devhelp" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "devhelp" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "API documentation browser for GNOME",
         mainProgram: "devhelp",
         homepage: "https://apps.gnome.org/Devhelp/",

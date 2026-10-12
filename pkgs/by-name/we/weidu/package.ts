@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 71, 5], ["mainProgram", 72, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 37, 3], ["buildFlags", 45, 3], ["installPhase", 51, 3], ["doInstallCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, versionCheckHook: false, elkhound: false, "ocaml-ng": false, perl: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 71, 5], ["mainProgram", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 37, 3], ["buildFlags", 45, 3], ["installPhase", 51, 3], ["doInstallCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const ocaml$ = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_4_14_unsafe_string", "ocaml"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "weidu",
       version: "251",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "WeiDUorg",
           repo: "weidu",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}.00`),
@@ -39,7 +37,7 @@ mkdir -p obj/{.depend,x86_LINUX}
       installPhase: "runHook preInstall\n\nfor b in tolower weidu weinstall; do\n  install -Dm555 $b.asm.exe $out/bin/$b\ndone\n\ninstall -Dm444 -t $out/share/doc/weidu README* COPYING\n\nrunHook postInstall\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "InfinityEngine Modding Engine",
         homepage: "https://weidu.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

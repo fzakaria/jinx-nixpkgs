@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]], [["license", 34, 10]], [["url", 31, 5], ["name", 32, 5], ["hash", 33, 5], ["meta", 34, 5]], [["type", 60, 7], ["name", 61, 7], ["desktopName", 62, 7], ["comment", 63, 7], ["exec", 64, 7], ["icon", 65, 7], ["terminal", 66, 7], ["categories", 67, 7]], [["description", 89, 5], ["longDescription", 92, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["dataZip", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["cmakeDir", 51, 3], ["cmakeFlags", 53, 3], ["desktopItems", 58, 3], ["installPhase", 71, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchurl: false, cmake: false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false, faudio: false, physfs: false, SDL2: false, "tinyxml-2": false, imagemagick: false, makeAndPlay: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 34, 10]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 31, 5], ["name", 32, 5], ["hash", 33, 5], ["meta", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["type", 60, 7], ["name", 61, 7], ["desktopName", 62, 7], ["comment", 63, 7], ["exec", 64, 7], ["icon", 65, 7], ["terminal", 66, 7], ["categories", 67, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 89, 5], ["longDescription", 92, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["dataZip", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["cmakeDir", 51, 3], ["cmakeFlags", 53, 3], ["desktopItems", 58, 3], ["installPhase", 71, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vvvvvv";
       const version = "2.4.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TerryCavanagh",
           repo: "VVVVVV",
           rev: version,
@@ -38,12 +33,12 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         }))));
       const dataZip = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://thelettervsixtim.es/makeandplay/data.zip",
           name: "data.zip",
           hash: "sha256-x2eAlZT2Ry2p9WE252ZX44ZA1YQWSkYRIlCsYpPswOo=",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
           })),
         }))));
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => nix.concat(["-DBUNDLE_DEPENDENCIES=OFF"], nix.app(nix.sel(lib, "optional"), makeAndPlay, "-DMAKEANDPLAY=ON")));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             type: "Application",
             name: "VVVVVV",
             desktopName: "VVVVVV",
@@ -80,7 +75,7 @@ wrapProgram $out/bin/vvvvvv \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: nix.thunk(() => nix.add("A retro-styled platform game", nix.app(nix.sel(lib, "optionalString"), makeAndPlay, " (redistributable, without original levels)"))),
         longDescription: nix.thunk(() => nix.add("VVVVVV is a platform game all about exploring one simple mechanical\nidea - what if you reversed gravity instead of jumping?\n", nix.app(nix.sel(lib, "optionalString"), makeAndPlay, "(Redistributable version, doesn't include the original levels.)\n"))),
         homepage: "https://thelettervsixtim.es",
@@ -90,7 +85,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

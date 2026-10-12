@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["stripRoot", 16, 5], ["hash", 17, 5]], [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 20, 3], ["postPatch", 25, 3], ["buildInputs", 29, 3], ["preBuild", 35, 3], ["makeFlags", 39, 3], ["installPhase", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, libpng: false, zlib: false, zopfli: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["stripRoot", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 20, 3], ["postPatch", 25, 3], ["buildInputs", 29, 3], ["preBuild", 35, 3], ["makeFlags", 39, 3], ["installPhase", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zopfli = nix.arg($, "zopfli");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "apngopt",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/apng/apngopt-${nix.sel(finalAttrs, "version")}-src.zip`),
           stripRoot: false,
           hash: "sha256-MAqth5Yt7+SabY6iEgSFcaBmuHvA0ZkNdXSgvhKao1Y=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}c++`)]),
       installPhase: "runHook preInstall\ninstall -Dm755 apngopt $out/bin/apngopt\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://sourceforge.net/projects/apng/",
         description: "Optimizes APNG animations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

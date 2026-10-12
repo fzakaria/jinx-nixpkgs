@@ -2,51 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lldap.nix", [[["verbose", 15, 11], ["ldap_base_dn", 16, 11], ["ldap_user_pass", 18, 11]], [["enable", 12, 9], ["settings", 14, 9]], [["lldap", 11, 16]], [["systemPackages", 21, 19]], [["ldap_user_pass", 28, 15], ["ldap_user_pass_file", 29, 15], ["force_ldap_user_pass_reset", 30, 15]], [["settings", 27, 28]], [["lldap", 27, 22]], [["services", 27, 13]], [["configuration", 24, 32]], [["ldap_user_pass", 38, 15], ["ldap_user_pass_file", 39, 15], ["force_ldap_user_pass_reset", 40, 15]], [["settings", 37, 28]], [["lldap", 37, 22]], [["services", 37, 13]], [["configuration", 34, 29]], [["differentAdminPassword", 24, 9], ["changeAdminPassword", 34, 9]], [["services", 11, 7], ["environment", 21, 7], ["specialisation", 23, 7]], [["machine", 8, 9]], [["name", 6, 3], ["nodes", 8, 3], ["testScript", 46, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lldap.nix", [["verbose", 15, 11], ["ldap_base_dn", 16, 11], ["ldap_user_pass", 18, 11]]);
-const pos$2 = nix.positions(here + "/lldap.nix", [["enable", 12, 9], ["settings", 14, 9]]);
-const pos$3 = nix.positions(here + "/lldap.nix", [["lldap", 11, 16]]);
-const pos$4 = nix.positions(here + "/lldap.nix", [["systemPackages", 21, 19]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$5 = nix.positions(here + "/lldap.nix", [["ldap_user_pass", 28, 15], ["ldap_user_pass_file", 29, 15], ["force_ldap_user_pass_reset", 30, 15]]);
-const pos$6 = nix.positions(here + "/lldap.nix", [["settings", 27, 28]]);
-const pos$7 = nix.positions(here + "/lldap.nix", [["lldap", 27, 22]]);
-const pos$8 = nix.positions(here + "/lldap.nix", [["services", 27, 13]]);
-const pos$9 = nix.positions(here + "/lldap.nix", [["configuration", 24, 32]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$10 = nix.positions(here + "/lldap.nix", [["ldap_user_pass", 38, 15], ["ldap_user_pass_file", 39, 15], ["force_ldap_user_pass_reset", 40, 15]]);
-const pos$11 = nix.positions(here + "/lldap.nix", [["settings", 37, 28]]);
-const pos$12 = nix.positions(here + "/lldap.nix", [["lldap", 37, 22]]);
-const pos$13 = nix.positions(here + "/lldap.nix", [["services", 37, 13]]);
-const pos$14 = nix.positions(here + "/lldap.nix", [["configuration", 34, 29]]);
-const pos$15 = nix.positions(here + "/lldap.nix", [["differentAdminPassword", 24, 9], ["changeAdminPassword", 34, 9]]);
-const pos$16 = nix.positions(here + "/lldap.nix", [["services", 11, 7], ["environment", 21, 7], ["specialisation", 23, 7]]);
-const pos$17 = nix.positions(here + "/lldap.nix", [["machine", 8, 9]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$18 = nix.positions(here + "/lldap.nix", [["name", 6, 3], ["nodes", 8, 3], ["testScript", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const adminPassword = "mySecretPassword";
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "lldap",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             lldap: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 verbose: true,
                 ldap_base_dn: "dc=example,dc=com",
                 ldap_user_pass: "password",
@@ -54,23 +37,23 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openldap"))]),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             differentAdminPassword: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$3);
                 return {
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     lldap: nix.thunk(() => ({
-                      [nix.POS]: pos$6,
+                      [nix.POS]: $pos[5],
                       settings: nix.thunk(() => ({
-                        [nix.POS]: pos$5,
+                        [nix.POS]: $pos[4],
                         ldap_user_pass: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), null)),
                         ldap_user_pass_file: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "adminPasswordFile", adminPassword)))))),
                         force_ldap_user_pass_reset: "always",
@@ -81,17 +64,17 @@ export default nix.lambda((args) => (() => {
               })(), formals$3),
             })),
             changeAdminPassword: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$4);
                 return {
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     lldap: nix.thunk(() => ({
-                      [nix.POS]: pos$11,
+                      [nix.POS]: $pos[10],
                       settings: nix.thunk(() => ({
-                        [nix.POS]: pos$10,
+                        [nix.POS]: $pos[9],
                         ldap_user_pass: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), null)),
                         ldap_user_pass_file: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "adminPasswordFile", "password")))),
                         force_ldap_user_pass_reset: false,

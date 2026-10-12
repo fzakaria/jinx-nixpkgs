@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 60, 5], ["maintainers", 61, 5]], [["pname", 29, 3], ["pyproject", 30, 3], ["version", 32, 22], ["src", 32, 30], ["buildInputs", 34, 3], ["postUnpack", 36, 3], ["postPatch", 46, 3], ["nativeCheckInputs", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, llvmPackages: false, setuptools: false, writeText: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 60, 5], ["maintainers", 61, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["pyproject", 30, 3], ["version", 32, 22], ["src", 32, 30], ["buildInputs", 34, 3], ["postUnpack", 36, 3], ["postPatch", 46, 3], ["nativeCheckInputs", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +23,7 @@ version = ${nix.sel(libclang, "version")}
 packages = clang
 `)));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "clang",
       pyproject: true,
       version: nix.thunk(() => nix.attr(libclang, "version")),
@@ -40,7 +39,7 @@ echo 'Config.set_library_path("${nix.app(nix.sel(lib, "getLib"), libclang)}/lib"
 `),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => nix.update(nix.sel(libclang, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python bindings for the C language family frontend for LLVM",
         maintainers: [],
       })),

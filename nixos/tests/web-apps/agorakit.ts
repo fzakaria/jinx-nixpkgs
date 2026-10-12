@@ -2,46 +2,39 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/agorakit.nix", [[["maintainers", 5, 8]], [["createLocally", 17, 20]], [["driver", 19, 13], ["encryption", 20, 13], ["host", 21, 13], ["port", 22, 13], ["fromName", 23, 13], ["from", 24, 13], ["user", 25, 13], ["passwordFile", 26, 13]], [["enable", 12, 11], ["appKeyFile", 13, 11], ["hostName", 16, 11], ["database", 17, 11], ["mail", 18, 11]], [["agorakit", 11, 18]], [["services", 11, 9]], [["agorakit", 8, 5]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 32, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/agorakit.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/agorakit.nix", [["createLocally", 17, 20]]);
-const pos$3 = nix.positions(here + "/agorakit.nix", [["driver", 19, 13], ["encryption", 20, 13], ["host", 21, 13], ["port", 22, 13], ["fromName", 23, 13], ["from", 24, 13], ["user", 25, 13], ["passwordFile", 26, 13]]);
-const pos$4 = nix.positions(here + "/agorakit.nix", [["enable", 12, 11], ["appKeyFile", 13, 11], ["hostName", 16, 11], ["database", 17, 11], ["mail", 18, 11]]);
-const pos$5 = nix.positions(here + "/agorakit.nix", [["agorakit", 11, 18]]);
-const pos$6 = nix.positions(here + "/agorakit.nix", [["services", 11, 9]]);
-const pos$7 = nix.positions(here + "/agorakit.nix", [["agorakit", 8, 5]]);
-const pos$8 = nix.positions(here + "/agorakit.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "agorakit",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "julienmalka"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       agorakit: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             agorakit: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               appKeyFile: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "agorakit-app-key", "uTqGUN5GUmUrh/zSAYmhyzRk62pnpXICyXv9eeITI8k=")))),
               hostName: "localhost",
-              database: nix.thunk(() => ({ [nix.POS]: pos$2, createLocally: true })),
+              database: nix.thunk(() => ({ [nix.POS]: $pos[1], createLocally: true })),
               mail: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 driver: "smtp",
                 encryption: "tls",
                 host: "localhost",

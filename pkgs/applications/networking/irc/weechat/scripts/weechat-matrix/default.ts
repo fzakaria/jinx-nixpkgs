@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["url", 44, 7], ["hash", 45, 7]], [["url", 49, 7], ["hash", 50, 7], ["includes", 51, 7]], [["withVodozemac", 63, 28]], [["scripts", 68, 12]], [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5]], [["pname", 31, 3], ["version", 32, 11], ["src", 34, 3], ["patches", 41, 3], ["propagatedBuildInputs", 55, 3], ["passthru", 68, 3], ["dontBuild", 70, 3], ["doCheck", 71, 3], ["pyproject", 73, 3], ["installPhase", 75, 3], ["dontPatchShebangs", 93, 3], ["postFixup", 94, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, python: false, fetchFromGitHub: false, fetchpatch: false, pyopenssl: false, webcolors: false, future: false, atomicwrites: false, attrs: false, logbook: false, pygments: false, "matrix-nio": false, aiohttp: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 49, 7], ["hash", 50, 7], ["includes", 51, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["withVodozemac", 63, 28]]);
-const pos$5 = nix.positions(here + "/default.nix", [["scripts", 68, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 11], ["src", 34, 3], ["patches", 41, 3], ["propagatedBuildInputs", 55, 3], ["passthru", 68, 3], ["dontBuild", 70, 3], ["doCheck", 71, 3], ["pyproject", 73, 3], ["installPhase", 75, 3], ["dontPatchShebangs", 93, 3], ["postFixup", 94, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +28,11 @@ export default nix.lambda((args) => (() => {
     })()));
   const version = "0.3.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "weechat-matrix",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "poljar",
           repo: "weechat-matrix",
           rev: version,
@@ -46,12 +40,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://patch-diff.githubusercontent.com/raw/poljar/weechat-matrix/pull/309.patch",
             hash: "sha256-Grdht+TOFvCYRpL7uhPivqL7YzLoNVF3iQNHgbv1Te0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/poljar/weechat-matrix/commit/feae9fda26ea9de98da9cd6733980a203115537e.patch",
             hash: "sha256-MAfxJ85dqz5PNwp/GJdHA2VvXVdWh+Ayx5g0oHiw9rs=",
             includes: nix.thunk(() => ["matrix/config.py"]),
@@ -65,11 +59,11 @@ export default nix.lambda((args) => (() => {
         attrs,
         logbook,
         pygments,
-        nix.thunk(() => nix.app(nix.sel(matrix_nio, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, withVodozemac: true })))),
+        nix.thunk(() => nix.app(nix.sel(matrix_nio, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], withVodozemac: true })))),
         aiohttp,
         requests,
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, scripts: nix.thunk(() => ["matrix.py"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], scripts: nix.thunk(() => ["matrix.py"]) })),
       dontBuild: true,
       doCheck: false,
       pyproject: false,
@@ -96,7 +90,7 @@ substituteInPlace $out/${nix.sel(python, "sitePackages")}/matrix/server.py --rep
 substituteInPlace $out/${nix.sel(python, "sitePackages")}/matrix/uploads.py --replace-fail \\"matrix_upload\\" \\"$out/bin/matrix_upload\\"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Python plugin for Weechat that lets Weechat communicate over the Matrix protocol",
         homepage: "https://github.com/poljar/weechat-matrix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

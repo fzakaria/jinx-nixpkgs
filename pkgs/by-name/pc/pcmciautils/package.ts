@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["homepage", 69, 5], ["longDescription", 70, 5], ["license", 75, 5], ["platforms", 76, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 35, 3], ["doInstallCheck", 39, 3], ["patchPhase", 41, 3], ["makeFlags", 55, 3], ["installFlags", 56, 3], ["postInstall", 60, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, fetchurl: false, bison: false, flex: false, sysfsutils: false, kmod: false, udev: false, udevCheckHook: false, firmware: true, configOpts: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["longDescription", 70, 5], ["license", 75, 5], ["platforms", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 35, 3], ["doInstallCheck", 39, 3], ["patchPhase", 41, 3], ["makeFlags", 55, 3], ["installFlags", 56, 3], ["postInstall", 60, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const firmware = nix.argOr($, "firmware", () => nix.selOr(config, () => nix.selOr(config, () => [], "pcmciaUtils", "firmware"), "pcmcia-utils", "firmware"));
   const configOpts = nix.argOr($, "configOpts", () => nix.selOr(config, () => nix.selOr(config, () => null, "pcmciaUtils", "config"), "pcmcia-utils", "config"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pcmciautils",
       version: "018",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://kernel.org/pub/linux/utils/kernel/pcmcia/pcmciautils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0sfm3w2n73kl5w7gb1m6q8gy5k4rgwvzz79n6yhs9w3sag3ix8sk",
         })))),
@@ -55,7 +53,7 @@ sed -i "
 done;
 `, firmware)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.kernel.org/pub/linux/utils/kernel/pcmcia/",
         longDescription: "\n      PCMCIAutils contains the initialization tools necessary to allow\n      the PCMCIA subsystem to behave (almost) as every other\n      hotpluggable bus system.\n    ",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

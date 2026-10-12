@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 16, 17]], [["hash", 17, 17]], [["hash", 18, 17]], [["0.4", 16, 11], ["0.5", 17, 11], ["0.6", 18, 11]], [["case", 26, 9], ["out", 27, 9]], [["case", 30, 9], ["out", 31, 9]], [["description", 45, 5], ["longDescription", 46, 5], ["maintainers", 52, 5], ["license", 53, 5], ["platforms", 54, 5]], [["pname", 13, 3], ["repo", 14, 3], ["release", 16, 3], ["releaseRev", 19, 3], ["version", 21, 11], ["defaultVersion", 22, 3], ["propagatedBuildInputs", 35, 3], ["useDune", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, "mathcomp-ssreflect": false, "mathcomp-algebra": false, "mathcomp-fingroup": false, paramcoq: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 16, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 17, 17]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 18, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["0.4", 16, 11], ["0.5", 17, 11], ["0.6", 18, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["case", 26, 9], ["out", 27, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["case", 30, 9], ["out", 31, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 45, 5], ["longDescription", 46, 5], ["maintainers", 52, 5], ["license", 53, 5], ["platforms", 54, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["repo", 14, 3], ["release", 16, 3], ["releaseRev", 19, 3], ["version", 21, 11], ["defaultVersion", 22, 3], ["propagatedBuildInputs", 35, 3], ["useDune", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const paramcoq = nix.arg($, "paramcoq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "addition-chains",
       repo: "hydra-battles",
       release: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "0.4": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256:1f7pc4w3kir4c9p0fjx5l77401bx12y72nmqxrqs3qqd3iynvqlp",
         })),
         "0.5": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256:121pcbn6v59l0c165ha9n00whbddpy11npx2y9cn7g879sfk2nqk",
         })),
         "0.6": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256:1dri4sisa7mhclf8w4kw7ixs5zxm8xyjr034r1377p96rdk3jj0j",
         })),
       })),
@@ -47,12 +40,12 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.13", "8.18")),
               out: "0.6",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.11", "8.12")),
               out: "0.4",
             })),
@@ -61,7 +54,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [mathcomp_ssreflect, mathcomp_algebra, mathcomp_fingroup, paramcoq]),
       useDune: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Exponentiation algorithms following addition chains",
         longDescription: "Addition chains are algorithms for computations of the p-th\npower of some x, with the least number of multiplication as\npossible. We present a few implementations of addition chains,\nwith proofs of their correctness.\n",
         maintainers: nix.thunk(() => (() => {

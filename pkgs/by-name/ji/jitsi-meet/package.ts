@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["src", 32, 28], ["hash", 33, 7], ["forceGitDeps", 34, 7]], [["makeFlags", 28, 5], ["makeCacheWritable", 29, 5], ["forceGitDeps", 30, 5], ["npmDeps", 31, 5]], [["single-host-smoke-test", 55, 5]], [["tests", 54, 12], ["updateScript", 58, 12]], [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 66, 5], ["license", 67, 5], ["teams", 68, 5], ["platforms", 69, 27], ["knownVulnerabilities", 70, 24]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["env", 27, 3], ["nativeBuildInputs", 38, 3], ["installPhase", 46, 3], ["passthru", 54, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, nixosTests: false, fetchFromGitHub: false, fetchNpmDeps: false, npmHooks: false, libarchive: false, nodejs: false, olm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 32, 28], ["hash", 33, 7], ["forceGitDeps", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["makeFlags", 28, 5], ["makeCacheWritable", 29, 5], ["forceGitDeps", 30, 5], ["npmDeps", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["single-host-smoke-test", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 54, 12], ["updateScript", 58, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 66, 5], ["license", 67, 5], ["teams", 68, 5], ["platforms", 69, 27], ["knownVulnerabilities", 70, 24]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["env", 27, 3], ["nativeBuildInputs", 38, 3], ["installPhase", 46, 3], ["passthru", 54, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,23 +17,23 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const olm = nix.arg($, "olm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "jitsi-meet",
       version: "1.0.9365",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jitsi",
           repo: "jitsi-meet",
           tag: nix.thunk(() => nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version")))))),
           hash: "sha256-gAXY40jvQjGhitbpWjJ+C8GZwuRu/zyJw2NN5yf/l6o=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         makeFlags: "source-package",
         makeCacheWritable: true,
         forceGitDeps: true,
         npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             hash: "sha256-5fGaX8VFCCMkTeQuhFPwd9W7cBNVML/bVYLODq07s5w=",
             forceGitDeps: true,
@@ -48,9 +42,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [libarchive, nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))]),
       installPhase: "runHook preInstall\nmkdir -p $out\nbsdtar -xf jitsi-meet.tar.bz2 -C $out --strip-components 1\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "single-host-smoke-test": nix.thunk(() => nix.sel(nixosTests, "jitsi-meet")),
           })))),
         updateScript: nix.path(here, "./update.sh"),
@@ -59,7 +53,7 @@ export default nix.lambda((args) => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         const from_1 = nix.thunk(() => nix.sel(olm, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Secure, Simple and Scalable Video Conferences",
         longDescription: "Jitsi Meet is an open-source (Apache) WebRTC JavaScript application that uses Jitsi Videobridge\nto provide high quality, secure and scalable video conferences.\n",
         homepage: "https://github.com/jitsi/jitsi-meet",

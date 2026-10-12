@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 7, 3], ["extraNativeBuildInputs", 9, 3], ["extraBuildInputs", 10, 3], ["extraCmakeFlags", 15, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, "pkg-config": false, signond: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["extraNativeBuildInputs", 9, 3], ["extraBuildInputs", 10, 3], ["extraCmakeFlags", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const signond = nix.arg($, "signond");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "signon-kwallet-extension",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [signond]),

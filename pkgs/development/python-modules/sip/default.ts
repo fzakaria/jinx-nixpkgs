@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 26], ["version", 22, 32], ["hash", 23, 5]], [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]], [["poppler-qt5", 53, 13], ["qgis", 53, 25], ["qgis-ltr", 53, 30]], [["tests", 51, 12]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["dependencies", 31, 3], ["patches", 36, 3], ["doCheck", 47, 3], ["pythonImportsCheck", 49, 3], ["passthru", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchpatch: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, packaging: false, "poppler-qt5": false, qgis: false, "qgis-ltr": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 26], ["version", 22, 32], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["poppler-qt5", 53, 13], ["qgis", 53, 25], ["qgis-ltr", 53, 30]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 51, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["dependencies", 31, 3], ["patches", 36, 3], ["doCheck", 47, 3], ["pythonImportsCheck", 49, 3], ["passthru", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const qgis = nix.arg($, "qgis");
   const qgis_ltr = nix.arg($, "qgis-ltr");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sip",
       version: "6.16.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-CnOcnNKSneTgiERW2Mrzz7IsEFNHV8d5e9jca9ntabw=",
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [packaging, setuptools]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "legacy-api-binding-fix.patch",
             url: "https://github.com/Python-SIP/sip/commit/09598895c607f3e41f0249ade217ace0a4da6437.patch",
             hash: "sha256-v0YeHyg0ymB0v32gpVRbMBIUk9U2etjs93VuOGPGg2M=",
@@ -46,16 +41,16 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["sipbuild"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "poppler-qt5": poppler_qt5,
           qgis: qgis,
           "qgis-ltr": qgis_ltr,
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Creates C++ bindings for Python modules",
         homepage: "https://riverbankcomputing.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

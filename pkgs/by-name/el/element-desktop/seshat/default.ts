@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["yarnLock", 29, 5], ["hash", 30, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["sourceRoot", 24, 3], ["cargoHash", 26, 3], ["yarnOfflineCache", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["installPhase", 42, 3], ["disallowedReferences", 51, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, rustPlatform: false, nodejs: false, yarn: false, fetchYarnDeps: false, yarnConfigHook: false, yarnBuildHook: false, sqlcipher: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["yarnLock", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["sourceRoot", 24, 3], ["cargoHash", 26, 3], ["yarnOfflineCache", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["installPhase", 42, 3], ["disallowedReferences", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const yarnBuildHook = nix.arg($, "yarnBuildHook");
   const sqlcipher = nix.arg($, "sqlcipher");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "seshat-node",
       version: "4.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matrix-org",
           repo: "seshat",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/seshat-node`),
       cargoHash: "sha256-krSm1wy7HkCOLEHPPHCx6V9Mj+FiavyhO6bLOz2/3Qw=",
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/seshat-node/yarn.lock")),
           hash: "sha256-hh9n8By/dNdKS55rcZkzCxmJWwQa6Ovt+4M3YP3/hDs=",
         })))),

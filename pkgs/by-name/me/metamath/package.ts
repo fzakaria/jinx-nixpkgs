@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 22, 5], ["mainProgram", 23, 5], ["longDescription", 24, 5], ["homepage", 30, 5], ["downloadPage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["nativeBuildInputs", 12, 3], ["src", 14, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 22, 5], ["mainProgram", 23, 5], ["longDescription", 24, 5], ["homepage", 30, 5], ["downloadPage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["nativeBuildInputs", 12, 3], ["src", 14, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "metamath",
       version: "0.198",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "metamath",
           repo: "metamath-exe",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-Cg1dgz+uphDlGhKH3mTywtAccWinC5+pwNv4TB3YAnI=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Interpreter for the metamath proof language",
         mainProgram: "metamath",
         longDescription: "The metamath program is an ASCII-based ANSI C program with a command-line\ninterface. It was used (along with mmj2) to build and verify the proofs\nin the Metamath Proof Explorer, and it generated its web pages. The *.mm\nASCII databases (set.mm and others) are also included in this derivation.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["description", 68, 5], ["mainProgram", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 54, 3], ["cmakeFlags", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "at-spi2-atk": false, "at-spi2-core": false, libepoxy: false, gtk3: false, libdatrie: false, libselinux: false, libsepol: false, libthai: false, "util-linux": false, wayland: false, libxtst: false, libxdmcp: false, cmake: false, doxygen: false, "pkg-config": false, "wayland-protocols": false, "wayland-scanner": false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["mainProgram", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 54, 3], ["cmakeFlags", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "maliit-framework",
       version: "2.3.0-unstable-2024-06-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "maliit",
           repo: "framework",
           rev: "ba6f7eda338a913f2c339eada3f0382e04f7dd67",
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DQT5_PLUGINS_INSTALL_DIR=${nix.builtins.placeholder("out")}/${nix.sel(libsForQt5, "qtbase", "qtPluginPrefix")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Core libraries of Maliit and server",
         mainProgram: "maliit-server",
         homepage: "http://maliit.github.io/",

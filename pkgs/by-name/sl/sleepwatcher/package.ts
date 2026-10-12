@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 16, 3], ["buildPhase", 18, 3], ["installPhase", 30, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 16, 3], ["buildPhase", 18, 3], ["installPhase", 30, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sleepwatcher",
       version: "2.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.bernhard-baehr.de/sleepwatcher_${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "0gk4x4x04wz7y0kp19p1jjcxhqqk9n29l4dw3wa72y0n09knbwab",
         })))),
@@ -34,7 +32,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/share/man/man8\ninstall -m 0755 sleepwatcher $out/bin/sleepwatcher\ninstall -m 0444 ../sleepwatcher.8 $out/share/man/man8/sleepwatcher.8\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Monitors sleep, wakeup and idleness of a Mac",
         longDescription: "SleepWatcher is a command line tool (daemon) for macOS that monitors\nsleep, wakeup and idleness of a Mac. It can be used to execute a Unix\ncommand when the Mac or the display of the Mac goes to sleep mode or wakes\nup, after a given time without user interaction or when the user resumes\nactivity after a break or when the power supply of a Mac notebook is attached\nor detached. It also can send the Mac to sleep mode or retrieve the time since\nlast user activity.\n",
         homepage: "https://www.bernhard-baehr.de/",

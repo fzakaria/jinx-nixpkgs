@@ -2,42 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["withRaster", 103, 5], ["withCairo", 104, 5]], [["withIcu", 108, 5], ["harfbuzz", 109, 5]], [["package", 132, 13], ["version", 133, 13]], [["version", 131, 11]], [["linuxbsd", 140, 17], ["macos", 141, 17]], [["nativeBuildInputs", 147, 19]], [["name", 254, 17], ["nativeBuildInputs", 256, 17], ["src", 258, 17], ["buildPhase", 260, 17], ["installPhase", 275, 17]], [["export", 285, 91]], [["passthru", 285, 62]], [["export-template", 251, 29], ["export", 253, 15], ["run", 285, 15]], [["nativeBuildInputs", 323, 21], ["stripExclude", 328, 21], ["runtimeDependencies", 330, 21]], [["export-template", 320, 19], ["export", 322, 19]], [["export-runs", 315, 13], ["export-bin-runs", 317, 13]], [["owner", 358, 11], ["repo", 359, 11], ["tag", 360, 11], ["hash", 361, 19], ["leaveDotGit", 369, 11], ["postFetch", 372, 11]], [["BUILD_NAME", 394, 11]], [["NIX_CFLAGS_COMPILE", 397, 11]], [["precision", 428, 13], ["production", 429, 13], ["platform", 430, 13], ["target", 431, 21], ["debug_symbols", 432, 13], ["alsa", 435, 13], ["dbus", 436, 13], ["fontconfig", 437, 13], ["pulseaudio", 438, 13], ["speechd", 439, 13], ["touch", 440, 13], ["udev", 441, 13], ["wayland", 442, 13], ["x11", 443, 13], ["module_mono_enabled", 445, 13], ["ccflags", 449, 13], ["linkflags", 451, 13], ["builtin_msdfgen", 454, 13], ["builtin_rvo2_2d", 455, 13], ["builtin_rvo2_3d", 456, 13], ["builtin_xatlas", 457, 13], ["builtin_clipper2", 460, 13], ["use_sowrap", 462, 13]], [["builtin_squish", 466, 13], ["builtin_miniupnpc", 469, 13]], [["redirect_build_objects", 472, 13]], [["generate_bundle", 476, 13]], [["name", 494, 15], ["url", 495, 15], ["hash", 496, 15]], [["name", 499, 15], ["url", 500, 15], ["hash", 501, 15]], [["linuxbsd", 726, 23], ["macos", 727, 23]], [["sdk-override", 760, 15]], [["updateScript", 756, 19], ["tests", 757, 11]], [["version", 767, 23], ["withMono", 767, 31], ["godot", 768, 15], ["hash", 769, 15]], [["export-template", 764, 11], ["export-templates-bin", 765, 11]], [["changelog", 780, 11], ["description", 781, 11], ["homepage", 782, 11], ["license", 783, 11], ["platforms", 784, 11], ["maintainers", 793, 11], ["mainProgram", 797, 11]], [["__structuredAttrs", 352, 9], ["pname", 354, 9], ["version", 355, 17], ["src", 357, 9], ["outputs", 380, 9], ["separateDebugInfo", 384, 9], ["env", 386, 9], ["preConfigure", 403, 9], ["preBuild", 415, 9], ["sconsFlags", 425, 9], ["enableParallelBuilding", 480, 9], ["strictDeps", 482, 9], ["propagatedSandboxProfile", 484, 9], ["patches", 488, 9], ["postPatch", 511, 9], ["depsBuildBuild", 567, 9], ["buildInputs", 572, 9], ["nativeBuildInputs", 631, 9], ["postBuild", 654, 9], ["installPhase", 668, 9], ["passthru", 755, 9], ["requiredSystemFeatures", 774, 9], ["meta", 779, 9]], [["runtimeIds", 806, 15], ["buildInputs", 807, 15]], [["nugetDeps", 804, 21], ["overrideFetchAttrs", 805, 13]], [["dotnet-sdk", 864, 68]], [["unwrapped", 862, 17], ["sdk-override", 863, 17]], [["tests", 861, 15]], [["__structuredAttrs", 819, 13], ["pname", 821, 13], ["version", 822, 44], ["outputs", 822, 52], ["meta", 822, 60], ["unwrapped", 823, 21], ["dotnet-sdk", 823, 31], ["dontUnpack", 825, 13], ["dontConfigure", 826, 13], ["dontBuild", 827, 13], ["nativeBuildInputs", 829, 13], ["strictDeps", 830, 13], ["installPhase", 832, 13], ["postFixup", 856, 13], ["passthru", 860, 13]]]);
 const formals$1 = { args: { "alsa-lib": false, "apple-sdk_26": false, autoPatchelfHook: false, buildPackages: false, callPackage: false, darwin: false, dbus: false, dotnetCorePackages: false, embree: false, enet: false, exportTemplatesHash: false, fetchFromGitHub: false, fetchpatch: false, fontconfig: false, freetype: false, gettext: false, glib: false, glslang: false, graphite2: false, harfbuzz: false, hash: false, icu: false, installShellFiles: false, lib: false, libdecor: false, libGL: false, libjpeg_turbo: false, libpulseaudio: false, libtheora: false, libwebp: false, libx11: false, libxcursor: false, libxext: false, libxfixes: false, libxi: false, libxinerama: false, libxkbcommon: false, libxrandr: false, libxrender: false, makeWrapper: false, mbedtls: false, miniupnpc: false, moltenvk: false, "openxr-loader": false, pcre2: false, perl: false, "pkg-config": false, recastnavigation: false, runCommand: false, scons: false, sdl3: false, "speechd-minimal": false, stdenv: false, stdenvNoCC: false, "strip-nondeterminism": false, testers: false, udev: false, unzip: false, updateScript: false, version: false, "vulkan-loader": false, wayland: false, "wayland-scanner": false, withAlsa: true, withDbus: true, withFontconfig: true, withMono: true, nugetDeps: true, withBuiltins: true, withPlatform: true, withPrecision: true, withPulseaudio: true, withSpeechd: true, withTouch: true, withUdev: true, withWayland: true, withX11: true, wslay: false, zip: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["withRaster", 103, 5], ["withCairo", 104, 5]]);
-const pos$2 = nix.positions(here + "/common.nix", [["withIcu", 108, 5], ["harfbuzz", 109, 5]]);
-const pos$3 = nix.positions(here + "/common.nix", [["package", 132, 13], ["version", 133, 13]]);
-const pos$4 = nix.positions(here + "/common.nix", [["version", 131, 11]]);
-const pos$5 = nix.positions(here + "/common.nix", [["linuxbsd", 140, 17], ["macos", 141, 17]]);
-const pos$6 = nix.positions(here + "/common.nix", [["nativeBuildInputs", 147, 19]]);
-const pos$7 = nix.positions(here + "/common.nix", [["name", 254, 17], ["nativeBuildInputs", 256, 17], ["src", 258, 17], ["buildPhase", 260, 17], ["installPhase", 275, 17]]);
-const pos$8 = nix.positions(here + "/common.nix", [["export", 285, 91]]);
-const pos$9 = nix.positions(here + "/common.nix", [["passthru", 285, 62]]);
-const pos$10 = nix.positions(here + "/common.nix", [["export-template", 251, 29], ["export", 253, 15], ["run", 285, 15]]);
-const pos$11 = nix.positions(here + "/common.nix", [["nativeBuildInputs", 323, 21], ["stripExclude", 328, 21], ["runtimeDependencies", 330, 21]]);
-const pos$12 = nix.positions(here + "/common.nix", [["export-template", 320, 19], ["export", 322, 19]]);
-const pos$13 = nix.positions(here + "/common.nix", [["export-runs", 315, 13], ["export-bin-runs", 317, 13]]);
-const pos$14 = nix.positions(here + "/common.nix", [["owner", 358, 11], ["repo", 359, 11], ["tag", 360, 11], ["hash", 361, 19], ["leaveDotGit", 369, 11], ["postFetch", 372, 11]]);
-const pos$15 = nix.positions(here + "/common.nix", [["BUILD_NAME", 394, 11]]);
-const pos$16 = nix.positions(here + "/common.nix", [["NIX_CFLAGS_COMPILE", 397, 11]]);
-const pos$17 = nix.positions(here + "/common.nix", [["precision", 428, 13], ["production", 429, 13], ["platform", 430, 13], ["target", 431, 21], ["debug_symbols", 432, 13], ["alsa", 435, 13], ["dbus", 436, 13], ["fontconfig", 437, 13], ["pulseaudio", 438, 13], ["speechd", 439, 13], ["touch", 440, 13], ["udev", 441, 13], ["wayland", 442, 13], ["x11", 443, 13], ["module_mono_enabled", 445, 13], ["ccflags", 449, 13], ["linkflags", 451, 13], ["builtin_msdfgen", 454, 13], ["builtin_rvo2_2d", 455, 13], ["builtin_rvo2_3d", 456, 13], ["builtin_xatlas", 457, 13], ["builtin_clipper2", 460, 13], ["use_sowrap", 462, 13]]);
-const pos$18 = nix.positions(here + "/common.nix", [["builtin_squish", 466, 13], ["builtin_miniupnpc", 469, 13]]);
-const pos$19 = nix.positions(here + "/common.nix", [["redirect_build_objects", 472, 13]]);
-const pos$20 = nix.positions(here + "/common.nix", [["generate_bundle", 476, 13]]);
-const pos$21 = nix.positions(here + "/common.nix", [["name", 494, 15], ["url", 495, 15], ["hash", 496, 15]]);
-const pos$22 = nix.positions(here + "/common.nix", [["name", 499, 15], ["url", 500, 15], ["hash", 501, 15]]);
-const pos$23 = nix.positions(here + "/common.nix", [["linuxbsd", 726, 23], ["macos", 727, 23]]);
-const pos$24 = nix.positions(here + "/common.nix", [["sdk-override", 760, 15]]);
-const pos$25 = nix.positions(here + "/common.nix", [["updateScript", 756, 19], ["tests", 757, 11]]);
-const pos$26 = nix.positions(here + "/common.nix", [["version", 767, 23], ["withMono", 767, 31], ["godot", 768, 15], ["hash", 769, 15]]);
-const pos$27 = nix.positions(here + "/common.nix", [["export-template", 764, 11], ["export-templates-bin", 765, 11]]);
-const pos$28 = nix.positions(here + "/common.nix", [["changelog", 780, 11], ["description", 781, 11], ["homepage", 782, 11], ["license", 783, 11], ["platforms", 784, 11], ["maintainers", 793, 11], ["mainProgram", 797, 11]]);
-const pos$29 = nix.positions(here + "/common.nix", [["__structuredAttrs", 352, 9], ["pname", 354, 9], ["version", 355, 17], ["src", 357, 9], ["outputs", 380, 9], ["separateDebugInfo", 384, 9], ["env", 386, 9], ["preConfigure", 403, 9], ["preBuild", 415, 9], ["sconsFlags", 425, 9], ["enableParallelBuilding", 480, 9], ["strictDeps", 482, 9], ["propagatedSandboxProfile", 484, 9], ["patches", 488, 9], ["postPatch", 511, 9], ["depsBuildBuild", 567, 9], ["buildInputs", 572, 9], ["nativeBuildInputs", 631, 9], ["postBuild", 654, 9], ["installPhase", 668, 9], ["passthru", 755, 9], ["requiredSystemFeatures", 774, 9], ["meta", 779, 9]]);
-const pos$30 = nix.positions(here + "/common.nix", [["runtimeIds", 806, 15], ["buildInputs", 807, 15]]);
-const pos$31 = nix.positions(here + "/common.nix", [["nugetDeps", 804, 21], ["overrideFetchAttrs", 805, 13]]);
-const pos$32 = nix.positions(here + "/common.nix", [["dotnet-sdk", 864, 68]]);
-const pos$33 = nix.positions(here + "/common.nix", [["unwrapped", 862, 17], ["sdk-override", 863, 17]]);
-const pos$34 = nix.positions(here + "/common.nix", [["tests", 861, 15]]);
-const pos$35 = nix.positions(here + "/common.nix", [["__structuredAttrs", 819, 13], ["pname", 821, 13], ["version", 822, 44], ["outputs", 822, 52], ["meta", 822, 60], ["unwrapped", 823, 21], ["dotnet-sdk", 823, 31], ["dontUnpack", 825, 13], ["dontConfigure", 826, 13], ["dontBuild", 827, 13], ["nativeBuildInputs", 829, 13], ["strictDeps", 830, 13], ["installPhase", 832, 13], ["postFixup", 856, 13], ["passthru", 860, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -128,22 +94,22 @@ export default nix.lambda((args) => (() => {
   const dotnet_sdk_alt = nix.thunk(() => (nix.asBool(withMono) ? nix.sel(dotnetCorePackages, "sdk_9_0-source") : null));
   const dottedVersion = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["-"]), nix.thunk(() => ["."]), version), nix.app(nix.sel(lib, "optionalString"), withMono, ".mono")));
   const harfbuzz_raster = nix.thunk(() => nix.app(nix.sel(harfbuzz, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       withRaster: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "4.7")),
       withCairo: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "4.7")),
     }))));
-  const harfbuzz_icu = nix.thunk(() => nix.app(nix.sel(harfbuzz_raster, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withIcu: true, harfbuzz: harfbuzz_raster }))));
+  const harfbuzz_icu = nix.thunk(() => nix.app(nix.sel(harfbuzz_raster, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], withIcu: true, harfbuzz: harfbuzz_raster }))));
   const mkTarget = (target) => (() => {
     const editor = nix.thunk(() => nix.eq(target, "editor"));
     const suffix = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), withMono, "-mono"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(editor)), "-template")));
     const binary = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ".", nix.thunk(() => nix.concat(["godot", withPlatform, target], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(withPrecision, "single")), withPrecision), nix.concat([arch], nix.app(nix.sel(lib, "optional"), withMono, "mono")))))));
     const mkTests = (pkg) => (dotnet_sdk_1) => nix.update({
-      [nix.POS]: pos$4,
-      version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: pkg, version: dottedVersion })))),
+      [nix.POS]: $pos[3],
+      version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: pkg, version: dottedVersion })))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), editor, nix.thunk(() => (() => {
-        const platform = nix.thunk(() => nix.sel({ [nix.POS]: pos$5, linuxbsd: "Linux", macos: "macOS" }, nix.key(nix.force(withPlatform))));
+        const platform = nix.thunk(() => nix.sel({ [nix.POS]: $pos[4], linuxbsd: "Linux", macos: "macOS" }, nix.key(nix.force(withPlatform))));
         const project_src = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(pkg, "name")}-6`), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             nativeBuildInputs: nix.thunk(() => nix.concat([pkg], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(dotnet_sdk_1, null)), dotnet_sdk_1))),
           })), nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add("mkdir \"$out\"\ncd \"$out\"\ntouch project.godot\n\ncat >create-scene.gd <<'EOF'\nextends SceneTree\n\nfunc _initialize():\n  var node = Node.new()\n  var script = ResourceLoader.load(\"res://test.gd\")\n  node.set_script(script)\n", nix.app(nix.sel(lib, "optionalString"), withMono, nix.thunk(() => nix.str`${""}
   var monoNode = Node.new()
@@ -216,10 +182,10 @@ echo "$message"
 rm nuget.config
 `))))));
         const export_tests = nix.thunk(() => nix.app(nix.sel(lib, "makeExtensible"), (final) => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             "export-template": nix.thunk(() => nix.attr(pkg, "export-template")),
             export: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 name: nix.thunk(() => nix.str`${nix.sel(final, "export-template", "name")}-export`),
                 nativeBuildInputs: nix.thunk(() => nix.concat([pkg], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(dotnet_sdk_1, null)), dotnet_sdk_1))),
                 src: project_src,
@@ -243,8 +209,8 @@ runHook postInstall
 `),
               })))),
             run: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(final, "export", "name")}-runs`), nix.thunk(() => ({
-                [nix.POS]: pos$9,
-                passthru: nix.thunk(() => ({ [nix.POS]: pos$8, export: nix.thunk(() => nix.attr(final, "export")) })),
+                [nix.POS]: $pos[8],
+                passthru: nix.thunk(() => ({ [nix.POS]: $pos[7], export: nix.thunk(() => nix.attr(final, "export")) })),
               })), nix.thunk(() => nix.add(nix.add(nix.str`(
   set -eo pipefail
   HOME=$(mktemp -d)
@@ -252,13 +218,13 @@ runHook postInstall
 `, nix.app(nix.sel(lib, "optionalString"), withMono, "# indent\n    read output\n    if [[ \"$output\" != \"Hello, Mono!\" ]]; then\n      echo \"unexpected output: $output\" >&2\n      exit 1\n    fi\n")), "    read output\n    if [[ \"$output\" != \"Hello, World!\" ]]; then\n      echo \"unexpected output: $output\" >&2\n      exit 1\n    fi\n  )\n  touch \"$out\"\n)\n")))),
           })));
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           "export-runs": nix.thunk(() => nix.sel(export_tests, "run")),
           "export-bin-runs": nix.thunk(() => nix.sel(nix.app(nix.sel(export_tests, "extend"), (final) => (prev) => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               "export-template": nix.thunk(() => nix.sel(pkg, "export-templates-bin")),
               export: nix.thunk(() => nix.app(nix.sel(prev, "export", "overrideAttrs"), (prev_1) => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(prev_1, () => [], "nativeBuildInputs"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isElf")), autoPatchelfHook))),
                   stripExclude: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withMono, nix.thunk(() => ["*.dll"]))),
                   runtimeDependencies: nix.thunk(() => nix.concat(nix.selOr(prev_1, () => [], "runtimeDependencies"), nix.concat(nix.builtins.map(nix.thunk(() => nix.sel(lib, "getLib")), nix.thunk(() => [libpulseaudio, libx11, libxcursor, libxext, libxi, libxrandr, vulkan_loader])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, udev]))))),
@@ -267,12 +233,12 @@ runHook postInstall
         };
       })())));
     const attrs = (finalAttrs) => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       __structuredAttrs: true,
       pname: nix.thunk(() => nix.str`godot${suffix}`),
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           owner: "godotengine",
           repo: "godot",
           tag: version,
@@ -282,8 +248,8 @@ runHook postInstall
         })))),
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optional"), editor, "man"))),
       separateDebugInfo: true,
-      env: nix.thunk(() => nix.update({ [nix.POS]: pos$15, BUILD_NAME: "nixpkgs" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$16,
+      env: nix.thunk(() => nix.update({ [nix.POS]: $pos[14], BUILD_NAME: "nixpkgs" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
+          [nix.POS]: $pos[15],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), harfbuzz_icu)}/include/harfbuzz`),
               nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), recastnavigation)}/include/recastnavigation`),
@@ -292,7 +258,7 @@ runHook postInstall
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(editor) && nix.asBool(withMono))), "# TODO: avoid pulling in dependencies of windows-only project\ndotnet sln modules/mono/editor/GodotTools/GodotTools.sln \\\n  remove modules/mono/editor/GodotTools/GodotTools.OpenVisualStudio/GodotTools.OpenVisualStudio.csproj\n\ndotnet restore modules/mono/glue/GodotSharp/GodotSharp.sln\ndotnet restore modules/mono/editor/GodotTools/GodotTools.sln\ndotnet restore modules/mono/editor/Godot.NET.Sdk/Godot.NET.Sdk.sln\n")),
       preBuild: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.asBool(withBuiltins)) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "4.7")))), "export NIX_LDFLAGS=\"$NIX_LDFLAGS -lharfbuzz-raster\"\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "export HOME=$(mktemp -d)\n"))),
       sconsFlags: nix.thunk(() => nix.app(mkSconsFlagsFromAttrSet, nix.thunk(() => nix.update({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           precision: withPrecision,
           production: true,
           platform: withPlatform,
@@ -316,7 +282,7 @@ runHook postInstall
           builtin_xatlas: true,
           builtin_clipper2: true,
           use_sowrap: false,
-        }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "4.4")), nix.thunk(() => ({ [nix.POS]: pos$18, builtin_squish: true, builtin_miniupnpc: true }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "4.5")), nix.thunk(() => ({ [nix.POS]: pos$19, redirect_build_objects: false }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(!nix.asBool((nix.asBool(editor) && nix.asBool(withMono)))))), nix.thunk(() => ({ [nix.POS]: pos$20, generate_bundle: "yes" }))))))))),
+        }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "4.4")), nix.thunk(() => ({ [nix.POS]: $pos[17], builtin_squish: true, builtin_miniupnpc: true }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "4.5")), nix.thunk(() => ({ [nix.POS]: $pos[18], redirect_build_objects: false }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(!nix.asBool((nix.asBool(editor) && nix.asBool(withMono)))))), nix.thunk(() => ({ [nix.POS]: $pos[19], generate_bundle: "yes" }))))))))),
       enableParallelBuilding: true,
       strictDeps: true,
       propagatedSandboxProfile: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "(allow file-read* (subpath \"/System/Library/CoreServices/SystemAppearance.bundle\"))\n")),
@@ -324,13 +290,13 @@ runHook postInstall
           nix.path(here, "./Linux-fix-missing-library-with-builtin_glslang-false.patch"),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "4.4")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               name: "wayland-header-fix.patch",
               url: "https://github.com/godotengine/godot/commit/6ce71f0fb0a091cffb6adb4af8ab3f716ad8930b.patch",
               hash: "sha256-hgAtAtCghF5InyGLdE9M+9PjPS1BWXWGKgIAyeuqkoU=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               name: "thorvg-header-fix.patch",
               url: "https://github.com/godotengine/godot/commit/1823460787a6c1bb8e4eaf21ac2a3f90d24d5ee0.patch",
               hash: "sha256-PcHEMXd0v2c3j6Eitxt5uWi6cD+OmsBAn3TNMNRNPog=",
@@ -426,7 +392,7 @@ wrapProgram "$out"/libexec/${binary} \\
 cp -r bin/godot_macos_editor${nix.app(nix.sel(lib, "optionalString"), withMono, "_mono")}.app "$out"/Applications/GodotMono.app
 `))) : (() => {
         const template = nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["template"]), nix.thunk(() => [
-            nix.thunk(() => nix.sel({ [nix.POS]: pos$23, linuxbsd: "linux", macos: "macos" }, nix.key(nix.force(withPlatform)))),
+            nix.thunk(() => nix.sel({ [nix.POS]: $pos[22], linuxbsd: "linux", macos: "macos" }, nix.key(nix.force(withPlatform)))),
           ]), target), "."), arch));
         return nix.add(nix.str`templates="$out"/share/godot/export_templates/${dottedVersion}
 mkdir -p "$templates"
@@ -439,17 +405,17 @@ cd -
 `)));
       })())), "runHook postInstall\n")),
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         updateScript: updateScript,
         tests: nix.thunk(() => nix.update(nix.app(mkTests, nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), dotnet_sdk), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(editor) && nix.asBool(withMono))), nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             "sdk-override": nix.thunk(() => nix.app(mkTests, nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), dotnet_sdk_alt)),
           }))))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), editor, nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           "export-template": nix.thunk(() => nix.app(mkTarget, "template_release")),
           "export-templates-bin": nix.thunk(() => nix.app(callPackage, nix.path(here, "./export-templates-bin.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               version: version,
               withMono: withMono,
               godot: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
@@ -458,7 +424,7 @@ cd -
         }))))),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         changelog: nix.thunk(() => nix.str`https://github.com/godotengine/godot/releases/tag/${version}`),
         description: "Free and Open Source 2D and 3D game engine",
         homepage: "https://godotengine.org",
@@ -475,18 +441,18 @@ cd -
       })),
     });
     const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (nix.asBool((nix.asBool(editor) && nix.asBool(withMono))) ? nix.app(nix.sel(dotnetCorePackages, "addNuGetDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           nugetDeps: nugetDeps,
           overrideFetchAttrs: (old) => (() => {
             const runtimeIds = nix.thunk(() => nix.builtins.map((system) => nix.app(nix.sel(dotnetCorePackages, "systemToDotnetRid"), system), nix.thunk(() => nix.sel(old, "meta", "platforms"))));
             const buildInputs = nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(lib, "getAttrs"), runtimeIds, nix.thunk(() => nix.sel(dotnet_sdk, "targetPackages")))))))));
-            return { [nix.POS]: pos$30, runtimeIds, buildInputs };
+            return { [nix.POS]: $pos[29], runtimeIds, buildInputs };
           })(),
         })), attrs) : attrs))));
     const wrapper = nix.thunk(() => (nix.asBool((nix.asBool(editor) && nix.asBool(withMono))) ? nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "unwrapped"));
         return {
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         __structuredAttrs: true,
         pname: nix.thunk(() => nix.add(nix.sel(finalAttrs, "unwrapped", "pname"), "-wrapper")),
         version: nix.thunk(() => nix.attr(from, "version")),
@@ -524,11 +490,11 @@ runHook postInstall
         postFixup: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (output) => nix.str`[[ -e "$${output}" ]] || ln -s "${nix.sel(unwrapped, nix.key(nix.force(output)))}" "$${output}"
 `, nix.thunk(() => nix.sel(finalAttrs, "unwrapped", "outputs")))),
         passthru: nix.thunk(() => nix.update(nix.sel(unwrapped, "passthru"), {
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           tests: nix.thunk(() => nix.update(nix.app(mkTests, nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), null), {
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             unwrapped: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.sel(unwrapped, "tests")))),
-            "sdk-override": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(mkTests, nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$32, "dotnet-sdk": dotnet_sdk_alt })))), null)))),
+            "sdk-override": nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(mkTests, nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[31], "dotnet-sdk": dotnet_sdk_alt })))), null)))),
           })),
         })),
       };

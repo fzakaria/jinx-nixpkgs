@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["OPENSSL_NO_VENDOR", 70, 5], ["RUSTFLAGS", 71, 5], ["SLANG_INSTALL_PATH", 73, 5]], [["extraArgs", 78, 7]], [["updateScript", 77, 5]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["broken", 91, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoHash", 32, 3], ["buildFeatures", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["nativeCheckInputs", 52, 3], ["postInstall", 57, 3], ["env", 69, 3], ["passthru", 76, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, stdenv: false, cmake: false, makeWrapper: false, "pkg-config": false, boost: false, fmt: false, openssl: false, "sv-lang_9": false, mimalloc: false, verible: false, verilator: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 70, 5], ["RUSTFLAGS", 71, 5], ["SLANG_INSTALL_PATH", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 78, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["broken", 91, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoHash", 32, 3], ["buildFeatures", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["nativeCheckInputs", 52, 3], ["postInstall", 57, 3], ["env", 69, 3], ["passthru", 76, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const verilator = nix.arg($, "verilator");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "veridian",
       version: "0-unstable-2025-11-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vivekmalneedi",
           repo: "veridian",
           rev: "0c5776a4a4e08fd00b90d91ad3cd2ec10315d2bd",
@@ -55,20 +50,20 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OPENSSL_NO_VENDOR: "1",
         RUSTFLAGS: "-C link-args=-lmimalloc",
         SLANG_INSTALL_PATH: sv_lang_9,
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version=branch", "--version-regex=(0-unstable-.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "SystemVerilog Language Server",
         homepage: "https://github.com/vivekmalneedi/veridian",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

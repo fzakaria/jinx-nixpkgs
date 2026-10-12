@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-apple-darwin", 33, 5], ["aarch64-unknown-linux-gnu", 34, 5], ["x86_64-unknown-linux-gnu", 35, 5]], [["url", 38, 5], ["hash", 39, 5]], [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5]], [["RUSTY_V8_ARCHIVE", 60, 5], ["SSL_CERT_FILE", 61, 5]], [["description", 154, 5], ["homepage", 155, 5], ["license", 156, 5], ["maintainers", 157, 5], ["platforms", 161, 5], ["mainProgram", 162, 5]], [["__structuredAttrs", 45, 3], ["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["cargoHash", 57, 3], ["env", 59, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 75, 3], ["buildPhase", 91, 3], ["installPhase", 111, 3], ["preFixup", 145, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, "pkg-config": false, cmake: false, git: false, openssl: false, cacert: false, tailwindcss_4: false, "dioxus-cli": false, "yt-dlp": false, fetchFromGitHub: false, fetchurl: false, libopus: false, wrapGAppsHook3: false, webkitgtk_4_1: false, gtk3: false, libsoup_3: false, "glib-networking": false, "alsa-lib": false, xdotool: false, wayland: false, dbus: false, "libayatana-appindicator": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-apple-darwin", 33, 5], ["aarch64-unknown-linux-gnu", 34, 5], ["x86_64-unknown-linux-gnu", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["RUSTY_V8_ARCHIVE", 60, 5], ["SSL_CERT_FILE", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 154, 5], ["homepage", 155, 5], ["license", 156, 5], ["maintainers", 157, 5], ["platforms", 161, 5], ["mainProgram", 162, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["__structuredAttrs", 45, 3], ["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["cargoHash", 57, 3], ["env", 59, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 75, 3], ["buildPhase", 91, 3], ["installPhase", 111, 3], ["preFixup", 145, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,23 +34,23 @@ export default nix.lambda((args) => (() => {
   const rustyV8Version = "130.0.7";
   const rustyV8Target = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget"));
   const rustyV8Hashes = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-apple-darwin": "sha256-9tvQD08OdW6GoNnx/3vgS27D9Aj9YdQdNJ9SgNvwAOo=",
     "aarch64-unknown-linux-gnu": "sha256-vu/ns1q+53FZ98tVCWZmsHYwwRBH1fOnTdBlhjcpkVo=",
     "x86_64-unknown-linux-gnu": "sha256-pkdsuU6bAkcIHEZUJOt5PXdzK424CEgTLXjLtQ80t10=",
   }));
   const librustyV8 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://github.com/denoland/rusty_v8/releases/download/v${rustyV8Version}/librusty_v8_release_${rustyV8Target}.a.gz`),
       hash: nix.thunk(() => nix.selOr(rustyV8Hashes, () => nix.builtins.throw(nix.thunk(() => nix.str`no prebuilt librusty_v8 hash for target ${rustyV8Target}`)), nix.key(nix.force(rustyV8Target)))),
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       __structuredAttrs: true,
       pname: "kopuz",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "Kopuz-org",
           repo: "kopuz",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-lu1PaWf02D0dK+IV+fIzIKNr8ORfkSHFnRhnPdXaueI=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         RUSTY_V8_ARCHIVE: librustyV8,
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       })),
@@ -105,7 +100,7 @@ runHook postInstall
 )
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Fast, modern music player with Jellyfin and local library support",
         homepage: "https://github.com/Kopuz-org/kopuz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

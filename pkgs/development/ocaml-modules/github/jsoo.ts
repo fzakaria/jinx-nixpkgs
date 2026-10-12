@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jsoo.nix", [[["description", 23, 5]], [["pname", 10, 3], ["version", 11, 20], ["src", 11, 28], ["duneVersion", 13, 3], ["propagatedBuildInputs", 15, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, github: false, cohttp: false, "cohttp-lwt-jsoo": false, "js_of_ocaml-lwt": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/jsoo.nix", [["description", 23, 5]]);
-const pos$2 = nix.positions(here + "/jsoo.nix", [["pname", 10, 3], ["version", 11, 20], ["src", 11, 28], ["duneVersion", 13, 3], ["propagatedBuildInputs", 15, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const cohttp_lwt_jsoo = nix.arg($, "cohttp-lwt-jsoo");
   const js_of_ocaml_lwt = nix.arg($, "js_of_ocaml-lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "github-jsoo",
       version: nix.thunk(() => nix.attr(github, "version")),
       src: nix.thunk(() => nix.attr(github, "src")),
       duneVersion: "3",
       propagatedBuildInputs: nix.thunk(() => [github, cohttp, cohttp_lwt_jsoo, js_of_ocaml_lwt]),
-      meta: nix.thunk(() => nix.update(nix.sel(github, "meta"), { [nix.POS]: pos$1, description: "GitHub APIv3 JavaScript library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(github, "meta"), { [nix.POS]: $pos[0], description: "GitHub APIv3 JavaScript library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=jsoo.ts.map

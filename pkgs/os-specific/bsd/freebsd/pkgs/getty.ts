@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/getty.nix", [[["path", 7, 3], ["postPatch", 9, 3], ["MK_TESTS", 15, 3], ["postInstall", 17, 3]]]);
 const formals$1 = { args: { mkDerivation: false, login: false, wrappedLogin: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/getty.nix", [["path", 7, 3], ["postPatch", 9, 3], ["MK_TESTS", 15, 3], ["postInstall", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const login = nix.arg($, "login");
   const wrappedLogin = nix.argOr($, "wrappedLogin", () => null);
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "libexec/getty",
       postPatch: nix.thunk(() => nix.str`sed -E -i -e "s|/usr/bin/login|${(nix.asBool(!nix.eq(wrappedLogin, null)) ? nix.force(wrappedLogin) : nix.str`${login}/bin/login`)}|g" $BSDSRCDIR/libexec/getty/*.h
 `),

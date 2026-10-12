@@ -2,54 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zigbee2mqtt.nix", [[["ExecStart", 15, 9]], [["wantedBy", 11, 7], ["serviceConfig", 14, 7]], [["DevicePolicy", 21, 48]], [["serviceConfig", 21, 34]], [["dummy-serial", 10, 22], ["zigbee2mqtt", 21, 22]], [["services", 10, 13]], [["enable", 19, 26]], [["zigbee2mqtt", 19, 14]], [["systemd", 10, 5], ["services", 19, 5]], [["machine", 9, 14]], [["name", 8, 3], ["containers", 9, 3], ["testScript", 24, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/zigbee2mqtt.nix", [["ExecStart", 15, 9]]);
-const pos$2 = nix.positions(here + "/zigbee2mqtt.nix", [["wantedBy", 11, 7], ["serviceConfig", 14, 7]]);
-const pos$3 = nix.positions(here + "/zigbee2mqtt.nix", [["DevicePolicy", 21, 48]]);
-const pos$4 = nix.positions(here + "/zigbee2mqtt.nix", [["serviceConfig", 21, 34]]);
-const pos$5 = nix.positions(here + "/zigbee2mqtt.nix", [["dummy-serial", 10, 22], ["zigbee2mqtt", 21, 22]]);
-const pos$6 = nix.positions(here + "/zigbee2mqtt.nix", [["services", 10, 13]]);
-const pos$7 = nix.positions(here + "/zigbee2mqtt.nix", [["enable", 19, 26]]);
-const pos$8 = nix.positions(here + "/zigbee2mqtt.nix", [["zigbee2mqtt", 19, 14]]);
-const pos$9 = nix.positions(here + "/zigbee2mqtt.nix", [["systemd", 10, 5], ["services", 19, 5]]);
-const pos$10 = nix.positions(here + "/zigbee2mqtt.nix", [["machine", 9, 14]]);
-const pos$11 = nix.positions(here + "/zigbee2mqtt.nix", [["name", 8, 3], ["containers", 9, 3], ["testScript", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "zigbee2mqtt",
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "dummy-serial": nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "socat")}/bin/socat pty,link=/dev/ttyACM0,mode=666 pty,link=/dev/ttyACM1`),
               })),
             })),
             zigbee2mqtt: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               serviceConfig: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 DevicePolicy: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "auto")),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$8,
-          zigbee2mqtt: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+          [nix.POS]: $pos[7],
+          zigbee2mqtt: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
         })),
       })),
     })),

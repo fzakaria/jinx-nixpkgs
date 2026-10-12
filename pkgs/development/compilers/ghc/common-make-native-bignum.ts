@@ -2,24 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common-make-native-bignum.nix", [[["lib", 34, 54], ["stdenv", 34, 58], ["version", 34, 65]], [["cc", 195, 11], ["c++", 196, 11], ["as", 197, 11], ["ar", 199, 11], ["ranlib", 200, 11], ["nm", 201, 11], ["readelf", 202, 11], ["objdump", 203, 11], ["ld", 205, 11], ["ld.gold", 206, 11], ["otool", 208, 11], ["install_name_tool", 214, 11], ["strip", 217, 11], ["clang", 222, 11]], [["gmp", 265, 7], ["libffi", 266, 7], ["ncurses", 267, 7], ["numactl", 268, 7]], [["url", 280, 15], ["sha256", 280, 19]], [["name", 298, 9], ["url", 299, 9], ["sha256", 300, 9], ["stripLen", 301, 9], ["extraPrefix", 302, 9]], [["name", 307, 9], ["url", 308, 9], ["hash", 309, 9], ["stripLen", 310, 9], ["extraPrefix", 311, 9]], [["name", 346, 9], ["url", 347, 9], ["hash", 348, 9]], [["name", 352, 9], ["url", 353, 9], ["hash", 354, 9]], [["name", 363, 9], ["url", 364, 9], ["hash", 365, 9]], [["url", 373, 9], ["stripLen", 374, 9], ["extraPrefix", 375, 9], ["sha256", 376, 9]], [["name", 387, 9], ["url", 388, 9], ["sha256", 389, 9]], [["lib", 403, 52], ["version", 403, 56], ["fetchpatch", 403, 64]], [["bootPkgs", 677, 15], ["targetPrefix", 677, 24], ["llvmPackages", 679, 15], ["enableShared", 680, 15], ["hasHaddock", 684, 7], ["haskellCompilerName", 687, 7], ["bootstrapAvailable", 689, 7]], [["homepage", 693, 7], ["description", 694, 7], ["maintainers", 695, 7], ["teams", 698, 7], ["timeout", 699, 7], ["platforms", 700, 7], ["license", 701, 35]], [["pname", 276, 5], ["version", 277, 13], ["src", 279, 5], ["enableParallelBuilding", 283, 5], ["outputs", 285, 5], ["patches", 290, 5], ["postPatch", 405, 5], ["postAutoreconf", 408, 5], ["preConfigure", 416, 5], ["configurePlatforms", 511, 5], ["configureFlags", 517, 5], ["strictDeps", 568, 5], ["dontAddExtraLibs", 571, 5], ["nativeBuildInputs", 573, 5], ["depsBuildBuild", 591, 5], ["depsBuildTarget", 601, 5], ["disallowedReferences", 605, 5], ["buildInputs", 609, 5], ["depsTargetTarget", 612, 5], ["depsTargetTargetPropagated", 615, 5], ["stripDebugFlags", 621, 5], ["checkTarget", 623, 5], ["hardeningDisable", 625, 5], ["requiredSystemFeatures", 631, 5], ["preInstall", 636, 5], ["postInstall", 640, 5], ["passthru", 676, 5], ["meta", 692, 5]], [["dontStrip", 706, 5], ["dontPatchELF", 707, 5], ["noAuditTmpdir", 708, 5]]]);
 const formals$1 = { args: { version: false, sha256: false, url: true }, ellipsis: false };
 const formals$2 = { args: { lib: false, stdenv: false, pkgsBuildTarget: false, pkgsHostTarget: false, buildPackages: false, targetPackages: false, bootPkgs: false, autoreconfHook: false, coreutils: false, fetchpatch: false, fetchurl: false, perl: false, python3: false, sphinx: false, xattr: false, autoSignDarwinBinariesHook: false, bash: false, libiconv: true, ncurses: false, libffi: true, useLLVM: true, buildTargetLlvmPackages: false, llvmPackages: false, enableNativeBignum: true, gmp: false, enableRelocatedStaticLibs: true, enableProfiledLibs: true, enableShared: true, enableTerminfo: true, enableNuma: true, numactl: false, ghcFlavour: true, enableDocs: true, enableHaddockProgram: true, disableLargeAddressSpace: true, enableUnregisterised: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common-make-native-bignum.nix", [["lib", 34, 54], ["stdenv", 34, 58], ["version", 34, 65]]);
-const pos$2 = nix.positions(here + "/common-make-native-bignum.nix", [["cc", 195, 11], ["c++", 196, 11], ["as", 197, 11], ["ar", 199, 11], ["ranlib", 200, 11], ["nm", 201, 11], ["readelf", 202, 11], ["objdump", 203, 11], ["ld", 205, 11], ["ld.gold", 206, 11], ["otool", 208, 11], ["install_name_tool", 214, 11], ["strip", 217, 11], ["clang", 222, 11]]);
-const pos$3 = nix.positions(here + "/common-make-native-bignum.nix", [["gmp", 265, 7], ["libffi", 266, 7], ["ncurses", 267, 7], ["numactl", 268, 7]]);
-const pos$4 = nix.positions(here + "/common-make-native-bignum.nix", [["url", 280, 15], ["sha256", 280, 19]]);
-const pos$5 = nix.positions(here + "/common-make-native-bignum.nix", [["name", 298, 9], ["url", 299, 9], ["sha256", 300, 9], ["stripLen", 301, 9], ["extraPrefix", 302, 9]]);
-const pos$6 = nix.positions(here + "/common-make-native-bignum.nix", [["name", 307, 9], ["url", 308, 9], ["hash", 309, 9], ["stripLen", 310, 9], ["extraPrefix", 311, 9]]);
-const pos$7 = nix.positions(here + "/common-make-native-bignum.nix", [["name", 346, 9], ["url", 347, 9], ["hash", 348, 9]]);
-const pos$8 = nix.positions(here + "/common-make-native-bignum.nix", [["name", 352, 9], ["url", 353, 9], ["hash", 354, 9]]);
-const pos$9 = nix.positions(here + "/common-make-native-bignum.nix", [["name", 363, 9], ["url", 364, 9], ["hash", 365, 9]]);
-const pos$10 = nix.positions(here + "/common-make-native-bignum.nix", [["url", 373, 9], ["stripLen", 374, 9], ["extraPrefix", 375, 9], ["sha256", 376, 9]]);
-const pos$11 = nix.positions(here + "/common-make-native-bignum.nix", [["name", 387, 9], ["url", 388, 9], ["sha256", 389, 9]]);
-const pos$12 = nix.positions(here + "/common-make-native-bignum.nix", [["lib", 403, 52], ["version", 403, 56], ["fetchpatch", 403, 64]]);
-const pos$13 = nix.positions(here + "/common-make-native-bignum.nix", [["bootPkgs", 677, 15], ["targetPrefix", 677, 24], ["llvmPackages", 679, 15], ["enableShared", 680, 15], ["hasHaddock", 684, 7], ["haskellCompilerName", 687, 7], ["bootstrapAvailable", 689, 7]]);
-const pos$14 = nix.positions(here + "/common-make-native-bignum.nix", [["homepage", 693, 7], ["description", 694, 7], ["maintainers", 695, 7], ["teams", 698, 7], ["timeout", 699, 7], ["platforms", 700, 7], ["license", 701, 35]]);
-const pos$15 = nix.positions(here + "/common-make-native-bignum.nix", [["pname", 276, 5], ["version", 277, 13], ["src", 279, 5], ["enableParallelBuilding", 283, 5], ["outputs", 285, 5], ["patches", 290, 5], ["postPatch", 405, 5], ["postAutoreconf", 408, 5], ["preConfigure", 416, 5], ["configurePlatforms", 511, 5], ["configureFlags", 517, 5], ["strictDeps", 568, 5], ["dontAddExtraLibs", 571, 5], ["nativeBuildInputs", 573, 5], ["depsBuildBuild", 591, 5], ["depsBuildTarget", 601, 5], ["disallowedReferences", 605, 5], ["buildInputs", 609, 5], ["depsTargetTarget", 612, 5], ["depsTargetTargetPropagated", 615, 5], ["stripDebugFlags", 621, 5], ["checkTarget", 623, 5], ["hardeningDisable", 625, 5], ["requiredSystemFeatures", 631, 5], ["preInstall", 636, 5], ["postInstall", 640, 5], ["passthru", 676, 5], ["meta", 692, 5]]);
-const pos$16 = nix.positions(here + "/common-make-native-bignum.nix", [["dontStrip", 706, 5], ["dontPatchELF", 707, 5], ["noAuditTmpdir", 708, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,7 +33,7 @@ export default nix.lambda((args) => (() => {
     const libiconv = nix.argOr($_1, "libiconv", () => null);
     const ncurses = nix.arg($_1, "ncurses");
     const libffi = nix.argOr($_1, "libffi", () => null);
-    const useLLVM = nix.argOr($_1, "useLLVM", () => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, stdenv: stdenv, version: version })))));
+    const useLLVM = nix.argOr($_1, "useLLVM", () => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv, version: version })))));
     const buildTargetLlvmPackages = nix.arg($_1, "buildTargetLlvmPackages");
     const llvmPackages = nix.arg($_1, "llvmPackages");
     const enableNativeBignum = nix.argOr($_1, "enableNativeBignum", () => !nix.asBool((nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gmp)) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "targetPlatform")), gmp)))));
@@ -98,7 +83,7 @@ CrossCompilePrefix = ${targetPrefix}
     const installCC = nix.thunk(() => nix.sel(pkgsHostTarget, "targetPackages", "stdenv", "cc"));
     const toolPath = (name) => (cc) => (() => {
       const tools = nix.thunk(() => nix.sel({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cc: cc,
         "c++": cc,
         as: nix.thunk(() => nix.sel(cc, "bintools")),
@@ -125,7 +110,7 @@ CrossCompilePrefix = ${targetPrefix}
     const targetLibs = nix.thunk(() => (() => {
       const from = nix.thunk(() => (nix.asBool(!nix.eq(hostPlatform, targetPlatform)) ? nix.force(targetPackages) : nix.force(pkgsHostTarget)));
       return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       gmp: nix.thunk(() => nix.attr(from, "gmp")),
       libffi: nix.thunk(() => nix.attr(from, "libffi")),
       ncurses: nix.thunk(() => nix.attr(from, "ncurses")),
@@ -135,12 +120,12 @@ CrossCompilePrefix = ${targetPrefix}
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update((() => {
         const pname = nix.thunk(() => nix.str`${targetPrefix}ghc${variantSuffix}`);
         const version_1 = version;
-        const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$4, url: url, sha256: sha256 }))));
+        const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[3], url: url, sha256: sha256 }))));
         const enableParallelBuilding = true;
         const outputs = nix.thunk(() => ["out", "doc"]);
         const patches = nix.thunk(() => nix.concat([
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "unix-fix-ctimeval-size-32-bit.patch",
               url: "https://github.com/haskell/unix/commit/8183e05b97ce870dd6582a3677cc82459ae566ec.patch",
               sha256: "17q5yyigqr5kxlwwzb95sx567ysfxlw6bp3j4ji20lz0947aw6gv",
@@ -148,7 +133,7 @@ CrossCompilePrefix = ${targetPrefix}
               extraPrefix: "libraries/unix/",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: "unix-AC_C_CONST-drop.patch",
               url: "https://github.com/haskell/unix/commit/1e4183114d4bde7a343803ae11ebbe6763a81ad2.patch",
               hash: "sha256-ZeIeX4mX5qO0AwT8ASO25ZQXjcTICPfyy5MYw5CJ9sw=",
@@ -160,27 +145,27 @@ CrossCompilePrefix = ${targetPrefix}
           nix.path(here, "./ghc-9.4-rts-package-db-libnuma-dirs.patch"),
         ], nix.concat([
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               name: "ghc-add-location-to-cc-phase.patch",
               url: "https://gitlab.haskell.org/ghc/ghc/-/commit/4a7256a75af2fc0318bef771a06949ffb3939d5a.patch",
               hash: "sha256-DnTI+i1zMebeWvw75D59vMaEEBb2Nr9HusxTyhmdy2M=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               name: "ghc-cc-directly-emit-object.patch",
               url: "https://gitlab.haskell.org/ghc/ghc/-/commit/96811ba491495b601ec7d6a32bef8563b0292109.patch",
               hash: "sha256-G8u7/MK/tGOEN8Wxccxj/YIOP7mL2G9Co1WKdHXOo6I=",
             })))),
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), version_1), "9.4")), nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 name: "ghc-hp2ps-c-gnu17.patch",
                 url: "https://src.fedoraproject.org/rpms/ghc/raw/9c26d7c3c3de73509a25806e5663b37bcf2e0b4e/f/hp2ps-C-gnu17.patch",
                 hash: "sha256-Vr5wkiSE1S5e+cJ8pWUvG9KFpxtmvQ8wAy08ElGNp5E=",
               })))),
           ])), nix.concat([
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               url: "https://github.com/haskell/cabal/commit/6c796218c92f93c95e94d5ec2d077f6956f68e98.patch",
               stripLen: 1n,
               extraPrefix: "libraries/Cabal/",
@@ -188,12 +173,12 @@ CrossCompilePrefix = ${targetPrefix}
             })))),
         ], nix.concat([
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               name: "ghc-rts-adjustor-fix-i386-stack-overrun.patch",
               url: "https://gitlab.haskell.org/ghc/ghc/-/commit/39bb6e583d64738db51441a556d499aa93a4fc4a.patch",
               sha256: "0w5fx413z924bi2irsy1l4xapxxhrq158b5gn6jzrbsmhvmpirs0",
             })))),
-        ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "targetPlatform", "isAarch64")))), nix.thunk(() => [nix.path(here, "./Cabal-at-least-3.6-paths-fix-cycle-aarch64-darwin.patch")])), nix.app(nix.builtins.import(nix.path(here, "./common-llvm-patches.nix")), nix.thunk(() => ({ [nix.POS]: pos$12, lib: lib, version: version_1, fetchpatch: fetchpatch }))))))))));
+        ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "targetPlatform", "isAarch64")))), nix.thunk(() => [nix.path(here, "./Cabal-at-least-3.6-paths-fix-cycle-aarch64-darwin.patch")])), nix.app(nix.builtins.import(nix.path(here, "./common-llvm-patches.nix")), nix.thunk(() => ({ [nix.POS]: $pos[11], lib: lib, version: version_1, fetchpatch: fetchpatch }))))))))));
         const postPatch = "patchShebangs .";
         const postAutoreconf = "pushd libraries/unix\nautoconf\npopd\n";
         const preConfigure = nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.str`for env in $(env | grep '^TARGET_' | sed -E 's|\\+?=.*||'); do
@@ -308,7 +293,7 @@ ghc-settings-edit "$settingsFile" \\
 install -D -m 444 utils/completion/ghc.bash $out/share/bash-completion/completions/${targetPrefix}ghc
 `));
         const passthru = nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           bootPkgs: bootPkgs,
           targetPrefix: targetPrefix,
           llvmPackages: llvmPackages,
@@ -320,7 +305,7 @@ install -D -m 444 utils/completion/ghc.bash $out/share/bash-completion/completio
         const meta = nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(bootPkgs, "ghc", "meta"));
           return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           homepage: "http://haskell.org/ghc",
           description: "Glasgow Haskell Compiler",
           maintainers: nix.thunk(() => (() => {
@@ -334,7 +319,7 @@ install -D -m 444 utils/completion/ghc.bash $out/share/bash-completion/completio
         };
         })());
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           pname,
           version: version_1,
           src,
@@ -364,7 +349,12 @@ install -D -m 444 utils/completion/ghc.bash $out/share/bash-completion/completio
           passthru,
           meta,
         };
-      })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(targetPlatform, "useAndroidPrebuilt")), nix.thunk(() => ({ [nix.POS]: pos$16, dontStrip: true, dontPatchELF: true, noAuditTmpdir: true }))))));
+      })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(targetPlatform, "useAndroidPrebuilt")), nix.thunk(() => ({
+          [nix.POS]: $pos[15],
+          dontStrip: true,
+          dontPatchELF: true,
+          noAuditTmpdir: true,
+        }))))));
   })(), formals$2);
 })(), formals$1);
 //# sourceMappingURL=common-make-native-bignum.ts.map

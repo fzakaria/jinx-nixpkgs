@@ -2,94 +2,66 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["system", 4, 36], ["config", 4, 43]], [["type", 16, 33]], [["type", 17, 40]], [["type", 18, 39]], [["type", 20, 15], ["default", 21, 15]], [["type", 24, 15], ["default", 25, 15]], [["type", 28, 15], ["default", 29, 15]], [["rclone", 16, 13], ["upload-sample", 17, 13], ["check-sample", 18, 13], ["init", 19, 13], ["provision", 23, 13], ["extraTests", 27, 13]], [["type", 32, 42]], [["type", 33, 42]], [["test-helpers", 15, 19], ["adminuser", 32, 19], ["adminpass", 33, 19]], [["options", 15, 11]], [["rclone", 40, 20], ["upload-sample", 50, 20], ["check-sample", 53, 20]], [["allowedTCPPorts", 63, 33]], [["firewall", 63, 24]], [["createLocally", 68, 24]], [["adminpassFile", 70, 17]], [["enable", 65, 15], ["hostName", 66, 15], ["https", 67, 15], ["database", 68, 15], ["config", 69, 15]], [["nextcloud", 64, 22]], [["networking", 63, 13], ["services", 64, 13]], [["client", 59, 9], ["nextcloud", 60, 9]], [["imports", 13, 7], ["adminuser", 37, 7], ["adminpass", 38, 7], ["test-helpers", 40, 7], ["nodes", 58, 7], ["testScript", 76, 7]], [["package", 119, 34]], [["nextcloud", 119, 24]], [["services", 119, 15]], [["nextcloud", 116, 17]], [["nodes", 116, 11]], [["imports", 113, 16]], [["system", 131, 21], ["pkgs", 131, 28], ["testBase", 131, 33], ["name", 132, 13]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["system", 4, 36], ["config", 4, 43]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["type", 16, 33]]);
-const pos$3 = nix.positions(here + "/default.nix", [["type", 17, 40]]);
-const pos$4 = nix.positions(here + "/default.nix", [["type", 18, 39]]);
-const pos$5 = nix.positions(here + "/default.nix", [["type", 20, 15], ["default", 21, 15]]);
-const pos$6 = nix.positions(here + "/default.nix", [["type", 24, 15], ["default", 25, 15]]);
-const pos$7 = nix.positions(here + "/default.nix", [["type", 28, 15], ["default", 29, 15]]);
-const pos$8 = nix.positions(here + "/default.nix", [["rclone", 16, 13], ["upload-sample", 17, 13], ["check-sample", 18, 13], ["init", 19, 13], ["provision", 23, 13], ["extraTests", 27, 13]]);
-const pos$9 = nix.positions(here + "/default.nix", [["type", 32, 42]]);
-const pos$10 = nix.positions(here + "/default.nix", [["type", 33, 42]]);
-const pos$11 = nix.positions(here + "/default.nix", [["test-helpers", 15, 19], ["adminuser", 32, 19], ["adminpass", 33, 19]]);
-const pos$12 = nix.positions(here + "/default.nix", [["options", 15, 11]]);
-const pos$13 = nix.positions(here + "/default.nix", [["rclone", 40, 20], ["upload-sample", 50, 20], ["check-sample", 53, 20]]);
 const formals$3 = { args: {  }, ellipsis: true };
 const formals$4 = { args: { lib: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/default.nix", [["allowedTCPPorts", 63, 33]]);
-const pos$15 = nix.positions(here + "/default.nix", [["firewall", 63, 24]]);
-const pos$16 = nix.positions(here + "/default.nix", [["createLocally", 68, 24]]);
-const pos$17 = nix.positions(here + "/default.nix", [["adminpassFile", 70, 17]]);
-const pos$18 = nix.positions(here + "/default.nix", [["enable", 65, 15], ["hostName", 66, 15], ["https", 67, 15], ["database", 68, 15], ["config", 69, 15]]);
-const pos$19 = nix.positions(here + "/default.nix", [["nextcloud", 64, 22]]);
-const pos$20 = nix.positions(here + "/default.nix", [["networking", 63, 13], ["services", 64, 13]]);
-const pos$21 = nix.positions(here + "/default.nix", [["client", 59, 9], ["nextcloud", 60, 9]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$22 = nix.positions(here + "/default.nix", [["imports", 13, 7], ["adminuser", 37, 7], ["adminpass", 38, 7], ["test-helpers", 40, 7], ["nodes", 58, 7], ["testScript", 76, 7]]);
 const formals$6 = { args: { pkgs: false }, ellipsis: true };
-const pos$23 = nix.positions(here + "/default.nix", [["package", 119, 34]]);
-const pos$24 = nix.positions(here + "/default.nix", [["nextcloud", 119, 24]]);
-const pos$25 = nix.positions(here + "/default.nix", [["services", 119, 15]]);
-const pos$26 = nix.positions(here + "/default.nix", [["nextcloud", 116, 17]]);
-const pos$27 = nix.positions(here + "/default.nix", [["nodes", 116, 11]]);
-const pos$28 = nix.positions(here + "/default.nix", [["imports", 113, 16]]);
-const pos$29 = nix.positions(here + "/default.nix", [["system", 131, 21], ["pkgs", 131, 28], ["testBase", 131, 33], ["name", 132, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
   const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), null);
   const baseModule = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const config_1 = nix.arg($_1, "config");
     return {
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       imports: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           options: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             "test-helpers": nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               rclone: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 })))),
               "upload-sample": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 })))),
               "check-sample": nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                 })))),
               init: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "",
                 })))),
               provision: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
                   default: "",
                 })))),
               extraTests: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "either"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")), nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "types"), "functionTo"), nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")))))),
                   default: "",
                 })))),
             })),
             adminuser: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               })))),
             adminpass: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "str")),
               })))),
           })),
@@ -98,7 +70,7 @@ export default nix.lambda((args) => (() => {
       adminuser: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkDefault"), "root")),
       adminpass: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkDefault"), "hunter2")),
       "test-helpers": nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         rclone: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeShellScript"), "rclone", nix.thunk(() => nix.str`set -euo pipefail
 export PATH="${nix.sel(pkgs, "rclone")}/bin:$PATH"
 export RCLONE_CONFIG_NEXTCLOUD_TYPE=webdav
@@ -112,7 +84,7 @@ exec "$@"
         "check-sample": nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeShellScript"), "check-sample", "set -e\ndiff <(echo 'hi') <(rclone cat nextcloud:test-shared-file)\n")}`),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         client: nix.lambda((args_2) => (() => {
           const $_2 = nix.formals(args_2, formals$3);
           return {};
@@ -121,24 +93,24 @@ exec "$@"
           const $_2 = nix.formals(args_2, formals$4);
           const lib = nix.arg($_2, "lib");
           return {
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$15,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [80n]) })),
+              [nix.POS]: $pos[14],
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[13], allowedTCPPorts: nix.thunk(() => [80n]) })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               nextcloud: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 enable: true,
                 hostName: "nextcloud",
                 https: false,
                 database: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   createLocally: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
                 })),
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   adminpassFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "adminpass", nix.thunk(() => nix.sel(config_1, "adminpass")))}`),
                 })),
               })),
@@ -177,22 +149,22 @@ ${(nix.asBool(nix.app(nix.sel(pkgs, "lib", "isFunction"), nix.thunk(() => nix.se
   })(), formals$2);
   const genTests = (version) => (() => {
     const testBase = nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       imports: nix.thunk(() => [
         baseModule,
         nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             nextcloud: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$6);
               const pkgs_1 = nix.arg($_1, "pkgs");
               return {
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   nextcloud: nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     package: nix.thunk(() => nix.sel(pkgs_1, nix.key(nix.str`nextcloud${nix.app(nix.builtins.toString, version)}`))),
                   })),
                 })),
@@ -205,7 +177,7 @@ ${(nix.asBool(nix.app(nix.sel(pkgs, "lib", "isFunction"), nix.thunk(() => nix.se
     const callNextcloudTest = (path) => (() => {
       const name = nix.thunk(() => nix.str`${nix.app(nix.lookup(w, "removeSuffix"), ".nix", nix.thunk(() => nix.app(nix.builtins.baseNameOf, path)))}${nix.app(nix.builtins.toString, version)}`);
       return nix.app(nix.lookup(w, "nameValuePair"), name, nix.thunk(() => nix.app(nix.builtins.import, path, nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             system: system,
             pkgs: pkgs,
             testBase: testBase,

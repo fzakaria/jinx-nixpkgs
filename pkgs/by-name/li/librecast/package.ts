@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["updateScript", 25, 12]], [["changelog", 28, 5], ["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 35, 5], ["teams", 42, 5], ["platforms", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 19, 3], ["installFlags", 23, 3], ["passthru", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromCodeberg: false, lcrq: false, lib: false, libsodium: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 25, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 28, 5], ["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 35, 5], ["teams", 42, 5], ["platforms", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 19, 3], ["installFlags", 23, 3], ["passthru", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libsodium = nix.arg($, "libsodium");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "librecast",
       version: "0.11.2",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "librecast",
           repo: "librecast",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [lcrq, libsodium]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://codeberg.org/librecast/librecast/src/tag/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "IPv6 multicast library",
         homepage: "https://librecast.net/librecast.html",

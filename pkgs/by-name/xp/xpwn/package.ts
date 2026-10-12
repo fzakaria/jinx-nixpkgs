@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["NIX_CFLAGS_COMPILE", 24, 7]], [["broken", 60, 5], ["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["platforms", 64, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["env", 24, 3], ["preConfigure", 35, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 46, 3], ["postPatch", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, zlib: false, libpng: false, bzip2: false, "libusb-compat-0_1": false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 60, 5], ["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["platforms", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["env", 24, 3], ["preConfigure", 35, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 46, 3], ["postPatch", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xpwn",
       version: "0.5.8-unstable-2024-04-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "planetbeing",
           repo: "xpwn",
           rev: "20c32e5c12d1b22a9d55a59a0ff6267f539b77f4",
           hash: "sha256-wOSIaeNjZOKoeL4padP6UWY1O75qqHuFuSMrdCOLI2s=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fcommon", "-Wno-implicit-int", "-Wno-incompatible-pointer-types"]))),
       })),
       preConfigure: "rm BUILD # otherwise `mkdir build` fails on case insensitive file systems\nsed -r -i \\\n  -e 's/(install.*TARGET.*DESTINATION )\\.\\)/\\1bin)/' \\\n  -e 's!(install.*(FILE|DIR).*DESTINATION )([^)]*)!\\1share/xpwn/\\3!' \\\n  */CMakeLists.txt\nsed -i -e '/install/d' CMakeLists.txt\n",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib, libpng, bzip2, libusb_compat_0_1, openssl]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "http://planetbeing.lighthouseapp.com/projects/15246-xpwn",
         description: "Custom NOR firmware loader/IPSW generator for the iPhone",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["NIX_CFLAGS_COMPILE", 33, 7]], [["homepage", 62, 5], ["license", 63, 5], ["description", 64, 5], ["longDescription", 65, 5], ["mainProgram", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["hardeningDisable", 17, 3], ["postPatch", 19, 3], ["buildFlags", 30, 3], ["env", 33, 3], ["doCheck", 35, 3], ["checkPhase", 36, 3], ["installPhase", 46, 3], ["nativeInstallCheckInputs", 56, 3], ["doInstallCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["license", 63, 5], ["description", 64, 5], ["longDescription", 65, 5], ["mainProgram", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["hardeningDisable", 17, 3], ["postPatch", 19, 3], ["buildFlags", 30, 3], ["env", 33, 3], ["doCheck", 35, 3], ["checkPhase", 36, 3], ["installPhase", 46, 3], ["nativeInstallCheckInputs", 56, 3], ["doInstallCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,25 +12,25 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "prover9",
       version: "2009-11A",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.cs.unm.edu/~mccune/mace4/download/LADR-2009-11A.tar.gz",
           hash: "sha256-wyvtWAcADAtxYcJ25Q2coK8MskjfLBr/svb8AkcbUdA=",
         })))),
       hardeningDisable: nix.thunk(() => ["format"]),
       postPatch: "RM=$(type -tp rm)\nMV=$(type -tp mv)\nCP=$(type -tp cp)\nfor f in Makefile */Makefile; do\n  substituteInPlace $f --replace-quiet \"/bin/rm\" \"$RM\" \\\n    --replace-quiet \"/bin/mv\" \"$MV\" \\\n    --replace-quiet \"/bin/cp\" \"$CP\";\ndone\n",
       buildFlags: nix.thunk(() => ["all"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int" })),
       doCheck: true,
       checkPhase: "runHook preCheck\n\nmake test1\nmake test2\nmake test3\n\nrunHook postCheck\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\nfor f in mace4 prover9 fof-prover9 autosketches4 newauto newsax ladr_to_tptp tptp_to_ladr; do\n  install -Dm555 bin/$f $out/bin/$f;\ndone\ninstall -Dm644 -t $out/share/man/man1 manpages/*.1\nrunHook postInstall\n",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.cs.unm.edu/~mccune/mace4/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         description: "Automated theorem prover for first-order and equational logic",

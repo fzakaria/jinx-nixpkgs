@@ -2,38 +2,26 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/settings-options.nix", [[["type", 11, 15], ["description", 18, 15], ["default", 19, 15]], [["type", 22, 15], ["description", 23, 15], ["default", 24, 15]], [["mechanism", 10, 13], ["automatically", 21, 13]], [["type", 29, 15], ["description", 30, 15], ["default", 31, 15]], [["port", 28, 13]], [["type", 36, 15], ["description", 37, 15], ["default", 38, 15]], [["analyticsEnabled", 35, 13]], [["update", 9, 11], ["server", 27, 11], ["log", 34, 11]], [["freeformType", 7, 9], ["options", 8, 9]], [["type", 6, 7], ["example", 43, 7], ["default", 53, 7], ["description", 54, 7]], [["type", 66, 7], ["default", 67, 7], ["description", 68, 7]], [["name", 81, 11], ["value", 82, 11]], [["mkServarrSettingsOptions", 3, 3], ["mkServarrEnvironmentFiles", 63, 3], ["mkServarrSettingsEnvVars", 75, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/settings-options.nix", [["type", 11, 15], ["description", 18, 15], ["default", 19, 15]]);
-const pos$2 = nix.positions(here + "/settings-options.nix", [["type", 22, 15], ["description", 23, 15], ["default", 24, 15]]);
-const pos$3 = nix.positions(here + "/settings-options.nix", [["mechanism", 10, 13], ["automatically", 21, 13]]);
-const pos$4 = nix.positions(here + "/settings-options.nix", [["type", 29, 15], ["description", 30, 15], ["default", 31, 15]]);
-const pos$5 = nix.positions(here + "/settings-options.nix", [["port", 28, 13]]);
-const pos$6 = nix.positions(here + "/settings-options.nix", [["type", 36, 15], ["description", 37, 15], ["default", 38, 15]]);
-const pos$7 = nix.positions(here + "/settings-options.nix", [["analyticsEnabled", 35, 13]]);
-const pos$8 = nix.positions(here + "/settings-options.nix", [["update", 9, 11], ["server", 27, 11], ["log", 34, 11]]);
-const pos$9 = nix.positions(here + "/settings-options.nix", [["freeformType", 7, 9], ["options", 8, 9]]);
-const pos$10 = nix.positions(here + "/settings-options.nix", [["type", 6, 7], ["example", 43, 7], ["default", 53, 7], ["description", 54, 7]]);
-const pos$11 = nix.positions(here + "/settings-options.nix", [["type", 66, 7], ["default", 67, 7], ["description", 68, 7]]);
-const pos$12 = nix.positions(here + "/settings-options.nix", [["name", 81, 11], ["value", 82, 11]]);
-const pos$13 = nix.positions(here + "/settings-options.nix", [["mkServarrSettingsOptions", 3, 3], ["mkServarrEnvironmentFiles", 63, 3], ["mkServarrSettingsEnvVars", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     mkServarrSettingsOptions: (name) => (port) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             freeformType: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))), "type")),
             options: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               update: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 mechanism: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    [nix.POS]: pos$1,
+                    [nix.POS]: $pos[0],
                     type: nix.thunk(() => (() => {
                       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
                       return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "enum"), nix.thunk(() => ["external", "builtIn", "script"]))));
@@ -42,25 +30,25 @@ export default nix.lambda((args) => (() => {
                     default: "external",
                   })))),
                 automatically: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                     description: "Automatically download and install updates.",
                     default: false,
                   })))),
               })),
               server: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 port: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     type: nix.thunk(() => nix.sel(lib, "types", "port")),
                     description: "Port Number",
                     default: port,
                   })))),
               })),
               log: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 analyticsEnabled: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                     description: "Send Anonymous Usage Data",
                     default: false,
@@ -86,7 +74,7 @@ For secrets use [](#opt-services.${name}.environmentFiles).
 `),
       }))),
     mkServarrEnvironmentFiles: (name) => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         type: nix.thunk(() => nix.app(nix.sel(lib, "types", "listOf"), nix.thunk(() => nix.sel(lib, "types", "path")))),
         default: [],
         description: nix.thunk(() => nix.str`Environment file to pass secret configuration values.
@@ -96,7 +84,7 @@ Please consult the documentation at the [wiki](https://wiki.servarr.com/useful-t
       }))),
     mkServarrSettingsEnvVars: (name) => (settings) => nix.app(nix.sel(lib, "pipe"), settings, nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursive"), (path) => (value) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(value, null)), nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               name: nix.thunk(() => nix.app(nix.sel(lib, "toUpper"), nix.thunk(() => nix.str`${name}__${nix.app(nix.sel(lib, "concatStringsSep"), "__", path)}`))),
               value: nix.thunk(() => nix.builtins.toString(nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isBool"), value)) ? nix.app(nix.sel(lib, "boolToString"), value) : nix.force(value))))),
             }))))),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zfs.nix", [[["license", 43, 5]], [["path", 11, 3], ["extraPaths", 12, 3], ["buildInputs", 19, 3], ["postPatch", 26, 3], ["preBuild", 31, 3], ["outputs", 36, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false, libgeom: false, libjail: false, libzfs: false, openssl: false, "zfs-data": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/zfs.nix", [["license", 43, 5]]);
-const pos$2 = nix.positions(here + "/zfs.nix", [["path", 11, 3], ["extraPaths", 12, 3], ["buildInputs", 19, 3], ["postPatch", 26, 3], ["preBuild", 31, 3], ["outputs", 36, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zfs_data = nix.arg($, "zfs-data");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "cddl/sbin/zfs",
       extraPaths: nix.thunk(() => [
         "cddl/compat/opensolaris",
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "make -C $BSDSRCDIR/cddl/sbin/zpool $makeFlags\nmake -C $BSDSRCDIR/cddl/sbin/zpool $makeFlags install\n",
       outputs: nix.thunk(() => ["out", "man", "debug"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [

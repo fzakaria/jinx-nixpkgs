@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["updateScript", 61, 5]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["teams", 69, 5], ["mainProgram", 70, 5], ["platforms", 71, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["propagatedBuildInputs", 47, 3], ["dontWrapGApps", 53, 3], ["preFixup", 56, 3], ["passthru", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, "blueprint-compiler": false, "desktop-file-utils": false, gtk4: false, gst_all_1: false, libsoup_3: false, libadwaita: false, wrapGAppsHook4: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["teams", 69, 5], ["mainProgram", 70, 5], ["platforms", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["propagatedBuildInputs", 47, 3], ["dontWrapGApps", 53, 3], ["preFixup", 56, 3], ["passthru", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "valuta",
       version: "1.4.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ideveCore",
           repo: "Valuta",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,11 +58,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple application for converting currencies, with support for various APIs",
         homepage: "https://github.com/ideveCore/Valuta",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 68, 5], ["longDescription", 70, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 83, 5], ["platforms", 84, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["strictDeps", 45, 3], ["makeFlags", 47, 3], ["preBuild", 53, 3], ["postInstall", 57, 3], ["doInstallCheck", 63, 3], ["nativeInstallCheckInputs", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perl: false, python3: false, perlPackages: false, makeWrapper: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["longDescription", 70, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 83, 5], ["platforms", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["strictDeps", 45, 3], ["makeFlags", 47, 3], ["preBuild", 53, 3], ["postInstall", 57, 3], ["doInstallCheck", 63, 3], ["nativeInstallCheckInputs", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(perlPackages, "PathTools")),
   ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "MemoryProcess"))]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lcov",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linux-test-project",
           repo: "lcov",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +51,7 @@ done
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Code coverage tool that enhances GNU gcov",
         longDescription: "LCOV is an extension of GCOV, a GNU tool which provides information\nabout what parts of a program are actually executed (i.e.,\n\"covered\") while running a particular test case.  The extension\nconsists of a set of PERL scripts which build on the textual GCOV\noutput to implement the following enhanced functionality such as\nHTML output.\n",
         homepage: "https://github.com/linux-test-project/lcov",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["seed", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["configFile", 56, 45]], [["hardcodeZeroVersion", 59, 27]], [["extraArgs", 60, 26]], [["withConfig", 54, 12], ["updateScript", 58, 12]], [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 72, 5], ["license", 73, 5], ["teams", 74, 5], ["maintainers", 75, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["npmDepsHash", 22, 3], ["preBuild", 24, 3], ["installPhase", 30, 3], ["passthru", 54, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromRadicle: false, writers: false, "_experimental-update-script-combinators": false, unstableGitUpdater: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["seed", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["configFile", 56, 45]]);
-const pos$3 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 59, 27]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 60, 26]]);
-const pos$5 = nix.positions(here + "/package.nix", [["withConfig", 54, 12], ["updateScript", 58, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 72, 5], ["license", 73, 5], ["teams", 74, 5], ["maintainers", 75, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["npmDepsHash", 22, 3], ["preBuild", 24, 3], ["installPhase", 30, 3], ["passthru", 54, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "radicle-explorer",
       version: "0-unstable-2026-10-05",
       src: nix.thunk(() => nix.app(fetchFromRadicle, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           seed: "seed.radicle.dev",
           repo: "z4V1sjrXqjvFdnCUbxPFqd5p4DtH5",
           rev: "244c5711df12d21d70eadde4b5a4d425306d7971",
@@ -35,18 +29,18 @@ export default nix.lambda((args) => (() => {
       preBuild: "if [[ $configFile ]]; then\n  cp \"$configFile\" config/local.json\nfi\n",
       installPhase: "runHook preInstall\n\nmv build $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         withConfig: (config) => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             configFile: nix.thunk(() => nix.app(nix.sel(writers, "writeJSON"), "config.json", config)),
           }))),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, hardcodeZeroVersion: true })))),
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
+            nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], hardcodeZeroVersion: true })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--version=skip"]) })))),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Web frontend for Radicle",
         longDescription: "Radicle Explorer is a web-frontend for Radicle which supports browsing\nrepositories, issues and patches on publicly available Radicle seeds.\n\nThis package builds the web interface, ready to be served by any web\nserver.\n",
         homepage: "https://radicle.dev",

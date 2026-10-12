@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["NIX_CFLAGS_COMPILE", 36, 7]], [["description", 63, 5], ["homepage", 64, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["api_version", 72, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["configureFlags", 31, 3], ["env", 36, 3], ["enableParallelBuilding", 43, 3], ["postPatch", 45, 3], ["installPhase", 51, 3], ["meta", 62, 3], ["passthru", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "alsa-lib": false, libjack2: false, "pkg-config": false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["api_version", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["configureFlags", 31, 3], ["env", 36, 3], ["enableParallelBuilding", 43, 3], ["postPatch", 45, 3], ["installPhase", 51, 3], ["meta", 62, 3], ["passthru", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "portaudio",
       version: "190700_20210406",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://files.portaudio.com/archives/pa_stable_v${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1vrdrd42jsnffh6rq8ap2c6fr4g9fcld89z649fs06bwqx1bzvs7",
         })))),
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libjack2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib])))),
       configureFlags: nix.thunk(() => ["--disable-mac-universal", "--enable-cxx"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=nullability-inferred-on-nested-type -Wno-error=nullability-completeness-on-arrays -Wno-error=implicit-const-int-float-conversion")),
       })),
       enableParallelBuilding: false,
@@ -41,14 +37,14 @@ export default nix.lambda((args) => (() => {
 sed -i "s|-lasound|-L${nix.sel(alsa_lib, "out")}/lib -lasound|" "$out/lib/pkgconfig/"*.pc
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "cp include/pa_mac_core.h $out/include/pa_mac_core.h\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Portable cross-platform Audio API",
         homepage: "https://www.portaudio.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, api_version: 19n })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], api_version: 19n })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

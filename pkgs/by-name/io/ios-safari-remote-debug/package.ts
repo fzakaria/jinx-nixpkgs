@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["mainProgram", 36, 5], ["maintainers", 37, 5]], [["pname", 8, 3], ["version", 9, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["vendorHash", 18, 3], ["patches", 20, 3], ["postPatch", 22, 3], ["postBuild", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["mainProgram", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["vendorHash", 18, 3], ["patches", 20, 3], ["postPatch", 22, 3], ["postBuild", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ios-safari-remote-debug",
       version: "0-unstable-2024-09-09",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.gay/besties/ios-safari-remote-debug.git",
           rev: "b3c69873997c08fce83c48a5ab42f5a2354efdf2",
           hash: "sha256-Hh/CeH0ba4uPMlEo+OZ3w36pTpsW6OLtYIE5v6dkUjo=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
 cp -r injectedCode views $out/share/${nix.sel(finalAttrs, "pname")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Remote debugger for iOS Safari",
         homepage: "https://git.gay/besties/ios-safari-remote-debug",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

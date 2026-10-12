@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 12, 26], ["pname", 12, 34], ["hash", 13, 5]], [["description", 19, 5], ["mainProgram", 20, 5], ["homepage", 21, 5], ["changelog", 22, 5], ["license", 23, 5], ["maintainers", 27, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 12, 26], ["pname", 12, 34], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 19, 5], ["mainProgram", 20, 5], ["homepage", 21, 5], ["changelog", 22, 5], ["license", 23, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "svdtools",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           hash: "sha256-2GemBVTRvYC5bvlYgJKmDJM78ZoE63B1QwV8cfSHYPg=",
         })))),
       cargoHash: "sha256-sn+Z3/p4Ek/wxwTj6uwDBFP1hFNGDb2EZ7MO0zvPjPk=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tools to handle vendor-supplied, often buggy SVD files",
         mainProgram: "svdtools",
         homepage: "https://github.com/stm32-rs/svdtools",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["arch", 15, 11], ["hash", 16, 11]], [["arch", 19, 11], ["hash", 20, 11]], [["x86_64-linux", 14, 9], ["aarch64-linux", 18, 9]], [["url", 26, 7], ["hash", 27, 35]], [["pname", 31, 50], ["version", 31, 56], ["src", 31, 64]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["platforms", 49, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["extraInstallCommands", 29, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, appimageTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["arch", 15, 11], ["hash", 16, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["arch", 19, 11], ["hash", 20, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 14, 9], ["aarch64-linux", 18, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 35]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 50], ["version", 31, 56], ["src", 31, 64]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["platforms", 49, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["extraInstallCommands", 29, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.16";
       const src = nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "x86_64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             arch: "x86_64",
             hash: "sha256-JcVKRINEWHJXzpdyiMSzx+cp/BzHBhrXRxYizQmkerI=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             arch: "arm64",
             hash: "sha256-FDZz3Aarz9j8ppaLO6C1IhVKr7Dns77fLdQQCaCoKg0=",
           })),
@@ -39,14 +33,14 @@ export default nix.lambda((args) => (() => {
         return nix.app(fetchurl, nix.thunk(() => (() => {
             const from_1 = nix.thunk(() => nix.sel(sources, nix.key(nix.force(system))));
             return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: nix.thunk(() => nix.str`https://github.com/pavlobu/deskreen/releases/download/v${version}/deskreen-ce-${version}-${nix.sel(sources, nix.key(nix.force(system)), "arch")}.AppImage`),
             hash: nix.thunk(() => nix.attr(from_1, "hash")),
           };
           })()));
       })());
       const extraInstallCommands = nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$5, pname: pname, version: version, src: src }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[4], pname: pname, version: version, src: src }))));
         return nix.str`install -m 444 -D ${contents}/deskreen-ce.desktop $out/share/applications/deskreen-ce.desktop
 install -m 444 -D ${contents}/usr/share/icons/hicolor/256x256/apps/deskreen-ce.png \\
   $out/share/icons/hicolor/512x512/apps/deskreen-ce.png
@@ -55,7 +49,7 @@ substituteInPlace $out/share/applications/deskreen-ce.desktop \\
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Turn any device into a secondary screen for your computer",
         homepage: "https://deskreen.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -66,7 +60,7 @@ substituteInPlace $out/share/applications/deskreen-ce.desktop \\
         })()),
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
-      return { [nix.POS]: pos$7, pname, version, src, extraInstallCommands, meta };
+      return { [nix.POS]: $pos[6], pname, version, src, extraInstallCommands, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

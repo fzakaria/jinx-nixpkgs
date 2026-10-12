@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/manifest-requirements-check-hook.nix", [[["pythonCheckInterpreter", 10, 5], ["checkManifest", 11, 5]], [["license", 13, 8]], [["name", 8, 3], ["substitutions", 9, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, makeSetupHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/manifest-requirements-check-hook.nix", [["pythonCheckInterpreter", 10, 5], ["checkManifest", 11, 5]]);
-const pos$2 = nix.positions(here + "/manifest-requirements-check-hook.nix", [["license", 13, 8]]);
-const pos$3 = nix.positions(here + "/manifest-requirements-check-hook.nix", [["name", 8, 3], ["substitutions", 9, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +11,17 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "manifest-check-hook",
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pythonCheckInterpreter: nix.thunk(() => nix.sel(python3Packages, "python", "interpreter")),
         checkManifest: nix.path(here, "./check_manifest.py"),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })), nix.path(here, "./manifest-requirements-check-hook.sh"));
 })(), formals$1);
 //# sourceMappingURL=manifest-requirements-check-hook.ts.map

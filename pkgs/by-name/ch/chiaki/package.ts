@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["rev", 22, 5], ["fetchSubmodules", 23, 5], ["hash", 24, 5]], [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["doCheck", 50, 3], ["installCheckPhase", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, cmake: false, "pkg-config": false, ffmpeg: false, libopus: false, SDL2: false, libevdev: false, udev: false, nanopb: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["rev", 22, 5], ["fetchSubmodules", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["doCheck", 50, 3], ["installCheckPhase", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nanopb = nix.arg($, "nanopb");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "chiaki",
       version: "2.2.0-unstable-2026-01-04",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.sr.ht/~thestr4ng3r/chiaki",
           rev: "ab55cf4c95f7723faae08a546fbe14e0f6bddf45",
           fetchSubmodules: true,
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       installCheckPhase: "$out/bin/chiaki --help",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git.sr.ht/~thestr4ng3r/chiaki",
         description: "Free and Open Source PlayStation Remote Play Client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

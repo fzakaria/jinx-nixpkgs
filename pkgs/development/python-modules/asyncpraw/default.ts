@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["pythonRelaxDeps", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 47, 3], ["disabledTestPaths", 55, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, aiofiles: false, aiohttp: false, asyncprawcore: false, buildPythonPackage: false, coverage: false, defusedxml: false, fetchFromGitHub: false, hatchling: false, pytestCheckHook: false, "pytest-asyncio": false, "pytest-vcr": false, "update-checker": false, vcrpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["pythonRelaxDeps", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 47, 3], ["disabledTestPaths", 55, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const update_checker = nix.arg($, "update-checker");
   const vcrpy = nix.arg($, "vcrpy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "asyncpraw",
       version: "8.0.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "praw-dev",
           repo: "asyncpraw",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["asyncpraw"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Asynchronous Python Reddit API Wrapper",
         homepage: "https://asyncpraw.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/praw-dev/asyncpraw/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGES.rst`),

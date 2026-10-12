@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 41, 5], ["hash", 42, 5]], [["wrapperPrefix", 88, 15]], [["NIX_CFLAGS_COMPILE", 105, 7]], [["xscreensaver", 131, 5]], [["tests", 130, 12]], [["homepage", 135, 5], ["description", 136, 5], ["downloadPage", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 142, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["outputs", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["postPatch", 80, 3], ["patches", 86, 3], ["preConfigure", 92, 3], ["configureFlags", 100, 3], ["env", 105, 3], ["postInstall", 107, 3], ["passthru", 130, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, coreutils: false, "gdk-pixbuf": false, "gdk-pixbuf-xlib": false, gettext: false, gle: false, gtk3: false, intltool: false, libGL: false, libGLU: false, libx11: false, libxext: false, libxft: false, libxi: false, libxinerama: false, libxrandr: false, libxt: false, libxxf86vm: false, libxml2: false, makeWrapper: false, pam: false, perlPackages: false, appres: false, "pkg-config": false, systemdLibs: false, forceInstallAllHacks: true, withSystemd: true, nixosTests: false, replaceVars: false, wrapperPrefix: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["wrapperPrefix", 88, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 105, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["xscreensaver", 131, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 130, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 135, 5], ["description", 136, 5], ["downloadPage", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 142, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["outputs", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["postPatch", 80, 3], ["patches", 86, 3], ["preConfigure", 92, 3], ["configureFlags", 100, 3], ["env", 105, 3], ["postInstall", 107, 3], ["passthru", 130, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const wrapperPrefix = nix.argOr($, "wrapperPrefix", () => "/run/wrappers/bin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "xscreensaver",
       version: "6.15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.jwz.org/xscreensaver/xscreensaver-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-0uaH5WJj+/2Pyh+5zHyTMf1PCWq1fT90glZf4BLDYtM=",
         })))),
@@ -80,14 +74,14 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => [systemdLibs])))),
       postPatch: "pushd hacks\npatchShebangs check-configs.pl munge-ad.pl xml2man.pl\npopd\n",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./xscreensaver-wrapper-prefix.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, wrapperPrefix: wrapperPrefix })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./xscreensaver-wrapper-prefix.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], wrapperPrefix: wrapperPrefix })))),
       ]),
       preConfigure: "# Fix installation paths for GTK resources.\nsed -e 's%@GTK_DATADIR@%@datadir@% ; s%@PO_DATADIR@%@datadir@%' \\\n  -i driver/Makefile.in po/Makefile.in.in\n# Fix installation path for PAM.\nsed -e 's%PAM_ROOT\t= /etc%PAM_ROOT\t= @sysconfdir@%' -i driver/Makefile.in\n",
       configureFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--with-app-defaults=${nix.builtins.placeholder("out")}/share/xscreensaver/app-defaults`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch")), "-flax-vector-conversions")),
       })),
       postInstall: nix.thunk(() => nix.add(nix.str`for bin in $out/bin/*; do
@@ -98,14 +92,14 @@ export default nix.lambda((args) => (() => {
 done
 `, nix.app(nix.sel(lib, "optionalString"), forceInstallAllHacks, "make -j$NIX_BUILD_CORES -C hacks/glx dnalogo\ncat hacks/Makefile.in \\\n  | grep -E '([a-z0-9]+):[[:space:]]*\\1[.]o' | cut -d : -f 1 | xargs make -j$NIX_BUILD_CORES -C hacks\ncat hacks/glx/Makefile.in \\\n  | grep -E '([a-z0-9]+):[[:space:]]*\\1[.]o' | cut -d : -f 1 | xargs make -j$NIX_BUILD_CORES -C hacks/glx\ncp -f $(find hacks -type f -perm -111 \"!\" -name \"*.*\" ) \"$out/libexec/xscreensaver\"\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           xscreensaver: nix.thunk(() => nix.sel(nixosTests, "xscreensaver")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://www.jwz.org/xscreensaver/",
         description: "Set of screensavers",
         downloadPage: "https://www.jwz.org/xscreensaver/download.html",

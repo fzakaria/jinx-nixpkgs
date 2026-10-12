@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 30, 5], ["homepage", 31, 5], ["maintainers", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["makeFlags", 21, 3], ["buildInputs", 23, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libxcb: false, "libxcb-util": false, "libxcb-wm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["maintainers", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["makeFlags", 21, 3], ["buildInputs", 23, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libxcb_util = nix.arg($, "libxcb-util");
   const libxcb_wm = nix.arg($, "libxcb-wm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xdo",
       version: "0.5.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "baskerville",
           repo: "xdo",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       buildInputs: nix.thunk(() => [libxcb, libxcb_wm, libxcb_util]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small X utility to perform elementary actions on windows",
         homepage: "https://github.com/baskerville/xdo",
         maintainers: nix.thunk(() => (() => {

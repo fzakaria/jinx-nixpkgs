@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["arch", 16, 9], ["gcclib", 17, 9], ["sha256", 18, 9], ["webarchive", 19, 9]], [["arch", 23, 9], ["gcclib", 24, 9], ["sha256", 25, 9], ["webarchive", 26, 9]], [["urls", 35, 5], ["sha256", 39, 5]], [["homepage", 70, 5], ["description", 71, 5], ["maintainers", 72, 5], ["platforms", 74, 5], ["sourceProvenance", 78, 5], ["license", 79, 5], ["longDescription", 80, 5], ["mainProgram", 89, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["buildInputs", 42, 3], ["builder", 46, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, writeText: false, zlib: false, rpmextract: false, patchelf: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["arch", 16, 9], ["gcclib", 17, 9], ["sha256", 18, 9], ["webarchive", 19, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["arch", 23, 9], ["gcclib", 24, 9], ["sha256", 25, 9], ["webarchive", 26, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["urls", 35, 5], ["sha256", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["description", 71, 5], ["maintainers", 72, 5], ["platforms", 74, 5], ["sourceProvenance", 78, 5], ["license", 79, 5], ["longDescription", 80, 5], ["mainProgram", 89, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["buildInputs", 42, 3], ["builder", 46, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const patchelf = nix.arg($, "patchelf");
   const which = nix.arg($, "which");
   const p = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "is64bit")) ? {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     arch: "x86_64",
     gcclib: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/lib`),
     sha256: "sha256-HH/pLZmDr6m/B3e6MHafDGnNWR83oR2y1ijVMR/LOF0=",
     webarchive: "20220519080155",
   } : {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     arch: "i386",
     gcclib: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/lib`),
     sha256: "sha256-28dmdnJf+qh9r3F0quwlYXB/UqcOzcHzuzFq8vt2bf0=",
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "yandex-disk";
       const version = "0.1.6.1080";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://repo.yandex.ru/yandex-disk/rpm/stable/${nix.sel(p, "arch")}/${pname}-${version}-1.fedora.${nix.sel(p, "arch")}.rpm`),
             nix.thunk(() => nix.str`https://web.archive.org/web/${nix.sel(p, "webarchive")}/https://repo.yandex.ru/yandex-disk/rpm/stable/${nix.sel(p, "arch")}/${pname}-${version}-1.fedora.${nix.sel(p, "arch")}.rpm`),
@@ -66,7 +62,7 @@ ${patchelf}/bin/patchelf \\
   $out/bin/yandex-disk
 `)));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://help.yandex.com/disk/cli-clients.xml",
         description: "Free cloud file storage service",
         maintainers: [],
@@ -79,7 +75,7 @@ ${patchelf}/bin/patchelf \\
         longDescription: "Yandex.Disk console client for Linux lets you manage files on Disk without\nusing a window interface or programs that support WebDAV. The advantages\nof the console client compared to a WebDAV connection:\n * low system resource requirements;\n * faster file reading and writing speeds;\n * faster syncing with Disk's server;\n * no need to be constantly connected to work with files.\n",
         mainProgram: "yandex-disk",
       }));
-      return { [nix.POS]: pos$5, pname, version, src, buildInputs, builder, meta };
+      return { [nix.POS]: $pos[4], pname, version, src, buildInputs, builder, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

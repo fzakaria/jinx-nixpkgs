@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["url", 37, 7], ["hash", 38, 7]], [["homepage", 77, 5], ["description", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 84, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["cmakeFlags", 62, 3], ["postFixup", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, cmake: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, cfitsio: false, curl: false, eigen_3_4_0: false, gettext: false, glib: false, gtest: false, gtk3: false, libnova: false, libusb1: false, wxwidgets_3_2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["cmakeFlags", 62, 3], ["postFixup", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "phd2",
       version: "2.6.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenPHDGuiding",
           repo: "phd2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/OpenPHDGuiding/phd2/commit/0927de6c8943fae7161457008b989bf72a05c638.patch?full_index=1",
             hash: "sha256-yo5YdZ4B7jx6p4TqFZc7RJsutsWzeNBUfinFAd8es7E=",
           })))),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "mv $out/bin/.phd2.bin-wrapped $out/bin/.phd2-wrapped.bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://openphdguiding.org/",
         description: "Telescope auto-guidance application",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenPHDGuiding/phd2/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["withCage", 80, 7], ["withKwin", 81, 7], ["withMutter", 82, 7], ["withPhoc", 83, 7]], [["build", 79, 5]], [["tests", 78, 12]], [["changelog", 88, 5], ["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["pyproject", 44, 3], ["outputs", 46, 3], ["nativeBuildInputs", 51, 3], ["postInstall", 56, 3], ["passthru", 78, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { fetchFromGitLab: false, lib: false, meson: false, ninja: false, python3: false, weston: false, xauth: false, xwayland: false, withCage: true, cage: false, withKwin: true, kdePackages: false, withMutter: true, mutter: false, withDbus: true, phoc: false, withPhoc: true, dbus: false, "xwayland-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["withCage", 80, 7], ["withKwin", 81, 7], ["withMutter", 82, 7], ["withPhoc", 83, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["build", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 78, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 88, 5], ["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["pyproject", 44, 3], ["outputs", 46, 3], ["nativeBuildInputs", 51, 3], ["postInstall", 56, 3], ["passthru", 78, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const xwayland_run = nix.arg($, "xwayland-run");
   const compositors = nix.thunk(() => nix.concat([weston], nix.concat(nix.app(nix.sel(lib, "optional"), withCage, cage), nix.concat(nix.app(nix.sel(lib, "optional"), withKwin, nix.thunk(() => nix.sel(kdePackages, "kwin"))), nix.concat(nix.app(nix.sel(lib, "optional"), withMutter, mutter), nix.concat(nix.app(nix.sel(lib, "optional"), withPhoc, phoc), nix.app(nix.sel(lib, "optional"), withDbus, dbus)))))));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "xwayland-run",
       version: "0.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "ofourdan",
           repo: "xwayland-run",
@@ -55,11 +50,11 @@ wrapProgram $out/bin/xwfb-run \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat(compositors, [xwayland, xauth])))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           build: nix.thunk(() => nix.app(nix.sel(xwayland_run, "override"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               withCage: true,
               withKwin: true,
               withMutter: true,
@@ -68,7 +63,7 @@ wrapProgram $out/bin/xwfb-run \\
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/ofourdan/xwayland-run/-/releases/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Set of small utilities revolving around running Xwayland and various Wayland compositor headless",
         homepage: "https://gitlab.freedesktop.org/ofourdan/xwayland-run",

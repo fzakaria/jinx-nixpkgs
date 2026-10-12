@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 39, 7]], [["name", 64, 7], ["exec", 65, 7], ["icon", 66, 7], ["desktopName", 67, 7], ["comment", 68, 7], ["categories", 69, 7], ["mimeTypes", 70, 7], ["terminal", 71, 7]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["npmDepsHash", 34, 3], ["patches", 37, 3], ["env", 39, 3], ["preBuild", 42, 3], ["postInstall", 54, 3], ["desktopItems", 62, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, copyDesktopItems: false, makeDesktopItem: false, electron_41: false, xcodebuild: false, desktopToDarwinBundle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 64, 7], ["exec", 65, 7], ["icon", 66, 7], ["desktopName", 67, 7], ["comment", 68, 7], ["categories", 69, 7], ["mimeTypes", 70, 7], ["terminal", 71, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["npmDepsHash", 34, 3], ["patches", 37, 3], ["env", 39, 3], ["preBuild", 42, 3], ["postInstall", 54, 3], ["desktopItems", 62, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const electron = electron_41;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "solidtime-desktop",
       version: "0.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "solidtime-io",
           repo: "solidtime-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([copyDesktopItems], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcodebuild, desktopToDarwinBundle])))),
       npmDepsHash: "sha256-EwtCA94ezhq36ooVvQWd4ThtxqWSOe7cr28V1thet2o=",
       patches: nix.thunk(() => [nix.path(here, "./missing-hashes.patch")]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       preBuild: nix.thunk(() => nix.str`export npm_config_nodedir="${nix.sel(electron, "headers")}"
 export npm_config_target="${nix.sel(electron, "version")}"
 
@@ -54,7 +50,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/solidtime-desk
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "solidtime-desktop",
             exec: "solidtime-desktop %U",
             icon: "solidtime-desktop",
@@ -66,7 +62,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/solidtime-desk
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Modern open-source time-tracking app",
         homepage: "https://github.com/solidtime-io/solidtime-desktop",
         changelog: nix.thunk(() => nix.str`https://github.com/solidtime-io/solidtime-desktop/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

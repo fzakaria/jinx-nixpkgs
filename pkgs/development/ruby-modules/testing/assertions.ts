@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/assertions.nix", [[["equal", 3, 3], ["beASet", 14, 3], ["haveKeys", 21, 3], ["havePrefix", 28, 3]]]);
 const formals$1 = { args: { test: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/assertions.nix", [["equal", 3, 3], ["beASet", 14, 3], ["haveKeys", 21, 3], ["havePrefix", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const test = nix.arg($, "test");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     equal: (expected) => (actual) => (nix.asBool(nix.eq(actual, expected)) ? nix.app(nix.sel(test, "passed"), nix.thunk(() => nix.str`= ${nix.builtins.toString(expected)}`)) : nix.app(nix.sel(test, "failed"), nix.thunk(() => nix.add(nix.add(nix.str`expected '${nix.builtins.toString(expected)}'(${nix.builtins.typeOf(expected)})`, " !=  "), nix.str`actual '${nix.builtins.toString(actual)}'(${nix.builtins.typeOf(actual)})`)))),
     beASet: (actual) => (nix.asBool(nix.builtins.isAttrs(actual)) ? nix.app(nix.sel(test, "passed"), "is a set") : nix.app(nix.sel(test, "failed"), nix.thunk(() => nix.str`is not a set, was ${nix.builtins.typeOf(actual)}: ${nix.builtins.toString(actual)}`))),
     haveKeys: (expected) => (actual) => (nix.asBool(nix.builtins.all((ex) => nix.builtins.any((ac) => nix.eq(ex, ac), nix.thunk(() => nix.builtins.attrNames(actual))), expected)) ? nix.app(nix.sel(test, "passed"), "has expected keys") : nix.app(nix.sel(test, "failed"), nix.thunk(() => nix.str`keys differ: expected: [${nix.app(nix.sel(lib, "concatStringsSep"), ";", expected)}] actual: [${nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.builtins.attrNames(actual)))}]`))),

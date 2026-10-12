@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["preConfigure", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["enableParallelBuilding", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoconf: false, automake: false, intltool: false, libtool: false, "pkg-config": false, which: false, docbook_xml_dtd_45: false, docbook_xsl: false, gtkmm3: false, libgig: false, libsndfile: false, libxslt: false, linuxsampler: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["preConfigure", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["enableParallelBuilding", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libxslt = nix.arg($, "libxslt");
   const linuxsampler = nix.arg($, "linuxsampler");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gigedit",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.linuxsampler.org/packages/gigedit-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-pz+2gbVbPytuioXxNHQWE3Pml4r9JfwBIQcsbevWHkQ=",
         })))),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.linuxsampler.org",
         description: "Gigasampler file access library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

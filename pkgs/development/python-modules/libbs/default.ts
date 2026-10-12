@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 56, 3], ["preCheck", 62, 3], ["pythonImportsCheck", 69, 3], ["disabledTests", 71, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, filelock: false, networkx: false, platformdirs: false, ply: false, "prompt-toolkit": false, psutil: false, pycparser: false, pyghidra: false, pytestCheckHook: false, setuptools: false, toml: false, tqdm: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 56, 3], ["preCheck", 62, 3], ["pythonImportsCheck", 69, 3], ["disabledTests", 71, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const binaries = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "binsync",
       repo: "bs-artifacts",
       tag: "514c2d6ef1875435c9d137bb5d99b6fc74063817",
       hash: "sha256-P7+BTJgdC9W8cC/7xQduFYllF+0ds1dSlm59/BFvZ2g=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libbs",
       version: "3.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "binsync",
           repo: "libbs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +68,7 @@ export TEST_BINARIES_DIR=$HOME/bs-artifacts/binaries
         "TestHeadlessInterfaces",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for writing plugins in any decompiler: includes API lifting, common data formatting, and GUI abstraction",
         homepage: "https://github.com/binsync/libbs",
         changelog: nix.thunk(() => nix.str`https://github.com/binsync/libbs/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

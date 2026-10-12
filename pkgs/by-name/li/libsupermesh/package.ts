@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["package", 63, 9]], [["pkg-config", 62, 7]], [["tests", 61, 5]], [["homepage", 69, 5], ["description", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5], ["pkgConfigModules", 75, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["outputs", 28, 3], ["nativeBuildInputs", 33, 3], ["cmakeFlags", 41, 3], ["buildInputs", 45, 3], ["__darwinAllowLocalNetworking", 50, 3], ["nativeCheckInputs", 52, 3], ["doCheck", 58, 3], ["passthru", 60, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, validatePkgConfig: false, gfortran: false, mpi: false, cmake: false, ninja: false, libspatialindex: false, mpiCheckPhaseHook: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 63, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 62, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["description", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5], ["pkgConfigModules", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["outputs", 28, 3], ["nativeBuildInputs", 33, 3], ["cmakeFlags", 41, 3], ["buildInputs", 45, 3], ["__darwinAllowLocalNetworking", 50, 3], ["nativeCheckInputs", 52, 3], ["doCheck", 58, 3], ["passthru", 60, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const mpiCheckPhaseHook = nix.arg($, "mpiCheckPhaseHook");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libsupermesh",
       version: "2026.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "firedrakeproject",
           repo: "libsupermesh",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,17 +40,17 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [mpiCheckPhaseHook]),
       doCheck: nix.thunk(() => !nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-darwin"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/firedrakeproject/libsupermesh",
         description: "Parallel supermeshing library",
         changelog: nix.thunk(() => nix.str`https://github.com/firedrakeproject/libsupermesh/releases/tag/${nix.sel(finalAttrs, "version")}`),

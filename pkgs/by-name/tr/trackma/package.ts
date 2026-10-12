@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 23, 9], ["desktopName", 24, 9], ["comment", 25, 9], ["terminal", 26, 9], ["icon", 28, 7], ["exec", 29, 7], ["type", 30, 7], ["categories", 31, 7]], [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["sha256", 43, 5], ["fetchSubmodules", 44, 5]], [["updateScript", 112, 12]], [["homepage", 115, 5], ["description", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["maintainers", 119, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 58, 3], ["propagatedBuildInputs", 63, 3], ["dontWrapQtApps", 80, 3], ["dontWrapGApps", 81, 3], ["preFixup", 83, 3], ["desktopItems", 87, 3], ["postInstall", 98, 3], ["doCheck", 103, 3], ["pythonImportsCheck", 105, 3], ["postDist", 107, 3], ["passthru", 112, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, wrapGAppsHook3: false, "gobject-introspection": false, glib: false, gtk3: false, qt5: false, makeDesktopItem: false, copyDesktopItems: false, imagemagick: false, withCurses: true, withGTK: true, withQT: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 23, 9], ["desktopName", 24, 9], ["comment", 25, 9], ["terminal", 26, 9], ["icon", 28, 7], ["exec", 29, 7], ["type", 30, 7], ["categories", 31, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["sha256", 43, 5], ["fetchSubmodules", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 112, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 115, 5], ["description", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["maintainers", 119, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 58, 3], ["propagatedBuildInputs", 63, 3], ["dontWrapQtApps", 80, 3], ["dontWrapGApps", 81, 3], ["preFixup", 83, 3], ["desktopItems", 87, 3], ["postInstall", 98, 3], ["doCheck", 103, 3], ["pythonImportsCheck", 105, 3], ["postDist", 107, 3], ["passthru", 112, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const withGTK = nix.argOr($, "withGTK", () => false);
   const withQT = nix.argOr($, "withQT", () => false);
   const mkDesktopItem = (name) => (desktopName) => (comment) => (terminal) => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: name,
       desktopName: desktopName,
       comment: comment,
@@ -38,12 +34,12 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Network"]),
     })));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "trackma",
       version: "0.10.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "z411",
           repo: "trackma",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,9 +70,9 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["trackma"]),
       postDist: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withQT)), "rm $out/bin/trackma-qt"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withGTK)), "rm $out/bin/trackma-gtk"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withCurses)), "rm $out/bin/trackma-curses")))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/z411/trackma",
         description: "Open multi-site list manager for Unix-like systems (ex-wMAL)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,9 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dictd-db-collector.nix", [[["name", 83, 5], ["nativeBuildInputs", 85, 5], ["buildInputs", 86, 5], ["dontUnpack", 88, 5], ["installPhase", 89, 13]]]);
 const formals$1 = { args: { stdenv: false, lib: false, dict: false, libfaketime: false }, ellipsis: false };
 const formals$2 = { args: { dictlist: false, allowList: true, denyList: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dictd-db-collector.nix", [["name", 83, 5], ["nativeBuildInputs", 85, 5], ["buildInputs", 86, 5], ["dontUnpack", 88, 5], ["installPhase", 89, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -74,7 +74,7 @@ for j in ${nix.builtins.toString(link_arguments)}; do
 done
 `);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "dictd-dbs",
         nativeBuildInputs: nix.thunk(() => [libfaketime]),
         buildInputs: nix.thunk(() => [dict]),

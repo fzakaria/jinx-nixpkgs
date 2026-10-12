@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 7], ["repo", 21, 7], ["tag", 22, 7], ["hash", 23, 7]], [["pname", 17, 5], ["version", 18, 5], ["src", 19, 5], ["patches", 25, 5], ["postPatch", 31, 5], ["sourceRoot", 35, 5], ["cargoHash", 37, 5], ["nativeBuildInputs", 38, 5], ["buildInputs", 39, 5], ["pkgcfg", 40, 5], ["postInstall", 47, 5], ["__structuredAttrs", 58, 5]], [["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]], [["PKG_CONFIG_PATH", 76, 7]], [["influxdb", 98, 26]], [["tests", 97, 12]], [["description", 102, 5], ["license", 103, 5], ["homepage", 104, 5], ["maintainers", 105, 5]], [["pname", 62, 3], ["version", 63, 3], ["src", 65, 3], ["vendorHash", 72, 3], ["nativeBuildInputs", 74, 3], ["env", 76, 3], ["preBuild", 79, 3], ["doCheck", 87, 3], ["ldflags", 89, 3], ["excludedPackages", 95, 3], ["passthru", 97, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, stdenv: false, "pkg-config": false, rustPlatform: false, libiconv: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 7], ["repo", 21, 7], ["tag", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 17, 5], ["version", 18, 5], ["src", 19, 5], ["patches", 25, 5], ["postPatch", 31, 5], ["sourceRoot", 35, 5], ["cargoHash", 37, 5], ["nativeBuildInputs", 38, 5], ["buildInputs", 39, 5], ["pkgcfg", 40, 5], ["postInstall", 47, 5], ["__structuredAttrs", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["PKG_CONFIG_PATH", 76, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["influxdb", 98, 26]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 97, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 102, 5], ["license", 103, 5], ["homepage", 104, 5], ["maintainers", 105, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 62, 3], ["version", 63, 3], ["src", 65, 3], ["vendorHash", 72, 3], ["nativeBuildInputs", 74, 3], ["env", 76, 3], ["preBuild", 79, 3], ["doCheck", 87, 3], ["ldflags", 89, 3], ["excludedPackages", 95, 3], ["passthru", 97, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const libflux_version = "0.196.1";
   const flux = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "libflux",
       version: libflux_version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "influxdata",
           repo: "flux",
           tag: nix.thunk(() => nix.str`v${libflux_version}`),
@@ -50,11 +43,11 @@ Libs: -L/out/lib -lflux -lpthread
       __structuredAttrs: true,
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "influxdb",
       version: "1.12.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "influxdata",
           repo: "influxdb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +56,7 @@ Libs: -L/out/lib -lflux -lpthread
       vendorHash: "sha256-+6fOq/2YVz74Loy1pVLVRTr4OQm/fEBNtHy3+FQn51A=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         PKG_CONFIG_PATH: nix.thunk(() => nix.str`${flux}/pkgconfig`),
       })),
       preBuild: nix.thunk(() => nix.str`flux_ver=$(grep github.com/influxdata/flux go.mod | awk '{print $2}')
@@ -80,14 +73,14 @@ fi
       ]),
       excludedPackages: "test",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           influxdb: nix.thunk(() => nix.attr(nixosTests, "influxdb")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Open-source distributed time series database",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://influxdata.com/",

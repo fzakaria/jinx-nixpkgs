@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 24, 13], ["version", 24, 19], ["hash", 25, 5]], [["clang", 30, 7], ["libclang_lib_dir", 31, 7]], [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]], [["gstreamer", 112, 25], ["gst-plugins-base", 112, 35]], [["tests", 111, 12]], [["description", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["maintainers", 119, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 28, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["build-system", 58, 3], ["dependencies", 60, 3], ["nativeCheckInputs", 76, 3], ["dontUseCmakeConfigure", 79, 3], ["pythonImportsCheck", 82, 3], ["pytestFlags", 88, 3], ["disabledTests", 94, 3], ["preCheck", 104, 3], ["postCheck", 107, 3], ["passthru", 111, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchpatch: false, fetchPypi: false, replaceVars: false, "pkg-config": false, cmake: false, flex: false, glib: false, "json-glib": false, libxml2: false, llvmPackages: false, gst_all_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 24, 13], ["version", 24, 19], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["clang", 30, 7], ["libclang_lib_dir", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["gstreamer", 112, 25], ["gst-plugins-base", 112, 35]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 111, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["maintainers", 119, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 28, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["build-system", 58, 3], ["dependencies", 60, 3], ["nativeCheckInputs", 76, 3], ["dontUseCmakeConfigure", 79, 3], ["pythonImportsCheck", 82, 3], ["pytestFlags", 88, 3], ["disabledTests", 94, 3], ["preCheck", 104, 3], ["postCheck", 107, 3], ["passthru", 111, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,19 +26,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.17.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-xNXf9kfwOqh6HS0GA10oGe3QmbkWNeOy7jkIKTV66fw=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./clang.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             clang: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(llvmPackages, "clang")))),
             libclang_lib_dir: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))}/lib`),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "hotdoc-fix-c_comment_scanner-function-prototypes-gcc15.patch",
             url: "https://github.com/hotdoc/hotdoc/commit/adf8518431fafb78c9b47862a0a9a58824b6a421.patch",
             hash: "sha256-5y50Yk+AjV3aSk8H3k9od/Yvy09FyQQOcVOAcstQnw8=",
@@ -91,22 +85,22 @@ export default nix.lambda((args) => (() => {
       const preCheck = "pushd $TMPDIR\n";
       const postCheck = "popd\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           gstreamer: nix.thunk(() => nix.attr(gst_all_1, "gstreamer")),
           "gst-plugins-base": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-base")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Tastiest API documentation system",
         homepage: "https://hotdoc.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

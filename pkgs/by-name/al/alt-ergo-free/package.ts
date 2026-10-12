@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["sourceRoot", 19, 3], ["buildInputs", 21, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, ocamlPackages: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["sourceRoot", 19, 3], ["buildInputs", 21, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const ocamlPackages = nix.arg($, "ocamlPackages");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "alt-ergo-free",
       version: "2.4.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/OCamlPro/alt-ergo/releases/download/v${nix.sel(finalAttrs, "version")}-free/alt-ergo-${nix.sel(finalAttrs, "version")}-free.tar.gz`),
           hash: "sha256-ksVP9HH9pY+T6Es/wgC9pGd805AGw1e1vgfVlNGCXG8=",
         })))),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High-performance theorem prover and SMT solver",
         homepage: "https://alt-ergo.ocamlpro.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-c")),

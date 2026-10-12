@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 25, 5], ["hash", 26, 5]], [["CGO_ENABLED", 64, 7]], [["name", 73, 7], ["exec", 74, 7], ["icon", 75, 7], ["comment", 76, 7], ["desktopName", 77, 7], ["categories", 78, 7]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 91, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 29, 3], ["vendorHash", 31, 3], ["ldflags", 33, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 47, 3], ["checkFlags", 55, 3], ["env", 64, 3], ["postInstall", 66, 3], ["desktopItems", 71, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, stdenv: false, copyDesktopItems: false, makeDesktopItem: false, libxxf86vm: false, glfw: false, gtk3: false, "pkg-config": false, wrapGAppsHook3: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 73, 7], ["exec", 74, 7], ["icon", 75, 7], ["comment", 76, 7], ["desktopName", 77, 7], ["categories", 78, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 29, 3], ["vendorHash", 31, 3], ["ldflags", 33, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 47, 3], ["checkFlags", 55, 3], ["env", 64, 3], ["postInstall", 66, 3], ["desktopItems", 71, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "picocrypt-ng",
       version: "2.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Picocrypt-NG",
           repo: "Picocrypt-NG",
           rev: "3261587f8b10471a6ed3c5ad132ada0f7c06e4cf",
@@ -45,11 +41,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-skip=^${nix.builtins.concatStringsSep("$|^", skippedTests)}$`),
         ];
       })()),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 1n })),
       postInstall: "mv $out/bin/picocrypt $out/bin/picocrypt-ng-gui\ninstall -Dm644 $src/images/key.svg $out/share/icons/hicolor/scalable/apps/picocrypt-ng.svg\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "Picocrypt-NG",
             exec: "picocrypt-ng-gui",
             icon: "picocrypt-ng",
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Very small, very simple, yet very secure encryption tool",
         homepage: "https://github.com/Picocrypt-NG/Picocrypt-NG",
         changelog: nix.thunk(() => nix.str`https://github.com/Picocrypt-NG/Picocrypt-NG/blob/${nix.sel(finalAttrs, "version")}/Changelog.md`),

@@ -2,35 +2,28 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/systemd-user-settings.nix", [["maintainers", 4, 5]]);
+const $pos = nix.positions(here + "/systemd-user-settings.nix", [[["maintainers", 4, 5]], [["DefaultTimeoutStartSec", 11, 9], ["DefaultEnvironment", 12, 9]], [["Manager", 10, 29]], [["settings", 10, 20]], [["user", 10, 15]], [["systemd", 10, 7]], [["machine", 7, 9]], [["name", 2, 3], ["meta", 3, 3], ["nodes", 7, 3], ["testScript", 16, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/systemd-user-settings.nix", [["DefaultTimeoutStartSec", 11, 9], ["DefaultEnvironment", 12, 9]]);
-const pos$3 = nix.positions(here + "/systemd-user-settings.nix", [["Manager", 10, 29]]);
-const pos$4 = nix.positions(here + "/systemd-user-settings.nix", [["settings", 10, 20]]);
-const pos$5 = nix.positions(here + "/systemd-user-settings.nix", [["user", 10, 15]]);
-const pos$6 = nix.positions(here + "/systemd-user-settings.nix", [["systemd", 10, 7]]);
-const pos$7 = nix.positions(here + "/systemd-user-settings.nix", [["machine", 7, 9]]);
-const pos$8 = nix.positions(here + "/systemd-user-settings.nix", [["name", 2, 3], ["meta", 3, 3], ["nodes", 7, 3], ["testScript", 16, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$8,
+  [nix.POS]: $pos[7],
   name: "systemd-user-settings",
-  meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+  meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const lib = nix.arg($, "lib");
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           user: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               Manager: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 DefaultTimeoutStartSec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "60")),
                 DefaultEnvironment: "FOO=bar",
               })),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/type.nix", [[["description", 19, 5]], [["pname", 9, 3], ["src", 10, 20], ["version", 10, 24], ["propagatedBuildInputs", 12, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, dolmen: false, spelll: false, uutf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/type.nix", [["description", 19, 5]]);
-const pos$2 = nix.positions(here + "/type.nix", [["pname", 9, 3], ["src", 10, 20], ["version", 10, 24], ["propagatedBuildInputs", 12, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const spelll = nix.arg($, "spelll");
   const uutf = nix.arg($, "uutf");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dolmen_type",
       src: nix.thunk(() => nix.attr(dolmen, "src")),
       version: nix.thunk(() => nix.attr(dolmen, "version")),
       propagatedBuildInputs: nix.thunk(() => [dolmen, spelll, uutf]),
       meta: nix.thunk(() => nix.update(nix.sel(dolmen, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Typechecker for automated deduction languages",
       })),
     })));

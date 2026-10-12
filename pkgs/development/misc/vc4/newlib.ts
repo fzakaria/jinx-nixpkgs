@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/newlib.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["incdir", 39, 5], ["libdir", 40, 5]], [["homepage", 44, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["dontUpdateAutotoolsGnuConfigScripts", 21, 3], ["configurePlatforms", 22, 3], ["enableParallelBuilding", 23, 3], ["nativeBuildInputs", 25, 3], ["depsBuildBuild", 30, 3], ["preConfigure", 32, 3], ["dontStrip", 36, 3], ["passthru", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, texinfo: false, flex: false, bison: false, fetchFromGitHub: false, stdenvNoLibc: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/newlib.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/newlib.nix", [["incdir", 39, 5], ["libdir", 40, 5]]);
-const pos$3 = nix.positions(here + "/newlib.nix", [["homepage", 44, 5]]);
-const pos$4 = nix.positions(here + "/newlib.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["dontUpdateAutotoolsGnuConfigScripts", 21, 3], ["configurePlatforms", 22, 3], ["enableParallelBuilding", 23, 3], ["nativeBuildInputs", 25, 3], ["depsBuildBuild", 30, 3], ["preConfigure", 32, 3], ["dontStrip", 36, 3], ["passthru", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoLibc = nix.arg($, "stdenvNoLibc");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenvNoLibc, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vc4-newlib",
       version: "0-unstable-2017-01-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "itszor",
           repo: "newlib-vc4",
           rev: "89abe4a5263d216e923fbbc80495743ff269a510",
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
       preConfigure: "export CC=cc\n",
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         incdir: nix.thunk(() => nix.str`/${nix.sel(stdenv, "targetPlatform", "config")}/include`),
         libdir: nix.thunk(() => nix.str`/${nix.sel(stdenv, "targetPlatform", "config")}/lib`),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$3, homepage: "https://github.com/itszor/newlib-vc4" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[2], homepage: "https://github.com/itszor/newlib-vc4" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=newlib.ts.map

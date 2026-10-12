@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 63, 5], ["homepage", 64, 5], ["downloadPage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["dependencies", 26, 3], ["preFixup", 39, 3], ["pythonRelaxDeps", 47, 3], ["pythonRemoveDeps", 51, 3], ["pythonImportsCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, djhtml: false, libclang: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["downloadPage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["dependencies", 26, 3], ["preFixup", 39, 3], ["pythonRelaxDeps", 47, 3], ["pythonRemoveDeps", 51, 3], ["pythonImportsCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const libclang = nix.arg($, "libclang");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "style50",
       version: "3.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cs50",
           repo: "style50",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         versionCheckHook,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for checking code against the CS50 style guide",
         homepage: "https://cs50.readthedocs.io/style50/",
         downloadPage: "https://github.com/cs50/style50",

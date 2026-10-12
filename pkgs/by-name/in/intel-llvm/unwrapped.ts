@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unwrapped.nix", [[["isClang", 62, 9], ["langC", 63, 9], ["langCC", 64, 9], ["isROCm", 71, 9]], [["name", 49, 7], ["dontUnpack", 50, 7], ["installPhase", 51, 7], ["passthru", 61, 7]], [["levelZeroSupport", 87, 7], ["cudaSupport", 88, 7], ["rocmSupport", 89, 7], ["rocmGpuTargets", 90, 7], ["nativeCpuSupport", 91, 7]], [["static", 139, 22]], [["url", 170, 7], ["hash", 171, 7]], [["isClang", 335, 5], ["langC", 336, 5], ["langCC", 337, 5], ["unified-runtime", 339, 13], ["baseLlvm", 344, 5], ["llvmMajorVersion", 346, 13], ["hardeningUnsupportedFlags", 349, 5]], [["description", 353, 5], ["longDescription", 354, 5], ["homepage", 358, 5], ["mainProgram", 359, 5], ["license", 360, 5], ["maintainers", 365, 5], ["platforms", 366, 5]], [["pname", 98, 3], ["src", 100, 11], ["version", 100, 15], ["commitDate", 100, 23], ["outputs", 102, 3], ["strictDeps", 111, 3], ["__structuredAttrs", 112, 3], ["nativeBuildInputs", 114, 3], ["buildInputs", 128, 3], ["propagatedBuildInputs", 143, 3], ["cmakeBuildType", 149, 3], ["stripDebugFlags", 155, 3], ["patches", 157, 3], ["postPatch", 175, 3], ["preConfigure", 220, 3], ["cmakeDir", 243, 3], ["cmakeFlags", 245, 3], ["hardeningDisable", 300, 3], ["requiredSystemFeatures", 302, 3], ["enableParallelBuilding", 303, 3], ["doCheck", 312, 3], ["postInstall", 316, 3], ["passthru", 334, 3], ["meta", 352, 3]]]);
 const formals$1 = { args: { src: false, version: false, commitDate: false, llvmMajorVersion: false, "vc-intrinsics-src": false, "make-unified-runtime": false, lib: false, stdenv: false, cmake: false, ninja: false, fetchpatch: false, python3: false, "pkg-config": false, zstd: false, hwloc: false, emhash: false, "level-zero": false, "opencl-headers": false, libxml2: false, libedit: false, llvmPackages_22: false, "parallel-hashmap": false, "spirv-headers": false, "spirv-tools": false, zlib: false, wrapCC: false, "graphviz-nox": false, rocmPackages: true, rocmGpuTargets: true, config: false, cudaSupport: true, rocmSupport: true, levelZeroSupport: true, nativeCpuSupport: true, enableManpages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unwrapped.nix", [["isClang", 62, 9], ["langC", 63, 9], ["langCC", 64, 9], ["isROCm", 71, 9]]);
-const pos$2 = nix.positions(here + "/unwrapped.nix", [["name", 49, 7], ["dontUnpack", 50, 7], ["installPhase", 51, 7], ["passthru", 61, 7]]);
-const pos$3 = nix.positions(here + "/unwrapped.nix", [["levelZeroSupport", 87, 7], ["cudaSupport", 88, 7], ["rocmSupport", 89, 7], ["rocmGpuTargets", 90, 7], ["nativeCpuSupport", 91, 7]]);
-const pos$4 = nix.positions(here + "/unwrapped.nix", [["static", 139, 22]]);
-const pos$5 = nix.positions(here + "/unwrapped.nix", [["url", 170, 7], ["hash", 171, 7]]);
-const pos$6 = nix.positions(here + "/unwrapped.nix", [["isClang", 335, 5], ["langC", 336, 5], ["langCC", 337, 5], ["unified-runtime", 339, 13], ["baseLlvm", 344, 5], ["llvmMajorVersion", 346, 13], ["hardeningUnsupportedFlags", 349, 5]]);
-const pos$7 = nix.positions(here + "/unwrapped.nix", [["description", 353, 5], ["longDescription", 354, 5], ["homepage", 358, 5], ["mainProgram", 359, 5], ["license", 360, 5], ["maintainers", 365, 5], ["platforms", 366, 5]]);
-const pos$8 = nix.positions(here + "/unwrapped.nix", [["pname", 98, 3], ["src", 100, 11], ["version", 100, 15], ["commitDate", 100, 23], ["outputs", 102, 3], ["strictDeps", 111, 3], ["__structuredAttrs", 112, 3], ["nativeBuildInputs", 114, 3], ["buildInputs", 128, 3], ["propagatedBuildInputs", 143, 3], ["cmakeBuildType", 149, 3], ["stripDebugFlags", 155, 3], ["patches", 157, 3], ["postPatch", 175, 3], ["preConfigure", 220, 3], ["cmakeDir", 243, 3], ["cmakeFlags", 245, 3], ["hardeningDisable", 300, 3], ["requiredSystemFeatures", 302, 3], ["enableParallelBuilding", 303, 3], ["doCheck", 312, 3], ["postInstall", 316, 3], ["passthru", 334, 3], ["meta", 352, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const nativeCpuSupport = nix.argOr($, "nativeCpuSupport", () => true);
   const enableManpages = nix.argOr($, "enableManpages", () => true);
   const ccWrapperStub = nix.thunk(() => nix.app(wrapCC, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "ccWrapperStub",
         dontUnpack: true,
         installPhase: nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -62,10 +55,10 @@ chmod +x $out/bin/clang-${llvmMajorVersion}
 cp $out/bin/clang-${llvmMajorVersion} $out/bin/clang
 cp $out/bin/clang-${llvmMajorVersion} $out/bin/clang++
 `),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$1, isClang: true, langC: true, langCC: true, isROCm: true })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], isClang: true, langC: true, langCC: true, isROCm: true })),
       }))))));
   const unified_runtime = nix.thunk(() => nix.app(make_unified_runtime, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       levelZeroSupport: levelZeroSupport,
       cudaSupport: cudaSupport,
       rocmSupport: rocmSupport,
@@ -73,7 +66,7 @@ cp $out/bin/clang-${llvmMajorVersion} $out/bin/clang++
       nativeCpuSupport: nativeCpuSupport,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "intel-llvm",
       src: src,
       version: version,
@@ -99,7 +92,7 @@ cp $out/bin/clang-${llvmMajorVersion} $out/bin/clang++
         hwloc,
         emhash,
         parallel_hashmap,
-        nix.thunk(() => nix.app(nix.sel(zstd, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, static: true })))),
+        nix.thunk(() => nix.app(nix.sel(zstd, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], static: true })))),
       ], nix.sel(unified_runtime, "buildInputs"))),
       propagatedBuildInputs: nix.thunk(() => [zlib, libedit, opencl_headers]),
       cmakeBuildType: "Release",
@@ -108,7 +101,7 @@ cp $out/bin/clang-${llvmMajorVersion} $out/bin/clang++
         nix.path(here, "./gnu-install-dirs.patch"),
         nix.path(here, "./sycl-jit-exclude-cmake-files.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/llvm/llvm-project/commit/3dc4fd6dd41100f051a63642f449b16324389c96.patch?full_index=1",
             hash: "sha256-BJwFPeYCBO+PnUMMC/3GSYPgn0vczkkbdw5qcnURPbI=",
           })))),
@@ -209,7 +202,7 @@ substituteInPlace "$dev/include/clang/Config/config.h" \\
   --replace-fail "../lib/clang/${llvmMajorVersion}" "$lib/lib/clang/${llvmMajorVersion}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         isClang: true,
         langC: true,
         langCC: true,
@@ -219,7 +212,7 @@ substituteInPlace "$dev/include/clang/Config/config.h" \\
         hardeningUnsupportedFlags: nix.thunk(() => ["zerocallusedregs"]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Intel LLVM-based compiler with SYCL support",
         longDescription: "Intel's LLVM-based compiler toolchain with Data Parallel C++ (DPC++)\nand SYCL support for heterogeneous computing across CPUs, GPUs, and FPGAs.\n",
         homepage: "https://github.com/intel/llvm",

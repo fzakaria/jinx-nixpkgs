@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 17, 26], ["version", 17, 32], ["hash", 18, 5]], [["homepage", 35, 5], ["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["nativeCheckInputs", 21, 3], ["checkPhase", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, git: false, mercurial: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 17, 26], ["version", 17, 32], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 35, 5], ["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["nativeCheckInputs", 21, 3], ["checkPhase", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const mercurial = nix.arg($, "mercurial");
   const w = nix.withScope(python3Packages, null);
   return nix.app(nix.lookup(w, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mbed-cli",
       version: "1.10.5",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-X+hNVM8fsy0VFTqFr1pPKWRimacBenTcY4y+PBJpvlI=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [git, mercurial, nix.thunk(() => nix.lookup(w, "pytest"))]),
       checkPhase: "export GIT_COMMITTER_NAME=nixbld\nexport EMAIL=nixbld@localhost\nexport GIT_COMMITTER_DATE=$SOURCE_DATE_EPOCH\npytest test\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ARMmbed/mbed-cli",
         description: "Arm Mbed Command Line Interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

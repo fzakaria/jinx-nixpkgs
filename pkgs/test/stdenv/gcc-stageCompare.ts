@@ -2,13 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gcc-stageCompare.nix", [[["cc", 25, 9]], [["reproducibleBuild", 22, 7], ["profiledCompiler", 23, 7], ["stdenv", 24, 7]], [["NIX_OUTPATH_USED_AS_RANDOM_SEED", 29, 9]], [["checksumCompare", 35, 5], ["checksumUnwrapped", 40, 5]], [["platforms", 51, 7]], [["meta", 50, 5]]]);
 const formals$1 = { args: { stdenv: false, pkgs: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/gcc-stageCompare.nix", [["cc", 25, 9]]);
-const pos$2 = nix.positions(here + "/gcc-stageCompare.nix", [["reproducibleBuild", 22, 7], ["profiledCompiler", 23, 7], ["stdenv", 24, 7]]);
-const pos$3 = nix.positions(here + "/gcc-stageCompare.nix", [["NIX_OUTPATH_USED_AS_RANDOM_SEED", 29, 9]]);
-const pos$4 = nix.positions(here + "/gcc-stageCompare.nix", [["checksumCompare", 35, 5], ["checksumUnwrapped", 40, 5]]);
-const pos$5 = nix.positions(here + "/gcc-stageCompare.nix", [["platforms", 51, 7]]);
-const pos$6 = nix.positions(here + "/gcc-stageCompare.nix", [["meta", 50, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const w = nix.withScope(pkgs, null);
   const gcc_stageCompare = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(nix.lookup(w, "gcc-unwrapped"), "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       reproducibleBuild: true,
       profiledCompiler: false,
-      stdenv: nix.thunk(() => nix.app(nix.lookup(w, "overrideCC"), stdenv, nix.thunk(() => nix.app(nix.lookup(w, "wrapCCWith"), nix.thunk(() => ({ [nix.POS]: pos$1, cc: nix.thunk(() => nix.sel(stdenv, "cc")) })))))),
+      stdenv: nix.thunk(() => nix.app(nix.lookup(w, "overrideCC"), stdenv, nix.thunk(() => nix.app(nix.lookup(w, "wrapCCWith"), nix.thunk(() => ({ [nix.POS]: $pos[0], cc: nix.thunk(() => nix.sel(stdenv, "cc")) })))))),
     }))), "overrideAttrs"), (_) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       NIX_OUTPATH_USED_AS_RANDOM_SEED: nix.thunk(() => nix.sel(stdenv, "cc", "cc", "out")),
     })));
   return nix.app(nix.sel(nix.app(nix.lookup(w, "runCommand"), "gcc-stageCompare", nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       checksumCompare: nix.thunk(() => (() => {
         nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.has(gcc_stageCompare, "checksum")), "tests-stdenv-gcc-stageCompare: No `checksum` output in `gcc-stageCompare` see conditional in `gcc/common/checksum.nix`"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/test/stdenv/gcc-stageCompare.nix:36:7");
         return nix.sel(gcc_stageCompare, "checksum");
@@ -36,9 +31,9 @@ export default nix.lambda((args) => (() => {
         return nix.sel(pkgs, "gcc-unwrapped", "checksum");
       })()),
     })), "diff -sr \"$checksumUnwrapped\"/checksums \"$checksumCompare\"/checksums && touch $out\n"), "overrideAttrs"), (a) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       meta: nix.thunk(() => nix.update(nix.selOr(a, () => ({}), "meta"), {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     }));

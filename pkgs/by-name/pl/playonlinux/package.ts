@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 88, 5], ["repo", 89, 5], ["rev", 90, 5], ["hash", 91, 5]], [["description", 167, 5], ["homepage", 168, 5], ["sourceProvenance", 169, 5], ["license", 170, 5], ["maintainers", 171, 5], ["platforms", 172, 5], ["mainProgram", 176, 5]], [["pname", 84, 3], ["version", 85, 3], ["src", 87, 3], ["patches", 94, 3], ["nativeBuildInputs", 98, 3], ["preBuild", 103, 3], ["buildInputs", 107, 3], ["postPatch", 116, 3], ["installPhase", 122, 3], ["dontWrapGApps", 157, 3], ["postFixup", 158, 3], ["meta", 166, 3]]]);
 const formals$1 = { args: { lib: false, stdenv_32bit: false, makeWrapper: false, fetchFromGitHub: false, cabextract: false, gettext: false, gnupg: false, icoutils: false, imagemagick: false, "mesa-demos": false, "netcat-gnu": false, p7zip: false, python312: false, unzip: false, wget: false, wine: false, "xdg-user-dirs": false, xterm: false, pkgs: false, pkgsi686Linux: false, which: false, curl: false, jq: false, libx11: false, libGL: false, "steam-run": false, "gsettings-desktop-schemas": false, glib: false, wrapGAppsHook3: false, "hicolor-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 88, 5], ["repo", 89, 5], ["rev", 90, 5], ["hash", 91, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 167, 5], ["homepage", 168, 5], ["sourceProvenance", 169, 5], ["license", 170, 5], ["maintainers", 171, 5], ["platforms", 172, 5], ["mainProgram", 176, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 84, 3], ["version", 85, 3], ["src", 87, 3], ["patches", 94, 3], ["nativeBuildInputs", 98, 3], ["preBuild", 103, 3], ["buildInputs", 107, 3], ["postPatch", 116, 3], ["installPhase", 122, 3], ["dontWrapGApps", 157, 3], ["postFixup", 158, 3], ["meta", 166, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -72,11 +70,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "playonlinux",
       version: "4.4-unstable-2025-11-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PlayOnLinux",
           repo: "POL-POM-4",
           rev: "a91f598837b3d77ead6f418ec300fd4d284fdfa4",
@@ -120,7 +118,7 @@ makeWrapper ${steam_run}/bin/steam-run $out/bin/playonlinux \\
   --add-flags $out/share/playonlinux/playonlinux-wrapped
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GUI for managing Windows programs under linux",
         homepage: "https://www.playonlinux.com/",
         sourceProvenance: nix.thunk(() => (() => {

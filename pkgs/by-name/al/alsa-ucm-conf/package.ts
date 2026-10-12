@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["url", 45, 5]], [["updateScript", 44, 12]], [["homepage", 49, 5], ["changelog", 50, 5], ["description", 51, 5], ["longDescription", 53, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 64, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["dontBuild", 23, 3], ["installPhase", 25, 3], ["passthru", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { directoryListingUpdater: false, fetchurl: false, lib: false, stdenvNoCC: false, coreutils: false, kmod: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 44, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["changelog", 50, 5], ["description", 51, 5], ["longDescription", 53, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["dontBuild", 23, 3], ["installPhase", 25, 3], ["passthru", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const kmod = nix.arg($, "kmod");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "alsa-ucm-conf",
       version: "1.2.16.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://alsa/lib/alsa-ucm-conf-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-zz0cB+CJqDxOziwg8F3WqKq3/NEIdow4gROGiAV1SSs=",
         })))),
@@ -37,11 +33,11 @@ substituteInPlace ucm2/lib/card-init.conf \\
   --replace-fail '/sbin/modprobe' '${kmod}/bin/modprobe'
 `))), "\nmkdir -p $out/share/alsa\ncp -r ucm ucm2 $out/share/alsa\n\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://www.alsa-project.org/files/pub/lib/" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], url: "https://www.alsa-project.org/files/pub/lib/" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.alsa-project.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/alsa-project/alsa-ucm-conf/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "ALSA Use Case Manager configuration",

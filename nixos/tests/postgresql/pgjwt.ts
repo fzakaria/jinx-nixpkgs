@@ -2,17 +2,11 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pgjwt.nix", [[["maintainers", 15, 11]], [["package", 24, 23], ["enable", 25, 15], ["extensions", 26, 15]], [["postgresql", 23, 22]], [["services", 23, 13]], [["master", 20, 15]], [["name", 13, 9], ["meta", 14, 9], ["nodes", 20, 9], ["testScript", 34, 9]], [["makeTestFor", 52, 11], ["filter", 53, 3]]]);
 const formals$1 = { args: { runTest: false, genTests: false }, ellipsis: true };
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pgjwt.nix", [["maintainers", 15, 11]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/pgjwt.nix", [["package", 24, 23], ["enable", 25, 15], ["extensions", 26, 15]]);
-const pos$3 = nix.positions(here + "/pgjwt.nix", [["postgresql", 23, 22]]);
-const pos$4 = nix.positions(here + "/pgjwt.nix", [["services", 23, 13]]);
-const pos$5 = nix.positions(here + "/pgjwt.nix", [["master", 20, 15]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/pgjwt.nix", [["name", 13, 9], ["meta", 14, 9], ["nodes", 20, 9], ["testScript", 34, 9]]);
-const pos$7 = nix.positions(here + "/pgjwt.nix", [["makeTestFor", 52, 11], ["filter", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,25 +17,25 @@ export default nix.lambda((args) => (() => {
       const lib = nix.arg($_1, "lib");
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: nix.thunk(() => nix.str`pgjwt-${nix.sel(package$, "name")}`),
         meta: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "spinus"))]),
           };
         })()),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           master: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             return {
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 postgresql: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   package: package$,
                   enable: true,
                   extensions: (ps) => (() => {
@@ -73,7 +67,7 @@ master.succeed(
       };
     })(), formals$2));
   return nix.app(genTests, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       makeTestFor: makeTestFor,
       filter: (_) => (p) => !nix.asBool(nix.sel(p, "pkgs", "pgjwt", "meta", "broken")),
     })));

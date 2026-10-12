@@ -2,16 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/iosched.nix", [[["maintainers", 13, 8]], [["options", 16, 25]], [["qemu", 16, 20]], [["nvme[0-9]*", 43, 9], ["mmcblk[0-9]*", 44, 9]], [["defaultScheduler", 40, 7], ["defaultSchedulerRotational", 41, 7], ["scheduler", 42, 7]], [["block", 39, 14]], [["virtualisation", 16, 5], ["hardware", 39, 5]], [["machine", 15, 9]], [["name", 12, 3], ["meta", 13, 3], ["nodes", 15, 3], ["testScript", 49, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/iosched.nix", [["maintainers", 13, 8]]);
-const pos$2 = nix.positions(here + "/iosched.nix", [["options", 16, 25]]);
-const pos$3 = nix.positions(here + "/iosched.nix", [["qemu", 16, 20]]);
-const pos$4 = nix.positions(here + "/iosched.nix", [["nvme[0-9]*", 43, 9], ["mmcblk[0-9]*", 44, 9]]);
-const pos$5 = nix.positions(here + "/iosched.nix", [["defaultScheduler", 40, 7], ["defaultSchedulerRotational", 41, 7], ["scheduler", 42, 7]]);
-const pos$6 = nix.positions(here + "/iosched.nix", [["block", 39, 14]]);
-const pos$7 = nix.positions(here + "/iosched.nix", [["virtualisation", 16, 5], ["hardware", 39, 5]]);
-const pos$8 = nix.positions(here + "/iosched.nix", [["machine", 15, 9]]);
-const pos$9 = nix.positions(here + "/iosched.nix", [["name", 12, 3], ["meta", 13, 3], ["nodes", 15, 3], ["testScript", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,23 +12,23 @@ export default nix.lambda((args) => (() => {
   const empty = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "empty.qcow2", nix.thunk(() => ({})), nix.thunk(() => nix.str`${qemu_img} create -f qcow2 "$out" 32M
 `)));
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "iosched",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "mvs"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           qemu: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             options: nix.thunk(() => [
               "-drive",
               nix.thunk(() => nix.str`id=sda,if=none,format=qcow2,readonly=on,file=${empty}`),
@@ -62,12 +54,12 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         hardware: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           block: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             defaultScheduler: "none",
             defaultSchedulerRotational: "mq-deadline",
-            scheduler: nix.thunk(() => ({ [nix.POS]: pos$4, "nvme[0-9]*": "kyber", "mmcblk[0-9]*": "bfq" })),
+            scheduler: nix.thunk(() => ({ [nix.POS]: $pos[3], "nvme[0-9]*": "kyber", "mmcblk[0-9]*": "bfq" })),
           })),
         })),
       })),

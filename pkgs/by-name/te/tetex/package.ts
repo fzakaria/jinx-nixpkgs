@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["url", 24, 5], ["sha256", 25, 5]], [["CFLAGS", 62, 5], ["CXXFLAGS", 63, 5]], [["description", 89, 5], ["homepage", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5], ["hydraPlatforms", 93, 5], ["license", 94, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["texmf", 23, 3], ["buildInputs", 28, 3], ["hardeningDisable", 37, 3], ["preBuild", 40, 3], ["preConfigure", 44, 3], ["patches", 52, 3], ["setupHook", 59, 3], ["env", 61, 3], ["configureFlags", 66, 3], ["postUnpack", 80, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, flex: false, bison: false, zlib: false, libpng12: false, ncurses: false, ed: false, automake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CFLAGS", 62, 5], ["CXXFLAGS", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5], ["hydraPlatforms", 93, 5], ["license", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["texmf", 23, 3], ["buildInputs", 28, 3], ["hardeningDisable", 37, 3], ["preBuild", 40, 3], ["preConfigure", 44, 3], ["patches", 52, 3], ["setupHook", 59, 3], ["env", 61, 3], ["configureFlags", 66, 3], ["postUnpack", 80, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const ed = nix.arg($, "ed");
   const automake = nix.arg($, "automake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tetex",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mirrors.ctan.org/obsolete/systems/unix/teTeX/${nix.sel(finalAttrs, "version")}/distrib/tetex-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "16v44465ipd9yyqri9rgxp6rbgs194k4sh1kckvccvdsnnp7w3ww",
         })))),
       texmf: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://mirrors.ctan.org/obsolete/systems/unix/teTeX/${nix.sel(finalAttrs, "version")}/distrib/tetex-texmf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1hj06qvm02a2hx1a67igp45kxlbkczjlg20gr8lbp73l36k8yfvc",
         })))),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./extramembot.patch"),
       ]),
       setupHook: nix.path(here, "./setup-hook.sh"),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CFLAGS: "-std=gnu89", CXXFLAGS: "-std=c++03" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CFLAGS: "-std=gnu89", CXXFLAGS: "-std=c++03" })),
       configureFlags: nix.thunk(() => nix.concat([
         "--disable-multiplatform",
         "--without-x11",
@@ -61,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--without-gsftopk"))),
       postUnpack: "mkdir -p $out/share/texmf\nmkdir -p $out/share/texmf-dist\ngunzip < $texmf | (cd $out/share/texmf-dist && tar xvf -)\n\nsubstituteInPlace ./tetex-src-3.0/configure --replace /usr/bin/install $(type -P install)\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Full-featured (La)TeX distribution",
         homepage: "http://www.tug.org/tetex/",
         maintainers: [],

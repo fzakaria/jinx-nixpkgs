@@ -2,80 +2,15 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ceph-multi-node-bluestore.nix", [[["name", 22, 7], ["ip", 23, 7]], [["name", 26, 7], ["ip", 27, 7], ["uuid", 28, 7]], [["name", 31, 7], ["ip", 32, 7], ["uuid", 33, 7]], [["name", 36, 7], ["ip", 37, 7], ["uuid", 38, 7]], [["ip", 42, 7]], [["ip", 46, 7]], [["clusterId", 20, 5], ["monA", 21, 5], ["osd0", 25, 5], ["osd1", 30, 5], ["osd2", 35, 5], ["kclient", 41, 5], ["fuseclient", 45, 5]], [["fsid", 54, 9], ["monHost", 55, 9], ["monInitialMembers", 56, 9]], [["log_to_syslog", 59, 9], ["log_to_file", 60, 9], ["log_to_stderr", 61, 9], ["debug_rocksdb", 62, 9], ["debug_mgr", 63, 9], ["mon_host", 64, 9]], [["enable", 52, 7], ["global", 53, 7], ["extraConfig", 58, 7]], [["emptyDiskImages", 78, 9], ["vlans", 79, 9]], [["systemPackages", 85, 19]], [["ceph", 93, 16]], [["Restart", 117, 25], ["RestartSec", 118, 25]], [["StartLimitIntervalSec", 119, 22]], [["serviceConfig", 117, 11], ["unitConfig", 119, 11]], [["services", 99, 15]], [["virtualisation", 73, 7], ["networking", 82, 7], ["environment", 85, 7], ["services", 93, 7], ["systemd", 99, 7]], [["enable", 124, 12]], [["address", 127, 9], ["prefixLength", 128, 9]], [["addresses", 125, 26]], [["ipv4", 125, 21]], [["eth1", 125, 16]], [["from", 138, 11], ["to", 139, 11]], [["allowedTCPPorts", 132, 7], ["allowedTCPPortRanges", 136, 7]], [["dhcpcd", 124, 5], ["interfaces", 125, 5], ["firewall", 131, 5]], [["enable", 147, 9], ["daemons", 148, 9]], [["enable", 151, 9], ["daemons", 152, 9]], [["enable", 156, 9], ["daemons", 157, 9]], [["mon", 146, 7], ["mgr", 150, 7], ["rgw", 155, 7]], [["enable", 164, 9], ["daemons", 165, 9]], [["mds", 163, 7]], [["daemonConfig", 145, 5]], [["enable", 171, 12]], [["address", 174, 9], ["prefixLength", 175, 9]], [["addresses", 172, 26]], [["ipv4", 172, 21]], [["eth1", 172, 16]], [["from", 181, 11], ["to", 182, 11]], [["allowedTCPPortRanges", 179, 7]], [["dhcpcd", 171, 5], ["interfaces", 172, 5], ["firewall", 178, 5]], [["enable", 193, 11], ["daemons", 194, 11]], [["osd", 192, 9]], [["daemonConfig", 191, 7]], [["enable", 204, 12]], [["address", 207, 9], ["prefixLength", 208, 9]], [["addresses", 205, 26]], [["ipv4", 205, 21]], [["eth1", 205, 16]], [["dhcpcd", 204, 5], ["interfaces", 205, 5]], [["daemonConfig", 213, 43]], [["vlans", 220, 9]], [["kernelPackages", 226, 12]], [["systemPackages", 230, 19]], [["ceph", 234, 16]], [["virtualisation", 219, 7], ["boot", 226, 7], ["networking", 228, 7], ["environment", 230, 7], ["services", 234, 7]], [["maintainers", 683, 5]], [["cephConfig", 691, 7], ["networkConfig", 692, 7]], [["cephConfig", 695, 7], ["networkConfig", 696, 7]], [["cephConfig", 699, 7], ["networkConfig", 700, 7]], [["cephConfig", 703, 7], ["networkConfig", 704, 7]], [["monA", 690, 5], ["osd0", 694, 5], ["osd1", 698, 5], ["osd2", 702, 5]], [["networkConfig", 710, 7]], [["networkConfig", 713, 7]], [["kclient", 709, 5], ["fuseclient", 712, 5]], [["name", 681, 3], ["meta", 682, 3], ["nodes", 689, 3], ["testScript", 717, 3]]]);
 const formals$1 = { args: { withCephfs: true }, ellipsis: false };
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["name", 22, 7], ["ip", 23, 7]]);
-const pos$2 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["name", 26, 7], ["ip", 27, 7], ["uuid", 28, 7]]);
-const pos$3 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["name", 31, 7], ["ip", 32, 7], ["uuid", 33, 7]]);
-const pos$4 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["name", 36, 7], ["ip", 37, 7], ["uuid", 38, 7]]);
-const pos$5 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["ip", 42, 7]]);
-const pos$6 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["ip", 46, 7]]);
-const pos$7 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["clusterId", 20, 5], ["monA", 21, 5], ["osd0", 25, 5], ["osd1", 30, 5], ["osd2", 35, 5], ["kclient", 41, 5], ["fuseclient", 45, 5]]);
 const formals$3 = { args: { daemonConfig: false }, ellipsis: false };
-const pos$8 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["fsid", 54, 9], ["monHost", 55, 9], ["monInitialMembers", 56, 9]]);
-const pos$9 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["log_to_syslog", 59, 9], ["log_to_file", 60, 9], ["log_to_stderr", 61, 9], ["debug_rocksdb", 62, 9], ["debug_mgr", 63, 9], ["mon_host", 64, 9]]);
-const pos$10 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["enable", 52, 7], ["global", 53, 7], ["extraConfig", 58, 7]]);
 const formals$4 = { args: { cephConfig: false, networkConfig: false }, ellipsis: false };
 const formals$5 = { args: { pkgs: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["emptyDiskImages", 78, 9], ["vlans", 79, 9]]);
-const pos$12 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["systemPackages", 85, 19]]);
-const pos$13 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["ceph", 93, 16]]);
-const pos$14 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["Restart", 117, 25], ["RestartSec", 118, 25]]);
-const pos$15 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["StartLimitIntervalSec", 119, 22]]);
-const pos$16 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["serviceConfig", 117, 11], ["unitConfig", 119, 11]]);
-const pos$17 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["services", 99, 15]]);
-const pos$18 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["virtualisation", 73, 7], ["networking", 82, 7], ["environment", 85, 7], ["services", 93, 7], ["systemd", 99, 7]]);
-const pos$19 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["enable", 124, 12]]);
-const pos$20 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["address", 127, 9], ["prefixLength", 128, 9]]);
-const pos$21 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["addresses", 125, 26]]);
-const pos$22 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["ipv4", 125, 21]]);
-const pos$23 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["eth1", 125, 16]]);
-const pos$24 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["from", 138, 11], ["to", 139, 11]]);
-const pos$25 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["allowedTCPPorts", 132, 7], ["allowedTCPPortRanges", 136, 7]]);
-const pos$26 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["dhcpcd", 124, 5], ["interfaces", 125, 5], ["firewall", 131, 5]]);
-const pos$27 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["enable", 147, 9], ["daemons", 148, 9]]);
-const pos$28 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["enable", 151, 9], ["daemons", 152, 9]]);
-const pos$29 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["enable", 156, 9], ["daemons", 157, 9]]);
-const pos$30 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["mon", 146, 7], ["mgr", 150, 7], ["rgw", 155, 7]]);
-const pos$31 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["enable", 164, 9], ["daemons", 165, 9]]);
-const pos$32 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["mds", 163, 7]]);
-const pos$33 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["daemonConfig", 145, 5]]);
-const pos$34 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["enable", 171, 12]]);
-const pos$35 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["address", 174, 9], ["prefixLength", 175, 9]]);
-const pos$36 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["addresses", 172, 26]]);
-const pos$37 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["ipv4", 172, 21]]);
-const pos$38 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["eth1", 172, 16]]);
-const pos$39 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["from", 181, 11], ["to", 182, 11]]);
-const pos$40 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["allowedTCPPortRanges", 179, 7]]);
-const pos$41 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["dhcpcd", 171, 5], ["interfaces", 172, 5], ["firewall", 178, 5]]);
-const pos$42 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["enable", 193, 11], ["daemons", 194, 11]]);
-const pos$43 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["osd", 192, 9]]);
-const pos$44 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["daemonConfig", 191, 7]]);
-const pos$45 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["enable", 204, 12]]);
-const pos$46 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["address", 207, 9], ["prefixLength", 208, 9]]);
-const pos$47 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["addresses", 205, 26]]);
-const pos$48 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["ipv4", 205, 21]]);
-const pos$49 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["eth1", 205, 16]]);
-const pos$50 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["dhcpcd", 204, 5], ["interfaces", 205, 5]]);
-const pos$51 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["daemonConfig", 213, 43]]);
 const formals$6 = { args: { networkConfig: false }, ellipsis: false };
 const formals$7 = { args: { pkgs: false }, ellipsis: true };
-const pos$52 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["vlans", 220, 9]]);
-const pos$53 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["kernelPackages", 226, 12]]);
-const pos$54 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["systemPackages", 230, 19]]);
-const pos$55 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["ceph", 234, 16]]);
-const pos$56 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["virtualisation", 219, 7], ["boot", 226, 7], ["networking", 228, 7], ["environment", 230, 7], ["services", 234, 7]]);
-const pos$57 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["maintainers", 683, 5]]);
-const pos$58 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["cephConfig", 691, 7], ["networkConfig", 692, 7]]);
-const pos$59 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["cephConfig", 695, 7], ["networkConfig", 696, 7]]);
-const pos$60 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["cephConfig", 699, 7], ["networkConfig", 700, 7]]);
-const pos$61 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["cephConfig", 703, 7], ["networkConfig", 704, 7]]);
-const pos$62 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["monA", 690, 5], ["osd0", 694, 5], ["osd1", 698, 5], ["osd2", 702, 5]]);
-const pos$63 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["networkConfig", 710, 7]]);
-const pos$64 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["networkConfig", 713, 7]]);
-const pos$65 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["kclient", 709, 5], ["fuseclient", 712, 5]]);
 const formals$8 = { args: {  }, ellipsis: true };
-const pos$66 = nix.positions(here + "/ceph-multi-node-bluestore.nix", [["name", 681, 3], ["meta", 682, 3], ["nodes", 689, 3], ["testScript", 717, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -86,44 +21,44 @@ export default nix.lambda((args) => (() => {
     const defaultTimeout = 60n;
     const investigateFailures = false;
     const cfg = nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       clusterId: "066ae264-2a5d-4729-8001-6ad265f50b03",
-      monA: nix.thunk(() => ({ [nix.POS]: pos$1, name: "a", ip: "192.168.1.1" })),
+      monA: nix.thunk(() => ({ [nix.POS]: $pos[0], name: "a", ip: "192.168.1.1" })),
       osd0: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "0",
         ip: "192.168.1.2",
         uuid: "55ba2294-3e24-478f-bee0-9dca4c231dd9",
       })),
       osd1: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "1",
         ip: "192.168.1.3",
         uuid: "5e97a838-85b6-43b0-8950-cb56d554d1e5",
       })),
       osd2: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "2",
         ip: "192.168.1.4",
         uuid: "ea999274-13d0-4dd5-9af9-ad25a324f72f",
       })),
-      kclient: nix.thunk(() => ({ [nix.POS]: pos$5, ip: "192.168.1.5" })),
-      fuseclient: nix.thunk(() => ({ [nix.POS]: pos$6, ip: "192.168.1.6" })),
+      kclient: nix.thunk(() => ({ [nix.POS]: $pos[4], ip: "192.168.1.5" })),
+      fuseclient: nix.thunk(() => ({ [nix.POS]: $pos[5], ip: "192.168.1.6" })),
     }));
     const generateCephConfig = nix.lambda((args_2) => (() => {
       const $_2 = nix.formals(args_2, formals$3);
       const daemonConfig = nix.arg($_2, "daemonConfig");
       return nix.update({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         enable: true,
         global: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           fsid: nix.thunk(() => nix.sel(cfg, "clusterId")),
           monHost: nix.thunk(() => nix.sel(cfg, "monA", "ip")),
           monInitialMembers: nix.thunk(() => nix.sel(cfg, "monA", "name")),
         })),
         extraConfig: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           log_to_syslog: "false",
           log_to_file: "false",
           log_to_stderr: "true",
@@ -141,15 +76,15 @@ export default nix.lambda((args) => (() => {
         const $_3 = nix.formals(args_3, formals$5);
         const pkgs = nix.arg($_3, "pkgs");
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             emptyDiskImages: nix.thunk(() => [20480n]),
             vlans: nix.thunk(() => [1n]),
           })),
           networking: networkConfig,
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -161,20 +96,20 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
           })),
-          services: nix.thunk(() => ({ [nix.POS]: pos$13, ceph: cephConfig })),
+          services: nix.thunk(() => ({ [nix.POS]: $pos[12], ceph: cephConfig })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             services: nix.thunk(() => (() => {
               const daemonUnits = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (daemonType) => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.selOr(cephConfig, () => false, nix.key(nix.force(daemonType)), "enable")), nix.thunk(() => nix.builtins.map((daemon) => nix.str`ceph-${daemonType}-${daemon}`, nix.thunk(() => nix.sel(cephConfig, nix.key(nix.force(daemonType)), "daemons"))))), nix.thunk(() => ["mon", "mgr", "osd", "mds"])));
               return nix.app(nix.sel(lib, "genAttrs"), daemonUnits, (_) => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   serviceConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     Restart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "always")),
                     RestartSec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "1")),
                   })),
                   unitConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     StartLimitIntervalSec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 0n)),
                   })),
                 }));
@@ -184,17 +119,17 @@ export default nix.lambda((args) => (() => {
       })(), formals$5);
     })(), formals$4);
     const networkMonA = nix.thunk(() => ({
-      [nix.POS]: pos$26,
-      dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$19, enable: false })),
+      [nix.POS]: $pos[25],
+      dhcpcd: nix.thunk(() => ({ [nix.POS]: $pos[18], enable: false })),
       interfaces: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         eth1: nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           ipv4: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   address: nix.thunk(() => nix.sel(cfg, "monA", "ip")),
                   prefixLength: 24n,
                 })),
@@ -203,51 +138,51 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       firewall: nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         allowedTCPPorts: nix.thunk(() => [6789n, 3300n]),
-        allowedTCPPortRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$24, from: 6800n, to: 7300n }))]),
+        allowedTCPPortRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[23], from: 6800n, to: 7300n }))]),
       })),
     }));
     const cephConfigMonA = nix.thunk(() => nix.app(generateCephConfig, nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         daemonConfig: nix.thunk(() => nix.update({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           mon: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             enable: true,
             daemons: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "monA", "name"))]),
           })),
           mgr: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             enable: true,
             daemons: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "monA", "name"))]),
           })),
           rgw: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             enable: true,
             daemons: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "monA", "name"))]),
           })),
         }, nix.app(nix.sel(lib, "optionalAttrs"), withCephfs, nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             mds: nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               enable: true,
               daemons: nix.thunk(() => [nix.thunk(() => nix.sel(cfg, "monA", "name"))]),
             })),
           }))))),
       }))));
     const networkOsd = (osd) => ({
-      [nix.POS]: pos$41,
-      dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$34, enable: false })),
+      [nix.POS]: $pos[40],
+      dhcpcd: nix.thunk(() => ({ [nix.POS]: $pos[33], enable: false })),
       interfaces: nix.thunk(() => ({
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         eth1: nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           ipv4: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$35,
+                  [nix.POS]: $pos[34],
                   address: nix.thunk(() => nix.sel(osd, "ip")),
                   prefixLength: 24n,
                 })),
@@ -256,33 +191,33 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       firewall: nix.thunk(() => ({
-        [nix.POS]: pos$40,
-        allowedTCPPortRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$39, from: 6800n, to: 7300n }))]),
+        [nix.POS]: $pos[39],
+        allowedTCPPortRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[38], from: 6800n, to: 7300n }))]),
       })),
     });
     const cephConfigOsd = (osd) => nix.app(generateCephConfig, nix.thunk(() => ({
-        [nix.POS]: pos$44,
+        [nix.POS]: $pos[43],
         daemonConfig: nix.thunk(() => ({
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           osd: nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             enable: true,
             daemons: nix.thunk(() => [nix.thunk(() => nix.sel(osd, "name"))]),
           })),
         })),
       })));
     const networkClient = (client) => ({
-      [nix.POS]: pos$50,
-      dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$45, enable: false })),
+      [nix.POS]: $pos[49],
+      dhcpcd: nix.thunk(() => ({ [nix.POS]: $pos[44], enable: false })),
       interfaces: nix.thunk(() => ({
-        [nix.POS]: pos$49,
+        [nix.POS]: $pos[48],
         eth1: nix.thunk(() => ({
-          [nix.POS]: pos$48,
+          [nix.POS]: $pos[47],
           ipv4: nix.thunk(() => ({
-            [nix.POS]: pos$47,
+            [nix.POS]: $pos[46],
             addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$46,
+                  [nix.POS]: $pos[45],
                   address: nix.thunk(() => nix.sel(client, "ip")),
                   prefixLength: 24n,
                 })),
@@ -291,7 +226,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
     });
-    const cephConfigClient = nix.thunk(() => nix.app(generateCephConfig, nix.thunk(() => ({ [nix.POS]: pos$51, daemonConfig: nix.thunk(() => ({})) }))));
+    const cephConfigClient = nix.thunk(() => nix.app(generateCephConfig, nix.thunk(() => ({ [nix.POS]: $pos[50], daemonConfig: nix.thunk(() => ({})) }))));
     const generateClientHost = nix.lambda((args_2) => (() => {
       const $_2 = nix.formals(args_2, formals$6);
       const networkConfig = nix.arg($_2, "networkConfig");
@@ -299,21 +234,21 @@ export default nix.lambda((args) => (() => {
         const $_3 = nix.formals(args_3, formals$7);
         const pkgs = nix.arg($_3, "pkgs");
         return {
-          [nix.POS]: pos$56,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$52, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[55],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[51], vlans: nix.thunk(() => [1n]) })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$53,
+            [nix.POS]: $pos[52],
             kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
           })),
           networking: networkConfig,
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$54,
+            [nix.POS]: $pos[53],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "ceph"))];
             })()),
           })),
-          services: nix.thunk(() => ({ [nix.POS]: pos$55, ceph: cephConfigClient })),
+          services: nix.thunk(() => ({ [nix.POS]: $pos[54], ceph: cephConfigClient })),
         };
       })(), formals$7);
     })(), formals$6);
@@ -738,10 +673,10 @@ kclient.wait_until_succeeds(
 )
 `);
     return {
-      [nix.POS]: pos$66,
+      [nix.POS]: $pos[65],
       name: nix.thunk(() => nix.add("basic-multi-node-ceph-cluster-bluestore", nix.app(nix.sel(lib, "optionalString"), withCephfs, "-cephfs"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$57,
+        [nix.POS]: $pos[56],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [
@@ -751,31 +686,31 @@ kclient.wait_until_succeeds(
         })()),
       })),
       nodes: nix.thunk(() => nix.update({
-        [nix.POS]: pos$62,
-        monA: nix.thunk(() => nix.app(generateHost, nix.thunk(() => ({ [nix.POS]: pos$58, cephConfig: cephConfigMonA, networkConfig: networkMonA })))),
+        [nix.POS]: $pos[61],
+        monA: nix.thunk(() => nix.app(generateHost, nix.thunk(() => ({ [nix.POS]: $pos[57], cephConfig: cephConfigMonA, networkConfig: networkMonA })))),
         osd0: nix.thunk(() => nix.app(generateHost, nix.thunk(() => ({
-            [nix.POS]: pos$59,
+            [nix.POS]: $pos[58],
             cephConfig: nix.thunk(() => nix.app(cephConfigOsd, nix.thunk(() => nix.sel(cfg, "osd0")))),
             networkConfig: nix.thunk(() => nix.app(networkOsd, nix.thunk(() => nix.sel(cfg, "osd0")))),
           })))),
         osd1: nix.thunk(() => nix.app(generateHost, nix.thunk(() => ({
-            [nix.POS]: pos$60,
+            [nix.POS]: $pos[59],
             cephConfig: nix.thunk(() => nix.app(cephConfigOsd, nix.thunk(() => nix.sel(cfg, "osd1")))),
             networkConfig: nix.thunk(() => nix.app(networkOsd, nix.thunk(() => nix.sel(cfg, "osd1")))),
           })))),
         osd2: nix.thunk(() => nix.app(generateHost, nix.thunk(() => ({
-            [nix.POS]: pos$61,
+            [nix.POS]: $pos[60],
             cephConfig: nix.thunk(() => nix.app(cephConfigOsd, nix.thunk(() => nix.sel(cfg, "osd2")))),
             networkConfig: nix.thunk(() => nix.app(networkOsd, nix.thunk(() => nix.sel(cfg, "osd2")))),
           })))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), withCephfs, nix.thunk(() => ({
-          [nix.POS]: pos$65,
+          [nix.POS]: $pos[64],
           kclient: nix.thunk(() => nix.app(generateClientHost, nix.thunk(() => ({
-              [nix.POS]: pos$63,
+              [nix.POS]: $pos[62],
               networkConfig: nix.thunk(() => nix.app(networkClient, nix.thunk(() => nix.sel(cfg, "kclient")))),
             })))),
           fuseclient: nix.thunk(() => nix.app(generateClientHost, nix.thunk(() => ({
-              [nix.POS]: pos$64,
+              [nix.POS]: $pos[63],
               networkConfig: nix.thunk(() => nix.app(networkClient, nix.thunk(() => nix.sel(cfg, "fuseclient")))),
             })))),
         }))))),

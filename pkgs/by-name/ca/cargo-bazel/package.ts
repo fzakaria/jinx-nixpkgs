@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]], [["description", 26, 5], ["mainProgram", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["cargoHash", 20, 3], ["doCheck", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchCrate: false, rustPlatform: false, libz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["mainProgram", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["cargoHash", 20, 3], ["doCheck", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const libz = nix.arg($, "libz");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cargo-bazel",
       version: "0.17.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-KWcxZxzDbiBfBpr37M6HoqHMCYXq6sTVxU9KR3PIiJc=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-wNsGggyKL6CyldPsNADwGKm3HGfxQwjCCOdgzWcAx4g=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Part of the `crate_universe` collection of tools which use Cargo to generate build targets for Bazel",
         mainProgram: "cargo-bazel",
         homepage: "https://github.com/bazelbuild/rules_rust",

@@ -2,19 +2,16 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["optStem", 6, 7], ["fileStem", 7, 7], ["appIdStem", 8, 7], ["darwinStem", 9, 7], ["changelogFile", 10, 7], ["homepage", 11, 7], ["innerBinary", 12, 7]], [["optStem", 15, 7], ["fileStem", 16, 7], ["appIdStem", 17, 7], ["darwinStem", 18, 7], ["changelogFile", 19, 7], ["homepage", 20, 7], ["innerBinary", 21, 7]], [["browser", 5, 5], ["origin", 14, 5]], [["brave", 35, 3], ["brave-origin", 36, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["optStem", 6, 7], ["fileStem", 7, 7], ["appIdStem", 8, 7], ["darwinStem", 9, 7], ["changelogFile", 10, 7], ["homepage", 11, 7], ["innerBinary", 12, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["optStem", 15, 7], ["fileStem", 16, 7], ["appIdStem", 17, 7], ["darwinStem", 18, 7], ["changelogFile", 19, 7], ["homepage", 20, 7], ["innerBinary", 21, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["browser", 5, 5], ["origin", 14, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["brave", 35, 3], ["brave-origin", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const flavorData = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     browser: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       optStem: "brave",
       fileStem: "brave-browser",
       appIdStem: "com.brave.Browser",
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       innerBinary: "brave",
     })),
     origin: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       optStem: "brave-origin",
       fileStem: "brave-origin",
       appIdStem: "com.brave.Origin",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
     return nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-brave.nix")), nix.thunk(() => nix.update(pkg, fd)))), nix.thunk(() => ({})));
   })();
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     brave: nix.thunk(() => nix.app(mkBrave, nix.path(here, "./packages/brave.nix"))),
     "brave-origin": nix.thunk(() => nix.app(mkBrave, nix.path(here, "./packages/brave-origin.nix"))),
   };

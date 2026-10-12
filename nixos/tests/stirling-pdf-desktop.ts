@@ -2,50 +2,12 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stirling-pdf-desktop.nix", [[["maintainers", 9, 5]], [["SERVER_PORT", 25, 13], ["DISABLE_ADDITIONAL_FEATURES", 26, 13], ["SECURITY_ENABLELOGIN", 27, 13]], [["enable", 22, 11], ["package", 23, 11], ["environment", 24, 11]], [["stirling-pdf", 21, 18]], [["allowedTCPPorts", 30, 29]], [["firewall", 30, 20]], [["services", 21, 9], ["networking", 30, 9]], [["options", 38, 16]], [["memorySize", 36, 11], ["cores", 37, 11], ["qemu", 38, 11]], [["program", 44, 23]], [["cage", 44, 18]], [["argument", 45, 116]], [["L+", 45, 111]], [["/etc/stirling-pdf/stirling-provisioning.json", 45, 64]], [["stirling-provisioning.json", 45, 35]], [["settings", 45, 26]], [["tmpfiles", 45, 17]], [["enable", 54, 26]], [["ydotool", 54, 18]], [["extraGroups", 55, 27]], [["alice", 55, 21]], [["users", 55, 15]], [["virtualisation", 35, 9], ["imports", 43, 9], ["services", 44, 9], ["systemd", 45, 9], ["programs", 54, 9], ["users", 55, 9]], [["server", 18, 5], ["client", 32, 5]], [["enable", 110, 27]], [["WLR_NO_HARDWARE_CURSORS", 115, 33]], [["environment", 115, 21]], [["cage", 115, 16]], [["services", 115, 7]], [["port", 123, 16]], [["port", 124, 17]], [["from", 122, 11], ["host", 123, 11], ["guest", 124, 11]], [["forwardPorts", 120, 22]], [["allowedTCPPorts", 128, 27]], [["firewall", 128, 18]], [["virtualisation", 120, 7], ["networking", 128, 7]], [["client", 111, 21], ["server", 117, 21]], [["sshBackdoor", 110, 15], ["nodes", 111, 15]], [["name", 7, 3], ["meta", 8, 3], ["enableOCR", 15, 3], ["globalTimeout", 16, 3], ["nodes", 17, 3], ["testScript", 59, 3], ["interactive", 110, 3]]]);
 const formals$1 = { args: { lib: false, hostPkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/stirling-pdf-desktop.nix", [["maintainers", 9, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/stirling-pdf-desktop.nix", [["SERVER_PORT", 25, 13], ["DISABLE_ADDITIONAL_FEATURES", 26, 13], ["SECURITY_ENABLELOGIN", 27, 13]]);
-const pos$3 = nix.positions(here + "/stirling-pdf-desktop.nix", [["enable", 22, 11], ["package", 23, 11], ["environment", 24, 11]]);
-const pos$4 = nix.positions(here + "/stirling-pdf-desktop.nix", [["stirling-pdf", 21, 18]]);
-const pos$5 = nix.positions(here + "/stirling-pdf-desktop.nix", [["allowedTCPPorts", 30, 29]]);
-const pos$6 = nix.positions(here + "/stirling-pdf-desktop.nix", [["firewall", 30, 20]]);
-const pos$7 = nix.positions(here + "/stirling-pdf-desktop.nix", [["services", 21, 9], ["networking", 30, 9]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/stirling-pdf-desktop.nix", [["options", 38, 16]]);
-const pos$9 = nix.positions(here + "/stirling-pdf-desktop.nix", [["memorySize", 36, 11], ["cores", 37, 11], ["qemu", 38, 11]]);
-const pos$10 = nix.positions(here + "/stirling-pdf-desktop.nix", [["program", 44, 23]]);
-const pos$11 = nix.positions(here + "/stirling-pdf-desktop.nix", [["cage", 44, 18]]);
-const pos$12 = nix.positions(here + "/stirling-pdf-desktop.nix", [["argument", 45, 116]]);
-const pos$13 = nix.positions(here + "/stirling-pdf-desktop.nix", [["L+", 45, 111]]);
-const pos$14 = nix.positions(here + "/stirling-pdf-desktop.nix", [["/etc/stirling-pdf/stirling-provisioning.json", 45, 64]]);
-const pos$15 = nix.positions(here + "/stirling-pdf-desktop.nix", [["stirling-provisioning.json", 45, 35]]);
-const pos$16 = nix.positions(here + "/stirling-pdf-desktop.nix", [["settings", 45, 26]]);
-const pos$17 = nix.positions(here + "/stirling-pdf-desktop.nix", [["tmpfiles", 45, 17]]);
-const pos$18 = nix.positions(here + "/stirling-pdf-desktop.nix", [["enable", 54, 26]]);
-const pos$19 = nix.positions(here + "/stirling-pdf-desktop.nix", [["ydotool", 54, 18]]);
-const pos$20 = nix.positions(here + "/stirling-pdf-desktop.nix", [["extraGroups", 55, 27]]);
-const pos$21 = nix.positions(here + "/stirling-pdf-desktop.nix", [["alice", 55, 21]]);
-const pos$22 = nix.positions(here + "/stirling-pdf-desktop.nix", [["users", 55, 15]]);
-const pos$23 = nix.positions(here + "/stirling-pdf-desktop.nix", [["virtualisation", 35, 9], ["imports", 43, 9], ["services", 44, 9], ["systemd", 45, 9], ["programs", 54, 9], ["users", 55, 9]]);
-const pos$24 = nix.positions(here + "/stirling-pdf-desktop.nix", [["server", 18, 5], ["client", 32, 5]]);
-const pos$25 = nix.positions(here + "/stirling-pdf-desktop.nix", [["enable", 110, 27]]);
 const formals$4 = { args: { pkgs: false }, ellipsis: true };
-const pos$26 = nix.positions(here + "/stirling-pdf-desktop.nix", [["WLR_NO_HARDWARE_CURSORS", 115, 33]]);
-const pos$27 = nix.positions(here + "/stirling-pdf-desktop.nix", [["environment", 115, 21]]);
-const pos$28 = nix.positions(here + "/stirling-pdf-desktop.nix", [["cage", 115, 16]]);
-const pos$29 = nix.positions(here + "/stirling-pdf-desktop.nix", [["services", 115, 7]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$30 = nix.positions(here + "/stirling-pdf-desktop.nix", [["port", 123, 16]]);
-const pos$31 = nix.positions(here + "/stirling-pdf-desktop.nix", [["port", 124, 17]]);
-const pos$32 = nix.positions(here + "/stirling-pdf-desktop.nix", [["from", 122, 11], ["host", 123, 11], ["guest", 124, 11]]);
-const pos$33 = nix.positions(here + "/stirling-pdf-desktop.nix", [["forwardPorts", 120, 22]]);
-const pos$34 = nix.positions(here + "/stirling-pdf-desktop.nix", [["allowedTCPPorts", 128, 27]]);
-const pos$35 = nix.positions(here + "/stirling-pdf-desktop.nix", [["firewall", 128, 18]]);
-const pos$36 = nix.positions(here + "/stirling-pdf-desktop.nix", [["virtualisation", 120, 7], ["networking", 128, 7]]);
-const pos$37 = nix.positions(here + "/stirling-pdf-desktop.nix", [["client", 111, 21], ["server", 117, 21]]);
-const pos$38 = nix.positions(here + "/stirling-pdf-desktop.nix", [["sshBackdoor", 110, 15], ["nodes", 111, 15]]);
-const pos$39 = nix.positions(here + "/stirling-pdf-desktop.nix", [["name", 7, 3], ["meta", 8, 3], ["enableOCR", 15, 3], ["globalTimeout", 16, 3], ["nodes", 17, 3], ["testScript", 59, 3], ["interactive", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const port = 8080n;
   const server = nix.thunk(() => nix.str`http://server:${nix.builtins.toString(port)}`);
   return {
-    [nix.POS]: pos$39,
+    [nix.POS]: $pos[38],
     name: "stirling-pdf",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -69,21 +31,21 @@ export default nix.lambda((args) => (() => {
     enableOCR: true,
     globalTimeout: 600n,
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "stirling-pdf": nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "stirling-pdf")),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 SERVER_PORT: port,
                 DISABLE_ADDITIONAL_FEATURES: false,
                 SECURITY_ENABLELOGIN: true,
@@ -91,8 +53,8 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [port]) })),
+            [nix.POS]: $pos[5],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], allowedTCPPorts: nix.thunk(() => [port]) })),
           })),
         };
       })(), formals$2),
@@ -101,36 +63,36 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             memorySize: 4096n,
             cores: 4n,
             qemu: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               options: nix.thunk(() => ["-vga none -device virtio-gpu-pci,xres=640,yres=480"]),
             })),
           })),
           imports: nix.thunk(() => [nix.path(here, "./common/wayland-cage.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             cage: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               program: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "stirling-pdf-desktop")))),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 "stirling-provisioning.json": nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   "/etc/stirling-pdf/stirling-provisioning.json": nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     "L+": nix.thunk(() => ({
-                      [nix.POS]: pos$12,
+                      [nix.POS]: $pos[11],
                       argument: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "stirling-provisioning.json", nix.thunk(() => nix.str`{
   "serverUrl": "${server}",
   "lockConnectionMode": true
@@ -143,14 +105,14 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$19,
-            ydotool: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true })),
+            [nix.POS]: $pos[18],
+            ydotool: nix.thunk(() => ({ [nix.POS]: $pos[17], enable: true })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$21,
-              alice: nix.thunk(() => ({ [nix.POS]: pos$20, extraGroups: nix.thunk(() => ["ydotool"]) })),
+              [nix.POS]: $pos[20],
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[19], extraGroups: nix.thunk(() => ["ydotool"]) })),
             })),
           })),
         };
@@ -158,20 +120,20 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "server.start()\nserver.wait_for_unit(\"stirling-pdf.service\")\nserver.wait_for_console_text(\"Stirling-PDF Started\")\n\n# initial login\nclient.start()\nclient.wait_for_text(\"Sign in to Server\")\nclient.send_chars(\"admin\", 0.1)\nclient.send_key(\"tab\", 1)\nclient.send_chars(\"stirling\\n\", 0.1)\n\n# skip telemetry prompt\nclient.wait_for_text(\"analytics\")\nclient.send_key(\"shift-tab\", 1)\nclient.send_key(\"tab\", 1)\nclient.send_key(\"tab\", 1)\nclient.send_key(\"kp_enter\", 1)\n\n# update password\nclient.wait_for_text(\"password\")\nclient.send_key(\"tab\", 1)\nclient.send_key(\"shift-tab\", 1)\nclient.send_key(\"shift-tab\", 1)\nclient.send_key(\"shift-tab\", 1)\nclient.send_chars(\"stirling2\", 0.1)\nclient.send_key(\"tab\", 1)\nclient.send_chars(\"stirling2\", 0.1)\nclient.send_key(\"tab\", 1)\nclient.send_key(\"kp_enter\", 1)\n\n# final login\nclient.wait_for_text(\"Sign in to Server\")\nclient.send_chars(\"admin\", 0.1)\nclient.send_key(\"tab\", 1)\nclient.send_chars(\"stirling2\\n\", 0.1)\nclient.wait_for_text(\"Welcome to Stirling\")\nclient.send_key(\"kp_enter\", 1)\n\n# version prompt\nclient.wait_for_text(\"Config\")\nclient.execute(\"ydotool mousemove -a -- 290 220\") # Config button\nclient.execute(\"ydotool click 0xC0\")\nclient.wait_for_text(\"Current Frontend Version\")\nclient.screenshot(\"stirling-pdf-version\")\n",
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$38,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$25, enable: true })),
+      [nix.POS]: $pos[37],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[24], enable: true })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         client: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           const pkgs = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               cage: nix.thunk(() => ({
-                [nix.POS]: pos$27,
-                environment: nix.thunk(() => ({ [nix.POS]: pos$26, WLR_NO_HARDWARE_CURSORS: "1" })),
+                [nix.POS]: $pos[26],
+                environment: nix.thunk(() => ({ [nix.POS]: $pos[25], WLR_NO_HARDWARE_CURSORS: "1" })),
               })),
             })),
           };
@@ -179,21 +141,21 @@ export default nix.lambda((args) => (() => {
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$5);
           return {
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$33,
+              [nix.POS]: $pos[32],
               forwardPorts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$32,
+                  [nix.POS]: $pos[31],
                   from: "host",
-                  host: nix.thunk(() => ({ [nix.POS]: pos$30, port: port })),
-                  guest: nix.thunk(() => ({ [nix.POS]: pos$31, port: port })),
+                  host: nix.thunk(() => ({ [nix.POS]: $pos[29], port: port })),
+                  guest: nix.thunk(() => ({ [nix.POS]: $pos[30], port: port })),
                 })),
               ]),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$35,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$34, allowedTCPPorts: nix.thunk(() => [port]) })),
+              [nix.POS]: $pos[34],
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[33], allowedTCPPorts: nix.thunk(() => [port]) })),
             })),
           };
         })(), formals$5),

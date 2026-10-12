@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["leaveDotGit", 25, 5]], [["url", 37, 5], ["hash", 38, 5]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 28, 3], ["nativeBuildInputs", 30, 3], ["dependencies", 32, 3], ["testInventory", 35, 3], ["postPatch", 41, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchurl: false, "setuptools-scm": false, git: false, sphinx: false, pytestCheckHook: false, cython: false, gcc: false, graphviz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["leaveDotGit", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 28, 3], ["nativeBuildInputs", 30, 3], ["dependencies", 32, 3], ["testInventory", 35, 3], ["postPatch", 41, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.22.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "astropy",
           repo: "sphinx-automodapi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [git]);
       const dependencies = nix.thunk(() => [sphinx]);
       const testInventory = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://web.archive.org/web/20221007193144/https://docs.python.org/3/objects.inv",
           hash: "sha256-1cbUmdJJSoifkiIYa70SxnLsaK3F2gvnTEWo9vo/6rY=",
         }))));
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, cython, gcc, graphviz]);
       const pythonImportsCheck = nix.thunk(() => ["sphinx_automodapi"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sphinx extension for generating API documentation",
         homepage: "https://github.com/astropy/sphinx-automodapi",
         changelog: nix.thunk(() => nix.str`https://github.com/astropy/sphinx-automodapi/releases/tag/${nix.sel(src, "tag")}`),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

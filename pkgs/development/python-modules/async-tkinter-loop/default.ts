@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 16, 13], ["pname", 17, 5], ["hash", 18, 5]], [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 25, 3], ["pythonRemoveDeps", 30, 3], ["pythonImportsCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "poetry-core": false, tkinter: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 16, 13], ["pname", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 25, 3], ["pythonRemoveDeps", 30, 3], ["pythonImportsCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "async_tkinter_loop",
           hash: "sha256-y4gDOXXk4z1gAQVeB+/gOzia4SfICJiXV47pdaEQRp4=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pythonRemoveDeps = nix.thunk(() => ["asyncio"]);
       const pythonImportsCheck = nix.thunk(() => ["async_tkinter_loop"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implementation of asynchronous mainloop for tkinter, the use of which allows using async handler functions",
         homepage: "https://github.com/insolor/async-tkinter-loop",
         changelog: nix.thunk(() => nix.str`https://github.com/insolor/async-tkinter-loop/releases/tag/${version}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

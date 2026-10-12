@@ -2,18 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/maintainers.nix", [[["allowAliases", 33, 12]], [["system", 29, 5], ["config", 33, 5], ["overlays", 34, 5]], [["file", 74, 13]], [["attrPath", 113, 25]], [["attrPath", 114, 43]], [["file", 119, 25]], [["file", 120, 43]], [["type", 126, 7], ["userId", 127, 7], ["context", 128, 15]], [["type", 136, 11], ["teamId", 137, 11], ["context", 138, 19]], [["users", 156, 3], ["teams", 157, 3], ["packages", 158, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
 const formals$2 = { args: { changedFiles: false, affectedAttrPaths: false, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/maintainers.nix", [["allowAliases", 33, 12]]);
-const pos$2 = nix.positions(here + "/maintainers.nix", [["system", 29, 5], ["config", 33, 5], ["overlays", 34, 5]]);
-const pos$3 = nix.positions(here + "/maintainers.nix", [["file", 74, 13]]);
-const pos$4 = nix.positions(here + "/maintainers.nix", [["attrPath", 113, 25]]);
-const pos$5 = nix.positions(here + "/maintainers.nix", [["attrPath", 114, 43]]);
-const pos$6 = nix.positions(here + "/maintainers.nix", [["file", 119, 25]]);
-const pos$7 = nix.positions(here + "/maintainers.nix", [["file", 120, 43]]);
-const pos$8 = nix.positions(here + "/maintainers.nix", [["type", 126, 7], ["userId", 127, 7], ["context", 128, 15]]);
-const pos$9 = nix.positions(here + "/maintainers.nix", [["type", 136, 11], ["teamId", 137, 11], ["context", 138, 19]]);
-const pos$10 = nix.positions(here + "/maintainers.nix", [["users", 156, 3], ["teams", 157, 3], ["packages", 158, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,9 +14,9 @@ export default nix.lambda((args) => (() => {
     const changedFiles = nix.arg($_1, "changedFiles");
     const affectedAttrPaths = nix.arg($_1, "affectedAttrPaths");
     const pkgs = nix.argOr($_1, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         system: "x86_64-linux",
-        config: nix.thunk(() => ({ [nix.POS]: pos$1, allowAliases: false })),
+        config: nix.thunk(() => ({ [nix.POS]: $pos[0], allowAliases: false })),
         overlays: [],
       }))));
     const nixpkgsRoot = nix.thunk(() => nix.add(nix.builtins.toString(nix.path(here, "../../..")), "/"));
@@ -43,7 +34,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.app(nix.sel(lib, "unsafeGetAttrPos"), "version", drv)),
           ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.has(drv, "meta", "position")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               file: nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ":", nix.thunk(() => nix.sel(drv, "meta", "position")))))),
             })),
           ])))))));
@@ -62,18 +53,18 @@ export default nix.lambda((args) => (() => {
     const attrPathsToGetMaintainersFor = nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(relevantAffectedAttrPaths, changedByNameAttrPaths))));
     const attrPathEntities = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (attrPath) => (() => {
         const package$ = nix.thunk(() => nix.app(nix.sel(lib, "getAttrFromPath"), attrPath, pkgs));
-        return nix.concat(nix.app(userPings, nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: attrPath })), nix.thunk(() => nix.selOr(package$, () => [], "meta", "nonTeamMaintainers"))), nix.app(nix.sel(lib, "concatMap"), nix.thunk(() => nix.app(teamPings, nix.thunk(() => ({ [nix.POS]: pos$5, attrPath: attrPath })))), nix.thunk(() => nix.selOr(package$, () => [], "meta", "teams"))));
+        return nix.concat(nix.app(userPings, nix.thunk(() => ({ [nix.POS]: $pos[3], attrPath: attrPath })), nix.thunk(() => nix.selOr(package$, () => [], "meta", "nonTeamMaintainers"))), nix.app(nix.sel(lib, "concatMap"), nix.thunk(() => nix.app(teamPings, nix.thunk(() => ({ [nix.POS]: $pos[4], attrPath: attrPath })))), nix.thunk(() => nix.selOr(package$, () => [], "meta", "teams"))));
       })(), attrPathsToGetMaintainersFor));
-    const changedFileEntities = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (file) => nix.concat(nix.app(userPings, nix.thunk(() => ({ [nix.POS]: pos$6, file: file })), nix.thunk(() => nix.selOr(fileUsers, () => [], nix.key(nix.force(file))))), nix.app(nix.sel(lib, "concatMap"), nix.thunk(() => nix.app(teamPings, nix.thunk(() => ({ [nix.POS]: pos$7, file: file })))), nix.thunk(() => nix.selOr(fileTeams, () => [], nix.key(nix.force(file)))))), changedFiles));
+    const changedFileEntities = nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (file) => nix.concat(nix.app(userPings, nix.thunk(() => ({ [nix.POS]: $pos[5], file: file })), nix.thunk(() => nix.selOr(fileUsers, () => [], nix.key(nix.force(file))))), nix.app(nix.sel(lib, "concatMap"), nix.thunk(() => nix.app(teamPings, nix.thunk(() => ({ [nix.POS]: $pos[6], file: file })))), nix.thunk(() => nix.selOr(fileTeams, () => [], nix.key(nix.force(file)))))), changedFiles));
     const userPings = (context) => nix.app(nix.builtins.map, (maintainer) => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         type: "user",
         userId: nix.thunk(() => nix.sel(maintainer, "githubId")),
         context: context,
       }));
     const teamPings = (context) => (team) => (nix.asBool(nix.has(team, "githubId")) ? [
       nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         type: "team",
         teamId: nix.thunk(() => nix.sel(team, "githubId")),
         context: context,
@@ -89,7 +80,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_team) => nix.app(nix.sel(lib, "map"), (pkg) => nix.sel(pkg, "context")))),
       ])));
     return {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       users: byUser,
       teams: byTeam,
       packages: attrPathsToGetMaintainersFor,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["extensionUuid", 37, 5], ["extensionPortalSlug", 38, 5], ["updateScript", 39, 5]], [["description", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5], ["homepage", 57, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["patches", 30, 3], ["makeFlags", 34, 3], ["passthru", 36, 3], ["postPatch", 42, 3], ["preFixup", 48, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, glib: false, gjs: false, typescript_7: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extensionUuid", 37, 5], ["extensionPortalSlug", 38, 5], ["updateScript", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5], ["homepage", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["patches", 30, 3], ["makeFlags", 34, 3], ["passthru", 36, 3], ["postPatch", 42, 3], ["preFixup", 48, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const typescript_7 = nix.arg($, "typescript_7");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gnome-shell-extension-pop-shell",
       version: "1.2.0-unstable-2026-03-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pop-os",
           repo: "shell",
           rev: "7898b65c20735057faf0797f8ed056704ca55f0d",
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./fix-gjs.patch")]),
       makeFlags: nix.thunk(() => ["XDG_DATA_HOME=$(out)/share"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         extensionUuid: "pop-shell@system76.com",
         extensionPortalSlug: "pop-shell",
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
@@ -44,7 +41,7 @@ done
 `),
       preFixup: "chmod +x $out/share/gnome-shell/extensions/pop-shell@system76.com/*/main.js\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Keyboard-driven layer for GNOME Shell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

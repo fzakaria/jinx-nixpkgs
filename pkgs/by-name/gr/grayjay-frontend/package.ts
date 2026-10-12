@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 27, 5], ["homepage", 29, 7], ["license", 30, 7], ["maintainers", 31, 7], ["platforms", 32, 7]], [["pname", 8, 3], ["version", 11, 21], ["src", 11, 29], ["sourceRoot", 13, 3], ["__structuredAttrs", 15, 3], ["strictDeps", 16, 3], ["npmBuildScript", 17, 3], ["npmDepsHash", 18, 3], ["installPhase", 20, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, grayjay: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 29, 7], ["license", 30, 7], ["maintainers", 31, 7], ["platforms", 32, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 11, 21], ["src", 11, 29], ["sourceRoot", 13, 3], ["__structuredAttrs", 15, 3], ["strictDeps", 16, 3], ["npmBuildScript", 17, 3], ["npmDepsHash", 18, 3], ["installPhase", 20, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const grayjay = nix.arg($, "grayjay");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${nix.sel(grayjay, "pname")}-frontend`),
       version: nix.thunk(() => nix.attr(grayjay, "version")),
       src: nix.thunk(() => nix.attr(grayjay, "src")),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(grayjay, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Grayjay frontend subpackage",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

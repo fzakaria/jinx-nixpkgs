@@ -2,27 +2,25 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build.nix", [[["system", 4, 5]], [["_internalCallByNamePackageFile", 29, 5]], [["overlays", 39, 7]]]);
 const formals$1 = { args: { maintainer: false, localSystem: true, system: true, crossSystem: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build.nix", [["system", 4, 5]]);
-const pos$2 = nix.positions(here + "/build.nix", [["_internalCallByNamePackageFile", 29, 5]]);
-const pos$3 = nix.positions(here + "/build.nix", [["overlays", 39, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const maintainer = nix.arg($, "maintainer");
   const localSystem = nix.argOr($, "localSystem", () => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     system: nix.thunk(() => nix.selOr(args_1, () => nix.builtins.currentSystem, "system")),
   }));
   const system = nix.argOr($, "system", () => nix.sel(localSystem, "system"));
   const crossSystem = nix.argOr($, "crossSystem", () => nix.force(localSystem));
   const overlay = (self) => (super$) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     _internalCallByNamePackageFile: (file) => (nix.asBool(nix.builtins.pathExists(file)) ? nix.app(nix.sel(super$, "_internalCallByNamePackageFile"), file) : null),
   });
   const nixpkgsArgs = nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_1, nix.thunk(() => ["maintainer", "overlays"])), {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     overlays: nix.thunk(() => nix.concat(nix.selOr(args_1, () => [], "overlays"), [overlay])),
   }));
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../../default.nix")), nixpkgsArgs));

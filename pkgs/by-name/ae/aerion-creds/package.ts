@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 12, 5], ["aarch64-linux", 13, 5]], [["x86_64", 20, 5], ["aarch64", 21, 5]], [["url", 32, 5], ["hash", 33, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["sourceProvenance", 57, 5]], [["pname", 25, 3], ["version", 26, 11], ["strictDeps", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["dontUnpack", 36, 3], ["installPhase", 38, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 12, 5], ["aarch64-linux", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64", 20, 5], ["aarch64", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["sourceProvenance", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 11], ["strictDeps", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["dontUnpack", 36, 3], ["installPhase", 38, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,28 +11,28 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   const version = "0.3.5";
-  const archMap = nix.thunk(() => ({ [nix.POS]: pos$1, "x86_64-linux": "x86_64", "aarch64-linux": "aarch64" }));
+  const archMap = nix.thunk(() => ({ [nix.POS]: $pos[0], "x86_64-linux": "x86_64", "aarch64-linux": "aarch64" }));
   const sysArch = nix.thunk(() => nix.selOr(archMap, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported architecture: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const shimHashes = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     x86_64: "sha256-7PLMiY2Aqx33IsdMMtZd2WLsErWLZTAYV+5TcED0pUU=",
     aarch64: "sha256-kATIsB2j/kloYq9WSRcTgxKSUA0neuWtF3hlyPyxWBk=",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "aerion-creds",
       version: version,
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/hkdb/aerion/releases/download/v${version}/flathub-build-env-v${version}-linux-${sysArch}`),
           hash: nix.thunk(() => nix.sel(shimHashes, nix.key(nix.force(sysArch)))),
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp $src $out/bin/aerion-creds\nchmod +x $out/bin/aerion-creds\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "OAuth credentials shim for Aerion",
         homepage: "https://github.com/hkdb/aerion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

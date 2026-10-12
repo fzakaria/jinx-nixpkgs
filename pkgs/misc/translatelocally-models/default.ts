@@ -2,14 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 26, 17], ["sha256", 27, 9]], [["description", 41, 9], ["homepage", 42, 9], ["license", 44, 9]], [["pname", 22, 7], ["version", 23, 7], ["src", 25, 7], ["dontUnpack", 29, 7], ["installPhase", 31, 7], ["meta", 40, 7]], [["updateScript", 52, 12]], [["passthru", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false }, ellipsis: false };
 const formals$2 = { args: { code: false }, ellipsis: true };
 const formals$3 = { args: { name: false, code: false, version: false, url: false, checksum: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 26, 17], ["sha256", 27, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 41, 9], ["homepage", 42, 9], ["license", 44, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 7], ["version", 23, 7], ["src", 25, 7], ["dontUnpack", 29, 7], ["installPhase", 31, 7], ["meta", 40, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 52, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["passthru", 52, 3]]);
 
 export default nix.thunk(() => (() => {
   const modelSpecs = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./models.json")))));
@@ -32,14 +28,14 @@ export default nix.thunk(() => (() => {
       const url = nix.arg($_1, "url");
       const checksum = nix.arg($_1, "checksum");
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.str`translatelocally-model-${code}`),
           version: nix.thunk(() => nix.builtins.toString(version)),
-          src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha256: checksum })))),
+          src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, sha256: checksum })))),
           dontUnpack: true,
           installPhase: "TARGET=\"$out/share/translateLocally/models\"\nmkdir -p \"$TARGET\"\ntar -xzf \"$src\" -C \"$TARGET\"\n\n# avoid patching shebangs in inconsistently executable extra files\nfind \"$out\" -type f -exec chmod -x {} +\n",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             description: nix.thunk(() => nix.str`TranslateLocally model - ${name}`),
             homepage: "https://translatelocally.com/",
             license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
@@ -48,8 +44,8 @@ export default nix.thunk(() => (() => {
     })(), formals$3);
     const allModelPkgs = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(withCodeAsKey, mkModelPackage)), modelSpecs))));
     return nix.update(allModelPkgs, {
-      [nix.POS]: pos$5,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      [nix.POS]: $pos[4],
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
     });
   })(), formals$1);
 })());

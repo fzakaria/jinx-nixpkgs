@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/python-bindings.nix", [[["pname", 16, 5], ["version", 17, 5], ["src", 18, 5], ["meta", 19, 5], ["pyproject", 22, 3], ["sourceRoot", 24, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 55, 3], ["doCheck", 60, 3], ["pythonImportsCheck", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "autodock-vina": false, swig: false, setuptools: false, numpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/python-bindings.nix", [["pname", 16, 5], ["version", 17, 5], ["src", 18, 5], ["meta", 19, 5], ["pyproject", 22, 3], ["sourceRoot", 24, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 55, 3], ["doCheck", 60, 3], ["pythonImportsCheck", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const boost = nix.thunk(() => nix.attr(autodock_vina, "boost"));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.attr(autodock_vina, "pname")),
       version: nix.thunk(() => nix.attr(autodock_vina, "version")),
       src: nix.thunk(() => nix.attr(autodock_vina, "src")),

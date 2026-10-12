@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableJavaFX", 34, 30]], [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["name", 64, 7], ["desktopName", 65, 7], ["exec", 66, 7], ["terminal", 67, 7], ["icon", 68, 7]], [["changelog", 105, 5], ["description", 106, 5], ["longDescription", 107, 5], ["homepage", 113, 5], ["mainProgram", 114, 5], ["license", 115, 5], ["platforms", 116, 5], ["maintainers", 117, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 39, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 55, 3], ["patches", 60, 3], ["desktopItems", 62, 3], ["mvnHash", 72, 3], ["installPhase", 78, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, jdk: false, maven: false, makeWrapper: false, fetchFromGitHub: false, libGL: false, libxkbcommon: false, wayland: false, fontconfig: false, libx11: false, libxcursor: false, libxi: false, libxrandr: false, libxxf86vm: false, libxtst: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableJavaFX", 34, 30]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 64, 7], ["desktopName", 65, 7], ["exec", 66, 7], ["terminal", 67, 7], ["icon", 68, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 105, 5], ["description", 106, 5], ["longDescription", 107, 5], ["homepage", 113, 5], ["mainProgram", 114, 5], ["license", 115, 5], ["platforms", 116, 5], ["maintainers", 117, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 39, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 55, 3], ["patches", 60, 3], ["desktopItems", 62, 3], ["mvnHash", 72, 3], ["installPhase", 78, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +37,12 @@ export default nix.lambda((args) => (() => {
       libxtst,
       fontconfig,
     ])));
-  const jdkWithFX = nix.thunk(() => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
+  const jdkWithFX = nix.thunk(() => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableJavaFX: true }))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => (() => {
       const pname = "vatprism";
       const version = "0.3.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "marvk",
           repo: "vatprism",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./0001-Fix-build-on-JDK-21.patch")]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "vatprism",
             desktopName: "VATprism",
             exec: "vatprism",
@@ -91,7 +87,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jdkWithFX)} $out/bin/vatprism \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/marvk/vatprism/raw/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "VATSIM map and data explorer",
         longDescription: "VATprism is a VATSIM Map and VATSIM Data Explorer, VATSIM being the\nVirtual Air Traffic Simulation Network. VATprism allows users to explore\navailable ATC services, connected pilots, Airports, Flight and Upper\nInformation Regions and more!\n",
@@ -105,7 +101,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

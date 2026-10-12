@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 40, 5], ["hash", 41, 5]], [["packageName", 108, 7], ["versionPolicy", 109, 7]], [["updateScript", 107, 5]], [["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["teams", 117, 5], ["platforms", 118, 5]], [["pname", 30, 3], ["version", 31, 3], ["outputs", 33, 3], ["src", 39, 3], ["patches", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 64, 3], ["propagatedBuildInputs", 73, 3], ["nativeCheckInputs", 79, 3], ["mesonFlags", 92, 3], ["doCheck", 100, 3], ["postPatch", 102, 3], ["passthru", 106, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, glib: false, gnome: false, gettext: false, "gobject-introspection": false, vala: false, sqlite: false, "dbus-glib": false, dbus: false, libgee: false, "evolution-data-server-gtk4": false, python3: false, readline: false, "gtk-doc": false, "docbook-xsl-nons": false, docbook_xml_dtd_43: false, "telepathy-glib": false, telepathySupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 108, 7], ["versionPolicy", 109, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 107, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["teams", 117, 5], ["platforms", 118, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["outputs", 33, 3], ["src", 39, 3], ["patches", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 64, 3], ["propagatedBuildInputs", 73, 3], ["nativeCheckInputs", 79, 3], ["mesonFlags", 92, 3], ["doCheck", 100, 3], ["postPatch", 102, 3], ["passthru", 106, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const telepathy_glib = nix.arg($, "telepathy-glib");
   const telepathySupport = nix.argOr($, "telepathySupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "folks",
       version: "0.15.12",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/folks/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/folks-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-IfROK9q7Huf45Bu5ltEKx9rzXHjEmBd9sMAPWAogqRQ=",
         })))),
@@ -77,11 +73,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), telepathySupport, "patchShebangs tests/tools/manager-file.py\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "folks", versionPolicy: "none" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "folks", versionPolicy: "none" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library that aggregates people from multiple sources to create metacontacts",
         homepage: "https://gitlab.gnome.org/GNOME/folks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcublas.nix", [[["description", 25, 5], ["longDescription", 26, 5], ["homepage", 29, 5]], [["redistName", 7, 3], ["pname", 8, 3], ["appendRunpaths", 11, 3], ["outputs", 15, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { buildRedist: false, cuda_nvrtc: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcublas.nix", [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 29, 5]]);
-const pos$2 = nix.positions(here + "/libcublas.nix", [["redistName", 7, 3], ["pname", 8, 3], ["appendRunpaths", 11, 3], ["outputs", 15, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const cuda_nvrtc = nix.arg($, "cuda_nvrtc");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "libcublas",
       appendRunpaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "12.8")), nix.thunk(() => [nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), cuda_nvrtc)}/lib`)]))),
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static", "stubs"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "CUDA Basic Linear Algebra Subroutine library",
         longDescription: "The cuBLAS library is an implementation of BLAS (Basic Linear Algebra Subprograms) on top of the NVIDIA CUDA runtime.\n",
         homepage: "https://developer.nvidia.com/cublas",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["h2o", 92, 36]], [["tests", 92, 5]], [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["mainProgram", 103, 5], ["platforms", 104, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["outputs", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 61, 3], ["cmakeFlags", 73, 3], ["postInstall", 79, 3], ["passthru", 91, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, makeBinaryWrapper: false, ninja: false, perl: false, perlPackages: false, openssl: false, libcap: false, libuv: false, wslay: false, zlib: false, withBrotli: true, brotli: false, withMruby: true, bison: false, ruby: false, withUring: true, liburing: false, withZstandard: true, zstd: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["h2o", 92, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["mainProgram", 103, 5], ["platforms", 104, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["outputs", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 61, 3], ["cmakeFlags", 73, 3], ["postInstall", 79, 3], ["passthru", 91, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "h2o",
       version: "2.3.0-rolling-2026-09-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "h2o",
           repo: "h2o",
           rev: "cac7e6568ad98a848f099ecd0a18b881f632479a",
@@ -71,11 +67,11 @@ wrapProgram "$out/bin/h2olog" \\
     --set "PERL5LIB" "$PERL5LIB"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, h2o: nix.thunk(() => nix.attr(nixosTests, "h2o")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], h2o: nix.thunk(() => nix.attr(nixosTests, "h2o")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Optimized HTTP/1.x, HTTP/2, HTTP/3 server",
         homepage: "https://h2o.examp1e.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["url", 19, 7], ["hash", 20, 7]], [["url", 23, 7], ["hash", 24, 7]], [["url", 27, 7], ["hash", 28, 7]], [["url", 31, 7], ["hash", 32, 7]], [["url", 35, 7], ["hash", 36, 7]], [["url", 39, 7], ["hash", 40, 7]], [["url", 43, 7], ["hash", 44, 7]], [["url", 47, 7], ["hash", 48, 7]], [["url", 51, 7], ["hash", 52, 7]], [["description", 65, 5], ["platforms", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["preInstall", 58, 3], ["configureFlags", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 7], ["hash", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 43, 7], ["hash", 44, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["url", 47, 7], ["hash", 48, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["url", 51, 7], ["hash", 52, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 65, 5], ["platforms", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["preInstall", 58, 3], ["configureFlags", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,57 +12,57 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "catdoc",
       version: "0.95",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://ftp.wagner.pp.ru/pub/catdoc/catdoc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-UUqEGANStr82fB0kmYGd+oK2DYxFd3Qy+mQ6XtfYB5Y=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sources.debian.org/data/main/c/catdoc/1:0.95-6/debian/patches/01-amd64_fixes.patch",
             hash: "sha256-aIbtmYm291mo4Sfm1KaucnvmUi9RgbXGexInfOQxxug=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://sources.debian.org/data/main/c/catdoc/1:0.95-6/debian/patches/02-Makefile_fixes.patch",
             hash: "sha256-cOeuAdjD707FEdwep+slzmDcjjF1MDm59E3drv+mWd0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://sources.debian.org/data/main/c/catdoc/1:0.95-6/debian/patches/03-Type_fixes.patch",
             hash: "sha256-tu34+p0d21w7vjH7WBusfffish3edObqPplKs90Ms9U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://sources.debian.org/data/main/c/catdoc/1:0.95-6/debian/patches/04-XLS_parsing_improvements.patch",
             hash: "sha256-ePkvLxUE/rA1/iMhX7k2zh91N5zgCgbHo2xlPCVVmCI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://sources.debian.org/data/main/c/catdoc/1:0.95-6/debian/patches/05-CVE-2017-11110.patch",
             hash: "sha256-p1fPKOdzZM6W/wj2RQXnooiL0BoEoc4hSS/+rfXmVtI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://sources.debian.org/data/main/c/catdoc/1:0.95-6/debian/patches/06-Fix_OLENAMELENGTH.patch",
             hash: "sha256-p64iQlXlhwRjJ4XGyvju+gTSmSOOxOcv4sgzQXGDYsE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: "https://sources.debian.org/data/main/c/catdoc/1:0.95-6/debian/patches/0007-Added-guards-against-a-signed-text-length-when-parsi.patch",
             hash: "sha256-7N5frjh2ggxBhNqumeLW56D/rxINqoO9PRIfqSVIhNw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             url: "https://sources.debian.org/data/main/c/catdoc/1:0.95-6/debian/patches/0008-Added-a-guard-against-a-product-overflow-when-proces.patch",
             hash: "sha256-Cfo7muRZfyCvZiJ4s9u7+tZKQtCLj/wSQUPz3MWUg4Y=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             url: "https://sources.debian.org/data/main/c/catdoc/1:0.95-6/debian/patches/0009-Added-guards-against-invalid-sector-sizes-when-tryin.patch",
             hash: "sha256-TCU+aixaXQolZ6h0QKO0p/mWj6yTFZqfcwVDsaVGl8Q=",
           })))),
@@ -81,7 +70,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "rm -v INSTALL\n",
       configureFlags: nix.thunk(() => ["--disable-wordview"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "MS-Word/Excel/PowerPoint to text converter",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

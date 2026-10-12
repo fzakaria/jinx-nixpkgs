@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["pkg-config", 39, 11]], [["zlib", 37, 13], ["tests", 39, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["branch", 47, 5], ["pkgConfigModules", 48, 5], ["platforms", 52, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["outputs", 24, 3], ["propagatedBuildInputs", 30, 3], ["configureFlags", 32, 3], ["postInstall", 34, 3], ["passthru", 36, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, zlib: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 39, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["zlib", 37, 13], ["tests", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["branch", 47, 5], ["pkgConfigModules", 48, 5], ["platforms", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["outputs", 24, 3], ["propagatedBuildInputs", 30, 3], ["configureFlags", 32, 3], ["postInstall", 34, 3], ["passthru", 36, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   nix.assert_((!nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) || nix.asBool(!nix.eq(zlib, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libpng12/package.nix:9:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libpng",
       version: "1.2.59",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/libpng/libpng-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-tGNfFbitzMitCTTupIXvWcxMriTQ8DAKmpQeUZdP/Mc=",
         })))),
@@ -32,15 +28,15 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-static"]),
       postInstall: "mv \"$out/bin\" \"$dev/bin\"",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         zlib: zlib,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Official reference implementation for the PNG file format",
         homepage: "http://www.libpng.org/pub/png/libpng.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "libpng")),

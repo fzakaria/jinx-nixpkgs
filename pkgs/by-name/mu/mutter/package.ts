@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 86, 5], ["hash", 87, 5]], [["url", 193, 7], ["hash", 194, 7], ["revert", 195, 7]], [["PKG_CONFIG_UDEV_UDEVDIR", 214, 7]], [["libdirExists", 226, 7]], [["packageName", 236, 7]], [["libmutter_api_version", 222, 5], ["libdir", 223, 5], ["tests", 225, 5], ["updateScript", 235, 5]], [["description", 241, 5], ["mainProgram", 242, 5], ["homepage", 243, 5], ["changelog", 244, 5], ["license", 245, 5], ["teams", 246, 5], ["platforms", 247, 5]], [["pname", 75, 3], ["version", 76, 3], ["outputs", 78, 3], ["src", 85, 3], ["mesonFlags", 90, 3], ["propagatedBuildInputs", 105, 3], ["nativeBuildInputs", 111, 3], ["buildInputs", 131, 3], ["patches", 188, 3], ["postPatch", 199, 3], ["postFixup", 207, 3], ["env", 214, 3], ["separateDebugInfo", 216, 3], ["strictDeps", 217, 3], ["doInstallCheck", 219, 3], ["passthru", 221, 3], ["meta", 240, 3]]]);
 const formals$1 = { args: { fetchurl: false, fetchpatch: false, runCommand: false, lib: false, stdenv: false, "pkg-config": false, gnome: false, gettext: false, "gobject-introspection": false, cairo: false, colord: false, docutils: false, lcms2: false, pango: false, libstartup_notification: false, libcanberra: false, ninja: false, "xvfb-run": false, libadwaita: false, libxcvt: false, libGL: false, libx11: false, libxcomposite: false, libxcursor: false, libxdamage: false, libxext: false, libxfixes: false, libxi: false, xkeyboard_config: false, libxkbcommon: false, libxcb: false, libxrandr: false, libxinerama: false, libxau: false, libinput: false, libdrm: false, libgbm: false, libei: false, libepoxy: false, "libdisplay-info": false, "gsettings-desktop-schemas": false, glib: false, libglycin: false, atk: false, gtk4: false, fribidi: false, harfbuzz: false, "gnome-desktop": false, pipewire: false, libgudev: false, libwacom: false, libsm: false, xwayland: false, "mesa-gl-headers": false, meson: false, "gnome-settings-daemon": false, "xorg-server": false, python3: false, python3Packages: false, "wayland-scanner": false, wrapGAppsHook4: false, "gi-docgen": false, sysprof: false, "libsysprof-capture": false, "desktop-file-utils": false, "egl-wayland": false, graphene: false, udevCheckHook: false, wayland: false, "wayland-protocols": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 86, 5], ["hash", 87, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 193, 7], ["hash", 194, 7], ["revert", 195, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PKG_CONFIG_UDEV_UDEVDIR", 214, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["libdirExists", 226, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["packageName", 236, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["libmutter_api_version", 222, 5], ["libdir", 223, 5], ["tests", 225, 5], ["updateScript", 235, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 241, 5], ["mainProgram", 242, 5], ["homepage", 243, 5], ["changelog", 244, 5], ["license", 245, 5], ["teams", 246, 5], ["platforms", 247, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 75, 3], ["version", 76, 3], ["outputs", 78, 3], ["src", 85, 3], ["mesonFlags", 90, 3], ["propagatedBuildInputs", 105, 3], ["nativeBuildInputs", 111, 3], ["buildInputs", 131, 3], ["patches", 188, 3], ["postPatch", 199, 3], ["postFixup", 207, 3], ["env", 214, 3], ["separateDebugInfo", 216, 3], ["strictDeps", 217, 3], ["doInstallCheck", 219, 3], ["passthru", 221, 3], ["meta", 240, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -85,12 +78,12 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wayland_protocols = nix.arg($, "wayland-protocols");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "mutter",
       version: "50.4",
       outputs: nix.thunk(() => ["out", "dev", "man", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/mutter/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mutter-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Jz0zyHWry0tsvqP07ARdGBVfvFEMNSH8fkeSY3ExCYg=",
         })))),
@@ -179,7 +172,7 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.gnome.org/GNOME/mutter/-/commit/a1ae71798ef1ab2e0d2f753f5c98b38b1039b056.patch",
             hash: "sha256-J2eKhM3YEFEVmcpMq2SxSOsPeEWrJTv+UcBDO+gRC4M=",
             revert: true,
@@ -196,18 +189,18 @@ substituteInPlace src/frames/main.c \\
 moveToOutput "share/mutter-${nix.sel(finalAttrs, "passthru", "libmutter_api_version")}/doc" "$devdoc"
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         PKG_CONFIG_UDEV_UDEVDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/udev`),
       })),
       separateDebugInfo: true,
       strictDeps: true,
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         libmutter_api_version: "18",
         libdir: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/lib/mutter-${nix.sel(finalAttrs, "passthru", "libmutter_api_version")}`),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           libdirExists: nix.thunk(() => nix.app(runCommand, "mutter-libdir-exists", nix.thunk(() => ({})), nix.thunk(() => nix.str`if [[ ! -d ${nix.sel(finalAttrs, "finalPackage", "libdir")} ]]; then
   echo "passthru.libdir should contain a directory, “${nix.sel(finalAttrs, "finalPackage", "libdir")}” is not one."
   exit 1
@@ -215,10 +208,10 @@ fi
 touch $out
 `))),
         })),
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$5, packageName: "mutter" })))),
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[4], packageName: "mutter" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Window manager for GNOME",
         mainProgram: "mutter",
         homepage: "https://gitlab.gnome.org/GNOME/mutter",

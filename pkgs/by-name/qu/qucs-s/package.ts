@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["QTDIR", 86, 7]], [["description", 94, 5], ["longDescription", 95, 5], ["homepage", 99, 5], ["license", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5], ["platforms", 107, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["cmakeFlags", 74, 3], ["qtWrapperArgs", 79, 3], ["env", 86, 3], ["doInstallCheck", 88, 3], ["installCheck", 89, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, flex: false, bison: false, libx11: false, cmake: false, gperf: false, adms: false, ngspice: false, "qucsator-rf": false, qt6Packages: false, kernels: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["QTDIR", 86, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 94, 5], ["longDescription", 95, 5], ["homepage", 99, 5], ["license", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5], ["platforms", 107, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["cmakeFlags", 74, 3], ["qtWrapperArgs", 79, 3], ["env", 86, 3], ["doInstallCheck", 88, 3], ["installCheck", 89, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const kernels = nix.argOr($, "kernels", () => [ngspice, qucsator_rf]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qucs-s",
       version: "25.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ra3xdh",
           repo: "qucs_s",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,13 +50,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), kernels)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         QTDIR: nix.thunk(() => nix.sel(qt6Packages, "qtbase", "dev")),
       })),
       doInstallCheck: true,
       installCheck: "$out/bin/qucs-s --version\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Spin-off of Qucs that allows custom simulation kernels",
         longDescription: "Spin-off of Qucs that allows custom simulation kernels.\nDefault version is installed with ngspice.\n",
         homepage: "https://ra3xdh.github.io/",

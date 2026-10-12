@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stratagus.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["sha256", 27, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["cmakeFlags", 50, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, zlib: false, bzip2: false, libpng: false, libx11: false, lua5_1: false, toluapp: false, SDL2: false, SDL2_mixer: false, SDL2_image: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/stratagus.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/stratagus.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]]);
-const pos$3 = nix.positions(here + "/stratagus.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["cmakeFlags", 50, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "stratagus";
       const version = "3.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wargus",
           repo: "stratagus",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const cmakeFlags = nix.thunk(() => ["-DCMAKE_CXX_FLAGS=-Wno-error=format-overflow"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Strategy game engine",
         homepage: "https://wargus.github.io/stratagus.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 9], ["hash", 32, 9]], [["url", 35, 9], ["hash", 36, 9]], [["url", 39, 9], ["hash", 40, 9]], [["x86_64-linux", 30, 7], ["aarch64-linux", 34, 7], ["aarch64-darwin", 38, 7]], [["sources", 29, 5], ["updateScript", 43, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5], ["sourceProvenance", 70, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dontUnpack", 17, 3], ["installPhase", 19, 3], ["passthru", 28, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, writeShellScript: false, curl: false, jq: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 9], ["hash", 32, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 35, 9], ["hash", 36, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 39, 9], ["hash", 40, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 30, 7], ["aarch64-linux", 34, 7], ["aarch64-darwin", 38, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sources", 29, 5], ["updateScript", 43, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5], ["sourceProvenance", 70, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dontUnpack", 17, 3], ["installPhase", 19, 3], ["passthru", 28, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,28 +15,28 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "libfrida-core",
       version: "17.18.0",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), "passthru", "sources", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
       dontUnpack: true,
       installPhase: "runHook preInstall\nmkdir -p $out/include $out/lib\ntar -xf $src -C .\ninstall -Dm755 libfrida-core.a -t $out/lib\ninstall -Dm644 frida-core.h -t $out/include\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         sources: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://github.com/frida/frida/releases/download/${nix.sel(finalAttrs, "version")}/frida-core-devkit-${nix.sel(finalAttrs, "version")}-linux-x86_64.tar.xz`),
               hash: "sha256-NVfE1VcY2UtCE5TxN9uWqZeQFHI4i+3kzJf80qWbgDc=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://github.com/frida/frida/releases/download/${nix.sel(finalAttrs, "version")}/frida-core-devkit-${nix.sel(finalAttrs, "version")}-linux-arm64.tar.xz`),
               hash: "sha256-Nl8QKGiYEkc5PoPQWeneEUqIjTyQnuIa+8nZl8QkxKI=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://github.com/frida/frida/releases/download/${nix.sel(finalAttrs, "version")}/frida-core-devkit-${nix.sel(finalAttrs, "version")}-macos-arm64.tar.xz`),
               hash: "sha256-MmyRjD67EUjiRQMNvCIcP/hYB1zdt6W/N0JBg/idEu4=",
             })))),
@@ -60,7 +54,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Frida core library intended for static linking into bindings",
         homepage: "https://frida.re/",
         changelog: "https://frida.re/news/",

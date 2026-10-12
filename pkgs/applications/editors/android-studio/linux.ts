@@ -2,18 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["url", 93, 24], ["sha256", 94, 7]], [["mainProgram", 213, 10]], [["pname", 89, 5], ["version", 90, 13], ["src", 92, 5], ["nativeBuildInputs", 97, 5], ["dontPatchShebangs", 103, 5], ["installPhase", 105, 5], ["meta", 213, 5]], [["name", 217, 5], ["exec", 218, 5], ["icon", 219, 5], ["desktopName", 220, 5], ["comment", 221, 5], ["categories", 222, 5], ["startupNotify", 226, 5], ["startupWMClass", 227, 5]], [["pname", 234, 5], ["version", 235, 13], ["multiPkgs", 236, 5]], [["androidStudio", 297, 68], ["androidSdk", 297, 82]], [["unwrapped", 300, 13], ["full", 301, 13], ["withSdk", 302, 21], ["sdk", 303, 13], ["updateScript", 304, 13]], [["pname", 253, 17], ["version", 253, 23], ["startScript", 254, 9], ["preferLocalBuild", 293, 9], ["allowSubstitutes", 294, 9], ["passthru", 295, 9], ["meta", 309, 17]], [["androidStudio", 321, 34]]]);
 const formals$1 = { args: { channel: false, pname: false, version: false, sources: false, meta: false }, ellipsis: false };
 const formals$2 = { args: { "alsa-lib": false, runtimeShell: false, buildFHSEnv: false, cacert: false, coreutils: false, dbus: false, e2fsprogs: false, expat: false, fetchurl: false, findutils: false, file: false, fontsConf: false, git: false, gnugrep: false, gnused: false, gnutar: false, gtk3: false, glib: false, gzip: false, fontconfig: false, freetype: false, libbsd: false, libpulseaudio: false, libGL: false, libdrm: false, libpng: false, libuuid: false, libsecret: false, libx11: false, libxcb: false, libxkbcommon: false, "mesa-demos": false, "libxcb-wm": false, "libxcb-render-util": false, "libxcb-keysyms": false, "libxcb-image": false, "libxcb-cursor": false, libxkbfile: false, libxcomposite: false, libxcursor: false, libxdamage: false, libxext: false, libxfixes: false, libxi: false, libxrandr: false, libxrender: false, libxtst: false, makeWrapper: false, ncurses5: false, nspr: false, nss_latest: false, pciutils: false, pkgsi686Linux: false, ps: false, setxkbmap: false, lib: false, stdenv: false, systemd: false, unzip: false, usbutils: false, which: false, runCommand: false, wayland: false, xkeyboard_config: false, libsm: false, libice: false, zlib: false, makeDesktopItem: false, tiling_wm: false, androidenv: false, forceWayland: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["url", 93, 24], ["sha256", 94, 7]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["mainProgram", 213, 10]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["pname", 89, 5], ["version", 90, 13], ["src", 92, 5], ["nativeBuildInputs", 97, 5], ["dontPatchShebangs", 103, 5], ["installPhase", 105, 5], ["meta", 213, 5]]);
-const pos$4 = nix.positions(here + "/linux.nix", [["name", 217, 5], ["exec", 218, 5], ["icon", 219, 5], ["desktopName", 220, 5], ["comment", 221, 5], ["categories", 222, 5], ["startupNotify", 226, 5], ["startupWMClass", 227, 5]]);
-const pos$5 = nix.positions(here + "/linux.nix", [["pname", 234, 5], ["version", 235, 13], ["multiPkgs", 236, 5]]);
 const formals$3 = { args: { androidStudio: false, androidSdk: true }, ellipsis: false };
-const pos$6 = nix.positions(here + "/linux.nix", [["androidStudio", 297, 68], ["androidSdk", 297, 82]]);
-const pos$7 = nix.positions(here + "/linux.nix", [["unwrapped", 300, 13], ["full", 301, 13], ["withSdk", 302, 21], ["sdk", 303, 13], ["updateScript", 304, 13]]);
-const pos$8 = nix.positions(here + "/linux.nix", [["pname", 253, 17], ["version", 253, 23], ["startScript", 254, 9], ["preferLocalBuild", 293, 9], ["allowSubstitutes", 294, 9], ["passthru", 295, 9], ["meta", 309, 17]]);
-const pos$9 = nix.positions(here + "/linux.nix", [["androidStudio", 321, 34]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -98,11 +90,11 @@ export default nix.lambda((args) => (() => {
     const filename = nix.thunk(() => nix.str`android-studio-${version}-linux.tar.gz`);
     const source = nix.thunk(() => nix.sel(sources, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
     const androidStudio = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: nix.thunk(() => nix.str`${pname}-unwrapped`),
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.attr(source, "url")),
             sha256: nix.thunk(() => nix.sel(source, "sha256Hash")),
           })))),
@@ -182,10 +174,10 @@ wrapProgram $out/bin/studio \\
 # AS launches LLDBFrontend with a custom LD_LIBRARY_PATH
 wrapProgram $(find $out -name LLDBFrontend) --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [ncurses5, zlib]))}"
 `),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "studio" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[1], mainProgram: "studio" })),
       }))));
     const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: pname,
         exec: pname,
         icon: pname,
@@ -196,7 +188,7 @@ wrapProgram $(find $out -name LLDBFrontend) --prefix LD_LIBRARY_PATH : "${nix.ap
         startupWMClass: "jetbrains-studio",
       }))));
     const fhsEnv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: nix.thunk(() => nix.str`${pname}-fhs-env`),
         version: version,
         multiPkgs: (pkgs) => [
@@ -211,7 +203,7 @@ ln -s ${cacert}/etc/ssl/certs $out/etc/pki/tls/certs
       const androidStudio_1 = nix.arg($_2, "androidStudio");
       const androidSdk = nix.argOr($_2, "androidSdk", () => null);
       return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           pname: pname,
           version: version,
           startScript: nix.thunk(() => (() => {
@@ -253,9 +245,9 @@ exec ${nix.app(nix.sel(lib, "getExe"), fhsEnv)} ${nix.app(nix.sel(lib, "getExe")
           preferLocalBuild: true,
           allowSubstitutes: false,
           passthru: nix.thunk(() => (() => {
-            const withSdk = (androidSdk_1) => nix.app(mkAndroidStudioWrapper, nix.thunk(() => ({ [nix.POS]: pos$6, androidStudio: androidStudio_1, androidSdk: androidSdk_1 })));
+            const withSdk = (androidSdk_1) => nix.app(mkAndroidStudioWrapper, nix.thunk(() => ({ [nix.POS]: $pos[5], androidStudio: androidStudio_1, androidSdk: androidSdk_1 })));
             return {
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               unwrapped: androidStudio_1,
               full: nix.thunk(() => nix.app(withSdk, nix.thunk(() => nix.sel(androidenv, "androidPkgs", "androidsdk")))),
               withSdk: withSdk,
@@ -273,7 +265,7 @@ ln -s ${androidStudio_1}/bin/studio.png $out/share/pixmaps/${pname}.png
 ln -s ${desktopItem}/share/applications $out/share/applications
 `));
     })(), formals$3);
-    return nix.app(mkAndroidStudioWrapper, nix.thunk(() => ({ [nix.POS]: pos$9, androidStudio: androidStudio })));
+    return nix.app(mkAndroidStudioWrapper, nix.thunk(() => ({ [nix.POS]: $pos[8], androidStudio: androidStudio })));
   })(), formals$2);
 })(), formals$1);
 //# sourceMappingURL=linux.ts.map

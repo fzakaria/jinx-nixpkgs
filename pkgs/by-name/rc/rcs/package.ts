@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["NIX_CFLAGS_COMPILE", 26, 5], ["ac_cv_path_ED", 27, 5], ["DIFF", 28, 5], ["DIFF3", 29, 5]], [["homepage", 37, 5], ["description", 38, 5], ["longDescription", 39, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["disallowedReferences", 20, 3], ["env", 25, 3], ["hardeningDisable", 32, 3], ["nativeBuildInputs", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, buildPackages: false, diffutils: false, ed: false, lzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 26, 5], ["ac_cv_path_ED", 27, 5], ["DIFF", 28, 5], ["DIFF3", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["longDescription", 39, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["disallowedReferences", 20, 3], ["env", 25, 3], ["hardeningDisable", 32, 3], ["nativeBuildInputs", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ed = nix.arg($, "ed");
   const lzip = nix.arg($, "lzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rcs",
       version: "5.10.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/rcs/rcs-${nix.sel(finalAttrs, "version")}.tar.lz`),
           sha256: "sha256-Q93+EHJKi4XiRo9kA7YABzcYbwHmDgvWL95p2EIjTMU=",
         })))),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(buildPackages, "ed")),
         ]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-std=c99",
         ac_cv_path_ED: nix.thunk(() => nix.str`${ed}/bin/ed`),
         DIFF: nix.thunk(() => nix.str`${diffutils}/bin/diff`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "format")),
       nativeBuildInputs: nix.thunk(() => [lzip]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.gnu.org/software/rcs/",
         description: "Revision control system",
         longDescription: "The GNU Revision Control System (RCS) manages multiple revisions of\nfiles. RCS automates the storing, retrieval, logging,\nidentification, and merging of revisions.  RCS is useful for text\nthat is revised frequently, including source code, programs,\ndocumentation, graphics, papers, and form letters.\n",

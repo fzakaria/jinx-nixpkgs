@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]], [["owner", 54, 7], ["repo", 55, 7], ["tag", 56, 7], ["hash", 57, 7]], [["src", 53, 5], ["patches", 59, 5]], [["owner", 65, 5], ["repo", 66, 5], ["rev", 67, 5], ["hash", 68, 5]], [["owner", 72, 5], ["repo", 73, 5], ["rev", 74, 5], ["hash", 75, 5]], [["owner", 79, 5], ["repo", 80, 5], ["rev", 81, 5], ["hash", 82, 5]], [["name", 86, 5], ["text", 87, 5]], [["owner", 95, 7], ["repo", 96, 7], ["tag", 97, 7], ["hash", 98, 7]], [["src", 94, 5], ["patches", 100, 5]], [["owner", 106, 5], ["repo", 107, 5], ["tag", 108, 5], ["hash", 109, 5]], [["owner", 113, 5], ["repo", 114, 5], ["tag", 115, 5], ["hash", 116, 5]], [["owner", 125, 5], ["repo", 126, 5], ["tag", 127, 5], ["hash", 128, 5], ["fetchSubmodules", 129, 5], ["deepClone", 130, 5], ["postFetch", 131, 5]], [["NIX_CFLAGS_COMPILE", 205, 7]], [["name", 290, 7], ["icon", 291, 7], ["exec", 292, 7], ["comment", 293, 7], ["genericName", 294, 7], ["desktopName", 295, 7], ["categories", 296, 7]], [["homepage", 301, 5], ["description", 302, 5], ["mainProgram", 303, 5], ["platforms", 304, 5], ["maintainers", 305, 5], ["license", 309, 5]], [["pname", 121, 3], ["version", 122, 3], ["src", 124, 3], ["patches", 140, 3], ["nativeBuildInputs", 146, 3], ["buildInputs", 164, 3], ["cmakeFlags", 187, 3], ["env", 205, 3], ["strictDeps", 207, 3], ["__structuredAttrs", 208, 3], ["dontAddPrefix", 210, 3], ["hardeningDisable", 213, 3], ["preConfigure", 215, 3], ["postPatch", 224, 3], ["postBuild", 231, 3], ["preInstall", 239, 3], ["postInstall", 244, 3], ["fixupPhase", 284, 3], ["desktopItems", 288, 3], ["meta", 300, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, applyPatches: false, _2ship2harkinian: false, fetchurl: false, writeTextFile: false, stdenv: false, cmake: false, copyDesktopItems: false, imagemagick: false, "lsb-release": false, makeWrapper: false, ninja: false, "pkg-config": false, python3: false, libGL: false, libpng: false, libpulseaudio: false, libzip: false, nlohmann_json: false, stb: false, SDL2: false, spdlog: false, "tinyxml-2": false, zenity: false, bzip2: false, libogg: false, libopus: false, libvorbis: false, libx11: false, opusfile: false, sdl_gamecontrollerdb: false, makeDesktopItem: false, darwin: false, glew: false, libicns: false, fixDarwinDylibNames: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 54, 7], ["repo", 55, 7], ["tag", 56, 7], ["hash", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 53, 5], ["patches", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 65, 5], ["repo", 66, 5], ["rev", 67, 5], ["hash", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 72, 5], ["repo", 73, 5], ["rev", 74, 5], ["hash", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 79, 5], ["repo", 80, 5], ["rev", 81, 5], ["hash", 82, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 86, 5], ["text", 87, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 95, 7], ["repo", 96, 7], ["tag", 97, 7], ["hash", 98, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["src", 94, 5], ["patches", 100, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["owner", 106, 5], ["repo", 107, 5], ["tag", 108, 5], ["hash", 109, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["owner", 113, 5], ["repo", 114, 5], ["tag", 115, 5], ["hash", 116, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["owner", 125, 5], ["repo", 126, 5], ["tag", 127, 5], ["hash", 128, 5], ["fetchSubmodules", 129, 5], ["deepClone", 130, 5], ["postFetch", 131, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 205, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["name", 290, 7], ["icon", 291, 7], ["exec", 292, 7], ["comment", 293, 7], ["genericName", 294, 7], ["desktopName", 295, 7], ["categories", 296, 7]]);
-const pos$15 = nix.positions(here + "/package.nix", [["homepage", 301, 5], ["description", 302, 5], ["mainProgram", 303, 5], ["platforms", 304, 5], ["maintainers", 305, 5], ["license", 309, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 121, 3], ["version", 122, 3], ["src", 124, 3], ["patches", 140, 3], ["nativeBuildInputs", 146, 3], ["buildInputs", 164, 3], ["cmakeFlags", 187, 3], ["env", 205, 3], ["strictDeps", 207, 3], ["__structuredAttrs", 208, 3], ["dontAddPrefix", 210, 3], ["hardeningDisable", 213, 3], ["preConfigure", 215, 3], ["postPatch", 224, 3], ["postBuild", 231, 3], ["preInstall", 239, 3], ["postInstall", 244, 3], ["fixupPhase", 284, 3], ["desktopItems", 288, 3], ["meta", 300, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,16 +45,16 @@ export default nix.lambda((args) => (() => {
   const libicns = nix.arg($, "libicns");
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   const dr_libs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "mackron",
       repo: "dr_libs",
       rev: "da35f9d6c7374a95353fd1df1d394d44ab66cf01",
       hash: "sha256-ydFhQ8LTYDBnRTuETtfWwIHZpRciWfqGsZC6SuViEn0=",
     }))));
   const imgui$ = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ocornut",
           repo: "imgui",
           tag: "v1.91.9b-docking",
@@ -80,35 +65,35 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const libgfxd = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "glankk",
       repo: "libgfxd",
       rev: "008f73dca8ebc9151b205959b17773a19c5bd0da",
       hash: "sha256-AmHAa3/cQdh7KAMFOtz5TQpcM6FqO9SppmDpKPTjTt8=",
     }))));
   const monocypher = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       owner: "LoupVaillant",
       repo: "Monocypher",
       rev: "0d85f98c9d9b0227e42cf795cb527dff372b40a4",
       hash: "sha256-RrM8Ep/CM7U5Q4+4FAHfBknb6b0upohoiqy4f7eMye0=",
     }))));
   const prism = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       owner: "KiritoDv",
       repo: "prism-processor",
       rev: "bbcbc7e3f890a5806b579361e7aa0336acd547e7",
       hash: "sha256-jRPwO1Vub0cH12YMlME6kd8zGzKmcfIrIJZYpQJeOks=",
     }))));
   const stb_impl = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "stb_impl.c",
       text: "#define STB_IMAGE_IMPLEMENTATION\n#include \"stb_image.h\"\n",
     }))));
   const stormlib$ = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           owner: "ladislav-zezula",
           repo: "StormLib",
           tag: "v9.25",
@@ -119,25 +104,25 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const thread_pool = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       owner: "bshoshany",
       repo: "thread-pool",
       tag: "v4.1.0",
       hash: "sha256-zhRFEmPYNFLqQCfvdAaG5VBNle9Qm8FepIIIrT9sh88=",
     }))));
   const metalcpp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       owner: "briaguya-ai",
       repo: "single-header-metal-cpp",
       tag: "macOS13_iOS16",
       hash: "sha256-CSYIpmq478bla2xoPL/cGYKIWAeiORxyFFZr0+ixd7I",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "2ship2harkinian",
       version: "5.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           owner: "HarbourMasters",
           repo: "2ship2harkinian",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -181,7 +166,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "FETCHCONTENT_SOURCE_DIR_SPDLOG", nix.thunk(() => nix.str`${spdlog}`))),
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-int-conversion -Wno-implicit-int -Wno-elaborated-enum-base")),
       })),
       strictDeps: true,
@@ -237,7 +222,7 @@ install -Dm644 -t $out/share/licenses/2ship2harkinian/thread_pool ${thread_pool}
 `))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               name: "2s2h",
               icon: "2s2h",
               exec: "2s2h",
@@ -248,7 +233,7 @@ install -Dm644 -t $out/share/licenses/2ship2harkinian/thread_pool ${thread_pool}
             })))),
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         homepage: "https://github.com/HarbourMasters/2ship2harkinian",
         description: "PC port of Majora's Mask with modern controls, widescreen, high-resolution, and more",
         mainProgram: "2s2h",

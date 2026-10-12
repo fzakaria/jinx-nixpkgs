@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 88, 5], ["mainProgram", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5], ["homepage", 93, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["buildInputs", 18, 3], ["preBuild", 25, 3], ["arch", 36, 3], ["makeFlags", 63, 3], ["patches", 65, 3], ["postPatch", 71, 3], ["installPhase", 77, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libjpeg: false, libpng: false, withJpegSupport: true, withPngSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 88, 5], ["mainProgram", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5], ["homepage", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["buildInputs", 18, 3], ["preBuild", 25, 3], ["arch", 36, 3], ["makeFlags", 63, 3], ["patches", 65, 3], ["postPatch", 71, 3], ["installPhase", 77, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tachyon";
       const version = "0.99.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://jedi.ks.uiuc.edu/~johns/tachyon/files/${version}/tachyon-${version}.tar.gz`),
           sha256: "sha256-CSA8ECMRFJ9d9cw2dAn5bHJXQmZtGcJNtbqZTVqBpvU=",
         }))));
@@ -43,7 +41,7 @@ cp Changes Copyright README "$out/share/doc/tachyon"
 cp -r scenes "$out/share/tachyon/scenes"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Parallel / Multiprocessor Ray Tracing System",
         mainProgram: "tachyon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -55,7 +53,7 @@ cp -r scenes "$out/share/tachyon/scenes"
         homepage: "http://jedi.ks.uiuc.edu/~johns/tachyon/",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["HOTTEXT_FONT_PATH", 22, 7]], [["categories", 25, 5], ["comment", 26, 5], ["desktopName", 27, 5], ["exec", 28, 5], ["name", 29, 5]], [["description", 37, 5], ["license", 38, 5], ["homepage", 39, 5], ["mainProgram", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["lockFile", 20, 3], ["env", 22, 3], ["desktopItem", 24, 3], ["postInstall", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildNimPackage: false, fetchFromSourcehut: false, "gentium-plus": false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["HOTTEXT_FONT_PATH", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["categories", 25, 5], ["comment", 26, 5], ["desktopName", 27, 5], ["exec", 28, 5], ["name", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 37, 5], ["license", 38, 5], ["homepage", 39, 5], ["mainProgram", 40, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["lockFile", 20, 3], ["env", 22, 3], ["desktopItem", 24, 3], ["postInstall", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const gentium_plus = nix.arg($, "gentium-plus");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hottext",
       version: "20231003",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~ehmry",
           repo: "hottext",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
         })))),
       lockFile: nix.path(here, "./lock.json"),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         HOTTEXT_FONT_PATH: nix.thunk(() => nix.str`${gentium_plus}/share/fonts/truetype/GentiumPlus-Regular.ttf`),
       })),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           categories: nix.thunk(() => ["Utility"]),
           comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
           desktopName: "hottext",
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postInstall: "cp -r $desktopItem/* $out\n",
       meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "src", "meta"), {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple RSVP speed-reading utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
         homepage: "https://git.sr.ht/~ehmry/hottext",

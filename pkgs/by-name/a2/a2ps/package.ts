@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["NIX_CFLAGS_COMPILE", 42, 7]], [["cpeParts", 58, 17]], [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["identifiers", 58, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["env", 42, 3], ["strictDeps", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoconf: false, bison: false, file: false, perl: false, "pkg-config": false, boehmgc: false, gperf: false, libpaper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cpeParts", 58, 17]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["identifiers", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["env", 42, 3], ["strictDeps", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gperf = nix.arg($, "gperf");
   const libpaper = nix.arg($, "libpaper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "a2ps",
       version: "4.15.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/a2ps/a2ps-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-jRORWjbrv6jnsjazUMyBrccUrLIXoY6NjGB0fArTU/k=",
         })))),
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoconf, bison, file, perl, pkg_config]),
       buildInputs: nix.thunk(() => [boehmgc, gperf, libpaper]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-error=format-security")),
       })),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Anything to PostScript converter and pretty-printer",
         longDescription: "GNU a2ps converts files into PostScript for printing or viewing. It uses a nice default format,\nusually two pages on each physical page, borders surrounding pages, headers with useful information\n(page number, printing date, file name or supplied header), line numbering, symbol substitution as\nwell as pretty printing for a wide range of programming languages.\n",
         homepage: "https://www.gnu.org/software/a2ps/",
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gnu", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 5], ["version", 22, 13], ["hash", 23, 5]], [["PGDATABASE", 44, 5], ["postgresqlEnableTCP", 45, 5]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["broken", 53, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["pythonImportsCheck", 34, 3], ["nativeCheckInputs", 36, 3], ["env", 43, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, setuptools: false, sqlalchemy: false, "sqlalchemy-utils": false, six: false, postgresql: false, postgresqlTestHook: false, psycopg2: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 5], ["version", 22, 13], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PGDATABASE", 44, 5], ["postgresqlEnableTCP", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["broken", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["pythonImportsCheck", 34, 3], ["nativeCheckInputs", 36, 3], ["env", 43, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "SQLAlchemy-i18n",
           version: version,
           hash: "sha256-3jM3ZIOlgcoUIY2PV6EURmxfcrZ0qVg5tsRWSm5neW8=",
@@ -36,19 +33,19 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["sqlalchemy_i18n"]);
       const nativeCheckInputs = nix.thunk(() => [postgresql, postgresqlTestHook, psycopg2, pytestCheckHook]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PGDATABASE: "sqlalchemy_i18n_test",
         postgresqlEnableTCP: 1n,
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/kvesteri/sqlalchemy-i18n",
         description: "Internationalization extension for SQLAlchemy models",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(sqlalchemy, "version")), "2")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

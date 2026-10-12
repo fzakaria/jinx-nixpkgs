@@ -2,22 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/restic-rest-server.nix", [[["name", 17, 5], ["unpackPhase", 18, 5], ["installPhase", 19, 5]], [["enable", 44, 9], ["extraFlags", 45, 9], ["listenAddress", 46, 9]], [["server", 43, 23]], [["restic", 43, 16]], [["allowedTCPPorts", 48, 27]], [["firewall", 48, 18]], [["services", 43, 7], ["networking", 48, 7]], [["passwordFile", 54, 13], ["paths", 55, 13], ["exclude", 56, 13], ["pruneOpts", 57, 13], ["backupPrepareCommand", 58, 13], ["backupCleanupCommand", 59, 13], ["repository", 61, 11], ["initialize", 62, 11], ["timerConfig", 63, 11]], [["passwordFile", 66, 19], ["repository", 67, 11], ["pruneOpts", 68, 11]], [["remotebackup", 52, 9], ["remoteprune", 65, 9]], [["backups", 51, 23]], [["restic", 51, 16]], [["services", 51, 7]], [["restic_rest_server", 42, 5], ["server", 50, 5]], [["name", 39, 3], ["nodes", 41, 3], ["testScript", 74, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/restic-rest-server.nix", [["name", 17, 5], ["unpackPhase", 18, 5], ["installPhase", 19, 5]]);
-const pos$2 = nix.positions(here + "/restic-rest-server.nix", [["enable", 44, 9], ["extraFlags", 45, 9], ["listenAddress", 46, 9]]);
-const pos$3 = nix.positions(here + "/restic-rest-server.nix", [["server", 43, 23]]);
-const pos$4 = nix.positions(here + "/restic-rest-server.nix", [["restic", 43, 16]]);
-const pos$5 = nix.positions(here + "/restic-rest-server.nix", [["allowedTCPPorts", 48, 27]]);
-const pos$6 = nix.positions(here + "/restic-rest-server.nix", [["firewall", 48, 18]]);
-const pos$7 = nix.positions(here + "/restic-rest-server.nix", [["services", 43, 7], ["networking", 48, 7]]);
-const pos$8 = nix.positions(here + "/restic-rest-server.nix", [["passwordFile", 54, 13], ["paths", 55, 13], ["exclude", 56, 13], ["pruneOpts", 57, 13], ["backupPrepareCommand", 58, 13], ["backupCleanupCommand", 59, 13], ["repository", 61, 11], ["initialize", 62, 11], ["timerConfig", 63, 11]]);
-const pos$9 = nix.positions(here + "/restic-rest-server.nix", [["passwordFile", 66, 19], ["repository", 67, 11], ["pruneOpts", 68, 11]]);
-const pos$10 = nix.positions(here + "/restic-rest-server.nix", [["remotebackup", 52, 9], ["remoteprune", 65, 9]]);
-const pos$11 = nix.positions(here + "/restic-rest-server.nix", [["backups", 51, 23]]);
-const pos$12 = nix.positions(here + "/restic-rest-server.nix", [["restic", 51, 16]]);
-const pos$13 = nix.positions(here + "/restic-rest-server.nix", [["services", 51, 7]]);
-const pos$14 = nix.positions(here + "/restic-rest-server.nix", [["restic_rest_server", 42, 5], ["server", 50, 5]]);
-const pos$15 = nix.positions(here + "/restic-rest-server.nix", [["name", 39, 3], ["nodes", 41, 3], ["testScript", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const backupPrepareCommand = "touch /root/backupPrepareCommand\ntest ! -e /root/backupCleanupCommand\n";
   const backupCleanupCommand = "rm /root/backupPrepareCommand\ntouch /root/backupCleanupCommand\n";
   const testDir = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "test-files-to-backup",
       unpackPhase: "true",
       installPhase: "mkdir $out\necho some_file > $out/some_file\necho some_other_file > $out/some_other_file\nmkdir $out/a_dir\necho a_file > $out/a_dir/a_file\n",
@@ -36,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const exclude = nix.thunk(() => ["/opt/excluded_file_*"]);
   const pruneOpts = nix.thunk(() => ["--keep-daily 2", "--keep-weekly 1", "--keep-monthly 1", "--keep-yearly 99"]);
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "restic-rest-server",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       restic_rest_server: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           restic: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             server: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               extraFlags: nix.thunk(() => ["--no-auth"]),
               listenAddress: "8001",
@@ -55,20 +41,20 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [8001n]) })),
+          [nix.POS]: $pos[5],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], allowedTCPPorts: nix.thunk(() => [8001n]) })),
         })),
       })),
       server: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           restic: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             backups: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               remotebackup: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 passwordFile: passwordFile,
                 paths: paths,
                 exclude: exclude,
@@ -80,7 +66,7 @@ export default nix.lambda((args) => (() => {
                 timerConfig: null,
               })),
               remoteprune: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 passwordFile: passwordFile,
                 repository: remoteRepository,
                 pruneOpts: nix.thunk(() => ["--keep-last 1"]),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["longDescription", 77, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 47, 3], ["cmakeFlags", 65, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, flac: false, freetype: false, glew: false, libjpeg: false, libvorbis: false, miniaudio: false, udev: false, libxi: false, libx11: false, libxcursor: false, libxrandr: false, libxrender: false, "libxcb-image": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["longDescription", 77, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 47, 3], ["cmakeFlags", 65, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libxrender = nix.arg($, "libxrender");
   const libxcb_image = nix.arg($, "libxcb-image");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sfml",
       version: "3.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SFML",
           repo: "SFML",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SFML_USE_SYSTEM_DEPS", true)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple and fast multimedia library",
         homepage: "https://www.sfml-dev.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/SFML/SFML/blob/${nix.sel(finalAttrs, "version")}/changelog.md`),

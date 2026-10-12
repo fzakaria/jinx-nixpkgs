@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["version", 36, 68]], [["pname", 30, 5], ["version", 31, 26], ["src", 31, 34], ["npmDepsHash", 33, 5], ["patches", 35, 5], ["installPhase", 39, 5]], [["updateScript", 58, 12]], [["changelog", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 69, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["cargoBuildFlags", 23, 3], ["cargoTestFlags", 27, 3], ["frontend", 29, 3], ["preBuild", 49, 3], ["nativeInstallCheckInputs", 54, 3], ["versionCheckProgramArg", 55, 3], ["doInstallCheck", 56, 3], ["passthru", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildNpmPackage: false, rustPlatform: false, replaceVars: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 36, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 5], ["version", 31, 26], ["src", 31, 34], ["npmDepsHash", 33, 5], ["patches", 35, 5], ["installPhase", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 58, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["cargoBuildFlags", 23, 3], ["cargoTestFlags", 27, 3], ["frontend", 29, 3], ["preBuild", 49, 3], ["nativeInstallCheckInputs", 54, 3], ["versionCheckProgramArg", 55, 3], ["doInstallCheck", 56, 3], ["passthru", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "silverbullet",
       version: "2.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "silverbulletmd",
           repo: "silverbullet",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,13 +28,16 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["-p", "silverbullet"]),
       cargoTestFlags: nix.thunk(() => nix.sel(finalAttrs, "cargoBuildFlags")),
       frontend: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "silverbullet-frontend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           npmDepsHash: "sha256-IALStufO5TwhQbkIgSqwTYcQAL7Q+vmLDjlVYzMTyCA=",
           patches: nix.thunk(() => [
-            nix.thunk(() => nix.app(replaceVars, nix.path(here, "./override-version.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+            nix.thunk(() => nix.app(replaceVars, nix.path(here, "./override-version.patch"), nix.thunk(() => ({
+                [nix.POS]: $pos[1],
+                version: nix.thunk(() => nix.attr(finalAttrs, "version")),
+              })))),
           ]),
           installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r client_bundle version.json $out/\n\nrunHook postInstall\n",
         })))),
@@ -49,9 +47,9 @@ cp ${nix.sel(finalAttrs, "frontend")}/version.json .
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/silverbulletmd/silverbullet/blob/${nix.sel(finalAttrs, "version")}/docs/CHANGELOG.md`),
         description: "Open-source, self-hosted, offline-capable Personal Knowledge Management (PKM) web application",
         homepage: "https://silverbullet.md",

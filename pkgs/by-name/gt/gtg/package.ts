@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["description", 83, 5], ["mainProgram", 84, 5], ["longDescription", 85, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 58, 3], ["nativeCheckInputs", 68, 3], ["preBuild", 74, 3], ["pyproject", 78, 3], ["checkPhase", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, meson: false, python3Packages: false, ninja: false, gtk3: false, wrapGAppsHook3: false, glib: false, gtksourceview4: false, itstool: false, gettext: false, pango: false, "gdk-pixbuf": false, libsecret: false, "gobject-introspection": false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 83, 5], ["mainProgram", 84, 5], ["longDescription", 85, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 58, 3], ["nativeCheckInputs", 68, 3], ["preBuild", 74, 3], ["pyproject", 78, 3], ["checkPhase", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gtg",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "getting-things-gnome",
           repo: "gtg",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "replace-imp-with-importlib.patch",
             url: "https://github.com/getting-things-gnome/gtg/commit/568a00a3296d12cf3b2846c59bc99d13ecba7d47.patch",
             hash: "sha256-i3F638ZGiKfSxVUZm6rzzPRpcIHLOO9dgV0SzNLSroI=",
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
       pyproject: false,
       checkPhase: "xvfb-run pytest ../tests/",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Personal tasks and TODO-list items organizer",
         mainProgram: "gtg",
         longDescription: "\"Getting Things GNOME\" (GTG) is a personal tasks and ToDo list organizer inspired by the \"Getting Things Done\" (GTD) methodology.\nGTG is intended to help you track everything you need to do and need to know, from small tasks to large projects.\n",

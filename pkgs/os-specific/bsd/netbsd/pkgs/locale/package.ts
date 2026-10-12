@@ -2,18 +2,17 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["NIX_CFLAGS_COMPILE", 6, 7]], [["path", 4, 3], ["patches", 5, 3], ["env", 6, 3]]]);
 const formals$1 = { args: { mkDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 6, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["path", 4, 3], ["patches", 5, 3], ["env", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.bin/locale",
       patches: nix.thunk(() => [nix.path(here, "./locale.patch")]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-DYESSTR=__YESSTR -DNOSTR=__NOSTR" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], NIX_CFLAGS_COMPILE: "-DYESSTR=__YESSTR -DNOSTR=__NOSTR" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/emilua-plugins.nix", [[["botan3", 14, 20]], [["secp256k1", 19, 20]], [["emilua", 10, 11], ["beast", 11, 3], ["bech32", 12, 3], ["botan", 13, 3], ["qt5", 16, 3], ["qt6", 17, 3], ["secp256k1", 18, 3], ["tdlib", 21, 3], ["this-thread", 22, 3]]]);
 const formals$1 = { args: { lib: false, newScope: false, pkgs: false, config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/emilua-plugins.nix", [["botan3", 14, 20]]);
-const pos$2 = nix.positions(here + "/emilua-plugins.nix", [["secp256k1", 19, 20]]);
-const pos$3 = nix.positions(here + "/emilua-plugins.nix", [["emilua", 10, 11], ["beast", 11, 3], ["bech32", 12, 3], ["botan", 13, 3], ["qt5", 16, 3], ["qt6", 17, 3], ["secp256k1", 18, 3], ["tdlib", 21, 3], ["this-thread", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const config = nix.arg($, "config");
   return (emilua) => nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       emilua: emilua,
       beast: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/beast"), nix.thunk(() => ({})))),
       bech32: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/bech32"), nix.thunk(() => ({})))),
-      botan: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/botan"), nix.thunk(() => ({ [nix.POS]: pos$1, botan3: nix.thunk(() => nix.attr(pkgs, "botan3")) })))),
+      botan: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/botan"), nix.thunk(() => ({ [nix.POS]: $pos[0], botan3: nix.thunk(() => nix.attr(pkgs, "botan3")) })))),
       qt5: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/qt5"), nix.thunk(() => ({})))),
       qt6: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/qt6"), nix.thunk(() => ({})))),
-      secp256k1: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/secp256k1"), nix.thunk(() => ({ [nix.POS]: pos$2, secp256k1: nix.thunk(() => nix.attr(pkgs, "secp256k1")) })))),
+      secp256k1: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/secp256k1"), nix.thunk(() => ({ [nix.POS]: $pos[1], secp256k1: nix.thunk(() => nix.attr(pkgs, "secp256k1")) })))),
       tdlib: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/tdlib"), nix.thunk(() => ({})))),
       "this-thread": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/emilua-plugins/this-thread"), nix.thunk(() => ({})))),
     }));

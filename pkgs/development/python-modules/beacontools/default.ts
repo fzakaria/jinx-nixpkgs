@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["scan", 37, 5]], [["changelog", 47, 5], ["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["pythonRelaxDeps", 27, 3], ["dependencies", 31, 3], ["optional-dependencies", 36, 3], ["pythonImportsCheck", 40, 3], ["nativeCheckInputs", 42, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { ahocorapy: false, buildPythonPackage: false, construct: false, fetchFromGitHub: false, lib: false, pybluez: false, pytestCheckHook: false, setuptools: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["scan", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 47, 5], ["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["pythonRelaxDeps", 27, 3], ["dependencies", 31, 3], ["optional-dependencies", 36, 3], ["pythonImportsCheck", 40, 3], ["nativeCheckInputs", 42, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "citruz",
           repo: "beacontools",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,13 +31,13 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["ahocorapy"]);
       const dependencies = nix.thunk(() => [ahocorapy, construct]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         scan: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [pybluez]))),
       }));
       const pythonImportsCheck = nix.thunk(() => ["beacontools"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/citruz/beacontools/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python library for working with various types of Bluetooth LE Beacons",
         homepage: "https://github.com/citruz/beacontools",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

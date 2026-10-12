@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["updateScript", 26, 12]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["sourceProvenance", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 17, 3], ["passthru", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 26, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["sourceProvenance", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 17, 3], ["passthru", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,21 +12,21 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "win-disk-writer",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/TechUnRestricted/WinDiskWriter/releases/download/v${nix.sel(finalAttrs, "version")}/WinDiskWriter.${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-3+Pjp1T0u6G64W8dm4pWRiznDWNW4cMxTkoAIQgvtQY=",
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications/WinDiskWriter.app\"\ncp -R . \"$out/Applications/WinDiskWriter.app/\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Windows Bootable USB creator for macOS",
         homepage: "https://github.com/TechUnRestricted/WinDiskWriter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

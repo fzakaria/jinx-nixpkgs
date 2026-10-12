@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 13, 5], ["group", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 44, 5], ["maintainers", 45, 5], ["license", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 21, 3], ["subPackages", 23, 3], ["nativeBuildInputs", 28, 3], ["postInstall", 30, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitLab: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 13, 5], ["group", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 44, 5], ["maintainers", 45, 5], ["license", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 21, 3], ["subPackages", 23, 3], ["nativeBuildInputs", 28, 3], ["postInstall", 30, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "meek",
       version: "0.38.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.torproject.org",
           group: "tpo",
           owner: "anti-censorship/pluggable-transports",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "installManPage doc/meek-client.1\ninstallManPage doc/meek-server.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Blocking-resistant pluggable transport for Tor",
         longDescription: "meek is a blocking-resistant pluggable transport for Tor. It encodes a\ndata stream as a sequence of HTTPS requests and responses. Requests are\nreflected through a hard-to-block third-party web server in order to\navoid talking directly to a Tor bridge. HTTPS encryption hides\nfingerprintable byte patterns in Tor traffic.\n",
         homepage: "https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/meek",

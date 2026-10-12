@@ -2,35 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pkg", 61, 7], ["version", 62, 7], ["sha256", 63, 7]], [["name", 58, 5], ["version", 59, 5], ["src", 60, 5], ["beamDeps", 65, 5]], [["pkg", 71, 7], ["version", 72, 7], ["sha256", 73, 7]], [["name", 68, 5], ["version", 69, 5], ["src", 70, 5], ["beamDeps", 75, 5]], [["buildPlugins", 83, 45]], [["buildPlugins", 84, 39]], [["buildPlugins", 85, 47]], [["buildPlugins", 86, 41]], [["buildInputs", 88, 9], ["buildPlugins", 94, 9]], [["buildInputs", 97, 9], ["buildPlugins", 98, 9]], [["buildInputs", 101, 9], ["buildPlugins", 102, 9]], [["buildInputs", 105, 9], ["buildPlugins", 106, 9]], [["buildPlugins", 109, 9]], [["buildInputs", 116, 9], ["buildPlugins", 117, 9]], [["buildPlugins", 119, 43]], [["buildInputs", 121, 9], ["buildPlugins", 122, 9]], [["buildPlugins", 124, 35]], [["buildInputs", 126, 9], ["buildPlugins", 127, 9]], [["cache_tab", 83, 7], ["mqtree", 84, 7], ["stringprep", 85, 7], ["p1_acme", 86, 7], ["eimp", 87, 7], ["fast_tls", 96, 7], ["fast_xml", 100, 7], ["fast_yaml", 104, 7], ["xmpp", 108, 7], ["sqlite3", 115, 7], ["p1_mysql", 119, 7], ["epam", 120, 7], ["esip", 124, 7], ["ezlib", 125, 7]], [["fetchHex", 79, 13], ["fetchgit", 79, 22], ["fetchFromGitHub", 79, 31], ["builder", 80, 5], ["overrides", 82, 5]], [["plugins", 153, 7]], [["name", 178, 5], ["src", 179, 5], ["hash", 180, 5]], [["owner", 184, 5], ["repo", 185, 5], ["tag", 186, 5], ["hash", 187, 5]], [["ejabberd", 191, 26]], [["tests", 190, 12], ["updateScript", 233, 12]], [["REBAR_IGNORE_DEPS", 221, 7]], [["description", 236, 5], ["mainProgram", 237, 5], ["changelog", 238, 5], ["license", 239, 5], ["homepage", 240, 5], ["platforms", 241, 5], ["maintainers", 242, 5]], [["pname", 146, 3], ["version", 147, 3], ["nativeBuildInputs", 149, 3], ["buildInputs", 164, 3], ["npmDeps", 177, 3], ["src", 183, 3], ["passthru", 190, 3], ["configureFlags", 194, 3], ["enableParallelBuilding", 208, 3], ["postPatch", 210, 3], ["preBuild", 217, 3], ["env", 221, 3], ["postInstall", 223, 3], ["meta", 235, 3]]]);
 const formals$1 = { args: { stdenv: false, makeWrapper: false, lib: false, libpng: false, libjpeg: false, libwebp: false, openssl: false, expat: false, libyaml: false, bash: false, gnused: false, gnugrep: false, coreutils: false, "util-linux": false, procps: false, gd: false, autoreconfHook: false, gawk: false, fetchFromGitHub: false, fetchgit: false, fetchNpmDeps: false, beamPackages: false, nixosTests: false, withMysql: true, withPgsql: true, withSqlite: true, sqlite: false, withPam: true, pam: false, withZlib: true, zlib: false, withSip: true, withLua: true, withTools: true, withRedis: true, withImagemagick: true, imagemagick: false, withBootstrap: true, nodejs: false, npmHooks: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pkg", 61, 7], ["version", 62, 7], ["sha256", 63, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 58, 5], ["version", 59, 5], ["src", 60, 5], ["beamDeps", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg", 71, 7], ["version", 72, 7], ["sha256", 73, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 68, 5], ["version", 69, 5], ["src", 70, 5], ["beamDeps", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["buildPlugins", 83, 45]]);
-const pos$6 = nix.positions(here + "/package.nix", [["buildPlugins", 84, 39]]);
-const pos$7 = nix.positions(here + "/package.nix", [["buildPlugins", 85, 47]]);
-const pos$8 = nix.positions(here + "/package.nix", [["buildPlugins", 86, 41]]);
-const pos$9 = nix.positions(here + "/package.nix", [["buildInputs", 88, 9], ["buildPlugins", 94, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["buildInputs", 97, 9], ["buildPlugins", 98, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["buildInputs", 101, 9], ["buildPlugins", 102, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["buildInputs", 105, 9], ["buildPlugins", 106, 9]]);
-const pos$13 = nix.positions(here + "/package.nix", [["buildPlugins", 109, 9]]);
-const pos$14 = nix.positions(here + "/package.nix", [["buildInputs", 116, 9], ["buildPlugins", 117, 9]]);
-const pos$15 = nix.positions(here + "/package.nix", [["buildPlugins", 119, 43]]);
-const pos$16 = nix.positions(here + "/package.nix", [["buildInputs", 121, 9], ["buildPlugins", 122, 9]]);
-const pos$17 = nix.positions(here + "/package.nix", [["buildPlugins", 124, 35]]);
-const pos$18 = nix.positions(here + "/package.nix", [["buildInputs", 126, 9], ["buildPlugins", 127, 9]]);
-const pos$19 = nix.positions(here + "/package.nix", [["cache_tab", 83, 7], ["mqtree", 84, 7], ["stringprep", 85, 7], ["p1_acme", 86, 7], ["eimp", 87, 7], ["fast_tls", 96, 7], ["fast_xml", 100, 7], ["fast_yaml", 104, 7], ["xmpp", 108, 7], ["sqlite3", 115, 7], ["p1_mysql", 119, 7], ["epam", 120, 7], ["esip", 124, 7], ["ezlib", 125, 7]]);
-const pos$20 = nix.positions(here + "/package.nix", [["fetchHex", 79, 13], ["fetchgit", 79, 22], ["fetchFromGitHub", 79, 31], ["builder", 80, 5], ["overrides", 82, 5]]);
-const pos$21 = nix.positions(here + "/package.nix", [["plugins", 153, 7]]);
-const pos$22 = nix.positions(here + "/package.nix", [["name", 178, 5], ["src", 179, 5], ["hash", 180, 5]]);
-const pos$23 = nix.positions(here + "/package.nix", [["owner", 184, 5], ["repo", 185, 5], ["tag", 186, 5], ["hash", 187, 5]]);
-const pos$24 = nix.positions(here + "/package.nix", [["ejabberd", 191, 26]]);
-const pos$25 = nix.positions(here + "/package.nix", [["tests", 190, 12], ["updateScript", 233, 12]]);
-const pos$26 = nix.positions(here + "/package.nix", [["REBAR_IGNORE_DEPS", 221, 7]]);
-const pos$27 = nix.positions(here + "/package.nix", [["description", 236, 5], ["mainProgram", 237, 5], ["changelog", 238, 5], ["license", 239, 5], ["homepage", 240, 5], ["platforms", 241, 5], ["maintainers", 242, 5]]);
-const pos$28 = nix.positions(here + "/package.nix", [["pname", 146, 3], ["version", 147, 3], ["nativeBuildInputs", 149, 3], ["buildInputs", 164, 3], ["npmDeps", 177, 3], ["src", 183, 3], ["passthru", 190, 3], ["configureFlags", 194, 3], ["enableParallelBuilding", 208, 3], ["postPatch", 210, 3], ["preBuild", 217, 3], ["env", 221, 3], ["postInstall", 223, 3], ["meta", 235, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -79,11 +52,11 @@ export default nix.lambda((args) => (() => {
   const rebar3WithPlugins = nix.thunk(() => nix.attr(beamPackages, "rebar3WithPlugins"));
   const ctlpath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash, gnused, gnugrep, gawk, coreutils, util_linux, procps])));
   const provider_asn1 = nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "provider_asn1",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pkg: "provider_asn1",
           version: "0.4.1",
           sha256: "sha256-HqR6IyJyJinvbPJJlhJE14yEiBbNmTGOmR0hqonrOR0=",
@@ -91,11 +64,11 @@ export default nix.lambda((args) => (() => {
       beamDeps: [],
     }))));
   const rebar3_hex = nix.thunk(() => nix.app(buildRebar3, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "rebar3_hex",
       version: "7.0.8",
       src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pkg: "rebar3_hex",
           version: "7.0.8",
           sha256: "sha256-aEY0EEZwRHp6AAuE1pSfm5RjBjU+PaaJuKp7fvXRiBc=",
@@ -103,73 +76,73 @@ export default nix.lambda((args) => (() => {
       beamDeps: [],
     }))));
   const allBeamDeps = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rebar-deps.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       fetchHex: fetchHex,
       fetchgit: fetchgit,
       fetchFromGitHub: fetchFromGitHub,
       builder: nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), buildRebar3)),
       overrides: (final) => (prev) => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         cache_tab: nix.thunk(() => nix.app(nix.sel(prev, "cache_tab", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             buildPlugins: nix.thunk(() => [nix.thunk(() => nix.sel(beamPackages, "pc"))]),
           })))),
         mqtree: nix.thunk(() => nix.app(nix.sel(prev, "mqtree", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             buildPlugins: nix.thunk(() => [nix.thunk(() => nix.sel(beamPackages, "pc"))]),
           })))),
         stringprep: nix.thunk(() => nix.app(nix.sel(prev, "stringprep", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             buildPlugins: nix.thunk(() => [nix.thunk(() => nix.sel(beamPackages, "pc"))]),
           })))),
         p1_acme: nix.thunk(() => nix.app(nix.sel(prev, "p1_acme", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             buildPlugins: nix.thunk(() => [nix.thunk(() => nix.sel(beamPackages, "pc"))]),
           })))),
         eimp: nix.thunk(() => nix.app(nix.sel(prev, "eimp", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             buildInputs: nix.thunk(() => [gd, libwebp, libpng, libjpeg]),
             buildPlugins: nix.thunk(() => [nix.thunk(() => nix.sel(beamPackages, "pc"))]),
           })))),
         fast_tls: nix.thunk(() => nix.app(nix.sel(prev, "fast_tls", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             buildInputs: nix.thunk(() => [openssl]),
             buildPlugins: nix.thunk(() => [nix.thunk(() => nix.sel(beamPackages, "pc"))]),
           })))),
         fast_xml: nix.thunk(() => nix.app(nix.sel(prev, "fast_xml", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             buildInputs: nix.thunk(() => [expat]),
             buildPlugins: nix.thunk(() => [nix.thunk(() => nix.sel(beamPackages, "pc"))]),
           })))),
         fast_yaml: nix.thunk(() => nix.app(nix.sel(prev, "fast_yaml", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             buildInputs: nix.thunk(() => [libyaml]),
             buildPlugins: nix.thunk(() => [nix.thunk(() => nix.sel(beamPackages, "pc"))]),
           })))),
         xmpp: nix.thunk(() => nix.app(nix.sel(prev, "xmpp", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             buildPlugins: nix.thunk(() => [nix.thunk(() => nix.sel(beamPackages, "pc")), provider_asn1]),
           })))),
         sqlite3: nix.thunk(() => nix.app(nix.sel(prev, "sqlite3", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             buildInputs: nix.thunk(() => [sqlite]),
             buildPlugins: nix.thunk(() => [nix.thunk(() => nix.sel(beamPackages, "pc"))]),
           })))),
         p1_mysql: nix.thunk(() => nix.app(nix.sel(prev, "p1_mysql", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             buildPlugins: nix.thunk(() => [nix.thunk(() => nix.sel(beamPackages, "pc"))]),
           })))),
         epam: nix.thunk(() => nix.app(nix.sel(prev, "epam", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             buildInputs: nix.thunk(() => [pam]),
             buildPlugins: nix.thunk(() => [nix.thunk(() => nix.sel(beamPackages, "pc"))]),
           })))),
         esip: nix.thunk(() => nix.app(nix.sel(prev, "esip", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             buildPlugins: nix.thunk(() => [nix.thunk(() => nix.sel(beamPackages, "pc"))]),
           })))),
         ezlib: nix.thunk(() => nix.app(nix.sel(prev, "ezlib", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             buildInputs: nix.thunk(() => [zlib]),
             buildPlugins: nix.thunk(() => [nix.thunk(() => nix.sel(beamPackages, "pc"))]),
           })))),
@@ -187,32 +160,32 @@ export default nix.lambda((args) => (() => {
     ])));
   const npmToolingUsed = withBootstrap;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       pname: "ejabberd",
       version: "26.09",
       nativeBuildInputs: nix.thunk(() => nix.concat([
         makeWrapper,
         autoreconfHook,
-        nix.thunk(() => nix.app(rebar3WithPlugins, nix.thunk(() => ({ [nix.POS]: pos$21, plugins: nix.thunk(() => [provider_asn1, rebar3_hex]) })))),
+        nix.thunk(() => nix.app(rebar3WithPlugins, nix.thunk(() => ({ [nix.POS]: $pos[20], plugins: nix.thunk(() => [provider_asn1, rebar3_hex]) })))),
       ], nix.app(nix.sel(lib, "optionals"), npmToolingUsed, nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))])))),
       buildInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(beamPackages, "erlang"))], nix.concat(nix.builtins.attrValues(beamDeps), nix.concat(nix.app(nix.sel(lib, "optional"), withMysql, nix.thunk(() => nix.sel(allBeamDeps, "p1_mysql"))), nix.concat(nix.app(nix.sel(lib, "optional"), withPgsql, nix.thunk(() => nix.sel(allBeamDeps, "p1_pgsql"))), nix.concat(nix.app(nix.sel(lib, "optional"), withSqlite, nix.thunk(() => nix.sel(allBeamDeps, "sqlite3"))), nix.concat(nix.app(nix.sel(lib, "optional"), withPam, nix.thunk(() => nix.sel(allBeamDeps, "epam"))), nix.concat(nix.app(nix.sel(lib, "optional"), withZlib, nix.thunk(() => nix.sel(allBeamDeps, "ezlib"))), nix.concat(nix.app(nix.sel(lib, "optional"), withSip, nix.thunk(() => nix.sel(allBeamDeps, "esip"))), nix.concat(nix.app(nix.sel(lib, "optional"), withLua, nix.thunk(() => nix.sel(allBeamDeps, "luerl"))), nix.app(nix.sel(lib, "optional"), withRedis, nix.thunk(() => nix.sel(allBeamDeps, "eredis"))))))))))))),
       npmDeps: nix.thunk(() => nix.app(nix.sel(lib, "optionalDrvAttr"), npmToolingUsed, nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
             src: nix.thunk(() => nix.sel(finalAttrs, "src")),
             hash: "sha256-MTyoc8ozrCi3W0CXmxyLpyU8v+vlUjcbLnv/1ev/Qqo=",
           })))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           owner: "processone",
           repo: "ejabberd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-wSrzb+UOqCFp/vk+Q8spukKBzRqquIPt6fkmyVFAz0w=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           ejabberd: nix.thunk(() => nix.attr(nixosTests, "ejabberd")),
         })),
         updateScript: nix.path(here, "./update.sh"),
@@ -232,7 +205,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postPatch: "patchShebangs .\nmkdir -p _build/default/lib\ntouch _build/default/lib/.got\ntouch _build/default/lib/.built\n",
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), npmToolingUsed, "npm run postinstall\n")),
-      env: nix.thunk(() => ({ [nix.POS]: pos$26, REBAR_IGNORE_DEPS: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[25], REBAR_IGNORE_DEPS: 1n })),
       postInstall: nix.thunk(() => nix.str`sed -i \\
   -e '2iexport PATH=${ctlpath}:$PATH' \\
   -e "s,\\(^ *ERL_LIBS=.*\\),\\1:$ERL_LIBS," \\
@@ -240,7 +213,7 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "optionalString"), withImagemagick, nix.thunk(() => nix.str`wrapProgram $out/lib/ejabberd-*/priv/bin/captcha.sh --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [imagemagick]))}"`))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         description: "Open-source XMPP application server written in Erlang",
         mainProgram: "ejabberdctl",
         changelog: nix.thunk(() => nix.str`https://github.com/processone/ejabberd/releases/tag/${nix.sel(finalAttrs, "version")}`),

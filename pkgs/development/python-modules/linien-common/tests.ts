@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["pname", 14, 3], ["version", 15, 27], ["src", 15, 35], ["pyproject", 16, 3], ["dontBuild", 18, 3], ["dontInstall", 19, 3], ["nativeCheckInputs", 21, 3], ["preCheck", 32, 3], ["disabledTestPaths", 36, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, cma: false, "linien-client": false, "linien-common": false, matplotlib: false, migen: false, misoc: false, "pytest-plt": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["pname", 14, 3], ["version", 15, 27], ["src", 15, 35], ["pyproject", 16, 3], ["dontBuild", 18, 3], ["dontInstall", 19, 3], ["nativeCheckInputs", 21, 3], ["preCheck", 32, 3], ["disabledTestPaths", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pytest_plt = nix.arg($, "pytest-plt");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "linien-tests",
       version: nix.thunk(() => nix.attr(linien_common, "version")),
       src: nix.thunk(() => nix.attr(linien_common, "src")),

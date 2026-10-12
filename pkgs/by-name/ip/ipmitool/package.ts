@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 47, 5], ["mainProgram", 48, 5], ["license", 49, 5], ["homepage", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["configureFlags", 39, 3], ["postInstall", 41, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromCodeberg: false, autoreconfHook: false, "pkg-config": false, openssl: false, readline: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["mainProgram", 48, 5], ["license", 49, 5], ["homepage", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["configureFlags", 39, 3], ["postInstall", 41, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const fetchurl = nix.arg($, "fetchurl");
   const iana_enterprise_numbers = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://web.archive.org/web/20250113140800id_/https://www.iana.org/assignments/enterprise-numbers.txt",
       hash: "sha256-aRgBEfZYwoL6YnU3aD0WYeMnJD5ZCj34S/9aQyzBIO4=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ipmitool",
       version: "1.8.19-unstable-2025-02-18",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "IPMITool",
           repo: "ipmitool",
           rev: "3c91e6d91ec6090fe548c55ef301c33ff20c8ed8",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
 install -Dm444 ${iana_enterprise_numbers} $out/share/misc/enterprise-numbers
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-line interface to IPMI-enabled devices",
         mainProgram: "ipmitool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

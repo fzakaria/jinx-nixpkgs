@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["rev", 24, 5], ["fetchSubmodules", 25, 5], ["hash", 26, 5]], [["src", 53, 26], ["hash", 54, 5]], [["CARGO_BUILD_TARGET", 62, 5]], [["homepage", 75, 5], ["description", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["separateDebugInfo", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["cargoDeps", 52, 3], ["mesonFlags", 57, 3], ["env", 61, 3], ["preConfigure", 66, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, cargo: false, meson: false, ninja: false, "pkg-config": false, rustc: false, rustPlatform: false, aemu: false, gfxstream: false, libdrm: false, libiconv: false, withGfxstream: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["rev", 24, 5], ["fetchSubmodules", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 53, 26], ["hash", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CARGO_BUILD_TARGET", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 75, 5], ["description", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["separateDebugInfo", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["cargoDeps", 52, 3], ["mesonFlags", 57, 3], ["env", 61, 3], ["preConfigure", 66, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const withGfxstream = nix.argOr($, "withGfxstream", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gfxstream));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rutabaga_gfx",
       version: "0.1.6",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://chromium.googlesource.com/crosvm/crosvm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-rutabaga-release`),
           fetchSubmodules: true,
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => nix.concat([libiconv], nix.app(nix.sel(lib, "optionals"), withGfxstream, nix.thunk(() => nix.concat([aemu, gfxstream], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), libdrm)), nix.thunk(() => [libdrm]))))))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-23F0WU//4xvP9xffxr+cQa0m0sSJjcWyz+usKBpDg20=",
         })))),
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "gfxstream", withGfxstream)),
       ]),
       env: nix.thunk(() => nix.attrsDyn({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       }, [
         [nix.str`CARGO_TARGET_${nix.sel(stdenv, "hostPlatform", "rust", "cargoEnvVarTarget")}_LINKER`, nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}cc`)],
@@ -67,7 +63,7 @@ substituteInPlace build.sh \\
   --replace-fail '"$BUILDTYPE"/"$SHARED_LIB"' '${nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget")}/"$BUILDTYPE"/"$SHARED_LIB"'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://crosvm.dev/book/appendix/rutabaga_gfx.html",
         description: "Cross-platform abstraction for GPU and display virtualization",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

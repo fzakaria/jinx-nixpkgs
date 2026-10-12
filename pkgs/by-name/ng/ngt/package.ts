@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["NIX_ENFORCE_NO_NATIVE", 29, 5], ["__AVX2__", 30, 5]], [["homepage", 34, 5], ["description", 35, 5], ["platforms", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["env", 28, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, llvmPackages: false, openblas: false, enableAVX: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_ENFORCE_NO_NATIVE", 29, 5], ["__AVX2__", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["platforms", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["env", 28, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const openblas = nix.arg($, "openblas");
   const enableAVX = nix.argOr($, "enableAVX", () => nix.sel(stdenv, "hostPlatform", "avxSupport"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "NGT",
       version: "2.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NGT-labs",
           repo: "NGT",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,12 +28,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp")), openblas]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_ENFORCE_NO_NATIVE: nix.thunk(() => !nix.asBool(enableAVX)),
         __AVX2__: nix.thunk(() => (nix.asBool(enableAVX) ? 1n : 0n)),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/NGT-labs/NGT",
         description: "Nearest Neighbor Search with Neighborhood Graph and Tree for High-dimensional Data",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),

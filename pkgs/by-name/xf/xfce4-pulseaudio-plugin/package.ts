@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["rev-prefix", 59, 40]], [["updateScript", 59, 12]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["teams", 65, 5], ["platforms", 66, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, "xfce4-exo": false, gtk3: false, libcanberra: false, libpulseaudio: false, libnotify: false, libxfce4ui: false, libxfce4util: false, libxfce4windowing: false, meson: false, ninja: false, "pkg-config": false, "xfce4-panel": false, xfconf: false, keybinder3: false, glib: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 59, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["teams", 65, 5], ["platforms", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xfce4-pulseaudio-plugin",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.xfce.org",
           owner: "panel-plugins",
           repo: "xfce4-pulseaudio-plugin",
@@ -59,11 +55,11 @@ export default nix.lambda((args) => (() => {
         xfconf,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "xfce4-pulseaudio-plugin-" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "xfce4-pulseaudio-plugin-" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Adjust the audio volume of the PulseAudio sound system",
         homepage: "https://gitlab.xfce.org/panel-plugins/xfce4-pulseaudio-plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

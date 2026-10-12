@@ -2,91 +2,56 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sysinit-reactivation.nix", [[["USER", 10, 64]], [["environment", 10, 52]], [["NEEDED_PATH", 14, 9], ["PATH_TO_CREATE", 15, 9]], [["environment", 13, 51]], [["NEEDED_PATH", 19, 9], ["PATH_TO_CREATE", 20, 9]], [["environment", 18, 37]], [["pre-sysinit-before-tmpfiles", 10, 24], ["pre-sysinit-after-tmpfiles", 13, 24], ["post-sysinit", 18, 24]], [["user", 24, 69]], [["f", 24, 67]], [["test", 23, 33]], [["settings", 23, 24]], [["services", 10, 15], ["tmpfiles", 23, 15]], [["systemd", 10, 7]], [["configuration", 9, 21]], [["maintainers", 34, 8]], [["DefaultDependencies", 51, 20]], [["Type", 52, 23], ["RemainAfterExit", 53, 23]], [["USER", 54, 21]], [["wantedBy", 45, 9], ["requiredBy", 46, 9], ["before", 47, 9], ["unitConfig", 51, 9], ["serviceConfig", 52, 9], ["environment", 54, 9], ["script", 55, 9]], [["DefaultDependencies", 65, 20]], [["Type", 66, 23], ["RemainAfterExit", 67, 23]], [["NEEDED_PATH", 69, 11], ["PATH_TO_CREATE", 70, 11]], [["wantedBy", 59, 9], ["requiredBy", 60, 9], ["after", 61, 9], ["unitConfig", 65, 9], ["serviceConfig", 66, 9], ["environment", 68, 9], ["script", 72, 9]], [["Type", 81, 23], ["RemainAfterExit", 82, 23]], [["NEEDED_PATH", 84, 11], ["PATH_TO_CREATE", 85, 11]], [["wantedBy", 80, 9], ["serviceConfig", 81, 9], ["environment", 83, 9], ["script", 87, 9]], [["pre-sysinit-before-tmpfiles", 44, 24], ["pre-sysinit-after-tmpfiles", 58, 24], ["post-sysinit", 79, 24]], [["user", 95, 55]], [["f", 95, 53]], [["/run/needed-by-pre-sysinit-after-tmpfiles", 95, 9]], [["test", 94, 33]], [["settings", 94, 24]], [["services", 44, 15], ["tmpfiles", 94, 15]], [["systemd", 44, 7], ["specialisation", 98, 7]], [["machine", 36, 9]], [["name", 32, 3], ["meta", 34, 3], ["nodes", 36, 3], ["testScript", 104, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sysinit-reactivation.nix", [["USER", 10, 64]]);
-const pos$2 = nix.positions(here + "/sysinit-reactivation.nix", [["environment", 10, 52]]);
-const pos$3 = nix.positions(here + "/sysinit-reactivation.nix", [["NEEDED_PATH", 14, 9], ["PATH_TO_CREATE", 15, 9]]);
-const pos$4 = nix.positions(here + "/sysinit-reactivation.nix", [["environment", 13, 51]]);
-const pos$5 = nix.positions(here + "/sysinit-reactivation.nix", [["NEEDED_PATH", 19, 9], ["PATH_TO_CREATE", 20, 9]]);
-const pos$6 = nix.positions(here + "/sysinit-reactivation.nix", [["environment", 18, 37]]);
-const pos$7 = nix.positions(here + "/sysinit-reactivation.nix", [["pre-sysinit-before-tmpfiles", 10, 24], ["pre-sysinit-after-tmpfiles", 13, 24], ["post-sysinit", 18, 24]]);
-const pos$8 = nix.positions(here + "/sysinit-reactivation.nix", [["user", 24, 69]]);
-const pos$9 = nix.positions(here + "/sysinit-reactivation.nix", [["f", 24, 67]]);
-const pos$10 = nix.positions(here + "/sysinit-reactivation.nix", [["test", 23, 33]]);
-const pos$11 = nix.positions(here + "/sysinit-reactivation.nix", [["settings", 23, 24]]);
-const pos$12 = nix.positions(here + "/sysinit-reactivation.nix", [["services", 10, 15], ["tmpfiles", 23, 15]]);
-const pos$13 = nix.positions(here + "/sysinit-reactivation.nix", [["systemd", 10, 7]]);
-const pos$14 = nix.positions(here + "/sysinit-reactivation.nix", [["configuration", 9, 21]]);
-const pos$15 = nix.positions(here + "/sysinit-reactivation.nix", [["maintainers", 34, 8]]);
 const formals$2 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/sysinit-reactivation.nix", [["DefaultDependencies", 51, 20]]);
-const pos$17 = nix.positions(here + "/sysinit-reactivation.nix", [["Type", 52, 23], ["RemainAfterExit", 53, 23]]);
-const pos$18 = nix.positions(here + "/sysinit-reactivation.nix", [["USER", 54, 21]]);
-const pos$19 = nix.positions(here + "/sysinit-reactivation.nix", [["wantedBy", 45, 9], ["requiredBy", 46, 9], ["before", 47, 9], ["unitConfig", 51, 9], ["serviceConfig", 52, 9], ["environment", 54, 9], ["script", 55, 9]]);
-const pos$20 = nix.positions(here + "/sysinit-reactivation.nix", [["DefaultDependencies", 65, 20]]);
-const pos$21 = nix.positions(here + "/sysinit-reactivation.nix", [["Type", 66, 23], ["RemainAfterExit", 67, 23]]);
-const pos$22 = nix.positions(here + "/sysinit-reactivation.nix", [["NEEDED_PATH", 69, 11], ["PATH_TO_CREATE", 70, 11]]);
-const pos$23 = nix.positions(here + "/sysinit-reactivation.nix", [["wantedBy", 59, 9], ["requiredBy", 60, 9], ["after", 61, 9], ["unitConfig", 65, 9], ["serviceConfig", 66, 9], ["environment", 68, 9], ["script", 72, 9]]);
-const pos$24 = nix.positions(here + "/sysinit-reactivation.nix", [["Type", 81, 23], ["RemainAfterExit", 82, 23]]);
-const pos$25 = nix.positions(here + "/sysinit-reactivation.nix", [["NEEDED_PATH", 84, 11], ["PATH_TO_CREATE", 85, 11]]);
-const pos$26 = nix.positions(here + "/sysinit-reactivation.nix", [["wantedBy", 80, 9], ["serviceConfig", 81, 9], ["environment", 83, 9], ["script", 87, 9]]);
-const pos$27 = nix.positions(here + "/sysinit-reactivation.nix", [["pre-sysinit-before-tmpfiles", 44, 24], ["pre-sysinit-after-tmpfiles", 58, 24], ["post-sysinit", 79, 24]]);
-const pos$28 = nix.positions(here + "/sysinit-reactivation.nix", [["user", 95, 55]]);
-const pos$29 = nix.positions(here + "/sysinit-reactivation.nix", [["f", 95, 53]]);
-const pos$30 = nix.positions(here + "/sysinit-reactivation.nix", [["/run/needed-by-pre-sysinit-after-tmpfiles", 95, 9]]);
-const pos$31 = nix.positions(here + "/sysinit-reactivation.nix", [["test", 94, 33]]);
-const pos$32 = nix.positions(here + "/sysinit-reactivation.nix", [["settings", 94, 24]]);
-const pos$33 = nix.positions(here + "/sysinit-reactivation.nix", [["services", 44, 15], ["tmpfiles", 94, 15]]);
-const pos$34 = nix.positions(here + "/sysinit-reactivation.nix", [["systemd", 44, 7], ["specialisation", 98, 7]]);
-const pos$35 = nix.positions(here + "/sysinit-reactivation.nix", [["machine", 36, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$36 = nix.positions(here + "/sysinit-reactivation.nix", [["name", 32, 3], ["meta", 34, 3], ["nodes", 36, 3], ["testScript", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const makeGeneration = (generation) => nix.attrsDyn({}, [
     [nix.str`${generation}`, nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       configuration: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             "pre-sysinit-before-tmpfiles": nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 USER: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`${generation}-tmpfiles-user`))),
               })),
             })),
             "pre-sysinit-after-tmpfiles": nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 NEEDED_PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`/run/${generation}-needed-by-pre-sysinit-after-tmpfiles`))),
                 PATH_TO_CREATE: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`/run/${generation}-needed-by-post-sysinit`))),
               })),
             })),
             "post-sysinit": nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 NEEDED_PATH: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`/run/${generation}-needed-by-post-sysinit`))),
                 PATH_TO_CREATE: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`/run/${generation}-created-by-post-sysinit`))),
               })),
             })),
           })),
           tmpfiles: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               test: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`/run/${generation}-needed-by-pre-sysinit-after-tmpfiles`, nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     f: nix.thunk(() => ({
-                      [nix.POS]: pos$8,
+                      [nix.POS]: $pos[7],
                       user: nix.thunk(() => nix.str`${generation}-tmpfiles-user`),
                     })),
                   }))],
@@ -98,58 +63,58 @@ export default nix.lambda((args) => (() => {
     }))],
   ]);
   return {
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     name: "sysinit-reactivation",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               "pre-sysinit-before-tmpfiles": nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 wantedBy: nix.thunk(() => ["sysinit.target"]),
                 requiredBy: nix.thunk(() => ["sysinit-reactivation.target"]),
                 before: nix.thunk(() => ["systemd-tmpfiles-setup.service", "systemd-tmpfiles-resetup.service"]),
-                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$16, DefaultDependencies: false })),
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$17, Type: "oneshot", RemainAfterExit: true })),
-                environment: nix.thunk(() => ({ [nix.POS]: pos$18, USER: "tmpfiles-user" })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[15], DefaultDependencies: false })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[16], Type: "oneshot", RemainAfterExit: true })),
+                environment: nix.thunk(() => ({ [nix.POS]: $pos[17], USER: "tmpfiles-user" })),
                 script: nix.thunk(() => nix.str`${nix.sel(pkgs, "shadow")}/bin/useradd $USER`),
               })),
               "pre-sysinit-after-tmpfiles": nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 wantedBy: nix.thunk(() => ["sysinit.target"]),
                 requiredBy: nix.thunk(() => ["sysinit-reactivation.target"]),
                 after: nix.thunk(() => ["systemd-tmpfiles-setup.service", "systemd-tmpfiles-resetup.service"]),
-                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$20, DefaultDependencies: false })),
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$21, Type: "oneshot", RemainAfterExit: true })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[19], DefaultDependencies: false })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[20], Type: "oneshot", RemainAfterExit: true })),
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   NEEDED_PATH: "/run/needed-by-pre-sysinit-after-tmpfiles",
                   PATH_TO_CREATE: "/run/needed-by-post-sysinit",
                 })),
                 script: "if [[ -e $NEEDED_PATH ]]; then\n  touch $PATH_TO_CREATE\nfi\n",
               })),
               "post-sysinit": nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 wantedBy: nix.thunk(() => ["default.target"]),
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$24, Type: "oneshot", RemainAfterExit: true })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[23], Type: "oneshot", RemainAfterExit: true })),
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$25,
+                  [nix.POS]: $pos[24],
                   NEEDED_PATH: "/run/needed-by-post-sysinit",
                   PATH_TO_CREATE: "/run/created-by-post-sysinit",
                 })),
@@ -157,14 +122,14 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 test: nix.thunk(() => ({
-                  [nix.POS]: pos$30,
+                  [nix.POS]: $pos[29],
                   "/run/needed-by-pre-sysinit-after-tmpfiles": nix.thunk(() => ({
-                    [nix.POS]: pos$29,
-                    f: nix.thunk(() => ({ [nix.POS]: pos$28, user: "tmpfiles-user" })),
+                    [nix.POS]: $pos[28],
+                    f: nix.thunk(() => ({ [nix.POS]: $pos[27], user: "tmpfiles-user" })),
                   })),
                 })),
               })),

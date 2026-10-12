@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["env", 35, 12]], [["pname", 19, 3], ["version", 20, 22], ["nativeBuildInputs", 22, 3], ["buildCommand", 24, 3], ["preferLocalBuild", 31, 3], ["allowSubstitutes", 32, 3], ["passthru", 35, 3], ["buildInputs", 36, 3], ["shellHook", 37, 3], ["meta", 39, 22]]]);
 const formals$1 = { args: { stdenv: false, ghcWithPackages: false, taffybar: false, makeWrapper: false, packages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["env", 35, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 22], ["nativeBuildInputs", 22, 3], ["buildCommand", 24, 3], ["preferLocalBuild", 31, 3], ["allowSubstitutes", 32, 3], ["passthru", 35, 3], ["buildInputs", 36, 3], ["shellHook", 37, 3], ["meta", 39, 22]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const packages = nix.argOr($, "packages", () => (x) => []);
   const taffybarEnv = nix.thunk(() => nix.app(ghcWithPackages, (self) => nix.concat([nix.thunk(() => nix.sel(self, "taffybar"))], nix.app(packages, self))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "taffybar-with-packages",
       version: nix.thunk(() => nix.attr(taffybar, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -25,7 +24,7 @@ makeWrapper ${taffybarEnv}/bin/taffybar $out/bin/taffybar \\
 `),
       preferLocalBuild: true,
       allowSubstitutes: false,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, env: taffybarEnv })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], env: taffybarEnv })),
       buildInputs: nix.thunk(() => [taffybarEnv]),
       shellHook: nix.thunk(() => nix.str`eval $(egrep ^export ${taffybarEnv}/bin/ghc)`),
       meta: nix.thunk(() => nix.attr(taffybar, "meta")),

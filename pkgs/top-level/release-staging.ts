@@ -2,17 +2,13 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/release-staging.nix", [[["outPath", 9, 5], ["revCount", 10, 5], ["shortRev", 11, 5], ["revision", 12, 5]], [["allowUnfree", 19, 7], ["inHydra", 20, 7]], [["config", 18, 5], ["__allowFileset", 22, 5]], [["supportedSystems", 28, 13], ["nixpkgsArgs", 28, 30]], [["stdenv", 37, 3]]]);
 const formals$1 = { args: { nixpkgs: true, supportedSystems: true, nixpkgsArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/release-staging.nix", [["outPath", 9, 5], ["revCount", 10, 5], ["shortRev", 11, 5], ["revision", 12, 5]]);
-const pos$2 = nix.positions(here + "/release-staging.nix", [["allowUnfree", 19, 7], ["inHydra", 20, 7]]);
-const pos$3 = nix.positions(here + "/release-staging.nix", [["config", 18, 5], ["__allowFileset", 22, 5]]);
-const pos$4 = nix.positions(here + "/release-staging.nix", [["supportedSystems", 28, 13], ["nixpkgsArgs", 28, 30]]);
-const pos$5 = nix.positions(here + "/release-staging.nix", [["stdenv", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.argOr($, "nixpkgs", () => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     outPath: nix.thunk(() => nix.app(nix.sel(nix.builtins.import(nix.path(here, "../../lib")), "cleanSource"), nix.path(here, "../.."))),
     revCount: 1234n,
     shortRev: "abcdef",
@@ -20,17 +16,17 @@ export default nix.lambda((args) => (() => {
   }));
   const supportedSystems = nix.argOr($, "supportedSystems", () => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./release-supported-systems.json")))));
   const nixpkgsArgs = nix.argOr($, "nixpkgsArgs", () => ({
-    [nix.POS]: pos$3,
-    config: nix.thunk(() => ({ [nix.POS]: pos$2, allowUnfree: false, inHydra: true })),
+    [nix.POS]: $pos[2],
+    config: nix.thunk(() => ({ [nix.POS]: $pos[1], allowUnfree: false, inHydra: true })),
     __allowFileset: false,
   }));
   const release_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       supportedSystems: supportedSystems,
       nixpkgsArgs: nixpkgsArgs,
     }))));
   const all = nix.thunk(() => nix.attr(release_lib, "all"));
   const mapTestOn = nix.thunk(() => nix.attr(release_lib, "mapTestOn"));
-  return nix.app(mapTestOn, nix.thunk(() => ({ [nix.POS]: pos$5, stdenv: all })));
+  return nix.app(mapTestOn, nix.thunk(() => ({ [nix.POS]: $pos[4], stdenv: all })));
 })(), formals$1);
 //# sourceMappingURL=release-staging.ts.map

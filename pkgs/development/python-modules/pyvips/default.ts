@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["NIX_CFLAGS_COMPILE", 50, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 42, 3], ["dependencies", 47, 3], ["env", 49, 3], ["nativeCheckInputs", 53, 3], ["disabledTests", 55, 3], ["disabledTestPaths", 61, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, cffi: false, fetchFromGitHub: false, glib: false, "pkg-config": false, pkgconfig: false, pytestCheckHook: false, setuptools: false, vips: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 42, 3], ["dependencies", 47, 3], ["env", 49, 3], ["nativeCheckInputs", 53, 3], ["disabledTests", 55, 3], ["disabledTestPaths", 61, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const vips = nix.arg($, "vips");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyvips",
       version: "3.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libvips",
           repo: "pyvips",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, vips]),
       dependencies: nix.thunk(() => [cffi]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-function-pointer-types",
         })))),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/perf"]),
       pythonImportsCheck: nix.thunk(() => ["pyvips"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python wrapper for libvips",
         homepage: "https://github.com/libvips/pyvips",
         changelog: nix.thunk(() => nix.str`https://github.com/libvips/pyvips/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

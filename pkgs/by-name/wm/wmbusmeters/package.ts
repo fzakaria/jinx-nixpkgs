@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5], ["leaveDotGit", 32, 5], ["postFetch", 33, 5]], [["updateScript", 96, 12]], [["description", 99, 5], ["downloadPage", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5]], [["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildInputs", 41, 3], ["nativeBuildInputs", 48, 3], ["nativeCheckInputs", 54, 3], ["makeFlags", 61, 3], ["postPatch", 67, 3], ["installPhase", 77, 3], ["doCheck", 90, 3], ["checkTarget", 91, 3], ["nativeInstallCheckInputs", 93, 3], ["doInstallCheck", 94, 3], ["passthru", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "rtl-sdr": false, rtl_wmbus: false, rtl_433: false, libxml2: false, "pkg-config": false, netcat: false, jq: false, unixtools: false, versionCheckHook: false, "nix-update-script": false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5], ["leaveDotGit", 32, 5], ["postFetch", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 96, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 99, 5], ["downloadPage", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildInputs", 41, 3], ["nativeBuildInputs", 48, 3], ["nativeCheckInputs", 54, 3], ["makeFlags", 61, 3], ["postPatch", 67, 3], ["installPhase", 77, 3], ["doCheck", 90, 3], ["checkTarget", 91, 3], ["nativeInstallCheckInputs", 93, 3], ["doInstallCheck", 94, 3], ["passthru", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       strictDeps: true,
       __structuredAttrs: true,
       pname: "wmbusmeters",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wmbusmeters",
           repo: "wmbusmeters",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -64,11 +61,11 @@ installManPage wmbusmeters.1
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Read the wired or wireless mbus protocol to acquire utility meter readings",
         downloadPage: "https://github.com/wmbusmeters/wmbusmeters",
         homepage: "https://wmbusmeters.org/",

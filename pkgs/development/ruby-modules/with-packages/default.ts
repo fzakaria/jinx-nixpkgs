@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["lib", 25, 64], ["gemConfig", 25, 68]], [["ruby", 36, 23], ["gemName", 37, 15]], [["name", 55, 9], ["paths", 56, 9], ["pathsToLink", 57, 9]], [["name", 65, 9], ["nativeBuildInputs", 66, 9], ["buildCommand", 67, 9]], [["wrappedRuby", 96, 17], ["gems", 97, 9]], [["mainProgram", 100, 12]], [["name", 77, 7], ["nativeBuildInputs", 78, 7], ["buildInputs", 79, 7], ["dontUnpack", 84, 7], ["installPhase", 86, 7], ["passthru", 95, 7], ["meta", 100, 7]], [["withPackages", 105, 11], ["gems", 105, 24], ["buildGems", 105, 29]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildEnv: false, buildRubyGem: false, ruby: false, gemConfig: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["lib", 25, 64], ["gemConfig", 25, 68]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ruby", 36, 23], ["gemName", 37, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 55, 9], ["paths", 56, 9], ["pathsToLink", 57, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 65, 9], ["nativeBuildInputs", 66, 9], ["buildCommand", 67, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["wrappedRuby", 96, 17], ["gems", 97, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["mainProgram", 100, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 77, 7], ["nativeBuildInputs", 78, 7], ["buildInputs", 79, 7], ["dontUnpack", 84, 7], ["installPhase", 86, 7], ["passthru", 95, 7], ["meta", 100, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["withPackages", 105, 11], ["gems", 105, 24], ["buildGems", 105, 29]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const gemConfig = nix.arg($, "gemConfig");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
-  const functions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../bundled-common/functions.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, gemConfig: gemConfig }))));
+  const functions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../bundled-common/functions.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, gemConfig: gemConfig }))));
   const buildGems = (gemset) => (() => {
     const realGemset = nix.thunk(() => (nix.asBool(nix.builtins.isAttrs(gemset)) ? nix.force(gemset) : nix.builtins.import(gemset)));
     const builtGems = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (initialAttrs) => (() => {
-        const attrs = nix.thunk(() => nix.app(nix.sel(functions, "applyGemConfigs"), nix.thunk(() => nix.update({ [nix.POS]: pos$2, ruby: ruby, gemName: name }, initialAttrs))));
+        const attrs = nix.thunk(() => nix.app(nix.sel(functions, "applyGemConfigs"), nix.thunk(() => nix.update({ [nix.POS]: $pos[1], ruby: ruby, gemName: name }, initialAttrs))));
         return nix.app(buildRubyGem, nix.thunk(() => nix.app(nix.sel(functions, "composeGemAttrs"), ruby, builtGems, name, attrs)));
       })(), realGemset));
     return nix.force(builtGems);
@@ -34,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const withPackages = (selector) => (() => {
     const selected = nix.thunk(() => nix.app(selector, gems));
     const gemEnv = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "ruby-gems",
         paths: selected,
         pathsToLink: nix.thunk(() => ["/lib", "/bin", "/nix-support"]),
       }))));
     const wrappedRuby = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: nix.thunk(() => nix.str`wrapped-${nix.sel(ruby, "name")}`),
         nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
         buildCommand: nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -50,7 +43,7 @@ done
 `),
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: nix.thunk(() => nix.str`${nix.sel(ruby, "name")}-with-packages`),
         nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
         buildInputs: nix.thunk(() => nix.concat([ruby], selected)),
@@ -62,12 +55,12 @@ done
 
 ln -s ${ruby}/nix-support $out/nix-support
 `),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$5, wrappedRuby: wrappedRuby, gems: selected })),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$6, mainProgram: "ruby" })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], wrappedRuby: wrappedRuby, gems: selected })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[5], mainProgram: "ruby" })),
       })));
   })();
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     withPackages: withPackages,
     gems: gems,
     buildGems: buildGems,

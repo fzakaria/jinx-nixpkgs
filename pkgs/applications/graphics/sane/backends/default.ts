@@ -2,18 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["url", 59, 7], ["hash", 60, 7]], [["url", 65, 7], ["hash", 66, 7], ["revert", 67, 7]], [["url", 72, 7], ["hash", 73, 7]], [["url", 76, 7], ["hash", 77, 7]], [["src", 160, 11], ["name", 161, 36], ["backend", 162, 11]], [["src", 165, 11], ["name", 166, 11], ["backend", 167, 11]], [["sane", 198, 26]], [["tests", 197, 12]], [["description", 202, 5], ["longDescription", 203, 5], ["homepage", 210, 5], ["license", 211, 5], ["platforms", 212, 5], ["maintainers", 213, 5]], [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["patches", 55, 3], ["postPatch", 81, 3], ["preConfigure", 86, 3], ["outputs", 102, 3], ["depsBuildBuild", 108, 3], ["nativeBuildInputs", 110, 3], ["buildInputs", 120, 3], ["enableParallelBuilding", 141, 3], ["configureFlags", 143, 3], ["buildFlags", 151, 3], ["postInstall", 155, 3], ["enableParallelInstalling", 193, 3], ["doInstallCheck", 195, 3], ["passthru", 197, 3], ["meta", 201, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchpatch: false, buildPackages: false, gettext: false, "pkg-config": false, python3: false, avahi: false, libgphoto2: false, libieee1284: false, libjpeg: false, libpng: false, libtiff: false, libusb1: false, libv4l: false, "net-snmp": false, curl: false, systemdLibs: false, withSystemd: true, libxml2: false, poppler: false, gawk: false, "sane-drivers": false, nixosTests: false, autoconf: false, automake: false, libtool: false, "autoconf-archive": false, extraFirmware: true, gt68xxFirmware: true, snapscanFirmware: true, scanSnapDriversUnfree: true, scanSnapDriversPackage: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 59, 7], ["hash", 60, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 65, 7], ["hash", 66, 7], ["revert", 67, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 72, 7], ["hash", 73, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 76, 7], ["hash", 77, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["src", 160, 11], ["name", 161, 36], ["backend", 162, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["src", 165, 11], ["name", 166, 11], ["backend", 167, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["sane", 198, 26]]);
-const pos$9 = nix.positions(here + "/default.nix", [["tests", 197, 12]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 202, 5], ["longDescription", 203, 5], ["homepage", 210, 5], ["license", 211, 5], ["platforms", 212, 5], ["maintainers", 213, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["patches", 55, 3], ["postPatch", 81, 3], ["preConfigure", 86, 3], ["outputs", 102, 3], ["depsBuildBuild", 108, 3], ["nativeBuildInputs", 110, 3], ["buildInputs", 120, 3], ["enableParallelBuilding", 141, 3], ["configureFlags", 143, 3], ["buildFlags", 151, 3], ["postInstall", 155, 3], ["enableParallelInstalling", 193, 3], ["doInstallCheck", 195, 3], ["passthru", 197, 3], ["meta", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const scanSnapDriversUnfree = nix.argOr($, "scanSnapDriversUnfree", () => false);
   const scanSnapDriversPackage = nix.argOr($, "scanSnapDriversPackage", () => nix.sel(sane_drivers, "epjitsu"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "sane-backends",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sane-project",
           repo: "backends",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,23 +54,23 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/sane-project/backends/-/commit/8acc267d5f4049d8438456821137ae56e91baea9.patch",
             hash: "sha256-IyupDeH1MPvEBnGaUzBbCu106Gp7zXxlPGFAaiiINQI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.com/sane-project/backends/-/commit/fbf80b0fc1d262ed40d4b49dd53c14707083ef60.patch",
             hash: "sha256-9KKTr7p1vCgvGr6hFY83K5gbL7Ilm4Uzc86JIxv+ahI=",
             revert: true,
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://gitlab.com/sane-project/backends/-/commit/d04d17b456d9847021b6df6eb08a3419a75172cf.patch",
             hash: "sha256-4iAzwA+uh8W+xSpUkZgvShQ71kq/OVJ26pKsD1NwiXs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://gitlab.com/sane-project/backends/-/commit/ebd4d82bd7a6b8c57870dbfb492e4c186cf584d8.patch",
             hash: "sha256-vHtv+OMA0f9JR1ReshTg8IOgcZf7cnV7chitRBBCAg4=",
           })))),
@@ -122,12 +112,12 @@ patch -p1 -i ${nix.path(here, "./sane-desc-cross.patch")}
         ]))),
       postInstall: nix.thunk(() => (() => {
         const compatFirmware = nix.thunk(() => nix.concat(extraFirmware, nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(gt68xxFirmware, null)), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             src: nix.thunk(() => nix.sel(gt68xxFirmware, "fw")),
             name: nix.thunk(() => nix.attr(gt68xxFirmware, "name")),
             backend: "gt68xx",
           }))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(snapscanFirmware, null)), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             src: snapscanFirmware,
             name: "your-firmwarefile.bin",
             backend: "snapscan",
@@ -143,11 +133,11 @@ ln -svT ${scanSnapDriversPackage} $out/share/sane/epjitsu
       enableParallelInstalling: false,
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$8, sane: nix.thunk(() => nix.attr(nixosTests, "sane")) })),
+        [nix.POS]: $pos[8],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[7], sane: nix.thunk(() => nix.attr(nixosTests, "sane")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "SANE (Scanner Access Now Easy) backends",
         longDescription: "Collection of open-source SANE backends (device drivers).\nSANE is a universal scanner interface providing standardized access to\nany raster image scanner hardware: flatbed scanners, hand-held scanners,\nvideo- and still-cameras, frame-grabbers, etc. For a list of supported\nscanners, see http://www.sane-project.org/sane-backends.html.\n",
         homepage: "http://www.sane-project.org/",

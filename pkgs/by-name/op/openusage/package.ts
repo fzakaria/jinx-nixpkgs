@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["updateScript", 35, 12]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["sourceProvenance", 41, 5], ["platforms", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["sourceRoot", 20, 3], ["installPhase", 22, 3], ["dontBuild", 32, 3], ["dontFixup", 33, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, _7zz: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 35, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["sourceProvenance", 41, 5], ["platforms", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["sourceRoot", 20, 3], ["installPhase", 22, 3], ["dontBuild", 32, 3], ["dontFixup", 33, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const _7zz = nix.arg($, "_7zz");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openusage",
       version: "0.7.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/robinebers/openusage/releases/download/v${nix.sel(finalAttrs, "version")}/OpenUsage-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-ycKm7kzOM+fv5Jhjv3JrG+oyK3LEOj9Ps7ll2Pz0T9c=",
         })))),
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Burning through your subscriptions too fast? Paying for stuff you never use? Stop guessing. OpenUsage is free and open source.",
         homepage: "https://www.openusage.ai/",
         changelog: nix.thunk(() => nix.str`https://github.com/robinebers/openusage/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["mainProgram", 25, 5], ["description", 26, 5], ["homepage", 27, 5], ["maintainers", 28, 5], ["license", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["projectFile", 18, 3], ["nugetDeps", 19, 3], ["dotnet-sdk", 21, 3], ["dotnet-runtime", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, buildDotnetModule: false, dotnetCorePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 25, 5], ["description", 26, 5], ["homepage", 27, 5], ["maintainers", 28, 5], ["license", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["projectFile", 18, 3], ["nugetDeps", 19, 3], ["dotnet-sdk", 21, 3], ["dotnet-runtime", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const buildDotnetModule = nix.arg($, "buildDotnetModule");
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "imewlconverter",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "studyzy",
           repo: "imewlconverter",
           rev: "v3.3.0",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       "dotnet-sdk": nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0")),
       "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "aspnetcore_8_0")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "ImeWlConverterCmd",
         description: "FOSS program for converting IME dictionaries",
         homepage: "https://github.com/studyzy/imewlconverter",

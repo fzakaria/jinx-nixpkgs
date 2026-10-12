@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]], [["chart", 29, 5], ["fodt", 33, 5]], [["homepage", 41, 5], ["changelog", 42, 5], ["description", 43, 5], ["mainProgram", 44, 5], ["maintainers", 45, 5], ["license", 46, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 23, 3], ["optional-dependencies", 28, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, genshi: false, lxml: false, pyyaml: false, "python-magic": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["chart", 29, 5], ["fodt", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 41, 5], ["changelog", 42, 5], ["description", 43, 5], ["mainProgram", 44, 5], ["maintainers", 45, 5], ["license", 46, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 23, 3], ["optional-dependencies", 28, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,21 +20,21 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-e6CvclFrRfXR5fL2ZG1LZxTTsTRouLsDicCwvXtySGE=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [genshi, lxml]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         chart: nix.thunk(() => [pyyaml]),
         fodt: nix.thunk(() => [python_magic]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "fodt")));
       const pythonImportsCheck = nix.thunk(() => ["relatorio"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://relatorio.tryton.org/",
         changelog: nix.thunk(() => nix.str`https://hg.tryton.org/relatorio/file/${version}/CHANGELOG`),
         description: "Templating library able to output odt and pdf files",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["LIRC_CFLAGS", 71, 5], ["LIRC_LIBS", 72, 5]], [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["outputs", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["configureFlags", 68, 3], ["env", 70, 3], ["postPatch", 75, 3], ["strictDeps", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, autoreconfHook: false, curl: false, fetchhg: false, libxext: false, libxft: false, libxi: false, libxinerama: false, libxtst: false, libxv: false, libxxf86vm: false, libjpeg: false, libpng: false, lirc: false, ncurses: false, perl: false, "pkg-config": false, readline: false, "shared-mime-info": false, stdenv: false, "xine-lib": false, xorgproto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIRC_CFLAGS", 71, 5], ["LIRC_LIBS", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["outputs", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["configureFlags", 68, 3], ["env", 70, 3], ["postPatch", 75, 3], ["strictDeps", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const xine_lib = nix.arg($, "xine-lib");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xine-ui",
       version: "0.99.14-unstable-2024-08-26",
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://hg.code.sf.net/p/xine/xine-ui",
           rev: "2beaad6bb92e6732585f68af2e346a24e5ad53a5",
           hash: "sha256-Y08JX9q4w6pSJRCa5mWN11BnA6mZJSO/yn3X8YyZ6E4=",
@@ -63,14 +60,14 @@ export default nix.lambda((args) => (() => {
       ]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-readline=${nix.sel(readline, "dev")}`)]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LIRC_CFLAGS: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), lirc)}/include`),
         LIRC_LIBS: nix.thunk(() => nix.str`-L ${nix.app(nix.sel(lib, "getLib"), lirc)}/lib -llirc_client`),
       })),
       postPatch: "substituteInPlace src/common/getopt.h \\\n  --replace-fail 'extern int getopt ();' 'extern int getopt (int ___argc, char *const *___argv, const char *__shortopts);'\n",
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://xine.sourceforge.net/",
         description: "Xlib-based frontend for Xine video player",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

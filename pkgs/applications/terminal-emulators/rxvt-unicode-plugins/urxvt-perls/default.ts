@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "urxvt-perls";
       const version = "2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "muennich",
           repo: "urxvt-perls",
           rev: version,
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "mkdir -p $out/lib/urxvt/perl\ncp keyboard-select $out/lib/urxvt/perl\ncp deprecated/clipboard \\\n   deprecated/url-select \\\n$out/lib/urxvt/perl\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Perl extensions for the rxvt-unicode terminal emulator",
         homepage: "https://github.com/muennich/urxvt-perls",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
           return nix.force(nix.lookup(w, "unix"));
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

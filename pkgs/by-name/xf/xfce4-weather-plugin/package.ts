@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["url", 36, 7], ["hash", 37, 7]], [["url", 65, 5], ["rev-prefix", 66, 5]], [["updateScript", 64, 12]], [["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["teams", 74, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 32, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["passthru", 64, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, gettext: false, meson: false, ninja: false, "pkg-config": false, glib: false, gtk3: false, json_c: false, libxml2: false, libsoup_3: false, upower: false, libxfce4ui: false, libxfce4util: false, "xfce4-panel": false, xfconf: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 65, 5], ["rev-prefix", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 64, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["teams", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 32, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["passthru", 64, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,17 +27,17 @@ export default nix.lambda((args) => (() => {
   const xfconf = nix.arg($, "xfconf");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "xfce4-weather-plugin",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xfce/src/panel-plugins/xfce4-weather-plugin/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/xfce4-weather-plugin-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-XdkLAywG70tkuBgCMVTvlGOixpSgKQ5X80EilsdUX/Y=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.xfce.org/panel-plugins/xfce4-weather-plugin/-/commit/1d8e5e5dbbc4d53e4b810f9b01a460197cd47b64.patch",
             hash: "sha256-g9AIp1iBcA3AxD1tpnv32PvxxulXYjFvQh3EqD1gmHg=",
           })))),
@@ -62,15 +57,15 @@ export default nix.lambda((args) => (() => {
         xfconf,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.xfce.org/panel-plugins/xfce4-weather-plugin",
             "rev-prefix": "xfce4-weather-plugin-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://docs.xfce.org/panel-plugins/xfce4-weather-plugin",
         description: "Weather plugin for the Xfce desktop environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

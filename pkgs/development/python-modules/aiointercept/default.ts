@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["changelog", 67, 5], ["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["pythonImportsCheck", 34, 3], ["nativeCheckInputs", 39, 3], ["disabledTests", 45, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { aiohttp: false, buildPythonPackage: false, ddt: false, fetchFromGitHub: false, hatchling: false, lib: false, multidict: false, "pytest-asyncio": false, pytestCheckHook: false, yarl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 67, 5], ["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["pythonImportsCheck", 34, 3], ["nativeCheckInputs", 39, 3], ["disabledTests", 45, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aiointercept",
       version: "0.1.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Polandia94",
           repo: "aiointercept",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         "test_shared_resolve_no_active_instances_uses_real_resolver",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/Polandia94/aiointercept/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Aiohttp mock library that routes requests through a real test server",
         homepage: "https://github.com/Polandia94/aiointercept",

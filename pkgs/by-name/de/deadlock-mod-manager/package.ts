@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["pname", 77, 7], ["version", 78, 7], ["src", 79, 7], ["pnpm", 81, 5], ["fetcherVersion", 82, 5], ["sourceRoot", 83, 5], ["hash", 84, 5]], [["VITE_API_URL", 91, 7]], [["desktopName", 114, 7], ["name", 115, 7], ["exec", 116, 7], ["terminal", 117, 7], ["type", 118, 7], ["icon", 119, 7], ["mimeTypes", 120, 7], ["categories", 121, 7]], [["updateScript", 129, 5]], [["description", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["platforms", 140, 5], ["mainProgram", 141, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["cargoRoot", 40, 3], ["buildAndTestSubdir", 41, 3], ["cargoHash", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 56, 3], ["pnpmRoot", 74, 3], ["pnpmDeps", 75, 3], ["patches", 87, 3], ["env", 91, 3], ["checkFlags", 93, 3], ["preFixup", 102, 3], ["desktopItems", 112, 3], ["passthru", 128, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "cargo-tauri": false, nodejs: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, "pkg-config": false, protobuf: false, wrapGAppsHook3: false, "desktop-file-utils": false, webkitgtk_4_1: false, cairo: false, "gdk-pixbuf": false, glib: false, "glib-networking": false, gtk3: false, libsoup_3: false, pango: false, openssl: false, bzip2: false, gst_all_1: false, makeDesktopItem: false, fontconfig: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 77, 7], ["version", 78, 7], ["src", 79, 7], ["pnpm", 81, 5], ["fetcherVersion", 82, 5], ["sourceRoot", 83, 5], ["hash", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["VITE_API_URL", 91, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["desktopName", 114, 7], ["name", 115, 7], ["exec", 116, 7], ["terminal", 117, 7], ["type", 118, 7], ["icon", 119, 7], ["mimeTypes", 120, 7], ["categories", 121, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 129, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["platforms", 140, 5], ["mainProgram", 141, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["cargoRoot", 40, 3], ["buildAndTestSubdir", 41, 3], ["cargoHash", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 56, 3], ["pnpmRoot", 74, 3], ["pnpmDeps", 75, 3], ["patches", 87, 3], ["env", 91, 3], ["checkFlags", 93, 3], ["preFixup", 102, 3], ["desktopItems", 112, 3], ["passthru", 128, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "deadlock-mod-manager",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "deadlock-mod-manager",
           repo: "deadlock-mod-manager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,7 +76,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pnpmRoot: ".",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -92,7 +86,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-ZxlP6zOwY9Fxa4BCqnUoCmci3lviHn7H3HU5SnmdrSU=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./no-updater-artifacts.patch")]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, VITE_API_URL: "https://api.deadlockmods.app" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], VITE_API_URL: "https://api.deadlockmods.app" })),
       checkFlags: nix.thunk(() => [
         "--skip=download_manager::downloader::tests::test_download_file",
         "--skip=mod_manager::steam_manager::tests::set_steam_dir_rejects_invalid_directory",
@@ -107,7 +101,7 @@ export default nix.lambda((args) => (() => {
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             desktopName: "deadlock-mod-manager",
             name: "Deadlock Mod Manager",
             exec: "deadlock-mod-manager %u",
@@ -119,11 +113,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Mod manager for the Valve game Deadlock",
         homepage: "https://github.com/deadlock-mod-manager/deadlock-mod-manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]], [["url", 39, 5], ["hash", 40, 5]], [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]], [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]], [["NIX_CFLAGS_COMPILE", 166, 7]], [["mpi", 228, 24]], [["description", 231, 5], ["mainProgram", 232, 5], ["platforms", 233, 5], ["maintainers", 237, 5], ["homepage", 241, 5], ["license", 242, 5]], [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["strictDeps", 62, 3], ["__structuredAttrs", 63, 3], ["outputs", 65, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 82, 3], ["propagatedBuildInputs", 90, 3], ["propagatedUserEnvPkgs", 91, 3], ["postUnpack", 93, 3], ["postPatch", 106, 3], ["configurePhase", 124, 3], ["env", 166, 3], ["enableParallelBuilding", 168, 3], ["preBuild", 170, 3], ["postBuild", 177, 3], ["installPhase", 185, 3], ["doCheck", 214, 3], ["doInstallCheck", 216, 3], ["nativeInstallCheckInputs", 217, 3], ["installCheckPhase", 218, 3], ["passthru", 228, 3], ["meta", 230, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, mpiCheckPhaseHook: false, which: false, openssh: false, gcc: false, gfortran: false, perl: false, mpi: false, "blas-ilp64": false, "lapack-ilp64": false, "scalapack-ilp64": false, libxc: false, python3: false, tcsh: false, automake: false, autoconf: false, libtool: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 166, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mpi", 228, 24]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 231, 5], ["mainProgram", 232, 5], ["platforms", 233, 5], ["maintainers", 237, 5], ["homepage", 241, 5], ["license", 242, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["strictDeps", 62, 3], ["__structuredAttrs", 63, 3], ["outputs", 65, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 82, 3], ["propagatedBuildInputs", 90, 3], ["propagatedUserEnvPkgs", 91, 3], ["postUnpack", 93, 3], ["postPatch", 106, 3], ["configurePhase", 124, 3], ["env", 166, 3], ["enableParallelBuilding", 168, 3], ["preBuild", 170, 3], ["postBuild", 177, 3], ["installPhase", 185, 3], ["doCheck", 214, 3], ["doInstallCheck", 216, 3], ["nativeInstallCheckInputs", 217, 3], ["installCheckPhase", 218, 3], ["passthru", 228, 3], ["meta", 230, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,30 +32,30 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.eq(nix.sel(blas_ilp64, "isILP64"), nix.sel(scalapack_ilp64, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/nw/nwchem/package.nix:26:1");
   const versionGA = "5.9.2";
   const gaSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "GlobalArrays",
       repo: "ga",
       rev: nix.thunk(() => nix.str`v${versionGA}`),
       hash: "sha256-leCvbWteOp7z7ORwtljA+KslHUptY2vdupZTmAjsArg=",
     }))));
   const dftd3Src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://www.chemie.uni-bonn.de/grimme/software/dft-d3/dftd3.tgz",
       hash: "sha256-2Xz5dY9hqoH9hUJUSPv0pujOB8EukjZzmDGjrzKID1k=",
     }))));
   const plumedSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "edoapra",
       repo: "plumed2",
       rev: "e7c908da50bde1c6399c9f0e445d6ea3330ddd9b",
       hash: "sha256-CNlb6MTEkD977hj3xonYqZH1/WlQ1EdVD7cvL//heRM=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "nwchem",
       version: "7.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "nwchemgit",
           repo: "nwchem",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-release`),
@@ -150,7 +143,7 @@ export NWCHEM_TOP="$(pwd)"
 
 runHook postConfigure
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int -std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int -std=gnu17" })),
       enableParallelBuilding: true,
       preBuild: nix.thunk(() => nix.str`ln -s ${gaSrc} src/tools/ga-${versionGA}.tar.gz
 cd src
@@ -163,9 +156,9 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(bl
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [mpiCheckPhaseHook]),
       installCheckPhase: "runHook preInstallCheck\n\n# run a simple water test\nmpirun -np 2 $out/bin/nwchem $NWCHEM_TOP/QA/tests/h2o/h2o.nw > h2o.out\ngrep \"Total SCF energy\" h2o.out  | grep 76.010538\n\nrunHook postInstallCheck\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, mpi: mpi })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], mpi: mpi })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Open Source High-Performance Computational Chemistry",
         mainProgram: "nwchem",
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),

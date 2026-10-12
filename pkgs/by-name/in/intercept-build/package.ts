@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 29, 5], ["homepage", 30, 5], ["mainProgram", 31, 5], ["license", 32, 5], ["maintainers", 36, 5]], [["pname", 10, 3], ["version", 11, 29], ["pyproject", 13, 3], ["src", 15, 3], ["dontUnpack", 17, 3], ["dependencies", 19, 3], ["installPhase", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, llvmPackages: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["mainProgram", 31, 5], ["license", 32, 5], ["maintainers", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 29], ["pyproject", 13, 3], ["src", 15, 3], ["dontUnpack", 17, 3], ["dependencies", 19, 3], ["installPhase", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const clang_unwrapped = nix.thunk(() => nix.attr(llvmPackages, "clang-unwrapped"));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "intercept-build",
       version: nix.thunk(() => nix.attr(clang_unwrapped, "version")),
       pyproject: false,
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "mkdir -p \"$out/bin\"\ninstall \"$src/intercept-build\" \"$out/bin\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "intercepts the build process to generate a compilation database",
         homepage: nix.thunk(() => nix.str`https://github.com/llvm/llvm-project/tree/llvmorg-${nix.sel(finalAttrs, "version")}/clang/tools/scan-build-py/`),
         mainProgram: "intercept-build",

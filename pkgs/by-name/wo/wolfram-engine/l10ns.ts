@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/l10ns.nix", [[["version", 14, 11], ["lang", 15, 11], ["language", 16, 11], ["sha256", 17, 11], ["installer", 18, 11]], [["version", 21, 11], ["lang", 22, 11], ["language", 23, 11], ["sha256", 24, 11], ["installer", 25, 11]], [["version", 28, 11], ["lang", 29, 11], ["language", 30, 11], ["sha256", 31, 11], ["installer", 32, 11]], [["version", 35, 11], ["lang", 36, 11], ["language", 37, 11], ["sha256", 38, 11], ["installer", 39, 11]], [["version", 42, 11], ["lang", 43, 11], ["language", 44, 11], ["sha256", 45, 11], ["installer", 46, 11]], [["version", 49, 11], ["lang", 50, 11], ["language", 51, 11], ["sha256", 52, 11], ["installer", 53, 11]], [["name", 68, 13], ["message", 69, 13], ["sha256", 75, 21]], [["version", 65, 19], ["lang", 65, 27], ["name", 66, 11], ["src", 67, 11]]]);
 const formals$1 = { args: { lib: false, requireFile: false, lang: false, majorVersion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/l10ns.nix", [["version", 14, 11], ["lang", 15, 11], ["language", 16, 11], ["sha256", 17, 11], ["installer", 18, 11]]);
-const pos$2 = nix.positions(here + "/l10ns.nix", [["version", 21, 11], ["lang", 22, 11], ["language", 23, 11], ["sha256", 24, 11], ["installer", 25, 11]]);
-const pos$3 = nix.positions(here + "/l10ns.nix", [["version", 28, 11], ["lang", 29, 11], ["language", 30, 11], ["sha256", 31, 11], ["installer", 32, 11]]);
-const pos$4 = nix.positions(here + "/l10ns.nix", [["version", 35, 11], ["lang", 36, 11], ["language", 37, 11], ["sha256", 38, 11], ["installer", 39, 11]]);
-const pos$5 = nix.positions(here + "/l10ns.nix", [["version", 42, 11], ["lang", 43, 11], ["language", 44, 11], ["sha256", 45, 11], ["installer", 46, 11]]);
-const pos$6 = nix.positions(here + "/l10ns.nix", [["version", 49, 11], ["lang", 50, 11], ["language", 51, 11], ["sha256", 52, 11], ["installer", 53, 11]]);
 const formals$2 = { args: { version: false, lang: false, language: false, sha256: false, installer: false }, ellipsis: false };
-const pos$7 = nix.positions(here + "/l10ns.nix", [["name", 68, 13], ["message", 69, 13], ["sha256", 75, 21]]);
-const pos$8 = nix.positions(here + "/l10ns.nix", [["version", 65, 19], ["lang", 65, 27], ["name", 66, 11], ["src", 67, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const majorVersion = nix.argOr($, "majorVersion", () => null);
   const allVersions = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.builtins.map, nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         version: "14.1.0",
         lang: "en",
         language: "English",
@@ -29,7 +22,7 @@ export default nix.lambda((args) => (() => {
         installer: "WolframEngine_14.1.0_LIN.sh",
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version: "13.3.0",
         lang: "en",
         language: "English",
@@ -37,7 +30,7 @@ export default nix.lambda((args) => (() => {
         installer: "WolframEngine_13.3.0_LINUX.sh",
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: "13.2.0",
         lang: "en",
         language: "English",
@@ -45,7 +38,7 @@ export default nix.lambda((args) => (() => {
         installer: "WolframEngine_13.2.0_LINUX.sh",
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: "13.1.0",
         lang: "en",
         language: "English",
@@ -53,7 +46,7 @@ export default nix.lambda((args) => (() => {
         installer: "WolframEngine_13.1.0_LINUX.sh",
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version: "13.0.1",
         lang: "en",
         language: "English",
@@ -61,7 +54,7 @@ export default nix.lambda((args) => (() => {
         installer: "WolframEngine_13.0.1_LINUX.sh",
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version: "13.0.0",
         lang: "en",
         language: "English",
@@ -76,12 +69,12 @@ export default nix.lambda((args) => (() => {
       const sha256 = nix.arg($_1, "sha256");
       const installer = nix.arg($_1, "installer");
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         version: version,
         lang: lang_1,
         name: nix.thunk(() => nix.add(nix.str`wolfram-engine-${version}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(lang_1, "en")), nix.thunk(() => nix.str`-${lang_1}`)))),
         src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: installer,
             message: nix.thunk(() => nix.str`This nix expression requires that ${installer} is
 already part of the store. Download the file from

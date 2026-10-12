@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 17, 7], ["aarch64-linux", 18, 7], ["armv7l-linux", 19, 7], ["aarch64-darwin", 20, 7]], [["x86_64-linux", 26, 7], ["aarch64-linux", 27, 7], ["armv7l-linux", 28, 7], ["aarch64-darwin", 29, 7]], [["url", 38, 5], ["stripRoot", 39, 5], ["hash", 40, 13]], [["updateScript", 54, 12]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5], ["sourceProvenance", 79, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["installPhase", 43, 3], ["passthru", 54, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, writeShellScript: false, "nix-update": false, jq: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 17, 7], ["aarch64-linux", 18, 7], ["armv7l-linux", 19, 7], ["aarch64-darwin", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 26, 7], ["aarch64-linux", 27, 7], ["armv7l-linux", 28, 7], ["aarch64-darwin", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 38, 5], ["stripRoot", 39, 5], ["hash", 40, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5], ["sourceProvenance", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["installPhase", 43, 3], ["passthru", 54, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,25 +18,25 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)));
   const plat = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "linux_amd64",
     "aarch64-linux": "linux_arm64",
     "armv7l-linux": "linux_armv7",
     "aarch64-darwin": "darwin_arm64",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const hash = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x86_64-linux": "sha256-eO+Pg2ndcs56871NrFOPWy9gFoKZ9poDcDX/IKpIDuw=",
     "aarch64-linux": "sha256-wTQVPXIegws7xXiWELbvwawKraQeEwD6g7ZgmaKaouw=",
     "armv7l-linux": "sha256-JJh5GttKnkIbafl0IoiMcQeEbjIBX2IRB9+jq9c+deE=",
     "aarch64-darwin": "sha256-8X1mVkD4stRy9AFHc9h0HUz07WQ48zL+IXk2i9dFjKQ=",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "zrok",
       version: "2.0.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/openziti/zrok/releases/download/v${nix.sel(finalAttrs, "version")}/zrok_${nix.sel(finalAttrs, "version")}_${plat}.tar.gz`),
           stripRoot: false,
           hash: hash,
@@ -54,7 +49,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-script", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} $UPDATE_NIX_ATTR_PATH --system x86_64-linux
 latestVersion=$(nix eval --raw --file . $UPDATE_NIX_ATTR_PATH.version)
 if [[ "$latestVersion" == "$UPDATE_NIX_OLD_VERSION" ]]; then
@@ -68,7 +63,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Geo-scale, next-generation sharing platform built on top of OpenZiti",
         homepage: "https://zrok.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

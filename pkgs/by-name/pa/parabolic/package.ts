@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["updateScript", 89, 12]], [["description", 92, 5], ["longDescription", 93, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["mainProgram", 110, 5], ["platforms", 111, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 70, 3], ["preFixup", 79, 3], ["passthru", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gettext: false, itstool: false, ninja: false, "yelp-tools": false, "desktop-file-utils": false, "pkg-config": false, libnick: false, boost: false, glib: false, "shared-mime-info": false, gtk4: false, libadwaita: false, wrapGAppsHook4: false, libxmlxx5: false, "blueprint-compiler": false, "yt-dlp": false, ffmpeg: false, aria2: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 89, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 92, 5], ["longDescription", 93, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["mainProgram", 110, 5], ["platforms", 111, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 70, 3], ["preFixup", 79, 3], ["passthru", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const aria2 = nix.arg($, "aria2");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "parabolic",
       version: "2025.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NickvisionApps",
           repo: "Parabolic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,11 +59,11 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [aria2, ffmpeg, yt_dlp]))})
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Graphical frontend for yt-dlp to download video and audio",
         longDescription: "Parabolic is a user-friendly adwaita application for `yt-dlp`\nthat supports many features including but not limited to:\n\n- Downloading and converting videos and audio using ffmpeg.\n- Supporting multiple codecs.\n- Offering YouTube sponsorblock support.\n- Running multiple downloads at a time.\n- Downloading metadata and video subtitles.\n- Allowing the use of `aria2` for parallel downloads.\n- Offering a graphical keyring to manage account credentials.\n",
         homepage: "https://github.com/NickvisionApps/Parabolic",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["hash", 16, 5], ["tag", 17, 5]], [["homepage", 23, 5], ["description", 24, 5], ["mainProgram", 25, 5], ["platforms", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["pname", 9, 3], ["version", 10, 3], ["releaseType", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, rebar3Relx: false, erlang: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["hash", 16, 5], ["tag", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 23, 5], ["description", 24, 5], ["mainProgram", 25, 5], ["platforms", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["releaseType", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.0";
       const releaseType = "escript";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "WhatsApp",
           repo: "erlfmt",
           hash: "sha256-0guZxRStVHnUCh9+tmP+/FzgZF+TUgB2oCZu+P4FJBs=",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const buildInputs = nix.thunk(() => [erlang]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/WhatsApp/erlfmt",
         description: "Automated code formatter for Erlang",
         mainProgram: "erlfmt",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "dlesl"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, releaseType, src, buildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, releaseType, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

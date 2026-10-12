@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 23, 5], ["license", 24, 5], ["platforms", 25, 5]], [["pname", 8, 3], ["buildInputs", 10, 3], ["installPhase", 17, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { mediastreamer2: false, openh264: false, lib: false, mkLinphoneDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 23, 5], ["license", 24, 5], ["platforms", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["buildInputs", 10, 3], ["installPhase", 17, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const mkLinphoneDerivation = nix.arg($, "mkLinphoneDerivation");
   return nix.app(mkLinphoneDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "msopenh264",
       buildInputs: nix.thunk(() => [mediastreamer2, openh264]),
       installPhase: "mkdir -p $out/lib/mediastreamer/plugins\ncp lib/mediastreamer2/plugins/libmsopenh264.so $out/lib/mediastreamer/plugins/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "H.264 encoder/decoder plugin for mediastreamer2. Part of the Linphone project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

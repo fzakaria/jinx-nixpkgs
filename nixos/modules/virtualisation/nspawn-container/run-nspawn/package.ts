@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mainProgram", 52, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 19, 3], ["build-system", 26, 3], ["propagatedBuildInputs", 30, 3], ["doCheck", 35, 3], ["nativeCheckInputs", 37, 3], ["checkPhase", 42, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { buildPythonApplication: false, e2fsprogs: false, iproute2: false, lib: false, ruff: false, setuptools: false, systemd: false, ty: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mainProgram", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 19, 3], ["build-system", 26, 3], ["propagatedBuildInputs", 30, 3], ["doCheck", 35, 3], ["nativeCheckInputs", 37, 3], ["checkPhase", 42, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const ty = nix.arg($, "ty");
   return nix.app(buildPythonApplication, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "run-nspawn",
       version: "1.0",
       pyproject: true,
@@ -32,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [ruff, ty]),
       checkPhase: "echo -e \"\\x1b[32m## run ty\\x1b[0m\"\nty check --error-on-warning run_nspawn\necho -e \"\\x1b[32m## run ruff check\\x1b[0m\"\nruff check .\necho -e \"\\x1b[32m## run ruff format\\x1b[0m\"\nruff format --check --diff .\n",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "run-nspawn" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "run-nspawn" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

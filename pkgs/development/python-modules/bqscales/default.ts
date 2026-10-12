@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["src", 41, 26], ["missingHashes", 41, 30], ["hash", 42, 5]], [["SKIP_JUPYTER_BUILDER", 71, 7]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["missingHashes", 38, 3], ["yarnOfflineCache", 40, 3], ["nativeBuildInputs", 45, 3], ["preBuild", 51, 3], ["build-system", 55, 3], ["dependencies", 64, 3], ["env", 71, 3], ["doCheck", 74, 3], ["pythonImportsCheck", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, nodejs: false, "yarn-berry_3": false, hatch: false, hatchling: false, "hatch-build-scripts": false, "hatch-jupyter-builder": false, "hatch-nodejs-version": false, jupyterlab: false, ipywidgets: false, numpy: false, traitlets: false, traittypes: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 41, 26], ["missingHashes", 41, 30], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["SKIP_JUPYTER_BUILDER", 71, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["missingHashes", 38, 3], ["yarnOfflineCache", 40, 3], ["nativeBuildInputs", 45, 3], ["preBuild", 51, 3], ["build-system", 55, 3], ["dependencies", 64, 3], ["env", 71, 3], ["doCheck", 74, 3], ["pythonImportsCheck", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const traitlets = nix.arg($, "traitlets");
   const traittypes = nix.arg($, "traittypes");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bqscales",
       version: "0.3.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bqplot",
           repo: "bqscales",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_3, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-4Y5dRFwOyfHOzrdw2/epK3mN/+xrz+ccG86KP9axxjI=",
@@ -61,11 +57,11 @@ export default nix.lambda((args) => (() => {
         jupyterlab,
       ]),
       dependencies: nix.thunk(() => [ipywidgets, numpy, traitlets, traittypes]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, SKIP_JUPYTER_BUILDER: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], SKIP_JUPYTER_BUILDER: 1n })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["bqscales"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Grammar of Graphics scales for bqplot and other Jupyter widgets libraries",
         homepage: "https://github.com/bqplot/bqscales",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

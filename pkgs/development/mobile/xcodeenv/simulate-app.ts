@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/simulate-app.nix", [[["name", 21, 3], ["buildCommand", 22, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, composeXcodeWrapper: false }, ellipsis: false };
 const formals$2 = { args: { name: false, app: true, bundleId: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/simulate-app.nix", [["name", 21, 3], ["buildCommand", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
     const xcodewrapperArgs = nix.thunk(() => nix.builtins.intersectAttrs(nix.thunk(() => nix.builtins.functionArgs(composeXcodeWrapper)), args_2));
     const xcodewrapper = nix.thunk(() => nix.app(composeXcodeWrapper, xcodewrapperArgs));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => [" "]), nix.thunk(() => [""]), name)),
         buildCommand: nix.thunk(() => nix.str`mkdir -p $out/bin
 cat > $out/bin/run-test-simulator << "EOF"

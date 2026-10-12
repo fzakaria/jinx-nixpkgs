@@ -2,83 +2,67 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/postgrest.nix", [[["maintainers", 6, 5]], [["enable", 18, 9], ["initialScript", 19, 9]], [["dbname", 33, 18]], [["admin-server-port", 31, 11], ["db-anon-role", 32, 11], ["db-uri", 33, 11]], [["enable", 29, 9], ["settings", 30, 9]], [["postgresql", 17, 16], ["postgrest", 28, 16]], [["enableTCPIP", 38, 29]], [["host", 42, 27], ["user", 43, 27]], [["db-uri", 42, 20], ["server-port", 44, 20], ["server-unix-socket", 45, 20]], [["pgpassFile", 40, 11], ["jwtSecretFile", 41, 11], ["settings", 42, 11]], [["postgresql", 38, 18], ["postgrest", 39, 18]], [["services", 38, 9]], [["configuration", 37, 34]], [["withSecrets", 37, 22]], [["services", 17, 7], ["specialisation", 37, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["extraPythonPackages", 50, 3], ["testScript", 52, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/postgrest.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/postgrest.nix", [["enable", 18, 9], ["initialScript", 19, 9]]);
-const pos$3 = nix.positions(here + "/postgrest.nix", [["dbname", 33, 18]]);
-const pos$4 = nix.positions(here + "/postgrest.nix", [["admin-server-port", 31, 11], ["db-anon-role", 32, 11], ["db-uri", 33, 11]]);
-const pos$5 = nix.positions(here + "/postgrest.nix", [["enable", 29, 9], ["settings", 30, 9]]);
-const pos$6 = nix.positions(here + "/postgrest.nix", [["postgresql", 17, 16], ["postgrest", 28, 16]]);
-const pos$7 = nix.positions(here + "/postgrest.nix", [["enableTCPIP", 38, 29]]);
-const pos$8 = nix.positions(here + "/postgrest.nix", [["host", 42, 27], ["user", 43, 27]]);
-const pos$9 = nix.positions(here + "/postgrest.nix", [["db-uri", 42, 20], ["server-port", 44, 20], ["server-unix-socket", 45, 20]]);
-const pos$10 = nix.positions(here + "/postgrest.nix", [["pgpassFile", 40, 11], ["jwtSecretFile", 41, 11], ["settings", 42, 11]]);
-const pos$11 = nix.positions(here + "/postgrest.nix", [["postgresql", 38, 18], ["postgrest", 39, 18]]);
-const pos$12 = nix.positions(here + "/postgrest.nix", [["services", 38, 9]]);
-const pos$13 = nix.positions(here + "/postgrest.nix", [["configuration", 37, 34]]);
-const pos$14 = nix.positions(here + "/postgrest.nix", [["withSecrets", 37, 22]]);
-const pos$15 = nix.positions(here + "/postgrest.nix", [["services", 17, 7], ["specialisation", 37, 7]]);
-const pos$16 = nix.positions(here + "/postgrest.nix", [["machine", 9, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$17 = nix.positions(here + "/postgrest.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["extraPythonPackages", 50, 3], ["testScript", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "postgrest",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "wolfgangwalther"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "init.sql", "CREATE ROLE postgrest LOGIN NOINHERIT;\nCREATE ROLE anon ROLE postgrest;\n\nCREATE ROLE postgrest_with_password LOGIN NOINHERIT PASSWORD 'password';\nCREATE ROLE authenticated ROLE postgrest_with_password;\n")),
             })),
             postgrest: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 "admin-server-port": 3001n,
                 "db-anon-role": "anon",
-                "db-uri": nix.thunk(() => ({ [nix.POS]: pos$3, dbname: "postgres" })),
+                "db-uri": nix.thunk(() => ({ [nix.POS]: $pos[2], dbname: "postgres" })),
               })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             withSecrets: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
-                  postgresql: nix.thunk(() => ({ [nix.POS]: pos$7, enableTCPIP: true })),
+                  [nix.POS]: $pos[10],
+                  postgresql: nix.thunk(() => ({ [nix.POS]: $pos[6], enableTCPIP: true })),
                   postgrest: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     pgpassFile: "/run/secrets/.pgpass",
                     jwtSecretFile: "/run/secrets/jwt.secret",
                     settings: nix.thunk(() => ({
-                      [nix.POS]: pos$9,
-                      "db-uri": nix.thunk(() => ({ [nix.POS]: pos$8, host: "localhost", user: "postgrest_with_password" })),
+                      [nix.POS]: $pos[8],
+                      "db-uri": nix.thunk(() => ({ [nix.POS]: $pos[7], host: "localhost", user: "postgrest_with_password" })),
                       "server-port": 3000n,
                       "server-unix-socket": null,
                     })),

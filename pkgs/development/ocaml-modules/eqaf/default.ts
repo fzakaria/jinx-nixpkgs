@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["maintainers", 21, 5]], [["minimalOCamlVersion", 8, 3], ["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["maintainers", 21, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["minimalOCamlVersion", 8, 3], ["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       minimalOCamlVersion: "4.07",
       pname: "eqaf",
       version: "0.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/eqaf/releases/download/v${nix.sel(finalAttrs, "version")}/eqaf-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-Z9E2nFfE0tFKENAmMtReNVIkq+uYrsCJecC65YQwku4=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Constant time equal function to avoid timing attacks in OCaml",
         homepage: "https://github.com/mirage/eqaf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

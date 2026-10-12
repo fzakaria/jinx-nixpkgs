@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 7], ["hash", 24, 7]], [["url", 27, 7], ["hash", 28, 7]], [["url", 32, 7], ["hash", 33, 7]], [["x86_64-linux", 22, 5], ["aarch64-linux", 26, 5], ["aarch64-darwin", 30, 5]], [["src", 41, 64]], [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 61, 5], ["sourceProvenance", 62, 5], ["mainProgram", 63, 5]], [["name", 69, 7], ["runtimeInputs", 70, 7], ["text", 74, 7]], [["sources", 67, 13], ["updateScript", 68, 5]], [["pname", 88, 17], ["version", 88, 23], ["src", 89, 9], ["postExtract", 91, 9]], [["pname", 115, 9], ["version", 116, 9], ["meta", 117, 9], ["passthru", 118, 9], ["src", 121, 7], ["extraPkgs", 123, 7], ["extraInstallCommands", 125, 7]], [["pname", 140, 7], ["version", 141, 7], ["src", 142, 7], ["meta", 143, 7], ["passthru", 144, 7], ["nativeBuildInputs", 147, 5], ["sourceRoot", 152, 5], ["installPhase", 154, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, runCommand: false, fetchurl: false, appimageTools: false, makeWrapper: false, asar: false, unzip: false, writeShellApplication: false, curl: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 22, 5], ["aarch64-linux", 26, 5], ["aarch64-darwin", 30, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["src", 41, 64]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 61, 5], ["sourceProvenance", 62, 5], ["mainProgram", 63, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 69, 7], ["runtimeInputs", 70, 7], ["text", 74, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["sources", 67, 13], ["updateScript", 68, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 88, 17], ["version", 88, 23], ["src", 89, 9], ["postExtract", 91, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 115, 9], ["version", 116, 9], ["meta", 117, 9], ["passthru", 118, 9], ["src", 121, 7], ["extraPkgs", 123, 7], ["extraInstallCommands", 125, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 140, 7], ["version", 141, 7], ["src", 142, 7], ["meta", 143, 7], ["passthru", 144, 7], ["nativeBuildInputs", 147, 5], ["sourceRoot", 152, 5], ["installPhase", 154, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,27 +24,27 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://beeper-desktop.download.beeper.com/builds/Beeper-${version}-x86_64.AppImage`),
         hash: "sha256-j6HTTqU7+z8AJ20hYgia6wOH0/n3gxrUocCpMPmgQvQ=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://beeper-desktop.download.beeper.com/builds/Beeper-${version}-arm64.AppImage`),
         hash: "sha256-kWlKMZdicJ+DhGgYXCTqvSCYinI9QD0pJD4nb4yYdpI=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://beeper-desktop.download.beeper.com/builds/Beeper-${version}-arm64-mac.zip`),
         hash: "sha256-79T3pPLEt+tQQ2xoC3XBAI/xpxMdnY11qSmVA2VFiVw=",
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`beeper is not supported on ${system}`)), nix.key(nix.force(system))));
-  const linuxSrc = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`Beeper-${version}-appimage`), nix.thunk(() => ({ [nix.POS]: pos$5, src: src })), "cp $src $out\nchmod +w $out\nprintf 'AI\\x02' | dd of=$out bs=1 seek=8 conv=notrunc status=none\n"));
+  const linuxSrc = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`Beeper-${version}-appimage`), nix.thunk(() => ({ [nix.POS]: $pos[4], src: src })), "cp $src $out\nchmod +w $out\nprintf 'AI\\x02' | dd of=$out bs=1 seek=8 conv=notrunc status=none\n"));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     description: "Universal chat app",
     longDescription: "Beeper is a universal chat app. With Beeper, you can send\nand receive messages to friends, family and colleagues on\nmany different chat networks.\n",
     homepage: "https://beeper.com",
@@ -75,10 +65,10 @@ export default nix.lambda((args) => (() => {
     mainProgram: "beeper",
   }));
   const passthru = nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     sources: sources,
     updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           name: "update-beeper",
           runtimeInputs: nix.thunk(() => [curl, common_updater_scripts]),
           text: nix.thunk(() => nix.str`set -o errexit
@@ -92,7 +82,7 @@ done
   }));
   const linux = nix.thunk(() => (() => {
     const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: pname,
         version: version,
         src: linuxSrc,
@@ -117,7 +107,7 @@ substituteInPlace $appRoot/build/main/main-entry-*.mjs \\
 `),
       }))));
     return nix.app(nix.sel(appimageTools, "wrapAppImage"), nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname: pname,
         version: version,
         meta: meta,
@@ -137,7 +127,7 @@ wrapProgram $out/bin/beeper \\
       })));
   })());
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: pname,
       version: version,
       src: src,

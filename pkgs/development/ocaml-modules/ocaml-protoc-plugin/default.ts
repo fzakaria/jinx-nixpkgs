@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["longDescription", 46, 5], ["maintainers", 52, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["doCheck", 39, 3], ["nativeCheckInputs", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDunePackage: false, "pkg-config": false, protobuf: false, zarith: false, ppx_deriving: false, ppx_deriving_yojson: false, re: false, "dune-site": false, ppx_expect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["longDescription", 46, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["doCheck", 39, 3], ["nativeCheckInputs", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const dune_site = nix.arg($, "dune-site");
   const ppx_expect = nix.arg($, "ppx_expect");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ocaml-protoc-plugin",
       version: "4.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "issuu",
           repo: "ocaml-protoc-plugin",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [protobuf]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Maps google protobuf compiler to Ocaml types",
         homepage: "https://github.com/issuu/ocaml-protoc-plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

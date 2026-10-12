@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["__structuredAttrs", 19, 5], ["strictDeps", 20, 5], ["name", 22, 13], ["nativeBuildInputs", 24, 5], ["valuesArray", 32, 13], ["valuesMap", 32, 25], ["expectedArray", 33, 13], ["expectedMap", 33, 27], ["script", 35, 13], ["buildCommandPath", 37, 5]]]);
 const formals$1 = { args: { arrayUtilities: false, lib: false, stdenvNoCC: false }, ellipsis: false };
 const formals$2 = { args: { name: false, valuesArray: true, valuesMap: true, expectedArray: true, expectedMap: true, script: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["__structuredAttrs", 19, 5], ["strictDeps", 20, 5], ["name", 22, 13], ["nativeBuildInputs", 24, 5], ["valuesArray", 32, 13], ["valuesMap", 32, 25], ["expectedArray", 33, 13], ["expectedMap", 33, 27], ["script", 35, 13], ["buildCommandPath", 37, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const script = nix.arg($_1, "script");
       nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (nix.asBool(!nix.eq(expectedArray, null)) || nix.asBool(!nix.eq(expectedMap, null)))), "testEqualArrayOrMap: at least one of 'expectedArray' or 'expectedMap' must be provided"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/testers/testEqualArrayOrMap/default.nix:15:3");
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           __structuredAttrs: true,
           strictDeps: true,
           name: name,

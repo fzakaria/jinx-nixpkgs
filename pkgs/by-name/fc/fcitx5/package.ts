@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 43, 5], ["hash", 44, 5]], [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5], ["fetchSubmodules", 56, 5]], [["fcitx5", 111, 28]], [["updateScript", 109, 5], ["tests", 110, 5]], [["description", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["mainProgram", 119, 5], ["maintainers", 120, 5], ["platforms", 121, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["prePatch", 59, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 70, 3], ["cmakeFlags", 101, 3], ["strictDeps", 105, 3], ["__structuredAttrs", 106, 3], ["passthru", 108, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, "pkg-config": false, buildPackages: false, cmake: false, kdePackages: false, "wayland-scanner": false, cairo: false, pango: false, expat: false, fribidi: false, wayland: false, systemd: false, "wayland-protocols": false, nlohmann_json: false, isocodes: false, xkeyboard_config: false, enchant: false, "gdk-pixbuf": false, libGL: false, libuuid: false, libselinux: false, libxdmcp: false, libsepol: false, libxkbcommon: false, libthai: false, libdatrie: false, "libxcb-keysyms": false, "libxcb-util": false, "libxcb-wm": false, "xcb-imdkit": false, libxkbfile: false, nixosTests: false, gettext: false, librsvg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5], ["fetchSubmodules", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["fcitx5", 111, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 109, 5], ["tests", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["mainProgram", 119, 5], ["maintainers", 120, 5], ["platforms", 121, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["prePatch", 59, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 70, 3], ["cmakeFlags", 101, 3], ["strictDeps", 105, 3], ["__structuredAttrs", 106, 3], ["passthru", 108, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,16 +46,16 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const enDictVer = "20121020";
   const enDict = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://download.fcitx-im.org/data/en_dict-${enDictVer}.tar.gz`),
       hash: "sha256-xEpdeEeSXuqeTS0EdI1ELNKN2SmaC1cu99kerE9abOs=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "fcitx5",
       version: "5.1.23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "fcitx",
           repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -106,12 +101,12 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.path(here, "./update.py"),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, fcitx5: nix.thunk(() => nix.attr(nixosTests, "fcitx5")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], fcitx5: nix.thunk(() => nix.attr(nixosTests, "fcitx5")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Next generation of fcitx",
         homepage: "https://github.com/fcitx/fcitx5",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["rev-prefix", 51, 33]], [["xrdp-with-audio-pulseaudio", 53, 28]], [["updateScript", 51, 5], ["tests", 52, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["sourceProvenance", 63, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["preConfigure", 23, 3], ["installPhase", 31, 3], ["nativeBuildInputs", 44, 3], ["passthru", 50, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, pulseaudio: false, autoreconfHook: false, "pkg-config": false, nixosTests: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 51, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["xrdp-with-audio-pulseaudio", 53, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 51, 5], ["tests", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["sourceProvenance", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["preConfigure", 23, 3], ["installPhase", 31, 3], ["nativeBuildInputs", 44, 3], ["passthru", 50, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pulseaudio-module-xrdp";
       const version = "0.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "neutrinolabs",
           repo: "pulseaudio-module-xrdp",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -49,15 +44,15 @@ runHook postInstall
 `);
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, pkg_config, nix.thunk(() => nix.sel(pulseaudio, "dev"))]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "xrdp-with-audio-pulseaudio": nix.thunk(() => nix.attr(nixosTests, "xrdp-with-audio-pulseaudio")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "xrdp sink/source pulseaudio modules",
         homepage: "https://github.com/neutrinolabs/pulseaudio-module-xrdp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -66,7 +61,7 @@ runHook postInstall
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "fromSource"))]),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

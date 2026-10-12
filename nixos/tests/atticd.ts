@@ -2,25 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/atticd.nix", [[["enable", 18, 11]], [["enable", 21, 9], ["environmentFile", 23, 17]], [["atticd", 20, 16]], [["systemPackages", 26, 19]], [["nix", 18, 7], ["services", 20, 7], ["environment", 26, 7]], [["enable", 32, 11]], [["access_key_id", 44, 15], ["secret_access_key", 45, 15]], [["type", 38, 13], ["bucket", 39, 13], ["region", 40, 13], ["endpoint", 41, 13], ["credentials", 43, 13]], [["storage", 37, 11]], [["enable", 35, 9], ["settings", 36, 9], ["environmentFile", 50, 17]], [["s3_region", 63, 13], ["api_bind_addr", 64, 13]], [["rpc_bind_addr", 57, 11], ["rpc_public_addr", 58, 11], ["rpc_secret", 59, 11], ["replication_factor", 60, 11], ["s3_api", 62, 11]], [["enable", 54, 9], ["package", 55, 9], ["settings", 56, 9]], [["atticd", 34, 16], ["garage", 53, 16]], [["systemPackages", 69, 19]], [["nix", 32, 7], ["services", 34, 7], ["environment", 69, 7]], [["local", 17, 5], ["s3", 31, 5]], [["name", 14, 3], ["nodes", 16, 3], ["testScript", 75, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/atticd.nix", [["enable", 18, 11]]);
-const pos$2 = nix.positions(here + "/atticd.nix", [["enable", 21, 9], ["environmentFile", 23, 17]]);
-const pos$3 = nix.positions(here + "/atticd.nix", [["atticd", 20, 16]]);
-const pos$4 = nix.positions(here + "/atticd.nix", [["systemPackages", 26, 19]]);
-const pos$5 = nix.positions(here + "/atticd.nix", [["nix", 18, 7], ["services", 20, 7], ["environment", 26, 7]]);
-const pos$6 = nix.positions(here + "/atticd.nix", [["enable", 32, 11]]);
-const pos$7 = nix.positions(here + "/atticd.nix", [["access_key_id", 44, 15], ["secret_access_key", 45, 15]]);
-const pos$8 = nix.positions(here + "/atticd.nix", [["type", 38, 13], ["bucket", 39, 13], ["region", 40, 13], ["endpoint", 41, 13], ["credentials", 43, 13]]);
-const pos$9 = nix.positions(here + "/atticd.nix", [["storage", 37, 11]]);
-const pos$10 = nix.positions(here + "/atticd.nix", [["enable", 35, 9], ["settings", 36, 9], ["environmentFile", 50, 17]]);
-const pos$11 = nix.positions(here + "/atticd.nix", [["s3_region", 63, 13], ["api_bind_addr", 64, 13]]);
-const pos$12 = nix.positions(here + "/atticd.nix", [["rpc_bind_addr", 57, 11], ["rpc_public_addr", 58, 11], ["rpc_secret", 59, 11], ["replication_factor", 60, 11], ["s3_api", 62, 11]]);
-const pos$13 = nix.positions(here + "/atticd.nix", [["enable", 54, 9], ["package", 55, 9], ["settings", 56, 9]]);
-const pos$14 = nix.positions(here + "/atticd.nix", [["atticd", 34, 16], ["garage", 53, 16]]);
-const pos$15 = nix.positions(here + "/atticd.nix", [["systemPackages", 69, 19]]);
-const pos$16 = nix.positions(here + "/atticd.nix", [["nix", 32, 7], ["services", 34, 7], ["environment", 69, 7]]);
-const pos$17 = nix.positions(here + "/atticd.nix", [["local", 17, 5], ["s3", 31, 5]]);
-const pos$18 = nix.positions(here + "/atticd.nix", [["name", 14, 3], ["nodes", 16, 3], ["testScript", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,59 +15,59 @@ export default nix.lambda((args) => (() => {
   const environmentFile = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "atticd-env", nix.thunk(() => ({})), nix.thunk(() => nix.str`echo ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64="$(${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "openssl")))} genrsa -traditional 4096 | ${nix.sel(pkgs, "coreutils")}/bin/base64 -w0)" > $out
 `)));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "atticd",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       local: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        nix: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+        [nix.POS]: $pos[4],
+        nix: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          atticd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, environmentFile: environmentFile })),
+          [nix.POS]: $pos[2],
+          atticd: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, environmentFile: environmentFile })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "attic-client"))]),
         })),
       })),
       s3: nix.thunk(() => ({
-        [nix.POS]: pos$16,
-        nix: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+        [nix.POS]: $pos[15],
+        nix: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           atticd: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               storage: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 type: "s3",
                 bucket: "attic",
                 region: "garage",
                 endpoint: nix.thunk(() => nix.str`http://${s3Addr}`),
-                credentials: nix.thunk(() => ({ [nix.POS]: pos$7, access_key_id: accessKey, secret_access_key: secretKey })),
+                credentials: nix.thunk(() => ({ [nix.POS]: $pos[6], access_key_id: accessKey, secret_access_key: secretKey })),
               })),
             })),
             environmentFile: environmentFile,
           })),
           garage: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             enable: true,
             package: nix.thunk(() => nix.sel(pkgs, "garage_2")),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               rpc_bind_addr: "127.0.0.1:3901",
               rpc_public_addr: "127.0.0.1:3901",
               rpc_secret: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
               replication_factor: 1n,
-              s3_api: nix.thunk(() => ({ [nix.POS]: pos$11, s3_region: "garage", api_bind_addr: s3Addr })),
+              s3_api: nix.thunk(() => ({ [nix.POS]: $pos[10], s3_region: "garage", api_bind_addr: s3Addr })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "attic-client"))]),
         })),
       })),

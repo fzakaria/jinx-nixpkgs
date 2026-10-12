@@ -2,19 +2,18 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/release-r.nix", [[["supportedSystems", 15, 47]], [["rPackages", 23, 3]]]);
 const formals$1 = { args: { supportedSystems: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/release-r.nix", [["supportedSystems", 15, 47]]);
-const pos$2 = nix.positions(here + "/release-r.nix", [["rPackages", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const supportedSystems = nix.argOr($, "supportedSystems", () => ["x86_64-linux", "aarch64-linux"]);
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, supportedSystems: supportedSystems }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], supportedSystems: supportedSystems }))));
   const mapTestOn = nix.thunk(() => nix.attr(from, "mapTestOn"));
   const packagePlatforms = nix.thunk(() => nix.attr(from, "packagePlatforms"));
   const pkgs = nix.thunk(() => nix.attr(from, "pkgs"));
   return nix.app(mapTestOn, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       rPackages: nix.thunk(() => nix.app(packagePlatforms, nix.thunk(() => nix.sel(pkgs, "rPackages")))),
     })));
 })(), formals$1);

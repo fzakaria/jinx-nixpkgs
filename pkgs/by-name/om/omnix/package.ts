@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["owner", 40, 7], ["repo", 41, 7], ["rev", 42, 7], ["hash", 43, 7]], [["owner", 48, 11], ["repo", 49, 11], ["rev", 50, 11], ["hash", 51, 11]], [["owner", 54, 11], ["repo", 55, 11], ["rev", 56, 11], ["hash", 57, 11]], [["owner", 60, 11], ["repo", 61, 11], ["rev", 62, 11], ["hash", 63, 11]], [["owner", 66, 11], ["repo", 67, 11], ["rev", 68, 11], ["hash", 69, 11]], [["x86_64-linux", 74, 11], ["aarch64-linux", 75, 11], ["x86_64-darwin", 76, 11], ["aarch64-darwin", 77, 11]], [["owner", 81, 7], ["repo", 82, 7], ["rev", 83, 7], ["hash", 84, 7]], [["owner", 87, 7], ["repo", 88, 7], ["rev", 89, 7], ["hash", 90, 7]], [["owner", 93, 7], ["repo", 94, 7], ["rev", 95, 7], ["hash", 96, 7]], [["OMNIX_SOURCE", 36, 5], ["CACHIX_BIN", 37, 5], ["OM_INIT_REGISTRY", 38, 5], ["DEVOUR_FLAKE", 39, 5], ["NIX_SYSTEMS", 45, 5], ["FALSE_FLAKE", 80, 5], ["TRUE_FLAKE", 86, 5], ["INSPECT_FLAKE", 92, 5], ["DEFAULT_FLAKE_SCHEMAS", 98, 5], ["FLAKE_METADATA", 99, 5], ["FLAKE_ADDSTRINGCONTEXT", 100, 5]], [["updateScript", 120, 5]], [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["maintainers", 127, 5], ["license", 130, 5], ["mainProgram", 131, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["env", 35, 3], ["doCheck", 104, 3], ["postInstall", 106, 3], ["nativeInstallCheckInputs", 113, 3], ["versionCheckProgram", 116, 3], ["doInstallCheck", 117, 3], ["passthru", 119, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, installShellFiles: false, openssl: false, cachix: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 40, 7], ["repo", 41, 7], ["rev", 42, 7], ["hash", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 48, 11], ["repo", 49, 11], ["rev", 50, 11], ["hash", 51, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 54, 11], ["repo", 55, 11], ["rev", 56, 11], ["hash", 57, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 60, 11], ["repo", 61, 11], ["rev", 62, 11], ["hash", 63, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 66, 11], ["repo", 67, 11], ["rev", 68, 11], ["hash", 69, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["x86_64-linux", 74, 11], ["aarch64-linux", 75, 11], ["x86_64-darwin", 76, 11], ["aarch64-darwin", 77, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 81, 7], ["repo", 82, 7], ["rev", 83, 7], ["hash", 84, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["owner", 87, 7], ["repo", 88, 7], ["rev", 89, 7], ["hash", 90, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["owner", 93, 7], ["repo", 94, 7], ["rev", 95, 7], ["hash", 96, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["OMNIX_SOURCE", 36, 5], ["CACHIX_BIN", 37, 5], ["OM_INIT_REGISTRY", 38, 5], ["DEVOUR_FLAKE", 39, 5], ["NIX_SYSTEMS", 45, 5], ["FALSE_FLAKE", 80, 5], ["TRUE_FLAKE", 86, 5], ["INSPECT_FLAKE", 92, 5], ["DEFAULT_FLAKE_SCHEMAS", 98, 5], ["FLAKE_METADATA", 99, 5], ["FLAKE_ADDSTRINGCONTEXT", 100, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["updateScript", 120, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["maintainers", 127, 5], ["license", 130, 5], ["mainProgram", 131, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["env", 35, 3], ["doCheck", 104, 3], ["postInstall", 106, 3], ["nativeInstallCheckInputs", 113, 3], ["versionCheckProgram", 116, 3], ["doInstallCheck", 117, 3], ["passthru", 119, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: "omnix",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "juspay",
           repo: "omnix",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,12 +31,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         OMNIX_SOURCE: nix.thunk(() => nix.sel(finalAttrs, "src")),
         CACHIX_BIN: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), cachix)),
         OM_INIT_REGISTRY: nix.thunk(() => nix.str`path:${nix.sel(finalAttrs, "src")}/crates/omnix-init/registry`),
         DEVOUR_FLAKE: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "srid",
             repo: "devour-flake",
             rev: "9fe4db872c107ea217c13b24527b68d9e4a4c01b",
@@ -57,35 +44,35 @@ export default nix.lambda((args) => (() => {
           })))),
         NIX_SYSTEMS: nix.thunk(() => (() => {
           const x86_64_linux = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               owner: "nix-systems",
               repo: "x86_64-linux",
               rev: "2ecfcac5e15790ba6ce360ceccddb15ad16d08a8",
               hash: "sha256-Gtqg8b/v49BFDpDetjclCYXm8mAnTrUzR0JnE2nv5aw=",
             }))));
           const aarch64_linux = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               owner: "nix-systems",
               repo: "aarch64-linux",
               rev: "aa1ce1b64c822dff925d63d3e771113f71ada1bb",
               hash: "sha256-1Zp7TRYLXj4P5FLhQ8jBChrgAmQxR3iTypmWf9EFTnc=",
             }))));
           const x86_64_darwin = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               owner: "nix-systems",
               repo: "x86_64-darwin",
               rev: "db0463cce4cd60fb791f33a83d29a1ed53edab9b",
               hash: "sha256-+xT9B1ZbhMg/zpJqd00S06UCZb/A2URW9bqqrZ/JTOg=",
             }))));
           const aarch64_darwin = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               owner: "nix-systems",
               repo: "aarch64-darwin",
               rev: "75e6c6912484d28ebba5769b794ffa4aff653ba2",
               hash: "sha256-PHVNQ7y0EQYzujQRYoRdb96K0m1KSeAjSrbz2b75S6Q=",
             }))));
           return nix.builtins.toJSON(nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               "x86_64-linux": x86_64_linux,
               "aarch64-linux": aarch64_linux,
               "x86_64-darwin": x86_64_darwin,
@@ -93,21 +80,21 @@ export default nix.lambda((args) => (() => {
             })));
         })()),
         FALSE_FLAKE: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             owner: "boolean-option",
             repo: "false",
             rev: "d06b4794a134686c70a1325df88a6e6768c6b212",
             hash: "sha256-vLy8GQr0noEcoA+jX24FgUVBA/poV36zDWAUChN3hIY=",
           })))),
         TRUE_FLAKE: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             owner: "boolean-option",
             repo: "true",
             rev: "6ecb49143ca31b140a5273f1575746ba93c3f698",
             hash: "sha256-L9eyTL7njtPBUYmZRYFKCzQFDgua9U9oE7UwCzjZfl8=",
           })))),
         INSPECT_FLAKE: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             owner: "juspay",
             repo: "inspect",
             rev: "e82e65949d2ba5283865609b8728c50ebe7573e3",
@@ -123,11 +110,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/om`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "Nix companion to improve developer experience",
         homepage: "https://omnix.page",
         changelog: nix.thunk(() => nix.str`https://omnix.page/history.html#${nix.sel(finalAttrs, "version")}`),

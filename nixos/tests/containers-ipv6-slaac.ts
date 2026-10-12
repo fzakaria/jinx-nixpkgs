@@ -2,37 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containers-ipv6-slaac.nix", [[["maintainers", 13, 5]], [["useNetworkd", 21, 18], ["useDHCP", 22, 18]], [["Name", 25, 9], ["Kind", 26, 9], ["MACAddress", 27, 9]], [["netdevConfig", 24, 37]], [["br0", 24, 31]], [["IPv6SendRA", 34, 11], ["IPv6PrivacyExtensions", 39, 11]], [["Managed", 44, 11], ["RouterLifetimeSec", 48, 11], ["UplinkInterface", 49, 11]], [["Prefix", 55, 13], ["AddressAutoconfiguration", 56, 13], ["OnLink", 60, 13], ["Assign", 63, 13], ["Token", 65, 13]], [["Route", 73, 13], ["LifetimeSec", 74, 13]], [["name", 31, 9], ["networkConfig", 33, 9], ["ipv6SendRAConfig", 42, 9], ["ipv6Prefixes", 52, 9], ["ipv6RoutePrefixes", 71, 9]], [["br0", 30, 32]], [["netdevs", 24, 23], ["networks", 30, 23]], [["network", 24, 15]], [["allowedTCPPorts", 106, 31]], [["useNetworkd", 87, 22], ["useHostResolvConf", 88, 22], ["firewall", 106, 22]], [["IPv6AcceptRA", 100, 15], ["IPv6PrivacyExtensions", 101, 15]], [["name", 91, 13], ["DHCP", 92, 13], ["networkConfig", 99, 13]], [["eth0", 90, 36]], [["networks", 90, 27]], [["network", 90, 19]], [["enable", 105, 26]], [["httpd", 105, 20]], [["enable", 108, 15]], [["networking", 87, 11], ["systemd", 90, 11], ["services", 105, 11], ["nix", 108, 11]], [["autoStart", 81, 9], ["privateNetwork", 82, 9], ["hostBridge", 83, 9], ["localMacAddress", 84, 9], ["config", 86, 9]], [["webserver", 80, 18]], [["networking", 21, 7], ["systemd", 24, 7], ["containers", 80, 7]], [["machine", 18, 9]], [["name", 11, 3], ["meta", 12, 3], ["nodes", 18, 3], ["testScript", 113, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/containers-ipv6-slaac.nix", [["maintainers", 13, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/containers-ipv6-slaac.nix", [["useNetworkd", 21, 18], ["useDHCP", 22, 18]]);
-const pos$3 = nix.positions(here + "/containers-ipv6-slaac.nix", [["Name", 25, 9], ["Kind", 26, 9], ["MACAddress", 27, 9]]);
-const pos$4 = nix.positions(here + "/containers-ipv6-slaac.nix", [["netdevConfig", 24, 37]]);
-const pos$5 = nix.positions(here + "/containers-ipv6-slaac.nix", [["br0", 24, 31]]);
-const pos$6 = nix.positions(here + "/containers-ipv6-slaac.nix", [["IPv6SendRA", 34, 11], ["IPv6PrivacyExtensions", 39, 11]]);
-const pos$7 = nix.positions(here + "/containers-ipv6-slaac.nix", [["Managed", 44, 11], ["RouterLifetimeSec", 48, 11], ["UplinkInterface", 49, 11]]);
-const pos$8 = nix.positions(here + "/containers-ipv6-slaac.nix", [["Prefix", 55, 13], ["AddressAutoconfiguration", 56, 13], ["OnLink", 60, 13], ["Assign", 63, 13], ["Token", 65, 13]]);
-const pos$9 = nix.positions(here + "/containers-ipv6-slaac.nix", [["Route", 73, 13], ["LifetimeSec", 74, 13]]);
-const pos$10 = nix.positions(here + "/containers-ipv6-slaac.nix", [["name", 31, 9], ["networkConfig", 33, 9], ["ipv6SendRAConfig", 42, 9], ["ipv6Prefixes", 52, 9], ["ipv6RoutePrefixes", 71, 9]]);
-const pos$11 = nix.positions(here + "/containers-ipv6-slaac.nix", [["br0", 30, 32]]);
-const pos$12 = nix.positions(here + "/containers-ipv6-slaac.nix", [["netdevs", 24, 23], ["networks", 30, 23]]);
-const pos$13 = nix.positions(here + "/containers-ipv6-slaac.nix", [["network", 24, 15]]);
-const pos$14 = nix.positions(here + "/containers-ipv6-slaac.nix", [["allowedTCPPorts", 106, 31]]);
-const pos$15 = nix.positions(here + "/containers-ipv6-slaac.nix", [["useNetworkd", 87, 22], ["useHostResolvConf", 88, 22], ["firewall", 106, 22]]);
-const pos$16 = nix.positions(here + "/containers-ipv6-slaac.nix", [["IPv6AcceptRA", 100, 15], ["IPv6PrivacyExtensions", 101, 15]]);
-const pos$17 = nix.positions(here + "/containers-ipv6-slaac.nix", [["name", 91, 13], ["DHCP", 92, 13], ["networkConfig", 99, 13]]);
-const pos$18 = nix.positions(here + "/containers-ipv6-slaac.nix", [["eth0", 90, 36]]);
-const pos$19 = nix.positions(here + "/containers-ipv6-slaac.nix", [["networks", 90, 27]]);
-const pos$20 = nix.positions(here + "/containers-ipv6-slaac.nix", [["network", 90, 19]]);
-const pos$21 = nix.positions(here + "/containers-ipv6-slaac.nix", [["enable", 105, 26]]);
-const pos$22 = nix.positions(here + "/containers-ipv6-slaac.nix", [["httpd", 105, 20]]);
-const pos$23 = nix.positions(here + "/containers-ipv6-slaac.nix", [["enable", 108, 15]]);
-const pos$24 = nix.positions(here + "/containers-ipv6-slaac.nix", [["networking", 87, 11], ["systemd", 90, 11], ["services", 105, 11], ["nix", 108, 11]]);
-const pos$25 = nix.positions(here + "/containers-ipv6-slaac.nix", [["autoStart", 81, 9], ["privateNetwork", 82, 9], ["hostBridge", 83, 9], ["localMacAddress", 84, 9], ["config", 86, 9]]);
-const pos$26 = nix.positions(here + "/containers-ipv6-slaac.nix", [["webserver", 80, 18]]);
-const pos$27 = nix.positions(here + "/containers-ipv6-slaac.nix", [["networking", 21, 7], ["systemd", 24, 7], ["containers", 80, 7]]);
-const pos$28 = nix.positions(here + "/containers-ipv6-slaac.nix", [["machine", 18, 9]]);
-const pos$29 = nix.positions(here + "/containers-ipv6-slaac.nix", [["name", 11, 3], ["meta", 12, 3], ["nodes", 18, 3], ["testScript", 113, 3]]);
 
 export default nix.thunk(() => (() => {
   const ulaPrefix = "fd5f:e1a2:4f0c::/64";
@@ -45,49 +17,49 @@ export default nix.thunk(() => (() => {
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       name: "containers-ipv6-slaac",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "lschuermann"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$27,
-            networking: nix.thunk(() => ({ [nix.POS]: pos$2, useNetworkd: true, useDHCP: false })),
+            [nix.POS]: $pos[26],
+            networking: nix.thunk(() => ({ [nix.POS]: $pos[1], useNetworkd: true, useDHCP: false })),
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               network: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 netdevs: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   br0: nix.thunk(() => ({
-                    [nix.POS]: pos$4,
-                    netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$3, Name: "br0", Kind: "bridge", MACAddress: hostMAC })),
+                    [nix.POS]: $pos[3],
+                    netdevConfig: nix.thunk(() => ({ [nix.POS]: $pos[2], Name: "br0", Kind: "bridge", MACAddress: hostMAC })),
                   })),
                 })),
                 networks: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   br0: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     name: "br0",
-                    networkConfig: nix.thunk(() => ({ [nix.POS]: pos$6, IPv6SendRA: true, IPv6PrivacyExtensions: false })),
+                    networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[5], IPv6SendRA: true, IPv6PrivacyExtensions: false })),
                     ipv6SendRAConfig: nix.thunk(() => ({
-                      [nix.POS]: pos$7,
+                      [nix.POS]: $pos[6],
                       Managed: false,
                       RouterLifetimeSec: 0n,
                       UplinkInterface: ":none",
                     })),
                     ipv6Prefixes: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$8,
+                        [nix.POS]: $pos[7],
                         Prefix: ulaPrefix,
                         AddressAutoconfiguration: true,
                         OnLink: true,
@@ -96,48 +68,48 @@ export default nix.thunk(() => (() => {
                       })),
                     ]),
                     ipv6RoutePrefixes: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$9, Route: ulaPrefix, LifetimeSec: 1800n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[8], Route: ulaPrefix, LifetimeSec: 1800n })),
                     ]),
                   })),
                 })),
               })),
             })),
             containers: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               webserver: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 autoStart: true,
                 privateNetwork: true,
                 hostBridge: "br0",
                 localMacAddress: containerMAC,
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   networking: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     useNetworkd: true,
                     useHostResolvConf: false,
-                    firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [80n]) })),
+                    firewall: nix.thunk(() => ({ [nix.POS]: $pos[13], allowedTCPPorts: nix.thunk(() => [80n]) })),
                   })),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     network: nix.thunk(() => ({
-                      [nix.POS]: pos$19,
+                      [nix.POS]: $pos[18],
                       networks: nix.thunk(() => ({
-                        [nix.POS]: pos$18,
+                        [nix.POS]: $pos[17],
                         eth0: nix.thunk(() => ({
-                          [nix.POS]: pos$17,
+                          [nix.POS]: $pos[16],
                           name: "eth0",
                           DHCP: "no",
-                          networkConfig: nix.thunk(() => ({ [nix.POS]: pos$16, IPv6AcceptRA: true, IPv6PrivacyExtensions: false })),
+                          networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[15], IPv6AcceptRA: true, IPv6PrivacyExtensions: false })),
                         })),
                       })),
                     })),
                   })),
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
-                    httpd: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
+                    [nix.POS]: $pos[21],
+                    httpd: nix.thunk(() => ({ [nix.POS]: $pos[20], enable: true })),
                   })),
-                  nix: nix.thunk(() => ({ [nix.POS]: pos$23, enable: false })),
+                  nix: nix.thunk(() => ({ [nix.POS]: $pos[22], enable: false })),
                 })),
               })),
             })),

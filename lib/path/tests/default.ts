@@ -2,26 +2,24 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["config", 5, 5], ["overlays", 6, 5], ["system", 7, 13]], [["pkgs", 9, 64]], [["nativeBuildInputs", 17, 5]]]);
 const formals$1 = { args: { nixpkgs: true, system: true, pkgs: true, nixVersions: true, libpath: true, seed: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["config", 5, 5], ["overlays", 6, 5], ["system", 7, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkgs", 9, 64]]);
-const pos$3 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 17, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.argOr($, "nixpkgs", () => nix.path(here, "../../.."));
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       config: nix.thunk(() => ({})),
       overlays: [],
       system: system,
     }))));
-  const nixVersions = nix.argOr($, "nixVersions", () => nix.app(nix.builtins.import(nix.path(here, "../../tests/nix-for-tests.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: pkgs }))));
+  const nixVersions = nix.argOr($, "nixVersions", () => nix.app(nix.builtins.import(nix.path(here, "../../tests/nix-for-tests.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], pkgs: pkgs }))));
   const libpath = nix.argOr($, "libpath", () => nix.path(here, "../.."));
   const seed = nix.argOr($, "seed", () => null);
   return nix.app(nix.sel(pkgs, "runCommand"), "lib-path-tests", nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       nativeBuildInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(nixVersions, "stable"))], (() => {
         const w = nix.withScope(pkgs, null);
         return [nix.thunk(() => nix.lookup(w, "jq")), nix.thunk(() => nix.lookup(w, "bc"))];

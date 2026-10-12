@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 46]], [["description", 120, 5], ["homepage", 121, 5], ["platforms", 122, 5], ["license", 123, 5], ["teams", 124, 5]], [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["postPatch", 35, 3], ["strictDeps", 47, 3], ["preConfigure", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 60, 3], ["cmakeFlags", 65, 3], ["ninjaFlags", 74, 3], ["installPhase", 76, 3], ["postInstall", 85, 3], ["__structuredAttrs", 117, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, ninja: false, stdenv: false, "swift-collections": false, "swift-foundation-icu": false, "swift-minimal": false, "swift-syntax": false, swift_release: false, swift_sources: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 46]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 120, 5], ["homepage", 121, 5], ["platforms", 122, 5], ["license", 123, 5], ["teams", 124, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["postPatch", 35, 3], ["strictDeps", 47, 3], ["preConfigure", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 60, 3], ["cmakeFlags", 65, 3], ["ninjaFlags", 74, 3], ["installPhase", 76, 3], ["postInstall", 85, 3], ["__structuredAttrs", 117, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const swift_release = nix.arg($, "swift_release");
   const swift_sources = nix.arg($, "swift_sources");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swift-foundation",
       version: swift_release,
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ["dev"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-foundation"));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "swiftlang",
           repo: "swift-foundation",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -77,7 +75,7 @@ done
 `)))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Swift implementation of Foundation frameworks",
         homepage: "https://github.com/swiftlang/swift-foundation",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "linux"))),

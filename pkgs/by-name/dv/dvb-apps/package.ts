@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["url", 19, 7], ["hash", 20, 7]], [["url", 23, 7], ["hash", 24, 7]], [["url", 27, 7], ["hash", 28, 7]], [["url", 31, 7], ["hash", 32, 7]], [["url", 35, 7], ["hash", 36, 7]], [["url", 39, 7], ["hash", 40, 7]], [["url", 43, 7], ["hash", 44, 7]], [["url", 47, 7], ["hash", 48, 7]], [["description", 59, 5], ["homepage", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["license", 63, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["buildInputs", 52, 3], ["installFlags", 54, 3], ["dontConfigure", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 7], ["hash", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 43, 7], ["hash", 44, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["url", 47, 7], ["hash", 48, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["license", 63, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["buildInputs", 52, 3], ["installFlags", 54, 3], ["dontConfigure", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,52 +13,52 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "dvb-apps",
       version: "1.1.1-unstable-2014-03-21",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.linuxtv.org/hg/dvb-apps/archive/3d43b280298c.tar.bz2",
           hash: "sha256-854vDr7X4yvOg1IgYq1NQU9n/M1d8bZHYYUkSX4V4Fc=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-tv/linuxtv-dvb-apps/files/linuxtv-dvb-apps-glibc-2.31.patch?id=ec6d38022bd905cb5460d4812e52434fd1f9663c",
             hash: "sha256-zSbbKSJgW4L983DR0GVXtgAHK6ILOQC3Gz2iGnmWOp8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-tv/linuxtv-dvb-apps/files/linuxtv-dvb-apps-no-ca_set_pid.patch?id=ec6d38022bd905cb5460d4812e52434fd1f9663c",
             hash: "sha256-GZunNYlhktalPOZ4ZST1MwooBvdDGA6ckscx/7mx8ok=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-tv/linuxtv-dvb-apps/files/linuxtv-dvb-apps-1.1.1.20100223-alevt.patch?id=ec6d38022bd905cb5460d4812e52434fd1f9663c",
             hash: "sha256-+j+tP8O3mho+gcsDPzQUJaE39ZAgimMAJoRP1J1HrBk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-tv/linuxtv-dvb-apps/files/linuxtv-dvb-apps-1.1.1.20100223-ldflags.patch?id=ec6d38022bd905cb5460d4812e52434fd1f9663c",
             hash: "sha256-jrRE1yySLbQWbF+SaugFN8VuEIfveSvjR0nKpmKffpQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-tv/linuxtv-dvb-apps/files/linuxtv-dvb-apps-1.1.1.20100223-perl526.patch?id=ec6d38022bd905cb5460d4812e52434fd1f9663c",
             hash: "sha256-zIROx0HEvtZqvNBLlKp3aI3S2CihuS6l/OWf6WFFCrY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-tv/linuxtv-dvb-apps/files/linuxtv-dvb-apps-1.1.1.20140321-dvbdate.patch?id=ec6d38022bd905cb5460d4812e52434fd1f9663c",
             hash: "sha256-dLPlscdDOd7Kq+2sEhgJ/PBY1zN/0/fh3TU6JOELaYw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-tv/linuxtv-dvb-apps/files/linuxtv-dvb-apps-1.1.1.20140321-gcc10.patch?id=ec6d38022bd905cb5460d4812e52434fd1f9663c",
             hash: "sha256-034TYxH1qHcdkwVxuAcNHORfBWhw/k8P+11QAc3jp74=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             url: "https://bugs.debian.org/cgi-bin/bugreport.cgi?att=1;bug=779520;filename=bug779520.patch;msg=17",
             hash: "sha256-UL5lKDfloXvngsabnslpVXbe/dmt4dzVK5W8JkIieps=",
           })))),
@@ -77,7 +67,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["prefix=$(out)"]),
       dontConfigure: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Linux DVB API applications and utilities",
         homepage: "https://linuxtv.org/",
         maintainers: nix.thunk(() => (() => {

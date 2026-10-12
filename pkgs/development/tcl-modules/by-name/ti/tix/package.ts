@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["name", 18, 7], ["url", 19, 7], ["hash", 20, 7]], [["name", 29, 5], ["url", 30, 5], ["hash", 31, 5]], [["description", 56, 5], ["homepage", 57, 5], ["platforms", 58, 5], ["license", 59, 5], ["broken", 63, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 12, 3], ["patches", 16, 3], ["buildInputs", 33, 3], ["preConfigure", 39, 3], ["addTclConfigureFlags", 47, 3], ["configureFlags", 48, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchpatch: false, tcl: false, tk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 18, 7], ["url", 19, 7], ["hash", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 29, 5], ["url", 30, 5], ["hash", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["platforms", 58, 5], ["license", 59, 5], ["broken", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 12, 3], ["patches", 16, 3], ["buildInputs", 33, 3], ["preConfigure", 39, 3], ["addTclConfigureFlags", 47, 3], ["configureFlags", 48, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const tk = nix.arg($, "tk");
   return nix.app(nix.sel(tcl, "mkTclDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "8.4.3",
       pname: "tix",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "mirror://sourceforge/tix/tix/8.4.3/Tix8.4.3-src.tar.gz",
           hash: "sha256-Vi8ED/dlfhC1z/wsQZNfGlPGQC6z1fMYkRPXNP1sA8s=",
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "tix-8.4.3-tcl8.5.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-tcltk/tix/files/tix-8.4.3-tcl8.5.patch?id=56bd759df1d0c750a065b8c845e93d5dfa6b549d",
             hash: "sha256-cpsvacSWedHZRRBsTu3zDnqR+NUg/P6kvTgD3Dur+HM=",
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./duplicated-xlowerwindow.patch"),
         nix.path(here, "./fix-clang16.patch"),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(tcl, "release"), "8.6")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "tix-8.4.3-tcl8.6.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-tcltk/tix/files/tix-8.4.3-tcl8.6.patch?id=56bd759df1d0c750a065b8c845e93d5dfa6b549d",
             hash: "sha256-ZuSzljvvHeW3ewQ/ui6ZfFl9QzQqppXJDP3ILgQFX8k=",
@@ -56,7 +52,7 @@ done;
         "--libdir=${prefix}/lib",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Widget library for Tcl/Tk",
         homepage: "https://tix.sourceforge.net/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

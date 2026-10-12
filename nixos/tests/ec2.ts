@@ -2,84 +2,63 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ec2.nix", [[["system", 4, 33], ["config", 4, 40]], [["system", 7, 49], ["pkgs", 7, 56]], [["makeTest", 10, 38], ["pkgs", 10, 47]], [["rules", 22, 37]], [["udev", 22, 32]], [["services", 22, 23]], [["initrd", 22, 16]], [["extraRules", 26, 25]], [["udev", 26, 20]], [["format", 31, 23]], [["enable", 36, 49]], [["serial-getty@ttyS0", 36, 28]], [["services", 36, 19]], [["extraDependencies", 40, 18]], [["pkgs", 62, 19]], [["boot", 22, 11], ["services", 26, 11], ["amazonImage", 31, 11], ["systemd", 36, 11], ["system", 40, 11], ["nixpkgs", 62, 11]], [["system", 15, 7], ["modules", 16, 7]], [["timeout", 77, 10]], [["name", 76, 5], ["meta", 77, 5], ["image", 78, 13], ["sshPublicKey", 79, 5], ["userData", 81, 5], ["script", 85, 5]], [["broken", 126, 10]], [["name", 125, 5], ["meta", 126, 5], ["image", 127, 13], ["sshPublicKey", 128, 5], ["userData", 131, 5], ["script", 154, 5]], [["boot-ec2-nixops", 75, 3], ["boot-ec2-config", 124, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ec2.nix", [["system", 4, 33], ["config", 4, 40]]);
-const pos$2 = nix.positions(here + "/ec2.nix", [["system", 7, 49], ["pkgs", 7, 56]]);
-const pos$3 = nix.positions(here + "/ec2.nix", [["makeTest", 10, 38], ["pkgs", 10, 47]]);
-const pos$4 = nix.positions(here + "/ec2.nix", [["rules", 22, 37]]);
-const pos$5 = nix.positions(here + "/ec2.nix", [["udev", 22, 32]]);
-const pos$6 = nix.positions(here + "/ec2.nix", [["services", 22, 23]]);
-const pos$7 = nix.positions(here + "/ec2.nix", [["initrd", 22, 16]]);
-const pos$8 = nix.positions(here + "/ec2.nix", [["extraRules", 26, 25]]);
-const pos$9 = nix.positions(here + "/ec2.nix", [["udev", 26, 20]]);
-const pos$10 = nix.positions(here + "/ec2.nix", [["format", 31, 23]]);
-const pos$11 = nix.positions(here + "/ec2.nix", [["enable", 36, 49]]);
-const pos$12 = nix.positions(here + "/ec2.nix", [["serial-getty@ttyS0", 36, 28]]);
-const pos$13 = nix.positions(here + "/ec2.nix", [["services", 36, 19]]);
-const pos$14 = nix.positions(here + "/ec2.nix", [["extraDependencies", 40, 18]]);
-const pos$15 = nix.positions(here + "/ec2.nix", [["pkgs", 62, 19]]);
-const pos$16 = nix.positions(here + "/ec2.nix", [["boot", 22, 11], ["services", 26, 11], ["amazonImage", 31, 11], ["systemd", 36, 11], ["system", 40, 11], ["nixpkgs", 62, 11]]);
-const pos$17 = nix.positions(here + "/ec2.nix", [["system", 15, 7], ["modules", 16, 7]]);
-const pos$18 = nix.positions(here + "/ec2.nix", [["timeout", 77, 10]]);
-const pos$19 = nix.positions(here + "/ec2.nix", [["name", 76, 5], ["meta", 77, 5], ["image", 78, 13], ["sshPublicKey", 79, 5], ["userData", 81, 5], ["script", 85, 5]]);
-const pos$20 = nix.positions(here + "/ec2.nix", [["broken", 126, 10]]);
-const pos$21 = nix.positions(here + "/ec2.nix", [["name", 125, 5], ["meta", 126, 5], ["image", 127, 13], ["sshPublicKey", 128, 5], ["userData", 131, 5], ["script", 154, 5]]);
-const pos$22 = nix.positions(here + "/ec2.nix", [["boot-ec2-nixops", 75, 3], ["boot-ec2-config", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "common/ec2.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       makeTest: nix.thunk(() => nix.lookup(w_1, "makeTest")),
       pkgs: pkgs,
     })))), w_1);
   const imageCfg = nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "../lib/eval-config.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       system: null,
       modules: nix.thunk(() => [
         nix.path(here, "../maintainers/scripts/ec2/amazon-image.nix"),
         nix.path(here, "../modules/testing/test-instrumentation.nix"),
         nix.path(here, "../modules/profiles/qemu-guest.nix"),
         nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 udev: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   rules: "KERNEL==vda, SYMLINK+=xvda\nKERNEL==vda1, SYMLINK+=xvda1\n",
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             udev: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               extraRules: "KERNEL==vda, SYMLINK+=xvda\nKERNEL==vda1, SYMLINK+=xvda1\n",
             })),
           })),
-          amazonImage: nix.thunk(() => ({ [nix.POS]: pos$10, format: "qcow2" })),
+          amazonImage: nix.thunk(() => ({ [nix.POS]: $pos[9], format: "qcow2" })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               "serial-getty@ttyS0": nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 enable: nix.thunk(() => nix.app(nix.lookup(w_2, "mkForce"), false)),
               })),
             })),
           })),
           system: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             extraDependencies: nix.thunk(() => (() => {
               const w_3 = nix.withScope(pkgs, w_2);
               return [
@@ -100,7 +79,7 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
           })),
-          nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$15, pkgs: pkgs })),
+          nixpkgs: nix.thunk(() => ({ [nix.POS]: $pos[14], pkgs: pkgs })),
         })),
       ]),
     }))), "config"));
@@ -110,11 +89,11 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKeyFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "private-key", snakeOilPrivateKey));
   const snakeOilPublicKey = nix.thunk(() => nix.sel(sshKeys, "snakeOilPublicKey"));
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     "boot-ec2-nixops": nix.thunk(() => nix.app(nix.lookup(w_2, "makeEc2Test"), nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         name: "nixops-userdata",
-        meta: nix.thunk(() => ({ [nix.POS]: pos$18, timeout: 600n })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[17], timeout: 600n })),
         image: image,
         sshPublicKey: snakeOilPublicKey,
         userData: nix.thunk(() => nix.str`SSH_HOST_ED25519_KEY_PUB:${snakeOilPublicKey}
@@ -158,9 +137,9 @@ machine.wait_for_file("/etc/ec2-metadata/user-data")
 `),
       })))),
     "boot-ec2-config": nix.thunk(() => nix.app(nix.lookup(w_2, "makeEc2Test"), nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         name: "config-userdata",
-        meta: nix.thunk(() => ({ [nix.POS]: pos$20, broken: true })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[19], broken: true })),
         image: image,
         sshPublicKey: snakeOilPublicKey,
         userData: "{ pkgs, ... }:\n\n{\n  imports = [\n    <nixpkgs/nixos/modules/virtualisation/amazon-image.nix>\n    <nixpkgs/nixos/modules/testing/test-instrumentation.nix>\n    <nixpkgs/nixos/modules/profiles/qemu-guest.nix>\n  ];\n  environment.etc.testFile = {\n    text = \"whoa\";\n  };\n\n  networking.hostName = \"ec2-test-vm\"; # required by services.httpd\n\n  services.httpd = {\n    enable = true;\n    adminAddr = \"test@example.org\";\n    virtualHosts.localhost.documentRoot = \"${pkgs.valgrind.doc}/share/doc/valgrind/html\";\n  };\n  networking.firewall.allowedTCPPorts = [ 80 ];\n}\n",

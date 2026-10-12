@@ -2,39 +2,33 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainers", 5, 10]], [["experimental-features", 10, 22]], [["settings", 10, 13], ["enable", 11, 13]], [["extraDependencies", 13, 16]], [["nix", 10, 9], ["system", 13, 9]], [["machine", 7, 11]], [["name", 4, 5], ["meta", 5, 5], ["nodes", 7, 5], ["testScript", 16, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainers", 5, 10]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["experimental-features", 10, 22]]);
-const pos$3 = nix.positions(here + "/default.nix", [["settings", 10, 13], ["enable", 11, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["extraDependencies", 13, 16]]);
-const pos$5 = nix.positions(here + "/default.nix", [["nix", 10, 9], ["system", 13, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["machine", 7, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 4, 5], ["meta", 5, 5], ["nodes", 7, 5], ["testScript", 16, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "replace-dependencies",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             nix: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 "experimental-features": nix.thunk(() => ["ca-derivations"]),
               })),
               enable: true,
             })),
             system: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               extraDependencies: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "stdenvNoCC"))]),
             })),
           };

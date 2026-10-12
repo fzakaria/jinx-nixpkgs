@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["NIX_CFLAGS_COMPILE", 39, 7]], [["description", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["platforms", 127, 5], ["homepage", 128, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["env", 39, 3], ["preConfigure", 41, 3], ["postBuild", 46, 3], ["enableParallelBuilding", 54, 3], ["installPhase", 56, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, unzip: false, zip: false, libiconv: false, perl: false, aspell: false, dos2unix: false, singleWordlist: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["platforms", 127, 5], ["homepage", 128, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["env", 39, 3], ["preConfigure", 41, 3], ["postBuild", 46, 3], ["enableParallelBuilding", 54, 3], ["installPhase", 56, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const dos2unix = nix.arg($, "dos2unix");
   const singleWordlist = nix.argOr($, "singleWordlist", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "scowl",
       version: "2020.12.07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "en-wl",
           repo: "wordlist",
           rev: nix.thunk(() => nix.str`rel-${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace scowl/src/Makefile \\\n    --replace g++ c++\n",
       nativeBuildInputs: nix.thunk(() => [unzip, zip, perl, aspell, dos2unix]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), libiconv)),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-narrowing" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-narrowing" })),
       preConfigure: "patchShebangs .\nexport PERL5LIB=\"$PERL5LIB${PERL5LIB:+:}$PWD/varcon\"\n",
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(singleWordlist, null)), "(\ncd scowl/speller\nmake aspell\nmake hunspell\n)\n")),
       enableParallelBuilding: false,
@@ -43,7 +40,7 @@ cd scowl
 ./mk-list ${singleWordlist} > "$out/share/dict/words.txt"
 `)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Spell checker oriented word lists",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

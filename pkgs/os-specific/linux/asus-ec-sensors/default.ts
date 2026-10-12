@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5], ["broken", 43, 5]], [["name", 10, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["hardeningDisable", 21, 3], ["nativeBuildInputs", 23, 3], ["makeFlags", 25, 3], ["installPhase", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5], ["broken", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 10, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["hardeningDisable", 21, 3], ["nativeBuildInputs", 23, 3], ["makeFlags", 25, 3], ["installPhase", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "asus-ec-sensors";
       const version = "0.1.0-unstable-2025-12-11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zeule",
           repo: "asus-ec-sensors",
           rev: "0e73cd165c4d1baf8ce841604722c6981b7ba9d6",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = nix.thunk(() => nix.str`install asus-ec-sensors.ko -Dm444 -t ${nix.builtins.placeholder("out")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/drivers/hwmon
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Linux HWMON sensors driver for ASUS motherboards to read sensor data from the embedded controller",
         homepage: "https://github.com/zeule/asus-ec-sensors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelOlder"), "5.11")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name,
         pname,
         version,

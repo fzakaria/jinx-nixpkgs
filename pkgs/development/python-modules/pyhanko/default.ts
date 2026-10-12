@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["opentype", 75, 5], ["image-support", 79, 5], ["pkcs11", 83, 5], ["async-http", 84, 5], ["etsi", 85, 5], ["qr", 89, 5]], [["pname", 142, 7], ["version", 143, 28], ["src", 143, 36], ["pyproject", 144, 7], ["sourceRoot", 146, 7], ["postPatch", 148, 7], ["build-system", 152, 7], ["nativeBuildInputs", 154, 7], ["dependencies", 158, 7], ["pythonRemoveDeps", 163, 7]], [["testData", 141, 5]], [["description", 168, 5], ["homepage", 169, 5], ["changelog", 170, 5], ["license", 171, 5], ["maintainers", 172, 5], ["broken", 174, 5]], [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["src", 44, 3], ["sourceRoot", 51, 3], ["postPatch", 53, 3], ["build-system", 59, 3], ["nativeBuildInputs", 61, 3], ["dependencies", 65, 3], ["optional-dependencies", 74, 3], ["nativeCheckInputs", 92, 3], ["disabledTestPaths", 105, 3], ["disabledTests", 110, 3], ["__darwinAllowLocalNetworking", 136, 3], ["pythonImportsCheck", 138, 3], ["passthru", 140, 3], ["meta", 167, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pyprojectVersionPatchHook: false, stdenv: false, setuptools: false, asn1crypto: false, cryptography: false, lxml: false, "pyhanko-certvalidator": false, requests: false, tzlocal: false, fonttools: false, uharfbuzz: false, pillow: false, "python-barcode": false, "python-pkcs11": false, aiohttp: false, xsdata: false, qrcode: false, certomancer: false, freezegun: false, "pytest-aiohttp": false, pytestCheckHook: false, "python-pae": false, "requests-mock": false, signxml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["opentype", 75, 5], ["image-support", 79, 5], ["pkcs11", 83, 5], ["async-http", 84, 5], ["etsi", 85, 5], ["qr", 89, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 142, 7], ["version", 143, 28], ["src", 143, 36], ["pyproject", 144, 7], ["sourceRoot", 146, 7], ["postPatch", 148, 7], ["build-system", 152, 7], ["nativeBuildInputs", 154, 7], ["dependencies", 158, 7], ["pythonRemoveDeps", 163, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["testData", 141, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 168, 5], ["homepage", 169, 5], ["changelog", 170, 5], ["license", 171, 5], ["maintainers", 172, 5], ["broken", 174, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["src", 44, 3], ["sourceRoot", 51, 3], ["postPatch", 53, 3], ["build-system", 59, 3], ["nativeBuildInputs", 61, 3], ["dependencies", 65, 3], ["optional-dependencies", 74, 3], ["nativeCheckInputs", 92, 3], ["disabledTestPaths", 105, 3], ["disabledTests", 110, 3], ["__darwinAllowLocalNetworking", 136, 3], ["pythonImportsCheck", 138, 3], ["passthru", 140, 3], ["meta", 167, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const requests_mock = nix.arg($, "requests-mock");
   const signxml = nix.arg($, "signxml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pyhanko",
       version: "0.36.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MatthiasValvekens",
           repo: "pyHanko",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +55,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pyprojectVersionPatchHook]),
       dependencies: nix.thunk(() => [asn1crypto, cryptography, lxml, pyhanko_certvalidator, requests, tzlocal]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         opentype: nix.thunk(() => [fonttools, uharfbuzz]),
         "image-support": nix.thunk(() => [pillow, python_barcode]),
         pkcs11: nix.thunk(() => [python_pkcs11]),
@@ -106,9 +101,9 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["pyhanko"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         testData: nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: "common-test-utils",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -122,7 +117,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Sign and stamp PDF files",
         homepage: "https://github.com/MatthiasValvekens/pyHanko",
         changelog: nix.thunk(() => nix.str`https://github.com/MatthiasValvekens/pyHanko/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/changelog.rst#pyhanko`),

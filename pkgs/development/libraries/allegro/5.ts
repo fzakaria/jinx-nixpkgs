@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/5.nix", [[["owner", 52, 5], ["repo", 53, 5], ["rev", 54, 5], ["hash", 55, 5]], [["updateScript", 126, 12]], [["description", 129, 5], ["homepage", 130, 5], ["license", 131, 5], ["maintainers", 132, 5], ["platforms", 133, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["patches", 58, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 68, 3], ["postPatch", 106, 3], ["cmakeFlags", 112, 3], ["outputs", 119, 3], ["strictDeps", 124, 3], ["passthru", 126, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false, "alsa-lib": false, cmake: false, enet: false, fetchFromGitHub: false, fetchpatch2: false, fixDarwinDylibNames: false, flac: false, freetype: false, gitUpdater: false, gtk3: false, libGL: false, libGLU: false, libjpeg: false, libpng: false, "libpthread-stubs": false, libpulseaudio: false, libtheora: false, libvorbis: false, libwebp: false, libx11: false, libxcursor: false, libxdmcp: false, libxext: false, libxfixes: false, libxi: false, libxpm: false, libxt: false, libxxf86dga: false, libxxf86misc: false, libxxf86vm: false, openal: false, physfs: false, "pkg-config": false, stdenv: false, texinfo: false, xorgproto: false, zlib: false, useSDL: true, "sdl2-compat": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/5.nix", [["owner", 52, 5], ["repo", 53, 5], ["rev", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/5.nix", [["updateScript", 126, 12]]);
-const pos$3 = nix.positions(here + "/5.nix", [["description", 129, 5], ["homepage", 130, 5], ["license", 131, 5], ["maintainers", 132, 5], ["platforms", 133, 5]]);
-const pos$4 = nix.positions(here + "/5.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["patches", 58, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 68, 3], ["postPatch", 106, 3], ["cmakeFlags", 112, 3], ["outputs", 119, 3], ["strictDeps", 124, 3], ["passthru", 126, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const pname = "allegro";
       const version = "5.2.11.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "liballeg",
           repo: "allegro5",
           rev: version,
@@ -101,11 +98,11 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "dev"]);
       const strictDeps = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Game programming library",
         homepage: "https://liballeg.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
@@ -113,7 +110,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

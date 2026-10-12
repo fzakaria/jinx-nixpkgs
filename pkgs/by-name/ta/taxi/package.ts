@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]], [["updateScript", 52, 12]], [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["teams", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 45, 3], ["passthru", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "desktop-file-utils": false, fetchFromGitHub: false, "gobject-introspection": false, gtk4: false, libadwaita: false, libsecret: false, libsoup_3: false, meson: false, ninja: false, "nix-update-script": false, pantheon: false, "pkg-config": false, python3: false, vala: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["teams", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 45, 3], ["passthru", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "taxi",
       version: "2.0.2-unstable-2024-12-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ellie-commons",
           repo: "taxi",
           rev: "b1c81490641f102005d9451a33d21610c0637e22",
@@ -56,11 +53,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(pantheon, "granite7")),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/ellie-commons/taxi",
         description: "FTP Client that drives you anywhere",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

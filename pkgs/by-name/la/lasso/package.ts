@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["homepage", 68, 5], ["description", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["configurePhase", 61, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, fetchFromGitea: false, writeShellScript: false, glib: false, "gobject-introspection": false, "gtk-doc": false, libtool: false, libxml2: false, libxslt: false, openssl: false, "pkg-config": false, python3: false, xmlsec: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["configurePhase", 61, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const xmlsec = nix.arg($, "xmlsec");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lasso",
       version: "2.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.entrouvert.org",
           owner: "entrouvert",
           repo: "lasso",
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       ]),
       configurePhase: "./configure --with-pkg-config=$PKG_CONFIG_PATH \\\n            --disable-perl \\\n            --prefix=$out\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://lasso.entrouvert.org/",
         description: "Liberty Alliance Single Sign-On library",
         changelog: nix.thunk(() => nix.str`https://git.entrouvert.org/entrouvert/lasso/raw/tag/v${nix.sel(finalAttrs, "version")}/NEWS`),

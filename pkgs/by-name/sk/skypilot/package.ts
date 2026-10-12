@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["pname", 21, 13], ["version", 21, 19], ["src", 21, 27], ["sourceRoot", 23, 5], ["npmDepsHash", 24, 5], ["installPhase", 26, 5]], [["all", 118, 7], ["aws", 137, 7], ["azure", 144, 7], ["cloudfare", 155, 7], ["docker", 161, 7], ["fluidstack", 163, 7], ["gcp", 165, 7], ["ibm", 171, 7], ["kubernetes", 179, 7], ["lambda", 184, 7], ["paperspace", 191, 7], ["ray", 193, 7], ["remote", 195, 7], ["server", 202, 7], ["scp", 209, 7], ["ssh", 211, 7], ["vsphere", 215, 7]], [["description", 252, 5], ["longDescription", 253, 5], ["homepage", 258, 5], ["changelog", 259, 5], ["license", 260, 5], ["maintainers", 261, 5], ["mainProgram", 265, 5]], [["pname", 33, 11], ["version", 33, 17], ["src", 33, 25], ["pyproject", 35, 3], ["pythonRelaxDeps", 36, 3], ["patches", 38, 3], ["nativeBuildInputs", 45, 3], ["postPatch", 49, 3], ["build-system", 54, 3], ["dependencies", 60, 3], ["optional-dependencies", 114, 3], ["postInstall", 221, 3], ["postFixup", 226, 3], ["pythonImportsCheck", 247, 3], ["meta", 251, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, fetchFromGitHub: false, python3Packages: false, buildNpmPackage: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 21, 13], ["version", 21, 19], ["src", 21, 27], ["sourceRoot", 23, 5], ["npmDepsHash", 24, 5], ["installPhase", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["all", 118, 7], ["aws", 137, 7], ["azure", 144, 7], ["cloudfare", 155, 7], ["docker", 161, 7], ["fluidstack", 163, 7], ["gcp", 165, 7], ["ibm", 171, 7], ["kubernetes", 179, 7], ["lambda", 184, 7], ["paperspace", 191, 7], ["ray", 193, 7], ["remote", 195, 7], ["server", 202, 7], ["scp", 209, 7], ["ssh", 211, 7], ["vsphere", 215, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 252, 5], ["longDescription", 253, 5], ["homepage", 258, 5], ["changelog", 259, 5], ["license", 260, 5], ["maintainers", 261, 5], ["mainProgram", 265, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 11], ["version", 33, 17], ["src", 33, 25], ["pyproject", 35, 3], ["pythonRelaxDeps", 36, 3], ["patches", 38, 3], ["nativeBuildInputs", 45, 3], ["postPatch", 49, 3], ["build-system", 54, 3], ["dependencies", 60, 3], ["optional-dependencies", 114, 3], ["postInstall", 221, 3], ["postFixup", 226, 3], ["pythonImportsCheck", 247, 3], ["meta", 251, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const pname = "skypilot";
   const version = "0.12.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "skypilot-org",
       repo: "skypilot",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-zxkduComvFuSbWnWSw1PYalGdVhiwCIjElXEg7VPw88=",
     }))));
   const dashboard = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: src,
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out\ncp -r out/* $out/\n",
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -110,7 +106,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return nix.app(nix.sel(lib, "fix"), (self) => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             all: nix.thunk(() => (() => {
               const w_3 = nix.withScope(self, w_2);
               return [
@@ -186,7 +182,7 @@ wrapPythonProgramsIn "$out/${nix.sel(python3Packages, "python", "sitePackages")}
 `),
       pythonImportsCheck: nix.thunk(() => ["sky"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Run LLMs and AI on any Cloud",
         longDescription: "SkyPilot is a framework for running LLMs, AI, and batch jobs on any\ncloud, offering maximum cost savings, highest GPU availability, and\nmanaged execution.\n",
         homepage: "https://github.com/skypilot-org/skypilot",

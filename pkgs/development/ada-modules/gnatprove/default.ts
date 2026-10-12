@@ -2,23 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["gpr2kbdir", 20, 7]], [["owner", 25, 11], ["repo", 26, 11], ["rev", 27, 11], ["hash", 28, 11]], [["version", 23, 9], ["src", 24, 9]], [["owner", 39, 7], ["repo", 40, 7], ["fetchSubmodules", 41, 7], ["rev", 42, 15], ["hash", 42, 19]], [["rev", 48, 9], ["hash", 49, 9]], [["src", 47, 7], ["commit_date", 51, 7]], [["rev", 55, 9], ["hash", 56, 9]], [["src", 54, 7], ["commit_date", 58, 7], ["patches", 59, 7]], [["rev", 66, 9], ["hash", 67, 9]], [["src", 65, 7], ["patches", 69, 7], ["commit_date", 79, 7]], [["rev", 83, 9], ["hash", 84, 9]], [["src", 82, 7], ["patches", 86, 7], ["commit_date", 93, 7]], [["12", 46, 5], ["13", 53, 5], ["14", 64, 5], ["15", 81, 5]], [["description", 170, 5], ["homepage", 171, 5], ["maintainers", 172, 5], ["license", 173, 5], ["platforms", 174, 5]], [["pname", 103, 3], ["version", 104, 3], ["src", 106, 3], ["patches", 108, 3], ["nativeBuildInputs", 110, 3], ["buildInputs", 122, 3], ["propagatedBuildInputs", 144, 3], ["postPatch", 148, 3], ["configurePhase", 154, 3], ["installPhase", 160, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gnat: false, "gnatcoll-core": false, gprbuild: false, python3: false, ocamlPackages: false, makeWrapper: false, gpr2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["gpr2kbdir", 20, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 25, 11], ["repo", 26, 11], ["rev", 27, 11], ["hash", 28, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 23, 9], ["src", 24, 9]]);
 const formals$2 = { args: { rev: false, hash: false }, ellipsis: false };
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 39, 7], ["repo", 40, 7], ["fetchSubmodules", 41, 7], ["rev", 42, 15], ["hash", 42, 19]]);
-const pos$5 = nix.positions(here + "/default.nix", [["rev", 48, 9], ["hash", 49, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["src", 47, 7], ["commit_date", 51, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["rev", 55, 9], ["hash", 56, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["src", 54, 7], ["commit_date", 58, 7], ["patches", 59, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["rev", 66, 9], ["hash", 67, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["src", 65, 7], ["patches", 69, 7], ["commit_date", 79, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["rev", 83, 9], ["hash", 84, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["src", 82, 7], ["patches", 86, 7], ["commit_date", 93, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["12", 46, 5], ["13", 53, 5], ["14", 64, 5], ["15", 81, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["description", 170, 5], ["homepage", 171, 5], ["maintainers", 172, 5], ["license", 173, 5], ["platforms", 174, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["pname", 103, 3], ["version", 104, 3], ["src", 106, 3], ["patches", 108, 3], ["nativeBuildInputs", 110, 3], ["buildInputs", 122, 3], ["propagatedBuildInputs", 144, 3], ["postPatch", 148, 3], ["configurePhase", 154, 3], ["installPhase", 160, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,25 +20,25 @@ export default nix.lambda((args) => (() => {
   const gpr2 = nix.arg($, "gpr2");
   const gnat_version = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(gnat, "version"))));
   const gpr2_24_2_next = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(gpr2, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       gpr2kbdir: nix.thunk(() => nix.str`${gprbuild}/share/gprconfig`),
     }))), "overrideAttrs"), (old) => (() => {
       const version = "24.2.0-next";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "AdaCore",
           repo: "gpr",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-Tp+N9VLKjVWs1VRPYE0mQY3rl4E5iGb8xDoNatEYBg4=",
         }))));
-      return { [nix.POS]: pos$3, version, src };
+      return { [nix.POS]: $pos[2], version, src };
     })()));
   const fetchSpark2014 = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const rev = nix.arg($_1, "rev");
     const hash = nix.arg($_1, "hash");
     return nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         owner: "AdaCore",
         repo: "spark2014",
         fetchSubmodules: true,
@@ -61,20 +47,20 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   const spark2014 = nix.thunk(() => ({
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     "12": nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       src: nix.thunk(() => nix.app(fetchSpark2014, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           rev: "ab34e07080a769b63beacc141707b5885c49d375",
           hash: "sha256-7pe3eWitpxmqzjW6qEIEuN0qr2IR+kJ7Ssc9pTBcCD8=",
         })))),
       commit_date: "2022-05-25",
     })),
     "13": nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       src: nix.thunk(() => nix.app(fetchSpark2014, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           rev: "12db22e854defa9d1c993ef904af1e72330a68ca",
           hash: "sha256-mZWP9yF1O4knCiXx8CqolnS+93bM+hTQy40cd0HZmwI=",
         })))),
@@ -84,9 +70,9 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     "14": nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       src: nix.thunk(() => nix.app(fetchSpark2014, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           rev: "ce5fad038790d5dc18f9b5345dc604f1ccf45b06",
           hash: "sha256-WprJJIe/GpcdabzR2xC2dAV7kIYdNTaTpNYoR3UYTVo=",
         })))),
@@ -98,9 +84,9 @@ export default nix.lambda((args) => (() => {
       commit_date: "2024-01-11",
     })),
     "15": nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       src: nix.thunk(() => nix.app(fetchSpark2014, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           rev: "22bf1510e0829ba74f9d8d686badb65c7365ee91",
           hash: "sha256-KjAWMgMT3Tp/s/DQ20ZZajty9Zrv8aPFocwgv5LkjSw=",
         })))),
@@ -113,7 +99,7 @@ export default nix.lambda((args) => (() => {
   }));
   const thisSpark = nix.thunk(() => nix.selOr(spark2014, () => nix.builtins.throw(nix.thunk(() => nix.str`GNATprove depends on a specific GNAT version and can't be built using GNAT ${gnat_version}.`)), nix.key(nix.force(gnat_version))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "gnatprove",
       version: nix.thunk(() => nix.str`fsf-${gnat_version}_${nix.sel(thisSpark, "commit_date")}`),
       src: nix.thunk(() => nix.sel(thisSpark, "src")),
@@ -149,7 +135,7 @@ mv gcc-*/gcc/ada gnat2why/gnat_src
       configurePhase: "runHook preConfigure\nmake setup\nrunHook postConfigure\n",
       installPhase: "runHook preInstall\nmake install-all\ncp -a ./install/. $out\nmkdir $out/share/gpr\nln -s $out/lib/gnat/* $out/share/gpr/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "Software development technology specifically designed for engineering high-reliability applications",
         homepage: "https://github.com/AdaCore/spark2014",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jiegec"))]),

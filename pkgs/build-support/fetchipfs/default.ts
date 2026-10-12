@@ -2,17 +2,16 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hashTypes", 8, 5]], [["name", 27, 7], ["builder", 28, 7], ["nativeBuildInputs", 29, 7], ["outputHash", 32, 15], ["outputHashAlgo", 32, 26], ["outputHashMode", 33, 7], ["curlOpts", 36, 9], ["postFetch", 37, 9], ["ipfs", 38, 9], ["url", 39, 9], ["port", 40, 9], ["meta", 41, 9], ["preferLocalBuild", 46, 15]]]);
 const formals$1 = { args: { lib: false, stdenv: false, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hashTypes", 8, 5]]);
 const formals$2 = { args: { ipfs: false, url: true, curlOpts: true, outputHash: false, outputHashAlgo: false, meta: true, port: true, postFetch: true, preferLocalBuild: true }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["name", 27, 7], ["builder", 28, 7], ["nativeBuildInputs", 29, 7], ["outputHash", 32, 15], ["outputHashAlgo", 32, 26], ["outputHashMode", 33, 7], ["curlOpts", 36, 9], ["postFetch", 37, 9], ["ipfs", 38, 9], ["url", 39, 9], ["port", 40, 9], ["meta", 41, 9], ["preferLocalBuild", 46, 15]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const curl = nix.arg($, "curl");
-  return nix.app(nix.sel(lib, "fetchers", "withNormalizedHash"), nix.thunk(() => ({ [nix.POS]: pos$1, hashTypes: nix.thunk(() => ["sha1", "sha256", "sha512"]) })), nix.lambda((args_1) => (() => {
+  return nix.app(nix.sel(lib, "fetchers", "withNormalizedHash"), nix.thunk(() => ({ [nix.POS]: $pos[0], hashTypes: nix.thunk(() => ["sha1", "sha256", "sha512"]) })), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const ipfs = nix.arg($_1, "ipfs");
       const url = nix.argOr($_1, "url", () => "");
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const postFetch = nix.argOr($_1, "postFetch", () => "");
       const preferLocalBuild = nix.argOr($_1, "preferLocalBuild", () => true);
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: ipfs,
           builder: nix.path(here, "./builder.sh"),
           nativeBuildInputs: nix.thunk(() => [curl]),

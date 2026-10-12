@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["PROGRAM_VERSION", 82, 5], ["CUDAHOSTCXX", 87, 5], ["NIX_CFLAGS_LINK", 88, 5], ["NIX_LDFLAGS", 89, 5], ["NIX_CFLAGS_COMPILE", 90, 5]], [["rev-prefix", 120, 40]], [["updateScript", 120, 12]], [["description", 123, 5], ["longDescription", 124, 5], ["changelog", 129, 5], ["license", 130, 5], ["platforms", 131, 5], ["homepage", 132, 5], ["maintainers", 133, 5], ["mainProgram", 137, 5], ["broken", 138, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["outputs", 51, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 71, 3], ["env", 81, 3], ["cmakeFlags", 97, 3], ["installPhase", 107, 3], ["passthru", 120, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { lib: false, config: false, fetchFromGitHub: false, cmake: false, cctools: false, llvmPackages: false, ninja: false, openssl: false, python3Packages: false, ragel: false, yasm: false, zlib: false, gitUpdater: false, cudaSupport: true, cudaPackages: true, pythonSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PROGRAM_VERSION", 82, 5], ["CUDAHOSTCXX", 87, 5], ["NIX_CFLAGS_LINK", 88, 5], ["NIX_LDFLAGS", 89, 5], ["NIX_CFLAGS_COMPILE", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 120, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 120, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 123, 5], ["longDescription", 124, 5], ["changelog", 129, 5], ["license", 130, 5], ["platforms", 131, 5], ["homepage", 132, 5], ["maintainers", 133, 5], ["mainProgram", 137, 5], ["broken", 138, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["outputs", 51, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 71, 3], ["env", 81, 3], ["cmakeFlags", 97, 3], ["installPhase", 107, 3], ["passthru", 120, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +32,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "catboost",
       version: "1.2.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "catboost",
           repo: "catboost",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +66,7 @@ done
           nix.thunk(() => nix.sel(cudaPackages, "libcublas")),
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PROGRAM_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         CUDAHOSTCXX: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), cudaSupport, nix.thunk(() => nix.str`${nix.sel(stdenv, "cc")}/bin/cc`))),
         NIX_CFLAGS_LINK: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "-fuse-ld=lld")),
@@ -96,11 +91,11 @@ install -Dm444 catboost/libs/train_interface/libcatboost${nix.sel(stdenv, "hostP
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "High-performance library for gradient boosting on decision trees",
         longDescription: "A fast, scalable, high performance Gradient Boosting on Decision Trees\nlibrary, used for ranking, classification, regression and other machine\nlearning tasks for Python, R, Java, C++. Supports computation on CPU and GPU.\n",
         changelog: nix.thunk(() => nix.str`https://github.com/catboost/catboost/releases/tag/v${nix.sel(finalAttrs, "version")}`),

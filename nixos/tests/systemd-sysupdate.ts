@@ -2,68 +2,47 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-sysupdate.nix", [[["pkgs", 9, 58]], [["maintainers", 14, 8]], [["enable", 20, 29]], [["firewall", 20, 20]], [["buildInputs", 24, 60]], [["root", 24, 13]], [["server", 23, 24]], [["enable", 22, 11], ["virtualHosts", 23, 11]], [["nginx", 21, 18]], [["networking", 20, 9], ["services", 21, 9]], [["Type", 46, 15], ["Path", 47, 15], ["MatchPattern", 48, 15]], [["Path", 51, 15], ["MatchPattern", 52, 15]], [["Source", 45, 13], ["Target", 50, 13]], [["text-file", 44, 11]], [["enable", 42, 9], ["transfers", 43, 9]], [["sysupdate", 41, 15]], [["source", 58, 52]], [["systemd/import-pubring.gpg", 58, 23]], [["etc", 58, 19]], [["systemd", 41, 7], ["environment", 58, 7]], [["server", 17, 5], ["target", 40, 5]], [["name", 12, 3], ["meta", 14, 3], ["nodes", 16, 3], ["testScript", 62, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-sysupdate.nix", [["pkgs", 9, 58]]);
-const pos$2 = nix.positions(here + "/systemd-sysupdate.nix", [["maintainers", 14, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/systemd-sysupdate.nix", [["enable", 20, 29]]);
-const pos$4 = nix.positions(here + "/systemd-sysupdate.nix", [["firewall", 20, 20]]);
-const pos$5 = nix.positions(here + "/systemd-sysupdate.nix", [["buildInputs", 24, 60]]);
-const pos$6 = nix.positions(here + "/systemd-sysupdate.nix", [["root", 24, 13]]);
-const pos$7 = nix.positions(here + "/systemd-sysupdate.nix", [["server", 23, 24]]);
-const pos$8 = nix.positions(here + "/systemd-sysupdate.nix", [["enable", 22, 11], ["virtualHosts", 23, 11]]);
-const pos$9 = nix.positions(here + "/systemd-sysupdate.nix", [["nginx", 21, 18]]);
-const pos$10 = nix.positions(here + "/systemd-sysupdate.nix", [["networking", 20, 9], ["services", 21, 9]]);
-const pos$11 = nix.positions(here + "/systemd-sysupdate.nix", [["Type", 46, 15], ["Path", 47, 15], ["MatchPattern", 48, 15]]);
-const pos$12 = nix.positions(here + "/systemd-sysupdate.nix", [["Path", 51, 15], ["MatchPattern", 52, 15]]);
-const pos$13 = nix.positions(here + "/systemd-sysupdate.nix", [["Source", 45, 13], ["Target", 50, 13]]);
-const pos$14 = nix.positions(here + "/systemd-sysupdate.nix", [["text-file", 44, 11]]);
-const pos$15 = nix.positions(here + "/systemd-sysupdate.nix", [["enable", 42, 9], ["transfers", 43, 9]]);
-const pos$16 = nix.positions(here + "/systemd-sysupdate.nix", [["sysupdate", 41, 15]]);
-const pos$17 = nix.positions(here + "/systemd-sysupdate.nix", [["source", 58, 52]]);
-const pos$18 = nix.positions(here + "/systemd-sysupdate.nix", [["systemd/import-pubring.gpg", 58, 23]]);
-const pos$19 = nix.positions(here + "/systemd-sysupdate.nix", [["etc", 58, 19]]);
-const pos$20 = nix.positions(here + "/systemd-sysupdate.nix", [["systemd", 41, 7], ["environment", 58, 7]]);
-const pos$21 = nix.positions(here + "/systemd-sysupdate.nix", [["server", 17, 5], ["target", 40, 5]]);
-const pos$22 = nix.positions(here + "/systemd-sysupdate.nix", [["name", 12, 3], ["meta", 14, 3], ["nodes", 16, 3], ["testScript", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
-  const gpgKeyring = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/gpg-keyring.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs }))));
+  const gpgKeyring = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common/gpg-keyring.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     name: "systemd-sysupdate",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+            [nix.POS]: $pos[3],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 server: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   root: nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "sysupdate-artifacts", nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "gnupg"))]),
                     })), nix.thunk(() => nix.str`mkdir -p $out
 cd $out
@@ -83,24 +62,24 @@ gpg --batch --sign --detach-sign --output SHA256SUMS.gpg SHA256SUMS
         };
       })(), formals$2),
       target: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           sysupdate: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             enable: true,
             transfers: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               "text-file": nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 Source: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   Type: "url-file",
                   Path: "http://server/",
                   MatchPattern: "nixos_@v.txt",
                 })),
                 Target: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   Path: "/",
                   MatchPattern: nix.thunk(() => ["nixos_@v.txt"]),
                 })),
@@ -109,11 +88,11 @@ gpg --batch --sign --detach-sign --output SHA256SUMS.gpg SHA256SUMS
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             "systemd/import-pubring.gpg": nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               source: nix.thunk(() => nix.str`${gpgKeyring}/pubkey.gpg`),
             })),
           })),

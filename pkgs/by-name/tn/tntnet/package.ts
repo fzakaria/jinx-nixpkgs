@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["url", 26, 7], ["hash", 27, 7]], [["homepage", 45, 5], ["description", 46, 5], ["platforms", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["enableParallelBuilding", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, cxxtools: false, zlib: false, openssl: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["platforms", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["enableParallelBuilding", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zip = nix.arg($, "zip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tntnet",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "maekitalo",
           repo: "tntnet",
           rev: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/maekitalo/tntnet/commit/69adfc8ee351a0e82990c1ffa7af6dab726e1e49.patch",
             hash: "sha256-4UdUXKQiIa9CPlGg8XmfKQ8NTWb2A3AiuPthzEthlf8=",
           })))),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cxxtools, zlib, openssl, zip]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/maekitalo/tntnet",
         description: "Web server which allows users to develop web applications using C++",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

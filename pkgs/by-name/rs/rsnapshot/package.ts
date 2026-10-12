@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["updateScript", 43, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["configureFlags", 29, 3], ["makeFlags", 30, 3], ["patchPhase", 32, 3], ["nativeInstallCheckInputs", 37, 3], ["doInstallCheck", 40, 3], ["passthru", 42, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, perl: false, openssh: false, rsync: false, logger: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["configureFlags", 29, 3], ["makeFlags", 30, 3], ["patchPhase", 32, 3], ["nativeInstallCheckInputs", 37, 3], ["doInstallCheck", 40, 3], ["passthru", 42, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rsnapshot",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/rsnapshot/rsnapshot/releases/download/${nix.sel(finalAttrs, "version")}/rsnapshot-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-j2r4BG7msCk7JjidCMtpUMf33f/8H3Tu/LCHvUnUT2I=",
         })))),
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Filesystem snapshot utility for making backups of local and remote systems",
         homepage: "https://rsnapshot.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

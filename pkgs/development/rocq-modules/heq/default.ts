@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 7], ["hash", 21, 15]], [["hash", 31, 18]], [["0.92", 31, 11]], [["homepage", 39, 5], ["description", 40, 5], ["maintainers", 41, 5]], [["pname", 25, 3], ["repo", 26, 3], ["owner", 27, 3], ["domain", 28, 3], ["version", 29, 11], ["fetcher", 29, 19], ["defaultVersion", 30, 3], ["release", 31, 3], ["mlPlugin", 33, 3], ["preBuild", 34, 3], ["extraInstallFlags", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, mkCoqDerivation: false, coq: false, version: true }, ellipsis: false };
 const formals$2 = { args: { rev: false, repo: false, owner: false, hash: false, domain: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 7], ["hash", 21, 15]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 31, 18]]);
-const pos$3 = nix.positions(here + "/default.nix", [["0.92", 31, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 39, 5], ["description", 40, 5], ["maintainers", 41, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["repo", 26, 3], ["owner", 27, 3], ["domain", 28, 3], ["version", 29, 11], ["fetcher", 29, 19], ["defaultVersion", 30, 3], ["release", 31, 3], ["mlPlugin", 33, 3], ["preBuild", 34, 3], ["extraInstallFlags", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +21,13 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const domain = nix.arg($_1, "domain");
     return nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://${domain}/${owner}/${repo}/download/${repo}-${rev}.zip`),
         hash: hash,
       })));
   })(), formals$2);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "heq",
       repo: "Heq",
       owner: "gil.hur",
@@ -40,9 +36,9 @@ export default nix.lambda((args) => (() => {
       fetcher: fetcher,
       defaultVersion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "isLt"), "8.8", nix.thunk(() => nix.sel(coq, "coq-version")))) ? "0.92" : null)),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "0.92": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256:0cf8y6728n81wwlbpq3vi7l2dbzi7759klypld4gpsjjp1y1fj74",
         })),
       })),
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`COQLIB=$(out)/lib/coq/${nix.sel(coq, "coq-version")}/`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://ropas.snu.ac.kr/~gil.hur/Heq/",
         description: "Heq : a Coq library for Heterogeneous Equality",
         maintainers: nix.thunk(() => (() => {

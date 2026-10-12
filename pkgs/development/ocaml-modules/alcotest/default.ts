@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["hash", 20, 5]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 25, 3], ["doCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, astring: false, cmdliner: false, fmt: false, re: false, "stdlib-shims": false, uutf: false, "ocaml-syntax-shims": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 25, 3], ["doCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const uutf = nix.arg($, "uutf");
   const ocaml_syntax_shims = nix.arg($, "ocaml-syntax-shims");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "alcotest",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/alcotest/releases/download/${nix.sel(finalAttrs, "version")}/alcotest-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-HinDtB1DKQYhBbcj39o6/4a4zvXnx1ANDkkfxf145II=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [astring, cmdliner, fmt, re, stdlib_shims, uutf]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mirage/alcotest",
         description: "Lightweight and colourful test framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

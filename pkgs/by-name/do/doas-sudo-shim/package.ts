@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["helpTest", 61, 5]], [["tests", 60, 12]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["dontConfigure", 39, 3], ["dontBuild", 40, 3], ["installFlags", 42, 3], ["postInstall", 47, 3], ["passthru", 60, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, runCommand: false, asciidoctor: false, coreutils: false, gawk: false, glibc: false, "util-linux": false, bash: false, makeBinaryWrapper: false, "doas-sudo-shim": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["helpTest", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 60, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["dontConfigure", 39, 3], ["dontBuild", 40, 3], ["installFlags", 42, 3], ["postInstall", 47, 3], ["passthru", 60, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "doas-sudo-shim";
       const version = "0.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jirutka",
           repo: "doas-sudo-shim",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -42,16 +38,16 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash, coreutils, gawk, glibc, util_linux]))}
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           helpTest: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-helpTest`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${doas_sudo_shim}/bin/sudo -h > $out
 grep -q "Execute a command as another user using doas(1)" $out
 `))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Shim for the sudo command that utilizes doas",
         homepage: "https://github.com/jirutka/doas-sudo-shim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -63,7 +59,7 @@ grep -q "Execute a command as another user using doas(1)" $out
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

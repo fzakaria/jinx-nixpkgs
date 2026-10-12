@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 7], ["hash", 15, 7]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["sourceProvenance", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["srcs", 12, 3], ["sourceRoot", 19, 3], ["outputs", 21, 3], ["nativeBuildInputs", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["sourceProvenance", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["srcs", 12, 3], ["sourceRoot", 19, 3], ["outputs", 21, 3], ["nativeBuildInputs", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "geist-font",
       version: "1.7.0",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/vercel/geist-font/releases/download/${nix.sel(finalAttrs, "version")}/geist-font-${nix.sel(finalAttrs, "version")}.zip`),
             hash: "sha256-BeS7QkBkRjqozrqzOm2lbc/vTG25OCoCgQr96T8ica4=",
           })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "webfont"]),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Font family created by Vercel in collaboration with Basement Studio",
         homepage: "https://vercel.com/font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

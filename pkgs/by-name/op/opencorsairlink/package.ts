@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["NIX_CFLAGS_COMPILE", 28, 7]], [["name", 33, 7], ["url", 34, 7], ["sha256", 35, 7]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["buildInputs", 14, 3], ["nativeBuildInputs", 15, 3], ["makeFlags", 17, 3], ["src", 19, 3], ["env", 28, 3], ["patches", 30, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, libusb1: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 33, 7], ["url", 34, 7], ["sha256", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["buildInputs", 14, 3], ["nativeBuildInputs", 15, 3], ["makeFlags", 17, 3], ["src", 19, 3], ["env", 28, 3], ["patches", 30, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,33 +14,33 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "OpenCorsairLink",
       version: "0-unstable-2019-12-23",
       buildInputs: nix.thunk(() => [libusb1]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hyperkineticnerd",
           repo: "OpenCorsairLink",
           rev: "46dbf206e19a40d6de6bd73142ed93bdb26c5c1a",
           sha256: "1nizicl0mc9pslc6065mnrs0fnn8sh7ca8iiw7w9ix57zrhabpld",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fno-common.patch",
             url: "https://github.com/hyperkineticnerd/OpenCorsairLink/commit/d600c7ff032a3911d30b039844a31f0b3acfe26a.patch",
             sha256: "030rwka5bvf79x6ir18vqb09izhz1crp94x5gqjxwv3b20vvv4kx",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Linux and Mac OS support for the CorsairLink Devices",
         homepage: "https://github.com/hyperkineticnerd/OpenCorsairLink",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

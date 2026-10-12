@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["homepage", 34, 5], ["description", 35, 5], ["longDescription", 36, 5], ["maintainers", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["knownVulnerabilities", 50, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["configurePhase", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libtool: false, libx11: false, libxt: false, libxpm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["longDescription", 36, 5], ["maintainers", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["knownVulnerabilities", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["configurePhase", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rxvt";
       const version = "2.7.10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/rxvt/${pname}-${version}.tar.gz`),
           sha256: "0jfl71gz3k7zh3kxdb8lxi06kajjnx7bq1rxjgk680l209jxask1",
         }))));
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const configurePhase = nix.thunk(() => nix.str`LIBTOOL=${libtool}/bin/libtool ./configure --prefix=$out --enable-everything --enable-smart-resize --enable-256-color
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://rxvt.sourceforge.net/",
         description: "Colour vt102 terminal emulator with less features and lower memory consumption",
         longDescription: "rxvt (acronym for our extended virtual terminal) is a terminal\nemulator for the X Window System, originally written by Rob Nation\nas an extended version of the older xvt terminal by John Bovey of\nUniversity of Kent. Mark Olesen extensively modified it later and\ntook over maintenance for several years.\n\nrxvt is intended to be a slimmed-down alternate for xterm,\nomitting some of its little-used features, like Tektronix 4014\nemulation and toolkit-style configurability.\n",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

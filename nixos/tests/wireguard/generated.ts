@@ -2,62 +2,46 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generated.nix", [[["maintainers", 8, 8]], [["kernelPackages", 16, 14]], [["allowedUDPPorts", 17, 29]], [["ips", 19, 11], ["listenPort", 20, 11], ["privateKeyFile", 21, 11], ["generatePrivateKeyFile", 22, 11]], [["wg0", 18, 41]], [["interfaces", 18, 30]], [["firewall", 17, 20], ["wireguard", 18, 20]], [["boot", 16, 9], ["networking", 17, 9]], [["kernelPackages", 30, 14]], [["allowedUDPPorts", 31, 29]], [["ips", 33, 11], ["listenPort", 34, 11], ["privateKeyFile", 35, 11], ["generatePrivateKeyFile", 36, 11]], [["wg0", 32, 41]], [["interfaces", 32, 30]], [["firewall", 31, 20], ["wireguard", 32, 20]], [["boot", 30, 9], ["networking", 31, 9]], [["peer1", 13, 5], ["peer2", 27, 5]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 12, 3], ["testScript", 41, 3]]]);
 const formals$1 = { args: { lib: false, kernelPackages: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/generated.nix", [["maintainers", 8, 8]]);
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/generated.nix", [["kernelPackages", 16, 14]]);
-const pos$3 = nix.positions(here + "/generated.nix", [["allowedUDPPorts", 17, 29]]);
-const pos$4 = nix.positions(here + "/generated.nix", [["ips", 19, 11], ["listenPort", 20, 11], ["privateKeyFile", 21, 11], ["generatePrivateKeyFile", 22, 11]]);
-const pos$5 = nix.positions(here + "/generated.nix", [["wg0", 18, 41]]);
-const pos$6 = nix.positions(here + "/generated.nix", [["interfaces", 18, 30]]);
-const pos$7 = nix.positions(here + "/generated.nix", [["firewall", 17, 20], ["wireguard", 18, 20]]);
-const pos$8 = nix.positions(here + "/generated.nix", [["boot", 16, 9], ["networking", 17, 9]]);
 const formals$3 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/generated.nix", [["kernelPackages", 30, 14]]);
-const pos$10 = nix.positions(here + "/generated.nix", [["allowedUDPPorts", 31, 29]]);
-const pos$11 = nix.positions(here + "/generated.nix", [["ips", 33, 11], ["listenPort", 34, 11], ["privateKeyFile", 35, 11], ["generatePrivateKeyFile", 36, 11]]);
-const pos$12 = nix.positions(here + "/generated.nix", [["wg0", 32, 41]]);
-const pos$13 = nix.positions(here + "/generated.nix", [["interfaces", 32, 30]]);
-const pos$14 = nix.positions(here + "/generated.nix", [["firewall", 31, 20], ["wireguard", 32, 20]]);
-const pos$15 = nix.positions(here + "/generated.nix", [["boot", 30, 9], ["networking", 31, 9]]);
-const pos$16 = nix.positions(here + "/generated.nix", [["peer1", 13, 5], ["peer2", 27, 5]]);
-const pos$17 = nix.positions(here + "/generated.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 12, 3], ["testScript", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const kernelPackages = nix.argOr($, "kernelPackages", () => null);
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "wireguard-generated",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ma27"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       peer1: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             kernelPackages: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => nix.app(kernelPackages, pkgs)))),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedUDPPorts: nix.thunk(() => [12345n]) })),
+            [nix.POS]: $pos[6],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[2], allowedUDPPorts: nix.thunk(() => [12345n]) })),
             wireguard: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 wg0: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   ips: nix.thunk(() => ["10.10.10.1/24"]),
                   listenPort: 12345n,
                   privateKeyFile: "/etc/wireguard/private",
@@ -73,20 +57,20 @@ export default nix.lambda((args) => (() => {
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             kernelPackages: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => nix.app(kernelPackages, pkgs)))),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$14,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$10, allowedUDPPorts: nix.thunk(() => [12345n]) })),
+            [nix.POS]: $pos[13],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[9], allowedUDPPorts: nix.thunk(() => [12345n]) })),
             wireguard: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 wg0: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   ips: nix.thunk(() => ["10.10.10.2/24"]),
                   listenPort: 12345n,
                   privateKeyFile: "/etc/wireguard/private",

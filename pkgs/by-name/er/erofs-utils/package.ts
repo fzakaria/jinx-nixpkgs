@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["homepage", 61, 5], ["description", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 69, 5]], [["pname", 21, 3], ["version", 22, 3], ["outputs", 23, 3], ["enableParallelBuilding", 28, 3], ["strictDeps", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["configureFlags", 52, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, "pkg-config": false, fuse3: false, "util-linux": false, xxhash: false, lz4: false, xz: false, zlib: false, zstd: false, libdeflate: false, libselinux: false, fuseSupport: true, selinuxSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["description", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["outputs", 23, 3], ["enableParallelBuilding", 28, 3], ["strictDeps", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["configureFlags", 52, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const fuseSupport = nix.argOr($, "fuseSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const selinuxSupport = nix.argOr($, "selinuxSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "erofs-utils",
       version: "1.9.4",
       outputs: nix.thunk(() => ["out", "man"]),
       enableParallelBuilding: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git/snapshot/erofs-utils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-fRNaolUDJqWs8g9TxRiupaiQABXOUHAAROQPgYwx3YA=",
         })))),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([util_linux, xxhash, lz4, zlib, xz, zstd, libdeflate], nix.concat(nix.app(nix.sel(lib, "optionals"), fuseSupport, nix.thunk(() => [fuse3])), nix.app(nix.sel(lib, "optionals"), selinuxSupport, nix.thunk(() => [libselinux]))))),
       configureFlags: nix.thunk(() => nix.concat(["MAX_BLOCK_SIZE=4096", "--enable-multithreading", "--with-libdeflate"], nix.concat(nix.app(nix.sel(lib, "optional"), fuseSupport, "--enable-fuse"), nix.app(nix.sel(lib, "optional"), selinuxSupport, "--with-selinux")))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git/about/",
         description: "Userspace utilities for linux-erofs file system",
         changelog: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git/tree/ChangeLog?h=v${nix.sel(finalAttrs, "version")}`),

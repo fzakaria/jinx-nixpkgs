@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zen-kernels.nix", [[["owner", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["sha256", 30, 7]], [["ZEN_INTERACTIVE", 40, 7], ["NET_SCH_DEFAULT", 43, 7], ["DEFAULT_FQ_CODEL", 44, 7], ["PREEMPT", 47, 7], ["PREEMPT_LAZY", 48, 7], ["TREE_RCU", 51, 7], ["PREEMPT_RCU", 52, 7], ["RCU_EXPERT", 53, 7], ["TREE_SRCU", 54, 7], ["TASKS_RCU_GENERIC", 55, 7], ["TASKS_RCU", 56, 7], ["TASKS_RUDE_RCU", 57, 7], ["TASKS_TRACE_RCU", 58, 7], ["RCU_STALL_COMMON", 59, 7], ["RCU_NEED_SEGCBLIST", 60, 7], ["RCU_FANOUT", 61, 7], ["RCU_FANOUT_LEAF", 62, 7], ["RCU_BOOST", 63, 7], ["RCU_BOOST_DELAY", 64, 7], ["RCU_NOCB_CPU", 65, 7], ["RCU_LAZY", 66, 7], ["RCU_DOUBLE_CHECK_CB_TIME", 67, 7], ["IOSCHED_BFQ", 70, 7], ["FUTEX", 73, 7], ["FUTEX_PI", 74, 7], ["NTSYNC", 77, 7], ["HZ", 80, 7], ["HZ_1000", 81, 7]], [["updateScript", 84, 19]], [["branch", 89, 7], ["maintainers", 90, 7], ["teams", 96, 7], ["description", 97, 7], ["broken", 98, 7]], [["version", 21, 5], ["pname", 22, 5], ["modDirVersion", 23, 5], ["isZen", 24, 5], ["src", 26, 5], ["structuredExtraConfig", 38, 5], ["extraPassthru", 84, 5], ["extraMeta", 88, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildLinux: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/zen-kernels.nix", [["owner", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["sha256", 30, 7]]);
-const pos$2 = nix.positions(here + "/zen-kernels.nix", [["ZEN_INTERACTIVE", 40, 7], ["NET_SCH_DEFAULT", 43, 7], ["DEFAULT_FQ_CODEL", 44, 7], ["PREEMPT", 47, 7], ["PREEMPT_LAZY", 48, 7], ["TREE_RCU", 51, 7], ["PREEMPT_RCU", 52, 7], ["RCU_EXPERT", 53, 7], ["TREE_SRCU", 54, 7], ["TASKS_RCU_GENERIC", 55, 7], ["TASKS_RCU", 56, 7], ["TASKS_RUDE_RCU", 57, 7], ["TASKS_TRACE_RCU", 58, 7], ["RCU_STALL_COMMON", 59, 7], ["RCU_NEED_SEGCBLIST", 60, 7], ["RCU_FANOUT", 61, 7], ["RCU_FANOUT_LEAF", 62, 7], ["RCU_BOOST", 63, 7], ["RCU_BOOST_DELAY", 64, 7], ["RCU_NOCB_CPU", 65, 7], ["RCU_LAZY", 66, 7], ["RCU_DOUBLE_CHECK_CB_TIME", 67, 7], ["IOSCHED_BFQ", 70, 7], ["FUTEX", 73, 7], ["FUTEX_PI", 74, 7], ["NTSYNC", 77, 7], ["HZ", 80, 7], ["HZ_1000", 81, 7]]);
-const pos$3 = nix.positions(here + "/zen-kernels.nix", [["updateScript", 84, 19]]);
-const pos$4 = nix.positions(here + "/zen-kernels.nix", [["branch", 89, 7], ["maintainers", 90, 7], ["teams", 96, 7], ["description", 97, 7], ["broken", 98, 7]]);
-const pos$5 = nix.positions(here + "/zen-kernels.nix", [["version", 21, 5], ["pname", 22, 5], ["modDirVersion", 23, 5], ["isZen", 24, 5], ["src", 26, 5], ["structuredExtraConfig", 38, 5], ["extraPassthru", 84, 5], ["extraMeta", 88, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const modDirVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "pad"), 3n, nix.thunk(() => nix.str`${version}-${suffix}`)));
       const isZen = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zen-kernel",
           repo: "zen-kernel",
           rev: nix.thunk(() => nix.str`v${version}-${suffix}`),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const structuredExtraConfig = nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "kernel")), null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           ZEN_INTERACTIVE: nix.thunk(() => nix.lookup(w, "yes")),
           NET_SCH_DEFAULT: nix.thunk(() => nix.lookup(w, "yes")),
           DEFAULT_FQ_CODEL: nix.thunk(() => nix.lookup(w, "yes")),
@@ -65,11 +61,11 @@ export default nix.lambda((args) => (() => {
         };
       })());
       const extraPassthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => [nix.path(here, "./update-zen.py")]),
       }));
       const extraMeta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         branch: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "versions", "majorMinor"), version), "/master")),
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -85,7 +81,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version,
         pname,
         modDirVersion,

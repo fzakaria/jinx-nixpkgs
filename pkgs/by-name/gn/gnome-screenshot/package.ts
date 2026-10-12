@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["url", 37, 7], ["hash", 38, 7]], [["packageName", 72, 7]], [["updateScript", 71, 5]], [["homepage", 77, 5], ["description", 78, 5], ["mainProgram", 79, 5], ["teams", 80, 5], ["license", 81, 5], ["platforms", 82, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 33, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 54, 3], ["doCheck", 63, 3], ["postPatch", 65, 3], ["passthru", 70, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, gettext: false, libxml2: false, libhandy: false, fetchurl: false, fetchpatch: false, "pkg-config": false, "libcanberra-gtk3": false, gtk3: false, glib: false, meson: false, ninja: false, python3: false, wrapGAppsHook3: false, "appstream-glib": false, "desktop-file-utils": false, gnome: false, "adwaita-icon-theme": false, "gsettings-desktop-schemas": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 72, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["mainProgram", 79, 5], ["teams", 80, 5], ["license", 81, 5], ["platforms", 82, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 33, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 54, 3], ["doCheck", 63, 3], ["postPatch", 65, 3], ["passthru", 70, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,17 +28,17 @@ export default nix.lambda((args) => (() => {
   const adwaita_icon_theme = nix.arg($, "adwaita-icon-theme");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gnome-screenshot",
       version: "41.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-screenshot/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-screenshot-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Stt97JJkKPdCY9V5ZnPPFC5HILbnaPVGio0JM/mMlZc=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.gnome.org/GNOME/gnome-screenshot/-/commit/b60dad3c2536c17bd201f74ad8e40eb74385ed9f.patch",
             hash: "sha256-Js83h/3xxcw2hsgjzGa5lAYFXVrt6MPhXOTh5dZTx/w=",
           })))),
@@ -70,11 +65,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "chmod +x build-aux/postinstall.py # patchShebangs requires executable file\npatchShebangs build-aux/postinstall.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gnome-screenshot" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "gnome-screenshot" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-screenshot",
         description: "Utility used in the GNOME desktop environment for taking screenshots",
         mainProgram: "gnome-screenshot",

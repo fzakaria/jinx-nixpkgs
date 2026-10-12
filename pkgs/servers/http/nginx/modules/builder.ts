@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/builder.nix", [[["extraArgs", 34, 11]], [["modules", 38, 11]], [["nginx", 37, 9]], [["updateScript", 32, 7], ["tests", 36, 7]], [["hydraPlatforms", 47, 9]], [["name", 16, 5], ["dontConfigure", 17, 5], ["dontBuild", 18, 5], ["dontFixup", 19, 5], ["installPhase", 21, 5], ["passthru", 31, 5], ["meta", 44, 5]], [["constructDrv", 14, 3], ["extendDrvArgs", 15, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "nix-update-script": false, nginx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/builder.nix", [["extraArgs", 34, 11]]);
-const pos$2 = nix.positions(here + "/builder.nix", [["modules", 38, 11]]);
-const pos$3 = nix.positions(here + "/builder.nix", [["nginx", 37, 9]]);
-const pos$4 = nix.positions(here + "/builder.nix", [["updateScript", 32, 7], ["tests", 36, 7]]);
-const pos$5 = nix.positions(here + "/builder.nix", [["hydraPlatforms", 47, 9]]);
-const pos$6 = nix.positions(here + "/builder.nix", [["name", 16, 5], ["dontConfigure", 17, 5], ["dontBuild", 18, 5], ["dontFixup", 19, 5], ["installPhase", 21, 5], ["passthru", 31, 5], ["meta", 44, 5]]);
-const pos$7 = nix.positions(here + "/builder.nix", [["constructDrv", 14, 3], ["extendDrvArgs", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,27 +12,27 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nginx = nix.arg($, "nginx");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => (args_1) => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: nix.thunk(() => nix.str`nginx-mod-${nix.sel(args_1, "pname")}-${nix.sel(args_1, "version")}`),
         dontConfigure: true,
         dontBuild: true,
         dontFixup: true,
         installPhase: "runHook preInstall\ncp \\\n  --recursive \\\n  --no-preserve=ownership \\\n  . \\\n  \"$out\"\nrunHook postInstall\n",
         passthru: nix.thunk(() => nix.update(nix.selOr(args_1, () => ({}), "passthru"), {
-          [nix.POS]: pos$4,
-          updateScript: nix.thunk(() => nix.selOr(args_1, () => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$1, extraArgs: nix.thunk(() => ["--version=stable"]) }))), "passthru", "updateScript")),
+          [nix.POS]: $pos[3],
+          updateScript: nix.thunk(() => nix.selOr(args_1, () => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[0], extraArgs: nix.thunk(() => ["--version=stable"]) }))), "passthru", "updateScript")),
           tests: nix.thunk(() => nix.update({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             nginx: nix.thunk(() => nix.app(nix.sel(nginx, "override"), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 modules: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               })))),
           }, nix.selOr(args_1, () => ({}), "passthru", "tests"))),
         })),
-        meta: nix.thunk(() => nix.update(nix.selOr(args_1, () => ({}), "meta"), { [nix.POS]: pos$5, hydraPlatforms: [] })),
+        meta: nix.thunk(() => nix.update(nix.selOr(args_1, () => ({}), "meta"), { [nix.POS]: $pos[4], hydraPlatforms: [] })),
       }),
     })));
 })(), formals$1);

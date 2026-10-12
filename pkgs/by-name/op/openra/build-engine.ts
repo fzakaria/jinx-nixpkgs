@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-engine.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 22]], [["command", 31, 7], ["supportedFeatures", 32, 7]], [["updateScript", 30, 5]], [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5], ["mainProgram", 104, 5]], [["pname", 20, 11], ["version", 20, 17], ["dotnet-sdk", 20, 25], ["src", 22, 3], ["passthru", 29, 3], ["nugetDeps", 36, 3], ["postPatch", 39, 3], ["useAppHost", 44, 3], ["dotnetFlags", 46, 3], ["dotnetBuildFlags", 48, 3], ["dotnetInstallFlags", 49, 3], ["dontDotnetFixup", 57, 3], ["enableParallelBuilding", 60, 3], ["preBuild", 62, 3], ["postInstall", 66, 3], ["postFixup", 85, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false, SDL2: false, freetype: false, openal: false, lua51Packages: false, openRaUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-engine.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 22]]);
-const pos$2 = nix.positions(here + "/build-engine.nix", [["command", 31, 7], ["supportedFeatures", 32, 7]]);
-const pos$3 = nix.positions(here + "/build-engine.nix", [["updateScript", 30, 5]]);
-const pos$4 = nix.positions(here + "/build-engine.nix", [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5], ["mainProgram", 104, 5]]);
-const pos$5 = nix.positions(here + "/build-engine.nix", [["pname", 20, 11], ["version", 20, 17], ["dotnet-sdk", 20, 25], ["src", 22, 3], ["passthru", 29, 3], ["nugetDeps", 36, 3], ["postPatch", 39, 3], ["useAppHost", 44, 3], ["dotnetFlags", 46, 3], ["dotnetBuildFlags", 48, 3], ["dotnetInstallFlags", 49, 3], ["dontDotnetFixup", 57, 3], ["enableParallelBuilding", 60, 3], ["preBuild", 62, 3], ["postInstall", 66, 3], ["postFixup", 85, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,21 +21,21 @@ export default nix.lambda((args) => (() => {
     const version = nix.thunk(() => nix.sel(engine, "version"));
     const dotnet_sdk = nix.thunk(() => nix.sel(engine, "dotnet-sdk"));
     return nix.app(buildDotnetModule, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: pname,
         version: version,
         "dotnet-sdk": dotnet_sdk,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "OpenRA",
             repo: "OpenRA",
             rev: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "rev", engine)) ? nix.sel(engine, "rev") : nix.str`${nix.sel(engine, "build")}-${nix.sel(engine, "version")}`)),
             hash: nix.thunk(() => nix.attr(engine, "hash")),
           })))),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           updateScript: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             command: nix.thunk(() => nix.app(openRaUpdater, engine)),
             supportedFeatures: nix.thunk(() => ["commit"]),
           })),
@@ -89,7 +85,7 @@ for bin in $(find $out/.bin-unwrapped -type f); do
 done
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: nix.thunk(() => nix.str`Open Source real-time strategy game engine for early Westwood games such as Command & Conquer: Red Alert. ${nix.sel(engine, "build")} version`),
           homepage: "https://www.openra.net/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

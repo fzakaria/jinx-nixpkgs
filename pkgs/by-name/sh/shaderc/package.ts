@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["shaderc-version", 36, 7], ["spirv-tools-version", 37, 7], ["glslang-version", 38, 7]], [["package", 75, 5], ["versionCheck", 77, 5]], [["pkg-config", 74, 18]], [["tests", 74, 12]], [["description", 81, 5], ["homepage", 82, 35], ["license", 83, 5], ["platforms", 84, 5], ["mainProgram", 85, 5], ["pkgConfigModules", 86, 5]], [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 27, 3], ["patches", 34, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 49, 3], ["propagatedBuildInputs", 58, 3], ["postInstall", 62, 3], ["cmakeFlags", 66, 3], ["nativeInstallCheckInputs", 68, 3], ["versionCheckProgramArg", 71, 3], ["doInstallCheck", 72, 3], ["passthru", 74, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, versionCheckHook: false, cmake: false, python3: false, darwin: false, cctools: false, glslang: false, "spirv-tools": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["shaderc-version", 36, 7], ["spirv-tools-version", 37, 7], ["glslang-version", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 75, 5], ["versionCheck", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 74, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 74, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 35], ["license", 83, 5], ["platforms", 84, 5], ["mainProgram", 85, 5], ["pkgConfigModules", 86, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 27, 3], ["patches", 34, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 49, 3], ["propagatedBuildInputs", 58, 3], ["postInstall", 62, 3], ["cmakeFlags", 66, 3], ["nativeInstallCheckInputs", 68, 3], ["versionCheckProgramArg", 71, 3], ["doInstallCheck", 72, 3], ["passthru", 74, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const spirv_tools = nix.arg($, "spirv-tools");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "shaderc",
       version: "2026.1",
       outputs: nix.thunk(() => ["out", "lib", "bin", "dev", "static"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "shaderc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./unvendor-glslang.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "shaderc-version": nix.thunk(() => nix.sel(finalAttrs, "version")),
             "spirv-tools-version": nix.thunk(() => nix.sel(spirv_tools, "version")),
             "glslang-version": nix.thunk(() => nix.sel(glslang, "version")),
@@ -55,11 +49,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: false,
             })))),
@@ -68,7 +62,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Collection of tools, libraries and tests for shader compilation",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

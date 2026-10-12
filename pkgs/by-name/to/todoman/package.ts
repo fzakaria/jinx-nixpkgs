@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["repl", 46, 5]], [["homepage", 101, 5], ["description", 102, 5], ["longDescription", 103, 5], ["changelog", 114, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 121, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["build-system", 30, 3], ["dependencies", 34, 3], ["optional-dependencies", 45, 3], ["nativeCheckInputs", 49, 3], ["outputs", 58, 3], ["sphinxBuilders", 64, 3], ["preInstallSphinx", 69, 3], ["postInstall", 76, 3], ["disabledTests", 83, 3], ["pythonImportsCheck", 96, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, installShellFiles: false, jq: false, lib: false, python3: false, sphinxHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["repl", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 101, 5], ["description", 102, 5], ["longDescription", 103, 5], ["changelog", 114, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 121, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["build-system", 30, 3], ["dependencies", 34, 3], ["optional-dependencies", 45, 3], ["nativeCheckInputs", 49, 3], ["outputs", 58, 3], ["sphinxBuilders", 64, 3], ["preInstallSphinx", 69, 3], ["postInstall", 76, 3], ["disabledTests", 83, 3], ["pythonImportsCheck", 96, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const sphinxHook = nix.arg($, "sphinxHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "todoman",
       version: "4.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pimutils",
           repo: "todoman",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           repl: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "click-repl"))]),
         };
       })()),
@@ -90,7 +87,7 @@ installShellCompletion --bash contrib/completion/bash/_todo \\
       ]),
       pythonImportsCheck: nix.thunk(() => ["todoman"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/pimutils/todoman",
         description: "Standards-based task manager based on iCalendar",
         longDescription: "Todoman is a simple, standards-based, cli todo (aka task) manager. Todos\nare stored into iCalendar files, which means you can sync them via CalDAV\nusing, for example, vdirsyncer.\n\nTodos are read from individual ics files from the configured directory.\nThis matches the vdir specification. There is support for the most common TODO\nfeatures for now (summary, description, location, due date and priority) for\nnow.\nUnsupported fields may not be shown but are never deleted or altered.\n",

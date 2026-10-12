@@ -2,22 +2,20 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 7, 5], ["hash", 8, 5]], [["model", 13, 12]], [["passthru", 13, 3]]]);
 const formals$1 = { args: { fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 7, 5], ["hash", 8, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["model", 13, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["passthru", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchurl = nix.arg($, "fetchurl");
   const model = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/google-coral/test_data/raw/release-frogfish/ssdlite_mobiledet_coco_qat_postprocess_edgetpu.tflite",
       hash: "sha256-Siviu7YU5XbVbcuRT6UnUr8PE0EVEnENNV2X+qGzVkE=",
     }))));
   return nix.app(nix.sel(model, "overrideAttrs"), (_) => ({
-      [nix.POS]: pos$3,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, model: model })),
+      [nix.POS]: $pos[2],
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], model: model })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

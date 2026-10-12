@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugins.nix", [[["callPackage", 9, 22], ["directory", 10, 7]], [["mkPackerPlugin", 14, 5]]]);
 const formals$1 = { args: { lib: false, newScope: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plugins.nix", [["callPackage", 9, 22], ["directory", 10, 7]]);
-const pos$2 = nix.positions(here + "/plugins.nix", [["mkPackerPlugin", 14, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const newScope = nix.arg($, "newScope");
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const packages = nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           callPackage: nix.thunk(() => nix.attr(self, "callPackage")),
           directory: nix.path(here, "./plugins"),
         }))));
       return nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mkPackerPlugin: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./extra/mk-packer-plugin.nix"), nix.thunk(() => ({})))),
       }, nix.app(nix.sel(lib, "mapAttrs'"), (name) => (pkg) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "packer-plugin-", name)), pkg), packages));
     })());

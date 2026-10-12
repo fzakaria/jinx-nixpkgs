@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["name", 23, 7], ["url", 24, 7], ["hash", 25, 7]], [["simple", 40, 5]], [["tests", 39, 12]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["preBuild", 29, 3], ["makeFlags", 34, 3], ["passthru", 39, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, runCommand: false, mafft: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 23, 7], ["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["simple", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 39, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["preBuild", 29, 3], ["makeFlags", 34, 3], ["passthru", 39, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const mafft = nix.arg($, "mafft");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mafft",
       version: "7.526",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sysimm",
           repo: "mafft",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "reduce-extern-symbols-alpine-compat",
             url: "https://gitlab.com/sysimm/mafft/-/commit/aa3b7d54e0a05c5ed7d665c094c3d89f2b6a907f.patch",
             hash: "sha256-g89cFcnrLMlU/RLhS1kzCYPd5BWaH7wdz6tR+Ys3bVE=",
@@ -43,9 +38,9 @@ export default nix.lambda((args) => (() => {
         "PREFIX=$(out)",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           simple: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 cd ${nix.sel(finalAttrs, "src")}/test
 ${nix.app(nix.sel(lib, "getExe"), mafft)} sample > $out/test.fftns2
@@ -63,7 +58,7 @@ diff $out/test.lins1 sample.lins1
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Multiple alignment program for amino acid or nucleotide sequences",
         homepage: "https://mafft.cbrc.jp/alignment/software/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

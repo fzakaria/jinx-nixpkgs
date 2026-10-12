@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["desktopName", 18, 5], ["name", 19, 5], ["exec", 20, 5], ["icon", 21, 5], ["categories", 22, 5]], [["pname", 26, 13], ["version", 26, 19], ["src", 26, 27]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["sourceProvenance", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["desktopItem", 17, 3], ["appimageContents", 25, 3], ["extraInstallCommands", 29, 3], ["extraPkgs", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { appimageTools: false, lib: false, fetchurl: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["desktopName", 18, 5], ["name", 19, 5], ["exec", 20, 5], ["icon", 21, 5], ["categories", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 13], ["version", 26, 19], ["src", 26, 27]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["sourceProvenance", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["desktopItem", 17, 3], ["appimageContents", 25, 3], ["extraInstallCommands", 29, 3], ["extraPkgs", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,26 +15,26 @@ export default nix.lambda((args) => (() => {
       const pname = "rambox";
       const version = "2.6.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ramboxapp/download/releases/download/v${version}/Rambox-${version}-linux-x64.AppImage`),
           hash: "sha256-YVLT+6o2Py796LBgN7ZgMiigbjBFGyTNaG/bSwJYAXk=",
         }))));
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           desktopName: "Rambox",
           name: "rambox",
           exec: "rambox",
           icon: "rambox",
           categories: nix.thunk(() => ["Network"]),
         }))));
-      const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src }))));
+      const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, version: version, src: src }))));
       const extraInstallCommands = nix.thunk(() => nix.str`mkdir -p $out/share/applications $out/share/icons/hicolor/256x256/apps
 install -Dm644 ${appimageContents}/usr/share/icons/hicolor/256x256/apps/rambox*.png $out/share/icons/hicolor/256x256/apps/rambox.png
 install -Dm644 ${desktopItem}/share/applications/* $out/share/applications
 `);
       const extraPkgs = (pkgs) => [nix.thunk(() => nix.sel(pkgs, "procps"))];
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Workspace Simplifier - a cross-platform application organizing web services into Workspaces similar to browser profiles",
         homepage: "https://rambox.app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -53,7 +49,7 @@ install -Dm644 ${desktopItem}/share/applications/* $out/share/applications
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

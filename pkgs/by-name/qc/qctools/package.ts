@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["installPhase", 31, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ffmpeg_6: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["installPhase", 31, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qctools";
       const version = "1.4.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mediaarea.net/download/source/${pname}/${version}/${pname}_${version}.tar.xz`),
           hash: "sha256-4HuNBCvN1BDjIsEyo8Lo/H1rNgCFygkXqo6yD3oDf18=",
         }))));
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "runHook preInstall\n\ninstall -Dt $out/bin qctools-cli/qcli qctools-gui/QCTools\ncd ../GNU/GUI\ninstall -Dm644 qctools.desktop $out/share/applications/qctools.desktop\ninstall -Dm644 qctools.metainfo.xml $out/share/metainfo/qctools.metainfo.xml\ncd ../../../Source/Resource\ninstall -Dm 0644 Logo.png $out/share/icons/hicolor/256x256/apps/qctools.png\ninstall -Dm 0644 Logo.png $out/share/pixmaps/qctools.png\ncd ../../Project/QtCreator\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Audiovisual analytics and filtering of video files",
         homepage: "https://mediaarea.net/QCTools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

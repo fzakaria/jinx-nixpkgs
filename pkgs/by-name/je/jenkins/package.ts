@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["jenkins", 47, 36], ["jenkins-cli", 47, 44]], [["tests", 47, 5], ["updateScript", 49, 5]], [["description", 81, 5], ["homepage", 82, 5], ["sourceProvenance", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["changelog", 89, 5], ["mainProgram", 90, 5], ["platforms", 91, 5]], [["pname", 20, 3], ["version", 21, 3], ["strictDeps", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildCommand", 33, 3], ["passthru", 46, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, "common-updater-scripts": false, coreutils: false, git: false, gnused: false, makeWrapper: false, nix: false, jdk25: false, writeScript: false, nixosTests: false, jq: false, cacert: false, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["jenkins", 47, 36], ["jenkins-cli", 47, 44]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 47, 5], ["updateScript", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["sourceProvenance", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["changelog", 89, 5], ["mainProgram", 90, 5], ["platforms", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["strictDeps", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildCommand", 33, 3], ["passthru", 46, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jenkins",
       version: "2.580.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://get.jenkins.io/war-stable/${nix.sel(finalAttrs, "version")}/jenkins.war`),
           hash: "sha256-OTvyR2NS3XJlGf0fks5m6sfSPAk25pZ0ILcXBgxMQNA=",
         })))),
@@ -50,9 +46,9 @@ makeWrapper "${jdk25}/bin/java" "$out/bin/jenkins-cli" \\
   --add-flags "-jar $out/share/jenkins-cli.jar"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           jenkins: nix.thunk(() => nix.attr(nixosTests, "jenkins")),
           "jenkins-cli": nix.thunk(() => nix.attr(nixosTests, "jenkins-cli")),
         })),
@@ -75,7 +71,7 @@ fi
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Extendable open source continuous integration server",
         homepage: "https://jenkins.io/",
         sourceProvenance: nix.thunk(() => (() => {

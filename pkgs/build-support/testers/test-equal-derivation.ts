@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-equal-derivation.nix", [[["assertion", 23, 15], ["drvA", 23, 25], ["drvB", 23, 30], ["nativeBuildInputs", 24, 7]]]);
 const formals$1 = { args: { lib: false, runCommand: false, emptyFile: false, "nix-diff": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-equal-derivation.nix", [["assertion", 23, 15], ["drvA", 23, 25], ["drvB", 23, 30], ["nativeBuildInputs", 24, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
     const drvB = nix.thunk(() => nix.builtins.unsafeDiscardOutputDependency(nix.thunk(() => nix.selOr(b, () => nix.builtins.throw("testEqualDerivation third argument must be a package"), "drvPath"))));
     const name = nix.thunk(() => (nix.asBool(nix.has(a, "name")) ? nix.str`testEqualDerivation-${nix.sel(a, "name")}` : "testEqualDerivation"));
     return (nix.asBool(nix.eq(drvA, drvB)) ? nix.force(emptyFile) : nix.app(runCommand, name, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         assertion: assertion,
         drvA: drvA,
         drvB: drvB,

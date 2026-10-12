@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/run-pkg-test.nix", [[["nativeBuildInputs", 11, 5], ["env", 16, 5]]]);
 const formals$1 = { args: { octave: false, runCommand: false, nativeOctavePkgTestInputs: false, octavePkgTestEnv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/run-pkg-test.nix", [["nativeBuildInputs", 11, 5], ["env", 16, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const nativeOctavePkgTestInputs = nix.arg($, "nativeOctavePkgTestInputs");
   const octavePkgTestEnv = nix.arg($, "octavePkgTestEnv");
   return (package$) => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(package$, "name")}-pkg-test`), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(nix.sel(octave, "withPackages"), (os) => [package$])),
       ], nativeOctavePkgTestInputs)),

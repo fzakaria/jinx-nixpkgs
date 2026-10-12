@@ -2,16 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nocontainer.nix", [[["ramalama", 6, 37]], [["name", 7, 3], ["port", 8, 3], ["model", 9, 3], ["nocontainer", 10, 3]]]);
 const formals$1 = { args: { callPackage: false, ramalama: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nocontainer.nix", [["ramalama", 6, 37]]);
-const pos$2 = nix.positions(here + "/nocontainer.nix", [["name", 7, 3], ["port", 8, 3], ["model", 9, 3], ["nocontainer", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const ramalama = nix.arg($, "ramalama");
-  return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, ramalama: ramalama }))), "mkServeTest"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+  return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], ramalama: ramalama }))), "mkServeTest"), nix.thunk(() => ({
+      [nix.POS]: $pos[1],
       name: "ramalama-nocontainer-test",
       port: 18080n,
       model: nix.thunk(() => nix.app(callPackage, nix.path(here, "./llama-cpp-model.nix"), nix.thunk(() => ({})))),

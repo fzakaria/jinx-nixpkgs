@@ -2,30 +2,25 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/latest-kernel.nix", [[["zfs", 4, 29], ["bcachefs", 5, 29]], [["kernelPackages", 3, 8], ["supportedFilesystems", 4, 8]], [["text", 6, 48]], [["nixos-generate-config.conf", 6, 19]], [["etc", 6, 15]], [["boot", 3, 3], ["environment", 6, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/latest-kernel.nix", [["zfs", 4, 29], ["bcachefs", 5, 29]]);
-const pos$2 = nix.positions(here + "/latest-kernel.nix", [["kernelPackages", 3, 8], ["supportedFilesystems", 4, 8]]);
-const pos$3 = nix.positions(here + "/latest-kernel.nix", [["text", 6, 48]]);
-const pos$4 = nix.positions(here + "/latest-kernel.nix", [["nixos-generate-config.conf", 6, 19]]);
-const pos$5 = nix.positions(here + "/latest-kernel.nix", [["etc", 6, 15]]);
-const pos$6 = nix.positions(here + "/latest-kernel.nix", [["boot", 3, 3], ["environment", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
-      supportedFilesystems: nix.thunk(() => ({ [nix.POS]: pos$1, zfs: false, bcachefs: true })),
+      supportedFilesystems: nix.thunk(() => ({ [nix.POS]: $pos[0], zfs: false, bcachefs: true })),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       etc: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        "nixos-generate-config.conf": nix.thunk(() => ({ [nix.POS]: pos$3, text: "[Defaults]\nKernel=latest\n" })),
+        [nix.POS]: $pos[3],
+        "nixos-generate-config.conf": nix.thunk(() => ({ [nix.POS]: $pos[2], text: "[Defaults]\nKernel=latest\n" })),
       })),
     })),
   };

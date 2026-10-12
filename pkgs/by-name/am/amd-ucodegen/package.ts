@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["extraArgs", 42, 40]], [["amd-ucodegen", 43, 56]], [["platomav", 43, 11]], [["updateScript", 42, 5], ["tests", 43, 5]], [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 21, 3], ["patches", 23, 3], ["installPhase", 33, 3], ["passthru", 41, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "nix-update-script": false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 42, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["amd-ucodegen", 43, 56]]);
-const pos$5 = nix.positions(here + "/package.nix", [["platomav", 43, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 42, 5], ["tests", 43, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 21, 3], ["patches", 23, 3], ["installPhase", 33, 3], ["passthru", 41, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "amd-ucodegen",
       version: "0-unstable-2017-06-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AndyLavr",
           repo: "amd-ucodegen",
           rev: "0d34b54e396ef300d0364817e763d2c7d1ffff02",
@@ -34,7 +27,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "validate-family-not-id.patch",
             url: "https://github.com/AndyLavr/amd-ucodegen/compare/0d34b54e396ef300d0364817e763d2c7d1ffff02...dobo90:amd-ucodegen:7a3c51e821df96910ecb05b22f3e4866b4fb85b2.patch",
             hash: "sha256-jvsvu9QgXikwsxjPiTaRff+cOg/YQmKg1MYKyBoMRQI=",
@@ -42,18 +35,18 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 amd-ucodegen $out/bin/amd-ucodegen\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           platomav: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-platomav.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               "amd-ucodegen": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Tool to generate AMD microcode files",
         longDescription: "This tool can be used to generate AMD microcode containers as used by the\nLinux kernel. It accepts raw AMD microcode files such as those generated\nby [MCExtractor](https://github.com/platomav/MCExtractor.git) as input.\nThe generated output file can be installed in /lib/firmware/amd-ucode.\n",
         homepage: "https://github.com/AndyLavr/amd-ucodegen",

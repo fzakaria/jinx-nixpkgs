@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]], [["hardcodeZeroVersion", 31, 48]], [["updateScript", 31, 12]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5], ["platforms", 39, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["passthru", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, git: false, lib: false, qt6: false, stdenv: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 31, 48]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 31, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5], ["platforms", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["passthru", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fdt-viewer",
       version: "0-unstable-2024-12-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dev-0x7C6",
           repo: "fdt-viewer",
           rev: "3488a599bfe0a92a0aec3cf421ef0c6f385f0737",
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook")), cmake, git]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtbase"))]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Flattened Device Tree Viewer written in Qt",
         homepage: "https://github.com/dev-0x7C6/fdt-viewer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

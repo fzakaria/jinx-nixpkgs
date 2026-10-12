@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 11, 3], ["version", 12, 35], ["pyproject", 13, 3], ["src", 15, 3], ["dependencies", 17, 3], ["installPhase", 24, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "openvino-genai-native": false, numpy: false, "openvino-tokenizers": false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 35], ["pyproject", 13, 3], ["src", 15, 3], ["dependencies", 17, 3], ["installPhase", 24, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const openvino_tokenizers = nix.arg($, "openvino-tokenizers");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "openvino-genai",
       version: nix.thunk(() => nix.attr(openvino_genai_native, "version")),
       pyproject: false,
@@ -30,7 +29,7 @@ runHook postInstall
 `),
       pythonImportsCheck: nix.thunk(() => ["openvino_genai"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "OpenVINO GenAI Python API",
         homepage: "https://github.com/openvinotoolkit/openvino.genai",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

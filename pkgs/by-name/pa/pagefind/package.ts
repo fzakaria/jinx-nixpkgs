@@ -2,32 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["vendorDir", 31, 16]], [["passthru", 31, 7], ["url", 32, 7], ["hash", 33, 7]], [["vendorDir", 36, 16]], [["passthru", 36, 7], ["url", 37, 7], ["hash", 38, 7]], [["vendorDir", 41, 16]], [["passthru", 41, 7], ["url", 42, 7], ["hash", 43, 7]], [["vendorDir", 46, 16]], [["passthru", 46, 7], ["url", 47, 7], ["hash", 48, 7]], [["vendorDir", 51, 16]], [["passthru", 51, 7], ["url", 52, 7], ["hash", 53, 7]], [["unidic-mecab", 30, 5], ["mecab-ko-dic", 35, 5], ["ipadic", 40, 5], ["cc-cedict", 45, 5], ["ipadic-neologd", 50, 5]], [["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]], [["name", 75, 5], ["src", 76, 26], ["sourceRoot", 77, 5], ["hash", 78, 5]], [["name", 81, 5], ["src", 82, 26], ["sourceRoot", 83, 5], ["hash", 84, 5]], [["name", 87, 5], ["src", 88, 26], ["sourceRoot", 89, 5], ["hash", 90, 5]], [["name", 93, 5], ["src", 94, 26], ["sourceRoot", 95, 5], ["hash", 96, 5]], [["name", 99, 5], ["src", 100, 26], ["sourceRoot", 101, 5], ["hash", 102, 5]], [["name", 105, 5], ["src", 106, 26], ["sourceRoot", 107, 5], ["hash", 108, 5]], [["cargoDeps_web", 74, 7], ["npmDeps_web_js", 80, 7], ["npmDeps_ui_default", 86, 7], ["npmDeps_ui_modular", 92, 7], ["npmDeps_ui_component", 98, 7], ["npmDeps_playground", 104, 7], ["GIT_VERSION", 111, 7]], [["enableExtended", 240, 7]], [["enableExtended", 243, 7]], [["extended", 239, 11], ["non-extended", 242, 11]], [["lindera-srcs", 238, 13], ["tests", 239, 5]], [["description", 248, 5], ["homepage", 249, 5], ["changelog", 250, 5], ["license", 251, 5], ["maintainers", 252, 5], ["platforms", 253, 5], ["mainProgram", 254, 5]], [["enableExtended", 60, 11], ["pname", 62, 3], ["version", 63, 3], ["src", 65, 3], ["cargoHash", 72, 3], ["env", 74, 3], ["postPatch", 113, 3], ["__darwinAllowLocalNetworking", 172, 3], ["nativeBuildInputs", 174, 3], ["preBuild", 189, 3], ["buildFeatures", 229, 3], ["doInstallCheck", 231, 3], ["nativeInstallCheckInputs", 233, 3], ["passthru", 237, 3], ["meta", 247, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchNpmDeps: false, fetchurl: false, binaryen: false, gzip: false, nodejs: false, npmHooks: false, python3: false, rustc: false, versionCheckHook: false, "wasm-bindgen-cli_0_2_117": false, "wasm-pack": false, enableExtended: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["vendorDir", 31, 16]]);
-const pos$2 = nix.positions(here + "/package.nix", [["passthru", 31, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["vendorDir", 36, 16]]);
-const pos$4 = nix.positions(here + "/package.nix", [["passthru", 36, 7], ["url", 37, 7], ["hash", 38, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["vendorDir", 41, 16]]);
-const pos$6 = nix.positions(here + "/package.nix", [["passthru", 41, 7], ["url", 42, 7], ["hash", 43, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["vendorDir", 46, 16]]);
-const pos$8 = nix.positions(here + "/package.nix", [["passthru", 46, 7], ["url", 47, 7], ["hash", 48, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["vendorDir", 51, 16]]);
-const pos$10 = nix.positions(here + "/package.nix", [["passthru", 51, 7], ["url", 52, 7], ["hash", 53, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["unidic-mecab", 30, 5], ["mecab-ko-dic", 35, 5], ["ipadic", 40, 5], ["cc-cedict", 45, 5], ["ipadic-neologd", 50, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["name", 75, 5], ["src", 76, 26], ["sourceRoot", 77, 5], ["hash", 78, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["name", 81, 5], ["src", 82, 26], ["sourceRoot", 83, 5], ["hash", 84, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["name", 87, 5], ["src", 88, 26], ["sourceRoot", 89, 5], ["hash", 90, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["name", 93, 5], ["src", 94, 26], ["sourceRoot", 95, 5], ["hash", 96, 5]]);
-const pos$17 = nix.positions(here + "/package.nix", [["name", 99, 5], ["src", 100, 26], ["sourceRoot", 101, 5], ["hash", 102, 5]]);
-const pos$18 = nix.positions(here + "/package.nix", [["name", 105, 5], ["src", 106, 26], ["sourceRoot", 107, 5], ["hash", 108, 5]]);
-const pos$19 = nix.positions(here + "/package.nix", [["cargoDeps_web", 74, 7], ["npmDeps_web_js", 80, 7], ["npmDeps_ui_default", 86, 7], ["npmDeps_ui_modular", 92, 7], ["npmDeps_ui_component", 98, 7], ["npmDeps_playground", 104, 7], ["GIT_VERSION", 111, 7]]);
-const pos$20 = nix.positions(here + "/package.nix", [["enableExtended", 240, 7]]);
-const pos$21 = nix.positions(here + "/package.nix", [["enableExtended", 243, 7]]);
-const pos$22 = nix.positions(here + "/package.nix", [["extended", 239, 11], ["non-extended", 242, 11]]);
-const pos$23 = nix.positions(here + "/package.nix", [["lindera-srcs", 238, 13], ["tests", 239, 5]]);
-const pos$24 = nix.positions(here + "/package.nix", [["description", 248, 5], ["homepage", 249, 5], ["changelog", 250, 5], ["license", 251, 5], ["maintainers", 252, 5], ["platforms", 253, 5], ["mainProgram", 254, 5]]);
-const pos$25 = nix.positions(here + "/package.nix", [["enableExtended", 60, 11], ["pname", 62, 3], ["version", 63, 3], ["src", 65, 3], ["cargoHash", 72, 3], ["env", 74, 3], ["postPatch", 113, 3], ["__darwinAllowLocalNetworking", 172, 3], ["nativeBuildInputs", 174, 3], ["preBuild", 189, 3], ["buildFeatures", 229, 3], ["doInstallCheck", 231, 3], ["nativeInstallCheckInputs", 233, 3], ["passthru", 237, 3], ["meta", 247, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,45 +24,45 @@ export default nix.lambda((args) => (() => {
   const wasm_pack = nix.arg($, "wasm-pack");
   const enableExtended = nix.argOr($, "enableExtended", () => true);
   const lindera_srcs = nix.thunk(() => ({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     "unidic-mecab": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$1, vendorDir: "lindera-unidic-*" })),
+        [nix.POS]: $pos[1],
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], vendorDir: "lindera-unidic-*" })),
         url: "https://Lindera.dev/unidic-mecab-2.1.2.tar.gz",
         hash: "sha256-JKx1/k5E2XO1XmWEfDX6Suwtt6QaB7ScoSUUbbn8EYk=",
       })))),
     "mecab-ko-dic": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$3, vendorDir: "lindera-ko-dic-*" })),
+        [nix.POS]: $pos[3],
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], vendorDir: "lindera-ko-dic-*" })),
         url: "https://Lindera.dev/mecab-ko-dic-2.1.1-20180720.tar.gz",
         hash: "sha256-cCztIcYWfp2a68Z0q17lSvWNREOXXylA030FZ8AgWRo=",
       })))),
     ipadic: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$5, vendorDir: "lindera-ipadic-0.*" })),
+        [nix.POS]: $pos[5],
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], vendorDir: "lindera-ipadic-0.*" })),
         url: "https://Lindera.dev/mecab-ipadic-2.7.0-20070801.tar.gz",
         hash: "sha256-CZ5G6A1V58DWkGeDr/cTdI4a6Q9Gxe+W7BU7vwm/VVA=",
       })))),
     "cc-cedict": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$7, vendorDir: "lindera-cc-cedict-*" })),
+        [nix.POS]: $pos[7],
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[6], vendorDir: "lindera-cc-cedict-*" })),
         url: "https://lindera.dev/CC-CEDICT-MeCab-0.1.0-20200409.tar.gz",
         hash: "sha256-7Tz54+yKgGR/DseD3Ana1DuMytLplPXqtv8TpB0JFsg=",
       })))),
     "ipadic-neologd": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$10,
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$9, vendorDir: "lindera-ipadic-neologd-*" })),
+        [nix.POS]: $pos[9],
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[8], vendorDir: "lindera-ipadic-neologd-*" })),
         url: "https://lindera.dev/mecab-ipadic-neologd-0.0.7-20200820.tar.gz",
         hash: "sha256-1VwCwgSTKFixeQUFVCdqMzZKne/+FTgM56xT7etqjqI=",
       })))),
   }));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       enableExtended: enableExtended,
       pname: nix.thunk(() => nix.add("pagefind", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(finalAttrs, "enableExtended")), "-extended"))),
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           owner: "Pagefind",
           repo: "pagefind",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -94,44 +70,44 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-RdU6ZF32kyRC9C0J7NfscNhrs+NjfE5jppIt6u47fcw=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         cargoDeps_web: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             name: nix.thunk(() => nix.str`cargo-deps-web-${nix.sel(finalAttrs, "version")}`),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/pagefind_web`),
             hash: "sha256-8DqD5QVoHOBtV11UKrunlzR7i+8PTeJGulzN6d2vqks=",
           })))),
         npmDeps_web_js: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             name: nix.thunk(() => nix.str`pagefind-npm-deps-web-js-${nix.sel(finalAttrs, "version")}`),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/pagefind_web_js`),
             hash: "sha256-vrPdlvd6doaIKiawsvJLnhIPhC35/qzdgUhkfMZrcP8=",
           })))),
         npmDeps_ui_default: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             name: nix.thunk(() => nix.str`pagefind-npm-deps-ui-default-${nix.sel(finalAttrs, "version")}`),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/pagefind_ui/default`),
             hash: "sha256-78Qyk18IzekdP6l8pkWxhGeKEST2Ju/AUBASycbggRQ=",
           })))),
         npmDeps_ui_modular: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             name: nix.thunk(() => nix.str`pagefind-npm-deps-ui-modular-${nix.sel(finalAttrs, "version")}`),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/pagefind_ui/modular`),
             hash: "sha256-Ja9s9EX2b9TviLA/NxwQ3Z7RMjL8LIUJAuE63EyBbN4=",
           })))),
         npmDeps_ui_component: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             name: nix.thunk(() => nix.str`pagefind-npm-deps-ui-component-${nix.sel(finalAttrs, "version")}`),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/pagefind_ui/component`),
             hash: "sha256-ZSsXn+A8VVGSCjP2J7ql4rIoOto7a/vzRcVhxuo5Ngk=",
           })))),
         npmDeps_playground: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             name: nix.thunk(() => nix.str`pagefind-npm-deps-playground-${nix.sel(finalAttrs, "version")}`),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/pagefind_playground`),
@@ -208,16 +184,16 @@ substituteInPlace pagefind_web/local_fast_build.sh \\
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         "lindera-srcs": lindera_srcs,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$22,
-          extended: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$20, enableExtended: true })))),
-          "non-extended": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$21, enableExtended: false })))),
+          [nix.POS]: $pos[21],
+          extended: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[19], enableExtended: true })))),
+          "non-extended": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[20], enableExtended: false })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         description: "Generate low-bandwidth search index for your static website",
         homepage: "https://pagefind.app/",
         changelog: nix.thunk(() => nix.str`https://github.com/Pagefind/pagefind/releases/tag/v${nix.sel(finalAttrs, "version")}`),

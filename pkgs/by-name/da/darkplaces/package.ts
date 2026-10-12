@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 60, 5], ["description", 61, 5], ["longDescription", 62, 5], ["maintainers", 68, 5], ["license", 69, 5], ["platforms", 70, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["postPatch", 29, 3], ["buildFlags", 34, 3], ["installPhase", 36, 3], ["postFixup", 46, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, zlib: false, libjpeg: false, SDL2: false, libvorbis: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["longDescription", 62, 5], ["maintainers", 68, 5], ["license", 69, 5], ["platforms", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["postPatch", 29, 3], ["buildFlags", 34, 3], ["installPhase", 36, 3], ["postFixup", 46, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libvorbis = nix.arg($, "libvorbis");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "darkplaces",
       version: "20140513-unstable-2026-01-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DarkPlacesEngine",
           repo: "darkplaces",
           rev: "d93f9c4292039354a2b8d40d11bc386891e55fe5",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
   $out/bin/darkplaces
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.icculus.org/twilight/darkplaces/",
         description: "Quake 1 engine implementation by LadyHavoc",
         longDescription: "A game engine based on the Quake 1 engine by id Software.\nIt improves and builds upon the original 1996 engine by adding modern\nrendering features, and expanding upon the engine's native game code\nlanguage QuakeC, as well as supporting additional map and model formats.\n",

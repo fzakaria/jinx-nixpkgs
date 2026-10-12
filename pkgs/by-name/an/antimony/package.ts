@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["name", 67, 7], ["desktopName", 68, 7], ["comment", 69, 7], ["genericName", 70, 7], ["exec", 71, 7], ["icon", 72, 7], ["categories", 73, 7], ["mimeTypes", 78, 7], ["startupWMClass", 82, 7]], [["description", 93, 5], ["mainProgram", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 98, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["postPatch", 36, 3], ["postInstall", 42, 3], ["buildInputs", 47, 3], ["nativeBuildInputs", 57, 3], ["desktopItems", 65, 3], ["cmakeFlags", 86, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libpng: false, python3: false, libGLU: false, libGL: false, libsForQt5: false, ncurses: false, cmake: false, flex: false, lemon: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 67, 7], ["desktopName", 68, 7], ["comment", 69, 7], ["genericName", 70, 7], ["exec", 71, 7], ["icon", 72, 7], ["categories", 73, 7], ["mimeTypes", 78, 7], ["startupWMClass", 82, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 93, 5], ["mainProgram", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 98, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["postPatch", 36, 3], ["postInstall", 42, 3], ["buildInputs", 47, 3], ["nativeBuildInputs", 57, 3], ["desktopItems", 65, 3], ["cmakeFlags", 86, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const gitBranch = "develop";
   const gitTag = "0.9.3";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "antimony",
       version: "0.9.3-unstable-2025-10-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mkeeter",
           repo: "antimony",
           rev: gitRev,
@@ -64,7 +61,7 @@ install -Dm644 ${nix.path(here, "./mimetype.xml")} $out/share/mime/packages/anti
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "antimony",
             desktopName: "Antimony",
             comment: "Tree-based Modeler",
@@ -82,7 +79,7 @@ install -Dm644 ${nix.path(here, "./mimetype.xml")} $out/share/mime/packages/anti
         nix.thunk(() => nix.str`-DGITBRANCH=${gitBranch}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Computer-aided design (CAD) tool from a parallel universe",
         mainProgram: "antimony",
         homepage: "https://github.com/mkeeter/antimony",

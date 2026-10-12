@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 9], ["repo", 34, 9], ["tag", 35, 9], ["hash", 36, 17]], [["homepage", 80, 9], ["description", 81, 9], ["platforms", 82, 9], ["license", 83, 9], ["maintainers", 84, 9]], [["pname", 29, 7], ["version", 30, 15], ["src", 32, 7], ["nativeBuildInputs", 39, 7], ["buildInputs", 43, 7], ["dontWrapQtApps", 62, 7], ["cmakeFlags", 63, 7], ["meta", 79, 7]], [["version", 90, 5], ["hash", 91, 5]], [["wt4", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, boost: false, "pkg-config": false, doxygen: false, qt5: false, libharu: false, pango: false, fcgi: false, firebird: false, libmysqlclient: false, libpq: false, graphicsmagick: false, glew: false, openssl: false, harfbuzz: false, icu: false, libice: false, libsm: false }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 9], ["repo", 34, 9], ["tag", 35, 9], ["hash", 36, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 80, 9], ["description", 81, 9], ["platforms", 82, 9], ["license", 83, 9], ["maintainers", 84, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 29, 7], ["version", 30, 15], ["src", 32, 7], ["nativeBuildInputs", 39, 7], ["buildInputs", 43, 7], ["dontWrapQtApps", 62, 7], ["cmakeFlags", 63, 7], ["meta", 79, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 90, 5], ["hash", 91, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["wt4", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,10 +34,10 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "wt",
         version: version,
-        src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ [nix.POS]: pos$1, owner: "emweb", repo: "wt", tag: version, hash: hash })))),
+        src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ [nix.POS]: $pos[0], owner: "emweb", repo: "wt", tag: version, hash: hash })))),
         nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
         buildInputs: nix.thunk(() => [
           boost,
@@ -71,7 +67,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.str`-DGM_PREFIX=${graphicsmagick}`),
           ])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(libmysqlclient, null)), nix.thunk(() => nix.str`-DMYSQL_PREFIX=${libmysqlclient}`))))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://www.webtoolkit.eu/wt",
           description: "C++ library for developing web applications",
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -84,9 +80,9 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     wt4: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: "4.14.4",
         hash: "sha256-Hx3Sc6m+diFjyc+j+lJAOKsT9q3PzbyUE36k7G95Iy8=",
       })))),

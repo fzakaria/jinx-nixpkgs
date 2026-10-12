@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fork.nix", [[["owner", 21, 7], ["repo", 22, 7], ["rev", 24, 7], ["sha256", 25, 7]], [["version", 18, 5], ["src", 20, 5], ["buildInputs", 27, 5]], [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["sha256", 41, 5]], [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["enableParallelBuilding", 49, 3], ["buildInputs", 51, 3], ["nativeBuildInputs", 57, 3], ["buildFlags", 63, 3], ["postPatch", 71, 3], ["configurePhase", 90, 3], ["installPhase", 95, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, blas: false, lapack: false, openfst: false, icu: false, "pkg-config": false, fetchFromGitHub: false, python: false, openblas: false, zlib: false, gfortran: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fork.nix", [["owner", 21, 7], ["repo", 22, 7], ["rev", 24, 7], ["sha256", 25, 7]]);
-const pos$2 = nix.positions(here + "/fork.nix", [["version", 18, 5], ["src", 20, 5], ["buildInputs", 27, 5]]);
-const pos$3 = nix.positions(here + "/fork.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["sha256", 41, 5]]);
-const pos$4 = nix.positions(here + "/fork.nix", [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5]]);
-const pos$5 = nix.positions(here + "/fork.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["enableParallelBuilding", 49, 3], ["buildInputs", 51, 3], ["nativeBuildInputs", 57, 3], ["buildFlags", 63, 3], ["postPatch", 71, 3], ["configurePhase", 90, 3], ["installPhase", 95, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,10 +20,10 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const gfortran = nix.arg($, "gfortran");
   const old_openfst = nix.thunk(() => nix.app(nix.sel(openfst, "overrideAttrs"), (prev) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "kag-unstable-2022-05-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kkm000",
           repo: "openfst",
           rev: "0bca6e76d24647427356dc242b0adbf3b5f1a8d9",
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kaldi";
       const version = "kag-v2.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "daanzu",
           repo: "kaldi-fork-active-grammar",
           rev: version,
@@ -67,7 +63,7 @@ patchelf \\
   $out/lib/*
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Speech Recognition Toolkit",
         homepage: "https://kaldi-asr.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -75,7 +71,7 @@ patchelf \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

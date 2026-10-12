@@ -2,7 +2,7 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/define-value-string-arbitrary.nix", [["value", 2, 3]]);
+const $pos = nix.positions(here + "/define-value-string-arbitrary.nix", [[["value", 2, 3]]]);
 
-export default nix.thunk(() => ({ [nix.POS]: pos$1, value: "foobar" }));
+export default nix.thunk(() => ({ [nix.POS]: $pos[0], value: "foobar" }));
 //# sourceMappingURL=define-value-string-arbitrary.ts.map

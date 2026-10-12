@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["headless", 71, 5], ["headless-spec", 75, 5], ["idp-oidc", 76, 5], ["mfa", 81, 5], ["openid", 85, 5], ["saml", 86, 5], ["socialaccount", 87, 5], ["steam", 93, 5]], [["dj-rest-auth", 115, 30]], [["tests", 115, 12]], [["description", 118, 5], ["changelog", 119, 5], ["downloadPage", 120, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 123, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["nativeBuildInputs", 54, 3], ["build-system", 56, 3], ["dependencies", 61, 3], ["preBuild", 66, 3], ["optional-dependencies", 70, 3], ["pythonImportsCheck", 96, 3], ["nativeCheckInputs", 98, 3], ["disabledTests", 110, 3], ["passthru", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromCodeberg: false, python: false, setuptools: false, "setuptools-scm": false, gettext: false, asgiref: false, django: false, fido2: false, oauthlib: false, "python3-openid": false, "python3-saml": false, requests: false, "requests-oauthlib": false, pyjwt: false, qrcode: false, "django-ninja": false, djangorestframework: false, pillow: false, psycopg2: false, "pytest-asyncio": false, "pytest-django": false, pytestCheckHook: false, pyyaml: false, "dj-rest-auth": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["headless", 71, 5], ["headless-spec", 75, 5], ["idp-oidc", 76, 5], ["mfa", 81, 5], ["openid", 85, 5], ["saml", 86, 5], ["socialaccount", 87, 5], ["steam", 93, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["dj-rest-auth", 115, 30]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 115, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 118, 5], ["changelog", 119, 5], ["downloadPage", 120, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 123, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["nativeBuildInputs", 54, 3], ["build-system", 56, 3], ["dependencies", 61, 3], ["preBuild", 66, 3], ["optional-dependencies", 70, 3], ["pythonImportsCheck", 96, 3], ["nativeCheckInputs", 98, 3], ["disabledTests", 110, 3], ["passthru", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "65.19.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "allauth",
           repo: "django-allauth",
           tag: version,
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = nix.thunk(() => nix.str`${nix.sel(python, "pythonOnBuildForHost", "interpreter")} -m django compilemessages
 `);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         headless: nix.thunk(() => nix.concat([pyjwt], nix.sel(pyjwt, "optional-dependencies", "crypto"))),
         "headless-spec": nix.thunk(() => [pyyaml]),
         "idp-oidc": nix.thunk(() => nix.concat([oauthlib, pyjwt], nix.sel(pyjwt, "optional-dependencies", "crypto"))),
@@ -78,11 +73,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const disabledTests = nix.thunk(() => ["test_login"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, "dj-rest-auth": dj_rest_auth })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], "dj-rest-auth": dj_rest_auth })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Integrated set of Django applications addressing authentication, registration, account management as well as 3rd party (social) account authentication",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/allauth/django-allauth/src/tag/${nix.sel(src, "tag")}/ChangeLog.rst`),
         downloadPage: "https://codeberg.org/allauth/django-allauth",
@@ -94,7 +89,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

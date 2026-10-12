@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["rev-prefix", 54, 33]], [["updateScript", 54, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 43, 3], ["passthru", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, meson: false, ninja: false, fetchFromGitLab: false, gperf: false, gawk: false, gitUpdater: false, "pkg-config": false, boost: false, luajit_openresty: false, asciidoctor: false, emilua: false, liburing: false, openssl: false, fmt: false, cmake: false, "range-v3": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 54, 33]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 43, 3], ["passthru", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "emilua-bech32";
       const version = "1.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emilua",
           repo: "bech32",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [emilua, liburing, fmt, range_v3, luajit_openresty, openssl, boost]);
       const nativeBuildInputs = nix.thunk(() => [gperf, gawk, pkg_config, asciidoctor, meson, ninja, cmake]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Bech32 codec for Emilua",
         homepage: "https://emilua.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

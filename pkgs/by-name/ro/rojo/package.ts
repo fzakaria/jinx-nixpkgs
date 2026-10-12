@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]], [["OPENSSL_NO_VENDOR", 29, 7]], [["updateScript", 38, 12]], [["changelog", 41, 5], ["description", 42, 5], ["downloadPage", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["longDescription", 46, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["env", 29, 3], ["doCheck", 32, 3], ["doInstallCheck", 34, 3], ["nativeInstallCheckInputs", 35, 3], ["versionCheckProgram", 36, 3], ["passthru", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, openssl: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 41, 5], ["description", 42, 5], ["downloadPage", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["longDescription", 46, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["env", 29, 3], ["doCheck", 32, 3], ["doInstallCheck", 34, 3], ["nativeInstallCheckInputs", 35, 3], ["versionCheckProgram", 36, 3], ["passthru", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rojo",
       version: "7.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rojo-rbx",
           repo: "rojo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,17 +30,17 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-1xTvW3Ra6erYpjxgfp2m8qVMz6u99WCDv2VE/Xh2mFc=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: true })),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/rojo`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/rojo-rbx/rojo/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Project management tool for Roblox",
         downloadPage: nix.thunk(() => nix.str`https://github.com/rojo-rbx/rojo/releases/tag/v${nix.sel(finalAttrs, "version")}`),

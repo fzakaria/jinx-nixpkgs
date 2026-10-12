@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["apfs", 34, 11]], [["tests", 34, 5], ["tag", 36, 13], ["updateScript", 37, 5]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["hardeningDisable", 24, 3], ["nativeBuildInputs", 25, 3], ["makeFlags", 27, 3], ["passthru", 33, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["apfs", 34, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 34, 5], ["tag", 36, 13], ["updateScript", 37, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["hardeningDisable", 24, 3], ["nativeBuildInputs", 25, 3], ["makeFlags", 27, 3], ["passthru", 33, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const tag = "0.3.21-unstable-2025-08-15";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "apfs",
       version: nix.thunk(() => nix.str`${tag}-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linux-apfs",
           repo: "linux-apfs-rw",
           rev: "a10279ce663bdbe4d32baef83930e5ba7d69d7df",
@@ -37,13 +33,13 @@ export default nix.lambda((args) => (() => {
         "INSTALL_MOD_PATH=$(out)",
       ])),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, apfs: nix.thunk(() => nix.sel(nixosTests, "apfs")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], apfs: nix.thunk(() => nix.sel(nixosTests, "apfs")) })),
         tag: tag,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "APFS module for linux",
         longDescription: "The Apple File System (APFS) is the copy-on-write filesystem currently\nused on all Apple devices. This module provides a degree of experimental\nsupport on Linux.\nIf you make use of the write support, expect data corruption.\nRead-only support is somewhat more complete, with sealed volumes,\nsnapshots, and all the missing compression algorithms recently added.\nEncryption is still not in the works though.\n",
         homepage: "https://github.com/linux-apfs/linux-apfs-rw",

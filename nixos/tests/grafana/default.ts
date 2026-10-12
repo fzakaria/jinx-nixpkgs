@@ -2,14 +2,14 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["basic", 6, 3], ["provision", 7, 3]]]);
 const formals$1 = { args: { runTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["basic", 6, 3], ["provision", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     basic: nix.thunk(() => nix.app(runTest, nix.path(here, "./basic.nix"))),
     provision: nix.thunk(() => nix.app(runTest, nix.path(here, "./provision"))),
   };

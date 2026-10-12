@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["scipy", 35, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["build-system", 26, 3], ["dependencies", 30, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "uv-build": false, optype: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["scipy", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["build-system", 26, 3], ["dependencies", 30, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const optype = nix.arg($, "optype");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "scipy-stubs",
       version: "1.18.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scipy",
           repo: "scipy-stubs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,10 +28,10 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"uv_build>=0.12.5,<0.13\" \"uv_build\"\n",
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [optype]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, scipy: nix.thunk(() => [scipy]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], scipy: nix.thunk(() => [scipy]) })),
       nativeCheckInputs: nix.thunk(() => [scipy]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Typing Stubs for SciPy",
         homepage: "https://github.com/scipy/scipy-stubs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

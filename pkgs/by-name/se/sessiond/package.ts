@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["did", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["__structuredAttrs", 12, 3], ["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 22, 3], ["cargoBuildFlags", 24, 3], ["cargoTestFlags", 33, 3], ["buildNoDefaultFeatures", 35, 3], ["buildFeatures", 36, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["postInstall", 49, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromTangled: false, "linux-pam": false, "pkg-config": false, rustPlatform: false, withConsoleKit: true, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["did", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["__structuredAttrs", 12, 3], ["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 22, 3], ["cargoBuildFlags", 24, 3], ["cargoTestFlags", 33, 3], ["buildNoDefaultFeatures", 35, 3], ["buildFeatures", 36, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["postInstall", 49, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const withConsoleKit = nix.argOr($, "withConsoleKit", () => true);
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       __structuredAttrs: true,
       pname: "sessiond",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromTangled, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           did: "did:plc:vj3bxta3i3cp26nn46yideoh",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-X2ePs10hjZNOcHAJuN4J5KeBQaW24E2jMRq0biNdY3E=",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [linux_pam]),
       postInstall: nix.thunk(() => nix.add(nix.add("mkdir -p $out/lib/security\nmv $out/lib/libpam.so $out/lib/security/pam_sessiond.so\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd sessionctl \\\n  --bash <($out/bin/sessionctl completions bash) \\\n  --zsh <($out/bin/sessionctl completions zsh) \\\n  --fish <($out/bin/sessionctl completions fish) \\\n  --nushell <($out/bin/sessionctl completions nushell)\n")), nix.app(nix.sel(lib, "optionalString"), withConsoleKit, "install -Dm644 data/dbus-1/system.d/org.freedesktop.ConsoleKit.conf \\\n  $out/share/dbus-1/system.d/org.freedesktop.ConsoleKit.conf\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Session management daemon",
         homepage: "https://tangled.org/r0chd.pl/sessiond",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

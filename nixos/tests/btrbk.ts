@@ -2,35 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/btrbk.nix", [[["maintainers", 20, 5]], [["text", 30, 37]], [["btrbk_key", 30, 25]], [["systemPackages", 27, 21], ["etc", 30, 21]], [["target", 41, 21], ["snapshot_dir", 42, 21], ["subvolume", 43, 21]], [["ssh://main/mnt", 40, 19]], [["ssh_identity", 36, 17], ["ssh_user", 37, 17], ["stream_compress", 38, 17], ["volume", 39, 17]], [["onCalendar", 34, 15], ["settings", 35, 15]], [["remote", 33, 13]], [["instances", 32, 11]], [["btrbk", 31, 18]], [["environment", 27, 9], ["services", 31, 9]], [["systemPackages", 55, 21]], [["KbdInteractiveAuthentication", 59, 13], ["PasswordAuthentication", 60, 13]], [["enable", 57, 11], ["settings", 58, 11]], [["key", 67, 15], ["roles", 68, 15]], [["snapshot_dir", 82, 21], ["subvolume", 83, 21]], [["/mnt", 81, 19]], [["volume", 80, 17]], [["onCalendar", 78, 15], ["settings", 79, 15]], [["local", 77, 13]], [["extraPackages", 64, 11], ["sshAccess", 65, 11], ["instances", 76, 11]], [["openssh", 56, 18], ["btrbk", 63, 18]], [["environment", 55, 9], ["services", 56, 9]], [["archive", 24, 5], ["main", 52, 5]], [["name", 18, 3], ["meta", 19, 3], ["nodes", 23, 3], ["testScript", 93, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/btrbk.nix", [["maintainers", 20, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/btrbk.nix", [["text", 30, 37]]);
-const pos$3 = nix.positions(here + "/btrbk.nix", [["btrbk_key", 30, 25]]);
-const pos$4 = nix.positions(here + "/btrbk.nix", [["systemPackages", 27, 21], ["etc", 30, 21]]);
-const pos$5 = nix.positions(here + "/btrbk.nix", [["target", 41, 21], ["snapshot_dir", 42, 21], ["subvolume", 43, 21]]);
-const pos$6 = nix.positions(here + "/btrbk.nix", [["ssh://main/mnt", 40, 19]]);
-const pos$7 = nix.positions(here + "/btrbk.nix", [["ssh_identity", 36, 17], ["ssh_user", 37, 17], ["stream_compress", 38, 17], ["volume", 39, 17]]);
-const pos$8 = nix.positions(here + "/btrbk.nix", [["onCalendar", 34, 15], ["settings", 35, 15]]);
-const pos$9 = nix.positions(here + "/btrbk.nix", [["remote", 33, 13]]);
-const pos$10 = nix.positions(here + "/btrbk.nix", [["instances", 32, 11]]);
-const pos$11 = nix.positions(here + "/btrbk.nix", [["btrbk", 31, 18]]);
-const pos$12 = nix.positions(here + "/btrbk.nix", [["environment", 27, 9], ["services", 31, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$13 = nix.positions(here + "/btrbk.nix", [["systemPackages", 55, 21]]);
-const pos$14 = nix.positions(here + "/btrbk.nix", [["KbdInteractiveAuthentication", 59, 13], ["PasswordAuthentication", 60, 13]]);
-const pos$15 = nix.positions(here + "/btrbk.nix", [["enable", 57, 11], ["settings", 58, 11]]);
-const pos$16 = nix.positions(here + "/btrbk.nix", [["key", 67, 15], ["roles", 68, 15]]);
-const pos$17 = nix.positions(here + "/btrbk.nix", [["snapshot_dir", 82, 21], ["subvolume", 83, 21]]);
-const pos$18 = nix.positions(here + "/btrbk.nix", [["/mnt", 81, 19]]);
-const pos$19 = nix.positions(here + "/btrbk.nix", [["volume", 80, 17]]);
-const pos$20 = nix.positions(here + "/btrbk.nix", [["onCalendar", 78, 15], ["settings", 79, 15]]);
-const pos$21 = nix.positions(here + "/btrbk.nix", [["local", 77, 13]]);
-const pos$22 = nix.positions(here + "/btrbk.nix", [["extraPackages", 64, 11], ["sshAccess", 65, 11], ["instances", 76, 11]]);
-const pos$23 = nix.positions(here + "/btrbk.nix", [["openssh", 56, 18], ["btrbk", 63, 18]]);
-const pos$24 = nix.positions(here + "/btrbk.nix", [["environment", 55, 9], ["services", 56, 9]]);
-const pos$25 = nix.positions(here + "/btrbk.nix", [["archive", 24, 5], ["main", 52, 5]]);
-const pos$26 = nix.positions(here + "/btrbk.nix", [["name", 18, 3], ["meta", 19, 3], ["nodes", 23, 3], ["testScript", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,50 +13,50 @@ export default nix.lambda((args) => (() => {
   const privateKey = "-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW\nQyNTUxOQAAACBx8UB04Q6Q/fwDFjakHq904PYFzG9pU2TJ9KXpaPMcrwAAAJB+cF5HfnBe\nRwAAAAtzc2gtZWQyNTUxOQAAACBx8UB04Q6Q/fwDFjakHq904PYFzG9pU2TJ9KXpaPMcrw\nAAAEBN75NsJZSpt63faCuaD75Unko0JjlSDxMhYHAPJk2/xXHxQHThDpD9/AMWNqQer3Tg\n9gXMb2lTZMn0pelo8xyvAAAADXJzY2h1ZXR6QGt1cnQ=\n-----END OPENSSH PRIVATE KEY-----\n";
   const publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHHxQHThDpD9/AMWNqQer3Tg9gXMb2lTZMn0pelo8xyv\n";
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     name: "btrbk",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "symphorien"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       archive: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "btrfs-progs"))];
             })()),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              btrbk_key: nix.thunk(() => ({ [nix.POS]: pos$2, text: privateKey })),
+              [nix.POS]: $pos[2],
+              btrbk_key: nix.thunk(() => ({ [nix.POS]: $pos[1], text: privateKey })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             btrbk: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               instances: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 remote: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   onCalendar: "minutely",
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     ssh_identity: "/etc/btrbk_key",
                     ssh_user: "btrbk",
                     stream_compress: "lz4",
                     volume: nix.thunk(() => ({
-                      [nix.POS]: pos$6,
+                      [nix.POS]: $pos[5],
                       "ssh://main/mnt": nix.thunk(() => ({
-                        [nix.POS]: pos$5,
+                        [nix.POS]: $pos[4],
                         target: "/mnt",
                         snapshot_dir: "btrbk/remote",
                         subvolume: "to_backup",
@@ -97,45 +72,45 @@ export default nix.lambda((args) => (() => {
       main: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "btrfs-progs"))];
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 KbdInteractiveAuthentication: false,
                 PasswordAuthentication: false,
               })),
             })),
             btrbk: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               extraPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lz4"))]),
               sshAccess: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   key: publicKey,
                   roles: nix.thunk(() => ["source", "send", "info", "delete"]),
                 })),
               ]),
               instances: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 local: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   onCalendar: "minutely",
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     volume: nix.thunk(() => ({
-                      [nix.POS]: pos$18,
-                      "/mnt": nix.thunk(() => ({ [nix.POS]: pos$17, snapshot_dir: "btrbk/local", subvolume: "to_backup" })),
+                      [nix.POS]: $pos[17],
+                      "/mnt": nix.thunk(() => ({ [nix.POS]: $pos[16], snapshot_dir: "btrbk/local", subvolume: "to_backup" })),
                     })),
                   })),
                 })),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR", 63, 5], ["PKG_CONFIG_INDICATOR3_0_4_INDICATORDIR", 64, 5]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]], [["pname", 18, 3], ["version", 19, 3], ["name", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["postPatch", 46, 3], ["configureFlags", 51, 3], ["installFlags", 57, 3], ["env", 62, 3], ["postFixup", 68, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchbzr: false, "pkg-config": false, systemdLibs: false, autoreconfHook: false, glib: false, "dbus-glib": false, "json-glib": false, gtk3: false, libindicator: false, "libdbusmenu-gtk3": false, libappindicator: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR", 63, 5], ["PKG_CONFIG_INDICATOR3_0_4_INDICATORDIR", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["name", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["postPatch", 46, 3], ["configureFlags", 51, 3], ["installFlags", 57, 3], ["env", 62, 3], ["postFixup", 68, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "12.10.1";
       const name = nix.thunk(() => nix.str`${pname}-gtk3-${version}`);
       const src = nix.thunk(() => nix.app(fetchbzr, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://code.launchpad.net/~indicator-applet-developers/${pname}/trunk.17.04`),
           rev: "260",
           sha256: "1f0jdyqqb5g86zdpbcyn16x94yjigsfiv2kf73dvni5rp1vafbq1",
@@ -48,13 +45,13 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => ["CFLAGS=-Wno-error", "--sysconfdir=/etc", "--localstatedir=/var"]);
       const installFlags = nix.thunk(() => ["sysconfdir=${out}/etc", "localstatedir=${TMPDIR}"]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR: "$(out)/lib/systemd/user",
         PKG_CONFIG_INDICATOR3_0_4_INDICATORDIR: "$(out)/lib/indicators3/7/",
       }));
       const postFixup = "rm -rf $out/share/indicator-application/upstart\nrm -rf $out/share/upstart\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Indicator to take menus from applications and place them in the panel",
         homepage: "https://launchpad.net/indicator-application",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "msteen"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         name,

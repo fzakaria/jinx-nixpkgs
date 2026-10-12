@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["NIX_CFLAGS_COMPILE", 56, 7]], [["extraArgs", 79, 47]], [["updateScript", 79, 12]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["env", 56, 3], ["configureFlags", 58, 3], ["installFlags", 74, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false, zlib: false, readline: false, openssl: false, libiconv: false, pcsclite: false, libassuan: false, libxt: false, docbook_xsl: false, libxslt: false, docbook_xml_dtd_412: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 56, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 79, 47]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 79, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["env", 56, 3], ["configureFlags", 58, 3], ["installFlags", 74, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xml_dtd_412 = nix.arg($, "docbook_xml_dtd_412");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "opensc",
       version: "0.27.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenSC",
           repo: "OpenSC",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2026-10275.patch",
             url: "https://github.com/OpenSC/OpenSC/commit/814f745b3b6d100295f65f1935edd33d520d33ab.patch",
             hash: "sha256-S8PeXCRAUlkKUPYOl/n5+4QIqWOZtHX3yEDnpFhJO8k=",
@@ -51,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook, libxslt]),
       buildInputs: nix.thunk(() => nix.concat([zlib, readline, openssl, libassuan, libxt, libiconv, docbook_xml_dtd_412], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), pcsclite))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-error" })),
       configureFlags: nix.thunk(() => nix.concat([
         "--enable-zlib",
         "--enable-readline",
@@ -66,14 +60,14 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.str`--with-pcsc-provider=${nix.app(nix.sel(lib, "getLib"), pcsclite)}/lib/libpcsclite${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`)))),
       installFlags: nix.thunk(() => ["sysconfdir=$(out)/etc", "completiondir=$(out)/etc"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex=^([0-9\\.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Set of libraries and utilities to access smart cards",
         homepage: "https://github.com/OpenSC/OpenSC/wiki",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

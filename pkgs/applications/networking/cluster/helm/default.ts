@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["preBuild", 52, 5]], [["package", 98, 5], ["command", 99, 5], ["version", 100, 5]], [["version", 97, 18]], [["tests", 97, 12]], [["homepage", 104, 5], ["description", 105, 5], ["mainProgram", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["ldflags", 25, 3], ["preBuild", 34, 3], ["overrideModAttrs", 50, 3], ["__darwinAllowLocalNetworking", 55, 3], ["preCheck", 57, 3], ["nativeBuildInputs", 88, 3], ["nativeCheckInputs", 89, 3], ["postInstall", 90, 3], ["passthru", 97, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, testers: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["preBuild", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["package", 98, 5], ["command", 99, 5], ["version", 100, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 97, 18]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 97, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 104, 5], ["description", 105, 5], ["mainProgram", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["ldflags", 25, 3], ["preBuild", 34, 3], ["overrideModAttrs", 50, 3], ["__darwinAllowLocalNetworking", 55, 3], ["preCheck", 57, 3], ["nativeBuildInputs", 88, 3], ["nativeCheckInputs", 89, 3], ["postInstall", 90, 3], ["passthru", 97, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "kubernetes-helm",
       version: "4.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "helm",
           repo: "helm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,18 +36,18 @@ export default nix.lambda((args) => (() => {
         "-X helm.sh/helm/v4/internal/version.gitTreeState=clean",
       ]),
       preBuild: "# set k8s version to client-go version, to match upstream\nK8S_MODULES_VER=\"$(go list -f '{{.Version}}' -m k8s.io/client-go)\"\nK8S_MODULES_MAJOR_VER=\"$(($(cut -d. -f1 <<<\"$K8S_MODULES_VER\") + 1))\"\nK8S_MODULES_MINOR_VER=\"$(cut -d. -f2 <<<\"$K8S_MODULES_VER\")\"\nold_ldflags=\"${ldflags}\"\nldflags=\"${ldflags} -X helm.sh/helm/v4/pkg/chart/v2/lint/rules.k8sVersionMajor=${K8S_MODULES_MAJOR_VER}\"\nldflags=\"${ldflags} -X helm.sh/helm/v4/pkg/chart/v2/lint/rules.k8sVersionMinor=${K8S_MODULES_MINOR_VER}\"\nldflags=\"${ldflags} -X helm.sh/helm/v4/pkg/internal/v3/lint/rules.k8sVersionMajor=${K8S_MODULES_MAJOR_VER}\"\nldflags=\"${ldflags} -X helm.sh/helm/v4/pkg/internal/v3/lint/rules.k8sVersionMinor=${K8S_MODULES_MINOR_VER}\"\nldflags=\"${ldflags} -X helm.sh/helm/v4/pkg/chart/common/util.k8sVersionMajor=${K8S_MODULES_MAJOR_VER}\"\nldflags=\"${ldflags} -X helm.sh/helm/v4/pkg/chart/common/util.k8sVersionMinor=${K8S_MODULES_MINOR_VER}\"\nldflags=\"${ldflags} -X helm.sh/helm/v4/internal/version.kubeClientVersionMajor=${K8S_MODULES_MAJOR_VER}\"\nldflags=\"${ldflags} -X helm.sh/helm/v4/internal/version.kubeClientVersionMinor=${K8S_MODULES_MINOR_VER}\"\n",
-      overrideModAttrs: (_) => ({ [nix.POS]: pos$2, preBuild: "" }),
+      overrideModAttrs: (_) => ({ [nix.POS]: $pos[1], preBuild: "" }),
       __darwinAllowLocalNetworking: true,
       preCheck: nix.thunk(() => nix.add("# restore ldflags for tests\nldflags=\"${old_ldflags}\"\n\npatchShebangs pkg/cmd/testdata/helmhome/helm/plugins/exitwith/exitwith.sh\n\n# skipping version tests because they require dot git directory\nsubstituteInPlace pkg/cmd/version_test.go \\\n  --replace-fail \"TestVersion\" \"SkipVersion\"\n# skipping plugin tests\nsubstituteInPlace pkg/cmd/plugin_test.go \\\n  --replace-fail \"TestPluginDynamicCompletion\" \"SkipPluginDynamicCompletion\" \\\n  --replace-fail \"TestLoadCLIPlugins\" \"SkipLoadCLIPlugins\"\nsubstituteInPlace cmd/helm/helm_test.go \\\n  --replace-fail \"TestCliPluginExitCode\" \"TestCliPluginExitCode\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# skipping as test fails in sandbox\nsubstituteInPlace pkg/cmd/dependency_build_test.go \\\n  --replace-fail \"TestDependencyBuildCmd\" \"SkipDependencyBuildCmd\"\nsubstituteInPlace pkg/cmd/dependency_update_test.go \\\n  --replace-fail \"TestDependencyUpdateCmd\" \"SkipDependencyUpdateCmd\"\n# skipping as test fails in sandbox\nsubstituteInPlace pkg/cmd/install_test.go \\\n  --replace-fail \"TestInstall\" \"SkipInstall\"\n# skipping as test fails in sandbox\nsubstituteInPlace pkg/cmd/pull_test.go \\\n  --replace-fail \"TestPullCmd\" \"SkipPullCmd\" \\\n  --replace-fail \"TestPullWithCredentialsCmd\" \"SkipPullWithCredentialsCmd\"\n"))),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       nativeCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "$out/bin/helm completion bash > helm.bash\n$out/bin/helm completion zsh > helm.zsh\n$out/bin/helm completion fish > helm.fish\ninstallShellCompletion helm.{bash,zsh,fish}\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "helm version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/helm/helm",
         description: "Package manager for kubernetes",
         mainProgram: "helm",

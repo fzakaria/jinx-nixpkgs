@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["animations", 65, 5], ["dev", 68, 5], ["jupyterlite", 92, 5], ["parallel", 95, 5], ["recommender", 98, 5], ["show-api-usage", 101, 5], ["show-memory", 104, 5]], [["description", 127, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["mainProgram", 130, 5], ["license", 131, 5], ["maintainers", 132, 5], ["teams", 133, 5]], [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["__structuredAttrs", 45, 3], ["src", 47, 3], ["build-system", 54, 3], ["dependencies", 59, 3], ["optional-dependencies", 64, 3], ["nativeCheckInputs", 109, 3], ["disabledTests", 115, 3], ["pythonImportsCheck", 122, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, pillow: false, sphinx: false, "absl-py": false, graphviz: false, "intersphinx-registry": false, ipython: false, joblib: false, "jupyterlite-sphinx": false, lxml: false, matplotlib: false, mypy: false, numpy: false, packaging: false, plotly: false, "pydata-sphinx-theme": false, pytest: false, "pytest-cov": false, seaborn: false, "sphinx-design": false, statsmodels: false, "types-docutils": false, "types-pillow": false, "memory-profiler": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["animations", 65, 5], ["dev", 68, 5], ["jupyterlite", 92, 5], ["parallel", 95, 5], ["recommender", 98, 5], ["show-api-usage", 101, 5], ["show-memory", 104, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 127, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["mainProgram", 130, 5], ["license", 131, 5], ["maintainers", 132, 5], ["teams", 133, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["__structuredAttrs", 45, 3], ["src", 47, 3], ["build-system", 54, 3], ["dependencies", 59, 3], ["optional-dependencies", 64, 3], ["nativeCheckInputs", 109, 3], ["disabledTests", 115, 3], ["pythonImportsCheck", 122, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const memory_profiler = nix.arg($, "memory-profiler");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sphinx-gallery",
       version: "0.21.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sphinx-gallery",
           repo: "sphinx-gallery",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [pillow, sphinx]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         animations: [],
         dev: nix.thunk(() => [
           absl_py,
@@ -89,7 +86,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_dummy_image", "test_embed_code_links_get_data"]),
       pythonImportsCheck: nix.thunk(() => ["sphinx_gallery"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sphinx extension for automatic generation of an example gallery",
         homepage: "https://github.com/sphinx-gallery/sphinx-gallery",
         changelog: nix.thunk(() => nix.str`https://github.com/sphinx-gallery/sphinx-gallery/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGES.rst`),

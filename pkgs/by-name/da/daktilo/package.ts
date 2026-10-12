@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["nativeCheckInputs", 39, 3], ["postInstall", 43, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, unixtools: false, "pkg-config": false, "alsa-lib": false, libxtst: false, libxi: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["nativeCheckInputs", 39, 3], ["postInstall", 43, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "daktilo",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "orhun",
           repo: "daktilo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(unixtools, "script"))]),
       postInstall: "mkdir -p man completions\n\nOUT_DIR=man $out/bin/daktilo-mangen\nOUT_DIR=completions $out/bin/daktilo-completions\n\ninstallManPage man/daktilo.1\ninstallShellCompletion \\\n  completions/daktilo.{bash,fish} \\\n  --zsh completions/_daktilo\n\nrm $out/bin/daktilo-{completions,mangen}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Turn your keyboard into a typewriter",
         homepage: "https://github.com/orhun/daktilo",
         changelog: nix.thunk(() => nix.str`https://github.com/orhun/daktilo/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

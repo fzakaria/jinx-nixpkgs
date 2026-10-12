@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 26], ["version", 25, 32], ["hash", 26, 5]], [["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 41, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, attrdict: false, buildPythonPackage: false, cairosvg: false, fetchPypi: false, setuptools: false, pillow: false, pytestCheckHook: false, pyyaml: false, "setuptools-scm": false, six: false, svgwrite: false, xmldiff: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 26], ["version", 25, 32], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 41, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const svgwrite = nix.arg($, "svgwrite");
   const xmldiff = nix.arg($, "xmldiff");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wavedrom",
       version: "2.0.3.post3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-MntNXcpZPIElfCAv6lFvepCHR/sRUnw1nwNPW3r39Hs=",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_upstream"]),
       pythonImportsCheck: nix.thunk(() => ["wavedrom"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "WaveDrom compatible Python command line",
         mainProgram: "wavedrompy",
         homepage: "https://github.com/wallento/wavedrompy",

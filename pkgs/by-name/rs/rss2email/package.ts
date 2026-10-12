@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]], [["name", 21, 7], ["url", 22, 7], ["hash", 23, 7]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["mainProgram", 78, 5]], [["smoke-test", 81, 5]], [["tests", 80, 12]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["outputs", 34, 3], ["postPatch", 40, 3], ["build-system", 46, 3], ["dependencies", 50, 3], ["postInstall", 55, 3], ["nativeCheckInputs", 65, 3], ["unittestFlagsArray", 69, 3], ["meta", 74, 3], ["passthru", 80, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, fetchpatch2: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 21, 7], ["url", 22, 7], ["hash", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["mainProgram", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["smoke-test", 81, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 80, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["outputs", 34, 3], ["postPatch", 40, 3], ["build-system", 46, 3], ["dependencies", 50, 3], ["postInstall", 55, 3], ["nativeCheckInputs", 65, 3], ["unittestFlagsArray", 69, 3], ["meta", 74, 3], ["passthru", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,26 +13,26 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "rss2email",
       version: "3.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-RwORS2PHquxBZLNKqCJtR5XX4SHqPCb/Fn+Y68dfI/g=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "html2text-2024.2.25-compat.patch",
             url: "https://github.com/rss2email/rss2email/commit/b5c0e78006c2db6929b5ff50e8529de58a00412a.patch",
             hash: "sha256-edmsi3I0acx5iF9xoAS9deSexqW2UtWZR/L7CgeZs/M=",
           })))),
         nix.path(here, "./html2text-2025.4.15-compat.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "use-poetry-core.patch",
             url: "https://github.com/rss2email/rss2email/commit/183a17aefe4eb66f898cf088519b1e845559f2bd.patch",
             hash: "sha256-SoWahlOJ7KkaHMwOrKIBgwEz8zJQrSXVD1w2wiV1phE=",
@@ -61,16 +55,16 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "unittestCheckHook"))]),
       unittestFlagsArray: nix.thunk(() => ["-s", "test"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool that converts RSS/Atom newsfeeds to email",
         homepage: "https://pypi.org/project/rss2email/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         mainProgram: "r2e",
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "rss2email")),
         })),
       })),

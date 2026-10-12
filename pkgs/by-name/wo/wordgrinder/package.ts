@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 20, 5], ["owner", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["NIX_CFLAGS_COMPILE", 58, 7]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["makeFlags", 26, 3], ["preBuild", 33, 3], ["dontUseNinjaBuild", 37, 3], ["dontUseNinjaInstall", 38, 3], ["dontConfigure", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["env", 58, 3], ["postInstall", 61, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, makeWrapper: false, lua52Packages: false, libxft: false, ncurses: false, ninja: false, readline: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 20, 5], ["owner", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["makeFlags", 26, 3], ["preBuild", 33, 3], ["dontUseNinjaBuild", 37, 3], ["dontUseNinjaInstall", 38, 3], ["dontConfigure", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["env", 58, 3], ["postInstall", 61, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wordgrinder",
       version: "0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "wordgrinder",
           owner: "davidgiven",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,14 +42,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper, ninja]),
       buildInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(lua52Packages, "lua")), ncurses, readline, zlib], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libxft])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`-I${nix.sel(libxft, "dev")}/include/X11`))),
       })),
       postInstall: nix.thunk(() => nix.add(nix.str`wrapProgram $out/bin/wordgrinder --set LUA_CPATH "${nix.sel(lua52Packages, "luafilesystem")}/lib/lua/5.2/lfs.so";
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`wrapProgram $out/bin/xwordgrinder --set LUA_CPATH "${nix.sel(lua52Packages, "luafilesystem")}/lib/lua/5.2/lfs.so";
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Text-based word processor",
         homepage: "https://cowlark.com/wordgrinder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

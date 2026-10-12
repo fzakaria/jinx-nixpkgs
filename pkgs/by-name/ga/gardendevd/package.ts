@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["updateScript", 59, 12]], [["homepage", 62, 5], ["description", 63, 5], ["longDescription", 64, 5], ["maintainers", 70, 5], ["license", 74, 5], ["platforms", 75, 5]], [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["mesonFlags", 42, 3], ["postPatch", 47, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, "nix-update-script": false, acl: false, elogind: false, meson: false, ninja: false, "pkg-config": false, "util-linux": false, kmod: false, uaccessSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["description", 63, 5], ["longDescription", 64, 5], ["maintainers", 70, 5], ["license", 74, 5], ["platforms", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["mesonFlags", 42, 3], ["postPatch", 47, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const kmod = nix.arg($, "kmod");
   const uaccessSupport = nix.argOr($, "uaccessSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gardendevd",
       version: "0.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Gardenhouse",
           repo: "gardendevd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,11 +49,11 @@ substituteInPlace src/spawn.c \\
 patchShebangs scripts/
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://codeberg.org/Gardenhouse/gardendevd",
         description: "Udev daemon running on top of mdevd to replace systemd-udev",
         longDescription: "Gardendevd is a udev-compatible daemon that processes device\nevents from the Linux kernel. It is designed to be a lightweight\nand flexible alternative to systemd-udevd, leveraging mdevd for\ndevice node creation and firmware loading.\n",

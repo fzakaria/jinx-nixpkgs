@@ -2,61 +2,51 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/service-runner.nix", [[["maintainers", 5, 5]], [["root", 13, 45]], [["machine", 13, 37]], [["enable", 12, 24], ["virtualHosts", 13, 24]], [["nginx", 12, 18]], [["enable", 17, 32]], [["nginx", 17, 26]], [["services", 17, 17]], [["services", 12, 9], ["systemd", 17, 9]], [["machine", 9, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/service-runner.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/service-runner.nix", [["root", 13, 45]]);
-const pos$3 = nix.positions(here + "/service-runner.nix", [["machine", 13, 37]]);
-const pos$4 = nix.positions(here + "/service-runner.nix", [["enable", 12, 24], ["virtualHosts", 13, 24]]);
-const pos$5 = nix.positions(here + "/service-runner.nix", [["nginx", 12, 18]]);
-const pos$6 = nix.positions(here + "/service-runner.nix", [["enable", 17, 32]]);
-const pos$7 = nix.positions(here + "/service-runner.nix", [["nginx", 17, 26]]);
-const pos$8 = nix.positions(here + "/service-runner.nix", [["services", 17, 17]]);
-const pos$9 = nix.positions(here + "/service-runner.nix", [["services", 12, 9], ["systemd", 17, 9]]);
-const pos$10 = nix.positions(here + "/service-runner.nix", [["machine", 9, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/service-runner.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "service-runner",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "roberth"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 machine: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   root: nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "webroot", nix.thunk(() => ({})), "mkdir $out\necho 'yay' >$out/index.html\n")),
                 })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              nginx: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
+              [nix.POS]: $pos[6],
+              nginx: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: false })),
             })),
           })),
         };

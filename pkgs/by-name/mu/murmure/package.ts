@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 44, 5], ["hash", 45, 5]], [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["pname", 71, 7], ["version", 72, 7], ["src", 73, 7], ["pnpm", 75, 13], ["fetcherVersion", 76, 5], ["hash", 77, 5]], [["OPENSSL_NO_VENDOR", 85, 7]], [["updateScript", 129, 12]], [["description", 132, 5], ["homepage", 133, 5], ["downloadPage", 134, 5], ["changelog", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["mainProgram", 138, 5]], [["pname", 49, 3], ["version", 50, 3], ["__structuredAttrs", 52, 3], ["src", 54, 3], ["postPatch", 62, 3], ["pnpmDeps", 69, 3], ["cargoRoot", 80, 3], ["buildAndTestSubdir", 81, 3], ["cargoHash", 83, 3], ["env", 85, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 95, 3], ["checkFlags", 114, 3], ["postInstall", 124, 3], ["passthru", 129, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, rustPlatform: false, fetchFromGitHub: false, fetchPnpmDeps: false, "libayatana-appindicator": false, "cargo-tauri": false, nodejs: false, "pkg-config": false, pnpm_11: false, pnpmConfigHook: false, atk: false, glib: false, libsoup_3: false, onnxruntime: false, openssl: false, pango: false, "alsa-lib": false, libappindicator: false, libx11: false, libxi: false, libxkbcommon: false, libxtst: false, webkitgtk_4_1: false, xdotool: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 71, 7], ["version", 72, 7], ["src", 73, 7], ["pnpm", 75, 13], ["fetcherVersion", 76, 5], ["hash", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 85, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 129, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 132, 5], ["homepage", 133, 5], ["downloadPage", 134, 5], ["changelog", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["mainProgram", 138, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 49, 3], ["version", 50, 3], ["__structuredAttrs", 52, 3], ["src", 54, 3], ["postPatch", 62, 3], ["pnpmDeps", 69, 3], ["cargoRoot", 80, 3], ["buildAndTestSubdir", 81, 3], ["cargoHash", 83, 3], ["env", 85, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 95, 3], ["checkFlags", 114, 3], ["postInstall", 124, 3], ["passthru", 129, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,17 +36,17 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_11;
   const parakeet_model = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/Kieirra/murmure-model/releases/download/1.0.0/parakeet-tdt-0.6b-v3-int8.zip",
       hash: "sha256-rlV7mi5Y6qu/9jRWRPNBlABW8GxsvVAMCM6Ye2tVb2s=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "murmure",
       version: "1.10.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Kieirra",
           repo: "murmure",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
     "${libayatana_appindicator}/lib/libayatana-appindicator3.so.1" \\
 `))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -75,7 +69,7 @@ export default nix.lambda((args) => (() => {
       cargoRoot: "src-tauri",
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       cargoHash: "sha256-6G/ZHGjjv1U5MNLo+LAwXoM/nN2aCPOaSTJer7dUv9w=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], OPENSSL_NO_VENDOR: true })),
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(cargo_tauri, "hook")),
         nodejs,
@@ -104,11 +98,11 @@ export default nix.lambda((args) => (() => {
 ln -s ${parakeet_model} $out/lib/murmure/resources/parakeet-tdt-0.6b-v3-int8
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Privacy-first and free Speech-to-Text",
         homepage: "https://murmure.al1x-ai.com",
         downloadPage: "https://github.com/Kieirra/murmure",

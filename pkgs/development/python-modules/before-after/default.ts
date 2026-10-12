@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["version", 19, 26], ["hash", 20, 5]], [["url", 26, 7], ["hash", 27, 7]], [["url", 30, 7], ["hash", 31, 7]], [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["patches", 23, 3], ["build-system", 35, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, fetchpatch: false, setuptools: false, pytestCheckHook: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 26], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["patches", 23, 3], ["build-system", 35, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,25 +14,25 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const lib = nix.arg($, "lib");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "before-after",
       version: "1.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "before_after",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-x9T5uLi7UgldoUxLnFnqaz9bnqn9zop7/HLsrg9aP4U=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/c-oreills/before_after/commit/cf3925148782c8c290692883d1215ae4d2c35c3c.diff",
             hash: "sha256-FYCpLxcOLolNPiKzHlgrArCK/QKCwzag+G74wGhK4dc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/c-oreills/before_after/commit/11c0ecc7e8a2f90a762831e216c1bc40abfda43a.diff",
             hash: "sha256-8YJumF/U8H+hc7rLZLy3UhXHdYJmcuN+O8kMx8yqMJ0=",
           })))),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["before_after"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Sugar over the Mock library to help test race conditions",
         homepage: "https://github.com/c-oreills/before_after",
         maintainers: [],

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["homepage", 95, 5], ["changelog", 96, 5], ["description", 97, 5], ["longDescription", 98, 5], ["license", 108, 5], ["maintainers", 109, 5], ["mainProgram", 114, 5]], [["pname", 14, 3], ["version", 15, 3], ["__darwinAllowLocalNetworking", 18, 3], ["src", 20, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["ldflags", 30, 3], ["nativeCheckInputs", 36, 3], ["preCheck", 41, 3], ["checkFlags", 60, 3], ["postInstall", 78, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, stdenv: false, writableTmpDirAsHomeHook: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["changelog", 96, 5], ["description", 97, 5], ["longDescription", 98, 5], ["license", 108, 5], ["maintainers", 109, 5], ["mainProgram", 114, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__darwinAllowLocalNetworking", 18, 3], ["src", 20, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["ldflags", 30, 3], ["nativeCheckInputs", 36, 3], ["preCheck", 41, 3], ["checkFlags", 60, 3], ["postInstall", 78, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "stripe-cli",
       version: "1.43.2",
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stripe",
           repo: "stripe-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +59,7 @@ installShellCompletion --cmd ${mainProgram} \\
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://stripe.com/docs/stripe-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/stripe/stripe-cli/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Command-line tool for Stripe",

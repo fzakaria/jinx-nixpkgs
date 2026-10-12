@@ -2,18 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/editable.nix", [[["name", 45, 7], ["version", 47, 9], ["scripts", 48, 9], ["gui-scripts", 49, 9], ["entry-points", 50, 9], ["dependencies", 52, 7], ["optional-dependencies", 53, 7]], [["bypass-selection", 57, 36], ["force-include", 60, 36]], [["wheel", 57, 30]], [["targets", 57, 22]], [["build", 57, 16]], [["hatch", 57, 10]], [["requires", 64, 7], ["build-backend", 65, 7]], [["project", 44, 5], ["tool", 57, 5], ["build-system", 63, 5]], [["pname", 73, 7], ["version", 74, 7], ["optional-dependencies", 75, 7], ["passthru", 76, 7], ["meta", 77, 7], ["dependencies", 79, 5], ["pyproject", 81, 5], ["unpackPhase", 83, 5], ["build-system", 88, 5]], [["nativeBuildInputs", 94, 5], ["pyprojectContents", 95, 13], ["preferLocalBuild", 96, 5], ["__structuredAttrs", 97, 5]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, hatchling: false, "tomli-w": false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, root: false, derivationArgs: true, dependencies: true, "optional-dependencies": true, "build-system": true, scripts: true, "gui-scripts": true, "entry-points": true, passthru: true, meta: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/editable.nix", [["name", 45, 7], ["version", 47, 9], ["scripts", 48, 9], ["gui-scripts", 49, 9], ["entry-points", 50, 9], ["dependencies", 52, 7], ["optional-dependencies", 53, 7]]);
-const pos$2 = nix.positions(here + "/editable.nix", [["bypass-selection", 57, 36], ["force-include", 60, 36]]);
-const pos$3 = nix.positions(here + "/editable.nix", [["wheel", 57, 30]]);
-const pos$4 = nix.positions(here + "/editable.nix", [["targets", 57, 22]]);
-const pos$5 = nix.positions(here + "/editable.nix", [["build", 57, 16]]);
-const pos$6 = nix.positions(here + "/editable.nix", [["hatch", 57, 10]]);
-const pos$7 = nix.positions(here + "/editable.nix", [["requires", 64, 7], ["build-backend", 65, 7]]);
-const pos$8 = nix.positions(here + "/editable.nix", [["project", 44, 5], ["tool", 57, 5], ["build-system", 63, 5]]);
-const pos$9 = nix.positions(here + "/editable.nix", [["pname", 73, 7], ["version", 74, 7], ["optional-dependencies", 75, 7], ["passthru", 76, 7], ["meta", 77, 7], ["dependencies", 79, 5], ["pyproject", 81, 5], ["unpackPhase", 83, 5], ["build-system", 88, 5]]);
-const pos$10 = nix.positions(here + "/editable.nix", [["nativeBuildInputs", 94, 5], ["pyprojectContents", 95, 13], ["preferLocalBuild", 96, 5], ["__structuredAttrs", 97, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,9 +29,9 @@ export default nix.lambda((args) => (() => {
     nix.assert_(nix.app(nix.sel(lib, "isString"), root), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/interpreters/python/editable.nix:37:1");
     const dependencies$ = nix.thunk(() => nix.concat(dependencies, build_system));
     const pyprojectContents = nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       project: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: pname,
         version: version,
         scripts: scripts,
@@ -50,15 +41,15 @@ export default nix.lambda((args) => (() => {
         "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.app(nix.builtins.map, nix.thunk(() => nix.sel(lib, "getName"))), optional_dependencies)),
       })),
       tool: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         hatch: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           build: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             targets: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               wheel: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 "bypass-selection": true,
                 "force-include": nix.thunk(() => nix.attrsDyn({}, [[nix.str`_${pname}.pth`, nix.thunk(() => nix.str`_${pname}.pth`)]])),
               })),
@@ -67,13 +58,13 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       "build-system": nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         requires: nix.thunk(() => ["hatchling"]),
         "build-backend": "hatchling.build",
       })),
     }));
     return nix.app(buildPythonPackage, nix.thunk(() => nix.update({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: pname,
         version: version,
         "optional-dependencies": optional_dependencies,
@@ -86,7 +77,7 @@ echo 'import os.path, sys; sys.path.insert(0, os.path.expandvars("${root}"))' > 
 `),
         "build-system": nix.thunk(() => [hatchling]),
       }, nix.update(derivationArgs, {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(derivationArgs, () => [], "nativeBuildInputs"), [tomli_w])),
         pyprojectContents: pyprojectContents,
         preferLocalBuild: true,

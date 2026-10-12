@@ -2,15 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/notify_push.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["appName", 29, 7], ["appVersion", 30, 7], ["hash", 31, 7], ["license", 32, 7], ["homepage", 33, 7], ["url", 34, 7], ["description", 35, 7]], [["mainProgram", 47, 9]], [["pname", 39, 7], ["src", 40, 15], ["version", 40, 19], ["buildAndTestSubdir", 42, 7], ["cargoHash", 44, 7], ["meta", 46, 7]], [["test_client", 55, 17]], [["app", 28, 5], ["test_client", 38, 5], ["tests", 50, 5]], [["changelog", 60, 5], ["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]], [["pname", 10, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["passthru", 27, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, nixosTests: false, rustPlatform: false, fetchNextcloudApp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/notify_push.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/notify_push.nix", [["appName", 29, 7], ["appVersion", 30, 7], ["hash", 31, 7], ["license", 32, 7], ["homepage", 33, 7], ["url", 34, 7], ["description", 35, 7]]);
-const pos$3 = nix.positions(here + "/notify_push.nix", [["mainProgram", 47, 9]]);
-const pos$4 = nix.positions(here + "/notify_push.nix", [["pname", 39, 7], ["src", 40, 15], ["version", 40, 19], ["buildAndTestSubdir", 42, 7], ["cargoHash", 44, 7], ["meta", 46, 7]]);
-const pos$5 = nix.positions(here + "/notify_push.nix", [["test_client", 55, 17]]);
-const pos$6 = nix.positions(here + "/notify_push.nix", [["app", 28, 5], ["test_client", 38, 5], ["tests", 50, 5]]);
-const pos$7 = nix.positions(here + "/notify_push.nix", [["changelog", 60, 5], ["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]]);
-const pos$8 = nix.positions(here + "/notify_push.nix", [["pname", 10, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["passthru", 27, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "notify_push";
       const version = "1.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nextcloud",
           repo: "notify_push",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-skKOCJBtpvtdc594eOxbvSIl+SucaH0jl1gFv9kfvNA=";
       const passthru = nix.thunk(() => (() => {
         const app = nix.thunk(() => nix.app(fetchNextcloudApp, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             appName: "notify_push",
             appVersion: version,
             hash: "sha256-C/2jXLpuIbxjWO3kMb3nkLA5762uVLuzk1YPz/YSfjY=",
@@ -42,19 +35,19 @@ export default nix.lambda((args) => (() => {
             description: "Push update support for desktop app",
           }))));
         const test_client = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname: nix.thunk(() => nix.str`${pname}-test_client`),
             src: src,
             version: version,
             buildAndTestSubdir: "test_client",
             cargoHash: "sha256-skKOCJBtpvtdc594eOxbvSIl+SucaH0jl1gFv9kfvNA=",
-            meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$3, mainProgram: "test_client" })),
+            meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[2], mainProgram: "test_client" })),
           }))));
-        const tests = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "filterAttrs"), (key) => nix.app(nix.sel(lib, "const"), nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "with-postgresql-and-redis", key))), nix.thunk(() => nix.sel(nixosTests, "nextcloud"))), { [nix.POS]: pos$5, test_client: test_client }));
-        return { [nix.POS]: pos$6, app, test_client, tests };
+        const tests = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "filterAttrs"), (key) => nix.app(nix.sel(lib, "const"), nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "with-postgresql-and-redis", key))), nix.thunk(() => nix.sel(nixosTests, "nextcloud"))), { [nix.POS]: $pos[4], test_client: test_client }));
+        return { [nix.POS]: $pos[5], app, test_client, tests };
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://github.com/nextcloud/notify_push/releases/tag/v${version}`),
         description: "Update notifications for nextcloud clients",
         mainProgram: "notify_push",
@@ -66,7 +59,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "helsinki-Jo"))];
         })()),
       }));
-      return { [nix.POS]: pos$8, pname, version, src, cargoHash, passthru, meta };
+      return { [nix.POS]: $pos[7], pname, version, src, cargoHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=notify_push.ts.map

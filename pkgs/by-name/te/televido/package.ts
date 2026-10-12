@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pname", 32, 13], ["version", 32, 19], ["src", 32, 27], ["hash", 33, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["mainProgram", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoDeps", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 48, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, rustPlatform: false, rustc: false, cargo: false, wrapGAppsHook4: false, "blueprint-compiler": false, libadwaita: false, "desktop-file-utils": false, openssl: false, gst_all_1: false, "clapper-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 32, 13], ["version", 32, 19], ["src", 32, 27], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["mainProgram", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoDeps", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 48, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const pname = "televido";
       const version = "0.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "d-k-bo",
           repo: "televido",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-9hoKX1fGjMOlvU3kNx4aLMV++k+nynDIK1UQRrw242k=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Viewer for German-language public broadcasting live streams and archives",
         homepage: "https://github.com/d-k-bo/televido",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

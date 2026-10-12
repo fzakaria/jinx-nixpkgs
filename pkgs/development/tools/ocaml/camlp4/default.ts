@@ -2,31 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 15, 7], ["sha256", 16, 7]], [["version", 19, 7], ["sha256", 20, 7]], [["version", 23, 7], ["sha256", 24, 7]], [["version", 27, 7], ["sha256", 28, 7]], [["version", 31, 7], ["sha256", 32, 7]], [["version", 35, 7], ["sha256", 36, 7]], [["version", 39, 7], ["sha256", 40, 7]], [["version", 43, 7], ["sha256", 44, 7]], [["version", 47, 7], ["sha256", 48, 7]], [["version", 51, 7], ["sha256", 52, 7]], [["version", 55, 7], ["sha256", 56, 7]], [["version", 59, 7], ["sha256", 60, 7]], [["version", 63, 7], ["sha256", 64, 7]], [["version", 67, 7], ["sha256", 68, 7]], [["version", 71, 7], ["sha256", 72, 7]], [["version", 75, 7], ["sha256", 76, 7]], [["version", 79, 7], ["sha256", 80, 7]], [["version", 83, 7], ["sha256", 84, 7]], [["version", 87, 7], ["sha256", 88, 7]], [["4.02", 14, 5], ["4.03", 18, 5], ["4.04", 22, 5], ["4.05", 26, 5], ["4.06", 30, 5], ["4.07", 34, 5], ["4.08", 38, 5], ["4.09", 42, 5], ["4.10", 46, 5], ["4.11", 50, 5], ["4.12", 54, 5], ["4.13", 58, 5], ["4.14", 62, 5], ["5.0", 66, 5], ["5.1", 70, 5], ["5.2", 74, 5], ["5.3", 78, 5], ["5.4", 82, 5], ["5.5", 86, 5]], [["version", 93, 5], ["sha256", 94, 5]], [["url", 106, 5], ["sha256", 107, 21]], [["description", 159, 5], ["homepage", 160, 5], ["platforms", 161, 5], ["license", 162, 5], ["broken", 163, 5]], [["pname", 102, 3], ["version", 103, 19], ["src", 105, 3], ["strictDeps", 110, 3], ["nativeBuildInputs", 112, 3], ["buildInputs", 121, 3], ["enableParallelBuilding", 127, 3], ["dontAddPrefix", 129, 3], ["preConfigure", 131, 3], ["postConfigure", 144, 3], ["makeFlags", 149, 3], ["installTargets", 151, 3], ["dontStrip", 156, 3], ["meta", 158, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, which: false, ocaml: false, "camlp-streams": false, ocamlbuild: false, findlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 15, 7], ["sha256", 16, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 19, 7], ["sha256", 20, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 23, 7], ["sha256", 24, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 27, 7], ["sha256", 28, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 31, 7], ["sha256", 32, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 35, 7], ["sha256", 36, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 39, 7], ["sha256", 40, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 43, 7], ["sha256", 44, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["version", 47, 7], ["sha256", 48, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["version", 51, 7], ["sha256", 52, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["version", 55, 7], ["sha256", 56, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["version", 59, 7], ["sha256", 60, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["version", 63, 7], ["sha256", 64, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["version", 67, 7], ["sha256", 68, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["version", 71, 7], ["sha256", 72, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["version", 75, 7], ["sha256", 76, 7]]);
-const pos$17 = nix.positions(here + "/default.nix", [["version", 79, 7], ["sha256", 80, 7]]);
-const pos$18 = nix.positions(here + "/default.nix", [["version", 83, 7], ["sha256", 84, 7]]);
-const pos$19 = nix.positions(here + "/default.nix", [["version", 87, 7], ["sha256", 88, 7]]);
-const pos$20 = nix.positions(here + "/default.nix", [["4.02", 14, 5], ["4.03", 18, 5], ["4.04", 22, 5], ["4.05", 26, 5], ["4.06", 30, 5], ["4.07", 34, 5], ["4.08", 38, 5], ["4.09", 42, 5], ["4.10", 46, 5], ["4.11", 50, 5], ["4.12", 54, 5], ["4.13", 58, 5], ["4.14", 62, 5], ["5.0", 66, 5], ["5.1", 70, 5], ["5.2", 74, 5], ["5.3", 78, 5], ["5.4", 82, 5], ["5.5", 86, 5]]);
-const pos$21 = nix.positions(here + "/default.nix", [["version", 93, 5], ["sha256", 94, 5]]);
-const pos$22 = nix.positions(here + "/default.nix", [["url", 106, 5], ["sha256", 107, 21]]);
-const pos$23 = nix.positions(here + "/default.nix", [["description", 159, 5], ["homepage", 160, 5], ["platforms", 161, 5], ["license", 162, 5], ["broken", 163, 5]]);
-const pos$24 = nix.positions(here + "/default.nix", [["pname", 102, 3], ["version", 103, 19], ["src", 105, 3], ["strictDeps", 110, 3], ["nativeBuildInputs", 112, 3], ["buildInputs", 121, 3], ["enableParallelBuilding", 127, 3], ["dontAddPrefix", 129, 3], ["preConfigure", 131, 3], ["postConfigure", 144, 3], ["makeFlags", 149, 3], ["installTargets", 151, 3], ["dontStrip", 156, 3], ["meta", 158, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,105 +16,105 @@ export default nix.lambda((args) => (() => {
   const ocamlbuild = nix.arg($, "ocamlbuild");
   const findlib = nix.arg($, "findlib");
   const params = nix.thunk(() => ({
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     "4.02": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "4.02+6",
       sha256: "06yl4q0qazl7g25b0axd1gdkfd4qpqzs1gr5fkvmkrcbz113h1hj",
     })),
     "4.03": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "4.03+1",
       sha256: "1f2ndch6f1m4fgnxsjb94qbpwjnjgdlya6pard44y6n0dqxi1wsq",
     })),
     "4.04": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "4.04+1",
       sha256: "1ad7rygqjxrc1im95gw9lp8q83nhdaf383f2808f1p63yl42xm7k",
     })),
     "4.05": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "4.05+1",
       sha256: "0wm795hpwvwpib9c9z6p8kw2fh7p7b2hml6g15z8zry3y7w738sv",
     })),
     "4.06": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "4.06+1",
       sha256: "0fazfw2l7wdmbwnqc22xby5n4ri1wz27lw9pfzhsbcdrighykysf",
     })),
     "4.07": nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "4.07+1",
       sha256: "0cxl4hkqcvspvkx4f2k83217rh6051fll9i2yz7cw6m3bq57mdvl",
     })),
     "4.08": nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: "4.08+1",
       sha256: "0qplawvxwai25bi27niw2cgz2al01kcnkj8wxwhxslpi21z6pyx1",
     })),
     "4.09": nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       version: "4.09+1",
       sha256: "1gr33x6xs1rs0bpyq4vzyfxd6vn47jfkg8imi81db2r0cbs0kxx1",
     })),
     "4.10": nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       version: "4.10+1",
       sha256: "093bc1c28wid5li0jwglnd4p3csxw09fmbs9ffybq2z41a5mgay6",
     })),
     "4.11": nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       version: "4.11+1",
       sha256: "0sn7f6im940qh0ixmx1k738xrwwdvy9g7r19bv5218jb6mh0g068",
     })),
     "4.12": nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       version: "4.12+1",
       sha256: "1cfk5ppnd511vzsr9gc0grxbafmh0m3m897aij198rppzxps5kyz",
     })),
     "4.13": nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       version: "4.13+1",
       sha256: "0fzxa1zdhk74mlxpin7p90flks6sp4gkc0mfclmj9zak15rii55n",
     })),
     "4.14": nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       version: "4.14+1",
       sha256: "sha256-cPN3GioZT/Zt6uzbjGUPEGVJcPQdsAnCkU/AQoPfvuo=",
     })),
     "5.0": nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       version: "5.0",
       sha256: "sha256-oZptFNPUEAq5YlcqAoDWfLghGMF9AN7E7hUN55SAX+4=",
     })),
     "5.1": nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       version: "5.1",
       sha256: "sha256-Ubedjg3BeHA0bJbEalQN9eEk5+LRAI/er+8mWfVYchg=",
     })),
     "5.2": nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       version: "5.2",
       sha256: "sha256-lzbc9xsgeYlbVf71O+PWYS14QivAH1aPdnvWhe0HHME=",
     })),
     "5.3": nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       version: "5.3",
       sha256: "sha256-V/kKhTP9U4jWDFuQKuB7BS3XICg1lq/2Avj7UJR55+k=",
     })),
     "5.4": nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       version: "5.4",
       sha256: "sha256-7FsKEr0cRVF4LIOvROWMyXBefRTBaS66ZqwtP2VLefM=",
     })),
     "5.5": nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       version: "5.5+1",
       sha256: "sha256-ERzTg6CFXm1Z0/NSXP5MwM0H/fSpN/4D2ISFcJa1qSI=",
     })),
   }));
   const param = nix.thunk(() => nix.update({
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     version: "",
     sha256: nix.thunk(() => nix.sel(lib, "fakeSha256")),
   }, nix.selOr(params, () => ({}), nix.key(nix.sel(ocaml, "meta", "branch")))));
@@ -145,7 +122,7 @@ export default nix.lambda((args) => (() => {
       const pname = "camlp4";
       const version = nix.thunk(() => nix.attr(param, "version"));
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           url: nix.thunk(() => nix.str`https://github.com/ocaml/camlp4/archive/${version}.tar.gz`),
           sha256: nix.thunk(() => nix.attr(param, "sha256")),
         }))));
@@ -172,7 +149,7 @@ configureFlagsArray=(
       const installTargets = nix.thunk(() => ["install", "install-META"]);
       const dontStrip = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         description: "Software system for writing extensible parsers for programming languages",
         homepage: "https://github.com/ocaml/camlp4",
         platforms: nix.thunk(() => nix.sel(ocaml, "meta", "platforms")),
@@ -180,7 +157,7 @@ configureFlagsArray=(
         broken: nix.thunk(() => !nix.asBool(nix.has(params, nix.key(nix.sel(ocaml, "meta", "branch"))))),
       }));
       return {
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         pname,
         version,
         src,

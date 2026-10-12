@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["did", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5], ["mainProgram", 32, 5]], [["__structuredAttrs", 7, 3], ["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 17, 3], ["cargoBuildFlags", 19, 3], ["cargoTestFlags", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromTangled: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["did", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5], ["mainProgram", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["__structuredAttrs", 7, 3], ["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 17, 3], ["cargoBuildFlags", 19, 3], ["cargoTestFlags", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromTangled = nix.arg($, "fetchFromTangled");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       __structuredAttrs: true,
       pname: "sessiond-hooks",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromTangled, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           did: "did:plc:vj3bxta3i3cp26nn46yideoh",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-X2ePs10hjZNOcHAJuN4J5KeBQaW24E2jMRq0biNdY3E=",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["--locked", "-p", "sessiond-hooks"]),
       cargoTestFlags: nix.thunk(() => nix.sel(finalAttrs, "cargoBuildFlags")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Launch and supervise per-user session hooks with sessiond",
         homepage: "https://tangled.org/r0chd.pl/sessiond",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

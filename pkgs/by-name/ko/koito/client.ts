@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/client.nix", [[["src", 19, 26], ["sourceRoot", 19, 30], ["missingHashes", 19, 41], ["hash", 20, 5]], [["pname", 13, 3], ["src", 14, 11], ["version", 14, 15], ["sourceRoot", 15, 3], ["missingHashes", 17, 3], ["offlineCache", 18, 3], ["nativeBuildInputs", 23, 3], ["buildPhase", 30, 3], ["installPhase", 37, 3]]]);
 const formals$1 = { args: { src: false, version: false, stdenv: false, "yarn-berry_4": false, nodejs: false, gzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/client.nix", [["src", 19, 26], ["sourceRoot", 19, 30], ["missingHashes", 19, 41], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/client.nix", [["pname", 13, 3], ["src", 14, 11], ["version", 14, 15], ["sourceRoot", 15, 3], ["missingHashes", 17, 3], ["offlineCache", 18, 3], ["nativeBuildInputs", 23, 3], ["buildPhase", 30, 3], ["installPhase", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const gzip = nix.arg($, "gzip");
   const yarn = yarn_berry_4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "koito-frontend",
       src: src,
       version: version,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/client`),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.attr(finalAttrs, "sourceRoot")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),

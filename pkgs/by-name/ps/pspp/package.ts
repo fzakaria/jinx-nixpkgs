@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["sha256", 32, 5]], [["C_INCLUDE_PATH", 63, 5], ["LIBRARY_PATH", 65, 5], ["NIX_CFLAGS_COMPILE", 68, 5]], [["homepage", 84, 5], ["description", 85, 5], ["license", 86, 5], ["longDescription", 88, 5], ["platforms", 100, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["patches", 58, 3], ["env", 62, 3], ["doCheck", 71, 3], ["enableParallelBuilding", 73, 3], ["preFixup", 75, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libxml2: false, readline: false, zlib: false, perl: false, cairo: false, gtk3: false, gsl: false, "pkg-config": false, gtksourceview4: false, pango: false, gettext: false, dconf: false, makeWrapper: false, "gsettings-desktop-schemas": false, "hicolor-icon-theme": false, texinfo: false, ssw: false, python3: false, iconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["C_INCLUDE_PATH", 63, 5], ["LIBRARY_PATH", 65, 5], ["NIX_CFLAGS_COMPILE", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 84, 5], ["description", 85, 5], ["license", 86, 5], ["longDescription", 88, 5], ["platforms", 100, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["patches", 58, 3], ["env", 62, 3], ["doCheck", 71, 3], ["enableParallelBuilding", 73, 3], ["preFixup", 75, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pspp";
       const version = "2.1.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/pspp/pspp-${version}.tar.gz`),
           sha256: "sha256-teVQk3vfpmoebKcpGVJy6OXmaz4EaGstg/suZtTvFMM=",
         }))));
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const patches = nix.thunk(() => [nix.path(here, "./fix-glibc-2.42.patch")]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         C_INCLUDE_PATH: nix.thunk(() => nix.add(nix.str`${nix.sel(libxml2, "dev")}/include/libxml2/:`, nix.app(nix.sel(lib, "makeSearchPathOutput"), "dev", "include", buildInputs))),
         LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), buildInputs)),
         NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers",
@@ -73,7 +70,7 @@ export default nix.lambda((args) => (() => {
  --prefix GIO_EXTRA_MODULES : "${nix.app(nix.sel(lib, "getLib"), dconf)}/lib/gio/modules"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.gnu.org/software/pspp/",
         description: "Free replacement for SPSS, a program for statistical analysis of sampled data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -81,7 +78,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

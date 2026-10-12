@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["name", 89, 7], ["exec", 90, 7], ["icon", 91, 7], ["desktopName", 92, 7], ["comment", 93, 7], ["categories", 94, 7], ["startupWMClass", 95, 7], ["mimeTypes", 96, 7]], [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5], ["sourceProvenance", 109, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["srcScript", 24, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["dontConfigure", 41, 3], ["dontBuild", 42, 3], ["installPhase", 44, 3], ["desktopItems", 87, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, copyDesktopItems: false, curl: false, fetchurl: false, "gsettings-desktop-schemas": false, gtk3: false, lib: false, makeDesktopItem: false, makeWrapper: false, stdenv: false, webkitgtk_4_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 89, 7], ["exec", 90, 7], ["icon", 91, 7], ["desktopName", 92, 7], ["comment", 93, 7], ["categories", 94, 7], ["startupWMClass", 95, 7], ["mimeTypes", 96, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5], ["sourceProvenance", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["srcScript", 24, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["dontConfigure", 41, 3], ["dontBuild", 42, 3], ["installPhase", 44, 3], ["desktopItems", 87, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "playdate-sdk";
       const version = "3.1.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.panic.com/playdate_sdk/Linux/PlaydateSDK-${version}.tar.gz`),
           sha256: "sha256-fj2RJhHoL3kAev0qOp5ooZyL/HAltfdhgF8hNoRw15M=",
         }))));
@@ -75,7 +72,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "PlaydateSimulator",
             exec: "PlaydateSimulator %u",
             icon: "PlaydateSimulator",
@@ -87,7 +84,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Official SDK and development tools for the Playdate handheld console, including Lua/C APIs, simulator, and Mirror capture utility",
         homepage: "https://play.date",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -99,7 +96,7 @@ runHook postInstall
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

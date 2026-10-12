@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["description", 35, 5], ["longDescription", 36, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["subPackages", 20, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromSourcehut: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["longDescription", 36, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["subPackages", 20, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "imapgoose";
       const version = "0.5.3";
       const src = nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~whynothugo",
           repo: "ImapGoose",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const postInstall = "installManPage imapgoose.1\ninstallManPage imapgoose.conf.5\n\ninstallShellCompletion --zsh contrib/_imapgoose\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "IMAP to Maildir synchronization tool",
         longDescription: "ImapGoose is a daemon that continuously keeps local mailboxes in sync\nwith an IMAP server. It monitors both the IMAP server and local\nfilesystem, immediately synchronizing changes within seconds. Unlike\ntraditional sync tools, ImapGoose is highly optimized to reduce network\ntraffic by leveraging modern IMAP extensions (CONDSTORE, QRESYNC, and\nNOTIFY) to perform efficient incremental syncs. It can monitor multiple\nmailboxes per connection and automatically reconnects with exponential\nback-off when network issues occur.\n",
         homepage: "https://git.sr.ht/~whynothugo/ImapGoose",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

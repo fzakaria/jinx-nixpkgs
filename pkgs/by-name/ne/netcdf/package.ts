@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["mpiSupport", 63, 13], ["mpi", 63, 24]], [["NIX_CFLAGS_COMPILE", 66, 7]], [["description", 99, 5], ["platforms", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["strictDeps", 60, 3], ["passthru", 62, 3], ["env", 66, 3], ["configureFlags", 71, 3], ["enableParallelBuilding", 83, 3], ["disallowedReferences", 85, 3], ["postFixup", 87, 3], ["doCheck", 91, 3], ["nativeCheckInputs", 92, 3], ["preCheck", 94, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, hdf5: false, bzip2: false, libzip: false, zstd: false, szipSupport: true, libaec: false, libxml2: false, m4: false, curl: false, removeReferencesTo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mpiSupport", 63, 13], ["mpi", 63, 24]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 66, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 99, 5], ["platforms", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["strictDeps", 60, 3], ["passthru", 62, 3], ["env", 66, 3], ["configureFlags", 71, 3], ["enableParallelBuilding", 83, 3], ["disallowedReferences", 85, 3], ["postFixup", 87, 3], ["doCheck", 91, 3], ["nativeCheckInputs", 92, 3], ["preCheck", 94, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const mpiSupport = nix.thunk(() => nix.attr(hdf5, "mpiSupport"));
   const mpi = nix.thunk(() => nix.attr(hdf5, "mpi"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.add("netcdf", nix.app(nix.sel(lib, "optionalString"), mpiSupport, "-mpi"))),
       version: "4.10.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.unidata.ucar.edu/netcdf-c/${nix.sel(finalAttrs, "version")}/netcdf-c-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-2ztp/0pe4afXmlw2Zk0hKLdSwmbpZjafz3MR7F+SdWQ=",
         })))),
@@ -50,9 +46,9 @@ substituteInPlace nczarr_test/Makefile.in \\
       nativeBuildInputs: nix.thunk(() => [m4, removeReferencesTo, libxml2]),
       buildInputs: nix.thunk(() => nix.concat([curl, hdf5, libxml2, bzip2, libzip, zstd], nix.concat(nix.app(nix.sel(lib, "optional"), szipSupport, libaec), nix.app(nix.sel(lib, "optional"), mpiSupport, mpi)))),
       strictDeps: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, mpiSupport: mpiSupport, mpi: mpi })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], mpiSupport: mpiSupport, mpi: mpi })),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=incompatible-function-pointer-types")),
       })),
       configureFlags: nix.thunk(() => nix.concat([
@@ -73,7 +69,7 @@ substituteInPlace nczarr_test/Makefile.in \\
       nativeCheckInputs: nix.thunk(() => [unzip]),
       preCheck: "export HOME=$TEMP\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Libraries for the Unidata network Common Data Format",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         homepage: "https://www.unidata.ucar.edu/software/netcdf/",

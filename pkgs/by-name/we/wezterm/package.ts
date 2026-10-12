@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["fetchSubmodules", 38, 5], ["hash", 39, 5]], [["openssl", 141, 9], ["pkg-config", 142, 9], ["rustPlatform", 143, 9], ["wezterm", 144, 9]], [["nativeBuildInputs", 151, 11]], [["all-terminfo", 159, 7]], [["headless", 139, 5], ["terminfo", 148, 5], ["tests", 158, 5], ["updateScript", 164, 5]], [["description", 168, 5], ["homepage", 169, 5], ["license", 170, 5], ["mainProgram", 171, 5], ["maintainers", 172, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["postPatch", 42, 3], ["auditable", 60, 3], ["cargoHash", 62, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 75, 3], ["buildFeatures", 91, 3], ["postInstall", 93, 3], ["preFixup", 110, 3], ["postFixup", 135, 3], ["passthru", 137, 3], ["meta", 167, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fontconfig: false, installShellFiles: false, libGL: false, libx11: false, libxcb: false, libxkbcommon: false, ncurses: false, nixosTests: false, openssl: false, perl: false, "pkg-config": false, python3: false, runCommand: false, rustPlatform: false, "vulkan-loader": false, wayland: false, wezterm: false, "libxcb-util": false, "libxcb-image": false, "libxcb-keysyms": false, "libxcb-wm": false, zlib: false, rcodesign: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["fetchSubmodules", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["openssl", 141, 9], ["pkg-config", 142, 9], ["rustPlatform", 143, 9], ["wezterm", 144, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 151, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["all-terminfo", 159, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["headless", 139, 5], ["terminfo", 148, 5], ["tests", 158, 5], ["updateScript", 164, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 168, 5], ["homepage", 169, 5], ["license", 170, 5], ["mainProgram", 171, 5], ["maintainers", 172, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["postPatch", 42, 3], ["auditable", 60, 3], ["cargoHash", 62, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 75, 3], ["buildFeatures", 91, 3], ["postInstall", 93, 3], ["preFixup", 110, 3], ["postFixup", 135, 3], ["passthru", 137, 3], ["meta", 167, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const rcodesign = nix.arg($, "rcodesign");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "wezterm",
       version: "0-unstable-2026-09-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wezterm",
           repo: "wezterm",
           rev: "b09b56c29c1e367e598b60ca266e2cc9038751e0",
@@ -96,25 +90,25 @@ install -Dm644 assets/wezterm-nautilus.py -t $out/share/nautilus-python/extensio
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$out/Applications\"\nOUT_APP=\"$out/Applications/WezTerm.app\"\ncp -r assets/macos/WezTerm.app \"$OUT_APP\"\nrm $OUT_APP/*.dylib\n# macos codesigning requires a specific directory structure\n# see also: https://github.com/wezterm/wezterm/blob/76b606ec597a3c0263fa60321548637451c0a547/ci/deploy.sh#L31\nmkdir -p $OUT_APP/Contents/{MacOS,Resources}\ncp -r assets/shell-integration/* $OUT_APP/Contents/Resources/\n# https://github.com/wezterm/wezterm/pull/6886\n# macOS will only recognize our application bundle\n# if the binaries are inside of it. Move them there\n# and create symbolic links for them in bin/.\nmv $out/bin/{wezterm,wezterm-mux-server,wezterm-gui,strip-ansi-escapes} $OUT_APP/Contents/MacOS/\nln -s $OUT_APP/Contents/MacOS/{wezterm,wezterm-mux-server,wezterm-gui,strip-ansi-escapes} $out/bin\n"))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "rcodesign sign $out/Applications/WezTerm.app")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         headless: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./headless.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             openssl: openssl,
             "pkg-config": pkg_config,
             rustPlatform: rustPlatform,
             wezterm: wezterm,
           })))),
-        terminfo: nix.thunk(() => nix.app(runCommand, "wezterm-terminfo", nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [ncurses]) })), nix.thunk(() => nix.str`mkdir -p $out/share/terminfo $out/nix-support
+        terminfo: nix.thunk(() => nix.app(runCommand, "wezterm-terminfo", nix.thunk(() => ({ [nix.POS]: $pos[2], nativeBuildInputs: nix.thunk(() => [ncurses]) })), nix.thunk(() => nix.str`mkdir -p $out/share/terminfo $out/nix-support
 tic -x -o $out/share/terminfo ${nix.sel(finalAttrs, "src")}/termwiz/data/wezterm.terminfo
 `))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "all-terminfo": nix.thunk(() => nix.sel(nixosTests, "allTerminfo")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust",
         homepage: "https://wezterm.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

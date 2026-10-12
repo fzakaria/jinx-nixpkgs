@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["changelog", 32, 5], ["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["mainProgram", 36, 5], ["maintainers", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["doInstallCheck", 22, 3], ["versionCheckProgramArg", 23, 3], ["nativeInstallCheckInputs", 24, 3], ["checkFlags", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 32, 5], ["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["mainProgram", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["doInstallCheck", 22, 3], ["versionCheckProgramArg", 23, 3], ["nativeInstallCheckInputs", 24, 3], ["checkFlags", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ghgrab",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "abhixdd",
           repo: "ghgrab",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       checkFlags: nix.thunk(() => ["--skip=test_mcp_repo_info_on_actual_repo"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/abhixdd/ghgrab/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Simple, pretty terminal tool that lets you search and download files from GitHub without leaving your CLI",
         homepage: "https://github.com/abhixdd/ghgrab",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 19, 5], ["buildCommand", 21, 5]], [["doInstallCheck", 31, 35]], [["meson", 31, 5]], [["clang", 48, 7]], [["NIX_CFLAGS_COMPILE", 61, 7]], [["description", 79, 8]], [["releaseName", 35, 3], ["outputs", 37, 3], ["xcodeHash", 42, 3], ["xcodeProject", 43, 3], ["patches", 45, 3], ["postPatch", 55, 3], ["env", 61, 3], ["nativeBuildInputs", 63, 3], ["postInstall", 68, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, bison: false, buildPackages: false, flex: false, meson: false, mkAppleDerivation: false, sourceRelease: false, replaceVars: false, stdenv: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 19, 5], ["buildCommand", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["doInstallCheck", 31, 35]]);
-const pos$3 = nix.positions(here + "/package.nix", [["meson", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["clang", 48, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 61, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 79, 8]]);
-const pos$7 = nix.positions(here + "/package.nix", [["releaseName", 35, 3], ["outputs", 37, 3], ["xcodeHash", 42, 3], ["xcodeProject", 43, 3], ["patches", 45, 3], ["postPatch", 55, 3], ["env", 61, 3], ["nativeBuildInputs", 63, 3], ["postInstall", 68, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const Libc = nix.thunk(() => nix.app(sourceRelease, "Libc"));
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "adv_cmds-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -t "$out/include/os" \\
   '${Libc}/os/assumes.h' \\
@@ -34,25 +28,25 @@ export default nix.lambda((args) => (() => {
 `),
     }))));
   const mkAppleDerivation$ = nix.thunk(() => nix.app(nix.sel(mkAppleDerivation, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
-      meson: nix.thunk(() => nix.app(nix.sel(meson, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doInstallCheck: false })))),
+      [nix.POS]: $pos[2],
+      meson: nix.thunk(() => nix.app(nix.sel(meson, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doInstallCheck: false })))),
     }))));
   return nix.app(mkAppleDerivation$, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       releaseName: "bootstrap_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-N28WLkFo8fXiQqqpmRmOBE3BzqXHIy94fhZIxEkmOw4=",
       xcodeProject: "mig.xcodeproj",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/0001-Specify-MIGCC-for-use-with-substitute.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             clang: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(buildPackages, "targetPackages", "clang")))}/bin/${nix.sel(buildPackages, "targetPackages", "clang", "targetPrefix")}clang`),
           })))),
         nix.path(here, "./patches/0002-Always-remove-working-directory.patch"),
       ]),
       postPatch: "# Fix the name to something Meson will like.\nsubstituteInPlace migcom.tproj/lexxer.l \\\n  --replace-fail 'y.tab.h' 'parser.tab.h'\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
       nativeBuildInputs: nix.thunk(() => [bison, flex]),
@@ -66,7 +60,7 @@ substituteInPlace "$out/bin/mig" \\
   --replace-fail '/usr/bin/xcrun' '${nix.sel(buildPackages, "xcbuild", "xcrun")}/bin/xcrun'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Contains mig command for generating headers from definitions",
       })),
     })));

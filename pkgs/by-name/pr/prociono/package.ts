@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["strictDeps", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["strictDeps", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "prociono",
       version: "2011-05-25",
       outputs: nix.thunk(() => ["out", "webfont"]),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "theleagueof",
           repo: "prociono",
           rev: "f9d9680de6d6f0c13939f23c9dd14cd7853cf844",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Roman serif with blackletter elements",
         longDescription: "\"Prociono\" (pro-tsee-O-no) is an Esperanto word meaning either the star\nProcyon or the animal species known as the raccoon. It is a roman serif\nwith blackletter elements.\n",
         homepage: "https://www.theleagueofmoveabletype.com/prociono",

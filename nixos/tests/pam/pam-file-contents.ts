@@ -2,40 +2,33 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pam-file-contents.nix", [[["enable", 10, 21]], [["krb5", 10, 16]], [["isNormalUser", 16, 13]], [["user", 15, 11]], [["mutableUsers", 13, 9], ["users", 14, 9]], [["imports", 8, 7], ["security", 10, 7], ["users", 12, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pam-file-contents.nix", [["enable", 10, 21]]);
-const pos$2 = nix.positions(here + "/pam-file-contents.nix", [["krb5", 10, 16]]);
-const pos$3 = nix.positions(here + "/pam-file-contents.nix", [["isNormalUser", 16, 13]]);
-const pos$4 = nix.positions(here + "/pam-file-contents.nix", [["user", 15, 11]]);
-const pos$5 = nix.positions(here + "/pam-file-contents.nix", [["mutableUsers", 13, 9], ["users", 14, 9]]);
-const pos$6 = nix.positions(here + "/pam-file-contents.nix", [["imports", 8, 7], ["security", 10, 7], ["users", 12, 7]]);
-const pos$7 = nix.positions(here + "/pam-file-contents.nix", [["machine", 5, 9]]);
-const pos$8 = nix.positions(here + "/pam-file-contents.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "pam-file-contents",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           imports: nix.thunk(() => [nix.path(here, "../../modules/profiles/minimal.nix")]),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            krb5: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+            [nix.POS]: $pos[1],
+            krb5: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             mutableUsers: false,
             users: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              user: nix.thunk(() => ({ [nix.POS]: pos$3, isNormalUser: true })),
+              [nix.POS]: $pos[3],
+              user: nix.thunk(() => ({ [nix.POS]: $pos[2], isNormalUser: true })),
             })),
           })),
         };

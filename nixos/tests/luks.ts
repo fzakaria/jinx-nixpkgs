@@ -2,67 +2,45 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/luks.nix", [[["enable", 11, 27]], [["systemd", 11, 19]], [["enable", 24, 32]], [["systemd-boot", 24, 19]], [["initrd", 11, 12], ["loader", 24, 12], ["kernelParams", 26, 12]], [["emptyDiskImages", 15, 9], ["useBootLoader", 19, 9], ["useEFIBoot", 20, 9], ["mountHostNixStore", 22, 9]], [["systemPackages", 28, 19]], [["device", 34, 23]], [["device", 35, 24]], [["cryptroot", 34, 13], ["cryptroot2", 35, 13]], [["devices", 32, 28]], [["luks", 32, 23]], [["initrd", 32, 16]], [["rootDevice", 37, 26]], [["boot", 32, 11], ["virtualisation", 37, 11]], [["configuration", 31, 19]], [["keyMap", 42, 21]], [["console", 42, 13]], [["configuration", 39, 33]], [["boot-luks", 31, 9], ["boot-luks-custom-keymap", 39, 9]], [["boot", 11, 7], ["virtualisation", 14, 7], ["environment", 28, 7], ["specialisation", 30, 7]], [["machine", 7, 9]], [["name", 5, 3], ["nodes", 7, 3], ["enableOCR", 48, 3], ["testScript", 50, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/luks.nix", [["enable", 11, 27]]);
-const pos$2 = nix.positions(here + "/luks.nix", [["systemd", 11, 19]]);
-const pos$3 = nix.positions(here + "/luks.nix", [["enable", 24, 32]]);
-const pos$4 = nix.positions(here + "/luks.nix", [["systemd-boot", 24, 19]]);
-const pos$5 = nix.positions(here + "/luks.nix", [["initrd", 11, 12], ["loader", 24, 12], ["kernelParams", 26, 12]]);
-const pos$6 = nix.positions(here + "/luks.nix", [["emptyDiskImages", 15, 9], ["useBootLoader", 19, 9], ["useEFIBoot", 20, 9], ["mountHostNixStore", 22, 9]]);
-const pos$7 = nix.positions(here + "/luks.nix", [["systemPackages", 28, 19]]);
-const pos$8 = nix.positions(here + "/luks.nix", [["device", 34, 23]]);
-const pos$9 = nix.positions(here + "/luks.nix", [["device", 35, 24]]);
-const pos$10 = nix.positions(here + "/luks.nix", [["cryptroot", 34, 13], ["cryptroot2", 35, 13]]);
-const pos$11 = nix.positions(here + "/luks.nix", [["devices", 32, 28]]);
-const pos$12 = nix.positions(here + "/luks.nix", [["luks", 32, 23]]);
-const pos$13 = nix.positions(here + "/luks.nix", [["initrd", 32, 16]]);
-const pos$14 = nix.positions(here + "/luks.nix", [["rootDevice", 37, 26]]);
-const pos$15 = nix.positions(here + "/luks.nix", [["boot", 32, 11], ["virtualisation", 37, 11]]);
-const pos$16 = nix.positions(here + "/luks.nix", [["configuration", 31, 19]]);
-const pos$17 = nix.positions(here + "/luks.nix", [["keyMap", 42, 21]]);
-const pos$18 = nix.positions(here + "/luks.nix", [["console", 42, 13]]);
-const pos$19 = nix.positions(here + "/luks.nix", [["configuration", 39, 33]]);
-const pos$20 = nix.positions(here + "/luks.nix", [["boot-luks", 31, 9], ["boot-luks-custom-keymap", 39, 9]]);
-const pos$21 = nix.positions(here + "/luks.nix", [["boot", 11, 7], ["virtualisation", 14, 7], ["environment", 28, 7], ["specialisation", 30, 7]]);
-const pos$22 = nix.positions(here + "/luks.nix", [["machine", 7, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$23 = nix.positions(here + "/luks.nix", [["name", 5, 3], ["nodes", 7, 3], ["enableOCR", 48, 3], ["testScript", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "luks",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              systemd: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
+              [nix.POS]: $pos[1],
+              systemd: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: false })),
             })),
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+              [nix.POS]: $pos[3],
+              "systemd-boot": nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
             })),
             kernelParams: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 5n, nix.thunk(() => ["console=tty1"]))),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             emptyDiskImages: nix.thunk(() => [512n, 512n]),
             useBootLoader: true,
             useEFIBoot: true,
             mountHostNixStore: true,
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "cryptsetup"))];
@@ -70,38 +48,38 @@ export default nix.lambda((args) => (() => {
           })),
           specialisation: nix.thunk(() => (() => {
             const boot_luks = nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 boot: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   initrd: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     luks: nix.thunk(() => ({
-                      [nix.POS]: pos$11,
+                      [nix.POS]: $pos[10],
                       devices: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-                          [nix.POS]: pos$10,
-                          cryptroot: nix.thunk(() => ({ [nix.POS]: pos$8, device: "/dev/vdb" })),
-                          cryptroot2: nix.thunk(() => ({ [nix.POS]: pos$9, device: "/dev/vdc" })),
+                          [nix.POS]: $pos[9],
+                          cryptroot: nix.thunk(() => ({ [nix.POS]: $pos[7], device: "/dev/vdb" })),
+                          cryptroot2: nix.thunk(() => ({ [nix.POS]: $pos[8], device: "/dev/vdc" })),
                         })))),
                     })),
                   })),
                 })),
-                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$14, rootDevice: "/dev/mapper/cryptroot" })),
+                virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[13], rootDevice: "/dev/mapper/cryptroot" })),
               })),
             }));
             const boot_luks_custom_keymap = nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               configuration: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(boot_luks, "configuration")),
                   nix.thunk(() => ({
-                    [nix.POS]: pos$18,
-                    console: nix.thunk(() => ({ [nix.POS]: pos$17, keyMap: "neo" })),
+                    [nix.POS]: $pos[17],
+                    console: nix.thunk(() => ({ [nix.POS]: $pos[16], keyMap: "neo" })),
                   })),
                 ]))),
             }));
             return {
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               "boot-luks": boot_luks,
               "boot-luks-custom-keymap": boot_luks_custom_keymap,
             };

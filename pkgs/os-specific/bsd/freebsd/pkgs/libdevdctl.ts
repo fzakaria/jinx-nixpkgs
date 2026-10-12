@@ -2,21 +2,20 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libdevdctl.nix", [[["NIX_CFLAGS_COMPILE", 14, 7]], [["path", 6, 3], ["clangFixup", 7, 3], ["outputs", 9, 3], ["env", 14, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libdevdctl.nix", [["NIX_CFLAGS_COMPILE", 14, 7]]);
-const pos$2 = nix.positions(here + "/libdevdctl.nix", [["path", 6, 3], ["clangFixup", 7, 3], ["outputs", 9, 3], ["env", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/libdevdctl",
       clangFixup: false,
       outputs: nix.thunk(() => ["out", "debug"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: "-std=c++23 -Wno-nullability-completeness",
       })),
     })));

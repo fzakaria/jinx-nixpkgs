@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-run.nix", [[["did", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["isLibrary", 23, 3], ["isExecutable", 24, 3], ["libraryToolDepends", 25, 3], ["executableHaskellDepends", 26, 3], ["prePatch", 36, 3], ["homepage", 37, 3], ["license", 38, 3], ["mainProgram", 39, 3]]]);
 const formals$1 = { args: { mkDerivation: false, attoparsec: false, base: false, fetchFromTangled: false, filepath: false, "hercules-ci-optparse-applicative": false, hpack: false, lib: false, "nix-derivation": false, process: false, relude: false, unix: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nix-run.nix", [["did", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/nix-run.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["isLibrary", 23, 3], ["isExecutable", 24, 3], ["libraryToolDepends", 25, 3], ["executableHaskellDepends", 26, 3], ["prePatch", 36, 3], ["homepage", 37, 3], ["license", 38, 3], ["mainProgram", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nix-run";
       const version = "0.1.0.0-alpha.2";
       const src = nix.thunk(() => nix.app(fetchFromTangled, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           did: "did:plc:jhj73bgwgby7m5sudz5jk6gb",
           tag: version,
           hash: "sha256-vnYD3N32H6eEPLis8eNlglXVY+guP5DDKCf2z7CLzwA=",
@@ -47,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const license = nix.thunk(() => nix.sel(lib, "licenses", "bsd3"));
       const mainProgram = "nix-run";
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

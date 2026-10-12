@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["suffix", 12, 7], ["hash", 13, 7]], [["suffix", 16, 7], ["hash", 17, 7]], [["x86_64-linux", 11, 5], ["aarch64-linux", 15, 5]], [["url", 31, 5], ["hash", 32, 22]], [["updateScript", 50, 12]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["sourceProvenance", 60, 5]], [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["src", 30, 3], ["sourceRoot", 35, 3], ["dontConfigure", 37, 3], ["dontBuild", 38, 3], ["installPhase", 40, 3], ["doInstallCheck", 46, 3], ["nativeInstallCheckInputs", 47, 3], ["versionCheckProgramArg", 48, 3], ["passthru", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["suffix", 12, 7], ["hash", 13, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["suffix", 16, 7], ["hash", 17, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 11, 5], ["aarch64-linux", 15, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 22]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 50, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["sourceProvenance", 60, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["src", 30, 3], ["sourceRoot", 35, 3], ["dontConfigure", 37, 3], ["dontBuild", 38, 3], ["installPhase", 40, 3], ["doInstallCheck", 46, 3], ["nativeInstallCheckInputs", 47, 3], ["versionCheckProgramArg", 48, 3], ["passthru", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       suffix: "linux_amd64",
       hash: "sha256-3TTVSCZcsUVfNzC9hWn0OLytMAOxL39f5IlqCReCw7g=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       suffix: "linux_arm64",
       hash: "sha256-pHygFgvMdyh8NQeGwZ1iNkaU1q+pcxvn5/CaoO/amIc=",
     })),
@@ -35,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const source = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`pipekit: no prebuilt binary for ${system}`)), nix.key(nix.force(system))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pipekit",
       version: "6.65.5",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://github.com/pipekit/cli/releases/download/v${nix.sel(finalAttrs, "version")}/cli_${nix.sel(finalAttrs, "version")}_${nix.sel(source, "suffix")}.tar.gz`),
           hash: nix.thunk(() => nix.attr(source, "hash")),
         })))),
@@ -53,11 +47,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "CLI for Pipekit. Observability, governance, and scale for Argo Workflows",
         homepage: "https://pipekit.io",
         changelog: nix.thunk(() => nix.str`https://github.com/pipekit/cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

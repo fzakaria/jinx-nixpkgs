@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["ORT_STRATEGY", 52, 5], ["ORT_LIB_LOCATION", 53, 5], ["ORT_PREFER_DYNAMIC_LINK", 54, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["postInstall", 43, 3], ["env", 51, 3], ["nativeInstallCheckInputs", 57, 3], ["doInstallCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, openssl: false, "pkg-config": false, "alsa-lib": false, systemdLibs: false, libxkbcommon: false, makeWrapper: false, versionCheckHook: false, "whisper-cpp": false, onnxruntime: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ORT_STRATEGY", 52, 5], ["ORT_LIB_LOCATION", 53, 5], ["ORT_PREFER_DYNAMIC_LINK", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["postInstall", 43, 3], ["env", 51, 3], ["nativeInstallCheckInputs", 57, 3], ["doInstallCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const whisper_cpp = nix.arg($, "whisper-cpp");
   const onnxruntime = nix.arg($, "onnxruntime");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hyprwhspr-rs",
       version: "0.3.33",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "better-slop",
           repo: "hyprwhspr-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
 install -Dm644 assets/* -t $out/share/assets
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ORT_STRATEGY: "system",
         ORT_LIB_LOCATION: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), onnxruntime)}/lib`),
         ORT_PREFER_DYNAMIC_LINK: "1",
@@ -50,7 +47,7 @@ install -Dm644 assets/* -t $out/share/assets
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Native speech-to-text voice dictation for Hyprland",
         homepage: "https://github.com/better-slop/hyprwhspr-rs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

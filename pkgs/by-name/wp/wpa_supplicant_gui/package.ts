@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 45, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5]], [["pname", 11, 3], ["version", 12, 28], ["src", 12, 36], ["patches", 12, 40], ["buildInputs", 14, 3], ["nativeBuildInputs", 18, 3], ["strictDeps", 25, 3], ["__structuredAttrs", 26, 3], ["enableParallelBuilding", 27, 3], ["postPatch", 29, 3], ["postBuild", 33, 3], ["postInstall", 37, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, qt6: false, inkscape: false, imagemagick: false, wpa_supplicant: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 45, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 28], ["src", 12, 36], ["patches", 12, 40], ["buildInputs", 14, 3], ["nativeBuildInputs", 18, 3], ["strictDeps", 25, 3], ["__structuredAttrs", 26, 3], ["enableParallelBuilding", 27, 3], ["postPatch", 29, 3], ["postBuild", 33, 3], ["postInstall", 37, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const wpa_supplicant = nix.arg($, "wpa_supplicant");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "wpa_gui",
       version: nix.thunk(() => nix.attr(wpa_supplicant, "version")),
       src: nix.thunk(() => nix.attr(wpa_supplicant, "src")),
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "make -C icons\n",
       postInstall: "mkdir -pv $out/{bin,share/applications,share/icons}\ncp -v wpa_gui $out/bin\ncp -v wpa_gui.desktop $out/share/applications\ncp -av icons/hicolor $out/share/icons\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Qt-based GUI for wpa_supplicant",
         mainProgram: "wpa_gui",
         homepage: "https://hostap.epitest.fi/wpa_supplicant/",

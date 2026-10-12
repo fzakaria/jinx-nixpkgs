@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 18, 9], ["out", 19, 9]], [["hash", 23, 14]], [["8.20.0", 23, 5]], [["description", 32, 5], ["license", 33, 5]], [["pname", 10, 3], ["version", 11, 11], ["defaultVersion", 12, 3], ["release", 22, 3], ["releaseRev", 25, 3], ["propagatedBuildInputs", 27, 3], ["mlPlugin", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 18, 9], ["out", 19, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 23, 14]]);
-const pos$3 = nix.positions(here + "/default.nix", [["8.20.0", 23, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 32, 5], ["license", 33, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 11], ["defaultVersion", 12, 3], ["release", 22, 3], ["releaseRev", 25, 3], ["propagatedBuildInputs", 27, 3], ["mlPlugin", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "atbr",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
@@ -25,16 +21,16 @@ export default nix.lambda((args) => (() => {
         const range = nix.thunk(() => nix.attr(from, "range"));
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               case: nix.thunk(() => nix.app(range, "8.20", "8.20")),
               out: "8.20.0",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "8.20.0": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-Okhtq6Gnq4HA3tEZJvf8JBnmk3OKdm6hC1qINmoShmo=",
         })),
       })),
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [stdlib]),
       mlPlugin: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Coq library and tactic for deciding Kleene algebras",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
       })),

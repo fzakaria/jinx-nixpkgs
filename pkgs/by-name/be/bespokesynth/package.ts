@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5], ["fetchSubmodules", 50, 5]], [["NIX_LDFLAGS", 146, 7]], [["rev-prefix", 160, 5]], [["updateScript", 159, 12]], [["description", 164, 5], ["homepage", 165, 5], ["license", 166, 5], ["maintainers", 167, 5], ["mainProgram", 173, 5], ["platforms", 174, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 53, 3], ["postPatch", 62, 3], ["cmakeBuildType", 67, 3], ["cmakeFlags", 69, 3], ["strictDeps", 77, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 87, 3], ["postInstall", 122, 3], ["env", 146, 3], ["dontPatchELF", 157, 3], ["passthru", 159, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, cmake: false, "pkg-config": false, ninja: false, makeWrapper: false, libjack2: false, "alsa-lib": false, "alsa-tools": false, freetype: false, jsoncpp: false, libusb1: false, libx11: false, libxrandr: false, libxinerama: false, libxext: false, libxcursor: false, libxscrnsaver: false, libGL: false, libxcb: false, "vst2-sdk": false, "libxcb-util": false, libxkbcommon: false, "libxcb-keysyms": false, "libxcb-cursor": false, gtk3: false, webkitgtk_4_1: false, python3: false, curl: false, mount: false, zenity: false, enableVST2: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5], ["fetchSubmodules", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 146, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 160, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 159, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 164, 5], ["homepage", 165, 5], ["license", 166, 5], ["maintainers", 167, 5], ["mainProgram", 173, 5], ["platforms", 174, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 53, 3], ["postPatch", 62, 3], ["cmakeBuildType", 67, 3], ["cmakeFlags", 69, 3], ["strictDeps", 77, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 87, 3], ["postInstall", 122, 3], ["env", 146, 3], ["dontPatchELF", 157, 3], ["passthru", 159, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const zenity = nix.arg($, "zenity");
   const enableVST2 = nix.argOr($, "enableVST2", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "bespokesynth",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BespokeSynth",
           repo: "bespokesynth",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -118,16 +113,16 @@ wrapProgram $out/bin/BespokeSynth \\
         ]))}'
 `)),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libx11, libxrandr, libxinerama, libxext, libxcursor, libxscrnsaver]))}`))),
       })),
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Software modular synth with controllers support, scripting and VST",
         homepage: "https://www.bespokesynth.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

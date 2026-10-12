@@ -2,32 +2,11 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/deferred-module.nix", [[["imports", 24, 13]], [["type", 23, 11], ["default", 26, 11]], [["type", 29, 11], ["default", 30, 11], ["description", 31, 11]], [["nodes", 22, 17], ["default", 28, 17]], [["_file", 21, 9], ["options", 22, 9]], [["type", 44, 13], ["default", 45, 13]], [["type", 47, 43]], [["settingsDict", 43, 19], ["bottom", 47, 19]], [["options", 43, 11]], [["_file", 39, 7], ["default", 40, 7]], [["_file", 52, 7], ["default", 53, 7]], [["b", 58, 30]], [["settingsDict", 58, 17]], [["foo", 58, 13]], [["_file", 57, 7], ["nodes", 58, 7]], [["bottom", 63, 15]], [["_file", 62, 7], ["default", 63, 7]], [["c", 71, 24]], [["settingsDict", 71, 11]], [["foo", 68, 13]], [["_file", 67, 7], ["nodes", 68, 7]], [["imports", 13, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/deferred-module.nix", [["imports", 24, 13]]);
-const pos$2 = nix.positions(here + "/deferred-module.nix", [["type", 23, 11], ["default", 26, 11]]);
-const pos$3 = nix.positions(here + "/deferred-module.nix", [["type", 29, 11], ["default", 30, 11], ["description", 31, 11]]);
-const pos$4 = nix.positions(here + "/deferred-module.nix", [["nodes", 22, 17], ["default", 28, 17]]);
-const pos$5 = nix.positions(here + "/deferred-module.nix", [["_file", 21, 9], ["options", 22, 9]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/deferred-module.nix", [["type", 44, 13], ["default", 45, 13]]);
-const pos$7 = nix.positions(here + "/deferred-module.nix", [["type", 47, 43]]);
-const pos$8 = nix.positions(here + "/deferred-module.nix", [["settingsDict", 43, 19], ["bottom", 47, 19]]);
-const pos$9 = nix.positions(here + "/deferred-module.nix", [["options", 43, 11]]);
-const pos$10 = nix.positions(here + "/deferred-module.nix", [["_file", 39, 7], ["default", 40, 7]]);
-const pos$11 = nix.positions(here + "/deferred-module.nix", [["_file", 52, 7], ["default", 53, 7]]);
-const pos$12 = nix.positions(here + "/deferred-module.nix", [["b", 58, 30]]);
-const pos$13 = nix.positions(here + "/deferred-module.nix", [["settingsDict", 58, 17]]);
-const pos$14 = nix.positions(here + "/deferred-module.nix", [["foo", 58, 13]]);
-const pos$15 = nix.positions(here + "/deferred-module.nix", [["_file", 57, 7], ["nodes", 58, 7]]);
-const pos$16 = nix.positions(here + "/deferred-module.nix", [["bottom", 63, 15]]);
-const pos$17 = nix.positions(here + "/deferred-module.nix", [["_file", 62, 7], ["default", 63, 7]]);
 const formals$4 = { args: { config: false }, ellipsis: true };
-const pos$18 = nix.positions(here + "/deferred-module.nix", [["c", 71, 24]]);
-const pos$19 = nix.positions(here + "/deferred-module.nix", [["settingsDict", 71, 11]]);
-const pos$20 = nix.positions(here + "/deferred-module.nix", [["foo", 68, 13]]);
-const pos$21 = nix.positions(here + "/deferred-module.nix", [["_file", 67, 7], ["nodes", 68, 7]]);
-const pos$22 = nix.positions(here + "/deferred-module.nix", [["imports", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,26 +19,26 @@ export default nix.lambda((args) => (() => {
   const str = nix.thunk(() => nix.attr(types, "str"));
   const enum$ = nix.thunk(() => nix.attr(types, "enum"));
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     imports: nix.thunk(() => [
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           _file: "generic.nix",
           options: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             nodes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 type: nix.thunk(() => nix.app(lazyAttrsOf, nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                      [nix.POS]: pos$1,
+                      [nix.POS]: $pos[0],
                       imports: nix.thunk(() => [nix.thunk(() => nix.sel(config, "default"))]),
                     })))))),
                 default: nix.thunk(() => ({})),
               })))),
             default: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 type: deferredModule,
                 default: nix.thunk(() => ({})),
                 description: "Module that is included in all nodes.\n",
@@ -68,57 +47,60 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$2),
       nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         _file: "default-1.nix",
         default: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const config = nix.arg($_1, "config");
           return {
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             options: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               settingsDict: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   type: nix.thunk(() => nix.app(lazyAttrsOf, str)),
                   default: nix.thunk(() => ({})),
                 })))),
-              bottom: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$7, type: nix.thunk(() => nix.app(enum$, [])) })))),
+              bottom: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[6], type: nix.thunk(() => nix.app(enum$, [])) })))),
             })),
           };
         })(), formals$3),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         _file: "default-a-is-b.nix",
         default: nix.path(here, "./define-settingsDict-a-is-b.nix"),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         _file: "nodes-foo.nix",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           foo: nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            settingsDict: nix.thunk(() => ({ [nix.POS]: pos$12, b: "beta" })),
+            [nix.POS]: $pos[12],
+            settingsDict: nix.thunk(() => ({ [nix.POS]: $pos[11], b: "beta" })),
           })),
         })),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         _file: "the-file-that-contains-the-bad-config.nix",
-        default: nix.thunk(() => ({ [nix.POS]: pos$16, bottom: "bogus" })),
+        default: nix.thunk(() => ({ [nix.POS]: $pos[15], bottom: "bogus" })),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         _file: "nodes-foo-c-is-a.nix",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           foo: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$4);
             const config = nix.arg($_1, "config");
             return {
-              [nix.POS]: pos$19,
-              settingsDict: nix.thunk(() => ({ [nix.POS]: pos$18, c: nix.thunk(() => nix.sel(config, "settingsDict", "a")) })),
+              [nix.POS]: $pos[18],
+              settingsDict: nix.thunk(() => ({
+                [nix.POS]: $pos[17],
+                c: nix.thunk(() => nix.sel(config, "settingsDict", "a")),
+              })),
             };
           })(), formals$4),
         })),

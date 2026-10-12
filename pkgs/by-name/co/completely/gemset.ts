@@ -2,24 +2,16 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/gemset.nix", [["remotes", 6, 7], ["sha256", 7, 7], ["type", 8, 7]]);
-const pos$2 = nix.positions(here + "/gemset.nix", [["groups", 3, 5], ["platforms", 4, 5], ["source", 5, 5], ["version", 10, 5]]);
-const pos$3 = nix.positions(here + "/gemset.nix", [["remotes", 20, 7], ["sha256", 21, 7], ["type", 22, 7]]);
-const pos$4 = nix.positions(here + "/gemset.nix", [["dependencies", 13, 5], ["groups", 17, 5], ["platforms", 18, 5], ["source", 19, 5], ["version", 24, 5]]);
-const pos$5 = nix.positions(here + "/gemset.nix", [["remotes", 30, 7], ["sha256", 31, 7], ["type", 32, 7]]);
-const pos$6 = nix.positions(here + "/gemset.nix", [["groups", 27, 5], ["platforms", 28, 5], ["source", 29, 5], ["version", 34, 5]]);
-const pos$7 = nix.positions(here + "/gemset.nix", [["remotes", 44, 7], ["sha256", 45, 7], ["type", 46, 7]]);
-const pos$8 = nix.positions(here + "/gemset.nix", [["dependencies", 37, 5], ["groups", 41, 5], ["platforms", 42, 5], ["source", 43, 5], ["version", 48, 5]]);
-const pos$9 = nix.positions(here + "/gemset.nix", [["colsole", 2, 3], ["completely", 12, 3], ["docopt_ng", 26, 3], ["mister_bin", 36, 3]]);
+const $pos = nix.positions(here + "/gemset.nix", [[["remotes", 6, 7], ["sha256", 7, 7], ["type", 8, 7]], [["groups", 3, 5], ["platforms", 4, 5], ["source", 5, 5], ["version", 10, 5]], [["remotes", 20, 7], ["sha256", 21, 7], ["type", 22, 7]], [["dependencies", 13, 5], ["groups", 17, 5], ["platforms", 18, 5], ["source", 19, 5], ["version", 24, 5]], [["remotes", 30, 7], ["sha256", 31, 7], ["type", 32, 7]], [["groups", 27, 5], ["platforms", 28, 5], ["source", 29, 5], ["version", 34, 5]], [["remotes", 44, 7], ["sha256", 45, 7], ["type", 46, 7]], [["dependencies", 37, 5], ["groups", 41, 5], ["platforms", 42, 5], ["source", 43, 5], ["version", 48, 5]], [["colsole", 2, 3], ["completely", 12, 3], ["docopt_ng", 26, 3], ["mister_bin", 36, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$9,
+  [nix.POS]: $pos[8],
   colsole: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1fvf6dz2wsvjk7q24z0dm8lajq3p2l6i5ywf3mxj683rmhwq49bg",
       type: "gem",
@@ -27,12 +19,12 @@ export default nix.thunk(() => ({
     version: "1.0.0",
   })),
   completely: nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     dependencies: nix.thunk(() => ["colsole", "mister_bin"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0129alz54h2vy7vd19i5664sasdbvrl4zgj70hl5j4rpvckr5lf8",
       type: "gem",
@@ -40,11 +32,11 @@ export default nix.thunk(() => ({
     version: "0.7.1",
   })),
   docopt_ng: nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0rsnl5s7k2s1gl4n4dg68ssg577kf11sl4a4l2lb2fpswj718950",
       type: "gem",
@@ -52,12 +44,12 @@ export default nix.thunk(() => ({
     version: "0.7.1",
   })),
   mister_bin: nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     dependencies: nix.thunk(() => ["colsole", "docopt_ng"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1zz3vpy6xrgzln2dpxgcnrq1bpzz0syl60whqc9zf8j29mayw1fy",
       type: "gem",

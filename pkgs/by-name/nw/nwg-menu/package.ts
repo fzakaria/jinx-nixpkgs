@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["homepage", 59, 5], ["description", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["doCheck", 28, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 37, 3], ["prePatch", 43, 3], ["postInstall", 49, 3], ["preFixup", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, "pkg-config": false, wrapGAppsHook3: false, "gobject-introspection": false, "gtk-layer-shell": false, gtk3: false, pango: false, "gdk-pixbuf": false, atk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["doCheck", 28, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 37, 3], ["prePatch", 43, 3], ["postInstall", 49, 3], ["preFixup", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const atk = nix.arg($, "atk");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nwg-menu",
       version: "0.1.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nwg-piotr",
           repo: "nwg-menu",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/share/\ncp menu-start.css $out/share/\n",
       preFixup: "gappsWrapperArgs+=(--prefix XDG_DATA_DIRS : \"$out/share\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/nwg-piotr/nwg-menu",
         description: "MenuStart plugin for nwg-panel",
         mainProgram: "nwg-menu",

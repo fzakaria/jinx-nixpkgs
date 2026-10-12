@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["bash", 29, 7]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeBuildInputs", 41, 3], ["postInstall", 45, 3], ["checkPhase", 49, 3], ["__darwinAllowLocalNetworking", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, bashInteractive: false, "flit-core": false, filetype: false, ipykernel: false, pexpect: false, writableTmpDirAsHomeHook: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["bash", 29, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeBuildInputs", 41, 3], ["postInstall", 45, 3], ["checkPhase", 49, 3], ["__darwinAllowLocalNetworking", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "takluyver",
           repo: "bash_kernel",
           tag: version,
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./bash-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             bash: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), bashInteractive)),
           })))),
       ]);
@@ -58,7 +55,7 @@ runHook postCheck
 `);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Bash Kernel for Jupyter",
         homepage: "https://github.com/takluyver/bash_kernel",
         changelog: nix.thunk(() => nix.str`https://github.com/takluyver/bash_kernel/releases/tag/${version}`),
@@ -69,7 +66,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

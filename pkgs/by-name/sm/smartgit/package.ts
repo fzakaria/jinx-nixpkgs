@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 26, 5]], [["name", 83, 5], ["exec", 84, 5], ["comment", 85, 5], ["icon", 86, 5], ["desktopName", 87, 5], ["categories", 88, 5], ["mimeTypes", 92, 5], ["startupNotify", 97, 5], ["startupWMClass", 98, 5], ["keywords", 99, 5]], [["description", 103, 5], ["longDescription", 104, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["mainProgram", 111, 5], ["platforms", 112, 5], ["maintainers", 116, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["preFixup", 37, 3], ["installPhase", 60, 3], ["desktopItem", 82, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, git: false, stdenv: false, fetchurl: false, makeDesktopItem: false, openjdk21: false, gtk3: false, glib: false, "adwaita-icon-theme": false, wrapGAppsHook3: false, libxtst: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 83, 5], ["exec", 84, 5], ["comment", 85, 5], ["icon", 86, 5], ["desktopName", 87, 5], ["categories", 88, 5], ["mimeTypes", 92, 5], ["startupNotify", 97, 5], ["startupWMClass", 98, 5], ["keywords", 99, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 103, 5], ["longDescription", 104, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["mainProgram", 111, 5], ["platforms", 112, 5], ["maintainers", 116, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["preFixup", 37, 3], ["installPhase", 60, 3], ["desktopItem", 82, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const jre = openjdk21;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "smartgit",
       version: "26.1.055",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.smartgit.dev/smartgit/smartgit-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}-no-git-linux-amd64.tar.gz`),
           hash: "sha256-NuFVvWqtFS/8EYa5+oNwo3IJfPlG+wqI6A4e7l8ZzeI=",
         })))),
@@ -45,7 +42,7 @@ sed -i $out/bin/smartgit \\
 `),
       installPhase: "runHook preInstall\n\nsed -i '/ --login/d' bin/smartgit.sh\nmkdir -pv $out/{bin,share/applications,share/icons/hicolor/scalable/apps/}\ncp -av ./{dictionaries,lib} $out/\ncp -av bin/smartgit.sh $out/bin/smartgit\nln -sfv $out/bin/smartgit $out/bin/smartgithg\n\ncp -av $desktopItem/share/applications/* $out/share/applications/\nfor icon_size in 32 48 64 128 256; do\n    path=$icon_size'x'$icon_size\n    icon=bin/smartgit-$icon_size.png\n    mkdir -p $out/share/icons/hicolor/$path/apps\n    cp $icon $out/share/icons/hicolor/$path/apps/smartgit.png\ndone\n\ncp -av bin/smartgit.svg $out/share/icons/hicolor/scalable/apps/\n\nrunHook postInstall\n",
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "smartgit",
           exec: "smartgit",
           comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -62,7 +59,7 @@ sed -i $out/bin/smartgit \\
           keywords: nix.thunk(() => ["git"]),
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Git GUI client",
         longDescription: "SmartGit is a multi-platform Git GUI client, free to use for active Open Source developers and users from academic institutions.\nCommand line Git is required.\n",
         homepage: "https://www.smartgit.dev/",

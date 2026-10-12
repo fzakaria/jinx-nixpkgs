@@ -2,20 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-mysql-and-memcached.nix", [[["system", 9, 52], ["pkgs", 9, 59]], [["maintainers", 15, 10]], [["apcu", 25, 15], ["memcached", 26, 15]], [["dbtype", 28, 20]], [["caching", 24, 13], ["config", 28, 13], ["configureRedis", 29, 13]], [["enable", 32, 30]], [["nextcloud", 23, 20], ["memcached", 32, 20]], [["services", 23, 11]], [["nextcloud", 20, 7]], [["init", 36, 18]], [["name", 13, 13], ["meta", 15, 5], ["imports", 17, 5], ["nodes", 19, 5], ["test-helpers", 36, 5]]]);
 const formals$1 = { args: { name: false, pkgs: false, testBase: false, system: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/with-mysql-and-memcached.nix", [["system", 9, 52], ["pkgs", 9, 59]]);
 const formals$2 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/with-mysql-and-memcached.nix", [["maintainers", 15, 10]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/with-mysql-and-memcached.nix", [["apcu", 25, 15], ["memcached", 26, 15]]);
-const pos$4 = nix.positions(here + "/with-mysql-and-memcached.nix", [["dbtype", 28, 20]]);
-const pos$5 = nix.positions(here + "/with-mysql-and-memcached.nix", [["caching", 24, 13], ["config", 28, 13], ["configureRedis", 29, 13]]);
-const pos$6 = nix.positions(here + "/with-mysql-and-memcached.nix", [["enable", 32, 30]]);
-const pos$7 = nix.positions(here + "/with-mysql-and-memcached.nix", [["nextcloud", 23, 20], ["memcached", 32, 20]]);
-const pos$8 = nix.positions(here + "/with-mysql-and-memcached.nix", [["services", 23, 11]]);
-const pos$9 = nix.positions(here + "/with-mysql-and-memcached.nix", [["nextcloud", 20, 7]]);
-const pos$10 = nix.positions(here + "/with-mysql-and-memcached.nix", [["init", 36, 18]]);
-const pos$11 = nix.positions(here + "/with-mysql-and-memcached.nix", [["name", 13, 13], ["meta", 15, 5], ["imports", 17, 5], ["nodes", 19, 5], ["test-helpers", 36, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,42 +13,42 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testBase = nix.arg($, "testBase");
   const system = nix.arg($, "system");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, pkgs: pkgs })))), null);
   return nix.app(nix.lookup(w, "runTest"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       const lib = nix.arg($_1, "lib");
       return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         name: name,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           maintainers: nix.thunk(() => nix.sel(lib, "teams", "nextcloud", "members")),
         })),
         imports: nix.thunk(() => [testBase]),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           nextcloud: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const config_1 = nix.arg($_2, "config");
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 nextcloud: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  caching: nix.thunk(() => ({ [nix.POS]: pos$3, apcu: true, memcached: true })),
-                  config: nix.thunk(() => ({ [nix.POS]: pos$4, dbtype: "mysql" })),
+                  [nix.POS]: $pos[4],
+                  caching: nix.thunk(() => ({ [nix.POS]: $pos[2], apcu: true, memcached: true })),
+                  config: nix.thunk(() => ({ [nix.POS]: $pos[3], dbtype: "mysql" })),
                   configureRedis: false,
                 })),
-                memcached: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+                memcached: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
               })),
             };
           })(), formals$3),
         })),
         "test-helpers": nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           init: nix.thunk(() => (() => {
             const configureMemcached = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScript"), "configure-memcached", "nextcloud-occ config:system:set memcached_servers 0 0 --value 127.0.0.1 --type string\nnextcloud-occ config:system:set memcached_servers 0 1 --value 11211 --type integer\nnextcloud-occ config:system:set memcache.local --value '\\OC\\Memcache\\APCu' --type string\nnextcloud-occ config:system:set memcache.distributed --value '\\OC\\Memcache\\Memcached' --type string\n"));
             return nix.str`nextcloud.succeed("${configureMemcached}")

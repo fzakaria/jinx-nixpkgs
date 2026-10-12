@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 19, 31], ["license", 19, 40], ["maintainers", 19, 48], ["description", 20, 5], ["longDescription", 21, 5], ["platforms", 25, 5]], [["pname", 7, 3], ["version", 9, 24], ["src", 9, 32], ["dontBuild", 11, 3], ["installPhase", 13, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "ladspa-sdk": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 19, 31], ["license", 19, 40], ["maintainers", 19, 48], ["description", 20, 5], ["longDescription", 21, 5], ["platforms", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 9, 24], ["src", 9, 32], ["dontBuild", 11, 3], ["installPhase", 13, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const ladspa_sdk = nix.arg($, "ladspa-sdk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ladspa-header",
       version: nix.thunk(() => nix.attr(ladspa_sdk, "version")),
       src: nix.thunk(() => nix.attr(ladspa_sdk, "src")),
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ladspa_sdk, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

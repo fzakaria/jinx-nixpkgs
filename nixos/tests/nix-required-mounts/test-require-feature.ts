@@ -2,14 +2,14 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-require-feature.nix", [[["requiredSystemFeatures", 6, 40]]]);
 const formals$1 = { args: { pkgs: true, feature: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-require-feature.nix", [["requiredSystemFeatures", 6, 40]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs")), nix.thunk(() => ({}))));
   const feature = nix.arg($, "feature");
-  return nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${feature}-present`), nix.thunk(() => ({ [nix.POS]: pos$1, requiredSystemFeatures: nix.thunk(() => [feature]) })), nix.thunk(() => nix.str`if [[ ! -e /${feature}-files ]]; then
+  return nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`${feature}-present`), nix.thunk(() => ({ [nix.POS]: $pos[0], requiredSystemFeatures: nix.thunk(() => [feature]) })), nix.thunk(() => nix.str`if [[ ! -e /${feature}-files ]]; then
   echo "The host declares ${feature} support, but doesn't expose /${feature}-files" >&2
   exit 1
 fi

@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["includeNDK", 15, 9], ["ndkVersion", 16, 17]], [["includeNDK", 20, 9], ["ndkVersion", 21, 17]], [["config", 26, 15], ["lib", 26, 22], ["makeWrapper", 28, 9], ["autoPatchelfHook", 29, 9], ["stdenv", 32, 9], ["runCommand", 33, 9], ["wrapBintoolsWith", 34, 9], ["wrapCCWith", 35, 9], ["llvmPackages", 39, 15], ["buildAndroidndk", 45, 7], ["androidndk", 46, 7], ["targetAndroidndkPkgs", 47, 7]], [["27", 56, 3], ["28", 57, 3], ["29", 58, 3]]]);
 const formals$1 = { args: { lib: false, androidenv: false, buildPackages: false, pkgs: false, targetPackages: false, config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["includeNDK", 15, 9], ["ndkVersion", 16, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["includeNDK", 20, 9], ["ndkVersion", 21, 17]]);
-const pos$3 = nix.positions(here + "/default.nix", [["config", 26, 15], ["lib", 26, 22], ["makeWrapper", 28, 9], ["autoPatchelfHook", 29, 9], ["stdenv", 32, 9], ["runCommand", 33, 9], ["wrapBintoolsWith", 34, 9], ["wrapCCWith", 35, 9], ["llvmPackages", 39, 15], ["buildAndroidndk", 45, 7], ["androidndk", 46, 7], ["targetAndroidndkPkgs", 47, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["27", 56, 3], ["28", 57, 3], ["29", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const targetPackages = nix.arg($, "targetPackages");
   const config = nix.arg($, "config");
   const makeNdkPkgs = (ndkVersion) => (llvmPackages) => (() => {
-    const buildAndroidComposition = nix.thunk(() => nix.app(nix.sel(buildPackages, "buildPackages", "androidenv", "composeAndroidPackages"), nix.thunk(() => ({ [nix.POS]: pos$1, includeNDK: true, ndkVersion: ndkVersion }))));
-    const androidComposition = nix.thunk(() => nix.app(nix.sel(androidenv, "composeAndroidPackages"), nix.thunk(() => ({ [nix.POS]: pos$2, includeNDK: true, ndkVersion: ndkVersion }))));
+    const buildAndroidComposition = nix.thunk(() => nix.app(nix.sel(buildPackages, "buildPackages", "androidenv", "composeAndroidPackages"), nix.thunk(() => ({ [nix.POS]: $pos[0], includeNDK: true, ndkVersion: ndkVersion }))));
+    const androidComposition = nix.thunk(() => nix.app(nix.sel(androidenv, "composeAndroidPackages"), nix.thunk(() => ({ [nix.POS]: $pos[1], includeNDK: true, ndkVersion: ndkVersion }))));
     const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), ndkVersion));
     return nix.app(nix.builtins.import(nix.path(here, "./androidndk-pkgs.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         config: config,
         lib: lib,
         makeWrapper: nix.thunk(() => nix.attr(buildPackages, "makeWrapper")),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       })));
   })();
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "27": nix.thunk(() => nix.app(makeNdkPkgs, "27.0.12077973", nix.thunk(() => nix.sel(pkgs, "llvmPackages_18")))),
       "28": nix.thunk(() => nix.app(makeNdkPkgs, "28.0.13004108", nix.thunk(() => nix.sel(pkgs, "llvmPackages_19")))),
       "29": nix.thunk(() => nix.app(makeNdkPkgs, "29.0.14206865", nix.thunk(() => nix.sel(pkgs, "llvmPackages_21")))),

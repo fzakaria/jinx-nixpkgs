@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["pkg-config", 55, 18]], [["tests", 55, 12]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["pkgConfigModules", 62, 5], ["platforms", 63, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["nativeBuildInputs", 25, 3], ["enableParallelBuilding", 26, 3], ["makeFlags", 28, 3], ["checkTarget", 36, 3], ["postInstall", 38, 3], ["doCheck", 49, 3], ["preCheck", 51, 3], ["passthru", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, testers: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 55, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 55, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["pkgConfigModules", 62, 5], ["platforms", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["nativeBuildInputs", 25, 3], ["enableParallelBuilding", 26, 3], ["makeFlags", 28, 3], ["checkTarget", 36, 3], ["postInstall", 38, 3], ["doCheck", 49, 3], ["preCheck", 51, 3], ["passthru", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libhydrogen",
       version: "0-unstable-2025-04-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jedisct1",
           repo: "libhydrogen",
           rev: "bbca575b62510bfdc6dd927a4bfa7df4a51cb846",
@@ -50,14 +46,14 @@ EOF
       doCheck: true,
       preCheck: "export LD_LIBRARY_PATH=$PWD:$LD_LIBRARY_PATH\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lightweight, secure, easy-to-use crypto library suitable for constrained environments",
         homepage: "https://github.com/jedisct1/libhydrogen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

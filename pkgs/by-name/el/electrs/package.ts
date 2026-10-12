@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["pname", 23, 26], ["version", 23, 32], ["src", 23, 40], ["hash", 24, 5]], [["ROCKSDB_INCLUDE_DIR", 32, 5], ["ROCKSDB_LIB_DIR", 33, 5]], [["updateScript", 36, 12]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoDeps", 22, 3], ["nativeBuildInputs", 28, 3], ["env", 30, 3], ["passthru", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, rocksdb_9_10: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 23, 26], ["version", 23, 32], ["src", 23, 40], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ROCKSDB_INCLUDE_DIR", 32, 5], ["ROCKSDB_LIB_DIR", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 36, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoDeps", 22, 3], ["nativeBuildInputs", 28, 3], ["env", 30, 3], ["passthru", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const rocksdb_9_10 = nix.arg($, "rocksdb_9_10");
   const rocksdb = rocksdb_9_10;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "electrs",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "romanz",
           repo: "electrs",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-MDdxu+ITEEUs+DXKfRKlwStT94Bv8tYIqh2eQlqPgrQ=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -37,13 +32,13 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         ROCKSDB_INCLUDE_DIR: nix.thunk(() => nix.str`${rocksdb}/include`),
         ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${rocksdb}/lib`),
       })),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Efficient re-implementation of Electrum Server in Rust",
         homepage: "https://github.com/romanz/electrs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

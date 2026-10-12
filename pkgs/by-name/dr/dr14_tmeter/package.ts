@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["doCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, flac: false, "vorbis-tools": false, ffmpeg: false, faad2: false, lame: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["doCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const faad2 = nix.arg($, "faad2");
   const lame = nix.arg($, "lame");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dr14_tmeter",
       version: "1.0.16-unstable-2025-09-27",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hboetes",
           repo: "dr14_t.meter",
           rev: "f9d62f60c30d9404d4c4b644931e76049332310c",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Compute the DR14 of a given audio file according to the procedure described by the Pleasurize Music Foundation",
         mainProgram: "dr14_tmeter",
         homepage: "https://github.com/hboetes/dr14_t.meter",

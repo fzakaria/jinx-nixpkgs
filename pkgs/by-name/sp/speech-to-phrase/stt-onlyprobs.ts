@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stt-onlyprobs.nix", [[["name", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["name", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["name", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["name", 46, 5], ["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]], [["name", 55, 5], ["owner", 56, 5], ["repo", 57, 5], ["rev", 58, 5], ["hash", 59, 5]], [["name", 64, 5], ["owner", 65, 5], ["repo", 66, 5], ["rev", 67, 5], ["hash", 68, 5]], [["name", 73, 5], ["owner", 74, 5], ["repo", 75, 5], ["rev", 76, 5], ["hash", 77, 5]], [["name", 82, 5], ["owner", 83, 5], ["repo", 84, 5], ["rev", 85, 5], ["hash", 86, 5]], [["mainProgram", 140, 5], ["license", 141, 5], ["platforms", 142, 5]], [["pname", 90, 3], ["version", 91, 11], ["src", 91, 19], ["sourceRoot", 93, 3], ["postPatch", 95, 3], ["nativeBuildInputs", 107, 3], ["cmakeFlags", 109, 3], ["NIX_CFLAGS_COMPILE", 132, 3], ["installPhase", 134, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { src: false, version: false, "abseil-cpp": false, cmake: false, cpuinfo: false, eigen: false, farmhash: false, fetchFromGitHub: false, fp16: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/stt-onlyprobs.nix", [["name", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/stt-onlyprobs.nix", [["name", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/stt-onlyprobs.nix", [["name", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$4 = nix.positions(here + "/stt-onlyprobs.nix", [["name", 46, 5], ["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]]);
-const pos$5 = nix.positions(here + "/stt-onlyprobs.nix", [["name", 55, 5], ["owner", 56, 5], ["repo", 57, 5], ["rev", 58, 5], ["hash", 59, 5]]);
-const pos$6 = nix.positions(here + "/stt-onlyprobs.nix", [["name", 64, 5], ["owner", 65, 5], ["repo", 66, 5], ["rev", 67, 5], ["hash", 68, 5]]);
-const pos$7 = nix.positions(here + "/stt-onlyprobs.nix", [["name", 73, 5], ["owner", 74, 5], ["repo", 75, 5], ["rev", 76, 5], ["hash", 77, 5]]);
-const pos$8 = nix.positions(here + "/stt-onlyprobs.nix", [["name", 82, 5], ["owner", 83, 5], ["repo", 84, 5], ["rev", 85, 5], ["hash", 86, 5]]);
-const pos$9 = nix.positions(here + "/stt-onlyprobs.nix", [["mainProgram", 140, 5], ["license", 141, 5], ["platforms", 142, 5]]);
-const pos$10 = nix.positions(here + "/stt-onlyprobs.nix", [["pname", 90, 3], ["version", 91, 11], ["src", 91, 19], ["sourceRoot", 93, 3], ["postPatch", 95, 3], ["nativeBuildInputs", 107, 3], ["cmakeFlags", 109, 3], ["NIX_CFLAGS_COMPILE", 132, 3], ["installPhase", 134, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const fft2d = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "fft2d-source",
       owner: "petewarden",
       repo: "OouraFFT",
@@ -36,7 +27,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-mkG6jWuMVzCB433qk2wW/HPA9vp/LivPTDa2c0hFir4=",
     }))));
   const flatbuffers = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "flatbuffers-source",
       owner: "google",
       repo: "flatbuffers",
@@ -44,7 +35,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-L1B5Y/c897Jg9fGwT2J3+vaXsZ+lfXnskp8Gto1p/Tg=",
     }))));
   const fxdiv = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "fxdiv-source",
       owner: "Maratyszcza",
       repo: "FXdiv",
@@ -52,7 +43,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-BEjscsejYVhRxDAmah5DT3+bglp8G5wUTTYL7+HjWds=",
     }))));
   const gemmlowp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "gemmlowp-source",
       owner: "google",
       repo: "gemmlowp",
@@ -60,7 +51,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-tE+w72sfudZXWyMxG6CGMqXYswve57/cpvwrketEd+k=",
     }))));
   const neon2sse = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "neon2sse-source",
       owner: "intel",
       repo: "ARM_NEON_2_x86_SSE",
@@ -68,7 +59,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-wlaraZ4Ga/J2pRo7yQmAI1Wfu57Jg1kWe2LFP4qB5uY=",
     }))));
   const pthreadpool = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "pthreadpool-source",
       owner: "Maratyszcza",
       repo: "pthreadpool",
@@ -76,7 +67,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-sBpMElc8kUYV6EfLD+OmrZZzeN6NDdu3U4/cInAny7M=",
     }))));
   const ruy = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "ruy-source",
       owner: "google",
       repo: "ruy",
@@ -84,7 +75,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-OF0Bp29ftiCpulc2n/SojamJZa4ufneWseD+Ib2GC84=",
     }))));
   const xnnpack = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "xnnpack-source",
       owner: "google",
       repo: "XNNPACK",
@@ -92,7 +83,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-YWP6YfwHBppfamz+aAs4rTMu6yvPifGYBsGNoWHoCOg=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "stt_onlyprobs",
       version: version,
       src: src,
@@ -128,7 +119,7 @@ substituteInPlace ../tensorflow/tensorflow/lite/CMakeLists.txt \\
       NIX_CFLAGS_COMPILE: "-std=c++17",
       installPhase: "mkdir -p $out/bin\ncp stt_onlyprobs $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         mainProgram: "stt_onlyprobs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         platforms: nix.thunk(() => ["x86_64-linux"]),

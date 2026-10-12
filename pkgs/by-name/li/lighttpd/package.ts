@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 40, 5], ["sha256", 41, 5]], [["lighttpd", 106, 26]], [["tests", 105, 12]], [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["platforms", 113, 5], ["maintainers", 114, 5], ["mainProgram", 118, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["separateDebugInfo", 44, 3], ["postPatch", 46, 3], ["depsBuildBuild", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 56, 3], ["configureFlags", 75, 3], ["preConfigure", 88, 3], ["nativeCheckInputs", 93, 3], ["doCheck", 94, 3], ["postInstall", 96, 3], ["passthru", 105, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, fetchurl: false, "pkg-config": false, pcre2: false, libxml2: false, zlib: false, bzip2: false, which: false, file: false, autoreconfHook: false, openssl: false, enableDbi: true, libdbi: false, enableMagnet: true, lua5_5: false, enableMysql: true, libmysqlclient: false, enableLdap: true, openldap: false, enablePam: true, "linux-pam": false, enableSasl: true, cyrus_sasl: false, enableWebDAV: true, sqlite: false, libuuid: false, enableExtendedAttrs: true, perl: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 40, 5], ["sha256", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lighttpd", 106, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 105, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["platforms", 113, 5], ["maintainers", 114, 5], ["mainProgram", 118, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["separateDebugInfo", 44, 3], ["postPatch", 46, 3], ["depsBuildBuild", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 56, 3], ["configureFlags", 75, 3], ["preConfigure", 88, 3], ["nativeCheckInputs", 93, 3], ["doCheck", 94, 3], ["postInstall", 96, 3], ["passthru", 105, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lighttpd",
       version: "1.4.85",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.lighttpd.net/lighttpd/releases-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.x/lighttpd-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-GN5Rs5O6xKaCeHnhp/83fBaeQUuuks0kUJHYD8JgHRM=",
         })))),
@@ -73,14 +69,14 @@ sed -i "s:/usr/bin/file:${file}/bin/file:g" configure
       doCheck: true,
       postInstall: "mkdir -p \"$out/share/lighttpd/doc/config\"\ncp -vr doc/config \"$out/share/lighttpd/doc/\"\n# Remove files that references needless store paths (dependency bloat)\nrm \"$out/share/lighttpd/doc/config/Makefile\"*\nrm \"$out/share/lighttpd/doc/config/conf.d/Makefile\"*\nrm \"$out/share/lighttpd/doc/config/vhosts.d/Makefile\"*\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           lighttpd: nix.thunk(() => nix.attr(nixosTests, "lighttpd")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lightweight high-performance web server",
         homepage: "http://www.lighttpd.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

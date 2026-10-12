@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["src", 26, 13], ["hash", 27, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 21, 3], ["version", 22, 11], ["src", 22, 19], ["pyproject", 23, 3], ["cargoDeps", 25, 3], ["build-system", 30, 3], ["pythonImportsCheck", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, cargo: false, rustPlatform: false, rustc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 26, 13], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 11], ["src", 22, 19], ["pyproject", 23, 3], ["cargoDeps", 25, 3], ["build-system", 30, 3], ["pythonImportsCheck", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const version = "0.2.8";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "yzx9",
       repo: "sdflit",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-9x/EnFCWhGu1zlLLz6D084PduS9ReQqdeRMblmw0g/s=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sdflit",
       version: version,
       src: src,
       pyproject: true,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           hash: "sha256-Bz4HfpC+qNWWV3KgLW8L+4d5odmbYNRvdMjdMBy6qIQ=",
         })))),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["sdflit"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast and Robust Signed Distance Function Library",
         homepage: "https://github.com/yzx9/sdflit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

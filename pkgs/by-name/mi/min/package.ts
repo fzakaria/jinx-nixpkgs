@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["NIX_LDFLAGS", 34, 7]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["mainProgram", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["lockFile", 20, 3], ["buildInputs", 22, 3], ["prePatch", 27, 3], ["env", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildNimPackage: false, fetchFromGitHub: false, openssl: false, pcre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["mainProgram", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["lockFile", 20, 3], ["buildInputs", 22, 3], ["prePatch", 27, 3], ["env", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pcre = nix.arg($, "pcre");
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "min",
       version: "0.45.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "h3rald",
           repo: "min",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, pcre]),
       prePatch: "# remove vendorabilities\nfind . -name '*.a' -delete\nfind minpkg/lib -name '*.nim' \\\n  -exec sed 's|{\\.passL:.*\\.}|discard|g' -i {} \\;\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lpcre"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Functional, concatenative programming language with a minimalist syntax",
         homepage: "https://min-lang.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/h3rald/min/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

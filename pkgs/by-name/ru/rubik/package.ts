@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 20, 5], ["hash", 21, 5]], [["homepage", 29, 5], ["description", 30, 5], ["longDescription", 31, 5], ["platforms", 48, 5], ["license", 49, 5]], [["pname", 8, 3], ["version", 9, 3], ["outputs", 11, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["preInstall", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["longDescription", 31, 5], ["platforms", 48, 5], ["license", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["outputs", 11, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["preInstall", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rubik",
       version: "2.200",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googlefonts",
           repo: "rubik",
           rev: "054aa9d546cd6308f8ff7139b332490e0967aebe",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       preInstall: "rm -r old/",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://fonts.google.com/specimen/Rubik",
         description: "Rubik Font - is a 5 weight Roman + Italic family",
         longDescription: "The Rubik Fonts project was initiated as part of the Chrome CubeLab\nproject.\n\nRubik is a 5 weight Roman + Italic family.\n\nRubik supports the Latin, Cyrillic and Hebrew scripts. The Latin and Cyrillic\nwere designed by Philipp Hubert and Sebastian Fischer at Hubert Fischer.\n\nThe Hebrew was initially designed by Philipp and Sebastian, and then revised by\ntype designer and Hebrew native reader Meir Sadan to adjust proportions,\nspacing and other design details.\n\nCyrillic was initially designed by Philipp and Sebastian, and then revised and\nexpanded by Cyreal Fonts Team (Alexei Vanyashin and Nikita Kanarev). Existing\nglyphs were improved, and glyph set was expanded to GF Cyrillic Plus.\n",

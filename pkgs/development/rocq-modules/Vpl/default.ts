@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 15, 17]], [["0.5", 15, 11]], [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]], [["pname", 9, 3], ["owner", 10, 3], ["version", 11, 11], ["defaultVersion", 13, 3], ["release", 15, 3], ["setSourceRoot", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 15, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["0.5", 15, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["owner", 10, 3], ["version", 11, 11], ["defaultVersion", 13, 3], ["release", 15, 3], ["setSourceRoot", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,21 +12,21 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "Vpl",
       owner: "VERIMAG-Polyhedra",
       version: version,
       defaultVersion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "range"), "8.8", "8.9", nix.thunk(() => nix.sel(coq, "coq-version")))) ? "0.5" : null)),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "0.5": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256-mSD/xSweeK9WMxWDdX/vzN96iXo74RkufjuNvtzsP9o=",
         })),
       })),
       setSourceRoot: "sourceRoot=$(echo */coq)",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Coq interface to VPL abstract domain of convex polyhedra",
         homepage: "https://amarechal.gitlab.io/home/projects/vpl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["badPlatforms", 21, 8]], [["name", 7, 3], ["text", 11, 3], ["destination", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, writeTextFile: false, mesa: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["badPlatforms", 21, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 7, 3], ["text", 11, 3], ["destination", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const writeTextFile = nix.arg($, "writeTextFile");
   const mesa = nix.arg($, "mesa");
   return nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "dri-pkgconfig-stub",
       text: nix.thunk(() => nix.str`dridriverdir=${nix.sel(mesa, "driverLink")}/lib/dri
 
@@ -22,7 +21,7 @@ Description: Nixpkgs graphics driver path stub
 `),
       destination: "/lib/pkgconfig/dri.pc",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         badPlatforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       })),
     })));

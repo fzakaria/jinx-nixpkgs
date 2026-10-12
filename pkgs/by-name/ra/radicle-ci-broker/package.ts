@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["seed", 20, 5], ["repo", 21, 5], ["node", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["leaveDotGit", 25, 5], ["postFetch", 26, 5]], [["radicle-ci-broker", 63, 36]], [["tests", 63, 5], ["updateScript", 64, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["teams", 75, 5], ["mainProgram", 76, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 32, 3], ["postPatch", 34, 3], ["preCheck", 43, 3], ["nativeCheckInputs", 49, 3], ["checkFlags", 57, 3], ["nativeInstallCheckInputs", 59, 3], ["doInstallCheck", 60, 3], ["passthru", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromRadicle: false, stdenv: false, jq: false, gitMinimal: false, sqlite: false, "radicle-node": false, writableTmpDirAsHomeHook: false, versionCheckHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["seed", 20, 5], ["repo", 21, 5], ["node", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["leaveDotGit", 25, 5], ["postFetch", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["radicle-ci-broker", 63, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 63, 5], ["updateScript", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["teams", 75, 5], ["mainProgram", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 32, 3], ["postPatch", 34, 3], ["preCheck", 43, 3], ["nativeCheckInputs", 49, 3], ["checkFlags", 57, 3], ["nativeInstallCheckInputs", 59, 3], ["doInstallCheck", 60, 3], ["passthru", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "radicle-ci-broker",
       version: "0.32.1",
       src: nix.thunk(() => nix.app(fetchFromRadicle, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           seed: "seed.radicle.dev",
           repo: "zwTxygwuz5LDGBq255RA2CbNGrz8",
           node: "z6MkgEMYod7Hxfy9qCvDv5hYHkZ4ciWmLFgfvm3Wn1b2w2FV",
@@ -47,15 +43,15 @@ rad auth --alias alice --stdin </dev/null
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "radicle-ci-broker": nix.thunk(() => nix.attr(nixosTests, "radicle-ci-broker")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Radicle CI broker",
         homepage: "https://radicle.network/nodes/seed.radicle.dev/rad:zwTxygwuz5LDGBq255RA2CbNGrz8",
         changelog: "https://radicle.network/nodes/seed.radicle.dev/rad:zwTxygwuz5LDGBq255RA2CbNGrz8/tree/NEWS.md",

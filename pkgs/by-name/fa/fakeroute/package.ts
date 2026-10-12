@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["fakeroute", 17, 18]], [["tests", 17, 12]], [["description", 20, 5], ["homepage", 23, 5], ["license", 24, 5], ["platforms", 25, 5], ["mainProgram", 26, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fakeroute", 17, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 17, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 20, 5], ["homepage", 23, 5], ["license", 24, 5], ["platforms", 25, 5], ["mainProgram", 26, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,23 +12,23 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fakeroute",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://maxwell.eurofusion.eu/git/rnhmjoj/fakeroute/releases/download/v${nix.sel(finalAttrs, "version")}/fakeroute-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-DoXGJm8vOlAD6ZuvVAt6bkgfahc8WgyYIXCrgqzfiWg=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           fakeroute: nix.thunk(() => nix.sel(nixosTests, "fakeroute")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Make your machine appears to be anywhere on the internet in a traceroute\n",
         homepage: "https://maxwell.eurofusion.eu/git/rnhmjoj/fakeroute",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

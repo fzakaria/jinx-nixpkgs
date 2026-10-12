@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["sha256", 21, 5]], [["homepage", 44, 5], ["description", 45, 5], ["mainProgram", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["disabled", 17, 3], ["src", 19, 3], ["postPatch", 23, 3], ["buildInputs", 32, 3], ["propagatedBuildInputs", 37, 3], ["doCheck", 40, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pythonAtLeast: false, fetchPypi: false, bwa: false, cffi: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 44, 5], ["description", 45, 5], ["mainProgram", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["disabled", 17, 3], ["src", 19, 3], ["postPatch", 23, 3], ["buildInputs", 32, 3], ["propagatedBuildInputs", 37, 3], ["doCheck", 40, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.12"));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "090qwx3vl729zn3a7sksbviyg04kc71gpbm3nd8dalqp673x1npw",
@@ -39,7 +37,7 @@ substituteInPlace setup.py \\
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["bwapy"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ACEnglish/bwapy",
         description: "Python bindings to bwa mem aligner",
         mainProgram: "bwamempy",
@@ -50,7 +48,7 @@ substituteInPlace setup.py \\
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

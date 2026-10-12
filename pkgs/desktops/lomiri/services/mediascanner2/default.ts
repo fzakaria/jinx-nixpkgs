@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["pkg-config", 112, 7]], [["music-app", 116, 7]], [["tests", 111, 5], ["updateScript", 118, 5]], [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 127, 5], ["teams", 128, 5], ["mainProgram", 129, 5], ["platforms", 130, 5], ["pkgConfigModules", 131, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["outputs", 44, 3], ["postPatch", 49, 3], ["strictDeps", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["nativeCheckInputs", 86, 3], ["checkInputs", 88, 3], ["cmakeFlags", 90, 3], ["doCheck", 95, 3], ["preCheck", 97, 3], ["preFixup", 103, 3], ["passthru", 110, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, nixosTests: false, testers: false, boost: false, cmake: false, "cmake-extras": false, dbus: false, "dbus-cpp": false, "gdk-pixbuf": false, glib: false, gst_all_1: false, gtest: false, libapparmor: false, libexif: false, "pkg-config": false, "properties-cpp": false, qtbase: false, qtdeclarative: false, "shared-mime-info": false, sqlite: false, taglib: false, udisks: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg-config", 112, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["music-app", 116, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 111, 5], ["updateScript", 118, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 127, 5], ["teams", 128, 5], ["mainProgram", 129, 5], ["platforms", 130, 5], ["pkgConfigModules", 131, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["outputs", 44, 3], ["postPatch", 49, 3], ["strictDeps", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["nativeCheckInputs", 86, 3], ["checkInputs", 88, 3], ["cmakeFlags", 90, 3], ["doCheck", 95, 3], ["preCheck", 97, 3], ["preFixup", 103, 3], ["passthru", 110, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   const withQt6 = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mediascanner2",
       version: "0.201",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/mediascanner2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -102,18 +97,18 @@ export XDG_DATA_DIRS=${shared_mime_info}/share:$XDG_DATA_DIRS
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withQt6)), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "music-app": nix.thunk(() => nix.sel(nixosTests, "lomiri-music-app")),
           }))))),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Media scanner service & access library",
         homepage: "https://gitlab.com/ubports/development/core/mediascanner2",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/mediascanner2/-/blob/${(nix.asBool(!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(finalAttrs, "src", "tag"))))) ? nix.sel(finalAttrs, "src", "tag") : nix.sel(finalAttrs, "src", "rev"))}/ChangeLog`),

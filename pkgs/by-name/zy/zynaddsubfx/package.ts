@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fltk", 59, 7], ["ntk", 60, 7], ["zest", 61, 7]], [["owner", 72, 5], ["repo", 73, 5], ["tag", 74, 5], ["fetchSubmodules", 75, 5], ["hash", 76, 5]], [["url", 87, 7], ["hash", 88, 7]], [["CXXFLAGS", 142, 7]], [["mruby-zest", 188, 13]], [["description", 192, 5], ["homepage", 193, 5], ["license", 199, 5], ["maintainers", 200, 5], ["platforms", 201, 5], ["mainProgram", 202, 5], ["broken", 209, 5]], [["pname", 68, 3], ["version", 69, 3], ["src", 71, 3], ["outputs", 79, 3], ["patches", 84, 3], ["postPatch", 92, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 102, 3], ["cmakeFlags", 131, 3], ["env", 142, 3], ["doCheck", 147, 3], ["nativeCheckInputs", 148, 3], ["disabledTests", 154, 3], ["postInstall", 169, 3], ["postFixup", 177, 3], ["passthru", 187, 3], ["meta", 191, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, callPackage: false, fetchpatch: false, cmake: false, makeWrapper: false, "pkg-config": false, fftwSinglePrec: false, liblo: false, minixml: false, zlib: false, alsaSupport: true, "alsa-lib": false, dssiSupport: true, dssi: false, "ladspa-header": false, jackSupport: true, libjack2: false, ossSupport: true, portaudioSupport: true, portaudio: false, sndioSupport: true, sndio: false, guiModule: true, cairo: false, fltk: false, libGL: false, libjpeg: false, libx11: false, libxpm: false, ntk: false, cxxtest: false, ruby: false, ctestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fltk", 59, 7], ["ntk", 60, 7], ["zest", 61, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 72, 5], ["repo", 73, 5], ["tag", 74, 5], ["fetchSubmodules", 75, 5], ["hash", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 87, 7], ["hash", 88, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CXXFLAGS", 142, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mruby-zest", 188, 13]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 192, 5], ["homepage", 193, 5], ["license", 199, 5], ["maintainers", 200, 5], ["platforms", 201, 5], ["mainProgram", 202, 5], ["broken", 209, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 68, 3], ["version", 69, 3], ["src", 71, 3], ["outputs", 79, 3], ["patches", 84, 3], ["postPatch", 92, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 102, 3], ["cmakeFlags", 131, 3], ["env", 142, 3], ["doCheck", 147, 3], ["nativeCheckInputs", 148, 3], ["disabledTests", 154, 3], ["postInstall", 169, 3], ["postFixup", 177, 3], ["passthru", 187, 3], ["meta", 191, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,14 +43,14 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   nix.assert_(nix.builtins.elem(guiModule, nix.thunk(() => ["fltk", "ntk", "zest", "off"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/zy/zynaddsubfx/package.nix:49:1");
-  const guiName = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, fltk: "FLTK", ntk: "NTK", zest: "Zyn-Fusion" }, nix.key(nix.force(guiModule))));
+  const guiName = nix.thunk(() => nix.sel({ [nix.POS]: $pos[0], fltk: "FLTK", ntk: "NTK", zest: "Zyn-Fusion" }, nix.key(nix.force(guiModule))));
   const mruby_zest = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mruby-zest"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "zynaddsubfx",
       version: "3.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "zynaddsubfx",
           repo: "zynaddsubfx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,7 +60,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "doc"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/zynaddsubfx/zynaddsubfx/commit/853aa03f4f92a180b870fa62a04685d12fca55a7.patch",
             hash: "sha256-4BsRZ9keeqKopr6lCQJznaZ3qWuMgD1/mCrdMiskusg=",
           })))),
@@ -80,7 +74,7 @@ export default nix.lambda((args) => (() => {
         "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(ossSupport)), "-DOssEnable=OFF"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(guiModule, "fltk")), "-DFLTK_SKIP_OPENGL=ON")))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-include cstdint"]))),
       })),
       doCheck: true,
@@ -98,9 +92,9 @@ wrapProgram "$out/bin/zynaddsubfx" \\
   --prefix PATH : ${mruby_zest} \\
   --prefix LD_LIBRARY_PATH : ${mruby_zest}
 `))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, "mruby-zest": mruby_zest })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], "mruby-zest": mruby_zest })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: nix.thunk(() => nix.str`High quality software synthesizer (${guiName} GUI)`),
         homepage: nix.thunk(() => (nix.asBool(nix.eq(guiModule, "zest")) ? "https://zynaddsubfx.sourceforge.io/zyn-fusion.html" : "https://zynaddsubfx.sourceforge.io")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

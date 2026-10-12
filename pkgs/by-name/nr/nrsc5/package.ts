@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["homepage", 65, 5], ["description", 66, 5], ["platforms", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postUnpack", 33, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["cmakeFlags", 59, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, automake: false, libtool: false, cmake: false, "rtl-sdr": false, libao: false, fftwFloat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["platforms", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postUnpack", 33, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["cmakeFlags", 59, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const libao = nix.arg($, "libao");
   const fftwFloat = nix.arg($, "fftwFloat");
   const src_faad2 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "knik0",
       repo: "faad2",
       tag: "2.11.2",
       hash: "sha256-JvmblrmE3doUMUwObBN2b+Ej+CDBWNemBsyYSCXGwo8=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nrsc5",
       version: "3.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "theori-io",
           repo: "nrsc5",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +46,7 @@ chmod -R u+w $faadSrc
       buildInputs: nix.thunk(() => [rtl_sdr, libao, fftwFloat]),
       cmakeFlags: nix.thunk(() => ["-DUSE_COLOR=ON", "-DUSE_FAAD2=ON"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/theori-io/nrsc5",
         description: "HD-Radio decoder for RTL-SDR",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

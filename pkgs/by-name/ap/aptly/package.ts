@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["package", 62, 5], ["command", 63, 5]], [["version", 61, 18]], [["tests", 61, 12]], [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["changelog", 70, 5], ["maintainers", 71, 5], ["mainProgram", 76, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["ldflags", 33, 3], ["preBuild", 38, 3], ["excludedPackages", 41, 3], ["postInstall", 45, 3], ["doCheck", 59, 3], ["passthru", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, makeWrapper: false, gnupg: false, bzip2: false, xz: false, graphviz: false, testers: false, aptly: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 62, 5], ["command", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 61, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 61, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["changelog", 70, 5], ["maintainers", 71, 5], ["mainProgram", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["ldflags", 33, 3], ["preBuild", 38, 3], ["excludedPackages", 41, 3], ["postInstall", 45, 3], ["doCheck", 59, 3], ["passthru", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const aptly = nix.arg($, "aptly");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "aptly",
       version: "1.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aptly-dev",
           repo: "aptly",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,14 +42,14 @@ wrapProgram $out/bin/aptly \\
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: aptly, command: "aptly version" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: aptly, command: "aptly version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.aptly.info",
         description: "Debian repository management tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

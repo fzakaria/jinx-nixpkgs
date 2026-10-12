@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["MOONCHILD_PL_MPEG_PATH", 45, 5], ["MOONCHILD_GAMECONTROLLERDB_PATH", 46, 5]], [["name", 78, 7], ["desktopName", 79, 7], ["exec", 80, 7], ["icon", 81, 7], ["comment", 82, 7], ["startupWMClass", 83, 7], ["categories", 84, 7]], [["changelog", 91, 5], ["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["mainProgram", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["__structuredAttrs", 33, 3], ["strictDeps", 34, 3], ["cmakeFlags", 36, 3], ["env", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 56, 3], ["installPhase", 62, 3], ["desktopItems", 76, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, sdl3: false, zlib: false, "pkg-config": false, sdl_gamecontrollerdb: false, copyDesktopItems: false, makeDesktopItem: false, iconConvTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["MOONCHILD_PL_MPEG_PATH", 45, 5], ["MOONCHILD_GAMECONTROLLERDB_PATH", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 78, 7], ["desktopName", 79, 7], ["exec", 80, 7], ["icon", 81, 7], ["comment", 82, 7], ["startupWMClass", 83, 7], ["categories", 84, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 91, 5], ["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["mainProgram", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["__structuredAttrs", 33, 3], ["strictDeps", 34, 3], ["cmakeFlags", 36, 3], ["env", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 56, 3], ["installPhase", 62, 3], ["desktopItems", 76, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const iconConvTools = nix.arg($, "iconConvTools");
   const plMpegSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "phoboslab",
       repo: "pl_mpeg",
       rev: "c871f2be022ece7ef4f64230b4fb8e1fb9eb6023",
       hash: "sha256-Mr+hid5RRQ2Yh6UcNDFFbbHMrGGVju0o20KIAEvzEg8=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "moon-child-fe",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "MorsGames",
           repo: "MoonChildFE",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "MOONCHILD_VENDORED_PL_MPEG", false)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         MOONCHILD_PL_MPEG_PATH: plMpegSrc,
         MOONCHILD_GAMECONTROLLERDB_PATH: nix.thunk(() => nix.str`${sdl_gamecontrollerdb}/share/gamecontrollerdb.txt`),
       })),
@@ -60,7 +55,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/icons/hicolor/256x256/apps/\n\ncd /build/source\nmv ./Bin/Release $out/share/MoonChildFE\nicoFileToHiColorTheme game.ico MoonChildFE $out\n\nln -s \"$out/share/MoonChildFE/Moon Child FE\" $out/bin/MoonChildFE\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "MoonChildFE",
             desktopName: "Moon Child - Friend Edition",
             exec: "MoonChildFE",
@@ -71,7 +66,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/MorsGames/MoonChildFE/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Modern source port of the 1997 Windows 95 classic, Moon Child",
         homepage: "https://github.com/MorsGames/MoonChildFE",

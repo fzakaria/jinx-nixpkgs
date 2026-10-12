@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 13, 26], ["version", 13, 32], ["hash", 14, 5]], [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 17, 3], ["pythonRelaxDeps", 19, 3], ["dependencies", 26, 3], ["doCheck", 39, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { fetchPypi: false, lib: false, python3Packages: false, xhost: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 13, 26], ["version", 13, 32], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 17, 3], ["pythonRelaxDeps", 19, 3], ["dependencies", 26, 3], ["doCheck", 39, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const xhost = nix.arg($, "xhost");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "exegol",
       version: "4.3.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-+LnZSFRW7EvG+cPwMStgO6qD4AjOGkLzCarXBrW3Aak=",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       pythonImportsCheck: nix.thunk(() => ["exegol"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fully featured and community-driven hacking environment",
         longDescription: "Exegol is a community-driven hacking environment, powerful and yet\nsimple enough to be used by anyone in day to day engagements. Exegol is\nthe best solution to deploy powerful hacking environments securely,\neasily, professionally. Exegol fits pentesters, CTF players, bug bounty\nhunters, researchers, beginners and advanced users, defenders, from\nstylish macOS users and corporate Windows pros to UNIX-like power users.\n",
         homepage: "https://github.com/ThePorgs/Exegol",

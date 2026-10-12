@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["NIX_CFLAGS_COMPILE", 33, 7]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["knownVulnerabilities", 46, 5], ["platforms", 50, 5], ["mainProgram", 51, 5]], [["version", 11, 3], ["pname", 12, 3], ["nativeBuildInputs", 14, 3], ["buildInputs", 15, 3], ["src", 20, 3], ["postPatch", 27, 3], ["configureFlags", 31, 3], ["env", 33, 3], ["doCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libiconv: false, zlib: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["knownVulnerabilities", 46, 5], ["platforms", 50, 5], ["mainProgram", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 11, 3], ["pname", 12, 3], ["nativeBuildInputs", 14, 3], ["buildInputs", 15, 3], ["src", 20, 3], ["postPatch", 27, 3], ["configureFlags", 31, 3], ["env", 33, 3], ["doCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "1.4",
       pname: "runzip",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [libiconv, zlib]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vlm",
           repo: "zip-fix-filename-encoding",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,12 +29,12 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs tests/check-runzip.sh\n",
       configureFlags: nix.thunk(() => ["CFLAGS=-std=gnu17"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-int", "-Wno-error=incompatible-pointer-types"]))),
       })),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to convert filename encoding inside a ZIP archive",
         homepage: "https://github.com/vlm/zip-fix-filename-encoding",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

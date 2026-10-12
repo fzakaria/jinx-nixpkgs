@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["NIX_CFLAGS_COMPILE", 35, 7]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5], ["mainProgram", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["env", 35, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, cmake: false, perl: false, libubox: false, json_c: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5], ["mainProgram", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["env", 35, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libubox = nix.arg($, "libubox");
   const json_c = nix.arg($, "json_c");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "uqmi",
       version: "unstable-2025-07-30",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.openwrt.org/project/uqmi.git",
           rev: "7914da43cddaaf6cfba116260c81e6e9adffd5ab",
           hash: "sha256-Ny5Jd/6N1nTcv2GGP1YLFe+ljn15sUQJVAEVPvYtz3M=",
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, perl]),
       buildInputs: nix.thunk(() => [libubox, json_c]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=unknown-warning-option"]))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tiny QMI command line utility",
         homepage: "https://git.openwrt.org/?p=project/uqmi.git;a=summary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

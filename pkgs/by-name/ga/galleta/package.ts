@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["url", 20, 7], ["hash", 21, 7]], [["url", 25, 7], ["hash", 26, 7]], [["url", 33, 7], ["hash", 34, 7]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["license", 58, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["makeFlags", 38, 3], ["enableParallelBuilding", 43, 3], ["installPhase", 45, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["license", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["makeFlags", 38, 3], ["enableParallelBuilding", 43, 3], ["installPhase", 45, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,27 +12,27 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "galleta",
       version: "20040505_1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/odessa/Galleta/${nix.sel(finalAttrs, "version")}/galleta_${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-tc5XLToyQZutb51ZoBlGWXDpsSqdJ89bjzJwY8kRncA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/pkg-security-team/galleta/-/raw/998470d8151b2f3a4bec71ae340c30f252d03a9b/debian/patches/10_fix-gcc-warnings.patch",
             hash: "sha256-b8VJGSAoSnWteyUbC2Ue3tqkpho7gyn+E/yrN2O3G9c=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://salsa.debian.org/pkg-security-team/galleta/-/raw/553c237a34995d9f7fc0383ee547d4f5cd004d5b/debian/patches/20_fix-makefile.patch",
             hash: "sha256-+rnoTrlXtWl9zmZlkvqbJ+YlIXFCpKOqvxIkN8xxtsg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://salsa.debian.org/pkg-security-team/galleta/-/raw/f0f51a5a9e5adc0279f78872461fa57ee90d6842/debian/patches/30-fix-FTBS-cross-compilation.patch",
             hash: "sha256-ZwymEVJy7KvLFvNOcVZqDtJPxEcpQBVg+u+G+kSDZBo=",
           })))),
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp src/galleta $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Examine the contents of the IE's cookie files for forensic purposes",
         mainProgram: "galleta",
         homepage: "https://sourceforge.net/projects/odessa/files/Galleta",

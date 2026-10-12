@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["platforms", 29, 5], ["mainProgram", 30, 5]], [["pname", 9, 3], ["version", 10, 3], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["makeFlags", 20, 3], ["nativeInstallCheckInputs", 22, 3], ["doInstallCheck", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["platforms", 29, 5], ["mainProgram", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["makeFlags", 20, 3], ["nativeInstallCheckInputs", 22, 3], ["doInstallCheck", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "di",
       version: "6.2.2.2",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/diskinfo-di/di-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Ge7rfrytMGGueBTNrlWTrM+yuyYc4keVpgSigsv8YP4=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Disk information utility; displays everything 'df' does and more",
         homepage: "https://diskinfo-di.sourceforge.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

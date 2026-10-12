@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["test", 43, 18]], [["tests", 43, 12]], [["description", 46, 5], ["homepage", 47, 5], ["downloadPage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["badPlatforms", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["vendorHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["passthru", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, "pkg-config": false, libx11: false, libxcursor: false, libxrandr: false, libxinerama: false, libxi: false, libxext: false, libxxf86vm: false, libGL: false, nixosTests: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["test", 43, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 43, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["downloadPage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["badPlatforms", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["vendorHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["passthru", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "darktile",
       version: "0.0.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "liamg",
           repo: "darktile",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,14 +44,14 @@ export default nix.lambda((args) => (() => {
         libGL,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "darktile")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GPU rendered terminal emulator designed for tiling window managers",
         homepage: "https://github.com/liamg/darktile",
         downloadPage: "https://github.com/liamg/darktile/releases",

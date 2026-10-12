@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["pname", 39, 26], ["version", 39, 32], ["src", 39, 40], ["hash", 40, 5]], [["NIX_CFLAGS_COMPILE", 90, 5]], [["homepage", 94, 5], ["changelog", 95, 5], ["description", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 103, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoDeps", 38, 3], ["nativeBuildInputs", 43, 3], ["dontUseCmakeConfigure", 60, 3], ["mesonFlags", 62, 3], ["buildInputs", 66, 3], ["postPatch", 78, 3], ["postInstall", 83, 3], ["env", 89, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "alsa-lib": false, appstream: false, "appstream-glib": false, cargo: false, cmake: false, "desktop-file-utils": false, dos2unix: false, glib: false, gst_all_1: false, gtk4: false, libadwaita: false, libxml2: false, meson: false, ninja: false, "pkg-config": false, python3: false, rustPlatform: false, rustc: false, "shared-mime-info": false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 39, 26], ["version", 39, 32], ["src", 39, 40], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 94, 5], ["changelog", 95, 5], ["description", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoDeps", 38, 3], ["nativeBuildInputs", 43, 3], ["dontUseCmakeConfigure", 60, 3], ["mesonFlags", 62, 3], ["buildInputs", 66, 3], ["postPatch", 78, 3], ["postInstall", 83, 3], ["env", 89, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,18 +31,18 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rnote",
       version: "0.14.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flxzt",
           repo: "rnote",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-uuLoc1nWlb3Xm/WSrvjCit1G8kUZA3+HIW8akFXPGi4=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -81,11 +77,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "chmod +x build-aux/*.py\npatchShebangs build-aux\n",
       postInstall: "substituteInPlace $out/share/thumbnailers/rnote.thumbnailer \\\n  --replace-fail \"TryExec=rnote-cli\" \"TryExec=$out/bin/rnote-cli\" \\\n  --replace-fail \"Exec=rnote-cli\" \"Exec=$out/bin/rnote-cli\"\n",
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-function-pointer-types",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/flxzt/rnote",
         changelog: nix.thunk(() => nix.str`https://github.com/flxzt/rnote/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Simple drawing application to create handwritten notes",

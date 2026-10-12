@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/macvim-configurable.nix", [[["beforePlugins", 29, 17]], [["name", 36, 15], ["paths", 37, 15], ["pathsToLink", 38, 15], ["nativeBuildInputs", 44, 15], ["postBuild", 48, 15], ["meta", 70, 15]], [["configure", 22, 7], ["override", 75, 7], ["overrideAttrs", 76, 7]], [["makeCustomizable", 80, 11]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, vimUtils: false, buildEnv: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/macvim-configurable.nix", [["beforePlugins", 29, 17]]);
-const pos$2 = nix.positions(here + "/macvim-configurable.nix", [["name", 36, 15], ["paths", 37, 15], ["pathsToLink", 38, 15], ["nativeBuildInputs", 44, 15], ["postBuild", 48, 15], ["meta", 70, 15]]);
-const pos$3 = nix.positions(here + "/macvim-configurable.nix", [["configure", 22, 7], ["override", 75, 7], ["overrideAttrs", 76, 7]]);
-const pos$4 = nix.positions(here + "/macvim-configurable.nix", [["makeCustomizable", 80, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const buildEnv = nix.arg($, "buildEnv");
   const makeWrapper = nix.arg($, "makeWrapper");
   const makeCustomizable = (macvim) => nix.update(macvim, {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     configure: nix.thunk(() => (() => {
       const doConfig = (config) => (() => {
         const vimrcConfig = nix.thunk(() => nix.update(config, {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           beforePlugins: nix.thunk(() => nix.str`source $VIM/vimrc
 ${nix.selOr(config, () => "", "beforePlugins")}
 `),
         }));
         return nix.app(buildEnv, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: nix.thunk(() => nix.sel(macvim, "name")),
             paths: nix.thunk(() => [macvim]),
             pathsToLink: nix.thunk(() => [
@@ -66,6 +63,6 @@ done
     override: (f) => nix.app(makeCustomizable, nix.thunk(() => nix.app(nix.sel(macvim, "override"), f))),
     overrideAttrs: (f) => nix.app(makeCustomizable, nix.thunk(() => nix.app(nix.sel(macvim, "overrideAttrs"), f))),
   });
-  return { [nix.POS]: pos$4, makeCustomizable: makeCustomizable };
+  return { [nix.POS]: $pos[3], makeCustomizable: makeCustomizable };
 })(), formals$1);
 //# sourceMappingURL=macvim-configurable.ts.map

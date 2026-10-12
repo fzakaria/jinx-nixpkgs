@@ -2,22 +2,21 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 11, 5], ["homepage", 12, 5], ["changelog", 13, 5], ["license", 14, 5], ["maintainers", 15, 5], ["mainProgram", 16, 5]], [["pname", 4, 3], ["version", 5, 3], ["executables", 6, 3], ["nugetHash", 8, 3], ["meta", 10, 3]]]);
 const formals$1 = { args: { buildDotnetGlobalTool: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 11, 5], ["homepage", 12, 5], ["changelog", 13, 5], ["license", 14, 5], ["maintainers", 15, 5], ["mainProgram", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 4, 3], ["version", 5, 3], ["executables", 6, 3], ["nugetHash", 8, 3], ["meta", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildDotnetGlobalTool = nix.arg($, "buildDotnetGlobalTool");
   const lib = nix.arg($, "lib");
   return nix.app(buildDotnetGlobalTool, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "csharpier",
       version: "1.3.0",
       executables: "csharpier",
       nugetHash: "sha256-hwieEoQTcATyKZIZ7CQSWANPBv+pEShg6cDXU5EIexU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Opinionated code formatter for C#",
         homepage: "https://csharpier.com/",
         changelog: "https://github.com/belav/csharpier/blob/main/CHANGELOG.md",

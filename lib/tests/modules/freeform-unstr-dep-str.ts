@@ -2,28 +2,25 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/freeform-unstr-dep-str.nix", [[["type", 4, 5], ["default", 5, 5]], [["value", 3, 11]], [["foo", 8, 10]], [["options", 3, 3], ["config", 8, 3]]]);
 const formals$1 = { args: { lib: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/freeform-unstr-dep-str.nix", [["type", 4, 5], ["default", 5, 5]]);
-const pos$2 = nix.positions(here + "/freeform-unstr-dep-str.nix", [["value", 3, 11]]);
-const pos$3 = nix.positions(here + "/freeform-unstr-dep-str.nix", [["foo", 8, 10]]);
-const pos$4 = nix.positions(here + "/freeform-unstr-dep-str.nix", [["options", 3, 3], ["config", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const config = nix.arg($, "config");
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "nullOr"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           default: null,
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       foo: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(nix.sel(config, "value"), null)), nix.thunk(() => nix.sel(config, "value")))),
     })),
   };

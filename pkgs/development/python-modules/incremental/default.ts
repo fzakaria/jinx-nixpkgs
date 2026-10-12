@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 7], ["repo", 18, 7], ["tag", 19, 7], ["hash", 20, 7]], [["doCheck", 38, 9]], [["check", 37, 7]], [["tests", 36, 14]], [["changelog", 45, 7], ["homepage", 46, 7], ["description", 47, 7], ["license", 48, 7], ["mainProgram", 49, 7], ["maintainers", 50, 7]], [["pname", 12, 5], ["version", 13, 5], ["pyproject", 14, 5], ["src", 16, 5], ["build-system", 23, 5], ["dependencies", 25, 5], ["doCheck", 28, 5], ["nativeCheckInputs", 30, 5], ["checkPhase", 32, 5], ["passthru", 36, 5], ["pythonImportsCheck", 42, 5], ["meta", 44, 5]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, lib: false, packaging: false, twisted: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 7], ["repo", 18, 7], ["tag", 19, 7], ["hash", 20, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 38, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["check", 37, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 36, 14]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 45, 7], ["homepage", 46, 7], ["description", 47, 7], ["license", 48, 7], ["mainProgram", 49, 7], ["maintainers", 50, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 12, 5], ["version", 13, 5], ["pyproject", 14, 5], ["src", 16, 5], ["build-system", 23, 5], ["dependencies", 25, 5], ["doCheck", 28, 5], ["nativeCheckInputs", 30, 5], ["checkPhase", 32, 5], ["passthru", 36, 5], ["pythonImportsCheck", 42, 5], ["meta", 44, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "24.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "twisted",
           repo: "incremental",
           tag: nix.thunk(() => nix.str`incremental-${version}`),
@@ -35,15 +30,15 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [twisted]);
       const checkPhase = "trial incremental\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          check: nix.thunk(() => nix.app(nix.sel(incremental, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
+          [nix.POS]: $pos[2],
+          check: nix.thunk(() => nix.app(nix.sel(incremental, "overridePythonAttrs"), (_) => ({ [nix.POS]: $pos[1], doCheck: true }))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["incremental"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/twisted/incremental/blob/${nix.sel(src, "tag")}/NEWS.rst`),
         homepage: "https://github.com/twisted/incremental",
         description: "Small library that versions your Python projects",
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

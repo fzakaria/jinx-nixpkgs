@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 35, 11], ["sha256", 36, 11]], [["url", 39, 11], ["sha256", 40, 11]], [["url", 43, 11], ["sha256", 44, 11]], [["x86_64-linux", 34, 9], ["aarch64-linux", 38, 9], ["aarch64-darwin", 42, 9]], [["minimal-module", 73, 7]], [["updateScript", 71, 5], ["tests", 72, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["sourceProvenance", 81, 5], ["maintainers", 82, 5], ["platforms", 86, 5], ["mainProgram", 91, 5], ["changelog", 92, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 30, 3], ["buildInputs", 51, 3], ["libPath", 55, 3], ["dontStrip", 56, 3], ["installPhase", 58, 3], ["passthru", 70, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { stdenv: false, pkgs: false, fetchurl: false, zlib: false, gmp: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 35, 11], ["sha256", 36, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 39, 11], ["sha256", 40, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 43, 11], ["sha256", 44, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 34, 9], ["aarch64-linux", 38, 9], ["aarch64-darwin", 42, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["minimal-module", 73, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 71, 5], ["tests", 72, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["sourceProvenance", 81, 5], ["maintainers", 82, 5], ["platforms", 86, 5], ["mainProgram", 91, 5], ["changelog", 92, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 30, 3], ["buildInputs", 51, 3], ["libPath", 55, 3], ["dontStrip", 56, 3], ["installPhase", 58, 3], ["passthru", 70, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,19 +24,19 @@ chmod u-w $PURS
       const src = nix.thunk(() => (() => {
         const url = nix.thunk(() => nix.str`https://github.com/${pname}/${pname}/releases/download/v${version}/`);
         const sources = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.add(url, "linux64.tar.gz")),
               sha256: "1w4jgjpfhaw3gkx9sna64lq9m030x49w4lwk01ik5ci0933imzj3",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.add(url, "linux-arm64.tar.gz")),
               sha256: "1ws5h337xq0l06zrs9010h6wj2hq5cqk5ikp9arq7hj7lxf43vn5",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.add(url, "macos-arm64.tar.gz")),
               sha256: "0bi231z1yhb7kjfn228wjkj6rv9lgpagz9f4djr2wy3kqgck4xg0",
             })))),
@@ -60,15 +53,15 @@ install -D -m555 -T purs $PURS
 ${nix.app(patchelf, libPath)}
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "mkdir -p $out/share/bash-completion/completions\n$PURS --bash-completion-script $PURS > $out/share/bash-completion/completions/purs-completion.bash\n")));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "minimal-module": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./test-minimal-module"), nix.thunk(() => ({})))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Strongly-typed functional programming language that compiles to JavaScript",
         homepage: "https://www.purescript.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -88,7 +81,7 @@ ${nix.app(patchelf, libPath)}
         changelog: nix.thunk(() => nix.str`https://github.com/purescript/purescript/releases/tag/v${version}`),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

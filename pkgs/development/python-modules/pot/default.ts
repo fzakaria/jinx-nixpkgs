@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["backend-numpy", 69, 5], ["backend-jax", 70, 5], ["backend-cupy", 74, 5], ["backend-tf", 75, 5], ["backend-torch", 76, 5], ["cvxopt", 77, 5], ["dr", 78, 5], ["gnn", 83, 5], ["plot", 87, 5]], [["description", 150, 5], ["homepage", 151, 5], ["downloadPage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["postPatch", 48, 3], ["build-system", 57, 3], ["dependencies", 63, 3], ["optional-dependencies", 68, 3], ["nativeCheckInputs", 90, 3], ["preCheck", 96, 3], ["postCheck", 101, 3], ["disabledTests", 106, 3], ["pythonImportsCheck", 144, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, numpy: false, setuptools: false, scipy: false, jax: false, jaxlib: false, tensorflow: false, torch: false, cvxopt: false, "scikit-learn": false, pymanopt: false, autograd: false, matplotlib: false, pytestCheckHook: false, "pytest-cov-stub": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["backend-numpy", 69, 5], ["backend-jax", 70, 5], ["backend-cupy", 74, 5], ["backend-tf", 75, 5], ["backend-torch", 76, 5], ["cvxopt", 77, 5], ["dr", 78, 5], ["gnn", 83, 5], ["plot", 87, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 150, 5], ["homepage", 151, 5], ["downloadPage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["postPatch", 48, 3], ["build-system", 57, 3], ["dependencies", 63, 3], ["optional-dependencies", 68, 3], ["nativeCheckInputs", 90, 3], ["preCheck", 96, 3], ["postCheck", 101, 3], ["disabledTests", 106, 3], ["pythonImportsCheck", 144, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pot",
       version: "0.9.6.post1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PythonOT",
           repo: "POT",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [cython, numpy, setuptools]),
       dependencies: nix.thunk(() => [numpy, scipy]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "backend-numpy": [],
         "backend-jax": nix.thunk(() => [jax, jaxlib]),
         "backend-cupy": [],
@@ -89,7 +86,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["ot", "ot.lp"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python Optimal Transport Library",
         homepage: "https://pythonot.github.io/",
         downloadPage: "https://github.com/PythonOT/POT",

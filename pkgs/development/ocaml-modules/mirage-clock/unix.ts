@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unix.nix", [[["description", 17, 5]], [["pname", 8, 3], ["version", 10, 26], ["src", 10, 34], ["buildInputs", 12, 3], ["propagatedBuildInputs", 14, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "mirage-clock": false, "dune-configurator": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unix.nix", [["description", 17, 5]]);
-const pos$2 = nix.positions(here + "/unix.nix", [["pname", 8, 3], ["version", 10, 26], ["src", 10, 34], ["buildInputs", 12, 3], ["propagatedBuildInputs", 14, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const mirage_clock = nix.arg($, "mirage-clock");
   const dune_configurator = nix.arg($, "dune-configurator");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mirage-clock-unix",
       version: nix.thunk(() => nix.attr(mirage_clock, "version")),
       src: nix.thunk(() => nix.attr(mirage_clock, "src")),
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [mirage_clock]),
       meta: nix.thunk(() => nix.update(nix.sel(mirage_clock, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Unix-based implementation for the MirageOS Clock interface",
       })),
     })));

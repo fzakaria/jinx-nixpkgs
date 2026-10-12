@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 19, 5], ["license", 20, 5], ["homepage", 21, 5], ["teams", 22, 5]], [["pname", 8, 3], ["version", 10, 3], ["hash", 11, 3], ["internalDeps", 13, 3], ["postConfigure", 14, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false, php: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 19, 5], ["license", 20, 5], ["homepage", 21, 5], ["teams", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 10, 3], ["hash", 11, 3], ["internalDeps", 13, 3], ["postConfigure", 14, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const php = nix.arg($, "php");
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mailparse",
       version: "3.1.9",
       hash: "sha256-7LPTydyffOA0GC1Hi3JKw8sCCY78aaOcA1NPCxkgkis=",
       internalDeps: nix.thunk(() => [nix.thunk(() => nix.sel(php, "extensions", "mbstring"))]),
       postConfigure: "echo \"#define HAVE_MBSTRING 1\" >> config.h\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Mailparse is an extension for parsing and working with email messages",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),
         homepage: "https://pecl.php.net/package/mailparse",

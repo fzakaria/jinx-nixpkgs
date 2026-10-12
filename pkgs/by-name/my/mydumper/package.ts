@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 33, 5]], [["extraArgs", 88, 5]], [["package", 96, 5], ["command", 97, 5], ["version", 98, 5]], [["updateScript", 85, 12], ["tests", 95, 12]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["maintainers", 107, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 36, 3], ["nativeBuildInputs", 42, 3], ["nativeInstallCheckInputs", 48, 3], ["doInstallCheck", 49, 3], ["buildInputs", 51, 3], ["cmakeFlags", 66, 3], ["postPatch", 71, 3], ["postInstall", 79, 3], ["passthru", 85, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, installShellFiles: false, "pkg-config": false, glib: false, pcre2: false, "util-linux": false, "libsysprof-capture": false, libmysqlclient: false, libressl: false, zlib: false, zstd: false, libselinux: false, libsepol: false, "nix-update-script": false, testers: false, versionCheckHook: false, mydumper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 88, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 96, 5], ["command", 97, 5], ["version", 98, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 85, 12], ["tests", 95, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["maintainers", 107, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 36, 3], ["nativeBuildInputs", 42, 3], ["nativeInstallCheckInputs", 48, 3], ["doInstallCheck", 49, 3], ["buildInputs", 51, 3], ["cmakeFlags", 66, 3], ["postPatch", 71, 3], ["postInstall", 79, 3], ["passthru", 85, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const mydumper = nix.arg($, "mydumper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mydumper",
       version: "1.0.3-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mydumper",
           repo: "mydumper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,20 +60,20 @@ export default nix.lambda((args) => (() => {
       postPatch: "# as of mydumper v0.14.5-1, mydumper tries to install its config to /etc\nsubstituteInPlace CMakeLists.txt\\\n  --replace-fail \"/etc\" \"$out/etc\" \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8.12)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       postInstall: "installManPage $src/docs/man/*\nmkdir -p $doc/share/doc/mydumper\ncp -r $src/docs/html/* $doc/share/doc/mydumper\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "v(\\d+\\.\\d+\\.\\d*[13579]-\\d+)"]),
           })))),
         tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             package: mydumper,
             command: "myloader --version",
             version: nix.thunk(() => nix.str`myloader v${nix.sel(finalAttrs, "version")}`),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "High-performance MySQL backup tool",
         homepage: "https://github.com/mydumper/mydumper",
         changelog: nix.thunk(() => nix.str`https://github.com/mydumper/mydumper/releases/tag/v${nix.sel(finalAttrs, "version")}`),

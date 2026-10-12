@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["pname", 41, 7], ["version", 42, 7], ["src", 43, 7], ["patches", 44, 7], ["pnpm", 46, 13], ["fetcherVersion", 47, 5], ["hash", 48, 5]], [["ZSTD_SYS_USE_PKG_CONFIG", 71, 5], ["VERGEN_GIT_DESCRIBE", 72, 5]], [["matrix-authentication-service", 116, 36]], [["extraArgs", 118, 7]], [["tests", 116, 5], ["updateScript", 117, 5]], [["description", 127, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["teams", 131, 5], ["mainProgram", 132, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["cargoHash", 37, 3], ["pnpmDeps", 39, 3], ["pnpmRoot", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 63, 3], ["depsBuildBuild", 68, 3], ["env", 70, 3], ["buildNoDefaultFeatures", 75, 3], ["buildFeatures", 77, 3], ["postPatch", 79, 3], ["preBuild", 90, 3], ["postInstall", 105, 3], ["nativeInstallCheckInputs", 113, 3], ["doInstallCheck", 114, 3], ["passthru", 115, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpm_11: false, pnpmConfigHook: false, nodejs: false, python3: false, "pkg-config": false, sqlite: false, zstd: false, stdenv: false, "open-policy-agent": false, cctools: false, "nix-update-script": false, versionCheckHook: false, buildPackages: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 41, 7], ["version", 42, 7], ["src", 43, 7], ["patches", 44, 7], ["pnpm", 46, 13], ["fetcherVersion", 47, 5], ["hash", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ZSTD_SYS_USE_PKG_CONFIG", 71, 5], ["VERGEN_GIT_DESCRIBE", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["matrix-authentication-service", 116, 36]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 118, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 116, 5], ["updateScript", 117, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 127, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["teams", 131, 5], ["mainProgram", 132, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["cargoHash", 37, 3], ["pnpmDeps", 39, 3], ["pnpmRoot", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 63, 3], ["depsBuildBuild", 68, 3], ["env", 70, 3], ["buildNoDefaultFeatures", 75, 3], ["buildFeatures", 77, 3], ["postPatch", 79, 3], ["preBuild", 90, 3], ["postInstall", 105, 3], ["nativeInstallCheckInputs", 113, 3], ["doInstallCheck", 114, 3], ["passthru", 115, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "matrix-authentication-service",
       version: "1.26.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "element-hq",
           repo: "matrix-authentication-service",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +40,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./remove-runtime.patch")]),
       cargoHash: "sha256-FtaDF3p4c7Ekhuid12A8s+RhFLCovhHjQyxOVz6oLjE=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -68,7 +61,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [sqlite, zstd]),
       depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         ZSTD_SYS_USE_PKG_CONFIG: true,
         VERGEN_GIT_DESCRIBE: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
@@ -90,18 +83,18 @@ export CXX_${buildTargetUnderscore}=$CXX_FOR_BUILD
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "matrix-authentication-service": nix.thunk(() => nix.attr(nixosTests, "matrix-authentication-service")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "OAuth2.0 + OpenID Provider for Matrix Homeservers",
         homepage: "https://github.com/element-hq/matrix-authentication-service",
         changelog: nix.thunk(() => nix.str`https://github.com/element-hq/matrix-authentication-service/releases/tag/v${nix.sel(finalAttrs, "version")}`),

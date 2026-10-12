@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["mainProgram", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 24, 3], ["strictDeps", 26, 3], ["buildFlags", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, libressl: false, fetchzip: false, "pkg-config": false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["mainProgram", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 24, 3], ["strictDeps", 26, 3], ["buildFlags", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "litterbox",
       version: "1.9",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.causal.agency/litterbox/snapshot/litterbox-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-w4qW7J5CKm+hXHsNNbl9roBslHD14JOe0Nj5WntETqM=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       buildFlags: nix.thunk(() => ["all"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple TLS-only IRC logger",
         homepage: "https://code.causal.agency/june/litterbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

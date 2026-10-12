@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 33, 7], ["url", 34, 7], ["relative", 35, 7]], [["hash", 39, 7], ["url", 40, 7], ["relative", 41, 7]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["teams", 85, 5], ["platforms", 86, 5]], [["pname", 23, 3], ["version", 25, 23], ["src", 26, 3], ["sourceRoot", 27, 3], ["strictDeps", 28, 3], ["patches", 30, 3], ["postPatch", 48, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 67, 3], ["cmakeFlags", 76, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, cmake: false, llvm: false, python3: false, "rocm-device-libs": false, zlib: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 33, 7], ["url", 34, 7], ["relative", 35, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 39, 7], ["url", 40, 7], ["relative", 41, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["teams", 85, 5], ["platforms", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 25, 23], ["src", 26, 3], ["sourceRoot", 27, 3], ["strictDeps", 28, 3], ["patches", 30, 3], ["postPatch", 48, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 67, 3], ["cmakeFlags", 76, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(llvm, "llvm"));
       return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rocm-comgr",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.sel(llvm, "llvm", "monorepoSrc")),
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             hash: "sha256-X2VPGigK582J+a/u2Kg74w25/+CTpVWU9D3Eqgnb2PU=",
             url: "https://github.com/GZGavinZhao/rocm-llvm-project/commit/7002dc04863d38c57cfd2e6fc60a1cf5a613fd8e.patch",
             relative: "amd/comgr",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             hash: "sha256-/50I+PqxL3oaQMqg5vR7+ibUcXO1SvfXBdw/sybRt1o=",
             url: "https://github.com/GZGavinZhao/rocm-llvm-project/commit/2c1e44fc3eacadcafdd4ada3e3184a092b6f26c5.patch",
             relative: "amd/comgr",
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DLLVM_TARGETS_TO_BUILD=AMDGPU;${llvmNativeTarget}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "APIs for compiling and inspecting AMDGPU code objects",
         homepage: "https://github.com/ROCm/ROCm-CompilerSupport/tree/amd-stg-open/lib/comgr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ncsa")),

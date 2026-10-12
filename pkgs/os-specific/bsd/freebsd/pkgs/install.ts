@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/install.nix", [[["bootstrapInstallation", 30, 5]], [["platforms", 74, 8]], [["path", 34, 3], ["extraPaths", 35, 3], ["nativeBuildInputs", 36, 3], ["skipIncludesPhase", 44, 3], ["buildInputs", 45, 3], ["makeFlags", 53, 3], ["postInstall", 62, 3], ["outputs", 68, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false, writeShellScript: false, "freebsd-lib": false, bsdSetupHook: false, freebsdSetupHook: false, makeMinimal: false, mandoc: false, groff: false, "boot-install": false, install: false, compatIfNeeded: false, libmd: false, libnetbsd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/install.nix", [["bootstrapInstallation", 30, 5]]);
-const pos$2 = nix.positions(here + "/install.nix", [["platforms", 74, 8]]);
-const pos$3 = nix.positions(here + "/install.nix", [["path", 34, 3], ["extraPaths", 35, 3], ["nativeBuildInputs", 36, 3], ["skipIncludesPhase", 44, 3], ["buildInputs", 45, 3], ["makeFlags", 53, 3], ["postInstall", 62, 3], ["outputs", 68, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,9 +23,9 @@ export default nix.lambda((args) => (() => {
   const libmd = nix.arg($, "libmd");
   const libnetbsd = nix.arg($, "libnetbsd");
   const binstall = nix.thunk(() => nix.app(writeShellScript, "binstall", nix.thunk(() => nix.add(nix.sel(freebsd_lib, "install-wrapper"), "\n@out@/bin/xinstall \"${args[@]}\"\n"))));
-  const libmd$ = nix.thunk(() => nix.app(nix.sel(libmd, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, bootstrapInstallation: true }))));
+  const libmd$ = nix.thunk(() => nix.app(nix.sel(libmd, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], bootstrapInstallation: true }))));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       path: "usr.bin/xinstall",
       extraPaths: nix.thunk(() => ["contrib/mtree"]),
       nativeBuildInputs: nix.thunk(() => [
@@ -52,7 +50,7 @@ ln -s ./binstall $out/bin/install
 `),
       outputs: nix.thunk(() => ["out", "man", "test"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

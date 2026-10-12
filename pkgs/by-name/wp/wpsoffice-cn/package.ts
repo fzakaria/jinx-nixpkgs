@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["outputHashAlgo", 48, 11], ["outputHash", 49, 11], ["nativeBuildInputs", 51, 11], ["impureEnvVars", 56, 11], ["SSL_CERT_FILE", 57, 11]], [["updateScript", 74, 5]], [["description", 78, 5], ["homepage", 79, 5], ["platforms", 80, 5], ["sourceProvenance", 84, 5], ["hydraPlatforms", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]], [["changelog", 96, 5], ["mainProgram", 97, 5]], [["pname", 104, 7], ["version", 105, 7], ["src", 106, 7], ["passthru", 107, 7], ["meta", 108, 7], ["nativeBuildInputs", 111, 5], ["sourceRoot", 112, 5], ["installPhase", 114, 5]], [["pname", 127, 7], ["version", 128, 7], ["src", 129, 7], ["passthru", 130, 7], ["meta", 131, 7], ["nativeBuildInputs", 134, 5], ["buildInputs", 136, 5], ["dontWrapQtApps", 153, 5], ["stripAllList", 155, 5], ["runtimeDependencies", 157, 5], ["unpackPhase", 163, 5], ["installPhase", 175, 5], ["preFixup", 196, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, undmg: false, autoPatchelfHook: false, runCommandLocal: false, curl: false, coreutils: false, cacert: false, "alsa-lib": false, libjpeg: false, libtool: false, libxkbcommon: false, nspr: false, udev: false, gtk3: false, libgbm: false, libusb1: false, unixodbc: false, libmysqlclient: false, libsForQt5: false, libxv: false, libxtst: false, libxdamage: false, cups: false, dbus: false, pango: false }, ellipsis: false };
 const formals$2 = { args: { url: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["outputHashAlgo", 48, 11], ["outputHash", 49, 11], ["nativeBuildInputs", 51, 11], ["impureEnvVars", 56, 11], ["SSL_CERT_FILE", 57, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["platforms", 80, 5], ["sourceProvenance", 84, 5], ["hydraPlatforms", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 96, 5], ["mainProgram", 97, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 104, 7], ["version", 105, 7], ["src", 106, 7], ["passthru", 107, 7], ["meta", 108, 7], ["nativeBuildInputs", 111, 5], ["sourceRoot", 112, 5], ["installPhase", 114, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 127, 7], ["version", 128, 7], ["src", 129, 7], ["passthru", 130, 7], ["meta", 131, 7], ["nativeBuildInputs", 134, 5], ["buildInputs", 136, 5], ["dontWrapQtApps", 153, 5], ["stripAllList", 155, 5], ["runtimeDependencies", 157, 5], ["unpackPhase", 163, 5], ["installPhase", 175, 5], ["preFixup", 196, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
     const url = nix.arg($_1, "url");
     const hash = nix.arg($_1, "hash");
     return nix.app(runCommandLocal, nix.thunk(() => nix.str`wpsoffice-cn-${version}.deb`), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         outputHashAlgo: "sha256",
         outputHash: hash,
         nativeBuildInputs: nix.thunk(() => [curl, coreutils]),
@@ -63,9 +58,9 @@ curl --retry 3 --retry-delay 3 "${url}?t=$timestamp10&k=$md5hash" > $out
 `));
   })(), formals$2)));
   const src = nix.thunk(() => nix.app(fetch, nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))));
-  const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
   const meta = nix.thunk(() => nix.update({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     description: "Office suite, formerly Kingsoft Office",
     homepage: "https://www.wps.cn",
     platforms: nix.thunk(() => ["aarch64-darwin", "x86_64-linux"]),
@@ -86,12 +81,12 @@ curl --retry 3 --retry-delay 3 "${url}?t=$timestamp10&k=$md5hash" > $out
       ];
     })()),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       changelog: "https://linux.wps.cn/wpslinuxlog",
       mainProgram: "wps",
     })))));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -101,7 +96,7 @@ curl --retry 3 --retry-delay 3 "${url}?t=$timestamp10&k=$md5hash" > $out
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -a wpsoffice.app $out/Applications\n\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,

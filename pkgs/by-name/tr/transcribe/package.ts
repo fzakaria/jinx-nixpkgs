@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 9], ["sha256", 32, 9]], [["description", 101, 5], ["longDescription", 102, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["sourceProvenance", 113, 5], ["license", 114, 5], ["maintainers", 115, 5], ["platforms", 116, 5], ["mainProgram", 117, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["dontPatchELF", 50, 3], ["libPath", 52, 3], ["installPhase", 73, 3], ["preFixup", 89, 3], ["postFixup", 96, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchzip: false, lib: false, wrapGAppsHook3: false, "xdg-utils": false, which: false, "alsa-lib": false, atk: false, cairo: false, fontconfig: false, "gdk-pixbuf": false, glib: false, gst_all_1: false, gtk3: false, libsm: false, libx11: false, libxtst: false, libpng12: false, pango: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 9], ["sha256", 32, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 101, 5], ["longDescription", 102, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["sourceProvenance", 113, 5], ["license", 114, 5], ["maintainers", 115, 5], ["platforms", 116, 5], ["mainProgram", 117, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["dontPatchELF", 50, 3], ["libPath", 52, 3], ["installPhase", 73, 3], ["preFixup", 89, 3], ["postFixup", 96, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "transcribe";
       const version = "9.60.3";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.seventhstring.com/xscribe/downlo/xscsetup-${version}.tar.gz`),
           sha256: "sha256-13dM4+PYQTyTmM4pEhQ3FGTA/ELo8uDslWPbPxfJpow=",
         }))) : nix.builtins.throw("Platform not supported")));
@@ -90,7 +88,7 @@ patchelf \\
 `);
       const postFixup = "ln -s $out/libexec/transcribe $out/bin/\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Software to help transcribe recorded music",
         longDescription: "The Transcribe! application is an assistant for people who want\nto work out a piece of music from a recording, in order to write\nit out, or play it themselves, or both. It doesn't do the\ntranscribing for you, but it is essentially a specialised player\nprogram which is optimised for the purpose of transcription. It\nhas many transcription-specific features not found on\nconventional music players.\n",
         homepage: "https://www.seventhstring.com/xscribe/",
@@ -108,7 +106,7 @@ patchelf \\
         mainProgram: "transcribe",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

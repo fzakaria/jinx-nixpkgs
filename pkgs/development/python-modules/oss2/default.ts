@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]], [["description", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5]], [["pname", 17, 3], ["version", 18, 3], ["format", 19, 3], ["src", 21, 3], ["propagatedBuildInputs", 26, 3], ["nativeCheckInputs", 35, 3], ["pythonRelaxDeps", 41, 3], ["pythonImportsCheck", 43, 3], ["disabledTestPaths", 45, 3], ["disabledTests", 102, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, "aliyun-python-sdk-core": false, "aliyun-python-sdk-kms": false, "aliyun-python-sdk-sts": false, buildPythonPackage: false, crcmod: false, fetchPypi: false, mock: false, pycryptodome: false, pytestCheckHook: false, requests: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["format", 19, 3], ["src", 21, 3], ["propagatedBuildInputs", 26, 3], ["nativeCheckInputs", 35, 3], ["pythonRelaxDeps", 41, 3], ["pythonImportsCheck", 43, 3], ["disabledTestPaths", 45, 3], ["disabledTests", 102, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.19.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-qKue5+uZ6Ip+E4LtxupkHSGdWFp+B043duneyUc+WcE=",
@@ -105,7 +103,7 @@ export default nix.lambda((args) => (() => {
         "test_write_get_object_response",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Alibaba Cloud OSS SDK for Python",
         homepage: "https://github.com/aliyun/aliyun-oss-python-sdk",
         changelog: "https://github.com/aliyun/aliyun-oss-python-sdk/blob/master/CHANGELOG.rst",
@@ -116,7 +114,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

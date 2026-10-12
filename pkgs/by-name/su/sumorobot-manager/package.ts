@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["pythonPath", 23, 3], ["nativeBuildInputs", 28, 3], ["dontBuild", 34, 3], ["installPhase", 36, 3], ["preFixup", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, qt5: false, fetchFromGitHub: false, dos2unix: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["pythonPath", 23, 3], ["nativeBuildInputs", 28, 3], ["dontBuild", 34, 3], ["installPhase", 36, 3], ["preFixup", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sumorobot-manager";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "robokoding",
           repo: "sumorobot-manager",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "mkdir -p $out/opt/sumorobot-manager\ncp -r main.py lib res $out/opt/sumorobot-manager\nchmod -R 644 $out/opt/sumorobot-manager/lib/*\nmkdir $out/bin\ndos2unix $out/opt/sumorobot-manager/main.py\nmakeQtWrapper $out/opt/sumorobot-manager/main.py $out/bin/sumorobot-manager \\\n  --chdir \"$out/opt/sumorobot-manager\"\n";
       const preFixup = "patchShebangs $out/opt/sumorobot-manager/main.py\nwrapPythonProgramsIn \"$out/opt\" \"${pythonPath[*]}\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Desktop App for managing SumoRobots",
         mainProgram: "sumorobot-manager",
         homepage: "https://www.robokoding.com/kits/sumorobot/sumomanager/",
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

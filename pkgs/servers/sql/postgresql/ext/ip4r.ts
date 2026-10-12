@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ip4r.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["finalPackage", 22, 28], ["sql", 23, 7]], [["extension", 21, 5]], [["tests", 20, 12]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 31]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["passthru", 20, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, postgresql: false, postgresqlBuildExtension: false, postgresqlTestExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ip4r.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/ip4r.nix", [["finalPackage", 22, 28], ["sql", 23, 7]]);
-const pos$3 = nix.positions(here + "/ip4r.nix", [["extension", 21, 5]]);
-const pos$4 = nix.positions(here + "/ip4r.nix", [["tests", 20, 12]]);
-const pos$5 = nix.positions(here + "/ip4r.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 31]]);
-const pos$6 = nix.positions(here + "/ip4r.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["passthru", 20, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,22 +13,22 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ip4r",
       version: "2.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RhodiumToad",
           repo: "ip4r",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-IWGVHd9uc7pCRZL9FMTwSs50rkRwXafjB3Vq72qAonA=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: "CREATE EXTENSION ip4r;",
             })))),
@@ -42,7 +37,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(postgresql, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "IPv4/v6 and IPv4/v6 range index type for PostgreSQL",
         homepage: "https://github.com/RhodiumToad/ip4r",
         license: nix.thunk(() => nix.sel(lib, "licenses", "postgresql")),

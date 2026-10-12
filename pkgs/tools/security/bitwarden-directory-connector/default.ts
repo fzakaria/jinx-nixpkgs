@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 9], ["repo", 29, 9], ["tag", 30, 9], ["hash", 31, 9]], [["pname", 53, 11], ["src", 54, 11], ["version", 55, 11], ["cargoRoot", 56, 11], ["hash", 58, 9]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 61, 11]], [["description", 83, 9], ["homepage", 84, 9], ["license", 85, 9], ["maintainers", 86, 9], ["platforms", 90, 9], ["mainProgram", 91, 9]], [["pname", 23, 7], ["version", 24, 7], ["nodejs", 25, 7], ["src", 27, 7], ["patches", 34, 7], ["postPatch", 38, 7], ["npmDepsFetcherVersion", 47, 7], ["npmDepsHash", 48, 7], ["cargoRoot", 50, 7], ["cargoDeps", 51, 7], ["env", 61, 7], ["makeCacheWritable", 63, 7], ["npmBuildScript", 64, 15], ["installPhase", 64, 30], ["preBuild", 66, 7], ["buildInputs", 70, 7], ["nativeBuildInputs", 74, 7], ["meta", 82, 7]], [["name", 97, 5], ["npmBuildScript", 98, 5], ["installPhase", 99, 5]], [["name", 122, 5], ["npmBuildScript", 123, 5], ["installPhase", 124, 5]], [["bitwarden-directory-connector", 96, 3], ["bitwarden-directory-connector-cli", 121, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, cargo: false, electron: false, fetchFromGitHub: false, libsecret: false, nodejs_24: false, "pkg-config": false, python3: false, rustc: false, rustPlatform: false }, ellipsis: false };
 const formals$2 = { args: { name: false, npmBuildScript: false, installPhase: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 9], ["repo", 29, 9], ["tag", 30, 9], ["hash", 31, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 53, 11], ["src", 54, 11], ["version", 55, 11], ["cargoRoot", 56, 11], ["hash", 58, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 61, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 83, 9], ["homepage", 84, 9], ["license", 85, 9], ["maintainers", 86, 9], ["platforms", 90, 9], ["mainProgram", 91, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 7], ["version", 24, 7], ["nodejs", 25, 7], ["src", 27, 7], ["patches", 34, 7], ["postPatch", 38, 7], ["npmDepsFetcherVersion", 47, 7], ["npmDepsHash", 48, 7], ["cargoRoot", 50, 7], ["cargoDeps", 51, 7], ["env", 61, 7], ["makeCacheWritable", 63, 7], ["npmBuildScript", 64, 15], ["installPhase", 64, 30], ["preBuild", 66, 7], ["buildInputs", 70, 7], ["nativeBuildInputs", 74, 7], ["meta", 82, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 97, 5], ["npmBuildScript", 98, 5], ["installPhase", 99, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 122, 5], ["npmBuildScript", 123, 5], ["installPhase", 124, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["bitwarden-directory-connector", 96, 3], ["bitwarden-directory-connector-cli", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +25,12 @@ export default nix.lambda((args) => (() => {
     const npmBuildScript = nix.arg($_1, "npmBuildScript");
     const installPhase = nix.arg($_1, "installPhase");
     return nix.app(buildNpmPackage, (finalAttrs) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: name,
         version: "2026.6.1",
         nodejs: nodejs_24,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "bitwarden",
             repo: "directory-connector",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,14 +42,14 @@ export default nix.lambda((args) => (() => {
         npmDepsHash: "sha256-1Yu/drKTE6GgFetnJpQSOiTHCUK2XN3KGFGEXeu5vKA=",
         cargoRoot: "native",
         cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
             hash: "sha256-1YcdUuAAIFevZJg4dY9xEBw0TLsUFoMGoMW7ZPKbqjQ=",
           })))),
-        env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
         makeCacheWritable: true,
         npmBuildScript: npmBuildScript,
         installPhase: installPhase,
@@ -73,7 +66,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")),
         ]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "LDAP connector for Bitwarden",
           homepage: "https://github.com/bitwarden/directory-connector",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -90,9 +83,9 @@ export default nix.lambda((args) => (() => {
       }));
   })(), formals$2);
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     "bitwarden-directory-connector": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "bitwarden-directory-connector",
         npmBuildScript: "build:dist",
         installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -116,7 +109,7 @@ runHook postInstall
 `),
       })))),
     "bitwarden-directory-connector-cli": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: "bitwarden-directory-connector-cli",
         npmBuildScript: "build:cli:prod",
         installPhase: "runHook preInstall\n\nmkdir -p $out/libexec/bitwarden-directory-connector\ncp -R build-cli native node_modules $out/libexec/bitwarden-directory-connector\n\n# needs to be wrapped with nodejs so that it can be executed\nchmod +x $out/libexec/bitwarden-directory-connector/build-cli/bwdc.js\nmkdir -p $out/bin\nln -s $out/libexec/bitwarden-directory-connector/build-cli/bwdc.js $out/bin/bitwarden-directory-connector-cli\n\nrunHook postInstall\n",

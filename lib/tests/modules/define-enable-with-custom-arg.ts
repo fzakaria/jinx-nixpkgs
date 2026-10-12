@@ -2,16 +2,15 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/define-enable-with-custom-arg.nix", [[["enable", 5, 5]], [["config", 4, 3]]]);
 const formals$1 = { args: { custom: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/define-enable-with-custom-arg.nix", [["enable", 5, 5]]);
-const pos$2 = nix.positions(here + "/define-enable-with-custom-arg.nix", [["config", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const custom = nix.arg($, "custom");
   return {
-    [nix.POS]: pos$2,
-    config: nix.thunk(() => ({ [nix.POS]: pos$1, enable: custom })),
+    [nix.POS]: $pos[1],
+    config: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: custom })),
   };
 })(), formals$1);
 //# sourceMappingURL=define-enable-with-custom-arg.ts.map

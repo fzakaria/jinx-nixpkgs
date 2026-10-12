@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["description", 72, 5], ["mainProgram", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoHash", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["buildNoDefaultFeatures", 54, 3], ["buildFeatures", 55, 3], ["postFixup", 66, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, makeWrapper: false, "pkg-config": false, stdenv: false, openssl: false, withALSA: true, "alsa-lib": false, "alsa-plugins": false, withPortAudio: true, portaudio: false, withPulseAudio: true, libpulseaudio: false, config: false, withRodio: true, withAvahi: true, withMDNS: true, "withDNS-SD": true, "avahi-compat": false, tlsBackend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 72, 5], ["mainProgram", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoHash", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["buildNoDefaultFeatures", 54, 3], ["buildFeatures", 55, 3], ["postFixup", 66, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const avahi_compat = nix.arg($, "avahi-compat");
   const tlsBackend = nix.argOr($, "tlsBackend", () => "native-tls");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "librespot",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "librespot-org",
           repo: "librespot",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
   --set ALSA_PLUGIN_DIR '${alsa_plugins}/lib/alsa-lib'
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open Source Spotify client library and playback daemon",
         mainProgram: "librespot",
         homepage: "https://github.com/librespot-org/librespot",

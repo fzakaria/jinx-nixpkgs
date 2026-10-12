@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["src", 73, 13], ["checkOutput", 74, 13], ["static", 75, 21]], [["static", 79, 62]], [["static", 80, 62]], [["findpackage-integration-shared", 79, 9], ["findpackage-integration-static", 80, 9]], [["updateScript", 67, 5], ["tests", 68, 5]], [["changelog", 85, 5], ["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 41, 3], ["cmakeFlags", 49, 3], ["checkInputs", 58, 3], ["preCheck", 60, 3], ["doCheck", 64, 3], ["passthru", 66, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libdwarf: false, libunwind: false, gtest: false, callPackage: false, zstd: false, "nix-update-script": false, static: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
 const formals$2 = { args: { static: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["src", 73, 13], ["checkOutput", 74, 13], ["static", 75, 21]]);
-const pos$3 = nix.positions(here + "/package.nix", [["static", 79, 62]]);
-const pos$4 = nix.positions(here + "/package.nix", [["static", 80, 62]]);
-const pos$5 = nix.positions(here + "/package.nix", [["findpackage-integration-shared", 79, 9], ["findpackage-integration-static", 80, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 67, 5], ["tests", 68, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 85, 5], ["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 41, 3], ["cmakeFlags", 49, 3], ["checkInputs", 58, 3], ["preCheck", 60, 3], ["doCheck", 64, 3], ["passthru", 66, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const static$ = nix.argOr($, "static", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "cpptrace",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jeremy-rifkin",
           repo: "cpptrace",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,28 +47,28 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "dsymutil unittest\n")),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => (() => {
           const mkIntegrationTest = nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const static$_1 = nix.arg($_1, "static");
             return nix.app(callPackage, nix.path(here, "./findpackage-integration.nix"), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/test/findpackage-integration`),
                 checkOutput: nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")),
                 static: static$_1,
               })));
           })(), formals$2);
           return {
-            [nix.POS]: pos$5,
-            "findpackage-integration-shared": nix.thunk(() => nix.app(mkIntegrationTest, nix.thunk(() => ({ [nix.POS]: pos$3, static: false })))),
-            "findpackage-integration-static": nix.thunk(() => nix.app(mkIntegrationTest, nix.thunk(() => ({ [nix.POS]: pos$4, static: true })))),
+            [nix.POS]: $pos[4],
+            "findpackage-integration-shared": nix.thunk(() => nix.app(mkIntegrationTest, nix.thunk(() => ({ [nix.POS]: $pos[2], static: false })))),
+            "findpackage-integration-static": nix.thunk(() => nix.app(mkIntegrationTest, nix.thunk(() => ({ [nix.POS]: $pos[3], static: true })))),
           };
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://github.com/jeremy-rifkin/cpptrace/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Simple, portable, and self-contained stacktrace library for C++11 and newer",
         homepage: "https://github.com/jeremy-rifkin/cpptrace",

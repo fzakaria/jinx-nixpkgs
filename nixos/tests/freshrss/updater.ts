@@ -2,60 +2,48 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/updater.nix", [[["maintainers", 7, 8]], [["enable", 15, 9], ["baseUrl", 16, 9], ["passwordFile", 17, 9], ["internalHostAllowlist", 18, 9]], [["addr", 25, 13], ["port", 26, 13]], [["listen", 23, 9], ["root", 29, 9]], [["feed", 22, 35]], [["virtualHosts", 22, 22]], [["freshrss", 14, 16], ["nginx", 22, 16]], [["text", 47, 44]], [["freshrss-test.opml", 47, 23]], [["etc", 47, 19], ["systemPackages", 57, 19]], [["services", 14, 7], ["environment", 47, 7]], [["machine", 11, 9]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 60, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/updater.nix", [["maintainers", 7, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/updater.nix", [["enable", 15, 9], ["baseUrl", 16, 9], ["passwordFile", 17, 9], ["internalHostAllowlist", 18, 9]]);
-const pos$3 = nix.positions(here + "/updater.nix", [["addr", 25, 13], ["port", 26, 13]]);
-const pos$4 = nix.positions(here + "/updater.nix", [["listen", 23, 9], ["root", 29, 9]]);
-const pos$5 = nix.positions(here + "/updater.nix", [["feed", 22, 35]]);
-const pos$6 = nix.positions(here + "/updater.nix", [["virtualHosts", 22, 22]]);
-const pos$7 = nix.positions(here + "/updater.nix", [["freshrss", 14, 16], ["nginx", 22, 16]]);
-const pos$8 = nix.positions(here + "/updater.nix", [["text", 47, 44]]);
-const pos$9 = nix.positions(here + "/updater.nix", [["freshrss-test.opml", 47, 23]]);
-const pos$10 = nix.positions(here + "/updater.nix", [["etc", 47, 19], ["systemPackages", 57, 19]]);
-const pos$11 = nix.positions(here + "/updater.nix", [["services", 14, 7], ["environment", 47, 7]]);
-const pos$12 = nix.positions(here + "/updater.nix", [["machine", 11, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/updater.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const feedPort = 8080n;
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "freshrss-updater",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "stunkymonkey"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             freshrss: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               baseUrl: "http://localhost",
               passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "password", "secret")),
               internalHostAllowlist: nix.thunk(() => [nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(feedPort)}`)]),
             })),
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 feed: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
-                  listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$3, addr: "127.0.0.1", port: feedPort }))]),
+                  [nix.POS]: $pos[3],
+                  listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[2], addr: "127.0.0.1", port: feedPort }))]),
                   root: nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "feed.xml", nix.thunk(() => nix.str`<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
@@ -76,11 +64,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               "freshrss-test.opml": nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 text: nix.thunk(() => nix.str`<?xml version="1.0" encoding="UTF-8"?>
 <opml version="2.0">
   <head><title>Test</title></head>

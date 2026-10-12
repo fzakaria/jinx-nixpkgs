@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["pandas", 43, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 48, 3], ["doCheck", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aioresponses: false, buildPythonPackage: false, fetchFromGitHub: false, pandas: false, pytestCheckHook: false, requests: false, "requests-mock": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pandas", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 48, 3], ["doCheck", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const requests_mock = nix.arg($, "requests-mock");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "alpha-vantage",
       version: "3.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RomelTorres",
           repo: "alpha_vantage",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,12 +38,12 @@ cp alpha_vantage/{cryptocurrencies.py,foreignexchange.py,techindicators.py,times
 `),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [aiohttp, requests]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, pandas: nix.thunk(() => [pandas]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], pandas: nix.thunk(() => [pandas]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([aioresponses, requests_mock, pytestCheckHook], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["alpha_vantage"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python module for the Alpha Vantage API",
         homepage: "https://github.com/RomelTorres/alpha_vantage",
         changelog: nix.thunk(() => nix.str`https://github.com/RomelTorres/alpha_vantage/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 39, 5], ["hash", 40, 5]], [["updateScript", 55, 12]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 64, 5], ["maintainers", 69, 5], ["sourceProvenance", 70, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 45, 3], ["sourceRoot", 47, 3], ["installPhase", 49, 3], ["passthru", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, autoPatchelfHook: false, beamPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 55, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 64, 5], ["maintainers", 69, 5], ["sourceProvenance", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 45, 3], ["sourceRoot", 47, 3], ["installPhase", 49, 3], ["passthru", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "erlang-language-platform";
       const version = "2026-08-10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/WhatsApp/erlang-language-platform/releases/download/${version}/${release_name}.tar.gz`),
           hash: nix.thunk(() => nix.sel(hashes, nix.key(nix.force(release_name)))),
         }))));
@@ -39,9 +36,9 @@ export default nix.lambda((args) => (() => {
         ])));
       const sourceRoot = ".";
       const installPhase = "runHook preInstall\ninstall -m755 -D elp $out/bin/elp\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "IDE-first library for the semantic analysis of Erlang code, including LSP server, linting and refactoring tools",
         homepage: "https://github.com/WhatsApp/erlang-language-platform/",
         license: nix.thunk(() => (() => {
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

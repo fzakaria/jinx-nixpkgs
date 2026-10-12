@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["CGO_ENABLED", 36, 7]], [["package", 58, 5], ["command", 59, 5]], [["version", 57, 18]], [["tests", 57, 12], ["updateScript", 62, 12]], [["description", 65, 5], ["downloadPage", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["ldflags", 28, 3], ["subPackages", 34, 3], ["env", 36, 3], ["installPhase", 38, 3], ["nativeBuildInputs", 44, 3], ["postInstall", 51, 3], ["passthru", 57, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, writableTmpDirAsHomeHook: false, lib: false, stdenv: false, testers: false, kubevela: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 58, 5], ["command", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 57, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 57, 12], ["updateScript", 62, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 65, 5], ["downloadPage", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["ldflags", 28, 3], ["subPackages", 34, 3], ["env", 36, 3], ["installPhase", 38, 3], ["nativeBuildInputs", 44, 3], ["postInstall", 51, 3], ["passthru", 57, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const canGenerateShellCompletions = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "kubevela",
       version: "1.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kubevela",
           repo: "kubevela",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,20 +35,20 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/oam-dev/kubevela/version.VelaVersion=${nix.sel(finalAttrs, "version")}`),
       ]),
       subPackages: nix.thunk(() => ["references/cmd/cli"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       installPhase: "runHook preInstall\ninstall -Dm755 \"$GOPATH/bin/cli\" -T $out/bin/vela\nrunHook postInstall\n",
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles], nix.app(nix.sel(lib, "optionals"), canGenerateShellCompletions, nix.thunk(() => [writableTmpDirAsHomeHook])))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), canGenerateShellCompletions, "installShellCompletion --cmd vela \\\n  --bash <($out/bin/vela completion bash) \\\n  --zsh <($out/bin/vela completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: kubevela, command: "HOME=$TMPDIR vela version" })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: kubevela, command: "HOME=$TMPDIR vela version" })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Application delivery platform to deploy and operate applications in hybrid, multi-cloud environments",
         downloadPage: "https://github.com/kubevela/kubevela",
         homepage: "https://kubevela.io/",

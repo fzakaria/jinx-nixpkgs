@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["crx", 93, 42], ["crz", 93, 46], ["rnx", 93, 50]], [["tests", 92, 12]], [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 113, 5], ["platforms", 114, 5], ["maintainers", 115, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 22, 3], ["buildPhase", 62, 3], ["installPhase", 72, 3], ["passthru", 92, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, tcsh: false, coreutils: false, gzip: false, gnused: false, ncompress: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["crx", 93, 42], ["crz", 93, 46], ["rnx", 93, 50]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 92, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 113, 5], ["platforms", 114, 5], ["maintainers", 115, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 22, 3], ["buildPhase", 62, 3], ["installPhase", 72, 3], ["passthru", 92, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ncompress = nix.arg($, "ncompress");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rnxcmp",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://terras.gsi.go.jp/ja/crx2rnx/RNXCMP_${nix.sel(finalAttrs, "version")}_src.tar.gz`),
           hash: "sha256-mkUtKQiifFsxUsxCTgSIRyIcBl6X9rHxpYXHsMNPus4=",
         })))),
@@ -69,11 +65,11 @@ substituteInPlace front-end-tools/unix/* \\
       buildPhase: "runHook preBuild\n\n# Build commands taken from docs/RNXCMP.txt and adjusted\n\"$CC\" -O2 source/crx2rnx.c -o CRX2RNX\n\"$CC\" -O2 source/rnx2crx.c -o RNX2CRX\n\nrunHook postBuild\n",
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n\ninstall -D -m555 -t \"$out/bin\" CRX2RNX RNX2CRX front-end-tools/unix/*\ninstall -D -m555 -t \"$out/share/doc\" docs/*\ninstall -D -m555 -t \"$out/share/licenses\" docs/LICENSE.txt\n\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "# rtkpost_qt wants crx2rnx instead of CRX2RNX\nln --verbose --symbolic CRX2RNX \"$out/bin/crx2rnx\"\nln --verbose --symbolic RNX2CRX \"$out/bin/rnx2crx\"\n")), "\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({}))));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           crx: nix.thunk(() => nix.attr(from, "crx")),
           crz: nix.thunk(() => nix.attr(from, "crz")),
           rnx: nix.thunk(() => nix.attr(from, "rnx")),
@@ -81,7 +77,7 @@ substituteInPlace front-end-tools/unix/* \\
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Compression/restoration of RINEX observation files developed by Y. Hatanaka of GSI",
         homepage: "https://terras.gsi.go.jp/ja/crx2rnx.html",
         changelog: "https://terras.gsi.go.jp/ja/crx2rnx/CHANGES.txt",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["pkg-config", 54, 11]], [["rev-prefix", 56, 7]], [["tests", 54, 5], ["updateScript", 55, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["pkgConfigModules", 66, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 24, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["dontWrapQtApps", 41, 3], ["preConfigure", 43, 3], ["qmakeFlags", 47, 3], ["passthru", 53, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gitUpdater: false, testers: false, qmake: false, qtmultimedia: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg-config", 54, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev-prefix", 56, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 54, 5], ["updateScript", 55, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["pkgConfigModules", 66, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 24, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["dontWrapQtApps", 41, 3], ["preConfigure", 43, 3], ["qmakeFlags", 47, 3], ["passthru", 53, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const qmake = nix.arg($, "qmake");
   const qtmultimedia = nix.arg($, "qtmultimedia");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "qzxing",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ftylitak",
           repo: "qzxing",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,15 +37,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`QMAKE_PKGCONFIG_PREFIX=${nix.builtins.placeholder("out")}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Qt/QML wrapper library for the ZXing library",
         homepage: "https://github.com/ftylitak/qzxing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

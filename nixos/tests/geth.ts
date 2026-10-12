@@ -2,66 +2,53 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/geth.nix", [[["maintainers", 5, 5]], [["enable", 14, 11]], [["enable", 12, 9], ["http", 13, 9]], [["enable", 23, 11], ["port", 24, 11]], [["enable", 27, 11], ["port", 28, 11]], [["enable", 19, 9], ["port", 20, 9], ["network", 21, 9], ["http", 22, 9], ["authrpc", 26, 9]], [["enable", 37, 11], ["port", 38, 11]], [["enable", 41, 11], ["port", 42, 11]], [["enable", 33, 9], ["port", 34, 9], ["network", 35, 9], ["http", 36, 9], ["authrpc", 40, 9]], [["mainnet", 11, 21], ["holesky", 18, 21], ["sepolia", 32, 21]], [["geth", 11, 16]], [["services", 11, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 47, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/geth.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/geth.nix", [["enable", 14, 11]]);
-const pos$3 = nix.positions(here + "/geth.nix", [["enable", 12, 9], ["http", 13, 9]]);
-const pos$4 = nix.positions(here + "/geth.nix", [["enable", 23, 11], ["port", 24, 11]]);
-const pos$5 = nix.positions(here + "/geth.nix", [["enable", 27, 11], ["port", 28, 11]]);
-const pos$6 = nix.positions(here + "/geth.nix", [["enable", 19, 9], ["port", 20, 9], ["network", 21, 9], ["http", 22, 9], ["authrpc", 26, 9]]);
-const pos$7 = nix.positions(here + "/geth.nix", [["enable", 37, 11], ["port", 38, 11]]);
-const pos$8 = nix.positions(here + "/geth.nix", [["enable", 41, 11], ["port", 42, 11]]);
-const pos$9 = nix.positions(here + "/geth.nix", [["enable", 33, 9], ["port", 34, 9], ["network", 35, 9], ["http", 36, 9], ["authrpc", 40, 9]]);
-const pos$10 = nix.positions(here + "/geth.nix", [["mainnet", 11, 21], ["holesky", 18, 21], ["sepolia", 32, 21]]);
-const pos$11 = nix.positions(here + "/geth.nix", [["geth", 11, 16]]);
-const pos$12 = nix.positions(here + "/geth.nix", [["services", 11, 7]]);
-const pos$13 = nix.positions(here + "/geth.nix", [["machine", 8, 9]]);
-const pos$14 = nix.positions(here + "/geth.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "geth",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "bachp"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             geth: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               mainnet: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 enable: true,
-                http: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+                http: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
               })),
               holesky: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 enable: true,
                 port: 30304n,
                 network: "holesky",
-                http: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, port: 18545n })),
-                authrpc: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, port: 18551n })),
+                http: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, port: 18545n })),
+                authrpc: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true, port: 18551n })),
               })),
               sepolia: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 enable: true,
                 port: 30305n,
                 network: "sepolia",
-                http: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true, port: 28545n })),
-                authrpc: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true, port: 28551n })),
+                http: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true, port: 28545n })),
+                authrpc: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true, port: 28551n })),
               })),
             })),
           })),

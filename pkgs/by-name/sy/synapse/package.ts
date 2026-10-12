@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["sha256", 27, 5]], [["longDescription", 48, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]], [["pname", 22, 3], ["version", 23, 11], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gettext: false, "pkg-config": false, glib: false, libnotify: false, gtk3: false, libgee: false, keybinder3: false, "json-glib": false, zeitgeist: false, vala: false, "gobject-introspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["longDescription", 48, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 11], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const version = "0.2.99.4";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "synapse",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://launchpad.net/synapse-project/0.3/${nix.sel(finalAttrs, "version")}/+download/synapse-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1g6x9knb4jy1d8zgssjhzkgac583137pibisy9whjs8mckaj4k1j",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, gettext, vala, gobject_introspection]),
       buildInputs: nix.thunk(() => [glib, libnotify, gtk3, libgee, keybinder3, json_glib, zeitgeist]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         longDescription: "Semantic launcher written in Vala that you can use to start applications\nas well as find and access relevant documents and files by making use of\nthe Zeitgeist engine\n",
         description: "Semantic launcher to start applications and find relevant files",
         homepage: "https://launchpad.net/synapse-project",

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]], [["url", 28, 7], ["hash", 29, 7]], [["USE_ZEND", 38, 7]], [["version", 60, 5], ["package", 61, 5], ["command", 62, 5]], [["version", 59, 18]], [["tests", 59, 12]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["nativeBuildInputs", 33, 3], ["env", 38, 3], ["installPhase", 40, 3], ["postFixup", 48, 3], ["passthru", 59, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, gnugrep: false, binutils: false, makeBinaryWrapper: false, php: false, testers: false, phpPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["USE_ZEND", 38, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 60, 5], ["package", 61, 5], ["command", 62, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 59, 18]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 59, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["nativeBuildInputs", 33, 3], ["env", 38, 3], ["installPhase", 40, 3], ["postFixup", 48, 3], ["passthru", 59, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const phpPackages = nix.arg($, "phpPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "phpspy",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adsr",
           repo: "phpspy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,23 +31,23 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/adsr/phpspy/commit/8854e60ac38cfd2455d4a3d797f283eb3940cb7b.patch",
             hash: "sha256-IMO9GV0Z8PDEAVhLevg5jGh/PHcbNq3f3fMGFaKoLL4=",
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, nix.thunk(() => nix.sel(php, "unwrapped"))]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, USE_ZEND: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], USE_ZEND: 1n })),
       installPhase: "runHook preInstall\n\ninstall -Dt \"$out/bin\" phpspy stackcollapse-phpspy.pl\n\nrunHook postInstall\n",
       postFixup: nix.thunk(() => nix.str`wrapProgram "$out/bin/phpspy" \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnugrep, binutils]))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
               package: nix.thunk(() => nix.sel(phpPackages, "phpspy")),
               command: "phpspy -v",
@@ -62,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Low-overhead sampling profiler for PHP",
         homepage: "https://github.com/adsr/phpspy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

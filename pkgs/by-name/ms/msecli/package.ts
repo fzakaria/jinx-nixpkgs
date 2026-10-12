@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["pname", 20, 5], ["version", 21, 13]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["sourceProvenance", 66, 5]], [["pname", 25, 11], ["version", 25, 17], ["src", 25, 25], ["buildInputs", 27, 3], ["nativeBuildInputs", 29, 3], ["unpackPhase", 31, 3], ["buildPhase", 40, 3], ["installPhase", 50, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, buildFHSEnv: false, fetchurl: false, lib: false, stdenv: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 20, 5], ["version", 21, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["sourceProvenance", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 11], ["version", 25, 17], ["src", 25, 25], ["buildInputs", 27, 3], ["nativeBuildInputs", 29, 3], ["unpackPhase", 31, 3], ["buildPhase", 40, 3], ["installPhase", 50, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pname = "msecli";
   const version = "10.01.012024.00";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://web.archive.org/web/20240916144249/https://www.micron.com/content/dam/micron/global/public/products/software/storage-executive-software/msecli/msecli-linux.run",
       hash: "sha256-IszdD/9fAh+JA26bSR1roXSo8LDU/rf4CuRI3HjU1xc=",
     }))));
-  const buildEnv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({ [nix.POS]: pos$2, pname: "msecli-buildEnv", version: version }))));
+  const buildEnv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({ [nix.POS]: $pos[1], pname: "msecli-buildEnv", version: version }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -48,7 +45,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp -v bin/msecli $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Micron Storage Executive CLI",
         homepage: "https://www.micron.com/sales-support/downloads/software-drivers/storage-executive-software",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

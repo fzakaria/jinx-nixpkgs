@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["rev-prefix", 31, 33]], [["corerad", 33, 28]], [["updateScript", 31, 5], ["tests", 32, 5]], [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["preBuild", 25, 3], ["passthru", 30, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 31, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["corerad", 33, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 31, 5], ["tests", 32, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["preBuild", 25, 3], ["passthru", 30, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "corerad",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mdlayher",
           repo: "corerad",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,12 +28,15 @@ export default nix.lambda((args) => (() => {
 ldflags+=" -X github.com/mdlayher/corerad/internal/build.linkTimestamp=$(<.gittagtime)"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, corerad: nix.thunk(() => nix.attr(nixosTests, "corerad")) })),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          corerad: nix.thunk(() => nix.attr(nixosTests, "corerad")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/mdlayher/corerad",
         description: "Extensible and observable IPv6 NDP RA daemon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

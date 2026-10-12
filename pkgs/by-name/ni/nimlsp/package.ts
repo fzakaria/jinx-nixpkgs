@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["owner", 25, 9], ["repo", 26, 9], ["rev", 27, 9], ["hash", 28, 9]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["lockFile", 19, 3], ["buildInputs", 21, 3], ["nimFlags", 33, 3], ["nimDefines", 39, 3], ["doCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildNimPackage: false, fetchFromGitHub: false, srcOnly: false, "nim-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 9], ["repo", 26, 9], ["rev", 27, 9], ["hash", 28, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["lockFile", 19, 3], ["buildInputs", 21, 3], ["nimFlags", 33, 3], ["nimDefines", 39, 3], ["doCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const srcOnly = nix.arg($, "srcOnly");
   const nim_unwrapped = nix.arg($, "nim-unwrapped");
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nimlsp",
       version: "0.4.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PMunch",
           repo: "nimlsp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       lockFile: nix.path(here, "./lock.json"),
       buildInputs: nix.thunk(() => (() => {
         const jsonSchemaSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "PMunch",
             repo: "jsonschema",
             rev: "7b41c03e3e1a487d5a8f6b940ca8e764dc2cbabf",
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nimDefines: nix.thunk(() => ["nimcore", "nimsuggest", "debugCommunication", "debugLogging"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Language Server Protocol implementation for Nim",
         homepage: "https://github.com/PMunch/nimlsp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 26, 5]], [["mainProgram", 75, 5], ["description", 76, 5], ["longDescription", 77, 5], ["homepage", 81, 5], ["platforms", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["changelog", 88, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["qmakeFlags", 51, 3], ["installFlags", 67, 3], ["postInstall", 69, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, qt6: false, "vulkan-loader": false, wayland: false, xcbuild: false, waylandSupport: true, x11Support: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 75, 5], ["description", 76, 5], ["longDescription", 77, 5], ["homepage", 81, 5], ["platforms", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["changelog", 88, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["qmakeFlags", 51, 3], ["installFlags", 67, 3], ["postInstall", 69, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const waylandSupport = nix.argOr($, "waylandSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), wayland));
   const x11Support = nix.argOr($, "x11Support", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vulkan-caps-viewer",
       version: "4.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SaschaWillems",
           repo: "VulkanCapsViewer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +42,7 @@ substituteInPlace vulkanCapsViewer.pro \\
       installFlags: nix.thunk(() => ["INSTALL_ROOT=$(out)"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$out/Applications\"\ncp -r vulkanCapsViewer.app \"$out/Applications\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "vulkanCapsViewer",
         description: "Vulkan hardware capability viewer",
         longDescription: "Client application to display hardware implementation details for GPUs supporting the Vulkan API by Khronos.\nThe hardware reports can be submitted to a public online database that allows comparing different devices, browsing available features, extensions, formats, etc.\n",

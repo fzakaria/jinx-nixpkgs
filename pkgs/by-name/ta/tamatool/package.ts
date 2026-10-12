@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]], [["NIX_LDFLAGS", 58, 5]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["makeFlags", 48, 3], ["env", 57, 3], ["desktopItems", 61, 3], ["installPhase", 63, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, zip: false, copyDesktopItems: false, libpng: false, SDL2: false, SDL2_image: false, rom: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["makeFlags", 48, 3], ["env", 57, 3], ["desktopItems", 61, 3], ["installPhase", 63, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_image = nix.arg($, "SDL2_image");
   const rom = nix.argOr($, "rom", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tamatool",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jcrona",
           repo: "tamatool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         "DIST_PATH=$(out)",
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-framework CoreFoundation" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-framework CoreFoundation" })))),
       desktopItems: nix.thunk(() => ["linux/tamatool.desktop"]),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 install -Dm755 linux/tamatool $out/bin/tamatool
@@ -53,7 +50,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(rom, null)), n
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross-platform Tamagotchi P1 explorer",
         homepage: "https://github.com/jcrona/tamatool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

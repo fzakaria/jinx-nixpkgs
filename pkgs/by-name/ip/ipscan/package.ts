@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["downloadPage", 55, 5], ["changelog", 56, 5], ["sourceProvenance", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["installPhase", 31, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jdk: false, jre: false, swt: false, makeWrapper: false, libxtst: false, dpkg: false, gtk3: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["downloadPage", 55, 5], ["changelog", 56, 5], ["sourceProvenance", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["installPhase", 31, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ipscan",
       version: "3.9.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/angryip/ipscan/releases/download/${nix.sel(finalAttrs, "version")}/ipscan_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-RLdlcrtpWcO4z7cKSN+y9UJzMBtnli2mAvuJSXCMoJU=",
         })))),
@@ -43,7 +41,7 @@ substituteInPlace $out/share/applications/ipscan.desktop --replace-fail "Exec=sh
 install -D usr/share/pixmaps/ipscan.png -t $out/share/icons/hicolor/128x128/apps
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Angry IP Scanner - fast and friendly network scanner",
         mainProgram: "ipscan",
         homepage: "https://angryip.org",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["mvnHash", 20, 3], ["mvnParameters", 22, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 26, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { maven: false, fetchFromGitHub: false, lib: false, makeWrapper: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["mvnHash", 20, 3], ["mvnParameters", 22, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 26, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "exificient";
       const version = "1.0.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "EXIficient",
           repo: "exificient",
           rev: nix.thunk(() => nix.str`exificient-${version}`),
@@ -37,7 +35,7 @@ makeWrapper ${jre}/bin/java $out/bin/exificient \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Java implementation of the W3C Efficient Extensible Interchange (EXI) format specification",
         homepage: "http://exificient.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -48,7 +46,7 @@ runHook postInstall
         mainProgram: "exificient",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

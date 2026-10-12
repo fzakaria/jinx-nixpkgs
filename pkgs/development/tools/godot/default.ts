@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["updateScript", 23, 17], ["version", 25, 11], ["hash", 26, 11], ["exportTemplatesHash", 29, 11]], [["withMono", 34, 9], ["exportTemplatesHash", 36, 11], ["nugetDeps", 37, 11]], [["godot", 22, 7], ["godot-mono", 33, 7], ["export-template", 41, 7], ["export-template-mono", 42, 7], ["export-templates-bin", 44, 7], ["export-templates-mono-bin", 45, 7]], [["godot3", 49, 3], ["godot3-export-templates", 50, 3], ["godot3-headless", 51, 3], ["godot3-debug-server", 52, 3], ["godot3-server", 53, 3], ["godot3-mono", 54, 3], ["godot3-mono-export-templates", 55, 3], ["godot3-mono-headless", 56, 3], ["godot3-mono-debug-server", 57, 3], ["godot3-mono-server", 58, 3], ["godotPackages_4_3", 60, 3], ["godotPackages_4_4", 61, 3], ["godotPackages_4_5", 62, 3], ["godotPackages_4_6", 63, 3], ["godotPackages_4_7", 64, 3], ["godotPackages_4", 65, 3], ["godotPackages", 66, 3], ["godot_4_3", 68, 3], ["godot_4_3-mono", 69, 3], ["godot_4_3-export-templates-bin", 70, 3], ["godot_4_4", 71, 3], ["godot_4_4-mono", 72, 3], ["godot_4_4-export-templates-bin", 73, 3], ["godot_4_5", 74, 3], ["godot_4_5-mono", 75, 3], ["godot_4_5-export-templates-bin", 76, 3], ["godot_4_6", 77, 3], ["godot_4_6-mono", 78, 3], ["godot_4_6-export-templates-bin", 79, 3], ["godot_4_7", 80, 3], ["godot_4_7-mono", 81, 3], ["godot_4_7-export-templates-bin", 82, 3], ["godot_4", 83, 3], ["godot_4-mono", 84, 3], ["godot_4-export-templates-bin", 85, 3], ["godot", 86, 3], ["godot-mono", 87, 3], ["godot-export-templates-bin", 88, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, "nix-update-script": false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["updateScript", 23, 17], ["version", 25, 11], ["hash", 26, 11], ["exportTemplatesHash", 29, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["withMono", 34, 9], ["exportTemplatesHash", 36, 11], ["nugetDeps", 37, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["godot", 22, 7], ["godot-mono", 33, 7], ["export-template", 41, 7], ["export-template-mono", 42, 7], ["export-templates-bin", 44, 7], ["export-templates-mono-bin", 45, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["godot3", 49, 3], ["godot3-export-templates", 50, 3], ["godot3-headless", 51, 3], ["godot3-debug-server", 52, 3], ["godot3-server", 53, 3], ["godot3-mono", 54, 3], ["godot3-mono-export-templates", 55, 3], ["godot3-mono-headless", 56, 3], ["godot3-mono-debug-server", 57, 3], ["godot3-mono-server", 58, 3], ["godotPackages_4_3", 60, 3], ["godotPackages_4_4", 61, 3], ["godotPackages_4_5", 62, 3], ["godotPackages_4_6", 63, 3], ["godotPackages_4_7", 64, 3], ["godotPackages_4", 65, 3], ["godotPackages", 66, 3], ["godot_4_3", 68, 3], ["godot_4_3-mono", 69, 3], ["godot_4_3-export-templates-bin", 70, 3], ["godot_4_4", 71, 3], ["godot_4_4-mono", 72, 3], ["godot_4_4-export-templates-bin", 73, 3], ["godot_4_5", 74, 3], ["godot_4_5-mono", 75, 3], ["godot_4_5-export-templates-bin", 76, 3], ["godot_4_6", 77, 3], ["godot_4_6-mono", 78, 3], ["godot_4_6-export-templates-bin", 79, 3], ["godot_4_7", 80, 3], ["godot_4_7-mono", 81, 3], ["godot_4_7-export-templates-bin", 82, 3], ["godot_4", 83, 3], ["godot_4-mono", 84, 3], ["godot_4-export-templates-bin", 85, 3], ["godot", 86, 3], ["godot-mono", 87, 3], ["godot-export-templates-bin", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
         const godot = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(attrs, "default"));
             return {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             updateScript: updateScript,
             version: nix.thunk(() => nix.attr(attrs, "version")),
             hash: nix.thunk(() => nix.attr(attrs, "hash")),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         const godot_mono = nix.thunk(() => nix.app(nix.sel(godot, "override"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(attrs, "mono"));
             return {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             withMono: true,
             exportTemplatesHash: nix.thunk(() => nix.attr(from, "exportTemplatesHash")),
             nugetDeps: nix.thunk(() => nix.attr(from, "nugetDeps")),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
         const export_templates_bin = nix.thunk(() => nix.sel(godot, "export-templates-bin"));
         const export_templates_mono_bin = nix.thunk(() => nix.sel(godot_mono, "export-templates-bin"));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           godot,
           "godot-mono": godot_mono,
           "export-template": export_template,
@@ -96,7 +93,7 @@ export default nix.lambda((args) => (() => {
     const godot_mono = nix.thunk(() => nix.sel(godotPackages, "godot-mono"));
     const godot_export_templates_bin = nix.thunk(() => nix.sel(godotPackages, "export-templates-bin"));
     return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       godot3,
       "godot3-export-templates": godot3_export_templates,
       "godot3-headless": godot3_headless,

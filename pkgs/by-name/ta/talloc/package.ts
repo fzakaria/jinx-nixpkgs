@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["PYTHON_CONFIG", 67, 5]], [["NIX_LDFLAGS", 73, 9]], [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 37, 3], ["preConfigure", 46, 3], ["wafPath", 51, 3], ["wafConfigureFlags", 53, 3], ["env", 63, 3], ["preBuild", 77, 3], ["postInstall", 81, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, python3: false, "pkg-config": false, readline: false, libxslt: false, libxcrypt: false, "docbook-xsl-nons": false, docbook_xml_dtd_42: false, fixDarwinDylibNames: false, wafHook: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PYTHON_CONFIG", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 73, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 37, 3], ["preConfigure", 46, 3], ["wafPath", 51, 3], ["wafConfigureFlags", 53, 3], ["env", 63, 3], ["preBuild", 77, 3], ["postInstall", 81, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "talloc";
       const version = "2.5.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://samba/talloc/talloc-${version}.tar.gz`),
           sha256: "sha256-kSr6I3UQrlQqdzOZjrGKErzaNatnKcji3bQ+jQ66sAc=",
         }))));
@@ -44,12 +40,12 @@ export default nix.lambda((args) => (() => {
           "--cross-compile",
           nix.thunk(() => nix.str`--cross-execute=${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)}`),
         ]))));
-      const env = nix.thunk(() => nix.update({ [nix.POS]: pos$2, PYTHON_CONFIG: "/invalid" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "--undefined-version" })))));
+      const env = nix.thunk(() => nix.update({ [nix.POS]: $pos[1], PYTHON_CONFIG: "/invalid" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_LDFLAGS: "--undefined-version" })))));
       const preBuild = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "export NIX_CFLAGS_LINK=\"-no-pie -shared\";\n"));
       const postInstall = nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}ar q $out/lib/libtalloc.a bin/default/talloc.c.[0-9]*.o
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Hierarchical pool based memory allocator with destructors",
         homepage: "https://tdb.samba.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "matthiasbeyer"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

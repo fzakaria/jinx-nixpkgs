@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["SETUPTOOLS_SCM_PRETEND_VERSION", 44, 7]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["env", 44, 3], ["nativeBuildInputs", 46, 3], ["build-system", 51, 3], ["preBuild", 56, 3], ["dontUseCmakeConfigure", 63, 3], ["dependencies", 65, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, ninja: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, cffi: false, sniffio: false, pytest: false, trio: false, "pytest-trio": false, "pytest-asyncio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["SETUPTOOLS_SCM_PRETEND_VERSION", 44, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["env", 44, 3], ["nativeBuildInputs", 46, 3], ["build-system", 51, 3], ["preBuild", 56, 3], ["dontUseCmakeConfigure", 63, 3], ["dependencies", 65, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,32 +21,32 @@ export default nix.lambda((args) => (() => {
   const pytest_trio = nix.arg($, "pytest-trio");
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const nng = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "nanomsg",
       repo: "nng",
       tag: "v1.6.0",
       hash: "sha256-Kq8QxPU6SiTk0Ev2IJoktSPjVOlAS4/e1PQvw2+e8UA=",
     }))));
   const mbedtls = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "ARMmbed",
       repo: "mbedtls",
       tag: "v3.5.1",
       hash: "sha256-HxsHcGbSExp1aG5yMR/J3kPL4zqnmNoN5T5wfV3APaw=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pynng",
       version: "0.8.1-unstable-2025-05-14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "codypiersall",
           repo: "pynng",
           rev: "2179328f8a858bbb3e177f66ac132bde4a5aa859",
           hash: "sha256-TxIVcqc+4bro+krc1AWgLdZKGGuQ2D6kybHnv5z1oHg=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, SETUPTOOLS_SCM_PRETEND_VERSION: "0.8.1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], SETUPTOOLS_SCM_PRETEND_VERSION: "0.8.1" })),
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       preBuild: nix.thunk(() => nix.str`cp -r ${mbedtls} mbedtls
@@ -63,7 +58,7 @@ chmod -R +w nng
       dependencies: nix.thunk(() => [cffi, sniffio, pytest, trio, pytest_trio, pytest_asyncio]),
       pythonImportsCheck: nix.thunk(() => ["pynng"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python bindings for Nanomsg Next Generation",
         homepage: "https://github.com/codypiersall/pynng",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

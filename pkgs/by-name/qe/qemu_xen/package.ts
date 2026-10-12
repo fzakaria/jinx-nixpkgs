@@ -2,12 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["xenSupport", 1, 27]]]);
 const formals$1 = { args: { qemu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["xenSupport", 1, 27]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const qemu = nix.arg($, "qemu");
-  return nix.app(nix.sel(qemu, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, xenSupport: true })));
+  return nix.app(nix.sel(qemu, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], xenSupport: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

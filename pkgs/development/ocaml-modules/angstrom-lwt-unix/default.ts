@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 21, 29], ["license", 21, 38], ["description", 22, 5], ["maintainers", 23, 5]], [["pname", 9, 3], ["version", 11, 22], ["src", 11, 30], ["propagatedBuildInputs", 13, 3], ["doCheck", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, angstrom: false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 21, 29], ["license", 21, 38], ["description", 22, 5], ["maintainers", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 11, 22], ["src", 11, 30], ["propagatedBuildInputs", 13, 3], ["doCheck", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const angstrom = nix.arg($, "angstrom");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "angstrom-lwt-unix",
       version: nix.thunk(() => nix.attr(angstrom, "version")),
       src: nix.thunk(() => nix.attr(angstrom, "src")),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(angstrom, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Lwt_unix support for Angstrom",

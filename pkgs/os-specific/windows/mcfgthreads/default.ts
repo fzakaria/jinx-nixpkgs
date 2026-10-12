@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["threadModel", 44, 12]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["teams", 51, 5], ["platforms", 52, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["outputs", 29, 3], ["nativeBuildInputs", 34, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, writeScriptBin: false, fetchFromGitHub: false, meson: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["threadModel", 44, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["teams", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["outputs", 29, 3], ["nativeBuildInputs", 34, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const dllTool = nix.thunk(() => nix.app(writeScriptBin, "dlltool", nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}dlltool "$@"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mcfgthread",
       version: "2.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lhmouse",
           repo: "mcfgthread",
           tag: nix.thunk(() => nix.str`v${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}-ga.${nix.app(nix.sel(lib, "versions", "patch"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -32,9 +29,9 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -z \"s/Rules for tests.*//;s/'cpp'/'c'/g\" -i meson.build\n",
       outputs: nix.thunk(() => ["out", "dev"]),
       nativeBuildInputs: nix.thunk(() => [dllTool, meson, ninja]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, threadModel: "mcf" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], threadModel: "mcf" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Threading support library for Windows 7 and above",
         homepage: "https://github.com/lhmouse/mcfgthread/wiki",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

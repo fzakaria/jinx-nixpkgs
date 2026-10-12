@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["enableParallelBuilding", 43, 3], ["configureFlags", 45, 3], ["makeFlags", 52, 3], ["preInstall", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPackages: false, which: false, texi2html: false, enableX11: true, libx11: false, libxext: false, libxv: false, libpng: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["enableParallelBuilding", 43, 3], ["configureFlags", 45, 3], ["makeFlags", 52, 3], ["preInstall", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libxv = nix.arg($, "libxv");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "qemacs",
       version: "6.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qemacs",
           repo: "qemacs",
           rev: "0e90c181078f3d85d0d44d985d541184223668e1",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preInstall: "mkdir -p $out/bin $out/man\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://bellard.org/qemacs/",
         description: "Very small but powerful UNIX editor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

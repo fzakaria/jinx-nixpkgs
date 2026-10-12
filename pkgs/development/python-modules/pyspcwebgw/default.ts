@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aioresponses: false, asynccmd: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, "poetry-core": false, "pytest-asyncio": false, pytest8_3CheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mbrrg",
           repo: "pyspcwebgw",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "replace-async-timeout-with-asyncio.timeout.patch",
             url: "https://github.com/pyspcwebgw/pyspcwebgw/commit/22cacc8db53cf2a244c30c0e62a0dad90fbcb00b.patch",
             hash: "sha256-Og0imZts49jwjbz7Yp41UIzwU/lVjKVc/Tp4+vNz32U=",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [aioresponses, pytest_asyncio, pytest8_3CheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pyspcwebgw"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python module for the SPC Web Gateway REST API",
         homepage: "https://github.com/mbrrg/pyspcwebgw",
         changelog: nix.thunk(() => nix.str`https://github.com/pyspcwebgw/pyspcwebgw/releases/tag/v${version}`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

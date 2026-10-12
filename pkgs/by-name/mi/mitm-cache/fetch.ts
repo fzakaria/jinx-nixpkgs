@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetch.nix", [[["url", 50, 23], ["hash", 51, 15]], [["redirect", 48, 13], ["hash", 49, 13], ["text", 53, 13]], [["data", 71, 7]], [["passthru", 70, 5]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, runCommand: false, writeText: false }, ellipsis: false };
 const formals$2 = { args: { name: true, data: false, dontFixup: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fetch.nix", [["url", 50, 23], ["hash", 51, 15]]);
-const pos$2 = nix.positions(here + "/fetch.nix", [["redirect", 48, 13], ["hash", 49, 13], ["text", 53, 13]]);
-const pos$3 = nix.positions(here + "/fetch.nix", [["data", 71, 7]]);
-const pos$4 = nix.positions(here + "/fetch.nix", [["passthru", 70, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,9 +29,9 @@ export default nix.lambda((args) => (() => {
           const path = nix.thunk(() => nix.app(urlToPath, url));
           const name_1 = nix.thunk(() => nix.builtins.baseNameOf(path));
           const source = nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             redirect: nix.thunk(() => nix.str`$out/${nix.app(urlToPath, val)}`),
-            hash: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, hash: val })))),
+            hash: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, hash: val })))),
             text: nix.thunk(() => nix.app(writeText, name_1, val)),
           }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unknown key: ${url}`)), nix.key(nix.force(key))));
           return nix.str`mkdir -p "${nix.builtins.dirOf(path)}"
@@ -42,9 +39,9 @@ ln -s "${source}" "${path}"
 `;
         })(), data$)))));
     return nix.app(runCommand, name, nix.thunk(() => nix.update(nix.builtins.removeAttrs(attrs, nix.thunk(() => ["name", "data"])), {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         passthru: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "passthru"), {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           data: nix.thunk(() => nix.app(writeText, "deps.json", nix.thunk(() => nix.builtins.toJSON(data)))),
         })),
       })), code);

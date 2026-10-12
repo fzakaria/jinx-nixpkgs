@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["changelog", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["outputs", 24, 3], ["nativeBuildInputs", 29, 3], ["cmakeFlags", 33, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 42, 3], ["dontWrapQtApps", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { cmake: false, fetchurl: false, gpgmepp: false, lib: false, qtbase: false, stdenv: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["outputs", 24, 3], ["nativeBuildInputs", 29, 3], ["cmakeFlags", 33, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 42, 3], ["dontWrapQtApps", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "qgpgme",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnupg/qgpgme/qgpgme-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-PGKQ/1v+q5gbtIspUXA3YfHb6mQMtje+s1YNX++w4LM=",
         })))),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [gpgmepp]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://dev.gnupg.org/source/gpgmeqt/browse/master/NEWS;gpgmeqt-${nix.sel(finalAttrs, "version")}?as=remarkup`),
         description: "Qt API bindings/wrapper for GPGME",
         homepage: "https://dev.gnupg.org/source/gpgmeqt/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["homepage", 38, 5], ["description", 39, 5], ["longDescription", 40, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["enableParallelBuilding", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["preConfigure", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, automake: false, autoconf: false, "pkg-config": false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["description", 39, 5], ["longDescription", 40, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["enableParallelBuilding", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["preConfigure", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gsimplecal",
       version: "2.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dmedvinsky",
           repo: "gsimplecal",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3]),
       preConfigure: "./autogen.sh",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://dmedvinsky.github.io/gsimplecal/",
         description: "Lightweight calendar application written in C++ using GTK",
         longDescription: "gsimplecal was intentionally made for use with tint2 panel in the\nopenbox environment to be launched upon clock click, but of course it\nwill work without it. In fact, binding the gsimplecal to some hotkey in\nyou window manager will probably make you happy. The thing is that when\nit is started it first shows up, when you run it again it closes the\nrunning instance. In that way it is very easy to integrate anywhere. No\nneed to write some wrapper scripts or whatever.\n\nAlso, you can configure it to not only show the calendar, but also\ndisplay multiple clocks for different world time zones.\n",

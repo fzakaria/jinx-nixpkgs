@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 3], ["patches", 17, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 29, 3], ["propagatedUserEnvPkgs", 30, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false, stdenv: false, bison: false, cmake: false, "extra-cmake-modules": false, flex: false, "media-player-info": false, qtbase: false, qtdeclarative: false, qttools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["patches", 17, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 29, 3], ["propagatedUserEnvPkgs", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const qtdeclarative = nix.arg($, "qtdeclarative");
   const qttools = nix.arg($, "qttools");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "solid",
       patches: nix.thunk(() => [nix.path(here, "./fix-search-path.patch")]),
       nativeBuildInputs: nix.thunk(() => nix.concat([bison, cmake, extra_cmake_modules, flex], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [media_player_info])))),

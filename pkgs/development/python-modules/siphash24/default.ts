@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["homepage", 46, 5], ["description", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["version", 14, 3], ["pname", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["build-system", 27, 3], ["buildInputs", 33, 3], ["pythonImportsCheck", 37, 3], ["enabledTestPaths", 41, 3], ["nativeCheckInputs", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, meson: false, "meson-python": false, cython: false, "pkg-config": false, "c-siphash": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 46, 5], ["description", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 14, 3], ["pname", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["build-system", 27, 3], ["buildInputs", 33, 3], ["pythonImportsCheck", 37, 3], ["enabledTestPaths", 41, 3], ["nativeCheckInputs", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const c_siphash = nix.arg($, "c-siphash");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.8",
       pname: "siphash24",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dnicolodi",
           repo: "python-siphash24",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["test.py"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/dnicolodi/python-siphash24",
         description: "Streaming-capable SipHash Implementation",
         changelog: nix.thunk(() => nix.str`https://github.com/dnicolodi/python-siphash24/releases/tag/v${nix.sel(finalAttrs, "version")}`),

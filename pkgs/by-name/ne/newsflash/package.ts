@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["pname", 42, 26], ["version", 42, 32], ["src", 42, 40], ["hash", 43, 5]], [["CARGO_BUILD_TARGET", 97, 7]], [["extraArgs", 100, 5]], [["updateScript", 99, 12]], [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["teams", 115, 5], ["platforms", 116, 5], ["mainProgram", 117, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["cargoDeps", 41, 3], ["postPatch", 46, 3], ["strictDeps", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 73, 3], ["env", 97, 3], ["passthru", 99, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, rustPlatform: false, "blueprint-compiler": false, cargo: false, "desktop-file-utils": false, meson: false, ninja: false, "pkg-config": false, rustc: false, wrapGAppsHook4: false, "gdk-pixbuf": false, "clapper-unwrapped": false, "glycin-loaders": false, gtk4: false, gtksourceview5: false, libadwaita: false, libglycin: false, libxml2: false, openssl: false, sqlite: false, webkitgtk_6_0: false, "glib-networking": false, gst_all_1: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 42, 26], ["version", 42, 32], ["src", 42, 40], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CARGO_BUILD_TARGET", 97, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 99, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["teams", 115, 5], ["platforms", 116, 5], ["mainProgram", 117, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["cargoDeps", 41, 3], ["postPatch", 46, 3], ["strictDeps", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 73, 3], ["env", 97, 3], ["passthru", 99, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,18 +34,18 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "newsflash",
       version: "5.2.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "news-flash",
           repo: "news_flash_gtk",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-oii3/VIV0zivHz/ZscVtJVvPm4SSlzpR+o6t0cS8JO8=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -100,18 +94,18 @@ substituteInPlace src/meson.build --replace-fail \\
         ];
       })())),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex", "^v.(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Modern feed reader designed for the GNOME desktop",
         homepage: "https://gitlab.com/news-flash/news_flash_gtk",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/news-flash/news_flash_gtk/-/raw/${nix.sel(finalAttrs, "src", "tag")}/data/io.gitlab.news_flash.NewsFlash.appdata.xml.in.in#:~:text=%3Crelease%20version=%22${nix.sel(finalAttrs, "version")}%22,%3C/release%3E`),

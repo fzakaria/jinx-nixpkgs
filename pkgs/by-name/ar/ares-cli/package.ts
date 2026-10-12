@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["updateScript", 24, 12]], [["homepage", 27, 5], ["description", 28, 5], ["longDescription", 29, 5], ["mainProgram", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["nodejs", 19, 3], ["dontNpmBuild", 21, 3], ["npmDepsHash", 22, 3], ["passthru", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "nix-update-script": false, nodejs_22: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 24, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["longDescription", 29, 5], ["mainProgram", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["nodejs", 19, 3], ["dontNpmBuild", 21, 3], ["npmDepsHash", 22, 3], ["passthru", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ares-cli";
       const version = "3.2.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "webos-tools",
           repo: "cli",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
       const dontNpmBuild = true;
       const npmDepsHash = "sha256-k8PRP1liSbJze2SHkmvUBqcGuAusnudwgj6ANMu32A8=";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://webostv.developer.lge.com/develop/tools/cli-introduction",
         description: "Collection of commands used for creating, packaging, installing, and launching web apps for LG webOS TV",
         longDescription: "webOS CLI (Command Line Interface) provides a collection of commands used for creating, packaging, installing,\nand launching web apps in the command line environment. The CLI allows you to develop and test your app without using\na specific IDE.\n",
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["pname", 62, 26], ["version", 62, 32], ["src", 62, 40], ["pnpm", 63, 13], ["fetcherVersion", 64, 5], ["hash", 65, 5]], [["TRIPLE_OVERRIDE", 155, 5], ["COREPACK_ENABLE_STRICT", 158, 5], ["RUSTFLAGS", 161, 5], ["TUBRO_BINARY_PATH", 163, 5], ["TURBO_TELEMETRY_DISABLED", 164, 5], ["OPENSSL_NO_VENDOR", 166, 5], ["LIBGIT2_NO_VENDOR", 167, 5]], [["extraArgs", 193, 7]], [["updateScript", 192, 5]], [["description", 201, 5], ["homepage", 202, 5], ["changelog", 203, 5], ["license", 204, 5], ["maintainers", 205, 5], ["mainProgram", 209, 5], ["platforms", 210, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["postPatch", 47, 3], ["cargoHash", 59, 3], ["pnpmDeps", 61, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 85, 3], ["tauriBuildFlags", 95, 3], ["nativeCheckInputs", 100, 3], ["cargoTestFlags", 102, 3], ["env", 151, 3], ["preBuild", 170, 3], ["postInstall", 179, 3], ["passthru", 191, 3], ["meta", 200, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cacert: false, "cargo-tauri": false, cmake: false, curl: false, "desktop-file-utils": false, fetchFromGitHub: false, git: false, "glib-networking": false, jq: false, libgit2: false, makeBinaryWrapper: false, moreutils: false, "nix-update-script": false, nodejs: false, openssl: false, "pkg-config": false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_10: false, rust: false, rustPlatform: false, turbo: false, webkitgtk_4_1: false, wrapGAppsHook4: false, "dart-sass": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 62, 26], ["version", 62, 32], ["src", 62, 40], ["pnpm", 63, 13], ["fetcherVersion", 64, 5], ["hash", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["TRIPLE_OVERRIDE", 155, 5], ["COREPACK_ENABLE_STRICT", 158, 5], ["RUSTFLAGS", 161, 5], ["TUBRO_BINARY_PATH", 163, 5], ["TURBO_TELEMETRY_DISABLED", 164, 5], ["OPENSSL_NO_VENDOR", 166, 5], ["LIBGIT2_NO_VENDOR", 167, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 193, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 192, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 201, 5], ["homepage", 202, 5], ["changelog", 203, 5], ["license", 204, 5], ["maintainers", 205, 5], ["mainProgram", 209, 5], ["platforms", 210, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["postPatch", 47, 3], ["cargoHash", 59, 3], ["pnpmDeps", 61, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 85, 3], ["tauriBuildFlags", 95, 3], ["nativeCheckInputs", 100, 3], ["cargoTestFlags", 102, 3], ["env", 151, 3], ["preBuild", 170, 3], ["postInstall", 179, 3], ["passthru", 191, 3], ["meta", 200, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const dart_sass = nix.arg($, "dart-sass");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gitbutler",
       version: "0.19.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gitbutlerapp",
           repo: "gitbutler",
           tag: nix.thunk(() => nix.str`release/${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +58,7 @@ substituteInPlace apps/desktop/src/lib/backend/tauri.ts \\
 `),
       cargoHash: "sha256-7dF865YPcVp/g6PUs5QRaU3wZ0UmlAgaPGhHsIjIZPY=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -115,7 +109,7 @@ substituteInPlace apps/desktop/src/lib/backend/tauri.ts \\
           "track_directory_changes_after_rename",
         ])))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         TRIPLE_OVERRIDE: nix.thunk(() => nix.sel(rust, "envVars", "rustHostPlatformSpec")),
         COREPACK_ENABLE_STRICT: 0n,
         RUSTFLAGS: "--cfg tokio_unstable",
@@ -133,14 +127,14 @@ pnpm build:desktop -- --mode production
 `),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeBinaryWrapper $out/Applications/GitButler.app/Contents/MacOS/gitbutler-tauri $out/bin/gitbutler-tauri\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "desktop-file-edit \\\n  --set-comment \"A Git client for simultaneous branches on top of your existing workflow.\" \\\n  --set-key=\"Keywords\" --set-value=\"git;\" \\\n  --set-key=\"StartupWMClass\" --set-value=\"GitButler\" \\\n  $out/share/applications/GitButler.desktop\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex", "release/(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Git client for simultaneous branches on top of your existing workflow",
         homepage: "https://gitbutler.com",
         changelog: nix.thunk(() => nix.str`https://github.com/gitbutlerapp/gitbutler/releases/tag/release/${nix.sel(finalAttrs, "version")}`),

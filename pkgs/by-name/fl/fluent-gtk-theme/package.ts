@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 60, 7], ["repo", 61, 7], ["rev", 62, 7], ["hash", 63, 7]], [["updateScript", 93, 14]], [["description", 96, 7], ["changelog", 97, 7], ["homepage", 98, 7], ["license", 99, 7], ["platforms", 100, 7], ["maintainers", 101, 7]], [["pname", 56, 13], ["version", 57, 5], ["src", 59, 5], ["nativeBuildInputs", 66, 5], ["postPatch", 71, 5], ["installPhase", 77, 5], ["passthru", 93, 5], ["meta", 95, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gitUpdater: false, jdupes: false, sassc: false, themeVariants: true, colorVariants: true, sizeVariants: true, tweaks: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 60, 7], ["repo", 61, 7], ["rev", 62, 7], ["hash", 63, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 93, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 96, 7], ["changelog", 97, 7], ["homepage", 98, 7], ["license", 99, 7], ["platforms", 100, 7], ["maintainers", 101, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 56, 13], ["version", 57, 5], ["src", 59, 5], ["nativeBuildInputs", 66, 5], ["postPatch", 71, 5], ["installPhase", 77, 5], ["passthru", 93, 5], ["meta", 95, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const checkTweaks = nix.thunk(() => nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: tweaks`), nix.thunk(() => ["solid", "float", "round", "blur", "noborder", "square"]), tweaks));
   const checkAll = nix.thunk(() => nix.app(checkThemes, checkColors, checkSizes, checkTweaks));
   return nix.app(checkAll, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: "2025-04-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vinceliuice",
           repo: "fluent-gtk-theme",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,11 +62,11 @@ jdupes --quiet --link-soft --recurse $out/share
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fluent design gtk theme",
         changelog: nix.thunk(() => nix.str`https://github.com/vinceliuice/Fluent-gtk-theme/releases/tag/${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/vinceliuice/Fluent-gtk-theme",

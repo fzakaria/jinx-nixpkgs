@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["accelerated", 32, 5], ["sshtunnel", 36, 5], ["quic", 37, 5], ["daemon", 38, 5]], [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["optional-dependencies", 31, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 43, 3], ["disabledTests", 45, 3], ["checkPhase", 52, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pycryptodome: false, uvloop: false, asyncssh: false, aioquic: false, "python-daemon": false, setuptools: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["accelerated", 32, 5], ["sshtunnel", 36, 5], ["quic", 37, 5], ["daemon", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["optional-dependencies", 31, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 43, 3], ["disabledTests", 45, 3], ["checkPhase", 52, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qwj",
           repo: "python-proxy",
           tag: version,
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         accelerated: nix.thunk(() => [pycryptodome, uvloop]),
         sshtunnel: nix.thunk(() => [asyncssh]),
         quic: nix.thunk(() => [aioquic]),
@@ -49,7 +46,7 @@ for f in ./tests/!(${nix.builtins.concatStringsSep("|", disabledTests)}).py ; do
 done
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Proxy server that can tunnel among remote servers by regex rules",
         mainProgram: "pproxy",
         homepage: "https://github.com/qwj/python-proxy",
@@ -57,7 +54,7 @@ done
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ryand56"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

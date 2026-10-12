@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5], ["preFetch", 41, 5]], [["type", 51, 7], ["name", 52, 7], ["desktopName", 53, 7], ["comment", 54, 7], ["icon", 55, 7], ["exec", 56, 7], ["categories", 57, 7]], [["NIX_CFLAGS_COMPILE", 98, 7], ["NIX_LDFLAGS", 133, 7]], [["updateScript", 144, 12]], [["description", 147, 5], ["homepage", 148, 5], ["mainProgram", 149, 5], ["platforms", 150, 5], ["license", 151, 5], ["maintainers", 152, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["desktopItems", 49, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 72, 3], ["cmakeFlags", 91, 3], ["env", 98, 3], ["postPatch", 102, 3], ["strictDeps", 107, 3], ["preBuild", 109, 3], ["installPhase", 113, 3], ["passthru", 144, 3], ["meta", 146, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, cmake: false, "pkg-config": false, "alsa-lib": false, copyDesktopItems: false, makeDesktopItem: false, libx11: false, libxcomposite: false, libxcursor: false, libxinerama: false, libxrandr: false, libxtst: false, libxdmcp: false, libxext: false, xvfb: false, freetype: false, fontconfig: false, expat: false, libGL: false, libjack2: false, curl: false, ninja: false, writableTmpDirAsHomeHook: false, "nix-update-script": false, enableVST2: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5], ["preFetch", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["type", 51, 7], ["name", 52, 7], ["desktopName", 53, 7], ["comment", 54, 7], ["icon", 55, 7], ["exec", 56, 7], ["categories", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 98, 7], ["NIX_LDFLAGS", 133, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 144, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 147, 5], ["homepage", 148, 5], ["mainProgram", 149, 5], ["platforms", 150, 5], ["license", 151, 5], ["maintainers", 152, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["desktopItems", 49, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 72, 3], ["cmakeFlags", 91, 3], ["env", 98, 3], ["postPatch", 102, 3], ["strictDeps", 107, 3], ["preBuild", 109, 3], ["installPhase", 113, 3], ["passthru", 144, 3], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const enableVST2 = nix.argOr($, "enableVST2", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "socalabs-voc",
       version: "1.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FigBug",
           repo: "Voc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             type: "Application",
             name: "socalabs-voc",
             desktopName: "Socalabs Voc",
@@ -88,7 +83,7 @@ export default nix.lambda((args) => (() => {
         "--preset ninja-gcc",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-O2"]))),
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lX11",
@@ -122,11 +117,11 @@ install -Dm444 $src/plugin/Resources/logo.png $out/share/pixmaps/Voc.png
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Socalabs Wacky Vocal Synthesizer Plugin",
         homepage: "https://socalabs.com/synths/voc-vocal-synth/",
         mainProgram: "Voc",

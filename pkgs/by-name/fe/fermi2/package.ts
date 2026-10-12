@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["homepage", 27, 5], ["description", 28, 5], ["mainProgram", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["buildInputs", 17, 3], ["makeFlags", 18, 3], ["installPhase", 19, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { config: false, lib: false, fetchFromGitHub: false, zlib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["mainProgram", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["buildInputs", 17, 3], ["makeFlags", 18, 3], ["installPhase", 19, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fermi2",
       version: "0.1-unstable-2021-05-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lh3",
           repo: "fermi2",
           rev: "cb1410972b2bd330883823116931ae67ead8b30f",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 fermi2 -t $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/lh3/fermi2",
         description: "Successor of fermi, a whole genome de novo assembler based on the FMD-index for large genomes",
         mainProgram: "fermi2",

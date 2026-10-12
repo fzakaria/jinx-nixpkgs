@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]], [["db_export", 28, 5]], [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["__darwinAllowLocalNetworking", 21, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["optional-dependencies", 27, 3], ["nativeCheckInputs", 31, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, canmatrix: false, fetchPypi: false, pytestCheckHook: false, "python-can": false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["db_export", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["__darwinAllowLocalNetworking", 21, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["optional-dependencies", 27, 3], ["nativeCheckInputs", 31, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-IKhLxJizTa3XnOzkZ9O74ZWRwcAqjzkzG8xgZcTYsus=",
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => [python_can]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, db_export: nix.thunk(() => [canmatrix]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], db_export: nix.thunk(() => [canmatrix]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["canopen"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CANopen stack implementation",
         homepage: "https://github.com/christiansandberg/canopen/",
         changelog: nix.thunk(() => nix.str`https://github.com/christiansandberg/canopen/releases/tag/v${version}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

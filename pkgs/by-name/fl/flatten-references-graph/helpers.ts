@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/helpers.nix", [[["interpreter", 13, 15], ["check", 14, 7]], [["format", 35, 11], ["lint", 35, 18], ["unittest", 35, 23]]]);
 const formals$1 = { args: { bash: false, writers: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/helpers.nix", [["interpreter", 13, 15], ["check", 14, 7]]);
-const pos$2 = nix.positions(here + "/helpers.nix", [["format", 35, 11], ["lint", 35, 18], ["unittest", 35, 23]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const writeCheckedBashBin = (name) => (() => {
     const interpreter = nix.thunk(() => nix.str`${bash}/bin/bash`);
     return nix.app(nix.sel(writers, "makeScriptWriter"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         interpreter: interpreter,
         check: nix.thunk(() => nix.str`${interpreter} -n $1`),
       })), nix.thunk(() => nix.str`/bin/${name}`));
@@ -29,6 +28,6 @@ ${nix.sel(python3Packages, "python")}/bin/python -m unittest "\${@}"
 `)));
   const format = nix.thunk(() => nix.app(writeCheckedBashBin, "format", nix.thunk(() => nix.str`${nix.sel(python3Packages, "autopep8")}/bin/autopep8 -r -i . "\${@}"
 `)));
-  return { [nix.POS]: pos$2, format: format, lint: lint, unittest: unittest };
+  return { [nix.POS]: $pos[1], format: format, lint: lint, unittest: unittest };
 })(), formals$1);
 //# sourceMappingURL=helpers.ts.map

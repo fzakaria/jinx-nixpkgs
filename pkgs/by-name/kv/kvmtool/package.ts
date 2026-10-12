@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["NIX_CFLAGS_COMPILE", 23, 7]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 45, 5], ["mainProgram", 49, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 18, 3], ["buildInputs", 20, 3], ["env", 23, 3], ["enableParallelBuilding", 25, 3], ["makeFlags", 27, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchgit: false, lib: false, dtc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 45, 5], ["mainProgram", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 18, 3], ["buildInputs", 20, 3], ["env", 23, 3], ["enableParallelBuilding", 25, 3], ["makeFlags", 27, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const dtc = nix.arg($, "dtc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kvmtool",
       version: "0-unstable-2024-04-09",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.kernel.org/pub/scm/linux/kernel/git/will/kvmtool.git",
           rev: "da4cfc3e540341b84c4bbad705b5a15865bc1f80",
           hash: "sha256-05tNsZauOXe1L1y1YchzvLZm3xOctPJhHCjyAyRnwy4=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./strlcpy-glibc-2.38-fix.patch")]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => [dtc]))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       enableParallelBuilding: true,
       makeFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`ARCH=${nix.sel(stdenv, "hostPlatform", "linuxArch")}`),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => [nix.thunk(() => nix.str`LIBFDT_DIR=${dtc}/lib`)])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight tool for hosting KVM guests",
         homepage: "https://git.kernel.org/pub/scm/linux/kernel/git/will/kvmtool.git/tree/README",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

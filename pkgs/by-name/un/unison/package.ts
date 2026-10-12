@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["name", 54, 5], ["desktopName", 55, 5], ["comment", 56, 5], ["genericName", 57, 5], ["exec", 58, 5], ["icon", 59, 5], ["categories", 60, 5], ["startupNotify", 65, 5], ["startupWMClass", 66, 5]], [["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["broken", 75, 5], ["mainProgram", 76, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 25, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["makeFlags", 42, 3], ["postInstall", 47, 3], ["dontStrip", 51, 3], ["desktopItems", 53, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ocamlPackages: false, copyDesktopItems: false, makeDesktopItem: false, wrapGAppsHook3: false, "gsettings-desktop-schemas": false, enableX11: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 54, 5], ["desktopName", 55, 5], ["comment", 56, 5], ["genericName", 57, 5], ["exec", 58, 5], ["icon", 59, 5], ["categories", 60, 5], ["startupNotify", 65, 5], ["startupWMClass", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["broken", 75, 5], ["mainProgram", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 25, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["makeFlags", 42, 3], ["postInstall", 47, 3], ["dontStrip", 51, 3], ["desktopItems", 53, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const enableX11 = nix.argOr($, "enableX11", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "unison",
       version: "2.54.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bcpierce00",
           repo: "unison",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableX11, "install -D $src/icons/U.svg $out/share/icons/hicolor/scalable/apps/unison.svg\n")),
       dontStrip: nix.thunk(() => !nix.asBool(nix.sel(ocamlPackages, "ocaml", "nativeCompilers"))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableX11, nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             desktopName: "Unison",
             comment: "Bidirectional file synchronizer",
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
             startupWMClass: "Unison",
           })))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.cis.upenn.edu/~bcpierce/unison/",
         description: "Bidirectional file synchronizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

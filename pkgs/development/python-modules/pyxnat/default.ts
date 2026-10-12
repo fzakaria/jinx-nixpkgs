@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["homepage", 75, 5], ["description", 76, 5], ["mainProgram", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 21, 3], ["build-system", 28, 3], ["propagatedBuildInputs", 30, 3], ["prePatch", 36, 3], ["nativeCheckInputs", 40, 3], ["preCheck", 47, 3], ["enabledTestPaths", 50, 3], ["disabledTestPaths", 51, 3], ["disabledTests", 66, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, "pytest-cov-stub": false, lxml: false, matplotlib: false, networkx: false, pandas: false, requests: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 75, 5], ["description", 76, 5], ["mainProgram", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 21, 3], ["build-system", 28, 3], ["propagatedBuildInputs", 30, 3], ["prePatch", 36, 3], ["nativeCheckInputs", 40, 3], ["preCheck", 47, 3], ["enabledTestPaths", 50, 3], ["disabledTestPaths", 51, 3], ["disabledTests", 66, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyxnat",
           repo: "pyxnat",
           tag: version,
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_inspector_structure", "test_project_manager"]);
       const pythonImportsCheck = nix.thunk(() => ["pyxnat"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://pyxnat.github.io/pyxnat",
         description: "Python API to XNAT",
         mainProgram: "sessionmirror.py",
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

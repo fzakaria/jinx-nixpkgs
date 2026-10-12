@@ -2,101 +2,79 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zipline.nix", [[["maintainers", 5, 8]], [["options", 10, 25]], [["qemu", 10, 20]], [["CORE_HOSTNAME", 14, 9], ["CORE_PORT", 15, 9]], [["enable", 12, 7], ["settings", 13, 7], ["environmentFiles", 17, 7]], [["zipline", 11, 14]], [["127.0.0.1", 24, 22]], [["hosts", 24, 16]], [["virtualisation", 10, 5], ["services", 11, 5], ["networking", 24, 5]], [["machine", 7, 9]], [["CORE_HOSTNAME", 28, 31]], [["settings", 28, 22]], [["zipline", 28, 14]], [["allowedTCPPorts", 29, 25]], [["firewall", 29, 16]], [["port", 33, 14]], [["port", 34, 15]], [["from", 32, 9], ["host", 33, 9], ["guest", 34, 9]], [["forwardPorts", 30, 20]], [["services", 28, 5], ["networking", 29, 5], ["virtualisation", 30, 5]], [["machine", 27, 21]], [["nodes", 27, 15]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["interactive", 27, 3], ["testScript", 39, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/zipline.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/zipline.nix", [["options", 10, 25]]);
-const pos$3 = nix.positions(here + "/zipline.nix", [["qemu", 10, 20]]);
-const pos$4 = nix.positions(here + "/zipline.nix", [["CORE_HOSTNAME", 14, 9], ["CORE_PORT", 15, 9]]);
-const pos$5 = nix.positions(here + "/zipline.nix", [["enable", 12, 7], ["settings", 13, 7], ["environmentFiles", 17, 7]]);
-const pos$6 = nix.positions(here + "/zipline.nix", [["zipline", 11, 14]]);
-const pos$7 = nix.positions(here + "/zipline.nix", [["127.0.0.1", 24, 22]]);
-const pos$8 = nix.positions(here + "/zipline.nix", [["hosts", 24, 16]]);
-const pos$9 = nix.positions(here + "/zipline.nix", [["virtualisation", 10, 5], ["services", 11, 5], ["networking", 24, 5]]);
-const pos$10 = nix.positions(here + "/zipline.nix", [["machine", 7, 9]]);
-const pos$11 = nix.positions(here + "/zipline.nix", [["CORE_HOSTNAME", 28, 31]]);
-const pos$12 = nix.positions(here + "/zipline.nix", [["settings", 28, 22]]);
-const pos$13 = nix.positions(here + "/zipline.nix", [["zipline", 28, 14]]);
-const pos$14 = nix.positions(here + "/zipline.nix", [["allowedTCPPorts", 29, 25]]);
-const pos$15 = nix.positions(here + "/zipline.nix", [["firewall", 29, 16]]);
-const pos$16 = nix.positions(here + "/zipline.nix", [["port", 33, 14]]);
-const pos$17 = nix.positions(here + "/zipline.nix", [["port", 34, 15]]);
-const pos$18 = nix.positions(here + "/zipline.nix", [["from", 32, 9], ["host", 33, 9], ["guest", 34, 9]]);
-const pos$19 = nix.positions(here + "/zipline.nix", [["forwardPorts", 30, 20]]);
-const pos$20 = nix.positions(here + "/zipline.nix", [["services", 28, 5], ["networking", 29, 5], ["virtualisation", 30, 5]]);
-const pos$21 = nix.positions(here + "/zipline.nix", [["machine", 27, 21]]);
-const pos$22 = nix.positions(here + "/zipline.nix", [["nodes", 27, 15]]);
-const pos$23 = nix.positions(here + "/zipline.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["interactive", 27, 3], ["testScript", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "zipline",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           qemu: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             options: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")), nix.thunk(() => ["-cpu core2duo"]))),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           zipline: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$4, CORE_HOSTNAME: "127.0.0.1", CORE_PORT: 8000n })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[3], CORE_HOSTNAME: "127.0.0.1", CORE_PORT: 8000n })),
             environmentFiles: nix.thunk(() => [
               nix.thunk(() => nix.builtins.toFile("zipline.env", "CORE_SECRET=DMlouex3W0QLRbVwkUafNnNws5jpgRDX\n")),
             ]),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$8,
-          hosts: nix.thunk(() => ({ [nix.POS]: pos$7, "127.0.0.1": nix.thunk(() => ["zipline.local"]) })),
+          [nix.POS]: $pos[7],
+          hosts: nix.thunk(() => ({ [nix.POS]: $pos[6], "127.0.0.1": nix.thunk(() => ["zipline.local"]) })),
         })),
       })),
     })),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             zipline: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 CORE_HOSTNAME: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "0.0.0.0")),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$15,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [8000n]) })),
+            [nix.POS]: $pos[14],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[13], allowedTCPPorts: nix.thunk(() => [8000n]) })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 from: "host",
-                host: nix.thunk(() => ({ [nix.POS]: pos$16, port: 8000n })),
-                guest: nix.thunk(() => ({ [nix.POS]: pos$17, port: 8000n })),
+                host: nix.thunk(() => ({ [nix.POS]: $pos[15], port: 8000n })),
+                guest: nix.thunk(() => ({ [nix.POS]: $pos[16], port: 8000n })),
               })),
             ]),
           })),

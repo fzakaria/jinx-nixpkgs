@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 12, 5], ["homepage", 13, 5], ["license", 14, 5], ["maintainers", 15, 5], ["platforms", 19, 5], ["mainProgram", 25, 5], ["sourceProvenance", 26, 5]], [["pname", 30, 38], ["version", 30, 44], ["meta", 30, 52]], [["pname", 32, 37], ["version", 32, 43], ["meta", 32, 51]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 12, 5], ["homepage", 13, 5], ["license", 14, 5], ["maintainers", 15, 5], ["platforms", 19, 5], ["mainProgram", 25, 5], ["sourceProvenance", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 30, 38], ["version", 30, 44], ["meta", 30, 52]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 37], ["version", 32, 43], ["meta", 32, 51]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pname = "hamrs";
   const version = "1.0.7";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Simple, portable logger tailored for activities like Parks on the Air, Field Day, and more",
     homepage: "https://hamrs.app/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -30,6 +28,6 @@ export default nix.lambda((args) => (() => {
     mainProgram: "hamrs",
     sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
   }));
-  return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, meta: meta }))));
+  return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, version: version, meta: meta }))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

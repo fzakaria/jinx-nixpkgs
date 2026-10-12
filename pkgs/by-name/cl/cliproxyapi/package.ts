@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["cliproxyapi", 44, 36]], [["tests", 44, 5], ["updateScript", 45, 5]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]], [["__structuredAttrs", 11, 3], ["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["subPackages", 25, 3], ["ldflags", 27, 3], ["postInstall", 35, 3], ["nativeInstallCheckInputs", 39, 3], ["versionCheckProgramArg", 40, 3], ["doInstallCheck", 41, 3], ["passthru", 43, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, nixosTests: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cliproxyapi", 44, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 44, 5], ["updateScript", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["__structuredAttrs", 11, 3], ["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["subPackages", 25, 3], ["ldflags", 27, 3], ["postInstall", 35, 3], ["nativeInstallCheckInputs", 39, 3], ["versionCheckProgramArg", 40, 3], ["doInstallCheck", 41, 3], ["passthru", 43, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       __structuredAttrs: true,
       pname: "cliproxyapi",
       version: "8.0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "router-for-me",
           repo: "CLIProxyAPI",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,15 +39,15 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           cliproxyapi: nix.thunk(() => nix.attr(nixosTests, "cliproxyapi")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Proxy that provides OpenAI/Gemini/Claude/Codex/Grok compatible API interfaces",
         homepage: "https://github.com/router-for-me/CLIProxyAPI",
         changelog: nix.thunk(() => nix.str`https://github.com/router-for-me/CLIProxyAPI/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5], ["stripRoot", 18, 5], ["extension", 19, 5]], [["homepage", 31, 5], ["description", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5], ["license", 35, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["installPhase", 22, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5], ["stripRoot", 18, 5], ["extension", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5], ["license", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["installPhase", 22, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const majorVersion = "1";
   const minorVersion = "101";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "f1_8",
       version: nix.thunk(() => nix.str`${majorVersion}.${minorVersion}`),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://note.com/api/v2/attachments/download/d83b2c4ec63d7826acaa76725d261ff4",
           hash: "sha256-pe1G8WeFAo+KYjjsNwn0JmtXFn9QugE1SeGwaqnl1F0=",
           stripRoot: false,
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\ninstall -D -m444 -t $out/share/fonts/opentype $src/*.otf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://dotcolon.net/font/f1_8/",
         description: "Weighted decorative font",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

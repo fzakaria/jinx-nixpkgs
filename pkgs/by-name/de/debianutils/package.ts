@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 36, 5], ["description", 37, 5], ["longDescription", 38, 5], ["license", 46, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 22, 3], ["strictDeps", 28, 3], ["outputs", 30, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoreconfHook: false, perl: false, po4a: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 36, 5], ["description", 37, 5], ["longDescription", 38, 5], ["license", 46, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 22, 3], ["strictDeps", 28, 3], ["outputs", 30, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const po4a = nix.arg($, "po4a");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "debianutils",
       version: "5.23.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "debianutils",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://packages.debian.org/sid/debianutils",
         description: "Miscellaneous utilities specific to Debian",
         longDescription: "This package provides a number of small utilities which are used primarily\nby the installation scripts of Debian packages, although you may use them\ndirectly.\n\nThe specific utilities included are: add-shell installkernel ischroot\nremove-shell run-parts savelog tempfile which\n",

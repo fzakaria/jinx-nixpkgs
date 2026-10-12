@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5], ["description", 80, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["propagatedBuildInputs", 55, 3], ["cmakeFlags", 60, 3], ["doCheck", 67, 3], ["nativeCheckInputs", 68, 3], ["checkFlags", 69, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, gccStdenv: false, fetchurl: false, cmake: false, netcdf: false, openjpeg: false, libaec: false, libpng: false, gfortran: false, perl: false, ctestCheckHook: false, enablePython: true, python3Packages: true, enablePosixThreads: true, enableOpenMPThreads: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5], ["description", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["propagatedBuildInputs", 55, 3], ["cmakeFlags", 60, 3], ["doCheck", 67, 3], ["nativeCheckInputs", 68, 3], ["checkFlags", 69, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "eccodes";
       const version = "2.48.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://confluence.ecmwf.int/download/attachments/45757960/eccodes-${version}-Source.tar.gz`),
           hash: "sha256-Yuj6XKE30TgYml/dbVsiBcicwmM44/Qoaro9ibScn5o=",
         }))));
@@ -64,7 +62,7 @@ substituteInPlace cmake/ecbuild_install_project.cmake \\
         "eccodes_t_(definitions|calendar|unit_tests|md5|uerra|grib_2nd_order_numValues|julian)",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://confluence.ecmwf.int/display/ECC/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
@@ -72,7 +70,7 @@ substituteInPlace cmake/ecbuild_install_project.cmake \\
         description: "ECMWF library for reading and writing GRIB, BUFR and GTS abbreviated header",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

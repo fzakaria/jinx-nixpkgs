@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 35, 5], ["longDescription", 36, 5], ["license", 45, 5], ["homepage", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fontforge: false, python3Packages: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["longDescription", 36, 5], ["license", 45, 5], ["homepage", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "liberation-sans-narrow";
       const version = "1.07.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "liberationfonts",
           repo: "liberation-sans-narrow",
           rev: version,
@@ -32,13 +30,21 @@ install -m444 -Dt $out/doc/${pname}-${version} AUTHORS ChangeLog COPYING License
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Liberation Sans Narrow Font Family is a replacement for Arial Narrow",
         longDescription: "Liberation Sans Narrow is a font originally created by Ascender\nInc and licensed to Oracle Corporation under a GPLv2 license. It is\nmetrically compatible with the commonly used Arial Narrow fonts\non Microsoft systems. It is no longer distributed with the\nlatest versions of the Liberation Fonts, as Red Hat has changed the\nlicense to the Open Font License.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         homepage: "https://github.com/liberationfonts",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        src,
+        nativeBuildInputs,
+        installPhase,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["postUnpack", 39, 3], ["patches", 44, 3], ["postPatch", 46, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, "pkg-config": false, ninja: false, wayland: false, "wayland-scanner": false, "wlr-protocols": false, gtk3: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["postUnpack", 39, 3], ["patches", 44, 3], ["postPatch", 46, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wl-gammactl",
       version: "0-unstable-2021-09-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mischw",
           repo: "wl-gammactl",
           rev: "e2385950d97a3baf1b6e2f064dd419ccec179586",
@@ -40,7 +38,7 @@ ln -s ${wlr_protocols}/share/wlr-protocols source
       patches: nix.thunk(() => [nix.path(here, "./dont-need-wlroots.diff")]),
       postPatch: "substituteInPlace meson.build --replace \"git = find_program('git')\" \"git = 'false'\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Contrast, brightness, and gamma adjustments for Wayland",
         longDescription: "Small GTK GUI application to set contrast, brightness, and gamma for wayland compositors which\nsupport the wlr-gamma-control protocol extension.\n",
         homepage: "https://github.com/mischw/wl-gammactl",

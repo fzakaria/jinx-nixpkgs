@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["preFixup", 39, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, glib: false, dconf: false, "pkg-config": false, "dbus-glib": false, "telepathy-glib": false, "glib-networking": false, python3: false, libxslt: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["preFixup", 39, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxslt = nix.arg($, "libxslt");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "telepathy-idle",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://telepathy.freedesktop.org/releases/telepathy-idle/telepathy-idle-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-g4fiXl+wtMvnAeXcCS1mbWUQuDP9Pn5GLpFw027DwV8=",
         })))),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
   --prefix GIO_EXTRA_MODULES : "${nix.app(nix.sel(lib, "makeSearchPath"), "lib/gio/modules", nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getLib"), dconf)), glib_networking]))}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "IRC connection manager for the Telepathy framework",
         homepage: "https://telepathy.freedesktop.org/components/telepathy-idle/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

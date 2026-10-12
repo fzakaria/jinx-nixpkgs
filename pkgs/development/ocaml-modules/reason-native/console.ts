@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/console.nix", [[["console", 21, 5]], [["tests", 20, 12]], [["description", 25, 5], ["downloadPage", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["src", 11, 11], ["pname", 13, 3], ["version", 14, 3], ["nativeBuildInputs", 16, 3], ["passthru", 20, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, callPackage: false, reason: false, console: false, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/console.nix", [["console", 21, 5]]);
-const pos$2 = nix.positions(here + "/console.nix", [["tests", 20, 12]]);
-const pos$3 = nix.positions(here + "/console.nix", [["description", 25, 5], ["downloadPage", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$4 = nix.positions(here + "/console.nix", [["src", 11, 11], ["pname", 13, 3], ["version", 14, 3], ["nativeBuildInputs", 16, 3], ["passthru", 20, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const console = nix.arg($, "console");
   const src = nix.arg($, "src");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       src: src,
       pname: "console",
       version: "0.1.0-unstable-2024-05-07",
       nativeBuildInputs: nix.thunk(() => [reason]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           console: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/console"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library providing a web-influenced polymorphic console API for native Console.log(anything) with runtime printing",
         downloadPage: "https://github.com/reasonml/reason-native/tree/master/src/console",
         homepage: "https://reason-native.com/docs/console/",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["name", 48, 5], ["runtimeInputs", 49, 5], ["text", 55, 5]], [["updateScript", 47, 12]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["sourceProvenance", 66, 5], ["maintainers", 67, 5], ["platforms", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["dontUnpack", 24, 3], ["nativeBuildInputs", 26, 3], ["installPhase", 32, 3], ["passthru", 47, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, xar: false, cpio: false, pbzx: false, writeShellApplication: false, cacert: false, curl: false, jq: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 48, 5], ["runtimeInputs", 49, 5], ["text", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 47, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["sourceProvenance", 66, 5], ["maintainers", 67, 5], ["platforms", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["dontUnpack", 24, 3], ["nativeBuildInputs", 26, 3], ["installPhase", 32, 3], ["passthru", 47, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tailscale-gui",
       version: "1.98.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pkgs.tailscale.com/stable/Tailscale-${nix.sel(finalAttrs, "version")}-macos.pkg`),
           hash: "sha256-r7e8aKNWaX1psI0a3sohTUv8xmUv8oebH/ndjeHLoVA=",
         })))),
@@ -35,16 +31,16 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [xar, cpio, pbzx]),
       installPhase: "runHook preInstall\nxar -xf $src\ncd Distribution.pkg\npbzx -n Payload | cpio -i\n\nmkdir -p $out/Applications/Tailscale.app\nmkdir -p $out/bin\n\ncp -R Contents $out/Applications/Tailscale.app/\nln -s \"$out/Applications/Tailscale.app/Contents/MacOS/Tailscale\" \"$out/bin/tailscale\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "tailscale-gui-update-script",
               runtimeInputs: nix.thunk(() => [cacert, curl, jq, common_updater_scripts]),
               text: "version=$(curl --silent \"https://pkgs.tailscale.com/stable/?mode=json&os=darwin\" | jq -r '.MacZipsVersion')\nupdate-source-version tailscale-gui \"$version\"\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tailscale GUI client for macOS",
         homepage: "https://tailscale.com",
         changelog: "https://tailscale.com/changelog#client",

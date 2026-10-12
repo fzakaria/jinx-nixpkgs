@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["SETUPTOOLS_SCM_PRETEND_VERSION", 39, 7]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["env", 39, 3], ["postPatch", 41, 3], ["build-system", 46, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 63, 3], ["nativeCheckInputs", 65, 3], ["preCheck", 70, 3], ["disabledTestPaths", 74, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, "meson-python": false, numpy: false, "setuptools-scm": false, formulaic: false, "mypy-extensions": false, pandas: false, pyhdfe: false, scipy: false, statsmodels: false, pytestCheckHook: false, xarray: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["SETUPTOOLS_SCM_PRETEND_VERSION", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["env", 39, 3], ["postPatch", 41, 3], ["build-system", 46, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 63, 3], ["nativeCheckInputs", 65, 3], ["preCheck", 70, 3], ["disabledTestPaths", 74, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const xarray = nix.arg($, "xarray");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "linearmodels",
       version: "7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bashtage",
           repo: "linearmodels",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-/unFszNGaEPsoXDtaS3tsLnsX4A6e7Y88O8pDrf4nKc=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SETUPTOOLS_SCM_PRETEND_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"setuptools_scm>=9.2.0,<10\" \"setuptools_scm\"\n",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm linearmodels/__init__.py\n",
       disabledTestPaths: nix.thunk(() => ["linearmodels/tests/panel/test_panel_ols.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Models for panel data, system regression, instrumental variables and asset pricing",
         homepage: "https://bashtage.github.io/linearmodels/",
         changelog: nix.thunk(() => nix.str`https://github.com/bashtage/linearmodels/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

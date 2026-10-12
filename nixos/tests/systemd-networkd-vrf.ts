@@ -2,58 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-networkd-vrf.nix", [[["vlans", 6, 20]], [["useDHCP", 8, 7], ["useNetworkd", 9, 7]], [["Name", 16, 21]], [["RequiredForOnline", 17, 20]], [["Address", 19, 11], ["IPv4Forwarding", 20, 11], ["IPv6Forwarding", 21, 11]], [["matchConfig", 16, 9], ["linkConfig", 17, 9], ["networkConfig", 18, 9]], [["enable", 13, 7], ["networks", 15, 7]], [["network", 12, 13]], [["virtualisation", 6, 5], ["networking", 7, 5], ["systemd", 12, 5]], [["maintainers", 29, 8]], [["vlans", 35, 24]], [["checkReversePath", 43, 20]], [["useDHCP", 41, 11], ["useNetworkd", 42, 11], ["firewall", 43, 11]], [["Kind", 51, 15], ["Name", 52, 15], ["MTUBytes", 53, 15]], [["Table", 55, 23]], [["netdevConfig", 50, 13], ["vrfConfig", 55, 13]], [["Kind", 59, 15], ["Name", 60, 15], ["MTUBytes", 61, 15]], [["Table", 63, 23]], [["netdevConfig", 58, 13], ["vrfConfig", 63, 13]], [["10-vrf1", 49, 19], ["10-vrf2", 57, 19]], [["Name", 67, 25]], [["IPv4Forwarding", 68, 27], ["IPv6Forwarding", 69, 27]], [["Destination", 72, 17], ["Metric", 73, 17]], [["matchConfig", 67, 13], ["networkConfig", 68, 13], ["routes", 70, 13]], [["Name", 78, 25]], [["IPv4Forwarding", 79, 27], ["IPv6Forwarding", 80, 27]], [["Destination", 83, 17], ["Metric", 84, 17]], [["matchConfig", 78, 13], ["networkConfig", 79, 13], ["routes", 81, 13]], [["Name", 90, 25]], [["RequiredForOnline", 91, 24]], [["VRF", 93, 15], ["Address", 94, 15], ["IPv4Forwarding", 95, 15], ["IPv6Forwarding", 96, 15]], [["matchConfig", 90, 13], ["linkConfig", 91, 13], ["networkConfig", 92, 13]], [["Name", 100, 25]], [["RequiredForOnline", 101, 24]], [["VRF", 103, 15], ["Address", 104, 15], ["IPv4Forwarding", 105, 15], ["IPv6Forwarding", 106, 15]], [["matchConfig", 100, 13], ["linkConfig", 101, 13], ["networkConfig", 102, 13]], [["10-vrf1", 66, 20], ["10-vrf2", 77, 20], ["10-eth1", 89, 20], ["10-eth2", 99, 20]], [["enable", 47, 11], ["netdevs", 49, 11], ["networks", 66, 11]], [["network", 46, 17]], [["virtualisation", 35, 9], ["networking", 40, 9], ["systemd", 46, 9]], [["enable", 115, 26]], [["openssh", 115, 18]], [["keys", 116, 49]], [["authorizedKeys", 116, 34]], [["openssh", 116, 26]], [["root", 116, 21]], [["users", 116, 15]], [["services", 115, 9], ["users", 116, 9]], [["client", 32, 5], ["node1", 112, 5], ["node2", 120, 5], ["node3", 121, 5]], [["name", 28, 3], ["meta", 29, 3], ["nodes", 31, 3], ["testScript", 124, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-networkd-vrf.nix", [["vlans", 6, 20]]);
-const pos$2 = nix.positions(here + "/systemd-networkd-vrf.nix", [["useDHCP", 8, 7], ["useNetworkd", 9, 7]]);
-const pos$3 = nix.positions(here + "/systemd-networkd-vrf.nix", [["Name", 16, 21]]);
-const pos$4 = nix.positions(here + "/systemd-networkd-vrf.nix", [["RequiredForOnline", 17, 20]]);
-const pos$5 = nix.positions(here + "/systemd-networkd-vrf.nix", [["Address", 19, 11], ["IPv4Forwarding", 20, 11], ["IPv6Forwarding", 21, 11]]);
-const pos$6 = nix.positions(here + "/systemd-networkd-vrf.nix", [["matchConfig", 16, 9], ["linkConfig", 17, 9], ["networkConfig", 18, 9]]);
-const pos$7 = nix.positions(here + "/systemd-networkd-vrf.nix", [["enable", 13, 7], ["networks", 15, 7]]);
-const pos$8 = nix.positions(here + "/systemd-networkd-vrf.nix", [["network", 12, 13]]);
-const pos$9 = nix.positions(here + "/systemd-networkd-vrf.nix", [["virtualisation", 6, 5], ["networking", 7, 5], ["systemd", 12, 5]]);
-const pos$10 = nix.positions(here + "/systemd-networkd-vrf.nix", [["maintainers", 29, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/systemd-networkd-vrf.nix", [["vlans", 35, 24]]);
-const pos$12 = nix.positions(here + "/systemd-networkd-vrf.nix", [["checkReversePath", 43, 20]]);
-const pos$13 = nix.positions(here + "/systemd-networkd-vrf.nix", [["useDHCP", 41, 11], ["useNetworkd", 42, 11], ["firewall", 43, 11]]);
-const pos$14 = nix.positions(here + "/systemd-networkd-vrf.nix", [["Kind", 51, 15], ["Name", 52, 15], ["MTUBytes", 53, 15]]);
-const pos$15 = nix.positions(here + "/systemd-networkd-vrf.nix", [["Table", 55, 23]]);
-const pos$16 = nix.positions(here + "/systemd-networkd-vrf.nix", [["netdevConfig", 50, 13], ["vrfConfig", 55, 13]]);
-const pos$17 = nix.positions(here + "/systemd-networkd-vrf.nix", [["Kind", 59, 15], ["Name", 60, 15], ["MTUBytes", 61, 15]]);
-const pos$18 = nix.positions(here + "/systemd-networkd-vrf.nix", [["Table", 63, 23]]);
-const pos$19 = nix.positions(here + "/systemd-networkd-vrf.nix", [["netdevConfig", 58, 13], ["vrfConfig", 63, 13]]);
-const pos$20 = nix.positions(here + "/systemd-networkd-vrf.nix", [["10-vrf1", 49, 19], ["10-vrf2", 57, 19]]);
-const pos$21 = nix.positions(here + "/systemd-networkd-vrf.nix", [["Name", 67, 25]]);
-const pos$22 = nix.positions(here + "/systemd-networkd-vrf.nix", [["IPv4Forwarding", 68, 27], ["IPv6Forwarding", 69, 27]]);
-const pos$23 = nix.positions(here + "/systemd-networkd-vrf.nix", [["Destination", 72, 17], ["Metric", 73, 17]]);
-const pos$24 = nix.positions(here + "/systemd-networkd-vrf.nix", [["matchConfig", 67, 13], ["networkConfig", 68, 13], ["routes", 70, 13]]);
-const pos$25 = nix.positions(here + "/systemd-networkd-vrf.nix", [["Name", 78, 25]]);
-const pos$26 = nix.positions(here + "/systemd-networkd-vrf.nix", [["IPv4Forwarding", 79, 27], ["IPv6Forwarding", 80, 27]]);
-const pos$27 = nix.positions(here + "/systemd-networkd-vrf.nix", [["Destination", 83, 17], ["Metric", 84, 17]]);
-const pos$28 = nix.positions(here + "/systemd-networkd-vrf.nix", [["matchConfig", 78, 13], ["networkConfig", 79, 13], ["routes", 81, 13]]);
-const pos$29 = nix.positions(here + "/systemd-networkd-vrf.nix", [["Name", 90, 25]]);
-const pos$30 = nix.positions(here + "/systemd-networkd-vrf.nix", [["RequiredForOnline", 91, 24]]);
-const pos$31 = nix.positions(here + "/systemd-networkd-vrf.nix", [["VRF", 93, 15], ["Address", 94, 15], ["IPv4Forwarding", 95, 15], ["IPv6Forwarding", 96, 15]]);
-const pos$32 = nix.positions(here + "/systemd-networkd-vrf.nix", [["matchConfig", 90, 13], ["linkConfig", 91, 13], ["networkConfig", 92, 13]]);
-const pos$33 = nix.positions(here + "/systemd-networkd-vrf.nix", [["Name", 100, 25]]);
-const pos$34 = nix.positions(here + "/systemd-networkd-vrf.nix", [["RequiredForOnline", 101, 24]]);
-const pos$35 = nix.positions(here + "/systemd-networkd-vrf.nix", [["VRF", 103, 15], ["Address", 104, 15], ["IPv4Forwarding", 105, 15], ["IPv6Forwarding", 106, 15]]);
-const pos$36 = nix.positions(here + "/systemd-networkd-vrf.nix", [["matchConfig", 100, 13], ["linkConfig", 101, 13], ["networkConfig", 102, 13]]);
-const pos$37 = nix.positions(here + "/systemd-networkd-vrf.nix", [["10-vrf1", 66, 20], ["10-vrf2", 77, 20], ["10-eth1", 89, 20], ["10-eth2", 99, 20]]);
-const pos$38 = nix.positions(here + "/systemd-networkd-vrf.nix", [["enable", 47, 11], ["netdevs", 49, 11], ["networks", 66, 11]]);
-const pos$39 = nix.positions(here + "/systemd-networkd-vrf.nix", [["network", 46, 17]]);
-const pos$40 = nix.positions(here + "/systemd-networkd-vrf.nix", [["virtualisation", 35, 9], ["networking", 40, 9], ["systemd", 46, 9]]);
-const pos$41 = nix.positions(here + "/systemd-networkd-vrf.nix", [["enable", 115, 26]]);
-const pos$42 = nix.positions(here + "/systemd-networkd-vrf.nix", [["openssh", 115, 18]]);
-const pos$43 = nix.positions(here + "/systemd-networkd-vrf.nix", [["keys", 116, 49]]);
-const pos$44 = nix.positions(here + "/systemd-networkd-vrf.nix", [["authorizedKeys", 116, 34]]);
-const pos$45 = nix.positions(here + "/systemd-networkd-vrf.nix", [["openssh", 116, 26]]);
-const pos$46 = nix.positions(here + "/systemd-networkd-vrf.nix", [["root", 116, 21]]);
-const pos$47 = nix.positions(here + "/systemd-networkd-vrf.nix", [["users", 116, 15]]);
-const pos$48 = nix.positions(here + "/systemd-networkd-vrf.nix", [["services", 115, 9], ["users", 116, 9]]);
-const pos$49 = nix.positions(here + "/systemd-networkd-vrf.nix", [["client", 32, 5], ["node1", 112, 5], ["node2", 120, 5], ["node3", 121, 5]]);
-const pos$50 = nix.positions(here + "/systemd-networkd-vrf.nix", [["name", 28, 3], ["meta", 29, 3], ["nodes", 31, 3], ["testScript", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -63,24 +14,24 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   const mkNode = (vlan) => (id) => ({
-    [nix.POS]: pos$9,
-    virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, vlans: nix.thunk(() => [vlan]) })),
-    networking: nix.thunk(() => ({ [nix.POS]: pos$2, useDHCP: false, useNetworkd: true })),
+    [nix.POS]: $pos[8],
+    virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], vlans: nix.thunk(() => [vlan]) })),
+    networking: nix.thunk(() => ({ [nix.POS]: $pos[1], useDHCP: false, useNetworkd: true })),
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       network: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         enable: true,
         networks: nix.thunk(() => nix.attrsDyn({}, [
           [nix.str`10-eth${nix.builtins.toString(vlan)}`, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             matchConfig: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               Name: nix.thunk(() => nix.str`eth${nix.builtins.toString(vlan)}`),
             })),
-            linkConfig: nix.thunk(() => ({ [nix.POS]: pos$4, RequiredForOnline: "no" })),
+            linkConfig: nix.thunk(() => ({ [nix.POS]: $pos[3], RequiredForOnline: "no" })),
             networkConfig: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               Address: nix.thunk(() => nix.str`192.168.${nix.builtins.toString(vlan)}.${nix.builtins.toString(id)}/24`),
               IPv4Forwarding: "yes",
               IPv6Forwarding: "yes",
@@ -91,71 +42,71 @@ export default nix.lambda((args) => (() => {
     })),
   });
   return {
-    [nix.POS]: pos$50,
+    [nix.POS]: $pos[49],
     name: "systemd-networkd-vrf",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ma27"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$49,
+      [nix.POS]: $pos[48],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$40,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$11, vlans: nix.thunk(() => [1n, 2n]) })),
+          [nix.POS]: $pos[39],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[10], vlans: nix.thunk(() => [1n, 2n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             useDHCP: false,
             useNetworkd: true,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$12, checkReversePath: "loose" })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[11], checkReversePath: "loose" })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             network: nix.thunk(() => ({
-              [nix.POS]: pos$38,
+              [nix.POS]: $pos[37],
               enable: true,
               netdevs: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 "10-vrf1": nix.thunk(() => ({
-                  [nix.POS]: pos$16,
-                  netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$14, Kind: "vrf", Name: "vrf1", MTUBytes: "1300" })),
-                  vrfConfig: nix.thunk(() => ({ [nix.POS]: pos$15, Table: 23n })),
+                  [nix.POS]: $pos[15],
+                  netdevConfig: nix.thunk(() => ({ [nix.POS]: $pos[13], Kind: "vrf", Name: "vrf1", MTUBytes: "1300" })),
+                  vrfConfig: nix.thunk(() => ({ [nix.POS]: $pos[14], Table: 23n })),
                 })),
                 "10-vrf2": nix.thunk(() => ({
-                  [nix.POS]: pos$19,
-                  netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$17, Kind: "vrf", Name: "vrf2", MTUBytes: "1300" })),
-                  vrfConfig: nix.thunk(() => ({ [nix.POS]: pos$18, Table: 42n })),
+                  [nix.POS]: $pos[18],
+                  netdevConfig: nix.thunk(() => ({ [nix.POS]: $pos[16], Kind: "vrf", Name: "vrf2", MTUBytes: "1300" })),
+                  vrfConfig: nix.thunk(() => ({ [nix.POS]: $pos[17], Table: 42n })),
                 })),
               })),
               networks: nix.thunk(() => ({
-                [nix.POS]: pos$37,
+                [nix.POS]: $pos[36],
                 "10-vrf1": nix.thunk(() => ({
-                  [nix.POS]: pos$24,
-                  matchConfig: nix.thunk(() => ({ [nix.POS]: pos$21, Name: "vrf1" })),
-                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$22, IPv4Forwarding: "yes", IPv6Forwarding: "yes" })),
+                  [nix.POS]: $pos[23],
+                  matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[20], Name: "vrf1" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[21], IPv4Forwarding: "yes", IPv6Forwarding: "yes" })),
                   routes: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$23, Destination: "192.168.1.2", Metric: 100n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[22], Destination: "192.168.1.2", Metric: 100n })),
                   ]),
                 })),
                 "10-vrf2": nix.thunk(() => ({
-                  [nix.POS]: pos$28,
-                  matchConfig: nix.thunk(() => ({ [nix.POS]: pos$25, Name: "vrf2" })),
-                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$26, IPv4Forwarding: "yes", IPv6Forwarding: "yes" })),
+                  [nix.POS]: $pos[27],
+                  matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[24], Name: "vrf2" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[25], IPv4Forwarding: "yes", IPv6Forwarding: "yes" })),
                   routes: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$27, Destination: "192.168.2.3", Metric: 100n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[26], Destination: "192.168.2.3", Metric: 100n })),
                   ]),
                 })),
                 "10-eth1": nix.thunk(() => ({
-                  [nix.POS]: pos$32,
-                  matchConfig: nix.thunk(() => ({ [nix.POS]: pos$29, Name: "eth1" })),
-                  linkConfig: nix.thunk(() => ({ [nix.POS]: pos$30, RequiredForOnline: "no" })),
+                  [nix.POS]: $pos[31],
+                  matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[28], Name: "eth1" })),
+                  linkConfig: nix.thunk(() => ({ [nix.POS]: $pos[29], RequiredForOnline: "no" })),
                   networkConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$31,
+                    [nix.POS]: $pos[30],
                     VRF: "vrf1",
                     Address: "192.168.1.1/24",
                     IPv4Forwarding: "yes",
@@ -163,11 +114,11 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 "10-eth2": nix.thunk(() => ({
-                  [nix.POS]: pos$36,
-                  matchConfig: nix.thunk(() => ({ [nix.POS]: pos$33, Name: "eth2" })),
-                  linkConfig: nix.thunk(() => ({ [nix.POS]: pos$34, RequiredForOnline: "no" })),
+                  [nix.POS]: $pos[35],
+                  matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[32], Name: "eth2" })),
+                  linkConfig: nix.thunk(() => ({ [nix.POS]: $pos[33], RequiredForOnline: "no" })),
                   networkConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$35,
+                    [nix.POS]: $pos[34],
                     VRF: "vrf2",
                     Address: "192.168.2.1/24",
                     IPv4Forwarding: "yes",
@@ -182,20 +133,20 @@ export default nix.lambda((args) => (() => {
       node1: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => nix.app(mkNode, 1n, 2n)),
           nix.thunk(() => ({
-            [nix.POS]: pos$48,
+            [nix.POS]: $pos[47],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$42,
-              openssh: nix.thunk(() => ({ [nix.POS]: pos$41, enable: true })),
+              [nix.POS]: $pos[41],
+              openssh: nix.thunk(() => ({ [nix.POS]: $pos[40], enable: true })),
             })),
             users: nix.thunk(() => ({
-              [nix.POS]: pos$47,
+              [nix.POS]: $pos[46],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$46,
+                [nix.POS]: $pos[45],
                 root: nix.thunk(() => ({
-                  [nix.POS]: pos$45,
+                  [nix.POS]: $pos[44],
                   openssh: nix.thunk(() => ({
-                    [nix.POS]: pos$44,
-                    authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$43, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                    [nix.POS]: $pos[43],
+                    authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[42], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                   })),
                 })),
               })),

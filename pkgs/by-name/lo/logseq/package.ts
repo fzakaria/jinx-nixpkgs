@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["owner", 45, 9], ["repo", 46, 9], ["rev", 47, 9], ["hash", 48, 9]], [["owner", 51, 9], ["repo", 52, 9], ["rev", 53, 9], ["hash", 54, 9]], [["cljs_time_src", 44, 7], ["bb_tasks_src", 50, 7]], [["name", 70, 5], ["src", 71, 26], ["patches", 71, 30], ["nativeBuildInputs", 73, 5], ["buildPhase", 75, 5], ["installPhase", 90, 5], ["dontFixup", 102, 5], ["outputHash", 104, 5], ["outputHashMode", 105, 5], ["outputHashAlgo", 106, 5]], [["name", 110, 5], ["src", 111, 26], ["patches", 111, 30], ["hash", 112, 5]], [["name", 118, 5], ["src", 119, 26], ["patches", 119, 30], ["postPatch", 120, 5], ["hash", 121, 5]], [["name", 125, 5], ["src", 126, 26], ["patches", 126, 30], ["postPatch", 127, 5], ["hash", 128, 5]], [["name", 132, 5], ["src", 133, 26], ["patches", 133, 30], ["postPatch", 134, 5], ["hash", 135, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 174, 7], ["CI", 248, 7]], [["name", 285, 7], ["desktopName", 286, 7], ["exec", 287, 7], ["terminal", 288, 7], ["icon", 289, 7], ["startupWMClass", 290, 7], ["comment", 291, 7], ["mimeTypes", 292, 7], ["categories", 293, 7]], [["description", 298, 5], ["homepage", 299, 5], ["license", 300, 5], ["maintainers", 301, 5], ["mainProgram", 302, 5], ["platforms", 303, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["mavenRepo", 69, 3], ["yarnOfflineCacheRoot", 109, 3], ["yarnOfflineCacheStaticResources", 117, 3], ["yarnOfflineCacheAmplify", 124, 3], ["yarnOfflineCacheTldraw", 131, 3], ["strictDeps", 138, 3], ["nativeBuildInputs", 140, 3], ["dontYarnInstallDeps", 172, 3], ["env", 174, 3], ["postConfigure", 176, 3], ["yarnBuildScript", 250, 3], ["installPhase", 252, 3], ["desktopItems", 283, 3], ["meta", 297, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, clang_20: false, fetchFromGitHub: false, fetchYarnDeps: false, replaceVars: false, writeShellScriptBin: false, copyDesktopItems: false, cctools: false, clojure: false, darwin: false, makeDesktopItem: false, makeWrapper: false, "nodejs-slim": false, removeReferencesTo: false, yarnBuildHook: false, yarnConfigHook: false, xcbuild: false, zip: false, electron_39: false, git: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 45, 9], ["repo", 46, 9], ["rev", 47, 9], ["hash", 48, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 51, 9], ["repo", 52, 9], ["rev", 53, 9], ["hash", 54, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cljs_time_src", 44, 7], ["bb_tasks_src", 50, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 70, 5], ["src", 71, 26], ["patches", 71, 30], ["nativeBuildInputs", 73, 5], ["buildPhase", 75, 5], ["installPhase", 90, 5], ["dontFixup", 102, 5], ["outputHash", 104, 5], ["outputHashMode", 105, 5], ["outputHashAlgo", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 110, 5], ["src", 111, 26], ["patches", 111, 30], ["hash", 112, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 118, 5], ["src", 119, 26], ["patches", 119, 30], ["postPatch", 120, 5], ["hash", 121, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 125, 5], ["src", 126, 26], ["patches", 126, 30], ["postPatch", 127, 5], ["hash", 128, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 132, 5], ["src", 133, 26], ["patches", 133, 30], ["postPatch", 134, 5], ["hash", 135, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 174, 7], ["CI", 248, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 285, 7], ["desktopName", 286, 7], ["exec", 287, 7], ["terminal", 288, 7], ["icon", 289, 7], ["startupWMClass", 290, 7], ["comment", 291, 7], ["mimeTypes", 292, 7], ["categories", 293, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["description", 298, 5], ["homepage", 299, 5], ["license", 300, 5], ["maintainers", 301, 5], ["mainProgram", 302, 5], ["platforms", 303, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["mavenRepo", 69, 3], ["yarnOfflineCacheRoot", 109, 3], ["yarnOfflineCacheStaticResources", 117, 3], ["yarnOfflineCacheAmplify", 124, 3], ["yarnOfflineCacheTldraw", 131, 3], ["strictDeps", 138, 3], ["nativeBuildInputs", 140, 3], ["dontYarnInstallDeps", 172, 3], ["env", 174, 3], ["postConfigure", 176, 3], ["yarnBuildScript", 250, 3], ["installPhase", 252, 3], ["desktopItems", 283, 3], ["meta", 297, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const electron = electron_39;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "logseq",
       version: "0.10.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "logseq",
           repo: "logseq",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,16 +42,16 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-git-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             cljs_time_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 owner: "logseq",
                 repo: "cljs-time",
                 rev: "5704fbf48d3478eedcf24d458c8964b3c2fd59a9",
                 hash: "sha256-IApL+SEm7AhbTN7J/1KiAKTx7rd53hchRh3jmPQ412g=",
               })))),
             bb_tasks_src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 owner: "logseq",
                 repo: "bb-tasks",
                 rev: "70d3edeb287f5cec7192e642549a401f7d6d4263",
@@ -76,7 +64,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./bump-yauzl.patch"),
       ]),
       mavenRepo: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: nix.thunk(() => nix.str`logseq-${nix.sel(finalAttrs, "version")}-maven-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -89,14 +77,14 @@ export default nix.lambda((args) => (() => {
           outputHashAlgo: "sha256",
         })))),
       yarnOfflineCacheRoot: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           name: nix.thunk(() => nix.str`logseq-${nix.sel(finalAttrs, "version")}-yarn-deps-root`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
           hash: "sha256-xfAJ38shd92KdRfh/P7BH4eolZHQmzl4raoH1aZpGRk=",
         })))),
       yarnOfflineCacheStaticResources: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           name: nix.thunk(() => nix.str`logseq-${nix.sel(finalAttrs, "version")}-yarn-deps-static-resources`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -104,7 +92,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-TFisR5GwcKmuddGhe0i6rAmr2wDWzed/mXnxVGARYK0=",
         })))),
       yarnOfflineCacheAmplify: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           name: nix.thunk(() => nix.str`logseq-${nix.sel(finalAttrs, "version")}-yarn-deps-amplify`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -112,7 +100,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-IOhSwIf5goXCBDGHCqnsvWLf3EUPqq75xfQg55snIp4=",
         })))),
       yarnOfflineCacheTldraw: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           name: nix.thunk(() => nix.str`logseq-${nix.sel(finalAttrs, "version")}-yarn-deps-tldraw`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -145,7 +133,7 @@ export default nix.lambda((args) => (() => {
           ])));
       })()),
       dontYarnInstallDeps: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$10, ELECTRON_SKIP_BINARY_DOWNLOAD: "1", CI: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[9], ELECTRON_SKIP_BINARY_DOWNLOAD: "1", CI: "1" })),
       postConfigure: nix.thunk(() => nix.str`yarnOfflineCache="$yarnOfflineCacheRoot" yarnConfigHook
 
 cp resources/package.json static/package.json
@@ -240,7 +228,7 @@ makeWrapper $out/Applications/Logseq.app/Contents/MacOS/Logseq $out/bin/logseq
 `))), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             name: "Logseq",
             desktopName: "Logseq",
             exec: "logseq %U",
@@ -253,7 +241,7 @@ makeWrapper $out/Applications/Logseq.app/Contents/MacOS/Logseq $out/bin/logseq
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         description: "Privacy-first, open-source platform for knowledge management and collaboration",
         homepage: "https://github.com/logseq/logseq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

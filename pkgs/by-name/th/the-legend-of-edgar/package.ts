@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["updateScript", 52, 12]], [["homepage", 55, 5], ["changelog", 56, 5], ["description", 57, 5], ["longDescription", 58, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["enableParallelBuilding", 27, 3], ["__structuredAttrs", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["dontConfigure", 43, 3], ["makefile", 45, 3], ["makeFlags", 47, 3], ["passthru", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, SDL2_ttf: false, gettext: false, libpng: false, zlib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["changelog", 56, 5], ["description", 57, 5], ["longDescription", 58, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["enableParallelBuilding", 27, 3], ["__structuredAttrs", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["dontConfigure", 43, 3], ["makefile", 45, 3], ["makeFlags", 47, 3], ["passthru", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "the-legend-of-edgar",
       version: "1.38",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "riksweeney",
           repo: "edgar",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,11 +41,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`BIN_DIR=${nix.builtins.placeholder("out")}/bin/`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.parallelrealities.co.uk/games/edgar",
         changelog: nix.thunk(() => nix.str`https://github.com/riksweeney/edgar/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "2D platform game with a persistent world",

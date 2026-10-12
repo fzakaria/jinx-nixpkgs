@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 15, 5], ["owner", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["homepage", 22, 5], ["description", 23, 5], ["license", 27, 5], ["platforms", 28, 5], ["maintainers", 29, 5]], [["version", 9, 3], ["pname", 10, 3], ["buildInputs", 12, 3], ["src", 14, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, mkDerivation: false, "standard-library": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 15, 5], ["owner", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 22, 5], ["description", 23, 5], ["license", 27, 5], ["platforms", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 9, 3], ["pname", 10, 3], ["buildInputs", 12, 3], ["src", 14, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "functional-linear-algebra";
       const buildInputs = nix.thunk(() => [standard_library]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "functional-linear-algebra",
           owner: "ryanorendorff",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "sha256-3nme/eH4pY6bD0DkhL4Dj/Vp/WnZqkQtZTNk+n1oAyY=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ryanorendorff/functional-linear-algebra",
         description: "Formalizing linear algebra in Agda by representing matrices as functions\nfrom one vector space to another.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "ryanorendorff"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, version, pname, buildInputs, src, meta };
+      return { [nix.POS]: $pos[2], version, pname, buildInputs, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

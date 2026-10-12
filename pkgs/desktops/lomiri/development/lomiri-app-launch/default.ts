@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["pkg-config", 141, 11]], [["tests", 141, 5], ["updateScript", 142, 5]], [["description", 146, 5], ["homepage", 147, 5], ["changelog", 148, 5], ["license", 149, 5], ["teams", 150, 5], ["platforms", 151, 5], ["pkgConfigModules", 152, 5]], [["pname", 33, 3], ["version", 34, 3], ["outputs", 36, 3], ["src", 44, 3], ["patches", 51, 3], ["postPatch", 56, 3], ["strictDeps", 67, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 83, 3], ["nativeCheckInputs", 97, 3], ["checkInputs", 106, 3], ["cmakeFlags", 111, 3], ["postBuild", 129, 3], ["doCheck", 133, 3], ["postInstall", 135, 3], ["passthru", 140, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, testers: false, cmake: false, "cmake-extras": false, curl: false, dbus: false, "dbus-test-runner": false, dpkg: false, "gobject-introspection": false, gtest: false, "json-glib": false, libxkbcommon: false, "lomiri-api": false, "lttng-ust": false, "pkg-config": false, "properties-cpp": false, python3: false, systemdLibs: false, "ubports-click": false, validatePkgConfig: false, zeitgeist: false, withDocumentation: true, doxygen: false, python3Packages: false, sphinx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg-config", 141, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 141, 5], ["updateScript", 142, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 146, 5], ["homepage", 147, 5], ["changelog", 148, 5], ["license", 149, 5], ["teams", 150, 5], ["platforms", 151, 5], ["pkgConfigModules", 152, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["outputs", 36, 3], ["src", 44, 3], ["patches", 51, 3], ["postPatch", 56, 3], ["strictDeps", 67, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 83, 3], ["nativeCheckInputs", 97, 3], ["checkInputs", 106, 3], ["cmakeFlags", 111, 3], ["postBuild", 129, 3], ["doCheck", 133, 3], ["postInstall", 135, 3], ["passthru", 140, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const sphinx = nix.arg($, "sphinx");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lomiri-app-launch",
       version: "0.2.0",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), withDocumentation, nix.thunk(() => ["doc"])))),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-app-launch",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -88,15 +84,15 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withDocumentation, "mkdir -p $doc/share/doc/lomiri-app-launch\nmv ../docs/_build/html $doc/share/doc/lomiri-app-launch/\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "System and associated utilities to launch applications in a standard and confined way",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-app-launch",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-app-launch/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

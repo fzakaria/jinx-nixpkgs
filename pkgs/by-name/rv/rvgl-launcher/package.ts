@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 7], ["repo", 18, 7], ["tag", 19, 7], ["hash", 20, 7]], [["name", 42, 9], ["desktopName", 43, 9], ["icon", 44, 9], ["exec", 45, 9], ["comment", 46, 9], ["categories", 47, 9]], [["description", 52, 7], ["longDescription", 53, 7], ["homepage", 54, 7], ["downloadPage", 55, 7], ["license", 56, 7], ["maintainers", 57, 7], ["mainProgram", 58, 7], ["platforms", 59, 7]], [["pname", 12, 5], ["version", 13, 5], ["pyproject", 14, 5], ["src", 16, 5], ["__structuredAttrs", 23, 5], ["build-system", 25, 5], ["dependencies", 27, 5], ["postInstall", 34, 5], ["nativeBuildInputs", 38, 5], ["desktopItems", 40, 5], ["meta", 51, 5]], [["unwrapped", 91, 13]], [["pname", 66, 3], ["version", 67, 23], ["meta", 67, 31], ["runScript", 69, 3], ["targetPkgs", 71, 3], ["extraInstallCommands", 84, 3], ["passthru", 90, 3]], [["strictDeps", 96, 7], ["__structuredAttrs", 97, 7]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitLab: false, copyDesktopItems: false, makeDesktopItem: false, buildFHSEnv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 7], ["repo", 18, 7], ["tag", 19, 7], ["hash", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 42, 9], ["desktopName", 43, 9], ["icon", 44, 9], ["exec", 45, 9], ["comment", 46, 9], ["categories", 47, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 7], ["longDescription", 53, 7], ["homepage", 54, 7], ["downloadPage", 55, 7], ["license", 56, 7], ["maintainers", 57, 7], ["mainProgram", 58, 7], ["platforms", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 5], ["version", 13, 5], ["pyproject", 14, 5], ["src", 16, 5], ["__structuredAttrs", 23, 5], ["build-system", 25, 5], ["dependencies", 27, 5], ["postInstall", 34, 5], ["nativeBuildInputs", 38, 5], ["desktopItems", 40, 5], ["meta", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["unwrapped", 91, 13]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 66, 3], ["version", 67, 23], ["meta", 67, 31], ["runScript", 69, 3], ["targetPkgs", 71, 3], ["extraInstallCommands", 84, 3], ["passthru", 90, 3]]);
-const pos$7 = nix.positions(here + "/package.nix", [["strictDeps", 96, 7], ["__structuredAttrs", 97, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const buildFHSEnv = nix.arg($, "buildFHSEnv");
   const unwrapped = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rvgl-launcher-unwrapped",
       version: "0.1.23.1030a4-rev1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "re-volt",
           repo: "rvgl-launcher",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "rvgl-launcher",
             desktopName: "RVGL Launcher",
             icon: "rvgl-launcher",
@@ -59,7 +53,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Launcher and package manager for RVGL",
         longDescription: "RVGL Launcher is a cross-platform installer, launcher and package manager for RVGL",
         homepage: "https://re-volt.gitlab.io/rvgl-launcher",
@@ -74,7 +68,7 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return nix.app(nix.sel(nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rvgl-launcher",
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(unwrapped, "meta")),
@@ -95,7 +89,7 @@ export default nix.lambda((args) => (() => {
 ln -s ${unwrapped}/share/applications/rvgl-launcher.desktop $out/share/applications/rvgl-launcher.desktop
 ln -s ${unwrapped}/share/pixmaps/rvgl-launcher.png $out/share/pixmaps/rvgl-launcher.png
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, unwrapped: unwrapped })),
-    }))), "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({ [nix.POS]: pos$7, strictDeps: true, __structuredAttrs: true }));
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], unwrapped: unwrapped })),
+    }))), "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({ [nix.POS]: $pos[6], strictDeps: true, __structuredAttrs: true }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

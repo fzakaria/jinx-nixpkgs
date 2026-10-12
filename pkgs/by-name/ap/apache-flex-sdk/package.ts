@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["url", 21, 5], ["sha256", 22, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["dontBuild", 29, 3], ["postPatch", 31, 3], ["installPhase", 38, 3], ["dontFixup", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["dontBuild", 29, 3], ["postPatch", 31, 3], ["installPhase", 38, 3], ["dontFixup", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const playerglobal_ver = "27.0";
   const playerglobal = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://fpdownload.macromedia.com/get/flashplayer/updaters/27/playerglobal27_0.swc",
       sha256: "0qw2bgls8qsmp80j8vpd4c7s0c8anlrk0ac8z42w89bajcdbwk2f",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "apache-flex-sdk",
       version: "4.16.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://apache/flex/${nix.sel(finalAttrs, "version")}/binaries/apache-flex-sdk-${nix.sel(finalAttrs, "version")}-bin.tar.gz`),
           sha256: "13iq16dqvgcpb0p35x66hzxsq5pkbr2lbwr766nnqiryinnagz8p",
         })))),
@@ -55,7 +52,7 @@ cp ${playerglobal} $t/frameworks/libs/player/${playerglobal_ver}/playerglobal.sw
 `),
       dontFixup: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Flex SDK for Adobe Flash / ActionScript",
         homepage: "https://flex.apache.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

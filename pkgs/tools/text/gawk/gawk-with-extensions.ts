@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gawk-with-extensions.nix", [[["nativeBuildInputs", 10, 5], ["buildInputs", 11, 5]]]);
 const formals$1 = { args: { runCommand: false, gawk: false, extensions: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/gawk-with-extensions.nix", [["nativeBuildInputs", 10, 5], ["buildInputs", 11, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const extensions = nix.arg($, "extensions");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(runCommand, "gawk-with-extensions", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => nix.concat([gawk], extensions)),
     })), nix.thunk(() => nix.str`mkdir -p $out/bin

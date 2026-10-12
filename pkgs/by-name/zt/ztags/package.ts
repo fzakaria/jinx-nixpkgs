@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5], ["platforms", 38, 24]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["deps", 23, 3], ["nativeBuildInputs", 25, 3], ["zigBuildFlags", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromCodeberg: false, zig_0_16: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5], ["platforms", 38, 24]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["deps", 23, 3], ["nativeBuildInputs", 25, 3], ["zigBuildFlags", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_16 = nix.arg($, "zig_0_16");
   const zig = zig_0_16;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ztags",
       version: "1.0.1-unstable-2026-04-23",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gpanders",
           repo: "ztags",
           rev: "49d45d0db73c6e5705853bfdb25a471d19538993",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(zig, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Generate tags files for Zig projects",
         homepage: "https://codeberg.org/gpanders/ztags",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

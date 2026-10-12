@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["disabled", 33, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 37, 3], ["nativeCheckInputs", 50, 3], ["enabledTestPaths", 57, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, anyio: false, "async-generator": false, buildPythonPackage: false, fetchFromGitHub: false, cpyparsing: false, ipykernel: false, mypy: false, pexpect: false, pygments: false, pytestCheckHook: false, pythonAtLeast: false, "prompt-toolkit": false, setuptools: false, tkinter: false, tstr: false, watchdog: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["disabled", 33, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 37, 3], ["nativeCheckInputs", 50, 3], ["enabledTestPaths", 57, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "evhub",
           repo: "coconut",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["coconut/tests/constants_test.py"]);
       const pythonImportsCheck = nix.thunk(() => ["coconut"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple, elegant, Pythonic functional programming",
         homepage: "http://coconut-lang.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/evhub/coconut/releases/tag/${nix.sel(src, "tag")}`),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

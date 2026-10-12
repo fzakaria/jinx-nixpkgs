@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 11, 5], ["buildCommand", 13, 5]], [["NIX_CFLAGS_COMPILE", 25, 7]], [["description", 27, 8]], [["releaseName", 21, 3], ["xcodeHash", 23, 3], ["env", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { mkAppleDerivation: false, sourceRelease: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 11, 5], ["buildCommand", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 27, 8]]);
-const pos$4 = nix.positions(here + "/package.nix", [["releaseName", 21, 3], ["xcodeHash", 23, 3], ["env", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const iokitUser = nix.thunk(() => nix.app(sourceRelease, "IOKitUser"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "file_cmds-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -t "$out/include/IOKit/pwr_mgt" \\
   '${iokitUser}/pwr_mgt.subproj/IOPMLibPrivate.h' \\
@@ -23,14 +20,14 @@ export default nix.lambda((args) => (() => {
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       releaseName: "PowerManagement",
       xcodeHash: "sha256-8dASJnzc7yZ4LNbanNjWuCoJunxAz/7R1Ulj/zOrkkI=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: "Contains the Darwin caffeinate command" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[2], description: "Contains the Darwin caffeinate command" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

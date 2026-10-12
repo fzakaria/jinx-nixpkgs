@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/overrides.nix", [[["postPatch", 44, 9]], [["setupHook", 57, 9]], [["postPatch", 69, 7]], [["nativeBuildInputs", 80, 9], ["buildInputs", 82, 9], ["preInstall", 87, 9]], [["Avalonia", 20, 3], ["Avalonia.X11", 52, 3], ["Avalonia.BuildServices", 66, 3], ["SkiaSharp.NativeAssets.Linux", 75, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, dotnetCorePackages: false, fontconfig: false, lib: false, libice: false, libsm: false, libx11: false, stdenv: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/overrides.nix", [["postPatch", 44, 9]]);
-const pos$2 = nix.positions(here + "/overrides.nix", [["setupHook", 57, 9]]);
-const pos$3 = nix.positions(here + "/overrides.nix", [["postPatch", 69, 7]]);
-const pos$4 = nix.positions(here + "/overrides.nix", [["nativeBuildInputs", 80, 9], ["buildInputs", 82, 9], ["preInstall", 87, 9]]);
-const pos$5 = nix.positions(here + "/overrides.nix", [["Avalonia", 20, 3], ["Avalonia.X11", 52, 3], ["Avalonia.BuildServices", 66, 3], ["SkiaSharp.NativeAssets.Linux", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const writeText = nix.arg($, "writeText");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     Avalonia: (package$) => nix.app(nix.sel(package$, "overrideAttrs"), (old) => (() => {
         const affectedVersions = nix.thunk(() => [
           "11.1.0-beta1",
@@ -36,21 +32,21 @@ export default nix.lambda((args) => (() => {
           "11.2.0-beta1",
         ]);
         return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.builtins.elem(nix.thunk(() => nix.sel(old, "version")), affectedVersions)), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             postPatch: "substituteInPlace {build,buildTransitive}/AvaloniaBuildTasks.targets \\\n  --replace-fail 'BeforeTargets=\"CopyFilesToOutputDirectory;BuiltProjectOutputGroup\"' \\\n                 'BeforeTargets=\"CopyFilesToOutputDirectory;BuiltProjectOutputGroup;ComputeResolvedFilesToPublishList\"'\n",
           })));
       })()),
     "Avalonia.X11": (package$) => nix.app(nix.sel(package$, "overrideAttrs"), (old) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           setupHook: nix.thunk(() => nix.app(writeText, "setupHook.sh", nix.thunk(() => nix.str`prependToVar dotnetRuntimeDeps \\
   "${nix.app(nix.sel(lib, "getLib"), libice)}" \\
   "${nix.app(nix.sel(lib, "getLib"), libsm)}" \\
   "${nix.app(nix.sel(lib, "getLib"), libx11)}"
 `))),
         })))),
-    "Avalonia.BuildServices": (package$) => nix.app(nix.sel(package$, "overrideAttrs"), (old) => ({ [nix.POS]: pos$3, postPatch: "shopt -s extglob\nrm -rf !(*.nuspec)\n" })),
+    "Avalonia.BuildServices": (package$) => nix.app(nix.sel(package$, "overrideAttrs"), (old) => ({ [nix.POS]: $pos[2], postPatch: "shopt -s extglob\nrm -rf !(*.nuspec)\n" })),
     "SkiaSharp.NativeAssets.Linux": (package$) => nix.app(nix.sel(package$, "overrideAttrs"), (old) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [autoPatchelfHook])),
           buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), nix.concat([fontconfig], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(old, "version")), "4")), nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))))))),
           preInstall: nix.thunk(() => nix.add(nix.selOr(old, () => "", "preInstall"), nix.str`cd runtimes

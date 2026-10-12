@@ -2,30 +2,25 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/simple-container.nix", [[["packages", 6, 24]], [["root", 6, 19]], [["users", 6, 13]], [["users", 6, 7]], [["machine", 5, 5], ["noprofile", 8, 5]], [["name", 2, 3], ["containers", 4, 3], ["testScript", 11, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/simple-container.nix", [["packages", 6, 24]]);
-const pos$2 = nix.positions(here + "/simple-container.nix", [["root", 6, 19]]);
-const pos$3 = nix.positions(here + "/simple-container.nix", [["users", 6, 13]]);
-const pos$4 = nix.positions(here + "/simple-container.nix", [["users", 6, 7]]);
-const pos$5 = nix.positions(here + "/simple-container.nix", [["machine", 5, 5], ["noprofile", 8, 5]]);
-const pos$6 = nix.positions(here + "/simple-container.nix", [["name", 2, 3], ["containers", 4, 3], ["testScript", 11, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$6,
+  [nix.POS]: $pos[5],
   name: "simple-container",
   containers: nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         users: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             root: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
             })),
           })),

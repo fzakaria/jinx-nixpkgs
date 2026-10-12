@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["updateScript", 52, 12]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]], [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["postPatch", 22, 3], ["pyproject", 29, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["preInstall", 39, 3], ["nativeCheckInputs", 45, 3], ["unittestFlags", 46, 3], ["passthru", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["postPatch", 22, 3], ["pyproject", 29, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["preInstall", 39, 3], ["nativeCheckInputs", 45, 3], ["unittestFlags", 46, 3], ["passthru", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "0.3.10";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bili-live-tool",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chenxi-Eumenides",
           repo: "bilibili_live_tool",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,11 +45,11 @@ export default nix.lambda((args) => (() => {
       })()),
       unittestFlags: nix.thunk(() => ["-s", "unittest", "-v"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to start and stop streaming and getting streaming codes for Bilibili live",
         homepage: "https://github.com/chenxi-Eumenides/bilibili_live_tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

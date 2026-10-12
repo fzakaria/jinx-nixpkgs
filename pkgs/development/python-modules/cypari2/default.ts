@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 24, 13], ["version", 24, 19], ["hash", 25, 5]], [["sage", 55, 13]], [["tests", 54, 12]], [["description", 59, 5], ["license", 60, 5], ["teams", 61, 5], ["homepage", 62, 5]], [["pname", 18, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["preConfigure", 28, 3], ["build-system", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["checkPhase", 49, 3], ["passthru", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, python: false, fetchPypi: false, pari: false, "pkg-config": false, gmp: false, "meson-python": false, cython: false, cysignals: false, sage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 24, 13], ["version", 24, 19], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sage", 55, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 54, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 59, 5], ["license", 60, 5], ["teams", 61, 5], ["homepage", 62, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["preConfigure", 28, 3], ["build-system", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["checkPhase", 49, 3], ["passthru", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-+fDplKmgsGRhkyBBHh2cMDFYhH4FW1gILv2t5ayX9hM=",
@@ -39,16 +35,19 @@ export default nix.lambda((args) => (() => {
       const checkPhase = nix.thunk(() => nix.str`test -f "$out/${nix.sel(python, "sitePackages")}/cypari2/auto_paridecl.pxd"
 make check
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) }));
+      const passthru = nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], sage: sage })),
+      }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cython bindings for PARI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),
         homepage: "https://github.com/defeo/cypari2",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

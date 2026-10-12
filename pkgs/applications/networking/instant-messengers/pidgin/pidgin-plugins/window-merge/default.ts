@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 20, 5], ["description", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["maintainers", 24, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, pidgin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 20, 5], ["description", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["maintainers", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +15,20 @@ export default nix.lambda((args) => (() => {
       const pname = "pidgin-window-merge";
       const version = "0.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/downloads/dm0-/window_merge/window_merge-${version}.tar.gz`),
           sha256: "0cb5rvi7jqvm345g9mlm4wpq0240kcybv81jpw5wlx7hz0lwi478",
         }))));
       const buildInputs = nix.thunk(() => [pidgin]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/dm0-/window_merge",
         description: "Pidgin plugin that merges the Buddy List window with a conversation window",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         maintainers: [],
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

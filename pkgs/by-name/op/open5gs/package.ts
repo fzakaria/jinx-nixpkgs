@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]], [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["hash", 54, 5]], [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]], [["homepage", 106, 5], ["description", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5], ["changelog", 114, 5]], [["pname", 28, 3], ["version", 29, 3], ["diameter", 31, 3], ["libtins", 38, 3], ["mesonFlags", 45, 3], ["promc", 50, 3], ["src", 57, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 73, 3], ["preConfigure", 93, 3], ["postInstall", 99, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, ninja: false, talloc: false, "pkg-config": false, mongoc: false, cmake: false, libyaml: false, libmicrohttpd: false, flex: false, bison: false, libgcrypt: false, libidn: false, "lksctp-tools": false, gnutls: false, libnghttp2: false, openssl: false, curl: false, libtins: false, mongosh: false, usrsctp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["hash", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 106, 5], ["description", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5], ["changelog", 114, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["diameter", 31, 3], ["libtins", 38, 3], ["mesonFlags", 45, 3], ["promc", 50, 3], ["src", 57, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 73, 3], ["preConfigure", 93, 3], ["postInstall", 99, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,18 +31,18 @@ export default nix.lambda((args) => (() => {
   const mongosh = nix.arg($, "mongosh");
   const usrsctp = nix.arg($, "usrsctp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "open5gs",
       version: "2.8.0",
       diameter: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open5gs",
           repo: "freeDiameter",
           rev: "13f5a5996b5fa1a46ed780635c7fc6fcd09b4290",
           hash: "sha256-S8jL+9rW9RDwQc7NU8MOzMe9/iRbshWa2QLqXoiV85Q=",
         })))),
       libtins: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "open5gs",
           repo: "libtins",
           rev: "bf22438172d269e6db70e27246dffd8e1f0b96e3",
@@ -55,14 +50,14 @@ export default nix.lambda((args) => (() => {
         })))),
       mesonFlags: nix.thunk(() => ["-Dwerror=false", "--buildtype=release"]),
       promc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "open5gs",
           repo: "prometheus-client-c",
           rev: "a58ba25bf87a9b1b7c6be4e6f4c62047d620f402",
           hash: "sha256-COZV4UeB7YRfpLwloIfc/WdlTP9huwVfXrJWH4jmvB8=",
         })))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "open5gs",
           repo: "open5gs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,7 +86,7 @@ substituteInPlace $out/bin/open5gs-dbctl \\
   --replace "mongosh" "${nix.app(nix.sel(lib, "getExe"), mongosh)}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://open5gs.org/",
         description: "4G/5G core network components",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["url", 21, 7], ["sha256", 22, 7]], [["url", 29, 7], ["sha256", 30, 7]], [["url", 33, 7], ["sha256", 34, 7]], [["url", 37, 7], ["sha256", 38, 7]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["patches", 19, 3], ["buildPhase", 42, 3], ["installPhase", 47, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, bzip2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 7], ["sha256", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 29, 7], ["sha256", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 33, 7], ["sha256", 34, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 37, 7], ["sha256", 38, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["patches", 19, 3], ["buildPhase", 42, 3], ["installPhase", 47, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const bzip2 = nix.arg($, "bzip2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "bsdiff",
       version: "4.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.daemonology.net/bsdiff/bsdiff-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0j2zm3z271x5aw63mwhr3vymzn45p2vvrlrpm9cz2nywna41b0hq",
         })))),
       buildInputs: nix.thunk(() => [bzip2]),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sources.debian.org/data/main/b/bsdiff/4.3-22/debian/patches/20-CVE-2014-9862.patch",
             sha256: "sha256-3UuUfNvShQ8fLqxCKUTb/n4BmjL4+Nl7aEqCxYrrERQ=",
           })))),
@@ -38,17 +32,17 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./include-systypes.patch"),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://sources.debian.org/data/main/b/bsdiff/4.3-22/debian/patches/30-bug-632585-mmap-src-file-instead-of-malloc-read-it.patch",
               sha256: "sha256-esbhz2/efUiuQDuF7LGfSeEn3/f1WbqCxQpTs2A0ulI=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: "https://sources.debian.org/data/main/b/bsdiff/4.3-22/debian/patches/31-bug-632585-mmap-dst-file-instead-of-malloc-read-it.patch",
               sha256: "sha256-Of4aOcI0rsgdRzPqyw2VRn2p9wQuo3hdlgDTBdXGzoc=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               url: "https://sources.debian.org/data/main/b/bsdiff/4.3-22/debian/patches/32-bug-632585-use-int32_t-instead-off_t-for-file-size.patch",
               sha256: "sha256-SooFnFK4uKNXvXQb/LEcH8GocnRtkryExI4b3BZTsAY=",
             })))),
@@ -56,7 +50,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "$CC -O3 -lbz2 bspatch.c -o bspatch\n$CC -O3 -lbz2 bsdiff.c  -o bsdiff\n",
       installPhase: "mkdir -p $out/bin\nmkdir -p $out/share/man/man1\n\ncp bsdiff    $out/bin\ncp bspatch   $out/bin\ncp bsdiff.1  $out/share/man/man1\ncp bspatch.1 $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Efficient binary diff/patch tool",
         homepage: "https://www.daemonology.net/bsdiff/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-eclipse.nix", [[["name", 35, 5], ["exec", 36, 5], ["icon", 37, 5], ["comment", 38, 5], ["desktopName", 39, 5], ["genericName", 40, 5], ["categories", 41, 5]], [["updateScript", 114, 12]], [["homepage", 117, 5], ["description", 118, 13], ["sourceProvenance", 119, 5], ["platforms", 120, 5], ["maintainers", 124, 5]], [["pname", 32, 11], ["version", 32, 17], ["src", 32, 25], ["desktopItem", 34, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 48, 3], ["buildCommand", 63, 3], ["passthru", 114, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeDesktopItem: false, freetype: false, fontconfig: false, libx11: false, libxrender: false, zlib: false, jdk: false, glib: false, "glib-networking": false, gtk: false, libxtst: false, libsecret: false, "gsettings-desktop-schemas": false, webkitgtk_4_1: false, makeWrapper: false, perl: false }, ellipsis: true };
 const formals$2 = { args: { pname: false, src: true, sources: true, description: false, version: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-eclipse.nix", [["name", 35, 5], ["exec", 36, 5], ["icon", 37, 5], ["comment", 38, 5], ["desktopName", 39, 5], ["genericName", 40, 5], ["categories", 41, 5]]);
-const pos$2 = nix.positions(here + "/build-eclipse.nix", [["updateScript", 114, 12]]);
-const pos$3 = nix.positions(here + "/build-eclipse.nix", [["homepage", 117, 5], ["description", 118, 13], ["sourceProvenance", 119, 5], ["platforms", 120, 5], ["maintainers", 124, 5]]);
-const pos$4 = nix.positions(here + "/build-eclipse.nix", [["pname", 32, 11], ["version", 32, 17], ["src", 32, 25], ["desktopItem", 34, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 48, 3], ["buildCommand", 63, 3], ["passthru", 114, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +34,12 @@ export default nix.lambda((args) => (() => {
     const description = nix.arg($_1, "description");
     const version = nix.arg($_1, "version");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname,
         version: version,
         src: src,
         desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "Eclipse",
             exec: "eclipse",
             icon: "eclipse",
@@ -96,9 +93,9 @@ ln -s $out/eclipse/icon.xpm $out/share/pixmaps/eclipse.xpm
 # ensure eclipse.ini does not try to use a justj jvm, as those aren't compatible with nix
 perl -i -p0e 's|-vm\\nplugins/org.eclipse.justj.*/jre/bin.*\\n||' $out/eclipse/eclipse.ini
 `),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           homepage: "https://www.eclipse.org/",
           description: description,
           sourceProvenance: nix.thunk(() => (() => {

@@ -2,29 +2,20 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kubo-fuse.nix", [[["maintainers", 5, 5]], [["enable", 15, 9], ["autoMount", 16, 9]], [["kubo", 14, 16]], [["isNormalUser", 19, 9], ["extraGroups", 20, 9]], [["isNormalUser", 23, 9]], [["alice", 18, 19], ["bob", 22, 19]], [["users", 18, 13]], [["services", 14, 7], ["users", 18, 7]], [["machine", 11, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 11, 3], ["testScript", 27, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/kubo-fuse.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/kubo-fuse.nix", [["enable", 15, 9], ["autoMount", 16, 9]]);
-const pos$3 = nix.positions(here + "/kubo-fuse.nix", [["kubo", 14, 16]]);
-const pos$4 = nix.positions(here + "/kubo-fuse.nix", [["isNormalUser", 19, 9], ["extraGroups", 20, 9]]);
-const pos$5 = nix.positions(here + "/kubo-fuse.nix", [["isNormalUser", 23, 9]]);
-const pos$6 = nix.positions(here + "/kubo-fuse.nix", [["alice", 18, 19], ["bob", 22, 19]]);
-const pos$7 = nix.positions(here + "/kubo-fuse.nix", [["users", 18, 13]]);
-const pos$8 = nix.positions(here + "/kubo-fuse.nix", [["services", 14, 7], ["users", 18, 7]]);
-const pos$9 = nix.positions(here + "/kubo-fuse.nix", [["machine", 11, 9]]);
-const pos$10 = nix.positions(here + "/kubo-fuse.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 11, 3], ["testScript", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "kubo-fuse",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "mguentner")),
           nix.thunk(() => nix.lookup(w, "Luflosi")),
@@ -32,26 +23,26 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            kubo: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, autoMount: true })),
+            [nix.POS]: $pos[2],
+            kubo: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, autoMount: true })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               alice: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 isNormalUser: true,
                 extraGroups: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "kubo", "group"))]),
               })),
-              bob: nix.thunk(() => ({ [nix.POS]: pos$5, isNormalUser: true })),
+              bob: nix.thunk(() => ({ [nix.POS]: $pos[4], isNormalUser: true })),
             })),
           })),
         };

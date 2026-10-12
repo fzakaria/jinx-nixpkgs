@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["minimalOCamlVersion", 11, 3], ["pname", 12, 3], ["version", 13, 3], ["duneVersion", 15, 3], ["src", 17, 3], ["checkInputs", 22, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, ounit: false, angstrom: false, stringext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["minimalOCamlVersion", 11, 3], ["pname", 12, 3], ["version", 13, 3], ["duneVersion", 15, 3], ["src", 17, 3], ["checkInputs", 22, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.4.0";
       const duneVersion = "3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-${pname}/releases/download/v${version}/${pname}-${version}.tbz`),
           sha256: "cdabaf6ef5cd2161e59cc7b74c6e4a68ecb80a9f4e96002e338e1b6bf17adec4",
         }))));
@@ -29,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [angstrom, stringext]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mirage/ocaml-uri",
         description: "RFC3986 URI parsing library for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         minimalOCamlVersion,
         pname,
         version,

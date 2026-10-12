@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["name", 77, 7], ["desktopName", 78, 7], ["genericName", 79, 7], ["exec", 80, 7], ["path", 81, 7], ["icon", 82, 7], ["categories", 83, 7]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5], ["sourceProvenance", 96, 5], ["maintainers", 97, 5]], [["pname", 22, 3], ["version", 23, 3], ["src_version", 24, 3], ["src", 26, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["installPhase", 56, 3], ["postFixup", 67, 3], ["desktopItems", 75, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, copyDesktopItems: false, makeDesktopItem: false, dpkg: false, "alsa-lib-with-plugins": false, ffmpeg_4: false, libGL: false, libGLU: false, libarchive: false, libgcc: false, qt5: false, "libusb-compat-0_1": false, libusb1: false, libz: false, portaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 77, 7], ["desktopName", 78, 7], ["genericName", 79, 7], ["exec", 80, 7], ["path", 81, 7], ["icon", 82, 7], ["categories", 83, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5], ["sourceProvenance", 96, 5], ["maintainers", 97, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src_version", 24, 3], ["src", 26, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["installPhase", 56, 3], ["postFixup", 67, 3], ["desktopItems", 75, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const libz = nix.arg($, "libz");
   const portaudio = nix.arg($, "portaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "magicq",
       version: "1.9.7.3",
       src_version: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://secure.chamsys.co.uk/downloads/v${nix.sel(finalAttrs, "src_version")}/magicq_ubuntu_v${nix.sel(finalAttrs, "src_version")}.deb`),
           hash: "sha256-FsVSt9iIhwL/wI2XYmKJrA7800wFQ2qJ/uF3bbMLw0Q=",
         })))),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "mkdir $out/bin\nmakeWrapper $out/opt/magicq/bin/mqqt $out/bin/magicq \\\n--chdir $out/opt/magicq\nwrapQtApp $out/bin/magicq\nsed \"s|@out@|$out|g\" -i $out/share/applications/magicq.desktop\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "magicq",
             desktopName: "MagicQ by ChamSys Ltd.",
             genericName: "MagicQ",
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "MagicQ Lighting Console Software",
         homepage: "https://chamsyslighting.com/product/magicq-software/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

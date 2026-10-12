@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["name", 34, 7], ["exec", 35, 7], ["icon", 36, 7], ["desktopName", 37, 7], ["comment", 38, 7], ["categories", 39, 7]], [["modern", 61, 25]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["build-system", 27, 3], ["desktopItems", 32, 3], ["dependencies", 46, 3], ["optional-dependencies", 61, 3], ["postInstall", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3Packages: false, makeDesktopItem: false, copyDesktopItems: false, enableModern: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 7], ["exec", 35, 7], ["icon", 36, 7], ["desktopName", 37, 7], ["comment", 38, 7], ["categories", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["modern", 61, 25]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["build-system", 27, 3], ["desktopItems", 32, 3], ["dependencies", 46, 3], ["optional-dependencies", 61, 3], ["postInstall", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Varbin",
           repo: "ausweiskopie",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       })());
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Meine Ausweiskopie",
             exec: "ausweiskopie",
             icon: "ausweiskopie",
@@ -60,12 +56,12 @@ export default nix.lambda((args) => (() => {
           ]))));
       })());
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         modern: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "ttkbootstrap"))]),
       }));
       const postInstall = "install -Dm644 ./src/ausweiskopie/resources/icon_colored.png $out/share/icons/hicolor/256x256/apps/ausweiskopie.png\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Create privacy friendly and legal copies of your Ausweisdokument",
         homepage: "https://github.com/Varbin/ausweiskopie",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -77,7 +73,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ausweiskopie",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

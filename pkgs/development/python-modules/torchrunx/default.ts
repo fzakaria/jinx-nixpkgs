@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 46, 3], ["nativeCheckInputs", 48, 3], ["disabledTests", 54, 3], ["__darwinAllowLocalNetworking", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "uv-build": false, cloudpickle: false, fabric: false, numpy: false, torch: false, pytestCheckHook: false, submitit: false, transformers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 46, 3], ["nativeCheckInputs", 48, 3], ["disabledTests", 54, 3], ["__darwinAllowLocalNetworking", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const submitit = nix.arg($, "submitit");
   const transformers = nix.arg($, "transformers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "torchrunx",
       version: "0.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apoorvkh",
           repo: "torchrunx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.concat(["test_launch", "test_submitit", "test_distributed_train"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_error", "test_logging", "test_simple_localhost"])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Easily run PyTorch on multiple GPUs & machines",
         homepage: "https://github.com/apoorvkh/torchrunx",
         changelog: nix.thunk(() => nix.str`https://github.com/apoorvkh/torchrunx/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

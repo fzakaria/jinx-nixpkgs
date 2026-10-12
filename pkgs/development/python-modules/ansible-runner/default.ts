@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["description", 113, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["mainProgram", 118, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 49, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 61, 3], ["preCheck", 75, 3], ["disabledTests", 80, 3], ["disabledTestPaths", 98, 3], ["pythonImportsCheck", 110, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, packaging: false, pexpect: false, "python-daemon": false, pyyaml: false, addBinToPathHook: false, "ansible-core": false, glibcLocales: false, mock: false, openssh: false, "pytest-mock": false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 113, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["mainProgram", 118, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 49, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 61, 3], ["preCheck", 75, 3], ["disabledTests", 80, 3], ["disabledTestPaths", 98, 3], ["pythonImportsCheck", 110, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ansible",
           repo: "ansible-runner",
           tag: version,
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.concat(["test/integration/test_runner.py", "test/unit/test_runner.py"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test/integration", "test/unit/config/test__base.py"]))));
       const pythonImportsCheck = nix.thunk(() => ["ansible_runner"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Helps when interfacing with Ansible",
         homepage: "https://github.com/ansible/ansible-runner",
         changelog: nix.thunk(() => nix.str`https://github.com/ansible/ansible-runner/releases/tag/${version}`),
@@ -86,7 +84,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ansible-runner",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

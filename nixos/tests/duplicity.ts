@@ -2,46 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/duplicity.nix", [[["maintainers", 18, 8]], [["mode", 26, 22]], [["d", 26, 20]], [["mode", 28, 11], ["argument", 29, 11]], [["f", 27, 34]], [["mode", 32, 11], ["argument", 33, 11]], [["f", 31, 38]], [["10-duplicity-test", 25, 33]], [["settings", 25, 24]], [["tmpfiles", 25, 15]], [["enable", 38, 27]], [["hostNames", 40, 11], ["publicKey", 41, 11]], [["server", 39, 20]], [["systemd-ssh-proxy", 38, 9], ["knownHosts", 39, 9], ["extraConfig", 43, 9]], [["ssh", 37, 16]], [["enable", 50, 9], ["root", 51, 9], ["exclude", 52, 9], ["targetUrl", 53, 9], ["frequency", 54, 9], ["fullIfOlderThan", 55, 9], ["extraFlags", 56, 9]], [["duplicity", 49, 16]], [["systemd", 25, 7], ["programs", 37, 7], ["services", 49, 7]], [["systemPackages", 67, 19]], [["mode", 70, 26]], [["d", 70, 24]], [["mode", 71, 27]], [["d", 71, 25]], [["/root/backup", 70, 9], ["/root/restore", 71, 9]], [["10-duplicity-test", 69, 33]], [["settings", 69, 24]], [["tmpfiles", 69, 15]], [["type", 78, 13], ["path", 79, 13]], [["enable", 75, 9], ["hostKeys", 76, 9]], [["openssh", 74, 16]], [["keys", 84, 47]], [["authorizedKeys", 84, 32]], [["openssh", 84, 24]], [["root", 84, 19]], [["users", 84, 13]], [["environment", 67, 7], ["systemd", 69, 7], ["services", 74, 7], ["users", 84, 7]], [["client", 20, 14], ["server", 64, 14]], [["name", 17, 3], ["meta", 18, 3], ["containers", 20, 3], ["testScript", 87, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/duplicity.nix", [["maintainers", 18, 8]]);
-const pos$2 = nix.positions(here + "/duplicity.nix", [["mode", 26, 22]]);
-const pos$3 = nix.positions(here + "/duplicity.nix", [["d", 26, 20]]);
-const pos$4 = nix.positions(here + "/duplicity.nix", [["mode", 28, 11], ["argument", 29, 11]]);
-const pos$5 = nix.positions(here + "/duplicity.nix", [["f", 27, 34]]);
-const pos$6 = nix.positions(here + "/duplicity.nix", [["mode", 32, 11], ["argument", 33, 11]]);
-const pos$7 = nix.positions(here + "/duplicity.nix", [["f", 31, 38]]);
-const pos$8 = nix.positions(here + "/duplicity.nix", [["10-duplicity-test", 25, 33]]);
-const pos$9 = nix.positions(here + "/duplicity.nix", [["settings", 25, 24]]);
-const pos$10 = nix.positions(here + "/duplicity.nix", [["tmpfiles", 25, 15]]);
-const pos$11 = nix.positions(here + "/duplicity.nix", [["enable", 38, 27]]);
-const pos$12 = nix.positions(here + "/duplicity.nix", [["hostNames", 40, 11], ["publicKey", 41, 11]]);
-const pos$13 = nix.positions(here + "/duplicity.nix", [["server", 39, 20]]);
-const pos$14 = nix.positions(here + "/duplicity.nix", [["systemd-ssh-proxy", 38, 9], ["knownHosts", 39, 9], ["extraConfig", 43, 9]]);
-const pos$15 = nix.positions(here + "/duplicity.nix", [["ssh", 37, 16]]);
-const pos$16 = nix.positions(here + "/duplicity.nix", [["enable", 50, 9], ["root", 51, 9], ["exclude", 52, 9], ["targetUrl", 53, 9], ["frequency", 54, 9], ["fullIfOlderThan", 55, 9], ["extraFlags", 56, 9]]);
-const pos$17 = nix.positions(here + "/duplicity.nix", [["duplicity", 49, 16]]);
-const pos$18 = nix.positions(here + "/duplicity.nix", [["systemd", 25, 7], ["programs", 37, 7], ["services", 49, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/duplicity.nix", [["systemPackages", 67, 19]]);
-const pos$20 = nix.positions(here + "/duplicity.nix", [["mode", 70, 26]]);
-const pos$21 = nix.positions(here + "/duplicity.nix", [["d", 70, 24]]);
-const pos$22 = nix.positions(here + "/duplicity.nix", [["mode", 71, 27]]);
-const pos$23 = nix.positions(here + "/duplicity.nix", [["d", 71, 25]]);
-const pos$24 = nix.positions(here + "/duplicity.nix", [["/root/backup", 70, 9], ["/root/restore", 71, 9]]);
-const pos$25 = nix.positions(here + "/duplicity.nix", [["10-duplicity-test", 69, 33]]);
-const pos$26 = nix.positions(here + "/duplicity.nix", [["settings", 69, 24]]);
-const pos$27 = nix.positions(here + "/duplicity.nix", [["tmpfiles", 69, 15]]);
-const pos$28 = nix.positions(here + "/duplicity.nix", [["type", 78, 13], ["path", 79, 13]]);
-const pos$29 = nix.positions(here + "/duplicity.nix", [["enable", 75, 9], ["hostKeys", 76, 9]]);
-const pos$30 = nix.positions(here + "/duplicity.nix", [["openssh", 74, 16]]);
-const pos$31 = nix.positions(here + "/duplicity.nix", [["keys", 84, 47]]);
-const pos$32 = nix.positions(here + "/duplicity.nix", [["authorizedKeys", 84, 32]]);
-const pos$33 = nix.positions(here + "/duplicity.nix", [["openssh", 84, 24]]);
-const pos$34 = nix.positions(here + "/duplicity.nix", [["root", 84, 19]]);
-const pos$35 = nix.positions(here + "/duplicity.nix", [["users", 84, 13]]);
-const pos$36 = nix.positions(here + "/duplicity.nix", [["environment", 67, 7], ["systemd", 69, 7], ["services", 74, 7], ["users", 84, 7]]);
-const pos$37 = nix.positions(here + "/duplicity.nix", [["client", 20, 14], ["server", 64, 14]]);
-const pos$38 = nix.positions(here + "/duplicity.nix", [["name", 17, 3], ["meta", 18, 3], ["containers", 20, 3], ["testScript", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,50 +20,53 @@ export default nix.lambda((args) => (() => {
   const excludedFile = "secret.txt";
   const excludedFileData = "Should not be backed up!";
   return {
-    [nix.POS]: pos$38,
+    [nix.POS]: $pos[37],
     name: "duplicity",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "h7x4"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$37,
+      [nix.POS]: $pos[36],
       client: nix.thunk(() => (() => {
         const dataDir = "/data";
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 "10-duplicity-test": nix.thunk(() => nix.attrsDyn({}, [
-                  [dataDir, nix.thunk(() => ({ [nix.POS]: pos$3, d: nix.thunk(() => ({ [nix.POS]: pos$2, mode: "0600" })) }))],
+                  [dataDir, nix.thunk(() => ({
+                    [nix.POS]: $pos[2],
+                    d: nix.thunk(() => ({ [nix.POS]: $pos[1], mode: "0600" })),
+                  }))],
                   [nix.str`${dataDir}/${keepFile}`, nix.thunk(() => ({
-                    [nix.POS]: pos$5,
-                    f: nix.thunk(() => ({ [nix.POS]: pos$4, mode: "0644", argument: keepFileData })),
+                    [nix.POS]: $pos[4],
+                    f: nix.thunk(() => ({ [nix.POS]: $pos[3], mode: "0644", argument: keepFileData })),
                   }))],
                   [nix.str`${dataDir}/${excludedFile}`, nix.thunk(() => ({
-                    [nix.POS]: pos$7,
-                    f: nix.thunk(() => ({ [nix.POS]: pos$6, mode: "0644", argument: excludedFileData })),
+                    [nix.POS]: $pos[6],
+                    f: nix.thunk(() => ({ [nix.POS]: $pos[5], mode: "0644", argument: excludedFileData })),
                   }))],
                 ])),
               })),
             })),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             ssh: nix.thunk(() => ({
-              [nix.POS]: pos$14,
-              "systemd-ssh-proxy": nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
+              [nix.POS]: $pos[13],
+              "systemd-ssh-proxy": nix.thunk(() => ({ [nix.POS]: $pos[10], enable: false })),
               knownHosts: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 server: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   hostNames: nix.thunk(() => ["server"]),
                   publicKey: snakeOilPublicKey,
                 })),
@@ -111,9 +77,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             duplicity: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               enable: true,
               root: dataDir,
               exclude: nix.thunk(() => [nix.thunk(() => nix.str`${dataDir}/${excludedFile}`)]),
@@ -129,33 +95,39 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "duplicity"))]),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 "10-duplicity-test": nix.thunk(() => ({
-                  [nix.POS]: pos$24,
-                  "/root/backup": nix.thunk(() => ({ [nix.POS]: pos$21, d: nix.thunk(() => ({ [nix.POS]: pos$20, mode: "0700" })) })),
-                  "/root/restore": nix.thunk(() => ({ [nix.POS]: pos$23, d: nix.thunk(() => ({ [nix.POS]: pos$22, mode: "0700" })) })),
+                  [nix.POS]: $pos[23],
+                  "/root/backup": nix.thunk(() => ({
+                    [nix.POS]: $pos[20],
+                    d: nix.thunk(() => ({ [nix.POS]: $pos[19], mode: "0700" })),
+                  })),
+                  "/root/restore": nix.thunk(() => ({
+                    [nix.POS]: $pos[22],
+                    d: nix.thunk(() => ({ [nix.POS]: $pos[21], mode: "0700" })),
+                  })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               enable: true,
               hostKeys: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$28,
+                  [nix.POS]: $pos[27],
                   type: "ecdsa",
                   path: nix.thunk(() => nix.str`${snakeOilPrivateKey}`),
                 })),
@@ -163,14 +135,14 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               root: nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$32,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$31, keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
+                  [nix.POS]: $pos[31],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[30], keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
                 })),
               })),
             })),

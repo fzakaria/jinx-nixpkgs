@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["homepage", 29, 5], ["description", 30, 5], ["sourceProvenance", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["extraInstallCommands", 19, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["sourceProvenance", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["extraInstallCommands", 19, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const appimageTools = nix.arg($, "appimageTools");
   return nix.app(nix.sel(appimageTools, "wrapType2"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mendeley",
       version: "2.149.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://static.mendeley.com/bin/desktop/mendeley-reference-manager-${nix.sel(finalAttrs, "version")}-x86_64.AppImage`),
           hash: "sha256-XarirKKV7hyW+I5kfRLWX78yS2BiLJOL16/Vw0vGswg=",
         })))),
@@ -31,7 +29,7 @@ substituteInPlace $out/share/applications/mendeley-reference-manager.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=mendeley'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.mendeley.com",
         description: "Reference manager and academic social network",
         sourceProvenance: nix.thunk(() => (() => {

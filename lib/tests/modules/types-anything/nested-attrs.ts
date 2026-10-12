@@ -2,54 +2,44 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nested-attrs.nix", [[["type", 5, 5]], [["value", 4, 11]], [["foo", 10, 13]], [["value", 10, 7]], [["foo", 13, 16]], [["l1", 13, 13]], [["value", 13, 7]], [["foo", 16, 19]], [["l2", 16, 16]], [["l1", 16, 13]], [["value", 16, 7]], [["foo", 19, 22]], [["l3", 19, 19]], [["l2", 19, 16]], [["l1", 19, 13]], [["value", 19, 7]], [["options", 4, 3], ["config", 8, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nested-attrs.nix", [["type", 5, 5]]);
-const pos$2 = nix.positions(here + "/nested-attrs.nix", [["value", 4, 11]]);
-const pos$3 = nix.positions(here + "/nested-attrs.nix", [["foo", 10, 13]]);
-const pos$4 = nix.positions(here + "/nested-attrs.nix", [["value", 10, 7]]);
-const pos$5 = nix.positions(here + "/nested-attrs.nix", [["foo", 13, 16]]);
-const pos$6 = nix.positions(here + "/nested-attrs.nix", [["l1", 13, 13]]);
-const pos$7 = nix.positions(here + "/nested-attrs.nix", [["value", 13, 7]]);
-const pos$8 = nix.positions(here + "/nested-attrs.nix", [["foo", 16, 19]]);
-const pos$9 = nix.positions(here + "/nested-attrs.nix", [["l2", 16, 16]]);
-const pos$10 = nix.positions(here + "/nested-attrs.nix", [["l1", 16, 13]]);
-const pos$11 = nix.positions(here + "/nested-attrs.nix", [["value", 16, 7]]);
-const pos$12 = nix.positions(here + "/nested-attrs.nix", [["foo", 19, 22]]);
-const pos$13 = nix.positions(here + "/nested-attrs.nix", [["l3", 19, 19]]);
-const pos$14 = nix.positions(here + "/nested-attrs.nix", [["l2", 19, 16]]);
-const pos$15 = nix.positions(here + "/nested-attrs.nix", [["l1", 19, 13]]);
-const pos$16 = nix.positions(here + "/nested-attrs.nix", [["value", 19, 7]]);
-const pos$17 = nix.positions(here + "/nested-attrs.nix", [["options", 4, 3], ["config", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "anything")) })))),
+      [nix.POS]: $pos[1],
+      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[0], type: nix.thunk(() => nix.sel(lib, "types", "anything")) })))),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-        nix.thunk(() => ({ [nix.POS]: pos$4, value: nix.thunk(() => ({ [nix.POS]: pos$3, foo: null })) })),
         nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          value: nix.thunk(() => ({ [nix.POS]: pos$6, l1: nix.thunk(() => ({ [nix.POS]: pos$5, foo: null })) })),
+          [nix.POS]: $pos[3],
+          value: nix.thunk(() => ({ [nix.POS]: $pos[2], foo: null })),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[6],
+          value: nix.thunk(() => ({ [nix.POS]: $pos[5], l1: nix.thunk(() => ({ [nix.POS]: $pos[4], foo: null })) })),
+        })),
+        nix.thunk(() => ({
+          [nix.POS]: $pos[10],
           value: nix.thunk(() => ({
-            [nix.POS]: pos$10,
-            l1: nix.thunk(() => ({ [nix.POS]: pos$9, l2: nix.thunk(() => ({ [nix.POS]: pos$8, foo: null })) })),
+            [nix.POS]: $pos[9],
+            l1: nix.thunk(() => ({ [nix.POS]: $pos[8], l2: nix.thunk(() => ({ [nix.POS]: $pos[7], foo: null })) })),
           })),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           value: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             l1: nix.thunk(() => ({
-              [nix.POS]: pos$14,
-              l2: nix.thunk(() => ({ [nix.POS]: pos$13, l3: nix.thunk(() => ({ [nix.POS]: pos$12, foo: null })) })),
+              [nix.POS]: $pos[13],
+              l2: nix.thunk(() => ({
+                [nix.POS]: $pos[12],
+                l3: nix.thunk(() => ({ [nix.POS]: $pos[11], foo: null })),
+              })),
             })),
           })),
         })),

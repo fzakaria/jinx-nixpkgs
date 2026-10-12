@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sexp.nix", [[["description", 26, 5]], [["pname", 10, 3], ["version", 12, 20], ["src", 12, 28], ["duneVersion", 14, 3], ["propagatedBuildInputs", 16, 3], ["checkInputs", 18, 3], ["doCheck", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, ipaddr: false, "ipaddr-cstruct": false, ounit2: false, ppx_sexp_conv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sexp.nix", [["description", 26, 5]]);
-const pos$2 = nix.positions(here + "/sexp.nix", [["pname", 10, 3], ["version", 12, 20], ["src", 12, 28], ["duneVersion", 14, 3], ["propagatedBuildInputs", 16, 3], ["checkInputs", 18, 3], ["doCheck", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const ounit2 = nix.arg($, "ounit2");
   const ppx_sexp_conv = nix.arg($, "ppx_sexp_conv");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ipaddr-sexp",
       version: nix.thunk(() => nix.attr(ipaddr, "version")),
       src: nix.thunk(() => nix.attr(ipaddr, "src")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ipaddr_cstruct, ounit2, ppx_sexp_conv]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(ipaddr, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Library for manipulation of IP address representations using sexp",
       })),
     })));

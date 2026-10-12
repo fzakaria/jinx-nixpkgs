@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["mainProgram", 34, 5], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["npmDepsHash", 20, 3], ["buildPhase", 22, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["mainProgram", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["npmDepsHash", 20, 3], ["buildPhase", 22, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "3.1.10";
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ejs",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mde",
           repo: "ejs",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-829eWfJiMw9KRlhdmzD0ha//bgUQ5nPEzO+ayUPLxXY=",
       buildPhase: "runHook preBuild\n\n./node_modules/.bin/jake build\n\nrunHook postBuild\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Embedded JavaScript templates",
         homepage: "https://ejs.co",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["url", 41, 5], ["hash", 42, 5]], [["url", 58, 7], ["hash", 59, 7]], [["description", 121, 5], ["homepage", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["platforms", 125, 5], ["mainProgram", 126, 5]], [["version", 37, 3], ["pname", 38, 3], ["src", 40, 3], ["postPatch", 45, 3], ["strictDeps", 52, 3], ["patches", 54, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 72, 3], ["hardeningDisable", 90, 3], ["makeFlags", 92, 3], ["enableParallelBuilding", 99, 3], ["postInstall", 101, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gettext: false, gperf: false, imagemagick: false, makeWrapper: false, "pkg-config": false, SDL2: false, cairo: false, freetype: false, fribidi: false, libimagequant: false, libpaper: false, libpng: false, librsvg: false, libxml2: false, pango: false, SDL2_gfx: false, SDL2_image: false, SDL2_mixer: false, SDL2_Pango: false, SDL2_ttf: false, netpbm: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 58, 7], ["hash", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 121, 5], ["homepage", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["platforms", 125, 5], ["mainProgram", 126, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 37, 3], ["pname", 38, 3], ["src", 40, 3], ["postPatch", 45, 3], ["strictDeps", 52, 3], ["patches", 54, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 72, 3], ["hardeningDisable", 90, 3], ["makeFlags", 92, 3], ["enableParallelBuilding", 99, 3], ["postInstall", 101, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,16 +33,16 @@ export default nix.lambda((args) => (() => {
   const netpbm = nix.arg($, "netpbm");
   const fetchpatch = nix.arg($, "fetchpatch");
   const stamps = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "mirror://sourceforge/project/tuxpaint/tuxpaint-stamps/2025-05-26/tuxpaint-stamps-2025.05.26.tar.gz",
       hash: "sha256-CfSin4A2yTpkwoE046+u+0udlaCaceaPt1N/PF+ClJ8=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "0.9.35",
       pname: "tuxpaint",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://sourceforge/tuxpaint/${nix.sel(finalAttrs, "version")}/tuxpaint-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-wcGK+RvnfpT9qrLJKCBMTDm6OaxdovRBqvLsq22L0K0=",
         })))),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-gfx/tuxpaint/files/tuxpaint-0.9.35-glibc-2.43.patch?id=51c28b814990551897631be7a222af2d922030a9",
             hash: "sha256-xkV73GoCd/epeyWfLHq2MNmRNfKaledoFsukwVKiZSI=",
           })))),
@@ -103,7 +99,7 @@ wrapProgram $out/bin/tuxpaint-import \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [netpbm]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open Source Drawing Software for Children",
         homepage: "http://www.tuxpaint.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

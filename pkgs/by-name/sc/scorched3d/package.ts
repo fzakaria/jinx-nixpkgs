@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["sha256", 28, 5]], [["url", 54, 7], ["sha256", 55, 7]], [["url", 58, 7], ["sha256", 59, 7]], [["NIX_LDFLAGS", 68, 7]], [["homepage", 71, 5], ["description", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5]], [["version", 24, 3], ["pname", 25, 3], ["src", 26, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 49, 3], ["patches", 51, 3], ["sourceRoot", 64, 3], ["configureFlags", 66, 3], ["env", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libGLU: false, libGL: false, glew: false, "pkg-config": false, "openal-soft": false, freealut: false, wxwidgets_3_2: false, libogg: false, freetype: false, libvorbis: false, fftwSinglePrec: false, SDL: false, SDL_net: false, expat: false, libjpeg: false, libpng: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 54, 7], ["sha256", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 58, 7], ["sha256", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 68, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 71, 5], ["description", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 24, 3], ["pname", 25, 3], ["src", 26, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 49, 3], ["patches", 51, 3], ["sourceRoot", 64, 3], ["configureFlags", 66, 3], ["env", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "44",
       pname: "scorched3d",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/scorched3d/Scorched3D-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           sha256: "1fldi9pn7cz6hc9h70pacgb7sbykzcac44yp3pkhn0qh4axj10qw",
         })))),
@@ -61,12 +56,12 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./file-existence.patch"),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/games-strategy/scorched3d/files/scorched3d-44-fix-c++14.patch?id=1bbcfc9ae3dfdfcbdd35151cb7b6050776215e4d",
             sha256: "1farmjxbc2wm4scsdbdnvh29fipnb6mp6z85hxz4bx6n9kbc8y7n",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://sources.debian.org/data/main/s/scorched3d/44%2Bdfsg-7/debian/patches/wx3.0-compat.patch",
             sha256: "sha256-Y5U5yYNT5iMqhdRaDMFtZ4K7aD+pugFZP0jLh7rdDp8=",
           })))),
@@ -74,9 +69,9 @@ export default nix.lambda((args) => (() => {
       ]),
       sourceRoot: "scorched",
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-fftw=${nix.sel(fftwSinglePrec, "dev")}`)]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_LDFLAGS: "-lopenal" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_LDFLAGS: "-lopenal" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "http://scorched3d.co.uk/",
         description: "3D Clone of the classic Scorched Earth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

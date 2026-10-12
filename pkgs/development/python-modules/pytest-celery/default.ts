@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["all", 63, 5], ["redis", 70, 5], ["memcached", 71, 5], ["sqs", 72, 5]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["pythonRelaxDeps", 40, 3], ["pythonRemoveDeps", 44, 3], ["build-system", 49, 3], ["buildInputs", 51, 3], ["dependencies", 53, 3], ["optional-dependencies", 62, 3], ["doCheck", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, debugpy: false, docker: false, fetchFromGitHub: false, kombu: false, "poetry-core": false, psutil: false, "pytest-docker-tools": false, pytest: false, tenacity: false, redis: false, "python-memcached": false, boto3: false, botocore: false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 63, 5], ["redis", 70, 5], ["memcached", 71, 5], ["sqs", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["pythonRelaxDeps", 40, 3], ["pythonRemoveDeps", 44, 3], ["build-system", 49, 3], ["buildInputs", 51, 3], ["dependencies", 53, 3], ["optional-dependencies", 62, 3], ["doCheck", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "celery",
           repo: "pytest-celery",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [pytest]);
       const dependencies = nix.thunk(() => [debugpy, docker, kombu, psutil, pytest_docker_tools, tenacity]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [redis, python_memcached, boto3, botocore, urllib3]),
         redis: nix.thunk(() => [redis]),
         memcached: nix.thunk(() => [python_memcached]),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pytest plugin to enable celery.contrib.pytest",
         homepage: "https://github.com/celery/pytest-celery",
         changelog: nix.thunk(() => nix.str`https://github.com/celery/pytest-celery/blob/${nix.sel(src, "tag")}/Changelog.rst`),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

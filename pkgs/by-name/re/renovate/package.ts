@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["pname", 56, 26], ["version", 56, 32], ["src", 56, 40], ["pnpm", 57, 13], ["fetcherVersion", 58, 5], ["hash", 59, 5]], [["COREPACK_ENABLE_STRICT", 62, 7]], [["package", 103, 39]], [["version", 103, 7], ["vm-test", 104, 7]], [["extraArgs", 107, 7]], [["tests", 102, 5], ["updateScript", 106, 5]], [["description", 115, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5], ["mainProgram", 123, 5], ["platforms", 124, 5]], [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 42, 3], ["pnpmDeps", 55, 3], ["env", 62, 3], ["buildPhase", 64, 3], ["installPhase", 87, 3], ["passthru", 101, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, nodejs_24: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, python3: false, testers: false, xcbuild: false, nixosTests: false, "nix-update-script": false, "yq-go": false, cctools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 56, 26], ["version", 56, 32], ["src", 56, 40], ["pnpm", 57, 13], ["fetcherVersion", 58, 5], ["hash", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["COREPACK_ENABLE_STRICT", 62, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 103, 39]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 103, 7], ["vm-test", 104, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 107, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 102, 5], ["updateScript", 106, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 115, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5], ["mainProgram", 123, 5], ["platforms", 124, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 42, 3], ["pnpmDeps", 55, 3], ["env", 62, 3], ["buildPhase", 64, 3], ["installPhase", 87, 3], ["passthru", 101, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const nodejs = nodejs_24;
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "renovate",
       version: "44.126.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "renovatebot",
           repo: "renovate",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +42,7 @@ export default nix.lambda((args) => (() => {
 `),
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper, nodejs, pnpmConfigHook, pnpm, python3, yq_go], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcbuild, cctools])))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -58,7 +50,7 @@ export default nix.lambda((args) => (() => {
           fetcherVersion: 4n,
           hash: "sha256-ty0lMoQOtfUWy1mXN9Vk0E59qaqQV4RrHEI2Lus9tnk=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, COREPACK_ENABLE_STRICT: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], COREPACK_ENABLE_STRICT: 0n })),
       buildPhase: nix.thunk(() => nix.add(nix.str`runHook preBuild
 
 # relax nodejs version
@@ -77,22 +69,22 @@ makeWrapper "${nix.app(nix.sel(lib, "getExe"), nodejs)}" "$out/bin/renovate-conf
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "vm-test": nix.thunk(() => nix.sel(nixosTests, "renovate")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             extraArgs: nix.thunk(() => ["--version-regex", "^(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Cross-platform Dependency Automation by Mend.io",
         homepage: "https://github.com/renovatebot/renovate",
         changelog: nix.thunk(() => nix.str`https://github.com/renovatebot/renovate/releases/tag/${nix.sel(finalAttrs, "version")}`),

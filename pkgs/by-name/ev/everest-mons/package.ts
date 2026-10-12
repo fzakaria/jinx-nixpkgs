@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 12, 26], ["pname", 13, 5], ["hash", 14, 5]], [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["build-system", 17, 3], ["pyproject", 21, 3], ["dependencies", 22, 3], ["pythonImportsCheck", 33, 3], ["nativeCheckInputs", 34, 3], ["preCheck", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 12, 26], ["pname", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["build-system", 17, 3], ["pyproject", 21, 3], ["dependencies", 22, 3], ["pythonImportsCheck", 33, 3], ["nativeCheckInputs", 34, 3], ["preCheck", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "everest-mons",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "mons",
           hash: "sha256-E1yBTwZ4T2C3sXoLGz0kAcvas0q8tO6Aaiz3SHrT4ZE=",
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       })()),
       preCheck: "export HOME=$TMPDIR\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://mons.coloursofnoise.ca/",
         description: "Commandline Everest installer and mod manager for Celeste",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

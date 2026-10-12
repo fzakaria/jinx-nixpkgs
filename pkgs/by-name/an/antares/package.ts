@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["url", 32, 7], ["hash", 33, 7]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 64, 7], ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 65, 7]], [["name", 69, 7], ["desktopName", 70, 7], ["exec", 71, 7], ["icon", 72, 7], ["terminal", 73, 7], ["type", 74, 7], ["startupWMClass", 75, 7], ["comment", 76, 7], ["categories", 77, 7]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["npmDepsHash", 24, 3], ["patches", 26, 3], ["nodejs", 37, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 41, 3], ["npmBuildScript", 46, 3], ["installPhase", 48, 3], ["npmFlags", 63, 3], ["env", 64, 3], ["desktopItems", 67, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, buildNpmPackage: false, electron: false, nodejs_22: false, makeDesktopItem: false, copyDesktopItems: false, icoutils: false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 64, 7], ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 65, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 69, 7], ["desktopName", 70, 7], ["exec", 71, 7], ["icon", 72, 7], ["terminal", 73, 7], ["type", 74, 7], ["startupWMClass", 75, 7], ["comment", 76, 7], ["categories", 77, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["npmDepsHash", 24, 3], ["patches", 26, 3], ["nodejs", 37, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 41, 3], ["npmBuildScript", 46, 3], ["installPhase", 48, 3], ["npmFlags", 63, 3], ["env", 64, 3], ["desktopItems", 67, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "antares";
       const version = "0.7.35";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "antares-sql",
           repo: "antares",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-X2dG75fpeXeU40wb22KAI7tDBybFwWUpKVj0Mlo3xhc=";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/antares-sql/antares/commit/6b2a45d93cf7fefdc92e0d87f390cd21a069b9a4.patch?full_index=1",
             hash: "sha256-2dOGY0K6jMxSLNLDhwy/+ysTRB24XRXSoDu1AVxi4w4=",
           })))),
@@ -58,13 +53,13 @@ cp icon_1_256x256x32.png $out/share/icon/antares.png
 `);
       const npmFlags = nix.thunk(() => ["--legacy-peer-deps"]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1",
       }));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: pname,
             desktopName: "Antares SQL",
             exec: pname,
@@ -77,7 +72,7 @@ cp icon_1_256x256x32.png $out/share/icon/antares.png
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Modern, fast and productivity driven SQL client with a focus in UX",
         homepage: "https://github.com/antares-sql/antares",
         changelog: nix.thunk(() => nix.str`https://github.com/antares-sql/antares/blob/v${version}/CHANGELOG.md`),
@@ -88,7 +83,7 @@ cp icon_1_256x256x32.png $out/share/icon/antares.png
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

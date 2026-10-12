@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 7], ["hash", 23, 7]], [["url", 26, 7], ["hash", 27, 7]], [["url", 30, 7], ["hash", 31, 7]], [["x86_64-linux", 21, 5], ["aarch64-linux", 25, 5], ["aarch64-darwin", 29, 5]], [["homepage", 78, 5], ["description", 79, 5], ["longDescription", 80, 5], ["maintainers", 81, 5], ["teams", 82, 5], ["license", 83, 5], ["sourceProvenance", 84, 5]], [["jetbrains-libdbm", 37, 11], ["fsnotifier", 37, 28], ["pname", 39, 3], ["wmClass", 41, 3], ["product", 42, 3], ["version", 45, 3], ["buildNumber", 46, 3], ["src", 49, 3], ["jdk", 52, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 60, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { expat: false, fetchurl: false, fsnotifier: false, jetbrains: false, "jetbrains-libdbm": false, lib: false, "libxcrypt-legacy": false, libxml2: false, openssl: false, python3: false, stdenv: false, xz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 21, 5], ["aarch64-linux", 25, 5], ["aarch64-darwin", 29, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 78, 5], ["description", 79, 5], ["longDescription", 80, 5], ["maintainers", 81, 5], ["teams", 82, 5], ["license", 83, 5], ["sourceProvenance", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["jetbrains-libdbm", 37, 11], ["fsnotifier", 37, 28], ["pname", 39, 3], ["wmClass", 41, 3], ["product", 42, 3], ["version", 45, 3], ["buildNumber", 46, 3], ["src", 49, 3], ["jdk", 52, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 60, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,25 +21,25 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const urls = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://download.jetbrains.com/rustrover/RustRover-2026.2.3.tar.gz",
       hash: "sha256-+sDVAwcwHs22mZj+6zOPEoepbpwC0gUWXsTh2MDtQKY=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://download.jetbrains.com/rustrover/RustRover-2026.2.3-aarch64.tar.gz",
       hash: "sha256-ki+LKA8VBo6rvNcx5/IFmYDYJ1MPfvC0TvwKWRG/Yjg=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://download.jetbrains.com/rustrover/RustRover-2026.2.3-aarch64.dmg",
       hash: "sha256-f1yhrXV4YGwYJnG5hxYO/YCITDvptV6f63axFQ2AKd0=",
     })),
   }));
   return nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       "jetbrains-libdbm": jetbrains_libdbm,
       fsnotifier: fsnotifier,
       pname: "rust-rover",
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.sel(jetbrains, "sharedLibsHook"))]))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libxcrypt_legacy, openssl, python3])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch")))), nix.thunk(() => [expat, libxml2, xz])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.jetbrains.com/rust/",
         description: "Rust IDE from JetBrains",
         longDescription: "Rust IDE from JetBrains",

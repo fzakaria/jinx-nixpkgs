@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 39, 11], ["substitutions", 40, 11]], [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["postFetch", 35, 5]], [["src", 55, 26], ["missingHashes", 55, 30], ["hash", 56, 5]], [["PUPPETEER_SKIP_DOWNLOAD", 84, 5], ["ELECTRON_SKIP_BINARY_DOWNLOAD", 85, 5], ["ELECTRON_OVERRIDE_DIST_PATH", 86, 5], ["NODE_ENV", 87, 5]], [["type", 116, 7], ["categories", 117, 7], ["name", 123, 7], ["desktopName", 124, 7], ["genericName", 125, 7], ["comment", 126, 7], ["icon", 127, 7], ["exec", 128, 7], ["terminal", 129, 7], ["startupWMClass", 130, 7], ["mimeTypes", 131, 7]], [["updateScript", 155, 12]], [["description", 158, 5], ["mainProgram", 159, 5], ["homepage", 160, 5], ["changelog", 161, 5], ["license", 162, 5], ["maintainers", 163, 5], ["platforms", 164, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["missingHashes", 52, 3], ["offlineCache", 54, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 73, 3], ["postPatch", 77, 3], ["env", 83, 3], ["buildPhase", 90, 3], ["nativeCheckInputs", 108, 3], ["checkPhase", 112, 3], ["desktopItems", 114, 3], ["installPhase", 135, 3], ["passthru", 155, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, substitute: false, "yarn-berry_4": false, nodejs: false, "pkg-config": false, "node-gyp": false, python3Packages: false, electron_42: false, vips: false, "xvfb-run": false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 39, 11], ["substitutions", 40, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["postFetch", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 55, 26], ["missingHashes", 55, 30], ["hash", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["PUPPETEER_SKIP_DOWNLOAD", 84, 5], ["ELECTRON_SKIP_BINARY_DOWNLOAD", 85, 5], ["ELECTRON_OVERRIDE_DIST_PATH", 86, 5], ["NODE_ENV", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["type", 116, 7], ["categories", 117, 7], ["name", 123, 7], ["desktopName", 124, 7], ["genericName", 125, 7], ["comment", 126, 7], ["icon", 127, 7], ["exec", 128, 7], ["terminal", 129, 7], ["startupWMClass", 130, 7], ["mimeTypes", 131, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 155, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 158, 5], ["mainProgram", 159, 5], ["homepage", 160, 5], ["changelog", 161, 5], ["license", 162, 5], ["maintainers", 163, 5], ["platforms", 164, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["missingHashes", 52, 3], ["offlineCache", 54, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 73, 3], ["postPatch", 77, 3], ["env", 83, 3], ["buildPhase", 90, 3], ["nativeCheckInputs", 108, 3], ["checkPhase", 112, 3], ["desktopItems", 114, 3], ["installPhase", 135, 3], ["passthru", 155, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const yarn_berry = yarn_berry_4;
   const electron = electron_42;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "rocketchat-desktop",
       version: "4.17.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "RocketChat",
           repo: "Rocket.Chat.Electron",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-6QA7dPuE70CLx7OD4s/a26Iya+L2Tx4yZ0cIsDjJPyY=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -56,7 +49,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-NR0HJj8yHYaiDr8yhcoHxFHiO3zIJLXEMbG+gfBaMEY=",
@@ -75,7 +68,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       buildInputs: nix.thunk(() => [vips]),
       postPatch: "# Avoid downloading a changing file during the `rollup` build\nsubstituteInPlace rollup.config.mjs \\\n  --replace-fail 'downloadSupportedVersions(),' \"\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         PUPPETEER_SKIP_DOWNLOAD: "1",
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         ELECTRON_OVERRIDE_DIST_PATH: nix.thunk(() => nix.sel(electron, "dist")),
@@ -101,7 +94,7 @@ runHook postBuild
       checkPhase: "yarn test",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             type: "Application",
             categories: nix.thunk(() => ["GNOME", "GTK", "Network", "InstantMessaging"]),
             name: "rocketchat-desktop",
@@ -134,11 +127,11 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' $out/bin/rocketchat-d
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Official Desktop client for Rocket.Chat",
         mainProgram: "rocketchat-desktop",
         homepage: "https://github.com/RocketChat/Rocket.Chat.Electron",

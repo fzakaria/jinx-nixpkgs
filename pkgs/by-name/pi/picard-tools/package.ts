@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 31, 5], ["license", 32, 5], ["homepage", 33, 5], ["sourceProvenance", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5], ["platforms", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["dontUnpack", 21, 3], ["installPhase", 23, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["license", 32, 5], ["homepage", 33, 5], ["sourceProvenance", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5], ["platforms", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["dontUnpack", 21, 3], ["installPhase", 23, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "picard-tools",
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/broadinstitute/picard/releases/download/${nix.sel(finalAttrs, "version")}/picard.jar`),
           sha256: "sha256-t9l4YcOlS6WkIfWjF/ODgvlVgDhi0w70rKK83FSUNjE=",
         })))),
@@ -32,7 +30,7 @@ mkdir -p $out/bin
 makeWrapper ${jre}/bin/java $out/bin/picard --add-flags "-jar $out/libexec/picard/picard.jar"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tools for high-throughput sequencing (HTS) data and formats such as SAM/BAM/CRAM and VCF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://broadinstitute.github.io/picard/",

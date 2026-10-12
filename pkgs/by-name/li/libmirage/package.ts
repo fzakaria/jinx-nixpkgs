@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["hash", 34, 5]], [["PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR", 38, 5], ["PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR", 39, 5]], [["updateScript", 71, 5]], [["maintainers", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["description", 88, 5], ["homepage", 89, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["env", 37, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 56, 3], ["propagatedBuildInputs", 64, 3], ["passthru", 70, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { stdenv: false, cmake: false, "pkg-config": false, "gobject-introspection": false, vala: false, glib: false, libsndfile: false, flac: false, libogg: false, libvorbis: false, libopus: false, zlib: false, bzip2: false, xz: false, libsamplerate: false, libgcrypt: false, "libgpg-error": false, intltool: false, "util-linux": false, libselinux: false, libsepol: false, fetchurl: false, lib: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR", 38, 5], ["PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["maintainers", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["description", 88, 5], ["homepage", 89, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["env", 37, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 56, 3], ["propagatedBuildInputs", 64, 3], ["passthru", 70, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,16 +32,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libmirage",
       version: "3.3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/cdemu/libmirage-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-tICwgjCyJVr0DDrIY0TAx3/JloZgFOBaadVVTpA11ls=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/gir-1.0`),
         PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/girepository-1.0`),
       })),
@@ -65,11 +61,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, intltool, gobject_introspection, vala]),
       propagatedBuildInputs: nix.thunk(() => [util_linux, libselinux, libsepol]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-libmirage", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\n# Fetch the latest version from the SourceForge RSS feed for libmirage\nnewVersion=\"$(curl -s \"https://sourceforge.net/projects/cdemu/rss?path=/libmirage\" | pcre2grep -o1 'libmirage-([0-9.]+)\\.tar\\.xz' | head -n 1)\"\n\nupdate-source-version libmirage \"$newVersion\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "bendlas"))];

@@ -2,18 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/podman.nix", [[["imageName", 17, 13], ["imageDigest", 18, 25], ["hash", 19, 24], ["arch", 19, 29], ["finalImageTag", 20, 5]], [["model", 32, 9], ["port", 33, 17], ["host", 34, 9], ["image", 35, 9], ["extraCheck", 36, 9]], [["enable", 46, 27]], [["nftables", 46, 18]], [["enable", 52, 16]], [["cores", 49, 9], ["diskSize", 51, 9], ["podman", 52, 9]], [["systemPackages", 55, 19]], [["networking", 46, 7], ["virtualisation", 48, 7], ["environment", 55, 7]], [["machine", 28, 9]], [["name", 26, 3], ["nodes", 28, 3], ["testScript", 60, 3]]]);
 const formals$1 = { args: { callPackage: false, dockerTools: false, stdenv: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/podman.nix", [["imageName", 17, 13], ["imageDigest", 18, 25], ["hash", 19, 24], ["arch", 19, 29], ["finalImageTag", 20, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/podman.nix", [["model", 32, 9], ["port", 33, 17], ["host", 34, 9], ["image", 35, 9], ["extraCheck", 36, 9]]);
-const pos$3 = nix.positions(here + "/podman.nix", [["enable", 46, 27]]);
-const pos$4 = nix.positions(here + "/podman.nix", [["nftables", 46, 18]]);
-const pos$5 = nix.positions(here + "/podman.nix", [["enable", 52, 16]]);
-const pos$6 = nix.positions(here + "/podman.nix", [["cores", 49, 9], ["diskSize", 51, 9], ["podman", 52, 9]]);
-const pos$7 = nix.positions(here + "/podman.nix", [["systemPackages", 55, 19]]);
-const pos$8 = nix.positions(here + "/podman.nix", [["networking", 46, 7], ["virtualisation", 48, 7], ["environment", 55, 7]]);
-const pos$9 = nix.positions(here + "/podman.nix", [["machine", 28, 9]]);
-const pos$10 = nix.positions(here + "/podman.nix", [["name", 26, 3], ["nodes", 28, 3], ["testScript", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "aarch64-linux" : nix.sel(stdenv, "hostPlatform", "system")));
   const imagePin = nix.thunk(() => nix.sel(imageInfo, "images", nix.key(nix.force(system))));
   const ramalamaImage = nix.thunk(() => nix.app(nix.sel(dockerTools, "pullImage"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       imageName: imageName,
       imageDigest: nix.thunk(() => nix.attr(imageInfo, "imageDigest")),
       hash: nix.thunk(() => nix.attr(imagePin, "hash")),
@@ -36,15 +27,15 @@ export default nix.lambda((args) => (() => {
     }))));
   const port = 18082n;
   return nix.app(nix.sel(testers, "runNixOSTest"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       name: "ramalama-podman-test",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs = nix.arg($_1, "pkgs");
           const serveTestRunner = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./common.nix"), nix.thunk(() => ({}))), "mkServeTestRunner"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               model: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./llama-cpp-model.nix"), nix.thunk(() => ({})))),
               port: port,
               host: "0.0.0.0",
@@ -53,18 +44,18 @@ export default nix.lambda((args) => (() => {
 `),
             }))));
           return {
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              nftables: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+              [nix.POS]: $pos[3],
+              nftables: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
             })),
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               cores: 2n,
               diskSize: nix.thunk(() => nix.mul(10n, 1024n)),
-              podman: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+              podman: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
             })),
-            environment: nix.thunk(() => ({ [nix.POS]: pos$7, systemPackages: nix.thunk(() => [serveTestRunner]) })),
+            environment: nix.thunk(() => ({ [nix.POS]: $pos[6], systemPackages: nix.thunk(() => [serveTestRunner]) })),
           };
         })(), formals$2),
       })),

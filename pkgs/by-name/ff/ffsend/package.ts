@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]], [["description", 68, 5], ["longDescription", 69, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cargoHash", 34, 3], ["cargoPatches", 36, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 49, 3], ["preBuild", 51, 3], ["postInstall", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, rustPlatform: false, "pkg-config": false, openssl: false, installShellFiles: false, x11Support: true, xclip: true, xsel: true, preferXsel: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 68, 5], ["longDescription", 69, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cargoHash", 34, 3], ["cargoPatches", 36, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 49, 3], ["preBuild", 51, 3], ["postInstall", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const usesX11 = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isBSD"))));
   nix.assert_((!nix.asBool((nix.asBool(x11Support) && nix.asBool(usesX11))) || nix.asBool((nix.asBool(!nix.eq(xclip, null)) || nix.asBool(!nix.eq(xsel, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ff/ffsend/package.nix:21:1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ffsend",
       version: "0.2.77",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "timvisee",
           repo: "ffsend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-DQcuyp61r0y9fi8AV33qxN2cOrl0M8q4/VoXuV47gxQ=",
       cargoPatches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "rust-1.87.0-compat.patch",
             url: "https://gitlab.com/timvisee/ffsend/-/commit/29eb167d4367929a2546c20b3f2bbf890b63c631.patch",
             hash: "sha256-BxJ+0QJP2fzQT1X3BZG1Yy9V+csIEk8xocUKSBgdG9M=",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
 `)))),
       postInstall: "installShellCompletion contrib/completions/ffsend.{bash,fish} --zsh contrib/completions/_ffsend\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Easily and securely share files from the command line. A fully featured Firefox Send client",
         longDescription: "Easily and securely share files and directories from the command line through a safe, private\nand encrypted link using a single simple command. Files are shared using the Send service and\nmay be up to 2GB. Others are able to download these files with this tool, or through their\nweb browser.\n",
         homepage: "https://gitlab.com/timvisee/ffsend",

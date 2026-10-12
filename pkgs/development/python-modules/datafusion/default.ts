@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 36, 5], ["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["fetchSubmodules", 41, 5], ["hash", 42, 5]], [["pname", 46, 26], ["src", 46, 32], ["version", 46, 36], ["hash", 47, 5]], [["description", 95, 5], ["longDescription", 96, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]], [["pname", 29, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["cargoDeps", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["dependencies", 60, 3], ["nativeCheckInputs", 68, 3], ["pythonImportsCheck", 76, 3], ["preCheck", 81, 3], ["disabledTests", 85, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, pythonOlder: false, protoc: false, protobuf: false, cloudpickle: false, pyarrow: false, "typing-extensions": false, "arro3-core": false, nanoarrow: false, numpy: false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 36, 5], ["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["fetchSubmodules", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 46, 26], ["src", 46, 32], ["version", 46, 36], ["hash", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 95, 5], ["longDescription", 96, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["cargoDeps", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["dependencies", 60, 3], ["nativeCheckInputs", 68, 3], ["pythonImportsCheck", 76, 3], ["preCheck", 81, 3], ["disabledTests", 85, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "datafusion",
       version: "54.0.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "datafusion-source",
           owner: "apache",
           repo: "datafusion-python",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-Kh8w8L3AJCs9a3KA9RHaA0btbJEBdYZge1VK7AX0lX0=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -rf python/datafusion\n",
       disabledTests: nix.thunk(() => nix.concat(["test_register_http_csv"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_collect_interrupted"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Extensible query execution framework",
         longDescription: "DataFusion is an extensible query execution framework, written in Rust,\nthat uses Apache Arrow as its in-memory format.\n",
         homepage: "https://arrow.apache.org/datafusion/",

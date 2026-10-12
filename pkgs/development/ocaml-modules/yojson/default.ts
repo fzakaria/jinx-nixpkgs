@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["3.0.0", 16, 9], ["2.2.2", 17, 9]], [["url", 13, 5], ["hash", 14, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["mainProgram", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["propagatedBuildInputs", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, seq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["3.0.0", 16, 9], ["2.2.2", 17, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["mainProgram", 29, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["propagatedBuildInputs", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,21 +12,21 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const seq = nix.arg($, "seq");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "yojson",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/ocaml-community/yojson/releases/download/${nix.sel(finalAttrs, "version")}/yojson-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "3.0.0": "sha256-mUFNp2CbkqAkdO9LSezaFe3Iy7pSKTQbEk5+RpXDlhA=",
             "2.2.2": "sha256-mr+tjJp51HI60vZEjmacHmjb/IfMVKG3wGSwyQkSxZU=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
         })))),
       propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "3.0.0"))), seq)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Optimized parsing and printing library for the JSON format",
         homepage: "https://github.com/ocaml-community/yojson",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

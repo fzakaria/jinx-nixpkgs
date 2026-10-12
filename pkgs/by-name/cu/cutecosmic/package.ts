@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["sourceRoot", 29, 5], ["hash", 30, 5]], [["owner", 62, 9], ["repo", 63, 9], ["rev", 64, 9], ["hash", 65, 9]], [["corrosion", 61, 7]], [["sources", 59, 5], ["updateScript", 69, 5]], [["homepage", 91, 5], ["description", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 98, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoDeps", 27, 3], ["cargoRoot", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["cmakeFlags", 48, 3], ["postPatch", 52, 3], ["passthru", 58, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cargo: false, cmake: false, "common-updater-scripts": false, fetchFromGitHub: false, "nix-update": false, qt6: false, ripgrep: false, rustPlatform: false, rustc: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["sourceRoot", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 62, 9], ["repo", 63, 9], ["rev", 64, 9], ["hash", 65, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["corrosion", 61, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sources", 59, 5], ["updateScript", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 91, 5], ["description", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 98, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoDeps", 27, 3], ["cargoRoot", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["cmakeFlags", 48, 3], ["postPatch", 52, 3], ["passthru", 58, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const writeShellScript = nix.arg($, "writeShellScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cutecosmic",
       version: "0.2.0-unstable-2026-08-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "IgKh",
           repo: "cutecosmic",
           rev: "5fa7c228ce04c5310c61dd975e940397711e3cef",
           hash: "sha256-OjoJ7z8HZmyrd7UTZJ3n1jqGRTSuN0PviOwHl5WwJZw=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -64,11 +58,11 @@ export default nix.lambda((args) => (() => {
   "${nix.sel(qt6, "qtbase", "qtPluginPrefix")}/platformthemes"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         sources: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           corrosion: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               owner: "corrosion-rs",
               repo: "corrosion",
               rev: "v0.5.2",
@@ -95,7 +89,7 @@ ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-versio
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/IgKh/cutecosmic",
         description: "Qt platform theme for COSMIC Desktop environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

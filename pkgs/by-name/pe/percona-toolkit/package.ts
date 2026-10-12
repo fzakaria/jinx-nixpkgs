@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 42, 7], ["homepage", 43, 7], ["license", 44, 7], ["platforms", 45, 7], ["changelog", 46, 7], ["maintainers", 49, 5]], [["pname", 13, 3], ["version", 14, 3], ["nativeBuildInputs", 16, 3], ["src", 18, 3], ["dontBuild", 19, 3], ["installPhase", 21, 3], ["dontStrip", 33, 3], ["postFixup", 34, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, perlPackages: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 42, 7], ["homepage", 43, 7], ["license", 44, 7], ["platforms", 45, 7], ["changelog", 46, 7], ["maintainers", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["nativeBuildInputs", 16, 3], ["src", 18, 3], ["dontBuild", 19, 3], ["installPhase", 21, 3], ["dontStrip", 33, 3], ["postFixup", 34, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const perconaToolkit = nix.thunk(() => nix.sel(perlPackages, "PerconaToolkit"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.sel(perconaToolkit, "name")),
       version: nix.thunk(() => nix.sel(perconaToolkit, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -35,7 +34,7 @@ done
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(perconaToolkit, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

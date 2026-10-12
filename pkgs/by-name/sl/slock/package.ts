@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["url", 50, 5]], [["updateScript", 49, 12]], [["homepage", 54, 5], ["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 64, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["buildInputs", 28, 3], ["installFlags", 37, 3], ["postPatch", 39, 3], ["preBuild", 41, 3], ["patches", 45, 11], ["makeFlags", 47, 3], ["passthru", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, writeText: false, xorgproto: false, libx11: false, libxext: false, libxrandr: false, libxcrypt: false, config: false, conf: true, patches: true, extraLibs: true, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 49, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["buildInputs", 28, 3], ["installFlags", 37, 3], ["postPatch", 39, 3], ["preBuild", 41, 3], ["patches", 45, 11], ["makeFlags", 47, 3], ["passthru", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const extraLibs = nix.argOr($, "extraLibs", () => nix.selOr(config, () => [], "slock", "extraLibs"));
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "slock",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dl.suckless.org/tools/slock-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-3tk55DgIU3HtFkNhM3QfpWRZn/Q0aZtMv/h6r1qdong=",
         })))),
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
       patches: patches,
       makeFlags: nix.thunk(() => ["CC:=$(CC)"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "git://git.suckless.org/slock" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], url: "git://git.suckless.org/slock" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://tools.suckless.org/slock",
         description: "Simple X display locker",
         mainProgram: "slock",

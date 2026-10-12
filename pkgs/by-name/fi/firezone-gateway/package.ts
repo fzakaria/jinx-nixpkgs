@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["RUSTFLAGS", 20, 7]], [["extraArgs", 28, 5]], [["updateScript", 27, 12]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 42, 5], ["platforms", 43, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["cargoHash", 17, 3], ["sourceRoot", 18, 3], ["buildAndTestSubdir", 19, 3], ["env", 20, 3], ["postPatch", 23, 3], ["passthru", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 27, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 42, 5], ["platforms", 43, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["cargoHash", 17, 3], ["sourceRoot", 18, 3], ["buildAndTestSubdir", 19, 3], ["env", 20, 3], ["postPatch", 23, 3], ["passthru", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "firezone-gateway",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "firezone",
           repo: "firezone",
           tag: nix.thunk(() => nix.str`gateway-${nix.sel(finalAttrs, "version")}`),
@@ -30,17 +25,17 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-7nRVC+nBJ13+hRPpOoXNDwcVydTb9/+bGm3uCqqWQiU=",
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/rust`),
       buildAndTestSubdir: "gateway",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "--cfg system_certs" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTFLAGS: "--cfg system_certs" })),
       postPatch: "rm .cargo/config.toml\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "gateway-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "WireGuard tunnel server for the Firezone zero-trust access platform",
         homepage: "https://github.com/firezone/firezone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

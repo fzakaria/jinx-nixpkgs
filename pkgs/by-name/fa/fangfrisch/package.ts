@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["updateScript", 40, 12]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]], [["pname", 14, 3], ["version", 15, 11], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 30, 3], ["pythonImportsCheck", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, "nix-update-script": false, supportSocks: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 11], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 30, 3], ["pythonImportsCheck", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const supportSocks = nix.argOr($, "supportSocks", () => true);
   const version = "1.9.2";
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fangfrisch",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rseichter",
           repo: "fangfrisch",
           tag: version,
@@ -41,11 +38,11 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["fangfrisch"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Update and verify unofficial Clam Anti-Virus signatures",
         homepage: "https://github.com/rseichter/fangfrisch",
         changelog: nix.thunk(() => nix.str`https://github.com/rseichter/fangfrisch/blob/${version}/CHANGELOG.rst`),

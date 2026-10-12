@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["packageName", 58, 5], ["attrPath", 59, 5]], [["updateScript", 57, 12]], [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["teams", 68, 5], ["platforms", 69, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["strictDeps", 51, 3], ["preFixup", 53, 3], ["passthru", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, "desktop-file-utils": false, fetchurl: false, flatpak: false, glib: false, gnome: false, gom: false, gtk4: false, libadwaita: false, libdex: false, libfoundry: false, libpanel: false, meson: false, ninja: false, "pkg-config": false, webkitgtk_6_0: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 58, 5], ["attrPath", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["teams", 68, 5], ["platforms", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["strictDeps", 51, 3], ["preFixup", 53, 3], ["passthru", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_6_0 = nix.arg($, "webkitgtk_6_0");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-manuals",
       version: "50.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/manuals/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/manuals-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-foRBdV0N5xdCjIAORa4GyF7JZK9GrFO53GW0G8OjLHQ=",
         })))),
@@ -54,11 +50,11 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix XDG_DATA_DIRS : "${libpanel}/share")
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "manuals", attrPath: "gnome-manuals" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "manuals", attrPath: "gnome-manuals" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool for browsing documentation",
         mainProgram: "manuals",
         homepage: "https://apps.gnome.org/Manuals/",

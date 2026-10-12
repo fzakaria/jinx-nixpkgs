@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["updateScript", 59, 12]], [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 21, 3], ["version", 22, 3], ["__structuredAttrs", 23, 3], ["strictDeps", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["mesonFlags", 41, 3], ["buildInputs", 45, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { "deltachat-rpc-server": false, fetchFromGitHub: false, glib: false, gtk4: false, "json-glib": false, lib: false, libadwaita: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, stdenv: false, vala: false, gst_all_1: false, webkitgtk_6_0: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["__structuredAttrs", 23, 3], ["strictDeps", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["mesonFlags", 41, 3], ["buildInputs", 45, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_6_0 = nix.arg($, "webkitgtk_6_0");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "parla",
       version: "0.9.8",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trufae",
           repo: "parla",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,11 +50,11 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/trufae/parla/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Native Gnome DeltaChat client",
         homepage: "https://github.com/trufae/parla",

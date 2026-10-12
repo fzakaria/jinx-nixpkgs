@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enablePython", 30, 5], ["python", 31, 13]], [["boost", 34, 5]], [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["description", 85, 5], ["mainProgram", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["broken", 90, 5]], [["pname", 38, 3], ["version", 39, 3], ["strictDeps", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 59, 3], ["preFixup", 76, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, doxygen: false, graphviz: false, boost: false, cgal: false, gdal: false, glew: false, gmp: false, libGL: false, libGLU: false, libsm: false, mpfr: false, proj: false, python3: false, qt6Packages: false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enablePython", 30, 5], ["python", 31, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["boost", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 85, 5], ["mainProgram", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["broken", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["strictDeps", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 59, 3], ["preFixup", 76, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,16 +30,16 @@ export default nix.lambda((args) => (() => {
       const w = nix.withScope(ps, null);
       return [nix.thunk(() => nix.lookup(w, "numpy"))];
     })()));
-  const boost$ = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enablePython: true, python: python }))));
-  const cgal$ = nix.thunk(() => nix.app(nix.sel(cgal, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, boost: boost$ }))));
+  const boost$ = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enablePython: true, python: python }))));
+  const cgal$ = nix.thunk(() => nix.app(nix.sel(cgal, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], boost: boost$ }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gplates",
       version: "2.6.0-47",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "GPlates",
           repo: "GPlates",
           tag: nix.thunk(() => nix.str`GPlates-${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +75,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Desktop software for the interactive visualisation of plate-tectonics",
         mainProgram: "gplates",
         homepage: "https://www.gplates.org",

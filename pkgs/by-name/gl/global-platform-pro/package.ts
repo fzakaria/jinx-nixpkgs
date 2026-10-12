@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["GPPRO_VERSION", 30, 7]], [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["preConfigure", 52, 5]], [["description", 77, 5], ["longDescription", 78, 5], ["homepage", 85, 5], ["sourceProvenance", 86, 5], ["license", 90, 5], ["mainProgram", 91, 5]], [["pname", 28, 3], ["version", 29, 3], ["env", 30, 3], ["src", 32, 3], ["mvnJdk", 39, 3], ["mvnHash", 40, 3], ["nativeBuildInputs", 42, 3], ["mvnParameters", 49, 3], ["mvnFetchExtraArgs", 51, 3], ["postPatch", 55, 3], ["preConfigure", 63, 3], ["installPhase", 65, 3], ["nativeInstallCheckInputs", 73, 3], ["doInstallCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, jdk11: false, maven: false, makeWrapper: false, jre_headless: false, pcsclite: false, proot: false, zlib: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["GPPRO_VERSION", 30, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["preConfigure", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 77, 5], ["longDescription", 78, 5], ["homepage", 85, 5], ["sourceProvenance", 86, 5], ["license", 90, 5], ["mainProgram", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["env", 30, 3], ["src", 32, 3], ["mvnJdk", 39, 3], ["mvnHash", 40, 3], ["nativeBuildInputs", 42, 3], ["mvnParameters", 49, 3], ["mvnFetchExtraArgs", 51, 3], ["postPatch", 55, 3], ["preConfigure", 63, 3], ["installPhase", 65, 3], ["nativeInstallCheckInputs", 73, 3], ["doInstallCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,9 +30,9 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => (() => {
       const pname = "global-platform-pro";
       const version = "25.10.20";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$1, GPPRO_VERSION: "v25.10.20-0-g72f85b9" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[0], GPPRO_VERSION: "v25.10.20-0-g72f85b9" }));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "martinpaljak",
           repo: "GlobalPlatformPro",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const mvnHash = "sha256-tHqA408mUa5l53zdWmFmREI6Ds+vqexwMoYnJMflMCc=";
       const nativeBuildInputs = nix.thunk(() => [jdk11, makeWrapper]);
       const mvnParameters = "-Dmaven.gitcommitid.skip=true";
-      const mvnFetchExtraArgs = nix.thunk(() => ({ [nix.POS]: pos$3, preConfigure: defineMvnWrapper }));
+      const mvnFetchExtraArgs = nix.thunk(() => ({ [nix.POS]: $pos[2], preConfigure: defineMvnWrapper }));
       const postPatch = "git_properties_file=\"./library/target/classes/pro/javacard/gp/git.properties\"\nmkdir -p \"$(dirname \"$git_properties_file\")\"\n# Suffix to differentiate from upstream builds.\ndistro_suffix=-nixpkgs\necho \"git.commit.id.describe=${GPPRO_VERSION}${distro_suffix}\" > \"$git_properties_file\"\n";
       const preConfigure = defineMvnWrapper;
       const installPhase = nix.thunk(() => nix.str`mkdir -p "$out/lib/java" "$out/share/java"
@@ -58,7 +54,7 @@ makeWrapper "${jre_headless}/bin/java" "$out/bin/gp" \\
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command-line utility for managing applets and keys on Java Cards",
         longDescription: "This command-line utility can be used to manage applets and keys\non Java Cards. It is made available as the `gp` executable.\n\nThe executable requires the PC/SC daemon running for correct execution.\nIf you run NixOS, it can be enabled with `services.pcscd.enable = true;`.\n",
         homepage: "https://github.com/martinpaljak/GlobalPlatformPro",
@@ -73,7 +69,7 @@ makeWrapper "${jre_headless}/bin/java" "$out/bin/gp" \\
         mainProgram: "gp",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         env,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["changelog", 31, 5], ["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5], ["sourceProvenance", 37, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 17, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 31, 5], ["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5], ["sourceProvenance", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 17, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const undmg = nix.arg($, "undmg");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rectangle-pro",
       version: "3.75",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://rectangleapp.com/pro/downloads/Rectangle%20Pro%20${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-1NIR3iql9+e2nX/mzThkJ2LnLi0onrgF8gLwFBf2iKc=",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [undmg]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -r *.app \"$out/Applications\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://rectangleapp.com/pro/versions",
         description: "Move and resize windows in macOS using keyboard shortcuts or snap areas",
         homepage: "https://rectangleapp.com/pro",

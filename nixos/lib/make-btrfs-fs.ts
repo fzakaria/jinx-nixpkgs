@@ -2,9 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-btrfs-fs.nix", [[["rootPaths", 25, 52]], [["name", 28, 3], ["nativeBuildInputs", 30, 3], ["buildCommand", 37, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, storePaths: false, compressImage: true, zstd: false, populateImageCommands: true, volumeLabel: false, uuid: true, "btrfs-progs": false, libfaketime: false, fakeroot: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-btrfs-fs.nix", [["rootPaths", 25, 52]]);
-const pos$2 = nix.positions(here + "/make-btrfs-fs.nix", [["name", 28, 3], ["nativeBuildInputs", 30, 3], ["buildCommand", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,9 +18,9 @@ export default nix.lambda((args) => (() => {
   const btrfs_progs = nix.arg($, "btrfs-progs");
   const libfaketime = nix.arg($, "libfaketime");
   const fakeroot = nix.arg($, "fakeroot");
-  const sdClosureInfo = nix.thunk(() => nix.app(nix.sel(pkgs, "buildPackages", "closureInfo"), nix.thunk(() => ({ [nix.POS]: pos$1, rootPaths: storePaths }))));
+  const sdClosureInfo = nix.thunk(() => nix.app(nix.sel(pkgs, "buildPackages", "closureInfo"), nix.thunk(() => ({ [nix.POS]: $pos[0], rootPaths: storePaths }))));
   return nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`btrfs-fs.img${nix.app(nix.sel(lib, "optionalString"), compressImage, ".zst")}`),
       nativeBuildInputs: nix.thunk(() => nix.concat([btrfs_progs, libfaketime, fakeroot], nix.app(nix.sel(lib, "optional"), compressImage, zstd))),
       buildCommand: nix.thunk(() => nix.str`${(nix.asBool(compressImage) ? "img=temp.img" : "img=$out")}

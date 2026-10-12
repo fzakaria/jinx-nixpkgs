@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/binary.nix", [[["url", 14, 7], ["hash", 18, 7]], [["url", 21, 7], ["hash", 25, 7]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["longDescription", 64, 5], ["mainProgram", 69, 5], ["teams", 70, 5], ["platforms", 71, 5]], [["pname", 9, 3], ["version", 10, 3], ["srcs", 12, 3], ["sourceRoot", 29, 3], ["outputs", 31, 3], ["nativeBuildInputs", 37, 3], ["dontConfigure", 41, 3], ["dontBuild", 42, 3], ["installPhase", 44, 3], ["postFixup", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/binary.nix", [["url", 14, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/binary.nix", [["url", 21, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/binary.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["longDescription", 64, 5], ["mainProgram", 69, 5], ["teams", 70, 5], ["platforms", 71, 5]]);
-const pos$4 = nix.positions(here + "/binary.nix", [["pname", 9, 3], ["version", 10, 3], ["srcs", 12, 3], ["sourceRoot", 29, 3], ["outputs", 31, 3], ["nativeBuildInputs", 37, 3], ["dontConfigure", 41, 3], ["dontBuild", 42, 3], ["installPhase", 44, 3], ["postFixup", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cmucl-binary",
       version: "21d",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.add(nix.add("http://common-lisp.net/project/cmucl/downloads/release/", nix.sel(finalAttrs, "version")), nix.str`/cmucl-${nix.sel(finalAttrs, "version")}-x86-linux.tar.bz2`)),
             hash: "sha256-RdctcqPTtQh1Yb3BrpQ8jtRFQn85OcwOt1l90H6xDZs=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.add(nix.add("http://common-lisp.net/project/cmucl/downloads/release/", nix.sel(finalAttrs, "version")), nix.str`/cmucl-${nix.sel(finalAttrs, "version")}-x86-linux.extra.tar.bz2`)),
             hash: "sha256-zEmiW3m5VPpFgPxV1WJNCqgYRlHMovtaMXcgXyNukls=",
           })))),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -pv $out $doc/share $man\nmv bin lib -t $out\nmv -v doc -t $doc/share\ninstallManPage man/man1/*\n\nrunHook postInstall\n",
       postFixup: "patchelf --set-interpreter \"$(cat $NIX_CC/nix-support/dynamic-linker)\" \\\n  $out/bin/lisp\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CMU implementation of Common Lisp",
         homepage: "http://www.cons.org/cmucl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

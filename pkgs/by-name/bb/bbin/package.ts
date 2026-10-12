@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["rev-prefix", 44, 33]], [["updateScript", 44, 5]], [["homepage", 48, 5], ["description", 49, 5], ["mainProgram", 50, 5], ["license", 51, 5], ["platforms", 52, 39], ["maintainers", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["dontConfigure", 23, 3], ["dontBuild", 24, 3], ["installPhase", 26, 3], ["passthru", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gitUpdater: false, makeWrapper: false, "babashka-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 44, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["mainProgram", 50, 5], ["license", 51, 5], ["platforms", 52, 39], ["maintainers", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["dontConfigure", 23, 3], ["dontBuild", 24, 3], ["installPhase", 26, 3], ["passthru", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bbin";
       const version = "0.2.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "babashka",
           repo: "bbin",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,13 +40,13 @@ wrapProgram $out/bin/bbin \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(babashka_unwrapped, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/babashka/bbin",
         description: "Install any Babashka script or project with one command",
         mainProgram: "bbin",
@@ -63,7 +59,7 @@ runHook postInstall
       };
       })());
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,15 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-extension.nix", [[["maintainers", 15, 7], ["platforms", 21, 7]], [["nativeBuildInputs", 35, 9], ["preBuild", 41, 9], ["__darwinAllowLocalNetworking", 50, 9], ["gradleBuildTask", 52, 9], ["gradleFlags", 53, 9], ["installPhase", 55, 9], ["meta", 70, 9]], [["constructDrv", 25, 5], ["extendDrvArgs", 26, 5]], [["installPhase", 84, 9], ["meta", 104, 9]], [["constructDrv", 75, 5], ["extendDrvArgs", 76, 5]], [["buildGhidraExtension", 109, 11], ["buildGhidraScripts", 109, 32]]]);
 const formals$1 = { args: { lib: false, stdenv: false, unzip: false, jdk: false, gradle: false, ghidra: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-extension.nix", [["maintainers", 15, 7], ["platforms", 21, 7]]);
 const formals$2 = { args: { pname: false, nativeBuildInputs: true, meta: true }, ellipsis: true };
-const pos$2 = nix.positions(here + "/build-extension.nix", [["nativeBuildInputs", 35, 9], ["preBuild", 41, 9], ["__darwinAllowLocalNetworking", 50, 9], ["gradleBuildTask", 52, 9], ["gradleFlags", 53, 9], ["installPhase", 55, 9], ["meta", 70, 9]]);
-const pos$3 = nix.positions(here + "/build-extension.nix", [["constructDrv", 25, 5], ["extendDrvArgs", 26, 5]]);
 const formals$3 = { args: { pname: false, meta: true }, ellipsis: true };
-const pos$4 = nix.positions(here + "/build-extension.nix", [["installPhase", 84, 9], ["meta", 104, 9]]);
-const pos$5 = nix.positions(here + "/build-extension.nix", [["constructDrv", 75, 5], ["extendDrvArgs", 76, 5]]);
-const pos$6 = nix.positions(here + "/build-extension.nix", [["buildGhidraExtension", 109, 11], ["buildGhidraScripts", 109, 32]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const gradle = nix.arg($, "gradle");
   const ghidra = nix.arg($, "ghidra");
   const metaCommon = (oldMeta) => nix.update(oldMeta, {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     maintainers: nix.thunk(() => nix.concat(nix.selOr(oldMeta, () => [], "maintainers"), (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return [
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.selOr(oldMeta, () => nix.sel(ghidra, "meta", "platforms"), "platforms")),
   });
   const buildGhidraExtension = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
         const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
         const meta = nix.argOr($_1, "meta", () => ({}));
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, [unzip, jdk, gradle])),
           preBuild: nix.thunk(() => nix.str`# Set project name, otherwise defaults to directory name
 echo -e '\\nrootProject.name = "${pname}"' >> settings.gradle
@@ -58,7 +53,7 @@ ${nix.selOr(args_2, () => "", "preBuild")}
       })(), formals$2),
     }))));
   const buildGhidraScripts = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
@@ -66,7 +61,7 @@ ${nix.selOr(args_2, () => "", "preBuild")}
         const pname = nix.arg($_1, "pname");
         const meta = nix.argOr($_1, "meta", () => ({}));
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           installPhase: nix.thunk(() => nix.str`runHook preInstall
 
 GHIDRA_HOME=$out/lib/ghidra/Ghidra/Extensions/${pname}
@@ -90,7 +85,7 @@ runHook postInstall
       })(), formals$3),
     }))));
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     buildGhidraExtension: buildGhidraExtension,
     buildGhidraScripts: buildGhidraScripts,
   };

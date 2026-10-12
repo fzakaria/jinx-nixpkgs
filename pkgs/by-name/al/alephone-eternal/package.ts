@@ -2,28 +2,26 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 9, 5], ["hash", 10, 5]], [["description", 16, 5], ["homepage", 17, 5]], [["pname", 4, 3], ["version", 5, 3], ["desktopName", 6, 3], ["zip", 8, 3], ["sourceRoot", 13, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { alephone: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 9, 5], ["hash", 10, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 16, 5], ["homepage", 17, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 4, 3], ["version", 5, 3], ["desktopName", 6, 3], ["zip", 8, 3], ["sourceRoot", 13, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const alephone = nix.arg($, "alephone");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(alephone, "makeWrapper"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "marathon-eternal",
       version: "1.2.1",
       desktopName: "Marathon-Eternal",
       zip: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://eternal.bungie.org/files/_releases/EternalXv121.zip",
           hash: "sha256-8smVdL7CYbrIzCqu3eqk6KQempKLWuEJ9qWStdWkYWo=",
         })))),
       sourceRoot: "Eternal 1.2.1",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Picking up from the end of the Marathon trilogy, you find yourself suddenly ninety-four years in the future, in the year 2905",
         homepage: "http://eternal.bungie.org/",
       })),

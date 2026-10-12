@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["ows", 73, 5], ["plotting", 77, 5]], [["description", 136, 5], ["homepage", 137, 5], ["changelog", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["teams", 141, 5], ["mainProgram", 142, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["build-system", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 59, 3], ["dependencies", 64, 3], ["optional-dependencies", 72, 3], ["nativeCheckInputs", 84, 3], ["preCheck", 91, 3], ["pytestFlags", 95, 3], ["disabledTestMarks", 100, 3], ["disabledTests", 105, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, "setuptools-scm": false, geos: false, proj: false, matplotlib: false, numpy: false, pyproj: false, pyshp: false, shapely: false, owslib: false, pillow: false, gdal: false, scipy: false, fontconfig: false, "pytest-mpl": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ows", 73, 5], ["plotting", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 136, 5], ["homepage", 137, 5], ["changelog", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["teams", 141, 5], ["mainProgram", 142, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["build-system", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 59, 3], ["dependencies", 64, 3], ["optional-dependencies", 72, 3], ["nativeCheckInputs", 84, 3], ["preCheck", 91, 3], ["pytestFlags", 95, 3], ["disabledTestMarks", 100, 3], ["disabledTests", 105, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cartopy",
       version: "0.25.0.post2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SciTools",
           repo: "cartopy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [geos, proj]),
       dependencies: nix.thunk(() => [matplotlib, numpy, pyproj, pyshp, shapely]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ows: nix.thunk(() => [owslib, pillow]),
         plotting: nix.thunk(() => [gdal, pillow, scipy]),
       })),
@@ -83,7 +80,7 @@ export default nix.lambda((args) => (() => {
         "test_stock_img",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Process geospatial data to create maps and perform analyses",
         homepage: "https://scitools.org.uk/cartopy/docs/latest/",
         changelog: nix.thunk(() => nix.str`https://github.com/SciTools/cartopy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["pname", 23, 26], ["version", 23, 32], ["src", 23, 40], ["hash", 24, 5]], [["KADMIN_MIT_CLIENT_INCLUDES", 34, 5], ["KADMIN_MIT_SERVER_INCLUDES", 35, 5], ["KADMIN_HEIMDAL_CLIENT_INCLUDES", 36, 5], ["KADMIN_HEIMDAL_SERVER_INCLUDES", 37, 5], ["KADMIN_MIT_CLIENT_KRB5_CONFIG", 38, 5], ["KADMIN_MIT_SERVER_KRB5_CONFIG", 39, 5], ["KADMIN_HEIMDAL_CLIENT_KRB5_CONFIG", 40, 5], ["KADMIN_HEIMDAL_SERVER_KRB5_CONFIG", 41, 5], ["K5TEST_MIT_KDB5_UTIL", 43, 5], ["K5TEST_MIT_KRB5KDC", 44, 5], ["K5TEST_MIT_KADMIN", 45, 5], ["K5TEST_MIT_KADMIN_LOCAL", 46, 5], ["K5TEST_MIT_KADMIND", 47, 5], ["K5TEST_MIT_KPROP", 48, 5], ["K5TEST_MIT_KINIT", 49, 5], ["K5TEST_MIT_KLIST", 50, 5], ["K5TEST_HEIMDAL_KDC", 52, 5], ["K5TEST_HEIMDAL_KADMIN", 53, 5], ["K5TEST_HEIMDAL_KADMIND", 54, 5], ["K5TEST_HEIMDAL_KINIT", 55, 5], ["K5TEST_HEIMDAL_KLIST", 56, 5], ["K5TEST_HEIMDAL_KTUTIL", 57, 5]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["cargoDeps", 22, 3], ["buildInputs", 29, 3], ["env", 33, 3], ["nativeBuildInputs", 60, 3], ["pythonImportsCheck", 67, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, fetchFromGitHub: false, rustPlatform: false, buildPythonPackage: false, "pkg-config": false, heimdal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 23, 26], ["version", 23, 32], ["src", 23, 40], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["KADMIN_MIT_CLIENT_INCLUDES", 34, 5], ["KADMIN_MIT_SERVER_INCLUDES", 35, 5], ["KADMIN_HEIMDAL_CLIENT_INCLUDES", 36, 5], ["KADMIN_HEIMDAL_SERVER_INCLUDES", 37, 5], ["KADMIN_MIT_CLIENT_KRB5_CONFIG", 38, 5], ["KADMIN_MIT_SERVER_KRB5_CONFIG", 39, 5], ["KADMIN_HEIMDAL_CLIENT_KRB5_CONFIG", 40, 5], ["KADMIN_HEIMDAL_SERVER_KRB5_CONFIG", 41, 5], ["K5TEST_MIT_KDB5_UTIL", 43, 5], ["K5TEST_MIT_KRB5KDC", 44, 5], ["K5TEST_MIT_KADMIN", 45, 5], ["K5TEST_MIT_KADMIN_LOCAL", 46, 5], ["K5TEST_MIT_KADMIND", 47, 5], ["K5TEST_MIT_KPROP", 48, 5], ["K5TEST_MIT_KINIT", 49, 5], ["K5TEST_MIT_KLIST", 50, 5], ["K5TEST_HEIMDAL_KDC", 52, 5], ["K5TEST_HEIMDAL_KADMIN", 53, 5], ["K5TEST_HEIMDAL_KADMIND", 54, 5], ["K5TEST_HEIMDAL_KINIT", 55, 5], ["K5TEST_HEIMDAL_KLIST", 56, 5], ["K5TEST_HEIMDAL_KTUTIL", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["cargoDeps", 22, 3], ["buildInputs", 29, 3], ["env", 33, 3], ["nativeBuildInputs", 60, 3], ["pythonImportsCheck", 67, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const heimdal = nix.arg($, "heimdal");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "python-kadmin-rs",
       version: "0.7.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "authentik-community",
           repo: "kadmin-rs",
           tag: nix.thunk(() => nix.str`kadmin/version/${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-IEQ7j3GoSMUD1ySaGTLmznN+5BttOzm0+VwYHuwdayQ=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "krb5"))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         KADMIN_MIT_CLIENT_INCLUDES: nix.thunk(() => nix.str`${nix.sel(pkgs, "krb5", "dev")}/include`),
         KADMIN_MIT_SERVER_INCLUDES: nix.thunk(() => nix.str`${nix.sel(pkgs, "krb5", "dev")}/include`),
         KADMIN_HEIMDAL_CLIENT_INCLUDES: nix.thunk(() => nix.str`${nix.sel(heimdal, "dev")}/include`),
@@ -71,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["kadmin"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Rust and Python interfaces to the Kerberos administration interface (kadm5)",
         homepage: "https://github.com/authentik-community/kadmin-rs",
         changelog: nix.thunk(() => nix.str`https://github.com/authentik-community/kadmin-rs/releases/tag/kadmin%2Fversion%2F${nix.sel(finalAttrs, "version")}`),

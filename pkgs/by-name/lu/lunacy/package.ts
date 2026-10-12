@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 112, 5], ["sourceProvenance", 113, 5], ["mainProgram", 114, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 44, 3], ["appendRunpaths", 51, 3], ["runtimeDependencies", 65, 3], ["dontBuild", 72, 3], ["dontStrip", 73, 3], ["installPhase", 75, 3], ["postInstall", 90, 3], ["postFixup", 96, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, dpkg: false, autoPatchelfHook: false, zlib: false, libgcc: false, fontconfig: false, libx11: false, "lttng-ust": false, icu: false, libice: false, libsm: false, libxcursor: false, openssl: false, imagemagick: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 112, 5], ["sourceProvenance", 113, 5], ["mainProgram", 114, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 44, 3], ["appendRunpaths", 51, 3], ["runtimeDependencies", 65, 3], ["dontBuild", 72, 3], ["dontStrip", 73, 3], ["installPhase", 75, 3], ["postInstall", 90, 3], ["postFixup", 96, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lunacy",
       version: "14.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://lcdn.icons8.com/setup/Lunacy_${nix.sel(finalAttrs, "version")}.deb`),
           hash: "sha256-riOlvd3ZxdCw5pe5v0R0jqVMpOFOiVfqxmgh8YqnPd0=",
         })))),
@@ -72,7 +70,7 @@ runHook postInstall
       postInstall: "substituteInPlace $out/share/applications/lunacy.desktop \\\n  --replace-fail \"Exec=/opt/icons8/lunacy/Lunacy\" \"Exec=lunacy\" \\\n  --replace-fail \"Icon=/opt/icons8/lunacy/Assets/LunacyLogo.png\" \"Icon=lunacy\"\n",
       postFixup: "mkdir $out/bin\n\n# The wrapper is needed instead of a symlink to prevent a random \"Unsupported file format\" when running the app.\nmakeWrapper \"$out/lib/lunacy/Lunacy\" \"$out/bin/lunacy\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free design software that keeps your flow with AI tools and built-in graphics",
         homepage: "https://icons8.com/lunacy",
         changelog: "https://lunacy.docs.icons8.com/release-notes/",

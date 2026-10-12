@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 16, 5], ["owner", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["updateScript", 40, 12]], [["description", 43, 5], ["longDescription", 44, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 24, 3], ["makeFlags", 26, 3], ["installPhase", 30, 3], ["nativeInstallCheckInputs", 37, 3], ["doInstallCheck", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, installShellFiles: false, versionCheckHook: false, zlib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 16, 5], ["owner", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["longDescription", 44, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 24, 3], ["makeFlags", 26, 3], ["installPhase", 30, 3], ["nativeInstallCheckInputs", 37, 3], ["doInstallCheck", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "minimap2",
       version: "2.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "minimap2",
           owner: "lh3",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Versatile pairwise aligner for genomic and spliced nucleotide sequences",
         longDescription: "Minimap2 is a versatile sequence alignment program that aligns\nDNA or mRNA sequences against a large reference database. It is\nparticularly efficient for long reads and can handle various\nsequencing technologies including PacBio and Oxford Nanopore.\n",
         mainProgram: "minimap2",

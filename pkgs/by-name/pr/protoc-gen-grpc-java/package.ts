@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 5], ["hash", 43, 5]], [["updateScript", 62, 12]], [["description", 65, 5], ["longDescription", 66, 5], ["changelog", 70, 5], ["sourceProvenance", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["homepage", 74, 5], ["platforms", 75, 5]], [["pname", 39, 3], ["version", 40, 18], ["src", 41, 3], ["dontUnpack", 45, 3], ["dontConfigure", 46, 3], ["dontBuild", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 52, 3], ["installPhase", 54, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["longDescription", 66, 5], ["changelog", 70, 5], ["sourceProvenance", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["homepage", 74, 5], ["platforms", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 18], ["src", 41, 3], ["dontUnpack", 45, 3], ["dontConfigure", 46, 3], ["dontBuild", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 52, 3], ["installPhase", 54, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   })());
   const data = nix.thunk(() => nix.builtins.import(nix.path(here, "./data.nix")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "protoc-gen-grpc-java",
       version: nix.thunk(() => nix.attr(data, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/${nix.sel(finalAttrs, "version")}/protoc-gen-grpc-java-${nix.sel(finalAttrs, "version")}-${hostArch}.exe`),
           hash: nix.thunk(() => nix.selOr(data, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsuported host arch ${hostArch}`)), "hashes", nix.key(nix.force(hostArch)))),
         })))),
@@ -37,9 +34,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])), [makeWrapper])),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc"))]),
       installPhase: "runHook preInstall\n\ninstall -D $src $out/bin/protoc-gen-grpc-java\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "gRPC Java Codegen Plugin for Protobuf Compiler",
         longDescription: "This generates the Java interfaces out of the service definition from a `.proto` file.\nIt works with the Protobuf Compiler (`protoc`).\n",
         changelog: nix.thunk(() => nix.str`https://github.com/grpc/grpc-java/releases/tag/v${nix.sel(finalAttrs, "version")}`),

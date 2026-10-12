@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]], [["pname", 8, 3], ["version", 9, 3], ["format", 10, 3], ["src", 12, 3], ["pythonImportsCheck", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["format", 10, 3], ["src", 12, 3], ["pythonImportsCheck", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.6";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mentalisttraceur",
           repo: "python-reprshed",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const pythonImportsCheck = nix.thunk(() => ["reprshed"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mentalisttraceur/python-reprshed",
         description: "Toolshed for writing great __repr__ methods quickly and easily",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "netali"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, format, src, pythonImportsCheck, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, src, pythonImportsCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

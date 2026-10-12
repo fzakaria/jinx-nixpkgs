@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 104, 5], ["hash", 105, 5]], [["homepage", 237, 5], ["description", 238, 5], ["sourceProvenance", 239, 5], ["license", 240, 5], ["platforms", 241, 5]], [["pname", 98, 3], ["version", 99, 3], ["src", 101, 3], ["nativeBuildInputs", 108, 3], ["libPath", 113, 3], ["installPhase", 205, 3], ["dontStrip", 233, 3], ["dontPatchELF", 234, 3], ["meta", 236, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, makeWrapper: false, "alsa-lib": false, atk: false, bintools: false, brotli: false, bzip2: false, cairo: false, cups: false, curl: false, dbus: false, expat: false, fontconfig: false, freetype: false, "gdk-pixbuf": false, glib: false, gnutls: false, gsm: false, gst_all_1: false, gtk3: false, harfbuzz: false, jbigkit: false, lcms: false, libbluray: false, libcap: false, libdrm: false, libevent: false, libgbm: false, libGL: false, libGLU: false, libinput: false, libjpeg: false, libkrb5: false, libmng: false, libopenmpt: false, libopus: false, libpulseaudio: false, librsvg: false, libssh: false, libtheora: false, libtiff: false, libva: false, libvdpau: false, libvorbis: false, libwebp: false, libxkbcommon: false, libxkbfile: false, libxml2_13: false, libxslt: false, mtdev: false, nspr: false, nss: false, numactl: false, "ocl-icd": false, openjpeg: false, openssl: false, pango: false, snappy: false, speex: false, systemdLibs: false, tslib: false, twolame: false, wavpack: false, wayland: false, "xkeyboard-config": false, "libxcb-wm": false, "libxcb-util": false, "libxcb-render-util": false, "libxcb-keysyms": false, "libxcb-image": false, libxtst: false, libxshmfence: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxi: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, libsm: false, libice: false, libxcb: false, xvidcore: false, zlib: false, zstd: false, zvbi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 104, 5], ["hash", 105, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 237, 5], ["description", 238, 5], ["sourceProvenance", 239, 5], ["license", 240, 5], ["platforms", 241, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 98, 3], ["version", 99, 3], ["src", 101, 3], ["nativeBuildInputs", 108, 3], ["libPath", 113, 3], ["installPhase", 205, 3], ["dontStrip", 233, 3], ["dontPatchELF", 234, 3], ["meta", 236, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -102,11 +100,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const zvbi = nix.arg($, "zvbi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "viber",
       version: "27.3.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20260518041738/https://download.cdn.viber.com/cdn/desktop/Linux/viber.deb",
           hash: "sha256-lhU03Ay5IABux66BCLDhugmkdu7x4TtLNwp5zVLdIPM=",
         })))),
@@ -231,7 +229,7 @@ runHook postInstall
       dontStrip: true,
       dontPatchELF: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.viber.com",
         description: "Instant messaging and Voice over IP (VoIP) app",
         sourceProvenance: nix.thunk(() => (() => {

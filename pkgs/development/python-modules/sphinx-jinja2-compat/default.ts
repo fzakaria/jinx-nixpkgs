@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 17, 13], ["pname", 18, 5], ["hash", 19, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["postPatch", 22, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, whey: false, "whey-pth": false, jinja2: false, markupsafe: false, "standard-imghdr": false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 17, 13], ["pname", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["postPatch", 22, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "sphinx_jinja2_compat",
           hash: "sha256-AYjwgC1Cw9pymXUztVoAgVZZp40/gdS0dHsfsVpXKOY=",
@@ -32,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [jinja2, markupsafe, standard_imghdr]);
       const pythonImportsCheck = nix.thunk(() => ["sphinx_jinja2_compat"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Patches Jinja2 v3 to restore compatibility with earlier Sphinx versions",
         homepage: "https://github.com/sphinx-toolbox/sphinx-jinja2-compat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

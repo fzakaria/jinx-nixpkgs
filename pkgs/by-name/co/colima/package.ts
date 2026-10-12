@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["leaveDotGit", 28, 5], ["postFetch", 29, 5]], [["CGO_ENABLED", 47, 7]], [["package", 83, 5], ["command", 84, 5]], [["version", 82, 18]], [["tests", 82, 12]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 95, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 35, 3], ["vendorHash", 41, 3], ["excludedPackages", 45, 3], ["env", 47, 3], ["postPatch", 49, 3], ["preConfigure", 57, 3], ["postInstall", 62, 3], ["passthru", 82, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, darwin: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, krunkit: false, "lima-full": false, makeWrapper: false, procps: false, qemu: false, docker: false, testers: false, colima: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["leaveDotGit", 28, 5], ["postFetch", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 83, 5], ["command", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 82, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 82, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 95, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 35, 3], ["vendorHash", 41, 3], ["excludedPackages", 45, 3], ["env", 47, 3], ["postPatch", 49, 3], ["preConfigure", 57, 3], ["postInstall", 62, 3], ["passthru", 82, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const colima = nix.arg($, "colima");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "colima",
       version: "0.10.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "abiosoft",
           repo: "colima",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles, makeWrapper], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "DarwinTools"))])))),
       vendorHash: "sha256-j1RuG3CTGfVNfT/v+C2pZgb58c9cxa2op3LA/F5rNWo=",
       excludedPackages: "gvproxy",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 1n })),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.str`substituteInPlace cmd/daemon/daemon.go \\
   --replace-fail '/usr/bin/pkill' '${nix.app(nix.sel(lib, "getExe'"), procps, "pkill")}'
 
@@ -62,18 +56,18 @@ installShellCompletion --cmd colima \\
   --zsh <($out/bin/colima completion zsh)
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: colima,
               command: "HOME=$(mktemp -d) colima version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Container runtimes with minimal setup",
         homepage: "https://github.com/abiosoft/colima",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

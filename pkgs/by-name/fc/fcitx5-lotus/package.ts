@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["updateScript", 42, 5]], [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["maintainers", 114, 5], ["platforms", 118, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["passthru", 41, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 56, 3], ["strictDeps", 67, 3], ["__structuredAttrs", 69, 3], ["dontWrapQtApps", 71, 3], ["preConfigure", 73, 3], ["postPatch", 78, 3], ["postInstall", 94, 3], ["postFixup", 102, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, acl: false, cmake: false, fcitx5: false, fetchFromGitHub: false, gettext: false, go: false, "hicolor-icon-theme": false, kdePackages: false, libinput: false, librsvg: false, "nix-update-script": false, "pkg-config": false, python3: false, qt6: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["maintainers", 114, 5], ["platforms", 118, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["passthru", 41, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 56, 3], ["strictDeps", 67, 3], ["__structuredAttrs", 69, 3], ["dontWrapQtApps", 71, 3], ["preConfigure", 73, 3], ["postPatch", 78, 3], ["postInstall", 94, 3], ["postFixup", 102, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,18 +33,18 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fcitx5-lotus",
       version: "4.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LotusInputMethod",
           repo: "fcitx5-lotus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-dUJO/iemfSUiSgqgdl5tsjnjIy1mKyOzqhK9H4IJXK4=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [
@@ -86,7 +83,7 @@ wrapQtApp $out/bin/fcitx5-lotus-settings \\
   --prefix XDG_DATA_DIRS : "${hicolor_icon_theme}/share"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Vietnamese input method engine for Fcitx5",
         homepage: "https://github.com/LotusInputMethod/fcitx5-lotus",
         license: nix.thunk(() => (() => {

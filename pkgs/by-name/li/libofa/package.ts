@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["url", 22, 5], ["hash", 23, 5]], [["homepage", 55, 5], ["description", 56, 5], ["longDescription", 57, 5], ["platforms", 60, 5], ["license", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["deb_patch", 14, 3], ["src", 16, 3], ["debian_patches", 21, 3], ["patches", 26, 3], ["outputs", 37, 3], ["setOutputFlags", 42, 3], ["preConfigure", 44, 3], ["propagatedBuildInputs", 48, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchzip: false, expat: false, curl: false, fftw: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["longDescription", 57, 5], ["platforms", 60, 5], ["license", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["deb_patch", 14, 3], ["src", 16, 3], ["debian_patches", 21, 3], ["patches", 26, 3], ["outputs", 37, 3], ["setOutputFlags", 42, 3], ["preConfigure", 44, 3], ["propagatedBuildInputs", 48, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.3";
       const deb_patch = "5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/musicip-libofa/libofa-${version}.tar.gz`),
           sha256: "184ham039l7lwhfgg0xr2vch2xnw1lwh7sid432mh879adhlc5h2",
         }))));
       const debian_patches = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/libo/libofa/libofa_${version}-${deb_patch}.debian.tar.gz`),
           hash: "sha256-tENhXSRcUP1PKm35IJyLUEEROze8UzxJzRx3VNAqo40=",
         }))));
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const preConfigure = "configureFlagsArray=(--includedir=$dev/include --libdir=$out/lib)\n";
       const propagatedBuildInputs = nix.thunk(() => [expat, curl, fftw]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://code.google.com/archive/p/musicip-libofa/",
         description: "Library Open Fingerprint Architecture",
         longDescription: "LibOFA (Library Open Fingerprint Architecture) is an open-source audio\nfingerprint created and provided by MusicIP",
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         deb_patch,

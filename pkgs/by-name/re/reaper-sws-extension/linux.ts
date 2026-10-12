@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]], [["pname", 17, 11], ["version", 17, 17], ["meta", 17, 25], ["src", 19, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["cmakeFlags", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, php: false, perl: false, git: false, "pkg-config": false, gtk3: false, pname: false, version: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["pname", 17, 11], ["version", 17, 17], ["meta", 17, 25], ["src", 19, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["cmakeFlags", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "reaper-oss",
           repo: "sws",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),

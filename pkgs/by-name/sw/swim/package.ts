@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["updateScript", 46, 21]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["nativeCheckInputs", 30, 3], ["checkFlags", 35, 3], ["passthru", 45, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromCodeberg: false, "pkg-config": false, openssl: false, spade: false, git: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 46, 21]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["nativeCheckInputs", 30, 3], ["checkFlags", 35, 3], ["passthru", 45, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "swim";
       const version = "0.20.0";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "spade-lang",
           repo: "swim",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
         "--skip=plugin::test::deny_changes_to_plugins::restores_work",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.attr(spade, "updateScript")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Build tool for spade",
         homepage: "https://codeberg.com/spade-lang/swim",
         changelog: "https://codeberg.org/spade-lang/swim/src/branch/main/CHANGELOG.md",
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "swim",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

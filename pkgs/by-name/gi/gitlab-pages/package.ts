@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 28, 5], ["mainProgram", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["teams", 33, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["subPackages", 20, 3], ["ldflags", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { buildGoModule: false, lib: false, fetchFromGitLab: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["mainProgram", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["teams", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["subPackages", 20, 3], ["ldflags", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gitlab-pages",
       version: "19.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gitlab-org",
           repo: "gitlab-pages",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`main.VERSION=${nix.sel(finalAttrs, "version")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Daemon used to serve static websites for GitLab users",
         mainProgram: "gitlab-pages",
         homepage: "https://gitlab.com/gitlab-org/gitlab-pages",

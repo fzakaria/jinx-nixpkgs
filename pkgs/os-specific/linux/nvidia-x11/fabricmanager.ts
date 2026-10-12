@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fabricmanager.nix", [[["url", 24, 5], ["sha256", 27, 13]], [["homepage", 88, 5], ["description", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["mainProgram", 92, 5], ["maintainers", 93, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 23, 3], ["installPhase", 30, 3], ["doCheck", 64, 3], ["checkPhase", 65, 3], ["doInstallCheck", 78, 3], ["nativeInstallCheckInputs", 79, 3], ["dontFixup", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, patchelf: false, zlib: false, glibc: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fabricmanager.nix", [["url", 24, 5], ["sha256", 27, 13]]);
-const pos$2 = nix.positions(here + "/fabricmanager.nix", [["homepage", 88, 5], ["description", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["mainProgram", 92, 5], ["maintainers", 93, 5]]);
-const pos$3 = nix.positions(here + "/fabricmanager.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 23, 3], ["installPhase", 30, 3], ["doCheck", 64, 3], ["checkPhase", 65, 3], ["doInstallCheck", 78, 3], ["nativeInstallCheckInputs", 79, 3], ["dontFixup", 85, 3], ["meta", 87, 3]]);
 
 export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
       const pname = "fabricmanager";
       const version = fmver;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.add("https://developer.download.nvidia.com/compute/nvidia-driver/redist/fabricmanager/", nix.str`${sys}/${pname}-${sys}-${fmver}-archive.tar.xz`)),
           sha256: sha256,
         }))));
@@ -71,7 +69,7 @@ runHook postCheck
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const dontFixup = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.nvidia.com/object/unix.html",
         description: "Fabricmanager daemon for NVLink initialization and control",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
@@ -83,7 +81,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

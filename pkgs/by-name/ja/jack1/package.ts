@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["pkg-config", 49, 18]], [["tests", 49, 12]], [["broken", 52, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["pkgConfigModules", 59, 5], ["platforms", 60, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["configureFlags", 36, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 47, 3], ["passthru", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, "alsa-lib": true, db: true, libuuid: true, libffado: true, celt_0_7: true, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 49, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 49, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 52, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["pkgConfigModules", 59, 5], ["platforms", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["configureFlags", 36, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 47, 3], ["passthru", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const optLibffado = nix.thunk(() => nix.app(shouldUsePkg, libffado));
   const optCelt = nix.thunk(() => nix.app(shouldUsePkg, celt_0_7));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jack1",
       version: "0.126.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/jackaudio/jack1/releases/download/${nix.sel(finalAttrs, "version")}/jack1-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-eykOnce5JirDKNQe74DBBTyXAT76y++jBHfLmypUReo=",
         })))),
@@ -43,14 +39,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [optAlsaLib, optDb, optLibffado, optCelt]),
       propagatedBuildInputs: nix.thunk(() => [optLibuuid]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "JACK audio connection kit",
         homepage: "https://jackaudio.org",

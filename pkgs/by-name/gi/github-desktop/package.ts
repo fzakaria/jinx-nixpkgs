@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5], ["fetchSubmodules", 45, 5], ["postCheckout", 46, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 75, 5], ["npm_config_nodedir", 76, 5]], [["name", 80, 5], ["yarnLock", 81, 5], ["hash", 82, 5]], [["name", 86, 5], ["yarnLock", 87, 5], ["hash", 88, 5]], [["name", 150, 7], ["desktopName", 151, 7], ["comment", 152, 7], ["exec", 153, 7], ["icon", 154, 7], ["mimeTypes", 155, 7], ["terminal", 160, 7]], [["extraArgs", 191, 7]], [["cacheRoot", 189, 26], ["cacheApp", 189, 36], ["updateScript", 190, 5]], [["description", 203, 5], ["homepage", 204, 5], ["changelog", 205, 5], ["downloadPage", 206, 5], ["license", 207, 5], ["mainProgram", 208, 5], ["maintainers", 209, 5], ["platforms", 210, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["yarnBuildScript", 49, 3], ["buildInputs", 51, 3], ["nativeBuildInputs", 57, 3], ["env", 74, 3], ["cacheRoot", 79, 3], ["cacheApp", 85, 3], ["dontYarnInstallDeps", 91, 3], ["postConfigure", 93, 3], ["preBuild", 144, 3], ["desktopItems", 148, 3], ["installPhase", 164, 3], ["passthru", 188, 3], ["meta", 202, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, copyDesktopItems: false, desktopToDarwinBundle: false, fetchFromGitHub: false, fetchYarnDeps: false, makeBinaryWrapper: false, makeDesktopItem: false, yarnBuildHook: false, yarnConfigHook: false, electron: false, git: false, "git-lfs": false, "node-gyp": false, nodejs: false, "pkg-config": false, python3: false, typescript_5: false, zip: false, "gnome-keyring": false, libsecret: false, curl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5], ["fetchSubmodules", 45, 5], ["postCheckout", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 75, 5], ["npm_config_nodedir", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 80, 5], ["yarnLock", 81, 5], ["hash", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 86, 5], ["yarnLock", 87, 5], ["hash", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 150, 7], ["desktopName", 151, 7], ["comment", 152, 7], ["exec", 153, 7], ["icon", 154, 7], ["mimeTypes", 155, 7], ["terminal", 160, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 191, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["cacheRoot", 189, 26], ["cacheApp", 189, 36], ["updateScript", 190, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 203, 5], ["homepage", 204, 5], ["changelog", 205, 5], ["downloadPage", 206, 5], ["license", 207, 5], ["mainProgram", 208, 5], ["maintainers", 209, 5], ["platforms", 210, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["yarnBuildScript", 49, 3], ["buildInputs", 51, 3], ["nativeBuildInputs", 57, 3], ["env", 74, 3], ["cacheRoot", 79, 3], ["cacheApp", 85, 3], ["dontYarnInstallDeps", 91, 3], ["postConfigure", 93, 3], ["preBuild", 144, 3], ["desktopItems", 148, 3], ["installPhase", 164, 3], ["passthru", 188, 3], ["meta", 202, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const cacheRootHash = "sha256-WruQopxE9uROdbBFiMsjuQj7jlEdNrbhWym6JxGIBi8=";
   const cacheAppHash = "sha256-YlqykBZXcvWOkb07ojZsnWdJTb/OKbDeXh1VpATGS2M=";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "github-desktop",
       version: "3.6.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "desktop",
           repo: "desktop",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -72,18 +64,18 @@ export default nix.lambda((args) => (() => {
         zip,
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), desktopToDarwinBundle))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         npm_config_nodedir: nix.thunk(() => nix.sel(electron, "headers")),
       })),
       cacheRoot: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-cache-root`),
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: cacheRootHash,
         })))),
       cacheApp: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-cache-app`),
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/app/yarn.lock")),
           hash: cacheAppHash,
@@ -141,7 +133,7 @@ substituteInPlace script/build.ts \\
       preBuild: "export CIRCLE_SHA1=\"$(cat .gitrev)\"\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "github-desktop",
             desktopName: "GitHub Desktop",
             comment: "Focus on what matters instead of fighting with Git",
@@ -178,11 +170,11 @@ ln -s $out/share/github-desktop/resources/app/static/icon-logo.png $out/share/ic
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         cacheRoot: nix.thunk(() => nix.attr(finalAttrs, "cacheRoot")),
         cacheApp: nix.thunk(() => nix.attr(finalAttrs, "cacheApp")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             extraArgs: nix.thunk(() => [
               "--version-regex",
               "^release-(\\d+\\.\\d+\\.\\d+)$",
@@ -194,7 +186,7 @@ runHook postInstall
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "GUI for managing Git and GitHub",
         homepage: "https://desktop.github.com",
         changelog: "https://desktop.github.com/release-notes",

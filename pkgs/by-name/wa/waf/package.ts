@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["waf", 76, 7]], [["python3", 74, 13], ["extraTools", 74, 21], ["hook", 75, 5]], [["homepage", 81, 5], ["description", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 28], ["sourceProvenance", 88, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["strictDeps", 35, 3], ["configurePhase", 37, 3], ["buildPhase", 45, 3], ["installPhase", 63, 3], ["passthru", 73, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, callPackage: false, ensureNewerSourcesForZipFilesHook: false, python3: false, makeWrapper: false, extraTools: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["waf", 76, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["python3", 74, 13], ["extraTools", 74, 21], ["hook", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 81, 5], ["description", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 28], ["sourceProvenance", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["strictDeps", 35, 3], ["configurePhase", 37, 3], ["buildPhase", 45, 3], ["installPhase", 63, 3], ["passthru", 73, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const extraTools = nix.argOr($, "extraTools", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "waf",
       version: "2.1.9",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ita1024",
           repo: "waf",
           rev: nix.thunk(() => nix.str`waf-${nix.sel(finalAttrs, "version")}`),
@@ -56,15 +52,18 @@ cp -r waflib "$out"/${nix.sel(python3, "sitePackages")}/
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         python3: python3,
         extraTools: extraTools,
-        hook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hook.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, waf: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+        hook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hook.nix"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            waf: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
+          })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(python3, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://waf.io",
         description: "Meta build system",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ita1024/waf/blob/waf-${nix.sel(finalAttrs, "version")}/ChangeLog`),

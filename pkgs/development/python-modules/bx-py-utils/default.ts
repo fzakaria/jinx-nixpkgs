@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 95, 5], ["mainProgram", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["build-system", 35, 3], ["pythonImportsCheck", 37, 3], ["nativeCheckInputs", 58, 3], ["disabledTests", 71, 3], ["disabledTestPaths", 84, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, beautifulsoup4: false, boto3: false, freezegun: false, hatchling: false, lxml: false, openpyxl: false, parameterized: false, pdoc: false, pytestCheckHook: false, "requests-mock": false, typeguard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 95, 5], ["mainProgram", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["build-system", 35, 3], ["pythonImportsCheck", 37, 3], ["nativeCheckInputs", 58, 3], ["disabledTests", 71, 3], ["disabledTestPaths", 84, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "121";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "boxine",
           repo: "bx_py_utils",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -82,7 +80,7 @@ export default nix.lambda((args) => (() => {
         "bx_py_utils_tests/tests/test_processify.py",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Various Python utility functions",
         mainProgram: "bx_py_utils",
         homepage: "https://github.com/boxine/bx_py_utils",
@@ -94,7 +92,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["color", 12, 5], ["opacity", 20, 5], ["thickness", 24, 5], ["handedness", 28, 5]], [["owner", 51, 5], ["repo", 52, 5], ["rev", 54, 5], ["sha256", 55, 5]], [["description", 120, 5], ["longDescription", 121, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 135, 5], ["platforms", 136, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["nativeBuildInputs", 58, 3], ["patches", 64, 3], ["postPatch", 66, 3], ["buildPhase", 81, 3], ["installPhase", 85, 3], ["outputs", 103, 3], ["outputsToInstall", 117, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitLab: false, bc: false, librsvg: false, xcursorgen: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["color", 12, 5], ["opacity", 20, 5], ["thickness", 24, 5], ["handedness", 28, 5]]);
 const formals$2 = { args: { color: false, opacity: false, thickness: false, handedness: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["rev", 54, 5], ["sha256", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 120, 5], ["longDescription", 121, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 135, 5], ["platforms", 136, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["nativeBuildInputs", 58, 3], ["patches", 64, 3], ["postPatch", 66, 3], ["buildPhase", 81, 3], ["installPhase", 85, 3], ["outputs", 103, 3], ["outputsToInstall", 117, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const xcursorgen = nix.arg($, "xcursorgen");
   const dimensions = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     color: nix.thunk(() => ["Black", "Blue", "Green", "Orange", "Red", "White"]),
     opacity: nix.thunk(() => ["", "Opaque_"]),
     thickness: nix.thunk(() => ["", "Slim_"]),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "comixcursors";
       const version = "0.9.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "limitland",
           repo: "comixcursors",
           rev: "8c327c8514ab3a352583605c1ddcb7eb3d1d302b",
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       })());
       const outputsToInstall = [];
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Comix Cursors mouse themes",
         longDescription: nix.thunk(() => nix.str`There are many (${nix.builtins.toString(nix.thunk(() => nix.sub(nix.app(nix.sel(lib, "length"), outputs), 1n)))}) variants of color,
 opacity, edge thickness, and right- or left-handedness, for this cursor
@@ -73,7 +70,7 @@ list).
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

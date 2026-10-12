@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/merging-attrs.nix", [[["type", 8, 7]], [["a", 16, 13], ["b", 17, 13], ["c", 18, 13]], [["type", 12, 7], ["default", 13, 7]], [["fun", 7, 5], ["result", 11, 5]], [["a", 26, 31]], [["b", 27, 31]], [["b", 29, 7]], [["fun", 25, 10]], [["options", 6, 3], ["config", 25, 3]]]);
 const formals$1 = { args: { lib: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/merging-attrs.nix", [["type", 8, 7]]);
-const pos$2 = nix.positions(here + "/merging-attrs.nix", [["a", 16, 13], ["b", 17, 13], ["c", 18, 13]]);
-const pos$3 = nix.positions(here + "/merging-attrs.nix", [["type", 12, 7], ["default", 13, 7]]);
-const pos$4 = nix.positions(here + "/merging-attrs.nix", [["fun", 7, 5], ["result", 11, 5]]);
-const pos$5 = nix.positions(here + "/merging-attrs.nix", [["a", 26, 31]]);
-const pos$6 = nix.positions(here + "/merging-attrs.nix", [["b", 27, 31]]);
-const pos$7 = nix.positions(here + "/merging-attrs.nix", [["b", 29, 7]]);
-const pos$8 = nix.positions(here + "/merging-attrs.nix", [["fun", 25, 10]]);
-const pos$9 = nix.positions(here + "/merging-attrs.nix", [["options", 6, 3], ["config", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,26 +11,26 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       fun: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.app(nix.sel(types, "functionTo"), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.sel(types, "str")))))),
         })))),
       result: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           type: nix.thunk(() => nix.sel(types, "str")),
-          default: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(config, "fun"), nix.thunk(() => ({ [nix.POS]: pos$2, a: "a", b: "b", c: "c" })))))))),
+          default: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(config, "fun"), nix.thunk(() => ({ [nix.POS]: $pos[1], a: "a", b: "b", c: "c" })))))))),
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       fun: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-          (input) => ({ [nix.POS]: pos$5, a: nix.thunk(() => nix.attr(input, "a")) }),
-          (input) => ({ [nix.POS]: pos$6, b: nix.thunk(() => nix.attr(input, "b")) }),
+          (input) => ({ [nix.POS]: $pos[4], a: nix.thunk(() => nix.attr(input, "a")) }),
+          (input) => ({ [nix.POS]: $pos[5], b: nix.thunk(() => nix.attr(input, "b")) }),
           (input) => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             b: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.sel(input, "c")))),
           }),
         ]))),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]], [["shortName", 24, 7], ["fullName", 25, 7]], [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["shortName", 24, 7], ["fullName", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,22 +12,22 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bakoma-ttf",
       version: "2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "bakoma-ttf.tar.bz2",
           url: "http://tarballs.nixos.org/sha256/1j1y3cq6ys30m734axc0brdm2q9n2as4h32jws15r7w5fwr991km",
           hash: "sha256-dYaUMneFn1yC5lIMSLQSNmFRW16AdUXGqWBobzAbPsg=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "TrueType versions of the Computer Modern and AMS TeX Fonts",
         homepage: "https://www.ctan.org/tex-archive/fonts/cm/ps-type1/bakoma/ttf/",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             shortName: "bakoma-fonts",
             fullName: "BaKoMa Fonts Licence",
           })))),

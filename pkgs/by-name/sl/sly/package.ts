@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["nativeBuildInputs", 34, 11], ["src", 35, 25]], [["rev-prefix", 41, 21]], [["pubspecSource", 31, 5], ["updateScript", 40, 5]], [["description", 47, 5], ["homepage", 48, 5], ["mainProgram", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["pubspecLock", 23, 3], ["postInstall", 25, 3], ["passthru", 30, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, flutter335: false, runCommand: false, yq: false, sly: false, "_experimental-update-script-combinators": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 34, 11], ["src", 35, 25]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 41, 21]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pubspecSource", 31, 5], ["updateScript", 40, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["mainProgram", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["pubspecLock", 23, 3], ["postInstall", 25, 3], ["passthru", 30, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sly";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kra-mo",
           repo: "Sly",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,19 +28,19 @@ export default nix.lambda((args) => (() => {
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const postInstall = "install -Dm0644 packaging/linux/page.kramo.Sly.svg $out/share/icons/hicolor/scalable/apps/page.kramo.Sly.svg\ninstall -Dm0644 packaging/linux/page.kramo.Sly.desktop $out/share/applications/sly.desktop\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             nativeBuildInputs: nix.thunk(() => [yq]),
             src: nix.thunk(() => nix.attr(sly, "src")),
           })), "cat $src/pubspec.lock | yq > $out\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
             nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "sly.pubspecSource", nix.path(here, "./pubspec.lock.json"))),
           ]))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Friendly image editor",
         homepage: "https://github.com/kra-mo/Sly",
         mainProgram: "sly",
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

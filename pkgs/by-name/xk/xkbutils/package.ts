@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["updateScript", 33, 5]], [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["passthru", 32, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, xorgproto: false, libx11: false, libxaw: false, libxt: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["passthru", 32, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xkbutils",
       version: "1.0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/app/xkbutils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Xze+DuMa2hFEFXgMViY4obTwOzheVkSZJ78NVmV4eiY=",
         })))),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [xorgproto, libx11, libxaw, libxt]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
@@ -42,7 +39,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Collection of small XKB utilities",
         longDescription: "xkbutils is a collection of small utilities using the X Keyboard extension:\n- xkbbell: generate X Keyboard Extension bell events\n- xkbvleds: display X Keyboard Extension LED state in a window\n- xkbwatch: report state changes using the X Keyboard Extension\n",
         homepage: "https://gitlab.freedesktop.org/xorg/app/xkbutils",

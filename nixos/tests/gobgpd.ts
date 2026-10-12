@@ -2,81 +2,57 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gobgpd.nix", [[["maintainers", 10, 5]], [["systemPackages", 17, 21]], [["allowedTCPPorts", 18, 29]], [["firewall", 18, 20]], [["as", 24, 17], ["router-id", 25, 17]], [["config", 23, 15]], [["neighbor-address", 31, 19], ["peer-as", 32, 19]], [["config", 30, 17]], [["global", 22, 13], ["neighbors", 28, 13]], [["enable", 20, 11], ["settings", 21, 11]], [["gobgpd", 19, 18]], [["environment", 17, 9], ["networking", 18, 9], ["services", 19, 9]], [["systemPackages", 42, 21]], [["allowedTCPPorts", 43, 29]], [["firewall", 43, 20]], [["as", 49, 17], ["router-id", 50, 17]], [["config", 48, 15]], [["neighbor-address", 56, 19], ["peer-as", 57, 19]], [["config", 55, 17]], [["global", 47, 13], ["neighbors", 53, 13]], [["enable", 45, 11], ["settings", 46, 11]], [["gobgpd", 44, 18]], [["environment", 42, 9], ["networking", 43, 9], ["services", 44, 9]], [["node1", 14, 5], ["node2", 39, 5]], [["name", 7, 3], ["meta", 9, 3], ["nodes", 13, 3], ["testScript", 66, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gobgpd.nix", [["maintainers", 10, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/gobgpd.nix", [["systemPackages", 17, 21]]);
-const pos$3 = nix.positions(here + "/gobgpd.nix", [["allowedTCPPorts", 18, 29]]);
-const pos$4 = nix.positions(here + "/gobgpd.nix", [["firewall", 18, 20]]);
-const pos$5 = nix.positions(here + "/gobgpd.nix", [["as", 24, 17], ["router-id", 25, 17]]);
-const pos$6 = nix.positions(here + "/gobgpd.nix", [["config", 23, 15]]);
-const pos$7 = nix.positions(here + "/gobgpd.nix", [["neighbor-address", 31, 19], ["peer-as", 32, 19]]);
-const pos$8 = nix.positions(here + "/gobgpd.nix", [["config", 30, 17]]);
-const pos$9 = nix.positions(here + "/gobgpd.nix", [["global", 22, 13], ["neighbors", 28, 13]]);
-const pos$10 = nix.positions(here + "/gobgpd.nix", [["enable", 20, 11], ["settings", 21, 11]]);
-const pos$11 = nix.positions(here + "/gobgpd.nix", [["gobgpd", 19, 18]]);
-const pos$12 = nix.positions(here + "/gobgpd.nix", [["environment", 17, 9], ["networking", 18, 9], ["services", 19, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/gobgpd.nix", [["systemPackages", 42, 21]]);
-const pos$14 = nix.positions(here + "/gobgpd.nix", [["allowedTCPPorts", 43, 29]]);
-const pos$15 = nix.positions(here + "/gobgpd.nix", [["firewall", 43, 20]]);
-const pos$16 = nix.positions(here + "/gobgpd.nix", [["as", 49, 17], ["router-id", 50, 17]]);
-const pos$17 = nix.positions(here + "/gobgpd.nix", [["config", 48, 15]]);
-const pos$18 = nix.positions(here + "/gobgpd.nix", [["neighbor-address", 56, 19], ["peer-as", 57, 19]]);
-const pos$19 = nix.positions(here + "/gobgpd.nix", [["config", 55, 17]]);
-const pos$20 = nix.positions(here + "/gobgpd.nix", [["global", 47, 13], ["neighbors", 53, 13]]);
-const pos$21 = nix.positions(here + "/gobgpd.nix", [["enable", 45, 11], ["settings", 46, 11]]);
-const pos$22 = nix.positions(here + "/gobgpd.nix", [["gobgpd", 44, 18]]);
-const pos$23 = nix.positions(here + "/gobgpd.nix", [["environment", 42, 9], ["networking", 43, 9], ["services", 44, 9]]);
-const pos$24 = nix.positions(here + "/gobgpd.nix", [["node1", 14, 5], ["node2", 39, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$25 = nix.positions(here + "/gobgpd.nix", [["name", 7, 3], ["meta", 9, 3], ["nodes", 13, 3], ["testScript", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const ifAddr = (node) => (iface) => nix.sel(nix.app(nix.sel(pkgs, "lib", "head"), nix.thunk(() => nix.sel(node, "config", "networking", "interfaces", nix.key(nix.force(iface)), "ipv4", "addresses"))), "address");
   return {
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     name: "gobgpd",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "higebu"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       node1: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gobgp"))]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedTCPPorts: nix.thunk(() => [179n]) })),
+            [nix.POS]: $pos[3],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[2], allowedTCPPorts: nix.thunk(() => [179n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             gobgpd: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 global: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
-                  config: nix.thunk(() => ({ [nix.POS]: pos$5, as: 64512n, "router-id": "192.168.255.1" })),
+                  [nix.POS]: $pos[5],
+                  config: nix.thunk(() => ({ [nix.POS]: $pos[4], as: 64512n, "router-id": "192.168.255.1" })),
                 })),
                 neighbors: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$8,
+                    [nix.POS]: $pos[7],
                     config: nix.thunk(() => ({
-                      [nix.POS]: pos$7,
+                      [nix.POS]: $pos[6],
                       "neighbor-address": nix.thunk(() => nix.app(ifAddr, nix.thunk(() => nix.sel(nodes, "node2")), "eth1")),
                       "peer-as": 64513n,
                     })),
@@ -91,31 +67,31 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gobgp"))]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$15,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [179n]) })),
+            [nix.POS]: $pos[14],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[13], allowedTCPPorts: nix.thunk(() => [179n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             gobgpd: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 global: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
-                  config: nix.thunk(() => ({ [nix.POS]: pos$16, as: 64513n, "router-id": "192.168.255.2" })),
+                  [nix.POS]: $pos[16],
+                  config: nix.thunk(() => ({ [nix.POS]: $pos[15], as: 64513n, "router-id": "192.168.255.2" })),
                 })),
                 neighbors: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     config: nix.thunk(() => ({
-                      [nix.POS]: pos$18,
+                      [nix.POS]: $pos[17],
                       "neighbor-address": nix.thunk(() => nix.app(ifAddr, nix.thunk(() => nix.sel(nodes, "node1")), "eth1")),
                       "peer-as": 64512n,
                     })),

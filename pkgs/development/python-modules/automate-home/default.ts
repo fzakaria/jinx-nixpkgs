@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 13], ["version", 25, 19], ["hash", 26, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["disabled", 22, 3], ["src", 24, 3], ["postPatch", 29, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 47, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, aioredis: false, apscheduler: false, buildPythonPackage: false, ephem: false, fetchPypi: false, hiredis: false, pytestCheckHook: false, pythonAtLeast: false, pytz: false, pyyaml: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 13], ["version", 25, 19], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["disabled", 22, 3], ["src", 24, 3], ["postPatch", 29, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 47, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.12"));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-41qd+KPSrOrczkovwXht3irbcYlYehBZ1HZ44yZe4cM=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["home"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python module to automate (home) devices",
         homepage: "https://github.com/majamassarini/automate-home",
         changelog: nix.thunk(() => nix.str`https://github.com/majamassarini/automate-home/releases/tag/${version}`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

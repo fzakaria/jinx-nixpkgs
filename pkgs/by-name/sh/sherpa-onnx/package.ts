@@ -2,38 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 9], ["hash", 36, 9]], [["name", 33, 7], ["src", 34, 7]], [["url", 42, 9], ["hash", 43, 9]], [["name", 40, 7], ["src", 41, 7]], [["url", 49, 9], ["hash", 50, 9]], [["name", 47, 7], ["src", 48, 7]], [["url", 56, 9], ["hash", 57, 9]], [["name", 54, 7], ["src", 55, 7]], [["url", 63, 9], ["hash", 64, 9]], [["name", 61, 7], ["src", 62, 7]], [["url", 70, 9], ["hash", 71, 9]], [["name", 68, 7], ["src", 69, 7]], [["url", 77, 9], ["hash", 78, 9]], [["name", 75, 7], ["src", 76, 7]], [["url", 84, 9], ["hash", 85, 9]], [["name", 82, 7], ["src", 83, 7]], [["url", 91, 9], ["hash", 92, 9]], [["name", 89, 7], ["src", 90, 7]], [["url", 100, 9], ["hash", 101, 9]], [["name", 98, 7], ["src", 99, 7]], [["url", 107, 9], ["hash", 108, 9]], [["name", 105, 7], ["src", 106, 7]], [["url", 119, 5], ["hash", 120, 5]], [["url", 123, 5], ["hash", 124, 5]], [["url", 127, 5], ["hash", 128, 5]], [["owner", 136, 5], ["repo", 137, 5], ["tag", 138, 5], ["hash", 139, 5]], [["nativeBuildInputs", 235, 11]], [["offlineRecognition", 232, 11]], [["updateScript", 227, 5], ["tests", 232, 5]], [["description", 252, 5], ["homepage", 253, 5], ["changelog", 254, 5], ["license", 255, 5], ["platforms", 256, 5], ["maintainers", 257, 5], ["mainProgram", 261, 5]], [["pname", 132, 3], ["version", 133, 3], ["src", 135, 3], ["outputs", 142, 3], ["separateDebugInfo", 144, 3], ["patches", 146, 3], ["nativeBuildInputs", 150, 3], ["buildInputs", 160, 3], ["nativeCheckInputs", 167, 3], ["preConfigure", 177, 3], ["cmakeFlags", 181, 3], ["postBuild", 206, 3], ["doCheck", 211, 3], ["checkPhase", 214, 3], ["postInstall", 220, 3], ["passthru", 226, 3], ["meta", 251, 3]]]);
 const formals$1 = { args: { lib: false, config: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, cmake: false, python3Packages: true, "nix-update-script": false, runCommand: false, "alsa-lib": false, eigen_5: false, gtest: false, kissfft: false, nlohmann_json: false, onnxruntime: false, cudaSupport: true, websocketSupport: true, pythonSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 9], ["hash", 36, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 7], ["src", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 42, 9], ["hash", 43, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 40, 7], ["src", 41, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 49, 9], ["hash", 50, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 47, 7], ["src", 48, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 56, 9], ["hash", 57, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 54, 7], ["src", 55, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["url", 63, 9], ["hash", 64, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 61, 7], ["src", 62, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["url", 70, 9], ["hash", 71, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["name", 68, 7], ["src", 69, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["url", 77, 9], ["hash", 78, 9]]);
-const pos$14 = nix.positions(here + "/package.nix", [["name", 75, 7], ["src", 76, 7]]);
-const pos$15 = nix.positions(here + "/package.nix", [["url", 84, 9], ["hash", 85, 9]]);
-const pos$16 = nix.positions(here + "/package.nix", [["name", 82, 7], ["src", 83, 7]]);
-const pos$17 = nix.positions(here + "/package.nix", [["url", 91, 9], ["hash", 92, 9]]);
-const pos$18 = nix.positions(here + "/package.nix", [["name", 89, 7], ["src", 90, 7]]);
-const pos$19 = nix.positions(here + "/package.nix", [["url", 100, 9], ["hash", 101, 9]]);
-const pos$20 = nix.positions(here + "/package.nix", [["name", 98, 7], ["src", 99, 7]]);
-const pos$21 = nix.positions(here + "/package.nix", [["url", 107, 9], ["hash", 108, 9]]);
-const pos$22 = nix.positions(here + "/package.nix", [["name", 105, 7], ["src", 106, 7]]);
-const pos$23 = nix.positions(here + "/package.nix", [["url", 119, 5], ["hash", 120, 5]]);
-const pos$24 = nix.positions(here + "/package.nix", [["url", 123, 5], ["hash", 124, 5]]);
-const pos$25 = nix.positions(here + "/package.nix", [["url", 127, 5], ["hash", 128, 5]]);
-const pos$26 = nix.positions(here + "/package.nix", [["owner", 136, 5], ["repo", 137, 5], ["tag", 138, 5], ["hash", 139, 5]]);
-const pos$27 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 235, 11]]);
-const pos$28 = nix.positions(here + "/package.nix", [["offlineRecognition", 232, 11]]);
-const pos$29 = nix.positions(here + "/package.nix", [["updateScript", 227, 5], ["tests", 232, 5]]);
-const pos$30 = nix.positions(here + "/package.nix", [["description", 252, 5], ["homepage", 253, 5], ["changelog", 254, 5], ["license", 255, 5], ["platforms", 256, 5], ["maintainers", 257, 5], ["mainProgram", 261, 5]]);
-const pos$31 = nix.positions(here + "/package.nix", [["pname", 132, 3], ["version", 133, 3], ["src", 135, 3], ["outputs", 142, 3], ["separateDebugInfo", 144, 3], ["patches", 146, 3], ["nativeBuildInputs", 150, 3], ["buildInputs", 160, 3], ["nativeCheckInputs", 167, 3], ["preConfigure", 177, 3], ["cmakeFlags", 181, 3], ["postBuild", 206, 3], ["doCheck", 211, 3], ["checkPhase", 214, 3], ["postInstall", 220, 3], ["passthru", 226, 3], ["meta", 251, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,101 +27,101 @@ export default nix.lambda((args) => (() => {
   const pythonSupport = nix.argOr($, "pythonSupport", () => true);
   const cache = nix.thunk(() => nix.concat([
     nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "espeak-ng-ed530aa113046142eb5115cf2fc9157854d0ffe1.zip",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/csukuangfj/espeak-ng/archive/ed530aa113046142eb5115cf2fc9157854d0ffe1.zip",
           hash: "sha256-5OJiy+NPf+IfkfG6M5fyco4fMOr7rnhT8rdTqe0T8N0=",
         })))),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "kaldi-native-fbank-1.22.3.tar.gz",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://github.com/csukuangfj/kaldi-native-fbank/archive/refs/tags/v1.22.3.tar.gz",
           hash: "sha256-kXbMZvx84e34XPNVsG4yDFfbYpffdCd/V1GDRoiTz2E=",
         })))),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "simple-sentencepiece-0.7.tar.gz",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: "https://github.com/pkufool/simple-sentencepiece/archive/refs/tags/v0.7.tar.gz",
           hash: "sha256-F0ioIgYKNbqp9mCfhO/I61TcDnS57OPYI2e3EZ/cda8=",
         })))),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "kaldifst-1.8.0.tar.gz",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: "https://github.com/k2-fsa/kaldifst/archive/refs/tags/v1.8.0.tar.gz",
           hash: "sha256-PyR7flokCQcSAvXivGIABg9mcowKNEPAOSOtJyPgQLM=",
         })))),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       name: "kaldi-decoder-0.3.0.tar.gz",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           url: "https://github.com/k2-fsa/kaldi-decoder/archive/refs/tags/v0.3.0.tar.gz",
           hash: "sha256-ufNM+0/TsTRBAO6tee9NN6oVliJ0ueMFbeNFAh92obA=",
         })))),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       name: "cargs-1.0.3.tar.gz",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           url: "https://github.com/likle/cargs/archive/refs/tags/v1.0.3.tar.gz",
           hash: "sha256-3bolvTXpxsdbxwbBJgAbjOjghNQO83BQ5qppY+g264s=",
         })))),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       name: "piper-phonemize-f3ff95afc03640bc1399e113e83361192a2fafb4.zip",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           url: "https://github.com/csukuangfj/piper-phonemize/archive/f3ff95afc03640bc1399e113e83361192a2fafb4.zip",
           hash: "sha256-2cyk4r3H1t2N/7lqRmgoPb0/d6nBlKPlMMHo66lAal0=",
         })))),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       name: "openfst-1.8.5-2026-07-09.tar.gz",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           url: "https://github.com/csukuangfj/openfst/archive/refs/tags/v1.8.5-2026-07-09.tar.gz",
           hash: "sha256-L/cSoylS/LAdNREhpryMz0/cayqgbOjfKzCV3t1RjA4=",
         })))),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       name: "hclust-cpp-2026-02-25.tar.gz",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           url: "https://github.com/csukuangfj/hclust-cpp/archive/refs/tags/2026-02-25.tar.gz",
           hash: "sha256-jxTgJMcJ1zr7QK5pyyLeS3Pbpny85A8uUYgT2oE5q1Y=",
         })))),
     })),
   ], nix.app(nix.sel(lib, "optionals"), websocketSupport, nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         name: "asio-asio-1-24-0.tar.gz",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             url: "https://github.com/chriskohlhoff/asio/archive/refs/tags/asio-1-24-0.tar.gz",
             hash: "sha256-y8qroPZnInh7Gnwzr+G++zoBK1rzrX2n/w9rjJt6ils=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         name: "websocketpp-b9aeec6eaf3d5610503439b4fae3581d9aff08e8.zip",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             url: "https://github.com/zaphoyd/websocketpp/archive/b9aeec6eaf3d5610503439b4fae3581d9aff08e8.zip",
             hash: "sha256-E4UTXt6Bkaf7757ICZ48Wmc9SN8MFDlYIWzRaQVn9YM=",
           })))),
@@ -160,26 +130,26 @@ export default nix.lambda((args) => (() => {
   const yesnoModelRev = "93a6f1d8f477397fc607a6cb151bff7a68c28589";
   const yesnoModelUrl = nix.thunk(() => nix.str`https://huggingface.co/csukuangfj/sherpa-onnx-tdnn-yesno/resolve/${yesnoModelRev}`);
   const yesnoModel = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       url: nix.thunk(() => nix.str`${yesnoModelUrl}/model-epoch-14-avg-2.onnx`),
       hash: "sha256-xFIeHlyCwxH5A64skF1Nj53ccKCqjy/+ePRcTWclKsA=",
     }))));
   const yesnoTokens = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       url: nix.thunk(() => nix.str`${yesnoModelUrl}/tokens.txt`),
       hash: "sha256-Zai7QPb5kTkd0WnmRjfYZk3ZEn6qeoioyOaUMXK8yMA=",
     }))));
   const yesnoWav = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       url: nix.thunk(() => nix.str`${yesnoModelUrl}/test_wavs/0_0_1_1_0_1_1_0.wav`),
       hash: "sha256-04LPuot4IYNfYsfIHYtQnj46WXzeYqGQ1pC8R3IBy5k=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       pname: "sherpa-onnx",
       version: "1.13.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           owner: "k2-fsa",
           repo: "sherpa-onnx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -226,12 +196,12 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\nctest --output-on-failure\nrunHook postCheck\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), pythonSupport, "mkdir -p $python\ncp -r ../sherpa-onnx/python/sherpa_onnx $python/\nrm $out/lib/_sherpa_onnx*.so\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           offlineRecognition: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-offline-recognition-test`), nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`sherpa-onnx-offline \\
   --sample-rate=8000 \\
@@ -247,7 +217,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         description: "Speech-to-text, text-to-speech, and speaker recognition using next-gen Kaldi with onnxruntime",
         homepage: "https://github.com/k2-fsa/sherpa-onnx",
         changelog: nix.thunk(() => nix.str`https://github.com/k2-fsa/sherpa-onnx/releases/tag/v${nix.sel(finalAttrs, "version")}`),

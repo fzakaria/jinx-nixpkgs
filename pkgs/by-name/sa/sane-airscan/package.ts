@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["sha256", 39, 5]], [["homepage", 43, 5], ["description", 44, 5], ["mainProgram", 45, 5], ["longDescription", 46, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]], [["pname", 17, 3], ["version", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["src", 35, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, avahi: false, libjpeg: false, libpng: false, libtiff: false, libxml2: false, gnutls: false, "sane-backends": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["sha256", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["mainProgram", 45, 5], ["longDescription", 46, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["src", 35, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,20 +21,20 @@ export default nix.lambda((args) => (() => {
   const gnutls = nix.arg($, "gnutls");
   const sane_backends = nix.arg($, "sane-backends");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sane-airscan",
       version: "0.99.38",
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [avahi, gnutls, libjpeg, libpng, libxml2, libtiff, sane_backends]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alexpevzner",
           repo: "sane-airscan",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-LgheG67QVH9gcXLCgrmpXvE39n3H6ub1k4PYTpcGDxM=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/alexpevzner/sane-airscan",
         description: "Scanner Access Now Easy - Apple AirScan (eSCL) driver",
         mainProgram: "airscan-discover",

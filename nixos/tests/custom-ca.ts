@@ -2,44 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/custom-ca.nix", [[["buildInputs", 13, 38]], [["caName", 64, 5], ["domain", 65, 5]], [["caName", 69, 5], ["domain", 70, 5]], [["127.0.0.1", 74, 22]], [["hosts", 74, 16]], [["certificateFiles", 78, 18]], [["pki", 78, 14]], [["extraConfig", 85, 21]], [["/", 85, 17]], [["onlySSL", 82, 7], ["sslCertificate", 83, 7], ["sslCertificateKey", 84, 7], ["locations", 85, 7]], [["extraConfig", 94, 21]], [["/", 94, 17]], [["onlySSL", 91, 7], ["sslCertificate", 92, 7], ["sslCertificateKey", 93, 7], ["locations", 94, 7]], [["good.example.com", 81, 33], ["bad.example.com", 90, 33]], [["enable", 80, 20], ["virtualHosts", 81, 20]], [["nginx", 80, 14]], [["networking", 74, 5], ["security", 78, 5], ["services", 80, 5]], [["maintainers", 103, 10]], [["machine", 104, 11]], [["name", 102, 5], ["meta", 103, 5], ["nodes", 104, 5], ["testScript", 105, 5]], [["maintainers", 120, 12]], [["user", 134, 44]], [["auto", 134, 39]], [["displayManager", 134, 24]], [["memorySize", 137, 26]], [["systemPackages", 139, 23]], [["imports", 127, 11], ["test-support", 134, 11], ["virtualisation", 137, 11], ["environment", 139, 11]], [["machine", 124, 13]], [["name", 119, 7], ["meta", 120, 7], ["enableOCR", 122, 7], ["nodes", 124, 7], ["testScript", 145, 7]], [["curl", 194, 3]], [["error", 198, 5]], [["error", 201, 5]], [["args", 204, 5], ["error", 205, 5]], [["firefox", 197, 3], ["chromium", 200, 3], ["qutebrowser", 203, 3]]]);
 const formals$1 = { args: { runTest: false, pkgs: false }, ellipsis: false };
 const formals$2 = { args: { caName: false, domain: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/custom-ca.nix", [["buildInputs", 13, 38]]);
-const pos$2 = nix.positions(here + "/custom-ca.nix", [["caName", 64, 5], ["domain", 65, 5]]);
-const pos$3 = nix.positions(here + "/custom-ca.nix", [["caName", 69, 5], ["domain", 70, 5]]);
-const pos$4 = nix.positions(here + "/custom-ca.nix", [["127.0.0.1", 74, 22]]);
-const pos$5 = nix.positions(here + "/custom-ca.nix", [["hosts", 74, 16]]);
-const pos$6 = nix.positions(here + "/custom-ca.nix", [["certificateFiles", 78, 18]]);
-const pos$7 = nix.positions(here + "/custom-ca.nix", [["pki", 78, 14]]);
-const pos$8 = nix.positions(here + "/custom-ca.nix", [["extraConfig", 85, 21]]);
-const pos$9 = nix.positions(here + "/custom-ca.nix", [["/", 85, 17]]);
-const pos$10 = nix.positions(here + "/custom-ca.nix", [["onlySSL", 82, 7], ["sslCertificate", 83, 7], ["sslCertificateKey", 84, 7], ["locations", 85, 7]]);
-const pos$11 = nix.positions(here + "/custom-ca.nix", [["extraConfig", 94, 21]]);
-const pos$12 = nix.positions(here + "/custom-ca.nix", [["/", 94, 17]]);
-const pos$13 = nix.positions(here + "/custom-ca.nix", [["onlySSL", 91, 7], ["sslCertificate", 92, 7], ["sslCertificateKey", 93, 7], ["locations", 94, 7]]);
-const pos$14 = nix.positions(here + "/custom-ca.nix", [["good.example.com", 81, 33], ["bad.example.com", 90, 33]]);
-const pos$15 = nix.positions(here + "/custom-ca.nix", [["enable", 80, 20], ["virtualHosts", 81, 20]]);
-const pos$16 = nix.positions(here + "/custom-ca.nix", [["nginx", 80, 14]]);
-const pos$17 = nix.positions(here + "/custom-ca.nix", [["networking", 74, 5], ["security", 78, 5], ["services", 80, 5]]);
-const pos$18 = nix.positions(here + "/custom-ca.nix", [["maintainers", 103, 10]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$19 = nix.positions(here + "/custom-ca.nix", [["machine", 104, 11]]);
-const pos$20 = nix.positions(here + "/custom-ca.nix", [["name", 102, 5], ["meta", 103, 5], ["nodes", 104, 5], ["testScript", 105, 5]]);
-const pos$21 = nix.positions(here + "/custom-ca.nix", [["maintainers", 120, 12]]);
 const formals$4 = { args: { pkgs: false }, ellipsis: true };
-const pos$22 = nix.positions(here + "/custom-ca.nix", [["user", 134, 44]]);
-const pos$23 = nix.positions(here + "/custom-ca.nix", [["auto", 134, 39]]);
-const pos$24 = nix.positions(here + "/custom-ca.nix", [["displayManager", 134, 24]]);
-const pos$25 = nix.positions(here + "/custom-ca.nix", [["memorySize", 137, 26]]);
-const pos$26 = nix.positions(here + "/custom-ca.nix", [["systemPackages", 139, 23]]);
-const pos$27 = nix.positions(here + "/custom-ca.nix", [["imports", 127, 11], ["test-support", 134, 11], ["virtualisation", 137, 11], ["environment", 139, 11]]);
-const pos$28 = nix.positions(here + "/custom-ca.nix", [["machine", 124, 13]]);
-const pos$29 = nix.positions(here + "/custom-ca.nix", [["name", 119, 7], ["meta", 120, 7], ["enableOCR", 122, 7], ["nodes", 124, 7], ["testScript", 145, 7]]);
-const pos$30 = nix.positions(here + "/custom-ca.nix", [["curl", 194, 3]]);
-const pos$31 = nix.positions(here + "/custom-ca.nix", [["error", 198, 5]]);
-const pos$32 = nix.positions(here + "/custom-ca.nix", [["error", 201, 5]]);
-const pos$33 = nix.positions(here + "/custom-ca.nix", [["args", 204, 5], ["error", 205, 5]]);
-const pos$34 = nix.positions(here + "/custom-ca.nix", [["firefox", 197, 3], ["chromium", 200, 3], ["qutebrowser", 203, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,7 +18,7 @@ export default nix.lambda((args) => (() => {
     const caName = nix.arg($_1, "caName");
     const domain = nix.arg($_1, "domain");
     return nix.app(nix.sel(pkgs, "runCommand"), "example-cert", nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnutls"))]),
       })), nix.thunk(() => nix.str`mkdir $out
 
@@ -102,53 +69,53 @@ certtool                            \\
   --outfile $out/server.crt
 `));
   })(), formals$2);
-  const example_good_cert = nix.thunk(() => nix.app(makeCert, nix.thunk(() => ({ [nix.POS]: pos$2, caName: "Example good CA", domain: "good.example.com" }))));
-  const example_bad_cert = nix.thunk(() => nix.app(makeCert, nix.thunk(() => ({ [nix.POS]: pos$3, caName: "Unknown CA", domain: "bad.example.com" }))));
+  const example_good_cert = nix.thunk(() => nix.app(makeCert, nix.thunk(() => ({ [nix.POS]: $pos[1], caName: "Example good CA", domain: "good.example.com" }))));
+  const example_bad_cert = nix.thunk(() => nix.app(makeCert, nix.thunk(() => ({ [nix.POS]: $pos[2], caName: "Unknown CA", domain: "bad.example.com" }))));
   const webserverConfig = nix.thunk(() => ({
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       hosts: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "127.0.0.1": nix.thunk(() => ["good.example.com", "bad.example.com"]),
       })),
     })),
     security: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pki: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${example_good_cert}/ca.crt`)]),
       })),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       nginx: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         enable: true,
         virtualHosts: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           "good.example.com": nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             onlySSL: true,
             sslCertificate: nix.thunk(() => nix.str`${example_good_cert}/server.crt`),
             sslCertificateKey: nix.thunk(() => nix.str`${example_good_cert}/server.key`),
             locations: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               "/": nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 extraConfig: "add_header Content-Type text/plain;\nreturn 200 'It works!';\n",
               })),
             })),
           })),
           "bad.example.com": nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             onlySSL: true,
             sslCertificate: nix.thunk(() => nix.str`${example_bad_cert}/server.crt`),
             sslCertificateKey: nix.thunk(() => nix.str`${example_bad_cert}/server.key`),
             locations: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               "/": nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 extraConfig: "add_header Content-Type text/plain;\nreturn 200 'It does not work!';\n",
               })),
             })),
@@ -158,17 +125,17 @@ certtool                            \\
     })),
   }));
   const curlTest = nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       name: "custom-ca-curl",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "rnhmjoj"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return nix.force(webserverConfig);
@@ -177,10 +144,10 @@ certtool                            \\
       testScript: "with subtest(\"Good certificate is trusted in curl\"):\n    machine.wait_for_unit(\"nginx\")\n    machine.wait_for_open_port(443)\n    machine.succeed(\"curl -fv https://good.example.com\")\n\nwith subtest(\"Unknown CA is untrusted in curl\"):\n    machine.fail(\"curl -fv https://bad.example.com\")\n",
     }))));
   const mkBrowserTest = (browser) => (testParams) => nix.app(runTest, nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       name: nix.thunk(() => nix.str`custom-ca-${browser}`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "rnhmjoj"))];
@@ -188,27 +155,27 @@ certtool                            \\
       })),
       enableOCR: true,
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             imports: nix.thunk(() => [
               nix.path(here, "./common/user-account.nix"),
               nix.path(here, "./common/x11.nix"),
               webserverConfig,
             ]),
             "test-support": nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               displayManager: nix.thunk(() => ({
-                [nix.POS]: pos$23,
-                auto: nix.thunk(() => ({ [nix.POS]: pos$22, user: "alice" })),
+                [nix.POS]: $pos[22],
+                auto: nix.thunk(() => ({ [nix.POS]: $pos[21], user: "alice" })),
               })),
             })),
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$25, memorySize: 1024n })),
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[24], memorySize: 1024n })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               systemPackages: nix.thunk(() => [
                 nix.thunk(() => nix.sel(pkgs_1, "xdotool")),
                 nix.thunk(() => nix.sel(pkgs_1, nix.key(nix.force(browser)))),
@@ -261,11 +228,11 @@ with subtest("Unknown CA is untrusted in ${browser}"):
     machine.screenshot("bad${browser}")
 `),
     })));
-  return nix.update({ [nix.POS]: pos$30, curl: curlTest }, nix.app(nix.sel(lib, "mapAttrs"), mkBrowserTest, nix.thunk(() => ({
-      [nix.POS]: pos$34,
-      firefox: nix.thunk(() => ({ [nix.POS]: pos$31, error: "Security Risk" })),
-      chromium: nix.thunk(() => ({ [nix.POS]: pos$32, error: "not private" })),
-      qutebrowser: nix.thunk(() => ({ [nix.POS]: pos$33, args: "-T", error: "Certificate error" })),
+  return nix.update({ [nix.POS]: $pos[29], curl: curlTest }, nix.app(nix.sel(lib, "mapAttrs"), mkBrowserTest, nix.thunk(() => ({
+      [nix.POS]: $pos[33],
+      firefox: nix.thunk(() => ({ [nix.POS]: $pos[30], error: "Security Risk" })),
+      chromium: nix.thunk(() => ({ [nix.POS]: $pos[31], error: "not private" })),
+      qutebrowser: nix.thunk(() => ({ [nix.POS]: $pos[32], args: "-T", error: "Certificate error" })),
     }))));
 })(), formals$1);
 //# sourceMappingURL=custom-ca.ts.map

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["name", 40, 7], ["exec", 41, 7], ["icon", 42, 7], ["desktopName", 43, 7]], [["src", 55, 32], ["nativeBuildInputs", 56, 11]], [["extraArgs", 62, 28]], [["supportedFeatures", 66, 11]], [["pubspecSource", 52, 5], ["updateScript", 61, 5]], [["description", 73, 5], ["homepage", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["pubspecLock", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["preBuild", 33, 3], ["desktopItems", 38, 3], ["postInstall", 47, 3], ["passthru", 51, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, flutter341: false, fetchFromGitHub: false, copyDesktopItems: false, "libayatana-appindicator": false, makeDesktopItem: false, runCommand: false, "yq-go": false, "_experimental-update-script-combinators": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 40, 7], ["exec", 41, 7], ["icon", 42, 7], ["desktopName", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 55, 32], ["nativeBuildInputs", 56, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 62, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["supportedFeatures", 66, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pubspecSource", 52, 5], ["updateScript", 61, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["pubspecLock", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["preBuild", 33, 3], ["desktopItems", 38, 3], ["postInstall", 47, 3], ["passthru", 51, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(flutter341, "buildFlutterApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "alisthelper",
       version: "0.2.0-unstable-2026-03-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Xmarmalade",
           repo: "alisthelper",
           rev: "6d7e1acb86a5c67bcf86d99bc6034f130b1d04c2",
@@ -41,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "packageRun slang\npackageRun build_runner build --delete-conflicting-outputs\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "alisthelper",
             exec: "alisthelper",
             icon: "alisthelper",
@@ -50,19 +43,19 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -D assets/alisthelper.png $out/share/icons/alisthelper.png\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             nativeBuildInputs: nix.thunk(() => [yq_go]),
           })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "alisthelper.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$5, supportedFeatures: [] })),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "alisthelper.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: $pos[4], supportedFeatures: [] })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Designed to simplify the use of the desktop version of alist/openlist",
         homepage: "https://github.com/Xmarmalade/alisthelper",
         mainProgram: "alisthelper",

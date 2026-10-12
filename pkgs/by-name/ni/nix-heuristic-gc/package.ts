@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["NIX_SYSTEM", 24, 7]], [["mainProgram", 45, 5], ["description", 46, 5], ["longDescription", 47, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 15, 3], ["env", 24, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 36, 3], ["checkInputs", 40, 3], ["preCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, nixVersions: false, "pkg-config": false, boost: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_SYSTEM", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 45, 5], ["description", 46, 5], ["longDescription", 47, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 15, 3], ["env", 24, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 36, 3], ["checkInputs", 40, 3], ["preCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "risicle",
           repo: "nix-heuristic-gc",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-T/PKn005gkALJP2FfHfWJj5UIRP9IYkvMOT3+kMY3Wo=",
         }))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_SYSTEM: nix.thunk(() => nix.sel(nixVersions, "nixComponents_2_31", "nix-store", "stdenv", "hostPlatform", "system")),
       }));
       const buildInputs = nix.thunk(() => [
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pytestCheckHook"))]);
       const preCheck = "mv nix_heuristic_gc .nix_heuristic_gc";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "nix-heuristic-gc",
         description: "Discerning garbage collection for Nix",
         longDescription: "A more discerning cousin of `nix-collect-garbage`, mostly intended as a\ntestbed to allow experimentation with more advanced selection processes.\n",
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

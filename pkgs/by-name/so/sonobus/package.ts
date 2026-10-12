@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5], ["fetchSubmodules", 33, 5]], [["type", 38, 7], ["name", 39, 7], ["desktopName", 40, 7], ["comment", 41, 7], ["icon", 42, 7], ["exec", 43, 7], ["categories", 44, 7]], [["NIX_LDFLAGS", 76, 7], ["NIX_CFLAGS_COMPILE", 79, 7]], [["updateScript", 105, 12]], [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 115, 5], ["mainProgram", 116, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["desktopItems", 36, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 58, 3], ["runtimeDependencies", 67, 3], ["env", 76, 3], ["dontPatchELF", 77, 3], ["postPatch", 90, 3], ["installPhase", 95, 3], ["passthru", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, "pkg-config": false, stdenv: false, fetchFromGitHub: false, autoPatchelfHook: false, "alsa-lib": false, cmake: false, freetype: false, libGL: false, libx11: false, libxcursor: false, libxext: false, libxinerama: false, libxrandr: false, libjack2: false, libopus: false, curl: false, gtk3: false, "nix-update-script": false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5], ["fetchSubmodules", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["type", 38, 7], ["name", 39, 7], ["desktopName", 40, 7], ["comment", 41, 7], ["icon", 42, 7], ["exec", 43, 7], ["categories", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 76, 7], ["NIX_CFLAGS_COMPILE", 79, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 105, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 115, 5], ["mainProgram", 116, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["desktopItems", 36, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 58, 3], ["runtimeDependencies", 67, 3], ["env", 76, 3], ["dontPatchELF", 77, 3], ["postPatch", 90, 3], ["installPhase", 95, 3], ["passthru", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sonobus",
       version: "1.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sonosaurus",
           repo: "sonobus",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             type: "Application",
             name: "sonobus",
             desktopName: "Sonobus",
@@ -61,7 +56,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [alsa_lib, freetype, libjack2, libopus, curl, gtk3]),
       runtimeDependencies: nix.thunk(() => [libGL, libx11, libxcursor, libxext, libxinerama, libxrandr]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.sel(finalAttrs, "runtimeDependencies")))}`))),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))),
       })),
@@ -69,11 +64,11 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "patchShebangs linux/install.sh\n")),
       installPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "runHook preInstall\ncd ../linux\n./install.sh \"$out\"\n\ninstall -Dm444 $src/images/sonobus_logo_96.png $out/share/icons/hicolor/96x96/apps/sonobus.png\n\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "High-quality network audio streaming",
         homepage: "https://sonobus.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

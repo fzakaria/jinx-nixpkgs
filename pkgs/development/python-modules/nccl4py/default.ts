@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 23, 31]], [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["CUDA_HOME", 64, 5], ["NIX_CFLAGS_COMPILE", 68, 5]], [["nativeBuildInputs", 97, 11]], [["import-clean-env", 94, 5]], [["tests", 92, 12]], [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 115, 5], ["teams", 116, 5], ["maintainers", 117, 5], ["platforms", 121, 38], ["badPlatforms", 121, 48]], [["pname", 24, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["sourceRoot", 37, 3], ["postPatch", 39, 3], ["build-system", 57, 3], ["env", 62, 3], ["buildInputs", 71, 3], ["dependencies", 79, 3], ["pythonImportsCheck", 87, 3], ["passthru", 92, 3], ["doCheck", 107, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cudaPackages: false, fetchFromGitHub: false, cython: false, setuptools: false, "cuda-core": false, "cuda-pathfinder": false, numpy: false, "nvidia-cutlass-dsl": false, packaging: false, runCommand: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 23, 31]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["CUDA_HOME", 64, 5], ["NIX_CFLAGS_COMPILE", 68, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 97, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["import-clean-env", 94, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 92, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 115, 5], ["teams", 116, 5], ["maintainers", 117, 5], ["platforms", 121, 38], ["badPlatforms", 121, 48]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["sourceRoot", 37, 3], ["postPatch", 39, 3], ["build-system", 57, 3], ["env", 62, 3], ["buildInputs", 71, 3], ["dependencies", 79, 3], ["pythonImportsCheck", 87, 3], ["passthru", 92, 3], ["doCheck", 107, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const python = nix.arg($, "python");
   return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       stdenv: nix.thunk(() => nix.sel(cudaPackages, "backendStdenv")),
     })), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "nccl4py",
       version: "0.6.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "NVIDIA",
           repo: "nccl",
           tag: nix.thunk(() => nix.str`nccl4py-v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +55,7 @@ substituteInPlace nccl/bindings/_internal/nccl_linux.pyx \\
 `),
       "build-system": nix.thunk(() => [cython, setuptools]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CUDA_HOME: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart"))), "outPath")),
         NIX_CFLAGS_COMPILE: "-DCYTHON_COMPRESS_STRINGS=0",
       })),
@@ -70,11 +63,11 @@ substituteInPlace nccl/bindings/_internal/nccl_linux.pyx \\
       dependencies: nix.thunk(() => [cuda_core, cuda_pathfinder, numpy, nvidia_cutlass_dsl, packaging]),
       pythonImportsCheck: nix.thunk(() => ["nccl", "nccl.bindings"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "import-clean-env": nix.thunk(() => nix.app(runCommand, "import-clean-env-nccl4py", nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (_) => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))])),
               ]),
@@ -88,7 +81,7 @@ touch $out
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cudaPackages, "nccl", "meta"));
         return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Python bindings for NCCL",
         homepage: "https://github.com/NVIDIA/nccl/blob/master/bindings/nccl4py/README.md",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/nccl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

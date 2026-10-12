@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["desktopName", 84, 7], ["comment", 85, 7], ["name", 86, 7], ["exec", 87, 7], ["icon", 88, 7], ["terminal", 89, 7], ["categories", 90, 7]], [["tagPrefix", 96, 7]], [["url", 100, 7], ["hash", 101, 7]], [["pname", 105, 7], ["version", 106, 28], ["src", 106, 36], ["npmDepsHash", 107, 7], ["sourceRoot", 108, 7], ["dontNpmBuild", 109, 7], ["installPhase", 110, 7]], [["updateScript", 95, 5], ["collection", 99, 5], ["app", 104, 5]], [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["teams", 126, 5], ["mainProgram", 127, 5], ["platforms", 128, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["npmDepsHash", 26, 3], ["npmFlags", 27, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["buildPhase", 46, 3], ["installPhase", 65, 3], ["desktopItems", 82, 3], ["passthru", 94, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchFromGitHub: false, buildNpmPackage: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, unstableGitUpdater: false, nwjs: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["desktopName", 84, 7], ["comment", 85, 7], ["name", 86, 7], ["exec", 87, 7], ["icon", 88, 7], ["terminal", 89, 7], ["categories", 90, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tagPrefix", 96, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 100, 7], ["hash", 101, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 105, 7], ["version", 106, 28], ["src", 106, 36], ["npmDepsHash", 107, 7], ["sourceRoot", 108, 7], ["dontNpmBuild", 109, 7], ["installPhase", 110, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 95, 5], ["collection", 99, 5], ["app", 104, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["teams", 126, 5], ["mainProgram", 127, 5], ["platforms", 128, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["npmDepsHash", 26, 3], ["npmFlags", 27, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["buildPhase", 46, 3], ["installPhase", 65, 3], ["desktopItems", 82, 3], ["passthru", 94, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nwjs = nix.arg($, "nwjs");
   const python3 = nix.arg($, "python3");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "icestudio",
       version: "1.0.0.PRw-20260821-unstable-2026-08-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FPGAwars",
           repo: "icestudio",
           rev: "989c552b687993f54a5928f693e3502de02e29f8",
@@ -73,7 +66,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             desktopName: "Icestudio",
             comment: "Visual editor for open FPGA boards",
             name: "icestudio",
@@ -84,15 +77,15 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagPrefix: "v" })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], tagPrefix: "v" })))),
         collection: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/FPGAwars/collection-default/archive/v0.4.1.zip",
             hash: "sha256-F2cAqkTPC7xfGnPQiS8lTrD4y34EkHFUEDPVaYzVVg8=",
           })))),
         app: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             pname: "icestudio-app",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -103,7 +96,7 @@ runHook postInstall
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Visual editor for open FPGA boards",
         homepage: "https://github.com/FPGAwars/icestudio/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

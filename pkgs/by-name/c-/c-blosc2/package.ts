@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["moduleNames", 62, 7], ["package", 63, 7]], [["pkg-config", 60, 5], ["cmake-config", 61, 5]], [["tests", 59, 12]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["pkgConfigModules", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 36, 3], ["cmakeFlags", 42, 3], ["doCheck", 55, 3], ["enableParallelChecking", 57, 3], ["passthru", 59, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, testers: false, static: true, lz4: false, "zlib-ng": false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["moduleNames", 62, 7], ["package", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 60, 5], ["cmake-config", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 59, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["pkgConfigModules", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 36, 3], ["cmakeFlags", 42, 3], ["doCheck", 55, 3], ["enableParallelChecking", 57, 3], ["passthru", 59, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const zlib_ng = nix.arg($, "zlib-ng");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "c-blosc2",
       version: "2.23.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Blosc",
           repo: "c-blosc2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,19 +43,19 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(static$)),
       enableParallelChecking: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               moduleNames: nix.thunk(() => ["Blosc2"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Fast, compressed, persistent binary data store library for C",
         homepage: "https://www.blosc.org",
         changelog: nix.thunk(() => nix.str`https://github.com/Blosc/c-blosc2/releases/tag/v${nix.sel(finalAttrs, "version")}`),

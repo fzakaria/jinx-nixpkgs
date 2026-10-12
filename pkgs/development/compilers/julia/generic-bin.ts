@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic-bin.nix", [[["url", 75, 9], ["sha256", 76, 9]], [["url", 79, 9], ["sha256", 80, 9]], [["url", 83, 9], ["sha256", 84, 9]], [["x86_64-linux", 74, 7], ["aarch64-linux", 78, 7], ["aarch64-darwin", 82, 7]], [["description", 143, 5], ["homepage", 144, 5], ["license", 146, 5], ["maintainers", 147, 5], ["platforms", 153, 5], ["mainProgram", 158, 5]], [["pname", 65, 3], ["version", 67, 11], ["patches", 67, 19], ["strictDeps", 69, 3], ["__structuredAttrs", 70, 3], ["src", 72, 3], ["postPatch", 89, 3], ["nativeBuildInputs", 98, 3], ["installPhase", 104, 3], ["dontStrip", 118, 3], ["dontAutoPatchelf", 119, 3], ["doInstallCheck", 121, 3], ["preInstallCheck", 123, 3], ["installCheckPhase", 130, 3], ["meta", 142, 3]]]);
 const formals$1 = { args: { version: false, sha256: false, patches: true }, ellipsis: false };
 const formals$2 = { args: { autoPatchelfHook: false, fetchurl: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic-bin.nix", [["url", 75, 9], ["sha256", 76, 9]]);
-const pos$2 = nix.positions(here + "/generic-bin.nix", [["url", 79, 9], ["sha256", 80, 9]]);
-const pos$3 = nix.positions(here + "/generic-bin.nix", [["url", 83, 9], ["sha256", 84, 9]]);
-const pos$4 = nix.positions(here + "/generic-bin.nix", [["x86_64-linux", 74, 7], ["aarch64-linux", 78, 7], ["aarch64-darwin", 82, 7]]);
-const pos$5 = nix.positions(here + "/generic-bin.nix", [["description", 143, 5], ["homepage", 144, 5], ["license", 146, 5], ["maintainers", 147, 5], ["platforms", 153, 5], ["mainProgram", 158, 5]]);
-const pos$6 = nix.positions(here + "/generic-bin.nix", [["pname", 65, 3], ["version", 67, 11], ["patches", 67, 19], ["strictDeps", 69, 3], ["__structuredAttrs", 70, 3], ["src", 72, 3], ["postPatch", 89, 3], ["nativeBuildInputs", 98, 3], ["installPhase", 104, 3], ["dontStrip", 118, 3], ["dontAutoPatchelf", 119, 3], ["doInstallCheck", 121, 3], ["preInstallCheck", 123, 3], ["installCheckPhase", 130, 3], ["meta", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,26 +19,26 @@ export default nix.lambda((args) => (() => {
     const stdenv = nix.arg($_1, "stdenv");
     const skip_tests = nix.thunk(() => nix.concat(["channels", "read"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), version), "1.10")), nix.thunk(() => ["LinearAlgebra/blas"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "1.10")), nix.thunk(() => ["REPL", "ccall", "loading"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "1.11")), nix.thunk(() => ["cmdlineargs"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "1.12")), nix.thunk(() => ["Compiler/codegen", "precompile", "compileall", "Profile"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "1.12")), nix.thunk(() => ["compiler/codegen"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["FileWatching", "InteractiveUtils", "Sockets", "Distributed"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["LinearAlgebra/blas", "misc"]))))))))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "julia-bin",
         version: version,
         patches: patches,
         strictDeps: true,
         __structuredAttrs: true,
         src: nix.thunk(() => nix.selOr({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://julialang-s3.julialang.org/bin/linux/x64/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/julia-${version}-linux-x86_64.tar.gz`),
               sha256: nix.thunk(() => nix.sel(sha256, "x86_64-linux")),
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://julialang-s3.julialang.org/bin/linux/aarch64/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/julia-${version}-linux-aarch64.tar.gz`),
               sha256: nix.thunk(() => nix.sel(sha256, "aarch64-linux")),
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://julialang-s3.julialang.org/bin/mac/aarch64/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/julia-${version}-macaarch64.tar.gz`),
               sha256: nix.thunk(() => nix.sel(sha256, "aarch64-darwin")),
             })))),
@@ -72,7 +67,7 @@ $out/bin/julia \\
 runHook postInstallCheck
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           description: "High-level, high-performance, dynamic language for technical computing",
           homepage: "https://julialang.org",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

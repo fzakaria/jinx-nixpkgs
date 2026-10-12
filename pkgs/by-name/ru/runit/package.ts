@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 66, 5], ["license", 67, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["outputs", 23, 3], ["sourceRoot", 28, 3], ["doCheck", 30, 3], ["buildInputs", 32, 3], ["postPatch", 37, 3], ["enableParallelBuilding", 47, 3], ["preBuild", 49, 3], ["installPhase", 57, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, static: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["license", 67, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["outputs", 23, 3], ["sourceRoot", 28, 3], ["doCheck", 30, 3], ["buildInputs", 32, 3], ["postPatch", 37, 3], ["enableParallelBuilding", 47, 3], ["preBuild", 49, 3], ["installPhase", 57, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const static$ = nix.argOr($, "static", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "runit",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://smarden.org/runit/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Y08jyMTR1EAEO+D+ko3fkEYmKJ6Xv+fFgm6TqvLMb+k=",
         })))),
@@ -40,7 +38,7 @@ echo ${nix.sel(stdenv, "cc", "targetPrefix")}cc ${nix.app(nix.sel(lib, "optional
 `),
       installPhase: "mkdir -p $out/bin\ncp -t $out/bin $(< ../package/commands)\n\nmkdir -p $man/share/man\ncp -r ../man $man/share/man/man8\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "UNIX init scheme with service supervision",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "http://smarden.org/runit",

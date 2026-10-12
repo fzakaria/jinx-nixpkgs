@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["tzdata", 35, 7]], [["updateScript", 58, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["teams", 66, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["passthru", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, replaceVars: false, "pkg-config": false, vala: false, libadwaita: false, libgee: false, libical: false, granite7: false, gettext: false, gtk4: false, libxml2: false, switchboard: false, tzdata: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tzdata", 35, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["teams", 66, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["passthru", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,23 +29,23 @@ export default nix.lambda((args) => (() => {
       const pname = "switchboard-plug-datetime";
       const version = "8.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "switchboard-plug-datetime",
           rev: version,
           sha256: "sha256-VOL0F0obuXVz0G5hMI/hpUf2T3H8XUw64wu4MxRi57g=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, tzdata: tzdata })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], tzdata: tzdata })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [gettext, libxml2, meson, ninja, pkg_config, vala]);
       const buildInputs = nix.thunk(() => [granite7, gtk4, libadwaita, libgee, libical, switchboard]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Switchboard Date & Time Plug",
         homepage: "https://github.com/elementary/switchboard-plug-datetime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

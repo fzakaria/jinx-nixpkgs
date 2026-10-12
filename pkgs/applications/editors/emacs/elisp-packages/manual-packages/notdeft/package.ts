@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["hardcodeZeroVersion", 63, 41]], [["updateScript", 63, 5]], [["homepage", 67, 5], ["description", 68, 5], ["maintainers", 69, 5], ["license", 70, 5], ["platforms", 71, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["packageRequires", 30, 3], ["patches", 32, 3], ["postPatch", 35, 3], ["files", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 49, 3], ["preBuild", 54, 3], ["preInstall", 58, 3], ["passthru", 62, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, melpaBuild: false, fetchFromGitHub: false, hydra: false, ivy: false, "pkg-config": false, tclap: false, unstableGitUpdater: false, xapian: false, withHydra: true, withIvy: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 63, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["maintainers", 69, 5], ["license", 70, 5], ["platforms", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["packageRequires", 30, 3], ["patches", 32, 3], ["postPatch", 35, 3], ["files", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 49, 3], ["preBuild", 54, 3], ["preInstall", 58, 3], ["passthru", 62, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const withHydra = nix.argOr($, "withHydra", () => false);
   const withIvy = nix.argOr($, "withIvy", () => false);
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "notdeft",
       version: "0-unstable-2025-06-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hasu",
           repo: "notdeft",
           rev: "e0426807f608f550df14b7cd50b8455dee4dbfb3",
@@ -47,11 +43,11 @@ export default nix.lambda((args) => (() => {
       preBuild: "$CXX -std=c++11 -o notdeft-xapian xapian/notdeft-xapian.cc -lxapian\n",
       preInstall: "install -D --target-directory=$out/bin notdeft-xapian\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://tero.hasu.is/notdeft/",
         description: "Fork of Deft that uses Xapian as a search engine",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "nessdoor"))]),

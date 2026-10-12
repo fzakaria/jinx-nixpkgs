@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["updateScript", 26, 12]], [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["mainProgram", 38, 5], ["maintainers", 39, 5]], [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeInstallCheckInputs", 24, 3], ["doInstallCheck", 25, 3], ["passthru", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 26, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["mainProgram", 38, 5], ["maintainers", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeInstallCheckInputs", 24, 3], ["doInstallCheck", 25, 3], ["passthru", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const version = "1.3.0";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "patchy",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nik-rev",
           repo: "patchy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Makes it easy to maintain personal forks",
         longDescription: "Patchy makes it easy to declaratively manage personal forks by\nautomatically merging pull request of your liking to have more\nfeatures.\n",
         homepage: "https://github.com/nik-rev/patchy",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bootstrap.nix", [[["url", 24, 5], ["hash", 25, 5]], [["homepage", 140, 24], ["description", 141, 5], ["longDescription", 142, 5], ["maintainers", 147, 5], ["license", 151, 5], ["platforms", 155, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 20], ["postUnpack", 36, 3], ["dontFixLibtool", 39, 3], ["patches", 41, 3], ["postPatch", 45, 3], ["dontUseCmakeConfigure", 52, 3], ["strictDeps", 54, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 65, 3], ["makeFlags", 75, 3], ["buildPhase", 83, 3], ["doCheck", 121, 3], ["checkPhase", 122, 3], ["installPhase", 128, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, mrustc: false, "mrustc-minicargo": false, llvm_20: false, libffi: false, cmake: false, perl: false, python3: false, zlib: false, libxml2: false, "pkg-config": false, curl: false, which: false, time: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bootstrap.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/bootstrap.nix", [["homepage", 140, 24], ["description", 141, 5], ["longDescription", 142, 5], ["maintainers", 147, 5], ["license", 151, 5], ["platforms", 155, 5]]);
-const pos$3 = nix.positions(here + "/bootstrap.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 20], ["postUnpack", 36, 3], ["dontFixLibtool", 39, 3], ["patches", 41, 3], ["postPatch", 45, 3], ["dontUseCmakeConfigure", 52, 3], ["strictDeps", 54, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 65, 3], ["makeFlags", 75, 3], ["buildPhase", 83, 3], ["doCheck", 121, 3], ["checkPhase", 122, 3], ["installPhase", 128, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const mrustcTargetVersion = "1.90";
   const rustcVersion = "1.90.0";
   const rustcSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://static.rust-lang.org/dist/rustc-${rustcVersion}-src.tar.gz`),
       hash: "sha256-eZqfnLpO1TUeBxBIvPa1VgdV2QCWSN7zOkB91JYfm34=",
     }))));
@@ -106,7 +104,7 @@ runHook postInstall
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Minimal build of Rust",
         longDescription: "A minimal build of Rust, built from source using mrustc.\nThis is useful for bootstrapping the main Rust compiler without\nan initial binary toolchain download.\n",
@@ -128,7 +126,7 @@ runHook postInstall
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

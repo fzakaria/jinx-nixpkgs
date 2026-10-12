@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 123, 5], ["homepage", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["mainProgram", 127, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["__darwinAllowLocalNetworking", 33, 3], ["build-system", 35, 3], ["nativeCheckInputs", 40, 3], ["enabledTestPaths", 49, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 120, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, setuptools: false, numpy: false, psutil: false, pytestCheckHook: false, "pytest-xdist": false, pythonAtLeast: false, trio: false, untangle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 123, 5], ["homepage", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["mainProgram", 127, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["__darwinAllowLocalNetworking", 33, 3], ["build-system", 35, 3], ["nativeCheckInputs", 40, 3], ["enabledTestPaths", 49, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 120, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const trio = nix.arg($, "trio");
   const untangle = nix.arg($, "untangle");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pydevd",
       version: "3.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fabioz",
           repo: "PyDev.Debugger",
           tag: nix.thunk(() => nix.str`pydev_debugger_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -82,7 +80,7 @@ export default nix.lambda((args) => (() => {
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_multiprocessing_simple", "test_evaluate_exception_trace"])))))),
       pythonImportsCheck: nix.thunk(() => ["pydevd"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PyDev.Debugger (used in PyDev, PyCharm and VSCode Python)",
         homepage: "https://github.com/fabioz/PyDev.Debugger",
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),

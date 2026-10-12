@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["package", 27, 5]], [["version", 26, 18]], [["tests", 26, 12]], [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["mainProgram", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["configureFlags", 20, 3], ["passthru", 26, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, testers: false, dmalloc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 26, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 26, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["mainProgram", 44, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["configureFlags", 20, 3], ["passthru", 26, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const dmalloc = nix.arg($, "dmalloc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dmalloc",
       version: "5.6.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "j256",
           repo: "dmalloc",
           rev: nix.thunk(() => nix.str`dmalloc_release_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -30,14 +25,14 @@ export default nix.lambda((args) => (() => {
         })))),
       configureFlags: nix.thunk(() => ["--enable-cxx", "--enable-shlib", "--enable-threads"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: dmalloc })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: dmalloc })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Debug Malloc memory allocation debugging C library",
         longDescription: "The debug memory allocation or \"dmalloc\" library has been designed as a\ndrop in replacement for the system's malloc, realloc, calloc, free and\nother memory management routines while providing powerful debugging\nfacilities configurable at runtime. These facilities include such things\nas memory-leak tracking, fence-post write detection, file/line number\nreporting, and general logging of statistics.\n",
         homepage: "https://dmalloc.com",

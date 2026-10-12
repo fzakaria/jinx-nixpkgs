@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["packageName", 64, 5]], [["updateScript", 63, 12]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["changelog", 71, 5], ["maintainers", 72, 5], ["teams", 73, 5]], [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 44, 3], ["propagatedBuildInputs", 50, 3], ["postFixup", 58, 3], ["passthru", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, vala: false, "gi-docgen": false, glib: false, gtk4: false, gtksourceview5: false, enchant: false, icu: false, "libsysprof-capture": false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["changelog", 71, 5], ["maintainers", 72, 5], ["teams", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 44, 3], ["propagatedBuildInputs", 50, 3], ["postFixup", 58, 3], ["passthru", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const libsysprof_capture = nix.arg($, "libsysprof-capture");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libspelling",
       version: "0.4.10",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libspelling/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libspelling-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-VuPwGjoYtXW+6kw0NJ+ZzaujFuH3wnGxIx97z12a9zs=",
         })))),
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [glib, gtk4, gtksourceview5]),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "libspelling" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "libspelling" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Spellcheck library for GTK 4",
         homepage: "https://gitlab.gnome.org/GNOME/libspelling",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

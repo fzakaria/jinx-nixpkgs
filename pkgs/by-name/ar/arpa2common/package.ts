@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["changelog", 54, 5], ["description", 55, 5], ["longDescription", 56, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 70, 5], ["platforms", 71, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 42, 3], ["buildInputs", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, cmake: false, arpa2cm: false, doxygen: false, e2fsprogs: false, graphviz: false, libsodium: false, lmdb: false, krb5: false, "pkg-config": false, ragel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 54, 5], ["description", 55, 5], ["longDescription", 56, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 70, 5], ["platforms", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 42, 3], ["buildInputs", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const ragel = nix.arg($, "ragel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "arpa2common",
       version: "2.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arpa2",
           repo: "arpa2common",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [e2fsprogs, libsodium, lmdb, ragel]),
       buildInputs: nix.thunk(() => [krb5]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://gitlab.com/arpa2/arpa2common/-/blob/v${nix.sel(finalAttrs, "version")}/CHANGES`),
         description: "ARPA2 ID and ACL libraries and other core data structures for ARPA2",
         longDescription: "The ARPA2 Common Library package offers elementary services that can\nbenefit many software packages.  They are designed to be easy to\ninclude, with a minimum of dependencies.  At the same time, they were\ndesigned with the InternetWide Architecture in mind, thus helping to\nliberate users.\n",

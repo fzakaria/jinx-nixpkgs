@@ -2,38 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cadvisor.nix", [[["enable", 7, 25]], [["cadvisor", 7, 16]], [["services", 7, 7]], [["enable", 11, 25], ["storageDriver", 12, 25]], [["enable", 13, 25]], [["cadvisor", 11, 16], ["influxdb", 13, 16]], [["services", 11, 7]], [["machine", 6, 5], ["influxdb", 10, 5]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 17, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cadvisor.nix", [["enable", 7, 25]]);
-const pos$2 = nix.positions(here + "/cadvisor.nix", [["cadvisor", 7, 16]]);
-const pos$3 = nix.positions(here + "/cadvisor.nix", [["services", 7, 7]]);
-const pos$4 = nix.positions(here + "/cadvisor.nix", [["enable", 11, 25], ["storageDriver", 12, 25]]);
-const pos$5 = nix.positions(here + "/cadvisor.nix", [["enable", 13, 25]]);
-const pos$6 = nix.positions(here + "/cadvisor.nix", [["cadvisor", 11, 16], ["influxdb", 13, 16]]);
-const pos$7 = nix.positions(here + "/cadvisor.nix", [["services", 11, 7]]);
-const pos$8 = nix.positions(here + "/cadvisor.nix", [["machine", 6, 5], ["influxdb", 10, 5]]);
-const pos$9 = nix.positions(here + "/cadvisor.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "cadvisor",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          cadvisor: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+          [nix.POS]: $pos[1],
+          cadvisor: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         })),
       })),
       influxdb: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          cadvisor: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, storageDriver: "influxdb" })),
-          influxdb: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+          [nix.POS]: $pos[5],
+          cadvisor: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, storageDriver: "influxdb" })),
+          influxdb: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
         })),
       })),
     })),

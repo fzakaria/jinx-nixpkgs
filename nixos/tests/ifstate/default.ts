@@ -2,14 +2,14 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["initrd", 4, 3], ["initrd-partial-broken-config", 5, 3], ["initrd-wireguard", 6, 3], ["partial-broken-config", 7, 3], ["ping", 8, 3], ["wireguard", 9, 3]]]);
 const formals$1 = { args: { runTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["initrd", 4, 3], ["initrd-partial-broken-config", 5, 3], ["initrd-wireguard", 6, 3], ["partial-broken-config", 7, 3], ["ping", 8, 3], ["wireguard", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     initrd: nix.thunk(() => nix.app(runTest, nix.path(here, "./initrd.nix"))),
     "initrd-partial-broken-config": nix.thunk(() => nix.app(runTest, nix.path(here, "./initrd-partial-broken-config.nix"))),
     "initrd-wireguard": nix.thunk(() => nix.app(runTest, nix.path(here, "./initrd-wireguard.nix"))),

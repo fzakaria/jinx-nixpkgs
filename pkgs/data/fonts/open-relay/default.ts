@@ -2,20 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 9], ["repo", 18, 9], ["tag", 19, 9], ["hash", 20, 9]], [["homepage", 31, 9], ["description", 32, 9], ["license", 33, 9], ["platforms", 34, 9], ["maintainers", 35, 9]], [["pname", 13, 7], ["version", 14, 7], ["src", 16, 7], ["sourceRoot", 23, 7], ["nativeBuildInputs", 24, 7], ["postInstall", 26, 7], ["meta", 30, 7]], [["homepage", 47, 7], ["description", 48, 7], ["longDescription", 49, 7]], [["directory", 45, 5], ["meta", 46, 5]], [["homepage", 61, 7], ["description", 62, 7], ["longDescription", 63, 7]], [["directory", 59, 5], ["meta", 60, 5]], [["homepage", 76, 7], ["description", 77, 7], ["longDescription", 78, 7]], [["directory", 74, 5], ["meta", 75, 5]], [["homepage", 91, 7], ["description", 92, 7]], [["directory", 89, 5], ["meta", 90, 5]], [["constructium", 44, 3], ["fairfax", 58, 3], ["fairfax-hd", 73, 3], ["kreative-square", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, installFonts: false }, ellipsis: false };
 const formals$2 = { args: { directory: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 9], ["repo", 18, 9], ["tag", 19, 9], ["hash", 20, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 31, 9], ["description", 32, 9], ["license", 33, 9], ["platforms", 34, 9], ["maintainers", 35, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 7], ["version", 14, 7], ["src", 16, 7], ["sourceRoot", 23, 7], ["nativeBuildInputs", 24, 7], ["postInstall", 26, 7], ["meta", 30, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 47, 7], ["description", 48, 7], ["longDescription", 49, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["directory", 45, 5], ["meta", 46, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 61, 7], ["description", 62, 7], ["longDescription", 63, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["directory", 59, 5], ["meta", 60, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["homepage", 76, 7], ["description", 77, 7], ["longDescription", 78, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["directory", 74, 5], ["meta", 75, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["homepage", 91, 7], ["description", 92, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["directory", 89, 5], ["meta", 90, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["constructium", 44, 3], ["fairfax", 58, 3], ["fairfax-hd", 73, 3], ["kreative-square", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +17,11 @@ export default nix.lambda((args) => (() => {
     const directory = nix.arg($_1, "directory");
     const meta = nix.arg($_1, "meta");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: nix.thunk(() => nix.str`open-relay-${name}`),
         version: "2026-04-12",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "kreativekorp",
             repo: "open-relay",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +32,7 @@ export default nix.lambda((args) => (() => {
         postInstall: nix.thunk(() => nix.str`install -D -m644 -t "$out/share/doc/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}" OFL.txt
 `),
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://www.kreativekorp.com/software/fonts/index.shtml",
           description: "Free and open source fonts from Kreative Software",
           license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -59,42 +48,42 @@ export default nix.lambda((args) => (() => {
       }));
   })(), formals$2);
   return nix.app(nix.sel(lib, "mapAttrs"), mkOpenRelayTypeface, nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       constructium: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         directory: "Constructium",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           homepage: "https://www.kreativekorp.com/software/fonts/constructium/",
           description: "Fork of SIL Gentium designed specifically to support constructed scripts as encoded in the Under-ConScript Unicode Registry",
           longDescription: "Constructium is a fork of SIL Gentium designed specifically to support\nconstructed scripts as encoded in the Under-ConScript Unicode Registry.\nIt is ideal for mixed Latin, Greek, Cyrillic, IPA, and conlang text in\nweb sites and documents.\n",
         })),
       })),
       fairfax: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         directory: "Fairfax",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           homepage: "https://www.kreativekorp.com/software/fonts/fairfax/",
           description: "6×12 bitmap font supporting many Unicode blocks & scripts as well as constructed scripts",
           longDescription: "Fairfax is a 6×12 bitmap font for terminals, text editors, IDEs, etc. It\nsupports many scripts and a large number of Unicode blocks as well as\nconstructed scripts as encoded in the Under-ConScript Unicode Registry,\npseudographics and semigraphics, and tons of private use characters. It\nhas been superseded by Fairfax HD but is still maintained.\n",
         })),
       })),
       "fairfax-hd": nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         directory: "FairfaxHD",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           homepage: "https://www.kreativekorp.com/software/fonts/fairfaxhd/",
           description: "Halfwidth scalable monospace font supporting many Unicode blocks & script as well as constructed scripts",
           longDescription: "Fairfax HD is a halfwidth scalable monospace font for terminals, text\neditors, IDEs, etc. It supports many scripts and a large number of\nUnicode blocks as well as constructed scripts as encoded in the\nUnder-ConScript Unicode Registry, pseudographics and semigraphics, and\ntons of private use characters.\n",
         })),
       })),
       "kreative-square": nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         directory: "KreativeSquare",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           homepage: "https://www.kreativekorp.com/software/fonts/ksquare/",
           description: "Fullwidth scalable monospace font designed specifically to support pseudographics, semigraphics, and private use characters",
         })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["mainProgram", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["description", 133, 5], ["longDescription", 134, 5], ["license", 140, 5], ["maintainers", 141, 5]], [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["vendorHash", 28, 3], ["nativeBuildInputs", 30, 3], ["subPackages", 32, 3], ["ldflags", 34, 3], ["tags", 39, 3], ["checkFlags", 47, 3], ["preCheck", 93, 3], ["postInstall", 104, 3], ["doInstallCheck", 111, 3], ["installCheckPhase", 112, 3], ["__darwinAllowLocalNetworking", 127, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, enableWasmEval: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["description", 133, 5], ["longDescription", 134, 5], ["license", 140, 5], ["maintainers", 141, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["vendorHash", 28, 3], ["nativeBuildInputs", 30, 3], ["subPackages", 32, 3], ["ldflags", 34, 3], ["tags", 39, 3], ["checkFlags", 47, 3], ["preCheck", 93, 3], ["postInstall", 104, 3], ["doInstallCheck", 111, 3], ["installCheckPhase", 112, 3], ["__darwinAllowLocalNetworking", 127, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const enableWasmEval = nix.argOr($, "enableWasmEval", () => false);
   nix.assert_((!nix.asBool((nix.asBool(enableWasmEval) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))) || nix.asBool(nix.builtins.throw("building with wasm on darwin is failing in nixpkgs"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/op/open-policy-agent/package.nix:11:1");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "open-policy-agent",
       version: "1.19.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-policy-agent",
           repo: "opa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,7 +76,7 @@ runHook postInstallCheck
 `),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "opa",
         homepage: "https://www.openpolicyagent.org",
         changelog: nix.thunk(() => nix.str`https://github.com/open-policy-agent/opa/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

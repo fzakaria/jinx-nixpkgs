@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["NIX_CFLAGS_COMPILE", 31, 7]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["hardeningDisable", 28, 3], ["env", 31, 3], ["preBuild", 33, 3], ["postFixup", 46, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, libsForQt5: false, "xdg-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["hardeningDisable", 28, 3], ["env", 31, 3], ["preBuild", 33, 3], ["postFixup", 46, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mytetra";
       const version = "1.44.232";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xintrea",
           repo: "mytetra_dev",
           rev: nix.thunk(() => nix.str`v.${version}`),
@@ -33,14 +30,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtsvg"))]);
       const hardeningDisable = nix.thunk(() => ["format"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" }));
       const preBuild = "substituteInPlace app/app.pro \\\n  --replace /usr/local/bin $out/bin \\\n  --replace /usr/share $out/share\n\nsubstituteInPlace app/src/views/mainWindow/MainWindow.cpp \\\n  --replace \":/resource/pic/logo.svg\" \"$out/share/icons/hicolor/48x48/apps/mytetra.png\"\n\n# https://github.com/xintrea/mytetra_dev/issues/164\nsubstituteInPlace thirdParty/mimetex/mimetex.c \\\n  --replace \"const char *strcasestr\" \"char *strcasestr\"\n";
       const postFixup = nix.thunk(() => nix.str`# make xdg-open overrideable at runtime
 wrapProgram $out/bin/mytetra \\
   --suffix PATH : ${xdg_utils}/bin
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Smart manager for information collecting",
         mainProgram: "mytetra",
         homepage: "https://webhamster.ru/site/page/index/articles/projectcode/138",
@@ -49,7 +46,7 @@ wrapProgram $out/bin/mytetra \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

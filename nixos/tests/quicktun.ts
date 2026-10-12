@@ -2,41 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/quicktun.nix", [[["maintainers", 4, 8]], [["protocol", 11, 11]], [["test-tunnel", 10, 27]], [["quicktun", 10, 18]], [["services", 10, 9]], [["machine", 7, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 16, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/quicktun.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/quicktun.nix", [["protocol", 11, 11]]);
-const pos$3 = nix.positions(here + "/quicktun.nix", [["test-tunnel", 10, 27]]);
-const pos$4 = nix.positions(here + "/quicktun.nix", [["quicktun", 10, 18]]);
-const pos$5 = nix.positions(here + "/quicktun.nix", [["services", 10, 9]]);
-const pos$6 = nix.positions(here + "/quicktun.nix", [["machine", 7, 5]]);
-const pos$7 = nix.positions(here + "/quicktun.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "quicktun",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "h7x4"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             quicktun: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              "test-tunnel": nix.thunk(() => ({ [nix.POS]: pos$2, protocol: "raw" })),
+              [nix.POS]: $pos[2],
+              "test-tunnel": nix.thunk(() => ({ [nix.POS]: $pos[1], protocol: "raw" })),
             })),
           })),
         };

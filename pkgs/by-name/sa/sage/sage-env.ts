@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sage-env.nix", [[["lib", 109, 5], ["docbuild", 110, 5]], [["name", 105, 3], ["destination", 106, 3], ["passthru", 108, 3], ["text", 113, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, writeTextFile: false, sagelib: false, "sage-docbuild": false, "env-locations": false, gfortran: false, ninja: false, meson: false, bash: false, coreutils: false, gnused: false, gnugrep: false, gawk: false, binutils: false, pythonEnv: false, python3: false, "pkg-config": false, pari: false, gap: false, maxima: false, singular: false, "fflas-ffpack": false, givaro: false, gd: false, libpng: false, linbox: false, m4ri: false, giac: false, palp: false, rWrapper: false, gfan: false, cddlib: false, tachyon: false, glpk: false, eclib: false, sympow: false, nauty: false, sqlite: false, ppl: false, ecm: false, lcalc: false, rubiks: false, blas: false, lapack: false, flint: false, gmp: false, mpfr: false, zlib: false, gsl: false, ntl: false, less: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sage-env.nix", [["lib", 109, 5], ["docbuild", 110, 5]]);
-const pos$2 = nix.positions(here + "/sage-env.nix", [["name", 105, 3], ["destination", 106, 3], ["passthru", 108, 3], ["text", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -101,7 +100,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(writeTextFile, nix.thunk(() => (() => {
       const name = "sage-env";
       const destination = nix.thunk(() => nix.str`/${name}`);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$1, lib: sagelib, docbuild: sage_docbuild }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[0], lib: sagelib, docbuild: sage_docbuild }));
       const text = nix.thunk(() => nix.add(nix.str`export PKG_CONFIG_PATH='${nix.app(nix.sel(lib, "makeSearchPathOutput"), "dev", "lib/pkgconfig", nix.thunk(() => [
           singular,
           blas,
@@ -144,7 +143,7 @@ export SAGE_EXTCODE='${nix.sel(sagelib, "src")}/src/sage/ext_data'
 # for find_library
 export DYLD_LIBRARY_PATH="${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "libc")), singular, giac, gap]))}\${DYLD_LIBRARY_PATH:+:}$DYLD_LIBRARY_PATH"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# Adapted from src/bin/sage-env in the upstream repo (sagemath/sage).\n#\n# See also: sagemath/sage#25921\nexport OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES\n")));
-      return { [nix.POS]: pos$2, name, destination, passthru, text };
+      return { [nix.POS]: $pos[1], name, destination, passthru, text };
     })()));
 })(), formals$1);
 //# sourceMappingURL=sage-env.ts.map

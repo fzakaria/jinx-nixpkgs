@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["pname", 38, 26], ["data", 39, 5]], [["broken", 57, 5], ["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 32, 3], ["mitmCache", 37, 3], ["__darwinAllowLocalNetworking", 42, 3], ["gradleBuildTask", 44, 3], ["installPhase", 46, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gradle_8: false, makeWrapper: false, jdk: false, "gsettings-desktop-schemas": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 38, 26], ["data", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 57, 5], ["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 32, 3], ["mitmCache", 37, 3], ["__darwinAllowLocalNetworking", 42, 3], ["gradleBuildTask", 44, 3], ["installPhase", 46, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const gradle = gradle_8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mucommander",
       version: "1.5.2-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mucommander",
           repo: "mucommander",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +33,7 @@ substituteInPlace build.gradle \\
 `),
       nativeBuildInputs: nix.thunk(() => [gradle, makeWrapper]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -50,7 +47,7 @@ makeWrapper $out/share/mucommander/mucommander.sh $out/bin/mucommander \\
   --set JAVA_HOME ${jdk}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://www.mucommander.com/",
         description: "Cross-platform file manager",

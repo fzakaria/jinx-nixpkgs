@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["url", 25, 5], ["sha256", 26, 5]], [["url", 29, 5], ["sha256", 30, 5]], [["url", 34, 5], ["sha256", 35, 5]], [["url", 38, 5], ["sha256", 39, 5]], [["url", 42, 5], ["sha256", 43, 5]], [["url", 47, 5], ["sha256", 48, 5]], [["url", 51, 5], ["sha256", 52, 5]], [["url", 55, 5], ["sha256", 56, 5]], [["url", 59, 5], ["sha256", 60, 5]], [["description", 127, 5], ["homepage", 128, 5], ["license", 129, 5], ["maintainers", 130, 5], ["platforms", 131, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["reverbs", 24, 3], ["weird", 28, 3], ["porihall-sf", 33, 3], ["porihall-bd", 37, 3], ["porihall-c", 41, 3], ["spacenet-hm2", 46, 3], ["spacenet-lyd3", 50, 3], ["spacenet-mh3", 54, 3], ["spacenet-minster1", 58, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 68, 3], ["outputs", 77, 3], ["preConfigure", 83, 3], ["makeFlags", 87, 3], ["postInstall", 91, 3], ["enableParallelBuilding", 124, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, flac: false, unzip: false, fftwFloat: false, hybridreverb2: false, libclthreads: false, libjack2: false, libsndfile: false, "zita-convolver": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 29, 5], ["sha256", 30, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 34, 5], ["sha256", 35, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 38, 5], ["sha256", 39, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 42, 5], ["sha256", 43, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 47, 5], ["sha256", 48, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 51, 5], ["sha256", 52, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["url", 55, 5], ["sha256", 56, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["url", 59, 5], ["sha256", 60, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 127, 5], ["homepage", 128, 5], ["license", 129, 5], ["maintainers", 130, 5], ["platforms", 131, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["reverbs", 24, 3], ["weird", 28, 3], ["porihall-sf", 33, 3], ["porihall-bd", 37, 3], ["porihall-c", 41, 3], ["spacenet-hm2", 46, 3], ["spacenet-lyd3", 50, 3], ["spacenet-mh3", 54, 3], ["spacenet-minster1", 58, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 68, 3], ["outputs", 77, 3], ["preConfigure", 83, 3], ["makeFlags", 87, 3], ["postInstall", 91, 3], ["enableParallelBuilding", 124, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,52 +22,52 @@ export default nix.lambda((args) => (() => {
       const pname = "jconvolver";
       const version = "1.1.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://kokkinizita.linuxaudio.org/linuxaudio/downloads/jconvolver-${version}.tar.bz2`),
           sha256: "03fq1rk5wyn32w0aaa9vqijnw9x9i0i7sv4nhsf949bk5lvi2nmc",
         }))));
       const reverbs = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "http://kokkinizita.linuxaudio.org/linuxaudio/downloads/jconvolver-reverbs.tar.bz2",
           sha256: "127aj211xfqp37c94d9cn0mmwzbjkj3f6br5gr67ckqirvsdkndi",
         }))));
       const weird = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "http://kokkinizita.linuxaudio.org/linuxaudio/downloads/weird.wav",
           sha256: "14xchdikx5k8zlgwglrqi168vki3n3rwhn73dkbj5qwh2ndrlyrc",
         }))));
       const porihall_sf = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: "http://legacy.spa.aalto.fi/projects/poririrs/wavs/sndfld.zip",
           sha256: "0z1kmdin3vcy6wmnym9jlfh8hwvci9404hff02cb98iw2slxid42",
         }))));
       const porihall_bd = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: "http://legacy.spa.aalto.fi/projects/poririrs/wavs/bin_dfeq.zip",
           sha256: "03m2brfxs851sag4z7kd71h6anv6hj34zcambwib0v1byg8vyplp",
         }))));
       const porihall_c = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: "http://legacy.spa.aalto.fi/projects/poririrs/wavs/cardioid.zip",
           sha256: "0ilbfvb2kvg5z6zi0mf2k4n0vgpir3iz5fa53xw92c07fs0cx36w",
         }))));
       const spacenet_hm2 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: "https://webfiles.york.ac.uk/OPENAIR/IRs/hamilton-mausoleum/b-format/hm2_000_bformat_48k.wav",
           sha256: "1icnzfzq3mccbmnvmvh22mw8g8dci4i9h7lgrpmycj58v3gnb1p5",
         }))));
       const spacenet_lyd3 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           url: "https://webfiles.york.ac.uk/OPENAIR/IRs/st-andrews-church/b-format/lyd3_000_bformat_48k.wav",
           sha256: "144cc0i91q5i72lwbxydx3nvxrd12j7clxjhwa2b8sf69ypz58wd",
         }))));
       const spacenet_mh3 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           url: "https://webfiles.york.ac.uk/OPENAIR/IRs/maes-howe/b-format/mh3_000_bformat_48k.wav",
           sha256: "1c6v9jlm88l1sx2383yivycdrs9jqfsfx8cpbkjg19v2x1dfns0b",
         }))));
       const spacenet_minster1 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           url: "https://webfiles.york.ac.uk/OPENAIR/IRs/york-minster/b-format/minster1_bformat_48k.wav",
           sha256: "1cs26pawjkv6qvwhfirfvzh21xvnmx8yh7f4xcr79cxv5c6hhnrw",
         }))));
@@ -120,7 +109,7 @@ done
 `);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "JACK client and audio file convolver with reverb samples",
         homepage: "https://kokkinizita.linuxaudio.org/linuxaudio/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -128,7 +117,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname,
         version,
         src,

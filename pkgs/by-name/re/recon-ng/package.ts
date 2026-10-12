@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]], [["pname", 53, 30], ["version", 53, 36]], [["description", 66, 5], ["license", 67, 5], ["homepage", 68, 5], ["maintainers", 69, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["dependencies", 24, 3], ["patches", 39, 3], ["postPatch", 50, 3], ["postInstall", 60, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, replaceVars: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 53, 30], ["version", 53, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 66, 5], ["license", 67, 5], ["homepage", 68, 5], ["maintainers", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["dependencies", 24, 3], ["patches", 39, 3], ["postPatch", 50, 3], ["postInstall", 60, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "recon-ng",
       version: "5.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lanmaster53",
           repo: "recon-ng",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       })()),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix_python12.patch",
             url: "https://github.com/lanmaster53/recon-ng/commit/e31c30e5c314cbc5e57a13f9d3ddf29afafc4cb3.patch",
             hash: "sha256-e8BTRkwb42mTTwivZ0sTxVw1hnYCUVInmy91jyVc/tw=",
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: nix.thunk(() => (() => {
         const setup = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup.py"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           }))));
@@ -67,7 +63,7 @@ export default nix.lambda((args) => (() => {
 cp -R recon/core/web/{definitions.yaml,static,templates} $out/${nix.sel(python3, "sitePackages")}/recon/core/web/
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Full-featured framework providing a powerful environment to conduct web-based reconnaissance",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         homepage: "https://github.com/lanmaster53/recon-ng/",

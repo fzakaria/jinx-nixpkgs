@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["BIOME_VERSION", 57, 5], ["LIBGIT2_NO_VENDOR", 58, 5], ["INSTA_UPDATE", 59, 5]], [["updateScript", 76, 5], ["jsonschema", 77, 5]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 91, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["nativeCheckInputs", 33, 3], ["cargoBuildFlags", 35, 3], ["cargoTestFlags", 36, 3], ["env", 56, 3], ["postInstall", 62, 3], ["preCheck", 67, 3], ["passthru", 75, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, libgit2: false, "rust-jemalloc-sys": false, zlib: false, gitMinimal: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["BIOME_VERSION", 57, 5], ["LIBGIT2_NO_VENDOR", 58, 5], ["INSTA_UPDATE", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 76, 5], ["jsonschema", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["nativeCheckInputs", 33, 3], ["cargoBuildFlags", 35, 3], ["cargoTestFlags", 36, 3], ["env", 56, 3], ["postInstall", 62, 3], ["preCheck", 67, 3], ["passthru", 75, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "biome",
       version: "2.5.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "biomejs",
           repo: "biome",
           rev: nix.thunk(() => nix.str`@biomejs/biome@${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
         "--skip=cases::help::start_help",
       ])),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         BIOME_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         LIBGIT2_NO_VENDOR: 1n,
         INSTA_UPDATE: "no",
@@ -63,12 +59,12 @@ export default nix.lambda((args) => (() => {
       postInstall: "# Installs biome schema aside with the package\ninstall -Dm644 packages/@biomejs/biome/configuration_schema.json $out/share/schema.json\n",
       preCheck: "# tests assume git repository\ngit init\n\n# tests assume $BIOME_VERSION is unset\nunset BIOME_VERSION\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         jsonschema: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/schema.json`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Toolchain of the web",
         homepage: "https://biomejs.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/biomejs/biome/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

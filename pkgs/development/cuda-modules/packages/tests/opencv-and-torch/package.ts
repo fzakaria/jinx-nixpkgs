@@ -2,13 +2,9 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["openCVFirst", 21, 5], ["useOpenCVDefaultCuda", 22, 5], ["useTorchDefaultCuda", 23, 5]], [["cudaPackages", 103, 17]], [["cudaPackages", 106, 17]], [["name", 97, 11], ["libraries", 98, 11]], [["name", 71, 7], ["value", 87, 7]]]);
 const formals$1 = { args: { cudaPackages: false, lib: false, writeGpuTestPython: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["openCVFirst", 21, 5], ["useOpenCVDefaultCuda", 22, 5], ["useTorchDefaultCuda", 23, 5]]);
 const formals$2 = { args: { openCVFirst: false, useOpenCVDefaultCuda: false, useTorchDefaultCuda: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["cudaPackages", 103, 17]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cudaPackages", 106, 17]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 97, 11], ["libraries", 98, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 71, 7], ["value", 87, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const bools = nix.thunk(() => [true, false]);
   const configs = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     openCVFirst: bools,
     useOpenCVDefaultCuda: bools,
     useTorchDefaultCuda: bools,
@@ -35,22 +31,22 @@ export default nix.lambda((args) => (() => {
     const useOpenCVDefaultCuda = nix.arg($_1, "useOpenCVDefaultCuda");
     const useTorchDefaultCuda = nix.arg($_1, "useTorchDefaultCuda");
     return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: nix.thunk(() => nix.app(concatStringsSep, "-", nix.thunk(() => nix.concat(["test", nix.thunk(() => (nix.asBool(openCVFirst) ? "opencv" : "torch"))], nix.concat(nix.app(optionals, nix.thunk(() => (nix.asBool(openCVFirst) ? nix.force(useOpenCVDefaultCuda) : nix.force(useTorchDefaultCuda))), nix.thunk(() => ["with-default-cuda"])), nix.concat(["then", nix.thunk(() => (nix.asBool(openCVFirst) ? "torch" : "opencv"))], nix.app(optionals, nix.thunk(() => (nix.asBool(openCVFirst) ? nix.force(useTorchDefaultCuda) : nix.force(useOpenCVDefaultCuda))), nix.thunk(() => ["with-default-cuda"])))))))),
       value: nix.thunk(() => (() => {
         const content = nix.thunk(() => (nix.asBool(openCVFirst) ? nix.add(openCVBlock, torchBlock) : nix.add(torchBlock, openCVBlock)));
         const torchName = nix.thunk(() => nix.add("torch", nix.app(optionalString, useTorchDefaultCuda, "-with-default-cuda")));
         const openCVName = nix.thunk(() => nix.add("opencv4", nix.app(optionalString, useOpenCVDefaultCuda, "-with-default-cuda")));
         return nix.app(writeGpuTestPython, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: nix.thunk(() => (nix.asBool(openCVFirst) ? nix.str`${openCVName}-then-${torchName}` : nix.str`${torchName}-then-${openCVName}`)),
             libraries: (pythonPackages) => (() => {
               const effectiveOpenCV = nix.thunk(() => nix.app(nix.sel(pythonPackages, "opencv4", "override"), (prevAttrs) => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   cudaPackages: nix.thunk(() => (nix.asBool(useOpenCVDefaultCuda) ? nix.sel(prevAttrs, "cudaPackages") : nix.force(cudaPackages))),
                 })));
               const effectiveTorch = nix.thunk(() => nix.app(nix.sel(pythonPackages, "torchWithCuda", "override"), (prevAttrs) => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   cudaPackages: nix.thunk(() => (nix.asBool(useTorchDefaultCuda) ? nix.sel(prevAttrs, "cudaPackages") : nix.force(cudaPackages))),
                 })));
               return (nix.asBool(openCVFirst) ? [effectiveOpenCV, effectiveTorch] : [effectiveTorch, effectiveOpenCV]);

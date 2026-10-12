@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["name", 31, 7], ["url", 32, 7], ["sha256", 33, 7]], [["broken", 61, 5], ["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 45, 3], ["postPatch", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "pkg-config": false, fetchFromGitHub: false, fetchpatch: false, cmake: false, wrapGAppsHook3: false, avahi: false, "avahi-compat": false, openssl: false, gst_all_1: false, libplist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 31, 7], ["url", 32, 7], ["sha256", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 61, 5], ["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 45, 3], ["postPatch", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const libplist = nix.arg($, "libplist");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rpiplay",
       version: "0-unstable-2021-06-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FD-",
           repo: "RPiPlay",
           rev: "35dd995fceed29183cbfad0d4110ae48e0635786",
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "use-static-ports.patch",
             url: "https://github.com/FD-/RPiPlay/commit/2ffc287ba822e1d2b2ed0fc0e41a2bb3d9dab105.patch",
             sha256: "08dy829gyhyzw2n54zn5m3176cmd24k5hij24vpww5bhbwkbabww",
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace {lib/playfair/,lib/llhttp/,lib/,renderers/,./}CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.4.1)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/FD-/RPiPlay",
         description: "Open-source implementation of an AirPlay mirroring server",

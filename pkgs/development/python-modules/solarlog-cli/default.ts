@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["changelog", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["disabled", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 38, 3], ["nativeCheckInputs", 40, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pythonOlder: false, fetchFromGitHub: false, hatchling: false, aiohttp: false, bcrypt: false, mashumaro: false, aioresponses: false, "pytest-aio": false, pytestCheckHook: false, syrupy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["disabled", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 38, 3], ["nativeCheckInputs", 40, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dontinelli",
           repo: "solarlog_cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["solarlog_cli"]);
       const nativeCheckInputs = nix.thunk(() => [aioresponses, pytest_aio, pytestCheckHook, syrupy]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/dontinelli/solarlog_cli/releases/tag/v${version}`),
         description: "Python library to access the Solar-Log JSON interface",
         homepage: "https://github.com/dontinelli/solarlog_cli",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

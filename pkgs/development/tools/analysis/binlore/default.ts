@@ -2,13 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]], [["rules", 49, 5], ["types", 51, 5], ["yallback", 56, 5], ["callback", 63, 5]], [["drv", 127, 9]], [["drv", 212, 9]], [["collect", 91, 3], ["make", 123, 3], ["synthesize", 208, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, runCommand: false, yallback: false, yara: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rules", 49, 5], ["types", 51, 5], ["yallback", 56, 5], ["callback", 63, 5]]);
 const formals$2 = { args: { lore: true, drvs: false, strip: true }, ellipsis: false };
-const pos$3 = nix.positions(here + "/default.nix", [["drv", 127, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["drv", 212, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["collect", 91, 3], ["make", 123, 3], ["synthesize", 208, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const yallback = nix.arg($, "yallback");
   const yara = nix.arg($, "yara");
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "abathur",
       repo: "binlore",
       rev: "v0.3.0",
       hash: "sha256-4Fs6HThfDhKRskuDJx2+hucl8crMRm10K6949JdIwPY=",
     }))));
   const loreDef = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     rules: nix.thunk(() => nix.add(src, "/execers.yar")),
     types: nix.thunk(() => ["execers", "wrappers"]),
     yallback: nix.thunk(() => nix.add(src, "/execers.yall")),
@@ -54,7 +50,7 @@ for lorefile in ${nix.builtins.toString(nix.thunk(() => nix.sel(lore, "types")))
 done
 `));
     })(), formals$2);
-    const make = (lore) => (drv) => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(drv, "name")}-binlore`), nix.thunk(() => ({ [nix.POS]: pos$3, drv: drv })), nix.thunk(() => nix.add(nix.add(nix.add(nix.str`mkdir $out
+    const make = (lore) => (drv) => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(drv, "name")}-binlore`), nix.thunk(() => ({ [nix.POS]: $pos[2], drv: drv })), nix.thunk(() => nix.add(nix.add(nix.add(nix.str`mkdir $out
 touch $out/{${nix.builtins.concatStringsSep(",", nix.thunk(() => nix.sel(lore, "types")))}}
 
 ${nix.app(nix.sel(lore, "callback"), lore, drv)}
@@ -66,8 +62,8 @@ ${nix.app(nix.sel(lore, "callback"), lore, drv)}
   cat "${nix.sel(drv, "binlore", nix.key(nix.str`${nix.sel(drv, "outputName")}`))}/$lore_type" >> "$out/$lore_type"
 fi
 `))), "done\n\necho binlore for $drv written to $out\n")));
-    const synthesize = (drv) => (loreSynthesizingScript) => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(drv, "name")}-lore-override`), nix.thunk(() => ({ [nix.POS]: pos$4, drv: drv })), nix.thunk(() => nix.add("execer(){\n  local verdict=\"$1\"\n\n  shift\n\n  for path in \"$@\"; do\n    if [[ -f \"$PWD/$path\" ]]; then\n      echo \"$verdict:$PWD/$path\"\n    else\n      echo \"error: Tried to synthesize execer lore for missing file: $PWD/$path\" >&2\n      exit 2\n    fi\n  done\n} >> $out/execers\n\nwrapper(){\n  local wrapper=\"$1\"\n  local original=\"$2\"\n\n  if [[ ! -f \"$wrapper\" ]]; then\n    echo \"error: Tried to synthesize wrapper lore for missing wrapper: $PWD/$wrapper\" >&2\n    exit 2\n  fi\n\n  if [[ ! -f \"$original\" ]]; then\n    echo \"error: Tried to synthesize wrapper lore for missing original: $PWD/$original\" >&2\n    exit 2\n  fi\n\n  echo \"$PWD/$wrapper:$PWD/$original\"\n\n} >> $out/wrappers\n\nmkdir $out\n\n# lore override commands are relative to the drv root\ncd $drv\n\n", loreSynthesizingScript)));
-    return { [nix.POS]: pos$5, collect, make, synthesize };
+    const synthesize = (drv) => (loreSynthesizingScript) => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(drv, "name")}-lore-override`), nix.thunk(() => ({ [nix.POS]: $pos[3], drv: drv })), nix.thunk(() => nix.add("execer(){\n  local verdict=\"$1\"\n\n  shift\n\n  for path in \"$@\"; do\n    if [[ -f \"$PWD/$path\" ]]; then\n      echo \"$verdict:$PWD/$path\"\n    else\n      echo \"error: Tried to synthesize execer lore for missing file: $PWD/$path\" >&2\n      exit 2\n    fi\n  done\n} >> $out/execers\n\nwrapper(){\n  local wrapper=\"$1\"\n  local original=\"$2\"\n\n  if [[ ! -f \"$wrapper\" ]]; then\n    echo \"error: Tried to synthesize wrapper lore for missing wrapper: $PWD/$wrapper\" >&2\n    exit 2\n  fi\n\n  if [[ ! -f \"$original\" ]]; then\n    echo \"error: Tried to synthesize wrapper lore for missing original: $PWD/$original\" >&2\n    exit 2\n  fi\n\n  echo \"$PWD/$wrapper:$PWD/$original\"\n\n} >> $out/wrappers\n\nmkdir $out\n\n# lore override commands are relative to the drv root\ncd $drv\n\n", loreSynthesizingScript)));
+    return { [nix.POS]: $pos[4], collect, make, synthesize };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

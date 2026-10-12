@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 23]], [["updateScript", 43, 12]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["sourceProvenance", 55, 5]], [["pname", 13, 3], ["version", 14, 21], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["dontPatch", 24, 3], ["dontConfigure", 25, 3], ["dontBuild", 26, 3], ["dontFixup", 27, 3], ["nativeBuildInputs", 30, 3], ["sourceRoot", 32, 3], ["installPhase", 34, 3], ["passthru", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 23]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["sourceProvenance", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 21], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["dontPatch", 24, 3], ["dontConfigure", 25, 3], ["dontBuild", 26, 3], ["dontFixup", 27, 3], ["nativeBuildInputs", 30, 3], ["sourceRoot", 32, 3], ["installPhase", 34, 3], ["passthru", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const _7zz = nix.arg($, "_7zz");
   const sources = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tinycast",
       version: nix.thunk(() => nix.attr(sources, "version")),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/abue-ammar/tinycast/releases/download/${nix.sel(sources, "tag")}/Tinycast-${nix.sel(sources, "version")}.dmg`),
           hash: nix.thunk(() => nix.attr(sources, "hash")),
         })))),
@@ -33,9 +30,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [_7zz]),
       sourceRoot: "Tinycast Beta.app",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications/Tinycast Beta.app\"\ncp -R . \"$out/Applications/Tinycast Beta.app\"\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Beta release of Tinycast, a native macOS launcher, hotkeys, and clipboard history",
         homepage: "https://github.com/abue-ammar/tinycast",
         changelog: nix.thunk(() => nix.str`https://github.com/abue-ammar/tinycast/releases/tag/v${nix.sel(finalAttrs, "version")}`),

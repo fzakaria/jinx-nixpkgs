@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mk-corretto.nix", [[["package", 121, 43]], [["nativeBuildInputs", 122, 51]], [["nativeBuildInputs", 126, 55]], [["version", 121, 11], ["vendor", 122, 11], ["compiler", 126, 11]], [["tests", 120, 9]], [["homepage", 141, 7], ["license", 142, 7], ["description", 143, 7], ["maintainers", 144, 7], ["platforms", 145, 7], ["teams", 146, 7]], [["pname", 31, 13], ["version", 31, 19], ["src", 31, 27], ["nativeBuildInputs", 33, 5], ["dontConfigure", 42, 5], ["postPatch", 44, 5], ["preBuild", 84, 5], ["gradleBuildTask", 88, 5], ["postBuild", 94, 5], ["installPhase", 106, 5], ["passthru", 114, 5], ["meta", 140, 5]]]);
 const formals$1 = { args: { jdk: false, version: false, src: false, lib: false, stdenv: false, gradle: false, extraConfig: true, extraNativeBuildInputs: true, rsync: false, runCommand: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mk-corretto.nix", [["package", 121, 43]]);
-const pos$2 = nix.positions(here + "/mk-corretto.nix", [["nativeBuildInputs", 122, 51]]);
-const pos$3 = nix.positions(here + "/mk-corretto.nix", [["nativeBuildInputs", 126, 55]]);
-const pos$4 = nix.positions(here + "/mk-corretto.nix", [["version", 121, 11], ["vendor", 122, 11], ["compiler", 126, 11]]);
-const pos$5 = nix.positions(here + "/mk-corretto.nix", [["tests", 120, 9]]);
-const pos$6 = nix.positions(here + "/mk-corretto.nix", [["homepage", 141, 7], ["license", 142, 7], ["description", 143, 7], ["maintainers", 144, 7], ["platforms", 145, 7], ["teams", 146, 7]]);
-const pos$7 = nix.positions(here + "/mk-corretto.nix", [["pname", 31, 13], ["version", 31, 19], ["src", 31, 27], ["nativeBuildInputs", 33, 5], ["dontConfigure", 42, 5], ["postPatch", 44, 5], ["preBuild", 84, 5], ["gradleBuildTask", 88, 5], ["postBuild", 94, 5], ["installPhase", 106, 5], ["passthru", 114, 5], ["meta", 140, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const majorVersion = nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), ".", version))));
   const pname = nix.thunk(() => nix.str`corretto${majorVersion}`);
   return nix.app(nix.sel(jdk, "overrideAttrs"), (finalAttrs) => (oldAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: src,
@@ -83,14 +77,14 @@ chmod +x $dir/jdk/bin/*
       passthru: nix.thunk(() => (() => {
         const pkg = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
         return nix.update(nix.sel(oldAttrs, "passthru"), {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$1, package: pkg })))),
-            vendor: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-vendor`), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [pkg]) })), nix.thunk(() => nix.str`output=$(${nix.sel(pkg, "meta", "mainProgram")} -XshowSettings:properties -version 2>&1 | grep vendor)
+            [nix.POS]: $pos[3],
+            version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[0], package: pkg })))),
+            vendor: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-vendor`), nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [pkg]) })), nix.thunk(() => nix.str`output=$(${nix.sel(pkg, "meta", "mainProgram")} -XshowSettings:properties -version 2>&1 | grep vendor)
 grep -Fq "java.vendor = Amazon.com Inc." - <<< "$output" && touch $out
 `))),
-            compiler: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-compiler`), nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [pkg]) })), nix.thunk(() => nix.str`cat << EOF  > Main.java
+            compiler: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-compiler`), nix.thunk(() => ({ [nix.POS]: $pos[2], nativeBuildInputs: nix.thunk(() => [pkg]) })), nix.thunk(() => nix.str`cat << EOF  > Main.java
 class Main {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
@@ -104,7 +98,7 @@ ${pkg}/bin/java Main | grep -q "Hello, World!" && touch $out
         });
       })()),
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://aws.amazon.com/corretto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         description: "Amazon's distribution of OpenJDK",

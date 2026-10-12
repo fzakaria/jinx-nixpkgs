@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 45, 5], ["hash", 46, 5]], [["packageName", 129, 7]], [["updateScript", 128, 5]], [["description", 134, 5], ["longDescription", 135, 5], ["homepage", 136, 5], ["changelog", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["teams", 140, 5], ["platforms", 141, 5], ["mainProgram", 142, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["outputs", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 71, 3], ["nativeCheckInputs", 93, 3], ["mesonFlags", 104, 3], ["strictDeps", 109, 3], ["doCheck", 110, 3], ["preFixup", 112, 3], ["checkPhase", 116, 3], ["passthru", 127, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, libadwaita: false, libsecret: false, "mobile-broadband-provider-info": false, modemmanager: false, gmobile: false, gnome: false, gtk4: false, gom: false, gsound: false, feedbackd: false, callaudiod: false, "evolution-data-server-gtk4": false, folks: false, "desktop-file-utils": false, appstream: false, libpeas2: false, dbus: false, vala: false, wrapGAppsHook4: false, "xvfb-run": false, "gtk-doc": false, bubblewrap: false, "docbook-xsl-nons": false, docbook_xml_dtd_43: false, docutils: false, gst_all_1: false, "shared-mime-info": false, sofia_sip: false, writeShellScriptBin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 129, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 128, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 134, 5], ["longDescription", 135, 5], ["homepage", 136, 5], ["changelog", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["teams", 140, 5], ["platforms", 141, 5], ["mainProgram", 142, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["outputs", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 71, 3], ["nativeCheckInputs", 93, 3], ["mesonFlags", 104, 3], ["strictDeps", 109, 3], ["doCheck", 110, 3], ["preFixup", 112, 3], ["checkPhase", 116, 3], ["passthru", 127, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const sofia_sip = nix.arg($, "sofia_sip");
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "calls",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/calls/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/calls-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-8ozMjm+8UHnnuLXRGlUZabtw2QXl7ZDRsdho8SBFxy8=",
         })))),
@@ -110,11 +106,11 @@ exec ${nix.app(nix.sel(lib, "getExe'"), dbus, "dbus-run-session")} --config-file
 `),
       checkPhase: "runHook preCheck\n\nHOME=$(mktemp -d) \\\nxvfb-run -s '-screen 0 800x600x24' \\\n  bwrap --unshare-uts --hostname 127.0.0.1 --dev-bind / / \\\n  meson test --no-rebuild --print-errorlogs\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "calls" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "calls" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Phone dialer and call handler",
         longDescription: "GNOME Calls is a phone dialer and call handler. Setting NixOS option `programs.calls.enable = true` is recommended.",
         homepage: "https://gitlab.gnome.org/GNOME/calls",

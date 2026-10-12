@@ -2,11 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-erlang-mk.nix", [[["name", 36, 7], ["buildInputs", 37, 7]], [["packageName", 136, 11], ["env", 137, 11], ["beamDeps", 138, 19]], [["app_name", 45, 9], ["name", 46, 9], ["version", 47, 17], ["dontStrip", 49, 9], ["src", 51, 17], ["setupHook", 53, 9], ["nativeBuildInputs", 61, 9], ["buildInputs", 68, 17], ["propagatedBuildInputs", 69, 9], ["__structuredAttrs", 71, 9], ["strictDeps", 72, 9], ["buildFlags", 74, 9], ["configurePhase", 80, 9], ["buildPhase", 94, 9], ["installPhase", 109, 9], ["passthru", 135, 9]]]);
 const formals$1 = { args: { stdenv: false, writeText: false, erlang: false, perl: false, which: false, gitMinimal: false, wget: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { name: false, version: false, src: false, setupHook: true, buildInputs: true, beamDeps: true, postPatch: true, compilePorts: true, installPhase: true, buildPhase: true, configurePhase: true, meta: true, enableDebugInfo: true, buildFlags: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-erlang-mk.nix", [["name", 36, 7], ["buildInputs", 37, 7]]);
-const pos$2 = nix.positions(here + "/build-erlang-mk.nix", [["packageName", 136, 11], ["env", 137, 11], ["beamDeps", 138, 19]]);
-const pos$3 = nix.positions(here + "/build-erlang-mk.nix", [["app_name", 45, 9], ["name", 46, 9], ["version", 47, 17], ["dontStrip", 49, 9], ["src", 51, 17], ["setupHook", 53, 9], ["nativeBuildInputs", 61, 9], ["buildInputs", 68, 17], ["propagatedBuildInputs", 69, 9], ["__structuredAttrs", 71, 9], ["strictDeps", 72, 9], ["buildFlags", 74, 9], ["configurePhase", 80, 9], ["buildPhase", 94, 9], ["installPhase", 109, 9], ["passthru", 135, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +35,12 @@ export default nix.lambda((args) => (() => {
     const buildFlags = nix.argOr($_1, "buildFlags", () => []);
     const debugInfoFlag = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(enableDebugInfo) || nix.asBool(nix.sel(erlang, "debugInfo")))), "+debug_info"));
     const shell = (drv) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.str`interactive-shell-${nix.sel(drv, "name")}`),
         buildInputs: nix.thunk(() => [drv]),
       })));
     const pkg = (self) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(attrs, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         app_name: name,
         name: nix.thunk(() => nix.str`${name}-${version}`),
         version: version,
@@ -78,7 +76,7 @@ fi
 runHook postInstall
 ` : nix.force(installPhase))),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           packageName: name,
           env: nix.thunk(() => nix.app(shell, self)),
           beamDeps: beamDeps,

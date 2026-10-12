@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["__structuredAttrs", 36, 3], ["src", 38, 3], ["sourceRoot", 45, 3], ["build-system", 47, 3], ["dependencies", 51, 3], ["pythonImportsCheck", 66, 3], ["nativeCheckInputs", 68, 3], ["disabledTests", 78, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "absl-py": false, etils: false, "jsonpath-rw": false, networkx: false, pandas: false, "pandas-stubs": false, "python-dateutil": false, rdflib: false, requests: false, scipy: false, tqdm: false, "apache-beam": false, gitpython: false, librosa: false, pillow: false, pytestCheckHook: false, pyyaml: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["__structuredAttrs", 36, 3], ["src", 38, 3], ["sourceRoot", 45, 3], ["build-system", 47, 3], ["dependencies", 51, 3], ["pythonImportsCheck", 66, 3], ["nativeCheckInputs", 68, 3], ["disabledTests", 78, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mlcroissant",
       version: "1.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mlcommons",
           repo: "croissant",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,7 +76,7 @@ export default nix.lambda((args) => (() => {
         "test_beam_hermetic_loading",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High-level format for machine learning datasets that brings together four rich layers",
         homepage: "https://github.com/mlcommons/croissant",
         changelog: nix.thunk(() => nix.str`https://github.com/mlcommons/croissant/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

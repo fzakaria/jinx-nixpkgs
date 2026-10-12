@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 41, 5], ["description", 42, 5], ["longDescription", 43, 5], ["maintainers", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["mainProgram", 51, 5], ["sourceProvenance", 52, 5]], [["url", 58, 7], ["hash", 59, 7]], [["pname", 55, 13], ["version", 55, 19], ["meta", 55, 27], ["src", 57, 5], ["nativeBuildInputs", 62, 5], ["buildInputs", 68, 5], ["strictDeps", 93, 5], ["unpackPhase", 95, 5], ["dontStrip", 102, 5], ["dontWrapQtApps", 103, 5], ["installPhase", 105, 5]], [["updateScript", 176, 12]], [["pname", 138, 11], ["version", 138, 17], ["meta", 138, 25], ["targetPkgs", 139, 3], ["extraInstallCommands", 145, 3], ["runScript", 154, 3], ["passthru", 176, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, autoPatchelfHook: false, buildFHSEnv: false, elfutils: false, extraEnv: true, fetchurl: false, "ffmpeg_6-headless": false, lib: false, libdrm: false, libgbm: false, libpulseaudio: false, libva: false, libxkbcommon: false, libxml2_13: false, makeShellWrapper: false, minizip: false, nss: false, "squashfs-tools": false, stdenv: false, writeShellScript: false, xkeyboard_config: false, "libxcb-wm": false, "libxcb-render-util": false, "libxcb-keysyms": false, "libxcb-image": false, libxtst: false, libxrender: false, libxrandr: false, libxinerama: false, libxdamage: false, libxcomposite: false, xrandr: false, libxshmfence: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["longDescription", 43, 5], ["maintainers", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["mainProgram", 51, 5], ["sourceProvenance", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 58, 7], ["hash", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 55, 13], ["version", 55, 19], ["meta", 55, 27], ["src", 57, 5], ["nativeBuildInputs", 62, 5], ["buildInputs", 68, 5], ["strictDeps", 93, 5], ["unpackPhase", 95, 5], ["dontStrip", 102, 5], ["dontWrapQtApps", 103, 5], ["installPhase", 105, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 176, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 138, 11], ["version", 138, 17], ["meta", 138, 25], ["targetPkgs", 139, 3], ["extraInstallCommands", 145, 3], ["runScript", 154, 3], ["passthru", 176, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
   const version = "1.71.1";
   const rev = "73";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     homepage: "https://plex.tv/",
     description: "Plex HTPC client for the big screen",
     longDescription: "Plex HTPC for Linux is your client for playing on your Linux computer\nconnected to the big screen. It features a 10-foot interface with a\npowerful playback engine.\n",
@@ -65,12 +61,12 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const plex_htpc = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://api.snapcraft.io/api/v1/snaps/download/81OP06hEXlwmMrpMAhe5hyLy5bQ9q6Kz_${rev}.snap`),
           hash: "sha512-n9pXRx8s6AwhIJm7PmUIOB8pXqzyNFzdmwJMonQ4WzWvA5tPI27x0slQ6WUxRBQJoLScGckyGAFxIGWRylNr3g==",
         })))),
@@ -106,7 +102,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ncp -r . $out\nrm -r $out/etc\nrm -r $out/usr\n\n# flatpak removes these during installation.\nrm -r $out/lib/dri\nrm $out/lib/libpciaccess.so*\nrm $out/lib/libswresample.so*\nrm $out/lib/libva-*.so*\nrm $out/lib/libva.so*\nrm $out/lib/libEGL.so*\nrm $out/lib/libdrm.so*\nrm $out/lib/libdrm*\n\n# Keep some dependencies from the snap.\ncp usr/lib/x86_64-linux-gnu/liblcms2.so.2 $out/lib/liblcms2.so.2\ncp usr/lib/x86_64-linux-gnu/libjbig.so.0 $out/lib/libjbig.so.0\ncp usr/lib/x86_64-linux-gnu/libjpeg.so.8 $out/lib/libjpeg.so.8\ncp usr/lib/x86_64-linux-gnu/libpci.so.3 $out/lib/libpci.so.3\ncp usr/lib/x86_64-linux-gnu/libsnappy.so.1 $out/lib/libsnappy.so.1\ncp usr/lib/x86_64-linux-gnu/libtiff.so.5 $out/lib/libtiff.so.5\ncp usr/lib/x86_64-linux-gnu/libwebp.so.6 $out/lib/libwebp.so.6\ncp usr/lib/x86_64-linux-gnu/libxkbfile.so.1 $out/lib/libxkbfile.so.1\ncp usr/lib/x86_64-linux-gnu/libxslt.so.1 $out/lib/libxslt.so.1\n\nrunHook postInstall\n",
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       meta: meta,
@@ -139,7 +135,7 @@ ${nix.app(nix.sel(lib, "toShellVars"), extraEnv)}
 set +o allexport
 exec ${plex_htpc}/Plex.sh
 `))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 37, 5], ["mainProgram", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["configureFlags", 18, 3], ["doCheck", 25, 3], ["nativeCheckInputs", 26, 3], ["enableParallelBuilding", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, lzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 37, 5], ["mainProgram", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["configureFlags", 18, 3], ["doCheck", 25, 3], ["nativeCheckInputs", 26, 3], ["enableParallelBuilding", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lzip = nix.arg($, "lzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lziprecover",
       version: "1.26",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/lzip/lziprecover/lziprecover-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-4jQAWnVtVkn0FoYRbT5UhzbUp35aXsN7lDymZQeHgB0=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [lzip]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.nongnu.org/lzip/lziprecover.html",
         description: "Data recovery tool for lzip compressed files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

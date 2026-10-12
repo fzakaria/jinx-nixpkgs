@@ -2,175 +2,146 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 3, 5], ["mask", 4, 5]]);
-const pos$2 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 7, 5], ["mask", 8, 5]]);
-const pos$3 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 11, 5], ["mask", 12, 5]]);
-const pos$4 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 15, 5], ["mask", 16, 5]]);
-const pos$5 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 19, 5], ["mask", 20, 5]]);
-const pos$6 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 23, 5], ["mask", 24, 5]]);
-const pos$7 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 27, 5], ["mask", 28, 5]]);
-const pos$8 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 31, 5], ["mask", 32, 5]]);
-const pos$9 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 35, 5], ["mask", 36, 5]]);
-const pos$10 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 39, 5], ["mask", 40, 5]]);
-const pos$11 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 43, 5], ["mask", 44, 5]]);
-const pos$12 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 47, 5], ["mask", 48, 5]]);
-const pos$13 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 51, 5], ["mask", 52, 5]]);
-const pos$14 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 55, 5], ["mask", 56, 5]]);
-const pos$15 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 59, 5], ["mask", 60, 5]]);
-const pos$16 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 63, 5], ["mask", 64, 5]]);
-const pos$17 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 67, 5], ["mask", 68, 5]]);
-const pos$18 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 71, 5], ["mask", 72, 5]]);
-const pos$19 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 75, 5], ["mask", 76, 5]]);
-const pos$20 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 79, 5], ["mask", 80, 5]]);
-const pos$21 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 83, 5], ["mask", 84, 5]]);
-const pos$22 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 87, 5], ["mask", 88, 5]]);
-const pos$23 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 91, 5], ["mask", 92, 5]]);
-const pos$24 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 95, 5], ["mask", 96, 5]]);
-const pos$25 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 99, 5], ["mask", 100, 5]]);
-const pos$26 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 103, 5], ["mask", 104, 5]]);
-const pos$27 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 107, 5], ["mask", 108, 5]]);
-const pos$28 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 110, 18]]);
-const pos$29 = nix.positions(here + "/binfmt-magics.nix", [["magicOrExtension", 111, 16]]);
-const pos$30 = nix.positions(here + "/binfmt-magics.nix", [["armv6l-linux", 2, 3], ["armv7l-linux", 6, 3], ["aarch64-linux", 10, 3], ["aarch64_be-linux", 14, 3], ["i386-linux", 18, 3], ["i486-linux", 22, 3], ["i586-linux", 26, 3], ["i686-linux", 30, 3], ["x86_64-linux", 34, 3], ["alpha-linux", 38, 3], ["sparc64-linux", 42, 3], ["sparc-linux", 46, 3], ["powerpc-linux", 50, 3], ["powerpc64-linux", 54, 3], ["powerpc64le-linux", 58, 3], ["mips-linux", 62, 3], ["mipsel-linux", 66, 3], ["mips64-linux", 70, 3], ["mips64el-linux", 74, 3], ["mips64-linuxabin32", 78, 3], ["mips64el-linuxabin32", 82, 3], ["riscv32-linux", 86, 3], ["riscv64-linux", 90, 3], ["loongarch64-linux", 94, 3], ["wasm32-wasip1", 98, 3], ["wasm64-wasip1", 102, 3], ["s390x-linux", 106, 3], ["x86_64-windows", 110, 3], ["i686-windows", 111, 3]]);
+const $pos = nix.positions(here + "/binfmt-magics.nix", [[["magicOrExtension", 3, 5], ["mask", 4, 5]], [["magicOrExtension", 7, 5], ["mask", 8, 5]], [["magicOrExtension", 11, 5], ["mask", 12, 5]], [["magicOrExtension", 15, 5], ["mask", 16, 5]], [["magicOrExtension", 19, 5], ["mask", 20, 5]], [["magicOrExtension", 23, 5], ["mask", 24, 5]], [["magicOrExtension", 27, 5], ["mask", 28, 5]], [["magicOrExtension", 31, 5], ["mask", 32, 5]], [["magicOrExtension", 35, 5], ["mask", 36, 5]], [["magicOrExtension", 39, 5], ["mask", 40, 5]], [["magicOrExtension", 43, 5], ["mask", 44, 5]], [["magicOrExtension", 47, 5], ["mask", 48, 5]], [["magicOrExtension", 51, 5], ["mask", 52, 5]], [["magicOrExtension", 55, 5], ["mask", 56, 5]], [["magicOrExtension", 59, 5], ["mask", 60, 5]], [["magicOrExtension", 63, 5], ["mask", 64, 5]], [["magicOrExtension", 67, 5], ["mask", 68, 5]], [["magicOrExtension", 71, 5], ["mask", 72, 5]], [["magicOrExtension", 75, 5], ["mask", 76, 5]], [["magicOrExtension", 79, 5], ["mask", 80, 5]], [["magicOrExtension", 83, 5], ["mask", 84, 5]], [["magicOrExtension", 87, 5], ["mask", 88, 5]], [["magicOrExtension", 91, 5], ["mask", 92, 5]], [["magicOrExtension", 95, 5], ["mask", 96, 5]], [["magicOrExtension", 99, 5], ["mask", 100, 5]], [["magicOrExtension", 103, 5], ["mask", 104, 5]], [["magicOrExtension", 107, 5], ["mask", 108, 5]], [["magicOrExtension", 110, 18]], [["magicOrExtension", 111, 16]], [["armv6l-linux", 2, 3], ["armv7l-linux", 6, 3], ["aarch64-linux", 10, 3], ["aarch64_be-linux", 14, 3], ["i386-linux", 18, 3], ["i486-linux", 22, 3], ["i586-linux", 26, 3], ["i686-linux", 30, 3], ["x86_64-linux", 34, 3], ["alpha-linux", 38, 3], ["sparc64-linux", 42, 3], ["sparc-linux", 46, 3], ["powerpc-linux", 50, 3], ["powerpc64-linux", 54, 3], ["powerpc64le-linux", 58, 3], ["mips-linux", 62, 3], ["mipsel-linux", 66, 3], ["mips64-linux", 70, 3], ["mips64el-linux", 74, 3], ["mips64-linuxabin32", 78, 3], ["mips64el-linuxabin32", 82, 3], ["riscv32-linux", 86, 3], ["riscv64-linux", 90, 3], ["loongarch64-linux", 94, 3], ["wasm32-wasip1", 98, 3], ["wasm64-wasip1", 102, 3], ["s390x-linux", 106, 3], ["x86_64-windows", 110, 3], ["i686-windows", 111, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$30,
+  [nix.POS]: $pos[29],
   "armv6l-linux": nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     magicOrExtension: "\\x7fELF\\x01\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x28\\x00",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xfe\\xff\\xff\\xff",
   })),
   "armv7l-linux": nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     magicOrExtension: "\\x7fELF\\x01\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x28\\x00",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xfe\\xff\\xff\\xff",
   })),
   "aarch64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     magicOrExtension: "\\x7fELF\\x02\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\xb7\\x00",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xfe\\xff\\xff\\xff",
   })),
   "aarch64_be-linux": nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     magicOrExtension: "\\x7fELF\\x02\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\xb7",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff",
   })),
   "i386-linux": nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     magicOrExtension: "\\x7fELF\\x01\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x03\\x00",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xfe\\xfe\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff\\xff",
   })),
   "i486-linux": nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     magicOrExtension: "\\x7fELF\\x01\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x06\\x00",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xfe\\xfe\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff\\xff",
   })),
   "i586-linux": nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     magicOrExtension: "\\x7fELF\\x01\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x06\\x00",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xfe\\xfe\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff\\xff",
   })),
   "i686-linux": nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     magicOrExtension: "\\x7fELF\\x01\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x06\\x00",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xfe\\xfe\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff\\xff",
   })),
   "x86_64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     magicOrExtension: "\\x7fELF\\x02\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x3e\\x00",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xfe\\xfe\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff\\xff",
   })),
   "alpha-linux": nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     magicOrExtension: "\\x7fELF\\x02\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x26\\x90",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xfe\\xfe\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff\\xff",
   })),
   "sparc64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     magicOrExtension: "\\x7fELF\\x01\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x02",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff",
   })),
   "sparc-linux": nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     magicOrExtension: "\\x7fELF\\x01\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x12",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff",
   })),
   "powerpc-linux": nix.thunk(() => ({
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     magicOrExtension: "\\x7fELF\\x01\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x14",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff",
   })),
   "powerpc64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     magicOrExtension: "\\x7fELF\\x02\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x15",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff",
   })),
   "powerpc64le-linux": nix.thunk(() => ({
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     magicOrExtension: "\\x7fELF\\x02\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x15\\x00",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff\\x00",
   })),
   "mips-linux": nix.thunk(() => ({
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     magicOrExtension: "\\x7fELF\\x01\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x08\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x20",
   })),
   "mipsel-linux": nix.thunk(() => ({
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     magicOrExtension: "\\x7fELF\\x01\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x08\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x20\\x00\\x00\\x00",
   })),
   "mips64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     magicOrExtension: "\\x7fELF\\x02\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x08",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff",
   })),
   "mips64el-linux": nix.thunk(() => ({
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     magicOrExtension: "\\x7fELF\\x02\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x08\\x00",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff\\xff",
   })),
   "mips64-linuxabin32": nix.thunk(() => ({
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     magicOrExtension: "\\x7fELF\\x01\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x08\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x20",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x20",
   })),
   "mips64el-linuxabin32": nix.thunk(() => ({
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     magicOrExtension: "\\x7fELF\\x01\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x08\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x20\\x00\\x00\\x00",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x20\\x00\\x00\\x00",
   })),
   "riscv32-linux": nix.thunk(() => ({
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     magicOrExtension: "\\x7fELF\\x01\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\xf3\\x00",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff\\xff",
   })),
   "riscv64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     magicOrExtension: "\\x7fELF\\x02\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\xf3\\x00",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff\\xff",
   })),
   "loongarch64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$24,
+    [nix.POS]: $pos[23],
     magicOrExtension: "\\x7fELF\\x02\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x02\\x01",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfc\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff\\xff",
   })),
   "wasm32-wasip1": nix.thunk(() => ({
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     magicOrExtension: "\\x00asm",
     mask: "\\xff\\xff\\xff\\xff",
   })),
   "wasm64-wasip1": nix.thunk(() => ({
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     magicOrExtension: "\\x00asm",
     mask: "\\xff\\xff\\xff\\xff",
   })),
   "s390x-linux": nix.thunk(() => ({
-    [nix.POS]: pos$27,
+    [nix.POS]: $pos[26],
     magicOrExtension: "\\x7fELF\\x02\\x02\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x16",
     mask: "\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\x00\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xfe\\xff\\xff",
   })),
-  "x86_64-windows": nix.thunk(() => ({ [nix.POS]: pos$28, magicOrExtension: "MZ" })),
-  "i686-windows": nix.thunk(() => ({ [nix.POS]: pos$29, magicOrExtension: "MZ" })),
+  "x86_64-windows": nix.thunk(() => ({ [nix.POS]: $pos[27], magicOrExtension: "MZ" })),
+  "i686-windows": nix.thunk(() => ({ [nix.POS]: $pos[28], magicOrExtension: "MZ" })),
 }));
 //# sourceMappingURL=binfmt-magics.ts.map

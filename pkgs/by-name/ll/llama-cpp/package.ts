@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 104, 5], ["repo", 105, 5], ["tag", 106, 5], ["hash", 107, 5]], [["url", 114, 7], ["hash", 115, 7]], [["name", 152, 5], ["src", 153, 26], ["patches", 153, 30], ["preBuild", 154, 5], ["hash", 157, 5]], [["updateScript", 244, 5]], [["description", 248, 5], ["homepage", 253, 5], ["license", 254, 5], ["mainProgram", 255, 5], ["maintainers", 256, 5], ["teams", 262, 5], ["platforms", 263, 5], ["badPlatforms", 264, 5], ["broken", 265, 5]], [["pname", 92, 3], ["version", 93, 3], ["__structuredAttrs", 95, 3], ["strictDeps", 96, 3], ["outputs", 98, 3], ["src", 103, 3], ["patches", 110, 3], ["nativeBuildInputs", 119, 3], ["depsBuildBuild", 136, 3], ["buildInputs", 141, 3], ["npmRoot", 149, 3], ["npmDepsHash", 150, 3], ["npmDeps", 151, 3], ["preConfigure", 160, 3], ["cmakeFlags", 166, 3], ["postInstall", 214, 3], ["doCheck", 218, 3], ["dontUseNinjaCheck", 221, 3], ["__darwinAllowLocalNetworking", 223, 3], ["nativeCheckInputs", 225, 3], ["preCheck", 230, 3], ["disabledTests", 234, 3], ["passthru", 243, 3], ["meta", 247, 3]]]);
 const formals$1 = { args: { lib: false, buildPackages: false, autoAddDriverRunpath: false, cmake: false, ctestCheckHook: false, fetchFromGitHub: false, fetchpatch: false, installShellFiles: false, stdenv: false, config: false, cudaSupport: true, cudaPackages: true, rocmSupport: true, rocmPackages: true, rocmGpuTargets: true, cpuArchDynamicDispatch: true, openclSupport: true, clblast: false, blasSupport: true, blas: false, fetchNpmDeps: false, nodejs_latest: false, npmHooks: false, "pkg-config": false, python3: false, metalSupport: true, vulkanSupport: true, rpcSupport: true, openssl: false, shaderc: false, "vulkan-headers": false, "vulkan-loader": false, "spirv-headers": false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 104, 5], ["repo", 105, 5], ["tag", 106, 5], ["hash", 107, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 114, 7], ["hash", 115, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 152, 5], ["src", 153, 26], ["patches", 153, 30], ["preBuild", 154, 5], ["hash", 157, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 244, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 248, 5], ["homepage", 253, 5], ["license", 254, 5], ["mainProgram", 255, 5], ["maintainers", 256, 5], ["teams", 262, 5], ["platforms", 263, 5], ["badPlatforms", 264, 5], ["broken", 265, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 92, 3], ["version", 93, 3], ["__structuredAttrs", 95, 3], ["strictDeps", 96, 3], ["outputs", 98, 3], ["src", 103, 3], ["patches", 110, 3], ["nativeBuildInputs", 119, 3], ["depsBuildBuild", 136, 3], ["buildInputs", 141, 3], ["npmRoot", 149, 3], ["npmDepsHash", 150, 3], ["npmDeps", 151, 3], ["preConfigure", 160, 3], ["cmakeFlags", 166, 3], ["postInstall", 214, 3], ["doCheck", 218, 3], ["dontUseNinjaCheck", 221, 3], ["__darwinAllowLocalNetworking", 223, 3], ["nativeCheckInputs", 225, 3], ["preCheck", 230, 3], ["disabledTests", 234, 3], ["passthru", 243, 3], ["meta", 247, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -72,14 +67,14 @@ export default nix.lambda((args) => (() => {
   const vulkanBuildInputs = nix.thunk(() => [spirv_headers, vulkan_headers, vulkan_loader]);
   const buildCc = nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "llama-cpp",
       version: "0.6.0",
       __structuredAttrs: true,
       strictDeps: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ggml-org",
           repo: "llama.cpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/ggml-org/llama.cpp/commit/07ccce23cf7fe3c84e13d810accff672b1d966bf.patch",
             hash: "sha256-KtsPcveFM51fY1hDWntiqCW/KHoWLv05Gmnhd1U/9Zs=",
           })))),
@@ -105,7 +100,7 @@ export default nix.lambda((args) => (() => {
       npmRoot: "tools/ui",
       npmDepsHash: "sha256-a17M+L3nLdRnN6WMB6imPFmwqG2g8uv+gwN0XTAUrf8=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -166,9 +161,9 @@ popd
         "test-thread-safety",
         "test-state-restore-fragmented",
       ]),
-      passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(cudaSupport)) && nix.asBool(!nix.asBool(rocmSupport)))) && nix.asBool(!nix.asBool(vulkanSupport)))), nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })))),
+      passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(cudaSupport)) && nix.asBool(!nix.asBool(rocmSupport)))) && nix.asBool(!nix.asBool(vulkanSupport)))), nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: nix.thunk(() => nix.add(nix.add(nix.add("Inference of Meta's LLaMA model (and others) in pure C/C++", nix.app(optionalString, cudaSupport, ", with CUDA support")), nix.app(optionalString, rocmSupport, ", with ROCm support")), nix.app(optionalString, vulkanSupport, ", with Vulkan support"))),
         homepage: "https://github.com/ggml-org/llama.cpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

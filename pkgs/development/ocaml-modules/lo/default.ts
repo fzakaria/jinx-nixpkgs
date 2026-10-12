@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["url", 25, 7], ["hash", 26, 7]], [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 11, 3], ["version", 12, 3], ["minimalOCamlVersion", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, fetchpatch: false, buildDunePackage: false, fetchFromGitHub: false, "dune-configurator": false, liblo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["minimalOCamlVersion", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const dune_configurator = nix.arg($, "dune-configurator");
   const liblo = nix.arg($, "liblo");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lo",
       version: "0.2.0",
       minimalOCamlVersion: "4.06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "savonet",
           repo: "ocaml-lo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/savonet/ocaml-lo/commit/0b43bdf113c7e2c27d55c6a5f81f2fa4b30b5454.patch",
             hash: "sha256-Y5xewkKgTX9WIpbmVA9uA6N7KOPPhNguTWvowgoAcNU=",
           })))),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [liblo]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/savonet/ocaml-lo",
         description: "Bindings for LO library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

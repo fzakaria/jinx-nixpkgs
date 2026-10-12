@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["changelog", 31, 5], ["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["mainProgram", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 5]], [["pname", 8, 3], ["version", 9, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["dotnet-sdk", 20, 3], ["nugetDeps", 22, 3], ["projectFile", 24, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 31, 5], ["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["mainProgram", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["dotnet-sdk", 20, 3], ["nugetDeps", 22, 3], ["projectFile", 24, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "technitium-dns-server-library",
       version: "15.6.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TechnitiumSoftware",
           repo: "TechnitiumLibrary",
           tag: nix.thunk(() => nix.str`dns-server-v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
         "TechnitiumLibrary.Security.OTP/TechnitiumLibrary.Security.OTP.csproj",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://github.com/TechnitiumSoftware/DnsServer/blob/master/CHANGELOG.md",
         description: "Library for Authoritative and Recursive DNS server for Privacy and Security",
         homepage: "https://github.com/TechnitiumSoftware/DnsServer",

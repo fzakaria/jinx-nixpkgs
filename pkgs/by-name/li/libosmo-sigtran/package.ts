@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 17, 3], ["configureFlags", 23, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["enableParallelBuilding", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, fetchgit: false, "lksctp-tools": false, "pkg-config": false, libosmocore: false, "libosmo-netif": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 17, 3], ["configureFlags", 23, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["enableParallelBuilding", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libosmocore = nix.arg($, "libosmocore");
   const libosmo_netif = nix.arg($, "libosmo-netif");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libosmo-sigtran",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gitea.osmocom.org/osmocom/libosmo-sigtran.git",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-RtEncgL+AVpFQ+4/j9fSVvpAuRoIOXOoqJoVIdkh/48=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [lksctp_tools, libosmocore, libosmo_netif]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SCCP + SIGTRAN (SUA/M3UA) libraries as well as OsmoSTP",
         mainProgram: "osmo-stp",
         homepage: "https://osmocom.org/projects/libosmo-sccp",

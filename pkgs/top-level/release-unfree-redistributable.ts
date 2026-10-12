@@ -2,18 +2,16 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/release-unfree-redistributable.nix", [[["allowAliases", 35, 7], ["allowUnfree", 36, 7], ["cudaSupport", 37, 7], ["inHydra", 38, 7]], [["config", 34, 5], ["__allowFileset", 41, 5]], [["supportedSystems", 49, 13], ["nixpkgsArgs", 49, 30]]]);
 const formals$1 = { args: { supportedSystems: true, nixpkgsArgs: true, full: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/release-unfree-redistributable.nix", [["allowAliases", 35, 7], ["allowUnfree", 36, 7], ["cudaSupport", 37, 7], ["inHydra", 38, 7]]);
-const pos$2 = nix.positions(here + "/release-unfree-redistributable.nix", [["config", 34, 5], ["__allowFileset", 41, 5]]);
-const pos$3 = nix.positions(here + "/release-unfree-redistributable.nix", [["supportedSystems", 49, 13], ["nixpkgsArgs", 49, 30]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const supportedSystems = nix.argOr($, "supportedSystems", () => ["x86_64-linux", "aarch64-linux"]);
   const nixpkgsArgs = nix.argOr($, "nixpkgsArgs", () => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     config: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       allowAliases: false,
       allowUnfree: true,
       cudaSupport: false,
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
   }));
   const full = nix.argOr($, "full", () => false);
   const release_lib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./release-lib.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       supportedSystems: supportedSystems,
       nixpkgsArgs: nixpkgsArgs,
     }))));

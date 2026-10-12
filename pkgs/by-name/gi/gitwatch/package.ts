@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 7], ["repo", 20, 7], ["rev", 21, 7], ["hash", 22, 7]], [["description", 27, 7], ["mainProgram", 28, 7], ["longDescription", 29, 7], ["homepage", 32, 7], ["changelog", 33, 7], ["license", 34, 7], ["maintainers", 35, 7]], [["pname", 16, 5], ["version", 17, 5], ["src", 18, 5], ["nativeBuildInputs", 24, 5], ["meta", 26, 5]]]);
 const formals$1 = { args: { runCommand: false, lib: false, makeWrapper: false, fetchFromGitHub: false, coreutils: false, git: false, gnugrep: false, gnused: false, openssh: false, "inotify-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 7], ["repo", 20, 7], ["rev", 21, 7], ["hash", 22, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 7], ["mainProgram", 28, 7], ["longDescription", 29, 7], ["homepage", 32, 7], ["changelog", 33, 7], ["license", 34, 7], ["maintainers", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 5], ["version", 17, 5], ["src", 18, 5], ["nativeBuildInputs", 24, 5], ["meta", 26, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gitwatch";
       const version = "0.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gitwatch",
           repo: "gitwatch",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Watch a filesystem and automatically stage changes to a git",
         mainProgram: "gitwatch",
         longDescription: "A bash script to watch a file or folder and commit changes to a git repo.\n",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "shved"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, nativeBuildInputs, meta };
     })()), nix.thunk(() => nix.str`mkdir -p $out/bin
 dest="$out/bin/gitwatch"
 cp "$src/gitwatch.sh" $dest

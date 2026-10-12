@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["license", 35, 10]], [["name", 30, 5], ["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5], ["meta", 35, 5]], [["dbusSupport", 40, 7], ["embedInstallers", 41, 7], ["pulseaudioSupport", 42, 7], ["x11Support", 43, 7], ["waylandSupport", 44, 7]], [["configureFlags", 49, 9], ["patches", 69, 9]], [["owner", 110, 5], ["repo", 111, 5], ["tag", 112, 5], ["hash", 113, 5]], [["name", 193, 7], ["paths", 194, 7]], [["libraryPath", 192, 5], ["updateScript", 206, 5]], [["changelog", 210, 5], ["description", 211, 5], ["homepage", 212, 5], ["license", 213, 5], ["mainProgram", 214, 5], ["maintainers", 215, 5], ["platforms", 216, 5], ["sourceProvenance", 217, 5]], [["pname", 106, 3], ["version", 107, 3], ["src", 109, 3], ["vendorHash", 116, 3], ["nativeBuildInputs", 118, 3], ["buildInputs", 124, 3], ["postPatch", 144, 3], ["buildPhase", 151, 3], ["preCheck", 160, 3], ["installPhase", 172, 3], ["postInstall", 180, 3], ["passthru", 191, 3], ["meta", 209, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, wine64Packages: false, fetchFromGitHub: false, glib: false, makeBinaryWrapper: false, "pkg-config": false, cairo: false, "gdk-pixbuf": false, graphene: false, gtk4: false, libadwaita: false, libGL: false, libxkbcommon: false, pango: false, "vulkan-headers": false, "vulkan-loader": false, wayland: false, winetricks: false, libxfixes: false, libxcursor: false, libx11: false, symlinkJoin: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["license", 35, 10]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 5], ["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5], ["meta", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["dbusSupport", 40, 7], ["embedInstallers", 41, 7], ["pulseaudioSupport", 42, 7], ["x11Support", 43, 7], ["waylandSupport", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["configureFlags", 49, 9], ["patches", 69, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 110, 5], ["repo", 111, 5], ["tag", 112, 5], ["hash", 113, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 193, 7], ["paths", 194, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["libraryPath", 192, 5], ["updateScript", 206, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["changelog", 210, 5], ["description", 211, 5], ["homepage", 212, 5], ["license", 213, 5], ["mainProgram", 214, 5], ["maintainers", 215, 5], ["platforms", 216, 5], ["sourceProvenance", 217, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 106, 3], ["version", 107, 3], ["src", 109, 3], ["vendorHash", 116, 3], ["nativeBuildInputs", 118, 3], ["buildInputs", 124, 3], ["postPatch", 144, 3], ["buildPhase", 151, 3], ["preCheck", 160, 3], ["installPhase", 172, 3], ["postInstall", 180, 3], ["passthru", 191, 3], ["meta", 209, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,26 +32,26 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const nix_update_script = nix.arg($, "nix-update-script");
   const kombuchaPatches = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "kombucha",
       owner: "vinegarhq",
       repo: "kombucha",
       rev: "05927db95b427cc5e57856087325806cb20a0124",
       hash: "sha256-gyyf/TVKrc6/cGP9fNKr5+qMo7ucg8l/VIklhVP8kLg=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
       })),
     }))));
   const wine = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(wine64Packages, "stable", "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       dbusSupport: true,
       embedInstallers: true,
       pulseaudioSupport: true,
       x11Support: true,
       waylandSupport: true,
     }))), "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       configureFlags: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "configureFlags"), [
         "--disable-tests",
         "--disable-win16",
@@ -104,11 +96,11 @@ export default nix.lambda((args) => (() => {
         ])))),
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "vinegar",
       version: "1.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "vinegarhq",
           repo: "vinegar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -148,9 +140,9 @@ substituteInPlace internal/config/values.go \\
   --set-default PUREGOTK_LIB_FOLDER ${nix.sel(finalAttrs, "passthru", "libraryPath")}/lib
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         libraryPath: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "vinegar-puregotk-lib-folder",
             paths: nix.thunk(() => [
               cairo,
@@ -166,7 +158,7 @@ substituteInPlace internal/config/values.go \\
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: nix.thunk(() => nix.str`https://github.com/vinegarhq/vinegar/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Open-source, minimal, configurable, fast bootstrapper for running Roblox Studio on Linux",
         homepage: "https://github.com/vinegarhq/vinegar",

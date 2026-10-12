@@ -2,18 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 51, 9], ["hash", 52, 17]], [["name", 94, 11], ["url", 95, 11], ["hash", 96, 11]], [["CPPFLAGS", 116, 9]], [["CXX", 119, 9], ["CC", 120, 9], ["CPP", 121, 9], ["CXXCPP", 122, 9]], [["svnserve", 181, 47]], [["tests", 181, 16]], [["description", 184, 9], ["license", 185, 9], ["homepage", 186, 9], ["mainProgram", 187, 9], ["maintainers", 188, 9], ["platforms", 189, 9]], [["version", 47, 15], ["pname", 48, 7], ["src", 50, 7], ["outputs", 56, 7], ["nativeBuildInputs", 62, 7], ["buildInputs", 69, 7], ["strictDeps", 86, 7], ["patches", 88, 7], ["postPatch", 105, 7], ["env", 112, 7], ["preConfigure", 125, 7], ["configureFlags", 129, 7], ["preBuild", 145, 7], ["postInstall", 149, 7], ["perlBindings", 170, 15], ["pythonBindings", 170, 28], ["enableParallelBuilding", 172, 7], ["enableParallelInstalling", 176, 7], ["nativeCheckInputs", 178, 7], ["doCheck", 179, 7], ["passthru", 181, 7], ["meta", 183, 7]], [["version", 196, 5], ["hash", 197, 5]], [["subversion", 195, 3]]]);
 const formals$1 = { args: { bdbSupport: true, httpServer: true, httpSupport: true, pythonBindings: true, perlBindings: true, javahlBindings: true, saslSupport: true, lib: false, stdenv: false, fetchurl: false, fetchpatch: false, apr: false, aprutil: false, zlib: false, sqlite: false, openssl: false, lz4: false, utf8proc: false, autoconf: false, libtool: false, apacheHttpd: true, expat: false, swig: true, jdk: true, python3: true, py3c: true, perl: true, sasl: true, serf: true, nixosTests: false }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false, extraPatches: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 51, 9], ["hash", 52, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 94, 11], ["url", 95, 11], ["hash", 96, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["CPPFLAGS", 116, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["CXX", 119, 9], ["CC", 120, 9], ["CPP", 121, 9], ["CXXCPP", 122, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["svnserve", 181, 47]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 181, 16]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 184, 9], ["license", 185, 9], ["homepage", 186, 9], ["mainProgram", 187, 9], ["maintainers", 188, 9], ["platforms", 189, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 47, 15], ["pname", 48, 7], ["src", 50, 7], ["outputs", 56, 7], ["nativeBuildInputs", 62, 7], ["buildInputs", 69, 7], ["strictDeps", 86, 7], ["patches", 88, 7], ["postPatch", 105, 7], ["env", 112, 7], ["preConfigure", 125, 7], ["configureFlags", 129, 7], ["preBuild", 145, 7], ["postInstall", 149, 7], ["perlBindings", 170, 15], ["pythonBindings", 170, 28], ["enableParallelBuilding", 172, 7], ["enableParallelInstalling", 176, 7], ["nativeCheckInputs", 178, 7], ["doCheck", 179, 7], ["passthru", 181, 7], ["meta", 183, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["version", 196, 5], ["hash", 197, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["subversion", 195, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,11 +48,11 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const extraPatches = nix.argOr($_1, "extraPatches", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         version: version,
         pname: nix.thunk(() => nix.str`subversion${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(bdbSupport)) && nix.asBool(perlBindings))) && nix.asBool(pythonBindings))), "-client")}`),
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`mirror://apache/subversion/subversion-${nix.sel(finalAttrs, "version")}.tar.bz2`),
             hash: hash,
           })))),
@@ -72,7 +63,7 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => nix.concat([
           nix.path(here, "./apr-1.patch"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "swig-4.4.patch",
               url: "https://github.com/apache/subversion/commit/bf72420e86059a894fa3aacbbd6e3bee9286e46e.patch",
               hash: "sha256-0X9y/0qDDctKo1vu86pKu3k79zIqhOhQU9rvyG4v6jg=",
@@ -80,10 +71,10 @@ export default nix.lambda((args) => (() => {
         ], extraPatches)),
         postPatch: nix.thunk(() => nix.add("rm subversion/bindings/swig/proxy/{perlrun.swg,pyrun.swg,python.swg,rubydef.swg,rubyhead.swg,rubytracking.swg,runtime.swg,swigrun.swg}\n", nix.app(nix.sel(lib, "optionalString"), perlBindings, "rm subversion/bindings/swig/perl/native/{core.c,svn_*.c}\n"))),
         env: nix.thunk(() => nix.update({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           CPPFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-P"]))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             CXX: "clang++",
             CC: "clang",
             CPP: "clang -E",
@@ -120,14 +111,14 @@ done
         nativeCheckInputs: nix.thunk(() => [python3]),
         doCheck: false,
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             svnserve: nix.thunk(() => nix.attr(nixosTests, "svnserve")),
           })),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           description: "Version control system intended to be a compelling replacement for CVS in the open source community",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
           homepage: "https://subversion.apache.org/",
@@ -138,9 +129,9 @@ done
       }));
   })(), formals$2);
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     subversion: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         version: "1.14.5",
         hash: "sha256-54op53Zri3s1RJfQj3GlVkGrxTZ1zhh1WEeBquNWRKE=",
       })))),

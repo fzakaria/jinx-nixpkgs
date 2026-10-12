@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sample_algorithm_selector.nix", [[["default", 14, 5], ["int8", 19, 5], ["fp16", 25, 5]], [["bf16", 32, 5]], [["dla", 40, 5]]]);
 const formals$1 = { args: { atLeast: false, backendStdenv: false, lib: false, mkTester: false, older: false, "sample-data": false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sample_algorithm_selector.nix", [["default", 14, 5], ["int8", 19, 5], ["fp16", 25, 5]]);
-const pos$2 = nix.positions(here + "/sample_algorithm_selector.nix", [["bf16", 32, 5]]);
-const pos$3 = nix.positions(here + "/sample_algorithm_selector.nix", [["dla", 40, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const older = nix.arg($, "older");
   const sample_data = nix.arg($, "sample-data");
   return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(older, "10.8")), nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       default: nix.thunk(() => nix.app(mkTester, "sample_algorithm_selector", nix.thunk(() => [
           "sample_algorithm_selector",
           nix.thunk(() => nix.str`--datadir=${nix.add(nix.sel(sample_data, "outPath"), "/mnist")}`),
@@ -32,14 +30,14 @@ export default nix.lambda((args) => (() => {
           "--fp16",
         ]))),
     }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(atLeast, "10")), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         bf16: nix.thunk(() => nix.app(mkTester, "sample_algorithm_selector-bf16", nix.thunk(() => [
             "sample_algorithm_selector",
             nix.thunk(() => nix.str`--datadir=${nix.add(nix.sel(sample_data, "outPath"), "/mnist")}`),
             "--bf16",
           ]))),
       }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => ["7.2", "8.7"]), nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities"))), [])), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         dla: nix.thunk(() => nix.app(mkTester, "sample_algorithm_selector-dla", nix.thunk(() => [
             "sample_algorithm_selector",
             nix.thunk(() => nix.str`--datadir=${nix.add(nix.sel(sample_data, "outPath"), "/mnist")}`),

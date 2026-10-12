@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]], [["name", 49, 7], ["url", 50, 7], ["hash", 51, 7]], [["updateScript", 90, 5]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["mainProgram", 101, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["pyproject", 23, 3], ["nativeBuildInputs", 25, 3], ["dependencies", 29, 3], ["patches", 39, 3], ["postPatch", 55, 3], ["installPhase", 61, 3], ["doCheck", 71, 3], ["doInstallCheck", 72, 3], ["nativeCheckInputs", 73, 3], ["installCheckPhase", 78, 3], ["passthru", 89, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, pkgs: false, installShellFiles: false, "nix-update-script": false, versionCheckHook: false, dejavu_fonts: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 49, 7], ["url", 50, 7], ["hash", 51, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["mainProgram", 101, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["pyproject", 23, 3], ["nativeBuildInputs", 25, 3], ["dependencies", 29, 3], ["patches", 39, 3], ["postPatch", 55, 3], ["installPhase", 61, 3], ["doCheck", 71, 3], ["doInstallCheck", 72, 3], ["nativeCheckInputs", 73, 3], ["installCheckPhase", 78, 3], ["passthru", 89, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const dejavu_fonts = nix.arg($, "dejavu_fonts");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "qr-backup",
       version: "1.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "za3k",
           repo: "qr-backup",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,13 +43,13 @@ export default nix.lambda((args) => (() => {
       })()),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-Rename-from-regression-to-reproducibility-tests.patch",
             url: "https://github.com/za3k/qr-backup/commit/ec8ab373110de62d2e1f6f47c9a34e9e1a73c571.patch",
             hash: "sha256-93wxmCeH3qxZkDLZa9giMGUmVHdXSitXzet6WnAbQRw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "0002-Add-fast-option-to-tests.patch",
             url: "https://github.com/za3k/qr-backup/commit/e7d028eb4fddaa7f8628c88e1604d5e64f546389.patch",
             hash: "sha256-5Ib+bs+ciqH1z0kvHBD7PrefTTwD6nWk+6pEPqxc9uU=",
@@ -77,11 +72,11 @@ export default nix.lambda((args) => (() => {
       })()),
       installCheckPhase: "runHook preInstallCheck\n\nsubstituteInPlace tests/test.py \\\n  --replace-fail '\"python3\", \"qr-backup\"' \"'$out/bin/qr-backup'\"\nexport GNUPGHOME=\"$(mktemp -d)\"\nmake test-fast\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Utility to generate paper backup of files using QR codes",
         homepage: "https://github.com/za3k/qr-backup",
         changelog: nix.thunk(() => nix.str`https://github.com/za3k/qr-backup/blob/v${nix.sel(finalAttrs, "version")}/docs/CHANGELOG`),

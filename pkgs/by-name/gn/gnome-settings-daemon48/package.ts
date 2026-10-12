@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 49, 5], ["hash", 50, 5]], [["tzdata", 58, 15]], [["NIX_CFLAGS_COMPILE", 118, 7]], [["description", 130, 5], ["homepage", 131, 5], ["license", 132, 5], ["teams", 133, 5], ["platforms", 134, 5]], [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["patches", 53, 3], ["depsBuildBuild", 62, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 82, 3], ["mesonFlags", 108, 3], ["env", 118, 3], ["postPatch", 120, 3], ["doInstallCheck", 127, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, replaceVars: false, buildPackages: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, perl: false, gettext: false, gtk3: false, glib: false, libnotify: false, libgnomekbd: false, libpulseaudio: false, "alsa-lib": false, "libcanberra-gtk3": false, upower: false, colord: false, libgweather: false, polkit: false, "gsettings-desktop-schemas": false, geoclue2: false, systemd: false, libgudev: false, libwacom: false, libxslt: false, libxml2: false, modemmanager: false, networkmanager: false, "gnome-desktop": false, "geocode-glib_2": false, docbook_xsl: false, wrapGAppsHook3: false, python3: false, tzdata: false, gcr_4: false, "gnome-session-ctl": false, udevCheckHook: false, withSystemd: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tzdata", 58, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 118, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 130, 5], ["homepage", 131, 5], ["license", 132, 5], ["teams", 133, 5], ["platforms", 134, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["patches", 53, 3], ["depsBuildBuild", 62, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 82, 3], ["mesonFlags", 108, 3], ["env", 118, 3], ["postPatch", 120, 3], ["doInstallCheck", 127, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,17 +48,17 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-settings-daemon",
       version: "48.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-settings-daemon/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-settings-daemon-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-OGCi6iFNy8tmAK56HjNYpTiSFQh7w+SkfO4/h7ruBi4=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./add-gnome-session-ctl-option.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, tzdata: tzdata })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], tzdata: tzdata })))),
       ]),
       depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc")), pkg_config]),
       nativeBuildInputs: nix.thunk(() => [
@@ -107,11 +103,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => [
           nix.thunk(() => nix.str`-Dgnome_session_ctl_path=${gnome_session_ctl}/libexec/gnome-session-ctl`),
         ])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-DG_DISABLE_CAST_CHECKS" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-DG_DISABLE_CAST_CHECKS" })),
       postPatch: "for f in plugins/power/gsd-power-constants-update.pl; do\n  chmod +x $f\n  patchShebangs $f\ndone\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GNOME Settings Daemon",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-settings-daemon/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

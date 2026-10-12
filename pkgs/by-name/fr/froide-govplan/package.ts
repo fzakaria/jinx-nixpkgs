@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 27, 5], ["hash", 28, 5]], [["url", 35, 7], ["hash", 36, 7], ["name", 37, 7]], [["url", 42, 7], ["hash", 43, 7], ["name", 44, 7]], [["url", 49, 7], ["hash", 50, 7], ["name", 51, 7]], [["patches", 81, 9], ["doCheck", 82, 9]], [["froide-govplan", 103, 28]], [["tests", 102, 5], ["python", 105, 13], ["pythonPath", 106, 5]], [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["maintainers", 113, 5], ["mainProgram", 114, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 31, 3], ["build-system", 58, 3], ["nativeBuildInputs", 60, 3], ["build-inputs", 65, 3], ["dependencies", 67, 3], ["preBuild", 89, 3], ["postInstall", 91, 3], ["passthru", 101, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, makeBinaryWrapper: false, froide: false, gdal: false, geos: false, nixosTests: false, fetchpatch: false, "froide-govplan": false, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 35, 7], ["hash", 36, 7], ["name", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 42, 7], ["hash", 43, 7], ["name", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 49, 7], ["hash", 50, 7], ["name", 51, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["patches", 81, 9], ["doCheck", 82, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["froide-govplan", 103, 28]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 102, 5], ["python", 105, 13], ["pythonPath", 106, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["maintainers", 113, 5], ["mainProgram", 114, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 31, 3], ["build-system", 58, 3], ["nativeBuildInputs", 60, 3], ["build-inputs", 65, 3], ["dependencies", 67, 3], ["preBuild", 89, 3], ["postInstall", 91, 3], ["passthru", 101, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0-unstable-2025-07-14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "okfde",
           repo: "froide-govplan",
           rev: "7d304ae0e34e44f3bc34dce2b7e5f3c62bd64299",
@@ -40,19 +32,19 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/okfde/froide-govplan/commit/bc388b693ebc7656fc7917511048a47b68e119fe.patch",
             hash: "sha256-StIyN3gFKd/fld14s03fsV6fmWinSRWINUyRRBzqVco=",
             name: "add_oauth2_provider_app.patch",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/okfde/froide-govplan/commit/d5db02f3bbc501929a901e964147a0ed2f974f41.patch",
             hash: "sha256-jf6e84fd2kQIPER2HGmZNkbtl067311xdNJRU+iFVXM=",
             name: "filer_enable_automatic_cropping.patch",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/okfde/froide-govplan/commit/39dc381ed6c4afcbbaea616f0e8f44d5eeb96ec2.patch",
             hash: "sha256-PxBtB6VupK4QJiWKKlTmub+7tfi6nAHWe29lxpNgoVk=",
             name: "add_secret_key_file_support.patch",
@@ -76,7 +68,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "django-treebeard")),
           nix.thunk(() => nix.lookup(w, "djangocms-alias")),
           nix.thunk(() => nix.app(nix.lookup(w, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(froide, "overridePythonAttrs"), (prev) => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 patches: nix.thunk(() => nix.concat(nix.sel(prev, "patches"), [nix.path(here, "./froide_avoid_loading_account_module.patch")])),
                 doCheck: false,
               }))))),
@@ -94,16 +86,16 @@ makeWrapper $out/${nix.sel(python, "sitePackages")}/froide_govplan/manage.py $ou
   --set GEOS_LIBRARY_PATH "${geos}/lib/libgeos_c.so"
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "froide-govplan": nix.thunk(() => nix.attr(nixosTests, "froide-govplan")),
         })),
         python: python,
         pythonPath: nix.thunk(() => nix.str`${nix.app(nix.sel(python, "pkgs", "makePythonPath"), dependencies)}`),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Government planner and basis of FragDenStaat.de Koalitionstracker",
         homepage: "https://github.com/okfde/froide-govplan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -111,7 +103,7 @@ makeWrapper $out/${nix.sel(python, "sitePackages")}/froide_govplan/manage.py $ou
         mainProgram: "froide-govplan",
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         pyproject,

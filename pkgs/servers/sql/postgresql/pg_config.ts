@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pg_config.nix", [[["name", 21, 7], ["src", 22, 7], ["replacements", 23, 7]], [["runtimeShell", 19, 13], ["pg_config.env", 20, 5]], [["name", 14, 3], ["src", 15, 3], ["dir", 16, 3], ["isExecutable", 17, 3], ["replacements", 18, 3], ["nativeCheckInputs", 26, 3], ["postCheck", 30, 3]]]);
 const formals$1 = { args: { diffutils: false, lib: false, replaceVarsWith: false, runtimeShell: false, stdenv: false, finalPackage: false, outputs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pg_config.nix", [["name", 21, 7], ["src", 22, 7], ["replacements", 23, 7]]);
-const pos$2 = nix.positions(here + "/pg_config.nix", [["runtimeShell", 19, 13], ["pg_config.env", 20, 5]]);
-const pos$3 = nix.positions(here + "/pg_config.nix", [["name", 14, 3], ["src", 15, 3], ["dir", 16, 3], ["isExecutable", 17, 3], ["replacements", 18, 3], ["nativeCheckInputs", 26, 3], ["postCheck", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const finalPackage = nix.arg($, "finalPackage");
   const outputs = nix.arg($, "outputs");
   return nix.app(replaceVarsWith, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "pg_config",
       src: nix.path(here, "./pg_config.sh"),
       dir: "bin",
       isExecutable: true,
       replacements: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         runtimeShell: runtimeShell,
         "pg_config.env": nix.thunk(() => nix.app(replaceVarsWith, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "pg_config.env",
             src: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), finalPackage)}/nix-support/pg_config.env`),
             replacements: outputs,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["ENABLE_MAN", 20, 7]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5], ["platforms", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 20, 3], ["makeFlags", 22, 3], ["nativeBuildInputs", 24, 3], ["doInstallCheck", 26, 3], ["checkPhase", 28, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromBitbucket: false, asciidoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ENABLE_MAN", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5], ["platforms", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 20, 3], ["makeFlags", 22, 3], ["nativeBuildInputs", 24, 3], ["doInstallCheck", 26, 3], ["checkPhase", 28, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,23 +12,23 @@ export default nix.lambda((args) => (() => {
   const fetchFromBitbucket = nix.arg($, "fetchFromBitbucket");
   const asciidoc = nix.arg($, "asciidoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cc1541",
       version: "4.2",
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ptv_claus",
           repo: "cc1541",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-+9ri3fUmxLHXxq9vNMjeNXfHula3PZpjewHO6z7pIhc=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ENABLE_MAN: false })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ENABLE_MAN: false })),
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       nativeBuildInputs: nix.thunk(() => [asciidoc]),
       doInstallCheck: true,
       checkPhase: "runHook preCheck\n\nmake test\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool for creating Commodore 1541 Floppy disk images in D64, D71 or D81 format",
         homepage: "https://bitbucket.org/ptv_claus/cc1541/src/master/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

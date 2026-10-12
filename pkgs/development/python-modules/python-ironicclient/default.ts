@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["PBR_VERSION", 68, 7]], [["description", 79, 5], ["mainProgram", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["teams", 83, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["sphinxBuilders", 45, 3], ["dependencies", 47, 3], ["nativeCheckInputs", 62, 3], ["env", 68, 3], ["checkPhase", 70, 3], ["pythonImportsCheck", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cliff: false, "dogpile-cache": false, jsonschema: false, keystoneauth1: false, openstackdocstheme: false, openstacksdk: false, "osc-lib": false, "oslo-utils": false, oslotest: false, pbr: false, platformdirs: false, pyyaml: false, requests: false, "requests-mock": false, setuptools: false, "sphinxcontrib-apidoc": false, sphinxHook: false, stestr: false, stevedore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PBR_VERSION", 68, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 79, 5], ["mainProgram", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["teams", 83, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["sphinxBuilders", 45, 3], ["dependencies", 47, 3], ["nativeCheckInputs", 62, 3], ["env", 68, 3], ["checkPhase", 70, 3], ["pythonImportsCheck", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openstack",
           repo: "python-ironicclient",
           tag: version,
@@ -60,11 +57,11 @@ export default nix.lambda((args) => (() => {
         stevedore,
       ]);
       const nativeCheckInputs = nix.thunk(() => [stestr, requests_mock, oslotest]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PBR_VERSION: version }));
       const checkPhase = "runHook preCheck\nstestr run\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["ironicclient"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Client for OpenStack bare metal provisioning API, includes a Python module (ironicclient) and CLI (baremetal)",
         mainProgram: "baremetal",
         homepage: "https://github.com/openstack/python-ironicclient",
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

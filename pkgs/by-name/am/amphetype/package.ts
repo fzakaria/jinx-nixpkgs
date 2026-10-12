@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 56, 7], ["desktopName", 57, 7], ["genericName", 58, 7], ["categories", 59, 7], ["exec", 63, 7], ["comment", 64, 7]], [["description", 69, 13], ["mainProgram", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pyproject", 17, 3], ["pname", 18, 11], ["version", 18, 17], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["build-system", 37, 3], ["dependencies", 41, 3], ["makeWrapperArgs", 47, 3], ["doCheck", 52, 3], ["desktopItems", 54, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, copyDesktopItems: false, fetchFromGitLab: false, makeDesktopItem: false, python3Packages: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 56, 7], ["desktopName", 57, 7], ["genericName", 58, 7], ["categories", 59, 7], ["exec", 63, 7], ["comment", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 13], ["mainProgram", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pyproject", 17, 3], ["pname", 18, 11], ["version", 18, 17], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["build-system", 37, 3], ["dependencies", 41, 3], ["makeWrapperArgs", 47, 3], ["doCheck", 52, 3], ["desktopItems", 54, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const version = "1.0.0";
   const description = "Advanced typing practice program";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pyproject: true,
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "franksh",
           repo: "amphetype",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "amphetype",
             desktopName: "Amphetype",
             genericName: "Typing Practice",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: description,
         mainProgram: "amphetype",
         homepage: "https://gitlab.com/franksh/amphetype",

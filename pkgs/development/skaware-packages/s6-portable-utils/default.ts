@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 13, 5], ["version", 14, 5], ["sha256", 15, 5], ["description", 16, 5], ["maintainers", 17, 5]], [["description", 20, 8]], [["pname", 8, 3], ["version", 9, 3], ["sha256", 10, 3], ["manpages", 12, 3], ["meta", 20, 3], ["outputs", 22, 3], ["buildInputs", 29, 3], ["configureFlags", 31, 3], ["postInstall", 41, 3]]]);
 const formals$1 = { args: { lib: false, skawarePackages: false, skalibs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 13, 5], ["version", 14, 5], ["sha256", 15, 5], ["description", 16, 5], ["maintainers", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 20, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["sha256", 10, 3], ["manpages", 12, 3], ["meta", 20, 3], ["outputs", 22, 3], ["buildInputs", 29, 3], ["configureFlags", 31, 3], ["postInstall", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const skawarePackages = nix.arg($, "skawarePackages");
   const skalibs = nix.arg($, "skalibs");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "s6-portable-utils",
       version: "2.3.1.2",
       sha256: "sha256-z7kBhtDA6yBOHlxvk3nplBPFRrzPOLtudhd/gjcao6o=",
       manpages: nix.thunk(() => nix.app(nix.sel(skawarePackages, "buildManPages"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "s6-portable-utils-man-pages",
           version: "2.3.1.1.2",
           sha256: "sha256-WJxSSJVRY8Hz9QYwu81Qz90Tu2KHl8F3WeeZxFyK3gU=",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "somasis"))]),
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Set of tiny general Unix utilities optimized for simplicity and small size",
       })),
       outputs: nix.thunk(() => ["bin", "dev", "doc", "out"]),

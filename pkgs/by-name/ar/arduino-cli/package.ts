@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 7], ["repo", 22, 7], ["tag", 23, 7], ["hash", 24, 7]], [["homepage", 88, 37], ["description", 89, 7], ["mainProgram", 90, 7], ["changelog", 91, 7], ["license", 92, 7], ["maintainers", 96, 7]], [["pname", 17, 5], ["version", 18, 5], ["src", 20, 5], ["nativeBuildInputs", 27, 5], ["nativeCheckInputs", 33, 5], ["subPackages", 35, 5], ["vendorHash", 37, 5], ["postPatch", 39, 5], ["doCheck", 61, 5], ["checkPhase", 63, 5], ["ldflags", 69, 5], ["postInstall", 77, 5], ["meta", 87, 5]], [["pureGoPkg", 117, 14]], [["pname", 110, 19], ["version", 110, 25], ["meta", 110, 33], ["runScript", 112, 5], ["extraInstallCommands", 114, 5], ["passthru", 117, 5], ["targetPkgs", 119, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, buildFHSEnv: false, installShellFiles: false, makeWrapper: false, writableTmpDirAsHomeHook: false, "go-task": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 7], ["repo", 22, 7], ["tag", 23, 7], ["hash", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 88, 37], ["description", 89, 7], ["mainProgram", 90, 7], ["changelog", 91, 7], ["license", 92, 7], ["maintainers", 96, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 5], ["version", 18, 5], ["src", 20, 5], ["nativeBuildInputs", 27, 5], ["nativeCheckInputs", 33, 5], ["subPackages", 35, 5], ["vendorHash", 37, 5], ["postPatch", 39, 5], ["doCheck", 61, 5], ["checkPhase", 63, 5], ["ldflags", 69, 5], ["postInstall", 77, 5], ["meta", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pureGoPkg", 117, 14]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 110, 19], ["version", 110, 25], ["meta", 110, 33], ["runScript", 112, 5], ["extraInstallCommands", 114, 5], ["passthru", 117, 5], ["targetPkgs", 119, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const go_task = nix.arg($, "go-task");
   const python3 = nix.arg($, "python3");
   const pkg = nix.thunk(() => nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "arduino-cli",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arduino",
           repo: "arduino-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Arduino from the command line",
         mainProgram: "arduino-cli",
@@ -85,14 +81,14 @@ export default nix.lambda((args) => (() => {
       })()),
     })));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.attr(pkg, "pname")),
       version: nix.thunk(() => nix.attr(pkg, "version")),
       meta: nix.thunk(() => nix.attr(pkg, "meta")),
       runScript: nix.thunk(() => nix.str`${nix.sel(pkg, "outPath")}/bin/arduino-cli`),
       extraInstallCommands: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), nix.thunk(() => nix.str`cp -r ${nix.sel(pkg, "outPath")}/share $out/share
 `))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, pureGoPkg: pkg })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], pureGoPkg: pkg })),
       targetPkgs: (pkgs) => (() => {
         const w = nix.withScope(pkgs, null);
         return [nix.thunk(() => nix.lookup(w, "zlib"))];

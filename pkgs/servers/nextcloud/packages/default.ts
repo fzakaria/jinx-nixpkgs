@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["apps", 20, 17]], [["appName", 31, 11], ["appVersion", 32, 11], ["license", 33, 11], ["teams", 34, 11], ["url", 36, 13], ["hash", 37, 13], ["description", 38, 13], ["homepage", 39, 13]], [["mkNextcloudDerivation", 28, 7]], [["pname", 51, 21], ["data", 51, 27]], [["notify_push", 55, 11]], [["ncVersion", 62, 37]]]);
 const formals$1 = { args: { lib: false, pkgs: false, newScope: false, apps: true, callPackage: false, ncVersion: false, "nextcloud-notify_push": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["apps", 20, 17]]);
 const formals$2 = { args: { pname: false, data: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["appName", 31, 11], ["appVersion", 32, 11], ["license", 33, 11], ["teams", 34, 11], ["url", 36, 13], ["hash", 37, 13], ["description", 38, 13], ["homepage", 39, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mkNextcloudDerivation", 28, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 51, 21], ["data", 51, 27]]);
-const pos$5 = nix.positions(here + "/default.nix", [["notify_push", 55, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["ncVersion", 62, 37]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const ncVersion = nix.arg($, "ncVersion");
   const nextcloud_notify_push = nix.arg($, "nextcloud-notify_push");
   const packages = (self) => (() => {
-    const generatedJson = nix.thunk(() => ({ [nix.POS]: pos$1, apps: apps }));
+    const generatedJson = nix.thunk(() => ({ [nix.POS]: $pos[0], apps: apps }));
     const appBaseDefs = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./nextcloud-apps.json")))));
     return nix.update({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mkNextcloudDerivation: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pname = nix.arg($_1, "pname");
         const data = nix.arg($_1, "data");
         return nix.app(nix.sel(pkgs, "fetchNextcloudApp"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             appName: pname,
             appVersion: nix.thunk(() => nix.sel(data, "version")),
             license: nix.thunk(() => nix.sel(appBaseDefs, nix.key(nix.force(pname)))),
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
             homepage: nix.thunk(() => nix.attr(data, "homepage")),
           })));
       })(), formals$2),
-    }, nix.app(nix.sel(lib, "mapAttrs"), (type) => (pkgs_1) => nix.app(nix.sel(lib, "makeExtensible"), (_) => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (pname) => (data) => nix.app(nix.sel(self, "mkNextcloudDerivation"), nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname, data: data }))), pkgs_1), {
-          [nix.POS]: pos$5,
+    }, nix.app(nix.sel(lib, "mapAttrs"), (type) => (pkgs_1) => nix.app(nix.sel(lib, "makeExtensible"), (_) => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (pname) => (data) => nix.app(nix.sel(self, "mkNextcloudDerivation"), nix.thunk(() => ({ [nix.POS]: $pos[3], pname: pname, data: data }))), pkgs_1), {
+          [nix.POS]: $pos[4],
           notify_push: nix.thunk(() => nix.sel(nextcloud_notify_push, "app")),
         })), generatedJson));
   })();
-  return nix.app(nix.sel(nix.app(nix.sel(lib, "makeExtensible"), (_) => nix.app(nix.sel(lib, "makeScope"), newScope, packages)), "extend"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./thirdparty.nix")), nix.thunk(() => ({ [nix.POS]: pos$6, ncVersion: ncVersion })))));
+  return nix.app(nix.sel(nix.app(nix.sel(lib, "makeExtensible"), (_) => nix.app(nix.sel(lib, "makeScope"), newScope, packages)), "extend"), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./thirdparty.nix")), nix.thunk(() => ({ [nix.POS]: $pos[5], ncVersion: ncVersion })))));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

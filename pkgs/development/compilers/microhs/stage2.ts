@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stage2.nix", [[["CABALDIR", 26, 7]], [["microhs", 57, 60]], [["hello-world", 57, 9]], [["haskellCompilerName", 47, 9], ["cpphs", 48, 9], ["microcabal-stage1", 49, 9], ["microhs-stage1", 50, 9], ["targetPrefix", 52, 7], ["isMhs", 53, 7], ["usesHugs", 54, 7], ["tests", 56, 7]], [["pname", 18, 5], ["nativeBuildInputs", 20, 5], ["env", 25, 5], ["dontBuild", 29, 5], ["installPhase", 31, 5], ["passthru", 45, 5]]]);
 const formals$1 = { args: { args: false, cpphs: false, "microcabal-stage1": false, "microhs-stage1": false, stdenv: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/stage2.nix", [["CABALDIR", 26, 7]]);
-const pos$2 = nix.positions(here + "/stage2.nix", [["microhs", 57, 60]]);
-const pos$3 = nix.positions(here + "/stage2.nix", [["hello-world", 57, 9]]);
-const pos$4 = nix.positions(here + "/stage2.nix", [["haskellCompilerName", 47, 9], ["cpphs", 48, 9], ["microcabal-stage1", 49, 9], ["microhs-stage1", 50, 9], ["targetPrefix", 52, 7], ["isMhs", 53, 7], ["usesHugs", 54, 7], ["tests", 56, 7]]);
-const pos$5 = nix.positions(here + "/stage2.nix", [["pname", 18, 5], ["nativeBuildInputs", 20, 5], ["env", 25, 5], ["dontBuild", 29, 5], ["installPhase", 31, 5], ["passthru", 45, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,17 +17,17 @@ export default nix.lambda((args) => (() => {
       const args$ = nix.thunk(() => nix.app(args_1, finalAttrs));
       const haskellCompilerName = nix.thunk(() => nix.str`mhs-${nix.sel(args$, "version")}`);
       return nix.update(args$, {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "microhs",
         nativeBuildInputs: nix.thunk(() => [microcabal_stage1, microhs_stage1]),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           CABALDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/mcabal`),
         })),
         dontBuild: true,
         installPhase: "runHook preInstall\n\npushd lib\nmcabal -v install\npopd\nmcabal -v install\n\nmkdir -p $out/bin\nln -s ../lib/mcabal/bin/mhs $out/bin/mhs\n\nrunHook postInstall\n",
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           haskellCompilerName: haskellCompilerName,
           cpphs: cpphs,
           "microcabal-stage1": microcabal_stage1,
@@ -40,9 +36,9 @@ export default nix.lambda((args) => (() => {
           isMhs: true,
           usesHugs: false,
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "hello-world": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-hello-world.nix"), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 microhs: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           })),

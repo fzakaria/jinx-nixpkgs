@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 18, 8]], [["pname", 9, 3], ["extraNativeBuildInputs", 11, 3], ["extraBuildInputs", 17, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qtwayland: false, qttools: false, jq: false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 18, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["extraNativeBuildInputs", 11, 3], ["extraBuildInputs", 17, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const wayland = nix.arg($, "wayland");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "libkscreen",
       extraNativeBuildInputs: nix.thunk(() => [qttools, qtwayland, jq, wayland]),
       extraBuildInputs: nix.thunk(() => [qtwayland]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kscreen-doctor" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "kscreen-doctor" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

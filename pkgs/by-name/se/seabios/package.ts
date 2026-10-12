@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["coreboot", 22, 7], ["csm", 23, 7], ["qemu", 24, 7]], [["coreboot", 29, 7], ["csm", 30, 7], ["qemu", 31, 7]], [["url", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["CONFIG_PERMIT_UNALIGNED_PCIROM", 76, 11], ["CONFIG_QEMU_HARDWARE", 77, 11]], [["build-type", 97, 5], ["firmware", 98, 5]], [["homepage", 102, 5], ["description", 103, 5], ["longDescription", 104, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5], ["badPlatforms", 112, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["postPatch", 45, 3], ["outputs", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 56, 3], ["strictDeps", 58, 3], ["makeFlags", 60, 3], ["hardeningDisable", 65, 3], ["postConfigure", 71, 3], ["installPhase", 86, 3], ["passthru", 96, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, "acpica-tools": false, fetchgit: false, python3: false, stdenv: false, writeText: false, "___build-type": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["coreboot", 22, 7], ["csm", 23, 7], ["qemu", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["coreboot", 29, 7], ["csm", 30, 7], ["qemu", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CONFIG_PERMIT_UNALIGNED_PCIROM", 76, 11], ["CONFIG_QEMU_HARDWARE", 77, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["build-type", 97, 5], ["firmware", 98, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 102, 5], ["description", 103, 5], ["longDescription", 104, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5], ["badPlatforms", 112, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["postPatch", 45, 3], ["outputs", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 56, 3], ["strictDeps", 58, 3], ["makeFlags", 60, 3], ["hardeningDisable", 65, 3], ["postConfigure", 71, 3], ["installPhase", 86, 3], ["passthru", 96, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const ___build_type = nix.argOr($, "___build-type", () => "csm");
   nix.assert_(nix.app(nix.sel(lib, "elem"), ___build_type, nix.thunk(() => ["coreboot", "csm", "qemu"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/se/seabios/package.nix:12:1");
   const biosfile = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     coreboot: "bios.bin.elf",
     csm: "Csm16.bin",
     qemu: "bios.bin",
   }, nix.key(nix.force(___build_type))));
   const configuration_string = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     coreboot: "CONFIG_COREBOOT",
     csm: "CONFIG_CSM",
     qemu: "CONFIG_QEMU",
   }, nix.key(nix.force(___build_type))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "seabios",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://git.seabios.org/seabios.git",
           rev: nix.thunk(() => nix.str`rel-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-eDQpl8Mf30p9WRvsNW192ISfBnEtMCdsWjUbWMXWmWw=",
@@ -53,7 +47,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["fortify", "pic", "stackprotector"]),
       postConfigure: nix.thunk(() => (() => {
         const config = nix.thunk(() => nix.app(writeText, "config.txt", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({})), nix.thunk(() => nix.attrsDyn({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               CONFIG_PERMIT_UNALIGNED_PCIROM: "y",
               CONFIG_QEMU_HARDWARE: "y",
             }, [[nix.str`${configuration_string}`, "y"]]))))));
@@ -70,12 +64,12 @@ install -Dm644 out/${biosfile} -t $out/share/seabios/
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "build-type": ___build_type,
         firmware: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/seabios/${biosfile}`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://www.seabios.org",
         description: "Open source implementation of a 16bit x86 BIOS",
         longDescription: "SeaBIOS is an open source implementation of a 16bit x86 BIOS.\nIt can run in an emulator or it can run natively on x86 hardware with the\nuse of coreboot.\n",

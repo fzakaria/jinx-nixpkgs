@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["homepage", 87, 5], ["description", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 95, 5], ["mainProgram", 96, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 45, 3], ["cmakeFlags", 56, 3], ["postBuild", 75, 3], ["postInstall", 80, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, clipper: false, cmake: false, cups: false, doxygen: false, gdal: false, ninja: false, proj: false, qt5: false, xcbuild: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 87, 5], ["description", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 95, 5], ["mainProgram", 96, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 45, 3], ["cmakeFlags", 56, 3], ["postBuild", 75, 3], ["postInstall", 80, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const xcbuild = nix.arg($, "xcbuild");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "OpenOrienteering-Mapper",
       version: "0.9.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenOrienteering",
           repo: "mapper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "chmod +w src/Mapper.app/Contents/Info.plist\nplutil -replace NSHighResolutionCapable -bool true src/Mapper.app/Contents/Info.plist\n")),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv $out/Mapper.app $out/Applications\nln -s $out/Applications/Mapper.app/Contents/MacOS/Mapper $out/bin/Mapper\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.openorienteering.org/apps/mapper/",
         description: "Orienteering mapmaking program",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenOrienteering/mapper/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 7], ["repo", 26, 7], ["tag", 27, 7], ["hash", 28, 7]], [["doCheck", 46, 9]], [["check", 45, 7]], [["tests", 44, 14]], [["changelog", 51, 7], ["description", 52, 7], ["homepage", 53, 7], ["license", 54, 7], ["maintainers", 55, 7]], [["pname", 20, 5], ["version", 21, 5], ["pyproject", 22, 5], ["src", 24, 5], ["nativeBuildInputs", 31, 5], ["propagatedBuildInputs", 33, 5], ["doCheck", 35, 5], ["nativeCheckInputs", 37, 5], ["passthru", 44, 5], ["meta", 50, 5]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, terminado: false, "pytest-jupyter": false, "pytest-timeout": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 7], ["repo", 26, 7], ["tag", 27, 7], ["hash", 28, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 46, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["check", 45, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 44, 14]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 51, 7], ["description", 52, 7], ["homepage", 53, 7], ["license", 54, 7], ["maintainers", 55, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 5], ["pyproject", 22, 5], ["src", 24, 5], ["nativeBuildInputs", 31, 5], ["propagatedBuildInputs", 33, 5], ["doCheck", 35, 5], ["nativeCheckInputs", 37, 5], ["passthru", 44, 5], ["meta", 50, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jupyter-server",
           repo: "jupyter_server_terminals",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_jupyter, pytest_timeout, pytestCheckHook], nix.sel(pytest_jupyter, "optional-dependencies", "server")));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          check: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
+          [nix.POS]: $pos[2],
+          check: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), (_) => ({ [nix.POS]: $pos[1], doCheck: true }))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter-server/jupyter_server_terminals/releases/tag/${nix.sel(src, "tag")}`),
         description: "Jupyter Server Extension Providing Support for Terminals",
         homepage: "https://github.com/jupyter-server/jupyter_server_terminals",
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

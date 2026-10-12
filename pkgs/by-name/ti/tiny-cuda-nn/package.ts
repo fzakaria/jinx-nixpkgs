@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 30, 5], ["paths", 31, 5]], [["name", 35, 5], ["paths", 36, 5]], [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["fetchSubmodules", 59, 5], ["hash", 60, 5]], [["TCNN_CUDA_ARCHITECTURES", 112, 5], ["CUDA_HOME", 113, 5], ["LIBRARY_PATH", 114, 5]], [["cudaPackages", 180, 13]], [["description", 184, 5], ["homepage", 185, 5], ["changelog", 186, 5], ["license", 187, 5], ["maintainers", 188, 5], ["platforms", 189, 5], ["badPlatforms", 190, 5], ["broken", 195, 5]], [["pname", 47, 3], ["version", 48, 3], ["__structuredAttrs", 50, 3], ["strictDeps", 51, 3], ["format", 53, 3], ["src", 55, 3], ["postPatch", 63, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 93, 3], ["propagatedBuildInputs", 104, 3], ["env", 111, 3], ["doCheck", 121, 3], ["dontUseCmakeConfigure", 125, 3], ["configurePhase", 129, 3], ["buildPhase", 138, 3], ["installPhase", 153, 3], ["pythonImportsCheck", 177, 3], ["passthru", 179, 3], ["meta", 183, 3]]]);
 const formals$1 = { args: { config: false, cmake: false, cudaPackages: false, fetchFromGitHub: false, lib: false, ninja: false, python3Packages: true, pythonSupport: true, symlinkJoin: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 30, 5], ["paths", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 5], ["paths", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["fetchSubmodules", 59, 5], ["hash", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["TCNN_CUDA_ARCHITECTURES", 112, 5], ["CUDA_HOME", 113, 5], ["LIBRARY_PATH", 114, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["cudaPackages", 180, 13]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 184, 5], ["homepage", 185, 5], ["changelog", 186, 5], ["license", 187, 5], ["maintainers", 188, 5], ["platforms", 189, 5], ["badPlatforms", 190, 5], ["broken", 195, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["__structuredAttrs", 50, 3], ["strictDeps", 51, 3], ["format", 53, 3], ["src", 55, 3], ["postPatch", 63, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 93, 3], ["propagatedBuildInputs", 104, 3], ["env", 111, 3], ["doCheck", 121, 3], ["dontUseCmakeConfigure", 125, 3], ["configurePhase", 129, 3], ["buildPhase", 138, 3], ["installPhase", 153, 3], ["pythonImportsCheck", 177, 3], ["passthru", 179, 3], ["meta", 183, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,26 +36,26 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   const cuda_native_redist = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "cuda-redist",
       paths: nix.thunk(() => (() => {
         const w_1 = nix.withScope(cudaPackages, null);
         return nix.concat([nix.thunk(() => nix.lookup(w_1, "cuda_nvcc"))], cuda_common_redist);
       })()),
     }))));
-  const cuda_redist = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$2, name: "cuda-redist", paths: cuda_common_redist }))));
+  const cuda_redist = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: $pos[1], name: "cuda-redist", paths: cuda_common_redist }))));
   const unsupportedCudaCapabilities = [];
   const cudaCapabilities = nix.thunk(() => nix.app(nix.sel(lists, "subtractLists"), unsupportedCudaCapabilities, nix.thunk(() => nix.sel(flags, "cudaCapabilities"))));
   const cudaArchitecturesString = nix.thunk(() => nix.app(nix.sel(strings, "concatMapStringsSep"), ";", nix.thunk(() => nix.sel(flags, "dropDots")), cudaCapabilities));
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tiny-cuda-nn",
       version: "2.0",
       __structuredAttrs: true,
       strictDeps: true,
       format: nix.thunk(() => nix.app(nix.sel(strings, "optionalString"), pythonSupport, "setuptools")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "NVlabs",
           repo: "tiny-cuda-nn",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +82,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w_3, "torch"))];
         })()))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         TCNN_CUDA_ARCHITECTURES: cudaArchitecturesString,
         CUDA_HOME: nix.thunk(() => nix.sel(cuda_native_redist, "outPath")),
         LIBRARY_PATH: nix.thunk(() => nix.str`${cuda_native_redist}/lib/stubs`),
@@ -99,9 +93,9 @@ export default nix.lambda((args) => (() => {
       buildPhase: nix.thunk(() => nix.app(nix.sel(strings, "optionalString"), pythonSupport, "runHook preBuild\n\npython -m pip wheel \\\n  --no-build-isolation \\\n  --no-clean \\\n  --no-deps \\\n  --no-index \\\n  --verbose \\\n  --wheel-dir \"$NIX_BUILD_TOP/build\" \\\n  \"$NIX_BUILD_TOP/source/bindings/torch\"\n\nrunHook postBuild\n")),
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\nmkdir -p \"$out/lib\"\n", nix.app(nix.sel(strings, "optionalString"), nix.thunk(() => !nix.asBool(pythonSupport)), "cp libtiny-cuda-nn.a \"$out/lib/\"\n")), nix.app(nix.sel(strings, "optionalString"), pythonSupport, "python -m pip install \\\n  --no-build-isolation \\\n  --no-cache-dir \\\n  --no-deps \\\n  --no-index \\\n  --no-warn-script-location \\\n  --prefix=\"$out\" \\\n  --verbose \\\n  ./*.whl\n")), "runHook postInstall\n")),
       pythonImportsCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), pythonSupport, nix.thunk(() => ["tinycudann"]))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, cudaPackages: cudaPackages })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], cudaPackages: cudaPackages })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Lightning fast C++/CUDA neural network framework",
         homepage: "https://github.com/NVlabs/tiny-cuda-nn",
         changelog: nix.thunk(() => nix.str`https://github.com/NVlabs/tiny-cuda-nn/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

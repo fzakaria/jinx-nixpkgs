@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]], [["changelog", 55, 5], ["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["cmakeFlags", 48, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, buildPackages: false, "pkg-config": false, cmake: false, "alsa-lib": false, libjack2: false, libsndfile: false, libpulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 55, 5], ["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["cmakeFlags", 48, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const libpulseaudio = nix.arg($, "libpulseaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fluidsynth",
       version: "2.5.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FluidSynth",
           repo: "fluidsynth",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib")), libsndfile, libjack2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, libpulseaudio])))),
       cmakeFlags: nix.thunk(() => ["-Denable-framework=off", "-Dosal=cpp11", "-Denable-libinstpatch=0"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/FluidSynth/fluidsynth/blob/${nix.sel(finalAttrs, "src", "tag")}/doc/wiki/ChangeLog.md`),
         description: "Real-time software synthesizer based on the SoundFont 2 specifications",
         homepage: "https://www.fluidsynth.org",

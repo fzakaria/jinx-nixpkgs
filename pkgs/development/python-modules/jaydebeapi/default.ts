@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 5], ["version", 15, 13], ["sha256", 16, 5]], [["homepage", 22, 5], ["license", 23, 5], ["description", 24, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, jpype1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["version", 15, 13], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 22, 5], ["license", 23, 5], ["description", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,19 +16,19 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "JayDeBeApi",
           version: version,
           sha256: "f25e9307fbb5960cb035394c26e37731b64cc465b197c4344cee85ec450ab92f",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [jpype1]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/baztian/jaydebeapi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
         description: "Use JDBC database drivers from Python 2/3 or Jython with a DB-API",
       }));
-      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

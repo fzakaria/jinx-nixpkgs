@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 45, 5], ["postFetch", 46, 5]], [["buildinputs_include", 52, 7], ["buildinputs_lib", 59, 7]], [["enableSTB", 103, 28]], [["NIX_CFLAGS_COMPILE", 113, 5]], [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["platforms", 139, 5], ["broken", 141, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["disabled", 36, 3], ["src", 38, 3], ["patches", 49, 3], ["postPatch", 80, 3], ["build-system", 86, 3], ["nativeBuildInputs", 91, 3], ["buildInputs", 96, 3], ["preConfigure", 108, 3], ["env", 112, 3], ["checkPhase", 116, 3], ["pythonImportsCheck", 131, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, fontconfig: false, python: false, pythonAtLeast: false, cython: false, setuptools: false, SDL2: false, "pkg-config": false, freetype: false, libjpeg: false, libpng: false, libx11: false, portmidi: false, SDL2_image: false, SDL2_mixer: false, SDL2_ttf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 45, 5], ["postFetch", 46, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["buildinputs_include", 52, 7], ["buildinputs_lib", 59, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["enableSTB", 103, 28]]);
-const pos$4 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 113, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["platforms", 139, 5], ["broken", 141, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["disabled", 36, 3], ["src", 38, 3], ["patches", 49, 3], ["postPatch", 80, 3], ["build-system", 86, 3], ["nativeBuildInputs", 91, 3], ["buildInputs", 96, 3], ["preConfigure", 108, 3], ["env", 112, 3], ["checkPhase", 116, 3], ["pythonImportsCheck", 131, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.14"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pygame",
           repo: "pygame",
           tag: version,
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-dependency-finding.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             buildinputs_include: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.builtins.concatMap((dep) => [
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), dep)}/`),
                   nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), dep)}/include`),
@@ -77,14 +72,14 @@ export default nix.lambda((args) => (() => {
         libx11,
         portmidi,
         SDL2,
-        nix.thunk(() => nix.app(nix.sel(SDL2_image, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, enableSTB: false })))),
+        nix.thunk(() => nix.app(nix.sel(SDL2_image, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], enableSTB: false })))),
         SDL2_mixer,
         SDL2_ttf,
       ]);
       const preConfigure = nix.thunk(() => nix.str`${nix.sel(python, "pythonOnBuildForHost", "interpreter")} buildconfig/config.py
 `);
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-function-pointer-types",
         }))));
       const checkPhase = nix.thunk(() => nix.str`runHook preCheck
@@ -103,7 +98,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["pygame"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python library for games (original distribution)",
         homepage: "https://www.pygame.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/pygame/pygame/releases/tag/${nix.sel(src, "tag")}`),
@@ -116,7 +111,7 @@ runHook postCheck
         broken: nix.thunk(() => nix.app(pythonAtLeast, "3.14")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

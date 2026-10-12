@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["ejabberd", 25, 36], ["prosody", 25, 45]], [["tests", 25, 5], ["updateScript", 26, 5]], [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 42, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 22, 3], ["passthru", 24, 3], ["nativeInstallCheckInputs", 29, 3], ["doInstallCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitLab: false, lib: false, nixosTests: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ejabberd", 25, 36], ["prosody", 25, 45]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 25, 5], ["updateScript", 26, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 22, 3], ["passthru", 24, 3], ["nativeInstallCheckInputs", 29, 3], ["doInstallCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "go-sendxmpp",
       version: "0.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "mdosch",
           repo: "go-sendxmpp",
@@ -31,9 +27,9 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-+0U7XXKVmeKWcaAMhbD96WLJkkupaOOIX4pyakZz1Z4=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           ejabberd: nix.thunk(() => nix.attr(nixosTests, "ejabberd")),
           prosody: nix.thunk(() => nix.attr(nixosTests, "prosody")),
         })),
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool to send messages or files to an XMPP contact or MUC",
         homepage: "https://salsa.debian.org/mdosch/go-sendxmpp",
         changelog: nix.thunk(() => nix.str`https://salsa.debian.org/mdosch/go-sendxmpp/-/releases/v${nix.sel(finalAttrs, "version")}`),

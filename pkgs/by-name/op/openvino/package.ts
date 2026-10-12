@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["fetchSubmodules", 60, 5], ["hash", 61, 5]], [["NIX_CFLAGS_COMPILE", 146, 7]], [["changelog", 182, 5], ["description", 183, 5], ["longDescription", 184, 5], ["homepage", 191, 5], ["license", 192, 5], ["platforms", 193, 5], ["broken", 194, 5]], [["pname", 53, 3], ["version", 54, 3], ["src", 56, 3], ["outputs", 64, 3], ["nativeBuildInputs", 71, 3], ["patches", 87, 3], ["cmakeFlags", 96, 3], ["env", 146, 3], ["buildInputs", 148, 3], ["enableParallelBuilding", 164, 3], ["postInstall", 166, 3], ["postFixup", 171, 3], ["disallowedRequisites", 177, 3], ["meta", 181, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cudaSupport: true, addDriverRunpath: false, autoPatchelfHook: false, cmake: false, git: false, libarchive: false, patchelf: false, "pkg-config": false, python3Packages: false, flatbuffers: false, gflags: false, "level-zero": false, libusb1: false, libxml2: false, "ocl-icd": false, opencv: false, protobuf: false, pugixml: false, snappy: false, onetbb: false, cudaPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["fetchSubmodules", 60, 5], ["hash", 61, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 146, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 182, 5], ["description", 183, 5], ["longDescription", 184, 5], ["homepage", 191, 5], ["license", 192, 5], ["platforms", 193, 5], ["broken", 194, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 53, 3], ["version", 54, 3], ["src", 56, 3], ["outputs", 64, 3], ["nativeBuildInputs", 71, 3], ["patches", 87, 3], ["cmakeFlags", 96, 3], ["env", 146, 3], ["buildInputs", 148, 3], ["enableParallelBuilding", 164, 3], ["postInstall", 166, 3], ["postFixup", 171, 3], ["disallowedRequisites", 177, 3], ["meta", 181, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,11 +46,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openvino",
       version: "2026.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openvinotoolkit",
           repo: "openvino",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -112,7 +109,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(cmakeBool, "ENABLE_SYSTEM_TBB", true)),
         nix.thunk(() => nix.app(cmakeBool, "ENABLE_ARM_COMPUTE_CMAKE", true)),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-odr" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-odr" })),
       buildInputs: nix.thunk(() => nix.concat([
         flatbuffers,
         gflags,
@@ -130,7 +127,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "substituteInPlace $dev/lib/pkgconfig/openvino.pc \\\n  --replace-fail \"include_prefix=\\${prefix}/\" \"include_prefix=\" \\\n  --replace-fail \"exec_prefix=\\${prefix}/\" \"exec_prefix=\"\n",
       disallowedRequisites: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc"))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/openvinotoolkit/openvino/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Open-source toolkit for optimizing and deploying AI inference",
         longDescription: "This toolkit allows developers to deploy pre-trained deep learning models through a high-level C++ Inference Engine API integrated with application logic.\n\nThis open source version includes several components: namely Model Optimizer, nGraph and Inference Engine, as well as CPU, GPU, MYRIAD,\nmulti device and heterogeneous plugins to accelerate deep learning inferencing on Intel® CPUs and Intel® Processor Graphics.\nIt supports pre-trained models from the Open Model Zoo, along with 100+ open source and public models in popular formats such as Caffe*, TensorFlow*, MXNet* and ONNX*.\n",

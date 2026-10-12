@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["sha256", 41, 5]], [["homepage", 90, 5], ["description", 91, 5], ["teams", 92, 5], ["license", 93, 5], ["platforms", 94, 5]], [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["outputBin", 34, 3], ["src", 36, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 60, 3], ["propagatedBuildInputs", 70, 3], ["configureFlags", 75, 3], ["postPatch", 80, 3], ["preConfigure", 85, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, autoconf: false, automake: false, libtool: false, "pkg-config": false, vala: false, avahi: false, "gdk-pixbuf": false, gst_all_1: false, glib: false, "gtk-doc": false, "docbook-xsl-nons": false, docbook_xml_dtd_43: false, "gobject-introspection": false, libsoup_3: false, withGtkDoc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["sha256", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 90, 5], ["description", 91, 5], ["teams", 92, 5], ["license", 93, 5], ["platforms", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["outputBin", 34, 3], ["src", 36, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 60, 3], ["propagatedBuildInputs", 70, 3], ["configureFlags", 75, 3], ["postPatch", 80, 3], ["preConfigure", 85, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), withGtkDoc, nix.thunk(() => ["devdoc"]))));
       const outputBin = "dev";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "libdmapsharing",
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace configure.ac \\\n  --replace-fail pkg-config \"$PKG_CONFIG\"\n";
       const preConfigure = "NOCONFIGURE=1 ./autogen.sh\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.flyn.org/projects/libdmapsharing/",
         description: "Library that implements the DMAP family of protocols",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
@@ -72,7 +70,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         outputs,

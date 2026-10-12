@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["CGO_ENABLED", 39, 7]], [["updateScript", 52, 12]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]], [["__structuredAttrs", 14, 3], ["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["proxyVendor", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["subPackages", 37, 3], ["env", 39, 3], ["ldflags", 41, 3], ["nativeInstallCheckInputs", 48, 3], ["doInstallCheck", 49, 3], ["versionCheckProgramArg", 50, 3], ["passthru", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildGoLatestModule: false, fetchFromGitHub: false, "pkg-config": false, pcsclite: false, stdenv: false, "apple-sdk_15": false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["__structuredAttrs", 14, 3], ["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["proxyVendor", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["subPackages", 37, 3], ["env", 39, 3], ["ldflags", 41, 3], ["nativeInstallCheckInputs", 48, 3], ["doInstallCheck", 49, 3], ["versionCheckProgramArg", 50, 3], ["passthru", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoLatestModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       __structuredAttrs: true,
       pname: "matcha",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "floatpane",
           repo: "matcha",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [pkg_config]))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [pcsclite])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_15])))),
       subPackages: nix.thunk(() => ["."]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 1n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -48,11 +44,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Beautiful and functional email client for the terminal",
         homepage: "https://matcha.email",
         changelog: nix.thunk(() => nix.str`https://github.com/floatpane/matcha/releases/tag/v${nix.sel(finalAttrs, "version")}`),

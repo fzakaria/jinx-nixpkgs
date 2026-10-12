@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5], ["fetchSubmodules", 33, 5]], [["name", 76, 7], ["comment", 77, 7], ["exec", 78, 7], ["icon", 79, 7], ["terminal", 80, 7], ["startupNotify", 81, 7], ["desktopName", 82, 7], ["startupWMClass", 83, 7], ["categories", 84, 7]], [["url", 91, 9], ["hash", 92, 9]], [["updateScript", 100, 12]], [["description", 103, 5], ["mainProgram", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 111, 5], ["broken", 116, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["dontWrapGApps", 67, 3], ["preFixup", 69, 3], ["desktopItems", 74, 3], ["postInstall", 88, 3], ["passthru", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchurl: false, makeDesktopItem: false, cmake: false, boost: false, bzip2: false, ffmpeg_8: false, fftwSinglePrec: false, hdf5: false, muparser: false, netcdf: false, openssl: false, python3: false, qt6Packages: false, imagemagick: false, copyDesktopItems: false, "nix-update-script": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5], ["fetchSubmodules", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 76, 7], ["comment", 77, 7], ["exec", 78, 7], ["icon", 79, 7], ["terminal", 80, 7], ["startupNotify", 81, 7], ["desktopName", 82, 7], ["startupWMClass", 83, 7], ["categories", 84, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 91, 9], ["hash", 92, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 100, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 103, 5], ["mainProgram", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 111, 5], ["broken", 116, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["dontWrapGApps", 67, 3], ["preFixup", 69, 3], ["desktopItems", 74, 3], ["postInstall", 88, 3], ["passthru", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ovito",
       version: "3.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stuko",
           repo: "ovito",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,7 +67,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ovito",
             comment: "Open Visualization Tool",
             exec: "ovito",
@@ -86,7 +81,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => (() => {
         const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://www.ovito.org/wp-content/uploads/logo_rgb-768x737.png",
             hash: "sha256-FOmIUeXem+4MjavQNag0UIlcR2wa2emJjivwxoJh6fI=",
           }))));
@@ -95,11 +90,11 @@ magick ${icon} -resize 512x512 $out/share/icons/hicolor/512x512/apps/ovito.png
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Scientific visualization and analysis software for atomistic and particle simulation data",
         mainProgram: "ovito",
         homepage: "https://ovito.org",

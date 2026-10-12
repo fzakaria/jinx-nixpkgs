@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 23, 3], ["configureFlags", 34, 3], ["nativeBuildInputs", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, ruby: false, fetchurl: false, openssl: false, ncurses: false, libiconv: false, tcl: false, libxcrypt: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 23, 3], ["configureFlags", 34, 3], ["nativeBuildInputs", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "epic5",
       version: "3.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ftp.epicsol.org/pub/epic/EPIC5-PRODUCTION/epic5-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Y6QRIVwUBAtltdcor/EPdSPVXhcPYpj7AeHPlY150yY=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-ipv6"]),
       nativeBuildInputs: nix.thunk(() => [perl]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://epicsol.org",
         description: "IRC client that offers a great ircII interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

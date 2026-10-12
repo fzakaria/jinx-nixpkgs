@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unix.nix", [[["description", 30, 5]], [["pname", 13, 3], ["version", 14, 20], ["src", 14, 28], ["postPatch", 16, 3], ["propagatedBuildInputs", 20, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, fetchpatch: false, github: false, cohttp: false, "cohttp-lwt-unix": false, stringext: false, cmdliner: false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unix.nix", [["description", 30, 5]]);
-const pos$2 = nix.positions(here + "/unix.nix", [["pname", 13, 3], ["version", 14, 20], ["src", 14, 28], ["postPatch", 16, 3], ["propagatedBuildInputs", 20, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const cmdliner = nix.arg($, "cmdliner");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "github-unix",
       version: nix.thunk(() => nix.attr(github, "version")),
       src: nix.thunk(() => nix.attr(github, "src")),
       postPatch: "substituteInPlace unix/dune --replace-fail 'github bytes' 'github'\n",
       propagatedBuildInputs: nix.thunk(() => [github, cohttp, cohttp_lwt_unix, stringext, cmdliner, lwt]),
-      meta: nix.thunk(() => nix.update(nix.sel(github, "meta"), { [nix.POS]: pos$1, description: "GitHub APIv3 Unix library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(github, "meta"), { [nix.POS]: $pos[0], description: "GitHub APIv3 Unix library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=unix.ts.map

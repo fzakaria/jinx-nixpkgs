@@ -2,16 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 26, 5], ["paths", 27, 5]], [["name", 50, 5], ["paths", 51, 5], ["postBuild", 57, 5]], [["owner", 77, 5], ["repo", 78, 5], ["tag", 79, 5], ["fetchSubmodules", 80, 5], ["hash", 81, 5]], [["V8_FROM_SOURCE", 122, 5], ["PYTHON", 123, 5], ["NINJA", 124, 5], ["GN", 125, 5], ["RUSTC_BOOTSTRAP", 126, 5], ["EXTRA_GN_ARGS", 127, 5], ["LIBCLANG_PATH", 138, 5], ["CLANG_BASE_PATH", 139, 5]], [["doCheck", 185, 9]], [["build-with-unit-tests", 184, 7]], [["tests", 183, 5]], [["description", 193, 5], ["homepage", 194, 5], ["license", 195, 5], ["maintainers", 196, 5], ["maxSilent", 197, 5], ["platforms", 198, 5]], [["pname", 73, 3], ["version", 74, 3], ["src", 76, 3], ["patches", 84, 3], ["cargoHash", 94, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 108, 3], ["postPatch", 117, 3], ["env", 121, 3], ["buildFeatures", 142, 3], ["hardeningDisable", 144, 3], ["doCheck", 158, 3], ["checkFlags", 161, 3], ["outputs", 167, 3], ["installPhase", 172, 3], ["passthru", 182, 3], ["requiredSystemFeatures", 190, 3], ["meta", 192, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, rustc: false, "rust-bindgen": false, rustfmt: false, cargo: false, llvmPackages: true, "pkg-config": false, stdenv: false, glib: false, glibc: false, icu: false, libffi: false, python3: false, gn: false, ninja: false, xcbuild: false, "apple-sdk_15": false, symlinkJoin: false, deno: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 26, 5], ["paths", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 50, 5], ["paths", 51, 5], ["postBuild", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 77, 5], ["repo", 78, 5], ["tag", 79, 5], ["fetchSubmodules", 80, 5], ["hash", 81, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["V8_FROM_SOURCE", 122, 5], ["PYTHON", 123, 5], ["NINJA", 124, 5], ["GN", 125, 5], ["RUSTC_BOOTSTRAP", 126, 5], ["EXTRA_GN_ARGS", 127, 5], ["LIBCLANG_PATH", 138, 5], ["CLANG_BASE_PATH", 139, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["doCheck", 185, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["build-with-unit-tests", 184, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["tests", 183, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 193, 5], ["homepage", 194, 5], ["license", 195, 5], ["maintainers", 196, 5], ["maxSilent", 197, 5], ["platforms", 198, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 73, 3], ["version", 74, 3], ["src", 76, 3], ["patches", 84, 3], ["cargoHash", 94, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 108, 3], ["postPatch", 117, 3], ["env", 121, 3], ["buildFeatures", 142, 3], ["hardeningDisable", 144, 3], ["doCheck", 158, 3], ["checkFlags", 161, 3], ["outputs", 167, 3], ["installPhase", 172, 3], ["passthru", 182, 3], ["requiredSystemFeatures", 190, 3], ["meta", 192, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const deno = nix.arg($, "deno");
   const rustToolchain = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "rusty-v8-rust-toolchain",
       paths: nix.thunk(() => [
         rustc,
@@ -48,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   const clangBasePath = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "rusty-v8-llvm-toolchain",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(llvmPackages, "clang-unwrapped", "lib")),
@@ -65,11 +57,11 @@ ln -s ${nix.sel(llvmPackages, "compiler-rt")}/lib/linux/libclang_rt.builtins-* "
 `)),
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "rusty-v8",
       version: "150.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "denoland",
           repo: "rusty_v8",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,7 +87,7 @@ ln -s ${nix.sel(llvmPackages, "compiler-rt")}/lib/linux/libclang_rt.builtins-* "
       postPatch: nix.thunk(() => nix.str`ln -sv ${rustToolchain} third_party/rust-toolchain
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         V8_FROM_SOURCE: 1n,
         PYTHON: "python3",
         NINJA: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ninja)),
@@ -126,15 +118,15 @@ cp target/*/release/gn_out/src_binding.rs $binding
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          "build-with-unit-tests": nix.thunk(() => nix.app(nix.sel(deno, "passthru", "librusty_v8", "overrideAttrs"), (fa) => ({ [nix.POS]: pos$5, doCheck: true }))),
+          [nix.POS]: $pos[5],
+          "build-with-unit-tests": nix.thunk(() => nix.app(nix.sel(deno, "passthru", "librusty_v8", "overrideAttrs"), (fa) => ({ [nix.POS]: $pos[4], doCheck: true }))),
         })),
       })),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Rust bindings for the V8 JavaScript engine",
         homepage: "https://github.com/denoland/rusty_v8",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

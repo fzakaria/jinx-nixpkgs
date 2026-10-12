@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["url", 77, 5], ["rev-prefix", 78, 5]], [["updateScript", 76, 12]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 89, 5], ["longDescription", 91, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["enableParallelBuilding", 66, 3], ["postFixup", 68, 3], ["passthru", 76, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, intltool: false, python3Packages: false, wrapGAppsHook3: false, glib: false, libxml2: false, libxslt: false, sqlite: false, libsoup_3: false, webkitgtk_4_1: false, "json-glib": false, gst_all_1: false, libnotify: false, gtk3: false, "gsettings-desktop-schemas": false, libpeas2: false, libsecret: false, "gobject-introspection": false, "glib-networking": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 77, 5], ["rev-prefix", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 76, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 89, 5], ["longDescription", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["enableParallelBuilding", 66, 3], ["postFixup", 68, 3], ["passthru", 76, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "liferea";
       const version = "1.16.14";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/lwindolf/${pname}/releases/download/v${version}/${pname}-${version}.tar.bz2`),
           hash: "sha256-/zux42TNR453/XCep9/BJgObEXwT5Lq0dAVbucET1Og=",
         }))));
@@ -80,15 +76,15 @@ buildPythonPath ${nix.sel(python3Packages, "requests")}
 patchPythonScript $out/lib/liferea/plugins/download-manager.py
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://github.com/lwindolf/${pname}`),
             "rev-prefix": "v",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GTK-based news feed aggregator",
         homepage: "http://lzone.de/liferea/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -103,7 +99,7 @@ patchPythonScript $out/lib/liferea/plugins/download-manager.py
         longDescription: "Liferea (Linux Feed Reader) is an RSS/RDF feed reader.\nIt's intended to be a clone of the Windows-only FeedReader.\nIt can be used to maintain a list of subscribed feeds,\nbrowse through their items, and show their contents.\n",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

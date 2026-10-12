@@ -2,52 +2,42 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mate.nix", [[["maintainers", 6, 5]], [["enable", 19, 17]], [["enable", 21, 11], ["user", 22, 11]], [["lightdm", 19, 9], ["autoLogin", 20, 9]], [["enable", 26, 44]], [["mate", 26, 39]], [["enable", 16, 24], ["displayManager", 18, 24], ["desktopManager", 26, 24]], [["xserver", 16, 16]], [["imports", 12, 7], ["services", 16, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["enableOCR", 29, 3], ["testScript", 31, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mate.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/mate.nix", [["enable", 19, 17]]);
-const pos$3 = nix.positions(here + "/mate.nix", [["enable", 21, 11], ["user", 22, 11]]);
-const pos$4 = nix.positions(here + "/mate.nix", [["lightdm", 19, 9], ["autoLogin", 20, 9]]);
-const pos$5 = nix.positions(here + "/mate.nix", [["enable", 26, 44]]);
-const pos$6 = nix.positions(here + "/mate.nix", [["mate", 26, 39]]);
-const pos$7 = nix.positions(here + "/mate.nix", [["enable", 16, 24], ["displayManager", 18, 24], ["desktopManager", 26, 24]]);
-const pos$8 = nix.positions(here + "/mate.nix", [["xserver", 16, 16]]);
-const pos$9 = nix.positions(here + "/mate.nix", [["imports", 12, 7], ["services", 16, 7]]);
-const pos$10 = nix.positions(here + "/mate.nix", [["machine", 9, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/mate.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["enableOCR", 29, 3], ["testScript", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "mate",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "mate", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               displayManager: nix.thunk(() => ({
-                [nix.POS]: pos$4,
-                lightdm: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
-                autoLogin: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, user: "alice" })),
+                [nix.POS]: $pos[3],
+                lightdm: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+                autoLogin: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true, user: "alice" })),
               })),
               desktopManager: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                mate: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+                [nix.POS]: $pos[5],
+                mate: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
               })),
             })),
           })),

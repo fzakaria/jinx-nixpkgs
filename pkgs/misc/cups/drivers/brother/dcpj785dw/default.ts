@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 30, 7], ["sha256", 31, 7]], [["homepage", 73, 7], ["description", 74, 7], ["sourceProvenance", 75, 7], ["license", 76, 7], ["platforms", 77, 7], ["downloadPage", 78, 7], ["maintainers", 79, 7]], [["pname", 25, 5], ["version", 26, 13], ["src", 28, 5], ["nativeBuildInputs", 34, 5], ["buildInputs", 38, 5], ["unpackPhase", 44, 5], ["installPhase", 46, 5], ["meta", 72, 5]], [["url", 88, 7], ["sha256", 89, 7]], [["homepage", 121, 7], ["description", 122, 7], ["sourceProvenance", 123, 7], ["license", 124, 7], ["platforms", 125, 7], ["downloadPage", 126, 7], ["maintainers", 127, 7]], [["pname", 84, 5], ["version", 85, 13], ["src", 87, 5], ["nativeBuildInputs", 92, 5], ["buildInputs", 96, 5], ["unpackPhase", 102, 5], ["installPhase", 104, 5], ["meta", 120, 5]], [["driver", 24, 3], ["cupswrapper", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cups: false, dpkg: false, gnused: false, makeWrapper: false, ghostscript: false, file: false, a2ps: false, coreutils: false, gnugrep: false, which: false, gawk: false, pkgsi686Linux: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 30, 7], ["sha256", 31, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 73, 7], ["description", 74, 7], ["sourceProvenance", 75, 7], ["license", 76, 7], ["platforms", 77, 7], ["downloadPage", 78, 7], ["maintainers", 79, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 5], ["version", 26, 13], ["src", 28, 5], ["nativeBuildInputs", 34, 5], ["buildInputs", 38, 5], ["unpackPhase", 44, 5], ["installPhase", 46, 5], ["meta", 72, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 88, 7], ["sha256", 89, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 121, 7], ["description", 122, 7], ["sourceProvenance", 123, 7], ["license", 124, 7], ["platforms", 125, 7], ["downloadPage", 126, 7], ["maintainers", 127, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 84, 5], ["version", 85, 13], ["src", 87, 5], ["nativeBuildInputs", 92, 5], ["buildInputs", 96, 5], ["unpackPhase", 102, 5], ["installPhase", 104, 5], ["meta", 120, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["driver", 24, 3], ["cupswrapper", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const version = "1.0.0_0";
   const model = "dcpj785dw";
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     driver: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: nix.thunk(() => nix.str`${model}-lpr`),
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf102774/${model}lpr-1.0.0-0.i386.deb`),
             sha256: "sha256-EXUN69YJEz1M0ADEF+0uZ+hdMgIiXChwtf+NzeFk7j0=",
           })))),
@@ -58,7 +52,7 @@ wrapProgram $out/opt/brother/Printers/${model}/lpd/filter${model} \\
   --set NIX_REDIRECTS /opt/=$out/opt/
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "http://www.brother.com/",
           description: nix.thunk(() => nix.str`Brother ${model} printer driver`),
           sourceProvenance: nix.thunk(() => (() => {
@@ -75,11 +69,11 @@ wrapProgram $out/opt/brother/Printers/${model}/lpd/filter${model} \\
         })),
       })))),
     cupswrapper: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: nix.thunk(() => nix.str`${model}-cupswrapper`),
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf102775/${model}cupswrapper-1.0.0-0.i386.deb`),
             sha256: "sha256-JrYn9UlQr48HlETUmsNRq4oNPwtSiTFCsOuPMJ2kzSU=",
           })))),
@@ -94,7 +88,7 @@ mkdir -p $out/share/cups/model
 ln -s $out/opt/brother/Printers/${model}/cupswrapper/brother_${model}_printer_en.ppd $out/share/cups/model/
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           homepage: "http://www.brother.com/",
           description: nix.thunk(() => nix.str`Brother ${model} printer CUPS wrapper driver`),
           sourceProvenance: nix.thunk(() => (() => {

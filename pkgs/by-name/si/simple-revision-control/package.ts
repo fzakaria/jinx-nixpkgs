@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["homepage", 52, 5], ["description", 53, 5], ["longDescription", 54, 5], ["changelog", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 28]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["strictDeps", 36, 3], ["preConfigure", 38, 3], ["makeFlags", 42, 3], ["postInstall", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, asciidoc: false, fetchFromGitLab: false, git: false, makeWrapper: false, python3: false, rcs: false, asciidoctor: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["longDescription", 54, 5], ["changelog", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["strictDeps", 36, 3], ["preConfigure", 38, 3], ["makeFlags", 42, 3], ["postInstall", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const rcs = nix.arg($, "rcs");
   const asciidoctor = nix.arg($, "asciidoctor");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "simple-revision-control",
       version: "1.41",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "esr",
           repo: "src",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(python3, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.catb.org/esr/src/",
         description: "Simple single-file revision control",
         longDescription: "SRC, acronym of Simple Revision Control, is RCS/SCCS reloaded with a\nmodern UI, designed to manage single-file solo projects kept more than one\nto a directory. Use it for FAQs, ~/bin directories, config files, and the\nlike. Features integer sequential revision numbers, a command set that\nwill seem familiar to Subversion/Git/hg users, and no binary blobs\nanywhere.\n",

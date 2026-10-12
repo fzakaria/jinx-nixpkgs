@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["broken", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["enableParallelBuilding", 20, 3], ["hardeningDisable", 21, 3], ["nativeBuildInputs", 23, 3], ["makeFlags", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["broken", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["enableParallelBuilding", 20, 3], ["hardeningDisable", 21, 3], ["nativeBuildInputs", 23, 3], ["makeFlags", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mba6x_bl",
       version: "unstable-2017-12-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "patjak",
           repo: "mba6x_bl",
           rev: "639719f516b664051929c2c0c1140ea4bf30ce81",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
         "INSTALL_MOD_PATH=$(out)",
       ])),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MacBook Air 6,1 and 6,2 (mid 2013) backlight driver",
         homepage: "https://github.com/patjak/mba6x_bl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

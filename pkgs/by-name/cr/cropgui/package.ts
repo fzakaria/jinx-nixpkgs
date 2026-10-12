@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5], ["platforms", 60, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["pyproject", 21, 3], ["nativeBuildInputs", 23, 3], ["dependencies", 27, 3], ["installPhase", 32, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromCodeberg: false, makeWrapper: false, libjpeg: false, exiftool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["pyproject", 21, 3], ["nativeBuildInputs", 23, 3], ["dependencies", 27, 3], ["installPhase", 32, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const exiftool = nix.arg($, "exiftool");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cropgui",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jepler",
           repo: "cropgui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +49,7 @@ makeWrapper $out/${nix.sel(python3Packages, "python", "sitePackages")}/cropgui.p
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Gtk frontend for lossless cropping of jpeg images",
         homepage: "https://codeberg.org/jepler/cropgui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

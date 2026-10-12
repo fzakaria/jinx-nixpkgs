@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["longDescription", 66, 5], ["platforms", 70, 5], ["maintainers", 71, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["depsBuildBuild", 32, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["mesonFlags", 51, 3], ["postInstall", 55, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, makeWrapper: false, meson: false, ninja: false, "wayland-scanner": false, libjpeg: false, libpng: false, libx11: false, libGL: false, libdrm: false, udev: false, wayland: false, "wayland-protocols": false, libgbm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["longDescription", 66, 5], ["platforms", 70, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["depsBuildBuild", 32, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["mesonFlags", 51, 3], ["postInstall", 55, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const libgbm = nix.arg($, "libgbm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "glmark2",
       version: "2023.01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "glmark2",
           repo: "glmark2",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OpenGL (ES) 2.0 benchmark",
         homepage: "https://github.com/glmark2/glmark2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

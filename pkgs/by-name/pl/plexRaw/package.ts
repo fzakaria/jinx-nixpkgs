@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 9], ["sha256", 25, 9]], [["url", 29, 9], ["sha256", 30, 9]], [["updateScript", 63, 12]], [["homepage", 88, 5], ["sourceProvenance", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["maintainers", 95, 5], ["description", 102, 5], ["longDescription", 103, 5]], [["version", 17, 3], ["pname", 18, 3], ["src", 21, 3], ["outputs", 32, 3], ["nativeBuildInputs", 37, 3], ["installPhase", 39, 3], ["dontPatchShebangs", 58, 3], ["dontStrip", 59, 3], ["dontPatchELF", 60, 3], ["dontAutoPatchelf", 61, 3], ["passthru", 63, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, writeScript: false, curl: false, jq: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 9], ["sha256", 25, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 9], ["sha256", 30, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 88, 5], ["sourceProvenance", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["maintainers", 95, 5], ["description", 102, 5], ["longDescription", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 17, 3], ["pname", 18, 3], ["src", 21, 3], ["outputs", 32, 3], ["nativeBuildInputs", 37, 3], ["installPhase", 39, 3], ["dontPatchShebangs", 58, 3], ["dontStrip", 59, 3], ["dontPatchELF", 60, 3], ["dontAutoPatchelf", 61, 3], ["passthru", 63, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
       const version = "1.43.4.10903-e5521bd8c";
       const pname = "plexmediaserver";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.plex.tv/plex-media-server-new/${version}/debian/plexmediaserver_${version}_arm64.deb`),
           sha256: "1az511cpn0gc5diphpc9yqvb74hqx73fmfv9a4mljqaga788cpll",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://downloads.plex.tv/plex-media-server-new/${version}/debian/plexmediaserver_${version}_amd64.deb`),
           sha256: "1nry7dffb5lv30mqmcb6d9pssjw8951r79ji07rf2yfp6s1iqskg",
         })))));
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const dontPatchELF = true;
       const dontAutoPatchelf = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`${pname}-updater`), nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
 set -eu -o pipefail
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, jq, common_updater_scripts]))}:$PATH
@@ -58,7 +54,7 @@ done
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://plex.tv/",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -80,7 +76,7 @@ done
         longDescription: "Plex is a media server which allows you to store your media and play it\nback across many different devices.\n",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version,
         pname,
         src,

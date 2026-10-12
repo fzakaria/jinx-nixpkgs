@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 95, 5], ["mainProgram", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5], ["broken", 101, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 39, 3], ["cmakeFlags", 44, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 60, 3], ["qtWrapperArgs", 66, 3], ["installPhase", 75, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, installShellFiles: false, "pkg-config": false, cmake: false, libsForQt5: false, pugixml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 95, 5], ["mainProgram", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5], ["broken", 101, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 39, 3], ["cmakeFlags", 44, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 60, 3], ["qtWrapperArgs", 66, 3], ["installPhase", 75, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const pugixml = nix.arg($, "pugixml");
   const singleApplication = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "itay-grudev",
       repo: "SingleApplication",
       tag: "v3.2.0",
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qelectrotech";
       const version = "0.100";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "qelectrotech",
           repo: "qelectrotech-source-mirror",
           tag: version,
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "runHook preInstall\n\ninstall -Dm555 qelectrotech $out/bin/qelectrotech\n\ninstall -Dm444 -t $out/share/applications ../misc/org.qelectrotech.qelectrotech.desktop\n\nmkdir -p $out/share/qelectrotech\ncp -r ../elements $out/share/qelectrotech\ncp -r ../titleblocks $out/share/qelectrotech\ncp -r ../lang $out/share/qelectrotech\ncp -r ../examples $out/share/qelectrotech\n\nmkdir -p $out/share/icons/hicolor\ncp -r ../ico $out/share/icons/hicolor\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free software to create electric diagrams",
         mainProgram: "qelectrotech",
         homepage: "https://qelectrotech.org/",
@@ -81,7 +78,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/symbiflow.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["dontDisableStatic", 41, 5], ["cmakeFlags", 42, 5]], [["description", 103, 7], ["license", 104, 7], ["platforms", 105, 7], ["broken", 107, 7], ["maintainers", 108, 7]], [["pname", 49, 5], ["src", 50, 13], ["version", 50, 17], ["plugin", 50, 25], ["enableParallelBuilding", 51, 5], ["nativeBuildInputs", 53, 5], ["buildInputs", 57, 5], ["doCheck", 64, 5], ["nativeCheckInputs", 65, 5], ["preBuild", 70, 5], ["postUnpack", 75, 5], ["makeFlags", 80, 5], ["buildFlags", 84, 5], ["checkTarget", 89, 5], ["checkFlags", 90, 5], ["installFlags", 100, 5], ["meta", 102, 5]]]);
 const formals$1 = { args: { fetchFromGitHub: false, gtest: false, lib: false, python3: false, readline: false, stdenv: false, yosys: false, zlib: false, "yosys-symbiflow": false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/symbiflow.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/symbiflow.nix", [["dontDisableStatic", 41, 5], ["cmakeFlags", 42, 5]]);
-const pos$3 = nix.positions(here + "/symbiflow.nix", [["description", 103, 7], ["license", 104, 7], ["platforms", 105, 7], ["broken", 107, 7], ["maintainers", 108, 7]]);
-const pos$4 = nix.positions(here + "/symbiflow.nix", [["pname", 49, 5], ["src", 50, 13], ["version", 50, 17], ["plugin", 50, 25], ["enableParallelBuilding", 51, 5], ["nativeBuildInputs", 53, 5], ["buildInputs", 57, 5], ["doCheck", 64, 5], ["nativeCheckInputs", 65, 5], ["preBuild", 70, 5], ["postUnpack", 75, 5], ["makeFlags", 80, 5], ["buildFlags", 84, 5], ["checkTarget", 89, 5], ["checkFlags", 90, 5], ["installFlags", 100, 5], ["meta", 102, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const version = "1.20230906";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "chipsalliance",
       repo: "yosys-f4pga-plugins",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
     "xdc",
   ]);
   const static_gtest = nix.thunk(() => nix.app(nix.sel(gtest, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       dontDisableStatic: true,
       cmakeFlags: nix.thunk(() => nix.concat(nix.sel(old, "cmakeFlags"), ["-DBUILD_SHARED_LIBS=OFF"])),
     })));
@@ -68,7 +65,7 @@ ln -s ${static_gtest}/lib source/third_party/googletest/build/lib
         ]);
         const installFlags = buildFlags;
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: nix.thunk(() => nix.str`Symbiflow ${plugin_1} plugin for Yosys`),
           license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -82,7 +79,7 @@ ln -s ${static_gtest}/lib source/third_party/googletest/build/lib
           })()),
         }));
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname,
           src: src_1,
           version: version_1,

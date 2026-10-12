@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["name", 25, 5], ["sha256", 26, 5]], [["url", 34, 5], ["sha256", 35, 5]], [["url", 42, 7], ["sha256", 43, 7]], [["url", 46, 7], ["sha256", 47, 7]], [["url", 50, 7], ["sha256", 51, 7]], [["url", 54, 7], ["sha256", 55, 7]], [["description", 99, 5], ["mainProgram", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["license", 103, 5], ["broken", 104, 5]], [["downloadPage", 106, 23]], [["updateInfo", 106, 12]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 38, 3], ["postPatch", 59, 3], ["preBuild", 67, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 77, 3], ["sconsFlags", 92, 3], ["meta", 98, 3], ["passthru", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libGLU: false, libGL: false, SDL: false, scons: false, SDL_ttf: false, SDL_image: false, zlib: false, SDL_net: false, speex: false, libvorbis: false, libogg: false, boost: false, fribidi: false, bsdiff: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["name", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 5], ["sha256", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 42, 7], ["sha256", 43, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 46, 7], ["sha256", 47, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 50, 7], ["sha256", 51, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 54, 7], ["sha256", 55, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 99, 5], ["mainProgram", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["license", 103, 5], ["broken", 104, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["downloadPage", 106, 23]]);
-const pos$9 = nix.positions(here + "/package.nix", [["updateInfo", 106, 12]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 38, 3], ["postPatch", 59, 3], ["preBuild", 67, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 77, 3], ["sconsFlags", 92, 3], ["meta", 98, 3], ["passthru", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const patchlevel = "4";
   const tutorial4patch = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "http://bugs.debian.org/cgi-bin/bugreport.cgi?msg=34;filename=tutorial-part4.map.bspatch;att=1;bug=595448",
       name: "globulation2-tutorial4-map-patch-debian.bspatch",
       sha256: "d3511ac0f822d512c42abd34b3122f2990862d3d0af6ce464ff372f5bd7f35e9",
@@ -45,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "glob2";
       const version = nix.thunk(() => nix.str`0.9.4.${patchlevel}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://savannah/glob2/${version}/${pname}-${version}.tar.gz`),
           sha256: "1f0l2cqp2g3llhr9jl6jj15k0wb5q8n29vqj99xy4p5hqs78jk8g",
         }))));
@@ -53,22 +44,22 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./header-order.patch"),
         nix.path(here, "./public-buildproject.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://bitbucket.org/giszmo/glob2/commits/c9dc715624318e4fea4abb24e04f0ebdd9cd8d2a/raw",
             sha256: "0017xg5agj3dy0hx71ijdcrxb72bjqv7x6aq7c9zxzyyw0mkxj0k",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://sources.debian.org/data/main/g/glob2/0.9.4.4-11/debian/patches/10_pthread_underlinkage.patch",
             sha256: "sha256-L9POADlkgQbUQEUmx4s3dxXG9tS0w2IefpRGuQNRMI0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://sources.debian.org/data/main/g/glob2/0.9.4.4-11/debian/patches/scons.patch",
             sha256: "sha256-kHuFQCmkCkogqK6vfHKGYeZrMvsdQ7h8B3CcCtjLr50=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://sources.debian.org/data/main/g/glob2/0.9.4.4-11/debian/patches/boost-1.69.patch",
             sha256: "sha256-D7agFR4uyIHxQz690Q8EHPF+rTEoiGUpgkm7r5cL5SI=",
           })))),
@@ -101,7 +92,7 @@ sed -i -e "s@env = Environment()@env = Environment( ENV = os.environ )@" SConstr
         nix.thunk(() => nix.str`DATADIR=${nix.builtins.placeholder("out")}/share/globulation2/glob2`),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "RTS without micromanagement",
         mainProgram: "glob2",
         maintainers: nix.thunk(() => (() => {
@@ -113,14 +104,14 @@ sed -i -e "s@env = Environment()@env = Environment( ENV = os.environ )@" SConstr
         broken: nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))),
       }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         updateInfo: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           downloadPage: "http://globulation2.org/wiki/Download_and_Install",
         })),
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version,
         src,

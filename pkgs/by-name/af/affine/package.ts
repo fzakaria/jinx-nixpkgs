@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs", 33, 48]], [["pname", 37, 5], ["version", 38, 5], ["src", 39, 5], ["nativeBuildInputs", 40, 5], ["buildPhase", 41, 5], ["dontInstall", 44, 5]], [["src", 63, 11], ["substitutions", 64, 11]], [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5], ["postFetch", 59, 5]], [["pname", 75, 26], ["version", 75, 32], ["src", 75, 40], ["hash", 76, 5]], [["CI", 89, 9]], [["os", 93, 11], ["cpu", 97, 11], ["libc", 102, 11]], [["name", 81, 5], ["src", 82, 26], ["nativeBuildInputs", 83, 5], ["env", 89, 5], ["buildPhase", 90, 5], ["dontInstall", 124, 5], ["outputHashMode", 125, 5], ["outputHash", 126, 5]], [["CI", 155, 5], ["LIBCLANG_PATH", 157, 5]], [["name", 239, 7], ["desktopName", 240, 7], ["comment", 241, 7], ["exec", 242, 7], ["terminal", 243, 7], ["icon", 244, 7], ["startupWMClass", 245, 7], ["categories", 246, 7], ["mimeTypes", 247, 7]], [["extraArgs", 252, 5]], [["updateScript", 251, 12]], [["description", 258, 5], ["longDescription", 259, 5], ["homepage", 265, 5], ["license", 266, 5], ["maintainers", 267, 5], ["platforms", 268, 5], ["sourceProvenance", 273, 5]], [["pname", 48, 3], ["version", 50, 3], ["src", 51, 3], ["cargoDeps", 74, 3], ["yarnOfflineCache", 80, 3], ["buildInputs", 129, 3], ["nativeBuildInputs", 133, 3], ["env", 153, 3], ["postPatch", 162, 3], ["configurePhase", 169, 3], ["buildPhase", 192, 3], ["installPhase", 210, 3], ["desktopItems", 237, 3], ["passthru", 251, 3], ["meta", 257, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, fetchFromGitHub: false, substitute: false, rustPlatform: false, electron: false, nodejs_22: false, "yarn-berry_4": false, cacert: false, writableTmpDirAsHomeHook: false, cargo: false, rustc: false, findutils: false, zip: false, rsync: false, jq: false, copyDesktopItems: false, makeWrapper: false, llvmPackages: false, "apple-sdk_15": false, makeDesktopItem: false, "nix-update-script": false, buildType: true, commandLineArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs", 33, 48]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 37, 5], ["version", 38, 5], ["src", 39, 5], ["nativeBuildInputs", 40, 5], ["buildPhase", 41, 5], ["dontInstall", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 63, 11], ["substitutions", 64, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5], ["postFetch", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 75, 26], ["version", 75, 32], ["src", 75, 40], ["hash", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["CI", 89, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["os", 93, 11], ["cpu", 97, 11], ["libc", 102, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 81, 5], ["src", 82, 26], ["nativeBuildInputs", 83, 5], ["env", 89, 5], ["buildPhase", 90, 5], ["dontInstall", 124, 5], ["outputHashMode", 125, 5], ["outputHash", 126, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["CI", 155, 5], ["LIBCLANG_PATH", 157, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 239, 7], ["desktopName", 240, 7], ["comment", 241, 7], ["exec", 242, 7], ["terminal", 243, 7], ["icon", 244, 7], ["startupWMClass", 245, 7], ["categories", 246, 7], ["mimeTypes", 247, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["extraArgs", 252, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["updateScript", 251, 12]]);
-const pos$13 = nix.positions(here + "/package.nix", [["description", 258, 5], ["longDescription", 259, 5], ["homepage", 265, 5], ["license", 266, 5], ["maintainers", 267, 5], ["platforms", 268, 5], ["sourceProvenance", 273, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 50, 3], ["src", 51, 3], ["cargoDeps", 74, 3], ["yarnOfflineCache", 80, 3], ["buildInputs", 129, 3], ["nativeBuildInputs", 133, 3], ["env", 153, 3], ["postPatch", 162, 3], ["configurePhase", 169, 3], ["buildPhase", 192, 3], ["installPhase", 210, 3], ["desktopItems", 237, 3], ["passthru", 251, 3], ["meta", 257, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const nodePlatform = nix.thunk(() => nix.sel(hostPlatform, "node", "platform"));
   const nodeArch = nix.thunk(() => nix.sel(hostPlatform, "node", "arch"));
   const nodejs = nodejs_22;
-  const yarn_berry = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs }))));
+  const yarn_berry = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], nodejs: nodejs }))));
   const productName = nix.thunk(() => (nix.asBool(!nix.eq(buildType, "stable")) ? nix.str`AFFiNE-${buildType}` : "AFFiNE"));
   const binName = nix.thunk(() => nix.app(nix.sel(lib, "toLower"), productName));
   const electron_dist_zip = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "electron-dist-zip",
       version: nix.thunk(() => nix.sel(electron, "version")),
       src: nix.thunk(() => nix.sel(electron, "dist")),
@@ -62,18 +49,18 @@ export default nix.lambda((args) => (() => {
       dontInstall: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: binName,
       version: "0.26.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "toeverything",
           repo: "AFFiNE",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-RotC2mNtMig3QKcKo8zr15myAqkPDuBopvV9wLlr2tQ=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -84,21 +71,21 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
 `),
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-vZkKFUaNe9iIAkdUfXnnuD2lM6kuzwqj1Dyt5GAgXsM=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           name: "yarn-offline-cache",
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => [yarn_berry, cacert, writableTmpDirAsHomeHook]),
-          env: nix.thunk(() => ({ [nix.POS]: pos$6, CI: "1" })),
+          env: nix.thunk(() => ({ [nix.POS]: $pos[5], CI: "1" })),
           buildPhase: nix.thunk(() => (() => {
             const supportedArchitectures = nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 os: nix.thunk(() => ["darwin", "linux"]),
                 cpu: nix.thunk(() => ["x64", "ia32", "arm64"]),
                 libc: nix.thunk(() => ["glibc", "musl"]),
@@ -136,7 +123,7 @@ runHook postBuild
         writableTmpDirAsHomeHook,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(hostPlatform, "isLinux")), nix.thunk(() => [copyDesktopItems, makeWrapper])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(hostPlatform, "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         CI: "1",
         LIBCLANG_PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(hostPlatform, "isDarwin")), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))}/lib`))),
       })),
@@ -200,7 +187,7 @@ runHook postInstall
 `)),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             name: binName,
             desktopName: productName,
             comment: "AFFiNE Desktop App",
@@ -213,14 +200,14 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             extraArgs: nix.thunk(() => ["--version-regex=^v(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "Workspace with fully merged docs, whiteboards and databases",
         longDescription: "AFFiNE is an open-source, all-in-one workspace and an operating\nsystem for all the building blocks that assemble your knowledge\nbase and much more -- wiki, knowledge management, presentation\nand digital assets\n",
         homepage: "https://affine.pro/",

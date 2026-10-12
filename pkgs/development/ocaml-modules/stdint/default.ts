@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["duneVersion", 13, 3], ["minimalOCamlVersion", 15, 3], ["src", 17, 3], ["postPatch", 26, 3], ["doCheck", 34, 3], ["checkInputs", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, ocaml: false, qcheck: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["duneVersion", 13, 3], ["minimalOCamlVersion", 15, 3], ["src", 17, 3], ["postPatch", 26, 3], ["doCheck", 34, 3], ["checkInputs", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const duneVersion = "3";
       const minimalOCamlVersion = "4.03";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/andrenth/ocaml-stdint/releases/download/${version}/stdint-${version}.tbz`),
           sha256: "sha256-FWAZjYvJx68+qVLEDavoJmZpQhDsw/35u/60MhHpd+Y=",
         }))));
@@ -28,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08"));
       const checkInputs = nix.thunk(() => [qcheck]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Various signed and unsigned integers for OCaml",
         homepage: "https://github.com/andrenth/ocaml-stdint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         duneVersion,

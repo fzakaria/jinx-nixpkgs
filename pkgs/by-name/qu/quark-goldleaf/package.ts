@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableJavaFX", 15, 25]], [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["name", 78, 7], ["exec", 79, 7], ["icon", 80, 7], ["desktopName", 81, 7], ["comment", 82, 7], ["terminal", 83, 7], ["categories", 84, 7], ["keywords", 88, 7]], [["changelog", 97, 5], ["description", 98, 5], ["homepage", 99, 5], ["longDescription", 100, 5], ["license", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5], ["platforms", 116, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 28, 3], ["patches", 30, 3], ["mvnJdk", 35, 3], ["mvnHash", 36, 3], ["mvnParameters", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["dontWrapGApps", 51, 3], ["doInstallCheck", 53, 3], ["installPhase", 55, 3], ["postFixup", 69, 3], ["desktopItems", 76, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, jdk: false, maven: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, imagemagick: false, wrapGAppsHook3: false, gtk3: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableJavaFX", 15, 25]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 78, 7], ["exec", 79, 7], ["icon", 80, 7], ["desktopName", 81, 7], ["comment", 82, 7], ["terminal", 83, 7], ["categories", 84, 7], ["keywords", 88, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 97, 5], ["description", 98, 5], ["homepage", 99, 5], ["longDescription", 100, 5], ["license", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5], ["platforms", 116, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 28, 3], ["patches", 30, 3], ["mvnJdk", 35, 3], ["mvnHash", 36, 3], ["mvnParameters", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["dontWrapGApps", 51, 3], ["doInstallCheck", 53, 3], ["installPhase", 55, 3], ["postFixup", 69, 3], ["desktopItems", 76, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gtk3 = nix.arg($, "gtk3");
   const udevCheckHook = nix.arg($, "udevCheckHook");
-  const jdk$ = nix.thunk(() => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
+  const jdk$ = nix.thunk(() => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableJavaFX: true }))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => (() => {
       const pname = "quark-goldleaf";
       const version = "1.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "XorTroll",
           repo: "Goldleaf",
           tag: version,
@@ -63,7 +59,7 @@ makeWrapper ${jdk$}/bin/java $out/bin/quark-goldleaf \\
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "quark-goldleaf",
             exec: "quark-goldleaf",
             icon: "quark-goldleaf",
@@ -75,7 +71,7 @@ makeWrapper ${jdk$}/bin/java $out/bin/quark-goldleaf \\
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/XorTroll/Goldleaf/releases/tag/${nix.sel(src, "rev")}`),
         description: "GUI tool for transfering files between a computer and a Nintendo Switch running Goldleaf",
         homepage: "https://github.com/XorTroll/Goldleaf#quark-and-remote-browsing",
@@ -103,7 +99,7 @@ or by adding the package manually to udev packages:
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

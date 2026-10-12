@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["mainProgram", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]], [["pname", 8, 3], ["version", 9, 3], ["outputs", 11, 3], ["src", 16, 3], ["deleteVendor", 23, 3], ["vendorHash", 25, 3], ["patches", 27, 3], ["postInstall", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["mainProgram", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["outputs", 11, 3], ["src", 16, 3], ["deleteVendor", 23, 3], ["vendorHash", 25, 3], ["patches", 27, 3], ["postInstall", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aws-assume-role",
       version: "0.3.2",
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "remind101",
           repo: "assume-role",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./0001-add-go.mod-go.sum.patch")]),
       postInstall: "install -Dm444 -t $out/share/doc/aws-assume-role README.md\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Easily assume AWS roles in your terminal",
         homepage: "https://github.com/remind101/assume-role",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

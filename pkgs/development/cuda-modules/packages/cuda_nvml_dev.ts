@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_nvml_dev.nix", [[["description", 37, 5], ["longDescription", 38, 5], ["homepage", 43, 5]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["allowFHSReferences", 16, 3], ["propagatedBuildOutputs", 19, 3], ["postInstall", 23, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { buildRedist: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_nvml_dev.nix", [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 43, 5]]);
-const pos$2 = nix.positions(here + "/cuda_nvml_dev.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["allowFHSReferences", 16, 3], ["propagatedBuildOutputs", 19, 3], ["postInstall", 23, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "cuda_nvml_dev",
       outputs: nix.thunk(() => ["out", "dev", "include", "stubs"]),
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildOutputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "stubs", nix.thunk(() => nix.sel(finalAttrs, "outputs")))), nix.thunk(() => ["stubs"]))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "stubs", nix.thunk(() => nix.sel(finalAttrs, "outputs")))), "pushd \"${!outputStubs:?}/lib/stubs\" >/dev/null\nif [[ -f libnvidia-ml.so && ! -f libnvidia-ml.so.1 ]]; then\n  nixLog \"creating versioned symlink for libnvidia-ml.so stub\"\n  ln -sr libnvidia-ml.so libnvidia-ml.so.1\nfi\nif [[ -f libnvidia-ml.a && ! -f libnvidia-ml.a.1 ]]; then\n  nixLog \"creating versioned symlink for libnvidia-ml.a stub\"\n  ln -sr libnvidia-ml.a libnvidia-ml.a.1\nfi\npopd >/dev/null\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "C-based programmatic interface for monitoring and managing various states within Data Center GPUs",
         longDescription: "The NVIDIA Management Library (NVML) is a C-based programmatic interface for monitoring and managing various\nstates within Data Center GPUs. It is intended to be a platform for building 3rd party applications, and is also\nthe underlying library for the NVIDIA-supported nvidia-smi tool.\n",
         homepage: "https://developer.nvidia.com/management-library-nvml",

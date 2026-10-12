@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 14, 12]], [["description", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["maintainers", 20, 5], ["mainProgram", 24, 5]], [["pname", 8, 3], ["gemdir", 10, 3], ["exes", 12, 3], ["passthru", 14, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false, bundlerUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 14, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["maintainers", 20, 5], ["mainProgram", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["gemdir", 10, 3], ["exes", 12, 3], ["passthru", 14, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
       const gemdir = nix.path(here, "./.");
       const exes = nix.thunk(() => ["zsteg"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, pname)),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Detect stegano-hidden data in PNG & BMP",
         homepage: "http://zed.0xff.me/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "zsteg",
       }));
-      return { [nix.POS]: pos$3, pname, gemdir, exes, passthru, meta };
+      return { [nix.POS]: $pos[2], pname, gemdir, exes, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

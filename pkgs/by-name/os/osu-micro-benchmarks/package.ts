@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["configureFlags", 25, 3], ["enableParallelBuilding", 30, 3], ["postInstall", 32, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, mpi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["configureFlags", 25, 3], ["enableParallelBuilding", 30, 3], ["postInstall", 32, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const mpi = nix.arg($, "mpi");
   const mpiDev = nix.thunk(() => nix.app(nix.sel(lib, "getDev"), mpi));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "osu-micro-benchmarks",
       version: "7.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mvapich.cse.ohio-state.edu/download/mvapich/osu-micro-benchmarks-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-YY3j0LESL3OpIpF30toeXNYuQxGQWAy5FfJgWEnLu9w=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "mkdir -p $out/bin\nfind $out/libexec -name 'osu_*' -type f -executable | while read -r f; do\n  ln -s \"$f\" \"$out/bin/\"\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OSU Micro-Benchmarks for MPI",
         longDescription: "The OSU microbenchmark suite is a collection of independent message passing interface (MPI) performance\nbenchmarks. It includes performance measures such as latency, bandwidth, and host overhead.\n\n Common benchmarks:\n - osu_latency: Point-to-point latency\n - osu_bw: Point-to-point bandwidth\n - osu_bibw: Bidirectional bandwidth\n - osu_allreduce: Collective allreduce\n - osu_alltoall: Collective all-to-all\n",
         homepage: "https://mvapich.cse.ohio-state.edu/benchmarks/",

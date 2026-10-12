@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/module.nix", [[["fetchurl", 19, 40]], [["url", 33, 7], ["hash", 34, 7], ["decode", 35, 7]], [["url", 39, 7], ["hash", 40, 7], ["decode", 41, 7]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 28, 11], ["patches", 30, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 56, 3], ["hardeningDisable", 58, 3], ["configureFlags", 60, 3], ["preConfigure", 67, 3], ["buildPhase", 79, 3], ["installPhase", 83, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, which: false, autoconf: false, automake: false, flex: false, bison: false, kernel: false, glibc: false, perl: false, libtool_2: false, libkrb5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/module.nix", [["fetchurl", 19, 40]]);
-const pos$2 = nix.positions(here + "/module.nix", [["url", 33, 7], ["hash", 34, 7], ["decode", 35, 7]]);
-const pos$3 = nix.positions(here + "/module.nix", [["url", 39, 7], ["hash", 40, 7], ["decode", 41, 7]]);
-const pos$4 = nix.positions(here + "/module.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]]);
-const pos$5 = nix.positions(here + "/module.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 28, 11], ["patches", 30, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 56, 3], ["hardeningDisable", 58, 3], ["configureFlags", 60, 3], ["preConfigure", 67, 3], ["buildPhase", 79, 3], ["installPhase", 83, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,25 +21,25 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const libtool_2 = nix.arg($, "libtool_2");
   const libkrb5 = nix.arg($, "libkrb5");
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
   const src = nix.thunk(() => nix.attr(from, "src"));
   const version = nix.thunk(() => nix.attr(from, "version"));
   const modDestDir = nix.thunk(() => nix.str`$out/lib/modules/${nix.sel(kernel, "modDirVersion")}/extra/openafs`);
   const kernelBuildDir = nix.thunk(() => nix.str`${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "openafs",
       version: nix.thunk(() => nix.str`${version}-${nix.sel(kernel, "modDirVersion")}`),
       src: src,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gerrit.openafs.org/changes/16927/revisions/a3bd427be8437a38c96ac34ef8216e58ab999945/patch",
             hash: "sha256-q0AOGpWL1r2hMLQgowMBkfOcEvhXEhXVLe1A/tlawFo=",
             decode: "base64 -d",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gerrit.openafs.org/changes/16928/revisions/5f04ae748a1ede14882174a81dfa38baa2e66a20/patch",
             hash: "sha256-fwzRzS799Y68l29vlzIAmHLda57gToLippgNMKWfWaw=",
             decode: "base64 -d",
@@ -74,7 +70,7 @@ cp src/libafs/MODLOAD-*/libafs-${nix.sel(kernel, "modDirVersion")}.* ${modDestDi
 xz -f ${modDestDir}/libafs.ko
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open AFS client kernel module",
         homepage: "https://www.openafs.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ipl10")),

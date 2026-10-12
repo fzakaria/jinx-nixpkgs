@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 18, 3], ["preInstall", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 18, 3], ["preInstall", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nyancat",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "klange",
           repo: "nyancat",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile \\\n  --replace /usr/bin \"$out/bin\" \\\n  --replace /usr/share \"$out/share\"\n",
       preInstall: "mkdir -p $out/bin\nmkdir -p $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Nyancat in your terminal, rendered through ANSI escape sequences",
         homepage: "https://nyancat.dakko.us",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ncsa")),

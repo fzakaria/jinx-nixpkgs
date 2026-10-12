@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 38, 5], ["description", 39, 5]], [["src", 13, 31], ["pname", 14, 3], ["version", 17, 3], ["pyproject", 18, 3], ["sourceRoot", 20, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 30, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, hatchling: false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, "opentelemetry-sdk": false, "opentelemetry-test-utils": false, "prometheus-client": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 38, 5], ["description", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 13, 31], ["pname", 14, 3], ["version", 17, 3], ["pyproject", 18, 3], ["sourceRoot", 20, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 30, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const prometheus_client = nix.arg($, "prometheus-client");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.attr(opentelemetry_api, "src")),
       pname: "opentelemetry-exporter-prometheus",
       version: nix.thunk(() => nix.sel(opentelemetry_instrumentation, "version")),
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [opentelemetry_test_utils, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.exporter.prometheus"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_api, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python/tree/main/exporter/opentelemetry-exporter-prometheus",
         description: "Prometheus Metric Exporter for OpenTelemetry",
       })),

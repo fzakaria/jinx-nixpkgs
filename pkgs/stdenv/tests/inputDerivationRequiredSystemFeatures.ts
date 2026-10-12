@@ -2,28 +2,26 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/inputDerivationRequiredSystemFeatures.nix", [[["name", 4, 5], ["requiredSystemFeatures", 9, 5], ["buildCommand", 11, 5]], [["longDescription", 26, 5], ["maintainers", 38, 5]], [["name", 18, 3], ["impossibleToBuildPackageInputDerivation", 20, 3], ["buildCommand", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/inputDerivationRequiredSystemFeatures.nix", [["name", 4, 5], ["requiredSystemFeatures", 9, 5], ["buildCommand", 11, 5]]);
-const pos$2 = nix.positions(here + "/inputDerivationRequiredSystemFeatures.nix", [["longDescription", 26, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/inputDerivationRequiredSystemFeatures.nix", [["name", 18, 3], ["impossibleToBuildPackageInputDerivation", 20, 3], ["buildCommand", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const impossibleToBuildPackage = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "impossible-to-build-package",
       requiredSystemFeatures: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "buildPlatform", "isLinux")) ? "apple-virt" : "kvm")),
       buildCommand: "echo ERROR: It’s supposed to be impossible to start building this package. >&2\nexit 1\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "stdenv-test-inputDerivationRequiredSystemFeatures",
       impossibleToBuildPackageInputDerivation: nix.thunk(() => nix.sel(impossibleToBuildPackage, "inputDerivation")),
       buildCommand: "ln --symbolic \"$impossibleToBuildPackageInputDerivation\" \"$out\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         longDescription: "In previous versions of Nixpkgs,\n`<originalDerivation>.inputDerivation.requiredSystemFeatures` would\nalways be the same as `<originalDerivation>.requiredSystemFeatures`. This\nmeant that if a builder wasn’t able to build `<originalDerivation>` due\nto a lack of system features, then that builder would also not be able to\nbuild `<originalDerivation>.inputDerivation`.\n\nThat was an arbitrary (and probably accidental) limitation. Building\ninput derivations never requires any system features. This test checks to\nmake sure that that limitation no longer exists.\n",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "jayman2000"))]),
       })),

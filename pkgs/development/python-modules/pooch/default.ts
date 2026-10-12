@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]], [["progress", 41, 7], ["sftp", 42, 7], ["xxhash", 43, 7]], [["optional-dependencies", 40, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 33, 3], ["passthru", 39, 3], ["preCheck", 46, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 53, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, wheel: false, pytestCheckHook: false, packaging: false, platformdirs: false, requests: false, tqdm: false, paramiko: false, xxhash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["progress", 41, 7], ["sftp", 42, 7], ["xxhash", 43, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["optional-dependencies", 40, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 33, 3], ["passthru", 39, 3], ["preCheck", 46, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 53, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-dlYfDeaKAdpN9q846ZVcTJ0aXJDac/fkAnalco7IPRA=",
@@ -37,9 +33,9 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [setuptools, setuptools_scm, wheel]);
       const propagatedBuildInputs = nix.thunk(() => [packaging, platformdirs, requests]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "optional-dependencies": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           progress: nix.thunk(() => [tqdm]),
           sftp: nix.thunk(() => [paramiko]),
           xxhash: nix.thunk(() => [xxhash]),
@@ -65,14 +61,14 @@ export default nix.lambda((args) => (() => {
         "test_stream_download",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Friend to fetch your data files",
         homepage: "https://github.com/fatiando/pooch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/parallel-n64.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["badPlatforms", 49, 5]], [["core", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["extraBuildInputs", 29, 3], ["makefile", 34, 3], ["makeFlags", 35, 3], ["postPatch", 40, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libGL: false, libGLU: false, libpng: false, mkLibretroCore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/parallel-n64.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/parallel-n64.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["badPlatforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/parallel-n64.nix", [["core", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["extraBuildInputs", 29, 3], ["makefile", 34, 3], ["makeFlags", 35, 3], ["postPatch", 40, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       core: "parallel-n64",
       version: "0-unstable-2026-04-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "parallel-n64",
           rev: "51aefbd38751563138b5fee3810ff653a78c4f24",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), "sed -i -e '1 i\\CPUFLAGS += -DARM_FIX -DNO_ASM -DARM_ASM -DDONT_WANT_ARM_OPTIMIZATIONS -DARM64' Makefile \\\n&& sed -i -e 's,CPUFLAGS  :=,,g' Makefile\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Parallel Mupen64plus rewrite for libretro",
         homepage: "https://github.com/libretro/parallel-n64",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

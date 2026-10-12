@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/get_nix_license.nix", [[["AGPL-3.0", 26, 5], ["BSD-2-Clause-FreeBSD", 27, 5], ["BSD-2-Clause-NetBSD", 28, 5], ["GFDL-1.1", 29, 5], ["GFDL-1.2", 30, 5], ["GFDL-1.3", 31, 5], ["GPL-1.0", 32, 5], ["GPL-1.0+", 33, 5], ["GPL-2.0", 34, 5], ["GPL-2.0+", 35, 5], ["GPL-3.0", 36, 5], ["GPL-3.0+", 37, 5], ["LGPL-2.0", 38, 5], ["LGPL-2.0+", 39, 5], ["LGPL-2.1", 40, 5], ["LGPL-2.1+", 41, 5], ["LGPL-3.0", 42, 5], ["LGPL-3.0+", 43, 5]], [["deprecated licenses", 47, 5], ["invalid aliases", 49, 5]]]);
 const formals$1 = { args: { lib: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/get_nix_license.nix", [["AGPL-3.0", 26, 5], ["BSD-2-Clause-FreeBSD", 27, 5], ["BSD-2-Clause-NetBSD", 28, 5], ["GFDL-1.1", 29, 5], ["GFDL-1.2", 30, 5], ["GFDL-1.3", 31, 5], ["GPL-1.0", 32, 5], ["GPL-1.0+", 33, 5], ["GPL-2.0", 34, 5], ["GPL-2.0+", 35, 5], ["GPL-3.0", 36, 5], ["GPL-3.0+", 37, 5], ["LGPL-2.0", 38, 5], ["LGPL-2.0+", 39, 5], ["LGPL-2.1", 40, 5], ["LGPL-2.1+", 41, 5], ["LGPL-3.0", 42, 5], ["LGPL-3.0+", 43, 5]]);
-const pos$2 = nix.positions(here + "/get_nix_license.nix", [["deprecated licenses", 47, 5], ["invalid aliases", 49, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const warn = nix.thunk(() => nix.attr(lib, "warn"));
   const licenseMap = nix.thunk(() => nix.app(flip, concatMapAttrs, licenses, (k) => (v) => nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(nix.has(v, "spdxId")) && nix.asBool(!nix.asBool(nix.sel(v, "deprecated"))))), nix.thunk(() => nix.attrsDyn({}, [[nix.sel(v, "spdxId"), k]])))));
   const deprecatedAliases = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "AGPL-3.0": "agpl3Only",
     "BSD-2-Clause-FreeBSD": "bsd2WithViews",
     "BSD-2-Clause-NetBSD": "bsd2",
@@ -45,7 +44,7 @@ export default nix.lambda((args) => (() => {
     "LGPL-3.0+": "lgpl3Plus",
   }));
   const lints = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "deprecated licenses": nix.thunk(() => nix.app(intersectLists, nix.thunk(() => nix.app(attrNames, licenseMap)), nix.thunk(() => nix.app(attrNames, deprecatedAliases)))),
     "invalid aliases": nix.thunk(() => nix.app(attrNames, nix.thunk(() => nix.app(filterAttrs, (_) => (v) => nix.selOr(licenses, () => true, nix.key(nix.force(v)), "deprecated"), deprecatedAliases)))),
   }));

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["displayName", 17, 5], ["argv", 18, 5], ["language", 25, 5], ["logo32", 26, 5], ["logo64", 27, 5]], [["definition", 16, 3]]]);
 const formals$1 = { args: { callPackage: false, "wolfram-engine": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["displayName", 17, 5], ["argv", 18, 5], ["language", 25, 5], ["logo32", 26, 5], ["logo64", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["definition", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const wolfram_engine = nix.arg($, "wolfram-engine");
   const kernel = nix.thunk(() => nix.app(callPackage, nix.path(here, "./kernel.nix"), nix.thunk(() => ({}))));
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     definition: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       displayName: nix.thunk(() => nix.str`Wolfram Language ${nix.sel(wolfram_engine, "version")}`),
       argv: nix.thunk(() => [
         nix.thunk(() => nix.str`${wolfram_engine}/bin/wolfram`),

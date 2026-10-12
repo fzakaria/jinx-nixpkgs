@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["tests", 49, 12]], [["changelog", 57, 5], ["description", 58, 5], ["license", 59, 5], ["homepage", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]], [["preferLocalBuild", 8, 3], ["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["prePatch", 23, 3], ["installPhase", 39, 3], ["passthru", 49, 3], ["dontCheckForBrokenSymlinks", 52, 3], ["strictDeps", 53, 3], ["__structuredAttrs", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 49, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 57, 5], ["description", 58, 5], ["license", 59, 5], ["homepage", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["preferLocalBuild", 8, 3], ["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["prePatch", 23, 3], ["installPhase", 39, 3], ["passthru", 49, 3], ["dontCheckForBrokenSymlinks", 52, 3], ["strictDeps", 53, 3], ["__structuredAttrs", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       preferLocalBuild: true,
       pname: "freescout",
       version: "1.8.241",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "freescout-help-desk",
           repo: "freescout",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,14 +26,14 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./0001-settings-catch-unwritable-.env.patch")]),
       prePatch: "rm -rf storage\nrm bootstrap/cache/.gitignore\nrm public/{css,js}/builds/.htaccess\nrm {Modules,public/modules}/.gitkeep\nrmdir Modules public/modules bootstrap/cache public/{css,js}/builds\nln -rs data/.env .env\nln -rs data/storage storage\nln -rs data/bootstrap/cache bootstrap/cache\nln -rs data/storage/app/public public/storage\nln -rs data/public/css/builds public/css/builds\nln -rs data/public/js/builds public/js/builds\nln -rs data/Modules Modules\nln -rs data/public/modules public/modules\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/freescout\ncp -ar . $out/share/freescout\nchmod +x $out/share/freescout/artisan\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "freescout")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], tests: nix.thunk(() => nix.sel(nixosTests, "freescout")) })),
       dontCheckForBrokenSymlinks: true,
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           changelog: nix.thunk(() => nix.str`https://github.com/freescout-help-desk/freescout/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
           description: "Free self-hosted help desk & shared mailbox",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "agpl3Only")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 39, 5], ["hash", 40, 5]], [["packageName", 100, 41]], [["updateScript", 100, 5]], [["homepage", 104, 5], ["description", 105, 5], ["mainProgram", 106, 5], ["teams", 107, 5], ["license", 108, 5], ["platforms", 109, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 56, 3], ["pythonPath", 81, 3], ["dontWrapGApps", 88, 3], ["preFixup", 90, 3], ["doCheck", 94, 3], ["strictDeps", 97, 3], ["passthru", 99, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, meson: false, ninja: false, gettext: false, fetchurl: false, "gdk-pixbuf": false, tinysparql: false, libxml2: false, python3: false, libnotify: false, wrapGAppsHook4: false, libmediaart: false, "gobject-introspection": false, "gnome-online-accounts": false, grilo: false, "grilo-plugins": false, "pkg-config": false, gtk4: false, pango: false, glib: false, "desktop-file-utils": false, "appstream-glib": false, itstool: false, gnome: false, gst_all_1: false, libsoup_3: false, libadwaita: false, "gsettings-desktop-schemas": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 100, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 100, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 104, 5], ["description", 105, 5], ["mainProgram", 106, 5], ["teams", 107, 5], ["license", 108, 5], ["platforms", 109, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 56, 3], ["pythonPath", 81, 3], ["dontWrapGApps", 88, 3], ["preFixup", 90, 3], ["doCheck", 94, 3], ["strictDeps", 97, 3], ["passthru", 99, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-music",
       version: "50.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-music/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-music-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-xyiQyn5YCc7+uHawEZn4sZcUa1wl6dV0UwGihMDzzao=",
         })))),
@@ -100,11 +96,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       strictDeps: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-music" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-music" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://apps.gnome.org/Music/",
         description: "Music player and management application for the GNOME desktop environment",
         mainProgram: "gnome-music",

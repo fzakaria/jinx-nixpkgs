@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["doCheck", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, chardet: false, docker: false, entrypoints: false, escapism: false, fetchFromGitHub: false, iso8601: false, jinja2: false, "pkgs-docker": false, "python-json-logger": false, requests: false, "ruamel-yaml": false, semver: false, setuptools: false, "setuptools-scm": false, toml: false, traitlets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["doCheck", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "2025.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jupyterhub",
           repo: "repo2docker",
           tag: version,
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
         "repo2docker.contentproviders.base",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Turn code repositories into Jupyter enabled Docker Images",
         homepage: "https://repo2docker.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyterhub/repo2docker/blob/${nix.sel(src, "tag")}/docs/source/changelog.md`),
@@ -70,7 +68,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

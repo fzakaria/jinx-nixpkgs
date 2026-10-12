@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["fetchSubmodules", 21, 5], ["hash", 22, 5]], [["CXXFLAGS", 55, 7]], [["test", 75, 5]], [["tests", 74, 12]], [["description", 85, 5], ["longDescription", 86, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 30, 3], ["preConfigure", 35, 3], ["makeFlags", 47, 3], ["env", 55, 3], ["enableParallelBuilding", 57, 3], ["installPhase", 59, 3], ["passthru", 74, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, stanc: false, buildPackages: false, runtimeShell: false, runCommandCC: false, cmdstan: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["fetchSubmodules", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["test", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 74, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 85, 5], ["longDescription", 86, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 30, 3], ["preConfigure", 35, 3], ["makeFlags", 47, 3], ["env", 55, 3], ["enableParallelBuilding", 57, 3], ["installPhase", 59, 3], ["passthru", 74, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const runCommandCC = nix.arg($, "runCommandCC");
   const cmdstan = nix.arg($, "cmdstan");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cmdstan",
       version: "2.40.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stan-dev",
           repo: "cmdstan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +40,7 @@ ln -s ${nix.sel(buildPackages, "stanc")}/bin/stanc bin/stanc
           nix.thunk(() => nix.str`arch=${nix.sel(stdenv, "hostPlatform", "darwinArch")}`),
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Xclang -fno-pch-timestamp")),
       })),
       enableParallelBuilding: true,
@@ -63,9 +58,9 @@ chmod a+x $out/bin/stan
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           test: nix.thunk(() => nix.app(runCommandCC, "cmdstan-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`cp -R ${cmdstan}/opt/cmdstan cmdstan
 chmod -R +w cmdstan
 cd cmdstan
@@ -75,7 +70,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Command-line interface to Stan",
         longDescription: "Stan is a probabilistic programming language implementing full Bayesian\nstatistical inference with MCMC sampling (NUTS, HMC), approximate Bayesian\ninference with Variational inference (ADVI) and penalized maximum\nlikelihood estimation with Optimization (L-BFGS).\n",
         homepage: "https://mc-stan.org/interfaces/cmdstan.html",

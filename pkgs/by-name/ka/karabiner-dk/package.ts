@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["updateScript", 45, 12]], [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["sourceProvenance", 57, 5]], [["pname", 14, 3], ["sourceVersion", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["unpackPhase", 30, 3], ["installPhase", 37, 3], ["dontFixup", 43, 3], ["passthru", 45, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { libarchive: false, xar: false, lib: false, stdenv: false, fetchFromGitHub: false, "common-updater-scripts": false, writeShellScript: false, curl: false, jq: false, "driver-version": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 45, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["sourceProvenance", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["sourceVersion", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["unpackPhase", 30, 3], ["installPhase", 37, 3], ["dontFixup", 43, 3], ["passthru", 45, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const driver_version = nix.argOr($, "driver-version", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "karabiner-dk",
       sourceVersion: "6.6.0",
       version: nix.thunk(() => nix.app(nix.sel(lib, "defaultTo"), nix.thunk(() => nix.sel(finalAttrs, "sourceVersion")), driver_version)),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pqrs-org",
           repo: "Karabiner-DriverKit-VirtualHIDDevice",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "sourceVersion")}`),
@@ -41,13 +38,13 @@ runHook postUnpack
       installPhase: "runHook preInstall\nmkdir -p $out\ncp -R ./Applications ./Library $out\nrunHook postInstall\n",
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "karabiner-dk", nix.thunk(() => nix.str`NEW_VERSION=$(${nix.app(nix.sel(lib, "getExe"), curl)} --silent https://api.github.com/repos/pqrs-org/Karabiner-DriverKit-VirtualHIDDevice/releases/latest $\${GITHUB_TOKEN:+" -u \\":$GITHUB_TOKEN\\""} | ${nix.app(nix.sel(lib, "getExe"), jq)} '.tag_name | ltrimstr("v")' --raw-output)
 ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-version")} "karabiner-dk" "$NEW_VERSION" --system=aarch64-darwin --ignore-same-version --version-key="sourceVersion";
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/pqrs-org/Karabiner-DriverKit-VirtualHIDDevice/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Virtual keyboard and virtual mouse using DriverKit on macOS",
         homepage: "https://karabiner-elements.pqrs.org/",

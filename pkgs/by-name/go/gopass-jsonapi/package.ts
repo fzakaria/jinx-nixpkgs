@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["firefox", 17, 5], ["chrome", 18, 5], ["chromium", 19, 5], ["brave", 20, 5], ["vivaldi", 21, 5], ["iridium", 22, 5], ["slimjet", 23, 5]], [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["mainProgram", 113, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["vendorHash", 37, 3], ["subPackages", 39, 3], ["nativeBuildInputs", 41, 3], ["ldflags", 47, 3], ["postInstall", 54, 3], ["postFixup", 93, 3], ["doInstallCheck", 98, 3], ["nativeInstallCheckInputs", 99, 3], ["versionCheckKeepEnvironment", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, makeWrapper: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, writableTmpDirAsHomeHook: false, jq: false, gnupg: false, gopass: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["firefox", 17, 5], ["chrome", 18, 5], ["chromium", 19, 5], ["brave", 20, 5], ["vivaldi", 21, 5], ["iridium", 22, 5], ["slimjet", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["mainProgram", 113, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["vendorHash", 37, 3], ["subPackages", 39, 3], ["nativeBuildInputs", 41, 3], ["ldflags", 47, 3], ["postInstall", 54, 3], ["postFixup", 93, 3], ["doInstallCheck", 98, 3], ["nativeInstallCheckInputs", 99, 3], ["versionCheckKeepEnvironment", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const gopass = nix.arg($, "gopass");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const manifestPaths = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     firefox: "$out/lib/mozilla/native-messaging-hosts/com.justwatch.gopass.json",
     chrome: "$out/etc/opt/chrome/native-messaging-hosts/com.justwatch.gopass.json",
     chromium: "$out/etc/chromium/native-messaging-hosts/com.justwatch.gopass.json",
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
     slimjet: "$out/etc/opt/slimjet/native-messaging-hosts/com.justwatch.gopass.json",
   }));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gopass-jsonapi",
       version: "1.17.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "gopasspw",
           repo: "gopass-jsonapi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +78,7 @@ chmod +x $out/lib/gopass/browser-jsonapi-wrapper.sh
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Enables communication with gopass via JSON messages",
         homepage: "https://github.com/gopasspw/gopass-jsonapi",
         changelog: nix.thunk(() => nix.str`https://github.com/gopasspw/gopass-jsonapi/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

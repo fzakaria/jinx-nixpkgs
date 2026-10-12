@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/client-mirage.nix", [[["pname", 20, 3], ["src", 21, 17], ["version", 21, 21], ["propagatedBuildInputs", 23, 3], ["doCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, dns: false, "dns-client": false, lwt: false, "mirage-sleep": false, "mirage-mtime": false, "mirage-ptime": false, "mirage-crypto-rng": false, "domain-name": false, ipaddr: false, "ca-certs-nss": false, "happy-eyeballs": false, "happy-eyeballs-mirage": false, tcpip: false, "tls-mirage": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/client-mirage.nix", [["pname", 20, 3], ["src", 21, 17], ["version", 21, 21], ["propagatedBuildInputs", 23, 3], ["doCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const tcpip = nix.arg($, "tcpip");
   const tls_mirage = nix.arg($, "tls-mirage");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "dns-client-mirage",
       src: nix.thunk(() => nix.attr(dns, "src")),
       version: nix.thunk(() => nix.attr(dns, "version")),

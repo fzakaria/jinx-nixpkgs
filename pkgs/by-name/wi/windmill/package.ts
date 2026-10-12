@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchLibrustyV8", 27, 48]], [["owner", 53, 5], ["repo", 54, 5], ["rev", 55, 5], ["hash", 56, 5]], [["SQLX_OFFLINE", 64, 5], ["FRONTEND_BUILD_DIR", 65, 5], ["RUSTY_V8_ARCHIVE", 66, 5]], [["NODE_OPTIONS", 202, 9]], [["version", 192, 13], ["src", 192, 21], ["pname", 194, 5], ["sourceRoot", 196, 5], ["npmDepsHash", 198, 5], ["env", 202, 5], ["postUnpack", 204, 5], ["npmFlags", 209, 5], ["preBuild", 214, 5], ["buildInputs", 218, 5], ["nativeBuildInputs", 223, 5], ["installPhase", 227, 5]], [["extraArgs", 238, 7]], [["web-ui", 191, 12], ["updateScript", 236, 12], ["tests", 247, 12]], [["changelog", 250, 5], ["description", 251, 5], ["homepage", 252, 5], ["license", 253, 5], ["maintainers", 254, 5], ["mainProgram", 257, 5], ["platforms", 260, 5]], [["pname", 60, 11], ["version", 60, 17], ["src", 60, 25], ["sourceRoot", 61, 3], ["env", 63, 3], ["cargoHash", 69, 3], ["buildFeatures", 71, 3], ["patches", 123, 3], ["postPatch", 139, 3], ["buildInputs", 144, 3], ["nativeBuildInputs", 154, 3], ["doCheck", 162, 3], ["postFixup", 164, 3], ["passthru", 191, 3], ["meta", 249, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, rustPlatform: false, fetchFromGitHub: false, buildNpmPackage: false, bash: false, cmake: false, cairo: false, deno: false, go: false, lld: false, makeWrapper: false, nsjail: false, openssl: false, pango: false, pixman: false, "pkg-config": false, python312: false, rustfmt: false, stdenv: false, perl: false, "_experimental-update-script-combinators": false, "nix-update-script": false, librusty_v8: true, ui_builder: true, libxml2: false, xmlsec: false, libxslt: false, flock: false, powershell: false, uv: false, bun: false, "dotnet-sdk_9": false, php: false, procps: false, cargo: false, coreutils: false, withEnterpriseFeatures: true, withClosedSourceFeatures: true, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchLibrustyV8", 27, 48]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 53, 5], ["repo", 54, 5], ["rev", 55, 5], ["hash", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["SQLX_OFFLINE", 64, 5], ["FRONTEND_BUILD_DIR", 65, 5], ["RUSTY_V8_ARCHIVE", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NODE_OPTIONS", 202, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 192, 13], ["src", 192, 21], ["pname", 194, 5], ["sourceRoot", 196, 5], ["npmDepsHash", 198, 5], ["env", 202, 5], ["postUnpack", 204, 5], ["npmFlags", 209, 5], ["preBuild", 214, 5], ["buildInputs", 218, 5], ["nativeBuildInputs", 223, 5], ["installPhase", 227, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 238, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["web-ui", 191, 12], ["updateScript", 236, 12], ["tests", 247, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["changelog", 250, 5], ["description", 251, 5], ["homepage", 252, 5], ["license", 253, 5], ["maintainers", 254, 5], ["mainProgram", 257, 5], ["platforms", 260, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 60, 11], ["version", 60, 17], ["src", 60, 25], ["sourceRoot", 61, 3], ["env", 63, 3], ["cargoHash", 69, 3], ["buildFeatures", 71, 3], ["patches", 123, 3], ["postPatch", 139, 3], ["buildInputs", 144, 3], ["nativeBuildInputs", 154, 3], ["doCheck", 162, 3], ["postFixup", 164, 3], ["passthru", 191, 3], ["meta", 249, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const librusty_v8 = nix.argOr($, "librusty_v8", () => nix.app(callPackage, nix.path(here, "./librusty_v8.nix"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetchers.nix"), nix.thunk(() => ({}))));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fetchLibrustyV8: nix.thunk(() => nix.attr(from, "fetchLibrustyV8")),
     };
     })())));
@@ -64,20 +56,20 @@ export default nix.lambda((args) => (() => {
   const pname = "windmill";
   const version = "1.601.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "windmill-labs",
       repo: "windmill",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-3Djrk8gHW3NjNzSy4A38LmTfl18LKDKgFeNMBPKlhfM=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       version: version,
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/backend`),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         SQLX_OFFLINE: "true",
         FRONTEND_BUILD_DIR: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "passthru", "web-ui")}/share/windmill-frontend`),
         RUSTY_V8_ARCHIVE: librusty_v8,
@@ -162,15 +154,15 @@ export default nix.lambda((args) => (() => {
   --set CARGO_PATH "${cargo}/bin/cargo"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         "web-ui": nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             version: version,
             src: src,
             pname: "windmill-ui",
             sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/frontend`),
             npmDepsHash: "sha256-eVN7q8hRH7NYjZiE5dLRMUKlyrtnAPGPdYV6/S4Sc+4=",
-            env: nix.thunk(() => ({ [nix.POS]: pos$4, NODE_OPTIONS: "--max-old-space-size=8192" })),
+            env: nix.thunk(() => ({ [nix.POS]: $pos[3], NODE_OPTIONS: "--max-old-space-size=8192" })),
             postUnpack: nix.thunk(() => nix.str`cp ${src}/openflow.openapi.yaml .
 `),
             npmFlags: nix.thunk(() => ["--ignore-scripts"]),
@@ -185,14 +177,14 @@ ln -s ${ui_builder} $out/share/windmill-frontend/static/ui_builder
 `),
           })))),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["--subpackage", "web-ui"]) })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[5], extraArgs: nix.thunk(() => ["--subpackage", "web-ui"]) })))),
             nix.path(here, "./update-librusty.sh"),
             nix.path(here, "./update-ui_builder.sh"),
           ]))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.sel(nixosTests, "windmill")))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: nix.thunk(() => nix.str`https://github.com/windmill-labs/windmill/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Open-source developer platform to turn scripts into workflows and UIs",
         homepage: "https://windmill.dev",

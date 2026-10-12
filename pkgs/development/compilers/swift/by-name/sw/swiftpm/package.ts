@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["useToolchainLibraries", 30, 55]], [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 51]], [["libclang", 84, 7]], [["url", 90, 7], ["hash", 91, 7]], [["callPackage", 164, 13], ["directory", 165, 5]], [["tests", 163, 12]], [["description", 171, 5], ["homepage", 172, 5], ["badPlatforms", 173, 26], ["platforms", 173, 39], ["license", 174, 5], ["maintainers", 175, 5]], [["pname", 49, 3], ["version", 50, 3], ["outputs", 52, 3], ["src", 57, 3], ["patches", 64, 3], ["postPatch", 95, 3], ["strictDeps", 108, 3], ["preConfigure", 110, 3], ["nativeBuildInputs", 115, 3], ["propagatedBuildInputs", 121, 3], ["buildInputs", 123, 3], ["postInstall", 138, 3], ["passthru", 163, 3], ["__structuredAttrs", 168, 3], ["meta", 170, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, cmake: false, fetchFromGitHub: false, fetchpatch2: false, llvmPackages: false, ninja: false, replaceVars: false, sqlite: false, stdenv: false, swift: false, "swift-argument-parser": false, "swift-asn1": false, "swift-build": false, "swift-certificates": false, "swift-collections": false, "swift-crypto": false, "swift-driver": false, "swift-llbuild": false, "swift-syntax": false, "swift-system": false, "swift-tools-support-core": false, swiftpmHook: false, swift_release: false, swift_sources: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["useToolchainLibraries", 30, 55]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 51]]);
-const pos$3 = nix.positions(here + "/package.nix", [["libclang", 84, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 90, 7], ["hash", 91, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["callPackage", 164, 13], ["directory", 165, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 163, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 171, 5], ["homepage", 172, 5], ["badPlatforms", 173, 26], ["platforms", 173, 39], ["license", 174, 5], ["maintainers", 175, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 49, 3], ["version", 50, 3], ["outputs", 52, 3], ["src", 57, 3], ["patches", 64, 3], ["postPatch", 95, 3], ["strictDeps", 108, 3], ["preConfigure", 110, 3], ["nativeBuildInputs", 115, 3], ["propagatedBuildInputs", 121, 3], ["buildInputs", 123, 3], ["postInstall", 138, 3], ["passthru", 163, 3], ["__structuredAttrs", 168, 3], ["meta", 170, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const swiftpmHook = nix.arg($, "swiftpmHook");
   const swift_release = nix.arg($, "swift_release");
   const swift_sources = nix.arg($, "swift_sources");
-  const swift_syntax_no_toolchain = nix.thunk(() => nix.app(nix.sel(swift_syntax, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, useToolchainLibraries: false }))));
+  const swift_syntax_no_toolchain = nix.thunk(() => nix.app(nix.sel(swift_syntax, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], useToolchainLibraries: false }))));
   const rpaths = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [
       sqlite,
       swift_argument_parser,
@@ -55,14 +48,14 @@ export default nix.lambda((args) => (() => {
       swift_tools_support_core,
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "swiftpm",
       version: swift_release,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-package-manager"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "swiftlang",
           repo: "swift-package-manager",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -79,12 +72,12 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./patches/0008-set-compiler-vendor.patch"),
         nix.path(here, "./patches/0009-add-missing-libraries.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/0010-Load-IndexStore-from-the-store.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             libclang: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))),
           })))),
         nix.path(here, "./patches/0011-Always-find-Clang-in-the-toolchain.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/swiftlang/swift-package-manager/commit/e1910f814cc1be40c709c3987a29488b9bee2f92.patch?full_index=1",
             hash: "sha256-4Ew/cKlk+Zn8cIQvh0jQy4Fz+xGYBYwch4+SBu1nKpI=",
           })))),
@@ -119,9 +112,9 @@ appendToVar cmakeFlags -DCMAKE_Swift_FLAGS=-module-cache-path\\ "$NIX_BUILD_TOP/
 done
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             callPackage: callPackage,
             directory: nix.path(here, "./tests"),
           })))),
@@ -130,7 +123,7 @@ done
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(swift, "meta"));
         return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Package Manager for the Swift Programming Language",
         homepage: "https://github.com/swiftlang/swift-package-manager",
         badPlatforms: nix.thunk(() => nix.attr(from, "badPlatforms")),

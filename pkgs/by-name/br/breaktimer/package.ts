@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 43, 7]], [["name", 109, 7], ["exec", 110, 7], ["icon", 111, 7], ["comment", 112, 7], ["desktopName", 113, 7], ["genericName", 114, 7], ["categories", 115, 7]], [["updateScript", 122, 12]], [["description", 125, 13], ["homepage", 126, 5], ["changelog", 127, 5], ["license", 128, 5], ["maintainers", 129, 5], ["mainProgram", 130, 5], ["platforms", 131, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["patches", 37, 3], ["dontNpmBuild", 41, 3], ["env", 43, 3], ["npmDepsHash", 45, 3], ["nativeBuildInputs", 47, 3], ["buildPhase", 54, 3], ["installPhase", 75, 3], ["desktopItems", 107, 3], ["passthru", 122, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, copyDesktopItems: false, electron_42: false, fetchFromGitHub: false, jq: false, makeDesktopItem: false, makeWrapper: false, "nix-update-script": false, nodejs_24: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 109, 7], ["exec", 110, 7], ["icon", 111, 7], ["comment", 112, 7], ["desktopName", 113, 7], ["genericName", 114, 7], ["categories", 115, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 122, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 125, 13], ["homepage", 126, 5], ["changelog", 127, 5], ["license", 128, 5], ["maintainers", 129, 5], ["mainProgram", 130, 5], ["platforms", 131, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["patches", 37, 3], ["dontNpmBuild", 41, 3], ["env", 43, 3], ["npmDepsHash", 45, 3], ["nativeBuildInputs", 47, 3], ["buildPhase", 54, 3], ["installPhase", 75, 3], ["desktopItems", 107, 3], ["passthru", 122, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nodejs_24;
   const description = "Cross-platform desktop app for managing periodic breaks";
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "breaktimer",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tom-james-watson",
           repo: "breaktimer-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       patches: nix.thunk(() => [nix.path(here, "./disable-auto-update.patch")]),
       dontNpmBuild: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       npmDepsHash: "sha256-UL8e0UKZKhHHC+JvRpmcdBvFHlCdn3YknceVJ+knMgg=",
       nativeBuildInputs: nix.thunk(() => [jq, nodejs, makeWrapper, copyDesktopItems]),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -79,7 +74,7 @@ install -Dm644 resources/icon.png \\
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$out/Applications\"\ncp -R release/mac-*/BreakTimer.app \"$out/Applications/\"\n\nmkdir -p \"$out/bin\"\nmakeWrapper \\\n  \"$out/Applications/BreakTimer.app/Contents/MacOS/BreakTimer\" \\\n  \"$out/bin/breaktimer\" \\\n  --set-default ELECTRON_IS_DEV 0\n")), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "breaktimer",
             exec: "breaktimer",
             icon: "breaktimer",
@@ -90,11 +85,11 @@ install -Dm644 resources/icon.png \\
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: description,
         homepage: "https://github.com/tom-james-watson/breaktimer-app",
         changelog: nix.thunk(() => nix.str`https://github.com/tom-james-watson/breaktimer-app/releases/tag/v${nix.sel(finalAttrs, "version")}`),

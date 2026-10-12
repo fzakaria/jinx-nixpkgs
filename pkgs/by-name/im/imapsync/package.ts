@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 89, 5], ["mainProgram", 90, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 21, 3], ["postInstall", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["strictDeps", 76, 3], ["doInstallCheck", 78, 3], ["nativeInstallCheckInputs", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, makeWrapper: false, perl: false, perlPackages: false, stdenv: false, procps: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 89, 5], ["mainProgram", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 21, 3], ["postInstall", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["strictDeps", 76, 3], ["doInstallCheck", 78, 3], ["nativeInstallCheckInputs", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "imapsync",
       version: "2.314",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://imapsync.lamiral.info/dist/old_releases/${nix.sel(finalAttrs, "version")}/imapsync-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-NOFxXGWEiJ/zvZwKzC+rJURGKCvtqQyOWnGoOzpZ28o=",
         })))),
@@ -77,7 +75,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Mail folder synchronizer between IMAP servers",
         homepage: "https://imapsync.lamiral.info",
         license: nix.thunk(() => nix.sel(lib, "licenses", "nlpl")),

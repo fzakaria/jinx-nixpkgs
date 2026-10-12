@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["postPatch", 37, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 66, 3], ["pythonImportsCheck", 71, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, boilerpy3: false, "cdxj-indexer": false, frictionless: false, "pytest-cov": false, pyyaml: false, shortuuid: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["postPatch", 37, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 66, 3], ["pythonImportsCheck", 71, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "webrecorder",
           repo: "py-wacz",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "clean-up-deps.patch",
             url: "https://github.com/webrecorder/py-wacz/compare/1e8f724a527f28855eedeb0d969ee39b00b2a80a...9d3ad60f125247b8a4354511d9123b85ce6a23c5.patch",
             hash: "sha256-zH6BKhsq9ybjzaWcNbVkk1sWh8vVCkv7Qxuwl0MQhNM=",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_verify_signed"]);
       const pythonImportsCheck = nix.thunk(() => ["wacz"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utility for working with web archive data using the WACZ format specification",
         homepage: "https://github.com/webrecorder/py-wacz",
         changelog: nix.thunk(() => nix.str`https://github.com/webrecorder/py-wacz/blob/${nix.sel(src, "rev")}/CHANGES.md`),
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wacz",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

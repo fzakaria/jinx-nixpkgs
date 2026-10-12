@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 9], ["hash", 31, 9]], [["url", 34, 9], ["hash", 35, 9]], [["url", 38, 9], ["hash", 39, 9]], [["x86_64-linux", 29, 7], ["aarch64-linux", 33, 7], ["aarch64-darwin", 37, 7]], [["name", 44, 9], ["runtimeInputs", 45, 9], ["text", 50, 9]], [["sources", 28, 5], ["updateScript", 42, 5]], [["description", 67, 5], ["homepage", 68, 5], ["sourceProvenance", 69, 5], ["mainProgram", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["installPhase", 19, 3], ["passthru", 27, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false, curl: false, "common-updater-scripts": false, writeShellApplication: false, gnugrep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 9], ["hash", 31, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 9], ["hash", 35, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 38, 9], ["hash", 39, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 29, 7], ["aarch64-linux", 33, 7], ["aarch64-darwin", 37, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 44, 9], ["runtimeInputs", 45, 9], ["text", 50, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["sources", 28, 5], ["updateScript", 42, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["sourceProvenance", 69, 5], ["mainProgram", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["installPhase", 19, 3], ["passthru", 27, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,33 +15,33 @@ export default nix.lambda((args) => (() => {
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const gnugrep = nix.arg($, "gnugrep");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "tideways-daemon",
       version: "1.18.10",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform for tideways-cli: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), "passthru", "sources", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp tideways-daemon $out/bin/tideways-daemon\nchmod +x $out/bin/tideways-daemon\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         sources: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://tideways.s3.amazonaws.com/daemon/${nix.sel(finalAttrs, "version")}/tideways-daemon_linux_amd64-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: "sha256-IAsmddpnmYhObcDa47W30obH60gCDOgmDI4crUu/Tro=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://tideways.s3.amazonaws.com/daemon/${nix.sel(finalAttrs, "version")}/tideways-daemon_linux_aarch64-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: "sha256-alRLgA3TQD7rxN/CiNS0a5lFD48tdnbwm3KRYk+RCeQ=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://tideways.s3.amazonaws.com/daemon/${nix.sel(finalAttrs, "version")}/tideways-daemon_macos_arm64-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: "sha256-Q/iXE350V73wH6WnWdACooN6ocUzAiV/X3CT+hN/MWY=",
             })))),
         })),
         updateScript: nix.thunk(() => nix.str`${nix.app(writeShellApplication, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "update-tideways-daemon",
             runtimeInputs: nix.thunk(() => [curl, gnugrep, common_updater_scripts]),
             text: nix.thunk(() => nix.str`NEW_VERSION=$(curl --fail -L -s https://tideways.com/profiler/downloads | grep -E 'https://tideways.s3.amazonaws.com/daemon/([0-9]+\\.[0-9]+\\.[0-9]+)/tideways-daemon_linux_amd64-\\1.tar.gz' | grep -oP 'daemon/\\K[0-9]+\\.[0-9]+\\.[0-9]+')
@@ -65,7 +58,7 @@ done
           })))}/bin/update-tideways-daemon`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Tideways Daemon",
         homepage: "https://tideways.com/",
         sourceProvenance: nix.thunk(() => (() => {

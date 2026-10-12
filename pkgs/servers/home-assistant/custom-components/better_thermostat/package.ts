@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["ignoredVersions", 26, 5]], [["updateScript", 25, 12]], [["changelog", 30, 5], ["description", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["license", 34, 5]], [["owner", 10, 3], ["domain", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dependencies", 21, 3], ["passthru", 25, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { buildHomeAssistantComponent: false, fetchFromGitHub: false, lib: false, gitUpdater: false, numpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ignoredVersions", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 25, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 30, 5], ["description", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["license", 34, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 10, 3], ["domain", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dependencies", 21, 3], ["passthru", 25, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const domain = "better_thermostat";
       const version = "1.9.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KartoffelToby",
           repo: "better_thermostat",
           tag: version,
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [numpy]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "(Alpha|Beta|alpha|beta).*" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], ignoredVersions: "(Alpha|Beta|alpha|beta).*" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/KartoffelToby/better_thermostat/releases/tag/${version}`),
         description: "Smart TRV control integrates room-temp sensors, window/door sensors, weather forecasts, and ambient probes for efficient heating and calibration, enhancing energy savings and comfort",
         homepage: "https://better-thermostat.org/",
@@ -43,7 +39,16 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
       }));
-      return { [nix.POS]: pos$5, owner, domain, version, src, dependencies, passthru, meta };
+      return {
+        [nix.POS]: $pos[4],
+        owner,
+        domain,
+        version,
+        src,
+        dependencies,
+        passthru,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

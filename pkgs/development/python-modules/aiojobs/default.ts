@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["aiohttp", 27, 5]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["optional-dependencies", 26, 3], ["nativeCheckInputs", 30, 3], ["pythonImportsCheck", 37, 3], ["disabledTests", 39, 3], ["__darwinAllowLocalNetworking", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, fetchFromGitHub: false, "pytest-aiohttp": false, "pytest-cov-stub": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aiohttp", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["optional-dependencies", 26, 3], ["nativeCheckInputs", 30, 3], ["pythonImportsCheck", 37, 3], ["disabledTests", 39, 3], ["__darwinAllowLocalNetworking", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,20 +20,20 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aio-libs",
           repo: "aiojobs",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-MgGUmDG0b0V/k+mCeiVRnBxa+ChK3URnGv6P8QP7RzQ=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, aiohttp: nix.thunk(() => [aiohttp]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], aiohttp: nix.thunk(() => [aiohttp]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pytest_aiohttp, pytest_cov_stub], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["aiojobs"]);
       const disabledTests = nix.thunk(() => ["test_scheduler_must_be_created_within_running_loop"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Jobs scheduler for managing background task (asyncio)",
         homepage: "https://github.com/aio-libs/aiojobs",
         changelog: nix.thunk(() => nix.str`https://github.com/aio-libs/aiojobs/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

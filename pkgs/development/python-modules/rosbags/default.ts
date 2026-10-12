@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 52, 3], ["checkInputs", 54, 3], ["pythonImportsCheck", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, buildPythonPackage: false, pythonAtLeast: false, setuptools: false, "setuptools-scm": false, lz4: false, numpy: false, "ruamel-yaml": false, safelz4: false, "typing-extensions": false, zstandard: false, pytestCheckHook: false, declinate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 52, 3], ["checkInputs", 54, 3], ["pythonImportsCheck", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ternaris",
           repo: "rosbags",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [declinate]);
       const pythonImportsCheck = nix.thunk(() => ["rosbags"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pure Python library to read, modify, convert, and write rosbag files",
         homepage: "https://gitlab.com/ternaris/rosbags",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ternaris/rosbags/-/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

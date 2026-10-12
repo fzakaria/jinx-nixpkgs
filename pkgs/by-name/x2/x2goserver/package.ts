@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 5], ["hash", 43, 5]], [["pname", 131, 7], ["version", 132, 28], ["src", 132, 36], ["patchPhase", 134, 7], ["makeFlags", 147, 7], ["meta", 152, 28]], [["x2go-perl", 130, 5], ["perlEnv", 155, 5]], [["description", 171, 5], ["homepage", 172, 5], ["platforms", 173, 5], ["license", 174, 5], ["maintainers", 175, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["buildInputs", 46, 3], ["nativeBuildInputs", 51, 3], ["prePatch", 53, 3], ["makeFlags", 74, 3], ["postInstall", 80, 3], ["enableParallelBuilding", 126, 3], ["passthru", 128, 3], ["meta", 170, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, perlPackages: false, makeWrapper: false, perl: false, which: false, "nx-libs": false, "util-linux": false, coreutils: false, glibc: false, gawk: false, gnused: false, gnugrep: false, findutils: false, "font-util": false, xwininfo: false, xrandr: false, xmodmap: false, xkbcomp: false, xinit: false, xauth: false, setxkbmap: false, "net-tools": false, iproute2: false, bc: false, procps: false, psmisc: false, lsof: false, pwgen: false, openssh: false, sshfs: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 131, 7], ["version", 132, 28], ["src", 132, 36], ["patchPhase", 134, 7], ["makeFlags", 147, 7], ["meta", 152, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x2go-perl", 130, 5], ["perlEnv", 155, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 171, 5], ["homepage", 172, 5], ["platforms", 173, 5], ["license", 174, 5], ["maintainers", 175, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["buildInputs", 46, 3], ["nativeBuildInputs", 51, 3], ["prePatch", 53, 3], ["makeFlags", 74, 3], ["postInstall", 80, 3], ["enableParallelBuilding", 126, 3], ["passthru", 128, 3], ["meta", 170, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const sshfs = nix.arg($, "sshfs");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "x2goserver",
       version: "4.1.0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://code.x2go.org/releases/source/x2goserver/x2goserver-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Q1vbB84iQZ2eRWDf+Kyn+utrNgkdVayrwXZCm5Ia65Y=",
         })))),
@@ -123,9 +119,9 @@ sed -i -e "s,.\\+bin/perl,#!${perl}/bin/perl -I ${nix.sel(finalAttrs, "passthru"
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "x2go-perl": nix.thunk(() => nix.app(nix.sel(perlPackages, "buildPerlPackage"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: "x2go-perl",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -149,7 +145,7 @@ sed -i -e "s,.\\+bin/perl,#!${perl}/bin/perl -I ${nix.sel(finalAttrs, "passthru"
           })())),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Remote desktop application, server component",
         homepage: "http://x2go.org/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

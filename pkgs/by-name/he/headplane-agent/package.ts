@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["CGO_ENABLED", 19, 7]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["mainProgram", 29, 5], ["platforms", 30, 5]], [["pname", 7, 3], ["__structuredAttrs", 8, 3], ["version", 9, 23], ["src", 9, 31], ["vendorHash", 11, 3], ["subPackages", 13, 3], ["ldflags", 15, 3], ["env", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { buildGoModule: false, headplane: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["mainProgram", 29, 5], ["platforms", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["__structuredAttrs", 8, 3], ["version", 9, 23], ["src", 9, 31], ["vendorHash", 11, 3], ["subPackages", 13, 3], ["ldflags", 15, 3], ["env", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const headplane = nix.arg($, "headplane");
   const lib = nix.arg($, "lib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "headplane-agent",
       __structuredAttrs: true,
       version: nix.thunk(() => nix.attr(headplane, "version")),
@@ -21,9 +19,9 @@ export default nix.lambda((args) => (() => {
       vendorHash: nix.thunk(() => nix.sel(headplane, "goVendorHash")),
       subPackages: nix.thunk(() => ["cmd/hp_agent"]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], CGO_ENABLED: 0n })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Optional sidecar process providing additional features for headplane",
         homepage: "https://github.com/tale/headplane",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

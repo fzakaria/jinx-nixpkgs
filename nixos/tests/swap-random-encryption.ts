@@ -2,72 +2,55 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/swap-random-encryption.nix", [[["systemPackages", 8, 19]], [["device", 38, 11], ["fsType", 39, 11]], [["/", 37, 9]], [["useDefaultFilesystems", 10, 22], ["rootDevice", 12, 22], ["fileSystems", 36, 22]], [["enable", 17, 11], ["device", 18, 11], ["empty", 19, 11]], [["enable", 15, 9], ["repart", 16, 9]], [["systemd", 14, 19]], [["initrd", 14, 12]], [["Type", 24, 11], ["Format", 25, 11], ["Label", 26, 11]], [["Type", 29, 11], ["Label", 30, 11], ["SizeMinBytes", 31, 11], ["SizeMaxBytes", 32, 11]], [["00-root", 23, 9], ["10-swap", 28, 9]], [["partitions", 22, 22]], [["repart", 22, 15]], [["enable", 48, 13], ["cipher", 49, 13], ["keySize", 50, 13], ["sectorSize", 51, 13]], [["device", 45, 11], ["randomEncryption", 47, 11]], [["environment", 8, 7], ["virtualisation", 10, 7], ["boot", 14, 7], ["systemd", 22, 7], ["swapDevices", 43, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 57, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/swap-random-encryption.nix", [["systemPackages", 8, 19]]);
-const pos$2 = nix.positions(here + "/swap-random-encryption.nix", [["device", 38, 11], ["fsType", 39, 11]]);
-const pos$3 = nix.positions(here + "/swap-random-encryption.nix", [["/", 37, 9]]);
-const pos$4 = nix.positions(here + "/swap-random-encryption.nix", [["useDefaultFilesystems", 10, 22], ["rootDevice", 12, 22], ["fileSystems", 36, 22]]);
-const pos$5 = nix.positions(here + "/swap-random-encryption.nix", [["enable", 17, 11], ["device", 18, 11], ["empty", 19, 11]]);
-const pos$6 = nix.positions(here + "/swap-random-encryption.nix", [["enable", 15, 9], ["repart", 16, 9]]);
-const pos$7 = nix.positions(here + "/swap-random-encryption.nix", [["systemd", 14, 19]]);
-const pos$8 = nix.positions(here + "/swap-random-encryption.nix", [["initrd", 14, 12]]);
-const pos$9 = nix.positions(here + "/swap-random-encryption.nix", [["Type", 24, 11], ["Format", 25, 11], ["Label", 26, 11]]);
-const pos$10 = nix.positions(here + "/swap-random-encryption.nix", [["Type", 29, 11], ["Label", 30, 11], ["SizeMinBytes", 31, 11], ["SizeMaxBytes", 32, 11]]);
-const pos$11 = nix.positions(here + "/swap-random-encryption.nix", [["00-root", 23, 9], ["10-swap", 28, 9]]);
-const pos$12 = nix.positions(here + "/swap-random-encryption.nix", [["partitions", 22, 22]]);
-const pos$13 = nix.positions(here + "/swap-random-encryption.nix", [["repart", 22, 15]]);
-const pos$14 = nix.positions(here + "/swap-random-encryption.nix", [["enable", 48, 13], ["cipher", 49, 13], ["keySize", 50, 13], ["sectorSize", 51, 13]]);
-const pos$15 = nix.positions(here + "/swap-random-encryption.nix", [["device", 45, 11], ["randomEncryption", 47, 11]]);
-const pos$16 = nix.positions(here + "/swap-random-encryption.nix", [["environment", 8, 7], ["virtualisation", 10, 7], ["boot", 14, 7], ["systemd", 22, 7], ["swapDevices", 43, 7]]);
-const pos$17 = nix.positions(here + "/swap-random-encryption.nix", [["machine", 5, 9]]);
-const pos$18 = nix.positions(here + "/swap-random-encryption.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "swap-random-encryption",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cryptsetup"))]),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             useDefaultFilesystems: false,
             rootDevice: "/dev/vda1",
             fileSystems: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              "/": nix.thunk(() => ({ [nix.POS]: pos$2, device: "/dev/disk/by-label/root", fsType: "ext4" })),
+              [nix.POS]: $pos[2],
+              "/": nix.thunk(() => ({ [nix.POS]: $pos[1], device: "/dev/disk/by-label/root", fsType: "ext4" })),
             })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 enable: true,
-                repart: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, device: "/dev/vda", empty: "allow" })),
+                repart: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true, device: "/dev/vda", empty: "allow" })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             repart: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               partitions: nix.thunk(() => ({
-                [nix.POS]: pos$11,
-                "00-root": nix.thunk(() => ({ [nix.POS]: pos$9, Type: "linux-generic", Format: "ext4", Label: "root" })),
+                [nix.POS]: $pos[10],
+                "00-root": nix.thunk(() => ({ [nix.POS]: $pos[8], Type: "linux-generic", Format: "ext4", Label: "root" })),
                 "10-swap": nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   Type: "linux-generic",
                   Label: "swap",
                   SizeMinBytes: "250M",
@@ -78,10 +61,10 @@ export default nix.lambda((args) => (() => {
           })),
           swapDevices: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               device: "/dev/disk/by-partlabel/swap",
               randomEncryption: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 enable: true,
                 cipher: "aes-xts-plain64",
                 keySize: 512n,

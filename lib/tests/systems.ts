@@ -2,32 +2,12 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/systems.nix", [["expr", 9, 5], ["expected", 10, 5]]);
-const pos$2 = nix.positions(here + "/systems.nix", [["testall", 43, 5], ["testarm", 61, 5], ["testarmv7", 72, 5], ["testi686", 78, 5], ["testmips", 88, 5], ["testmmix", 97, 5], ["testpower", 98, 5], ["testriscv", 106, 5], ["testriscv32", 114, 5], ["testriscv64", 119, 5], ["tests390x", 124, 5], ["testx86_64", 128, 5], ["testcygwin", 142, 5], ["testdarwin", 146, 5], ["testfreebsd", 149, 5], ["testgenode", 154, 5], ["testredox", 159, 5], ["testgnu", 160, 5], ["testillumos", 161, 5], ["testlinux", 162, 5], ["testnetbsd", 188, 5], ["testopenbsd", 201, 5], ["testwindows", 205, 5], ["testunix", 210, 5]]);
-const pos$3 = nix.positions(here + "/systems.nix", [["expr", 222, 7], ["expected", 230, 7]]);
-const pos$4 = nix.positions(here + "/systems.nix", [["expr", 233, 7], ["expected", 236, 7]]);
-const pos$5 = nix.positions(here + "/systems.nix", [["expr", 240, 7], ["expected", 241, 7]]);
-const pos$6 = nix.positions(here + "/systems.nix", [["something", 252, 15]]);
-const pos$7 = nix.positions(here + "/systems.nix", [["_withoutFunctions", 251, 13]]);
-const pos$8 = nix.positions(here + "/systems.nix", [["expr", 248, 9], ["expected", 256, 9]]);
-const pos$9 = nix.positions(here + "/systems.nix", [["config", 262, 11], ["system", 263, 11]]);
-const pos$10 = nix.positions(here + "/systems.nix", [["expr", 260, 7], ["expected", 265, 7]]);
-const pos$11 = nix.positions(here + "/systems.nix", [["config", 270, 11], ["parsed", 271, 11]]);
-const pos$12 = nix.positions(here + "/systems.nix", [["expr", 268, 7], ["expected", 273, 7]]);
-const pos$13 = nix.positions(here + "/systems.nix", [["system", 278, 11], ["parsed", 279, 11]]);
-const pos$14 = nix.positions(here + "/systems.nix", [["expr", 276, 7], ["expected", 281, 7]]);
-const pos$15 = nix.positions(here + "/systems.nix", [["useLLVM", 292, 15], ["linker", 293, 15]]);
-const pos$16 = nix.positions(here + "/systems.nix", [["expr", 284, 7], ["expected", 297, 7]]);
-const pos$17 = nix.positions(here + "/systems.nix", [["test_platforms_pass_typecheck", 216, 5], ["test_equals_example_x86_64-linux", 232, 5], ["test_toLosslessStringMaybe_example_x86_64-linux", 239, 5], ["test_toLosslessStringMaybe_fail", 243, 5], ["test_elaborate_config_over_system", 259, 5], ["test_elaborate_config_over_parsed", 267, 5], ["test_elaborate_system_over_parsed", 275, 5], ["test_equals_reelaborate_overridden_platform", 283, 5]]);
-const pos$18 = nix.positions(here + "/systems.nix", [["expr", 311, 9], ["expected", 312, 17]]);
-const pos$19 = nix.positions(here + "/systems.nix", [["test_equals_functionNames_in_sync", 304, 5]]);
-const pos$20 = nix.positions(here + "/systems.nix", [["_withoutFunctions", 330, 15]]);
-const pos$21 = nix.positions(here + "/systems.nix", [["expr", 337, 11], ["expected", 338, 11]]);
+const $pos = nix.positions(here + "/systems.nix", [[["expr", 9, 5], ["expected", 10, 5]], [["testall", 43, 5], ["testarm", 61, 5], ["testarmv7", 72, 5], ["testi686", 78, 5], ["testmips", 88, 5], ["testmmix", 97, 5], ["testpower", 98, 5], ["testriscv", 106, 5], ["testriscv32", 114, 5], ["testriscv64", 119, 5], ["tests390x", 124, 5], ["testx86_64", 128, 5], ["testcygwin", 142, 5], ["testdarwin", 146, 5], ["testfreebsd", 149, 5], ["testgenode", 154, 5], ["testredox", 159, 5], ["testgnu", 160, 5], ["testillumos", 161, 5], ["testlinux", 162, 5], ["testnetbsd", 188, 5], ["testopenbsd", 201, 5], ["testwindows", 205, 5], ["testunix", 210, 5]], [["expr", 222, 7], ["expected", 230, 7]], [["expr", 233, 7], ["expected", 236, 7]], [["expr", 240, 7], ["expected", 241, 7]], [["something", 252, 15]], [["_withoutFunctions", 251, 13]], [["expr", 248, 9], ["expected", 256, 9]], [["config", 262, 11], ["system", 263, 11]], [["expr", 260, 7], ["expected", 265, 7]], [["config", 270, 11], ["parsed", 271, 11]], [["expr", 268, 7], ["expected", 273, 7]], [["system", 278, 11], ["parsed", 279, 11]], [["expr", 276, 7], ["expected", 281, 7]], [["useLLVM", 292, 15], ["linker", 293, 15]], [["expr", 284, 7], ["expected", 297, 7]], [["test_platforms_pass_typecheck", 216, 5], ["test_equals_example_x86_64-linux", 232, 5], ["test_toLosslessStringMaybe_example_x86_64-linux", 239, 5], ["test_toLosslessStringMaybe_fail", 243, 5], ["test_elaborate_config_over_system", 259, 5], ["test_elaborate_config_over_parsed", 267, 5], ["test_elaborate_system_over_parsed", 275, 5], ["test_equals_reelaborate_overridden_platform", 283, 5]], [["expr", 311, 9], ["expected", 312, 17]], [["test_equals_functionNames_in_sync", 304, 5]], [["_withoutFunctions", 330, 15]], [["expr", 337, 11], ["expected", 338, 11]]]);
 
 export default nix.thunk(() => (() => {
   const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../default.nix")));
   const mseteq = (x) => (y) => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     expr: nix.thunk(() => nix.app(nix.sel(lib, "sort"), nix.thunk(() => nix.sel(lib, "lessThan")), x)),
     expected: nix.thunk(() => nix.app(nix.sel(lib, "sort"), nix.thunk(() => nix.sel(lib, "lessThan")), y)),
   });
@@ -35,7 +15,7 @@ export default nix.thunk(() => (() => {
   return nix.app(nix.sel(lib, "runTests"), nix.thunk(() => nix.update((() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "systems", "doubles")), null);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         testall: nix.thunk(() => nix.app(mseteq, nix.thunk(() => nix.lookup(w, "all")), nix.thunk(() => nix.concat(nix.lookup(w, "linux"), nix.concat(nix.lookup(w, "darwin"), nix.concat(nix.lookup(w, "freebsd"), nix.concat(nix.lookup(w, "openbsd"), nix.concat(nix.lookup(w, "netbsd"), nix.concat(nix.lookup(w, "illumos"), nix.concat(nix.lookup(w, "wasi"), nix.concat(nix.lookup(w, "windows"), nix.concat(nix.lookup(w, "cygwin"), nix.concat(nix.lookup(w, "embedded"), nix.concat(nix.lookup(w, "mmix"), nix.concat(nix.lookup(w, "js"), nix.concat(nix.lookup(w, "genode"), nix.concat(nix.lookup(w, "redox"), nix.lookup(w, "uefi")))))))))))))))))),
         testarm: nix.thunk(() => nix.app(mseteq, nix.thunk(() => nix.lookup(w, "arm")), nix.thunk(() => [
             "armv5tel-linux",
@@ -152,9 +132,9 @@ export default nix.thunk(() => (() => {
         testunix: nix.thunk(() => nix.app(mseteq, nix.thunk(() => nix.lookup(w, "unix")), nix.thunk(() => nix.concat(nix.lookup(w, "linux"), nix.concat(nix.lookup(w, "darwin"), nix.concat(nix.lookup(w, "freebsd"), nix.concat(nix.lookup(w, "openbsd"), nix.concat(nix.lookup(w, "netbsd"), nix.concat(nix.lookup(w, "illumos"), nix.concat(nix.lookup(w, "cygwin"), nix.lookup(w, "redox"))))))))))),
       };
     })(), nix.update({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       test_platforms_pass_typecheck: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         expr: nix.thunk(() => nix.builtins.filter((system) => (() => {
             const evalResult = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(lib, "systems", "parse", "mkSystemFromString"), system))));
             return nix.eq(nix.sel(evalResult, "success"), false);
@@ -162,65 +142,65 @@ export default nix.thunk(() => (() => {
         expected: [],
       })),
       "test_equals_example_x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         expr: nix.thunk(() => nix.app(nix.sel(lib, "systems", "equals"), nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), "x86_64-linux")), nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), "x86_64-linux")))),
         expected: true,
       })),
       "test_toLosslessStringMaybe_example_x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         expr: nix.thunk(() => nix.app(toLosslessStringMaybe, nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), "x86_64-linux")))),
         expected: "x86_64-linux",
       })),
       test_toLosslessStringMaybe_fail: nix.thunk(() => (() => {
         const baseSystem = nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), "x86_64-linux"));
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           expr: nix.thunk(() => nix.app(toLosslessStringMaybe, nix.thunk(() => nix.update(baseSystem, {
-              [nix.POS]: pos$7,
-              _withoutFunctions: nix.thunk(() => nix.update(nix.sel(baseSystem, "_withoutFunctions"), { [nix.POS]: pos$6, something: "extra" })),
+              [nix.POS]: $pos[6],
+              _withoutFunctions: nix.thunk(() => nix.update(nix.sel(baseSystem, "_withoutFunctions"), { [nix.POS]: $pos[5], something: "extra" })),
             })))),
           expected: null,
         };
       })()),
       test_elaborate_config_over_system: nix.thunk(() => ({
-        [nix.POS]: pos$10,
-        expr: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => ({ [nix.POS]: pos$9, config: "i686-unknown-linux-gnu", system: "x86_64-linux" }))), "system")),
+        [nix.POS]: $pos[9],
+        expr: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => ({ [nix.POS]: $pos[8], config: "i686-unknown-linux-gnu", system: "x86_64-linux" }))), "system")),
         expected: "i686-linux",
       })),
       test_elaborate_config_over_parsed: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         expr: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             config: "i686-unknown-linux-gnu",
             parsed: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "systems", "elaborate"), "x86_64-linux"), "parsed")),
           }))), "parsed", "cpu", "arch")),
         expected: "i686",
       })),
       test_elaborate_system_over_parsed: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         expr: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             system: "i686-linux",
             parsed: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "systems", "elaborate"), "x86_64-linux"), "parsed")),
           }))), "parsed", "cpu", "arch")),
         expected: "i686",
       })),
       test_equals_reelaborate_overridden_platform: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         expr: nix.thunk(() => (() => {
           const base = nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), "x86_64-linux"));
-          return nix.app(nix.sel(lib, "systems", "equals"), base, nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => nix.update(base, { [nix.POS]: pos$15, useLLVM: true, linker: "lld" })))));
+          return nix.app(nix.sel(lib, "systems", "equals"), base, nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => nix.update(base, { [nix.POS]: $pos[14], useLLVM: true, linker: "lld" })))));
         })()),
         expected: false,
       })),
     }, nix.update({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       test_equals_functionNames_in_sync: nix.thunk(() => (() => {
         const sys = nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), "x86_64-linux"));
         const actual = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (n) => nix.builtins.isFunction(nix.thunk(() => nix.sel(sys, nix.key(nix.force(n))))), nix.thunk(() => nix.builtins.attrNames(sys))));
         const expected = nix.thunk(() => nix.app(nix.sel(lib, "sort"), nix.thunk(() => nix.sel(lib, "lessThan")), nix.thunk(() => nix.sel(lib, "systems", "functionNames"))));
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           expr: nix.thunk(() => nix.app(nix.sel(lib, "sort"), nix.thunk(() => nix.sel(lib, "lessThan")), actual)),
           expected: expected,
         };
@@ -232,13 +212,13 @@ export default nix.thunk(() => (() => {
             const modified = nix.thunk(() => (() => {
               nix.assert_(!nix.eq(origValue, arbitraryValue), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/systems.nix:327:13");
               return nix.update(baseSystem, {
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 _withoutFunctions: nix.thunk(() => nix.update(nix.sel(baseSystem, "_withoutFunctions"), nix.attrsDyn({}, [[nix.force(platformAttrName), arbitraryValue]]))),
               });
             })());
             const arbitraryValue = (x) => "<<modified>>";
             return {
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               expr: nix.thunk(() => nix.app(nix.sel(lib, "systems", "equals"), baseSystem, modified)),
               expected: false,
             };

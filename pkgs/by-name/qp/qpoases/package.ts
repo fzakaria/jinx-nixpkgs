@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["extraArgs", 40, 5]], [["updateScript", 39, 12]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["nativeBuildInputs", 33, 3], ["cmakeFlags", 35, 3], ["passthru", 39, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "nix-update-script": false, cmake: false, withShared: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 39, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["nativeBuildInputs", 33, 3], ["cmakeFlags", 35, 3], ["passthru", 39, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const withShared = nix.argOr($, "withShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "qpoases",
       version: "3.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coin-or",
           repo: "qpOASES",
           tag: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "qpoases-fix-cmake-4.patch",
             url: "https://github.com/coin-or/qpOASES/commit/35b762ba3fee2e009d9e99650c68514da05585c5.patch",
             hash: "sha256-I6l+ah1j45VEMokZqX6DYVmE55uWlVi0rx2B+HQv5Ik=",
@@ -43,14 +38,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_SHARED_LIBS", withShared)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "releases/(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open-source C++ implementation of the recently proposed online active set strategy",
         homepage: "https://github.com/coin-or/qpOASES",
         changelog: nix.thunk(() => nix.str`https://github.com/coin-or/qpOASES/blob/${nix.sel(finalAttrs, "src", "tag")}/VERSIONS.txt`),

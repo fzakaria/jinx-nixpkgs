@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pkg", 12, 5], ["version", 13, 13], ["sha256", 14, 5]], [["description", 18, 5], ["license", 19, 5], ["homepage", 20, 5]], [["name", 8, 3], ["version", 9, 3], ["src", 11, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, buildRebar3: false, fetchHex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pkg", 12, 5], ["version", 13, 13], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 18, 5], ["license", 19, 5], ["homepage", 20, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 8, 3], ["version", 9, 3], ["src", 11, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +14,18 @@ export default nix.lambda((args) => (() => {
       const name = "rebar3_proper";
       const version = "0.12.1";
       const src = nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pkg: name,
           version: version,
           sha256: "1f174fb6h2071wr7qbw9aqqvnglzsjlylmyi8215fhrmi38w94b6",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "rebar3 proper plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/ferd/rebar3_proper",
       }));
-      return { [nix.POS]: pos$3, name, version, src, meta };
+      return { [nix.POS]: $pos[2], name, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

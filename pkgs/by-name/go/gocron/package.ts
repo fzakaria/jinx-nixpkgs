@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 28, 5], ["src", 29, 5], ["version", 30, 26], ["npmDepsHash", 32, 5], ["dontNpmInstall", 34, 5], ["preBuild", 36, 5], ["postBuild", 40, 5]], [["extraArgs", 80, 5]], [["updateScript", 79, 12], ["tests", 85, 12]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["mainProgram", 91, 5], ["maintainers", 92, 5]], [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["gocron-web", 27, 3], ["vendorHash", 46, 3], ["postPatch", 48, 3], ["ldflags", 58, 3], ["nativeBuildInputs", 64, 3], ["postInstall", 68, 3], ["nativeInstallCheckInputs", 76, 3], ["doInstallCheck", 77, 3], ["passthru", 79, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, nodejs: false, buildNpmPackage: false, buildGo127Module: false, makeWrapper: false, bash: false, versionCheckHook: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 5], ["src", 29, 5], ["version", 30, 26], ["npmDepsHash", 32, 5], ["dontNpmInstall", 34, 5], ["preBuild", 36, 5], ["postBuild", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 79, 12], ["tests", 85, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["mainProgram", 91, 5], ["maintainers", 92, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["gocron-web", 27, 3], ["vendorHash", 46, 3], ["postPatch", 48, 3], ["ldflags", 58, 3], ["nativeBuildInputs", 64, 3], ["postInstall", 68, 3], ["nativeInstallCheckInputs", 76, 3], ["doInstallCheck", 77, 3], ["passthru", 79, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gocron",
       version: "0.11.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flohoss",
           repo: "gocron",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-NyL//yrKqYiwwQBdJHwQcPvjKssX4o9XrymI/6Hvbhc=",
         })))),
       "gocron-web": nix.thunk(() => nix.app(buildNpmPackage, (finalAttrsWebassets) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-web`),
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/web`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -64,12 +59,15 @@ substituteInPlace main.go \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "gocron-web"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
+            [nix.POS]: $pos[2],
+            extraArgs: nix.thunk(() => ["--subpackage", "gocron-web"]),
+          })))),
         tests: nix.thunk(() => nix.sel(nixosTests, "gocron")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Task scheduler built with Go and Vue.js.",
         homepage: "https://github.com/flohoss/gocron",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["restic", 47, 5]], [["tests", 46, 12]], [["homepage", 74, 5], ["changelog", 75, 5], ["description", 76, 5], ["platforms", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 85, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["vendorHash", 31, 3], ["subPackages", 33, 3], ["nativeBuildInputs", 35, 3], ["nativeCheckInputs", 40, 3], ["doInstallCheck", 42, 3], ["nativeInstallCheckInputs", 43, 3], ["versionCheckProgramArg", 44, 3], ["passthru", 46, 3], ["postPatch", 50, 3], ["postInstall", 54, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, makeBinaryWrapper: false, versionCheckHook: false, nixosTests: false, openssh: false, rclone: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["restic", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 46, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["changelog", 75, 5], ["description", 76, 5], ["platforms", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["vendorHash", 31, 3], ["subPackages", 33, 3], ["nativeBuildInputs", 35, 3], ["nativeCheckInputs", 40, 3], ["doInstallCheck", 42, 3], ["nativeInstallCheckInputs", 43, 3], ["versionCheckProgramArg", 44, 3], ["passthru", 46, 3], ["postPatch", 50, 3], ["postInstall", 54, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const rclone = nix.arg($, "rclone");
   const python3 = nix.arg($, "python3");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "restic",
       version: "0.19.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "restic",
           repo: "restic",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,15 +38,15 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$2, restic: nix.thunk(() => nix.sel(nixosTests, "restic")) })))),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: $pos[1], restic: nix.thunk(() => nix.sel(nixosTests, "restic")) })))),
       })),
       postPatch: "rm cmd/restic/cmd_mount_integration_test.go\n",
       postInstall: nix.thunk(() => nix.add(nix.str`wrapProgram $out/bin/restic \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssh, rclone]))}"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "$out/bin/restic generate \\\n  --bash-completion restic.bash \\\n  --fish-completion restic.fish \\\n  --zsh-completion restic.zsh \\\n  --man .\ninstallShellCompletion restic.{bash,fish,zsh}\ninstallManPage *.1\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://restic.net",
         changelog: nix.thunk(() => nix.str`https://github.com/restic/restic/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Backup program that is fast, efficient and secure",

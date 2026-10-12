@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["pname", 35, 26], ["version", 35, 32], ["src", 35, 40], ["pnpm", 36, 13], ["fetcherVersion", 37, 5], ["hash", 38, 5]], [["pname", 42, 26], ["version", 42, 32], ["src", 42, 40], ["hash", 43, 5]], [["updateScript", 125, 12]], [["changelog", 128, 5], ["description", 129, 5], ["homepage", 130, 5], ["mainProgram", 131, 5], ["maintainers", 132, 5], ["license", 133, 5], ["platforms", 134, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["pnpmDeps", 34, 3], ["cargoDeps", 41, 3], ["buildInputs", 46, 3], ["nativeBuildInputs", 48, 3], ["patchPhase", 60, 3], ["preBuild", 68, 3], ["buildPhase", 80, 3], ["installPhase", 91, 3], ["postInstall", 119, 3], ["passthru", 125, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, makeWrapper: false, "matrix-sdk-crypto-nodejs": false, pnpmConfigHook: false, cargo: false, pnpm_11: false, rustPlatform: false, rustc: false, "napi-rs-cli": false, "pkg-config": false, nodejs: false, openssl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 26], ["version", 35, 32], ["src", 35, 40], ["pnpm", 36, 13], ["fetcherVersion", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 42, 26], ["version", 42, 32], ["src", 42, 40], ["hash", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 125, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 128, 5], ["description", 129, 5], ["homepage", 130, 5], ["mainProgram", 131, 5], ["maintainers", 132, 5], ["license", 133, 5], ["platforms", 134, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["pnpmDeps", 34, 3], ["cargoDeps", 41, 3], ["buildInputs", 46, 3], ["nativeBuildInputs", 48, 3], ["patchPhase", 60, 3], ["preBuild", 68, 3], ["buildPhase", 80, 3], ["installPhase", 91, 3], ["postInstall", 119, 3], ["passthru", 125, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "matrix-hookshot",
       version: "7.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matrix-org",
           repo: "matrix-hookshot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-X6A1+AuJyBQJGs8NteGuhUVRt6MISlb4ZtNGcAvPLdk=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-XQfSMtV4ERo0chry9qPnc3jeOiRDUuV1QfOFUVbNlF8=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -119,11 +114,11 @@ runHook postInstall
   --add-flags "$out/lib/node_modules/.pnpm/matrix-hookshot/App/BridgeApp.js"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/matrix-org/matrix-hookshot/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Bridge between Matrix and multiple project management services, such as GitHub, GitLab and JIRA",
         homepage: "https://matrix-org.github.io/matrix-hookshot/",

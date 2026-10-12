@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 22, 11], ["postPatch", 24, 3], ["buildInputs", 28, 3], ["makeFlags", 34, 3], ["installFlags", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, xorgproto: false, libx11: false, libxft: false, customConfig: true, patches: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 22, 11], ["postPatch", 24, 3], ["buildInputs", 28, 3], ["makeFlags", 34, 3], ["installFlags", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const customConfig = nix.argOr($, "customConfig", () => null);
   const patches = nix.argOr($, "patches", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tabbed",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.suckless.org/tabbed",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-IpFbkyNNzMtESjpQNFOUdE6Tl+ezJN85T71Cm7bqljo=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["CC:=$(CC)"]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://tools.suckless.org/tabbed",
         description: "Simple generic tabbed fronted to xembed aware applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

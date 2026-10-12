@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 42, 5], ["version", 43, 13], ["hash", 44, 5]], [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["teams", 109, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["postPatch", 47, 3], ["build-system", 60, 3], ["dependencies", 65, 3], ["nativeCheckInputs", 76, 3], ["checkPhase", 92, 3], ["pythonImportsCheck", 103, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pbr: false, setuptools: false, debtcollector: false, iso8601: false, netaddr: false, "oslo-i18n": false, packaging: false, psutil: false, pyparsing: false, pytz: false, ddt: false, eventlet: false, fixtures: false, "iana-etc": false, libredirect: false, "libxcrypt-legacy": false, oslotest: false, pyyaml: false, "qemu-utils": false, stdenv: false, stestr: false, testscenarios: false, tzdata: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 42, 5], ["version", 43, 13], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["teams", 109, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["postPatch", 47, 3], ["build-system", 60, 3], ["dependencies", 65, 3], ["nativeCheckInputs", 76, 3], ["checkPhase", 92, 3], ["pythonImportsCheck", 103, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "10.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "oslo_utils",
           version: version,
           hash: "sha256-Ib/Cm7TBzZr7TvdB+445Ro+lSF5gcX9PkPOtPc6KHyI=",
@@ -89,14 +87,14 @@ stestr run -e <(echo "
 `);
       const pythonImportsCheck = nix.thunk(() => ["oslo_utils"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Oslo Utility library",
         homepage: "https://github.com/openstack/oslo.utils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

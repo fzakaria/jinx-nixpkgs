@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["updateScript", 42, 12]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["ldflags", 26, 3], ["nativeBuildInputs", 32, 3], ["postFixup", 34, 3], ["doInstallCheck", 38, 3], ["nativeInstallCheckInputs", 39, 3], ["versionCheckProgramArg", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, makeWrapper: false, "nix-update-script": false, versionCheckHook: false, "wl-mirror": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 42, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["ldflags", 26, 3], ["nativeBuildInputs", 32, 3], ["postFixup", 34, 3], ["doInstallCheck", 38, 3], ["nativeInstallCheckInputs", 39, 3], ["versionCheckProgramArg", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const wl_mirror = nix.arg($, "wl-mirror");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nirimon",
       version: "2026.819.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stepbrobd",
           repo: "nirimon",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "TUI monitor configuration tool for niri with visual layout, drag-and-drop, and profile management",
         homepage: "https://github.com/stepbrobd/nirimon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcasper.nix", [[["path", 8, 3], ["extraPaths", 9, 3], ["buildInputs", 13, 3], ["MK_TESTS", 15, 3], ["makeFlags", 17, 3], ["postInstall", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false, libnv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcasper.nix", [["path", 8, 3], ["extraPaths", 9, 3], ["buildInputs", 13, 3], ["MK_TESTS", 15, 3], ["makeFlags", 17, 3], ["postInstall", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libnv = nix.arg($, "libnv");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "lib/libcasper/libcasper",
       extraPaths: nix.thunk(() => ["lib/Makefile.inc", "lib/libcasper"]),
       buildInputs: nix.thunk(() => [libnv]),

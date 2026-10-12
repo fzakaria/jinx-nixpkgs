@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["CFLAGS", 37, 7]], [["run-an-example", 63, 18]], [["tests", 63, 12]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["env", 37, 3], ["strictDeps", 40, 3], ["enableParallelBuilding", 42, 3], ["preAutoreconf", 44, 3], ["postAutoreconf", 48, 3], ["doCheck", 53, 3], ["postInstall", 58, 3], ["passthru", 63, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, makeWrapper: false, fftw: false, lapack: false, openblas: false, runCommandLocal: false, raspa: false, "raspa-data": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["run-an-example", 63, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 63, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["env", 37, 3], ["strictDeps", 40, 3], ["enableParallelBuilding", 42, 3], ["preAutoreconf", 44, 3], ["postAutoreconf", 48, 3], ["doCheck", 53, 3], ["postInstall", 58, 3], ["passthru", 63, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const raspa = nix.arg($, "raspa");
   const raspa_data = nix.arg($, "raspa-data");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "raspa",
       version: "2.0.47",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iRASPA",
           repo: "RASPA2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, makeWrapper]),
       buildInputs: nix.thunk(() => [fftw, lapack, openblas]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CFLAGS: "-std=gnu17" })),
       strictDeps: true,
       enableParallelBuilding: true,
       preAutoreconf: "mkdir \"m4\"\n",
@@ -44,9 +39,9 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postInstall: "wrapProgram \"$out/bin/simulate\" \\\n  --set RASPA_DIR \"$out\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "run-an-example": nix.thunk(() => nix.app(runCommandLocal, "raspa-test-run-an-example", nix.thunk(() => ({})), nix.thunk(() => nix.str`set -eu -o pipefail
 exampleDir="${raspa_data}/share/raspa/examples/Basic/1_MC_Methane_in_Box"
 exampleDirWritable="$(basename "$exampleDir")"
@@ -59,7 +54,7 @@ touch "$out"
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "General purpose classical molecular simulation package",
         homepage: "https://iraspa.org/raspa/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

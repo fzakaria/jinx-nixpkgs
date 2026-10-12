@@ -2,45 +2,12 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/radicle.nix", [[["text", 27, 35]], [["gitconfig", 27, 23]], [["systemPackages", 21, 19], ["etc", 27, 19]], [["extraHosts", 35, 9]], [["certificateFiles", 39, 20]], [["pki", 39, 16]], [["environment", 21, 7], ["networking", 34, 7], ["security", 39, 7]], [["default", 56, 13]], [["alias", 53, 19], ["relay", 54, 11], ["seedingPolicy", 55, 11]], [["preferredSeeds", 49, 9], ["node", 52, 9]], [["maintainers", 66, 8]], [["source", 75, 37]], [["dev.radicle.node.secret", 75, 11]], [["credentials", 74, 24]], [["openFirewall", 82, 13]], [["serverName", 87, 15], ["addSSL", 88, 15], ["sslCertificate", 89, 15], ["sslCertificateKey", 90, 15]], [["enable", 85, 13], ["nginx", 86, 13]], [["default", 98, 17], ["scope", 99, 17]], [["relay", 96, 15], ["seedingPolicy", 97, 15]], [["preferredSeeds", 94, 13], ["node", 95, 13]], [["enable", 79, 11], ["publicKey", 80, 11], ["node", 81, 11], ["httpd", 84, 11], ["settings", 93, 11]], [["enable", 106, 11]], [["radicle", 78, 18], ["nginx", 105, 18]], [["allowedTCPPorts", 109, 29]], [["firewall", 109, 20]], [["imports", 72, 9], ["virtualisation", 74, 9], ["services", 78, 9], ["networking", 109, 9]], [["imports", 113, 7]], [["imports", 117, 7]], [["seed", 69, 5], ["alice", 112, 5], ["bob", 116, 5]], [["enable", 121, 27]], [["graphics", 122, 39]], [["virtualisation", 122, 24]], [["sshBackdoor", 121, 15], ["defaults", 122, 15]], [["name", 64, 3], ["meta", 66, 3], ["nodes", 68, 3], ["interactive", 121, 3], ["testScript", 124, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { nodes: false, config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/radicle.nix", [["text", 27, 35]]);
-const pos$2 = nix.positions(here + "/radicle.nix", [["gitconfig", 27, 23]]);
-const pos$3 = nix.positions(here + "/radicle.nix", [["systemPackages", 21, 19], ["etc", 27, 19]]);
-const pos$4 = nix.positions(here + "/radicle.nix", [["extraHosts", 35, 9]]);
-const pos$5 = nix.positions(here + "/radicle.nix", [["certificateFiles", 39, 20]]);
-const pos$6 = nix.positions(here + "/radicle.nix", [["pki", 39, 16]]);
-const pos$7 = nix.positions(here + "/radicle.nix", [["environment", 21, 7], ["networking", 34, 7], ["security", 39, 7]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/radicle.nix", [["default", 56, 13]]);
-const pos$9 = nix.positions(here + "/radicle.nix", [["alias", 53, 19], ["relay", 54, 11], ["seedingPolicy", 55, 11]]);
-const pos$10 = nix.positions(here + "/radicle.nix", [["preferredSeeds", 49, 9], ["node", 52, 9]]);
-const pos$11 = nix.positions(here + "/radicle.nix", [["maintainers", 66, 8]]);
 const formals$4 = { args: { pkgs: false, config: false }, ellipsis: true };
-const pos$12 = nix.positions(here + "/radicle.nix", [["source", 75, 37]]);
-const pos$13 = nix.positions(here + "/radicle.nix", [["dev.radicle.node.secret", 75, 11]]);
-const pos$14 = nix.positions(here + "/radicle.nix", [["credentials", 74, 24]]);
-const pos$15 = nix.positions(here + "/radicle.nix", [["openFirewall", 82, 13]]);
-const pos$16 = nix.positions(here + "/radicle.nix", [["serverName", 87, 15], ["addSSL", 88, 15], ["sslCertificate", 89, 15], ["sslCertificateKey", 90, 15]]);
-const pos$17 = nix.positions(here + "/radicle.nix", [["enable", 85, 13], ["nginx", 86, 13]]);
-const pos$18 = nix.positions(here + "/radicle.nix", [["default", 98, 17], ["scope", 99, 17]]);
-const pos$19 = nix.positions(here + "/radicle.nix", [["relay", 96, 15], ["seedingPolicy", 97, 15]]);
-const pos$20 = nix.positions(here + "/radicle.nix", [["preferredSeeds", 94, 13], ["node", 95, 13]]);
-const pos$21 = nix.positions(here + "/radicle.nix", [["enable", 79, 11], ["publicKey", 80, 11], ["node", 81, 11], ["httpd", 84, 11], ["settings", 93, 11]]);
-const pos$22 = nix.positions(here + "/radicle.nix", [["enable", 106, 11]]);
-const pos$23 = nix.positions(here + "/radicle.nix", [["radicle", 78, 18], ["nginx", 105, 18]]);
-const pos$24 = nix.positions(here + "/radicle.nix", [["allowedTCPPorts", 109, 29]]);
-const pos$25 = nix.positions(here + "/radicle.nix", [["firewall", 109, 20]]);
-const pos$26 = nix.positions(here + "/radicle.nix", [["imports", 72, 9], ["virtualisation", 74, 9], ["services", 78, 9], ["networking", 109, 9]]);
-const pos$27 = nix.positions(here + "/radicle.nix", [["imports", 113, 7]]);
-const pos$28 = nix.positions(here + "/radicle.nix", [["imports", 117, 7]]);
-const pos$29 = nix.positions(here + "/radicle.nix", [["seed", 69, 5], ["alice", 112, 5], ["bob", 116, 5]]);
-const pos$30 = nix.positions(here + "/radicle.nix", [["enable", 121, 27]]);
-const pos$31 = nix.positions(here + "/radicle.nix", [["graphics", 122, 39]]);
-const pos$32 = nix.positions(here + "/radicle.nix", [["virtualisation", 122, 24]]);
-const pos$33 = nix.positions(here + "/radicle.nix", [["sshBackdoor", 121, 15], ["defaults", 122, 15]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$34 = nix.positions(here + "/radicle.nix", [["name", 64, 3], ["meta", 66, 3], ["nodes", 68, 3], ["interactive", 121, 3], ["testScript", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,9 +22,9 @@ export default nix.lambda((args) => (() => {
     const config = nix.arg($_1, "config");
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         systemPackages: nix.thunk(() => [
           nix.thunk(() => nix.sel(config, "services", "radicle", "package")),
           nix.thunk(() => nix.sel(pkgs_1, "curl")),
@@ -65,9 +32,9 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(pkgs_1, "jq")),
         ]),
         etc: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           gitconfig: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             text: nix.thunk(() => nix.str`[init]
   defaultBranch = main
 [user]
@@ -78,14 +45,14 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "seed", "networking", "primaryIPAddress")} ${nix.sel(nodes, "seed", "services", "radicle", "httpd", "nginx", "serverName")}
 `),
       })),
       security: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pki: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(seed_tls_certs, "ca", "cert"))]),
         })),
       })),
@@ -95,56 +62,56 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     const nodes = nix.arg($_1, "nodes");
     return (alias) => nix.app(nix.sel(pkgs, "writeText"), "config.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           preferredSeeds: nix.thunk(() => [
             nix.thunk(() => nix.str`${seed_nid}@seed:${nix.builtins.toString(nix.thunk(() => nix.sel(nodes, "seed", "services", "radicle", "node", "listenPort")))}`),
           ]),
           node: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             alias: alias,
             relay: "never",
-            seedingPolicy: nix.thunk(() => ({ [nix.POS]: pos$8, default: "block" })),
+            seedingPolicy: nix.thunk(() => ({ [nix.POS]: $pos[7], default: "block" })),
           })),
         })))));
   })(), formals$3);
   return {
-    [nix.POS]: pos$34,
+    [nix.POS]: $pos[33],
     name: "radicle",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "radicle", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       seed: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           imports: nix.thunk(() => [commonHostConfig]),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             credentials: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               "dev.radicle.node.secret": nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 source: nix.thunk(() => nix.str`${nix.sel(seed_ssh_keys, "snakeOilEd25519PrivateKey")}`),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             radicle: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               enable: true,
               publicKey: nix.thunk(() => nix.sel(seed_ssh_keys, "snakeOilEd25519PublicKey")),
-              node: nix.thunk(() => ({ [nix.POS]: pos$15, openFirewall: true })),
+              node: nix.thunk(() => ({ [nix.POS]: $pos[14], openFirewall: true })),
               httpd: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 enable: true,
                 nginx: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   serverName: nix.thunk(() => nix.sel(seed_tls_certs, "domain")),
                   addSSL: true,
                   sslCertificate: nix.thunk(() => nix.sel(seed_tls_certs, nix.key(nix.sel(seed_tls_certs, "domain")), "cert")),
@@ -152,32 +119,32 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 preferredSeeds: [],
                 node: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   relay: "always",
-                  seedingPolicy: nix.thunk(() => ({ [nix.POS]: pos$18, default: "allow", scope: "all" })),
+                  seedingPolicy: nix.thunk(() => ({ [nix.POS]: $pos[17], default: "allow", scope: "all" })),
                 })),
               })),
             })),
-            nginx: nix.thunk(() => ({ [nix.POS]: pos$22, enable: true })),
+            nginx: nix.thunk(() => ({ [nix.POS]: $pos[21], enable: true })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$25,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$24, allowedTCPPorts: nix.thunk(() => [443n]) })),
+            [nix.POS]: $pos[24],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[23], allowedTCPPorts: nix.thunk(() => [443n]) })),
           })),
         };
       })(), formals$4),
-      alice: nix.thunk(() => ({ [nix.POS]: pos$27, imports: nix.thunk(() => [commonHostConfig]) })),
-      bob: nix.thunk(() => ({ [nix.POS]: pos$28, imports: nix.thunk(() => [commonHostConfig]) })),
+      alice: nix.thunk(() => ({ [nix.POS]: $pos[26], imports: nix.thunk(() => [commonHostConfig]) })),
+      bob: nix.thunk(() => ({ [nix.POS]: $pos[27], imports: nix.thunk(() => [commonHostConfig]) })),
     })),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$33,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$30, enable: true })),
+      [nix.POS]: $pos[32],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[29], enable: true })),
       defaults: nix.thunk(() => ({
-        [nix.POS]: pos$32,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$31, graphics: false })),
+        [nix.POS]: $pos[31],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[30], graphics: false })),
       })),
     })),
     testScript: nix.lambda((args_1) => (() => {

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 66, 5], ["homepage", 67, 5], ["downloadPage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["buildInputs", 28, 3], ["makeFlags", 37, 3], ["buildFlags", 50, 3], ["installPhase", 52, 3], ["nativeInstallCheckInputs", 60, 3], ["doInstallCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, blas: false, lapack: false, zlib: false, zstd: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["downloadPage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["buildInputs", 28, 3], ["makeFlags", 37, 3], ["buildFlags", 50, 3], ["installPhase", 52, 3], ["nativeInstallCheckInputs", 60, 3], ["doInstallCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "plink2",
       version: "2.0.0-a.7.9",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chrchang",
           repo: "plink-ng",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Whole genome association analysis toolset",
         homepage: "https://www.cog-genomics.org/plink/2.0/",
         downloadPage: "https://github.com/chrchang/plink-ng",

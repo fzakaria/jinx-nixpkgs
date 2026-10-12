@@ -2,25 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/keeper.nix", [[["maintainers", 9, 8]], [["text", 19, 52]], [["text", 38, 51]], [["text", 83, 51]], [["text", 89, 51]], [["clickhouse-server/config.d/cluster.xml", 19, 11], ["clickhouse-server/config.d/keeper.xml", 38, 11], ["clickhouse-server/config.d/listen.xml", 83, 11], ["clickhouse-server/config.d/macros.xml", 89, 11]], [["etc", 18, 21]], [["allowedTCPPorts", 99, 29]], [["firewall", 99, 20]], [["enable", 106, 11], ["package", 107, 19]], [["clickhouse", 105, 18]], [["after", 111, 11], ["requires", 112, 11]], [["clickhouse", 110, 26]], [["services", 110, 17]], [["memorySize", 115, 24], ["diskSize", 116, 24]], [["environment", 18, 9], ["networking", 99, 9], ["services", 105, 9], ["systemd", 110, 9], ["virtualisation", 115, 9]], [["clickhouse1", 120, 7], ["clickhouse2", 121, 7]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 14, 3], ["testScript", 124, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, package: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/keeper.nix", [["maintainers", 9, 8]]);
-const pos$2 = nix.positions(here + "/keeper.nix", [["text", 19, 52]]);
-const pos$3 = nix.positions(here + "/keeper.nix", [["text", 38, 51]]);
-const pos$4 = nix.positions(here + "/keeper.nix", [["text", 83, 51]]);
-const pos$5 = nix.positions(here + "/keeper.nix", [["text", 89, 51]]);
-const pos$6 = nix.positions(here + "/keeper.nix", [["clickhouse-server/config.d/cluster.xml", 19, 11], ["clickhouse-server/config.d/keeper.xml", 38, 11], ["clickhouse-server/config.d/listen.xml", 83, 11], ["clickhouse-server/config.d/macros.xml", 89, 11]]);
-const pos$7 = nix.positions(here + "/keeper.nix", [["etc", 18, 21]]);
-const pos$8 = nix.positions(here + "/keeper.nix", [["allowedTCPPorts", 99, 29]]);
-const pos$9 = nix.positions(here + "/keeper.nix", [["firewall", 99, 20]]);
-const pos$10 = nix.positions(here + "/keeper.nix", [["enable", 106, 11], ["package", 107, 19]]);
-const pos$11 = nix.positions(here + "/keeper.nix", [["clickhouse", 105, 18]]);
-const pos$12 = nix.positions(here + "/keeper.nix", [["after", 111, 11], ["requires", 112, 11]]);
-const pos$13 = nix.positions(here + "/keeper.nix", [["clickhouse", 110, 26]]);
-const pos$14 = nix.positions(here + "/keeper.nix", [["services", 110, 17]]);
-const pos$15 = nix.positions(here + "/keeper.nix", [["memorySize", 115, 24], ["diskSize", 116, 24]]);
-const pos$16 = nix.positions(here + "/keeper.nix", [["environment", 18, 9], ["networking", 99, 9], ["services", 105, 9], ["systemd", 110, 9], ["virtualisation", 115, 9]]);
-const pos$17 = nix.positions(here + "/keeper.nix", [["clickhouse1", 120, 7], ["clickhouse2", 121, 7]]);
-const pos$18 = nix.positions(here + "/keeper.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 14, 3], ["testScript", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +13,7 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const name = nix.thunk(() => nix.str`clickhouse-${nix.sel(package$, "version")}-keeper`);
     const meta = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -41,13 +24,13 @@ export default nix.lambda((args) => (() => {
     }));
     const nodes = nix.thunk(() => (() => {
       const node = (i) => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "clickhouse-server/config.d/cluster.xml": nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               text: nix.thunk(() => nix.str`<clickhouse>
   <remote_servers>
     <perftest_2shards_1replicas>
@@ -64,7 +47,7 @@ export default nix.lambda((args) => (() => {
 `),
             })),
             "clickhouse-server/config.d/keeper.xml": nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               text: nix.thunk(() => nix.str`<clickhouse>
   <keeper_server>
     <server_id>${nix.builtins.toString(i)}</server_id>
@@ -104,11 +87,11 @@ export default nix.lambda((args) => (() => {
 `),
             })),
             "clickhouse-server/config.d/listen.xml": nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               text: "<clickhouse>\n  <listen_host>::</listen_host>\n</clickhouse>\n",
             })),
             "clickhouse-server/config.d/macros.xml": nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               text: nix.thunk(() => nix.str`<clickhouse>
   <macros>
       <replica>${nix.builtins.toString(i)}</replica>
@@ -120,32 +103,32 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$9,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$8, allowedTCPPorts: nix.thunk(() => [9009n, 9181n, 9444n]) })),
+          [nix.POS]: $pos[8],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[7], allowedTCPPorts: nix.thunk(() => [9009n, 9181n, 9444n]) })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$11,
-          clickhouse: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, package: package$ })),
+          [nix.POS]: $pos[10],
+          clickhouse: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true, package: package$ })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             clickhouse: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               after: nix.thunk(() => ["network-online.target"]),
               requires: nix.thunk(() => ["network-online.target"]),
             })),
           })),
         })),
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           memorySize: nix.thunk(() => nix.mul(1024n, 4n)),
           diskSize: nix.thunk(() => nix.mul(1024n, 10n)),
         })),
       });
       return {
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         clickhouse1: nix.thunk(() => nix.app(node, 1n)),
         clickhouse2: nix.thunk(() => nix.app(node, 2n)),
       };
@@ -206,7 +189,7 @@ for machine in clickhouse1, clickhouse2:
   )
 `;
     })());
-    return { [nix.POS]: pos$18, name, meta, nodes, testScript };
+    return { [nix.POS]: $pos[17], name, meta, nodes, testScript };
   })();
 })(), formals$1);
 //# sourceMappingURL=keeper.ts.map

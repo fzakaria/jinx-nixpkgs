@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["files", 24, 3], ["postPatch", 26, 3], ["packageRequires", 32, 3], ["propagatedUserEnvPkgs", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, dash: false, editorconfig: false, f: false, fetchFromGitHub: false, jsonrpc: false, nodejs: false, s: false, melpaBuild: false, "copilot-language-server": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["files", 24, 3], ["postPatch", 26, 3], ["packageRequires", 32, 3], ["propagatedUserEnvPkgs", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const melpaBuild = nix.arg($, "melpaBuild");
   const copilot_language_server = nix.arg($, "copilot-language-server");
   return nix.app(melpaBuild, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "copilot",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "copilot-emacs",
           repo: "copilot.el",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       packageRequires: nix.thunk(() => [dash, editorconfig, f, jsonrpc, s]),
       propagatedUserEnvPkgs: nix.thunk(() => [nodejs]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unofficial copilot plugin for Emacs",
         homepage: "https://github.com/copilot-emacs/copilot.el",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

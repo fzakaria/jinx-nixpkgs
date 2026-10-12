@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 16, 5], ["hash", 17, 5]], [["updateScript", 28, 12]], [["broken", 31, 5], ["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 20, 3], ["makeFlags", 21, 3], ["installFlags", 25, 3], ["installTargets", 26, 3], ["passthru", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 28, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["broken", 31, 5], ["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 20, 3], ["makeFlags", 21, 3], ["installFlags", 25, 3], ["installTargets", 26, 3], ["passthru", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(kernel, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rust-out-of-tree-module",
       version: "0-unstable-2025-11-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Rust-for-linux",
           repo: "rust-out-of-tree-module",
           rev: "00b5a8ee2bf53532d115004d7636b61a54f49802",
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installTargets: nix.thunk(() => ["modules_install"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => (nix.asBool(nix.app(nix.sel(kernel, "kernelOlder"), "6.17")) || nix.asBool(!nix.asBool(nix.sel(kernel, "withRust"))))),
         description: "Basic template for an out-of-tree Linux kernel module written in Rust",
         homepage: "https://github.com/Rust-for-Linux/rust-out-of-tree-module",

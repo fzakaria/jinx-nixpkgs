@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["NIX_CFLAGS_COMPILE", 34, 7]], [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 20, 3], ["sourceRoot", 26, 3], ["buildInputs", 28, 3], ["buildFlags", 30, 3], ["env", 34, 3], ["installFlags", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, openmp: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 20, 3], ["sourceRoot", 26, 3], ["buildInputs", 28, 3], ["buildFlags", 30, 3], ["env", 34, 3], ["installFlags", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const openmp = nix.argOr($, "openmp", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "b2sum",
       version: "20190724",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BLAKE2",
           repo: "BLAKE2",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,10 +28,10 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(openmp, null)), "NO_OPENMP=1")),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=c99" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=c99" })),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "BLAKE2 cryptographic hash function",
         mainProgram: "b2sum",
         homepage: "https://blake2.net",

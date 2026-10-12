@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["rev-prefix", 54, 5]], [["skipBulkUpdate", 51, 12], ["updateScript", 53, 12]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["sourceRoot", 27, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 37, 3], ["disabledTests", 43, 3], ["pythonImportsCheck", 48, 3], ["passthru", 51, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, gitUpdater: false, "opentelemetry-api": false, "opentelemetry-sdk": false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, "std-uritemplate": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 51, 12], ["updateScript", 53, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["sourceRoot", 27, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 37, 3], ["disabledTests", 43, 3], ["pythonImportsCheck", 48, 3], ["passthru", 51, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const std_uritemplate = nix.arg($, "std-uritemplate");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "microsoft-kiota-abstractions",
       version: "1.14.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "kiota-python",
           tag: nix.thunk(() => nix.str`microsoft-kiota-abstractions-v${nix.sel(finalAttrs, "version")}`),
@@ -41,12 +37,12 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_sets_datetime_values_in_path_parameters"]),
       pythonImportsCheck: nix.thunk(() => ["kiota_abstractions"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdate: true,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "microsoft-kiota-abstractions-v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "microsoft-kiota-abstractions-v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Abstractions library for Kiota generated Python clients",
         homepage: "https://github.com/microsoft/kiota-python/tree/main/packages/abstractions/",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/kiota-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["allowedVersions", 99, 5], ["url", 100, 5]], [["updateScript", 98, 12]], [["description", 104, 5], ["longDescription", 105, 5], ["homepage", 112, 5], ["maintainers", 113, 5], ["platforms", 116, 5], ["license", 117, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["cmakeFlags", 66, 3], ["postPatch", 74, 3], ["installFlags", 96, 3], ["passthru", 98, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, zip: false, gettext: false, perl: false, wxwidgets_3_2: false, libxext: false, libxi: false, libxt: false, libxtst: false, xercesc: false, qrencode: false, libuuid: false, libyubikey: false, "yubikey-personalization": false, curl: false, openssl: false, file: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["allowedVersions", 99, 5], ["url", 100, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 98, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 104, 5], ["longDescription", 105, 5], ["homepage", 112, 5], ["maintainers", 113, 5], ["platforms", 116, 5], ["license", 117, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["cmakeFlags", 66, 3], ["postPatch", 74, 3], ["installFlags", 96, 3], ["passthru", 98, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const file = nix.arg($, "file");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pwsafe",
       version: "1.25.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pwsafe",
           repo: "pwsafe",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,15 +66,15 @@ done
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace src/ui/cli/CMakeLists.txt --replace \"uuid\" \"\"\n"))),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             allowedVersions: "^1\\.",
             url: nix.thunk(() => nix.sel(finalAttrs, "src", "gitRepoUrl")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Password database utility",
         longDescription: "Password Safe is a password database utility. Like many other\nsuch products, commercial and otherwise, it stores your\npasswords in an encrypted file, allowing you to remember only\none password (the \"safe combination\"), instead of all the\nusername/password combinations that you use.\n",
         homepage: "https://pwsafe.org/",

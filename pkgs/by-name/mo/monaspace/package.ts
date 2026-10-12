@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 11, 5], ["longDescription", 12, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]], [["url", 52, 9], ["hash", 53, 17]], [["pname", 49, 15], ["version", 49, 21], ["src", 51, 7], ["installPhase", 56, 7], ["meta", 64, 15]], [["baseUrl", 74, 29], ["fontFamily", 74, 37], ["version", 74, 48], ["variant", 75, 28], ["hash", 75, 36], ["destination", 75, 41], ["meta", 76, 21], ["pname", 77, 13]], [["name", 81, 11], ["value", 82, 11]], [["pname", 96, 7], ["version", 97, 23], ["paths", 98, 7]], [["woff", 95, 5]], [["pname", 91, 3], ["version", 92, 19], ["paths", 93, 3], ["passthru", 94, 3], ["meta", 101, 11]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, stdenvNoCC: false, symlinkJoin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 11, 5], ["longDescription", 12, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]]);
 const formals$2 = { args: { pname: false, fontFamily: false, variant: false, version: false, baseUrl: false, hash: false, destination: false, meta: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["url", 52, 9], ["hash", 53, 17]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 49, 15], ["version", 49, 21], ["src", 51, 7], ["installPhase", 56, 7], ["meta", 64, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["baseUrl", 74, 29], ["fontFamily", 74, 37], ["version", 74, 48], ["variant", 75, 28], ["hash", 75, 36], ["destination", 75, 41], ["meta", 76, 21], ["pname", 77, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 81, 11], ["value", 82, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 96, 7], ["version", 97, 23], ["paths", 98, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["woff", 95, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 91, 3], ["version", 92, 19], ["paths", 93, 3], ["passthru", 94, 3], ["meta", 101, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const fonts = nix.thunk(() => nix.app(nix.sel(lib, "importTOML"), nix.path(here, "./fonts.toml")));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Innovative superfamily of fonts for code",
     longDescription: "Since the earliest days of the teletype machine, code has been set in\nmonospaced type — letters, on a grid. Monaspace is a new type system that\nadvances the state of the art for the display of code on screen.\n\nEvery advancement in the technology of computing has been accompanied by\nadvancements to the display and editing of code. CRTs made screen editors\npossible. The advent of graphical user interfaces gave rise to integrated\ndevelopment environments.\n\nEven today, we still have limited options when we want to layer additional\nmeaning on top of code. Syntax highlighting was invented in 1982 to help\nchildren to code in BASIC. But beyond colors, most editors must\ncommunicate with developers through their interfaces — hovers, underlines,\nand other graphical decorations.\n\nMonaspace offers a more expressive palette for code and the tools we use\nto work with it.\n",
     homepage: "https://monaspace.githubnext.com/",
@@ -40,11 +33,11 @@ export default nix.lambda((args) => (() => {
     const destination = nix.arg($_1, "destination");
     const meta_1 = nix.arg($_1, "meta");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: pname,
         version: version,
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`${baseUrl}/v${version}/${fontFamily}-${variant}-v${version}.zip`),
             hash: hash,
           })))),
@@ -69,7 +62,7 @@ runHook postInstall
           const meta_1 = meta;
           const pname = nix.thunk(() => nix.add(nix.add(fontFamily, "-"), variant));
           return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             baseUrl,
             fontFamily,
             version,
@@ -81,7 +74,7 @@ runHook postInstall
           };
         })());
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: nix.thunk(() => nix.sel(fontAttrs, "variant")),
           value: nix.thunk(() => nix.app(makeFont, fontAttrs)),
         };
@@ -90,14 +83,14 @@ runHook postInstall
   const woffFonts = nix.thunk(() => nix.app(makePackages, nix.thunk(() => nix.builtins.filter((f) => nix.eq(nix.sel(f, "destination"), "woff"), nix.thunk(() => nix.sel(fonts, "fonts"))))));
   const defaultFonts = nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), allFonts, nix.thunk(() => nix.builtins.attrNames(woffFonts))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "monaspace",
       version: nix.thunk(() => nix.attr(fonts, "version")),
       paths: nix.thunk(() => nix.builtins.attrValues(defaultFonts)),
       passthru: nix.thunk(() => nix.update(allFonts, {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         woff: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pname: "monaspace-webfonts",
             version: nix.thunk(() => nix.attr(fonts, "version")),
             paths: nix.thunk(() => nix.builtins.attrValues(woffFonts)),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["HOME", 66, 5], ["XDG_CONFIG_HOME", 67, 5]], [["description", 84, 5], ["longDescription", 85, 5], ["homepage", 90, 5], ["license", 91, 5], ["platforms", 92, 5]], [["pname", 21, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["preConfigure", 46, 3], ["patches", 50, 3], ["doCheck", 52, 3], ["preCheck", 53, 3], ["env", 65, 3], ["configureFlags", 70, 3], ["mozillaPlugin", 76, 3], ["postInstall", 78, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cargo: false, rustc: false, autoreconfHook: false, jdk8: false, glib: false, "firefox-unwrapped": false, zip: false, "pkg-config": false, npapi_sdk: false, bash: false, bc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["HOME", 66, 5], ["XDG_CONFIG_HOME", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["longDescription", 85, 5], ["homepage", 90, 5], ["license", 91, 5], ["platforms", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["preConfigure", 46, 3], ["patches", 50, 3], ["doCheck", 52, 3], ["preCheck", 53, 3], ["env", 65, 3], ["configureFlags", 70, 3], ["mozillaPlugin", 76, 3], ["postInstall", 78, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const bc = nix.arg($, "bc");
   const jdk = jdk8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "adoptopenjdk-icedtea-web",
       version: "1.8.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AdoptOpenJDK",
           repo: "IcedTea-Web",
           rev: nix.thunk(() => nix.str`icedtea-web-${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       preCheck: "# Needed for the below rust-launcher tests to pass\n# dirs_paths_helper::tests::check_config_files_paths\n# dirs_paths_helper::tests::check_legacy_config_files_paths\n\nmkdir -p $HOME/.icedtea\ntouch $HOME/.icedtea/deployment.properties\n\nmkdir -p $XDG_CONFIG_HOME/icedtea-web\ntouch $XDG_CONFIG_HOME/icedtea-web/deployment.properties\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, HOME: "/build", XDG_CONFIG_HOME: "/build" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], HOME: "/build", XDG_CONFIG_HOME: "/build" })),
       configureFlags: nix.thunk(() => [
         "--with-itw-libs=DISTRIBUTION",
         nix.thunk(() => nix.str`--with-jdk-home=${nix.sel(jdk, "home")}`),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       mozillaPlugin: "/lib",
       postInstall: "mkdir -p $out/share/applications\ncp javaws.desktop itweb-settings.desktop policyeditor.desktop $out/share/applications\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Java web browser plugin and an implementation of Java Web Start",
         longDescription: "A Free Software web browser plugin running applets written in the Java\nprogramming language and an implementation of Java Web Start, originally\nbased on the NetX project.\n",
         homepage: "https://github.com/adoptopenjdk/icedtea-web",

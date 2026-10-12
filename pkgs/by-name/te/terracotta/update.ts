@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update.nix", [[["name", 10, 3], ["runtimeInputs", 11, 3], ["text", 18, 3]]]);
 const formals$1 = { args: { writeShellApplication: false, curl: false, jq: false, "common-updater-scripts": false, cargo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update.nix", [["name", 10, 3], ["runtimeInputs", 11, 3], ["text", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const cargo = nix.arg($, "cargo");
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "update-terracotta",
       runtimeInputs: nix.thunk(() => [curl, jq, common_updater_scripts, cargo]),
       text: "get_latest_release() {\n    curl --fail ${GITHUB_TOKEN:+ -H \"Authorization: bearer $GITHUB_TOKEN\"} \\\n         -s \"https://api.github.com/repos/burningtnt/Terracotta/releases/latest\" | jq -r \".tag_name\"\n}\n\nversion=$(get_latest_release)\nversion=\"${version#v}\"\n\nif [[ \"$UPDATE_NIX_OLD_VERSION\" == \"$version\" ]]; then\n    echo \"Already up to date!\"\n    exit 0\nfi\n\ntmp=$(mktemp -d)\ntrap 'rm -rf \"$tmp\"' EXIT\n\nupdate-source-version terracotta \"$version\"\n\ncp -r \"$(nix-build --no-link -A terracotta.src)\" \"$tmp/src\"\nchmod -R +w \"$tmp/src\"\n\npushd \"$tmp/src\"\nsed -i '/EasyTier.git/d' Cargo.toml\ncargo generate-lockfile\npopd\n\ncp \"$tmp/src/Cargo.lock\" \"pkgs/by-name/te/terracotta/Cargo.lock\"\n",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 7], ["repo", 43, 7], ["tag", 44, 7], ["hash", 45, 7]], [["updateScript", 86, 14]], [["description", 89, 7], ["homepage", 90, 7], ["license", 91, 7], ["platforms", 92, 7], ["maintainers", 93, 7]], [["pname", 38, 5], ["version", 39, 5], ["src", 41, 5], ["nativeBuildInputs", 48, 5], ["propagatedBuildInputs", 53, 5], ["dontDropIconThemeCache", 59, 5], ["dontWrapQtApps", 60, 5], ["dontPatchELF", 64, 5], ["dontRewriteSymlinks", 65, 5], ["postPatch", 67, 5], ["installPhase", 71, 5], ["passthru", 86, 5], ["meta", 88, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, "adwaita-icon-theme": false, kdePackages: false, gtk3: false, "hicolor-icon-theme": false, jdupes: false, gitUpdater: false, allColorVariants: true, circularFolder: true, colorVariants: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 7], ["repo", 43, 7], ["tag", 44, 7], ["hash", 45, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 86, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 89, 7], ["homepage", 90, 7], ["license", 91, 7], ["platforms", 92, 7], ["maintainers", 93, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 38, 5], ["version", 39, 5], ["src", 41, 5], ["nativeBuildInputs", 48, 5], ["propagatedBuildInputs", 53, 5], ["dontDropIconThemeCache", 59, 5], ["dontWrapQtApps", 60, 5], ["dontPatchELF", 64, 5], ["dontRewriteSymlinks", 65, 5], ["postPatch", 67, 5], ["installPhase", 71, 5], ["passthru", 86, 5], ["meta", 88, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tela-circle-icon-theme";
       const version = "2026-07-07";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vinceliuice",
           repo: "tela-circle-icon-theme",
           tag: version,
@@ -73,11 +70,11 @@ jdupes --quiet --link-soft --recurse $out/share
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Flat and colorful personality icon theme",
         homepage: "https://github.com/vinceliuice/Tela-circle-icon-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -88,7 +85,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,28 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 44, 7], ["hash", 45, 7]], [["NIX_CFLAGS_COMPILE", 61, 9]], [["url", 70, 11], ["hash", 71, 11]], [["pname", 41, 5], ["version", 42, 5], ["src", 43, 5], ["nativeBuildInputs", 47, 5], ["buildInputs", 51, 5], ["configureFlags", 56, 5], ["env", 61, 5], ["patches", 63, 5], ["postPatch", 67, 5]], [["url", 89, 13], ["hash", 92, 13]], [["url", 96, 13], ["hash", 99, 13]], [["pname", 103, 7], ["version", 105, 15], ["src", 105, 23], ["dontBuild", 107, 7], ["nativeBuildInputs", 109, 7], ["installPhase", 116, 7]], [["url", 127, 7], ["hash", 128, 7]], [["pname", 124, 5], ["version", 125, 5], ["src", 126, 5], ["nativeBuildInputs", 131, 5], ["buildInputs", 136, 5]], [["url", 143, 7], ["hash", 144, 7]], [["pname", 140, 5], ["version", 141, 5], ["src", 142, 5], ["nativeBuildInputs", 147, 5], ["buildInputs", 152, 5]], [["url", 159, 7], ["hash", 160, 7]], [["pname", 156, 5], ["version", 157, 5], ["src", 158, 5], ["nativeBuildInputs", 163, 5], ["buildInputs", 168, 5]], [["owner", 175, 7], ["repo", 176, 7], ["rev", 177, 7], ["hash", 178, 7]], [["url", 183, 9], ["hash", 184, 9]], [["pname", 172, 5], ["version", 173, 5], ["src", 174, 5], ["patches", 181, 5], ["postPatch", 188, 5], ["nativeBuildInputs", 194, 5], ["buildInputs", 195, 5], ["cmakeFlags", 201, 5]], [["url", 212, 7], ["hash", 213, 7]], [["pname", 209, 5], ["version", 210, 5], ["src", 211, 5], ["nativeBuildInputs", 216, 5], ["buildInputs", 217, 5], ["makeFlags", 219, 5]], [["url", 226, 5], ["sha256", 227, 5]], [["description", 280, 5], ["longDescription", 281, 5], ["homepage", 288, 5], ["changelog", 289, 5], ["downloadPage", 290, 5], ["license", 291, 5], ["maintainers", 292, 5], ["platforms", 293, 5]], [["pname", 223, 3], ["version", 224, 3], ["src", 225, 3], ["nativeBuildInputs", 229, 3], ["buildInputs", 240, 3], ["postPatch", 267, 3], ["postInstall", 271, 3], ["meta", 279, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, fetchpatch: false, fetchzip: false, cmake: false, lz4: false, gfortran: false, bzip2: false, hdf5: false, gsl: false, unzip: false, makeWrapper: false, zlib: false, meson: false, ninja: false, pandoc: false, eigen: false, "pkg-config": false, wrapGAppsHook3: false, flex: false, bison: false, doxygen: false, "opencl-headers": false, ncurses: false, "msgpack-c": false, fftw: false, zeromq: false, "ocl-icd": false, gtk3: false, "gdk-pixbuf": false, "argp-standalone": false, withGui: true, withBitshuffle: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 61, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 70, 11], ["hash", 71, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 41, 5], ["version", 42, 5], ["src", 43, 5], ["nativeBuildInputs", 47, 5], ["buildInputs", 51, 5], ["configureFlags", 56, 5], ["env", 61, 5], ["patches", 63, 5], ["postPatch", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 89, 13], ["hash", 92, 13]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 96, 13], ["hash", 99, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 103, 7], ["version", 105, 15], ["src", 105, 23], ["dontBuild", 107, 7], ["nativeBuildInputs", 109, 7], ["installPhase", 116, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 127, 7], ["hash", 128, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 124, 5], ["version", 125, 5], ["src", 126, 5], ["nativeBuildInputs", 131, 5], ["buildInputs", 136, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["url", 143, 7], ["hash", 144, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 140, 5], ["version", 141, 5], ["src", 142, 5], ["nativeBuildInputs", 147, 5], ["buildInputs", 152, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["url", 159, 7], ["hash", 160, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 156, 5], ["version", 157, 5], ["src", 158, 5], ["nativeBuildInputs", 163, 5], ["buildInputs", 168, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["owner", 175, 7], ["repo", 176, 7], ["rev", 177, 7], ["hash", 178, 7]]);
-const pos$15 = nix.positions(here + "/package.nix", [["url", 183, 9], ["hash", 184, 9]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 172, 5], ["version", 173, 5], ["src", 174, 5], ["patches", 181, 5], ["postPatch", 188, 5], ["nativeBuildInputs", 194, 5], ["buildInputs", 195, 5], ["cmakeFlags", 201, 5]]);
-const pos$17 = nix.positions(here + "/package.nix", [["url", 212, 7], ["hash", 213, 7]]);
-const pos$18 = nix.positions(here + "/package.nix", [["pname", 209, 5], ["version", 210, 5], ["src", 211, 5], ["nativeBuildInputs", 216, 5], ["buildInputs", 217, 5], ["makeFlags", 219, 5]]);
-const pos$19 = nix.positions(here + "/package.nix", [["url", 226, 5], ["sha256", 227, 5]]);
-const pos$20 = nix.positions(here + "/package.nix", [["description", 280, 5], ["longDescription", 281, 5], ["homepage", 288, 5], ["changelog", 289, 5], ["downloadPage", 290, 5], ["license", 291, 5], ["maintainers", 292, 5], ["platforms", 293, 5]]);
-const pos$21 = nix.positions(here + "/package.nix", [["pname", 223, 3], ["version", 224, 3], ["src", 225, 3], ["nativeBuildInputs", 229, 3], ["buildInputs", 240, 3], ["postPatch", 267, 3], ["postInstall", 271, 3], ["meta", 279, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -66,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libccp4";
       const version = "8.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ftp.ccp4.ac.uk/opensource/libccp4-${version}.tar.gz`),
           hash: "sha256-y4E66GYSoIZjKd6rfO6W6sVz2BvlskA0HUD5rVMi/y0=",
         }))));
@@ -74,13 +54,13 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [hdf5, gsl]);
       const configureFlags = nix.thunk(() => ["FFLAGS=-fallow-argument-mismatch"]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-DNIX_PROVIDED_SYMOP_FILE="${nix.builtins.placeholder("out")}/share/ccp4/syminfo.lib"`),
       }));
       const patches = nix.thunk(() => [nix.path(here, "./libccp4-use-hardcoded-syminfo-lib.patch")]);
       const postPatch = nix.thunk(() => (() => {
         const mesonPatch = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://wrapdb.mesonbuild.com/v2/libccp4c_8.0.0-1/get_patch#somefile.zip",
             hash: "sha256-ohskfKh+972Pl56KtwAeWwHtAaAFNpCzz5vZBAI/vdU=",
           }))));
@@ -91,7 +71,7 @@ substituteInPlace ccp4/library_utils.c \\
 `;
       })());
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,
@@ -106,16 +86,16 @@ substituteInPlace ccp4/library_utils.c \\
   const mosflm = nix.thunk(() => (() => {
     const version = "7.4.0";
     const src = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         url: nix.thunk(() => nix.str`https://www.mrc-lmb.cam.ac.uk/harry/imosflm/ver${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}/downloads/imosflm-${version}-osx-64.zip`),
         hash: "sha256-0sXgA3zSIjhy9+zTiv+K/51yZsIgGorMtKVjdRjW+AM=",
       }))) : nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         url: nix.thunk(() => nix.str`https://www.mrc-lmb.cam.ac.uk/harry/imosflm/ver${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}/downloads/imosflm-${version}-linux-64.zip`),
         hash: "sha256-2we0K09W31LKgn9SHLGti50EA/zhbX+CWWuQGCSKW18=",
       })))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "mosflm",
         version: version,
         src: src,
@@ -131,44 +111,44 @@ makeWrapper $out/bin/mosflm-raw $out/bin/mosflm --set SYMINFO ${libccp4}/share/s
       const pname = "xgandalf";
       const version = "8a63600ec778b155031adc3c151424aaced6a0cc";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           url: nix.thunk(() => nix.str`https://gitlab.desy.de/thomas.white/xgandalf/-/archive/${version}/xgandalf-${version}.tar.gz`),
           hash: "sha256-UhFbpv+4qMwxEQIJpVpMzSg46P0vm0dkEyJDzxVu6XY=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [meson, pkg_config, ninja]);
       const buildInputs = nix.thunk(() => [eigen]);
-      return { [nix.POS]: pos$9, pname, version, src, nativeBuildInputs, buildInputs };
+      return { [nix.POS]: $pos[8], pname, version, src, nativeBuildInputs, buildInputs };
     })())));
   const pinkIndexer = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "pinkindexer";
       const version = "85f3883f8c1fe98a03e5f3d371f2da4fee97894e";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           url: nix.thunk(() => nix.str`https://gitlab.desy.de/thomas.white/pinkindexer/-/archive/${version}/pinkindexer-${version}.tar.gz`),
           hash: "sha256-W4COYdeESP0S2KhB2UdaJSbxNiFm5yyapKkmICDtP0A=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [meson, pkg_config, ninja]);
       const buildInputs = nix.thunk(() => [eigen]);
-      return { [nix.POS]: pos$11, pname, version, src, nativeBuildInputs, buildInputs };
+      return { [nix.POS]: $pos[10], pname, version, src, nativeBuildInputs, buildInputs };
     })())));
   const fdip = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "fdip";
       const version = "631792e90ed2c3e226dce77bf97917305293ac66";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           url: nix.thunk(() => nix.str`https://gitlab.desy.de/thomas.white/fdip/-/archive/${version}/fdip-${version}.tar.gz`),
           hash: "sha256-nnvOPl35NgtJ13fgWWAuVhtWT/JOk2DyYmBgI0ojZ2o=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [meson, ninja, pkg_config]);
       const buildInputs = nix.thunk(() => [eigen]);
-      return { [nix.POS]: pos$13, pname, version, src, nativeBuildInputs, buildInputs };
+      return { [nix.POS]: $pos[12], pname, version, src, nativeBuildInputs, buildInputs };
     })())));
   const hdf5_external_filter_plugins = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "HDF5-External-Filter-Plugins",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           owner: "nexusformat",
           repo: "HDF5-External-Filter-Plugins",
           rev: "49e3b65eca772bca77af13ba047d8b577673afba",
@@ -176,7 +156,7 @@ makeWrapper $out/bin/mosflm-raw $out/bin/mosflm --set SYMINFO ${libccp4}/share/s
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             url: "https://github.com/spanezz/HDF5-External-Filter-Plugins/commit/6b337fe36da97a3ef72354393687ce3386c0709d.patch",
             hash: "sha256-wnBEdL/MjEyRHPwaVtuhzY+DW1AFeaUQUmIXh+JaRHo=",
           })))),
@@ -194,7 +174,7 @@ makeWrapper $out/bin/mosflm-raw $out/bin/mosflm --set SYMINFO ${libccp4}/share/s
       const pname = "millepede-ii";
       const version = "04-13-06";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           url: nix.thunk(() => nix.str`https://gitlab.desy.de/claus.kleinwort/millepede-ii/-/archive/V${version}/millepede-ii-V${version}.tar.gz`),
           hash: "sha256-aFoo8AGBsUEN2u3AmnSpTqJ6JeNV6j9vkAFTZ34I+sI=",
         }))));
@@ -202,7 +182,7 @@ makeWrapper $out/bin/mosflm-raw $out/bin/mosflm --set SYMINFO ${libccp4}/share/s
       const buildInputs = nix.thunk(() => [zlib]);
       const makeFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       return {
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         pname,
         version,
         src,
@@ -215,7 +195,7 @@ makeWrapper $out/bin/mosflm-raw $out/bin/mosflm --set SYMINFO ${libccp4}/share/s
       const pname = "crystfel";
       const version = "0.13.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           url: nix.thunk(() => nix.str`https://www.desy.de/~twhite/crystfel/crystfel-${version}.tar.gz`),
           sha256: "sha256-6Fz7W8kRKlaTmnL+21t20UgkTjr3oC08IOzAGOseaQU=",
         }))));
@@ -244,7 +224,7 @@ makeWrapper $out/bin/mosflm-raw $out/bin/mosflm --set SYMINFO ${libccp4}/share/s
 done
 `)));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         description: "Data processing for serial crystallography",
         longDescription: "CrystFEL is a suite of programs for processing (and simulating) Bragg diffraction data from \"serial crystallography\" experiments, often (but not always) performed using an X-ray Free-Electron Laser. Compared to rotation data, some of the particular characteristics of such data which call for a specialised software suite are:\n\n- The sliced, rather than integrated, measurement of intensity data. Many, if not all reflections are partially integrated.\n- Many patterns (thousands) are required - high throughput is needed.\n- The crystal orientations in each pattern are random and uncorrelated.\n- Merging into lower symmetry point groups may require the resolution of indexing ambiguities.",
         homepage: "https://www.desy.de/~twhite/crystfel/",
@@ -258,7 +238,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         pname,
         version,
         src,

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 3], ["patches", 24, 3], ["extraCmakeFlags", 29, 3], ["hasPythonBindings", 39, 3], ["extraNativeBuildInputs", 41, 3], ["extraBuildInputs", 46, 3], ["postFixup", 56, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, qttools: false, "accounts-qt": false, "kaccounts-integration": false, "shared-mime-info": false, xz: false, mariadb: false, libpq: false, sqlite: false, backend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["patches", 24, 3], ["extraCmakeFlags", 29, 3], ["hasPythonBindings", 39, 3], ["extraNativeBuildInputs", 41, 3], ["extraBuildInputs", 46, 3], ["postFixup", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const backend = nix.argOr($, "backend", () => "mysql");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "backend", backend, nix.thunk(() => ["mysql", "postgres", "sqlite"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/kde/gear/akonadi/default.nix:15:1");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "akonadi",
       patches: nix.thunk(() => [nix.path(here, "./ignore-mysql-config-timestamp.patch")]),
       extraCmakeFlags: nix.thunk(() => nix.concat([

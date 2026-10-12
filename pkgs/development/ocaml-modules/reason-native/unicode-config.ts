@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unicode-config.nix", [[["description", 19, 5], ["homepage", 20, 5], ["downloadPage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]], [["src", 9, 11], ["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, reason: false, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unicode-config.nix", [["description", 19, 5], ["homepage", 20, 5], ["downloadPage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]]);
-const pos$2 = nix.positions(here + "/unicode-config.nix", [["src", 9, 11], ["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const reason = nix.arg($, "reason");
   const src = nix.arg($, "src");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: src,
       pname: "unicode-config",
       version: "0.0.0-unstable-2024-05-07",
       nativeBuildInputs: nix.thunk(() => [reason]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Configuration used to generate the @reason-native/unicode library",
         homepage: "https://github.com/reasonml/reason-native",
         downloadPage: "https://github.com/reasonml/reason-native/tree/master/src/unicode-config",

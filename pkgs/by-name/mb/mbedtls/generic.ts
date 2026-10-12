@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 13], ["fetchSubmodules", 30, 5]], [["HOSTCC", 93, 5]], [["homepage", 103, 5], ["changelog", 104, 5], ["description", 105, 5], ["license", 106, 5], ["platforms", 110, 5], ["maintainers", 111, 5]], [["pname", 20, 3], ["version", 21, 11], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["patches", 33, 11], ["nativeBuildInputs", 35, 3], ["strictDeps", 46, 3], ["hardeningDisable", 49, 3], ["postConfigure", 51, 3], ["cmakeFlags", 61, 3], ["env", 92, 3], ["doCheck", 96, 3], ["enableParallelChecking", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, version: false, hash: false, patches: true, fetchFromGitHub: false, buildPackages: false, cmake: false, ninja: false, perl: false, python3: false, python3Packages: false, enableThreading: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 13], ["fetchSubmodules", 30, 5]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["HOSTCC", 93, 5]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["homepage", 103, 5], ["changelog", 104, 5], ["description", 105, 5], ["license", 106, 5], ["platforms", 110, 5], ["maintainers", 111, 5]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["pname", 20, 3], ["version", 21, 11], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["patches", 33, 11], ["nativeBuildInputs", 35, 3], ["strictDeps", 46, 3], ["hardeningDisable", 49, 3], ["postConfigure", 51, 3], ["cmakeFlags", 61, 3], ["env", 92, 3], ["doCheck", 96, 3], ["enableParallelChecking", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Mbed-TLS",
           repo: "mbedtls",
           rev: nix.thunk(() => nix.str`${pname}-${version_1}`),
@@ -47,13 +44,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DUSE_SHARED_MBEDTLS_LIBRARY=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")) ? "off" : "on")}`),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version_1, "4.0")), nix.thunk(() => ["-DGEN_FILES=off"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-DCMAKE_C_FLAGS=-fzero-init-padding-bits=unions"])))));
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           HOSTCC: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc")))),
         }))));
       const doCheck = true;
       const enableParallelChecking = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.trustedfirmware.org/projects/mbed-tls/",
         changelog: nix.thunk(() => nix.str`https://github.com/Mbed-TLS/mbedtls/blob/${pname}-${version_1}/ChangeLog`),
         description: "Portable cryptographic and TLS library, formerly known as PolarSSL",
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version: version_1,
         __structuredAttrs,

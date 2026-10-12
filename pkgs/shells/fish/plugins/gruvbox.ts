@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gruvbox.nix", [[["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]], [["description", 16, 5], ["homepage", 17, 5], ["license", 18, 5], ["maintainers", 19, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { lib: false, buildFishPlugin: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/gruvbox.nix", [["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/gruvbox.nix", [["description", 16, 5], ["homepage", 17, 5], ["license", 18, 5], ["maintainers", 19, 5]]);
-const pos$3 = nix.positions(here + "/gruvbox.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const buildFishPlugin = nix.arg($, "buildFishPlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gruvbox",
       version: "0-unstable-2021-10-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jomik",
           repo: "fish-gruvbox",
           rev: "80a6f3a7b31beb6f087b0c56cbf3470204759d1c",
           hash: "sha256-vL2/Nm9Z9cdaptx8sJqbX5AnRtfd68x4ZKWdQk5Cngo=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Gruvbox theme for fish shell",
         homepage: "https://github.com/Jomik/fish-gruvbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

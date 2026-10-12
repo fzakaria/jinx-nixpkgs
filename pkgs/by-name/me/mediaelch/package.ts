@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]], [["url", 38, 7], ["hash", 39, 7]], [["name", 46, 7], ["url", 47, 7], ["hash", 48, 7]], [["HOME", 87, 5], ["LANG", 88, 5], ["QT_QPA_PLATFORM", 89, 5], ["QT_QPA_PLATFORM_PLUGIN_PATH", 90, 5]], [["homepage", 98, 5], ["description", 99, 5], ["mainProgram", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 35, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 58, 3], ["cmakeFlags", 74, 3], ["qtWrapperArgs", 82, 3], ["env", 86, 3], ["doCheck", 93, 3], ["checkTarget", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, curl: false, ffmpeg: false, libmediainfo: false, libzen: false, libsForQt5: false, qt6Packages: false, qtVersion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 46, 7], ["url", 47, 7], ["hash", 48, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["HOME", 87, 5], ["LANG", 88, 5], ["QT_QPA_PLATFORM", 89, 5], ["QT_QPA_PLATFORM_PLUGIN_PATH", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 98, 5], ["description", 99, 5], ["mainProgram", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 35, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 58, 3], ["cmakeFlags", 74, 3], ["qtWrapperArgs", 82, 3], ["env", 86, 3], ["doCheck", 93, 3], ["checkTarget", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const qtVersion = nix.argOr($, "qtVersion", () => 6n);
   const qt$ = nix.thunk(() => (nix.asBool(nix.eq(qtVersion, 5n)) ? nix.force(libsForQt5) : nix.force(qt6Packages)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mediaelch",
       version: "2.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Komet",
           repo: "MediaElch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,12 +34,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/Komet/MediaElch/commit/dbea12fbf2c1fe603819392aa2a181cffa168548.patch",
             hash: "sha256-Lv6rvjKbRNr5XrdZhPyw4S4RRCOnfAGhWgcSLo0gqS8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix-tmdb-duplicate-include-adult.patch",
             url: "https://github.com/Komet/MediaElch/commit/f68419e746455d3c7eb6d95a4a1da7a6f7a5c505.patch",
             hash: "sha256-u+ScJDFX2IIpjXV58MCp1uJGx9QU+7cbq+e1qZPMWns=",
@@ -75,7 +70,7 @@ export default nix.lambda((args) => (() => {
       ]),
       qtWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--prefix LD_LIBRARY_PATH : ${libmediainfo}/lib`)]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         HOME: "/tmp",
         LANG: "C.UTF-8",
         QT_QPA_PLATFORM: "offscreen",
@@ -84,7 +79,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkTarget: "unit_test",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://mediaelch.de/mediaelch/",
         description: "Media Manager for Kodi",
         mainProgram: "MediaElch",

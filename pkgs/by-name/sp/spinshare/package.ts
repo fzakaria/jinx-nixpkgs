@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["pname", 18, 13], ["version", 18, 19], ["src", 18, 27]], [["description", 39, 5], ["homepage", 40, 5], ["downloadPage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["sourceProvenance", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["mainProgram", 47, 5]], [["pname", 22, 11], ["version", 22, 17], ["src", 22, 25], ["nativeBuildInputs", 24, 3], ["extraInstallCommands", 26, 3], ["meta", 38, 3]], [["strictDeps", 51, 5]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 18, 13], ["version", 18, 19], ["src", 18, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["downloadPage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["sourceProvenance", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["mainProgram", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 11], ["version", 22, 17], ["src", 22, 25], ["nativeBuildInputs", 24, 3], ["extraInstallCommands", 26, 3], ["meta", 38, 3]]);
-const pos$5 = nix.positions(here + "/package.nix", [["strictDeps", 51, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const pname = "spinshare";
   const version = "3.32.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/SpinShare/client-next/releases/download/v${version}/SpinShare-${version}-x64.AppImage`),
       hash: "sha256-LJjMel0CsvBf+IgyH7DArj/1oWk/dKpPa1aIED69yeE=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -40,7 +36,7 @@ wrapProgram $out/bin/spinshare \\
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross-platform custom chart client for Spin Rhythm XD",
         homepage: "https://spinsha.re/client-next",
         downloadPage: "https://github.com/SpinShare/client-next/releases",
@@ -54,6 +50,6 @@ wrapProgram $out/bin/spinshare \\
         platforms: nix.thunk(() => ["x86_64-linux"]),
         mainProgram: "spinshare",
       })),
-    }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$5, strictDeps: true })));
+    }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[4], strictDeps: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 48, 5], ["homepage", 49, 5], ["sourceProvenance", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["libPath", 26, 3], ["buildCommand", 31, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, rpmextract: false, patchelf: false, makeWrapper: false, openssl: false, "libxcrypt-legacy": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["sourceProvenance", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["libPath", 26, 3], ["buildCommand", 31, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "snowsql";
       const version = "1.3.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/linux_x86_64/snowflake-snowsql-${version}-1.x86_64.rpm`),
           sha256: "sha256-BedOcd3ZllzMSZ6hjs1BG0o9TEg3aJKtLzutOE3nI1s=",
         }))));
@@ -42,7 +40,7 @@ makeWrapper $out/lib64/snowflake/snowsql/snowsql $out/bin/snowsql \\
   --set LD_LIBRARY_PATH "${libPath}":"${nix.builtins.placeholder("out")}"/lib64/snowflake/snowsql
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line client for the Snowflake database",
         homepage: "https://www.snowflake.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -58,7 +56,7 @@ makeWrapper $out/lib64/snowflake/snowsql/snowsql $out/bin/snowsql \\
         mainProgram: "snowsql",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

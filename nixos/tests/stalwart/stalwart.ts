@@ -2,13 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stalwart.nix", [[["systemPackages", 20, 19]], [["imports", 16, 7], ["environment", 20, 7]], [["main", 13, 9]], [["maintainers", 80, 5]], [["name", 11, 3], ["nodes", 13, 3], ["testScript", 58, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/stalwart.nix", [["systemPackages", 20, 19]]);
-const pos$2 = nix.positions(here + "/stalwart.nix", [["imports", 16, 7], ["environment", 20, 7]]);
-const pos$3 = nix.positions(here + "/stalwart.nix", [["main", 13, 9]]);
-const pos$4 = nix.positions(here + "/stalwart.nix", [["maintainers", 80, 5]]);
-const pos$5 = nix.positions(here + "/stalwart.nix", [["name", 11, 3], ["nodes", 13, 3], ["testScript", 58, 3], ["meta", 79, 3]]);
 
 export default nix.thunk(() => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")));
@@ -17,18 +13,18 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "stalwart",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         main: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             imports: nix.thunk(() => [nix.path(here, "./stalwart-config.nix")]),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               systemPackages: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "test-smtp-submission", nix.thunk(() => ({})), nix.thunk(() => nix.str`from smtplib import SMTP
 
@@ -55,7 +51,7 @@ with SMTP('localhost', 587) as smtp:
       })),
       testScript: "main.wait_for_unit(\"stalwart.service\")\nmain.wait_for_open_port(587)\nmain.wait_for_open_port(143)\nmain.wait_for_open_port(80)\n\nmain.succeed(\"test-smtp-submission\")\n\n# restart stalwart to test rocksdb compaction of existing database\nmain.succeed(\"systemctl restart stalwart.service\")\nmain.wait_for_open_port(587)\nmain.wait_for_open_port(143)\nmain.wait_for_open_port(80)\n\nmain.succeed(\"test-imap-read\")\n\nmain.succeed(\"test -d /var/cache/stalwart-mail/STALWART_WEBADMIN || test -d /var/cache/stalwart/STALWART_WEBADMIN\")\nmain.succeed(\"curl --fail http://localhost\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [

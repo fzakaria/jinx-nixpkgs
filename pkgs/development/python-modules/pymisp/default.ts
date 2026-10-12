@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["brotli", 52, 5], ["docs", 53, 5], ["email", 59, 5], ["fileobjects", 64, 5], ["neo4j", 69, 5], ["openioc", 70, 5], ["pdfexport", 71, 5], ["url", 72, 5], ["virustotal", 73, 5]], [["updateScript", 110, 12]], [["description", 113, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 117, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 76, 3], ["disabledTestPaths", 81, 3], ["disabledTests", 86, 3], ["pythonImportsCheck", 108, 3], ["passthru", 110, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, beautifulsoup4: false, buildPythonPackage: false, deprecated: false, docutils: false, "extract-msg": false, fetchFromGitHub: false, lief: false, "myst-parser": false, neo4j: false, "nix-update-script": false, oletools: false, "poetry-core": false, "pure-magic-rs": false, pydeep2: false, "pyfaup-rs": false, pytestCheckHook: false, "python-dateutil": false, reportlab: false, requests: false, rtfde: false, "sphinx-autodoc-typehints": false, sphinx: false, urllib3: false, validators: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["brotli", 52, 5], ["docs", 53, 5], ["email", 59, 5], ["fileobjects", 64, 5], ["neo4j", 69, 5], ["openioc", 70, 5], ["pdfexport", 71, 5], ["url", 72, 5], ["virustotal", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 110, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 113, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 117, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 76, 3], ["disabledTestPaths", 81, 3], ["disabledTests", 86, 3], ["pythonImportsCheck", 108, 3], ["passthru", 110, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const urllib3 = nix.arg($, "urllib3");
   const validators = nix.arg($, "validators");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pymisp",
       version: "2.5.34.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MISP",
           repo: "PyMISP",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [deprecated, python_dateutil, requests]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         brotli: nix.thunk(() => [urllib3]),
         docs: nix.thunk(() => [docutils, myst_parser, sphinx, sphinx_autodoc_typehints]),
         email: nix.thunk(() => [extract_msg, oletools, rtfde]),
@@ -87,11 +83,11 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["pymisp"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python library using the MISP Rest API",
         homepage: "https://github.com/MISP/PyMISP",
         changelog: nix.thunk(() => nix.str`https://github.com/MISP/PyMISP/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.txt`),

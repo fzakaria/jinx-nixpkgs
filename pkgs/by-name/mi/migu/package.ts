@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 7], ["sha256", 14, 7]], [["url", 17, 7], ["sha256", 18, 7]], [["url", 21, 7], ["sha256", 22, 7]], [["url", 25, 7], ["sha256", 26, 7]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 8, 3], ["version", 9, 3], ["srcs", 11, 3], ["dontUnpack", 30, 3], ["installPhase", 32, 3], ["outputHashAlgo", 36, 3], ["outputHashMode", 37, 3], ["outputHash", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 7], ["sha256", 14, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 17, 7], ["sha256", 18, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 21, 7], ["sha256", 22, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 25, 7], ["sha256", 26, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["srcs", 11, 3], ["dontUnpack", 30, 3], ["installPhase", 32, 3], ["outputHashAlgo", 36, 3], ["outputHashMode", 37, 3], ["outputHash", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,27 +11,27 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "migu",
       version: "20150712",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`mirror://osdn/mix-mplus-ipa/63545/migu-1p-${nix.sel(finalAttrs, "version")}.zip`),
             sha256: "04wpbk5xbbcv2rzac8yzj4ww7sk2hy2rg8zs96yxc5vzj9q7svf6",
           })))),
         nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`mirror://osdn/mix-mplus-ipa/63545/migu-1c-${nix.sel(finalAttrs, "version")}.zip`),
             sha256: "1k7ymix14ac5fb44bjvbaaf24784zzpyc1jj2280c0zdnpxksyk6",
           })))),
         nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`mirror://osdn/mix-mplus-ipa/63545/migu-1m-${nix.sel(finalAttrs, "version")}.zip`),
             sha256: "07r8id83v92hym21vrqmfsfxb646v8258001pkjhgfnfg1yvw8lm",
           })))),
         nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: nix.thunk(() => nix.str`mirror://osdn/mix-mplus-ipa/63545/migu-2m-${nix.sel(finalAttrs, "version")}.zip`),
             sha256: "1pvzbrawh43589j8rfxk86y1acjbgzzdy5wllvdkpm1qnx28zwc2",
           })))),
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
       outputHash: "0nbpn21cxdd6gsgr3fadzjsnz84f2swpf81wmscmjgvd56ngndzh",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "High-quality Japanese font based on modified M+ fonts and IPA fonts",
         homepage: "https://itouhiro.github.io/mixfont-mplus-ipa/migu/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ipa")),

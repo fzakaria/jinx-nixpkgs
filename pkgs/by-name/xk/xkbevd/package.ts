@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 18, 5], ["group", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["extraArgs", 41, 47]], [["updateScript", 41, 12]], [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoreconfHook: false, bison: false, "pkg-config": false, "util-macros": false, libx11: false, libxkbfile: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["group", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 41, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 41, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxkbfile = nix.arg($, "libxkbfile");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xkbevd",
       version: "1.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "app",
@@ -38,14 +34,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, bison, pkg_config, util_macros]),
       buildInputs: nix.thunk(() => [util_macros, libx11, libxkbfile]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=xkbevd-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "XKB event daemon",
         longDescription: "The xkbevd event daemon listens for specified XKB events and executes requested commands if\nthey occur. The configuration file consists of a list of event specification/action pairs\nand/or variable definitions.\nThis command is very raw and is therefore only partially implemented; it is a rough prototype\nfor developers, not a general purpose tool for end users.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/app/xkbevd",

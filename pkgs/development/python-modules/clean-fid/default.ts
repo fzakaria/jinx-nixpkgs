@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["description", 49, 5], ["homepage", 50, 5], ["downloadPage", 51, 5], ["license", 52, 5], ["teams", 53, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 43, 3], ["doCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, numpy: false, pillow: false, requests: false, scipy: false, torch: false, torchvision: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["downloadPage", 51, 5], ["license", 52, 5], ["teams", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 43, 3], ["doCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const torchvision = nix.arg($, "torchvision");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "clean-fid",
       version: "0.1.35",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GaParmar",
           repo: "clean-fid",
           rev: "c8ffa420a3923e8fd87c1e75170de2cf59d2644b",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["cleanfid"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PyTorch - FID calculation with proper image resizing and quantization steps [CVPR 2022]",
         homepage: "https://www.cs.cmu.edu/~clean-fid/",
         downloadPage: "https://github.com/GaParmar/clean-fid",

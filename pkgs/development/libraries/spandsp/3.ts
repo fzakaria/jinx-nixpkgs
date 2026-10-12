@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/3.nix", [[["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["sha256", 13, 5]], [["version", 8, 3], ["src", 9, 3], ["patches", 16, 3]], [["propagatedBuildInputs", 23, 7]]]);
 const formals$1 = { args: { fetchFromGitHub: false, callPackage: false, libjpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/3.nix", [["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/3.nix", [["version", 8, 3], ["src", 9, 3], ["patches", 16, 3]]);
-const pos$3 = nix.positions(here + "/3.nix", [["propagatedBuildInputs", 23, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const libjpeg = nix.arg($, "libjpeg");
   return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({})), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "freeswitch",
           repo: "spandsp",
           rev: "6ec23e5a7e411a22d59e5678d12c4d2942c4a4b6",
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./Fix-buffer-overrun-in-t85-tests.patch")]),
     }))), "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "propagatedBuildInputs"), [libjpeg])),
     }));
 })(), formals$1);

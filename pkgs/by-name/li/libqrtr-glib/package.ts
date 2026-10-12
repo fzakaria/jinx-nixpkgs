@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["homepage", 57, 5], ["description", 58, 5], ["teams", 59, 5], ["platforms", 60, 5], ["license", 61, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 25, 3], ["strictDeps", 33, 3], ["depsBuildBuild", 35, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, "gobject-introspection": false, "gtk-doc": false, "docbook-xsl-nons": false, docbook_xml_dtd_43: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["description", 58, 5], ["teams", 59, 5], ["platforms", 60, 5], ["license", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 25, 3], ["strictDeps", 33, 3], ["depsBuildBuild", 35, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const docbook_xml_dtd_43 = nix.arg($, "docbook_xml_dtd_43");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libqrtr-glib",
       version: "1.4.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "mobile-broadband",
           repo: "libqrtr-glib",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => [mesonEmulatorHook])))),
       buildInputs: nix.thunk(() => [glib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.freedesktop.org/mobile-broadband/libqrtr-glib",
         description: "Qualcomm IPC Router protocol helper library",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "freedesktop"))]),

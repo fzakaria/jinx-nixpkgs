@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 41, 3], ["postPatch", 43, 3], ["propagatedBuildInputs", 50, 3], ["pythonImportsCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["preCheck", 60, 3], ["disabledTests", 64, 3], ["disabledTestPaths", 76, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, runtimeShell: false, "poetry-core": false, docutils: false, pytestCheckHook: false, "readme-renderer": false, textile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 41, 3], ["postPatch", 43, 3], ["propagatedBuildInputs", 50, 3], ["pythonImportsCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["preCheck", 60, 3], ["disabledTests", 64, 3], ["disabledTestPaths", 76, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jedie",
           repo: "python-creole",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "replace-poetry-with-poetry-core.patch",
             url: "https://github.com/jedie/python-creole/commit/bfc46730ab4a189f3142246cead8d26005a28671.patch",
             hash: "sha256-WtoEQyu/154Cfj6eSnNA+t37+o7Ij328QGMKxwcLg5k=",
@@ -69,7 +66,7 @@ sed -i "/-cov/d" pytest.ini
         "creole/tests/test_cross_compare_all.py::CrossCompareTests::test_link_without_title",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Creole markup tools written in Python",
         homepage: "https://github.com/jedie/python-creole",
         changelog: nix.thunk(() => nix.str`https://github.com/jedie/python-creole/releases/tag/v${version}`),
@@ -80,7 +77,7 @@ sed -i "/-cov/d" pytest.ini
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

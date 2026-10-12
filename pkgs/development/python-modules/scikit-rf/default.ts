@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["plot", 51, 5], ["xlsx", 52, 5], ["netw", 53, 5], ["visa", 54, 5], ["docs", 55, 5]], [["MPLBACKEND", 68, 58]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["pythonRemoveDeps", 48, 3], ["optional-dependencies", 50, 3], ["env", 68, 3], ["nativeCheckInputs", 70, 3], ["pytestFlags", 81, 3], ["disabledTests", 83, 3], ["pythonImportsCheck", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchFromGitHub: false, numpy: false, scipy: false, pandas: false, matplotlib: false, nbval: false, pyvisa: false, networkx: false, ipython: false, ipykernel: false, ipywidgets: false, "jupyter-client": false, "sphinx-rtd-theme": false, sphinx: false, nbsphinx: false, openpyxl: false, setuptools: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-mock": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["plot", 51, 5], ["xlsx", 52, 5], ["netw", 53, 5], ["visa", 54, 5], ["docs", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["MPLBACKEND", 68, 58]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["pythonRemoveDeps", 48, 3], ["optional-dependencies", 50, 3], ["env", 68, 3], ["nativeCheckInputs", 70, 3], ["pytestFlags", 81, 3], ["disabledTests", 83, 3], ["pythonImportsCheck", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scikit-rf",
           repo: "scikit-rf",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy, scipy, pandas]);
       const pythonRemoveDeps = nix.thunk(() => ["pre-commit"]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         plot: nix.thunk(() => [matplotlib]),
         xlsx: nix.thunk(() => [openpyxl]),
         netw: nix.thunk(() => [networkx]),
@@ -67,7 +63,7 @@ export default nix.lambda((args) => (() => {
           nbval,
         ]),
       }));
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, MPLBACKEND: "Agg" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[2], MPLBACKEND: "Agg" }))));
       const nativeCheckInputs = nix.thunk(() => [
         pytest_mock,
         matplotlib,
@@ -86,7 +82,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["skrf"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python library for RF/Microwave engineering",
         homepage: "https://scikit-rf.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-rf/scikit-rf/releases/tag/${nix.sel(src, "tag")}`),
@@ -97,7 +93,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

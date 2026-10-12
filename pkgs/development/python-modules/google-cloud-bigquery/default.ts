@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 45, 5], ["version", 46, 13], ["hash", 47, 5]], [["bqstorage", 67, 5], ["pandas", 72, 5], ["tqdm", 77, 5], ["ipython", 78, 5]], [["description", 150, 5], ["homepage", 151, 5], ["changelog", 152, 5], ["license", 153, 5], ["maintainers", 154, 5]], [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["src", 44, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["optional-dependencies", 66, 3], ["nativeCheckInputs", 81, 3], ["preCheck", 95, 3], ["disabledTests", 99, 3], ["disabledTestPaths", 134, 3], ["pythonImportsCheck", 144, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, "google-api-core": false, "google-cloud-bigquery-storage": false, "google-cloud-core": false, "google-resumable-media": false, grpcio: false, packaging: false, "proto-plus": false, protobuf: false, "python-dateutil": false, requests: false, pyarrow: false, "db-dtypes": false, pandas: false, tqdm: false, ipython: false, freezegun: false, "google-cloud-datacatalog": false, "google-cloud-storage": false, "google-cloud-testutils": false, mock: false, psutil: false, "pytest-xdist": false, pytest8_3CheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 45, 5], ["version", 46, 13], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["bqstorage", 67, 5], ["pandas", 72, 5], ["tqdm", 77, 5], ["ipython", 78, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 150, 5], ["homepage", 151, 5], ["changelog", 152, 5], ["license", 153, 5], ["maintainers", 154, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["src", 44, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["optional-dependencies", 66, 3], ["nativeCheckInputs", 81, 3], ["preCheck", 95, 3], ["disabledTests", 99, 3], ["disabledTestPaths", 134, 3], ["pythonImportsCheck", 144, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.41.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "google_cloud_bigquery",
           version: version,
           hash: "sha256-IhfkiLR+1XY2DJsswH1Z2IOlS4MWfA7zf5FcJrAaBv4=",
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         requests,
       ], nix.sel(google_api_core, "optional-dependencies", "grpc")));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         bqstorage: nix.thunk(() => [google_cloud_bigquery_storage, grpcio, pyarrow]),
         pandas: nix.thunk(() => [db_dtypes, pandas, pyarrow]),
         tqdm: nix.thunk(() => [tqdm]),
@@ -115,7 +112,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.bigquery", "google.cloud.bigquery_v2"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Google BigQuery API client library",
         homepage: "https://github.com/googleapis/python-bigquery",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-bigquery/blob/v${version}/CHANGELOG.md`),
@@ -123,7 +120,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

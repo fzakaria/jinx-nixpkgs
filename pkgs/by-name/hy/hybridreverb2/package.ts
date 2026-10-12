@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 13], ["repo", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]], [["owner", 42, 13], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5], ["fetchSubmodules", 46, 5]], [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5], ["mainProgram", 88, 5]], [["pname", 32, 11], ["version", 32, 17], ["impulseDB", 34, 3], ["src", 41, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 53, 3], ["cmakeFlags", 70, 3], ["enableParallelBuilding", 75, 3], ["postInstall", 77, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, lv2: false, "alsa-lib": false, libjack2: false, freetype: false, libx11: false, gtk3: false, "libpthread-stubs": false, libxdmcp: false, libxkbcommon: false, libepoxy: false, "at-spi2-core": false, dbus: false, curl: false, fftwFloat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 13], ["repo", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 42, 13], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5], ["fetchSubmodules", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5], ["mainProgram", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 11], ["version", 32, 17], ["impulseDB", 34, 3], ["src", 41, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 53, 3], ["cmakeFlags", 70, 3], ["enableParallelBuilding", 75, 3], ["postInstall", 77, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version_1 = version;
       const impulseDB = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: owner,
           repo: "HybridReverb2-impulse-response-database",
           rev: nix.thunk(() => nix.str`v${DBversion}`),
           sha256: "sha256-PyGrMNhrL2cRjb2UPPwEaJ6vZBV2sDG1mKFCNdfqjsI=",
         }))));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: owner,
           repo: "HybridReverb2",
           rev: rev,
@@ -78,7 +75,7 @@ export default nix.lambda((args) => (() => {
 cp  -r ${impulseDB}/* $out/share/HybridReverb2/
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/jpcima/HybridReverb2",
         description: "Reverb effect using hybrid impulse convolution",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -87,7 +84,7 @@ cp  -r ${impulseDB}/* $out/share/HybridReverb2/
         mainProgram: "HybridReverb2",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname_1,
         version: version_1,
         impulseDB,

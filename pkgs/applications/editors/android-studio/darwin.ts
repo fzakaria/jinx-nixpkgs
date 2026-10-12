@@ -2,17 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin.nix", [[["stable", 24, 7], ["beta", 25, 7], ["canary", 26, 7], ["dev", 27, 7]], [["url", 36, 24], ["sha256", 37, 7]], [["mainProgram", 68, 10]], [["pname", 32, 5], ["version", 33, 13], ["src", 35, 5], ["nativeBuildInputs", 40, 5], ["sourceRoot", 45, 5], ["dontFixup", 46, 5], ["installPhase", 48, 5], ["meta", 68, 5]], [["androidStudio", 123, 68], ["androidSdk", 123, 82]], [["unwrapped", 126, 13], ["full", 127, 13], ["withSdk", 128, 21], ["sdk", 129, 13], ["updateScript", 130, 13]], [["pname", 78, 17], ["version", 78, 23], ["dontFixup", 79, 9], ["startScript", 80, 9], ["preferLocalBuild", 119, 9], ["allowSubstitutes", 120, 9], ["passthru", 121, 9], ["meta", 135, 17]], [["androidStudio", 152, 34]]]);
 const formals$1 = { args: { channel: false, pname: false, version: false, sources: false, meta: false }, ellipsis: false };
 const formals$2 = { args: { androidenv: false, fetchurl: false, lib: false, makeWrapper: false, runCommand: false, runtimeShell: false, stdenvNoCC: false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/darwin.nix", [["stable", 24, 7], ["beta", 25, 7], ["canary", 26, 7], ["dev", 27, 7]]);
-const pos$2 = nix.positions(here + "/darwin.nix", [["url", 36, 24], ["sha256", 37, 7]]);
-const pos$3 = nix.positions(here + "/darwin.nix", [["mainProgram", 68, 10]]);
-const pos$4 = nix.positions(here + "/darwin.nix", [["pname", 32, 5], ["version", 33, 13], ["src", 35, 5], ["nativeBuildInputs", 40, 5], ["sourceRoot", 45, 5], ["dontFixup", 46, 5], ["installPhase", 48, 5], ["meta", 68, 5]]);
 const formals$3 = { args: { androidStudio: false, androidSdk: true }, ellipsis: false };
-const pos$5 = nix.positions(here + "/darwin.nix", [["androidStudio", 123, 68], ["androidSdk", 123, 82]]);
-const pos$6 = nix.positions(here + "/darwin.nix", [["unwrapped", 126, 13], ["full", 127, 13], ["withSdk", 128, 21], ["sdk", 129, 13], ["updateScript", 130, 13]]);
-const pos$7 = nix.positions(here + "/darwin.nix", [["pname", 78, 17], ["version", 78, 23], ["dontFixup", 79, 9], ["startScript", 80, 9], ["preferLocalBuild", 119, 9], ["allowSubstitutes", 120, 9], ["passthru", 121, 9], ["meta", 135, 17]]);
-const pos$8 = nix.positions(here + "/darwin.nix", [["androidStudio", 152, 34]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,18 +26,18 @@ export default nix.lambda((args) => (() => {
     const undmg = nix.arg($_1, "undmg");
     const source = nix.thunk(() => nix.sel(sources, nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
     const appName = nix.thunk(() => nix.sel({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       stable: "Android Studio.app",
       beta: "Android Studio Preview Beta.app",
       canary: "Android Studio Preview Canary.app",
       dev: "Android Studio Preview Dev.app",
     }, nix.key(nix.force(channel))));
     const androidStudio = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: nix.thunk(() => nix.str`${pname}-unwrapped`),
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.attr(source, "url")),
             sha256: nix.thunk(() => nix.sel(source, "sha256Hash")),
           })))),
@@ -69,14 +62,14 @@ makeWrapper \\
 
 runHook postInstall
 `),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$3, mainProgram: "studio" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[2], mainProgram: "studio" })),
       }))));
     const mkAndroidStudioWrapper = nix.lambda((args_2) => (() => {
       const $_2 = nix.formals(args_2, formals$3);
       const androidStudio_1 = nix.arg($_2, "androidStudio");
       const androidSdk = nix.argOr($_2, "androidSdk", () => null);
       return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pname: pname,
           version: version,
           dontFixup: true,
@@ -119,9 +112,9 @@ exec "${androidStudio_1}/Applications/${appName}/Contents/MacOS/studio" "$@"
           preferLocalBuild: true,
           allowSubstitutes: false,
           passthru: nix.thunk(() => (() => {
-            const withSdk = (androidSdk_1) => nix.app(mkAndroidStudioWrapper, nix.thunk(() => ({ [nix.POS]: pos$5, androidStudio: androidStudio_1, androidSdk: androidSdk_1 })));
+            const withSdk = (androidSdk_1) => nix.app(mkAndroidStudioWrapper, nix.thunk(() => ({ [nix.POS]: $pos[4], androidStudio: androidStudio_1, androidSdk: androidSdk_1 })));
             return {
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               unwrapped: androidStudio_1,
               full: nix.thunk(() => nix.app(withSdk, nix.thunk(() => nix.sel(androidenv, "androidPkgs", "androidsdk")))),
               withSdk: withSdk,
@@ -144,7 +137,7 @@ ln -s "../Applications/${appName}/Contents/MacOS/studio" "$out/bin/${pname}"
 /usr/bin/codesign --force --sign - "$out/Applications/${appName}"
 `));
     })(), formals$3);
-    return nix.app(mkAndroidStudioWrapper, nix.thunk(() => ({ [nix.POS]: pos$8, androidStudio: androidStudio })));
+    return nix.app(mkAndroidStudioWrapper, nix.thunk(() => ({ [nix.POS]: $pos[7], androidStudio: androidStudio })));
   })(), formals$2);
 })(), formals$1);
 //# sourceMappingURL=darwin.ts.map

@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 26, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 48, 3], ["patches", 53, 3]]]);
 const formals$1 = { args: { mkDerivation: false, cmake: false, "extra-cmake-modules": false, attica: false, karchive: false, kcompletion: false, kconfig: false, kcoreaddons: false, ki18n: false, kiconthemes: false, kio: false, kitemviews: false, kpackage: false, kservice: false, ktextwidgets: false, kwidgetsaddons: false, kxmlgui: false, qtbase: false, qtdeclarative: false, kirigami2: false, syndication: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 48, 3], ["patches", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const kirigami2 = nix.arg($, "kirigami2");
   const syndication = nix.arg($, "syndication");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "knewstuff",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),
       buildInputs: nix.thunk(() => [

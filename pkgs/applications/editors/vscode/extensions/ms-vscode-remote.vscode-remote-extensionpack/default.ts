@@ -2,26 +2,24 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 8, 5], ["publisher", 9, 5], ["version", 10, 5], ["hash", 11, 5]], [["description", 15, 5], ["homepage", 16, 5], ["license", 17, 5], ["maintainers", 18, 5]], [["mktplcRef", 7, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 8, 5], ["publisher", 9, 5], ["version", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 15, 5], ["homepage", 16, 5], ["license", 17, 5], ["maintainers", 18, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 7, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "vscode-remote-extensionpack",
         publisher: "ms-vscode-remote",
         version: "0.26.0",
         hash: "sha256-YUo0QbJILa9BzWub6Wi6cDD/Zsy/H8LZ8j+9H+5pVHY=",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Visual Studio Code extension pack that lets you open any folder in a container, on a remote machine, or in WSL and take advantage of VS Code's full feature set",
         homepage: "https://github.com/Microsoft/vscode-remote-release",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

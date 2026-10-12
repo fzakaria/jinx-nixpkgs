@@ -2,25 +2,18 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/noto-fonts.nix", [[["maintainers", 4, 8]], [["systemPackages", 13, 19]], [["serif", 23, 11], ["sansSerif", 27, 11], ["monospace", 31, 11], ["emoji", 35, 11]], [["defaultFonts", 22, 20]], [["enableDefaultPackages", 15, 9], ["fonts", 16, 9], ["fontconfig", 22, 9]], [["imports", 12, 7], ["environment", 13, 7], ["fonts", 14, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 9, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/noto-fonts.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/noto-fonts.nix", [["systemPackages", 13, 19]]);
-const pos$3 = nix.positions(here + "/noto-fonts.nix", [["serif", 23, 11], ["sansSerif", 27, 11], ["monospace", 31, 11], ["emoji", 35, 11]]);
-const pos$4 = nix.positions(here + "/noto-fonts.nix", [["defaultFonts", 22, 20]]);
-const pos$5 = nix.positions(here + "/noto-fonts.nix", [["enableDefaultPackages", 15, 9], ["fonts", 16, 9], ["fontconfig", 22, 9]]);
-const pos$6 = nix.positions(here + "/noto-fonts.nix", [["imports", 12, 7], ["environment", 13, 7], ["fonts", 14, 7]]);
-const pos$7 = nix.positions(here + "/noto-fonts.nix", [["machine", 9, 9]]);
-const pos$8 = nix.positions(here + "/noto-fonts.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 9, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "noto-fonts",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -30,19 +23,19 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gedit"))]),
           })),
           fonts: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enableDefaultPackages: false,
             fonts: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
@@ -54,9 +47,9 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             fontconfig: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               defaultFonts: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 serif: nix.thunk(() => ["Noto Serif", "Noto Serif CJK SC"]),
                 sansSerif: nix.thunk(() => ["Noto Sans", "Noto Sans CJK SC"]),
                 monospace: nix.thunk(() => ["Noto Sans Mono", "Noto Sans Mono CJK SC"]),

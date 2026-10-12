@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["url", 30, 7], ["hash", 31, 7]], [["PYTHONDONTWRITEBYTECODE", 47, 7]], [["updateScript", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["teams", 72, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["build-system", 35, 3], ["dependencies", 40, 3], ["env", 47, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 54, 3], ["postInstall", 59, 3], ["pythonImportsCheck", 63, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, asn1crypto: false, attrs: false, buildPythonPackage: false, cryptodatahub: false, fetchFromGitLab: false, fetchpatch2: false, pyfakefs: false, setuptools: false, "setuptools-scm": false, pytestCheckHook: false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["PYTHONDONTWRITEBYTECODE", 47, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 65, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["teams", 72, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["build-system", 35, 3], ["dependencies", 40, 3], ["env", 47, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 54, 3], ["postInstall", 59, 3], ["pythonImportsCheck", 63, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cryptoparser",
       version: "1.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coroner",
           repo: "cryptoparser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,21 +33,24 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/coroner/cryptoparser/-/merge_requests/2.diff",
             hash: "sha256-T8dK6OMR41XUMrZ6B7ZybEtljZJOR2QbCiZl04dT3wA=",
           })))),
       ]),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [asn1crypto, attrs, cryptodatahub, urllib3]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, PYTHONDONTWRITEBYTECODE: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], PYTHONDONTWRITEBYTECODE: 1n })),
       nativeCheckInputs: nix.thunk(() => [pyfakefs, pytestCheckHook]),
       disabledTests: nix.thunk(() => ["TestCasesBasesHttpHeader"]),
       postInstall: "find $out -name __pycache__ -type d | xargs rm -rv\n",
       pythonImportsCheck: nix.thunk(() => ["cryptoparser"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "../cryptodatahub/update.sh") })),
+      passthru: nix.thunk(() => ({
+        [nix.POS]: $pos[3],
+        updateScript: nix.path(here, "../cryptodatahub/update.sh"),
+      })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Security protocol parser and generator",
         homepage: "https://gitlab.com/coroner/cryptoparser",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/coroner/cryptoparser/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

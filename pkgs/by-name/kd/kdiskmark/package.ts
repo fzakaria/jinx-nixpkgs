@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5]], [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 52, 5], ["maintainers", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["preConfigure", 33, 3], ["qtWrapperArgs", 38, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fio: false, cmake: false, fetchFromGitHub: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 52, 5], ["maintainers", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["preConfigure", 33, 3], ["qtWrapperArgs", 38, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kdiskmark",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jonmagon",
           repo: "kdiskmark",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [fio]))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "HDD and SSD benchmark tool with a friendly graphical user interface",
         longDescription: "If kdiskmark is not run as root it can rely on polkit to get the necessary\nprivileges. In this case you must install it with `environment.systemPackages`\non NixOS, nix-env will not work.\n",
         homepage: "https://github.com/JonMagon/KDiskMark",

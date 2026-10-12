@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/smlar.nix", [[["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 21, 5], ["homepage", 22, 5], ["platforms", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["broken", 27, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["makeFlags", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { fetchgit: false, lib: false, postgresql: false, postgresqlBuildExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/smlar.nix", [["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/smlar.nix", [["description", 21, 5], ["homepage", 22, 5], ["platforms", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["broken", 27, 5]]);
-const pos$3 = nix.positions(here + "/smlar.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["makeFlags", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   return nix.app(postgresqlBuildExtension, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "smlar-unstable",
       version: "2021-11-08",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://sigaev.ru/smlar.git",
           rev: "f2522d5f20a46a3605a761d34a3aefcdffb94e71",
           hash: "sha256-AC6w7uYw0OW70pQpWbK1A3rkCnMvTJzTCAdFiY3rO7A=",
         })))),
       makeFlags: nix.thunk(() => ["USE_PGXS=1"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Compute similarity of any one-dimensional arrays",
         homepage: "http://sigaev.ru/git/gitweb.cgi?p=smlar.git",
         platforms: nix.thunk(() => nix.sel(postgresql, "meta", "platforms")),

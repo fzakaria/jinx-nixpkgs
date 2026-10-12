@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]], [["description", 28, 5], ["homepage", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["knownVulnerabilities", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["doCheck", 23, 3], ["pythonImportsCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, "flit-core": false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 28, 5], ["homepage", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["knownVulnerabilities", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["doCheck", 23, 3], ["pythonImportsCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "PyPDF2",
           version: version,
           hash: "sha256-p0QI9pumJx9xuTUu9O0D3FOjGqQE0ptdMfU7/s/uFEA=",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["PyPDF2"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pure-Python library built as a PDF toolkit",
         homepage: "https://pypdf2.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/py-pdf/PyPDF2/raw/${version}/CHANGELOG.md`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plpython3.nix", [[["finalPackage", 23, 13], ["sql", 24, 13]], [["extension", 22, 17]], [["withPackages", 18, 19], ["wrapperArgs", 19, 11], ["tests", 22, 11]], [["homepage", 34, 13], ["license", 35, 13], ["changelog", 36, 13], ["teams", 37, 13], ["platforms", 38, 13], ["description", 40, 11]], [["pname", 14, 9], ["version", 15, 30], ["paths", 16, 9], ["passthru", 17, 9], ["meta", 32, 9]]]);
 const formals$1 = { args: { buildEnv: false, postgresql: false, postgresqlTestExtension: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plpython3.nix", [["finalPackage", 23, 13], ["sql", 24, 13]]);
-const pos$2 = nix.positions(here + "/plpython3.nix", [["extension", 22, 17]]);
-const pos$3 = nix.positions(here + "/plpython3.nix", [["withPackages", 18, 19], ["wrapperArgs", 19, 11], ["tests", 22, 11]]);
-const pos$4 = nix.positions(here + "/plpython3.nix", [["homepage", 34, 13], ["license", 35, 13], ["changelog", 36, 13], ["teams", 37, 13], ["platforms", 38, 13], ["description", 40, 11]]);
-const pos$5 = nix.positions(here + "/plpython3.nix", [["pname", 14, 9], ["version", 15, 30], ["paths", 16, 9], ["passthru", 17, 9], ["meta", 32, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const withPackages = (f) => (() => {
     const python = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), f));
     const finalPackage = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: nix.thunk(() => nix.str`${nix.sel(postgresql, "pname")}-plpython3`),
         version: nix.thunk(() => nix.attr(postgresql, "version")),
         paths: nix.thunk(() => [nix.thunk(() => nix.sel(postgresql, "plpython3"))]),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           withPackages: withPackages,
           wrapperArgs: nix.thunk(() => [
             nix.thunk(() => nix.str`--set PYTHONPATH "${python}/${nix.sel(python, "sitePackages")}"`),
           ]),
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 finalPackage: nix.thunk(() => nix.app(nix.sel(finalPackage, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "base58"))])),
                 sql: "CREATE EXTENSION plpython3u;\nDO LANGUAGE plpython3u $$\n  import base58\n$$;\n",
               })))),
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(postgresql, "meta"));
           return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           homepage: nix.thunk(() => nix.attr(from, "homepage")),
           license: nix.thunk(() => nix.attr(from, "license")),
           changelog: nix.thunk(() => nix.attr(from, "changelog")),

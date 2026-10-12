@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["name", 25, 7], ["exec", 26, 7], ["icon", 27, 7], ["comment", 28, 7], ["desktopName", 29, 7], ["genericName", 30, 7], ["categories", 31, 7]], [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["desktopItems", 23, 3], ["strictDeps", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["preConfigure", 52, 3], ["installPhase", 57, 3], ["enableParallelBuilding", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeDesktopItem: false, copyDesktopItems: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, SDL2_net: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["exec", 26, 7], ["icon", 27, 7], ["comment", 28, 7], ["desktopName", 29, 7], ["genericName", 30, 7], ["categories", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["desktopItems", 23, 3], ["strictDeps", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["preConfigure", 52, 3], ["installPhase", 57, 3], ["enableParallelBuilding", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const SDL2_net = nix.arg($, "SDL2_net");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rocksndiamonds",
       version: "4.4.2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.artsoft.org/RELEASES/linux/rocksndiamonds/rocksndiamonds-${nix.sel(finalAttrs, "version")}-linux.tar.gz`),
           hash: "sha256-WevciYWSORmj88186y6aBzyltHVf/aD5CPS/SYvGH5k=",
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "rocksndiamonds",
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             icon: "rocksndiamonds",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\niconDir=$out/share/icons/hicolor/32x32/apps\nmkdir -p $out/bin $iconDir $dataDir\ncp rocksndiamonds $out/bin/\nln -s $dataDir/graphics/gfx_classic/icons/icon.png $iconDir/rocksndiamonds.png\ncp -r conf docs graphics levels music sounds $dataDir\n\nrunHook postInstall\n",
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Scrolling tile-based arcade style puzzle game",
         mainProgram: "rocksndiamonds",
         homepage: "https://www.artsoft.org/rocksndiamonds/",

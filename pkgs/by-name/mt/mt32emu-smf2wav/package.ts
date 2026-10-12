@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["name", 53, 7], ["runtimeInputs", 55, 7], ["text", 59, 7]], [["rev-prefix", 72, 7]], [["name", 77, 7], ["runtimeInputs", 79, 7], ["text", 83, 7]], [["unfixVersionScript", 52, 5], ["updateTagScript", 71, 5], ["fixVersionScript", 76, 5], ["updateScript", 95, 5]], [["homepage", 103, 5], ["description", 104, 5], ["mainProgram", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["cmakeFlags", 45, 3], ["passthru", 50, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, nix: false, writeShellApplication: false, "_experimental-update-script-combinators": false, cmake: false, glib: false, libmt32emu: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 53, 7], ["runtimeInputs", 55, 7], ["text", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 72, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 77, 7], ["runtimeInputs", 79, 7], ["text", 83, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["unfixVersionScript", 52, 5], ["updateTagScript", 71, 5], ["fixVersionScript", 76, 5], ["updateScript", 95, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 103, 5], ["description", 104, 5], ["mainProgram", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["cmakeFlags", 45, 3], ["passthru", 50, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libmt32emu = nix.arg($, "libmt32emu");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "mt32emu-smf2wav",
       version: "1.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "munt",
           repo: "munt",
           rev: nix.thunk(() => nix.str`mt32emu_smf2wav_${nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -43,16 +37,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "munt_WITH_MT32EMU_SMF2WAV", true)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         unfixVersionScript: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "unfix-mt32emu-smf2wav-version",
             runtimeInputs: nix.thunk(() => [nix$]),
             text: "export UPDATE_NIX_ATTR_PATH=\"${UPDATE_NIX_ATTR_PATH:-mt32emu-smf2wav}\"\n\npreUpdateScriptVersion=\"$(nix-instantiate . --eval --strict -A \"$UPDATE_NIX_ATTR_PATH.version\" | cut -d'\"' -f2)\"\nunfixedVersion=\"${preUpdateScriptVersion//\\./_}\"\n\npkgFile=\"$(nix-instantiate --eval -E \"with import ./. {}; (builtins.unsafeGetAttrPos \\\"version\\\" $UPDATE_NIX_ATTR_PATH).file\" | cut -d'\"' -f2)\"\n\nsed -i -e \"s/version = \\\"$preUpdateScriptVersion\\\"/version = \\\"$unfixedVersion\\\"/g\" \"$pkgFile\"\n",
           })))),
-        updateTagScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "mt32emu_smf2wav_" })))),
+        updateTagScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "mt32emu_smf2wav_" })))),
         fixVersionScript: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "fix-mt32emu-smf2wav-version",
             runtimeInputs: nix.thunk(() => [nix$]),
             text: "export UPDATE_NIX_ATTR_PATH=\"${UPDATE_NIX_ATTR_PATH:-mt32emu-smf2wav}\"\n\npostUpdateScriptVersion=\"$(nix-instantiate . --eval --strict -A \"$UPDATE_NIX_ATTR_PATH.version\" | cut -d'\"' -f2)\"\nfixedVersion=\"${postUpdateScriptVersion//_/.}\"\n\npkgFile=\"$(nix-instantiate --eval -E \"with import ./. {}; (builtins.unsafeGetAttrPos \\\"version\\\" $UPDATE_NIX_ATTR_PATH).file\" | cut -d'\"' -f2)\"\n\nsed -i -e \"s/version = \\\"$postUpdateScriptVersion\\\"/version = \\\"$fixedVersion\\\"/g\" \"$pkgFile\"\n",
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://munt.sourceforge.net/",
         description: "Produces a WAVE file from a Standard MIDI file (SMF)",
         mainProgram: "mt32emu-smf2wav",

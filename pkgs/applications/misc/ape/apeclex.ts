@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/apeclex.nix", [[["pname", 8, 3], ["lexiconPath", 9, 3], ["description", 10, 3], ["license", 11, 3]]]);
 const formals$1 = { args: { lib: false, attemptoClex: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/apeclex.nix", [["pname", 8, 3], ["lexiconPath", 9, 3], ["description", 10, 3], ["license", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const attemptoClex = nix.arg($, "attemptoClex");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(callPackage, nix.path(here, "./."), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "ape-clex",
       lexiconPath: nix.thunk(() => nix.str`${attemptoClex}/clex_lexicon.pl`),
       description: "Parser for Attempto Controlled English (ACE) with a large lexicon (~100,000 entries)",

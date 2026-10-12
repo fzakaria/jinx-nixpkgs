@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5], ["broken", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["preConfigure", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["postPatch", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, cmake: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5], ["broken", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["preConfigure", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["postPatch", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "qscreenshot",
       version: "unstable-2021-10-18",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.code.sf.net/p/qscreenshot/code",
           rev: "e340f06ae2f1a92a353eaa68e103d1c840adc12d",
           sha256: "0mdiwn74vngiyazr3lq72f3jnv5zw8wyd2dw6rik6dbrvfs69jig",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace qScreenshot/{CMakeLists.txt,cmake/modules/version.cmake} \\\n  --replace-fail \"cmake_minimum_required( VERSION 3.2.0 )\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple creation and editing of screenshots",
         mainProgram: "qScreenshot",
         homepage: "https://sourceforge.net/projects/qscreenshot/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["pythonRelaxDeps", 27, 3], ["build-system", 32, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 49, 3], ["disabledTestPaths", 51, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, fetchFromGitHub: false, oss2: false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, requests: false, setuptools: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["pythonRelaxDeps", 27, 3], ["build-system", 32, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 49, 3], ["disabledTestPaths", 51, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "karajan1001",
           repo: "aiooss2",
           tag: version,
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         "tests/unit/test_adapter.py",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for aliyun OSS (Object Storage Service)",
         homepage: "https://github.com/karajan1001/aiooss2",
         changelog: nix.thunk(() => nix.str`https://github.com/karajan1001/aiooss2/blob/${version}/CHANGES.txt`),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

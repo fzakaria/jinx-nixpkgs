@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 7], ["hash", 33, 7], ["stripRoot", 34, 7]], [["url", 46, 5], ["hash", 47, 5]], [["homepage", 163, 5], ["changelog", 164, 5], ["description", 165, 5], ["license", 166, 5], ["mainProgram", 167, 5], ["platforms", 168, 5], ["maintainers", 169, 5]], [["pname", 41, 3], ["version", 42, 11], ["pyproject", 43, 3], ["src", 45, 3], ["doCheck", 51, 3], ["buildInputs", 53, 3], ["build-system", 61, 3], ["nativeBuildInputs", 65, 3], ["dependencies", 75, 3], ["patches", 94, 3], ["dontWrapQtApps", 98, 3], ["postPatch", 100, 3], ["installPhase", 114, 3], ["postInstall", 127, 3], ["preFixup", 136, 3], ["meta", 162, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchzip: false, python3: false, "glib-networking": false, asciidoc: false, docbook_xml_dtd_45: false, docbook_xsl: false, desktopToDarwinBundle: false, libxml2: false, libxslt: false, withPdfReader: true, pipewireSupport: true, pipewire: false, qt6Packages: false, wayland: false, enableWideVine: true, "widevine-cdm": false, enableVulkan: true, "vulkan-loader": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7], ["stripRoot", 34, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 163, 5], ["changelog", 164, 5], ["description", 165, 5], ["license", 166, 5], ["mainProgram", 167, 5], ["platforms", 168, 5], ["maintainers", 169, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 11], ["pyproject", 43, 3], ["src", 45, 3], ["doCheck", 51, 3], ["buildInputs", 53, 3], ["build-system", 61, 3], ["nativeBuildInputs", 65, 3], ["dependencies", 75, 3], ["patches", 94, 3], ["dontWrapQtApps", 98, 3], ["postPatch", 100, 3], ["installPhase", 114, 3], ["postInstall", 127, 3], ["preFixup", 136, 3], ["meta", 162, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const pdfjs = nix.thunk(() => (() => {
     const version_1 = "5.6.205";
     return nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/mozilla/pdf.js/releases/download/v${version_1}/pdfjs-${version_1}-dist.zip`),
         hash: "sha256-JMmxoT68PNJ/MmlMwVNYcHerorklLv5YY6C55xjn73w=",
         stripRoot: false,
@@ -42,12 +39,12 @@ export default nix.lambda((args) => (() => {
   })());
   const version = "3.7.0";
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qutebrowser",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/qutebrowser/qutebrowser/releases/download/v${version}/qutebrowser-${version}.tar.gz`),
           hash: "sha256-x/lYhOpeZnXlhAJb6lXP+VDEfXSa/39BX2jaA/zOD5I=",
         })))),
@@ -124,7 +121,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/qutebrowser/qutebrowser",
         changelog: nix.thunk(() => nix.str`https://github.com/qutebrowser/qutebrowser/blob/v${version}/doc/changelog.asciidoc`),
         description: "Keyboard-focused browser with a minimal GUI",

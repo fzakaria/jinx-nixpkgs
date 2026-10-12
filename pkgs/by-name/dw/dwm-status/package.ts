@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["updateScript", 62, 12]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 73, 5], ["platforms", 74, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 49, 3], ["cargoHash", 56, 3], ["postInstall", 58, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, dbus: false, "gdk-pixbuf": false, libnotify: false, makeWrapper: false, "pkg-config": false, libx11: false, enableAlsaUtils: true, "alsa-utils": false, coreutils: false, enableNetwork: true, dnsutils: false, iproute2: false, wirelesstools: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 73, 5], ["platforms", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 49, 3], ["cargoHash", 56, 3], ["postInstall", 58, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const bins = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), enableAlsaUtils, nix.thunk(() => [alsa_utils, coreutils])), nix.app(nix.sel(lib, "optionals"), enableNetwork, nix.thunk(() => [dnsutils, iproute2, wirelesstools]))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dwm-status",
       version: "1.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Gerschtli",
           repo: "dwm-status",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,11 +42,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(bins, [])), nix.thunk(() => nix.str`wrapProgram $out/bin/dwm-status --prefix "PATH" : "${nix.app(nix.sel(lib, "makeBinPath"), bins)}"
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Highly performant and configurable DWM status service",
         homepage: "https://github.com/Gerschtli/dwm-status",
         changelog: nix.thunk(() => nix.str`https://github.com/Gerschtli/dwm-status/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

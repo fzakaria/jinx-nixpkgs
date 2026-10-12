@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["forceGitDeps", 60, 11], ["forceEmptyCache", 61, 11], ["src", 62, 11], ["srcs", 63, 11], ["sourceRoot", 64, 11], ["prePatch", 65, 11], ["patches", 66, 11], ["postPatch", 67, 11], ["patchFlags", 68, 11], ["name", 70, 9], ["hash", 71, 9], ["fetcherVersion", 72, 9]], [["nodejs", 86, 17]], [["NIX_NPM_FETCHER_VERSION", 93, 9]], [["platforms", 115, 9]], [["npmDeps", 90, 15], ["npmBuildScript", 90, 23], ["env", 92, 7], ["nativeBuildInputs", 96, 7], ["buildInputs", 107, 7], ["strictDeps", 109, 7], ["dontStrip", 112, 7], ["meta", 114, 7]], [["constructDrv", 11, 3], ["extendDrvArgs", 13, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchNpmDeps: false, buildPackages: false, nodejs: false, cctools: false }, ellipsis: false };
 const formals$2 = { args: { name: true, src: true, srcs: true, sourceRoot: true, prePatch: true, patches: true, postPatch: true, patchFlags: true, nativeBuildInputs: true, buildInputs: true, npmDepsHash: true, npmDepsFetcherVersion: true, forceGitDeps: true, forceEmptyCache: true, makeCacheWritable: true, npmBuildScript: true, npmFlags: true, npmInstallFlags: true, npmRebuildFlags: true, npmBuildFlags: true, npmPackFlags: true, npmPruneFlags: true, npmWorkspace: true, nodejs: true, npmDeps: true, npmConfigHook: true, npmBuildHook: true, npmInstallHook: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["forceGitDeps", 60, 11], ["forceEmptyCache", 61, 11], ["src", 62, 11], ["srcs", 63, 11], ["sourceRoot", 64, 11], ["prePatch", 65, 11], ["patches", 66, 11], ["postPatch", 67, 11], ["patchFlags", 68, 11], ["name", 70, 9], ["hash", 71, 9], ["fetcherVersion", 72, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nodejs", 86, 17]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_NPM_FETCHER_VERSION", 93, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["platforms", 115, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["npmDeps", 90, 15], ["npmBuildScript", 90, 23], ["env", 92, 7], ["nativeBuildInputs", 96, 7], ["buildInputs", 107, 7], ["strictDeps", 109, 7], ["dontStrip", 112, 7], ["meta", 114, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["constructDrv", 11, 3], ["extendDrvArgs", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const cctools = nix.arg($, "cctools");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
         const npmWorkspace = nix.argOr($_1, "npmWorkspace", () => null);
         const nodejs_1 = nix.argOr($_1, "nodejs", () => nix.sel(topLevelArgs, "nodejs"));
         const npmDeps = nix.argOr($_1, "npmDeps", () => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             forceGitDeps: forceGitDeps,
             forceEmptyCache: forceEmptyCache,
             src: src,
@@ -68,12 +63,12 @@ export default nix.lambda((args) => (() => {
         const npmConfigHook = nix.argOr($_1, "npmConfigHook", () => null);
         const npmBuildHook = nix.argOr($_1, "npmBuildHook", () => null);
         const npmInstallHook = nix.argOr($_1, "npmInstallHook", () => null);
-        const npmHooks = nix.thunk(() => nix.app(nix.sel(buildPackages, "npmHooks", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, nodejs: nodejs_1 }))));
+        const npmHooks = nix.thunk(() => nix.app(nix.sel(buildPackages, "npmHooks", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], nodejs: nodejs_1 }))));
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           npmDeps: npmDeps,
           npmBuildScript: npmBuildScript,
-          env: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "env"), { [nix.POS]: pos$3, NIX_NPM_FETCHER_VERSION: npmDepsFetcherVersion })),
+          env: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "env"), { [nix.POS]: $pos[2], NIX_NPM_FETCHER_VERSION: npmDepsFetcherVersion })),
           nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, nix.concat([
             nodejs_1,
             nix.thunk(() => (nix.asBool(!nix.eq(npmConfigHook, null)) ? nix.force(npmConfigHook) : nix.sel(npmHooks, "npmConfigHook"))),
@@ -85,7 +80,7 @@ export default nix.lambda((args) => (() => {
           strictDeps: true,
           dontStrip: nix.thunk(() => nix.selOr(args_2, () => true, "dontStrip")),
           meta: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "meta"), {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             platforms: nix.thunk(() => nix.selOr(args_2, () => nix.sel(nodejs_1, "meta", "platforms"), "meta", "platforms")),
           })),
         };

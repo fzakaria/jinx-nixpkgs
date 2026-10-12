@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5], ["domain", 24, 5]], [["LANG", 62, 7]], [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["maintainers", 76, 5], ["mainProgram", 80, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 27, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 55, 3], ["env", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, "ffmpeg-headless": false, kdsingleapplication: false, libass: false, kdePackages: false, "pkg-config": false, qt6: false, "yt-dlp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5], ["domain", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LANG", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["maintainers", 76, 5], ["mainProgram", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 27, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 55, 3], ["env", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const yt_dlp = nix.arg($, "yt-dlp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "haruna",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "multimedia",
           repo: "haruna",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "finalPackage", "version")}`),
@@ -64,9 +61,9 @@ export default nix.lambda((args) => (() => {
         pkg_config,
         nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook")),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LANG: "C.UTF-8" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://invent.kde.org/multimedia/haruna",
         description: "Open source video player built with Qt/QML and libmpv",
         license: nix.thunk(() => (() => {

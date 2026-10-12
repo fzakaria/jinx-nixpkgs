@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["package", 58, 7]], [["version", 57, 11]], [["updateScript", 56, 5], ["tests", 57, 5]], [["description", 63, 5], ["longDescription", 64, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5], ["mainProgram", 73, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["dontConfigure", 23, 3], ["dontBuild", 24, 3], ["nativeBuildInputs", 26, 3], ["patches", 28, 3], ["installPhase", 33, 3], ["postFixup", 42, 3], ["passthru", 55, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, makeWrapper: false, wget: false, gnugrep: false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 57, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 56, 5], ["tests", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 63, 5], ["longDescription", 64, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5], ["mainProgram", 73, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["dontConfigure", 23, 3], ["dontBuild", 24, 3], ["nativeBuildInputs", 26, 3], ["patches", 28, 3], ["installPhase", 33, 3], ["postFixup", 42, 3], ["passthru", 55, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "distrobox",
       version: "1.8.2.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "89luca89",
           repo: "distrobox",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,18 +43,18 @@ mkdir -p $out/share/distrobox
 echo 'container_additional_volumes="/nix:/nix"' > $out/share/distrobox/distrobox.conf
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Wrapper around podman or docker to create and start containers",
         longDescription: "Use any linux distribution inside your terminal. Enable both backward and\nforward compatibility with software and freedom to use whatever distribution\nyou’re more comfortable with\n",
         homepage: "https://distrobox.it/",

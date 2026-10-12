@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["homepage", 62, 5], ["description", 63, 5], ["longDescription", 64, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["postInstall", 55, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fig2dev: false, gettext: false, ghostscript: false, guile: false, "guile-lib": false, "guile-reader": false, imagemagick: false, makeWrapper: false, "pkg-config": false, enableEmacs: true, emacs: false, enableLout: true, lout: false, enablePloticus: true, ploticus: false, enableTex: true, texliveSmall: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["description", 63, 5], ["longDescription", 64, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["postInstall", 55, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const texliveSmall = nix.arg($, "texliveSmall");
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "skribilo",
       version: "0.11.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/skribilo/skribilo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ZlwkHEKSC/Np8SMdS5xxzhi6Y63QuajyQYIf0Roo1ZI=",
         })))),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
   --prefix GUILE_LOAD_COMPILED_PATH : "$out/${nix.sel(guile, "siteCcacheDir")}:$GUILE_LOAD_COMPILED_PATH"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.nongnu.org/skribilo/",
         description: "Ultimate Document Programming Framework",
         longDescription: "Skribilo is a free document production tool that takes a structured\ndocument representation as its input and renders that document in a\nvariety of output formats: HTML and Info for on-line browsing, and Lout\nand LaTeX for high-quality hard copies.\n\nThe input document can use Skribilo's markup language to provide\ninformation about the document's structure, which is similar to HTML or\nLaTeX and does not require expertise. Alternatively, it can use a simpler,\n\"markup-less\" format that borrows from Emacs' outline mode and from other\nconventions used in emails, Usenet and text.\n",

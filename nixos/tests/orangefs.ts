@@ -2,31 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/orangefs.nix", [[["allowedTCPPorts", 7, 27]], [["firewall", 7, 18]], [["serial", 12, 39]], [["deviceExtraOpts", 12, 23]], [["size", 11, 11], ["driveConfig", 12, 11]], [["device", 18, 11], ["fsType", 19, 11], ["autoFormat", 20, 11]], [["/data", 17, 9]], [["emptyDiskImages", 9, 22], ["fileSystems", 16, 22]], [["server1", 29, 11], ["server2", 30, 11]], [["enable", 25, 9], ["dataStorageSpace", 26, 9], ["metadataStorageSpace", 27, 9], ["servers", 28, 9]], [["server", 24, 25]], [["orangefs", 24, 16]], [["networking", 7, 7], ["virtualisation", 9, 7], ["services", 24, 7]], [["enable", 38, 27]], [["firewall", 38, 18]], [["target", 44, 13], ["mountPoint", 45, 13]], [["enable", 41, 9], ["fileSystems", 42, 9]], [["client", 40, 25]], [["orangefs", 40, 16]], [["networking", 38, 7], ["services", 40, 7]], [["server1", 56, 5], ["server2", 57, 5], ["client1", 59, 5], ["client2", 60, 5]], [["name", 53, 3], ["nodes", 55, 3], ["testScript", 63, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/orangefs.nix", [["allowedTCPPorts", 7, 27]]);
-const pos$2 = nix.positions(here + "/orangefs.nix", [["firewall", 7, 18]]);
-const pos$3 = nix.positions(here + "/orangefs.nix", [["serial", 12, 39]]);
-const pos$4 = nix.positions(here + "/orangefs.nix", [["deviceExtraOpts", 12, 23]]);
-const pos$5 = nix.positions(here + "/orangefs.nix", [["size", 11, 11], ["driveConfig", 12, 11]]);
-const pos$6 = nix.positions(here + "/orangefs.nix", [["device", 18, 11], ["fsType", 19, 11], ["autoFormat", 20, 11]]);
-const pos$7 = nix.positions(here + "/orangefs.nix", [["/data", 17, 9]]);
-const pos$8 = nix.positions(here + "/orangefs.nix", [["emptyDiskImages", 9, 22], ["fileSystems", 16, 22]]);
-const pos$9 = nix.positions(here + "/orangefs.nix", [["server1", 29, 11], ["server2", 30, 11]]);
-const pos$10 = nix.positions(here + "/orangefs.nix", [["enable", 25, 9], ["dataStorageSpace", 26, 9], ["metadataStorageSpace", 27, 9], ["servers", 28, 9]]);
-const pos$11 = nix.positions(here + "/orangefs.nix", [["server", 24, 25]]);
-const pos$12 = nix.positions(here + "/orangefs.nix", [["orangefs", 24, 16]]);
-const pos$13 = nix.positions(here + "/orangefs.nix", [["networking", 7, 7], ["virtualisation", 9, 7], ["services", 24, 7]]);
 const formals$3 = { args: { lib: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/orangefs.nix", [["enable", 38, 27]]);
-const pos$15 = nix.positions(here + "/orangefs.nix", [["firewall", 38, 18]]);
-const pos$16 = nix.positions(here + "/orangefs.nix", [["target", 44, 13], ["mountPoint", 45, 13]]);
-const pos$17 = nix.positions(here + "/orangefs.nix", [["enable", 41, 9], ["fileSystems", 42, 9]]);
-const pos$18 = nix.positions(here + "/orangefs.nix", [["client", 40, 25]]);
-const pos$19 = nix.positions(here + "/orangefs.nix", [["orangefs", 40, 16]]);
-const pos$20 = nix.positions(here + "/orangefs.nix", [["networking", 38, 7], ["services", 40, 7]]);
-const pos$21 = nix.positions(here + "/orangefs.nix", [["server1", 56, 5], ["server2", 57, 5], ["client1", 59, 5], ["client2", 60, 5]]);
-const pos$22 = nix.positions(here + "/orangefs.nix", [["name", 53, 3], ["nodes", 55, 3], ["testScript", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,27 +13,27 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        firewall: nix.thunk(() => ({ [nix.POS]: pos$1, allowedTCPPorts: nix.thunk(() => [3334n]) })),
+        [nix.POS]: $pos[1],
+        firewall: nix.thunk(() => ({ [nix.POS]: $pos[0], allowedTCPPorts: nix.thunk(() => [3334n]) })),
       })),
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         emptyDiskImages: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             size: 4096n,
             driveConfig: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              deviceExtraOpts: nix.thunk(() => ({ [nix.POS]: pos$3, serial: "data" })),
+              [nix.POS]: $pos[3],
+              deviceExtraOpts: nix.thunk(() => ({ [nix.POS]: $pos[2], serial: "data" })),
             })),
           })),
         ]),
         fileSystems: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "/data": nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             device: "/dev/disk/by-id/virtio-data",
             fsType: "ext4",
             autoFormat: true,
@@ -62,16 +41,16 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         orangefs: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           server: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             enable: true,
             dataStorageSpace: "/data/storage",
             metadataStorageSpace: "/data/meta",
             servers: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               server1: "tcp://server1:3334",
               server2: "tcp://server2:3334",
             })),
@@ -84,21 +63,21 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     const lib = nix.arg($_1, "lib");
     return {
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$15,
-        firewall: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
+        [nix.POS]: $pos[14],
+        firewall: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: true })),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         orangefs: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           client: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             enable: true,
             fileSystems: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 target: "tcp://server1:3334/orangefs",
                 mountPoint: "/orangefs",
               })),
@@ -109,10 +88,10 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$3);
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     name: "orangefs",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       server1: server,
       server2: server,
       client1: client,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableJavaFX", 14, 5]], [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["pname", 47, 13], ["data", 48, 5]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5], ["platforms", 78, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 31, 3], ["gradleUpdateScript", 37, 3], ["mitmCache", 46, 3], ["__darwinAllowLocalNetworking", 51, 3], ["gradleBuildTask", 53, 3], ["installPhase", 55, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gradle_8: false, makeBinaryWrapper: false, openjdk: false, wrapGAppsHook3: false, xkbcomp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableJavaFX", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 47, 13], ["data", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5], ["platforms", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 31, 3], ["gradleUpdateScript", 37, 3], ["mitmCache", 46, 3], ["__darwinAllowLocalNetworking", 51, 3], ["gradleBuildTask", 53, 3], ["installPhase", 55, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const openjdk = nix.arg($, "openjdk");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const xkbcomp = nix.arg($, "xkbcomp");
-  const jdk = nix.thunk(() => nix.app(nix.sel(openjdk, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
+  const jdk = nix.thunk(() => nix.app(nix.sel(openjdk, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableJavaFX: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "keyboard-layout-editor";
       const version = "0-unstable-2019-05-14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "vgresak",
           repo: "keyboard-layout-editor",
           rev: "308c62ac4bb9ad25429f4d09c0aaa9f72d4194c9",
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./fix-build-gradle.patch")]);
       const nativeBuildInputs = nix.thunk(() => [gradle_8, makeBinaryWrapper, wrapGAppsHook3]);
       const gradleUpdateScript = "runHook preBuild\n\ngradle nixDownloadDeps -Dos.family=linux -Dos.arch=amd64\ngradle nixDownloadDeps -Dos.family=linux -Dos.arch=aarch64\ngradle nixDownloadDeps -Dos.name='mac os x' -Dos.arch=amd64\ngradle nixDownloadDeps -Dos.name='mac os x' -Dos.arch=aarch64\n";
-      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle_8, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, data: nix.path(here, "./deps.json") }))));
+      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle_8, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, data: nix.path(here, "./deps.json") }))));
       const __darwinAllowLocalNetworking = true;
       const gradleBuildTask = "fatJar";
       const installPhase = nix.thunk(() => nix.str`runHook preInstall
@@ -52,7 +48,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jdk)} $out/bin/keyboard-layout-edi
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Keyboard layout editor for XKB",
         homepage: "https://github.com/vgresak/keyboard-layout-editor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -64,7 +60,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

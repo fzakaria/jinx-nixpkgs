@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5], ["platforms", 36, 5]], [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["preConfigure", 19, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, argtable: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["preConfigure", 19, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const argtable = nix.arg($, "argtable");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.2.4",
       pname: "clustal-omega",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.clustal.org/omega/clustal-omega-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1vm30mzncwdv881vrcwg11vzvrsmwy4wg80j5i0lcfk6dlld50w6",
         })))),
       buildInputs: nix.thunk(() => [argtable]),
       preConfigure: "for f in configure \\\n         src/clustal-omega-config.h \\\n         src/clustal-omega-config.h \\\n         src/config.h.in \\\n         src/mymain.c\ndo\n  sed -i -re 's/argtable2/argtable3/g' $f\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "General purpose multiple sequence alignment program for protein and DNA/RNA",
         homepage: "http://www.clustal.org/omega/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

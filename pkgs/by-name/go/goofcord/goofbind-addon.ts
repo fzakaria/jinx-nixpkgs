@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/goofbind-addon.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 26, 5], ["hash", 27, 5], ["fetchSubmodules", 28, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["doCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libx11: false, libxtst: false, libxdmcp: false, libxkbfile: false, libxkbcommon: false, libxcb: false, wayland: false, xorgproto: false, libxi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/goofbind-addon.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 26, 5], ["hash", 27, 5], ["fetchSubmodules", 28, 5]]);
-const pos$2 = nix.positions(here + "/goofbind-addon.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5]]);
-const pos$3 = nix.positions(here + "/goofbind-addon.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["doCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const libxi = nix.arg($, "libxi");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "goofbind",
       version: "0.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Milkshiift",
           repo: "goofbind",
           rev: "703237071f61d1ceede8076b0015488773a7c4ae",
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Native module for Vencord",
         homepage: "https://github.com/tuxinal/venbind",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

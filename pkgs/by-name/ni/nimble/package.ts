@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]], [["updateScript", 44, 12]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["teams", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["nimFlags", 28, 3], ["doCheck", 30, 3], ["postInstall", 32, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildNimPackage: false, makeWrapper: false, "nix-update-script": false, openssl: false, nim: false, useSystemNim: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 44, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["teams", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["nimFlags", 28, 3], ["doCheck", 30, 3], ["postInstall", 32, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nim = nix.arg($, "nim");
   const useSystemNim = nix.argOr($, "useSystemNim", () => true);
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nimble",
       version: "0.24.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nim-lang",
           repo: "nimble",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,11 +43,11 @@ export default nix.lambda((args) => (() => {
         return nix.str`wrapProgram $out/bin/nimble ${wrapperFlags}`;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Package manager for the Nim programming language",
         homepage: "https://github.com/nim-lang/nimble",
         changelog: nix.thunk(() => nix.str`https://github.com/nim-lang/nimble/releases/tag/v${nix.sel(finalAttrs, "version")}`),

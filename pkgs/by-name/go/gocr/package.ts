@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["platforms", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildFlags", 17, 3], ["installFlags", 21, 3], ["preInstall", 23, 3], ["postInstall", 25, 3], ["preFixup", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, tk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildFlags", 17, 3], ["installFlags", 21, 3], ["preInstall", 23, 3], ["postInstall", 25, 3], ["preFixup", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const tk = nix.arg($, "tk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gocr",
       version: "0.52",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www-e.uni-magdeburg.de/jschulen/ocr/gocr-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "11l6gds1lrm8lwrrsxnm5fjlwz8q1xbh896cprrl4psz21in946z",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`sed -i -e 's|exec wish|exec ${tk}/bin/wish|' $out/bin/gocr.tcl
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://jocr.sourceforge.net/",
         description: "GPL Optical Character Recognition",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

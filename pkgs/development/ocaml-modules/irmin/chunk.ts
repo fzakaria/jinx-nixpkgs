@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/chunk.nix", [[["description", 30, 5]], [["pname", 13, 3], ["version", 14, 19], ["src", 14, 27], ["propagatedBuildInputs", 16, 3], ["doCheck", 23, 3], ["checkInputs", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, irmin: false, "irmin-test": false, fmt: false, logs: false, lwt: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/chunk.nix", [["description", 30, 5]]);
-const pos$2 = nix.positions(here + "/chunk.nix", [["pname", 13, 3], ["version", 14, 19], ["src", 14, 27], ["propagatedBuildInputs", 16, 3], ["doCheck", 23, 3], ["checkInputs", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "irmin-chunk",
       version: nix.thunk(() => nix.attr(irmin, "version")),
       src: nix.thunk(() => nix.attr(irmin, "src")),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, irmin_test]),
       meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Irmin backend which allow to store values into chunks",
       })),
     })));

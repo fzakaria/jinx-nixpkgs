@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 39, 3], ["pythonImportsCheck", 47, 3], ["pytestFlags", 49, 3], ["disabledTests", 51, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aioresponses: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, pyprojectVersionPatchHook: false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, syrupy: false, yarl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 39, 3], ["pythonImportsCheck", 47, 3], ["pytestFlags", 49, 3], ["disabledTests", 51, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "joostlek",
           repo: "python-withings",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
         "test_unexpected_server_response",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Module to interact with Withings",
         homepage: "https://github.com/joostlek/python-withings",
         changelog: nix.thunk(() => nix.str`https://github.com/joostlek/python-withings/releases/tag/v${version}`),
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

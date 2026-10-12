@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mongodb.nix", [[["owner", 69, 5], ["repo", 70, 5], ["tag", 71, 5], ["hash", 72, 13]], [["NIX_CFLAGS_COMPILE", 122, 7]], [["description", 172, 5], ["homepage", 173, 5], ["license", 174, 13], ["maintainers", 176, 5], ["platforms", 177, 5]], [["version", 65, 11], ["passthru", 65, 19], ["pname", 66, 3], ["src", 68, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 81, 3], ["patches", 102, 11], ["postPatch", 104, 3], ["env", 122, 3], ["sconsFlags", 124, 3], ["hardeningDisable", 139, 3], ["preBuild", 141, 3], ["preInstall", 152, 3], ["postInstall", 156, 3], ["doInstallCheck", 160, 3], ["nativeInstallCheckInputs", 161, 3], ["versionCheckProgram", 162, 3], ["versionCheckProgramArg", 163, 3], ["installTargets", 165, 3], ["prefixKey", 167, 3], ["enableParallelBuilding", 169, 3], ["meta", 171, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPackages: false, boost: false, gperftools: false, snappy: false, zlib: false, "yaml-cpp": false, sasl: false, "net-snmp": false, openldap: false, openssl: false, libpcap: false, curl: false, cctools: false, xz: false, versionCheckHook: false }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false, patches: true, license: true, avxSupport: true, passthru: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mongodb.nix", [["owner", 69, 5], ["repo", 70, 5], ["tag", 71, 5], ["hash", 72, 13]]);
-const pos$2 = nix.positions(here + "/mongodb.nix", [["NIX_CFLAGS_COMPILE", 122, 7]]);
-const pos$3 = nix.positions(here + "/mongodb.nix", [["description", 172, 5], ["homepage", 173, 5], ["license", 174, 13], ["maintainers", 176, 5], ["platforms", 177, 5]]);
-const pos$4 = nix.positions(here + "/mongodb.nix", [["version", 65, 11], ["passthru", 65, 19], ["pname", 66, 3], ["src", 68, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 81, 3], ["patches", 102, 11], ["postPatch", 104, 3], ["env", 122, 3], ["sconsFlags", 124, 3], ["hardeningDisable", 139, 3], ["preBuild", 141, 3], ["preInstall", 152, 3], ["postInstall", 156, 3], ["doInstallCheck", 160, 3], ["nativeInstallCheckInputs", 161, 3], ["versionCheckProgram", 162, 3], ["versionCheckProgramArg", 163, 3], ["installTargets", 165, 3], ["prefixKey", 167, 3], ["enableParallelBuilding", 169, 3], ["meta", 171, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,12 +51,12 @@ export default nix.lambda((args) => (() => {
     const systems = nix.thunk(() => nix.attr(lib, "systems"));
     const subtractLists = nix.thunk(() => nix.attr(lib, "subtractLists"));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: version,
         passthru: passthru,
         pname: "mongodb",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "mongodb",
             repo: "mongo",
             tag: nix.thunk(() => nix.str`r${nix.sel(finalAttrs, "version")}`),
@@ -82,7 +79,7 @@ export default nix.lambda((args) => (() => {
         patches: patches,
         postPatch: nix.thunk(() => nix.add(nix.add("# fix environment variable reading\nsubstituteInPlace SConstruct \\\n    --replace-fail \"env = Environment(\" \"env = Environment(ENV = os.environ,\"\n", "# Fix debug gcc 11 and clang 12 builds on Fedora\n# https://github.com/mongodb/mongo/commit/e78b2bf6eaa0c43bd76dbb841add167b443d2bb0.patch\nsubstituteInPlace src/mongo/db/query/plan_summary_stats.h --replace-fail '#include <string>' '#include <optional>\n#include <string>'\nsubstituteInPlace src/mongo/db/exec/plan_stats.h --replace-fail '#include <string>' '#include <optional>\n#include <string>'\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(avxSupport)), "substituteInPlace SConstruct \\\n  --replace-fail \"default=['+sandybridge'],\" 'default=[],'\n"))),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-unused-command-line-argument")),
         })),
         sconsFlags: nix.thunk(() => nix.concat([
@@ -108,7 +105,7 @@ export default nix.lambda((args) => (() => {
         prefixKey: "DESTDIR=",
         enableParallelBuilding: true,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: "Scalable, high-performance, open source NoSQL database",
           homepage: "http://www.mongodb.org",
           license: license,

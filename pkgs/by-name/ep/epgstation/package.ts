@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["url", 30, 7], ["sha256", 31, 7]], [["url", 34, 7], ["sha256", 35, 7]], [["pname", 51, 5], ["version", 53, 7], ["src", 54, 7], ["installPhase", 55, 7], ["meta", 56, 7], ["npmDepsHash", 59, 5], ["npmRootPath", 60, 5], ["sourceRoot", 62, 5], ["NODE_OPTIONS", 63, 5]], [["broken", 132, 5], ["description", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["mainProgram", 137, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["npmDepsHash", 39, 3], ["npmBuildScript", 40, 3], ["npmRootPath", 41, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 44, 3], ["clientDir", 50, 3], ["postBuild", 66, 3], ["installPhase", 72, 3], ["postInstall", 87, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, fetchpatch: false, fetchFromGitHub: false, buildNpmPackage: false, installShellFiles: false, makeWrapper: false, bash: false, nodejs: false, python3: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["sha256", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 34, 7], ["sha256", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 51, 5], ["version", 53, 7], ["src", 54, 7], ["installPhase", 55, 7], ["meta", 56, 7], ["npmDepsHash", 59, 5], ["npmRootPath", 60, 5], ["sourceRoot", 62, 5], ["NODE_OPTIONS", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["broken", 132, 5], ["description", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["mainProgram", 137, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["npmDepsHash", 39, 3], ["npmBuildScript", 40, 3], ["npmRootPath", 41, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 44, 3], ["clientDir", 50, 3], ["postBuild", 66, 3], ["installPhase", 72, 3], ["postInstall", 87, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "epgstation";
       const version = "2.6.20";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "l3tnun",
           repo: "EPGStation",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,12 +30,12 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./use-mysql-over-domain-socket.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/midchildan/EPGStation/commit/5d6cad746b7d9b6d246adcdecf9c991b77c9d89e.patch",
             sha256: "sha256-9a8VUjczlyQHVO7w9MYorPIZunAuBuif1HNmtp1yMk8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/midchildan/EPGStation/commit/c948e833e485c2b7cb7fb33b953cca1e20de3a70.patch",
             sha256: "sha256-nM6KkVRURuQFZLXZ2etLU1a1+BoaJnfjngo07TFbe58=",
           })))),
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [bash]);
       const nativeBuildInputs = nix.thunk(() => [installShellFiles, makeWrapper, python3]);
       const clientDir = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.str`${pname}-client`),
           version: version,
           src: src,
@@ -104,7 +99,7 @@ popd
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "DVR software compatible with Mirakurun",
         homepage: "https://github.com/l3tnun/EPGStation",
@@ -116,7 +111,7 @@ popd
         mainProgram: "epgstation",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

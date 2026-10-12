@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5], ["rev", 22, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5], ["mainProgram", 37, 5]], [["pname", 11, 3], ["version", 12, 3], ["cargoHash", 14, 3], ["src", 16, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchgit: false, rustPlatform: false, "pkg-config": false, openssl: false, systemdLibs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5], ["rev", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5], ["mainProgram", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["cargoHash", 14, 3], ["src", 16, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "journaldriver",
       version: "5656.0.0",
       cargoHash: "sha256-ycnmLHKWRwKbdY1LZJ+BSwGfXfYJCWbbbFcqfBj3y/Y=",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://code.tvl.fyi/depot.git:/ops/journaldriver.git",
           sha256: "0bnf67k6pkw4rngn58b5zm19danr4sh2g6rfd4k5w2sa1lzqai04",
           rev: "4e191353228197ce548d63cb9955e53661244f9c",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, systemdLibs]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Log forwarder from journald to Stackdriver Logging",
         homepage: "https://code.tvl.fyi/about/ops/journaldriver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["extraArgs", 125, 5]], [["updateScript", 124, 12]], [["description", 129, 5], ["homepage", 130, 5], ["changelog", 131, 5], ["license", 132, 5], ["maintainers", 133, 5], ["mainProgram", 134, 5], ["platforms", 135, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["vendorHash", 45, 3], ["__structuredAttrs", 47, 3], ["nativeBuildInputs", 49, 3], ["nativeInstallCheckInputs", 53, 3], ["buildPhase", 60, 3], ["installPhase", 67, 3], ["checkPhase", 102, 3], ["doInstallCheck", 112, 3], ["versionCheckKeepEnvironment", 113, 3], ["versionCheckProgram", 114, 3], ["versionCheckProgramArg", 115, 3], ["installCheckPhase", 116, 3], ["passthru", 124, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, makeWrapper: false, coreutils: false, gawk: false, fd: false, "nix-update-script": false, versionCheckHook: false, writableTmpDirAsHomeHook: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 125, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 124, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 129, 5], ["homepage", 130, 5], ["changelog", 131, 5], ["license", 132, 5], ["maintainers", 133, 5], ["mainProgram", 134, 5], ["platforms", 135, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["vendorHash", 45, 3], ["__structuredAttrs", 47, 3], ["nativeBuildInputs", 49, 3], ["nativeInstallCheckInputs", 53, 3], ["buildPhase", 60, 3], ["installPhase", 67, 3], ["checkPhase", 102, 3], ["doInstallCheck", 112, 3], ["versionCheckKeepEnvironment", 113, 3], ["versionCheckProgram", 114, 3], ["versionCheckProgramArg", 115, 3], ["installCheckPhase", 116, 3], ["passthru", 124, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +35,11 @@ done
 exec ${nix.app(nix.sel(lib, "getExe'"), coreutils, "du")} "\${args[@]}"
 `)));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mole-cleaner",
       version: "1.46.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tw93",
           repo: "Mole",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -97,11 +93,11 @@ runHook postCheck
       versionCheckProgramArg: "--version",
       installCheckPhase: "runHook preInstallCheck\n$out/bin/mo --help > /dev/null\ntest -w \"$HOME\"\ntest ! -e $out/bin/mole\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version-regex=^V(.*)$"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version-regex=^V(.*)$"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CLI tool for cleaning and optimizing macOS systems",
         homepage: "https://github.com/tw93/Mole",
         changelog: nix.thunk(() => nix.str`https://github.com/tw93/Mole/releases/tag/V${nix.sel(finalAttrs, "version")}`),

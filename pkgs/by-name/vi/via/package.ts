@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["name", 12, 5], ["sha256", 13, 5]], [["pname", 15, 54], ["version", 15, 60], ["src", 15, 68]], [["description", 37, 5], ["homepage", 38, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["mainProgram", 43, 5]], [["pname", 18, 11], ["version", 18, 17], ["src", 18, 25], ["profile", 20, 3], ["extraInstallCommands", 26, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["name", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 15, 54], ["version", 15, 60], ["src", 15, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["mainProgram", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 11], ["version", 18, 17], ["src", 18, 25], ["profile", 20, 3], ["extraInstallCommands", 26, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const pname = "via";
   const version = "3.0.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/the-via/releases/releases/download/v${version}/via-${version}-linux.AppImage`),
       name: nix.thunk(() => nix.str`via-${version}-linux.AppImage`),
       sha256: "sha256-+uTvmrqHK7L5VA/lUHCZZeRYPUrcVA+vjG7venxuHhs=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -37,7 +34,7 @@ mkdir -p $out/etc/udev/rules.d
 echo 'KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666", TAG+="uaccess", TAG+="udev-acl"' > $out/etc/udev/rules.d/92-viia.rules
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Yet another keyboard configurator",
         homepage: "https://caniusevia.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

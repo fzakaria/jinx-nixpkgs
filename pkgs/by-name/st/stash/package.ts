@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["yarnLock", 34, 9], ["hash", 35, 9]], [["pname", 29, 7], ["version", 30, 28], ["gitHash", 30, 36], ["src", 31, 7], ["yarnOfflineCache", 33, 7], ["nativeBuildInputs", 38, 7], ["postPatch", 45, 7], ["buildPhase", 50, 7], ["dontInstall", 67, 7], ["dontFixup", 68, 7]], [["owner", 81, 7], ["repo", 82, 7], ["tag", 83, 7], ["hash", 84, 7]], [["package", 119, 11], ["version", 120, 11]], [["stash", 117, 30], ["version", 118, 9]], [["frontend", 114, 15], ["updateScript", 115, 7], ["tests", 116, 7]], [["mainProgram", 126, 7], ["description", 127, 7], ["license", 128, 7], ["homepage", 129, 7], ["changelog", 130, 7], ["maintainers", 131, 7], ["platforms", 134, 7]], [["pname", 73, 7], ["version", 74, 7], ["gitHash", 75, 7], ["yarnHash", 76, 7], ["vendorHash", 77, 7], ["src", 80, 5], ["ldflags", 87, 5], ["tags", 95, 5], ["subPackages", 100, 5], ["postPatch", 102, 5], ["preBuild", 106, 5], ["passthru", 113, 5], ["meta", 125, 5]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, fetchYarnDeps: false, lib: false, nixosTests: false, nodejs: false, stash: false, stdenv: false, testers: false, yarnBuildHook: false, yarnConfigHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["yarnLock", 34, 9], ["hash", 35, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 7], ["version", 30, 28], ["gitHash", 30, 36], ["src", 31, 7], ["yarnOfflineCache", 33, 7], ["nativeBuildInputs", 38, 7], ["postPatch", 45, 7], ["buildPhase", 50, 7], ["dontInstall", 67, 7], ["dontFixup", 68, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 81, 7], ["repo", 82, 7], ["tag", 83, 7], ["hash", 84, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 119, 11], ["version", 120, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["stash", 117, 30], ["version", 118, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["frontend", 114, 15], ["updateScript", 115, 7], ["tests", 116, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["mainProgram", 126, 7], ["description", 127, 7], ["license", 128, 7], ["homepage", 129, 7], ["changelog", 130, 7], ["maintainers", 131, 7], ["platforms", 134, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 73, 7], ["version", 74, 7], ["gitHash", 75, 7], ["yarnHash", 76, 7], ["vendorHash", 77, 7], ["src", 80, 5], ["ldflags", 87, 5], ["tags", 95, 5], ["subPackages", 100, 5], ["postPatch", 102, 5], ["preBuild", 106, 5], ["passthru", 113, 5], ["meta", 125, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const pname = "stash";
   return nix.app(buildGoModule, (finalAttrs) => (() => {
       const frontend = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (final) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-ui`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           gitHash: nix.thunk(() => nix.attr(finalAttrs, "gitHash")),
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/ui/v2.5`),
           yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               yarnLock: nix.thunk(() => nix.str`${nix.sel(final, "src")}/yarn.lock`),
               hash: nix.thunk(() => nix.sel(finalAttrs, "yarnHash")),
             })))),
@@ -67,14 +60,14 @@ runHook postBuild
           dontFixup: true,
         })));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: pname,
         version: version,
         gitHash: gitHash,
         yarnHash: yarnHash,
         vendorHash: vendorHash,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "stashapp",
             repo: "stash",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -94,21 +87,21 @@ runHook postBuild
 `),
         preBuild: "# `go mod tidy` requires internet access and does nothing\necho \"skip_mod_tidy: true\" >> gqlgen.yml\n# remove `-trimpath` fron `GOFLAGS` because `gqlgen` does not work with it\nGOFLAGS=\"${GOFLAGS/-trimpath/}\" go generate ./cmd/stash\n",
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           frontend: frontend,
           updateScript: nix.path(here, "./update.py"),
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             stash: nix.thunk(() => nix.attr(nixosTests, "stash")),
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 package: stash,
                 version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")} (${nix.sel(finalAttrs, "gitHash")}) - Unofficial Build - 1970-01-01 00:00:00`),
               })))),
           })),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           mainProgram: "stash",
           description: "Organizer for your adult videos/images",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 27, 5], ["mainProgram", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 12, 3], ["vendorHash", 18, 3], ["subPackages", 20, 3], ["ldflags", 22, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["mainProgram", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 12, 3], ["vendorHash", 18, 3], ["subPackages", 20, 3], ["ldflags", 22, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "protoc-gen-twirp_php",
       version: "0.15.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/twirphp/twirp.git",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-KlUcLsqWsme7OMREv0GjWlEHf5UjiFd6A9MzkbP0Kz4=",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["protoc-gen-twirp_php"]),
       ldflags: nix.thunk(() => [nix.thunk(() => nix.str`-X main.version=${nix.sel(finalAttrs, "version")}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PHP port of Twitch's Twirp RPC framework",
         mainProgram: "protoc-gen-twirp_php",
         homepage: "https://github.com/twirphp/twirp",

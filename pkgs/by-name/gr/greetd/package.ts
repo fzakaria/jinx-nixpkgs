@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["updateScript", 41, 12]], [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 50, 5], ["mainProgram", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["postInstall", 33, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { rustPlatform: false, lib: false, fetchFromSourcehut: false, pam: false, scdoc: false, installShellFiles: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 41, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 50, 5], ["mainProgram", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["postInstall", 33, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "greetd",
       version: "0.10.3",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~kennylevinsen",
           repo: "greetd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pam]),
       postInstall: "for f in man/*; do\n  scdoc < \"$f\" > \"$(sed 's/-\\([0-9]\\)\\.scd$/.\\1/' <<< \"$f\")\"\n  rm \"$f\"\ndone\ninstallManPage man/*\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Minimal and flexible login manager daemon",
         longDescription: "greetd is a minimal and flexible login manager daemon\nthat makes no assumptions about what you want to launch.\nComes with agreety, a simple, text-based greeter.\n",
         homepage: "https://sr.ht/~kennylevinsen/greetd/",

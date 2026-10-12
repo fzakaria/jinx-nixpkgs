@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 37, 13], ["version", 37, 19], ["hash", 38, 5]], [["pcsc", 63, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 93, 5], ["mainProgram", 96, 13]], [["pname", 33, 11], ["version", 33, 17], ["pyproject", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["optional-dependencies", 62, 3], ["pythonRelaxDeps", 68, 3], ["makeWrapperArgs", 72, 3], ["pythonImportsCheck", 74, 3], ["postInstall", 76, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, installShellFiles: false, libnitrokey: false, "poetry-core": false, cffi: false, click: false, cryptography: false, fido2: false, hidapi: false, intelhex: false, nkdfu: false, pyusb: false, requests: false, tqdm: false, tlv8: false, semver: false, nethsm: false, nitrokey: false, pyscard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 37, 13], ["version", 37, 19], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pcsc", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 93, 5], ["mainProgram", 96, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 11], ["version", 33, 17], ["pyproject", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["optional-dependencies", 62, 3], ["pythonRelaxDeps", 68, 3], ["makeWrapperArgs", 72, 3], ["pythonImportsCheck", 74, 3], ["postInstall", 76, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const version = "0.14.0";
   const mainProgram = "nitropy";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-Q416DPGacYhm/ITPpMF2ILuQQZ4TlSFks625lAkXpnY=",
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         semver,
         nethsm,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, pcsc: nix.thunk(() => [pyscard]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], pcsc: nix.thunk(() => [pyscard]) })),
       pythonRelaxDeps: true,
       makeWrapperArgs: nix.thunk(() => [
         nix.thunk(() => nix.str`--set LIBNK_PATH ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libnitrokey]))}`),
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
   --fish <(_NITROPY_COMPLETE=fish_source $out/bin/${mainProgram})
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python client for Nitrokey devices",
         homepage: "https://github.com/Nitrokey/pynitrokey",
         changelog: nix.thunk(() => nix.str`https://github.com/Nitrokey/pynitrokey/releases/tag/v${version}`),

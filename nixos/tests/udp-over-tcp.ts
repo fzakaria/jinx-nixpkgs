@@ -2,48 +2,36 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/udp-over-tcp.nix", [[["maintainers", 4, 8]], [["forward", 12, 13], ["openFirewall", 13, 13], ["recvBufferSize", 16, 13], ["sendBufferSize", 17, 13], ["recvTimeout", 18, 13], ["fwmark", 19, 13], ["nodelay", 20, 13]], [["0.0.0.0:51821", 11, 11]], [["udp2tcp", 10, 9]], [["udp-over-tcp", 9, 16]], [["services", 9, 7]], [["forward", 32, 13], ["openFirewall", 33, 13], ["threads", 36, 13], ["bind", 37, 13], ["recvBufferSize", 38, 13], ["sendBufferSize", 39, 13], ["recvTimeout", 40, 13], ["fwmark", 41, 13], ["nodelay", 42, 13]], [["0.0.0.0:444", 31, 11]], [["tcp2udp", 30, 9]], [["udp-over-tcp", 29, 16]], [["services", 29, 7]], [["sender", 6, 9], ["receiver", 26, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 48, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/udp-over-tcp.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/udp-over-tcp.nix", [["forward", 12, 13], ["openFirewall", 13, 13], ["recvBufferSize", 16, 13], ["sendBufferSize", 17, 13], ["recvTimeout", 18, 13], ["fwmark", 19, 13], ["nodelay", 20, 13]]);
-const pos$3 = nix.positions(here + "/udp-over-tcp.nix", [["0.0.0.0:51821", 11, 11]]);
-const pos$4 = nix.positions(here + "/udp-over-tcp.nix", [["udp2tcp", 10, 9]]);
-const pos$5 = nix.positions(here + "/udp-over-tcp.nix", [["udp-over-tcp", 9, 16]]);
-const pos$6 = nix.positions(here + "/udp-over-tcp.nix", [["services", 9, 7]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/udp-over-tcp.nix", [["forward", 32, 13], ["openFirewall", 33, 13], ["threads", 36, 13], ["bind", 37, 13], ["recvBufferSize", 38, 13], ["sendBufferSize", 39, 13], ["recvTimeout", 40, 13], ["fwmark", 41, 13], ["nodelay", 42, 13]]);
-const pos$8 = nix.positions(here + "/udp-over-tcp.nix", [["0.0.0.0:444", 31, 11]]);
-const pos$9 = nix.positions(here + "/udp-over-tcp.nix", [["tcp2udp", 30, 9]]);
-const pos$10 = nix.positions(here + "/udp-over-tcp.nix", [["udp-over-tcp", 29, 16]]);
-const pos$11 = nix.positions(here + "/udp-over-tcp.nix", [["services", 29, 7]]);
-const pos$12 = nix.positions(here + "/udp-over-tcp.nix", [["sender", 6, 9], ["receiver", 26, 9]]);
-const pos$13 = nix.positions(here + "/udp-over-tcp.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "udp-over-tcp",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "timschumi"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       sender: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "udp-over-tcp": nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               udp2tcp: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 "0.0.0.0:51821": nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   forward: nix.thunk(() => nix.str`${nix.sel(nodes, "receiver", "networking", "primaryIPAddress")}:444`),
                   openFirewall: true,
                   recvBufferSize: 16384n,
@@ -61,15 +49,15 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             "udp-over-tcp": nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               tcp2udp: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 "0.0.0.0:444": nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   forward: "127.0.0.1:51821",
                   openFirewall: true,
                   threads: 2n,

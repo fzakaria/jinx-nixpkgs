@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wayfire-plugins-extra.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5], ["fetchSubmodules", 34, 5]], [["PKG_CONFIG_WAYFIRE_METADATADIR", 65, 5]], [["homepage", 69, 5], ["description", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 28]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["mesonFlags", 57, 3], ["env", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, wayfire: false, "wayland-scanner": false, "wf-config": false, boost: false, libdrm: false, libevdev: false, libinput: false, libxkbcommon: false, "vulkan-headers": false, "libxcb-wm": false, gtkmm3: false, withFiltersPlugin: true, withFocusRequestPlugin: true, withPixdecorPlugin: true, withWayfireShadowsPlugin: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wayfire-plugins-extra.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5], ["fetchSubmodules", 34, 5]]);
-const pos$2 = nix.positions(here + "/wayfire-plugins-extra.nix", [["PKG_CONFIG_WAYFIRE_METADATADIR", 65, 5]]);
-const pos$3 = nix.positions(here + "/wayfire-plugins-extra.nix", [["homepage", 69, 5], ["description", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 28]]);
-const pos$4 = nix.positions(here + "/wayfire-plugins-extra.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["mesonFlags", 57, 3], ["env", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const withPixdecorPlugin = nix.argOr($, "withPixdecorPlugin", () => true);
   const withWayfireShadowsPlugin = nix.argOr($, "withWayfireShadowsPlugin", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wayfire-plugins-extra",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "WayfireWM",
           repo: "wayfire-plugins-extra",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,13 +60,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "enable_wayfire_shadows", withWayfireShadowsPlugin)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_WAYFIRE_METADATADIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/wayfire/metadata`),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wayfire, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/WayfireWM/wayfire-plugins-extra",
         description: "Additional plugins for Wayfire",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

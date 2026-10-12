@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["ANKI_AUDIO_TARGET_OS", 26, 5], ["ANKI_AUDIO_TARGET_ARCH", 27, 5]], [["description", 42, 5], ["homepage", 43, 5], ["sourceProvenance", 44, 5], ["platforms", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["env", 25, 3], ["preBuild", 30, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, stdenv: false, hatchling: false, "mpv-unwrapped": false, lame: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ANKI_AUDIO_TARGET_OS", 26, 5], ["ANKI_AUDIO_TARGET_ARCH", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["sourceProvenance", 44, 5], ["platforms", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["env", 25, 3], ["preBuild", 30, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const mpv_unwrapped = nix.arg($, "mpv-unwrapped");
   const lame = nix.arg($, "lame");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "anki-audio",
       version: "0.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ankitects",
           repo: "anki-bundle-extras",
           rev: "e83c6e64dcb110ed579fc78afbb4e72bed8fb9e9",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ANKI_AUDIO_TARGET_OS: "darwin",
         ANKI_AUDIO_TARGET_ARCH: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinArch")),
       })),
@@ -43,7 +40,7 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), mpv_unwrapped)} ${nix.app(nix.sel(lib, "
       })()),
       pythonImportsCheck: nix.thunk(() => ["anki_audio"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Audio binaries (mpv, lame) for Anki",
         homepage: "https://github.com/ankitects/anki-bundle-extras",
         sourceProvenance: nix.thunk(() => (() => {

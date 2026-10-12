@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 83, 5], ["mainProgram", 84, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["projectFile", 32, 3], ["nugetDeps", 33, 3], ["dotnetFlags", 35, 3], ["executables", 39, 3], ["dotnet-sdk", 41, 3], ["dotnet-runtime", 42, 3], ["nativeBuildInputs", 44, 3], ["selfContainedBuild", 46, 3], ["runtimeDeps", 47, 3], ["postInstall", 56, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false, wrapGAppsHook3: false, gtk3: false, "gdk-pixbuf": false, glib: false, "sane-backends": false, libnotify: false, libtiff: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 83, 5], ["mainProgram", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["projectFile", 32, 3], ["nugetDeps", 33, 3], ["dotnetFlags", 35, 3], ["executables", 39, 3], ["dotnet-sdk", 41, 3], ["dotnet-runtime", 42, 3], ["nativeBuildInputs", 44, 3], ["selfContainedBuild", 46, 3], ["runtimeDeps", 47, 3], ["postInstall", 56, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "naps2";
       const version = "8.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cyanfish",
           repo: "naps2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -61,7 +59,7 @@ case "${nix.sel(stdenv, "hostPlatform", "system")}" in
 esac
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Scan documents to PDF and more, as simply as possible",
         homepage: "https://www.naps2.com",
         changelog: "https://github.com/cyanfish/naps2/blob/master/CHANGELOG.md",
@@ -77,7 +75,7 @@ esac
         mainProgram: "naps2",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

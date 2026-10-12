@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64", 24, 7], ["aarch64", 25, 7]], [["x86_64", 31, 7], ["aarch64", 32, 7]], [["domain", 46, 5], ["owner", 47, 5], ["repo", 48, 5], ["nonConeMode", 49, 5], ["sparseCheckout", 50, 5], ["rev", 56, 5], ["hash", 57, 5]], [["NIX_CFLAGS_COMPILE", 113, 7]], [["basic-systemd-boot", 134, 13], ["secureBoot-systemd-boot", 135, 13]], [["mergedFirmware", 131, 7], ["firmware", 132, 7], ["tests", 134, 7], ["secureBoot", 136, 15], ["systemManagementModeRequired", 136, 26]], [["description", 140, 5], ["homepage", 141, 5], ["license", 142, 5], ["maintainers", 143, 5], ["platforms", 146, 5], ["broken", 150, 5]], [["pname", 65, 3], ["version", 66, 11], ["outputs", 68, 3], ["nativeBuildInputs", 73, 3], ["strictDeps", 83, 3], ["hardeningDisable", 85, 3], ["buildFlags", 92, 3], ["buildConfig", 112, 3], ["env", 113, 3], ["patches", 115, 3], ["postInstall", 119, 3], ["dontPatchELF", 124, 3], ["passthru", 126, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { stdenv: false, nixosTests: false, lib: false, edk2: false, "util-linux": false, nasm: false, "acpica-tools": false, llvmPackages: false, fetchFromGitLab: false, fdSize2MB: true, fdSize4MB: true, secureBoot: true, systemManagementModeRequired: true, httpSupport: true, tpmSupport: true, tlsSupport: true, debug: true, sourceDebug: true, projectDscPath: true, fwPrefix: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64", 24, 7], ["aarch64", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64", 31, 7], ["aarch64", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["domain", 46, 5], ["owner", 47, 5], ["repo", 48, 5], ["nonConeMode", 49, 5], ["sparseCheckout", 50, 5], ["rev", 56, 5], ["hash", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 113, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["basic-systemd-boot", 134, 13], ["secureBoot-systemd-boot", 135, 13]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mergedFirmware", 131, 7], ["firmware", 132, 7], ["tests", 134, 7], ["secureBoot", 136, 15], ["systemManagementModeRequired", 136, 26]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 140, 5], ["homepage", 141, 5], ["license", 142, 5], ["maintainers", 143, 5], ["platforms", 146, 5], ["broken", 150, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 65, 3], ["version", 66, 11], ["outputs", 68, 3], ["nativeBuildInputs", 73, 3], ["strictDeps", 83, 3], ["hardeningDisable", 85, 3], ["buildFlags", 92, 3], ["buildConfig", 112, 3], ["env", 113, 3], ["patches", 115, 3], ["postInstall", 119, 3], ["dontPatchELF", 124, 3], ["passthru", 126, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,16 +26,16 @@ export default nix.lambda((args) => (() => {
   const debug = nix.argOr($, "debug", () => false);
   const sourceDebug = nix.argOr($, "sourceDebug", () => false);
   const projectDscPath = nix.argOr($, "projectDscPath", () => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     x86_64: "OvmfPkg/CloudHv/CloudHvX64.dsc",
     aarch64: "ArmVirtPkg/ArmVirtCloudHv.dsc",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported OVMF \`projectDscPath\` on ${nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"))));
-  const fwPrefix = nix.argOr($, "fwPrefix", () => nix.selOr({ [nix.POS]: pos$2, x86_64: "CLOUDHV", aarch64: "CLOUDHV_EFI" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported OVMF \`fwPrefix\` on ${nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"))));
+  const fwPrefix = nix.argOr($, "fwPrefix", () => nix.selOr({ [nix.POS]: $pos[1], x86_64: "CLOUDHV", aarch64: "CLOUDHV_EFI" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported OVMF \`fwPrefix\` on ${nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"))));
   const cpuName = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name"));
   const version = nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), edk2));
   const OvmfPkKek1AppPrefix = "4e32566d-8e9e-4f52-81d3-5bb9715f9727";
   const debian_edk_src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       domain: "salsa.debian.org",
       owner: "qemu-team",
       repo: "edk2",
@@ -58,7 +51,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const buildPrefix = "Build/*/*";
   return nix.app(nix.sel(edk2, "mkDerivation"), projectDscPath, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "OVMF",
       version: version,
       outputs: nix.thunk(() => ["out", "fd"]),
@@ -71,7 +64,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => nix.concat(["-D NETWORK_IP6_ENABLE=TRUE"], nix.concat(nix.app(nix.sel(lib, "optionals"), debug, nix.thunk(() => ["-D DEBUG_ON_SERIAL_PORT=TRUE"])), nix.concat(nix.app(nix.sel(lib, "optionals"), sourceDebug, nix.thunk(() => ["-D SOURCE_DEBUG_ENABLE=TRUE"])), nix.concat(nix.app(nix.sel(lib, "optionals"), secureBoot, nix.thunk(() => ["-D SECURE_BOOT_ENABLE=TRUE"])), nix.concat(nix.app(nix.sel(lib, "optionals"), systemManagementModeRequired, nix.thunk(() => ["-D SMM_REQUIRE=TRUE"])), nix.concat(nix.app(nix.sel(lib, "optionals"), fdSize2MB, nix.thunk(() => ["-D FD_SIZE_2MB"])), nix.concat(nix.app(nix.sel(lib, "optionals"), fdSize4MB, nix.thunk(() => ["-D FD_SIZE_4MB"])), nix.concat(nix.app(nix.sel(lib, "optionals"), httpSupport, nix.thunk(() => ["-D NETWORK_HTTP_ENABLE=TRUE", "-D NETWORK_HTTP_BOOT_ENABLE=TRUE"])), nix.concat(nix.app(nix.sel(lib, "optionals"), tlsSupport, nix.thunk(() => ["-D NETWORK_TLS_ENABLE=TRUE"])), nix.app(nix.sel(lib, "optionals"), tpmSupport, nix.thunk(() => ["-D TPM_ENABLE", "-D TPM2_ENABLE", "-D TPM2_CONFIG_ENABLE"])))))))))))),
       buildConfig: nix.thunk(() => (nix.asBool(debug) ? "DEBUG" : "RELEASE")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Qunused-arguments")),
       })),
       patches: nix.thunk(() => [
@@ -84,11 +77,11 @@ mv -v $out/FV/${fwPrefix}.fd $fd/FV
       passthru: nix.thunk(() => (() => {
         const prefix = nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage", "fd")}/FV/${fwPrefix}`);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           mergedFirmware: nix.thunk(() => nix.str`${prefix}.fd`),
           firmware: nix.thunk(() => nix.str`${prefix}.fd`),
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "basic-systemd-boot": nix.thunk(() => nix.sel(nixosTests, "systemd-boot", "basic")),
             "secureBoot-systemd-boot": nix.thunk(() => nix.sel(nixosTests, "systemd-boot", "secureBoot")),
           })),
@@ -97,7 +90,7 @@ mv -v $out/FV/${fwPrefix}.fd $fd/FV
         };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Sample UEFI firmware for Cloud Hypervisor and KVM",
         homepage: "https://github.com/tianocore/tianocore.github.io/wiki/OVMF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

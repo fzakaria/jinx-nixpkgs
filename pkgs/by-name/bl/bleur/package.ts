@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["LIBGIT2_NO_VENDOR", 23, 7]], [["description", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["env", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, "pkg-config": false, openssl: false, rustPlatform: false, fetchFromCodeberg: false, libgit2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBGIT2_NO_VENDOR", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["env", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,23 +14,23 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const libgit2 = nix.arg($, "libgit2");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bleur",
       version: "0.0.7",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bleur",
           repo: "bleur",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-bFpOvnC2MILr3b+KdVOAvDGmEZM8LDlwGd04csk2l18=",
         })))),
       cargoHash: "sha256-edeegm0QeXqj0E46+BHcmJMU1Ewn6p9hi3WArDtyVnI=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBGIT2_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl, libgit2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Template manager & buddy for bleur templates by Orzklv",
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["updateScript", 68, 12]], [["description", 71, 5], ["longDescription", 72, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5], ["platforms", 87, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["mesonFlags", 61, 3], ["strictDeps", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, meson: false, ninja: false, "pkg-config": false, vala: false, wrapGAppsHook4: false, "desktop-file-utils": false, libadwaita: false, libsoup_3: false, "json-glib": false, libsecret: false, libglycin: false, "libglycin-gtk4": false, libportal: false, "libportal-gtk4": false, "glib-networking": false, "glycin-loaders": false, "nix-update-script": false, lastfmKey: true, lastfmSecret: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 68, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["longDescription", 72, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5], ["platforms", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["mesonFlags", 61, 3], ["strictDeps", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const lastfmKey = nix.argOr($, "lastfmKey", () => "b5027c5178ca2abfcc31bd04397c3c0e");
   const lastfmSecret = nix.argOr($, "lastfmSecret", () => "8d375bdee925a2a35f241c04272bc862");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "turntable",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GeopJr",
           repo: "Turntable",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,11 +59,11 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Scrobbles your music to multiple services with playback controls for MPRIS players",
         longDescription: "Keep track of your listening habits by scrobbling them\nto last.fm, ListenBrainz, Libre.fm and Maloja at the\nsame time using your favorite music app's, favorite\nmusic app! Turntable comes with a highly customizable\nand sleek design that displays information about the\ncurrently playing song and allows you to control your\nmusic player, allowlist it for scrobbling and manage\nyour scrobbling accounts. All MPRIS-enabled apps are\nsupported.\n",
         homepage: "https://turntable.geopjr.dev",

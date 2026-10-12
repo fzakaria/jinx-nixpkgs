@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["fetchSubmodules", 18, 5], ["hash", 19, 5]], [["NIX_CFLAGS_COMPILE", 66, 5]], [["updateScript", 81, 12]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["changelog", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["outputs", 27, 3], ["buildInputs", 32, 3], ["nativeInstallCheckInputs", 36, 3], ["dontUseCmakeConfigure", 41, 3], ["doInstallCheck", 43, 3], ["installCheckPhase", 44, 3], ["hardeningDisable", 63, 3], ["env", 65, 3], ["installPhase", 71, 3], ["passthru", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, stdenv: false, lib: false, python3: false, "nix-update-script": false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["fetchSubmodules", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 81, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["changelog", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["outputs", 27, 3], ["buildInputs", 32, 3], ["nativeInstallCheckInputs", 36, 3], ["dontUseCmakeConfigure", 41, 3], ["doInstallCheck", 43, 3], ["installCheckPhase", 44, 3], ["hardeningDisable", 63, 3], ["env", 65, 3], ["installPhase", 71, 3], ["passthru", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ac-library",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "atcoder",
           repo: "ac-library",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,16 +34,16 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "runHook preInstallCheck\n\nsubstituteInPlace test/test_expander.py \\\n  --replace-fail \"g++\" \"$CXX\"\npython -m pytest --ignore-glob='test/unittest/googletest/*'\n\npushd test/unittest\nmkdir build\ncd build\ncmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_STANDARD=$STDCXX\nmake\nctest -VV\npopd\n\nrunHook postInstallCheck\n",
       hardeningDisable: nix.thunk(() => ["strictoverflow"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=array-bounds"]))),
       })),
       installPhase: "runHook preInstall\n\ninstall -d $dev/include/atcoder\ninstall -m644 atcoder/* $dev/include/atcoder/\ninstall -Dm755 expander.py $out/bin/expander\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Official library of AtCoder",
         homepage: "https://github.com/atcoder/ac-library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

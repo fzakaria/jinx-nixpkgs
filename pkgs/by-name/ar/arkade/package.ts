@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["CGO_ENABLED", 20, 7]], [["homepage", 54, 5], ["description", 55, 5], ["mainProgram", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["env", 20, 3], ["nativeBuildInputs", 22, 3], ["vendorHash", 24, 3], ["subPackages", 27, 3], ["ldflags", 39, 3], ["postInstall", 46, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["mainProgram", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["env", 20, 3], ["nativeBuildInputs", 22, 3], ["vendorHash", 24, 3], ["subPackages", 27, 3], ["ldflags", 39, 3], ["postInstall", 46, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "arkade",
       version: "0.11.116",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alexellis",
           repo: "arkade",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-59e30fzfO0mUr6gP27i0+KzA/rVy2DCFN6v7xW8pD0E=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       vendorHash: null,
       subPackages: nix.thunk(() => [
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd arkade \\\n  --bash <($out/bin/arkade completion bash) \\\n  --zsh <($out/bin/arkade completion zsh) \\\n  --fish <($out/bin/arkade completion fish)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/alexellis/arkade",
         description: "Open Source Kubernetes Marketplace",
         mainProgram: "arkade",

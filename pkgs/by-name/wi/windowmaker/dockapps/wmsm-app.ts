@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wmsm-app.nix", [[["NIX_CFLAGS_COMPILE", 25, 7]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 12, 3], ["version", 14, 30], ["src", 14, 38], ["sourceRoot", 16, 3], ["buildInputs", 18, 3], ["env", 25, 3], ["postPatch", 27, 3], ["makeFlags", 33, 3], ["installPhase", 37, 3], ["installFlags", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "dockapps-sources": false, libx11: false, libxpm: false, libxext: false, libdockapp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wmsm-app.nix", [["NIX_CFLAGS_COMPILE", 25, 7]]);
-const pos$2 = nix.positions(here + "/wmsm-app.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$3 = nix.positions(here + "/wmsm-app.nix", [["pname", 12, 3], ["version", 14, 30], ["src", 14, 38], ["sourceRoot", 16, 3], ["buildInputs", 18, 3], ["env", 25, 3], ["postPatch", 27, 3], ["makeFlags", 33, 3], ["installPhase", 37, 3], ["installFlags", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libdockapp = nix.arg($, "libdockapp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wmsm.app",
       version: nix.thunk(() => nix.attr(dockapps_sources, "version")),
       src: nix.thunk(() => nix.attr(dockapps_sources, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/wmsm.app/wmsm`),
       buildInputs: nix.thunk(() => [libx11, libxext, libxpm, libdockapp]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], NIX_CFLAGS_COMPILE: "-std=gnu89" })),
       postPatch: "substituteInPlace Makefile \\\n  --replace \"PREFIX\t= /usr/X11R6/bin\" \"\" \\\n  --replace \"/usr/bin/install\" \"install\"\n",
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -32,7 +30,7 @@ runHook postInstall
 `),
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}/bin`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "System monitor for Windowmaker",
         homepage: "https://www.dockapps.net/wmsmapp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

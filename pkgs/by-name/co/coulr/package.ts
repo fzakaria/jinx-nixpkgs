@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["updateScript", 60, 12]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 22, 3], ["dontWrapGApps", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 42, 3], ["dependencies", 48, 3], ["postPatch", 50, 3], ["preFixup", 56, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, wrapGAppsHook4: false, "pkg-config": false, meson: false, ninja: false, "appstream-glib": false, "desktop-file-utils": false, "gobject-introspection": false, libadwaita: false, "libportal-gtk4": false, libnotify: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 22, 3], ["dontWrapGApps", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 42, 3], ["dependencies", 48, 3], ["postPatch", 50, 3], ["preFixup", 56, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const libnotify = nix.arg($, "libnotify");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "coulr",
       version: "2.2.0",
       pyproject: false,
       dontWrapGApps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Huluti",
           repo: "Coulr",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,11 +48,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs build-aux/meson/postinstall.py\nsubstituteInPlace build-aux/meson/postinstall.py \\\n  --replace-fail gtk-update-icon-cache gtk4-update-icon-cache\n",
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Color box to help developers and designers",
         homepage: "https://github.com/Huluti/Coulr",
         changelog: nix.thunk(() => nix.str`https://github.com/Huluti/Coulr/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

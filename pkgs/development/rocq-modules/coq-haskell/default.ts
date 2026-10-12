@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["rev", 15, 22], ["hash", 16, 22]], [["20171215", 15, 11]], [["description", 27, 5], ["maintainers", 28, 5]], [["pname", 11, 3], ["owner", 12, 3], ["version", 13, 11], ["defaultVersion", 14, 3], ["release", 15, 3], ["mlPlugin", 18, 3], ["extraInstallFlags", 19, 3], ["propagatedBuildInputs", 20, 3], ["enableParallelBuilding", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, ssreflect: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["rev", 15, 22], ["hash", 16, 22]]);
-const pos$2 = nix.positions(here + "/default.nix", [["20171215", 15, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 27, 5], ["maintainers", 28, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["owner", 12, 3], ["version", 13, 11], ["defaultVersion", 14, 3], ["release", 15, 3], ["mlPlugin", 18, 3], ["extraInstallFlags", 19, 3], ["propagatedBuildInputs", 20, 3], ["enableParallelBuilding", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,15 +13,15 @@ export default nix.lambda((args) => (() => {
   const ssreflect = nix.arg($, "ssreflect");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "coq-haskell",
       owner: "jwiegley",
       version: version,
       defaultVersion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "range"), "8.5", "8.8", nix.thunk(() => nix.sel(coq, "coq-version")))) ? "20171215" : null)),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "20171215": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: "e2cf8b270c2efa3b56fab1ef6acc376c2c3de968",
           hash: "sha256:09dq1vvshhlhgjccrhqgbhnq2hrys15xryfszqq11rzpgvl2zgdv",
         })),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [coq, ssreflect]),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for formalizing Haskell types and functions in Coq",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

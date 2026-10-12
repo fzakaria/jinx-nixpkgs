@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["async", 36, 5]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 35, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 48, 3], ["disabledTestPaths", 52, 3], ["disabledTests", 54, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, "async-lru": false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, oauthlib: false, pytestCheckHook: false, "requests-oauthlib": false, requests: false, vcrpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["async", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 35, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 48, 3], ["disabledTestPaths", 52, 3], ["disabledTests", 54, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.17.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tweepy",
           repo: "tweepy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [oauthlib, requests, requests_oauthlib]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, async: nix.thunk(() => [aiohttp, async_lru]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], async: nix.thunk(() => [aiohttp, async_lru]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, vcrpy], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["tweepy"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_client.py"]);
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         "testcursornext",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Twitter library for Python",
         homepage: "https://github.com/tweepy/tweepy",
         changelog: nix.thunk(() => nix.str`https://github.com/tweepy/tweepy/releases/tag/v${version}`),
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

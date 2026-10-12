@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["theme-furo", 42, 5], ["theme-pydata", 43, 5], ["theme-rtd", 44, 5], ["theme-sbt", 45, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 41, 3], ["pythonRelaxDeps", 49, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonOlder: false, "flit-core": false, sphinx: false, furo: false, "pydata-sphinx-theme": false, "sphinx-rtd-theme": false, "sphinx-book-theme": false, defusedxml: false, "pytest-regressions": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["theme-furo", 42, 5], ["theme-pydata", 43, 5], ["theme-rtd", 44, 5], ["theme-sbt", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 41, 3], ["pythonRelaxDeps", 49, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytest_regressions = nix.arg($, "pytest-regressions");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sphinx-design",
       version: "0.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "executablebooks",
           repo: "sphinx-design",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => [sphinx]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "theme-furo": nix.thunk(() => [furo]),
         "theme-pydata": nix.thunk(() => [pydata_sphinx_theme]),
         "theme-rtd": nix.thunk(() => [sphinx_rtd_theme]),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [defusedxml, pytest_regressions, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["sphinx_design"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sphinx extension for designing beautiful, view size responsive web components",
         homepage: "https://github.com/executablebooks/sphinx-design",
         changelog: nix.thunk(() => nix.str`https://github.com/executablebooks/sphinx-design/releases/tag/v${nix.sel(finalAttrs, "version")}`),

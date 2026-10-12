@@ -2,15 +2,15 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["document", 13, 9]]]);
 const formals$1 = { args: { writeCueValidator: false, runCommand: false, writeText: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["document", 13, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const writeCueValidator = nix.arg($, "writeCueValidator");
   const runCommand = nix.arg($, "runCommand");
   const writeText = nix.arg($, "writeText");
-  const validator = nix.thunk(() => nix.app(writeCueValidator, nix.thunk(() => nix.app(writeText, "schema.cue", "#Def1: {\n  field1: string\n}\n")), nix.thunk(() => ({ [nix.POS]: pos$1, document: "#Def1" }))));
+  const validator = nix.thunk(() => nix.app(writeCueValidator, nix.thunk(() => nix.app(writeText, "schema.cue", "#Def1: {\n  field1: string\n}\n")), nix.thunk(() => ({ [nix.POS]: $pos[0], document: "#Def1" }))));
   return nix.app(runCommand, "cue-validation", nix.thunk(() => ({})), nix.thunk(() => nix.str`cat > valid.json <<EOF
 { "field1": "abc" }
 EOF

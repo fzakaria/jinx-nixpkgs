@@ -2,41 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/leaps.nix", [[["maintainers", 6, 5]], [["enable", 14, 9], ["port", 15, 9], ["path", 16, 9]], [["leaps", 13, 16]], [["enable", 18, 27]], [["firewall", 18, 18]], [["services", 13, 7], ["networking", 18, 7]], [["client", 10, 5], ["server", 12, 5]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/leaps.nix", [["maintainers", 6, 5]]);
-const pos$2 = nix.positions(here + "/leaps.nix", [["enable", 14, 9], ["port", 15, 9], ["path", 16, 9]]);
-const pos$3 = nix.positions(here + "/leaps.nix", [["leaps", 13, 16]]);
-const pos$4 = nix.positions(here + "/leaps.nix", [["enable", 18, 27]]);
-const pos$5 = nix.positions(here + "/leaps.nix", [["firewall", 18, 18]]);
-const pos$6 = nix.positions(here + "/leaps.nix", [["services", 13, 7], ["networking", 18, 7]]);
-const pos$7 = nix.positions(here + "/leaps.nix", [["client", 10, 5], ["server", 12, 5]]);
-const pos$8 = nix.positions(here + "/leaps.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "leaps",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "qknight"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       client: nix.thunk(() => ({})),
       server: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          leaps: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, port: 6666n, path: "/leaps/" })),
+          [nix.POS]: $pos[2],
+          leaps: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, port: 6666n, path: "/leaps/" })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
+          [nix.POS]: $pos[4],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: false })),
         })),
       })),
     })),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["tagPrefix", 50, 7]], [["updateScript", 49, 5]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["postUnpack", 36, 3], ["patches", 40, 3], ["cmakeFlags", 44, 3], ["passthru", 48, 3], ["postPatch", 56, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, folly: false, gflags: false, glog: false, openssl: false, "double-conversion": false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tagPrefix", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["postUnpack", 36, 3], ["patches", 40, 3], ["cmakeFlags", 44, 3], ["passthru", 48, 3], ["postPatch", 56, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const double_conversion = nix.arg($, "double-conversion");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "wdt",
       version: "1.27.1612021-unstable-2026-09-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebook",
           repo: "wdt",
           rev: "15ff798e01fb192fbdbf093d26d10933ffe46df5",
@@ -38,12 +34,12 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./fix-glog-include.patch")]),
       cmakeFlags: nix.thunk(() => ["-DWDT_USE_SYSTEM_FOLLY=ON"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], tagPrefix: "v" })))),
       })),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.2)\" \"cmake_minimum_required(VERSION 3.10)\" \\\n  --replace-fail \"find_package(Boost COMPONENTS system filesystem REQUIRED)\" \\\n    \"find_package(Boost COMPONENTS filesystem REQUIRED)\" \\\n  --replace-fail \"set(CMAKE_CXX_STANDARD 17)\" \"set(CMAKE_CXX_STANDARD 20)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Warp speed Data Transfer",
         homepage: "https://github.com/facebook/wdt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

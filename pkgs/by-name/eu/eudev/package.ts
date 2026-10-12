@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["pkg-config", 62, 5]], [["tests", 61, 12]], [["homepage", 66, 5], ["description", 67, 5], ["longDescription", 68, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["pkgConfigModules", 91, 5], ["platforms", 95, 25]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["configureFlags", 35, 3], ["makeFlags", 40, 3], ["preInstall", 45, 3], ["installFlags", 52, 3], ["passthru", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, gperf: false, kmod: false, "pkg-config": false, "util-linuxMinimal": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 61, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["longDescription", 68, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["pkgConfigModules", 91, 5], ["platforms", 95, 25]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["configureFlags", 35, 3], ["makeFlags", 40, 3], ["preInstall", 45, 3], ["installFlags", 52, 3], ["passthru", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const util_linuxMinimal = nix.arg($, "util-linuxMinimal");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "eudev",
       version: "3.2.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eudev-project",
           repo: "eudev",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,16 +41,16 @@ export default nix.lambda((args) => (() => {
         "udevrulesdir=$(out)/var/lib/udev/rules.d",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kmod, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/eudev-project/eudev",
         description: "Fork of udev with the aim of isolating it from init",
         longDescription: "eudev is a standalone dynamic and persistent device naming support (aka\nuserspace devfs) daemon that runs independently from the init\nsystem. eudev strives to remain init system and linux distribution\nneutral. It is currently used as the devfs manager for more than a dozen\ndifferent linux distributions.\n\nThis git repo is a fork of systemd repository with the aim of isolating\nudev from any particular flavor of system initialization. In this case,\nthe isolation is from systemd.\n\nThis is a project started by Gentoo developers and testing was initially\nbeing done mostly on OpenRC. We welcome contribution from others using a\nvariety of system initializations to ensure eudev remains system\ninitialization and distribution neutral. On 2021-08-20 Gentoo decided to\nabandon eudev and a new project was established on 2021-09-14 by Alpine,\nDevuan and Gentoo contributors.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5], ["maintainers", 34, 5], ["platforms", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cmakeFlags", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["strictDeps", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchurl: false, stdenv: false, stormlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5], ["maintainers", 34, 5], ["platforms", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cmakeFlags", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["strictDeps", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const stormlib = nix.arg($, "stormlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "smpq",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://launchpad.net/smpq/trunk/${nix.sel(finalAttrs, "version")}/+download/smpq_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           hash: "sha256-ufmfE7Ma2qeS4yCgKkBaMiy3ZprUhHgb8v/+/790neI=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [stormlib]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://launchpad.net/smpq",
         description: "StormLib MPQ archiving utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

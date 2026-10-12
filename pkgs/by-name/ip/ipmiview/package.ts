@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["name", 65, 5], ["exec", 66, 5], ["desktopName", 67, 5], ["genericName", 68, 5], ["categories", 69, 5]], [["sourceProvenance", 102, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5], ["mainProgram", 112, 5]], [["pname", 22, 3], ["version", 23, 3], ["buildVersion", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildPhase", 35, 3], ["desktopItem", 64, 3], ["installPhase", 72, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeDesktopItem: false, makeWrapper: false, patchelf: false, fontconfig: false, freetype: false, gcc: false, "gcc-unwrapped": false, iputils: false, psmisc: false, libxtst: false, libxrender: false, libxi: false, libxext: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 65, 5], ["exec", 66, 5], ["desktopName", 67, 5], ["genericName", 68, 5], ["categories", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["sourceProvenance", 102, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5], ["mainProgram", 112, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["buildVersion", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildPhase", 35, 3], ["desktopItem", 64, 3], ["installPhase", 72, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.21.0";
       const buildVersion = "221118";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.supermicro.com/wftp/utility/IPMIView/Linux/IPMIView_${version}_build.${buildVersion}_bundleJRE_Linux_x64.tar.gz`),
           hash: "sha256-ZN0vadGbjGj9U2wPqvHLjS9fsk3DNCbXoNvzUfnn8IM=",
         }))));
@@ -55,7 +52,7 @@ runHook postBuild
           const desktopName = name;
           const genericName = "Supermicro BMC manager";
           const categories = nix.thunk(() => ["Network"]);
-          return { [nix.POS]: pos$2, name, exec, desktopName, genericName, categories };
+          return { [nix.POS]: $pos[1], name, exec, desktopName, genericName, categories };
         })())));
       const installPhase = nix.thunk(() => nix.str`runHook preInstall
 
@@ -80,7 +77,7 @@ makeWrapper $out/jre/bin/java $out/bin/IPMIView \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return [
@@ -97,7 +94,7 @@ runHook postInstall
         mainProgram: "IPMIView",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         buildVersion,

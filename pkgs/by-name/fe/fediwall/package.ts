@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 12, 5], ["version", 13, 34], ["meta", 13, 42], ["dontUnpack", 15, 5], ["installPhase", 17, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "fediwall-unwrapped": false, conf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 12, 5], ["version", 13, 34], ["meta", 13, 42], ["dontUnpack", 15, 5], ["installPhase", 17, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fediwall_unwrapped = nix.arg($, "fediwall-unwrapped");
   const conf = nix.argOr($, "conf", () => ({}));
   return (nix.asBool(nix.eq(conf, {})) ? nix.force(fediwall_unwrapped) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "fediwall",
       version: nix.thunk(() => nix.attr(fediwall_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(fediwall_unwrapped, "meta")),

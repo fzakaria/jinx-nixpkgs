@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["homepage", 80, 5], ["description", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 50, 3], ["cmakeFlags", 69, 3], ["cmakeBuildType", 75, 3], ["separateDebugInfo", 76, 3], ["dontStrip", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitea: false, "pkg-config": false, cmake: false, ninja: false, "spirv-tools": false, "vulkan-headers": false, qt6: false, cpptrace: false, jemalloc: false, cli11: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, libxcb: false, libdrm: false, libgbm: false, pipewire: false, pam: false, glib: false, polkit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 80, 5], ["description", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 50, 3], ["cmakeFlags", 69, 3], ["cmakeBuildType", 75, 3], ["separateDebugInfo", 76, 3], ["dontStrip", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const polkit = nix.arg($, "polkit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "quickshell",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.outfoxxed.me",
           owner: "quickshell",
           repo: "quickshell",
@@ -80,7 +78,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       dontStrip: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://quickshell.org",
         description: "Flexible QtQuick based desktop shell toolkit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

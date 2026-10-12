@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 63, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 23, 3], ["ldflags", 25, 3], ["nativeBuildInputs", 33, 3], ["__darwinAllowLocalNetworking", 35, 3], ["nativeCheckInputs", 37, 3], ["postInstall", 42, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitea: false, gitMinimal: false, installShellFiles: false, stdenv: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 23, 3], ["ldflags", 25, 3], ["nativeBuildInputs", 33, 3], ["__darwinAllowLocalNetworking", 35, 3], ["nativeCheckInputs", 37, 3], ["postInstall", 42, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tea",
       version: "0.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitea.com",
           owner: "gitea",
           repo: "tea",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [gitMinimal, writableTmpDirAsHomeHook]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd tea \\\n  --bash <($out/bin/tea completion bash) \\\n  --fish <($out/bin/tea completion fish) \\\n  --zsh <($out/bin/tea completion zsh)\n\nmkdir $out/share/powershell/ -p\n$out/bin/tea completion pwsh > $out/share/powershell/tea.Completion.ps1\n\n$out/bin/tea man --out $out/share/man/man1/tea.1\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Gitea official CLI client",
         homepage: "https://gitea.com/gitea/tea",
         changelog: nix.thunk(() => nix.str`https://gitea.com/gitea/tea/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

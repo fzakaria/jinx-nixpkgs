@@ -2,19 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["runtimeShell", 22, 15], ["path", 23, 7]], [["src", 18, 5], ["isExecutable", 19, 5], ["dir", 20, 5], ["replacements", 21, 5]], [["nativeBuildInputs", 49, 9], ["strictDeps", 50, 9]], [["sourceProvenance", 80, 11]], [["targetPkgs", 75, 9], ["runScript", 77, 9], ["meta", 79, 9]], [["constructDrv", 63, 5], ["excludeDrvArgNames", 64, 5], ["extendDrvArgs", 65, 5]], [["contents", 89, 7], ["passthru", 102, 7]], [["constructDrv", 87, 5], ["extendDrvArgs", 88, 5]], [["targetPkgs", 114, 5], ["multiPkgs", 136, 5]], [["appimage-exec", 17, 3], ["extract", 35, 3], ["extractType1", 58, 3], ["extractType2", 59, 3], ["wrapType1", 60, 3], ["wrapAppImage", 62, 3], ["wrapType2", 86, 3], ["defaultFhsEnvArgs", 112, 3]]]);
 const formals$1 = { args: { lib: false, bash: false, "binutils-unwrapped": false, coreutils: false, gawk: false, libarchive: false, pv: false, "squashfs-tools": false, buildFHSEnv: false, replaceVarsWith: false, runtimeShell: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["runtimeShell", 22, 15], ["path", 23, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 18, 5], ["isExecutable", 19, 5], ["dir", 20, 5], ["replacements", 21, 5]]);
 const formals$2 = { args: { pname: false, version: false, name: true, postExtract: true, src: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 49, 9], ["strictDeps", 50, 9]]);
 const formals$3 = { args: { contents: true, extraPkgs: true, meta: true }, ellipsis: true };
-const pos$4 = nix.positions(here + "/default.nix", [["sourceProvenance", 80, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["targetPkgs", 75, 9], ["runScript", 77, 9], ["meta", 79, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["constructDrv", 63, 5], ["excludeDrvArgNames", 64, 5], ["extendDrvArgs", 65, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["contents", 89, 7], ["passthru", 102, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["constructDrv", 87, 5], ["extendDrvArgs", 88, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["targetPkgs", 114, 5], ["multiPkgs", 136, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["appimage-exec", 17, 3], ["extract", 35, 3], ["extractType1", 58, 3], ["extractType2", 59, 3], ["wrapType1", 60, 3], ["wrapAppImage", 62, 3], ["wrapType2", 86, 3], ["defaultFhsEnvArgs", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   return (() => {
     const appimage_exec = nix.thunk(() => nix.app(replaceVarsWith, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         src: nix.path(here, "./appimage-exec.sh"),
         isExecutable: true,
         dir: "bin",
         replacements: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           runtimeShell: runtimeShell,
           path: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash, binutils_unwrapped, coreutils, gawk, libarchive, pv, squashfs_tools]))),
         })),
@@ -52,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.arg($_1, "src");
       nix.assert_((nix.asBool(nix.eq(name, null)) || nix.asBool(nix.builtins.throw("The `name` argument is deprecated. Use `pname` and `version` instead to construct the name."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/appimage/default.nix:44:5");
       return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}-extracted`), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           nativeBuildInputs: nix.thunk(() => [appimage_exec]),
           strictDeps: true,
         })), nix.thunk(() => nix.str`appimage-exec.sh -x $out ${src}
@@ -63,7 +54,7 @@ ${postExtract}
     const extractType2 = nix.thunk(() => nix.app(nix.sel(lib, "warn"), "'appimageTools.extractType2' is deprecated, use 'appimageTools.extract' instead", extract));
     const wrapType1 = nix.thunk(() => nix.app(nix.sel(lib, "warn"), "'appimageTools.wrapType1' is deprecated, use 'appimageTools.wrapType2' instead", wrapType2));
     const wrapAppImage = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         constructDrv: buildFHSEnv,
         excludeDrvArgNames: nix.thunk(() => ["extraPkgs"]),
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -73,11 +64,11 @@ ${postExtract}
           const extraPkgs = nix.argOr($_1, "extraPkgs", () => (pkgs) => []);
           const meta = nix.argOr($_1, "meta", () => ({}));
           return nix.update(defaultFhsEnvArgs, {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             targetPkgs: (pkgs) => nix.concat([appimage_exec], nix.concat(nix.app(nix.sel(defaultFhsEnvArgs, "targetPkgs"), pkgs), nix.app(extraPkgs, pkgs))),
             runScript: nix.thunk(() => nix.str`appimage-exec.sh -w ${nix.selOr(finalAttrs, () => nix.sel(prev, "src"), "contents")} --`),
             meta: nix.thunk(() => nix.update({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               sourceProvenance: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
                 return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];
@@ -87,10 +78,10 @@ ${postExtract}
         })(), formals$3),
       }))));
     const wrapType2 = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         constructDrv: wrapAppImage,
         extendDrvArgs: (finalAttrs) => (args_1) => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           contents: nix.thunk(() => nix.app(extract, nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (key) => (value) => nix.builtins.elem(key, nix.thunk(() => ["pname", "version", "src"])), finalAttrs)))),
           passthru: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "pipe"), finalAttrs, nix.thunk(() => [
               nix.thunk(() => nix.sel(lib, "attrNames")),
@@ -100,7 +91,7 @@ ${postExtract}
         }),
       }))));
     const defaultFhsEnvArgs = nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       targetPkgs: (pkgs) => (() => {
         const w = nix.withScope(pkgs, null);
         return [
@@ -228,7 +219,7 @@ ${postExtract}
       })(),
     }));
     return {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       "appimage-exec": appimage_exec,
       extract,
       extractType1,

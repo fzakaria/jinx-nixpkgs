@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/core.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["AZURE_SDK_DISABLE_AUTO_VCPKG", 44, 5]], [["extraArgs", 59, 5]], [["updateScript", 58, 12]], [["description", 73, 7], ["changelog", 74, 7]], [["pname", 12, 3], ["version", 13, 3], ["outputs", 14, 3], ["src", 19, 3], ["sourceRoot", 25, 3], ["postPatch", 27, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 38, 3], ["env", 43, 3], ["cmakeFlags", 47, 3], ["postInstall", 53, 3], ["passthru", 58, 3], ["doCheck", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, curl: false, libxml2: false, "nix-update-script": false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/core.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/core.nix", [["AZURE_SDK_DISABLE_AUTO_VCPKG", 44, 5]]);
-const pos$3 = nix.positions(here + "/core.nix", [["extraArgs", 59, 5]]);
-const pos$4 = nix.positions(here + "/core.nix", [["updateScript", 58, 12]]);
-const pos$5 = nix.positions(here + "/core.nix", [["description", 73, 7], ["changelog", 74, 7]]);
-const pos$6 = nix.positions(here + "/core.nix", [["pname", 12, 3], ["version", 13, 3], ["outputs", 14, 3], ["src", 19, 3], ["sourceRoot", 25, 3], ["postPatch", 27, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 38, 3], ["env", 43, 3], ["cmakeFlags", 47, 3], ["postInstall", 53, 3], ["passthru", 58, 3], ["doCheck", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "azure-sdk-for-cpp-core",
       version: "1.16.3",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Azure",
           repo: "azure-sdk-for-cpp",
           tag: nix.thunk(() => nix.str`azure-core_${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       propagatedBuildInputs: nix.thunk(() => [curl, libxml2]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, AZURE_SDK_DISABLE_AUTO_VCPKG: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], AZURE_SDK_DISABLE_AUTO_VCPKG: 1n })),
       cmakeFlags: nix.thunk(() => [
         "-DBUILD_SHARED_LIBS=ON",
         "-DBUILD_TRANSPORT_CURL=ON",
@@ -45,15 +40,15 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "moveToOutput \"share\" \"$dev\"\nmoveToOutput \"share/$(basename \"$sourceRoot\")-cpp/copyright\" \"$out\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "azure-core_(.*)"]),
           })))),
       })),
       doCheck: false,
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Azure SDK Core Library for C++",
         changelog: "https://github.com/Azure/azure-sdk-for-cpp/blob/main/sdk/core/azure-core/CHANGELOG.md",
       })),

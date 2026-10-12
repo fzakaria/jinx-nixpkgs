@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nameSuffix", 3, 3], ["withMysql", 4, 3], ["withNotification", 5, 3], ["withIcingadb", 6, 3], ["withPerfdata", 7, 3], ["withOtel", 8, 3]]]);
 const formals$1 = { args: { icinga2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nameSuffix", 3, 3], ["withMysql", 4, 3], ["withNotification", 5, 3], ["withIcingadb", 6, 3], ["withPerfdata", 7, 3], ["withOtel", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const icinga2 = nix.arg($, "icinga2");
   return nix.app(nix.sel(icinga2, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nameSuffix: "-agent",
       withMysql: false,
       withNotification: false,

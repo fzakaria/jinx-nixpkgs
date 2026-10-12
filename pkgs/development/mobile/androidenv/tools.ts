@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tools.nix", [[["name", 17, 3], ["package", 18, 11], ["os", 18, 19], ["arch", 18, 22], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["patchInstructions", 45, 3], ["meta", 80, 11]]]);
 const formals$1 = { args: { deployAndroidPackage: false, lib: false, stdenv: false, package: false, os: false, arch: false, autoPatchelfHook: false, makeWrapper: false, pkgs: false, pkgsi686Linux: false, postInstall: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tools.nix", [["name", 17, 3], ["package", 18, 11], ["os", 18, 19], ["arch", 18, 22], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["patchInstructions", 45, 3], ["meta", 80, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const postInstall = nix.arg($, "postInstall");
   const meta = nix.arg($, "meta");
   return nix.app(deployAndroidPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "androidsdk-tools",
       package: package$,
       os: os,

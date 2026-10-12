@@ -2,21 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["source", 33, 7], ["channel", 34, 7], ["major", 35, 15], ["sdk", 35, 21]], [["url", 49, 7], ["hash", 50, 7]], [["name", 46, 5], ["src", 48, 5], ["sourceRoot", 53, 5], ["installPhase", 55, 5]], [["releaseManifestFile", 65, 11], ["tarballHash", 66, 11], ["bootstrapSdk", 68, 17], ["hasRuntime", 69, 9]], [["artifacts", 82, 25]], [["passthru", 81, 15]], [["releaseManifestFile", 74, 11], ["tarballHash", 75, 11], ["depsFile", 76, 11], ["bootstrapSdk", 78, 9]], [["vmr", 93, 17], ["fallbackTargetPackages", 93, 21]], [["sdk", 101, 7], ["runtime", 102, 21], ["aspnetcore", 102, 29]], [["runtime", 134, 21], ["aspnetcore", 135, 21], ["pname", 138, 21], ["version", 139, 21], ["hasILCompiler", 140, 21]], [["name", 124, 17], ["postBuild", 126, 17], ["passthru", 132, 17]], [["hasILCompiler", 165, 25], ["packages", 165, 39], ["targetPackages", 165, 48]], [["passthru", 146, 11]], [["featureBand", 206, 21], ["dir", 207, 13], ["withBinary", 208, 13], ["bootstrapSdk", 209, 13]]]);
 const formals$1 = { args: { config: false, stdenvNoCC: false, callPackage: false, lib: false, fetchurl: false, channel: false, featureBand: true, dir: true, releaseManifestFile: true, releaseInfoFile: true, bootstrapSdkFile: true, bootstrapSdk: true, depsFile: true, pkgsBuildBuild: false, buildDotnetSdk: false, withBinary: true, combinePackages: false, systemToDotnetRid: false, binary: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["source", 33, 7], ["channel", 34, 7], ["major", 35, 15], ["sdk", 35, 21]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 49, 7], ["hash", 50, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 46, 5], ["src", 48, 5], ["sourceRoot", 53, 5], ["installPhase", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["releaseManifestFile", 65, 11], ["tarballHash", 66, 11], ["bootstrapSdk", 68, 17], ["hasRuntime", 69, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["artifacts", 82, 25]]);
-const pos$6 = nix.positions(here + "/default.nix", [["passthru", 81, 15]]);
-const pos$7 = nix.positions(here + "/default.nix", [["releaseManifestFile", 74, 11], ["tarballHash", 75, 11], ["depsFile", 76, 11], ["bootstrapSdk", 78, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["vmr", 93, 17], ["fallbackTargetPackages", 93, 21]]);
-const pos$9 = nix.positions(here + "/default.nix", [["sdk", 101, 7], ["runtime", 102, 21], ["aspnetcore", 102, 29]]);
-const pos$10 = nix.positions(here + "/default.nix", [["runtime", 134, 21], ["aspnetcore", 135, 21], ["pname", 138, 21], ["version", 139, 21], ["hasILCompiler", 140, 21]]);
-const pos$11 = nix.positions(here + "/default.nix", [["name", 124, 17], ["postBuild", 126, 17], ["passthru", 132, 17]]);
-const pos$12 = nix.positions(here + "/default.nix", [["hasILCompiler", 165, 25], ["packages", 165, 39], ["targetPackages", 165, 48]]);
-const pos$13 = nix.positions(here + "/default.nix", [["passthru", 146, 11]]);
-const pos$14 = nix.positions(here + "/default.nix", [["featureBand", 206, 21], ["dir", 207, 13], ["withBinary", 208, 13], ["bootstrapSdk", 209, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,7 +33,7 @@ export default nix.lambda((args) => (() => {
     const major = nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), parts, 0n));
     const sdk = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "_", nix.thunk(() => nix.concat(parts, [featureBand]))));
     return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       source: nix.thunk(() => (nix.asBool(nix.eq(featureBand, "1xx")) ? nix.force(major) : nix.force(sdk))),
       channel: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "_", nix.thunk(() => nix.app(nix.sel(lib, "take"), 2n, parts)))),
       major: major,
@@ -58,39 +45,39 @@ export default nix.lambda((args) => (() => {
   const artifactsUrl = nix.thunk(() => nix.attr(releaseInfo, "artifactsUrl"));
   const artifactsHash = nix.thunk(() => nix.attr(releaseInfo, "artifactsHash"));
   const artifacts = nix.thunk(() => nix.app(nix.sel(pkgsBuildBuild, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.app(nix.sel(lib, "nameFromURL"), artifactsUrl, ".tar.gz")),
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$2, url: artifactsUrl, hash: artifactsHash })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[1], url: artifactsUrl, hash: artifactsHash })))),
       sourceRoot: ".",
       installPhase: "mkdir -p $out\ncp -r * $out/\n",
     }))));
   const vmr = nix.thunk(() => (nix.asBool(!nix.eq(bootstrapSdk, null)) ? nix.app(callPackage, nix.path(here, "./vmr.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       releaseManifestFile: releaseManifestFile,
       tarballHash: tarballHash,
       bootstrapSdk: bootstrapSdk,
       hasRuntime: false,
     }))) : nix.app(callPackage, nix.path(here, "./stage1.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       releaseManifestFile: releaseManifestFile,
       tarballHash: tarballHash,
       depsFile: depsFile,
       bootstrapSdk: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgsBuildBuild, "dotnetCorePackages", "buildDotnetSdk"), bootstrapSdkFile), "sdk", "overrideAttrs"), (old) => ({
-          [nix.POS]: pos$6,
-          passthru: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru"), { [nix.POS]: pos$5, artifacts: artifacts })),
+          [nix.POS]: $pos[5],
+          passthru: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru"), { [nix.POS]: $pos[4], artifacts: artifacts })),
         }))),
     })))));
   const fallbackSdk = nix.thunk(() => nix.sel(binary, nix.key(nix.str`sdk_${nix.sel(suffix, "sdk")}`)));
   const fallbackTargetPackages = nix.thunk(() => nix.sel(fallbackSdk, "targetPackages"));
   const vmrPackages = nix.thunk(() => (() => {
-    const pkgs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./packages.nix"), nix.thunk(() => ({ [nix.POS]: pos$8, vmr: vmr, fallbackTargetPackages: fallbackTargetPackages }))));
+    const pkgs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./packages.nix"), nix.thunk(() => ({ [nix.POS]: $pos[7], vmr: vmr, fallbackTargetPackages: fallbackTargetPackages }))));
     return nix.app(nix.sel(lib, "recurseIntoAttrs"), pkgs);
   })());
   const source = nix.thunk(() => nix.update(vmrPackages, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(vmr, "meta", "broken")), nix.thunk(() => (() => {
       const sdk = fallbackSdk;
       const runtime = nix.thunk(() => nix.attr(sdk, "runtime"));
       const aspnetcore = nix.thunk(() => nix.attr(sdk, "aspnetcore"));
-      return { [nix.POS]: pos$9, sdk, runtime, aspnetcore };
+      return { [nix.POS]: $pos[8], sdk, runtime, aspnetcore };
     })()))));
   const combineSdk = (base) => (fallback) => (nix.asBool(!nix.eq(nix.sel(fallback, "runtime", "version"), nix.sel(base, "runtime", "version"))) ? nix.builtins.throw(nix.thunk(() => nix.str`combineSdk: unable to combine ${nix.sel(fallback, "name")} with ${nix.sel(base, "name")} because runtime versions don't match (${nix.sel(fallback, "runtime", "version")} != ${nix.sel(base, "runtime", "version")})`)) : (nix.asBool(nix.sel(base, "meta", "broken")) ? nix.force(fallback) : (() => {
     const withBaseRuntimes = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(fallback, "version"), nix.sel(base, "version"))) ? nix.sel(base, "unwrapped") : nix.app(nix.sel(nix.app(combinePackages, nix.thunk(() => [
@@ -98,13 +85,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(base, "aspnetcore")),
         fallback,
       ])), "unwrapped", "overrideAttrs"), (old) => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         name: nix.thunk(() => nix.sel(fallback, "unwrapped", "name")),
         postBuild: nix.thunk(() => nix.add("mv \"$out\"/share/dotnet{,~}\ncp -Lr \"$out\"/share/dotnet{~,}\nrm -r \"$out\"/share/dotnet~\n", nix.sel(old, "postBuild"))),
         passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), (() => {
           const from = nix.thunk(() => nix.sel(fallback, "unwrapped"));
           return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           runtime: nix.thunk(() => nix.attr(base, "runtime")),
           aspnetcore: nix.thunk(() => nix.attr(base, "aspnetcore")),
           pname: nix.thunk(() => nix.attr(from, "pname")),
@@ -114,7 +101,7 @@ export default nix.lambda((args) => (() => {
         })())),
       }))));
     const withFallbackPackages = nix.thunk(() => nix.app(nix.sel(withBaseRuntimes, "overrideAttrs"), (old) => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), (() => {
           const hostRid = nix.thunk(() => nix.app(systemToDotnetRid, nix.thunk(() => nix.sel(base, "stdenv", "hostPlatform", "system"))));
           const hasILCompiler = nix.thunk(() => (nix.asBool(nix.sel(base, "hasILCompiler")) || nix.asBool(nix.sel(withBaseRuntimes, "hasILCompiler"))));
@@ -126,7 +113,7 @@ export default nix.lambda((args) => (() => {
           const packages = nix.thunk(() => nix.app(mergePackages, nix.thunk(() => nix.sel(base, "packages")), nix.thunk(() => nix.sel(fallback, "packages"))));
           const targetPackages = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.app(mergePackages, value, nix.thunk(() => nix.sel(fallback, "targetPackages", nix.key(nix.force(name))))), nix.thunk(() => nix.sel(base, "targetPackages"))));
           return {
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             hasILCompiler: hasILCompiler,
             packages: packages,
             targetPackages: targetPackages,
@@ -147,7 +134,7 @@ export default nix.lambda((args) => (() => {
       [nix.str`aspnetcore_${nix.sel(suffix, "channel")}`, nix.thunk(() => nix.sel(source, "aspnetcore"))],
     ]));
   })(), nix.app(nix.sel(lib, "optionalAttrs"), withBinary, nix.thunk(() => nix.app(nix.sel(lib, "mergeAttrsList"), nix.thunk(() => nix.builtins.map((featureBand_1) => nix.app(callPackage, nix.path(here, "./default.nix"), nix.thunk(() => nix.update(attrs, {
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             featureBand: featureBand_1,
             dir: nix.thunk(() => nix.add(dir, nix.str`/${featureBand_1}`)),
             withBinary: false,

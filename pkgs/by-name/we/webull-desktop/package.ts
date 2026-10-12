@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["hash", 34, 5]], [["urls", 53, 9], ["hash", 59, 9]], [["version", 51, 7], ["src", 52, 7], ["patches", 65, 7], ["postFixup", 83, 7]], [["description", 141, 5], ["homepage", 142, 5], ["sourceProvenance", 143, 5], ["license", 144, 5], ["maintainers", 145, 5], ["platforms", 146, 5], ["mainProgram", 147, 5], ["knownVulnerabilities", 148, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["installPhase", 104, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, curl: false, curlWithGnuTls: false, dpkg: false, makeBinaryWrapper: false, "alsa-lib": false, e2fsprogs: false, fontconfig: false, fribidi: false, gmp: false, gnutls: false, harfbuzz: false, libdrm: false, libGL: false, "libgpg-error": false, libpq: false, libthai: false, libxrandr: false, nss: false, "p11-kit": false, unixodbc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["urls", 53, 9], ["hash", 59, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 51, 7], ["src", 52, 7], ["patches", 65, 7], ["postFixup", 83, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 141, 5], ["homepage", 142, 5], ["sourceProvenance", 143, 5], ["license", 144, 5], ["maintainers", 145, 5], ["platforms", 146, 5], ["mainProgram", 147, 5], ["knownVulnerabilities", 148, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["installPhase", 104, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const p11_kit = nix.arg($, "p11-kit");
   const unixodbc = nix.arg($, "unixodbc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "webull-desktop",
       version: "9.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://u1sweb.webullfintech.com/us/Webull%20Desktop_9.3.0_9100000072_global_x64signed.deb",
           hash: "sha256-7xP4Q8eDMj2Pj/Zksr2gROJR1fPd4lz2zPpcAcu2o80=",
         })))),
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(curlWithGnuTls, "overrideAttrs"), (previousAttrs) => (() => {
             const version = "8.10.0";
             const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 urls: nix.thunk(() => [
                   nix.thunk(() => nix.str`https://curl.haxx.se/download/curl-${version}.tar.xz`),
                   nix.thunk(() => nix.str`https://github.com/curl/curl/releases/download/curl-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}/curl-${version}.tar.xz`),
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.builtins.toFile("curl-gnutls-keep-symbols-compatible.patch", "--- a/lib/libcurl.vers.in\n+++ b/lib/libcurl.vers.in\n@@ -6,7 +6,7 @@ HIDDEN\n     _save*;\n };\n\n-CURL_@CURL_LT_SHLIB_VERSIONED_FLAVOUR@4\n+CURL_@CURL_LT_SHLIB_VERSIONED_FLAVOUR@3\n {\n   global: curl_*;\n   local: *;\n")),
             ]);
             const postFixup = nix.thunk(() => nix.add(nix.selOr(previousAttrs, () => "", "postFixup"), "patchelf --set-soname libcurl-gnutls.so.4 $out/lib/libcurl.so.4.8.0\n"));
-            return { [nix.POS]: pos$3, version, src, patches, postFixup };
+            return { [nix.POS]: $pos[2], version, src, patches, postFixup };
           })())),
         e2fsprogs,
         fontconfig,
@@ -116,7 +112,7 @@ wrapProgram $out/usr/local/WebullDesktop/WebullDesktop --prefix LD_LIBRARY_PATH 
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Webull desktop trading application",
         homepage: "https://www.webull.com/trading-platforms/desktop-app",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 34, 5], ["mainProgram", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["subPackages", 22, 3], ["nativeCheckInputs", 24, 3], ["postCheck", 26, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromSourcehut: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["mainProgram", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["subPackages", 22, 3], ["nativeCheckInputs", 24, 3], ["postCheck", 26, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const which = nix.arg($, "which");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rego-query",
       version: "0.0.16",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~charles",
           repo: "rq",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [which]),
       postCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "substituteInPlace smoketest/smoketest.sh \\\n  --replace-fail 'RQ=\"$(pwd)/../build/rq\"' \"RQ=$GOPATH/bin/rq\"\npatchShebangs --build smoketest\nsmoketest/smoketest.sh\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI tool for evaluating Rego Queries",
         mainProgram: "rq",
         homepage: "https://sr.ht/~charles/rq",

@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/apache_datasketches.nix", [[["name", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["name", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["url", 48, 7], ["hash", 49, 7], ["stripLen", 50, 7], ["extraPrefix", 51, 7]], [["finalPackage", 61, 26], ["sql", 62, 5]], [["extension", 60, 18]], [["tests", 60, 12]], [["description", 69, 5], ["longDescription", 70, 5], ["homepage", 75, 5], ["platforms", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 32, 3], ["version", 33, 11], ["srcs", 35, 3], ["sourceRoot", 40, 3], ["buildInputs", 43, 3], ["patches", 45, 3], ["prePatch", 55, 3], ["enableUpdateScript", 59, 3], ["passthru", 60, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { boost186: false, fetchFromGitHub: false, fetchpatch: false, lib: false, postgresql: false, postgresqlBuildExtension: false, postgresqlTestExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/apache_datasketches.nix", [["name", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/apache_datasketches.nix", [["name", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/apache_datasketches.nix", [["url", 48, 7], ["hash", 49, 7], ["stripLen", 50, 7], ["extraPrefix", 51, 7]]);
-const pos$4 = nix.positions(here + "/apache_datasketches.nix", [["finalPackage", 61, 26], ["sql", 62, 5]]);
-const pos$5 = nix.positions(here + "/apache_datasketches.nix", [["extension", 60, 18]]);
-const pos$6 = nix.positions(here + "/apache_datasketches.nix", [["tests", 60, 12]]);
-const pos$7 = nix.positions(here + "/apache_datasketches.nix", [["description", 69, 5], ["longDescription", 70, 5], ["homepage", 75, 5], ["platforms", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$8 = nix.positions(here + "/apache_datasketches.nix", [["pname", 32, 3], ["version", 33, 11], ["srcs", 35, 3], ["sourceRoot", 40, 3], ["buildInputs", 43, 3], ["patches", 45, 3], ["prePatch", 55, 3], ["enableUpdateScript", 59, 3], ["passthru", 60, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const version = "1.7.0";
   const main_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "datasketches-postgresql",
       owner: "apache",
       repo: "datasketches-postgresql",
@@ -31,7 +24,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-W41uAs3W4V7c9O/wBw3rut65bcmY8EdQS1/tPszMGqA=",
     }))));
   const cpp_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "datasketches-cpp",
       owner: "apache",
       repo: "datasketches-cpp",
@@ -39,7 +32,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-h4+cln01jqLV0EpIqScpCyw8jxZgoVtdfBEjdvyUuVk=",
     }))));
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "apache_datasketches",
       version: version,
       srcs: nix.thunk(() => [main_src, cpp_src]),
@@ -47,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost186]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/apache/datasketches-cpp/commit/639134f6e88483bd1bfca451cf09d243ade9bdd4.patch",
             hash: "sha256-6SYKy3NycYABnUCuLUXQz+mTx4VaeWMlHnJ6aM+sNt4=",
             stripLen: 1n,
@@ -58,18 +51,18 @@ export default nix.lambda((args) => (() => {
 `),
       enableUpdateScript: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: "CREATE EXTENSION datasketches;\nSELECT hll_sketch_to_string(hll_sketch_build(1));\n",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "PostgreSQL extension providing approximate algorithms for distinct item counts, quantile estimation and frequent items detection",
         longDescription: "apache_datasketches is an extension to support approximate algorithms on PostgreSQL. The implementation\nis based on the Apache Datasketches CPP library, and provides support for HyperLogLog,\nCompressed Probabilistic Counting, KLL, Frequent strings, and Theta sketches.\n",
         homepage: "https://datasketches.apache.org/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["msaClientID", 66, 69]], [["description", 146, 7], ["homepage", 147, 7], ["changelog", 148, 7], ["license", 149, 7], ["maintainers", 150, 7], ["mainProgram", 151, 7]], [["pname", 70, 3], ["version", 71, 31], ["strictDeps", 73, 3], ["__structuredAttrs", 74, 3], ["paths", 76, 3], ["nativeBuildInputs", 78, 3], ["makeWrapperArgs", 80, 3], ["postBuild", 140, 3], ["meta", 144, 3]]]);
 const formals$1 = { args: { addDriverRunpath: false, "alsa-lib": false, bubblewrap: false, flite: false, gamemode: false, "glfw3-minecraft": false, jdk17: false, jdk21: false, jdk25: false, jdk8: false, lib: false, libGL: false, libjack2: false, libpulseaudio: false, libusb1: false, libx11: false, libxcursor: false, libxext: false, libxrandr: false, libxxf86vm: false, makeWrapper: false, openal: false, "pandora-launcher-unwrapped": false, pciutils: false, pipewire: false, stdenv: false, symlinkJoin: false, udev: false, "vulkan-loader": false, "xdg-dbus-proxy": false, xrandr: false, additionalLibs: true, additionalPrograms: true, controllerSupport: true, gamemodeSupport: true, jdks: true, msaClientID: true, textToSpeechSupport: true, sandboxSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["msaClientID", 66, 69]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 146, 7], ["homepage", 147, 7], ["changelog", 148, 7], ["license", 149, 7], ["maintainers", 150, 7], ["mainProgram", 151, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 70, 3], ["version", 71, 31], ["strictDeps", 73, 3], ["__structuredAttrs", 74, 3], ["paths", 76, 3], ["nativeBuildInputs", 78, 3], ["makeWrapperArgs", 80, 3], ["postBuild", 140, 3], ["meta", 144, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,9 +49,9 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(controllerSupport) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "controllerSupport only has an effect on Linux."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pa/pandora-launcher/package.nix:53:1");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(textToSpeechSupport) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "textToSpeechSupport only has an effect on Linux."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pa/pandora-launcher/package.nix:57:1");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(sandboxSupport) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "sandboxSupport only has an effect on Linux."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pa/pandora-launcher/package.nix:61:1");
-  const pandora_launcher$ = nix.thunk(() => nix.app(nix.sel(pandora_launcher_unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, msaClientID: msaClientID }))));
+  const pandora_launcher$ = nix.thunk(() => nix.app(nix.sel(pandora_launcher_unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], msaClientID: msaClientID }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pandora-launcher",
       version: nix.thunk(() => nix.attr(pandora_launcher$, "version")),
       strictDeps: true,
@@ -98,7 +96,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pandora_launcher$, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

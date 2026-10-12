@@ -2,39 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/readeck.nix", [[["maintainers", 5, 8]], [["enable", 11, 9], ["environmentFile", 12, 9]], [["readeck", 10, 16]], [["services", 10, 7]], [["machine", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 18, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/readeck.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/readeck.nix", [["enable", 11, 9], ["environmentFile", 12, 9]]);
-const pos$3 = nix.positions(here + "/readeck.nix", [["readeck", 10, 16]]);
-const pos$4 = nix.positions(here + "/readeck.nix", [["services", 10, 7]]);
-const pos$5 = nix.positions(here + "/readeck.nix", [["machine", 7, 9]]);
-const pos$6 = nix.positions(here + "/readeck.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "readeck",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "julienmalka"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             readeck: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "env-file", "READECK_SECRET_KEY=\"verysecretkey\"\n")),
             })),

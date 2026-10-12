@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["i686-linux", 16, 5], ["x86_64-linux", 17, 5]], [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["url", 77, 5], ["hash", 78, 5]], [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["platforms", 116, 5], ["knownVulnerabilities", 120, 5]], [["name", 72, 3], ["pname", 73, 3], ["version", 74, 11], ["src", 76, 3], ["hardeningDisable", 82, 3], ["nativeBuildInputs", 84, 3], ["patches", 86, 3], ["makeFlags", 88, 3], ["unpackPhase", 90, 3], ["installPhase", 98, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, kernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["i686-linux", 16, 5], ["x86_64-linux", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 77, 5], ["hash", 78, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["platforms", 116, 5], ["knownVulnerabilities", 120, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 72, 3], ["pname", 73, 3], ["version", 74, 11], ["src", 76, 3], ["hardeningDisable", 82, 3], ["nativeBuildInputs", 84, 3], ["patches", 86, 3], ["makeFlags", 88, 3], ["unpackPhase", 90, 3], ["installPhase", 98, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const version = "6.30.223.271";
   const release = "63";
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "i686-linux": "sha256-T4twspOsjMXHDlca1dGHjQ8p0TOkb+eGmGjZwZtQWM0=",
     "x86_64-linux": "sha256-X3l3TVvuyPdja1nA+wegMQju8eP9MkVjiyCFjHFBRL4=",
   }));
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const tarballVersion = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
   const tarball = nix.thunk(() => nix.str`hybrid-v35${arch}-nodebug-pcoem-${tarballVersion}.tar.gz`);
   const rpmFusionPatches = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "rpmfusion",
       repo: "wl-kmod",
       rev: "5156986093f0f12ed04fe913b0a2f9e996c24274",
@@ -74,12 +70,12 @@ export default nix.lambda((args) => (() => {
     "wl-kmod-038_kernel_7.2_adaptation_remove_strncpy_function.patch",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${release}-${nix.sel(kernel, "version")}`),
       pname: "broadcom-sta",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://docs.broadcom.com/docs-and-downloads/docs/linux_sta/${tarball}`),
           hash: nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
         })))),
@@ -99,7 +95,7 @@ cp lib/LICENSE.txt "$docDir"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Kernel module driver for some Broadcom's wireless cards",
         homepage: "https://www.broadcom.com/support/download-search?pg=Legacy%20Products&pf=Legacy%20Wireless&pn&pa&po&dk&pl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

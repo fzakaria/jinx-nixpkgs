@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["postPatch", 35, 3], ["postInstall", 39, 3], ["preConfigure", 45, 3], ["preFixup", 51, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, curl: false, espeak: false, file: false, gtk3: false, gtkdatabox: false, intltool: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["postPatch", 35, 3], ["postInstall", 39, 3], ["preConfigure", 45, 3], ["preFixup", 51, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const intltool = nix.arg($, "intltool");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "klavaro",
       version: "3.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/klavaro/klavaro-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-hxh+SdMBxRDmlkCYzbYSEmvwMNKodf15nq3K0+rlbas=",
         })))),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
 `),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "for f in \"$out\"/bin/*; do\n  if isELF \"$f\"; then\n    patchelf --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\" \"$f\"\n  fi\ndone\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free touch typing tutor program",
         mainProgram: "klavaro",
         homepage: "http://klavaro.sourceforge.net/",

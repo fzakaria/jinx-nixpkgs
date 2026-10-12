@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt.nix", [[["pname", 8, 3], ["src", 9, 17], ["version", 9, 21], ["meta", 9, 29], ["preConfigure", 11, 3], ["duneVersion", 15, 3], ["propagatedBuildInputs", 17, 3], ["doCheck", 22, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, csv: false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt.nix", [["pname", 8, 3], ["src", 9, 17], ["version", 9, 21], ["meta", 9, 29], ["preConfigure", 11, 3], ["duneVersion", 15, 3], ["propagatedBuildInputs", 17, 3], ["doCheck", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const csv = nix.arg($, "csv");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "csv-lwt",
       src: nix.thunk(() => nix.attr(csv, "src")),
       version: nix.thunk(() => nix.attr(csv, "version")),

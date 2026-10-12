@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 46, 5], ["hash", 47, 5]], [["name", 136, 7], ["exec", 137, 7], ["icon", 138, 7], ["desktopName", 139, 7], ["genericName", 140, 7], ["categories", 141, 7]], [["description", 149, 5], ["homepage", 150, 5], ["sourceProvenance", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["platforms", 154, 5], ["knownVulnerabilities", 155, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["libPath", 78, 3], ["autoPatchelfIgnoreMissingDeps", 108, 3], ["dontWrapGApps", 110, 3], ["dontConfigure", 111, 3], ["dontBuild", 112, 3], ["installPhase", 114, 3], ["desktopItems", 134, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoPatchelfHook: false, makeDesktopItem: false, copyDesktopItems: false, wrapGAppsHook3: false, fetchurl: false, "alsa-lib": false, "at-spi2-atk": false, "at-spi2-core": false, atk: false, cairo: false, cups: false, gtk3: false, nss: false, glib: false, nspr: false, "gdk-pixbuf": false, libdrm: false, libgbm: false, libx11: false, libxscrnsaver: false, libxcomposite: false, libxcursor: false, libxdamage: false, libxext: false, libxfixes: false, libxi: false, libxrandr: false, libxrender: false, libxtst: false, libxcb: false, libxshmfence: false, pango: false, "gcc-unwrapped": false, udev: false, python311: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 136, 7], ["exec", 137, 7], ["icon", 138, 7], ["desktopName", 139, 7], ["genericName", 140, 7], ["categories", 141, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 149, 5], ["homepage", 150, 5], ["sourceProvenance", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["platforms", 154, 5], ["knownVulnerabilities", 155, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["libPath", 78, 3], ["autoPatchelfIgnoreMissingDeps", 108, 3], ["dontWrapGApps", 110, 3], ["dontConfigure", 111, 3], ["dontBuild", 112, 3], ["installPhase", 114, 3], ["desktopItems", 134, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const pname = "snapmaker-luban";
       const version = "4.15.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Snapmaker/Luban/releases/download/v${version}/snapmaker-luban-${version}-linux-x64.tar.gz`),
           hash: "sha256-X4XNzkl5ky3C8fj92J9OQxj12zmIQ+xS02wYLWo94oU=",
         }))));
@@ -130,7 +127,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: pname,
             exec: "snapmaker-luban",
             icon: "snapmaker-luban",
@@ -140,7 +137,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Snapmaker Luban is an easy-to-use 3-in-1 software tailor-made for Snapmaker machines",
         homepage: "https://github.com/Snapmaker/Luban",
         sourceProvenance: nix.thunk(() => (() => {
@@ -156,7 +153,7 @@ runHook postInstall
         knownVulnerabilities: nix.thunk(() => ["CVE-2023-5217"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["description", 89, 5], ["longDescription", 90, 5], ["homepage", 94, 5], ["platforms", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["cmakeFlags", 66, 3], ["preConfigure", 70, 3], ["preFixup", 76, 3], ["setupHook", 84, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, python3: false, jq: false, expat: false, jsoncpp: false, libx11: false, libxdmcp: false, libxrandr: false, libffi: false, libxcb: false, "pkg-config": false, wayland: false, which: false, "libxcb-keysyms": false, "libxcb-wm": false, valijson: false, "vulkan-headers": false, "vulkan-loader": false, "vulkan-utility-libraries": false, writeText: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 89, 5], ["longDescription", 90, 5], ["homepage", 94, 5], ["platforms", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["cmakeFlags", 66, 3], ["preConfigure", 70, 3], ["preFixup", 76, 3], ["setupHook", 84, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vulkan-tools-lunarg",
       version: "1.4.357.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LunarG",
           repo: "VulkanTools",
           rev: nix.thunk(() => nix.str`vulkan-sdk-${nix.sel(finalAttrs, "version")}`),
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "for f in \"$out\"/share/vulkan/explicit_layer.d/*.json \"$out\"/share/vulkan/implicit_layer.d/*.json; do\n  jq <\"$f\" >tmp.json \".layer.library_path = \\\"$out/lib/\\\" + .layer.library_path\"\n  mv tmp.json \"$f\"\ndone\n",
       setupHook: nix.thunk(() => nix.app(writeText, "setup-hook", "export XDG_CONFIG_DIRS=@out@/etc${XDG_CONFIG_DIRS:+:${XDG_CONFIG_DIRS}}\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "LunarG Vulkan Tools and Utilities",
         longDescription: "Tools to aid in Vulkan development including useful layers, trace and\nreplay, and tests.\n",
         homepage: "https://github.com/LunarG/VulkanTools",

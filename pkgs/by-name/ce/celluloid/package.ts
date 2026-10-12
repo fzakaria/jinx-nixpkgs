@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["updateScript", 67, 12]], [["homepage", 70, 5], ["description", 71, 5], ["longDescription", 72, 5], ["changelog", 77, 5], ["license", 78, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 44, 3], ["postPatch", 53, 3], ["preFixup", 57, 3], ["strictDeps", 63, 3], ["doCheck", 65, 3], ["passthru", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "appstream-glib": false, "desktop-file-utils": false, glib: false, gtk4: false, libGL: false, libepoxy: false, libadwaita: false, meson: false, "mpv-unwrapped": false, ninja: false, "nix-update-script": false, "pkg-config": false, python3: false, wrapGAppsHook4: false, "yt-dlp": false, youtubeSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 67, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["description", 71, 5], ["longDescription", 72, 5], ["changelog", 77, 5], ["license", 78, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 44, 3], ["postPatch", 53, 3], ["preFixup", 57, 3], ["strictDeps", 63, 3], ["doCheck", 65, 3], ["passthru", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const yt_dlp = nix.arg($, "yt-dlp");
   const youtubeSupport = nix.argOr($, "youtubeSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "celluloid",
       version: "0.30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "celluloid-player",
           repo: "celluloid",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,11 +55,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/celluloid-player/celluloid",
         description: "Simple GTK frontend for the mpv video player",
         longDescription: "Celluloid (formerly GNOME MPV) is a simple GTK+ frontend for mpv.\nCelluloid interacts with mpv via the client API exported by libmpv,\nallowing access to mpv's powerful playback capabilities.\n",

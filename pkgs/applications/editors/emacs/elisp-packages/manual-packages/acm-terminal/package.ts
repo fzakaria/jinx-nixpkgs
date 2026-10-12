@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["hardcodeZeroVersion", 26, 48]], [["updateScript", 26, 12]], [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["packageRequires", 21, 3], ["passthru", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, melpaBuild: false, fetchFromGitHub: false, acm: false, popon: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 26, 48]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 26, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["packageRequires", 21, 3], ["passthru", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const popon = nix.arg($, "popon");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "acm-terminal",
       version: "0-unstable-2023-12-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "twlz0ne",
           repo: "acm-terminal",
           rev: "1851d8fa2a27d3fd8deeeb29cd21c3002b8351ba",
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
         })))),
       packageRequires: nix.thunk(() => [acm, popon]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/twlz0ne/acm-terminal",
         description: "Patch for LSP bridge acm on Terminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 27, 5], ["group", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["hash", 37, 5]], [["GETTEXT_BIN_DIR", 43, 5], ["GETTEXT_INCLUDE_DIR", 44, 5], ["GETTEXT_LIB_DIR", 45, 5]], [["homepage", 67, 5], ["description", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5], ["license", 71, 5], ["platforms", 72, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoDeps", 35, 3], ["env", 40, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 58, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, wrapGAppsHook4: false, buildPackages: false, cargo: false, "desktop-file-utils": false, meson: false, ninja: false, "pkg-config": false, rustc: false, rustPlatform: false, gettext: false, "gdk-pixbuf": false, glib: false, gtk4: false, gtksourceview5: false, libadwaita: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 27, 5], ["group", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GETTEXT_BIN_DIR", 43, 5], ["GETTEXT_INCLUDE_DIR", 44, 5], ["GETTEXT_LIB_DIR", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5], ["license", 71, 5], ["platforms", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoDeps", 35, 3], ["env", 40, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 58, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const gtksourceview5 = nix.arg($, "gtksourceview5");
   const libadwaita = nix.arg($, "libadwaita");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "icon-library",
       version: "0.0.22",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "design",
@@ -43,14 +39,14 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-XpvD7AYFx3GRcYqdDBrMo7vQIUYaE3zxtsoSgLNDDzU=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-OkVUAQnui0PzYXjoC6nTcLNqD/TLkz5pVtjV+7KSUq4=",
         })))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           GETTEXT_BIN_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(buildPackages, "gettext")))}/bin`),
           GETTEXT_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), gettext)}/include`),
           GETTEXT_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), gettext)}/lib`),
@@ -67,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [gdk_pixbuf, glib, gtk4, gtksourceview5, libadwaita]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/World/design/icon-library",
         description: "Symbolic icons for your apps",
         mainProgram: "icon-library",

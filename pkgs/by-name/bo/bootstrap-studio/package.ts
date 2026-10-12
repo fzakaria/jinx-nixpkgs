@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["sha256", 12, 5]], [["pname", 14, 54], ["version", 14, 60], ["src", 14, 68]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]], [["pname", 17, 11], ["version", 17, 17], ["src", 17, 25], ["extraInstallCommands", 19, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["sha256", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 14, 54], ["version", 14, 60], ["src", 14, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 11], ["version", 17, 17], ["src", 17, 25], ["extraInstallCommands", 19, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const pname = "bootstrap-studio";
   const version = "8.0.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://releases.bootstrapstudio.io/${version}/Bootstrap%20Studio.AppImage`),
       sha256: "sha256-uVeD6g3A9ITKkBp3AxTPUM3nyhCbW79gPVTU7bIDmhs=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -35,7 +32,7 @@ install -m 444 -D ${appimageContents}/usr/share/icons/hicolor/0x0/apps/bstudio.p
   $out/share/icons/hicolor/512x512/apps/bstudio.png
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Drag-and-drop designer for bootstrap",
         homepage: "https://bootstrapstudio.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

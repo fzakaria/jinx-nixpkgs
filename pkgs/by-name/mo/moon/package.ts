@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["RUSTFLAGS", 30, 5], ["OPENSSL_NO_VENDOR", 31, 5]], [["updateScript", 60, 12]], [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["env", 29, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 35, 3], ["postInstall", 42, 3], ["doCheck", 55, 3], ["doInstallCheck", 57, 3], ["nativeInstallCheckInputs", 58, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, openssl: false, "pkg-config": false, protobuf: false, versionCheckHook: false, "nix-update-script": false, installShellFiles: false, buildPackages: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 30, 5], ["OPENSSL_NO_VENDOR", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["env", 29, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 35, 3], ["postInstall", 42, 3], ["doCheck", 55, 3], ["doInstallCheck", 57, 3], ["nativeInstallCheckInputs", 58, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "moon",
       version: "2.5.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "moonrepo",
           repo: "moon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-HLuCOckwqTUDif1WsBjrSkw2OAyQ8hEgKF3MZIRKd0c=",
         })))),
       cargoHash: "sha256-w+U6gAHZr7RxpEqYAg8DvSQieqzemXcigXcdoIqWhw4=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "-C strip=symbols", OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTFLAGS: "-C strip=symbols", OPENSSL_NO_VENDOR: 1n })),
       buildInputs: nix.thunk(() => [openssl]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, protobuf, installShellFiles, writableTmpDirAsHomeHook]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages)), nix.thunk(() => (() => {
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Task runner and repo management tool for the web ecosystem, written in Rust",
         mainProgram: "moon",
         homepage: "https://github.com/moonrepo/moon",

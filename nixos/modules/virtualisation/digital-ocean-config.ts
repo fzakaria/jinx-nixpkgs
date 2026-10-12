@@ -2,45 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/digital-ocean-config.nix", [[["type", 16, 7], ["default", 17, 7], ["example", 18, 7], ["description", 19, 7]], [["type", 22, 7], ["default", 23, 7], ["example", 24, 7], ["description", 25, 7]], [["type", 28, 7], ["default", 29, 7], ["example", 30, 7], ["description", 31, 7]], [["setRootPassword", 15, 5], ["setSshKeys", 21, 5], ["seedEntropy", 27, 5]], [["digitalOcean", 14, 26]], [["virtualisation", 14, 11]], [["device", 43, 11], ["autoResize", 44, 11], ["fsType", 45, 11]], [["/", 42, 21]], [["kernelModules", 54, 18]], [["devices", 59, 23]], [["grub", 59, 18]], [["growPartition", 48, 11], ["kernelParams", 49, 11], ["initrd", 54, 11], ["kernelModules", 55, 11], ["loader", 59, 11]], [["PasswordAuthentication", 63, 20]], [["enable", 62, 11], ["settings", 63, 11]], [["enable", 65, 27]], [["openssh", 61, 18], ["do-agent", 65, 18]], [["hostName", 67, 11]], [["DO_DELAY_ATTEMPTS_MAX", 93, 13]], [["Type", 96, 13], ["RemainAfterExit", 97, 13], ["RuntimeDirectory", 98, 13], ["RuntimeDirectoryPreserve", 99, 13]], [["ConditionPathExists", 102, 13], ["After", 103, 13]], [["path", 75, 11], ["description", 76, 11], ["script", 77, 11], ["environment", 92, 11], ["serviceConfig", 95, 11], ["unitConfig", 101, 11]], [["ConditionPathExists", 130, 13], ["Before", 131, 13], ["After", 132, 13], ["Requires", 133, 13]], [["Type", 136, 13]], [["path", 117, 11], ["description", 121, 11], ["wantedBy", 122, 11], ["script", 123, 11], ["unitConfig", 129, 11], ["serviceConfig", 135, 11]], [["Before", 161, 13], ["After", 162, 13], ["Wants", 163, 13]], [["Type", 166, 13]], [["path", 146, 11], ["description", 150, 11], ["wantedBy", 151, 11], ["script", 152, 11], ["unitConfig", 160, 11], ["serviceConfig", 165, 11]], [["Type", 182, 13], ["RemainAfterExit", 183, 13]], [["ConditionPathExists", 186, 13], ["Before", 187, 13], ["After", 188, 13], ["Requires", 189, 13]], [["description", 172, 11], ["wantedBy", 173, 11], ["path", 174, 11], ["script", 175, 11], ["serviceConfig", 181, 11], ["unitConfig", 185, 11]], [["Before", 213, 13], ["After", 214, 13], ["Requires", 215, 13]], [["Type", 218, 13]], [["description", 198, 11], ["wantedBy", 199, 11], ["path", 200, 11], ["script", 204, 11], ["unitConfig", 212, 11], ["serviceConfig", 217, 11]], [["digitalocean-metadata", 74, 26], ["digitalocean-set-root-password", 116, 26], ["digitalocean-set-hostname", 145, 26], ["digitalocean-ssh-keys", 171, 26], ["digitalocean-entropy-seed", 197, 26]], [["services", 74, 17]], [["fileSystems", 42, 9], ["boot", 47, 9], ["services", 61, 9], ["networking", 66, 9], ["systemd", 74, 9]], [["maintainers", 224, 8]], [["imports", 10, 3], ["options", 14, 3], ["config", 34, 3], ["meta", 224, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false, lib: false, modulesPath: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/digital-ocean-config.nix", [["type", 16, 7], ["default", 17, 7], ["example", 18, 7], ["description", 19, 7]]);
-const pos$2 = nix.positions(here + "/digital-ocean-config.nix", [["type", 22, 7], ["default", 23, 7], ["example", 24, 7], ["description", 25, 7]]);
-const pos$3 = nix.positions(here + "/digital-ocean-config.nix", [["type", 28, 7], ["default", 29, 7], ["example", 30, 7], ["description", 31, 7]]);
-const pos$4 = nix.positions(here + "/digital-ocean-config.nix", [["setRootPassword", 15, 5], ["setSshKeys", 21, 5], ["seedEntropy", 27, 5]]);
-const pos$5 = nix.positions(here + "/digital-ocean-config.nix", [["digitalOcean", 14, 26]]);
-const pos$6 = nix.positions(here + "/digital-ocean-config.nix", [["virtualisation", 14, 11]]);
-const pos$7 = nix.positions(here + "/digital-ocean-config.nix", [["device", 43, 11], ["autoResize", 44, 11], ["fsType", 45, 11]]);
-const pos$8 = nix.positions(here + "/digital-ocean-config.nix", [["/", 42, 21]]);
-const pos$9 = nix.positions(here + "/digital-ocean-config.nix", [["kernelModules", 54, 18]]);
-const pos$10 = nix.positions(here + "/digital-ocean-config.nix", [["devices", 59, 23]]);
-const pos$11 = nix.positions(here + "/digital-ocean-config.nix", [["grub", 59, 18]]);
-const pos$12 = nix.positions(here + "/digital-ocean-config.nix", [["growPartition", 48, 11], ["kernelParams", 49, 11], ["initrd", 54, 11], ["kernelModules", 55, 11], ["loader", 59, 11]]);
-const pos$13 = nix.positions(here + "/digital-ocean-config.nix", [["PasswordAuthentication", 63, 20]]);
-const pos$14 = nix.positions(here + "/digital-ocean-config.nix", [["enable", 62, 11], ["settings", 63, 11]]);
-const pos$15 = nix.positions(here + "/digital-ocean-config.nix", [["enable", 65, 27]]);
-const pos$16 = nix.positions(here + "/digital-ocean-config.nix", [["openssh", 61, 18], ["do-agent", 65, 18]]);
-const pos$17 = nix.positions(here + "/digital-ocean-config.nix", [["hostName", 67, 11]]);
-const pos$18 = nix.positions(here + "/digital-ocean-config.nix", [["DO_DELAY_ATTEMPTS_MAX", 93, 13]]);
-const pos$19 = nix.positions(here + "/digital-ocean-config.nix", [["Type", 96, 13], ["RemainAfterExit", 97, 13], ["RuntimeDirectory", 98, 13], ["RuntimeDirectoryPreserve", 99, 13]]);
-const pos$20 = nix.positions(here + "/digital-ocean-config.nix", [["ConditionPathExists", 102, 13], ["After", 103, 13]]);
-const pos$21 = nix.positions(here + "/digital-ocean-config.nix", [["path", 75, 11], ["description", 76, 11], ["script", 77, 11], ["environment", 92, 11], ["serviceConfig", 95, 11], ["unitConfig", 101, 11]]);
-const pos$22 = nix.positions(here + "/digital-ocean-config.nix", [["ConditionPathExists", 130, 13], ["Before", 131, 13], ["After", 132, 13], ["Requires", 133, 13]]);
-const pos$23 = nix.positions(here + "/digital-ocean-config.nix", [["Type", 136, 13]]);
-const pos$24 = nix.positions(here + "/digital-ocean-config.nix", [["path", 117, 11], ["description", 121, 11], ["wantedBy", 122, 11], ["script", 123, 11], ["unitConfig", 129, 11], ["serviceConfig", 135, 11]]);
-const pos$25 = nix.positions(here + "/digital-ocean-config.nix", [["Before", 161, 13], ["After", 162, 13], ["Wants", 163, 13]]);
-const pos$26 = nix.positions(here + "/digital-ocean-config.nix", [["Type", 166, 13]]);
-const pos$27 = nix.positions(here + "/digital-ocean-config.nix", [["path", 146, 11], ["description", 150, 11], ["wantedBy", 151, 11], ["script", 152, 11], ["unitConfig", 160, 11], ["serviceConfig", 165, 11]]);
-const pos$28 = nix.positions(here + "/digital-ocean-config.nix", [["Type", 182, 13], ["RemainAfterExit", 183, 13]]);
-const pos$29 = nix.positions(here + "/digital-ocean-config.nix", [["ConditionPathExists", 186, 13], ["Before", 187, 13], ["After", 188, 13], ["Requires", 189, 13]]);
-const pos$30 = nix.positions(here + "/digital-ocean-config.nix", [["description", 172, 11], ["wantedBy", 173, 11], ["path", 174, 11], ["script", 175, 11], ["serviceConfig", 181, 11], ["unitConfig", 185, 11]]);
-const pos$31 = nix.positions(here + "/digital-ocean-config.nix", [["Before", 213, 13], ["After", 214, 13], ["Requires", 215, 13]]);
-const pos$32 = nix.positions(here + "/digital-ocean-config.nix", [["Type", 218, 13]]);
-const pos$33 = nix.positions(here + "/digital-ocean-config.nix", [["description", 198, 11], ["wantedBy", 199, 11], ["path", 200, 11], ["script", 204, 11], ["unitConfig", 212, 11], ["serviceConfig", 217, 11]]);
-const pos$34 = nix.positions(here + "/digital-ocean-config.nix", [["digitalocean-metadata", 74, 26], ["digitalocean-set-root-password", 116, 26], ["digitalocean-set-hostname", 145, 26], ["digitalocean-ssh-keys", 171, 26], ["digitalocean-entropy-seed", 197, 26]]);
-const pos$35 = nix.positions(here + "/digital-ocean-config.nix", [["services", 74, 17]]);
-const pos$36 = nix.positions(here + "/digital-ocean-config.nix", [["fileSystems", 42, 9], ["boot", 47, 9], ["services", 61, 9], ["networking", 66, 9], ["systemd", 74, 9]]);
-const pos$37 = nix.positions(here + "/digital-ocean-config.nix", [["maintainers", 224, 8]]);
-const pos$38 = nix.positions(here + "/digital-ocean-config.nix", [["imports", 10, 3], ["options", 14, 3], ["config", 34, 3], ["meta", 224, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,35 +13,35 @@ export default nix.lambda((args) => (() => {
   const modulesPath = nix.arg($, "modulesPath");
   const w = nix.withScope(lib, null);
   return {
-    [nix.POS]: pos$38,
+    [nix.POS]: $pos[37],
     imports: nix.thunk(() => [
       nix.thunk(() => nix.add(modulesPath, "/profiles/qemu-guest.nix")),
       nix.thunk(() => nix.add(modulesPath, "/virtualisation/digital-ocean-init.nix")),
     ]),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         digitalOcean: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "types")), w);
           return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             setRootPassword: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 type: nix.thunk(() => nix.lookup(w_1, "bool")),
                 default: false,
                 example: true,
                 description: "Whether to set the root password from the Digital Ocean metadata",
               })))),
             setSshKeys: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 type: nix.thunk(() => nix.lookup(w_1, "bool")),
                 default: true,
                 example: true,
                 description: "Whether to fetch ssh keys from Digital Ocean",
               })))),
             seedEntropy: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 type: nix.thunk(() => nix.lookup(w_1, "bool")),
                 default: true,
                 example: true,
@@ -94,71 +57,71 @@ export default nix.lambda((args) => (() => {
       const doMetadataFile = "/run/do-metadata/v1.json";
       return nix.app(nix.lookup(w, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             fileSystems: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               "/": nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   device: "/dev/disk/by-label/nixos",
                   autoResize: true,
                   fsType: "ext4",
                 })))),
             })),
             boot: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               growPartition: true,
               kernelParams: nix.thunk(() => ["console=ttyS0", "panic=1", "boot.panic_on_fail"]),
-              initrd: nix.thunk(() => ({ [nix.POS]: pos$9, kernelModules: nix.thunk(() => ["virtio_scsi"]) })),
+              initrd: nix.thunk(() => ({ [nix.POS]: $pos[8], kernelModules: nix.thunk(() => ["virtio_scsi"]) })),
               kernelModules: nix.thunk(() => ["virtio_pci", "virtio_net"]),
               loader: nix.thunk(() => ({
-                [nix.POS]: pos$11,
-                grub: nix.thunk(() => ({ [nix.POS]: pos$10, devices: nix.thunk(() => ["/dev/vda"]) })),
+                [nix.POS]: $pos[10],
+                grub: nix.thunk(() => ({ [nix.POS]: $pos[9], devices: nix.thunk(() => ["/dev/vda"]) })),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               openssh: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   PasswordAuthentication: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), false)),
                 })),
               })),
               "do-agent": nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 enable: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), true)),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               hostName: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), "")),
             })),
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 "digitalocean-metadata": nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
                   description: "Get host metadata provided by Digitalocean",
                   script: "set -eu\nDO_DELAY_ATTEMPTS=0\nwhile ! curl -fsSL -o $RUNTIME_DIRECTORY/v1.json http://169.254.169.254/metadata/v1.json; do\n  DO_DELAY_ATTEMPTS=$((DO_DELAY_ATTEMPTS + 1))\n  if (( $DO_DELAY_ATTEMPTS >= $DO_DELAY_ATTEMPTS_MAX )); then\n    echo \"giving up\"\n    exit 1\n  fi\n\n  echo \"metadata unavailable, trying again in 1s...\"\n  sleep 1\ndone\nchmod 600 $RUNTIME_DIRECTORY/v1.json\n",
-                  environment: nix.thunk(() => ({ [nix.POS]: pos$18, DO_DELAY_ATTEMPTS_MAX: "10" })),
+                  environment: nix.thunk(() => ({ [nix.POS]: $pos[17], DO_DELAY_ATTEMPTS_MAX: "10" })),
                   serviceConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     Type: "oneshot",
                     RemainAfterExit: true,
                     RuntimeDirectory: "do-metadata",
                     RuntimeDirectoryPreserve: "yes",
                   })),
                   unitConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     ConditionPathExists: nix.thunk(() => nix.str`!${doMetadataFile}`),
                     After: nix.thunk(() => nix.concat(["network-pre.target"], nix.concat(nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(config, "networking", "dhcpcd", "enable")), "dhcpcd.service"), nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(config, "systemd", "network", "enable")), "systemd-networkd.service")))),
                   })),
                 })),
                 "digitalocean-set-root-password": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "setRootPassword")), nix.thunk(() => ({
-                    [nix.POS]: pos$24,
+                    [nix.POS]: $pos[23],
                     path: nix.thunk(() => [
                       nix.thunk(() => nix.sel(pkgs, "shadow")),
                       nix.thunk(() => nix.sel(pkgs, "jq")),
@@ -171,16 +134,16 @@ echo "root:$ROOT_PASSWORD" | chpasswd
 mkdir -p /etc/do-metadata/set-root-password
 `),
                     unitConfig: nix.thunk(() => ({
-                      [nix.POS]: pos$22,
+                      [nix.POS]: $pos[21],
                       ConditionPathExists: "!/etc/do-metadata/set-root-password",
                       Before: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(config, "services", "openssh", "enable")), "sshd.service")),
                       After: nix.thunk(() => ["digitalocean-metadata.service"]),
                       Requires: nix.thunk(() => ["digitalocean-metadata.service"]),
                     })),
-                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$23, Type: "oneshot" })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[22], Type: "oneshot" })),
                   })))),
                 "digitalocean-set-hostname": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.eq(hostName, "")), nix.thunk(() => ({
-                    [nix.POS]: pos$27,
+                    [nix.POS]: $pos[26],
                     path: nix.thunk(() => [
                       nix.thunk(() => nix.sel(pkgs, "curl")),
                       nix.thunk(() => nix.sel(pkgs, "net-tools")),
@@ -189,15 +152,15 @@ mkdir -p /etc/do-metadata/set-root-password
                     wantedBy: nix.thunk(() => ["network.target"]),
                     script: "set -e\nDIGITALOCEAN_HOSTNAME=$(curl -fsSL http://169.254.169.254/metadata/v1/hostname)\nhostname \"$DIGITALOCEAN_HOSTNAME\"\nif [[ ! -e /etc/hostname || -w /etc/hostname ]]; then\n  printf \"%s\\n\" \"$DIGITALOCEAN_HOSTNAME\" > /etc/hostname\nfi\n",
                     unitConfig: nix.thunk(() => ({
-                      [nix.POS]: pos$25,
+                      [nix.POS]: $pos[24],
                       Before: nix.thunk(() => ["network.target"]),
                       After: nix.thunk(() => ["digitalocean-metadata.service"]),
                       Wants: nix.thunk(() => ["digitalocean-metadata.service"]),
                     })),
-                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$26, Type: "oneshot" })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[25], Type: "oneshot" })),
                   })))),
                 "digitalocean-ssh-keys": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "setSshKeys")), nix.thunk(() => ({
-                    [nix.POS]: pos$30,
+                    [nix.POS]: $pos[29],
                     description: "Set root ssh keys provided by Digital Ocean",
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
                     path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
@@ -206,9 +169,9 @@ mkdir -m 0700 -p /root/.ssh
 jq -er '.public_keys[]' ${doMetadataFile} > /root/.ssh/authorized_keys
 chmod 600 /root/.ssh/authorized_keys
 `),
-                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$28, Type: "oneshot", RemainAfterExit: true })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[27], Type: "oneshot", RemainAfterExit: true })),
                     unitConfig: nix.thunk(() => ({
-                      [nix.POS]: pos$29,
+                      [nix.POS]: $pos[28],
                       ConditionPathExists: "!/root/.ssh/authorized_keys",
                       Before: nix.thunk(() => nix.app(nix.lookup(w, "optional"), nix.thunk(() => nix.sel(config, "services", "openssh", "enable")), "sshd.service")),
                       After: nix.thunk(() => ["digitalocean-metadata.service"]),
@@ -216,7 +179,7 @@ chmod 600 /root/.ssh/authorized_keys
                     })),
                   })))),
                 "digitalocean-entropy-seed": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "seedEntropy")), nix.thunk(() => ({
-                    [nix.POS]: pos$33,
+                    [nix.POS]: $pos[32],
                     description: "Run the kernel RNG entropy seeding script from the Digital Ocean vendor data",
                     wantedBy: nix.thunk(() => ["network.target"]),
                     path: nix.thunk(() => [
@@ -231,12 +194,12 @@ ${nix.sel(pkgs, "runtimeShell")} $ENTROPY_SEED
 rm -rf $TEMPDIR
 `),
                     unitConfig: nix.thunk(() => ({
-                      [nix.POS]: pos$31,
+                      [nix.POS]: $pos[30],
                       Before: nix.thunk(() => ["network.target"]),
                       After: nix.thunk(() => ["digitalocean-metadata.service"]),
                       Requires: nix.thunk(() => ["digitalocean-metadata.service"]),
                     })),
-                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$32, Type: "oneshot" })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[31], Type: "oneshot" })),
                   })))),
               })),
             })),
@@ -244,7 +207,7 @@ rm -rf $TEMPDIR
         ]));
     })()),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$37,
+      [nix.POS]: $pos[36],
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [

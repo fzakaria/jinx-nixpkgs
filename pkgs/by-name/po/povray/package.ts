@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["NIX_CFLAGS_COMPILE", 60, 7]], [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["postPatch", 50, 3], ["env", 60, 3], ["configureFlags", 65, 3], ["enableParallelBuilding", 71, 3], ["preInstall", 73, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, automake: false, boost: false, zlib: false, libx11: false, libice: false, libsm: false, libpng: false, libjpeg: false, libtiff: false, "pkg-config": false, SDL2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["postPatch", 50, 3], ["env", 60, 3], ["configureFlags", 65, 3], ["enableParallelBuilding", 71, 3], ["preInstall", 73, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "povray",
       version: "3.8.0-beta.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "POV-Ray",
           repo: "povray",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, libx11, libice, libsm, libpng, libjpeg, libtiff, SDL2, zlib]),
       postPatch: "cd unix\n./prebuild.sh\ncd ..\nexport HOME=$TMPDIR\nsed -i -e 's/^povconfuser.*/povconfuser=$(TMPDIR)\\/povray/' Makefile.{am,in}\nsed -i -e 's/^povuser.*/povuser=$(TMPDIR)\\/.povray/' Makefile.{am,in}\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fno-finite-math-only", "-DBOOST_BIND_GLOBAL_PLACEHOLDERS"]))),
       })),
       configureFlags: nix.thunk(() => ["COMPILED_BY=NixOS", "--with-boost-thread=boost_thread", "--with-x"]),
@@ -53,7 +50,7 @@ for i in chown chgrp; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.povray.org/",
         description: "Persistence of Vision Raytracer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 16, 5], ["hash", 20, 5]], [["homepage", 57, 5], ["description", 58, 5], ["mainProgram", 59, 5], ["changelog", 60, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["makeFlags", 38, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, man: false, ncurses: false, readline: false, enableReadline: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 16, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["description", 58, 5], ["mainProgram", 59, 5], ["changelog", 60, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["makeFlags", 38, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const enableReadline = nix.argOr($, "enableReadline", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "calc",
       version: "2.17.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://github.com/lcn2/calc/releases/download/v${nix.sel(finalAttrs, "version")}/calc-${nix.sel(finalAttrs, "version")}.tar.bz2`),
             nix.thunk(() => nix.str`http://www.isthe.com/chongo/src/calc/calc-${nix.sel(finalAttrs, "version")}.tar.bz2`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         "DEFAULT_LIB_INSTALL_PATH=$(out)/lib",
       ], nix.app(nix.sel(lib, "optionals"), enableReadline, nix.thunk(() => ["READLINE_LIB=-lreadline", "USE_READLINE=-DUSE_READLINE"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.isthe.com/chongo/tech/comp/calc/",
         description: "C-style arbitrary precision calculator",
         mainProgram: "calc",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 41, 5], ["sha256", 42, 5], ["executable", 43, 5]], [["owner", 56, 7], ["repo", 57, 7], ["rev", 58, 7], ["sha256", 59, 7]], [["description", 89, 7], ["homepage", 90, 7], ["license", 91, 7], ["platforms", 92, 7], ["maintainers", 93, 7]], [["pname", 52, 13], ["version", 53, 5], ["src", 55, 5], ["dontFixup", 64, 5], ["nativeBuildInputs", 65, 5], ["postPatch", 70, 5], ["installPhase", 75, 5], ["meta", 88, 5]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, fetchurl: false, gtk3: false, getent: false, "papirus-icon-theme": false, flavor: true, accent: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 41, 5], ["sha256", 42, 5], ["executable", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 56, 7], ["repo", 57, 7], ["rev", 58, 7], ["sha256", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 89, 7], ["homepage", 90, 7], ["license", 91, 7], ["platforms", 92, 7], ["maintainers", 93, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 52, 13], ["version", 53, 5], ["src", 55, 5], ["dontFixup", 64, 5], ["nativeBuildInputs", 65, 5], ["postPatch", 70, 5], ["installPhase", 75, 5], ["meta", 88, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,17 +36,17 @@ export default nix.lambda((args) => (() => {
   const pname = "catppuccin-papirus-folders";
   const papirus_folders_rev = "0f838ee5679229e3a3e97e3b333c222c9e9615b4";
   const papirus_folders_script = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-folders/${papirus_folders_rev}/papirus-folders`),
       sha256: "sha256-NJpXdf1ymnvQzRwUl3OalLzs3sXWVFTp5jN2B3vtUk0=",
       executable: true,
     }))));
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: accent colors`), validAccents, nix.thunk(() => [accent]), nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: flavors`), validFlavors, nix.thunk(() => [flavor]), nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: "0-unstable-2024-08-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "catppuccin",
           repo: "papirus-folders",
           rev: "f83671d17ea67e335b34f8028a7e6d78bca735d7",
@@ -72,7 +69,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Soothing pastel theme for Papirus Icon Theme folders",
         homepage: "https://github.com/catppuccin/papirus-folders",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["teams", 41, 5], ["platforms", 42, 5]], [["pname", 10, 3], ["version", 12, 23], ["src", 13, 3], ["sourceRoot", 14, 3], ["strictDeps", 15, 3], ["nativeBuildInputs", 17, 3], ["buildInputs", 22, 3], ["postPatch", 26, 3], ["postInstall", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, llvm: false, cmake: false, "lsb-release": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["teams", 41, 5], ["platforms", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 12, 23], ["src", 13, 3], ["sourceRoot", 14, 3], ["strictDeps", 15, 3], ["nativeBuildInputs", 17, 3], ["buildInputs", 22, 3], ["postPatch", 26, 3], ["postInstall", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(llvm, "llvm"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "hipcc",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.sel(llvm, "llvm", "monorepoSrc")),
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "rm -r $out/hip/bin\nln -s $out/bin $out/hip/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Compiler driver utility that calls clang or nvcc",
         homepage: "https://github.com/ROCm/HIPCC",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

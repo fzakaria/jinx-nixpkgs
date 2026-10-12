@@ -2,69 +2,56 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/budgie.nix", [[["maintainers", 5, 8]], [["enable", 15, 47]], [["lightdm", 15, 39]], [["enable", 14, 24], ["displayManager", 15, 24]], [["enable", 18, 9], ["user", 19, 9]], [["autoLogin", 17, 31]], [["enable", 27, 9], ["extraPlugins", 28, 9]], [["budgie", 26, 31]], [["xserver", 14, 16], ["displayManager", 17, 16], ["desktopManager", 26, 16]], [["excludePackages", 24, 26]], [["budgie", 24, 19], ["systemPackages", 33, 19]], [["imports", 10, 7], ["services", 14, 7], ["environment", 24, 7]], [["machine", 7, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["enableOCR", 36, 3], ["testScript", 38, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/budgie.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/budgie.nix", [["enable", 15, 47]]);
-const pos$3 = nix.positions(here + "/budgie.nix", [["lightdm", 15, 39]]);
-const pos$4 = nix.positions(here + "/budgie.nix", [["enable", 14, 24], ["displayManager", 15, 24]]);
-const pos$5 = nix.positions(here + "/budgie.nix", [["enable", 18, 9], ["user", 19, 9]]);
-const pos$6 = nix.positions(here + "/budgie.nix", [["autoLogin", 17, 31]]);
-const pos$7 = nix.positions(here + "/budgie.nix", [["enable", 27, 9], ["extraPlugins", 28, 9]]);
-const pos$8 = nix.positions(here + "/budgie.nix", [["budgie", 26, 31]]);
-const pos$9 = nix.positions(here + "/budgie.nix", [["xserver", 14, 16], ["displayManager", 17, 16], ["desktopManager", 26, 16]]);
-const pos$10 = nix.positions(here + "/budgie.nix", [["excludePackages", 24, 26]]);
-const pos$11 = nix.positions(here + "/budgie.nix", [["budgie", 24, 19], ["systemPackages", 33, 19]]);
-const pos$12 = nix.positions(here + "/budgie.nix", [["imports", 10, 7], ["services", 14, 7], ["environment", 24, 7]]);
-const pos$13 = nix.positions(here + "/budgie.nix", [["machine", 7, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/budgie.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["enableOCR", 36, 3], ["testScript", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "budgie",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "budgie", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               displayManager: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                lightdm: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+                [nix.POS]: $pos[2],
+                lightdm: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
               })),
             })),
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              autoLogin: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, user: "alice" })),
+              [nix.POS]: $pos[5],
+              autoLogin: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true, user: "alice" })),
             })),
             desktopManager: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               budgie: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 enable: true,
                 extraPlugins: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "budgie-analogue-clock-applet"))]),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             budgie: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               excludePackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-text-editor"))]),
             })),
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "wlrctl"))]),

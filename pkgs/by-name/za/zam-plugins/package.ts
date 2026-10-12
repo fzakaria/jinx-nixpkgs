@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5], ["fetchSubmodules", 28, 5]], [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["broken", 67, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 32, 3], ["postPatch", 46, 3], ["makeFlags", 54, 3], ["enableParallelBuilding", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, boost: false, libx11: false, libGL: false, liblo: false, libjack2: false, "ladspa-header": false, lv2: false, "pkg-config": false, rubberband: false, libsndfile: false, fftwFloat: false, libsamplerate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5], ["fetchSubmodules", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["broken", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 32, 3], ["postPatch", 46, 3], ["makeFlags", 54, 3], ["enableParallelBuilding", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const fftwFloat = nix.arg($, "fftwFloat");
   const libsamplerate = nix.arg($, "libsamplerate");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zam-plugins",
       version: "4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zamaudio",
           repo: "zam-plugins",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +57,7 @@ done
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.zamaudio.com/?p=976",
         description: "Collection of LV2/LADSPA/VST/JACK audio plugins by ZamAudio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

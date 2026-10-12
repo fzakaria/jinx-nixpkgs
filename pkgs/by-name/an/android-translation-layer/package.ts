@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["android-translation-layer", 102, 26]], [["tests", 101, 12]], [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5], ["mainProgram", 111, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["postPatch", 49, 3], ["strictDeps", 55, 3], ["__structuredAttrs", 56, 3], ["depsBuildBuild", 58, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 72, 3], ["postFixup", 90, 3], ["passthru", 101, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitLab: false, ffmpeg: false, meson: false, openjdk17: false, lib: false, "pkg-config": false, "wayland-protocols": false, wayland: false, "wayland-scanner": false, gtk4: false, "openxr-loader": false, libglvnd: false, "libportal-gtk4": false, sqlite: false, libdrm: false, libgudev: false, webkitgtk_6_0: false, ninja: false, "art-standalone": false, "bionic-translation": false, "alsa-lib": false, makeWrapper: false, nixosTests: false, bintools: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["android-translation-layer", 102, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 101, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5], ["mainProgram", 111, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["postPatch", 49, 3], ["strictDeps", 55, 3], ["__structuredAttrs", 56, 3], ["depsBuildBuild", 58, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 72, 3], ["postFixup", 90, 3], ["passthru", 101, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const bintools = nix.arg($, "bintools");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "android-translation-layer",
       version: "0-unstable-2026-07-30",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "android_translation_layer",
           repo: "android_translation_layer",
           rev: "cf2c759fa93330f45df6107dcf8984cf49b29c64",
@@ -83,14 +79,14 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [art_standalone, bintools]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "android-translation-layer": nix.thunk(() => nix.attr(nixosTests, "android-translation-layer")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Translation layer that allows running Android apps on a Linux system",
         homepage: "https://gitlab.com/android_translation_layer/android_translation_layer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

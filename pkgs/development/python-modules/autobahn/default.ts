@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["all", 73, 5], ["accelerate", 82, 5], ["compress", 85, 5], ["encryption", 86, 5], ["nvx", 94, 5], ["scram", 95, 5], ["serialization", 100, 5], ["twisted", 107, 5], ["ui", 112, 5]], [["description", 144, 5], ["homepage", 145, 5], ["downloadPage", 146, 5], ["changelog", 147, 5], ["license", 148, 5], ["maintainers", 149, 5]], [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["src", 52, 3], ["build-system", 59, 3], ["dependencies", 65, 3], ["optional-dependencies", 72, 3], ["pythonImportsCheck", 115, 3], ["nativeCheckInputs", 117, 3], ["preCheck", 126, 3], ["enabledTestPaths", 132, 3], ["disabledTestPaths", 136, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cffi: false, hatchling: false, setuptools: false, cryptography: false, hyperlink: false, pynacl: false, txaio: false, "python-snappy": false, base58: false, pyopenssl: false, qrcode: false, "service-identity": false, "argon2-cffi": false, passlib: false, cbor2: false, flatbuffers: false, msgpack: false, ujson: false, "py-ubjson": false, attrs: false, twisted: false, "zope-interface": false, pygobject3: false, mock: false, "pytest-asyncio_0": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 73, 5], ["accelerate", 82, 5], ["compress", 85, 5], ["encryption", 86, 5], ["nvx", 94, 5], ["scram", 95, 5], ["serialization", 100, 5], ["twisted", 107, 5], ["ui", 112, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 144, 5], ["homepage", 145, 5], ["downloadPage", 146, 5], ["changelog", 147, 5], ["license", 148, 5], ["maintainers", 149, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["src", 52, 3], ["build-system", 59, 3], ["dependencies", 65, 3], ["optional-dependencies", 72, 3], ["pythonImportsCheck", 115, 3], ["nativeCheckInputs", 117, 3], ["preCheck", 126, 3], ["enabledTestPaths", 132, 3], ["disabledTestPaths", 136, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio_0 = nix.arg($, "pytest-asyncio_0");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "autobahn",
       version: "25.12.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crossbario",
           repo: "autobahn-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [cffi, hatchling, setuptools]),
       dependencies: nix.thunk(() => [cryptography, hyperlink, pynacl, txaio]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           all: nix.thunk(() => nix.concat(nix.sel(self, "accelerate"), nix.concat(nix.sel(self, "compress"), nix.concat(nix.sel(self, "encryption"), nix.concat(nix.sel(self, "nvx"), nix.concat(nix.sel(self, "serialization"), nix.concat(nix.sel(self, "scram"), nix.concat(nix.sel(self, "twisted"), nix.sel(self, "ui"))))))))),
           accelerate: [],
           compress: nix.thunk(() => [python_snappy]),
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["src/autobahn"]),
       disabledTestPaths: nix.thunk(() => ["src/autobahn/twisted", "src/autobahn/wamp/test/test_wamp_cryptosign.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "WebSocket and WAMP in Python for Twisted and asyncio",
         homepage: "https://crossbar.io/autobahn",
         downloadPage: "https://github.com/crossbario/autobahn-python",

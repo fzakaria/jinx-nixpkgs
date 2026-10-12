@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["package", 95, 7], ["command", 96, 7]], [["version", 94, 11]], [["extraArgs", 99, 7]], [["tests", 94, 5], ["updateScript", 98, 5]], [["description", 107, 5], ["homepage", 108, 5], ["mainProgram", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 46, 3], ["enableParallelBuilding", 56, 3], ["postPatch", 58, 3], ["makeFlags", 63, 3], ["patches", 73, 3], ["checkTarget", 84, 3], ["doCheck", 85, 3], ["doInstallCheck", 86, 3], ["installTargets", 88, 3], ["passthru", 93, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, testers: false, asciidoctor: false, doxygen: false, graphviz: false, python3: false, ruby: false, qpdf: false, udevCheckHook: false, curl: false, glibcLocales: false, jdk: false, libedit: false, librist: false, openssl: false, srt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 95, 7], ["command", 96, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 94, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 99, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 94, 5], ["updateScript", 98, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["mainProgram", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 46, 3], ["enableParallelBuilding", 56, 3], ["postPatch", 58, 3], ["makeFlags", 63, 3], ["patches", 73, 3], ["checkTarget", 84, 3], ["doCheck", 85, 3], ["doInstallCheck", 86, 3], ["installTargets", 88, 3], ["passthru", 93, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const srt = nix.arg($, "srt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tsduck",
       version: "3.44-4676",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tsduck",
           repo: "tsduck",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,19 +60,22 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installTargets: nix.thunk(() => ["install-tools", "install-devel"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "tsversion",
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version-regex", "^v(.+)$"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
+            [nix.POS]: $pos[3],
+            extraArgs: nix.thunk(() => ["--version-regex", "^v(.+)$"]),
+          })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "MPEG Transport Stream Toolkit",
         homepage: "https://github.com/tsduck/tsduck",
         mainProgram: "tsversion",

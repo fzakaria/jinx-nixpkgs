@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["memcached", 12, 5], ["nc", 13, 5]], [["simple", 16, 5]], [["tests", 15, 12]], [["license", 19, 8]], [["name", 10, 3], ["substitutions", 11, 3], ["passthru", 15, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { callPackage: false, makeSetupHook: false, lib: false, memcached: false, netcat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["memcached", 12, 5], ["nc", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["simple", 16, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 15, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["license", 19, 8]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 10, 3], ["substitutions", 11, 3], ["passthru", 15, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,21 +13,24 @@ export default nix.lambda((args) => (() => {
   const memcached = nix.arg($, "memcached");
   const netcat = nix.arg($, "netcat");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "memcached-test-hook",
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         memcached: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), memcached)),
         nc: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), netcat)),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
         })),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$4, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[3],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })), nix.path(here, "./memcached-test-hook.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["seppo", 10, 57]], [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["GIT_SHA", 25, 7]], [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["env", 25, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { ocamlPackages: false, fetchFromCodeberg: false, "ocaml-crunch": false, seppo: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["seppo", 10, 57]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GIT_SHA", 25, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["env", 25, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const ocaml_crunch = nix.arg($, "ocaml-crunch");
   const seppo = nix.arg($, "seppo");
   const lib = nix.arg($, "lib");
-  const mcdb = nix.thunk(() => nix.app(nix.sel(ocamlPackages, "callPackage"), nix.path(here, "./mcdb.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, seppo: seppo }))));
+  const mcdb = nix.thunk(() => nix.app(nix.sel(ocamlPackages, "callPackage"), nix.path(here, "./mcdb.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], seppo: seppo }))));
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "seppo",
       version: "0-unstable-2025-08-07",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "seppo",
           repo: "seppo",
           rev: "d927311cae64883fe2b88f5a1c7e17c8cc525bad",
           hash: "sha256-Lb2w0mRNNamCltAwdxOyAYh02wkN7yKJGBzqBIPKE8k=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, GIT_SHA: nix.thunk(() => nix.sel(seppo, "src", "rev")) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], GIT_SHA: nix.thunk(() => nix.sel(seppo, "src", "rev")) })),
       postPatch: "sed -i 's/-static/\"\"/' bin/gen_flags.sh\n",
       nativeBuildInputs: nix.thunk(() => [ocaml_crunch]),
       buildInputs: nix.thunk(() => (() => {
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://seppo.mro.name",
         description: "Personal Social Web",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

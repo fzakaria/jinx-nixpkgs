@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 13, 26], ["pname", 13, 34], ["sha256", 14, 5]], [["description", 27, 5], ["mainProgram", 28, 5], ["homepage", 29, 5], ["license", 30, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["doCheck", 18, 3], ["build-system", 20, 3], ["dependencies", 22, 3], ["nativeCheckInputs", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 13, 26], ["pname", 13, 34], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["mainProgram", 28, 5], ["homepage", 29, 5], ["license", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["doCheck", 18, 3], ["build-system", 20, 3], ["dependencies", 22, 3], ["nativeCheckInputs", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dotfiles",
       version: "0.6.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           sha256: "sha256-fke8lNjyYts6cIrONAFd5r2wAlpWqJhd+usFAPCO5J4=",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w_2, "pytest"))];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Easily manage your dotfiles",
         mainProgram: "dotfiles",
         homepage: "https://github.com/jbernard/dotfiles",

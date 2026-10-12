@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["NIX_LDFLAGS", 37, 7]], [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["version", 16, 3], ["pname", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["buildInputs", 26, 3], ["env", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false, SDL: false, libGLU: false, libGL: false, expat: false, zlib: false, SDL_ttf: false, SDL_image: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 16, 3], ["pname", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["buildInputs", 26, 3], ["env", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const SDL_ttf = nix.arg($, "SDL_ttf");
   const SDL_image = nix.arg($, "SDL_image");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "1.5.0",
       pname: "bloodspilot-client",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/bloodspilot/client-sdl/v${nix.sel(finalAttrs, "version")}/bloodspilot-client-sdl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-svOVg8b33cUpsesd9Xq8PRHvnZFKnxoA/cKqslVJlOM=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./bloodspilot-sdl-window-fix.patch")]),
       buildInputs: nix.thunk(() => [libx11, SDL, SDL_ttf, SDL_image, libGLU, libGL, expat, zlib]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lX11" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-lX11" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Multiplayer space combat game (client part)",
         mainProgram: "bloodspilot-client-sdl",
         homepage: "http://bloodspilot.sf.net/",

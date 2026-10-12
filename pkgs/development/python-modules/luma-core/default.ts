@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["version", 19, 13], ["hash", 20, 5]], [["gpio", 34, 5], ["spi", 35, 5], ["ftdi", 36, 5], ["complete", 37, 5]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["pyproject", 24, 3], ["dependencies", 26, 3], ["optional-dependencies", 33, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, pillow: false, smbus2: false, pyftdi: false, cbor2: false, "rpi-gpio": false, spidev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 13], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gpio", 34, 5], ["spi", 35, 5], ["ftdi", 36, 5], ["complete", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["pyproject", 24, 3], ["dependencies", 26, 3], ["optional-dependencies", 33, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "luma-core";
       const version = "2.6.0";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "luma_core",
           version: version,
           hash: "sha256-PdtnP5aZoUjTzP7imFRRsB3dS06ma2WpZkzjaAbPQRw=",
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const dependencies = nix.thunk(() => nix.concat([pillow, smbus2, cbor2], nix.sel(optional_dependencies, "complete")));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         gpio: nix.thunk(() => [rpi_gpio]),
         spi: nix.thunk(() => [spidev]),
         ftdi: nix.thunk(() => [pyftdi]),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pillow-compatible drawing canvas library for SBCs",
         longDescription: "A component library providing a Pillow-compatible drawing canvas,\nand other functionality to support drawing primitives and text-rendering\ncapabilities for small displays on the Raspberry Pi and other single\nboard computers.\n",
         homepage: "https://luma-core.readthedocs.io/",
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

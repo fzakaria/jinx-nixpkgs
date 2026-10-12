@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["doInstallCheck", 38, 3], ["preConfigure", 40, 3], ["qmakeFlags", 41, 3], ["preInstall", 43, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libusb1: false, "pkg-config": false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["doInstallCheck", 38, 3], ["preConfigure", 40, 3], ["qmakeFlags", 41, 3], ["preInstall", 43, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "moolticute";
       const version = "1.03.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mooltipass",
           repo: "moolticute",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const qmakeFlags = nix.thunk(() => ["../Moolticute.pro"]);
       const preInstall = "mkdir -p $udev/lib/udev/rules.d\nsed -n '/^UDEV_RULE==\"\\$(cat <<-EOF$/,/^EOF$/p' ../data/moolticute.sh |\n    sed '1d;$d' > $udev/lib/udev/rules.d/50-mooltipass.rules\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GUI app and daemon to work with Mooltipass device via USB",
         longDescription: "To install udev rules, add `services.udev.packages = [ pkgs.moolticute.udev ]`\ninto `nixos/configuration.nix`.\n",
         homepage: "https://github.com/mooltipass/moolticute",
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

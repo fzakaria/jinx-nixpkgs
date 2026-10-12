@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/installation-cd-base.nix", [[["enableAllHardware", 19, 12]], [["packages", 22, 11]], [["makeEfiBootable", 25, 12], ["makeUsbBootable", 28, 12]], [["enable", 31, 30]], [["memtest86", 31, 20]], [["grub", 31, 15]], [["devices", 37, 20]], [["luks", 37, 15]], [["loader", 31, 8], ["initrd", 37, 8], ["postBootCommands", 39, 8]], [["defaultPackages", 50, 15]], [["enable", 54, 16]], [["git", 54, 12]], [["stateVersion", 56, 10]], [["imports", 11, 3], ["hardware", 19, 3], ["console", 22, 3], ["isoImage", 25, 3], ["boot", 31, 3], ["swapDevices", 35, 3], ["fileSystems", 36, 3], ["environment", 50, 3], ["programs", 54, 3], ["system", 56, 3]]]);
 const formals$1 = { args: { config: false, lib: false, options: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/installation-cd-base.nix", [["enableAllHardware", 19, 12]]);
-const pos$2 = nix.positions(here + "/installation-cd-base.nix", [["packages", 22, 11]]);
-const pos$3 = nix.positions(here + "/installation-cd-base.nix", [["makeEfiBootable", 25, 12], ["makeUsbBootable", 28, 12]]);
-const pos$4 = nix.positions(here + "/installation-cd-base.nix", [["enable", 31, 30]]);
-const pos$5 = nix.positions(here + "/installation-cd-base.nix", [["memtest86", 31, 20]]);
-const pos$6 = nix.positions(here + "/installation-cd-base.nix", [["grub", 31, 15]]);
-const pos$7 = nix.positions(here + "/installation-cd-base.nix", [["devices", 37, 20]]);
-const pos$8 = nix.positions(here + "/installation-cd-base.nix", [["luks", 37, 15]]);
-const pos$9 = nix.positions(here + "/installation-cd-base.nix", [["loader", 31, 8], ["initrd", 37, 8], ["postBootCommands", 39, 8]]);
-const pos$10 = nix.positions(here + "/installation-cd-base.nix", [["defaultPackages", 50, 15]]);
-const pos$11 = nix.positions(here + "/installation-cd-base.nix", [["enable", 54, 16]]);
-const pos$12 = nix.positions(here + "/installation-cd-base.nix", [["git", 54, 12]]);
-const pos$13 = nix.positions(here + "/installation-cd-base.nix", [["stateVersion", 56, 10]]);
-const pos$14 = nix.positions(here + "/installation-cd-base.nix", [["imports", 11, 3], ["hardware", 19, 3], ["console", 22, 3], ["isoImage", 25, 3], ["boot", 31, 3], ["swapDevices", 35, 3], ["fileSystems", 36, 3], ["environment", 50, 3], ["programs", 54, 3], ["system", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,31 +12,31 @@ export default nix.lambda((args) => (() => {
   const options = nix.arg($, "options");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     imports: nix.thunk(() => [
       nix.path(here, "./iso-image.nix"),
       nix.path(here, "../../profiles/base.nix"),
       nix.path(here, "../../profiles/installation-device.nix"),
     ]),
-    hardware: nix.thunk(() => ({ [nix.POS]: pos$1, enableAllHardware: true })),
+    hardware: nix.thunk(() => ({ [nix.POS]: $pos[0], enableAllHardware: true })),
     console: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       packages: nix.thunk(() => nix.concat(nix.sel(options, "console", "packages", "default"), [nix.thunk(() => nix.sel(pkgs, "terminus_font"))])),
     })),
-    isoImage: nix.thunk(() => ({ [nix.POS]: pos$3, makeEfiBootable: true, makeUsbBootable: true })),
+    isoImage: nix.thunk(() => ({ [nix.POS]: $pos[2], makeEfiBootable: true, makeUsbBootable: true })),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       loader: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         grub: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          memtest86: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+          [nix.POS]: $pos[4],
+          memtest86: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
         })),
       })),
       initrd: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         luks: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           devices: nix.thunk(() => nix.app(nix.sel(lib, "mkImageMediaOverride"), nix.thunk(() => ({})))),
         })),
       })),
@@ -66,21 +53,21 @@ done
     swapDevices: nix.thunk(() => nix.app(nix.sel(lib, "mkImageMediaOverride"), [])),
     fileSystems: nix.thunk(() => nix.app(nix.sel(lib, "mkImageMediaOverride"), nix.thunk(() => nix.sel(config, "lib", "isoFileSystems")))),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       defaultPackages: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [nix.thunk(() => nix.lookup(w, "rsync"))];
       })()),
     })),
     programs: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       git: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
       })),
     })),
     system: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       stateVersion: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(lib, "trivial", "release")))),
     })),
   };

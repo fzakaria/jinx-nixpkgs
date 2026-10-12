@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 13, 5], ["owner", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["version", 20, 13], ["pname", 21, 5], ["src", 22, 5], ["npmDepsHash", 23, 5], ["preBuild", 24, 5], ["installPhase", 28, 5]], [["broadcast-box", 58, 26]], [["tests", 57, 12]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]], [["version", 35, 11], ["src", 35, 19], ["frontend", 35, 23], ["pname", 36, 3], ["vendorHash", 37, 3], ["proxyVendor", 38, 3], ["patches", 40, 3], ["postPatch", 41, 3], ["installPhase", 46, 3], ["passthru", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, nixosTests: false, fetchFromGitHub: false, buildNpmPackage: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 13, 5], ["owner", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 20, 13], ["pname", 21, 5], ["src", 22, 5], ["npmDepsHash", 23, 5], ["preBuild", 24, 5], ["installPhase", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broadcast-box", 58, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 57, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 35, 11], ["src", 35, 19], ["frontend", 35, 23], ["pname", 36, 3], ["vendorHash", 37, 3], ["proxyVendor", 38, 3], ["patches", 40, 3], ["postPatch", 41, 3], ["installPhase", 46, 3], ["passthru", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const name = "broadcast-box";
   const version = "0-unstable-2025-06-04";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       repo: "broadcast-box",
       owner: "Glimesh",
       rev: "a091f147f750759084a2c9d25a12e815e2feebf8",
       hash: "sha256-Evhye+DYtFM/VjxqmhH5kU32khvEFUxTUgH9DXytIbo=",
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: version,
       pname: nix.thunk(() => nix.str`${name}-web`),
       src: nix.thunk(() => nix.str`${src}/web`),
@@ -38,7 +33,7 @@ cp "${src}/.env.production" ../
       installPhase: "mkdir -p $out\ncp -r build $out\n",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: version,
       src: src,
       frontend: frontend,
@@ -51,14 +46,14 @@ cp "${src}/.env.production" ../
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share\ncp -r $frontend/build/* $out/share\n\ninstall -Dm755 $GOPATH/bin/broadcast-box -t $out/bin\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "broadcast-box": nix.thunk(() => nix.attr(nixosTests, "broadcast-box")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "WebRTC broadcast server",
         homepage: "https://github.com/Glimesh/broadcast-box",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

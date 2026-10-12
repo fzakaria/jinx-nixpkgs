@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["src", 33, 5], ["name", 34, 5], ["hash", 35, 5]], [["NIX_CFLAGS_COMPILE", 64, 7]], [["updateScript", 69, 5]], [["changelog", 73, 5], ["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["teams", 78, 5], ["platforms", 79, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoDeps", 32, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 50, 3], ["preFixup", 56, 3], ["env", 64, 3], ["passthru", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, "blueprint-compiler": false, cargo: false, "desktop-file-utils": false, fetchFromGitLab: false, glib: false, gtk4: false, imagemagick: false, libadwaita: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, rustPlatform: false, rustc: false, stdenv: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 33, 5], ["name", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 64, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 73, 5], ["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["teams", 78, 5], ["platforms", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoDeps", 32, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 50, 3], ["preFixup", 56, 3], ["env", 64, 3], ["passthru", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "switcheroo",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adhami3310",
           repo: "Switcheroo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-yJiydJoMiDCVql1bhmh+TQi25tAy/NueHvvG4zWTTeY=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.sel(finalAttrs, "src")),
           name: nix.thunk(() => nix.str`switcheroo-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-fvsR27jmL61NjvJWm7SQhiU1DMeB6OYyWQn1u+5HujM=",
@@ -63,15 +58,15 @@ export default nix.lambda((args) => (() => {
 )
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "16")))), "-Wno-error=incompatible-function-pointer-types")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://gitlab.com/adhami3310/Switcheroo/-/releases/v${nix.sel(finalAttrs, "version")}`),
         description: "App for converting images between different formats",
         homepage: "https://apps.gnome.org/Converter/",

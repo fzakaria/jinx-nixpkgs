@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["freedvSupport", 31, 31]], [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["postFetch", 48, 5], ["hash", 56, 5]], [["owner", 59, 5], ["repo", 60, 5], ["rev", 61, 5], ["hash", 62, 5]], [["owner", 65, 5], ["repo", 66, 5], ["rev", 67, 5], ["nativeBuildInputs", 68, 5], ["postFetch", 69, 5], ["hash", 77, 5]], [["owner", 85, 5], ["repo", 86, 5], ["tag", 87, 5], ["hash", 88, 5]], [["postPatch", 134, 7]], [["NIX_CFLAGS_COMPILE", 177, 7]], [["extraArgs", 192, 5]], [["updateScript", 191, 12]], [["homepage", 200, 5], ["description", 201, 5], ["license", 202, 5], ["maintainers", 203, 5], ["platforms", 204, 5], ["mainProgram", 205, 5]], [["pname", 81, 3], ["version", 82, 3], ["src", 84, 3], ["postPatch", 91, 3], ["nativeBuildInputs", 124, 3], ["buildInputs", 144, 3], ["cmakeFlags", 170, 3], ["env", 177, 3], ["doCheck", 179, 3], ["postInstall", 181, 3], ["passthru", 191, 3], ["meta", 199, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cacert: false, autoconf: false, automake: false, libtool: false, cmake: false, "pkg-config": false, macdylibbundler: false, makeWrapper: false, darwin: false, codec2: false, libpulseaudio: false, libsamplerate: false, libsndfile: false, lpcnet: false, openssl: false, portaudio: false, speexdsp: false, hamlib_4: false, wxwidgets_3_2: false, dbus: false, "apple-sdk_15": false, "nix-update-script": false, wget: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["freedvSupport", 31, 31]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["postFetch", 48, 5], ["hash", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 59, 5], ["repo", 60, 5], ["rev", 61, 5], ["hash", 62, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 65, 5], ["repo", 66, 5], ["rev", 67, 5], ["nativeBuildInputs", 68, 5], ["postFetch", 69, 5], ["hash", 77, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 85, 5], ["repo", 86, 5], ["tag", 87, 5], ["hash", 88, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["postPatch", 134, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 177, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["extraArgs", 192, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["updateScript", 191, 12]]);
-const pos$12 = nix.positions(here + "/package.nix", [["homepage", 200, 5], ["description", 201, 5], ["license", 202, 5], ["maintainers", 203, 5], ["platforms", 204, 5], ["mainProgram", 205, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 81, 3], ["version", 82, 3], ["src", 84, 3], ["postPatch", 91, 3], ["nativeBuildInputs", 124, 3], ["buildInputs", 144, 3], ["cmakeFlags", 170, 3], ["env", 177, 3], ["doCheck", 179, 3], ["postInstall", 181, 3], ["passthru", 191, 3], ["meta", 199, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,23 +33,23 @@ export default nix.lambda((args) => (() => {
   const apple_sdk_15 = nix.arg($, "apple-sdk_15");
   const nix_update_script = nix.arg($, "nix-update-script");
   const wget = nix.arg($, "wget");
-  const codec2$ = nix.thunk(() => nix.app(nix.sel(codec2, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, freedvSupport: true }))));
+  const codec2$ = nix.thunk(() => nix.app(nix.sel(codec2, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], freedvSupport: true }))));
   const freedvBackendSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "tmiw",
       repo: "freedv-backend",
       rev: "v1.0.0",
       hash: "sha256-t1Bu9XaNRa9zQKEffC4fJxclvzcu9UPMY4Gzt0kTfAY=",
     }))));
   const ebur128Src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "jiixyj",
       repo: "libebur128",
       rev: "v1.2.6",
       hash: "sha256-UKO2k+kKH/dwt2xfaYMrH/GXjEkIrnxh1kGG/3P5d3Y=",
     }))));
   const opusSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "xiph",
       repo: "opus",
       rev: "940d4e5af64351ca8ba8390df3f555484c567fbb",
@@ -75,14 +63,14 @@ substituteInPlace autogen.sh \\
       hash: "sha256-P84gjnuiQQBVBExJBY3sUbwo00lXY6HB+AMpx/oovRg=",
     }))));
   const radaeSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       owner: "freedv",
       repo: "rade_c",
       rev: "a36161bce0fb37daf3f4602344b095f6817dddb1",
       hash: "sha256-UixeatZpdcu/uQF+KKpivfPs5yMdLJtJhyMgu8zfMgI=",
     }))));
   const rnnoiseSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       owner: "xiph",
       repo: "rnnoise",
       rev: "70f1d256acd4b34a572f999a05c87bf00b67730d",
@@ -97,11 +85,11 @@ substituteInPlace autogen.sh \\
       hash: "sha256-t/AwOCuHb5Oahy1fDI3Sc9M08Xz3dSAavhYatRC1OIk=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "freedv",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "drowe67",
           repo: "freedv-gui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -140,7 +128,7 @@ sed -i "/codesign/d;/hdiutil/d" src/CMakeLists.txt
 `),
       nativeBuildInputs: nix.thunk(() => nix.concat([autoconf, automake, libtool, cmake, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(macdylibbundler, "overrideAttrs"), nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               postPatch: "substituteInPlace src/Utils.cpp \\\n  --replace-fail \"--deep --preserve-metadata=entitlements,requirements,flags,runtime\" \"\"\n",
             })))),
           makeWrapper,
@@ -167,20 +155,20 @@ sed -i "/codesign/d;/hdiutil/d" src/CMakeLists.txt
           })()))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(codec2$, "src")}/src`),
       })),
       doCheck: false,
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "install -Dm755 _deps/freedv_backend-build/rade_build/src/librade.* -t $out/lib\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv $out/bin/FreeDV.app $out/Applications\nmakeWrapper $out/Applications/FreeDV.app/Contents/MacOS/FreeDV $out/bin/freedv\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             extraArgs: nix.thunk(() => ["--version-regex", "^v(\\d\\.\\d\\.\\d(\\.\\d)?)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         homepage: "https://freedv.org/",
         description: "Digital voice for HF radio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

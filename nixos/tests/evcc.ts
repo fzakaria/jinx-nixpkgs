@@ -2,27 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/evcc.nix", [[["maintainers", 8, 8]], [["schema", 20, 13], ["host", 21, 13], ["port", 22, 13]], [["grid", 30, 15], ["pv", 31, 15]], [["title", 28, 13], ["meters", 29, 13]], [["source", 40, 17], ["cmd", 41, 17]], [["type", 37, 15], ["name", 38, 15], ["power", 39, 15]], [["source", 48, 17], ["cmd", 49, 17]], [["type", 45, 15], ["name", 46, 15], ["power", 47, 15]], [["source", 59, 17], ["cmd", 60, 17]], [["source", 63, 17], ["cmd", 64, 17]], [["source", 67, 17], ["cmd", 68, 17]], [["source", 71, 17], ["cmd", 72, 17]], [["name", 56, 15], ["type", 57, 15], ["status", 58, 15], ["enabled", 62, 15], ["enable", 66, 15], ["maxcurrent", 70, 15]], [["title", 79, 15], ["charger", 80, 15]], [["network", 19, 11], ["log", 25, 11], ["site", 27, 11], ["meters", 35, 11], ["chargers", 54, 11], ["loadpoints", 77, 11]], [["enable", 13, 9], ["environmentFile", 15, 9], ["settings", 18, 9]], [["evcc", 12, 16]], [["services", 12, 7]], [["machine", 11, 5]], [["name", 7, 3], ["meta", 8, 3], ["containers", 10, 3], ["testScript", 88, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/evcc.nix", [["maintainers", 8, 8]]);
-const pos$2 = nix.positions(here + "/evcc.nix", [["schema", 20, 13], ["host", 21, 13], ["port", 22, 13]]);
-const pos$3 = nix.positions(here + "/evcc.nix", [["grid", 30, 15], ["pv", 31, 15]]);
-const pos$4 = nix.positions(here + "/evcc.nix", [["title", 28, 13], ["meters", 29, 13]]);
-const pos$5 = nix.positions(here + "/evcc.nix", [["source", 40, 17], ["cmd", 41, 17]]);
-const pos$6 = nix.positions(here + "/evcc.nix", [["type", 37, 15], ["name", 38, 15], ["power", 39, 15]]);
-const pos$7 = nix.positions(here + "/evcc.nix", [["source", 48, 17], ["cmd", 49, 17]]);
-const pos$8 = nix.positions(here + "/evcc.nix", [["type", 45, 15], ["name", 46, 15], ["power", 47, 15]]);
-const pos$9 = nix.positions(here + "/evcc.nix", [["source", 59, 17], ["cmd", 60, 17]]);
-const pos$10 = nix.positions(here + "/evcc.nix", [["source", 63, 17], ["cmd", 64, 17]]);
-const pos$11 = nix.positions(here + "/evcc.nix", [["source", 67, 17], ["cmd", 68, 17]]);
-const pos$12 = nix.positions(here + "/evcc.nix", [["source", 71, 17], ["cmd", 72, 17]]);
-const pos$13 = nix.positions(here + "/evcc.nix", [["name", 56, 15], ["type", 57, 15], ["status", 58, 15], ["enabled", 62, 15], ["enable", 66, 15], ["maxcurrent", 70, 15]]);
-const pos$14 = nix.positions(here + "/evcc.nix", [["title", 79, 15], ["charger", 80, 15]]);
-const pos$15 = nix.positions(here + "/evcc.nix", [["network", 19, 11], ["log", 25, 11], ["site", 27, 11], ["meters", 35, 11], ["chargers", 54, 11], ["loadpoints", 77, 11]]);
-const pos$16 = nix.positions(here + "/evcc.nix", [["enable", 13, 9], ["environmentFile", 15, 9], ["settings", 18, 9]]);
-const pos$17 = nix.positions(here + "/evcc.nix", [["evcc", 12, 16]]);
-const pos$18 = nix.positions(here + "/evcc.nix", [["services", 12, 7]]);
-const pos$19 = nix.positions(here + "/evcc.nix", [["machine", 11, 5]]);
-const pos$20 = nix.positions(here + "/evcc.nix", [["name", 7, 3], ["meta", 8, 3], ["containers", 10, 3], ["testScript", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,62 +11,62 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const port = "1234";
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "evcc",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "hexa"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           evcc: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             enable: true,
             environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "evcc-secrets", nix.thunk(() => nix.str`PORT=${nix.builtins.toString(port)}
 `))),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$15,
-              network: nix.thunk(() => ({ [nix.POS]: pos$2, schema: "http", host: "localhost", port: "$PORT" })),
+              [nix.POS]: $pos[14],
+              network: nix.thunk(() => ({ [nix.POS]: $pos[1], schema: "http", host: "localhost", port: "$PORT" })),
               log: "info",
               site: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 title: "NixOS Test",
-                meters: nix.thunk(() => ({ [nix.POS]: pos$3, grid: "grid", pv: "pv" })),
+                meters: nix.thunk(() => ({ [nix.POS]: $pos[2], grid: "grid", pv: "pv" })),
               })),
               meters: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   type: "custom",
                   name: "grid",
-                  power: nix.thunk(() => ({ [nix.POS]: pos$5, source: "script", cmd: "/bin/sh -c 'echo -4500'" })),
+                  power: nix.thunk(() => ({ [nix.POS]: $pos[4], source: "script", cmd: "/bin/sh -c 'echo -4500'" })),
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   type: "custom",
                   name: "pv",
-                  power: nix.thunk(() => ({ [nix.POS]: pos$7, source: "script", cmd: "/bin/sh -c 'echo 7500'" })),
+                  power: nix.thunk(() => ({ [nix.POS]: $pos[6], source: "script", cmd: "/bin/sh -c 'echo 7500'" })),
                 })),
               ]),
               chargers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   name: "dummy-charger",
                   type: "custom",
-                  status: nix.thunk(() => ({ [nix.POS]: pos$9, source: "script", cmd: "/bin/sh -c 'echo A'" })),
-                  enabled: nix.thunk(() => ({ [nix.POS]: pos$10, source: "script", cmd: "/bin/sh -c 'echo false'" })),
-                  enable: nix.thunk(() => ({ [nix.POS]: pos$11, source: "script", cmd: "/bin/sh -c 'echo true'" })),
-                  maxcurrent: nix.thunk(() => ({ [nix.POS]: pos$12, source: "script", cmd: "/bin/sh -c 'echo 7200'" })),
+                  status: nix.thunk(() => ({ [nix.POS]: $pos[8], source: "script", cmd: "/bin/sh -c 'echo A'" })),
+                  enabled: nix.thunk(() => ({ [nix.POS]: $pos[9], source: "script", cmd: "/bin/sh -c 'echo false'" })),
+                  enable: nix.thunk(() => ({ [nix.POS]: $pos[10], source: "script", cmd: "/bin/sh -c 'echo true'" })),
+                  maxcurrent: nix.thunk(() => ({ [nix.POS]: $pos[11], source: "script", cmd: "/bin/sh -c 'echo 7200'" })),
                 })),
               ]),
               loadpoints: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$14, title: "Dummy", charger: "dummy-charger" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[13], title: "Dummy", charger: "dummy-charger" })),
               ]),
             })),
           })),

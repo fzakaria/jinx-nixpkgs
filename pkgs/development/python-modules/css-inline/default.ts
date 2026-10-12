@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["pname", 41, 13], ["version", 41, 19], ["src", 41, 27], ["postPatch", 42, 5], ["hash", 46, 5]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["cargoDeps", 40, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 54, 3], ["pythonImportsCheck", 58, 3], ["nativeCheckInputs", 60, 3], ["disabledTests", 65, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, libiconv: false, pytestCheckHook: false, hypothesis: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 41, 13], ["version", 41, 19], ["src", 41, 27], ["postPatch", 42, 5], ["hash", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["cargoDeps", 40, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 54, 3], ["pythonImportsCheck", 58, 3], ["nativeCheckInputs", 60, 3], ["disabledTests", 65, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.22.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Stranger6667",
           repo: "css-inline",
           rev: nix.thunk(() => nix.str`python-v${version}`),
@@ -36,7 +33,7 @@ ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 rm .cargo/config.toml
 `);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -54,7 +51,7 @@ ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytestCheckHook]);
       const disabledTests = nix.thunk(() => nix.concat(["test_cache", "test_remote_stylesheet"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_invalid_href"]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Inline CSS into style attributes",
         homepage: "https://github.com/Stranger6667/css-inline",
         changelog: nix.thunk(() => nix.str`https://github.com/Stranger6667/css-inline/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -65,7 +62,7 @@ ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

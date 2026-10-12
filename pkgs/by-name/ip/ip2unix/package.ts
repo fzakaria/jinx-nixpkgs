@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["homepage", 64, 5], ["description", 65, 5], ["platforms", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 47, 3], ["doCheck", 49, 3], ["doInstallCheck", 51, 3], ["installCheckPhase", 52, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, "yaml-cpp": false, systemdLibs: false, python313Packages: false, asciidoc: false, libxslt: false, docbook_xml_dtd_45: false, docbook_xsl: false, libxml2: false, docbook5: false, mesonEmulatorHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["platforms", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 47, 3], ["doCheck", 49, 3], ["doInstallCheck", 51, 3], ["installCheckPhase", 52, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const docbook5 = nix.arg($, "docbook5");
   const mesonEmulatorHook = nix.arg($, "mesonEmulatorHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ip2unix",
       version: "2.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nixcloud",
           repo: "ip2unix",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "found=0\nfor man in \"$out/share/man/man1\"/ip2unix.1*; do\n  test -s \"$man\" && found=1\ndone\nif [ $found -ne 1 ]; then\n  echo \"ERROR: Manual page hasn't been generated.\" >&2\n  exit 1\nfi\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/nixcloud/ip2unix",
         description: "Turn IP sockets into Unix domain sockets",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["description", 75, 5], ["longDescription", 76, 5], ["homepage", 77, 5], ["sourceProvenance", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["unpackPhase", 24, 3], ["nativeBuildInputs", 28, 3], ["dontBuild", 33, 3], ["installPhase", 35, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, makeWrapper: false, coreutils: false, gnugrep: false, gnused: false, mfc5890cnlpr: false, pkgsi686Linux: false, psutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 75, 5], ["longDescription", 76, 5], ["homepage", 77, 5], ["sourceProvenance", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["unpackPhase", 24, 3], ["nativeBuildInputs", 28, 3], ["dontBuild", 33, 3], ["installPhase", 35, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfc5890cncupswrapper";
       const version = "1.1.2-2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf006170/${pname}-${version}.i386.deb`),
           hash: "sha256-UOCwzB09/a1/2rliY+hTrslSvO5ztVj51auisPx7OIQ=",
         }))));
@@ -62,7 +60,7 @@ ln $dir/cupswrapper/cupswrappermfc5890cn $out/lib/cups/filter
 ln $out/usr/share/ppd/brmfc5890cn.ppd $out/share/cups/model
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Brother MFC-5890CN CUPS wrapper driver",
         longDescription: "Brother MFC-5890CN CUPS wrapper driver. Use the connection string 'lpd://${IP_ADDRESS}/binary_p1' when connecting to this printer via the network.",
         homepage: "http://www.brother.com/",
@@ -78,7 +76,7 @@ ln $out/usr/share/ppd/brmfc5890cn.ppd $out/share/cups/model
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

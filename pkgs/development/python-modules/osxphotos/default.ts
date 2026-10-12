@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["description", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["broken", 124, 5]], [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["src", 48, 3], ["pythonRelaxDeps", 55, 3], ["build-system", 66, 3], ["dependencies", 68, 3], ["pythonImportsCheck", 100, 3], ["nativeCheckInputs", 102, 3], ["disabledTests", 108, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, beautifulsoup4: false, bitmath: false, bpylist2: false, click: false, mako: false, markdown2: false, "more-itertools": false, objexplore: false, packaging: false, pathvalidate: false, pip: false, ptpython: false, psutil: false, pytimeparse2: false, pyyaml: false, requests: false, "rich-theme-manager": false, rich: false, shortuuid: false, strpdatetime: false, tenacity: false, textx: false, toml: false, tzdata: false, utitools: false, whenever: false, wrapt: false, wurlitzer: false, "xdg-base-dirs": false, pytestCheckHook: false, "pytest-mock": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["broken", 124, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["src", 48, 3], ["pythonRelaxDeps", 55, 3], ["build-system", 66, 3], ["dependencies", 68, 3], ["pythonImportsCheck", 100, 3], ["nativeCheckInputs", 102, 3], ["disabledTests", 108, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,12 +45,12 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "osxphotos",
       version: "0.76.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RhetTbull",
           repo: "osxphotos",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -111,7 +109,7 @@ export default nix.lambda((args) => (() => {
         "test_query_function_url",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Export photos from Apple's macOS Photos app and query the Photos library database to access metadata about images",
         homepage: "https://github.com/RhetTbull/osxphotos",
         changelog: nix.thunk(() => nix.str`https://github.com/RhetTbull/osxphotos/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

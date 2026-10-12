@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["homepage", 60, 5], ["description", 61, 5], ["maintainers", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 41, 3], ["strictDeps", 50, 3], ["mesonFlags", 52, 3], ["enableParallelBuilding", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "pkg-config": false, meson: false, ninja: false, python3: false, cmocka: false, scdoc: false, openssl: false, zlib: false, zstd: false, luaSupport: true, lua5_3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["maintainers", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 41, 3], ["strictDeps", 50, 3], ["mesonFlags", 52, 3], ["enableParallelBuilding", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const luaSupport = nix.argOr($, "luaSupport", () => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
   const lua5_3 = nix.arg($, "lua5_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "apk-tools",
       version: "3.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.alpinelinux.org",
           owner: "alpine",
           repo: "apk-tools",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.alpinelinux.org/alpine/apk-tools",
         description: "Alpine Package Keeper",
         maintainers: [],

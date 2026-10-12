@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["package", 63, 50]], [["version", 63, 18]], [["tests", 63, 12]], [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5], ["platforms", 76, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["installPhase", 25, 3], ["doInstallCheck", 53, 3], ["installCheckPhase", 54, 3], ["passthru", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, makeWrapper: false, lib: false, fetchFromGitHub: false, bash: false, nix: false, "nixos-install": false, coreutils: false, xcp: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 63, 50]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 63, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 63, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5], ["platforms", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["installPhase", 25, 3], ["doInstallCheck", 53, 3], ["installCheckPhase", 54, 3], ["passthru", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const xcp = nix.arg($, "xcp");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "disko",
       version: "1.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "disko",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,17 +53,17 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(st
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/nix-community/disko",
         description: "Declarative disk partitioning and formatting using nix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

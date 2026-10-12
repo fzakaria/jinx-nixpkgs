@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]], [["pname", 15, 3], ["version", 16, 11], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["postPatch", 30, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libx11: false, libxext: false, libxft: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 11], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["postPatch", 30, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libxft = nix.arg($, "libxft");
   const version = "1.40";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "windowlab",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://nickgravgaard.com/windowlab/windowlab-${version}.tar`),
           sha256: "1fx4jwq4s98p2wpvawsiww7d6568bpjgcjpks61dzfj8p2j32s4d",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxext, libxft]),
       postPatch: "mv Makefile Makefile.orig\necho \\\n   \"\n    DEFINES += -DXFT\n    EXTRA_INC += $(pkg-config --cflags xft)\n    EXTRA_LIBS += $(pkg-config --libs xft)\n   \" > Makefile\nsed \"s|/usr/local|$out|g\" Makefile.orig >> Makefile\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small and simple stacking window manager",
         homepage: "http://nickgravgaard.com/windowlab/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

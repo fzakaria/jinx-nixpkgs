@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["updateScript", 23, 5]], [["changelog", 30, 5], ["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["mainProgram", 34, 5], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["passthru", 22, 3], ["doInstallCheck", 26, 3], ["nativeInstallCheckInputs", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "nix-update-script": false, php: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 30, 5], ["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["mainProgram", 34, 5], ["maintainers", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["passthru", 22, 3], ["doInstallCheck", 26, 3], ["nativeInstallCheckInputs", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "phpunit",
       version: "13.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sebastianbergmann",
           repo: "phpunit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,13 +25,13 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-prm2+LTZE79UgoiC0osS3mC8cJIwNE6FuKS4iROtPDE=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/sebastianbergmann/phpunit/blob/${nix.sel(finalAttrs, "version")}/ChangeLog-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.md`),
         description: "PHP Unit Testing framework",
         homepage: "https://phpunit.de",

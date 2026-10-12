@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mltonBootstrap", 9, 5], ["version", 10, 5], ["rev", 11, 5], ["hash", 12, 5]], [["mltonBootstrap", 18, 5], ["version", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["mltonBootstrap", 27, 5], ["version", 28, 5], ["rev", 29, 5], ["hash", 30, 5], ["doCheck", 32, 5]], [["mltonBootstrap", 36, 5], ["version", 37, 5], ["rev", 38, 5], ["hash", 39, 5], ["doCheck", 41, 5]], [["mlton20130715", 4, 3], ["mlton20180207Binary", 6, 3], ["mlton20180207", 8, 3], ["mlton20210117Binary", 15, 3], ["mlton20210117", 17, 3], ["mlton20241230Binary", 24, 3], ["mlton20241230", 26, 3], ["mltonHEAD", 35, 3]]]);
 const formals$1 = { args: { callPackage: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mltonBootstrap", 9, 5], ["version", 10, 5], ["rev", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mltonBootstrap", 18, 5], ["version", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mltonBootstrap", 27, 5], ["version", 28, 5], ["rev", 29, 5], ["hash", 30, 5], ["doCheck", 32, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["mltonBootstrap", 36, 5], ["version", 37, 5], ["rev", 38, 5], ["hash", 39, 5], ["doCheck", 41, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["mlton20130715", 4, 3], ["mlton20180207Binary", 6, 3], ["mlton20180207", 8, 3], ["mlton20210117Binary", 15, 3], ["mlton20210117", 17, 3], ["mlton20241230Binary", 24, 3], ["mlton20241230", 26, 3], ["mltonHEAD", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +13,7 @@ export default nix.lambda((args) => (() => {
     const mlton20130715 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./20130715.nix"), nix.thunk(() => ({}))));
     const mlton20180207Binary = nix.thunk(() => nix.app(callPackage, nix.path(here, "./20180207-binary.nix"), nix.thunk(() => ({}))));
     const mlton20180207 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./from-git-source.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         mltonBootstrap: mlton20180207Binary,
         version: "20180207",
         rev: "on-20180207-release",
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       }))));
     const mlton20210117Binary = nix.thunk(() => nix.app(callPackage, nix.path(here, "./20210117-binary.nix"), nix.thunk(() => ({}))));
     const mlton20210117 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./from-git-source.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mltonBootstrap: mlton20210117Binary,
         version: "20210117",
         rev: "on-20210117-release",
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       }))));
     const mlton20241230Binary = nix.thunk(() => nix.app(callPackage, nix.path(here, "./20241230-binary.nix"), nix.thunk(() => ({}))));
     const mlton20241230 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./from-git-source.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mltonBootstrap: mlton20241230Binary,
         version: "20241230",
         rev: "on-20241230-release",
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
         doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       }))));
     const mltonHEAD = nix.thunk(() => nix.app(callPackage, nix.path(here, "./from-git-source.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mltonBootstrap: mlton20241230Binary,
         version: "HEAD",
         rev: "61baac7108fbd91413f0537b7a42d9a1023455f4",
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
         doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       }))));
     return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       mlton20130715,
       mlton20180207Binary,
       mlton20180207,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zfsd.nix", [[["NIX_CFLAGS_COMPILE", 32, 7]], [["mainProgram", 35, 5], ["license", 36, 5]], [["path", 11, 3], ["extraPaths", 12, 3], ["clangFixup", 15, 3], ["ouptuts", 16, 3], ["buildInputs", 22, 3], ["MK_TESTS", 30, 3], ["env", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false, libgeom: false, libzfs: false, libdevdctl: false, libsbuf: false, libbsdxml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/zfsd.nix", [["NIX_CFLAGS_COMPILE", 32, 7]]);
-const pos$2 = nix.positions(here + "/zfsd.nix", [["mainProgram", 35, 5], ["license", 36, 5]]);
-const pos$3 = nix.positions(here + "/zfsd.nix", [["path", 11, 3], ["extraPaths", 12, 3], ["clangFixup", 15, 3], ["ouptuts", 16, 3], ["buildInputs", 22, 3], ["MK_TESTS", 30, 3], ["env", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libsbuf = nix.arg($, "libsbuf");
   const libbsdxml = nix.arg($, "libbsdxml");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       path: "cddl/usr.sbin/zfsd",
       extraPaths: nix.thunk(() => ["sys/contrib/openzfs"]),
       clangFixup: false,
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libgeom, libzfs, libdevdctl, libsbuf, libbsdxml]),
       MK_TESTS: "no",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: "-std=c++23 -Wno-nullability-completeness",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "zfsd",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

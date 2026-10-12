@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]], [["NIX_CFLAGS_COMPILE", 112, 5]], [["tagPrefix", 118, 5]], [["updateScript", 117, 12]], [["description", 122, 5], ["mainProgram", 123, 5], ["homepage", 124, 5], ["license", 125, 5], ["maintainers", 126, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["postPatch", 49, 3], ["buildInputs", 53, 3], ["nativeBuildInputs", 78, 3], ["cargoHash", 91, 3], ["cargoBuildFlags", 93, 3], ["cargoTestFlags", 94, 3], ["postFixup", 96, 3], ["postInstall", 107, 3], ["env", 111, 3], ["passthru", 117, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, makeWrapper: false, dbus: false, ffmpeg: false, x264: false, libva: false, gst_all_1: false, libxv: false, libxtst: false, libxrender: false, libxrandr: false, libxi: false, libxinerama: false, libxft: false, libxfixes: false, libxext: false, libxcursor: false, libxcomposite: false, libdrm: false, "pkg-config": false, pango: false, pipewire: false, cmake: false, git: false, autoconf: false, libtool: false, "yq-go": false, typescript_7: false, wayland: false, libxkbcommon: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 112, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tagPrefix", 118, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 117, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 122, 5], ["mainProgram", 123, 5], ["homepage", 124, 5], ["license", 125, 5], ["maintainers", 126, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["postPatch", 49, 3], ["buildInputs", 53, 3], ["nativeBuildInputs", 78, 3], ["cargoHash", 91, 3], ["cargoBuildFlags", 93, 3], ["cargoTestFlags", 94, 3], ["postFixup", 96, 3], ["postInstall", 107, 3], ["env", 111, 3], ["passthru", 117, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "weylus",
       version: "0.11.4-unstable-2026-2-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "H-M-H",
           repo: "weylus",
           rev: "38a01a8f8e429500c7e9f67fc1c88ca37a4d1e93",
@@ -89,15 +84,15 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "install -vDm755 weylus.desktop $out/share/applications/weylus.desktop\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-incompatible-pointer-types"]))),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagPrefix: "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Use your tablet as graphic tablet/touch screen on your computer",
         mainProgram: "weylus",
         homepage: "https://github.com/H-M-H/Weylus",

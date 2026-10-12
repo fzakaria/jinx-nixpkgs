@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]], [["CXXFLAGS", 40, 7]], [["name", 44, 7], ["exec", 45, 7], ["icon", 46, 7], ["genericName", 47, 7], ["desktopName", 48, 7], ["categories", 49, 7], ["keywords", 50, 7]], [["src", 67, 19], ["nativeBuildInputs", 68, 11]], [["supportedFeatures", 78, 11]], [["command", 82, 9], ["supportedFeatures", 89, 9]], [["pubspecSource", 64, 5], ["updateScript", 73, 5]], [["description", 95, 5], ["homepage", 96, 5], ["downloadPage", 97, 5], ["changelog", 98, 5], ["mainProgram", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5]], [["pname", 27, 3], ["version", 28, 11], ["src", 28, 19], ["pubspecLock", 30, 3], ["gitHashes", 32, 3], ["nativeBuildInputs", 34, 3], ["env", 40, 3], ["desktopItems", 42, 3], ["postInstall", 59, 3], ["passthru", 63, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, flutter344: false, fetchFromGitHub: false, autoPatchelfHook: false, copyDesktopItems: false, makeDesktopItem: false, runCommand: false, "yq-go": false, "_experimental-update-script-combinators": false, "nix-update-script": false, dart: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 44, 7], ["exec", 45, 7], ["icon", 46, 7], ["genericName", 47, 7], ["desktopName", 48, 7], ["categories", 49, 7], ["keywords", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 67, 19], ["nativeBuildInputs", 68, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["supportedFeatures", 78, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["command", 82, 9], ["supportedFeatures", 89, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pubspecSource", 64, 5], ["updateScript", 73, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["downloadPage", 97, 5], ["changelog", 98, 5], ["mainProgram", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 11], ["src", 28, 19], ["pubspecLock", 30, 3], ["gitHashes", 32, 3], ["nativeBuildInputs", 34, 3], ["env", 40, 3], ["desktopItems", 42, 3], ["postInstall", 59, 3], ["passthru", 63, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const dart = nix.arg($, "dart");
   const version = "1.0.1491";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "lollipopkit",
       repo: "flutter_server_box",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +28,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-4Y9yFHTN+ZjsrFjSQ3rUjzkayj5sKvlTCYsB2eZbXas=",
     }))));
   return nix.app(nix.sel(flutter344, "buildFlutterApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "server-box",
       version: version,
       src: src,
@@ -44,12 +36,12 @@ export default nix.lambda((args) => (() => {
       gitHashes: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./git-hashes.json"))),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, autoPatchelfHook]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-deprecated-literal-operator"]))),
       })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "server-box",
             exec: "ServerBox",
             icon: "server-box",
@@ -61,13 +53,13 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -D --mode=0644 assets/app_icon.png $out/share/icons/hicolor/512x512/apps/server-box.png\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: pos$4, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
+        [nix.POS]: $pos[6],
+        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: $pos[3], src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "server-box.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$5, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "server-box.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: $pos[4], supportedFeatures: [] })),
             nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               command: nix.thunk(() => [
                 nix.thunk(() => nix.sel(dart, "fetchGitHashesScript")),
                 "--input",
@@ -80,7 +72,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Server status & toolbox",
         homepage: "https://serverbox.lpkt.cn",
         downloadPage: "https://serverbox.lpkt.cn/installation",

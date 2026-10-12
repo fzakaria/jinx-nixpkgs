@@ -2,10 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/default.nix", [["percona-xtrabackup_8_4", 2, 3], ["percona-xtrabackup", 3, 3]]);
+const $pos = nix.positions(here + "/default.nix", [[["percona-xtrabackup_8_4", 2, 3], ["percona-xtrabackup", 3, 3]]]);
 
 export default (pkgs) => ({
-  [nix.POS]: pos$1,
+  [nix.POS]: $pos[0],
   "percona-xtrabackup_8_4": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./8_4.nix"), nix.thunk(() => ({})))),
   "percona-xtrabackup": nix.thunk(() => nix.sel(pkgs, "percona-xtrabackup_8_4")),
 });

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["name", 30, 7], ["desktopName", 31, 7], ["exec", 32, 7], ["icon", 33, 7], ["comment", 34, 7], ["categories", 35, 7], ["startupNotify", 39, 7]], [["homepage", 80, 5], ["description", 81, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5], ["platforms", 86, 5], ["sourceProvenance", 87, 5], ["license", 88, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 23, 3], ["desktopItems", 28, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["installPhase", 54, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, jre: false, giflib: false, gawk: false, makeBinaryWrapper: false, icoutils: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 7], ["desktopName", 31, 7], ["exec", 32, 7], ["icon", 33, 7], ["comment", 34, 7], ["categories", 35, 7], ["startupNotify", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 80, 5], ["description", 81, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5], ["platforms", 86, 5], ["sourceProvenance", 87, 5], ["license", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 23, 3], ["desktopItems", 28, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["installPhase", 54, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "maltego",
       version: "4.11.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.maltego.com/maltego-v4/linux/Maltego.v${nix.sel(finalAttrs, "version")}.linux.zip`),
           hash: "sha256-9VDArX8fc4Orh5xCILX7n2teB6cRUABTkCYaStPoa80=",
         })))),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "maltego",
             desktopName: "Maltego",
             exec: "maltego",
@@ -70,7 +67,7 @@ makeWrapper $out/share/maltego/bin/maltego $out/bin/maltego \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.maltego.com",
         description: "Open source intelligence and forensics application, enabling to easily gather information about DNS, domains, IP addresses, websites, persons, and so on",
         mainProgram: "maltego",

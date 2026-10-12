@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["nativeBuildInputs", 35, 11]], [["example-doc", 32, 20]], [["tests", 32, 14]], [["homepage", 48, 7], ["description", 49, 7], ["license", 50, 7], ["maintainers", 51, 7], ["mainProgram", 52, 7]], [["format", 22, 5], ["pname", 23, 5], ["src", 25, 13], ["version", 25, 17], ["propagatedBuildInputs", 27, 5], ["passthru", 32, 5], ["meta", 47, 5]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, "drawio-headless": false, pandoc: false, runCommand: false, texliveTeTeX: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 35, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["example-doc", 32, 20]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 32, 14]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 48, 7], ["description", 49, 7], ["license", 50, 7], ["maintainers", 51, 7], ["mainProgram", 52, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["format", 22, 5], ["pname", 23, 5], ["src", 25, 13], ["version", 25, 17], ["propagatedBuildInputs", 27, 5], ["passthru", 32, 5], ["meta", 47, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,26 +16,26 @@ export default nix.lambda((args) => (() => {
   const texliveTeTeX = nix.arg($, "texliveTeTeX");
   const version = "1.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "tfc",
       repo: "pandoc-drawio-filter",
       rev: version,
       sha256: "sha256-2XJSAfxqEmmamWIAM3vZqi0mZjUUugmR3zWw8Imjadk=",
     }))));
   const pandoc_drawio_filter = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       format: "setuptools",
       pname: "pandoc-drawio-filter",
       src: src,
       version: version,
       propagatedBuildInputs: nix.thunk(() => [drawio_headless, nix.thunk(() => nix.sel(python3Packages, "pandocfilters"))]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "example-doc": nix.thunk(() => (() => {
             const env = nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [pandoc, pandoc_drawio_filter, texliveTeTeX]),
             }));
             return nix.app(runCommand, "$pandoc-drawio-filter-example-doc.pdf", env, nix.thunk(() => nix.str`cp -r ${src}/example/* .
@@ -50,7 +45,7 @@ pandoc -F pandoc-drawio example.md -T pdf -o $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/tfc/pandoc-drawio-filter",
         description: "Pandoc filter which converts draw.io diagrams to PDF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

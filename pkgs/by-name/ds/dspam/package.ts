@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 45, 5], ["sha256", 46, 5]], [["NIX_CFLAGS_COMPILE", 99, 7]], [["homepage", 148, 5], ["description", 149, 5], ["license", 150, 5], ["platforms", 151, 5], ["maintainers", 152, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["patches", 48, 3], ["buildInputs", 53, 3], ["nativeBuildInputs", 63, 3], ["postPatch", 68, 3], ["configureFlags", 72, 3], ["env", 99, 3], ["installFlags", 103, 3], ["postInstall", 105, 3], ["meta", 147, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, makeWrapper: false, gawk: false, gnused: false, gnugrep: false, coreutils: false, which: false, perlPackages: false, withMySQL: true, zlib: false, "mariadb-connector-c": false, withPgSQL: true, libpq: false, withSQLite: true, sqlite: false, withDB: true, db: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 45, 5], ["sha256", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 99, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 148, 5], ["description", 149, 5], ["license", 150, 5], ["platforms", 151, 5], ["maintainers", 152, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["patches", 48, 3], ["buildInputs", 53, 3], ["nativeBuildInputs", 63, 3], ["postPatch", 68, 3], ["configureFlags", 72, 3], ["env", 99, 3], ["installFlags", 103, 3], ["postInstall", 105, 3], ["meta", 147, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const drivers = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.concat(["hash_drv"], nix.concat(nix.app(nix.sel(lib, "optional"), withMySQL, "mysql_drv"), nix.concat(nix.app(nix.sel(lib, "optional"), withPgSQL, "pgsql_drv"), nix.concat(nix.app(nix.sel(lib, "optional"), withSQLite, "sqlite3_drv"), nix.app(nix.sel(lib, "optional"), withDB, "libdb4_drv"))))))));
   const maintenancePath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gawk, gnused, gnugrep, coreutils, which])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dspam",
       version: "3.10.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/dspam/dspam/dspam-${nix.sel(finalAttrs, "version")}/dspam-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1acklnxn1wvc7abn31l3qdj8q6k13s51k5gv86vka7q20jb5cxmf",
         })))),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--with-mysql-includes=${nix.sel(mariadb_connector_c, "dev")}/include/mysql`),
           nix.thunk(() => nix.str`--with-mysql-libraries=${nix.sel(mariadb_connector_c, "out")}/lib/mysql`),
         ])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fcommon" })),
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       postInstall: nix.thunk(() => nix.str`cp -r $out/$out/* $out
 rm -rf $out/$(echo "$out" | cut -d "/" -f2)
@@ -107,7 +104,7 @@ sed -i \\
   $out/bin/dspam_maintenance
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://dspam.sourceforge.net/",
         description: "Community Driven Antispam Filter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

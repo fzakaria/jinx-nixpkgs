@@ -2,82 +2,60 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/class-check.nix", [[["class", 7, 11], ["modules", 8, 11]], [["type", 6, 9]], [["class", 16, 11], ["modules", 17, 11]], [["type", 15, 9]], [["class", 23, 11], ["modules", 24, 11]], [["type", 22, 9], ["default", 26, 9]], [["nixosOk", 5, 7], ["nixosFail", 14, 7], ["mergeFail", 21, 7]], [["sub", 4, 5]], [["class", 36, 15], ["modules", 37, 15]], [["type", 35, 13]], [["mergeFail", 34, 11]], [["sub", 33, 9]], [["options", 32, 7]], [["freeformType", 45, 13]], [["class", 47, 7], ["modules", 48, 7]], [["class", 55, 7], ["modules", 56, 7]], [["_file", 67, 11], ["_class", 68, 11], ["config", 69, 11], ["imports", 70, 11]], [["class", 63, 7], ["modules", 64, 7]], [["_class", 76, 7]], [["imports", 79, 7]], [["nixosOk", 75, 9], ["nixosFail", 78, 9]], [["_module", 45, 5], ["ok", 46, 5], ["fail", 54, 5], ["fail-anon", 62, 5], ["sub", 75, 5]], [["options", 3, 3], ["imports", 30, 3], ["config", 44, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/class-check.nix", [["class", 7, 11], ["modules", 8, 11]]);
-const pos$2 = nix.positions(here + "/class-check.nix", [["type", 6, 9]]);
-const pos$3 = nix.positions(here + "/class-check.nix", [["class", 16, 11], ["modules", 17, 11]]);
-const pos$4 = nix.positions(here + "/class-check.nix", [["type", 15, 9]]);
-const pos$5 = nix.positions(here + "/class-check.nix", [["class", 23, 11], ["modules", 24, 11]]);
-const pos$6 = nix.positions(here + "/class-check.nix", [["type", 22, 9], ["default", 26, 9]]);
-const pos$7 = nix.positions(here + "/class-check.nix", [["nixosOk", 5, 7], ["nixosFail", 14, 7], ["mergeFail", 21, 7]]);
-const pos$8 = nix.positions(here + "/class-check.nix", [["sub", 4, 5]]);
-const pos$9 = nix.positions(here + "/class-check.nix", [["class", 36, 15], ["modules", 37, 15]]);
-const pos$10 = nix.positions(here + "/class-check.nix", [["type", 35, 13]]);
-const pos$11 = nix.positions(here + "/class-check.nix", [["mergeFail", 34, 11]]);
-const pos$12 = nix.positions(here + "/class-check.nix", [["sub", 33, 9]]);
-const pos$13 = nix.positions(here + "/class-check.nix", [["options", 32, 7]]);
-const pos$14 = nix.positions(here + "/class-check.nix", [["freeformType", 45, 13]]);
-const pos$15 = nix.positions(here + "/class-check.nix", [["class", 47, 7], ["modules", 48, 7]]);
-const pos$16 = nix.positions(here + "/class-check.nix", [["class", 55, 7], ["modules", 56, 7]]);
-const pos$17 = nix.positions(here + "/class-check.nix", [["_file", 67, 11], ["_class", 68, 11], ["config", 69, 11], ["imports", 70, 11]]);
-const pos$18 = nix.positions(here + "/class-check.nix", [["class", 63, 7], ["modules", 64, 7]]);
-const pos$19 = nix.positions(here + "/class-check.nix", [["_class", 76, 7]]);
-const pos$20 = nix.positions(here + "/class-check.nix", [["imports", 79, 7]]);
-const pos$21 = nix.positions(here + "/class-check.nix", [["nixosOk", 75, 9], ["nixosFail", 78, 9]]);
-const pos$22 = nix.positions(here + "/class-check.nix", [["_module", 45, 5], ["ok", 46, 5], ["fail", 54, 5], ["fail-anon", 62, 5], ["sub", 75, 5]]);
-const pos$23 = nix.positions(here + "/class-check.nix", [["options", 3, 3], ["imports", 30, 3], ["config", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       sub: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         nixosOk: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 class: "nixos",
                 modules: nix.thunk(() => [nix.path(here, "./assert-module-class-is-nixos.nix")]),
               })))),
           })))),
         nixosFail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({ [nix.POS]: pos$3, class: "nixos", modules: [] })))),
+            [nix.POS]: $pos[3],
+            type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({ [nix.POS]: $pos[2], class: "nixos", modules: [] })))),
           })))),
         mergeFail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({ [nix.POS]: pos$5, class: "nixos", modules: [] })))),
+            [nix.POS]: $pos[5],
+            type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({ [nix.POS]: $pos[4], class: "nixos", modules: [] })))),
             default: nix.thunk(() => ({})),
           })))),
       })),
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           sub: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             mergeFail: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({ [nix.POS]: pos$9, class: "darwin", modules: [] })))),
+                [nix.POS]: $pos[9],
+                type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({ [nix.POS]: $pos[8], class: "darwin", modules: [] })))),
               })))),
           })),
         })),
       })),
     ]),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       _module: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         freeformType: nix.thunk(() => nix.sel(lib, "types", "anything")),
       })),
       ok: nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           class: "nixos",
           modules: nix.thunk(() => [
             nix.path(here, "./module-class-is-nixos.nix"),
@@ -85,7 +63,7 @@ export default nix.lambda((args) => (() => {
           ]),
         })))),
       fail: nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           class: "nixos",
           modules: nix.thunk(() => [
             nix.path(here, "./module-class-is-nixos.nix"),
@@ -93,12 +71,12 @@ export default nix.lambda((args) => (() => {
           ]),
         })))),
       "fail-anon": nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           class: "nixos",
           modules: nix.thunk(() => [
             nix.path(here, "./module-class-is-nixos.nix"),
             nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               _file: "foo.nix#darwinModules.default",
               _class: "darwin",
               config: nix.thunk(() => ({})),
@@ -107,10 +85,10 @@ export default nix.lambda((args) => (() => {
           ]),
         })))),
       sub: nix.thunk(() => ({
-        [nix.POS]: pos$21,
-        nixosOk: nix.thunk(() => ({ [nix.POS]: pos$19, _class: "nixos" })),
+        [nix.POS]: $pos[20],
+        nixosOk: nix.thunk(() => ({ [nix.POS]: $pos[18], _class: "nixos" })),
         nixosFail: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           imports: nix.thunk(() => [nix.path(here, "./module-class-is-darwin.nix")]),
         })),
       })),

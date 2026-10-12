@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lazy-pack.nix", [[["enableDFHack", 55, 9], ["enableTWBT", 56, 9], ["enableSoundSense", 57, 9], ["enableStoneSense", 58, 9], ["theme", 59, 9], ["enableIntro", 60, 9], ["enableTruetype", 61, 9], ["enableFPS", 62, 9], ["enableTextMode", 63, 9], ["enableSound", 64, 9]], [["mainProgram", 72, 13], ["description", 73, 5], ["maintainers", 74, 5], ["license", 78, 5], ["platforms", 79, 5], ["homepage", 80, 5]], [["pname", 50, 3], ["version", 51, 3], ["paths", 52, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, buildEnv: false, "df-games": false, themes: false, latestVersion: false, versionToName: false, dfVersion: true, enableDFHack: true, enableTWBT: true, enableSoundSense: true, enableStoneSense: true, enableDwarfTherapist: true, enableLegendsBrowser: true, "legends-browser": false, theme: true, enableIntro: true, enableTruetype: true, enableFPS: true, enableTextMode: true, enableSound: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lazy-pack.nix", [["enableDFHack", 55, 9], ["enableTWBT", 56, 9], ["enableSoundSense", 57, 9], ["enableStoneSense", 58, 9], ["theme", 59, 9], ["enableIntro", 60, 9], ["enableTruetype", 61, 9], ["enableFPS", 62, 9], ["enableTextMode", 63, 9], ["enableSound", 64, 9]]);
-const pos$2 = nix.positions(here + "/lazy-pack.nix", [["mainProgram", 72, 13], ["description", 73, 5], ["maintainers", 74, 5], ["license", 78, 5], ["platforms", 79, 5], ["homepage", 80, 5]]);
-const pos$3 = nix.positions(here + "/lazy-pack.nix", [["pname", 50, 3], ["version", 51, 3], ["paths", 52, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const dwarf_therapist = nix.thunk(() => nix.sel(dwarf_fortress, "dwarf-therapist"));
   const mainProgram = nix.thunk(() => (nix.asBool(enableDFHack) ? "dfhack" : "dwarf-fortress"));
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dwarf-fortress-full",
       version: dfVersion,
       paths: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(nix.sel(dwarf_fortress, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             enableDFHack: enableDFHack,
             enableTWBT: enableTWBT,
             enableSoundSense: enableSoundSense,
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ], nix.concat(nix.app(optional, enableDwarfTherapist, dwarf_therapist), nix.app(optional, enableLegendsBrowser, legends_browser)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: mainProgram,
         description: "Opinionated wrapper for Dwarf Fortress",
         maintainers: nix.thunk(() => (() => {

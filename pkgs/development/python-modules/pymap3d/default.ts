@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["core", 39, 5], ["full", 43, 5], ["proj", 47, 5]], [["nativeInstallCheckInputs", 61, 7]], [["full", 60, 5]], [["tests", 58, 12]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 56, 3], ["passthru", 58, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, numpy: false, "python-dateutil": false, astropy: false, xarray: false, pyproj: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["core", 39, 5], ["full", 43, 5], ["proj", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["nativeInstallCheckInputs", 61, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["full", 60, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 58, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 56, 3], ["passthru", 58, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pyproj = nix.arg($, "pyproj");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pymap3d",
       version: "3.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "geospace-code",
           repo: "pymap3d",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         core: nix.thunk(() => [numpy, python_dateutil]),
         full: nix.thunk(() => [astropy, xarray]),
         proj: nix.thunk(() => [pyproj]),
@@ -46,17 +40,17 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "core"))),
       pythonImportsCheck: nix.thunk(() => ["pymap3d"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           full: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (old) => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               nativeInstallCheckInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeInstallCheckInputs"), nix.concat(nix.sel(finalAttrs, "passthru", "optional-dependencies", "full"), nix.sel(finalAttrs, "passthru", "optional-dependencies", "proj")))),
             }))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Pure Python 3-D coordinate conversions for geodesy and astrometry",
         homepage: "https://github.com/geospace-code/pymap3d",
         changelog: nix.thunk(() => nix.str`https://github.com/geospace-code/pymap3d/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

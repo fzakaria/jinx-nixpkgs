@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 24, 26], ["version", 24, 32], ["hash", 25, 5]], [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 35, 3], ["disabledTestPaths", 42, 3], ["postCheck", 45, 3], ["makeWrapperArgs", 49, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, jsonschema: false, packaging: false, pretend: false, pyelftools: false, pytestCheckHook: false, "setuptools-scm": false, bzip2: false, gnutar: false, patchelf: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 24, 26], ["version", 24, 32], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 35, 3], ["disabledTestPaths", 42, 3], ["postCheck", 45, 3], ["makeWrapperArgs", 49, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const patchelf = nix.arg($, "patchelf");
   const unzip = nix.arg($, "unzip");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "auditwheel",
       version: "6.8.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-0AfE/YycS1ETaQqwsVngXFqpstMbae/ECHWCbMCVWUs=",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bzip2, gnutar, patchelf, unzip]))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/pypa/auditwheel/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Auditing and relabeling cross-distribution Linux wheels",
         homepage: "https://github.com/pypa/auditwheel",

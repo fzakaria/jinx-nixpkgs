@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["vendorHash", 22, 3], ["postInstall", 24, 3], ["postFixup", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchgit: false, makeWrapper: false, mpv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["vendorHash", 22, 3], ["postInstall", 24, 3], ["postFixup", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const mpv = nix.arg($, "mpv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ff2mpv-go",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.clsr.net/util/ff2mpv-go/",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-e/AuOA3isFTyBf97Zwtr16yo49UdYzvktV5PKB/eH/s=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/ff2mpv-go --suffix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [mpv]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Native messaging host for ff2mpv written in Go",
         homepage: "https://git.clsr.net/util/ff2mpv-go/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

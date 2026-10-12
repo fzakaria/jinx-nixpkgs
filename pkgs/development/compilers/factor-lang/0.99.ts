@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/0.99.nix", [[["url", 7, 7], ["sha256", 8, 7]], [["version", 5, 5], ["src", 6, 5]]]);
 const formals$1 = { args: { callPackage: false, fetchurl: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/0.99.nix", [["url", 7, 7], ["sha256", 8, 7]]);
-const pos$2 = nix.positions(here + "/0.99.nix", [["version", 5, 5], ["src", 6, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +13,11 @@ export default nix.lambda((args) => (() => {
   return nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => nix.update((() => {
       const version = "0.99";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.factorcode.org/releases/${version}/factor-src-${version}.zip`),
           sha256: "f5626bb3119bd77de9ac3392fdbe188bffc26557fab3ea34f7ca21e372a8443e",
         }))));
-      return { [nix.POS]: pos$2, version, src };
+      return { [nix.POS]: $pos[1], version, src };
     })(), nix.builtins.removeAttrs(args_1, nix.thunk(() => ["callPackage", "fetchurl"])))));
 })(), formals$1);
 //# sourceMappingURL=0.99.ts.map

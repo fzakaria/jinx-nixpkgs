@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["minimalOCamlVersion", 18, 3], ["doCheck", 20, 3], ["checkInputs", 21, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, qcheck: false, "qcheck-alcotest": false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["minimalOCamlVersion", 18, 3], ["doCheck", 20, 3], ["checkInputs", 21, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "seqes";
       const version = "0.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gitlab.com/raphael-proust/seqes/-/archive/${version}/seqes-${version}.tar.gz`),
           hash: "sha256-E4BalN68CJP7u6NSC0XBooWvUeSNqV+3KEOtoJ4g/dM=",
         }))));
@@ -27,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const checkInputs = nix.thunk(() => [qcheck, qcheck_alcotest, alcotest]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Variations of the Seq module with monads folded into the type",
         homepage: "https://gitlab.com/nomadic-labs/seqes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ulrikstrid"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

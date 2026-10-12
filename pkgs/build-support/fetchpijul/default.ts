@@ -2,9 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 29, 15], ["nativeBuildInputs", 30, 7], ["strictDeps", 34, 7], ["__structuredAttrs", 36, 7], ["dontUnpack", 38, 7], ["dontConfigure", 39, 7], ["dontBuild", 40, 7], ["installPhase", 42, 7], ["fixupPhase", 68, 7], ["outputHashAlgo", 76, 7], ["outputHashMode", 77, 7], ["outputHash", 78, 7], ["change", 81, 9], ["state", 82, 9], ["channel", 83, 9], ["remotes", 86, 7], ["impureEnvVars", 88, 7]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, pijul: false, cacert: false }, ellipsis: false };
 const formals$2 = { args: { url: false, mirrors: true, hash: true, change: true, state: true, channel: true, name: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 29, 15], ["nativeBuildInputs", 30, 7], ["strictDeps", 34, 7], ["__structuredAttrs", 36, 7], ["dontUnpack", 38, 7], ["dontConfigure", 39, 7], ["dontBuild", 40, 7], ["installPhase", 42, 7], ["fixupPhase", 68, 7], ["outputHashAlgo", 76, 7], ["outputHashMode", 77, 7], ["outputHash", 78, 7], ["change", 81, 9], ["state", 82, 9], ["channel", 83, 9], ["remotes", 86, 7], ["impureEnvVars", 88, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const channel = nix.argOr($_1, "channel", () => "main");
       const name = nix.argOr($_1, "name", () => "fetchpijul");
       return (nix.asBool((nix.asBool(!nix.eq(change, null)) && nix.asBool(!nix.eq(state, null)))) ? nix.builtins.throw("Only one of 'change' or 'state' can be set") : nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: name,
           nativeBuildInputs: nix.thunk(() => [pijul, cacert]),
           strictDeps: true,

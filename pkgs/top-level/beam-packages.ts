@@ -2,16 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/beam-packages.nix", [[["erlang", 30, 15], ["splicePath", 31, 7]], [["wxSupport", 52, 15], ["systemdSupport", 52, 25]], [["wxSupport", 56, 15], ["systemdSupport", 56, 25]], [["wxSupport", 60, 15], ["systemdSupport", 60, 25]], [["erlang", 45, 5], ["erlang_29", 51, 5], ["erlang_28", 55, 5], ["erlang_27", 59, 5], ["elixir", 67, 7], ["elixir_1_20", 68, 7], ["elixir_1_19", 69, 7], ["elixir_1_18", 70, 7], ["elixir_1_17", 71, 7], ["elixir-ls", 72, 7], ["lfe", 73, 7]], [["erlang", 81, 5], ["erlang_29", 82, 5], ["erlang_28", 83, 5], ["erlang_27", 84, 5]], [["erlang_26", 87, 5]], [["latestVersion", 40, 3], ["interpreters", 43, 3], ["packages", 80, 3]], [["erlang_26", 91, 3], ["elixir_1_16", 93, 3], ["elixir_1_15", 94, 3], ["packagesWith", 96, 3]]]);
 const formals$1 = { args: { config: false, lib: false, beam: false, callPackage: false, stdenv: false, wxSupport: true, systemd: false, systemdSupport: true, __splicedPackages: false, scopeName: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/beam-packages.nix", [["erlang", 30, 15], ["splicePath", 31, 7]]);
-const pos$2 = nix.positions(here + "/beam-packages.nix", [["wxSupport", 52, 15], ["systemdSupport", 52, 25]]);
-const pos$3 = nix.positions(here + "/beam-packages.nix", [["wxSupport", 56, 15], ["systemdSupport", 56, 25]]);
-const pos$4 = nix.positions(here + "/beam-packages.nix", [["wxSupport", 60, 15], ["systemdSupport", 60, 25]]);
-const pos$5 = nix.positions(here + "/beam-packages.nix", [["erlang", 45, 5], ["erlang_29", 51, 5], ["erlang_28", 55, 5], ["erlang_27", 59, 5], ["elixir", 67, 7], ["elixir_1_20", 68, 7], ["elixir_1_19", 69, 7], ["elixir_1_18", 70, 7], ["elixir_1_17", 71, 7], ["elixir-ls", 72, 7], ["lfe", 73, 7]]);
-const pos$6 = nix.positions(here + "/beam-packages.nix", [["erlang", 81, 5], ["erlang_29", 82, 5], ["erlang_28", 83, 5], ["erlang_27", 84, 5]]);
-const pos$7 = nix.positions(here + "/beam-packages.nix", [["erlang_26", 87, 5]]);
-const pos$8 = nix.positions(here + "/beam-packages.nix", [["latestVersion", 40, 3], ["interpreters", 43, 3], ["packages", 80, 3]]);
-const pos$9 = nix.positions(here + "/beam-packages.nix", [["erlang_26", 91, 3], ["elixir_1_16", 93, 3], ["elixir_1_15", 94, 3], ["packagesWith", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,21 +24,21 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(pkgs, "callPackage"), nix.thunk(() => nix.app(nix.builtins.import(drv), genericBuilder)), nix.thunk(() => ({})));
   })();
   const packagesFor = (name) => (erlang) => nix.app(callPackage, nix.path(here, "../development/beam-modules"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       erlang: erlang,
       splicePath: nix.thunk(() => [scopeName, "packages", name]),
     })));
   return nix.update({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     latestVersion: "erlang_28",
     interpreters: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(self, "packages", "erlang"));
       return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       erlang: nix.thunk(() => nix.sel(self, "interpreters", nix.key(nix.sel(self, "latestVersion")))),
-      erlang_29: nix.thunk(() => nix.app(callErlang, nix.path(here, "../development/interpreters/erlang/29.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, wxSupport: wxSupport, systemdSupport: systemdSupport })))),
-      erlang_28: nix.thunk(() => nix.app(callErlang, nix.path(here, "../development/interpreters/erlang/28.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, wxSupport: wxSupport, systemdSupport: systemdSupport })))),
-      erlang_27: nix.thunk(() => nix.app(callErlang, nix.path(here, "../development/interpreters/erlang/27.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, wxSupport: wxSupport, systemdSupport: systemdSupport })))),
+      erlang_29: nix.thunk(() => nix.app(callErlang, nix.path(here, "../development/interpreters/erlang/29.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], wxSupport: wxSupport, systemdSupport: systemdSupport })))),
+      erlang_28: nix.thunk(() => nix.app(callErlang, nix.path(here, "../development/interpreters/erlang/28.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], wxSupport: wxSupport, systemdSupport: systemdSupport })))),
+      erlang_27: nix.thunk(() => nix.app(callErlang, nix.path(here, "../development/interpreters/erlang/27.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], wxSupport: wxSupport, systemdSupport: systemdSupport })))),
       elixir: nix.thunk(() => nix.attr(from, "elixir")),
       elixir_1_20: nix.thunk(() => nix.attr(from, "elixir_1_20")),
       elixir_1_19: nix.thunk(() => nix.attr(from, "elixir_1_19")),
@@ -57,17 +49,17 @@ export default nix.lambda((args) => (() => {
     };
     })()),
     packages: nix.thunk(() => nix.update({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       erlang: nix.thunk(() => nix.sel(self, "packages", nix.key(nix.sel(self, "latestVersion")))),
       erlang_29: nix.thunk(() => nix.app(packagesFor, "erlang_29", nix.thunk(() => nix.sel(self, "interpreters", "erlang_29")))),
       erlang_28: nix.thunk(() => nix.app(packagesFor, "erlang_28", nix.thunk(() => nix.sel(self, "interpreters", "erlang_28")))),
       erlang_27: nix.thunk(() => nix.app(packagesFor, "erlang_27", nix.thunk(() => nix.sel(self, "interpreters", "erlang_27")))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         erlang_26: nix.thunk(() => nix.builtins.throw("'erlang_26' has been removed, as it is EOL")),
       }))))),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       erlang_26: nix.thunk(() => nix.builtins.throw("'erlang_26' has been removed, as it is EOL")),
       elixir_1_16: nix.thunk(() => nix.builtins.throw("'elixir_1_16' has been removed, due to the removal of erlang_26 as EOL")),
       elixir_1_15: nix.thunk(() => nix.builtins.throw("'elixir_1_15' has been removed, due to the removal of erlang_26 as EOL")),

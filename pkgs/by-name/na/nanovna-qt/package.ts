@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 72, 5], ["homepage", 73, 5], ["mainProgram", 74, 5], ["license", 75, 5], ["changelog", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 13, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["autoreconfFlags", 41, 3], ["postBuild", 43, 3], ["installPhase", 54, 3], ["preFixup", 67, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, libtool: false, fftw: false, eigen: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["mainProgram", 74, 5], ["license", 75, 5], ["changelog", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["autoreconfFlags", 41, 3], ["postBuild", 43, 3], ["installPhase", 54, 3], ["preFixup", 67, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nanovna-qt",
       version: "20200403",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nanovna-v2",
           repo: "NanoVNA-QT",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -Dm555 vna_qt/vna_qt -t $out/bin/\ninstall -Dm555 libxavna/.libs/libxavna.so.0.0.0 -t $out/lib/\nln -s libxavna.so.0.0.0 $out/lib/libxavna.so.0\nln -s libxavna.so.0.0.0 $out/lib/libxavna.so\ninstall -Dm555 libxavna/xavna_mock_ui/libxavna_mock_ui.so.1.0.0 -t $out/lib/\nln -s libxavna_mock_ui.so.1.0.0 $out/lib/libxavna_mock_ui.so.1.0\nln -s libxavna_mock_ui.so.1.0.0 $out/lib/libxavna_mock_ui.so.1\nln -s libxavna_mock_ui.so.1.0.0 $out/lib/libxavna_mock_ui.so\nrunHook postInstall\n",
       preFixup: "qtWrapperArgs+=(--prefix LD_LIBRARY_PATH : \"$out/lib\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PC GUI software for NanoVNA V2 series",
         homepage: "https://nanorfe.com/nanovna-v2.html",
         mainProgram: "vna_qt",

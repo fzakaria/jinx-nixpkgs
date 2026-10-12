@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 49, 5], ["homepage", 50, 5], ["mainProgram", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["minimalOCamlVersion", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["buildInputs", 25, 3], ["doCheck", 34, 3], ["outputs", 36, 3], ["installPhase", 42, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, cascade: false, cmdliner: false, fetchFromGitHub: false, fmt: false, lib: false, ocaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["mainProgram", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["minimalOCamlVersion", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["buildInputs", 25, 3], ["doCheck", 34, 3], ["outputs", 36, 3], ["installPhase", 42, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const ocaml = nix.arg($, "ocaml");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tw",
       version: "0-unstable-2026-06-23",
       minimalOCamlVersion: "5.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "samoht",
           repo: "tw",
           rev: "594d35df46ec2afcfe97632923331badf2940b93",
@@ -38,7 +36,7 @@ dune install --prefix=$bin --libdir=$lib/lib/ocaml/${nix.sel(ocaml, "version")}/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Type-safe Tailwind CSS v4 in OCaml",
         homepage: "https://github.com/samoht/tw",
         mainProgram: "tw",

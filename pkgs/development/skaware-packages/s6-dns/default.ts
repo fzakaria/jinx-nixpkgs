@@ -2,21 +2,20 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 8, 8]], [["pname", 4, 3], ["version", 5, 3], ["sha256", 6, 3], ["meta", 8, 3], ["outputs", 10, 3], ["buildInputs", 18, 3], ["configureFlags", 20, 3], ["postInstall", 30, 3]]]);
 const formals$1 = { args: { skawarePackages: false, skalibs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 8, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 4, 3], ["version", 5, 3], ["sha256", 6, 3], ["meta", 8, 3], ["outputs", 10, 3], ["buildInputs", 18, 3], ["configureFlags", 20, 3], ["postInstall", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const skawarePackages = nix.arg($, "skawarePackages");
   const skalibs = nix.arg($, "skalibs");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "s6-dns",
       version: "2.4.1.3",
       sha256: "sha256-+enetGSMVQeoSFVINkvRxW2r2jlLye4tfxy7FqA2zXY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Suite of DNS client programs and libraries for Unix systems",
       })),
       outputs: nix.thunk(() => ["bin", "lib", "dev", "doc", "out"]),

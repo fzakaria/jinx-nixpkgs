@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["updateScript", 31, 12]], [["mainProgram", 34, 5], ["maintainers", 35, 5], ["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["changelog", 39, 5], ["platforms", 40, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 24, 3], ["cmakeFlags", 26, 3], ["passthru", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, "nix-update-script": false, stdenv: false, cmake: false, metee: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 31, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 34, 5], ["maintainers", 35, 5], ["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["changelog", 39, 5], ["platforms", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 24, 3], ["cmakeFlags", 26, 3], ["passthru", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const metee = nix.arg($, "metee");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "igsc",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "igsc",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DMETEE_HEADER_PATH=${metee}/include`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "igsc",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

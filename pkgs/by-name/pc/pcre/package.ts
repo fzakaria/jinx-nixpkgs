@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["sha256", 29, 5]], [["name", 55, 7], ["url", 56, 7], ["hash", 57, 7]], [["homepage", 82, 5], ["description", 83, 5], ["license", 84, 5], ["longDescription", 86, 5], ["platforms", 94, 5], ["maintainers", 95, 5], ["pkgConfigModules", 96, 5]], [["pname", 21, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 32, 3], ["hardeningDisable", 40, 3], ["configureFlags", 42, 3], ["patches", 49, 3], ["nativeBuildInputs", 63, 3], ["preCheck", 65, 3], ["doCheck", 69, 3], ["postFixup", 74, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, updateAutotoolsGnuConfigScriptsHook: false, pcre: false, windows: true, enableJit: true, variant: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 55, 7], ["url", 56, 7], ["hash", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 82, 5], ["description", 83, 5], ["license", 84, 5], ["longDescription", 86, 5], ["platforms", 94, 5], ["maintainers", 95, 5], ["pkgConfigModules", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 32, 3], ["hardeningDisable", 40, 3], ["configureFlags", 42, 3], ["patches", 49, 3], ["nativeBuildInputs", 63, 3], ["preCheck", 65, 3], ["doCheck", 69, 3], ["postFixup", 74, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.add(nix.add("pcre", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(variant, "cpp")), "-cpp")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.eq(variant, "cpp")) && nix.asBool(!nix.eq(variant, null)))), variant)));
       const version = "8.45";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/pcre/pcre/${version}/pcre-${version}.tar.bz2`),
           sha256: "sha256-Ta5v3NK7C7bDe1+Xwzwr6VTadDmFNpzdrDVG4yGL/7g=",
         }))));
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./stacksize-detection.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "sljit-ppc-icache-flush.patch",
             url: "https://github.com/void-linux/void-packages/raw/d286e231ee680875ad8e80f90ea62e46f5edd812/srcpkgs/pcre/patches/ppc-icache-flush.patch",
             hash: "sha256-pttmKwihLzKrAV6O4qVLp2pu4NwNJEFS/9Id8/b3nAU=",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const postFixup = nix.thunk(() => nix.add("moveToOutput bin/pcre-config \"$dev\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(variant, null)), nix.thunk(() => nix.str`ln -sf -t "$out/lib/" '${nix.sel(pcre, "out")}'/lib/libpcre{,posix}.{so.*.*.*,*dylib,*a}
 `))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.pcre.org/",
         description: "Library for Perl Compatible Regular Expressions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         pkgConfigModules: nix.thunk(() => ["libpcre", "libpcreposix"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

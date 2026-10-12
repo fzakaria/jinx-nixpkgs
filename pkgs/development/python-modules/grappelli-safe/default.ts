@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 5], ["version", 15, 13], ["hash", 16, 5]], [["description", 27, 5], ["longDescription", 28, 5], ["homepage", 38, 5], ["downloadPage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["version", 9, 3], ["pname", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["doCheck", 22, 3], ["pythonImportsCheck", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["version", 15, 13], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 27, 5], ["longDescription", 28, 5], ["homepage", 38, 5], ["downloadPage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 9, 3], ["pname", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["doCheck", 22, 3], ["pythonImportsCheck", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "grappelli-safe";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "grappelli_safe",
           version: version,
           hash: "sha256-7jSz4qNxFJix+No9naqKEjnv3yVaISGBdCtqWJD6wDk=",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["grappelli_safe"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Snapshot of django-grappelli for the Mezzanine CMS",
         longDescription: "grappelli_safe was created to provide a snapshot of the\nGrappelli admin skin for Django, to be referenced as a\ndependency for the Mezzanine CMS for Django.\n\nAt the time of grappelli_safe's creation, Grappelli was\nincorrectly packaged on PyPI, and had also dropped compatibility\nwith Django 1.1 - grappelli_safe was therefore created to\naddress these specific issues.\n",
         homepage: "https://github.com/stephenmcd/grappelli-safe",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         pyproject,

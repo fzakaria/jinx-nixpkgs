@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["updateScript", 60, 12]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 36, 3], ["postInstall", 42, 3], ["buildInputs", 53, 3], ["strictDeps", 56, 3], ["makeFlags", 58, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, autoreconfHook: false, makeWrapper: false, nodejs: false, guile: false, "guile-websocket": false, "guile-fibers": false, "guile-gnutls": false, "pkg-config": false, texinfo: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 36, 3], ["postInstall", 42, 3], ["buildInputs", 53, 3], ["strictDeps", 56, 3], ["makeFlags", 58, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "guile-hoot",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "spritely",
           repo: "hoot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +45,11 @@ wrapProgram $out/bin/hoot \\
       strictDeps: true,
       makeFlags: nix.thunk(() => ["GUILE_AUTO_COMPILE=0"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Scheme to WebAssembly compiler backend for GNU Guile and a general purpose WASM toolchain",
         homepage: "https://codeberg.org/spritely/hoot",
         license: nix.thunk(() => (() => {

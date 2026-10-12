@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["embedSupport", 21, 5], ["ztsSupport", 22, 5], ["staticSupport", 23, 5], ["zendSignalsSupport", 24, 5], ["zendMaxExecutionTimersSupport", 25, 5]], [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["phpScript", 112, 13]], [["phpinfo", 109, 7]], [["php", 106, 5], ["tests", 107, 5]], [["changelog", 123, 5], ["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["mainProgram", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["sourceRoot", 42, 3], ["proxyVendor", 46, 3], ["vendorHash", 47, 3], ["buildInputs", 49, 3], ["nativeBuildInputs", 55, 3], ["subPackages", 65, 3], ["tags", 67, 3], ["ldflags", 77, 3], ["preBuild", 85, 3], ["preFixup", 92, 3], ["doCheck", 99, 3], ["nativeInstallCheckInputs", 101, 3], ["versionCheckProgramArg", 102, 3], ["doInstallCheck", 103, 3], ["passthru", 105, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, php: false, brotli: false, watcher: false, cctools: false, darwin: false, libiconv: false, "pkg-config": false, makeBinaryWrapper: false, runCommand: false, writeText: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["embedSupport", 21, 5], ["ztsSupport", 22, 5], ["staticSupport", 23, 5], ["zendSignalsSupport", 24, 5], ["zendMaxExecutionTimersSupport", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["phpScript", 112, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["phpinfo", 109, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["php", 106, 5], ["tests", 107, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 123, 5], ["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["mainProgram", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["sourceRoot", 42, 3], ["proxyVendor", 46, 3], ["vendorHash", 47, 3], ["buildInputs", 49, 3], ["nativeBuildInputs", 55, 3], ["subPackages", 65, 3], ["tags", 67, 3], ["ldflags", 77, 3], ["preBuild", 85, 3], ["preFixup", 92, 3], ["doCheck", 99, 3], ["nativeInstallCheckInputs", 101, 3], ["versionCheckProgramArg", 102, 3], ["doInstallCheck", 103, 3], ["passthru", 105, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const phpEmbedWithZts = nix.thunk(() => nix.app(nix.sel(php, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       embedSupport: true,
       ztsSupport: true,
       staticSupport: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
@@ -40,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const phpConfig = nix.thunk(() => nix.str`${nix.sel(phpUnwrapped, "dev")}/bin/php-config`);
   const pieBuild = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl"));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "frankenphp",
       version: "1.12.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "php",
           repo: "frankenphp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,19 +76,19 @@ wrapProgram $out/bin/frankenphp --set-default PHP_INI_SCAN_DIR $out/lib
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         php: phpEmbedWithZts,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           phpinfo: nix.thunk(() => nix.app(runCommand, "php-cli-phpinfo", nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               phpScript: nix.thunk(() => nix.app(writeText, "phpinfo.php", "<?php phpinfo();\n")),
             })), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} php-cli $phpScript > $out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/php/frankenphp/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Modern PHP app server",
         homepage: "https://github.com/php/frankenphp",

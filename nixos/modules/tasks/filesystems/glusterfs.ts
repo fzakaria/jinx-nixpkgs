@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/glusterfs.nix", [[["fsPackages", 13, 12]], [["system", 13, 5]], [["config", 11, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/glusterfs.nix", [["fsPackages", 13, 12]]);
-const pos$2 = nix.positions(here + "/glusterfs.nix", [["system", 13, 5]]);
-const pos$3 = nix.positions(here + "/glusterfs.nix", [["config", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     config: nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.selOr(config, () => false, "boot", "supportedFilesystems", "glusterfs")), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         system: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           fsPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "glusterfs"))]),
         })),
       })))),

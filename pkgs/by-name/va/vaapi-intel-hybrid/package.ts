@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["url", 30, 7], ["sha256", 31, 7]], [["NIX_CFLAGS_COMPILE", 52, 7]], [["homepage", 69, 5], ["description", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["enableParallelBuilding", 49, 3], ["env", 52, 3], ["configureFlags", 54, 3], ["postPatch", 60, 3], ["preConfigure", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, cmrt: false, libdrm: false, libva: false, libx11: false, libGL: false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["sha256", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["description", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["enableParallelBuilding", 49, 3], ["env", 52, 3], ["configureFlags", 54, 3], ["postPatch", 60, 3], ["preConfigure", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "intel-hybrid-driver",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "intel-hybrid-driver",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/01org/intel-hybrid-driver/pull/26.diff",
             sha256: "1ql4mbi5x1d2a5c8mkjvciaq60zj8nhx912992winbhfkyvpb3gx",
           })))),
@@ -44,12 +40,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [cmrt, libdrm, libva, libx11, libGL, wayland]),
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-fcommon" })),
       configureFlags: nix.thunk(() => ["--enable-drm", "--enable-x11", "--enable-wayland"]),
       postPatch: "patchShebangs ./src/shaders/gpp.py\n",
       preConfigure: "sed -i -e \"s,LIBVA_DRIVERS_PATH=.*,LIBVA_DRIVERS_PATH=$out/lib/dri,\" configure\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://01.org/linuxmedia",
         description: "Intel driver for the VAAPI library with partial HW acceleration",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

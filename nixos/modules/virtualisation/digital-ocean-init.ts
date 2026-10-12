@@ -2,21 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/digital-ocean-init.nix", [[["type", 21, 5], ["default", 22, 5], ["example", 23, 5], ["description", 24, 5]], [["type", 27, 5], ["default", 28, 5], ["defaultText", 29, 5], ["description", 33, 5]], [["rebuildFromUserData", 20, 39], ["defaultConfigFile", 26, 39]], [["digitalOcean", 20, 26]], [["virtualisation", 20, 11]], [["ConditionPathExists", 45, 9], ["After", 46, 9], ["Requires", 50, 9], ["X-StopOnRemoval", 51, 9]], [["Type", 54, 9], ["RemainAfterExit", 55, 9]], [["HOME", 67, 9], ["NIX_PATH", 68, 9]], [["description", 42, 7], ["wantedBy", 43, 7], ["unitConfig", 44, 7], ["serviceConfig", 53, 7], ["restartIfChanged", 57, 7], ["path", 58, 7], ["environment", 66, 7], ["script", 74, 7]], [["digitalocean-init", 41, 22]], [["services", 41, 13]], [["systemd", 41, 5]], [["maintainers", 110, 8]], [["options", 20, 3], ["config", 40, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/digital-ocean-init.nix", [["type", 21, 5], ["default", 22, 5], ["example", 23, 5], ["description", 24, 5]]);
-const pos$2 = nix.positions(here + "/digital-ocean-init.nix", [["type", 27, 5], ["default", 28, 5], ["defaultText", 29, 5], ["description", 33, 5]]);
-const pos$3 = nix.positions(here + "/digital-ocean-init.nix", [["rebuildFromUserData", 20, 39], ["defaultConfigFile", 26, 39]]);
-const pos$4 = nix.positions(here + "/digital-ocean-init.nix", [["digitalOcean", 20, 26]]);
-const pos$5 = nix.positions(here + "/digital-ocean-init.nix", [["virtualisation", 20, 11]]);
-const pos$6 = nix.positions(here + "/digital-ocean-init.nix", [["ConditionPathExists", 45, 9], ["After", 46, 9], ["Requires", 50, 9], ["X-StopOnRemoval", 51, 9]]);
-const pos$7 = nix.positions(here + "/digital-ocean-init.nix", [["Type", 54, 9], ["RemainAfterExit", 55, 9]]);
-const pos$8 = nix.positions(here + "/digital-ocean-init.nix", [["HOME", 67, 9], ["NIX_PATH", 68, 9]]);
-const pos$9 = nix.positions(here + "/digital-ocean-init.nix", [["description", 42, 7], ["wantedBy", 43, 7], ["unitConfig", 44, 7], ["serviceConfig", 53, 7], ["restartIfChanged", 57, 7], ["path", 58, 7], ["environment", 66, 7], ["script", 74, 7]]);
-const pos$10 = nix.positions(here + "/digital-ocean-init.nix", [["digitalocean-init", 41, 22]]);
-const pos$11 = nix.positions(here + "/digital-ocean-init.nix", [["services", 41, 13]]);
-const pos$12 = nix.positions(here + "/digital-ocean-init.nix", [["systemd", 41, 5]]);
-const pos$13 = nix.positions(here + "/digital-ocean-init.nix", [["maintainers", 110, 8]]);
-const pos$14 = nix.positions(here + "/digital-ocean-init.nix", [["options", 20, 3], ["config", 40, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "digitalOcean"));
   const defaultConfigFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "digitalocean-configuration.nix", "{ modulesPath, lib, ... }:\n{\n  imports = lib.optional (builtins.pathExists ./do-userdata.nix) ./do-userdata.nix ++ [\n    (modulesPath + \"/virtualisation/digital-ocean-config.nix\")\n  ];\n}\n"));
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         digitalOcean: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           rebuildFromUserData: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "bool")),
               default: true,
               example: true,
               description: "Whether to reconfigure the system from Digital Ocean user data",
             })))),
           defaultConfigFile: nix.thunk(() => nix.app(nix.lookup(w, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               type: nix.thunk(() => nix.sel(nix.lookup(w, "types"), "path")),
               default: defaultConfigFile,
               defaultText: nix.thunk(() => nix.app(nix.lookup(w, "literalMD"), "The default configuration imports user-data if applicable and\n`(modulesPath + \"/virtualisation/digital-ocean-config.nix\")`.\n")),
@@ -52,23 +39,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           "digitalocean-init": nix.thunk(() => nix.app(nix.lookup(w, "mkIf"), nix.thunk(() => nix.sel(cfg, "rebuildFromUserData")), nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               description: "Reconfigure the system from Digital Ocean userdata on startup",
               wantedBy: nix.thunk(() => ["network-online.target"]),
               unitConfig: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 ConditionPathExists: "!/etc/nixos/do-userdata.nix",
                 After: nix.thunk(() => ["digitalocean-metadata.service", "network-online.target"]),
                 Requires: nix.thunk(() => ["digitalocean-metadata.service"]),
                 "X-StopOnRemoval": false,
               })),
-              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$7, Type: "oneshot", RemainAfterExit: true })),
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[6], Type: "oneshot", RemainAfterExit: true })),
               restartIfChanged: false,
               path: nix.thunk(() => [
                 nix.thunk(() => nix.sel(pkgs, "jq")),
@@ -79,7 +66,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.sel(config, "system", "build", "nixos-rebuild")),
               ]),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 HOME: "/root",
                 NIX_PATH: nix.thunk(() => nix.app(nix.lookup(w, "concatStringsSep"), ":", nix.thunk(() => [
                     "/nix/var/nix/profiles/per-user/root/channels/nixos",
@@ -125,7 +112,7 @@ fi
       })),
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       maintainers: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);
         return [

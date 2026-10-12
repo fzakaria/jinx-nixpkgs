@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 57, 3], ["disabledTestPaths", 59, 3], ["__darwinAllowLocalNetworking", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, jinja2: false, jsonschema: false, addBinToPathHook: false, pyrefly: false, pyright: false, pyshacl: false, "pytest-cov-stub": false, "pytest-xdist": false, pytestCheckHook: false, rdflib: false, "types-jsonschema": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 57, 3], ["disabledTestPaths", 59, 3], ["__darwinAllowLocalNetworking", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const rdflib = nix.arg($, "rdflib");
   const types_jsonschema = nix.arg($, "types-jsonschema");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "shacl2code",
       version: "1.3.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JPEWdev",
           repo: "shacl2code",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Convert SHACL model to code bindings",
         homepage: "https://github.com/JPEWdev/shacl2code",
         changelog: nix.thunk(() => nix.str`https://github.com/JPEWdev/shacl2code/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

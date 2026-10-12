@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 31, 7], ["longDescription", 32, 7], ["homepage", 33, 7], ["license", 34, 7], ["maintainers", 35, 7], ["platforms", 36, 7], ["mainProgram", 37, 7]], [["name", 9, 3], ["paths", 12, 3], ["nativeBuildInputs", 18, 3], ["postBuild", 20, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { symlinkJoin: false, makeWrapper: false, geany: false, vte: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 31, 7], ["longDescription", 32, 7], ["homepage", 33, 7], ["license", 34, 7], ["maintainers", 35, 7], ["platforms", 36, 7], ["mainProgram", 37, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 9, 3], ["paths", 12, 3], ["nativeBuildInputs", 18, 3], ["postBuild", 20, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const geany = nix.arg($, "geany");
   const vte = nix.arg($, "vte");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`geany-with-vte-${nix.sel(geany, "version")}`),
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(geany, null);
@@ -32,7 +31,7 @@ makeWrapper ${geany}/bin/geany $out/bin/geany \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(geany, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
         longDescription: nix.thunk(() => nix.attr(from, "longDescription")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

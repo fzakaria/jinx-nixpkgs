@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-isa-compat.nix", [[["owner", 19, 7], ["repo", 20, 7], ["rev", 21, 7], ["hash", 22, 7]], [["description", 41, 7], ["homepage", 42, 7], ["license", 43, 7], ["platforms", 44, 7], ["teams", 45, 7]], [["pname", 15, 5], ["version", 16, 5], ["src", 18, 5], ["nativeBuildInputs", 25, 5], ["installPhase", 29, 5], ["meta", 40, 5]], [["teams", 72, 5]], [["name", 51, 11], ["testedPackage", 52, 3], ["sandboxPaths", 54, 3], ["nativeBuildInputs", 60, 3], ["testScript", 65, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeImpureTest: false, fetchFromGitHub: false, clr: false, "rocm-smi": false, name: false, offloadArches: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-isa-compat.nix", [["owner", 19, 7], ["repo", 20, 7], ["rev", 21, 7], ["hash", 22, 7]]);
-const pos$2 = nix.positions(here + "/test-isa-compat.nix", [["description", 41, 7], ["homepage", 42, 7], ["license", 43, 7], ["platforms", 44, 7], ["teams", 45, 7]]);
-const pos$3 = nix.positions(here + "/test-isa-compat.nix", [["pname", 15, 5], ["version", 16, 5], ["src", 18, 5], ["nativeBuildInputs", 25, 5], ["installPhase", 29, 5], ["meta", 40, 5]]);
-const pos$4 = nix.positions(here + "/test-isa-compat.nix", [["teams", 72, 5]]);
-const pos$5 = nix.positions(here + "/test-isa-compat.nix", [["name", 51, 11], ["testedPackage", 52, 3], ["sandboxPaths", 54, 3], ["nativeBuildInputs", 60, 3], ["testScript", 65, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const name = nix.arg($, "name");
   const offloadArches = nix.arg($, "offloadArches");
   const vectoradd = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rocm-hip-vectoradd",
       version: "2024-04-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "HIP-Examples",
           rev: "cdf9d101acd9a3fc89ee750f73c1f1958cbd5cc3",
@@ -41,7 +37,7 @@ amdclang++ -x hip -o $out/bin/vectoradd \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "vectorAdd HIP example for ROCm",
         homepage: "https://github.com/ROCm/HIP-Examples",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -50,14 +46,14 @@ runHook postInstall
       })),
     }))));
   return nix.app(makeImpureTest, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: name,
       testedPackage: "rocmPackages.clr",
       sandboxPaths: nix.thunk(() => ["/sys", "/dev/dri", "/dev/kfd"]),
       nativeBuildInputs: nix.thunk(() => [vectoradd, rocm_smi]),
       testScript: "rocm-smi\n\nvectoradd\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "rocm"))]),
       })),
     })));

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]], [["__structuredAttrs", 9, 3], ["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["doInstallCheck", 27, 3], ["nativeInstallCheckInputs", 28, 3], ["versionCheckProgramArg", 29, 3], ["preVersionCheck", 38, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["__structuredAttrs", 9, 3], ["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["doInstallCheck", 27, 3], ["nativeInstallCheckInputs", 28, 3], ["versionCheckProgramArg", 29, 3], ["preVersionCheck", 38, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       __structuredAttrs: true,
       pname: "modctl",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "modelpack",
           repo: "modctl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       preVersionCheck: "wrapper=\"$NIX_BUILD_TOP/modctl-version-check\"\ncat > \"$wrapper\" <<EOF\n#!/bin/sh\nexec \"$out/bin/modctl\" \"\\$@\" --log-dir=\"$TMPDIR\" --storage-dir=\"$TMPDIR\"\nEOF\nchmod +x \"$wrapper\"\nversionCheckProgram=\"$wrapper\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI tool for managing OCI model artifacts based on Model Spec",
         homepage: "https://github.com/modelpack/modctl",
         changelog: nix.thunk(() => nix.str`https://github.com/modelpack/modctl/releases/tag/v${nix.sel(finalAttrs, "version")}`),

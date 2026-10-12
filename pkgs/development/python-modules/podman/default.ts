@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["progress_bar", 35, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 45, 3], ["disabledTests", 47, 3], ["disabledTestPaths", 61, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fixtures: false, pytestCheckHook: false, requests: false, "requests-mock": false, rich: false, setuptools: false, urllib3: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["progress_bar", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 45, 3], ["disabledTests", 47, 3], ["disabledTestPaths", 61, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const urllib3 = nix.arg($, "urllib3");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "podman",
       version: "5.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "containers",
           repo: "podman-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [requests, urllib3]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, progress_bar: nix.thunk(() => [rich]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], progress_bar: nix.thunk(() => [rich]) })),
       nativeCheckInputs: nix.thunk(() => [fixtures, pytestCheckHook, requests_mock, writableTmpDirAsHomeHook]),
       pythonImportsCheck: nix.thunk(() => ["podman"]),
       disabledTests: nix.thunk(() => [
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         "podman/tests/integration/test_volumes.py",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python bindings for Podman's RESTful API",
         homepage: "https://github.com/containers/podman-py",
         changelog: nix.thunk(() => nix.str`https://github.com/containers/podman-py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

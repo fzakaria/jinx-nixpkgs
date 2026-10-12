@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 7], ["repo", 18, 7], ["rev", 19, 7], ["hash", 20, 7]], [["pname", 13, 5], ["version", 14, 5], ["src", 16, 5], ["dontConfigure", 23, 5], ["dontBuild", 24, 5], ["installPhase", 26, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]], [["name", 37, 3], ["runtimeInputs", 38, 3], ["text", 44, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, writeShellApplication: false, curl: false, coreutils: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 7], ["repo", 18, 7], ["rev", 19, 7], ["hash", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 5], ["version", 14, 5], ["src", 16, 5], ["dontConfigure", 23, 5], ["dontBuild", 24, 5], ["installPhase", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 37, 3], ["runtimeInputs", 38, 3], ["text", 44, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const jq = nix.arg($, "jq");
   const tusc = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "tusc-sh",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adhocore",
           repo: "tusc.sh",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,12 +30,12 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 tusc.sh -t $out/bin\n\nrunHook postInstall\n",
     })));
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "tusc",
       runtimeInputs: nix.thunk(() => [tusc, curl, coreutils, jq]),
       text: "tusc.sh \"$@\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tus 1.0.0 client protocol implementation for bash",
         homepage: "https://github.com/adhocore/tusc.sh",
         changelog: nix.thunk(() => nix.str`https://github.com/adhocore/tusc.sh/blob/${nix.sel(tusc, "version")}/CHANGELOG.md`),

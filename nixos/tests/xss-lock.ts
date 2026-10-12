@@ -2,44 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/xss-lock.nix", [["maintainers", 3, 8]]);
-const pos$2 = nix.positions(here + "/xss-lock.nix", [["enable", 11, 25]]);
-const pos$3 = nix.positions(here + "/xss-lock.nix", [["xss-lock", 11, 16]]);
-const pos$4 = nix.positions(here + "/xss-lock.nix", [["user", 12, 40]]);
-const pos$5 = nix.positions(here + "/xss-lock.nix", [["auto", 12, 35]]);
-const pos$6 = nix.positions(here + "/xss-lock.nix", [["displayManager", 12, 20]]);
-const pos$7 = nix.positions(here + "/xss-lock.nix", [["imports", 7, 7], ["programs", 11, 7], ["test-support", 12, 7]]);
+const $pos = nix.positions(here + "/xss-lock.nix", [[["maintainers", 3, 8]], [["enable", 11, 25]], [["xss-lock", 11, 16]], [["user", 12, 40]], [["auto", 12, 35]], [["displayManager", 12, 20]], [["imports", 7, 7], ["programs", 11, 7], ["test-support", 12, 7]], [["user", 22, 42]], [["auto", 22, 37]], [["displayManager", 22, 22]], [["enable", 25, 11], ["extraOptions", 26, 11], ["lockerCommand", 30, 11]], [["xss-lock", 24, 18]], [["imports", 18, 9], ["test-support", 22, 9], ["programs", 24, 9]], [["simple", 6, 5], ["custom_lockcmd", 15, 5]], [["name", 2, 3], ["meta", 3, 3], ["nodes", 5, 3], ["testScript", 35, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/xss-lock.nix", [["user", 22, 42]]);
-const pos$9 = nix.positions(here + "/xss-lock.nix", [["auto", 22, 37]]);
-const pos$10 = nix.positions(here + "/xss-lock.nix", [["displayManager", 22, 22]]);
-const pos$11 = nix.positions(here + "/xss-lock.nix", [["enable", 25, 11], ["extraOptions", 26, 11], ["lockerCommand", 30, 11]]);
-const pos$12 = nix.positions(here + "/xss-lock.nix", [["xss-lock", 24, 18]]);
-const pos$13 = nix.positions(here + "/xss-lock.nix", [["imports", 18, 9], ["test-support", 22, 9], ["programs", 24, 9]]);
-const pos$14 = nix.positions(here + "/xss-lock.nix", [["simple", 6, 5], ["custom_lockcmd", 15, 5]]);
-const pos$15 = nix.positions(here + "/xss-lock.nix", [["name", 2, 3], ["meta", 3, 3], ["nodes", 5, 3], ["testScript", 35, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$15,
+  [nix.POS]: $pos[14],
   name: "xss-lock",
-  meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+  meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     simple: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       imports: nix.thunk(() => [
         nix.path(here, "./common/x11.nix"),
         nix.path(here, "./common/user-account.nix"),
       ]),
       programs: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        "xss-lock": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+        [nix.POS]: $pos[2],
+        "xss-lock": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
       })),
       "test-support": nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         displayManager: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          auto: nix.thunk(() => ({ [nix.POS]: pos$4, user: "alice" })),
+          [nix.POS]: $pos[4],
+          auto: nix.thunk(() => ({ [nix.POS]: $pos[3], user: "alice" })),
         })),
       })),
     })),
@@ -47,22 +33,22 @@ export default nix.thunk(() => ({
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         imports: nix.thunk(() => [
           nix.path(here, "./common/x11.nix"),
           nix.path(here, "./common/user-account.nix"),
         ]),
         "test-support": nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           displayManager: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            auto: nix.thunk(() => ({ [nix.POS]: pos$8, user: "alice" })),
+            [nix.POS]: $pos[8],
+            auto: nix.thunk(() => ({ [nix.POS]: $pos[7], user: "alice" })),
           })),
         })),
         programs: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           "xss-lock": nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             enable: true,
             extraOptions: nix.thunk(() => [
               "-n",

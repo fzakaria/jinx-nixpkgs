@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["CGO_ENABLED", 27, 7]], [["updateScript", 54, 12]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["env", 27, 3], ["ldflags", 29, 3], ["nativeBuildInputs", 34, 3], ["postInstall", 38, 3], ["nativeInstallCheckInputs", 50, 3], ["versionCheckProgramArg", 51, 3], ["doInstallCheck", 52, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false, "nix-update-script": false, makeWrapper: false, air: false, nodejs: false, bun: false, templ: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["env", 27, 3], ["ldflags", 29, 3], ["nativeBuildInputs", 34, 3], ["postInstall", 38, 3], ["nativeInstallCheckInputs", 50, 3], ["versionCheckProgramArg", 51, 3], ["doInstallCheck", 52, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const pname = "gowebly";
       const version = "3.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gowebly",
           repo: "gowebly",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-/MB8YuqeZUb9P6RPO2sgwtYShaNkEFckiVBtnHRPkc4=",
         }))));
       const vendorHash = "sha256-8i1o0Dn4xJ1P3CrYDW0X8epiIpjmIac6gENBYi/bmQo=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n }));
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/gowebly \\
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgramArg = "doctor";
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CLI tool to create web applications with Go backend",
         longDescription: "A CLI tool that makes it easy to create web applications\nwith Go on the backend, using htmx, hyperscript or Alpine.js,\nand the most popular CSS frameworks on the frontend.\n",
         homepage: "https://gowebly.org",
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

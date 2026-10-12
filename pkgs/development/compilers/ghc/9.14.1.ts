@@ -2,10 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/9.14.1.nix", [["version", 2, 3], ["sha256", 3, 3]]);
+const $pos = nix.positions(here + "/9.14.1.nix", [[["version", 2, 3], ["sha256", 3, 3]]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-hadrian.nix")), nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "9.14.1",
     sha256: "2a83779c9af86554a3289f2787a38d6aa83d00d136aa9f920361dd693c101e77",
   }))));

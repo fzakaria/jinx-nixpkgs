@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["url", 29, 7], ["hash", 30, 7]], [["cli", 40, 5], ["pygments", 44, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["build-system", 34, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 47, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, fetchpatch: false, buildPythonPackage: false, click: false, fetchFromGitHub: false, "flit-core": false, "flit-scm": false, pygments: false, "pytest-cov-stub": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cli", 40, 5], ["pygments", 44, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["build-system", 34, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 47, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ssdp",
       version: "1.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "codingjoe",
           repo: "ssdp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,14 +31,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/lukegb/ssdp/commit/e5570a13342a2b7271acae1408b37a49e0729e3c.patch",
             hash: "sha256-RwpsrGRn6rEowwHc39bLO8dVTKJP3d3v7Rr1d8sKYvM=",
           })))),
       ]),
       "build-system": nix.thunk(() => [flit_core, flit_scm]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         cli: nix.thunk(() => [click, pygments]),
         pygments: nix.thunk(() => [pygments]),
       })),
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_call", "test_call_w_search_target"]),
       pythonImportsCheck: nix.thunk(() => ["ssdp"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python asyncio library for Simple Service Discovery Protocol (SSDP)",
         homepage: "https://github.com/codingjoe/ssdp",
         changelog: nix.thunk(() => nix.str`https://github.com/codingjoe/ssdp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 59, 5], ["description", 60, 5], ["license", 61, 5], ["changelog", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["makefile", 19, 3], ["patches", 21, 3], ["dontConfigure", 28, 3], ["buildInputs", 30, 3], ["preBuild", 34, 3], ["preInstall", 44, 3], ["postInstall", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["license", 61, 5], ["changelog", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["makefile", 19, 3], ["patches", 21, 3], ["dontConfigure", 28, 3], ["buildInputs", 30, 3], ["preBuild", 34, 3], ["preInstall", 44, 3], ["postInstall", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "atasm";
       const version = "1.29";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CycoPH",
           repo: "atasm",
           rev: nix.thunk(() => nix.str`V${version}`),
@@ -49,7 +47,7 @@ installFlagsArray+=(
       const postInstall = nix.thunk(() => nix.str`mv docs/* $out/share/doc/${pname}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/CycoPH/atasm",
         description: "Commandline 6502 assembler compatible with Mac/65",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -61,7 +59,7 @@ installFlagsArray+=(
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 24, 9], ["sha256", 25, 9]], [["patches", 21, 5]], [["angstrom", 29, 25]], [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 32, 3], ["version", 33, 3], ["minimalOCamlVersion", 35, 3], ["duneVersion", 37, 3], ["src", 39, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 56, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, fetchpatch: false, angstrom: false, cmdliner: false, core: false, core_bench: false, core_unix: true, js_of_ocaml: false, "js_of_ocaml-ppx": false, ppx_deriving_yojson: false, uri: false, yojson: false, lwt: false, xmlm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 24, 9], ["sha256", 25, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["patches", 21, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["angstrom", 29, 25]]);
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["minimalOCamlVersion", 35, 3], ["duneVersion", 37, 3], ["src", 39, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 56, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,24 +24,24 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const xmlm = nix.arg($, "xmlm");
   const angstrom$ = nix.thunk(() => nix.app(nix.sel(angstrom, "overrideAttrs"), (attrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       patches: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "patches"), [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/logseq/angstrom/commit/bbe36c99c13678937d4c983a427e02a733d6cc24.patch",
             sha256: "sha256-RapY1QJ8U0HOqJ9TFDnCYB4tFLFuThESzdBZqjYuDUA=",
           })))),
       ])),
     })));
-  const uri$ = nix.thunk(() => nix.app(nix.sel(uri, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, angstrom: angstrom$ }))));
+  const uri$ = nix.thunk(() => nix.app(nix.sel(uri, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], angstrom: angstrom$ }))));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mldoc",
       version: "1.5.8",
       minimalOCamlVersion: "4.10",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "logseq",
           repo: "mldoc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cmdliner, core, core_bench, core_unix, js_of_ocaml, js_of_ocaml_ppx, lwt]),
       propagatedBuildInputs: nix.thunk(() => [angstrom$, uri$, yojson, ppx_deriving_yojson, xmlm]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/logseq/mldoc",
         description: "Another Emacs Org-mode and Markdown parser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

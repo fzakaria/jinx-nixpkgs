@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["compressed-rtf", 29, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 18, 3], ["build-system", 19, 3], ["src", 21, 3], ["optional-dependencies", 28, 3], ["nativeCheckInputs", 32, 3], ["disabledTests", 40, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "compressed-rtf": false, pytestCheckHook: false, "pytest-console-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["compressed-rtf", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 18, 3], ["build-system", 19, 3], ["src", 21, 3], ["optional-dependencies", 28, 3], ["nativeCheckInputs", 32, 3], ["disabledTests", 40, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +20,18 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "koodaamo",
           repo: "tnefparse",
           tag: version,
           hash: "sha256-t2ouuuy6fzwb6SZNpxeGSleL/11SgTT8Ce28/ST1glw=",
         }))));
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, "compressed-rtf": nix.thunk(() => [compressed_rtf]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], "compressed-rtf": nix.thunk(() => [compressed_rtf]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_console_scripts, compressed_rtf]);
       const disabledTests = nix.thunk(() => ["test_help_is_printed"]);
       const pythonImportsCheck = nix.thunk(() => ["tnefparse"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "TNEF decoding library written in python, without external dependencies",
         homepage: "https://github.com/koodaamo/tnefparse",
         changelog: nix.thunk(() => nix.str`https://github.com/koodaamo/tnefparse/releases/tag/${version}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

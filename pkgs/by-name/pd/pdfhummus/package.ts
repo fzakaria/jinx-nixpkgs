@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 33, 3], ["dontWrapQtApps", 41, 3], ["cmakeFlags", 43, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libsForQt5: false, zlib: false, freetype: false, libjpeg: false, libtiff: false, libpng: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 33, 3], ["dontWrapQtApps", 41, 3], ["cmakeFlags", 43, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pdfhummus";
       const version = "4.9.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "galkahana",
           repo: "PDF-Writer",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const dontWrapQtApps = true;
       const cmakeFlags = nix.thunk(() => ["-DUSE_BUNDLED=OFF", "-DUSE_UNBUNDLED_FALLBACK_BUNDLED=ON"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast and Free C++ Library for Creating, Parsing an Manipulating PDF Files and Streams",
         homepage: "https://www.pdfhummus.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["pname", 37, 13], ["version", 37, 19], ["src", 37, 27], ["hash", 38, 5]], [["GETTEXT_BIN_DIR", 66, 5], ["GETTEXT_INCLUDE_DIR", 67, 5], ["GETTEXT_LIB_DIR", 68, 5]], [["updateScript", 72, 5]], [["changelog", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5], ["teams", 86, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 53, 3], ["env", 65, 3], ["passthru", 71, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cargo: false, "desktop-file-utils": false, meson: false, ninja: false, "pkg-config": false, rustPlatform: false, rustc: false, wrapGAppsHook4: false, cairo: false, "gdk-pixbuf": false, glib: false, gtk4: false, openssl: false, libadwaita: false, pango: false, gettext: false, "blueprint-compiler": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 37, 13], ["version", 37, 19], ["src", 37, 27], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GETTEXT_BIN_DIR", 66, 5], ["GETTEXT_INCLUDE_DIR", 67, 5], ["GETTEXT_LIB_DIR", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5], ["teams", 86, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 53, 3], ["env", 65, 3], ["passthru", 71, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,14 +32,14 @@ export default nix.lambda((args) => (() => {
       const pname = "diebahn";
       const version = "2.10.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "schmiddi-on-mobile",
           repo: "railway",
           tag: version,
           hash: "sha256-lmyseWTqOwMgKB3q+SQbpa4XNzZ+2hBe7Ct7o5oZjOc=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -63,17 +58,17 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [cairo, gdk_pixbuf, glib, gtk4, libadwaita, openssl, pango]);
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           GETTEXT_BIN_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), gettext)}/bin`),
           GETTEXT_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), gettext)}/include`),
           GETTEXT_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), gettext)}/lib`),
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://gitlab.com/schmiddi-on-mobile/railway/-/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Travel with all your train information in one place. Also known as Railway",
         homepage: "https://gitlab.com/schmiddi-on-mobile/railway",
@@ -90,7 +85,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome-circle"))]),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

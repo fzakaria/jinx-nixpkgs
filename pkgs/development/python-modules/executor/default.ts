@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]], [["changelog", 68, 5], ["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 57, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch2: false, setuptools: false, coloredlogs: false, humanfriendly: false, "property-manager": false, fasteners: false, six: false, pytestCheckHook: false, mock: false, virtualenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 68, 5], ["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 57, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const mock = nix.arg($, "mock");
   const virtualenv = nix.arg($, "virtualenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "executor",
       version: "23.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xolox",
           repo: "python-executor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "python313-compat.patch",
             url: "https://github.com/xolox/python-executor/commit/4c5f4b44543bfb48ad790c440d1d7d0933e12499.patch?full_index=1",
             hash: "sha256-pfWdLaREikzBaey75Tb+GiE+pUCl1h2OmsjlpzKOlno=",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, mock, virtualenv]),
       disabledTests: nix.thunk(() => ["option", "retry", "remote", "ssh", "foreach", "local_context", "release"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/xolox/python-executor/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),
         description: "Programmer friendly subprocess wrapper",
         mainProgram: "executor",

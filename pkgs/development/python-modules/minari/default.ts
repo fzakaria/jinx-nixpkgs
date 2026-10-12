@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["arrow", 58, 5], ["create", 59, 5], ["gcs", 60, 5], ["hdf5", 64, 5], ["hf", 65, 5], ["integrations", 66, 5], ["testing", 70, 5]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 110, 5], ["mainProgram", 111, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["__structuredAttrs", 36, 3], ["src", 38, 3], ["build-system", 45, 3], ["dependencies", 49, 3], ["optional-dependencies", 57, 3], ["pythonImportsCheck", 78, 3], ["nativeCheckInputs", 80, 3], ["disabledTests", 86, 3], ["disabledTestPaths", 96, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, gymnasium: false, numpy: false, packaging: false, typer: false, "typing-extensions": false, pyarrow: false, jax: false, "google-cloud-storage": false, tqdm: false, h5py: false, "huggingface-hub": false, mktestdocs: false, pytest: false, "scikit-image": false, jaxlib: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arrow", 58, 5], ["create", 59, 5], ["gcs", 60, 5], ["hdf5", 64, 5], ["hf", 65, 5], ["integrations", 66, 5], ["testing", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 110, 5], ["mainProgram", 111, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["__structuredAttrs", 36, 3], ["src", 38, 3], ["build-system", 45, 3], ["dependencies", 49, 3], ["optional-dependencies", 57, 3], ["pythonImportsCheck", 78, 3], ["nativeCheckInputs", 80, 3], ["disabledTests", 86, 3], ["disabledTestPaths", 96, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const jaxlib = nix.arg($, "jaxlib");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "minari",
       version: "0.5.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Farama-Foundation",
           repo: "Minari",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [gymnasium, numpy, packaging, typer, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         arrow: nix.thunk(() => [pyarrow]),
         create: nix.thunk(() => [jax]),
         gcs: nix.thunk(() => [google_cloud_storage, tqdm]),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["tests/dataset/test_dataset_download.py", "tests/test_cli.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Standard format for offline reinforcement learning datasets, with popular reference datasets and related utilities",
         homepage: "https://github.com/Farama-Foundation/Minari",
         changelog: nix.thunk(() => nix.str`https://github.com/Farama-Foundation/Minari/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

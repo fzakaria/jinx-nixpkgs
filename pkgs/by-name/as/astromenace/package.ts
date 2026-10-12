@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["url", 37, 7], ["hash", 38, 7]], [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 54, 3], ["installPhase", 69, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, ninja: false, makeWrapper: false, libxinerama: false, libx11: false, libice: false, libGLU: false, libGL: false, SDL2: false, openal: false, fontconfig: false, freealut: false, freetype: false, libogg: false, libvorbis: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 54, 3], ["installPhase", 69, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "astromenace";
       const version = "1.4.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "viewizard",
           repo: "astromenace",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,12 +39,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://src.fedoraproject.org/rpms/astromenace/raw/5e6bc02d115a53007dc47ef8223d8eaa25607588/f/astromenace-gcc13.patch",
             hash: "sha256-pkmTVR86vS+KCICxAp+d7upNWVnSNxwdKmxnbtqIvgU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "cmake-4.patch",
             url: "https://github.com/viewizard/astromenace/commit/eb42ddb1e86a3e67787bfd5e33ff2afdd6307142.patch",
             hash: "sha256-TQVcnDrKBFvcyYhWeeEQSRjuirtJ7wYFQV+f3bHikdA=",
@@ -71,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "runHook preInstall\nmkdir -p $out/share/astromenace\ninstall -Dm644 gamedata.vfs $out/share/astromenace/gamedata.vfs\ninstall -Dm755 astromenace $out/bin/astromenace\nwrapProgram $out/bin/astromenace \\\n  --add-flags \"--dir=$out/share/astromenace\"\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Hardcore 3D space shooter with spaceship upgrade possibilities",
         homepage: "https://www.viewizard.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -83,7 +79,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

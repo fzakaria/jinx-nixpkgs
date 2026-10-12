@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["fetchSubmodules", 25, 5], ["hash", 26, 5]], [["homepage", 55, 5], ["description", 56, 5], ["maintainers", 57, 5], ["license", 60, 5], ["platforms", 61, 5], ["changelog", 62, 5], ["mainProgram", 63, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["postPatch", 50, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, itstool: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, gtk3: false, gtksourceview3: false, gtkspell3: false, webkitgtk_4_1: false, pandoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["fetchSubmodules", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["maintainers", 57, 5], ["license", 60, 5], ["platforms", 61, 5], ["changelog", 62, 5], ["mainProgram", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["postPatch", 50, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const pandoc = nix.arg($, "pandoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "marker",
       version: "2023.05.02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fabiocolacio",
           repo: "Marker",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`meson rewrite kwargs set project / version '${nix.sel(finalAttrs, "version")}'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://fabiocolacio.github.io/Marker/",
         description: "Markdown editor for the Linux desktop made with GTK3",
         maintainers: nix.thunk(() => (() => {

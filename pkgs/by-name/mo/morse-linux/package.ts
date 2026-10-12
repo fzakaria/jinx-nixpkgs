@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["NIX_CFLAGS_COMPILE", 38, 7]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 28, 3], ["postPatch", 34, 3], ["env", 38, 3], ["installPhase", 40, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "alsa-lib": false, pulseaudio: false, "pkg-config": false, xmlto: false, docbook_xsl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 28, 3], ["postPatch", 34, 3], ["env", 38, 3], ["installPhase", 40, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const xmlto = nix.arg($, "xmlto");
   const docbook_xsl = nix.arg($, "docbook_xsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "morse",
       version: "2.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "esr",
           repo: "morse-classic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,10 +29,10 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [alsa_lib, pulseaudio]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, xmlto, docbook_xsl]),
       postPatch: "substituteInPlace Makefile --replace-fail \"xmlto\" \"xmlto --skip-validation\"\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu99" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu99" })),
       installPhase: "runHook preInstall\ninstall -Dm755 morse -t \"$out/bin/\"\ninstall -Dm755 QSO -t \"$out/bin/\"\ninstall -Dm644 morse.1 -t \"$out/share/man/man1/\"\ninstall -Dm644 QSO.1 -t \"$out/share/man/man1/\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Training program about morse-code for aspiring radio hams",
         homepage: "https://gitlab.com/esr/morse-classic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

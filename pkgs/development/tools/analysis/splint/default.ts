@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 28, 5], ["description", 29, 5], ["mainProgram", 30, 5], ["longDescription", 32, 5], ["license", 40, 5], ["platforms", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["buildInputs", 19, 3], ["buildFlags", 21, 3], ["doCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, flex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 28, 5], ["description", 29, 5], ["mainProgram", 30, 5], ["longDescription", 32, 5], ["license", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["buildInputs", 19, 3], ["buildFlags", 21, 3], ["doCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "splint";
       const version = "3.1.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.splint.org/downloads/${pname}-${version}.src.tgz`),
           sha256: "02pv8kscsrkrzip9r08pfs9xs98q74c52mlxzbii6cv6vx1vd3f7",
         }))));
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const buildFlags = nix.thunk(() => ["CFLAGS=-std=gnu99"]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.splint.org/",
         description: "Annotation-assisted lightweight static analyzer for C",
         mainProgram: "splint",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

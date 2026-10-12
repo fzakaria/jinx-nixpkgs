@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["updateScript", 106, 12]], [["description", 109, 5], ["homepage", 110, 5], ["changelog", 111, 5], ["license", 112, 5], ["maintainers", 113, 5], ["platforms", 114, 5], ["mainProgram", 115, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 31, 3], ["patches", 38, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 65, 3], ["mesonFlags", 71, 3], ["doCheck", 83, 3], ["nativeCheckInputs", 84, 3], ["postFixup", 88, 3], ["passthru", 106, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pkgsi686Linux: false, makeWrapper: false, meson: false, ninja: false, "pkg-config": false, dbus: false, inih: false, systemd: false, appstream: false, findutils: false, gawk: false, procps: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 106, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 109, 5], ["homepage", 110, 5], ["changelog", 111, 5], ["license", 112, 5], ["maintainers", 113, 5], ["platforms", 114, 5], ["mainProgram", 115, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 31, 3], ["patches", 38, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 65, 3], ["mesonFlags", 71, 3], ["doCheck", 83, 3], ["nativeCheckInputs", 84, 3], ["postFixup", 88, 3], ["passthru", 106, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gamemode",
       version: "1.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FeralInteractive",
           repo: "gamemode",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,11 +60,11 @@ wrapProgram "$out/bin/gamemodelist" \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [findutils, gawk, procps]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Optimise Linux system performance on demand",
         homepage: "https://feralinteractive.github.io/gamemode",
         changelog: nix.thunk(() => nix.str`https://github.com/FeralInteractive/gamemode/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

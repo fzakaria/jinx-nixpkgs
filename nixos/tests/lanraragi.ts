@@ -2,47 +2,36 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lanraragi.nix", [[["maintainers", 4, 8]], [["memorySize", 11, 24]], [["enable", 13, 28]], [["lanraragi", 13, 18]], [["virtualisation", 11, 9], ["services", 13, 9]], [["memorySize", 19, 24]], [["port", 28, 13], ["passwordFile", 29, 13]], [["enable", 22, 11], ["passwordFile", 23, 11], ["port", 26, 11], ["redis", 27, 11]], [["lanraragi", 21, 18]], [["virtualisation", 19, 9], ["services", 21, 9]], [["machine1", 7, 5], ["machine2", 15, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 37, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lanraragi.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/lanraragi.nix", [["memorySize", 11, 24]]);
-const pos$3 = nix.positions(here + "/lanraragi.nix", [["enable", 13, 28]]);
-const pos$4 = nix.positions(here + "/lanraragi.nix", [["lanraragi", 13, 18]]);
-const pos$5 = nix.positions(here + "/lanraragi.nix", [["virtualisation", 11, 9], ["services", 13, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/lanraragi.nix", [["memorySize", 19, 24]]);
-const pos$7 = nix.positions(here + "/lanraragi.nix", [["port", 28, 13], ["passwordFile", 29, 13]]);
-const pos$8 = nix.positions(here + "/lanraragi.nix", [["enable", 22, 11], ["passwordFile", 23, 11], ["port", 26, 11], ["redis", 27, 11]]);
-const pos$9 = nix.positions(here + "/lanraragi.nix", [["lanraragi", 21, 18]]);
-const pos$10 = nix.positions(here + "/lanraragi.nix", [["virtualisation", 19, 9], ["services", 21, 9]]);
-const pos$11 = nix.positions(here + "/lanraragi.nix", [["machine1", 7, 5], ["machine2", 15, 5]]);
-const pos$12 = nix.positions(here + "/lanraragi.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "lanraragi",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tomasajt"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine1: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 4096n })),
+          [nix.POS]: $pos[4],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 4096n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            lanraragi: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[3],
+            lanraragi: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           })),
         };
       })(), formals$2),
@@ -50,17 +39,17 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, memorySize: 4096n })),
+          [nix.POS]: $pos[9],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[5], memorySize: 4096n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             lanraragi: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "lrr-test-pass", "Ultra-secure-p@ssword-\"with-spec1al\\chars\n")),
               port: 4000n,
               redis: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 port: 4001n,
                 passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "redis-lrr-test-pass", "123-redis-PASS\n")),
               })),

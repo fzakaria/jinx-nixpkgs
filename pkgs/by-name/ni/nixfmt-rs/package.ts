@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["updateScript", 48, 12]], [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 59, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["postBuild", 33, 3], ["postInstall", 37, 3], ["doInstallCheck", 41, 3], ["nativeInstallCheckInputs", 42, 3], ["nativeCheckInputs", 44, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, scdoc: false, versionCheckHook: false, "nix-update-script": false, nixfmt: false, gitMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["postBuild", 33, 3], ["postInstall", 37, 3], ["doInstallCheck", 41, 3], ["nativeInstallCheckInputs", 42, 3], ["nativeCheckInputs", 44, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const nixfmt = nix.arg($, "nixfmt");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nixfmt-rs",
       version: "0.5.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Mic92",
           repo: "nixfmt-rs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       nativeCheckInputs: nix.thunk(() => [gitMinimal]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/Mic92/nixfmt-rs/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Rust reimplementation of nixfmt that produces byte-identical output to the Haskell original",
         homepage: "https://github.com/Mic92/nixfmt-rs",

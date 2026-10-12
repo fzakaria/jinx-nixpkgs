@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["OPENLOGI_THEMES_DIR", 104, 7]], [["updateScript", 190, 12]], [["description", 193, 5], ["homepage", 194, 5], ["changelog", 195, 5], ["license", 196, 5], ["mainProgram", 200, 5], ["maintainers", 201, 5], ["platforms", 202, 5]], [["pname", 36, 3], ["version", 37, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["cargoHash", 48, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 81, 3], ["cargoBuildFlags", 92, 3], ["cargoTestFlags", 98, 3], ["buildFeatures", 100, 3], ["env", 104, 3], ["installPhase", 106, 3], ["postFixup", 173, 3], ["doInstallCheck", 186, 3], ["nativeInstallCheckInputs", 187, 3], ["versionCheckProgramArg", 188, 3], ["passthru", 190, 3], ["meta", 192, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "cargo-bundle": false, fontconfig: false, freetype: false, libGL: false, libxcb: false, libxkbcommon: false, makeBinaryWrapper: false, "nix-update-script": false, openssl: false, "pkg-config": false, versionCheckHook: false, "vulkan-loader": false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["OPENLOGI_THEMES_DIR", 104, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 190, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 193, 5], ["homepage", 194, 5], ["changelog", 195, 5], ["license", 196, 5], ["mainProgram", 200, 5], ["maintainers", 201, 5], ["platforms", 202, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["cargoHash", 48, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 81, 3], ["cargoBuildFlags", 92, 3], ["cargoTestFlags", 98, 3], ["buildFeatures", 100, 3], ["env", 104, 3], ["installPhase", 106, 3], ["postFixup", 173, 3], ["doInstallCheck", 186, 3], ["nativeInstallCheckInputs", 187, 3], ["versionCheckProgramArg", 188, 3], ["passthru", 190, 3], ["meta", 192, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,19 +25,19 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const wayland = nix.arg($, "wayland");
   const gpuiComponentThemes = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "longbridge",
       repo: "gpui-component",
       rev: "031555662e99a1b5a549990b47f246d475b8288a",
       hash: "sha256-yOXdgxQgfvGN2/+OdDnl1pYti0DoGFvS3Tyqvj3Bkng=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "openlogi",
       version: "0.6.25",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "AprilNEA",
           repo: "OpenLogi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,7 +77,7 @@ substituteInPlace .cargo/config.toml \\
       cargoTestFlags: nix.thunk(() => ["--workspace"]),
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["gpui_platform/runtime_shaders"]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         OPENLOGI_THEMES_DIR: nix.thunk(() => nix.str`${gpuiComponentThemes}/themes`),
       })),
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add(nix.str`runHook preInstall
@@ -127,11 +122,11 @@ install -Dm644 crates/openlogi-gui/icon/AppIcon.icns \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Local-first companion for Logitech HID++ peripherals",
         homepage: "https://github.com/AprilNEA/OpenLogi",
         changelog: nix.thunk(() => nix.str`https://github.com/AprilNEA/OpenLogi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

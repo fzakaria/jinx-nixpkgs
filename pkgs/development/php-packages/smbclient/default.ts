@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["LIBSMBCLIENT_INCDIR", 13, 7]], [["description", 19, 5], ["license", 20, 5], ["homepage", 21, 5], ["teams", 22, 5]], [["pname", 8, 3], ["version", 9, 3], ["sha256", 10, 3], ["env", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false, samba: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["LIBSMBCLIENT_INCDIR", 13, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 19, 5], ["license", 20, 5], ["homepage", 21, 5], ["teams", 22, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["sha256", 10, 3], ["env", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const samba = nix.arg($, "samba");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "smbclient",
       version: "1.1.2",
       sha256: "sha256-Hmp0RWOqxwCBXlca2YsRNahOhA1E5qxnmXSUx4Cpzec=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         LIBSMBCLIENT_INCDIR: nix.thunk(() => nix.str`${nix.sel(samba, "dev")}/include/samba-4.0`),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [samba]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PHP wrapper for libsmbclient",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         homepage: "https://github.com/eduardok/libsmbclient-php",

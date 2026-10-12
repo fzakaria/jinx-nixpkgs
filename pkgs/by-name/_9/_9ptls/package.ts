@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 21, 5], ["longDescription", 22, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["mainProgram", 29, 5], ["platforms", 30, 5]], [["src", 8, 23], ["version", 8, 27], ["enableParallelBuilding", 8, 35], ["pname", 9, 3], ["strictDeps", 11, 3], ["buildFlags", 13, 3], ["installFlags", 14, 3], ["installTargets", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, tlsclient: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 21, 5], ["longDescription", 22, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["mainProgram", 29, 5], ["platforms", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 8, 23], ["version", 8, 27], ["enableParallelBuilding", 8, 35], ["pname", 9, 3], ["strictDeps", 11, 3], ["buildFlags", 13, 3], ["installFlags", 14, 3], ["installTargets", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const tlsclient = nix.arg($, "tlsclient");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.attr(tlsclient, "src")),
       version: nix.thunk(() => nix.attr(tlsclient, "version")),
       enableParallelBuilding: nix.thunk(() => nix.attr(tlsclient, "enableParallelBuilding")),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["PREFIX=$(out)", "SBIN=$(out)/bin"]),
       installTargets: "mount.9ptls.install",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "mount.9ptls mount helper",
         longDescription: "mount.9ptls wraps the v9fs mount type in a dp9ik authenticated\ntls tunnel using tlsclient.\n",
         homepage: "https://git.sr.ht/~moody/tlsclient",

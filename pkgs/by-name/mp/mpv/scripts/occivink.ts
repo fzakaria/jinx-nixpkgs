@@ -2,20 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/occivink.nix", [[["owner", 24, 11], ["repo", 25, 11], ["rev", 26, 11], ["hash", 27, 11]], [["updateScript", 29, 18]], [["homepage", 34, 11], ["license", 35, 11], ["maintainers", 36, 11]], [["pname", 21, 9], ["version", 22, 9], ["src", 23, 9], ["passthru", 29, 9], ["scriptPath", 31, 9], ["meta", 33, 9], ["pos", 40, 9]], [["description", 49, 15]], [["meta", 49, 10]], [["description", 50, 17]], [["meta", 50, 12]], [["description", 51, 30]], [["meta", 51, 25]], [["description", 54, 12]], [["meta", 54, 7], ["postPatch", 56, 7]], [["crop", 49, 5], ["seekTo", 50, 5], ["blacklistExtensions", 51, 5], ["encode", 53, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, unstableGitUpdater: false, buildLua: false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/occivink.nix", [["owner", 24, 11], ["repo", 25, 11], ["rev", 26, 11], ["hash", 27, 11]]);
-const pos$2 = nix.positions(here + "/occivink.nix", [["updateScript", 29, 18]]);
-const pos$3 = nix.positions(here + "/occivink.nix", [["homepage", 34, 11], ["license", 35, 11], ["maintainers", 36, 11]]);
-const pos$4 = nix.positions(here + "/occivink.nix", [["pname", 21, 9], ["version", 22, 9], ["src", 23, 9], ["passthru", 29, 9], ["scriptPath", 31, 9], ["meta", 33, 9], ["pos", 40, 9]]);
-const pos$5 = nix.positions(here + "/occivink.nix", [["description", 49, 15]]);
-const pos$6 = nix.positions(here + "/occivink.nix", [["meta", 49, 10]]);
-const pos$7 = nix.positions(here + "/occivink.nix", [["description", 50, 17]]);
-const pos$8 = nix.positions(here + "/occivink.nix", [["meta", 50, 12]]);
-const pos$9 = nix.positions(here + "/occivink.nix", [["description", 51, 30]]);
-const pos$10 = nix.positions(here + "/occivink.nix", [["meta", 51, 25]]);
-const pos$11 = nix.positions(here + "/occivink.nix", [["description", 54, 12]]);
-const pos$12 = nix.positions(here + "/occivink.nix", [["meta", 54, 7], ["postPatch", 56, 7]]);
-const pos$13 = nix.positions(here + "/occivink.nix", [["crop", 49, 5], ["seekTo", 50, 5], ["blacklistExtensions", 51, 5], ["encode", 53, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,19 +25,19 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.app(camelToKebab, name));
       const version = "0-unstable-2025-11-01";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "occivink",
           repo: "mpv-scripts",
           rev: "01f3e99558915bb715b614d7f4b052230360eb21",
           hash: "sha256-v3TGsCzSg+a1vrOgI5NbTVf8Bh/iMRRgwMy194sNq1Y=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const scriptPath = nix.thunk(() => nix.str`scripts/${pname}.lua`);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/occivink/mpv-scripts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
         maintainers: nix.thunk(() => (() => {
@@ -58,34 +46,34 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       const pos = nix.thunk(() => nix.builtins.unsafeGetAttrPos("version", self));
-      return { [nix.POS]: pos$4, pname, version, src, passthru, scriptPath, meta, pos };
+      return { [nix.POS]: $pos[3], pname, version, src, passthru, scriptPath, meta, pos };
     })());
     return nix.app(buildLua, nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), self, args_1)));
   })();
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.app(mkScript, name))), nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         crop: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          meta: nix.thunk(() => ({ [nix.POS]: pos$5, description: "Crop the current video in a visual manner" })),
+          [nix.POS]: $pos[5],
+          meta: nix.thunk(() => ({ [nix.POS]: $pos[4], description: "Crop the current video in a visual manner" })),
         })),
         seekTo: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             description: "Mpv script for seeking to a specific position",
           })),
         })),
         blacklistExtensions: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             description: "Automatically remove playlist entries based on their extension",
           })),
         })),
         encode: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             description: "Make an extract of the video currently playing using ffmpeg",
           })),
           postPatch: nix.thunk(() => nix.str`substituteInPlace scripts/encode.lua \\

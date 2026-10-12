@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["GOWORK", 20, 7]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["mainProgram", 29, 5]], [["owner", 8, 3], ["repo", 9, 3], ["version", 10, 3], ["rev", 11, 3], ["hash", 12, 3], ["vendorHash", 13, 3], ["cmdGen", 14, 3], ["cmdRes", 15, 3], ["extraLdflags", 16, 3], ["__darwinAllowLocalNetworking", 19, 3], ["env", 20, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, mkPulumiPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["GOWORK", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["mainProgram", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 8, 3], ["repo", 9, 3], ["version", 10, 3], ["rev", 11, 3], ["hash", 12, 3], ["vendorHash", 13, 3], ["cmdGen", 14, 3], ["cmdRes", 15, 3], ["extraLdflags", 16, 3], ["__darwinAllowLocalNetworking", 19, 3], ["env", 20, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,9 +22,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/regrau/${repo}/provider/pkg/version.Version=v${version}`),
       ]);
       const __darwinAllowLocalNetworking = true;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$1, GOWORK: "off" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[0], GOWORK: "off" }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unofficial Yandex Cloud Resource Provider",
         homepage: "https://github.com/Regrau/pulumi-yandex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: cmdRes,
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner,
         repo,
         version,

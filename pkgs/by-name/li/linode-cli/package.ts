@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["pname", 28, 5], ["version", 29, 26], ["hash", 30, 5]], [["updateScript", 75, 12]], [["description", 78, 5], ["changelog", 79, 5], ["downloadPage", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 87, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 33, 3], ["patches", 37, 3], ["prePatch", 40, 3], ["postConfigure", 45, 3], ["nativeBuildInputs", 51, 3], ["dependencies", 53, 3], ["doInstallCheck", 63, 3], ["installCheckPhase", 64, 3], ["postInstall", 68, 3], ["passthru", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchPypi: false, fetchurl: false, installShellFiles: false, lib: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 5], ["version", 29, 26], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 75, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 78, 5], ["changelog", 79, 5], ["downloadPage", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 33, 3], ["patches", 37, 3], ["prePatch", 40, 3], ["postConfigure", 45, 3], ["nativeBuildInputs", 51, 3], ["dependencies", 53, 3], ["doInstallCheck", 63, 3], ["installCheckPhase", 64, 3], ["postInstall", 68, 3], ["passthru", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const specVersion = "4.176.0";
   const specHash = "sha256-P1E8Ga5ckrsw/CX0kxFef5fe8/p/pDCLuleX9wR5l48=";
   const spec = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/linode/linode-api-docs/v${specVersion}/openapi.yaml`),
       hash: specHash,
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "linode-cli",
       version: "5.56.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "linode_cli",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: hash,
@@ -59,9 +55,9 @@ echo "${nix.sel(finalAttrs, "version")}" > baked_version
       installCheckPhase: nix.thunk(() => nix.str`$out/bin/linode-cli --skip-config --version | grep ${nix.sel(finalAttrs, "version")} > /dev/null
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for shell in bash fish; do\n  installShellCompletion --cmd linode-cli \\\n    --$shell <($out/bin/linode-cli --skip-config completion $shell)\n  done\n")),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Linode Command Line Interface",
         changelog: nix.thunk(() => nix.str`https://github.com/linode/linode-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         downloadPage: "https://pypi.org/project/linode-cli",

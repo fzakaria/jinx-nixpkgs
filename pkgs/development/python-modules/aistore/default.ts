@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 51, 26], ["version", 51, 32], ["hash", 52, 5]], [["botocore", 76, 5], ["etl", 79, 5], ["mcp", 87, 5], ["pytorch", 90, 5]], [["description", 104, 5], ["homepage", 105, 5], ["downloadPage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]], [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["__structuredAttrs", 47, 3], ["src", 50, 3], ["build-system", 55, 3], ["dependencies", 59, 3], ["optional-dependencies", 75, 3], ["pythonImportsCheck", 98, 3], ["doCheck", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, braceexpand: false, cloudpickle: false, humanize: false, msgspec: false, overrides: false, packaging: false, pydantic: false, "python-dateutil": false, pyyaml: false, requests: false, tenacity: false, urllib3: false, xxhash: false, wrapt: false, aiofiles: false, fastapi: false, flask: false, gunicorn: false, httpx: false, uvicorn: false, mcp: false, "alive-progress": false, torch: false, torchdata: false, webdataset: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 51, 26], ["version", 51, 32], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["botocore", 76, 5], ["etl", 79, 5], ["mcp", 87, 5], ["pytorch", 90, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 104, 5], ["homepage", 105, 5], ["downloadPage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["__structuredAttrs", 47, 3], ["src", 50, 3], ["build-system", 55, 3], ["dependencies", 59, 3], ["optional-dependencies", 75, 3], ["pythonImportsCheck", 98, 3], ["doCheck", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const torchdata = nix.arg($, "torchdata");
   const webdataset = nix.arg($, "webdataset");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "aistore",
       version: "1.25.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-aslNCRSV7QKgvvDuUQPgcbUyUDdGP2kC4ryFu6IVYYE=",
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         xxhash,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         botocore: nix.thunk(() => [wrapt]),
         etl: nix.thunk(() => [aiofiles, fastapi, flask, gunicorn, httpx, uvicorn]),
         mcp: nix.thunk(() => [mcp]),
@@ -77,7 +74,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aistore"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Client-side APIs to access and utilize clusters, buckets, and objects on AIStore",
         homepage: "https://aistore.nvidia.com",
         downloadPage: "https://github.com/NVIDIA/aistore/tree/main/python/aistore/sdk",

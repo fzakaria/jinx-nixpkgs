@@ -2,38 +2,26 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/optee.nix", [[["maintainers", 6, 5]], [["postPatch", 17, 9]], [["extraMakeFlags", 25, 9], ["filesToInstall", 34, 9], ["postInstall", 38, 9]], [["options", 48, 14]], [["bios", 46, 17], ["cores", 47, 9], ["qemu", 48, 9]], [["enable", 55, 24]], [["grub", 55, 19]], [["loader", 55, 12], ["kernelModules", 56, 12]], [["enable", 59, 9], ["trustedApplications", 61, 9]], [["tee-supplicant", 58, 16]], [["virtualisation", 45, 7], ["boot", 55, 7], ["services", 58, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 64, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/optee.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/optee.nix", [["postPatch", 17, 9]]);
-const pos$3 = nix.positions(here + "/optee.nix", [["extraMakeFlags", 25, 9], ["filesToInstall", 34, 9], ["postInstall", 38, 9]]);
-const pos$4 = nix.positions(here + "/optee.nix", [["options", 48, 14]]);
-const pos$5 = nix.positions(here + "/optee.nix", [["bios", 46, 17], ["cores", 47, 9], ["qemu", 48, 9]]);
-const pos$6 = nix.positions(here + "/optee.nix", [["enable", 55, 24]]);
-const pos$7 = nix.positions(here + "/optee.nix", [["grub", 55, 19]]);
-const pos$8 = nix.positions(here + "/optee.nix", [["loader", 55, 12], ["kernelModules", 56, 12]]);
-const pos$9 = nix.positions(here + "/optee.nix", [["enable", 59, 9], ["trustedApplications", 61, 9]]);
-const pos$10 = nix.positions(here + "/optee.nix", [["tee-supplicant", 58, 16]]);
-const pos$11 = nix.positions(here + "/optee.nix", [["virtualisation", 45, 7], ["boot", 55, 7], ["services", 58, 7]]);
-const pos$12 = nix.positions(here + "/optee.nix", [["machine", 9, 9]]);
-const pos$13 = nix.positions(here + "/optee.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "optee",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jmbaur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
@@ -42,11 +30,11 @@ export default nix.lambda((args) => (() => {
         const opteeQemuAarch64 = nix.thunk(() => nix.attr(pkgs_1, "opteeQemuAarch64"));
         const ubootQemuAarch64 = nix.thunk(() => nix.attr(pkgs_1, "ubootQemuAarch64"));
         const uboot = nix.thunk(() => nix.app(nix.sel(ubootQemuAarch64, "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             postPatch: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postPatch"), "substituteInPlace board/emulation/qemu-arm/qemu-arm.env \\\n  --replace-fail \"kernel_addr_r=0x40400000\" \"kernel_addr_r=0x50000000\" \\\n  --replace-fail \"ramdisk_addr_r=0x44000000\" \"ramdisk_addr_r=0x58000000\"\n")),
           })));
         const bios = nix.thunk(() => nix.app(nix.sel(armTrustedFirmwareQemu, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraMakeFlags: nix.thunk(() => [
               "SPD=opteed",
               nix.thunk(() => nix.str`BL32=${opteeQemuAarch64}/tee-header_v2.bin`),
@@ -60,28 +48,28 @@ export default nix.lambda((args) => (() => {
             postInstall: "dd if=$out/bl1.bin of=$out/bios.bin bs=4096 conv=notrunc\ndd if=$out/fip.bin of=$out/bios.bin seek=64 bs=4096 conv=notrunc\n",
           }))));
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             bios: bios,
             cores: 2n,
             qemu: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               options: nix.thunk(() => ["-machine virt,secure=on,accel=tcg,gic-version=2", "-cpu cortex-a57"]),
             })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              grub: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
+              [nix.POS]: $pos[6],
+              grub: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: false })),
             })),
             kernelModules: nix.thunk(() => ["optee"]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             "tee-supplicant": nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               trustedApplications: nix.thunk(() => [
                 nix.thunk(() => nix.str`${nix.sel(opteeQemuAarch64, "devkit")}/ta/fd02c9da-306c-48c7-a49c-bbd827ae86ee.ta`),

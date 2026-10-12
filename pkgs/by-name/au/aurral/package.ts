@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["fontDirectories", 64, 5]], [["AURRAL_MATCHER_PYTHON", 60, 7], ["VITE_APP_VERSION", 61, 7], ["LD_LIBRARY_PATH", 62, 7], ["FONTCONFIG_FILE", 63, 7]], [["tests", 139, 5], ["updateScript", 140, 5]], [["description", 144, 5], ["mainProgram", 145, 5], ["homepage", 146, 5], ["changelog", 147, 5], ["license", 148, 5], ["platforms", 149, 5], ["maintainers", 150, 5]], [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["patches", 37, 3], ["postPatch", 43, 3], ["npmDepsFetcherVersion", 55, 3], ["npmDepsHash", 56, 3], ["nodejs", 58, 3], ["env", 60, 3], ["npmInstallFlags", 70, 3], ["npmBuildFlags", 75, 3], ["doCheck", 77, 3], ["nativeCheckInputs", 79, 3], ["checkPhase", 84, 3], ["npmPruneFlags", 93, 3], ["postInstall", 99, 3], ["passthru", 138, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, gitMinimal: false, "nix-update-script": false, nodejs_26: false, python3: false, sqlite: false, ffmpeg: false, "yt-dlp": false, jemalloc: false, runtimeShell: false, makeFontsConf: false, "noto-fonts-color-emoji": false, dejavu_fonts: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fontDirectories", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["AURRAL_MATCHER_PYTHON", 60, 7], ["VITE_APP_VERSION", 61, 7], ["LD_LIBRARY_PATH", 62, 7], ["FONTCONFIG_FILE", 63, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 139, 5], ["updateScript", 140, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 144, 5], ["mainProgram", 145, 5], ["homepage", 146, 5], ["changelog", 147, 5], ["license", 148, 5], ["platforms", 149, 5], ["maintainers", 150, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["patches", 37, 3], ["postPatch", 43, 3], ["npmDepsFetcherVersion", 55, 3], ["npmDepsHash", 56, 3], ["nodejs", 58, 3], ["env", 60, 3], ["npmInstallFlags", 70, 3], ["npmBuildFlags", 75, 3], ["doCheck", 77, 3], ["nativeCheckInputs", 79, 3], ["checkPhase", 84, 3], ["npmPruneFlags", 93, 3], ["postInstall", 99, 3], ["passthru", 138, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const matcherPython = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "beets"))]));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "aurral",
       version: "2.10.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lklynet",
           repo: "aurral",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,12 +51,12 @@ substituteInPlace .tests/honker/background-worker-recovery.test.js \\
       npmDepsHash: "sha256-8GmWzjja+SYIkJa+VqkA0nmY10B/bjq7i2RR8qZBofo=",
       nodejs: nodejs_26,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         AURRAL_MATCHER_PYTHON: nix.thunk(() => nix.str`${matcherPython}/bin/python`),
         VITE_APP_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         LD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [sqlite]))),
         FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             fontDirectories: nix.thunk(() => [noto_fonts_color_emoji, dejavu_fonts]),
           })))),
       })),
@@ -103,12 +98,12 @@ EOL
 chmod +x $out/bin/aurral
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.sel(nixosTests, "aurral")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Aurral is the Lidarr companion for self-hosted music discovery",
         mainProgram: "aurral",
         homepage: "https://aurral.org",

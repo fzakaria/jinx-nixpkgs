@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["CC_wasm32_unknown_unknown", 138, 7], ["CFLAGS_wasm32_unknown_unknown", 139, 7]], [["rerun-sdk", 209, 33]], [["updateScript", 207, 5], ["tests", 208, 5]], [["description", 214, 5], ["homepage", 215, 5], ["changelog", 216, 5], ["license", 217, 5], ["maintainers", 221, 5], ["mainProgram", 225, 5]], [["pname", 42, 3], ["version", 43, 3], ["__structuredAttrs", 45, 3], ["outputs", 47, 3], ["src", 52, 3], ["postPatch", 60, 3], ["cargoHash", 65, 3], ["cargoBuildFlags", 67, 3], ["cargoTestFlags", 73, 3], ["buildNoDefaultFeatures", 77, 3], ["buildFeatures", 78, 3], ["buildWebViewerFeatures", 85, 11], ["preBuild", 92, 3], ["nativeBuildInputs", 111, 3], ["env", 128, 3], ["buildInputs", 142, 3], ["propagatedBuildInputs", 155, 3], ["addDlopenRunpaths", 157, 3], ["addDlopenRunpathsPhase", 165, 3], ["postPhases", 182, 3], ["postInstall", 184, 3], ["nativeInstallCheckInputs", 201, 3], ["doInstallCheck", 204, 3], ["passthru", 206, 3], ["meta", 213, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "arrow-cpp": false, binaryen: false, lld: false, llvmPackages: false, "pkg-config": false, protobuf: false, rustfmt: false, nasm: false, freetype: false, glib: false, gtk3: false, libxkbcommon: false, openssl: false, "vulkan-loader": false, udev: false, wayland: false, versionCheckHook: false, "nix-update-script": false, python3Packages: false, buildWebViewerFeatures: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CC_wasm32_unknown_unknown", 138, 7], ["CFLAGS_wasm32_unknown_unknown", 139, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rerun-sdk", 209, 33]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 207, 5], ["tests", 208, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 214, 5], ["homepage", 215, 5], ["changelog", 216, 5], ["license", 217, 5], ["maintainers", 221, 5], ["mainProgram", 225, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["__structuredAttrs", 45, 3], ["outputs", 47, 3], ["src", 52, 3], ["postPatch", 60, 3], ["cargoHash", 65, 3], ["cargoBuildFlags", 67, 3], ["cargoTestFlags", 73, 3], ["buildNoDefaultFeatures", 77, 3], ["buildFeatures", 78, 3], ["buildWebViewerFeatures", 85, 11], ["preBuild", 92, 3], ["nativeBuildInputs", 111, 3], ["env", 128, 3], ["buildInputs", 142, 3], ["propagatedBuildInputs", 155, 3], ["addDlopenRunpaths", 157, 3], ["addDlopenRunpathsPhase", 165, 3], ["postPhases", 182, 3], ["postInstall", 184, 3], ["nativeInstallCheckInputs", 201, 3], ["doInstallCheck", 204, 3], ["passthru", 206, 3], ["meta", 213, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const buildWebViewerFeatures = nix.argOr($, "buildWebViewerFeatures", () => ["map_view"]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rerun",
       version: "0.38.1",
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rerun-io",
           repo: "rerun",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -71,7 +66,7 @@ export default nix.lambda((args) => (() => {
         const resourceDir = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), clang_unwrapped)}/lib/clang/${majorVersion}`);
         const includeDir = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))}/lib/clang/${majorVersion}/include`);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           CC_wasm32_unknown_unknown: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), clang_unwrapped)),
           CFLAGS_wasm32_unknown_unknown: nix.thunk(() => nix.str`-isystem ${includeDir} -resource-dir ${resourceDir}`),
         };
@@ -99,15 +94,15 @@ cp $src/rerun_cpp/download_and_build_arrow.cmake $dev/lib/cmake/rerun_sdk/
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "rerun-sdk": nix.thunk(() => nix.attr(python3Packages, "rerun-sdk")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Visualize streams of multimodal data. Fast, easy to use, and simple to integrate. Built in Rust using egui. Includes C++ SDK",
         homepage: "https://github.com/rerun-io/rerun",
         changelog: nix.thunk(() => nix.str`https://github.com/rerun-io/rerun/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

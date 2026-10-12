@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/batctl.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["homepage", 30, 5], ["description", 31, 5], ["mainProgram", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5]], [["pname", 14, 3], ["version", 15, 17], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["preBuild", 25, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libnl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/batctl.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/batctl.nix", [["homepage", 30, 5], ["description", 31, 5], ["mainProgram", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5]]);
-const pos$3 = nix.positions(here + "/batctl.nix", [["pname", 14, 3], ["version", 15, 17], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["preBuild", 25, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "batctl";
       const version = nix.thunk(() => nix.attr(cfg, "version"));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.open-mesh.org/batman/releases/batman-adv-${version}/${pname}-${version}.tar.gz`),
           sha256: nix.thunk(() => nix.sel(cfg, "sha256", nix.key(pname))),
         }))));
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libnl]);
       const preBuild = "makeFlags=\"PREFIX=$out\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.open-mesh.org/projects/batman-adv/wiki/Wiki",
         description: "B.A.T.M.A.N. routing protocol in a linux kernel module for layer 2, control tool",
         mainProgram: "batctl",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,26 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/simple.nix", [[["device", 16, 13], ["fsType", 17, 13], ["options", 18, 13]], [["/data", 14, 11]], [["fileSystems", 13, 24]], [["enable", 21, 29]], [["firewall", 21, 20]], [["virtualisation", 13, 9], ["networking", 21, 9]], [["maintainers", 29, 7]], [["192.168.1.0/255.255.255.0", 42, 15]], [["/data", 41, 13]], [["enable", 39, 31], ["exports", 40, 31], ["createMountPoints", 50, 31]], [["server", 39, 24]], [["nfs", 39, 20]], [["enable", 51, 31]], [["firewall", 51, 22]], [["services", 39, 11], ["networking", 51, 11]], [["client1", 33, 7], ["client2", 34, 7], ["server", 36, 7]], [["name", 27, 5], ["meta", 28, 5], ["nodes", 32, 5], ["testScript", 55, 5]]]);
 const formals$1 = { args: { pkgs: false, version: true }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/simple.nix", [["device", 16, 13], ["fsType", 17, 13], ["options", 18, 13]]);
-const pos$2 = nix.positions(here + "/simple.nix", [["/data", 14, 11]]);
-const pos$3 = nix.positions(here + "/simple.nix", [["fileSystems", 13, 24]]);
-const pos$4 = nix.positions(here + "/simple.nix", [["enable", 21, 29]]);
-const pos$5 = nix.positions(here + "/simple.nix", [["firewall", 21, 20]]);
-const pos$6 = nix.positions(here + "/simple.nix", [["virtualisation", 13, 9], ["networking", 21, 9]]);
-const pos$7 = nix.positions(here + "/simple.nix", [["maintainers", 29, 7]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$8 = nix.positions(here + "/simple.nix", [["192.168.1.0/255.255.255.0", 42, 15]]);
-const pos$9 = nix.positions(here + "/simple.nix", [["/data", 41, 13]]);
-const pos$10 = nix.positions(here + "/simple.nix", [["enable", 39, 31], ["exports", 40, 31], ["createMountPoints", 50, 31]]);
-const pos$11 = nix.positions(here + "/simple.nix", [["server", 39, 24]]);
-const pos$12 = nix.positions(here + "/simple.nix", [["nfs", 39, 20]]);
-const pos$13 = nix.positions(here + "/simple.nix", [["enable", 51, 31]]);
-const pos$14 = nix.positions(here + "/simple.nix", [["firewall", 51, 22]]);
-const pos$15 = nix.positions(here + "/simple.nix", [["services", 39, 11], ["networking", 51, 11]]);
-const pos$16 = nix.positions(here + "/simple.nix", [["client1", 33, 7], ["client2", 34, 7], ["server", 36, 7]]);
-const pos$17 = nix.positions(here + "/simple.nix", [["name", 27, 5], ["meta", 28, 5], ["nodes", 32, 5], ["testScript", 55, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
@@ -31,13 +15,13 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
       const $_1 = nix.formals(args_1, formals$2);
       const pkgs_1 = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           fileSystems: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "/data": nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               device: nix.thunk(() => (nix.asBool(nix.eq(version, 4n)) ? "server:/" : "server:/data")),
               fsType: "nfs",
               options: nix.thunk(() => [nix.thunk(() => nix.str`vers=${nix.builtins.toString(version)}`)]),
@@ -45,34 +29,34 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
+          [nix.POS]: $pos[4],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: false })),
         })),
       };
     })(), formals$2);
     return {
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       name: nix.thunk(() => nix.str`nfsv${nix.builtins.toString(version)}-simple`),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$7, maintainers: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[6], maintainers: [] })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         client1: client,
         client2: client,
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return {
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               nfs: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 server: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   enable: true,
                   exports: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     "/data": nix.thunk(() => ({
-                      [nix.POS]: pos$8,
+                      [nix.POS]: $pos[7],
                       "192.168.1.0/255.255.255.0": nix.thunk(() => ["rw", "no_root_squash", "no_subtree_check", "fsid=0"]),
                     })),
                   })),
@@ -81,8 +65,8 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$14,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
+              [nix.POS]: $pos[13],
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: false })),
             })),
           };
         })(), formals$3),

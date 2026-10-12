@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["broken", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["makeFlags", 22, 3], ["enableParallelBuilding", 27, 3], ["preInstall", 29, 3], ["installTargets", 33, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["broken", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["makeFlags", 22, 3], ["enableParallelBuilding", 27, 3], ["preInstall", 29, 3], ["installTargets", 33, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ivsc-driver",
       version: "unstable-2024-09-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "ivsc-driver",
           rev: "10f440febe87419d5c82d8fe48580319ea135b54",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "sed -i -e \"s,INSTALL_MOD_DIR=,INSTALL_MOD_PATH=$out INSTALL_MOD_DIR=,\" Makefile\n",
       installTargets: nix.thunk(() => ["modules_install"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/intel/ivsc-driver",
         description: "Intel Vision Sensing Controller kernel driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

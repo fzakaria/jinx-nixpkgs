@@ -2,49 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/prefect.nix", [[["installPolicy", 16, 31]], [["default", 16, 23]], [["enable", 15, 11], ["workerPools", 16, 11]], [["prefect", 14, 18]], [["services", 14, 9]], [["enable", 24, 11], ["database", 25, 11], ["databaseUser", 26, 11], ["databasePasswordFile", 27, 11]], [["enable", 35, 11], ["initialScript", 39, 11]], [["prefect", 23, 18], ["postgresql", 34, 18]], [["text", 30, 47]], [["prefect-db-password", 30, 25]], [["etc", 30, 21]], [["after", 45, 41]], [["prefect-server", 45, 26]], [["services", 45, 17]], [["services", 23, 9], ["environment", 30, 9], ["systemd", 45, 9]], [["machine", 11, 5], ["postgres", 20, 5]], [["maintainers", 79, 5]], [["name", 6, 3], ["nodes", 8, 3], ["testScript", 49, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/prefect.nix", [["installPolicy", 16, 31]]);
-const pos$2 = nix.positions(here + "/prefect.nix", [["default", 16, 23]]);
-const pos$3 = nix.positions(here + "/prefect.nix", [["enable", 15, 11], ["workerPools", 16, 11]]);
-const pos$4 = nix.positions(here + "/prefect.nix", [["prefect", 14, 18]]);
-const pos$5 = nix.positions(here + "/prefect.nix", [["services", 14, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/prefect.nix", [["enable", 24, 11], ["database", 25, 11], ["databaseUser", 26, 11], ["databasePasswordFile", 27, 11]]);
-const pos$7 = nix.positions(here + "/prefect.nix", [["enable", 35, 11], ["initialScript", 39, 11]]);
-const pos$8 = nix.positions(here + "/prefect.nix", [["prefect", 23, 18], ["postgresql", 34, 18]]);
-const pos$9 = nix.positions(here + "/prefect.nix", [["text", 30, 47]]);
-const pos$10 = nix.positions(here + "/prefect.nix", [["prefect-db-password", 30, 25]]);
-const pos$11 = nix.positions(here + "/prefect.nix", [["etc", 30, 21]]);
-const pos$12 = nix.positions(here + "/prefect.nix", [["after", 45, 41]]);
-const pos$13 = nix.positions(here + "/prefect.nix", [["prefect-server", 45, 26]]);
-const pos$14 = nix.positions(here + "/prefect.nix", [["services", 45, 17]]);
-const pos$15 = nix.positions(here + "/prefect.nix", [["services", 23, 9], ["environment", 30, 9], ["systemd", 45, 9]]);
-const pos$16 = nix.positions(here + "/prefect.nix", [["machine", 11, 5], ["postgres", 20, 5]]);
-const pos$17 = nix.positions(here + "/prefect.nix", [["maintainers", 79, 5]]);
-const pos$18 = nix.positions(here + "/prefect.nix", [["name", 6, 3], ["nodes", 8, 3], ["testScript", 49, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const mainPort = 4200n;
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "prefect",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             prefect: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               workerPools: nix.thunk(() => ({
-                [nix.POS]: pos$2,
-                default: nix.thunk(() => ({ [nix.POS]: pos$1, installPolicy: "never" })),
+                [nix.POS]: $pos[1],
+                default: nix.thunk(() => ({ [nix.POS]: $pos[0], installPolicy: "never" })),
               })),
             })),
           })),
@@ -54,34 +37,34 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             prefect: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               database: "postgres",
               databaseUser: "prefect",
               databasePasswordFile: "/etc/prefect-db-password",
             })),
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "prefect-init.sql", "CREATE ROLE prefect LOGIN PASSWORD 'hunter2';\nCREATE DATABASE prefect OWNER prefect;\n")),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$10,
-              "prefect-db-password": nix.thunk(() => ({ [nix.POS]: pos$9, text: "PREFECT_SERVER_DATABASE_PASSWORD=hunter2\n" })),
+              [nix.POS]: $pos[9],
+              "prefect-db-password": nix.thunk(() => ({ [nix.POS]: $pos[8], text: "PREFECT_SERVER_DATABASE_PASSWORD=hunter2\n" })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$13,
-              "prefect-server": nix.thunk(() => ({ [nix.POS]: pos$12, after: nix.thunk(() => ["postgresql.service"]) })),
+              [nix.POS]: $pos[12],
+              "prefect-server": nix.thunk(() => ({ [nix.POS]: $pos[11], after: nix.thunk(() => ["postgresql.service"]) })),
             })),
           })),
         };
@@ -115,7 +98,7 @@ with subtest("server talks to postgres rather than falling back to sqlite"):
     )
 `),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "happysalada"))];

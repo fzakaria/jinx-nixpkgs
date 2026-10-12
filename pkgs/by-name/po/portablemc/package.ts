@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 93, 5], ["repo", 94, 5], ["tag", 95, 5], ["hash", 96, 5]], [["pname", 102, 26], ["version", 102, 32], ["src", 102, 40], ["hash", 103, 5]], [["name", 107, 5], ["src", 108, 26], ["cargoDeps", 108, 30], ["nativeBuildInputs", 110, 5], ["buildInputs", 112, 5]], [["homepage", 132, 5], ["description", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["mainProgram", 136, 5], ["maintainers", 137, 5]], [["pname", 89, 3], ["version", 90, 3], ["src", 92, 3], ["dontUnpack", 99, 3], ["cargoDeps", 101, 3], ["unwrapped", 106, 3], ["strictDeps", 115, 3], ["nativeBuildInputs", 116, 3], ["installPhase", 118, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, openssl: false, makeWrapper: false, addDriverRunpath: false, "alsa-lib": false, "glfw3-minecraft": false, libGL: false, libjack2: false, libpulseaudio: false, libx11: false, libxcursor: false, libxext: false, libxrandr: false, libxxf86vm: false, openal: false, pipewire: false, udev: false, "vulkan-loader": false, textToSpeechSupport: true, flite: false, pciutils: false, xrandr: false, jdk25: false, jdk21: false, jdk17: false, jdk8: false, jvms: true, additionalLibs: true, additionalPrograms: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 93, 5], ["repo", 94, 5], ["tag", 95, 5], ["hash", 96, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 102, 26], ["version", 102, 32], ["src", 102, 40], ["hash", 103, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 107, 5], ["src", 108, 26], ["cargoDeps", 108, 30], ["nativeBuildInputs", 110, 5], ["buildInputs", 112, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 132, 5], ["description", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["mainProgram", 136, 5], ["maintainers", 137, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 89, 3], ["version", 90, 3], ["src", 92, 3], ["dontUnpack", 99, 3], ["cargoDeps", 101, 3], ["unwrapped", 106, 3], ["strictDeps", 115, 3], ["nativeBuildInputs", 116, 3], ["installPhase", 118, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -63,11 +59,11 @@ export default nix.lambda((args) => (() => {
   ], nix.concat(nix.app(nix.sel(lib, "optional"), textToSpeechSupport, flite), additionalLibs)));
   const runtimePrograms = nix.thunk(() => nix.concat([pciutils, xrandr], additionalPrograms));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "portablemc",
       version: "5.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "theorzr",
           repo: "portablemc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,14 +71,14 @@ export default nix.lambda((args) => (() => {
         })))),
       dontUnpack: true,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-Ub9XVc6gcu6fEiOheew9Uh3LqdaSzVKITboDTK+MQUI=",
         })))),
       unwrapped: nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.str`portablemc-${nix.sel(finalAttrs, "version")}-unwrapped`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           cargoDeps: nix.thunk(() => nix.attr(finalAttrs, "cargoDeps")),
@@ -102,7 +98,7 @@ makeWrapper "$unwrapped/bin/portablemc" "$out/bin/portablemc" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/theorzr/portablemc",
         description: "Cross platform command line utility for launching Minecraft quickly and reliably with included support for Mojang versions and popular mod loaders",
         changelog: nix.thunk(() => nix.str`https://github.com/theorzr/portablemc/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

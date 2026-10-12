@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["rev-prefix", 116, 33]], [["enableIoUring", 119, 45]], [["with-io-uring", 119, 11]], [["updateScript", 116, 5], ["boost", 117, 13], ["sitePackages", 118, 5], ["tests", 119, 5]], [["description", 123, 5], ["mainProgram", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 131, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["propagatedBuildInputs", 41, 3], ["nativeBuildInputs", 54, 3], ["dontUseCmakeConfigure", 66, 3], ["mesonFlags", 68, 3], ["patches", 76, 3], ["postPatch", 89, 3], ["doCheck", 94, 3], ["mesonCheckFlags", 96, 3], ["postInstall", 103, 3], ["nativeInstallCheckInputs", 110, 3], ["doInstallCheck", 113, 3], ["passthru", 115, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, meson: false, ninja: false, fetchFromGitLab: false, re2c: false, gperf: false, gawk: false, "pkg-config": false, boost: false, fmt: false, luajit_openresty: false, ncurses: false, serd: false, sord: false, libcap: false, liburing: false, openssl: false, cereal: false, cmake: false, asciidoctor: false, makeWrapper: false, versionCheckHook: false, gitUpdater: false, enableIoUring: true, emilua: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 116, 33]]);
-const pos$3 = nix.positions(here + "/default.nix", [["enableIoUring", 119, 45]]);
-const pos$4 = nix.positions(here + "/default.nix", [["with-io-uring", 119, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 116, 5], ["boost", 117, 13], ["sitePackages", 118, 5], ["tests", 119, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 123, 5], ["mainProgram", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 131, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["propagatedBuildInputs", 41, 3], ["nativeBuildInputs", 54, 3], ["dontUseCmakeConfigure", 66, 3], ["mesonFlags", 68, 3], ["patches", 76, 3], ["postPatch", 89, 3], ["doCheck", 94, 3], ["mesonCheckFlags", 96, 3], ["postInstall", 103, 3], ["nativeInstallCheckInputs", 110, 3], ["doInstallCheck", 113, 3], ["passthru", 115, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const enableIoUring = nix.argOr($, "enableIoUring", () => false);
   const emilua = nix.arg($, "emilua");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "emilua",
       version: "0.12.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emilua",
           repo: "emilua",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -84,17 +78,17 @@ substituteInPlace $out/nix-support/setup-hook \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
         boost: boost,
         sitePackages: nix.thunk(() => nix.str`lib/emilua-${nix.app(nix.sel(lib, "concatStringsSep"), ".", nix.thunk(() => nix.app(nix.sel(lib, "take"), 2n, nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version")))))))}`),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          "with-io-uring": nix.thunk(() => nix.app(nix.sel(emilua, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, enableIoUring: true })))),
+          [nix.POS]: $pos[3],
+          "with-io-uring": nix.thunk(() => nix.app(nix.sel(emilua, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], enableIoUring: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Lua execution engine",
         mainProgram: "emilua",
         homepage: "https://emilua.org/",

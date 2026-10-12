@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["homepage", 57, 5], ["description", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["configureFlags", 36, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bison: false, flex: false, zlib: false, libxcrypt: false, usePAM: true, pam: false, useSSL: true, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["description", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["configureFlags", 36, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const useSSL = nix.argOr($, "useSSL", () => true);
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "monit",
       version: "5.35.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mmonit.com/monit/dist/monit-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Tf71QynmPZdyqeHDasmbxBFzt5lj3A2CNfLDL0ueB48=",
         })))),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
           "libmonit_cv_vsnprintf_c99_conformant=yes",
         ]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://mmonit.com/monit/",
         description: "Monitoring system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["homepage", 30, 5], ["description", 31, 5], ["maintainers", 32, 5], ["license", 33, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["preConfigure", 20, 3], ["nativeBuildInputs", 25, 3], ["hardeningDisable", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildDunePackage: false, fetchFromGitHub: false, autoconf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 30, 5], ["description", 31, 5], ["maintainers", 32, 5], ["license", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["preConfigure", 20, 3], ["nativeBuildInputs", 25, 3], ["hardeningDisable", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoconf = nix.arg($, "autoconf");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cpu",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "UnixJunkie",
           repo: "cpu",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoconf]),
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "strictoverflow")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/UnixJunkie/cpu",
         description: "Core pinning library",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bcdarwin"))]),

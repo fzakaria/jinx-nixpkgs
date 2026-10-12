@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 48, 5], ["homepage", 49, 5], ["downloadPage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["teams", 54, 5], ["platforms", 55, 5], ["sourceProvenance", 56, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 29, 3], ["dontConfigure", 31, 3], ["dontBuild", 32, 3], ["installPhase", 34, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, makeWrapper: false, openjdk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["downloadPage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["teams", 54, 5], ["platforms", 55, 5], ["sourceProvenance", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 29, 3], ["dontConfigure", 31, 3], ["dontBuild", 32, 3], ["installPhase", 34, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const openjdk = nix.arg($, "openjdk");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "android-studio-tools",
       version: "15859902",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip",
           hash: "sha256-tCbccw7qa7ncHGyWPWjwQOpaisN3QMRYXRpK7WtyjWY=",
         })))),
@@ -39,7 +37,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Android Studio CLI Tools",
         homepage: "https://developer.android.com/studio",
         downloadPage: "https://developer.android.com/studio",

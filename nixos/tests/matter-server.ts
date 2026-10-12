@@ -2,14 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/matter-server.nix", [[["maintainers", 9, 8], ["timeout", 10, 8]], [["enable", 17, 11], ["port", 18, 11], ["openFirewall", 19, 11]], [["matter-server", 16, 18]], [["services", 16, 9]], [["machine", 13, 5]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 12, 3], ["testScript", 24, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/matter-server.nix", [["maintainers", 9, 8], ["timeout", 10, 8]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/matter-server.nix", [["enable", 17, 11], ["port", 18, 11], ["openFirewall", 19, 11]]);
-const pos$3 = nix.positions(here + "/matter-server.nix", [["matter-server", 16, 18]]);
-const pos$4 = nix.positions(here + "/matter-server.nix", [["services", 16, 9]]);
-const pos$5 = nix.positions(here + "/matter-server.nix", [["machine", 13, 5]]);
-const pos$6 = nix.positions(here + "/matter-server.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 12, 3], ["testScript", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const chipVersion = nix.thunk(() => nix.sel(pkgs, "python3Packages", "home-assistant-chip-core", "version"));
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "matter-server",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "leonm1"))];
@@ -28,15 +23,15 @@ export default nix.lambda((args) => (() => {
       timeout: 120n,
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            "matter-server": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, port: 1234n, openFirewall: true })),
+            [nix.POS]: $pos[2],
+            "matter-server": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, port: 1234n, openFirewall: true })),
           })),
         };
       })(), formals$2),

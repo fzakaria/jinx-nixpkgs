@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["pname", 42, 26], ["version", 42, 32], ["src", 42, 40], ["hash", 43, 5]], [["updateScript", 103, 12]], [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["teams", 110, 5], ["mainProgram", 111, 5], ["platforms", 112, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["cargoDeps", 41, 3], ["postPatch", 47, 3], ["strictDeps", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 70, 3], ["mesonBuildType", 86, 3], ["doCheck", 88, 3], ["cargoCheckType", 89, 3], ["nativeInstallCheckInputs", 91, 3], ["doInstallCheck", 92, 3], ["checkPhase", 94, 3], ["passthru", 103, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, appstream: false, "blueprint-compiler": false, cargo: false, dav1d: false, "desktop-file-utils": false, fetchFromGitLab: false, glib: false, "glycin-loaders": false, gst_all_1: false, gtk4: false, lcms: false, libadwaita: false, "libglycin-gtk4": false, libseccomp: false, libwebp: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, rustPlatform: false, rustc: false, versionCheckHook: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 42, 26], ["version", 42, 32], ["src", 42, 40], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 103, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["teams", 110, 5], ["mainProgram", 111, 5], ["platforms", 112, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["cargoDeps", 41, 3], ["postPatch", 47, 3], ["strictDeps", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 70, 3], ["mesonBuildType", 86, 3], ["doCheck", 88, 3], ["cargoCheckType", 89, 3], ["nativeInstallCheckInputs", 91, 3], ["doInstallCheck", 92, 3], ["checkPhase", 94, 3], ["passthru", 103, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "identity",
       version: "26.03",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "YaLTeR",
           repo: "identity",
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-CVSUk0xhfsMM47L0BVQj69Jw2MhsElBI3mxETCWBqcU=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -94,11 +90,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       checkPhase: "runHook preCheck\n\ncargoCheckHook\nmesonCheckPhase\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Program for comparing multiple versions of an image or video",
         homepage: "https://gitlab.gnome.org/YaLTeR/identity",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/YaLTeR/identity/-/releases/v${nix.sel(finalAttrs, "version")}`),

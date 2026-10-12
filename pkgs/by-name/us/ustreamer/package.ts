@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["ustreamer", 88, 43]], [["tests", 88, 12]], [["homepage", 91, 5], ["description", 92, 5], ["longDescription", 93, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 105, 5], ["mainProgram", 106, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 63, 3], ["makeFlags", 69, 3], ["enableParallelBuilding", 86, 3], ["passthru", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libbsd: false, libevent: false, libjpeg: false, libdrm: false, "pkg-config": false, "janus-gateway": false, glib: false, "alsa-lib": false, speex: false, jansson: false, libopus: false, nixosTests: false, systemdLibs: false, which: false, python3Packages: false, withSystemd: true, withJanus: true, withPython: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ustreamer", 88, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 88, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 91, 5], ["description", 92, 5], ["longDescription", 93, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 105, 5], ["mainProgram", 106, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 63, 3], ["makeFlags", 69, 3], ["enableParallelBuilding", 86, 3], ["passthru", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const withJanus = nix.argOr($, "withJanus", () => true);
   const withPython = nix.argOr($, "withPython", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ustreamer",
       version: "6.67",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pikvm",
           repo: "ustreamer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,14 +59,14 @@ export default nix.lambda((args) => (() => {
         ])))))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           ustreamer: nix.thunk(() => nix.attr(nixosTests, "ustreamer")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/pikvm/ustreamer",
         description: "Lightweight and fast MJPG-HTTP streamer",
         longDescription: "µStreamer is a lightweight and very quick server to stream MJPG video from\nany V4L2 device to the net. All new browsers have native support of this\nvideo format, as well as most video players such as mplayer, VLC etc.\nµStreamer is a part of the Pi-KVM project designed to stream VGA and HDMI\nscreencast hardware data with the highest resolution and FPS possible.\n",

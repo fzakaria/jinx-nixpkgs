@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 31, 5], ["hash", 32, 5]], [["pname", 47, 9], ["version", 48, 17], ["buildInputs", 50, 9], ["dontUnpack", 52, 9], ["installPhase", 54, 9]], [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["maintainers", 92, 5]], [["pname", 17, 3], ["version", 19, 3], ["propagatedBuildInputs", 20, 3], ["minimalOCamlVersion", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["postFixup", 40, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, findlib: false, "lambda-term": false, cppo: false, makeWrapper: false, buildDunePackage: false, xdg: false, zed: false, logs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 47, 9], ["version", 48, 17], ["buildInputs", 50, 9], ["dontUnpack", 52, 9], ["installPhase", 54, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["maintainers", 92, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 19, 3], ["propagatedBuildInputs", 20, 3], ["minimalOCamlVersion", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["postFixup", 40, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [findlib, lambda_term, xdg, zed, logs]);
       const minimalOCamlVersion = "4.11";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ocaml-community/utop/releases/download/${version}/utop-${version}.tbz`),
           hash: "sha256-FOGTkf+LGMFbARc3TU0PxXIAUJV72AKYZQVkuJT6hdo=",
         }))));
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const postFixup = nix.thunk(() => (() => {
         const path = "etc/utop/env";
         const runtime = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: "utop-runtime-env",
             version: version,
             buildInputs: nix.thunk(() => nix.concat([findlib], propagatedBuildInputs)),
@@ -65,7 +62,7 @@ done
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Universal toplevel for OCaml",
         longDescription: "utop is an improved toplevel for OCaml. It can run in a terminal or in Emacs. It supports line edition, history, real-time and context sensitive completion, colors, and more.\n\nIt integrates with the tuareg mode in Emacs.\n",
         homepage: "https://github.com/ocaml-community/utop",
@@ -75,7 +72,7 @@ done
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "gal_bolle"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         propagatedBuildInputs,

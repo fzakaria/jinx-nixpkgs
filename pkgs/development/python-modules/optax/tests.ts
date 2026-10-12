@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["format", 13, 3], ["pname", 14, 3], ["version", 15, 19], ["src", 17, 3], ["dontBuild", 19, 3], ["dontInstall", 20, 3], ["nativeCheckInputs", 22, 3], ["disabledTestPaths", 31, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "dm-haiku": false, "pytest-xdist": false, pytestCheckHook: false, tensorflow: false, "tensorflow-datasets": false, flax: false, optax: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["format", 13, 3], ["pname", 14, 3], ["version", 15, 19], ["src", 17, 3], ["dontBuild", 19, 3], ["dontInstall", 20, 3], ["nativeCheckInputs", 22, 3], ["disabledTestPaths", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const flax = nix.arg($, "flax");
   const optax = nix.arg($, "optax");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       format: "setuptools",
       pname: "optax-tests",
       version: nix.thunk(() => nix.attr(optax, "version")),

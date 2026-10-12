@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 7], ["repo", 21, 7], ["rev", 22, 7], ["hash", 23, 7]], [["yarnLock", 27, 7], ["hash", 28, 7]], [["homepage", 61, 7], ["description", 62, 7], ["license", 63, 7]], [["pname", 16, 5], ["version", 17, 5], ["src", 19, 5], ["offlineCache", 26, 5], ["nativeBuildInputs", 31, 5], ["postPatch", 37, 5], ["buildPhase", 44, 5], ["installPhase", 53, 5], ["meta", 60, 5]], [["owner", 72, 5], ["repo", 73, 5], ["rev", 74, 5], ["hash", 75, 5]], [["name", 83, 7], ["url", 84, 7], ["hash", 85, 7]], [["homepage", 105, 5], ["description", 106, 5], ["maintainers", 107, 5], ["license", 108, 5], ["mainProgram", 109, 5]], [["pname", 68, 3], ["version", 69, 3], ["src", 71, 3], ["npmDepsHash", 78, 3], ["patches", 80, 3], ["dontNpmBuild", 89, 3], ["npmFlags", 91, 3], ["installPhase", 93, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, stdenv: false, fetchYarnDeps: false, yarnConfigHook: false, fetchFromGitHub: false, typescript_7: false, jq: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 7], ["repo", 21, 7], ["rev", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 61, 7], ["description", 62, 7], ["license", 63, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 5], ["version", 17, 5], ["src", 19, 5], ["offlineCache", 26, 5], ["nativeBuildInputs", 31, 5], ["postPatch", 37, 5], ["buildPhase", 44, 5], ["installPhase", 53, 5], ["meta", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 72, 5], ["repo", 73, 5], ["rev", 74, 5], ["hash", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 83, 7], ["url", 84, 7], ["hash", 85, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 105, 5], ["description", 106, 5], ["maintainers", 107, 5], ["license", 108, 5], ["mainProgram", 109, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 68, 3], ["version", 69, 3], ["src", 71, 3], ["npmDepsHash", 78, 3], ["patches", 80, 3], ["dontNpmBuild", 89, 3], ["npmFlags", 91, 3], ["installPhase", 93, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const fetchpatch = nix.arg($, "fetchpatch");
   const vscodeSpectral = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vscode-spectral",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stoplightio",
           repo: "vscode-spectral",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-TWy+bC6qhTKDY874ORTBbvCIH8ycpmBiU8GLYxBIiAs=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-am27A9VyFoXuOlgG9mnvNqV3Q7Bi7GJzDqqVFGDVWIA=",
         })))),
@@ -44,18 +37,18 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n# FIXME: vscode-spactral depends on @rollup/pluginutils, but it may have a bug that doesn't provide the type definitions for NodeNext module resolution. (ref: https://github.com/rollup/plugins/issues/1192)\n# tsc detects some type errors in the code. However we ignore this because it's not a problem for the final build if server/dist is generated.\ntsc -p server || true\ntest -d server/dist\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out\ncp -R server/dist $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/stoplightio/vscode-spectral",
         description: "VS Code extension bringing the awesome Spectral JSON/YAML linter with OpenAPI/AsyncAPI support",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       })),
     })));
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "spectral-language-server",
       version: "1.0.8-unstable-2023-06-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "luizcorreia",
           repo: "spectral-language-server",
           rev: "c9a7752b08e6bba937ef4f5435902afd41b6957f",
@@ -64,7 +57,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-ixAXy/rRkyWL3jdAkrXJh1qhWcKIkr5nH/Bhu2JV6k8=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "fix-package-lock.patch",
             url: "https://github.com/luizcorreia/spectral-language-server/commit/909704850dd10e7b328fc7d15f8b07cdef88899d.patch",
             hash: "sha256-+mN93xP4HCll4dTcnh2W/m9k3XovvgnB6AOmuJpZUZ0=",
@@ -82,7 +75,7 @@ cp -R ./node_modules/* $out/node_modules
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/luizcorreia/spectral-language-server",
         description: "Awesome Spectral JSON/YAML linter with OpenAPI/AsyncAPI support",
         maintainers: [],

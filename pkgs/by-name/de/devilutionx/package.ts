@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["sha256", 30, 5]], [["url", 35, 5], ["sha256", 36, 5]], [["url", 41, 5], ["sha256", 42, 5]], [["owner", 47, 5], ["repo", 48, 5], ["fetchSubmodules", 49, 5], ["rev", 50, 5], ["sha256", 51, 5]], [["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]], [["homepage", 106, 5], ["description", 107, 5], ["mainProgram", 108, 5], ["longDescription", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 114, 5]], [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["patches", 66, 3], ["postPatch", 68, 3], ["cmakeFlags", 79, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 90, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, bzip2: false, cmake: false, "pkg-config": false, gettext: false, libsodium: false, SDL2: false, SDL2_image: false, SDL_audiolib: false, simpleini: false, flac: false, fmt_11: false, libogg: false, libpng: false, libtiff: false, libwebp: false, smpq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 41, 5], ["sha256", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["fetchSubmodules", 49, 5], ["rev", 50, 5], ["sha256", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 106, 5], ["description", 107, 5], ["mainProgram", 108, 5], ["longDescription", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 114, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["patches", 66, 3], ["postPatch", 68, 3], ["cmakeFlags", 79, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 90, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,22 +28,22 @@ export default nix.lambda((args) => (() => {
   const libwebp = nix.arg($, "libwebp");
   const smpq = nix.arg($, "smpq");
   const asio = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/diasurgical/asio/archive/4bcf552fcea3e1ae555dde2ab33bc9fa6770da4d.tar.gz",
       sha256: "sha256-AFBy5OFsAzxZsiI4DirIHh+VjFkdalEhN9OGqhC0Cvc=",
     }))));
   const libmpq = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://github.com/diasurgical/libmpq/archive/b78d66c6fee6a501cc9b95d8556a129c68841b05.tar.gz",
       sha256: "sha256-NIzZwr6cBn38uKLWzW+Uet5QiOFUPB5dsf3FsS22ruo=",
     }))));
   const libsmackerdec = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://github.com/diasurgical/libsmackerdec/archive/91e732bb6953489077430572f43fc802bf2c75b2.tar.gz",
       sha256: "sha256-5WXjfvGuT4hG2cnCS4YbxW/c4tek7OR95EjgCqkEi4c=",
     }))));
   const libzt = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "diasurgical",
       repo: "libzt",
       fetchSubmodules: true,
@@ -57,11 +51,11 @@ export default nix.lambda((args) => (() => {
       sha256: "sha256-/A77ZM4s+br1hYa0OBdjXcWXUXYG+GiEYcW8VB+UJHo=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "devilutionx",
       version: "1.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "diasurgical",
           repo: "devilutionX",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -94,7 +88,7 @@ substituteInPlace Source/init.cpp \\
         simpleini,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/diasurgical/devilutionX",
         description: "Diablo build for modern operating systems",
         mainProgram: "devilutionx",

@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mktplcExtRefToFetchArgs.nix", [[["url", 13, 3], ["sha256", 14, 11], ["hash", 14, 18], ["name", 17, 3]]]);
 const formals$1 = { args: { publisher: false, name: false, version: false, arch: true, sha256: true, hash: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mktplcExtRefToFetchArgs.nix", [["url", 13, 3], ["sha256", 14, 11], ["hash", 14, 18], ["name", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const hash = nix.argOr($, "hash", () => "");
   const archurl = nix.thunk(() => (nix.asBool(nix.eq(arch, "")) ? "" : nix.str`?targetPlatform=${arch}`));
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     url: nix.thunk(() => nix.str`https://${publisher}.gallery.vsassets.io/_apis/public/gallery/publisher/${publisher}/extension/${name}/${version}/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage${archurl}`),
     sha256: sha256,
     hash: hash,

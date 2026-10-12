@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["postPatch", 25, 3], ["buildInputs", 30, 3], ["configureFlags", 36, 3], ["nativeInstallCheckInputs", 38, 3], ["versionCheckProgramArg", 39, 3], ["doInstallCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openssl: false, libssh2: false, gpgme: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["postPatch", 25, 3], ["buildInputs", 30, 3], ["configureFlags", 36, 3], ["nativeInstallCheckInputs", 38, 3], ["versionCheckProgramArg", 39, 3], ["doInstallCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gpgme = nix.arg($, "gpgme");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "phrasendrescher",
       version: "1.2.2c",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://leidecker.info/projects/phrasendrescher/phrasendrescher-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "18vg6h294219v14x5zqm8ddmq5amxlbz7pw81lcmpz8v678kwyph",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-h",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modular and multi processing pass phrase cracking tool",
         homepage: "https://leidecker.info/projects/phrasendrescher/index.shtml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

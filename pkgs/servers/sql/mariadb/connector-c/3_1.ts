@@ -2,15 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/3_1.nix", [[["version", 6, 5], ["hash", 7, 5]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/3_1.nix", [["version", 6, 5], ["hash", 7, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const callPackage = nix.arg($, "callPackage");
   return nix.app(callPackage, nix.path(here, "./."), nix.thunk(() => nix.update(args_1, {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "3.1.21",
       hash: "sha256-guN3Rcsb/EV4rxPE3yhJRSsT1+z44zUetg7ZBA4WjIc=",
     })));

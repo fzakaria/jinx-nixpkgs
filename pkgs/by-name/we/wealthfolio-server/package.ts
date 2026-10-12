@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 29, 9], ["version", 30, 30], ["src", 30, 38], ["pnpm", 32, 9], ["fetcherVersion", 33, 9], ["hash", 34, 9]], [["pname", 22, 7], ["version", 23, 28], ["src", 23, 36], ["__structuredAttrs", 25, 7], ["strictDeps", 26, 7], ["pnpmDeps", 28, 7], ["nativeBuildInputs", 37, 7], ["buildPhase", 43, 7], ["installPhase", 48, 7], ["meta", 53, 28]], [["owner", 63, 7], ["repo", 64, 7], ["tag", 65, 7], ["hash", 66, 7]], [["OPENSSL_NO_VENDOR", 74, 7], ["SSL_CERT_FILE", 75, 7]], [["frontend", 104, 15], ["updateScript", 105, 7]], [["description", 109, 7], ["homepage", 110, 7], ["changelog", 111, 7], ["mainProgram", 112, 7], ["license", 113, 7], ["maintainers", 114, 7], ["platforms", 115, 7]], [["__structuredAttrs", 57, 5], ["pname", 59, 5], ["version", 60, 5], ["src", 62, 5], ["cargoRoot", 69, 5], ["buildAndTestSubdir", 70, 5], ["cargoHash", 71, 5], ["env", 73, 5], ["nativeBuildInputs", 78, 5], ["buildInputs", 83, 5], ["postPatch", 85, 5], ["postInstall", 94, 5], ["passthru", 103, 5], ["meta", 108, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, fetchPnpmDeps: false, stdenv: false, pnpm_10: false, pnpmConfigHook: false, nodejs: false, makeWrapper: false, "pkg-config": false, openssl: false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 29, 9], ["version", 30, 30], ["src", 30, 38], ["pnpm", 32, 9], ["fetcherVersion", 33, 9], ["hash", 34, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 22, 7], ["version", 23, 28], ["src", 23, 36], ["__structuredAttrs", 25, 7], ["strictDeps", 26, 7], ["pnpmDeps", 28, 7], ["nativeBuildInputs", 37, 7], ["buildPhase", 43, 7], ["installPhase", 48, 7], ["meta", 53, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 63, 7], ["repo", 64, 7], ["tag", 65, 7], ["hash", 66, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 74, 7], ["SSL_CERT_FILE", 75, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["frontend", 104, 15], ["updateScript", 105, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 109, 7], ["homepage", 110, 7], ["changelog", 111, 7], ["mainProgram", 112, 7], ["license", 113, 7], ["maintainers", 114, 7], ["platforms", 115, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["__structuredAttrs", 57, 5], ["pname", 59, 5], ["version", 60, 5], ["src", 62, 5], ["cargoRoot", 69, 5], ["buildAndTestSubdir", 70, 5], ["cargoHash", 71, 5], ["env", 73, 5], ["nativeBuildInputs", 78, 5], ["buildInputs", 83, 5], ["postPatch", 85, 5], ["postInstall", 94, 5], ["passthru", 103, 5], ["meta", 108, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +22,14 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => (() => {
       const frontendPname = "wealthfolio-frontend";
       const frontend = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: frontendPname,
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           __structuredAttrs: true,
           strictDeps: true,
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               pname: frontendPname,
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,12 +43,12 @@ export default nix.lambda((args) => (() => {
           meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
         }))));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         __structuredAttrs: true,
         pname: "wealthfolio-server",
         version: "3.9.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "wealthfolio",
             repo: "wealthfolio",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
         buildAndTestSubdir: "apps/server",
         cargoHash: "sha256-skElXNXFcTwPv+rLKY90He8XLZfVrOJ8jYC4kL2vj9c=",
         env: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           OPENSSL_NO_VENDOR: 1n,
           SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
         })),
@@ -79,12 +73,12 @@ wrapProgram $out/bin/wealthfolio-server \\
   --set WF_STATIC_DIR "$out/share/wealthfolio/dist"
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           frontend: frontend,
           updateScript: nix.path(here, "./update.sh"),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: "Self-hosted web app for Wealthfolio",
           homepage: "https://wealthfolio.app/",
           changelog: nix.thunk(() => nix.str`https://github.com/wealthfolio/wealthfolio/tag/${nix.sel(finalAttrs, "src", "tag")}`),

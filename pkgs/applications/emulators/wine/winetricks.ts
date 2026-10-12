@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/winetricks.nix", [[["updateScript", 77, 30]], [["description", 81, 5], ["mainProgram", 82, 5], ["license", 83, 5], ["homepage", 84, 5], ["platforms", 85, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["buildInputs", 30, 3], ["makeFlags", 36, 3], ["doCheck", 38, 3], ["doInstallCheck", 40, 3], ["nativeInstallCheckInputs", 41, 3], ["postPatch", 43, 3], ["postInstall", 50, 3], ["passthru", 76, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, makeWrapper: false, bash: false, cabextract: false, coreutils: false, curl: false, gawk: false, gnugrep: false, gnused: false, gnutar: false, gzip: false, p7zip: false, perl: false, unzip: false, which: false, zenity: false, "unrar-free": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/winetricks.nix", [["updateScript", 77, 30]]);
-const pos$2 = nix.positions(here + "/winetricks.nix", [["description", 81, 5], ["mainProgram", 82, 5], ["license", 83, 5], ["homepage", 84, 5], ["platforms", 85, 5]]);
-const pos$3 = nix.positions(here + "/winetricks.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["buildInputs", 30, 3], ["makeFlags", 36, 3], ["doCheck", 38, 3], ["doInstallCheck", 40, 3], ["nativeInstallCheckInputs", 41, 3], ["postPatch", 43, 3], ["postInstall", 50, 3], ["passthru", 76, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const unrar_free = nix.arg($, "unrar-free");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "winetricks",
       version: nix.thunk(() => nix.sel(finalAttrs, "src", "version")),
       src: nix.thunk(() => nix.sel(nix.app(callPackage, nix.path(here, "./sources.nix"), nix.thunk(() => ({}))), "winetricks")),
@@ -66,12 +64,12 @@ export default nix.lambda((args) => (() => {
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.attr(from, "updateScript")),
       };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Script to install DLLs needed to work around problems in Wine",
         mainProgram: "winetricks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

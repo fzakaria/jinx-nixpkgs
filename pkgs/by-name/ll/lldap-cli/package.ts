@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["updateScript", 59, 12]], [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["mainProgram", 75, 5], ["platforms", 76, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["patchPhase", 29, 3], ["dontConfigure", 39, 3], ["dontBuild", 40, 3], ["installPhase", 42, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, bash: false, coreutils: false, gnugrep: false, gnused: false, jq: false, lldap: false, unixtools: false, curl: false, makeWrapper: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["mainProgram", 75, 5], ["platforms", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["patchPhase", 29, 3], ["dontConfigure", 39, 3], ["dontBuild", 40, 3], ["installPhase", 42, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lldap-cli",
       version: "0-unstable-2025-01-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Zepmann",
           repo: "lldap-cli",
           rev: "e383494b4dd89ae4e028958b268e200fd85a7a64",
@@ -52,11 +49,11 @@ wrapProgram $out/bin/lldap-cli \\
         ]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command line tool for managing LLDAP",
         longDescription: "LDAP-CLI is a command line interface for LLDAP.\n\nLLDAP uses GraphQL to offer an HTTP-based API.\nThis API is used by an included web-based user interface.\nUnfortunately, LLDAP lacks a command-line interface,\nwhich is a necessity for any serious administrator.\nLLDAP-CLI translates CLI commands to GraphQL API calls.\n",
         homepage: "https://github.com/Zepmann/lldap-cli",

@@ -2,30 +2,18 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/guiPassword.nix", [[["maintainers", 4, 8]], [["systemPackages", 12, 17]], [["signon.rememberSignons", 21, 9]], [["enable", 18, 7], ["preferences", 19, 7]], [["firefox", 17, 14]], [["urAccepted", 27, 24]], [["insecureAdminAccess", 29, 9], ["user", 30, 9], ["password", 31, 9]], [["options", 27, 16], ["gui", 28, 16]], [["enable", 26, 7], ["settings", 27, 7]], [["syncthing", 25, 14]], [["imports", 11, 5], ["environment", 12, 5], ["programs", 17, 5], ["services", 25, 5]], [["machine", 10, 9]], [["name", 3, 3], ["meta", 4, 3], ["enableOCR", 8, 3], ["nodes", 10, 3], ["testScript", 36, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/guiPassword.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/guiPassword.nix", [["systemPackages", 12, 17]]);
-const pos$3 = nix.positions(here + "/guiPassword.nix", [["signon.rememberSignons", 21, 9]]);
-const pos$4 = nix.positions(here + "/guiPassword.nix", [["enable", 18, 7], ["preferences", 19, 7]]);
-const pos$5 = nix.positions(here + "/guiPassword.nix", [["firefox", 17, 14]]);
-const pos$6 = nix.positions(here + "/guiPassword.nix", [["urAccepted", 27, 24]]);
-const pos$7 = nix.positions(here + "/guiPassword.nix", [["insecureAdminAccess", 29, 9], ["user", 30, 9], ["password", 31, 9]]);
-const pos$8 = nix.positions(here + "/guiPassword.nix", [["options", 27, 16], ["gui", 28, 16]]);
-const pos$9 = nix.positions(here + "/guiPassword.nix", [["enable", 26, 7], ["settings", 27, 7]]);
-const pos$10 = nix.positions(here + "/guiPassword.nix", [["syncthing", 25, 14]]);
-const pos$11 = nix.positions(here + "/guiPassword.nix", [["imports", 11, 5], ["environment", 12, 5], ["programs", 17, 5], ["services", 25, 5]]);
-const pos$12 = nix.positions(here + "/guiPassword.nix", [["machine", 10, 9]]);
-const pos$13 = nix.positions(here + "/guiPassword.nix", [["name", 3, 3], ["meta", 4, 3], ["enableOCR", 8, 3], ["nodes", 10, 3], ["testScript", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "syncthing-guiPassword",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -36,15 +24,15 @@ export default nix.lambda((args) => (() => {
     })),
     enableOCR: true,
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           imports: nix.thunk(() => [nix.path(here, "../common/x11.nix")]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -54,23 +42,23 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             firefox: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
-              preferences: nix.thunk(() => ({ [nix.POS]: pos$3, "signon.rememberSignons": false })),
+              preferences: nix.thunk(() => ({ [nix.POS]: $pos[2], "signon.rememberSignons": false })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             syncthing: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                options: nix.thunk(() => ({ [nix.POS]: pos$6, urAccepted: nix.thunk(() => nix.neg(1n)) })),
+                [nix.POS]: $pos[7],
+                options: nix.thunk(() => ({ [nix.POS]: $pos[5], urAccepted: nix.thunk(() => nix.neg(1n)) })),
                 gui: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   insecureAdminAccess: false,
                   user: "alice",
                   password: "alice_password",

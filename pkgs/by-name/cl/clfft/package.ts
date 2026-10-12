@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["CXXFLAGS", 52, 7]], [["broken", 56, 5], ["description", 57, 5], ["longDescription", 58, 5], ["license", 62, 5], ["homepage", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]], [["pname", 17, 3], ["version", 18, 3], ["strictDeps", 20, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["sourceRoot", 30, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["env", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, gccStdenv: false, fetchFromGitHub: false, cmake: false, fftw: false, fftwFloat: false, boost: false, "opencl-clhpp": false, "ocl-icd": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 56, 5], ["description", 57, 5], ["longDescription", 58, 5], ["license", 62, 5], ["homepage", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["strictDeps", 20, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["sourceRoot", 30, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["env", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const ocl_icd = nix.arg($, "ocl-icd");
   const stdenv = gccStdenv;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "clfft",
       version: "2.12.2",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "clMathLibraries",
           repo: "clFFT",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,9 +34,9 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i '/-m64/d;/-m32/d' CMakeLists.txt\nsubstituteInPlace CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required( VERSION 2.6 )' \\\n  'cmake_minimum_required( VERSION 3.5 ) '\n",
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => nix.concat([fftw, fftwFloat, boost], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [opencl_clhpp, ocl_icd])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=c++98" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-std=c++98" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Library containing FFT functions written in OpenCL",
         longDescription: "clFFT is a software library containing FFT functions written in OpenCL.\nIn addition to GPU devices, the library also supports running on CPU devices to facilitate debugging and heterogeneous programming.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["homepage", 70, 5], ["description", 71, 5], ["mainProgram", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 78, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 38, 3], ["strictDeps", 44, 3], ["configureFlags", 46, 3], ["postPatch", 51, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, cyrus_sasl: false, docbook_xml_dtd_43: false, docbook_xsl: false, fetchFromGitLab: false, libkrb5: false, libxslt: false, openldap: false, "pkg-config": false, "util-linux": false, xmlto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["description", 71, 5], ["mainProgram", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 38, 3], ["strictDeps", 44, 3], ["configureFlags", 46, 3], ["postPatch", 51, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const xmlto = nix.arg($, "xmlto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "adcli",
       version: "0.9.3a",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "realmd",
           repo: "adcli",
@@ -58,7 +56,7 @@ patch_docbook doc/adcli-devel.xml
 patch_docbook doc/adcli-docs.xml
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.freedesktop.org/software/realmd/adcli/adcli.html",
         description: "Helper library and tools for Active Directory client operations",
         mainProgram: "adcli",

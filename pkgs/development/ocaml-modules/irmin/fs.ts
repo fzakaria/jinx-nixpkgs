@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fs.nix", [[["description", 34, 5]], [["pname", 14, 3], ["version", 16, 19], ["src", 16, 27], ["propagatedBuildInputs", 18, 3], ["checkInputs", 25, 3], ["doCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, irmin: false, astring: false, logs: false, lwt: false, alcotest: false, "irmin-test": false, "irmin-watcher": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fs.nix", [["description", 34, 5]]);
-const pos$2 = nix.positions(here + "/fs.nix", [["pname", 14, 3], ["version", 16, 19], ["src", 16, 27], ["propagatedBuildInputs", 18, 3], ["checkInputs", 25, 3], ["doCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const irmin_test = nix.arg($, "irmin-test");
   const irmin_watcher = nix.arg($, "irmin-watcher");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "irmin-fs",
       version: nix.thunk(() => nix.attr(irmin, "version")),
       src: nix.thunk(() => nix.attr(irmin, "src")),
       propagatedBuildInputs: nix.thunk(() => [irmin, astring, logs, lwt]),
       checkInputs: nix.thunk(() => [alcotest, irmin_test, irmin_watcher]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { [nix.POS]: pos$1, description: "Generic file-system backend for Irmin" })),
+      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { [nix.POS]: $pos[0], description: "Generic file-system backend for Irmin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=fs.ts.map

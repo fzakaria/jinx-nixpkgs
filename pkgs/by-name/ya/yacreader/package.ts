@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["mainProgram", 115, 5], ["maintainers", 116, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["postPatch", 40, 3], ["preConfigure", 46, 3], ["strictDeps", 54, 3], ["__structuredAttrs", 55, 3], ["cmakeFlags", 57, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 69, 3], ["doCheck", 86, 3], ["nativeCheckInputs", 87, 3], ["installPhase", 92, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, ctestCheckHook: false, libGLU: false, libunarr: false, expat: false, libdeflate: false, lerc: false, xz: false, libwebp: false, qtwebapp: false, pipewire: false, qt6Packages: false, onlyServer: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["mainProgram", 115, 5], ["maintainers", 116, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["postPatch", 40, 3], ["preConfigure", 46, 3], ["strictDeps", 54, 3], ["__structuredAttrs", 55, 3], ["cmakeFlags", 57, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 69, 3], ["doCheck", 86, 3], ["nativeCheckInputs", 87, 3], ["installPhase", 92, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const onlyServer = nix.argOr($, "onlyServer", () => false);
   const qtPackages = qt6Packages;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "yacreader",
       version: "10.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "YACReader",
           repo: "yacreader",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,7 +68,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [ctestCheckHook]),
       installPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "runHook preInstall\n\nmkdir -p \"$out\"/Applications\nmkdir -p \"$out/Applications/YACReader.app/Contents/MacOS/languages\"\nmkdir -p \"$out/Applications/YACReaderLibrary.app/Contents/MacOS/languages\"\nmkdir -p \"$out/Applications/YACReaderLibraryServer.app/Contents/MacOS/languages\"\n\ncp -r bin/YACReader.app \"$out\"/Applications/\ncp -r bin/YACReaderLibrary.app \"$out\"/Applications/\ncp -r bin/YACReaderLibraryServer.app \"$out\"/Applications/\n\nfind . -name \"*.qm\" ! -name \"*_source.qm\" -exec cp {} \"$out/Applications/YACReader.app/Contents/MacOS/languages/\" \\;\nfind . -name \"*.qm\" ! -name \"*_source.qm\" -exec cp {} \"$out/Applications/YACReaderLibrary.app/Contents/MacOS/languages/\" \\;\nfind . -name \"*.qm\" ! -name \"*_source.qm\" -exec cp {} \"$out/Applications/YACReaderLibraryServer.app/Contents/MacOS/languages/\" \\;\n\nrunHook postInstall\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Comic reader for cross-platform reading and managing your digital comic collection",
         homepage: "https://www.yacreader.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["teams", 44, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["internalDeps", 29, 3], ["sourceRoot", 31, 3], ["configureFlags", 33, 3], ["postPhpize", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { stdenv: false, buildPecl: false, lib: false, libiconv: false, php: false, fetchFromGitHub: false, pcre2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["teams", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["internalDeps", 29, 3], ["sourceRoot", 31, 3], ["configureFlags", 33, 3], ["postPhpize", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "snuffleupagus";
       const version = "0.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jvoisin",
           repo: "snuffleupagus",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => ["--enable-snuffleupagus"]);
       const postPhpize = "./configure --enable-snuffleupagus\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Security module for php7 and php8 - Killing bugclasses and virtual-patching the rest",
         homepage: "https://github.com/jvoisin/snuffleupagus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "php"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

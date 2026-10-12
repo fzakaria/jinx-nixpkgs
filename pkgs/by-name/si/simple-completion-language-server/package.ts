@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["mainProgram", 28, 5], ["platforms", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["buildFeatures", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, withCitation: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["mainProgram", 28, 5], ["platforms", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["buildFeatures", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const withCitation = nix.argOr($, "withCitation", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "simple-completion-language-server",
       version: "0-unstable-2026-04-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "estin",
           repo: "simple-completion-language-server",
           rev: "f8319589ab87b18f441627999f4a8316dd712234",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-RgRmbQVZK/4U37CO8AjNQOqR/SXvL1TQU03LX7LnqPY=",
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withCitation, nix.thunk(() => ["citation"]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Language server to enable word completion and snippets for Helix editor",
         homepage: "https://github.com/estin/simple-completion-language-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

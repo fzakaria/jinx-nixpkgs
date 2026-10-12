@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["wrapNim", 140, 17], ["nim", 141, 9]], [["description", 145, 9], ["platforms", 146, 9]], [["pname", 21, 7], ["version", 22, 30], ["preferLocalBuild", 23, 7], ["strictDeps", 24, 7], ["nativeBuildInputs", 26, 7], ["patches", 31, 15], ["unpackPhase", 33, 7], ["dontConfigure", 40, 7], ["buildPhase", 42, 7], ["wrapperArgs", 89, 7], ["installPhase", 107, 7], ["passthru", 139, 7], ["meta", 144, 7]], [["nimUnwrapped", 151, 3], ["patches", 152, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, darwin: false, makeWrapper: false, openssl: false, pcre: false, "nim-unwrapped": true }, ellipsis: false };
 const formals$2 = { args: { nimUnwrapped: false, patches: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["wrapNim", 140, 17], ["nim", 141, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 145, 9], ["platforms", 146, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 7], ["version", 22, 30], ["preferLocalBuild", 23, 7], ["strictDeps", 24, 7], ["nativeBuildInputs", 26, 7], ["patches", 31, 15], ["unpackPhase", 33, 7], ["dontConfigure", 40, 7], ["buildPhase", 42, 7], ["wrapperArgs", 89, 7], ["installPhase", 107, 7], ["passthru", 139, 7], ["meta", 144, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nimUnwrapped", 151, 3], ["patches", 152, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const patches = nix.arg($_1, "patches");
     const targetPlatformConfig = nix.thunk(() => nix.sel(stdenv, "targetPlatform", "config"));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: nix.thunk(() => nix.str`${targetPlatformConfig}-nim-wrapper`),
         version: nix.thunk(() => nix.attr(nimUnwrapped, "version")),
         preferLocalBuild: true,
@@ -110,9 +107,9 @@ makeWrapper \\
 ln -s $out/bin/${targetPlatformConfig}-testament $out/bin/testament
 
 `, "runHook postInstall\n")),
-        passthru: nix.thunk(() => nix.update(nix.sel(nimUnwrapped, "passthru"), { [nix.POS]: pos$1, wrapNim: wrapNim, nim: nimUnwrapped })),
+        passthru: nix.thunk(() => nix.update(nix.sel(nimUnwrapped, "passthru"), { [nix.POS]: $pos[0], wrapNim: wrapNim, nim: nimUnwrapped })),
         meta: nix.thunk(() => nix.update(nix.sel(nimUnwrapped, "meta"), {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: nix.thunk(() => nix.add(nix.sel(nimUnwrapped, "meta", "description"), nix.str` (${targetPlatformConfig} wrapper)`)),
           platforms: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
@@ -122,7 +119,7 @@ ln -s $out/bin/${targetPlatformConfig}-testament $out/bin/testament
       }));
   })(), formals$2);
   return nix.app(wrapNim, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       nimUnwrapped: nim_unwrapped,
       patches: nix.thunk(() => [nix.path(here, "./nim2.cfg.patch")]),
     })));

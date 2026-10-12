@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["updateScript", 111, 12]], [["homepage", 114, 5], ["changelog", 115, 5], ["description", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["maintainers", 119, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["outputs", 53, 3], ["postPatch", 55, 3], ["nativeBuildInputs", 60, 3], ["propagatedBuildInputs", 78, 3], ["cmakeFlags", 80, 3], ["postBuild", 97, 3], ["doCheck", 104, 3], ["postFixup", 106, 3], ["passthru", 111, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "nix-update-script": false, withPython: true, python3: false, python3Packages: false, withOctave: true, octave: false, withJava: true, jdk: false, swig: false, withoutLuksanSolvers: true, withDocs: true, withStatic: true, clangStdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 111, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 114, 5], ["changelog", 115, 5], ["description", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["maintainers", 119, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["outputs", 53, 3], ["postPatch", 55, 3], ["nativeBuildInputs", 60, 3], ["propagatedBuildInputs", 78, 3], ["cmakeFlags", 80, 3], ["postBuild", 97, 3], ["doCheck", 104, 3], ["postFixup", 106, 3], ["passthru", 111, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(p, "python-markdown-math")),
     ]));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nlopt",
       version: "2.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stevengj",
           repo: "nlopt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,11 +66,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postFixup: "substituteInPlace $out/lib/cmake/nlopt/NLoptLibraryDepends.cmake --replace-fail \\\n  'INTERFACE_INCLUDE_DIRECTORIES \"${_IMPORT_PREFIX}/' 'INTERFACE_INCLUDE_DIRECTORIES \"'\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://nlopt.readthedocs.io/en/latest/",
         changelog: nix.thunk(() => nix.str`https://github.com/stevengj/nlopt/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Free open-source library for nonlinear optimization",

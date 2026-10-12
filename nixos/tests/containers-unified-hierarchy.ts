@@ -2,45 +2,38 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containers-unified-hierarchy.nix", [[["maintainers", 5, 5]], [["enable", 15, 17]], [["nix", 15, 13]], [["autoStart", 13, 11], ["config", 14, 11]], [["test-container", 12, 9]], [["containers", 11, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 21, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/containers-unified-hierarchy.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/containers-unified-hierarchy.nix", [["enable", 15, 17]]);
-const pos$3 = nix.positions(here + "/containers-unified-hierarchy.nix", [["nix", 15, 13]]);
-const pos$4 = nix.positions(here + "/containers-unified-hierarchy.nix", [["autoStart", 13, 11], ["config", 14, 11]]);
-const pos$5 = nix.positions(here + "/containers-unified-hierarchy.nix", [["test-container", 12, 9]]);
-const pos$6 = nix.positions(here + "/containers-unified-hierarchy.nix", [["containers", 11, 7]]);
-const pos$7 = nix.positions(here + "/containers-unified-hierarchy.nix", [["machine", 8, 9]]);
-const pos$8 = nix.positions(here + "/containers-unified-hierarchy.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "containers-unified-hierarchy",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "farnoy"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           containers: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "test-container": nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               autoStart: true,
               config: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                nix: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+                [nix.POS]: $pos[2],
+                nix: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
               })),
             })),
           })),

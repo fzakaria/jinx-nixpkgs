@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["changelog", 32, 5], ["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["mainProgram", 36, 5], ["maintainers", 37, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["dubLock", 21, 3], ["doCheck", 23, 3], ["installPhase", 25, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildDubPackage: false, fetchFromGitHub: false, dtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 32, 5], ["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["mainProgram", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["dubLock", 21, 3], ["doCheck", 23, 3], ["installPhase", 25, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "serve-d";
       const version = "0.7.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Pure-D",
           repo: "serve-d",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const installPhase = "runHook preInstall\ninstall -Dm755 serve-d -t $out/bin\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/Pure-D/serve-d/releases/tag/${nix.sel(src, "rev")}`),
         description: "D LSP server (dlang language server protocol server)",
         homepage: "https://github.com/Pure-D/serve-d",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["pkg-config", 46, 18]], [["tests", 46, 12]], [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 58, 5], ["license", 59, 5], ["pkgConfigModules", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["outputs", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["cmakeFlags", 40, 3], ["passthru", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libice: false, libxext: false, libxi: false, libxrandr: false, libxxf86vm: false, libGLX: false, libGLU: false, cmake: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 46, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 46, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 58, 5], ["license", 59, 5], ["pkgConfigModules", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["outputs", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["cmakeFlags", 40, 3], ["passthru", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "freeglut",
       version: "3.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/freeglut/freeglut-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Z03K/yUBDgnkUK7EWLiHDZ6YxG+ZU420V6tlmzIdmYk=",
         })))),
@@ -41,14 +37,14 @@ export default nix.lambda((args) => (() => {
           "-DFREEGLUT_BUILD_DEMOS:BOOL=OFF",
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Create and manage windows containing OpenGL contexts",
         longDescription: "FreeGLUT is an open source alternative to the OpenGL Utility Toolkit\n(GLUT) library. GLUT (and hence FreeGLUT) allows the user to create and\nmanage windows containing OpenGL contexts on a wide range of platforms\nand also read the mouse, keyboard and joystick functions. FreeGLUT is\nintended to be a full replacement for GLUT, and has only a few\ndifferences.\n",
         homepage: "https://freeglut.sourceforge.net/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["url", 40, 7], ["hash", 41, 7]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5], ["platforms", 70, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 30, 3], ["patches", 35, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["cmakeFlags", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, libsForQt5: false, corto: false, glew: false, llvmPackages: false, vcg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 40, 7], ["hash", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5], ["platforms", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 30, 3], ["patches", 35, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["cmakeFlags", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const vcg = nix.arg($, "vcg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nexus",
       version: "2025.05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cnr-isti-vclab",
           repo: "nexus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "bin"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/cnr-isti-vclab/nexus/commit/141ba17059f3680a74ce1178ed4245412f76061f.patch",
             hash: "sha256-iY84QIpliC1BIImI/6S6E6fQwMKPmmTiwouCXW6wLuM=",
           })))),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_NXS_VIEW", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for creation and visualization of a batched multiresolution mesh",
         homepage: "https://github.com/cnr-isti-vclab/nexus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

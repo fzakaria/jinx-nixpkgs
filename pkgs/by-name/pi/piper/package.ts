@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 49, 3], ["mesonFlags", 55, 3], ["postPatch", 59, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, meson: false, ninja: false, "pkg-config": false, gettext: false, fetchFromGitHub: false, python3: false, wrapGAppsHook3: false, gtk3: false, glib: false, "desktop-file-utils": false, "appstream-glib": false, "adwaita-icon-theme": false, "gobject-introspection": false, librsvg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 49, 3], ["mesonFlags", 55, 3], ["postPatch", 59, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const librsvg = nix.arg($, "librsvg");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "piper",
       version: "0.8",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libratbag",
           repo: "piper",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Druntime-dependency-checks=false"]),
       postPatch: "chmod +x meson_install.sh # patchShebangs requires executable file\npatchShebangs meson_install.sh data/generate-piper-gresource.xml.py\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GTK frontend for ratbagd mouse config daemon",
         mainProgram: "piper",
         homepage: "https://github.com/libratbag/piper",

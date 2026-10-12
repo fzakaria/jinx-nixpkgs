@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/shared.nix", [[["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["sha256", 25, 7], ["fetchSubmodules", 26, 7]], [["NIX_CFLAGS_COMPILE", 52, 9]], [["description", 55, 7], ["homepage", 56, 7], ["license", 57, 7], ["maintainers", 58, 7], ["platforms", 59, 7]], [["version", 19, 5], ["src", 21, 5], ["prePatch", 29, 5], ["postPatch", 33, 5], ["nativeBuildInputs", 38, 5], ["buildInputs", 42, 5], ["enableParallelBuilding", 50, 5], ["env", 52, 5], ["meta", 54, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, coreutils: false, cctools: false, darwin: false, ncurses: false, libiconv: false, libx11: false, zlib: false, lz4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/shared.nix", [["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["sha256", 25, 7], ["fetchSubmodules", 26, 7]]);
-const pos$2 = nix.positions(here + "/shared.nix", [["NIX_CFLAGS_COMPILE", 52, 9]]);
-const pos$3 = nix.positions(here + "/shared.nix", [["description", 55, 7], ["homepage", 56, 7], ["license", 57, 7], ["maintainers", 58, 7], ["platforms", 59, 7]]);
-const pos$4 = nix.positions(here + "/shared.nix", [["version", 19, 5], ["src", 21, 5], ["prePatch", 29, 5], ["postPatch", 33, 5], ["nativeBuildInputs", 38, 5], ["buildInputs", 42, 5], ["enableParallelBuilding", 50, 5], ["env", 52, 5], ["meta", 54, 5]]);
 
 export default (args) => nix.lambda((args_1) => (() => {
   const $ = nix.formals(args_1, formals$1);
@@ -22,10 +19,10 @@ export default (args) => nix.lambda((args_1) => (() => {
   const zlib = nix.arg($, "zlib");
   const lz4 = nix.arg($, "lz4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(args, {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "8.3-unstable-2021-12-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "racket",
           repo: "ChezScheme",
           rev: "8846c96b08561f05a937d5ecfe4edc96cc99be39",
@@ -40,11 +37,11 @@ export LZ4="$(find ${nix.sel(lz4, "lib")}/lib -type f | sort | head -n1)"
       buildInputs: nix.thunk(() => [libiconv, libx11, lz4, ncurses, zlib]),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-Wno-error=format-truncation")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fork of Chez Scheme for Racket",
         homepage: "https://github.com/racket/ChezScheme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

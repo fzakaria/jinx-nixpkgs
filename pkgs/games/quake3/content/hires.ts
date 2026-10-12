@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hires.nix", [[["url", 19, 5], ["sha256", 20, 5], ["stripRoot", 21, 5]], [["url", 27, 5], ["hash", 28, 5]], [["name", 35, 5], ["url", 36, 5], ["hash", 37, 5]], [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]], [["description", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5]], [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["src", 18, 3], ["extra-pack-resolution", 26, 3], ["hd-weapons", 34, 3], ["ioquake3_mac", 44, 3], ["buildCommand", 51, 3], ["preferLocalBuild", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, fetchurl: false, fetchFromGitHub: false, libarchive: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hires.nix", [["url", 19, 5], ["sha256", 20, 5], ["stripRoot", 21, 5]]);
-const pos$2 = nix.positions(here + "/hires.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/hires.nix", [["name", 35, 5], ["url", 36, 5], ["hash", 37, 5]]);
-const pos$4 = nix.positions(here + "/hires.nix", [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]]);
-const pos$5 = nix.positions(here + "/hires.nix", [["description", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5]]);
-const pos$6 = nix.positions(here + "/hires.nix", [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["src", 18, 3], ["extra-pack-resolution", 26, 3], ["hd-weapons", 34, 3], ["ioquake3_mac", 44, 3], ["buildCommand", 51, 3], ["preferLocalBuild", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,29 +14,29 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libarchive = nix.arg($, "libarchive");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "quake3hires",
       version: "unstable-2020-01-20",
       nativeBuildInputs: nix.thunk(() => [libarchive]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20200120024216/http://ioquake3.org/files/xcsv_hires.zip",
           sha256: "09vhrray8mh1ic2qgcwv0zlmsnz789y32dkkvrz1vdki4yqkf717",
           stripRoot: false,
         })))),
       "extra-pack-resolution": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://web.archive.org/web/20250310093216/https://fmt3.dl.dbolical.com/dl/2018/11/06/q3a-hqq-v37.zip?st=0XzNnNvOYWrJAi_6AB3mKw==&e=1741602736",
           hash: "sha256-0nAXkrf4ahlct75TgO18PjuT9IkH8fpDhtTflJfPpPM=",
         })))),
       "hd-weapons": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "czq3hdweaprem_v10.zip",
           url: "https://web.archive.org/web/20250310101737/https://fmt1.dl.dbolical.com/dl/2023/08/13/czq3hdweaprem_v10.zip?st=XBoRCpVmvTYtc60xxi36VQ==&e=1741605457",
           hash: "sha256-pL7MsEFsKJV+a+z45Ns16SPdQB3i2D6T3x7tBqWtm1s=",
         })))),
       ioquake3_mac: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "diegoulloao",
           repo: "ioquake3-mac-install",
           rev: "3a767ff0131742ec517fd5f13ddca16dee91927d",
@@ -62,7 +57,7 @@ install -Dm444 ${nix.sel(finalAttrs, "ioquake3_mac")}/extras/zpack-weapons.pk3 $
 `),
       preferLocalBuild: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Quake 3 high-resolution textures",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

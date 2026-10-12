@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/games.nix", [[["id", 10, 7], ["version", 11, 7], ["description", 12, 7], ["sha256", 13, 7]], [["id", 17, 7], ["version", 18, 7], ["description", 19, 7], ["sha256", 20, 7]], [["id", 24, 7], ["version", 25, 7], ["description", 26, 7], ["sha256", 27, 7]], [["ctf", 9, 5], ["ground-zero", 16, 5], ["the-reckoning", 23, 5]], [["sha256", 45, 17], ["owner", 46, 9], ["repo", 47, 9], ["rev", 48, 9]], [["NIX_CFLAGS_COMPILE", 54, 11]], [["description", 65, 24], ["homepage", 66, 9], ["license", 67, 9], ["platforms", 68, 9], ["maintainers", 69, 9]], [["id", 35, 9], ["version", 36, 9], ["description", 37, 9], ["sha256", 38, 9], ["title", 40, 15], ["pname", 42, 7], ["src", 44, 7], ["env", 51, 7], ["installPhase", 57, 7], ["meta", 64, 7]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/games.nix", [["id", 10, 7], ["version", 11, 7], ["description", 12, 7], ["sha256", 13, 7]]);
-const pos$2 = nix.positions(here + "/games.nix", [["id", 17, 7], ["version", 18, 7], ["description", 19, 7], ["sha256", 20, 7]]);
-const pos$3 = nix.positions(here + "/games.nix", [["id", 24, 7], ["version", 25, 7], ["description", 26, 7], ["sha256", 27, 7]]);
-const pos$4 = nix.positions(here + "/games.nix", [["ctf", 9, 5], ["ground-zero", 16, 5], ["the-reckoning", 23, 5]]);
-const pos$5 = nix.positions(here + "/games.nix", [["sha256", 45, 17], ["owner", 46, 9], ["repo", 47, 9], ["rev", 48, 9]]);
-const pos$6 = nix.positions(here + "/games.nix", [["NIX_CFLAGS_COMPILE", 54, 11]]);
-const pos$7 = nix.positions(here + "/games.nix", [["description", 65, 24], ["homepage", 66, 9], ["license", 67, 9], ["platforms", 68, 9], ["maintainers", 69, 9]]);
-const pos$8 = nix.positions(here + "/games.nix", [["id", 35, 9], ["version", 36, 9], ["description", 37, 9], ["sha256", 38, 9], ["title", 40, 15], ["pname", 42, 7], ["src", 44, 7], ["env", 51, 7], ["installPhase", 57, 7], ["meta", 64, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,23 +11,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const games = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     ctf: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       id: "ctf",
       version: "1.07",
       description: "'Capture The Flag' for Yamagi Quake II",
       sha256: "0i9bwhjvq6yhalrsbzjambh27fdzrzgswqz3jgfn9qw6k1kjvlin",
     })),
     "ground-zero": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       id: "rogue",
       version: "2.07",
       description: "'Ground Zero' for Yamagi Quake II",
       sha256: "1m2r4vgfdxpsi0lkf32liwf1433mdhhmjxiicjwzqjlkncjyfcb1",
     })),
     "the-reckoning": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       id: "xatrix",
       version: "2.08",
       description: "'The Reckoning' for Yamagi Quake II",
@@ -49,20 +42,20 @@ export default nix.lambda((args) => (() => {
       const title_1 = title;
       const pname = nix.thunk(() => nix.str`yquake2-${title_1}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           sha256: sha256,
           owner: "yquake2",
           repo: nix.thunk(() => nix.sel(data, "id")),
           rev: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "toUpper"), id)}_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`),
         }))));
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$6, NIX_CFLAGS_COMPILE: "-std=gnu17" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: $pos[5], NIX_CFLAGS_COMPILE: "-std=gnu17" }))));
       const installPhase = nix.thunk(() => nix.str`runHook preInstall
 mkdir -p $out/lib/yquake2/${id}
 cp release/* $out/lib/yquake2/${id}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: nix.thunk(() => nix.attr(data, "description")),
         homepage: "https://www.yamagi.org/quake2/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -73,7 +66,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         id,
         version,
         description,

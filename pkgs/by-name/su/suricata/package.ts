@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 44, 5], ["hash", 45, 5]], [["suricata", 156, 43]], [["tests", 156, 12]], [["description", 159, 5], ["homepage", 160, 5], ["license", 161, 5], ["platforms", 162, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["patches", 48, 3], ["nativeBuildInputs", 53, 3], ["propagatedBuildInputs", 63, 3], ["buildInputs", 67, 3], ["enableParallelBuilding", 94, 3], ["postPatch", 96, 3], ["configureFlags", 101, 3], ["postConfigure", 128, 3], ["hardeningDisable", 134, 3], ["doCheck", 139, 3], ["installFlags", 141, 3], ["installTargets", 146, 3], ["postInstall", 151, 3], ["passthru", 156, 3], ["meta", 158, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, clang: false, llvm: false, "pkg-config": false, elfutils: false, file: false, jansson: false, libbpf: false, libcap_ng: false, libevent: false, libmaxminddb: false, libnet: false, libnetfilter_log: false, libnetfilter_queue: false, libnfnetlink: false, libpcap: false, libyaml: false, luajit: false, lz4: false, nspr: false, pcre2: false, python3: false, vectorscan: false, zlib: false, redisSupport: true, valkey: false, hiredis: false, rustSupport: true, rustc: false, cargo: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["suricata", 156, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 156, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 159, 5], ["homepage", 160, 5], ["license", 161, 5], ["platforms", 162, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["patches", 48, 3], ["nativeBuildInputs", 53, 3], ["propagatedBuildInputs", 63, 3], ["buildInputs", 67, 3], ["enableParallelBuilding", 94, 3], ["postPatch", 96, 3], ["configureFlags", 101, 3], ["postConfigure", 128, 3], ["hardeningDisable", 134, 3], ["doCheck", 139, 3], ["installFlags", 141, 3], ["installTargets", 146, 3], ["postInstall", 151, 3], ["passthru", 156, 3], ["meta", 158, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const libmagic = file;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "suricata",
       version: "8.0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.openinfosecfoundation.org/download/suricata-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-qdRqnI9A6B+KbfPswsWpqOjamFh2KZEI2S2lR8ATuow=",
         })))),
@@ -116,14 +112,14 @@ sed -i 's|${nix.builtins.storeDir}/\\(.\\{8\\}\\)[^-]*-|${nix.builtins.storeDir}
   --replace-fail "/etc/suricata" "${nix.builtins.placeholder("out")}/etc/suricata"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           suricata: nix.thunk(() => nix.attr(nixosTests, "suricata")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Free and open source, mature, fast and robust network threat detection engine",
         homepage: "https://suricata.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

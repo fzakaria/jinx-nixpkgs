@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["waagent", 81, 26]], [["tests", 80, 12]], [["description", 85, 5], ["mainProgram", 86, 5], ["longDescription", 87, 5], ["homepage", 91, 5], ["maintainers", 92, 5], ["license", 93, 5], ["platforms", 94, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 27, 3], ["nativeBuildInputs", 33, 3], ["doInstallCheck", 37, 3], ["postPatch", 40, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["preFixup", 66, 3], ["dontWrapPythonPrograms", 78, 3], ["passthru", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { coreutils: false, fetchFromGitHub: false, lib: false, python312: false, bash: false, openssl: false, nixosTests: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["waagent", 81, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 80, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 85, 5], ["mainProgram", 86, 5], ["longDescription", 87, 5], ["homepage", 91, 5], ["maintainers", 92, 5], ["license", 93, 5], ["platforms", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 27, 3], ["nativeBuildInputs", 33, 3], ["doInstallCheck", 37, 3], ["postPatch", 40, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["preFixup", 66, 3], ["dontWrapPythonPrograms", 78, 3], ["passthru", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const python = python312;
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "waagent",
       version: "2.15.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Azure",
           repo: "WALinuxAgent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,11 +60,14 @@ makeWrapper $out/${nix.sel(python, "sitePackages")}/usr/sbin/waagent $out/bin/wa
 `),
       dontWrapPythonPrograms: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, waagent: nix.thunk(() => nix.attr(nixosTests, "waagent")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          waagent: nix.thunk(() => nix.attr(nixosTests, "waagent")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Microsoft Azure Linux Agent (waagent)",
         mainProgram: "waagent",
         longDescription: "The Microsoft Azure Linux Agent (waagent)\nmanages Linux provisioning and VM interaction with the Azure\nFabric Controller",

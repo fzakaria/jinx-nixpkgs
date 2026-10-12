@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 9], ["hash", 25, 9]], [["url", 28, 9], ["hash", 29, 9]], [["x86_64-linux", 23, 7], ["aarch64-darwin", 27, 7]], [["updateScript", 82, 12]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 92, 5], ["sourceProvenance", 96, 5], ["mainProgram", 98, 13]], [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["dontConfigure", 34, 3], ["dontBuild", 35, 3], ["nativeBuildInputs", 37, 3], ["preInstall", 48, 3], ["installPhase", 57, 3], ["preFixup", 73, 3], ["passthru", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { asar: false, lib: false, stdenv: false, fetchurl: false, makeWrapper: false, dpkg: false, electron: false, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 9], ["hash", 25, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 9], ["hash", 29, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 23, 7], ["aarch64-darwin", 27, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 82, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 92, 5], ["sourceProvenance", 96, 5], ["mainProgram", 98, 13]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["dontConfigure", 34, 3], ["dontBuild", 35, 3], ["nativeBuildInputs", 37, 3], ["preInstall", 48, 3], ["installPhase", 57, 3], ["preFixup", 73, 3], ["passthru", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const linuxHash = "sha256-yB5eKXhW9bmGxHsjOKZlNI2JfN8CXFz1Pz2+77DPYog=";
   const darwinHash = "sha256-NDgCvgM0CM6RNklo2VuMRZb/oT5yaiW7QqyJVAr6hHo=";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "protonmail-desktop",
       version: version,
       src: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://proton.me/download/mail/linux/${version}/ProtonMail-desktop-beta.deb`),
             hash: linuxHash,
           })))),
         "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://proton.me/download/mail/macos/${version}/ProtonMail-desktop.dmg`),
             hash: darwinHash,
           })))),
@@ -53,9 +48,9 @@ export default nix.lambda((args) => (() => {
   --set-default ELECTRON_IS_DEV 0 \\
   --inherit-argv0
 `))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Desktop application for Mail and Calendar, made with Electron",
         homepage: "https://github.com/ProtonMail/WebClients",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtspeech.nix", [[["pname", 10, 3], ["buildInputs", 11, 3], ["nativeBuildInputs", 12, 3], ["outputs", 13, 3]]]);
 const formals$1 = { args: { lib: false, qtModule: false, stdenv: false, "speechd-minimal": false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtspeech.nix", [["pname", 10, 3], ["buildInputs", 11, 3], ["nativeBuildInputs", 12, 3], ["outputs", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const speechd_minimal = nix.arg($, "speechd-minimal");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "qtspeech",
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [speechd_minimal]))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),

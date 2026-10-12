@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["NIX_CFLAGS_COMPILE", 52, 7]], [["rev-prefix", 75, 7], ["ignoredVersions", 76, 7]], [["updateScript", 74, 5]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 23, 3], ["postPatch", 35, 3], ["cmakeFlags", 40, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 48, 3], ["env", 52, 3], ["installPhase", 63, 3], ["strictDeps", 71, 3], ["passthru", 73, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, gitUpdater: false, cmake: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["rev-prefix", 75, 7], ["ignoredVersions", 76, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 23, 3], ["postPatch", 35, 3], ["cmakeFlags", 40, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 48, 3], ["env", 52, 3], ["installPhase", 63, 3], ["strictDeps", 71, 3], ["passthru", 73, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "hm",
       version: "18.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "vcgit.hhi.fraunhofer.de",
           owner: "jvet",
           repo: "HM",
@@ -34,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc16-unused-variable.patch",
             url: "https://vcgit.hhi.fraunhofer.de/jvet/HM/-/commit/884d704b9d04ac1728b2c6049174e47eb04987d2.patch",
             hash: "sha256-UqZf7XFTEOpfE0Uyyrq+ydScR9GzMgR+JQVeZGFjc1c=",
@@ -45,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp"))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error=array-bounds"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
               "-Wno-error=bitwise-instead-of-logical",
               "-Wno-error=missing-braces",
@@ -55,11 +49,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm 755 -t $out/bin ../bin/umake/*/*/release/*\n\nrunHook postInstall\n",
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "HM-", ignoredVersions: "rc" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "HM-", ignoredVersions: "rc" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Reference software for HEVC",
         homepage: "https://vcgit.hhi.fraunhofer.de/jvet/HM",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

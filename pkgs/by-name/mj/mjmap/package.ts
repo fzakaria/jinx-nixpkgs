@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["updateScript", 45, 12]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["sourceProvenance", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]], [["pname", 16, 3], ["version", 17, 11], ["src", 19, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["nativeInstallCheckInputs", 33, 3], ["versionCheckProgram", 35, 3], ["postBuild", 37, 3], ["postInstall", 41, 3], ["passthru", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromSourcehut: false, scdoc: false, installShellFiles: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 45, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["sourceProvenance", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 11], ["src", 19, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["nativeInstallCheckInputs", 33, 3], ["versionCheckProgram", 35, 3], ["postBuild", 37, 3], ["postInstall", 41, 3], ["passthru", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "1.0.1";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mjmap",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~rockorager",
           repo: "mjmap",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
       postBuild: "make mjmap.1\n",
       postInstall: "installManPage mjmap.1\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sendmail‐compatible JMAP client",
         homepage: "https://git.sr.ht/~rockorager/mjmap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

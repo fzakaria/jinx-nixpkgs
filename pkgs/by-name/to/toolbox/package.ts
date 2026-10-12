@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 55, 5], ["changelog", 56, 5], ["description", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["vendorHash", 23, 3], ["postPatch", 25, 3], ["modRoot", 29, 3], ["nativeBuildInputs", 31, 3], ["ldflags", 36, 3], ["preCheck", 42, 3], ["postInstall", 44, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, glibc: false, "go-md2man": false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["changelog", 56, 5], ["description", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["vendorHash", 23, 3], ["postPatch", 25, 3], ["modRoot", 29, 3], ["nativeBuildInputs", 31, 3], ["ldflags", 36, 3], ["preCheck", 42, 3], ["postInstall", 44, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const go_md2man = nix.arg($, "go-md2man");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "toolbox",
       version: "0.0.99.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "containers",
           repo: "toolbox",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export PATH=$GOPATH/bin:$PATH",
       postInstall: "cd ..\nfor d in doc/*.md; do\n  go-md2man -in $d -out ${d%.md}\ndone\ninstallManPage doc/*.[1-9]\ninstallShellCompletion --bash completion/bash/toolbox\ninstall profile.d/toolbox.sh -Dt $out/share/profile.d\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://containertoolbx.org",
         changelog: nix.thunk(() => nix.str`https://github.com/containers/toolbox/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Tool for containerized command line environments on Linux",

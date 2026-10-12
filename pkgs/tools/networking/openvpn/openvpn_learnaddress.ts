@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/openvpn_learnaddress.nix", [[["url", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["installPhase", 28, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, makeWrapper: false, coreutils: false, gawk: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/openvpn_learnaddress.nix", [["url", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/openvpn_learnaddress.nix", [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$3 = nix.positions(here + "/openvpn_learnaddress.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["installPhase", 28, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openvpn-learnaddress",
       version: "unstable-2013-10-21",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gist.github.com/4058733.git",
           rev: "19b03c3beb0190df46ea07bf4b68244acb8eae80",
           sha256: "16pcyvyhwsx34i0cjkkx906lmrwdd9gvznvqdwlad4ha8l8f8z42",
@@ -34,7 +32,7 @@ wrapProgram $out/libexec/openvpn/openvpn-learnaddress \\
     --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, gawk, util_linux]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Openvpn learn-address script to manage a hosts-like file",
         homepage: "https://gist.github.com/offlinehacker/4058733/",
         maintainers: [],

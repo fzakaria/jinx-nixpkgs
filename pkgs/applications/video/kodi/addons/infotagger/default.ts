@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["attrPath", 23, 7]], [["pythonPath", 21, 5], ["updateScript", 22, 5]], [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["teams", 31, 5]], [["pname", 8, 3], ["namespace", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 19, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildKodiAddon: false, fetchFromGitHub: false, addonUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["attrPath", 23, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pythonPath", 21, 5], ["updateScript", 22, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["teams", 31, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["namespace", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 19, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,25 +16,25 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.module.infotagger";
       const version = "0.0.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jurialmunkey",
           repo: namespace,
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-Ns1OjrYLKz4znXRxqUErDLcmC0HBjBFVYI9GFqDVurY=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pythonPath: "resources/modules",
-        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "kodi.packages.infotagger" })))),
+        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], attrPath: "kodi.packages.infotagger" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/jurialmunkey/script.module.infotagger",
         description: "Wrapper for new Nexus InfoTagVideo ListItem methods to maintain backwards compatibility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
-      return { [nix.POS]: pos$5, pname, namespace, version, src, passthru, meta };
+      return { [nix.POS]: $pos[4], pname, namespace, version, src, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

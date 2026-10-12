@@ -2,23 +2,21 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 10, 7], ["rev", 11, 7], ["hash", 12, 7]], [["pname", 6, 5], ["version", 7, 5], ["src", 9, 5]], [["dockapps-sources", 5, 3], ["AlsaMixer-app", 16, 3], ["cputnik", 18, 3], ["libdockapp", 20, 3], ["wmCalClock", 22, 3], ["wmcube", 24, 3], ["wmsm-app", 26, 3], ["wmsystemtray", 28, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 10, 7], ["rev", 11, 7], ["hash", 12, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 6, 5], ["version", 7, 5], ["src", 9, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["dockapps-sources", 5, 3], ["AlsaMixer-app", 16, 3], ["cputnik", 18, 3], ["libdockapp", 20, 3], ["wmCalClock", 22, 3], ["wmcube", 24, 3], ["wmsm-app", 26, 3], ["wmsystemtray", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(pkgs, "newScope")), (self) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "dockapps-sources": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "dockapps-sources",
         version: "2023-10-11",
         src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromRepoOrCz"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             repo: "dockapps",
             rev: "1bbb32008ecb58acaec9ea70e00b4ea1735408fc",
             hash: "sha256-BLUDe/cIIuh9mCtafbcBSDatUXSRD83FeyYhcbem5FU=",

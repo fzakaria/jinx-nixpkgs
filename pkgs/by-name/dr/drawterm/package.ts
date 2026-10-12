@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["NIX_CFLAGS_LINK", 63, 7]], [["shallowClone", 96, 41]], [["updateScript", 96, 5], ["tests", 97, 5]], [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5], ["mainProgram", 106, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["enableParallelBuilding", 36, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 50, 3], ["env", 63, 3], ["makeFlags", 64, 3], ["installPhase", 72, 3], ["passthru", 95, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFrom9Front: false, unstableGitUpdater: false, installShellFiles: false, makeWrapper: false, libxt: false, libx11: false, "pkg-config": false, "wayland-scanner": false, pipewire: false, wayland: false, "wayland-protocols": false, libxkbcommon: false, libdecor: false, llvmPackages: false, pulseaudio: false, nixosTests: false, withWayland: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_LINK", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["shallowClone", 96, 41]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 96, 5], ["tests", 97, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5], ["mainProgram", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["enableParallelBuilding", 36, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 50, 3], ["env", 63, 3], ["makeFlags", 64, 3], ["installPhase", 72, 3], ["passthru", 95, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const withWayland = nix.argOr($, "withWayland", () => false);
   const withXorg = nix.thunk(() => !nix.asBool((nix.asBool(withWayland) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "drawterm",
       version: "0-unstable-2026-08-15",
       src: nix.thunk(() => nix.app(fetchFrom9Front, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "plan9front",
           repo: "drawterm",
           rev: "45ab4d2ce7fd2443ad7264bd0ce14bf294d8b9e6",
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles, makeWrapper], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "lld"))])), nix.app(nix.sel(lib, "optionals"), withWayland, nix.thunk(() => [pkg_config, wayland_scanner]))))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withWayland, nix.thunk(() => [pipewire, wayland, wayland_protocols, libxkbcommon, libdecor])), nix.app(nix.sel(lib, "optionals"), withXorg, nix.thunk(() => [libx11, libxt])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_LINK: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-fuse-ld=lld")),
       })),
       makeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withWayland, "CONF=linux"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool((nix.asBool(withWayland) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), "CONF=unix"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["CONF=osx-cocoa", "CC=clang"]))))),
@@ -58,12 +53,12 @@ install -Dm755 -t $out/bin/ drawterm.bin
 makeWrapper ${nix.app(nix.sel(lib, "getExe'"), pulseaudio, "padsp")} $out/bin/drawterm --add-flags $out/bin/drawterm.bin
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv gui-cocoa/drawterm.app $out/Applications/\nmv drawterm $out/Applications/drawterm.app/\nln -s $out/Applications/drawterm.app/drawterm $out/bin/\n")), "runHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, shallowClone: false })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], shallowClone: false })))),
         tests: nix.thunk(() => nix.sel(nixosTests, "drawterm")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Connect to Plan 9 CPU servers from other operating systems",
         homepage: "https://drawterm.9front.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

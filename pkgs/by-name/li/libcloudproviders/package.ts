@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["packageName", 66, 7]], [["updateScript", 65, 5]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 27, 3], ["mesonFlags", 33, 3], ["strictDeps", 37, 3], ["depsBuildBuild", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 55, 3], ["postFixup", 59, 3], ["passthru", 64, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, vala: false, "gi-docgen": false, glib: false, mesonEmulatorHook: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 27, 3], ["mesonFlags", 33, 3], ["strictDeps", 37, 3], ["depsBuildBuild", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 55, 3], ["postFixup", 59, 3], ["passthru", 64, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const mesonEmulatorHook = nix.arg($, "mesonEmulatorHook");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libcloudproviders",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libcloudproviders/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libcloudproviders-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-JHsijRAnsmg4aOfXCA04aTpFfpCKrdDBGdUt5Zo5gGQ=",
         })))),
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib]),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "libcloudproviders" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "libcloudproviders" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "DBus API that allows cloud storage sync clients to expose their services",
         homepage: "https://gitlab.gnome.org/World/libcloudproviders",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

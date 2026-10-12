@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["pname", 16, 54], ["version", 16, 60], ["src", 16, 68]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 39, 5], ["mainProgram", 40, 5]], [["pname", 19, 11], ["version", 19, 17], ["src", 19, 25], ["nativeBuildInputs", 21, 3], ["extraInstallCommands", 23, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { appimageTools: false, lib: false, fetchurl: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 16, 54], ["version", 16, 60], ["src", 16, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 39, 5], ["mainProgram", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 11], ["version", 19, 17], ["src", 19, 25], ["nativeBuildInputs", 21, 3], ["extraInstallCommands", 23, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const pname = "mathpix-snipping-tool";
   const version = "03.00.0138";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://download.mathpix.com/linux/Mathpix_Snipping_Tool-x86_64.v${version}.AppImage`),
       sha256: "sha256-29iLdrWxqLL7uRfHae8Mq+w9yaGtM9Y5vRLzYESgzBs=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -35,7 +32,7 @@ cp -r ${appimageContents}/usr/share/icons $out/share
 wrapProgram $out/bin/${pname} --set QT_QPA_PLATFORM xcb
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OCR tool to convert pictures to LaTeX",
         homepage: "https://mathpix.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

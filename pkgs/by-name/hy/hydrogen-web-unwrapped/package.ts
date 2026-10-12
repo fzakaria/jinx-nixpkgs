@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["yarnLock", 27, 5], ["hash", 28, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["knownVulnerabilities", 72, 24]], [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["offlineCache", 26, 3], ["nativeBuildInputs", 31, 3], ["configurePhase", 37, 3], ["buildPhase", 51, 3], ["installPhase", 59, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchYarnDeps: false, yarn: false, "fixup-yarn-lock": false, nodejs: false, olm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["knownVulnerabilities", 72, 24]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["offlineCache", 26, 3], ["nativeBuildInputs", 31, 3], ["configurePhase", 37, 3], ["buildPhase", 51, 3], ["installPhase", 59, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const olm = nix.arg($, "olm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hydrogen-web",
       version: "0.5.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "element-hq",
           repo: "hydrogen-web",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-pXrmWPp4/MYIS1FHEGzAxGbh4OnTaiPudg+NauvA6Vc=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-j+BwlmL0ncaccy9qQbzb9GpDRC4KB9MwOR2ISx+vbLE=",
         })))),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(olm, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight matrix client with legacy and mobile browser support",
         homepage: "https://github.com/element-hq/hydrogen-web",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

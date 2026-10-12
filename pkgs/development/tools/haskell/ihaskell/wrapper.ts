@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["name", 34, 3], ["nativeBuildInputs", 35, 3], ["paths", 36, 3], ["postBuild", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, writeScriptBin: false, makeWrapper: false, buildEnv: false, ghcWithPackages: false, jupyter: false, packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["name", 34, 3], ["nativeBuildInputs", 35, 3], ["paths", 36, 3], ["postBuild", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +26,7 @@ export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ihaskellEnv
 ${ihaskellEnv}/bin/ihaskell install -l $(${ihaskellEnv}/bin/ghc --print-libdir) && ${jupyter}/bin/jupyter notebook
 `)));
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "ihaskell-with-packages",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       paths: nix.thunk(() => [ihaskellEnv, jupyter]),

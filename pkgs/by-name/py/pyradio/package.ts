@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["homepage", 57, 5], ["description", 58, 5], ["mainProgram", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["postPatch", 36, 3], ["checkPhase", 42, 3], ["postInstall", 46, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["description", 58, 5], ["mainProgram", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["postPatch", 36, 3], ["checkPhase", 42, 3], ["postInstall", 46, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pyradio",
       version: "0.9.3.11.31",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coderholic",
           repo: "pyradio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "$out/bin/pyradio --help\n",
       postInstall: "installManPage *.1\n\ninstall -Dm644 $src/devel/pyradio.desktop \\\n  \"$out/share/applications/pyradio.desktop\"\n\ninstall -Dm644 \"$src/pyradio/icons/pyradio.png\" \\\n  \"$out/share/icons/hicolor/512x512/apps/pyradio.png\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/coderholic/pyradio",
         description: "Curses based internet radio player",
         mainProgram: "pyradio",

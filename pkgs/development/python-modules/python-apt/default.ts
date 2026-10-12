@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["DEBVER", 29, 7]], [["changelog", 34, 5], ["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 13, 3], ["src", 15, 3], ["buildInputs", 23, 3], ["build-system", 25, 3], ["env", 29, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, apt: false, buildPythonPackage: false, fetchFromGitLab: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["DEBVER", 29, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 34, 5], ["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 43, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 13, 3], ["src", 15, 3], ["buildInputs", 23, 3], ["build-system", 25, 3], ["env", 29, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "apt-team",
           repo: "python-apt",
@@ -29,10 +26,10 @@ export default nix.lambda((args) => (() => {
         }))));
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(apt, "dev"))]);
       const build_system = nix.thunk(() => [setuptools]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DEBVER: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], DEBVER: version }));
       const pythonImportsCheck = nix.thunk(() => ["apt_pkg"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://salsa.debian.org/apt-team/python-apt/-/blob/${version}/debian/changelog`),
         description: "Python bindings for APT",
         homepage: "https://launchpad.net/python-apt",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

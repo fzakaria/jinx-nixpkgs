@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["owner", 81, 9], ["repo", 82, 9], ["rev", 83, 9], ["hash", 84, 9]], [["owner", 90, 9], ["repo", 91, 9], ["rev", 92, 9], ["hash", 93, 9]], [["ela-widget-tools", 99, 13], ["qtwebapp", 99, 30]], [["changelog", 103, 5], ["mainProgram", 104, 5], ["maintainers", 105, 5], ["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["broken", 110, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 33, 3], ["patches", 48, 3], ["postPatch", 53, 3], ["dontUseCmakeConfigure", 66, 3], ["qmakeFlags", 67, 3], ["hardeningDisable", 68, 3], ["qtWrapperArgs", 70, 3], ["postFixup", 77, 3], ["passthru", 98, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, stdenv: false, lib: false, makeWrapper: false, cmake: false, qt6: false, "pkg-config": false, mpv: false, lua5_3_compat: false, onnxruntime: false, "ela-widget-tools": false, qtwebapp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 81, 9], ["repo", 82, 9], ["rev", 83, 9], ["hash", 84, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 90, 9], ["repo", 91, 9], ["rev", 92, 9], ["hash", 93, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ela-widget-tools", 99, 13], ["qtwebapp", 99, 30]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 103, 5], ["mainProgram", 104, 5], ["maintainers", 105, 5], ["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["broken", 110, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 33, 3], ["patches", 48, 3], ["postPatch", 53, 3], ["dontUseCmakeConfigure", 66, 3], ["qmakeFlags", 67, 3], ["hardeningDisable", 68, 3], ["qtWrapperArgs", 70, 3], ["postFixup", 77, 3], ["passthru", 98, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const ela_widget_tools = nix.arg($, "ela-widget-tools");
   const qtwebapp = nix.arg($, "qtwebapp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kikoplay",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KikoPlayProject",
           repo: "KikoPlay",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: nix.thunk(() => nix.str`mkdir -p $out/share/kikoplay/extension/script
 cp -r ${nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "KikoPlayProject",
           repo: "KikoPlayScript",
           rev: "31dc29fd2fd538eab529f1165697e94bac131737",
@@ -80,16 +75,16 @@ cp -r ${nix.app(fetchFromGitHub, nix.thunk(() => ({
         })))}/{bgm_calendar,danmu,library,resource} $out/share/kikoplay/extension/script/
 mkdir -p $out/share/kikoplay/extension/app
 cp -r ${nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "KikoPlayProject",
           repo: "KikoPlayApp",
           rev: "62082956bbb0719c4a3a544be6d26e84162370de",
           hash: "sha256-/BuEyOwZvm1LRU0UQ/xqxOqouGB06p72WYFcSSdjqiw=",
         })))}/app/* $out/share/kikoplay/extension/app/
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, "ela-widget-tools": ela_widget_tools, qtwebapp: qtwebapp })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], "ela-widget-tools": ela_widget_tools, qtwebapp: qtwebapp })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/KikoPlayProject/KikoPlay/releases/tag/${nix.sel(finalAttrs, "version")}`),
         mainProgram: "KikoPlay",
         maintainers: nix.thunk(() => (() => {

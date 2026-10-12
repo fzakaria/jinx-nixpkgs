@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["entrypoint", 35, 12]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["maintainers", 41, 5], ["license", 42, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 18, 3], ["npmDepsHash", 22, 3], ["npmBuildScript", 24, 3], ["installPhase", 26, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["entrypoint", 35, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["maintainers", 41, 5], ["license", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 18, 3], ["npmDepsHash", 22, 3], ["npmBuildScript", 24, 3], ["installPhase", 26, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "scheduler-card";
       const version = "4.0.19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nielsfaber",
           repo: "scheduler-card",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-UvErPy3jgbaGBZnqix6fm8BhZp1he0z5JJj8kzE+Sbc=";
       const npmBuildScript = "rollup";
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp -v dist/scheduler-card.js* $out/\n\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, entrypoint: "scheduler-card.js" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], entrypoint: "scheduler-card.js" }));
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: "HA Lovelace card for control of scheduler entities",
           homepage: "https://github.com/nielsfaber/scheduler-card",
           changelog: nix.thunk(() => nix.str`https://github.com/nielsfaber/scheduler-card/releases/tag/v${version}`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

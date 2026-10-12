@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["url", 33, 7], ["hash", 34, 7]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["cmakeFlags", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 56, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchFromGitHub: false, cmake: false, git: false, asio_1_32_0: false, catch2: false, spdlog: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["cmakeFlags", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 56, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pc-ble-driver";
       const version = "4.1.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NordicSemiconductor",
           repo: "pc-ble-driver",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,13 +29,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "support-arm.patch",
             url: "https://github.com/NordicSemiconductor/pc-ble-driver/commit/76a6b31dba7a13ceae40587494cbfa01a29192f4.patch",
             hash: "sha256-bvK1BXjdlhIXV8R4PiCGaq8oSLzgjMmTgAwssm8N2sk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/NordicSemiconductor/pc-ble-driver/commit/37258e65bdbcd0b4369ae448faf650dd181816ec.patch",
             hash: "sha256-gOdzIW8YJQC+PE4FJd644I1+I7CMcBY8wpF6g02eI5g=",
           })))),
@@ -49,14 +45,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [asio_1_32_0, catch2, spdlog]);
       const propagatedBuildInputs = nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [udev]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Desktop library for Bluetooth low energy development",
         homepage: "https://github.com/NordicSemiconductor/pc-ble-driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

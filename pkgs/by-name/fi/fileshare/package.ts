@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["NIX_CFLAGS_COMPILE", 29, 7]], [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5], ["mainProgram", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 22, 3], ["env", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["makeFlags", 37, 3], ["installPhase", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitea: false, "pkg-config": false, git: false, libmicrohttpd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5], ["mainProgram", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 22, 3], ["env", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["makeFlags", 37, 3], ["installPhase", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const libmicrohttpd = nix.arg($, "libmicrohttpd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fileshare",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.tkolb.de",
           owner: "Public",
           repo: "fileshare",
@@ -34,7 +31,7 @@ substituteInPlace Makefile \\
   --replace-fail gcc "${nix.sel(stdenv, "cc", "targetPrefix")}cc"
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, git]),
@@ -42,7 +39,7 @@ substituteInPlace Makefile \\
       makeFlags: nix.thunk(() => ["BUILD=release"]),
       installPhase: "mkdir -p $out/bin\ncp bin/release/fileshare $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Small HTTP Server for quickly sharing files over the network",
         longDescription: "Fileshare is a simple tool for sharing the contents of a directory via a webserver and optionally allowing uploads.",
         homepage: "https://git.tkolb.de/Public/fileshare",

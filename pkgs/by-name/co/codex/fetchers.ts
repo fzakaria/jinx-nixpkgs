@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetchers.nix", [[["version", 16, 24], ["sourceProvenance", 17, 9]], [["name", 12, 7], ["url", 13, 7], ["sha256", 14, 7], ["meta", 15, 7]], [["version", 28, 24], ["sourceProvenance", 29, 9]], [["name", 24, 7], ["url", 25, 7], ["sha256", 26, 7], ["meta", 27, 7]], [["fetchLibrustyV8", 9, 3], ["fetchLibrustyV8SrcBinding", 21, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fetchers.nix", [["version", 16, 24], ["sourceProvenance", 17, 9]]);
-const pos$2 = nix.positions(here + "/fetchers.nix", [["name", 12, 7], ["url", 13, 7], ["sha256", 14, 7], ["meta", 15, 7]]);
-const pos$3 = nix.positions(here + "/fetchers.nix", [["version", 28, 24], ["sourceProvenance", 29, 9]]);
-const pos$4 = nix.positions(here + "/fetchers.nix", [["name", 24, 7], ["url", 25, 7], ["sha256", 26, 7], ["meta", 27, 7]]);
-const pos$5 = nix.positions(here + "/fetchers.nix", [["fetchLibrustyV8", 9, 3], ["fetchLibrustyV8SrcBinding", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     fetchLibrustyV8: (args_1) => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.str`librusty_v8-${nix.sel(args_1, "version")}`),
         url: nix.thunk(() => nix.str`https://github.com/denoland/rusty_v8/releases/download/v${nix.sel(args_1, "version")}/librusty_v8_release_${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}.a.gz`),
         sha256: nix.thunk(() => nix.sel(args_1, "shas", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(args_1, "version")),
           sourceProvenance: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -31,12 +27,12 @@ export default nix.lambda((args) => (() => {
         })),
       }))),
     fetchLibrustyV8SrcBinding: (args_1) => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: nix.thunk(() => nix.str`src_binding-${nix.sel(args_1, "version")}`),
         url: nix.thunk(() => nix.str`https://github.com/denoland/rusty_v8/releases/download/v${nix.sel(args_1, "version")}/src_binding_release_${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}.rs`),
         sha256: nix.thunk(() => nix.sel(args_1, "shas", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.attr(args_1, "version")),
           sourceProvenance: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

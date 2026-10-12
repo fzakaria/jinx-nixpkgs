@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["from", 38, 7], ["to", 39, 7]], [["from", 44, 7], ["to", 45, 7]], [["from", 51, 7], ["to", 52, 7]], [["from", 59, 7], ["to", 60, 7]], [["from", 66, 7], ["to", 67, 7]], [["owner", 87, 5], ["repo", 88, 5], ["tag", 89, 5], ["fetchSubmodules", 90, 5], ["hash", 91, 5]], [["NIX_CFLAGS_COMPILE", 142, 7]], [["rev-prefix", 174, 40]], [["updateScript", 174, 12]], [["description", 177, 5], ["homepage", 178, 5], ["license", 179, 5], ["platforms", 180, 5], ["maintainers", 181, 5]], [["mainProgram", 184, 5]], [["pname", 80, 3], ["version", 84, 3], ["src", 86, 3], ["postPatch", 94, 3], ["strictDeps", 117, 3], ["nativeBuildInputs", 119, 3], ["buildInputs", 124, 3], ["cmakeFlags", 136, 3], ["env", 142, 3], ["installPhase", 153, 3], ["doCheck", 167, 3], ["postFixup", 170, 3], ["passthru", 174, 3], ["meta", 176, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchFromGitHub: false, runCommand: false, gitUpdater: false, catch2_3: false, cmake: false, fontconfig: false, "pkg-config": false, libx11: false, libxrandr: false, libxinerama: false, libxext: false, libxcursor: false, freetype: false, "alsa-lib": false, withStandalone: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["from", 38, 7], ["to", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["from", 44, 7], ["to", 45, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["from", 51, 7], ["to", 52, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["from", 59, 7], ["to", 60, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["from", 66, 7], ["to", 67, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 87, 5], ["repo", 88, 5], ["tag", 89, 5], ["fetchSubmodules", 90, 5], ["hash", 91, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 142, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["rev-prefix", 174, 40]]);
-const pos$10 = nix.positions(here + "/package.nix", [["updateScript", 174, 12]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 177, 5], ["homepage", 178, 5], ["license", 179, 5], ["platforms", 180, 5], ["maintainers", 181, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["mainProgram", 184, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 80, 3], ["version", 84, 3], ["src", 86, 3], ["postPatch", 94, 3], ["strictDeps", 117, 3], ["nativeBuildInputs", 119, 3], ["buildInputs", 124, 3], ["cmakeFlags", 136, 3], ["env", 142, 3], ["installPhase", 153, 3], ["doCheck", 167, 3], ["postFixup", 170, 3], ["passthru", 174, 3], ["meta", 176, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const withStandalone = nix.argOr($, "withStandalone", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const cpmDownloadVersion = "0.40.2";
   const cpmSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/cpm-cmake/CPM.cmake/releases/download/v${cpmDownloadVersion}/CPM.cmake`),
       hash: "sha256-yM3DLAOBZTjOInge1ylk3IZLKjSjENO3EEgSpcotg10=",
     }))));
@@ -48,40 +36,40 @@ ln -s ${cpmSrc} $out/cpm/CPM_${cpmDownloadVersion}.cmake
 `)));
   const pathMappings = nix.thunk(() => nix.concat([
     nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       from: "LV2",
       to: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Library/Audio/Plug-Ins/LV2" : "lib/lv2")}`),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       from: "VST3",
       to: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Library/Audio/Plug-Ins/VST3" : "lib/vst3")}`),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       from: "CLAP",
       to: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Library/Audio/Plug-Ins/CLAP" : "lib/clap")}`),
     })),
   ], nix.concat(nix.app(nix.sel(lib, "optionals"), withStandalone, nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         from: "Standalone",
         to: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin`),
       })),
     ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         from: "AU",
         to: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/Library/Audio/Plug-Ins/Components`),
       })),
     ])))));
   const x11Libs = nix.thunk(() => [libx11, libxrandr, libxinerama, libxext, libxcursor]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "fire",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "jerryuhoo",
           repo: "Fire",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -112,7 +100,7 @@ rm -v tests/RegressionTests.cpp
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "Catch2_SOURCE_DIR", nix.thunk(() => nix.str`${nix.sel(catch2_3, "src")}`))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))))),
       })),
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n\n", nix.app(nix.sel(lib, "strings", "concatMapStringsSep"), "\n", (entry) => nix.str`mkdir -p ${nix.sel(entry, "to")}
@@ -123,11 +111,11 @@ cp -r -t ${nix.sel(entry, "to")} Fire_artefacts/${nix.selOr(finalAttrs, () => "R
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "strings", "optionalString"), nix.thunk(() => (nix.asBool(withStandalone) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => nix.str`patchelf --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), x11Libs)} $out/bin/Fire
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$9, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[9],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[8], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Multi-band distortion plugin by Wings",
         homepage: "https://www.bluewingsmusic.com/Fire",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -136,7 +124,7 @@ cp -r -t ${nix.sel(entry, "to")} Fire_artefacts/${nix.selOr(finalAttrs, () => "R
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "OPNA2608"))];
         })()),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), withStandalone, nix.thunk(() => ({ [nix.POS]: pos$12, mainProgram: "Fire" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), withStandalone, nix.thunk(() => ({ [nix.POS]: $pos[11], mainProgram: "Fire" }))))),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

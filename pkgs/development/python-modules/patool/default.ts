@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 43, 3], ["version", 44, 3], ["format", 45, 3], ["src", 48, 3], ["postPatch", 55, 3], ["postInstall", 60, 3], ["nativeBuildInputs", 67, 3], ["nativeCheckInputs", 69, 3], ["disabledTests", 71, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, installShellFiles: false, argcomplete: false, pytestCheckHook: false, p7zip: false, cabextract: false, zip: false, lzip: false, zpaq: false, gnutar: false, unar: false, gnugrep: false, diffutils: false, file: false, gzip: false, bzip2: false, xz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["format", 45, 3], ["src", 48, 3], ["postPatch", 55, 3], ["postInstall", 60, 3], ["nativeBuildInputs", 67, 3], ["nativeCheckInputs", 69, 3], ["disabledTests", 71, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wummel",
           repo: "patool",
           tag: version,
@@ -77,7 +75,7 @@ export default nix.lambda((args) => (() => {
         "test_p7azip",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_ar"]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Portable archive file manager",
         mainProgram: "patool",
         homepage: "https://wummel.github.io/patool/",
@@ -88,7 +86,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

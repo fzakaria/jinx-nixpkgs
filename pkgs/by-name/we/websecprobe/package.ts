@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 13, 5], ["version", 14, 26], ["hash", 15, 5]], [["description", 32, 5], ["homepage", 33, 5], ["changelog", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5], ["platforms", 38, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["postInstall", 25, 3], ["pythonImportsCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 13, 5], ["version", 14, 26], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["changelog", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["postInstall", 25, 3], ["pythonImportsCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "websecprobe",
       version: "0.0.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "WebSecProbe",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-RX4tc6JaUVaNx8nidn8eMcbsmbcSY+VZbup6c6P7oOs=",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mv $out/bin/WebSecProbe $out/bin/$pname\n",
       pythonImportsCheck: nix.thunk(() => ["WebSecProbe"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Web Security Assessment Tool",
         homepage: "https://github.com/spyboy-productions/WebSecProbe/",
         changelog: nix.thunk(() => nix.str`https://github.com/spyboy-productions/WebSecProbe/releases/tag/${nix.sel(finalAttrs, "version")}`),

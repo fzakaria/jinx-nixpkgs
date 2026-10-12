@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["changelog", 100, 5], ["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["mainProgram", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["cmakeFlags", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["runtimeDependencies", 72, 3], ["postPatch", 80, 3], ["postInstall", 94, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { busybox: false, cmake: false, coreutils: false, dbus: false, fetchFromGitHub: false, gettext: false, graphviz: false, json_c: false, lib: false, libarchive: false, libusb1: false, libxml2: false, makeWrapper: false, ncurses: false, ninja: false, openssl: false, picocom: false, "pkg-config": false, qemu: false, socat: false, sqlite: false, stdenv: false, systemd: false, tigervnc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 100, 5], ["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["mainProgram", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["cmakeFlags", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["runtimeDependencies", 72, 3], ["postPatch", 80, 3], ["postInstall", 94, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const tigervnc = nix.arg($, "tigervnc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nemu",
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nemuTUI",
           repo: "nemu",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +84,7 @@ substituteInPlace sh/setup_nemu_nonroot.sh \\
   --prefix PATH : "${sqlite}/bin"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/nemuTUI/nemu/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Ncurses UI for QEMU",
         homepage: "https://github.com/nemuTUI/nemu",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["dontWrapQtApps", 24, 3], ["buildPhase", 26, 3], ["installPhase", 42, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, faust2jaqt: false, faust2lv2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["dontWrapQtApps", 24, 3], ["buildPhase", 26, 3], ["installPhase", 42, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const faust2jaqt = nix.arg($, "faust2jaqt");
   const faust2lv2 = nix.arg($, "faust2lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "faustCompressors",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "magnetophon",
           repo: "faustCompressors",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "echo \"hack out autoComp.dsp due to https://github.com/grame-cncm/faust/407/issues \"\nrm autoComp.dsp\nfor f in *.dsp;\ndo\n  echo \"compiling standalone from\" $f\n  faust2jaqt -time -double -t 99999 $f\ndone\n\nfor f in *.dsp;\ndo\n  echo \"Compiling plugin from\" $f\n  faust2lv2  -time -double -gui -t 99999 $f\ndone\n",
       installPhase: "mkdir -p $out/lib/lv2\nmv *.lv2/ $out/lib/lv2\nmkdir -p $out/bin\nrm newlib.sh\nfor f in $(find . -executable -type f); do\n  cp $f $out/bin/\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of bread and butter compressors",
         homepage: "https://github.com/magnetophon/faustCompressors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

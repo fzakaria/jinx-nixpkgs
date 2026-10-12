@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["VERILATOR_SRC_VERSION", 94, 5], ["SYSTEMC_INCLUDE", 96, 5], ["SYSTEMC_LIBDIR", 97, 5]], [["changelog", 101, 5], ["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["platforms", 108, 5], ["maintainers", 109, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["enableParallelBuilding", 31, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 42, 3], ["nativeCheckInputs", 54, 3], ["doCheck", 64, 3], ["checkTarget", 65, 3], ["preConfigure", 67, 3], ["postPatch", 69, 3], ["preCheck", 87, 3], ["env", 91, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bash: false, perl: false, flex: false, bison: false, python3: false, autoconf: false, which: false, help2man: false, makeWrapper: false, systemc: false, git: false, numactl: false, coreutils: false, gdb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["VERILATOR_SRC_VERSION", 94, 5], ["SYSTEMC_INCLUDE", 96, 5], ["SYSTEMC_LIBDIR", 97, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 101, 5], ["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["platforms", 108, 5], ["maintainers", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["enableParallelBuilding", 31, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 42, 3], ["nativeCheckInputs", 54, 3], ["doCheck", 64, 3], ["checkTarget", 65, 3], ["preConfigure", 67, 3], ["postPatch", 69, 3], ["preCheck", 87, 3], ["env", 91, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const gdb = nix.arg($, "gdb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "verilator",
       version: "5.052",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "verilator",
           repo: "verilator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,13 +59,13 @@ substituteInPlace bin/verilator --replace-fail "/bin/sh" "${bash}/bin/sh"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace src/flexfix \\\n  --replace-fail 'if platform.system() == \"Darwin\":' 'if False:'\n"))),
       preCheck: "export PATH=$PWD/bin:$PATH\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         VERILATOR_SRC_VERSION: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
         SYSTEMC_INCLUDE: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), systemc)}/include`),
         SYSTEMC_LIBDIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), systemc)}/lib`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/verilator/verilator/blob/${nix.sel(finalAttrs, "src", "tag")}/Changes`),
         description: "Fast and robust (System)Verilog simulator/compiler and linter",
         homepage: "https://www.veripool.org/verilator",

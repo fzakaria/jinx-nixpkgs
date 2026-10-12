@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["buildNoDefaultFeatures", 35, 3], ["buildFeatures", 36, 3], ["cargoHash", 38, 3], ["postInstall", 42, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, makeWrapper: false, "pkg-config": false, openssl: false, "maa-assistant-arknights": false, "android-tools": false, git: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["buildNoDefaultFeatures", 35, 3], ["buildFeatures", 36, 3], ["cargoHash", 38, 3], ["postInstall", 42, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const android_tools = nix.arg($, "android-tools");
   const git = nix.arg($, "git");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "maa-cli",
       version: "0.5.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MaaAssistantArknights",
           repo: "maa-cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ makeWrapper $out/share/maa-assistant-arknights/maa $out/bin/maa \\
 
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd maa \\\n  --bash <($out/bin/maa complete bash) \\\n  --fish <($out/bin/maa complete fish) \\\n  --zsh <($out/bin/maa complete zsh)\n\nmkdir -p manpage\n$out/bin/maa mangen --path manpage\ninstallManPage manpage/*\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple CLI for MAA by Rust",
         homepage: "https://github.com/MaaAssistantArknights/maa-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

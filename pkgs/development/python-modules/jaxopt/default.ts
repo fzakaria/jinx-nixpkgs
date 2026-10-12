@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["homepage", 102, 5], ["description", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["postPatch", 36, 3], ["build-system", 53, 3], ["dependencies", 55, 3], ["nativeCheckInputs", 63, 3], ["pythonImportsCheck", 71, 3], ["disabledTests", 79, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "absl-py": false, jax: false, matplotlib: false, numpy: false, scipy: false, cvxpy: false, optax: false, "pytest-xdist": false, pytestCheckHook: false, "scikit-learn": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 102, 5], ["description", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["postPatch", 36, 3], ["build-system", 53, 3], ["dependencies", 55, 3], ["nativeCheckInputs", 63, 3], ["pythonImportsCheck", 71, 3], ["disabledTests", 79, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scikit_learn = nix.arg($, "scikit-learn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jaxopt",
       version: "0.8.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "jaxopt",
           tag: nix.thunk(() => nix.str`jaxopt-v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
         "test_wrapper_grad",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://jaxopt.github.io",
         description: "Hardware accelerated, batchable and differentiable optimizers in JAX",
         changelog: nix.thunk(() => nix.str`https://github.com/google/jaxopt/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

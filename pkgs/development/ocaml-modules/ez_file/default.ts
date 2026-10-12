@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 11, 3], ["version", 12, 3], ["minimalOCamlVersion", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, re: false, ocplib_stuff: false, ppx_expect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["minimalOCamlVersion", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const ocplib_stuff = nix.arg($, "ocplib_stuff");
   const ppx_expect = nix.arg($, "ppx_expect");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ez_file",
       version: "0.5.0",
       minimalOCamlVersion: "4.11",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OCamlPro",
           repo: "ez_file",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [re, ocplib_stuff, ppx_expect]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library with helpers to manipulate files, read/write their content, search directories, etc",
         homepage: "https://github.com/OCamlPro/ez_file",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "WITH"), nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")), nix.thunk(() => nix.sel(lib, "licenses", "ocamlLgplLinkingException")))),

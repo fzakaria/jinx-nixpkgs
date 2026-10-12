@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["homepage", 32, 5], ["downloadPage", 33, 5], ["description", 34, 5], ["broken", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["hardeningDisable", 22, 3], ["nativeBuildInputs", 24, 3], ["buildPhase", 26, 3], ["installPhase", 27, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, kernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 32, 5], ["downloadPage", 33, 5], ["description", 34, 5], ["broken", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["hardeningDisable", 22, 3], ["nativeBuildInputs", 24, 3], ["buildPhase", 26, 3], ["installPhase", 27, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const KDIR = nix.thunk(() => nix.str`${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "amdgpu-i2c",
       version: "0-unstable-2024-12-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "twifty",
           repo: "amd-gpu-i2c",
           rev: "06ca41fd12fb90f970d3ebd4785cc26cc0a3f3b0",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`make -C ${KDIR} M=/build/source INSTALL_MOD_PATH="$out" modules_install
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/twifty/amd-gpu-i2c",
         downloadPage: "https://github.com/twifty/amd-gpu-i2c",
         description: "Exposes i2c interface to set colors on AMD GPUs",

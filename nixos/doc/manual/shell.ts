@@ -2,23 +2,21 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/shell.nix", [["config", 3, 5], ["overlays", 4, 5]]);
-const pos$2 = nix.positions(here + "/shell.nix", [["buildArgs", 10, 5], ["open", 11, 5]]);
-const pos$3 = nix.positions(here + "/shell.nix", [["packages", 16, 3]]);
+const $pos = nix.positions(here + "/shell.nix", [[["config", 3, 5], ["overlays", 4, 5]], [["buildArgs", 10, 5], ["open", 11, 5]], [["packages", 16, 3]]]);
 
 export default nix.thunk(() => (() => {
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, config: nix.thunk(() => ({})), overlays: [] }))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], config: nix.thunk(() => ({})), overlays: [] }))));
   const common = nix.thunk(() => nix.builtins.import(nix.path(here, "./common.nix")));
   const outputPath = nix.thunk(() => nix.attr(common, "outputPath"));
   const indexPath = nix.thunk(() => nix.attr(common, "indexPath"));
   const devmode = nix.thunk(() => nix.app(nix.sel(pkgs, "devmode", "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       buildArgs: nix.thunk(() => nix.str`${nix.builtins.toString(nix.path(here, "../../release.nix"))} -A manualHTML.${nix.builtins.currentSystem}`),
       open: nix.thunk(() => nix.str`/${outputPath}/${indexPath}`),
     }))));
   const nixos_render_docs_redirects = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "redirects", nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "lib", "getExe"), nix.thunk(() => nix.sel(pkgs, "nixos-render-docs-redirects")))} --file '${nix.builtins.toString(nix.path(here, "./redirects.json"))}' "$@"`)));
   return nix.app(nix.sel(pkgs, "mkShellNoCC"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       packages: nix.thunk(() => [devmode, nixos_render_docs_redirects]),
     })));
 })());

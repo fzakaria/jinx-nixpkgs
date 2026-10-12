@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 60, 5], ["mainProgram", 61, 5], ["longDescription", 62, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 19, 11], ["version", 19, 17], ["pyproject", 20, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 37, 3], ["dependencies", 41, 3], ["build-system", 45, 3], ["postInstall", 49, 3], ["dontWrapGAppsHook", 53, 3], ["makeWrapperArgs", 54, 3], ["doCheck", 58, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, wrapGAppsHook4: false, "gdk-pixbuf": false, gettext: false, "gobject-introspection": false, gtk4: false, glib: false, python3Packages: false, libadwaita: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["longDescription", 62, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 11], ["version", 19, 17], ["pyproject", 20, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 37, 3], ["dependencies", 41, 3], ["build-system", 45, 3], ["postInstall", 49, 3], ["dontWrapGAppsHook", 53, 3], ["makeWrapperArgs", 54, 3], ["doCheck", 58, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pname = "nicotine-plus";
   const version = "3.3.10";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nicotine-plus",
           repo: "nicotine-plus",
           tag: version,
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graphical client for the SoulSeek peer-to-peer system",
         mainProgram: "nicotine",
         longDescription: "Nicotine+ aims to be a pleasant, free and open source (FOSS) alternative\nto the official Soulseek client, providing additional functionality while\nkeeping current with the Soulseek protocol.\n",

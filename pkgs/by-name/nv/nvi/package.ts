@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["NIX_LDFLAGS", 46, 7]], [["description", 49, 5], ["longDescription", 50, 5], ["license", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["buildInputs", 29, 3], ["preConfigure", 35, 3], ["configureScript", 39, 3], ["configureFlags", 41, 3], ["env", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, ncurses: false, db: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["longDescription", 50, 5], ["license", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["buildInputs", 29, 3], ["preConfigure", 35, 3], ["configureScript", 39, 3], ["configureFlags", 41, 3], ["env", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const db = nix.arg($, "db");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nvi",
       version: "1.81.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://deb.debian.org/debian/pool/main/n/nvi/nvi_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           hash: "sha256-i8NIiJFZo0zyaPgHILJvRZ29cjtWFhB9NnOdAH5Ml40=",
         })))),
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
       configureScript: "../dist/configure",
       configureFlags: nix.thunk(() => ["vi_cv_path_preserve=/tmp", "--enable-widechar"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-liconv")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Berkeley Vi Editor",
         longDescription: "nvi (\"new vi\") is a re-implementation of the\nclassic Berkeley text editor vi, written by\nKeith Bostic at UC Berkeley for 4BSD. Created\nto replace Unix-derived code in BSD, it provides\na clean, unencumbered version of the original\neditor and is the default vi on all major BSD\nsystems as well as MINIX.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["extraArgs", 38, 5]], [["updateScript", 37, 12]], [["description", 42, 5], ["license", 43, 5], ["homepage", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["setSourceRoot", 21, 3], ["nativeBuildInputs", 25, 3], ["makeFlags", 27, 3], ["buildFlags", 33, 3], ["installFlags", 34, 3], ["installTargets", 35, 3], ["passthru", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 37, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 42, 5], ["license", 43, 5], ["homepage", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["setSourceRoot", 21, 3], ["nativeBuildInputs", 25, 3], ["makeFlags", 27, 3], ["buildFlags", 33, 3], ["installFlags", 34, 3], ["installTargets", 35, 3], ["passthru", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nct6687d",
       version: "0-unstable-2026-08-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Fred78290",
           repo: "nct6687d",
           rev: "4864fd681346119cf17417f82934a8ce05d88ff6",
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installTargets: nix.thunk(() => ["modules_install"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch=main"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch=main"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Kernel module for the Nuvoton NCT6687-R chipset found on many B550/B650 motherboards from ASUS and MSI",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         homepage: "https://github.com/Fred78290/nct6687d/",

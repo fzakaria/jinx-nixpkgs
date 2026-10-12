@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["package", 25, 5], ["features", 30, 5]], [["NIX_CFLAGS_COMPILE", 36, 7]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 56, 5], ["mainProgram", 57, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["cargoBuildFlags", 24, 3], ["env", 36, 3], ["nativeBuildInputs", 41, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, automake: false, libtool: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 25, 5], ["features", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 56, 5], ["mainProgram", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["cargoBuildFlags", 24, 3], ["env", 36, 3], ["nativeBuildInputs", 41, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lightway",
       version: "0-unstable-2026-04-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "expressvpn",
           repo: "lightway",
           rev: "8e0940f047ee72db5daa1fb7c3bb82bc89e0f1d9",
@@ -31,12 +27,12 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-gY8KokOtdBT7Vq+lGn2sk4/o3A0TypEqv09TVJqaZjc=",
       cargoBuildFlags: nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           package: nix.thunk(() => ["lightway-client", "lightway-server"]),
           features: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["io-uring"]))),
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(stdenv, "hostPlatform")), null);
           return nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.lookup(w, "isAarch")) && nix.asBool(nix.lookup(w, "isLinux")))), nix.thunk(() => nix.str`-march=${nix.sel(nix.lookup(w, "gcc"), "arch")}+crypto`));
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "bindgenHook")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "A modern VPN protocol in Rust",
         homepage: "https://expressvpn.com/lightway",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

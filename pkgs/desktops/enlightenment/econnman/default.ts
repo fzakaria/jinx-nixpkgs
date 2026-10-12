@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["updateScript", 43, 12]], [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5], ["teams", 54, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["pythonPath", 34, 3], ["postInstall", 39, 3], ["passthru", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, "pkg-config": false, dbus: false, efl: false, python3Packages: false, directoryListingUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 43, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5], ["teams", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["pythonPath", 34, 3], ["postInstall", 39, 3], ["passthru", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "econnman";
       const version = "1.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://download.enlightenment.org/rel/apps/econnman/${pname}-${version}.tar.xz`),
           sha256: "sha256-DM6HaB+ufKcPHmPP4K5l/fF7wzRycFQxfiXjiXYZ7YU=",
         }))));
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "wrapPythonPrograms\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "User interface for the connman network connection manager",
         mainProgram: "econnman-bin",
         homepage: "https://enlightenment.org/",
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "enlightenment"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

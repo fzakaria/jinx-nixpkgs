@@ -2,14 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-gauge-plugin.nix", [[["aarch64-darwin", 40, 5], ["aarch64-linux", 41, 5], ["x86_64-linux", 42, 5]], [["url", 52, 15], ["hash", 52, 19], ["stripRoot", 53, 7]], [["plugins", 64, 45]], [["loadPlugin", 64, 13]], [["tests", 64, 7], ["updateScript", 65, 7]], [["pname", 48, 5], ["version", 49, 20], ["src", 51, 5], ["nativeBuildInputs", 56, 5], ["installPhase", 58, 5], ["passthru", 63, 5]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchzip: false, lib: false, writeScript: false, autoPatchelfHook: false, testGaugePlugins: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, data: false, repo: false, releasePrefix: false, isCrossArch: true, meta: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/make-gauge-plugin.nix", [["aarch64-darwin", 40, 5], ["aarch64-linux", 41, 5], ["x86_64-linux", 42, 5]]);
-const pos$2 = nix.positions(here + "/make-gauge-plugin.nix", [["url", 52, 15], ["hash", 52, 19], ["stripRoot", 53, 7]]);
-const pos$3 = nix.positions(here + "/make-gauge-plugin.nix", [["plugins", 64, 45]]);
-const pos$4 = nix.positions(here + "/make-gauge-plugin.nix", [["loadPlugin", 64, 13]]);
-const pos$5 = nix.positions(here + "/make-gauge-plugin.nix", [["tests", 64, 7], ["updateScript", 65, 7]]);
-const pos$6 = nix.positions(here + "/make-gauge-plugin.nix", [["pname", 48, 5], ["version", 49, 20], ["src", 51, 5], ["nativeBuildInputs", 56, 5], ["installPhase", 58, 5], ["passthru", 63, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,26 +30,26 @@ export default nix.lambda((args) => (() => {
     const url = nix.thunk(() => nix.attr(from_1, "url"));
     const hash = nix.thunk(() => nix.attr(from_1, "hash"));
     const systemMap = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "aarch64-darwin": "darwin.arm64",
       "aarch64-linux": "linux.arm64",
       "x86_64-linux": "linux.x86_64",
     }));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: nix.thunk(() => nix.str`gauge-plugin-${pname}`),
           version: nix.thunk(() => nix.attr(data, "version")),
-          src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({ [nix.POS]: pos$2, url: url, hash: hash, stripRoot: false })))),
+          src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({ [nix.POS]: $pos[1], url: url, hash: hash, stripRoot: false })))),
           nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), autoPatchelfHook)),
           installPhase: nix.thunk(() => nix.str`mkdir -p "$out/share/gauge-plugins/${pname}/${nix.sel(finalAttrs, "version")}"
 cp -r . "$out/share/gauge-plugins/${pname}/${nix.sel(finalAttrs, "version")}"
 `),
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             tests: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               loadPlugin: nix.thunk(() => nix.app(testGaugePlugins, nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   plugins: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
                 })))),
             })),

@@ -2,13 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-go-plugin.nix", [[["nativeBuildInputs", 38, 9]], [["isNavidromePlugin", 52, 9]], [["platforms", 57, 9], ["maintainers", 58, 9]], [["__structuredAttrs", 29, 7], ["nativeBuildInputs", 31, 7], ["ldflags", 35, 7], ["overrideModAttrs", 37, 7], ["preInstall", 47, 7], ["passthru", 51, 7], ["meta", 56, 7]], [["constructDrv", 11, 3], ["excludeDrvArgNames", 13, 3], ["extendDrvArgs", 17, 3]]]);
 const formals$1 = { args: { buildGoModule: false, lib: false, navidrome: false, navidromePluginInstallHook: false, go: false, gitMinimal: false, cacert: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, src: false, vendorHash: false, meta: false, passthru: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-go-plugin.nix", [["nativeBuildInputs", 38, 9]]);
-const pos$2 = nix.positions(here + "/build-go-plugin.nix", [["isNavidromePlugin", 52, 9]]);
-const pos$3 = nix.positions(here + "/build-go-plugin.nix", [["platforms", 57, 9], ["maintainers", 58, 9]]);
-const pos$4 = nix.positions(here + "/build-go-plugin.nix", [["__structuredAttrs", 29, 7], ["nativeBuildInputs", 31, 7], ["ldflags", 35, 7], ["overrideModAttrs", 37, 7], ["preInstall", 47, 7], ["passthru", 51, 7], ["meta", 56, 7]]);
-const pos$5 = nix.positions(here + "/build-go-plugin.nix", [["constructDrv", 11, 3], ["excludeDrvArgNames", 13, 3], ["extendDrvArgs", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const cacert = nix.arg($, "cacert");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       constructDrv: buildGoModule,
       excludeDrvArgNames: nix.thunk(() => ["meta", "passthru"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -33,18 +29,18 @@ export default nix.lambda((args) => (() => {
         const meta = nix.arg($_1, "meta");
         const passthru = nix.argOr($_1, "passthru", () => ({}));
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           __structuredAttrs: true,
           nativeBuildInputs: nix.thunk(() => [navidromePluginInstallHook]),
           ldflags: nix.thunk(() => ["-buildmode=c-shared"]),
           overrideModAttrs: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             nativeBuildInputs: nix.thunk(() => [go, gitMinimal, cacert]),
           })),
           preInstall: "find \"$GOPATH\"/bin/ -type f -exec cp {} \"./plugin.wasm\" \\;\n",
-          passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$2, isNavidromePlugin: true }, passthru)),
+          passthru: nix.thunk(() => nix.update({ [nix.POS]: $pos[1], isNavidromePlugin: true }, passthru)),
           meta: nix.thunk(() => nix.update(meta, {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "wasi")),
             maintainers: nix.thunk(() => nix.concat(nix.sel(navidrome, "meta", "maintainers"), nix.selOr(meta, () => [], "maintainers"))),
           })),

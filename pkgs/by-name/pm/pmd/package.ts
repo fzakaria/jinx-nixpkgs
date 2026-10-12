@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["platforms", 48, 5], ["license", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["dontConfigure", 24, 3], ["dontBuild", 25, 3], ["installPhase", 27, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, makeWrapper: false, jdk8: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["platforms", 48, 5], ["license", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["dontConfigure", 24, 3], ["dontBuild", 25, 3], ["installPhase", 27, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jdk8 = nix.arg($, "jdk8");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pmd",
       version: "6.55.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/pmd/pmd/releases/download/pmd_releases/${nix.sel(finalAttrs, "version")}/pmd-bin-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-Iaz5bUPLQNWRyszMHCCmb8eW6t32nqYYEllER7rHoR0=",
         })))),
@@ -43,7 +41,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extensible cross-language static code analyzer",
         homepage: "https://pmd.github.io/",
         changelog: nix.thunk(() => nix.str`https://pmd.github.io/pmd-${nix.sel(finalAttrs, "version")}/pmd_release_notes.html`),

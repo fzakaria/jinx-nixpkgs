@@ -2,60 +2,45 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrappers.nix", [[["extraConfig", 10, 7]], [["users", 19, 16]], [["gids", 19, 11]], [["uid", 23, 11], ["isNormalUser", 24, 11]], [["regular", 22, 9]], [["users", 21, 13]], [["enable", 28, 25]], [["enable", 32, 11], ["owner", 33, 11], ["group", 34, 11], ["setuid", 35, 11], ["source", 36, 11], ["program", 37, 11]], [["owner", 40, 11], ["group", 41, 11], ["setuid", 42, 11], ["source", 43, 11], ["program", 44, 11]], [["owner", 47, 11], ["group", 48, 11], ["setgid", 49, 11], ["source", 50, 11], ["program", 51, 11]], [["owner", 54, 11], ["group", 55, 11], ["source", 56, 11], ["program", 57, 11], ["capabilities", 58, 11]], [["disabled", 31, 9], ["suidRoot", 39, 9], ["sgidRoot", 46, 9], ["withChown", 53, 9]], [["apparmor", 28, 16], ["wrappers", 30, 16]], [["ids", 19, 7], ["users", 21, 7], ["security", 28, 7]], [["machine", 16, 9]], [["name", 14, 3], ["nodes", 16, 3], ["testScript", 63, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/wrappers.nix", [["extraConfig", 10, 7]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/wrappers.nix", [["users", 19, 16]]);
-const pos$3 = nix.positions(here + "/wrappers.nix", [["gids", 19, 11]]);
-const pos$4 = nix.positions(here + "/wrappers.nix", [["uid", 23, 11], ["isNormalUser", 24, 11]]);
-const pos$5 = nix.positions(here + "/wrappers.nix", [["regular", 22, 9]]);
-const pos$6 = nix.positions(here + "/wrappers.nix", [["users", 21, 13]]);
-const pos$7 = nix.positions(here + "/wrappers.nix", [["enable", 28, 25]]);
-const pos$8 = nix.positions(here + "/wrappers.nix", [["enable", 32, 11], ["owner", 33, 11], ["group", 34, 11], ["setuid", 35, 11], ["source", 36, 11], ["program", 37, 11]]);
-const pos$9 = nix.positions(here + "/wrappers.nix", [["owner", 40, 11], ["group", 41, 11], ["setuid", 42, 11], ["source", 43, 11], ["program", 44, 11]]);
-const pos$10 = nix.positions(here + "/wrappers.nix", [["owner", 47, 11], ["group", 48, 11], ["setgid", 49, 11], ["source", 50, 11], ["program", 51, 11]]);
-const pos$11 = nix.positions(here + "/wrappers.nix", [["owner", 54, 11], ["group", 55, 11], ["source", 56, 11], ["program", 57, 11], ["capabilities", 58, 11]]);
-const pos$12 = nix.positions(here + "/wrappers.nix", [["disabled", 31, 9], ["suidRoot", 39, 9], ["sgidRoot", 46, 9], ["withChown", 53, 9]]);
-const pos$13 = nix.positions(here + "/wrappers.nix", [["apparmor", 28, 16], ["wrappers", 30, 16]]);
-const pos$14 = nix.positions(here + "/wrappers.nix", [["ids", 19, 7], ["users", 21, 7], ["security", 28, 7]]);
-const pos$15 = nix.positions(here + "/wrappers.nix", [["machine", 16, 9]]);
-const pos$16 = nix.positions(here + "/wrappers.nix", [["name", 14, 3], ["nodes", 16, 3], ["testScript", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const userUid = 1000n;
   const usersGid = 100n;
-  const busybox = (pkgs_1) => nix.app(nix.sel(pkgs_1, "busybox", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, extraConfig: "CONFIG_FEATURE_SUID n" })));
+  const busybox = (pkgs_1) => nix.app(nix.sel(pkgs_1, "busybox", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], extraConfig: "CONFIG_FEATURE_SUID n" })));
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "wrappers",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           ids: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            gids: nix.thunk(() => ({ [nix.POS]: pos$2, users: usersGid })),
+            [nix.POS]: $pos[2],
+            gids: nix.thunk(() => ({ [nix.POS]: $pos[1], users: usersGid })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              regular: nix.thunk(() => ({ [nix.POS]: pos$4, uid: userUid, isNormalUser: true })),
+              [nix.POS]: $pos[4],
+              regular: nix.thunk(() => ({ [nix.POS]: $pos[3], uid: userUid, isNormalUser: true })),
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            apparmor: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            [nix.POS]: $pos[12],
+            apparmor: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
             wrappers: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               disabled: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 enable: false,
                 owner: "root",
                 group: "root",
@@ -64,7 +49,7 @@ export default nix.lambda((args) => (() => {
                 program: "disabled_busybox",
               })),
               suidRoot: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 owner: "root",
                 group: "root",
                 setuid: true,
@@ -72,7 +57,7 @@ export default nix.lambda((args) => (() => {
                 program: "suid_root_busybox",
               })),
               sgidRoot: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 owner: "root",
                 group: "root",
                 setgid: true,
@@ -80,7 +65,7 @@ export default nix.lambda((args) => (() => {
                 program: "sgid_root_busybox",
               })),
               withChown: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 owner: "root",
                 group: "root",
                 source: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "libcap")}/bin/capsh`),

@@ -2,25 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["url", 25, 7], ["hash", 26, 7]], [["url", 29, 7], ["hash", 30, 7]], [["url", 33, 7], ["hash", 34, 7]], [["url", 37, 7], ["hash", 38, 7]], [["url", 41, 7], ["hash", 42, 7]], [["url", 45, 7], ["hash", 46, 7]], [["url", 49, 7], ["hash", 50, 7]], [["url", 53, 7], ["hash", 54, 7]], [["url", 57, 7], ["hash", 58, 7]], [["url", 61, 7], ["hash", 62, 7]], [["url", 65, 7], ["hash", 66, 7]], [["url", 69, 7], ["hash", 70, 7]], [["url", 73, 7], ["hash", 74, 7]], [["url", 77, 7], ["hash", 78, 7]], [["url", 81, 7], ["hash", 82, 7]], [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 18, 3], ["patches", 23, 3], ["outputs", 86, 3], ["enableParallelBuilding", 93, 3], ["buildInputs", 95, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchpatch: false, fetchurl: false, dbus: false, zlib: false, openssl: false, readline: false, lib: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 45, 7], ["hash", 46, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 49, 7], ["hash", 50, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["url", 53, 7], ["hash", 54, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["url", 57, 7], ["hash", 58, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["url", 61, 7], ["hash", 62, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["url", 65, 7], ["hash", 66, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["url", 69, 7], ["hash", 70, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["url", 73, 7], ["hash", 74, 7]]);
-const pos$15 = nix.positions(here + "/package.nix", [["url", 77, 7], ["hash", 78, 7]]);
-const pos$16 = nix.positions(here + "/package.nix", [["url", 81, 7], ["hash", 82, 7]]);
-const pos$17 = nix.positions(here + "/package.nix", [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5]]);
-const pos$18 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 18, 3], ["patches", 23, 3], ["outputs", 86, 3], ["enableParallelBuilding", 93, 3], ["buildInputs", 95, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,87 +17,87 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       pname: "wvstreams",
       version: "4.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/wvstreams/wvstreams-4.6.1.tar.gz",
           hash: "sha256-hAP1+/g6qawMbOFdl/2FYHSIFSqoTgB7fQYhuOvAdjM=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://cgit.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvstreams/04_signed_request.diff?id=0e6c34f82ca4d43cbca3754c5fe37c5b3bdd0f37",
             hash: "sha256-zlPiME+KYjesmKt3a+JoE087qE1MbnlVPjC75qQoIks=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://cgit.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvstreams/05_gcc.diff?id=0e6c34f82ca4d43cbca3754c5fe37c5b3bdd0f37",
             hash: "sha256-Twqk0J8E05kAvhHjAoAuYEpS445t3mb/BvuxTmaaGoM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://cgit.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvstreams/06_gcc-4.7.diff?id=0e6c34f82ca4d43cbca3754c5fe37c5b3bdd0f37",
             hash: "sha256-JMPNUdfAJ/gq+am/F1DE2q3+35ItiLAve1+LLl8+Oe4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://cgit.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvstreams/07_buildflags.diff?id=0e6c34f82ca4d43cbca3754c5fe37c5b3bdd0f37",
             hash: "sha256-N3HmuBakD5VHoToOqU6EmTHlgFG6A7x84Gbf2P2u+s8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://cgit.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvstreams/gcc-6.patch?id=0e6c34f82ca4d43cbca3754c5fe37c5b3bdd0f37",
             hash: "sha256-fXhBUKaHD27mspwrKNY5G7F6UHqq/dmnPlf9cIvM7hM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://cgit.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvstreams/argp.patch?id=0e6c34f82ca4d43cbca3754c5fe37c5b3bdd0f37",
             hash: "sha256-55vWFfd/SDa9dE+GmSHDMU2kTrn+tNUW2clPknSdi7g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: "https://cgit.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvstreams/0001-Check-for-limits.h-during-configure.patch?id=0e6c34f82ca4d43cbca3754c5fe37c5b3bdd0f37",
             hash: "sha256-XRJCZMnygcQie9sUc1iCe9HVE9lEFCed4JRDtd/C/84=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             url: "https://cgit.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvstreams/0003-wvtask-Check-for-HAVE_LIBC_STACK_END-only-on-glibc-s.patch?id=0e6c34f82ca4d43cbca3754c5fe37c5b3bdd0f37",
             hash: "sha256-v0WAFyWwQ70dpq1BEXQjkOrdUUk4tBFJVKeHffs4FmA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             url: "https://cgit.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvstreams/0004-wvcrash-Replace-use-of-basename-API.patch?id=0e6c34f82ca4d43cbca3754c5fe37c5b3bdd0f37",
             hash: "sha256-1UZziDaE0BCM/YmYjBgFA2Q8zfnWpQcal08a0qcClmo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             url: "https://cgit.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvstreams/0005-check-for-libexecinfo-during-configure.patch?id=0e6c34f82ca4d43cbca3754c5fe37c5b3bdd0f37",
             hash: "sha256-4Ad10pijea/qusrdCJAEjpc1/qfQNE32t/M2YMk5jNg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             url: "https://cgit.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvstreams/0001-build-fix-parallel-make.patch?id=0e6c34f82ca4d43cbca3754c5fe37c5b3bdd0f37",
             hash: "sha256-zWREskvLoAH2sYn6kbemTC1V5KrF9jX0B0d+ASExQBA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             url: "https://cgit.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvstreams/0002-wvrules.mk-Use-_DEFAULT_SOURCE.patch?id=0e6c34f82ca4d43cbca3754c5fe37c5b3bdd0f37",
             hash: "sha256-ACiuwqwg5nUbzqoJR5h9GENXmN3ELzkBjujZivBoM4g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             url: "https://cgit.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvstreams/openssl-buildfix.patch?id=0e6c34f82ca4d43cbca3754c5fe37c5b3bdd0f37",
             hash: "sha256-pMHopuBEge7Llq1Syb8sZJArhUOWBNmcOvVcNtFgnbA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             url: "https://cgit.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvstreams/0001-Forward-port-to-OpenSSL-1.1.x.patch?id=0e6c34f82ca4d43cbca3754c5fe37c5b3bdd0f37",
             hash: "sha256-R5pfYxefEvvxB1k+gZzRQgsbmkgpK9cBqZxCXHQnQlM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             url: "https://cgit.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvstreams/0001-Fix-narrowing-conversion-error.patch?id=0e6c34f82ca4d43cbca3754c5fe37c5b3bdd0f37",
             hash: "sha256-esCD7jMVxD1sC2C4jx+pnnIWHpXAVGF/CGXvwHc9rhU=",
           })))),
@@ -123,7 +106,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       buildInputs: nix.thunk(() => [dbus, zlib, openssl, readline, perl]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         description: "Network programming library in C++",
         homepage: "http://alumnit.ca/wiki/index.php?page=WvStreams",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

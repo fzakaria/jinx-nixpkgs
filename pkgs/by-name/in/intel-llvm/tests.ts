@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["name", 9, 5], ["text", 10, 5]], [["name", 26, 7], ["flags", 27, 7]], [["name", 31, 5], ["flags", 32, 5]], [["name", 35, 5], ["flags", 37, 5]], [["name", 40, 5], ["flags", 43, 5]], [["description", 70, 9], ["mainProgram", 71, 9]], [["name", 53, 7], ["src", 55, 15], ["dontUnpack", 57, 7], ["buildPhase", 59, 7], ["installPhase", 64, 7], ["meta", 69, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, writeTextFile: false, backends: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["name", 9, 5], ["text", 10, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["name", 26, 7], ["flags", 27, 7]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["name", 31, 5], ["flags", 32, 5]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["name", 35, 5], ["flags", 37, 5]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["name", 40, 5], ["flags", 43, 5]]);
 const formals$2 = { args: { name: false, flags: false }, ellipsis: false };
-const pos$6 = nix.positions(here + "/tests.nix", [["description", 70, 9], ["mainProgram", 71, 9]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["name", 53, 7], ["src", 55, 15], ["dontUnpack", 57, 7], ["buildPhase", 59, 7], ["installPhase", 64, 7], ["meta", 69, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const writeTextFile = nix.arg($, "writeTextFile");
   const backends = nix.arg($, "backends");
   const src = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "test.cpp",
       text: "#include <sycl/sycl.hpp>\n#include <iostream>\n\nint main() {\n  sycl::queue q;\n  std::cout << \"SYCL queue created successfully\" << std::endl;\n  return 0;\n}\n",
     }))));
-  const targets = nix.thunk(() => nix.concat([nix.thunk(() => ({ [nix.POS]: pos$2, name: "spir64", flags: [] }))], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "native_cpu", backends)), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+  const targets = nix.thunk(() => nix.concat([nix.thunk(() => ({ [nix.POS]: $pos[1], name: "spir64", flags: [] }))], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "native_cpu", backends)), nix.thunk(() => ({
+      [nix.POS]: $pos[2],
       name: "native_cpu",
       flags: nix.thunk(() => ["-fsycl-targets=native_cpu"]),
     }))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "cuda", backends)), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "nvptx64-nvidia-cuda",
       flags: nix.thunk(() => ["-fsycl-targets=nvptx64-nvidia-cuda"]),
     }))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "hip", backends)), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "amdgcn-amd-amdhsa",
       flags: nix.thunk(() => [
         "-fsycl-targets=amdgcn-amd-amdhsa",
@@ -45,7 +39,7 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const flags = nix.arg($_1, "flags");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: nix.thunk(() => nix.str`intel-llvm-test-sycl-compile-${name}`),
         src: src,
         dontUnpack: true,
@@ -54,7 +48,7 @@ clang++ -fsycl ${nix.app(nix.sel(lib, "escapeShellArgs"), flags)} $src -o test
 `),
         installPhase: "mkdir -p $out/bin\ncp test $out/bin/sycl-test\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: nix.thunk(() => nix.str`Test that intel-llvm can build a SYCL program for ${name}`),
           mainProgram: "sycl-test",
         })),

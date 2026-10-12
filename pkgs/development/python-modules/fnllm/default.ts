@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 30, 26], ["version", 30, 32], ["hash", 31, 5]], [["azure", 48, 5], ["numpy", 52, 5], ["openai", 53, 5]], [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 59, 3], ["pythonImportsCheck", 67, 3], ["disabledTests", 69, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, aiolimiter: false, "azure-identity": false, "azure-storage-blob": false, buildPythonPackage: false, fetchPypi: false, hatchling: false, httpx: false, "json-repair": false, numpy: false, openai: false, polyfactory: false, pydantic: false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, pythonAtLeast: false, tenacity: false, tiktoken: false, "uv-dynamic-versioning": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 30, 26], ["version", 30, 32], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["azure", 48, 5], ["numpy", 52, 5], ["openai", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 59, 3], ["pythonImportsCheck", 67, 3], ["disabledTests", 69, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const tiktoken = nix.arg($, "tiktoken");
   const uv_dynamic_versioning = nix.arg($, "uv-dynamic-versioning");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fnllm",
       version: "0.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-gKdFBpNpG/CDLhKi1wQgZHv+o1pDy5HEqcteLzkXK1A=",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, uv_dynamic_versioning]),
       dependencies: nix.thunk(() => [aiolimiter, httpx, json_repair, pydantic, tenacity]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         azure: nix.thunk(() => [azure_identity, azure_storage_blob]),
         numpy: nix.thunk(() => [numpy]),
         openai: nix.thunk(() => [openai, tiktoken]),
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
         "test_children",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["test_call_batch_raises_if_response_length_mismatch"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Function-based LLM protocol and wrapper",
         homepage: "https://github.com/microsoft/essex-toolkit/tree/main/python/fnllm",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/essex-toolkit/blob/fnllm-v${nix.sel(finalAttrs, "version")}/python/fnllm/CHANGELOG.md`),

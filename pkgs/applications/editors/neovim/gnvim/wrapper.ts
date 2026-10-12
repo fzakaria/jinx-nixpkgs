@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["unwrapped", 34, 12]], [["pname", 10, 3], ["version", 11, 3], ["buildCommand", 12, 3], ["preferLocalBuild", 28, 3], ["nativeBuildInputs", 30, 3], ["passthru", 34, 3], ["meta", 36, 29]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "gnvim-unwrapped": false, neovim: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["unwrapped", 34, 12]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["pname", 10, 3], ["version", 11, 3], ["buildCommand", 12, 3], ["preferLocalBuild", 28, 3], ["nativeBuildInputs", 30, 3], ["passthru", 34, 3], ["meta", 36, 29]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const neovim = nix.arg($, "neovim");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "gnvim",
       version: nix.thunk(() => nix.sel(gnvim_unwrapped, "version")),
       buildCommand: nix.thunk(() => nix.add(nix.str`makeWrapper '${gnvim_unwrapped}/bin/gnvim' "$out/bin/gnvim" \\
@@ -31,7 +30,7 @@ sed -e "s|Exec=.\\\\+gnvim\\\\>|Exec=gnvim|" -i $out/share/applications/*.deskto
 `)))),
       preferLocalBuild: true,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, unwrapped: gnvim_unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], unwrapped: gnvim_unwrapped })),
       meta: nix.thunk(() => nix.attr(gnvim_unwrapped, "meta")),
     })));
 })(), formals$1);

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["libdir", 23, 7]], [["description", 28, 5], ["mainProgram", 29, 5]], [["pname", 11, 3], ["version", 13, 23], ["src", 13, 31], ["buildInputs", 15, 3], ["patches", 21, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, replaceVars: false, ocaml: false, menhirGLR: false, menhirLib: false, menhirSdk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["libdir", 23, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 28, 5], ["mainProgram", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 13, 23], ["src", 13, 31], ["buildInputs", 15, 3], ["patches", 21, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const menhirLib = nix.arg($, "menhirLib");
   const menhirSdk = nix.arg($, "menhirSdk");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "menhir",
       version: nix.thunk(() => nix.attr(menhirLib, "version")),
       src: nix.thunk(() => nix.attr(menhirLib, "src")),
       buildInputs: nix.thunk(() => [menhirGLR, menhirLib, menhirSdk]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./menhir-suggest-menhirLib.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             libdir: nix.thunk(() => nix.str`${menhirLib}/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib/menhirLib`),
           })))),
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(menhirSdk, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "LR(1) parser generator for OCaml",
         mainProgram: "menhir",
       })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 14, 5], ["homepage", 15, 5], ["license", 16, 5], ["maintainers", 17, 5], ["platforms", 18, 5]], [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["pname", 10, 3], ["version", 11, 3], ["meta", 13, 3], ["src", 21, 3], ["buildInputs", 28, 3], ["targetName", 33, 3], ["premakeFlags", 41, 3], ["installPhase", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, premake4: false, bootil: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 14, 5], ["homepage", 15, 5], ["license", 16, 5], ["maintainers", 17, 5], ["platforms", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["meta", 13, 3], ["src", 21, 3], ["buildInputs", 28, 3], ["targetName", 33, 3], ["premakeFlags", 41, 3], ["installPhase", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gmad";
       const version = "0-unstable-2020-02-24";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Garry's Mod Addon Creator and Extractor",
         homepage: "https://github.com/Facepunch/gmad",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Facepunch",
           repo: "gmad",
           rev: "5236973a2fcbb3043bdd3d4529ce68b6d938ad93",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
 cp ${targetName} $out/bin/gmad
 `);
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         meta,

@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-composer-with-plugin.nix", [[["allow-plugins", 23, 11]], [["versions", 32, 15]], [["type", 29, 13], ["url", 30, 13], ["options", 31, 13]], [["name", 16, 9], ["description", 17, 9], ["license", 18, 9], ["require", 19, 9], ["config", 22, 9], ["repositories", 27, 9]], [["COMPOSER_CACHE_DIR", 136, 11], ["COMPOSER_HTACCESS_PROTECT", 137, 11]], [["pname", 112, 9], ["pluginName", 113, 9], ["version", 115, 30], ["src", 115, 38], ["composerLock", 117, 9], ["composerNoDev", 118, 9], ["composerNoPlugins", 119, 9], ["composerNoScripts", 120, 9], ["composerStrictValidation", 121, 9], ["composerGlobal", 122, 9], ["composerJson", 123, 9], ["nativeBuildInputs", 125, 9], ["dontPatchShebangs", 131, 9], ["doCheck", 132, 9], ["doInstallCheck", 133, 9], ["env", 135, 9], ["outputHashMode", 140, 9], ["outputHashAlgo", 141, 9], ["outputHash", 142, 9]], [["updateScript", 147, 9]], [["composerLock", 49, 7], ["composerNoDev", 50, 7], ["composerNoPlugins", 51, 7], ["composerNoScripts", 52, 7], ["composerStrictValidation", 53, 7], ["composerGlobal", 54, 7], ["nativeBuildInputs", 56, 7], ["buildInputs", 62, 7], ["patches", 64, 7], ["strictDeps", 65, 7], ["configurePhase", 68, 7], ["buildPhase", 75, 7], ["doCheck", 82, 7], ["checkPhase", 84, 7], ["installPhase", 91, 7], ["doInstallCheck", 101, 7], ["installCheckPhase", 102, 7], ["vendor", 111, 7], ["passthru", 146, 7], ["meta", 152, 7]]]);
 const formals$1 = { args: { stdenvNoCC: false, writeText: false, lib: false, makeBinaryWrapper: false, php: false, cacert: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-composer-with-plugin.nix", [["allow-plugins", 23, 11]]);
-const pos$2 = nix.positions(here + "/build-composer-with-plugin.nix", [["versions", 32, 15]]);
-const pos$3 = nix.positions(here + "/build-composer-with-plugin.nix", [["type", 29, 13], ["url", 30, 13], ["options", 31, 13]]);
-const pos$4 = nix.positions(here + "/build-composer-with-plugin.nix", [["name", 16, 9], ["description", 17, 9], ["license", 18, 9], ["require", 19, 9], ["config", 22, 9], ["repositories", 27, 9]]);
-const pos$5 = nix.positions(here + "/build-composer-with-plugin.nix", [["COMPOSER_CACHE_DIR", 136, 11], ["COMPOSER_HTACCESS_PROTECT", 137, 11]]);
-const pos$6 = nix.positions(here + "/build-composer-with-plugin.nix", [["pname", 112, 9], ["pluginName", 113, 9], ["version", 115, 30], ["src", 115, 38], ["composerLock", 117, 9], ["composerNoDev", 118, 9], ["composerNoPlugins", 119, 9], ["composerNoScripts", 120, 9], ["composerStrictValidation", 121, 9], ["composerGlobal", 122, 9], ["composerJson", 123, 9], ["nativeBuildInputs", 125, 9], ["dontPatchShebangs", 131, 9], ["doCheck", 132, 9], ["doInstallCheck", 133, 9], ["env", 135, 9], ["outputHashMode", 140, 9], ["outputHashAlgo", 141, 9], ["outputHash", 142, 9]]);
-const pos$7 = nix.positions(here + "/build-composer-with-plugin.nix", [["updateScript", 147, 9]]);
-const pos$8 = nix.positions(here + "/build-composer-with-plugin.nix", [["composerLock", 49, 7], ["composerNoDev", 50, 7], ["composerNoPlugins", 51, 7], ["composerNoScripts", 52, 7], ["composerStrictValidation", 53, 7], ["composerGlobal", 54, 7], ["nativeBuildInputs", 56, 7], ["buildInputs", 62, 7], ["patches", 64, 7], ["strictDeps", 65, 7], ["configurePhase", 68, 7], ["buildPhase", 75, 7], ["doCheck", 82, 7], ["checkPhase", 84, 7], ["installPhase", 91, 7], ["doInstallCheck", 101, 7], ["installCheckPhase", 102, 7], ["vendor", 111, 7], ["passthru", 146, 7], ["meta", 152, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const nix_update_script = nix.arg($, "nix-update-script");
   const composerJsonBuilder = (pluginName) => (pluginVersion) => nix.app(writeText, "composer.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "nix/plugin",
         description: "Nix Composer plugin",
         license: "MIT",
         require: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${pluginName}`, nix.thunk(() => nix.str`${pluginVersion}`)]])),
         config: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           "allow-plugins": nix.thunk(() => nix.attrsDyn({}, [[nix.str`${pluginName}`, true]])),
         })),
         repositories: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             type: "path",
             url: "./src",
             options: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               versions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${pluginName}`, nix.thunk(() => nix.str`${pluginVersion}`)]])),
             })),
           })),
@@ -47,7 +40,7 @@ export default nix.lambda((args) => (() => {
     const phpDrv = nix.thunk(() => nix.selOr(finalAttrs, () => nix.force(php), "php"));
     const composer = nix.thunk(() => nix.selOr(finalAttrs, () => nix.sel(phpDrv, "packages", "composer"), "composer"));
     return {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       composerLock: nix.thunk(() => nix.selOr(previousAttrs, () => null, "composerLock")),
       composerNoDev: nix.thunk(() => nix.selOr(previousAttrs, () => true, "composerNoDev")),
       composerNoPlugins: nix.thunk(() => nix.selOr(previousAttrs, () => true, "composerNoPlugins")),
@@ -77,7 +70,7 @@ composer global show ${nix.sel(finalAttrs, "pname")}
 runHook postInstallCheck
 `, "installCheckPhase")),
       vendor: nix.thunk(() => nix.app(nix.selOr(previousAttrs, () => nix.sel(stdenvNoCC, "mkDerivation"), "vendor"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-vendor`),
           pluginName: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -98,7 +91,7 @@ runHook postInstallCheck
           doCheck: true,
           doInstallCheck: true,
           env: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             COMPOSER_CACHE_DIR: "/dev/null",
             COMPOSER_HTACCESS_PROTECT: "0",
           })),
@@ -107,7 +100,7 @@ runHook postInstallCheck
           outputHash: nix.thunk(() => nix.sel(finalAttrs, "vendorHash")),
         })))),
       passthru: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "passthru"), {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.selOr(previousAttrs, () => (nix.asBool(nix.eq(nix.sel(finalAttrs, "vendor", "composerLock"), null)) ? nix.app(nix_update_script, nix.thunk(() => ({}))) : null), "passthru", "updateScript")),
       })),
       meta: nix.thunk(() => nix.selOr(previousAttrs, () => nix.sel(composer, "meta"), "meta")),

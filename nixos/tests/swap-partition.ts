@@ -2,66 +2,51 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/swap-partition.nix", [[["device", 36, 11], ["fsType", 37, 11]], [["/", 35, 9]], [["useDefaultFilesystems", 8, 22], ["rootDevice", 10, 22], ["fileSystems", 34, 22]], [["enable", 15, 11], ["device", 16, 11], ["empty", 17, 11]], [["enable", 13, 9], ["repart", 14, 9]], [["systemd", 12, 19]], [["initrd", 12, 12]], [["Type", 22, 11], ["Format", 23, 11], ["Label", 24, 11]], [["Type", 27, 11], ["Label", 28, 11], ["SizeMinBytes", 29, 11], ["SizeMaxBytes", 30, 11]], [["00-root", 21, 9], ["10-swap", 26, 9]], [["partitions", 20, 22]], [["repart", 20, 15]], [["device", 43, 11], ["options", 44, 11]], [["virtualisation", 8, 7], ["boot", 12, 7], ["systemd", 20, 7], ["swapDevices", 41, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 49, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/swap-partition.nix", [["device", 36, 11], ["fsType", 37, 11]]);
-const pos$2 = nix.positions(here + "/swap-partition.nix", [["/", 35, 9]]);
-const pos$3 = nix.positions(here + "/swap-partition.nix", [["useDefaultFilesystems", 8, 22], ["rootDevice", 10, 22], ["fileSystems", 34, 22]]);
-const pos$4 = nix.positions(here + "/swap-partition.nix", [["enable", 15, 11], ["device", 16, 11], ["empty", 17, 11]]);
-const pos$5 = nix.positions(here + "/swap-partition.nix", [["enable", 13, 9], ["repart", 14, 9]]);
-const pos$6 = nix.positions(here + "/swap-partition.nix", [["systemd", 12, 19]]);
-const pos$7 = nix.positions(here + "/swap-partition.nix", [["initrd", 12, 12]]);
-const pos$8 = nix.positions(here + "/swap-partition.nix", [["Type", 22, 11], ["Format", 23, 11], ["Label", 24, 11]]);
-const pos$9 = nix.positions(here + "/swap-partition.nix", [["Type", 27, 11], ["Label", 28, 11], ["SizeMinBytes", 29, 11], ["SizeMaxBytes", 30, 11]]);
-const pos$10 = nix.positions(here + "/swap-partition.nix", [["00-root", 21, 9], ["10-swap", 26, 9]]);
-const pos$11 = nix.positions(here + "/swap-partition.nix", [["partitions", 20, 22]]);
-const pos$12 = nix.positions(here + "/swap-partition.nix", [["repart", 20, 15]]);
-const pos$13 = nix.positions(here + "/swap-partition.nix", [["device", 43, 11], ["options", 44, 11]]);
-const pos$14 = nix.positions(here + "/swap-partition.nix", [["virtualisation", 8, 7], ["boot", 12, 7], ["systemd", 20, 7], ["swapDevices", 41, 7]]);
-const pos$15 = nix.positions(here + "/swap-partition.nix", [["machine", 5, 9]]);
-const pos$16 = nix.positions(here + "/swap-partition.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "swap-partition",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             useDefaultFilesystems: false,
             rootDevice: "/dev/vda1",
             fileSystems: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              "/": nix.thunk(() => ({ [nix.POS]: pos$1, device: "/dev/disk/by-label/root", fsType: "ext4" })),
+              [nix.POS]: $pos[1],
+              "/": nix.thunk(() => ({ [nix.POS]: $pos[0], device: "/dev/disk/by-label/root", fsType: "ext4" })),
             })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 enable: true,
-                repart: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, device: "/dev/vda", empty: "allow" })),
+                repart: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, device: "/dev/vda", empty: "allow" })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             repart: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               partitions: nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                "00-root": nix.thunk(() => ({ [nix.POS]: pos$8, Type: "linux-generic", Format: "ext4", Label: "root" })),
+                [nix.POS]: $pos[9],
+                "00-root": nix.thunk(() => ({ [nix.POS]: $pos[7], Type: "linux-generic", Format: "ext4", Label: "root" })),
                 "10-swap": nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   Type: "linux-generic",
                   Label: "swap",
                   SizeMinBytes: "250M",
@@ -72,7 +57,7 @@ export default nix.lambda((args) => (() => {
           })),
           swapDevices: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               device: "/dev/disk/by-partlabel/swap",
               options: nix.thunk(() => ["x-systemd.makefs"]),
             })),

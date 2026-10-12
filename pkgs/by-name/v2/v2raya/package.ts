@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5], ["postFetch", 28, 5]], [["yarnLock", 37, 7], ["hash", 38, 7]], [["OUTPUT_DIR", 41, 9]], [["pname", 32, 13], ["version", 32, 19], ["src", 32, 27], ["sourceRoot", 34, 5], ["offlineCache", 36, 5], ["env", 41, 5], ["nativeBuildInputs", 43, 5]], [["name", 51, 5], ["paths", 52, 5]], [["extraArgs", 94, 7]], [["web", 92, 13], ["updateScript", 93, 5]], [["description", 102, 5], ["homepage", 103, 5], ["mainProgram", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["maintainers", 107, 5]], [["pname", 60, 11], ["version", 60, 17], ["src", 60, 25], ["sourceRoot", 62, 3], ["vendorHash", 64, 3], ["ldflags", 66, 3], ["subPackages", 72, 3], ["nativeBuildInputs", 74, 3], ["preBuild", 76, 3], ["postInstall", 80, 3], ["passthru", 91, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, fetchYarnDeps: false, symlinkJoin: false, yarnConfigHook: false, yarnBuildHook: false, nodejs: false, makeWrapper: false, v2ray: false, "v2ray-geoip": false, "v2ray-domain-list-community": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5], ["postFetch", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["OUTPUT_DIR", 41, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 13], ["version", 32, 19], ["src", 32, 27], ["sourceRoot", 34, 5], ["offlineCache", 36, 5], ["env", 41, 5], ["nativeBuildInputs", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 51, 5], ["paths", 52, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 94, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["web", 92, 13], ["updateScript", 93, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 102, 5], ["homepage", 103, 5], ["mainProgram", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["maintainers", 107, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 60, 11], ["version", 60, 17], ["src", 60, 25], ["sourceRoot", 62, 3], ["vendorHash", 64, 3], ["ldflags", 66, 3], ["subPackages", 72, 3], ["nativeBuildInputs", 74, 3], ["preBuild", 76, 3], ["postInstall", 80, 3], ["passthru", 91, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const pname = "v2raya";
   const version = "2.2.7.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "v2rayA",
       repo: "v2rayA",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,29 +32,29 @@ export default nix.lambda((args) => (() => {
       postFetch: "sed -i -e 's/npmmirror/yarnpkg/g' $out/gui/yarn.lock",
     }))));
   const web = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/gui`),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${src}/gui/yarn.lock`),
           hash: "sha256-g+hI9n+nfXAcuEpjvDDaHg/DfjtNusOaw3S6kC1QDn4=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         OUTPUT_DIR: nix.thunk(() => nix.builtins.placeholder("out")),
       })),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, nodejs]),
     }))));
   const assetsDir = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "assets",
       paths: nix.thunk(() => [v2ray_geoip, v2ray_domain_list_community]),
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       version: version,
       src: src,
@@ -87,12 +79,12 @@ wrapProgram $out/bin/v2rayA \\
   --prefix XDG_DATA_DIRS ":" ${assetsDir}/share
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         web: web,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["--subpackage", "web"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[5], extraArgs: nix.thunk(() => ["--subpackage", "web"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Linux web GUI client of Project V which supports V2Ray, Xray, SS, SSR, Trojan and Pingtunnel",
         homepage: "https://github.com/v2rayA/v2rayA",
         mainProgram: "v2rayA",

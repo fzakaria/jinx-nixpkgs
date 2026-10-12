@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tracy-0.12.nix", [[["name", 14, 7], ["owner", 15, 7], ["repo", 16, 7], ["rev", 17, 7], ["hash", 18, 7]], [["name", 21, 41]], [["name", 23, 7], ["owner", 24, 7], ["repo", 25, 7], ["rev", 26, 7], ["hash", 27, 7]], [["name", 31, 7], ["owner", 32, 7], ["repo", 33, 7], ["rev", 34, 7], ["hash", 35, 7]], [["name", 38, 7], ["owner", 39, 7], ["repo", 40, 7], ["rev", 41, 7], ["hash", 42, 7]], [["version", 9, 3], ["srcHash", 10, 3], ["extraBuildInputs", 11, 3], ["cpmSrcs", 12, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchFromGitLab: false, zstd: false, "nativefiledialog-extended": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tracy-0.12.nix", [["name", 14, 7], ["owner", 15, 7], ["repo", 16, 7], ["rev", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/tracy-0.12.nix", [["name", 21, 41]]);
-const pos$3 = nix.positions(here + "/tracy-0.12.nix", [["name", 23, 7], ["owner", 24, 7], ["repo", 25, 7], ["rev", 26, 7], ["hash", 27, 7]]);
-const pos$4 = nix.positions(here + "/tracy-0.12.nix", [["name", 31, 7], ["owner", 32, 7], ["repo", 33, 7], ["rev", 34, 7], ["hash", 35, 7]]);
-const pos$5 = nix.positions(here + "/tracy-0.12.nix", [["name", 38, 7], ["owner", 39, 7], ["repo", 40, 7], ["rev", 41, 7], ["hash", 42, 7]]);
-const pos$6 = nix.positions(here + "/tracy-0.12.nix", [["version", 9, 3], ["srcHash", 10, 3], ["extraBuildInputs", 11, 3], ["cpmSrcs", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,22 +12,22 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const nativefiledialog_extended = nix.arg($, "nativefiledialog-extended");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     version: "0.12.2",
     srcHash: "sha256-voHql8ETnrUMef14LYduKI+0LpdnCFsvpt8B6M/ZNmc=",
     extraBuildInputs: nix.thunk(() => [zstd]),
     cpmSrcs: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "ImGui",
           owner: "ocornut",
           repo: "imgui",
           rev: "v1.91.9b-docking",
           hash: "sha256-mQOJ6jCN+7VopgZ61yzaCnt4R1QLrW7+47xxMhFRHLQ=",
         })))),
-      nix.thunk(() => nix.update(nix.sel(nativefiledialog_extended, "src"), { [nix.POS]: pos$2, name: "nfd" })),
+      nix.thunk(() => nix.update(nix.sel(nativefiledialog_extended, "src"), { [nix.POS]: $pos[1], name: "nfd" })),
       nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "PPQSort",
           owner: "GabTux",
           repo: "PPQSort",
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-EMZVI/uyzwX5637/rdZuMZoql5FTrsx0ESJMdLVDmfk=",
         })))),
       nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: "PackageProject.cmake",
           owner: "TheLartians",
           repo: "PackageProject.cmake",
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-E7WZSYDlss5bidbiWL1uX41Oh6JxBRtfhYsFU19kzIw=",
         })))),
       nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: "capstone",
           owner: "capstone-engine",
           repo: "capstone",

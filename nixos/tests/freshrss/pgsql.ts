@@ -2,51 +2,40 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pgsql.nix", [[["maintainers", 4, 8]], [["type", 17, 11], ["port", 18, 11], ["user", 19, 11], ["passFile", 20, 11]], [["enable", 12, 9], ["baseUrl", 13, 9], ["passwordFile", 14, 9], ["dataDir", 15, 9], ["database", 16, 9]], [["name", 29, 13], ["ensureDBOwnership", 30, 13]], [["enable", 25, 9], ["ensureDatabases", 26, 9], ["ensureUsers", 27, 9], ["initialScript", 33, 9]], [["freshrss", 11, 16], ["postgresql", 24, 16]], [["requires", 39, 9], ["after", 40, 9]], [["freshrss-config", 38, 24]], [["services", 38, 15]], [["services", 11, 7], ["systemd", 38, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 44, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pgsql.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/pgsql.nix", [["type", 17, 11], ["port", 18, 11], ["user", 19, 11], ["passFile", 20, 11]]);
-const pos$3 = nix.positions(here + "/pgsql.nix", [["enable", 12, 9], ["baseUrl", 13, 9], ["passwordFile", 14, 9], ["dataDir", 15, 9], ["database", 16, 9]]);
-const pos$4 = nix.positions(here + "/pgsql.nix", [["name", 29, 13], ["ensureDBOwnership", 30, 13]]);
-const pos$5 = nix.positions(here + "/pgsql.nix", [["enable", 25, 9], ["ensureDatabases", 26, 9], ["ensureUsers", 27, 9], ["initialScript", 33, 9]]);
-const pos$6 = nix.positions(here + "/pgsql.nix", [["freshrss", 11, 16], ["postgresql", 24, 16]]);
-const pos$7 = nix.positions(here + "/pgsql.nix", [["requires", 39, 9], ["after", 40, 9]]);
-const pos$8 = nix.positions(here + "/pgsql.nix", [["freshrss-config", 38, 24]]);
-const pos$9 = nix.positions(here + "/pgsql.nix", [["services", 38, 15]]);
-const pos$10 = nix.positions(here + "/pgsql.nix", [["services", 11, 7], ["systemd", 38, 7]]);
-const pos$11 = nix.positions(here + "/pgsql.nix", [["machine", 8, 9]]);
-const pos$12 = nix.positions(here + "/pgsql.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "freshrss-pgsql",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "stunkymonkey"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             freshrss: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               baseUrl: "http://localhost",
               passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "password", "secret")),
               dataDir: "/srv/freshrss",
               database: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 type: "pgsql",
                 port: 5432n,
                 user: "freshrss",
@@ -54,21 +43,21 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               ensureDatabases: nix.thunk(() => ["freshrss"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$4, name: "freshrss", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: $pos[3], name: "freshrss", ensureDBOwnership: true })),
               ]),
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "postgresql-password", "CREATE ROLE freshrss WITH LOGIN PASSWORD 'db-secret' CREATEDB;\n")),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               "freshrss-config": nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 requires: nix.thunk(() => ["postgresql.target"]),
                 after: nix.thunk(() => ["postgresql.target"]),
               })),

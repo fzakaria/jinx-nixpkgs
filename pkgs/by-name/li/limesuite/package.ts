@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["url", 32, 7], ["hash", 33, 7]], [["url", 37, 7], ["hash", 38, 7]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["badPlatforms", 76, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 42, 3], ["cmakeFlags", 44, 3], ["buildInputs", 49, 3], ["doInstallCheck", 63, 3], ["postInstall", 65, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, sqlite: false, wxwidgets_3_2: false, libusb1: false, soapysdr: false, mesa_glu: false, libx11: false, gnuplot: false, fltk: false, withGui: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["badPlatforms", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 42, 3], ["cmakeFlags", 44, 3], ["buildInputs", 49, 3], ["doInstallCheck", 63, 3], ["postInstall", 65, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "limesuite";
       const version = "23.11.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "myriadrf",
           repo: "LimeSuite",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,12 +33,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/myriadrf/LimeSuite/commit/4e5ad459d50c922267a008e5cecb3efdbff31f09.patch",
             hash: "sha256-OASki3bISJvV7wjMz0pBT3kO5RvJ5BnymiF6ruHkCJ8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/myriadrf/LimeSuite/commit/524cd2e548b11084e6f739b2dfe0f958c2e30354.patch",
             hash: "sha256-wxwhFjXcIgBMTJoJ6efdtyttxMFZviCTXtEb2qFX9yU=",
           })))),
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const postInstall = "install -Dm444 -t $out/lib/udev/rules.d ../udev-rules/64-limesuite.rules\ninstall -Dm444 -t $out/share/limesuite bin/Release/lms7suite_mcu/*\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Driver and GUI for LMS7002M-based SDR platforms",
         homepage: "https://github.com/myriadrf/LimeSuite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -65,7 +61,7 @@ export default nix.lambda((args) => (() => {
         badPlatforms: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => nix.sel(lib, "platforms", "darwin")))),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

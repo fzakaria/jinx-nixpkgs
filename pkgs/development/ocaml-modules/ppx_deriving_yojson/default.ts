@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 19, 9], ["sha256", 20, 9], ["checkInputs", 21, 9]], [["version", 25, 9], ["sha256", 26, 9], ["checkInputs", 27, 9]], [["version", 31, 9], ["sha256", 32, 9], ["checkInputs", 33, 9], ["propagatedBuildInputs", 34, 9]], [["url", 43, 5], ["hash", 44, 5]], [["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["sha256", 51, 21]], [["description", 65, 5], ["homepage", 66, 35], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 39, 3], ["version", 40, 19], ["patches", 42, 3], ["src", 47, 3], ["propagatedBuildInputs", 54, 3], ["doCheck", 61, 3], ["checkInputs", 62, 19], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, fetchpatch: false, ocaml: false, ppxlib: false, ounit: false, ounit2: false, ppx_deriving: false, result: false, yojson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 19, 9], ["sha256", 20, 9], ["checkInputs", 21, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 25, 9], ["sha256", 26, 9], ["checkInputs", 27, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 31, 9], ["sha256", 32, 9], ["checkInputs", 33, 9], ["propagatedBuildInputs", 34, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 43, 5], ["hash", 44, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["sha256", 51, 21]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 35], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 19], ["patches", 42, 3], ["src", 47, 3], ["propagatedBuildInputs", 54, 3], ["doCheck", 61, 3], ["checkInputs", 62, 19], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,33 +19,33 @@ export default nix.lambda((args) => (() => {
   const result = nix.arg($, "result");
   const yojson = nix.arg($, "yojson");
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "3.10.0",
     sha256: "sha256-Dy9egNpZdxsTPLo2mbpiFTMh5cYUXXOlOZLlQJuAK+E=",
     checkInputs: nix.thunk(() => [ounit2]),
   } : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.30")) ? {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "3.9.0",
     sha256: "sha256-0d6YcBkeFoHXffCYjLIIvruw8B9ZB6NbUijhTv9uyN8=",
     checkInputs: nix.thunk(() => [ounit2]),
   } : {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     version: "3.6.1",
     sha256: "1icz5h6p3pfj7my5gi7wxpflrb8c902dqa17f9w424njilnpyrbk",
     checkInputs: nix.thunk(() => [ounit]),
     propagatedBuildInputs: nix.thunk(() => [result]),
   })));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "ppx_deriving_yojson",
       version: nix.thunk(() => nix.attr(param, "version")),
       patches: nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: "https://github.com/ocaml-ppx/ppx_deriving_yojson/commit/1bbbe2c4c5822c4297b0b812c59a155cf96c5089.patch",
           hash: "sha256-jYW2/Ix6T94vfI2mGnIkYSG1rjsWEsnOPA1mufP3sd4=",
         })))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "ocaml-ppx",
           repo: "ppx_deriving_yojson",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +57,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Yojson codec generator for OCaml >= 4.04",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["pname", 41, 21], ["version", 42, 13], ["debianRevision", 43, 13]], [["patch", 50, 9], ["hash", 51, 9]], [["patch", 54, 9], ["hash", 55, 9]], [["patch", 58, 9], ["hash", 59, 9]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["mainProgram", 75, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["patches", 35, 3], ["postPatch", 63, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchDebianPatch: false, autoconf: false, gtkmm3: false, glib: false, pdftk: false, "pkg-config": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 41, 21], ["version", 42, 13], ["debianRevision", 43, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["patch", 50, 9], ["hash", 51, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["patch", 54, 9], ["hash", 55, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["patch", 58, 9], ["hash", 59, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["mainProgram", 75, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["patches", 35, 3], ["postPatch", 63, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,27 +21,27 @@ export default nix.lambda((args) => (() => {
       const pname = "pdfchain";
       const version = "0.4.4.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/pdfchain/pdfchain-${version}/pdfchain-${version}.tar.gz`),
           hash: "sha256-Hu4Pk9voyc75+f5OwKEOCkXKjN5nzWzv+izmyEN1Lz0=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [pkg_config, wrapGAppsHook3, autoconf]);
       const buildInputs = nix.thunk(() => [gtkmm3, pdftk, glib]);
       const patches = nix.thunk(() => (() => {
-        const fetchDebianPatch$ = (args_1) => nix.app(fetchDebianPatch, nix.thunk(() => nix.update({ [nix.POS]: pos$2, pname: pname, version: "1:0.4.4.2", debianRevision: "2" }, args_1)));
+        const fetchDebianPatch$ = (args_1) => nix.app(fetchDebianPatch, nix.thunk(() => nix.update({ [nix.POS]: $pos[1], pname: pname, version: "1:0.4.4.2", debianRevision: "2" }, args_1)));
         return [
           nix.thunk(() => nix.app(fetchDebianPatch$, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               patch: "fix_crash_on_startup",
               hash: "sha256-1UyMHHGrmUIFhY53ILdMMsyocSIbcV6CKQ7sLVNhNQw=",
             })))),
           nix.thunk(() => nix.app(fetchDebianPatch$, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               patch: "fix_desktop_file",
               hash: "sha256-L6lhUs7GqVN1XOQO6bbz6BT29n4upsJtlHCAIGzk1Bw=",
             })))),
           nix.thunk(() => nix.app(fetchDebianPatch$, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               patch: "fix_spelling",
               hash: "sha256-sOUUslPfcOo2K3zuaLcux+CNdgfWM0phsfe6g4GUFes=",
             })))),
@@ -58,7 +52,7 @@ export default nix.lambda((args) => (() => {
     --replace "/usr/share" "$out/share"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Graphical user interface for the PDF Toolkit (PDFtk)",
         homepage: "https://pdfchain.sourceforge.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -67,7 +61,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pdfchain",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["LANG", 40, 7]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 29, 3], ["nativeBuildInputs", 34, 3], ["env", 40, 3], ["preConfigure", 43, 3], ["appendConfigureFlags", 48, 3], ["buildInputs", 53, 3], ["postInstall", 66, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, "pkg-config": false, lib: false, zlib: false, ghostscript: false, imagemagick: false, plotutils: false, gd: false, libjpeg: false, libwebp: false, libiconv: false, makeWrapper: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LANG", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 29, 3], ["nativeBuildInputs", 34, 3], ["env", 40, 3], ["preConfigure", 43, 3], ["appendConfigureFlags", 48, 3], ["buildInputs", 53, 3], ["postInstall", 66, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pstoedit",
       version: "4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "woglu",
           repo: "pstoedit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       outputs: nix.thunk(() => ["out", "dev"]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config, autoreconfHook]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "C" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LANG: "C" })),
       preConfigure: "touch doc/pstoedit.1 doc/pstoedit.pdf doc/pstoedit.htm\n",
       appendConfigureFlags: nix.thunk(() => ["--disable-check_for_gs", "--enable-docs=no"]),
       buildInputs: nix.thunk(() => nix.concat([zlib, ghostscript, imagemagick, plotutils, gd, libjpeg, libwebp], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
@@ -47,7 +44,7 @@ wrapProgram $out/bin/pstoedit \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ghostscript]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Translates PostScript and PDF graphics into other vector formats",
         homepage: "https://github.com/woglu/pstoedit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

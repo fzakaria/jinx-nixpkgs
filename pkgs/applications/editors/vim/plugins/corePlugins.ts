@@ -2,18 +2,16 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/corePlugins.nix", [[["description", 29, 10]], [["pname", 7, 5], ["version", 8, 5], ["paths", 9, 5], ["meta", 29, 5]], [["corePlugins", 6, 3]]]);
 const formals$1 = { args: { symlinkJoin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/corePlugins.nix", [["description", 29, 10]]);
-const pos$2 = nix.positions(here + "/corePlugins.nix", [["pname", 7, 5], ["version", 8, 5], ["paths", 9, 5], ["meta", 29, 5]]);
-const pos$3 = nix.positions(here + "/corePlugins.nix", [["corePlugins", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const symlinkJoin = nix.arg($, "symlinkJoin");
   return (final) => (prev) => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     corePlugins: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "core-vim-plugins",
         version: "0",
         paths: nix.thunk(() => (() => {
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           description: "Collection of popular vim plugins (for internal testing purposes)",
         })),
       })))),

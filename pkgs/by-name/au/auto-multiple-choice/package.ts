@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 58, 5], ["sha256", 60, 5]], [["description", 149, 5], ["mainProgram", 150, 5], ["longDescription", 151, 5], ["homepage", 172, 5], ["changelog", 173, 5], ["license", 174, 5], ["maintainers", 175, 5], ["platforms", 176, 5]], [["pname", 55, 3], ["version", 56, 3], ["src", 57, 3], ["dontConfigure", 64, 3], ["outputs", 66, 3], ["makeFlags", 73, 3], ["preFixup", 103, 3], ["postFixup", 107, 3], ["nativeBuildInputs", 122, 3], ["buildInputs", 129, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perlPackages: false, makeWrapper: false, wrapGAppsHook3: false, cairo: false, dblatex: false, ghostscript: false, gnumake: false, "gobject-introspection": false, graphicsmagick: false, "gsettings-desktop-schemas": false, gtk3: false, "hicolor-icon-theme": false, libnotify: false, librsvg: false, libxslt: false, netpbm: false, opencv: false, pango: false, perl: false, "pkg-config": false, poppler: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 58, 5], ["sha256", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 149, 5], ["mainProgram", 150, 5], ["longDescription", 151, 5], ["homepage", 172, 5], ["changelog", 173, 5], ["license", 174, 5], ["maintainers", 175, 5], ["platforms", 176, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 3], ["src", 57, 3], ["dontConfigure", 64, 3], ["outputs", 66, 3], ["makeFlags", 73, 3], ["preFixup", 103, 3], ["postFixup", 107, 3], ["nativeBuildInputs", 122, 3], ["buildInputs", 129, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,11 +58,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "auto-multiple-choice",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.auto-multiple-choice.net/auto-multiple-choice_${nix.sel(finalAttrs, "version")}_dist.tar.gz`),
           sha256: "sha256-37kWqgdvZopvNSU6LA/FmY2wfSJz3rRSlaQF2HSbdmA=",
         })))),
@@ -121,7 +119,7 @@ export default nix.lambda((args) => (() => {
         perlWithPackages,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Create and manage multiple choice questionnaires with automated marking",
         mainProgram: "auto-multiple-choice",
         longDescription: "Create, manage and mark multiple-choice questionnaires.\nauto-multiple-choice features automated or manual formatting with\nLaTeX, shuffling of questions and answers and automated marking using\nOptical Mark Recognition.\n\nQuestionnaires can be created using either a very simple text syntax,\nAMC-TXT, or LaTeX. In the latter case, your TeXLive installation must\nbe combined with this package.  This can be done in configuration.nix\nas follows:\n\n<screen>\n…\nenvironment.systemPackages = with pkgs; [\n  auto-multiple-choice\n  (texliveFull.withPackages (_: [auto-multiple-choice.tex]))\n];\n</screen>\n\nFor usage instructions, see documentation at the project's homepage.\n",

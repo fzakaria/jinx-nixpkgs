@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["homepage", 36, 5], ["description", 37, 5], ["platforms", 38, 5], ["license", 39, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildFlags", 18, 3], ["patchPhase", 20, 3], ["installPhase", 29, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 36, 5], ["description", 37, 5], ["platforms", 38, 5], ["license", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildFlags", 18, 3], ["patchPhase", 20, 3], ["installPhase", 29, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dclxvi",
       version: "0-unstable-2013-01-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "agl",
           repo: "dclxvi",
           rev: "74009d58f2305be3b95d88717619bde8ecbdd9a2",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: nix.thunk(() => nix.add("substituteInPlace Makefile \\\n  --replace \"gcc\" \"cc\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace Makefile \\\n  --replace \"-soname=libdclxvipairing.so\" \"-install_name,libdclxvipairing.so\"\n"))),
       installPhase: "mkdir -p $out/{include,lib}\nfind . -name \\*.h -exec cp {} $out/include \\;\nfind . -name \\*.so -exec cp {} $out/lib \\;\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/agl/dclxvi",
         description: "Naehrig, Niederhagen and Schwabe's pairings code, massaged into a shared library",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "x86_64")),

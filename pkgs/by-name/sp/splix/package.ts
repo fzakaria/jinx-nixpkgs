@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 7], ["hash", 18, 7]], [["pname", 13, 5], ["version", 14, 5], ["src", 16, 5], ["installPhase", 21, 5]], [["url", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postPatch", 39, 3], ["makeFlags", 46, 3], ["buildInputs", 52, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchsvn: false, fetchurl: false, cups: false, "cups-filters": false, jbigkit: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 5], ["version", 14, 5], ["src", 16, 5], ["installPhase", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postPatch", 39, 3], ["makeFlags", 46, 3], ["buildInputs", 52, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const jbigkit = nix.arg($, "jbigkit");
   const zlib = nix.arg($, "zlib");
   const color_profiles = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "splix-color-profiles",
       version: "0-unstable-2007-06-25",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20170518031609if_/http://splix.ap2c.org/samsung_cms.tar.bz2",
           hash: "sha256-tF2vdzyrp6trZqu6ZnxWvi14rWCsNkjUqakWzSJ1poQ=",
         })))),
       installPhase: "mkdir -p $out/share/cups/profiles/samsung\ncp * $out/share/cups/profiles/samsung/\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "splix-svn",
       version: "315",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "svn://svn.code.sf.net/p/splix/code/splix",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-tEsxElTEGzVBCiqicJT1tytJXHHvRcHrUKyMbzupi5s=",
@@ -52,7 +48,7 @@ substituteInPlace src/pstoqpdl.cpp \\
       ]),
       buildInputs: nix.thunk(() => [cups, zlib, jbigkit]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CUPS drivers for SPL (Samsung Printer Language) printers",
         homepage: "https://web.archive.org/web/20220729010458/http://splix.ap2c.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

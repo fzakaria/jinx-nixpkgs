@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["homepage", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["configureFlags", 50, 3], ["postInstall", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, fontconfig: false, freealut: false, libglut: false, ftgl: false, gettext: false, glpng: false, libGL: false, libGLU: false, openal: false, "pkg-config": false, quesoglc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["configureFlags", 50, 3], ["postInstall", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const quesoglc = nix.arg($, "quesoglc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "chromium-bsu",
       version: "0.9.16.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/chromium-bsu/Chromium%20B.S.U.%20source%20code/chromium-bsu-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ocFBo00ZpZYHroEWahmGTrjITPhrFVRi/tMabVbhYko=",
         })))),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--disable-sdlimage", "--disable-sdlmixer"]),
       postInstall: "install -D misc/chromium-bsu.png -t $out/share/icons/hicolor/64x64/apps\ninstall -D misc/chromium-bsu.desktop $out/share/applications/chromium-bsu.desktop\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://chromium-bsu.sourceforge.net/",
         description: "Fast paced, arcade-style, top-scrolling space shooter",
         mainProgram: "chromium-bsu",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["version", 33, 13], ["src", 33, 21], ["pname", 34, 5], ["sourceRoot", 35, 5], ["hash", 36, 5]], [["nativeBuildInputs", 41, 5], ["preBuild", 42, 5]], [["DBHost", 48, 5], ["DBPort", 49, 5], ["DBName", 50, 5], ["DBUser", 51, 5], ["DBPassword", 52, 5], ["DBSkipSSL", 53, 5], ["SmtpUsername", 54, 5], ["SmtpPassword", 55, 5], ["SmtpHost", 56, 5], ["SmtpPort", 57, 5], ["WebURL", 58, 5], ["DisableRegistration", 59, 5], ["postgresqlEnableTCP", 60, 5]], [["updateScript", 122, 5]], [["description", 126, 5], ["homepage", 127, 5], ["changelog", 128, 5], ["platforms", 129, 5], ["maintainers", 130, 5], ["license", 131, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["npmDeps", 32, 3], ["overrideModAttrs", 39, 3], ["npmRoot", 45, 3], ["env", 47, 3], ["nativeBuildInputs", 63, 3], ["nativeCheckInputs", 68, 3], ["tags", 73, 3], ["preBuild", 77, 3], ["ldflags", 88, 3], ["__darwinAllowLocalNetworking", 98, 3], ["postInstall", 100, 3], ["checkFlags", 107, 3], ["vendorHash", 109, 3], ["nativeInstallCheckInputs", 111, 3], ["versionCheckProgram", 114, 3], ["versionCheckProgramArg", 115, 3], ["doInstallCheck", 119, 3], ["passthru", 121, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, fetchNpmDeps: false, npmHooks: false, nodejs: false, "nix-update-script": false, versionCheckHook: false, postgresqlTestHook: false, postgresql: false, defaultApiEndPoint: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 33, 13], ["src", 33, 21], ["pname", 34, 5], ["sourceRoot", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 41, 5], ["preBuild", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["DBHost", 48, 5], ["DBPort", 49, 5], ["DBName", 50, 5], ["DBUser", 51, 5], ["DBPassword", 52, 5], ["DBSkipSSL", 53, 5], ["SmtpUsername", 54, 5], ["SmtpPassword", 55, 5], ["SmtpHost", 56, 5], ["SmtpPort", 57, 5], ["WebURL", 58, 5], ["DisableRegistration", 59, 5], ["postgresqlEnableTCP", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 122, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 126, 5], ["homepage", 127, 5], ["changelog", 128, 5], ["platforms", 129, 5], ["maintainers", 130, 5], ["license", 131, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["npmDeps", 32, 3], ["overrideModAttrs", 39, 3], ["npmRoot", 45, 3], ["env", 47, 3], ["nativeBuildInputs", 63, 3], ["nativeCheckInputs", 68, 3], ["tags", 73, 3], ["preBuild", 77, 3], ["ldflags", 88, 3], ["__darwinAllowLocalNetworking", 98, 3], ["postInstall", 100, 3], ["checkFlags", 107, 3], ["vendorHash", 109, 3], ["nativeInstallCheckInputs", 111, 3], ["versionCheckProgram", 114, 3], ["versionCheckProgramArg", 115, 3], ["doInstallCheck", 119, 3], ["passthru", 121, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dnote";
       const version = "0.16.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dnote",
           repo: "dnote",
           tag: nix.thunk(() => nix.str`cli-v${version}`),
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "# This is not used and compile error\nrm -rf pkg/e2e\n";
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: version,
           src: src,
           pname: nix.thunk(() => nix.str`${pname}-webui`),
@@ -45,13 +39,13 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-yq55iO3Svqbjah9HdWfSicJISNEipxUkNDD1KJ7ZUhY=",
         }))));
       const overrideModAttrs = (oldAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "remove"), nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(oldAttrs, "nativeBuildInputs")))),
         preBuild: null,
       });
       const npmRoot = "pkg/server/assets";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         DBHost: "localhost",
         DBPort: "5432",
         DBName: "test_db",
@@ -88,11 +82,11 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgramArg = "version";
       const doInstallCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Simple command line notebook for programmers",
         homepage: "https://www.getdnote.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/dnote/dnote/blob/cli-v${version}/CHANGELOG.md`),
@@ -104,7 +98,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

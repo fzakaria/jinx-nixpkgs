@@ -2,117 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["defaultConfig", 26, 39]], [["system", 63, 17], ["name", 65, 9], ["builder", 66, 9], ["args", 68, 9], ["PATH", 73, 9], ["__impureHostDeps", 78, 9]], [["__contentAddressed", 81, 9], ["outputHashAlgo", 82, 9], ["outputHashMode", 83, 9]], [["isFromBootstrapFiles", 87, 16]], [["passthru", 87, 7]], [["lib", 136, 19], ["stdenvNoCC", 137, 11], ["curl", 138, 11], ["hashedMirrors", 139, 28], ["rewriteURL", 139, 42]], [["fetchurl", 156, 69]], [["fetchurl", 157, 65]], [["fetchurl", 155, 13], ["fetchpatch", 156, 13], ["fetchzip", 157, 13]], [["name", 105, 9], ["buildPlatform", 107, 9], ["hostPlatform", 108, 9], ["targetPlatform", 109, 9], ["extraBuildInputs", 111, 9], ["extraNativeBuildInputs", 112, 17], ["preHook", 114, 9], ["shell", 128, 9], ["initialPath", 129, 9], ["fetchurlBoot", 135, 9], ["cc", 142, 17], ["__stdenvImpureHostDeps", 145, 9], ["__extraImpureHostDeps", 146, 9], ["overrides", 151, 9]], [["config", 163, 15], ["overlays", 163, 22], ["stdenv", 164, 7]], [["atf", 187, 7], ["autoconf", 188, 7], ["automake", 189, 7], ["bison", 190, 7], ["bmake", 191, 7], ["brotli", 192, 7], ["cmake", 193, 7], ["cpio", 194, 7], ["cyrus_sasl", 195, 7], ["ed", 196, 7], ["expat", 197, 7], ["flex", 198, 7], ["gettext", 199, 7], ["groff", 200, 7], ["jq", 201, 7], ["kyua", 202, 7], ["libedit", 203, 7], ["libtool", 204, 7], ["m4", 205, 7], ["meson", 206, 7], ["ninja", 207, 7], ["openssh", 208, 7], ["patchutils", 209, 7], ["pbzx", 210, 7], ["perl", 211, 7], ["pkg-config", 212, 7], ["python3", 213, 7], ["python3Minimal", 214, 7], ["scons", 215, 7], ["serf", 216, 7], ["sqlite", 217, 7], ["subversion", 218, 7], ["texinfo", 219, 7], ["unzip", 220, 7], ["which", 221, 7]], [["cctools", 228, 7], ["ld64", 229, 7], ["bzip2", 230, 7], ["coreutils", 231, 7], ["gmp", 232, 7], ["gnugrep", 233, 7], ["openssl", 234, 7], ["pcre2", 235, 7], ["xar", 236, 7], ["xz", 237, 7]], [["sigtool", 241, 60]], [["binutils", 244, 7], ["binutils-unwrapped", 245, 7], ["libSystem", 246, 7], ["locale", 247, 7]], [["binutils-unwrapped", 252, 57], ["curl", 252, 76]], [["compiler-rt", 256, 55], ["libcxx", 256, 67]], [["libcxx", 258, 73]], [["libclang", 262, 7], ["libllvm", 263, 7], ["lld", 264, 7]], [["libffi", 268, 52]], [["bashNonInteractive", 273, 7], ["libpng", 274, 7], ["libxml2", 275, 7], ["libxo", 276, 7], ["ncurses", 277, 7], ["openpam", 278, 7], ["xcbuild", 279, 7], ["zlib", 280, 7]], [["adv_cmds", 285, 7], ["copyfile", 286, 7], ["libiconv", 287, 7], ["libresolv", 288, 7], ["libsbuf", 289, 7], ["libutil", 290, 7], ["system_cmds", 291, 7]], [["apple-sdk", 294, 54]], [["binutils", 319, 9], ["binutils-unwrapped", 320, 9], ["libcxx", 321, 9], ["libSystem", 322, 9], ["sigtool", 323, 9]], [["compiler-rt", 328, 9], ["libclang", 329, 9], ["libcxx", 330, 9], ["libllvm", 331, 9]], [["__raw", 302, 7], ["apple-sdk", 304, 7], ["cctools", 306, 7], ["ld64", 307, 7], ["coreutils", 309, 7], ["file", 310, 7], ["gnugrep", 311, 7], ["pbzx", 313, 7], ["cpio", 314, 7], ["jq", 316, 7], ["darwin", 318, 7], ["clang", 326, 7]], [["shellPath", 354, 11]], [["buildPhase", 366, 11]], [["libtool", 376, 11], ["targetPrefix", 377, 11], ["version", 378, 11]], [["targetPrefix", 382, 11], ["version", 383, 11]], [["enableManpages", 393, 58]], [["isFromBootstrapFiles", 398, 21]], [["version", 395, 19], ["__intentionallyOverridingVersion", 396, 19], ["passthru", 397, 19]], [["name", 403, 15], ["buildCommand", 404, 15]], [["libcxx", 390, 41], ["binutils-unwrapped", 392, 13], ["locale", 402, 13], ["sigtool", 409, 13]], [["isClang", 438, 17], ["isFromBootstrapFiles", 439, 17], ["hardeningUnsupportedFlags", 440, 17]], [["name", 416, 15], ["version", 417, 15], ["outputs", 418, 15], ["buildCommand", 422, 15], ["passthru", 437, 15]], [["isFromBootstrapFiles", 469, 24]], [["name", 450, 15], ["outputs", 451, 15], ["buildCommand", 455, 15], ["passthru", 469, 15]], [["isLLVM", 475, 17], ["isFromBootstrapFiles", 476, 17]], [["name", 472, 15], ["buildCommand", 473, 15], ["passthru", 474, 15]], [["isFromBootstrapFiles", 486, 24]], [["name", 480, 15], ["buildCommand", 481, 15], ["passthru", 486, 15]], [["isLLVM", 496, 17], ["isFromBootstrapFiles", 497, 17]], [["name", 489, 15], ["buildCommand", 490, 15], ["passthru", 495, 15]], [["libclang", 415, 13], ["libllvm", 449, 13], ["lld", 471, 13], ["compiler-rt", 479, 13], ["libcxx", 488, 13]], [["ccWrapperStdenv", 351, 9], ["bashNonInteractive", 353, 9], ["coreutils", 357, 9], ["cpio", 358, 9], ["file", 359, 9], ["gnugrep", 360, 9], ["pbzx", 361, 9], ["expand-response-params", 365, 9], ["jq", 373, 9], ["cctools", 375, 9], ["ld64", 381, 9], ["darwin", 386, 9]], [["name", 344, 7], ["overrides", 346, 7], ["extraPreHook", 504, 7]], [["bashNonInteractive", 521, 11], ["cctools", 522, 11], ["coreutils", 523, 11], ["cpio", 524, 11], ["gnugrep", 525, 11], ["ld64", 526, 11], ["pbzx", 527, 11], ["binutils-unwrapped", 529, 36], ["sigtool", 529, 55]], [["binutils", 536, 36], ["libSystem", 536, 45], ["libc", 537, 29]], [["libiconv", 554, 44]], [["doCheck", 558, 49]], [["doCheck", 561, 42]], [["pythonSupport", 564, 44]], [["doInstallCheck", 568, 45]], [["buildDocs", 570, 40]], [["sigtool", 580, 100]], [["signingUtils", 580, 17]], [["removeReferencesTo", 578, 15]], [["pkg-config", 577, 13], ["baseBinName", 583, 13]], [["stdenv", 589, 34]], [["passthru", 588, 17]], [["self", 598, 11], ["pythonAttr", 599, 11], ["zstd", 600, 11], ["enableLTO", 601, 11]], [["python3Packages", 604, 40]], [["sigtool", 616, 90]], [["coreutils", 620, 30], ["libc", 620, 40], ["bintools", 621, 15]], [["cctools", 626, 30], ["ld64", 626, 38], ["enableManpages", 627, 15]], [["libcxx", 614, 41], ["signingUtils", 616, 13], ["binutils", 619, 13], ["binutils-unwrapped", 625, 13]], [["ccWrapperStdenv", 545, 29], ["cctools", 545, 45], ["ld64", 545, 53], ["binutils-unwrapped", 547, 9], ["curl", 548, 9], ["cmake", 551, 9], ["gettext", 554, 9], ["gnugrep", 558, 9], ["libffi", 561, 9], ["libxml2", 564, 9], ["meson", 568, 9], ["ninja", 570, 9], ["pkg-config", 575, 9], ["python3", 596, 9], ["python3-bootstrap", 597, 9], ["scons", 604, 9], ["xar", 606, 9], ["darwin", 608, 9]], [["name", 542, 7], ["overrides", 544, 7], ["extraNativeBuildInputs", 637, 7], ["extraPreHook", 642, 7]], [["ld64", 657, 29]], [["doInstallCheck", 694, 47]], [["enableManpages", 702, 80]], [["libSystem", 701, 44], ["binutils-unwrapped", 702, 17]], [["ccWrapperStdenv", 691, 33], ["ld64", 694, 13], ["darwin", 696, 13]], [["name", 674, 7], ["overrides", 676, 7], ["extraNativeBuildInputs", 708, 7], ["extraPreHook", 713, 7]], [["stdenv", 757, 70]], [["pythonSupport", 760, 48]], [["shell", 764, 63]], [["stdenv", 764, 15]], [["expand-response-params", 775, 39], ["libc", 776, 34]], [["binutils-unwrapped", 772, 44], ["binutils", 774, 17]], [["ccWrapperStdenv", 754, 33], ["bashNonInteractive", 757, 13], ["libxml2", 760, 13], ["ncurses", 763, 13], ["darwin", 767, 13]], [["name", 744, 7], ["overrides", 746, 7], ["extraNativeBuildInputs", 787, 7], ["extraPreHook", 792, 7]], [["doCheck", 835, 46]], [["cctools", 851, 34], ["ld64", 851, 42], ["enableManpages", 852, 19]], [["libSystem", 846, 44], ["binutils-unwrapped", 850, 17]], [["ccWrapperStdenv", 832, 33], ["libffi", 835, 13], ["xar", 837, 13], ["darwin", 839, 13]], [["name", 823, 7], ["overrides", 825, 7], ["extraNativeBuildInputs", 863, 7], ["extraPreHook", 868, 7]], [["bmake", 920, 76]], [["binutils-unwrapped", 918, 44], ["libSystem", 918, 63], ["locale", 920, 17]], [["ccWrapperStdenv", 910, 33], ["darwin", 913, 13]], [["name", 899, 7], ["overrides", 901, 7], ["extraNativeBuildInputs", 930, 7], ["extraPreHook", 935, 7]], [["pkg-config", 960, 40]], [["pkgs", 986, 62]], [["bootstrapTools", 1001, 19], ["libc", 1002, 31], ["shellPackage", 1003, 11]], [["libSystem", 1110, 46], ["locale", 1110, 56], ["sigtool", 1110, 63]], [["binutils", 1113, 46], ["binutils-unwrapped", 1113, 55]], [["diffutils", 1090, 17], ["ed", 1091, 17], ["file", 1092, 17], ["findutils", 1093, 17], ["gawk", 1094, 17], ["gettext", 1095, 17], ["gnumake", 1096, 17], ["gnused", 1097, 17], ["gnutar", 1098, 17], ["gzip", 1099, 17], ["patch", 1100, 17], ["darwin", 1105, 15]], [["libllvm", 1128, 41]], [["libllvm", 1131, 41]], [["libllvm", 1126, 69], ["libclang", 1127, 19], ["lld", 1130, 19]], [["llvm-manpages", 1136, 65]], [["cc", 1146, 21]], [["systemLibcxxClang", 1145, 19]], [["name", 974, 9], ["buildPlatform", 976, 9], ["hostPlatform", 977, 9], ["targetPlatform", 978, 9], ["preHook", 980, 9], ["initialPath", 986, 9], ["extraNativeBuildInputs", 988, 9], ["extraBuildInputs", 992, 9], ["cc", 994, 17], ["shell", 996, 9], ["fetchurlBoot", 998, 36], ["extraAttrs", 1000, 9], ["disallowedRequisites", 1006, 9], ["allowedRequisites", 1008, 9], ["__stdenvImpureHostDeps", 1079, 9], ["__extraImpureHostDeps", 1080, 9], ["overrides", 1082, 9]], [["config", 972, 15], ["overlays", 972, 22], ["stdenv", 973, 7]], [["config", 1178, 27], ["overlays", 1178, 34], ["stdenv", 1178, 43]]]);
 const formals$1 = { args: { lib: false, localSystem: false, config: false, overlays: false, bootstrapFiles: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["defaultConfig", 26, 39]]);
-const pos$2 = nix.positions(here + "/default.nix", [["system", 63, 17], ["name", 65, 9], ["builder", 66, 9], ["args", 68, 9], ["PATH", 73, 9], ["__impureHostDeps", 78, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["__contentAddressed", 81, 9], ["outputHashAlgo", 82, 9], ["outputHashMode", 83, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["isFromBootstrapFiles", 87, 16]]);
-const pos$5 = nix.positions(here + "/default.nix", [["passthru", 87, 7]]);
 const formals$2 = { args: { name: false, overrides: true, extraNativeBuildInputs: true, extraPreHook: true }, ellipsis: false };
-const pos$6 = nix.positions(here + "/default.nix", [["lib", 136, 19], ["stdenvNoCC", 137, 11], ["curl", 138, 11], ["hashedMirrors", 139, 28], ["rewriteURL", 139, 42]]);
-const pos$7 = nix.positions(here + "/default.nix", [["fetchurl", 156, 69]]);
-const pos$8 = nix.positions(here + "/default.nix", [["fetchurl", 157, 65]]);
-const pos$9 = nix.positions(here + "/default.nix", [["fetchurl", 155, 13], ["fetchpatch", 156, 13], ["fetchzip", 157, 13]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 105, 9], ["buildPlatform", 107, 9], ["hostPlatform", 108, 9], ["targetPlatform", 109, 9], ["extraBuildInputs", 111, 9], ["extraNativeBuildInputs", 112, 17], ["preHook", 114, 9], ["shell", 128, 9], ["initialPath", 129, 9], ["fetchurlBoot", 135, 9], ["cc", 142, 17], ["__stdenvImpureHostDeps", 145, 9], ["__extraImpureHostDeps", 146, 9], ["overrides", 151, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["config", 163, 15], ["overlays", 163, 22], ["stdenv", 164, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["atf", 187, 7], ["autoconf", 188, 7], ["automake", 189, 7], ["bison", 190, 7], ["bmake", 191, 7], ["brotli", 192, 7], ["cmake", 193, 7], ["cpio", 194, 7], ["cyrus_sasl", 195, 7], ["ed", 196, 7], ["expat", 197, 7], ["flex", 198, 7], ["gettext", 199, 7], ["groff", 200, 7], ["jq", 201, 7], ["kyua", 202, 7], ["libedit", 203, 7], ["libtool", 204, 7], ["m4", 205, 7], ["meson", 206, 7], ["ninja", 207, 7], ["openssh", 208, 7], ["patchutils", 209, 7], ["pbzx", 210, 7], ["perl", 211, 7], ["pkg-config", 212, 7], ["python3", 213, 7], ["python3Minimal", 214, 7], ["scons", 215, 7], ["serf", 216, 7], ["sqlite", 217, 7], ["subversion", 218, 7], ["texinfo", 219, 7], ["unzip", 220, 7], ["which", 221, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["cctools", 228, 7], ["ld64", 229, 7], ["bzip2", 230, 7], ["coreutils", 231, 7], ["gmp", 232, 7], ["gnugrep", 233, 7], ["openssl", 234, 7], ["pcre2", 235, 7], ["xar", 236, 7], ["xz", 237, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["sigtool", 241, 60]]);
-const pos$15 = nix.positions(here + "/default.nix", [["binutils", 244, 7], ["binutils-unwrapped", 245, 7], ["libSystem", 246, 7], ["locale", 247, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["binutils-unwrapped", 252, 57], ["curl", 252, 76]]);
-const pos$17 = nix.positions(here + "/default.nix", [["compiler-rt", 256, 55], ["libcxx", 256, 67]]);
-const pos$18 = nix.positions(here + "/default.nix", [["libcxx", 258, 73]]);
-const pos$19 = nix.positions(here + "/default.nix", [["libclang", 262, 7], ["libllvm", 263, 7], ["lld", 264, 7]]);
-const pos$20 = nix.positions(here + "/default.nix", [["libffi", 268, 52]]);
-const pos$21 = nix.positions(here + "/default.nix", [["bashNonInteractive", 273, 7], ["libpng", 274, 7], ["libxml2", 275, 7], ["libxo", 276, 7], ["ncurses", 277, 7], ["openpam", 278, 7], ["xcbuild", 279, 7], ["zlib", 280, 7]]);
-const pos$22 = nix.positions(here + "/default.nix", [["adv_cmds", 285, 7], ["copyfile", 286, 7], ["libiconv", 287, 7], ["libresolv", 288, 7], ["libsbuf", 289, 7], ["libutil", 290, 7], ["system_cmds", 291, 7]]);
-const pos$23 = nix.positions(here + "/default.nix", [["apple-sdk", 294, 54]]);
 const formals$3 = { args: {  }, ellipsis: false };
-const pos$24 = nix.positions(here + "/default.nix", [["binutils", 319, 9], ["binutils-unwrapped", 320, 9], ["libcxx", 321, 9], ["libSystem", 322, 9], ["sigtool", 323, 9]]);
-const pos$25 = nix.positions(here + "/default.nix", [["compiler-rt", 328, 9], ["libclang", 329, 9], ["libcxx", 330, 9], ["libllvm", 331, 9]]);
-const pos$26 = nix.positions(here + "/default.nix", [["__raw", 302, 7], ["apple-sdk", 304, 7], ["cctools", 306, 7], ["ld64", 307, 7], ["coreutils", 309, 7], ["file", 310, 7], ["gnugrep", 311, 7], ["pbzx", 313, 7], ["cpio", 314, 7], ["jq", 316, 7], ["darwin", 318, 7], ["clang", 326, 7]]);
-const pos$27 = nix.positions(here + "/default.nix", [["shellPath", 354, 11]]);
-const pos$28 = nix.positions(here + "/default.nix", [["buildPhase", 366, 11]]);
-const pos$29 = nix.positions(here + "/default.nix", [["libtool", 376, 11], ["targetPrefix", 377, 11], ["version", 378, 11]]);
-const pos$30 = nix.positions(here + "/default.nix", [["targetPrefix", 382, 11], ["version", 383, 11]]);
-const pos$31 = nix.positions(here + "/default.nix", [["enableManpages", 393, 58]]);
-const pos$32 = nix.positions(here + "/default.nix", [["isFromBootstrapFiles", 398, 21]]);
-const pos$33 = nix.positions(here + "/default.nix", [["version", 395, 19], ["__intentionallyOverridingVersion", 396, 19], ["passthru", 397, 19]]);
-const pos$34 = nix.positions(here + "/default.nix", [["name", 403, 15], ["buildCommand", 404, 15]]);
-const pos$35 = nix.positions(here + "/default.nix", [["libcxx", 390, 41], ["binutils-unwrapped", 392, 13], ["locale", 402, 13], ["sigtool", 409, 13]]);
-const pos$36 = nix.positions(here + "/default.nix", [["isClang", 438, 17], ["isFromBootstrapFiles", 439, 17], ["hardeningUnsupportedFlags", 440, 17]]);
-const pos$37 = nix.positions(here + "/default.nix", [["name", 416, 15], ["version", 417, 15], ["outputs", 418, 15], ["buildCommand", 422, 15], ["passthru", 437, 15]]);
-const pos$38 = nix.positions(here + "/default.nix", [["isFromBootstrapFiles", 469, 24]]);
-const pos$39 = nix.positions(here + "/default.nix", [["name", 450, 15], ["outputs", 451, 15], ["buildCommand", 455, 15], ["passthru", 469, 15]]);
-const pos$40 = nix.positions(here + "/default.nix", [["isLLVM", 475, 17], ["isFromBootstrapFiles", 476, 17]]);
-const pos$41 = nix.positions(here + "/default.nix", [["name", 472, 15], ["buildCommand", 473, 15], ["passthru", 474, 15]]);
-const pos$42 = nix.positions(here + "/default.nix", [["isFromBootstrapFiles", 486, 24]]);
-const pos$43 = nix.positions(here + "/default.nix", [["name", 480, 15], ["buildCommand", 481, 15], ["passthru", 486, 15]]);
-const pos$44 = nix.positions(here + "/default.nix", [["isLLVM", 496, 17], ["isFromBootstrapFiles", 497, 17]]);
-const pos$45 = nix.positions(here + "/default.nix", [["name", 489, 15], ["buildCommand", 490, 15], ["passthru", 495, 15]]);
-const pos$46 = nix.positions(here + "/default.nix", [["libclang", 415, 13], ["libllvm", 449, 13], ["lld", 471, 13], ["compiler-rt", 479, 13], ["libcxx", 488, 13]]);
-const pos$47 = nix.positions(here + "/default.nix", [["ccWrapperStdenv", 351, 9], ["bashNonInteractive", 353, 9], ["coreutils", 357, 9], ["cpio", 358, 9], ["file", 359, 9], ["gnugrep", 360, 9], ["pbzx", 361, 9], ["expand-response-params", 365, 9], ["jq", 373, 9], ["cctools", 375, 9], ["ld64", 381, 9], ["darwin", 386, 9]]);
-const pos$48 = nix.positions(here + "/default.nix", [["name", 344, 7], ["overrides", 346, 7], ["extraPreHook", 504, 7]]);
-const pos$49 = nix.positions(here + "/default.nix", [["bashNonInteractive", 521, 11], ["cctools", 522, 11], ["coreutils", 523, 11], ["cpio", 524, 11], ["gnugrep", 525, 11], ["ld64", 526, 11], ["pbzx", 527, 11], ["binutils-unwrapped", 529, 36], ["sigtool", 529, 55]]);
-const pos$50 = nix.positions(here + "/default.nix", [["binutils", 536, 36], ["libSystem", 536, 45], ["libc", 537, 29]]);
-const pos$51 = nix.positions(here + "/default.nix", [["libiconv", 554, 44]]);
-const pos$52 = nix.positions(here + "/default.nix", [["doCheck", 558, 49]]);
-const pos$53 = nix.positions(here + "/default.nix", [["doCheck", 561, 42]]);
-const pos$54 = nix.positions(here + "/default.nix", [["pythonSupport", 564, 44]]);
-const pos$55 = nix.positions(here + "/default.nix", [["doInstallCheck", 568, 45]]);
-const pos$56 = nix.positions(here + "/default.nix", [["buildDocs", 570, 40]]);
-const pos$57 = nix.positions(here + "/default.nix", [["sigtool", 580, 100]]);
-const pos$58 = nix.positions(here + "/default.nix", [["signingUtils", 580, 17]]);
-const pos$59 = nix.positions(here + "/default.nix", [["removeReferencesTo", 578, 15]]);
-const pos$60 = nix.positions(here + "/default.nix", [["pkg-config", 577, 13], ["baseBinName", 583, 13]]);
-const pos$61 = nix.positions(here + "/default.nix", [["stdenv", 589, 34]]);
-const pos$62 = nix.positions(here + "/default.nix", [["passthru", 588, 17]]);
-const pos$63 = nix.positions(here + "/default.nix", [["self", 598, 11], ["pythonAttr", 599, 11], ["zstd", 600, 11], ["enableLTO", 601, 11]]);
-const pos$64 = nix.positions(here + "/default.nix", [["python3Packages", 604, 40]]);
-const pos$65 = nix.positions(here + "/default.nix", [["sigtool", 616, 90]]);
-const pos$66 = nix.positions(here + "/default.nix", [["coreutils", 620, 30], ["libc", 620, 40], ["bintools", 621, 15]]);
-const pos$67 = nix.positions(here + "/default.nix", [["cctools", 626, 30], ["ld64", 626, 38], ["enableManpages", 627, 15]]);
-const pos$68 = nix.positions(here + "/default.nix", [["libcxx", 614, 41], ["signingUtils", 616, 13], ["binutils", 619, 13], ["binutils-unwrapped", 625, 13]]);
-const pos$69 = nix.positions(here + "/default.nix", [["ccWrapperStdenv", 545, 29], ["cctools", 545, 45], ["ld64", 545, 53], ["binutils-unwrapped", 547, 9], ["curl", 548, 9], ["cmake", 551, 9], ["gettext", 554, 9], ["gnugrep", 558, 9], ["libffi", 561, 9], ["libxml2", 564, 9], ["meson", 568, 9], ["ninja", 570, 9], ["pkg-config", 575, 9], ["python3", 596, 9], ["python3-bootstrap", 597, 9], ["scons", 604, 9], ["xar", 606, 9], ["darwin", 608, 9]]);
-const pos$70 = nix.positions(here + "/default.nix", [["name", 542, 7], ["overrides", 544, 7], ["extraNativeBuildInputs", 637, 7], ["extraPreHook", 642, 7]]);
-const pos$71 = nix.positions(here + "/default.nix", [["ld64", 657, 29]]);
-const pos$72 = nix.positions(here + "/default.nix", [["doInstallCheck", 694, 47]]);
-const pos$73 = nix.positions(here + "/default.nix", [["enableManpages", 702, 80]]);
-const pos$74 = nix.positions(here + "/default.nix", [["libSystem", 701, 44], ["binutils-unwrapped", 702, 17]]);
-const pos$75 = nix.positions(here + "/default.nix", [["ccWrapperStdenv", 691, 33], ["ld64", 694, 13], ["darwin", 696, 13]]);
-const pos$76 = nix.positions(here + "/default.nix", [["name", 674, 7], ["overrides", 676, 7], ["extraNativeBuildInputs", 708, 7], ["extraPreHook", 713, 7]]);
-const pos$77 = nix.positions(here + "/default.nix", [["stdenv", 757, 70]]);
-const pos$78 = nix.positions(here + "/default.nix", [["pythonSupport", 760, 48]]);
-const pos$79 = nix.positions(here + "/default.nix", [["shell", 764, 63]]);
-const pos$80 = nix.positions(here + "/default.nix", [["stdenv", 764, 15]]);
-const pos$81 = nix.positions(here + "/default.nix", [["expand-response-params", 775, 39], ["libc", 776, 34]]);
-const pos$82 = nix.positions(here + "/default.nix", [["binutils-unwrapped", 772, 44], ["binutils", 774, 17]]);
-const pos$83 = nix.positions(here + "/default.nix", [["ccWrapperStdenv", 754, 33], ["bashNonInteractive", 757, 13], ["libxml2", 760, 13], ["ncurses", 763, 13], ["darwin", 767, 13]]);
-const pos$84 = nix.positions(here + "/default.nix", [["name", 744, 7], ["overrides", 746, 7], ["extraNativeBuildInputs", 787, 7], ["extraPreHook", 792, 7]]);
-const pos$85 = nix.positions(here + "/default.nix", [["doCheck", 835, 46]]);
-const pos$86 = nix.positions(here + "/default.nix", [["cctools", 851, 34], ["ld64", 851, 42], ["enableManpages", 852, 19]]);
-const pos$87 = nix.positions(here + "/default.nix", [["libSystem", 846, 44], ["binutils-unwrapped", 850, 17]]);
-const pos$88 = nix.positions(here + "/default.nix", [["ccWrapperStdenv", 832, 33], ["libffi", 835, 13], ["xar", 837, 13], ["darwin", 839, 13]]);
-const pos$89 = nix.positions(here + "/default.nix", [["name", 823, 7], ["overrides", 825, 7], ["extraNativeBuildInputs", 863, 7], ["extraPreHook", 868, 7]]);
-const pos$90 = nix.positions(here + "/default.nix", [["bmake", 920, 76]]);
-const pos$91 = nix.positions(here + "/default.nix", [["binutils-unwrapped", 918, 44], ["libSystem", 918, 63], ["locale", 920, 17]]);
-const pos$92 = nix.positions(here + "/default.nix", [["ccWrapperStdenv", 910, 33], ["darwin", 913, 13]]);
-const pos$93 = nix.positions(here + "/default.nix", [["name", 899, 7], ["overrides", 901, 7], ["extraNativeBuildInputs", 930, 7], ["extraPreHook", 935, 7]]);
-const pos$94 = nix.positions(here + "/default.nix", [["pkg-config", 960, 40]]);
-const pos$95 = nix.positions(here + "/default.nix", [["pkgs", 986, 62]]);
-const pos$96 = nix.positions(here + "/default.nix", [["bootstrapTools", 1001, 19], ["libc", 1002, 31], ["shellPackage", 1003, 11]]);
-const pos$97 = nix.positions(here + "/default.nix", [["libSystem", 1110, 46], ["locale", 1110, 56], ["sigtool", 1110, 63]]);
-const pos$98 = nix.positions(here + "/default.nix", [["binutils", 1113, 46], ["binutils-unwrapped", 1113, 55]]);
-const pos$99 = nix.positions(here + "/default.nix", [["diffutils", 1090, 17], ["ed", 1091, 17], ["file", 1092, 17], ["findutils", 1093, 17], ["gawk", 1094, 17], ["gettext", 1095, 17], ["gnumake", 1096, 17], ["gnused", 1097, 17], ["gnutar", 1098, 17], ["gzip", 1099, 17], ["patch", 1100, 17], ["darwin", 1105, 15]]);
-const pos$100 = nix.positions(here + "/default.nix", [["libllvm", 1128, 41]]);
-const pos$101 = nix.positions(here + "/default.nix", [["libllvm", 1131, 41]]);
-const pos$102 = nix.positions(here + "/default.nix", [["libllvm", 1126, 69], ["libclang", 1127, 19], ["lld", 1130, 19]]);
-const pos$103 = nix.positions(here + "/default.nix", [["llvm-manpages", 1136, 65]]);
-const pos$104 = nix.positions(here + "/default.nix", [["cc", 1146, 21]]);
-const pos$105 = nix.positions(here + "/default.nix", [["systemLibcxxClang", 1145, 19]]);
-const pos$106 = nix.positions(here + "/default.nix", [["name", 974, 9], ["buildPlatform", 976, 9], ["hostPlatform", 977, 9], ["targetPlatform", 978, 9], ["preHook", 980, 9], ["initialPath", 986, 9], ["extraNativeBuildInputs", 988, 9], ["extraBuildInputs", 992, 9], ["cc", 994, 17], ["shell", 996, 9], ["fetchurlBoot", 998, 36], ["extraAttrs", 1000, 9], ["disallowedRequisites", 1006, 9], ["allowedRequisites", 1008, 9], ["__stdenvImpureHostDeps", 1079, 9], ["__extraImpureHostDeps", 1080, 9], ["overrides", 1082, 9]]);
-const pos$107 = nix.positions(here + "/default.nix", [["config", 972, 15], ["overlays", 972, 22], ["stdenv", 973, 7]]);
-const pos$108 = nix.positions(here + "/default.nix", [["config", 1178, 27], ["overlays", 1178, 34], ["stdenv", 1178, 43]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -122,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const overlays = nix.arg($, "overlays");
   const bootstrapFiles = nix.argOr($, "bootstrapFiles", () => nix.app(nix.selOr(config, () => nix.sel(lib, "id"), "replaceBootstrapFiles"), nix.thunk(() => (nix.asBool(nix.sel(localSystem, "isAarch64")) ? nix.builtins.import(nix.path(here, "./bootstrap-files/aarch64-apple-darwin.nix")) : nix.builtins.throw("Unsupported platform for the Darwin stdenv")))));
   const system = nix.thunk(() => nix.attr(localSystem, "system"));
-  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")), nix.thunk(() => ({ [nix.POS]: pos$1, defaultConfig: config }))));
+  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")), nix.thunk(() => ({ [nix.POS]: $pos[0], defaultConfig: config }))));
   const llvmVersion = "21";
   const sdkMajorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(localSystem, "darwinSdkVersion"))));
   const commonImpureHostDeps = nix.thunk(() => ["/bin/sh", "/usr/lib/libSystem.B.dylib", "/usr/lib/system/libunc.dylib"]);
@@ -137,7 +30,7 @@ export default nix.lambda((args) => (() => {
   })();
   const commonPreHook = "export NIX_ENFORCE_NO_NATIVE=${NIX_ENFORCE_NO_NATIVE-1}\nexport NIX_ENFORCE_PURITY=${NIX_ENFORCE_PURITY-1}\nexport NIX_IGNORE_LD_THROUGH_GCC=1\n";
   const bootstrapTools = nix.thunk(() => nix.update(nix.app(nix.builtins.derivation, nix.thunk(() => nix.update({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       system: system,
       name: "bootstrap-tools",
       builder: nix.thunk(() => nix.str`${nix.sel(bootstrapFiles, "unpack")}/bin/bash`),
@@ -151,13 +44,13 @@ export default nix.lambda((args) => (() => {
         ]))),
       __impureHostDeps: commonImpureHostDeps,
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "contentAddressedByDefault")), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         __contentAddressed: true,
         outputHashAlgo: "sha256",
         outputHashMode: "recursive",
       })))))), {
-    [nix.POS]: pos$5,
-    passthru: nix.thunk(() => ({ [nix.POS]: pos$4, isFromBootstrapFiles: true })),
+    [nix.POS]: $pos[4],
+    passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], isFromBootstrapFiles: true })),
   }));
   const stageFun = (prevStage) => nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
@@ -168,7 +61,7 @@ export default nix.lambda((args) => (() => {
     const cc = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(prevStage, "clang"), null)) ? null : nix.sel(prevStage, "clang")));
     const bashNonInteractive = nix.thunk(() => nix.selOr(prevStage, () => nix.force(bootstrapTools), "bashNonInteractive"));
     const thisStdenv = nix.thunk(() => nix.app(genericStdenv, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: nix.thunk(() => nix.str`${name}-stdenv-darwin`),
         buildPlatform: localSystem,
         hostPlatform: localSystem,
@@ -186,7 +79,7 @@ ${extraPreHook}
           bootstrapTools,
         ]),
         fetchurlBoot: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl")), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             lib: lib,
             stdenvNoCC: nix.thunk(() => nix.selOr(prevStage, () => nix.force(thisStdenv), "ccWrapperStdenv")),
             curl: bootstrapTools,
@@ -197,13 +90,13 @@ ${extraPreHook}
         __stdenvImpureHostDeps: commonImpureHostDeps,
         __extraImpureHostDeps: commonImpureHostDeps,
         overrides: (self) => (super$) => nix.update(nix.app(overrides, self, super$), {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           fetchurl: nix.thunk(() => nix.sel(thisStdenv, "fetchurlBoot")),
-          fetchpatch: nix.thunk(() => nix.app(nix.sel(super$, "fetchpatch", "override"), nix.thunk(() => ({ [nix.POS]: pos$7, fetchurl: nix.thunk(() => nix.attr(self, "fetchurl")) })))),
-          fetchzip: nix.thunk(() => nix.app(nix.sel(super$, "fetchzip", "override"), nix.thunk(() => ({ [nix.POS]: pos$8, fetchurl: nix.thunk(() => nix.attr(self, "fetchurl")) })))),
+          fetchpatch: nix.thunk(() => nix.app(nix.sel(super$, "fetchpatch", "override"), nix.thunk(() => ({ [nix.POS]: $pos[6], fetchurl: nix.thunk(() => nix.attr(self, "fetchurl")) })))),
+          fetchzip: nix.thunk(() => nix.app(nix.sel(super$, "fetchzip", "override"), nix.thunk(() => ({ [nix.POS]: $pos[7], fetchurl: nix.thunk(() => nix.attr(self, "fetchurl")) })))),
         }),
       }))));
-    return { [nix.POS]: pos$11, config: config, overlays: overlays, stdenv: thisStdenv };
+    return { [nix.POS]: $pos[10], config: config, overlays: overlays, stdenv: thisStdenv };
   })(), formals$2);
   const allDeps = (checkFn) => (sets) => (() => {
     const sets$ = nix.thunk(() => nix.app(mergeDisjointAttrs, sets));
@@ -212,7 +105,7 @@ ${extraPreHook}
     return nix.app(nix.sel(lib, "traceIf"), nix.thunk(() => !nix.asBool(result)), nix.thunk(() => nix.app(nix.sel(lib, "deepSeq"), resultDetails, resultDetails)), result);
   })();
   const stage1Packages = (prevStage) => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     atf: nix.thunk(() => nix.attr(prevStage, "atf")),
     autoconf: nix.thunk(() => nix.attr(prevStage, "autoconf")),
     automake: nix.thunk(() => nix.attr(prevStage, "automake")),
@@ -250,7 +143,7 @@ ${extraPreHook}
     which: nix.thunk(() => nix.attr(prevStage, "which")),
   });
   const bintoolsPackages = (prevStage) => ({
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     cctools: nix.thunk(() => nix.attr(prevStage, "cctools")),
     ld64: nix.thunk(() => nix.attr(prevStage, "ld64")),
     bzip2: nix.thunk(() => nix.attr(prevStage, "bzip2")),
@@ -264,12 +157,12 @@ ${extraPreHook}
   });
   const darwinPackages = (prevStage) => (() => {
     const from = nix.thunk(() => nix.sel(prevStage, "darwin"));
-    return { [nix.POS]: pos$14, sigtool: nix.thunk(() => nix.attr(from, "sigtool")) };
+    return { [nix.POS]: $pos[13], sigtool: nix.thunk(() => nix.attr(from, "sigtool")) };
   })();
   const darwinPackagesNoCC = (prevStage) => (() => {
     const from = nix.thunk(() => nix.sel(prevStage, "darwin"));
     return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     binutils: nix.thunk(() => nix.attr(from, "binutils")),
     "binutils-unwrapped": nix.thunk(() => nix.attr(from, "binutils-unwrapped")),
     libSystem: nix.thunk(() => nix.attr(from, "libSystem")),
@@ -277,34 +170,34 @@ ${extraPreHook}
   };
   })();
   const disallowedPackages = (prevStage) => ({
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     "binutils-unwrapped": nix.thunk(() => nix.attr(prevStage, "binutils-unwrapped")),
     curl: nix.thunk(() => nix.attr(prevStage, "curl")),
   });
   const llvmLibrariesPackages = (prevStage) => (() => {
     const from = nix.thunk(() => nix.sel(prevStage, nix.key(nix.str`llvmPackages_${llvmVersion}`)));
     return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     "compiler-rt": nix.thunk(() => nix.attr(from, "compiler-rt")),
     libcxx: nix.thunk(() => nix.attr(from, "libcxx")),
   };
   })();
   const llvmLibrariesDarwinDepsNoCC = (prevStage) => (() => {
     const from = nix.thunk(() => nix.sel(prevStage, "darwin"));
-    return { [nix.POS]: pos$18, libcxx: nix.thunk(() => nix.attr(from, "libcxx")) };
+    return { [nix.POS]: $pos[17], libcxx: nix.thunk(() => nix.attr(from, "libcxx")) };
   })();
   const llvmToolsPackages = (prevStage) => (() => {
     const from = nix.thunk(() => nix.sel(prevStage, nix.key(nix.str`llvmPackages_${llvmVersion}`)));
     return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     libclang: nix.thunk(() => nix.attr(from, "libclang")),
     libllvm: nix.thunk(() => nix.attr(from, "libllvm")),
     lld: nix.thunk(() => nix.attr(from, "lld")),
   };
   })();
-  const llvmToolsDeps = (prevStage) => ({ [nix.POS]: pos$20, libffi: nix.thunk(() => nix.attr(prevStage, "libffi")) });
+  const llvmToolsDeps = (prevStage) => ({ [nix.POS]: $pos[19], libffi: nix.thunk(() => nix.attr(prevStage, "libffi")) });
   const sdkPackages = (prevStage) => ({
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     bashNonInteractive: nix.thunk(() => nix.attr(prevStage, "bashNonInteractive")),
     libpng: nix.thunk(() => nix.attr(prevStage, "libpng")),
     libxml2: nix.thunk(() => nix.attr(prevStage, "libxml2")),
@@ -317,7 +210,7 @@ ${extraPreHook}
   const sdkDarwinPackages = (prevStage) => (() => {
     const from = nix.thunk(() => nix.sel(prevStage, "darwin"));
     return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     adv_cmds: nix.thunk(() => nix.attr(from, "adv_cmds")),
     copyfile: nix.thunk(() => nix.attr(from, "copyfile")),
     libiconv: nix.thunk(() => nix.attr(from, "libiconv")),
@@ -328,7 +221,7 @@ ${extraPreHook}
   };
   })();
   const sdkPackagesNoCC = (prevStage) => ({
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     "apple-sdk": nix.thunk(() => nix.attr(prevStage, "apple-sdk")),
   });
   nix.assert_(nix.selOr(bootstrapTools, () => false, "passthru", "isFromBootstrapFiles"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/darwin/default.nix:297:1");
@@ -336,7 +229,7 @@ ${extraPreHook}
     nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
       return nix.attrsDyn({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         __raw: true,
         "apple-sdk": null,
         cctools: null,
@@ -348,7 +241,7 @@ ${extraPreHook}
         cpio: null,
         jq: null,
         darwin: nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           binutils: null,
           "binutils-unwrapped": null,
           libcxx: null,
@@ -358,7 +251,7 @@ ${extraPreHook}
         clang: null,
       }, [
         [nix.str`llvmPackages_${llvmVersion}`, nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           "compiler-rt": null,
           libclang: null,
           libcxx: null,
@@ -367,44 +260,44 @@ ${extraPreHook}
       ]);
     })(), formals$3),
     (prevStage) => nix.app(stageFun, prevStage, nix.thunk(() => ({
-        [nix.POS]: pos$48,
+        [nix.POS]: $pos[47],
         name: "bootstrap-stage0",
         overrides: (self) => (super$) => nix.attrsDyn({
-          [nix.POS]: pos$47,
+          [nix.POS]: $pos[46],
           ccWrapperStdenv: nix.thunk(() => nix.sel(self, "stdenv")),
-          bashNonInteractive: nix.thunk(() => nix.update(bootstrapTools, { [nix.POS]: pos$27, shellPath: "/bin/bash" })),
+          bashNonInteractive: nix.thunk(() => nix.update(bootstrapTools, { [nix.POS]: $pos[26], shellPath: "/bin/bash" })),
           coreutils: bootstrapTools,
           cpio: bootstrapTools,
           file: null,
           gnugrep: bootstrapTools,
           pbzx: bootstrapTools,
           "expand-response-params": nix.thunk(() => nix.app(nix.sel(super$, "expand-response-params", "overrideAttrs"), (old) => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               buildPhase: nix.thunk(() => nix.add(nix.str`CC=${bootstrapTools}/bin/clang
 export SDKROOT=${nix.sel(self, "apple-sdk", "sdkroot")}
 `, nix.sel(old, "buildPhase"))),
             }))),
           jq: bootstrapTools,
           cctools: nix.thunk(() => nix.update(bootstrapTools, {
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             libtool: bootstrapTools,
             targetPrefix: "",
             version: "boot",
           })),
-          ld64: nix.thunk(() => nix.update(bootstrapTools, { [nix.POS]: pos$30, targetPrefix: "", version: "boot" })),
+          ld64: nix.thunk(() => nix.update(bootstrapTools, { [nix.POS]: $pos[29], targetPrefix: "", version: "boot" })),
           darwin: nix.thunk(() => nix.app(nix.sel(super$, "darwin", "overrideScope"), (selfDarwin) => (superDarwin) => (() => {
               const from = nix.thunk(() => nix.sel(self, "llvmPackages"));
               return {
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               libcxx: nix.thunk(() => nix.attr(from, "libcxx")),
-              "binutils-unwrapped": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(superDarwin, "binutils-unwrapped", "override"), nix.thunk(() => ({ [nix.POS]: pos$31, enableManpages: false }))), "overrideAttrs"), (old) => ({
-                  [nix.POS]: pos$33,
+              "binutils-unwrapped": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(superDarwin, "binutils-unwrapped", "override"), nix.thunk(() => ({ [nix.POS]: $pos[30], enableManpages: false }))), "overrideAttrs"), (old) => ({
+                  [nix.POS]: $pos[32],
                   version: "boot",
                   __intentionallyOverridingVersion: true,
-                  passthru: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru"), { [nix.POS]: pos$32, isFromBootstrapFiles: true })),
+                  passthru: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru"), { [nix.POS]: $pos[31], isFromBootstrapFiles: true })),
                 }))),
               locale: nix.thunk(() => nix.app(nix.sel(self, "stdenv", "mkDerivation"), nix.thunk(() => ({
-                  [nix.POS]: pos$34,
+                  [nix.POS]: $pos[33],
                   name: "bootstrap-stage0-locale",
                   buildCommand: "mkdir -p $out/share/locale\n",
                 })))),
@@ -413,9 +306,9 @@ export SDKROOT=${nix.sel(self, "apple-sdk", "sdkroot")}
             })())),
         }, [
           [nix.str`llvmPackages_${llvmVersion}`, nix.thunk(() => nix.app(overrideLlvmPackagesScope, nix.thunk(() => nix.sel(super$, nix.key(nix.str`llvmPackages_${llvmVersion}`))), (selfLlvmPackages) => (_) => ({
-              [nix.POS]: pos$46,
+              [nix.POS]: $pos[45],
               libclang: nix.thunk(() => nix.app(nix.sel(self, "stdenv", "mkDerivation"), nix.thunk(() => ({
-                  [nix.POS]: pos$37,
+                  [nix.POS]: $pos[36],
                   name: "bootstrap-stage0-clang",
                   version: "boot",
                   outputs: nix.thunk(() => ["out", "lib"]),
@@ -434,7 +327,7 @@ mkdir -p $out/lib/clang
 ln -s ${bootstrapTools}/lib/clang/$(ls -1 ${bootstrapTools}/lib/clang) $out/lib/clang/${llvmVersion}
 `),
                   passthru: nix.thunk(() => ({
-                    [nix.POS]: pos$36,
+                    [nix.POS]: $pos[35],
                     isClang: true,
                     isFromBootstrapFiles: true,
                     hardeningUnsupportedFlags: nix.thunk(() => [
@@ -447,7 +340,7 @@ ln -s ${bootstrapTools}/lib/clang/$(ls -1 ${bootstrapTools}/lib/clang) $out/lib/
                   })),
                 })))),
               libllvm: nix.thunk(() => nix.app(nix.sel(self, "stdenv", "mkDerivation"), nix.thunk(() => ({
-                  [nix.POS]: pos$39,
+                  [nix.POS]: $pos[38],
                   name: "bootstrap-stage0-llvm",
                   outputs: nix.thunk(() => ["out", "lib"]),
                   buildCommand: nix.thunk(() => nix.str`mkdir -p $out/bin $out/lib
@@ -463,31 +356,31 @@ ln -s ${bootstrapTools}/bin/dsymutil $out/bin/dsymutil
 ln -s ${bootstrapTools}/bin/llvm-readtapi $out/bin/llvm-readtapi
 ln -s ${bootstrapTools}/lib/libLLVM* $out/lib
 `),
-                  passthru: nix.thunk(() => ({ [nix.POS]: pos$38, isFromBootstrapFiles: true })),
+                  passthru: nix.thunk(() => ({ [nix.POS]: $pos[37], isFromBootstrapFiles: true })),
                 })))),
               lld: nix.thunk(() => nix.app(nix.sel(self, "stdenv", "mkDerivation"), nix.thunk(() => ({
-                  [nix.POS]: pos$41,
+                  [nix.POS]: $pos[40],
                   name: "bootstrap-stage0-lld",
                   buildCommand: "",
-                  passthru: nix.thunk(() => ({ [nix.POS]: pos$40, isLLVM: true, isFromBootstrapFiles: true })),
+                  passthru: nix.thunk(() => ({ [nix.POS]: $pos[39], isLLVM: true, isFromBootstrapFiles: true })),
                 })))),
               "compiler-rt": nix.thunk(() => nix.app(nix.sel(self, "stdenv", "mkDerivation"), nix.thunk(() => ({
-                  [nix.POS]: pos$43,
+                  [nix.POS]: $pos[42],
                   name: "bootstrap-stage0-compiler-rt",
                   buildCommand: nix.thunk(() => nix.str`mkdir -p $out/lib $out/share
 ln -s ${bootstrapTools}/lib/libclang_rt* $out/lib
 ln -s ${bootstrapTools}/lib/darwin       $out/lib
 `),
-                  passthru: nix.thunk(() => ({ [nix.POS]: pos$42, isFromBootstrapFiles: true })),
+                  passthru: nix.thunk(() => ({ [nix.POS]: $pos[41], isFromBootstrapFiles: true })),
                 })))),
               libcxx: nix.thunk(() => nix.app(nix.sel(self, "stdenv", "mkDerivation"), nix.thunk(() => ({
-                  [nix.POS]: pos$45,
+                  [nix.POS]: $pos[44],
                   name: "bootstrap-stage0-libcxx",
                   buildCommand: nix.thunk(() => nix.str`mkdir -p $out/lib $out/include
 ln -s ${bootstrapTools}/lib/libc++.dylib $out/lib
 ln -s ${bootstrapTools}/include/c++      $out/include
 `),
-                  passthru: nix.thunk(() => ({ [nix.POS]: pos$44, isLLVM: true, isFromBootstrapFiles: true })),
+                  passthru: nix.thunk(() => ({ [nix.POS]: $pos[43], isLLVM: true, isFromBootstrapFiles: true })),
                 })))),
             })))],
         ]),
@@ -500,7 +393,7 @@ ln -s ${bootstrapTools}/include/c++      $out/include
           nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(prevStage, "darwin"));
             return {
-            [nix.POS]: pos$49,
+            [nix.POS]: $pos[48],
             bashNonInteractive: nix.thunk(() => nix.attr(prevStage, "bashNonInteractive")),
             cctools: nix.thunk(() => nix.attr(prevStage, "cctools")),
             coreutils: nix.thunk(() => nix.attr(prevStage, "coreutils")),
@@ -518,7 +411,7 @@ ln -s ${bootstrapTools}/include/c++      $out/include
           nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(prevStage, "darwin"));
             return {
-            [nix.POS]: pos$50,
+            [nix.POS]: $pos[49],
             binutils: nix.thunk(() => nix.attr(from, "binutils")),
             libSystem: nix.thunk(() => nix.attr(from, "libSystem")),
             libc: nix.thunk(() => nix.attr(prevStage, "libc")),
@@ -526,10 +419,10 @@ ln -s ${bootstrapTools}/include/c++      $out/include
           })()),
         ])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/darwin/default.nix:533:5");
       return nix.app(stageFun, prevStage, nix.thunk(() => ({
-          [nix.POS]: pos$70,
+          [nix.POS]: $pos[69],
           name: "bootstrap-stage1",
           overrides: (self) => (super$) => nix.attrsDyn({
-            [nix.POS]: pos$69,
+            [nix.POS]: $pos[68],
             ccWrapperStdenv: nix.thunk(() => nix.attr(prevStage, "ccWrapperStdenv")),
             cctools: nix.thunk(() => nix.attr(prevStage, "cctools")),
             ld64: nix.thunk(() => nix.attr(prevStage, "ld64")),
@@ -537,58 +430,61 @@ ln -s ${bootstrapTools}/include/c++      $out/include
             curl: nix.thunk(() => nix.builtins.throw("nothing in the Darwin bootstrap can depend on curl")),
             cmake: nix.thunk(() => nix.sel(self, "cmakeMinimal")),
             gettext: nix.thunk(() => nix.app(nix.sel(super$, "gettext", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$51,
+                [nix.POS]: $pos[50],
                 libiconv: nix.thunk(() => nix.sel(super$, "libiconvReal")),
               })))),
-            gnugrep: nix.thunk(() => nix.app(nix.sel(super$, "gnugrep", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$52, doCheck: false })))),
-            libffi: nix.thunk(() => nix.app(nix.sel(super$, "libffi", "override"), nix.thunk(() => ({ [nix.POS]: pos$53, doCheck: false })))),
-            libxml2: nix.thunk(() => nix.app(nix.sel(super$, "libxml2", "override"), nix.thunk(() => ({ [nix.POS]: pos$54, pythonSupport: false })))),
-            meson: nix.thunk(() => nix.app(nix.sel(super$, "meson", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$55, doInstallCheck: false })))),
-            ninja: nix.thunk(() => nix.app(nix.sel(super$, "ninja", "override"), nix.thunk(() => ({ [nix.POS]: pos$56, buildDocs: false })))),
+            gnugrep: nix.thunk(() => nix.app(nix.sel(super$, "gnugrep", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[51], doCheck: false })))),
+            libffi: nix.thunk(() => nix.app(nix.sel(super$, "libffi", "override"), nix.thunk(() => ({ [nix.POS]: $pos[52], doCheck: false })))),
+            libxml2: nix.thunk(() => nix.app(nix.sel(super$, "libxml2", "override"), nix.thunk(() => ({ [nix.POS]: $pos[53], pythonSupport: false })))),
+            meson: nix.thunk(() => nix.app(nix.sel(super$, "meson", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[54], doInstallCheck: false })))),
+            ninja: nix.thunk(() => nix.app(nix.sel(super$, "ninja", "override"), nix.thunk(() => ({ [nix.POS]: $pos[55], buildDocs: false })))),
             "pkg-config": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(super$, "pkg-config", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$60,
+                [nix.POS]: $pos[59],
                 "pkg-config": nix.thunk(() => nix.app(nix.sel(self, "libpkgconf", "override"), nix.thunk(() => ({
-                    [nix.POS]: pos$59,
+                    [nix.POS]: $pos[58],
                     removeReferencesTo: nix.thunk(() => nix.app(nix.sel(self, "removeReferencesTo", "override"), nix.thunk(() => ({
-                        [nix.POS]: pos$58,
+                        [nix.POS]: $pos[57],
                         signingUtils: nix.thunk(() => nix.app(nix.sel(prevStage, "darwin", "signingUtils", "override"), nix.thunk(() => (() => {
                             const from = nix.thunk(() => nix.sel(prevStage, "darwin"));
-                            return { [nix.POS]: pos$57, sigtool: nix.thunk(() => nix.attr(from, "sigtool")) };
+                            return { [nix.POS]: $pos[56], sigtool: nix.thunk(() => nix.attr(from, "sigtool")) };
                           })()))),
                       })))),
                   })))),
                 baseBinName: "pkgconf",
               }))), "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$62,
-                passthru: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru"), { [nix.POS]: pos$61, stdenv: nix.thunk(() => nix.attr(self, "stdenv")) })),
+                [nix.POS]: $pos[61],
+                passthru: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru"), { [nix.POS]: $pos[60], stdenv: nix.thunk(() => nix.attr(self, "stdenv")) })),
               }))),
             python3: nix.thunk(() => nix.sel(self, "python3-bootstrap")),
             "python3-bootstrap": nix.thunk(() => nix.app(nix.sel(super$, "python3", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$63,
+                [nix.POS]: $pos[62],
                 self: nix.thunk(() => nix.sel(self, "python3-bootstrap")),
                 pythonAttr: "python3-bootstrap",
                 zstd: null,
                 enableLTO: false,
               })))),
             scons: nix.thunk(() => nix.app(nix.sel(super$, "scons", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$64,
+                [nix.POS]: $pos[63],
                 python3Packages: nix.thunk(() => nix.sel(self, "python3", "pkgs")),
               })))),
             xar: nix.thunk(() => nix.sel(super$, "xarMinimal")),
             darwin: nix.thunk(() => nix.app(nix.sel(super$, "darwin", "overrideScope"), (selfDarwin) => (superDarwin) => nix.update(nix.app(llvmLibrariesDarwinDepsNoCC, prevStage), (() => {
                 const from = nix.thunk(() => nix.sel(self, "llvmPackages"));
                 return {
-                [nix.POS]: pos$68,
+                [nix.POS]: $pos[67],
                 libcxx: nix.thunk(() => nix.attr(from, "libcxx")),
-                signingUtils: nix.thunk(() => nix.app(nix.sel(prevStage, "darwin", "signingUtils", "override"), nix.thunk(() => ({ [nix.POS]: pos$65, sigtool: nix.thunk(() => nix.attr(selfDarwin, "sigtool")) })))),
+                signingUtils: nix.thunk(() => nix.app(nix.sel(prevStage, "darwin", "signingUtils", "override"), nix.thunk(() => ({
+                    [nix.POS]: $pos[64],
+                    sigtool: nix.thunk(() => nix.attr(selfDarwin, "sigtool")),
+                  })))),
                 binutils: nix.thunk(() => nix.app(nix.sel(superDarwin, "binutils", "override"), nix.thunk(() => ({
-                    [nix.POS]: pos$66,
+                    [nix.POS]: $pos[65],
                     coreutils: nix.thunk(() => nix.attr(self, "coreutils")),
                     libc: nix.thunk(() => nix.attr(self, "libc")),
                     bintools: nix.thunk(() => nix.sel(selfDarwin, "binutils-unwrapped")),
                   })))),
                 "binutils-unwrapped": nix.thunk(() => nix.app(nix.sel(superDarwin, "binutils-unwrapped", "override"), nix.thunk(() => ({
-                    [nix.POS]: pos$67,
+                    [nix.POS]: $pos[66],
                     cctools: nix.thunk(() => nix.attr(self, "cctools")),
                     ld64: nix.thunk(() => nix.attr(self, "ld64")),
                     enableManpages: false,
@@ -609,7 +505,7 @@ ln -s ${bootstrapTools}/include/c++      $out/include
       nix.assert_(nix.app(allDeps, isFromBootstrapFiles, nix.thunk(() => [
           nix.thunk(() => nix.app(llvmLibrariesPackages, prevStage)),
           nix.thunk(() => nix.app(llvmToolsPackages, prevStage)),
-          nix.thunk(() => ({ [nix.POS]: pos$71, ld64: nix.thunk(() => nix.attr(prevStage, "ld64")) })),
+          nix.thunk(() => ({ [nix.POS]: $pos[70], ld64: nix.thunk(() => nix.attr(prevStage, "ld64")) })),
         ])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/darwin/default.nix:654:5");
       nix.assert_(nix.app(allDeps, isBuiltByBootstrapFilesCompiler, nix.thunk(() => [
           nix.thunk(() => nix.app(stage1Packages, prevStage)),
@@ -623,7 +519,7 @@ ln -s ${bootstrapTools}/include/c++      $out/include
           nix.thunk(() => nix.app(sdkPackagesNoCC, prevStage)),
         ])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/darwin/default.nix:668:5");
       return nix.app(stageFun, prevStage, nix.thunk(() => ({
-          [nix.POS]: pos$76,
+          [nix.POS]: $pos[75],
           name: "bootstrap-stage-xclang",
           overrides: (self) => (super$) => nix.app(mergeDisjointAttrs, nix.thunk(() => [
               nix.thunk(() => nix.app(stage1Packages, prevStage)),
@@ -633,15 +529,15 @@ ln -s ${bootstrapTools}/include/c++      $out/include
               nix.thunk(() => nix.app(sdkPackages, prevStage)),
               nix.thunk(() => nix.app(sdkPackagesNoCC, prevStage)),
               nix.thunk(() => ({
-                [nix.POS]: pos$75,
+                [nix.POS]: $pos[74],
                 ccWrapperStdenv: nix.thunk(() => nix.attr(prevStage, "ccWrapperStdenv")),
-                ld64: nix.thunk(() => nix.app(nix.sel(super$, "ld64", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$72, doInstallCheck: false })))),
+                ld64: nix.thunk(() => nix.app(nix.sel(super$, "ld64", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[71], doInstallCheck: false })))),
                 darwin: nix.thunk(() => nix.app(nix.sel(super$, "darwin", "overrideScope"), (selfDarwin) => (superDarwin) => nix.update(nix.app(darwinPackages, prevStage), nix.update(nix.app(sdkDarwinPackages, prevStage), (() => {
                     const from = nix.thunk(() => nix.sel(prevStage, "darwin"));
                     return {
-                    [nix.POS]: pos$74,
+                    [nix.POS]: $pos[73],
                     libSystem: nix.thunk(() => nix.attr(from, "libSystem")),
-                    "binutils-unwrapped": nix.thunk(() => nix.app(nix.sel(superDarwin, "binutils-unwrapped", "override"), nix.thunk(() => ({ [nix.POS]: pos$73, enableManpages: false })))),
+                    "binutils-unwrapped": nix.thunk(() => nix.app(nix.sel(superDarwin, "binutils-unwrapped", "override"), nix.thunk(() => ({ [nix.POS]: $pos[72], enableManpages: false })))),
                   };
                   })())))),
               })),
@@ -669,7 +565,7 @@ ln -s ${bootstrapTools}/include/c++      $out/include
           nix.thunk(() => nix.app(sdkPackagesNoCC, prevStage)),
         ])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/darwin/default.nix:738:5");
       return nix.app(stageFun, prevStage, nix.thunk(() => ({
-          [nix.POS]: pos$84,
+          [nix.POS]: $pos[83],
           name: "bootstrap-stage2",
           overrides: (self) => (super$) => nix.app(mergeDisjointAttrs, nix.thunk(() => [
               nix.thunk(() => nix.app(stage1Packages, prevStage)),
@@ -677,27 +573,27 @@ ln -s ${bootstrapTools}/include/c++      $out/include
               nix.thunk(() => nix.app(bintoolsPackages, prevStage)),
               nix.thunk(() => nix.app(llvmToolsDeps, prevStage)),
               nix.thunk(() => nix.attrsDyn({
-                [nix.POS]: pos$83,
+                [nix.POS]: $pos[82],
                 ccWrapperStdenv: nix.thunk(() => nix.attr(prevStage, "ccWrapperStdenv")),
                 bashNonInteractive: nix.thunk(() => nix.app(nix.sel(super$, "bashNonInteractive", "override"), nix.thunk(() => ({
-                    [nix.POS]: pos$77,
+                    [nix.POS]: $pos[76],
                     stdenv: nix.thunk(() => nix.sel(self, "darwin", "bootstrapStdenv")),
                   })))),
-                libxml2: nix.thunk(() => nix.app(nix.sel(super$, "libxml2", "override"), nix.thunk(() => ({ [nix.POS]: pos$78, pythonSupport: false })))),
+                libxml2: nix.thunk(() => nix.app(nix.sel(super$, "libxml2", "override"), nix.thunk(() => ({ [nix.POS]: $pos[77], pythonSupport: false })))),
                 ncurses: nix.thunk(() => nix.app(nix.sel(super$, "ncurses", "override"), nix.thunk(() => ({
-                    [nix.POS]: pos$80,
+                    [nix.POS]: $pos[79],
                     stdenv: nix.thunk(() => nix.app(nix.sel(self, "darwin", "bootstrapStdenv", "override"), nix.thunk(() => ({
-                        [nix.POS]: pos$79,
+                        [nix.POS]: $pos[78],
                         shell: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(self, "bashNonInteractive")))),
                       })))),
                   })))),
                 darwin: nix.thunk(() => nix.app(nix.sel(super$, "darwin", "overrideScope"), (selfDarwin) => (superDarwin) => nix.update(nix.app(darwinPackages, prevStage), nix.update(nix.app(llvmLibrariesDarwinDepsNoCC, prevStage), (() => {
                     const from = nix.thunk(() => nix.sel(prevStage, "darwin"));
                     return {
-                    [nix.POS]: pos$82,
+                    [nix.POS]: $pos[81],
                     "binutils-unwrapped": nix.thunk(() => nix.attr(from, "binutils-unwrapped")),
                     binutils: nix.thunk(() => nix.app(nix.sel(superDarwin, "binutils", "override"), nix.thunk(() => ({
-                        [nix.POS]: pos$81,
+                        [nix.POS]: $pos[80],
                         "expand-response-params": nix.thunk(() => nix.attr(prevStage, "expand-response-params")),
                         libc: nix.thunk(() => nix.attr(self, "libc")),
                       })))),
@@ -732,24 +628,24 @@ ln -s ${bootstrapTools}/include/c++      $out/include
           nix.thunk(() => nix.app(sdkPackagesNoCC, prevStage)),
         ])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/darwin/default.nix:817:5");
       return nix.app(stageFun, prevStage, nix.thunk(() => ({
-          [nix.POS]: pos$89,
+          [nix.POS]: $pos[88],
           name: "bootstrap-stage3",
           overrides: (self) => (super$) => nix.app(mergeDisjointAttrs, nix.thunk(() => [
               nix.thunk(() => nix.app(stage1Packages, prevStage)),
               nix.thunk(() => nix.app(disallowedPackages, prevStage)),
               nix.thunk(() => nix.app(sdkPackages, prevStage)),
               nix.thunk(() => nix.attrsDyn({
-                [nix.POS]: pos$88,
+                [nix.POS]: $pos[87],
                 ccWrapperStdenv: nix.thunk(() => nix.attr(prevStage, "ccWrapperStdenv")),
-                libffi: nix.thunk(() => nix.app(nix.sel(super$, "libffi", "override"), nix.thunk(() => ({ [nix.POS]: pos$85, doCheck: false })))),
+                libffi: nix.thunk(() => nix.app(nix.sel(super$, "libffi", "override"), nix.thunk(() => ({ [nix.POS]: $pos[84], doCheck: false })))),
                 xar: nix.thunk(() => nix.sel(super$, "xarMinimal")),
                 darwin: nix.thunk(() => nix.app(nix.sel(super$, "darwin", "overrideScope"), (selfDarwin) => (superDarwin) => nix.update(nix.app(darwinPackages, prevStage), nix.update(nix.app(sdkDarwinPackages, prevStage), nix.update(nix.app(llvmLibrariesDarwinDepsNoCC, prevStage), (() => {
                     const from = nix.thunk(() => nix.sel(prevStage, "darwin"));
                     return {
-                    [nix.POS]: pos$87,
+                    [nix.POS]: $pos[86],
                     libSystem: nix.thunk(() => nix.attr(from, "libSystem")),
                     "binutils-unwrapped": nix.thunk(() => nix.app(nix.sel(superDarwin, "binutils-unwrapped", "override"), nix.thunk(() => ({
-                        [nix.POS]: pos$86,
+                        [nix.POS]: $pos[85],
                         cctools: nix.thunk(() => nix.attr(self, "cctools")),
                         ld64: nix.thunk(() => nix.attr(self, "ld64")),
                         enableManpages: false,
@@ -785,7 +681,7 @@ ln -s ${bootstrapTools}/include/c++      $out/include
           nix.thunk(() => nix.app(sdkPackagesNoCC, prevStage)),
         ])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/darwin/default.nix:893:5");
       return nix.app(stageFun, prevStage, nix.thunk(() => ({
-          [nix.POS]: pos$93,
+          [nix.POS]: $pos[92],
           name: "bootstrap-stage4",
           overrides: (self) => (super$) => nix.app(mergeDisjointAttrs, nix.thunk(() => [
               nix.thunk(() => nix.app(bintoolsPackages, prevStage)),
@@ -794,15 +690,15 @@ ln -s ${bootstrapTools}/include/c++      $out/include
               nix.thunk(() => nix.app(sdkPackages, prevStage)),
               nix.thunk(() => nix.app(sdkPackagesNoCC, prevStage)),
               nix.thunk(() => nix.attrsDyn({
-                [nix.POS]: pos$92,
+                [nix.POS]: $pos[91],
                 ccWrapperStdenv: nix.thunk(() => nix.attr(prevStage, "ccWrapperStdenv")),
                 darwin: nix.thunk(() => nix.app(nix.sel(super$, "darwin", "overrideScope"), (_) => (superDarwin) => nix.update(nix.app(sdkDarwinPackages, prevStage), nix.update(nix.app(llvmLibrariesDarwinDepsNoCC, prevStage), (() => {
                     const from = nix.thunk(() => nix.sel(prevStage, "darwin"));
                     return {
-                    [nix.POS]: pos$91,
+                    [nix.POS]: $pos[90],
                     "binutils-unwrapped": nix.thunk(() => nix.attr(from, "binutils-unwrapped")),
                     libSystem: nix.thunk(() => nix.attr(from, "libSystem")),
-                    locale: nix.thunk(() => nix.app(nix.sel(superDarwin, "locale", "override"), nix.thunk(() => ({ [nix.POS]: pos$90, bmake: nix.thunk(() => nix.attr(prevStage, "bmake")) })))),
+                    locale: nix.thunk(() => nix.app(nix.sel(superDarwin, "locale", "override"), nix.thunk(() => ({ [nix.POS]: $pos[89], bmake: nix.thunk(() => nix.attr(prevStage, "bmake")) })))),
                   };
                   })())))),
               }, [
@@ -829,7 +725,7 @@ ln -s ${bootstrapTools}/include/c++      $out/include
           nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(prevStage, "pkg-config"));
             return {
-            [nix.POS]: pos$94,
+            [nix.POS]: $pos[93],
             "pkg-config": nix.thunk(() => nix.attr(from, "pkg-config")),
           };
           })()),
@@ -840,13 +736,13 @@ ln -s ${bootstrapTools}/include/c++      $out/include
         ])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/darwin/default.nix:963:5");
       const cc = nix.thunk(() => nix.sel(prevStage, nix.key(nix.str`llvmPackages_${llvmVersion}`), "clang"));
       return {
-        [nix.POS]: pos$107,
+        [nix.POS]: $pos[106],
         config: config,
         overlays: overlays,
         stdenv: nix.thunk(() => nix.app(genericStdenv, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(prevStage, "stdenv"));
             return {
-            [nix.POS]: pos$106,
+            [nix.POS]: $pos[105],
             name: "stdenv-darwin",
             buildPlatform: localSystem,
             hostPlatform: localSystem,
@@ -855,14 +751,14 @@ ln -s ${bootstrapTools}/include/c++      $out/include
 stripDebugFlags="-S" # llvm-strip does not support "-p" for Mach-O
 export PATH_LOCALE=${nix.sel(prevStage, "darwin", "locale")}/share/locale
 `),
-            initialPath: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic/common-path.nix")), nix.thunk(() => ({ [nix.POS]: pos$95, pkgs: prevStage })))),
+            initialPath: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic/common-path.nix")), nix.thunk(() => ({ [nix.POS]: $pos[94], pkgs: prevStage })))),
             extraNativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(localSystem, "isAarch64")), nix.thunk(() => [nix.thunk(() => nix.sel(prevStage, "updateAutotoolsGnuConfigScriptsHook"))]))),
             extraBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(prevStage, "apple-sdk"))]),
             cc: cc,
             shell: nix.thunk(() => nix.sel(cc, "shell")),
             fetchurlBoot: nix.thunk(() => nix.attr(from, "fetchurlBoot")),
             extraAttrs: nix.thunk(() => ({
-              [nix.POS]: pos$96,
+              [nix.POS]: $pos[95],
               bootstrapTools: bootstrapTools,
               libc: nix.thunk(() => nix.attr(prevStage, "libc")),
               shellPackage: nix.thunk(() => nix.sel(prevStage, "bashNonInteractive")),
@@ -946,7 +842,7 @@ export PATH_LOCALE=${nix.sel(prevStage, "darwin", "locale")}/share/locale
                 nix.thunk(() => nix.app(sdkPackages, prevStage)),
                 nix.thunk(() => nix.app(sdkPackagesNoCC, prevStage)),
                 nix.thunk(() => nix.attrsDyn({
-                  [nix.POS]: pos$99,
+                  [nix.POS]: $pos[98],
                   diffutils: nix.thunk(() => nix.attr(prevStage, "diffutils")),
                   ed: nix.thunk(() => nix.attr(prevStage, "ed")),
                   file: nix.thunk(() => nix.attr(prevStage, "file")),
@@ -961,7 +857,7 @@ export PATH_LOCALE=${nix.sel(prevStage, "darwin", "locale")}/share/locale
                   darwin: nix.thunk(() => nix.app(nix.sel(super$, "darwin", "overrideScope"), (_) => (__1) => nix.update(nix.app(sdkDarwinPackages, prevStage), nix.update(nix.app(llvmLibrariesDarwinDepsNoCC, prevStage), nix.update((() => {
                       const from_1 = nix.thunk(() => nix.sel(prevStage, "darwin"));
                       return {
-                      [nix.POS]: pos$97,
+                      [nix.POS]: $pos[96],
                       libSystem: nix.thunk(() => nix.attr(from_1, "libSystem")),
                       locale: nix.thunk(() => nix.attr(from_1, "locale")),
                       sigtool: nix.thunk(() => nix.attr(from_1, "sigtool")),
@@ -969,7 +865,7 @@ export PATH_LOCALE=${nix.sel(prevStage, "darwin", "locale")}/share/locale
                     })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(super$, "stdenv", "targetPlatform"), localSystem)), nix.thunk(() => (() => {
                         const from_1 = nix.thunk(() => nix.sel(prevStage, "darwin"));
                         return {
-                        [nix.POS]: pos$98,
+                        [nix.POS]: $pos[97],
                         binutils: nix.thunk(() => nix.attr(from_1, "binutils")),
                         "binutils-unwrapped": nix.thunk(() => nix.attr(from_1, "binutils-unwrapped")),
                       };
@@ -982,21 +878,27 @@ export PATH_LOCALE=${nix.sel(prevStage, "darwin", "locale")}/share/locale
                   [nix.str`llvmPackages_${llvmVersion}`, nix.thunk(() => nix.app(overrideLlvmPackagesScope, nix.thunk(() => nix.sel(super$, nix.key(nix.str`llvmPackages_${llvmVersion}`))), (finalLLVM) => (_) => nix.update((() => {
                       const from_1 = nix.thunk(() => nix.sel(prevStage, nix.key(nix.str`llvmPackages_${llvmVersion}`)));
                       return {
-                      [nix.POS]: pos$102,
+                      [nix.POS]: $pos[101],
                       libllvm: nix.thunk(() => nix.attr(from_1, "libllvm")),
-                      libclang: nix.thunk(() => nix.app(nix.sel(prevStage, nix.key(nix.str`llvmPackages_${llvmVersion}`), "libclang", "override"), nix.thunk(() => ({ [nix.POS]: pos$100, libllvm: nix.thunk(() => nix.attr(finalLLVM, "libllvm")) })))),
-                      lld: nix.thunk(() => nix.app(nix.sel(prevStage, nix.key(nix.str`llvmPackages_${llvmVersion}`), "lld", "override"), nix.thunk(() => ({ [nix.POS]: pos$101, libllvm: nix.thunk(() => nix.attr(finalLLVM, "libllvm")) })))),
+                      libclang: nix.thunk(() => nix.app(nix.sel(prevStage, nix.key(nix.str`llvmPackages_${llvmVersion}`), "libclang", "override"), nix.thunk(() => ({
+                          [nix.POS]: $pos[99],
+                          libllvm: nix.thunk(() => nix.attr(finalLLVM, "libllvm")),
+                        })))),
+                      lld: nix.thunk(() => nix.app(nix.sel(prevStage, nix.key(nix.str`llvmPackages_${llvmVersion}`), "lld", "override"), nix.thunk(() => ({
+                          [nix.POS]: $pos[100],
+                          libllvm: nix.thunk(() => nix.attr(finalLLVM, "libllvm")),
+                        })))),
                     };
                     })(), nix.update((() => {
                       const from_1 = nix.thunk(() => nix.sel(super$, nix.key(nix.str`llvmPackages_${llvmVersion}`)));
                       return {
-                      [nix.POS]: pos$103,
+                      [nix.POS]: $pos[102],
                       "llvm-manpages": nix.thunk(() => nix.attr(from_1, "llvm-manpages")),
                     };
                     })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(super$, "stdenv", "targetPlatform"), localSystem)), nix.thunk(() => ({
-                        [nix.POS]: pos$105,
+                        [nix.POS]: $pos[104],
                         systemLibcxxClang: nix.thunk(() => nix.app(nix.sel(prevStage, nix.key(nix.str`llvmPackages_${llvmVersion}`), "systemLibcxxClang", "override"), nix.thunk(() => ({
-                            [nix.POS]: pos$104,
+                            [nix.POS]: $pos[103],
                             cc: nix.thunk(() => nix.sel(finalLLVM, "clang-unwrapped")),
                           })))),
                       })))))))],
@@ -1020,7 +922,7 @@ export PATH_LOCALE=${nix.sel(prevStage, "darwin", "locale")}/share/locale
       nix.assert_(nix.app(isFromNixpkgs, nix.thunk(() => nix.sel(prevStage, "binutils-unwrapped", "src"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/darwin/default.nix:1174:5");
       nix.assert_(nix.app(isBuiltByNixpkgsCompiler, nix.thunk(() => nix.sel(prevStage, "curl"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/stdenv/darwin/default.nix:1175:5");
       return {
-        [nix.POS]: pos$108,
+        [nix.POS]: $pos[107],
         config: nix.thunk(() => nix.attr(prevStage, "config")),
         overlays: nix.thunk(() => nix.attr(prevStage, "overlays")),
         stdenv: nix.thunk(() => nix.attr(prevStage, "stdenv")),

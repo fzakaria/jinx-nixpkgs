@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["updateScript", 30, 12]], [["description", 34, 7], ["homepage", 35, 7], ["changelog", 36, 7], ["license", 37, 7], ["maintainers", 39, 5]], [["version", 10, 22], ["src", 10, 30], ["cargoDeps", 10, 34], ["pname", 11, 3], ["pyproject", 12, 3], ["buildAndTestSubdir", 14, 3], ["nativeBuildInputs", 16, 3], ["postPatch", 21, 3], ["nativeCheckInputs", 26, 3], ["pythonImportsCheck", 28, 3], ["passthru", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, "ast-grep": false, buildPythonPackage: false, rustPlatform: false, pytestCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["updateScript", 30, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 34, 7], ["homepage", 35, 7], ["changelog", 36, 7], ["license", 37, 7], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 10, 22], ["src", 10, 30], ["cargoDeps", 10, 34], ["pname", 11, 3], ["pyproject", 12, 3], ["buildAndTestSubdir", 14, 3], ["nativeBuildInputs", 16, 3], ["postPatch", 21, 3], ["nativeCheckInputs", 26, 3], ["pythonImportsCheck", 28, 3], ["passthru", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: nix.thunk(() => nix.attr(ast_grep, "version")),
       src: nix.thunk(() => nix.attr(ast_grep, "src")),
       cargoDeps: nix.thunk(() => nix.attr(ast_grep, "cargoDeps")),
@@ -36,13 +34,13 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["ast_grep_py"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ast_grep, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

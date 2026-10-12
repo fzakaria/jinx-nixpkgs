@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["DJANGO_SETTINGS_MODULE", 44, 5], ["PGDATABASE", 45, 5], ["PGUSER", 46, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["broken", 73, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 41, 3], ["env", 43, 3], ["checkPhase", 49, 3], ["nativeCheckInputs", 58, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, django: false, fetchFromGitHub: false, libcst: false, "poetry-core": false, postgresql: false, postgresqlTestHook: false, psycopg: false, "psycopg-pool": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["DJANGO_SETTINGS_MODULE", 44, 5], ["PGDATABASE", 45, 5], ["PGUSER", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["broken", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 41, 3], ["env", 43, 3], ["checkPhase", 49, 3], ["nativeCheckInputs", 58, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Arfey",
           repo: "django-async-backend",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +38,7 @@ substituteInPlace tests/db/backends/postgresql/test_async_backend.py \\
       const dependencies = nix.thunk(() => [django, psycopg]);
       const pythonImportsCheck = nix.thunk(() => ["django_async_backend"]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         DJANGO_SETTINGS_MODULE: "settings",
         PGDATABASE: "postgres",
         PGUSER: "postgres",
@@ -49,7 +46,7 @@ substituteInPlace tests/db/backends/postgresql/test_async_backend.py \\
       const checkPhase = "runHook preCheck\n\ncd tests/\npython manage.py test\n\nrunHook postCheck\n";
       const nativeCheckInputs = nix.thunk(() => [django, libcst, postgresql, postgresqlTestHook, psycopg_pool]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "True async Django ORM and PostgreSQL backend with connection pooling and async transactions",
         homepage: "https://github.com/Arfey/django-async-backend",
         changelog: nix.thunk(() => nix.str`https://github.com/Arfey/django-async-backend/releases/tag/${nix.sel(src, "tag")}`),
@@ -61,7 +58,7 @@ substituteInPlace tests/db/backends/postgresql/test_async_backend.py \\
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(django, "version")))), "6")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

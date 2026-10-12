@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["updateScript", 96, 5]], [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["mainProgram", 105, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["pythonRelaxDeps", 30, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 77, 3], ["disabledTestPaths", 80, 3], ["preCheck", 84, 3], ["__darwinAllowLocalNetworking", 88, 3], ["postInstall", 90, 3], ["passthru", 95, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, gitMinimal: false, ripgrep: false, writableTmpDirAsHomeHook: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 96, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["mainProgram", 105, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["pythonRelaxDeps", 30, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 77, 3], ["disabledTestPaths", 80, 3], ["preCheck", 84, 3], ["__darwinAllowLocalNetworking", 88, 3], ["postInstall", 90, 3], ["passthru", 95, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "seagoat",
       version: "1.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kantord",
           repo: "SeaGOAT",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,11 +79,11 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${ripgrep}/bin"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Local-first semantic code search engine",
         homepage: "https://kantord.github.io/SeaGOAT/",
         changelog: nix.thunk(() => nix.str`https://github.com/kantord/SeaGOAT/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

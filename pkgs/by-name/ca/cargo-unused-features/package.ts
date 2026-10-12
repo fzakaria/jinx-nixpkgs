@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]], [["LIBGIT2_NO_VENDOR", 34, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 44, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["env", 33, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, curl: false, "pkg-config": false, libgit2: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBGIT2_NO_VENDOR", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["env", 33, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libgit2 = nix.arg($, "libgit2");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cargo-unused-features",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-gdwIbbQDw/DgBV9zY2Rk/oWjPv1SS/+oFnocsMo2Axo=",
@@ -30,9 +27,9 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-IiS4d6knNKqoUkt0sRSJ+vNluqllS3mTsnphrafugIo=",
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(curl, "dev")), pkg_config]),
       buildInputs: nix.thunk(() => [curl, libgit2, openssl]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBGIT2_NO_VENDOR: 1n })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to find potential unused enabled feature flags and prune them",
         homepage: "https://github.com/timonpost/cargo-unused-features",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

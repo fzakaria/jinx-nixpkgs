@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["url", 25, 7], ["hash", 26, 7]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["deleteVendor", 19, 3], ["vendorHash", 20, 3], ["patches", 22, 3], ["ldflags", 30, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, fetchpatch: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["deleteVendor", 19, 3], ["vendorHash", 20, 3], ["patches", 22, 3], ["ldflags", 30, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "yeetgif";
       const version = "1.23.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sgreben",
           repo: "yeetgif",
           rev: version,
@@ -28,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-LhkOMCuYO4GHezk21SlI2dP1UPmBp4bv2SdNbUQMKsI=";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/sgreben/yeetgif/commit/5d2067b9832898c2b1ac51bf6a5f107619038270.patch",
             hash: "sha256-3eyqbpPyuQHjAN5mjQyZo0xY6L683T5Ytyx02II/iU4=",
           })))),
       ]);
       const ldflags = nix.thunk(() => ["-s", "-w"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GIF effects CLI",
         homepage: "https://github.com/sgreben/yeetgif",
         license: nix.thunk(() => (() => {
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gif",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

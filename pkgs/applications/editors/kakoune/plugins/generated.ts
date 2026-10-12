@@ -2,68 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generated.nix", [[["owner", 15, 11], ["repo", 16, 11], ["rev", 17, 11], ["sha256", 18, 11]], [["homepage", 20, 14]], [["pname", 12, 9], ["version", 13, 9], ["src", 14, 9], ["meta", 20, 9]], [["owner", 27, 11], ["repo", 28, 11], ["rev", 29, 11], ["sha256", 30, 11]], [["homepage", 32, 14]], [["pname", 24, 9], ["version", 25, 9], ["src", 26, 9], ["meta", 32, 9]], [["owner", 39, 11], ["repo", 40, 11], ["rev", 41, 11], ["sha256", 42, 11]], [["homepage", 44, 14]], [["pname", 36, 9], ["version", 37, 9], ["src", 38, 9], ["meta", 44, 9]], [["owner", 51, 11], ["repo", 52, 11], ["rev", 53, 11], ["sha256", 54, 11]], [["homepage", 56, 14]], [["pname", 48, 9], ["version", 49, 9], ["src", 50, 9], ["meta", 56, 9]], [["owner", 63, 11], ["repo", 64, 11], ["rev", 65, 11], ["sha256", 66, 11]], [["homepage", 68, 14]], [["pname", 60, 9], ["version", 61, 9], ["src", 62, 9], ["meta", 68, 9]], [["owner", 75, 11], ["repo", 76, 11], ["rev", 77, 11], ["sha256", 78, 11]], [["homepage", 80, 14]], [["pname", 72, 9], ["version", 73, 9], ["src", 74, 9], ["meta", 80, 9]], [["owner", 87, 11], ["repo", 88, 11], ["rev", 89, 11], ["sha256", 90, 11]], [["homepage", 92, 14]], [["pname", 84, 9], ["version", 85, 9], ["src", 86, 9], ["meta", 92, 9]], [["owner", 99, 11], ["repo", 100, 11], ["rev", 101, 11], ["sha256", 102, 11]], [["homepage", 104, 14]], [["pname", 96, 9], ["version", 97, 9], ["src", 98, 9], ["meta", 104, 9]], [["owner", 111, 11], ["repo", 112, 11], ["rev", 113, 11], ["sha256", 114, 11]], [["homepage", 116, 14]], [["pname", 108, 9], ["version", 109, 9], ["src", 110, 9], ["meta", 116, 9]], [["owner", 123, 11], ["repo", 124, 11], ["rev", 125, 11], ["sha256", 126, 11]], [["homepage", 128, 14]], [["pname", 120, 9], ["version", 121, 9], ["src", 122, 9], ["meta", 128, 9]], [["owner", 135, 11], ["repo", 136, 11], ["rev", 137, 11], ["sha256", 138, 11]], [["homepage", 140, 14], ["mainProgram", 141, 14]], [["pname", 132, 9], ["version", 133, 9], ["src", 134, 9], ["meta", 140, 9]], [["owner", 148, 11], ["repo", 149, 11], ["rev", 150, 11], ["sha256", 151, 11]], [["homepage", 153, 14]], [["pname", 145, 9], ["version", 146, 9], ["src", 147, 9], ["meta", 153, 9]], [["owner", 160, 11], ["repo", 161, 11], ["rev", 162, 11], ["sha256", 163, 11]], [["homepage", 165, 14]], [["pname", 157, 9], ["version", 158, 9], ["src", 159, 9], ["meta", 165, 9]], [["owner", 172, 11], ["repo", 173, 11], ["rev", 174, 11], ["sha256", 175, 11]], [["homepage", 177, 14]], [["pname", 169, 9], ["version", 170, 9], ["src", 171, 9], ["meta", 177, 9]], [["owner", 184, 11], ["repo", 185, 11], ["rev", 186, 11], ["sha256", 187, 11]], [["homepage", 189, 14]], [["pname", 181, 9], ["version", 182, 9], ["src", 183, 9], ["meta", 189, 9]], [["owner", 196, 11], ["repo", 197, 11], ["rev", 198, 11], ["sha256", 199, 11]], [["homepage", 201, 14]], [["pname", 193, 9], ["version", 194, 9], ["src", 195, 9], ["meta", 201, 9]], [["owner", 208, 11], ["repo", 209, 11], ["rev", 210, 11], ["sha256", 211, 11]], [["homepage", 213, 14]], [["pname", 205, 9], ["version", 206, 9], ["src", 207, 9], ["meta", 213, 9]], [["owner", 220, 11], ["repo", 221, 11], ["rev", 222, 11], ["sha256", 223, 11]], [["homepage", 225, 14]], [["pname", 217, 9], ["version", 218, 9], ["src", 219, 9], ["meta", 225, 9]], [["owner", 232, 11], ["repo", 233, 11], ["rev", 234, 11], ["sha256", 235, 11]], [["homepage", 237, 14]], [["pname", 229, 9], ["version", 230, 9], ["src", 231, 9], ["meta", 237, 9]], [["owner", 244, 11], ["repo", 245, 11], ["rev", 246, 11], ["sha256", 247, 11]], [["homepage", 249, 14]], [["pname", 241, 9], ["version", 242, 9], ["src", 243, 9], ["meta", 249, 9]], [["active-window-kak", 11, 7], ["auto-pairs-kak", 23, 7], ["byline-kak", 35, 7], ["connect-kak", 47, 7], ["fzf-kak", 59, 7], ["kakboard", 71, 7], ["kakoune-buffer-switcher", 83, 7], ["kakoune-buffers", 95, 7], ["kakoune-easymotion", 107, 7], ["kakoune-extra-filetypes", 119, 7], ["kakoune-rainbow", 131, 7], ["kakoune-registers", 144, 7], ["kakoune-vertical-selection", 156, 7], ["openscad-kak", 168, 7], ["pandoc-kak", 180, 7], ["powerline-kak", 192, 7], ["prelude-kak", 204, 7], ["smarttab-kak", 216, 7], ["tabs-kak", 228, 7], ["zig-kak", 240, 7]]]);
 const formals$1 = { args: { lib: false, buildKakounePluginFrom2Nix: false, fetchFromGitHub: false, overrides: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generated.nix", [["owner", 15, 11], ["repo", 16, 11], ["rev", 17, 11], ["sha256", 18, 11]]);
-const pos$2 = nix.positions(here + "/generated.nix", [["homepage", 20, 14]]);
-const pos$3 = nix.positions(here + "/generated.nix", [["pname", 12, 9], ["version", 13, 9], ["src", 14, 9], ["meta", 20, 9]]);
-const pos$4 = nix.positions(here + "/generated.nix", [["owner", 27, 11], ["repo", 28, 11], ["rev", 29, 11], ["sha256", 30, 11]]);
-const pos$5 = nix.positions(here + "/generated.nix", [["homepage", 32, 14]]);
-const pos$6 = nix.positions(here + "/generated.nix", [["pname", 24, 9], ["version", 25, 9], ["src", 26, 9], ["meta", 32, 9]]);
-const pos$7 = nix.positions(here + "/generated.nix", [["owner", 39, 11], ["repo", 40, 11], ["rev", 41, 11], ["sha256", 42, 11]]);
-const pos$8 = nix.positions(here + "/generated.nix", [["homepage", 44, 14]]);
-const pos$9 = nix.positions(here + "/generated.nix", [["pname", 36, 9], ["version", 37, 9], ["src", 38, 9], ["meta", 44, 9]]);
-const pos$10 = nix.positions(here + "/generated.nix", [["owner", 51, 11], ["repo", 52, 11], ["rev", 53, 11], ["sha256", 54, 11]]);
-const pos$11 = nix.positions(here + "/generated.nix", [["homepage", 56, 14]]);
-const pos$12 = nix.positions(here + "/generated.nix", [["pname", 48, 9], ["version", 49, 9], ["src", 50, 9], ["meta", 56, 9]]);
-const pos$13 = nix.positions(here + "/generated.nix", [["owner", 63, 11], ["repo", 64, 11], ["rev", 65, 11], ["sha256", 66, 11]]);
-const pos$14 = nix.positions(here + "/generated.nix", [["homepage", 68, 14]]);
-const pos$15 = nix.positions(here + "/generated.nix", [["pname", 60, 9], ["version", 61, 9], ["src", 62, 9], ["meta", 68, 9]]);
-const pos$16 = nix.positions(here + "/generated.nix", [["owner", 75, 11], ["repo", 76, 11], ["rev", 77, 11], ["sha256", 78, 11]]);
-const pos$17 = nix.positions(here + "/generated.nix", [["homepage", 80, 14]]);
-const pos$18 = nix.positions(here + "/generated.nix", [["pname", 72, 9], ["version", 73, 9], ["src", 74, 9], ["meta", 80, 9]]);
-const pos$19 = nix.positions(here + "/generated.nix", [["owner", 87, 11], ["repo", 88, 11], ["rev", 89, 11], ["sha256", 90, 11]]);
-const pos$20 = nix.positions(here + "/generated.nix", [["homepage", 92, 14]]);
-const pos$21 = nix.positions(here + "/generated.nix", [["pname", 84, 9], ["version", 85, 9], ["src", 86, 9], ["meta", 92, 9]]);
-const pos$22 = nix.positions(here + "/generated.nix", [["owner", 99, 11], ["repo", 100, 11], ["rev", 101, 11], ["sha256", 102, 11]]);
-const pos$23 = nix.positions(here + "/generated.nix", [["homepage", 104, 14]]);
-const pos$24 = nix.positions(here + "/generated.nix", [["pname", 96, 9], ["version", 97, 9], ["src", 98, 9], ["meta", 104, 9]]);
-const pos$25 = nix.positions(here + "/generated.nix", [["owner", 111, 11], ["repo", 112, 11], ["rev", 113, 11], ["sha256", 114, 11]]);
-const pos$26 = nix.positions(here + "/generated.nix", [["homepage", 116, 14]]);
-const pos$27 = nix.positions(here + "/generated.nix", [["pname", 108, 9], ["version", 109, 9], ["src", 110, 9], ["meta", 116, 9]]);
-const pos$28 = nix.positions(here + "/generated.nix", [["owner", 123, 11], ["repo", 124, 11], ["rev", 125, 11], ["sha256", 126, 11]]);
-const pos$29 = nix.positions(here + "/generated.nix", [["homepage", 128, 14]]);
-const pos$30 = nix.positions(here + "/generated.nix", [["pname", 120, 9], ["version", 121, 9], ["src", 122, 9], ["meta", 128, 9]]);
-const pos$31 = nix.positions(here + "/generated.nix", [["owner", 135, 11], ["repo", 136, 11], ["rev", 137, 11], ["sha256", 138, 11]]);
-const pos$32 = nix.positions(here + "/generated.nix", [["homepage", 140, 14], ["mainProgram", 141, 14]]);
-const pos$33 = nix.positions(here + "/generated.nix", [["pname", 132, 9], ["version", 133, 9], ["src", 134, 9], ["meta", 140, 9]]);
-const pos$34 = nix.positions(here + "/generated.nix", [["owner", 148, 11], ["repo", 149, 11], ["rev", 150, 11], ["sha256", 151, 11]]);
-const pos$35 = nix.positions(here + "/generated.nix", [["homepage", 153, 14]]);
-const pos$36 = nix.positions(here + "/generated.nix", [["pname", 145, 9], ["version", 146, 9], ["src", 147, 9], ["meta", 153, 9]]);
-const pos$37 = nix.positions(here + "/generated.nix", [["owner", 160, 11], ["repo", 161, 11], ["rev", 162, 11], ["sha256", 163, 11]]);
-const pos$38 = nix.positions(here + "/generated.nix", [["homepage", 165, 14]]);
-const pos$39 = nix.positions(here + "/generated.nix", [["pname", 157, 9], ["version", 158, 9], ["src", 159, 9], ["meta", 165, 9]]);
-const pos$40 = nix.positions(here + "/generated.nix", [["owner", 172, 11], ["repo", 173, 11], ["rev", 174, 11], ["sha256", 175, 11]]);
-const pos$41 = nix.positions(here + "/generated.nix", [["homepage", 177, 14]]);
-const pos$42 = nix.positions(here + "/generated.nix", [["pname", 169, 9], ["version", 170, 9], ["src", 171, 9], ["meta", 177, 9]]);
-const pos$43 = nix.positions(here + "/generated.nix", [["owner", 184, 11], ["repo", 185, 11], ["rev", 186, 11], ["sha256", 187, 11]]);
-const pos$44 = nix.positions(here + "/generated.nix", [["homepage", 189, 14]]);
-const pos$45 = nix.positions(here + "/generated.nix", [["pname", 181, 9], ["version", 182, 9], ["src", 183, 9], ["meta", 189, 9]]);
-const pos$46 = nix.positions(here + "/generated.nix", [["owner", 196, 11], ["repo", 197, 11], ["rev", 198, 11], ["sha256", 199, 11]]);
-const pos$47 = nix.positions(here + "/generated.nix", [["homepage", 201, 14]]);
-const pos$48 = nix.positions(here + "/generated.nix", [["pname", 193, 9], ["version", 194, 9], ["src", 195, 9], ["meta", 201, 9]]);
-const pos$49 = nix.positions(here + "/generated.nix", [["owner", 208, 11], ["repo", 209, 11], ["rev", 210, 11], ["sha256", 211, 11]]);
-const pos$50 = nix.positions(here + "/generated.nix", [["homepage", 213, 14]]);
-const pos$51 = nix.positions(here + "/generated.nix", [["pname", 205, 9], ["version", 206, 9], ["src", 207, 9], ["meta", 213, 9]]);
-const pos$52 = nix.positions(here + "/generated.nix", [["owner", 220, 11], ["repo", 221, 11], ["rev", 222, 11], ["sha256", 223, 11]]);
-const pos$53 = nix.positions(here + "/generated.nix", [["homepage", 225, 14]]);
-const pos$54 = nix.positions(here + "/generated.nix", [["pname", 217, 9], ["version", 218, 9], ["src", 219, 9], ["meta", 225, 9]]);
-const pos$55 = nix.positions(here + "/generated.nix", [["owner", 232, 11], ["repo", 233, 11], ["rev", 234, 11], ["sha256", 235, 11]]);
-const pos$56 = nix.positions(here + "/generated.nix", [["homepage", 237, 14]]);
-const pos$57 = nix.positions(here + "/generated.nix", [["pname", 229, 9], ["version", 230, 9], ["src", 231, 9], ["meta", 237, 9]]);
-const pos$58 = nix.positions(here + "/generated.nix", [["owner", 244, 11], ["repo", 245, 11], ["rev", 246, 11], ["sha256", 247, 11]]);
-const pos$59 = nix.positions(here + "/generated.nix", [["homepage", 249, 14]]);
-const pos$60 = nix.positions(here + "/generated.nix", [["pname", 241, 9], ["version", 242, 9], ["src", 243, 9], ["meta", 249, 9]]);
-const pos$61 = nix.positions(here + "/generated.nix", [["active-window-kak", 11, 7], ["auto-pairs-kak", 23, 7], ["byline-kak", 35, 7], ["connect-kak", 47, 7], ["fzf-kak", 59, 7], ["kakboard", 71, 7], ["kakoune-buffer-switcher", 83, 7], ["kakoune-buffers", 95, 7], ["kakoune-easymotion", 107, 7], ["kakoune-extra-filetypes", 119, 7], ["kakoune-rainbow", 131, 7], ["kakoune-registers", 144, 7], ["kakoune-vertical-selection", 156, 7], ["openscad-kak", 168, 7], ["pandoc-kak", 180, 7], ["powerline-kak", 192, 7], ["prelude-kak", 204, 7], ["smarttab-kak", 216, 7], ["tabs-kak", 228, 7], ["zig-kak", 240, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -72,288 +12,300 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const overrides = nix.argOr($, "overrides", () => (self) => (super$) => ({}));
   const packages = (self) => ({
-    [nix.POS]: pos$61,
+    [nix.POS]: $pos[60],
     "active-window-kak": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "active-window-kak",
         version: "2022-11-14",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "greenfork",
             repo: "active-window.kak",
             rev: "36bf0364eed856a52cddf274072e9f255902c0ee",
             sha256: "1fv1cp9q212gamf9z2papl5xcl2w31fpcmbgdzbxcxdl1pvfsqp8",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://github.com/greenfork/active-window.kak/",
         })),
       })))),
     "auto-pairs-kak": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "auto-pairs-kak",
         version: "2023-07-30",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             owner: "alexherbo2",
             repo: "auto-pairs.kak",
             rev: "d4b33b783ea42a536c848296b5b6d434b4d1470f",
             sha256: "017x9g89q0w60y561xhigc0f14ryp4phh1hdna847ca5lvmbxksp",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$5, homepage: "https://github.com/alexherbo2/auto-pairs.kak/" })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[4],
+          homepage: "https://github.com/alexherbo2/auto-pairs.kak/",
+        })),
       })))),
     "byline-kak": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: "byline-kak",
         version: "2023-02-27",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             owner: "evanrelf",
             repo: "byline.kak",
             rev: "a27d109b776c60e11752eeb3207c989a5e157fc0",
             sha256: "121dxd65ml65ablkvdxj0rib3kvfwss0pv943bgl3nq35ag19b81",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$8, homepage: "https://github.com/evanrelf/byline.kak/" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[7], homepage: "https://github.com/evanrelf/byline.kak/" })),
       })))),
     "connect-kak": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname: "connect-kak",
         version: "2021-02-24",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             owner: "kakounedotcom",
             repo: "connect.kak",
             rev: "a536605a208149eed58986bda54f3dda215dfe61",
             sha256: "1svw64zk28sn271vjyzvq21zaln13vnx59rxnxah6adq8n5nkr4a",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$11, homepage: "https://github.com/kakounedotcom/connect.kak/" })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[10],
+          homepage: "https://github.com/kakounedotcom/connect.kak/",
+        })),
       })))),
     "fzf-kak": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         pname: "fzf-kak",
         version: "2022-10-11",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             owner: "andreyorst",
             repo: "fzf.kak",
             rev: "6910bfb4c23cac59c17f5b7850f7bd49aba3e5cb",
             sha256: "1hlals4d9x5i4mwigxjlx4f9xgc9rw15yzvbvc64cminxic2i3i8",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$14, homepage: "https://github.com/andreyorst/fzf.kak/" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[13], homepage: "https://github.com/andreyorst/fzf.kak/" })),
       })))),
     kakboard: nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         pname: "kakboard",
         version: "2022-04-02",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             owner: "lePerdu",
             repo: "kakboard",
             rev: "5759dcc5af593ff88a7faecc41a8f549ec440771",
             sha256: "0g8q0rkdnzsfvlibjd1zfcapngfli5aa3qrgmkgdi24n9ad8wzvh",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$17, homepage: "https://github.com/lePerdu/kakboard/" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[16], homepage: "https://github.com/lePerdu/kakboard/" })),
       })))),
     "kakoune-buffer-switcher": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         pname: "kakoune-buffer-switcher",
         version: "2022-09-18",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             owner: "occivink",
             repo: "kakoune-buffer-switcher",
             rev: "21319aa08e7c9072dcf1a4f2f5583887d701fc37",
             sha256: "0lnvcb4khw1ywxd369phd2xibsh5f6qc11x5vrla331wr1q7y8j8",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           homepage: "https://github.com/occivink/kakoune-buffer-switcher/",
         })),
       })))),
     "kakoune-buffers": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         pname: "kakoune-buffers",
         version: "2021-11-10",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             owner: "Delapouite",
             repo: "kakoune-buffers",
             rev: "6b2081f5b7d58c72de319a5cba7bf628b6802881",
             sha256: "0pbrgydifw2a8yf3ringyqq91fccfv4lm4v8sk5349hbcz6apr4c",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           homepage: "https://github.com/Delapouite/kakoune-buffers/",
         })),
       })))),
     "kakoune-easymotion": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         pname: "kakoune-easymotion",
         version: "2020-03-09",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             owner: "danr",
             repo: "kakoune-easymotion",
             rev: "0ca75450023a149efc70e8e383e459b571355c70",
             sha256: "15czvl0qj2k767pysr6xk2v31mkhvcbmv76xs2a8yrslchms70b5",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$26, homepage: "https://github.com/danr/kakoune-easymotion/" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[25], homepage: "https://github.com/danr/kakoune-easymotion/" })),
       })))),
     "kakoune-extra-filetypes": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         pname: "kakoune-extra-filetypes",
         version: "2021-05-16",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             owner: "kakoune-editor",
             repo: "kakoune-extra-filetypes",
             rev: "8ffeec08068edfee42e076c5f6d56a54a498bad2",
             sha256: "1v87aqfk2jcysbdls3mh2v1yafk1albbinfxsxp11m4nxd2b9agl",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           homepage: "https://github.com/kakoune-editor/kakoune-extra-filetypes/",
         })),
       })))),
     "kakoune-rainbow": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         pname: "kakoune-rainbow",
         version: "2020-09-01",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$31,
+            [nix.POS]: $pos[30],
             owner: "listentolist",
             repo: "kakoune-rainbow",
             rev: "d09103e8d268cf4621215bf162a0244c9482be3c",
             sha256: "1i3id7xw0j4z1a14mscr68ckpgvcwsjpl86lr864wy7w7qcmblx6",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           homepage: "https://github.com/listentolist/kakoune-rainbow/",
           mainProgram: "kak-rainbow.scm",
         })),
       })))),
     "kakoune-registers": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         pname: "kakoune-registers",
         version: "2022-03-01",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             owner: "Delapouite",
             repo: "kakoune-registers",
             rev: "b8ca8e04ebe50671a937bceccba69c62b68ae8b0",
             sha256: "0vy5dc6jly5xqcck0vhnmbjxjdy3615b6d329v0b04amzy0hdlck",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           homepage: "https://github.com/Delapouite/kakoune-registers/",
         })),
       })))),
     "kakoune-vertical-selection": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         pname: "kakoune-vertical-selection",
         version: "2023-04-20",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             owner: "occivink",
             repo: "kakoune-vertical-selection",
             rev: "dbb39712e3824ca6142b510f26f35a769934a1e1",
             sha256: "1wncx16a8mi2b81cvkiji3ccv8is5g3sa4hwf1669va5a432vdwn",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           homepage: "https://github.com/occivink/kakoune-vertical-selection/",
         })),
       })))),
     "openscad-kak": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         pname: "openscad-kak",
         version: "2020-12-10",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             owner: "mayjs",
             repo: "openscad.kak",
             rev: "ba51bbdcd96ccf94bb9239bef1481b6f37125849",
             sha256: "15dybd6dnnwla6mj8sw83nwd62para1syxzifznl6rz6kp8vqjjj",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$41, homepage: "https://github.com/mayjs/openscad.kak/" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[40], homepage: "https://github.com/mayjs/openscad.kak/" })),
       })))),
     "pandoc-kak": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         pname: "pandoc-kak",
         version: "2021-06-29",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$43,
+            [nix.POS]: $pos[42],
             owner: "basbebe",
             repo: "pandoc.kak",
             rev: "e9597e8df58427884161ce27392a9558930832a7",
             sha256: "1baslidszbybx2ngdkm7wns2m5l27gc0mb3blhhydiav8fcfvc6m",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$44, homepage: "https://github.com/basbebe/pandoc.kak/" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[43], homepage: "https://github.com/basbebe/pandoc.kak/" })),
       })))),
     "powerline-kak": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$48,
+        [nix.POS]: $pos[47],
         pname: "powerline-kak",
         version: "2022-04-05",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$46,
+            [nix.POS]: $pos[45],
             owner: "andreyorst",
             repo: "powerline.kak",
             rev: "c5ef9a845bbd886c73ef00c0efff986e02d5f5d8",
             sha256: "1lshlnz5xrxzafxmb6w05g2i6nvi49aqyd8852k9l0lmzqryp7l2",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$47, homepage: "https://github.com/andreyorst/powerline.kak/" })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[46],
+          homepage: "https://github.com/andreyorst/powerline.kak/",
+        })),
       })))),
     "prelude-kak": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$51,
+        [nix.POS]: $pos[50],
         pname: "prelude-kak",
         version: "2021-02-24",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$49,
+            [nix.POS]: $pos[48],
             owner: "kakounedotcom",
             repo: "prelude.kak",
             rev: "5dbdc020c546032885c1fdb463e366cc89fc15ad",
             sha256: "1pncr8azqvl2z9yvzhc68p1s9fld8cvak8yz88zgrp5ypx2cxl8c",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$50, homepage: "https://github.com/kakounedotcom/prelude.kak/" })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[49],
+          homepage: "https://github.com/kakounedotcom/prelude.kak/",
+        })),
       })))),
     "smarttab-kak": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$54,
+        [nix.POS]: $pos[53],
         pname: "smarttab-kak",
         version: "2022-04-10",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             owner: "andreyorst",
             repo: "smarttab.kak",
             rev: "86ac6599b13617ff938905ba4cdd8225d7eb6a2e",
             sha256: "1992xwf2aygzfd26lhg3yiy253g0hl1iagj0kq9yhcqg0i5xjcj9",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$53, homepage: "https://github.com/andreyorst/smarttab.kak/" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[52], homepage: "https://github.com/andreyorst/smarttab.kak/" })),
       })))),
     "tabs-kak": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$57,
+        [nix.POS]: $pos[56],
         pname: "tabs-kak",
         version: "2023-05-15",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$55,
+            [nix.POS]: $pos[54],
             owner: "enricozb",
             repo: "tabs.kak",
             rev: "f0b3a399db1dfa12b89fbff3eed09aec74725bab",
             sha256: "1sg26bv4vr08pqyxp68wsmzj8vhi2qg1bmkqb2jnngi5sjp4r7xy",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$56, homepage: "https://github.com/enricozb/tabs.kak/" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[55], homepage: "https://github.com/enricozb/tabs.kak/" })),
       })))),
     "zig-kak": nix.thunk(() => nix.app(buildKakounePluginFrom2Nix, nix.thunk(() => ({
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         pname: "zig-kak",
         version: "2019-05-06",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$58,
+            [nix.POS]: $pos[57],
             owner: "adrusi",
             repo: "zig.kak",
             rev: "5a7e84e138324e6b8d140fe384dfe5cc941e26b7",
             sha256: "1w0nmhsgchjga4by9ch9md3pdc1bwn0p157g6zwnfpj7lnaahsmq",
           })))),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$59, homepage: "https://github.com/adrusi/zig.kak/" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[58], homepage: "https://github.com/adrusi/zig.kak/" })),
       })))),
   });
   return nix.app(nix.sel(lib, "fix'"), nix.thunk(() => nix.app(nix.sel(lib, "extends"), overrides, packages)));

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["pname", 39, 13], ["version", 39, 19], ["src", 39, 27], ["hash", 40, 5]], [["CARGO_BUILD_TARGET", 81, 7]], [["updateScript", 84, 5]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["mainProgram", 93, 5], ["platforms", 94, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoDeps", 38, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 65, 3], ["mesonBuildType", 78, 3], ["env", 81, 3], ["passthru", 83, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "alsa-lib": false, "appstream-glib": false, "blueprint-compiler": false, cargo: false, "desktop-file-utils": false, fetchFromGitHub: false, gettext: false, glib: false, gst_all_1: false, gtk4: false, libadwaita: false, libhandy: false, libpulseaudio: false, meson: false, ninja: false, "nix-update-script": false, openssl: false, "pkg-config": false, rustPlatform: false, rustc: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 39, 13], ["version", 39, 19], ["src", 39, 27], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CARGO_BUILD_TARGET", 81, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["mainProgram", 93, 5], ["platforms", 94, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoDeps", 38, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 65, 3], ["mesonBuildType", 78, 3], ["env", 81, 3], ["passthru", 83, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const pname = "spot";
       const version = "0.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xou816",
           repo: "spot",
           tag: version,
           hash: "sha256-7zWK0wkh53ojnoznv4T/X//JeyKJVKOrfYF0IkvciIY=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -84,15 +79,15 @@ export default nix.lambda((args) => (() => {
       ]);
       const mesonBuildType = "release";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Native Spotify client for the GNOME desktop",
         homepage: "https://github.com/xou816/spot",
         changelog: nix.thunk(() => nix.str`https://github.com/xou816/spot/releases/tag/${nix.sel(src, "rev")}`),
@@ -105,7 +100,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["jdk", 13, 28]], [["url", 20, 5], ["hash", 21, 5]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["sourceProvenance", 89, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["dontConfigure", 32, 3], ["buildPhase", 34, 3], ["doCheck", 40, 3], ["doInstallCheck", 46, 3], ["installPhase", 48, 3], ["postFixup", 79, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ant: false, openjdk25: false, swt: false, makeWrapper: false, "strip-nondeterminism": false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["jdk", 13, 28]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["sourceProvenance", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["dontConfigure", 32, 3], ["buildPhase", 34, 3], ["doCheck", 40, 3], ["doInstallCheck", 46, 3], ["installPhase", 48, 3], ["postFixup", 79, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const strip_nondeterminism = nix.arg($, "strip-nondeterminism");
   const udevCheckHook = nix.arg($, "udevCheckHook");
-  const swt_jdk = nix.thunk(() => nix.app(nix.sel(swt, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, jdk: openjdk25 }))));
+  const swt_jdk = nix.thunk(() => nix.app(nix.sel(swt, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], jdk: openjdk25 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dataexplorer",
       version: "4.0.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://savannah/dataexplorer/dataexplorer-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-wVfnp1uirPoVdao4SEt7CCXCLKWAPstTIhB5lMk4Uoc=",
         })))),
@@ -63,7 +60,7 @@ runHook postInstall
 `),
       postFixup: "strip-nondeterminism --type jar $out/share/DataExplorer/{DataExplorer.jar,devices/*.jar}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Graphical tool to analyze data, gathered from various hardware devices",
         homepage: "https://www.nongnu.org/dataexplorer/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

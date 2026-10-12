@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["src", 42, 5], ["hash", 43, 5]], [["description", 90, 5], ["homepage", 91, 5], ["downloadPage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["yarnOfflineCache", 41, 3], ["nativeBuildInputs", 46, 3], ["dontYarnBerryInstallDeps", 53, 3], ["preBuild", 55, 3], ["build-system", 62, 3], ["dependencies", 68, 3], ["nativeCheckInputs", 77, 3], ["enabledTestPaths", 82, 3], ["pythonImportsCheck", 84, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, nodejs: false, "yarn-berry_3": false, "jupyter-packaging": false, jupyterlab: false, setuptools: false, bqscales: false, ipywidgets: false, numpy: false, pandas: false, traitlets: false, traittypes: false, nbval: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["downloadPage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["yarnOfflineCache", 41, 3], ["nativeBuildInputs", 46, 3], ["dontYarnBerryInstallDeps", 53, 3], ["preBuild", 55, 3], ["build-system", 62, 3], ["dependencies", 68, 3], ["nativeCheckInputs", 77, 3], ["enabledTestPaths", 82, 3], ["pythonImportsCheck", 84, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,20 +24,20 @@ export default nix.lambda((args) => (() => {
   const nbval = nix.arg($, "nbval");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bqplot",
       version: "0.13.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bqplot",
           repo: "bqplot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-mYeQzmUa7WFDL8o6xsRD2bZ+3E9y4K/KyGE0zr0V4BA=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_3, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/js`),
           hash: "sha256-/QSZoanK92pV8g3n92g2pK17XjNgyerSe4UCV1/stXY=",
         })))),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/"]),
       pythonImportsCheck: nix.thunk(() => ["bqplot", "bqplot.pyplot"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "2D plotting library for Jupyter based on Grammar of Graphics",
         homepage: "https://bqplot.github.io/bqplot",
         downloadPage: "https://github.com/bqplot/bqplot",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugin-host-python.nix", [[["plugin-python", 35, 5]], [["description", 40, 7], ["homepage", 41, 7], ["license", 42, 7], ["maintainers", 43, 7]], [["pname", 8, 3], ["version", 9, 17], ["src", 9, 25], ["pyproject", 10, 3], ["sourceRoot", 12, 3], ["build-system", 14, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 22, 3], ["dependencies", 28, 3], ["passthru", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { python3Packages: false, callPackage: false, wox: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plugin-host-python.nix", [["plugin-python", 35, 5]]);
-const pos$2 = nix.positions(here + "/plugin-host-python.nix", [["description", 40, 7], ["homepage", 41, 7], ["license", 42, 7], ["maintainers", 43, 7]]);
-const pos$3 = nix.positions(here + "/plugin-host-python.nix", [["pname", 8, 3], ["version", 9, 17], ["src", 9, 25], ["pyproject", 10, 3], ["sourceRoot", 12, 3], ["build-system", 14, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 22, 3], ["dependencies", 28, 3], ["passthru", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const wox = nix.arg($, "wox");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wox-plugin-host-python",
       version: nix.thunk(() => nix.attr(wox, "version")),
       src: nix.thunk(() => nix.attr(wox, "src")),
@@ -42,13 +40,13 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "plugin-python": nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugin-python.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wox, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

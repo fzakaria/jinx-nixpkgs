@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["spiped", 38, 18]], [["tests", 38, 12]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["postPatch", 21, 3], ["installPhase", 31, 3], ["passthru", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openssl: false, coreutils: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["spiped", 38, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["postPatch", 21, 3], ["installPhase", 31, 3], ["passthru", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "spiped",
       version: "1.6.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.tarsnap.com/spiped/spiped-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-Qk+003adkSsE3kPSHMMnSM39MSHE8dJtVJmSpUZ44Go=",
         })))),
@@ -37,11 +33,11 @@ substituteInPlace libcperciva/POSIX/posix-l.sh       \\
 `),
       installPhase: "runHook preInstall\nmkdir -p $out/bin $out/share/man/man1\nmake install BINDIR=$out/bin MAN1DIR=$out/share/man/man1\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, spiped: nix.thunk(() => nix.sel(nixosTests, "spiped")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], spiped: nix.thunk(() => nix.sel(nixosTests, "spiped")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Utility for secure encrypted channels between sockets",
         homepage: "https://www.tarsnap.com/spiped.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

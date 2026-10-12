@@ -2,31 +2,24 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/thelounge.nix", [[["enable", 9, 11]], [["thelounge", 8, 18]], [["services", 8, 9]], [["enable", 19, 11], ["public", 20, 11]], [["thelounge", 18, 18]], [["services", 18, 9]], [["private", 5, 5], ["public", 15, 5]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 25, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/thelounge.nix", [["enable", 9, 11]]);
-const pos$2 = nix.positions(here + "/thelounge.nix", [["thelounge", 8, 18]]);
-const pos$3 = nix.positions(here + "/thelounge.nix", [["services", 8, 9]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/thelounge.nix", [["enable", 19, 11], ["public", 20, 11]]);
-const pos$5 = nix.positions(here + "/thelounge.nix", [["thelounge", 18, 18]]);
-const pos$6 = nix.positions(here + "/thelounge.nix", [["services", 18, 9]]);
-const pos$7 = nix.positions(here + "/thelounge.nix", [["private", 5, 5], ["public", 15, 5]]);
-const pos$8 = nix.positions(here + "/thelounge.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 25, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$8,
+  [nix.POS]: $pos[7],
   name: "thelounge",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     private: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const config = nix.arg($, "config");
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          thelounge: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+          [nix.POS]: $pos[1],
+          thelounge: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         })),
       };
     })(), formals$1),
@@ -35,10 +28,10 @@ export default nix.thunk(() => ({
       const config = nix.arg($, "config");
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          thelounge: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, public: true })),
+          [nix.POS]: $pos[4],
+          thelounge: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, public: true })),
         })),
       };
     })(), formals$2),

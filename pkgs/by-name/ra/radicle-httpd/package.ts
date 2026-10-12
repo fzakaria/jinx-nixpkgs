@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["RADICLE_VERSION", 20, 7]], [["seed", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["nonConeMode", 26, 5], ["sparseCheckout", 27, 5], ["hash", 32, 5]], [["radicle", 72, 36]], [["tests", 72, 5], ["updateScript", 73, 5]], [["description", 77, 5], ["longDescription", 78, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 85, 5], ["platforms", 90, 5], ["teams", 91, 5], ["maintainers", 92, 5], ["mainProgram", 93, 5]], [["pname", 17, 3], ["version", 18, 3], ["env", 20, 3], ["src", 22, 3], ["cargoHash", 35, 3], ["nativeBuildInputs", 37, 3], ["nativeCheckInputs", 42, 3], ["doCheck", 44, 3], ["postInstall", 46, 3], ["postFixup", 53, 3], ["nativeInstallCheckInputs", 67, 3], ["versionCheckProgramArg", 68, 3], ["doInstallCheck", 69, 3], ["passthru", 71, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { asciidoctor: false, fetchFromRadicle: false, git: false, installShellFiles: false, lib: false, makeWrapper: false, "man-db": false, rustPlatform: false, stdenv: false, "xdg-utils": false, versionCheckHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["RADICLE_VERSION", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["seed", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["nonConeMode", 26, 5], ["sparseCheckout", 27, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["radicle", 72, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 72, 5], ["updateScript", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 77, 5], ["longDescription", 78, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 85, 5], ["platforms", 90, 5], ["teams", 91, 5], ["maintainers", 92, 5], ["mainProgram", 93, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["env", 20, 3], ["src", 22, 3], ["cargoHash", 35, 3], ["nativeBuildInputs", 37, 3], ["nativeCheckInputs", 42, 3], ["doCheck", 44, 3], ["postInstall", 46, 3], ["postFixup", 53, 3], ["nativeInstallCheckInputs", 67, 3], ["versionCheckProgramArg", 68, 3], ["doInstallCheck", 69, 3], ["passthru", 71, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,15 +20,15 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "radicle-httpd",
       version: "0.28.0",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         RADICLE_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       src: nix.thunk(() => nix.app(fetchFromRadicle, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           seed: "seed.radicle.dev",
           repo: "z4V1sjrXqjvFdnCUbxPFqd5p4DtH5",
           tag: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -56,12 +51,15 @@ done
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, radicle: nix.thunk(() => nix.attr(nixosTests, "radicle")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          radicle: nix.thunk(() => nix.attr(nixosTests, "radicle")),
+        })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Radicle JSON HTTP API Daemon",
         longDescription: "A Radicle HTTP daemon exposing a JSON HTTP API that allows someone to browse local\nrepositories on a Radicle node via their web browser.\n",
         homepage: "https://radicle.dev",

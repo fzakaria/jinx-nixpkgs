@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 24, 3], ["version", 25, 3], ["minimalOCamlVersion", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 39, 3], ["dunePackages", 57, 3], ["doCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, ppx_expect: false, ppx_inline_test: false, ppx_protocol_conv: false, otoml: false, jingoo: false, ez_subst: false, ez_opam_file: false, ez_file: false, ez_cmdliner: false, directories: false, bos: false, fmt: false, omd: false, iso8601: false, menhir: false, menhirLib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["minimalOCamlVersion", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 39, 3], ["dunePackages", 57, 3], ["doCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const menhir = nix.arg($, "menhir");
   const menhirLib = nix.arg($, "menhirLib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "drom",
       version: "0.9.3",
       minimalOCamlVersion: "4.14",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OCamlPro",
           repo: "drom",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
       dunePackages: nix.thunk(() => ["drom", "drom_lib", "drom_toml"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Drom is a wrapper over opam/dune in an attempt to provide a cargo-like user experience",
         homepage: "https://ocamlpro.github.io/drom/",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "WITH"), nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")), nix.thunk(() => nix.sel(lib, "licenses", "ocamlLgplLinkingException")))),

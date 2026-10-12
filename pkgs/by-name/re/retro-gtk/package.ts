@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["url", 33, 7], ["sha256", 34, 7]], [["description", 56, 5], ["mainProgram", 57, 5], ["longDescription", 58, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["broken", 76, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 28, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 47, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, meson: false, ninja: false, "pkg-config": false, libepoxy: false, glib: false, gtk3: false, libpulseaudio: false, libsamplerate: false, "gobject-introspection": false, vala: false, "gtk-doc": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 7], ["sha256", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["mainProgram", 57, 5], ["longDescription", 58, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["broken", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 28, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 47, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const gtk_doc = nix.arg($, "gtk-doc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "retro-gtk",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/retro-gtk/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/retro-gtk-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1lnb7dwcj3lrrvdzd85dxwrlid28xf4qdbrgfjyg1wn1z6sv063i",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./gio-unix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.gnome.org/GNOME/retro-gtk/-/commit/8016c10e7216394bc66281f2d9be740140b6fad6.patch",
             sha256: "sha256-HcQnqadK5sJM5mMqi4KERkJM3H+MUl8AJAorpFDsJ68=",
           })))),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gobject_introspection, gtk_doc, meson, ninja, pkg_config, vala]),
       buildInputs: nix.thunk(() => [libepoxy, glib, gtk3, libpulseaudio, libsamplerate]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GTK Libretro frontend framework",
         mainProgram: "retro-demo",
         longDescription: "Libretro is a plugin format design to implement video game\nconsole emulators, video games and similar multimedia\nsoftware. Such plugins are called Libretro cores.\n\nRetroGTK is a framework easing the use of Libretro cores in\nconjunction with GTK.\n\nIt encourages the cores to be installed in a well defined\ncentralized place — namely the libretro subdirectory of your lib\ndirectory — and it recommends them to come with Libretro core\ndescriptors.\n",

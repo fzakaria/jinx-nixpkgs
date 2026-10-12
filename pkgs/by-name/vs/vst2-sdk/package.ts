@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 19, 5], ["longDescription", 20, 5], ["license", 24, 5]], [["pname", 6, 3], ["version", 7, 3], ["url", 8, 3], ["hash", 9, 3], ["stripRoot", 12, 3], ["postFetch", 13, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 19, 5], ["longDescription", 20, 5], ["license", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 6, 3], ["version", 7, 3], ["url", 8, 3], ["hash", 9, 3], ["stripRoot", 12, 3], ["postFetch", 13, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "vst2-sdk",
       version: "2018-06-11",
       url: "https://web.archive.org/web/20181016150224if_/https://download.steinberg.net/sdk_downloads/vstsdk3610_11_06_2018_build_37.zip",
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
       stripRoot: false,
       postFetch: "mv $out/VST_SDK/VST2_SDK/* $out/\nrm -rf $out/VST_SDK\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "VST2 source development kit",
         longDescription: "VST2 is proprietary, and deprecated by Steinberg.\nAs such, it should only be used for legacy reasons.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

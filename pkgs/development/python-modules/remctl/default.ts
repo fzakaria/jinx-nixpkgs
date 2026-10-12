@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["format", 7, 3], ["meta", 9, 5], ["pname", 10, 5], ["src", 11, 5], ["version", 12, 5], ["setSourceRoot", 14, 3], ["buildInputs", 16, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "remctl-c": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["format", 7, 3], ["meta", 9, 5], ["pname", 10, 5], ["src", 11, 5], ["version", 12, 5], ["setSourceRoot", 14, 3], ["buildInputs", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const remctl_c = nix.arg($, "remctl-c");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       format: "setuptools",
       meta: nix.thunk(() => nix.attr(remctl_c, "meta")),
       pname: nix.thunk(() => nix.attr(remctl_c, "pname")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 85, 5], ["license", 86, 5], ["mainProgram", 91, 5]], [["releaseName", 14, 3], ["outputs", 16, 3], ["xcodeHash", 21, 3], ["patches", 23, 3], ["propagatedBuildOutputs", 31, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 50, 3], ["mesonFlags", 52, 3], ["postBuild", 54, 3], ["postInstall", 60, 3], ["nativeInstallCheckInputs", 72, 3], ["installCheckInputs", 73, 3], ["doInstallCheck", 75, 3], ["installCheckPhase", 78, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, atf: false, gperf: false, mkAppleDerivation: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 85, 5], ["license", 86, 5], ["mainProgram", 91, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["releaseName", 14, 3], ["outputs", 16, 3], ["xcodeHash", 21, 3], ["patches", 23, 3], ["propagatedBuildOutputs", 31, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 50, 3], ["mesonFlags", 52, 3], ["postBuild", 54, 3], ["postInstall", 60, 3], ["nativeInstallCheckInputs", 72, 3], ["installCheckInputs", 73, 3], ["doInstallCheck", 75, 3], ["installCheckPhase", 78, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const hostPlatform = nix.thunk(() => nix.attr(stdenv, "hostPlatform"));
   return nix.app(mkAppleDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       releaseName: "libiconv",
       outputs: nix.thunk(() => ["out", "dev"]),
       xcodeHash: "sha256-fg5N+TcpyRnAf2ZKFEL0iJRy+QGs++Jmt6M3SV3oyfU=",
@@ -50,7 +49,7 @@ cp ${nix.path(here, "./nixpkgs_test.c")} tests/libiconv/nixpkgs_test.c
       doInstallCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), hostPlatform)),
       installCheckPhase: "runHook preInstallCheck\nmeson test --no-rebuild --print-errorlogs --timeout-multiplier=0\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Iconv(3) implementation",
         license: nix.thunk(() => nix.concat([
           nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

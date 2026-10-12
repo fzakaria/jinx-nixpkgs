@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["updateScript", 46, 12]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["doCheck", 31, 3], ["cargoBuildType", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["passthru", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, dbus: false, fetchFromGitHub: false, lib: false, openssl: false, "pkg-config": false, gitMinimal: false, rustPlatform: false, writeShellScript: false, curl: false, jq: false, gnused: false, "nix-update": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 46, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["doCheck", 31, 3], ["cargoBuildType", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["passthru", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gnused = nix.arg($, "gnused");
   const nix_update = nix.arg($, "nix-update");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ytermusic",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ccgauche",
           repo: "ytermusic",
           tag: nix.thunk(() => nix.str`beta-${nix.sel(finalAttrs, "version")}`),
@@ -40,13 +37,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gitMinimal, pkg_config]),
       buildInputs: nix.thunk(() => [openssl, alsa_lib, dbus]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-script", nix.thunk(() => nix.str`latestVersion=$(${nix.app(nix.sel(lib, "getExe"), curl)} \${GITHUB_TOKEN:+-u ":$GITHUB_TOKEN"} --fail --silent https://api.github.com/repos/ccgauche/ytermusic/tags | ${nix.app(nix.sel(lib, "getExe"), jq)} --raw-output '.[0].name' | ${nix.app(nix.sel(lib, "getExe"), gnused)} -E 's/beta-//')
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} $UPDATE_NIX_ATTR_PATH --version $latestVersion
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "TUI based Youtube Music Player that aims to be as fast and simple as possible",
         homepage: "https://github.com/ccgauche/ytermusic",
         changelog: nix.thunk(() => nix.str`https://github.com/ccgauche/ytermusic/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

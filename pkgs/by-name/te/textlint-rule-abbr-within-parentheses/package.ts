@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["yarnLock", 25, 5], ["hash", 26, 5]], [["rule", 67, 5], ["testFile", 68, 5]], [["tests", 66, 12]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["offlineCache", 24, 3], ["nativeBuildInputs", 29, 3], ["configurePhase", 35, 3], ["buildPhase", 47, 3], ["installPhase", 55, 3], ["passthru", 66, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchYarnDeps: false, "fixup-yarn-lock": false, nodejs: false, yarn: false, textlint: false, "textlint-rule-abbr-within-parentheses": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rule", 67, 5], ["testFile", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 66, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["offlineCache", 24, 3], ["nativeBuildInputs", 29, 3], ["configurePhase", 35, 3], ["buildPhase", 47, 3], ["installPhase", 55, 3], ["passthru", 66, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const textlint = nix.arg($, "textlint");
   const textlint_rule_abbr_within_parentheses = nix.arg($, "textlint-rule-abbr-within-parentheses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "textlint-rule-abbr-within-parentheses",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "azu",
           repo: "textlint-rule-abbr-within-parentheses",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-CBrf7WtvywDmtuSyxkDtAyjmrj7KS3TQLSsNfMxeWXw=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-N4tnja6qTo7jtn7Dh4TwBUCUKfbIbHvdZ7aeJcE+NlU=",
         })))),
@@ -42,15 +37,15 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nyarn --offline build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nyarn --offline --production install\nrm -r test\nmkdir -p $out/lib/node_modules/textlint-rule-abbr-within-parentheses\ncp -r . $out/lib/node_modules/textlint-rule-abbr-within-parentheses/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             rule: textlint_rule_abbr_within_parentheses,
             testFile: nix.path(here, "./test.md"),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Textlint rule check if write abbreviations within parentheses",
         homepage: "https://github.com/azu/textlint-rule-abbr-within-parentheses",
         changelog: nix.thunk(() => nix.str`https://github.com/azu/textlint-rule-abbr-within-parentheses/releases/tag/${nix.sel(finalAttrs, "version")}`),

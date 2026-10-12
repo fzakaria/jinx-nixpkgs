@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["maintainers", 58, 5], ["license", 59, 5], ["platforms", 60, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 38, 3], ["pytestFlags", 40, 3], ["pythonImportsCheck", 47, 3], ["preCheck", 49, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pytestCheckHook: false, "pkg-config": false, setuptools: false, libjpeg: false, libpng: false, libtiff: false, libwebp: false, numpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["maintainers", 58, 5], ["license", 59, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 38, 3], ["pytestFlags", 40, 3], ["pythonImportsCheck", 47, 3], ["preCheck", 49, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-ULPXCJyGJQTCKyVu9R/kWFGzRhbbFMDr/FU2AByZYBU=",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["imread"]);
       const preCheck = "cd $TMPDIR\nexport HOME=$TMPDIR\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python package to load images as numpy arrays",
         homepage: "https://imread.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/luispedro/imread/blob/v${version}/ChangeLog`),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

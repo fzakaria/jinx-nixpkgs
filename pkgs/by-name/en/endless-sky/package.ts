@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["updateScript", 113, 12]], [["description", 116, 5], ["longDescription", 117, 5], ["mainProgram", 125, 5], ["homepage", 126, 5], ["changelog", 127, 5], ["license", 128, 5], ["maintainers", 134, 5], ["platforms", 139, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["__structuredAttrs", 37, 3], ["strictDeps", 38, 3], ["patches", 40, 3], ["postPatch", 44, 3], ["enableParallelBuilding", 70, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 80, 3], ["cmakeFlags", 102, 3], ["postInstall", 107, 3], ["passthru", 113, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, SDL2: false, libavif: false, libpng: false, libjpeg: false, libogg: false, libsm: false, libx11: false, libxext: false, flac: false, glew: false, openal: false, cmake: false, "pkg-config": false, libmad: false, libuuid: false, minizip: false, libicns: false, "apple-sdk_15": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 113, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 116, 5], ["longDescription", 117, 5], ["mainProgram", 125, 5], ["homepage", 126, 5], ["changelog", 127, 5], ["license", 128, 5], ["maintainers", 134, 5], ["platforms", 139, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["__structuredAttrs", 37, 3], ["strictDeps", 38, 3], ["patches", 40, 3], ["postPatch", 44, 3], ["enableParallelBuilding", 70, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 80, 3], ["cmakeFlags", 102, 3], ["postInstall", 107, 3], ["passthru", 113, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const apple_sdk_15 = nix.arg($, "apple-sdk_15");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "endless-sky",
       version: "0.11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "endless-sky",
           repo: "endless-sky",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,11 +65,11 @@ export default nix.lambda((args) => (() => {
         ]))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$out/Applications\" \"$out/bin\"\nmv \"$out/Endless Sky.app\" \"$out/Applications/\"\nln -s \"$out/Applications/Endless Sky.app/Contents/MacOS/Endless Sky\" \"$out/bin/endless-sky\"\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sandbox-style space exploration game similar to Elite, Escape Velocity, or Star Control",
         longDescription: "Endless Sky is a sandbox-style space exploration game. You start as the captain\nof a tiny spaceship and can choose what to do from there. The game includes a\nmajor plot line and many minor missions, but you can play as a merchant, bounty\nhunter, or explorer entirely at your own discretion. Trade goods between star\nsystems, upgrade your ship, recruit a fleet, and uncover alien civilisations\nbeyond the boundaries of human space.\n",
         mainProgram: "endless-sky",

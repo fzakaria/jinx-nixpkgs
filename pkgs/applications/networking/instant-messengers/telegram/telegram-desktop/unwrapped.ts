@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unwrapped.nix", [[["stdenv", 12, 47]], [["owner", 63, 5], ["repo", 64, 5], ["rev", 65, 5], ["fetchSubmodules", 66, 5], ["hash", 67, 5]], [["tde2eOnly", 98, 23]], [["tg_owt", 141, 13], ["updateScript", 142, 5]], [["description", 146, 5], ["longDescription", 147, 5], ["license", 151, 5], ["platforms", 152, 5], ["homepage", 153, 5], ["changelog", 154, 5], ["maintainers", 155, 5], ["mainProgram", 156, 5]], [["pname", 59, 3], ["version", 60, 3], ["src", 62, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 81, 3], ["dontWrapQtApps", 120, 3], ["cmakeFlags", 122, 3], ["installPhase", 130, 3], ["passthru", 140, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, callPackage: false, "pkg-config": false, cmake: false, ninja: false, python3: false, qtshadertools: false, tdlib: false, tg_owt: true, qtbase: false, qtsvg: false, qtwayland: false, kcoreaddons: false, lz4: false, xxhash: false, ffmpeg: false, protobuf: false, "openal-soft": false, "minizip-ng-compat": false, "range-v3": false, "tl-expected": false, hunspell: false, "gobject-introspection": false, rnnoise: false, "microsoft-gsl": false, boost: false, ada: false, pango: false, tlottie: false, "cmark-gfm": false, libfido2: false, libavif: false, libheif: false, libjxl: false, libicns: false, "apple-sdk_15": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unwrapped.nix", [["stdenv", 12, 47]]);
-const pos$2 = nix.positions(here + "/unwrapped.nix", [["owner", 63, 5], ["repo", 64, 5], ["rev", 65, 5], ["fetchSubmodules", 66, 5], ["hash", 67, 5]]);
-const pos$3 = nix.positions(here + "/unwrapped.nix", [["tde2eOnly", 98, 23]]);
-const pos$4 = nix.positions(here + "/unwrapped.nix", [["tg_owt", 141, 13], ["updateScript", 142, 5]]);
-const pos$5 = nix.positions(here + "/unwrapped.nix", [["description", 146, 5], ["longDescription", 147, 5], ["license", 151, 5], ["platforms", 152, 5], ["homepage", 153, 5], ["changelog", 154, 5], ["maintainers", 155, 5], ["mainProgram", 156, 5]]);
-const pos$6 = nix.positions(here + "/unwrapped.nix", [["pname", 59, 3], ["version", 60, 3], ["src", 62, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 81, 3], ["dontWrapQtApps", 120, 3], ["cmakeFlags", 122, 3], ["installPhase", 130, 3], ["passthru", 140, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const qtshadertools = nix.arg($, "qtshadertools");
   const tdlib = nix.arg($, "tdlib");
-  const tg_owt = nix.argOr($, "tg_owt", () => nix.app(callPackage, nix.path(here, "./tg_owt.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv }))));
+  const tg_owt = nix.argOr($, "tg_owt", () => nix.app(callPackage, nix.path(here, "./tg_owt.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: stdenv }))));
   const qtbase = nix.arg($, "qtbase");
   const qtsvg = nix.arg($, "qtsvg");
   const qtwayland = nix.arg($, "qtwayland");
@@ -58,11 +53,11 @@ export default nix.lambda((args) => (() => {
     "telegram-desktop-unwrapped",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "telegram-desktop-unwrapped",
       version: "7.2.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "telegramdesktop",
           repo: "tdesktop",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,7 +82,7 @@ export default nix.lambda((args) => (() => {
         ada,
         cmark_gfm,
         libfido2,
-        nix.thunk(() => nix.app(nix.sel(tdlib, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, tde2eOnly: true })))),
+        nix.thunk(() => nix.app(nix.sel(tdlib, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], tde2eOnly: true })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [protobuf, qtwayland, kcoreaddons, hunspell])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(finalAttrs, "pname")), needsPangoTlottie)) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => [pango])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(finalAttrs, "pname")), needsPangoTlottie)), nix.thunk(() => [tlottie])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_15, libicns, libavif, libheif, libjxl]))))))),
       dontWrapQtApps: true,
       cmakeFlags: nix.thunk(() => [
@@ -104,12 +99,12 @@ ln -sr $out/{Applications/${nix.sel(finalAttrs, "meta", "mainProgram")}.app/Cont
 runHook postInstall
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tg_owt: tg_owt,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Telegram Desktop messaging app",
         longDescription: "Desktop client for the Telegram messenger, based on the Telegram API and\nthe MTProto secure protocol.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

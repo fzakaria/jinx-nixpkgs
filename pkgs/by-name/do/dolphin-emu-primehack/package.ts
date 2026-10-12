@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["fetchSubmodules", 61, 5], ["hash", 62, 5]], [["url", 67, 7], ["hash", 68, 7]], [["package", 167, 9], ["command", 168, 9], ["version", 169, 9]], [["version", 166, 7]], [["tests", 165, 5], ["updateScript", 172, 5]], [["homepage", 176, 5], ["description", 177, 5], ["license", 178, 5], ["broken", 179, 5], ["platforms", 180, 5]], [["pname", 54, 3], ["version", 55, 3], ["src", 57, 3], ["patches", 65, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 80, 3], ["cmakeFlags", 122, 3], ["qtWrapperArgs", 131, 3], ["postPatch", 139, 3], ["doInstallCheck", 149, 3], ["postInstall", 151, 3], ["passthru", 164, 3], ["meta", 175, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, "pkg-config": false, cmake: false, qt6: false, curl: false, enet: false, ffmpeg: false, fmt_9: false, gettext: false, libGL: false, libGLU: false, libsm: false, libxdmcp: false, libxext: false, libxinerama: false, libxrandr: false, libxxf86vm: false, libao: false, "libpthread-stubs": false, libpulseaudio: false, libusb1: false, mbedtls: false, miniupnpc: false, openal: false, portaudio: false, readline: false, SDL2: false, sfml: false, soundtouch: false, xz: false, "alsa-lib": false, bluez: false, libevdev: false, udev: false, "vulkan-loader": false, hidapi: false, libpng: false, testers: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["fetchSubmodules", 61, 5], ["hash", 62, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 67, 7], ["hash", 68, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 167, 9], ["command", 168, 9], ["version", 169, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 166, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 165, 5], ["updateScript", 172, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 176, 5], ["description", 177, 5], ["license", 178, 5], ["broken", 179, 5], ["platforms", 180, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 55, 3], ["src", 57, 3], ["patches", 65, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 80, 3], ["cmakeFlags", 122, 3], ["qtWrapperArgs", 131, 3], ["postPatch", 139, 3], ["doInstallCheck", 149, 3], ["postInstall", 151, 3], ["passthru", 164, 3], ["meta", 175, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,11 +50,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "dolphin-emu-primehack",
       version: "1.0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "shiiion",
           repo: "dolphin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/dolphin-emu/dolphin/commit/8edef722ce1aae65d5a39faf58753044de48b6e0.patch?full_index=1",
             hash: "sha256-QEG0p+AzrExWrOxL0qRPa+60GlL0DlLyVBrbG6pGuog=",
           })))),
@@ -120,11 +114,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: nix.thunk(() => nix.add("mv $out/bin/dolphin-emu $out/bin/dolphin-emu-primehack\nmv $out/bin/dolphin-emu-nogui $out/bin/dolphin-emu-primehack-nogui\nmv $out/share/applications/dolphin-emu.desktop $out/share/applications/dolphin-emu-primehack.desktop\nmv $out/share/icons/hicolor/256x256/apps/dolphin-emu.png $out/share/icons/hicolor/256x256/apps/dolphin-emu-primehack.png\nsubstituteInPlace $out/share/applications/dolphin-emu-primehack.desktop \\\n  --replace-fail 'dolphin-emu' 'dolphin-emu-primehack' \\\n  --replace-fail 'Dolphin Emulator' 'PrimeHack'\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -D $src/Data/51-usb-device.rules $out/etc/udev/rules.d/51-usb-device.rules\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "dolphin-emu-primehack-nogui --version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -133,7 +127,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/shiiion/dolphin",
         description: "Gamecube/Wii/Triforce emulator for x86_64 and ARMv8",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

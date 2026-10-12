@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["checkFlags", 20, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["checkFlags", 20, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "google-cloud-bigtable-tool",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "cloud-bigtable-cbt-cli",
           rev: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-kwvEfvHs6XF84bB3Ss1307OjId0nh/0Imih1fRFdY0M=",
       checkFlags: nix.thunk(() => ["-short"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Google Cloud Bigtable Tool",
         longDescription: "`cbt` is the Google Cloud Bigtable Tool. A CLI utility to interact with Google Cloud Bigtable.\nThe cbt CLI is a command-line interface for performing several different operations on Cloud Bigtable.\nIt is written in Go using the Go client library for Cloud Bigtable.\nAn overview of its usage can be found in the [Google Cloud docs](https://cloud.google.com/bigtable/docs/cbt-overview).\nFor information about Bigtable in general, see the [overview of Bigtable](https://cloud.google.com/bigtable/docs/overview).\n",
         homepage: "https://github.com/googleapis/cloud-bigtable-cbt-cli",

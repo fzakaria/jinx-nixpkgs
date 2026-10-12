@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 76, 5], ["repo", 77, 5], ["tag", 78, 5], ["hash", 79, 5]], [["name", 89, 7], ["url", 90, 7], ["hash", 91, 7]], [["NIX_CFLAGS_COMPILE", 107, 5], ["KRB5_CONFIG", 110, 5], ["NSUPDATE", 111, 5], ["XMLLINT", 112, 5], ["XSLTPROC", 113, 5]], [["sssd-ldap", 245, 28], ["sssd-legacy-config", 245, 38], ["pkg-config", 246, 7]], [["tests", 244, 5], ["updateScript", 248, 5]], [["description", 252, 5], ["homepage", 253, 5], ["changelog", 254, 5], ["license", 255, 5], ["platforms", 256, 5], ["maintainers", 257, 5], ["pkgConfigModules", 261, 5]], [["pname", 69, 3], ["version", 70, 3], ["__structuredAttrs", 72, 3], ["strictDeps", 73, 3], ["src", 75, 3], ["patches", 82, 3], ["postPatch", 95, 3], ["outputs", 99, 3], ["separateDebugInfo", 104, 3], ["env", 106, 3], ["preConfigure", 116, 3], ["enableParallelBuilding", 143, 3], ["enableParallelInstalling", 146, 3], ["nativeBuildInputs", 148, 3], ["buildInputs", 162, 3], ["makeFlags", 206, 3], ["installFlags", 210, 3], ["postInstall", 225, 3], ["postFixup", 232, 3], ["nativeInstallCheckInputs", 238, 3], ["doInstallCheck", 241, 3], ["passthru", 243, 3], ["meta", 251, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, autoreconfHook: false, makeWrapper: false, glibc: false, adcli: false, augeas: false, bashNonInteractive: false, dnsutils: false, "c-ares": false, curl: false, cyrus_sasl: false, "ding-libs": false, libnl: false, libunistring: false, nss: false, samba: false, "nfs-utils": false, doxygen: false, python3: false, pam: false, popt: false, talloc: false, tdb: false, tevent: false, "pkg-config": false, ldb: false, openldap: false, pcre2: false, libkrb5: false, libcap: false, "cifs-utils": false, glib: false, keyutils: false, dbus: false, fakeroot: false, libxslt: false, libxml2: false, libuuid: false, systemdLibs: false, nspr: false, check: false, cmocka: false, uid_wrapper: false, "p11-kit": false, nss_wrapper: false, ncurses: false, perlPackages: false, jansson: false, jose: false, docbook_xsl: false, docbook_xml_dtd_45: false, testers: false, versionCheckHook: false, "nix-update-script": false, nixosTests: false, withSudo: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 76, 5], ["repo", 77, 5], ["tag", 78, 5], ["hash", 79, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 89, 7], ["url", 90, 7], ["hash", 91, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 107, 5], ["KRB5_CONFIG", 110, 5], ["NSUPDATE", 111, 5], ["XMLLINT", 112, 5], ["XSLTPROC", 113, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["sssd-ldap", 245, 28], ["sssd-legacy-config", 245, 38], ["pkg-config", 246, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 244, 5], ["updateScript", 248, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 252, 5], ["homepage", 253, 5], ["changelog", 254, 5], ["license", 255, 5], ["platforms", 256, 5], ["maintainers", 257, 5], ["pkgConfigModules", 261, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 69, 3], ["version", 70, 3], ["__structuredAttrs", 72, 3], ["strictDeps", 73, 3], ["src", 75, 3], ["patches", 82, 3], ["postPatch", 95, 3], ["outputs", 99, 3], ["separateDebugInfo", 104, 3], ["env", 106, 3], ["preConfigure", 116, 3], ["enableParallelBuilding", 143, 3], ["enableParallelInstalling", 146, 3], ["nativeBuildInputs", 148, 3], ["buildInputs", 162, 3], ["makeFlags", 206, 3], ["installFlags", 210, 3], ["postInstall", 225, 3], ["postFixup", 232, 3], ["nativeInstallCheckInputs", 238, 3], ["doInstallCheck", 241, 3], ["passthru", 243, 3], ["meta", 251, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -75,13 +69,13 @@ export default nix.lambda((args) => (() => {
   const docbookFiles = nix.thunk(() => nix.str`${docbook_xsl}/share/xml/docbook-xsl/catalog.xml:${docbook_xml_dtd_45}/xml/dtd/docbook/catalog.xml`);
   const Po4a = nix.thunk(() => nix.attr(perlPackages, "Po4a"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "sssd",
       version: "2.13.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SSSD",
           repo: "sssd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -89,7 +83,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2026-14476.patch",
             url: "https://github.com/SSSD/sssd/commit/ba207eab76ff5253662a763b9b6e9ea42f03d31b.patch?full_index=1",
             hash: "sha256-55V8RfIcGF49GGebg+pgCLPU9MGY2S/7PaOGIqwNL0w=",
@@ -99,7 +93,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       separateDebugInfo: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-DRENEWAL_PROG_PATH="${adcli}/bin/adcli"`)]))),
         KRB5_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), libkrb5)), "krb5-config")),
         NSUPDATE: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), dnsutils, "nsupdate")),
@@ -207,9 +201,9 @@ configureFlagsArray=(
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "sssd-ldap": nix.thunk(() => nix.attr(nixosTests, "sssd-ldap")),
           "sssd-legacy-config": nix.thunk(() => nix.attr(nixosTests, "sssd-legacy-config")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
@@ -217,7 +211,7 @@ configureFlagsArray=(
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "System Security Services Daemon",
         homepage: "https://sssd.io/",
         changelog: nix.thunk(() => nix.str`https://sssd.io/release-notes/sssd-${nix.sel(finalAttrs, "version")}.html`),

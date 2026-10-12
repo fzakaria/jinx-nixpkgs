@@ -2,52 +2,38 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["user", 24, 42]], [["auto", 24, 37]], [["displayManager", 24, 22]], [["systemPackages", 26, 21]], [["enable", 32, 38]], [["gnome-keyring", 32, 24]], [["gnome", 32, 18]], [["imports", 15, 9], ["test-support", 24, 9], ["environment", 26, 9], ["services", 32, 9]], [["machine", 9, 5]], [["enable", 37, 27]], [["sshBackdoor", 37, 15]], [["email", 43, 9], ["password", 44, 9], ["message", 45, 9]], [["email", 49, 9], ["password", 50, 9], ["message", 51, 9]], [["john", 42, 13], ["alice", 48, 13]], [["name", 6, 3], ["nodes", 8, 3], ["enableOCR", 36, 3], ["interactive", 37, 3], ["testScript", 39, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["user", 24, 42]]);
-const pos$2 = nix.positions(here + "/default.nix", [["auto", 24, 37]]);
-const pos$3 = nix.positions(here + "/default.nix", [["displayManager", 24, 22]]);
-const pos$4 = nix.positions(here + "/default.nix", [["systemPackages", 26, 21]]);
-const pos$5 = nix.positions(here + "/default.nix", [["enable", 32, 38]]);
-const pos$6 = nix.positions(here + "/default.nix", [["gnome-keyring", 32, 24]]);
-const pos$7 = nix.positions(here + "/default.nix", [["gnome", 32, 18]]);
-const pos$8 = nix.positions(here + "/default.nix", [["imports", 15, 9], ["test-support", 24, 9], ["environment", 26, 9], ["services", 32, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["machine", 9, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["enable", 37, 27]]);
-const pos$11 = nix.positions(here + "/default.nix", [["sshBackdoor", 37, 15]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$12 = nix.positions(here + "/default.nix", [["email", 43, 9], ["password", 44, 9], ["message", 45, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["email", 49, 9], ["password", 50, 9], ["message", 51, 9]]);
-const pos$14 = nix.positions(here + "/default.nix", [["john", 42, 13], ["alice", 48, 13]]);
-const pos$15 = nix.positions(here + "/default.nix", [["name", 6, 3], ["nodes", 8, 3], ["enableOCR", 36, 3], ["interactive", 37, 3], ["testScript", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "Kaidan XMPP Chat App",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           imports: nix.thunk(() => [
             nix.path(here, "../common/x11.nix"),
             nix.path(here, "../common/user-account.nix"),
             nix.path(here, "./prosody.nix"),
           ]),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$1, user: "alice" })),
+              [nix.POS]: $pos[1],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[0], user: "alice" })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -57,10 +43,10 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             gnome: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              "gnome-keyring": nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+              [nix.POS]: $pos[5],
+              "gnome-keyring": nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
             })),
           })),
         };
@@ -68,22 +54,22 @@ export default nix.lambda((args) => (() => {
     })),
     enableOCR: true,
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$11,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+      [nix.POS]: $pos[10],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
     })),
     testScript: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
       const nodes = nix.arg($_1, "nodes");
       const users = nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         john: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           email: "john@example.com",
           password: "foobar",
           message: "Hello, I'm John!",
         })),
         alice: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           email: "alice@example.com",
           password: "foobar",
           message: "Hello, I'm Alice!",

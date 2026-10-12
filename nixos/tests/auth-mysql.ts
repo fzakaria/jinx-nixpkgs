@@ -2,25 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/auth-mysql.nix", [[["maintainers", 45, 8]], [["bind-address", 53, 25]], [["mysqld", 53, 18]], [["enable", 51, 9], ["package", 52, 9], ["settings", 53, 9], ["initialScript", 54, 9]], [["mysql", 50, 16]], [["isNormalUser", 58, 9], ["password", 59, 9]], [["table", 71, 11], ["userColumn", 72, 11], ["passwordColumn", 73, 11], ["passwordCrypt", 74, 11], ["disconnectEveryOperation", 75, 11]], [["getpwnam", 78, 11], ["getpwuid", 84, 11], ["getspnam", 90, 11], ["getpwent", 96, 11], ["getspent", 100, 11], ["getgrnam", 104, 11], ["getgrgid", 107, 11], ["getgrent", 110, 11], ["memsbygid", 113, 11], ["gidsbymem", 116, 11]], [["enable", 65, 9], ["host", 66, 9], ["user", 67, 9], ["database", 68, 9], ["passwordFile", 69, 9], ["pam", 70, 9], ["nss", 77, 9]], [["users", 57, 13], ["mysql", 64, 13]], [["makeHomeDir", 62, 35]], [["login", 62, 29]], [["services", 62, 20]], [["pam", 62, 16]], [["services", 50, 7], ["users", 57, 7], ["security", 62, 7]], [["machine", 47, 9]], [["name", 44, 3], ["meta", 45, 3], ["nodes", 47, 3], ["testScript", 123, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/auth-mysql.nix", [["maintainers", 45, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/auth-mysql.nix", [["bind-address", 53, 25]]);
-const pos$3 = nix.positions(here + "/auth-mysql.nix", [["mysqld", 53, 18]]);
-const pos$4 = nix.positions(here + "/auth-mysql.nix", [["enable", 51, 9], ["package", 52, 9], ["settings", 53, 9], ["initialScript", 54, 9]]);
-const pos$5 = nix.positions(here + "/auth-mysql.nix", [["mysql", 50, 16]]);
-const pos$6 = nix.positions(here + "/auth-mysql.nix", [["isNormalUser", 58, 9], ["password", 59, 9]]);
-const pos$7 = nix.positions(here + "/auth-mysql.nix", [["table", 71, 11], ["userColumn", 72, 11], ["passwordColumn", 73, 11], ["passwordCrypt", 74, 11], ["disconnectEveryOperation", 75, 11]]);
-const pos$8 = nix.positions(here + "/auth-mysql.nix", [["getpwnam", 78, 11], ["getpwuid", 84, 11], ["getspnam", 90, 11], ["getpwent", 96, 11], ["getspent", 100, 11], ["getgrnam", 104, 11], ["getgrgid", 107, 11], ["getgrent", 110, 11], ["memsbygid", 113, 11], ["gidsbymem", 116, 11]]);
-const pos$9 = nix.positions(here + "/auth-mysql.nix", [["enable", 65, 9], ["host", 66, 9], ["user", 67, 9], ["database", 68, 9], ["passwordFile", 69, 9], ["pam", 70, 9], ["nss", 77, 9]]);
-const pos$10 = nix.positions(here + "/auth-mysql.nix", [["users", 57, 13], ["mysql", 64, 13]]);
-const pos$11 = nix.positions(here + "/auth-mysql.nix", [["makeHomeDir", 62, 35]]);
-const pos$12 = nix.positions(here + "/auth-mysql.nix", [["login", 62, 29]]);
-const pos$13 = nix.positions(here + "/auth-mysql.nix", [["services", 62, 20]]);
-const pos$14 = nix.positions(here + "/auth-mysql.nix", [["pam", 62, 16]]);
-const pos$15 = nix.positions(here + "/auth-mysql.nix", [["services", 50, 7], ["users", 57, 7], ["security", 62, 7]]);
-const pos$16 = nix.positions(here + "/auth-mysql.nix", [["machine", 47, 9]]);
-const pos$17 = nix.positions(here + "/auth-mysql.nix", [["name", 44, 3], ["meta", 45, 3], ["nodes", 47, 3], ["testScript", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,48 +45,48 @@ INSERT INTO \`users\` (name, uid, gid, password) VALUES
 INSERT INTO \`groups\` (name, gid) VALUES ('${mysqlGroup}', 5000);
 `)));
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "auth-mysql",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "netali"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             mysql: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "mariadb")),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                mysqld: nix.thunk(() => ({ [nix.POS]: pos$2, "bind-address": "127.0.0.1" })),
+                [nix.POS]: $pos[2],
+                mysqld: nix.thunk(() => ({ [nix.POS]: $pos[1], "bind-address": "127.0.0.1" })),
               })),
               initialScript: mysqlInit,
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             users: nix.thunk(() => nix.attrsDyn({}, [
-              [localUsername, nix.thunk(() => ({ [nix.POS]: pos$6, isNormalUser: true, password: localPassword }))],
+              [localUsername, nix.thunk(() => ({ [nix.POS]: $pos[5], isNormalUser: true, password: localPassword }))],
             ])),
             mysql: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               host: "127.0.0.1",
               user: dbUser,
               database: dbName,
               passwordFile: nix.thunk(() => nix.str`${nix.builtins.toFile("dbPassword", dbPassword)}`),
               pam: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 table: "users",
                 userColumn: "name",
                 passwordColumn: "password",
@@ -110,7 +94,7 @@ INSERT INTO \`groups\` (name, gid) VALUES ('${mysqlGroup}', 5000);
                 disconnectEveryOperation: true,
               })),
               nss: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 getpwnam: "SELECT name, 'x', uid, gid, name, CONCAT('/home/', name), \"/run/current-system/sw/bin/bash\" \\\nFROM users \\\nWHERE name='%1$s' \\\nLIMIT 1\n",
                 getpwuid: "SELECT name, 'x', uid, gid, name, CONCAT('/home/', name), \"/run/current-system/sw/bin/bash\" \\\nFROM users \\\nWHERE uid=%1$u \\\nLIMIT 1\n",
                 getspnam: "SELECT name, password, 1, 0, 99999, 7, 0, -1, 0 \\\nFROM users \\\nWHERE name='%1$s' \\\nLIMIT 1\n",
@@ -125,12 +109,12 @@ INSERT INTO \`groups\` (name, gid) VALUES ('${mysqlGroup}', 5000);
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             pam: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$12,
-                login: nix.thunk(() => ({ [nix.POS]: pos$11, makeHomeDir: true })),
+                [nix.POS]: $pos[11],
+                login: nix.thunk(() => ({ [nix.POS]: $pos[10], makeHomeDir: true })),
               })),
             })),
           })),

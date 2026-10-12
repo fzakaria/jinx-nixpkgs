@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["url", 22, 7], ["hash", 23, 7]], [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["propagatedBuildInputs", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, fetchpatch: false, eio: false, ssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["propagatedBuildInputs", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const eio = nix.arg($, "eio");
   const ssl = nix.arg($, "ssl");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "eio-ssl",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/anmonteiro/eio-ssl/releases/download/${nix.sel(finalAttrs, "version")}/eio-ssl-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-m4CiUQtXVSMfLthbDsAftpiOsr24I5IGiU1vv7Rz8go=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(eio, "version")), "1.4")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/anmonteiro/eio-ssl/commit/8cf6bccd2c272445d1dc93eb1d65e965f95646d4.patch",
             hash: "sha256-NnwWDhr5H70EFVK+1/qbIA+srJHjxSvtWvakBXnrZMI=",
           })))))),
       propagatedBuildInputs: nix.thunk(() => [eio, ssl]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/anmonteiro/eio-ssl",
         description: "OpenSSL binding to EIO",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

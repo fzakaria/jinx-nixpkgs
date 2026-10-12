@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]], [["RUSTFLAGS", 35, 5], ["OPENSSL_NO_VENDOR", 36, 5], ["STUDIO_UI_DIST", 37, 5]], [["description", 49, 5], ["homepage", 50, 5], ["longDescription", 51, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]], [["pname", 20, 3], ["version", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["cargoHash", 32, 3], ["env", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 42, 3], ["doInstallCheck", 44, 3], ["nativeInstallCheckInputs", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, fetchurl: false, "pkg-config": false, versionCheckHook: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 35, 5], ["OPENSSL_NO_VENDOR", 36, 5], ["STUDIO_UI_DIST", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["longDescription", 51, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["cargoHash", 32, 3], ["env", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 42, 3], ["doInstallCheck", 44, 3], ["nativeInstallCheckInputs", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const studioUiVersion = "v0.1.0";
   const studioUi = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/solana-foundation/surfpool-web-ui/releases/download/${studioUiVersion}/studio-dist.zip`),
       hash: "sha256-DeWm2FzZbdaHXaEFA8W/YIIcJx4Z+uFkrxuajTM9n1M=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "surfpool-cli",
       version: "1.5.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "solana-foundation",
           repo: "surfpool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-eOgPoHQVQVm+aSLsxAokjMyAyZBia/j/Bxux69WfklI=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         RUSTFLAGS: "-Aunused",
         OPENSSL_NO_VENDOR: 1n,
         STUDIO_UI_DIST: nix.thunk(() => nix.str`${studioUi}`),
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Surfpool is where developers start their Solana journey",
         homepage: "https://www.surfpool.run/",
         longDescription: "Surfpool is a drop-in replacement for solana-test-validator that lets\ndevelopers spin up local Solana networks mirroring mainnet state without\ndownloading the entire chain. It includes a built-in web UI (Surfpool Studio)\nserved directly from the binary, Infrastructure as Code for declarative\nprogram deployment, transaction inspection, time travel, cheatcodes, and\nan MCP server for agentic workflows\n",

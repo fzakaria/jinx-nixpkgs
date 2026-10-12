@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]], [["url", 62, 7], ["sha256", 63, 7]], [["url", 72, 5], ["sha256", 73, 5]], [["url", 77, 5], ["sha256", 78, 5]], [["NIX_CFLAGS_LINK", 96, 7]], [["description", 99, 5], ["mainProgram", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5], ["broken", 106, 5]], [["pname", 26, 3], ["version", 27, 3], ["devPakVersion", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 45, 3], ["patches", 59, 3], ["cmakeFlags", 67, 3], ["devPak", 71, 3], ["notoFont", 76, 3], ["postPatch", 81, 3], ["postInstall", 92, 3], ["env", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, unzip: false, zip: false, file: false, curl: false, glew: false, libGL: false, SDL2: false, SDL2_image: false, zlib: false, freetype: false, imagemagick: false, openal: false, opusfile: false, libogg: false, libxext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 62, 7], ["sha256", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 72, 5], ["sha256", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 77, 5], ["sha256", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_LINK", 96, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 99, 5], ["mainProgram", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5], ["broken", 106, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["devPakVersion", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 45, 3], ["patches", 59, 3], ["cmakeFlags", 67, 3], ["devPak", 71, 3], ["notoFont", 76, 3], ["postPatch", 81, 3], ["postInstall", 92, 3], ["env", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.3";
       const devPakVersion = "33";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yvt",
           repo: "openspades",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -61,27 +55,27 @@ export default nix.lambda((args) => (() => {
       ]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/yvt/openspades/commit/2d13704fefc475b279337e89057b117f711a35d4.diff",
             sha256: "1i7rcpjzkjhbv5pp6byzrxv7sb1iamqq5k1vyqlvkbr38k2dz0rv",
           })))),
       ]);
       const cmakeFlags = nix.thunk(() => ["-DOPENSPADES_INSTALL_BINARY=bin"]);
       const devPak = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/yvt/openspades-paks/releases/download/r${devPakVersion}/OpenSpadesDevPackage-r${devPakVersion}.zip`),
           sha256: "1bd2fyn7mlxa3xnsvzj08xjzw02baimqvmnix07blfhb78rdq9q9",
         }))));
       const notoFont = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: "https://github.com/yvt/openspades/releases/download/v0.1.1b/NotoFonts.pak",
           sha256: "0kaz8j85wjjnf18z0lz69xr1z8makg30jn2dzdyicd1asrj0q1jm",
         }))));
       const postPatch = "sed -i 's,^wget .*,cp $devPak \"$PAK_NAME\",' Resources/downloadpak.sh\npatchShebangs Resources\n\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\" \\\n  --replace-fail \"cmake_policy(SET CMP0054 OLD)\" \"\"\nsubstituteInPlace Sources/AngelScript/projects/{cmake,cmake_addons}/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n";
       const postInstall = "cp $notoFont $out/share/games/openspades/Resources/\n";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_LINK: "-lopenal" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[4], NIX_CFLAGS_LINK: "-lopenal" }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Compatible client of Ace of Spades 0.75",
         mainProgram: "openspades",
         homepage: "https://github.com/yvt/openspades/",
@@ -91,7 +85,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))))),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         devPakVersion,

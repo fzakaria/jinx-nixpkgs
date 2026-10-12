@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["CC", 63, 9], ["patchelf", 64, 9], ["libPath", 65, 9]], [["expandResponseParams", 149, 7], ["shell", 150, 7], ["suffixSalt", 151, 7], ["wrapperName", 152, 7], ["coreutils_bin", 153, 7], ["hardening_unsupported_flags", 155, 5]], [["description", 159, 5], ["homepage", 160, 5], ["changelog", 161, 5], ["license", 162, 5], ["maintainers", 166, 5], ["mainProgram", 169, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["cargoHash", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["buildFeatures", 56, 3], ["checkFeatures", 58, 3], ["patches", 60, 3], ["doCheck", 79, 3], ["dontUseCargoParallelTests", 81, 3], ["checkFlags", 84, 3], ["postInstall", 99, 3], ["env", 147, 3], ["meta", 158, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, runCommand: false, patchelf: false, fetchFromGitHub: false, rustPlatform: false, makeBinaryWrapper: false, "pkg-config": false, openssl: false, curl: false, writableTmpDirAsHomeHook: false, installShellFiles: false, zlib: false, libiconv: false, xz: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CC", 63, 9], ["patchelf", 64, 9], ["libPath", 65, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["expandResponseParams", 149, 7], ["shell", 150, 7], ["suffixSalt", 151, 7], ["wrapperName", 152, 7], ["coreutils_bin", 153, 7], ["hardening_unsupported_flags", 155, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 159, 5], ["homepage", 160, 5], ["changelog", 161, 5], ["license", 162, 5], ["maintainers", 166, 5], ["mainProgram", 169, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["cargoHash", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["buildFeatures", 56, 3], ["checkFeatures", 58, 3], ["patches", 60, 3], ["doCheck", 79, 3], ["dontUseCargoParallelTests", 81, 3], ["checkFlags", 84, 3], ["postInstall", 99, 3], ["env", 147, 3], ["meta", 158, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [zlib])));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rustup",
       version: "1.29.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rust-lang",
           repo: "rustup",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       checkFeatures: nix.thunk(() => ["test"]),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(runCommand, "0001-dynamically-patchelf-binaries.patch", nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               CC: nix.thunk(() => nix.sel(stdenv, "cc")),
               patchelf: patchelf,
               libPath: nix.thunk(() => nix.str`${libPath}`),
@@ -113,7 +109,7 @@ chmod +x $out/nix-support/ld-wrapper.sh
       env: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(stdenv, "cc", "bintools"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         expandResponseParams: nix.thunk(() => nix.attr(from, "expandResponseParams")),
         shell: nix.thunk(() => nix.attr(from, "shell")),
         suffixSalt: nix.thunk(() => nix.attr(from, "suffixSalt")),
@@ -123,7 +119,7 @@ chmod +x $out/nix-support/ld-wrapper.sh
       };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Rust toolchain installer",
         homepage: "https://www.rustup.rs/",
         changelog: nix.thunk(() => nix.str`https://github.com/rust-lang/rustup/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

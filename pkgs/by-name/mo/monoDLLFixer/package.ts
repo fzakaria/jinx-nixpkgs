@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 7, 3], ["version", 8, 3], ["dllFixer", 9, 3], ["dontUnpack", 10, 3], ["installPhase", 11, 3], ["perl", 15, 11]]]);
 const formals$1 = { args: { lib: false, stdenv: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["dllFixer", 9, 3], ["dontUnpack", 10, 3], ["installPhase", 11, 3], ["perl", 15, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "mono-dll-fixer",
       version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       dllFixer: nix.path(here, "./dll-fixer.pl"),

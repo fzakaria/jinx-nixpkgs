@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["HOST_CC", 36, 7]], [["firefox", 52, 26], ["firefox-esr", 52, 34]], [["tests", 51, 12]], [["changelog", 56, 5], ["homepage", 57, 5], ["description", 58, 5], ["maintainers", 59, 5], ["platforms", 63, 5], ["license", 64, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["outputs", 22, 3], ["outputBin", 26, 3], ["preConfigure", 28, 3], ["env", 36, 3], ["depsBuildBuild", 37, 3], ["configureFlags", 38, 3], ["postInstall", 44, 3], ["enableParallelBuilding", 49, 3], ["passthru", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, buildPackages: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["HOST_CC", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["firefox", 52, 26], ["firefox-esr", 52, 34]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 51, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 56, 5], ["homepage", 57, 5], ["description", 58, 5], ["maintainers", 59, 5], ["platforms", 63, 5], ["license", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["outputs", 22, 3], ["outputBin", 26, 3], ["preConfigure", 28, 3], ["env", 36, 3], ["depsBuildBuild", 37, 3], ["configureFlags", 38, 3], ["postInstall", 44, 3], ["enableParallelBuilding", 49, 3], ["passthru", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nspr",
       version: "4.40",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://mozilla/nspr/releases/v${nix.sel(finalAttrs, "version")}/src/nspr-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-wMGITGJ/Pbeng/fHMUxpUiayBDaWeR0VUZ5+BXjBm9w=",
         })))),
@@ -32,21 +27,21 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       outputBin: "dev",
       preConfigure: nix.thunk(() => nix.add("cd nspr\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace configure --replace '@executable_path/' \"$out/lib/\"\nsubstituteInPlace configure.in --replace '@executable_path/' \"$out/lib/\"\n"))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, HOST_CC: "cc" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], HOST_CC: "cc" })),
       depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]),
       configureFlags: nix.thunk(() => nix.concat(["--enable-optimize", "--disable-debug"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is64bit")), "--enable-64bit"))),
       postInstall: "find $out -name \"*.a\" -delete\nmoveToOutput share \"$dev\" # just aclocal\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           firefox: nix.thunk(() => nix.attr(nixosTests, "firefox")),
           "firefox-esr": nix.thunk(() => nix.attr(nixosTests, "firefox-esr")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/mozilla/nspr/releases/tag/NSPR_${nix.app(nix.sel(lib, "concatStringsSep"), "_", nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version")))))}_RTM`),
         homepage: "https://firefox-source-docs.mozilla.org/nspr/index.html",
         description: "Netscape Portable Runtime, a platform-neutral API for system-level and libc-like functions",

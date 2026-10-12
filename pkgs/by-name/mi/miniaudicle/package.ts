@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["fetchSubmodules", 25, 5]], [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["downloadPage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["broken", 62, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["sourceRoot", 28, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["buildFlags", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bison: false, flex: false, which: false, "alsa-lib": false, libsndfile: false, libpulseaudio: false, libjack2: false, kdePackages: false, audioBackend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["fetchSubmodules", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["downloadPage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["broken", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["sourceRoot", 28, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["buildFlags", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const audioBackend = nix.argOr($, "audioBackend", () => "pulse");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "miniaudicle",
       version: "1.5.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ccrma",
           repo: "miniAudicle",
           tag: nix.thunk(() => nix.str`chuck-${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +46,7 @@ substituteInPlace miniAudicle.pro \\
       buildInputs: nix.thunk(() => nix.concat([alsa_lib, libsndfile, nix.thunk(() => nix.sel(kdePackages, "qscintilla"))], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(audioBackend, "pulse")), libpulseaudio), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(audioBackend, "jack")), libjack2)))),
       buildFlags: nix.thunk(() => [nix.thunk(() => nix.str`linux-${audioBackend}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Light-weight integrated development environment for the ChucK digital audio programming language",
         mainProgram: "miniAudicle",
         homepage: "https://audicle.cs.princeton.edu/mini/",

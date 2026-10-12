@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["url", 26, 7], ["hash", 27, 7]], [["description", 43, 5], ["mainProgram", 44, 5], ["longDescription", 45, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]], [["version", 12, 3], ["pyproject", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["build-system", 31, 3], ["buildInputs", 35, 3], ["propagatedBuildInputs", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchurl: false, python3Packages: false, readline: false, ncurses: false, "canto-daemon": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["mainProgram", 44, 5], ["longDescription", 45, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pyproject", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["build-system", 31, 3], ["buildInputs", 35, 3], ["propagatedBuildInputs", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const canto_daemon = nix.arg($, "canto-daemon");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "0.9.9",
       pyproject: true,
       pname: "canto-curses",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "themoken",
           repo: "canto-curses",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/canto-curses/-/raw/6daa56bc5baebb2444c368a8208666ef484a6fc0/fix-build.patch",
             hash: "sha256-2TMNmwjUAGyenSDqxfI+U2hNeDZaj2CivfTfpX7CKgY=",
           })))),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [readline, ncurses, canto_daemon]),
       propagatedBuildInputs: nix.thunk(() => [canto_daemon]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Ncurses-based console Atom/RSS feed reader",
         mainProgram: "canto-curses",
         longDescription: "Canto is an Atom/RSS feed reader for the console that is meant to be\nquick, concise, and colorful. It's meant to allow you to crank through\nfeeds like you've never cranked before by providing a minimal, yet\ninformation packed interface. No navigating menus. No dense blocks of\nunreadable white text. An interface with almost infinite customization\nand extensibility using the excellent Python programming language.\n",

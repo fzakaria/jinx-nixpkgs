@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/quality-menu.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["rev-prefix", 19, 40]], [["updateScript", 19, 12]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["passthru", 19, 3], ["extraScriptsToCopy", 21, 3], ["extraScriptsToLoad", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildLua: false, fetchFromGitHub: false, gitUpdater: false, oscSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/quality-menu.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/quality-menu.nix", [["rev-prefix", 19, 40]]);
-const pos$3 = nix.positions(here + "/quality-menu.nix", [["updateScript", 19, 12]]);
-const pos$4 = nix.positions(here + "/quality-menu.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$5 = nix.positions(here + "/quality-menu.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["passthru", 19, 3], ["extraScriptsToCopy", 21, 3], ["extraScriptsToLoad", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,20 +16,20 @@ export default nix.lambda((args) => (() => {
       const pname = "mpv-quality-menu";
       const version = "4.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "christoph-heinrich",
           repo: "mpv-quality-menu",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-W+6OYjh0S7nYrNC/P9sF7t6p1Rt/awOtO865cr6qtR0=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       }));
       const extraScriptsToCopy = nix.thunk(() => nix.app(nix.sel(lib, "optional"), oscSupport, "quality-menu-osc.lua"));
       const extraScriptsToLoad = nix.thunk(() => nix.app(nix.sel(lib, "optional"), oscSupport, "quality-menu-osc.lua"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Userscript for MPV that allows you to change youtube video quality (ytdl-format) on the fly",
         homepage: "https://github.com/christoph-heinrich/mpv-quality-menu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

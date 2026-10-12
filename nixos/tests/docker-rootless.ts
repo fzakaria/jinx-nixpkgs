@@ -2,47 +2,38 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/docker-rootless.nix", [[["maintainers", 6, 5]], [["enable", 13, 40]], [["rootless", 13, 31]], [["docker", 13, 24]], [["uid", 16, 11], ["isNormalUser", 17, 11]], [["alice", 15, 21]], [["users", 15, 15]], [["virtualisation", 13, 9], ["users", 15, 9]], [["machine", 10, 5]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/docker-rootless.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/docker-rootless.nix", [["enable", 13, 40]]);
-const pos$3 = nix.positions(here + "/docker-rootless.nix", [["rootless", 13, 31]]);
-const pos$4 = nix.positions(here + "/docker-rootless.nix", [["docker", 13, 24]]);
-const pos$5 = nix.positions(here + "/docker-rootless.nix", [["uid", 16, 11], ["isNormalUser", 17, 11]]);
-const pos$6 = nix.positions(here + "/docker-rootless.nix", [["alice", 15, 21]]);
-const pos$7 = nix.positions(here + "/docker-rootless.nix", [["users", 15, 15]]);
-const pos$8 = nix.positions(here + "/docker-rootless.nix", [["virtualisation", 13, 9], ["users", 15, 9]]);
-const pos$9 = nix.positions(here + "/docker-rootless.nix", [["machine", 10, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/docker-rootless.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "docker-rootless",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             docker: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              rootless: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+              [nix.POS]: $pos[2],
+              rootless: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              alice: nix.thunk(() => ({ [nix.POS]: pos$5, uid: 1000n, isNormalUser: true })),
+              [nix.POS]: $pos[5],
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[4], uid: 1000n, isNormalUser: true })),
             })),
           })),
         };

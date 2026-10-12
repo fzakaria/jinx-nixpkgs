@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["build-system", 18, 3], ["src", 20, 3], ["dependencies", 27, 3], ["nativeCheckInputs", 34, 3], ["enabledTestPaths", 39, 3], ["disabledTestPaths", 43, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { "absl-py": false, buildPythonPackage: false, contextlib2: false, fetchFromGitHub: false, lib: false, pyyaml: false, six: false, "flit-core": false, pytestCheckHook: false, "pytest-xdist": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["build-system", 18, 3], ["src", 20, 3], ["dependencies", 27, 3], ["nativeCheckInputs", 34, 3], ["enabledTestPaths", 39, 3], ["disabledTestPaths", 43, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [flit_core]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "ml_collections",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["ml_collections/config_dict/examples/examples_test.py"]);
       const pythonImportsCheck = nix.thunk(() => ["ml_collections"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ML Collections is a library of Python collections designed for ML usecases",
         homepage: "https://github.com/google/ml_collections",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

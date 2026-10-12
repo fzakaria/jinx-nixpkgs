@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["dev-shell", 36, 5]], [["license", 39, 8]], [["version", 13, 3], ["pyproject", 14, 3], ["pname", 15, 3], ["src", 18, 3], ["build-system", 20, 3], ["dependencies", 24, 3], ["doCheck", 29, 3], ["checkPhase", 31, 3], ["passthru", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, "nix-gitignore": false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["dev-shell", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 39, 8]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 13, 3], ["pyproject", 14, 3], ["pname", 15, 3], ["src", 18, 3], ["build-system", 20, 3], ["dependencies", 24, 3], ["doCheck", 29, 3], ["checkPhase", 31, 3], ["passthru", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const helpers = nix.thunk(() => nix.app(callPackage, nix.path(here, "./helpers.nix"), nix.thunk(() => ({}))));
   const pythonPackages = python3Packages;
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.1.0",
       pyproject: true,
       pname: "flatten-references-graph",
@@ -36,10 +34,13 @@ export default nix.lambda((args) => (() => {
       checkPhase: nix.thunk(() => nix.str`${nix.sel(helpers, "unittest")}/bin/unittest
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "dev-shell": nix.thunk(() => nix.app(callPackage, nix.path(here, "./dev-shell.nix"), nix.thunk(() => ({})))),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["license", 47, 24], ["maintainers", 47, 32], ["description", 48, 5], ["homepage", 49, 5]], [["pname", 13, 3], ["src", 14, 17], ["version", 14, 21], ["pyproject", 15, 3], ["disabled", 17, 3], ["sourceRoot", 19, 3], ["buildInputs", 20, 3], ["preBuild", 22, 3], ["build-system", 26, 3], ["dependencies", 30, 3], ["propagatedNativeBuildInputs", 34, 3], ["pythonImportsCheck", 36, 3], ["nativeCheckInputs", 38, 3], ["pytestFlags", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, isPy3k: false, olm: false, setuptools: false, cffi: false, aspectlib: false, "pytest-benchmark": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["license", 47, 24], ["maintainers", 47, 32], ["description", 48, 5], ["homepage", 49, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["src", 14, 17], ["version", 14, 21], ["pyproject", 15, 3], ["disabled", 17, 3], ["sourceRoot", 19, 3], ["buildInputs", 20, 3], ["preBuild", 22, 3], ["build-system", 26, 3], ["dependencies", 30, 3], ["propagatedNativeBuildInputs", 34, 3], ["pythonImportsCheck", 36, 3], ["nativeCheckInputs", 38, 3], ["pytestFlags", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pytest_benchmark = nix.arg($, "pytest-benchmark");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "python-olm",
       src: nix.thunk(() => nix.attr(olm, "src")),
       version: nix.thunk(() => nix.attr(olm, "version")),
@@ -35,7 +34,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(olm, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         description: "Python bindings for Olm",

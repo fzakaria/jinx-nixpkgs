@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 42, 3], ["mesonFlags", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, acl: false, glibmm_2_68: false, gtkmm4: false, meson: false, nautilus: false, ninja: false, "pkg-config": false, itstool: false, wrapGAppsHook4: false, gtk4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 42, 3], ["mesonFlags", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const gtk4 = nix.arg($, "gtk4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "eiciel",
       version: "0.10.1",
       outputs: nix.thunk(() => ["out", "nautilusExtension"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rofirrim",
           repo: "eiciel",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dnautilus-extension-dir=${nix.builtins.placeholder("nautilusExtension")}/lib/nautilus/extensions-4`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graphical editor for ACLs and extended attributes",
         homepage: "https://rofi.roger-ferrer.org/eiciel/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["makeFlags", 34, 3], ["preInstall", 40, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libxt: false, libxaw: false, libxtst: false, libxi: false, libxpm: false, "pkg-config": false, xorgproto: false, libxaw3d: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["makeFlags", 34, 3], ["preInstall", 40, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const libxaw3d = nix.arg($, "libxaw3d");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xvkbd",
       version: "4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://t-sato.in.coocan.jp/xvkbd/xvkbd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1x5yldv9y99cw5hzzs73ygdn1z80zns9hz0baa355r711zghfbcm",
         })))),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preInstall: "# workaround absence of libXt in $DESTDIR location.\nmkdir -p $out/share/X11\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Virtual keyboard for X window system",
         longDescription: "xvkbd is a virtual (graphical) keyboard program for X Window System which provides\nfacility to enter characters onto other clients (software) by clicking on a\nkeyboard displayed on the screen.\n",
         homepage: "http://t-sato.in.coocan.jp/xvkbd",

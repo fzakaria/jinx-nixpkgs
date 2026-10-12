@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 3], ["paths", 16, 3], ["nativeBuildInputs", 17, 3], ["postBuild", 19, 3], ["meta", 25, 31], ["version", 25, 36]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, "brasero-unwrapped": false, cdrtools: false, libdvdcss: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["paths", 16, 3], ["nativeBuildInputs", 17, 3], ["postBuild", 19, 3], ["meta", 25, 31], ["version", 25, 36]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cdrtools])));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "brasero",
       paths: nix.thunk(() => [brasero_unwrapped]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),

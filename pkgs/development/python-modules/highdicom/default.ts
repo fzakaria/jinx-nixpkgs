@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["url", 33, 7], ["hash", 34, 7]], [["libjpeg", 51, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["optional-dependencies", 50, 3], ["nativeCheckInputs", 58, 3], ["preCheck", 59, 3], ["pythonImportsCheck", 65, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch2: false, pytestCheckHook: false, numpy: false, pillow: false, pydicom: false, pyjpegls: false, pylibjpeg: false, "pylibjpeg-libjpeg": false, "pylibjpeg-openjpeg": false, setuptools: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["libjpeg", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["optional-dependencies", 50, 3], ["nativeCheckInputs", 58, 3], ["preCheck", 59, 3], ["pythonImportsCheck", 65, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.27.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MGHComputationalPathology",
           repo: "highdicom",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/ImagingDataCommons/highdicom/commit/e9e3f2514a74b0d4be736cff222c934ef66d67ff.patch?full_index=1",
             hash: "sha256-1h9xmcezxuvHw54t4kLahDB62d0XHzEyrmHmPf6NW7M=",
           })))),
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [numpy, pillow, pydicom, pyjpegls, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         libjpeg: nix.thunk(() => [pylibjpeg, pylibjpeg_libjpeg, pylibjpeg_openjpeg]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "libjpeg")));
@@ -66,7 +62,7 @@ ln -s ${nix.sel(pydicom, "passthru", "pydicom-data")}/data_store/data $HOME/.pyd
         "highdicom.sc",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "High-level DICOM abstractions for Python",
         homepage: "https://highdicom.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/ImagingDataCommons/highdicom/releases/tag/v${version}`),
@@ -77,7 +73,7 @@ ln -s ${nix.sel(pydicom, "passthru", "pydicom-data")}/data_store/data $HOME/.pyd
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

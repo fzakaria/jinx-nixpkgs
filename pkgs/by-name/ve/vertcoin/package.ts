@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["name", 57, 7], ["url", 58, 7], ["hash", 59, 7]], [["name", 62, 7], ["url", 63, 7], ["hash", 64, 7]], [["CXXFLAGS", 93, 7]], [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["platforms", 119, 5]], [["pname", 21, 3], ["version", 22, 3], ["name", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["patches", 54, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 77, 3], ["enableParallelBuilding", 91, 3], ["env", 93, 3], ["configureFlags", 95, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, openssl: false, boost: false, libevent: false, autoreconfHook: false, db4: false, "pkg-config": false, protobuf: false, hexdump: false, zeromq: false, gmp: false, withGui: true, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 57, 7], ["url", 58, 7], ["hash", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 62, 7], ["url", 63, 7], ["hash", 64, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CXXFLAGS", 93, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["platforms", 119, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["name", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["patches", 54, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 77, 3], ["enableParallelBuilding", 91, 3], ["env", 93, 3], ["configureFlags", 95, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const withGui = nix.argOr($, "withGui", () => true);
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "vertcoin",
       version: "0.18.0",
       name: nix.thunk(() => nix.add(nix.add(nix.add(nix.sel(finalAttrs, "pname"), nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withGui)), "d")))), "-"), nix.sel(finalAttrs, "version"))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vertcoin-project",
           repo: "vertcoin-core",
           rev: "2bd6dba7a822400581d5a6014afd671fb7e61f36",
@@ -43,13 +38,13 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Dynamically patch missing standard library headers for modern GCC\nsed -i '1i #include <cstdint>' src/chainparamsbase.h\nsed -i '1i #include <cstdint>' src/zmq/zmqabstractnotifier.h\nsed -i '1i #include <cstdint>' src/zmq/zmqpublishnotifier.h\n\n# Fix Boost 1.74+ filesystem API change (copy_option -> copy_options)\nsed -i 's/fs::copy_option::overwrite_if_exists/fs::copy_options::overwrite_existing/g' src/wallet/bdb.cpp\n\n# Fix Boost 1.85+ recursive_directory_iterator API changes\nsed -i 's/\\.no_push()/.disable_recursion_pending()/g' src/wallet/walletutil.cpp\nsed -i 's/\\.level()/.depth()/g' src/wallet/walletutil.cpp\n\n# Lobotomize the Boost macros.\n# Convert all fatal AC_MSG_ERRORs regarding Boost into AC_MSG_WARNs.\n# We will manually pass the missing variables to configureFlags instead.\nfor m4file in $(find . -name \"ax_boost_*.m4\"); do\n  sed -i 's/AC_MSG_ERROR/AC_MSG_WARN/g' \"$m4file\"\ndone\n",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-13-p1.patch",
             url: "https://github.com/vertcoin-project/vertcoin-core/commit/398768769f85cc1b6ff212ed931646b59fa1acd6.patch",
             hash: "sha256-4nnE4W0Z5HzVaJ6tB8QmyohXmt6UHUGgDH+s9bQaxhg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "gcc-13-p2.patch",
             url: "https://github.com/vertcoin-project/vertcoin-core/commit/af862661654966d5de614755ab9bd1b5913e0959.patch",
             hash: "sha256-4hcJIje3VAdEEpn2tetgvgZ8nVft+A64bfWLspQtbVw=",
@@ -62,7 +57,7 @@ export default nix.lambda((args) => (() => {
           protobuf,
         ])))),
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, CXXFLAGS: "-Wno-error -std=c++17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], CXXFLAGS: "-Wno-error -std=c++17" })),
       configureFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.str`--with-boost=${nix.sel(boost, "dev")}`),
         nix.thunk(() => nix.str`--with-boost-libdir=${nix.sel(boost, "out")}/lib`),
@@ -80,7 +75,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--with-qt-bindir=${nix.sel(qt5, "qtbase", "dev")}/bin:${nix.sel(qt5, "qttools", "dev")}/bin`),
         ])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Digital currency with mining decentralisation and ASIC resistance as a key focus",
         homepage: "https://vertcoin.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

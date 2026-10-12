@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 34, 5], ["hash", 39, 5]], [["OPENSSL_NO_VENDOR", 45, 7]], [["asNightly", 52, 25]], [["description", 82, 5], ["mainProgram", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 90, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["cargoHash", 42, 3], ["env", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 55, 3], ["nativeCheckInputs", 61, 3], ["postInstall", 67, 3], ["checkFlags", 77, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, rustPlatform: false, "pkg-config": false, installShellFiles: false, makeWrapper: false, mandoc: false, rustfmt: false, file: false, writableTmpDirAsHomeHook: false, openssl: false, dbus: false, sqlite: false, gpgme: false, gnum4: false, withNotmuch: true, notmuch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 34, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["asNightly", 52, 25]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 82, 5], ["mainProgram", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["cargoHash", 42, 3], ["env", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 55, 3], ["nativeCheckInputs", 61, 3], ["postInstall", 67, 3], ["checkFlags", 77, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "meli";
       const version = "0.8.13";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://git.meli-email.org/meli/meli/archive/v${version}.tar.gz`),
             nix.thunk(() => nix.str`https://codeberg.org/meli/meli/archive/v${version}.tar.gz`),
@@ -42,13 +38,13 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-uyhxNEKoRKrqvU76SuTKl1wlwOdHIxMFLXB5LwsdvQE=",
         }))));
       const cargoHash = "sha256-wDj4g5Cjm6zedjCmpc/A40peHO951lLuEQGsn+i3eT0=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: 1n }));
       const nativeBuildInputs = nix.thunk(() => [
         pkg_config,
         installShellFiles,
         makeWrapper,
         mandoc,
-        nix.thunk(() => nix.app(nix.sel(rustfmt, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, asNightly: true })))),
+        nix.thunk(() => nix.app(nix.sel(rustfmt, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], asNightly: true })))),
       ]);
       const buildInputs = nix.thunk(() => [openssl, dbus, sqlite]);
       const nativeCheckInputs = nix.thunk(() => [file, gnum4, writableTmpDirAsHomeHook]);
@@ -60,7 +56,7 @@ wrapProgram $out/bin/meli \\
 `);
       const checkFlags = nix.thunk(() => ["--skip=test_cli_subcommands"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Terminal e-mail client and e-mail client library",
         mainProgram: "meli",
         homepage: "https://meli-email.org/",
@@ -75,7 +71,7 @@ wrapProgram $out/bin/meli \\
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["NIX_CFLAGS_COMPILE", 21, 7]], [["description", 28, 5], ["mainProgram", 29, 5], ["platforms", 30, 5], ["license", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 18, 3], ["env", 21, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 28, 5], ["mainProgram", 29, 5], ["platforms", 30, 5], ["license", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 18, 3], ["env", 21, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,20 +12,20 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tradcpp",
       version: "0.5.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ftp.netbsd.org/pub/NetBSD/misc/dholland/tradcpp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-4XufQs90s2DVaRvFn7U/N+QVgcRbdfzWS7ll5eL+TF4=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./tradcpp-configure.patch")]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Traditional (K&R-style) C macro preprocessor",
         mainProgram: "tradcpp",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

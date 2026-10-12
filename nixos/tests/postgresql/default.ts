@@ -2,12 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["override", 21, 18]], [["passthru", 21, 9]], [["runTest", 28, 15], ["genTests", 28, 23], ["lib", 29, 22]], [["postgresql", 34, 3], ["postgresql-jit", 35, 3], ["postgresql-replication", 36, 3], ["postgresql-wal-receiver", 37, 3], ["postgresql-tls-client-cert", 38, 3], ["anonymizer", 41, 3], ["pgjwt", 42, 3], ["wal2json", 43, 3]]]);
 const formals$1 = { args: { runTest: false, pkgs: false }, ellipsis: false };
 const formals$2 = { args: { makeTestFor: false, filter: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["override", 21, 18]]);
-const pos$2 = nix.positions(here + "/default.nix", [["passthru", 21, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["runTest", 28, 15], ["genTests", 28, 23], ["lib", 29, 22]]);
-const pos$4 = nix.positions(here + "/default.nix", [["postgresql", 34, 3], ["postgresql-jit", 35, 3], ["postgresql-replication", 36, 3], ["postgresql-wal-receiver", 37, 3], ["postgresql-tls-client-cert", 38, 3], ["anonymizer", 41, 3], ["pgjwt", 42, 3], ["wal2json", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +20,18 @@ export default nix.lambda((args) => (() => {
     const makeTestFor = nix.arg($_1, "makeTestFor");
     const filter = nix.argOr($_1, "filter", () => (_) => (__1) => true);
     return nix.app(recurseIntoAttrs, nix.thunk(() => nix.update(nix.app(mapAttrs, nix.thunk(() => nix.app(const$, makeTestFor)), nix.thunk(() => nix.app(filterAttrs, filter, nix.thunk(() => nix.sel(pkgs, "postgresqlVersions"))))), {
-        [nix.POS]: pos$2,
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$1, override: makeTestFor })),
+        [nix.POS]: $pos[1],
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], override: makeTestFor })),
       })));
   })(), formals$2);
   const importWithArgs = (path) => nix.app(nix.builtins.import(path), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       runTest: runTest,
       genTests: genTests,
       lib: nix.thunk(() => nix.attr(pkgs, "lib")),
     })));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     postgresql: nix.thunk(() => nix.app(importWithArgs, nix.path(here, "./postgresql.nix"))),
     "postgresql-jit": nix.thunk(() => nix.app(importWithArgs, nix.path(here, "./postgresql-jit.nix"))),
     "postgresql-replication": nix.thunk(() => nix.app(importWithArgs, nix.path(here, "./postgresql-replication.nix"))),

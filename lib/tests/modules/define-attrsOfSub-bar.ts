@@ -2,11 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/define-attrsOfSub-bar.nix", [["bar", 2, 14]]);
-const pos$2 = nix.positions(here + "/define-attrsOfSub-bar.nix", [["attrsOfSub", 2, 3]]);
+const $pos = nix.positions(here + "/define-attrsOfSub-bar.nix", [[["bar", 2, 14]], [["attrsOfSub", 2, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
-  attrsOfSub: nix.thunk(() => ({ [nix.POS]: pos$1, bar: nix.thunk(() => ({})) })),
+  [nix.POS]: $pos[1],
+  attrsOfSub: nix.thunk(() => ({ [nix.POS]: $pos[0], bar: nix.thunk(() => ({})) })),
 }));
 //# sourceMappingURL=define-attrsOfSub-bar.ts.map

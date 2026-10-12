@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["t3code-unwrapped", 31, 74]], [["unwrapped", 85, 5], ["resourceMonitor", 86, 5]], [["description", 93, 7], ["homepage", 94, 7], ["downloadPage", 95, 7], ["changelog", 96, 7], ["license", 97, 7], ["maintainers", 98, 7], ["mainProgram", 99, 7], ["platforms", 100, 7]], [["pname", 69, 3], ["version", 70, 30], ["__structuredAttrs", 71, 3], ["strictDeps", 72, 3], ["paths", 74, 3], ["nativeBuildInputs", 76, 3], ["postBuild", 78, 3], ["passthru", 84, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, symlinkJoin: false, makeBinaryWrapper: false, enableAzureDevOps: true, "azure-cli": false, "azure-cli-extensions": false, enableBitbucket: true, "bitbucket-cli": false, enableClaude: true, "claude-code": false, enableCodex: true, codex: false, enableCursor: true, "code-cursor": false, enableCursorCli: true, "cursor-cli": false, enableGitHub: true, gh: false, enableGit: true, git: false, enableGitLab: true, glab: false, enableJujutsu: true, jujutsu: false, enableOpencode: true, opencode: false, enableResourceMonitor: true, "t3code-unwrapped": true, "t3code-resource-monitor": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["t3code-unwrapped", 31, 74]]);
-const pos$2 = nix.positions(here + "/package.nix", [["unwrapped", 85, 5], ["resourceMonitor", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 93, 7], ["homepage", 94, 7], ["downloadPage", 95, 7], ["changelog", 96, 7], ["license", 97, 7], ["maintainers", 98, 7], ["mainProgram", 99, 7], ["platforms", 100, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 69, 3], ["version", 70, 30], ["__structuredAttrs", 71, 3], ["strictDeps", 72, 3], ["paths", 74, 3], ["nativeBuildInputs", 76, 3], ["postBuild", 78, 3], ["passthru", 84, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const opencode = nix.arg($, "opencode");
   const enableResourceMonitor = nix.argOr($, "enableResourceMonitor", () => true);
   const t3code_unwrapped = nix.argOr($, "t3code-unwrapped", () => nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({}))));
-  const t3code_resource_monitor = nix.argOr($, "t3code-resource-monitor", () => nix.app(callPackage, nix.path(here, "./resource-monitor.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, "t3code-unwrapped": t3code_unwrapped }))));
+  const t3code_resource_monitor = nix.argOr($, "t3code-resource-monitor", () => nix.app(callPackage, nix.path(here, "./resource-monitor.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], "t3code-unwrapped": t3code_unwrapped }))));
   const runtimePackages = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), enableAzureDevOps, nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(azure_cli, "withExtensions"), nix.thunk(() => [nix.thunk(() => nix.sel(azure_cli_extensions, "azure-devops"))]))),
     ])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableBitbucket, nix.thunk(() => [bitbucket_cli])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableClaude, nix.thunk(() => [claude_code])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableCodex, nix.thunk(() => [codex])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableCursor, nix.thunk(() => [code_cursor])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableCursorCli, nix.thunk(() => [cursor_cli])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableGitHub, nix.thunk(() => [gh])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableGit, nix.thunk(() => [git])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableGitLab, nix.thunk(() => [glab])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableJujutsu, nix.thunk(() => [jujutsu])), nix.app(nix.sel(lib, "optionals"), enableOpencode, nix.thunk(() => [opencode])))))))))))));
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "getExe"), t3code_resource_monitor)),
     ]))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "t3code",
       version: nix.thunk(() => nix.attr(t3code_unwrapped, "version")),
       __structuredAttrs: true,
@@ -66,14 +63,14 @@ export default nix.lambda((args) => (() => {
 done
 `))),
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         unwrapped: t3code_unwrapped,
         resourceMonitor: t3code_resource_monitor,
       }, nix.sel(t3code_unwrapped, "passthru"))),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(t3code_unwrapped, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         downloadPage: nix.thunk(() => nix.attr(from, "downloadPage")),

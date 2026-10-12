@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["python3", 65, 42]], [["python3Packages", 69, 42]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 47, 3], ["nativeCheckInputs", 58, 3], ["__darwinAllowLocalNetworking", 72, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, dnspython: false, fetchFromGitHub: false, httpx: false, icalendar: false, "icalendar-searcher": false, lxml: false, manuel: false, pytest9_0CheckHook: false, python: false, radicale: false, "recurring-ical-events": false, niquests: false, hatchling: false, "hatch-vcs": false, "proxy-py": false, pyfakefs: false, "pytest-asyncio": false, "python-dateutil": false, pyyaml: false, toPythonModule: false, tzlocal: false, vobject: false, xandikos: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["python3", 65, 42]]);
-const pos$3 = nix.positions(here + "/default.nix", [["python3Packages", 69, 42]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 47, 3], ["nativeCheckInputs", 58, 3], ["__darwinAllowLocalNetworking", 72, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const xandikos = nix.arg($, "xandikos");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "caldav",
       version: "3.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-caldav",
           repo: "caldav",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,16 +63,19 @@ export default nix.lambda((args) => (() => {
         pyfakefs,
         pytest_asyncio,
         pytest9_0CheckHook,
-        nix.thunk(() => nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(radicale, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, python3: python })))))),
+        nix.thunk(() => nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(radicale, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], python3: python })))))),
         tzlocal,
         vobject,
         writableTmpDirAsHomeHook,
-        nix.thunk(() => nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(xandikos, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, python3Packages: nix.thunk(() => nix.sel(python, "pkgs")) })))))),
+        nix.thunk(() => nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(xandikos, "override"), nix.thunk(() => ({
+              [nix.POS]: $pos[2],
+              python3Packages: nix.thunk(() => nix.sel(python, "pkgs")),
+            })))))),
       ]),
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["caldav"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CalDAV (RFC4791) client library",
         homepage: "https://github.com/python-caldav/caldav",
         changelog: nix.thunk(() => nix.str`https://github.com/python-caldav/caldav/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/buildYarnDistOnly.nix", [[["yarnLock", 29, 5], ["hash", 30, 13]], [["pname", 21, 5], ["version", 22, 5], ["src", 23, 5], ["meta", 24, 5], ["sourceRoot", 26, 3], ["yarnOfflineCache", 28, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 37, 3], ["BUILD_VERSION", 43, 3], ["installPhase", 45, 3]]]);
 const formals$1 = { args: { pname: false, version: false, src: false, sourceDir: false, yarnLock: true, hash: false, extraFiles: true, meta: false, fetchYarnDeps: false, lib: false, nodejs_22: false, stdenvNoCC: false, yarnBuildHook: false, yarnConfigHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/buildYarnDistOnly.nix", [["yarnLock", 29, 5], ["hash", 30, 13]]);
-const pos$2 = nix.positions(here + "/buildYarnDistOnly.nix", [["pname", 21, 5], ["version", 22, 5], ["src", 23, 5], ["meta", 24, 5], ["sourceRoot", 26, 3], ["yarnOfflineCache", 28, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 37, 3], ["BUILD_VERSION", 43, 3], ["installPhase", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const yarnBuildHook = nix.arg($, "yarnBuildHook");
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: src,
       meta: meta,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/${sourceDir}`),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           yarnLock: nix.thunk(() => (nix.asBool(!nix.eq(yarnLock, null)) ? nix.force(yarnLock) : nix.str`${nix.sel(finalAttrs, "src")}/${sourceDir}/yarn.lock`)),
           hash: hash,
         })))),

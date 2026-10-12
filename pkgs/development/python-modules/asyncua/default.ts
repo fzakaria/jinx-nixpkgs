@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 56, 3], ["pythonImportsCheck", 62, 3], ["__darwinAllowLocalNetworking", 65, 3], ["disabledTests", 67, 3], ["disabledTestPaths", 87, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, aiofiles: false, aiosqlite: false, anyio: false, buildPythonPackage: false, cryptography: false, fetchFromGitHub: false, hatchling: false, pyopenssl: false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, "python-dateutil": false, pythonAtLeast: false, pytz: false, sortedcontainers: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 56, 3], ["pythonImportsCheck", 62, 3], ["__darwinAllowLocalNetworking", 65, 3], ["disabledTests", 67, 3], ["disabledTestPaths", 87, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const sortedcontainers = nix.arg($, "sortedcontainers");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "asyncua",
       version: "2.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FreeOpcUa",
           repo: "opcua-asyncio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +78,7 @@ export default nix.lambda((args) => (() => {
           "tests/test_subscriptions.py",
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OPC UA / IEC 62541 Client and Server for Python",
         homepage: "https://github.com/FreeOpcUa/opcua-asyncio",
         changelog: nix.thunk(() => nix.str`https://github.com/FreeOpcUa/opcua-asyncio/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

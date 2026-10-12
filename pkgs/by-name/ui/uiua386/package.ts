@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["platforms", 25, 5]], [["pname", 8, 3], ["src", 10, 18], ["version", 10, 22], ["installPhase", 12, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, uiua: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["platforms", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["src", 10, 18], ["version", 10, 22], ["installPhase", 12, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const uiua = nix.arg($, "uiua");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "uiua386",
       src: nix.thunk(() => nix.attr(uiua, "src")),
       version: nix.thunk(() => nix.attr(uiua, "version")),
       installPhase: "runHook preInstall\n\ninstall -Dm444 -t $out/share/fonts/truetype ./src/assets/Uiua386.ttf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Uiua font",
         homepage: "https://uiua.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

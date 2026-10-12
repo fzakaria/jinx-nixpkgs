@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5], ["teams", 43, 5], ["broken", 45, 5]], [["description", 70, 7], ["mainProgram", 71, 7]], [["pname", 49, 5], ["src", 50, 13], ["version", 50, 17], ["buildAndTestSubdir", 52, 5], ["cargoRoot", 53, 5], ["cargoHash", 55, 5], ["__structuredAttrs", 57, 5], ["nativeBuildInputs", 59, 5], ["buildInputs", 60, 5], ["postInstall", 65, 5], ["meta", 69, 5]], [["description", 123, 7], ["mainProgram", 124, 7]], [["pname", 84, 5], ["src", 85, 13], ["version", 85, 17], ["cargoHash", 86, 13], ["patches", 88, 5], ["__structuredAttrs", 93, 5], ["nativeBuildInputs", 95, 5], ["buildInputs", 100, 5], ["doCheck", 105, 5], ["checkNoDefaultFeatures", 110, 5], ["doInstallCheck", 112, 5], ["installCheckPhase", 113, 5], ["meta", 122, 5]], [["name", 129, 5], ["runtimeInputs", 131, 5], ["text", 137, 5]], [["frontend", 172, 11], ["widget", 173, 11], ["server", 174, 11], ["tools", 175, 11], ["docs", 176, 11], ["wasm", 177, 11], ["nodejs", 178, 11], ["python", 179, 11], ["wrapper", 180, 11]], [["src", 186, 9], ["cargoHash", 187, 9], ["updateScript", 189, 7], ["tests", 190, 7]], [["pname", 158, 3], ["version", 159, 11], ["paths", 160, 3], ["__structuredAttrs", 165, 3], ["strictDeps", 166, 3], ["passthru", 168, 3], ["meta", 194, 11]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, python3: false, python3Packages: false, bzip2: false, zstd: false, stdenv: false, coreutils: false, sqlite: false, writeShellApplication: false, symlinkJoin: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5], ["teams", 43, 5], ["broken", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 70, 7], ["mainProgram", 71, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 49, 5], ["src", 50, 13], ["version", 50, 17], ["buildAndTestSubdir", 52, 5], ["cargoRoot", 53, 5], ["cargoHash", 55, 5], ["__structuredAttrs", 57, 5], ["nativeBuildInputs", 59, 5], ["buildInputs", 60, 5], ["postInstall", 65, 5], ["meta", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 123, 7], ["mainProgram", 124, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 84, 5], ["src", 85, 13], ["version", 85, 17], ["cargoHash", 86, 13], ["patches", 88, 5], ["__structuredAttrs", 93, 5], ["nativeBuildInputs", 95, 5], ["buildInputs", 100, 5], ["doCheck", 105, 5], ["checkNoDefaultFeatures", 110, 5], ["doInstallCheck", 112, 5], ["installCheckPhase", 113, 5], ["meta", 122, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 129, 5], ["runtimeInputs", 131, 5], ["text", 137, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["frontend", 172, 11], ["widget", 173, 11], ["server", 174, 11], ["tools", 175, 11], ["docs", 176, 11], ["wasm", 177, 11], ["nodejs", 178, 11], ["python", 179, 11], ["wrapper", 180, 11]]);
-const pos$9 = nix.positions(here + "/package.nix", [["src", 186, 9], ["cargoHash", 187, 9], ["updateScript", 189, 7], ["tests", 190, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 158, 3], ["version", 159, 11], ["paths", 160, 3], ["__structuredAttrs", 165, 3], ["strictDeps", 166, 3], ["passthru", 168, 3], ["meta", 194, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "0.7.1-unstable-2026-04-29";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "ironcalc",
       repo: "ironcalc",
       rev: "8461ff71347ab19145cd7ad50ef829181ba765c2",
@@ -41,7 +32,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const cargoHash = "sha256-q5DnqhIYKUUqfJ4/TNHYF1QgTbH198QtgirQ+lP30wk=";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "Open source selfhosted spreadsheet engine",
     homepage: "https://github.com/ironcalc/IronCalc",
     license: nix.thunk(() => (() => {
@@ -63,7 +54,7 @@ export default nix.lambda((args) => (() => {
     broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")),
   }));
   const server = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ironcalc-server",
       src: src,
       version: version,
@@ -75,7 +66,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bzip2, zstd]),
       postInstall: "install -Dm644 webapp/app.ironcalc.com/server/init_db.sql $out/share/ironcalc/init_db.sql\n",
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "IronCalc server package",
         mainProgram: "ironcalc_server",
       })),
@@ -85,7 +76,7 @@ export default nix.lambda((args) => (() => {
   const wasm = nix.thunk(() => nix.attr(frontend_packages, "wasm"));
   const widget = nix.thunk(() => nix.attr(frontend_packages, "widget"));
   const tools = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ironcalc-tools",
       src: src,
       version: version,
@@ -99,13 +90,13 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n{ $out/bin/xlsx_2_icalc 2>&1 || true; } | grep -q \"Usage:\"\n\n$out/bin/xlsx_2_icalc xlsx/tests/docs/CHOOSE.xlsx test.ic\ntest -f test.ic\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "IronCalc helper tools",
         mainProgram: "xlsx_2_icalc",
       })),
     }))));
   const wrapper = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "ironcalc",
       runtimeInputs: nix.thunk(() => [coreutils, sqlite, server]),
       text: nix.thunk(() => nix.str`IRONCALC_DB_PATH="\${IRONCALC_DB_PATH:-ironcalc.sqlite}"
@@ -126,7 +117,7 @@ exec ironcalc_server "$@"
   const nodejs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./nodejs.nix"), nix.thunk(() => ({}))));
   const docs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./docs.nix"), nix.thunk(() => ({}))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "ironcalc",
       version: version,
       paths: nix.thunk(() => [tools, wrapper]),
@@ -134,7 +125,7 @@ exec ironcalc_server "$@"
       strictDeps: true,
       passthru: nix.thunk(() => (() => {
         const exports = nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           frontend: frontend,
           widget: widget,
           server: server,
@@ -146,7 +137,7 @@ exec ironcalc_server "$@"
           wrapper: wrapper,
         }));
         return nix.update({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           src: src,
           cargoHash: cargoHash,
           updateScript: nix.thunk(() => [nix.path(here, "./update.sh")]),

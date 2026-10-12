@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["package", 33, 37]], [["version", 33, 5]], [["tests", 32, 12]], [["description", 36, 5], ["longDescription", 37, 5], ["mainProgram", 44, 5], ["downloadPage", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["sourceProvenance", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["nativeBuildInputs", 17, 3], ["dontBuild", 18, 3], ["dontStrip", 19, 3], ["installPhase", 20, 3], ["passthru", 32, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre_headless: false, makeWrapper: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 33, 37]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 32, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 36, 5], ["longDescription", 37, 5], ["mainProgram", 44, 5], ["downloadPage", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["sourceProvenance", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["nativeBuildInputs", 17, 3], ["dontBuild", 18, 3], ["dontStrip", 19, 3], ["installPhase", 20, 3], ["passthru", 32, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "flyway",
       version: "13.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/flyway/flyway/releases/download/flyway-${nix.sel(finalAttrs, "version")}/flyway-commandline-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-uEZCZtG4YzTBcEPvG9T9YbALbQnNfU4HFeS6MAaD2kM=",
         })))),
@@ -42,17 +37,17 @@ makeWrapper "${jre_headless}/bin/java" $out/bin/flyway \\
   --add-flags "org.flywaydb.commandline.Main"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Evolve your Database Schema easily and reliably across all your instances",
         longDescription: "The Flyway command-line tool is a standalone Flyway distribution.\nIt is primarily meant for users who wish to migrate their database from the command-line\nwithout having to integrate Flyway into their applications nor having to install a build tool.\n\nThis package is only the Community Edition of the Flyway command-line tool.\n",
         mainProgram: "flyway",

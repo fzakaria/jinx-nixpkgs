@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["PKG_CONFIG_PURPLE_PLUGINDIR", 32, 5], ["PKG_CONFIG_PURPLE_DATADIR", 33, 5]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["env", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pidgin: false, glib: false, "json-glib": false, protobuf: false, protobufc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PKG_CONFIG_PURPLE_PLUGINDIR", 32, 5], ["PKG_CONFIG_PURPLE_DATADIR", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["env", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const protobufc = nix.arg($, "protobufc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "purple-googlechat",
       version: "unstable-2021-10-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "EionRobb",
           repo: "purple-googlechat",
           rev: "56ba7f79883eca67d37629d365776f6c0b40abdc",
@@ -32,12 +29,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [protobufc]),
       buildInputs: nix.thunk(() => [pidgin, glib, json_glib, protobuf]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_PURPLE_PLUGINDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/purple-2`),
         PKG_CONFIG_PURPLE_DATADIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/EionRobb/purple-googlechat",
         description: "Native Google Chat support for pidgin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

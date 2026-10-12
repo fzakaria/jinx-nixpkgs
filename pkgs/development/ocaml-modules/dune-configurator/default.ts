@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 14, 36]], [["description", 21, 5], ["maintainers", 22, 5], ["license", 23, 5]], [["pname", 11, 3], ["version", 12, 11], ["src", 14, 48], ["dontAddPrefix", 16, 3], ["propagatedBuildInputs", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, ocaml: false, dune: false, csexp: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 14, 36]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 21, 5], ["maintainers", 22, 5], ["license", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 11], ["src", 14, 48], ["dontAddPrefix", 16, 3], ["propagatedBuildInputs", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const csexp = nix.arg($, "csexp");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.13")) ? nix.sel(dune, "version") : "3.22.2"));
   return nix.app(buildDunePackage, nix.thunk(() => (() => {
-      const from = nix.thunk(() => nix.app(nix.sel(dune, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: version }))));
+      const from = nix.thunk(() => nix.app(nix.sel(dune, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], version: version }))));
       return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dune-configurator",
       version: version,
       src: nix.thunk(() => nix.attr(from, "src")),
       dontAddPrefix: true,
       propagatedBuildInputs: nix.thunk(() => [csexp]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Helper library for gathering system configuration",
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

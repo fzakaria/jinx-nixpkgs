@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["CGO_ENABLED", 16, 7]], [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["command", 78, 7], ["package", 79, 7], ["version", 80, 7]], [["version", 77, 11]], [["tests", 77, 5], ["updateScript", 82, 5]], [["changelog", 86, 5], ["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5]], [["pname", 13, 3], ["version", 14, 3], ["env", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["proxyVendor", 26, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 35, 3], ["ldflags", 40, 3], ["doCheck", 49, 3], ["checkFlags", 51, 3], ["postInstall", 64, 3], ["passthru", 76, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, lib: false, makeWrapper: false, "nix-update-script": false, steampipe: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["command", 78, 7], ["package", 79, 7], ["version", 80, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 77, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 77, 5], ["updateScript", 82, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 86, 5], ["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["env", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["proxyVendor", 26, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 35, 3], ["ldflags", 40, 3], ["doCheck", 49, 3], ["checkFlags", 51, 3], ["postInstall", 64, 3], ["passthru", 76, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const steampipe = nix.arg($, "steampipe");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "steampipe",
       version: "2.4.7",
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], CGO_ENABLED: 0n })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "turbot",
           repo: "steampipe",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,11 +53,11 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "wrapProgram $out/bin/steampipe \\\n  --set-default STEAMPIPE_UPDATE_CHECK false \\\n  --set-default STEAMPIPE_TELEMETRY none\n\nINSTALL_DIR=$(mktemp -d)\ninstallShellCompletion --cmd steampipe \\\n  --bash <($out/bin/steampipe --install-dir $INSTALL_DIR completion bash) \\\n  --fish <($out/bin/steampipe --install-dir $INSTALL_DIR completion fish) \\\n  --zsh <($out/bin/steampipe --install-dir $INSTALL_DIR completion zsh)\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), steampipe)} --version`),
               package: steampipe,
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,7 +66,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/turbot/steampipe/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Dynamically query your cloud, code, logs & more with SQL",
         homepage: "https://steampipe.io/",

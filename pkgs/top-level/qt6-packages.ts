@@ -2,15 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qt6-packages.nix", [[["enableQt", 57, 50]], [["cmake-extras", 82, 35]], [["cmake-extras", 86, 35]], [["cmake-extras", 107, 35]], [["lcms", 141, 9], ["qt6Support", 142, 9], ["suffix", 143, 9]], [["accounts-qml-module", 45, 7], ["accounts-qt", 46, 7], ["appstream-qt", 47, 7], ["drumstick", 49, 7], ["fcitx5-chinese-addons", 51, 7], ["fcitx5-configtool", 53, 7], ["fcitx5-qt", 55, 7], ["fcitx5-skk-qt", 57, 7], ["fcitx5-unikey", 59, 7], ["fcitx5-with-addons", 61, 7], ["kdsoap", 63, 7], ["kcolorpicker", 65, 7], ["kimageannotator", 66, 7], ["futuresql", 68, 7], ["kquickimageedit", 69, 7], ["ktactilefeedback", 71, 7], ["libiodata", 73, 7], ["libqaccessibilityclient", 75, 7], ["libqglviewer", 77, 7], ["libqtpas", 79, 7], ["libqtdbusmock", 81, 7], ["libqtdbustest", 85, 7], ["libquotient", 89, 7], ["mlt", 90, 7], ["mapbox-gl-qml", 92, 7], ["maplibre-native-qt", 94, 7], ["pyotherside", 96, 7], ["qca", 98, 7], ["qcoro", 99, 7], ["qcustomplot", 100, 7], ["qgpgme", 101, 7], ["qhotkey", 102, 7], ["qmlbox2d", 103, 7], ["packagekit-qt", 104, 7], ["qmenumodel", 106, 7], ["qodeassist-plugin", 110, 7], ["qt6ct", 112, 7], ["qt-color-widgets", 114, 7], ["qtforkawesome", 116, 7], ["qtkeychain", 118, 7], ["qtpbfimageplugin", 120, 7], ["qtstyleplugin-kvantum", 122, 7], ["qtutilities", 124, 7], ["qt-jdenticon", 126, 7], ["quazip", 128, 7], ["qscintilla", 130, 7], ["qtspell", 132, 7], ["qwt", 134, 7], ["qxlsx", 136, 7], ["qzxing", 138, 7], ["poppler", 140, 7], ["sailfish-access-control-plugin", 146, 7], ["sddm-unwrapped", 150, 7], ["sddm", 151, 7], ["sierra-breeze-enhanced", 153, 7], ["signond", 157, 7], ["timed", 159, 7], ["wayqt", 161, 7]], [["qt6gtk2", 164, 7], ["qwlroots", 165, 7], ["waylib", 169, 7]], [["otherSplices", 27, 3], ["f", 28, 3]]]);
 const formals$1 = { args: { lib: false, config: false, __splicedPackages: false, "makeScopeWithSplicing'": false, generateSplicesForMkScope: false, stdenv: false, pkgsHostTarget: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qt6-packages.nix", [["enableQt", 57, 50]]);
-const pos$2 = nix.positions(here + "/qt6-packages.nix", [["cmake-extras", 82, 35]]);
-const pos$3 = nix.positions(here + "/qt6-packages.nix", [["cmake-extras", 86, 35]]);
-const pos$4 = nix.positions(here + "/qt6-packages.nix", [["cmake-extras", 107, 35]]);
-const pos$5 = nix.positions(here + "/qt6-packages.nix", [["lcms", 141, 9], ["qt6Support", 142, 9], ["suffix", 143, 9]]);
-const pos$6 = nix.positions(here + "/qt6-packages.nix", [["accounts-qml-module", 45, 7], ["accounts-qt", 46, 7], ["appstream-qt", 47, 7], ["drumstick", 49, 7], ["fcitx5-chinese-addons", 51, 7], ["fcitx5-configtool", 53, 7], ["fcitx5-qt", 55, 7], ["fcitx5-skk-qt", 57, 7], ["fcitx5-unikey", 59, 7], ["fcitx5-with-addons", 61, 7], ["kdsoap", 63, 7], ["kcolorpicker", 65, 7], ["kimageannotator", 66, 7], ["futuresql", 68, 7], ["kquickimageedit", 69, 7], ["ktactilefeedback", 71, 7], ["libiodata", 73, 7], ["libqaccessibilityclient", 75, 7], ["libqglviewer", 77, 7], ["libqtpas", 79, 7], ["libqtdbusmock", 81, 7], ["libqtdbustest", 85, 7], ["libquotient", 89, 7], ["mlt", 90, 7], ["mapbox-gl-qml", 92, 7], ["maplibre-native-qt", 94, 7], ["pyotherside", 96, 7], ["qca", 98, 7], ["qcoro", 99, 7], ["qcustomplot", 100, 7], ["qgpgme", 101, 7], ["qhotkey", 102, 7], ["qmlbox2d", 103, 7], ["packagekit-qt", 104, 7], ["qmenumodel", 106, 7], ["qodeassist-plugin", 110, 7], ["qt6ct", 112, 7], ["qt-color-widgets", 114, 7], ["qtforkawesome", 116, 7], ["qtkeychain", 118, 7], ["qtpbfimageplugin", 120, 7], ["qtstyleplugin-kvantum", 122, 7], ["qtutilities", 124, 7], ["qt-jdenticon", 126, 7], ["quazip", 128, 7], ["qscintilla", 130, 7], ["qtspell", 132, 7], ["qwt", 134, 7], ["qxlsx", 136, 7], ["qzxing", 138, 7], ["poppler", 140, 7], ["sailfish-access-control-plugin", 146, 7], ["sddm-unwrapped", 150, 7], ["sddm", 151, 7], ["sierra-breeze-enhanced", 153, 7], ["signond", 157, 7], ["timed", 159, 7], ["wayqt", 161, 7]]);
-const pos$7 = nix.positions(here + "/qt6-packages.nix", [["qt6gtk2", 164, 7], ["qwlroots", 165, 7], ["waylib", 169, 7]]);
-const pos$8 = nix.positions(here + "/qt6-packages.nix", [["otherSplices", 27, 3], ["f", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pkgs = __splicedPackages;
   const qt6 = nix.thunk(() => nix.sel(pkgsHostTarget, "qt6"));
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "qt6Packages")),
       f: (self) => (() => {
         const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
         const noExtraAttrs = (set) => nix.app(nix.sel(lib, "attrsets", "removeAttrs"), set, nix.thunk(() => ["extend", "override", "overrideScope", "overrideDerivation"]));
         return nix.update(nix.app(noExtraAttrs, qt6), nix.update({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "accounts-qml-module": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/accounts-qml-module"), nix.thunk(() => ({})))),
           "accounts-qt": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/accounts-qt"), nix.thunk(() => ({})))),
           "appstream-qt": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/appstream/qt.nix"), nix.thunk(() => ({})))),
@@ -39,7 +32,7 @@ export default nix.lambda((args) => (() => {
           "fcitx5-chinese-addons": nix.thunk(() => nix.app(callPackage, nix.path(here, "../tools/inputmethods/fcitx5/fcitx5-chinese-addons.nix"), nix.thunk(() => ({})))),
           "fcitx5-configtool": nix.thunk(() => nix.app(nix.sel(kdePackages, "callPackage"), nix.path(here, "../tools/inputmethods/fcitx5/fcitx5-configtool.nix"), nix.thunk(() => ({})))),
           "fcitx5-qt": nix.thunk(() => nix.app(callPackage, nix.path(here, "../tools/inputmethods/fcitx5/fcitx5-qt.nix"), nix.thunk(() => ({})))),
-          "fcitx5-skk-qt": nix.thunk(() => nix.app(nix.sel(pkgs, "fcitx5-skk", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableQt: true })))),
+          "fcitx5-skk-qt": nix.thunk(() => nix.app(nix.sel(pkgs, "fcitx5-skk", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableQt: true })))),
           "fcitx5-unikey": nix.thunk(() => nix.app(callPackage, nix.path(here, "../tools/inputmethods/fcitx5/fcitx5-unikey.nix"), nix.thunk(() => ({})))),
           "fcitx5-with-addons": nix.thunk(() => nix.app(callPackage, nix.path(here, "../tools/inputmethods/fcitx5/with-addons.nix"), nix.thunk(() => ({})))),
           kdsoap: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/kdsoap"), nix.thunk(() => ({})))),
@@ -55,14 +48,14 @@ export default nix.lambda((args) => (() => {
           libqtdbusmock: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/libqtdbusmock"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(pkgs, "lomiri-qt6"));
               return {
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               "cmake-extras": nix.thunk(() => nix.attr(from, "cmake-extras")),
             };
             })()))),
           libqtdbustest: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/libqtdbustest"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(pkgs, "lomiri-qt6"));
               return {
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               "cmake-extras": nix.thunk(() => nix.attr(from, "cmake-extras")),
             };
             })()))),
@@ -81,7 +74,7 @@ export default nix.lambda((args) => (() => {
           qmenumodel: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/qmenumodel"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(pkgs, "lomiri-qt6"));
               return {
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               "cmake-extras": nix.thunk(() => nix.attr(from, "cmake-extras")),
             };
             })()))),
@@ -101,7 +94,7 @@ export default nix.lambda((args) => (() => {
           qxlsx: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/qxlsx"), nix.thunk(() => ({})))),
           qzxing: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/qzxing"), nix.thunk(() => ({})))),
           poppler: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/poppler"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               lcms: nix.thunk(() => nix.sel(pkgs, "lcms2")),
               qt6Support: true,
               suffix: "qt6",
@@ -114,7 +107,7 @@ export default nix.lambda((args) => (() => {
           timed: nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/system/timed"), nix.thunk(() => ({})))),
           wayqt: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/wayqt"), nix.thunk(() => ({})))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             qt6gtk2: nix.thunk(() => nix.builtins.throw("'qt6Packages.qt6gtk2' has been removed, as it relies on gtk2 libraries")),
             qwlroots: nix.thunk(() => nix.builtins.throw("'qt6Packages.qwlroots' has been removed because it has been merged into treeland upstream.\nThe upstream no longer provides it as a standalone development library.\n")),
             waylib: nix.thunk(() => nix.builtins.throw("'qt6Packages.waylib' has been removed because it has been merged into treeland upstream.\nThe upstream no longer provides it as a standalone development library.\n")),

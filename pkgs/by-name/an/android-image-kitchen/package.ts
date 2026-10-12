@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 87, 5], ["homepage", 88, 5], ["license", 90, 5], ["maintainers", 91, 5], ["teams", 92, 5], ["mainProgram", 93, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 37, 3], ["postPatch", 39, 3], ["installPhase", 46, 3], ["postInstall", 63, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, blobtools: false, dhtbsign: false, elftool: false, futility: false, "loki-tool": false, lz4: false, mboot: false, "mkbootimg-osm0sis": false, mkmtkhdr: false, "pxa-mkbootimg": false, rkflashtool: false, "sony-dump": false, ubootTools: false, unpackelf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 90, 5], ["maintainers", 91, 5], ["teams", 92, 5], ["mainProgram", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 37, 3], ["postPatch", 39, 3], ["installPhase", 46, 3], ["postInstall", 63, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const ubootTools = nix.arg($, "ubootTools");
   const unpackelf = nix.arg($, "unpackelf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "android-image-kitchen",
       version: "0-unstable-2025-10-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SebaUbuntu",
           repo: "AIK-Linux-mirror",
           rev: "1c1411bd685bbc5fb4112484af2ad07cb6807f30",
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unpack & repack Android boot files",
         homepage: "https://github.com/SebaUbuntu/AIK-Linux-mirror",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

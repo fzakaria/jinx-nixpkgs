@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 7], ["hash", 14, 7]], [["url", 17, 7], ["hash", 18, 7]], [["url", 21, 7], ["hash", 22, 7]], [["url", 25, 7], ["hash", 26, 7]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 7, 3], ["version", 8, 3], ["date", 9, 3], ["srcs", 11, 3], ["dontUnpack", 30, 3], ["installPhase", 32, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 17, 7], ["hash", 18, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["date", 9, 3], ["srcs", 11, 3], ["dontUnpack", 30, 3], ["installPhase", 32, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,28 +11,28 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "fcitx5-pinyin-zhwiki",
       version: "0.3.0",
       date: "20251223",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases/download/${nix.sel(finalAttrs, "version")}/web-slang-${nix.sel(finalAttrs, "date")}.dict`),
             hash: "sha256-J3sDjcty3IWrnQWIn4dEPL56/Qipl/hJMu02baP2094=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases/download/${nix.sel(finalAttrs, "version")}/zhwiki-${nix.sel(finalAttrs, "date")}.dict`),
             hash: "sha256-1/KKfeRhor1LGYBrOHqLvxfK9Byv3AplzqVX3lRO50Y=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases/download/${nix.sel(finalAttrs, "version")}/zhwikisource-${nix.sel(finalAttrs, "date")}.dict`),
             hash: "sha256-UXJ2uMAI6DK/hCHNuZEydPYMt0u/PfIv6RnCC+G2UPI=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: nix.thunk(() => nix.str`https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases/download/${nix.sel(finalAttrs, "version")}/zhwiktionary-${nix.sel(finalAttrs, "date")}.dict`),
             hash: "sha256-bG4LPuJDdNgB1N6SNQy0cINRBWaQEMdNONSaptjkFHk=",
           })))),
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "runHook preInstall\n\nfor dict in $srcs; do\n  install -D $dict $out/share/fcitx5/pinyin/dictionaries/$(basename $(stripHash $dict) | sed 's/-[0-9]\\{8\\}//')\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Fcitx 5 pinyin dictionary from zh.wikipedia.org",
         homepage: "https://github.com/felixonmars/fcitx5-pinyin-zhwiki",
         license: nix.thunk(() => (() => {

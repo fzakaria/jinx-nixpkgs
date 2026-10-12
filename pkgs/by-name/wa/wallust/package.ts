@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["LIBGIT2_NO_VENDOR", 25, 7]], [["updateScript", 48, 12]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["downloadPage", 58, 5], ["mainProgram", 59, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["env", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["postInstall", 35, 3], ["postFixup", 43, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromCodeberg: false, rustPlatform: false, "nix-update-script": false, imagemagick: false, makeWrapper: false, installShellFiles: false, libgit2: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBGIT2_NO_VENDOR", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["downloadPage", 58, 5], ["mainProgram", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["env", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["postInstall", 35, 3], ["postFixup", 43, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const libgit2 = nix.arg($, "libgit2");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "wallust",
       version: "3.5.2",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "explosion-mental",
           repo: "wallust",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-ZgkeM9gMw9TB5NR+xyxBepKHO16bLVVFJN4IY39gllg=",
         })))),
       cargoHash: "sha256-XrIi+8p2OZ7O6MTgqKbgN/9gLUbvB7uN9Yr2X1BYHIU=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBGIT2_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [libgit2]),
       postInstall: "installManPage man/wallust*\ninstallShellCompletion --cmd wallust \\\n  --bash completions/wallust.bash \\\n  --zsh completions/_wallust \\\n  --fish completions/wallust.fish\n",
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [imagemagick]))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Better pywal",
         homepage: "https://codeberg.org/explosion-mental/wallust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

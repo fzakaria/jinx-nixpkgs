@@ -2,13 +2,13 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["beta", 8, 5]]]);
 const formals$1 = { args: { lib: false, cocoapods: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["beta", 8, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const cocoapods = nix.arg($, "cocoapods");
-  return nix.app(nix.sel(lib, "lowPrio"), nix.thunk(() => nix.app(nix.sel(cocoapods, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, beta: true })))));
+  return nix.app(nix.sel(lib, "lowPrio"), nix.thunk(() => nix.app(nix.sel(cocoapods, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], beta: true })))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

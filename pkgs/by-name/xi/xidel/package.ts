@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]], [["NIX_LDFLAGS", 55, 7]], [["description", 100, 5], ["mainProgram", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["platforms", 104, 5], ["maintainers", 105, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 53, 3], ["env", 55, 3], ["patchPhase", 57, 3], ["preBuild", 69, 3], ["buildPhase", 82, 3], ["installPhase", 88, 3], ["checkPhase", 95, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fpc: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 55, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 100, 5], ["mainProgram", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["platforms", 104, 5], ["maintainers", 105, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 53, 3], ["env", 55, 3], ["patchPhase", 57, 3], ["preBuild", 69, 3], ["buildPhase", 82, 3], ["installPhase", 88, 3], ["checkPhase", 95, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,46 +13,46 @@ export default nix.lambda((args) => (() => {
   const fpc = nix.arg($, "fpc");
   const openssl = nix.arg($, "openssl");
   const flreSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "benibela",
       repo: "flre",
       rev: "3e926d45d4352f1b7c7cd411ccd625df117dad5c",
       hash: "sha256-fs7CIjd3fwD/SORYh5pmJxIdrr8F9e36TNmnKUbUxP0=",
     }))));
   const synapseSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "benibela",
       repo: "ararat-synapse",
       rev: "7a77db926de66809080bada68b54172da7f84c0e",
       hash: "sha256-bVLQ0ohGJYtuP88Krxy9a7RnHHrW0OWw8H/uxa3PerU=",
     }))));
   const rcmdlineSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "benibela",
       repo: "rcmdline",
       rev: "ea02b770c4568717dd7b3b72da191a8bbcb4c751",
       hash: "sha256-6YtvAf0joRvtCKbUAaLwuwABw1GEIzammFLhboq9aG0=",
     }))));
   const internettoolsSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "benibela",
       repo: "internettools",
       rev: "dd972caaa4415468fa679ea7262976ead3fd3e38",
       hash: "sha256-09sADxPiE6ky1EX7dTXRBYVT3IarUcLYf5knzi7+CHU=",
     }))));
   const pasdblstrutilsSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       owner: "BeRo1985",
       repo: "pasdblstrutils",
       rev: "1696f0a2b822fef26c8992f96620f1be129cfa99",
       hash: "sha256-x0AjOTa1g7gJOR2iBO76yBt1kzcRNujHRUsq5QOlfP0=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "xidel",
       version: "unstable-2022-11-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           owner: "benibela",
           repo: "xidel",
           rev: "6d5655c1d73b88ddeb32d2450a35ee36e4762bb8",
@@ -69,7 +61,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [fpc]),
       buildInputs: nix.thunk(() => [openssl]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lcrypto"]))),
       })),
       patchPhase: "patchShebangs \\\n  build.sh \\\n  tests/test.sh \\\n  tests/tests-file-module.sh \\\n  tests/tests.sh \\\n  tests/downloadTest.sh \\\n  tests/downloadTests.sh \\\n  tests/zorbajsoniq.sh \\\n  tests/zorbajsoniq/download.sh\n",
@@ -88,7 +80,7 @@ substituteInPlace import/synapse/ssl_openssl{,11}_lib.pas \\
       installPhase: "mkdir -p \"$out/bin\" \"$out/share/man/man1\"\ncp meta/xidel.1 \"$out/share/man/man1/\"\ncp xidel \"$out/bin/\"\n",
       checkPhase: "./tests/tests.sh\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Command line tool to download and extract data from HTML/XML pages as well as JSON APIs",
         mainProgram: "xidel",
         homepage: "https://www.videlibri.de/xidel.html",

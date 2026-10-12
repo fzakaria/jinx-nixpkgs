@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]], [["homepage", 29, 5], ["description", 30, 5], ["mainProgram", 31, 5], ["maintainers", 32, 5], ["license", 33, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 18, 3], ["nativeBuildInputs", 20, 3], ["nativeCheckInputs", 21, 3], ["postInstall", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, makeBinaryWrapper: false, rustfmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["mainProgram", 31, 5], ["maintainers", 32, 5], ["license", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 18, 3], ["nativeBuildInputs", 20, 3], ["nativeCheckInputs", 21, 3], ["postInstall", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const rustfmt = nix.arg($, "rustfmt");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zbus_xmlgen",
       version: "5.4.1",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-jfK+p5+DoxeGzzti984OZx527xiETtKuWQfLBnXrIAk=",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
     --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [rustfmt]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://crates.io/crates/zbus_xmlgen",
         description: "D-Bus XML interface Rust code generator",
         mainProgram: "zbus-xmlgen",

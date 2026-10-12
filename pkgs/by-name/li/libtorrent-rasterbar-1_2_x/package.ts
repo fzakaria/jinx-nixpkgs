@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enablePython", 22, 5], ["python", 23, 5], ["enableStatic", 24, 5], ["enableShared", 25, 5], ["enableSingleThreaded", 26, 5], ["enableMultiThreaded", 27, 5], ["taggedLayout", 30, 5]], [["static", 34, 5]], [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]], [["homepage", 95, 5], ["description", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["broken", 99, 5], ["platforms", 100, 5]], [["pname", 39, 3], ["version", 40, 11], ["src", 42, 3], ["enableParallelBuilding", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 58, 3], ["preAutoreconf", 67, 3], ["preConfigure", 72, 3], ["postInstall", 76, 3], ["outputs", 81, 3], ["configureFlags", 87, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, autoreconfHook: false, zlib: false, boost186: false, openssl: false, python311: false, libiconv: false, ncurses: false, "boost-build": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enablePython", 22, 5], ["python", 23, 5], ["enableStatic", 24, 5], ["enableShared", 25, 5], ["enableSingleThreaded", 26, 5], ["enableMultiThreaded", 27, 5], ["taggedLayout", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["static", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["description", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["broken", 99, 5], ["platforms", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 11], ["src", 42, 3], ["enableParallelBuilding", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 58, 3], ["preAutoreconf", 67, 3], ["preConfigure", 72, 3], ["postInstall", 76, 3], ["outputs", 81, 3], ["configureFlags", 87, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const boost_build = nix.arg($, "boost-build");
   const version = "1.2.19";
   const boostPython = nix.thunk(() => nix.app(nix.sel(boost186, "override"), (_) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       enablePython: true,
       python: python311,
       enableStatic: true,
@@ -34,13 +30,13 @@ export default nix.lambda((args) => (() => {
       enableMultiThreaded: true,
       taggedLayout: false,
     })));
-  const opensslStatic = nix.thunk(() => nix.app(nix.sel(openssl, "override"), (_) => ({ [nix.POS]: pos$2, static: true })));
+  const opensslStatic = nix.thunk(() => nix.app(nix.sel(openssl, "override"), (_) => ({ [nix.POS]: $pos[1], static: true })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libtorrent-rasterbar",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "arvidn",
           repo: "libtorrent",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -67,7 +63,7 @@ moveToOutput "lib/${nix.sel(python311, "libPrefix")}" "$python"
         nix.thunk(() => nix.str`--with-boost-libdir=${nix.sel(boostPython, "out")}/lib`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://libtorrent.org/",
         description: "C++ BitTorrent implementation focusing on efficiency and scalability",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

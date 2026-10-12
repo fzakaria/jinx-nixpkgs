@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["postInstall", 45, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 55, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, curl: false, fetchFromGitLab: false, flac: false, "ffmpeg-headless": false, lame: false, pulseaudio: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["postInstall", 45, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 55, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pulseaudio = nix.arg($, "pulseaudio");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pa-dlna",
       version: "1.2.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xdegaye",
           repo: "pa-dlna",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +55,7 @@ substituteInPlace systemd/pa-dlna.service \\
       disabledTests: nix.thunk(() => ["test_no_parec"]),
       pythonImportsCheck: nix.thunk(() => ["pa_dlna"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "UPnP control point forwarding PulseAudio streams to DLNA devices",
         homepage: "https://gitlab.com/xdegaye/pa-dlna",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

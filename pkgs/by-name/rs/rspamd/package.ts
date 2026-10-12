@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["tests", 104, 12]], [["changelog", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["description", 110, 5], ["maintainers", 111, 5], ["mainProgram", 116, 5], ["platforms", 117, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 65, 3], ["cmakeFlags", 86, 3], ["__structuredAttrs", 102, 3], ["passthru", 104, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, nixosTests: false, cmake: false, glib: false, perl: false, "pkg-config": false, blas: false, fmt: false, icu: false, jemalloc: false, lapack: false, libarchive: false, libsodium: false, lua: false, luajit: false, openssl: false, pcre2: false, ragel: false, sqlite: false, vectorscan: false, xxhash: false, zstd: false, withBlas: true, withLuaJIT: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 104, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["description", 110, 5], ["maintainers", 111, 5], ["mainProgram", 116, 5], ["platforms", 117, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 65, 3], ["cmakeFlags", 86, 3], ["__structuredAttrs", 102, 3], ["passthru", 104, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const cmakeFeature = nix.thunk(() => nix.attr(lib, "cmakeFeature"));
   const cmakeBool$ = (feature) => (condition) => nix.app(cmakeFeature, feature, nix.thunk(() => (nix.asBool(condition) ? "ON" : "OFF")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rspamd",
       version: "4.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rspamd",
           repo: "rspamd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -81,9 +78,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(cmakeBool$, "SYSTEM_ZSTD", true)),
       ]),
       __structuredAttrs: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "rspamd")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], tests: nix.thunk(() => nix.sel(nixosTests, "rspamd")) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/rspamd/rspamd/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://rspamd.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

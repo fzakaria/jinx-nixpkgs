@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["name", 73, 7], ["exec", 74, 7], ["icon", 75, 7], ["comment", 76, 7], ["desktopName", 77, 7], ["genericName", 78, 7], ["categories", 79, 7], ["mimeTypes", 80, 7], ["startupNotify", 81, 7], ["startupWMClass", 82, 7]], [["pname", 59, 5], ["version", 60, 5], ["src", 61, 5], ["passthru", 62, 5], ["meta", 63, 5], ["nativeBuildInputs", 66, 3], ["desktopItems", 71, 3], ["installPhase", 86, 3], ["postFixup", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, copyDesktopItems: false, makeWrapper: false, "alsa-lib": false, "at-spi2-atk": false, "at-spi2-core": false, atk: false, cairo: false, cups: false, curlWithGnuTls: false, dbus: false, expat: false, fontconfig: false, freetype: false, "gdk-pixbuf": false, glib: false, gtk3: false, libx11: false, libxcomposite: false, libxcursor: false, libxdamage: false, libxext: false, libxfixes: false, libxi: false, libxrandr: false, libxrender: false, libxscrnsaver: false, libxtst: false, libdrm: false, libgbm: false, libGL: false, libsecret: false, libuuid: false, libxkbcommon: false, nspr: false, nss: false, pango: false, udev: false, libxshmfence: false, libxcb: false, bintools: false, makeDesktopItem: false, openssl: false, pname: false, version: false, src: false, passthru: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["name", 73, 7], ["exec", 74, 7], ["icon", 75, 7], ["comment", 76, 7], ["desktopName", 77, 7], ["genericName", 78, 7], ["categories", 79, 7], ["mimeTypes", 80, 7], ["startupNotify", 81, 7], ["startupWMClass", 82, 7]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["pname", 59, 5], ["version", 60, 5], ["src", 61, 5], ["passthru", 62, 5], ["meta", 63, 5], ["nativeBuildInputs", 66, 3], ["desktopItems", 71, 3], ["installPhase", 86, 3], ["postFixup", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,7 +57,7 @@ export default nix.lambda((args) => (() => {
   const passthru = nix.arg($, "passthru");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: src,
@@ -67,7 +66,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "postman",
             exec: "postman %U",
             icon: "postman",

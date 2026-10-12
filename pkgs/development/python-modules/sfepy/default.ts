@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["homepage", 115, 5], ["description", 116, 5], ["license", 117, 5], ["maintainers", 118, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 67, 3], ["build-system", 71, 3], ["dontUseCmakeConfigure", 80, 3], ["dependencies", 82, 3], ["pythonRelaxDeps", 93, 3], ["nativeCheckInputs", 97, 3], ["checkPhase", 102, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, writableTmpDirAsHomeHook: false, cmake: false, cython_0: false, ninja: false, "oldest-supported-numpy": false, setuptools: false, "scikit-build": false, matplotlib: false, meshio: false, numpy: false, pyparsing: false, python: false, pyvista: false, scipy: false, sympy: false, tables: false, pytest: false, openssh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 115, 5], ["description", 116, 5], ["license", 117, 5], ["maintainers", 118, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 67, 3], ["build-system", 71, 3], ["dontUseCmakeConfigure", 80, 3], ["dependencies", 82, 3], ["pythonRelaxDeps", 93, 3], ["nativeCheckInputs", 97, 3], ["checkPhase", 102, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "2025.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sfepy",
           repo: "sfepy",
           tag: nix.thunk(() => nix.str`release_${version}`),
@@ -59,7 +57,7 @@ ${nix.sel(python, "interpreter")} -c "import sfepy; sfepy.test()"
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://sfepy.org/",
         description: "Simple Finite Elements in Python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -69,7 +67,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["updateScript", 36, 5]], [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["cargoHash", 26, 3], ["dontCargoInstall", 28, 3], ["installFlags", 30, 3], ["passthru", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, stdenv: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["cargoHash", 26, 3], ["dontCargoInstall", 28, 3], ["installFlags", 30, 3], ["passthru", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bankstown-lv2",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chadmed",
           repo: "bankstown",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
       dontCargoInstall: true,
       installFlags: nix.thunk(() => ["DESTDIR=$(out)", "LIBDIR=lib"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/chadmed/bankstown",
         description: "Lightweight psychoacoustic bass enhancement plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

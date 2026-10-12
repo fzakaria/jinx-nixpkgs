@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["pname", 31, 26], ["version", 31, 32], ["url", 32, 5], ["extraRegex", 33, 5]], [["updateScript", 30, 12]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["mainProgram", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["broken", 43, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["enableParallelBuilding", 28, 3], ["passthru", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, SDL2_ttf: false, directoryListingUpdater: false, fetchurl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 31, 26], ["version", 31, 32], ["url", 32, 5], ["extraRegex", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 30, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["mainProgram", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["broken", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["enableParallelBuilding", 28, 3], ["passthru", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lpairs2",
       version: "2.3.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/lgames/lpairs2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-y4eRLWhfI4XMBtGCqdM/l69pftGGIbVjVEkz/v5ytZI=",
         })))),
       buildInputs: nix.thunk(() => [SDL2, SDL2_image, SDL2_mixer, SDL2_ttf]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             url: "https://lgames.sourceforge.io/LPairs/",
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://lgames.sourceforge.net/LPairs/",
         description: "Matching the pairs - a typical Memory Game",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

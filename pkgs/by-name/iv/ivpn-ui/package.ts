@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["name", 72, 7], ["type", 73, 7], ["desktopName", 74, 7], ["genericName", 75, 7], ["comment", 76, 7], ["icon", 77, 7], ["exec", 78, 7], ["categories", 79, 7], ["startupNotify", 80, 7]], [["updateScript", 84, 12]], [["description", 87, 5], ["mainProgram", 88, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["npmDepsHash", 25, 3], ["nativeBuildInputs", 27, 3], ["postPatch", 36, 3], ["postBuild", 41, 3], ["installPhase", 53, 3], ["desktopItems", 70, 3], ["passthru", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, electron_42: false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false, makeWrapper: false, "ivpn-service": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 72, 7], ["type", 73, 7], ["desktopName", 74, 7], ["genericName", 75, 7], ["comment", 76, 7], ["icon", 77, 7], ["exec", 78, 7], ["categories", 79, 7], ["startupNotify", 80, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 84, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 87, 5], ["mainProgram", 88, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["npmDepsHash", 25, 3], ["nativeBuildInputs", 27, 3], ["postPatch", 36, 3], ["postBuild", 41, 3], ["installPhase", 53, 3], ["desktopItems", 70, 3], ["passthru", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const ivpn_service = nix.arg($, "ivpn-service");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ivpn-ui",
       version: "3.15.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ivpn",
           repo: "desktop-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +58,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ivpn-ui",
             type: "Application",
             desktopName: "IVPN",
@@ -75,11 +71,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "UI interface for IVPN",
         mainProgram: "ivpn-ui",
         homepage: "https://www.ivpn.net",

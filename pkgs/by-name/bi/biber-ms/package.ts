@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 7], ["repo", 15, 7], ["rev", 16, 7], ["hash", 17, 7]], [["description", 90, 5], ["license", 91, 5], ["platforms", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5]], [["pname", 23, 25], ["version", 23, 31], ["src", 25, 3], ["buildInputs", 30, 3], ["preConfigure", 81, 3], ["postInstall", 85, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perlPackages: false, texlive: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 7], ["repo", 15, 7], ["rev", 16, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 90, 5], ["license", 91, 5], ["platforms", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 25], ["version", 23, 31], ["src", 25, 3], ["buildInputs", 30, 3], ["preConfigure", 81, 3], ["postInstall", 85, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const texlive = nix.arg($, "texlive");
   const biberSource = nix.thunk(() => nix.sel(texlive, "pkgs", "biber-ms", "texsource"));
   const multiscriptBltxml = nix.thunk(() => nix.add(nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "plk",
       repo: "biber",
       rev: "e8d056433063add7800f24589de76f89c4b64c20",
       hash: "sha256-QnN6Iyw6iOjfTX7DLVptsfAO/QNn9vOIk5IZlI15EvQ=",
     }))), "/t/tdata/multiscript.bltxml"));
   return nix.app(nix.sel(perlPackages, "buildPerlModule"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.attr(biberSource, "pname")),
       version: nix.thunk(() => nix.attr(biberSource, "version")),
       src: nix.thunk(() => nix.str`${biberSource}/source/bibtex/biber-ms/biblatex-biber-ms.tar.gz`),
@@ -81,7 +79,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "mv \"$out\"/bin/biber{,-ms}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Backend for BibLaTeX (multiscript version)",
         license: nix.thunk(() => nix.sel(biberSource, "meta", "license")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

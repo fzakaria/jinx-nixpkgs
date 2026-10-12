@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 7], ["repo", 37, 7], ["tag", 38, 7], ["hash", 39, 7]], [["package", 119, 9], ["command", 120, 9]], [["version", 118, 13]], [["czkawka", 123, 9]], [["tests", 118, 7], ["wrapper", 122, 7]], [["homepage", 128, 7], ["description", 129, 7], ["changelog", 130, 7], ["license", 131, 7], ["mainProgram", 132, 7], ["maintainers", 133, 7]], [["pname", 32, 5], ["version", 33, 5], ["src", 35, 5], ["cargoHash", 42, 5], ["nativeBuildInputs", 44, 5], ["buildInputs", 53, 5], ["nativeCheckInputs", 68, 5], ["doCheck", 70, 5], ["checkPhase", 72, 5], ["postInstall", 79, 5], ["dontWrapGApps", 91, 5], ["postFixup", 93, 5], ["nativeInstallCheckInputs", 111, 5], ["versionCheckProgram", 114, 5], ["doInstallCheck", 115, 5], ["passthru", 117, 5], ["meta", 127, 5]]]);
 const formals$1 = { args: { lib: false, atk: false, cairo: false, callPackage: false, fetchFromGitHub: false, fontconfig: false, "gdk-pixbuf": false, glib: false, "gobject-introspection": false, gtk4: false, libglvnd: false, libx11: false, libxcursor: false, libxi: false, libxkbcommon: false, libxrandr: false, lld: false, pango: false, "pkg-config": false, rustPlatform: false, stdenv: false, testers: false, wayland: false, wrapGAppsHook4: false, "xvfb-run": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 7], ["repo", 37, 7], ["tag", 38, 7], ["hash", 39, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 119, 9], ["command", 120, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 118, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["czkawka", 123, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 118, 7], ["wrapper", 122, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 128, 7], ["description", 129, 7], ["changelog", 130, 7], ["license", 131, 7], ["mainProgram", 132, 7], ["maintainers", 133, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 32, 5], ["version", 33, 5], ["src", 35, 5], ["cargoHash", 42, 5], ["nativeBuildInputs", 44, 5], ["buildInputs", 53, 5], ["nativeCheckInputs", 68, 5], ["doCheck", 70, 5], ["checkPhase", 72, 5], ["postInstall", 79, 5], ["dontWrapGApps", 91, 5], ["postFixup", 93, 5], ["nativeInstallCheckInputs", 111, 5], ["versionCheckProgram", 114, 5], ["doInstallCheck", 115, 5], ["passthru", 117, 5], ["meta", 127, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const self = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "czkawka",
       version: "12.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qarmin",
           repo: "czkawka",
           tag: nix.thunk(() => nix.sel(self, "version")),
@@ -73,15 +67,15 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/czkawka_cli`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: self, command: "czkawka_cli --version" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: self, command: "czkawka_cli --version" })))),
         })),
-        wrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, czkawka: self })))),
+        wrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], czkawka: self })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/qarmin/czkawka",
         description: "Simple, fast and easy to use app to remove unnecessary files from your computer",
         changelog: nix.thunk(() => nix.str`https://github.com/qarmin/czkawka/raw/${nix.sel(self, "version")}/Changelog.md`),

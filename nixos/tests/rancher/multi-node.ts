@@ -2,43 +2,11 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/multi-node.nix", [[["name", 15, 5], ["paths", 16, 5]], [["Entrypoint", 27, 12]], [["name", 24, 5], ["tag", 25, 5], ["copyToRoot", 26, 5], ["config", 27, 5]], [["k3s", 64, 7], ["rke2", 65, 7]], [["enable", 71, 27]], [["sshBackdoor", 71, 15]], [["KUBECONFIG", 87, 38]], [["systemPackages", 82, 21], ["sessionVariables", 87, 21]], [["tokenFile", 93, 21], ["enable", 94, 13], ["role", 95, 13], ["package", 96, 13], ["images", 97, 13], ["nodeIP", 98, 13], ["disable", 99, 13], ["extraFlags", 100, 13]], [["clusterInit", 106, 15], ["extraFlags", 107, 15]], [["name", 119, 17], ["namespace", 120, 17]], [["iface", 124, 25]], [["flannel", 124, 17]], [["valuesContent", 123, 20]], [["apiVersion", 116, 15], ["kind", 117, 15], ["metadata", 118, 15], ["spec", 123, 15]], [["content", 115, 41]], [["canal-config", 115, 28]], [["manifests", 115, 18]], [["k3s", 105, 13], ["rke2", 115, 13]], [["enable", 131, 29], ["allowedTCPPorts", 132, 29], ["allowedUDPPorts", 141, 29]], [["firewall", 131, 20]], [["environment", 82, 9], ["virtualisation", 89, 9], ["services", 91, 9], ["networking", 131, 9]], [["tokenFile", 155, 19], ["enable", 156, 11], ["role", 157, 11], ["package", 158, 11], ["images", 159, 11], ["serverAddr", 160, 11], ["nodeIP", 161, 11], ["disable", 162, 11], ["extraFlags", 163, 11]], [["enable", 169, 29], ["allowedTCPPorts", 170, 29], ["allowedUDPPorts", 179, 29]], [["firewall", 169, 20]], [["virtualisation", 152, 9], ["services", 154, 9], ["networking", 169, 9]], [["tokenFile", 193, 19], ["enable", 194, 11], ["role", 195, 11], ["package", 196, 11], ["images", 197, 11], ["serverAddr", 198, 11], ["nodeIP", 199, 11], ["extraFlags", 200, 11]], [["allowedTCPPorts", 206, 29], ["allowedUDPPorts", 207, 29]], [["firewall", 206, 20]], [["virtualisation", 190, 9], ["services", 192, 9], ["networking", 206, 9]], [["server", 74, 5], ["server2", 144, 5], ["agent", 182, 5]], [["maintainers", 250, 8]], [["name", 70, 3], ["interactive", 71, 3], ["nodes", 73, 3], ["testScript", 211, 3], ["meta", 250, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, rancherDistro: false, rancherPackage: false, serviceName: false, disabledComponents: false, coreImages: false, vmResources: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/multi-node.nix", [["name", 15, 5], ["paths", 16, 5]]);
-const pos$2 = nix.positions(here + "/multi-node.nix", [["Entrypoint", 27, 12]]);
-const pos$3 = nix.positions(here + "/multi-node.nix", [["name", 24, 5], ["tag", 25, 5], ["copyToRoot", 26, 5], ["config", 27, 5]]);
-const pos$4 = nix.positions(here + "/multi-node.nix", [["k3s", 64, 7], ["rke2", 65, 7]]);
-const pos$5 = nix.positions(here + "/multi-node.nix", [["enable", 71, 27]]);
-const pos$6 = nix.positions(here + "/multi-node.nix", [["sshBackdoor", 71, 15]]);
 const formals$2 = { args: { nodes: false, pkgs: false, config: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/multi-node.nix", [["KUBECONFIG", 87, 38]]);
-const pos$8 = nix.positions(here + "/multi-node.nix", [["systemPackages", 82, 21], ["sessionVariables", 87, 21]]);
-const pos$9 = nix.positions(here + "/multi-node.nix", [["tokenFile", 93, 21], ["enable", 94, 13], ["role", 95, 13], ["package", 96, 13], ["images", 97, 13], ["nodeIP", 98, 13], ["disable", 99, 13], ["extraFlags", 100, 13]]);
-const pos$10 = nix.positions(here + "/multi-node.nix", [["clusterInit", 106, 15], ["extraFlags", 107, 15]]);
-const pos$11 = nix.positions(here + "/multi-node.nix", [["name", 119, 17], ["namespace", 120, 17]]);
-const pos$12 = nix.positions(here + "/multi-node.nix", [["iface", 124, 25]]);
-const pos$13 = nix.positions(here + "/multi-node.nix", [["flannel", 124, 17]]);
-const pos$14 = nix.positions(here + "/multi-node.nix", [["valuesContent", 123, 20]]);
-const pos$15 = nix.positions(here + "/multi-node.nix", [["apiVersion", 116, 15], ["kind", 117, 15], ["metadata", 118, 15], ["spec", 123, 15]]);
-const pos$16 = nix.positions(here + "/multi-node.nix", [["content", 115, 41]]);
-const pos$17 = nix.positions(here + "/multi-node.nix", [["canal-config", 115, 28]]);
-const pos$18 = nix.positions(here + "/multi-node.nix", [["manifests", 115, 18]]);
-const pos$19 = nix.positions(here + "/multi-node.nix", [["k3s", 105, 13], ["rke2", 115, 13]]);
-const pos$20 = nix.positions(here + "/multi-node.nix", [["enable", 131, 29], ["allowedTCPPorts", 132, 29], ["allowedUDPPorts", 141, 29]]);
-const pos$21 = nix.positions(here + "/multi-node.nix", [["firewall", 131, 20]]);
-const pos$22 = nix.positions(here + "/multi-node.nix", [["environment", 82, 9], ["virtualisation", 89, 9], ["services", 91, 9], ["networking", 131, 9]]);
 const formals$3 = { args: { nodes: false, pkgs: false, config: false }, ellipsis: true };
-const pos$23 = nix.positions(here + "/multi-node.nix", [["tokenFile", 155, 19], ["enable", 156, 11], ["role", 157, 11], ["package", 158, 11], ["images", 159, 11], ["serverAddr", 160, 11], ["nodeIP", 161, 11], ["disable", 162, 11], ["extraFlags", 163, 11]]);
-const pos$24 = nix.positions(here + "/multi-node.nix", [["enable", 169, 29], ["allowedTCPPorts", 170, 29], ["allowedUDPPorts", 179, 29]]);
-const pos$25 = nix.positions(here + "/multi-node.nix", [["firewall", 169, 20]]);
-const pos$26 = nix.positions(here + "/multi-node.nix", [["virtualisation", 152, 9], ["services", 154, 9], ["networking", 169, 9]]);
 const formals$4 = { args: { nodes: false, pkgs: false, config: false }, ellipsis: true };
-const pos$27 = nix.positions(here + "/multi-node.nix", [["tokenFile", 193, 19], ["enable", 194, 11], ["role", 195, 11], ["package", 196, 11], ["images", 197, 11], ["serverAddr", 198, 11], ["nodeIP", 199, 11], ["extraFlags", 200, 11]]);
-const pos$28 = nix.positions(here + "/multi-node.nix", [["allowedTCPPorts", 206, 29], ["allowedUDPPorts", 207, 29]]);
-const pos$29 = nix.positions(here + "/multi-node.nix", [["firewall", 206, 20]]);
-const pos$30 = nix.positions(here + "/multi-node.nix", [["virtualisation", 190, 9], ["services", 192, 9], ["networking", 206, 9]]);
-const pos$31 = nix.positions(here + "/multi-node.nix", [["server", 74, 5], ["server2", 144, 5], ["agent", 182, 5]]);
-const pos$32 = nix.positions(here + "/multi-node.nix", [["maintainers", 250, 8]]);
-const pos$33 = nix.positions(here + "/multi-node.nix", [["name", 70, 3], ["interactive", 71, 3], ["nodes", 73, 3], ["testScript", 211, 3], ["meta", 250, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const coreImages = nix.arg($, "coreImages");
   const vmResources = nix.arg($, "vmResources");
   const imageEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "buildEnv"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`${rancherDistro}-pause-image-env`),
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
@@ -64,36 +32,36 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   const pauseImage = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "test.local/pause",
       tag: "local",
       copyToRoot: imageEnv,
       config: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         Entrypoint: nix.thunk(() => ["/bin/tini", "--", "/bin/sleep", "inf"]),
       })),
     }))));
   const networkTestDaemonset = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "test.yml", "apiVersion: apps/v1\nkind: DaemonSet\nmetadata:\n  name: test\n  labels:\n    name: test\nspec:\n  selector:\n    matchLabels:\n      name: test\n  template:\n    metadata:\n      labels:\n        name: test\n    spec:\n      containers:\n      - name: test\n        image: test.local/pause:local\n        imagePullPolicy: Never\n        resources:\n          limits:\n            memory: 20Mi\n        command: [\"socat\", \"TCP4-LISTEN:8000,fork\", \"EXEC:echo server\"]\n"));
   const tokenFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "token", "p@s$w0rd"));
-  const supervisorPort = nix.thunk(() => nix.sel({ [nix.POS]: pos$4, k3s: "6443", rke2: "9345" }, nix.key(nix.force(rancherDistro))));
+  const supervisorPort = nix.thunk(() => nix.sel({ [nix.POS]: $pos[3], k3s: "6443", rke2: "9345" }, nix.key(nix.force(rancherDistro))));
   return {
-    [nix.POS]: pos$33,
+    [nix.POS]: $pos[32],
     name: nix.thunk(() => nix.str`${nix.sel(rancherPackage, "name")}-multi-node`),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$6,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+      [nix.POS]: $pos[5],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         const pkgs_1 = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -103,7 +71,7 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             sessionVariables: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               KUBECONFIG: nix.thunk(() => nix.str`/etc/rancher/${rancherDistro}/${rancherDistro}.yaml`),
             })),
           })),
@@ -111,7 +79,7 @@ export default nix.lambda((args) => (() => {
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.force(rancherDistro), nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   tokenFile: tokenFile,
                   enable: true,
                   role: "server",
@@ -122,28 +90,28 @@ export default nix.lambda((args) => (() => {
                   extraFlags: nix.thunk(() => ["--pause-image test.local/pause:local"]),
                 })),
                 nix.thunk(() => nix.sel({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   k3s: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     clusterInit: true,
                     extraFlags: nix.thunk(() => ["--flannel-iface eth1"]),
                   })),
                   rke2: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
+                    [nix.POS]: $pos[17],
                     manifests: nix.thunk(() => ({
-                      [nix.POS]: pos$17,
+                      [nix.POS]: $pos[16],
                       "canal-config": nix.thunk(() => ({
-                        [nix.POS]: pos$16,
+                        [nix.POS]: $pos[15],
                         content: nix.thunk(() => ({
-                          [nix.POS]: pos$15,
+                          [nix.POS]: $pos[14],
                           apiVersion: "helm.cattle.io/v1",
                           kind: "HelmChartConfig",
-                          metadata: nix.thunk(() => ({ [nix.POS]: pos$11, name: "rke2-canal", namespace: "kube-system" })),
+                          metadata: nix.thunk(() => ({ [nix.POS]: $pos[10], name: "rke2-canal", namespace: "kube-system" })),
                           spec: nix.thunk(() => ({
-                            [nix.POS]: pos$14,
+                            [nix.POS]: $pos[13],
                             valuesContent: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-                                [nix.POS]: pos$13,
-                                flannel: nix.thunk(() => ({ [nix.POS]: pos$12, iface: "eth1" })),
+                                [nix.POS]: $pos[12],
+                                flannel: nix.thunk(() => ({ [nix.POS]: $pos[11], iface: "eth1" })),
                               })))),
                           })),
                         })),
@@ -154,9 +122,9 @@ export default nix.lambda((args) => (() => {
               ])))],
           ])),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               enable: false,
               allowedTCPPorts: nix.thunk(() => nix.concat([2379n, 2380n, 6443n], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(rancherDistro, "rke2")), nix.thunk(() => [9099n, 9345n])))),
               allowedUDPPorts: nix.thunk(() => [8472n]),
@@ -170,11 +138,11 @@ export default nix.lambda((args) => (() => {
         const pkgs_1 = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           virtualisation: vmResources,
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.force(rancherDistro), nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               tokenFile: tokenFile,
               enable: true,
               role: "server",
@@ -187,9 +155,9 @@ export default nix.lambda((args) => (() => {
             }))],
           ])),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               enable: false,
               allowedTCPPorts: nix.thunk(() => nix.concat([2379n, 2380n, 6443n], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(rancherDistro, "rke2")), nix.thunk(() => [9099n, 9345n])))),
               allowedUDPPorts: nix.thunk(() => [8472n]),
@@ -203,11 +171,11 @@ export default nix.lambda((args) => (() => {
         const pkgs_1 = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           virtualisation: vmResources,
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.force(rancherDistro), nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               tokenFile: tokenFile,
               enable: true,
               role: "agent",
@@ -219,9 +187,9 @@ export default nix.lambda((args) => (() => {
             }))],
           ])),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               allowedTCPPorts: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(rancherDistro, "rke2")), 9099n)),
               allowedUDPPorts: nix.thunk(() => [8472n]),
             })),
@@ -266,7 +234,7 @@ for pod_ip in pod_ips:
         t.assertEqual(resp.strip(), "server")
 `),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       maintainers: nix.thunk(() => nix.concat(nix.sel(lib, "teams", "k3s", "members"), nix.sel(pkgs, "rke2", "meta", "maintainers"))),
     })),
   };

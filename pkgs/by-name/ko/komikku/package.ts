@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["extraLoaders", 92, 9]], [["updateScript", 105, 5]], [["description", 109, 5], ["mainProgram", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["changelog", 113, 5], ["maintainers", 114, 5], ["teams", 118, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 50, 3], ["dependencies", 60, 3], ["doCheck", 85, 3], ["postInstall", 89, 3], ["dontWrapGApps", 101, 3], ["makeWrapperArgs", 102, 3], ["passthru", 104, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromCodeberg: false, "blueprint-compiler": false, "desktop-file-utils": false, gettext: false, glib: false, "glib-networking": false, gnome: false, "gobject-introspection": false, gtk4: false, gtksourceview5: false, libadwaita: false, libglycin: false, librsvg: false, meson: false, ninja: false, "pkg-config": false, python3: false, webkitgtk_6_0: false, "webp-pixbuf-loader": false, wrapGAppsHook4: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraLoaders", 92, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 105, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 109, 5], ["mainProgram", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["changelog", 113, 5], ["maintainers", 114, 5], ["teams", 118, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 50, 3], ["dependencies", 60, 3], ["doCheck", 85, 3], ["postInstall", 89, 3], ["dontWrapGApps", 101, 3], ["makeWrapperArgs", 102, 3], ["passthru", 104, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "komikku",
       version: "51.0.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "valos",
           repo: "Komikku",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -93,18 +89,18 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       postInstall: nix.thunk(() => nix.str`export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           extraLoaders: nix.thunk(() => [librsvg, webp_pixbuf_loader]),
         })))}"
 `),
       dontWrapGApps: true,
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Manga reader for GNOME",
         mainProgram: "komikku",
         homepage: "https://apps.gnome.org/Komikku/",

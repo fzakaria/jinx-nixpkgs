@@ -2,17 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/merge-typeless-option.nix", [[["group", 8, 15]], [["options", 8, 7]], [["enable", 14, 21]], [["group", 14, 15]], [["options", 14, 7]], [["enable", 24, 16]], [["group", 24, 10]], [["imports", 19, 3], ["config", 24, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/merge-typeless-option.nix", [["group", 8, 15]]);
-const pos$2 = nix.positions(here + "/merge-typeless-option.nix", [["options", 8, 7]]);
 const formals$3 = { args: { lib: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/merge-typeless-option.nix", [["enable", 14, 21]]);
-const pos$4 = nix.positions(here + "/merge-typeless-option.nix", [["group", 14, 15]]);
-const pos$5 = nix.positions(here + "/merge-typeless-option.nix", [["options", 14, 7]]);
-const pos$6 = nix.positions(here + "/merge-typeless-option.nix", [["enable", 24, 16]]);
-const pos$7 = nix.positions(here + "/merge-typeless-option.nix", [["group", 24, 10]]);
-const pos$8 = nix.positions(here + "/merge-typeless-option.nix", [["imports", 19, 3], ["config", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,9 +13,9 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const lib = nix.arg($_1, "lib");
     return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       options: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         group: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
       })),
     };
@@ -31,22 +24,22 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$3);
     const lib = nix.arg($_1, "lib");
     return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       options: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         group: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "nothing")),
         })),
       })),
     };
   })(), formals$3);
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     imports: nix.thunk(() => [typeless, childOfTypeless]),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$7,
-      group: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
+      [nix.POS]: $pos[6],
+      group: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: false })),
     })),
   };
 })(), formals$1);

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["fetchSubmodules", 38, 5], ["hash", 39, 5]], [["package", 119, 7]], [["version", 118, 11]], [["updateScript", 117, 5], ["tests", 118, 5]], [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5], ["mainProgram", 130, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 57, 3], ["cmakeFlags", 79, 3], ["postInstall", 100, 3], ["passthru", 116, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, testers: false, furnace: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, makeWrapper: false, fftw: false, fmt: false, freetype: false, libsndfile: false, libx11: false, libGL: false, rtmidi: false, SDL2: false, zlib: false, withJACK: true, libjack2: false, withGUI: true, portaudio: false, "alsa-lib": false, withGL: true, preferGLES: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["fetchSubmodules", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 119, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 118, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 117, 5], ["tests", 118, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5], ["mainProgram", 130, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 57, 3], ["cmakeFlags", 79, 3], ["postInstall", 100, 3], ["passthru", 116, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const withGL = nix.argOr($, "withGL", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   const preferGLES = nix.argOr($, "preferGLES", () => nix.sel(stdenv, "hostPlatform", "isAarch"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "furnace",
       version: "0.6.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tildearrow",
           repo: "furnace",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,15 +72,15 @@ substituteInPlace src/gui/scaling.cpp \\
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# Normal CMake install phase on Darwin only installs the binary, the user is expected to use CPack to build a\n# bundle. That adds alot of overhead for not much benefit (CPack is currently abit broken, and needs impure access\n# to /usr/bin/hdiutil). So we'll manually assemble & install everything instead.\n\nmkdir -p $out/{Applications/Furnace.app/Contents/{MacOS,Resources},share/{,doc,licenses}/furnace}\nmv $out/{bin,Applications/Furnace.app/Contents/MacOS}/furnace\nmakeWrapper $out/{Applications/Furnace.app/Contents/MacOS,bin}/furnace\n\ninstall -m644 {../res,$out/Applications/Furnace.app/Contents}/Info.plist\ninstall -m644 ../res/icon.icns $out/Applications/Furnace.app/Contents/Resources/Furnace.icns\ninstall -m644 {..,$out/share/licenses/furnace}/LICENSE\ncp -r ../papers $out/share/doc/furnace/\ncp -r ../demos $out/share/furnace/\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: furnace })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: furnace })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Multi-system chiptune tracker compatible with DefleMask modules",
         homepage: "https://github.com/tildearrow/furnace",
         changelog: nix.thunk(() => nix.str`https://github.com/tildearrow/furnace/releases/tag/v${nix.sel(finalAttrs, "version")}`),

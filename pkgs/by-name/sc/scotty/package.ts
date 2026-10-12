@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["LC_ALL", 33, 5]], [["command", 39, 7], ["package", 40, 7]], [["version", 37, 11]], [["tests", 37, 5], ["updateScript", 43, 5]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["modPostBuild", 23, 3], ["vendorHash", 28, 3], ["env", 30, 3], ["passthru", 36, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromSourcehut: false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LC_ALL", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["command", 39, 7], ["package", 40, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 37, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 37, 5], ["updateScript", 43, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["modPostBuild", 23, 3], ["vendorHash", 28, 3], ["env", 30, 3], ["passthru", 36, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "scotty",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~phw",
           repo: "scotty",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,13 +26,13 @@ export default nix.lambda((args) => (() => {
         })))),
       modPostBuild: "substituteInPlace vendor/modernc.org/libc/honnef.co/go/netdb/netdb.go \\\n  --replace-fail '!os.IsNotExist(err)' '!os.IsNotExist(err) && !os.IsPermission(err)'\n",
       vendorHash: "sha256-AfCSp/f8jAy1a6PyYHMErmOOgADXTfliJPQgyNLhVFo=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LC_ALL: "C.UTF-8" })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               command: "LC_ALL='C.UTF-8' scotty --version",
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
@@ -46,7 +40,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Transfers your listens between various music listen tracking and streaming services",
         homepage: "https://git.sr.ht/~phw/scotty",
         changelog: nix.thunk(() => nix.str`https://git.sr.ht/~phw/scotty/refs/v${nix.sel(finalAttrs, "version")}`),

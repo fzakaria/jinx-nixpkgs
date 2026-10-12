@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 13, 5], ["text", 14, 5]], [["name", 34, 5], ["runtimeInputs", 35, 5], ["text", 36, 5]], [["name", 54, 5], ["runtimeInputs", 55, 5], ["text", 59, 5]], [["name", 69, 5], ["runtimeInputs", 70, 5], ["text", 71, 5]], [["name", 80, 3], ["runtimeInputs", 81, 3], ["text", 87, 3]]]);
 const formals$1 = { args: { "live-server": false, parallel: false, watchexec: false, writeShellApplication: false, buildArgs: true, open: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 13, 5], ["text", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 5], ["runtimeInputs", 35, 5], ["text", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 54, 5], ["runtimeInputs", 55, 5], ["text", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 69, 5], ["runtimeInputs", 70, 5], ["text", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 80, 3], ["runtimeInputs", 81, 3], ["text", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const buildArgs = nix.argOr($, "buildArgs", () => "");
   const open = nix.argOr($, "open", () => "/index.html");
   const error_page = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "error-page",
       text: "rm -rf \"${serve:?}\"\nmkdir -p \"$(dirname \"${error_page_absolute:?}\")\"\n\ncat > \"${error_page_absolute:?}\" << EOF\n<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    @media (prefers-color-scheme: dark) {\n      :root { filter: invert(100%); }\n    }\n  </style>\n</head>\n<body/><pre/>building...\nEOF\n",
     }))));
   const build_and_link = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "build-and-link",
       runtimeInputs: nix.thunk(() => [error_page]),
       text: nix.thunk(() => nix.str`error-page
@@ -41,13 +37,13 @@ fi
 `),
     }))));
   const watcher = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "watcher",
       runtimeInputs: nix.thunk(() => [watchexec, build_and_link]),
       text: "watchexec \\\n  --shell=none \\\n  --restart \\\n  build-and-link\n",
     }))));
   const server = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "server",
       runtimeInputs: nix.thunk(() => [live_server]),
       text: nix.thunk(() => nix.str`live-server \\
@@ -57,7 +53,7 @@ fi
 `),
     }))));
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "devmode",
       runtimeInputs: nix.thunk(() => [parallel, watcher, server, error_page]),
       text: nix.thunk(() => nix.str`function handle_exit {

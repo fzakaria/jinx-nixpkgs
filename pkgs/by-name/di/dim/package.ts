@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["pname", 29, 5], ["version", 30, 26], ["src", 31, 5], ["postPatch", 33, 5], ["npmDepsHash", 37, 5], ["installPhase", 39, 5]], [["name", 56, 7], ["url", 57, 7], ["hash", 58, 7]], [["homepage", 110, 5], ["description", 111, 5], ["license", 112, 5], ["mainProgram", 113, 5], ["maintainers", 114, 5], ["platforms", 115, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["frontend", 28, 3], ["cargoPatches", 48, 3], ["cargoHash", 62, 3], ["postPatch", 64, 3], ["postConfigure", 73, 3], ["preBuild", 77, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 87, 3], ["buildFeatures", 89, 3], ["checkFlags", 91, 3], ["postInstall", 104, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, buildNpmPackage: false, makeWrapper: false, ffmpeg: false, git: false, "pkg-config": false, sqlite: false, libvaSupport: true, libva: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 5], ["version", 30, 26], ["src", 31, 5], ["postPatch", 33, 5], ["npmDepsHash", 37, 5], ["installPhase", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 56, 7], ["url", 57, 7], ["hash", 58, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 110, 5], ["description", 111, 5], ["license", 112, 5], ["mainProgram", 113, 5], ["maintainers", 114, 5], ["platforms", 115, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["frontend", 28, 3], ["cargoPatches", 48, 3], ["cargoHash", 62, 3], ["postPatch", 64, 3], ["postConfigure", 73, 3], ["preBuild", 77, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 87, 3], ["buildFeatures", 89, 3], ["checkFlags", 91, 3], ["postInstall", 104, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const libva = nix.arg($, "libva");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dim",
       version: "0-unstable-2025-09-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Dusk-Labs",
           repo: "dim",
           rev: "d9a4bd0b7e985398ee4f494bf6da8884ab84b8ef",
           hash: "sha256-WktDQF2YqF/3TFnpUvz7lge8+w/W56aFjUG0v58ash4=",
         })))),
       frontend: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "dim-ui",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/ui`),
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       cargoPatches: nix.thunk(() => [
         nix.path(here, "./bump-nightfall.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "remove-unused-imports.patch",
             url: "https://github.com/Dusk-Labs/dim/commit/f62de1d38e6e52f27b1176f0dabbbc51622274cb.patch",
             hash: "sha256-Gk+RHWtCKN7McfFB3siIOOhwi3+k17MCQr4Ya4RCKjc=",
@@ -75,7 +71,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/Dusk-Labs/dim",
         description: "Self-hosted media manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

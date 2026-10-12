@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hyperkitty.nix", [[["url", 17, 5], ["hash", 18, 5]], [["url", 24, 7], ["hash", 25, 7]], [["url", 30, 7], ["hash", 31, 7]], [["url", 35, 7], ["hash", 36, 7]], [["url", 40, 7], ["excludes", 41, 7], ["hash", 42, 7]], [["mailman", 93, 43]], [["tests", 93, 12]], [["changelog", 96, 5], ["homepage", 97, 5], ["description", 98, 5], ["license", 99, 5], ["platforms", 100, 5], ["maintainers", 101, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["prePatch", 46, 3], ["build-system", 52, 3], ["dependencies", 56, 3], ["nativeCheckInputs", 78, 3], ["checkPhase", 87, 3], ["passthru", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchurl: false, nixosTests: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hyperkitty.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/hyperkitty.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/hyperkitty.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$4 = nix.positions(here + "/hyperkitty.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$5 = nix.positions(here + "/hyperkitty.nix", [["url", 40, 7], ["excludes", 41, 7], ["hash", 42, 7]]);
-const pos$6 = nix.positions(here + "/hyperkitty.nix", [["mailman", 93, 43]]);
-const pos$7 = nix.positions(here + "/hyperkitty.nix", [["tests", 93, 12]]);
-const pos$8 = nix.positions(here + "/hyperkitty.nix", [["changelog", 96, 5], ["homepage", 97, 5], ["description", 98, 5], ["license", 99, 5], ["platforms", 100, 5], ["maintainers", 101, 5]]);
-const pos$9 = nix.positions(here + "/hyperkitty.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["prePatch", 46, 3], ["build-system", 52, 3], ["dependencies", 56, 3], ["nativeCheckInputs", 78, 3], ["checkPhase", 87, 3], ["passthru", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,33 +14,33 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const w = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
   return nix.app(nix.lookup(w, "buildPythonPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "hyperkitty",
       version: "1.3.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gitlab.com/mailman/hyperkitty/-/releases/${nix.sel(finalAttrs, "version")}/downloads/hyperkitty-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-3rWCk37FvJ6pwdXYa/t2pNpCm2Dh/qb9aWTnxmfPFh0=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/mailman/hyperkitty/-/commit/2d69f420c603356a639a6b6243e1059a0089b7eb.patch",
             hash: "sha256-zo+dK8DFMkHlMrOVSUtelhAq+cxJE4gLG00LvuAlWKA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.com/mailman/hyperkitty/-/commit/6c3d402dc0981e545081a3baf13db7e491356e75.patch",
             hash: "sha256-ep9cFZe9/sIfIP80pLBOMYkJKWvNT7DRqg80DQSdRFw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://gitlab.com/mailman/hyperkitty/-/commit/e815be11752ac6a3e839b155f0c43808619c56b0.patch",
             hash: "sha256-fsJyNsh3l5iR9WgsiEsHlptkN+nlWoop0m2STyucDEc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://gitlab.com/mailman/hyperkitty/-/commit/7e8aa0150d8dcaef66039db3a0205dfd4160a265.patch",
             excludes: nix.thunk(() => ["pyproject.toml"]),
             hash: "sha256-BpjnLugUU0nyn3XN0zZ0eEeK0sFd64GOUaQsen6fFyw=",
@@ -81,11 +73,14 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(nix.lookup(w, "beautifulsoup4"), "optional-dependencies", "lxml"))),
       checkPhase: "cd $NIX_BUILD_TOP/$sourceRoot\nPYTHONPATH=.:$PYTHONPATH python example_project/manage.py test \\\n  --settings=hyperkitty.tests.settings_test hyperkitty\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$6, mailman: nix.thunk(() => nix.attr(nixosTests, "mailman")) })),
+        [nix.POS]: $pos[6],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[5],
+          mailman: nix.thunk(() => nix.attr(nixosTests, "mailman")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: "https://docs.mailman3.org/projects/hyperkitty/en/latest/news.html",
         homepage: "https://www.gnu.org/software/mailman/",
         description: "Archiver for GNU Mailman v3",

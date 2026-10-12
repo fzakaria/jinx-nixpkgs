@@ -2,247 +2,183 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainers", 6, 34]], [["kernelPackages", 10, 10]], [["enable", 11, 18]], [["scx", 11, 14]], [["scheduler", 14, 43]], [["scx", 14, 39]], [["services", 14, 30]], [["configuration", 14, 16]], [["scheduler", 15, 42]], [["scx", 15, 38]], [["services", 15, 29]], [["configuration", 15, 15]], [["scheduler", 16, 39]], [["scx", 16, 35]], [["services", 16, 26]], [["configuration", 16, 12]], [["scheduler", 17, 40]], [["scx", 17, 36]], [["services", 17, 27]], [["configuration", 17, 13]], [["scheduler", 18, 41]], [["scx", 18, 37]], [["services", 18, 28]], [["configuration", 18, 14]], [["scheduler", 19, 40]], [["scx", 19, 36]], [["services", 19, 27]], [["configuration", 19, 13]], [["scheduler", 20, 39]], [["scx", 20, 35]], [["services", 20, 26]], [["configuration", 20, 12]], [["scheduler", 21, 40]], [["scx", 21, 36]], [["services", 21, 27]], [["configuration", 21, 13]], [["scheduler", 22, 39]], [["scx", 22, 35]], [["services", 22, 26]], [["configuration", 22, 12]], [["scheduler", 23, 39]], [["scx", 23, 35]], [["services", 23, 26]], [["configuration", 23, 12]], [["scheduler", 24, 46]], [["scx", 24, 42]], [["services", 24, 33]], [["configuration", 24, 19]], [["scheduler", 25, 41]], [["scx", 25, 37]], [["services", 25, 28]], [["configuration", 25, 14]], [["scheduler", 26, 43]], [["scx", 26, 39]], [["services", 26, 30]], [["configuration", 26, 16]], [["scheduler", 27, 40]], [["scx", 27, 36]], [["services", 27, 27]], [["configuration", 27, 13]], [["scheduler", 28, 43]], [["scx", 28, 39]], [["services", 28, 30]], [["configuration", 28, 16]], [["beerland", 14, 7], ["bpfland", 15, 7], ["cake", 16, 7], ["chaos", 17, 7], ["cosmos", 18, 7], ["flash", 19, 7], ["flow", 20, 7], ["forge", 21, 7], ["lavd", 22, 7], ["p2dq", 23, 7], ["pandemonium", 24, 7], ["rlfifo", 25, 7], ["rustland", 26, 7], ["rusty", 27, 7], ["tickless", 28, 7]], [["boot", 10, 5], ["services", 11, 5], ["specialisation", 13, 5]], [["machine", 9, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 32, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainers", 6, 34]]);
-const pos$2 = nix.positions(here + "/default.nix", [["kernelPackages", 10, 10]]);
-const pos$3 = nix.positions(here + "/default.nix", [["enable", 11, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["scx", 11, 14]]);
-const pos$5 = nix.positions(here + "/default.nix", [["scheduler", 14, 43]]);
-const pos$6 = nix.positions(here + "/default.nix", [["scx", 14, 39]]);
-const pos$7 = nix.positions(here + "/default.nix", [["services", 14, 30]]);
-const pos$8 = nix.positions(here + "/default.nix", [["configuration", 14, 16]]);
-const pos$9 = nix.positions(here + "/default.nix", [["scheduler", 15, 42]]);
-const pos$10 = nix.positions(here + "/default.nix", [["scx", 15, 38]]);
-const pos$11 = nix.positions(here + "/default.nix", [["services", 15, 29]]);
-const pos$12 = nix.positions(here + "/default.nix", [["configuration", 15, 15]]);
-const pos$13 = nix.positions(here + "/default.nix", [["scheduler", 16, 39]]);
-const pos$14 = nix.positions(here + "/default.nix", [["scx", 16, 35]]);
-const pos$15 = nix.positions(here + "/default.nix", [["services", 16, 26]]);
-const pos$16 = nix.positions(here + "/default.nix", [["configuration", 16, 12]]);
-const pos$17 = nix.positions(here + "/default.nix", [["scheduler", 17, 40]]);
-const pos$18 = nix.positions(here + "/default.nix", [["scx", 17, 36]]);
-const pos$19 = nix.positions(here + "/default.nix", [["services", 17, 27]]);
-const pos$20 = nix.positions(here + "/default.nix", [["configuration", 17, 13]]);
-const pos$21 = nix.positions(here + "/default.nix", [["scheduler", 18, 41]]);
-const pos$22 = nix.positions(here + "/default.nix", [["scx", 18, 37]]);
-const pos$23 = nix.positions(here + "/default.nix", [["services", 18, 28]]);
-const pos$24 = nix.positions(here + "/default.nix", [["configuration", 18, 14]]);
-const pos$25 = nix.positions(here + "/default.nix", [["scheduler", 19, 40]]);
-const pos$26 = nix.positions(here + "/default.nix", [["scx", 19, 36]]);
-const pos$27 = nix.positions(here + "/default.nix", [["services", 19, 27]]);
-const pos$28 = nix.positions(here + "/default.nix", [["configuration", 19, 13]]);
-const pos$29 = nix.positions(here + "/default.nix", [["scheduler", 20, 39]]);
-const pos$30 = nix.positions(here + "/default.nix", [["scx", 20, 35]]);
-const pos$31 = nix.positions(here + "/default.nix", [["services", 20, 26]]);
-const pos$32 = nix.positions(here + "/default.nix", [["configuration", 20, 12]]);
-const pos$33 = nix.positions(here + "/default.nix", [["scheduler", 21, 40]]);
-const pos$34 = nix.positions(here + "/default.nix", [["scx", 21, 36]]);
-const pos$35 = nix.positions(here + "/default.nix", [["services", 21, 27]]);
-const pos$36 = nix.positions(here + "/default.nix", [["configuration", 21, 13]]);
-const pos$37 = nix.positions(here + "/default.nix", [["scheduler", 22, 39]]);
-const pos$38 = nix.positions(here + "/default.nix", [["scx", 22, 35]]);
-const pos$39 = nix.positions(here + "/default.nix", [["services", 22, 26]]);
-const pos$40 = nix.positions(here + "/default.nix", [["configuration", 22, 12]]);
-const pos$41 = nix.positions(here + "/default.nix", [["scheduler", 23, 39]]);
-const pos$42 = nix.positions(here + "/default.nix", [["scx", 23, 35]]);
-const pos$43 = nix.positions(here + "/default.nix", [["services", 23, 26]]);
-const pos$44 = nix.positions(here + "/default.nix", [["configuration", 23, 12]]);
-const pos$45 = nix.positions(here + "/default.nix", [["scheduler", 24, 46]]);
-const pos$46 = nix.positions(here + "/default.nix", [["scx", 24, 42]]);
-const pos$47 = nix.positions(here + "/default.nix", [["services", 24, 33]]);
-const pos$48 = nix.positions(here + "/default.nix", [["configuration", 24, 19]]);
-const pos$49 = nix.positions(here + "/default.nix", [["scheduler", 25, 41]]);
-const pos$50 = nix.positions(here + "/default.nix", [["scx", 25, 37]]);
-const pos$51 = nix.positions(here + "/default.nix", [["services", 25, 28]]);
-const pos$52 = nix.positions(here + "/default.nix", [["configuration", 25, 14]]);
-const pos$53 = nix.positions(here + "/default.nix", [["scheduler", 26, 43]]);
-const pos$54 = nix.positions(here + "/default.nix", [["scx", 26, 39]]);
-const pos$55 = nix.positions(here + "/default.nix", [["services", 26, 30]]);
-const pos$56 = nix.positions(here + "/default.nix", [["configuration", 26, 16]]);
-const pos$57 = nix.positions(here + "/default.nix", [["scheduler", 27, 40]]);
-const pos$58 = nix.positions(here + "/default.nix", [["scx", 27, 36]]);
-const pos$59 = nix.positions(here + "/default.nix", [["services", 27, 27]]);
-const pos$60 = nix.positions(here + "/default.nix", [["configuration", 27, 13]]);
-const pos$61 = nix.positions(here + "/default.nix", [["scheduler", 28, 43]]);
-const pos$62 = nix.positions(here + "/default.nix", [["scx", 28, 39]]);
-const pos$63 = nix.positions(here + "/default.nix", [["services", 28, 30]]);
-const pos$64 = nix.positions(here + "/default.nix", [["configuration", 28, 16]]);
-const pos$65 = nix.positions(here + "/default.nix", [["beerland", 14, 7], ["bpfland", 15, 7], ["cake", 16, 7], ["chaos", 17, 7], ["cosmos", 18, 7], ["flash", 19, 7], ["flow", 20, 7], ["forge", 21, 7], ["lavd", 22, 7], ["p2dq", 23, 7], ["pandemonium", 24, 7], ["rlfifo", 25, 7], ["rustland", 26, 7], ["rusty", 27, 7], ["tickless", 28, 7]]);
-const pos$66 = nix.positions(here + "/default.nix", [["boot", 10, 5], ["services", 11, 5], ["specialisation", 13, 5]]);
-const pos$67 = nix.positions(here + "/default.nix", [["machine", 9, 9]]);
-const pos$68 = nix.positions(here + "/default.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$68,
+    [nix.POS]: $pos[67],
     name: "scx_full",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "scx", "full", "meta"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$67,
+      [nix.POS]: $pos[66],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$66,
+        [nix.POS]: $pos[65],
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
         })),
-        services: nix.thunk(() => ({ [nix.POS]: pos$4, scx: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })) })),
+        services: nix.thunk(() => ({
+          [nix.POS]: $pos[3],
+          scx: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
+        })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$65,
+          [nix.POS]: $pos[64],
           beerland: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                scx: nix.thunk(() => ({ [nix.POS]: pos$5, scheduler: "scx_beerland" })),
+                [nix.POS]: $pos[5],
+                scx: nix.thunk(() => ({ [nix.POS]: $pos[4], scheduler: "scx_beerland" })),
               })),
             })),
           })),
           bpfland: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                scx: nix.thunk(() => ({ [nix.POS]: pos$9, scheduler: "scx_bpfland" })),
+                [nix.POS]: $pos[9],
+                scx: nix.thunk(() => ({ [nix.POS]: $pos[8], scheduler: "scx_bpfland" })),
               })),
             })),
           })),
           cake: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$14,
-                scx: nix.thunk(() => ({ [nix.POS]: pos$13, scheduler: "scx_cake" })),
+                [nix.POS]: $pos[13],
+                scx: nix.thunk(() => ({ [nix.POS]: $pos[12], scheduler: "scx_cake" })),
               })),
             })),
           })),
           chaos: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$18,
-                scx: nix.thunk(() => ({ [nix.POS]: pos$17, scheduler: "scx_chaos" })),
+                [nix.POS]: $pos[17],
+                scx: nix.thunk(() => ({ [nix.POS]: $pos[16], scheduler: "scx_chaos" })),
               })),
             })),
           })),
           cosmos: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$22,
-                scx: nix.thunk(() => ({ [nix.POS]: pos$21, scheduler: "scx_cosmos" })),
+                [nix.POS]: $pos[21],
+                scx: nix.thunk(() => ({ [nix.POS]: $pos[20], scheduler: "scx_cosmos" })),
               })),
             })),
           })),
           flash: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$26,
-                scx: nix.thunk(() => ({ [nix.POS]: pos$25, scheduler: "scx_flash" })),
+                [nix.POS]: $pos[25],
+                scx: nix.thunk(() => ({ [nix.POS]: $pos[24], scheduler: "scx_flash" })),
               })),
             })),
           })),
           flow: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$30,
-                scx: nix.thunk(() => ({ [nix.POS]: pos$29, scheduler: "scx_flow" })),
+                [nix.POS]: $pos[29],
+                scx: nix.thunk(() => ({ [nix.POS]: $pos[28], scheduler: "scx_flow" })),
               })),
             })),
           })),
           forge: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$34,
-                scx: nix.thunk(() => ({ [nix.POS]: pos$33, scheduler: "scx_forge" })),
+                [nix.POS]: $pos[33],
+                scx: nix.thunk(() => ({ [nix.POS]: $pos[32], scheduler: "scx_forge" })),
               })),
             })),
           })),
           lavd: nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$39,
+              [nix.POS]: $pos[38],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$38,
-                scx: nix.thunk(() => ({ [nix.POS]: pos$37, scheduler: "scx_lavd" })),
+                [nix.POS]: $pos[37],
+                scx: nix.thunk(() => ({ [nix.POS]: $pos[36], scheduler: "scx_lavd" })),
               })),
             })),
           })),
           p2dq: nix.thunk(() => ({
-            [nix.POS]: pos$44,
+            [nix.POS]: $pos[43],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$43,
+              [nix.POS]: $pos[42],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$42,
-                scx: nix.thunk(() => ({ [nix.POS]: pos$41, scheduler: "scx_p2dq" })),
+                [nix.POS]: $pos[41],
+                scx: nix.thunk(() => ({ [nix.POS]: $pos[40], scheduler: "scx_p2dq" })),
               })),
             })),
           })),
           pandemonium: nix.thunk(() => ({
-            [nix.POS]: pos$48,
+            [nix.POS]: $pos[47],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$47,
+              [nix.POS]: $pos[46],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$46,
-                scx: nix.thunk(() => ({ [nix.POS]: pos$45, scheduler: "scx_pandemonium" })),
+                [nix.POS]: $pos[45],
+                scx: nix.thunk(() => ({ [nix.POS]: $pos[44], scheduler: "scx_pandemonium" })),
               })),
             })),
           })),
           rlfifo: nix.thunk(() => ({
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$51,
+              [nix.POS]: $pos[50],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$50,
-                scx: nix.thunk(() => ({ [nix.POS]: pos$49, scheduler: "scx_rlfifo" })),
+                [nix.POS]: $pos[49],
+                scx: nix.thunk(() => ({ [nix.POS]: $pos[48], scheduler: "scx_rlfifo" })),
               })),
             })),
           })),
           rustland: nix.thunk(() => ({
-            [nix.POS]: pos$56,
+            [nix.POS]: $pos[55],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$55,
+              [nix.POS]: $pos[54],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$54,
-                scx: nix.thunk(() => ({ [nix.POS]: pos$53, scheduler: "scx_rustland" })),
+                [nix.POS]: $pos[53],
+                scx: nix.thunk(() => ({ [nix.POS]: $pos[52], scheduler: "scx_rustland" })),
               })),
             })),
           })),
           rusty: nix.thunk(() => ({
-            [nix.POS]: pos$60,
+            [nix.POS]: $pos[59],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$59,
+              [nix.POS]: $pos[58],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$58,
-                scx: nix.thunk(() => ({ [nix.POS]: pos$57, scheduler: "scx_rusty" })),
+                [nix.POS]: $pos[57],
+                scx: nix.thunk(() => ({ [nix.POS]: $pos[56], scheduler: "scx_rusty" })),
               })),
             })),
           })),
           tickless: nix.thunk(() => ({
-            [nix.POS]: pos$64,
+            [nix.POS]: $pos[63],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$63,
+              [nix.POS]: $pos[62],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$62,
-                scx: nix.thunk(() => ({ [nix.POS]: pos$61, scheduler: "scx_tickless" })),
+                [nix.POS]: $pos[61],
+                scx: nix.thunk(() => ({ [nix.POS]: $pos[60], scheduler: "scx_tickless" })),
               })),
             })),
           })),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 9], ["hash", 16, 9]], [["patches", 13, 5]], [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]], [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 43, 3], ["doInstallCheck", 47, 3], ["patchPhase", 49, 3], ["installPhase", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchFromGitHub: false, "btrfs-progs": false, python3: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 9], ["hash", 16, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["patches", 13, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 43, 3], ["doInstallCheck", 47, 3], ["patchPhase", 49, 3], ["installPhase", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const btrfsProgsPatched = nix.thunk(() => nix.app(nix.sel(btrfs_progs, "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://raw.githubusercontent.com/Lakshmipathi/dduper/7e8f995a3a6179a31d15ce073bce6cfbaefb81ed/patch/btrfs-progs-v6.11/0001-Print-csum-for-a-given-file-on-stdout.patch",
             hash: "sha256-ndydH5tHKYLKhstNdpfuJVCUrwl+6VJwprKy4hz8uwM=",
           })))),
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dduper",
       version: "0.04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "lakshmipathi",
           repo: "dduper",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "mkdir -p $out/bin\ninstall -m755 ./dduper $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast block-level out-of-band BTRFS deduplication tool",
         mainProgram: "dduper",
         homepage: "https://github.com/Lakshmipathi/dduper",

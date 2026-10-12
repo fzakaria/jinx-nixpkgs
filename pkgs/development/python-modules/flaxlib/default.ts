@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["CMAKE_PREFIX_PATH", 51, 7]], [["updateScript", 59, 20]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 18], ["sourceRoot", 25, 3], ["postPatch", 27, 3], ["dontUseCmakeConfigure", 39, 3], ["build-system", 41, 3], ["nativeBuildInputs", 46, 3], ["env", 51, 3], ["pythonImportsCheck", 53, 3], ["doCheck", 56, 3], ["passthru", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, flax: false, tomlq: false, python: false, nanobind: false, ninja: false, "scikit-build-core": false, cmake: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["CMAKE_PREFIX_PATH", 51, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 59, 20]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 18], ["sourceRoot", 25, 3], ["postPatch", 27, 3], ["dontUseCmakeConfigure", 39, 3], ["build-system", 41, 3], ["nativeBuildInputs", 46, 3], ["env", 51, 3], ["pythonImportsCheck", 53, 3], ["doCheck", 56, 3], ["passthru", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,17 +37,17 @@ fi
       const build_system = nix.thunk(() => [nanobind, ninja, scikit_build_core]);
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         CMAKE_PREFIX_PATH: nix.thunk(() => nix.str`${nanobind}/${nix.sel(python, "sitePackages")}/nanobind`),
       }));
       const pythonImportsCheck = nix.thunk(() => ["flaxlib"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.attr(flax, "updateScript")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Rust library used internally by flax",
         homepage: "https://github.com/google/flax/tree/main/flaxlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -60,7 +57,7 @@ fi
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

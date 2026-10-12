@@ -2,16 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["url", 132, 11], ["sha256", 133, 11]], [["url", 136, 11], ["sha256", 137, 11]], [["aarch64-linux", 131, 9], ["x86_64-linux", 135, 9]], [["sources", 130, 7]], [["pname", 64, 5], ["version", 65, 5], ["src", 67, 5], ["dontStrip", 69, 5], ["dontPatchELF", 70, 5], ["buildInputs", 72, 5], ["nativeBuildInputs", 78, 5], ["buildPhase", 83, 5], ["installPhase", 107, 5], ["dontWrapGApps", 121, 5], ["postFixup", 123, 5], ["passthru", 129, 5]], [["unwrapped", 176, 5], ["updateScript", 178, 5]], [["description", 209, 5], ["homepage", 210, 5], ["maintainers", 211, 5], ["mainProgram", 217, 5], ["sourceProvenance", 218, 5], ["license", 219, 5], ["platforms", 220, 5]], [["pname", 144, 3], ["version", 145, 3], ["dontUnpack", 147, 3], ["nativeBuildInputs", 149, 3], ["installPhase", 153, 3], ["passthru", 175, 3], ["meta", 208, 3]]]);
 const formals$1 = { args: { buildVersion: false, dev: true, aarch64sha256: false, x64sha256: false }, ellipsis: false };
 const formals$2 = { args: { config: false, fetchurl: false, stdenv: false, lib: false, libxtst: false, libx11: false, glib: false, libglvnd: false, glibcLocales: false, gtk3: false, cairo: false, pango: false, makeWrapper: false, wrapGAppsHook3: false, writeShellScript: false, "common-updater-scripts": false, curl: false, openssl_3_5: false, bzip2: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["url", 132, 11], ["sha256", 133, 11]]);
-const pos$2 = nix.positions(here + "/common.nix", [["url", 136, 11], ["sha256", 137, 11]]);
-const pos$3 = nix.positions(here + "/common.nix", [["aarch64-linux", 131, 9], ["x86_64-linux", 135, 9]]);
-const pos$4 = nix.positions(here + "/common.nix", [["sources", 130, 7]]);
-const pos$5 = nix.positions(here + "/common.nix", [["pname", 64, 5], ["version", 65, 5], ["src", 67, 5], ["dontStrip", 69, 5], ["dontPatchELF", 70, 5], ["buildInputs", 72, 5], ["nativeBuildInputs", 78, 5], ["buildPhase", 83, 5], ["installPhase", 107, 5], ["dontWrapGApps", 121, 5], ["postFixup", 123, 5], ["passthru", 129, 5]]);
-const pos$6 = nix.positions(here + "/common.nix", [["unwrapped", 176, 5], ["updateScript", 178, 5]]);
-const pos$7 = nix.positions(here + "/common.nix", [["description", 209, 5], ["homepage", 210, 5], ["maintainers", 211, 5], ["mainProgram", 217, 5], ["sourceProvenance", 218, 5], ["license", 219, 5], ["platforms", 220, 5]]);
-const pos$8 = nix.positions(here + "/common.nix", [["pname", 144, 3], ["version", 145, 3], ["dontUnpack", 147, 3], ["nativeBuildInputs", 149, 3], ["installPhase", 153, 3], ["passthru", 175, 3], ["meta", 208, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,7 +45,7 @@ export default nix.lambda((args) => (() => {
     const versionFile = nix.thunk(() => nix.builtins.toString(nix.path(here, "./packages.nix")));
     const neededLibraries = nix.thunk(() => [libx11, libxtst, glib, libglvnd, gtk3, cairo, pango, curl, sqlite]);
     const binaryPackage = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: nix.thunk(() => nix.str`${pnameBase}-bin`),
         version: buildVersion,
         src: nix.thunk(() => nix.sel(finalAttrs, "passthru", "sources", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -84,16 +77,16 @@ runHook postBuild
   "\${gappsWrapperArgs[@]}"
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           sources: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 url: nix.thunk(() => nix.app(downloadUrl, "arm64")),
                 sha256: aarch64sha256,
               })))),
             "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 url: nix.thunk(() => nix.app(downloadUrl, "x64")),
                 sha256: x64sha256,
               })))),
@@ -101,7 +94,7 @@ runHook postBuild
         })),
       })));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: pnameBase,
         version: buildVersion,
         dontUnpack: true,
@@ -123,7 +116,7 @@ for directory in ${binaryPackage}/Icon/*; do
 done
 `)),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           unwrapped: binaryPackage,
           updateScript: nix.thunk(() => (() => {
             const script = nix.thunk(() => nix.app(writeShellScript, nix.thunk(() => nix.str`${packageAttribute}-update-script`), nix.thunk(() => nix.str`set -o errexit
@@ -145,7 +138,7 @@ done
           })()),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           description: "Sophisticated text editor for code, markup and prose",
           homepage: "https://www.sublimetext.com/",
           maintainers: nix.thunk(() => (() => {

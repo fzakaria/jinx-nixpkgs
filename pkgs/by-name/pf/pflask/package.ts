@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]], [["owner", 40, 29], ["repo", 40, 35], ["rev", 41, 11], ["hash", 42, 11]], [["version", 38, 9], ["src", 39, 9]], [["waf", 37, 7]], [["description", 54, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["waf-version", 32, 3], ["nativeBuildInputs", 34, 3], ["postInstall", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, python3: false, wafHook: false, waf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 40, 29], ["repo", 40, 35], ["rev", 41, 11], ["hash", 42, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 38, 9], ["src", 39, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["waf", 37, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 54, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["waf-version", 32, 3], ["nativeBuildInputs", 34, 3], ["postInstall", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const wafHook = nix.arg($, "wafHook");
   const waf = nix.arg($, "waf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pflask",
       version: "unstable-2018-01-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ghedo",
           repo: "pflask",
           rev: "9ac31ffe2ed29453218aac89ae992abbd6e7cc69",
@@ -33,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fno-common.patch",
             url: "https://github.com/ghedo/pflask/commit/73ba32ec48e1e0e4a56b1bceed4635711526e079.patch",
             hash: "sha256-KVuBS7LbYJQv6NXljpSiGGja7ar7W6A6SKzkEjB1B6U=",
@@ -43,14 +37,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [
         python3,
         nix.thunk(() => nix.app(nix.sel(wafHook, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             waf: nix.thunk(() => nix.app(nix.sel(waf, "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 version: nix.thunk(() => nix.sel(finalAttrs, "waf-version")),
                 src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
                     const from = nix.thunk(() => nix.sel(old, "src"));
                     return {
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     owner: nix.thunk(() => nix.attr(from, "owner")),
                     repo: nix.thunk(() => nix.attr(from, "repo")),
                     rev: nix.thunk(() => nix.str`waf-${nix.sel(finalAttrs, "waf-version")}`),
@@ -62,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/bin\ncp build/pflask $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Lightweight process containers for Linux",
         mainProgram: "pflask",
         homepage: "https://ghedo.github.io/pflask/",

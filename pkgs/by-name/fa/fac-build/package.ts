@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 14, 26], ["crateName", 15, 5], ["hash", 16, 5]], [["broken", 38, 5], ["description", 39, 5], ["longDescription", 42, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 19, 3], ["checkFlags", 24, 3], ["postPatch", 28, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchCrate: false, git: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 14, 26], ["crateName", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 38, 5], ["description", 39, 5], ["longDescription", 42, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 19, 3], ["checkFlags", 24, 3], ["postPatch", 28, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchCrate = nix.arg($, "fetchCrate");
   const git = nix.arg($, "git");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fac-build",
       version: "0.5.4",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           crateName: "fac",
           hash: "sha256-+JJVuKUdnjJoQJ4a2EE0O6jZdVoFxPwbPgfD2LfiDPI=",
@@ -34,7 +32,7 @@ substituteInPlace tests/lib.rs \\
     'std::process::Command::new("${git}/bin/git")'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "A build system that uses ptrace to handle dependencies automatically\n",
         longDescription: "Fac is a general-purpose build system inspired by make that utilizes\nptrace to ensure that all dependences are enumerated and that all\nsource files are added to a (git) repo. An important feature of fac\nis that it automatically handles dependencies, rather than either\ncomplaining about them or giving an incorrect build. Currently, fac\nonly runs on linux systems, but on those systems it is incredibly\neasy to use!\n",

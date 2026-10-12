@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["broken", 33, 5], ["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]], [["pname", 10, 3], ["version", 11, 3], ["hardeningDisable", 13, 3], ["src", 15, 3], ["makeFlags", 22, 3], ["buildFlags", 27, 3], ["installTargets", 28, 3], ["nativeBuildInputs", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, kernel: false, kernelModuleMakeFlags: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["broken", 33, 5], ["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["hardeningDisable", 13, 3], ["src", 15, 3], ["makeFlags", 22, 3], ["buildFlags", 27, 3], ["installTargets", 28, 3], ["nativeBuildInputs", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "can-isotp",
       version: "20200910",
       hardeningDisable: nix.thunk(() => ["pic"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hartkopp",
           repo: "can-isotp",
           rev: "21a3a59e2bfad246782896841e7af042382fcae7",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["modules_install"]),
       nativeBuildInputs: nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelAtLeast"), "5.16")),
         description: "Kernel module for ISO-TP (ISO 15765-2)",
         homepage: "https://github.com/hartkopp/can-isotp",

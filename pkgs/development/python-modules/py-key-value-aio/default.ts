@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 67, 5], ["repo", 68, 5], ["tag", 69, 5], ["hash", 70, 5]], [["memory", 96, 5], ["disk", 99, 5], ["filetree", 103, 5], ["redis", 107, 5], ["mongodb", 110, 5], ["valkey", 113, 5], ["vault", 116, 5], ["memcached", 120, 5], ["elasticsearch", 123, 5], ["dynamodb", 127, 5], ["keyring", 131, 5], ["keyring-linux", 134, 5], ["pydantic", 138, 5], ["rocksdb", 141, 5], ["duckdb", 144, 5], ["wrappers-encryption", 148, 5]], [["PYTHONDONTWRITEBYTECODE", 154, 7]], [["description", 174, 5], ["homepage", 175, 5], ["changelog", 176, 5], ["license", 177, 5], ["maintainers", 178, 5]], [["pname", 61, 3], ["version", 62, 3], ["pyproject", 63, 3], ["__structuredAttrs", 64, 3], ["src", 66, 3], ["postPatch", 75, 3], ["build-system", 86, 3], ["dependencies", 90, 3], ["optional-dependencies", 95, 3], ["env", 154, 3], ["pythonImportsCheck", 156, 3], ["nativeCheckInputs", 158, 3], ["pytestFlags", 168, 3], ["meta", 173, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "uv-build": false, beartype: false, "typing-extensions": false, cachetools: false, diskcache: false, pathvalidate: false, aiofile: false, anyio: false, redis: false, pymongo: false, hvac: false, aiomcache: false, elasticsearch: false, aiohttp: false, aioboto3: false, "types-aiobotocore-dynamodb": false, keyring: false, "dbus-python": false, pydantic: false, rocksdict: false, duckdb: false, pytz: false, cryptography: false, "dirty-equals": false, "inline-snapshot": false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 67, 5], ["repo", 68, 5], ["tag", 69, 5], ["hash", 70, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["memory", 96, 5], ["disk", 99, 5], ["filetree", 103, 5], ["redis", 107, 5], ["mongodb", 110, 5], ["valkey", 113, 5], ["vault", 116, 5], ["memcached", 120, 5], ["elasticsearch", 123, 5], ["dynamodb", 127, 5], ["keyring", 131, 5], ["keyring-linux", 134, 5], ["pydantic", 138, 5], ["rocksdb", 141, 5], ["duckdb", 144, 5], ["wrappers-encryption", 148, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["PYTHONDONTWRITEBYTECODE", 154, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 174, 5], ["homepage", 175, 5], ["changelog", 176, 5], ["license", 177, 5], ["maintainers", 178, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 61, 3], ["version", 62, 3], ["pyproject", 63, 3], ["__structuredAttrs", 64, 3], ["src", 66, 3], ["postPatch", 75, 3], ["build-system", 86, 3], ["dependencies", 90, 3], ["optional-dependencies", 95, 3], ["env", 154, 3], ["pythonImportsCheck", 156, 3], ["nativeCheckInputs", 158, 3], ["pytestFlags", 168, 3], ["meta", 173, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,13 +38,13 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "py-key-value-aio",
       version: "0.4.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "strawgate",
           repo: "py-key-value",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [beartype, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         memory: nix.thunk(() => [cachetools]),
         disk: nix.thunk(() => [diskcache, pathvalidate]),
         filetree: nix.thunk(() => [aiofile, anyio]),
@@ -76,12 +72,12 @@ export default nix.lambda((args) => (() => {
         duckdb: nix.thunk(() => [duckdb, pytz]),
         "wrappers-encryption": nix.thunk(() => [cryptography]),
       })),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, PYTHONDONTWRITEBYTECODE: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], PYTHONDONTWRITEBYTECODE: 1n })),
       pythonImportsCheck: nix.thunk(() => ["key_value.aio"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([dirty_equals, inline_snapshot, pytest_asyncio, pytestCheckHook], nix.concat(nix.sel(finalAttrs, "passthru", "optional-dependencies", "filetree"), nix.concat(nix.sel(finalAttrs, "passthru", "optional-dependencies", "memory"), nix.sel(finalAttrs, "passthru", "optional-dependencies", "pydantic"))))),
       pytestFlags: nix.thunk(() => ["tests/stores/filetree", "tests/stores/memory"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Async Key-Value",
         homepage: "https://github.com/strawgate/py-key-value",
         changelog: nix.thunk(() => nix.str`https://github.com/strawgate/py-key-value/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

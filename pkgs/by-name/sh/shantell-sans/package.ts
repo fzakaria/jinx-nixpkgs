@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["maintainers", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["outputs", 15, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["outputs", 15, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,20 +12,20 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "shantell-sans",
       version: "1.011",
       strictDeps: true,
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/arrowtype/shantell-sans/releases/download/${nix.sel(finalAttrs, "version")}/Shantell_Sans_${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-xgE4BSl2A7yeVP5hWWUViBDoU8pZ8KkJJrsSfGRIjOk=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "A marker-style variable font by ArrowType and Shantell Martin",
         homepage: "https://github.com/arrowtype/shantell-sans",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

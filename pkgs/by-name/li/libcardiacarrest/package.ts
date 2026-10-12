@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 41, 7], ["longDescription", 42, 7], ["license", 54, 7], ["maintainers", 55, 7]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["makeFlags", 30, 3], ["postInstall", 32, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, glib: false, libpulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 7], ["longDescription", 42, 7], ["license", 54, 7], ["maintainers", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["makeFlags", 30, 3], ["postInstall", 32, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libcardiacarrest";
       const version = "12.2.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oxij",
           repo: "libcardiacarrest",
           rev: "d89639f5b2d298cf74af26880f5ebf50e645166d",
@@ -31,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const makeFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const postInstall = "moveToOutput $out/include $dev\nmoveToOutput $out/lib/pkgconfig $dev\nmoveToOutput $out/lib/cmake $dev\n";
       const meta = nix.thunk(() => nix.update(nix.sel(src, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Trivial implementation of libpulse PulseAudio library API",
         longDescription: "libcardiacarrest is a trivial implementation of libpulse\nPulseAudio library API that unconditionally (but gracefully)\nfails to connect to the PulseAudio daemon and does nothing else.\n\napulse and pressureaudio (which uses apulse internally) are an\ninspiration for this but unlike those two projects\nlibcardiacarrest is not an emulation layer, all it does is it\ngracefully fails to provide the requested PulseAudio service\nhoping the application would try something else (e.g. ALSA or\nJACK).\n",
         license: nix.thunk(() => nix.sel(libpulseaudio, "meta", "license")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "oxij"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]], [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 31, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["doCheck", 54, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, dnspython: false, eventlet: false, kombu: false, mock: false, packaging: false, path: false, pyyaml: false, requests: false, setuptools: false, six: false, werkzeug: false, wrapt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 31, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["doCheck", 54, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.14.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-J1NXi7Tca5KAGuozTSkwuX37dEhucF7daRmDBqlGjIg=",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["nameko"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Microservices framework that lets service developers concentrate on application logic and encourages testability",
         mainProgram: "nameko",
         homepage: "https://www.nameko.io/",
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

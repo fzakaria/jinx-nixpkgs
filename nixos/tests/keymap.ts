@@ -2,94 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/keymap.nix", [[["keyMap", 37, 29]], [["enable", 38, 59]], [["xterm", 38, 53]], [["layout", 39, 42]], [["desktopManager", 38, 38], ["xkb", 39, 38]], [["xserver", 38, 30]], [["console", 37, 21], ["services", 38, 21], ["imports", 40, 21]], [["machine", 37, 13]], [["name", 35, 7], ["nodes", 37, 7], ["testScript", 45, 7]], [["qwerty", 109, 12], ["expect", 113, 12]], [["qwerty", 117, 13], ["expect", 124, 13]], [["azqw", 109, 7], ["altgr", 117, 7]], [["keyMap", 133, 25]], [["layout", 134, 38]], [["xkb", 134, 34]], [["xserver", 134, 26]], [["console", 133, 17], ["services", 134, 17]], [["tests", 108, 5], ["extraConfig", 133, 5]], [["qwerty", 139, 14], ["expect", 143, 14]], [["qwerty", 147, 14], ["expect", 152, 14]], [["qwerty", 157, 14], ["expect", 161, 14]], [["layer1", 139, 7], ["layer2", 147, 7], ["layer3", 157, 7]], [["keyMap", 167, 25]], [["layout", 168, 38], ["variant", 169, 38]], [["xkb", 168, 34]], [["xserver", 168, 26]], [["console", 167, 17], ["services", 168, 17]], [["tests", 138, 5], ["extraConfig", 167, 5]], [["qwerty", 174, 15], ["expect", 184, 15]], [["homerow", 174, 7]], [["keyMap", 196, 25]], [["layout", 197, 38], ["variant", 198, 38]], [["xkb", 197, 34]], [["xserver", 197, 26]], [["console", 196, 17], ["services", 197, 17]], [["tests", 173, 5], ["extraConfig", 196, 5]], [["qwerty", 203, 15], ["expect", 213, 15]], [["qwerty", 223, 15], ["expect", 230, 15]], [["homerow", 203, 7], ["symbols", 223, 7]], [["keyMap", 239, 25]], [["layout", 240, 38], ["variant", 241, 38]], [["xkb", 240, 34]], [["xserver", 240, 26]], [["console", 239, 17], ["services", 240, 17]], [["tests", 202, 5], ["extraConfig", 239, 5]], [["qwerty", 246, 15], ["expect", 256, 15]], [["qwerty", 266, 15], ["expect", 279, 15]], [["qwerty", 292, 15], ["expect", 305, 15]], [["homerow", 246, 7], ["numbers", 266, 7], ["symbols", 292, 7]], [["keyMap", 320, 25]], [["layout", 321, 38], ["variant", 322, 38]], [["xkb", 321, 34]], [["xserver", 321, 26]], [["console", 320, 17], ["services", 321, 17]], [["tests", 245, 5], ["extraConfig", 320, 5]], [["qwerty", 327, 14], ["expect", 331, 14]], [["qwerty", 335, 14], ["expect", 340, 14]], [["qwerty", 345, 14], ["expect", 349, 14]], [["layer1", 327, 7], ["layer2", 335, 7], ["layer3", 345, 7]], [["keyMap", 355, 25]], [["layout", 356, 38], ["variant", 357, 38]], [["xkb", 356, 34]], [["xserver", 356, 26]], [["console", 355, 17], ["services", 356, 17]], [["tests", 326, 5], ["extraConfig", 355, 5]], [["qwerty", 362, 10], ["expect", 366, 10]], [["qwerty", 370, 13], ["expect", 378, 13]], [["zy", 362, 7], ["altgr", 370, 7]], [["keyMap", 388, 25]], [["layout", 389, 38]], [["xkb", 389, 34]], [["xserver", 389, 26]], [["console", 388, 17], ["services", 389, 17]], [["tests", 361, 5], ["extraConfig", 388, 5]], [["qwerty", 394, 10], ["expect", 403, 10]], [["qwerty", 412, 13], ["expect", 419, 13]], [["us", 394, 7], ["greek", 412, 7]], [["useXkbConfig", 428, 25]], [["description", 431, 7], ["languages", 432, 7], ["symbolsFile", 433, 7]], [["us-greek", 430, 51]], [["layout", 429, 38], ["extraLayouts", 430, 38]], [["xkb", 429, 34]], [["xserver", 429, 26]], [["console", 428, 17], ["services", 429, 17]], [["tests", 393, 5], ["extraConfig", 428, 5]], [["azerty", 107, 3], ["bone", 137, 3], ["colemak", 172, 3], ["dvorak", 201, 3], ["dvorak-programmer", 244, 3], ["neo", 325, 3], ["qwertz", 360, 3], ["custom", 392, 3]]]);
 const formals$1 = { args: { pkgs: false, runTest: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { extraConfig: true, tests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/keymap.nix", [["keyMap", 37, 29]]);
-const pos$2 = nix.positions(here + "/keymap.nix", [["enable", 38, 59]]);
-const pos$3 = nix.positions(here + "/keymap.nix", [["xterm", 38, 53]]);
-const pos$4 = nix.positions(here + "/keymap.nix", [["layout", 39, 42]]);
-const pos$5 = nix.positions(here + "/keymap.nix", [["desktopManager", 38, 38], ["xkb", 39, 38]]);
-const pos$6 = nix.positions(here + "/keymap.nix", [["xserver", 38, 30]]);
-const pos$7 = nix.positions(here + "/keymap.nix", [["console", 37, 21], ["services", 38, 21], ["imports", 40, 21]]);
-const pos$8 = nix.positions(here + "/keymap.nix", [["machine", 37, 13]]);
-const pos$9 = nix.positions(here + "/keymap.nix", [["name", 35, 7], ["nodes", 37, 7], ["testScript", 45, 7]]);
-const pos$10 = nix.positions(here + "/keymap.nix", [["qwerty", 109, 12], ["expect", 113, 12]]);
-const pos$11 = nix.positions(here + "/keymap.nix", [["qwerty", 117, 13], ["expect", 124, 13]]);
-const pos$12 = nix.positions(here + "/keymap.nix", [["azqw", 109, 7], ["altgr", 117, 7]]);
-const pos$13 = nix.positions(here + "/keymap.nix", [["keyMap", 133, 25]]);
-const pos$14 = nix.positions(here + "/keymap.nix", [["layout", 134, 38]]);
-const pos$15 = nix.positions(here + "/keymap.nix", [["xkb", 134, 34]]);
-const pos$16 = nix.positions(here + "/keymap.nix", [["xserver", 134, 26]]);
-const pos$17 = nix.positions(here + "/keymap.nix", [["console", 133, 17], ["services", 134, 17]]);
-const pos$18 = nix.positions(here + "/keymap.nix", [["tests", 108, 5], ["extraConfig", 133, 5]]);
-const pos$19 = nix.positions(here + "/keymap.nix", [["qwerty", 139, 14], ["expect", 143, 14]]);
-const pos$20 = nix.positions(here + "/keymap.nix", [["qwerty", 147, 14], ["expect", 152, 14]]);
-const pos$21 = nix.positions(here + "/keymap.nix", [["qwerty", 157, 14], ["expect", 161, 14]]);
-const pos$22 = nix.positions(here + "/keymap.nix", [["layer1", 139, 7], ["layer2", 147, 7], ["layer3", 157, 7]]);
-const pos$23 = nix.positions(here + "/keymap.nix", [["keyMap", 167, 25]]);
-const pos$24 = nix.positions(here + "/keymap.nix", [["layout", 168, 38], ["variant", 169, 38]]);
-const pos$25 = nix.positions(here + "/keymap.nix", [["xkb", 168, 34]]);
-const pos$26 = nix.positions(here + "/keymap.nix", [["xserver", 168, 26]]);
-const pos$27 = nix.positions(here + "/keymap.nix", [["console", 167, 17], ["services", 168, 17]]);
-const pos$28 = nix.positions(here + "/keymap.nix", [["tests", 138, 5], ["extraConfig", 167, 5]]);
-const pos$29 = nix.positions(here + "/keymap.nix", [["qwerty", 174, 15], ["expect", 184, 15]]);
-const pos$30 = nix.positions(here + "/keymap.nix", [["homerow", 174, 7]]);
-const pos$31 = nix.positions(here + "/keymap.nix", [["keyMap", 196, 25]]);
-const pos$32 = nix.positions(here + "/keymap.nix", [["layout", 197, 38], ["variant", 198, 38]]);
-const pos$33 = nix.positions(here + "/keymap.nix", [["xkb", 197, 34]]);
-const pos$34 = nix.positions(here + "/keymap.nix", [["xserver", 197, 26]]);
-const pos$35 = nix.positions(here + "/keymap.nix", [["console", 196, 17], ["services", 197, 17]]);
-const pos$36 = nix.positions(here + "/keymap.nix", [["tests", 173, 5], ["extraConfig", 196, 5]]);
-const pos$37 = nix.positions(here + "/keymap.nix", [["qwerty", 203, 15], ["expect", 213, 15]]);
-const pos$38 = nix.positions(here + "/keymap.nix", [["qwerty", 223, 15], ["expect", 230, 15]]);
-const pos$39 = nix.positions(here + "/keymap.nix", [["homerow", 203, 7], ["symbols", 223, 7]]);
-const pos$40 = nix.positions(here + "/keymap.nix", [["keyMap", 239, 25]]);
-const pos$41 = nix.positions(here + "/keymap.nix", [["layout", 240, 38], ["variant", 241, 38]]);
-const pos$42 = nix.positions(here + "/keymap.nix", [["xkb", 240, 34]]);
-const pos$43 = nix.positions(here + "/keymap.nix", [["xserver", 240, 26]]);
-const pos$44 = nix.positions(here + "/keymap.nix", [["console", 239, 17], ["services", 240, 17]]);
-const pos$45 = nix.positions(here + "/keymap.nix", [["tests", 202, 5], ["extraConfig", 239, 5]]);
-const pos$46 = nix.positions(here + "/keymap.nix", [["qwerty", 246, 15], ["expect", 256, 15]]);
-const pos$47 = nix.positions(here + "/keymap.nix", [["qwerty", 266, 15], ["expect", 279, 15]]);
-const pos$48 = nix.positions(here + "/keymap.nix", [["qwerty", 292, 15], ["expect", 305, 15]]);
-const pos$49 = nix.positions(here + "/keymap.nix", [["homerow", 246, 7], ["numbers", 266, 7], ["symbols", 292, 7]]);
-const pos$50 = nix.positions(here + "/keymap.nix", [["keyMap", 320, 25]]);
-const pos$51 = nix.positions(here + "/keymap.nix", [["layout", 321, 38], ["variant", 322, 38]]);
-const pos$52 = nix.positions(here + "/keymap.nix", [["xkb", 321, 34]]);
-const pos$53 = nix.positions(here + "/keymap.nix", [["xserver", 321, 26]]);
-const pos$54 = nix.positions(here + "/keymap.nix", [["console", 320, 17], ["services", 321, 17]]);
-const pos$55 = nix.positions(here + "/keymap.nix", [["tests", 245, 5], ["extraConfig", 320, 5]]);
-const pos$56 = nix.positions(here + "/keymap.nix", [["qwerty", 327, 14], ["expect", 331, 14]]);
-const pos$57 = nix.positions(here + "/keymap.nix", [["qwerty", 335, 14], ["expect", 340, 14]]);
-const pos$58 = nix.positions(here + "/keymap.nix", [["qwerty", 345, 14], ["expect", 349, 14]]);
-const pos$59 = nix.positions(here + "/keymap.nix", [["layer1", 327, 7], ["layer2", 335, 7], ["layer3", 345, 7]]);
-const pos$60 = nix.positions(here + "/keymap.nix", [["keyMap", 355, 25]]);
-const pos$61 = nix.positions(here + "/keymap.nix", [["layout", 356, 38], ["variant", 357, 38]]);
-const pos$62 = nix.positions(here + "/keymap.nix", [["xkb", 356, 34]]);
-const pos$63 = nix.positions(here + "/keymap.nix", [["xserver", 356, 26]]);
-const pos$64 = nix.positions(here + "/keymap.nix", [["console", 355, 17], ["services", 356, 17]]);
-const pos$65 = nix.positions(here + "/keymap.nix", [["tests", 326, 5], ["extraConfig", 355, 5]]);
-const pos$66 = nix.positions(here + "/keymap.nix", [["qwerty", 362, 10], ["expect", 366, 10]]);
-const pos$67 = nix.positions(here + "/keymap.nix", [["qwerty", 370, 13], ["expect", 378, 13]]);
-const pos$68 = nix.positions(here + "/keymap.nix", [["zy", 362, 7], ["altgr", 370, 7]]);
-const pos$69 = nix.positions(here + "/keymap.nix", [["keyMap", 388, 25]]);
-const pos$70 = nix.positions(here + "/keymap.nix", [["layout", 389, 38]]);
-const pos$71 = nix.positions(here + "/keymap.nix", [["xkb", 389, 34]]);
-const pos$72 = nix.positions(here + "/keymap.nix", [["xserver", 389, 26]]);
-const pos$73 = nix.positions(here + "/keymap.nix", [["console", 388, 17], ["services", 389, 17]]);
-const pos$74 = nix.positions(here + "/keymap.nix", [["tests", 361, 5], ["extraConfig", 388, 5]]);
-const pos$75 = nix.positions(here + "/keymap.nix", [["qwerty", 394, 10], ["expect", 403, 10]]);
-const pos$76 = nix.positions(here + "/keymap.nix", [["qwerty", 412, 13], ["expect", 419, 13]]);
-const pos$77 = nix.positions(here + "/keymap.nix", [["us", 394, 7], ["greek", 412, 7]]);
-const pos$78 = nix.positions(here + "/keymap.nix", [["useXkbConfig", 428, 25]]);
-const pos$79 = nix.positions(here + "/keymap.nix", [["description", 431, 7], ["languages", 432, 7], ["symbolsFile", 433, 7]]);
-const pos$80 = nix.positions(here + "/keymap.nix", [["us-greek", 430, 51]]);
-const pos$81 = nix.positions(here + "/keymap.nix", [["layout", 429, 38], ["extraLayouts", 430, 38]]);
-const pos$82 = nix.positions(here + "/keymap.nix", [["xkb", 429, 34]]);
-const pos$83 = nix.positions(here + "/keymap.nix", [["xserver", 429, 26]]);
-const pos$84 = nix.positions(here + "/keymap.nix", [["console", 428, 17], ["services", 429, 17]]);
-const pos$85 = nix.positions(here + "/keymap.nix", [["tests", 393, 5], ["extraConfig", 428, 5]]);
-const pos$86 = nix.positions(here + "/keymap.nix", [["azerty", 107, 3], ["bone", 137, 3], ["colemak", 172, 3], ["dvorak", 201, 3], ["dvorak-programmer", 244, 3], ["neo", 325, 3], ["qwertz", 360, 3], ["custom", 392, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -118,26 +33,26 @@ mv  ${resultFile}.tmp ${resultFile}
     const tests = nix.arg($_1, "tests");
     const w = nix.withScope(lib, null);
     return nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         name: nix.thunk(() => nix.str`keymap-${layout}`),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             console: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               keyMap: nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 900n, layout)),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               xserver: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 desktopManager: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
-                  xterm: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+                  [nix.POS]: $pos[2],
+                  xterm: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
                 })),
                 xkb: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   layout: nix.thunk(() => nix.app(nix.lookup(w, "mkOverride"), 900n, layout)),
                 })),
               })),
@@ -205,235 +120,235 @@ for test_case_name, test_data in tests.items():
       })));
   })(), formals$2);
   return nix.app(nix.sel(lib, "mapAttrs"), mkKeyboardTest, nix.thunk(() => ({
-      [nix.POS]: pos$86,
+      [nix.POS]: $pos[85],
       azerty: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           azqw: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             qwerty: nix.thunk(() => ["q", "w"]),
             expect: nix.thunk(() => ["a", "z"]),
           })),
           altgr: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             qwerty: nix.thunk(() => ["alt_r-2", "alt_r-3", "alt_r-4", "alt_r-5", "alt_r-6"]),
             expect: nix.thunk(() => ["~", "#", "{", "[", "|"]),
           })),
         })),
         extraConfig: nix.thunk(() => ({
-          [nix.POS]: pos$17,
-          console: nix.thunk(() => ({ [nix.POS]: pos$13, keyMap: "fr" })),
+          [nix.POS]: $pos[16],
+          console: nix.thunk(() => ({ [nix.POS]: $pos[12], keyMap: "fr" })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$15,
-              xkb: nix.thunk(() => ({ [nix.POS]: pos$14, layout: "fr" })),
+              [nix.POS]: $pos[14],
+              xkb: nix.thunk(() => ({ [nix.POS]: $pos[13], layout: "fr" })),
             })),
           })),
         })),
       })),
       bone: nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           layer1: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             qwerty: nix.thunk(() => ["f", "j"]),
             expect: nix.thunk(() => ["e", "n"]),
           })),
           layer2: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             qwerty: nix.thunk(() => ["shift-f", "shift-j", "shift-6"]),
             expect: nix.thunk(() => ["E", "N", "$"]),
           })),
           layer3: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             qwerty: nix.thunk(() => ["caps_lock-d", "caps_lock-f"]),
             expect: nix.thunk(() => ["{", "}"]),
           })),
         })),
         extraConfig: nix.thunk(() => ({
-          [nix.POS]: pos$27,
-          console: nix.thunk(() => ({ [nix.POS]: pos$23, keyMap: "bone" })),
+          [nix.POS]: $pos[26],
+          console: nix.thunk(() => ({ [nix.POS]: $pos[22], keyMap: "bone" })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$25,
-              xkb: nix.thunk(() => ({ [nix.POS]: pos$24, layout: "de", variant: "bone" })),
+              [nix.POS]: $pos[24],
+              xkb: nix.thunk(() => ({ [nix.POS]: $pos[23], layout: "de", variant: "bone" })),
             })),
           })),
         })),
       })),
       colemak: nix.thunk(() => ({
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           homerow: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             qwerty: nix.thunk(() => ["a", "s", "d", "f", "j", "k", "l", "semicolon"]),
             expect: nix.thunk(() => ["a", "r", "s", "t", "n", "e", "i", "o"]),
           })),
         })),
         extraConfig: nix.thunk(() => ({
-          [nix.POS]: pos$35,
-          console: nix.thunk(() => ({ [nix.POS]: pos$31, keyMap: "colemak" })),
+          [nix.POS]: $pos[34],
+          console: nix.thunk(() => ({ [nix.POS]: $pos[30], keyMap: "colemak" })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$33,
-              xkb: nix.thunk(() => ({ [nix.POS]: pos$32, layout: "us", variant: "colemak" })),
+              [nix.POS]: $pos[32],
+              xkb: nix.thunk(() => ({ [nix.POS]: $pos[31], layout: "us", variant: "colemak" })),
             })),
           })),
         })),
       })),
       dvorak: nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           homerow: nix.thunk(() => ({
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             qwerty: nix.thunk(() => ["a", "s", "d", "f", "j", "k", "l", "semicolon"]),
             expect: nix.thunk(() => ["a", "o", "e", "u", "h", "t", "n", "s"]),
           })),
           symbols: nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             qwerty: nix.thunk(() => ["q", "w", "e", "minus", "equal"]),
             expect: nix.thunk(() => ["'", ",", ".", "[", "]"]),
           })),
         })),
         extraConfig: nix.thunk(() => ({
-          [nix.POS]: pos$44,
-          console: nix.thunk(() => ({ [nix.POS]: pos$40, keyMap: "dvorak" })),
+          [nix.POS]: $pos[43],
+          console: nix.thunk(() => ({ [nix.POS]: $pos[39], keyMap: "dvorak" })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$43,
+            [nix.POS]: $pos[42],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$42,
-              xkb: nix.thunk(() => ({ [nix.POS]: pos$41, layout: "us", variant: "dvorak" })),
+              [nix.POS]: $pos[41],
+              xkb: nix.thunk(() => ({ [nix.POS]: $pos[40], layout: "us", variant: "dvorak" })),
             })),
           })),
         })),
       })),
       "dvorak-programmer": nix.thunk(() => ({
-        [nix.POS]: pos$55,
+        [nix.POS]: $pos[54],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$49,
+          [nix.POS]: $pos[48],
           homerow: nix.thunk(() => ({
-            [nix.POS]: pos$46,
+            [nix.POS]: $pos[45],
             qwerty: nix.thunk(() => ["a", "s", "d", "f", "j", "k", "l", "semicolon"]),
             expect: nix.thunk(() => ["a", "o", "e", "u", "h", "t", "n", "s"]),
           })),
           numbers: nix.thunk(() => ({
-            [nix.POS]: pos$47,
+            [nix.POS]: $pos[46],
             qwerty: nix.thunk(() => nix.builtins.map((x) => nix.str`shift-${x}`, nix.thunk(() => ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "minus"]))),
             expect: nix.thunk(() => ["%", "7", "5", "3", "1", "9", "0", "2", "4", "6", "8"]),
           })),
           symbols: nix.thunk(() => ({
-            [nix.POS]: pos$48,
+            [nix.POS]: $pos[47],
             qwerty: nix.thunk(() => ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "minus"]),
             expect: nix.thunk(() => ["&", "[", "{", "}", "(", "=", "*", ")", "+", "]", "!"]),
           })),
         })),
         extraConfig: nix.thunk(() => ({
-          [nix.POS]: pos$54,
-          console: nix.thunk(() => ({ [nix.POS]: pos$50, keyMap: "dvorak-programmer" })),
+          [nix.POS]: $pos[53],
+          console: nix.thunk(() => ({ [nix.POS]: $pos[49], keyMap: "dvorak-programmer" })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$53,
+            [nix.POS]: $pos[52],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$52,
-              xkb: nix.thunk(() => ({ [nix.POS]: pos$51, layout: "us", variant: "dvp" })),
+              [nix.POS]: $pos[51],
+              xkb: nix.thunk(() => ({ [nix.POS]: $pos[50], layout: "us", variant: "dvp" })),
             })),
           })),
         })),
       })),
       neo: nix.thunk(() => ({
-        [nix.POS]: pos$65,
+        [nix.POS]: $pos[64],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$59,
+          [nix.POS]: $pos[58],
           layer1: nix.thunk(() => ({
-            [nix.POS]: pos$56,
+            [nix.POS]: $pos[55],
             qwerty: nix.thunk(() => ["f", "j"]),
             expect: nix.thunk(() => ["e", "n"]),
           })),
           layer2: nix.thunk(() => ({
-            [nix.POS]: pos$57,
+            [nix.POS]: $pos[56],
             qwerty: nix.thunk(() => ["shift-f", "shift-j", "shift-6"]),
             expect: nix.thunk(() => ["E", "N", "$"]),
           })),
           layer3: nix.thunk(() => ({
-            [nix.POS]: pos$58,
+            [nix.POS]: $pos[57],
             qwerty: nix.thunk(() => ["caps_lock-d", "caps_lock-f"]),
             expect: nix.thunk(() => ["{", "}"]),
           })),
         })),
         extraConfig: nix.thunk(() => ({
-          [nix.POS]: pos$64,
-          console: nix.thunk(() => ({ [nix.POS]: pos$60, keyMap: "neo" })),
+          [nix.POS]: $pos[63],
+          console: nix.thunk(() => ({ [nix.POS]: $pos[59], keyMap: "neo" })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$63,
+            [nix.POS]: $pos[62],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$62,
-              xkb: nix.thunk(() => ({ [nix.POS]: pos$61, layout: "de", variant: "neo" })),
+              [nix.POS]: $pos[61],
+              xkb: nix.thunk(() => ({ [nix.POS]: $pos[60], layout: "de", variant: "neo" })),
             })),
           })),
         })),
       })),
       qwertz: nix.thunk(() => ({
-        [nix.POS]: pos$74,
+        [nix.POS]: $pos[73],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$68,
+          [nix.POS]: $pos[67],
           zy: nix.thunk(() => ({
-            [nix.POS]: pos$66,
+            [nix.POS]: $pos[65],
             qwerty: nix.thunk(() => ["z", "y"]),
             expect: nix.thunk(() => ["y", "z"]),
           })),
           altgr: nix.thunk(() => ({
-            [nix.POS]: pos$67,
+            [nix.POS]: $pos[66],
             qwerty: nix.thunk(() => nix.builtins.map((x) => nix.str`alt_r-${x}`, nix.thunk(() => ["q", "less", "7", "8", "9", "0"]))),
             expect: nix.thunk(() => ["@", "|", "{", "[", "]", "}"]),
           })),
         })),
         extraConfig: nix.thunk(() => ({
-          [nix.POS]: pos$73,
-          console: nix.thunk(() => ({ [nix.POS]: pos$69, keyMap: "de" })),
+          [nix.POS]: $pos[72],
+          console: nix.thunk(() => ({ [nix.POS]: $pos[68], keyMap: "de" })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$72,
+            [nix.POS]: $pos[71],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$71,
-              xkb: nix.thunk(() => ({ [nix.POS]: pos$70, layout: "de" })),
+              [nix.POS]: $pos[70],
+              xkb: nix.thunk(() => ({ [nix.POS]: $pos[69], layout: "de" })),
             })),
           })),
         })),
       })),
       custom: nix.thunk(() => ({
-        [nix.POS]: pos$85,
+        [nix.POS]: $pos[84],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$77,
+          [nix.POS]: $pos[76],
           us: nix.thunk(() => ({
-            [nix.POS]: pos$75,
+            [nix.POS]: $pos[74],
             qwerty: nix.thunk(() => ["a", "b", "g", "d", "z", "shift-2", "shift-3"]),
             expect: nix.thunk(() => ["a", "b", "g", "d", "z", "@", "#"]),
           })),
           greek: nix.thunk(() => ({
-            [nix.POS]: pos$76,
+            [nix.POS]: $pos[75],
             qwerty: nix.thunk(() => nix.builtins.map((x) => nix.str`alt_r-${x}`, nix.thunk(() => ["a", "b", "g", "d", "z"]))),
             expect: nix.thunk(() => ["α", "β", "γ", "δ", "ζ"]),
           })),
         })),
         extraConfig: nix.thunk(() => ({
-          [nix.POS]: pos$84,
-          console: nix.thunk(() => ({ [nix.POS]: pos$78, useXkbConfig: true })),
+          [nix.POS]: $pos[83],
+          console: nix.thunk(() => ({ [nix.POS]: $pos[77], useXkbConfig: true })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$83,
+            [nix.POS]: $pos[82],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$82,
+              [nix.POS]: $pos[81],
               xkb: nix.thunk(() => ({
-                [nix.POS]: pos$81,
+                [nix.POS]: $pos[80],
                 layout: "us-greek",
                 extraLayouts: nix.thunk(() => ({
-                  [nix.POS]: pos$80,
+                  [nix.POS]: $pos[79],
                   "us-greek": nix.thunk(() => ({
-                    [nix.POS]: pos$79,
+                    [nix.POS]: $pos[78],
                     description: "US layout with alt-gr greek",
                     languages: nix.thunk(() => ["eng"]),
                     symbolsFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "us-greek", "xkb_symbols \"us-greek\"\n{\n  include \"us(basic)\"\n  include \"level3(ralt_switch)\"\n  key <LatA> { [ a, A, Greek_alpha ] };\n  key <LatB> { [ b, B, Greek_beta  ] };\n  key <LatG> { [ g, G, Greek_gamma ] };\n  key <LatD> { [ d, D, Greek_delta ] };\n  key <LatZ> { [ z, Z, Greek_zeta  ] };\n};\n")),

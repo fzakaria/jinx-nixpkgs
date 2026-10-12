@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 40, 7]], [["description", 86, 5], ["longDescription", 88, 5], ["homepage", 99, 5], ["license", 100, 5], ["platforms", 101, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["env", 40, 3], ["postPatch", 49, 3], ["preConfigure", 65, 3], ["postConfigure", 70, 3], ["postInstall", 75, 3], ["cmakeFlags", 81, 3], ["makeFlags", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, libcap: false, zlib: false, bzip2: false, perl: false, quilt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 86, 5], ["longDescription", 88, 5], ["homepage", 99, 5], ["license", 100, 5], ["platforms", 101, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["env", 40, 3], ["postPatch", 49, 3], ["preConfigure", 65, 3], ["postConfigure", 70, 3], ["postInstall", 75, 3], ["cmakeFlags", 81, 3], ["makeFlags", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const quilt = nix.arg($, "quilt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cdrkit",
       version: "1.1.11-4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "debian",
           repo: "cdrkit",
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, quilt]),
       buildInputs: nix.thunk(() => nix.concat([zlib, bzip2, perl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libcap])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ["-D__THROW="])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=int-conversion"])))))),
       })),
       postPatch: nix.thunk(() => nix.add("QUILT_PATCHES=debian/patches quilt push -a\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace libusal/scsi-mac-iokit.c \\\n  --replace \"IOKit/scsi-commands/SCSITaskLib.h\" \"IOKit/scsi/SCSITaskLib.h\"\nsubstituteInPlace genisoimage/sha256.c \\\n  --replace \"<endian.h>\" \"<machine/endian.h>\"\nsubstituteInPlace genisoimage/sha512.c \\\n  --replace \"<endian.h>\" \"<machine/endian.h>\"\nsubstituteInPlace genisoimage/sha256.h \\\n  --replace \"__THROW\" \"\"\nsubstituteInPlace genisoimage/sha512.h \\\n  --replace \"__THROW\" \"\"\n"))),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ["-DBITFIELDS_HTOL=0"]))),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Portable command-line CD/DVD recorder software, mostly compatible with cdrtools",
         longDescription: "Cdrkit is a suite of programs for recording CDs and DVDs,\nblanking CD-RW media, creating ISO-9660 filesystem images,\nextracting audio CD data, and more.  The programs included in\nthe cdrkit package were originally derived from several sources,\nmost notably mkisofs by Eric Youngdale and others, cdda2wav by\nHeiko Eissfeldt, and cdrecord by Jörg Schilling.  However,\ncdrkit is not affiliated with any of these authors; it is now an\nindependent project.\n",
         homepage: "http://cdrkit.org/",

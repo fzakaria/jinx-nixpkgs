@@ -2,39 +2,16 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vim-utils.nix", [[["pname", 153, 40]], [["dependencies", 158, 14]], [["name", 177, 9], ["path", 178, 9]], [["name", 218, 13], ["paths", 219, 13]], [["name", 252, 7], ["paths", 253, 7]], [["start", 312, 13]], [["vam", 311, 23]], [["nativeBuildInputs", 405, 48]], [["name", 429, 25], ["paths", 430, 17]], [["customize", 350, 7], ["override", 437, 7], ["overrideAttrs", 438, 7]], [["vimBinary", 447, 9], ["rtpPath", 448, 17]], [["license", 450, 12]], [["name", 444, 7], ["propagatedBuildInputs", 445, 7], ["substitutions", 446, 7], ["meta", 450, 7]], [["vimBinary", 460, 9], ["rtpPath", 461, 17]], [["license", 463, 12]], [["name", 457, 7], ["propagatedBuildInputs", 458, 7], ["substitutions", 459, 7], ["meta", 463, 7]], [["nvimBinary", 473, 9], ["rtpPath", 474, 17]], [["license", 476, 12]], [["name", 470, 7], ["propagatedBuildInputs", 471, 7], ["substitutions", 472, 7], ["meta", 476, 7]], [["lib", 483, 9], ["stdenv", 484, 9], ["rtpPath", 485, 9], ["toVimPlugin", 486, 9]], [["vimPlugin", 557, 11]], [["name", 530, 9], ["forceShare", 532, 9], ["nativeBuildInputs", 537, 9], ["doCheck", 543, 9], ["nativeCheckInputs", 545, 9], ["nvimRequireCheckLuaPath", 553, 9], ["nvimRequireCheckLuaCPath", 554, 9], ["passthru", 556, 9]], [["vimrcFile", 338, 11], ["vimrcContent", 339, 11], ["packDir", 340, 11], ["makeCustomizable", 342, 3], ["vimGenDocHook", 441, 3], ["vimCommandCheckHook", 454, 3], ["neovimRequireCheckHook", 467, 3], ["buildVimPlugin", 489, 5], ["buildVimPluginFrom2Nix", 492, 3], ["requiredPlugins", 495, 3], ["requiredPluginsForPackage", 509, 3], ["toVimPlugin", 516, 3]], [["vimWithRC", 563, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, vim: false, vimPlugins: false, "neovim-unwrapped": false, buildEnv: false, symlinkJoin: false, writeText: false, runCommand: false, makeWrapper: false, python3: false, callPackage: false, makeSetupHook: false, linkFarm: false, config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/vim-utils.nix", [["pname", 153, 40]]);
-const pos$2 = nix.positions(here + "/vim-utils.nix", [["dependencies", 158, 14]]);
-const pos$3 = nix.positions(here + "/vim-utils.nix", [["name", 177, 9], ["path", 178, 9]]);
 const formals$2 = { args: { start: true, opt: true }, ellipsis: false };
-const pos$4 = nix.positions(here + "/vim-utils.nix", [["name", 218, 13], ["paths", 219, 13]]);
-const pos$5 = nix.positions(here + "/vim-utils.nix", [["name", 252, 7], ["paths", 253, 7]]);
 const formals$3 = { args: { packages: true, vam: true, pathogen: true, plug: true, beforePlugins: true, customRC: true }, ellipsis: false };
-const pos$6 = nix.positions(here + "/vim-utils.nix", [["start", 312, 13]]);
-const pos$7 = nix.positions(here + "/vim-utils.nix", [["vam", 311, 23]]);
 const formals$4 = { args: { name: true, executableName: true, vimrcConfig: true, vimrcFile: true, gvimrcFile: true, standalone: true, wrapManual: true, wrapGui: true, vimExecutableName: true, gvimExecutableName: true }, ellipsis: false };
-const pos$8 = nix.positions(here + "/vim-utils.nix", [["nativeBuildInputs", 405, 48]]);
-const pos$9 = nix.positions(here + "/vim-utils.nix", [["name", 429, 25], ["paths", 430, 17]]);
-const pos$10 = nix.positions(here + "/vim-utils.nix", [["customize", 350, 7], ["override", 437, 7], ["overrideAttrs", 438, 7]]);
 const formals$5 = { args: { vim: false }, ellipsis: false };
-const pos$11 = nix.positions(here + "/vim-utils.nix", [["vimBinary", 447, 9], ["rtpPath", 448, 17]]);
-const pos$12 = nix.positions(here + "/vim-utils.nix", [["license", 450, 12]]);
-const pos$13 = nix.positions(here + "/vim-utils.nix", [["name", 444, 7], ["propagatedBuildInputs", 445, 7], ["substitutions", 446, 7], ["meta", 450, 7]]);
 const formals$6 = { args: { "neovim-unwrapped": false }, ellipsis: false };
-const pos$14 = nix.positions(here + "/vim-utils.nix", [["vimBinary", 460, 9], ["rtpPath", 461, 17]]);
-const pos$15 = nix.positions(here + "/vim-utils.nix", [["license", 463, 12]]);
-const pos$16 = nix.positions(here + "/vim-utils.nix", [["name", 457, 7], ["propagatedBuildInputs", 458, 7], ["substitutions", 459, 7], ["meta", 463, 7]]);
 const formals$7 = { args: { "neovim-unwrapped": false }, ellipsis: false };
-const pos$17 = nix.positions(here + "/vim-utils.nix", [["nvimBinary", 473, 9], ["rtpPath", 474, 17]]);
-const pos$18 = nix.positions(here + "/vim-utils.nix", [["license", 476, 12]]);
-const pos$19 = nix.positions(here + "/vim-utils.nix", [["name", 470, 7], ["propagatedBuildInputs", 471, 7], ["substitutions", 472, 7], ["meta", 476, 7]]);
-const pos$20 = nix.positions(here + "/vim-utils.nix", [["lib", 483, 9], ["stdenv", 484, 9], ["rtpPath", 485, 9], ["toVimPlugin", 486, 9]]);
 const formals$8 = { args: { packages: true, plug: true }, ellipsis: true };
 const formals$9 = { args: { start: true, opt: true }, ellipsis: false };
-const pos$21 = nix.positions(here + "/vim-utils.nix", [["vimPlugin", 557, 11]]);
-const pos$22 = nix.positions(here + "/vim-utils.nix", [["name", 530, 9], ["forceShare", 532, 9], ["nativeBuildInputs", 537, 9], ["doCheck", 543, 9], ["nativeCheckInputs", 545, 9], ["nvimRequireCheckLuaPath", 553, 9], ["nvimRequireCheckLuaCPath", 554, 9], ["passthru", 556, 9]]);
-const pos$23 = nix.positions(here + "/vim-utils.nix", [["vimrcFile", 338, 11], ["vimrcContent", 339, 11], ["packDir", 340, 11], ["makeCustomizable", 342, 3], ["vimGenDocHook", 441, 3], ["vimCommandCheckHook", 454, 3], ["neovimRequireCheckHook", 467, 3], ["buildVimPlugin", 489, 5], ["buildVimPluginFrom2Nix", 492, 3], ["requiredPlugins", 495, 3], ["requiredPluginsForPackage", 509, 3], ["toVimPlugin", 516, 3]]);
-const pos$24 = nix.positions(here + "/vim-utils.nix", [["vimWithRC", 563, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,9 +32,9 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const lib_1 = lib;
   const pluginToDrv = (knownPlugins) => (plugin) => (() => {
-    const drv = nix.thunk(() => (nix.asBool(nix.builtins.isString(plugin)) ? nix.update(nix.sel(knownPlugins, nix.key(nix.force(plugin))), { [nix.POS]: pos$1, pname: plugin }) : nix.force(plugin)));
+    const drv = nix.thunk(() => (nix.asBool(nix.builtins.isString(plugin)) ? nix.update(nix.sel(knownPlugins, nix.key(nix.force(plugin))), { [nix.POS]: $pos[0], pname: plugin }) : nix.force(plugin)));
     return nix.update(drv, {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       dependencies: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(pluginToDrv, knownPlugins)), nix.thunk(() => nix.selOr(drv, () => [], "dependencies")))),
     });
   })();
@@ -67,7 +44,7 @@ export default nix.lambda((args) => (() => {
   const rtpPath = ".";
   const vimFarm = (prefix) => (name) => (drvs) => (() => {
     const mkEntryFromDrv = (drv) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`${prefix}/${nix.app(nix.sel(lib_1, "getName"), drv)}`),
       path: drv,
     });
@@ -87,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const allPluginsAndGrammarsPartitioned = nix.thunk(() => nix.app(partitionGrammars, allPluginsAndGrammars));
       const allPlugins = nix.thunk(() => nix.sel(allPluginsAndGrammarsPartitioned, "wrong"));
       const allGrammars = nix.thunk(() => nix.sel(allPluginsAndGrammarsPartitioned, "right"));
-      const allGrammarsSymlinked = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$4, name: "nvim-treesitter-grammars", paths: allGrammars }))));
+      const allGrammarsSymlinked = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: $pos[3], name: "nvim-treesitter-grammars", paths: allGrammars }))));
       const allAndOptPluginNames = nix.thunk(() => nix.builtins.map((plugin) => nix.selOr(plugin, () => null, "pname"), nix.thunk(() => nix.concat(allPlugins, opt))));
       const packdirStart = nix.thunk(() => nix.app(vimFarm, nix.thunk(() => nix.str`pack/${packageName}/start`), "packdir-start", nix.thunk(() => (nix.asBool(!nix.eq(allGrammars, [])) ? nix.concat(allPlugins, [allGrammarsSymlinked]) : nix.force(allPlugins)))));
       const packdirOpt = nix.thunk(() => nix.app(vimFarm, nix.thunk(() => nix.str`pack/${packageName}/opt`), "packdir-opt", opt));
@@ -98,7 +75,7 @@ ln -s ${python3Env}/${nix.sel(python3Env, "sitePackages")} $out/pack/${packageNa
       return nix.concat([packdirStart, packdirOpt], nix.app(nix.sel(lib_1, "optional"), nix.thunk(() => !nix.eq(nix.app(allPython3Dependencies, nix.thunk(() => nix.sel(python3, "pkgs"))), [])), python3link));
     })(), formals$2);
     return nix.app(buildEnv, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "vim-pack-dir",
         paths: nix.thunk(() => nix.app(nix.sel(lib_1, "flatten"), nix.thunk(() => nix.app(nix.sel(lib_1, "mapAttrsToList"), packageLinks, packages)))),
       })));
@@ -123,8 +100,8 @@ silent! call plug#begin('/dev/null')
       const specifiedPlugins = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(pluginToDrv, knownPlugins)), nix.thunk(() => nix.app(nix.sel(lib_1, "concatMap"), vamDictToNames, nix.thunk(() => nix.sel(vam, "pluginDictionaries"))))));
       const plugins = nix.thunk(() => nix.app(findDependenciesRecursively, specifiedPlugins));
       const vamPackages = nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        vam: nix.thunk(() => ({ [nix.POS]: pos$6, start: plugins })),
+        [nix.POS]: $pos[6],
+        vam: nix.thunk(() => ({ [nix.POS]: $pos[5], start: plugins })),
       }));
       return nix.app(nativeImpl, vamPackages);
     })());
@@ -139,7 +116,7 @@ silent! call plug#begin('/dev/null')
     const makeCustomizable = nix.thunk(() => (() => {
       const mkVimrcFile = vimrcFile_1;
       return (vim_1) => nix.update(vim_1, {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         customize: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           const name = nix.argOr($_1, "name", () => "vim");
@@ -155,7 +132,7 @@ silent! call plug#begin('/dev/null')
           return nix.app(nix.sel(lib_1, "warnIf"), nix.thunk(() => !nix.eq(wrapManual, null)), nix.thunk(() => nix.str`vim.customize: wrapManual is deprecated: the manual is now included by default if \`name == "vim"\`.
 ${(nix.asBool((nix.asBool(nix.eq(wrapManual, true)) && nix.asBool(!nix.eq(name, "vim")))) ? "Set `standalone = false` to include the manual." : nix.app(nix.sel(lib_1, "optionalString"), nix.thunk(() => (nix.asBool(nix.eq(wrapManual, false)) && nix.asBool(nix.eq(name, "vim")))), "Set `standalone = true` to get the *vim wrappers only."))}`), nix.thunk(() => nix.sel(lib_1, "warnIf")), nix.thunk(() => !nix.eq(wrapGui, null)), "vim.customize: wrapGui is deprecated: gvim is now automatically included if present", nix.thunk(() => nix.sel(lib_1, "throwIfNot")), nix.thunk(() => (nix.asBool(nix.eq(vimExecutableName, null)) && nix.asBool(nix.eq(gvimExecutableName, null)))), "vim.customize: (g)vimExecutableName is deprecated: use executableName instead (see source code for examples)", nix.thunk(() => (() => {
               const vimrc = nix.thunk(() => (nix.asBool(!nix.eq(vimrcFile_2, null)) ? nix.force(vimrcFile_2) : (nix.asBool(!nix.eq(vimrcConfig, null)) ? nix.app(mkVimrcFile, vimrcConfig) : nix.builtins.throw("at least one of vimrcConfig and vimrcFile must be specified"))));
-              const bin = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${name}-bin`), nix.thunk(() => ({ [nix.POS]: pos$8, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`vimrc=${nix.app(nix.sel(lib_1, "escapeShellArg"), vimrc)}
+              const bin = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${name}-bin`), nix.thunk(() => ({ [nix.POS]: $pos[7], nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`vimrc=${nix.app(nix.sel(lib_1, "escapeShellArg"), vimrc)}
 gvimrc=${nix.app(nix.sel(lib_1, "optionalString"), nix.thunk(() => !nix.eq(gvimrcFile, null)), nix.thunk(() => nix.app(nix.sel(lib_1, "escapeShellArg"), gvimrcFile)))}
 
 mkdir -p "$out/bin"
@@ -172,7 +149,7 @@ for exe in ${(nix.asBool(standalone) ? "{,g,r,rg,e}vim {,g}vimdiff vi" : "{,g,r,
 done
 `)));
               return (nix.asBool(standalone) ? nix.force(bin) : nix.app(buildEnv, nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   name: name,
                   paths: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib_1, "lowPrio"), vim_1)), bin]),
                 }))));
@@ -186,16 +163,16 @@ done
         const $_1 = nix.formals(args_1, formals$5);
         const vim_1 = nix.arg($_1, "vim");
         return nix.app(makeSetupHook, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             name: "vim-gen-doc-hook",
             propagatedBuildInputs: nix.thunk(() => [vim_1]),
             substitutions: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               vimBinary: nix.thunk(() => nix.str`${vim_1}/bin/vim`),
               rtpPath: rtpPath,
             })),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               license: nix.thunk(() => nix.sel(lib_1, "licenses", "mit")),
             })),
           })), nix.path(here, "../hooks/vim-gen-doc-hook.sh"));
@@ -204,16 +181,16 @@ done
         const $_1 = nix.formals(args_1, formals$6);
         const neovim_unwrapped_1 = nix.arg($_1, "neovim-unwrapped");
         return nix.app(makeSetupHook, nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             name: "vim-command-check-hook",
             propagatedBuildInputs: nix.thunk(() => [neovim_unwrapped_1]),
             substitutions: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               vimBinary: nix.thunk(() => nix.str`${neovim_unwrapped_1}/bin/nvim`),
               rtpPath: rtpPath,
             })),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               license: nix.thunk(() => nix.sel(lib_1, "licenses", "mit")),
             })),
           })), nix.path(here, "../hooks/vim-command-check-hook.sh"));
@@ -222,22 +199,22 @@ done
         const $_1 = nix.formals(args_1, formals$7);
         const neovim_unwrapped_1 = nix.arg($_1, "neovim-unwrapped");
         return nix.app(makeSetupHook, nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             name: "neovim-require-check-hook",
             propagatedBuildInputs: nix.thunk(() => [neovim_unwrapped_1]),
             substitutions: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               nvimBinary: nix.thunk(() => nix.str`${neovim_unwrapped_1}/bin/nvim`),
               rtpPath: rtpPath,
             })),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               license: nix.thunk(() => nix.sel(lib_1, "licenses", "mit")),
             })),
           })), nix.path(here, "../hooks/neovim-require-check-hook.sh"));
       })(), formals$7), nix.thunk(() => ({}))));
     const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./build-vim-plugin.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         lib: lib_1,
         stdenv: stdenv,
         rtpPath: rtpPath,
@@ -268,7 +245,7 @@ done
           const modules = nix.thunk(() => nix.app(getRequiredLuaModules, finalAttrs));
           const luaEnv = nix.thunk(() => nix.app(nix.sel(lua, "withPackages"), (_) => nix.force(modules)));
           return {
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             name: nix.thunk(() => nix.str`vimplugin-${drv_name}`),
             forceShare: nix.thunk(() => ["man", "info"]),
             nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "nativeBuildInputs"), nix.app(nix.sel(lib_1, "optionals"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), nix.thunk(() => [vimGenDocHook])))),
@@ -276,12 +253,12 @@ done
             nativeCheckInputs: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "nativeCheckInputs"), nix.app(nix.sel(lib_1, "optionals"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), nix.thunk(() => [vimCommandCheckHook, neovimRequireCheckHook])))),
             nvimRequireCheckLuaPath: nix.thunk(() => nix.app(nix.sel(lib_1, "optionalString"), nix.thunk(() => !nix.eq(modules, [])), nix.thunk(() => nix.app(nix.sel(lua, "pkgs", "getLuaPath"), luaEnv)))),
             nvimRequireCheckLuaCPath: nix.thunk(() => nix.app(nix.sel(lib_1, "optionalString"), nix.thunk(() => !nix.eq(modules, [])), nix.thunk(() => nix.app(nix.sel(lua, "pkgs", "getLuaCPath"), luaEnv)))),
-            passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), { [nix.POS]: pos$21, vimPlugin: true })),
+            passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), { [nix.POS]: $pos[20], vimPlugin: true })),
           };
         })());
     })();
     return {
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       vimrcFile: vimrcFile_1,
       vimrcContent: vimrcContent_1,
       packDir: packDir_1,
@@ -296,7 +273,7 @@ done
       toVimPlugin,
     };
   })(), nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       vimWithRC: nix.thunk(() => nix.builtins.throw("vimWithRC was removed, please use vim.customize instead")),
     }))));
 })(), formals$1);

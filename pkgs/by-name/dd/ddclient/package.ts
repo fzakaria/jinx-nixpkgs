@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]], [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["configureFlags", 39, 3], ["installPhase", 43, 3], ["doCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, perlPackages: false, autoreconfHook: false, perl: false, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["configureFlags", 39, 3], ["installPhase", 43, 3], ["doCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.0";
       const outputs = nix.thunk(() => ["out"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ddclient",
           repo: "ddclient",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\ninstall -Dm755 ddclient $out/bin/ddclient\ninstall -Dm644 -t $out/share/doc/ddclient COP* README.* ChangeLog.md\n\nrunHook postInstall\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Client for updating dynamic DNS service entries",
         homepage: "https://ddclient.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ddclient",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         outputs,

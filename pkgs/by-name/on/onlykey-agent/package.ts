@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 17, 17], ["version", 17, 23], ["sha256", 18, 9]], [["pname", 12, 7], ["version", 13, 7], ["format", 14, 7], ["src", 16, 7]], [["version", 28, 17], ["pname", 29, 9], ["sha256", 30, 9]], [["description", 47, 9], ["homepage", 48, 9], ["maintainers", 49, 9]], [["version", 26, 7], ["src", 27, 7], ["propagatedBuildInputs", 32, 7], ["doCheck", 43, 7], ["pythonImportsCheck", 44, 7], ["meta", 46, 7]], [["pname", 59, 13], ["version", 59, 19], ["hash", 60, 5]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 54, 3], ["version", 55, 3], ["format", 56, 3], ["src", 58, 3], ["propagatedBuildInputs", 63, 3], ["postInstall", 70, 3], ["doCheck", 77, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, "onlykey-cli": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 17, 17], ["version", 17, 23], ["sha256", 18, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 12, 7], ["version", 13, 7], ["format", 14, 7], ["src", 16, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 28, 17], ["pname", 29, 9], ["sha256", 30, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 47, 9], ["homepage", 48, 9], ["maintainers", 49, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 26, 7], ["src", 27, 7], ["propagatedBuildInputs", 32, 7], ["doCheck", 43, 7], ["pythonImportsCheck", 44, 7], ["meta", 46, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 59, 13], ["version", 59, 19], ["hash", 60, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 55, 3], ["format", 56, 3], ["src", 58, 3], ["propagatedBuildInputs", 63, 3], ["postInstall", 70, 3], ["doCheck", 77, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +18,12 @@ export default nix.lambda((args) => (() => {
         const version = "1.2.0";
         const format = "setuptools";
         const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             pname: pname,
             version: version,
             sha256: "sha256-fW24IUYDvXhx/PpsCCbvaLhbCr2Q+iHChanF4h0r2Jk=",
           }))));
-        return { [nix.POS]: pos$2, pname, version, format, src };
+        return { [nix.POS]: $pos[1], pname, version, format, src };
       })()));
   })());
   const lib_agent = nix.thunk(() => (() => {
@@ -38,7 +31,7 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(nix.lookup(w_1, "libagent"), "overridePythonAttrs"), (old) => (() => {
         const version = "1.0.6";
         const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             version: version,
             pname: "lib-agent",
             sha256: "sha256-IrJizIHDIPHo4tVduUat7u31zHo3Nt8gcMOyUUqkNu0=",
@@ -55,7 +48,7 @@ export default nix.lambda((args) => (() => {
         const doCheck = false;
         const pythonImportsCheck = nix.thunk(() => ["libagent"]);
         const meta = nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Using OnlyKey as hardware SSH and GPG agent",
           homepage: "https://github.com/trustcrypto/onlykey-agent/tree/ledger",
           maintainers: nix.thunk(() => (() => {
@@ -64,7 +57,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }));
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version,
           src,
           propagatedBuildInputs,
@@ -79,7 +72,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.15";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: pname,
           version: version,
           hash: "sha256-SbGb7CjcD7cFPvASZtip56B4uxRiFKZBvbsf6sb8fds=",
@@ -95,7 +88,7 @@ chmod a-x $out/${nix.sel(python3Packages, "python", "sitePackages")}/onlykey_age
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["onlykey_agent"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Middleware that lets you use OnlyKey as a hardware SSH/GPG device",
         homepage: "https://github.com/trustcrypto/onlykey-agent",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -105,7 +98,7 @@ chmod a-x $out/${nix.sel(python3Packages, "python", "sitePackages")}/onlykey_age
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         format,

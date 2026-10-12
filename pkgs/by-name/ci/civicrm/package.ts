@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["homepage", 31, 5], ["changelog", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]], [["pname", 7, 3], ["version", 8, 3], ["__structuredAttrs", 9, 3], ["strictDeps", 10, 3], ["dontUnpack", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["installPhase", 22, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, php: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["changelog", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["__structuredAttrs", 9, 3], ["strictDeps", 10, 3], ["dontUnpack", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["installPhase", 22, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "civicrm-core",
       version: "6.18.0",
       __structuredAttrs: true,
       strictDeps: true,
       dontUnpack: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "civicrm",
           repo: "civicrm-core",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-Yp+pWbsFytydBZtxR1HIJVohWq3O//3SbVyysrQKIxc=",
       installPhase: "runHook preInstall\nmkdir -p $out/\ncp -R . $out/\ncp $out/bin/setup.conf.txt $out/bin/setup.conf\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://civicrm.org/",
         changelog: nix.thunk(() => nix.str`https://download.civicrm.org/release/${nix.sel(finalAttrs, "version")}`),
         description: "Standalone version of CiviCRM, a CRM software for non-profit organizations",

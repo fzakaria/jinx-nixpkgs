@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["name", 17, 5], ["installPhase", 19, 5]], [["message", 42, 7], ["urls", 43, 7]], [["removal", 41, 14]], [["description", 36, 5], ["homepage", 37, 5], ["downloadPage", 38, 5], ["license", 39, 5], ["sourceProvenance", 40, 5], ["problems", 41, 5], ["maintainers", 47, 5]], [["pname", 8, 3], ["version", 9, 24], ["vscodeExtPublisher", 11, 3], ["vscodeExtName", 12, 3], ["vscodeExtUniqueId", 13, 3], ["src", 15, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, vsce: false, "gemini-cli": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["name", 17, 5], ["installPhase", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["message", 42, 7], ["urls", 43, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["removal", 41, 14]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["downloadPage", 38, 5], ["license", 39, 5], ["sourceProvenance", 40, 5], ["problems", 41, 5], ["maintainers", 47, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 24], ["vscodeExtPublisher", 11, 3], ["vscodeExtName", 12, 3], ["vscodeExtUniqueId", 13, 3], ["src", 15, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const vsce = nix.arg($, "vsce");
   const gemini_cli = nix.arg($, "gemini-cli");
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gemini-cli-vscode-ide-companion",
       version: nix.thunk(() => nix.attr(gemini_cli, "version")),
       vscodeExtPublisher: "Google",
       vscodeExtName: "gemini-cli-vscode-ide-companion",
       vscodeExtUniqueId: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vscodeExtPublisher")}.${nix.sel(finalAttrs, "vscodeExtName")}`),
       src: nix.thunk(() => nix.app(nix.sel(gemini_cli, "overrideAttrs"), (oldAttrs) => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "gemini-cli-vscode-ide-companion-vsix",
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.vsix`),
           installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -41,7 +37,7 @@ runHook postInstall
 `),
         }))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Enable Gemini CLI with direct access to your IDE workspace",
         homepage: "https://github.com/google-gemini/gemini-cli",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=Google.gemini-cli-vscode-ide-companion",
@@ -51,9 +47,9 @@ runHook postInstall
           return [nix.thunk(() => nix.lookup(w, "fromSource"))];
         })()),
         problems: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           removal: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             message: "Unpaid tier and Google AI Pro/Ultra users: Gemini CLI was replaced by Antigravity CLI.",
             urls: nix.thunk(() => [
               "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/",

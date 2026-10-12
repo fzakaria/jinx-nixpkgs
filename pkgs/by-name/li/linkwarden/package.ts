@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 7], ["repo", 31, 7], ["tag", 32, 7], ["hash", 33, 7]], [["pname", 26, 5], ["version", 27, 5], ["src", 29, 5], ["npmDepsHash", 36, 5], ["npmBuildScript", 38, 5], ["postInstall", 40, 5]], [["fonts", 46, 5]], [["withChromiumHeadlessShell", 57, 9], ["withChromium", 58, 9], ["withFirefox", 59, 9], ["withWebkit", 60, 9], ["withFfmpeg", 61, 9]], [["x86_64-linux", 65, 11]], [["src", 87, 11], ["substitutions", 88, 11]], [["owner", 76, 5], ["repo", 77, 5], ["tag", 78, 5], ["hash", 79, 5], ["postFetch", 83, 5]], [["src", 113, 26], ["missingHashes", 113, 30], ["hash", 114, 5]], [["NODE_ENV", 130, 5], ["YARN_ENABLE_SCRIPTS", 131, 5]], [["linkwarden", 227, 26]], [["tests", 226, 12]], [["description", 231, 5], ["homepage", 232, 5], ["license", 233, 5], ["maintainers", 234, 5], ["platforms", 235, 5], ["mainProgram", 236, 5]], [["pname", 72, 3], ["version", 73, 3], ["src", 75, 3], ["patches", 98, 3], ["missingHashes", 111, 3], ["yarnOfflineCache", 112, 3], ["nativeBuildInputs", 117, 3], ["buildInputs", 125, 3], ["env", 129, 3], ["postPatch", 134, 3], ["preBuild", 142, 3], ["buildPhase", 149, 3], ["postBuild", 161, 3], ["installPhase", 166, 3], ["passthru", 226, 3], ["meta", 230, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, buildNpmPackage: false, fetchFromGitHub: false, "yarn-berry": false, substitute: false, makeBinaryWrapper: false, nixosTests: false, stdenv: false, bash: false, monolith: false, nodejs: false, openssl: false, "google-fonts": false, "playwright-driver": false, prisma_6: false, "prisma-engines_6": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 7], ["repo", 31, 7], ["tag", 32, 7], ["hash", 33, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 26, 5], ["version", 27, 5], ["src", 29, 5], ["npmDepsHash", 36, 5], ["npmBuildScript", 38, 5], ["postInstall", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["fonts", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["withChromiumHeadlessShell", 57, 9], ["withChromium", 58, 9], ["withFirefox", 59, 9], ["withWebkit", 60, 9], ["withFfmpeg", 61, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["x86_64-linux", 65, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["src", 87, 11], ["substitutions", 88, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 76, 5], ["repo", 77, 5], ["tag", 78, 5], ["hash", 79, 5], ["postFetch", 83, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["src", 113, 26], ["missingHashes", 113, 30], ["hash", 114, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["NODE_ENV", 130, 5], ["YARN_ENABLE_SCRIPTS", 131, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["linkwarden", 227, 26]]);
-const pos$11 = nix.positions(here + "/package.nix", [["tests", 226, 12]]);
-const pos$12 = nix.positions(here + "/package.nix", [["description", 231, 5], ["homepage", 232, 5], ["license", 233, 5], ["maintainers", 234, 5], ["platforms", 235, 5], ["mainProgram", 236, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 72, 3], ["version", 73, 3], ["src", 75, 3], ["patches", 98, 3], ["missingHashes", 111, 3], ["yarnOfflineCache", 112, 3], ["nativeBuildInputs", 117, 3], ["buildInputs", 125, 3], ["env", 129, 3], ["postPatch", 134, 3], ["preBuild", 142, 3], ["buildPhase", 149, 3], ["postBuild", 161, 3], ["installPhase", 166, 3], ["passthru", 226, 3], ["meta", 230, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bcrypt";
       const version = "5.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kelektiv",
           repo: "node.bcrypt.js",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const npmBuildScript = "install";
       const postInstall = "cp -r lib $out/lib/node_modules/bcrypt/\n";
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,
@@ -59,32 +47,32 @@ export default nix.lambda((args) => (() => {
         postInstall,
       };
     })())));
-  const google_fonts$ = nix.thunk(() => nix.app(nix.sel(google_fonts, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, fonts: nix.thunk(() => ["Caveat", "Bentham"]) }))));
+  const google_fonts$ = nix.thunk(() => nix.app(nix.sel(google_fonts, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], fonts: nix.thunk(() => ["Caveat", "Bentham"]) }))));
   const chrome = nix.thunk(() => (() => {
     const browsers = nix.thunk(() => nix.app(nix.sel(playwright_driver, "selectBrowsers"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         withChromiumHeadlessShell: true,
         withChromium: false,
         withFirefox: false,
         withWebkit: false,
         withFfmpeg: false,
       }))));
-    const chromeDir = nix.thunk(() => nix.selOr({ [nix.POS]: pos$5, "x86_64-linux": "chrome-headless-shell-linux64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+    const chromeDir = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[4], "x86_64-linux": "chrome-headless-shell-linux64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
     return nix.str`${browsers}/chromium_headless_shell-*/${chromeDir}/chrome-headless-shell`;
   })());
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "linkwarden",
       version: "2.16.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "linkwarden",
           repo: "linkwarden",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-/Hnavo98+X0XAULkMKLVO2H4eK548I/d8l/b0NzM88I=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -97,7 +85,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       patches: nix.thunk(() => [nix.path(here, "./01-localfont.patch")]),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-6NiA2gNBk3auIjYqv9TxsbUR/k7ygj6KejrWx+Gy0pg=",
@@ -110,7 +98,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         nix.thunk(() => nix.sel(yarn_berry, "yarnBerryConfigHook")),
       ]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$9, NODE_ENV: "production", YARN_ENABLE_SCRIPTS: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[8], NODE_ENV: "production", YARN_ENABLE_SCRIPTS: 0n })),
       postPatch: "for f in packages/filesystem/*Folder.ts packages/filesystem/*File.ts; do\n  substituteInPlace $f \\\n    --replace-fail 'process.cwd(),' \"\" \\\n    --replace-fail '\"../..\",' \"\"\ndone\n",
       preBuild: nix.thunk(() => nix.str`export PRISMA_CLIENT_ENGINE_TYPE='binary'
 export PRISMA_QUERY_ENGINE_LIBRARY="${prisma_engines_6}/lib/libquery_engine.node"
@@ -181,14 +169,14 @@ makeWrapper $out/bin/start.sh $out/bin/linkwarden \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           linkwarden: nix.thunk(() => nix.attr(nixosTests, "linkwarden")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         description: "Self-hosted collaborative bookmark manager to collect, organize, and preserve webpages, articles, and more...",
         homepage: "https://linkwarden.app/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

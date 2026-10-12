@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["groupId", 15, 13], ["version", 16, 13], ["artifactId", 17, 5], ["hash", 18, 5]], [["groupId", 22, 13], ["version", 23, 13], ["artifactId", 24, 5], ["hash", 25, 5]], [["jar", 74, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5], ["sourceProvenance", 83, 5]], [["pname", 31, 11], ["version", 31, 17], ["buildInputs", 33, 3], ["nativeBuildInputs", 38, 3], ["dontUnpack", 42, 3], ["dontConfigure", 43, 3], ["dontBuild", 44, 3], ["installPhase", 46, 3], ["postFixup", 56, 3], ["passthru", 73, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchMavenArtifact: false, jdk17: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["groupId", 15, 13], ["version", 16, 13], ["artifactId", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["groupId", 22, 13], ["version", 23, 13], ["artifactId", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["jar", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5], ["sourceProvenance", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 11], ["version", 31, 17], ["buildInputs", 33, 3], ["nativeBuildInputs", 38, 3], ["dontUnpack", 42, 3], ["dontConfigure", 43, 3], ["dontBuild", 44, 3], ["installPhase", 46, 3], ["postFixup", 56, 3], ["passthru", 73, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const version = "1.50.2";
   const groupId = "io.aeron";
   const aeronAll = nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       groupId: groupId,
       version: version,
       artifactId: "aeron-all",
       hash: "sha256-+H43UbfLvDcjYS5VRYea8v5PA3/d8SPYivd/aasv4wQ=",
     }))));
   const aeronSamples = nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       groupId: groupId,
       version: version,
       artifactId: "aeron-samples",
       hash: "sha256-mn07b6P8HcNuwRUcbzfXkCpP/7cPChZJVx5VbyT5xrw=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       buildInputs: nix.thunk(() => [aeronAll, aeronSamples]),
@@ -65,9 +61,9 @@ wrap "${pname}-logging-agent" io.aeron.agent.DynamicLoggingAgent
 wrap "${pname}-clustered-media-driver" io.aeron.cluster.ClusteredMediaDriver
 wrap "${pname}-cluster-tool" io.aeron.cluster.ClusterTool
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, jar: nix.thunk(() => nix.sel(aeronAll, "jar")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], jar: nix.thunk(() => nix.sel(aeronAll, "jar")) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Low-latency messaging library",
         homepage: "https://aeron.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

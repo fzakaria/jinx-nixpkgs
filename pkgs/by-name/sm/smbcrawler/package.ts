@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["binary-conversion", 37, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["dependencies", 24, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 45, 3], ["disabledTests", 47, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["binary-conversion", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["dependencies", 24, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 45, 3], ["disabledTests", 47, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "smbcrawler",
       version: "1.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SySS-Research",
           repo: "smbcrawler",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "binary-conversion": nix.thunk(() => nix.concat([nix.thunk(() => nix.lookup(w_2, "markitdown"))], nix.sel(nix.lookup(w_2, "markitdown"), "optional-dependencies", "all"))),
         };
       })()),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["smbcrawler"]),
       disabledTests: nix.thunk(() => ["test_base_guest_access", "test_full"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool that takes credentials and a list of hosts and crawls through shares",
         homepage: "https://github.com/SySS-Research/smbcrawler",
         changelog: nix.thunk(() => nix.str`https://github.com/SySS-Research/smbcrawler/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

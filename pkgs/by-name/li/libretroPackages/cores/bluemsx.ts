@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bluemsx.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5]], [["core", 7, 3], ["version", 8, 3], ["src", 10, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, mkLibretroCore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bluemsx.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/bluemsx.nix", [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5]]);
-const pos$3 = nix.positions(here + "/bluemsx.nix", [["core", 7, 3], ["version", 8, 3], ["src", 10, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       core: "bluemsx",
       version: "0-unstable-2026-08-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "bluemsx-libretro",
           rev: "e3086eb5d36d77fa11704cf53dc176686e70127d",
           hash: "sha256-cwyXtawCUyM/ISswY+O3bzGFX0wNayb/VAIv99E9esI=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Port of BlueMSX to libretro",
         homepage: "https://github.com/libretro/blueMSX-libretro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

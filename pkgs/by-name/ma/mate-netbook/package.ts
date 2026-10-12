@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["sha256", 26, 5]], [["url", 46, 5], ["odd-unstable", 47, 5], ["rev-prefix", 48, 5]], [["updateScript", 45, 12]], [["description", 52, 5], ["mainProgram", 53, 5], ["longDescription", 54, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 66, 5], ["teams", 67, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 19, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["enableParallelBuilding", 43, 3], ["passthru", 45, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gettext: false, gtk3: false, libwnck: false, libfakekey: false, libxtst: false, "mate-panel": false, wrapGAppsHook3: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 46, 5], ["odd-unstable", 47, 5], ["rev-prefix", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 45, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["longDescription", 54, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 66, 5], ["teams", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 19, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["enableParallelBuilding", 43, 3], ["passthru", 45, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mate-netbook",
       version: "1.26.0",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-netbook-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "12gdy69nfysl8vmd8lv8b0lknkaagplrrz88nh6n0rmjkxnipgz3",
         })))),
@@ -37,16 +33,16 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, libwnck, libfakekey, libxtst, mate_panel]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.mate-desktop.org/mate-netbook",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "MATE utilities for netbooks",
         mainProgram: "mate-maximus",
         longDescription: "MATE utilities for netbooks are an applet and a daemon to maximize\nwindows and move their titles on the panel.\n\nInstalling these utilities is recommended for netbooks and similar\ndevices with low resolution displays.\n",

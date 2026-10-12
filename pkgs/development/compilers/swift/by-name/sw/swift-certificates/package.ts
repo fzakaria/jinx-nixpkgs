@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["updateScript", 65, 12]], [["homepage", 70, 5], ["description", 71, 5], ["platforms", 72, 5], ["license", 73, 5], ["teams", 74, 5]], [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 22, 3], ["postPatch", 29, 3], ["strictDeps", 37, 3], ["preConfigure", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 50, 3], ["postInstall", 55, 3], ["passthru", 65, 3], ["__structuredAttrs", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, gitUpdater: false, ninja: false, stdenv: false, swift: false, "swift-asn1": false, "swift-crypto": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["description", 71, 5], ["platforms", 72, 5], ["license", 73, 5], ["teams", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 22, 3], ["postPatch", 29, 3], ["strictDeps", 37, 3], ["preConfigure", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 50, 3], ["postInstall", 55, 3], ["passthru", 65, 3], ["__structuredAttrs", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const swift_asn1 = nix.arg($, "swift-asn1");
   const swift_crypto = nix.arg($, "swift-crypto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "swift-certificates",
       version: "1.19.4",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apple",
           repo: "swift-certificates",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,12 +44,12 @@ substitute ${nix.path(here, "./files/SwiftCertificatesConfig.cmake")} "\${!outpu
   --replace-fail '@swiftPlatform@' ${nix.sel(stdenv, "hostPlatform", "swift", "platform")}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/apple/swift-certificates",
         description: "An implementation of X.509 for Swift",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "linux"))),

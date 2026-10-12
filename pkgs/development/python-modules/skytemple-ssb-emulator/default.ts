@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["src", 43, 26], ["pname", 43, 30], ["version", 43, 36], ["hash", 44, 5]], [["PYO3_USE_ABI3_FORWARD_COMPATIBILITY", 51, 5]], [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["cargoDeps", 42, 3], ["env", 47, 3], ["build-system", 54, 3], ["buildInputs", 60, 3], ["nativeBuildInputs", 69, 3], ["dependencies", 78, 3], ["hardeningDisable", 80, 3], ["doCheck", 82, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, meson: false, setuptools: false, "setuptools-rust": false, SDL2: false, "alsa-lib": false, glib: false, libpcap: false, soundtouch: false, zlib: false, cargo: false, ninja: false, openal: false, "pkg-config": false, rustc: false, "range-typed-integers": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 43, 26], ["pname", 43, 30], ["version", 43, 36], ["hash", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["PYO3_USE_ABI3_FORWARD_COMPATIBILITY", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["cargoDeps", 42, 3], ["env", 47, 3], ["build-system", 54, 3], ["buildInputs", 60, 3], ["nativeBuildInputs", 69, 3], ["dependencies", 78, 3], ["hardeningDisable", 80, 3], ["doCheck", 82, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,25 +27,25 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const range_typed_integers = nix.arg($, "range-typed-integers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "skytemple-ssb-emulator",
       version: "1.8.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SkyTemple",
           repo: "skytemple-ssb-emulator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-zmLEvE96gkElTggcRG9fZDrJPLOXeNuSk49zXQAB69Y=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-MSPqQmC70pq+sEM8zJrrFiz32dorOJxr2G/y2H4EUQI=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, PYO3_USE_ABI3_FORWARD_COMPATIBILITY: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], PYO3_USE_ABI3_FORWARD_COMPATIBILITY: 1n })),
       "build-system": nix.thunk(() => [meson, setuptools, setuptools_rust]),
       buildInputs: nix.thunk(() => [SDL2, alsa_lib, glib, libpcap, soundtouch, zlib]),
       nativeBuildInputs: nix.thunk(() => [
@@ -65,7 +61,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["skytemple_ssb_emulator"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "SkyTemple Script Engine Debugger Emulator Backend",
         homepage: "https://github.com/SkyTemple/skytemple-ssb-emulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

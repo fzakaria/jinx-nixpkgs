@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin.nix", [[["url", 19, 9], ["hash", 20, 9]], [["url", 26, 9], ["hash", 27, 9]], [["url", 30, 9], ["hash", 31, 9]], [["pname", 11, 5], ["version", 12, 5], ["meta", 13, 5], ["srcs", 15, 3], ["unpackCmd", 35, 3], ["installPhase", 39, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchurl: false, pname: false, version: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/darwin.nix", [["url", 19, 9], ["hash", 20, 9]]);
-const pos$2 = nix.positions(here + "/darwin.nix", [["url", 26, 9], ["hash", 27, 9]]);
-const pos$3 = nix.positions(here + "/darwin.nix", [["url", 30, 9], ["hash", 31, 9]]);
-const pos$4 = nix.positions(here + "/darwin.nix", [["pname", 11, 5], ["version", 12, 5], ["meta", 13, 5], ["srcs", 15, 3], ["unpackCmd", 35, 3], ["installPhase", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,25 +13,25 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       meta: meta,
       srcs: nix.thunk(() => (() => {
         const plugin = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/reaper-oss/sws/releases/download/v${nix.sel(finalAttrs, "version")}/reaper_sws-arm64.dylib`),
             hash: "sha256-jmuob0qslYhxiE2ShfTwY4RJAKBLJSUb+VBEM0sQPbo=",
           }))));
         return [
           plugin,
           nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://github.com/reaper-oss/sws/releases/download/v${nix.sel(finalAttrs, "version")}/sws_python64.py`),
               hash: "sha256-GDlvfARg1g5oTH2itEug6Auxr9iFlPDdGueInGmHqSI=",
             })))),
           nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://github.com/reaper-oss/sws/releases/download/v${nix.sel(finalAttrs, "version")}/sws_python32.py`),
               hash: "sha256-np2r568csSdIS7VZHDASroZlXhpfxXwNn0gROTinWU4=",
             })))),

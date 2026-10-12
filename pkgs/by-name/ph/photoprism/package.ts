@@ -2,23 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["src", 31, 49], ["version", 31, 53]], [["src", 32, 51], ["version", 32, 55]], [["hash", 37, 15], ["extension", 38, 7], ["url", 39, 7], ["stripRoot", 40, 7]], [["updateScript", 57, 16]], [["pname", 48, 15], ["version", 48, 21], ["src", 48, 29], ["dontUnpack", 50, 7], ["dontBuild", 51, 7], ["installPhase", 53, 7], ["passthru", 57, 7]], [["name", 61, 5], ["hash", 62, 5]], [["name", 66, 5], ["hash", 67, 5]], [["name", 71, 5], ["hash", 72, 5]], [["package", 126, 39]], [["version", 126, 7], ["photoprism", 127, 7]], [["extraArgs", 131, 7]], [["backend", 119, 13], ["frontend", 119, 21], ["facenet", 121, 5], ["nasnet", 122, 5], ["nsfw", 123, 5], ["tests", 125, 5], ["updateScript", 130, 5]], [["homepage", 147, 5], ["description", 148, 5], ["license", 149, 5], ["maintainers", 150, 5], ["mainProgram", 153, 5]], [["pname", 78, 11], ["version", 78, 17], ["src", 78, 25], ["nativeBuildInputs", 80, 3], ["dontUnpack", 84, 3], ["dontBuild", 85, 3], ["installPhase", 87, 3], ["passthru", 118, 3], ["meta", 146, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchzip: false, darktable: false, rawtherapee: false, ffmpeg: false, libheif: false, exiftool: false, imagemagick: false, makeWrapper: false, testers: false, callPackage: false, nixosTests: false, librsvg: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 31, 49], ["version", 31, 53]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 32, 51], ["version", 32, 55]]);
 const formals$2 = { args: { name: false, hash: false }, ellipsis: false };
-const pos$4 = nix.positions(here + "/package.nix", [["hash", 37, 15], ["extension", 38, 7], ["url", 39, 7], ["stripRoot", 40, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 57, 16]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 48, 15], ["version", 48, 21], ["src", 48, 29], ["dontUnpack", 50, 7], ["dontBuild", 51, 7], ["installPhase", 53, 7], ["passthru", 57, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 61, 5], ["hash", 62, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 66, 5], ["hash", 67, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 71, 5], ["hash", 72, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["package", 126, 39]]);
-const pos$11 = nix.positions(here + "/package.nix", [["version", 126, 7], ["photoprism", 127, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["extraArgs", 131, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["backend", 119, 13], ["frontend", 119, 21], ["facenet", 121, 5], ["nasnet", 122, 5], ["nsfw", 123, 5], ["tests", 125, 5], ["updateScript", 130, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["homepage", 147, 5], ["description", 148, 5], ["license", 149, 5], ["maintainers", 150, 5], ["mainProgram", 153, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 78, 11], ["version", 78, 17], ["src", 78, 25], ["nativeBuildInputs", 80, 3], ["dontUnpack", 84, 3], ["dontBuild", 85, 3], ["installPhase", 87, 3], ["passthru", 118, 3], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,20 +27,20 @@ export default nix.lambda((args) => (() => {
   const version = "260728-bbde8f452";
   const pname = "photoprism";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "photoprism",
       repo: "photoprism",
       rev: version,
       hash: "sha256-NRVaTrYrYpOdeNLM+GY6Ae7jXR3uNpAVjhLWWoHCdyc=",
     }))));
-  const backend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./backend.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
-  const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, src: src, version: version }))));
+  const backend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./backend.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], src: src, version: version }))));
+  const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], src: src, version: version }))));
   const fetchModel = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const name = nix.arg($_1, "name");
     const hash = nix.arg($_1, "hash");
     return nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         hash: hash,
         extension: "zip",
         url: nix.thunk(() => nix.str`https://dl.photoprism.app/tensorflow/${name}.zip?${version}`),
@@ -62,7 +48,7 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   const wrapModelForUpdate = (src_1) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src_1,
@@ -70,28 +56,28 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "mkdir $out\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     })));
   const facenet = nix.thunk(() => nix.app(fetchModel, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "facenet",
       hash: "sha256-aS5kkNhxOLSLTH/ipxg7NAa1w9X8iiG78jmloR1hpRo=",
     }))));
   const nasnet = nix.thunk(() => nix.app(fetchModel, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "nasnet",
       hash: "sha256-bF25jPmZLyeSWy/CGXZE/VE2UupEG2q9Jmr0+1rUYWE=",
     }))));
   const nsfw = nix.thunk(() => nix.app(fetchModel, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       name: "nsfw",
       hash: "sha256-zy/HcmgaHOY7FfJUY6I/yjjsMPHR2Ote9ppwqemBlfg=",
     }))));
   const assets_path = "$out/share/photoprism";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: pname,
       version: version,
       src: src,
@@ -128,22 +114,22 @@ ln -s ${facenet}/facenet ${assets_path}/models/
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         backend: backend,
         frontend: frontend,
         facenet: nix.thunk(() => nix.app(wrapModelForUpdate, facenet)),
         nasnet: nix.thunk(() => nix.app(wrapModelForUpdate, nasnet)),
         nsfw: nix.thunk(() => nix.app(wrapModelForUpdate, nsfw)),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           photoprism: nix.thunk(() => nix.sel(nixosTests, "photoprism")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             extraArgs: nix.thunk(() => [
               "--subpackage",
               "backend",
@@ -159,7 +145,7 @@ runHook postInstall
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         homepage: "https://photoprism.app",
         description: "Personal Photo Management powered by Go and Google TensorFlow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

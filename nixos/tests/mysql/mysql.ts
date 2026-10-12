@@ -2,40 +2,19 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mysql.nix", [[["system", 4, 36], ["config", 4, 43]], [["pkgs", 9, 42], ["lib", 9, 47]], [["maintainers", 28, 12]], [["testusers", 40, 22]], [["isSystemUser", 43, 17], ["group", 44, 17]], [["isSystemUser", 48, 17], ["group", 49, 17]], [["testuser", 42, 21], ["testuser2", 47, 21]], [["groups", 40, 15], ["users", 42, 15]], [["name", 57, 19], ["schema", 58, 19]], [["testdb.*", 86, 21]], [["name", 84, 19], ["ensurePermissions", 85, 19]], [["testdb2.*", 92, 21]], [["name", 90, 19], ["ensurePermissions", 91, 19]], [["plugin-load-add", 99, 19]], [["mysqld", 98, 17]], [["enable", 54, 15], ["initialDatabases", 55, 15], ["initialScript", 63, 15], ["ensureDatabases", 78, 15], ["ensureUsers", 82, 15], ["package", 96, 15], ["settings", 97, 15]], [["mysql", 53, 22]], [["users", 39, 13], ["services", 53, 13]], [["name", 27, 15], ["meta", 28, 7], ["nodes", 34, 7], ["testScript", 107, 7]], [["package", 172, 13], ["hasRocksDB", 173, 5], ["hasMroonga", 174, 5], ["useSocketAuth", 175, 5]], [["package", 181, 13]], [["package", 187, 13], ["hasMroonga", 188, 5], ["useSocketAuth", 189, 5]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true, lib: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mysql.nix", [["system", 4, 36], ["config", 4, 43]]);
-const pos$2 = nix.positions(here + "/mysql.nix", [["pkgs", 9, 42], ["lib", 9, 47]]);
 const formals$2 = { args: { package: false, name: true, useSocketAuth: true, hasMroonga: true, hasRocksDB: true }, ellipsis: false };
-const pos$3 = nix.positions(here + "/mysql.nix", [["maintainers", 28, 12]]);
 const formals$3 = { args: { pkgs: false, config: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/mysql.nix", [["testusers", 40, 22]]);
-const pos$5 = nix.positions(here + "/mysql.nix", [["isSystemUser", 43, 17], ["group", 44, 17]]);
-const pos$6 = nix.positions(here + "/mysql.nix", [["isSystemUser", 48, 17], ["group", 49, 17]]);
-const pos$7 = nix.positions(here + "/mysql.nix", [["testuser", 42, 21], ["testuser2", 47, 21]]);
-const pos$8 = nix.positions(here + "/mysql.nix", [["groups", 40, 15], ["users", 42, 15]]);
-const pos$9 = nix.positions(here + "/mysql.nix", [["name", 57, 19], ["schema", 58, 19]]);
-const pos$10 = nix.positions(here + "/mysql.nix", [["testdb.*", 86, 21]]);
-const pos$11 = nix.positions(here + "/mysql.nix", [["name", 84, 19], ["ensurePermissions", 85, 19]]);
-const pos$12 = nix.positions(here + "/mysql.nix", [["testdb2.*", 92, 21]]);
-const pos$13 = nix.positions(here + "/mysql.nix", [["name", 90, 19], ["ensurePermissions", 91, 19]]);
-const pos$14 = nix.positions(here + "/mysql.nix", [["plugin-load-add", 99, 19]]);
-const pos$15 = nix.positions(here + "/mysql.nix", [["mysqld", 98, 17]]);
-const pos$16 = nix.positions(here + "/mysql.nix", [["enable", 54, 15], ["initialDatabases", 55, 15], ["initialScript", 63, 15], ["ensureDatabases", 78, 15], ["ensureUsers", 82, 15], ["package", 96, 15], ["settings", 97, 15]]);
-const pos$17 = nix.positions(here + "/mysql.nix", [["mysql", 53, 22]]);
-const pos$18 = nix.positions(here + "/mysql.nix", [["users", 39, 13], ["services", 53, 13]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/mysql.nix", [["name", 27, 15], ["meta", 28, 7], ["nodes", 34, 7], ["testScript", 107, 7]]);
-const pos$20 = nix.positions(here + "/mysql.nix", [["package", 172, 13], ["hasRocksDB", 173, 5], ["hasMroonga", 174, 5], ["useSocketAuth", 175, 5]]);
-const pos$21 = nix.positions(here + "/mysql.nix", [["package", 181, 13]]);
-const pos$22 = nix.positions(here + "/mysql.nix", [["package", 187, 13], ["hasMroonga", 188, 5], ["useSocketAuth", 189, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: pkgs, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], pkgs: pkgs, lib: lib }))));
   const mkTestName = nix.thunk(() => nix.attr(from, "mkTestName"));
   const mariadbPackages = nix.thunk(() => nix.attr(from, "mariadbPackages"));
   const mysqlPackages = nix.thunk(() => nix.attr(from, "mysqlPackages"));
@@ -49,10 +28,10 @@ export default nix.lambda((args) => (() => {
     const hasMroonga = nix.argOr($_1, "hasMroonga", () => true);
     const hasRocksDB = nix.argOr($_1, "hasRocksDB", () => nix.sel(pkgs, "stdenv", "hostPlatform", "is64bit"));
     return nix.app(makeTest, nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         name: name,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [
@@ -68,43 +47,43 @@ export default nix.lambda((args) => (() => {
             const pkgs_1 = nix.arg($_2, "pkgs");
             const config_1 = nix.arg($_2, "config");
             return {
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                groups: nix.thunk(() => ({ [nix.POS]: pos$4, testusers: nix.thunk(() => ({})) })),
+                [nix.POS]: $pos[7],
+                groups: nix.thunk(() => ({ [nix.POS]: $pos[3], testusers: nix.thunk(() => ({})) })),
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
-                  testuser: nix.thunk(() => ({ [nix.POS]: pos$5, isSystemUser: true, group: "testusers" })),
-                  testuser2: nix.thunk(() => ({ [nix.POS]: pos$6, isSystemUser: true, group: "testusers" })),
+                  [nix.POS]: $pos[6],
+                  testuser: nix.thunk(() => ({ [nix.POS]: $pos[4], isSystemUser: true, group: "testusers" })),
+                  testuser2: nix.thunk(() => ({ [nix.POS]: $pos[5], isSystemUser: true, group: "testusers" })),
                 })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 mysql: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   enable: true,
                   initialDatabases: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$9, name: "testdb3", schema: nix.path(here, "./testdb.sql") })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[8], name: "testdb3", schema: nix.path(here, "./testdb.sql") })),
                   ]),
                   initialScript: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "mysql-init.sql", nix.thunk(() => (nix.asBool(nix.eq(nix.sel(config_1, "services", "mysql", "package", "pname"), "mariadb")) ? "ALTER USER root@localhost IDENTIFIED WITH unix_socket;\nDELETE FROM mysql.user WHERE password = '' AND plugin = '';\nDELETE FROM mysql.user WHERE user = '';\nFLUSH PRIVILEGES;\n" : "SELECT * FROM mysql.user;\n")))),
                   ensureDatabases: nix.thunk(() => ["testdb", "testdb2"]),
                   ensureUsers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$11,
+                      [nix.POS]: $pos[10],
                       name: "testuser",
-                      ensurePermissions: nix.thunk(() => ({ [nix.POS]: pos$10, "testdb.*": "ALL PRIVILEGES" })),
+                      ensurePermissions: nix.thunk(() => ({ [nix.POS]: $pos[9], "testdb.*": "ALL PRIVILEGES" })),
                     })),
                     nix.thunk(() => ({
-                      [nix.POS]: pos$13,
+                      [nix.POS]: $pos[12],
                       name: "testuser2",
-                      ensurePermissions: nix.thunk(() => ({ [nix.POS]: pos$12, "testdb2.*": "ALL PRIVILEGES" })),
+                      ensurePermissions: nix.thunk(() => ({ [nix.POS]: $pos[11], "testdb2.*": "ALL PRIVILEGES" })),
                     })),
                   ]),
                   package: package$,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     mysqld: nix.thunk(() => ({
-                      [nix.POS]: pos$14,
+                      [nix.POS]: $pos[13],
                       "plugin-load-add": nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), hasMroonga, "ha_mroonga.so"), nix.app(nix.sel(lib, "optional"), hasRocksDB, "ha_rocksdb.so"))),
                     })),
                   })),
@@ -173,13 +152,13 @@ machine.succeed(
       })));
   })(), formals$2);
   return nix.update(nix.app(nix.sel(lib, "mapAttrs"), (_) => (package$) => nix.app(makeMySQLTest, nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         package: package$,
         hasRocksDB: false,
         hasMroonga: false,
         useSocketAuth: false,
-      }))), mysqlPackages), nix.update(nix.app(nix.sel(lib, "mapAttrs"), (_) => (package$) => nix.app(makeMySQLTest, nix.thunk(() => ({ [nix.POS]: pos$21, package: package$ }))), mariadbPackages), nix.app(nix.sel(lib, "mapAttrs"), (_) => (package$) => nix.app(makeMySQLTest, nix.thunk(() => ({
-        [nix.POS]: pos$22,
+      }))), mysqlPackages), nix.update(nix.app(nix.sel(lib, "mapAttrs"), (_) => (package$) => nix.app(makeMySQLTest, nix.thunk(() => ({ [nix.POS]: $pos[20], package: package$ }))), mariadbPackages), nix.app(nix.sel(lib, "mapAttrs"), (_) => (package$) => nix.app(makeMySQLTest, nix.thunk(() => ({
+        [nix.POS]: $pos[21],
         package: package$,
         hasMroonga: false,
         useSocketAuth: false,

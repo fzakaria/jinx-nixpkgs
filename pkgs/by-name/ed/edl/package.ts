@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["fetchSubmodules", 18, 5], ["hash", 19, 5]], [["updateScript", 49, 12]], [["homepage", 52, 5], ["description", 53, 5], ["license", 55, 5], ["maintainers", 56, 5], ["broken", 61, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 34, 3], ["dontStrip", 36, 3], ["postPatch", 40, 3], ["postInstall", 44, 3], ["passthru", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3Packages: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["fetchSubmodules", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 49, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["license", 55, 5], ["maintainers", 56, 5], ["broken", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 34, 3], ["dontStrip", 36, 3], ["postPatch", 40, 3], ["postInstall", 44, 3], ["passthru", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "edl",
       version: "3.52.1-unstable-2025-12-17",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bkerler",
           repo: "edl",
           rev: "dffc6833ad51fb7e561c7c2bd26057edd18d9f7a",
@@ -46,11 +43,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i '/'usb'/d' setup.py\n",
       postInstall: "mkdir -p $out/etc/udev/rules.d\ncp $src/Drivers/51-edl.rules $out/etc/udev/rules.d/51-edl.rules\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/bkerler/edl",
         description: "Qualcomm EDL tool (Sahara / Firehose / Diag)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

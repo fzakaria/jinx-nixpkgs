@@ -2,73 +2,61 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/limesurvey.nix", [[["maintainers", 5, 8]], [["hostName", 11, 9], ["adminAddr", 12, 9]], [["virtualHost", 10, 13]], [["enable", 9, 7], ["httpd", 10, 7], ["encryptionKeyFile", 14, 7], ["encryptionNonceFile", 15, 7]], [["limesurvey", 8, 14]], [["127.0.0.1", 19, 22]], [["hosts", 19, 16]], [["serverName", 25, 27]], [["virtualHost", 25, 15]], [["webserver", 24, 9], ["nginx", 25, 9]], [["limesurvey", 23, 30]], [["services", 23, 21]], [["inheritParentConfig", 22, 7], ["configuration", 23, 7]], [["nginx", 21, 20]], [["services", 8, 5], ["networking", 19, 5], ["specialisation", 21, 5]], [["machine", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 30, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/limesurvey.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/limesurvey.nix", [["hostName", 11, 9], ["adminAddr", 12, 9]]);
-const pos$3 = nix.positions(here + "/limesurvey.nix", [["virtualHost", 10, 13]]);
-const pos$4 = nix.positions(here + "/limesurvey.nix", [["enable", 9, 7], ["httpd", 10, 7], ["encryptionKeyFile", 14, 7], ["encryptionNonceFile", 15, 7]]);
-const pos$5 = nix.positions(here + "/limesurvey.nix", [["limesurvey", 8, 14]]);
-const pos$6 = nix.positions(here + "/limesurvey.nix", [["127.0.0.1", 19, 22]]);
-const pos$7 = nix.positions(here + "/limesurvey.nix", [["hosts", 19, 16]]);
-const pos$8 = nix.positions(here + "/limesurvey.nix", [["serverName", 25, 27]]);
-const pos$9 = nix.positions(here + "/limesurvey.nix", [["virtualHost", 25, 15]]);
-const pos$10 = nix.positions(here + "/limesurvey.nix", [["webserver", 24, 9], ["nginx", 25, 9]]);
-const pos$11 = nix.positions(here + "/limesurvey.nix", [["limesurvey", 23, 30]]);
-const pos$12 = nix.positions(here + "/limesurvey.nix", [["services", 23, 21]]);
-const pos$13 = nix.positions(here + "/limesurvey.nix", [["inheritParentConfig", 22, 7], ["configuration", 23, 7]]);
-const pos$14 = nix.positions(here + "/limesurvey.nix", [["nginx", 21, 20]]);
-const pos$15 = nix.positions(here + "/limesurvey.nix", [["services", 8, 5], ["networking", 19, 5], ["specialisation", 21, 5]]);
-const pos$16 = nix.positions(here + "/limesurvey.nix", [["machine", 7, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$17 = nix.positions(here + "/limesurvey.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "limesurvey",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "aanderse"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           limesurvey: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
             httpd: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              virtualHost: nix.thunk(() => ({ [nix.POS]: pos$2, hostName: "example.local", adminAddr: "root@example.local" })),
+              [nix.POS]: $pos[2],
+              virtualHost: nix.thunk(() => ({
+                [nix.POS]: $pos[1],
+                hostName: "example.local",
+                adminAddr: "root@example.local",
+              })),
             })),
             encryptionKeyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "key", nix.thunk(() => nix.app(nix.sel(lib, "strings", "replicate"), 32n, "0")))),
             encryptionNonceFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "nonce", nix.thunk(() => nix.app(nix.sel(lib, "strings", "replicate"), 24n, "0")))),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          hosts: nix.thunk(() => ({ [nix.POS]: pos$6, "127.0.0.1": nix.thunk(() => ["example.local"]) })),
+          [nix.POS]: $pos[6],
+          hosts: nix.thunk(() => ({ [nix.POS]: $pos[5], "127.0.0.1": nix.thunk(() => ["example.local"]) })),
         })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           nginx: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             inheritParentConfig: true,
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 limesurvey: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   webserver: "nginx",
                   nginx: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
-                    virtualHost: nix.thunk(() => ({ [nix.POS]: pos$8, serverName: "example.local" })),
+                    [nix.POS]: $pos[8],
+                    virtualHost: nix.thunk(() => ({ [nix.POS]: $pos[7], serverName: "example.local" })),
                   })),
                 })),
               })),

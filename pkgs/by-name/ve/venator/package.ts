@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["src", 42, 5], ["hash", 43, 5]], [["updateScript", 67, 12]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildAndTestSubdir", 29, 3], ["postPatch", 34, 3], ["cargoHash", 39, 3], ["npmDeps", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 54, 3], ["preFixup", 61, 3], ["passthru", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { "cargo-tauri": false, fetchFromGitHub: false, fetchNpmDeps: false, "glib-networking": false, lib: false, nodejs: false, npmHooks: false, "pkg-config": false, rustPlatform: false, stdenv: false, webkitgtk_4_1: false, wrapGAppsHook4: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 67, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildAndTestSubdir", 29, 3], ["postPatch", 34, 3], ["cargoHash", 39, 3], ["npmDeps", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 54, 3], ["preFixup", 61, 3], ["passthru", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "venator",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kmdreko",
           repo: "venator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +37,7 @@ cp ${nix.sel(finalAttrs, "src")}/venator-app/package-lock.json .
 `),
       cargoHash: "sha256-OLtWDJuK9fXbpjUfidLP2nKdD49cWmqWI92bhV29054=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/venator-app`),
           hash: "sha256-DnpqX+B0s2d5GwftPh2rpBvUuZpzG+i4+jdgcaB7fIg=",
         })))),
@@ -54,11 +50,11 @@ cp ${nix.sel(finalAttrs, "src")}/venator-app/package-lock.json .
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [glib_networking, webkitgtk_4_1]))),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "gappsWrapperArgs+=(\n  --set WEBKIT_DISABLE_COMPOSITING_MODE 1\n)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Desktop app for viewing logs and traces from OpenTelemetry and the Rust tracing ecosystem",
         homepage: "https://github.com/kmdreko/venator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

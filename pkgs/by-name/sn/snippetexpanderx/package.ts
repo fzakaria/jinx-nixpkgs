@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["mainProgram", 64, 5]], [["src", 20, 30], ["version", 20, 34], ["pname", 22, 3], ["sourceRoot", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 34, 3], ["makeFlags", 45, 3], ["installPhase", 47, 3], ["doCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "pkg-config": false, vala: false, wrapGAppsHook3: false, installShellFiles: false, scdoc: false, "at-spi2-atk": false, "at-spi2-core": false, dbus: false, gtk3: false, ibus: false, libgee: false, libx11: false, snippetexpanderd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["mainProgram", 64, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 20, 30], ["version", 20, 34], ["pname", 22, 3], ["sourceRoot", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 34, 3], ["makeFlags", 45, 3], ["installPhase", 47, 3], ["doCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const snippetexpanderd = nix.arg($, "snippetexpanderd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.attr(snippetexpanderd, "src")),
       version: nix.thunk(() => nix.attr(snippetexpanderd, "version")),
       pname: "snippetexpanderx",
@@ -44,7 +43,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ninstall -m555 snippetexpanderx $out/bin/\ninstallManPage snippetexpanderx.1\nrunHook postInstall\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Your little expandable text snippet helper auto expander daemon",
         homepage: "https://snippetexpander.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

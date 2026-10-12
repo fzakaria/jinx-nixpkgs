@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["hash", 36, 5]], [["packageName", 87, 7]], [["updateScript", 86, 5]], [["homepage", 92, 5], ["description", 93, 5], ["mainProgram", 94, 5], ["teams", 95, 5], ["license", 96, 5], ["platforms", 97, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 51, 3], ["pythonPath", 67, 3], ["postPatch", 71, 3], ["dontWrapGApps", 75, 3], ["preFixup", 77, 3], ["postFixup", 81, 3], ["passthru", 85, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, meson: false, ninja: false, fetchurl: false, "desktop-file-utils": false, "gdk-pixbuf": false, gettext: false, glib: false, gnome: false, "gnome-desktop": false, "gnome-settings-daemon": false, "gnome-shell": false, "gnome-shell-extensions": false, "gobject-introspection": false, "gsettings-desktop-schemas": false, gtk4: false, itstool: false, libadwaita: false, libgudev: false, libnotify: false, libxml2: false, mutter: false, "pkg-config": false, python3Packages: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 87, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 92, 5], ["description", 93, 5], ["mainProgram", 94, 5], ["teams", 95, 5], ["license", 96, 5], ["platforms", 97, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 51, 3], ["pythonPath", 67, 3], ["postPatch", 71, 3], ["dontWrapGApps", 75, 3], ["preFixup", 77, 3], ["postFixup", 81, 3], ["passthru", 85, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-tweaks",
       version: "49.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-tweaks/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-tweaks-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-s5Cb3LSQW2hCfWq1geAfQ23/jlwKOJseCxRQDxiAbrs=",
         })))),
@@ -80,11 +76,11 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       postFixup: "wrapPythonProgramsIn \"$out/libexec\" \"$out ${pythonPath[*]}\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-tweaks" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-tweaks" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-tweaks",
         description: "Tool to customize advanced GNOME 3 options",
         mainProgram: "gnome-tweaks",

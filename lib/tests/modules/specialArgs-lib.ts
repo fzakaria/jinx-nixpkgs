@@ -2,52 +2,43 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/specialArgs-lib.nix", [[["lib", 13, 21]], [["specialArgs", 13, 9], ["modules", 14, 9]], [["type", 7, 7]], [["result", 5, 5], ["weird", 6, 5]], [["lib", 23, 34]], [["foo", 25, 15]], [["foo", 26, 14]], [["options", 25, 7], ["config", 26, 7]], [["weird", 18, 10], ["result", 28, 10]], [["options", 4, 3], ["config", 18, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/specialArgs-lib.nix", [["lib", 13, 21]]);
-const pos$2 = nix.positions(here + "/specialArgs-lib.nix", [["specialArgs", 13, 9], ["modules", 14, 9]]);
-const pos$3 = nix.positions(here + "/specialArgs-lib.nix", [["type", 7, 7]]);
-const pos$4 = nix.positions(here + "/specialArgs-lib.nix", [["result", 5, 5], ["weird", 6, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$5 = nix.positions(here + "/specialArgs-lib.nix", [["lib", 23, 34]]);
-const pos$6 = nix.positions(here + "/specialArgs-lib.nix", [["foo", 25, 15]]);
-const pos$7 = nix.positions(here + "/specialArgs-lib.nix", [["foo", 26, 14]]);
-const pos$8 = nix.positions(here + "/specialArgs-lib.nix", [["options", 25, 7], ["config", 26, 7]]);
-const pos$9 = nix.positions(here + "/specialArgs-lib.nix", [["weird", 18, 10], ["result", 28, 10]]);
-const pos$10 = nix.positions(here + "/specialArgs-lib.nix", [["options", 4, 3], ["config", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       result: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
       weird: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              specialArgs: nix.thunk(() => ({ [nix.POS]: pos$1, lib: nix.thunk(() => ({})) })),
+              [nix.POS]: $pos[1],
+              specialArgs: nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => ({})) })),
               modules: [],
             })))),
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       weird: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const args_2 = args_1;
         nix.assert_(nix.eq(nix.sel(args_2, "lib"), {}), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/specialArgs-lib.nix:22:5");
-        nix.assert_(nix.eq(nix.sel(args_2, "specialArgs"), { [nix.POS]: pos$5, lib: nix.thunk(() => ({})) }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/specialArgs-lib.nix:23:5");
+        nix.assert_(nix.eq(nix.sel(args_2, "specialArgs"), { [nix.POS]: $pos[4], lib: nix.thunk(() => ({})) }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/specialArgs-lib.nix:23:5");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           options: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
           })),
           config: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             foo: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, "alright")),
           })),
         };

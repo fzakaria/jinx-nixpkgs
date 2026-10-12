@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["url", 25, 7], ["hash", 26, 7], ["excludes", 27, 7]], [["NIX_LDFLAGS", 52, 7]], [["homepage", 57, 5], ["description", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 33, 3], ["makeFlags", 40, 3], ["env", 52, 3], ["enableParallelBuilding", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, ncurses: false, perl: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7], ["excludes", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["description", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 33, 3], ["makeFlags", 40, 3], ["env", 52, 3], ["enableParallelBuilding", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "openvi",
       version: "7.7.32",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "johnsonjh",
           repo: "OpenVi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/johnsonjh/OpenVi/commit/67c76961f512bfe95616fe25b32928db0aab9326.patch",
             hash: "sha256-GOair/unxROEPvtTekGuKacKwOctPyoRdvilqdVLjrY=",
             excludes: nix.thunk(() => ["ChangeLog"]),
@@ -41,12 +37,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([perl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [ncurses])))),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "PAWK=awk", "IUSGR=$(USER)"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), ncurses)}/lib -lncursesw`))),
       })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/johnsonjh/OpenVi",
         description: "Portable OpenBSD vi for UNIX systems",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

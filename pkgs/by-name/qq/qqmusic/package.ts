@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 50, 5], ["name", 51, 5], ["hash", 52, 5]], [["Name[zh_CN]", 133, 9], ["Name[zh_TW]", 134, 9], ["Comment[zh_CN]", 135, 9], ["Comment[zh_TW]", 136, 9]], [["name", 124, 7], ["desktopName", 125, 7], ["exec", 126, 7], ["terminal", 127, 7], ["icon", 128, 7], ["startupWMClass", 129, 7], ["comment", 130, 7], ["categories", 131, 7], ["extraConfig", 132, 7]], [["maintainers", 142, 5], ["description", 143, 5], ["homepage", 144, 5], ["platforms", 145, 5], ["license", 146, 5], ["sourceProvenance", 147, 5], ["mainProgram", 148, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 49, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 62, 3], ["unpackPhase", 95, 3], ["installPhase", 103, 3], ["desktopItems", 122, 3], ["meta", 141, 3]]]);
 const formals$1 = { args: { fetchurl: false, stdenv: false, autoPatchelfHook: false, makeWrapper: false, lib: false, makeDesktopItem: false, copyDesktopItems: false, dpkg: false, "alsa-lib": false, "at-spi2-atk": false, "at-spi2-core": false, cairo: false, cups: false, dbus: false, expat: false, "gdk-pixbuf": false, glib: false, gtk3: false, libdbusmenu: false, libglvnd: false, libpulseaudio: false, nspr: false, nss: false, pango: false, pciutils: false, udev: false, libxtst: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxi: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, libxcb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 50, 5], ["name", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["Name[zh_CN]", 133, 9], ["Name[zh_TW]", 134, 9], ["Comment[zh_CN]", 135, 9], ["Comment[zh_TW]", 136, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 124, 7], ["desktopName", 125, 7], ["exec", 126, 7], ["terminal", 127, 7], ["icon", 128, 7], ["startupWMClass", 129, 7], ["comment", 130, 7], ["categories", 131, 7], ["extraConfig", 132, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["maintainers", 142, 5], ["description", 143, 5], ["homepage", 144, 5], ["platforms", 145, 5], ["license", 146, 5], ["sourceProvenance", 147, 5], ["mainProgram", 148, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 49, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 62, 3], ["unpackPhase", 95, 3], ["installPhase", 103, 3], ["desktopItems", 122, 3], ["meta", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxcb = nix.arg($, "libxcb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "qqmusic",
       version: "1.1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://c.y.qq.com/cgi-bin/file_redirect.fcg?bid=dldir&file=ecosfile_plink%2Fmusic_clntupate%2Flinux%2Fother%2Fqqmusic_${nix.sel(finalAttrs, "version")}_amd64.deb&sign=1-d1ca4d5c5a8369b26af88e881ba3ac544066a899dcaea29778b35c9f648e6fee-68cb7c1c`),
           name: "qqmusic.deb",
           hash: "sha256-QtGNaow8F0FOW228DDrIk7slQMHFwJzpDSQYQ8xZN4g=",
@@ -112,7 +108,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "qqmusic",
             desktopName: "QQMusic",
             exec: "qqmusic %U",
@@ -122,7 +118,7 @@ runHook postInstall
             comment: "Tencent QQMusic",
             categories: nix.thunk(() => ["AudioVideo"]),
             extraConfig: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               "Name[zh_CN]": "QQ音乐",
               "Name[zh_TW]": "QQ音樂",
               "Comment[zh_CN]": "腾讯QQ音乐",
@@ -131,7 +127,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "xddxdd"))];

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 60, 5]], [["version", 10, 3], ["pname", 12, 3], ["src", 14, 3], ["outputs", 21, 3], ["nativeBuildInputs", 26, 3], ["nativeCheckInputs", 30, 3], ["postBuild", 34, 3], ["doCheck", 38, 3], ["installPhase", 40, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false, mlton: false, lua5_3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 12, 3], ["src", 14, 3], ["outputs", 21, 3], ["nativeBuildInputs", 26, 3], ["nativeCheckInputs", 30, 3], ["postBuild", 34, 3], ["doCheck", 38, 3], ["installPhase", 40, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const mlton = nix.arg($, "mlton");
   const lua5_3 = nix.arg($, "lua5_3");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.3.0",
       pname: "lunarml",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "minoki",
           repo: "LunarML",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       installPhase: "runHook preInstall\n\nmkdir -p $doc/lunarml $out/{bin,lib}\ncp -r bin $out\ncp -r lib $out\ncp -r example $doc/lunarml\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Standard ML compiler that produces Lua/JavaScript",
         mainProgram: "lunarml",
         homepage: "https://github.com/minoki/LunarML",

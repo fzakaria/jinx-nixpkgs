@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["nixos", 42, 18]], [["tests", 42, 12]], [["description", 45, 5], ["license", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["platforms", 51, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["postPatch", 34, 3], ["preConfigure", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, automake: false, which: false, procps: false, kbd: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nixos", 42, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 42, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 45, 5], ["license", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["platforms", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["postPatch", 34, 3], ["preConfigure", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const kbd = nix.arg($, "kbd");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "logkeys",
       version: "2018-01-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kernc",
           repo: "logkeys",
           rev: "7a9f19fb6b152d9f00a0b3fe29ab266ff1f88129",
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace src/Makefile.am --replace 'root' '$(id -u)'\nsubstituteInPlace configure.ac --replace '/dev/input' '/tmp'\nsed -i '/chmod u+s/d' src/Makefile.am\n",
       preConfigure: "./autogen.sh",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "logkeys")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], nixos: nix.thunk(() => nix.sel(nixosTests, "logkeys")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GNU/Linux keylogger that works",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         homepage: "https://github.com/kernc/logkeys",

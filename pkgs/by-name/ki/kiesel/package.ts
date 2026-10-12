@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["src", 27, 5], ["hash", 28, 5]], [["kiesel", 47, 49]], [["run", 47, 18]], [["tests", 47, 12], ["updateScript", 48, 12]], [["description", 51, 5], ["license", 52, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoDeps", 26, 3], ["cargoRoot", 30, 3], ["deps", 31, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["zigBuildFlags", 41, 3], ["__structuredAttrs", 46, 3], ["passthru", 47, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { callPackage: false, cargo: false, fetchFromCodeberg: false, lib: false, "nix-update-script": false, rustc: false, rustPlatform: false, stdenv: false, zig_0_16: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["kiesel", 47, 49]]);
-const pos$4 = nix.positions(here + "/package.nix", [["run", 47, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 47, 12], ["updateScript", 48, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 51, 5], ["license", 52, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoDeps", 26, 3], ["cargoRoot", 30, 3], ["deps", 31, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["zigBuildFlags", 41, 3], ["__structuredAttrs", 46, 3], ["passthru", 47, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const zig_0_16 = nix.arg($, "zig_0_16");
   const zig = zig_0_16;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "kiesel",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kiesel-js",
           repo: "kiesel",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-X5KpobHnqU8LR+odxeoPyVQbWLO8Yq1Tys7gNQu8/tI=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/pkg/zement`),
           hash: "sha256-YjbrKfkmhBxRxqg8mllK7eEsZwkFYMWL+z7u1PtjEYw=",
         })))),
@@ -51,18 +45,18 @@ export default nix.lambda((args) => (() => {
       zigBuildFlags: nix.thunk(() => ["--system", nix.thunk(() => nix.str`${nix.sel(finalAttrs, "deps")}`)]),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           run: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               kiesel: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "JavaScript engine written in Zig",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://kiesel.dev",

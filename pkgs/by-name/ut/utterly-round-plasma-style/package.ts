@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "utterly-round-plasma-style",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "HimDek",
           repo: "utterly-round-plasma-style",
           rev: "6280f69781b7fa9613b7a9c502d8d61e11fefca5",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/{aurorae/themes,plasma/desktoptheme}\n\ncp -a aurorae/dark/translucent $out/share/aurorae/themes/Utterly-Round-Dark\ncp -a aurorae/dark/solid $out/share/aurorae/themes/Utterly-Round-Dark-Solid\ncp -a aurorae/light/translucent $out/share/aurorae/themes/Utterly-Round-Light\ncp -a aurorae/light/solid $out/share/aurorae/themes/Utterly-Round-Light-Solid\n\ncp -a desktoptheme/translucent $out/share/plasma/desktoptheme/Utterly-Round\ncp -a desktoptheme/solid $out/share/plasma/desktoptheme/Utterly-Round-Solid\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Rounded desktop theme and window borders for Plasma 5 that follows any color scheme",
         homepage: "https://himdek.com/Utterly-Round-Plasma-Style/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 20, 5], ["license", 21, 5], ["homepage", 22, 5], ["teams", 23, 5]], [["pname", 8, 3], ["version", 10, 3], ["sha256", 11, 3], ["configureFlags", 13, 3], ["buildInputs", 15, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false, libyaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 20, 5], ["license", 21, 5], ["homepage", 22, 5], ["teams", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 10, 3], ["sha256", 11, 3], ["configureFlags", 13, 3], ["buildInputs", 15, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const libyaml = nix.arg($, "libyaml");
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "yaml",
       version: "2.2.5",
       sha256: "sha256-DHUbSJdJ+/AgcdWwxr/rJsS4Y8Zo74lxHs+VBzkb33E=",
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-yaml=${nix.sel(libyaml, "dev")}`)]),
       buildInputs: nix.thunk(() => [libyaml]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "YAML-1.1 parser and emitter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/php/pecl-file_formats-yaml",

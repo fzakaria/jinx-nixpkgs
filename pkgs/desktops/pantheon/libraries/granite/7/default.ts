@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["updateScript", 60, 5]], [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["teams", 72, 5], ["mainProgram", 73, 5]], [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 48, 3], ["propagatedBuildInputs", 52, 3], ["passthru", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, sassc: false, vala: false, "pkg-config": false, libgee: false, libshumate: false, gtk4: false, glib: false, gettext: false, "gsettings-desktop-schemas": false, "gobject-introspection": false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["teams", 72, 5], ["mainProgram", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 48, 3], ["propagatedBuildInputs", 52, 3], ["passthru", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.8.1";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "granite",
           tag: version,
@@ -51,11 +48,11 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libshumate]);
       const propagatedBuildInputs = nix.thunk(() => [glib, gsettings_desktop_schemas, gtk4, libgee]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Extension to GTK used by elementary OS",
         longDescription: "Granite is a companion library for GTK and GLib. Among other things, it provides complex widgets and convenience functions\ndesigned for use in apps built for elementary OS.\n",
         homepage: "https://github.com/elementary/granite",
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "granite-7-demo",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         outputs,

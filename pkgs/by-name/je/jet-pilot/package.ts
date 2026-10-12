@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["pname", 16, 54], ["version", 16, 60], ["src", 16, 68]], [["description", 19, 5], ["homepage", 20, 5], ["changelog", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["maintainers", 24, 5], ["mainProgram", 25, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["appimageContents", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 16, 54], ["version", 16, 60], ["src", 16, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 19, 5], ["homepage", 20, 5], ["changelog", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["maintainers", 24, 5], ["mainProgram", 25, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["appimageContents", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
       const pname = "jet-pilot";
       const version = "1.35.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/unxsist/jet-pilot/releases/download/v${version}/JET.Pilot_${version}_amd64.AppImage`),
           hash: "sha256-W1VRV29ZV8nD3wAcSNAsWguN8s+zio0lsVaZwAnCOwE=",
         }))));
-      const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+      const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open-source Kubernetes desktop client that focuses on less clutter, speed and good looks",
         homepage: "https://jet-pilot.app/",
         changelog: "https://github.com/unxsist/jet-pilot/releases",
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "jet-pilot",
       }));
-      return { [nix.POS]: pos$4, pname, version, src, appimageContents, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, appimageContents, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

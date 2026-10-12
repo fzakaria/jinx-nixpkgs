@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["attrPath", 78, 7], ["extraArgs", 79, 7]], [["owner", 87, 9], ["repo", 88, 9], ["rev", 89, 9], ["hash", 90, 9]], [["url", 94, 9], ["hash", 95, 9]], [["url", 98, 9], ["hash", 99, 9]], [["atrac9-src", 86, 7], ["celt-0_6_1-src", 93, 7], ["celt-0_11_0-src", 97, 7]], [["updateScript", 77, 5], ["sources", 84, 5]], [["description", 105, 5], ["homepage", 106, 5], ["maintainers", 107, 5], ["license", 108, 5], ["platforms", 115, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["outputs", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["preConfigure", 52, 3], ["cmakeFlags", 65, 3], ["passthru", 76, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, gtk3: false, "audacious-bare": false, mpg123: false, ffmpeg: false, libvorbis: false, libao: false, speex: false, "nix-update-script": false, audaciousSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["attrPath", 78, 7], ["extraArgs", 79, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 87, 9], ["repo", 88, 9], ["rev", 89, 9], ["hash", 90, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 94, 9], ["hash", 95, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 98, 9], ["hash", 99, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["atrac9-src", 86, 7], ["celt-0_6_1-src", 93, 7], ["celt-0_11_0-src", 97, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 77, 5], ["sources", 84, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 105, 5], ["homepage", 106, 5], ["maintainers", 107, 5], ["license", 108, 5], ["platforms", 115, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["outputs", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["preConfigure", 52, 3], ["cmakeFlags", 65, 3], ["passthru", 76, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const audaciousSupport = nix.argOr($, "audaciousSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(audaciousSupport) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "Only Linux supports building the Audacious plugin."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/vg/vgmstream/package.nix:20:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "vgmstream",
       version: "2117",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vgmstream",
           repo: "vgmstream",
           tag: nix.thunk(() => nix.str`r${nix.sel(finalAttrs, "version")}`),
@@ -57,35 +49,35 @@ chmod -R +w dependencies/celt-0.11.0/
           "-DCELT_0110_PATH=../dependencies/celt-0.11.0",
         ])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             attrPath: "vgmstream",
             extraArgs: nix.thunk(() => ["--version-regex", "r(.*)"]),
           })))),
         sources: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "atrac9-src": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               owner: "Thealexbarney",
               repo: "LibAtrac9",
               rev: "6a9e00f6c7abd74d037fd210b6670d3cdb313049",
               hash: "sha256-n47CzIbh8NxJ4GzKLjZQeS27k2lGx08trC1m4AOzVZc=",
             })))),
           "celt-0_6_1-src": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: "https://downloads.xiph.org/releases/celt/celt-0.6.1.tar.gz",
               hash: "sha256-DI1z10mTDQOn/R1FssaegmOa6ZNx3bXNiWHwLnytJWw=",
             })))),
           "celt-0_11_0-src": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               url: "https://downloads.xiph.org/releases/celt/celt-0.11.0.tar.gz",
               hash: "sha256-JI3b44iCxQ29bqJGNH/L18pEuWiTFZ2132ceaqe8U0E=",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Library for playback of various streamed audio formats used in video games",
         homepage: "https://vgmstream.org",
         maintainers: nix.thunk(() => (() => {

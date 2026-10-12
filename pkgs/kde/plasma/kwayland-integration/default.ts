@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 3], ["version", 18, 30], ["src", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["dontWrapQtApps", 41, 3]]]);
 const formals$1 = { args: { stdenv: false, sources: false, cmake: false, "pkg-config": false, libsForQt5: false, "wayland-scanner": false, "extra-cmake-modules": false, "plasma-wayland-protocols": false, wayland: false, "wayland-protocols": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 30], ["src", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["dontWrapQtApps", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const dontWrapQtApps = true;
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname,
         version,
         src,

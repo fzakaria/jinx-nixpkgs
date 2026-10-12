@@ -2,40 +2,18 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/icingaweb2.nix", [[["maintainers", 4, 8]], [["particles", 17, 13], ["spring", 18, 13]], [["enable", 22, 17]], [["enable", 23, 21]], [["enable", 24, 19]], [["enable", 25, 18]], [["enable", 26, 25]], [["doc", 22, 13], ["migrate", 23, 13], ["setup", 24, 13], ["test", 25, 13], ["translation", 26, 13]], [["module_path", 31, 15]], [["global", 30, 13]], [["backend", 37, 15]], [["icingaweb", 36, 13]], [["backend", 43, 15], ["resource", 44, 15]], [["icingaweb", 42, 13]], [["type", 51, 15], ["db", 52, 15], ["host", 53, 15], ["username", 54, 15], ["password", 55, 15], ["dbname", 56, 15]], [["icingaweb_db", 50, 13]], [["users", 62, 15], ["permissions", 63, 15]], [["Administrators", 61, 13]], [["enable", 14, 11], ["modulePackages", 16, 11], ["modules", 21, 11], ["generalConfig", 29, 11], ["authentications", 35, 11], ["groupBackends", 41, 11], ["resources", 48, 11], ["roles", 60, 11]], [["icingaweb2", 13, 18]], [["services", 13, 9]], [["icingaweb2", 10, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 9, 3], ["testScript", 70, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/icingaweb2.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/icingaweb2.nix", [["particles", 17, 13], ["spring", 18, 13]]);
-const pos$3 = nix.positions(here + "/icingaweb2.nix", [["enable", 22, 17]]);
-const pos$4 = nix.positions(here + "/icingaweb2.nix", [["enable", 23, 21]]);
-const pos$5 = nix.positions(here + "/icingaweb2.nix", [["enable", 24, 19]]);
-const pos$6 = nix.positions(here + "/icingaweb2.nix", [["enable", 25, 18]]);
-const pos$7 = nix.positions(here + "/icingaweb2.nix", [["enable", 26, 25]]);
-const pos$8 = nix.positions(here + "/icingaweb2.nix", [["doc", 22, 13], ["migrate", 23, 13], ["setup", 24, 13], ["test", 25, 13], ["translation", 26, 13]]);
-const pos$9 = nix.positions(here + "/icingaweb2.nix", [["module_path", 31, 15]]);
-const pos$10 = nix.positions(here + "/icingaweb2.nix", [["global", 30, 13]]);
-const pos$11 = nix.positions(here + "/icingaweb2.nix", [["backend", 37, 15]]);
-const pos$12 = nix.positions(here + "/icingaweb2.nix", [["icingaweb", 36, 13]]);
-const pos$13 = nix.positions(here + "/icingaweb2.nix", [["backend", 43, 15], ["resource", 44, 15]]);
-const pos$14 = nix.positions(here + "/icingaweb2.nix", [["icingaweb", 42, 13]]);
-const pos$15 = nix.positions(here + "/icingaweb2.nix", [["type", 51, 15], ["db", 52, 15], ["host", 53, 15], ["username", 54, 15], ["password", 55, 15], ["dbname", 56, 15]]);
-const pos$16 = nix.positions(here + "/icingaweb2.nix", [["icingaweb_db", 50, 13]]);
-const pos$17 = nix.positions(here + "/icingaweb2.nix", [["users", 62, 15], ["permissions", 63, 15]]);
-const pos$18 = nix.positions(here + "/icingaweb2.nix", [["Administrators", 61, 13]]);
-const pos$19 = nix.positions(here + "/icingaweb2.nix", [["enable", 14, 11], ["modulePackages", 16, 11], ["modules", 21, 11], ["generalConfig", 29, 11], ["authentications", 35, 11], ["groupBackends", 41, 11], ["resources", 48, 11], ["roles", 60, 11]]);
-const pos$20 = nix.positions(here + "/icingaweb2.nix", [["icingaweb2", 13, 18]]);
-const pos$21 = nix.positions(here + "/icingaweb2.nix", [["services", 13, 9]]);
-const pos$22 = nix.positions(here + "/icingaweb2.nix", [["icingaweb2", 10, 5]]);
-const pos$23 = nix.positions(here + "/icingaweb2.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 9, 3], ["testScript", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "icingaweb2",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -45,53 +23,53 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       icingaweb2: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             icingaweb2: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               enable: true,
               modulePackages: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "icingaweb2Modules")), null);
                 return {
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   particles: nix.thunk(() => nix.lookup(w, "theme-particles")),
                   spring: nix.thunk(() => nix.lookup(w, "theme-spring")),
                 };
               })()),
               modules: nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                doc: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
-                migrate: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
-                setup: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
-                test: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
-                translation: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+                [nix.POS]: $pos[7],
+                doc: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
+                migrate: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
+                setup: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
+                test: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
+                translation: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
               })),
               generalConfig: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 global: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   module_path: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "icingaweb2")}/modules`),
                 })),
               })),
               authentications: nix.thunk(() => ({
-                [nix.POS]: pos$12,
-                icingaweb: nix.thunk(() => ({ [nix.POS]: pos$11, backend: "external" })),
+                [nix.POS]: $pos[11],
+                icingaweb: nix.thunk(() => ({ [nix.POS]: $pos[10], backend: "external" })),
               })),
               groupBackends: nix.thunk(() => ({
-                [nix.POS]: pos$14,
-                icingaweb: nix.thunk(() => ({ [nix.POS]: pos$13, backend: "db", resource: "icingaweb_db" })),
+                [nix.POS]: $pos[13],
+                icingaweb: nix.thunk(() => ({ [nix.POS]: $pos[12], backend: "db", resource: "icingaweb_db" })),
               })),
               resources: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 icingaweb_db: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   type: "db",
                   db: "mysql",
                   host: "localhost",
@@ -101,8 +79,8 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               roles: nix.thunk(() => ({
-                [nix.POS]: pos$18,
-                Administrators: nix.thunk(() => ({ [nix.POS]: pos$17, users: "*", permissions: "*" })),
+                [nix.POS]: $pos[17],
+                Administrators: nix.thunk(() => ({ [nix.POS]: $pos[16], users: "*", permissions: "*" })),
               })),
             })),
           })),

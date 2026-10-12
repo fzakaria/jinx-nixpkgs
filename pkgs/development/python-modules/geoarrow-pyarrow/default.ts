@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 31, 5], ["owner", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["teams", 84, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["sourceRoot", 37, 3], ["build-system", 39, 3], ["dependencies", 44, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 53, 3], ["disabledTests", 62, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, "geoarrow-c": false, "geoarrow-types": false, pyarrow: false, "pyarrow-hotfix": false, geopandas: false, numpy: false, pandas: false, pyogrio: false, pyproj: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 31, 5], ["owner", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["teams", 84, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["sourceRoot", 37, 3], ["build-system", 39, 3], ["dependencies", 44, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 53, 3], ["disabledTests", 62, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pyproj = nix.arg($, "pyproj");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "geoarrow-pyarrow",
       version: "0.3.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "geoarrow-python",
           owner: "geoarrow",
           tag: nix.thunk(() => nix.str`geoarrow-types-${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
         "test_geometry_type_basic",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PyArrow implementation of geospatial data types",
         homepage: "https://github.com/geoarrow/geoarrow-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

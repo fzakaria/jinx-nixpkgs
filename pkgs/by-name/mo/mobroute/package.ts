@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5], ["broken", 55, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 19, 3], ["buildInputs", 21, 3], ["tags", 22, 3], ["preCheck", 27, 3], ["postInstall", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromSourcehut: false, sqlite: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5], ["broken", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 19, 3], ["buildInputs", 21, 3], ["tags", 22, 3], ["preCheck", 27, 3], ["postInstall", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mobroute",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~mil",
           repo: "mobroute",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export HOME=$TMPDIR\n",
       postInstall: "mv $out/bin/{cli,mobroute}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "General purpose public transportation router based on GTFS",
         longDescription: "Mobroute is a general purpose public transportation router\n(e.g. trip planner) Go library and CLI that works\nby directly ingesting timetable (GTFS) data from transit agencies\n(sourced from the Mobility Database).  After data has been fetched,\nrouting calculations can be run offline.\n\nOverall, Mobroute aims to offer an opensource framework\nfor integrating data-provider-agnostic GTFS public transit capabilities\n(integrated GTFS ETL, GTFS multisource support, and routing algorithm)\ninto applications to get users from point-a to point-b via public transit\nwithout comprising privacy or user freedoms.\n",
         homepage: "https://git.sr.ht/~mil/mobroute",

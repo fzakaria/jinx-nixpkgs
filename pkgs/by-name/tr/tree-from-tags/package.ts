@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 11, 5], ["ruby", 12, 13], ["gemdir", 13, 5]], [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 45, 5], ["homepage", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5], ["license", 52, 5], ["mainProgram", 53, 5]], [["pname", 17, 3], ["version", 18, 11], ["src", 20, 3], ["buildInputs", 27, 3], ["installPhase", 32, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bundlerEnv: false, ruby: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 11, 5], ["ruby", 12, 13], ["gemdir", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5], ["license", 52, 5], ["mainProgram", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 11], ["src", 20, 3], ["buildInputs", 27, 3], ["installPhase", 32, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "1.1";
   const gems = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`tree-from-tags-${version}-gems`),
       ruby: ruby,
       gemdir: nix.path(here, "./."),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tree-from-tags",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "dbrock",
           repo: "bongo",
           rev: version,
@@ -45,7 +42,7 @@ EOF
 chmod +x $bin
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Create file hierarchies from media tags",
         homepage: "https://www.emacswiki.org/emacs/Bongo",
         platforms: nix.thunk(() => nix.sel(ruby, "meta", "platforms")),

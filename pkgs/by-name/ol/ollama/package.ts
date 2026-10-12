@@ -2,24 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 77, 5], ["paths", 78, 5]], [["name", 98, 5], ["paths", 99, 5], ["ignoreCollisions", 105, 5]], [["owner", 116, 5], ["repo", 117, 5], ["tag", 118, 5], ["hash", 119, 5]], [["stdenv", 144, 32]], [["stdenv", 146, 55]], [["stdenv", 148, 55]], [["owner", 158, 5], ["repo", 159, 5], ["tag", 160, 5], ["hash", 161, 5]], [["ROCM_PATH", 169, 7], ["CLBlast_DIR", 170, 7], ["HIP_PATH", 171, 7], ["CFLAGS", 172, 7], ["CXXFLAGS", 173, 7]], [["CUDA_PATH", 175, 39]], [["VULKAN_SDK", 176, 41]], [["preBuild", 241, 5]], [["ollama", 377, 15]], [["ollama-rocm", 380, 15], ["ollama-cuda", 380, 27], ["ollama-vulkan", 380, 39], ["service", 381, 7], ["service-cuda", 382, 7], ["service-rocm", 383, 7], ["service-vulkan", 384, 7]], [["llamaCppSrc", 375, 13], ["llamaCppVersion", 375, 25], ["tests", 376, 5]], [["updateScript", 388, 5]], [["description", 392, 5], ["homepage", 397, 5], ["changelog", 398, 5], ["license", 399, 5], ["platforms", 400, 5], ["mainProgram", 402, 5], ["maintainers", 403, 5], ["broken", 407, 5]], [["pname", 154, 3], ["version", 155, 3], ["src", 157, 3], ["vendorHash", 164, 3], ["proxyVendor", 165, 3], ["env", 167, 3], ["nativeBuildInputs", 178, 3], ["buildInputs", 201, 3], ["postPatch", 207, 3], ["overrideModAttrs", 239, 3], ["preBuild", 244, 3], ["preFixup", 324, 3], ["postInstall", 331, 3], ["postFixup", 336, 3], ["ldflags", 342, 3], ["subPackages", 347, 3], ["__darwinAllowLocalNetworking", 349, 3], ["sandboxProfile", 352, 3], ["checkFlags", 357, 3], ["doInstallCheck", 367, 3], ["nativeInstallCheckInputs", 368, 3], ["versionCheckKeepEnvironment", 372, 3], ["passthru", 374, 3], ["meta", 391, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, buildEnv: false, makeBinaryWrapper: false, stdenv: false, addDriverRunpath: false, cmake: false, gitMinimal: false, clblast: false, libdrm: false, rocmPackages: false, rocmGpuTargets: true, cudaPackages: false, cudaArches: true, autoAddDriverRunpath: false, "apple-sdk_15": false, "vulkan-tools": false, "vulkan-headers": false, "vulkan-loader": false, "spirv-headers": false, shaderc: false, ccache: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, nixosTests: false, ollama: false, "ollama-rocm": false, "ollama-cuda": false, "ollama-vulkan": false, config: false, acceleration: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 77, 5], ["paths", 78, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 98, 5], ["paths", 99, 5], ["ignoreCollisions", 105, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 116, 5], ["repo", 117, 5], ["tag", 118, 5], ["hash", 119, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["stdenv", 144, 32]]);
-const pos$5 = nix.positions(here + "/package.nix", [["stdenv", 146, 55]]);
-const pos$6 = nix.positions(here + "/package.nix", [["stdenv", 148, 55]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 158, 5], ["repo", 159, 5], ["tag", 160, 5], ["hash", 161, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["ROCM_PATH", 169, 7], ["CLBlast_DIR", 170, 7], ["HIP_PATH", 171, 7], ["CFLAGS", 172, 7], ["CXXFLAGS", 173, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["CUDA_PATH", 175, 39]]);
-const pos$10 = nix.positions(here + "/package.nix", [["VULKAN_SDK", 176, 41]]);
-const pos$11 = nix.positions(here + "/package.nix", [["preBuild", 241, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["ollama", 377, 15]]);
-const pos$13 = nix.positions(here + "/package.nix", [["ollama-rocm", 380, 15], ["ollama-cuda", 380, 27], ["ollama-vulkan", 380, 39], ["service", 381, 7], ["service-cuda", 382, 7], ["service-rocm", 383, 7], ["service-vulkan", 384, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["llamaCppSrc", 375, 13], ["llamaCppVersion", 375, 25], ["tests", 376, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["updateScript", 388, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["description", 392, 5], ["homepage", 397, 5], ["changelog", 398, 5], ["license", 399, 5], ["platforms", 400, 5], ["mainProgram", 402, 5], ["maintainers", 403, 5], ["broken", 407, 5]]);
-const pos$17 = nix.positions(here + "/package.nix", [["pname", 154, 3], ["version", 155, 3], ["src", 157, 3], ["vendorHash", 164, 3], ["proxyVendor", 165, 3], ["env", 167, 3], ["nativeBuildInputs", 178, 3], ["buildInputs", 201, 3], ["postPatch", 207, 3], ["overrideModAttrs", 239, 3], ["preBuild", 244, 3], ["preFixup", 324, 3], ["postInstall", 331, 3], ["postFixup", 336, 3], ["ldflags", 342, 3], ["subPackages", 347, 3], ["__darwinAllowLocalNetworking", 349, 3], ["sandboxProfile", 352, 3], ["checkFlags", 357, 3], ["doInstallCheck", 367, 3], ["nativeInstallCheckInputs", 368, 3], ["versionCheckKeepEnvironment", 372, 3], ["passthru", 374, 3], ["meta", 391, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -77,7 +61,7 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(rocmPackages, "rocm-device-libs")),
     nix.thunk(() => nix.sel(rocmPackages, "rocm-smi")),
   ]);
-  const rocmPath = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({ [nix.POS]: pos$1, name: "rocm-path", paths: rocmLibs }))));
+  const rocmPath = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({ [nix.POS]: $pos[0], name: "rocm-path", paths: rocmLibs }))));
   const cudaLibs = nix.thunk(() => [
     nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")),
     nix.thunk(() => nix.sel(cudaPackages, "libcublas")),
@@ -86,7 +70,7 @@ export default nix.lambda((args) => (() => {
   const vulkanLibs = nix.thunk(() => [vulkan_headers, vulkan_loader]);
   const cudaMajorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart", "version"))));
   const cudaToolkit = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`cuda-merged-${cudaMajorVersion}`),
       paths: nix.thunk(() => nix.concat(nix.builtins.map(nix.thunk(() => nix.sel(lib, "getLib")), cudaLibs), [
         nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "static", nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))),
@@ -97,7 +81,7 @@ export default nix.lambda((args) => (() => {
   const cudaPath = nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), nix.thunk(() => nix.str`-${cudaMajorVersion}`), cudaToolkit));
   const llamaCppVersion = "b11351";
   const llamaCppSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "ggml-org",
       repo: "llama.cpp",
       tag: llamaCppVersion,
@@ -116,18 +100,24 @@ export default nix.lambda((args) => (() => {
     ]))))));
   const wrapperArgs = nix.thunk(() => nix.builtins.concatStringsSep(" ", wrapperOptions));
   const goBuild = nix.thunk(() => (nix.asBool(enableCuda) ? nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       stdenv: nix.thunk(() => nix.sel(cudaPackages, "backendStdenv")),
-    }))) : (nix.asBool(enableRocm) ? nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, stdenv: nix.thunk(() => nix.attr(rocmPackages, "stdenv")) }))) : (nix.asBool(enableVulkan) ? nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, stdenv: nix.thunk(() => nix.attr(vulkan_tools, "stdenv")) }))) : nix.force(buildGoModule)))));
+    }))) : (nix.asBool(enableRocm) ? nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({
+      [nix.POS]: $pos[4],
+      stdenv: nix.thunk(() => nix.attr(rocmPackages, "stdenv")),
+    }))) : (nix.asBool(enableVulkan) ? nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({
+      [nix.POS]: $pos[5],
+      stdenv: nix.thunk(() => nix.attr(vulkan_tools, "stdenv")),
+    }))) : nix.force(buildGoModule)))));
   const licenses = nix.thunk(() => nix.attr(lib, "licenses"));
   const platforms = nix.thunk(() => nix.attr(lib, "platforms"));
   const maintainers = nix.thunk(() => nix.attr(lib, "maintainers"));
   return nix.app(goBuild, (finalAttrs) => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       pname: "ollama",
       version: "0.40.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "ollama",
           repo: "ollama",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -136,13 +126,13 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-QBwZKRnmLUHQNSx5oqE9AbMINE8PP5TVJncG9nzQryI=",
       proxyVendor: true,
       env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), enableRocm, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           ROCM_PATH: rocmPath,
           CLBlast_DIR: nix.thunk(() => nix.str`${clblast}/lib/cmake/CLBlast`),
           HIP_PATH: rocmPath,
           CFLAGS: nix.thunk(() => nix.str`-Wno-c++17-extensions -I${rocmPath}/include`),
           CXXFLAGS: nix.thunk(() => nix.str`-Wno-c++17-extensions -I${rocmPath}/include`),
-        }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), enableCuda, nix.thunk(() => ({ [nix.POS]: pos$9, CUDA_PATH: cudaPath }))), nix.app(nix.sel(lib, "optionalAttrs"), enableVulkan, nix.thunk(() => ({ [nix.POS]: pos$10, VULKAN_SDK: nix.thunk(() => nix.sel(shaderc, "bin")) })))))),
+        }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), enableCuda, nix.thunk(() => ({ [nix.POS]: $pos[8], CUDA_PATH: cudaPath }))), nix.app(nix.sel(lib, "optionalAttrs"), enableVulkan, nix.thunk(() => ({ [nix.POS]: $pos[9], VULKAN_SDK: nix.thunk(() => nix.sel(shaderc, "bin")) })))))),
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, gitMinimal], nix.concat(nix.app(nix.sel(lib, "optionals"), enableRocm, nix.thunk(() => nix.concat(rocmLibs, [nix.thunk(() => nix.sel(rocmPackages, "llvm", "bintools"))]))), nix.concat(nix.app(nix.sel(lib, "optionals"), enableCuda, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc"))])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(enableRocm) || nix.asBool(enableCuda))), nix.thunk(() => [makeBinaryWrapper, autoAddDriverRunpath])), nix.app(nix.sel(lib, "optionals"), enableVulkan, nix.thunk(() => [ccache, spirv_headers]))))))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), enableRocm, nix.thunk(() => nix.concat(rocmLibs, [libdrm]))), nix.concat(nix.app(nix.sel(lib, "optionals"), enableCuda, cudaLibs), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_15])), nix.app(nix.sel(lib, "optionals"), enableVulkan, vulkanLibs))))),
       postPatch: nix.thunk(() => nix.str`# replace inaccurate version number with actual release version
@@ -175,7 +165,7 @@ chmod -R +w $TMPDIR/llama-cpp-src
   cmake -DPATCH_DIR=$NIX_BUILD_TOP/source/llama/compat \\
     -P $NIX_BUILD_TOP/source/cmake/apply-git-patches.cmake )
 `),
-      overrideModAttrs: (_) => (__1) => ({ [nix.POS]: pos$11, preBuild: "" }),
+      overrideModAttrs: (_) => (__1) => ({ [nix.POS]: $pos[10], preBuild: "" }),
       preBuild: nix.thunk(() => (() => {
         const removeSMPrefix = (str) => (() => {
           const matched = nix.thunk(() => nix.builtins.match("sm_(.*)", str));
@@ -247,11 +237,11 @@ cmake --build build -j $NIX_BUILD_CORES
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]),
       versionCheckKeepEnvironment: "HOME",
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         llamaCppSrc: llamaCppSrc,
         llamaCppVersion: llamaCppVersion,
-        tests: nix.thunk(() => nix.update({ [nix.POS]: pos$12, ollama: ollama }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$13,
+        tests: nix.thunk(() => nix.update({ [nix.POS]: $pos[11], ollama: ollama }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
+            [nix.POS]: $pos[12],
             "ollama-rocm": ollama_rocm,
             "ollama-cuda": ollama_cuda,
             "ollama-vulkan": ollama_vulkan,
@@ -260,9 +250,9 @@ cmake --build build -j $NIX_BUILD_CORES
             "service-rocm": nix.thunk(() => nix.sel(nixosTests, "ollama-rocm")),
             "service-vulkan": nix.thunk(() => nix.sel(nixosTests, "ollama-vulkan")),
           }))))),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(rocmRequested)) && nix.asBool(!nix.asBool(cudaRequested)))) && nix.asBool(!nix.asBool(vulkanRequested)))), nix.thunk(() => ({ [nix.POS]: pos$15, updateScript: nix.path(here, "./update.sh") }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(rocmRequested)) && nix.asBool(!nix.asBool(cudaRequested)))) && nix.asBool(!nix.asBool(vulkanRequested)))), nix.thunk(() => ({ [nix.POS]: $pos[14], updateScript: nix.path(here, "./update.sh") }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         description: nix.thunk(() => nix.add(nix.add(nix.add("Get up and running with large language models locally", nix.app(nix.sel(lib, "optionalString"), rocmRequested, ", using ROCm for AMD GPU acceleration")), nix.app(nix.sel(lib, "optionalString"), cudaRequested, ", using CUDA for NVIDIA GPU acceleration")), nix.app(nix.sel(lib, "optionalString"), vulkanRequested, ", using Vulkan for generic GPU acceleration"))),
         homepage: "https://github.com/ollama/ollama",
         changelog: nix.thunk(() => nix.str`https://github.com/ollama/ollama/releases/tag/v${nix.sel(finalAttrs, "version")}`),

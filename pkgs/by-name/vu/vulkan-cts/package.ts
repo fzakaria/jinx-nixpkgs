@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["hash", 35, 5]], [["fetchurl", 44, 44], ["fetchFromGitHub", 44, 53]], [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["owner", 59, 5], ["repo", 60, 5], ["rev", 61, 5], ["hash", 62, 5]], [["nativeBuildInputs", 139, 9]], [["lavapipe", 136, 18]], [["updateScript", 135, 12], ["tests", 136, 12]], [["description", 150, 5], ["homepage", 151, 5], ["changelog", 152, 5], ["license", 153, 5], ["maintainers", 154, 5]], [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["prePatch", 65, 3], ["buildInputs", 75, 3], ["nativeBuildInputs", 92, 3], ["depsBuildBuild", 101, 3], ["cmakeFlags", 105, 3], ["postInstall", 119, 3], ["postFixup", 129, 3], ["passthru", 135, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, runCommand: false, cmake: false, ffmpeg: false, glslang: false, libdrm: false, libglvnd: false, libffi: false, libpng: false, libx11: false, libxau: false, libxdmcp: false, libxcb: false, makeWrapper: false, mesa: false, ninja: false, "pkg-config": false, python3: false, "spirv-headers": false, "vulkan-headers": false, "vulkan-loader": false, "vulkan-utility-libraries": false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fetchurl", 44, 44], ["fetchFromGitHub", 44, 53]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 59, 5], ["repo", 60, 5], ["rev", 61, 5], ["hash", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 139, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["lavapipe", 136, 18]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 135, 12], ["tests", 136, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 150, 5], ["homepage", 151, 5], ["changelog", 152, 5], ["license", 153, 5], ["maintainers", 154, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["prePatch", 65, 3], ["buildInputs", 75, 3], ["nativeBuildInputs", 92, 3], ["depsBuildBuild", 101, 3], ["cmakeFlags", 105, 3], ["postInstall", 119, 3], ["postFixup", 129, 3], ["passthru", 135, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,24 +37,24 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const zlib = nix.arg($, "zlib");
   const renderdoc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://raw.githubusercontent.com/baldurk/renderdoc/v1.1/renderdoc/api/app/renderdoc_app.h",
       hash: "sha256-57XwqlsbDq3GOhxiTAyn9a8TOqhX1qQnGw7z0L22ho4=",
     }))));
-  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
+  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
   const shaderc_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "google",
       repo: "shaderc",
       tag: "v2024.4",
       hash: "sha256-DIpgHiYAZlCIQ/uCZ3qSucPUZ1j3tKg0VgZVun+1UnI=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "vulkan-cts",
       version: "1.4.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "KhronosGroup",
           repo: "VK-GL-CTS",
           rev: nix.thunk(() => nix.str`vulkan-cts-${nix.sel(finalAttrs, "version")}`),
@@ -110,12 +102,12 @@ wrapProgram $out/bin/deqp-vk \\
   --add-flags "--deqp-archive-dir=$out/archive-dir"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           lavapipe: nix.thunk(() => nix.app(runCommand, "vulkan-cts-tests-lavapipe", nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 nix.thunk(() => nix.sel(mesa, "llvmpipeHook")),
@@ -124,7 +116,7 @@ wrapProgram $out/bin/deqp-vk \\
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Khronos Vulkan Conformance Tests",
         homepage: "https://github.com/KhronosGroup/VK-GL-CTS/blob/main/external/vulkancts/README.md",
         changelog: nix.thunk(() => nix.str`https://github.com/KhronosGroup/VK-GL-CTS/releases/tag/vulkan-cts-${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 39, 5], ["hash", 40, 5]], [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["platforms", 120, 5], ["maintainers", 121, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["__structuredAttrs", 43, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 56, 3], ["propagatedBuildInputs", 70, 3], ["postPatch", 78, 3], ["mesonFlags", 82, 3], ["postInstall", 93, 3], ["outputs", 106, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, makeWrapper: false, libbsd: false, numactl: false, libbpf: false, zlib: false, elfutils: false, "intel-ipsec-mb": false, jansson: false, openssl: false, libpcap: false, "rdma-core": false, doxygen: false, python3: false, pciutils: false, withExamples: true, shared: true, machine: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["platforms", 120, 5], ["maintainers", 121, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["__structuredAttrs", 43, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 56, 3], ["propagatedBuildInputs", 70, 3], ["postPatch", 78, 3], ["mesonFlags", 82, 3], ["postInstall", 93, 3], ["outputs", 106, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const shared = nix.argOr($, "shared", () => false);
   const machine = nix.argOr($, "machine", () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "nehalem" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "generic" : null)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dpdk",
       version: "26.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://fast.dpdk.org/rel/dpdk-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-hJiSArvg+67rYvj9xj9pGICsC2bNDcZMFnhDxZ2ynSw=",
         })))),
@@ -82,7 +80,7 @@ wrapProgram $out/bin/dpdk-devbind.py \\
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(withExamples, [])), "mkdir -p $examples/bin\nfind examples -type f -executable -exec install {} $examples/bin \\;\n"))),
       outputs: nix.thunk(() => nix.concat(["out", "doc"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(withExamples, [])), "examples"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Set of libraries and drivers for fast packet processing",
         homepage: "http://dpdk.org/",
         license: nix.thunk(() => (() => {

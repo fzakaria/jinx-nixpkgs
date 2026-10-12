@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["homepage", 144, 5], ["description", 145, 5], ["longDescription", 146, 5], ["license", 151, 5], ["maintainers", 152, 5], ["platforms", 153, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["patches", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["configureFlags", 68, 3], ["enableParallelBuilding", 141, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, curl: false, docbook_xml_dtd_45: false, docbook_xsl: false, fetchurl: false, gtk3: false, libGL: false, libGLU: false, libx11: false, libxpm: false, libtool: false, ncurses: false, "pkg-config": false, readline: false, stdenv: false, wget: false, wxwidgets_3_2: false, enableSDL2: true, enableTerm: true, enableWx: true, enableX11: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 144, 5], ["description", 145, 5], ["longDescription", 146, 5], ["license", 151, 5], ["maintainers", 152, 5], ["platforms", 153, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["patches", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["configureFlags", 68, 3], ["enableParallelBuilding", 141, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const enableWx = nix.argOr($, "enableWx", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   const enableX11 = nix.argOr($, "enableX11", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bochs",
       version: "3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/bochs/bochs/${nix.sel(finalAttrs, "version")}/bochs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-FKr3jb4TN5h5I//8TnqWKuVqvPmodHSs455ZP5+E7oQ=",
         })))),
@@ -99,7 +97,7 @@ export default nix.lambda((args) => (() => {
         ])))))))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://bochs.sourceforge.io/",
         description: "Open-source IA-32 (x86) PC emulator",
         longDescription: "Bochs is an open-source (LGPL), highly portable IA-32 PC emulator, written\nin C++, that runs on most popular platforms. It includes emulation of the\nIntel x86 CPU, common I/O devices, and a custom BIOS.\n",

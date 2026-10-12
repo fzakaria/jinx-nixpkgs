@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["homepage", 37, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["postPatch", 22, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 28, 3], ["doCheck", 29, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchurl: false, libasyncns: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["homepage", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["postPatch", 22, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 28, 3], ["doCheck", 29, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://launchpad.net/libasyncns-python/trunk/${version}/+download/libasyncns-python-${version}.tar.bz2`),
           sha256: "1q4l71b2h9q756x4pjynp6kczr2d8c1jvbdp982hf7xzv7w5gxqg",
         }))));
@@ -31,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["libasyncns"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Libasyncns-python is a python binding for the asynchronous name service query library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mic92"))]),
         homepage: "https://launchpad.net/libasyncns-python",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

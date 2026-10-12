@@ -2,8 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sample_char_rnn.nix", [[["default", 10, 3]]]);
 const formals$1 = { args: { lib: false, mkTester: false, older: false, "sample-data": false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sample_char_rnn.nix", [["default", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const older = nix.arg($, "older");
   const sample_data = nix.arg($, "sample-data");
   return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(older, "11.0")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       default: nix.thunk(() => nix.app(mkTester, "sample_char_rnn", nix.thunk(() => [
           "sample_char_rnn",
           nix.thunk(() => nix.str`--datadir=${nix.add(nix.sel(sample_data, "outPath"), "/char-rnn")}`),

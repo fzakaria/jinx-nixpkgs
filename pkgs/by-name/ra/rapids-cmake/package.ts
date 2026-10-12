@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["cpm", 45, 7]], [["cmake-config", 50, 35]], [["tests", 47, 12]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]], [["pname", 10, 3], ["version", 11, 3], ["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["dontConfigure", 23, 3], ["dontBuild", 24, 3], ["installPhase", 28, 3], ["setupHook", 44, 3], ["env", 45, 3], ["passthru", 47, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, "cpm-cmake": false, "rapids-logger": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cpm", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cmake-config", 50, 35]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 47, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["dontConfigure", 23, 3], ["dontBuild", 24, 3], ["installPhase", 28, 3], ["setupHook", 44, 3], ["env", 45, 3], ["passthru", 47, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const cpm_cmake = nix.arg($, "cpm-cmake");
   const rapids_logger = nix.arg($, "rapids-logger");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rapids-cmake",
       version: "26.08.00",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rapidsai",
           repo: "rapids-cmake",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,19 +29,19 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\ninstall -Dm644 -t $out/share/rapids-cmake \\\n  CMakeLists.txt \\\n  RAPIDS.cmake \\\n  init.cmake \\\n  RAPIDS_BRANCH \\\n  VERSION\ncp -r rapids-cmake $out/share/rapids-cmake/rapids-cmake\n\ninstall -Dm644 -t $out/share/doc/rapids-cmake README.md CHANGELOG.md\n\nrunHook postInstall\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, cpm: cpm_cmake })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], cpm: cpm_cmake })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(rapids_logger, "tests"));
           return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "cmake-config": nix.thunk(() => nix.attr(from, "cmake-config")),
         };
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CMake modules shared across RAPIDS projects",
         homepage: "https://github.com/rapidsai/rapids-cmake",
         changelog: nix.thunk(() => nix.str`https://github.com/rapidsai/rapids-cmake/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

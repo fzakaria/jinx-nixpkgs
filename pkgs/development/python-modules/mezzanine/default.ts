@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["broken", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["longDescription", 74, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]], [["pname", 26, 3], ["version", 27, 3], ["format", 28, 3], ["disabled", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 62, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, beautifulsoup4: false, bleach: false, buildPythonPackage: false, chardet: false, django: false, "django-contrib-comments": false, fetchFromGitHub: false, "filebrowser-safe": false, "grappelli-safe": false, isPyPy: false, pillow: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-django": false, pytz: false, requests: false, "requests-oauthlib": false, "requirements-parser": false, setuptools: false, tzlocal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["broken", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["longDescription", 74, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["format", 28, 3], ["disabled", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 62, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stephenmcd",
           repo: "mezzanine",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(bleach, "optional-dependencies", "css")));
       const nativeCheckInputs = nix.thunk(() => [pytest_django, pytest_cov_stub, pytestCheckHook, requirements_parser]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(django, "version")), "5")),
         description: "Content management platform built using the Django framework",
         mainProgram: "mezzanine-project",
@@ -75,7 +73,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

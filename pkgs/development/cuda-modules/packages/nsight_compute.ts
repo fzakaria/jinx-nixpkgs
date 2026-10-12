@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nsight_compute.nix", [[["aarch64-linux", 21, 7], ["x86_64-linux", 22, 7]], [["message", 117, 9], ["assertion", 118, 9]], [["message", 121, 9], ["assertion", 122, 9]], [["description", 127, 7], ["longDescription", 128, 7], ["homepage", 134, 7], ["changelog", 135, 7], ["mainProgram", 137, 7]], [["redistName", 39, 5], ["pname", 40, 5], ["outputs", 47, 5], ["allowFHSReferences", 49, 5], ["nativeBuildInputs", 51, 5], ["buildInputs", 53, 5], ["dontWrapQtApps", 72, 5], ["preInstall", 74, 5], ["postInstall", 87, 5], ["preFixup", 106, 5], ["autoPatchelfIgnoreMissingDeps", 110, 5], ["brokenAssertions", 115, 5], ["meta", 126, 5]]]);
 const formals$1 = { args: { backendStdenv: false, buildRedist: false, cudaAtLeast: false, cudaMajorMinorVersion: false, cudaOlder: false, e2fsprogs: false, elfutils: false, flags: false, gst_all_1: false, lib: false, libjpeg8: false, qt5: true, qt6: true, "rdma-core": false, ucx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nsight_compute.nix", [["aarch64-linux", 21, 7], ["x86_64-linux", 22, 7]]);
-const pos$2 = nix.positions(here + "/nsight_compute.nix", [["message", 117, 9], ["assertion", 118, 9]]);
-const pos$3 = nix.positions(here + "/nsight_compute.nix", [["message", 121, 9], ["assertion", 122, 9]]);
-const pos$4 = nix.positions(here + "/nsight_compute.nix", [["description", 127, 7], ["longDescription", 128, 7], ["homepage", 134, 7], ["changelog", 135, 7], ["mainProgram", 137, 7]]);
-const pos$5 = nix.positions(here + "/nsight_compute.nix", [["redistName", 39, 5], ["pname", 40, 5], ["outputs", 47, 5], ["allowFHSReferences", 49, 5], ["nativeBuildInputs", 51, 5], ["buildInputs", 53, 5], ["dontWrapQtApps", 72, 5], ["preInstall", 74, 5], ["postInstall", 87, 5], ["preFixup", 106, 5], ["autoPatchelfIgnoreMissingDeps", 110, 5], ["brokenAssertions", 115, 5], ["meta", 126, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const rdma_core = nix.arg($, "rdma-core");
   const ucx = nix.arg($, "ucx");
   const archDir = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-linux": nix.thunk(() => nix.add(nix.add("linux-", (nix.asBool(nix.sel(flags, "isJetsonBuild")) ? "v4l_l4t" : "desktop")), "-t210-a64")),
     "x86_64-linux": "linux-desktop-glibc_2_11_3-x64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(backendStdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(backendStdenv, "hostPlatform", "system"))));
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const qtwebengine = nix.thunk(() => nix.attr(qt, "qtwebengine"));
       const qtwebview = nix.thunk(() => nix.attr(qt, "qtwebview"));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         redistName: "cuda",
         pname: "nsight_compute",
         outputs: nix.thunk(() => ["out"]),
@@ -77,18 +73,18 @@ wrapQtApp "\${!outputBin}/bin/host/${archDir}/ncu-ui.bin"
         autoPatchelfIgnoreMissingDeps: nix.thunk(() => ["libcuda.so.1", "libnvidia-ml.so.1"]),
         brokenAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             message: "Qt 5 is required and available",
             assertion: nix.thunk(() => (!nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "2022.2.0")) || nix.asBool(!nix.eq(qt5, null)))),
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             message: "Qt 6 is required and available",
             assertion: nix.thunk(() => (!nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "2022.2.0")) || nix.asBool(!nix.eq(qt6, null)))),
           })),
         ]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Interactive profiler for CUDA and NVIDIA OptiX",
           longDescription: "NVIDIA Nsight Compute is an interactive profiler for CUDA and NVIDIA OptiX that provides detailed performance\nmetrics and API debugging via a user interface and command-line tool. Users can run guided analysis and compare\nresults with a customizable and data-driven user interface, as well as post-process and analyze results in their\nown workflows.\n",
           homepage: "https://developer.nvidia.com/nsight-compute",

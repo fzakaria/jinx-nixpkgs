@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 33, 12]], [["description", 36, 5], ["homepage", 37, 5], ["maintainers", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["mainProgram", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["enableParallelBuilding", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["postPatch", 27, 3], ["passthru", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, llvmPackages: false, cmake: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["maintainers", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["mainProgram", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["enableParallelBuilding", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["postPatch", 27, 3], ["passthru", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bsc",
       version: "3.3.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "IlyaGrebnov",
           repo: "libbsc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.sel(llvmPackages, "openmp")))),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"check_c_compiler_flag(-march=native COMPILER_SUPPORTS_MARCH_NATIVE_C)\" \"\" \\\n  --replace-fail \"check_cxx_compiler_flag(-march=native COMPILER_SUPPORTS_MARCH_NATIVE_CXX)\" \"\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "High performance block-sorting data compression library",
         homepage: "http://libbsc.com/",
         maintainers: nix.thunk(() => (() => {

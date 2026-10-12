@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 27, 5], ["description", 28, 5], ["license", 29, 5], ["platforms", 30, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["outputs", 21, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libmnl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["license", 29, 5], ["platforms", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["outputs", 21, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libmnl = nix.arg($, "libmnl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.0.3",
       pname: "libnetfilter_acct",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.netfilter.org/projects/libnetfilter_acct/files/libnetfilter_acct-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "06lsjndgfjsgfjr43px2n2wk3nr7whz6r405mks3887y7vpwwl22",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libmnl]),
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.netfilter.org/projects/libnetfilter_acct/",
         description: "Userspace library providing interface to extended accounting infrastructure",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

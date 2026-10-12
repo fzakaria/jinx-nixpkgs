@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcuobjclient.nix", [[["description", 27, 5], ["longDescription", 28, 5], ["homepage", 32, 5], ["changelog", 33, 5]], [["redistName", 8, 3], ["pname", 9, 3], ["outputs", 11, 3], ["buildInputs", 18, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { buildRedist: false, libcufile: false, numactl: false, "rdma-core": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcuobjclient.nix", [["description", 27, 5], ["longDescription", 28, 5], ["homepage", 32, 5], ["changelog", 33, 5]]);
-const pos$2 = nix.positions(here + "/libcuobjclient.nix", [["redistName", 8, 3], ["pname", 9, 3], ["outputs", 11, 3], ["buildInputs", 18, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const numactl = nix.arg($, "numactl");
   const rdma_core = nix.arg($, "rdma-core");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "libcuobjclient",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib"]),
       buildInputs: nix.thunk(() => [libcufile, numactl, rdma_core]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "CUDA cuObject Client",
         longDescription: "High-performance suite of libraries designed to enable direct data transfers between GPU\nmemory or system memory and object storage (S3-compatible) solution via RDMA.\n",
         homepage: "https://docs.nvidia.com/gpudirect-storage/cuobject/",

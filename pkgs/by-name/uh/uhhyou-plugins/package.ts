@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5], ["fetchSubmodules", 33, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["postPatch", 60, 3], ["enableParallelBuilding", 66, 3], ["installPhase", 68, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, writableTmpDirAsHomeHook: false, cairo: false, fontconfig: false, freetype: false, libxcb: false, "libxcb-util": false, "libxcb-cursor": false, "libxcb-keysyms": false, libxkbcommon: false, libx11: false, libxrandr: false, libxinerama: false, libxcursor: false, pango: false, gtkmm3: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5], ["fetchSubmodules", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["postPatch", 60, 3], ["enableParallelBuilding", 66, 3], ["installPhase", 68, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const gtkmm3 = nix.arg($, "gtkmm3");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "uhhyou-plugins",
       version: "0.71.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ryukau",
           repo: "VSTPlugins",
           rev: nix.thunk(() => nix.str`UhhyouPlugins${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/vst3\ncp -r VST3/Release/*.vst3 $out/lib/vst3/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of VST3 audio synthesis and processing plugins.",
         homepage: "https://ryukau.github.io/VSTPlugins/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

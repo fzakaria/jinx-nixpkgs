@@ -2,56 +2,45 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/amazon-init-shell.nix", [[["maintainers", 16, 5]], [["enable", 23, 22]], [["openssh", 23, 14]], [["enable", 24, 19]], [["switch", 24, 12]], [["hostName", 25, 16]], [["text", 27, 7]], [["ec2-metadata/user-data", 26, 21]], [["etc", 26, 17]], [["imports", 19, 5], ["services", 23, 5], ["system", 24, 5], ["networking", 25, 5], ["environment", 26, 5]], [["unnamed", 18, 9]], [["name", 14, 3], ["meta", 15, 3], ["nodes", 18, 3], ["testScript", 38, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/amazon-init-shell.nix", [["maintainers", 16, 5]]);
-const pos$2 = nix.positions(here + "/amazon-init-shell.nix", [["enable", 23, 22]]);
-const pos$3 = nix.positions(here + "/amazon-init-shell.nix", [["openssh", 23, 14]]);
-const pos$4 = nix.positions(here + "/amazon-init-shell.nix", [["enable", 24, 19]]);
-const pos$5 = nix.positions(here + "/amazon-init-shell.nix", [["switch", 24, 12]]);
-const pos$6 = nix.positions(here + "/amazon-init-shell.nix", [["hostName", 25, 16]]);
-const pos$7 = nix.positions(here + "/amazon-init-shell.nix", [["text", 27, 7]]);
-const pos$8 = nix.positions(here + "/amazon-init-shell.nix", [["ec2-metadata/user-data", 26, 21]]);
-const pos$9 = nix.positions(here + "/amazon-init-shell.nix", [["etc", 26, 17]]);
-const pos$10 = nix.positions(here + "/amazon-init-shell.nix", [["imports", 19, 5], ["services", 23, 5], ["system", 24, 5], ["networking", 25, 5], ["environment", 26, 5]]);
-const pos$11 = nix.positions(here + "/amazon-init-shell.nix", [["unnamed", 18, 9]]);
-const pos$12 = nix.positions(here + "/amazon-init-shell.nix", [["name", 14, 3], ["meta", 15, 3], ["nodes", 18, 3], ["testScript", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "amazon-init",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "urbas"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       unnamed: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         imports: nix.thunk(() => [
           nix.path(here, "../modules/profiles/headless.nix"),
           nix.path(here, "../modules/virtualisation/amazon-init.nix"),
         ]),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          openssh: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          openssh: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
         system: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          switch: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+          [nix.POS]: $pos[4],
+          switch: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
         })),
-        networking: nix.thunk(() => ({ [nix.POS]: pos$6, hostName: "" })),
+        networking: nix.thunk(() => ({ [nix.POS]: $pos[5], hostName: "" })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             "ec2-metadata/user-data": nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               text: "#!/usr/bin/bash\n\necho successful > /tmp/evidence\n\n# Emulate running nixos-rebuild switch, just without any building.\n# https://github.com/nixos/nixpkgs/blob/4c62505847d88f16df11eff3c81bf9a453a4979e/nixos/modules/virtualisation/amazon-init.nix#L55\n/run/current-system/bin/switch-to-configuration test\n",
             })),
           })),

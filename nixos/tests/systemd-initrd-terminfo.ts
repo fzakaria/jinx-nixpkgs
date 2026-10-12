@@ -2,50 +2,42 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-initrd-terminfo.nix", [[["maintainers", 5, 8]], [["script", 12, 18]], [["enable", 11, 9], ["extraBin", 12, 9]], [["systemd", 10, 19]], [["initrd", 10, 12]], [["initrdBackdoor", 14, 15]], [["boot", 10, 7], ["testing", 14, 7]], [["machine", 7, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 17, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-initrd-terminfo.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/systemd-initrd-terminfo.nix", [["script", 12, 18]]);
-const pos$3 = nix.positions(here + "/systemd-initrd-terminfo.nix", [["enable", 11, 9], ["extraBin", 12, 9]]);
-const pos$4 = nix.positions(here + "/systemd-initrd-terminfo.nix", [["systemd", 10, 19]]);
-const pos$5 = nix.positions(here + "/systemd-initrd-terminfo.nix", [["initrd", 10, 12]]);
-const pos$6 = nix.positions(here + "/systemd-initrd-terminfo.nix", [["initrdBackdoor", 14, 15]]);
-const pos$7 = nix.positions(here + "/systemd-initrd-terminfo.nix", [["boot", 10, 7], ["testing", 14, 7]]);
-const pos$8 = nix.positions(here + "/systemd-initrd-terminfo.nix", [["machine", 7, 9]]);
-const pos$9 = nix.positions(here + "/systemd-initrd-terminfo.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "systemd-initrd-terminfo",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "elvishjerricco"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 enable: true,
                 extraBin: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   script: nix.thunk(() => nix.str`${nix.sel(config, "boot", "initrd", "systemd", "package", "util-linux")}/bin/script`),
                 })),
               })),
             })),
           })),
-          testing: nix.thunk(() => ({ [nix.POS]: pos$6, initrdBackdoor: true })),
+          testing: nix.thunk(() => ({ [nix.POS]: $pos[5], initrdBackdoor: true })),
         };
       })(), formals$2),
     })),

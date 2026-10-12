@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["2.0.0", 17, 9], ["1.2.0", 18, 9]], [["url", 14, 5], ["hash", 15, 5]], [["description", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["maintainers", 32, 5]], [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["minimalOCamlVersion", 23, 3], ["checkInputs", 25, 3], ["doCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, ppx_expect: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["2.0.0", 17, 9], ["1.2.0", 18, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["maintainers", 32, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["minimalOCamlVersion", 23, 3], ["checkInputs", 25, 3], ["doCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const ppx_expect = nix.arg($, "ppx_expect");
   const version = nix.argOr($, "version", () => "2.0.0");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pp",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/ocaml-dune/pp/releases/download/${nix.sel(finalAttrs, "version")}/pp-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "2.0.0": "sha256-hlE1FRiwkrSi3vTggXHCdhUvkvtqhKixm2uSnM20RBk=",
             "1.2.0": "sha256-pegiVzxVr7Qtsp7FbqzR8qzY9lzy3yh44pHeN0zmkJw=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ppx_expect]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Alternative pretty printing library to the Format module of the OCaml standard library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["nativeBuildInputs", 41, 11]], [["within", 38, 11]], [["tests", 38, 5], ["updateScript", 50, 5]], [["homepage", 54, 5], ["description", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]], [["pname", 10, 3], ["version", 11, 3], ["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["doCheck", 23, 3], ["nativeInstallCheckInputs", 25, 3], ["doInstallCheck", 26, 3], ["preVersionCheck", 28, 3], ["dontVersionCheck", 33, 3], ["installFlags", 35, 3], ["passthru", 37, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { fetchFromCodeberg: false, lib: false, stdenv: false, versionCheckHook: false, "nix-update-script": false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 41, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["within", 38, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 38, 5], ["updateScript", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["doCheck", 23, 3], ["nativeInstallCheckInputs", 25, 3], ["doInstallCheck", 26, 3], ["preVersionCheck", 28, 3], ["dontVersionCheck", 33, 3], ["installFlags", 35, 3], ["passthru", 37, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "within",
       version: "1.1.4",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sjmulder",
           repo: "within",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,18 +33,18 @@ export default nix.lambda((args) => (() => {
       dontVersionCheck: nix.thunk(() => nix.app(nix.sel(lib, "hasInfix"), "unstable", nix.thunk(() => nix.sel(finalAttrs, "version")))),
       installFlags: nix.thunk(() => ["PREFIX:=$(out)"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           within: nix.thunk(() => nix.app(runCommand, "within-test", nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "mkdir $out\nresult=$(within $PWD $out - pwd)\nexpected=$(printf '%s\\n' \"$PWD: $PWD\" \"$out: $out\")\ntest \"$result\" = \"$expected\"\n")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://codeberg.org/sjmulder/within",
         description: "Run a command in other directories",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/sjmulder/within/src/tag/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

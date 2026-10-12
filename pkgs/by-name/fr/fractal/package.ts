@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["pname", 47, 26], ["version", 47, 32], ["src", 47, 40], ["hash", 48, 5]], [["CARGO_BUILD_TARGET", 106, 7]], [["updateScript", 109, 5]], [["description", 113, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["teams", 117, 5], ["platforms", 118, 5], ["mainProgram", 119, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["cargoDeps", 46, 3], ["patches", 51, 3], ["postPatch", 57, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 82, 3], ["env", 106, 3], ["passthru", 108, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, "nix-update-script": false, cargo: false, meson: false, ninja: false, rustPlatform: false, rustc: false, "pkg-config": false, glib: false, "grass-sass": false, gtk4: false, gtksourceview5: false, lcms2: false, libadwaita: false, gst_all_1: false, "desktop-file-utils": false, "appstream-glib": false, openssl: false, pipewire: false, libshumate: false, wrapGAppsHook4: false, "blueprint-compiler": false, sqlite: false, "xdg-desktop-portal": false, libseccomp: false, "libglycin-gtk4": false, "glycin-loaders": false, libwebp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 47, 26], ["version", 47, 32], ["src", 47, 40], ["hash", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CARGO_BUILD_TARGET", 106, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 109, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["teams", 117, 5], ["platforms", 118, 5], ["mainProgram", 119, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["cargoDeps", 46, 3], ["patches", 51, 3], ["postPatch", 57, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 82, 3], ["env", 106, 3], ["passthru", 108, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const glycin_loaders = nix.arg($, "glycin-loaders");
   const libwebp = nix.arg($, "libwebp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "fractal",
       version: "14.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "fractal",
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-GQdEa5JHXkpQdKcnzT4udZ0Cr4eJv4zoB7sknWnuGCI=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -110,15 +105,15 @@ patchShebangs ./build-aux/compile-blueprints.sh
         ];
       })())),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Matrix group messaging app",
         homepage: "https://gitlab.gnome.org/World/fractal",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/fractal/-/releases/${nix.sel(finalAttrs, "version")}`),

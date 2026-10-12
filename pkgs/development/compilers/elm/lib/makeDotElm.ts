@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/makeDotElm.nix", [[["homepage", 18, 16]], [["url", 17, 11], ["meta", 18, 11], ["sha256", 19, 26]], [["name", 14, 9], ["src", 16, 9], ["dontConfigure", 22, 9], ["dontBuild", 23, 9], ["installPhase", 25, 9]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, registryDat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/makeDotElm.nix", [["homepage", 18, 16]]);
-const pos$2 = nix.positions(here + "/makeDotElm.nix", [["url", 17, 11], ["meta", 18, 11], ["sha256", 19, 26]]);
-const pos$3 = nix.positions(here + "/makeDotElm.nix", [["name", 14, 9], ["src", 16, 9], ["dontConfigure", 22, 9], ["dontBuild", 23, 9], ["installPhase", 25, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   return (ver) => (deps) => (() => {
     const cmds = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (info) => (() => {
         const pkg = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["/"]), nix.thunk(() => ["-"]), name), nix.str`-${nix.sel(info, "version")}`)),
             src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 url: nix.thunk(() => nix.str`https://github.com/${name}/archive/${nix.sel(info, "version")}.tar.gz`),
                 meta: nix.thunk(() => ({
-                  [nix.POS]: pos$1,
+                  [nix.POS]: $pos[0],
                   homepage: nix.thunk(() => nix.str`https://github.com/${name}/`),
                 })),
                 sha256: nix.thunk(() => nix.attr(info, "sha256")),

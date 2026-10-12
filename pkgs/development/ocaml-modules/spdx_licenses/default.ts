@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["hash", 14, 5]], [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["doCheck", 17, 3], ["checkInputs", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["doCheck", 17, 3], ["checkInputs", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "spdx_licenses",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/kit-ty-kate/spdx_licenses/releases/download/v${nix.sel(finalAttrs, "version")}/spdx_licenses-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ciUka6XWRg2bYqzXWOGsNc62J5OshtXNSDCqbPooGVA=",
         })))),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/kit-ty-kate/spdx_licenses",
         description: "Library providing a strict SPDX License Expression parser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

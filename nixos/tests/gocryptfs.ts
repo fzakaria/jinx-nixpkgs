@@ -2,55 +2,43 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/gocryptfs.nix", [["maintainers", 4, 5]]);
+const $pos = nix.positions(here + "/gocryptfs.nix", [[["maintainers", 4, 5]], [["systemPackages", 11, 19]], [["enable", 16, 21]], [["fuse", 16, 16]], [["device", 21, 11], ["fsType", 22, 11], ["options", 23, 11]], [["/plain", 20, 36]], [["fileSystems", 20, 24]], [["virtualisation", 20, 9]], [["configuration", 18, 33]], [["fstab-test", 18, 22]], [["environment", 11, 7], ["programs", 16, 7], ["specialisation", 18, 7]], [["machine", 7, 9]], [["name", 2, 3], ["meta", 3, 3], ["nodes", 7, 3], ["testScript", 32, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/gocryptfs.nix", [["systemPackages", 11, 19]]);
-const pos$3 = nix.positions(here + "/gocryptfs.nix", [["enable", 16, 21]]);
-const pos$4 = nix.positions(here + "/gocryptfs.nix", [["fuse", 16, 16]]);
-const pos$5 = nix.positions(here + "/gocryptfs.nix", [["device", 21, 11], ["fsType", 22, 11], ["options", 23, 11]]);
-const pos$6 = nix.positions(here + "/gocryptfs.nix", [["/plain", 20, 36]]);
-const pos$7 = nix.positions(here + "/gocryptfs.nix", [["fileSystems", 20, 24]]);
-const pos$8 = nix.positions(here + "/gocryptfs.nix", [["virtualisation", 20, 9]]);
-const pos$9 = nix.positions(here + "/gocryptfs.nix", [["configuration", 18, 33]]);
-const pos$10 = nix.positions(here + "/gocryptfs.nix", [["fstab-test", 18, 22]]);
-const pos$11 = nix.positions(here + "/gocryptfs.nix", [["environment", 11, 7], ["programs", 16, 7], ["specialisation", 18, 7]]);
-const pos$12 = nix.positions(here + "/gocryptfs.nix", [["machine", 7, 9]]);
-const pos$13 = nix.positions(here + "/gocryptfs.nix", [["name", 2, 3], ["meta", 3, 3], ["nodes", 7, 3], ["testScript", 32, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$13,
+  [nix.POS]: $pos[12],
   name: "gocryptfs",
-  meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+  meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "gocryptfs")),
             nix.thunk(() => nix.sel(pkgs, "openssl")),
           ]),
         })),
         programs: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          fuse: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+          [nix.POS]: $pos[3],
+          fuse: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
         })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           "fstab-test": nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               virtualisation: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 fileSystems: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   "/plain": nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     device: "/encrypted",
                     fsType: "fuse.gocryptfs",
                     options: nix.thunk(() => ["nofail", "allow_other", "passfile=/tmp/password.txt"]),

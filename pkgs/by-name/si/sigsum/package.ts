@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 15, 5], ["group", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["url", 26, 7], ["hash", 27, 7]], [["url", 30, 7], ["hash", 31, 7]], [["url", 34, 7], ["hash", 35, 7]], [["extraArgs", 58, 5]], [["updateScript", 57, 12]], [["description", 62, 5], ["homepage", 63, 5], ["downloadPage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 24, 3], ["postPatch", 39, 3], ["vendorHash", 44, 3], ["ldflags", 46, 3], ["excludedPackages", 51, 3], ["nativeInstallCheckInputs", 53, 3], ["versionCheckProgram", 54, 3], ["doInstallCheck", 55, 3], ["passthru", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitLab: false, fetchpatch2: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 15, 5], ["group", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["downloadPage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 24, 3], ["postPatch", 39, 3], ["vendorHash", 44, 3], ["ldflags", 46, 3], ["excludedPackages", 51, 3], ["nativeInstallCheckInputs", 53, 3], ["versionCheckProgram", 54, 3], ["doInstallCheck", 55, 3], ["passthru", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "sigsum",
       version: "0.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.glasklar.is",
           group: "sigsum",
           owner: "core",
@@ -35,17 +28,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/sigsum/sigsum-go/commit/f96375480607612154814e0442b3428696cf35f5.patch?full_index=1",
             hash: "sha256-MR151ZVfrYniyDGzVonLNKcBAHEflAgjULBfp+vhFvg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/sigsum/sigsum-go/commit/bbf212c19dfc9af66f102f3932381e9476428966.patch?full_index=1",
             hash: "sha256-fPMIdcH22hVMKiARPQSJ3W/1q74LuALbaf9B5TtzD/o=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/sigsum/sigsum-go/commit/5e7b309d82a34d60872441573eb843c343bc43ba.patch?full_index=1",
             hash: "sha256-yvKkeJxaGi353X+zlrbpLiYj/q34cuGcuVWn1ghab1s=",
           })))),
@@ -60,14 +53,14 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/sigsum-key`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex=^v(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "System for public and transparent logging of signed checksums",
         homepage: "https://www.sigsum.org/",
         downloadPage: "https://git.glasklar.is/sigsum/core/sigsum-go",

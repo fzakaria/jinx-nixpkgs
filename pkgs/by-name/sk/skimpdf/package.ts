@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["sourceProvenance", 39, 5], ["mainProgram", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["sourceRoot", 23, 3], ["installPhase", 25, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, undmg: false, fetchurl: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["sourceProvenance", 39, 5], ["mainProgram", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["sourceRoot", 23, 3], ["installPhase", 25, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "Skim";
       const version = "1.7.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`Skim-${version}.dmg`),
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/skim-app/Skim/Skim-${version}/Skim-${version}.dmg`),
           hash: "sha256-0IfdLeH6RPxf4OZWnNltN7tvvZWbWDQaMCmazd4UUi4=",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = ".";
       const installPhase = "runHook preInstall\nmkdir -p $out/Applications $out/bin\ncp -R Skim.app $out/Applications\nfor app in displayline skimnotes skimpdf; do\n  makeWrapper $out/Applications/Skim.app/Contents/SharedSupport/$app $out/bin/$app\ndone\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PDF reader and note-taker for macOS",
         homepage: "https://skim-app.sourceforge.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

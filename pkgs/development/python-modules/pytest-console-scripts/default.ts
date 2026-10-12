@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]], [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 24, 3], ["nativeCheckInputs", 26, 3], ["postPatch", 31, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, mock: false, fetchPypi: false, pytestCheckHook: false, python: false, "setuptools-scm": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 24, 3], ["nativeCheckInputs", 26, 3], ["postPatch", 31, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-WoJu2EzAr6IC655EOB19di973ajgwj+feafx9Ez0qJU=",
@@ -36,7 +34,7 @@ substituteInPlace tests/test_run_scripts.py \\
 `);
       const pythonImportsCheck = nix.thunk(() => ["pytest_console_scripts"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pytest plugin for testing console scripts",
         longDescription: "Pytest-console-scripts is a pytest plugin for running python scripts from within tests.\nIt's quite similar to subprocess.run(), but it also has an in-process mode, where the scripts are executed by the interpreter that's running pytest (using some amount of sandboxing).\n",
         homepage: "https://github.com/kvas-it/pytest-console-scripts",
@@ -44,7 +42,7 @@ substituteInPlace tests/test_run_scripts.py \\
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

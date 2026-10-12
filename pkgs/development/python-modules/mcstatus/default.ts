@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 67, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["__darwinAllowLocalNetworking", 38, 3], ["nativeCheckInputs", 40, 3], ["pythonImportsCheck", 49, 3], ["disabledTests", 51, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, "asyncio-dgram": false, buildPythonPackage: false, dnspython: false, fetchFromGitHub: false, hatchling: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-rerunfailures": false, pytestCheckHook: false, "typing-extensions": false, "uv-dynamic-versioning": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["__darwinAllowLocalNetworking", 38, 3], ["nativeCheckInputs", 40, 3], ["pythonImportsCheck", 49, 3], ["disabledTests", 51, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const uv_dynamic_versioning = nix.arg($, "uv-dynamic-versioning");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mcstatus",
       version: "14.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "py-mine",
           repo: "mcstatus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         "test_java_server_with_query_port",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for checking the status of Minecraft servers",
         homepage: "https://github.com/py-mine/mcstatus",
         changelog: nix.thunk(() => nix.str`https://github.com/py-mine/mcstatus/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

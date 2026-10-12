@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["url", 37, 7], ["hash", 38, 7]], [["description", 63, 7], ["mainProgram", 64, 7], ["homepage", 65, 7], ["license", 66, 7], ["platforms", 67, 7], ["maintainers", 68, 7]], [["pname", 33, 5], ["version", 34, 5], ["src", 36, 5], ["separateDebugInfo", 41, 5], ["buildInputs", 43, 5], ["nativeBuildInputs", 49, 5], ["mesonFlags", 56, 5], ["meta", 62, 5]], [["pname", 73, 5], ["version", 74, 13], ["src", 74, 21], ["dontConfigure", 76, 5], ["buildPhase", 78, 5], ["installPhase", 85, 5]], [["src", 102, 13], ["hash", 103, 5]], [["KRUN_INIT_BINARY_PATH", 127, 7]], [["withGpu", 140, 47]], [["withoutGpu", 140, 11]], [["tests", 140, 5], ["updateScript", 141, 5]], [["description", 145, 5], ["homepage", 146, 5], ["license", 147, 5], ["maintainers", 148, 5], ["platforms", 149, 5]], [["pname", 93, 3], ["version", 94, 11], ["src", 94, 19], ["outputs", 96, 3], ["cargoDeps", 101, 3], ["nativeBuildInputs", 106, 3], ["buildInputs", 115, 3], ["makeFlags", 121, 3], ["env", 127, 3], ["postPatch", 129, 3], ["postInstall", 135, 3], ["passthru", 139, 3], ["meta", 144, 3]]]);
 const formals$1 = { args: { cargo: false, fetchFromGitHub: false, fetchurl: false, fixDarwinDylibNames: false, lib: false, libepoxy: false, "libkrun-efi": false, moltenvk: false, "pkg-config": false, buildPackages: false, rustc: false, rustPlatform: false, rutabaga_gfx: false, "nix-update-script": false, stdenv: false, meson: false, ninja: false, "vulkan-headers": false, withGpu: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 7], ["mainProgram", 64, 7], ["homepage", 65, 7], ["license", 66, 7], ["platforms", 67, 7], ["maintainers", 68, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 5], ["version", 34, 5], ["src", 36, 5], ["separateDebugInfo", 41, 5], ["buildInputs", 43, 5], ["nativeBuildInputs", 49, 5], ["mesonFlags", 56, 5], ["meta", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 73, 5], ["version", 74, 13], ["src", 74, 21], ["dontConfigure", 76, 5], ["buildPhase", 78, 5], ["installPhase", 85, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["src", 102, 13], ["hash", 103, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["KRUN_INIT_BINARY_PATH", 127, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["withGpu", 140, 47]]);
-const pos$9 = nix.positions(here + "/package.nix", [["withoutGpu", 140, 11]]);
-const pos$10 = nix.positions(here + "/package.nix", [["tests", 140, 5], ["updateScript", 141, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 145, 5], ["homepage", 146, 5], ["license", 147, 5], ["maintainers", 148, 5], ["platforms", 149, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 93, 3], ["version", 94, 11], ["src", 94, 19], ["outputs", 96, 3], ["cargoDeps", 101, 3], ["nativeBuildInputs", 106, 3], ["buildInputs", 115, 3], ["makeFlags", 121, 3], ["env", 127, 3], ["postPatch", 129, 3], ["postInstall", 135, 3], ["passthru", 139, 3], ["meta", 144, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,18 +28,18 @@ export default nix.lambda((args) => (() => {
   const withGpu = nix.argOr($, "withGpu", () => true);
   const version = "1.19.4";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "libkrun",
       repo: "libkrun",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-X/VGKOfbLN/3rj1Af7HEprfJB99Mh3UwfikXtS1dkXI=",
     }))));
   const virglrenderer = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "virglrenderer",
       version: "0.10.4d-krunkit",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/slp/virglrenderer/-/archive/${nix.sel(finalAttrs, "version")}/virglrenderer-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-M/buj97QUeY6CYeW0VICD5F6FBPi9ATPGHpNA48xL3o=",
         })))),
@@ -68,7 +57,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "drm", false)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Virtual 3D GPU library that allows a qemu guest to use the host GPU for accelerated 3D rendering",
         mainProgram: "virgl_test_server",
         homepage: "https://gitlab.freedesktop.org/slp/virglrenderer",
@@ -78,7 +67,7 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   const initBinary = nix.thunk(() => nix.app(nix.sel(buildPackages, "pkgsCross", "aarch64-multiplatform", "pkgsStatic", "stdenv", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libkrun-init",
       version: version,
       src: src,
@@ -87,13 +76,13 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -D init $out/init\nrunHook postInstall\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "libkrun-efi",
       version: version,
       src: src,
       outputs: nix.thunk(() => ["out", "dev"]),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           src: src,
           hash: "sha256-ZNSpsxCzCUKkjsDt7Sd5HcfqiQ13kaZSo7w/Vy6HXtY=",
         })))),
@@ -108,21 +97,21 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libepoxy, rutabaga_gfx, virglrenderer]),
       makeFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`), "EFI=1"], nix.app(nix.sel(lib, "optional"), withGpu, "GPU=1"))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         KRUN_INIT_BINARY_PATH: nix.thunk(() => nix.str`${initBinary}/init`),
       })),
       postPatch: "substituteInPlace Makefile --replace-fail \\\n  '$(LIBRARY_RELEASE_$(OS)): $(SYSROOT_TARGET) $(INIT_BINARY_BSD)' \\\n  '$(LIBRARY_RELEASE_$(OS)):'\n",
       postInstall: "ln -s $out/lib/libkrun-efi.dylib $out/lib/libkrun.dylib\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$9,
-          withoutGpu: nix.thunk(() => nix.app(nix.sel(libkrun_efi, "override"), nix.thunk(() => ({ [nix.POS]: pos$8, withGpu: false })))),
+          [nix.POS]: $pos[8],
+          withoutGpu: nix.thunk(() => nix.app(nix.sel(libkrun_efi, "override"), nix.thunk(() => ({ [nix.POS]: $pos[7], withGpu: false })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "EFI variant of Libkrun, a dynamic library providing Virtualization-based process isolation capabilities",
         homepage: "https://github.com/containers/libkrun",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

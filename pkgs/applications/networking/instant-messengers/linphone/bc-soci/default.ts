@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 17, 5], ["group", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["name", 27, 7], ["url", 28, 7], ["sha256", 29, 7]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]], [["pname", 12, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 25, 3], ["cmakeFlags", 33, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 43, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitLab: false, fetchpatch: false, sqlite: false, boost: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 17, 5], ["group", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 27, 7], ["url", 28, 7], ["sha256", 29, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 25, 3], ["cmakeFlags", 33, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 43, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bc-soci",
       version: "3.2.3-unstable-2025-05-05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.linphone.org",
           group: "BC",
           owner: "public/external",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-backend-search-path.patch",
             url: "https://github.com/SOCI/soci/commit/56c93afc467bdba8ffbe68739eea76059ea62f7a.patch",
             sha256: "sha256-nC/39pn3Cv5e65GgIfF3l64/AbCsfZHPUPIWETZFZAY=",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [sqlite, boost]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Database access library for C++. Belledonne Communications' fork for Linphone",
         homepage: "https://gitlab.linphone.org/BC/public/external/soci",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

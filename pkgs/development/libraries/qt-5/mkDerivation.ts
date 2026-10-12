@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mkDerivation.nix", [[["nativeBuildInputs", 10, 5]]]);
 const formals$1 = { args: { wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mkDerivation.nix", [["nativeBuildInputs", 10, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return (mkDerivation) => (args_1) => (() => {
     const args_ = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_1, () => [], "nativeBuildInputs"), [wrapQtAppsHook])),
     }));
     return nix.app(mkDerivation, nix.thunk(() => nix.update(args_1, args_)));

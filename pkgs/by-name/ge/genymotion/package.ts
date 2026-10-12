@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 67, 5], ["name", 68, 5], ["hash", 69, 5]], [["updateScript", 132, 12]], [["description", 135, 5], ["longDescription", 136, 5], ["homepage", 141, 5], ["sourceProvenance", 142, 5], ["license", 143, 5], ["platforms", 144, 5], ["maintainers", 145, 5]], [["pname", 64, 3], ["version", 65, 3], ["src", 66, 3], ["nativeBuildInputs", 72, 3], ["unpackPhase", 79, 3], ["installPhase", 94, 3], ["fixupPhase", 100, 3], ["passthru", 132, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, makeWrapper: false, patchelfUnstable: false, which: false, zlib: false, libGL: false, glib: false, libx11: false, libxkbcommon: false, "xdg-utils": false, libxrender: false, fontconfig: false, freetype: false, systemd: false, libpulseaudio: false, cairo: false, "gdk-pixbuf": false, gtk3: false, pixman: false, libxmu: false, libxi: false, libxext: false, nss: false, nspr: false, expat: false, libxcb: false, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 67, 5], ["name", 68, 5], ["hash", 69, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 132, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 135, 5], ["longDescription", 136, 5], ["homepage", 141, 5], ["sourceProvenance", 142, 5], ["license", 143, 5], ["platforms", 144, 5], ["maintainers", 145, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 64, 3], ["version", 65, 3], ["src", 66, 3], ["nativeBuildInputs", 72, 3], ["unpackPhase", 79, 3], ["installPhase", 94, 3], ["fixupPhase", 100, 3], ["passthru", 132, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -66,11 +63,11 @@ export default nix.lambda((args) => (() => {
   ]);
   const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), packages));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "genymotion",
       version: "3.11.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dl.genymotion.com/releases/genymotion-${nix.sel(finalAttrs, "version")}/genymotion-${nix.sel(finalAttrs, "version")}-linux_x64.run`),
           name: nix.thunk(() => nix.str`genymotion-${nix.sel(finalAttrs, "version")}-linux_x64.run`),
           hash: "sha256-jNcnr0C0N6UGdN9qZqRnFZnJhuo/Ft5j/CG7s5TKBS8=",
@@ -108,9 +105,9 @@ patchTool glewinfo
 
 rm $out/libexec/genymotion/libxkbcommon*
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast and easy Android emulation",
         longDescription: "Genymotion is a relatively fast Android emulator which comes with\npre-configured Android (x86 with OpenGL hardware acceleration) images,\nsuitable for application testing.\n",
         homepage: "https://www.genymotion.com/",

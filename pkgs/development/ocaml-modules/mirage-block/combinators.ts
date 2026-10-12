@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/combinators.nix", [[["description", 19, 5], ["longDescription", 20, 5]], [["pname", 8, 3], ["version", 9, 26], ["src", 9, 34], ["duneVersion", 11, 3], ["propagatedBuildInputs", 13, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "mirage-block": false, logs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/combinators.nix", [["description", 19, 5], ["longDescription", 20, 5]]);
-const pos$2 = nix.positions(here + "/combinators.nix", [["pname", 8, 3], ["version", 9, 26], ["src", 9, 34], ["duneVersion", 11, 3], ["propagatedBuildInputs", 13, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const mirage_block = nix.arg($, "mirage-block");
   const logs = nix.arg($, "logs");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mirage-block-combinators",
       version: nix.thunk(() => nix.attr(mirage_block, "version")),
       src: nix.thunk(() => nix.attr(mirage_block, "src")),
       duneVersion: "3",
       propagatedBuildInputs: nix.thunk(() => [mirage_block, logs]),
       meta: nix.thunk(() => nix.update(nix.sel(mirage_block, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Block signatures and implementations for MirageOS using Lwt",
         longDescription: "This repo contains generic operations over Mirage `BLOCK` devices.\nThis package is specialised to the Lwt concurrency library for IO.\n",
       })),

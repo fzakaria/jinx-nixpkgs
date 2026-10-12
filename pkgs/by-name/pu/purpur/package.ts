@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 18, 5]], [["minecraft-server", 36, 36]], [["tests", 36, 5]], [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 45, 5], ["sourceProvenance", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["preferLocalBuild", 23, 3], ["installPhase", 25, 3], ["dontUnpack", 33, 3], ["passthru", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, nixosTests: false, jre_headless: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["minecraft-server", 36, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 45, 5], ["sourceProvenance", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["preferLocalBuild", 23, 3], ["installPhase", 25, 3], ["dontUnpack", 33, 3], ["passthru", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const jre_headless = nix.arg($, "jre_headless");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "purpur",
       version: "1.21.10r2535",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://api.purpurmc.org/v2/purpur/${nix.builtins.replaceStrings(nix.thunk(() => ["r"]), nix.thunk(() => ["/"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/download`),
           sha256: "sha256-QVl4Nnewi2OVeC5hUMsoZGxw7ZiLeUjAngGqWl6Q9Ug=",
         })))),
@@ -36,14 +32,14 @@ makeWrapper ${jre_headless}/bin/java $out/bin/minecraft-server \\
 `),
       dontUnpack: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "minecraft-server": nix.thunk(() => nix.attr(nixosTests, "minecraft-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Drop-in replacement for Minecraft Paper servers",
         longDescription: "Purpur is a drop-in replacement for Minecraft Paper servers designed for configurability, new fun and exciting\ngameplay features, and performance built on top of Airplane.\n",
         homepage: "https://purpurmc.org/",

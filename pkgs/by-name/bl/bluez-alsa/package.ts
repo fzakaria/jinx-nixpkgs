@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["updateScript", 69, 12]], [["homepage", 72, 5], ["description", 73, 5], ["longDescription", 74, 5], ["license", 93, 5], ["mainProgram", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["configureFlags", 57, 3], ["passthru", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, aacSupport: true, "alsa-lib": false, autoreconfHook: false, bluez: false, dbus: false, fdk_aac: false, fetchFromGitHub: false, gitUpdater: false, glib: false, libbsd: false, ncurses: false, "pkg-config": false, readline: false, sbc: false, python3: false, systemdSupport: true, systemdLibs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 69, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["longDescription", 74, 5], ["license", 93, 5], ["mainProgram", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["configureFlags", 57, 3], ["passthru", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const systemdSupport = nix.argOr($, "systemdSupport", () => true);
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bluez-alsa",
       version: "4.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Arkq",
           repo: "bluez-alsa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,11 +52,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "withFeatureAs"), systemdSupport, "bluealsaaplayuser", "bluealsa")),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/Arkq/bluez-alsa",
         description: "Bluez 5 Bluetooth Audio ALSA Backend",
         longDescription: "Bluez-ALSA (BlueALSA) is an ALSA backend for Bluez 5 audio interface.\nBluez-ALSA registers all Bluetooth devices with audio profiles in Bluez\nunder a virtual ALSA PCM device called `bluealsa` that supports both\nplayback and capture.\n\nSome backstory: Bluez 5 removed built-in support for ALSA in favor of a\ngeneric interface for 3rd party applications. Thereafter, PulseAudio\nimplemented a backend for that interface and became the only way to get\nBluetooth audio with Bluez 5. Users preferring ALSA stayed on Bluez 4.\nHowever, Bluez 4 eventually became deprecated.\n\nThis package is a rebirth of a direct interface between ALSA and Bluez 5,\nthat, unlike PulseAudio, provides KISS near-metal-like experience. It is\nnot possible to run BluezALSA and PulseAudio Bluetooth at the same time\ndue to limitations in Bluez, but it is possible to run PulseAudio over\nBluezALSA if you disable `bluetooth-discover` and `bluez5-discover`\nmodules in PA and configure it to play/capture sound over `bluealsa` PCM.\n",

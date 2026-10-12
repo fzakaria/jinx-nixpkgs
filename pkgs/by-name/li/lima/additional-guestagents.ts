@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/additional-guestagents.nix", [[["CGO_ENABLED", 18, 7]], [["description", 58, 5], ["longDescription", 59, 5]], [["pname", 12, 3], ["version", 16, 20], ["src", 16, 28], ["vendorHash", 16, 32], ["env", 18, 3], ["buildPhase", 20, 3], ["installPhase", 34, 3], ["nativeInstallCheckInputs", 43, 3], ["doInstallCheck", 46, 3], ["installCheckPhase", 49, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, callPackage: false, findutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/additional-guestagents.nix", [["CGO_ENABLED", 18, 7]]);
-const pos$2 = nix.positions(here + "/additional-guestagents.nix", [["description", 58, 5], ["longDescription", 59, 5]]);
-const pos$3 = nix.positions(here + "/additional-guestagents.nix", [["pname", 12, 3], ["version", 16, 20], ["src", 16, 28], ["vendorHash", 16, 32], ["env", 18, 3], ["buildPhase", 20, 3], ["installPhase", 34, 3], ["nativeInstallCheckInputs", 43, 3], ["doInstallCheck", 46, 3], ["installCheckPhase", 49, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const findutils = nix.arg($, "findutils");
   const source = nix.thunk(() => nix.app(callPackage, nix.path(here, "./source.nix"), nix.thunk(() => ({}))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lima-additional-guestagents",
       version: nix.thunk(() => nix.attr(source, "version")),
       src: nix.thunk(() => nix.attr(source, "src")),
       vendorHash: nix.thunk(() => nix.attr(source, "vendorHash")),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], CGO_ENABLED: "0" })),
       buildPhase: nix.thunk(() => (() => {
         const makeFlags = nix.thunk(() => [nix.thunk(() => nix.str`VERSION=v${nix.sel(finalAttrs, "version")}`)]);
         return nix.str`runHook preBuild
@@ -35,7 +33,7 @@ runHook postBuild
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n[[ \"$(find \"$out/share\" -type f -name 'lima-guestagent.Linux-*.gz' | wc -l)\" -ge 5 ]]\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => nix.update(nix.sel(source, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lima Guest Agents for emulating non-native architectures",
         longDescription: "This package should only be used when your guest's architecture differs from the host's.\n\nTo enable its functionality in `limactl`, set `withAdditionalGuestAgents = true` in the `lima` package:\n```nix\npkgs.lima.override {\n  withAdditionalGuestAgents = true;\n}\n```\n\nTypically, you won't need to directly add this package to your *.nix files.\n",
       })),

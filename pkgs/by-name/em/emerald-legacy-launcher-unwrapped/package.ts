@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["pname", 41, 26], ["version", 41, 32], ["src", 41, 40], ["pnpm", 42, 13], ["fetcherVersion", 43, 5], ["hash", 44, 5]], [["homepage", 93, 5], ["description", 94, 5], ["longDescription", 95, 5], ["changelog", 99, 5], ["license", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5], ["platforms", 104, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["cargoRoot", 35, 3], ["buildAndTestSubdir", 36, 3], ["cargoHash", 38, 3], ["pnpmDeps", 40, 3], ["__structuredAttrs", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 58, 3], ["postPatch", 69, 3], ["preBuild", 75, 3], ["preFixup", 81, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, rustPlatform: false, "cargo-tauri": false, nodejs: false, "pkg-config": false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, wrapGAppsHook4: false, openssl: false, webkitgtk_4_1: false, "glib-networking": false, "libayatana-appindicator": false, librsvg: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 41, 26], ["version", 41, 32], ["src", 41, 40], ["pnpm", 42, 13], ["fetcherVersion", 43, 5], ["hash", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 93, 5], ["description", 94, 5], ["longDescription", 95, 5], ["changelog", 99, 5], ["license", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5], ["platforms", 104, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["cargoRoot", 35, 3], ["buildAndTestSubdir", 36, 3], ["cargoHash", 38, 3], ["pnpmDeps", 40, 3], ["__structuredAttrs", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 58, 3], ["postPatch", 69, 3], ["preBuild", 75, 3], ["preFixup", 81, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "emerald-legacy-launcher-unwrapped",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LCE-Hub",
           repo: "LCE-Emerald-Launcher",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       cargoHash: "sha256-GfDuleIaeq6dpSzg4wWlClY2iYM5izbGv1febKuCh7I=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
 )
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/LCE-Hub/LCE-Emerald-Launcher",
         description: "FOSS cross-platform launcher for Minecraft Legacy Console Edition",
         longDescription: "LCE Emerald Launcher is the easiest way to play Minecraft Legacy Console Edition on PC. Install community builds, manage versions, customize skins, and launch instantly from one lightweight hub.\nWhy Emerald? Traditional launchers often rely on bloated frameworks, consuming excessive resources. Emerald utilizes a modern Tauri architecture, using only a low amount of RAM, leaving your PC's resources dedicated to the game itself.\n",

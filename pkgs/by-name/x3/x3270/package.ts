@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["hash", 36, 5]], [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["postPatch", 39, 3], ["buildFlags", 44, 3], ["configureFlags", 46, 3], ["enableParallelBuilding", 53, 3], ["preBuild", 55, 3], ["postBuild", 61, 3], ["pathsToLink", 65, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 71, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, libiconv: false, fetchurl: false, m4: false, expat: false, libx11: false, libxt: false, libxaw: false, libxmu: false, bdftopcf: false, mkfontdir: false, "font-adobe-100dpi": false, "font-adobe-utopia-100dpi": false, "font-bh-100dpi": false, "font-bh-lucidatypewriter-100dpi": false, "font-bitstream-100dpi": false, tcl: false, ncurses: false, openssl: false, python3: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["postPatch", 39, 3], ["buildFlags", 44, 3], ["configureFlags", 46, 3], ["enableParallelBuilding", 53, 3], ["preBuild", 55, 3], ["postBuild", 61, 3], ["pathsToLink", 65, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 71, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const minorVersion = "5";
   const versionSuffix = "ga5";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "x3270",
       version: nix.thunk(() => nix.str`${majorVersion}.${minorVersion}${versionSuffix}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://x3270.bgp.nu/download/0${majorVersion}.0${minorVersion}/suite3270-${nix.sel(finalAttrs, "version")}-src.tgz`),
           hash: "sha256-AVdvpYWYzN09Nm/r+u9h49Hek+tgqT+axrpfr4QUTG8=",
         })))),
@@ -71,7 +69,7 @@ export default nix.lambda((args) => (() => {
         readline,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "IBM 3270 terminal emulator for the X Window System",
         homepage: "https://x3270.bgp.nu/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

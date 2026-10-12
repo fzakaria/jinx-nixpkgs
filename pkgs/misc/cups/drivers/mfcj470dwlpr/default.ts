@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["homepage", 70, 5], ["description", 71, 5], ["sourceProvenance", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["downloadPage", 75, 5], ["maintainers", 76, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["dontUnpack", 33, 3], ["installPhase", 35, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cups: false, dpkg: false, ghostscript: false, a2ps: false, coreutils: false, gnused: false, gawk: false, file: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 70, 5], ["description", 71, 5], ["sourceProvenance", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["downloadPage", 75, 5], ["maintainers", 76, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["dontUnpack", 33, 3], ["installPhase", 35, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcj470dw-cupswrapper";
       const version = "3.0.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf006843/mfcj470dwlpr-${version}.i386.deb`),
           sha256: "7202dd895d38d50bb767080f2995ed350eed99bc2b7871452c3c915c8eefc30a",
         }))));
@@ -51,7 +49,7 @@ wrapProgram $out/opt/brother/Printers/mfcj470dw/lpd/filtermfcj470dw \\
 --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ghostscript, a2ps, file, gnused, coreutils]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.brother.com/",
         description: "Brother MFC-J470DW LPR driver",
         sourceProvenance: nix.thunk(() => (() => {
@@ -64,7 +62,7 @@ wrapProgram $out/opt/brother/Printers/mfcj470dw/lpd/filtermfcj470dw \\
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "yochai"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 7], ["hash", 15, 7]], [["url", 18, 7], ["hash", 19, 7]], [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["srcs", 12, 3], ["sourceRoot", 23, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 18, 7], ["hash", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["srcs", 12, 3], ["sourceRoot", 23, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "intel-one-mono",
       version: "1.4.0",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/intel/intel-one-mono/releases/download/V${nix.sel(finalAttrs, "version")}/otf.zip`),
             hash: "sha256-dO+O5mdAPHYHRbwS/F4ssWhFRBlPrT1TQJGcFzqCJ/w=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://github.com/intel/intel-one-mono/releases/download/V${nix.sel(finalAttrs, "version")}/ttf.zip`),
             hash: "sha256-VIY1UtJdy5w/U2CylvyYDW4fv9AuDSFCJOi3jworzPA=",
           })))),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\ninstall -Dm644 -t $out/share/fonts/truetype/ ttf/*.ttf\ninstall -Dm644 -t $out/share/fonts/opentype/ otf/*.otf\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Intel One Mono, an expressive monospaced font family that’s built with clarity, legibility, and the needs of developers in mind",
         homepage: "https://github.com/intel/intel-one-mono",
         changelog: nix.thunk(() => nix.str`https://github.com/intel/intel-one-mono/releases/tag/V${nix.sel(finalAttrs, "version")}`),

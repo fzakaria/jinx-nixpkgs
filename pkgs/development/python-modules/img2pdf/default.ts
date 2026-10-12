@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["srgbProfile", 39, 7]], [["changelog", 99, 5], ["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 30, 3], ["patches", 37, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["__impureHostDeps", 59, 3], ["nativeCheckInputs", 63, 3], ["preCheck", 75, 3], ["disabledTests", 79, 3], ["pythonImportsCheck", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, colord: false, "flit-core": false, pikepdf: false, pillow: false, stdenv: false, exiftool: false, imagemagick: false, "mupdf-headless": false, netpbm: false, numpy: false, "poppler-utils": false, pytestCheckHook: false, runCommand: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["srgbProfile", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 99, 5], ["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 30, 3], ["patches", 37, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["__impureHostDeps", 59, 3], ["nativeCheckInputs", 63, 3], ["preCheck", 75, 3], ["disabledTests", 79, 3], ["pythonImportsCheck", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "josch",
           repo: "img2pdf",
           tag: version,
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./default-icc-profile.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             srgbProfile: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "/System/Library/ColorSync/Profiles/sRGB Profile.icc" : nix.app(runCommand, "sRGC.icc", nix.thunk(() => ({})), nix.thunk(() => nix.str`cp ${colord}/share/color/icc/colord/sRGB.icc $out
 `)))),
           })))),
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["img2pdf"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://gitlab.mister-muffin.de/josch/img2pdf/src/tag/${nix.sel(src, "tag")}/CHANGES.rst`),
         description: "Convert images to PDF via direct JPEG inclusion",
         homepage: "https://gitlab.mister-muffin.de/josch/img2pdf",
@@ -91,7 +88,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

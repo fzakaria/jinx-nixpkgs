@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 15, 26], ["crateName", 16, 5], ["hash", 17, 5]], [["doh-proxy-rust", 26, 43]], [["tests", 26, 12]], [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["mainProgram", 33, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 20, 3], ["buildInputs", 22, 3], ["passthru", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, stdenv: false, libiconv: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 15, 26], ["crateName", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["doh-proxy-rust", 26, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 26, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["mainProgram", 33, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 20, 3], ["buildInputs", 22, 3], ["passthru", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "doh-proxy-rust",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           crateName: "doh-proxy",
           hash: "sha256-dRff1YWDqSf9naRkwPAX5GeLYIwlUD481+/TWnsM/p4=",
@@ -30,14 +26,14 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-YtcfOr7RseVRTgyQq43tQ8GWhLpOW2pQeReCBD+Ez6c=",
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "doh-proxy-rust": nix.thunk(() => nix.attr(nixosTests, "doh-proxy-rust")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/jedisct1/doh-server",
         description: "Fast, mature, secure DoH server proxy written in Rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

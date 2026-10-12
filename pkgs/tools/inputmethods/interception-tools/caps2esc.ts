@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/caps2esc.nix", [[["group", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["url", 22, 7], ["sha256", 23, 7]], [["homepage", 29, 5], ["description", 30, 5], ["mainProgram", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["nativeBuildInputs", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/caps2esc.nix", [["group", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/caps2esc.nix", [["url", 22, 7], ["sha256", 23, 7]]);
-const pos$3 = nix.positions(here + "/caps2esc.nix", [["homepage", 29, 5], ["description", 30, 5], ["mainProgram", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]]);
-const pos$4 = nix.positions(here + "/caps2esc.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["nativeBuildInputs", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "caps2esc";
       const version = "0.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           group: "interception",
           owner: "linux/plugins",
           repo: pname,
@@ -28,14 +25,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/interception/linux/plugins/caps2esc/-/commit/47ea8022df47b23d5d9603f9fe71b3715e954e4c.patch",
             sha256: "sha256-lB+pDwmFWW1fpjOPC6GLpxvrs87crDCNk1s9KnfrDD4=",
           })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gitlab.com/interception/linux/plugins/caps2esc",
         description: "Transforming the most useless key ever into the most useful one",
         mainProgram: "caps2esc",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { [nix.POS]: pos$4, pname, version, src, patches, nativeBuildInputs, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, patches, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=caps2esc.ts.map

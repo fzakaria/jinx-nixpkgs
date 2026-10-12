@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["desktopName", 17, 5], ["name", 18, 5], ["exec", 19, 5], ["icon", 20, 5], ["comment", 21, 5], ["type", 22, 5], ["categories", 23, 5], ["genericName", 27, 5]], [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["description", 60, 13], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["homepage", 64, 5]], [["pname", 32, 11], ["version", 33, 3], ["src", 35, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 48, 3], ["cmakeFlags", 50, 3], ["postInstall", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeDesktopItem: false, ncurses: false, libx11: false, boost: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["desktopName", 17, 5], ["name", 18, 5], ["exec", 19, 5], ["icon", 20, 5], ["comment", 21, 5], ["type", 22, 5], ["categories", 23, 5], ["genericName", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 13], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["homepage", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 11], ["version", 33, 3], ["src", 35, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 48, 3], ["cmakeFlags", 50, 3], ["postInstall", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const pname = "tome2";
   const description = "Dungeon crawler similar to Angband, based on the works of Tolkien";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       desktopName: pname,
       name: pname,
       exec: nix.thunk(() => nix.str`${pname}-x11`),
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
       genericName: pname,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: "2.4-unstable-2025-02-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "tome2",
           repo: "tome2",
           rev: "3892fbcb1c2446afcb0c34f59e2a24f78ae672c4",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
 cp ${desktopItem}/share/applications/*.desktop $out/share/applications
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: description,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         maintainers: nix.thunk(() => (() => {

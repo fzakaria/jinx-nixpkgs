@@ -2,14 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/convos.nix", [[["maintainers", 8, 8]], [["enable", 15, 11], ["listenPort", 16, 11]], [["convos", 14, 18]], [["services", 14, 9]], [["machine", 11, 5]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 21, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/convos.nix", [["maintainers", 8, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/convos.nix", [["enable", 15, 11], ["listenPort", 16, 11]]);
-const pos$3 = nix.positions(here + "/convos.nix", [["convos", 14, 18]]);
-const pos$4 = nix.positions(here + "/convos.nix", [["services", 14, 9]]);
-const pos$5 = nix.positions(here + "/convos.nix", [["machine", 11, 5]]);
-const pos$6 = nix.positions(here + "/convos.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,25 +12,25 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const port = 3333n;
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "convos",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "sgo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            convos: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, listenPort: port })),
+            [nix.POS]: $pos[2],
+            convos: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, listenPort: port })),
           })),
         };
       })(), formals$2),

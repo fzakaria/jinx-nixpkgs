@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["url", 22, 5], ["sha256", 23, 5]], [["url", 28, 5], ["sha256", 29, 5]], [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 55, 5], ["maintainers", 56, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["icon", 20, 3], ["desktop", 26, 3], ["buildInputs", 32, 3], ["makeFlags", 38, 3], ["postFixup", 40, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchzip: false, SDL: false, SDL_mixer: false, SDL_ttf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 55, 5], ["maintainers", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["icon", 20, 3], ["desktop", 26, 3], ["buildInputs", 32, 3], ["makeFlags", 38, 3], ["postFixup", 40, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +18,17 @@ export default nix.lambda((args) => (() => {
       const pname = "hex-a-hop";
       const version = "1.1.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/hexahop/${version}/hex-a-hop-${version}.tar.gz`),
           sha256: "sha256-fBSvNtgNR0aNofbvoYpM1e8ww4ARlXIvrQUvJqVGLlY=",
         }))));
       const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://sourceforge.net/p/hexahop/code/ci/dfa365a90be5c52ef21235a9e90a865b04da3ad4/tree/data/hex-a-hop.png?format=raw",
           sha256: "sha256-Vh/1wwRmC2eSD/+mk1Oqt7EX4a4k++nUAbWQD2P2hNA=",
         }))));
       const desktop = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://sourceforge.net/p/hexahop/code/ci/e67385078e4f248a3877ee1066613d231c0d0eee/tree/data/hex-a-hop.desktop?format=raw",
           sha256: "sha256-j6gKRq+8b1NDwP1WcCaScfmwNxAl78CfK6pemROrRak=",
         }))));
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
 install -Dm644 ${desktop} $out/share/applications/${pname}.desktop
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Puzzle game based on hexagonal tiles",
         mainProgram: "hex-a-hop",
         homepage: "https://hexahop.sourceforge.net",
@@ -62,7 +58,7 @@ install -Dm644 ${desktop} $out/share/applications/${pname}.desktop
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

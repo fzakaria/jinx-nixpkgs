@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["stdlib", 15, 3], ["swiftComponents", 16, 3]], [["pname", 26, 5], ["outputs", 28, 5], ["cmakeFlags", 33, 5], ["postInstall", 41, 5], ["postFixup", 113, 5]]]);
 const formals$1 = { args: { lib: false, llvmPackages_upstream: false, stdenv: false, swiftc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["stdlib", 15, 3], ["swiftComponents", 16, 3]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 26, 5], ["outputs", 28, 5], ["cmakeFlags", 33, 5], ["postInstall", 41, 5], ["postFixup", 113, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libraryExtension = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "library"));
   const toolLTO = nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "SWIFT_TOOLS_ENABLE_LTO", "thin"));
   return nix.app(nix.sel(nix.app(nix.sel(swiftc, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       stdlib: null,
       swiftComponents: nix.thunk(() => [
         "back-deployment",
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
         "stdlib",
       ]),
     }))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "stdlib",
       outputs: nix.thunk(() => ["out", "dev"]),
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "filter"), (flag) => !nix.eq(flag, toolLTO), nix.thunk(() => nix.selOr(old, () => [], "cmakeFlags"))), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [

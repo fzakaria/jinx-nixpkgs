@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["homepage", 55, 5], ["description", 56, 5], ["longDescription", 57, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cmakeFlags", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, cmake: false, "pkg-config": false, ffmpeg_7: false, openal: false, stdenv: false, qt6: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["longDescription", 57, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cmakeFlags", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "subtitlecomposer",
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "invent.kde.org",
           owner: "multimedia",
           repo: "subtitlecomposer",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://apps.kde.org/subtitlecomposer",
         description: "Open source text-based subtitle editor",
         longDescription: "An open source text-based subtitle editor that supports basic and\nadvanced editing operations, aiming to become an improved version of\nSubtitle Workshop for every platform supported by Plasma Frameworks.\n",

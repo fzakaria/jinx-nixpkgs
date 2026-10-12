@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["package", 47, 9], ["command", 48, 9], ["version", 49, 9]], [["centrifugo", 45, 28], ["version", 46, 7]], [["updateScript", 43, 5], ["tests", 44, 5]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 63, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["vendorHash", 28, 3], ["ldflags", 30, 3], ["excludedPackages", 38, 3], ["passthru", 42, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, nixosTests: false, testers: false, centrifugo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 47, 9], ["command", 48, 9], ["version", 49, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["centrifugo", 45, 28], ["version", 46, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 43, 5], ["tests", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["vendorHash", 28, 3], ["ldflags", 30, 3], ["excludedPackages", 38, 3], ["passthru", 42, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const statsEndpoint = "https://graphite-prod-01-eu-west-0.grafana.net/graphite/metrics,https://stats.centrifugal.dev/usage";
   const statsToken = nix.thunk(() => nix.add("425599:eyJrIjoi", "OWJhMTcyZGNjN2FkYjEzM2E1OTQwZjIyMTU3MTBjMjUyYzAyZWE2MSIsIm4iOiJVc2FnZSBTdGF0cyIsImlkIjo2NDUzOTN9"));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "centrifugo",
       version: "6.9.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "centrifugal",
           repo: "centrifugo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,13 +37,13 @@ export default nix.lambda((args) => (() => {
       ]),
       excludedPackages: nix.thunk(() => ["./internal/gen/api"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           centrifugo: nix.thunk(() => nix.attr(nixosTests, "centrifugo")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: centrifugo,
               command: "centrifugo version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Scalable real-time messaging server",
         homepage: "https://centrifugal.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/centrifugal/centrifugo/releases/tag/v${nix.sel(finalAttrs, "version")}`),

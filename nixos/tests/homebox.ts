@@ -2,52 +2,36 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/homebox.nix", [[["maintainers", 8, 33]], [["HBOX_WEB_PORT", 16, 22], ["HBOX_OPTIONS_ALLOW_REGISTRATION", 17, 22], ["HBOX_LOG_LEVEL", 18, 22]], [["enable", 15, 13], ["settings", 16, 13]], [["homebox", 14, 20]], [["services", 14, 11]], [["createLocally", 24, 37]], [["database", 24, 28]], [["homebox", 24, 20]], [["imports", 23, 11], ["services", 24, 11]], [["rules", 40, 30]], [["tmpfiles", 40, 21]], [["HBOX_AUTH_API_KEY_PEPPER", 47, 17]], [["secrets", 46, 15]], [["homebox", 45, 22]], [["systemd", 40, 13], ["imports", 44, 13], ["services", 45, 13]], [["simple", 13, 9], ["postgres", 22, 9], ["explicitPepper", 27, 9]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 10, 3], ["testScript", 54, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/homebox.nix", [["maintainers", 8, 33]]);
-const pos$2 = nix.positions(here + "/homebox.nix", [["HBOX_WEB_PORT", 16, 22], ["HBOX_OPTIONS_ALLOW_REGISTRATION", 17, 22], ["HBOX_LOG_LEVEL", 18, 22]]);
-const pos$3 = nix.positions(here + "/homebox.nix", [["enable", 15, 13], ["settings", 16, 13]]);
-const pos$4 = nix.positions(here + "/homebox.nix", [["homebox", 14, 20]]);
-const pos$5 = nix.positions(here + "/homebox.nix", [["services", 14, 11]]);
-const pos$6 = nix.positions(here + "/homebox.nix", [["createLocally", 24, 37]]);
-const pos$7 = nix.positions(here + "/homebox.nix", [["database", 24, 28]]);
-const pos$8 = nix.positions(here + "/homebox.nix", [["homebox", 24, 20]]);
-const pos$9 = nix.positions(here + "/homebox.nix", [["imports", 23, 11], ["services", 24, 11]]);
 const formals$2 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/homebox.nix", [["rules", 40, 30]]);
-const pos$11 = nix.positions(here + "/homebox.nix", [["tmpfiles", 40, 21]]);
-const pos$12 = nix.positions(here + "/homebox.nix", [["HBOX_AUTH_API_KEY_PEPPER", 47, 17]]);
-const pos$13 = nix.positions(here + "/homebox.nix", [["secrets", 46, 15]]);
-const pos$14 = nix.positions(here + "/homebox.nix", [["homebox", 45, 22]]);
-const pos$15 = nix.positions(here + "/homebox.nix", [["systemd", 40, 13], ["imports", 44, 13], ["services", 45, 13]]);
-const pos$16 = nix.positions(here + "/homebox.nix", [["simple", 13, 9], ["postgres", 22, 9], ["explicitPepper", 27, 9]]);
-const pos$17 = nix.positions(here + "/homebox.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 10, 3], ["testScript", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const port = "7745";
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "homebox",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "homebox", "meta"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     nodes: nix.thunk(() => (() => {
       const self = nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         simple: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             homebox: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 HBOX_WEB_PORT: port,
                 HBOX_OPTIONS_ALLOW_REGISTRATION: "true",
                 HBOX_LOG_LEVEL: "trace",
@@ -56,13 +40,13 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         postgres: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           imports: nix.thunk(() => [nix.thunk(() => nix.sel(self, "simple"))]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             homebox: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              database: nix.thunk(() => ({ [nix.POS]: pos$6, createLocally: true })),
+              [nix.POS]: $pos[6],
+              database: nix.thunk(() => ({ [nix.POS]: $pos[5], createLocally: true })),
             })),
           })),
         })),
@@ -74,11 +58,11 @@ export default nix.lambda((args) => (() => {
           const user = nix.thunk(() => nix.attr(from, "user"));
           const group = nix.thunk(() => nix.attr(from, "group"));
           return {
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               tmpfiles: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 rules: nix.thunk(() => [
                   nix.thunk(() => nix.str`d /run/homebox 0700 ${user} ${group}`),
                   nix.thunk(() => nix.str`f /run/homebox/pepper 0400 ${user} ${group} - 0a7524fa7b4555ab793c177557b7b8db6619b47cc0574fb99716315e03b6ddf1d67961ee9bf36b19bef448ed3e530957`),
@@ -87,10 +71,10 @@ export default nix.lambda((args) => (() => {
             })),
             imports: nix.thunk(() => [nix.thunk(() => nix.sel(self, "simple"))]),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               homebox: nix.thunk(() => ({
-                [nix.POS]: pos$13,
-                secrets: nix.thunk(() => ({ [nix.POS]: pos$12, HBOX_AUTH_API_KEY_PEPPER: "/run/homebox/pepper" })),
+                [nix.POS]: $pos[12],
+                secrets: nix.thunk(() => ({ [nix.POS]: $pos[11], HBOX_AUTH_API_KEY_PEPPER: "/run/homebox/pepper" })),
               })),
             })),
           };

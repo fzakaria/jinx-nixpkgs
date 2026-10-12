@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 27, 5], ["description", 28, 5], ["platforms", 29, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 12, 3], ["nativeBuildInputs", 14, 3], ["doInstallCheck", 18, 3], ["dontUnpack", 20, 3], ["installPhase", 22, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["platforms", 29, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 12, 3], ["nativeBuildInputs", 14, 3], ["doInstallCheck", 18, 3], ["dontUnpack", 20, 3], ["installPhase", 22, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "wooting-udev-rules",
       version: "0-unstable-2024-11-20",
       src: nix.thunk(() => [nix.path(here, "./wooting.rules")]),
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "install -Dpm644 $src $out/lib/udev/rules.d/70-wooting.rules\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://help.wooting.io/article/147-configuring-device-access-for-wootility-under-linux-udev-rules",
         description: "udev rules that give NixOS permission to communicate with Wooting keyboards",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -2,18 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["NIX_CFLAGS_COMPILE", 30, 11]], [["pname", 24, 7], ["version", 25, 15], ["src", 25, 23], ["sourceRoot", 26, 7], ["buildInputs", 27, 15], ["env", 30, 7], ["preInstall", 33, 7], ["makeFlags", 37, 7]], [["subprj", 50, 7], ["buildInputs", 51, 7]], [["subprj", 54, 7], ["buildInputs", 55, 7]], [["subprj", 58, 7], ["buildInputs", 59, 7]], [["subprj", 66, 7], ["buildInputs", 67, 7]], [["src", 47, 5], ["mkSubProject", 48, 13], ["wiringPi", 49, 5], ["devLib", 53, 5], ["wiringPiD", 57, 5], ["gpio", 65, 5]], [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 93, 5]], [["pname", 77, 3], ["passthru", 78, 11], ["version", 78, 20], ["paths", 79, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, symlinkJoin: false, fetchFromGitHub: false, libxcrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
 const formals$2 = { args: { subprj: false, buildInputs: true, src: true }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 30, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 7], ["version", 25, 15], ["src", 25, 23], ["sourceRoot", 26, 7], ["buildInputs", 27, 15], ["env", 30, 7], ["preInstall", 33, 7], ["makeFlags", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["subprj", 50, 7], ["buildInputs", 51, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["subprj", 54, 7], ["buildInputs", 55, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["subprj", 58, 7], ["buildInputs", 59, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["subprj", 66, 7], ["buildInputs", 67, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["src", 47, 5], ["mkSubProject", 48, 13], ["wiringPi", 49, 5], ["devLib", 53, 5], ["wiringPiD", 57, 5], ["gpio", 65, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 93, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 77, 3], ["passthru", 78, 11], ["version", 78, 20], ["paths", 79, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const version = "3.18";
   const srcAll = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "WiringPi",
       repo: "WiringPi",
       tag: version,
@@ -36,13 +27,13 @@ export default nix.lambda((args) => (() => {
     const buildInputs = nix.argOr($_1, "buildInputs", () => []);
     const src = nix.argOr($_1, "src", () => nix.force(srcAll));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: nix.thunk(() => nix.str`wiringpi-${subprj}`),
         version: version,
         src: src,
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/${subprj}`),
         buildInputs: buildInputs,
-        env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
         preInstall: "sed -i \"/chown root/d\" Makefile\nsed -i \"/chmod/d\" Makefile\n",
         makeFlags: nix.thunk(() => [
           nix.thunk(() => nix.str`DESTDIR=${nix.builtins.placeholder("out")}`),
@@ -52,21 +43,21 @@ export default nix.lambda((args) => (() => {
       }));
   })(), formals$2);
   const passthru = nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     src: srcAll,
     mkSubProject: mkSubProject,
     wiringPi: nix.thunk(() => nix.app(mkSubProject, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         subprj: "wiringPi",
         buildInputs: nix.thunk(() => [libxcrypt]),
       })))),
     devLib: nix.thunk(() => nix.app(mkSubProject, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         subprj: "devLib",
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(passthru, "wiringPi"))]),
       })))),
     wiringPiD: nix.thunk(() => nix.app(mkSubProject, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         subprj: "wiringPiD",
         buildInputs: nix.thunk(() => [
           libxcrypt,
@@ -75,7 +66,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     gpio: nix.thunk(() => nix.app(mkSubProject, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         subprj: "gpio",
         buildInputs: nix.thunk(() => [
           libxcrypt,
@@ -85,7 +76,7 @@ export default nix.lambda((args) => (() => {
       })))),
   }));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "wiringpi",
       passthru: passthru,
       version: version,
@@ -96,7 +87,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(passthru, "gpio")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Gordon's Arduino wiring-like WiringPi Library for the Raspberry Pi (Unofficial Mirror for WiringPi bindings)",
         homepage: "https://github.com/WiringPi/WiringPi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

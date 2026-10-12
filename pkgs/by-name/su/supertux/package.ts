@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["cmakeFlags", 60, 3], ["postInstall", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, "pkg-config": false, boost: false, curl: false, SDL2: false, SDL2_image: false, libsm: false, libxext: false, libpng: false, freetype: false, libGLU: false, libGL: false, glew: false, glm: false, openal: false, libogg: false, libvorbis: false, physfs: false, fmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["cmakeFlags", 60, 3], ["postInstall", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const physfs = nix.arg($, "physfs");
   const fmt = nix.arg($, "fmt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "supertux",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/SuperTux/supertux/releases/download/v${nix.sel(finalAttrs, "version")}/SuperTux-v${nix.sel(finalAttrs, "version")}-Source.tar.gz`),
           hash: "sha256-MvxbmbmZTtWOWDQdbyHekldks4ElbhCFkRNt5TvDHaU=",
         })))),
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DENABLE_BOOST_STATIC_LIBS=OFF"]),
       postInstall: "mkdir $out/bin\nln -s $out/games/supertux2 $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Classic 2D jump'n run sidescroller game",
         homepage: "https://supertux.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 33, 5], ["homepage", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5], ["license", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["installPhase", 26, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rofi: false, gnused: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5], ["license", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["installPhase", 26, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rofi = nix.arg($, "rofi");
   const gnused = nix.arg($, "gnused");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rofi-menugen",
       version: "0-unstable-2015-12-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "octotep",
           repo: "menugen",
           rev: "168efd2608fdb88b1aff3e0244bda8402169f207",
@@ -31,7 +29,7 @@ sed -i -e "s|sed |${gnused}/bin/sed |" menugenbase
 `),
       installPhase: "mkdir -p $out/bin\ncp menugen $out/bin/rofi-menugen\ncp menugenbase $out/bin/rofi-menugenbase\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Generates menu based applications using rofi",
         homepage: "https://github.com/octotep/menugen",
         maintainers: [],

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["lib", 184, 7], ["stdenv", 185, 7], ["newScope", 186, 7], ["packageOverrides", 187, 7], ["gnuradio", 189, 5]], [["pythonEnv", 193, 7], ["pythonPkgs", 194, 7], ["unwrapped", 195, 7], ["pkgs", 197, 5]], [["pname", 203, 11], ["outputs", 204, 11], ["version", 205, 11], ["passthru", 206, 11], ["nativeBuildInputs", 208, 9], ["buildCommand", 212, 9], ["meta", 236, 29]], [["passthru", 240, 17]]]);
 const formals$1 = { args: { lib: false, stdenv: false, unwrapped: false, doWrap: true, makeWrapper: false, lndir: false, newScope: false, "gsettings-desktop-schemas": false, glib: false, "hicolor-icon-theme": false, pango: false, "json-glib": false, dconf: false, "gobject-introspection": false, librsvg: false, "gdk-pixbuf": false, harfbuzz: false, "at-spi2-core": false, atk: false, extraPackages: true, extraPythonPackages: true, soapysdr: false, soapyairspy: false, soapyaudio: false, soapybladerf: false, soapyhackrf: false, soapyplutosdr: false, soapyremote: false, soapyrtlsdr: false, soapyuhd: false, extraSoapySdrPackages: true, extraMakeWrapperArgs: true, packageOverrides: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["lib", 184, 7], ["stdenv", 185, 7], ["newScope", 186, 7], ["packageOverrides", 187, 7], ["gnuradio", 189, 5]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["pythonEnv", 193, 7], ["pythonPkgs", 194, 7], ["unwrapped", 195, 7], ["pkgs", 197, 5]]);
-const pos$3 = nix.positions(here + "/wrapper.nix", [["pname", 203, 11], ["outputs", 204, 11], ["version", 205, 11], ["passthru", 206, 11], ["nativeBuildInputs", 208, 9], ["buildCommand", 212, 9], ["meta", 236, 29]]);
-const pos$4 = nix.positions(here + "/wrapper.nix", [["passthru", 240, 17]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -135,7 +132,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "makeSearchPath"), nix.thunk(() => nix.sel(unwrapped, "qt", "qtbase", "qtQmlPrefix")), qtPackages)}`),
       ])), extraMakeWrapperArgs))))))));
   const packages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../top-level/gnuradio-packages.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       lib: lib,
       stdenv: stdenv,
       newScope: newScope,
@@ -143,14 +140,14 @@ export default nix.lambda((args) => (() => {
       gnuradio: unwrapped,
     }))));
   const passthru = nix.thunk(() => nix.update(nix.sel(unwrapped, "passthru"), {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     pythonEnv: pythonEnv,
     pythonPkgs: pythonPkgs,
     unwrapped: unwrapped,
     pkgs: packages,
   }));
   const self = nix.thunk(() => (nix.asBool(doWrap) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       outputs: outputs,
       version: version,
@@ -178,7 +175,7 @@ for i in $out/bin/*; do
 done
 `),
       meta: nix.thunk(() => nix.attr(unwrapped, "meta")),
-    }))) : nix.app(nix.sel(unwrapped, "overrideAttrs"), (_) => ({ [nix.POS]: pos$4, passthru: passthru }))));
+    }))) : nix.app(nix.sel(unwrapped, "overrideAttrs"), (_) => ({ [nix.POS]: $pos[3], passthru: passthru }))));
   return nix.force(self);
 })(), formals$1);
 //# sourceMappingURL=wrapper.ts.map

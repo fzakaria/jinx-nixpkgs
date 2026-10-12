@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 35, 5], ["hash", 36, 5]], [["url", 46, 7], ["hash", 47, 7]], [["url", 54, 7], ["hash", 55, 7]], [["config_dir", 61, 7], ["python_path", 62, 7], ["user_models_dir", 63, 7]], [["install_config", 66, 7], ["with_polkit", 67, 7]], [["name", 94, 7], ["exec", 95, 7], ["icon", 96, 7], ["comment", 97, 7], ["desktopName", 98, 7], ["genericName", 99, 7], ["categories", 100, 7]], [["extraLibs", 125, 5], ["makeWrapperArgs", 126, 5]], [["name", 146, 9], ["url", 147, 9], ["hash", 148, 17]], [["dlib_face_recognition_resnet_model_v1", 152, 7], ["mmod_human_face_detector", 153, 7], ["shape_predictor_5_face_landmarks", 154, 7]], [["pythonDeps", 134, 5], ["dlibModels", 143, 5], ["dlibModelsHashes", 151, 5]], [["description", 159, 5], ["homepage", 160, 5], ["license", 161, 5], ["mainProgram", 162, 5], ["platforms", 163, 5], ["maintainers", 164, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 39, 3], ["mesonFlags", 59, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 83, 3], ["desktopItems", 92, 3], ["postInstall", 107, 3], ["pythonEnv", 124, 3], ["passthru", 133, 3], ["meta", 158, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, copyDesktopItems: false, fetchFromGitHub: false, fetchpatch: false, fetchurl: false, bzip2: false, "gobject-introspection": false, imagemagick: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, makeDesktopItem: false, makeWrapper: false, fmt: false, gettext: false, gtk3: false, inih: false, libevdev: false, pam: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 46, 7], ["hash", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 54, 7], ["hash", 55, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["config_dir", 61, 7], ["python_path", 62, 7], ["user_models_dir", 63, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["install_config", 66, 7], ["with_polkit", 67, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 94, 7], ["exec", 95, 7], ["icon", 96, 7], ["comment", 97, 7], ["desktopName", 98, 7], ["genericName", 99, 7], ["categories", 100, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraLibs", 125, 5], ["makeWrapperArgs", 126, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 146, 9], ["url", 147, 9], ["hash", 148, 17]]);
-const pos$9 = nix.positions(here + "/package.nix", [["dlib_face_recognition_resnet_model_v1", 152, 7], ["mmod_human_face_detector", 153, 7], ["shape_predictor_5_face_landmarks", 154, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pythonDeps", 134, 5], ["dlibModels", 143, 5], ["dlibModelsHashes", 151, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 159, 5], ["homepage", 160, 5], ["license", 161, 5], ["mainProgram", 162, 5], ["platforms", 163, 5], ["maintainers", 164, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 39, 3], ["mesonFlags", 59, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 83, 3], ["desktopItems", 92, 3], ["postInstall", 107, 3], ["pythonEnv", 124, 3], ["passthru", 133, 3], ["meta", 158, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "howdy",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "boltgolt",
           repo: "howdy",
           rev: "d3ab99382f88f043d15f15c1450ab69433892a1c",
@@ -53,24 +42,24 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/boltgolt/howdy/commit/1f3b83e2db5a8dfd9c7c88706ecce033e154060a.patch",
             hash: "sha256-OIN8A4q0zjtMOMzZgBqrKy2qOD8BDPB+euG6zerFbCE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/boltgolt/howdy/commit/b056724f84361dc6150554e7a806152af032c54b.patch",
             hash: "sha256-ZOb+QmWagKWtyXI0Xg00tnw8UP8uDWw7wb4Fwjy3VeE=",
           })))),
       ]),
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonOption")), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               config_dir: "/etc/howdy",
               python_path: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage", "pythonEnv")}/bin/python`),
               user_models_dir: "/var/lib/howdy/models",
             })))),
-          nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonBool")), nix.thunk(() => ({ [nix.POS]: pos$5, install_config: false, with_polkit: true })))),
+          nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonBool")), nix.thunk(() => ({ [nix.POS]: $pos[4], install_config: false, with_polkit: true })))),
         ]))),
       nativeBuildInputs: nix.thunk(() => [
         bzip2,
@@ -86,7 +75,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fmt, gettext, gtk3, inih, libevdev, pam]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "howdy",
             exec: "howdy-gtk",
             icon: "howdy",
@@ -109,12 +98,12 @@ done
 chmod +x $out/lib/howdy-gtk/init.py
 `),
       pythonEnv: nix.thunk(() => nix.app(nix.sel(python3, "buildEnv", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           extraLibs: nix.thunk(() => nix.app(nix.sel(lib, "attrVals"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "pythonDeps")), nix.thunk(() => nix.sel(python3, "pkgs")))),
           makeWrapperArgs: nix.thunk(() => ["--set", "OMP_NUM_THREADS", "1"]),
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pythonDeps: nix.thunk(() => [
           "dlib",
           "elevate",
@@ -125,20 +114,20 @@ chmod +x $out/lib/howdy-gtk/init.py
           "pygobject3",
         ]),
         dlibModels: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               name: nix.thunk(() => nix.str`howdy-${name}.dat`),
               url: nix.thunk(() => nix.str`https://github.com/davisking/dlib-models/raw/daf943f7819a3dda8aec4276754ef918dc26491f/${name}.dat.bz2`),
               hash: hash,
             }))), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "dlibModelsHashes")))),
         dlibModelsHashes: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           dlib_face_recognition_resnet_model_v1: "sha256-q7H2EEHkNEZYVc6Bwr1UboMNKLy+2NJ/++W7QIsRVTo=",
           mmod_human_face_detector: "sha256-256eQPCSwRjV6z5kOTWyFoOBcHk1WVFVQcVqK1DZ/IQ=",
           shape_predictor_5_face_landmarks: "sha256-bnh7vr9cnv23k/bNHwIyMMRBMwZgXyTymfEoaflapHI=",
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Windows Hello™ style facial authentication for Linux",
         homepage: "https://github.com/boltgolt/howdy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

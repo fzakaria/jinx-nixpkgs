@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["dotnetRuntime", 12, 5], ["wrapperPath", 13, 5]], [["license", 18, 8]], [["name", 10, 3], ["substitutions", 11, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, which: false, coreutils: false, makeSetupHook: false, "dotnet-runtime": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["dotnetRuntime", 12, 5], ["wrapperPath", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 18, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 10, 3], ["substitutions", 11, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +13,17 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const dotnet_runtime = nix.arg($, "dotnet-runtime");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "dotnet-hook",
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         dotnetRuntime: nix.thunk(() => nix.app(nix.sel(lib, "defaultTo"), "", dotnet_runtime)),
         wrapperPath: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [which, coreutils]))),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })), nix.path(here, "./dotnet-hook.sh"));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

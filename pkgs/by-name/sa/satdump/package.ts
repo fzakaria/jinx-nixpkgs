@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 53, 5], ["repo", 54, 5], ["rev", 55, 5], ["hash", 56, 5]], [["updateScript", 100, 12]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["platforms", 107, 5], ["maintainers", 108, 5], ["mainProgram", 111, 5]], [["pname", 49, 3], ["version", 50, 3], ["src", 52, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 64, 3], ["cmakeFlags", 98, 3], ["passthru", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, "pkg-config": false, fftwFloat: false, libpng: false, libtiff: false, jemalloc: false, volk: false, nng: false, sqlite: false, curl: false, withZIQRecordingCompression: true, zstd: false, withGUI: true, dbus: false, glfw: false, libx11: false, libxrandr: false, zenity: false, withAudio: true, portaudio: false, withOfficialProductSupport: true, hdf5: false, withOpenCL: true, "opencl-headers": false, "ocl-icd": false, withSourceRtlsdr: true, "rtl-sdr-librtlsdr": false, withSourceHackRF: true, hackrf: false, withSourceAirspy: true, airspy: false, withSourceAirspyHF: true, airspyhf: false, withSourceAD9361: true, libad9361: false, libiio: false, withSourceBladeRF: true, libbladeRF: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 53, 5], ["repo", 54, 5], ["rev", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 100, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["platforms", 107, 5], ["maintainers", 108, 5], ["mainProgram", 111, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 49, 3], ["version", 50, 3], ["src", 52, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 64, 3], ["cmakeFlags", 98, 3], ["passthru", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,11 +50,11 @@ export default nix.lambda((args) => (() => {
   const withSourceBladeRF = nix.argOr($, "withSourceBladeRF", () => true);
   const libbladeRF = nix.arg($, "libbladeRF");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "satdump",
       version: "2.0.0-unstable-2026-08-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SatDump",
           repo: "SatDump",
           rev: "19b73529f16f30776f190cba2abe4ded478f5c8e",
@@ -67,11 +64,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([fftwFloat, libpng, libtiff, jemalloc, volk, nng, sqlite, curl], nix.concat(nix.app(nix.sel(lib, "optionals"), withZIQRecordingCompression, nix.thunk(() => [zstd])), nix.concat(nix.app(nix.sel(lib, "optionals"), withGUI, nix.thunk(() => [dbus, glfw, libx11, libxrandr, zenity])), nix.concat(nix.app(nix.sel(lib, "optionals"), withAudio, nix.thunk(() => [portaudio])), nix.concat(nix.app(nix.sel(lib, "optionals"), withOfficialProductSupport, nix.thunk(() => [hdf5])), nix.concat(nix.app(nix.sel(lib, "optionals"), withOpenCL, nix.thunk(() => [opencl_headers, ocl_icd])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSourceRtlsdr, nix.thunk(() => [rtl_sdr_librtlsdr])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSourceHackRF, nix.thunk(() => [hackrf])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSourceAirspy, nix.thunk(() => [airspy])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSourceAirspyHF, nix.thunk(() => [airspyhf])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSourceAD9361, nix.thunk(() => [libad9361, libiio])), nix.app(nix.sel(lib, "optionals"), withSourceBladeRF, nix.thunk(() => [libbladeRF])))))))))))))),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_GUI", withGUI))]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Generic satellite data processing software",
         homepage: "https://www.satdump.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/SatDump/SatDump/releases/tag/${nix.sel(finalAttrs, "version")}`),

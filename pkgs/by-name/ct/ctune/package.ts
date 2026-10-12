@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["strictDeps", 49, 3], ["cmakeFlags", 51, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, openssl: false, curl: false, ffmpeg: false, vlc: false, SDL2: false, lame: false, json_c: false, cmake: false, "pkg-config": false, ncurses: false, libuuid: false, pandoc: false, pipewire: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["strictDeps", 49, 3], ["cmakeFlags", 51, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pandoc = nix.arg($, "pandoc");
   const pipewire = nix.arg($, "pipewire");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ctune",
       version: "1.3.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "An7ar35",
           repo: "ctune",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       cmakeFlags: nix.thunk(() => ["-DCMAKE_INSTALL_PREFIX=''"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Nice terminal nCurses (tui) internet radio player for Linux, browse and search from api.radio-browser.info",
         homepage: "https://github.com/An7ar35/ctune",
         changelog: "https://github.com/An7ar35/ctune/blob/master/CHANGELOG.md",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 17, 13], ["owner", 18, 5], ["repo", 19, 5], ["sha256", 20, 5]], [["homepage", 34, 5], ["description", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5]], [["pname", 13, 3], ["version", 14, 3], ["rev", 15, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["installPhase", 28, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, cabextract: false, fetchFromGitHub: false, readline: false, stdenv_32bit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 17, 13], ["owner", 18, 5], ["repo", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["rev", 15, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["installPhase", 28, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.str`20170525-${nix.app(nix.sel(lib, "strings", "substring"), 0n, 7n, rev)}`);
       const rev = "721b084c088d779075405b7f20c77c2578e2a961";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: rev,
           owner: "taviso",
           repo: "loadlibrary",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [cabextract, readline]);
       const installPhase = "mkdir -p $out/bin/\ncp mpclient $out/bin/\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/taviso/loadlibrary",
         description: "Porting Windows Dynamic Link Libraries to Linux",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -36,7 +34,16 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         mainProgram: "mpclient",
       }));
-      return { [nix.POS]: pos$3, pname, version, rev, src, buildInputs, installPhase, meta };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        rev,
+        src,
+        buildInputs,
+        installPhase,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

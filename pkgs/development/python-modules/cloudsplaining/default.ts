@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["pythonRelaxDeps", 31, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 48, 3], ["disabledTests", 50, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, boto3: false, botocore: false, buildPythonPackage: false, "cached-property": false, click: false, "click-option-group": false, fetchFromGitHub: false, jinja2: false, markdown: false, "policy-sentry": false, pytestCheckHook: false, pyyaml: false, schema: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["pythonRelaxDeps", 31, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 48, 3], ["disabledTests", 50, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "salesforce",
           repo: "cloudsplaining",
           tag: version,
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_policy_expansion", "test_statement_details_for_allow_not_action"]);
       const pythonImportsCheck = nix.thunk(() => ["cloudsplaining"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python module for AWS IAM security assessment",
         homepage: "https://github.com/salesforce/cloudsplaining",
         changelog: nix.thunk(() => nix.str`https://github.com/salesforce/cloudsplaining/releases/tag/${nix.sel(src, "tag")}`),
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cloudsplaining",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

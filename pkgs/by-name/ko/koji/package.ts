@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["OPENSSL_NO_VENDOR", 29, 7]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 71, 5], ["platforms", 72, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["env", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["nativeCheckInputs", 42, 3], ["preCheck", 47, 3], ["postInstall", 52, 3], ["doInstallCheck", 59, 3], ["nativeInstallCheckInputs", 60, 3], ["versionCheckProgram", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, perl: false, udev: false, openssl: false, gitMinimal: false, writableTmpDirAsHomeHook: false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 71, 5], ["platforms", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["env", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["nativeCheckInputs", 42, 3], ["preCheck", 47, 3], ["postInstall", 52, 3], ["doInstallCheck", 59, 3], ["nativeInstallCheckInputs", 60, 3], ["versionCheckProgram", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "koji",
       version: "3.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cococonscious",
           repo: "koji",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-qKC4ayaNPSUh4wSElBWxk/P+Y2dFgCIFiMkI0/QztDY=",
         })))),
       cargoHash: "sha256-vdELHNH1GqR0LPY3SSNgSR3krZZ85Tsx6aTHve0Vhe8=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, perl, installShellFiles]),
       buildInputs: nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [udev])))),
       nativeCheckInputs: nix.thunk(() => [gitMinimal, writableTmpDirAsHomeHook]),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Interactive CLI for creating conventional commits",
         homepage: "https://github.com/its-danny/koji",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

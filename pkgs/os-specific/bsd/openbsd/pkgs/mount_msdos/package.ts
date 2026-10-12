@@ -2,20 +2,19 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mainProgram", 10, 8], ["platforms", 11, 8]], [["path", 6, 3], ["extraPaths", 7, 3], ["meta", 10, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mainProgram", 10, 8], ["platforms", 11, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["path", 6, 3], ["extraPaths", 7, 3], ["meta", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "sbin/mount_msdos",
       extraPaths: nix.thunk(() => ["sbin/mount"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         mainProgram: "mount_msdos",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "openbsd")),
       })),

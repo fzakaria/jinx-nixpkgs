@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["test", 38, 18]], [["tests", 38, 12]], [["homepage", 41, 5], ["description", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["passthru", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gtk3: false, "pkg-config": false, vte: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["test", 38, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["passthru", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const vte = nix.arg($, "vte");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kermit",
       version: "4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "orhun",
           repo: "kermit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,14 +30,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [gtk3, vte]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "kermit")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/orhun/kermit",
         description: "VTE-based, simple and froggy terminal emulator",
         changelog: nix.thunk(() => nix.str`https://github.com/orhun/kermit/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 38, 7]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["build-system", 36, 3], ["env", 38, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "aiomisc-pytest": false, "pytest-rerunfailures": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 38, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["build-system", 36, 3], ["env", 38, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pytest_rerunfailures = nix.arg($, "pytest-rerunfailures");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "caio",
       version: "0.12.9",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mosquito",
           repo: "caio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,13 +35,13 @@ export default nix.lambda((args) => (() => {
 `),
       "build-system": nix.thunk(() => [setuptools]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))))),
       })),
       pythonImportsCheck: nix.thunk(() => ["caio"]),
       nativeCheckInputs: nix.thunk(() => [aiomisc_pytest, pytest_rerunfailures, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "File operations with asyncio support",
         homepage: "https://github.com/mosquito/caio",
         changelog: nix.thunk(() => nix.str`https://github.com/mosquito/caio/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

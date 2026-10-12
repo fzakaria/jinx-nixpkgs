@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 7], ["hash", 20, 7]], [["url", 23, 7], ["hash", 24, 7]], [["url", 27, 7], ["hash", 28, 7]], [["x86_64-linux", 18, 5], ["aarch64-linux", 22, 5], ["aarch64-darwin", 26, 5]], [["homepage", 67, 5], ["description", 68, 5], ["longDescription", 69, 5], ["maintainers", 73, 5], ["teams", 74, 5], ["license", 75, 5], ["sourceProvenance", 76, 5]], [["jetbrains-libdbm", 34, 11], ["fsnotifier", 34, 28], ["pname", 36, 3], ["wmClass", 38, 3], ["product", 39, 3], ["version", 42, 3], ["buildNumber", 43, 3], ["src", 46, 3], ["jdk", 49, 3], ["buildInputs", 57, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { fetchurl: false, fsnotifier: false, jetbrains: false, "jetbrains-libdbm": false, lib: false, libgcc: false, R: false, runCommand: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 7], ["hash", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 18, 5], ["aarch64-linux", 22, 5], ["aarch64-darwin", 26, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["longDescription", 69, 5], ["maintainers", 73, 5], ["teams", 74, 5], ["license", 75, 5], ["sourceProvenance", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["jetbrains-libdbm", 34, 11], ["fsnotifier", 34, 28], ["pname", 36, 3], ["wmClass", 38, 3], ["product", 39, 3], ["version", 42, 3], ["buildNumber", 43, 3], ["src", 46, 3], ["jdk", 49, 3], ["buildInputs", 57, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,25 +18,25 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const urls = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://download.jetbrains.com/python/dataspell-2026.1.3.tar.gz",
       hash: "sha256-57ExydRnfCiYCQj61Xo/omKAIbKZFykjqDSOuEdkgGg=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://download.jetbrains.com/python/dataspell-2026.1.3-aarch64.tar.gz",
       hash: "sha256-bcgJWYryfh9vEf2xjemGEU15+SfZRMQxEivLh+PPoww=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://download.jetbrains.com/python/dataspell-2026.1.3-aarch64.dmg",
       hash: "sha256-EFkZRmtvsdJB8QP4hn6mUrSTyNBIK7UUkn4N3m0jGtY=",
     })),
   }));
   return nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       "jetbrains-libdbm": jetbrains_libdbm,
       fsnotifier: fsnotifier,
       pname: "dataspell",
@@ -58,7 +53,7 @@ ln -s ${R}/lib/R/lib/libR.so $out/lib/libR.so
 `))),
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.jetbrains.com/dataspell/",
         description: "Data science IDE from JetBrains",
         longDescription: "DataSpell is an IDE from JetBrains built for Data Scientists.\nMainly it integrates Jupyter notebooks in the IntelliJ platform.\n",

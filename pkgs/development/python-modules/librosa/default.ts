@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]], [["display", 64, 25]], [["description", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["optional-dependencies", 64, 3], ["pythonImportsCheck", 67, 3], ["nativeCheckInputs", 69, 3], ["preCheck", 81, 3], ["disabledTests", 85, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, decorator: false, joblib: false, "lazy-loader": false, matplotlib: false, msgpack: false, numba: false, numpy: false, pooch: false, "scikit-learn": false, scipy: false, soundfile: false, soxr: false, packaging: false, "pytest-cov-stub": false, "pytest-mpl": false, pytestCheckHook: false, resampy: false, samplerate: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["display", 64, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["optional-dependencies", 64, 3], ["pythonImportsCheck", 67, 3], ["nativeCheckInputs", 69, 3], ["preCheck", 81, 3], ["disabledTests", 85, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const samplerate = nix.arg($, "samplerate");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "librosa",
       version: "1.0.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "librosa",
           repo: "librosa",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         soundfile,
         soxr,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, display: nix.thunk(() => [matplotlib]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], display: nix.thunk(() => [matplotlib]) })),
       pythonImportsCheck: nix.thunk(() => ["librosa"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([
         packaging,
@@ -97,7 +94,7 @@ export default nix.lambda((args) => (() => {
           "test_resample_multichannel",
         ]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library for audio and music analysis",
         homepage: "https://github.com/librosa/librosa",
         changelog: nix.thunk(() => nix.str`https://github.com/librosa/librosa/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

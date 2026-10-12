@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["PYPI_RELEASE", 76, 5], ["CMAKE_ARGS", 77, 5]], [["mlx", 155, 9], ["src", 156, 30]], [["mlxTest", 153, 11]], [["name", 160, 7], ["runtimeInputs", 161, 7], ["text", 168, 7]], [["gguf-tools", 151, 13], ["tests", 153, 5], ["updateScript", 159, 5]], [["homepage", 173, 5], ["description", 174, 5], ["changelog", 175, 5], ["license", 176, 5], ["maintainers", 177, 5]], [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["__structuredAttrs", 47, 3], ["src", 49, 3], ["patches", 56, 3], ["postPatch", 61, 3], ["dontUseCmakeConfigure", 66, 3], ["enableParallelBuilding", 68, 3], ["postUnpack", 71, 3], ["env", 75, 3], ["build-system", 90, 3], ["buildInputs", 96, 3], ["pythonImportsCheck", 104, 3], ["nativeCheckInputs", 107, 3], ["enabledTestPaths", 113, 3], ["disabledTests", 117, 3], ["disabledTestPaths", 133, 3], ["postInstall", 141, 3], ["passthru", 150, 3], ["meta", 172, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, "common-updater-scripts": false, curl: false, fetchFromGitHub: false, nix: false, "nix-update": false, nanobind: false, perl: false, writeShellApplication: false, cmake: false, setuptools: false, "typing-extensions": false, fmt: false, nlohmann_json: false, openblas: false, callPackage: false, numpy: false, pytestCheckHook: false, python: false, sysctl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["PYPI_RELEASE", 76, 5], ["CMAKE_ARGS", 77, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["mlx", 155, 9], ["src", 156, 30]]);
-const pos$5 = nix.positions(here + "/default.nix", [["mlxTest", 153, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 160, 7], ["runtimeInputs", 161, 7], ["text", 168, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["gguf-tools", 151, 13], ["tests", 153, 5], ["updateScript", 159, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["homepage", 173, 5], ["description", 174, 5], ["changelog", 175, 5], ["license", 176, 5], ["maintainers", 177, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["__structuredAttrs", 47, 3], ["src", 49, 3], ["patches", 56, 3], ["postPatch", 61, 3], ["dontUseCmakeConfigure", 66, 3], ["enableParallelBuilding", 68, 3], ["postUnpack", 71, 3], ["env", 75, 3], ["build-system", 90, 3], ["buildInputs", 96, 3], ["pythonImportsCheck", 104, 3], ["nativeCheckInputs", 107, 3], ["enabledTestPaths", 113, 3], ["disabledTests", 117, 3], ["disabledTestPaths", 133, 3], ["postInstall", 141, 3], ["passthru", 150, 3], ["meta", 172, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,20 +30,20 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const sysctl = nix.arg($, "sysctl");
   const gguf_tools = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "antirez",
       repo: "gguf-tools",
       rev: "8fa6eb65236618e28fd7710a0fba565f7faa1848",
       hash: "sha256-15FvyPOFqTOr5vdWQoPnZz+mYH919++EtghjozDlnSA=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "mlx",
       version: "0.32.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ml-explore",
           repo: "mlx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +57,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postUnpack: "export MAKEFLAGS+=\"${enableParallelBuilding:+-j$NIX_BUILD_CORES}\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         PYPI_RELEASE: 1n,
         CMAKE_ARGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "MLX_BUILD_METAL", false)),
@@ -94,25 +86,25 @@ export default nix.lambda((args) => (() => {
   $out/${nix.sel(python, "sitePackages")}/mlx/core.cpython-*.so
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         "gguf-tools": gguf_tools,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           mlxTest: nix.thunk(() => nix.sel(nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               mlx: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             }))), "mlxTest")),
         })),
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: "mlx-update",
               runtimeInputs: nix.thunk(() => [common_updater_scripts, curl, nix$, nix_update, perl]),
               text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./update.sh"))),
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://github.com/ml-explore/mlx",
         description: "Array framework for Apple silicon",
         changelog: nix.thunk(() => nix.str`https://github.com/ml-explore/mlx/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

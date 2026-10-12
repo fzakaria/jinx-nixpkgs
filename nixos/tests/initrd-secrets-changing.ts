@@ -2,77 +2,54 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/initrd-secrets-changing.nix", [[["system", 4, 33], ["config", 4, 40]], [["system", 6, 56], ["pkgs", 6, 63]], [["broken", 16, 8]], [["useBootLoader", 21, 22]], [["device", 23, 24]], [["grub", 23, 19]], [["/test", 26, 9], ["/run/test", 27, 9]], [["argument", 32, 46]], [["C", 32, 44]], [["/sysroot/secret-from-initramfs", 32, 11]], [["00-copy-secret", 31, 27]], [["settings", 31, 18]], [["enable", 30, 9], ["tmpfiles", 31, 9]], [["secrets", 25, 19], ["systemd", 29, 19]], [["loader", 23, 12], ["initrd", 25, 12]], [["/test", 38, 11], ["/run/test", 39, 11]], [["secrets", 37, 21]], [["initrd", 37, 14]], [["boot", 37, 9]], [["configuration", 36, 37]], [["secrets2System", 36, 22]], [["virtualisation", 21, 7], ["boot", 23, 7], ["specialisation", 36, 7]], [["machine", 18, 9]], [["name", 15, 3], ["meta", 16, 3], ["nodes", 18, 3], ["testScript", 44, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true, lib: true, testing: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/initrd-secrets-changing.nix", [["system", 4, 33], ["config", 4, 40]]);
-const pos$2 = nix.positions(here + "/initrd-secrets-changing.nix", [["system", 6, 56], ["pkgs", 6, 63]]);
-const pos$3 = nix.positions(here + "/initrd-secrets-changing.nix", [["broken", 16, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$4 = nix.positions(here + "/initrd-secrets-changing.nix", [["useBootLoader", 21, 22]]);
-const pos$5 = nix.positions(here + "/initrd-secrets-changing.nix", [["device", 23, 24]]);
-const pos$6 = nix.positions(here + "/initrd-secrets-changing.nix", [["grub", 23, 19]]);
-const pos$7 = nix.positions(here + "/initrd-secrets-changing.nix", [["/test", 26, 9], ["/run/test", 27, 9]]);
-const pos$8 = nix.positions(here + "/initrd-secrets-changing.nix", [["argument", 32, 46]]);
-const pos$9 = nix.positions(here + "/initrd-secrets-changing.nix", [["C", 32, 44]]);
-const pos$10 = nix.positions(here + "/initrd-secrets-changing.nix", [["/sysroot/secret-from-initramfs", 32, 11]]);
-const pos$11 = nix.positions(here + "/initrd-secrets-changing.nix", [["00-copy-secret", 31, 27]]);
-const pos$12 = nix.positions(here + "/initrd-secrets-changing.nix", [["settings", 31, 18]]);
-const pos$13 = nix.positions(here + "/initrd-secrets-changing.nix", [["enable", 30, 9], ["tmpfiles", 31, 9]]);
-const pos$14 = nix.positions(here + "/initrd-secrets-changing.nix", [["secrets", 25, 19], ["systemd", 29, 19]]);
-const pos$15 = nix.positions(here + "/initrd-secrets-changing.nix", [["loader", 23, 12], ["initrd", 25, 12]]);
-const pos$16 = nix.positions(here + "/initrd-secrets-changing.nix", [["/test", 38, 11], ["/run/test", 39, 11]]);
-const pos$17 = nix.positions(here + "/initrd-secrets-changing.nix", [["secrets", 37, 21]]);
-const pos$18 = nix.positions(here + "/initrd-secrets-changing.nix", [["initrd", 37, 14]]);
-const pos$19 = nix.positions(here + "/initrd-secrets-changing.nix", [["boot", 37, 9]]);
-const pos$20 = nix.positions(here + "/initrd-secrets-changing.nix", [["configuration", 36, 37]]);
-const pos$21 = nix.positions(here + "/initrd-secrets-changing.nix", [["secrets2System", 36, 22]]);
-const pos$22 = nix.positions(here + "/initrd-secrets-changing.nix", [["virtualisation", 21, 7], ["boot", 23, 7], ["specialisation", 36, 7]]);
-const pos$23 = nix.positions(here + "/initrd-secrets-changing.nix", [["machine", 18, 9]]);
-const pos$24 = nix.positions(here + "/initrd-secrets-changing.nix", [["name", 15, 3], ["meta", 16, 3], ["nodes", 18, 3], ["testScript", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
-  const testing = nix.argOr($, "testing", () => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs }))));
+  const testing = nix.argOr($, "testing", () => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs }))));
   const secret1InStore = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "topsecret", "iamasecret1"));
   const secret2InStore = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "topsecret", "iamasecret2"));
   return nix.app(nix.sel(testing, "makeTest"), nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       name: "initrd-secrets-changing",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return {
-            [nix.POS]: pos$22,
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, useBootLoader: true })),
+            [nix.POS]: $pos[21],
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[3], useBootLoader: true })),
             boot: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               loader: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                grub: nix.thunk(() => ({ [nix.POS]: pos$5, device: "/dev/vda" })),
+                [nix.POS]: $pos[5],
+                grub: nix.thunk(() => ({ [nix.POS]: $pos[4], device: "/dev/vda" })),
               })),
               initrd: nix.thunk(() => ({
-                [nix.POS]: pos$14,
-                secrets: nix.thunk(() => ({ [nix.POS]: pos$7, "/test": secret1InStore, "/run/test": secret1InStore })),
+                [nix.POS]: $pos[13],
+                secrets: nix.thunk(() => ({ [nix.POS]: $pos[6], "/test": secret1InStore, "/run/test": secret1InStore })),
                 systemd: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   enable: true,
                   tmpfiles: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     settings: nix.thunk(() => ({
-                      [nix.POS]: pos$11,
+                      [nix.POS]: $pos[10],
                       "00-copy-secret": nix.thunk(() => ({
-                        [nix.POS]: pos$10,
+                        [nix.POS]: $pos[9],
                         "/sysroot/secret-from-initramfs": nix.thunk(() => ({
-                          [nix.POS]: pos$9,
-                          C: nix.thunk(() => ({ [nix.POS]: pos$8, argument: "/test" })),
+                          [nix.POS]: $pos[8],
+                          C: nix.thunk(() => ({ [nix.POS]: $pos[7], argument: "/test" })),
                         })),
                       })),
                     })),
@@ -81,16 +58,16 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             specialisation: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               secrets2System: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   boot: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
+                    [nix.POS]: $pos[17],
                     initrd: nix.thunk(() => ({
-                      [nix.POS]: pos$17,
-                      secrets: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({ [nix.POS]: pos$16, "/test": secret2InStore, "/run/test": secret2InStore })))),
+                      [nix.POS]: $pos[16],
+                      secrets: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({ [nix.POS]: $pos[15], "/test": secret2InStore, "/run/test": secret2InStore })))),
                     })),
                   })),
                 })),

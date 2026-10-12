@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/obs-websocket.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 41, 5], ["homepage", 42, 5], ["maintainers", 43, 5], ["license", 44, 5], ["platforms", 45, 31]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["dontWrapQtApps", 31, 3], ["postInstall", 33, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, asio: false, "obs-studio": false, qt6: false, websocketpp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/obs-websocket.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/obs-websocket.nix", [["description", 41, 5], ["homepage", 42, 5], ["maintainers", 43, 5], ["license", 44, 5], ["platforms", 45, 31]]);
-const pos$3 = nix.positions(here + "/obs-websocket.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["dontWrapQtApps", 31, 3], ["postInstall", 33, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-websocket";
       const version = "4.9.1-compat";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "obsproject",
           repo: "obs-websocket",
           rev: version,
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Legacy websocket 4.9.1 protocol support for OBS Studio 28 or above",
         homepage: "https://github.com/obsproject/obs-websocket",
         maintainers: nix.thunk(() => (() => {
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

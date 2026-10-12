@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["nativeBuildInputs", 16, 5]]]);
 const formals$1 = { args: { runCommand: false, icestorm: false, nextpnr: false, yosys: false, pname: false, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["nativeBuildInputs", 16, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pname = nix.arg($, "pname");
   const src = nix.arg($, "src");
   return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-test-examples`), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [icestorm, nextpnr, yosys]),
     })), nix.thunk(() => nix.str`cp -r ${src}/examples .
 chmod -R +w examples

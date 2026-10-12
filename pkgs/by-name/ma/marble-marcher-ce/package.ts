@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["name", 66, 7], ["exec", 67, 7], ["icon", 68, 7], ["desktopName", 69, 7], ["comment", 70, 7], ["categories", 71, 7]], [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["installFlags", 54, 3], ["postInstall", 56, 3], ["desktopItems", 64, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, copyDesktopItems: false, makeWrapper: false, anttweakbar: false, eigen: false, glew: false, glm: false, sfml_2: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 66, 7], ["exec", 67, 7], ["icon", 68, 7], ["desktopName", 69, 7], ["comment", 70, 7], ["categories", 71, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["installFlags", 54, 3], ["postInstall", 56, 3], ["desktopItems", 64, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const sfml_2 = nix.arg($, "sfml_2");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "marble-marcher-ce",
       version: "1.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "WAUthethird",
           repo: "Marble-Marcher-Community-Edition",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir $out/bin\nmkdir -p $out/share/icons/\n# The executable has to be run from the same directory the assets are in\nmakeWrapper $out/share/MMCE/MarbleMarcher $out/bin/marble-marcher-ce --chdir $out/share/MMCE\nln -s $out/share/MMCE/images/MarbleMarcher.png $out/share/icons/marble-marcher-ce.png\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "marble-marcher-ce",
             exec: "marble-marcher-ce",
             icon: "marble-marcher-ce",
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Community-developed version of the original Marble Marcher - a fractal physics game",
         mainProgram: "marble-marcher-ce",
         homepage: "https://michaelmoroz.itch.io/mmce",

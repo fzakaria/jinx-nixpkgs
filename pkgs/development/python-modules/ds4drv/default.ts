@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["license", 42, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 15, 3], ["build-system", 16, 3], ["src", 19, 3], ["postPatch", 26, 3], ["dependencies", 31, 3], ["buildInputs", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, evdev: false, pyudev: false, bluez: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["license", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 15, 3], ["build-system", 16, 3], ["src", 19, 3], ["postPatch", 26, 3], ["dependencies", 31, 3], ["buildInputs", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chrippa",
           repo: "ds4drv",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [evdev, pyudev]);
       const buildInputs = nix.thunk(() => [bluez]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Userspace driver for the DualShock 4 controller",
         mainProgram: "ds4drv",
         homepage: "https://github.com/chrippa/ds4drv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

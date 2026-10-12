@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5], ["fetchSubmodules", 31, 5]], [["rev-prefix", 128, 7], ["ignoredVersions", 129, 7]], [["NIX_CFLAGS_COMPILE", 135, 11]], [["hello", 131, 11]], [["updateScript", 127, 5], ["tests", 131, 5]], [["description", 154, 5], ["homepage", 155, 5], ["changelog", 156, 5], ["license", 157, 5], ["maintainers", 161, 5], ["mainProgram", 165, 5], ["platforms", 166, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 34, 3], ["outputs", 40, 3], ["strictDeps", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 54, 3], ["separateDebugInfo", 68, 3], ["__structuredAttrs", 71, 3], ["preConfigure", 73, 3], ["cmakeFlags", 86, 3], ["postInstall", 116, 3], ["nativeInstallCheckInputs", 121, 3], ["versionCheckProgram", 122, 3], ["versionCheckProgramArg", 123, 3], ["doInstallCheck", 124, 3], ["passthru", 126, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, python3: false, miniz: false, lz4: false, libxml2: false, libx11: false, glslang: false, unordered_dense: false, versionCheckHook: false, gitUpdater: false, runCommandCC: false, withGlslang: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5], ["fetchSubmodules", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 128, 7], ["ignoredVersions", 129, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 135, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["hello", 131, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 127, 5], ["tests", 131, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 154, 5], ["homepage", 155, 5], ["changelog", 156, 5], ["license", 157, 5], ["maintainers", 161, 5], ["mainProgram", 165, 5], ["platforms", 166, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 34, 3], ["outputs", 40, 3], ["strictDeps", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 54, 3], ["separateDebugInfo", 68, 3], ["__structuredAttrs", 71, 3], ["preConfigure", 73, 3], ["cmakeFlags", 86, 3], ["postInstall", 116, 3], ["nativeInstallCheckInputs", 121, 3], ["versionCheckProgram", 122, 3], ["versionCheckProgramArg", 123, 3], ["doInstallCheck", 124, 3], ["passthru", 126, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const runCommandCC = nix.arg($, "runCommandCC");
   const withGlslang = nix.argOr($, "withGlslang", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "shader-slang",
       version: "2026.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "shader-slang",
           repo: "slang",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,11 +74,11 @@ export RANLIB="${nix.sel(stdenv, "cc", "targetPrefix")}gcc-ranlib"
       versionCheckProgramArg: "-v",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v", ignoredVersions: "*-draft" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v", ignoredVersions: "*-draft" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          hello: nix.thunk(() => nix.app(runCommandCC, "compile-hello-world", nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })), nix.thunk(() => nix.str`cat > hello.slang << EOF
+          [nix.POS]: $pos[3],
+          hello: nix.thunk(() => nix.app(runCommandCC, "compile-hello-world", nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })), nix.thunk(() => nix.str`cat > hello.slang << EOF
 export __extern_cpp int main()
 {
     printf("Hello, world!\\n");
@@ -100,7 +94,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Shading language that makes it easier to build and maintain large shader codebases in a modular and extensible fashion",
         homepage: "https://github.com/shader-slang/slang",
         changelog: nix.thunk(() => nix.str`https://github.com/shader-slang/slang/releases/tag/v${nix.sel(finalAttrs, "version")}`),

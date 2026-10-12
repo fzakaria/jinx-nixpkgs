@@ -2,12 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 79, 54]], [["version", 80, 59]], [["passthru", 81, 60]], [["meta", 82, 56]]]);
 const formals$1 = { args: { lib: false, runCommand: false }, ellipsis: false };
 const formals$2 = { args: { formats: false, compressors: false, extraFindOperands: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 79, 54]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 80, 59]]);
-const pos$3 = nix.positions(here + "/default.nix", [["passthru", 81, 60]]);
-const pos$4 = nix.positions(here + "/default.nix", [["meta", 82, 56]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
 `;
     })();
     const formatsPipe = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "|", formats));
-    return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(drv, "name")}-compressed`), nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(drv, "pname")), nix.thunk(() => ({ [nix.POS]: pos$1, pname: nix.thunk(() => nix.attr(drv, "pname")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(drv, "version")), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(drv, "version")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(drv, "passthru")), nix.thunk(() => ({ [nix.POS]: pos$3, passthru: nix.thunk(() => nix.attr(drv, "passthru")) }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(drv, "meta")), nix.thunk(() => ({ [nix.POS]: pos$4, meta: nix.thunk(() => nix.attr(drv, "meta")) }))))))), nix.thunk(() => nix.str`mkdir $out
+    return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(drv, "name")}-compressed`), nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(drv, "pname")), nix.thunk(() => ({ [nix.POS]: $pos[0], pname: nix.thunk(() => nix.attr(drv, "pname")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(drv, "version")), nix.thunk(() => ({ [nix.POS]: $pos[1], version: nix.thunk(() => nix.attr(drv, "version")) }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(drv, "passthru")), nix.thunk(() => ({ [nix.POS]: $pos[2], passthru: nix.thunk(() => nix.attr(drv, "passthru")) }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(drv, "meta")), nix.thunk(() => ({ [nix.POS]: $pos[3], meta: nix.thunk(() => nix.attr(drv, "meta")) }))))))), nix.thunk(() => nix.str`mkdir $out
 
 # cannot use lndir here, because it stop recursing at symlinks that point to directories
 (cd ${drv}; find -L -type d -exec mkdir -p $out/{} ';')

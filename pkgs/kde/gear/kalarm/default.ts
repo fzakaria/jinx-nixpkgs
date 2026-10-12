@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 8, 3], ["extraCmakeFlags", 10, 3], ["extraNativeBuildInputs", 14, 3], ["extraBuildInputs", 15, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, "pkg-config": false, kauth: false, mpv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["extraCmakeFlags", 10, 3], ["extraNativeBuildInputs", 14, 3], ["extraBuildInputs", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const kauth = nix.arg($, "kauth");
   const mpv = nix.arg($, "mpv");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "kalarm",
       extraCmakeFlags: nix.thunk(() => ["-DENABLE_LIBVLC=0"]),
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),

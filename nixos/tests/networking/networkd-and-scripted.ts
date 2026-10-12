@@ -2,565 +2,107 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/networkd-and-scripted.nix", [[["system", 4, 33], ["config", 4, 40]], [["system", 9, 52], ["pkgs", 9, 59]], [["networkd", 13, 42]], [["useDHCP", 17, 18], ["useNetworkd", 18, 18]], [["networking", 17, 7]], [["client", 23, 13]], [["name", 22, 7], ["nodes", 23, 7], ["testScript", 24, 7]], [["vlan", 36, 42]], [["vlan", 37, 42]], [["enp1s0", 36, 35], ["enp2s0", 37, 35]], [["interfaces", 36, 24]], [["address", 40, 13], ["interface", 41, 13], ["source", 42, 13]], [["address", 45, 13], ["interface", 46, 13], ["source", 47, 13]], [["address", 51, 15], ["prefixLength", 52, 15]], [["addresses", 49, 34]], [["address", 57, 15], ["prefixLength", 58, 15]], [["address", 61, 15], ["prefixLength", 62, 15]], [["address", 65, 15], ["prefixLength", 66, 15]], [["addresses", 55, 34]], [["ipv6", 49, 29], ["ipv4", 55, 29]], [["address", 71, 15], ["prefixLength", 72, 15]], [["addresses", 69, 34]], [["address", 77, 15], ["prefixLength", 78, 15]], [["addresses", 75, 34]], [["ipv4", 69, 29], ["ipv6", 75, 29]], [["enp1s0", 49, 22], ["enp2s0", 69, 22]], [["defaultGateway", 39, 11], ["defaultGateway6", 44, 11], ["interfaces", 49, 11]], [["virtualisation", 36, 9], ["networking", 38, 9]], [["router", 34, 13], ["client", 35, 13]], [["name", 33, 7], ["nodes", 34, 7], ["testScript", 83, 7]], [["address", 118, 13], ["prefixLength", 119, 13]], [["addresses", 117, 16]], [["ipv6", 117, 11]], [["usb0", 116, 31]], [["address", 123, 11], ["interface", 124, 11], ["source", 125, 11]], [["interfaces", 116, 20], ["defaultGateway6", 122, 20]], [["networking", 116, 9]], [["machine", 115, 13]], [["name", 114, 7], ["nodes", 115, 7], ["testScript", 128, 7]], [["address", 154, 15], ["prefixLength", 155, 15], ["type", 156, 15]], [["routes", 152, 32]], [["ipv4", 152, 27]], [["eth1", 152, 22]], [["interfaces", 152, 11]], [["networking", 151, 9]], [["client", 150, 13]], [["name", 149, 7], ["nodes", 150, 7], ["testScript", 161, 7]], [["enp1s0", 175, 11]], [["interfaces", 172, 20], ["useNetworkd", 177, 20]], [["vlan", 178, 42]], [["enp1s0", 178, 35]], [["interfaces", 178, 24]], [["networking", 172, 9], ["virtualisation", 178, 9]], [["router", 169, 13], ["client", 170, 13]], [["name", 168, 7], ["nodes", 169, 7], ["testScript", 180, 7]], [["vlan", 192, 42]], [["vlan", 193, 42]], [["enp1s0", 192, 35], ["enp2s0", 193, 35]], [["interfaces", 192, 24]], [["useDHCP", 195, 29]], [["useDHCP", 196, 29]], [["enp1s0", 195, 22], ["enp2s0", 196, 22]], [["interfaces", 195, 11]], [["virtualisation", 192, 9], ["networking", 194, 9]], [["router", 190, 13], ["client", 191, 13]], [["name", 189, 7], ["nodes", 190, 7], ["testScript", 199, 7]], [["name", 239, 16]], [["useDHCP", 243, 38]], [["enp1s0", 243, 31]], [["hostName", 240, 20], ["interfaces", 243, 20]], [["enable", 241, 25]], [["polkit", 241, 18]], [["vlan", 242, 42]], [["enp1s0", 242, 35]], [["interfaces", 242, 24]], [["system", 239, 9], ["networking", 240, 9], ["security", 241, 9], ["virtualisation", 242, 9]], [["router", 236, 13], ["client", 237, 13]], [["name", 235, 7], ["nodes", 236, 7], ["testScript", 245, 7]], [["vlan", 261, 42]], [["vlan", 262, 42]], [["enp1s0", 261, 35], ["enp2s0", 262, 35]], [["interfaces", 261, 24]], [["mtu", 265, 13], ["useDHCP", 266, 13]], [["enp1s0", 264, 22]], [["interfaces", 264, 11]], [["virtualisation", 261, 9], ["networking", 263, 9]], [["router", 259, 13], ["client", 260, 13]], [["name", 258, 7], ["nodes", 259, 7], ["testScript", 270, 7]], [["vlan", 300, 46]], [["vlan", 301, 46]], [["enp1s0", 300, 39], ["enp2s0", 301, 39]], [["interfaces", 300, 28]], [["mode", 308, 31]], [["interfaces", 304, 17], ["driverOptions", 308, 17]], [["bond0", 303, 21]], [["address", 312, 27], ["prefixLength", 313, 19]], [["addresses", 310, 37]], [["ipv4", 310, 32]], [["bond0", 310, 26]], [["bonds", 303, 15], ["interfaces", 310, 15]], [["path", 322, 15], ["script", 323, 15], ["wantedBy", 327, 15]], [["fake-link-settings", 321, 30]], [["services", 321, 21]], [["virtualisation", 300, 13], ["networking", 302, 13], ["systemd", 321, 13]], [["client1", 333, 15], ["client2", 334, 15]], [["name", 332, 9], ["nodes", 333, 9], ["testScript", 335, 9]], [["vlan", 360, 46]], [["enp1s0", 360, 39]], [["interfaces", 360, 28]], [["address", 366, 27], ["prefixLength", 367, 19]], [["addresses", 364, 38]], [["ipv4", 364, 33]], [["enp1s0", 364, 26]], [["useNetworkd", 362, 15], ["useDHCP", 363, 15], ["interfaces", 364, 15]], [["virtualisation", 360, 13], ["networking", 361, 13]], [["address", 376, 11], ["vlan", 377, 11]], [["address", 380, 11], ["vlan", 381, 11]], [["vlan", 384, 44]], [["vlan", 385, 44]], [["enp1s0", 384, 37], ["enp2s0", 385, 37]], [["interfaces", 384, 26]], [["interfaces", 389, 28]], [["bridge", 389, 21]], [["addresses", 393, 34]], [["ipv4", 393, 29]], [["addresses", 394, 34]], [["ipv4", 394, 29]], [["address", 397, 17], ["prefixLength", 398, 17]], [["addresses", 395, 36]], [["ipv4", 395, 31]], [["eth1", 393, 24], ["eth2", 394, 24], ["bridge", 395, 24]], [["useNetworkd", 387, 13], ["useDHCP", 388, 13], ["bridges", 389, 13], ["interfaces", 393, 13]], [["virtualisation", 384, 11], ["networking", 386, 11]], [["client1", 375, 15], ["client2", 379, 15], ["router", 383, 15]], [["name", 374, 9], ["nodes", 375, 9], ["testScript", 403, 9]], [["systemPackages", 430, 23]], [["vlan", 431, 44]], [["enp1s0", 431, 37]], [["interfaces", 431, 26]], [["logReversePathDrops", 435, 22], ["checkReversePath", 438, 22]], [["interface", 439, 30]], [["macvlan", 439, 22]], [["useDHCP", 440, 31]], [["useDHCP", 441, 32]], [["enp1s0", 440, 24], ["macvlan", 441, 24]], [["useNetworkd", 433, 13], ["useDHCP", 434, 13], ["firewall", 435, 13], ["macvlans", 439, 13], ["interfaces", 440, 13]], [["environment", 430, 11], ["virtualisation", 431, 11], ["networking", 432, 11]], [["router", 426, 13], ["client", 427, 13]], [["name", 425, 7], ["nodes", 426, 7], ["testScript", 444, 7]], [["vlan", 479, 42]], [["enp1s0", 479, 35]], [["interfaces", 479, 24]], [["interface", 484, 21]], [["interface", 485, 21]], [["ipvlan1", 484, 13], ["ipvlan2", 485, 13]], [["useNetworkd", 481, 11], ["useDHCP", 482, 11], ["ipvlans", 483, 11]], [["virtualisation", 479, 9], ["networking", 480, 9]], [["client", 478, 13]], [["name", 477, 7], ["nodes", 478, 7], ["testScript", 489, 7]], [["vlan", 511, 42]], [["enp1s0", 511, 35]], [["interfaces", 511, 24]], [["address", 515, 15], ["prefixLength", 516, 15]], [["addresses", 513, 34]], [["ipv4", 513, 29]], [["enp1s0", 513, 22]], [["port", 521, 15]], [["port", 524, 15], ["protocol", 525, 15]], [["address", 529, 21]], [["port", 528, 15], ["local", 529, 15]], [["address", 534, 17], ["dev", 535, 17]], [["port", 532, 15], ["local", 533, 15]], [["fou1", 520, 13], ["fou2", 523, 13], ["fou3", 527, 13], ["fou4", 531, 13]], [["interfaces", 513, 11], ["fooOverUDP", 519, 11]], [["after", 541, 26]], [["fou3-fou-encap", 541, 11]], [["services", 540, 17]], [["virtualisation", 511, 9], ["networking", 512, 9], ["systemd", 540, 9]], [["machine", 510, 13]], [["name", 509, 7], ["nodes", 510, 7], ["testScript", 544, 7]], [["vlan", 577, 46]], [["enp1s0", 577, 39]], [["interfaces", 577, 28]], [["remote", 582, 25], ["local", 583, 17], ["dev", 584, 17]], [["sit", 581, 20]], [["enable", 586, 24]], [["extraInputRules", 587, 24]], [["address", 590, 19], ["prefixLength", 591, 19]], [["addresses", 588, 38]], [["ipv4", 588, 33]], [["address", 596, 19], ["prefixLength", 597, 19]], [["addresses", 594, 35]], [["ipv6", 594, 30]], [["enp1s0", 588, 26], ["sit", 594, 26]], [["useNetworkd", 579, 15], ["useDHCP", 580, 15], ["sits", 581, 15], ["nftables", 586, 15], ["firewall", 587, 15], ["interfaces", 588, 15]], [["virtualisation", 577, 13], ["networking", 578, 13]], [["address4", 606, 11], ["remote", 607, 11], ["address6", 608, 11]], [["address4", 611, 11], ["remote", 612, 11], ["address6", 613, 11]], [["client1", 605, 15], ["client2", 610, 15]], [["name", 604, 9], ["nodes", 605, 9], ["testScript", 615, 9]], [["vlan", 644, 46]], [["enp1s0", 644, 39]], [["interfaces", 644, 28]], [["remote", 649, 25], ["local", 650, 17], ["dev", 651, 17]], [["sit", 648, 20]], [["address", 655, 19], ["prefixLength", 656, 19]], [["addresses", 653, 38]], [["ipv4", 653, 33]], [["address", 661, 19], ["prefixLength", 662, 19]], [["addresses", 659, 35]], [["ipv6", 659, 30]], [["enp1s0", 653, 26], ["sit", 659, 26]], [["useNetworkd", 646, 15], ["useDHCP", 647, 15], ["sits", 648, 15], ["interfaces", 653, 15]], [["virtualisation", 644, 13], ["networking", 645, 13]], [["address4", 678, 15], ["remote", 679, 15], ["address6", 680, 15]], [["enable", 684, 26]], [["extraInputRules", 685, 26]], [["type", 687, 19], ["port", 688, 19]], [["encapsulation", 686, 26]], [["sit", 686, 22]], [["nftables", 684, 17], ["firewall", 685, 17], ["sits", 686, 17]], [["networking", 683, 15]], [["address4", 697, 15], ["remote", 698, 15], ["address6", 699, 15]], [["allowedUDPPorts", 703, 26]], [["port", 705, 19], ["protocol", 706, 19]], [["fou1", 704, 28]], [["firewall", 703, 17], ["fooOverUDP", 704, 17]], [["networking", 702, 15]], [["client1", 674, 15], ["client2", 693, 15]], [["name", 669, 9], ["nodes", 674, 9], ["testScript", 711, 9]], [["vlan", 739, 46]], [["enp1s0", 739, 39]], [["interfaces", 739, 28]], [["type", 747, 31]], [["remote", 744, 25], ["local", 745, 17], ["dev", 746, 17], ["encapsulation", 747, 17]], [["4in6", 743, 21]], [["enable", 749, 24], ["extraInputRules", 751, 24]], [["enable", 750, 24]], [["address", 754, 19], ["prefixLength", 755, 19]], [["addresses", 752, 38]], [["ipv6", 752, 33]], [["address", 760, 19], ["prefixLength", 761, 19]], [["addresses", 758, 38]], [["ipv4", 758, 33]], [["enp1s0", 752, 26], ["4in6", 758, 26]], [["useNetworkd", 741, 15], ["useDHCP", 742, 15], ["ipips", 743, 15], ["firewall", 749, 15], ["nftables", 750, 15], ["interfaces", 752, 15]], [["virtualisation", 739, 13], ["networking", 740, 13]], [["address6", 770, 11], ["address4", 771, 11], ["remote", 772, 11]], [["address6", 775, 11], ["address4", 776, 11], ["remote", 777, 11]], [["client1", 769, 15], ["client2", 774, 15]], [["name", 768, 9], ["nodes", 769, 9], ["testScript", 779, 9]], [["vlan", 807, 46]], [["enp1s0", 807, 39]], [["interfaces", 807, 28]], [["type", 814, 31]], [["local", 812, 25], ["remote", 812, 31], ["dev", 813, 17], ["encapsulation", 814, 17]], [["ipip", 811, 21]], [["enable", 816, 24]], [["extraInputRules", 817, 24]], [["address", 820, 19], ["prefixLength", 821, 19]], [["addresses", 818, 38]], [["ipv4", 818, 33]], [["address", 826, 27], ["prefixLength", 827, 19]], [["addresses", 824, 36]], [["ipv4", 824, 31]], [["enp1s0", 818, 26], ["ipip", 824, 26]], [["useNetworkd", 809, 15], ["useDHCP", 810, 15], ["ipips", 811, 15], ["nftables", 816, 15], ["firewall", 817, 15], ["interfaces", 818, 15]], [["virtualisation", 807, 13], ["networking", 808, 13]], [["local", 836, 11], ["remote", 837, 11], ["address", 838, 11]], [["local", 841, 11], ["remote", 842, 11], ["address", 843, 11]], [["client1", 835, 15], ["client2", 840, 15]], [["name", 834, 9], ["nodes", 835, 9], ["testScript", 845, 9]], [["extraCommands", 872, 24]], [["useNetworkd", 870, 15], ["useDHCP", 871, 15], ["firewall", 872, 15]], [["networking", 869, 13]], [["vlans", 883, 30]], [["local", 891, 21], ["remote", 892, 21], ["dev", 893, 21], ["ttl", 894, 21], ["type", 895, 21]], [["local", 898, 21], ["remote", 899, 21], ["dev", 900, 21], ["ttl", 901, 21], ["type", 902, 21]], [["greTunnel", 890, 19], ["gre6Tunnel", 897, 19]], [["interfaces", 905, 32]], [["bridge", 905, 25]], [["addresses", 909, 38]], [["addresses", 910, 38]], [["ipv4", 909, 33], ["ipv6", 910, 33]], [["address", 913, 21], ["prefixLength", 914, 21]], [["addresses", 911, 40]], [["ipv4", 911, 35]], [["address", 919, 21], ["prefixLength", 920, 21]], [["addresses", 917, 38]], [["ipv6", 917, 33]], [["address", 925, 21], ["prefixLength", 926, 21]], [["addresses", 923, 44]], [["ipv6", 923, 39]], [["eth1", 909, 28], ["bridge", 911, 28], ["eth3", 917, 28], ["gre6Tunnel", 923, 28]], [["greTunnels", 889, 17], ["bridges", 905, 17], ["interfaces", 909, 17]], [["virtualisation", 883, 15], ["networking", 888, 15]], [["vlans", 937, 30]], [["local", 945, 21], ["remote", 946, 21], ["dev", 947, 21], ["ttl", 948, 21], ["type", 949, 21]], [["local", 952, 21], ["remote", 953, 21], ["dev", 954, 21], ["ttl", 955, 21], ["type", 956, 21]], [["greTunnel", 944, 19], ["gre6Tunnel", 951, 19]], [["interfaces", 959, 32]], [["bridge", 959, 25]], [["addresses", 963, 38]], [["addresses", 964, 38]], [["ipv4", 963, 33], ["ipv6", 964, 33]], [["address", 967, 21], ["prefixLength", 968, 21]], [["addresses", 965, 40]], [["ipv4", 965, 35]], [["address", 973, 21], ["prefixLength", 974, 21]], [["addresses", 971, 38]], [["ipv6", 971, 33]], [["address", 979, 21], ["prefixLength", 980, 21]], [["addresses", 977, 44]], [["ipv6", 977, 39]], [["eth2", 963, 28], ["bridge", 965, 28], ["eth3", 971, 28], ["gre6Tunnel", 977, 28]], [["greTunnels", 943, 17], ["bridges", 959, 17], ["interfaces", 963, 17]], [["virtualisation", 937, 15], ["networking", 942, 15]], [["client1", 878, 15], ["client2", 932, 15]], [["name", 877, 9], ["nodes", 878, 9], ["testScript", 986, 9]], [["id", 1022, 15], ["interface", 1023, 15]], [["vlan", 1021, 19]], [["addresses", 1025, 34]], [["ipv4", 1025, 29]], [["addresses", 1026, 34]], [["ipv4", 1026, 29]], [["address", 1029, 25], ["prefixLength", 1030, 17]], [["addresses", 1027, 34]], [["ipv4", 1027, 29]], [["eth0", 1025, 24], ["eth1", 1026, 24], ["vlan", 1027, 24]], [["useNetworkd", 1019, 13], ["useDHCP", 1020, 13], ["vlans", 1021, 13], ["interfaces", 1025, 13]], [["networking", 1018, 11]], [["client1", 1038, 15], ["client2", 1039, 15]], [["name", 1037, 9], ["nodes", 1038, 9], ["testScript", 1040, 9]], [["vlan", 1059, 44]], [["enp1s0", 1059, 37]], [["interfaces", 1059, 26]], [["id", 1064, 15], ["interface", 1065, 15]], [["address", 1069, 17], ["prefixLength", 1070, 17]], [["addresses", 1067, 46]], [["ipv4", 1067, 41]], [["address", 1075, 17], ["prefixLength", 1076, 17]], [["addresses", 1073, 46]], [["ipv4", 1073, 41]], [["useDHCP", 1062, 13], ["vlans", 1063, 13], ["interfaces", 1067, 13]], [["virtualisation", 1059, 11], ["networking", 1060, 11]], [["server", 1088, 15], ["client", 1089, 15]], [["name", 1087, 9], ["nodes", 1088, 9], ["testScript", 1090, 9]], [["address", 1114, 15], ["prefixLength", 1115, 15]], [["addresses", 1112, 16]], [["address", 1120, 15], ["prefixLength", 1121, 15]], [["addresses", 1118, 16]], [["ipv4", 1112, 11], ["ipv6", 1118, 11], ["virtual", 1124, 11], ["virtualOwner", 1125, 11], ["mtu", 1126, 11], ["macAddress", 1127, 11]], [["address", 1132, 15], ["prefixLength", 1133, 15]], [["addresses", 1130, 16]], [["address", 1138, 15], ["prefixLength", 1139, 15]], [["addresses", 1136, 16]], [["ipv4", 1130, 11], ["ipv6", 1136, 11], ["virtual", 1142, 11], ["virtualOwner", 1143, 11], ["mtu", 1144, 11]], [["tap0", 1111, 31], ["tun0", 1129, 31]], [["useNetworkd", 1109, 20], ["useDHCP", 1110, 20], ["interfaces", 1111, 20]], [["networking", 1109, 9]], [["machine", 1108, 13]], [["name", 1107, 7], ["nodes", 1108, 7], ["testScript", 1148, 7]], [["vlan", 1207, 42]], [["enp1s0", 1207, 35]], [["interfaces", 1207, 24]], [["net.ipv6.conf.all.forwarding", 1208, 28]], [["sysctl", 1208, 21]], [["kernel", 1208, 14]], [["address", 1213, 13], ["prefixLength", 1214, 13]], [["addresses", 1212, 34]], [["ipv6", 1212, 29]], [["enp1s0", 1212, 22]], [["useNetworkd", 1210, 11], ["useDHCP", 1211, 11], ["interfaces", 1212, 11]], [["enable", 1218, 11], ["config", 1219, 11]], [["radvd", 1217, 18]], [["virtualisation", 1207, 9], ["boot", 1208, 9], ["networking", 1209, 9], ["services", 1217, 9]], [["vlan", 1234, 42]], [["enp1s0", 1234, 35]], [["interfaces", 1234, 24]], [["addresses", 1240, 18]], [["addresses", 1241, 18]], [["tempAddress", 1239, 13], ["ipv4", 1240, 13], ["ipv6", 1241, 13], ["useDHCP", 1242, 13]], [["enp1s0", 1238, 22]], [["useNetworkd", 1236, 11], ["useDHCP", 1237, 11], ["interfaces", 1238, 11]], [["virtualisation", 1234, 9], ["networking", 1235, 9]], [["vlan", 1247, 42]], [["enp1s0", 1247, 35]], [["interfaces", 1247, 24]], [["addresses", 1253, 18]], [["addresses", 1254, 18]], [["tempAddress", 1252, 13], ["ipv4", 1253, 13], ["ipv6", 1254, 13], ["useDHCP", 1255, 13]], [["enp1s0", 1251, 22]], [["useNetworkd", 1249, 11], ["useDHCP", 1250, 11], ["interfaces", 1251, 11]], [["virtualisation", 1247, 9], ["networking", 1248, 9]], [["router", 1206, 13], ["client_with_privacy", 1233, 13], ["client", 1246, 13]], [["name", 1205, 7], ["nodes", 1206, 7], ["testScript", 1259, 7]], [["address", 1296, 15], ["prefixLength", 1297, 15]], [["mtu", 1322, 17], ["scope", 1326, 17]], [["address", 1319, 15], ["prefixLength", 1320, 15], ["options", 1321, 15]], [["address", 1330, 15], ["prefixLength", 1331, 15], ["via", 1332, 15]], [["addresses", 1294, 16], ["routes", 1317, 16]], [["address", 1302, 15], ["prefixLength", 1303, 15]], [["address", 1308, 15], ["prefixLength", 1309, 15]], [["address", 1312, 15], ["prefixLength", 1313, 15], ["via", 1314, 15]], [["addresses", 1300, 16], ["routes", 1306, 16]], [["ipv4", 1294, 11], ["ipv6", 1300, 11]], [["eth0", 1293, 31]], [["useNetworkd", 1291, 20], ["useDHCP", 1292, 20], ["interfaces", 1293, 20]], [["vlans", 1336, 24]], [["networking", 1291, 9], ["virtualisation", 1336, 9]], [["machine", 1290, 13]], [["name", 1289, 7], ["nodes", 1290, 7], ["testScript", 1339, 7]], [["vlans", 1400, 28]], [["useNetworkd", 1402, 15], ["useDHCP", 1403, 15]], [["MACAddress", 1406, 27]], [["Name", 1407, 26]], [["matchConfig", 1406, 15], ["linkConfig", 1407, 15]], [["10-custom_name", 1405, 35]], [["links", 1405, 29]], [["network", 1405, 21]], [["virtualisation", 1400, 13], ["networking", 1401, 13], ["systemd", 1405, 13]], [["machine", 1399, 17]], [["name", 1398, 11], ["nodes", 1399, 11], ["testScript", 1410, 11]], [["name", 1417, 11], ["nodes", 1418, 11], ["testScript", 1419, 11]], [["vlans", 1426, 24]], [["useNetworkd", 1428, 11], ["useDHCP", 1429, 11]], [["Name", 1433, 13], ["Driver", 1434, 13]], [["MTUBytes", 1436, 22]], [["matchConfig", 1432, 11], ["linkConfig", 1436, 11]], [["50-foo", 1431, 31]], [["links", 1431, 25]], [["network", 1431, 17]], [["virtualisation", 1426, 9], ["networking", 1427, 9], ["systemd", 1431, 9]], [["client", 1425, 13]], [["name", 1424, 7], ["nodes", 1425, 7], ["testScript", 1439, 7]], [["kernelModules", 1453, 16]], [["device", 1456, 15]], [["device", 1459, 15], ["mac", 1460, 15]], [["wlan0", 1455, 13], ["wap0", 1458, 13]], [["wlanInterfaces", 1454, 22]], [["boot", 1453, 11], ["networking", 1454, 11]], [["machine", 1452, 15]], [["name", 1451, 9], ["nodes", 1452, 9], ["testScript", 1464, 9]], [["interfaces", 1498, 21]], [["name", 1497, 23], ["value", 1498, 15]], [["useNetworkd", 1494, 22], ["bridges", 1495, 22]], [["networking", 1494, 11]], [["machine", 1493, 15]], [["name", 1492, 9], ["nodes", 1493, 9], ["testScript", 1502, 9]], [["vlan", 1512, 44]], [["enCustom", 1512, 35]], [["interfaces", 1512, 24]], [["useNetworkd", 1514, 11], ["useDHCP", 1515, 11]], [["virtualisation", 1512, 9], ["networking", 1513, 9]], [["machine", 1511, 13]], [["name", 1510, 7], ["nodes", 1511, 7], ["testScript", 1518, 7]], [["loopback", 21, 5], ["static", 32, 5], ["dynamicInterface", 113, 5], ["routeType", 148, 5], ["dhcpDefault", 167, 5], ["dhcpSimple", 188, 5], ["dhcpHostname", 234, 5], ["dhcpOneIf", 257, 5], ["bond", 295, 5], ["bridge", 354, 5], ["macvlan", 424, 5], ["ipvlan", 476, 5], ["fou", 508, 5], ["sit-6in4", 568, 5], ["sit-fou", 634, 5], ["ipip-4in6", 730, 5], ["ipip", 798, 5], ["gre", 864, 5], ["vlan", 1015, 5], ["vlan-ping", 1052, 5], ["virtual", 1106, 5], ["privacy", 1204, 5], ["routes", 1288, 5], ["rename", 1395, 5], ["link", 1423, 5], ["wlanInterface", 1446, 5], ["naughtyInterfaceNames", 1471, 5], ["caseSensitiveRenaming", 1509, 5]], [["maintainers", 1533, 12]], [["name", 1532, 7], ["meta", 1533, 7]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true, networkd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/networkd-and-scripted.nix", [["system", 4, 33], ["config", 4, 40]]);
-const pos$2 = nix.positions(here + "/networkd-and-scripted.nix", [["system", 9, 52], ["pkgs", 9, 59]]);
-const pos$3 = nix.positions(here + "/networkd-and-scripted.nix", [["networkd", 13, 42]]);
-const pos$4 = nix.positions(here + "/networkd-and-scripted.nix", [["useDHCP", 17, 18], ["useNetworkd", 18, 18]]);
-const pos$5 = nix.positions(here + "/networkd-and-scripted.nix", [["networking", 17, 7]]);
-const pos$6 = nix.positions(here + "/networkd-and-scripted.nix", [["client", 23, 13]]);
-const pos$7 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 22, 7], ["nodes", 23, 7], ["testScript", 24, 7]]);
-const pos$8 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 36, 42]]);
-const pos$9 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 37, 42]]);
-const pos$10 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 36, 35], ["enp2s0", 37, 35]]);
-const pos$11 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 36, 24]]);
-const pos$12 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 40, 13], ["interface", 41, 13], ["source", 42, 13]]);
-const pos$13 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 45, 13], ["interface", 46, 13], ["source", 47, 13]]);
-const pos$14 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 51, 15], ["prefixLength", 52, 15]]);
-const pos$15 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 49, 34]]);
-const pos$16 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 57, 15], ["prefixLength", 58, 15]]);
-const pos$17 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 61, 15], ["prefixLength", 62, 15]]);
-const pos$18 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 65, 15], ["prefixLength", 66, 15]]);
-const pos$19 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 55, 34]]);
-const pos$20 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv6", 49, 29], ["ipv4", 55, 29]]);
-const pos$21 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 71, 15], ["prefixLength", 72, 15]]);
-const pos$22 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 69, 34]]);
-const pos$23 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 77, 15], ["prefixLength", 78, 15]]);
-const pos$24 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 75, 34]]);
-const pos$25 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 69, 29], ["ipv6", 75, 29]]);
-const pos$26 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 49, 22], ["enp2s0", 69, 22]]);
-const pos$27 = nix.positions(here + "/networkd-and-scripted.nix", [["defaultGateway", 39, 11], ["defaultGateway6", 44, 11], ["interfaces", 49, 11]]);
-const pos$28 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 36, 9], ["networking", 38, 9]]);
-const pos$29 = nix.positions(here + "/networkd-and-scripted.nix", [["router", 34, 13], ["client", 35, 13]]);
-const pos$30 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 33, 7], ["nodes", 34, 7], ["testScript", 83, 7]]);
-const pos$31 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 118, 13], ["prefixLength", 119, 13]]);
-const pos$32 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 117, 16]]);
-const pos$33 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv6", 117, 11]]);
-const pos$34 = nix.positions(here + "/networkd-and-scripted.nix", [["usb0", 116, 31]]);
-const pos$35 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 123, 11], ["interface", 124, 11], ["source", 125, 11]]);
-const pos$36 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 116, 20], ["defaultGateway6", 122, 20]]);
-const pos$37 = nix.positions(here + "/networkd-and-scripted.nix", [["networking", 116, 9]]);
-const pos$38 = nix.positions(here + "/networkd-and-scripted.nix", [["machine", 115, 13]]);
-const pos$39 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 114, 7], ["nodes", 115, 7], ["testScript", 128, 7]]);
-const pos$40 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 154, 15], ["prefixLength", 155, 15], ["type", 156, 15]]);
-const pos$41 = nix.positions(here + "/networkd-and-scripted.nix", [["routes", 152, 32]]);
-const pos$42 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 152, 27]]);
-const pos$43 = nix.positions(here + "/networkd-and-scripted.nix", [["eth1", 152, 22]]);
-const pos$44 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 152, 11]]);
-const pos$45 = nix.positions(here + "/networkd-and-scripted.nix", [["networking", 151, 9]]);
-const pos$46 = nix.positions(here + "/networkd-and-scripted.nix", [["client", 150, 13]]);
-const pos$47 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 149, 7], ["nodes", 150, 7], ["testScript", 161, 7]]);
-const pos$48 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 175, 11]]);
-const pos$49 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 172, 20], ["useNetworkd", 177, 20]]);
-const pos$50 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 178, 42]]);
-const pos$51 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 178, 35]]);
-const pos$52 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 178, 24]]);
-const pos$53 = nix.positions(here + "/networkd-and-scripted.nix", [["networking", 172, 9], ["virtualisation", 178, 9]]);
-const pos$54 = nix.positions(here + "/networkd-and-scripted.nix", [["router", 169, 13], ["client", 170, 13]]);
-const pos$55 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 168, 7], ["nodes", 169, 7], ["testScript", 180, 7]]);
-const pos$56 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 192, 42]]);
-const pos$57 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 193, 42]]);
-const pos$58 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 192, 35], ["enp2s0", 193, 35]]);
-const pos$59 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 192, 24]]);
-const pos$60 = nix.positions(here + "/networkd-and-scripted.nix", [["useDHCP", 195, 29]]);
-const pos$61 = nix.positions(here + "/networkd-and-scripted.nix", [["useDHCP", 196, 29]]);
-const pos$62 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 195, 22], ["enp2s0", 196, 22]]);
-const pos$63 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 195, 11]]);
-const pos$64 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 192, 9], ["networking", 194, 9]]);
-const pos$65 = nix.positions(here + "/networkd-and-scripted.nix", [["router", 190, 13], ["client", 191, 13]]);
-const pos$66 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 189, 7], ["nodes", 190, 7], ["testScript", 199, 7]]);
-const pos$67 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 239, 16]]);
-const pos$68 = nix.positions(here + "/networkd-and-scripted.nix", [["useDHCP", 243, 38]]);
-const pos$69 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 243, 31]]);
-const pos$70 = nix.positions(here + "/networkd-and-scripted.nix", [["hostName", 240, 20], ["interfaces", 243, 20]]);
-const pos$71 = nix.positions(here + "/networkd-and-scripted.nix", [["enable", 241, 25]]);
-const pos$72 = nix.positions(here + "/networkd-and-scripted.nix", [["polkit", 241, 18]]);
-const pos$73 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 242, 42]]);
-const pos$74 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 242, 35]]);
-const pos$75 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 242, 24]]);
-const pos$76 = nix.positions(here + "/networkd-and-scripted.nix", [["system", 239, 9], ["networking", 240, 9], ["security", 241, 9], ["virtualisation", 242, 9]]);
-const pos$77 = nix.positions(here + "/networkd-and-scripted.nix", [["router", 236, 13], ["client", 237, 13]]);
-const pos$78 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 235, 7], ["nodes", 236, 7], ["testScript", 245, 7]]);
-const pos$79 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 261, 42]]);
-const pos$80 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 262, 42]]);
-const pos$81 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 261, 35], ["enp2s0", 262, 35]]);
-const pos$82 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 261, 24]]);
-const pos$83 = nix.positions(here + "/networkd-and-scripted.nix", [["mtu", 265, 13], ["useDHCP", 266, 13]]);
-const pos$84 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 264, 22]]);
-const pos$85 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 264, 11]]);
-const pos$86 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 261, 9], ["networking", 263, 9]]);
-const pos$87 = nix.positions(here + "/networkd-and-scripted.nix", [["router", 259, 13], ["client", 260, 13]]);
-const pos$88 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 258, 7], ["nodes", 259, 7], ["testScript", 270, 7]]);
-const pos$89 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 300, 46]]);
-const pos$90 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 301, 46]]);
-const pos$91 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 300, 39], ["enp2s0", 301, 39]]);
-const pos$92 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 300, 28]]);
-const pos$93 = nix.positions(here + "/networkd-and-scripted.nix", [["mode", 308, 31]]);
-const pos$94 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 304, 17], ["driverOptions", 308, 17]]);
-const pos$95 = nix.positions(here + "/networkd-and-scripted.nix", [["bond0", 303, 21]]);
-const pos$96 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 312, 27], ["prefixLength", 313, 19]]);
-const pos$97 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 310, 37]]);
-const pos$98 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 310, 32]]);
-const pos$99 = nix.positions(here + "/networkd-and-scripted.nix", [["bond0", 310, 26]]);
-const pos$100 = nix.positions(here + "/networkd-and-scripted.nix", [["bonds", 303, 15], ["interfaces", 310, 15]]);
-const pos$101 = nix.positions(here + "/networkd-and-scripted.nix", [["path", 322, 15], ["script", 323, 15], ["wantedBy", 327, 15]]);
-const pos$102 = nix.positions(here + "/networkd-and-scripted.nix", [["fake-link-settings", 321, 30]]);
-const pos$103 = nix.positions(here + "/networkd-and-scripted.nix", [["services", 321, 21]]);
-const pos$104 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 300, 13], ["networking", 302, 13], ["systemd", 321, 13]]);
-const pos$105 = nix.positions(here + "/networkd-and-scripted.nix", [["client1", 333, 15], ["client2", 334, 15]]);
-const pos$106 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 332, 9], ["nodes", 333, 9], ["testScript", 335, 9]]);
 const formals$2 = { args: { address: false, vlan: false }, ellipsis: false };
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$107 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 360, 46]]);
-const pos$108 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 360, 39]]);
-const pos$109 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 360, 28]]);
-const pos$110 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 366, 27], ["prefixLength", 367, 19]]);
-const pos$111 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 364, 38]]);
-const pos$112 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 364, 33]]);
-const pos$113 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 364, 26]]);
-const pos$114 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 362, 15], ["useDHCP", 363, 15], ["interfaces", 364, 15]]);
-const pos$115 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 360, 13], ["networking", 361, 13]]);
-const pos$116 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 376, 11], ["vlan", 377, 11]]);
-const pos$117 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 380, 11], ["vlan", 381, 11]]);
-const pos$118 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 384, 44]]);
-const pos$119 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 385, 44]]);
-const pos$120 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 384, 37], ["enp2s0", 385, 37]]);
-const pos$121 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 384, 26]]);
-const pos$122 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 389, 28]]);
-const pos$123 = nix.positions(here + "/networkd-and-scripted.nix", [["bridge", 389, 21]]);
-const pos$124 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 393, 34]]);
-const pos$125 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 393, 29]]);
-const pos$126 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 394, 34]]);
-const pos$127 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 394, 29]]);
-const pos$128 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 397, 17], ["prefixLength", 398, 17]]);
-const pos$129 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 395, 36]]);
-const pos$130 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 395, 31]]);
-const pos$131 = nix.positions(here + "/networkd-and-scripted.nix", [["eth1", 393, 24], ["eth2", 394, 24], ["bridge", 395, 24]]);
-const pos$132 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 387, 13], ["useDHCP", 388, 13], ["bridges", 389, 13], ["interfaces", 393, 13]]);
-const pos$133 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 384, 11], ["networking", 386, 11]]);
-const pos$134 = nix.positions(here + "/networkd-and-scripted.nix", [["client1", 375, 15], ["client2", 379, 15], ["router", 383, 15]]);
-const pos$135 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 374, 9], ["nodes", 375, 9], ["testScript", 403, 9]]);
 const formals$4 = { args: { pkgs: false }, ellipsis: true };
-const pos$136 = nix.positions(here + "/networkd-and-scripted.nix", [["systemPackages", 430, 23]]);
-const pos$137 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 431, 44]]);
-const pos$138 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 431, 37]]);
-const pos$139 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 431, 26]]);
-const pos$140 = nix.positions(here + "/networkd-and-scripted.nix", [["logReversePathDrops", 435, 22], ["checkReversePath", 438, 22]]);
-const pos$141 = nix.positions(here + "/networkd-and-scripted.nix", [["interface", 439, 30]]);
-const pos$142 = nix.positions(here + "/networkd-and-scripted.nix", [["macvlan", 439, 22]]);
-const pos$143 = nix.positions(here + "/networkd-and-scripted.nix", [["useDHCP", 440, 31]]);
-const pos$144 = nix.positions(here + "/networkd-and-scripted.nix", [["useDHCP", 441, 32]]);
-const pos$145 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 440, 24], ["macvlan", 441, 24]]);
-const pos$146 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 433, 13], ["useDHCP", 434, 13], ["firewall", 435, 13], ["macvlans", 439, 13], ["interfaces", 440, 13]]);
-const pos$147 = nix.positions(here + "/networkd-and-scripted.nix", [["environment", 430, 11], ["virtualisation", 431, 11], ["networking", 432, 11]]);
-const pos$148 = nix.positions(here + "/networkd-and-scripted.nix", [["router", 426, 13], ["client", 427, 13]]);
-const pos$149 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 425, 7], ["nodes", 426, 7], ["testScript", 444, 7]]);
-const pos$150 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 479, 42]]);
-const pos$151 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 479, 35]]);
-const pos$152 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 479, 24]]);
-const pos$153 = nix.positions(here + "/networkd-and-scripted.nix", [["interface", 484, 21]]);
-const pos$154 = nix.positions(here + "/networkd-and-scripted.nix", [["interface", 485, 21]]);
-const pos$155 = nix.positions(here + "/networkd-and-scripted.nix", [["ipvlan1", 484, 13], ["ipvlan2", 485, 13]]);
-const pos$156 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 481, 11], ["useDHCP", 482, 11], ["ipvlans", 483, 11]]);
-const pos$157 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 479, 9], ["networking", 480, 9]]);
-const pos$158 = nix.positions(here + "/networkd-and-scripted.nix", [["client", 478, 13]]);
-const pos$159 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 477, 7], ["nodes", 478, 7], ["testScript", 489, 7]]);
-const pos$160 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 511, 42]]);
-const pos$161 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 511, 35]]);
-const pos$162 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 511, 24]]);
-const pos$163 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 515, 15], ["prefixLength", 516, 15]]);
-const pos$164 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 513, 34]]);
-const pos$165 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 513, 29]]);
-const pos$166 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 513, 22]]);
-const pos$167 = nix.positions(here + "/networkd-and-scripted.nix", [["port", 521, 15]]);
-const pos$168 = nix.positions(here + "/networkd-and-scripted.nix", [["port", 524, 15], ["protocol", 525, 15]]);
-const pos$169 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 529, 21]]);
-const pos$170 = nix.positions(here + "/networkd-and-scripted.nix", [["port", 528, 15], ["local", 529, 15]]);
-const pos$171 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 534, 17], ["dev", 535, 17]]);
-const pos$172 = nix.positions(here + "/networkd-and-scripted.nix", [["port", 532, 15], ["local", 533, 15]]);
-const pos$173 = nix.positions(here + "/networkd-and-scripted.nix", [["fou1", 520, 13], ["fou2", 523, 13], ["fou3", 527, 13], ["fou4", 531, 13]]);
-const pos$174 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 513, 11], ["fooOverUDP", 519, 11]]);
-const pos$175 = nix.positions(here + "/networkd-and-scripted.nix", [["after", 541, 26]]);
-const pos$176 = nix.positions(here + "/networkd-and-scripted.nix", [["fou3-fou-encap", 541, 11]]);
-const pos$177 = nix.positions(here + "/networkd-and-scripted.nix", [["services", 540, 17]]);
-const pos$178 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 511, 9], ["networking", 512, 9], ["systemd", 540, 9]]);
-const pos$179 = nix.positions(here + "/networkd-and-scripted.nix", [["machine", 510, 13]]);
-const pos$180 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 509, 7], ["nodes", 510, 7], ["testScript", 544, 7]]);
 const formals$5 = { args: { address4: false, remote: false, address6: false }, ellipsis: false };
-const pos$181 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 577, 46]]);
-const pos$182 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 577, 39]]);
-const pos$183 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 577, 28]]);
-const pos$184 = nix.positions(here + "/networkd-and-scripted.nix", [["remote", 582, 25], ["local", 583, 17], ["dev", 584, 17]]);
-const pos$185 = nix.positions(here + "/networkd-and-scripted.nix", [["sit", 581, 20]]);
-const pos$186 = nix.positions(here + "/networkd-and-scripted.nix", [["enable", 586, 24]]);
-const pos$187 = nix.positions(here + "/networkd-and-scripted.nix", [["extraInputRules", 587, 24]]);
-const pos$188 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 590, 19], ["prefixLength", 591, 19]]);
-const pos$189 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 588, 38]]);
-const pos$190 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 588, 33]]);
-const pos$191 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 596, 19], ["prefixLength", 597, 19]]);
-const pos$192 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 594, 35]]);
-const pos$193 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv6", 594, 30]]);
-const pos$194 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 588, 26], ["sit", 594, 26]]);
-const pos$195 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 579, 15], ["useDHCP", 580, 15], ["sits", 581, 15], ["nftables", 586, 15], ["firewall", 587, 15], ["interfaces", 588, 15]]);
-const pos$196 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 577, 13], ["networking", 578, 13]]);
-const pos$197 = nix.positions(here + "/networkd-and-scripted.nix", [["address4", 606, 11], ["remote", 607, 11], ["address6", 608, 11]]);
-const pos$198 = nix.positions(here + "/networkd-and-scripted.nix", [["address4", 611, 11], ["remote", 612, 11], ["address6", 613, 11]]);
-const pos$199 = nix.positions(here + "/networkd-and-scripted.nix", [["client1", 605, 15], ["client2", 610, 15]]);
-const pos$200 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 604, 9], ["nodes", 605, 9], ["testScript", 615, 9]]);
 const formals$6 = { args: { address4: false, remote: false, address6: false }, ellipsis: false };
 const formals$7 = { args: { pkgs: false }, ellipsis: true };
-const pos$201 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 644, 46]]);
-const pos$202 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 644, 39]]);
-const pos$203 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 644, 28]]);
-const pos$204 = nix.positions(here + "/networkd-and-scripted.nix", [["remote", 649, 25], ["local", 650, 17], ["dev", 651, 17]]);
-const pos$205 = nix.positions(here + "/networkd-and-scripted.nix", [["sit", 648, 20]]);
-const pos$206 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 655, 19], ["prefixLength", 656, 19]]);
-const pos$207 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 653, 38]]);
-const pos$208 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 653, 33]]);
-const pos$209 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 661, 19], ["prefixLength", 662, 19]]);
-const pos$210 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 659, 35]]);
-const pos$211 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv6", 659, 30]]);
-const pos$212 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 653, 26], ["sit", 659, 26]]);
-const pos$213 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 646, 15], ["useDHCP", 647, 15], ["sits", 648, 15], ["interfaces", 653, 15]]);
-const pos$214 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 644, 13], ["networking", 645, 13]]);
 const formals$8 = { args: { pkgs: false }, ellipsis: true };
-const pos$215 = nix.positions(here + "/networkd-and-scripted.nix", [["address4", 678, 15], ["remote", 679, 15], ["address6", 680, 15]]);
-const pos$216 = nix.positions(here + "/networkd-and-scripted.nix", [["enable", 684, 26]]);
-const pos$217 = nix.positions(here + "/networkd-and-scripted.nix", [["extraInputRules", 685, 26]]);
-const pos$218 = nix.positions(here + "/networkd-and-scripted.nix", [["type", 687, 19], ["port", 688, 19]]);
-const pos$219 = nix.positions(here + "/networkd-and-scripted.nix", [["encapsulation", 686, 26]]);
-const pos$220 = nix.positions(here + "/networkd-and-scripted.nix", [["sit", 686, 22]]);
-const pos$221 = nix.positions(here + "/networkd-and-scripted.nix", [["nftables", 684, 17], ["firewall", 685, 17], ["sits", 686, 17]]);
-const pos$222 = nix.positions(here + "/networkd-and-scripted.nix", [["networking", 683, 15]]);
 const formals$9 = { args: { pkgs: false }, ellipsis: true };
-const pos$223 = nix.positions(here + "/networkd-and-scripted.nix", [["address4", 697, 15], ["remote", 698, 15], ["address6", 699, 15]]);
-const pos$224 = nix.positions(here + "/networkd-and-scripted.nix", [["allowedUDPPorts", 703, 26]]);
-const pos$225 = nix.positions(here + "/networkd-and-scripted.nix", [["port", 705, 19], ["protocol", 706, 19]]);
-const pos$226 = nix.positions(here + "/networkd-and-scripted.nix", [["fou1", 704, 28]]);
-const pos$227 = nix.positions(here + "/networkd-and-scripted.nix", [["firewall", 703, 17], ["fooOverUDP", 704, 17]]);
-const pos$228 = nix.positions(here + "/networkd-and-scripted.nix", [["networking", 702, 15]]);
-const pos$229 = nix.positions(here + "/networkd-and-scripted.nix", [["client1", 674, 15], ["client2", 693, 15]]);
-const pos$230 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 669, 9], ["nodes", 674, 9], ["testScript", 711, 9]]);
 const formals$10 = { args: { address4: false, remote: false, address6: false }, ellipsis: false };
-const pos$231 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 739, 46]]);
-const pos$232 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 739, 39]]);
-const pos$233 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 739, 28]]);
-const pos$234 = nix.positions(here + "/networkd-and-scripted.nix", [["type", 747, 31]]);
-const pos$235 = nix.positions(here + "/networkd-and-scripted.nix", [["remote", 744, 25], ["local", 745, 17], ["dev", 746, 17], ["encapsulation", 747, 17]]);
-const pos$236 = nix.positions(here + "/networkd-and-scripted.nix", [["4in6", 743, 21]]);
-const pos$237 = nix.positions(here + "/networkd-and-scripted.nix", [["enable", 749, 24], ["extraInputRules", 751, 24]]);
-const pos$238 = nix.positions(here + "/networkd-and-scripted.nix", [["enable", 750, 24]]);
-const pos$239 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 754, 19], ["prefixLength", 755, 19]]);
-const pos$240 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 752, 38]]);
-const pos$241 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv6", 752, 33]]);
-const pos$242 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 760, 19], ["prefixLength", 761, 19]]);
-const pos$243 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 758, 38]]);
-const pos$244 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 758, 33]]);
-const pos$245 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 752, 26], ["4in6", 758, 26]]);
-const pos$246 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 741, 15], ["useDHCP", 742, 15], ["ipips", 743, 15], ["firewall", 749, 15], ["nftables", 750, 15], ["interfaces", 752, 15]]);
-const pos$247 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 739, 13], ["networking", 740, 13]]);
-const pos$248 = nix.positions(here + "/networkd-and-scripted.nix", [["address6", 770, 11], ["address4", 771, 11], ["remote", 772, 11]]);
-const pos$249 = nix.positions(here + "/networkd-and-scripted.nix", [["address6", 775, 11], ["address4", 776, 11], ["remote", 777, 11]]);
-const pos$250 = nix.positions(here + "/networkd-and-scripted.nix", [["client1", 769, 15], ["client2", 774, 15]]);
-const pos$251 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 768, 9], ["nodes", 769, 9], ["testScript", 779, 9]]);
 const formals$11 = { args: { local: false, remote: false, address: false }, ellipsis: false };
-const pos$252 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 807, 46]]);
-const pos$253 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 807, 39]]);
-const pos$254 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 807, 28]]);
-const pos$255 = nix.positions(here + "/networkd-and-scripted.nix", [["type", 814, 31]]);
-const pos$256 = nix.positions(here + "/networkd-and-scripted.nix", [["local", 812, 25], ["remote", 812, 31], ["dev", 813, 17], ["encapsulation", 814, 17]]);
-const pos$257 = nix.positions(here + "/networkd-and-scripted.nix", [["ipip", 811, 21]]);
-const pos$258 = nix.positions(here + "/networkd-and-scripted.nix", [["enable", 816, 24]]);
-const pos$259 = nix.positions(here + "/networkd-and-scripted.nix", [["extraInputRules", 817, 24]]);
-const pos$260 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 820, 19], ["prefixLength", 821, 19]]);
-const pos$261 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 818, 38]]);
-const pos$262 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 818, 33]]);
-const pos$263 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 826, 27], ["prefixLength", 827, 19]]);
-const pos$264 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 824, 36]]);
-const pos$265 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 824, 31]]);
-const pos$266 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 818, 26], ["ipip", 824, 26]]);
-const pos$267 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 809, 15], ["useDHCP", 810, 15], ["ipips", 811, 15], ["nftables", 816, 15], ["firewall", 817, 15], ["interfaces", 818, 15]]);
-const pos$268 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 807, 13], ["networking", 808, 13]]);
-const pos$269 = nix.positions(here + "/networkd-and-scripted.nix", [["local", 836, 11], ["remote", 837, 11], ["address", 838, 11]]);
-const pos$270 = nix.positions(here + "/networkd-and-scripted.nix", [["local", 841, 11], ["remote", 842, 11], ["address", 843, 11]]);
-const pos$271 = nix.positions(here + "/networkd-and-scripted.nix", [["client1", 835, 15], ["client2", 840, 15]]);
-const pos$272 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 834, 9], ["nodes", 835, 9], ["testScript", 845, 9]]);
 const formals$12 = { args: {  }, ellipsis: true };
-const pos$273 = nix.positions(here + "/networkd-and-scripted.nix", [["extraCommands", 872, 24]]);
-const pos$274 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 870, 15], ["useDHCP", 871, 15], ["firewall", 872, 15]]);
-const pos$275 = nix.positions(here + "/networkd-and-scripted.nix", [["networking", 869, 13]]);
 const formals$13 = { args: { pkgs: false }, ellipsis: true };
-const pos$276 = nix.positions(here + "/networkd-and-scripted.nix", [["vlans", 883, 30]]);
-const pos$277 = nix.positions(here + "/networkd-and-scripted.nix", [["local", 891, 21], ["remote", 892, 21], ["dev", 893, 21], ["ttl", 894, 21], ["type", 895, 21]]);
-const pos$278 = nix.positions(here + "/networkd-and-scripted.nix", [["local", 898, 21], ["remote", 899, 21], ["dev", 900, 21], ["ttl", 901, 21], ["type", 902, 21]]);
-const pos$279 = nix.positions(here + "/networkd-and-scripted.nix", [["greTunnel", 890, 19], ["gre6Tunnel", 897, 19]]);
-const pos$280 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 905, 32]]);
-const pos$281 = nix.positions(here + "/networkd-and-scripted.nix", [["bridge", 905, 25]]);
-const pos$282 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 909, 38]]);
-const pos$283 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 910, 38]]);
-const pos$284 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 909, 33], ["ipv6", 910, 33]]);
-const pos$285 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 913, 21], ["prefixLength", 914, 21]]);
-const pos$286 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 911, 40]]);
-const pos$287 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 911, 35]]);
-const pos$288 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 919, 21], ["prefixLength", 920, 21]]);
-const pos$289 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 917, 38]]);
-const pos$290 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv6", 917, 33]]);
-const pos$291 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 925, 21], ["prefixLength", 926, 21]]);
-const pos$292 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 923, 44]]);
-const pos$293 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv6", 923, 39]]);
-const pos$294 = nix.positions(here + "/networkd-and-scripted.nix", [["eth1", 909, 28], ["bridge", 911, 28], ["eth3", 917, 28], ["gre6Tunnel", 923, 28]]);
-const pos$295 = nix.positions(here + "/networkd-and-scripted.nix", [["greTunnels", 889, 17], ["bridges", 905, 17], ["interfaces", 909, 17]]);
-const pos$296 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 883, 15], ["networking", 888, 15]]);
 const formals$14 = { args: { pkgs: false }, ellipsis: true };
-const pos$297 = nix.positions(here + "/networkd-and-scripted.nix", [["vlans", 937, 30]]);
-const pos$298 = nix.positions(here + "/networkd-and-scripted.nix", [["local", 945, 21], ["remote", 946, 21], ["dev", 947, 21], ["ttl", 948, 21], ["type", 949, 21]]);
-const pos$299 = nix.positions(here + "/networkd-and-scripted.nix", [["local", 952, 21], ["remote", 953, 21], ["dev", 954, 21], ["ttl", 955, 21], ["type", 956, 21]]);
-const pos$300 = nix.positions(here + "/networkd-and-scripted.nix", [["greTunnel", 944, 19], ["gre6Tunnel", 951, 19]]);
-const pos$301 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 959, 32]]);
-const pos$302 = nix.positions(here + "/networkd-and-scripted.nix", [["bridge", 959, 25]]);
-const pos$303 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 963, 38]]);
-const pos$304 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 964, 38]]);
-const pos$305 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 963, 33], ["ipv6", 964, 33]]);
-const pos$306 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 967, 21], ["prefixLength", 968, 21]]);
-const pos$307 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 965, 40]]);
-const pos$308 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 965, 35]]);
-const pos$309 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 973, 21], ["prefixLength", 974, 21]]);
-const pos$310 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 971, 38]]);
-const pos$311 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv6", 971, 33]]);
-const pos$312 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 979, 21], ["prefixLength", 980, 21]]);
-const pos$313 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 977, 44]]);
-const pos$314 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv6", 977, 39]]);
-const pos$315 = nix.positions(here + "/networkd-and-scripted.nix", [["eth2", 963, 28], ["bridge", 965, 28], ["eth3", 971, 28], ["gre6Tunnel", 977, 28]]);
-const pos$316 = nix.positions(here + "/networkd-and-scripted.nix", [["greTunnels", 943, 17], ["bridges", 959, 17], ["interfaces", 963, 17]]);
-const pos$317 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 937, 15], ["networking", 942, 15]]);
-const pos$318 = nix.positions(here + "/networkd-and-scripted.nix", [["client1", 878, 15], ["client2", 932, 15]]);
-const pos$319 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 877, 9], ["nodes", 878, 9], ["testScript", 986, 9]]);
-const pos$320 = nix.positions(here + "/networkd-and-scripted.nix", [["id", 1022, 15], ["interface", 1023, 15]]);
-const pos$321 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 1021, 19]]);
-const pos$322 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 1025, 34]]);
-const pos$323 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 1025, 29]]);
-const pos$324 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 1026, 34]]);
-const pos$325 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 1026, 29]]);
-const pos$326 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 1029, 25], ["prefixLength", 1030, 17]]);
-const pos$327 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 1027, 34]]);
-const pos$328 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 1027, 29]]);
-const pos$329 = nix.positions(here + "/networkd-and-scripted.nix", [["eth0", 1025, 24], ["eth1", 1026, 24], ["vlan", 1027, 24]]);
-const pos$330 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 1019, 13], ["useDHCP", 1020, 13], ["vlans", 1021, 13], ["interfaces", 1025, 13]]);
-const pos$331 = nix.positions(here + "/networkd-and-scripted.nix", [["networking", 1018, 11]]);
-const pos$332 = nix.positions(here + "/networkd-and-scripted.nix", [["client1", 1038, 15], ["client2", 1039, 15]]);
-const pos$333 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 1037, 9], ["nodes", 1038, 9], ["testScript", 1040, 9]]);
-const pos$334 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 1059, 44]]);
-const pos$335 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 1059, 37]]);
-const pos$336 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 1059, 26]]);
-const pos$337 = nix.positions(here + "/networkd-and-scripted.nix", [["id", 1064, 15], ["interface", 1065, 15]]);
-const pos$338 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 1069, 17], ["prefixLength", 1070, 17]]);
-const pos$339 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 1067, 46]]);
-const pos$340 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 1067, 41]]);
-const pos$341 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 1075, 17], ["prefixLength", 1076, 17]]);
-const pos$342 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 1073, 46]]);
-const pos$343 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 1073, 41]]);
-const pos$344 = nix.positions(here + "/networkd-and-scripted.nix", [["useDHCP", 1062, 13], ["vlans", 1063, 13], ["interfaces", 1067, 13]]);
-const pos$345 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 1059, 11], ["networking", 1060, 11]]);
-const pos$346 = nix.positions(here + "/networkd-and-scripted.nix", [["server", 1088, 15], ["client", 1089, 15]]);
-const pos$347 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 1087, 9], ["nodes", 1088, 9], ["testScript", 1090, 9]]);
-const pos$348 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 1114, 15], ["prefixLength", 1115, 15]]);
-const pos$349 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 1112, 16]]);
-const pos$350 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 1120, 15], ["prefixLength", 1121, 15]]);
-const pos$351 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 1118, 16]]);
-const pos$352 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 1112, 11], ["ipv6", 1118, 11], ["virtual", 1124, 11], ["virtualOwner", 1125, 11], ["mtu", 1126, 11], ["macAddress", 1127, 11]]);
-const pos$353 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 1132, 15], ["prefixLength", 1133, 15]]);
-const pos$354 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 1130, 16]]);
-const pos$355 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 1138, 15], ["prefixLength", 1139, 15]]);
-const pos$356 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 1136, 16]]);
-const pos$357 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 1130, 11], ["ipv6", 1136, 11], ["virtual", 1142, 11], ["virtualOwner", 1143, 11], ["mtu", 1144, 11]]);
-const pos$358 = nix.positions(here + "/networkd-and-scripted.nix", [["tap0", 1111, 31], ["tun0", 1129, 31]]);
-const pos$359 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 1109, 20], ["useDHCP", 1110, 20], ["interfaces", 1111, 20]]);
-const pos$360 = nix.positions(here + "/networkd-and-scripted.nix", [["networking", 1109, 9]]);
-const pos$361 = nix.positions(here + "/networkd-and-scripted.nix", [["machine", 1108, 13]]);
-const pos$362 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 1107, 7], ["nodes", 1108, 7], ["testScript", 1148, 7]]);
-const pos$363 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 1207, 42]]);
-const pos$364 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 1207, 35]]);
-const pos$365 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 1207, 24]]);
-const pos$366 = nix.positions(here + "/networkd-and-scripted.nix", [["net.ipv6.conf.all.forwarding", 1208, 28]]);
-const pos$367 = nix.positions(here + "/networkd-and-scripted.nix", [["sysctl", 1208, 21]]);
-const pos$368 = nix.positions(here + "/networkd-and-scripted.nix", [["kernel", 1208, 14]]);
-const pos$369 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 1213, 13], ["prefixLength", 1214, 13]]);
-const pos$370 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 1212, 34]]);
-const pos$371 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv6", 1212, 29]]);
-const pos$372 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 1212, 22]]);
-const pos$373 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 1210, 11], ["useDHCP", 1211, 11], ["interfaces", 1212, 11]]);
-const pos$374 = nix.positions(here + "/networkd-and-scripted.nix", [["enable", 1218, 11], ["config", 1219, 11]]);
-const pos$375 = nix.positions(here + "/networkd-and-scripted.nix", [["radvd", 1217, 18]]);
-const pos$376 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 1207, 9], ["boot", 1208, 9], ["networking", 1209, 9], ["services", 1217, 9]]);
-const pos$377 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 1234, 42]]);
-const pos$378 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 1234, 35]]);
-const pos$379 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 1234, 24]]);
-const pos$380 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 1240, 18]]);
-const pos$381 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 1241, 18]]);
-const pos$382 = nix.positions(here + "/networkd-and-scripted.nix", [["tempAddress", 1239, 13], ["ipv4", 1240, 13], ["ipv6", 1241, 13], ["useDHCP", 1242, 13]]);
-const pos$383 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 1238, 22]]);
-const pos$384 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 1236, 11], ["useDHCP", 1237, 11], ["interfaces", 1238, 11]]);
-const pos$385 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 1234, 9], ["networking", 1235, 9]]);
-const pos$386 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 1247, 42]]);
-const pos$387 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 1247, 35]]);
-const pos$388 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 1247, 24]]);
-const pos$389 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 1253, 18]]);
-const pos$390 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 1254, 18]]);
-const pos$391 = nix.positions(here + "/networkd-and-scripted.nix", [["tempAddress", 1252, 13], ["ipv4", 1253, 13], ["ipv6", 1254, 13], ["useDHCP", 1255, 13]]);
-const pos$392 = nix.positions(here + "/networkd-and-scripted.nix", [["enp1s0", 1251, 22]]);
-const pos$393 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 1249, 11], ["useDHCP", 1250, 11], ["interfaces", 1251, 11]]);
-const pos$394 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 1247, 9], ["networking", 1248, 9]]);
-const pos$395 = nix.positions(here + "/networkd-and-scripted.nix", [["router", 1206, 13], ["client_with_privacy", 1233, 13], ["client", 1246, 13]]);
-const pos$396 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 1205, 7], ["nodes", 1206, 7], ["testScript", 1259, 7]]);
-const pos$397 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 1296, 15], ["prefixLength", 1297, 15]]);
-const pos$398 = nix.positions(here + "/networkd-and-scripted.nix", [["mtu", 1322, 17], ["scope", 1326, 17]]);
-const pos$399 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 1319, 15], ["prefixLength", 1320, 15], ["options", 1321, 15]]);
-const pos$400 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 1330, 15], ["prefixLength", 1331, 15], ["via", 1332, 15]]);
-const pos$401 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 1294, 16], ["routes", 1317, 16]]);
-const pos$402 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 1302, 15], ["prefixLength", 1303, 15]]);
-const pos$403 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 1308, 15], ["prefixLength", 1309, 15]]);
-const pos$404 = nix.positions(here + "/networkd-and-scripted.nix", [["address", 1312, 15], ["prefixLength", 1313, 15], ["via", 1314, 15]]);
-const pos$405 = nix.positions(here + "/networkd-and-scripted.nix", [["addresses", 1300, 16], ["routes", 1306, 16]]);
-const pos$406 = nix.positions(here + "/networkd-and-scripted.nix", [["ipv4", 1294, 11], ["ipv6", 1300, 11]]);
-const pos$407 = nix.positions(here + "/networkd-and-scripted.nix", [["eth0", 1293, 31]]);
-const pos$408 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 1291, 20], ["useDHCP", 1292, 20], ["interfaces", 1293, 20]]);
-const pos$409 = nix.positions(here + "/networkd-and-scripted.nix", [["vlans", 1336, 24]]);
-const pos$410 = nix.positions(here + "/networkd-and-scripted.nix", [["networking", 1291, 9], ["virtualisation", 1336, 9]]);
-const pos$411 = nix.positions(here + "/networkd-and-scripted.nix", [["machine", 1290, 13]]);
-const pos$412 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 1289, 7], ["nodes", 1290, 7], ["testScript", 1339, 7]]);
-const pos$413 = nix.positions(here + "/networkd-and-scripted.nix", [["vlans", 1400, 28]]);
-const pos$414 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 1402, 15], ["useDHCP", 1403, 15]]);
-const pos$415 = nix.positions(here + "/networkd-and-scripted.nix", [["MACAddress", 1406, 27]]);
-const pos$416 = nix.positions(here + "/networkd-and-scripted.nix", [["Name", 1407, 26]]);
-const pos$417 = nix.positions(here + "/networkd-and-scripted.nix", [["matchConfig", 1406, 15], ["linkConfig", 1407, 15]]);
-const pos$418 = nix.positions(here + "/networkd-and-scripted.nix", [["10-custom_name", 1405, 35]]);
-const pos$419 = nix.positions(here + "/networkd-and-scripted.nix", [["links", 1405, 29]]);
-const pos$420 = nix.positions(here + "/networkd-and-scripted.nix", [["network", 1405, 21]]);
-const pos$421 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 1400, 13], ["networking", 1401, 13], ["systemd", 1405, 13]]);
-const pos$422 = nix.positions(here + "/networkd-and-scripted.nix", [["machine", 1399, 17]]);
-const pos$423 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 1398, 11], ["nodes", 1399, 11], ["testScript", 1410, 11]]);
-const pos$424 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 1417, 11], ["nodes", 1418, 11], ["testScript", 1419, 11]]);
-const pos$425 = nix.positions(here + "/networkd-and-scripted.nix", [["vlans", 1426, 24]]);
-const pos$426 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 1428, 11], ["useDHCP", 1429, 11]]);
-const pos$427 = nix.positions(here + "/networkd-and-scripted.nix", [["Name", 1433, 13], ["Driver", 1434, 13]]);
-const pos$428 = nix.positions(here + "/networkd-and-scripted.nix", [["MTUBytes", 1436, 22]]);
-const pos$429 = nix.positions(here + "/networkd-and-scripted.nix", [["matchConfig", 1432, 11], ["linkConfig", 1436, 11]]);
-const pos$430 = nix.positions(here + "/networkd-and-scripted.nix", [["50-foo", 1431, 31]]);
-const pos$431 = nix.positions(here + "/networkd-and-scripted.nix", [["links", 1431, 25]]);
-const pos$432 = nix.positions(here + "/networkd-and-scripted.nix", [["network", 1431, 17]]);
-const pos$433 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 1426, 9], ["networking", 1427, 9], ["systemd", 1431, 9]]);
-const pos$434 = nix.positions(here + "/networkd-and-scripted.nix", [["client", 1425, 13]]);
-const pos$435 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 1424, 7], ["nodes", 1425, 7], ["testScript", 1439, 7]]);
-const pos$436 = nix.positions(here + "/networkd-and-scripted.nix", [["kernelModules", 1453, 16]]);
-const pos$437 = nix.positions(here + "/networkd-and-scripted.nix", [["device", 1456, 15]]);
-const pos$438 = nix.positions(here + "/networkd-and-scripted.nix", [["device", 1459, 15], ["mac", 1460, 15]]);
-const pos$439 = nix.positions(here + "/networkd-and-scripted.nix", [["wlan0", 1455, 13], ["wap0", 1458, 13]]);
-const pos$440 = nix.positions(here + "/networkd-and-scripted.nix", [["wlanInterfaces", 1454, 22]]);
-const pos$441 = nix.positions(here + "/networkd-and-scripted.nix", [["boot", 1453, 11], ["networking", 1454, 11]]);
-const pos$442 = nix.positions(here + "/networkd-and-scripted.nix", [["machine", 1452, 15]]);
-const pos$443 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 1451, 9], ["nodes", 1452, 9], ["testScript", 1464, 9]]);
-const pos$444 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 1498, 21]]);
-const pos$445 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 1497, 23], ["value", 1498, 15]]);
-const pos$446 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 1494, 22], ["bridges", 1495, 22]]);
-const pos$447 = nix.positions(here + "/networkd-and-scripted.nix", [["networking", 1494, 11]]);
-const pos$448 = nix.positions(here + "/networkd-and-scripted.nix", [["machine", 1493, 15]]);
-const pos$449 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 1492, 9], ["nodes", 1493, 9], ["testScript", 1502, 9]]);
-const pos$450 = nix.positions(here + "/networkd-and-scripted.nix", [["vlan", 1512, 44]]);
-const pos$451 = nix.positions(here + "/networkd-and-scripted.nix", [["enCustom", 1512, 35]]);
-const pos$452 = nix.positions(here + "/networkd-and-scripted.nix", [["interfaces", 1512, 24]]);
-const pos$453 = nix.positions(here + "/networkd-and-scripted.nix", [["useNetworkd", 1514, 11], ["useDHCP", 1515, 11]]);
-const pos$454 = nix.positions(here + "/networkd-and-scripted.nix", [["virtualisation", 1512, 9], ["networking", 1513, 9]]);
-const pos$455 = nix.positions(here + "/networkd-and-scripted.nix", [["machine", 1511, 13]]);
-const pos$456 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 1510, 7], ["nodes", 1511, 7], ["testScript", 1518, 7]]);
-const pos$457 = nix.positions(here + "/networkd-and-scripted.nix", [["loopback", 21, 5], ["static", 32, 5], ["dynamicInterface", 113, 5], ["routeType", 148, 5], ["dhcpDefault", 167, 5], ["dhcpSimple", 188, 5], ["dhcpHostname", 234, 5], ["dhcpOneIf", 257, 5], ["bond", 295, 5], ["bridge", 354, 5], ["macvlan", 424, 5], ["ipvlan", 476, 5], ["fou", 508, 5], ["sit-6in4", 568, 5], ["sit-fou", 634, 5], ["ipip-4in6", 730, 5], ["ipip", 798, 5], ["gre", 864, 5], ["vlan", 1015, 5], ["vlan-ping", 1052, 5], ["virtual", 1106, 5], ["privacy", 1204, 5], ["routes", 1288, 5], ["rename", 1395, 5], ["link", 1423, 5], ["wlanInterface", 1446, 5], ["naughtyInterfaceNames", 1471, 5], ["caseSensitiveRenaming", 1509, 5]]);
-const pos$458 = nix.positions(here + "/networkd-and-scripted.nix", [["maintainers", 1533, 12]]);
-const pos$459 = nix.positions(here + "/networkd-and-scripted.nix", [["name", 1532, 7], ["meta", 1533, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
   const networkd = nix.arg($, "networkd");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const lib = nix.thunk(() => nix.sel(pkgs, "lib"));
-  const router = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./router.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, networkd: networkd }))));
+  const router = nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./router.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], networkd: networkd }))));
   const clientConfig = (extraConfig) => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
-      networking: nix.thunk(() => ({ [nix.POS]: pos$4, useDHCP: false, useNetworkd: networkd })),
+      [nix.POS]: $pos[4],
+      networking: nix.thunk(() => ({ [nix.POS]: $pos[3], useDHCP: false, useNetworkd: networkd })),
     })), extraConfig);
   const testCases = nix.thunk(() => ({
-    [nix.POS]: pos$457,
+    [nix.POS]: $pos[456],
     loopback: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "Loopback",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         client: nix.thunk(() => nix.app(clientConfig, nix.thunk(() => ({})))),
       })),
       testScript: "start_all()\nclient.wait_for_unit(\"network.target\")\nloopback_addresses = client.succeed(\"ip addr show lo\")\nassert \"inet 127.0.0.1/8\" in loopback_addresses\nassert \"inet6 ::1/128\" in loopback_addresses\n",
     })),
     static: nix.thunk(() => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       name: "Static",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         router: router,
         client: nix.thunk(() => nix.app(clientConfig, nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                enp1s0: nix.thunk(() => ({ [nix.POS]: pos$8, vlan: 1n })),
-                enp2s0: nix.thunk(() => ({ [nix.POS]: pos$9, vlan: 2n })),
+                [nix.POS]: $pos[9],
+                enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[7], vlan: 1n })),
+                enp2s0: nix.thunk(() => ({ [nix.POS]: $pos[8], vlan: 2n })),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               defaultGateway: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 address: "192.168.1.1",
                 interface: "enp1s0",
                 source: "192.168.1.3",
               })),
               defaultGateway6: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 address: "fd00:1234:5678:1::1",
                 interface: "enp1s0",
                 source: "fd00:1234:5678:1::3",
               })),
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 enp1s0: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   ipv6: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$14, address: "fd00:1234:5678:1::2", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[13], address: "fd00:1234:5678:1::2", prefixLength: 64n })),
                     ]),
                   })),
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$16, address: "192.168.1.2", prefixLength: 24n })),
-                      nix.thunk(() => ({ [nix.POS]: pos$17, address: "192.168.1.3", prefixLength: 32n })),
-                      nix.thunk(() => ({ [nix.POS]: pos$18, address: "192.168.1.10", prefixLength: 32n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[15], address: "192.168.1.2", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[16], address: "192.168.1.3", prefixLength: 32n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[17], address: "192.168.1.10", prefixLength: 32n })),
                     ]),
                   })),
                 })),
                 enp2s0: nix.thunk(() => ({
-                  [nix.POS]: pos$25,
+                  [nix.POS]: $pos[24],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
+                    [nix.POS]: $pos[21],
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$21, address: "192.168.2.2", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[20], address: "192.168.2.2", prefixLength: 24n })),
                     ]),
                   })),
                   ipv6: nix.thunk(() => ({
-                    [nix.POS]: pos$24,
+                    [nix.POS]: $pos[23],
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$23, address: "fd00:1234:5678:1::3", prefixLength: 128n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[22], address: "fd00:1234:5678:1::3", prefixLength: 128n })),
                     ]),
                   })),
                 })),
@@ -571,48 +113,48 @@ export default nix.lambda((args) => (() => {
       testScript: "start_all()\n\nclient.wait_for_unit(\"network.target\")\nrouter.systemctl(\"start network-online.target\")\nrouter.wait_for_unit(\"network-online.target\")\n\nwith subtest(\"Make sure DHCP server is not started\"):\n    client.fail(\"systemctl status kea-dhcp4-server.service\")\n    client.fail(\"systemctl status kea-dhcp6-server.service\")\n\nwith subtest(\"Test vlan 1\"):\n    client.wait_until_succeeds(\"ping -c 1 192.168.1.1\")\n    router.wait_until_succeeds(\"ping -c 1 192.168.1.2\")\n    router.wait_until_succeeds(\"ping -c 1 192.168.1.3\")\n    router.wait_until_succeeds(\"ping -c 1 192.168.1.10\")\n\nwith subtest(\"Test vlan 2\"):\n    client.wait_until_succeeds(\"ping -c 1 192.168.2.1\")\n    router.wait_until_succeeds(\"ping -c 1 192.168.2.2\")\n\nwith subtest(\"Test default gateway\"):\n    client.wait_until_succeeds(\"ping -c 1 192.168.3.1\")\n    client.wait_until_succeeds(\"ping -c 1 fd00:1234:5678:1::1\")\n\nwith subtest(\"Test default addresses\"):\n    client.succeed(\"ip -4 route show default | grep -q 'src 192.168.1.3'\")\n    client.succeed(\"ip -6 route show default | grep -q 'src fd00:1234:5678:1::3'\")\n",
     })),
     dynamicInterface: nix.thunk(() => ({
-      [nix.POS]: pos$39,
+      [nix.POS]: $pos[38],
       name: "dynamicInterface",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         machine: nix.thunk(() => nix.app(clientConfig, nix.thunk(() => ({
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 usb0: nix.thunk(() => ({
-                  [nix.POS]: pos$33,
+                  [nix.POS]: $pos[32],
                   ipv6: nix.thunk(() => ({
-                    [nix.POS]: pos$32,
-                    addresses: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({ [nix.POS]: pos$31, address: "fd::1", prefixLength: 127n })))),
+                    [nix.POS]: $pos[31],
+                    addresses: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({ [nix.POS]: $pos[30], address: "fd::1", prefixLength: 127n })))),
                   })),
                 })),
               })),
-              defaultGateway6: nix.thunk(() => ({ [nix.POS]: pos$35, address: "fd::", interface: "usb0", source: "fd::1" })),
+              defaultGateway6: nix.thunk(() => ({ [nix.POS]: $pos[34], address: "fd::", interface: "usb0", source: "fd::1" })),
             })),
           })))),
       })),
       testScript: "with subtest(\"Network comes up without usb0\"):\n  machine.wait_for_unit(\"network.target\")\n\nwith subtest(\"multi-user.target does not hang\"):\n  machine.require_unit_state(\"multi-user.target\", \"active\")\n\nwith subtest(\"usb0 is configured when plugged in\"):\n  machine.succeed(\"ip link add usb0 type sit local 1.2.3.4\")\n  machine.wait_until_succeeds(\"ip addr show dev usb0 | grep -q fd::1\")\n\nwith subtest(\"Network is now online\"):\n  machine.systemctl(\"start network-online.target\")\n  machine.require_unit_state(\"network-online.target\", \"active\")\n\nwith subtest(\"Default gateway is now set\"):\n  machine.succeed(\"ip -6 route show default | grep -q 'via fd::'\")\n  machine.succeed(\"ip -6 route show default | grep -q 'src fd::1'\")\n",
     })),
     routeType: nix.thunk(() => ({
-      [nix.POS]: pos$47,
+      [nix.POS]: $pos[46],
       name: "RouteType",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$46,
+        [nix.POS]: $pos[45],
         client: nix.thunk(() => nix.app(clientConfig, nix.thunk(() => ({
-            [nix.POS]: pos$45,
+            [nix.POS]: $pos[44],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$44,
+              [nix.POS]: $pos[43],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$43,
+                [nix.POS]: $pos[42],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$42,
+                  [nix.POS]: $pos[41],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$41,
+                    [nix.POS]: $pos[40],
                     routes: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$40,
+                        [nix.POS]: $pos[39],
                         address: "192.168.1.127",
                         prefixLength: 32n,
                         type: "local",
@@ -627,23 +169,23 @@ export default nix.lambda((args) => (() => {
       testScript: "start_all()\nclient.wait_for_unit(\"network.target\")\nclient.succeed(\"ip -4 route list table local | grep 'local 192.168.1.127'\")\n",
     })),
     dhcpDefault: nix.thunk(() => ({
-      [nix.POS]: pos$55,
+      [nix.POS]: $pos[54],
       name: "useDHCP-by-default",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$54,
+        [nix.POS]: $pos[53],
         router: router,
         client: nix.thunk(() => ({
-          [nix.POS]: pos$53,
+          [nix.POS]: $pos[52],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$49,
-            interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({ [nix.POS]: pos$48, enp1s0: nix.thunk(() => ({})) })))),
+            [nix.POS]: $pos[48],
+            interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({ [nix.POS]: $pos[47], enp1s0: nix.thunk(() => ({})) })))),
             useNetworkd: networkd,
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$51,
-              enp1s0: nix.thunk(() => ({ [nix.POS]: pos$50, vlan: 1n })),
+              [nix.POS]: $pos[50],
+              enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[49], vlan: 1n })),
             })),
           })),
         })),
@@ -651,27 +193,27 @@ export default nix.lambda((args) => (() => {
       testScript: "start_all()\nclient.wait_for_unit(\"multi-user.target\")\nclient.wait_until_succeeds(\"ip addr show dev enp1s0 | grep '192.168.1'\")\nrouter.succeed(\"ping -c 1 192.168.1.1\")\nclient.succeed(\"ping -c 1 192.168.1.2\")\n",
     })),
     dhcpSimple: nix.thunk(() => ({
-      [nix.POS]: pos$66,
+      [nix.POS]: $pos[65],
       name: "SimpleDHCP",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$65,
+        [nix.POS]: $pos[64],
         router: router,
         client: nix.thunk(() => nix.app(clientConfig, nix.thunk(() => ({
-            [nix.POS]: pos$64,
+            [nix.POS]: $pos[63],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$59,
+              [nix.POS]: $pos[58],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$58,
-                enp1s0: nix.thunk(() => ({ [nix.POS]: pos$56, vlan: 1n })),
-                enp2s0: nix.thunk(() => ({ [nix.POS]: pos$57, vlan: 2n })),
+                [nix.POS]: $pos[57],
+                enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[55], vlan: 1n })),
+                enp2s0: nix.thunk(() => ({ [nix.POS]: $pos[56], vlan: 2n })),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$63,
+              [nix.POS]: $pos[62],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$62,
-                enp1s0: nix.thunk(() => ({ [nix.POS]: pos$60, useDHCP: true })),
-                enp2s0: nix.thunk(() => ({ [nix.POS]: pos$61, useDHCP: true })),
+                [nix.POS]: $pos[61],
+                enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[59], useDHCP: true })),
+                enp2s0: nix.thunk(() => ({ [nix.POS]: $pos[60], useDHCP: true })),
               })),
             })),
           })))),
@@ -711,31 +253,31 @@ with subtest("Test vlan 2"):
 `),
     })),
     dhcpHostname: nix.thunk(() => ({
-      [nix.POS]: pos$78,
+      [nix.POS]: $pos[77],
       name: "hostnameDHCP",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$77,
+        [nix.POS]: $pos[76],
         router: router,
         client: nix.thunk(() => nix.app(clientConfig, nix.thunk(() => ({
-            [nix.POS]: pos$76,
-            system: nix.thunk(() => ({ [nix.POS]: pos$67, name: "client" })),
+            [nix.POS]: $pos[75],
+            system: nix.thunk(() => ({ [nix.POS]: $pos[66], name: "client" })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$70,
+              [nix.POS]: $pos[69],
               hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "")),
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$69,
-                enp1s0: nix.thunk(() => ({ [nix.POS]: pos$68, useDHCP: true })),
+                [nix.POS]: $pos[68],
+                enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[67], useDHCP: true })),
               })),
             })),
             security: nix.thunk(() => ({
-              [nix.POS]: pos$72,
-              polkit: nix.thunk(() => ({ [nix.POS]: pos$71, enable: true })),
+              [nix.POS]: $pos[71],
+              polkit: nix.thunk(() => ({ [nix.POS]: $pos[70], enable: true })),
             })),
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$75,
+              [nix.POS]: $pos[74],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$74,
-                enp1s0: nix.thunk(() => ({ [nix.POS]: pos$73, vlan: 1n })),
+                [nix.POS]: $pos[73],
+                enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[72], vlan: 1n })),
               })),
             })),
           })))),
@@ -743,26 +285,26 @@ with subtest("Test vlan 2"):
       testScript: "router.start()\nrouter.systemctl(\"start network-online.target\")\nrouter.wait_for_unit(\"network-online.target\")\n\nclient.start()\nclient.wait_for_unit(\"network.target\")\n\nwith subtest(\"Wait until we have received the hostname\"):\n    client.wait_until_succeeds(\"hostname | grep -q 'client1'\")\n",
     })),
     dhcpOneIf: nix.thunk(() => ({
-      [nix.POS]: pos$88,
+      [nix.POS]: $pos[87],
       name: "OneInterfaceDHCP",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$87,
+        [nix.POS]: $pos[86],
         router: router,
         client: nix.thunk(() => nix.app(clientConfig, nix.thunk(() => ({
-            [nix.POS]: pos$86,
+            [nix.POS]: $pos[85],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$82,
+              [nix.POS]: $pos[81],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$81,
-                enp1s0: nix.thunk(() => ({ [nix.POS]: pos$79, vlan: 1n })),
-                enp2s0: nix.thunk(() => ({ [nix.POS]: pos$80, vlan: 2n })),
+                [nix.POS]: $pos[80],
+                enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[78], vlan: 1n })),
+                enp2s0: nix.thunk(() => ({ [nix.POS]: $pos[79], vlan: 2n })),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$85,
+              [nix.POS]: $pos[84],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$84,
-                enp1s0: nix.thunk(() => ({ [nix.POS]: pos$83, mtu: 1343n, useDHCP: true })),
+                [nix.POS]: $pos[83],
+                enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[82], mtu: 1343n, useDHCP: true })),
               })),
             })),
           })))),
@@ -771,44 +313,44 @@ with subtest("Test vlan 2"):
     })),
     bond: nix.thunk(() => (() => {
       const node = (address) => nix.app(clientConfig, nix.thunk(() => ({
-          [nix.POS]: pos$104,
+          [nix.POS]: $pos[103],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$92,
+            [nix.POS]: $pos[91],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$91,
-              enp1s0: nix.thunk(() => ({ [nix.POS]: pos$89, vlan: 1n })),
-              enp2s0: nix.thunk(() => ({ [nix.POS]: pos$90, vlan: 2n })),
+              [nix.POS]: $pos[90],
+              enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[88], vlan: 1n })),
+              enp2s0: nix.thunk(() => ({ [nix.POS]: $pos[89], vlan: 2n })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$100,
+            [nix.POS]: $pos[99],
             bonds: nix.thunk(() => ({
-              [nix.POS]: pos$95,
+              [nix.POS]: $pos[94],
               bond0: nix.thunk(() => ({
-                [nix.POS]: pos$94,
+                [nix.POS]: $pos[93],
                 interfaces: nix.thunk(() => ["enp1s0", "enp2s0"]),
-                driverOptions: nix.thunk(() => ({ [nix.POS]: pos$93, mode: "802.3ad" })),
+                driverOptions: nix.thunk(() => ({ [nix.POS]: $pos[92], mode: "802.3ad" })),
               })),
             })),
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$99,
+              [nix.POS]: $pos[98],
               bond0: nix.thunk(() => ({
-                [nix.POS]: pos$98,
+                [nix.POS]: $pos[97],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$97,
+                  [nix.POS]: $pos[96],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$96, address: address, prefixLength: 30n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[95], address: address, prefixLength: 30n })),
                     ]))),
                 })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$103,
+            [nix.POS]: $pos[102],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$102,
+              [nix.POS]: $pos[101],
               "fake-link-settings": nix.thunk(() => ({
-                [nix.POS]: pos$101,
+                [nix.POS]: $pos[100],
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ethtool"))]),
                 script: "ethtool -s enp1s0 speed 1000 duplex full\nethtool -s enp2s0 speed 1000 duplex full\n",
                 wantedBy: nix.thunk(() => ["network-pre.target"]),
@@ -817,10 +359,10 @@ with subtest("Test vlan 2"):
           })),
         })));
       return {
-        [nix.POS]: pos$106,
+        [nix.POS]: $pos[105],
         name: "Bond",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$105,
+          [nix.POS]: $pos[104],
           client1: nix.thunk(() => nix.app(node, "192.168.1.1")),
           client2: nix.thunk(() => nix.app(node, "192.168.1.2")),
         })),
@@ -836,26 +378,26 @@ with subtest("Test vlan 2"):
           const $_2 = nix.formals(args_2, formals$3);
           const pkgs_1 = nix.arg($_2, "pkgs");
           return {
-            [nix.POS]: pos$115,
+            [nix.POS]: $pos[114],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$109,
+              [nix.POS]: $pos[108],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$108,
-                enp1s0: nix.thunk(() => ({ [nix.POS]: pos$107, vlan: vlan })),
+                [nix.POS]: $pos[107],
+                enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[106], vlan: vlan })),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$114,
+              [nix.POS]: $pos[113],
               useNetworkd: networkd,
               useDHCP: false,
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$113,
+                [nix.POS]: $pos[112],
                 enp1s0: nix.thunk(() => ({
-                  [nix.POS]: pos$112,
+                  [nix.POS]: $pos[111],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$111,
+                    [nix.POS]: $pos[110],
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$110, address: address, prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[109], address: address, prefixLength: 24n })),
                     ]),
                   })),
                 })),
@@ -865,52 +407,52 @@ with subtest("Test vlan 2"):
         })(), formals$3);
       })(), formals$2);
       return {
-        [nix.POS]: pos$135,
+        [nix.POS]: $pos[134],
         name: "Bridge",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$134,
-          client1: nix.thunk(() => nix.app(node, nix.thunk(() => ({ [nix.POS]: pos$116, address: "192.168.1.2", vlan: 1n })))),
-          client2: nix.thunk(() => nix.app(node, nix.thunk(() => ({ [nix.POS]: pos$117, address: "192.168.1.3", vlan: 2n })))),
+          [nix.POS]: $pos[133],
+          client1: nix.thunk(() => nix.app(node, nix.thunk(() => ({ [nix.POS]: $pos[115], address: "192.168.1.2", vlan: 1n })))),
+          client2: nix.thunk(() => nix.app(node, nix.thunk(() => ({ [nix.POS]: $pos[116], address: "192.168.1.3", vlan: 2n })))),
           router: nix.thunk(() => ({
-            [nix.POS]: pos$133,
+            [nix.POS]: $pos[132],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$121,
+              [nix.POS]: $pos[120],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$120,
-                enp1s0: nix.thunk(() => ({ [nix.POS]: pos$118, vlan: 1n })),
-                enp2s0: nix.thunk(() => ({ [nix.POS]: pos$119, vlan: 2n })),
+                [nix.POS]: $pos[119],
+                enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[117], vlan: 1n })),
+                enp2s0: nix.thunk(() => ({ [nix.POS]: $pos[118], vlan: 2n })),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$132,
+              [nix.POS]: $pos[131],
               useNetworkd: networkd,
               useDHCP: false,
               bridges: nix.thunk(() => ({
-                [nix.POS]: pos$123,
-                bridge: nix.thunk(() => ({ [nix.POS]: pos$122, interfaces: nix.thunk(() => ["enp1s0", "enp2s0"]) })),
+                [nix.POS]: $pos[122],
+                bridge: nix.thunk(() => ({ [nix.POS]: $pos[121], interfaces: nix.thunk(() => ["enp1s0", "enp2s0"]) })),
               })),
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$131,
+                [nix.POS]: $pos[130],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$125,
+                  [nix.POS]: $pos[124],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$124,
+                    [nix.POS]: $pos[123],
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, [])),
                   })),
                 })),
                 eth2: nix.thunk(() => ({
-                  [nix.POS]: pos$127,
+                  [nix.POS]: $pos[126],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$126,
+                    [nix.POS]: $pos[125],
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, [])),
                   })),
                 })),
                 bridge: nix.thunk(() => ({
-                  [nix.POS]: pos$130,
+                  [nix.POS]: $pos[129],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$129,
+                    [nix.POS]: $pos[128],
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$128, address: "192.168.1.1", prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[127], address: "192.168.1.1", prefixLength: 24n })),
                       ]))),
                   })),
                 })),
@@ -922,40 +464,40 @@ with subtest("Test vlan 2"):
       };
     })()),
     macvlan: nix.thunk(() => ({
-      [nix.POS]: pos$149,
+      [nix.POS]: $pos[148],
       name: "MACVLAN",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$148,
+        [nix.POS]: $pos[147],
         router: router,
         client: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$147,
+            [nix.POS]: $pos[146],
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$136,
+              [nix.POS]: $pos[135],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "iptables"))]),
             })),
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$139,
+              [nix.POS]: $pos[138],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$138,
-                enp1s0: nix.thunk(() => ({ [nix.POS]: pos$137, vlan: 1n })),
+                [nix.POS]: $pos[137],
+                enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[136], vlan: 1n })),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$146,
+              [nix.POS]: $pos[145],
               useNetworkd: networkd,
               useDHCP: false,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$140, logReversePathDrops: true, checkReversePath: false })),
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[139], logReversePathDrops: true, checkReversePath: false })),
               macvlans: nix.thunk(() => ({
-                [nix.POS]: pos$142,
-                macvlan: nix.thunk(() => ({ [nix.POS]: pos$141, interface: "enp1s0" })),
+                [nix.POS]: $pos[141],
+                macvlan: nix.thunk(() => ({ [nix.POS]: $pos[140], interface: "enp1s0" })),
               })),
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$145,
-                enp1s0: nix.thunk(() => ({ [nix.POS]: pos$143, useDHCP: true })),
-                macvlan: nix.thunk(() => ({ [nix.POS]: pos$144, useDHCP: true })),
+                [nix.POS]: $pos[144],
+                enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[142], useDHCP: true })),
+                macvlan: nix.thunk(() => ({ [nix.POS]: $pos[143], useDHCP: true })),
               })),
             })),
           };
@@ -964,27 +506,27 @@ with subtest("Test vlan 2"):
       testScript: "start_all()\n\nwith subtest(\"Wait for networking to come up\"):\n    client.wait_for_unit(\"network.target\")\n    router.wait_for_unit(\"network.target\")\n\nwith subtest(\"Wait until we have an ip address on each interface\"):\n    client.wait_until_succeeds(\"ip addr show dev enp1s0 | grep -q '192.168.1'\")\n    client.wait_until_succeeds(\"ip addr show dev macvlan | grep -q '192.168.1'\")\n\nwith subtest(\"Print lots of diagnostic information\"):\n    router.log(\"**********************************************\")\n    router.succeed(\"ip addr >&2\")\n    router.succeed(\"ip route >&2\")\n    router.execute(\"iptables-save >&2\")\n    client.log(\"==============================================\")\n    client.succeed(\"ip addr >&2\")\n    client.succeed(\"ip route >&2\")\n    client.execute(\"iptables-save >&2\")\n    client.log(\"##############################################\")\n\nwith subtest(\"Test macvlan creates routable ips\"):\n    client.wait_until_succeeds(\"ping -c 1 192.168.1.1\")\n    client.wait_until_succeeds(\"ping -c 1 192.168.1.2\")\n    client.wait_until_succeeds(\"ping -c 1 192.168.1.3\")\n\n    router.wait_until_succeeds(\"ping -c 1 192.168.1.1\")\n    router.wait_until_succeeds(\"ping -c 1 192.168.1.2\")\n    router.wait_until_succeeds(\"ping -c 1 192.168.1.3\")\n",
     })),
     ipvlan: nix.thunk(() => ({
-      [nix.POS]: pos$159,
+      [nix.POS]: $pos[158],
       name: "IPVLAN",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$158,
+        [nix.POS]: $pos[157],
         client: nix.thunk(() => ({
-          [nix.POS]: pos$157,
+          [nix.POS]: $pos[156],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$152,
+            [nix.POS]: $pos[151],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$151,
-              enp1s0: nix.thunk(() => ({ [nix.POS]: pos$150, vlan: 1n })),
+              [nix.POS]: $pos[150],
+              enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[149], vlan: 1n })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$156,
+            [nix.POS]: $pos[155],
             useNetworkd: networkd,
             useDHCP: false,
             ipvlans: nix.thunk(() => ({
-              [nix.POS]: pos$155,
-              ipvlan1: nix.thunk(() => ({ [nix.POS]: pos$153, interface: "enp1s0" })),
-              ipvlan2: nix.thunk(() => ({ [nix.POS]: pos$154, interface: "enp1s0" })),
+              [nix.POS]: $pos[154],
+              ipvlan1: nix.thunk(() => ({ [nix.POS]: $pos[152], interface: "enp1s0" })),
+              ipvlan2: nix.thunk(() => ({ [nix.POS]: $pos[153], interface: "enp1s0" })),
             })),
           })),
         })),
@@ -992,55 +534,55 @@ with subtest("Test vlan 2"):
       testScript: "with subtest(\"Wait for networking to come up\"):\n    client.wait_for_unit(\"network.target\")\n\nwith subtest(\"Can move IPVLANs to separate network namespaces\"):\n    client.succeed(\"ip netns add ns1 && ip link set dev ipvlan1 netns ns1\")\n    client.succeed(\"ip netns add ns2 && ip link set dev ipvlan2 netns ns2\")\n\nwith subtest(\"Can configure the IPVLAN interfaces\"):\n    client.succeed(\"ip netns exec ns1 ip addr add 192.168.1.1/24 dev ipvlan1\")\n    client.succeed(\"ip netns exec ns2 ip addr add 192.168.1.2/24 dev ipvlan2\")\n    client.succeed(\"ip netns exec ns1 ip link set dev ipvlan1 up\")\n    client.succeed(\"ip netns exec ns2 ip link set dev ipvlan2 up\")\n\nwith subtest(\"IPVLAN interfaces can ping each other\"):\n    client.succeed(\"ip netns exec ns1 ping -c 1 192.168.1.2\")\n    client.succeed(\"ip netns exec ns2 ping -c 1 192.168.1.1\")\n",
     })),
     fou: nix.thunk(() => ({
-      [nix.POS]: pos$180,
+      [nix.POS]: $pos[179],
       name: "foo-over-udp",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$179,
+        [nix.POS]: $pos[178],
         machine: nix.thunk(() => nix.app(clientConfig, nix.thunk(() => ({
-            [nix.POS]: pos$178,
+            [nix.POS]: $pos[177],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$162,
+              [nix.POS]: $pos[161],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$161,
-                enp1s0: nix.thunk(() => ({ [nix.POS]: pos$160, vlan: 1n })),
+                [nix.POS]: $pos[160],
+                enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[159], vlan: 1n })),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$174,
+              [nix.POS]: $pos[173],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$166,
+                [nix.POS]: $pos[165],
                 enp1s0: nix.thunk(() => ({
-                  [nix.POS]: pos$165,
+                  [nix.POS]: $pos[164],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$164,
+                    [nix.POS]: $pos[163],
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$163, address: "192.168.1.1", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[162], address: "192.168.1.1", prefixLength: 24n })),
                     ]),
                   })),
                 })),
               })),
               fooOverUDP: nix.thunk(() => ({
-                [nix.POS]: pos$173,
-                fou1: nix.thunk(() => ({ [nix.POS]: pos$167, port: 9001n })),
-                fou2: nix.thunk(() => ({ [nix.POS]: pos$168, port: 9002n, protocol: 41n })),
+                [nix.POS]: $pos[172],
+                fou1: nix.thunk(() => ({ [nix.POS]: $pos[166], port: 9001n })),
+                fou2: nix.thunk(() => ({ [nix.POS]: $pos[167], port: 9002n, protocol: 41n })),
                 fou3: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(networkd)), nix.thunk(() => ({
-                    [nix.POS]: pos$170,
+                    [nix.POS]: $pos[169],
                     port: 9003n,
-                    local: nix.thunk(() => ({ [nix.POS]: pos$169, address: "192.168.1.1" })),
+                    local: nix.thunk(() => ({ [nix.POS]: $pos[168], address: "192.168.1.1" })),
                   })))),
                 fou4: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(networkd)), nix.thunk(() => ({
-                    [nix.POS]: pos$172,
+                    [nix.POS]: $pos[171],
                     port: 9004n,
-                    local: nix.thunk(() => ({ [nix.POS]: pos$171, address: "192.168.1.1", dev: "enp1s0" })),
+                    local: nix.thunk(() => ({ [nix.POS]: $pos[170], address: "192.168.1.1", dev: "enp1s0" })),
                   })))),
               })),
             })),
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$177,
+              [nix.POS]: $pos[176],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$176,
+                [nix.POS]: $pos[175],
                 "fou3-fou-encap": nix.thunk(() => ({
-                  [nix.POS]: pos$175,
+                  [nix.POS]: $pos[174],
                   after: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(networkd)), "network-addresses-enp1s0.service")),
                 })),
               })),
@@ -1056,41 +598,41 @@ with subtest("Test vlan 2"):
         const remote = nix.arg($_1, "remote");
         const address6 = nix.arg($_1, "address6");
         return {
-          [nix.POS]: pos$196,
+          [nix.POS]: $pos[195],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$183,
+            [nix.POS]: $pos[182],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$182,
-              enp1s0: nix.thunk(() => ({ [nix.POS]: pos$181, vlan: 1n })),
+              [nix.POS]: $pos[181],
+              enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[180], vlan: 1n })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$195,
+            [nix.POS]: $pos[194],
             useNetworkd: networkd,
             useDHCP: false,
             sits: nix.thunk(() => ({
-              [nix.POS]: pos$185,
-              sit: nix.thunk(() => ({ [nix.POS]: pos$184, remote: remote, local: address4, dev: "enp1s0" })),
+              [nix.POS]: $pos[184],
+              sit: nix.thunk(() => ({ [nix.POS]: $pos[183], remote: remote, local: address4, dev: "enp1s0" })),
             })),
-            nftables: nix.thunk(() => ({ [nix.POS]: pos$186, enable: true })),
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$187, extraInputRules: "meta l4proto 41 accept" })),
+            nftables: nix.thunk(() => ({ [nix.POS]: $pos[185], enable: true })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[186], extraInputRules: "meta l4proto 41 accept" })),
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$194,
+              [nix.POS]: $pos[193],
               enp1s0: nix.thunk(() => ({
-                [nix.POS]: pos$190,
+                [nix.POS]: $pos[189],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$189,
+                  [nix.POS]: $pos[188],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$188, address: address4, prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[187], address: address4, prefixLength: 24n })),
                     ]))),
                 })),
               })),
               sit: nix.thunk(() => ({
-                [nix.POS]: pos$193,
+                [nix.POS]: $pos[192],
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$192,
+                  [nix.POS]: $pos[191],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$191, address: address6, prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[190], address: address6, prefixLength: 64n })),
                     ]))),
                 })),
               })),
@@ -1099,18 +641,18 @@ with subtest("Test vlan 2"):
         };
       })(), formals$5);
       return {
-        [nix.POS]: pos$200,
+        [nix.POS]: $pos[199],
         name: "Sit-6in4",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$199,
+          [nix.POS]: $pos[198],
           client1: nix.thunk(() => nix.app(node, nix.thunk(() => ({
-              [nix.POS]: pos$197,
+              [nix.POS]: $pos[196],
               address4: "192.168.1.1",
               remote: "192.168.1.2",
               address6: "fc00::1",
             })))),
           client2: nix.thunk(() => nix.app(node, nix.thunk(() => ({
-              [nix.POS]: pos$198,
+              [nix.POS]: $pos[197],
               address4: "192.168.1.2",
               remote: "192.168.1.1",
               address6: "fc00::2",
@@ -1129,39 +671,39 @@ with subtest("Test vlan 2"):
           const $_2 = nix.formals(args_2, formals$7);
           const pkgs_1 = nix.arg($_2, "pkgs");
           return {
-            [nix.POS]: pos$214,
+            [nix.POS]: $pos[213],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$203,
+              [nix.POS]: $pos[202],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$202,
-                enp1s0: nix.thunk(() => ({ [nix.POS]: pos$201, vlan: 1n })),
+                [nix.POS]: $pos[201],
+                enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[200], vlan: 1n })),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$213,
+              [nix.POS]: $pos[212],
               useNetworkd: networkd,
               useDHCP: false,
               sits: nix.thunk(() => ({
-                [nix.POS]: pos$205,
-                sit: nix.thunk(() => ({ [nix.POS]: pos$204, remote: remote, local: address4, dev: "enp1s0" })),
+                [nix.POS]: $pos[204],
+                sit: nix.thunk(() => ({ [nix.POS]: $pos[203], remote: remote, local: address4, dev: "enp1s0" })),
               })),
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$212,
+                [nix.POS]: $pos[211],
                 enp1s0: nix.thunk(() => ({
-                  [nix.POS]: pos$208,
+                  [nix.POS]: $pos[207],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$207,
+                    [nix.POS]: $pos[206],
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$206, address: address4, prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[205], address: address4, prefixLength: 24n })),
                       ]))),
                   })),
                 })),
                 sit: nix.thunk(() => ({
-                  [nix.POS]: pos$211,
+                  [nix.POS]: $pos[210],
                   ipv6: nix.thunk(() => ({
-                    [nix.POS]: pos$210,
+                    [nix.POS]: $pos[209],
                     addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$209, address: address6, prefixLength: 64n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[208], address: address6, prefixLength: 64n })),
                       ]))),
                   })),
                 })),
@@ -1171,32 +713,32 @@ with subtest("Test vlan 2"):
         })(), formals$7);
       })(), formals$6);
       return {
-        [nix.POS]: pos$230,
+        [nix.POS]: $pos[229],
         name: "Sit-fou",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$229,
+          [nix.POS]: $pos[228],
           client1: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$8);
             const args_2 = args_1;
             const pkgs_1 = nix.arg($_1, "pkgs");
             return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(node, nix.thunk(() => ({
-                    [nix.POS]: pos$215,
+                    [nix.POS]: $pos[214],
                     address4: "192.168.1.1",
                     remote: "192.168.1.2",
                     address6: "fc00::1",
                   })), args_2)),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$222,
+                  [nix.POS]: $pos[221],
                   networking: nix.thunk(() => ({
-                    [nix.POS]: pos$221,
-                    nftables: nix.thunk(() => ({ [nix.POS]: pos$216, enable: true })),
-                    firewall: nix.thunk(() => ({ [nix.POS]: pos$217, extraInputRules: "meta l4proto 41 accept" })),
+                    [nix.POS]: $pos[220],
+                    nftables: nix.thunk(() => ({ [nix.POS]: $pos[215], enable: true })),
+                    firewall: nix.thunk(() => ({ [nix.POS]: $pos[216], extraInputRules: "meta l4proto 41 accept" })),
                     sits: nix.thunk(() => ({
-                      [nix.POS]: pos$220,
+                      [nix.POS]: $pos[219],
                       sit: nix.thunk(() => ({
-                        [nix.POS]: pos$219,
-                        encapsulation: nix.thunk(() => ({ [nix.POS]: pos$218, type: "fou", port: 9001n })),
+                        [nix.POS]: $pos[218],
+                        encapsulation: nix.thunk(() => ({ [nix.POS]: $pos[217], type: "fou", port: 9001n })),
                       })),
                     })),
                   })),
@@ -1209,19 +751,19 @@ with subtest("Test vlan 2"):
             const pkgs_1 = nix.arg($_1, "pkgs");
             return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(node, nix.thunk(() => ({
-                    [nix.POS]: pos$223,
+                    [nix.POS]: $pos[222],
                     address4: "192.168.1.2",
                     remote: "192.168.1.1",
                     address6: "fc00::2",
                   })), args_2)),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$228,
+                  [nix.POS]: $pos[227],
                   networking: nix.thunk(() => ({
-                    [nix.POS]: pos$227,
-                    firewall: nix.thunk(() => ({ [nix.POS]: pos$224, allowedUDPPorts: nix.thunk(() => [9001n]) })),
+                    [nix.POS]: $pos[226],
+                    firewall: nix.thunk(() => ({ [nix.POS]: $pos[223], allowedUDPPorts: nix.thunk(() => [9001n]) })),
                     fooOverUDP: nix.thunk(() => ({
-                      [nix.POS]: pos$226,
-                      fou1: nix.thunk(() => ({ [nix.POS]: pos$225, port: 9001n, protocol: 41n })),
+                      [nix.POS]: $pos[225],
+                      fou1: nix.thunk(() => ({ [nix.POS]: $pos[224], port: 9001n, protocol: 41n })),
                     })),
                   })),
                 })),
@@ -1238,51 +780,51 @@ with subtest("Test vlan 2"):
         const remote = nix.arg($_1, "remote");
         const address6 = nix.arg($_1, "address6");
         return {
-          [nix.POS]: pos$247,
+          [nix.POS]: $pos[246],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$233,
+            [nix.POS]: $pos[232],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$232,
-              enp1s0: nix.thunk(() => ({ [nix.POS]: pos$231, vlan: 1n })),
+              [nix.POS]: $pos[231],
+              enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[230], vlan: 1n })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$246,
+            [nix.POS]: $pos[245],
             useNetworkd: networkd,
             useDHCP: false,
             ipips: nix.thunk(() => ({
-              [nix.POS]: pos$236,
+              [nix.POS]: $pos[235],
               "4in6": nix.thunk(() => ({
-                [nix.POS]: pos$235,
+                [nix.POS]: $pos[234],
                 remote: remote,
                 local: address6,
                 dev: "enp1s0",
-                encapsulation: nix.thunk(() => ({ [nix.POS]: pos$234, type: "4in6" })),
+                encapsulation: nix.thunk(() => ({ [nix.POS]: $pos[233], type: "4in6" })),
               })),
             })),
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$237,
+              [nix.POS]: $pos[236],
               enable: false,
               extraInputRules: "meta l4proto ipip accept",
             })),
-            nftables: nix.thunk(() => ({ [nix.POS]: pos$238, enable: true })),
+            nftables: nix.thunk(() => ({ [nix.POS]: $pos[237], enable: true })),
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$245,
+              [nix.POS]: $pos[244],
               enp1s0: nix.thunk(() => ({
-                [nix.POS]: pos$241,
+                [nix.POS]: $pos[240],
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$240,
+                  [nix.POS]: $pos[239],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$239, address: address6, prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[238], address: address6, prefixLength: 64n })),
                     ]))),
                 })),
               })),
               "4in6": nix.thunk(() => ({
-                [nix.POS]: pos$244,
+                [nix.POS]: $pos[243],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$243,
+                  [nix.POS]: $pos[242],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$242, address: address4, prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[241], address: address4, prefixLength: 24n })),
                     ]))),
                 })),
               })),
@@ -1291,18 +833,18 @@ with subtest("Test vlan 2"):
         };
       })(), formals$10);
       return {
-        [nix.POS]: pos$251,
+        [nix.POS]: $pos[250],
         name: "ipip-4in6",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$250,
+          [nix.POS]: $pos[249],
           client1: nix.thunk(() => nix.app(node, nix.thunk(() => ({
-              [nix.POS]: pos$248,
+              [nix.POS]: $pos[247],
               address6: "fc00::1",
               address4: "192.168.1.1",
               remote: "fc00::2",
             })))),
           client2: nix.thunk(() => nix.app(node, nix.thunk(() => ({
-              [nix.POS]: pos$249,
+              [nix.POS]: $pos[248],
               address6: "fc00::2",
               address4: "192.168.1.2",
               remote: "fc00::1",
@@ -1318,45 +860,47 @@ with subtest("Test vlan 2"):
         const remote = nix.arg($_1, "remote");
         const address = nix.arg($_1, "address");
         return {
-          [nix.POS]: pos$268,
+          [nix.POS]: $pos[267],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$254,
+            [nix.POS]: $pos[253],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$253,
-              enp1s0: nix.thunk(() => ({ [nix.POS]: pos$252, vlan: 1n })),
+              [nix.POS]: $pos[252],
+              enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[251], vlan: 1n })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$267,
+            [nix.POS]: $pos[266],
             useNetworkd: networkd,
             useDHCP: false,
             ipips: nix.thunk(() => ({
-              [nix.POS]: pos$257,
+              [nix.POS]: $pos[256],
               ipip: nix.thunk(() => ({
-                [nix.POS]: pos$256,
+                [nix.POS]: $pos[255],
                 local: local,
                 remote: remote,
                 dev: "enp1s0",
-                encapsulation: nix.thunk(() => ({ [nix.POS]: pos$255, type: "ipip" })),
+                encapsulation: nix.thunk(() => ({ [nix.POS]: $pos[254], type: "ipip" })),
               })),
             })),
-            nftables: nix.thunk(() => ({ [nix.POS]: pos$258, enable: true })),
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$259, extraInputRules: "meta l4proto 4 accept" })),
+            nftables: nix.thunk(() => ({ [nix.POS]: $pos[257], enable: true })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[258], extraInputRules: "meta l4proto 4 accept" })),
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$266,
+              [nix.POS]: $pos[265],
               enp1s0: nix.thunk(() => ({
-                [nix.POS]: pos$262,
+                [nix.POS]: $pos[261],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$261,
-                  addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$260, address: local, prefixLength: 24n }))]))),
+                  [nix.POS]: $pos[260],
+                  addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
+                      nix.thunk(() => ({ [nix.POS]: $pos[259], address: local, prefixLength: 24n })),
+                    ]))),
                 })),
               })),
               ipip: nix.thunk(() => ({
-                [nix.POS]: pos$265,
+                [nix.POS]: $pos[264],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$264,
+                  [nix.POS]: $pos[263],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$263, address: address, prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[262], address: address, prefixLength: 24n })),
                     ]))),
                 })),
               })),
@@ -1365,18 +909,18 @@ with subtest("Test vlan 2"):
         };
       })(), formals$11);
       return {
-        [nix.POS]: pos$272,
+        [nix.POS]: $pos[271],
         name: "ipip",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$271,
+          [nix.POS]: $pos[270],
           client1: nix.thunk(() => nix.app(node, nix.thunk(() => ({
-              [nix.POS]: pos$269,
+              [nix.POS]: $pos[268],
               local: "192.168.1.1",
               remote: "192.168.1.2",
               address: "192.168.10.1",
             })))),
           client2: nix.thunk(() => nix.app(node, nix.thunk(() => ({
-              [nix.POS]: pos$270,
+              [nix.POS]: $pos[269],
               local: "192.168.1.2",
               remote: "192.168.1.1",
               address: "192.168.10.2",
@@ -1389,23 +933,23 @@ with subtest("Test vlan 2"):
       const node = nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$12);
         return {
-          [nix.POS]: pos$275,
+          [nix.POS]: $pos[274],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$274,
+            [nix.POS]: $pos[273],
             useNetworkd: networkd,
             useDHCP: false,
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$273,
+              [nix.POS]: $pos[272],
               extraCommands: "ip6tables -A nixos-fw -p gre -j nixos-fw-accept",
             })),
           })),
         };
       })(), formals$12);
       return {
-        [nix.POS]: pos$319,
+        [nix.POS]: $pos[318],
         name: "GRE",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$318,
+          [nix.POS]: $pos[317],
           client1: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$13);
             const args_2 = args_1;
@@ -1413,14 +957,14 @@ with subtest("Test vlan 2"):
             return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(node, args_2)),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$296,
-                  virtualisation: nix.thunk(() => ({ [nix.POS]: pos$276, vlans: nix.thunk(() => [1n, 2n, 4n]) })),
+                  [nix.POS]: $pos[295],
+                  virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[275], vlans: nix.thunk(() => [1n, 2n, 4n]) })),
                   networking: nix.thunk(() => ({
-                    [nix.POS]: pos$295,
+                    [nix.POS]: $pos[294],
                     greTunnels: nix.thunk(() => ({
-                      [nix.POS]: pos$279,
+                      [nix.POS]: $pos[278],
                       greTunnel: nix.thunk(() => ({
-                        [nix.POS]: pos$277,
+                        [nix.POS]: $pos[276],
                         local: "192.168.2.1",
                         remote: "192.168.2.2",
                         dev: "eth2",
@@ -1428,7 +972,7 @@ with subtest("Test vlan 2"):
                         type: "tap",
                       })),
                       gre6Tunnel: nix.thunk(() => ({
-                        [nix.POS]: pos$278,
+                        [nix.POS]: $pos[277],
                         local: "fd00:1234:5678:4::1",
                         remote: "fd00:1234:5678:4::2",
                         dev: "eth3",
@@ -1437,46 +981,46 @@ with subtest("Test vlan 2"):
                       })),
                     })),
                     bridges: nix.thunk(() => ({
-                      [nix.POS]: pos$281,
-                      bridge: nix.thunk(() => ({ [nix.POS]: pos$280, interfaces: nix.thunk(() => ["greTunnel", "eth1"]) })),
+                      [nix.POS]: $pos[280],
+                      bridge: nix.thunk(() => ({ [nix.POS]: $pos[279], interfaces: nix.thunk(() => ["greTunnel", "eth1"]) })),
                     })),
                     interfaces: nix.thunk(() => ({
-                      [nix.POS]: pos$294,
+                      [nix.POS]: $pos[293],
                       eth1: nix.thunk(() => ({
-                        [nix.POS]: pos$284,
+                        [nix.POS]: $pos[283],
                         ipv4: nix.thunk(() => ({
-                          [nix.POS]: pos$282,
+                          [nix.POS]: $pos[281],
                           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, [])),
                         })),
                         ipv6: nix.thunk(() => ({
-                          [nix.POS]: pos$283,
+                          [nix.POS]: $pos[282],
                           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, [])),
                         })),
                       })),
                       bridge: nix.thunk(() => ({
-                        [nix.POS]: pos$287,
+                        [nix.POS]: $pos[286],
                         ipv4: nix.thunk(() => ({
-                          [nix.POS]: pos$286,
+                          [nix.POS]: $pos[285],
                           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
-                              nix.thunk(() => ({ [nix.POS]: pos$285, address: "192.168.1.1", prefixLength: 24n })),
+                              nix.thunk(() => ({ [nix.POS]: $pos[284], address: "192.168.1.1", prefixLength: 24n })),
                             ]))),
                         })),
                       })),
                       eth3: nix.thunk(() => ({
-                        [nix.POS]: pos$290,
+                        [nix.POS]: $pos[289],
                         ipv6: nix.thunk(() => ({
-                          [nix.POS]: pos$289,
+                          [nix.POS]: $pos[288],
                           addresses: nix.thunk(() => [
-                            nix.thunk(() => ({ [nix.POS]: pos$288, address: "fd00:1234:5678:4::1", prefixLength: 64n })),
+                            nix.thunk(() => ({ [nix.POS]: $pos[287], address: "fd00:1234:5678:4::1", prefixLength: 64n })),
                           ]),
                         })),
                       })),
                       gre6Tunnel: nix.thunk(() => ({
-                        [nix.POS]: pos$293,
+                        [nix.POS]: $pos[292],
                         ipv6: nix.thunk(() => ({
-                          [nix.POS]: pos$292,
+                          [nix.POS]: $pos[291],
                           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
-                              nix.thunk(() => ({ [nix.POS]: pos$291, address: "fc00::1", prefixLength: 64n })),
+                              nix.thunk(() => ({ [nix.POS]: $pos[290], address: "fc00::1", prefixLength: 64n })),
                             ]))),
                         })),
                       })),
@@ -1492,14 +1036,14 @@ with subtest("Test vlan 2"):
             return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(node, args_2)),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$317,
-                  virtualisation: nix.thunk(() => ({ [nix.POS]: pos$297, vlans: nix.thunk(() => [2n, 3n, 4n]) })),
+                  [nix.POS]: $pos[316],
+                  virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[296], vlans: nix.thunk(() => [2n, 3n, 4n]) })),
                   networking: nix.thunk(() => ({
-                    [nix.POS]: pos$316,
+                    [nix.POS]: $pos[315],
                     greTunnels: nix.thunk(() => ({
-                      [nix.POS]: pos$300,
+                      [nix.POS]: $pos[299],
                       greTunnel: nix.thunk(() => ({
-                        [nix.POS]: pos$298,
+                        [nix.POS]: $pos[297],
                         local: "192.168.2.2",
                         remote: "192.168.2.1",
                         dev: "eth1",
@@ -1507,7 +1051,7 @@ with subtest("Test vlan 2"):
                         type: "tap",
                       })),
                       gre6Tunnel: nix.thunk(() => ({
-                        [nix.POS]: pos$299,
+                        [nix.POS]: $pos[298],
                         local: "fd00:1234:5678:4::2",
                         remote: "fd00:1234:5678:4::1",
                         dev: "eth3",
@@ -1516,46 +1060,46 @@ with subtest("Test vlan 2"):
                       })),
                     })),
                     bridges: nix.thunk(() => ({
-                      [nix.POS]: pos$302,
-                      bridge: nix.thunk(() => ({ [nix.POS]: pos$301, interfaces: nix.thunk(() => ["greTunnel", "eth2"]) })),
+                      [nix.POS]: $pos[301],
+                      bridge: nix.thunk(() => ({ [nix.POS]: $pos[300], interfaces: nix.thunk(() => ["greTunnel", "eth2"]) })),
                     })),
                     interfaces: nix.thunk(() => ({
-                      [nix.POS]: pos$315,
+                      [nix.POS]: $pos[314],
                       eth2: nix.thunk(() => ({
-                        [nix.POS]: pos$305,
+                        [nix.POS]: $pos[304],
                         ipv4: nix.thunk(() => ({
-                          [nix.POS]: pos$303,
+                          [nix.POS]: $pos[302],
                           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, [])),
                         })),
                         ipv6: nix.thunk(() => ({
-                          [nix.POS]: pos$304,
+                          [nix.POS]: $pos[303],
                           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, [])),
                         })),
                       })),
                       bridge: nix.thunk(() => ({
-                        [nix.POS]: pos$308,
+                        [nix.POS]: $pos[307],
                         ipv4: nix.thunk(() => ({
-                          [nix.POS]: pos$307,
+                          [nix.POS]: $pos[306],
                           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
-                              nix.thunk(() => ({ [nix.POS]: pos$306, address: "192.168.1.2", prefixLength: 24n })),
+                              nix.thunk(() => ({ [nix.POS]: $pos[305], address: "192.168.1.2", prefixLength: 24n })),
                             ]))),
                         })),
                       })),
                       eth3: nix.thunk(() => ({
-                        [nix.POS]: pos$311,
+                        [nix.POS]: $pos[310],
                         ipv6: nix.thunk(() => ({
-                          [nix.POS]: pos$310,
+                          [nix.POS]: $pos[309],
                           addresses: nix.thunk(() => [
-                            nix.thunk(() => ({ [nix.POS]: pos$309, address: "fd00:1234:5678:4::2", prefixLength: 64n })),
+                            nix.thunk(() => ({ [nix.POS]: $pos[308], address: "fd00:1234:5678:4::2", prefixLength: 64n })),
                           ]),
                         })),
                       })),
                       gre6Tunnel: nix.thunk(() => ({
-                        [nix.POS]: pos$314,
+                        [nix.POS]: $pos[313],
                         ipv6: nix.thunk(() => ({
-                          [nix.POS]: pos$313,
+                          [nix.POS]: $pos[312],
                           addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
-                              nix.thunk(() => ({ [nix.POS]: pos$312, address: "fc00::2", prefixLength: 64n })),
+                              nix.thunk(() => ({ [nix.POS]: $pos[311], address: "fc00::2", prefixLength: 64n })),
                             ]))),
                         })),
                       })),
@@ -1570,37 +1114,37 @@ with subtest("Test vlan 2"):
     })()),
     vlan: nix.thunk(() => (() => {
       const node = (address) => ({
-        [nix.POS]: pos$331,
+        [nix.POS]: $pos[330],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$330,
+          [nix.POS]: $pos[329],
           useNetworkd: networkd,
           useDHCP: false,
           vlans: nix.thunk(() => ({
-            [nix.POS]: pos$321,
-            vlan: nix.thunk(() => ({ [nix.POS]: pos$320, id: 1n, interface: "eth0" })),
+            [nix.POS]: $pos[320],
+            vlan: nix.thunk(() => ({ [nix.POS]: $pos[319], id: 1n, interface: "eth0" })),
           })),
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$329,
+            [nix.POS]: $pos[328],
             eth0: nix.thunk(() => ({
-              [nix.POS]: pos$323,
+              [nix.POS]: $pos[322],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$322,
+                [nix.POS]: $pos[321],
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, [])),
               })),
             })),
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$325,
+              [nix.POS]: $pos[324],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$324,
+                [nix.POS]: $pos[323],
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, [])),
               })),
             })),
             vlan: nix.thunk(() => ({
-              [nix.POS]: pos$328,
+              [nix.POS]: $pos[327],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$327,
+                [nix.POS]: $pos[326],
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$326, address: address, prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[325], address: address, prefixLength: 24n })),
                   ]))),
               })),
             })),
@@ -1608,10 +1152,10 @@ with subtest("Test vlan 2"):
         })),
       });
       return {
-        [nix.POS]: pos$333,
+        [nix.POS]: $pos[332],
         name: "vlan",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$332,
+          [nix.POS]: $pos[331],
           client1: nix.thunk(() => nix.app(node, "192.168.1.1")),
           client2: nix.thunk(() => nix.app(node, "192.168.1.2")),
         })),
@@ -1624,28 +1168,28 @@ with subtest("Test vlan 2"):
       const baseInterface = "enp1s0";
       const vlanInterface = "vlan42";
       const node = (number) => ({
-        [nix.POS]: pos$345,
+        [nix.POS]: $pos[344],
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$336,
+          [nix.POS]: $pos[335],
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$335,
-            enp1s0: nix.thunk(() => ({ [nix.POS]: pos$334, vlan: 1n })),
+            [nix.POS]: $pos[334],
+            enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[333], vlan: 1n })),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$344,
+          [nix.POS]: $pos[343],
           useDHCP: false,
           vlans: nix.thunk(() => nix.attrsDyn({}, [
-            [vlanInterface, nix.thunk(() => ({ [nix.POS]: pos$337, id: 42n, interface: baseInterface }))],
+            [vlanInterface, nix.thunk(() => ({ [nix.POS]: $pos[336], id: 42n, interface: baseInterface }))],
           ])),
           interfaces: nix.thunk(() => nix.attrsDyn({}, [
             [baseInterface, nix.thunk(() => ({
-              [nix.POS]: pos$340,
+              [nix.POS]: $pos[339],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$339,
+                [nix.POS]: $pos[338],
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$338,
+                      [nix.POS]: $pos[337],
                       address: nix.thunk(() => nix.app(baseIP, number)),
                       prefixLength: 24n,
                     })),
@@ -1653,12 +1197,12 @@ with subtest("Test vlan 2"):
               })),
             }))],
             [vlanInterface, nix.thunk(() => ({
-              [nix.POS]: pos$343,
+              [nix.POS]: $pos[342],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$342,
+                [nix.POS]: $pos[341],
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$341,
+                      [nix.POS]: $pos[340],
                       address: nix.thunk(() => nix.app(vlanIP, number)),
                       prefixLength: 24n,
                     })),
@@ -1671,10 +1215,10 @@ with subtest("Test vlan 2"):
       const serverNodeNum = "1";
       const clientNodeNum = "2";
       return {
-        [nix.POS]: pos$347,
+        [nix.POS]: $pos[346],
         name: "vlan-ping",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$346,
+          [nix.POS]: $pos[345],
           server: nix.thunk(() => nix.app(node, serverNodeNum)),
           client: nix.thunk(() => nix.app(node, clientNodeNum)),
         })),
@@ -1695,30 +1239,30 @@ with subtest("Test ping on vlan subinterface in setup"):
       };
     })()),
     virtual: nix.thunk(() => ({
-      [nix.POS]: pos$362,
+      [nix.POS]: $pos[361],
       name: "Virtual",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$361,
+        [nix.POS]: $pos[360],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$360,
+          [nix.POS]: $pos[359],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$359,
+            [nix.POS]: $pos[358],
             useNetworkd: networkd,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$358,
+              [nix.POS]: $pos[357],
               tap0: nix.thunk(() => ({
-                [nix.POS]: pos$352,
+                [nix.POS]: $pos[351],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$349,
+                  [nix.POS]: $pos[348],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$348, address: "192.168.1.1", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[347], address: "192.168.1.1", prefixLength: 24n })),
                   ]),
                 })),
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$351,
+                  [nix.POS]: $pos[350],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$350, address: "2001:1470:fffd:2096::", prefixLength: 64n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[349], address: "2001:1470:fffd:2096::", prefixLength: 64n })),
                   ]),
                 })),
                 virtual: true,
@@ -1727,17 +1271,17 @@ with subtest("Test ping on vlan subinterface in setup"):
                 macAddress: "02:de:ad:be:ef:01",
               })),
               tun0: nix.thunk(() => ({
-                [nix.POS]: pos$357,
+                [nix.POS]: $pos[356],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$354,
+                  [nix.POS]: $pos[353],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$353, address: "192.168.1.2", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[352], address: "192.168.1.2", prefixLength: 24n })),
                   ]),
                 })),
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$356,
+                  [nix.POS]: $pos[355],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$355, address: "2001:1470:fffd:2097::", prefixLength: 64n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[354], address: "2001:1470:fffd:2097::", prefixLength: 64n })),
                   ]),
                 })),
                 virtual: true,
@@ -1751,74 +1295,74 @@ with subtest("Test ping on vlan subinterface in setup"):
       testScript: nix.thunk(() => nix.add("targetList = \"\"\"\ntap0: tap persist\ntun0: tun persist user 0\n\"\"\".strip()\n\nwith subtest(\"Wait for networking to come up\"):\n    machine.start()\n    machine.wait_for_unit(\"network.target\")\n\nwith subtest(\"Test interfaces set up\"):\n    list = machine.succeed(\"ip tuntap list | sort\").strip()\n    assert (\n        list == targetList\n    ), \"\"\"\n    The list of virtual interfaces does not match the expected one:\n    Result:\n      {}\n    Expected:\n      {}\n    \"\"\".format(\n        list, targetList\n    )\nwith subtest(\"Test MTU and MAC Address are configured\"):\n    machine.wait_until_succeeds(\"ip link show dev tap0 | grep 'mtu 1342'\")\n    machine.wait_until_succeeds(\"ip link show dev tun0 | grep 'mtu 1343'\")\n    assert \"02:de:ad:be:ef:01\" in machine.succeed(\"ip link show dev tap0\")\nwith subtest(\"Test virtualOwner are configured\"):\n    for interface, expected_owner in [(\"tap0\", \"-1\"), (\"tun0\", \"0\")]:\n        actual_owner = machine.succeed(f\"cat /sys/class/net/{interface}/owner\").strip()\n        assert expected_owner == actual_owner, f\"{interface} owner: expect {expected_owner}, got {actual_owner}\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(networkd)), "with subtest(\"Test interfaces' addresses clean up\"):\n    machine.succeed(\"systemctl stop network-addresses-tap0\")\n    machine.sleep(10)\n    machine.succeed(\"systemctl stop network-addresses-tun0\")\n    machine.sleep(10)\n    residue = machine.succeed(\"ip tuntap list | sort\").strip()\n    assert (\n        residue == targetList\n    ), \"Some virtual interface has been removed:\\n{}\".format(residue)\n    assert \"192.168.1.1\" not in machine.succeed(\"ip address show dev tap0\"), \"tap0 interface address has not been removed\"\n    assert \"192.168.1.2\" not in machine.succeed(\"ip address show dev tun0\"), \"tun0 interface address has not been removed\"\n\nwith subtest(\"Test interfaces clean up\"):\n    machine.succeed(\"systemctl stop tap0-netdev\")\n    machine.sleep(10)\n    machine.succeed(\"systemctl stop tun0-netdev\")\n    machine.sleep(10)\n    residue = machine.succeed(\"ip tuntap list\")\n    assert (\n        residue == \"\"\n    ), \"Some virtual interface has not been properly cleaned:\\n{}\".format(residue)\n"))),
     })),
     privacy: nix.thunk(() => ({
-      [nix.POS]: pos$396,
+      [nix.POS]: $pos[395],
       name: "Privacy",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$395,
+        [nix.POS]: $pos[394],
         router: nix.thunk(() => ({
-          [nix.POS]: pos$376,
+          [nix.POS]: $pos[375],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$365,
+            [nix.POS]: $pos[364],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$364,
-              enp1s0: nix.thunk(() => ({ [nix.POS]: pos$363, vlan: 1n })),
+              [nix.POS]: $pos[363],
+              enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[362], vlan: 1n })),
             })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$368,
+            [nix.POS]: $pos[367],
             kernel: nix.thunk(() => ({
-              [nix.POS]: pos$367,
-              sysctl: nix.thunk(() => ({ [nix.POS]: pos$366, "net.ipv6.conf.all.forwarding": true })),
+              [nix.POS]: $pos[366],
+              sysctl: nix.thunk(() => ({ [nix.POS]: $pos[365], "net.ipv6.conf.all.forwarding": true })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$373,
+            [nix.POS]: $pos[372],
             useNetworkd: networkd,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$372,
+              [nix.POS]: $pos[371],
               enp1s0: nix.thunk(() => ({
-                [nix.POS]: pos$371,
+                [nix.POS]: $pos[370],
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$370,
-                  addresses: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({ [nix.POS]: pos$369, address: "fd00:1234:5678:1::1", prefixLength: 64n })))),
+                  [nix.POS]: $pos[369],
+                  addresses: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({ [nix.POS]: $pos[368], address: "fd00:1234:5678:1::1", prefixLength: 64n })))),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$375,
+            [nix.POS]: $pos[374],
             radvd: nix.thunk(() => ({
-              [nix.POS]: pos$374,
+              [nix.POS]: $pos[373],
               enable: true,
               config: "interface enp1s0 {\n  AdvSendAdvert on;\n  AdvManagedFlag on;\n  AdvOtherConfigFlag on;\n\n  prefix fd00:1234:5678:1::/64 {\n    AdvAutonomous on;\n    AdvOnLink on;\n  };\n};\n",
             })),
           })),
         })),
         client_with_privacy: nix.thunk(() => ({
-          [nix.POS]: pos$385,
+          [nix.POS]: $pos[384],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$379,
+            [nix.POS]: $pos[378],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$378,
-              enp1s0: nix.thunk(() => ({ [nix.POS]: pos$377, vlan: 1n })),
+              [nix.POS]: $pos[377],
+              enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[376], vlan: 1n })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$384,
+            [nix.POS]: $pos[383],
             useNetworkd: networkd,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$383,
+              [nix.POS]: $pos[382],
               enp1s0: nix.thunk(() => ({
-                [nix.POS]: pos$382,
+                [nix.POS]: $pos[381],
                 tempAddress: "default",
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$380,
+                  [nix.POS]: $pos[379],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, [])),
                 })),
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$381,
+                  [nix.POS]: $pos[380],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, [])),
                 })),
                 useDHCP: true,
@@ -1827,29 +1371,29 @@ with subtest("Test ping on vlan subinterface in setup"):
           })),
         })),
         client: nix.thunk(() => ({
-          [nix.POS]: pos$394,
+          [nix.POS]: $pos[393],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$388,
+            [nix.POS]: $pos[387],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$387,
-              enp1s0: nix.thunk(() => ({ [nix.POS]: pos$386, vlan: 1n })),
+              [nix.POS]: $pos[386],
+              enp1s0: nix.thunk(() => ({ [nix.POS]: $pos[385], vlan: 1n })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$393,
+            [nix.POS]: $pos[392],
             useNetworkd: networkd,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$392,
+              [nix.POS]: $pos[391],
               enp1s0: nix.thunk(() => ({
-                [nix.POS]: pos$391,
+                [nix.POS]: $pos[390],
                 tempAddress: "enabled",
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$389,
+                  [nix.POS]: $pos[388],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, [])),
                 })),
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$390,
+                  [nix.POS]: $pos[389],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, [])),
                 })),
                 useDHCP: true,
@@ -1861,34 +1405,34 @@ with subtest("Test ping on vlan subinterface in setup"):
       testScript: "start_all()\n\nclient.wait_for_unit(\"network.target\")\nclient_with_privacy.wait_for_unit(\"network.target\")\nrouter.systemctl(\"start network-online.target\")\nrouter.wait_for_unit(\"network-online.target\")\n\nwith subtest(\"Wait until we have an ip address\"):\n    client_with_privacy.wait_until_succeeds(\n        \"ip addr show dev enp1s0 | grep -q 'fd00:1234:5678:1:'\"\n    )\n    client.wait_until_succeeds(\"ip addr show dev enp1s0 | grep -q 'fd00:1234:5678:1:'\")\n\nwith subtest(\"Test vlan 1\"):\n    client_with_privacy.wait_until_succeeds(\"ping -c 1 fd00:1234:5678:1::1\")\n    client.wait_until_succeeds(\"ping -c 1 fd00:1234:5678:1::1\")\n\nwith subtest(\"Test address used is temporary\"):\n    client_with_privacy.wait_until_succeeds(\n        \"! ip route get fd00:1234:5678:1::1 | grep -q ':[a-f0-9]*ff:fe[a-f0-9]*:'\"\n    )\n\nwith subtest(\"Test address used is EUI-64\"):\n    client.wait_until_succeeds(\n        \"ip route get fd00:1234:5678:1::1 | grep -q ':[a-f0-9]*ff:fe[a-f0-9]*:'\"\n    )\n",
     })),
     routes: nix.thunk(() => ({
-      [nix.POS]: pos$412,
+      [nix.POS]: $pos[411],
       name: "routes",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$411,
+        [nix.POS]: $pos[410],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$410,
+          [nix.POS]: $pos[409],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$408,
+            [nix.POS]: $pos[407],
             useNetworkd: networkd,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$407,
+              [nix.POS]: $pos[406],
               eth0: nix.thunk(() => ({
-                [nix.POS]: pos$406,
+                [nix.POS]: $pos[405],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$401,
+                  [nix.POS]: $pos[400],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$397, address: "192.168.1.2", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[396], address: "192.168.1.2", prefixLength: 24n })),
                   ]),
                   routes: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$399,
+                      [nix.POS]: $pos[398],
                       address: "10.0.0.0",
                       prefixLength: 16n,
-                      options: nix.thunk(() => ({ [nix.POS]: pos$398, mtu: "1500", scope: "link" })),
+                      options: nix.thunk(() => ({ [nix.POS]: $pos[397], mtu: "1500", scope: "link" })),
                     })),
                     nix.thunk(() => ({
-                      [nix.POS]: pos$400,
+                      [nix.POS]: $pos[399],
                       address: "192.168.2.0",
                       prefixLength: 24n,
                       via: "192.168.1.1",
@@ -1896,14 +1440,14 @@ with subtest("Test ping on vlan subinterface in setup"):
                   ]),
                 })),
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$405,
+                  [nix.POS]: $pos[404],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$402, address: "2001:1470:fffd:2097::", prefixLength: 64n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[401], address: "2001:1470:fffd:2097::", prefixLength: 64n })),
                   ]),
                   routes: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$403, address: "fdfd:b3f0::", prefixLength: 48n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[402], address: "fdfd:b3f0::", prefixLength: 48n })),
                     nix.thunk(() => ({
-                      [nix.POS]: pos$404,
+                      [nix.POS]: $pos[403],
                       address: "2001:1470:fffd:2098::",
                       prefixLength: 64n,
                       via: "fdfd:b3f0::1",
@@ -1913,30 +1457,30 @@ with subtest("Test ping on vlan subinterface in setup"):
               })),
             })),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$409, vlans: [] })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[408], vlans: [] })),
         })),
       })),
       testScript: nix.thunk(() => nix.add("targetIPv4Table = [\n    \"10.0.0.0/16 proto static scope link mtu 1500\",\n    \"192.168.1.0/24 proto kernel scope link src 192.168.1.2\",\n    \"192.168.2.0/24 via 192.168.1.1 proto static\",\n]\n\ntargetIPv6Table = [\n    \"2001:1470:fffd:2097::/64 proto kernel metric 256 pref medium\",\n    \"2001:1470:fffd:2098::/64 via fdfd:b3f0::1 proto static metric 1024 pref medium\",\n    \"fdfd:b3f0::/48 proto static metric 1024 pref medium\",\n]\n\nmachine.start()\nmachine.wait_for_unit(\"network.target\")\n\nwith subtest(\"test routing tables\"):\n    ipv4Table = machine.succeed(\"ip -4 route list dev eth0 | head -n3\").strip()\n    ipv6Table = machine.succeed(\"ip -6 route list dev eth0 | head -n3\").strip()\n    assert [\n        l.strip() for l in ipv4Table.splitlines()\n    ] == targetIPv4Table, \"\"\"\n      The IPv4 routing table does not match the expected one:\n        Result:\n          {}\n        Expected:\n          {}\n      \"\"\".format(\n        ipv4Table, targetIPv4Table\n    )\n    assert [\n        l.strip() for l in ipv6Table.splitlines()\n    ] == targetIPv6Table, \"\"\"\n      The IPv6 routing table does not match the expected one:\n        Result:\n          {}\n        Expected:\n          {}\n      \"\"\".format(\n        ipv6Table, targetIPv6Table\n    )\n\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(networkd)), "with subtest(\"test clean-up of the tables\"):\n    machine.succeed(\"systemctl stop network-addresses-eth0\")\n    ipv4Residue = machine.succeed(\"ip -4 route list dev eth0 | head -n-3\").strip()\n    ipv6Residue = machine.succeed(\"ip -6 route list dev eth0 | head -n-3\").strip()\n    assert (\n        ipv4Residue == \"\"\n    ), \"The IPv4 routing table has not been properly cleaned:\\n{}\".format(ipv4Residue)\n    assert (\n        ipv6Residue == \"\"\n    ), \"The IPv6 routing table has not been properly cleaned:\\n{}\".format(ipv6Residue)\n"))),
     })),
     rename: nix.thunk(() => (nix.asBool(networkd) ? {
-      [nix.POS]: pos$423,
+      [nix.POS]: $pos[422],
       name: "RenameInterface",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$422,
+        [nix.POS]: $pos[421],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$421,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$413, vlans: nix.thunk(() => [1n]) })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$414, useNetworkd: networkd, useDHCP: false })),
+          [nix.POS]: $pos[420],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[412], vlans: nix.thunk(() => [1n]) })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[413], useNetworkd: networkd, useDHCP: false })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$420,
+            [nix.POS]: $pos[419],
             network: nix.thunk(() => ({
-              [nix.POS]: pos$419,
+              [nix.POS]: $pos[418],
               links: nix.thunk(() => ({
-                [nix.POS]: pos$418,
+                [nix.POS]: $pos[417],
                 "10-custom_name": nix.thunk(() => ({
-                  [nix.POS]: pos$417,
-                  matchConfig: nix.thunk(() => ({ [nix.POS]: pos$415, MACAddress: "52:54:00:12:01:01" })),
-                  linkConfig: nix.thunk(() => ({ [nix.POS]: pos$416, Name: "custom_name" })),
+                  [nix.POS]: $pos[416],
+                  matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[414], MACAddress: "52:54:00:12:01:01" })),
+                  linkConfig: nix.thunk(() => ({ [nix.POS]: $pos[415], Name: "custom_name" })),
                 })),
               })),
             })),
@@ -1945,30 +1489,30 @@ with subtest("Test ping on vlan subinterface in setup"):
       })),
       testScript: "machine.succeed(\"udevadm settle\")\nprint(machine.succeed(\"ip link show dev custom_name\"))\n",
     } : {
-      [nix.POS]: pos$424,
+      [nix.POS]: $pos[423],
       name: "RenameInterface",
       nodes: nix.thunk(() => ({})),
       testScript: "",
     })),
     link: nix.thunk(() => ({
-      [nix.POS]: pos$435,
+      [nix.POS]: $pos[434],
       name: "Link",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$434,
+        [nix.POS]: $pos[433],
         client: nix.thunk(() => ({
-          [nix.POS]: pos$433,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$425, vlans: nix.thunk(() => [1n]) })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$426, useNetworkd: networkd, useDHCP: false })),
+          [nix.POS]: $pos[432],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[424], vlans: nix.thunk(() => [1n]) })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[425], useNetworkd: networkd, useDHCP: false })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$432,
+            [nix.POS]: $pos[431],
             network: nix.thunk(() => ({
-              [nix.POS]: pos$431,
+              [nix.POS]: $pos[430],
               links: nix.thunk(() => ({
-                [nix.POS]: pos$430,
+                [nix.POS]: $pos[429],
                 "50-foo": nix.thunk(() => ({
-                  [nix.POS]: pos$429,
-                  matchConfig: nix.thunk(() => ({ [nix.POS]: pos$427, Name: "foo", Driver: "dummy" })),
-                  linkConfig: nix.thunk(() => ({ [nix.POS]: pos$428, MTUBytes: "1442" })),
+                  [nix.POS]: $pos[428],
+                  matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[426], Name: "foo", Driver: "dummy" })),
+                  linkConfig: nix.thunk(() => ({ [nix.POS]: $pos[427], MTUBytes: "1442" })),
                 })),
               })),
             })),
@@ -1980,19 +1524,19 @@ with subtest("Test ping on vlan subinterface in setup"):
     wlanInterface: nix.thunk(() => (() => {
       const testMac = "06:00:00:00:02:00";
       return {
-        [nix.POS]: pos$443,
+        [nix.POS]: $pos[442],
         name: "WlanInterface",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$442,
+          [nix.POS]: $pos[441],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$441,
-            boot: nix.thunk(() => ({ [nix.POS]: pos$436, kernelModules: nix.thunk(() => ["mac80211_hwsim"]) })),
+            [nix.POS]: $pos[440],
+            boot: nix.thunk(() => ({ [nix.POS]: $pos[435], kernelModules: nix.thunk(() => ["mac80211_hwsim"]) })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$440,
+              [nix.POS]: $pos[439],
               wlanInterfaces: nix.thunk(() => ({
-                [nix.POS]: pos$439,
-                wlan0: nix.thunk(() => ({ [nix.POS]: pos$437, device: "wlan0" })),
-                wap0: nix.thunk(() => ({ [nix.POS]: pos$438, device: "wlan0", mac: testMac })),
+                [nix.POS]: $pos[438],
+                wlan0: nix.thunk(() => ({ [nix.POS]: $pos[436], device: "wlan0" })),
+                wap0: nix.thunk(() => ({ [nix.POS]: $pos[437], device: "wlan0", mac: testMac })),
               })),
             })),
           })),
@@ -2020,19 +1564,19 @@ machine.fail("ip address show wlan0 | grep -q ${testMac}")
         "-",
       ]);
       return {
-        [nix.POS]: pos$449,
+        [nix.POS]: $pos[448],
         name: "naughtyInterfaceNames",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$448,
+          [nix.POS]: $pos[447],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$447,
+            [nix.POS]: $pos[446],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$446,
+              [nix.POS]: $pos[445],
               useNetworkd: networkd,
               bridges: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.builtins.map, ifnames, (name) => ({
-                    [nix.POS]: pos$445,
+                    [nix.POS]: $pos[444],
                     name: name,
-                    value: nix.thunk(() => ({ [nix.POS]: pos$444, interfaces: [] })),
+                    value: nix.thunk(() => ({ [nix.POS]: $pos[443], interfaces: [] })),
                   }))))),
             })),
           })),
@@ -2045,30 +1589,30 @@ for ifname in ${nix.app(nix.sel(nix.builtins, "toJSON"), ifnames)}:
       };
     })()),
     caseSensitiveRenaming: nix.thunk(() => ({
-      [nix.POS]: pos$456,
+      [nix.POS]: $pos[455],
       name: "CaseSensitiveRenaming",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$455,
+        [nix.POS]: $pos[454],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$454,
+          [nix.POS]: $pos[453],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$452,
+            [nix.POS]: $pos[451],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$451,
-              enCustom: nix.thunk(() => ({ [nix.POS]: pos$450, vlan: 11n })),
+              [nix.POS]: $pos[450],
+              enCustom: nix.thunk(() => ({ [nix.POS]: $pos[449], vlan: 11n })),
             })),
           })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$453, useNetworkd: networkd, useDHCP: false })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[452], useNetworkd: networkd, useDHCP: false })),
         })),
       })),
       testScript: "machine.succeed(\"udevadm settle\")\nprint(machine.succeed(\"ip link show dev enCustom\"))\nmachine.wait_until_succeeds(\"ip link show dev enCustom | grep -q 52:54:00:12:0b:01\")\n",
     })),
   }));
   return nix.app(nix.sel(lib, "mapAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "const"), (attrs) => nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => nix.update(attrs, {
-          [nix.POS]: pos$459,
+          [nix.POS]: $pos[458],
           name: nix.thunk(() => nix.str`${nix.sel(attrs, "name")}-Networking-${(nix.asBool(networkd) ? "Networkd" : "Scripted")}`),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$458,
+            [nix.POS]: $pos[457],
             maintainers: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), w);
               return [nix.thunk(() => nix.lookup(w_1, "rnhmjoj"))];

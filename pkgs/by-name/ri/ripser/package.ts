@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 23, 3], ["version", 24, 11], ["src", 26, 3], ["buildInputs", 33, 3], ["buildFlags", 35, 3], ["buildPhase", 47, 3], ["installPhase", 49, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, useCoefficients: true, indicateProgress: true, useGoogleHashmap: true, sparsehash: true, fileFormat: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 11], ["src", 26, 3], ["buildInputs", 33, 3], ["buildFlags", 35, 3], ["buildPhase", 47, 3], ["installPhase", 49, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(useGoogleHashmap) || nix.asBool(!nix.eq(sparsehash, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ri/ripser/package.nix:17:1");
   const version = "1.2.1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ripser",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Ripser",
           repo: "ripser",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "c++ ripser.cpp -o ripser $buildFlags",
       installPhase: "mkdir -p $out/bin\ncp ripser $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lean C++ code for the computation of Vietoris–Rips persistence barcodes",
         mainProgram: "ripser",
         homepage: "https://github.com/Ripser/ripser",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["updateScript", 20, 12]], [["homepage", 23, 5], ["description", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]], [["pname", 9, 3], ["ename", 10, 3], ["version", 11, 3], ["src", 13, 3], ["passthru", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, melpaBuild: false, fetchFromGitHub: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 20, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 23, 5], ["description", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["ename", 10, 3], ["version", 11, 3], ["src", 13, 3], ["passthru", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,23 +12,23 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "isearch-plus",
       ename: "isearch+",
       version: "3434-unstable-2024-10-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emacsmirror",
           repo: "isearch-plus",
           rev: "48f8d57a51448dd3b81c93b5f55f5eaaeee1c3f7",
           hash: "sha256-jbzar5Sj7WtHOjoSe+inU6+8q7LyvYJS2DqTfzD70AQ=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.emacswiki.org/emacs/IsearchPlus",
         description: "Extensions to isearch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["gmpy", 36, 5]], [["sage", 40, 13]], [["tests", 39, 12]], [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["optional-dependencies", 35, 3], ["passthru", 39, 3], ["nativeCheckInputs", 43, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, gmpy2: false, isPyPy: false, setuptools: false, "setuptools-scm": false, pytestCheckHook: false, "pytest-xdist": false, hypothesis: false, pexpect: false, sage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gmpy", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["sage", 40, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 39, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["optional-dependencies", 35, 3], ["passthru", 39, 3], ["nativeCheckInputs", 43, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pexpect = nix.arg($, "pexpect");
   const sage = nix.arg($, "sage");
   return nix.app(buildPythonPackage, (finalAttrs) => nix.attrsDyn({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mpmath",
       version: "1.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mpmath",
           repo: "mpmath",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,13 +34,16 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         gmpy: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(isPyPy)), nix.thunk(() => [gmpy2]))),
       })),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, tests: nix.thunk(() => ({ [nix.POS]: pos$3, sage: sage })) })),
+      passthru: nix.thunk(() => ({
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], sage: sage })),
+      })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_xdist, hypothesis, pexpect]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://mpmath.org/",
         description: "Pure-Python library for multiprecision floating arithmetic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

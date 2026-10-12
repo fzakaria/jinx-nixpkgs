@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["changelog", 63, 5], ["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["platforms", 71, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["nativeBuildInputs", 36, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 57, 3], ["doCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoPatchelfHook: false, buildPythonPackage: false, colorama: false, distro: false, fetchFromGitHub: false, packaging: false, psutil: false, "python-dateutil": false, pyyaml: false, "requests-cache": false, "requests-toolbelt": false, requests: false, resolvelib: false, setuptools: false, stevedore: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 63, 5], ["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["platforms", 71, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["nativeBuildInputs", 36, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 57, 3], ["doCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "22.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AdaCore",
           repo: "e3-core",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["e3"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/AdaCore/e3-core/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/AdaCore/e3-core/",
         description: "Core framework for developing portable automated build systems",
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

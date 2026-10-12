@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["coreutils", 24, 15], ["group", 26, 7]], [["description", 45, 5], ["homepage", 46, 5], ["mainProgram", 47, 5], ["license", 48, 5], ["platforms", 52, 5], ["maintainers", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 30, 3], ["makeFlags", 35, 3], ["doInstallCheck", 40, 3], ["installTargets", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "go-md2man": false, coreutils: false, replaceVars: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["coreutils", 24, 15], ["group", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["mainProgram", 47, 5], ["license", 48, 5], ["platforms", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 30, 3], ["makeFlags", 35, 3], ["doInstallCheck", 40, 3], ["installTargets", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,25 +15,25 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "brillo",
       version: "1.4.13",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cameronnemo",
           repo: "brillo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+BUyM3FFnsk87NFaD9FBwdLqf6wsNhX+FDB7nqhgAmM=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./udev-rule.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, coreutils: coreutils, group: null })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./udev-rule.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], coreutils: coreutils, group: null })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [go_md2man, udevCheckHook]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "AADIR=$(out)/etc/apparmor.d"]),
       doInstallCheck: true,
       installTargets: nix.thunk(() => ["install-dist"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Backlight and Keyboard LED control tool",
         homepage: "https://gitlab.com/cameronnemo/brillo",
         mainProgram: "brillo",

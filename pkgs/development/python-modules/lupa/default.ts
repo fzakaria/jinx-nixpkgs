@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["fetchSubmodules", 32, 5], ["hash", 33, 5]], [["expected-third-party", 78, 18]], [["tests", 78, 12]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 36, 3], ["postPatch", 42, 3], ["build-system", 70, 3], ["pythonImportsCheck", 75, 3], ["passthru", 78, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, srcOnly: false, runCommand: false, cython: false, setuptools: false, lua5_1: false, lua5_2: false, lua5_3: false, lua5_4: false, lua5_5: false, luajit_2_0: false, luajit_2_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["fetchSubmodules", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["expected-third-party", 78, 18]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 78, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 36, 3], ["postPatch", 42, 3], ["build-system", 70, 3], ["pythonImportsCheck", 75, 3], ["passthru", 78, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const luajit_2_0 = nix.arg($, "luajit_2_0");
   const luajit_2_1 = nix.arg($, "luajit_2_1");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lupa",
       version: "2.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scoder",
           repo: "lupa",
           tag: nix.thunk(() => nix.str`lupa-${nix.sel(finalAttrs, "version")}`),
@@ -61,9 +57,9 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [cython, setuptools]),
       pythonImportsCheck: nix.thunk(() => ["lupa"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "expected-third-party": nix.thunk(() => nix.app(runCommand, "lupa-expected-third-party", nix.thunk(() => ({})), nix.thunk(() => nix.str`declare -a expected=( lua51 lua52 lua53 lua54 lua55 luajit20 luajit21 )
 
 declare -a found_paths=( ${nix.sel(finalAttrs, "src")}/third-party/* )
@@ -80,7 +76,7 @@ fi
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lua in Python",
         homepage: "https://github.com/scoder/lupa",
         changelog: nix.thunk(() => nix.str`https://github.com/scoder/lupa/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

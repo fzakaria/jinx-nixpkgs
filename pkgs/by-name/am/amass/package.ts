@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["nativeBuildInputs", 12, 3], ["buildInputs", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["doCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "pkg-config": false, libpostalWithData: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["mainProgram", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["nativeBuildInputs", 12, 3], ["buildInputs", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["doCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libpostalWithData = nix.arg($, "libpostalWithData");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "amass",
       version: "5.1.1",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libpostalWithData]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "owasp-amass",
           repo: "Amass",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-3MpE61ixMps4IRIZkqjzG225zk4fsERkssoNoItUXbQ=",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "In-Depth DNS Enumeration and Network Mapping",
         longDescription: "The OWASP Amass tool suite obtains subdomain names by scraping data\nsources, recursive brute forcing, crawling web archives,\npermuting/altering names and reverse DNS sweeping. Additionally, Amass\nuses the IP addresses obtained during resolution to discover associated\nnetblocks and ASNs. All the information is then used to build maps of the\ntarget networks.\n",
         homepage: "https://owasp.org/www-project-amass/",

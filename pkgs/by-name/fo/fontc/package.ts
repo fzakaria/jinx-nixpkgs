@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 13, 26], ["version", 13, 32], ["hash", 14, 5]], [["updateScript", 22, 12]], [["description", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["mainProgram", 30, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 17, 3], ["doCheck", 20, 3], ["passthru", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 13, 26], ["version", 13, 32], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 22, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["mainProgram", 30, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 17, 3], ["doCheck", 20, 3], ["passthru", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchCrate = nix.arg($, "fetchCrate");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fontc",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-TjbhVkhoIoyp6A33v/QVaNLoHxB5whT/gOlehQTUKxM=",
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-FLvEgIFgLE++59j5LeCRC4ptgRhAiDF7hani4Yh8kn0=",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wherein we pursue oxidizing fontmake",
         homepage: "https://github.com/googlefonts/fontc",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/fontc/releases/tag/fontc-v${nix.sel(finalAttrs, "version")}`),

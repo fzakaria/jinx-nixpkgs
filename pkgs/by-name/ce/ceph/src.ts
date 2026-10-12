@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/src.nix", [[["url", 12, 5], ["hash", 13, 5]], [["name", 20, 7], ["url", 21, 7], ["extraPrefix", 22, 7], ["stripLen", 23, 7], ["hash", 24, 7]], [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7], ["excludes", 40, 7]], [["name", 49, 7], ["url", 50, 7], ["hash", 51, 7]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 16, 3]]]);
 const formals$1 = { args: { applyPatches: false, fetchpatch2: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/src.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/src.nix", [["name", 20, 7], ["url", 21, 7], ["extraPrefix", 22, 7], ["stripLen", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/src.nix", [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7], ["excludes", 40, 7]]);
-const pos$4 = nix.positions(here + "/src.nix", [["name", 49, 7], ["url", 50, 7], ["hash", 51, 7]]);
-const pos$5 = nix.positions(here + "/src.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(applyPatches, (final) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ceph-src",
       version: "20.2.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.ceph.com/tarballs/ceph-${nix.sel(final, "version")}.tar.gz`),
           hash: "sha256-XzRWkkGiiQRGuTHwbNhE+TvKZl90CiBjFCnS1Vsemzc=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ceph-s3select-arrow-cpp-20.patch",
             url: "https://github.com/ceph/s3select/pull/169.diff?full_index=1",
             extraPrefix: "src/s3select/",
@@ -35,14 +31,14 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./patches/0002-s3select-std-span.patch"),
         nix.path(here, "./patches/0001-mgr-python-interpreter.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "ceph-20.2.1-backport-gcc16-fixes.patch",
             url: "https://aur.archlinux.org/cgit/aur.git/plain/ceph-20.2.1-backport-gcc16-fixes.patch?h=ceph&id=b158fda8a3e3834a7aa362954dc17077dc46f609",
             hash: "sha256-uLl20Sdd+JJFWqbMHIZRt53OpGRXlTaceajgpzYCaTM=",
             excludes: nix.thunk(() => ["src/test/CMakeLists.txt", "src/rgw/CMakeLists.txt"]),
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "ceph-20.2.4-radosgw-gcc16-fixes.patch",
             url: "https://github.com/ceph/ceph/pull/69166.patch?full_index=1",
             hash: "sha256-yaqOrmw0ZItT2efzNfpDqjTRsva8VN0R+TLqbTX0snc=",

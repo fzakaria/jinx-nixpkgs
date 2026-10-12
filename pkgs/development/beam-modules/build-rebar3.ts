@@ -2,14 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-rebar3.nix", [[["plugins", 39, 9]], [["ERL_COMPILER_OPTIONS", 67, 9], ["beamModuleName", 73, 9]], [["platforms", 82, 31]], [["beamDeps", 87, 17]], [["pname", 43, 7], ["name", 44, 7], ["nativeBuildInputs", 46, 7], ["buildInputs", 56, 7], ["propagatedBuildInputs", 61, 7], ["__structuredAttrs", 63, 7], ["strictDeps", 64, 7], ["env", 66, 7], ["setupHook", 77, 7], ["meta", 81, 7], ["passthru", 86, 7]], [["constructDrv", 18, 3], ["excludeDrvArgNames", 19, 3], ["extendDrvArgs", 23, 3]]]);
 const formals$1 = { args: { erlang: false, beamCopySourceHook: false, beamModuleInstallHook: false, rebar3CompileHook: false, rebar3WithPlugins: false, rebarDevendorPatchHook: false, libyaml: false, openssl: false, lib: false, stdenv: false, writeText: false }, ellipsis: false };
 const formals$2 = { args: { beamDeps: true, buildPlugins: true, enableDebugInfo: true, erlangCompilerOptions: true, erlangDeterministicBuilds: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-rebar3.nix", [["plugins", 39, 9]]);
-const pos$2 = nix.positions(here + "/build-rebar3.nix", [["ERL_COMPILER_OPTIONS", 67, 9], ["beamModuleName", 73, 9]]);
-const pos$3 = nix.positions(here + "/build-rebar3.nix", [["platforms", 82, 31]]);
-const pos$4 = nix.positions(here + "/build-rebar3.nix", [["beamDeps", 87, 17]]);
-const pos$5 = nix.positions(here + "/build-rebar3.nix", [["pname", 43, 7], ["name", 44, 7], ["nativeBuildInputs", 46, 7], ["buildInputs", 56, 7], ["propagatedBuildInputs", 61, 7], ["__structuredAttrs", 63, 7], ["strictDeps", 64, 7], ["env", 66, 7], ["setupHook", 77, 7], ["meta", 81, 7], ["passthru", 86, 7]]);
-const pos$6 = nix.positions(here + "/build-rebar3.nix", [["constructDrv", 18, 3], ["excludeDrvArgNames", 19, 3], ["extendDrvArgs", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const writeText = nix.arg($, "writeText");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["beamDeps", "buildPlugins"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -36,9 +31,9 @@ export default nix.lambda((args) => (() => {
         const enableDebugInfo = nix.argOr($_1, "enableDebugInfo", () => false);
         const erlangCompilerOptions = nix.argOr($_1, "erlangCompilerOptions", () => []);
         const erlangDeterministicBuilds = nix.argOr($_1, "erlangDeterministicBuilds", () => true);
-        const rebar3Custom = nix.thunk(() => nix.app(rebar3WithPlugins, nix.thunk(() => ({ [nix.POS]: pos$1, plugins: buildPlugins }))));
+        const rebar3Custom = nix.thunk(() => nix.app(rebar3WithPlugins, nix.thunk(() => ({ [nix.POS]: $pos[0], plugins: buildPlugins }))));
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: nix.thunk(() => nix.sel(args_2, "name")),
           name: nix.thunk(() => nix.str`erlang${nix.sel(erlang, "version")}-${nix.sel(args_2, "name")}-${nix.sel(finalAttrs, "version")}`),
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "nativeBuildInputs"), [
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
           __structuredAttrs: true,
           strictDeps: true,
           env: nix.thunk(() => nix.update({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             ERL_COMPILER_OPTIONS: nix.thunk(() => (() => {
               const options = nix.thunk(() => nix.concat(erlangCompilerOptions, nix.app(nix.sel(lib, "optionals"), erlangDeterministicBuilds, nix.thunk(() => ["deterministic"]))));
               return nix.str`[${nix.app(nix.sel(lib, "concatStringsSep"), ",", options)}]`;
@@ -64,9 +59,9 @@ export default nix.lambda((args) => (() => {
           setupHook: nix.thunk(() => nix.app(writeText, "setupHook.sh", "addToSearchPath ERL_LIBS \"$1/lib/erlang/lib/\"\n")),
           meta: nix.thunk(() => nix.update((() => {
             const from = nix.thunk(() => nix.sel(erlang, "meta"));
-            return { [nix.POS]: pos$3, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+            return { [nix.POS]: $pos[2], platforms: nix.thunk(() => nix.attr(from, "platforms")) };
           })(), nix.selOr(args_2, () => ({}), "meta"))),
-          passthru: nix.thunk(() => ({ [nix.POS]: pos$4, beamDeps: beamDeps })),
+          passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], beamDeps: beamDeps })),
         };
       })(), formals$2),
     })));

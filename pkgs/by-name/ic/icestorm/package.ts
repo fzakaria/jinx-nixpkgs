@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 31, 28], ["src", 31, 34], ["icestorm", 32, 7]], [["examples", 30, 11]], [["pythonPkg", 27, 5], ["pythonInterp", 28, 5], ["tests", 30, 5]], [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["description", 69, 5], ["longDescription", 70, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 82, 5]], [["pname", 23, 3], ["version", 24, 3], ["passthru", 26, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 44, 3], ["makeFlags", 48, 3], ["enableParallelBuilding", 53, 3], ["patchPhase", 57, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, "pkg-config": false, libftdi1: false, python3: false, pypy3: false, usePyPy: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 31, 28], ["src", 31, 34], ["icestorm", 32, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["examples", 30, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pythonPkg", 27, 5], ["pythonInterp", 28, 5], ["tests", 30, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 69, 5], ["longDescription", 70, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 82, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["passthru", 26, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 44, 3], ["makeFlags", 48, 3], ["enableParallelBuilding", 53, 3], ["patchPhase", 57, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,25 +17,25 @@ export default nix.lambda((args) => (() => {
   const pypy3 = nix.arg($, "pypy3");
   const usePyPy = nix.argOr($, "usePyPy", () => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "icestorm",
       version: "0-unstable-2025-06-03",
       passthru: nix.thunk(() => (() => {
         const pythonPkg = nix.thunk(() => (nix.asBool((nix.asBool(false) && nix.asBool(usePyPy))) ? nix.force(pypy3) : nix.force(python3)));
         const pythonInterp = nix.thunk(() => nix.sel(pythonPkg, "interpreter"));
         const tests = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           examples: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               icestorm: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         }));
-        return { [nix.POS]: pos$3, pythonPkg, pythonInterp, tests };
+        return { [nix.POS]: $pos[2], pythonPkg, pythonInterp, tests };
       })()),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "YosysHQ",
           repo: "icestorm",
           rev: "f31c39cc2eadd0ab7f29f34becba1348ae9f8721",
@@ -63,7 +58,7 @@ done
 substituteInPlace icebox/Makefile --replace-fail "sed -i ''" "sed -i"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Documentation and tools for Lattice iCE40 FPGAs",
         longDescription: "Project IceStorm aims at reverse engineering and\ndocumenting the bitstream format of Lattice iCE40\nFPGAs and providing simple tools for analyzing and\ncreating bitstream files.\n",
         homepage: "https://github.com/YosysHQ/icestorm/",

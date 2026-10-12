@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 66, 5], ["license", 67, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 24, 3], ["strictDeps", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 51, 3], ["outputs", 53, 3], ["cmakeFlags", 58, 3], ["doCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gfortran: false, buildType: true, meson: false, ninja: false, cmake: false, "pkg-config": false, "test-drive": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["license", 67, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 24, 3], ["strictDeps", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 51, 3], ["outputs", 53, 3], ["cmakeFlags", 58, 3], ["doCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const test_drive = nix.arg($, "test-drive");
   nix.assert_(nix.builtins.elem(buildType, nix.thunk(() => ["meson", "cmake"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/to/toml-f/package.nix:14:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "toml-f",
       version: "0.5.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "toml-f",
           repo: "toml-f",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-Dtest-drive_DIR=${test_drive}`)]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "TOML parser implementation for data serialization and deserialization in Fortran",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

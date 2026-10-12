@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 34, 5], ["description", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["license", 38, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["cmakeFlags", 28, 3], ["doCheck", 30, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libminc: false, netpbm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["license", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["cmakeFlags", 28, 3], ["doCheck", 30, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libminc = nix.arg($, "libminc");
   const netpbm = nix.arg($, "netpbm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bicpl",
       version: "0-unstable-2025-10-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BIC-MNI",
           repo: "bicpl",
           rev: "dc9828841e38c6b7c523f3ab8a4c23eeb9e4272b",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DLIBMINC_DIR=${libminc}/lib/cmake`)]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/BIC-MNI/bicpl",
         description: "Brain Imaging Centre programming library",
         maintainers: nix.thunk(() => (() => {

@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["recommendedPackages", 37, 24]], [["hydraPlatforms", 41, 5], ["priority", 43, 5]], [["name", 10, 3], ["preferLocalBuild", 11, 3], ["allowSubstitutes", 12, 3], ["outputs", 14, 3], ["buildInputs", 19, 3], ["paths", 20, 3], ["nativeBuildInputs", 22, 3], ["postBuild", 24, 3], ["passthru", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, R: false, makeBinaryWrapper: false, recommendedPackages: false, packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["recommendedPackages", 37, 24]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["hydraPlatforms", 41, 5], ["priority", 43, 5]]);
-const pos$3 = nix.positions(here + "/wrapper.nix", [["name", 10, 3], ["preferLocalBuild", 11, 3], ["allowSubstitutes", 12, 3], ["outputs", 14, 3], ["buildInputs", 19, 3], ["paths", 20, 3], ["nativeBuildInputs", 22, 3], ["postBuild", 24, 3], ["passthru", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const recommendedPackages = nix.arg($, "recommendedPackages");
   const packages = nix.arg($, "packages");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.add(nix.sel(R, "name"), "-wrapper")),
       preferLocalBuild: true,
       allowSubstitutes: false,
@@ -34,9 +32,9 @@ done
 
 ln -s ${nix.sel(R, "man")} $man
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, recommendedPackages: recommendedPackages })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], recommendedPackages: recommendedPackages })),
       meta: nix.thunk(() => nix.update(nix.sel(R, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         hydraPlatforms: [],
         priority: nix.thunk(() => nix.sub(nix.selOr(R, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
       })),

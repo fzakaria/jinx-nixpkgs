@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 24, 5], ["description", 25, 5], ["longDescription", 26, 5], ["license", 47, 5], ["platforms", 48, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["configureFlags", 16, 3], ["patches", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 24, 5], ["description", 25, 5], ["longDescription", 26, 5], ["license", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["configureFlags", 16, 3], ["patches", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libossp-uuid",
       version: "1.6.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`ftp://ftp.ossp.org/pkg/lib/uuid/uuid-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "11a615225baa5f8bb686824423f50e4427acd3f70d394765bdff32801f0fd5b0",
         })))),
       configureFlags: nix.thunk(() => nix.concat(["ac_cv_va_copy=C99"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), "--with-pic"))),
       patches: nix.thunk(() => [nix.path(here, "./shtool.patch")]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.ossp.org/pkg/lib/uuid/",
         description: "OSSP uuid ISO-C and C++ shared library",
         longDescription: "OSSP uuid is a ISO-C:1999 application programming interface\n(API) and corresponding command line interface (CLI) for the\ngeneration of DCE 1.1, ISO/IEC 11578:1996 and RFC 4122\ncompliant Universally Unique Identifier (UUID). It supports\nDCE 1.1 variant UUIDs of version 1 (time and node based),\nversion 3 (name based, MD5), version 4 (random number based)\nand version 5 (name based, SHA-1). Additional API bindings are\nprovided for the languages ISO-C++:1998, Perl:5 and\nPHP:4/5. Optional backward compatibility exists for the ISO-C\nDCE-1.1 and Perl Data::UUID APIs.\n\nUUIDs are 128 bit numbers which are intended to have a high\nlikelihood of uniqueness over space and time and are\ncomputationally difficult to guess. They are globally unique\nidentifiers which can be locally generated without contacting\na global registration authority. UUIDs are intended as unique\nidentifiers for both mass tagging objects with an extremely\nshort lifetime and to reliably identifying very persistent\nobjects across a network.\n",

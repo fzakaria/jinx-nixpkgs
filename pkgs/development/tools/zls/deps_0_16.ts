@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/deps_0_16.nix", [[["url", 9, 7], ["hash", 10, 7]], [["name", 7, 5], ["path", 8, 5]], [["url", 16, 7], ["hash", 17, 7]], [["name", 14, 5], ["path", 15, 5]], [["url", 23, 7], ["hash", 24, 7]], [["name", 21, 5], ["path", 22, 5]]]);
 const formals$1 = { args: { linkFarm: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/deps_0_16.nix", [["url", 9, 7], ["hash", 10, 7]]);
-const pos$2 = nix.positions(here + "/deps_0_16.nix", [["name", 7, 5], ["path", 8, 5]]);
-const pos$3 = nix.positions(here + "/deps_0_16.nix", [["url", 16, 7], ["hash", 17, 7]]);
-const pos$4 = nix.positions(here + "/deps_0_16.nix", [["name", 14, 5], ["path", 15, 5]]);
-const pos$5 = nix.positions(here + "/deps_0_16.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$6 = nix.positions(here + "/deps_0_16.nix", [["name", 21, 5], ["path", 22, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,28 +11,28 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "known_folders-0.0.0-Fy-PJk3KAACzUg2us_0JvQQmod1ZA8jBt7MuoKCihq88",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/ziglibs/known-folders/archive/d6d03830968cca6b7b9f24fd97ee348346a6905d.tar.gz",
             hash: "sha256-8LlAnEwuoeQuN9V5nUuh2UwXRhS5KOwDkpm6yuOfClk=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "diffz-0.0.1-G2tlISzNAQCldmOcINavGmF1zdt20NFPXeM8d07jp_68",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/ziglibs/diffz/archive/b39fe07e7fdbcf56e43ba2890b9f484f16969f90.tar.gz",
             hash: "sha256-mmgaOXFpoBYMsNdVkoFa7wJKkiXtzXIbSxRUgWLdVUc=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "lsp_kit-0.1.0-bi_PL3IyDACfp1xdTnkiOHEok2YpPCCCJHuuOcNzjl1D",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/zigtools/lsp-kit/archive/b886a2b0d5cee85ecbcc3089b863f7517cc9ff7f.tar.gz",
             hash: "sha256-367wPydvnpl9RYlTrXwk4bZ/ui9DbYjeY/VDYs7ZJRs=",
           })))),

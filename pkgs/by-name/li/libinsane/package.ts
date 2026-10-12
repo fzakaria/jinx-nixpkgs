@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 30, 5], ["repo", 31, 5], ["group", 32, 5], ["owner", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 29, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 49, 3], ["nativeCheckInputs", 54, 3], ["doCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, meson: false, ninja: false, fetchFromGitLab: false, "pkg-config": false, glib: false, docbook_xsl: false, "sane-backends": false, "gobject-introspection": false, vala: false, "gtk-doc": false, valgrind: false, doxygen: false, cunit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 30, 5], ["repo", 31, 5], ["group", 32, 5], ["owner", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 29, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 49, 3], ["nativeCheckInputs", 54, 3], ["doCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.arg($, "doxygen");
   const cunit = nix.arg($, "cunit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libinsane",
       version: "1.0.10",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           repo: "libinsane",
           group: "World",
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [cunit, valgrind]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Crossplatform access to image scanners (paper eaters only)",
         homepage: "https://openpaper.work/en/projects/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

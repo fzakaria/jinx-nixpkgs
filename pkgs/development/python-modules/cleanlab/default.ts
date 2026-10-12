@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["description", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["postPatch", 45, 3], ["build-system", 50, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 62, 3], ["disabledTests", 78, 3], ["disabledTestPaths", 104, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, numpy: false, "scikit-learn": false, termcolor: false, tqdm: false, pandas: false, cleanvision: false, datasets: false, fasttext: false, hypothesis: false, keras: false, matplotlib: false, pytestCheckHook: false, "pytest-lazy-fixture": false, skorch: false, tensorflow: false, torch: false, torchvision: false, wget: false, pythonAtLeast: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["postPatch", 45, 3], ["build-system", 50, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 62, 3], ["disabledTests", 78, 3], ["disabledTestPaths", 104, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const wget = nix.arg($, "wget");
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cleanlab",
       version: "2.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cleanlab",
           repo: "cleanlab",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +75,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_frameworks.py",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Standard data-centric AI package for data quality and machine learning with messy, real-world data and labels",
         homepage: "https://github.com/cleanlab/cleanlab",
         changelog: nix.thunk(() => nix.str`https://github.com/cleanlab/cleanlab/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

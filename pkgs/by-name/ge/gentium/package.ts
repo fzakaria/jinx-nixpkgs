@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["homepage", 27, 5], ["description", 28, 5], ["longDescription", 29, 5], ["downloadPage", 44, 5], ["maintainers", 45, 5], ["license", 50, 5], ["platforms", 51, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["longDescription", 29, 5], ["downloadPage", 44, 5], ["maintainers", 45, 5], ["license", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gentium",
       version: "7.000",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://software.sil.org/downloads/r/gentium/Gentium-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-RBBecFdi/yyFfBk1CcQebOuAdKNUczpwOP52zVtbc2o=",
         })))),
@@ -30,7 +28,7 @@ cp -r documentation $out/share/doc/${nix.sel(finalAttrs, "pname")}-${nix.sel(fin
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://software.sil.org/gentium/",
         description: "High-quality typeface family for Latin, Cyrillic, and Greek",
         longDescription: "Gentium is a typeface family designed to enable the diverse ethnic groups\naround the world who use the Latin, Cyrillic and Greek scripts to produce\nreadable, high-quality publications. It supports a wide range of Latin and\nCyrillic-based alphabets.\n\nThe design is intended to be highly readable, reasonably compact, and\nvisually attractive. The additional ‘extended’ Latin letters are designed\nto naturally harmonize with the traditional 26 ones. Diacritics are\ntreated with careful thought and attention to their use. Gentium also\nsupports both polytonic and monotonic Greek.\n\nThis package contains the regular and italic styles for the Gentium font\nfamily, along with documentation.\n",

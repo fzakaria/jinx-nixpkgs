@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchSubmodules", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["name", 32, 9], ["runtimeInputs", 33, 9], ["text", 34, 9]], [["updateScript", 54, 12]], [["mainProgram", 57, 5], ["description", 58, 5], ["license", 59, 5], ["homepage", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["dontBuild", 23, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 29, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, makeWrapper: false, unstableGitUpdater: false, writeShellApplication: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchSubmodules", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 32, 9], ["runtimeInputs", 33, 9], ["text", 34, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 57, 5], ["description", 58, 5], ["license", 59, 5], ["homepage", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["dontBuild", 23, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 29, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xrsh",
       version: "0-unstable-2025-05-23",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           fetchSubmodules: true,
           owner: "xrsh",
           repo: "xrsh",
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       installPhase: nix.thunk(() => (() => {
         const launcher = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "xrsh",
             runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "twisted"))]),
             text: "XRSH_ROOT=\"${1}\"\nXRSH_PORT=\"${XRSH_PORT-8080}\"\n\nexec twistd -n web --listen \"tcp:${XRSH_PORT}\" --path \"${XRSH_ROOT}\"\n",
@@ -51,11 +47,11 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mainProgram: "xrsh",
         description: "Terminal for WebXR to run REPLs & linux ISO",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

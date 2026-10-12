@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["3.23.1", 24, 9], ["3.22.2", 25, 9], ["3.21.1", 26, 9], ["2.9.3", 27, 9]], [["url", 17, 5], ["hash", 22, 5]], [["ocaml-lsp", 54, 29], ["dune-release", 54, 39]], [["tests", 53, 12]], [["homepage", 58, 5], ["description", 59, 5], ["mainProgram", 60, 5], ["changelog", 61, 5], ["maintainers", 62, 5], ["license", 63, 5], ["platforms", 64, 40]], [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["nativeBuildInputs", 32, 3], ["depsBuildBuild", 37, 3], ["strictDeps", 39, 3], ["__structuredAttrs", 40, 3], ["buildFlags", 42, 3], ["dontAddPrefix", 44, 3], ["dontAddStaticConfigureFlags", 45, 3], ["configurePlatforms", 46, 3], ["installFlags", 48, 3], ["passthru", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, buildPackages: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["3.23.1", 24, 9], ["3.22.2", 25, 9], ["3.21.1", 26, 9], ["2.9.3", 27, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ocaml-lsp", 54, 29], ["dune-release", 54, 39]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 53, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["description", 59, 5], ["mainProgram", 60, 5], ["changelog", 61, 5], ["maintainers", 62, 5], ["license", 63, 5], ["platforms", 64, 40]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["nativeBuildInputs", 32, 3], ["depsBuildBuild", 37, 3], ["strictDeps", 39, 3], ["__structuredAttrs", 40, 3], ["buildFlags", 42, 3], ["dontAddPrefix", 44, 3], ["dontAddStaticConfigureFlags", 45, 3], ["configurePlatforms", 46, 3], ["installFlags", 48, 3], ["passthru", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(buildPackages, "buildPackages"));
   const ocamlPackages = nix.thunk(() => nix.attr(from, "ocamlPackages"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dune",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => (() => {
             const sfx = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), version), "2")), "site-"));
             return nix.str`https://github.com/ocaml/dune/releases/download/${version}/dune-${sfx}${version}.tbz`;
           })()),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "3.23.1": "sha256-k7TnFX9rqP62HPxfhgCO/SxZA3unigF9krSr8wYyNI8=",
             "3.22.2": "sha256-wsz4vGsXr6R8RQKXNXSWMDqnyGgOMpt52Yxo41AToRg=",
             "3.21.1": "sha256-hPeoLG2ApxJPOEfppInoDPvq+3vtNXOsAShu9W/QjZQ=",
@@ -56,9 +51,9 @@ export default nix.lambda((args) => (() => {
         "LIBDIR=$(OCAMLFIND_DESTDIR)",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "ocaml-lsp": nix.thunk(() => nix.attr(ocamlPackages, "ocaml-lsp")),
           "dune-release": nix.thunk(() => nix.attr(ocamlPackages, "dune-release")),
         })),
@@ -66,7 +61,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(ocamlPackages, "ocaml", "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://dune.build/",
         description: "Composable build system",
         mainProgram: "dune",

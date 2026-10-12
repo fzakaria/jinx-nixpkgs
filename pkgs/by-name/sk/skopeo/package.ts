@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["hash", 28, 5]], [["package", 91, 9]], [["version", 90, 7], ["testNixFromDockerHub", 93, 38]], [["policy", 86, 5], ["tests", 89, 5]], [["changelog", 98, 5], ["description", 99, 5], ["mainProgram", 100, 5], ["homepage", 101, 5], ["maintainers", 102, 5], ["teams", 107, 5], ["license", 108, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 31, 3], ["vendorHash", 36, 3], ["doCheck", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 47, 3], ["buildPhase", 55, 3], ["installPhase", 67, 3], ["passthru", 85, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, gpgme: false, lvm2: false, "btrfs-progs": false, "pkg-config": false, "go-md2man": false, installShellFiles: false, makeWrapper: false, "fuse-overlayfs": false, dockerTools: false, runCommand: false, testers: false, skopeo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 91, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 90, 7], ["testNixFromDockerHub", 93, 38]]);
-const pos$4 = nix.positions(here + "/package.nix", [["policy", 86, 5], ["tests", 89, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 98, 5], ["description", 99, 5], ["mainProgram", 100, 5], ["homepage", 101, 5], ["maintainers", 102, 5], ["teams", 107, 5], ["license", 108, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 31, 3], ["vendorHash", 36, 3], ["doCheck", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 47, 3], ["buildPhase", 55, 3], ["installPhase", 67, 3], ["passthru", 85, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "skopeo";
       const version = "1.24.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: nix.thunk(() => nix.str`v${version}`),
           owner: "podman-container-tools",
           repo: "skopeo",
@@ -52,20 +47,20 @@ PREFIX=${nix.builtins.placeholder("out")} make install-binary install-docs
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [fuse_overlayfs]))}
 `))), "runHook postInstall\n"));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         policy: nix.thunk(() => nix.app(runCommand, "policy", nix.thunk(() => ({})), nix.thunk(() => nix.str`install ${src}/default-policy.json -Dt $out
 `))),
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(dockerTools, "examples"));
           return {
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: skopeo })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: skopeo })))),
           testNixFromDockerHub: nix.thunk(() => nix.attr(from, "testNixFromDockerHub")),
         };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/podman-container-tools/skopeo/releases/tag/${nix.sel(src, "rev")}`),
         description: "Command line utility for various operations on container images and image repositories",
         mainProgram: "skopeo",
@@ -82,7 +77,7 @@ PREFIX=${nix.builtins.placeholder("out")} make install-binary install-docs
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

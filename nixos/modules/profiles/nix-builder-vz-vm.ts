@@ -2,21 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-builder-vz-vm.nix", [[["address", 36, 14], ["port", 37, 14]], [["port", 39, 15]], [["host", 36, 9], ["guest", 39, 9]], [["forwardPorts", 34, 23], ["console", 45, 23], ["consoleLog", 46, 23], ["diskImage", 50, 23]], [["vz", 34, 20]], [["Type", 59, 9], ["RemainAfterExit", 60, 9]], [["description", 54, 7], ["wantedBy", 55, 7], ["requires", 56, 7], ["after", 57, 7], ["serviceConfig", 58, 7], ["script", 62, 7]], [["overrideStrategy", 73, 7], ["requires", 74, 7], ["wants", 77, 7], ["after", 78, 7]], [["copy-builder-keys", 53, 22], ["sshd-vsock@", 72, 22]], [["services", 53, 13]], [["authorizedKeysFiles", 84, 22]], [["openssh", 84, 14]], [["virtualisation", 34, 5], ["systemd", 53, 5], ["services", 84, 5]], [["imports", 28, 3], ["config", 33, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nix-builder-vz-vm.nix", [["address", 36, 14], ["port", 37, 14]]);
-const pos$2 = nix.positions(here + "/nix-builder-vz-vm.nix", [["port", 39, 15]]);
-const pos$3 = nix.positions(here + "/nix-builder-vz-vm.nix", [["host", 36, 9], ["guest", 39, 9]]);
-const pos$4 = nix.positions(here + "/nix-builder-vz-vm.nix", [["forwardPorts", 34, 23], ["console", 45, 23], ["consoleLog", 46, 23], ["diskImage", 50, 23]]);
-const pos$5 = nix.positions(here + "/nix-builder-vz-vm.nix", [["vz", 34, 20]]);
-const pos$6 = nix.positions(here + "/nix-builder-vz-vm.nix", [["Type", 59, 9], ["RemainAfterExit", 60, 9]]);
-const pos$7 = nix.positions(here + "/nix-builder-vz-vm.nix", [["description", 54, 7], ["wantedBy", 55, 7], ["requires", 56, 7], ["after", 57, 7], ["serviceConfig", 58, 7], ["script", 62, 7]]);
-const pos$8 = nix.positions(here + "/nix-builder-vz-vm.nix", [["overrideStrategy", 73, 7], ["requires", 74, 7], ["wants", 77, 7], ["after", 78, 7]]);
-const pos$9 = nix.positions(here + "/nix-builder-vz-vm.nix", [["copy-builder-keys", 53, 22], ["sshd-vsock@", 72, 22]]);
-const pos$10 = nix.positions(here + "/nix-builder-vz-vm.nix", [["services", 53, 13]]);
-const pos$11 = nix.positions(here + "/nix-builder-vz-vm.nix", [["authorizedKeysFiles", 84, 22]]);
-const pos$12 = nix.positions(here + "/nix-builder-vz-vm.nix", [["openssh", 84, 14]]);
-const pos$13 = nix.positions(here + "/nix-builder-vz-vm.nix", [["virtualisation", 34, 5], ["systemd", 53, 5], ["services", 84, 5]]);
-const pos$14 = nix.positions(here + "/nix-builder-vz-vm.nix", [["imports", 28, 3], ["config", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,26 +13,26 @@ export default nix.lambda((args) => (() => {
   const keysDirectory = "/var/keys";
   const keysMountUnit = "var-keys.mount";
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     imports: nix.thunk(() => [
       nix.path(here, "./nix-builder.nix"),
       nix.path(here, "../virtualisation/vz-vm.nix"),
     ]),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         vz: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           forwardPorts: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               host: nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 address: "127.0.0.1",
                 port: nix.thunk(() => nix.sel(cfg, "hostPort")),
               })),
-              guest: nix.thunk(() => ({ [nix.POS]: pos$2, port: 22n })),
+              guest: nix.thunk(() => ({ [nix.POS]: $pos[1], port: 22n })),
             })),
           ]),
           console: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "log")),
@@ -54,16 +41,16 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           "copy-builder-keys": nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             description: "Stage builder SSH keys where sshd will accept them",
             wantedBy: nix.thunk(() => ["multi-user.target"]),
             requires: nix.thunk(() => [keysMountUnit]),
             after: nix.thunk(() => [keysMountUnit]),
-            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$6, Type: "oneshot", RemainAfterExit: true })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[5], Type: "oneshot", RemainAfterExit: true })),
             script: nix.thunk(() => nix.str`install -d -m 0755 -o root -g root /run/builder-keys
 for key in ${keysDirectory}/*.pub; do
   [ -e "$key" ] || continue
@@ -72,7 +59,7 @@ done
 `),
           })),
           "sshd-vsock@": nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             overrideStrategy: "asDropin",
             requires: nix.thunk(() => ["copy-builder-keys.service"]),
             wants: nix.thunk(() => ["network-online.target"]),
@@ -81,9 +68,9 @@ done
         })),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         openssh: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           authorizedKeysFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ["/run/builder-keys/%u_ed25519.pub"]))),
         })),
       })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 12, 5], ["hash", 17, 5]], [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["longDescription", 54, 5], ["platforms", 78, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["__structuredAttrs", 20, 3], ["enableParallelBuilding", 21, 3], ["hardeningDisable", 23, 3], ["patchPhase", 25, 3], ["sourceRoot", 29, 3], ["configureFlags", 31, 3], ["doCheck", 40, 3], ["postInstall", 42, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 12, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["longDescription", 54, 5], ["platforms", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["__structuredAttrs", 20, 3], ["enableParallelBuilding", 21, 3], ["hardeningDisable", 23, 3], ["patchPhase", 25, 3], ["sourceRoot", 29, 3], ["configureFlags", 31, 3], ["doCheck", 40, 3], ["postInstall", 42, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gprolog",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`mirror://gnu/gprolog/gprolog-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`http://www.gprolog.org/gprolog-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`mv -v $out/[A-Z]* $out/gprolog.ico $out/share/gprolog-${nix.sel(finalAttrs, "version")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.gnu.org/software/gprolog/",
         description: "GNU Prolog, a free Prolog compiler with constraint solving over finite domains",
         license: nix.thunk(() => (() => {

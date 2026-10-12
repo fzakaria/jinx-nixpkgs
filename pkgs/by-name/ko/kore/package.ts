@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["url", 25, 7], ["hash", 26, 7]], [["url", 29, 7], ["hash", 30, 7]], [["NIX_CFLAGS_COMPILE", 59, 7]], [["broken", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 41, 3], ["makeFlags", 45, 3], ["preBuild", 55, 3], ["env", 59, 3], ["enableParallelBuilding", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, openssl: false, curl: false, libpq: false, yajl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 59, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["broken", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 41, 3], ["makeFlags", 45, 3], ["preBuild", 55, 3], ["env", 59, 3], ["enableParallelBuilding", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libpq = nix.arg($, "libpq");
   const yajl = nix.arg($, "yajl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kore",
       version: "4.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jorisvink",
           repo: "kore",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,12 +28,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/jorisvink/kore/commit/978cb0ab79c9c939c35996f34f7d835f9c671831.patch",
             hash: "sha256-uHTWiliM4m2i9/6GQQfnAo31XBXd/2+fzysPeNo2dQ0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/jorisvink/kore/commit/6122affe22bf676eed0f544e421c53699aa7a2e2.patch",
             hash: "sha256-xaiUOjBJPEgEwwuseXe6VbOTkOCKdQ5tuwDdL7DojHM=",
           })))),
@@ -56,12 +51,12 @@ export default nix.lambda((args) => (() => {
       ]),
       preBuild: "make platform.h\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error=deprecated-declarations"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=pointer-compare", "-Wno-error=discarded-qualifiers"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=incompatible-pointer-types-discards-qualifiers"]))))))),
       })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Easy to use web application framework for C",
         homepage: "https://kore.io",

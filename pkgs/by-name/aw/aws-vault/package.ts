@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["proxyVendor", 22, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 31, 3], ["doCheck", 43, 3], ["subPackages", 45, 3], ["ldflags", 48, 3], ["doInstallCheck", 52, 3], ["installCheckPhase", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, lib: false, makeWrapper: false, stdenv: false, writableTmpDirAsHomeHook: false, "xdg-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["proxyVendor", 22, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 31, 3], ["doCheck", 43, 3], ["subPackages", 45, 3], ["ldflags", 48, 3], ["doInstallCheck", 52, 3], ["installCheckPhase", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aws-vault",
       version: "7.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ByteNess",
           repo: "aws-vault",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ installShellCompletion --cmd aws-vault \\
       installCheckPhase: nix.thunk(() => nix.str`$out/bin/aws-vault --version 2>&1 | grep ${nix.sel(finalAttrs, "version")} > /dev/null
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Vault for securely storing and accessing AWS credentials in development environments",
         mainProgram: "aws-vault",
         homepage: "https://github.com/ByteNess/aws-vault",

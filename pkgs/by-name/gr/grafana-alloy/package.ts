@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withCompression", 20, 41]], [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["src", 35, 5], ["hash", 36, 5]], [["pname", 40, 5], ["version", 41, 26], ["src", 41, 34], ["sourceRoot", 43, 5], ["npmDeps", 45, 26], ["installPhase", 47, 5]], [["NIX_CFLAGS_LINK", 96, 7]], [["NIX_CFLAGS_COMPILE", 101, 7]], [["alloy", 135, 28]], [["extraArgs", 138, 7]], [["tests", 134, 5], ["updateScript", 137, 5], ["npmDeps", 144, 26]], [["description", 148, 5], ["longDescription", 149, 5], ["homepage", 154, 5], ["changelog", 155, 5], ["license", 156, 5], ["platforms", 157, 5], ["maintainers", 158, 5], ["mainProgram", 163, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["npmDeps", 34, 3], ["frontend", 39, 3], ["patchPhase", 57, 3], ["modRoot", 67, 3], ["proxyVendor", 69, 3], ["vendorHash", 70, 3], ["subPackages", 72, 3], ["ldflags", 74, 3], ["tags", 85, 3], ["env", 94, 3], ["nativeBuildInputs", 104, 3], ["postInstall", 109, 3], ["doInstallCheck", 119, 3], ["nativeInstallCheckInputs", 120, 3], ["versionCheckProgramArg", 121, 3], ["postFixup", 125, 3], ["passthru", 133, 3], ["meta", 147, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchNpmDeps: false, buildGoModule: false, buildNpmPackage: false, systemdLibs: false, installShellFiles: false, versionCheckHook: false, nixosTests: false, "nix-update-script": false, lld: false, useLLD: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withCompression", 20, 41]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 35, 5], ["hash", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 40, 5], ["version", 41, 26], ["src", 41, 34], ["sourceRoot", 43, 5], ["npmDeps", 45, 26], ["installPhase", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_LINK", 96, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 101, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["alloy", 135, 28]]);
-const pos$8 = nix.positions(here + "/package.nix", [["extraArgs", 138, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["tests", 134, 5], ["updateScript", 137, 5], ["npmDeps", 144, 26]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 148, 5], ["longDescription", 149, 5], ["homepage", 154, 5], ["changelog", 155, 5], ["license", 156, 5], ["platforms", 157, 5], ["maintainers", 158, 5], ["mainProgram", 163, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["npmDeps", 34, 3], ["frontend", 39, 3], ["patchPhase", 57, 3], ["modRoot", 67, 3], ["proxyVendor", 69, 3], ["vendorHash", 70, 3], ["subPackages", 72, 3], ["ldflags", 74, 3], ["tags", 85, 3], ["env", 94, 3], ["nativeBuildInputs", 104, 3], ["postInstall", 109, 3], ["doInstallCheck", 119, 3], ["nativeInstallCheckInputs", 120, 3], ["versionCheckProgramArg", 121, 3], ["postFixup", 125, 3], ["passthru", 133, 3], ["meta", 147, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,25 +21,25 @@ export default nix.lambda((args) => (() => {
   const lld = nix.arg($, "lld");
   const useLLD = nix.argOr($, "useLLD", () => nix.sel(stdenv, "hostPlatform", "isArmv7"));
   const beylaVersion = "v3.9.8";
-  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCompression: true }))));
+  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withCompression: true }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "grafana-alloy",
       version: "1.17.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "grafana",
           repo: "alloy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4HjOerOe+v8GkKgID/oBm5Rt7nQiHjucAQkSYGY5zZs=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/internal/web/ui`),
           hash: "sha256-eGyKXsZzyDovsMY2U1uAOn22nyRTYGJT+kEh61857Ls=",
         })))),
       frontend: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: "alloy-frontend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -80,8 +70,8 @@ fi
         nix.thunk(() => nix.str`-X github.com/grafana/beyla/pkg/buildinfo=${beylaVersion}`),
       ]),
       tags: nix.thunk(() => nix.concat(["embedalloyui", "gore2regex", "netgo"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["promtail_journal_enabled"])))),
-      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useLLD, nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_LINK: "-fuse-ld=lld" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useLLD, nix.thunk(() => ({ [nix.POS]: $pos[4], NIX_CFLAGS_LINK: "-fuse-ld=lld" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
+          [nix.POS]: $pos[5],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), systemdLibs$)}/include`),
         }))))),
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles], nix.app(nix.sel(lib, "optionals"), useLLD, nix.thunk(() => [lld])))),
@@ -94,13 +84,13 @@ fi
   $out/bin/alloy
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$7, alloy: nix.thunk(() => nix.attr(nixosTests, "alloy")) })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$8, extraArgs: nix.thunk(() => ["--version-regex", "v(.+)"]) })))),
+        [nix.POS]: $pos[8],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[6], alloy: nix.thunk(() => nix.attr(nixosTests, "alloy")) })),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[7], extraArgs: nix.thunk(() => ["--version-regex", "v(.+)"]) })))),
         npmDeps: nix.thunk(() => nix.attr(finalAttrs, "npmDeps")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "OpenTelemetry Collector distribution with programmable pipelines",
         longDescription: "Grafana Alloy is an open source OpenTelemetry Collector distribution with\nbuilt-in Prometheus pipelines and support for metrics, logs, traces, and\nprofiles.\n",
         homepage: "https://grafana.com/oss/alloy",

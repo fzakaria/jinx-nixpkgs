@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 74, 5], ["repo", 75, 5], ["tag", 76, 5], ["hash", 77, 5]], [["description", 418, 5], ["homepage", 419, 5], ["changelog", 420, 5], ["license", 421, 5], ["maintainers", 422, 5]], [["pname", 68, 3], ["version", 69, 3], ["pyproject", 70, 3], ["__structuredAttrs", 71, 3], ["src", 73, 3], ["sourceRoot", 80, 3], ["patches", 82, 3], ["postPatch", 90, 3], ["pythonRelaxDeps", 102, 3], ["build-system", 113, 3], ["dependencies", 126, 3], ["enableParallelBuilding", 153, 3], ["__darwinAllowLocalNetworking", 155, 3], ["pythonImportsCheck", 157, 3], ["nativeCheckInputs", 159, 3], ["preCheck", 181, 3], ["disabledTestPaths", 185, 3], ["disabledTests", 265, 3], ["meta", 417, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, distlib: false, "grpcio-tools": false, jinja2: false, jsonpickle: false, jsonschema: false, "mypy-protobuf": false, redis: false, setuptools: false, yapf: false, beartype: false, crcmod: false, cryptography: false, dill: false, "envoy-data-plane": false, fastavro: false, fasteners: false, grpcio: false, httplib2: false, numpy: false, objsize: false, orjson: false, pillow: false, "proto-plus": false, protobuf: false, pyarrow: false, pydot: false, pymongo: false, "python-dateutil": false, pytz: false, regex: false, requests: false, "typing-extensions": false, zstandard: false, python: false, "docstring-parser": false, freezegun: false, hypothesis: false, mock: false, pandas: false, parameterized: false, psycopg2: false, pyhamcrest: false, "pytest-xdist": false, pytestCheckHook: false, pyyaml: false, "requests-mock": false, "scikit-learn": false, sqlalchemy: false, tenacity: false, testcontainers: false, which: false, pythonAtLeast: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 74, 5], ["repo", 75, 5], ["tag", 76, 5], ["hash", 77, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 418, 5], ["homepage", 419, 5], ["changelog", 420, 5], ["license", 421, 5], ["maintainers", 422, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 68, 3], ["version", 69, 3], ["pyproject", 70, 3], ["__structuredAttrs", 71, 3], ["src", 73, 3], ["sourceRoot", 80, 3], ["patches", 82, 3], ["postPatch", 90, 3], ["pythonRelaxDeps", 102, 3], ["build-system", 113, 3], ["dependencies", 126, 3], ["enableParallelBuilding", 153, 3], ["__darwinAllowLocalNetworking", 155, 3], ["pythonImportsCheck", 157, 3], ["nativeCheckInputs", 159, 3], ["preCheck", 181, 3], ["disabledTestPaths", 185, 3], ["disabledTests", 265, 3], ["meta", 417, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -67,13 +65,13 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "apache-beam",
       version: "2.75.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "beam",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -276,7 +274,7 @@ export default nix.lambda((args) => (() => {
           "test_deterministic_key",
         ])))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unified model for defining both batch and streaming data-parallel processing pipelines",
         homepage: "https://beam.apache.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/beam/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),

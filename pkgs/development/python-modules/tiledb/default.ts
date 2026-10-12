@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["TILEDB_PATH", 62, 7]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 49, 3], ["nativeCheckInputs", 53, 3], ["env", 62, 3], ["disabled", 64, 3], ["dontUseCmakeConfigure", 66, 3], ["checkPhase", 70, 3], ["pythonImportsCheck", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, pybind11: false, tiledb: false, numpy: false, wheel: false, isPy3k: false, "setuptools-scm": false, psutil: false, pandas: false, cmake: false, ninja: false, "scikit-build-core": false, packaging: false, pytest: false, hypothesis: false, pyarrow: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["TILEDB_PATH", 62, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 49, 3], ["nativeCheckInputs", 53, 3], ["env", 62, 3], ["disabled", 64, 3], ["dontUseCmakeConfigure", 66, 3], ["checkPhase", 70, 3], ["pythonImportsCheck", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.36.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TileDB-Inc",
           repo: "TileDB-Py",
           tag: version,
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [tiledb]);
       const propagatedBuildInputs = nix.thunk(() => [numpy]);
       const nativeCheckInputs = nix.thunk(() => [psutil, pandas, pytest, hypothesis, pyarrow]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, TILEDB_PATH: tiledb }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], TILEDB_PATH: tiledb }));
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const dontUseCmakeConfigure = true;
       const checkPhase = nix.thunk(() => nix.str`pushd "$TMPDIR"
@@ -55,13 +52,13 @@ popd
 `);
       const pythonImportsCheck = nix.thunk(() => ["tiledb"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python interface to the TileDB storage manager",
         homepage: "https://github.com/TileDB-Inc/TileDB-Py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

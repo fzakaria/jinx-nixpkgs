@@ -2,31 +2,26 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/commafeed.nix", [[["enable", 7, 7]], [["commafeed", 6, 14]], [["services", 6, 5]], [["server", 5, 9]], [["maintainers", 18, 8]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 11, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/commafeed.nix", [["enable", 7, 7]]);
-const pos$2 = nix.positions(here + "/commafeed.nix", [["commafeed", 6, 14]]);
-const pos$3 = nix.positions(here + "/commafeed.nix", [["services", 6, 5]]);
-const pos$4 = nix.positions(here + "/commafeed.nix", [["server", 5, 9]]);
-const pos$5 = nix.positions(here + "/commafeed.nix", [["maintainers", 18, 8]]);
-const pos$6 = nix.positions(here + "/commafeed.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 11, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "commafeed",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          commafeed: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+          [nix.POS]: $pos[1],
+          commafeed: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         })),
       })),
     })),
     testScript: "server.start()\nserver.wait_for_unit(\"commafeed.service\")\nserver.wait_for_open_port(8082)\nserver.succeed(\"curl --fail --silent http://localhost:8082\")\n",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$5, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[4], maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=commafeed.ts.map

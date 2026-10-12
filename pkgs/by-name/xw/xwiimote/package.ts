@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 40, 5], ["description", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["configureFlags", 22, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 29, 3], ["postInstallPhase", 34, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, udev: false, ncurses: false, "pkg-config": false, fetchFromGitHub: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["configureFlags", 22, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 29, 3], ["postInstallPhase", 34, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xwiimote",
       version: "2-unstable-2024-02-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xwiimote",
           repo: "xwiimote",
           rev: "4df713d9037d814cc0c64197f69e5c78d55caaf1",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       postInstallPhase: "mkdir -p \"$out/etc/X11/xorg.conf.d/\"\ncp \"res/50-xorg-fix-xwiimote.conf\" \"$out/etc/X11/xorg.conf.d/50-fix-xwiimote.conf\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://xwiimote.github.io/xwiimote/",
         description: "Userspace utilities to control connected Nintendo Wii Remotes",
         mainProgram: "xwiishow",

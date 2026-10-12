@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["name", 27, 7], ["url", 28, 7], ["sha256", 29, 7], ["stripLen", 30, 7]], [["homepage", 54, 5], ["description", 55, 5], ["mainProgram", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["downloadPage", 60, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 36, 3], ["configureFlags", 45, 3], ["doCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, openssl: false, ncurses: false, "pkg-config": false, glib: false, loudmouth: false, libotr: false, gpgme: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["sha256", 29, 7], ["stripLen", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["mainProgram", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["downloadPage", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 36, 3], ["configureFlags", 45, 3], ["doCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const libotr = nix.arg($, "libotr");
   const gpgme = nix.arg($, "gpgme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mcabber",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mcabber.com/files/mcabber-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0q1i5acyghsmzas88qswvki8kkk2nfpr8zapgnxbcd3lwcxl38f4",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ncurses-6.3.patch",
             url: "https://github.com/McKael/mcabber/commit/5a0893d69023b77b7671731defbdca5d47731130.patch",
             sha256: "01bc23z0mva9l9jv587sq2r9w3diachgkmb9ad99hlzgj02fmq4v",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://mcabber.com/",
         description: "Small Jabber console client",
         mainProgram: "mcabber",

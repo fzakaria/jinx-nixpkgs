@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 32, 5], ["homepage", 33, 5], ["changelog", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, protobuf: false, bzip2: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["changelog", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "avbroot";
       const version = "3.34.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chenxiaolong",
           repo: "avbroot",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config, protobuf]);
       const buildInputs = nix.thunk(() => [bzip2]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sign (and root) Android A/B OTAs with custom keys while preserving Android Verified Boot",
         homepage: "https://github.com/chenxiaolong/avbroot",
         changelog: nix.thunk(() => nix.str`https://github.com/chenxiaolong/avbroot/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "avbroot",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

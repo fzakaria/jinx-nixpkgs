@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ELECTRON_SKIP_BINARY_DOWNLOAD", 45, 7]], [["name", 107, 5], ["nativeBuildInputs", 108, 5], ["script", 109, 5]], [["help", 106, 18]], [["tests", 106, 12]], [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["mainProgram", 118, 5], ["maintainers", 119, 5], ["platforms", 125, 5]], [["pname", 18, 11], ["version", 23, 19], ["src", 23, 27], ["npmDepsHash", 23, 31], ["nodejs", 26, 3], ["npmWorkspace", 28, 3], ["npmFlags", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["postConfigure", 40, 3], ["env", 45, 3], ["npmRebuildFlags", 48, 3], ["preBuild", 49, 3], ["buildPhase", 58, 3], ["npmPackFlags", 74, 3], ["postInstall", 76, 3], ["postFixup", 100, 3], ["passthru", 106, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, clang_20: false, buildNpmPackage: false, nodejs_22: false, bruno: false, "pkg-config": false, pango: false, testers: false, "bruno-cli": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 45, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 107, 5], ["nativeBuildInputs", 108, 5], ["script", 109, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["help", 106, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 106, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["mainProgram", 118, 5], ["maintainers", 119, 5], ["platforms", 125, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 11], ["version", 23, 19], ["src", 23, 27], ["npmDepsHash", 23, 31], ["nodejs", 26, 3], ["npmWorkspace", 28, 3], ["npmFlags", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["postConfigure", 40, 3], ["env", 45, 3], ["npmRebuildFlags", 48, 3], ["preBuild", 49, 3], ["buildPhase", 58, 3], ["npmPackFlags", 74, 3], ["postInstall", 76, 3], ["postFixup", 100, 3], ["passthru", 106, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const bruno_cli = nix.arg($, "bruno-cli");
   const pname = "bruno-cli";
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: nix.thunk(() => nix.attr(bruno, "version")),
       src: nix.thunk(() => nix.attr(bruno, "src")),
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), clang_20))),
       buildInputs: nix.thunk(() => [pango]),
       postConfigure: "# sh: line 1: /build/source/packages/bruno-converters/node_modules/.bin/rimraf: cannot execute: required file not found\npatchShebangs packages/*/node_modules\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       npmRebuildFlags: nix.thunk(() => ["--ignore-scripts"]),
       preBuild: "# upstream keeps removing and adding back canvas, only patch it when it is present\nif [[ -e node_modules/canvas/binding.gyp ]]; then\n  substituteInPlace node_modules/canvas/binding.gyp \\\n    --replace-fail \"'with_gif%': '<!(node ./util/has_lib.js gif)'\" \"'with_gif%': 'false'\"\n  npm rebuild\nfi\n",
       buildPhase: "runHook preBuild\n\nnpm run build --workspace=packages/bruno-common\nnpm run build --workspace=packages/bruno-graphql-docs\nnpm run build --workspace=packages/bruno-schema-types\nnpm run build --workspace=packages/bruno-converters\nnpm run build --workspace=packages/bruno-query\nnpm run build --workspace=packages/bruno-filestore\nnpm run build --workspace=packages/bruno-requests\n\nnpm run sandbox:bundle-libraries --workspace=packages/bruno-js\n\nrunHook postBuild\n",
@@ -43,11 +38,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "cp -r packages $out/lib/node_modules/usebruno\n\necho \"Removing unnecessary files\"\npushd $out/lib/node_modules/usebruno\n\n# packages used by the GUI app, unused by CLI\nrm -r packages/bruno-{app,electron,tests,toml,docs}\nrm node_modules/bruno\nrm node_modules/@usebruno/{app,tests,toml}\n\n# heavy dependencies that seem to be unused\nrm -rf node_modules/{@tabler,pdfjs-dist,*redux*,prettier,@types*,*react*,*graphiql*,@swagger-api}\nrm -r node_modules/.bin\n\n# unused file types\nfor pattern in '*.map' '*.map.js' '*.ts'; do\n  find . -type f -name \"$pattern\" -exec rm {} +\ndone\n\npopd\necho \"Removed unnecessary files\"\n",
       postFixup: "wrapProgram $out/bin/bru \\\n  --prefix NODE_PATH : $out/lib/node_modules/usebruno/packages/bruno-cli/node_modules \\\n  --prefix NODE_PATH : $out/lib/node_modules\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           help: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: nix.thunk(() => nix.str`${pname}-help-test`),
               nativeBuildInputs: nix.thunk(() => [bruno_cli]),
               script: "bru --help && touch $out\n",
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CLI of the open-source IDE For exploring and testing APIs",
         homepage: "https://www.usebruno.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

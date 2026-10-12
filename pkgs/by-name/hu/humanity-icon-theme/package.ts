@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["propagatedBuildInputs", 23, 3], ["dontDropIconThemeCache", 28, 3], ["dontCheckForBrokenSymlinks", 31, 3], ["installPhase", 33, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, gtk3: false, "adwaita-icon-theme": false, "hicolor-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["propagatedBuildInputs", 23, 3], ["dontDropIconThemeCache", 28, 3], ["dontCheckForBrokenSymlinks", 31, 3], ["installPhase", 33, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "humanity-icon-theme";
       const version = "0.6.16";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://launchpad.net/ubuntu/+archive/primary/+files/humanity-icon-theme_${version}.tar.xz`),
           sha256: "sha256-AyHl4zMyFE2/5Cui3Y/SB1yEUuyafDdybFPrafo4Ki0=",
         }))));
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const dontCheckForBrokenSymlinks = true;
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/icons\ncp -a Humanity* $out/share/icons\nrm $out/share/icons/*/{AUTHORS,CONTRIBUTORS,COPYING}\n\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache $theme\ndone\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Humanity icons from Ubuntu",
         homepage: "https://launchpad.net/humanity/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "romildo"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

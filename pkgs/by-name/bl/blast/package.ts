@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["description", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["platforms", 135, 5], ["maintainers", 136, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["sourceRoot", 25, 3], ["configureFlags", 27, 3], ["makeFlags", 36, 3], ["preConfigure", 38, 3], ["depsBuildBuild", 92, 3], ["nativeBuildInputs", 93, 3], ["buildInputs", 100, 3], ["strictDeps", 112, 3], ["hardeningDisable", 114, 3], ["postInstall", 116, 3], ["patches", 123, 3], ["enableParallelBuilding", 125, 3], ["doCheck", 128, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, fetchurl: false, zlib: false, bzip2: false, perl: false, cpio: false, gawk: false, coreutils: false, curl: false, sqlite: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["platforms", 135, 5], ["maintainers", 136, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["sourceRoot", 25, 3], ["configureFlags", 27, 3], ["makeFlags", 36, 3], ["preConfigure", 38, 3], ["depsBuildBuild", 92, 3], ["nativeBuildInputs", 93, 3], ["buildInputs", 100, 3], ["strictDeps", 112, 3], ["hardeningDisable", 114, 3], ["postInstall", 116, 3], ["patches", 123, 3], ["enableParallelBuilding", 125, 3], ["doCheck", 128, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "blast",
       version: "2.17.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/${nix.sel(finalAttrs, "version")}/ncbi-blast-${nix.sel(finalAttrs, "version")}+-src.tar.gz`),
           sha256: "sha256-UCBXqI6ZkONOYnWL4h6kdMwK1o1qY6LjeyNyrx5eoUc=",
         })))),
@@ -106,7 +104,7 @@ substituteInPlace $out/bin/update_blastdb.pl \\
       enableParallelBuilding: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Basic Local Alignment Search Tool (BLAST) finds regions of similarity between biological sequences",
         homepage: "https://blast.ncbi.nlm.nih.gov/Blast.cgi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

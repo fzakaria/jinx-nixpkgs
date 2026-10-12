@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["homepage", 68, 5], ["description", 69, 5], ["mainProgram", 70, 5], ["longDescription", 71, 5], ["license", 76, 5], ["platforms", 77, 5]], [["version", 15, 3], ["pname", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["cmakeFlags", 38, 3], ["postPatch", 43, 3], ["postInstall", 48, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, bzip2: false, libnova: false, proj: false, libpng: false, openjpeg: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["mainProgram", 70, 5], ["longDescription", 71, 5], ["license", 76, 5], ["platforms", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 15, 3], ["pname", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["cmakeFlags", 38, 3], ["postPatch", 43, 3], ["postInstall", 48, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openjpeg = nix.arg($, "openjpeg");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "unstable-2022-05-16",
       pname: "xygrib",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "opengribs",
           repo: "XyGrib",
           rev: "88c425ca2d7f4ba5d7ab75bfa25e177bee02d310",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 3.1.0)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       postInstall: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p \"$out/Applications\" \"$out/XyGrib/XyGrib.app/Contents/Resources\"\ncp \"../data/img/xyGrib.icns\" \"$out/XyGrib/XyGrib.app/Contents/Resources/xyGrib.icns\"\nmv $out/XyGrib/XyGrib.app $out/Applications\nwrapQtApp \"$out/Applications/XyGrib.app/Contents/MacOS/XyGrib\"\n" : "wrapQtApp $out/XyGrib/XyGrib\nmkdir -p $out/bin\nln -s $out/XyGrib/XyGrib $out/bin/xygrib\ninstall -Dm444 $src/debian/xygrib.png -t $out/share/icons/hicolor/32x32/apps\ninstall -Dm444 $src/debian/xygrib.desktop -t $out/share/applications\nsubstituteInPlace $out/share/applications/xygrib.desktop \\\n  --replace 'Exec=XyGrib' 'Exec=xygrib'\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://opengribs.org",
         description: "Weather Forecast Visualization",
         mainProgram: "xygrib",

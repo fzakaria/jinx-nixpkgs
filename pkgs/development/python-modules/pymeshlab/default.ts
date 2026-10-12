@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["url", 46, 7], ["hash", 47, 7]], [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5]], [["version", 30, 11], ["pname", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["nativeBuildInputs", 51, 3], ["propagatedBuildInputs", 56, 3], ["buildInputs", 61, 3], ["dontWrapQtApps", 71, 3], ["cmakeFlags", 73, 3], ["postInstall", 78, 3], ["postFixup", 93, 3], ["pythonImportsCheck", 99, 3], ["__structuredAttrs", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, buildPythonPackage: false, python: false, cmake: false, pybind11: false, meshlab: false, numpy: false, libsForQt5: false, libsm: false, llvmPackages: false, glew: false, vcg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 46, 7], ["hash", 47, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 30, 11], ["pname", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["nativeBuildInputs", 51, 3], ["propagatedBuildInputs", 56, 3], ["buildInputs", 61, 3], ["dontWrapQtApps", 71, 3], ["cmakeFlags", 73, 3], ["postInstall", 78, 3], ["postFixup", 93, 3], ["pythonImportsCheck", 99, 3], ["__structuredAttrs", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const vcg = nix.arg($, "vcg");
   const version = "2025.7.post1";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: version,
       pname: "pymeshlab",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cnr-isti-vclab",
           repo: "pymeshlab",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/cnr-isti-vclab/PyMeshLab/commit/b363caae4362746b3f9e9326fe7b72a2ec7824d9.patch",
             hash: "sha256-euKfOx/T0qdeMx79dpEalzmdWsr4nbDFJfKdksvULBw=",
           })))),
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pymeshlab"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open source mesh processing python library",
         homepage: "https://github.com/cnr-isti-vclab/PyMeshLab",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

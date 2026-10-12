@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["package", 74, 5]], [["version", 73, 18]], [["tests", 73, 12]], [["description", 78, 5], ["longDescription", 79, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["mainProgram", 87, 5], ["license", 88, 5], ["maintainers", 92, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["postPatch", 29, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 43, 3], ["preCheck", 49, 3], ["checkFlags", 54, 3], ["passthru", 73, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, openssl: false, libiconv: false, curl: false, testers: false, "cargo-geiger": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 73, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 73, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 78, 5], ["longDescription", 79, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["mainProgram", 87, 5], ["license", 88, 5], ["maintainers", 92, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["postPatch", 29, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 43, 3], ["preCheck", 49, 3], ["checkFlags", 54, 3], ["passthru", 73, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const cargo_geiger = nix.arg($, "cargo-geiger");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cargo-geiger",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "geiger-rs",
           repo: "cargo-geiger",
           tag: nix.thunk(() => nix.str`cargo-geiger-${nix.sel(finalAttrs, "version")}`),
@@ -54,14 +49,14 @@ export default nix.lambda((args) => (() => {
         "--skip=test_package_update_readme::case_5",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: cargo_geiger })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: cargo_geiger })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Detects usage of unsafe Rust in a Rust crate and its dependencies",
         longDescription: "A cargo plugin that detects the usage of unsafe Rust in a Rust crate and\nits dependencies. It provides information to aid auditing and guide\ndependency selection but it can not help you decide when and why unsafe\ncode is appropriate.\n",
         homepage: "https://github.com/geiger-rs/cargo-geiger",

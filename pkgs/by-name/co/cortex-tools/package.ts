@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["CGO_ENABLED", 31, 7]], [["updateScript", 41, 12]], [["changelog", 63, 5], ["description", 64, 5], ["longDescription", 65, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["env", 31, 3], ["ldflags", 33, 3], ["doCheck", 39, 3], ["passthru", 41, 3], ["nativeBuildInputs", 43, 3], ["postInstall", 45, 3], ["doInstallCheck", 54, 3], ["nativeInstallCheckInputs", 56, 3], ["versionCheckProgramArg", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, gitUpdater: false, versionCheckHook: false, installShellFiles: false, stdenv: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 41, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 63, 5], ["description", 64, 5], ["longDescription", 65, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["env", 31, 3], ["ldflags", 33, 3], ["doCheck", 39, 3], ["passthru", 41, 3], ["nativeBuildInputs", 43, 3], ["postInstall", 45, 3], ["doInstallCheck", 54, 3], ["nativeInstallCheckInputs", 56, 3], ["versionCheckProgramArg", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cortex-tools",
       version: "0.21.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cortexproject",
           repo: "cortex-tools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: null,
       subPackages: nix.thunk(() => ["cmd/benchtool", "cmd/cortextool", "cmd/e2ealerting", "cmd/logtool"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         nix.thunk(() => nix.str`-X github.com/cortexproject/cortex-tools/pkg/version.Version=${nix.sel(finalAttrs, "src", "tag")}`),
         "-s",
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/cortexproject/cortex-tools/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Tools used for interacting with Cortex, a Prometheus-compatible server",
         longDescription: "Tools used for interacting with Cortex, a horizontally scalable, highly available, multi-tenant, long term Prometheus server:\n\n- benchtool: A powerful YAML driven tool for benchmarking Cortex write and query API.\n- cortextool: Interacts with user-facing Cortex APIs and backend storage components.\n- chunktool: Interacts with chunks stored and indexed in Cortex storage backends.\n- logtool: Tool which parses Cortex query-frontend logs and formats them for easy analysis.\n- e2ealerting: Tool that helps measure how long an alert takes from scrape of sample to Alertmanager notification delivery.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]], [["description", 60, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 12, 3], ["version", 13, 3], ["outputs", 17, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["cmakeFlags", 37, 3], ["installPhase", 50, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, python3: false, git: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["outputs", 17, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["cmakeFlags", 37, 3], ["installPhase", 50, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const git = nix.arg($, "git");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "directx-shader-compiler",
       version: "1.10.2605.37",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "DirectXShaderCompiler",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin $out/lib $dev/include\nmv bin/{dxc,dxv}* $out/bin/\nmv lib/lib*.so* lib/lib*.*dylib $out/lib/\ncp -r $src/include/dxc $dev/include/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Compiler to compile HLSL programs into DXIL and SPIR-V",
         homepage: "https://github.com/microsoft/DirectXShaderCompiler",
         platforms: nix.thunk(() => (() => {

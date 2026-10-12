@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]], [["version", 21, 3], ["pname", 22, 3], ["src", 24, 3], ["cmakeFlags", 31, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 53, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, zlib: false, xz: false, bzip2: false, zchunk: false, zstd: false, expat: false, withRpm: true, rpm: false, db: false, withConda: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 21, 3], ["pname", 22, 3], ["src", 24, 3], ["cmakeFlags", 31, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 53, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const db = nix.arg($, "db");
   const withConda = nix.argOr($, "withConda", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.7.39",
       pname: "libsolv",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openSUSE",
           repo: "libsolv",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([zlib, xz, bzip2, zchunk, zstd, expat, db], nix.app(nix.sel(lib, "optional"), withRpm, rpm))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free package dependency solver",
         homepage: "https://github.com/openSUSE/libsolv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

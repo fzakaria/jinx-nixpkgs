@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["description", 24, 5], ["mainProgram", 25, 5], ["homepage", 26, 5], ["sourceProvenance", 27, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]], [["name", 105, 7], ["desktopName", 106, 7], ["icon", 107, 7], ["exec", 108, 7], ["comment", 109, 7], ["categories", 110, 7]], [["url", 136, 5], ["ignoredVersions", 137, 5]], [["updateScript", 135, 12]], [["pname", 86, 5], ["version", 87, 5], ["src", 88, 5], ["meta", 89, 5], ["dontUnpack", 92, 3], ["dontConfigure", 93, 3], ["dontBuild", 94, 3], ["dontWrapGApps", 95, 3], ["nativeBuildInputs", 97, 3], ["desktopItems", 103, 3], ["installPhase", 114, 3], ["passthru", 135, 3]]]);
 const formals$1 = { args: { lib: false, copyDesktopItems: false, fetchurl: false, ffmpeg: false, gitUpdater: false, jre: false, libarchive: false, makeDesktopItem: false, openjfx: false, stdenvNoCC: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["mainProgram", 25, 5], ["homepage", 26, 5], ["sourceProvenance", 27, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 105, 7], ["desktopName", 106, 7], ["icon", 107, 7], ["exec", 108, 7], ["comment", 109, 7], ["categories", 110, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 136, 5], ["ignoredVersions", 137, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 135, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 86, 5], ["version", 87, 5], ["src", 88, 5], ["meta", 89, 5], ["dontUnpack", 92, 3], ["dontConfigure", 93, 3], ["dontBuild", 94, 3], ["dontWrapGApps", 95, 3], ["nativeBuildInputs", 97, 3], ["desktopItems", 103, 3], ["installPhase", 114, 3], ["passthru", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const version = "1.18.6";
   const repoBase = "https://github.com/RPTools/maptool";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`${repoBase}/releases/download/${version}/maptool-${version}-x86_64.pkg.tar.zst`),
       hash: "sha256-QSJjXgzjoKIwTvIx6iWCHjleJTAAI7qnbcxZb8sygxY=",
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "Virtual Tabletop for playing roleplaying games with remote players or face to face",
     mainProgram: "maptool",
     homepage: "https://www.rptools.net/toolbox/maptool/",
@@ -81,7 +76,7 @@ export default nix.lambda((args) => (() => {
   const binName = pname;
   const rdnsName = "net.rptools.maptool";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -93,7 +88,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, libarchive, wrapGAppsHook3]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: rdnsName,
             desktopName: "MapTool",
             icon: rdnsName,
@@ -122,9 +117,9 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} "$dest"/${binName} \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: nix.thunk(() => nix.str`${repoBase}.git`),
             ignoredVersions: "-",
           })))),

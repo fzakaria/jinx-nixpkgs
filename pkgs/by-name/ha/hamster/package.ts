@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["sha256", 27, 5]], [["PYTHONDIR", 55, 7]], [["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 40, 3], ["propagatedBuildInputs", 47, 3], ["env", 55, 3], ["dontWrapGApps", 57, 3], ["preFixup", 60, 3], ["postFixup", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, intltool: false, glib: false, itstool: false, gtk3: false, wrapGAppsHook3: false, "gobject-introspection": false, pango: false, "gdk-pixbuf": false, atk: false, wafHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PYTHONDIR", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 40, 3], ["propagatedBuildInputs", 47, 3], ["env", 55, 3], ["dontWrapGApps", 57, 3], ["preFixup", 60, 3], ["postFixup", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const atk = nix.arg($, "atk");
   const wafHook = nix.arg($, "wafHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hamster",
       version: "3.0.3",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "projecthamster",
           repo: "hamster",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,14 +53,14 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PYTHONDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${nix.sel(python3Packages, "python", "sitePackages")}`),
       })),
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       postFixup: "wrapPythonProgramsIn $out/libexec \"$out ${pythonPath[*]}\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Time tracking application",
         mainProgram: "hamster",
         homepage: "http://projecthamster.org/",

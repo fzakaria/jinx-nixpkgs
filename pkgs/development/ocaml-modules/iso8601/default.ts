@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["strictDeps", 27, 3], ["createFindlibDestdir", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, ocaml: false, findlib: false, ocamlbuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["strictDeps", 27, 3], ["createFindlibDestdir", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ocaml-iso8601";
       const version = "0.2.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sagotch",
           repo: "ISO8601.ml",
           rev: version,
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const createFindlibDestdir = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://ocaml-community.github.io/ISO8601.ml/",
         description: "ISO 8601 and RFC 3999 date parsing for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

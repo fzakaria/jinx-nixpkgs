@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 15, 3], ["nativeBuildInputs", 19, 3], ["buildPhase", 23, 3], ["installPhase", 30, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { stdenv: false, cjdns: false, nodejs: false, makeWrapper: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 15, 3], ["nativeBuildInputs", 19, 3], ["buildPhase", 23, 3], ["installPhase", 30, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "cjdns-tools",
       version: nix.thunk(() => nix.sel(cjdns, "version")),
       src: nix.thunk(() => nix.sel(cjdns, "src")),
@@ -30,7 +29,7 @@ find $out/tools -maxdepth 1 -type f -exec chmod -v a+x {} \\;
 cp -r node_modules $out/node_modules
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/cjdelisle/cjdns",
         description: "Tools for cjdns management",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

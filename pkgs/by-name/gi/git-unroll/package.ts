@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["packages", 54, 13]], [["updateScript", 69, 5]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5], ["platforms", 78, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["installPhase", 44, 3], ["passthru", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, makeWrapper: false, bash: false, gitMinimal: false, "nix-prefetch-git": false, rWrapper: false, rPackages: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packages", 54, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5], ["platforms", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["installPhase", 44, 3], ["passthru", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const rPackages = nix.arg($, "rPackages");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "git-unroll",
       version: "0-unstable-2026-03-25",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gm6k",
           repo: "git-unroll",
           rev: "62fc6ff3fcb62b6972182d64b4f3710c2188c082",
@@ -43,7 +39,7 @@ wrapProgram $out/bin/unroll \\
           gitMinimal,
           nix_prefetch_git,
           nix.thunk(() => nix.app(nix.sel(rWrapper, "override"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               packages: nix.thunk(() => (() => {
                 const w = nix.withScope(rPackages, null);
                 return [
@@ -60,11 +56,11 @@ wrapProgram $out/bin/unroll \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Convert Git repositories with submodules to a Nix expression based on non-recursive Git sources",
         homepage: "https://codeberg.org/gm6k/git-unroll",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

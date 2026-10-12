@@ -2,13 +2,13 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["nativeBuildInputs", 4, 5]]]);
 const formals$1 = { args: { runCommand: false, kiesel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["nativeBuildInputs", 4, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommand = nix.arg($, "runCommand");
   const kiesel = nix.arg($, "kiesel");
-  return nix.app(runCommand, "kiesel-test-run", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [kiesel]) })), "export NO_COLOR=1\nGOT=$(kiesel -p -c 'Array(16).join(\"wat\" - 1) + \" Batman!\"')\nEXPECT='\"NaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaN Batman!\"'\ntest \"$EXPECT\" = \"$GOT\"\ntouch $out\n");
+  return nix.app(runCommand, "kiesel-test-run", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [kiesel]) })), "export NO_COLOR=1\nGOT=$(kiesel -p -c 'Array(16).join(\"wat\" - 1) + \" Batman!\"')\nEXPECT='\"NaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaN Batman!\"'\ntest \"$EXPECT\" = \"$GOT\"\ntouch $out\n");
 })(), formals$1);
 //# sourceMappingURL=test.ts.map

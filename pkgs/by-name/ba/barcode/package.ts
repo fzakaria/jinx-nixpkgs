@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["name", 18, 7], ["url", 19, 7], ["hash", 20, 7]], [["description", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5], ["downloadPage", 32, 5], ["homepage", 33, 5], ["license", 34, 5]], [["version", 9, 3], ["pname", 10, 3], ["src", 11, 3], ["patches", 15, 3], ["configureFlags", 24, 3], ["hardeningDisable", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 18, 7], ["url", 19, 7], ["hash", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5], ["downloadPage", 32, 5], ["homepage", 33, 5], ["license", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 9, 3], ["pname", 10, 3], ["src", 11, 3], ["patches", 15, 3], ["configureFlags", 24, 3], ["hardeningDisable", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "0.99",
       pname: "barcode",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/barcode/barcode-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-6H7PZCFXPhfONYeduDKGF3lSWGUIMa/9Al+6QvFVzcY=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fno-common.patch",
             url: "http://git.savannah.gnu.org/cgit/barcode.git/patch/?id=4654f68706a459c9602d9932b56a56e8930f7d53",
             hash: "sha256-7Lm8993bIx8e8ZO51YnjAKP0UQVsI1JPrh5AytmnbJY=",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ac_cv_func_calloc_0_nonnull=yes")),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GNU barcode generator",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

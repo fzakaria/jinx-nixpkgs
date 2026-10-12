@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 5], ["version", 16, 26], ["hash", 17, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["dependencies", 24, 3], ["pythonImportsCheck", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pygments: false, whey: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 5], ["version", 16, 26], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["dependencies", 24, 3], ["pythonImportsCheck", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const pygments = nix.arg($, "pygments");
   const whey = nix.arg($, "whey");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "enum-tools",
       version: "0.13.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "enum_tools",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-DRMzXjYdMA3A+P2CyM+ZUUFyRvlnYUT17hdh62kCKOs=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pygments]),
       pythonImportsCheck: nix.thunk(() => ["enum_tools"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tools to expand Python's enum module",
         homepage: "https://github.com/domdfcoding/enum_tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["pythonImportsCheck", 45, 3], ["nativeCheckInputs", 47, 3], ["enabledTestPaths", 53, 3], ["disabledTests", 55, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, boto3: false, botocore: false, "snakemake-interface-common": false, "snakemake-interface-storage-plugins": false, urllib3: false, pytestCheckHook: false, snakemake: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["pythonImportsCheck", 45, 3], ["nativeCheckInputs", 47, 3], ["enabledTestPaths", 53, 3], ["disabledTests", 55, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const snakemake = nix.arg($, "snakemake");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "snakemake-storage-plugin-s3",
       version: "0.3.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "snakemake",
           repo: "snakemake-storage-plugin-s3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/tests.py"]),
       disabledTests: nix.thunk(() => ["test_storage", "test_group_workflow", "test_simple_workflow"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Snakemake storage plugin for S3 API storage (AWS S3, MinIO, etc.)",
         homepage: "https://github.com/snakemake/snakemake-storage-plugin-s3",
         changelog: nix.thunk(() => nix.str`https://github.com/snakemake/snakemake-storage-plugin-s3/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

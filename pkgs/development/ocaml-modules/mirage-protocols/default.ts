@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 12, 3], ["version", 13, 3], ["duneVersion", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, arp: false, ethernet: false, ipaddr: false, tcpip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["duneVersion", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const ipaddr = nix.arg($, "ipaddr");
   const tcpip = nix.arg($, "tcpip");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mirage-protocols",
       version: "8.0.0",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-protocols/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-protocols-v${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-UDCR4Jq3tw9P/Ilw7T4+3+yi9Q7VFqnHhXeSCvg9dyw=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [arp, ethernet, ipaddr, tcpip]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MirageOS signatures for network protocols",
         homepage: "https://github.com/mirage/mirage-protocols",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

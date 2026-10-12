@@ -2,13 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainers", 15, 11], ["platforms", 16, 11]], [["meta", 14, 9]], [["etcd", 23, 44]], [["multi-node", 30, 5], ["single-node", 31, 5]], [["multi-node", 34, 5], ["single-node", 35, 5]], [["3_5", 29, 3], ["3_6", 33, 3]]]);
 const formals$1 = { args: { pkgs: false, runTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainers", 15, 11], ["platforms", 16, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["meta", 14, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["etcd", 23, 44]]);
-const pos$4 = nix.positions(here + "/default.nix", [["multi-node", 30, 5], ["single-node", 31, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["multi-node", 34, 5], ["single-node", 35, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["3_5", 29, 3], ["3_6", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,26 +12,26 @@ export default nix.lambda((args) => (() => {
   const testEtcd = (path) => (oPkgs) => nix.app(runTest, nix.thunk(() => (() => {
       const etcdPkgs = nix.thunk(() => nix.update(pkgs, oPkgs));
       return nix.app(nix.sel(pkgs, "lib", "recursiveUpdate"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             maintainers: nix.thunk(() => nix.sel(etcdPkgs, "etcd", "meta", "maintainers")),
             platforms: nix.thunk(() => ["aarch64-linux", "x86_64-linux"]),
           })),
         })), nix.thunk(() => nix.app(nix.builtins.import(path), etcdPkgs)));
     })()));
-  const testEtcdPkg = (pkg) => (path) => nix.app(testEtcd, path, nix.thunk(() => ({ [nix.POS]: pos$3, etcd: pkg })));
+  const testEtcdPkg = (pkg) => (path) => nix.app(testEtcd, path, nix.thunk(() => ({ [nix.POS]: $pos[2], etcd: pkg })));
   const testEtcd_3_5 = nix.thunk(() => nix.app(testEtcdPkg, nix.thunk(() => nix.sel(pkgs, "etcd_3_5"))));
   const testEtcd_3_6 = nix.thunk(() => nix.app(testEtcdPkg, nix.thunk(() => nix.sel(pkgs, "etcd_3_6"))));
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     "3_5": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "multi-node": nix.thunk(() => nix.app(testEtcd_3_5, nix.path(here, "./multi-node.nix"))),
       "single-node": nix.thunk(() => nix.app(testEtcd_3_5, nix.path(here, "./single-node.nix"))),
     })),
     "3_6": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       "multi-node": nix.thunk(() => nix.app(testEtcd_3_6, nix.path(here, "./multi-node.nix"))),
       "single-node": nix.thunk(() => nix.app(testEtcd_3_6, nix.path(here, "./single-node.nix"))),
     })),

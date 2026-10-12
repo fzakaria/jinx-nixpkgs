@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 22, 5], ["sha512", 23, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["broken", 70, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["makeFlags", 32, 3], ["configurePhase", 42, 3], ["preBuild", 49, 3], ["propagatedBuildInputs", 53, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gprbuild: false, which: false, gnat: false, xmlada: false, "gnatcoll-core": false, "gnatcoll-iconv": false, "gnatcoll-gmp": false, enableShared: true, gpr2kbdir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 22, 5], ["sha512", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["broken", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["makeFlags", 32, 3], ["configurePhase", 42, 3], ["preBuild", 49, 3], ["propagatedBuildInputs", 53, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gpr2";
       const version = "25.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/AdaCore/gpr/releases/download/v${version}/gpr2-with-gprconfig_kb-${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}.tgz`),
           sha512: "70fe0fcf541f6d3d90a34cab1638bbc0283dcd765c000406e0cfb73bae1817b30ddfe73f3672247a97c6b6bfc41900bc96a4440ca0c660f9c2f7b9d3cc8f8dcf",
         }))));
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(gpr2kbdir, null)), "touch .build/kb/{*.adb,*.ads,collect_kb}\n"));
       const propagatedBuildInputs = nix.thunk(() => [xmlada, gnatcoll_gmp, gnatcoll_core, gnatcoll_iconv]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Framework for analyzing the GNAT Project (GPR) files",
         homepage: "https://github.com/AdaCore/gpr",
         license: nix.thunk(() => (() => {
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(gnat, "version")), "14")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

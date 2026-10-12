@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["fetchSubmodules", 18, 5], ["hash", 19, 5]], [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 56, 5], ["downloadPage", 57, 5], ["maintainers", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["enableParallelBuilding", 22, 3], ["buildInputs", 23, 3], ["makeFlags", 29, 3], ["installPhase", 34, 3], ["doInstallCheck", 43, 3], ["nativeInstallCheckInputs", 44, 3], ["versionCheckProgramArg", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoAddDriverRunpath: false, cudaPackages: false, fetchFromGitHub: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["fetchSubmodules", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 56, 5], ["downloadPage", 57, 5], ["maintainers", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["enableParallelBuilding", 22, 3], ["buildInputs", 23, 3], ["makeFlags", 29, 3], ["installPhase", 34, 3], ["doInstallCheck", 43, 3], ["nativeInstallCheckInputs", 44, 3], ["versionCheckProgramArg", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mfaktc",
       version: "0.24.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "primesearch",
           repo: "mfaktc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-h",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Trial Factoring program using CUDA for GIMPS",
         longDescription: "CUDA Program for trial factoring Mersenne primes. Intended for use with GIMPS through autoprimenet.py.\nNote that the mfaktc.ini file, which is in $out/share, must be symlinked to your working directory.\n",
         homepage: "https://github.com/primesearch/mfaktc",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/moarvm.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["fetchSubmodules", 20, 5], ["hash", 21, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 58, 5], ["platforms", 59, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["postPatch", 27, 3], ["configureScript", 41, 3], ["configureFlags", 42, 3], ["doInstallCheck", 46, 3], ["nativeInstallCheckInputs", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, perl: false, "pkg-config": false, stdenv: false, versionCheckHook: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/moarvm.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["fetchSubmodules", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/moarvm.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 58, 5], ["platforms", 59, 5]]);
-const pos$3 = nix.positions(here + "/moarvm.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["postPatch", 27, 3], ["configureScript", 41, 3], ["configureFlags", 42, 3], ["doInstallCheck", 46, 3], ["nativeInstallCheckInputs", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "moarvm",
       version: "2026.07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MoarVM",
           repo: "MoarVM",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +42,7 @@ substituteInPlace 3rdparty/dyncall/configure \\
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "VM with adaptive optimization and JIT compilation, built for Rakudo",
         homepage: "https://moarvm.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),

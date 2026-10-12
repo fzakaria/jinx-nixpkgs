@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 20, 15]], [["hash", 21, 15]], [["hash", 22, 15]], [["hash", 23, 15]], [["sha256", 24, 15]], [["1.0.0", 20, 7], ["1.0.1", 21, 7], ["1.0.2", 22, 7], ["1.0.3", 23, 7], ["1.0.4", 24, 7]], [["case", 29, 37], ["out", 29, 42]], [["description", 44, 7], ["license", 45, 7]], [["namePrefix", 12, 5], ["pname", 16, 5], ["owner", 17, 5], ["release", 19, 5], ["version", 26, 13], ["defaultVersion", 27, 5], ["propagatedBuildInputs", 39, 5], ["useCoqifVersion", 41, 5], ["meta", 43, 5]]]);
 const formals$1 = { args: { "rocq-core": false, mkRocqDerivation: false, "mathcomp-boot": false, lib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 20, 15]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 21, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 22, 15]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 23, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["sha256", 24, 15]]);
-const pos$6 = nix.positions(here + "/default.nix", [["1.0.0", 20, 7], ["1.0.1", 21, 7], ["1.0.2", 22, 7], ["1.0.3", 23, 7], ["1.0.4", 24, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["case", 29, 37], ["out", 29, 42]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 44, 7], ["license", 45, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["namePrefix", 12, 5], ["pname", 16, 5], ["owner", 17, 5], ["release", 19, 5], ["version", 26, 13], ["defaultVersion", 27, 5], ["propagatedBuildInputs", 39, 5], ["useCoqifVersion", 41, 5], ["meta", 43, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,36 +13,36 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = nix.argOr($, "version", () => null);
   const derivation = nix.thunk(() => nix.app(mkRocqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       namePrefix: nix.thunk(() => ["rocq", "mathcomp"]),
       pname: "bigenough",
       owner: "math-comp",
       release: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "1.0.0": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256:10g0gp3hk7wri7lijkrqna263346wwf6a3hbd4qr9gn8hmsx70wg",
         })),
         "1.0.1": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256:02f4dv4rz72liciwxb2k7acwx6lgqz4381mqyq5854p3nbyn06aw",
         })),
         "1.0.2": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-fJ/5xr91VtvpIoaFwb3PlnKl6UHG6GEeBRVGZrVLMU0=",
         })),
         "1.0.3": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-9ObUoaavnninL72r5iqkLz7lJBpcKXXi8LXKGhgx/N4=",
         })),
         "1.0.4": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           sha256: "sha256-cwfDCEFSXWnqV5aIrhTviUti0CXNwmFe6zVbqlD2iZw=",
         })),
       })),
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$7, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[6], case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(rocq_core, "rocq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "9.0", "9.3")), "1.0.4")),
@@ -62,7 +54,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [mathcomp_boot]),
       useCoqifVersion: (v) => (nix.asBool((nix.asBool(!nix.eq(v, null)) && nix.asBool(!nix.eq(v, "dev")))) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "1.0.3", v))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Small library to do epsilon - N reasonning",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-b")),
       })),

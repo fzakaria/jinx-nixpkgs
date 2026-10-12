@@ -2,12 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["buildShareware", 1, 35]]]);
 const formals$1 = { args: { taradino: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["buildShareware", 1, 35]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const taradino = nix.arg($, "taradino");
-  return nix.app(nix.sel(taradino, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, buildShareware: true })));
+  return nix.app(nix.sel(taradino, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], buildShareware: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["owner", 73, 7], ["repo", 74, 7], ["hash", 75, 15]], [["tag", 77, 33]], [["rev", 77, 71]], [["CGO_LDFLAGS_ALLOW", 114, 7]], [["lts", 192, 9], ["patches", 193, 9], ["vendorHash", 194, 9], ["version", 195, 9], ["meta", 197, 28], ["src", 197, 33]], [["extraArgs", 205, 7]], [["client", 190, 5], ["tests", 200, 5], ["ui", 202, 5], ["updateScript", 204, 5]], [["description", 210, 5], ["homepage", 211, 5], ["changelog", 212, 5], ["license", 213, 5], ["teams", 214, 5], ["platforms", 215, 5], ["mainProgram", 216, 5]], [["pname", 60, 5], ["vendorHash", 61, 5], ["version", 62, 5], ["outputs", 65, 3], ["src", 71, 3], ["patches", 80, 3], ["excludedPackages", 82, 3], ["nativeBuildInputs", 91, 3], ["buildInputs", 98, 3], ["ldflags", 107, 3], ["tags", 111, 3], ["env", 114, 3], ["postPatch", 118, 3], ["postBuild", 123, 3], ["checkFlags", 153, 3], ["doInstallCheck", 165, 3], ["postInstall", 167, 3], ["passthru", 189, 3], ["meta", 209, 3]]]);
 const formals$1 = { args: { hash: false, lts: true, nixUpdateExtraArgs: true, patches: true, rev: true, vendorHash: false, version: false }, ellipsis: false };
 const formals$2 = { args: { callPackage: false, lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, fetchpatch2: false, acl: false, buildPackages: false, cowsql: false, "incus-ui-canonical": false, libcap: false, lxc: false, "pkg-config": false, sqlite: false, udev: false, udevCheckHook: false, installShellFiles: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["owner", 73, 7], ["repo", 74, 7], ["hash", 75, 15]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["tag", 77, 33]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["rev", 77, 71]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["CGO_LDFLAGS_ALLOW", 114, 7]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["lts", 192, 9], ["patches", 193, 9], ["vendorHash", 194, 9], ["version", 195, 9], ["meta", 197, 28], ["src", 197, 33]]);
-const pos$6 = nix.positions(here + "/generic.nix", [["extraArgs", 205, 7]]);
-const pos$7 = nix.positions(here + "/generic.nix", [["client", 190, 5], ["tests", 200, 5], ["ui", 202, 5], ["updateScript", 204, 5]]);
-const pos$8 = nix.positions(here + "/generic.nix", [["description", 210, 5], ["homepage", 211, 5], ["changelog", 212, 5], ["license", 213, 5], ["teams", 214, 5], ["platforms", 215, 5], ["mainProgram", 216, 5]]);
-const pos$9 = nix.positions(here + "/generic.nix", [["pname", 60, 5], ["vendorHash", 61, 5], ["version", 62, 5], ["outputs", 65, 3], ["src", 71, 3], ["patches", 80, 3], ["excludedPackages", 82, 3], ["nativeBuildInputs", 91, 3], ["buildInputs", 98, 3], ["ldflags", 107, 3], ["tags", 111, 3], ["env", 114, 3], ["postPatch", 118, 3], ["postBuild", 123, 3], ["checkFlags", 153, 3], ["doInstallCheck", 165, 3], ["postInstall", 167, 3], ["passthru", 189, 3], ["meta", 209, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -68,12 +60,12 @@ export default nix.lambda((args) => (() => {
       })()));
     const evaluatedPatches = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), patches)) ? nix.app(patches, fetchpatch2) : nix.force(patches)));
     return nix.app(buildGoModule, (finalAttrs) => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: pname,
         vendorHash: vendorHash,
         version: version,
         outputs: nix.thunk(() => ["out", "agent_loader", "doc"]),
-        src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => nix.update({ [nix.POS]: pos$1, owner: "lxc", repo: "incus", hash: hash }, (nix.asBool(nix.eq(rev, null)) ? { [nix.POS]: pos$2, tag: nix.thunk(() => nix.str`v${version}`) } : { [nix.POS]: pos$3, rev: rev }))))),
+        src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => nix.update({ [nix.POS]: $pos[0], owner: "lxc", repo: "incus", hash: hash }, (nix.asBool(nix.eq(rev, null)) ? { [nix.POS]: $pos[1], tag: nix.thunk(() => nix.str`v${version}`) } : { [nix.POS]: $pos[2], rev: rev }))))),
         patches: nix.thunk(() => nix.concat([nix.path(here, "./docs.patch")], evaluatedPatches)),
         excludedPackages: nix.thunk(() => ["cmd/incus-agent", "cmd/incus-migrate", "test/mini-oidc"]),
         nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config, docsPython, udevCheckHook]),
@@ -88,7 +80,7 @@ export default nix.lambda((args) => (() => {
         ldflags: nix.thunk(() => ["-s", "-w"]),
         tags: nix.thunk(() => ["libsqlite3"]),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           CGO_LDFLAGS_ALLOW: "(-Wl,-wrap,pthread_create)|(-Wl,-z,now)",
         })),
         postPatch: nix.thunk(() => nix.str`substituteInPlace internal/server/device/disk.go \\
@@ -128,9 +120,9 @@ make incus-migrate
         doInstallCheck: true,
         postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")))), "installShellCompletion --cmd incus \\\n  --bash <($out/bin/incus completion bash) \\\n  --fish <($out/bin/incus completion fish) \\\n  --zsh <($out/bin/incus completion zsh)\n"), "mkdir -p $agent_loader/bin $agent_loader/etc/systemd/system $agent_loader/lib/udev/rules.d\n# the agent_loader output is used by virtualisation.incus.agent\ncp internal/server/instance/drivers/agent-loader/incus-agent-linux $agent_loader/bin/incus-agent\ncp internal/server/instance/drivers/agent-loader/incus-agent-setup-linux $agent_loader/bin/incus-agent-setup\nchmod +x $agent_loader/bin/incus-agent{,-setup}\npatchShebangs $agent_loader/bin/incus-agent{,-setup}\ncp internal/server/instance/drivers/agent-loader/systemd/incus-agent.service $agent_loader/etc/systemd/system/\ncp internal/server/instance/drivers/agent-loader/systemd/incus-agent.rules $agent_loader/lib/udev/rules.d/99-incus-agent.rules\nsubstituteInPlace $agent_loader/etc/systemd/system/incus-agent.service --replace-fail 'TARGET/systemd' \"$agent_loader/bin\"\n\nmkdir $doc\ncp -R doc/html $doc/\n")),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           client: nix.thunk(() => nix.app(callPackage, nix.path(here, "./client.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               lts: lts,
               patches: patches,
               vendorHash: vendorHash,
@@ -140,10 +132,10 @@ make incus-migrate
             })))),
           tests: nix.thunk(() => (nix.asBool(lts) ? nix.sel(nixosTests, "incus-lts", "all") : nix.sel(nixosTests, "incus", "all"))),
           ui: nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "`incus.ui` renamed to `incus-ui-canonical`", incus_ui_canonical)),
-          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nixUpdateExtraArgs })))),
+          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[5], extraArgs: nixUpdateExtraArgs })))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           description: "Powerful system container and virtual machine manager",
           homepage: "https://linuxcontainers.org/incus",
           changelog: nix.thunk(() => nix.str`https://github.com/lxc/incus/releases/tag/v${version}`),

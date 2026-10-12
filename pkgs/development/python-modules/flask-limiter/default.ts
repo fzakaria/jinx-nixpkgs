@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["cli", 52, 5], ["redis", 53, 5], ["memcached", 54, 5], ["mongodb", 55, 5]], [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 40, 3], ["dependencies", 45, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 58, 3], ["disabledTests", 71, 3], ["disabledTestPaths", 91, 3], ["pythonImportsCheck", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, asgiref: false, buildPythonPackage: false, fetchFromGitHub: false, flask: false, hatchling: false, "hatch-vcs": false, hiro: false, limits: false, "ordered-set": false, pymemcache: false, pymongo: false, "pytest-check": false, "pytest-cov-stub": false, "pytest-mock": false, pytestCheckHook: false, redis: false, rich: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cli", 52, 5], ["redis", 53, 5], ["memcached", 54, 5], ["mongodb", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 40, 3], ["dependencies", 45, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 58, 3], ["disabledTests", 71, 3], ["disabledTestPaths", 91, 3], ["pythonImportsCheck", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alisaifee",
           repo: "flask-limiter",
           tag: version,
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling, hatch_vcs]);
       const dependencies = nix.thunk(() => [flask, limits, ordered_set]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cli: nix.thunk(() => [rich]),
         redis: nix.thunk(() => nix.sel(limits, "optional-dependencies", "redis")),
         memcached: nix.thunk(() => nix.sel(limits, "optional-dependencies", "memcached")),
@@ -77,7 +74,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_storage.py"]);
       const pythonImportsCheck = nix.thunk(() => ["flask_limiter"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Rate limiting for flask applications",
         homepage: "https://flask-limiter.readthedocs.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/alisaifee/flask-limiter/blob/${nix.sel(src, "tag")}/HISTORY.rst`),
@@ -85,7 +82,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

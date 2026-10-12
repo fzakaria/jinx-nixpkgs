@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["CUDA_HOME", 104, 5], ["MMCV_WITH_OPS", 105, 5]], [["CC", 108, 5], ["CXX", 109, 5], ["TORCH_CUDA_ARCH_LIST", 110, 5], ["FORCE_CUDA", 111, 5]], [["description", 157, 5], ["homepage", 158, 5], ["changelog", 159, 5], ["license", 160, 5], ["maintainers", 161, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["postPatch", 54, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 71, 3], ["build-system", 88, 3], ["dependencies", 90, 3], ["env", 103, 3], ["pythonImportsCheck", 114, 3], ["nativeCheckInputs", 116, 3], ["preCheck", 128, 3], ["disabledTests", 135, 3], ["meta", 156, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, ninja: false, which: false, pybind11: false, torch: false, setuptools_80: false, addict: false, mmengine: false, numpy: false, packaging: false, pillow: false, pyyaml: false, yapf: false, lmdb: false, onnx: false, onnxruntime: false, pytestCheckHook: false, pyturbojpeg: false, scipy: false, tifffile: false, torchvision: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CUDA_HOME", 104, 5], ["MMCV_WITH_OPS", 105, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["CC", 108, 5], ["CXX", 109, 5], ["TORCH_CUDA_ARCH_LIST", 110, 5], ["FORCE_CUDA", 111, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 157, 5], ["homepage", 158, 5], ["changelog", 159, 5], ["license", 160, 5], ["maintainers", 161, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["postPatch", 54, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 71, 3], ["build-system", 88, 3], ["dependencies", 90, 3], ["env", 103, 3], ["pythonImportsCheck", 114, 3], ["nativeCheckInputs", 116, 3], ["preCheck", 128, 3], ["disabledTests", 135, 3], ["meta", 156, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.thunk(() => nix.attr(torch, "cudaSupport"));
   const backendStdenv = nix.thunk(() => nix.attr(cudaPackages, "backendStdenv"));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mmcv",
       version: "2.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-mmlab",
           repo: "mmcv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,11 +65,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools_80]),
       dependencies: nix.thunk(() => [addict, mmengine, numpy, packaging, pillow, pyyaml, yapf]),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CUDA_HOME: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), cudaSupport, nix.thunk(() => nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc")))))),
         MMCV_WITH_OPS: 1n,
       }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           CC: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(backendStdenv, "cc")), "cc")),
           CXX: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(backendStdenv, "cc")), "c++")),
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", cudaCapabilities)),
@@ -102,7 +98,7 @@ export default nix.lambda((args) => (() => {
         "test_reader",
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_ycbcr2rgb", "test_ycbcr2bgr", "test_tensor2imgs"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["test_transform"]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Foundational Library for Computer Vision Research",
         homepage: "https://github.com/open-mmlab/mmcv",
         changelog: nix.thunk(() => nix.str`https://github.com/open-mmlab/mmcv/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

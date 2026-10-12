@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["websocketSupport", 30, 40]], [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["fetchSubmodules", 42, 5], ["hash", 43, 5]], [["url", 99, 9], ["hash", 100, 9], ["stripRoot", 101, 9]], [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 123, 5], ["platforms", 124, 5], ["badPlatforms", 130, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 38, 3], ["patches", 46, 3], ["postPatch", 52, 3], ["hardeningDisable", 62, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 72, 3], ["cmakeFlags", 95, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, openssl: false, zlib: false, libpng: false, libglvnd: false, libxtst: false, libxi: false, libx11: false, libevdev: false, curl: false, pulseaudio: false, qt6: false, glfw: false, withQtWebview: true, withQtErrorWindow: true, fetchzip: false, zenity: false, "xdg-utils": false, sdl3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["websocketSupport", 30, 40]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["fetchSubmodules", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 99, 9], ["hash", 100, 9], ["stripRoot", 101, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 123, 5], ["platforms", 124, 5], ["badPlatforms", 130, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 38, 3], ["patches", 46, 3], ["postPatch", 52, 3], ["hardeningDisable", 62, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 72, 3], ["cmakeFlags", 95, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const zenity = nix.arg($, "zenity");
   const xdg_utils = nix.arg($, "xdg-utils");
   const sdl3 = nix.arg($, "sdl3");
-  const curlWithWebsockets = nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, websocketSupport: true }))));
+  const curlWithWebsockets = nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], websocketSupport: true }))));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mcpelauncher-client",
       version: "1.7.6-qt6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "minecraft-linux",
           repo: "mcpelauncher-manifest",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,7 +78,7 @@ substituteInPlace file-picker/src/file_picker_zenity.cpp \\
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "FETCHCONTENT_FULLY_DISCONNECTED", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "FETCHCONTENT_SOURCE_DIR_NLOHMANN_JSON_EXT", nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 url: "https://github.com/nlohmann/json/releases/download/v3.7.3/include.zip",
                 hash: "sha256-h8czZ4f5vZqvHkDVQawrQdUeQnWxewu4OONisqlrmmM=",
                 stripRoot: false,
@@ -97,7 +93,7 @@ substituteInPlace file-picker/src/file_picker_zenity.cpp \\
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_QT_ERROR_UI", withQtErrorWindow)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Unofficial Minecraft Bedrock Edition launcher with CLI",
         homepage: "https://minecraft-linux.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

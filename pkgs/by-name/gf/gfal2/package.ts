@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["dcap", 42, 5], ["file", 43, 5], ["gridftp", 44, 5], ["http", 47, 5], ["lfc", 48, 5], ["mock", 51, 5], ["rfio", 52, 5], ["sftp", 53, 5], ["srm", 54, 5], ["xrootd", 55, 5]], [["enablePluginStatus", 69, 19]], [["passthru", 68, 17]], [["enablePluginStatus", 84, 18]], [["passthru", 84, 9]], [["gfal2-minimal", 83, 7]], [["enablePluginStatus", 40, 12], ["tests", 58, 12]], [["description", 170, 5], ["longDescription", 171, 5], ["homepage", 178, 5], ["license", 179, 5], ["platforms", 180, 5], ["maintainers", 181, 5], ["mainProgram", 182, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["passthru", 40, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 93, 3], ["preConfigure", 117, 3], ["cmakeFlags", 147, 3], ["doCheck", 163, 3], ["checkInputs", 165, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, glib: false, gtest: false, json_c: false, openldap: false, cryptopp: false, "davix-copy": false, dcap: false, libssh2: false, libuuid: false, pugixml: false, xrootd: false, gsoap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["dcap", 42, 5], ["file", 43, 5], ["gridftp", 44, 5], ["http", 47, 5], ["lfc", 48, 5], ["mock", 51, 5], ["rfio", 52, 5], ["sftp", 53, 5], ["srm", 54, 5], ["xrootd", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["enablePluginStatus", 69, 19]]);
-const pos$4 = nix.positions(here + "/package.nix", [["passthru", 68, 17]]);
-const pos$5 = nix.positions(here + "/package.nix", [["enablePluginStatus", 84, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["passthru", 84, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["gfal2-minimal", 83, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["enablePluginStatus", 40, 12], ["tests", 58, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 170, 5], ["longDescription", 171, 5], ["homepage", 178, 5], ["license", 179, 5], ["platforms", 180, 5], ["maintainers", 181, 5], ["mainProgram", 182, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["passthru", 40, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 93, 3], ["preConfigure", 117, 3], ["cmakeFlags", 147, 3], ["doCheck", 163, 3], ["checkInputs", 165, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const xrootd = nix.arg($, "xrootd");
   const gsoap = nix.arg($, "gsoap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "gfal2",
       version: "2.23.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cern-fts",
           repo: "gfal2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,9 +37,9 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./fix-tape-endpoint-info-aggregate.patch")]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         enablePluginStatus: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           dcap: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
           file: true,
           gridftp: false,
@@ -61,17 +52,17 @@ export default nix.lambda((args) => (() => {
           xrootd: true,
         })),
         tests: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((pluginName) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`gfal2-${pluginName}`), nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (previousAttrs) => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   passthru: nix.thunk(() => nix.update(nix.sel(previousAttrs, "passthru"), {
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     enablePluginStatus: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => nix.eq(n, pluginName), nix.thunk(() => nix.sel(previousAttrs, "passthru", "enablePluginStatus")))),
                   })),
                 })))), nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "getAttr")), nix.thunk(() => nix.sel(finalAttrs, "passthru", "enablePluginStatus")))), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "enablePluginStatus"))))))))), {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "gfal2-minimal": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (previousAttrs) => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               passthru: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 enablePluginStatus: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (v) => false, nix.thunk(() => nix.sel(previousAttrs, "passthru", "enablePluginStatus")))),
               })),
             }))),
@@ -118,7 +109,7 @@ done
       doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       checkInputs: nix.thunk(() => [gtest]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Multi-protocol data management library by CERN",
         longDescription: "GFAL (Grid File Access Library )\nis a C library providing an abstraction layer of\nthe grid storage system complexity.\nThe complexity of the grid is hidden from the client side\nbehind a simple common POSIX API.\n",
         homepage: "https://github.com/cern-fts/gfal2",

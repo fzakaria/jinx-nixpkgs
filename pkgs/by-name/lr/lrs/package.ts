@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["homepage", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["postPatch", 24, 3], ["buildInputs", 29, 3], ["makeFlags", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gmp: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["homepage", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["postPatch", 24, 3], ["buildInputs", 29, 3], ["makeFlags", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lrs",
       version: "7.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://cgm.cs.mcgill.ca/~avis/C/lrslib/archive/lrslib-073.tar.gz",
           sha256: "sha256-xJpOvYVhg0c9HVpieF/N/hBX1dZx1LlvOhJQ6xr+ToM=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         "CC:=$(CC)",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implementation of the reverse search algorithm for vertex enumeration/convex hull problems",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

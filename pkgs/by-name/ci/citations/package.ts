@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["src", 37, 5], ["hash", 38, 5]], [["NIX_CFLAGS_COMPILE", 62, 7]], [["package", 81, 7], ["command", 82, 7]], [["version", 80, 11]], [["tests", 80, 5], ["updateScript", 85, 5]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["teams", 94, 5], ["platforms", 95, 5], ["mainProgram", 96, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["cargoDeps", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 54, 3], ["env", 62, 3], ["doCheck", 71, 3], ["nativeCheckInputs", 73, 3], ["preCheck", 75, 3], ["passthru", 79, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { cargo: false, "desktop-file-utils": false, fetchFromGitLab: false, gettext: false, glib: false, gtk4: false, gtksourceview5: false, lib: false, libadwaita: false, meson: false, ninja: false, "pkg-config": false, poppler: false, rustPlatform: false, rustc: false, stdenv: false, testers: false, wrapGAppsHook4: false, clippy: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 62, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 81, 7], ["command", 82, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 80, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 80, 5], ["updateScript", 85, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["teams", 94, 5], ["platforms", 95, 5], ["mainProgram", 96, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["cargoDeps", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 54, 3], ["env", 62, 3], ["doCheck", 71, 3], ["nativeCheckInputs", 73, 3], ["preCheck", 75, 3], ["passthru", 79, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const clippy = nix.arg($, "clippy");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "citations",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "citations",
@@ -47,7 +40,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-CnCXyKXB/wH6lt35370dh+lFhqdJLCJRGBs2WH+FCP0=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.sel(finalAttrs, "src")),
           hash: "sha256-xEJe752Qr1s2d/9nfTpwDP+zxZKwx0UuEUwIf4wzJW4=",
         })))),
@@ -65,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [glib, gtk4, gtksourceview5, libadwaita, poppler]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
               "-Wno-typedef-redefinition",
               "-Wno-unused-parameter",
@@ -77,11 +70,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [clippy]),
       preCheck: "sed -i -e '/PATH=/d' ../src/meson.build\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "citations --help",
             })))),
@@ -89,7 +82,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Manage your bibliographies using the BibTeX format",
         homepage: "https://apps.gnome.org/app/org.gnome.World.Citations",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/citations/-/releases/${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["sha256", 26, 5]], [["description", 69, 5], ["longDescription", 70, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 29, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["enableParallelBuilding", 64, 3], ["preFixup", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, intltool: false, openssl: false, curl: false, libnotify: false, libappindicator: false, gst_all_1: false, gtk3: false, dconf: false, wrapGAppsHook3: false, aria2: false, aria2Support: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 69, 5], ["longDescription", 70, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 29, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["enableParallelBuilding", 64, 3], ["preFixup", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const aria2 = nix.arg($, "aria2");
   const aria2Support = nix.argOr($, "aria2Support", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "uget",
       version: "2.2.3-1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/urlget/uget-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0jchvgkkphhwp2z7vd4axxr9ns8b6vqc22b2z8a906qm8916wd8i",
         })))),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), aria2Support, nix.thunk(() => nix.str`gappsWrapperArgs+=(--suffix PATH : "${aria2}/bin")`))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Download manager using GTK and libcurl",
         longDescription: "uGet is a VERY Powerful download manager application with a large\ninventory of features but is still very light-weight and low on\nresources, so don't let the impressive list of features scare you into\nthinking that it \"might be too powerful\" because remember power is good\nand lightweight power is uGet!\n",
         homepage: "https://sourceforge.net/projects/urlget/",

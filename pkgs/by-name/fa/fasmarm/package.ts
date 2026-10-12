@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5], ["platforms", 98, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 17, 3], ["fasmarmOverlay", 22, 3], ["prePatch", 27, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["outputs", 33, 3], ["nativeBuildInputs", 38, 3], ["buildPhase", 44, 3], ["installPhase", 52, 3], ["doInstallCheck", 71, 3], ["installCheckPhase", 72, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fasm: false, makeBinaryWrapper: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5], ["platforms", 98, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 17, 3], ["fasmarmOverlay", 22, 3], ["prePatch", 27, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["outputs", 33, 3], ["nativeBuildInputs", 38, 3], ["buildPhase", 44, 3], ["installPhase", 52, 3], ["doInstallCheck", 71, 3], ["installCheckPhase", 72, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fasmarm",
       version: "1.44",
       src: nix.thunk(() => nix.sel(fasm, "src")),
       fasmarmOverlay: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://arm.flatassembler.net/FASMARM_small.ZIP",
           hash: "sha256-5ZzGl/C+hHRVYVyYBRns7hl3gy+cy89Eiq+9/nokk4Q=",
         })))),
@@ -40,7 +38,7 @@ runHook postBuild
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\ncat > test.asm <<'EOF'\ninclude 'macro/armstruc.inc'\nprocessor cpu64_v8\ncode64\nmov x0,42\nEOF\nprintf '\\x40\\x05\\x80\\xd2' > expected.bin\n\n$out/bin/fasmarm test.asm test.bin\ncmp expected.bin test.bin\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "FASM-based assembler for 32-bit and 64-bit ARM processors",
         homepage: "https://arm.flatassembler.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

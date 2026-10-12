@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 14, 7], ["license", 15, 7], ["platforms", 16, 7], ["maintainers", 17, 7], ["mainProgram", 18, 7]], [["pname", 9, 5], ["version", 10, 5], ["buildInputs", 12, 5], ["meta", 13, 5]]]);
 const formals$1 = { args: { lib: false, runCommandCC: false, libxkbcommon: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 14, 7], ["license", 15, 7], ["platforms", 16, 7], ["maintainers", 17, 7], ["mainProgram", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 9, 5], ["version", 10, 5], ["buildInputs", 12, 5], ["meta", 13, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const runCommandCC = nix.arg($, "runCommandCC");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(runCommandCC, "xkbvalidate", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "xkbvalidate",
       version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       buildInputs: nix.thunk(() => [libxkbcommon]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "NixOS tool to validate X keyboard configuration",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

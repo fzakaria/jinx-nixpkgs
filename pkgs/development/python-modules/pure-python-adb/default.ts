@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["sha256", 16, 5]], [["async", 20, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["optional-dependencies", 19, 3], ["doCheck", 23, 3], ["nativeCheckInputs", 25, 3], ["pythonImportsCheck", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { aiofiles: false, buildPythonPackage: false, fetchPypi: false, lib: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["async", 20, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["optional-dependencies", 19, 3], ["doCheck", 23, 3], ["nativeCheckInputs", 25, 3], ["pythonImportsCheck", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,17 +17,17 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0.dev0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "0kdr7w2fhgjpcf1k3l6an9im583iqkr6v8hb4q1zw30nh3bqkk0f",
         }))));
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, async: nix.thunk(() => [aiofiles]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], async: nix.thunk(() => [aiofiles]) }));
       const doCheck = false;
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "async")));
       const pythonImportsCheck = nix.thunk(() => nix.concat(["ppadb.client"], nix.app(nix.sel(lib, "optionals"), doCheck, nix.thunk(() => ["ppadb.client_async"]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pure python implementation of the adb client",
         homepage: "https://github.com/Swind/pure-python-adb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

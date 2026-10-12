@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["homepage", 53, 5], ["description", 54, 5], ["maintainers", 55, 5], ["license", 56, 5], ["platforms", 57, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 40, 3], ["hardeningDisable", 48, 3], ["installFlags", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, libx11: false, xorgproto: false, cairo: false, lv2: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["maintainers", 55, 5], ["license", 56, 5], ["platforms", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 40, 3], ["hardeningDisable", 48, 3], ["installFlags", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const lv2 = nix.arg($, "lv2");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "GxMatchEQ.lv2",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "brummer10",
           repo: "GxMatchEQ.lv2",
           rev: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "use-lv2ui_descriptor-name.patch",
             url: "https://github.com/brummer10/GxMatchEQ.lv2/commit/4ca70be32220729a5253c0bb46f5aded5ba3d00a.patch",
             hash: "sha256-EKlv6UptUpP+LOG7S30L21o0/upeDj6WB1PZ44XtNRU=",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       installFlags: nix.thunk(() => ["INSTALL_DIR=$(out)/lib/lv2"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/brummer10/GxMatchEQ.lv2",
         description: "Matching Equalizer to apply EQ curve from one source to another source",
         maintainers: nix.thunk(() => (() => {

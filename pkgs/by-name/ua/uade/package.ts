@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["rev-prefix", 83, 40]], [["updateScript", 83, 12]], [["description", 86, 5], ["homepage", 87, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5], ["platforms", 95, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["configureFlags", 57, 3], ["enableParallelBuilding", 64, 3], ["hardeningDisable", 66, 3], ["postInstall", 68, 3], ["passthru", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, gitUpdater: false, bencodetools: false, flac: false, lame: false, libao: false, libzakalwe: false, makeWrapper: false, python3: false, "pkg-config": false, sox: false, "vorbis-tools": false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 83, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 83, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5], ["platforms", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["configureFlags", 57, 3], ["enableParallelBuilding", 64, 3], ["hardeningDisable", 66, 3], ["postInstall", 68, 3], ["passthru", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const vorbis_tools = nix.arg($, "vorbis-tools");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "uade",
       version: "3.05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "uade-music-player",
           repo: "uade",
           rev: nix.thunk(() => nix.str`uade-${nix.sel(finalAttrs, "version")}`),
@@ -55,11 +51,11 @@ export default nix.lambda((args) => (() => {
 ln -s $out/bin/mod2ogg2{.sh,}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "uade-" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "uade-" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Plays old Amiga tunes through UAE emulation and cloned m68k-assembler Eagleplayer API",
         homepage: "https://zakalwe.fi/uade/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

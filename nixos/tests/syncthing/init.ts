@@ -2,29 +2,18 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/init.nix", [[["maintainers", 9, 8]], [["id", 18, 9]], [["testDevice", 17, 24]], [["path", 21, 9], ["devices", 22, 9]], [["testFolder", 20, 24]], [["user", 24, 20]], [["devices", 17, 16], ["folders", 20, 16], ["gui", 24, 16]], [["enable", 16, 7], ["settings", 17, 7]], [["syncthing", 15, 14]], [["services", 15, 5]], [["machine", 14, 14]], [["name", 8, 3], ["meta", 9, 3], ["containers", 14, 3], ["testScript", 28, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/init.nix", [["maintainers", 9, 8]]);
-const pos$2 = nix.positions(here + "/init.nix", [["id", 18, 9]]);
-const pos$3 = nix.positions(here + "/init.nix", [["testDevice", 17, 24]]);
-const pos$4 = nix.positions(here + "/init.nix", [["path", 21, 9], ["devices", 22, 9]]);
-const pos$5 = nix.positions(here + "/init.nix", [["testFolder", 20, 24]]);
-const pos$6 = nix.positions(here + "/init.nix", [["user", 24, 20]]);
-const pos$7 = nix.positions(here + "/init.nix", [["devices", 17, 16], ["folders", 20, 16], ["gui", 24, 16]]);
-const pos$8 = nix.positions(here + "/init.nix", [["enable", 16, 7], ["settings", 17, 7]]);
-const pos$9 = nix.positions(here + "/init.nix", [["syncthing", 15, 14]]);
-const pos$10 = nix.positions(here + "/init.nix", [["services", 15, 5]]);
-const pos$11 = nix.positions(here + "/init.nix", [["machine", 14, 14]]);
-const pos$12 = nix.positions(here + "/init.nix", [["name", 8, 3], ["meta", 9, 3], ["containers", 14, 3], ["testScript", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const testId = "7CFNTQM-IMTJBHJ-3UWRDIU-ZGQJFR6-VCXZ3NB-XUH3KZO-N52ITXR-LAIYUAU";
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "syncthing-init",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -34,29 +23,29 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           syncthing: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               devices: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                testDevice: nix.thunk(() => ({ [nix.POS]: pos$2, id: testId })),
+                [nix.POS]: $pos[2],
+                testDevice: nix.thunk(() => ({ [nix.POS]: $pos[1], id: testId })),
               })),
               folders: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 testFolder: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   path: "/tmp/test",
                   devices: nix.thunk(() => ["testDevice"]),
                 })),
               })),
-              gui: nix.thunk(() => ({ [nix.POS]: pos$6, user: "guiUser" })),
+              gui: nix.thunk(() => ({ [nix.POS]: $pos[5], user: "guiUser" })),
             })),
           })),
         })),

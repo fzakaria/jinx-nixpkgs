@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["nixos", 86, 18]], [["tests", 86, 12]], [["description", 89, 5], ["longDescription", 90, 5], ["homepage", 97, 35], ["license", 98, 5], ["platforms", 99, 5], ["maintainers", 100, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 34, 3], ["outputs", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 60, 3], ["makeFlags", 67, 3], ["preConfigure", 71, 3], ["preBuild", 78, 3], ["doCheck", 80, 3], ["checkPhase", 81, 3], ["postInstall", 84, 3], ["passthru", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pkgsHostHost: false, "ocaml-ng": false, perl: false, zlib: false, db: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nixos", 86, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 86, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 89, 5], ["longDescription", 90, 5], ["homepage", 97, 35], ["license", 98, 5], ["platforms", 99, 5], ["maintainers", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 34, 3], ["outputs", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 60, 3], ["makeFlags", 67, 3], ["preConfigure", 71, 3], ["preBuild", 78, 3], ["doCheck", 80, 3], ["checkPhase", 81, 3], ["postInstall", 84, 3], ["passthru", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const cryptokit = nix.thunk(() => nix.attr(from, "cryptokit"));
   const num = nix.thunk(() => nix.attr(from, "num"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sks",
       version: "unstable-2021-02-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SKS-Keyserver",
           repo: "sks-keyserver",
           rev: "c3ba6d5abb525dcb84745245631c410c11c07ec1",
@@ -50,13 +46,13 @@ export default nix.lambda((args) => (() => {
       checkPhase: "./sks unit_test",
       postInstall: "cp -R sampleWeb $webSamples",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "sks")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], nixos: nix.thunk(() => nix.sel(nixosTests, "sks")) })),
       })),
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Easily deployable & decentralized OpenPGP keyserver",
         longDescription: "SKS is an OpenPGP keyserver whose goal is to provide easy to deploy,\ndecentralized, and highly reliable synchronization. That means that a key\nsubmitted to one SKS server will quickly be distributed to all key\nservers, and even wildly out-of-date servers, or servers that experience\nspotty connectivity, can fully synchronize with rest of the system.\n",
         homepage: nix.thunk(() => nix.attr(from_1, "homepage")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["name", 13, 5], ["buildInputs", 14, 5], ["script", 15, 5]], [["name", 30, 5], ["buildInputs", 31, 5], ["script", 36, 5]], [["usage", 12, 3], ["create-project", 29, 3]]]);
 const formals$1 = { args: { testers: false, dart_frog_cli: false, dart: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["name", 13, 5], ["buildInputs", 14, 5], ["script", 15, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["name", 30, 5], ["buildInputs", 31, 5], ["script", 36, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["usage", 12, 3], ["create-project", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,15 +12,15 @@ export default nix.lambda((args) => (() => {
   const dart = nix.arg($, "dart");
   const testPkgName = "my_frog_project";
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     usage: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "dart-frog-usage-test",
         buildInputs: nix.thunk(() => [dart_frog_cli]),
         script: "export HOME=$TMPDIR\ndart_frog --help > output.txt\nif grep -q \"Usage: dart_frog\" output.txt; then\n  echo \"Usage check passed ✅\"\n  touch $out\nelse\n  echo \"Usage check failed ❌\"\n  exit 1\nfi\n",
       })))),
     "create-project": nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "dart-frog-create-test",
         buildInputs: nix.thunk(() => [dart_frog_cli, dart]),
         script: nix.thunk(() => nix.str`export HOME=$TMPDIR

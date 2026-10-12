@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 68, 5], ["maintainers", 69, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["outputs", 27, 3], ["patches", 32, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["cmakeFlags", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "alsa-lib": false, cmake: false, fluidsynth: false, libsndfile: false, mpg123: false, ninja: false, "pkg-config": false, "soundfont-fluid": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["outputs", 27, 3], ["patches", 32, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["cmakeFlags", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const soundfont_fluid = nix.arg($, "soundfont-fluid");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zmusic",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ZDoom",
           repo: "ZMusic",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "DYN_SNDFILE", false)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GZDoom's music system as a standalone library",
         homepage: "https://github.com/ZDoom/ZMusic",
         license: nix.thunk(() => (() => {

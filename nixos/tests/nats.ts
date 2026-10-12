@@ -2,22 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nats.nix", [[["maintainers", 13, 5]], [["systemPackages", 21, 23]], [["environment", 21, 11]], [["allowedTCPPorts", 28, 31]], [["firewall", 28, 22]], [["user", 36, 21], ["password", 37, 29]], [["users", 34, 17]], [["authorization", 33, 15]], [["port", 30, 21], ["enable", 31, 13], ["settings", 32, 13]], [["nats", 29, 20]], [["networking", 28, 11], ["services", 29, 11]], [["server", 25, 7], ["client1", 45, 7], ["client2", 46, 7]], [["name", 11, 3], ["meta", 12, 3], ["nodes", 16, 3], ["testScript", 49, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nats.nix", [["maintainers", 13, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/nats.nix", [["systemPackages", 21, 23]]);
-const pos$3 = nix.positions(here + "/nats.nix", [["environment", 21, 11]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/nats.nix", [["allowedTCPPorts", 28, 31]]);
-const pos$5 = nix.positions(here + "/nats.nix", [["firewall", 28, 22]]);
-const pos$6 = nix.positions(here + "/nats.nix", [["user", 36, 21], ["password", 37, 29]]);
-const pos$7 = nix.positions(here + "/nats.nix", [["users", 34, 17]]);
-const pos$8 = nix.positions(here + "/nats.nix", [["authorization", 33, 15]]);
-const pos$9 = nix.positions(here + "/nats.nix", [["port", 30, 21], ["enable", 31, 13], ["settings", 32, 13]]);
-const pos$10 = nix.positions(here + "/nats.nix", [["nats", 29, 20]]);
-const pos$11 = nix.positions(here + "/nats.nix", [["networking", 28, 11], ["services", 29, 11]]);
-const pos$12 = nix.positions(here + "/nats.nix", [["server", 25, 7], ["client1", 45, 7], ["client2", 46, 7]]);
-const pos$13 = nix.positions(here + "/nats.nix", [["name", 11, 3], ["meta", 12, 3], ["nodes", 16, 3], ["testScript", 49, 3]]);
 
 export default nix.thunk(() => (() => {
   const port = 4222n;
@@ -28,10 +16,10 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       name: "nats",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "c0deaddict"))];
@@ -42,9 +30,9 @@ export default nix.thunk(() => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               systemPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [nix.thunk(() => nix.lookup(w, "natscli"))];
@@ -53,27 +41,29 @@ export default nix.thunk(() => (() => {
           };
         })(), formals$2);
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           server: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             const pkgs = nix.arg($_1, "pkgs");
             return {
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [port]) })),
+                [nix.POS]: $pos[4],
+                firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], allowedTCPPorts: nix.thunk(() => [port]) })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 nats: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   port: port,
                   enable: true,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$8,
+                    [nix.POS]: $pos[7],
                     authorization: nix.thunk(() => ({
-                      [nix.POS]: pos$7,
-                      users: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$6, user: username, password: password }))]),
+                      [nix.POS]: $pos[6],
+                      users: nix.thunk(() => [
+                        nix.thunk(() => ({ [nix.POS]: $pos[5], user: username, password: password })),
+                      ]),
                     })),
                   })),
                 })),

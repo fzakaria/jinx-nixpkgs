@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 120, 5], ["mainProgram", 121, 5], ["homepage", 122, 5], ["downloadPage", 123, 5], ["license", 124, 5], ["platforms", 125, 5], ["maintainers", 126, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["pythonPath", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 58, 3], ["strictDeps", 62, 3], ["propagatedBuildInputs", 64, 3], ["nativeCheckInputs", 70, 3], ["preConfigure", 72, 3], ["cmakeFlags", 76, 3], ["disabledTests", 89, 3], ["doCheck", 115, 3], ["enableParallelChecking", 117, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, boost: false, zlib: false, libevent: false, openssl: false, python3: false, cmake: false, "pkg-config": false, bison: false, flex: false, ctestCheckHook: false, buildPackages: false, static: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 120, 5], ["mainProgram", 121, 5], ["homepage", 122, 5], ["downloadPage", 123, 5], ["license", 124, 5], ["platforms", 125, 5], ["maintainers", 126, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["pythonPath", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 58, 3], ["strictDeps", 62, 3], ["propagatedBuildInputs", 64, 3], ["nativeCheckInputs", 70, 3], ["preConfigure", 72, 3], ["cmakeFlags", 76, 3], ["disabledTests", 89, 3], ["doCheck", 115, 3], ["enableParallelChecking", 117, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const static$ = nix.argOr($, "static", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "thrift",
       version: "0.24.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "thrift",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,7 +80,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => (nix.asBool(!nix.asBool(static$)) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))),
       enableParallelChecking: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for scalable cross-language services",
         mainProgram: "thrift",
         homepage: "https://thrift.apache.org/",

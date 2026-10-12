@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5]], [["api", 90, 5], ["archiver", 97, 5], ["audiolm_qwen", 101, 5], ["discrim_eval", 105, 5], ["hf", 106, 5], ["ifeval", 112, 5], ["libra", 117, 5], ["litellm", 120, 5], ["optimum", 127, 5], ["sentencepiece", 128, 5], ["vllm", 129, 5], ["wandb", 130, 5]], [["rev-prefix", 195, 5], ["allowedVersions", 196, 5]], [["updateScript", 194, 12]], [["changelog", 200, 5], ["description", 201, 5], ["homepage", 202, 5], ["license", 203, 5], ["maintainers", 204, 5]], [["pname", 58, 3], ["version", 59, 3], ["pyproject", 60, 3], ["src", 62, 3], ["build-system", 69, 3], ["dependencies", 73, 3], ["optional-dependencies", 89, 3], ["pythonRelaxDeps", 156, 3], ["pythonImportsCheck", 158, 3], ["nativeCheckInputs", 160, 3], ["disabledTests", 169, 3], ["disabledTestPaths", 177, 3], ["passthru", 194, 3], ["meta", 199, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, gitUpdater: false, setuptools: false, accelerate: false, datasets: false, dill: false, evaluate: false, jinja2: false, jsonlines: false, "more-itertools": false, peft: false, pytablewriter: false, "rouge-score": false, sacrebleu: false, "scikit-learn": false, sqlitedict: false, torch: false, transformers: false, "typing-extensions": false, word2number: false, zstandard: false, aiohttp: false, immutabledict: false, langdetect: false, librosa: false, litellm: false, nltk: false, numpy: false, optimum: false, pandas: false, pymorphy2: false, requests: false, sentencepiece: false, soundfile: false, statsmodels: false, tenacity: false, tiktoken: false, tqdm: false, vllm: false, wandb: false, pillow: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["api", 90, 5], ["archiver", 97, 5], ["audiolm_qwen", 101, 5], ["discrim_eval", 105, 5], ["hf", 106, 5], ["ifeval", 112, 5], ["libra", 117, 5], ["litellm", 120, 5], ["optimum", 127, 5], ["sentencepiece", 128, 5], ["vllm", 129, 5], ["wandb", 130, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev-prefix", 195, 5], ["allowedVersions", 196, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 194, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 200, 5], ["description", 201, 5], ["homepage", 202, 5], ["license", 203, 5], ["maintainers", 204, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 58, 3], ["version", 59, 3], ["pyproject", 60, 3], ["src", 62, 3], ["build-system", 69, 3], ["dependencies", 73, 3], ["optional-dependencies", 89, 3], ["pythonRelaxDeps", 156, 3], ["pythonImportsCheck", 158, 3], ["nativeCheckInputs", 160, 3], ["disabledTests", 169, 3], ["disabledTestPaths", 177, 3], ["passthru", 194, 3], ["meta", 199, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,12 +53,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lm-eval",
       version: "0.4.13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "EleutherAI",
           repo: "lm-evaluation-harness",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +81,7 @@ export default nix.lambda((args) => (() => {
         word2number,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         api: nix.thunk(() => [aiohttp, requests, tenacity, tiktoken, tqdm]),
         archiver: nix.thunk(() => [jsonlines, zstandard]),
         audiolm_qwen: nix.thunk(() => [librosa, soundfile]),
@@ -120,15 +115,15 @@ export default nix.lambda((args) => (() => {
         "tests/scripts/test_zeno_visualize.py",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "rev-prefix": "v",
             allowedVersions: "^[0-9]+\\.[0-9]+\\.[0-9]+(\\.[0-9]+)?$",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/EleutherAI/lm-evaluation-harness/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Framework for few-shot evaluation of language models",
         homepage: "https://github.com/EleutherAI/lm-evaluation-harness",

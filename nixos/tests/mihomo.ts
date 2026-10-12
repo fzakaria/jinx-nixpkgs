@@ -2,46 +2,38 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mihomo.nix", [[["maintainers", 4, 8]], [["systemPackages", 7, 17]], [["enable", 10, 7], ["statusPage", 11, 7]], [["name", 17, 9], ["text", 18, 9]], [["enable", 15, 7], ["configFile", 16, 7]], [["nginx", 9, 14], ["mihomo", 14, 14]], [["environment", 7, 5], ["services", 9, 5]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 28, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mihomo.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/mihomo.nix", [["systemPackages", 7, 17]]);
-const pos$3 = nix.positions(here + "/mihomo.nix", [["enable", 10, 7], ["statusPage", 11, 7]]);
-const pos$4 = nix.positions(here + "/mihomo.nix", [["name", 17, 9], ["text", 18, 9]]);
-const pos$5 = nix.positions(here + "/mihomo.nix", [["enable", 15, 7], ["configFile", 16, 7]]);
-const pos$6 = nix.positions(here + "/mihomo.nix", [["nginx", 9, 14], ["mihomo", 14, 14]]);
-const pos$7 = nix.positions(here + "/mihomo.nix", [["environment", 7, 5], ["services", 9, 5]]);
-const pos$8 = nix.positions(here + "/mihomo.nix", [["machine", 6, 9]]);
-const pos$9 = nix.positions(here + "/mihomo.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "mihomo",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Guanran928"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          nginx: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, statusPage: true })),
+          [nix.POS]: $pos[5],
+          nginx: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true, statusPage: true })),
           mihomo: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             configFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 name: "config.yaml",
                 text: "mixed-port: 7890\nexternal-controller: 127.0.0.1:9090\nauthentication:\n- \"user:supersecret\"\n",
               })))),

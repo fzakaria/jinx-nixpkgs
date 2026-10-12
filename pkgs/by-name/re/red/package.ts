@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["sha256", 17, 5]], [["license", 23, 10]], [["url", 21, 5], ["sha256", 22, 5], ["meta", 23, 5]], [["description", 92, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5], ["license", 104, 5], ["homepage", 105, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["rebol", 20, 3], ["buildInputs", 26, 3], ["r2", 31, 3], ["configurePhase", 33, 3], ["buildPhase", 42, 3], ["installPhase", 59, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenv_32bit: false, pkgsi686Linux: false, fetchFromGitHub: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 23, 10]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5], ["meta", 23, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 92, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5], ["license", 104, 5], ["homepage", 105, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["rebol", 20, 3], ["buildInputs", 26, 3], ["r2", 31, 3], ["configurePhase", 33, 3], ["buildPhase", 42, 3], ["installPhase", 59, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +17,18 @@ export default nix.lambda((args) => (() => {
       const pname = "red";
       const version = "0.6.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: "755eb943ccea9e78c2cab0f20b313a52404355cb",
           owner: "red",
           repo: "red",
           sha256: "sha256:045rrg9666zczgrwyyyglivzdzja103s52b0fzj7hqmr1fz68q37",
         }))));
       const rebol = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "http://www.rebol.com/downloads/v278/rebol-core-278-4-2.tar.gz",
           sha256: "1c1v0pyhf3d8z98qc93a5zmx0bbl0qq5lr8mbkdgygqsq2bv2xbz",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
           })),
         }))));
@@ -91,7 +87,7 @@ patchelf --set-rpath ${nix.sel(pkgsi686Linux, "curl", "out")}/lib \\
 
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "New programming language strongly inspired by Rebol, but with a\nbroader field of usage thanks to its native-code compiler, from system\nprogramming to high-level scripting, while providing modern support for\nconcurrency and multi-core CPUs\n",
         mainProgram: "red",
         maintainers: nix.thunk(() => (() => {
@@ -103,7 +99,7 @@ patchelf --set-rpath ${nix.sel(pkgsi686Linux, "curl", "out")}/lib \\
         homepage: "https://www.red-lang.org/",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

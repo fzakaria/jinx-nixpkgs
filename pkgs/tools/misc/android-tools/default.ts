@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 32, 5], ["hash", 33, 5]], [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 80, 5], ["teams", 81, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, ninja: false, "pkg-config": false, perl: false, python3: false, protobuf_35: false, zlib: false, gtest: false, brotli: false, lz4: false, zstd: false, libusb1: false, pcre2: false, fmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 80, 5], ["teams", 81, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "android-tools";
       const version = "37.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/nmeum/android-tools/releases/download/${version}/android-tools-${version}.tar.xz`),
           hash: "sha256-JyXQn4kqOjjlNEKfR6Mh9Y7PajFpyqQskV+yy31Gvg4=",
         }))));
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [protobuf_35, zlib, gtest, brotli, lz4, zstd, libusb1, pcre2, fmt]);
       const propagatedBuildInputs = nix.thunk(() => [pythonEnv]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Android SDK platform tools",
         longDescription: "Android SDK Platform-Tools is a component for the Android SDK. It\nincludes tools that interface with the Android platform, such as adb and\nfastboot. These tools are required for Android app development. They're\nalso needed if you want to unlock your device bootloader and flash it\nwith a new system image.\nCurrently the following tools are supported:\n- adb\n- fastboot\n- mke2fs.android (required by fastboot)\n- simg2img, img2simg, append2simg\n- lpdump, lpmake, lpadd, lpflash, lpunpack\n- mkbootimg, unpack_bootimg, repack_bootimg, avbtool\n- mkdtboimg\n",
         homepage: "https://github.com/nmeum/android-tools",
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "android"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,24 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/eval-test.nix", [[["enable", 8, 23]], [["userborn", 8, 14]], [["enable", 11, 26]], [["nvidia-gpu", 11, 15]], [["enable", 10, 7], ["presets", 11, 7]], [["nix-required-mounts", 9, 14]], [["device", 13, 21], ["fsType", 14, 21]], [["/", 13, 17]], [["enable", 15, 22]], [["grub", 15, 17]], [["loader", 15, 10]], [["stateVersion", 16, 12]], [["services", 8, 5], ["programs", 9, 5], ["fileSystems", 13, 5], ["boot", 15, 5], ["system", 16, 5]], [["enable", 19, 37]], [["graphics", 19, 28]], [["hardware", 19, 19]], [["modules", 19, 5]]]);
 const formals$1 = { args: { nixos: false, lib: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/eval-test.nix", [["enable", 8, 23]]);
-const pos$2 = nix.positions(here + "/eval-test.nix", [["userborn", 8, 14]]);
-const pos$3 = nix.positions(here + "/eval-test.nix", [["enable", 11, 26]]);
-const pos$4 = nix.positions(here + "/eval-test.nix", [["nvidia-gpu", 11, 15]]);
-const pos$5 = nix.positions(here + "/eval-test.nix", [["enable", 10, 7], ["presets", 11, 7]]);
-const pos$6 = nix.positions(here + "/eval-test.nix", [["nix-required-mounts", 9, 14]]);
-const pos$7 = nix.positions(here + "/eval-test.nix", [["device", 13, 21], ["fsType", 14, 21]]);
-const pos$8 = nix.positions(here + "/eval-test.nix", [["/", 13, 17]]);
-const pos$9 = nix.positions(here + "/eval-test.nix", [["enable", 15, 22]]);
-const pos$10 = nix.positions(here + "/eval-test.nix", [["grub", 15, 17]]);
-const pos$11 = nix.positions(here + "/eval-test.nix", [["loader", 15, 10]]);
-const pos$12 = nix.positions(here + "/eval-test.nix", [["stateVersion", 16, 12]]);
-const pos$13 = nix.positions(here + "/eval-test.nix", [["services", 8, 5], ["programs", 9, 5], ["fileSystems", 13, 5], ["boot", 15, 5], ["system", 16, 5]]);
-const pos$14 = nix.positions(here + "/eval-test.nix", [["enable", 19, 37]]);
-const pos$15 = nix.positions(here + "/eval-test.nix", [["graphics", 19, 28]]);
-const pos$16 = nix.positions(here + "/eval-test.nix", [["hardware", 19, 19]]);
-const pos$17 = nix.positions(here + "/eval-test.nix", [["modules", 19, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,46 +11,46 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const runCommand = nix.arg($, "runCommand");
   const base = nix.thunk(() => nix.app(nixos, nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        userborn: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+        [nix.POS]: $pos[1],
+        userborn: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
       })),
       programs: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "nix-required-mounts": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           enable: true,
           presets: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            "nvidia-gpu": nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[3],
+            "nvidia-gpu": nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           })),
         })),
       })),
       fileSystems: nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        "/": nix.thunk(() => ({ [nix.POS]: pos$7, device: "/dev/null", fsType: "none" })),
+        [nix.POS]: $pos[7],
+        "/": nix.thunk(() => ({ [nix.POS]: $pos[6], device: "/dev/null", fsType: "none" })),
       })),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$10,
-          grub: nix.thunk(() => ({ [nix.POS]: pos$9, enable: false })),
+          [nix.POS]: $pos[9],
+          grub: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: false })),
         })),
       })),
       system: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       })),
     }))));
   const machine = nix.thunk(() => nix.app(nix.sel(base, "extendModules"), nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       modules: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           hardware: nix.thunk(() => ({
-            [nix.POS]: pos$15,
-            graphics: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
+            [nix.POS]: $pos[14],
+            graphics: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: true })),
           })),
         })),
       ]),

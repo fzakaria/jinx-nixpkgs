@@ -2,16 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mk-python-derivation.nix", [[["LANG", 257, 9]], [["disabled", 282, 11], ["updateScript", 284, 9]], [["platforms", 297, 9], ["isBuildPythonPackage", 298, 9]], [["name", 199, 7], ["nativeBuildInputs", 201, 7], ["buildInputs", 242, 7], ["propagatedBuildInputs", 244, 7], ["strictDeps", 254, 15], ["env", 256, 7], ["doCheck", 262, 7], ["doInstallCheck", 263, 7], ["nativeInstallCheckInputs", 264, 7], ["installCheckInputs", 265, 7], ["postFixup", 267, 7], ["disallowedReferences", 274, 7], ["outputs", 278, 7], ["passthru", 280, 7], ["meta", 295, 7]], [["installCheckPhase", 305, 7]], [["disabledTestPaths", 308, 7]], [["overrideAttrs", 323, 11]], [["constructDrv", 34, 3], ["excludeDrvArgNames", 36, 3], ["extendDrvArgs", 49, 3], ["transformDrv", 311, 3]]]);
 const formals$1 = { args: { lib: false, config: false, python: false, stdenv: false, wrapPython: false, unzip: false, ensureNewerSourcesForZipFilesHook: false, toPythonModule: false, namePrefix: false, "update-python-libraries": false, setuptools: false, pipBuildHook: false, pipInstallHook: false, pythonCatchConflictsHook: false, pythonImportsCheckHook: false, pythonOutputDistHook: false, pythonRemoveBinBytecodeHook: false, pythonRemoveTestsDirHook: false, setuptoolsBuildHook: false, wheelUnpackHook: false, eggUnpackHook: false, eggBuildHook: false, eggInstallHook: false }, ellipsis: false };
 const formals$2 = { args: { name: true, nativeBuildInputs: true, buildInputs: true, checkInputs: true, nativeCheckInputs: true, propagatedBuildInputs: true, pythonPath: true, strictDeps: true, outputs: true, disabled: true, catchConflicts: true, makeWrapperArgs: true, dontWrapPythonPrograms: true, dontUsePipInstall: true, permitUserSite: true, removeBinBytecode: true, format: true, meta: true, passthru: true, doCheck: true, disabledTestPaths: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mk-python-derivation.nix", [["LANG", 257, 9]]);
-const pos$2 = nix.positions(here + "/mk-python-derivation.nix", [["disabled", 282, 11], ["updateScript", 284, 9]]);
-const pos$3 = nix.positions(here + "/mk-python-derivation.nix", [["platforms", 297, 9], ["isBuildPythonPackage", 298, 9]]);
-const pos$4 = nix.positions(here + "/mk-python-derivation.nix", [["name", 199, 7], ["nativeBuildInputs", 201, 7], ["buildInputs", 242, 7], ["propagatedBuildInputs", 244, 7], ["strictDeps", 254, 15], ["env", 256, 7], ["doCheck", 262, 7], ["doInstallCheck", 263, 7], ["nativeInstallCheckInputs", 264, 7], ["installCheckInputs", 265, 7], ["postFixup", 267, 7], ["disallowedReferences", 274, 7], ["outputs", 278, 7], ["passthru", 280, 7], ["meta", 295, 7]]);
-const pos$5 = nix.positions(here + "/mk-python-derivation.nix", [["installCheckPhase", 305, 7]]);
-const pos$6 = nix.positions(here + "/mk-python-derivation.nix", [["disabledTestPaths", 308, 7]]);
-const pos$7 = nix.positions(here + "/mk-python-derivation.nix", [["overrideAttrs", 323, 11]]);
-const pos$8 = nix.positions(here + "/mk-python-derivation.nix", [["constructDrv", 34, 3], ["excludeDrvArgNames", 36, 3], ["extendDrvArgs", 49, 3], ["transformDrv", 311, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const eggInstallHook = nix.arg($, "eggInstallHook");
   const hasZipSuffix = nix.thunk(() => nix.app(nix.sel(lib, "hasSuffix"), "zip"));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => [
         "disabled",
@@ -124,7 +117,7 @@ ${optionalLocation}
           return (inputs) => nix.builtins.map(checkDrv, inputs);
         })();
         return nix.update({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: nix.thunk(() => nix.add(namePrefix, name_)),
           nativeBuildInputs: nix.thunk(() => nix.concat([
             python,
@@ -136,7 +129,7 @@ ${optionalLocation}
           propagatedBuildInputs: nix.thunk(() => nix.app(validatePythonMatches, "propagatedBuildInputs", nix.thunk(() => nix.concat(propagatedBuildInputs, [python])))),
           strictDeps: strictDeps,
           env: nix.thunk(() => nix.update({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             LANG: nix.thunk(() => nix.str`${(nix.asBool(nix.sel(python, "stdenv", "hostPlatform", "isDarwin")) ? "en_US" : "C")}.UTF-8`),
           }, nix.selOr(attrs, () => ({}), "env"))),
           doCheck: false,
@@ -147,7 +140,7 @@ ${optionalLocation}
           disallowedReferences: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(python, "stdenv", "hostPlatform"), nix.sel(python, "stdenv", "buildPlatform"))), nix.thunk(() => [nix.thunk(() => nix.sel(python, "pythonOnBuildForHost"))]))),
           outputs: nix.thunk(() => nix.concat(outputs, nix.app(nix.sel(lib, "optional"), withDistOutput, "dist"))),
           passthru: nix.thunk(() => nix.update({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             disabled: disabled,
             updateScript: nix.thunk(() => (() => {
               const filename = nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ":", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "meta", "position"))))));
@@ -155,21 +148,21 @@ ${optionalLocation}
             })()),
           }, passthru)),
           meta: nix.thunk(() => nix.update({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             platforms: nix.thunk(() => nix.sel(python, "meta", "platforms")),
             isBuildPythonPackage: nix.thunk(() => nix.sel(python, "meta", "platforms")),
           }, meta)),
         }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(attrs, "checkPhase")), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             installCheckPhase: nix.thunk(() => nix.sel(attrs, "checkPhase")),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(disabledTestPaths, [])), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), disabledTestPaths)),
           })))));
       })(), formals$2),
       transformDrv: nix.thunk(() => (() => {
         const disablePythonPackage = (drv) => nix.update(nix.app(nix.sel(lib, "extendDerivation"), nix.thunk(() => (!nix.asBool(nix.sel(drv, "disabled")) || nix.asBool(nix.builtins.throw(nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "removePrefix"), namePrefix, nix.thunk(() => nix.sel(drv, "name")))} not supported for interpreter ${nix.sel(python, "executable")}`))))), nix.thunk(() => ({})), drv), {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           overrideAttrs: (fdrv) => nix.app(disablePythonPackage, nix.thunk(() => nix.app(nix.sel(drv, "overrideAttrs"), fdrv))),
         });
         return (drv) => nix.app(disablePythonPackage, nix.thunk(() => nix.app(toPythonModule, drv)));

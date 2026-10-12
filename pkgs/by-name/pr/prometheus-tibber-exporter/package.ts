@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["leaveDotGit", 18, 5], ["postFetch", 19, 5]], [["extraArgs", 43, 5]], [["updateScript", 42, 12]], [["changelog", 57, 5], ["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["preBuild", 27, 3], ["ldflags", 31, 3], ["vendorHash", 40, 3], ["passthru", 42, 3], ["nativeInstallCheckInputs", 49, 3], ["doInstallCheck", 53, 3], ["versionCheckProgram", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["leaveDotGit", 18, 5], ["postFetch", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 42, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 57, 5], ["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["preBuild", 27, 3], ["ldflags", 31, 3], ["vendorHash", 40, 3], ["passthru", 42, 3], ["nativeInstallCheckInputs", 49, 3], ["doInstallCheck", 53, 3], ["versionCheckProgram", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "prometheus-tibber-exporter",
       version: "3.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "terjesannum",
           repo: "tibber-exporter",
           tag: nix.thunk(() => nix.str`tibber-exporter-${nix.sel(finalAttrs, "version")}`),
@@ -40,9 +36,9 @@ export default nix.lambda((args) => (() => {
       ]),
       vendorHash: "sha256-rjM2M9auiyFvGcq/D8N5YPoFOPeC9r1Y1JPssT7nvew=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "tibber-exporter-(.*)"]),
           })))),
       })),
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/tibber-exporter`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/terjesannum/tibber-exporter/releases/tag/tibber-exporter-${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/terjesannum/tibber-exporter",
         description: "Prometheus exporter for tibber energy meter, pulse, watty and more",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["uptime-kuma", 45, 18]], [["tests", 45, 12]], [["description", 48, 5], ["mainProgram", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["broken", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["strictDeps", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["npmDepsHash", 24, 3], ["patches", 26, 3], ["postInstall", 32, 3], ["postFixup", 39, 3], ["passthru", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildNpmPackage: false, nodejs: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["uptime-kuma", 45, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 45, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 48, 5], ["mainProgram", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["broken", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["strictDeps", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["npmDepsHash", 24, 3], ["patches", 26, 3], ["postInstall", 32, 3], ["postFixup", 39, 3], ["passthru", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "uptime-kuma",
       version: "2.5.6",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "louislam",
           repo: "uptime-kuma",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,14 +34,14 @@ export default nix.lambda((args) => (() => {
   --chdir $out/lib/node_modules/uptime-kuma
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "uptime-kuma": nix.thunk(() => nix.sel(nixosTests, "uptime-kuma")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fancy self-hosted monitoring tool",
         mainProgram: "uptime-kuma-server",
         homepage: "https://github.com/louislam/uptime-kuma",

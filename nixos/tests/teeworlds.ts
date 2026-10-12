@@ -2,16 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/teeworlds.nix", [[["systemPackages", 9, 19]], [["imports", 8, 7], ["environment", 9, 7]], [["maintainers", 16, 5]], [["enable", 22, 9], ["openPorts", 23, 9]], [["teeworlds", 21, 16]], [["services", 21, 7]], [["server", 20, 5], ["client1", 27, 5], ["client2", 28, 5]], [["name", 14, 3], ["meta", 15, 3], ["nodes", 19, 3], ["testScript", 31, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/teeworlds.nix", [["systemPackages", 9, 19]]);
-const pos$2 = nix.positions(here + "/teeworlds.nix", [["imports", 8, 7], ["environment", 9, 7]]);
-const pos$3 = nix.positions(here + "/teeworlds.nix", [["maintainers", 16, 5]]);
-const pos$4 = nix.positions(here + "/teeworlds.nix", [["enable", 22, 9], ["openPorts", 23, 9]]);
-const pos$5 = nix.positions(here + "/teeworlds.nix", [["teeworlds", 21, 16]]);
-const pos$6 = nix.positions(here + "/teeworlds.nix", [["services", 21, 7]]);
-const pos$7 = nix.positions(here + "/teeworlds.nix", [["server", 20, 5], ["client1", 27, 5], ["client2", 28, 5]]);
-const pos$8 = nix.positions(here + "/teeworlds.nix", [["name", 14, 3], ["meta", 15, 3], ["nodes", 19, 3], ["testScript", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,31 +13,31 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "teeworlds"))]),
       })),
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "teeworlds",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "hax404"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          teeworlds: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, openPorts: true })),
+          [nix.POS]: $pos[4],
+          teeworlds: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, openPorts: true })),
         })),
       })),
       client1: client,

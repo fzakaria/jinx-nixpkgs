@@ -2,25 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 46, 9], ["hash", 54, 11]], [["version", 64, 34], ["platformAttrs", 65, 21]], [["tests", 144, 28]], [["homepage", 147, 9], ["description", 148, 9], ["license", 149, 9], ["sourceProvenance", 150, 9], ["longDescription", 152, 9], ["maintainers", 163, 9], ["platforms", 164, 9]], [["pname", 42, 15], ["jdk", 43, 7], ["version", 44, 7], ["src", 45, 7], ["doCheck", 57, 7], ["containerExecutor", 61, 7], ["nativeBuildInputs", 70, 7], ["buildInputs", 74, 7], ["installPhase", 83, 7], ["passthru", 144, 7], ["meta", 146, 7]], [["version", 175, 9], ["hash", 176, 9], ["srcHash", 177, 9], ["variant", 178, 9]], [["version", 181, 9], ["hash", 182, 9], ["srcHash", 183, 9], ["jdk", 184, 9]], [["x86_64-linux", 174, 7], ["aarch64-linux", 180, 7], ["aarch64-darwin", 186, 7]], [["pname", 172, 5], ["platformAttrs", 173, 5], ["jdk", 188, 5], ["tests", 190, 5]], [["version", 196, 9], ["hash", 197, 9], ["srcHash", 198, 9]], [["hash", 201, 9]], [["x86_64-linux", 195, 7], ["aarch64-linux", 200, 7], ["aarch64-darwin", 203, 7]], [["pname", 193, 5], ["platformAttrs", 194, 5], ["jdk", 205, 5], ["tests", 207, 5]], [["version", 212, 7], ["hash", 213, 7], ["srcHash", 214, 7]], [["x86_64-linux", 211, 19]], [["pname", 210, 5], ["platformAttrs", 211, 5], ["jdk", 216, 5], ["tests", 217, 5]], [["hadoop_3_4", 171, 3], ["hadoop_3_3", 192, 3], ["hadoop2", 209, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, autoPatchelfHook: false, jdk8_headless: false, jdk11_headless: false, jdk21_headless: false, bash: false, coreutils: false, which: false, bzip2: false, cyrus_sasl: false, protobuf: false, snappy: false, zlib: false, zstd: false, openssl: false, nixosTests: false, sparkSupport: true, spark: false, libtirpc: false, callPackage: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, platformAttrs: false, jdk: false, tests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 46, 9], ["hash", 54, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 64, 34], ["platformAttrs", 65, 21]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 144, 28]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 147, 9], ["description", 148, 9], ["license", 149, 9], ["sourceProvenance", 150, 9], ["longDescription", 152, 9], ["maintainers", 163, 9], ["platforms", 164, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 42, 15], ["jdk", 43, 7], ["version", 44, 7], ["src", 45, 7], ["doCheck", 57, 7], ["containerExecutor", 61, 7], ["nativeBuildInputs", 70, 7], ["buildInputs", 74, 7], ["installPhase", 83, 7], ["passthru", 144, 7], ["meta", 146, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 175, 9], ["hash", 176, 9], ["srcHash", 177, 9], ["variant", 178, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 181, 9], ["hash", 182, 9], ["srcHash", 183, 9], ["jdk", 184, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["x86_64-linux", 174, 7], ["aarch64-linux", 180, 7], ["aarch64-darwin", 186, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 172, 5], ["platformAttrs", 173, 5], ["jdk", 188, 5], ["tests", 190, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["version", 196, 9], ["hash", 197, 9], ["srcHash", 198, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["hash", 201, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["x86_64-linux", 195, 7], ["aarch64-linux", 200, 7], ["aarch64-darwin", 203, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["pname", 193, 5], ["platformAttrs", 194, 5], ["jdk", 205, 5], ["tests", 207, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["version", 212, 7], ["hash", 213, 7], ["srcHash", 214, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["x86_64-linux", 211, 19]]);
-const pos$16 = nix.positions(here + "/default.nix", [["pname", 210, 5], ["platformAttrs", 211, 5], ["jdk", 216, 5], ["tests", 217, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["hadoop_3_4", 171, 3], ["hadoop_3_3", 192, 3], ["hadoop2", 209, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,21 +39,21 @@ export default nix.lambda((args) => (() => {
     const jdk = nix.arg($_1, "jdk");
     const tests = nix.arg($_1, "tests");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: pname,
         jdk: nix.thunk(() => nix.selOr(platformAttrs, () => nix.force(jdk), nix.key(nix.sel(stdenv, "system")), "jdk")),
         version: nix.thunk(() => nix.selOr(platformAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system")), "version")),
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.selOr(platformAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
             return {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.add(nix.add(nix.add(nix.str`mirror://apache/hadoop/common/hadoop-${nix.sel(finalAttrs, "version")}/hadoop-${nix.sel(finalAttrs, "version")}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "hasAttr"), "variant", nix.thunk(() => nix.sel(platformAttrs, nix.key(nix.sel(stdenv, "system")))))), nix.thunk(() => nix.str`-${nix.sel(platformAttrs, nix.key(nix.sel(stdenv, "system")), "variant")}`))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), "-aarch64")), ".tar.gz")),
             hash: nix.thunk(() => nix.attr(from, "hash")),
           };
           })()))),
         doCheck: true,
         containerExecutor: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.app(callPackage, nix.path(here, "./containerExecutor.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             platformAttrs: platformAttrs,
           }))) : "")),
@@ -120,9 +104,9 @@ done
 `), nix.app(nix.sel(lib, "optionalString"), sparkSupport, nix.thunk(() => nix.str`# Add the spark shuffle service jar to YARN
 cp ${nix.sel(spark, "src")}/yarn/spark-${nix.sel(spark, "version")}-yarn-shuffle.jar $out/share/hadoop/yarn/
 `)))),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: tests })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], tests: tests })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           homepage: "https://hadoop.apache.org/",
           description: "Framework for distributed processing of large data sets across clusters of computers",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -140,20 +124,20 @@ cp ${nix.sel(spark, "src")}/yarn/spark-${nix.sel(spark, "version")}-yarn-shuffle
       }));
   })(), formals$2);
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     hadoop_3_4: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: "hadoop",
         platformAttrs: nix.thunk(() => (() => {
           const x86_64_linux = nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             version: "3.4.2",
             hash: "sha256-YySoP+EeUXiQQ2/G2AvIKVBu0lLL4kZXUrkSIJAN+4M=",
             srcHash: "sha256-AkZjpHk57S3pYiZambxgRHR7PD51HSI4H1HHW9ICah4=",
             variant: "lean",
           }));
           const aarch64_linux = nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             version: "3.4.0",
             hash: "sha256-QWxzKtNyw/AzcHMv0v7kj91pw1HO7VAN9MHO84caFk8=",
             srcHash: "sha256-viDF3LdRCZHqFycOYfN7nUQBPHiMCIjmu7jgIAaaK9E=",
@@ -161,7 +145,7 @@ cp ${nix.sel(spark, "src")}/yarn/spark-${nix.sel(spark, "version")}-yarn-shuffle
           }));
           const aarch64_darwin = aarch64_linux;
           return {
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             "x86_64-linux": x86_64_linux,
             "aarch64-linux": aarch64_linux,
             "aarch64-darwin": aarch64_darwin,
@@ -171,22 +155,22 @@ cp ${nix.sel(spark, "src")}/yarn/spark-${nix.sel(spark, "version")}-yarn-shuffle
         tests: nix.thunk(() => nix.sel(nixosTests, "hadoop")),
       })))),
     hadoop_3_3: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         pname: "hadoop",
         platformAttrs: nix.thunk(() => (() => {
           const x86_64_linux = nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             version: "3.3.6",
             hash: "sha256-9RlQWcDUECrap//xf3sqhd+Qa8tuGZSHFjGfmXhkGgQ=",
             srcHash: "sha256-4OEsVhBNV9CJ+PN4FgCduUCVA9/el5yezSCZ6ko3+bU=",
           }));
           const aarch64_linux = nix.thunk(() => nix.update(x86_64_linux, {
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             hash: "sha256-5Lv2uA72BJEva5v2yncyPe5gKNCNOPNsoHffVt6KXQ0=",
           }));
           const aarch64_darwin = aarch64_linux;
           return {
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             "x86_64-linux": x86_64_linux,
             "aarch64-linux": aarch64_linux,
             "aarch64-darwin": aarch64_darwin,
@@ -196,12 +180,12 @@ cp ${nix.sel(spark, "src")}/yarn/spark-${nix.sel(spark, "version")}-yarn-shuffle
         tests: nix.thunk(() => nix.sel(nixosTests, "hadoop_3_3")),
       })))),
     hadoop2: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         pname: "hadoop",
         platformAttrs: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           "x86_64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             version: "2.10.2",
             hash: "sha256-xhA4zxqIRGNhIeBnJO9dLKf/gx/Bq+uIyyZwsIafEyo=",
             srcHash: "sha256-ucxCyXiJo8aL6aNMhZgKEbn8sGKOoMPVREbMGSfSdAI=",

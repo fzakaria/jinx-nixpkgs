@@ -2,28 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ax25.nix", [[["kernelModules", 10, 10]], [["allowedTCPPorts", 12, 25]], [["firewall", 12, 16]], [["systemPackages", 14, 17]], [["baud", 22, 15], ["tty", 22, 20], ["enable", 23, 7], ["callsign", 24, 7], ["description", 25, 7]], [["enable", 29, 7]], [["axports", 21, 19], ["axlisten", 28, 19]], [["ax25", 21, 14]], [["Type", 43, 9], ["ExecStart", 44, 9]], [["description", 35, 7], ["wantedBy", 36, 7], ["before", 37, 7], ["after", 41, 7], ["serviceConfig", 42, 7]], [["ax25-mock-hardware", 34, 22]], [["services", 34, 13]], [["boot", 10, 5], ["networking", 12, 5], ["environment", 14, 5], ["services", 21, 5], ["systemd", 34, 5]], [["Type", 64, 13], ["ExecStart", 65, 13]], [["description", 57, 11], ["wantedBy", 58, 11], ["requires", 59, 11], ["before", 60, 11], ["path", 62, 11], ["serviceConfig", 63, 11], ["postStart", 67, 11]], [["ax25-mock-ether", 56, 26]], [["services", 56, 17]], [["systemd", 56, 9]], [["node1", 52, 5], ["node2", 71, 5], ["node3", 72, 5]], [["name", 50, 3], ["nodes", 51, 3], ["testScript", 74, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ax25.nix", [["kernelModules", 10, 10]]);
-const pos$2 = nix.positions(here + "/ax25.nix", [["allowedTCPPorts", 12, 25]]);
-const pos$3 = nix.positions(here + "/ax25.nix", [["firewall", 12, 16]]);
-const pos$4 = nix.positions(here + "/ax25.nix", [["systemPackages", 14, 17]]);
-const pos$5 = nix.positions(here + "/ax25.nix", [["baud", 22, 15], ["tty", 22, 20], ["enable", 23, 7], ["callsign", 24, 7], ["description", 25, 7]]);
-const pos$6 = nix.positions(here + "/ax25.nix", [["enable", 29, 7]]);
-const pos$7 = nix.positions(here + "/ax25.nix", [["axports", 21, 19], ["axlisten", 28, 19]]);
-const pos$8 = nix.positions(here + "/ax25.nix", [["ax25", 21, 14]]);
-const pos$9 = nix.positions(here + "/ax25.nix", [["Type", 43, 9], ["ExecStart", 44, 9]]);
-const pos$10 = nix.positions(here + "/ax25.nix", [["description", 35, 7], ["wantedBy", 36, 7], ["before", 37, 7], ["after", 41, 7], ["serviceConfig", 42, 7]]);
-const pos$11 = nix.positions(here + "/ax25.nix", [["ax25-mock-hardware", 34, 22]]);
-const pos$12 = nix.positions(here + "/ax25.nix", [["services", 34, 13]]);
-const pos$13 = nix.positions(here + "/ax25.nix", [["boot", 10, 5], ["networking", 12, 5], ["environment", 14, 5], ["services", 21, 5], ["systemd", 34, 5]]);
-const pos$14 = nix.positions(here + "/ax25.nix", [["Type", 64, 13], ["ExecStart", 65, 13]]);
-const pos$15 = nix.positions(here + "/ax25.nix", [["description", 57, 11], ["wantedBy", 58, 11], ["requires", 59, 11], ["before", 60, 11], ["path", 62, 11], ["serviceConfig", 63, 11], ["postStart", 67, 11]]);
-const pos$16 = nix.positions(here + "/ax25.nix", [["ax25-mock-ether", 56, 26]]);
-const pos$17 = nix.positions(here + "/ax25.nix", [["services", 56, 17]]);
-const pos$18 = nix.positions(here + "/ax25.nix", [["systemd", 56, 9]]);
-const pos$19 = nix.positions(here + "/ax25.nix", [["node1", 52, 5], ["node2", 71, 5], ["node3", 72, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$20 = nix.positions(here + "/ax25.nix", [["name", 50, 3], ["nodes", 51, 3], ["testScript", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const port = "tnc0";
   const socatPort = 1234n;
   const createAX25Node = (nodeId) => ({
-    [nix.POS]: pos$13,
-    boot: nix.thunk(() => ({ [nix.POS]: pos$1, kernelModules: nix.thunk(() => ["ax25"]) })),
+    [nix.POS]: $pos[12],
+    boot: nix.thunk(() => ({ [nix.POS]: $pos[0], kernelModules: nix.thunk(() => ["ax25"]) })),
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$3,
-      firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [socatPort]) })),
+      [nix.POS]: $pos[2],
+      firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], allowedTCPPorts: nix.thunk(() => [socatPort]) })),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       systemPackages: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [
@@ -53,12 +34,12 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       ax25: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         axports: nix.thunk(() => nix.attrsDyn({}, [
           [nix.str`${port}`, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             baud: baud,
             tty: tty,
             enable: true,
@@ -66,15 +47,15 @@ export default nix.lambda((args) => (() => {
             description: "mocked tnc",
           }))],
         ])),
-        axlisten: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+        axlisten: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
       })),
     })),
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         "ax25-mock-hardware": nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           description: "mock AX.25 TNC and Radio",
           wantedBy: nix.thunk(() => ["default.target"]),
           before: nix.thunk(() => [
@@ -83,7 +64,7 @@ export default nix.lambda((args) => (() => {
           ]),
           after: nix.thunk(() => ["network.target"]),
           serviceConfig: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             Type: "exec",
             ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "socat")}/bin/socat -d -d tcp:192.168.1.1:${nix.builtins.toString(socatPort)} pty,link=${tty},b${nix.builtins.toString(baud)},raw`),
           })),
@@ -92,27 +73,27 @@ export default nix.lambda((args) => (() => {
     })),
   });
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "ax25Simple",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       node1: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => nix.app(createAX25Node, 1n)),
           nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 "ax25-mock-ether": nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   description: "mock radio ether",
                   wantedBy: nix.thunk(() => ["default.target"]),
                   requires: nix.thunk(() => ["network.target"]),
                   before: nix.thunk(() => ["ax25-mock-hardware.service"]),
                   path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iproute2"))]),
                   serviceConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     Type: "exec",
                     ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "socat")}/bin/socat-broker.sh tcp4-listen:${nix.builtins.toString(socatPort)}`),
                   })),

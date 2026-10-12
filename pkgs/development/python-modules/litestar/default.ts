@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 67, 5], ["repo", 68, 5], ["tag", 69, 5], ["hash", 70, 5]], [["annotated-types", 92, 5], ["attrs", 93, 5], ["brotli", 94, 5], ["cli", 95, 5], ["cryptography", 100, 5], ["jinja", 101, 5], ["jwt", 102, 5], ["mako", 106, 5], ["minijinja", 107, 5], ["opentelemetry", 108, 5], ["piccolo", 109, 5], ["picologging", 110, 5], ["prometheus", 111, 5], ["pydantic", 112, 5], ["redis", 117, 5], ["standard", 119, 5], ["structlog", 125, 5], ["valkey", 126, 5]], [["description", 164, 5], ["homepage", 165, 5], ["changelog", 166, 5], ["license", 167, 5], ["mainProgram", 168, 5], ["maintainers", 169, 5], ["platforms", 170, 5]], [["pname", 62, 3], ["version", 63, 3], ["pyproject", 64, 3], ["src", 66, 3], ["build-system", 73, 3], ["dependencies", 75, 3], ["optional-dependencies", 91, 3], ["nativeCheckInputs", 129, 3], ["versionCheckProgramArg", 144, 3], ["__darwinAllowLocalNetworking", 146, 3], ["enabledTestPaths", 148, 3], ["pytestFlags", 153, 3], ["disabledTests", 158, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, pythonOlder: false, hatchling: false, "annotated-types": false, anyio: false, attrs: false, brotli: false, click: false, cryptography: false, httpx: false, jinja2: false, jsbeautifier: false, "litestar-htmx": false, mako: false, minijinja: false, msgspec: false, multidict: false, multipart: false, picologging: false, polyfactory: false, piccolo: false, "prometheus-client": false, "opentelemetry-instrumentation-asgi": false, "pydantic-extra-types": false, pydantic: false, "email-validator": false, pyjwt: false, pyyaml: false, redis: false, "rich-click": false, rich: false, sniffio: false, structlog: false, "time-machine": false, "typing-extensions": false, uvicorn: false, valkey: false, addBinToPathHook: false, "httpx-sse": false, "pytest-asyncio": false, "pytest-lazy-fixtures": false, "pytest-mock": false, "pytest-rerunfailures": false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, trio: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 67, 5], ["repo", 68, 5], ["tag", 69, 5], ["hash", 70, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["annotated-types", 92, 5], ["attrs", 93, 5], ["brotli", 94, 5], ["cli", 95, 5], ["cryptography", 100, 5], ["jinja", 101, 5], ["jwt", 102, 5], ["mako", 106, 5], ["minijinja", 107, 5], ["opentelemetry", 108, 5], ["piccolo", 109, 5], ["picologging", 110, 5], ["prometheus", 111, 5], ["pydantic", 112, 5], ["redis", 117, 5], ["standard", 119, 5], ["structlog", 125, 5], ["valkey", 126, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 164, 5], ["homepage", 165, 5], ["changelog", 166, 5], ["license", 167, 5], ["mainProgram", 168, 5], ["maintainers", 169, 5], ["platforms", 170, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 62, 3], ["version", 63, 3], ["pyproject", 64, 3], ["src", 66, 3], ["build-system", 73, 3], ["dependencies", 75, 3], ["optional-dependencies", 91, 3], ["nativeCheckInputs", 129, 3], ["versionCheckProgramArg", 144, 3], ["__darwinAllowLocalNetworking", 146, 3], ["enabledTestPaths", 148, 3], ["pytestFlags", 153, 3], ["disabledTests", 158, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -62,12 +59,12 @@ export default nix.lambda((args) => (() => {
   const trio = nix.arg($, "trio");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "litestar",
       version: "2.21.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "litestar-org",
           repo: "litestar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,7 +87,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "annotated-types": nix.thunk(() => [annotated_types]),
         attrs: nix.thunk(() => [attrs]),
         brotli: nix.thunk(() => [brotli]),
@@ -130,7 +127,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["-Wignore::UserWarning"]))),
       disabledTests: nix.thunk(() => ["test_subprocess_async_client"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Production-ready, Light, Flexible and Extensible ASGI API framework",
         homepage: "https://litestar.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/litestar-org/litestar/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

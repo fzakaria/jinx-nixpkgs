@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["updateScript", 29, 12]], [["changelog", 32, 5], ["description", 33, 5], ["mainProgram", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["npmDepsHash", 25, 3], ["dontNpmBuild", 27, 3], ["passthru", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, jq: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 29, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 32, 5], ["description", 33, 5], ["mainProgram", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["npmDepsHash", 25, 3], ["dontNpmBuild", 27, 3], ["passthru", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "matrix-alertmanager";
       const version = "0.10.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jaywink",
           repo: "matrix-alertmanager",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,11 +28,11 @@ mv package.json.tmp package.json
       const npmDepsHash = "sha256-r1OvxCk6dgVAb3NKxveTr/1PTRFYQVDhQmBHbikzALE=";
       const dontNpmBuild = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/jaywink/matrix-alertmanager/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Bot to receive Alertmanager webhook events and forward them to chosen rooms",
         mainProgram: "matrix-alertmanager",
@@ -47,7 +44,7 @@ mv package.json.tmp package.json
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

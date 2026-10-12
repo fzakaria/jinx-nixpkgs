@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["package", 16, 7], ["version", 17, 7]], [["version", 15, 11]], [["tests", 15, 5], ["updateScript", 19, 5]], [["description", 23, 5], ["homepage", 24, 5], ["changelog", 25, 5], ["license", 26, 5], ["mainProgram", 27, 5], ["maintainers", 28, 5]], [["pname", 10, 3], ["gemdir", 11, 3], ["exes", 12, 3], ["passthru", 14, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { bundlerApp: false, bundlerUpdateScript: false, lib: false, "puppet-lint": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["package", 16, 7], ["version", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 15, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 15, 5], ["updateScript", 19, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 23, 5], ["homepage", 24, 5], ["changelog", 25, 5], ["license", 26, 5], ["mainProgram", 27, 5], ["maintainers", 28, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["gemdir", 11, 3], ["exes", 12, 3], ["passthru", 14, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const puppet_lint = nix.arg($, "puppet-lint");
   const testers = nix.arg($, "testers");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "puppet-lint",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["puppet-lint"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               package: puppet_lint,
               version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "puppet-lint", "version")),
             })))),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "puppet-lint")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Checks Puppet code against the recommended Puppet language style guide",
         homepage: "https://github.com/puppetlabs/puppet-lint",
         changelog: "https://github.com/puppetlabs/puppet-lint/blob/main/CHANGELOG.md",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 20, 5], ["buildCommand", 22, 5]], [["url", 48, 7], ["includes", 49, 7], ["revert", 53, 7], ["hash", 54, 7]], [["NIX_CFLAGS_COMPILE", 77, 7]], [["description", 99, 5], ["license", 100, 5]], [["releaseName", 37, 3], ["outputs", 39, 3], ["patches", 45, 3], ["xcodeHash", 58, 3], ["postPatch", 60, 3], ["env", 77, 3], ["buildInputs", 82, 3], ["nativeBuildInputs", 87, 3], ["postInstall", 93, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, bison: false, fetchpatch2: false, flex: false, libxo: false, mkAppleDerivation: false, ncurses: false, "pkg-config": false, sourceRelease: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 20, 5], ["buildCommand", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 48, 7], ["includes", 49, 7], ["revert", 53, 7], ["hash", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 77, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 99, 5], ["license", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["releaseName", 37, 3], ["outputs", 39, 3], ["patches", 45, 3], ["xcodeHash", 58, 3], ["postPatch", 60, 3], ["env", 77, 3], ["buildInputs", 82, 3], ["nativeBuildInputs", 87, 3], ["postInstall", 93, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const libplatform = nix.thunk(() => nix.app(sourceRelease, "libplatform"));
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "adv_cmds-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -m644 -t "$out/include" \\
   '${libplatform}/private/_simple.h' \\
@@ -40,12 +36,12 @@ install -D -m644 -t "$out/include/sys" \\
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       releaseName: "adv_cmds",
       outputs: nix.thunk(() => ["out", "ps", "man"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/apple-oss-distributions/adv_cmds/commit/6bed8737a34dbb54782a18f47dccf933a9967a12.patch?full_index=1",
             includes: nix.thunk(() => ["colldef/*", "mklocale/*"]),
             revert: true,
@@ -55,7 +51,7 @@ install -D -m644 -t "$out/include/sys" \\
       xcodeHash: "sha256-L27TYv2zdKx0WKTBgHSv9Q0FCwrW4o83EmtDyqFM1fs=",
       postPatch: "# Meson generators require using @BASENAME@ in the output.\nsubstituteInPlace mklocale/lex.l \\\n  --replace-fail y.tab.h yacc.tab.h\nsubstituteInPlace genwrap/lex.l \\\n  --replace-fail y.tab.h genwrap.tab.h\nsubstituteInPlace colldef/scan.l \\\n  --replace-fail y.tab.h parse.tab.h\n\nfind localedef -name '*.c' -exec sed -e 's/parser.h/parser.tab.h/' -i {} \\;\n\n# Fix paths to point to the store\nfor file in genwrap.c genwrap.8; do\n  substituteInPlace genwrap/$file \\\n    --replace-fail '/usr/local' \"$out\"\ndone\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "join"), " ", nix.thunk(() => [
             nix.thunk(() => nix.str`-I${privateHeaders}/include`),
             "-Wno-error=incompatible-pointer-types",
@@ -65,7 +61,7 @@ install -D -m644 -t "$out/include/sys" \\
       nativeBuildInputs: nix.thunk(() => [bison, flex, pkg_config]),
       postInstall: "moveToOutput bin/ps \"$ps\"\nln -s \"$ps/bin/ps\" \"$out/bin/ps\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Advanced commands package for Darwin",
         license: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "licenses", "apple-psl10")),

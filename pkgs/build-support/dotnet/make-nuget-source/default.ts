@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 34, 12]], [["name", 17, 15], ["nativeBuildInputs", 19, 7], ["buildCommand", 21, 7], ["meta", 34, 7]]]);
 const formals$1 = { args: { lib: false, python3: false, stdenvNoCC: false }, ellipsis: false };
 const formals$2 = { args: { name: false, description: true, deps: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 34, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 17, 15], ["nativeBuildInputs", 19, 7], ["buildCommand", 21, 7], ["meta", 34, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
     const description = nix.argOr($_1, "description", () => "");
     const deps = nix.argOr($_1, "deps", () => []);
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: name,
           nativeBuildInputs: nix.thunk(() => [python3]),
           buildCommand: nix.thunk(() => nix.str`mkdir -p $out/{lib,share}
@@ -33,7 +32,7 @@ find -L ${nix.app(nix.sel(lib, "concatStringsSep"), " ", deps)} -type f -name '*
 # Note that this currently ignores any license provided in plain text (e.g. "LICENSE.txt")
 python ${nix.path(here, "./extract-licenses-from-nupkgs.py")} $out/lib > $out/share/licenses
 `),
-          meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: description })),
+          meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: description })),
         })), nix.thunk(() => nix.builtins.removeAttrs(args_2, nix.thunk(() => ["name", "description", "deps"]))))));
   })(), formals$2);
 })(), formals$1);

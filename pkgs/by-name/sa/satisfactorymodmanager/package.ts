@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["pname", 60, 9], ["version", 61, 9], ["src", 62, 9], ["pnpm", 63, 9], ["sourceRoot", 65, 7], ["fetcherVersion", 66, 7], ["hash", 67, 7]], [["pnpmDeps", 58, 5], ["pnpmRoot", 70, 5]], [["preBuild", 75, 5]], [["name", 102, 7], ["desktopName", 103, 7], ["exec", 104, 7], ["mimeTypes", 105, 7], ["icon", 106, 7], ["terminal", 107, 7], ["categories", 108, 7]], [["broken", 113, 5], ["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["mainProgram", 117, 5], ["maintainers", 118, 5], ["platforms", 119, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["env", 57, 3], ["overrideModAttrs", 74, 3], ["proxyVendor", 80, 3], ["vendorHash", 82, 3], ["buildPhase", 84, 3], ["installPhase", 90, 3], ["desktopItems", 100, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, wails: false, wrapGAppsHook3: false, "glib-networking": false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 60, 9], ["version", 61, 9], ["src", 62, 9], ["pnpm", 63, 9], ["sourceRoot", 65, 7], ["fetcherVersion", 66, 7], ["hash", 67, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pnpmDeps", 58, 5], ["pnpmRoot", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["preBuild", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 102, 7], ["desktopName", 103, 7], ["exec", 104, 7], ["mimeTypes", 105, 7], ["icon", 106, 7], ["terminal", 107, 7], ["categories", 108, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["broken", 113, 5], ["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["mainProgram", 117, 5], ["maintainers", 118, 5], ["platforms", 119, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["env", 57, 3], ["overrideModAttrs", 74, 3], ["proxyVendor", 80, 3], ["vendorHash", 82, 3], ["buildPhase", 84, 3], ["installPhase", 90, 3], ["desktopItems", 100, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "satisfactorymodmanager";
       const version = "3.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "satisfactorymodding",
           repo: "SatisfactoryModManager",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,9 +38,9 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pnpmConfigHook, pnpm, wails, wrapGAppsHook3, copyDesktopItems]);
       const buildInputs = nix.thunk(() => [glib_networking]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: pname,
             version: version,
             src: src,
@@ -57,14 +51,14 @@ export default nix.lambda((args) => (() => {
           })))),
         pnpmRoot: "frontend",
       }));
-      const overrideModAttrs = nix.thunk(() => ({ [nix.POS]: pos$4, preBuild: "wails build -tags webkit2_41 # 4.0 EOL\n" }));
+      const overrideModAttrs = nix.thunk(() => ({ [nix.POS]: $pos[3], preBuild: "wails build -tags webkit2_41 # 4.0 EOL\n" }));
       const proxyVendor = true;
       const vendorHash = "sha256-a8o69vrW6TfrYmBRlSNE4NqemJUBFQilsVj+qwLYcbo=";
       const buildPhase = "runHook preBuild\nwails build -tags webkit2_41 # 4.0 EOL\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\ninstall -Dm755 build/bin/SatisfactoryModManager -t \"$out/bin\"\n\nfor i in 16 32 64 128 256 512; do\n  install -D ./icons/\"$i\"x\"$i\".png \"$out\"/share/icons/hicolor/\"$i\"x\"$i\"/apps/SatisfactoryModManager.png\ndone\nrunHook postInstall\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "SatisfactoryModManager",
             desktopName: "Satisfactory Mod Manager",
             exec: "SatisfactoryModManager %u",
@@ -75,7 +69,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Mod manager and modloader for Satisfactory",
         homepage: "https://github.com/satisfactorymodding/SatisfactoryModManager",
@@ -88,7 +82,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["server", 19, 5], ["node", 20, 5], ["tests", 21, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["platforms", 28, 5], ["maintainers", 33, 5]], [["name", 9, 3], ["pname", 10, 3], ["version", 11, 26], ["paths", 13, 3], ["passthru", 18, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, "tdarr-server": false, "tdarr-node": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["server", 19, 5], ["node", 20, 5], ["tests", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["platforms", 28, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 9, 3], ["pname", 10, 3], ["version", 11, 26], ["paths", 13, 3], ["passthru", 18, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const tdarr_server = nix.arg($, "tdarr-server");
   const tdarr_node = nix.arg($, "tdarr-node");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`tdarr-${nix.sel(tdarr_server, "version")}`),
       pname: "tdarr",
       version: nix.thunk(() => nix.attr(tdarr_server, "version")),
       paths: nix.thunk(() => [tdarr_server, tdarr_node]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         server: tdarr_server,
         node: tdarr_node,
         tests: nix.thunk(() => nix.update(nix.selOr(tdarr_server, () => ({}), "tests"), nix.selOr(tdarr_node, () => ({}), "tests"))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Distributed transcode automation using FFmpeg/HandBrake (includes both server and node)",
         homepage: "https://tdarr.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

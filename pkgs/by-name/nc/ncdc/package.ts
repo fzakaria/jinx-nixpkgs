@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 24, 5]], [["changelog", 47, 5], ["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["configureFlags", 42, 3], ["doInstallCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false, zlib: false, bzip2: false, sqlite: false, "pkg-config": false, glib: false, gnutls: false, perl: false, libmaxminddb: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 47, 5], ["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["configureFlags", 42, 3], ["doInstallCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libmaxminddb = nix.arg($, "libmaxminddb");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ncdc",
       version: "1.25",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dev.yorhel.nl/download/ncdc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "b9be58e7dbe677f2ac1c472f6e76fad618a65e2f8bf1c7b9d3d97bc169feb740",
         })))),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-geoip"]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://dev.yorhel.nl/ncdc/changes",
         description: "Modern and lightweight direct connect client with a friendly ncurses interface",
         homepage: "https://dev.yorhel.nl/ncdc",

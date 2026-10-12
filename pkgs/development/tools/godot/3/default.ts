@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["package", 180, 7]], [["version", 179, 11]], [["extraArgs", 185, 9]], [["tests", 179, 5], ["updateScript", 183, 5], ["patch-godot-bin", 193, 5]], [["homepage", 212, 5], ["description", 213, 5], ["license", 215, 5], ["platforms", 216, 5], ["mainProgram", 221, 5], ["maintainers", 222, 5]], [["pname", 35, 3], ["version", 36, 3], ["godotBuildDescription", 37, 3], ["src", 39, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 60, 3], ["shouldAddLinkFlagsToPulse", 79, 3], ["patches", 81, 3], ["enableParallelBuilding", 93, 3], ["godotBuildPlatform", 94, 3], ["shouldBuildTools", 95, 3], ["godotBuildTarget", 96, 3], ["lto", 98, 3], ["sconsFlags", 100, 3], ["shouldWrapBinary", 109, 3], ["shouldInstallManual", 110, 3], ["shouldPatchBinary", 111, 3], ["shouldInstallHeaders", 112, 3], ["shouldInstallShortcut", 113, 3], ["outputs", 115, 3], ["builtGodotBinNamePattern", 121, 3], ["godotBinInstallPath", 124, 3], ["installedGodotBinName", 125, 3], ["installedGodotShortcutFileName", 126, 3], ["installedGodotShortcutDisplayName", 127, 3], ["installPhase", 129, 3], ["runtimeDependencies", 170, 3], ["passthru", 178, 3], ["meta", 211, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "_experimental-update-script-combinators": false, "alsa-lib": false, "alsa-plugins": false, autoPatchelfHook: false, fetchFromGitHub: false, freetype: false, installShellFiles: false, libGL: false, libGLU: false, libpulseaudio: false, libx11: false, libxcursor: false, libxext: false, libxfixes: false, libxi: false, libxinerama: false, libxrandr: false, libxrender: false, makeWrapper: false, "nix-update-script": false, openssl: false, "pkg-config": false, scons: false, testers: false, udev: false, writeScriptBin: false, yasm: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["package", 180, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 179, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["extraArgs", 185, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 179, 5], ["updateScript", 183, 5], ["patch-godot-bin", 193, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 212, 5], ["description", 213, 5], ["license", 215, 5], ["platforms", 216, 5], ["mainProgram", 221, 5], ["maintainers", 222, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["godotBuildDescription", 37, 3], ["src", 39, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 60, 3], ["shouldAddLinkFlagsToPulse", 79, 3], ["patches", 81, 3], ["enableParallelBuilding", 93, 3], ["godotBuildPlatform", 94, 3], ["shouldBuildTools", 95, 3], ["godotBuildTarget", 96, 3], ["lto", 98, 3], ["sconsFlags", 100, 3], ["shouldWrapBinary", 109, 3], ["shouldInstallManual", 110, 3], ["shouldPatchBinary", 111, 3], ["shouldInstallHeaders", 112, 3], ["shouldInstallShortcut", 113, 3], ["outputs", 115, 3], ["builtGodotBinNamePattern", 121, 3], ["godotBinInstallPath", 124, 3], ["installedGodotBinName", 125, 3], ["installedGodotShortcutFileName", 126, 3], ["installedGodotShortcutDisplayName", 127, 3], ["installPhase", 129, 3], ["runtimeDependencies", 170, 3], ["passthru", 178, 3], ["meta", 211, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const yasm = nix.arg($, "yasm");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "godot3",
       version: "3.6.3",
       godotBuildDescription: "X11 tools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "godotengine",
           repo: "godot",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-stable`),
@@ -142,17 +136,17 @@ runHook postInstall
 `),
       runtimeDependencies: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "shouldPatchBinary")), nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getLib")), nix.thunk(() => [alsa_lib, libpulseaudio, udev]))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 extraArgs: nix.thunk(() => ["--version-regex", "(3\\..*)-stable"]),
               })))),
             nix.path(here, "./mono/update-glue-version.sh"),
@@ -173,7 +167,7 @@ runHook postInstall
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://godotengine.org",
         description: nix.thunk(() => nix.add(nix.add("Free and Open Source 2D and 3D game engine (", nix.sel(finalAttrs, "godotBuildDescription")), ")")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

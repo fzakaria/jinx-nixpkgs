@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]], [["smartcard", 31, 25]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["propagatedBuildInputs", 26, 3], ["optional-dependencies", 31, 3], ["doCheck", 34, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hidapi: false, pyscard: false, ecdsa: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["smartcard", 31, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["propagatedBuildInputs", 26, 3], ["optional-dependencies", 31, 3], ["doCheck", 34, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,24 +18,24 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.32";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-NPXgwWHAj2XcDQcLov9MMV7SHEt+D6oypGhi0Nwbj1U=",
         }))));
       const postPatch = "# fix extra_requires validation\nsubstituteInPlace setup.py \\\n  --replace \"python-pyscard>=1.6.12-4build1\" \"python-pyscard>=1.6.12\"\n";
       const propagatedBuildInputs = nix.thunk(() => [hidapi, ecdsa]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, smartcard: nix.thunk(() => [pyscard]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], smartcard: nix.thunk(() => [pyscard]) }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["btchip.btchip"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python communication library for Ledger Hardware Wallet products",
         homepage: "https://github.com/LedgerHQ/btchip-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

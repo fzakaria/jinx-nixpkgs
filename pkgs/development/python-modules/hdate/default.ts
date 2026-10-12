@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["astral", 40, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["pythonRelaxDeps", 27, 3], ["build-system", 31, 3], ["dependencies", 35, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 43, 3], ["pytestFlags", 51, 3], ["enabledTestPaths", 53, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, astral: false, buildPythonPackage: false, fetchFromGitHub: false, hypothesis: false, num2words: false, "pdm-backend": false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, syrupy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["astral", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["pythonRelaxDeps", 27, 3], ["build-system", 31, 3], ["dependencies", 35, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 43, 3], ["pytestFlags", 51, 3], ["enabledTestPaths", 53, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "py-libhdate",
           repo: "py-libhdate",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,13 +32,13 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["astral"]);
       const build_system = nix.thunk(() => [pdm_backend]);
       const dependencies = nix.thunk(() => [num2words]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, astral: nix.thunk(() => [astral]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], astral: nix.thunk(() => [astral]) }));
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytest_timeout, pytest_xdist, pytestCheckHook, syrupy]);
       const pytestFlags = nix.thunk(() => ["--snapshot-warn-unused"]);
       const enabledTestPaths = nix.thunk(() => ["tests"]);
       const pythonImportsCheck = nix.thunk(() => ["hdate"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python module for Jewish/Hebrew date and Zmanim",
         homepage: "https://github.com/py-libhdate/py-libhdate",
         changelog: nix.thunk(() => nix.str`https://github.com/py-libhdate/py-libhdate/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

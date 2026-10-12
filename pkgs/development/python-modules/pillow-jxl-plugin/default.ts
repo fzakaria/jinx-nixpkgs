@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 24, 5], ["version", 25, 26], ["hash", 26, 5]], [["src", 40, 26], ["hash", 41, 5]], [["changelog", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 20, 3], ["src", 23, 3], ["build-system", 29, 3], ["nativeBuildInputs", 31, 3], ["dontUseCmakeConfigure", 37, 3], ["cargoDeps", 39, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 49, 3], ["preCheck", 57, 3], ["pythonImportsCheck", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pytestCheckHook: false, fetchPypi: false, rustPlatform: false, maturin: false, cmake: false, packaging: false, pillow: false, numpy: false, openexr: false, pyexiv2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 24, 5], ["version", 25, 26], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 40, 26], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 20, 3], ["src", 23, 3], ["build-system", 29, 3], ["nativeBuildInputs", 31, 3], ["dontUseCmakeConfigure", 37, 3], ["cargoDeps", 39, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 49, 3], ["preCheck", 57, 3], ["pythonImportsCheck", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const openexr = nix.arg($, "openexr");
   const pyexiv2 = nix.arg($, "pyexiv2");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pillow-jxl-plugin",
       version: "1.3.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pillow_jxl_plugin",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-RDD9d1eJl0IHnFSKfSU31tY88PHTIxgAlbwPbwPZ1Po=",
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       })()),
       dontUseCmakeConfigure: true,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-IiVTlKtKkfZnRXme7QFA5MS8PPiL8+riOYOEoNaHHXc=",
         })))),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -r pillow_jxl\n",
       pythonImportsCheck: nix.thunk(() => ["pillow_jxl"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/Isotr0py/pillow-jpegxl-plugin/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Pillow plugin that adds support for JPEG XL files",
         homepage: "https://github.com/Isotr0py/pillow-jpegxl-plugin",

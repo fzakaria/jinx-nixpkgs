@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["pythonPath", 22, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 34, 3], ["propagatedUserEnvPkgs", 40, 3], ["postPatch", 45, 3], ["installPhase", 55, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, unbound: false, libreswan: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["pythonPath", 22, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 34, 3], ["propagatedUserEnvPkgs", 40, 3], ["postPatch", 45, 3], ["installPhase", 55, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hash-slinger";
       const version = "3.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "letoams",
           repo: "hash-slinger",
           rev: version,
@@ -52,13 +50,13 @@ make install
 wrapPythonPrograms
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Various tools to generate special DNS records",
         homepage: "https://github.com/letoams/hash-slinger",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

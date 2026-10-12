@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["name", 53, 7], ["url", 54, 7], ["hash", 55, 7]], [["description", 129, 5], ["homepage", 130, 5], ["changelog", 131, 5], ["license", 132, 5], ["maintainers", 133, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["patches", 48, 3], ["build-system", 59, 3], ["pythonRelaxDeps", 64, 3], ["dependencies", 68, 3], ["pythonImportsCheck", 88, 3], ["nativeCheckInputs", 90, 3], ["disabledTests", 94, 3], ["__darwinAllowLocalNetworking", 126, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, "setuptools-scm": false, aistore: false, boto3: false, einops: false, fsspec: false, h5py: false, "huggingface-hub": false, "hydra-core": false, loguru: false, numpy: false, pandas: false, psutil: false, pyvista: false, rtree: false, submitit: false, torch: false, trimesh: false, typer: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 53, 7], ["url", 54, 7], ["hash", 55, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 129, 5], ["homepage", 130, 5], ["changelog", 131, 5], ["license", 132, 5], ["maintainers", 133, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["patches", 48, 3], ["build-system", 59, 3], ["pythonRelaxDeps", 64, 3], ["dependencies", 68, 3], ["pythonImportsCheck", 88, 3], ["nativeCheckInputs", 90, 3], ["disabledTests", 94, 3], ["__darwinAllowLocalNetworking", 126, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const typer = nix.arg($, "typer");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "emmiai-noether",
       version: "2026.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Emmi-AI",
           repo: "noether",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-pyproject-version.patch",
             url: "https://github.com/Emmi-AI/noether/commit/bb86d54755e01de8131b0742c3ce9d5f417d6b84.patch",
             hash: "sha256-M96WQdyEe629IxLHOKVHYiBMFWx1dZ+ZU7w5I8IxAwg=",
@@ -102,7 +99,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_real_time_accuracy"])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Deep-Learning framework for Engineering AI",
         homepage: "https://github.com/Emmi-AI/noether",
         changelog: nix.thunk(() => nix.str`https://github.com/Emmi-AI/noether/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 63, 5], ["repo", 64, 5], ["rev", 65, 5], ["sha256", 66, 5]], [["name", 73, 7], ["url", 74, 7], ["sha256", 75, 7]], [["name", 78, 7], ["url", 79, 7], ["sha256", 80, 7]], [["name", 86, 7], ["url", 87, 7], ["hash", 88, 7]], [["xcbSupport", 121, 23]], [["FONTCONFIG_FILE", 154, 5], ["GI_TYPELIB_PATH", 155, 5], ["LUA_CPATH", 158, 5], ["LUA_PATH", 159, 5]], [["lua", 177, 13]], [["description", 181, 5], ["homepage", 182, 5], ["license", 183, 5], ["maintainers", 184, 5], ["platforms", 186, 5]], [["pname", 59, 3], ["version", 60, 3], ["src", 62, 3], ["patches", 69, 3], ["postPatch", 94, 3], ["nativeBuildInputs", 100, 3], ["outputs", 114, 3], ["propagatedUserEnvPkgs", 119, 3], ["buildInputs", 120, 3], ["cmakeFlags", 147, 3], ["env", 153, 3], ["postInstall", 162, 3], ["passthru", 176, 3], ["meta", 180, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, lua: false, cairo: false, librsvg: false, cmake: false, imagemagick: false, "pkg-config": false, "gdk-pixbuf": false, "libxcb-util": false, "libxcb-wm": false, "libxcb-render-util": false, "libxcb-keysyms": false, "libxcb-image": false, libxdmcp: false, libxau: false, libxshmfence: false, libxcb: false, libstartup_notification: false, libxdg_basedir: false, "libpthread-stubs": false, "libxcb-cursor": false, makeWrapper: false, pango: false, "gobject-introspection": false, which: false, dbus: false, "net-tools": false, doxygen: false, xmlto: false, docbook_xml_dtd_45: false, docbook_xsl: false, findXMLCatalogs: false, libxkbcommon: false, xcbutilxrm: false, "hicolor-icon-theme": false, asciidoctor: false, texFunctions: false, gtk3Support: true, gtk3: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 63, 5], ["repo", 64, 5], ["rev", 65, 5], ["sha256", 66, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 73, 7], ["url", 74, 7], ["sha256", 75, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 78, 7], ["url", 79, 7], ["sha256", 80, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 86, 7], ["url", 87, 7], ["hash", 88, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["xcbSupport", 121, 23]]);
-const pos$6 = nix.positions(here + "/package.nix", [["FONTCONFIG_FILE", 154, 5], ["GI_TYPELIB_PATH", 155, 5], ["LUA_CPATH", 158, 5], ["LUA_PATH", 159, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["lua", 177, 13]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 181, 5], ["homepage", 182, 5], ["license", 183, 5], ["maintainers", 184, 5], ["platforms", 186, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 59, 3], ["version", 60, 3], ["src", 62, 3], ["patches", 69, 3], ["postPatch", 94, 3], ["nativeBuildInputs", 100, 3], ["outputs", 114, 3], ["propagatedUserEnvPkgs", 119, 3], ["buildInputs", 120, 3], ["cmakeFlags", 147, 3], ["env", 153, 3], ["postInstall", 162, 3], ["passthru", 176, 3], ["meta", 180, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -64,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const pname = "awesome";
       const version = "4.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "awesomewm",
           repo: "awesome",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -72,19 +64,19 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fno-common-prerequisite.patch",
             url: "https://github.com/awesomeWM/awesome/commit/c5202a48708585cc33528065af8d1b1d28b1a6e0.patch",
             sha256: "0sv36xf0ibjcm63gn9k3bl039sqavb2b5i6d65il4bdclkc0n08b",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fno-common.patch",
             url: "https://github.com/awesomeWM/awesome/commit/d256d9055095f27a33696e0aeda4ee20ed4fb1a0.patch",
             sha256: "1n3y4wnjra8blss7642jgpxnm9n92zhhjj541bb9i60m4b7bgfzz",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "glib-2.86.0.patch",
             url: "https://github.com/void-linux/void-packages/raw/933b305b313a2c7d971d746835deb9f49b652204/srcpkgs/awesome/patches/glib-2.86.0.patch",
             hash: "sha256-qVzD8O34sULcV6S4daDUBPnxVDd8T6ZyLOE+gYxCmf0=",
@@ -107,7 +99,7 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "doc"]);
       const propagatedUserEnvPkgs = nix.thunk(() => [hicolor_icon_theme]);
       const buildInputs = nix.thunk(() => nix.concat([
-        nix.thunk(() => nix.app(nix.sel(cairo, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, xcbSupport: true })))),
+        nix.thunk(() => nix.app(nix.sel(cairo, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], xcbSupport: true })))),
         librsvg,
         dbus,
         gdk_pixbuf,
@@ -133,7 +125,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), gtk3Support, gtk3)));
       const cmakeFlags = nix.thunk(() => nix.concat([nix.thunk(() => nix.str`-DOVERRIDE_VERSION=${version}`)], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(lua, "pkgs", "isLuaJIT")), nix.thunk(() => nix.str`-DLUA_LIBRARY=${lua}/lib/libluajit-5.1.so`))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         FONTCONFIG_FILE: nix.thunk(() => nix.builtins.toString(fontsConf)),
         GI_TYPELIB_PATH: nix.thunk(() => nix.str`${nix.sel(pango, "out")}/lib/girepository-1.0`),
         LUA_CPATH: nix.thunk(() => nix.str`${luaEnv}/lib/lua/${nix.sel(lua, "luaversion")}/?.so`),
@@ -151,9 +143,9 @@ makeWrapper "$out/bin/.awesome-wrapped" "$out/bin/awesome" \\
 wrapProgram $out/bin/awesome-client \\
   --prefix PATH : "${which}/bin"
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$7, lua: lua }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[6], lua: lua }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Highly configurable, dynamic window manager for X",
         homepage: "https://awesomewm.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -161,7 +153,7 @@ wrapProgram $out/bin/awesome-client \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["updateScript", 48, 12]], [["homepage", 51, 5], ["description", 52, 5], ["mainProgram", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 36, 3], ["dependencies", 38, 3], ["postInstallCheck", 40, 3], ["dontWrapGApps", 44, 3], ["makeWrapperArgs", 46, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, "blueprint-compiler": false, "desktop-file-utils": false, libadwaita: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["mainProgram", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 36, 3], ["dependencies", 38, 3], ["postInstallCheck", 40, 3], ["dontWrapGApps", 44, 3], ["makeWrapperArgs", 46, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "serigy",
       version: "2.3.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CleoMenezesJr",
           repo: "Serigy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,11 +47,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/CleoMenezesJr/Serigy",
         description: "Store important information from your clipboard selectively and securely",
         mainProgram: "serigy",

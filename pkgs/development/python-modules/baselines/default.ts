@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 33, 5], ["hash", 34, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["build-system", 37, 3], ["dependencies", 43, 3], ["postPatch", 57, 3], ["doCheck", 65, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools_80: false, click: false, cloudpickle: false, dill: false, gym: false, joblib: false, mpi4py: false, progressbar2: false, pyzmq: false, scipy: false, tensorflow: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["build-system", 37, 3], ["dependencies", 43, 3], ["postPatch", 57, 3], ["doCheck", 65, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const tensorflow = nix.arg($, "tensorflow");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "baselines",
       version: "0.1.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openai",
           repo: "baselines",
           rev: "2bca7901f51c88cdef3ca0666c6a87c454a4dbe8",
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["baselines"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High-quality implementations of reinforcement learning algorithms",
         homepage: "https://github.com/openai/baselines",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

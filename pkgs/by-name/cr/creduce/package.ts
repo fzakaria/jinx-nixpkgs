@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]], [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]], [["name", 47, 7], ["url", 48, 7], ["hash", 49, 7]], [["description", 94, 5], ["mainProgram", 95, 5], ["homepage", 96, 5], ["license", 98, 5], ["longDescription", 99, 5], ["maintainers", 106, 5], ["platforms", 107, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 71, 3], ["postInstall", 89, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, makeWrapper: false, llvmPackages_21: false, flex: false, zlib: false, perlPackages: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 47, 7], ["url", 48, 7], ["hash", 49, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 94, 5], ["mainProgram", 95, 5], ["homepage", 96, 5], ["license", 98, 5], ["longDescription", 99, 5], ["maintainers", 106, 5], ["platforms", 107, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 71, 3], ["postInstall", 89, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const llvmPackages = llvmPackages_21;
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "creduce",
       version: "2.10.0-unstable-2024-06-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "csmith-project",
           repo: "creduce",
           rev: "31e855e290970cba0286e5032971509c0e7c0a80",
@@ -38,19 +33,19 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./fix-gcc15.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "llvm-19-support.patch",
             url: "https://salsa.debian.org/toolchain-team/creduce/-/raw/86e45dd83b7e8e88d9e5398ff8556883c1679629/debian/patches/llvm-19-fixes.diff",
             hash: "sha256-uYjZfCJ4csnq20OHVYB7m+qboaeJkLmZm4LlsX5+hvA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "llvm-20-support.patch",
             url: "https://salsa.debian.org/toolchain-team/creduce/-/raw/86e45dd83b7e8e88d9e5398ff8556883c1679629/debian/patches/287.diff",
             hash: "sha256-xl9hTCgp37fRqhiYC7T/XuZkpZ3C55IZ6dSPmM81UCg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "llvm-21-support.patch",
             url: "https://salsa.debian.org/toolchain-team/creduce/-/raw/86e45dd83b7e8e88d9e5398ff8556883c1679629/debian/patches/289.diff",
             hash: "sha256-DSnAAxGreVGZohrWalY0/1JMo7CL8+QrMfm2tXHn2oE=",
@@ -79,7 +74,7 @@ export default nix.lambda((args) => (() => {
       })())),
       postInstall: "wrapProgram $out/bin/creduce --prefix PERL5LIB : \"$PERL5LIB\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "C program reducer",
         mainProgram: "creduce",
         homepage: "https://embed.cs.utah.edu/creduce",

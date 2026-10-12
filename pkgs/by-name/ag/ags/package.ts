@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["name", 64, 9], ["paths", 65, 9]], [["bundle", 98, 5], ["updateScript", 99, 5]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["mainProgram", 110, 5], ["platforms", 111, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["vendorHash", 33, 3], ["proxyVendor", 34, 3], ["ldflags", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["preFixup", 57, 3], ["postInstall", 86, 3], ["passthru", 97, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, astal: false, "blueprint-compiler": false, buildGoModule: false, callPackage: false, "dart-sass": false, symlinkJoin: false, fetchFromGitHub: false, gjs: false, glib: false, "gobject-introspection": false, "gtk4-layer-shell": false, installShellFiles: false, "nix-update-script": false, nodejs: false, stdenv: false, wrapGAppsHook3: false, extraPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 64, 9], ["paths", 65, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["bundle", 98, 5], ["updateScript", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["mainProgram", 110, 5], ["platforms", 111, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["vendorHash", 33, 3], ["proxyVendor", 34, 3], ["ldflags", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["preFixup", 57, 3], ["postInstall", 86, 3], ["passthru", 97, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const extraPackages = nix.argOr($, "extraPackages", () => []);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ags",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Aylur",
           repo: "ags",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => (() => {
         const depsOf = (pkg) => nix.concat([nix.thunk(() => nix.selOr(pkg, () => nix.force(pkg), "dev"))], nix.builtins.map(depsOf, nix.thunk(() => nix.selOr(pkg, () => [], "propagatedBuildInputs"))));
         const girDirs = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gir-dirs",
             paths: nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.map(depsOf, nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))))),
           }))));
@@ -77,12 +73,12 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion \\\n  --cmd ags \\\n  --bash <($out/bin/ags completion bash) \\\n  --fish <($out/bin/ags completion fish) \\\n  --zsh <($out/bin/ags completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         bundle: nix.thunk(() => nix.app(callPackage, nix.path(here, "./bundle.nix"), nix.thunk(() => ({})))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Scaffolding CLI for Astal widget system",
         homepage: "https://github.com/Aylur/ags",
         changelog: nix.thunk(() => nix.str`https://github.com/Aylur/ags/releases/tag/v${nix.sel(finalAttrs, "version")}`),

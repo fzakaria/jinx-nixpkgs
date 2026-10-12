@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["yarnLock", 29, 5], ["hash", 30, 5]], [["package", 44, 9], ["command", 45, 9]], [["nativeBuildInputs", 58, 15], ["base", 59, 15]], [["assertion", 49, 9], ["expected", 50, 9], ["actual", 55, 9]], [["version", 43, 7], ["simple", 48, 7]], [["updateScript", 41, 5], ["tests", 42, 5]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["mainProgram", 75, 5], ["platforms", 76, 27]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["yarnOfflineCache", 28, 3], ["nativeBuildInputs", 33, 3], ["passthru", 40, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, fetchYarnDeps: false, yarnConfigHook: false, yarnBuildHook: false, yarnInstallHook: false, nodejs: false, "nix-update-script": false, testers: false, writeText: false, runCommand: false, "blade-formatter": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 44, 9], ["command", 45, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 58, 15], ["base", 59, 15]]);
-const pos$5 = nix.positions(here + "/package.nix", [["assertion", 49, 9], ["expected", 50, 9], ["actual", 55, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 43, 7], ["simple", 48, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 41, 5], ["tests", 42, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["mainProgram", 75, 5], ["platforms", 76, 27]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["yarnOfflineCache", 28, 3], ["nativeBuildInputs", 33, 3], ["passthru", 40, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,38 +21,38 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const blade_formatter = nix.arg($, "blade-formatter");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "blade-formatter",
       version: "1.44.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "shufo",
           repo: "blade-formatter",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-/HuYfAf0JwDzWKpc6ymsfl6NjfwnnzduVX/LGwuE1uo=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-gVAJO74lSwBaWS19/GeAPWUfRJIjeMA6Gqzk46VA8hU=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, yarnInstallHook, nodejs]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: blade_formatter,
               command: "blade-formatter --version",
             })))),
           simple: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               assertion: "blade-formatter formats a basic blade file",
               expected: nix.thunk(() => nix.app(writeText, "expected", "@if (true)\n    Hello world!\n@endif\n")),
               actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   nativeBuildInputs: nix.thunk(() => [blade_formatter]),
                   base: nix.thunk(() => nix.app(writeText, "base", "@if(   true )  Hello world!   @endif\n")),
                 })), "blade-formatter $base > $out\n")),
@@ -70,7 +62,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Laravel Blade template formatter",
         homepage: "https://github.com/shufo/blade-formatter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

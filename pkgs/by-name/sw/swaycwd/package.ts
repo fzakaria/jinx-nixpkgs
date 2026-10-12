@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["homepage", 36, 5], ["description", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["license", 40, 5], ["mainProgram", 41, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["preConfigure", 26, 3], ["nimFlags", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildNimPackage: false, fetchFromGitLab: false, enableShells: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 36, 5], ["description", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["license", 40, 5], ["mainProgram", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["preConfigure", 26, 3], ["nimFlags", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const enableShells = nix.argOr($, "enableShells", () => ["bash", "zsh", "fish", "sh", "posh", "codium"]);
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swaycwd",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cab404",
           repo: "swaycwd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
 `),
       nimFlags: nix.thunk(() => ["--opt:speed"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.com/cab404/swaycwd",
         description: "Returns cwd for shell in currently focused sway window, or home directory if cannot find shell",
         maintainers: nix.thunk(() => (() => {

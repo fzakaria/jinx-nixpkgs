@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["license", 34, 26]], [["name", 29, 9], ["hash", 30, 9], ["url", 31, 9], ["meta", 32, 9]], [["name", 103, 7], ["desktopName", 104, 7], ["comment", 105, 7], ["icon", 106, 7], ["exec", 107, 7]], [["package", 188, 7]], [["version", 187, 11]], [["tests", 187, 5], ["updateScript", 192, 5]], [["mainProgram", 196, 5], ["description", 197, 5], ["homepage", 198, 5], ["license", 199, 5], ["maintainers", 200, 5], ["hydraPlatforms", 203, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 53, 3], ["postPatch", 59, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 84, 3], ["propagatedBuildInputs", 90, 3], ["desktopItems", 101, 3], ["dontConfigure", 111, 3], ["dontBuild", 112, 3], ["doCheck", 115, 3], ["installPhase", 117, 3], ["dontWrapPythonPrograms", 152, 3], ["preFixup", 154, 3], ["postFixup", 177, 3], ["passthru", 186, 3], ["meta", 195, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, requireFile: false, runCommand: false, rcu: false, testers: false, copyDesktopItems: false, coreutils: false, desktopToDarwinBundle: false, gnutar: false, qt6: false, makeDesktopItem: false, "net-tools": false, protobuf: false, python3Packages: false, "system-config-printer": false, wget: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["license", 34, 26]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 9], ["hash", 30, 9], ["url", 31, 9], ["meta", 32, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 103, 7], ["desktopName", 104, 7], ["comment", 105, 7], ["icon", 106, 7], ["exec", 107, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 188, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 187, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 187, 5], ["updateScript", 192, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["mainProgram", 196, 5], ["description", 197, 5], ["homepage", 198, 5], ["license", 199, 5], ["maintainers", 200, 5], ["hydraPlatforms", 203, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 53, 3], ["postPatch", 59, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 84, 3], ["propagatedBuildInputs", 90, 3], ["desktopItems", 101, 3], ["dontConfigure", 111, 3], ["dontBuild", 112, 3], ["doCheck", 115, 3], ["installPhase", 117, 3], ["dontWrapPythonPrograms", 152, 3], ["preFixup", 154, 3], ["postFixup", 177, 3], ["passthru", 186, 3], ["meta", 195, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +30,11 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const src = nix.thunk(() => (() => {
         const src_tarball = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: nix.thunk(() => nix.str`rcu-${version}-source.tar.gz`),
             hash: "sha256-6O2WULD4QAq20ax67gcr8DoNWehoIoFc1LGXFxROTLA=",
             url: "https://www.davisr.me/projects/rcu/",
-            meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.attr(meta, "license")) })),
+            meta: nix.thunk(() => ({ [nix.POS]: $pos[0], license: nix.thunk(() => nix.attr(meta, "license")) })),
           }))));
         return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(src_tarball, "name")}-unpacked`), nix.thunk(() => ({})), nix.thunk(() => nix.str`gunzip -ck ${src_tarball} | tar -xvf-
 mv rcu $out
@@ -75,7 +68,7 @@ ln -s ${src_tarball} $out/src
       })());
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "rcu",
             desktopName: "reMarkable Connection Utility",
             comment: "All-in-one offline/local management software for reMarkable e-paper tablets",
@@ -120,15 +113,15 @@ runHook postInstall
   --add-flags $out/share/rcu/main.py
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: rcu })))),
+          [nix.POS]: $pos[4],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[3], package: rcu })))),
         })),
         updateScript: null,
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         mainProgram: "rcu",
         description: "All-in-one offline/local management software for reMarkable e-paper tablets",
         homepage: "http://www.davisr.me/projects/rcu/",
@@ -140,7 +133,7 @@ runHook postInstall
         hydraPlatforms: [],
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         pyproject,

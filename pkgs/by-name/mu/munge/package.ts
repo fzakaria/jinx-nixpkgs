@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["nixos", 70, 18]], [["tests", 70, 12]], [["description", 73, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 83, 5], ["maintainers", 84, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["strictDeps", 39, 3], ["configureFlags", 41, 3], ["installFlags", 58, 3], ["postInstall", 65, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, openssl: false, zlib: false, bzip2: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nixos", 70, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 70, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 83, 5], ["maintainers", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["strictDeps", 39, 3], ["configureFlags", 41, 3], ["installFlags", 58, 3], ["postInstall", 65, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "munge",
       version: "0.5.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dun",
           repo: "munge",
           rev: nix.thunk(() => nix.str`munge-${nix.sel(finalAttrs, "version")}`),
@@ -53,11 +49,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# rmdir will notify us if anything new is installed to the directories.\nrmdir \"$out\"/{var{/{lib,log}{/munge,},},etc/munge}\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "munge")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], nixos: nix.thunk(() => nix.sel(nixosTests, "munge")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "An authentication service for creating and validating credentials\n",
         homepage: "https://github.com/dun/munge",
         license: nix.thunk(() => [

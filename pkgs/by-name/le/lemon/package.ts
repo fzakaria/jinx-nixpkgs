@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hash", 11, 7], ["url", 13, 7], ["name", 14, 7]], [["hash", 17, 7], ["url", 19, 7], ["name", 20, 7]], [["lemon", 10, 5], ["lempar", 16, 5]], [["description", 41, 5], ["mainProgram", 42, 5], ["longDescription", 43, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5]], [["pname", 26, 3], ["version", 27, 3], ["dontUnpack", 29, 3], ["buildPhase", 31, 3], ["installPhase", 35, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hash", 11, 7], ["url", 13, 7], ["name", 14, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hash", 17, 7], ["url", 19, 7], ["name", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["lemon", 10, 5], ["lempar", 16, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["longDescription", 43, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["dontUnpack", 29, 3], ["buildPhase", 31, 3], ["installPhase", 35, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,22 +11,22 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     lemon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         hash: "sha256-TXVOEtRpOhLCyi4C3RMt0lHmMp/y2K5YdL8ND6WPrOY=",
         url: "https://www.sqlite.org/src/raw/3fdc16b23f1ea0c91c049b518fc3f75c71843dbfe2b447fcb3cd92d9e4f219f8?at=lemon.c",
         name: "lemon.c",
       })))),
     lempar: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         hash: "sha256-TYKrUJHtpoljeRWZq4Y1rYLlu7LeM/HuUhe3LJZZkVo=",
         url: "https://www.sqlite.org/src/raw/b57e1780bf8098dd4a9a5bba537f994276ea825a420f6165153e5894dc2dfb07?at=lempar.c",
         name: "lempar.c",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lemon",
       version: "1.0-unstable-2026-01-04",
       dontUnpack: true,
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
 install -Dvm644 ${nix.sel(srcs, "lempar")} $out/bin/lempar.c
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "LALR(1) parser generator",
         mainProgram: "lemon",
         longDescription: "The Lemon program is an LALR(1) parser generator that takes a\ncontext-free grammar and converts it into a subroutine that will parse a\nfile using that grammar. Lemon is similar to the much more famous\nprograms \"yacc\" and \"bison\", but is not compatible with either.\n",

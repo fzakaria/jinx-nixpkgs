@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["NIX_CFLAGS_COMPILE", 65, 7]], [["updateScript", 72, 5]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["cmakeFlags", 60, 3], ["env", 65, 3], ["postInstall", 67, 3], ["passthru", 71, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { stdenv: false, cmake: false, fetchFromGitLab: false, "nix-update-script": false, gst_all_1: false, lib: false, libpulseaudio: false, ninja: false, "pkg-config": false, taglib: false, zlib: false, python3: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 65, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["cmakeFlags", 60, 3], ["env", 65, 3], ["postInstall", 67, 3], ["passthru", 71, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pydbus"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sayonara",
       version: "1.12.0-stable1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "luciocarreras",
           repo: "sayonara-player",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,16 +60,16 @@ export default nix.lambda((args) => (() => {
       })())),
       cmakeFlags: nix.thunk(() => ["-DWITH_SYSTEM_TAGLIB=ON"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(gst_all_1, "gst-plugins-base", "dev")}/include/gstreamer-1.0`),
       })),
       postInstall: "qtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Sayonara music player",
         homepage: "https://sayonara-player.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]], [["name", 29, 7], ["url", 30, 7], ["includes", 31, 7], ["hash", 32, 7]], [["package", 48, 37]], [["version", 48, 5]], [["tests", 47, 12]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["passthru", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, libtool: false, "pkg-config": false, libxml2: false, json_c: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["includes", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 48, 37]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 47, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["passthru", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const json_c = nix.arg($, "json_c");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "freesasa",
       version: "2.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mittinatten",
           repo: "freesasa",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-linker-error.patch",
             url: "https://github.com/mittinatten/freesasa/commit/d5898c13af0f272697726c567a22f1c48af53d62.patch",
             includes: nix.thunk(() => ["src/Makefile.am"]),
@@ -47,17 +41,17 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, libtool, pkg_config]),
       buildInputs: nix.thunk(() => [json_c, libxml2]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "C-library for calculating Solvent Accessible Surface Areas",
         homepage: "https://github.com/mittinatten/freesasa",
         changelog: nix.thunk(() => nix.str`https://github.com/mittinatten/freesasa/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

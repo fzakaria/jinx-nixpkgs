@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 31, 31]], [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["libcudart", 48, 7], ["libnvjitlink", 49, 7], ["libnvrtc", 50, 7]], [["requiredSystemFeatures", 128, 7], ["doInstallCheck", 129, 7]], [["extraArgs", 133, 7]], [["gpuCheck", 127, 5], ["updateScript", 132, 5]], [["description", 138, 5], ["homepage", 139, 5], ["changelog", 140, 5], ["license", 141, 5], ["teams", 142, 5], ["maintainers", 143, 5], ["broken", 144, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["sourceRoot", 44, 3], ["patches", 46, 3], ["patchFlags", 57, 3], ["postPatch", 59, 3], ["build-system", 66, 3], ["dontUseCmakeConfigure", 73, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 79, 3], ["dependencies", 85, 3], ["pythonImportsCheck", 93, 3], ["nativeCheckInputs", 98, 3], ["preCheck", 103, 3], ["disabledTests", 111, 3], ["disabledTestPaths", 117, 3], ["doCheck", 125, 3], ["passthru", 126, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { lib: false, config: false, buildPythonPackage: false, fetchFromGitHub: false, cudaPackages: false, replaceVars: false, cmake: false, cython: false, ninja: false, "scikit-build-core": false, "setuptools-scm": false, "cuda-bindings": false, "cuda-core": false, "cuda-pathfinder": false, numpy: false, "typing-extensions": false, cupy: false, pytestCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 31, 31]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["libcudart", 48, 7], ["libnvjitlink", 49, 7], ["libnvrtc", 50, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["requiredSystemFeatures", 128, 7], ["doInstallCheck", 129, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["extraArgs", 133, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["gpuCheck", 127, 5], ["updateScript", 132, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 138, 5], ["homepage", 139, 5], ["changelog", 140, 5], ["license", 141, 5], ["teams", 142, 5], ["maintainers", 143, 5], ["broken", 144, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["sourceRoot", 44, 3], ["patches", 46, 3], ["patchFlags", 57, 3], ["postPatch", 59, 3], ["build-system", 66, 3], ["dontUseCmakeConfigure", 73, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 79, 3], ["dependencies", 85, 3], ["pythonImportsCheck", 93, 3], ["nativeCheckInputs", 98, 3], ["preCheck", 103, 3], ["disabledTests", 111, 3], ["disabledTestPaths", 117, 3], ["doCheck", 125, 3], ["passthru", 126, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,16 +27,16 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       stdenv: nix.thunk(() => nix.sel(cudaPackages, "backendStdenv")),
     })), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "cuda-cccl",
       version: "1.2.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "NVIDIA",
           repo: "cccl",
           tag: nix.thunk(() => nix.str`python-${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +45,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/python/cuda_cccl`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patch-nvidia-libs-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             libcudart: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))),
             libnvjitlink: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "libnvjitlink")))),
             libnvrtc: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvrtc")))),
@@ -87,19 +80,19 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         gpuCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doInstallCheck: true,
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex=python-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "CUDA Core Compute Libraries for Python",
         homepage: "https://github.com/NVIDIA/cccl/tree/main/python/cuda_cccl",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/cccl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

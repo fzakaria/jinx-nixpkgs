@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["updateScript", 28, 12]], [["description", 33, 5], ["homepage", 34, 5], ["mainProgram", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["cargoHash", 22, 3], ["postInstall", 24, 3], ["passthru", 28, 3], ["__structuredAttrs", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, "nix-update-script": false, rustPlatform: false, makeWrapper: false, "shared-mime-info": false, fetchFromGitLab: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 28, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["mainProgram", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["cargoHash", 22, 3], ["postInstall", 24, 3], ["passthru", 28, 3], ["__structuredAttrs", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "allmytoes",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "allmytoes",
           repo: "allmytoes",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,12 +29,12 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/allmytoes" --prefix XDG_DATA_DIRS : "${shared_mime_info}/share"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Provides thumbnails by using the freedesktop-specified thumbnail database (aka XDG standard)",
         homepage: "https://gitlab.com/allmytoes/allmytoes",
         mainProgram: "allmytoes",

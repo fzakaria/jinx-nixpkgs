@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["url", 69, 9], ["hash", 70, 9]], [["url", 73, 9], ["hash", 74, 9]], [["url", 77, 9], ["hash", 78, 9]], [["url", 81, 9], ["hash", 82, 9]], [["objects", 68, 7], ["openmusic", 72, 7], ["opensfx", 76, 7], ["title-sequences", 80, 7]], [["updateScript", 60, 5], ["objects-version", 62, 5], ["openmusic-version", 63, 5], ["opensfx-version", 64, 5], ["title-sequences-version", 65, 5], ["assets", 67, 5]], [["description", 219, 5], ["longDescription", 220, 5], ["homepage", 239, 5], ["changelog", 240, 5], ["downloadPage", 241, 5], ["license", 242, 5], ["maintainers", 243, 5], ["mainProgram", 248, 5], ["platforms", 249, 5], ["sourceProvenance", 250, 5]], [["pname", 46, 3], ["version", 47, 3], ["__structuredAttrs", 49, 3], ["strictDeps", 50, 3], ["src", 52, 3], ["passthru", 59, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 96, 3], ["cmakeFlags", 123, 3], ["postUnpack", 135, 3], ["postPatch", 150, 3], ["preConfigure", 189, 3], ["doInstallCheck", 200, 3], ["postInstall", 202, 3], ["meta", 218, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, unzip: false, SDL2: false, cmake: false, curl: false, "discord-rpc": false, duktape: false, expat: false, flac: false, fontconfig: false, freetype: false, gbenchmark: false, icu: false, innoextract: false, jansson: false, libGLU: false, libiconv: false, libogg: false, libpng: false, "libpthread-stubs": false, libvorbis: false, libzip: false, makeWrapper: false, makeBinaryWrapper: false, nlohmann_json: false, openssl: false, "pkg-config": false, speexdsp: false, versionCheckHook: false, zlib: false, zstd: false, withDiscordRpc: true, verifyAssets: true, rct1Path: true, rct2Path: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 69, 9], ["hash", 70, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 73, 9], ["hash", 74, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 77, 9], ["hash", 78, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 81, 9], ["hash", 82, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["objects", 68, 7], ["openmusic", 72, 7], ["opensfx", 76, 7], ["title-sequences", 80, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 60, 5], ["objects-version", 62, 5], ["openmusic-version", 63, 5], ["opensfx-version", 64, 5], ["title-sequences-version", 65, 5], ["assets", 67, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 219, 5], ["longDescription", 220, 5], ["homepage", 239, 5], ["changelog", 240, 5], ["downloadPage", 241, 5], ["license", 242, 5], ["maintainers", 243, 5], ["mainProgram", 248, 5], ["platforms", 249, 5], ["sourceProvenance", 250, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 47, 3], ["__structuredAttrs", 49, 3], ["strictDeps", 50, 3], ["src", 52, 3], ["passthru", 59, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 96, 3], ["cmakeFlags", 123, 3], ["postUnpack", 135, 3], ["postPatch", 150, 3], ["preConfigure", 189, 3], ["doInstallCheck", 200, 3], ["postInstall", 202, 3], ["meta", 218, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,44 +46,44 @@ export default nix.lambda((args) => (() => {
   const rct1Path = nix.argOr($, "rct1Path", () => null);
   const rct2Path = nix.argOr($, "rct2Path", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "openrct2",
       version: "0.5.5",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenRCT2",
           repo: "OpenRCT2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-FcZVBhiKLoxVX7rhJEfBqGy+yA8w8twGsVSitVuxbWQ=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.path(here, "./update.sh"),
         "objects-version": "1.7.11",
         "openmusic-version": "1.6.1",
         "opensfx-version": "1.0.6",
         "title-sequences-version": "0.4.26",
         assets: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           objects: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://github.com/OpenRCT2/objects/releases/download/v${nix.sel(finalAttrs, "passthru", "objects-version")}/objects.zip`),
               hash: "sha256-dOc7vQEjOVEbs1ndD7sUj9qJl5CuN9fWmGHYgYOxlFI=",
             })))),
           openmusic: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://github.com/OpenRCT2/OpenMusic/releases/download/v${nix.sel(finalAttrs, "passthru", "openmusic-version")}/openmusic.zip`),
               hash: "sha256-mUs1DTsYDuHLlhn+J/frrjoaUjKEDEvUeonzP6id4aE=",
             })))),
           opensfx: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: nix.thunk(() => nix.str`https://github.com/OpenRCT2/OpenSoundEffects/releases/download/v${nix.sel(finalAttrs, "passthru", "opensfx-version")}/opensound.zip`),
               hash: "sha256-BrkPPhnCFnUt9EHVUbJqnj4bp3Vb3SECUEtzv5k2CL4=",
             })))),
           "title-sequences": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               url: nix.thunk(() => nix.str`https://github.com/OpenRCT2/title-sequences/releases/download/v${nix.sel(finalAttrs, "passthru", "title-sequences-version")}/title-sequences.zip`),
               hash: "sha256-2ruXh7FXY0L8pN2fZLP4z6BKfmzpwruWEPR7dikFyFg=",
             })))),
@@ -188,7 +180,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(rct2Path, null
   ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(rct2Path, null)), nix.thunk(() => nix.str`--add-flags '--rct2-data-path="${rct2Path}"'`))}
 `)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Open source re-implementation of RollerCoaster Tycoon 2",
         longDescription: "OpenRCT2 is an open source re-implementation of RollerCoaster Tycoon 2, a\nconstruction and management simulation video game that simulates amusement\npark management.\n\nThe original RCT2 game data is required to play.\n\nThe path to an existing RCT1 or RCT2 installation can be provided at\nbuild time via the rct1Path and rct2Path arguments respectively:\n\n  openrct2.override {\n    rct1Path = \"/path/to/rct1\";\n    rct2Path = \"/path/to/rct2\";\n  };\n\nAlternatively, if no paths are provided, the game will prompt for the\nRCT2 data on first launch. For RCT1, you will then need to go to\nthe game settings and specify the path to the data directory.\n",
         homepage: "https://openrct2.io",

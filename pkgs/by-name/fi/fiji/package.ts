@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["name", 38, 7], ["exec", 39, 7], ["tryExec", 40, 7], ["icon", 41, 7], ["mimeTypes", 42, 7], ["comment", 43, 7], ["desktopName", 44, 7], ["genericName", 45, 7], ["categories", 46, 7], ["startupNotify", 51, 7], ["startupWMClass", 52, 7]], [["homepage", 85, 5], ["description", 86, 5], ["mainProgram", 87, 5], ["platforms", 88, 5], ["sourceProvenance", 89, 5], ["license", 93, 5], ["maintainers", 99, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["dontBuild", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 34, 3], ["desktopItems", 36, 3], ["dontWrapGApps", 56, 3], ["installPhase", 58, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, makeWrapper: false, autoPatchelfHook: false, jdk11: false, makeDesktopItem: false, copyDesktopItems: false, runtimeShell: false, unzip: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 7], ["exec", 39, 7], ["tryExec", 40, 7], ["icon", 41, 7], ["mimeTypes", 42, 7], ["comment", 43, 7], ["desktopName", 44, 7], ["genericName", 45, 7], ["categories", 46, 7], ["startupNotify", 51, 7], ["startupWMClass", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 85, 5], ["description", 86, 5], ["mainProgram", 87, 5], ["platforms", 88, 5], ["sourceProvenance", 89, 5], ["license", 93, 5], ["maintainers", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["dontBuild", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 34, 3], ["desktopItems", 36, 3], ["dontWrapGApps", 56, 3], ["installPhase", 58, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fiji",
       version: "20250514-1117",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.imagej.net/fiji/archive/${nix.sel(finalAttrs, "version")}/fiji-nojre.zip`),
           sha256: "sha256-6rBL0KyrV8BRbvufXbAGhmnPgqXMyIESVHmV7CkH26g=",
         })))),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fiji",
             exec: "fiji %F",
             tryExec: "fiji",
@@ -77,7 +74,7 @@ ln $out/fiji/images/icon.png $out/share/icons/hicolor/256x256/apps/fiji.png
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://imagej.net/software/fiji/",
         description: "Batteries-included distribution of ImageJ2, bundling a lot of plugins which facilitate scientific image analysis",
         mainProgram: "fiji",

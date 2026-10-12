@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["sha256", 29, 5]], [["pname", 33, 26], ["version", 33, 32], ["src", 33, 40], ["hash", 34, 5]], [["description", 73, 5], ["homepage", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoDeps", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["configureFlags", 53, 3], ["prePatch", 57, 3], ["preConfigure", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, intltool: false, "pkg-config": false, rustPlatform: false, cargo: false, rustc: false, libxml2: false, pciutils: false, gtk3: false, "ddccontrol-db": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 33, 26], ["version", 33, 32], ["src", 33, 40], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["mainProgram", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoDeps", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["configureFlags", 53, 3], ["prePatch", 57, 3], ["preConfigure", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const ddccontrol_db = nix.arg($, "ddccontrol-db");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ddccontrol",
       version: "3.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ddccontrol",
           repo: "ddccontrol",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-1rCO99n89N2dbUU5vfTFyCrLC18iBF3ShcCjVjTz2to=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -64,7 +61,7 @@ substituteInPlace src/lib/Makefile.am \\
 `),
       preConfigure: "intltoolize --force\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Program used to control monitor parameters by software",
         homepage: "https://github.com/ddccontrol/ddccontrol",
         mainProgram: "ddccontrol",

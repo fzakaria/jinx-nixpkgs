@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["RUSTFLAGS", 24, 7]], [["updateScript", 37, 12]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["env", 24, 3], ["nativeBuildInputs", 26, 3], ["postInstall", 28, 3], ["passthru", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["env", 24, 3], ["nativeBuildInputs", 26, 3], ["postInstall", 28, 3], ["passthru", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,26 +13,26 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hyprnome",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "donovanglover",
           repo: "hyprnome",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-GZn7qS1J6QSanWdy17sMBbwJ77iMij2jKRgPdrjt6tM=",
         })))),
       cargoHash: "sha256-qCexb8D0iN3BWOz5L45mR5n9x0nqAh8MHHTp9QTHSOg=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "--cap-lints warn" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTFLAGS: "--cap-lints warn" })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "installManPage target/man/hyprnome.1\n\ninstallShellCompletion --cmd hyprnome \\\n  --bash target/completions/hyprnome.bash \\\n  --fish target/completions/hyprnome.fish \\\n  --zsh target/completions/_hyprnome\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GNOME-like workspace switching in Hyprland",
         homepage: "https://github.com/donovanglover/hyprnome",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

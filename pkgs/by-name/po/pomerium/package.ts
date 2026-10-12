@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["buildPhase", 35, 5]], [["pname", 45, 5], ["src", 47, 7], ["version", 48, 7], ["vendorHash", 49, 7], ["overrideModAttrs", 50, 7], ["subPackages", 53, 5]], [["homepage", 81, 11], ["sourceProvenance", 82, 11]], [["nativeBuildInputs", 74, 9], ["outputHashAlgo", 76, 9], ["outputHashMode", 77, 9], ["outputHash", 78, 9], ["meta", 80, 9]], [["nativeBuildInputs", 94, 9]], [["pname", 112, 5], ["version", 113, 26], ["src", 114, 5], ["npmDepsHash", 116, 5], ["installPhase", 118, 5]], [["Version", 134, 11], ["BuildMeta", 135, 11], ["ProjectName", 136, 11], ["ProjectURL", 137, 11]], [["github.com/pomerium/pomerium/internal/version", 133, 9]], [["pomerium", 167, 28], ["pomerium-cli", 168, 15]], [["tests", 166, 5], ["updateScript", 170, 5]], [["homepage", 174, 5], ["description", 175, 5], ["mainProgram", 176, 5], ["license", 177, 5], ["maintainers", 178, 5], ["platforms", 182, 5]], [["pname", 63, 3], ["src", 65, 5], ["version", 66, 5], ["vendorHash", 67, 5], ["overrideModAttrs", 68, 5], ["envoyBinariesRaw", 71, 3], ["envoyBinaries", 91, 3], ["ui", 111, 3], ["subPackages", 125, 3], ["ldflags", 129, 3], ["preBuild", 153, 3], ["installPhase", 161, 3], ["passthru", 165, 3], ["meta", 173, 3]]]);
 const formals$1 = { args: { buildGoModule: false, buildNpmPackage: false, runCommand: false, runCommandCC: false, fetchFromGitHub: false, lib: false, nixosTests: false, "pomerium-cli": false, patchelf: false, moreutils: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["buildPhase", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 45, 5], ["src", 47, 7], ["version", 48, 7], ["vendorHash", 49, 7], ["overrideModAttrs", 50, 7], ["subPackages", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 81, 11], ["sourceProvenance", 82, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 74, 9], ["outputHashAlgo", 76, 9], ["outputHashMode", 77, 9], ["outputHash", 78, 9], ["meta", 80, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 94, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 112, 5], ["version", 113, 26], ["src", 114, 5], ["npmDepsHash", 116, 5], ["installPhase", 118, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["Version", 134, 11], ["BuildMeta", 135, 11], ["ProjectName", 136, 11], ["ProjectURL", 137, 11]]);
-const pos$9 = nix.positions(here + "/package.nix", [["github.com/pomerium/pomerium/internal/version", 133, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pomerium", 167, 28], ["pomerium-cli", 168, 15]]);
-const pos$11 = nix.positions(here + "/package.nix", [["tests", 166, 5], ["updateScript", 170, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["homepage", 174, 5], ["description", 175, 5], ["mainProgram", 176, 5], ["license", 177, 5], ["maintainers", 178, 5], ["platforms", 182, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 63, 3], ["src", 65, 5], ["version", 66, 5], ["vendorHash", 67, 5], ["overrideModAttrs", 68, 5], ["envoyBinariesRaw", 71, 3], ["envoyBinaries", 91, 3], ["ui", 111, 3], ["subPackages", 125, 3], ["ldflags", 129, 3], ["preBuild", 153, 3], ["installPhase", 161, 3], ["passthru", 165, 3], ["meta", 173, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const mapAttrsToList = nix.thunk(() => nix.attr(lib, "mapAttrsToList"));
   const version = "0.33.4";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "pomerium",
       repo: "pomerium",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,11 +32,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const vendorHash = "sha256-CZGgCEUfUj2+7G9OpRrhJvZ3exFxAqWYsBmUd59pYPo=";
   const overrideModAttrs = (_) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     buildPhase: "runHook preBuild\n\ngo work vendor -e -v\n\nrunHook postBuild\n",
   });
   const getEnvoy = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pomerium-get-envoy",
       src: src,
       version: version,
@@ -57,26 +45,26 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["pkg/envoy/get-envoy"]),
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "pomerium",
       src: src,
       version: version,
       vendorHash: vendorHash,
       overrideModAttrs: overrideModAttrs,
       envoyBinariesRaw: nix.thunk(() => nix.app(runCommand, "pomerium-envoy-binaries-raw", nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           nativeBuildInputs: nix.thunk(() => [getEnvoy]),
           outputHashAlgo: "sha256",
           outputHashMode: "recursive",
           outputHash: "sha256-SX+LpYGwMb33eVRo6TO7rPUfSlMMfD0N4zvZZRnkG2w=",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             homepage: "https://github.com/pomerium/envoy-custom",
             sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
           })),
         })), "mkdir $out\ncd $out\nget-envoy\nchmod +x envoy-darwin-arm64 envoy-linux-amd64 envoy-linux-arm64\n")),
       envoyBinaries: nix.thunk(() => nix.app(runCommandCC, "pomerium-envoy-binaries", nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           nativeBuildInputs: nix.thunk(() => [patchelf, moreutils, jq]),
         })), nix.thunk(() => nix.str`mkdir $out
 cp ${nix.sel(finalAttrs, "envoyBinariesRaw")}/* $out
@@ -88,7 +76,7 @@ jq ".digest = \\"sha256:$(sha256sum $out/envoy-linux-amd64 | cut -f1 -d' ')\\"" 
 jq ".digest = \\"sha256:$(sha256sum $out/envoy-linux-arm64 | cut -f1 -d' ')\\"" $out/envoy-linux-arm64.lock | sponge $out/envoy-linux-arm64.lock
 `))),
       ui: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pname: "pomerium-ui",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/ui`),
@@ -98,9 +86,9 @@ jq ".digest = \\"sha256:$(sha256sum $out/envoy-linux-arm64 | cut -f1 -d' ')\\"" 
       subPackages: nix.thunk(() => ["cmd/pomerium"]),
       ldflags: nix.thunk(() => (() => {
         const setVars = nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           "github.com/pomerium/pomerium/internal/version": nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             Version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             BuildMeta: "nixpkgs",
             ProjectName: "pomerium",
@@ -120,16 +108,16 @@ cp -r ${nix.sel(finalAttrs, "ui")}/* ui/dist
 `),
       installPhase: "install -Dm0755 $GOPATH/bin/pomerium $out/bin/pomerium\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           pomerium: nix.thunk(() => nix.attr(nixosTests, "pomerium")),
           "pomerium-cli": pomerium_cli,
         })),
         updateScript: nix.path(here, "./updater.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         homepage: "https://pomerium.io",
         description: "Authenticating reverse proxy",
         mainProgram: "pomerium",

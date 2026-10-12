@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 16, 35], ["out", 16, 40]], [["hash", 23, 13]], [["0.5.0", 23, 5]], [["description", 43, 5], ["maintainers", 44, 5], ["license", 45, 5]], [["pname", 10, 3], ["owner", 11, 3], ["version", 13, 11], ["defaultVersion", 14, 3], ["release", 22, 3], ["releaseRev", 25, 3], ["nativeBuildInputs", 27, 3], ["mlPlugin", 37, 3], ["buildPhase", 38, 3], ["preInstallPhase", 39, 3], ["installFlags", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, mkRocqDerivation: false, "rocq-core": false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 16, 35], ["out", 16, 40]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 23, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["0.5.0", 23, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 43, 5], ["maintainers", 44, 5], ["license", 45, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["owner", 11, 3], ["version", 13, 11], ["defaultVersion", 14, 3], ["release", 22, 3], ["releaseRev", 25, 3], ["nativeBuildInputs", 27, 3], ["mlPlugin", 37, 3], ["buildPhase", 38, 3], ["preInstallPhase", 39, 3], ["installFlags", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,21 +13,21 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const w = nix.withScope(lib, null);
   return nix.app(mkRocqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rocqnavi",
       owner: "affeldt-aist",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
         const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "versions")), w);
         return nix.app(nix.lookup(w_1, "switch"), nix.thunk(() => nix.sel(rocq_core, "rocq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w_1, "range"), "9.0", "9.3")), "0.5.0")),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "0.5.0": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-pmK4gD5ccerjr2UVgwGIVbjH/RiXdYQq79/XFetiHZg=",
         })),
       })),
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       preInstallPhase: "mkdir $(out)/bin",
       installFlags: nix.thunk(() => ["BINDIR=$(out)/bin"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Rocqnavi: an HTML documentation generator for Rocq prover",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);

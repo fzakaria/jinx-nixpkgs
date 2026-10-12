@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["cue", 46, 65]], [["writeCueValidator", 53, 47]], [["pkgs", 53, 11]], [["cue", 56, 76]], [["package", 58, 11], ["command", 59, 11], ["version", 60, 11]], [["validation", 52, 9], ["test-001-all-good", 56, 9], ["version", 57, 9]], [["writeCueValidator", 49, 15], ["tests", 51, 7]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["subPackages", 26, 3], ["nativeBuildInputs", 28, 3], ["ldflags", 30, 3], ["postInstall", 36, 3], ["passthru", 43, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false, stdenv: false, installShellFiles: false, testers: false, tests: false, callPackage: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cue", 46, 65]]);
-const pos$3 = nix.positions(here + "/package.nix", [["writeCueValidator", 53, 47]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkgs", 53, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["cue", 56, 76]]);
-const pos$6 = nix.positions(here + "/package.nix", [["package", 58, 11], ["command", 59, 11], ["version", 60, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["validation", 52, 9], ["test-001-all-good", 56, 9], ["version", 57, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["writeCueValidator", 49, 15], ["tests", 51, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["subPackages", 26, 3], ["nativeBuildInputs", 28, 3], ["ldflags", 30, 3], ["postInstall", 36, 3], ["passthru", 43, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "cue",
       version: "0.17.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cue-lang",
           repo: "cue",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,19 +38,19 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd cue \\\n  --bash <($out/bin/cue completion bash) \\\n  --fish <($out/bin/cue completion fish) \\\n  --zsh <($out/bin/cue completion zsh)\n")),
       passthru: nix.thunk(() => (() => {
         const cue = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
-        const writeCueValidator = nix.thunk(() => nix.app(callPackage, nix.path(here, "./validator.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, cue: cue }))));
+        const writeCueValidator = nix.thunk(() => nix.app(callPackage, nix.path(here, "./validator.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], cue: cue }))));
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           writeCueValidator: writeCueValidator,
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             validation: nix.thunk(() => nix.app(nix.sel(tests, "cue-validation", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
-                pkgs: nix.thunk(() => nix.app(nix.sel(pkgs, "extend"), (_) => (__1) => ({ [nix.POS]: pos$3, writeCueValidator: writeCueValidator }))),
+                [nix.POS]: $pos[3],
+                pkgs: nix.thunk(() => nix.app(nix.sel(pkgs, "extend"), (_) => (__1) => ({ [nix.POS]: $pos[2], writeCueValidator: writeCueValidator }))),
               })))),
-            "test-001-all-good": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/001-all-good.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, cue: cue })))),
+            "test-001-all-good": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/001-all-good.nix"), nix.thunk(() => ({ [nix.POS]: $pos[4], cue: cue })))),
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 package: cue,
                 command: "cue version",
                 version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +59,7 @@ export default nix.lambda((args) => (() => {
         };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Data constraint language which aims to simplify tasks involving defining and using data",
         homepage: "https://cuelang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

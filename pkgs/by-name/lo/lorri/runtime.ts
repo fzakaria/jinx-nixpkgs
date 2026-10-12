@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/runtime.nix", [[["name", 12, 5], ["paths", 13, 5]], [["rootPaths", 20, 5]], [["runtime_closure_list", 34, 9], ["tools_build_host", 35, 9]]]);
 const formals$1 = { args: { closureInfo: false, runCommand: false, buildEnv: false, bash: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/runtime.nix", [["name", 12, 5], ["paths", 13, 5]]);
-const pos$2 = nix.positions(here + "/runtime.nix", [["rootPaths", 20, 5]]);
-const pos$3 = nix.positions(here + "/runtime.nix", [["runtime_closure_list", 34, 9], ["tools_build_host", 35, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const coreutils = nix.arg($, "coreutils");
   const tools = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "lorri-runtime-tools",
       paths: nix.thunk(() => [coreutils, bash]),
     }))));
-  const runtimeClosureInfo = nix.thunk(() => nix.app(closureInfo, nix.thunk(() => ({ [nix.POS]: pos$2, rootPaths: nix.thunk(() => [tools]) }))));
+  const runtimeClosureInfo = nix.thunk(() => nix.app(closureInfo, nix.thunk(() => ({ [nix.POS]: $pos[1], rootPaths: nix.thunk(() => [tools]) }))));
   const closureToNix = nix.thunk(() => nix.app(runCommand, "closure.nix", nix.thunk(() => ({})), nix.thunk(() => nix.str`(
   echo '{ dep, ... }: ['
   sed -E 's/^(.*)$/    (dep \\1)/' ${runtimeClosureInfo}/store-paths
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
 ) > $out
 `)));
   const runtimeClosureInfoAsNix = nix.thunk(() => nix.app(runCommand, "runtime-closure.nix", nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       runtime_closure_list: closureToNix,
       tools_build_host: tools,
     })), nix.thunk(() => nix.str`substituteAll ${nix.path(here, "./runtime-closure.nix.template")} $out

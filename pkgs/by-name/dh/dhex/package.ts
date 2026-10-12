@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 17, 3], ["buildInputs", 22, 3], ["installPhase", 24, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 17, 3], ["buildInputs", 22, 3], ["installPhase", 24, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dhex",
       version: "0.69",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.dettus.net/dhex/dhex_${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "06y4lrp29f2fh303ijk1xhspa1d4x4dm6hnyw3dd8szi3k6hnwsj",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses]),
       installPhase: "mkdir -p $out/bin\nmkdir -p $out/share/man/man1\nmkdir -p $out/share/man/man5\n\ncp dhex $out/bin\ncp dhex.1 $out/share/man/man1\ncp dhexrc.5 $out/share/man/man5\ncp dhex_markers.5 $out/share/man/man5\ncp dhex_searchlog.5 $out/share/man/man5\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Themeable hex editor with diff mode",
         homepage: "http://www.dettus.net/dhex/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

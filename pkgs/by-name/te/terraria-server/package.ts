@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["homepage", 46, 5], ["description", 47, 5], ["platforms", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["urlVersion", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["installPhase", 30, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, unzip: false, sdl3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["description", 47, 5], ["platforms", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["urlVersion", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["installPhase", 30, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const sdl3 = nix.arg($, "sdl3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "terraria-server",
       version: "1.4.5.8",
       urlVersion: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://terraria.org/api/download/pc-dedicated-server/terraria-server-${nix.sel(finalAttrs, "urlVersion")}.zip`),
           hash: "sha256-9ROkrJeJ00r3Zika4hfJzX2UcuE3gqDisXUS9w16gzQ=",
         })))),
@@ -41,7 +39,7 @@ ln -s ${nix.app(nix.sel(lib, "getLib"), sdl3)}/lib/libSDL3.so.0 $out/Linux/lib64
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://terraria.org",
         description: "Dedicated server for Terraria, a 2D action-adventure sandbox",
         platforms: nix.thunk(() => ["x86_64-linux"]),

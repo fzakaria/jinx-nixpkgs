@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["version", 15, 3], ["build_nr", 16, 3], ["pname", 17, 3], ["src", 19, 3], ["postInstall", 24, 3], ["postFixup", 31, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 53, 3], ["dontWrapQtApps", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, libGLU: false, libGL: false, qt6: false, boost: false, ninja: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 15, 3], ["build_nr", 16, 3], ["pname", 17, 3], ["src", 19, 3], ["postInstall", 24, 3], ["postFixup", 31, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 53, 3], ["dontWrapQtApps", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const build_nr = "0";
       const pname = "mcrl2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.mcrl2.org/download/release/mcrl2-${version}.${build_nr}.tar.gz`),
           hash: "sha256-Ur7GGXbYvVmrEUq/CTRyuVNLDHKfFrYHJibo0JvYhyM=",
         }))));
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat([libGLU, libGL, nix.thunk(() => nix.sel(qt6, "qtbase")), boost], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), makeWrapper)));
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Toolset for model-checking concurrent systems and protocols",
         longDescription: "A formal specification language with an associated toolset,\nthat can be used for modelling, validation and verification of\nconcurrent systems and protocols\n",
         homepage: "https://www.mcrl2.org/",
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         build_nr,
         pname,

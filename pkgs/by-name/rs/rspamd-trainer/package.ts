@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["url", 27, 7], ["hash", 28, 7], ["name", 29, 7]], [["rspamd-trainer", 53, 43]], [["tests", 53, 12]], [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 44, 3], ["propagatedBuildInputs", 48, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, python3Packages: false, fetchFromGitLab: false, fetchpatch: false, rspamd: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7], ["name", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rspamd-trainer", 53, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 53, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 44, 3], ["propagatedBuildInputs", 48, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const rspamd = nix.arg($, "rspamd");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rspamd-trainer",
       version: "unstable-2023-11-27",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "onlime",
           repo: "rspamd-trainer",
           rev: "eb6639a78a019ade6781f3a8418eddc030f8fa14",
@@ -33,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/onlime/rspamd-trainer/-/commit/8824bfb9a9826988a90a401b8e51c20f5366ed70.patch",
             hash: "sha256-qiXfwMUfM/iV+fHba8xdwQD92RQz627+HdUTgwgRZdc=",
             name: "refactor_pyproject.patch",
@@ -60,14 +55,14 @@ sed -i "s|/usr/bin/rspamc|${rspamd}/bin/rspamc|" src/rspamd_trainer/run.py
         ];
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "rspamd-trainer": nix.thunk(() => nix.attr(nixosTests, "rspamd-trainer")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.com/onlime/rspamd-trainer",
         description: "Grabs messages from a spam mailbox via IMAP and feeds them to Rspamd for training",
         mainProgram: "rspamd-trainer",

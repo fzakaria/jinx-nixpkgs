@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 96, 5], ["longDescription", 97, 5], ["homepage", 102, 5], ["license", 105, 5], ["maintainers", 111, 5], ["platforms", 112, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 24, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 35, 3], ["cmakeFlags", 37, 3], ["postPatch", 58, 3], ["postInstall", 81, 3], ["disallowedReferences", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, openssl: false, zlib: false, libuv: false, withExternalPoll: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 96, 5], ["longDescription", 97, 5], ["homepage", 102, 5], ["license", 105, 5], ["maintainers", 111, 5], ["platforms", 112, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 24, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 35, 3], ["cmakeFlags", 37, 3], ["postPatch", 58, 3], ["postInstall", 81, 3], ["disallowedReferences", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libuv = nix.arg($, "libuv");
   const withExternalPoll = nix.argOr($, "withExternalPoll", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libwebsockets",
       version: "4.5.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "warmcat",
           repo: "libwebsockets",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "# Fix path that will be incorrect on move to \"dev\" output.\nsubstituteInPlace \"$out/lib/cmake/libwebsockets/LibwebsocketsTargets-release.cmake\" \\\n  --replace \"\\${_IMPORT_PREFIX}\" \"$out\"\n\n# The package builds a few test programs that are not usually necessary.\n# Move those to the dev output.\nmoveToOutput \"bin/libwebsockets-test-*\" \"$dev\"\nmoveToOutput \"share/libwebsockets-test-*\" \"$dev\"\n",
       disallowedReferences: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc"))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Light, portable C library for websockets",
         longDescription: "Libwebsockets is a lightweight pure C library built to\nuse minimal CPU and memory resources, and provide fast\nthroughput in both directions.\n",
         homepage: "https://libwebsockets.org/",

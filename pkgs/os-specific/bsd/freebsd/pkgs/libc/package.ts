@@ -2,8 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 53, 3], ["version", 54, 25], ["paths", 55, 3]]]);
 const formals$1 = { args: { symlinkJoin: false, include: false, csu: false, libcMinimal: false, libssp_nonshared: false, libgcc: false, libmd: false, libthr: false, msun: false, librpcsvc: false, libutil: false, librt: false, libcrypt: false, libelf: false, libexecinfo: false, libkvm: false, libmemstat: false, libprocstat: false, libdevstat: false, libiconvModules: false, libdl: false, i18n: false, "rtld-elf": false, baseModules: true, extraModules: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 53, 3], ["version", 54, 25], ["paths", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,7 +56,7 @@ export default nix.lambda((args) => (() => {
   ]);
   const extraModules = nix.argOr($, "extraModules", () => []);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "libc",
       version: nix.thunk(() => nix.attr(libcMinimal, "version")),
       paths: nix.thunk(() => nix.concat(baseModules, extraModules)),

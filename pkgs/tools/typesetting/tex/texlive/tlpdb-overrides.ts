@@ -2,104 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tlpdb-overrides.nix", [[["binfiles", 51, 20]], [["scriptsFolder", 64, 18], ["postFixup", 319, 18], ["deps", 550, 18]], [["scriptsFolder", 65, 16], ["extraBuildInputs", 164, 16], ["postFixup", 323, 16]], [["scriptsFolder", 66, 12]], [["scriptsFolder", 67, 11], ["binfiles", 248, 11]], [["scriptsFolder", 68, 10], ["extraBuildInputs", 210, 10], ["postFixup", 380, 10]], [["mktexfmt", 291, 5], ["texhash", 292, 5]], [["scriptsFolder", 69, 19], ["extraBuildInputs", 224, 19], ["binfiles", 251, 19], ["binlinks", 290, 19], ["postFixup", 417, 19]], [["allec", 296, 5], ["kpsepath", 297, 5], ["kpsexpand", 298, 5]], [["scriptsFolder", 70, 25], ["extraBuildInputs", 225, 25], ["binlinks", 295, 25], ["postFixup", 506, 25]], [["scriptsFolder", 71, 9]], [["extraBuildInputs", 74, 11]], [["extraBuildInputs", 75, 12]], [["extraBuildInputs", 76, 16]], [["extraBuildInputs", 77, 14]], [["extraBuildInputs", 78, 12]], [["extraBuildInputs", 79, 15]], [["extraBuildInputs", 82, 13]], [["extraBuildInputs", 89, 16]], [["extraBuildInputs", 98, 14]], [["extraBuildInputs", 106, 11]], [["extraBuildInputs", 107, 14]], [["extraBuildInputs", 115, 12]], [["extraBuildInputs", 116, 13]], [["extraBuildInputs", 119, 17]], [["extraBuildInputs", 120, 15], ["postFixup", 467, 15]], [["extraBuildInputs", 131, 7]], [["extraBuildInputs", 132, 20]], [["extraBuildInputs", 140, 17]], [["extraBuildInputs", 141, 13]], [["extraBuildInputs", 142, 10]], [["extraBuildInputs", 143, 13]], [["extraBuildInputs", 144, 12]], [["extraBuildInputs", 145, 9]], [["extraBuildInputs", 146, 9]], [["extraBuildInputs", 149, 13]], [["extraBuildInputs", 157, 13]], [["extraBuildInputs", 160, 10], ["postFixup", 303, 10]], [["extraBuildInputs", 161, 13], ["postFixup", 307, 13]], [["extraBuildInputs", 162, 17], ["postFixup", 311, 17]], [["extraBuildInputs", 163, 20], ["postFixup", 315, 20]], [["extraBuildInputs", 168, 10], ["postFixup", 327, 10]], [["extraBuildInputs", 176, 10], ["postFixup", 331, 10]], [["extraBuildInputs", 177, 10], ["postFixup", 450, 10]], [["repstopdf", 275, 21]], [["extraBuildInputs", 178, 12], ["binlinks", 275, 12], ["postFixup", 335, 12]], [["extraBuildInputs", 179, 14], ["postFixup", 339, 14]], [["extraBuildInputs", 180, 15], ["postFixup", 343, 15]], [["extraBuildInputs", 185, 20], ["postFixup", 347, 20]], [["extraBuildInputs", 190, 16], ["postFixup", 351, 16]], [["extraBuildInputs", 194, 15], ["postFixup", 355, 15]], [["extraBuildInputs", 199, 10], ["postFixup", 359, 10]], [["extraBuildInputs", 200, 14], ["postFixup", 363, 14]], [["extraBuildInputs", 201, 13], ["postFixup", 367, 13]], [["extraBuildInputs", 205, 14], ["postFixup", 371, 14]], [["rpdfcrop", 276, 20]], [["extraBuildInputs", 209, 11], ["binlinks", 276, 11], ["postFixup", 376, 11]], [["extraBuildInputs", 215, 16], ["postFixup", 393, 16]], [["extraBuildInputs", 216, 10], ["postFixup", 397, 10]], [["extraBuildInputs", 220, 16], ["postFixup", 401, 16]], [["extraBuildInputs", 221, 10], ["postFixup", 405, 10]], [["extraBuildInputs", 222, 11], ["postFixup", 409, 11]], [["extraBuildInputs", 223, 13], ["postFixup", 413, 13]], [["extraBuildInputs", 231, 12], ["postFixup", 421, 12]], [["extraBuildInputs", 232, 15], ["postFixup", 425, 15]], [["extraBuildInputs", 233, 13], ["postFixup", 429, 13]], [["extraBuildInputs", 237, 8], ["postFixup", 434, 8], ["deps", 553, 8]], [["extraBuildInputs", 241, 9], ["binfiles", 253, 9], ["postFixup", 438, 9]], [["cllualatex", 258, 5], ["clxelatex", 259, 5]], [["binlinks", 257, 11]], [["context", 263, 5], ["context.lua", 264, 5], ["mtxrun", 265, 5], ["mtxrun.lua", 266, 5]], [["binlinks", 262, 11]], [["ebb", 272, 5]], [["binlinks", 269, 12]], [["pbibtex", 280, 5], ["pdvitype", 281, 5], ["ppltotf", 282, 5], ["ptftopl", 283, 5]], [["binlinks", 279, 8]], [["latexdef", 287, 5]], [["binlinks", 286, 10]], [["postFixup", 444, 9]], [["extraBuildInputs", 456, 13], ["postUnpack", 457, 13], ["postFixup", 462, 13]], [["postUnpack", 474, 11]], [["postFixup", 481, 10]], [["postFixup", 486, 14], ["postUnpack", 489, 14]], [["scriptExts", 501, 12]], [["postFixup", 531, 14]], [["postFixup", 536, 11]], [["deps", 547, 9]], [["deps", 555, 9]], [["deps", 558, 20]], [["deps", 561, 23]], [["deps", 562, 27]], [["deps", 567, 10], ["postUnpack", 568, 10], ["hasJar", 571, 10]], [["binfiles", 580, 13], ["formats", 581, 13]], [["binfiles", 582, 9]], [["extraRevision", 587, 5], ["extraVersion", 588, 5], ["extraNativeBuildInputs", 590, 5], ["postUnpack", 593, 5], ["postFixup", 610, 5]], [["extraRevision", 618, 5], ["extraVersion", 619, 5], ["license", 622, 5], ["scriptsFolder", 628, 5], ["extraBuildInputs", 629, 5], ["postFixup", 638, 5], ["postUnpack", 652, 5]], [["context-legacy", 64, 3], ["cyrillic-bin", 65, 3], ["fontinst", 66, 3], ["mptopdf", 67, 3], ["pdftex", 68, 3], ["texlive-scripts", 69, 3], ["texlive-scripts-extra", 70, 3], ["xetex", 71, 3], ["ctanbib", 74, 3], ["de-macro", 75, 3], ["match_parens", 76, 3], ["optexcount", 77, 3], ["pdfbook2", 78, 3], ["texlogsieve", 79, 3], ["bundledoc", 82, 3], ["crossrefware", 89, 3], ["ctan-o-mat", 98, 3], ["ctanify", 106, 3], ["ctanupload", 107, 3], ["exceltex", 115, 3], ["latexdiff", 116, 3], ["latex-git-log", 119, 3], ["latexindent", 120, 3], ["pax", 131, 3], ["pdflatexpicscale", 132, 3], ["ptex-fontmaps", 140, 3], ["purifyeps", 141, 3], ["sqltex", 142, 3], ["svn-multi", 143, 3], ["texdoctk", 144, 3], ["typog", 145, 3], ["ulqda", 146, 3], ["pygmentex", 149, 3], ["pythontex", 157, 3], ["a2ping", 160, 3], ["bibexport", 161, 3], ["checklistings", 162, 3], ["cjk-gs-integrate", 163, 3], ["dtxgen", 168, 3], ["dviljk", 176, 3], ["epspdf", 177, 3], ["epstopdf", 178, 3], ["fragmaster", 179, 3], ["installfont", 180, 3], ["latexfileversion", 185, 3], ["listings-ext", 190, 3], ["ltxfileinfo", 194, 3], ["ltximg", 199, 3], ["luaotfload", 200, 3], ["makeindex", 201, 3], ["pagelayout", 205, 3], ["pdfcrop", 209, 3], ["pdftex-quiet", 215, 3], ["pdfxup", 216, 3], ["pkfix-helper", 220, 3], ["ps2eps", 221, 3], ["pst2pdf", 222, 3], ["tex4ebook", 223, 3], ["thumbpdf", 231, 3], ["tpic2pdftex", 232, 3], ["wordcount", 233, 3], ["xdvi", 237, 3], ["xindy", 241, 3], ["cluttex", 257, 3], ["context", 262, 3], ["dvipdfmx", 269, 3], ["ptex", 279, 3], ["texdef", 286, 3], ["ebong", 444, 3], ["extractbb", 456, 3], ["l3build", 474, 3], ["minted", 481, 3], ["texaccents", 486, 3], ["texblend", 501, 3], ["texosquery", 531, 3], ["tlshell", 536, 3], ["optex", 547, 3], ["mltex", 555, 3], ["collection-basic", 558, 3], ["collection-metapost", 561, 3], ["collection-plaingeneric", 562, 3], ["tex4ht", 567, 3], ["git-latexdiff", 577, 11], ["luajittex", 580, 3], ["mflua", 582, 3], ["texdoc", 586, 3], ["texlive.infra", 617, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchpatch: false, lib: false, tlpdb: false, bin: false, tlpdbxz: false, pkgs: false, installShellFiles: false, coreutils: false, findutils: false, gawk: false, getopt: false, gettext: false, ghostscript_headless: false, "git-latexdiff": false, gnugrep: false, gnumake: false, gnupg: false, gnused: false, gzip: false, "html-tidy": false, ncurses: false, perl: false, python3: false, ruby: false, zip: false, luajit: false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tlpdb-overrides.nix", [["binfiles", 51, 20]]);
-const pos$2 = nix.positions(here + "/tlpdb-overrides.nix", [["scriptsFolder", 64, 18], ["postFixup", 319, 18], ["deps", 550, 18]]);
-const pos$3 = nix.positions(here + "/tlpdb-overrides.nix", [["scriptsFolder", 65, 16], ["extraBuildInputs", 164, 16], ["postFixup", 323, 16]]);
-const pos$4 = nix.positions(here + "/tlpdb-overrides.nix", [["scriptsFolder", 66, 12]]);
-const pos$5 = nix.positions(here + "/tlpdb-overrides.nix", [["scriptsFolder", 67, 11], ["binfiles", 248, 11]]);
-const pos$6 = nix.positions(here + "/tlpdb-overrides.nix", [["scriptsFolder", 68, 10], ["extraBuildInputs", 210, 10], ["postFixup", 380, 10]]);
-const pos$7 = nix.positions(here + "/tlpdb-overrides.nix", [["mktexfmt", 291, 5], ["texhash", 292, 5]]);
-const pos$8 = nix.positions(here + "/tlpdb-overrides.nix", [["scriptsFolder", 69, 19], ["extraBuildInputs", 224, 19], ["binfiles", 251, 19], ["binlinks", 290, 19], ["postFixup", 417, 19]]);
-const pos$9 = nix.positions(here + "/tlpdb-overrides.nix", [["allec", 296, 5], ["kpsepath", 297, 5], ["kpsexpand", 298, 5]]);
-const pos$10 = nix.positions(here + "/tlpdb-overrides.nix", [["scriptsFolder", 70, 25], ["extraBuildInputs", 225, 25], ["binlinks", 295, 25], ["postFixup", 506, 25]]);
-const pos$11 = nix.positions(here + "/tlpdb-overrides.nix", [["scriptsFolder", 71, 9]]);
-const pos$12 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 74, 11]]);
-const pos$13 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 75, 12]]);
-const pos$14 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 76, 16]]);
-const pos$15 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 77, 14]]);
-const pos$16 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 78, 12]]);
-const pos$17 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 79, 15]]);
-const pos$18 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 82, 13]]);
-const pos$19 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 89, 16]]);
-const pos$20 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 98, 14]]);
-const pos$21 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 106, 11]]);
-const pos$22 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 107, 14]]);
-const pos$23 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 115, 12]]);
-const pos$24 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 116, 13]]);
-const pos$25 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 119, 17]]);
-const pos$26 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 120, 15], ["postFixup", 467, 15]]);
-const pos$27 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 131, 7]]);
-const pos$28 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 132, 20]]);
-const pos$29 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 140, 17]]);
-const pos$30 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 141, 13]]);
-const pos$31 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 142, 10]]);
-const pos$32 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 143, 13]]);
-const pos$33 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 144, 12]]);
-const pos$34 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 145, 9]]);
-const pos$35 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 146, 9]]);
-const pos$36 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 149, 13]]);
-const pos$37 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 157, 13]]);
-const pos$38 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 160, 10], ["postFixup", 303, 10]]);
-const pos$39 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 161, 13], ["postFixup", 307, 13]]);
-const pos$40 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 162, 17], ["postFixup", 311, 17]]);
-const pos$41 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 163, 20], ["postFixup", 315, 20]]);
-const pos$42 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 168, 10], ["postFixup", 327, 10]]);
-const pos$43 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 176, 10], ["postFixup", 331, 10]]);
-const pos$44 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 177, 10], ["postFixup", 450, 10]]);
-const pos$45 = nix.positions(here + "/tlpdb-overrides.nix", [["repstopdf", 275, 21]]);
-const pos$46 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 178, 12], ["binlinks", 275, 12], ["postFixup", 335, 12]]);
-const pos$47 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 179, 14], ["postFixup", 339, 14]]);
-const pos$48 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 180, 15], ["postFixup", 343, 15]]);
-const pos$49 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 185, 20], ["postFixup", 347, 20]]);
-const pos$50 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 190, 16], ["postFixup", 351, 16]]);
-const pos$51 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 194, 15], ["postFixup", 355, 15]]);
-const pos$52 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 199, 10], ["postFixup", 359, 10]]);
-const pos$53 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 200, 14], ["postFixup", 363, 14]]);
-const pos$54 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 201, 13], ["postFixup", 367, 13]]);
-const pos$55 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 205, 14], ["postFixup", 371, 14]]);
-const pos$56 = nix.positions(here + "/tlpdb-overrides.nix", [["rpdfcrop", 276, 20]]);
-const pos$57 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 209, 11], ["binlinks", 276, 11], ["postFixup", 376, 11]]);
-const pos$58 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 215, 16], ["postFixup", 393, 16]]);
-const pos$59 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 216, 10], ["postFixup", 397, 10]]);
-const pos$60 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 220, 16], ["postFixup", 401, 16]]);
-const pos$61 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 221, 10], ["postFixup", 405, 10]]);
-const pos$62 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 222, 11], ["postFixup", 409, 11]]);
-const pos$63 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 223, 13], ["postFixup", 413, 13]]);
-const pos$64 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 231, 12], ["postFixup", 421, 12]]);
-const pos$65 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 232, 15], ["postFixup", 425, 15]]);
-const pos$66 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 233, 13], ["postFixup", 429, 13]]);
-const pos$67 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 237, 8], ["postFixup", 434, 8], ["deps", 553, 8]]);
-const pos$68 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 241, 9], ["binfiles", 253, 9], ["postFixup", 438, 9]]);
-const pos$69 = nix.positions(here + "/tlpdb-overrides.nix", [["cllualatex", 258, 5], ["clxelatex", 259, 5]]);
-const pos$70 = nix.positions(here + "/tlpdb-overrides.nix", [["binlinks", 257, 11]]);
-const pos$71 = nix.positions(here + "/tlpdb-overrides.nix", [["context", 263, 5], ["context.lua", 264, 5], ["mtxrun", 265, 5], ["mtxrun.lua", 266, 5]]);
-const pos$72 = nix.positions(here + "/tlpdb-overrides.nix", [["binlinks", 262, 11]]);
-const pos$73 = nix.positions(here + "/tlpdb-overrides.nix", [["ebb", 272, 5]]);
-const pos$74 = nix.positions(here + "/tlpdb-overrides.nix", [["binlinks", 269, 12]]);
-const pos$75 = nix.positions(here + "/tlpdb-overrides.nix", [["pbibtex", 280, 5], ["pdvitype", 281, 5], ["ppltotf", 282, 5], ["ptftopl", 283, 5]]);
-const pos$76 = nix.positions(here + "/tlpdb-overrides.nix", [["binlinks", 279, 8]]);
-const pos$77 = nix.positions(here + "/tlpdb-overrides.nix", [["latexdef", 287, 5]]);
-const pos$78 = nix.positions(here + "/tlpdb-overrides.nix", [["binlinks", 286, 10]]);
-const pos$79 = nix.positions(here + "/tlpdb-overrides.nix", [["postFixup", 444, 9]]);
-const pos$80 = nix.positions(here + "/tlpdb-overrides.nix", [["extraBuildInputs", 456, 13], ["postUnpack", 457, 13], ["postFixup", 462, 13]]);
-const pos$81 = nix.positions(here + "/tlpdb-overrides.nix", [["postUnpack", 474, 11]]);
-const pos$82 = nix.positions(here + "/tlpdb-overrides.nix", [["postFixup", 481, 10]]);
-const pos$83 = nix.positions(here + "/tlpdb-overrides.nix", [["postFixup", 486, 14], ["postUnpack", 489, 14]]);
-const pos$84 = nix.positions(here + "/tlpdb-overrides.nix", [["scriptExts", 501, 12]]);
-const pos$85 = nix.positions(here + "/tlpdb-overrides.nix", [["postFixup", 531, 14]]);
-const pos$86 = nix.positions(here + "/tlpdb-overrides.nix", [["postFixup", 536, 11]]);
-const pos$87 = nix.positions(here + "/tlpdb-overrides.nix", [["deps", 547, 9]]);
-const pos$88 = nix.positions(here + "/tlpdb-overrides.nix", [["deps", 555, 9]]);
-const pos$89 = nix.positions(here + "/tlpdb-overrides.nix", [["deps", 558, 20]]);
-const pos$90 = nix.positions(here + "/tlpdb-overrides.nix", [["deps", 561, 23]]);
-const pos$91 = nix.positions(here + "/tlpdb-overrides.nix", [["deps", 562, 27]]);
-const pos$92 = nix.positions(here + "/tlpdb-overrides.nix", [["deps", 567, 10], ["postUnpack", 568, 10], ["hasJar", 571, 10]]);
-const pos$93 = nix.positions(here + "/tlpdb-overrides.nix", [["binfiles", 580, 13], ["formats", 581, 13]]);
-const pos$94 = nix.positions(here + "/tlpdb-overrides.nix", [["binfiles", 582, 9]]);
-const pos$95 = nix.positions(here + "/tlpdb-overrides.nix", [["extraRevision", 587, 5], ["extraVersion", 588, 5], ["extraNativeBuildInputs", 590, 5], ["postUnpack", 593, 5], ["postFixup", 610, 5]]);
-const pos$96 = nix.positions(here + "/tlpdb-overrides.nix", [["extraRevision", 618, 5], ["extraVersion", 619, 5], ["license", 622, 5], ["scriptsFolder", 628, 5], ["extraBuildInputs", 629, 5], ["postFixup", 638, 5], ["postUnpack", 652, 5]]);
-const pos$97 = nix.positions(here + "/tlpdb-overrides.nix", [["context-legacy", 64, 3], ["cyrillic-bin", 65, 3], ["fontinst", 66, 3], ["mptopdf", 67, 3], ["pdftex", 68, 3], ["texlive-scripts", 69, 3], ["texlive-scripts-extra", 70, 3], ["xetex", 71, 3], ["ctanbib", 74, 3], ["de-macro", 75, 3], ["match_parens", 76, 3], ["optexcount", 77, 3], ["pdfbook2", 78, 3], ["texlogsieve", 79, 3], ["bundledoc", 82, 3], ["crossrefware", 89, 3], ["ctan-o-mat", 98, 3], ["ctanify", 106, 3], ["ctanupload", 107, 3], ["exceltex", 115, 3], ["latexdiff", 116, 3], ["latex-git-log", 119, 3], ["latexindent", 120, 3], ["pax", 131, 3], ["pdflatexpicscale", 132, 3], ["ptex-fontmaps", 140, 3], ["purifyeps", 141, 3], ["sqltex", 142, 3], ["svn-multi", 143, 3], ["texdoctk", 144, 3], ["typog", 145, 3], ["ulqda", 146, 3], ["pygmentex", 149, 3], ["pythontex", 157, 3], ["a2ping", 160, 3], ["bibexport", 161, 3], ["checklistings", 162, 3], ["cjk-gs-integrate", 163, 3], ["dtxgen", 168, 3], ["dviljk", 176, 3], ["epspdf", 177, 3], ["epstopdf", 178, 3], ["fragmaster", 179, 3], ["installfont", 180, 3], ["latexfileversion", 185, 3], ["listings-ext", 190, 3], ["ltxfileinfo", 194, 3], ["ltximg", 199, 3], ["luaotfload", 200, 3], ["makeindex", 201, 3], ["pagelayout", 205, 3], ["pdfcrop", 209, 3], ["pdftex-quiet", 215, 3], ["pdfxup", 216, 3], ["pkfix-helper", 220, 3], ["ps2eps", 221, 3], ["pst2pdf", 222, 3], ["tex4ebook", 223, 3], ["thumbpdf", 231, 3], ["tpic2pdftex", 232, 3], ["wordcount", 233, 3], ["xdvi", 237, 3], ["xindy", 241, 3], ["cluttex", 257, 3], ["context", 262, 3], ["dvipdfmx", 269, 3], ["ptex", 279, 3], ["texdef", 286, 3], ["ebong", 444, 3], ["extractbb", 456, 3], ["l3build", 474, 3], ["minted", 481, 3], ["texaccents", 486, 3], ["texblend", 501, 3], ["texosquery", 531, 3], ["tlshell", 536, 3], ["optex", 547, 3], ["mltex", 555, 3], ["collection-basic", 558, 3], ["collection-metapost", 561, 3], ["collection-plaingeneric", 562, 3], ["tex4ht", 567, 3], ["git-latexdiff", 577, 11], ["luajittex", 580, 3], ["mflua", 582, 3], ["texdoc", 586, 3], ["texlive.infra", 617, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -136,32 +40,32 @@ export default nix.lambda((args) => (() => {
     const removeFormatLinks = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (attrs) => (nix.asBool((nix.asBool(nix.has(attrs, "formats")) && nix.asBool(nix.has(attrs, "binfiles")))) ? (() => {
         const formatLinks = nix.thunk(() => nix.app(nix.sel(lib, "catAttrs"), "name", nix.thunk(() => nix.app(nix.sel(lib, "filter"), (f) => (nix.asBool(!nix.eq(nix.sel(f, "name"), nix.sel(f, "engine"))) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), "-nowin", nix.thunk(() => nix.sel(f, "engine")))))), nix.thunk(() => nix.sel(attrs, "formats"))))));
         const binNotFormats = nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), formatLinks, nix.thunk(() => nix.sel(attrs, "binfiles"))));
-        return (nix.asBool(!nix.eq(binNotFormats, [])) ? nix.update(attrs, { [nix.POS]: pos$1, binfiles: binNotFormats }) : nix.builtins.removeAttrs(attrs, nix.thunk(() => ["binfiles"])));
+        return (nix.asBool(!nix.eq(binNotFormats, [])) ? nix.update(attrs, { [nix.POS]: $pos[0], binfiles: binNotFormats }) : nix.builtins.removeAttrs(attrs, nix.thunk(() => ["binfiles"])));
       })() : nix.force(attrs))));
     const orig = nix.thunk(() => nix.app(removeFormatLinks, nix.thunk(() => nix.builtins.removeAttrs(oldTlpdb, nix.thunk(() => ["00texlive.config"])))));
     return nix.app(nix.sel(lib, "recursiveUpdate"), orig, nix.thunk(() => (() => {
         const context_legacy = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           scriptsFolder: "context/ruby",
           postFixup: nix.thunk(() => nix.str`sed -i 's!File.dirname(\\$0)!'"'"'${nix.sel(pkgs, "context-legacy", "tex")}/scripts/context/ruby'"'"'!' "$out"/bin/*
 `),
           deps: nix.thunk(() => nix.concat(nix.selOr(orig, () => [], "context-legacy", "deps"), ["xetex"])),
         }));
         const cyrillic_bin = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           scriptsFolder: "texlive-extra",
           extraBuildInputs: nix.thunk(() => [coreutils, gnused]),
           postFixup: nix.thunk(() => nix.str`sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(cyrillic_bin, "extraBuildInputs")))}\${PATH:+:$PATH}"' "$out"/bin/rumakeindex
 `),
         }));
-        const fontinst = nix.thunk(() => ({ [nix.POS]: pos$4, scriptsFolder: "texlive-extra" }));
+        const fontinst = nix.thunk(() => ({ [nix.POS]: $pos[3], scriptsFolder: "texlive-extra" }));
         const mptopdf = nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           scriptsFolder: "context/perl",
           binfiles: nix.thunk(() => nix.concat(nix.selOr(orig, () => [], "mptopdf", "binfiles"), ["mptopdf"])),
         }));
         const pdftex = nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           scriptsFolder: "simpdftex",
           extraBuildInputs: nix.thunk(() => [coreutils, ghostscript_headless, gnused]),
           postFixup: nix.thunk(() => nix.str`sed -i -e '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, gnused]))}\${PATH:+:$PATH}"' \\
@@ -170,12 +74,12 @@ export default nix.lambda((args) => (() => {
 `),
         }));
         const texlive_scripts = nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           scriptsFolder: "texlive",
           extraBuildInputs: nix.thunk(() => [gnused]),
           binfiles: nix.thunk(() => nix.app(nix.sel(lib, "remove"), "man", nix.thunk(() => nix.sel(orig, "texlive-scripts", "binfiles")))),
           binlinks: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             mktexfmt: "fmtutil",
             texhash: nix.thunk(() => nix.add(nix.sel(pkgs, "texlive.infra", "out"), "/bin/mktexlsr")),
           })),
@@ -183,11 +87,11 @@ export default nix.lambda((args) => (() => {
 `),
         }));
         const texlive_scripts_extra = nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           scriptsFolder: "texlive-extra",
           extraBuildInputs: nix.thunk(() => [coreutils, findutils, ghostscript_headless, gnused]),
           binlinks: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             allec: "allcm",
             kpsepath: "kpsetool",
             kpsexpand: "kpsetool",
@@ -200,21 +104,21 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnused])
 sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, gnused]))}\${PATH:+:$PATH}"' "$out"/bin/texconfig-dialog
 `),
         }));
-        const xetex = nix.thunk(() => ({ [nix.POS]: pos$11, scriptsFolder: "texlive-extra" }));
+        const xetex = nix.thunk(() => ({ [nix.POS]: $pos[10], scriptsFolder: "texlive-extra" }));
         const ctanbib = nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           extraBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(bin, "luatex"))]),
         }));
-        const de_macro = nix.thunk(() => ({ [nix.POS]: pos$13, extraBuildInputs: nix.thunk(() => [python3]) }));
-        const match_parens = nix.thunk(() => ({ [nix.POS]: pos$14, extraBuildInputs: nix.thunk(() => [ruby]) }));
-        const optexcount = nix.thunk(() => ({ [nix.POS]: pos$15, extraBuildInputs: nix.thunk(() => [python3]) }));
-        const pdfbook2 = nix.thunk(() => ({ [nix.POS]: pos$16, extraBuildInputs: nix.thunk(() => [python3]) }));
+        const de_macro = nix.thunk(() => ({ [nix.POS]: $pos[12], extraBuildInputs: nix.thunk(() => [python3]) }));
+        const match_parens = nix.thunk(() => ({ [nix.POS]: $pos[13], extraBuildInputs: nix.thunk(() => [ruby]) }));
+        const optexcount = nix.thunk(() => ({ [nix.POS]: $pos[14], extraBuildInputs: nix.thunk(() => [python3]) }));
+        const pdfbook2 = nix.thunk(() => ({ [nix.POS]: $pos[15], extraBuildInputs: nix.thunk(() => [python3]) }));
         const texlogsieve = nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           extraBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(bin, "luatex"))]),
         }));
         const bundledoc = nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -223,7 +127,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const crossrefware = nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -236,7 +140,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const ctan_o_mat = nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -248,7 +152,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const ctanify = nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -257,7 +161,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const ctanupload = nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -269,7 +173,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const exceltex = nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -278,7 +182,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const latexdiff = nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -287,7 +191,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const latex_git_log = nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -296,7 +200,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const latexindent = nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -312,7 +216,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           postFixup: "substituteInPlace \"$out\"/bin/latexindent --replace-fail 'use FindBin;' \"BEGIN { \\$0 = '$scriptsFolder' . '/latexindent.pl'; }; use FindBin;\"\n",
         }));
         const pax = nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -321,7 +225,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const pdflatexpicscale = nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -333,7 +237,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const ptex_fontmaps = nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -342,7 +246,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const purifyeps = nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -351,7 +255,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const sqltex = nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -360,7 +264,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const svn_multi = nix.thunk(() => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -369,7 +273,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const texdoctk = nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -378,7 +282,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const typog = nix.thunk(() => ({
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -387,7 +291,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const ulqda = nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -396,7 +300,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const pygmentex = nix.thunk(() => ({
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -408,7 +312,7 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const pythontex = nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           extraBuildInputs: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
                 const w = nix.withScope(ps, null);
@@ -417,193 +321,193 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutil
           ]),
         }));
         const a2ping = nix.thunk(() => ({
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           extraBuildInputs: nix.thunk(() => [ghostscript_headless]),
           postFixup: nix.thunk(() => nix.str`sed -i '6i$ENV{PATH}='"'"'${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(a2ping, "extraBuildInputs")))}'"'"' . ($ENV{PATH} ? ":$ENV{PATH}" : '"''"');' "$out"/bin/a2ping
 `),
         }));
         const bibexport = nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           extraBuildInputs: nix.thunk(() => [gnugrep]),
           postFixup: nix.thunk(() => nix.str`sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(bibexport, "extraBuildInputs")))}\${PATH:+:$PATH}"' "$out"/bin/bibexport
 `),
         }));
         const checklistings = nix.thunk(() => ({
-          [nix.POS]: pos$40,
+          [nix.POS]: $pos[39],
           extraBuildInputs: nix.thunk(() => [coreutils]),
           postFixup: nix.thunk(() => nix.str`sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(checklistings, "extraBuildInputs")))}\${PATH:+:$PATH}"' "$out"/bin/checklistings
 `),
         }));
         const cjk_gs_integrate = nix.thunk(() => ({
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           extraBuildInputs: nix.thunk(() => [ghostscript_headless]),
           postFixup: nix.thunk(() => nix.str`sed -i '2i$ENV{PATH}='"'"'${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(cjk_gs_integrate, "extraBuildInputs")))}'"'"' . ($ENV{PATH} ? ":$ENV{PATH}" : '"''"');' "$out"/bin/cjk-gs-integrate
 `),
         }));
         const dtxgen = nix.thunk(() => ({
-          [nix.POS]: pos$42,
+          [nix.POS]: $pos[41],
           extraBuildInputs: nix.thunk(() => [coreutils, getopt, gettext, gnumake, texinfo, zip]),
           postFixup: nix.thunk(() => nix.str`sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(dtxgen, "extraBuildInputs")))}\${PATH:+:$PATH}"' "$out"/bin/dtxgen
 `),
         }));
         const dviljk = nix.thunk(() => ({
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           extraBuildInputs: nix.thunk(() => [coreutils]),
           postFixup: nix.thunk(() => nix.str`sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(dviljk, "extraBuildInputs")))}\${PATH:+:$PATH}"' "$out"/bin/dvihp
 `),
         }));
         const epspdf = nix.thunk(() => ({
-          [nix.POS]: pos$44,
+          [nix.POS]: $pos[43],
           extraBuildInputs: nix.thunk(() => [ghostscript_headless]),
           postFixup: nix.thunk(() => nix.str`sed -i '2ios.setenv("PATH","${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(epspdf, "extraBuildInputs")))}" .. (os.getenv("PATH") and ":" .. os.getenv("PATH") or ""))' "$out"/bin/epspdf
 substituteInPlace "$out"/bin/epspdftk --replace-fail '[info script]' "\\"$scriptsFolder/epspdftk.tcl\\""
 `),
         }));
         const epstopdf = nix.thunk(() => ({
-          [nix.POS]: pos$46,
+          [nix.POS]: $pos[45],
           extraBuildInputs: nix.thunk(() => [ghostscript_headless]),
-          binlinks: nix.thunk(() => ({ [nix.POS]: pos$45, repstopdf: "epstopdf" })),
+          binlinks: nix.thunk(() => ({ [nix.POS]: $pos[44], repstopdf: "epstopdf" })),
           postFixup: nix.thunk(() => nix.str`sed -i '2i$ENV{PATH}='"'"'${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(epstopdf, "extraBuildInputs")))}'"'"' . ($ENV{PATH} ? ":$ENV{PATH}" : '"''"');' "$out"/bin/epstopdf
 `),
         }));
         const fragmaster = nix.thunk(() => ({
-          [nix.POS]: pos$47,
+          [nix.POS]: $pos[46],
           extraBuildInputs: nix.thunk(() => [ghostscript_headless]),
           postFixup: nix.thunk(() => nix.str`sed -i '2i$ENV{PATH}='"'"'${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(fragmaster, "extraBuildInputs")))}'"'"' . ($ENV{PATH} ? ":$ENV{PATH}" : '"''"');' "$out"/bin/fragmaster
 `),
         }));
         const installfont = nix.thunk(() => ({
-          [nix.POS]: pos$48,
+          [nix.POS]: $pos[47],
           extraBuildInputs: nix.thunk(() => [coreutils, getopt, gnused]),
           postFixup: nix.thunk(() => nix.str`sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(installfont, "extraBuildInputs")))}\${PATH:+:$PATH}"' "$out"/bin/installfont-tl
 `),
         }));
         const latexfileversion = nix.thunk(() => ({
-          [nix.POS]: pos$49,
+          [nix.POS]: $pos[48],
           extraBuildInputs: nix.thunk(() => [coreutils, gnugrep, gnused]),
           postFixup: nix.thunk(() => nix.str`sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(latexfileversion, "extraBuildInputs")))}\${PATH:+:$PATH}"' "$out"/bin/latexfileversion
 `),
         }));
         const listings_ext = nix.thunk(() => ({
-          [nix.POS]: pos$50,
+          [nix.POS]: $pos[49],
           extraBuildInputs: nix.thunk(() => [coreutils, getopt]),
           postFixup: nix.thunk(() => nix.str`sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(listings_ext, "extraBuildInputs")))}\${PATH:+:$PATH}"' "$out"/bin/listings-ext.sh
 `),
         }));
         const ltxfileinfo = nix.thunk(() => ({
-          [nix.POS]: pos$51,
+          [nix.POS]: $pos[50],
           extraBuildInputs: nix.thunk(() => [coreutils, getopt, gnused]),
           postFixup: nix.thunk(() => nix.str`sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(ltxfileinfo, "extraBuildInputs")))}\${PATH:+:$PATH}"' "$out"/bin/ltxfileinfo
 `),
         }));
         const ltximg = nix.thunk(() => ({
-          [nix.POS]: pos$52,
+          [nix.POS]: $pos[51],
           extraBuildInputs: nix.thunk(() => [ghostscript_headless]),
           postFixup: nix.thunk(() => nix.str`sed -i '2i$ENV{PATH}='"'"'${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(ltximg, "extraBuildInputs")))}'"'"' . ($ENV{PATH} ? ":$ENV{PATH}" : '"''"');' "$out"/bin/ltximg
 `),
         }));
         const luaotfload = nix.thunk(() => ({
-          [nix.POS]: pos$53,
+          [nix.POS]: $pos[52],
           extraBuildInputs: nix.thunk(() => [ncurses]),
           postFixup: nix.thunk(() => nix.str`sed -i '2ios.setenv("PATH","${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(luaotfload, "extraBuildInputs")))}" .. (os.getenv("PATH") and ":" .. os.getenv("PATH") or ""))' "$out"/bin/luaotfload-tool
 `),
         }));
         const makeindex = nix.thunk(() => ({
-          [nix.POS]: pos$54,
+          [nix.POS]: $pos[53],
           extraBuildInputs: nix.thunk(() => [coreutils, gnused]),
           postFixup: nix.thunk(() => nix.str`sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(makeindex, "extraBuildInputs")))}\${PATH:+:$PATH}"' "$out"/bin/mkindex
 `),
         }));
         const pagelayout = nix.thunk(() => ({
-          [nix.POS]: pos$55,
+          [nix.POS]: $pos[54],
           extraBuildInputs: nix.thunk(() => [gnused, ncurses]),
           postFixup: nix.thunk(() => nix.str`sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnused]))}\${PATH:+:$PATH}"' "$out"/bin/pagelayoutapi
 sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ncurses]))}\${PATH:+:$PATH}"' "$out"/bin/textestvis
 `),
         }));
         const pdfcrop = nix.thunk(() => ({
-          [nix.POS]: pos$57,
+          [nix.POS]: $pos[56],
           extraBuildInputs: nix.thunk(() => [ghostscript_headless]),
-          binlinks: nix.thunk(() => ({ [nix.POS]: pos$56, rpdfcrop: "pdfcrop" })),
+          binlinks: nix.thunk(() => ({ [nix.POS]: $pos[55], rpdfcrop: "pdfcrop" })),
           postFixup: nix.thunk(() => nix.str`sed -i '2i$ENV{PATH}='"'"'${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(pdfcrop, "extraBuildInputs")))}'"'"' . ($ENV{PATH} ? ":$ENV{PATH}" : '"''"');' "$out"/bin/pdfcrop
 `),
         }));
         const pdftex_quiet = nix.thunk(() => ({
-          [nix.POS]: pos$58,
+          [nix.POS]: $pos[57],
           extraBuildInputs: nix.thunk(() => [coreutils]),
           postFixup: nix.thunk(() => nix.str`sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(pdftex_quiet, "extraBuildInputs")))}\${PATH:+:$PATH}"' "$out"/bin/pdftex-quiet
 `),
         }));
         const pdfxup = nix.thunk(() => ({
-          [nix.POS]: pos$59,
+          [nix.POS]: $pos[58],
           extraBuildInputs: nix.thunk(() => [coreutils, ghostscript_headless]),
           postFixup: nix.thunk(() => nix.str`sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(pdfxup, "extraBuildInputs")))}\${PATH:+:$PATH}"' "$out"/bin/pdfxup
 `),
         }));
         const pkfix_helper = nix.thunk(() => ({
-          [nix.POS]: pos$60,
+          [nix.POS]: $pos[59],
           extraBuildInputs: nix.thunk(() => [ghostscript_headless]),
           postFixup: nix.thunk(() => nix.str`sed -i '2i$ENV{PATH}='"'"'${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(pkfix_helper, "extraBuildInputs")))}'"'"' . ($ENV{PATH} ? ":$ENV{PATH}" : '"''"');' "$out"/bin/pkfix-helper
 `),
         }));
         const ps2eps = nix.thunk(() => ({
-          [nix.POS]: pos$61,
+          [nix.POS]: $pos[60],
           extraBuildInputs: nix.thunk(() => [ghostscript_headless]),
           postFixup: nix.thunk(() => nix.str`sed -i '2i$ENV{PATH}='"'"'${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(ps2eps, "extraBuildInputs")))}'"'"' . ($ENV{PATH} ? ":$ENV{PATH}" : '"''"');' "$out"/bin/ps2eps
 `),
         }));
         const pst2pdf = nix.thunk(() => ({
-          [nix.POS]: pos$62,
+          [nix.POS]: $pos[61],
           extraBuildInputs: nix.thunk(() => [ghostscript_headless]),
           postFixup: nix.thunk(() => nix.str`sed -i '2i$ENV{PATH}='"'"'${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(pst2pdf, "extraBuildInputs")))}'"'"' . ($ENV{PATH} ? ":$ENV{PATH}" : '"''"');' "$out"/bin/pst2pdf
 `),
         }));
         const tex4ebook = nix.thunk(() => ({
-          [nix.POS]: pos$63,
+          [nix.POS]: $pos[62],
           extraBuildInputs: nix.thunk(() => [html_tidy]),
           postFixup: nix.thunk(() => nix.str`sed -i '2ios.setenv("PATH","${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(tex4ebook, "extraBuildInputs")))}" .. (os.getenv("PATH") and ":" .. os.getenv("PATH") or ""))' "$out"/bin/tex4ebook
 `),
         }));
         const thumbpdf = nix.thunk(() => ({
-          [nix.POS]: pos$64,
+          [nix.POS]: $pos[63],
           extraBuildInputs: nix.thunk(() => [ghostscript_headless]),
           postFixup: nix.thunk(() => nix.str`sed -i '2i$ENV{PATH}='"'"'${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(thumbpdf, "extraBuildInputs")))}'"'"' . ($ENV{PATH} ? ":$ENV{PATH}" : '"''"');' "$out"/bin/thumbpdf
 `),
         }));
         const tpic2pdftex = nix.thunk(() => ({
-          [nix.POS]: pos$65,
+          [nix.POS]: $pos[64],
           extraBuildInputs: nix.thunk(() => [gawk]),
           postFixup: nix.thunk(() => nix.str`sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(tpic2pdftex, "extraBuildInputs")))}\${PATH:+:$PATH}"' "$out"/bin/tpic2pdftex
 `),
         }));
         const wordcount = nix.thunk(() => ({
-          [nix.POS]: pos$66,
+          [nix.POS]: $pos[65],
           extraBuildInputs: nix.thunk(() => [coreutils, gnugrep]),
           postFixup: nix.thunk(() => nix.str`sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(wordcount, "extraBuildInputs")))}\${PATH:+:$PATH}"' "$out"/bin/wordcount
 `),
         }));
         const xdvi = nix.thunk(() => ({
-          [nix.POS]: pos$67,
+          [nix.POS]: $pos[66],
           extraBuildInputs: nix.thunk(() => [coreutils, gnugrep]),
           postFixup: nix.thunk(() => nix.str`sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(xdvi, "extraBuildInputs")))}\${PATH:+:$PATH}"' "$out"/bin/xdvi
 `),
           deps: nix.thunk(() => nix.concat(nix.selOr(orig, () => [], "xdvi", "deps"), ["metafont"])),
         }));
         const xindy = nix.thunk(() => ({
-          [nix.POS]: pos$68,
+          [nix.POS]: $pos[67],
           extraBuildInputs: nix.thunk(() => [gzip]),
           binfiles: nix.thunk(() => (nix.asBool(nix.has(bin, "xindy")) ? nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => ["xindy.mem", "xindy.run"]), nix.thunk(() => nix.sel(orig, "xindy", "binfiles"))) : [])),
           postFixup: nix.thunk(() => nix.str`sed -i '2i$ENV{PATH}='"'"'${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(xindy, "extraBuildInputs")))}'"'"' . ($ENV{PATH} ? ":$ENV{PATH}" : '"''"');' "$out"/bin/{texindy,xindy}
 `),
         }));
         const cluttex = nix.thunk(() => ({
-          [nix.POS]: pos$70,
-          binlinks: nix.thunk(() => ({ [nix.POS]: pos$69, cllualatex: "cluttex", clxelatex: "cluttex" })),
+          [nix.POS]: $pos[69],
+          binlinks: nix.thunk(() => ({ [nix.POS]: $pos[68], cllualatex: "cluttex", clxelatex: "cluttex" })),
         }));
         const context = nix.thunk(() => ({
-          [nix.POS]: pos$72,
+          [nix.POS]: $pos[71],
           binlinks: nix.thunk(() => ({
-            [nix.POS]: pos$71,
+            [nix.POS]: $pos[70],
             context: "luametatex",
             "context.lua": nix.thunk(() => nix.add(nix.sel(pkgs, "context", "tex"), "/scripts/context/lua/context.lua")),
             mtxrun: "luametatex",
@@ -611,13 +515,13 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ncurses]
           })),
         }));
         const dvipdfmx = nix.thunk(() => ({
-          [nix.POS]: pos$74,
-          binlinks: nix.thunk(() => ({ [nix.POS]: pos$73, ebb: "xdvipdfmx" })),
+          [nix.POS]: $pos[73],
+          binlinks: nix.thunk(() => ({ [nix.POS]: $pos[72], ebb: "xdvipdfmx" })),
         }));
         const ptex = nix.thunk(() => ({
-          [nix.POS]: pos$76,
+          [nix.POS]: $pos[75],
           binlinks: nix.thunk(() => ({
-            [nix.POS]: pos$75,
+            [nix.POS]: $pos[74],
             pbibtex: nix.thunk(() => nix.add(nix.sel(pkgs, "uptex", "out"), "/bin/upbibtex")),
             pdvitype: nix.thunk(() => nix.add(nix.sel(pkgs, "uptex", "out"), "/bin/updvitype")),
             ppltotf: nix.thunk(() => nix.add(nix.sel(pkgs, "uptex", "out"), "/bin/uppltotf")),
@@ -625,83 +529,83 @@ sed -i '2iPATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ncurses]
           })),
         }));
         const texdef = nix.thunk(() => ({
-          [nix.POS]: pos$78,
-          binlinks: nix.thunk(() => ({ [nix.POS]: pos$77, latexdef: "texdef" })),
+          [nix.POS]: $pos[77],
+          binlinks: nix.thunk(() => ({ [nix.POS]: $pos[76], latexdef: "texdef" })),
         }));
         const ebong = nix.thunk(() => ({
-          [nix.POS]: pos$79,
+          [nix.POS]: $pos[78],
           postFixup: "sed -Ei 's/import sre/import re/; s/file\\(/open(/g; s/\\t/        /g; s/print +(.*)$/print(\\1)/g' \"$out\"/bin/ebong\n",
         }));
         const extractbb = nix.thunk(() => ({
-          [nix.POS]: pos$80,
+          [nix.POS]: $pos[79],
           extraBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(bin, "core", "dvipdfmx"))]),
           postUnpack: "if [[ -f \"$out\"/scripts/extractbb/extractbb-wrapper.lua ]] ; then\n  sed -i 's!local target_path = interpreter_dir .. \"/\" .. TARGET_PATH_NAME .. target_ext!local target_path = os.getenv(\"NIX_TEXLIVE_XDVIPDFMX\")!' \"$out\"/scripts/extractbb/extractbb-wrapper.lua\nfi\n",
           postFixup: "sed -i \"2ios.setenv('NIX_TEXLIVE_XDVIPDFMX','$(PATH=\"$HOST_PATH\" command -v xdvipdfmx)')\" \"$out\"/bin/extractbb\n",
         }));
         const l3build = nix.thunk(() => ({
-          [nix.POS]: pos$81,
+          [nix.POS]: $pos[80],
           postUnpack: "if [[ -f \"$out\"/scripts/l3build/l3build-aux.lua ]] ; then\n  substituteInPlace \"$out\"/scripts/l3build/l3build-aux.lua --replace-fail '\" TEXMFCNF=.\"' '\" TEXMFCNF=.\" .. os_pathsep .. kpse.var_value(\"TEXMFSYSVAR\") .. \"/web2c\"'\nfi\n",
         }));
         const minted = nix.thunk(() => ({
-          [nix.POS]: pos$82,
+          [nix.POS]: $pos[81],
           postFixup: "substituteInPlace \"$out\"/bin/latexminted --replace-fail \"__file__\" \"\\\"$scriptsFolder/latexminted.py\\\"\"\n",
         }));
         const texaccents = nix.thunk(() => ({
-          [nix.POS]: pos$83,
+          [nix.POS]: $pos[82],
           postFixup: nix.thunk(() => nix.str`sed -i '1s!$! -I${nix.sel(pkgs, "texaccents", "texsource")}/source/support/texaccents!' "$out"/bin/*
 `),
           postUnpack: "if [[ -f \"$out\"/source/support/texaccents/grepl.inc ]] ; then\n  sed -i 's!^-include \"repl.inc\"!-include \"repl.sno\"!' \"$out\"/source/support/texaccents/grepl.inc\nelif [[ -f \"$out\"/scripts/texaccents/texaccents.sno ]] ; then\n  sed -i -e 's!^-include \"host.inc\"!-include \"host.sno\"!' \\\n    -e 's/host(2,2)/host(2,host(3))/g' \\\n    -e 's/host(2,3)/host(2,host(3) + 1)/g' \\\n    \"$out\"/scripts/texaccents/texaccents.sno\nfi\n",
         }));
-        const texblend = nix.thunk(() => ({ [nix.POS]: pos$84, scriptExts: nix.thunk(() => ["lua"]) }));
+        const texblend = nix.thunk(() => ({ [nix.POS]: $pos[83], scriptExts: nix.thunk(() => ["lua"]) }));
         const texosquery = nix.thunk(() => ({
-          [nix.POS]: pos$85,
+          [nix.POS]: $pos[84],
           postFixup: "substituteInPlace \"$out\"/bin/* --replace-fail java \"$interpJava\"\n",
         }));
         const tlshell = nix.thunk(() => ({
-          [nix.POS]: pos$86,
+          [nix.POS]: $pos[85],
           postFixup: nix.thunk(() => nix.str`substituteInPlace "$out"/bin/tlshell \\
   --replace-fail '[dict get $::pkgs texlive.infra localrev]' '${nix.builtins.toString(nix.thunk(() => nix.sel(orig, "texlive.infra", "revision")))}' \\
   --replace-fail '[dict get $::pkgs tlshell localrev]' '${nix.builtins.toString(nix.thunk(() => nix.sel(orig, "tlshell", "revision")))}'
 `),
         }));
         const optex = nix.thunk(() => ({
-          [nix.POS]: pos$87,
+          [nix.POS]: $pos[86],
           deps: nix.thunk(() => nix.concat(nix.selOr(orig, () => [], "optex", "deps"), ["luahbtex"])),
         }));
         const mltex = nix.thunk(() => ({
-          [nix.POS]: pos$88,
+          [nix.POS]: $pos[87],
           deps: nix.thunk(() => nix.concat(nix.selOr(orig, () => [], "mltex", "deps"), ["pdftex"])),
         }));
         const collection_basic = nix.thunk(() => ({
-          [nix.POS]: pos$89,
+          [nix.POS]: $pos[88],
           deps: nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => ["metafont", "xdvi"]), nix.thunk(() => nix.sel(orig, "collection-basic", "deps")))),
         }));
         const collection_metapost = nix.thunk(() => ({
-          [nix.POS]: pos$90,
+          [nix.POS]: $pos[89],
           deps: nix.thunk(() => nix.concat(nix.sel(orig, "collection-metapost", "deps"), ["metafont"])),
         }));
         const collection_plaingeneric = nix.thunk(() => ({
-          [nix.POS]: pos$91,
+          [nix.POS]: $pos[90],
           deps: nix.thunk(() => nix.concat(nix.sel(orig, "collection-plaingeneric", "deps"), ["xdvi"])),
         }));
         const tex4ht = nix.thunk(() => ({
-          [nix.POS]: pos$92,
+          [nix.POS]: $pos[91],
           deps: nix.thunk(() => nix.concat(nix.selOr(orig, () => [], "tex4ht", "deps"), ["tex4htJar"])),
           postUnpack: "[[ ! -d \"$out\"/tex4ht/bin ]] || rm -fr \"$out\"/tex4ht/bin\n",
           hasJar: false,
         }));
         const git_latexdiff_1 = git_latexdiff;
         const luajittex = nix.thunk(() => ({
-          [nix.POS]: pos$93,
+          [nix.POS]: $pos[92],
           binfiles: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), luajit)), nix.thunk(() => nix.sel(orig, "luajittex", "binfiles")))),
           formats: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), luajit)), nix.thunk(() => nix.sel(orig, "luajittex", "formats")))),
         }));
         const mflua = nix.thunk(() => ({
-          [nix.POS]: pos$94,
+          [nix.POS]: $pos[93],
           binfiles: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (bin_1) => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), luajit)) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), "mfluajit", bin_1)))), nix.thunk(() => nix.sel(orig, "mflua", "binfiles")))),
         }));
         const texdoc = nix.thunk(() => ({
-          [nix.POS]: pos$95,
+          [nix.POS]: $pos[94],
           extraRevision: nix.thunk(() => nix.str`-tlpdb${nix.builtins.toString(nix.thunk(() => nix.sel(tlpdbVersion, "revision")))}`),
           extraVersion: nix.thunk(() => nix.str`-tlpdb-${nix.builtins.toString(nix.thunk(() => nix.sel(tlpdbVersion, "revision")))}`),
           extraNativeBuildInputs: nix.thunk(() => [installShellFiles]),
@@ -725,7 +629,7 @@ installShellCompletion --zsh "$TMPDIR"/_texdoc
 `),
         }));
         const texlive$2einfra = nix.thunk(() => ({
-          [nix.POS]: pos$96,
+          [nix.POS]: $pos[95],
           extraRevision: nix.thunk(() => nix.str`.tlpdb${nix.builtins.toString(nix.thunk(() => nix.sel(tlpdbVersion, "revision")))}`),
           extraVersion: nix.thunk(() => nix.str`-tlpdb-${nix.builtins.toString(nix.thunk(() => nix.sel(tlpdbVersion, "revision")))}`),
           license: nix.thunk(() => nix.concat(["gpl2Plus"], nix.concat(nix.app(nix.sel(lib, "toList"), nix.thunk(() => nix.sel(bin, "core", "meta", "license", "shortName"))), nix.selOr(orig, () => [], "texlive.infra", "license")))),
@@ -751,7 +655,7 @@ fi
 `),
         }));
         return {
-          [nix.POS]: pos$97,
+          [nix.POS]: $pos[96],
           "context-legacy": context_legacy,
           "cyrillic-bin": cyrillic_bin,
           fontinst,

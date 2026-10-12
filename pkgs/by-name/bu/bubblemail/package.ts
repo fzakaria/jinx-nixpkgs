@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 48, 3], ["build-system", 56, 3], ["propagatedBuildInputs", 60, 3], ["dontWrapGApps", 68, 3], ["preFixup", 70, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, gettext: false, gtk3: false, python3Packages: false, "gdk-pixbuf": false, libnotify: false, gst_all_1: false, libsecret: false, wrapGAppsHook3: false, "gsettings-desktop-schemas": false, "gnome-online-accounts": false, glib: false, "gobject-introspection": false, folks: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 48, 3], ["build-system", 56, 3], ["propagatedBuildInputs", 60, 3], ["dontWrapGApps", 68, 3], ["preFixup", 70, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const folks = nix.arg($, "folks");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bubblemail",
       version: "1.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "framagit.org",
           owner: "razer",
           repo: "bubblemail",
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extensible mail notification service",
         homepage: "http://bubblemail.free.fr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

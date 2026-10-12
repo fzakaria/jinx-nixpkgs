@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["test", 76, 18]], [["tests", 76, 12]], [["description", 79, 5], ["longDescription", 80, 5], ["changelog", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["build-system", 45, 3], ["dependencies", 47, 3], ["postPatch", 55, 3], ["doCheck", 59, 3], ["pythonImportsCheck", 61, 3], ["dontWrapGApps", 63, 3], ["preFixup", 70, 3], ["passthru", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, keybinder3: false, intltool: false, file: false, gtk3: false, "gobject-introspection": false, libnotify: false, makeBinaryWrapper: false, wrapGAppsHook3: false, vte: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["test", 76, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 76, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 79, 5], ["longDescription", 80, 5], ["changelog", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["build-system", 45, 3], ["dependencies", 47, 3], ["postPatch", 55, 3], ["doCheck", 59, 3], ["pythonImportsCheck", 61, 3], ["dontWrapGApps", 63, 3], ["preFixup", 70, 3], ["passthru", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const vte = nix.arg($, "vte");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "terminator",
       version: "2.1.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gnome-terminator",
           repo: "terminator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,14 +54,14 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "wrapProgram() {\n  wrapProgramBinary \"$1\" \"${gappsWrapperArgs[@]}\"\n}\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "terminator")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Terminal emulator with support for tiling and tabs",
         longDescription: "The goal of this project is to produce a useful tool for arranging\nterminals. It is inspired by programs such as gnome-multi-term,\nquadkonsole, etc. in that the main focus is arranging terminals in grids\n(tabs is the most common default method, which Terminator also supports).\n",
         changelog: nix.thunk(() => nix.str`https://github.com/gnome-terminator/terminator/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

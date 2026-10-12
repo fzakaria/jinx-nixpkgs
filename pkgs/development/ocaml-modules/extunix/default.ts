@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["buildInputs", 24, 3], ["propagatedBuildInputs", 28, 3], ["doCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, "dune-configurator": false, ppxlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["minimalOCamlVersion", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["buildInputs", 24, 3], ["propagatedBuildInputs", 28, 3], ["doCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const dune_configurator = nix.arg($, "dune-configurator");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "extunix",
       version: "0.4.4",
       minimalOCamlVersion: "5.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ygrek/extunix/releases/download/v${nix.sel(finalAttrs, "version")}/extunix-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-kzTIkjFiI+aK73lcpystQp1O7Apkf0GLA142oFPRSX0=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ppxlib]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of thin bindings to various low-level system API",
         homepage: "https://github.com/ygrek/extunix",
         changelog: nix.thunk(() => nix.str`https://github.com/ygrek/extunix/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 45, 5], ["broken", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["setSourceRoot", 19, 3], ["nativeBuildInputs", 23, 3], ["makeFlags", 25, 3], ["enableParallelBuilding", 32, 3], ["buildFlags", 33, 3], ["installFlags", 34, 3], ["installTargets", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 45, 5], ["broken", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["setSourceRoot", 19, 3], ["nativeBuildInputs", 23, 3], ["makeFlags", 25, 3], ["enableParallelBuilding", 32, 3], ["buildFlags", 33, 3], ["installFlags", 34, 3], ["installTargets", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xone",
       version: "0.5.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dlundqvist",
           repo: "xone",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installTargets: nix.thunk(() => ["modules_install"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Linux kernel driver for Xbox One and Xbox Series X|S accessories",
         homepage: "https://github.com/dlundqvist/xone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

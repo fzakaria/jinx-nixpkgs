@@ -2,7 +2,7 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/aliases.nix", [["blueballs-neovim", 35, 5], ["cmp-tabnine", 36, 5], ["coc-go", 37, 5], ["coc-rls", 38, 5], ["coc-sumneko-lua", 39, 5], ["coc-tsserver", 40, 5], ["coc-vetur", 41, 5], ["completion-tabnine", 42, 5], ["completion-treesitter", 43, 5], ["ctags-lsp-nvim", 44, 5], ["feline-nvim", 45, 5], ["floating-nvim", 46, 5], ["fruzzy", 47, 5], ["gleam-vim", 48, 5], ["mind-nvim", 49, 5], ["minsnip-nvim", 50, 5], ["neuron-nvim", 51, 5], ["null-ls-nvim", 52, 5], ["nvim-gps", 53, 5], ["nvim-lsp-ts-utils", 54, 5], ["nvim-ts-rainbow", 55, 5], ["nvim-ts-rainbow2", 56, 5], ["peskcolor-vim", 57, 5], ["playground", 58, 5], ["pure-lua", 59, 5], ["registers-nvim", 60, 5], ["rust-tools-nvim", 61, 5], ["Spacegray-vim", 62, 5], ["SpaceVim", 63, 5], ["spacevim", 64, 5], ["sparkup", 65, 5], ["syntax-tree-surfer", 66, 5], ["tabnine-vim", 67, 5], ["todo-nvim", 68, 5], ["typescript-nvim", 69, 5], ["vim-csharp", 70, 5], ["vim-gml", 71, 5], ["vim-sourcetrail", 72, 5], ["vimacs", 73, 5]]);
+const $pos = nix.positions(here + "/aliases.nix", [[["blueballs-neovim", 35, 5], ["cmp-tabnine", 36, 5], ["coc-go", 37, 5], ["coc-rls", 38, 5], ["coc-sumneko-lua", 39, 5], ["coc-tsserver", 40, 5], ["coc-vetur", 41, 5], ["completion-tabnine", 42, 5], ["completion-treesitter", 43, 5], ["ctags-lsp-nvim", 44, 5], ["feline-nvim", 45, 5], ["floating-nvim", 46, 5], ["fruzzy", 47, 5], ["gleam-vim", 48, 5], ["mind-nvim", 49, 5], ["minsnip-nvim", 50, 5], ["neuron-nvim", 51, 5], ["null-ls-nvim", 52, 5], ["nvim-gps", 53, 5], ["nvim-lsp-ts-utils", 54, 5], ["nvim-ts-rainbow", 55, 5], ["nvim-ts-rainbow2", 56, 5], ["peskcolor-vim", 57, 5], ["playground", 58, 5], ["pure-lua", 59, 5], ["registers-nvim", 60, 5], ["rust-tools-nvim", 61, 5], ["Spacegray-vim", 62, 5], ["SpaceVim", 63, 5], ["spacevim", 64, 5], ["sparkup", 65, 5], ["syntax-tree-surfer", 66, 5], ["tabnine-vim", 67, 5], ["todo-nvim", 68, 5], ["typescript-nvim", 69, 5], ["vim-csharp", 70, 5], ["vim-gml", 71, 5], ["vim-sourcetrail", 72, 5], ["vimacs", 73, 5]]]);
 
 export default (lib) => (final) => (prev) => (() => {
   const removeRecurseForDerivations = (alias) => (nix.asBool(nix.selOr(alias, () => false, "recurseForDerivations")) ? nix.app(nix.sel(lib, "removeAttrs"), alias, nix.thunk(() => ["recurseForDerivations"])) : nix.force(alias));
@@ -12,7 +12,7 @@ export default (lib) => (final) => (prev) => (() => {
   return nix.app(mapAliases, nix.thunk(() => (() => {
       const w = nix.withScope(prev, null);
       return nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "blueballs-neovim": nix.thunk(() => nix.app(nix.builtins.throw, "'vimPlugins.blueballs-neovim' has been removed")),
         "cmp-tabnine": nix.thunk(() => nix.app(nix.builtins.throw, "'vimPlugins.cmp-tabnine' has been removed, as tabnine has been dropped")),
         "coc-go": nix.thunk(() => nix.app(nix.builtins.throw, "'vimPlugins.coc-go' was removed, as it was unmaintained")),

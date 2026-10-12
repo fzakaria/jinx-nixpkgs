@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/srcs.nix", [[["url", 5, 5], ["hash", 6, 5]], [["url", 12, 7], ["hash", 13, 7]], [["version", 3, 3], ["src", 4, 3], ["srcs", 9, 3]]]);
 const formals$1 = { args: { fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/srcs.nix", [["url", 5, 5], ["hash", 6, 5]]);
-const pos$2 = nix.positions(here + "/srcs.nix", [["url", 12, 7], ["hash", 13, 7]]);
-const pos$3 = nix.positions(here + "/srcs.nix", [["version", 3, 3], ["src", 4, 3], ["srcs", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,19 +11,19 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const version = "1.8.16.1";
     const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://www.openafs.org/dl/openafs/${version}/openafs-${version}-src.tar.bz2`),
         hash: "sha256-z1kGdYmilUcePxD2RPDyFlETNHzIsK0Pu0EjJZoq8KI=",
       }))));
     const srcs = nix.thunk(() => [
       src,
       nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://www.openafs.org/dl/openafs/${version}/openafs-${version}-doc.tar.bz2`),
           hash: "sha256-kZhKpuF1VEZC4d2z10ROwibq57oTTTfAXfEPu4CNnjA=",
         })))),
     ]);
-    return { [nix.POS]: pos$3, version, src, srcs };
+    return { [nix.POS]: $pos[2], version, src, srcs };
   })();
 })(), formals$1);
 //# sourceMappingURL=srcs.ts.map

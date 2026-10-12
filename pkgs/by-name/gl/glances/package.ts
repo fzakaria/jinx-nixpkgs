@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["service", 61, 5]], [["tests", 60, 12]], [["homepage", 98, 5], ["description", 99, 5], ["mainProgram", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["disabled", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["makeWrapperArgs", 32, 3], ["doCheck", 39, 3], ["dependencies", 41, 3], ["passthru", 60, 3], ["nativeCheckInputs", 64, 3], ["disabledTestPaths", 76, 3], ["disabledTests", 81, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, hddtemp: false, nixosTests: false, podman: false, python3Packages: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["service", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 60, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 98, 5], ["description", 99, 5], ["mainProgram", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["disabled", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["makeWrapperArgs", 32, 3], ["doCheck", 39, 3], ["dependencies", 41, 3], ["passthru", 60, 3], ["nativeCheckInputs", 64, 3], ["disabledTestPaths", 76, 3], ["disabledTests", 81, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "glances",
       version: "4.5.7",
       pyproject: true,
       disabled: nix.thunk(() => nix.sel(python3Packages, "isPyPy")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nicolargo",
           repo: "glances",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,8 +52,8 @@ export default nix.lambda((args) => (() => {
         ], nix.concat([which], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [hddtemp]))));
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, service: nix.thunk(() => nix.sel(nixosTests, "glances")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], service: nix.thunk(() => nix.sel(nixosTests, "glances")) })),
       })),
       nativeCheckInputs: nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
@@ -76,7 +72,7 @@ export default nix.lambda((args) => (() => {
         "test_pipe",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://nicolargo.github.io/glances/",
         description: "Cross-platform curses-based monitoring tool",
         mainProgram: "glances",

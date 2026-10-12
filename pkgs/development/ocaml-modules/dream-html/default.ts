@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 9, 3], ["src", 10, 23], ["version", 10, 27], ["meta", 10, 35], ["minimalOCamlVersion", 12, 3], ["buildInputs", 14, 3], ["propagatedBuildInputs", 18, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, dream: false, "pure-html": false, ppxlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["src", 10, 23], ["version", 10, 27], ["meta", 10, 35], ["minimalOCamlVersion", 12, 3], ["buildInputs", 14, 3], ["propagatedBuildInputs", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const pure_html = nix.arg($, "pure-html");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "dream-html",
       src: nix.thunk(() => nix.attr(pure_html, "src")),
       version: nix.thunk(() => nix.attr(pure_html, "version")),

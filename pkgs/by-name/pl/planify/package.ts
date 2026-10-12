@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["teams", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 57, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "desktop-file-utils": false, meson: false, ninja: false, "pkg-config": false, vala: false, wrapGAppsHook4: false, "evolution-data-server-gtk4": false, glib: false, "glib-networking": false, "gnome-online-accounts": false, gst_all_1: false, gtk4: false, gtksourceview5: false, gxml: false, "json-glib": false, libadwaita: false, libgee: false, libical: false, "libportal-gtk4": false, libsecret: false, libsoup_3: false, libspelling: false, sqlite: false, icu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["teams", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 57, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const icu = nix.arg($, "icu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "planify",
       version: "4.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alainm23",
           repo: "planify",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,7 +70,7 @@ export default nix.lambda((args) => (() => {
         icu,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Task manager with Todoist support designed for GNU/Linux",
         homepage: "https://github.com/alainm23/planify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

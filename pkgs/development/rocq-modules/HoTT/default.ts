@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 17, 9], ["out", 18, 9]], [["hash", 22, 18]], [["hash", 23, 18]], [["hash", 24, 18]], [["hash", 25, 18]], [["hash", 26, 18]], [["hash", 27, 18]], [["hash", 28, 18]], [["hash", 29, 17]], [["8.14", 22, 11], ["8.15", 23, 11], ["8.16", 24, 11], ["8.17", 25, 11], ["8.18", 26, 11], ["8.19", 27, 11], ["8.20", 28, 11], ["9.0", 29, 11]], [["homepage", 41, 5], ["description", 42, 5], ["longDescription", 43, 5], ["maintainers", 58, 5]], [["pname", 9, 3], ["repo", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["defaultVersion", 13, 3], ["releaseRev", 21, 3], ["release", 22, 3], ["opam-name", 33, 3], ["useDune", 34, 3], ["patchPhase", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 17, 9], ["out", 18, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 22, 18]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 23, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 24, 18]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 25, 18]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 26, 18]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 27, 18]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hash", 28, 18]]);
-const pos$9 = nix.positions(here + "/default.nix", [["hash", 29, 17]]);
-const pos$10 = nix.positions(here + "/default.nix", [["8.14", 22, 11], ["8.15", 23, 11], ["8.16", 24, 11], ["8.17", 25, 11], ["8.18", 26, 11], ["8.19", 27, 11], ["8.20", 28, 11], ["9.0", 29, 11]]);
-const pos$11 = nix.positions(here + "/default.nix", [["homepage", 41, 5], ["description", 42, 5], ["longDescription", 43, 5], ["maintainers", 58, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["repo", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["defaultVersion", 13, 3], ["releaseRev", 21, 3], ["release", 22, 3], ["opam-name", 33, 3], ["useDune", 34, 3], ["patchPhase", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "HoTT",
       repo: "Coq-HoTT",
       owner: "HoTT",
@@ -32,7 +21,7 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.14", "9.0")),
               out: nix.thunk(() => nix.sel(coq, "coq-version")),
             })),
@@ -40,37 +29,37 @@ export default nix.lambda((args) => (() => {
       })()),
       releaseRev: (v) => nix.str`V${v}`,
       release: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         "8.14": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-7kXk2pmYsTNodHA+Qts3BoMsewvzmCbYvxw9Sgwyvq0=",
         })),
         "8.15": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-JfeiRZVnrjn3SQ87y6dj9DWNwCzrkK3HBogeZARUn9g=",
         })),
         "8.16": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-xcEbz4ZQ+U7mb0SEJopaczfoRc2GSgF2BGzUSWI0/HY=",
         })),
         "8.17": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256-GjTUpzL9UzJm4C2ilCaYEufLG3hcj7rJPc5Op+OMal8=",
         })),
         "8.18": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256-URoUoQOsG0432wg9i6pTRomWQZ+ewutq2+V29TBrVzc=",
         })),
         "8.19": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256-igG3mhR6uPXV+SCtPH9PBw/eAtTFFry6HPT5ypWj3tQ=",
         })),
         "8.20": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hash: "sha256-XHAvomi0of11j4x5gpTgD5Mw53eF1FpnCyBvdbV3g6I=",
         })),
         "9.0": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           hash: "sha256-etdLH1qDyDc+ZM7K/65iib0MRlLhsnVmzWBCULUDD50=",
         })),
       })),
@@ -78,7 +67,7 @@ export default nix.lambda((args) => (() => {
       useDune: nix.thunk(() => nix.app(nix.sel(lib, "versions", "isGe"), "8.17", nix.thunk(() => nix.sel(coq, "coq-version")))),
       patchPhase: "patchShebangs etc\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         homepage: "https://homotopytypetheory.org/",
         description: "Homotopy Type Theory library",
         longDescription: "Homotopy Type Theory is an interpretation of Martin-Löf’s intensional\ntype theory into abstract homotopy theory. Propositional equality is\ninterpreted as homotopy and type isomorphism as homotopy equivalence.\nLogical constructions in type theory then correspond to\nhomotopy-invariant constructions on spaces, while theorems and even\nproofs in the logical system inherit a homotopical meaning. As the\nnatural logic of homotopy, type theory is also related to higher\ncategory theory as it is used e.g. in the notion of a higher topos.\n\nThe HoTT library is a development of homotopy-theoretic ideas in the Coq\nproof assistant. It draws many ideas from Vladimir Voevodsky's\nFoundations library (which has since been incorporated into the Unimath\nlibrary) and also cross-pollinates with the HoTT-Agda library.\n",

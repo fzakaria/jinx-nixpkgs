@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["curio", 34, 5], ["trio", 35, 5], ["uvloop", 36, 5]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["buildInputs", 31, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 39, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, anyio: false, buildPythonPackage: false, "curio-compat": false, fetchFromGitHub: false, hatchling: false, hypothesis: false, pytest: false, pytestCheckHook: false, pythonOlder: false, "trio-asyncio": false, trio: false, uvloop: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["curio", 34, 5], ["trio", 35, 5], ["uvloop", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["buildInputs", 31, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 39, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const trio = nix.arg($, "trio");
   const uvloop = nix.arg($, "uvloop");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pytest-aio",
       version: "2.1.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "klen",
           repo: "pytest-aio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       buildInputs: nix.thunk(() => [pytest]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         curio: nix.thunk(() => [curio_compat]),
         trio: nix.thunk(() => [trio]),
         uvloop: nix.thunk(() => [uvloop]),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([anyio, hypothesis, pytestCheckHook], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.14")), nix.thunk(() => [trio_asyncio])), nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies")))))))),
       pythonImportsCheck: nix.thunk(() => ["pytest_aio"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pytest plugin for aiohttp support",
         homepage: "https://github.com/klen/pytest-aio",
         changelog: nix.thunk(() => nix.str`https://github.com/klen/pytest-aio/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

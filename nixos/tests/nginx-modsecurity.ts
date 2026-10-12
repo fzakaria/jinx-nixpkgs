@@ -2,43 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nginx-modsecurity.nix", [[["root", 32, 13], ["extraConfig", 33, 13]], [["localhost", 16, 22]], [["enable", 14, 9], ["additionalModules", 15, 9], ["virtualHosts", 16, 9]], [["nginx", 13, 16]], [["services", 13, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nginx-modsecurity.nix", [["root", 32, 13], ["extraConfig", 33, 13]]);
-const pos$2 = nix.positions(here + "/nginx-modsecurity.nix", [["localhost", 16, 22]]);
-const pos$3 = nix.positions(here + "/nginx-modsecurity.nix", [["enable", 14, 9], ["additionalModules", 15, 9], ["virtualHosts", 16, 9]]);
-const pos$4 = nix.positions(here + "/nginx-modsecurity.nix", [["nginx", 13, 16]]);
-const pos$5 = nix.positions(here + "/nginx-modsecurity.nix", [["services", 13, 7]]);
-const pos$6 = nix.positions(here + "/nginx-modsecurity.nix", [["machine", 5, 9]]);
-const pos$7 = nix.positions(here + "/nginx-modsecurity.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "nginx-modsecurity",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               additionalModules: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nginxModules", "modsecurity"))]),
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 localhost: nix.thunk(() => (() => {
                   const modsecurity_conf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "modsecurity.conf", "SecRuleEngine On\nSecDefaultAction \"phase:1,log,auditlog,deny,status:403\"\nSecDefaultAction \"phase:2,log,auditlog,deny,status:403\"\nSecRule REQUEST_METHOD   \"HEAD\"        \"id:100, phase:1, block\"\nSecRule REQUEST_FILENAME \"secret.html\" \"id:101, phase:2, block\"\n"));
                   const testroot = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "testroot", nix.thunk(() => ({})), "mkdir -p $out\necho \"<html><body>Hello World!</body></html>\" > $out/index.html\necho \"s3cret\" > $out/secret.html\n"));
                   return {
-                    [nix.POS]: pos$1,
+                    [nix.POS]: $pos[0],
                     root: testroot,
                     extraConfig: nix.thunk(() => nix.str`modsecurity on;
 modsecurity_rules_file ${modsecurity_conf};

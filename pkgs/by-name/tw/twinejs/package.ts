@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 28, 7], ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 29, 7]], [["name", 74, 7], ["desktopName", 75, 7], ["comment", 76, 7], ["exec", 77, 7], ["icon", 78, 7], ["categories", 79, 7]], [["updateScript", 83, 12]], [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5], ["mainProgram", 92, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["npmDepsHash", 26, 3], ["env", 28, 3], ["nativeBuildInputs", 31, 3], ["buildPhase", 38, 3], ["installPhase", 47, 3], ["desktopItems", 72, 3], ["passthru", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, electron: false, jq: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, desktopToDarwinBundle: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 28, 7], ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 74, 7], ["desktopName", 75, 7], ["comment", 76, 7], ["exec", 77, 7], ["icon", 78, 7], ["categories", 79, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 83, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5], ["mainProgram", 92, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["npmDepsHash", 26, 3], ["env", 28, 3], ["nativeBuildInputs", 31, 3], ["buildPhase", 38, 3], ["installPhase", 47, 3], ["desktopItems", 72, 3], ["passthru", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "twine",
       version: "2.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "klembot",
           repo: "twinejs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-k2OHeLcGcVCurTSefEqtqwUzolZ72rKA4WRFJifUPyY=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1",
       })),
@@ -67,7 +62,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "twine",
             desktopName: "Twine",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -77,11 +72,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open-source tool for telling interactive, nonlinear stories",
         homepage: "https://twinery.org",
         changelog: nix.thunk(() => nix.str`https://github.com/klembot/twinejs/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

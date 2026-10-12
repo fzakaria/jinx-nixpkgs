@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["sha256", 20, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5], ["downloadPage", 45, 5]], [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["patches", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fuse: false, icu66: false, "pkg-config": false, libxml2: false, libuuid: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5], ["downloadPage", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["patches", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const libuuid = nix.arg($, "libuuid");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "3.4.2_Z7550-02501",
       pname: "hpe-ltfs",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           owner: "nix-community",
           repo: "hpe-ltfs",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [fuse, icu66, libxml2, libuuid]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "HPE's implementation of the open-source tape filesystem standard ltfs",
         homepage: "https://support.hpe.com/hpesc/public/km/product/1009214665/Product",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

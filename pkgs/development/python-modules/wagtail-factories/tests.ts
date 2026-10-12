@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["pname", 11, 3], ["pyproject", 12, 3], ["src", 13, 31], ["version", 13, 35], ["dontBuild", 15, 3], ["dontInstall", 16, 3], ["checkInputs", 18, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "django-pattern-library": false, "pytest-django": false, pytestCheckHook: false, wagtail: false, "wagtail-factories": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["pname", 11, 3], ["pyproject", 12, 3], ["src", 13, 31], ["version", 13, 35], ["dontBuild", 15, 3], ["dontInstall", 16, 3], ["checkInputs", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const wagtail = nix.arg($, "wagtail");
   const wagtail_factories = nix.arg($, "wagtail-factories");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "wagtail-factories-tests",
       pyproject: false,
       src: nix.thunk(() => nix.attr(wagtail_factories, "src")),

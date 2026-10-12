@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/write-text-file.nix", [[["name", 26, 9], ["destination", 27, 9], ["executable", 28, 9], ["text", 29, 9]], [["name", 46, 5], ["destination", 47, 5], ["text", 48, 5], ["checkPhase", 49, 5]], [["different-exe-name", 23, 3], ["weird-name", 45, 3]]]);
 const formals$1 = { args: { lib: false, runCommand: false, runtimeShell: false, writeTextFile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/write-text-file.nix", [["name", 26, 9], ["destination", 27, 9], ["executable", 28, 9], ["text", 29, 9]]);
-const pos$2 = nix.positions(here + "/write-text-file.nix", [["name", 46, 5], ["destination", 47, 5], ["text", 48, 5], ["checkPhase", 49, 5]]);
-const pos$3 = nix.positions(here + "/write-text-file.nix", [["different-exe-name", 23, 3], ["weird-name", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const writeTextFile = nix.arg($, "writeTextFile");
   const veryWeirdName = "here's a name with some \"bad\" characters, like spaces and quotes";
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "different-exe-name": nix.thunk(() => (() => {
         const pkg = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "bar",
             destination: "/bin/foo",
             executable: true,
@@ -36,7 +34,7 @@ touch $out
 `));
       })()),
       "weird-name": nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "weird-names",
           destination: nix.thunk(() => nix.str`/etc/${veryWeirdName}`),
           text: "passed!",

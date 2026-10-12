@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 39, 5], ["hash", 40, 5]], [["packageName", 80, 41]], [["updateScript", 80, 5]], [["homepage", 84, 5], ["description", 85, 5], ["mainProgram", 86, 5], ["teams", 87, 5], ["license", 88, 5], ["platforms", 89, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 57, 3], ["doCheck", 77, 3], ["passthru", 79, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gettext: false, fetchurl: false, "blueprint-compiler": false, "evolution-data-server-gtk4": false, "pkg-config": false, libxslt: false, "docbook-xsl-nons": false, docbook_xml_dtd_42: false, "desktop-file-utils": false, gtk4: false, glib: false, "libportal-gtk4": false, "gnome-online-accounts": false, qrencode: false, wrapGAppsHook4: false, folks: false, libxml2: false, gnome: false, vala: false, meson: false, ninja: false, libadwaita: false, libglycin: false, "libglycin-gtk4": false, "glycin-loaders": false, "gsettings-desktop-schemas": false, gst_all_1: false, pipewire: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 80, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 84, 5], ["description", 85, 5], ["mainProgram", 86, 5], ["teams", 87, 5], ["license", 88, 5], ["platforms", 89, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 57, 3], ["doCheck", 77, 3], ["passthru", 79, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const pipewire = nix.arg($, "pipewire");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-contacts",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-contacts/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-contacts-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-KjvqNDFxviRPErfCGkDKOOmpLeqYkDk69eisE5vA2rM=",
         })))),
@@ -84,11 +80,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-contacts" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-contacts" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://apps.gnome.org/Contacts/",
         description: "GNOME’s integrated address book",
         mainProgram: "gnome-contacts",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["rev", 36, 5], ["hash", 37, 5]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 52, 3], ["disabledTests", 59, 3], ["disabledTestPaths", 80, 3], ["pythonImportsCheck", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, setuptools: false, aiodns: false, aiohttp: false, "azure-core": false, certifi: false, isodate: false, requests: false, "requests-oauthlib": false, pytestCheckHook: false, "pytest-aiohttp": false, httpretty: false, trio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 52, 3], ["disabledTests", 59, 3], ["disabledTestPaths", 80, 3], ["pythonImportsCheck", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const httpretty = nix.arg($, "httpretty");
   const trio = nix.arg($, "trio");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "msrest",
       version: "0.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Azure",
           repo: "msrest-for-python",
           rev: "2d8fd04f68a124d0f3df7b81584accc3270b1afc",
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["msrest"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Runtime library for AutoRest generated Python clients",
         homepage: "https://github.com/Azure/msrest-for-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["NIX_CFLAGS_COMPILE", 22, 7]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5], ["platforms", 47, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["env", 22, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["makeFlags", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, pixman: false, "pkg-config": false, wayland: false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5], ["platforms", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["env", 22, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["makeFlags", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wayneko",
       version: "0-unstable-2024-03-29",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~leon_plickat",
           repo: "wayneko",
           rev: "c1919dc3a7e610d30e4c06efaa5af85941f27d86",
           hash: "sha256-2cbEcDK6WZPe4HvY1pxmZVyDAj617VP1l0Gn7uSlNaE=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       postPatch: "substituteInPlace Makefile \\\n  --replace-fail -Werror \"\"\n",
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pixman, wayland]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Neko on Wayland",
         homepage: "https://sr.ht/~leon_plickat/wayneko",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

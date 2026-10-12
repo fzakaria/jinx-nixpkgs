@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 12, 3], ["version", 14, 30], ["src", 14, 38], ["meta", 14, 42], ["pyproject", 16, 3], ["build-system", 18, 3], ["pythonRelaxDeps", 20, 3], ["dependencies", 22, 3], ["pythonImportsCheck", 30, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, hatchling: false, "llama-index-cli": false, "llama-index-core": false, "llama-index-embeddings-openai": false, "llama-index-llms-openai": false, nltk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 14, 30], ["src", 14, 38], ["meta", 14, 42], ["pyproject", 16, 3], ["build-system", 18, 3], ["pythonRelaxDeps", 20, 3], ["dependencies", 22, 3], ["pythonImportsCheck", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const llama_index_llms_openai = nix.arg($, "llama-index-llms-openai");
   const nltk = nix.arg($, "nltk");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "llama-index",
       version: nix.thunk(() => nix.attr(llama_index_core, "version")),
       src: nix.thunk(() => nix.attr(llama_index_core, "src")),

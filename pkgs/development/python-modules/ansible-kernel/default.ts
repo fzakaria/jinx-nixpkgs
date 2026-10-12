@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["argv", 22, 7], ["codemirror_mode", 29, 7], ["display_name", 30, 7], ["language", 31, 7]], [["pname", 41, 13], ["version", 41, 19], ["hash", 42, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 45, 3], ["dependencies", 47, 3], ["postPatch", 59, 3], ["doCheck", 69, 3], ["postInstall", 72, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, writeText: false, setuptools: false, ipywidgets: false, six: false, docopt: false, tqdm: false, jupyter: false, psutil: false, pyyaml: false, "ansible-runner": false, ansible: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["argv", 22, 7], ["codemirror_mode", 29, 7], ["display_name", 30, 7], ["language", 31, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 41, 13], ["version", 41, 19], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 45, 3], ["dependencies", 47, 3], ["postPatch", 59, 3], ["doCheck", 69, 3], ["postInstall", 72, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const ansible = nix.arg($, "ansible");
   const python = nix.arg($, "python");
   const kernelSpecFile = nix.thunk(() => nix.app(writeText, "kernel.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         argv: nix.thunk(() => [
           nix.thunk(() => nix.sel(python, "interpreter")),
           "-m",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           hash: "sha256-UJjm9FpmXSznXtaIR2rVv5YJS/H83FvRkNz09vwoe0c=",
@@ -66,14 +63,14 @@ export default nix.lambda((args) => (() => {
 ln -s ${kernelSpecFile} $out/share/jupyter/kernels/ansible/kernel.json
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Ansible kernel for Jupyter",
         homepage: "https://github.com/ansible/ansible-jupyter-kernel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

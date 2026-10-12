@@ -2,41 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/remark42.nix", [[["systemPackages", 9, 19]], [["AUTH_ANON", 20, 18]], [["enable", 12, 9], ["remarkUrl", 13, 9], ["sites", 14, 9], ["environmentFile", 16, 9], ["settings", 20, 9]], [["remark42", 11, 16]], [["environment", 9, 7], ["services", 11, 7]], [["machine", 6, 9]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 24, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/remark42.nix", [["systemPackages", 9, 19]]);
-const pos$2 = nix.positions(here + "/remark42.nix", [["AUTH_ANON", 20, 18]]);
-const pos$3 = nix.positions(here + "/remark42.nix", [["enable", 12, 9], ["remarkUrl", 13, 9], ["sites", 14, 9], ["environmentFile", 16, 9], ["settings", 20, 9]]);
-const pos$4 = nix.positions(here + "/remark42.nix", [["remark42", 11, 16]]);
-const pos$5 = nix.positions(here + "/remark42.nix", [["environment", 9, 7], ["services", 11, 7]]);
-const pos$6 = nix.positions(here + "/remark42.nix", [["machine", 6, 9]]);
-const pos$7 = nix.positions(here + "/remark42.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "remark42",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             remark42: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               remarkUrl: "http://127.0.0.1:8080",
               sites: nix.thunk(() => ["remark"]),
               environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "remark42.env", "SECRET=unit-test-secret\n")),
-              settings: nix.thunk(() => ({ [nix.POS]: pos$2, AUTH_ANON: "true" })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[1], AUTH_ANON: "true" })),
             })),
           })),
         };

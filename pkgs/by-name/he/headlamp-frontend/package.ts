@@ -2,17 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["PUBLIC_URL", 34, 5], ["NODE_OPTIONS", 35, 5]], [["description", 46, 7], ["homepage", 47, 7], ["changelog", 48, 7], ["license", 49, 7], ["maintainers", 50, 7]], [["pname", 7, 3], ["version", 8, 29], ["src", 8, 37], ["strictDeps", 10, 3], ["__structuredAttrs", 11, 3], ["sourceRoot", 13, 3], ["npmDepsHash", 15, 3], ["postPatch", 17, 3], ["preBuild", 23, 3], ["env", 33, 3], ["installPhase", 38, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, "headlamp-server": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["PUBLIC_URL", 34, 5], ["NODE_OPTIONS", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 7], ["homepage", 47, 7], ["changelog", 48, 7], ["license", 49, 7], ["maintainers", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 29], ["src", 8, 37], ["strictDeps", 10, 3], ["__structuredAttrs", 11, 3], ["sourceRoot", 13, 3], ["npmDepsHash", 15, 3], ["postPatch", 17, 3], ["preBuild", 23, 3], ["env", 33, 3], ["installPhase", 38, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const headlamp_server = nix.arg($, "headlamp-server");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "headlamp-frontend",
       version: nix.thunk(() => nix.attr(headlamp_server, "version")),
       src: nix.thunk(() => nix.attr(headlamp_server, "src")),
@@ -33,7 +31,7 @@ REACT_APP_HEADLAMP_SIDEBAR_DEFAULT_OPEN=true
 EOF
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         PUBLIC_URL: "./",
         NODE_OPTIONS: "--max-old-space-size=8096",
       })),
@@ -41,7 +39,7 @@ EOF
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(headlamp_server, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

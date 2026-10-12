@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["configureFlags", 38, 3], ["makeFlags", 45, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, cups: false, fetchFromGitHub: false, ghostscript: false, lib: false, libcupsfilters: false, libz: false, mupdf: false, "pkg-config": false, "poppler-utils": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["configureFlags", 38, 3], ["makeFlags", 45, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const poppler_utils = nix.arg($, "poppler-utils");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libppd",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenPrinting",
           repo: "libppd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         "CUPS_SERVERROOT=$(out)/etc/cups",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library designed to support legacy printer drivers by handling PostScript Printer Description (PPD) file",
         homepage: "https://github.com/OpenPrinting/libppd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

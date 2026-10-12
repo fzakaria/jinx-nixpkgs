@@ -2,16 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/karakeep.nix", [[["maintainers", 8, 8]], [["allowedTCPPorts", 11, 25]], [["firewall", 11, 16]], [["HOST", 16, 9], ["PORT", 17, 9], ["DISABLE_NEW_RELEASE_CHECK", 18, 9]], [["enable", 20, 19]], [["enable", 14, 7], ["extraEnvironment", 15, 7], ["meilisearch", 20, 7]], [["karakeep", 13, 14]], [["networking", 11, 5], ["services", 13, 5]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 24, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/karakeep.nix", [["maintainers", 8, 8]]);
-const pos$2 = nix.positions(here + "/karakeep.nix", [["allowedTCPPorts", 11, 25]]);
-const pos$3 = nix.positions(here + "/karakeep.nix", [["firewall", 11, 16]]);
-const pos$4 = nix.positions(here + "/karakeep.nix", [["HOST", 16, 9], ["PORT", 17, 9], ["DISABLE_NEW_RELEASE_CHECK", 18, 9]]);
-const pos$5 = nix.positions(here + "/karakeep.nix", [["enable", 20, 19]]);
-const pos$6 = nix.positions(here + "/karakeep.nix", [["enable", 14, 7], ["extraEnvironment", 15, 7], ["meilisearch", 20, 7]]);
-const pos$7 = nix.positions(here + "/karakeep.nix", [["karakeep", 13, 14]]);
-const pos$8 = nix.positions(here + "/karakeep.nix", [["networking", 11, 5], ["services", 13, 5]]);
-const pos$9 = nix.positions(here + "/karakeep.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const port = 3001n;
   const host = "karakeep_server";
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "karakeep",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tetov"))];
@@ -30,23 +22,23 @@ export default nix.lambda((args) => (() => {
     })),
     nodes: nix.thunk(() => nix.attrsDyn({}, [
       [host, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [port]) })),
+          [nix.POS]: $pos[2],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], allowedTCPPorts: nix.thunk(() => [port]) })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           karakeep: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             enable: true,
             extraEnvironment: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               HOST: host,
               PORT: nix.thunk(() => nix.builtins.toString(port)),
               DISABLE_NEW_RELEASE_CHECK: "true",
             })),
-            meilisearch: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+            meilisearch: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
           })),
         })),
       }))],

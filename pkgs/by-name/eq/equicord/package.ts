@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["pname", 33, 26], ["version", 33, 32], ["src", 33, 40], ["pnpm", 34, 5], ["fetcherVersion", 35, 5], ["hash", 36, 5]], [["EQUICORD_REMOTE", 47, 5], ["EQUICORD_HASH", 48, 5]], [["extraArgs", 70, 7]], [["updateScript", 69, 5], ["tests", 75, 5]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]], [["pname", 18, 3], ["version", 23, 3], ["src", 25, 3], ["pnpmDeps", 32, 3], ["nativeBuildInputs", 39, 3], ["env", 46, 3], ["buildPhase", 51, 3], ["installPhase", 60, 3], ["passthru", 68, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, git: false, lib: false, nodejs: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, stdenv: false, "nix-update-script": false, discord: false, "discord-ptb": false, "discord-canary": false, "discord-development": false, buildWebExtension: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 33, 26], ["version", 33, 32], ["src", 33, 40], ["pnpm", 34, 5], ["fetcherVersion", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["EQUICORD_REMOTE", 47, 5], ["EQUICORD_HASH", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 70, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 69, 5], ["tests", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 23, 3], ["src", 25, 3], ["pnpmDeps", 32, 3], ["nativeBuildInputs", 39, 3], ["env", 46, 3], ["buildPhase", 51, 3], ["installPhase", 60, 3], ["passthru", 68, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const discord_development = nix.arg($, "discord-development");
   const buildWebExtension = nix.argOr($, "buildWebExtension", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "equicord",
       version: "2026-09-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Equicord",
           repo: "Equicord",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-Bu1226PDuCmY8w7RKTMZJzsLQiF0URuABZGxgo78H7k=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [git, nodejs, pnpmConfigHook, pnpm_10]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         EQUICORD_REMOTE: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "owner")}/${nix.sel(finalAttrs, "src", "repo")}`),
         EQUICORD_HASH: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "tag")}`),
       })),
@@ -67,15 +61,15 @@ cp -r dist/${nix.app(nix.sel(lib, "optionalString"), buildWebExtension, "chromiu
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex", "^(\\d{4}-\\d{2}-\\d{2})$"]),
           })))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs'"), nix.thunk(() => [discord, discord_ptb, discord_canary, discord_development]), (p) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(p, "pname")), nix.thunk(() => nix.sel(p, "tests", "withEquicord"))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Other cutest Discord client mod",
         homepage: "https://github.com/Equicord/Equicord",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

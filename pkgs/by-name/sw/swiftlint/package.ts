@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 24]], [["nativeBuildInputs", 62, 13]], [["lint", 59, 7]], [["updateScript", 57, 5], ["tests", 58, 5]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5], ["platforms", 85, 5], ["sourceProvenance", 86, 5]], [["pname", 17, 3], ["version", 18, 21], ["src", 20, 3], ["dontPatch", 25, 3], ["dontConfigure", 26, 3], ["dontBuild", 27, 3], ["nativeBuildInputs", 29, 3], ["sourceRoot", 34, 3], ["installPhase", 36, 3], ["postInstall", 46, 3], ["doInstallCheck", 53, 3], ["nativeInstallCheckInputs", 54, 3], ["passthru", 56, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false, unzip: false, installShellFiles: false, versionCheckHook: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 24]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 62, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["lint", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 57, 5], ["tests", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5], ["platforms", 85, 5], ["sourceProvenance", 86, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 21], ["src", 20, 3], ["dontPatch", 25, 3], ["dontConfigure", 26, 3], ["dontBuild", 27, 3], ["nativeBuildInputs", 29, 3], ["sourceRoot", 34, 3], ["installPhase", 36, 3], ["postInstall", 46, 3], ["doInstallCheck", 53, 3], ["nativeInstallCheckInputs", 54, 3], ["passthru", 56, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   const platform = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), "platforms", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "swiftlint",
       version: nix.thunk(() => nix.attr(sources, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/realm/SwiftLint/releases/download/${nix.sel(finalAttrs, "version")}/${nix.sel(platform, "filename")}`),
           hash: nix.thunk(() => nix.attr(platform, "hash")),
         })))),
@@ -46,12 +41,12 @@ runHook postInstall
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           lint: nix.thunk(() => nix.app(runCommand, "swiftlint-test-lint", nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`printf "class test{}\\n\\nvar a = 1" > test.swift
 swiftlint lint ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), "--disable-sourcekit")} test.swift > output.txt 2>&1 || true
@@ -64,7 +59,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tool to enforce Swift style and conventions",
         homepage: "https://realm.github.io/SwiftLint/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

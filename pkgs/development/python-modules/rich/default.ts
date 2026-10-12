@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["jupyter", 48, 5]], [["enrich", 61, 7], ["httpie", 62, 7], ["rich-rst", 63, 7], ["textual", 64, 7]], [["tests", 59, 12]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 57, 3], ["passthru", 59, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, "markdown-it-py": false, pygments: false, ipywidgets: false, attrs: false, pytestCheckHook: false, which: false, enrich: false, httpie: false, "rich-rst": false, textual: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["jupyter", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["enrich", 61, 7], ["httpie", 62, 7], ["rich-rst", 63, 7], ["textual", 64, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 59, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 57, 3], ["passthru", 59, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const rich_rst = nix.arg($, "rich-rst");
   const textual = nix.arg($, "textual");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rich",
       version: "15.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Textualize",
           repo: "rich",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,13 +35,13 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [markdown_it_py, pygments]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, jupyter: nix.thunk(() => [ipywidgets]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], jupyter: nix.thunk(() => [ipywidgets]) })),
       nativeCheckInputs: nix.thunk(() => [attrs, pytestCheckHook, which]),
       pythonImportsCheck: nix.thunk(() => ["rich"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           enrich: enrich,
           httpie: httpie,
           "rich-rst": rich_rst,
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal",
         homepage: "https://github.com/Textualize/rich",
         changelog: nix.thunk(() => nix.str`https://github.com/Textualize/rich/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

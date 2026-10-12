@@ -2,33 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-tex-env.nix", [[["key", 69, 15], ["p", 72, 23], ["tlDeps", 73, 15]], [["startSet", 86, 17], ["operator", 87, 17]], [["key", 97, 44]], [["startSet", 97, 13], ["operator", 100, 13]], [["key", 106, 44]], [["startSet", 106, 13], ["operator", 111, 13]], [["requiredTeXPackages", 169, 13], ["__formatsOf", 176, 13]], [["all", 56, 9], ["specified", 93, 9], ["specifiedOutputs", 94, 9], ["otherOutputNames", 95, 9], ["otherOutputs", 103, 9], ["outputsToInstall", 104, 9], ["bin", 116, 9], ["tlpkg", 121, 9], ["nonbin", 127, 9], ["nonEnvOutputs", 149, 9], ["fontMaps", 152, 9], ["sortedFontMaps", 153, 9], ["hyphenPatterns", 154, 9], ["sortedHyphenPatterns", 157, 9], ["formatPkgs", 158, 9], ["sortedFormatPkgs", 164, 9], ["formats", 166, 9]], [["name", 210, 9], ["paths", 213, 9], ["nativeBuildInputs", 216, 9], ["postBuild", 221, 9]], [["name", 228, 9], ["paths", 231, 9]], [["texmfdist", 239, 21], ["tlpkg", 239, 31]], [["name", 249, 9], ["paths", 251, 9], ["extraPrefix", 252, 9], ["pathsToLink", 254, 9]], [["description", 261, 9], ["platforms", 266, 9], ["longDescription", 267, 9]], [["outputs", 284, 13], ["preHook", 287, 13], ["meta", 291, 21], ["passthru", 291, 26]], [["name", 279, 19], ["paths", 280, 11], ["derivationArgs", 283, 11]], [["__combine", 321, 17], ["requiredTeXPackages", 324, 17], ["__extraName", 325, 17], ["__extraVersion", 326, 17], ["__fromCombineWrapper", 327, 17]], [["withDocs", 330, 81]], [["withSources", 331, 84]], [["requiredTeXPackages", 339, 19], ["__extraName", 340, 19], ["__extraVersion", 341, 19], ["__fromCombineWrapper", 343, 17]], [["passthru", 337, 15], ["__combine", 345, 37]], [["withDocs", 347, 83]], [["withSources", 348, 86]], [["requiredTeXPackages", 355, 15], ["__fromCombineWrapper", 356, 15]], [["passthru", 354, 13]], [["requiredTeXPackages", 298, 11], ["__fromCombineWrapper", 299, 11], ["__extraName", 300, 11], ["__extraVersion", 301, 11], ["includedTeXPackages", 304, 9], ["fonts", 314, 9], ["__overrideTeXConfig", 315, 9], ["withPackages", 351, 9]], [["fontDirectories", 501, 42]], [["outputsToInstall", 522, 31]], [["outputs", 469, 9], ["otherOutputs", 473, 9], ["strictDeps", 477, 9], ["nativeBuildInputs", 479, 9], ["buildInputs", 488, 9], ["passthru", 496, 17], ["__combine", 496, 26], ["__formatsOf", 497, 9], ["texmfdist", 499, 17], ["texmfroot", 499, 27], ["fontconfigFile", 501, 9], ["fmtutilCnf", 503, 9], ["updmapCfg", 504, 9], ["languageDat", 506, 9], ["languageDef", 507, 9], ["languageLua", 508, 9], ["postactionScripts", 510, 9], ["withDocs", 513, 9], ["withSources", 514, 9], ["allowSubstitutes", 516, 9], ["preferLocalBuild", 517, 9], ["meta", 519, 9]], [["pname", 447, 15], ["version", 447, 21], ["paths", 450, 7], ["pathsToLink", 454, 7], ["postBuild", 463, 7], ["derivationArgs", 467, 7]]]);
 const formals$1 = { args: { pkgs: false, tlpdbVersion: false, lib: false, buildEnv: false, libfaketime: false, makeFontsConf: false, makeWrapper: false, runCommand: false, toTLPkgSets: false, perl: false, coreutils: false, gawk: false, gnugrep: false, gnused: false, ghostscript: false }, ellipsis: false };
 const formals$2 = { args: { requiredTeXPackages: true, __extraName: true, __extraVersion: true, __combine: true, __fromCombineWrapper: true, __formatsOf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-tex-env.nix", [["key", 69, 15], ["p", 72, 23], ["tlDeps", 73, 15]]);
-const pos$2 = nix.positions(here + "/build-tex-env.nix", [["startSet", 86, 17], ["operator", 87, 17]]);
-const pos$3 = nix.positions(here + "/build-tex-env.nix", [["key", 97, 44]]);
-const pos$4 = nix.positions(here + "/build-tex-env.nix", [["startSet", 97, 13], ["operator", 100, 13]]);
-const pos$5 = nix.positions(here + "/build-tex-env.nix", [["key", 106, 44]]);
-const pos$6 = nix.positions(here + "/build-tex-env.nix", [["startSet", 106, 13], ["operator", 111, 13]]);
-const pos$7 = nix.positions(here + "/build-tex-env.nix", [["requiredTeXPackages", 169, 13], ["__formatsOf", 176, 13]]);
-const pos$8 = nix.positions(here + "/build-tex-env.nix", [["all", 56, 9], ["specified", 93, 9], ["specifiedOutputs", 94, 9], ["otherOutputNames", 95, 9], ["otherOutputs", 103, 9], ["outputsToInstall", 104, 9], ["bin", 116, 9], ["tlpkg", 121, 9], ["nonbin", 127, 9], ["nonEnvOutputs", 149, 9], ["fontMaps", 152, 9], ["sortedFontMaps", 153, 9], ["hyphenPatterns", 154, 9], ["sortedHyphenPatterns", 157, 9], ["formatPkgs", 158, 9], ["sortedFormatPkgs", 164, 9], ["formats", 166, 9]]);
-const pos$9 = nix.positions(here + "/build-tex-env.nix", [["name", 210, 9], ["paths", 213, 9], ["nativeBuildInputs", 216, 9], ["postBuild", 221, 9]]);
-const pos$10 = nix.positions(here + "/build-tex-env.nix", [["name", 228, 9], ["paths", 231, 9]]);
-const pos$11 = nix.positions(here + "/build-tex-env.nix", [["texmfdist", 239, 21], ["tlpkg", 239, 31]]);
-const pos$12 = nix.positions(here + "/build-tex-env.nix", [["name", 249, 9], ["paths", 251, 9], ["extraPrefix", 252, 9], ["pathsToLink", 254, 9]]);
-const pos$13 = nix.positions(here + "/build-tex-env.nix", [["description", 261, 9], ["platforms", 266, 9], ["longDescription", 267, 9]]);
-const pos$14 = nix.positions(here + "/build-tex-env.nix", [["outputs", 284, 13], ["preHook", 287, 13], ["meta", 291, 21], ["passthru", 291, 26]]);
-const pos$15 = nix.positions(here + "/build-tex-env.nix", [["name", 279, 19], ["paths", 280, 11], ["derivationArgs", 283, 11]]);
-const pos$16 = nix.positions(here + "/build-tex-env.nix", [["__combine", 321, 17], ["requiredTeXPackages", 324, 17], ["__extraName", 325, 17], ["__extraVersion", 326, 17], ["__fromCombineWrapper", 327, 17]]);
-const pos$17 = nix.positions(here + "/build-tex-env.nix", [["withDocs", 330, 81]]);
-const pos$18 = nix.positions(here + "/build-tex-env.nix", [["withSources", 331, 84]]);
-const pos$19 = nix.positions(here + "/build-tex-env.nix", [["requiredTeXPackages", 339, 19], ["__extraName", 340, 19], ["__extraVersion", 341, 19], ["__fromCombineWrapper", 343, 17]]);
-const pos$20 = nix.positions(here + "/build-tex-env.nix", [["passthru", 337, 15], ["__combine", 345, 37]]);
-const pos$21 = nix.positions(here + "/build-tex-env.nix", [["withDocs", 347, 83]]);
-const pos$22 = nix.positions(here + "/build-tex-env.nix", [["withSources", 348, 86]]);
-const pos$23 = nix.positions(here + "/build-tex-env.nix", [["requiredTeXPackages", 355, 15], ["__fromCombineWrapper", 356, 15]]);
-const pos$24 = nix.positions(here + "/build-tex-env.nix", [["passthru", 354, 13]]);
-const pos$25 = nix.positions(here + "/build-tex-env.nix", [["requiredTeXPackages", 298, 11], ["__fromCombineWrapper", 299, 11], ["__extraName", 300, 11], ["__extraVersion", 301, 11], ["includedTeXPackages", 304, 9], ["fonts", 314, 9], ["__overrideTeXConfig", 315, 9], ["withPackages", 351, 9]]);
 const formals$3 = { args: { name: false, engine: false, enabled: true, patterns: true, options: true }, ellipsis: true };
 const formals$4 = { args: { pname: false, formats: false }, ellipsis: true };
 const formals$5 = { args: { name: false, file: false, synonyms: true }, ellipsis: true };
@@ -38,10 +14,6 @@ const formals$8 = { args: { pname: false, hyphenPatterns: false }, ellipsis: tru
 const formals$9 = { args: { name: false, file: false, lefthyphenmin: true, righthyphenmin: true, synonyms: true }, ellipsis: true };
 const formals$10 = { args: { pname: false, hyphenPatterns: false }, ellipsis: true };
 const formals$11 = { args: { pname: false, fontMaps: false }, ellipsis: true };
-const pos$26 = nix.positions(here + "/build-tex-env.nix", [["fontDirectories", 501, 42]]);
-const pos$27 = nix.positions(here + "/build-tex-env.nix", [["outputsToInstall", 522, 31]]);
-const pos$28 = nix.positions(here + "/build-tex-env.nix", [["outputs", 469, 9], ["otherOutputs", 473, 9], ["strictDeps", 477, 9], ["nativeBuildInputs", 479, 9], ["buildInputs", 488, 9], ["passthru", 496, 17], ["__combine", 496, 26], ["__formatsOf", 497, 9], ["texmfdist", 499, 17], ["texmfroot", 499, 27], ["fontconfigFile", 501, 9], ["fmtutilCnf", 503, 9], ["updmapCfg", 504, 9], ["languageDat", 506, 9], ["languageDef", 507, 9], ["languageLua", 508, 9], ["postactionScripts", 510, 9], ["withDocs", 513, 9], ["withSources", 514, 9], ["allowSubstitutes", 516, 9], ["preferLocalBuild", 517, 9], ["meta", 519, 9]]);
-const pos$29 = nix.positions(here + "/build-tex-env.nix", [["pname", 447, 15], ["version", 447, 21], ["paths", 450, 7], ["pathsToLink", 454, 7], ["postBuild", 463, 7], ["derivationArgs", 467, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -79,13 +51,13 @@ export default nix.lambda((args) => (() => {
               const packages = nix.thunk(() => nix.app(ensurePkgSets, nix.thunk(() => nix.app(nix.sel(finalAttrs, "passthru", "requiredTeXPackages"), pkgs))));
               const runtime = nix.thunk(() => nix.builtins.partition((p) => (!nix.asBool(nix.selOr(p, () => false, "outputSpecified")) || nix.asBool(nix.builtins.elem(nix.thunk(() => nix.selOr(p, () => nix.sel(p, "outputName"), "tlOutputName")), nix.thunk(() => ["out", "tex", "tlpkg"])))), packages));
               const keySet = (p) => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 key: nix.thunk(() => nix.add(nix.selOr(p, () => nix.sel(p, "name"), "pname"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.selOr(p, () => false, "outputSpecified")), nix.thunk(() => nix.add("-", nix.selOr(p, () => nix.selOr(p, () => "", "outputName"), "tlOutputName")))))),
                 p: p,
                 tlDeps: nix.thunk(() => (nix.asBool(nix.has(p, "tlDeps")) ? (nix.asBool(nix.builtins.isFunction(nix.thunk(() => nix.sel(p, "tlDeps")))) ? nix.app(nix.sel(p, "tlDeps"), pkgs) : nix.app(ensurePkgSets, nix.thunk(() => nix.sel(p, "tlDeps")))) : [])),
               });
               return (nix.asBool(nix.sel(finalAttrs, "passthru", "__fromCombineWrapper")) ? nix.app(nix.sel(finalAttrs, "passthru", "requiredTeXPackages"), null) : nix.concat(nix.builtins.catAttrs("p", nix.thunk(() => nix.builtins.genericClosure(nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     startSet: nix.thunk(() => nix.builtins.map(keySet, nix.thunk(() => nix.sel(runtime, "right")))),
                     operator: (p) => nix.builtins.map(keySet, nix.thunk(() => nix.sel(p, "tlDeps"))),
                   }))))), nix.sel(runtime, "wrong")));
@@ -93,14 +65,14 @@ export default nix.lambda((args) => (() => {
             const specified = nix.thunk(() => nix.builtins.partition((p) => nix.selOr(p, () => false, "outputSpecified"), all));
             const specifiedOutputs = nix.thunk(() => nix.app(nix.sel(lib, "groupBy"), (p) => nix.selOr(p, () => nix.sel(p, "outputName"), "tlOutputName"), nix.thunk(() => nix.sel(specified, "right"))));
             const otherOutputNames = nix.thunk(() => nix.builtins.catAttrs("key", nix.thunk(() => nix.builtins.genericClosure(nix.thunk(() => ({
-                  [nix.POS]: pos$4,
-                  startSet: nix.thunk(() => nix.builtins.map((key) => ({ [nix.POS]: pos$3, key: key }), nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.builtins.catAttrs("outputs", nix.thunk(() => nix.sel(specified, "wrong")))))))),
+                  [nix.POS]: $pos[3],
+                  startSet: nix.thunk(() => nix.builtins.map((key) => ({ [nix.POS]: $pos[2], key: key }), nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.builtins.catAttrs("outputs", nix.thunk(() => nix.sel(specified, "wrong")))))))),
                   operator: (_) => [],
                 }))))));
             const otherOutputs = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), otherOutputNames, (n) => nix.builtins.catAttrs(n, nix.thunk(() => nix.sel(specified, "wrong")))));
             const outputsToInstall = nix.thunk(() => nix.builtins.catAttrs("key", nix.thunk(() => nix.builtins.genericClosure(nix.thunk(() => ({
-                  [nix.POS]: pos$6,
-                  startSet: nix.thunk(() => nix.builtins.map((key) => ({ [nix.POS]: pos$5, key: key }), nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(otherOutputs, "man")), "man"), nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.builtins.catAttrs("outputsToInstall", nix.thunk(() => nix.builtins.catAttrs("meta", nix.thunk(() => nix.sel(specified, "wrong")))))))))))),
+                  [nix.POS]: $pos[5],
+                  startSet: nix.thunk(() => nix.builtins.map((key) => ({ [nix.POS]: $pos[4], key: key }), nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.has(otherOutputs, "man")), "man"), nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.builtins.catAttrs("outputsToInstall", nix.thunk(() => nix.builtins.catAttrs("meta", nix.thunk(() => nix.sel(specified, "wrong")))))))))))),
                   operator: (_) => [],
                 }))))));
             const bin = nix.thunk(() => (nix.asBool(nix.sel(finalAttrs, "passthru", "__fromCombineWrapper")) ? nix.builtins.filter((p) => nix.eq(nix.sel(p, "tlType"), "bin"), all) : nix.concat(nix.selOr(otherOutputs, () => [], "out"), nix.selOr(specifiedOutputs, () => [], "out"))));
@@ -114,12 +86,12 @@ export default nix.lambda((args) => (() => {
             const formatPkgs = nix.thunk(() => nix.app(nix.sel(lib, "filter"), (p) => (nix.asBool((nix.asBool(nix.has(p, "formats")) && nix.asBool((!nix.asBool(nix.selOr(p, () => false, "outputSpecified")) || nix.asBool(nix.eq(nix.selOr(p, () => nix.sel(p, "outputName"), "tlOutputName"), "tex")))))) && nix.asBool(nix.builtins.any((f) => nix.selOr(f, () => true, "enabled"), nix.thunk(() => nix.sel(p, "formats"))))), all));
             const sortedFormatPkgs = nix.thunk(() => (nix.asBool(!nix.eq(__formatsOf, null)) ? [__formatsOf] : nix.builtins.sort((a) => (b) => nix.lt(nix.sel(a, "pname"), nix.sel(b, "pname")), formatPkgs)));
             const formats = nix.thunk(() => nix.builtins.map((p) => nix.app(buildTeXEnv, nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   requiredTeXPackages: (ps) => nix.concat([nix.thunk(() => nix.sel(ps, "scheme-infraonly")), p], hyphenPatterns),
                   __formatsOf: p,
                 }))), sortedFormatPkgs));
             return {
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               all,
               specified,
               specifiedOutputs,
@@ -144,7 +116,7 @@ export default nix.lambda((args) => (() => {
           const version = nix.thunk(() => (nix.asBool(nix.sel(finalAttrs, "__combine")) ? nix.str`${nix.builtins.toString(nix.thunk(() => nix.sel(tlpdbVersion, "year")))}${nix.sel(finalAttrs, "passthru", "__extraVersion")}` : nix.add(nix.add(nix.str`${nix.builtins.toString(nix.thunk(() => nix.sel(tlpdbVersion, "year")))}-r${nix.builtins.toString(nix.thunk(() => nix.sel(tlpdbVersion, "revision")))}-`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(tlpdbVersion, "frozen")), "final-")), (nix.asBool(!nix.eq(__formatsOf, null)) ? nix.str`${nix.sel(__formatsOf, "pname")}-fmt` : "env"))));
           const name = nix.thunk(() => nix.str`${pname}-${version}`);
           const texmfdist = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               name: nix.thunk(() => nix.str`${name}-texmfdist`),
               paths: nix.thunk(() => nix.builtins.catAttrs("outPath", nix.thunk(() => nix.sel(pkgList, "nonbin")))),
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "texlive-scripts")), perl]),
@@ -152,30 +124,30 @@ export default nix.lambda((args) => (() => {
 `),
             }))));
           const tlpkg = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               name: nix.thunk(() => nix.str`${name}-tlpkg`),
               paths: nix.thunk(() => nix.builtins.catAttrs("outPath", nix.thunk(() => nix.sel(pkgList, "tlpkg")))),
             }))));
-          const texmfroot = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${name}-texmfroot`), nix.thunk(() => ({ [nix.POS]: pos$11, texmfdist: texmfdist, tlpkg: tlpkg })), "mkdir -p \"$out\"\nln -s \"$texmfdist\" \"$out\"/texmf-dist\nln -s \"$tlpkg\" \"$out\"/tlpkg\n"));
+          const texmfroot = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${name}-texmfroot`), nix.thunk(() => ({ [nix.POS]: $pos[10], texmfdist: texmfdist, tlpkg: tlpkg })), "mkdir -p \"$out\"\nln -s \"$texmfdist\" \"$out\"/texmf-dist\nln -s \"$tlpkg\" \"$out\"/tlpkg\n"));
           const doc = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               name: nix.thunk(() => nix.str`${name}-doc`),
               paths: nix.thunk(() => [nix.thunk(() => nix.add(nix.sel(texmfdist, "outPath"), "/doc"))]),
               extraPrefix: "/share",
               pathsToLink: nix.thunk(() => ["/info", "/man"]),
             }))));
           const meta = nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             description: nix.thunk(() => nix.add(nix.add(nix.add("TeX Live environment", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(finalAttrs, "withDocs")), " with documentation")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(finalAttrs, "withDocs")) && nix.asBool(nix.sel(finalAttrs, "withSources")))), " and")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(finalAttrs, "withSources")), " with sources"))),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
             longDescription: nix.thunk(() => nix.add("Contains the following packages and their transitive dependencies:\n - ", nix.app(nix.sel(lib, "concatMapStringsSep"), "\n - ", (p) => nix.add(nix.sel(p, "pname"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.selOr(p, () => false, "outputSpecified")), nix.thunk(() => nix.str` (${nix.selOr(p, () => nix.sel(p, "outputName"), "tlOutputName")})`))), nix.thunk(() => nix.app(nix.sel(finalAttrs, "passthru", "requiredTeXPackages"), pkgs))))),
           }));
           const nonEnvOutputs = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.sel(pkgList, "nonEnvOutputs")), (outName) => nix.app(buildEnv, nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 name: name,
                 paths: nix.thunk(() => nix.builtins.catAttrs("outPath", nix.thunk(() => nix.concat(nix.selOr(pkgList, () => [], "otherOutputs", nix.key(nix.force(outName))), nix.selOr(pkgList, () => [], "specifiedOutputs", nix.key(nix.force(outName))))))),
                 derivationArgs: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   outputs: nix.thunk(() => [outName]),
                   preHook: nix.thunk(() => nix.str`export out="\${${outName}}"
 `),
@@ -184,7 +156,7 @@ export default nix.lambda((args) => (() => {
                 })),
               })))));
           const passthru = nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             requiredTeXPackages: requiredTeXPackages,
             __fromCombineWrapper: __fromCombineWrapper,
             __extraName: __extraName,
@@ -195,7 +167,7 @@ export default nix.lambda((args) => (() => {
                 const prevArgs = nix.thunk(() => nix.update((() => {
                   const from = nix.thunk(() => nix.sel(finalAttrs, "passthru"));
                   return {
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   __combine: nix.thunk(() => nix.attr(finalAttrs, "__combine")),
                   requiredTeXPackages: nix.thunk(() => nix.attr(from, "requiredTeXPackages")),
                   __extraName: nix.thunk(() => nix.attr(from, "__extraName")),
@@ -203,17 +175,17 @@ export default nix.lambda((args) => (() => {
                   __fromCombineWrapper: nix.thunk(() => nix.attr(from, "__fromCombineWrapper")),
                 };
                 })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(finalAttrs, "withDocs")), nix.thunk(() => ({
-                    [nix.POS]: pos$17,
+                    [nix.POS]: $pos[16],
                     withDocs: nix.thunk(() => nix.attr(finalAttrs, "withDocs")),
                   }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(finalAttrs, "withSources")), nix.thunk(() => ({
-                    [nix.POS]: pos$18,
+                    [nix.POS]: $pos[17],
                     withSources: nix.thunk(() => nix.attr(finalAttrs, "withSources")),
                   }))))));
                 const appliedArgs = nix.thunk(() => nix.update(prevArgs, (nix.asBool(nix.builtins.isFunction(newArgs)) ? nix.app(newArgs, prevArgs) : nix.force(newArgs))));
                 return nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (prevAttrs) => nix.update({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     passthru: nix.thunk(() => nix.update(nix.sel(prevAttrs, "passthru"), {
-                      [nix.POS]: pos$19,
+                      [nix.POS]: $pos[18],
                       requiredTeXPackages: nix.thunk(() => nix.attr(appliedArgs, "requiredTeXPackages")),
                       __extraName: nix.thunk(() => nix.attr(appliedArgs, "__extraName")),
                       __extraVersion: nix.thunk(() => nix.attr(appliedArgs, "__extraVersion")),
@@ -221,17 +193,17 @@ export default nix.lambda((args) => (() => {
                     })),
                     __combine: nix.thunk(() => nix.attr(appliedArgs, "__combine")),
                   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(appliedArgs, "withDocs")), nix.thunk(() => ({
-                      [nix.POS]: pos$21,
+                      [nix.POS]: $pos[20],
                       withDocs: nix.thunk(() => nix.attr(appliedArgs, "withDocs")),
                     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(appliedArgs, "withSources")), nix.thunk(() => ({
-                      [nix.POS]: pos$22,
+                      [nix.POS]: $pos[21],
                       withSources: nix.thunk(() => nix.attr(appliedArgs, "withSources")),
                     }))))));
               })())),
             withPackages: (reqs) => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (prevAttrs) => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 passthru: nix.thunk(() => nix.update(nix.sel(prevAttrs, "passthru"), {
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   requiredTeXPackages: (ps) => nix.concat(nix.app(reqs, ps), nix.app(nix.sel(prevAttrs, "passthru", "requiredTeXPackages"), ps)),
                   __fromCombineWrapper: false,
                 })),
@@ -312,7 +284,7 @@ export default nix.lambda((args) => (() => {
             return nix.concat([nix.thunk(() => nix.str`# from ${pname_1}:`)], fontMaps);
           })(), formals$11);
           return {
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             pname: pname,
             version: version,
             paths: nix.thunk(() => nix.concat(nix.builtins.catAttrs("outPath", nix.thunk(() => nix.sel(pkgList, "bin"))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(finalAttrs, "__combine"))) && nix.asBool(nix.eq(__formatsOf, null)))), nix.thunk(() => nix.sel(pkgList, "formats"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(finalAttrs, "__combine")), doc)))),
@@ -327,7 +299,7 @@ export default nix.lambda((args) => (() => {
             postBuild: nix.thunk(() => nix.str`. "${nix.path(here, "./build-tex-env.sh")}"
 `),
             derivationArgs: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(finalAttrs, "__combine"))) && nix.asBool(nix.eq(__formatsOf, null)))), nix.thunk(() => nix.builtins.attrNames(nonEnvOutputs))))),
               otherOutputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(finalAttrs, "__combine"))) && nix.asBool(nix.eq(__formatsOf, null)))), nix.thunk(() => nix.builtins.attrValues(nonEnvOutputs)))),
               strictDeps: true,
@@ -346,7 +318,7 @@ export default nix.lambda((args) => (() => {
               texmfdist: texmfdist,
               texmfroot: texmfroot,
               fontconfigFile: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   fontDirectories: nix.thunk(() => [nix.thunk(() => nix.str`${texmfroot}/texmf-dist/fonts`)]),
                 })))),
               fmtutilCnf: nix.thunk(() => nix.app(assembleConfigLines, fmtutilLines, nix.thunk(() => nix.sel(pkgList, "sortedFormatPkgs")))),
@@ -360,7 +332,7 @@ export default nix.lambda((args) => (() => {
               allowSubstitutes: true,
               preferLocalBuild: false,
               meta: nix.thunk(() => nix.update(meta, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(finalAttrs, "__combine"))) && nix.asBool(nix.eq(__formatsOf, null)))), nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   outputsToInstall: nix.thunk(() => nix.attr(pkgList, "outputsToInstall")),
                 }))))),
             })),

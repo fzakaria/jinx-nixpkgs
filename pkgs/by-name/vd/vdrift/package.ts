@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["owner", 32, 7], ["repo", 33, 7], ["rev", 34, 7], ["sha256", 35, 7]], [["description", 74, 7], ["mainProgram", 75, 7], ["homepage", 76, 7], ["license", 77, 7], ["maintainers", 78, 7], ["platforms", 79, 7]], [["pname", 28, 5], ["version", 29, 13], ["src", 31, 5], ["postPatch", 38, 5], ["nativeBuildInputs", 43, 5], ["buildInputs", 47, 5], ["patches", 59, 5], ["buildPhase", 63, 5], ["meta", 73, 5]], [["hydraPlatforms", 92, 7]], [["pname", 89, 19], ["version", 89, 25], ["name", 90, 5], ["meta", 91, 5], ["unwrapped", 94, 5], ["bin", 95, 13], ["data", 95, 17]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchsvn: false, "pkg-config": false, scons: false, libGLU: false, libGL: false, SDL2: false, SDL2_image: false, libvorbis: false, libx11: false, bullet: false, curl: false, gettext: false, writeShellScriptBin: false, data: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 32, 7], ["repo", 33, 7], ["rev", 34, 7], ["sha256", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 7], ["mainProgram", 75, 7], ["homepage", 76, 7], ["license", 77, 7], ["maintainers", 78, 7], ["platforms", 79, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 28, 5], ["version", 29, 13], ["src", 31, 5], ["postPatch", 38, 5], ["nativeBuildInputs", 43, 5], ["buildInputs", 47, 5], ["patches", 59, 5], ["buildPhase", 63, 5], ["meta", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["hydraPlatforms", 92, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 89, 19], ["version", 89, 25], ["name", 90, 5], ["meta", 91, 5], ["unwrapped", 94, 5], ["bin", 95, 13], ["data", 95, 17]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   const data = nix.argOr($, "data", () => nix.app(fetchsvn, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "svn://svn.code.sf.net/p/vdrift/code/vdrift-data",
       rev: "1446",
       sha256: "sha256-KEu49GAOfenPyuaUItt6W9pkuqUNpXgmTSFuc7ThljQ=",
     }))));
   const version = "unstable-2021-09-05";
   const bin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vdrift",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "vdrift",
           repo: "vdrift",
           rev: "7e9e00c8612b2014d491f026dd86b03f9fb04dcd",
@@ -61,7 +56,7 @@ scons -j$NIX_BUILD_CORES
 runHook postBuild
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Car racing game",
         mainProgram: "vdrift",
         homepage: "https://vdrift.net/",
@@ -74,11 +69,11 @@ runHook postBuild
   return nix.app(nix.sel(nix.app(writeShellScriptBin, "vdrift", nix.thunk(() => nix.str`export VDRIFT_DATA_DIRECTORY="${data}"
 exec ${bin}/bin/vdrift "$@"
 `)), "overrideAttrs"), (_) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.attr(bin, "pname")),
       version: nix.thunk(() => nix.attr(bin, "version")),
       name: wrappedName,
-      meta: nix.thunk(() => nix.update(nix.sel(bin, "meta"), { [nix.POS]: pos$5, hydraPlatforms: [] })),
+      meta: nix.thunk(() => nix.update(nix.sel(bin, "meta"), { [nix.POS]: $pos[4], hydraPlatforms: [] })),
       unwrapped: bin,
       bin: bin,
       data: data,

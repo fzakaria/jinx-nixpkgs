@@ -2,9 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gdk-pixbuf-cache-builder.nix", [[["preferLocalBuild", 25, 5]]]);
 const formals$1 = { args: { runCommand: false, "gdk-pixbuf": false, lib: false, stdenv: false, buildPackages: false }, ellipsis: false };
 const formals$2 = { args: { extraLoaders: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/gdk-pixbuf-cache-builder.nix", [["preferLocalBuild", 25, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const extraLoaders = nix.arg($_1, "extraLoaders");
     const loaderPackages = nix.thunk(() => nix.concat([gdk_pixbuf], extraLoaders));
-    return nix.app(runCommand, "gdk-pixbuf-loaders.cache", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`(
+    return nix.app(runCommand, "gdk-pixbuf-loaders.cache", nix.thunk(() => ({ [nix.POS]: $pos[0], preferLocalBuild: true })), nix.thunk(() => nix.str`(
   for package in ${nix.app(nix.sel(lib, "escapeShellArgs"), loaderPackages)}; do
     module_dir="$package/${nix.sel(gdk_pixbuf, "moduleDir")}"
     if [[ ! -d "$module_dir" ]]; then

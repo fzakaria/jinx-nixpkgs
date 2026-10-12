@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["package", 15, 5], ["command", 16, 5]], [["package", 20, 5], ["command", 21, 5]], [["ogrinfo-version", 14, 3], ["gdalinfo-version", 19, 3], ["ogrinfo-format-geopackage", 24, 3], ["gdalinfo-format-geotiff", 30, 3], ["vector-file", 36, 3], ["raster-file", 42, 3], ["java-bindings", 57, 3]]]);
 const formals$1 = { args: { runCommand: false, gdal: false, jdk: false, lib: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["package", 15, 5], ["command", 16, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["package", 20, 5], ["command", 21, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["ogrinfo-version", 14, 3], ["gdalinfo-version", 19, 3], ["ogrinfo-format-geopackage", 24, 3], ["gdalinfo-format-geotiff", 30, 3], ["vector-file", 36, 3], ["raster-file", 42, 3], ["java-bindings", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const pname = nix.thunk(() => nix.attr(gdal, "pname"));
   const version = nix.thunk(() => nix.attr(gdal, "version"));
   return {
-    [nix.POS]: pos$3,
-    "ogrinfo-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$1, package: gdal, command: "ogrinfo --version" })))),
-    "gdalinfo-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: gdal, command: "gdalinfo --version" })))),
+    [nix.POS]: $pos[2],
+    "ogrinfo-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[0], package: gdal, command: "ogrinfo --version" })))),
+    "gdalinfo-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: gdal, command: "gdalinfo --version" })))),
     "ogrinfo-format-geopackage": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-ogrinfo-format-geopackage`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), gdal, "ogrinfo")} --formats \\
   | grep 'GPKG.*GeoPackage'
 touch $out

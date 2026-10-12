@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["8", 13, 7], ["9", 14, 7], ["10", 15, 7], ["11", 16, 7], ["12", 17, 7]], [["sources", 29, 13]], [["description", 33, 5], ["homepage", 34, 5], ["downloadPage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 22, 18], ["version", 22, 24], ["src", 22, 32], ["makeFlags", 24, 3], ["passthru", 28, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, stdenvNoCC: false, majorVersion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["8", 13, 7], ["9", 14, 7], ["10", 15, 7], ["11", 16, 7], ["12", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["sources", 29, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["downloadPage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 18], ["version", 22, 24], ["src", 22, 32], ["makeFlags", 24, 3], ["passthru", 28, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const majorVersion = nix.argOr($, "majorVersion", () => "9");
   const sources = nix.thunk(() => nix.app(callPackage, nix.path(here, "./sources.nix"), nix.thunk(() => ({}))));
   const pick = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "8": nix.thunk(() => nix.sel(sources, "nv-codec-headers-8")),
     "9": nix.thunk(() => nix.sel(sources, "nv-codec-headers-9")),
     "10": nix.thunk(() => nix.sel(sources, "nv-codec-headers-10")),
@@ -24,14 +21,14 @@ export default nix.lambda((args) => (() => {
     "12": nix.thunk(() => nix.sel(sources, "nv-codec-headers-12")),
   }, nix.key(nix.force(majorVersion))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.attr(pick, "pname")),
       version: nix.thunk(() => nix.attr(pick, "version")),
       src: nix.thunk(() => nix.attr(pick, "src")),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, sources: sources })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], sources: sources })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: nix.thunk(() => nix.str`FFmpeg version of headers for NVENC - major version ${nix.sel(pick, "version")}`),
         homepage: "https://ffmpeg.org/",
         downloadPage: "https://git.videolan.org/?p=ffmpeg/nv-codec-headers.git",

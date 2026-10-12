@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libttf.nix", [[["url", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 40, 5], ["homepage", 41, 5], ["downloadPage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["__structuredAttrs", 36, 3], ["strictDeps", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, wafHook: false, python3: false, gitMinimal: false, "pkg-config": false, boost: false, fmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libttf.nix", [["url", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/libttf.nix", [["description", 40, 5], ["homepage", 41, 5], ["downloadPage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/libttf.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["__structuredAttrs", 36, 3], ["strictDeps", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const fmt = nix.arg($, "fmt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libttf",
       version: "0.0.7",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.carlh.net/git/libttf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-pLduKqcfCw8m4hZn8KsVa8rHESEPSQrvW4NCBcwXT5g=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Limited TTF manipulation library",
         homepage: "https://git.carlh.net/cgit/libttf",
         downloadPage: "https://git.carlh.net/cgit/libttf",

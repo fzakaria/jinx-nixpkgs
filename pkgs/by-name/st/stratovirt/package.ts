@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 55, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchgit: false, "pkg-config": false, pixman: false, libcap_ng: false, cyrus_sasl: false, libpulseaudio: false, gtk3: false, libusbgx: false, "alsa-lib": false, linuxHeaders: false, libseccomp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const linuxHeaders = nix.arg($, "linuxHeaders");
   const libseccomp = nix.arg($, "libseccomp");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "stratovirt",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gitee.com/openeuler/stratovirt.git",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-1Ex6ahKBoVRikSqrgHGYaBFzWkPFDm8bGVyB7KmO8tI=",
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         libseccomp,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitee.com/openeuler/stratovirt",
         description: "Virtual Machine Manager from Huawei",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mulan-psl2")),

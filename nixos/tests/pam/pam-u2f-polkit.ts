@@ -2,49 +2,44 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pam-u2f-polkit.nix", [[["u2fEmuSupport", 6, 48]], [["package", 6, 8]], [["options", 11, 27]], [["qemu", 11, 22]], [["enable", 16, 23]], [["enable", 17, 24]], [["u2f", 17, 20]], [["polkit", 16, 16], ["pam", 17, 16]], [["systemPackages", 19, 19]], [["virtualisation", 11, 7], ["security", 16, 7], ["environment", 19, 7]], [["machine", 8, 9]], [["name", 4, 3], ["qemu", 6, 3], ["nodes", 8, 3], ["testScript", 25, 3]]]);
 const formals$1 = { args: { hostPkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pam-u2f-polkit.nix", [["u2fEmuSupport", 6, 48]]);
-const pos$2 = nix.positions(here + "/pam-u2f-polkit.nix", [["package", 6, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/pam-u2f-polkit.nix", [["options", 11, 27]]);
-const pos$4 = nix.positions(here + "/pam-u2f-polkit.nix", [["qemu", 11, 22]]);
-const pos$5 = nix.positions(here + "/pam-u2f-polkit.nix", [["enable", 16, 23]]);
-const pos$6 = nix.positions(here + "/pam-u2f-polkit.nix", [["enable", 17, 24]]);
-const pos$7 = nix.positions(here + "/pam-u2f-polkit.nix", [["u2f", 17, 20]]);
-const pos$8 = nix.positions(here + "/pam-u2f-polkit.nix", [["polkit", 16, 16], ["pam", 17, 16]]);
-const pos$9 = nix.positions(here + "/pam-u2f-polkit.nix", [["systemPackages", 19, 19]]);
-const pos$10 = nix.positions(here + "/pam-u2f-polkit.nix", [["virtualisation", 11, 7], ["security", 16, 7], ["environment", 19, 7]]);
-const pos$11 = nix.positions(here + "/pam-u2f-polkit.nix", [["machine", 8, 9]]);
-const pos$12 = nix.positions(here + "/pam-u2f-polkit.nix", [["name", 4, 3], ["qemu", 6, 3], ["nodes", 8, 3], ["testScript", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const hostPkgs = nix.arg($, "hostPkgs");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "pam-u2f-polkit",
     qemu: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      package: nix.thunk(() => nix.app(nix.sel(hostPkgs, "qemu_test", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, u2fEmuSupport: true })))),
+      [nix.POS]: $pos[1],
+      package: nix.thunk(() => nix.app(nix.sel(hostPkgs, "qemu_test", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], u2fEmuSupport: true })))),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            qemu: nix.thunk(() => ({ [nix.POS]: pos$3, options: nix.thunk(() => ["-usb", "-device u2f-emulated"]) })),
+            [nix.POS]: $pos[3],
+            qemu: nix.thunk(() => ({
+              [nix.POS]: $pos[2],
+              options: nix.thunk(() => ["-usb", "-device u2f-emulated"]),
+            })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            polkit: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
-            pam: nix.thunk(() => ({ [nix.POS]: pos$7, u2f: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })) })),
+            [nix.POS]: $pos[7],
+            polkit: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
+            pam: nix.thunk(() => ({
+              [nix.POS]: $pos[6],
+              u2f: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
+            })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [

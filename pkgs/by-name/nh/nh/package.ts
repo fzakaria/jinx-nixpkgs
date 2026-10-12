@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["changelog", 33, 7], ["description", 34, 7], ["homepage", 35, 7], ["license", 36, 7], ["mainProgram", 37, 7], ["maintainers", 38, 7], ["hydraPlatforms", 42, 5], ["priority", 44, 5]], [["pname", 15, 3], ["version", 16, 23], ["paths", 18, 3], ["nativeBuildInputs", 22, 3], ["postBuild", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, makeBinaryWrapper: false, "nh-unwrapped": false, "nix-output-monitor": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["changelog", 33, 7], ["description", 34, 7], ["homepage", 35, 7], ["license", 36, 7], ["mainProgram", 37, 7], ["maintainers", 38, 7], ["hydraPlatforms", 42, 5], ["priority", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 23], ["paths", 18, 3], ["nativeBuildInputs", 22, 3], ["postBuild", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const unwrapped = nh_unwrapped;
   const runtimeDeps = nix.thunk(() => [nix_output_monitor]);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "nh",
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
       paths: nix.thunk(() => [unwrapped]),
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(unwrapped, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 43, 5]], [["sha256", 90, 22], ["url", 91, 7]], [["description", 95, 7], ["homepage", 96, 7], ["sourceProvenance", 97, 7], ["license", 98, 7], ["platforms", 99, 7], ["maintainers", 103, 7], ["mainProgram", 104, 7]], [["version", 86, 20], ["pname", 87, 5], ["src", 89, 5], ["meta", 94, 5], ["nativeBuildInputs", 107, 5], ["buildInputs", 108, 5], ["unpackPhase", 110, 5], ["installPhase", 111, 5]], [["name", 134, 7], ["SCRIPT", 135, 7], ["buildInputs", 137, 7], ["shellHook", 145, 7]], [["update", 133, 5]], [["refresh", 152, 15]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, dpkg: false, "libxcb-wm": false, "libxcb-render-util": false, "libxcb-keysyms": false, "libxcb-image": false, libxscrnsaver: false, libxrender: false, libxi: false, libx11: false, libsm: false, libice: false, libxcb: false, glib: false, libGLU: false, libGL: false, libpulseaudio: false, zlib: false, dbus: false, fontconfig: false, freetype: false, gtk3: false, pango: false, makeWrapper: false, python3Packages: false, lib: false, libcap: false, lsof: false, curl: false, libuuid: false, cups: false, libgbm: false, xz: false, libxkbcommon: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["sha256", 90, 22], ["url", 91, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 95, 7], ["homepage", 96, 7], ["sourceProvenance", 97, 7], ["license", 98, 7], ["platforms", 99, 7], ["maintainers", 103, 7], ["mainProgram", 104, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 86, 20], ["pname", 87, 5], ["src", 89, 5], ["meta", 94, 5], ["nativeBuildInputs", 107, 5], ["buildInputs", 108, 5], ["unpackPhase", 110, 5], ["installPhase", 111, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 134, 7], ["SCRIPT", 135, 7], ["buildInputs", 137, 7], ["shellHook", 145, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["update", 133, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["refresh", 152, 15]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const all_data = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./data.json")));
-  const system_map = nix.thunk(() => ({ [nix.POS]: pos$1, "x86_64-linux": "amd64" }));
+  const system_map = nix.thunk(() => ({ [nix.POS]: $pos[0], "x86_64-linux": "amd64" }));
   const data = nix.thunk(() => nix.sel(all_data, nix.key(nix.selOr(system_map, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))));
   const baseUrl = "https://apt.enpass.io";
   const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [
@@ -82,16 +76,16 @@ export default nix.lambda((args) => (() => {
       libxkbcommon,
     ])));
   const package$ = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: nix.thunk(() => nix.attr(data, "version")),
       pname: "enpass",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           sha256: nix.thunk(() => nix.attr(data, "sha256")),
           url: nix.thunk(() => nix.str`${baseUrl}/${nix.sel(data, "path")}`),
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Well known password manager",
         homepage: "https://www.enpass.io/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -130,9 +124,9 @@ wrapProgram $out/bin/Enpass \\
 `),
     }))));
   const updater = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     update: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "enpass-update-script",
         SCRIPT: nix.thunk(() => nix.builtins.toString(nix.path(here, "./update_script.py"))),
         buildInputs: nix.thunk(() => (() => {
@@ -150,6 +144,6 @@ wrapProgram $out/bin/Enpass \\
 `),
       })))),
   }));
-  return nix.update(package$, { [nix.POS]: pos$7, refresh: updater });
+  return nix.update(package$, { [nix.POS]: $pos[6], refresh: updater });
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

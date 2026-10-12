@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["curl-impersonate", 145, 36]], [["deps", 140, 5], ["updateScript", 142, 5], ["src", 144, 13], ["tests", 145, 5]], [["changelog", 149, 5], ["description", 150, 5], ["homepage", 151, 5], ["license", 152, 5], ["maintainers", 156, 5], ["platforms", 159, 5], ["mainProgram", 160, 5]], [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 27, 3], ["separateDebugInfo", 34, 3], ["strictDeps", 35, 3], ["__structuredAttrs", 36, 3], ["depsBuildBuild", 38, 3], ["nativeBuildInputs", 42, 3], ["cmakeFlags", 65, 3], ["patches", 76, 3], ["postPatch", 80, 3], ["preConfigure", 100, 3], ["installPhase", 106, 3], ["postInstall", 118, 3], ["installCheckPhase", 122, 3], ["doInstallCheck", 137, 3], ["passthru", 139, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, callPackage: false, installShellFiles: false, buildPackages: false, cmake: false, ninja: false, "pkg-config": false, autoconf: false, automake: false, libtool: false, unzip: false, fixDarwinDylibNames: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["curl-impersonate", 145, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["deps", 140, 5], ["updateScript", 142, 5], ["src", 144, 13], ["tests", 145, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 149, 5], ["description", 150, 5], ["homepage", 151, 5], ["license", 152, 5], ["maintainers", 156, 5], ["platforms", 159, 5], ["mainProgram", 160, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 27, 3], ["separateDebugInfo", 34, 3], ["strictDeps", 35, 3], ["__structuredAttrs", 36, 3], ["depsBuildBuild", 38, 3], ["nativeBuildInputs", 42, 3], ["cmakeFlags", 65, 3], ["patches", 76, 3], ["postPatch", 80, 3], ["preConfigure", 100, 3], ["installPhase", 106, 3], ["postInstall", 118, 3], ["installCheckPhase", 122, 3], ["doInstallCheck", 137, 3], ["passthru", 139, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lexiforest",
           repo: "curl-impersonate",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -79,17 +75,17 @@ BUILD_DIR="$PWD/build" ZIG_FLAGS='-target ${nix.sel(stdenv, "hostPlatform", "con
       const installCheckPhase = "runHook preInstallCheck\n\nversion_output=$($out/bin/curl-impersonate -V)\necho \"$version_output\"\necho \"$version_output\" | grep -q zlib\necho \"$version_output\" | grep -q zstd\necho \"$version_output\" | grep -q brotli\necho \"$version_output\" | grep -q nghttp2\necho \"$version_output\" | grep -q BoringSSL\necho \"$version_output\" | grep -q IDN\n\nrunHook postInstallCheck\n";
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         deps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./deps.nix"), nix.thunk(() => ({})))),
         updateScript: nix.path(here, "./update.sh"),
         src: src,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "curl-impersonate": nix.thunk(() => nix.attr(nixosTests, "curl-impersonate")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/lexiforest/curl-impersonate/releases/tag/${nix.sel(src, "tag")}`),
         description: "Special build of curl that can impersonate Chrome, Edge, Safari and Firefox",
         homepage: "https://github.com/lexiforest/curl-impersonate",
@@ -108,7 +104,7 @@ BUILD_DIR="$PWD/build" ZIG_FLAGS='-target ${nix.sel(stdenv, "hostPlatform", "con
         mainProgram: "curl-impersonate",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         outputs,

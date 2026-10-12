@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["description", 70, 5], ["longDescription", 71, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5], ["platforms", 81, 5]], [["pname", 31, 3], ["version", 32, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["cargoHash", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["postInstall", 56, 3], ["nativeInstallCheckInputs", 66, 3], ["doInstallCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromCodeberg: false, "pkg-config": false, makeWrapper: false, libxkbcommon: false, wayland: false, libx11: false, libxcursor: false, libxi: false, libxrandr: false, fontconfig: false, pipewire: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["longDescription", 71, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5], ["platforms", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["cargoHash", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["postInstall", 56, 3], ["nativeInstallCheckInputs", 66, 3], ["doInstallCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const dlopenLibs = nix.thunk(() => [libxkbcommon, wayland, libx11, libxcursor, libxi, libxrandr]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "spectral-mic",
       version: "0.8.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mmc",
           repo: "spectral",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +52,7 @@ wrapProgram $out/bin/spectral \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Real-time audio noise suppression application",
         longDescription: "Spectral is a real-time audio noise suppression application powered by\nRNNoise, a hybrid DSP and neural-network-based noise suppression system.\nIt creates a virtual microphone that can be used with any application,\nfiltering out background noise in real-time.\n",
         homepage: "https://codeberg.org/mmc/spectral",

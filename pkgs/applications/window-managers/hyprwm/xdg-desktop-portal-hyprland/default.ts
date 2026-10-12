@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["updateScript", 95, 5]], [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["mainProgram", 102, 5], ["license", 103, 5], ["teams", 104, 5], ["platforms", 105, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["depsBuildBuild", 40, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 52, 3], ["cmakeBuildType", 68, 3], ["dontStrip", 70, 3], ["separateDebugInfo", 71, 3], ["dontWrapQtApps", 73, 3], ["postInstall", 75, 3], ["passthru", 94, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, makeWrapper: false, "pkg-config": false, wrapQtAppsHook: false, "nix-update-script": false, grim: false, hyprland: false, "hyprland-protocols": false, hyprlang: false, hyprutils: false, "hyprwayland-scanner": false, libdrm: false, libgbm: false, pipewire: false, qtbase: false, qttools: false, qtwayland: false, "sdbus-cpp_2": false, slurp: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, debug: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 95, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["mainProgram", 102, 5], ["license", 103, 5], ["teams", 104, 5], ["platforms", 105, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["depsBuildBuild", 40, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 52, 3], ["cmakeBuildType", 68, 3], ["dontStrip", 70, 3], ["separateDebugInfo", 71, 3], ["dontWrapQtApps", 73, 3], ["postInstall", 75, 3], ["passthru", 94, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const debug = nix.argOr($, "debug", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xdg-desktop-portal-hyprland",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hyprwm",
           repo: "xdg-desktop-portal-hyprland",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,11 +73,11 @@ wrapProgramShell $out/libexec/xdg-desktop-portal-hyprland \\
   --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.builtins.placeholder("out")), grim]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "xdg-desktop-portal backend for Hyprland",
         homepage: "https://github.com/hyprwm/xdg-desktop-portal-hyprland",
         changelog: nix.thunk(() => nix.str`https://github.com/hyprwm/xdg-desktop-portal-hyprland/releases/tag/v${nix.sel(finalAttrs, "version")}`),

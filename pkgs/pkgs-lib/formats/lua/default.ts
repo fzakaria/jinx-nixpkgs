@@ -2,15 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 50, 15], ["descriptionClass", 51, 15]], [["asBindings", 65, 39], ["multiline", 65, 50]], [["nativeBuildInputs", 61, 15], ["columnWidth", 62, 23], ["indentWidth", 63, 23], ["indentType", 64, 15], ["value", 65, 15], ["preferLocalBuild", 66, 15], ["__structuredAttrs", 67, 15]], [["mkRaw", 84, 11]], [["type", 36, 7], ["generate", 55, 7], ["lib", 84, 7]], [["format", 27, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
 const formals$2 = { args: { asBindings: true, multiline: true, columnWidth: true, indentWidth: true, indentUsingTabs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 50, 15], ["descriptionClass", 51, 15]]);
 const formals$3 = { args: { runCommand: false, stylua: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["asBindings", 65, 39], ["multiline", 65, 50]]);
-const pos$3 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 61, 15], ["columnWidth", 62, 23], ["indentWidth", 63, 23], ["indentType", 64, 15], ["value", 65, 15], ["preferLocalBuild", 66, 15], ["__structuredAttrs", 67, 15]]);
-const pos$4 = nix.positions(here + "/default.nix", [["mkRaw", 84, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["type", 36, 7], ["generate", 55, 7], ["lib", 84, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["format", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const path = nix.thunk(() => nix.attr(from_1, "path"));
   const str = nix.thunk(() => nix.attr(from_1, "str"));
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const asBindings = nix.argOr($_1, "asBindings", () => false);
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const indentWidth = nix.argOr($_1, "indentWidth", () => 2n);
       const indentUsingTabs = nix.argOr($_1, "indentUsingTabs", () => false);
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         type: nix.thunk(() => (() => {
           const valueType = nix.thunk(() => nix.update(nix.app(nullOr, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [
                 bool,
@@ -52,7 +47,7 @@ export default nix.lambda((args) => (() => {
                 luaInline,
                 nix.thunk(() => nix.app(attrsOf, valueType)),
                 nix.thunk(() => nix.app(listOf, valueType)),
-              ])))), { [nix.POS]: pos$1, description: "lua value", descriptionClass: "noun" }));
+              ])))), { [nix.POS]: $pos[0], description: "lua value", descriptionClass: "noun" }));
           return (nix.asBool(asBindings) ? nix.app(attrsOf, valueType) : nix.force(valueType));
         })()),
         generate: (name) => (value) => nix.app(nix.sel(pkgs, "callPackage"), nix.lambda((args_2) => (() => {
@@ -60,12 +55,12 @@ export default nix.lambda((args) => (() => {
             const runCommand = nix.arg($_2, "runCommand");
             const stylua = nix.arg($_2, "stylua");
             return nix.app(runCommand, name, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 nativeBuildInputs: nix.thunk(() => [stylua]),
                 columnWidth: columnWidth,
                 indentWidth: indentWidth,
                 indentType: nix.thunk(() => (nix.asBool(indentUsingTabs) ? "Tabs" : "Spaces")),
-                value: nix.thunk(() => nix.app(toLua, nix.thunk(() => ({ [nix.POS]: pos$2, asBindings: asBindings, multiline: multiline })), value)),
+                value: nix.thunk(() => nix.app(toLua, nix.thunk(() => ({ [nix.POS]: $pos[1], asBindings: asBindings, multiline: multiline })), value)),
                 preferLocalBuild: true,
                 __structuredAttrs: true,
               })), nix.thunk(() => nix.str`${nix.app(optionalString, nix.thunk(() => !nix.asBool(asBindings)), "echo -n 'return ' >> $out\n")}
@@ -79,7 +74,7 @@ stylua \\
   $out
 `));
           })(), formals$3), nix.thunk(() => ({}))),
-        lib: nix.thunk(() => ({ [nix.POS]: pos$4, mkRaw: mkLuaInline })),
+        lib: nix.thunk(() => ({ [nix.POS]: $pos[3], mkRaw: mkLuaInline })),
       };
     })(), formals$2),
   };

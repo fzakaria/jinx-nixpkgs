@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-packages.nix", [[["pname", 16, 19], ["version", 16, 25], ["paths", 18, 3], ["nativeBuildInputs", 20, 3], ["postBuild", 22, 3]]]);
 const formals$1 = { args: { lib: false, idris: false, symlinkJoin: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/with-packages.nix", [["pname", 16, 19], ["version", 16, 25], ["paths", 18, 3], ["nativeBuildInputs", 20, 3], ["postBuild", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return (packages) => (() => {
     const paths = nix.thunk(() => nix.app(nix.sel(lib, "closePropagation"), packages));
     return nix.app(nix.sel(lib, "appendToName"), "with-packages", nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(idris, "pname")),
           version: nix.thunk(() => nix.attr(idris, "version")),
           paths: nix.thunk(() => nix.concat(paths, [idris])),

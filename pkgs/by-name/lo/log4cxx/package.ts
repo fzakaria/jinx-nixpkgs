@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["platforms", 47, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 25, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libtool: false, cmake: false, libxml2: false, cppunit: false, boost: false, apr: false, aprutil: false, db: false, expat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 25, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const db = nix.arg($, "db");
   const expat = nix.arg($, "expat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "log4cxx",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/logging/log4cxx/${nix.sel(finalAttrs, "version")}/apache-log4cxx-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-uUP/FwOT5M44GrTEkUOWEnv01E+4vR8OXvhFPzxNNkw=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxml2, cppunit, boost, apr, aprutil, db, expat]),
       nativeBuildInputs: nix.thunk(() => [libtool, cmake]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://logging.apache.org/log4cxx/index.html",
         description: "Logging framework for C++ patterned after Apache log4j",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

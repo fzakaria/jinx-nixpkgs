@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["NIX_CFLAGS_COMPILE", 52, 5]], [["NIX_LDFLAGS", 55, 5]], [["withGurobi", 62, 24], ["withCplex", 62, 35]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["buildInputs", 28, 3], ["nativeBuildInputs", 36, 3], ["configureFlags", 40, 3], ["env", 50, 3], ["hardeningDisable", 58, 3], ["enableParallelBuilding", 60, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gfortran: false, "pkg-config": false, blas: false, zlib: false, bzip2: false, "coin-utils": false, withGurobi: true, gurobi: false, withCplex: true, cplex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["withGurobi", 62, 24], ["withCplex", 62, 35]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["buildInputs", 28, 3], ["nativeBuildInputs", 36, 3], ["configureFlags", 40, 3], ["env", 50, 3], ["hardeningDisable", 58, 3], ["enableParallelBuilding", 60, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const withCplex = nix.argOr($, "withCplex", () => false);
   const cplex = nix.arg($, "cplex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "osi",
       version: "0.108.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coin-or",
           repo: "Osi",
           rev: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -45,15 +40,15 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--with-cplex-incdir=${cplex}/cplex/include/ilcplex`),
           nix.thunk(() => nix.str`--with-cplex-lib=-lcplex${nix.sel(cplex, "libSuffix")}`),
         ])))),
-      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-cast-qual" }, nix.app(nix.sel(lib, "optionalAttrs"), withCplex, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+      env: nix.thunk(() => nix.update({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-cast-qual" }, nix.app(nix.sel(lib, "optionalAttrs"), withCplex, nix.thunk(() => ({
+          [nix.POS]: $pos[2],
           NIX_LDFLAGS: nix.thunk(() => nix.str`-L${cplex}/cplex/bin/${nix.sel(cplex, "libArch")}`),
         }))))),
       hardeningDisable: nix.thunk(() => ["format"]),
       enableParallelBuilding: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, withGurobi: withGurobi, withCplex: withCplex })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], withGurobi: withGurobi, withCplex: withCplex })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Abstract base class to a generic linear programming (LP) solver",
         homepage: "https://github.com/coin-or/Osi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl20")),

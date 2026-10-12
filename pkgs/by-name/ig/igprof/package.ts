@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["CXXFLAGS", 29, 7]], [["description", 37, 5], ["longDescription", 39, 5], ["license", 51, 5], ["homepage", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5]], [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 27, 3], ["env", 29, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libunwind: false, cmake: false, pcre2: false, gdb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["longDescription", 39, 5], ["license", 51, 5], ["homepage", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 27, 3], ["env", 29, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const gdb = nix.arg($, "gdb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "6.0.0",
       pname: "igprof",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "igprof",
           repo: "igprof",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libunwind, gdb, pcre2]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fPIC", "-O2", "-w", "-fpermissive"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Ignominous Profiler",
         longDescription: "IgProf is a fast and light weight profiler. It correctly handles\ndynamically loaded shared libraries, threads and sub-processes started by\nthe application.  We have used it routinely with large C++ applications\nconsisting of many hundreds of shared libraries and thousands of symbols\nfrom millions of source lines of code. It requires no special privileges\nto run. The performance reports provide full navigable call stacks and\ncan be customised by applying filters. Results from any number of\nprofiling runs can be included. This means you can both dig into the\ndetails and see the big picture from combined workloads.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

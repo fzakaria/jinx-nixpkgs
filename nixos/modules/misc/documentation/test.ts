@@ -2,23 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["doc", 21, 16]], [["imports", 18, 11], ["meta", 21, 11]], [["baseModules", 27, 11], ["extraModules", 31, 11], ["modules", 32, 19]], [["args", 26, 17]], [["includeAllModules", 34, 29]], [["nixos", 34, 23]], [["_module", 26, 9], ["documentation", 34, 9]], [["type", 41, 11], ["description", 42, 11], ["default", 43, 11]], [["foobar", 40, 17]], [["options", 40, 9]], [["myModule", 37, 25]], [["someArg", 37, 17]], [["modules", 9, 5], ["specialArgs", 37, 5]], [["optionsJSON", 51, 46]]]);
 const formals$1 = { args: { nixosLib: false, pkgsModule: false, runCommand: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, someArg: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/test.nix", [["doc", 21, 16]]);
-const pos$2 = nix.positions(here + "/test.nix", [["imports", 18, 11], ["meta", 21, 11]]);
-const pos$3 = nix.positions(here + "/test.nix", [["baseModules", 27, 11], ["extraModules", 31, 11], ["modules", 32, 19]]);
-const pos$4 = nix.positions(here + "/test.nix", [["args", 26, 17]]);
-const pos$5 = nix.positions(here + "/test.nix", [["includeAllModules", 34, 29]]);
-const pos$6 = nix.positions(here + "/test.nix", [["nixos", 34, 23]]);
-const pos$7 = nix.positions(here + "/test.nix", [["_module", 26, 9], ["documentation", 34, 9]]);
 const formals$3 = { args: { lib: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/test.nix", [["type", 41, 11], ["description", 42, 11], ["default", 43, 11]]);
-const pos$9 = nix.positions(here + "/test.nix", [["foobar", 40, 17]]);
-const pos$10 = nix.positions(here + "/test.nix", [["options", 40, 9]]);
-const pos$11 = nix.positions(here + "/test.nix", [["myModule", 37, 25]]);
-const pos$12 = nix.positions(here + "/test.nix", [["someArg", 37, 17]]);
-const pos$13 = nix.positions(here + "/test.nix", [["modules", 9, 5], ["specialArgs", 37, 5]]);
-const pos$14 = nix.positions(here + "/test.nix", [["optionsJSON", 51, 46]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,41 +22,41 @@ export default nix.lambda((args) => (() => {
           const lib = nix.arg($_1, "lib");
           const someArg = nix.arg($_1, "someArg");
           return {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             imports: nix.thunk(() => [nix.thunk(() => nix.sel(someArg, "myModule"))]),
-            meta: nix.thunk(() => ({ [nix.POS]: pos$1, doc: nix.path(here, "./test-dummy.chapter.xml") })),
+            meta: nix.thunk(() => ({ [nix.POS]: $pos[0], doc: nix.path(here, "./test-dummy.chapter.xml") })),
           };
         })(), formals$2),
         nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           _module: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             args: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               baseModules: nix.thunk(() => [nix.path(here, "../documentation.nix"), nix.path(here, "../version.nix")]),
               extraModules: [],
               modules: modules,
             })),
           })),
           documentation: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            nixos: nix.thunk(() => ({ [nix.POS]: pos$5, includeAllModules: true })),
+            [nix.POS]: $pos[5],
+            nixos: nix.thunk(() => ({ [nix.POS]: $pos[4], includeAllModules: true })),
           })),
         })),
       ]);
       const specialArgs = nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         someArg: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           myModule: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             const lib = nix.arg($_1, "lib");
             return {
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               options: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 foobar: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                    [nix.POS]: pos$8,
+                    [nix.POS]: $pos[7],
                     type: nix.thunk(() => nix.sel(lib, "types", "str")),
                     description: "The foobar option was added via specialArgs",
                     default: "qux",
@@ -79,12 +66,12 @@ export default nix.lambda((args) => (() => {
           })(), formals$3),
         })),
       }));
-      return { [nix.POS]: pos$13, modules, specialArgs };
+      return { [nix.POS]: $pos[12], modules, specialArgs };
     })())));
   return nix.app(runCommand, "documentation-check", nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(sys, "config", "system", "build", "manual"));
       return {
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       optionsJSON: nix.thunk(() => nix.attr(from, "optionsJSON")),
     };
     })()), "json=\"$optionsJSON/share/doc/nixos/options.json\"\necho checking $json\n\ngrep 'The foobar option was added via specialArgs' <\"$json\" >/dev/null\ntouch $out\n");

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 22, 5], ["longDescription", 23, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["nativeBuildInputs", 13, 3], ["buildInputs", 14, 3], ["src", 16, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libusb1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 22, 5], ["longDescription", 23, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["nativeBuildInputs", 13, 3], ["buildInputs", 14, 3], ["src", 16, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dfu-util",
       version: "0.11",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libusb1]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dfu-util.sourceforge.net/releases/dfu-util-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-tLU7ohqC7349TEffKVKt9fpJT0mbawtXxYxdBK6P8Z4=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Device firmware update (DFU) USB programmer",
         longDescription: "dfu-util is a program that implements the host (PC) side of the USB\nDFU 1.0 and 1.1 (Universal Serial Bus Device Firmware Upgrade) protocol.\n\nDFU is intended to download and upload firmware to devices connected over\nUSB. It ranges from small devices like micro-controller boards up to mobile\nphones. With dfu-util you are able to download firmware to your device or\nupload firmware from it.\n",
         homepage: "https://dfu-util.sourceforge.net",

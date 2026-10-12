@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 13], ["sha256", 28, 5]], [["updateScript", 59, 12]], [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["mainProgram", 92, 5], ["platforms", 93, 5]], [["pname", 20, 3], ["rev", 21, 3], ["version", 22, 3], ["src", 24, 3], ["dontBuild", 31, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 35, 3], ["doInstallCheck", 54, 3], ["installCheckPhase", 55, 3], ["passthru", 59, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, which: false, curl: false, makeWrapper: false, jdk: false, writeScript: false, "common-updater-scripts": false, cacert: false, git: false, nix: false, jq: false, coreutils: false, gnused: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 13], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["mainProgram", 92, 5], ["platforms", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["rev", 21, 3], ["version", 22, 3], ["src", 24, 3], ["dontBuild", 31, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 35, 3], ["doInstallCheck", 54, 3], ["installCheckPhase", 55, 3], ["passthru", 59, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const rev = "aefe8ae5982ad5b4aee01fd11bc8c021b7888c1e";
       const version = "2026-05-04";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dwijnand",
           repo: "sbt-extras",
           rev: rev,
@@ -53,7 +50,7 @@ runHook postInstall
       const doInstallCheck = true;
       const installCheckPhase = "$out/bin/sbt -h >/dev/null\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str` #!${nix.sel(stdenv, "shell")}
  set -xo errexit
  PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [common_updater_scripts, curl, cacert, git, nix$, jq, coreutils, gnused]))}
@@ -69,7 +66,7 @@ if [ ! "null" = "$latestSha" ]; then
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "More featureful runner for sbt, the simple/scala/standard build tool",
         homepage: "https://github.com/dwijnand/sbt-extras",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -81,7 +78,7 @@ if [ ! "null" = "$latestSha" ]; then
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         rev,
         version,

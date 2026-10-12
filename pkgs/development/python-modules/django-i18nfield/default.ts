@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["DJANGO_SETTINGS_MODULE", 32, 7]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["env", 32, 3], ["nativeCheckInputs", 34, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, djangorestframework: false, html5lib: false, lxml: false, "pytest-django": false, pytestCheckHook: false, pyyaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["DJANGO_SETTINGS_MODULE", 32, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["env", 32, 3], ["nativeCheckInputs", 34, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,17 +22,17 @@ export default nix.lambda((args) => (() => {
       const version = "1.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "raphaelm",
           repo: "django-i18nfield",
           tag: version,
           hash: "sha256-0r4ICS8E0OFMrR7IoyiFyXBvAkQjSBb0HtEcb31f4Rw=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], DJANGO_SETTINGS_MODULE: "tests.settings" }));
       const nativeCheckInputs = nix.thunk(() => [djangorestframework, html5lib, lxml, pytest_django, pytestCheckHook, pyyaml]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Store internationalized strings in Django models",
         homepage: "https://github.com/raphaelm/django-i18nfield",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

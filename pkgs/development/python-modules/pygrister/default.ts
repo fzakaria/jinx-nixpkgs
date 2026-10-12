@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["devel", 36, 5]], [["updateScript", 46, 12]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 30, 3], ["optional-dependencies", 35, 3], ["pythonImportsCheck", 42, 3], ["passthru", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, requests: false, typer: false, pyinstaller: false, tox: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["devel", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 46, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 30, 3], ["optional-dependencies", 35, 3], ["pythonImportsCheck", 42, 3], ["passthru", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const tox = nix.arg($, "tox");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pygrister",
       version: "0.10.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ricpol",
           repo: "pygrister",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +31,14 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [requests, typer]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, devel: nix.thunk(() => [pyinstaller, tox]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], devel: nix.thunk(() => [pyinstaller, tox]) })),
       pythonImportsCheck: nix.thunk(() => ["pygrister"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python client for the Grist API",
         homepage: "https://github.com/ricpol/pygrister",
         changelog: nix.thunk(() => nix.str`https://github.com/ricpol/pygrister/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]], [["homepage", 198, 5], ["changelog", 199, 5], ["description", 200, 5], ["longDescription", 201, 5], ["license", 205, 5], ["platforms", 209, 5], ["maintainers", 214, 5]], [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["sourceRoot", 66, 3], ["outputs", 68, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 82, 3], ["postPatch", 113, 3], ["configureFlags", 158, 3], ["enableParallelBuilding", 165, 3], ["doInstallCheck", 167, 3], ["preConfigure", 169, 3], ["postInstall", 173, 3], ["strictDeps", 195, 3], ["meta", 197, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeWrapper: false, autoreconfHook: false, bash: false, fuse3: false, libmspack: false, openssl: false, pam: false, xercesc: false, icu: false, libdnet: false, pciutils: false, procps: false, libtirpc: false, libtool: false, "rpcsvc-proto": false, libx11: false, libxext: false, libxinerama: false, libxi: false, libxrender: false, libxrandr: false, libxtst: false, libxcrypt: false, libxml2: false, "pkg-config": false, glib: false, "gdk-pixbuf-xlib": false, gtk3: false, gtkmm3: false, iproute2: false, dbus: false, systemd: false, which: false, libdrm: false, udev: false, "util-linux": false, xmlsec: false, udevCheckHook: false, withX: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 198, 5], ["changelog", 199, 5], ["description", 200, 5], ["longDescription", 201, 5], ["license", 205, 5], ["platforms", 209, 5], ["maintainers", 214, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["sourceRoot", 66, 3], ["outputs", 68, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 82, 3], ["postPatch", 113, 3], ["configureFlags", 158, 3], ["enableParallelBuilding", 165, 3], ["doInstallCheck", 167, 3], ["preConfigure", 169, 3], ["postInstall", 173, 3], ["strictDeps", 195, 3], ["meta", 197, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,11 +55,11 @@ export default nix.lambda((args) => (() => {
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "open-vm-tools",
       version: "13.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vmware",
           repo: "open-vm-tools",
           tag: nix.thunk(() => nix.str`stable-${nix.sel(finalAttrs, "version")}`),
@@ -159,7 +157,7 @@ wrapProgram "$out/etc/vmware-tools/scripts/vmware/network" \\
 `),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/vmware/open-vm-tools",
         changelog: nix.thunk(() => nix.str`https://github.com/vmware/open-vm-tools/releases/tag/stable-${nix.sel(finalAttrs, "version")}`),
         description: "Set of tools for VMWare guests to improve host-guest interaction",

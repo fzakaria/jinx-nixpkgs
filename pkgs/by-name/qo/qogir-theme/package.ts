@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 7], ["repo", 35, 7], ["rev", 36, 7], ["hash", 37, 7]], [["updateScript", 71, 14]], [["description", 74, 7], ["homepage", 75, 7], ["license", 76, 7], ["platforms", 77, 7], ["maintainers", 78, 7]], [["pname", 30, 13], ["version", 31, 5], ["src", 33, 5], ["nativeBuildInputs", 40, 5], ["postPatch", 46, 5], ["installPhase", 50, 5], ["passthru", 71, 5], ["meta", 73, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, jdupes: false, sassc: false, which: false, themeVariants: true, colorVariants: true, tweaks: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 7], ["repo", 35, 7], ["rev", 36, 7], ["hash", 37, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 71, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 7], ["homepage", 75, 7], ["license", 76, 7], ["platforms", 77, 7], ["maintainers", 78, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 13], ["version", 31, 5], ["src", 33, 5], ["nativeBuildInputs", 40, 5], ["postPatch", 46, 5], ["installPhase", 50, 5], ["passthru", 71, 5], ["meta", 73, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "2025-08-17";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vinceliuice",
           repo: "qogir-theme",
           rev: version,
@@ -53,11 +50,11 @@ jdupes --quiet --link-soft --recurse $out/share
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Flat Design theme for GTK based desktop environments",
         homepage: "https://github.com/vinceliuice/Qogir-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -65,7 +62,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "romildo"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname_1,
         version,
         src,

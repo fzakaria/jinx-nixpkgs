@@ -2,46 +2,11 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/posix.nix", [[["enable", 15, 24]], [["login", 30, 27]], [["name", 29, 13], ["ensureClauses", 30, 13]], [["enable", 21, 9], ["initialScript", 22, 9], ["ensureUsers", 27, 9]], [["type", 38, 11], ["path", 39, 11], ["host-user", 40, 11]], [["backup", 37, 15]], [["enable", 36, 9], ["repos", 37, 9]], [["openssh", 15, 16], ["postgresql", 20, 16], ["pgbackrest", 35, 16]], [["keys", 16, 51]], [["authorizedKeys", 16, 36]], [["openssh", 16, 28]], [["postgres", 16, 19]], [["users", 16, 13]], [["services", 15, 7], ["users", 16, 7]], [["enable", 51, 24]], [["path", 58, 25]], [["localhost", 58, 15]], [["schedule", 62, 13], ["type", 63, 13]], [["future", 61, 16]], [["path", 66, 13], ["user", 67, 13]], [["primary", 65, 21]], [["jobs", 61, 11], ["instances", 65, 11]], [["ts_01", 84, 13], ["ts_02", 85, 13]], [["start-fast", 74, 11], ["compress-level", 75, 11], ["buffer-size", 76, 11], ["db-timeout", 77, 11], ["db-exclude", 78, 11], ["tablespace-map", 83, 11]], [["settings", 73, 31]], [["default", 60, 17], ["config-format", 73, 17]], [["enable", 57, 9], ["repos", 58, 9], ["stanzas", 60, 9]], [["openssh", 51, 16], ["pgbackrest", 56, 16]], [["keys", 52, 53]], [["authorizedKeys", 52, 38]], [["openssh", 52, 30]], [["pgbackrest", 52, 19]], [["users", 52, 13]], [["services", 51, 7], ["users", 52, 7]], [["primary", 9, 9], ["backup", 45, 9]], [["name", 7, 3], ["nodes", 9, 3], ["testScript", 91, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/posix.nix", [["enable", 15, 24]]);
-const pos$2 = nix.positions(here + "/posix.nix", [["login", 30, 27]]);
-const pos$3 = nix.positions(here + "/posix.nix", [["name", 29, 13], ["ensureClauses", 30, 13]]);
-const pos$4 = nix.positions(here + "/posix.nix", [["enable", 21, 9], ["initialScript", 22, 9], ["ensureUsers", 27, 9]]);
-const pos$5 = nix.positions(here + "/posix.nix", [["type", 38, 11], ["path", 39, 11], ["host-user", 40, 11]]);
-const pos$6 = nix.positions(here + "/posix.nix", [["backup", 37, 15]]);
-const pos$7 = nix.positions(here + "/posix.nix", [["enable", 36, 9], ["repos", 37, 9]]);
-const pos$8 = nix.positions(here + "/posix.nix", [["openssh", 15, 16], ["postgresql", 20, 16], ["pgbackrest", 35, 16]]);
-const pos$9 = nix.positions(here + "/posix.nix", [["keys", 16, 51]]);
-const pos$10 = nix.positions(here + "/posix.nix", [["authorizedKeys", 16, 36]]);
-const pos$11 = nix.positions(here + "/posix.nix", [["openssh", 16, 28]]);
-const pos$12 = nix.positions(here + "/posix.nix", [["postgres", 16, 19]]);
-const pos$13 = nix.positions(here + "/posix.nix", [["users", 16, 13]]);
-const pos$14 = nix.positions(here + "/posix.nix", [["services", 15, 7], ["users", 16, 7]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/posix.nix", [["enable", 51, 24]]);
-const pos$16 = nix.positions(here + "/posix.nix", [["path", 58, 25]]);
-const pos$17 = nix.positions(here + "/posix.nix", [["localhost", 58, 15]]);
-const pos$18 = nix.positions(here + "/posix.nix", [["schedule", 62, 13], ["type", 63, 13]]);
-const pos$19 = nix.positions(here + "/posix.nix", [["future", 61, 16]]);
-const pos$20 = nix.positions(here + "/posix.nix", [["path", 66, 13], ["user", 67, 13]]);
-const pos$21 = nix.positions(here + "/posix.nix", [["primary", 65, 21]]);
-const pos$22 = nix.positions(here + "/posix.nix", [["jobs", 61, 11], ["instances", 65, 11]]);
-const pos$23 = nix.positions(here + "/posix.nix", [["ts_01", 84, 13], ["ts_02", 85, 13]]);
-const pos$24 = nix.positions(here + "/posix.nix", [["start-fast", 74, 11], ["compress-level", 75, 11], ["buffer-size", 76, 11], ["db-timeout", 77, 11], ["db-exclude", 78, 11], ["tablespace-map", 83, 11]]);
-const pos$25 = nix.positions(here + "/posix.nix", [["settings", 73, 31]]);
-const pos$26 = nix.positions(here + "/posix.nix", [["default", 60, 17], ["config-format", 73, 17]]);
-const pos$27 = nix.positions(here + "/posix.nix", [["enable", 57, 9], ["repos", 58, 9], ["stanzas", 60, 9]]);
-const pos$28 = nix.positions(here + "/posix.nix", [["openssh", 51, 16], ["pgbackrest", 56, 16]]);
-const pos$29 = nix.positions(here + "/posix.nix", [["keys", 52, 53]]);
-const pos$30 = nix.positions(here + "/posix.nix", [["authorizedKeys", 52, 38]]);
-const pos$31 = nix.positions(here + "/posix.nix", [["openssh", 52, 30]]);
-const pos$32 = nix.positions(here + "/posix.nix", [["pgbackrest", 52, 19]]);
-const pos$33 = nix.positions(here + "/posix.nix", [["users", 52, 13]]);
-const pos$34 = nix.positions(here + "/posix.nix", [["services", 51, 7], ["users", 52, 7]]);
-const pos$35 = nix.positions(here + "/posix.nix", [["primary", 9, 9], ["backup", 45, 9]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$36 = nix.positions(here + "/posix.nix", [["name", 7, 3], ["nodes", 9, 3], ["testScript", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,48 +17,53 @@ export default nix.lambda((args) => (() => {
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   const backupPath = "/var/lib/pgbackrest";
   return {
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     name: "pgbackrest-posix",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       primary: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+            [nix.POS]: $pos[7],
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "init.sql", "CREATE TABLE t(c text);\nINSERT INTO t VALUES ('hello world');\n")),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   name: "app-user",
-                  ensureClauses: nix.thunk(() => ({ [nix.POS]: pos$2, login: true })),
+                  ensureClauses: nix.thunk(() => ({ [nix.POS]: $pos[1], login: true })),
                 })),
               ]),
             })),
             pgbackrest: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               repos: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                backup: nix.thunk(() => ({ [nix.POS]: pos$5, type: "posix", path: backupPath, "host-user": "pgbackrest" })),
+                [nix.POS]: $pos[5],
+                backup: nix.thunk(() => ({
+                  [nix.POS]: $pos[4],
+                  type: "posix",
+                  path: backupPath,
+                  "host-user": "pgbackrest",
+                })),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               postgres: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$9, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: $pos[9],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[8], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),
@@ -104,58 +74,58 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$28,
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
+            [nix.POS]: $pos[27],
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: true })),
             pgbackrest: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               enable: true,
               repos: nix.thunk(() => ({
-                [nix.POS]: pos$17,
-                localhost: nix.thunk(() => ({ [nix.POS]: pos$16, path: backupPath })),
+                [nix.POS]: $pos[16],
+                localhost: nix.thunk(() => ({ [nix.POS]: $pos[15], path: backupPath })),
               })),
               stanzas: nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 default: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   jobs: nix.thunk(() => ({
-                    [nix.POS]: pos$19,
-                    future: nix.thunk(() => ({ [nix.POS]: pos$18, schedule: "3000-01-01", type: "full" })),
+                    [nix.POS]: $pos[18],
+                    future: nix.thunk(() => ({ [nix.POS]: $pos[17], schedule: "3000-01-01", type: "full" })),
                   })),
                   instances: nix.thunk(() => ({
-                    [nix.POS]: pos$21,
+                    [nix.POS]: $pos[20],
                     primary: nix.thunk(() => ({
-                      [nix.POS]: pos$20,
+                      [nix.POS]: $pos[19],
                       path: nix.thunk(() => nix.sel(nodes, "primary", "services", "postgresql", "dataDir")),
                       user: "postgres",
                     })),
                   })),
                 })),
                 "config-format": nix.thunk(() => ({
-                  [nix.POS]: pos$25,
+                  [nix.POS]: $pos[24],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$24,
+                    [nix.POS]: $pos[23],
                     "start-fast": true,
                     "compress-level": 3n,
                     "buffer-size": "2MiB",
                     "db-timeout": 600n,
                     "db-exclude": nix.thunk(() => ["db1", "db2", "db5"]),
-                    "tablespace-map": nix.thunk(() => ({ [nix.POS]: pos$23, ts_01: "/db/ts_01", ts_02: "/db/ts_02" })),
+                    "tablespace-map": nix.thunk(() => ({ [nix.POS]: $pos[22], ts_01: "/db/ts_01", ts_02: "/db/ts_02" })),
                   })),
                 })),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               pgbackrest: nix.thunk(() => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$30,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$29, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: $pos[29],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[28], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),

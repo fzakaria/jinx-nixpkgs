@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 33, 5], ["platforms", 34, 5], ["license", 35, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["nativeBuildInputs", 23, 3], ["configureFlags", 25, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ilbc: false, linphonePackages: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["platforms", 34, 5], ["license", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["nativeBuildInputs", 23, 3], ["configureFlags", 25, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const linphonePackages = nix.arg($, "linphonePackages");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "msilbc",
       version: "2.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/linphone/plugins/sources/msilbc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "07j02y994ybh274fp7ydjvi76h34y2c34ndwjpjfcwwr03b48cfp",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`MEDIASTREAMER_CFLAGS=-I${nix.sel(linphonePackages, "mediastreamer2")}/include`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Mediastreamer plugin for the iLBC audio codec",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

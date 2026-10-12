@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["name", 10, 5], ["src", 11, 5], ["dontUnpack", 21, 5], ["nativeBuildInputs", 22, 5], ["buildInputs", 23, 5], ["buildPhase", 24, 5], ["doCheck", 33, 5], ["checkPhase", 34, 5], ["installPhase", 40, 5]], [["name", 66, 5], ["src", 67, 5], ["dontUnpack", 83, 5], ["buildPhase", 84, 5], ["doCheck", 85, 5], ["checkPhase", 86, 5], ["installPhase", 87, 5]], [["name", 91, 5], ["dontUnpack", 92, 5], ["buildPhase", 93, 5], ["installPhase", 98, 5]], [["name", 102, 5], ["src", 103, 5], ["dontUnpack", 107, 5], ["buildPhase", 108, 5], ["doCheck", 109, 5], ["checkPhase", 110, 5], ["installPhase", 111, 5]], [["name", 115, 5], ["src", 116, 5], ["dontUnpack", 125, 5], ["buildPhase", 126, 5], ["doCheck", 127, 5], ["checkPhase", 128, 5], ["installPhase", 129, 5]], [["mkl-libs", 9, 3], ["all-binaries-run", 43, 3], ["sycl-compile", 65, 3], ["headers-available", 90, 3], ["c-compile", 101, 3], ["openmp-compile", 114, 3]]]);
 const formals$1 = { args: { kit: false, stdenv: false, runCommand: false, "pkg-config": false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["name", 10, 5], ["src", 11, 5], ["dontUnpack", 21, 5], ["nativeBuildInputs", 22, 5], ["buildInputs", 23, 5], ["buildPhase", 24, 5], ["doCheck", 33, 5], ["checkPhase", 34, 5], ["installPhase", 40, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["name", 66, 5], ["src", 67, 5], ["dontUnpack", 83, 5], ["buildPhase", 84, 5], ["doCheck", 85, 5], ["checkPhase", 86, 5], ["installPhase", 87, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["name", 91, 5], ["dontUnpack", 92, 5], ["buildPhase", 93, 5], ["installPhase", 98, 5]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["name", 102, 5], ["src", 103, 5], ["dontUnpack", 107, 5], ["buildPhase", 108, 5], ["doCheck", 109, 5], ["checkPhase", 110, 5], ["installPhase", 111, 5]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["name", 115, 5], ["src", 116, 5], ["dontUnpack", 125, 5], ["buildPhase", 126, 5], ["doCheck", 127, 5], ["checkPhase", 128, 5], ["installPhase", 129, 5]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["mkl-libs", 9, 3], ["all-binaries-run", 43, 3], ["sycl-compile", 65, 3], ["headers-available", 90, 3], ["c-compile", 101, 3], ["openmp-compile", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const writeText = nix.arg($, "writeText");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     "mkl-libs": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "intel-oneapi-test-mkl-libs",
         src: nix.thunk(() => nix.app(writeText, "test.c", "#include <assert.h>\n#include <mkl_cblas.h>\nint main() {\n  float u[] = {1., 2., 3.};\n  float v[] = {4., 5., 6.};\n  float dp = cblas_sdot(3, u, 1, v, 1);\n  assert(dp == 32.);\n}\n")),
         dontUnpack: true,
@@ -52,7 +47,7 @@ done
 touch "$out"
 `))),
     "sycl-compile": nix.thunk(() => nix.app(nix.sel(kit, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "intel-oneapi-test-sycl-compile",
         src: nix.thunk(() => nix.app(writeText, "test.cpp", "#include <sycl/sycl.hpp>\n#include <iostream>\nint main() {\n  // We likely won't have a SYCL device available,\n  // due to the nix sandbox, but this test only\n  // verifies that SYCL compiles, so we don't need a device\n  try {\n      sycl::queue q;\n      std::cout << q.get_device().get_info<sycl::info::device::name>() << std::endl;\n  } catch (const sycl::exception& e) {\n      std::cerr << \"No SYCL device found: \" << e.what() << std::endl;\n  }\n  return 0;\n}\n")),
         dontUnpack: true,
@@ -62,14 +57,14 @@ touch "$out"
         installPhase: "touch \"$out\"",
       })))),
     "headers-available": nix.thunk(() => nix.app(nix.sel(kit, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "intel-oneapi-test-headers-available",
         dontUnpack: true,
         buildPhase: "echo '#include <sycl/sycl.hpp>' | icpx -fsycl -x c++ -E - > /dev/null\necho '#include <CL/sycl.hpp>'   | icpx -fsycl -x c++ -E - > /dev/null\necho '#include <iostream>'      | icpx -x c++ -E - > /dev/null\n",
         installPhase: "touch \"$out\"",
       })))),
     "c-compile": nix.thunk(() => nix.app(nix.sel(kit, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "intel-oneapi-test-c-compile",
         src: nix.thunk(() => nix.app(writeText, "test.c", "#include <stdio.h>\nint main() { printf(\"Hello from Intel C compiler!\\n\"); return 0; }\n")),
         dontUnpack: true,
@@ -79,7 +74,7 @@ touch "$out"
         installPhase: "touch \"$out\"",
       })))),
     "openmp-compile": nix.thunk(() => nix.app(nix.sel(kit, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "intel-oneapi-test-openmp-compile",
         src: nix.thunk(() => nix.app(writeText, "test.c", "#include <omp.h>\n#include <stdio.h>\nint main() {\n  #pragma omp parallel\n  { printf(\"Hello from thread %d\\n\", omp_get_thread_num()); }\n  return 0;\n}\n")),
         dontUnpack: true,

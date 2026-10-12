@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["extraArgs", 65, 5]], [["updateScript", 64, 12]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["build-system", 21, 3], ["src", 25, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 34, 3], ["dependencies", 36, 3], ["postPatch", 43, 3], ["preBuild", 50, 3], ["nativeCheckInputs", 54, 3], ["enabledTestPaths", 58, 3], ["pythonImportsCheck", 62, 3], ["passthru", 64, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, fftw: false, pandas: false, "scikit-learn": false, numpy: false, pip: false, setuptools: false, pytestCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 64, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["build-system", 21, 3], ["src", 25, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 34, 3], ["dependencies", 36, 3], ["postPatch", 43, 3], ["preBuild", 50, 3], ["nativeCheckInputs", 54, 3], ["enabledTestPaths", 58, 3], ["pythonImportsCheck", 62, 3], ["passthru", 64, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mlgig",
           repo: "mrsqm",
           tag: nix.thunk(() => nix.str`r${version}`),
@@ -44,14 +40,14 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/mrsqm"]);
       const pythonImportsCheck = nix.thunk(() => ["mrsqm"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "v\\.(.*)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "MrSQM (Multiple Representations Sequence Miner) is a time series classifier",
         homepage: "https://pypi.org/project/mrsqm",
         changelog: nix.thunk(() => nix.str`https://github.com/mlgig/mrsqm/releases/tag/v.${nix.sel(src, "tag")}`),
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

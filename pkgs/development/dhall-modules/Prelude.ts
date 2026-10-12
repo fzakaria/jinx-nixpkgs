@@ -2,14 +2,14 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/Prelude.nix", [[["name", 4, 3], ["owner", 5, 3], ["repo", 6, 3], ["directory", 7, 3], ["file", 8, 3], ["rev", 9, 3], ["sha256", 10, 3]]]);
 const formals$1 = { args: { buildDhallGitHubPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/Prelude.nix", [["name", 4, 3], ["owner", 5, 3], ["repo", 6, 3], ["directory", 7, 3], ["file", 8, 3], ["rev", 9, 3], ["sha256", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildDhallGitHubPackage = nix.arg($, "buildDhallGitHubPackage");
   return nix.app(buildDhallGitHubPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "Prelude",
       owner: "dhall-lang",
       repo: "dhall-lang",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["_7z", 51, 5], ["all", 53, 5], ["cbr", 59, 5], ["icu", 61, 5]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 40, 3], ["optional-dependencies", 50, 3], ["nativeCheckInputs", 64, 3], ["pythonRelaxDeps", 66, 3], ["disabledTests", 68, 3], ["pythonImportsCheck", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "importlib-metadata": false, natsort: false, pillow: false, py7zr: false, pycountry: false, pyicu: false, pytestCheckHook: false, rapidfuzz: false, rarfile: false, setuptools: false, "setuptools-scm": false, text2digits: false, wheel: false, wordninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["_7z", 51, 5], ["all", 53, 5], ["cbr", 59, 5], ["icu", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 40, 3], ["optional-dependencies", 50, 3], ["nativeCheckInputs", 64, 3], ["pythonRelaxDeps", 66, 3], ["disabledTests", 68, 3], ["pythonImportsCheck", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "comictagger",
           repo: "comicapi",
           rev: "2bf8332114e49add0bbc0fd3d85bdbba02de3d1a",
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         wordninja,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         _7z: nix.thunk(() => [py7zr]),
         all: nix.thunk(() => nix.concat([py7zr, rarfile], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), pyicu))),
         cbr: nix.thunk(() => [rarfile]),
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_copy_from_archive"]);
       const pythonImportsCheck = nix.thunk(() => ["comicapi"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Comic archive (cbr/cbz/cbt) and metadata utilities",
         homepage: "https://github.com/comictagger/comicapi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 5], ["version", 22, 13], ["format", 23, 5], ["python", 24, 5], ["abi", 25, 5], ["dist", 26, 5], ["platform", 27, 5], ["hash", 28, 5]], [["updateScript", 41, 12]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["sourceProvenance", 48, 5]], [["pname", 16, 3], ["version", 17, 22], ["format", 18, 3], ["src", 20, 3], ["dontBuild", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["pythonImportsCheck", 39, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, autoPatchelfHook: false, buildPythonPackage: false, fetchPypi: false, python: false, stdenv: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 5], ["version", 22, 13], ["format", 23, 5], ["python", 24, 5], ["abi", 25, 5], ["dist", 26, 5], ["platform", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 41, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["sourceProvenance", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 22], ["format", 18, 3], ["src", 20, 3], ["dontBuild", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["pythonImportsCheck", 39, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.attr(releases, "version"));
       const format = "wheel";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "saxonche",
           version: version,
           format: "wheel",
@@ -40,9 +37,9 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])));
       const buildInputs = nix.thunk(() => [zlib]);
       const pythonImportsCheck = nix.thunk(() => ["saxonche"]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.py") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.py") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Official Python package for the SaxonC-HE processor",
         homepage: "https://www.saxonica.com/saxon-c/index.xml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

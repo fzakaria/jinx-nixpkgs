@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 13, 5], ["mainProgram", 14, 5], ["longDescription", 15, 5], ["maintainers", 20, 5], ["platforms", 24, 5], ["license", 25, 5], ["homepage", 26, 5]], [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["outputs", 40, 3], ["nativeBuildInputs", 46, 3], ["nativeCheckInputs", 50, 3], ["doCheck", 54, 3], ["patches", 57, 3], ["dontAddPrefix", 61, 3], ["setOutputFlags", 62, 3], ["configurePhase", 64, 3], ["buildPhase", 77, 3], ["installPhase", 81, 3], ["meta", 108, 11]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "drat-trim": false, p7zip: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 13, 5], ["mainProgram", 14, 5], ["longDescription", 15, 5], ["maintainers", 20, 5], ["platforms", 24, 5], ["license", 25, 5], ["homepage", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["outputs", 40, 3], ["nativeBuildInputs", 46, 3], ["nativeCheckInputs", 50, 3], ["doCheck", 54, 3], ["patches", 57, 3], ["dontAddPrefix", 61, 3], ["setOutputFlags", 62, 3], ["configurePhase", 64, 3], ["buildPhase", 77, 3], ["installPhase", 81, 3], ["meta", 108, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const p7zip = nix.arg($, "p7zip");
   const pkg_config = nix.arg($, "pkg-config");
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "'keep it simple and clean bare metal SAT solver' written in C",
     mainProgram: "kissat",
     longDescription: "Kissat is a \"keep it simple and clean bare metal SAT solver\" written in C.\nIt is a port of CaDiCaL back to C with improved data structures,\nbetter scheduling of inprocessing and optimized algorithms and implementation.\n",
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
     homepage: "https://fmv.jku.at/kissat",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kissat",
       version: "4.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "arminbiere",
           repo: "kissat",
           rev: nix.thunk(() => nix.str`rel-${nix.sel(finalAttrs, "version")}`),

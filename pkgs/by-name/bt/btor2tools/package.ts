@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 22, 3], ["doInstallCheck", 30, 3], ["installCheckPhase", 32, 3], ["outputs", 41, 3], ["cmakeFlags", 47, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchFromGitHub: false, fixDarwinDylibNames: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 22, 3], ["doInstallCheck", 30, 3], ["installCheckPhase", 32, 3], ["outputs", 41, 3], ["cmakeFlags", 47, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "btor2tools",
       version: "0-unstable-2025-09-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hwmcc",
           repo: "btor2tools",
           rev: "d33c73ff1d173f1bfac8ba6b1c6d68ba62c55f8e",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       cmakeFlags: nix.thunk(() => nix.concat(["-DCMAKE_SKIP_BUILD_RPATH=ON"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-DCMAKE_BUILD_WITH_INSTALL_NAME_DIR=ON"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Generic parser and tool package for the BTOR2 format",
         homepage: "https://github.com/hwmcc/btor2tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

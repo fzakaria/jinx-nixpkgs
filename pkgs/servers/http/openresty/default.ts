@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 25, 5], ["hash", 26, 5]], [["src", 37, 38]], [["openresty-lua", 85, 28], ["openresty", 86, 43]], [["name", 89, 7], ["runtimeInputs", 90, 7], ["text", 95, 7]], [["tests", 84, 5], ["updateScript", 88, 5]], [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["platforms", 116, 5], ["maintainers", 117, 5]], [["pname", 20, 3], ["version", 21, 3], ["nginxVersion", 22, 3], ["src", 24, 3], ["fixPatch", 32, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["postPatch", 51, 3], ["configureFlags", 59, 3], ["postInstall", 61, 3], ["stripDebugList", 75, 3], ["passthru", 83, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { callPackage: false, runCommand: false, lib: false, fetchurl: false, groff: false, perl: false, libpq: false, makeWrapper: false, nixosTests: false, withPostgres: true, curl: false, jq: false, "nix-update": false, writeShellApplication: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 37, 38]]);
-const pos$3 = nix.positions(here + "/default.nix", [["openresty-lua", 85, 28], ["openresty", 86, 43]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 89, 7], ["runtimeInputs", 90, 7], ["text", 95, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 84, 5], ["updateScript", 88, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["platforms", 116, 5], ["maintainers", 117, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["nginxVersion", 22, 3], ["src", 24, 3], ["fixPatch", 32, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["postPatch", 51, 3], ["configureFlags", 59, 3], ["postInstall", 61, 3], ["stripDebugList", 75, 3], ["passthru", 83, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const version = "1.31.1.1";
       const nginxVersion = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ".", nix.thunk(() => nix.app(nix.sel(lib, "init"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".", version))))));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://openresty.org/download/openresty-${version}.tar.gz`),
           hash: "sha256-ZbeLqt0/CYQFXeib8T9KGTLlv+nDGTIDehNOorGgzkI=",
         }))));
       const fixPatch = (patch) => (() => {
         const name = nix.thunk(() => nix.selOr(patch, () => nix.builtins.baseNameOf(patch), "name"));
-        return nix.app(runCommand, nix.thunk(() => nix.str`openresty-${name}`), nix.thunk(() => ({ [nix.POS]: pos$2, src: patch })), nix.thunk(() => nix.str`substitute $src $out \\
+        return nix.app(runCommand, nix.thunk(() => nix.str`openresty-${name}`), nix.thunk(() => ({ [nix.POS]: $pos[1], src: patch })), nix.thunk(() => nix.str`substitute $src $out \\
   --replace "a/" "a/bundle/nginx-${nginxVersion}/" \\
   --replace "b/" "b/bundle/nginx-${nginxVersion}/"
 `));
@@ -67,17 +61,17 @@ substituteInPlace $out/bin/resty \\
 `);
       const stripDebugList = nix.thunk(() => ["nginx/bin", "luajit/bin", "luajit/lib", "lualib", "modules"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "nginx-variants"));
           return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "openresty-lua": nix.thunk(() => nix.attr(nixosTests, "openresty-lua")),
           openresty: nix.thunk(() => nix.attr(from, "openresty")),
         };
         })()),
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "openresty-update",
               runtimeInputs: nix.thunk(() => [curl, jq, nix_update]),
               text: nix.thunk(() => nix.str`version="$(
@@ -96,7 +90,7 @@ nix-update \\
             })))))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Fast web application server built on Nginx",
         homepage: "https://openresty.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -110,7 +104,7 @@ nix-update \\
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         nginxVersion,

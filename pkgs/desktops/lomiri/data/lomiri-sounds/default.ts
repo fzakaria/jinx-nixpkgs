@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["pkg-config", 34, 11]], [["tests", 34, 5], ["updateScript", 35, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["teams", 47, 5], ["platforms", 48, 5], ["pkgConfigModules", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["passthru", 33, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitLab: false, gitUpdater: false, testers: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg-config", 34, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 34, 5], ["updateScript", 35, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["teams", 47, 5], ["platforms", 48, 5], ["pkgConfigModules", 49, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["passthru", 33, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lomiri-sounds",
       version: "25.01",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-sounds",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,15 +28,15 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [cmake]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Notification and ringtone sound effects for Lomiri",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-sounds",
         license: nix.thunk(() => (() => {

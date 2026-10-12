@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["url", 49, 5], ["rev-prefix", 50, 5]], [["updateScript", 48, 12]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 27]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["outputs", 29, 3], ["strictDeps", 34, 3], ["makeFlags", 36, 3], ["installFlags", 41, 3], ["postPatch", 43, 3], ["passthru", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, libx11: false, libxft: false, libxrandr: false, "pkg-config": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 49, 5], ["rev-prefix", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 27]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["outputs", 29, 3], ["strictDeps", 34, 3], ["makeFlags", 36, 3], ["installFlags", 41, 3], ["postPatch", 43, 3], ["passthru", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "katriawm",
       version: "26.03",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.uninformativ.de/git/katriawm/archives/katriawm-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-vnnc5SkNzCLZTBxKcaHDo9F5f++7dtESD5hOB0zrxjo=",
         })))),
@@ -36,9 +32,9 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["prefix=$(out)"]),
       postPatch: "substituteInPlace src/config.mk \\\n  --replace pkg-config \"$PKG_CONFIG\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://www.uninformativ.de/git/katriawm.git/",
             "rev-prefix": "v",
           })))),
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.uninformativ.de/git/katriawm/file/README.html",
         description: "Non-reparenting, dynamic window manager with decorations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

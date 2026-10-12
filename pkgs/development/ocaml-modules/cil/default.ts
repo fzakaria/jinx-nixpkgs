@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["broken", 42, 5], ["platforms", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["strictDeps", 27, 3], ["createFindlibDestdir", 29, 3], ["preConfigure", 31, 3], ["prefixKey", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, ocaml: false, findlib: false, ocamlbuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["broken", 42, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["strictDeps", 27, 3], ["createFindlibDestdir", 29, 3], ["preConfigure", 31, 3], ["prefixKey", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ocaml-cil";
       const version = "1.7.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/cil/cil-${version}.tar.gz`),
           sha256: "05739da0b0msx6kmdavr3y2bwi92jbh3szc35d7d8pdisa8g5dv9",
         }))));
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const preConfigure = "substituteInPlace Makefile.in --replace 'MACHDEPCC=gcc' 'MACHDEPCC=$(CC)'\nexport FORCE_PERL_PREFIX=1\n";
       const prefixKey = "-prefix=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://sourceforge.net/projects/cil/",
         description: "Front-end for the C programming language that facilitates program analysis and transformation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.selOr(ocaml, () => [], "meta", "platforms")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

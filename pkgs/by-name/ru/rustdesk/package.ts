@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["fetchSubmodules", 48, 5], ["hash", 49, 5]], [["name", 60, 7], ["exec", 61, 7], ["icon", 62, 7], ["desktopName", 63, 7], ["comment", 64, 7], ["genericName", 65, 7], ["categories", 66, 7], ["mimeTypes", 67, 7]], [["SODIUM_USE_PKG_CONFIG", 142, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 143, 5]], [["description", 147, 5], ["homepage", 148, 5], ["changelog", 149, 5], ["license", 150, 5], ["maintainers", 151, 5], ["mainProgram", 155, 5], ["badPlatforms", 156, 5]], [["pname", 40, 3], ["version", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["cargoHash", 52, 3], ["patches", 54, 3], ["desktopItems", 58, 3], ["nativeBuildInputs", 71, 3], ["buildFeatures", 79, 3], ["doCheck", 82, 3], ["buildInputs", 84, 3], ["postPatch", 115, 3], ["postInstall", 122, 3], ["postFixup", 137, 3], ["env", 141, 3], ["meta", 146, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, wrapGAppsHook3: false, atk: false, bzip2: false, cairo: false, dbus: false, "gdk-pixbuf": false, glib: false, gst_all_1: false, gtk3: false, "libayatana-appindicator": false, libgit2: false, libpulseaudio: false, libsodium: false, libxtst: false, libvpx: false, libyuv: false, libopus: false, libaom: false, libxkbcommon: false, libsciter: false, xdotool: false, openssl: false, pam: false, pango: false, perl: false, zlib: false, zstd: false, stdenv: false, "alsa-lib": false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["fetchSubmodules", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 60, 7], ["exec", 61, 7], ["icon", 62, 7], ["desktopName", 63, 7], ["comment", 64, 7], ["genericName", 65, 7], ["categories", 66, 7], ["mimeTypes", 67, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["SODIUM_USE_PKG_CONFIG", 142, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 143, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 147, 5], ["homepage", 148, 5], ["changelog", 149, 5], ["license", 150, 5], ["maintainers", 151, 5], ["mainProgram", 155, 5], ["badPlatforms", 156, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["cargoHash", 52, 3], ["patches", 54, 3], ["desktopItems", 58, 3], ["nativeBuildInputs", 71, 3], ["buildFeatures", 79, 3], ["doCheck", 82, 3], ["buildInputs", 84, 3], ["postPatch", 115, 3], ["postInstall", 122, 3], ["postFixup", 137, 3], ["env", 141, 3], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,12 +43,12 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rustdesk",
       version: "1.5.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rustdesk",
           repo: "rustdesk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./make-build-reproducible.patch")]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "rustdesk",
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             icon: "rustdesk",
@@ -124,9 +120,13 @@ install -Dm0644 $src/res/logo.svg $out/share/icons/hicolor/scalable/apps/rustdes
 `),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`patchelf --add-rpath "${libayatana_appindicator}/lib" "$out/lib/rustdesk/rustdesk"
 `))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, SODIUM_USE_PKG_CONFIG: true, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        SODIUM_USE_PKG_CONFIG: true,
+        ZSTD_SYS_USE_PKG_CONFIG: true,
+      })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Virtual / remote desktop infrastructure for everyone! Open source TeamViewer / Citrix alternative",
         homepage: "https://rustdesk.com",
         changelog: nix.thunk(() => nix.str`https://github.com/rustdesk/rustdesk/releases/tag/${nix.sel(finalAttrs, "version")}`),

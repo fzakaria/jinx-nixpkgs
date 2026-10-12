@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["async", 37, 5]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["pythonRelaxDeps", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 36, 3], ["doCheck", 41, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, aiohttp: false, osrparse: false, requests: false, "requests-oauthlib": false, setuptools: false, "typing-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["async", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["pythonRelaxDeps", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 36, 3], ["doCheck", 41, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_utils = nix.arg($, "typing-utils");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ossapi",
       version: "5.3.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Liam-DeVoe",
           repo: "ossapi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       pythonRelaxDeps: nix.thunk(() => ["osrparse"]),
       dependencies: nix.thunk(() => [osrparse, requests, requests_oauthlib, typing_utils]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, async: nix.thunk(() => [aiohttp]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], async: nix.thunk(() => [aiohttp]) })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["ossapi"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python wrapper for the osu! API",
         homepage: "https://github.com/Liam-DeVoe/ossapi",
         changelog: nix.thunk(() => nix.str`https://github.com/Liam-DeVoe/ossapi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

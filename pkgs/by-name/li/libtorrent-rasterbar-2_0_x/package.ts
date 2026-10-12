@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enablePython", 14, 5], ["python", 15, 5]], [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["fetchSubmodules", 26, 5], ["hash", 27, 5]], [["homepage", 89, 5], ["description", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["strictDeps", 40, 3], ["patches", 42, 3], ["postPatch", 47, 3], ["postInstall", 62, 3], ["postFixup", 67, 3], ["outputs", 78, 3], ["cmakeFlags", 84, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, boost: false, fetchFromGitHub: false, cmake: false, openssl: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enablePython", 14, 5], ["python", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["fetchSubmodules", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 89, 5], ["description", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["strictDeps", 40, 3], ["patches", 42, 3], ["postPatch", 47, 3], ["postInstall", 62, 3], ["postFixup", 67, 3], ["outputs", 78, 3], ["cmakeFlags", 84, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const openssl = nix.arg($, "openssl");
   const python3 = nix.arg($, "python3");
-  const boostPython = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enablePython: true, python: python3 }))));
+  const boostPython = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enablePython: true, python: python3 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libtorrent-rasterbar",
       version: "2.0.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "arvidn",
           repo: "libtorrent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +39,7 @@ moveToOutput "lib/${nix.sel(python3, "libPrefix")}" "$python"
       outputs: nix.thunk(() => ["out", "dev", "python"]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "python-bindings", true))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://libtorrent.org/",
         description: "Efficient feature complete C++ bittorrent implementation",
         changelog: nix.thunk(() => nix.str`https://github.com/arvidn/libtorrent/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog`),

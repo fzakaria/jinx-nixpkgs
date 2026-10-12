@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["LC_ALL", 31, 7]], [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]], [["__structuredAttrs", 19, 3], ["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["env", 31, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["postPatch", 52, 3], ["postFixup", 61, 3], ["doInstallCheck", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, makeWrapper: false, "pkg-config": false, bash: false, libftdi1: false, libusb1: false, qt6: false, wget: false, zenity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LC_ALL", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["__structuredAttrs", 19, 3], ["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["env", 31, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["postPatch", 52, 3], ["postFixup", 61, 3], ["doInstallCheck", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const wget = nix.arg($, "wget");
   const zenity = nix.arg($, "zenity");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       __structuredAttrs: true,
       pname: "imsprog",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bigbigmdm",
           repo: "IMSProg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-K7biDYnWl4wbQ2t69x5X7/Cz/bWUvWlDeDOeNKrjCTg=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LC_ALL: "C.UTF-8" })),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [
         cmake,
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
 `),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/bigbigmdm/IMSProg/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Free I2C, MicroWire and SPI EEPROM/Flash chip programmer tool for CH341A device",
         homepage: "https://github.com/bigbigmdm/IMSProg",

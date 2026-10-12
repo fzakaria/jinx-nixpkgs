@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["llvm", 14, 32]], [["name", 17, 5], ["paths", 18, 5], ["pathsToLink", 22, 5]], [["domain", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 25], ["platforms", 57, 37]], [["pname", 26, 3], ["version", 27, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["cmakeFlags", 48, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, buildEnv: false, cmake: false, llvmPackages_22: false, mesa: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["llvm", 14, 32]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 17, 5], ["paths", 18, 5], ["pathsToLink", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["domain", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 25], ["platforms", 57, 37]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["cmakeFlags", 48, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,9 +16,12 @@ export default nix.lambda((args) => (() => {
   const mesa = nix.arg($, "mesa");
   const buildPackages = nix.arg($, "buildPackages");
   const llvmPackages_22$ = nix.thunk(() => nix.sel(buildPackages, "llvmPackages_22"));
-  const spirv_llvm_translator$ = nix.thunk(() => nix.app(nix.sel(buildPackages, "spirv-llvm-translator", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, llvm: nix.thunk(() => nix.attr(llvmPackages_22$, "llvm")) }))));
+  const spirv_llvm_translator$ = nix.thunk(() => nix.app(nix.sel(buildPackages, "spirv-llvm-translator", "override"), nix.thunk(() => ({
+      [nix.POS]: $pos[0],
+      llvm: nix.thunk(() => nix.attr(llvmPackages_22$, "llvm")),
+    }))));
   const tools = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "mesa-libclc-tools",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(llvmPackages_22$, "clang-unwrapped")),
@@ -31,13 +30,13 @@ export default nix.lambda((args) => (() => {
       pathsToLink: nix.thunk(() => ["/bin"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mesa-libclc",
       version: "22.1.8.3",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           domain: "gitlab.freedesktop.org",
           owner: "karolherbst",
           repo: "mesa-libclc",
@@ -50,7 +49,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Mesa fork of libclc, for use with Rusticl",
         homepage: "https://gitlab.freedesktop.org/karolherbst/mesa-libclc",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/karolherbst/mesa-libclc/-/releases/${nix.sel(finalAttrs, "src", "tag")}`),

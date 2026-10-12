@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["src", 42, 5], ["hash", 43, 5]], [["updateScript", 62, 5]], [["mainProgram", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 37, 3], ["npmRoot", 39, 3], ["npmDeps", 41, 3], ["cargoHash", 46, 3], ["preBuild", 48, 3], ["doCheck", 59, 3], ["passthru", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchNpmDeps: false, rustPlatform: false, npmHooks: false, nodejs: false, "nix-update-script": false, perl: false, "wasm-pack": false, "wasm-bindgen-cli_0_2_126": false, binaryen: false, lld: false, "rust-jemalloc-sys-unprefixed": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 37, 3], ["npmRoot", 39, 3], ["npmDeps", 41, 3], ["cargoHash", 46, 3], ["preBuild", 48, 3], ["doCheck", 59, 3], ["passthru", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const lld = nix.arg($, "lld");
   const rust_jemalloc_sys_unprefixed = nix.arg($, "rust-jemalloc-sys-unprefixed");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rauthy",
       version: "0.36.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sebadob",
           repo: "rauthy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [rust_jemalloc_sys_unprefixed]),
       npmRoot: "frontend",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/frontend`),
           hash: "sha256-mDJMETAasMXIH9yCh2zfeaPNQUaYlHjxz8jDf7LySaY=",
         })))),
@@ -55,11 +51,11 @@ export default nix.lambda((args) => (() => {
       preBuild: "pushd src/wasm-modules\nwasm-pack build -d ../../frontend/src/wasm/spow --no-pack --out-name spow --features spow\nwasm-pack build -d ../../frontend/src/wasm/md --no-pack --out-name md --features md\npopd\npushd \"$npmRoot\"\nnpm run build\npopd\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mainProgram: "rauthy",
         description: "Single Sign-On Identity & Access Management via OpenID Connect, OAuth 2.0 and PAM",
         homepage: "https://github.com/sebadob/rauthy",

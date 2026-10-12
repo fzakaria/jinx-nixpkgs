@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["hash", 35, 5]], [["description", 101, 5], ["longDescription", 102, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5], ["sourceProvenance", 115, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["dontBuild", 44, 3], ["dontWrapGApps", 45, 3], ["buildInputs", 47, 3], ["ldLibraryPath", 68, 3], ["installPhase", 70, 3], ["postFixup", 81, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, "alsa-lib": false, cairo: false, dpkg: false, freetype: false, "gdk-pixbuf": false, glib: false, gtk3: false, lib: false, "libxcb-util": false, "libxcb-wm": false, libxtst: false, libxcursor: false, libx11: false, libxcb: false, libglvnd: false, libjack2: false, ffmpeg: false, libxkbcommon: false, "xdg-utils": false, zlib: false, pulseaudio: false, wrapGAppsHook3: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 101, 5], ["longDescription", 102, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5], ["sourceProvenance", 115, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["dontBuild", 44, 3], ["dontWrapGApps", 45, 3], ["buildInputs", 47, 3], ["ldLibraryPath", 68, 3], ["installPhase", 70, 3], ["postFixup", 81, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bitwig-studio",
       version: "3.3.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.bitwig.com/stable/${nix.sel(finalAttrs, "version")}/bitwig-studio-${nix.sel(finalAttrs, "version")}.deb`),
           hash: "sha256-cF8gVPjM0KUcKOW09uFccp4/lzbUmZcBkVOwr/A/8Yw=",
         })))),
@@ -86,7 +84,7 @@ while IFS= read -r f ; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Digital audio workstation",
         longDescription: "Bitwig Studio is a multi-platform music-creation system for\nproduction, performance and DJing, with a focus on flexible\nediting tools and a super-fast workflow.\n",
         homepage: "https://www.bitwig.com/",

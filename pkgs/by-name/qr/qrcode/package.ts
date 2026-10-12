@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["package", 36, 7], ["command", 38, 7], ["version", 39, 7]], [["version", 35, 11]], [["updateScript", 34, 5], ["tests", 35, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 20, 3], ["enableParallelBuilding", 21, 3], ["makeFlags", 23, 3], ["installPhase", 26, 3], ["passthru", 33, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, unstableGitUpdater: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 36, 7], ["command", 38, 7], ["version", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 35, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 34, 5], ["tests", 35, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 20, 3], ["enableParallelBuilding", 21, 3], ["makeFlags", 23, 3], ["installPhase", 26, 3], ["passthru", 33, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "qrcode",
       version: "0-unstable-2025-04-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qsantos",
           repo: "qrcode",
           rev: "29140c67b69b79e5c8a52911489648853fddf85f",
@@ -33,12 +28,12 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: "runHook preInstall\ninstall -Dm755 qrcode -t \"$out/bin\"\ninstall -Dm644 DOCUMENTATION LICENCE -t \"$out/share/doc/qrcode\"\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "{ qrcode -V || true; }",
               version: "0.1",
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "QR-code encoder and decoder",
         homepage: "https://github.com/qsantos/qrcode",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

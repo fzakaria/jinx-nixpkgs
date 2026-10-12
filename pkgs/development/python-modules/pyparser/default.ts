@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 14, 3], ["postPatch", 20, 3], ["propagatedBuildInputs", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, fetchhg: false, parse: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 14, 3], ["postPatch", 20, 3], ["propagatedBuildInputs", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://keep.imfreedom.org/grim/pyparser",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "0aplb4zdpgbpmaw9qj0vr7qip9q5w7sl1m1lp1nc9jmjfij9i0hf",
@@ -26,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "sed -i 's/parse==/parse>=/' requirements.txt";
       const propagatedBuildInputs = nix.thunk(() => [parse]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple library that makes it easier to parse files",
         homepage: "https://keep.imfreedom.org/grim/pyparser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "nico202"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

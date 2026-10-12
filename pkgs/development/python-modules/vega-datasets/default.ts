@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["version", 17, 13], ["hash", 18, 5]], [["description", 42, 7], ["homepage", 43, 7], ["changelog", 44, 7], ["license", 45, 7]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 23, 3], ["nativeCheckInputs", 25, 3], ["pytestFlags", 27, 3], ["disabledTests", 29, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, pandas: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 13], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 7], ["homepage", 43, 7], ["changelog", 44, 7], ["license", 45, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 23, 3], ["nativeCheckInputs", 25, 3], ["pytestFlags", 27, 3], ["disabledTests", 29, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "vega_datasets",
           version: version,
           hash: "sha256-nb6YNCCOjsMqtElw3zFd6RAoYeTNoT2OFDqreoDZP8A=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const tag = nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), ".0", nix.thunk(() => nix.str`v${version}`)));
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Python package for offline access to vega datasets",
           homepage: "https://github.com/altair-viz/vega_datasets",
           changelog: nix.thunk(() => nix.str`https://github.com/altair-viz/vega_datasets/blob/${tag}/CHANGES.md`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

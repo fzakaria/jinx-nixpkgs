@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["version", 17, 26], ["hash", 18, 5]], [["smtp", 26, 5]], [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 21, 3], ["dependencies", 23, 3], ["optional-dependencies", 25, 3], ["doCheck", 30, 3], ["pythonImportsCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, aiosmtpd: false, buildPythonPackage: false, fetchPypi: false, werkzeug: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 26], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["smtp", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 21, 3], ["dependencies", 23, 3], ["optional-dependencies", 25, 3], ["doCheck", 30, 3], ["pythonImportsCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,23 +14,23 @@ export default nix.lambda((args) => (() => {
   const werkzeug = nix.arg($, "werkzeug");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pytest-localserver",
       version: "0.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pytest_localserver",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-JgcZfzkJEqslUl0SmsQ8PIdQSSVzaLP+CbXNA9zFJq8=",
         })))),
       "build-system": nix.thunk(() => [setuptools_scm]),
       dependencies: nix.thunk(() => [werkzeug]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, smtp: nix.thunk(() => [aiosmtpd]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], smtp: nix.thunk(() => [aiosmtpd]) })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pytest_localserver"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Plugin for the pytest testing framework to test server connections locally",
         homepage: "https://github.com/pytest-dev/pytest-localserver",
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-localserver/blob/v${nix.sel(finalAttrs, "version")}/CHANGES`),

@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-plugin.nix", [[["src", 76, 11], ["hash", 77, 11], ["forceGitDeps", 78, 11], ["postFetch", 79, 11]], [["preBuild", 90, 7], ["nativeBuildInputs", 95, 7]], [["name", 70, 5], ["version", 71, 13], ["src", 71, 21], ["vendorHash", 71, 25], ["npmDeps", 73, 5], ["makeCacheWritable", 86, 5], ["forceGitDeps", 87, 5], ["overrideModAttrs", 89, 5], ["prePatch", 98, 5], ["nativeBuildInputs", 111, 5], ["buildInputs", 117, 5], ["preBuild", 119, 5], ["buildPhase", 128, 5], ["installPhase", 143, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mattermost: false, nodejs: false, writeShellScriptBin: false, buildGoModule: false, "golangci-lint": false, gotestsum: false, fetchNpmDeps: false, npmHooks: false, "npm-lockfile-fix": false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, src: false, ignoreGoLintWarnings: true, vendorHash: true, buildWebapp: true, npmDepsHash: true, extraGoModuleAttrs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-plugin.nix", [["src", 76, 11], ["hash", 77, 11], ["forceGitDeps", 78, 11], ["postFetch", 79, 11]]);
-const pos$2 = nix.positions(here + "/build-plugin.nix", [["preBuild", 90, 7], ["nativeBuildInputs", 95, 7]]);
-const pos$3 = nix.positions(here + "/build-plugin.nix", [["name", 70, 5], ["version", 71, 13], ["src", 71, 21], ["vendorHash", 71, 25], ["npmDeps", 73, 5], ["makeCacheWritable", 86, 5], ["forceGitDeps", 87, 5], ["overrideModAttrs", 89, 5], ["prePatch", 98, 5], ["nativeBuildInputs", 111, 5], ["buildInputs", 117, 5], ["preBuild", 119, 5], ["buildPhase", 128, 5], ["installPhase", 143, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,7 +50,7 @@ exit $result
         const src_1 = src;
         const vendorHash_1 = vendorHash;
         const npmDeps = nix.thunk(() => (nix.asBool(buildWebapp) ? nix.app(fetchNpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             src: nix.thunk(() => nix.str`${src_1}/webapp`),
             hash: npmDepsHash,
             forceGitDeps: true,
@@ -62,7 +60,7 @@ exit $result
         const makeCacheWritable = true;
         const forceGitDeps = true;
         const overrideModAttrs = (final) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           preBuild: "go mod tidy\n",
           nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "lists", "remove"), nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(final, "nativeBuildInputs")))),
         });
@@ -85,7 +83,7 @@ runHook postBuild
 `);
         const installPhase = "plugin=\"$(ls dist/*.tar.gz | tail -n1)\"\nif [ -z \"$plugin\" ] || [ ! -f \"$plugin\" ]; then\n  echo \"No plugin tarball in dist folder!\" >&2\n  exit 1\nfi\ncp -av \"$plugin\" $out\n";
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name,
           version: version_1,
           src: src_1,

@@ -2,78 +2,65 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/userborn-immutable-users.nix", [[["enable", 7, 23]], [["userborn", 7, 14]], [["mutableUsers", 8, 11]], [["services", 7, 5], ["users", 8, 5]], [["maintainers", 16, 8]], [["isNormalUser", 26, 13], ["hashedPassword", 27, 13]], [["normalo", 25, 11]], [["users", 24, 9]], [["pkgs", 36, 21]], [["isNormalUser", 42, 15]], [["new-normalo", 41, 13]], [["users", 40, 17]], [["nixpkgs", 35, 11], ["imports", 38, 11], ["users", 40, 11]], [["inheritParentConfig", 33, 9], ["configuration", 34, 9]], [["new-generation", 32, 22]], [["imports", 21, 7], ["users", 23, 7], ["specialisation", 32, 7]], [["machine", 18, 9]], [["name", 14, 3], ["meta", 16, 3], ["nodes", 18, 3], ["testScript", 49, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/userborn-immutable-users.nix", [["enable", 7, 23]]);
-const pos$2 = nix.positions(here + "/userborn-immutable-users.nix", [["userborn", 7, 14]]);
-const pos$3 = nix.positions(here + "/userborn-immutable-users.nix", [["mutableUsers", 8, 11]]);
-const pos$4 = nix.positions(here + "/userborn-immutable-users.nix", [["services", 7, 5], ["users", 8, 5]]);
-const pos$5 = nix.positions(here + "/userborn-immutable-users.nix", [["maintainers", 16, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/userborn-immutable-users.nix", [["isNormalUser", 26, 13], ["hashedPassword", 27, 13]]);
-const pos$7 = nix.positions(here + "/userborn-immutable-users.nix", [["normalo", 25, 11]]);
-const pos$8 = nix.positions(here + "/userborn-immutable-users.nix", [["users", 24, 9]]);
-const pos$9 = nix.positions(here + "/userborn-immutable-users.nix", [["pkgs", 36, 21]]);
-const pos$10 = nix.positions(here + "/userborn-immutable-users.nix", [["isNormalUser", 42, 15]]);
-const pos$11 = nix.positions(here + "/userborn-immutable-users.nix", [["new-normalo", 41, 13]]);
-const pos$12 = nix.positions(here + "/userborn-immutable-users.nix", [["users", 40, 17]]);
-const pos$13 = nix.positions(here + "/userborn-immutable-users.nix", [["nixpkgs", 35, 11], ["imports", 38, 11], ["users", 40, 11]]);
-const pos$14 = nix.positions(here + "/userborn-immutable-users.nix", [["inheritParentConfig", 33, 9], ["configuration", 34, 9]]);
-const pos$15 = nix.positions(here + "/userborn-immutable-users.nix", [["new-generation", 32, 22]]);
-const pos$16 = nix.positions(here + "/userborn-immutable-users.nix", [["imports", 21, 7], ["users", 23, 7], ["specialisation", 32, 7]]);
-const pos$17 = nix.positions(here + "/userborn-immutable-users.nix", [["machine", 18, 9]]);
-const pos$18 = nix.positions(here + "/userborn-immutable-users.nix", [["name", 14, 3], ["meta", 16, 3], ["nodes", 18, 3], ["testScript", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const normaloHashedPassword = "$y$j9T$IEWqhKtWg.r.8fVkSEF56.$iKNxdMC6hOAQRp6eBtYvBk4c7BGpONXeZMqc8I/LM46";
   const common = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      userborn: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+      [nix.POS]: $pos[1],
+      userborn: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
     })),
-    users: nix.thunk(() => ({ [nix.POS]: pos$3, mutableUsers: false })),
+    users: nix.thunk(() => ({ [nix.POS]: $pos[2], mutableUsers: false })),
   }));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "userborn-immutable-users",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           imports: nix.thunk(() => [common]),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              normalo: nix.thunk(() => ({ [nix.POS]: pos$6, isNormalUser: true, hashedPassword: normaloHashedPassword })),
+              [nix.POS]: $pos[6],
+              normalo: nix.thunk(() => ({
+                [nix.POS]: $pos[5],
+                isNormalUser: true,
+                hashedPassword: normaloHashedPassword,
+              })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             "new-generation": nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               inheritParentConfig: false,
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$13,
-                nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$9, pkgs: pkgs })),
+                [nix.POS]: $pos[12],
+                nixpkgs: nix.thunk(() => ({ [nix.POS]: $pos[8], pkgs: pkgs })),
                 imports: nix.thunk(() => [common]),
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   users: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
-                    "new-normalo": nix.thunk(() => ({ [nix.POS]: pos$10, isNormalUser: true })),
+                    [nix.POS]: $pos[10],
+                    "new-normalo": nix.thunk(() => ({ [nix.POS]: $pos[9], isNormalUser: true })),
                   })),
                 })),
               })),

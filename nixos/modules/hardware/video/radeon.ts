@@ -2,11 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/radeon.nix", [["enableRedistributableFirmware", 2, 12]]);
-const pos$2 = nix.positions(here + "/radeon.nix", [["hardware", 2, 3]]);
+const $pos = nix.positions(here + "/radeon.nix", [[["enableRedistributableFirmware", 2, 12]], [["hardware", 2, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
-  hardware: nix.thunk(() => ({ [nix.POS]: pos$1, enableRedistributableFirmware: true })),
+  [nix.POS]: $pos[1],
+  hardware: nix.thunk(() => ({ [nix.POS]: $pos[0], enableRedistributableFirmware: true })),
 }));
 //# sourceMappingURL=radeon.ts.map

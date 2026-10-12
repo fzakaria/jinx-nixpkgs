@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["NIX_CFLAGS_COMPILE", 29, 7]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 23, 3], ["env", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["preConfigure", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, openldap: false, openssl: false, popt: false, glib: false, libxcrypt: false, ncurses: false, readline: false, "pkg-config": false, cyrus_sasl: false, autoconf: false, automake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 23, 3], ["env", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["preConfigure", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const autoconf = nix.arg($, "autoconf");
   const automake = nix.arg($, "automake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ldapvi",
       version: "1.7-unstable-2010-12-14",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://www.lichteblau.com/git/ldapvi.git",
           rev: "f1d42bad66cc4623d1ff21fbd5dddbf5009d3e40",
           sha256: "3ef3103030ecb04d7fe80180e3fd490377cf81fb2af96782323fddabc3225030",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-implicit-function-declaration",
             "-Wno-error=int-conversion",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openldap, openssl, popt, glib, libxcrypt, ncurses, readline, cyrus_sasl]),
       preConfigure: "cd ldapvi\n./autogen.sh\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Interactive LDAP client for Unix terminals",
         longDescription: "ldapvi is an interactive LDAP client for Unix terminals. Using it, you\ncan update LDAP entries with a text editor.\n",
         homepage: "http://www.lichteblau.com/ldapvi/",

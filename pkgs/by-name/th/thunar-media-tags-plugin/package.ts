@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["url", 34, 7], ["hash", 35, 7]], [["rev-prefix", 56, 40]], [["updateScript", 56, 12]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["teams", 63, 5], ["platforms", 64, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 30, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchpatch: false, meson: false, ninja: false, "pkg-config": false, glib: false, gtk3: false, thunar: false, libxfce4util: false, gettext: false, taglib: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 56, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 56, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["teams", 63, 5], ["platforms", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 30, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const taglib = nix.arg($, "taglib");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "thunar-media-tags-plugin",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.xfce.org",
           owner: "thunar-plugins",
           repo: "thunar-media-tags-plugin",
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.xfce.org/thunar-plugins/thunar-media-tags-plugin/-/commit/4e19a56deeeefa6d913f7b15a12b30a5d99119d4.patch",
             hash: "sha256-ASVknxEiGOWbE82hVlgEAOqE+8TknAh/ULQg55mfs9o=",
           })))),
@@ -49,11 +44,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gettext, meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [thunar, glib, gtk3, libxfce4util, taglib]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "thunar-media-tags-plugin-" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "thunar-media-tags-plugin-" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Thunar plugin providing tagging and renaming features for media files",
         homepage: "https://gitlab.xfce.org/thunar-plugins/thunar-media-tags-plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

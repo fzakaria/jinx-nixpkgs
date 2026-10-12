@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["MPLBACKEND", 61, 7]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["buildInputs", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 43, 3], ["postConfigure", 50, 3], ["preBuild", 55, 3], ["env", 61, 3], ["preCheck", 65, 3], ["disabledTests", 71, 3], ["pythonImportsCheck", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, mpmath: false, numpy: false, pybind11: false, pyfma: false, eigen: false, pytestCheckHook: false, matplotlib: false, dufte: false, perfplot: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["MPLBACKEND", 61, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["buildInputs", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 43, 3], ["postConfigure", 50, 3], ["preBuild", 55, 3], ["env", 61, 3], ["preCheck", 65, 3], ["disabledTests", 71, 3], ["pythonImportsCheck", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nschloe",
           repo: "accupy",
           rev: version,
@@ -44,21 +41,21 @@ export default nix.lambda((args) => (() => {
 `);
       const preBuild = "export HOME=$(mktemp -d)\n";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         MPLBACKEND: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "Agg")),
       }));
       const preCheck = "for f in test/test*.py ; do\n  substituteInPlace $f --replace-quiet 'import perfplot' \"\"\ndone\n";
       const disabledTests = nix.thunk(() => ["test_speed_comparison1", "test_speed_comparison2"]);
       const pythonImportsCheck = nix.thunk(() => ["accupy"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Accurate sums and dot products for Python",
         homepage: "https://github.com/nschloe/accupy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

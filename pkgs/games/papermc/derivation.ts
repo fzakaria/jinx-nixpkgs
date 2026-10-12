@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/derivation.nix", [[["url", 18, 13], ["hash", 18, 17]], [["command", 43, 7], ["supportedFeatures", 44, 7]], [["updateScript", 42, 5]], [["description", 49, 5], ["homepage", 50, 5], ["sourceProvenance", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 59, 5]], [["pname", 14, 3], ["version", 15, 11], ["hash", 15, 19], ["src", 17, 3], ["installPhase", 21, 3], ["nativeBuildInputs", 33, 3], ["dontUnpack", 37, 3], ["preferLocalBuild", 38, 3], ["allowSubstitutes", 39, 3], ["passthru", 41, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, makeBinaryWrapper: false, jre: false, version: false, hash: false, url: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/derivation.nix", [["url", 18, 13], ["hash", 18, 17]]);
-const pos$2 = nix.positions(here + "/derivation.nix", [["command", 43, 7], ["supportedFeatures", 44, 7]]);
-const pos$3 = nix.positions(here + "/derivation.nix", [["updateScript", 42, 5]]);
-const pos$4 = nix.positions(here + "/derivation.nix", [["description", 49, 5], ["homepage", 50, 5], ["sourceProvenance", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 59, 5]]);
-const pos$5 = nix.positions(here + "/derivation.nix", [["pname", 14, 3], ["version", 15, 11], ["hash", 15, 19], ["src", 17, 3], ["installPhase", 21, 3], ["nativeBuildInputs", 33, 3], ["dontUnpack", 37, 3], ["preferLocalBuild", 38, 3], ["allowSubstitutes", 39, 3], ["passthru", 41, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const url = nix.arg($, "url");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "papermc",
       version: version,
       hash: hash,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, hash: hash })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, hash: hash })))),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 
 install -D $src $out/share/papermc/papermc.jar
@@ -41,15 +37,15 @@ runHook postInstall
       preferLocalBuild: true,
       allowSubstitutes: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           command: nix.thunk(() => [nix.path(here, "./update.py")]),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "High-performance Minecraft Server",
         homepage: "https://papermc.io/",
         sourceProvenance: nix.thunk(() => (() => {

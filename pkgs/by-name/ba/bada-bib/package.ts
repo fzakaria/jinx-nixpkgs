@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["sha256", 30, 5]], [["homepage", 76, 5], ["description", 77, 5], ["mainProgram", 78, 5], ["maintainers", 79, 5], ["license", 80, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 43, 3], ["nativeCheckInputs", 51, 3], ["pythonPath", 56, 3], ["postPatch", 61, 3], ["dontWrapGApps", 65, 3], ["preFixup", 67, 3], ["postFixup", 71, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, meson: false, ninja: false, fetchFromGitHub: false, "appstream-glib": false, "desktop-file-utils": false, "gdk-pixbuf": false, gettext: false, glib: false, "gobject-introspection": false, gtk4: false, gtksourceview5: false, libadwaita: false, libxml2: false, "pkg-config": false, python3Packages: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["description", 77, 5], ["mainProgram", 78, 5], ["maintainers", 79, 5], ["license", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 43, 3], ["nativeCheckInputs", 51, 3], ["pythonPath", 56, 3], ["postPatch", 61, 3], ["dontWrapGApps", 65, 3], ["preFixup", 67, 3], ["postFixup", 71, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bada-bib",
       version: "0.8.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RogerCrocker",
           repo: "BadaBib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       postFixup: "wrapPythonProgramsIn \"$out/libexec\" \"$out ${pythonPath[*]}\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/RogerCrocker/BadaBib",
         description: "Simple BibTeX Viewer and Editor",
         mainProgram: "badabib",

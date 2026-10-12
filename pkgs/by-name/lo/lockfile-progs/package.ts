@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["NIX_CFLAGS_COMPILE", 23, 7]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["preBuild", 19, 3], ["env", 23, 3], ["installPhase", 32, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, liblockfile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["preBuild", 19, 3], ["env", 23, 3], ["installPhase", 32, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,23 +12,23 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const liblockfile = nix.arg($, "liblockfile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lockfile-progs",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/l/lockfile-progs/lockfile-progs_${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-KYj7WotAflLiqmKCzkVJf0Zckh1ZETjBAPSJghWETJA=",
         })))),
       buildInputs: nix.thunk(() => [liblockfile]),
       preBuild: "patchShebangs .\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=format-overflow"])))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=c23-extensions"])))))),
       })),
       installPhase: "runHook preInstall\nmkdir -p $out/bin $out/man/man1\ninstall bin/* $out/bin\ninstall man/*.1 $out/man/man1\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Programs for locking and unlocking files and mailboxes",
         homepage: "http://packages.debian.org/sid/lockfile-progs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

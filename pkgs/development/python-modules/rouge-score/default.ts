@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["sparseCheckout", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["pname", 28, 5], ["version", 29, 26], ["extension", 30, 5], ["hash", 31, 5]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 51, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, fetchFromGitHub: false, buildPythonPackage: false, setuptools: false, "absl-py": false, nltk: false, numpy: false, six: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["sparseCheckout", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 28, 5], ["version", 29, 26], ["extension", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 51, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const testdata = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "google-research",
       repo: "google-research",
       sparseCheckout: nix.thunk(() => ["rouge/testdata"]),
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-ojqk6U2caS7Xz4iGUC9aQVHrKb2QNvMlPuQAL/jJat0=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rouge-score",
       version: "0.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "rouge_score",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           extension: "tar.gz",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["testRougeLSumSentenceSplitting", "testRougeLsumLarge"]),
       pythonImportsCheck: nix.thunk(() => ["rouge_score"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python ROUGE Implementation",
         homepage: "https://github.com/google-research/google-research/tree/master/rouge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

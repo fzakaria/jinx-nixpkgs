@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/byAttrNoChannel.nix", [[["enable", 17, 19]], [["channel", 17, 11]], [["nix", 17, 7]], [["modules", 12, 3]]]);
 const formals$1 = { args: { evalConfig: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/byAttrNoChannel.nix", [["enable", 17, 19]]);
-const pos$2 = nix.positions(here + "/byAttrNoChannel.nix", [["channel", 17, 11]]);
-const pos$3 = nix.positions(here + "/byAttrNoChannel.nix", [["nix", 17, 7]]);
-const pos$4 = nix.positions(here + "/byAttrNoChannel.nix", [["modules", 12, 3]]);
 
 export default nix.thunk(() => (() => {
   const nixpkgs = "@nixpkgs@";
@@ -14,15 +11,15 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const evalConfig = nix.argOr($, "evalConfig", () => nix.builtins.import(nix.thunk(() => nix.str`${nixpkgs}/nixos/lib/eval-config.nix`)));
     return nix.app(evalConfig, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         modules: nix.thunk(() => [
           nix.path(here, "./configuration.nix"),
           nix.thunk(() => nix.builtins.import(nix.thunk(() => nix.str`${nixpkgs}/nixos/modules/testing/test-instrumentation.nix`))),
           nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             nix: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              channel: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
+              [nix.POS]: $pos[1],
+              channel: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: false })),
             })),
           })),
         ]),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["pyproject", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["dependencies", 40, 3], ["dontWrapQtApps", 45, 3], ["installFlags", 47, 3], ["makeWrapperArgs", 49, 3], ["postFixup", 56, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, python3Packages: false, libjack2: false, which: false, bash: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["pyproject", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["dependencies", 40, 3], ["dontWrapQtApps", 45, 3], ["installFlags", 47, 3], ["makeWrapperArgs", 49, 3], ["postFixup", 56, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const bash = nix.arg($, "bash");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "raysession",
       version: "0.14.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Houston4444/RaySession/releases/download/v${nix.sel(finalAttrs, "version")}/RaySession-${nix.sel(finalAttrs, "version")}-source.tar.gz`),
           hash: "sha256-cr9kqZdqY6Wq+RkzwYxNrb/PLFREKUgWeVNILVUkc7A=",
         })))),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "wrapPythonProgramsIn \"$out/share/raysession/src\" \"$out ${pythonPath[*]}\"\nfor file in $out/bin/*; do\n  wrapQtApp \"$file\"\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/Houston4444/RaySession",
         description: "Session manager for Linux musical programs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

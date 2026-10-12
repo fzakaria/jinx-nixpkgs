@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["package", 39, 7], ["command", 40, 7]], [["version", 38, 5]], [["tests", 37, 12]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["pythonRelaxDeps", 26, 3], ["dependencies", 28, 3], ["doCheck", 35, 3], ["passthru", 37, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, testers: false, "arcanechat-tui": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 39, 7], ["command", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 37, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["pythonRelaxDeps", 26, 3], ["dependencies", 28, 3], ["doCheck", 35, 3], ["passthru", 37, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const arcanechat_tui = nix.arg($, "arcanechat-tui");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "arcanechat-tui",
       version: "0.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ArcaneChat",
           repo: "arcanechat-tui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,19 +43,19 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => (() => {
               const package$ = arcanechat_tui;
               const command = nix.thunk(() => nix.str`HOME="$TEMP" ${nix.app(nix.sel(lib, "getExe"), package$)} --version
 `);
-              return { [nix.POS]: pos$2, package: package$, command };
+              return { [nix.POS]: $pos[1], package: package$, command };
             })()))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Lightweight Delta Chat client",
         homepage: "https://github.com/ArcaneChat/arcanechat-tui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

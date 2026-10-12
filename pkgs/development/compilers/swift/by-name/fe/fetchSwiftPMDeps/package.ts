@@ -2,10 +2,9 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 30, 7], ["impureEnvVars", 32, 7], ["strictDeps", 34, 7], ["nativeBuildInputs", 36, 7], ["buildPhase", 43, 7], ["dontConfigure", 86, 7], ["dontInstall", 87, 7], ["dontFixup", 88, 7], ["outputHash", 90, 7], ["outputHashAlgo", 91, 7], ["outputHashMode", 92, 7], ["__structuredAttrs", 94, 7]], [["vendorStaging", 104, 13], ["nativeBuildInputs", 105, 5]]]);
 const formals$1 = { args: { lib: false, cacert: false, jq: false, nix: false, "nix-prefetch-git": false, runCommand: false, stdenvNoCC: false }, ellipsis: false };
 const formals$2 = { args: { name: true, hash: true, nativeBuildInputs: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 30, 7], ["impureEnvVars", 32, 7], ["strictDeps", 34, 7], ["nativeBuildInputs", 36, 7], ["buildPhase", 43, 7], ["dontConfigure", 86, 7], ["dontInstall", 87, 7], ["dontFixup", 88, 7], ["outputHash", 90, 7], ["outputHashAlgo", 91, 7], ["outputHashMode", 92, 7], ["__structuredAttrs", 94, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["vendorStaging", 104, 13], ["nativeBuildInputs", 105, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
     const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
     const removedArgs = nix.thunk(() => ["name", "pname", "version", "nativeBuildInputs", "hash"]);
     const vendorStaging = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.str`${name}-vendor-staging`),
         impureEnvVars: nix.thunk(() => nix.sel(lib, "fetchers", "proxyImpureEnvVars")),
         strictDeps: true,
@@ -39,7 +38,7 @@ export default nix.lambda((args) => (() => {
         __structuredAttrs: true,
       }, nix.builtins.removeAttrs(args_2, removedArgs)))));
     return nix.app(runCommand, nix.thunk(() => nix.str`${name}-vendor`), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         vendorStaging: vendorStaging,
         nativeBuildInputs: nix.thunk(() => [jq]),
       })), "mkdir -p \"$out\"\n\n# SwiftPM uses workspace-state.json to determine whether it needs to fetch dependencies.\n# Generate it to prevent that from happening.\njq --compact-output --sort-keys '\n    {\n        \"object\": {\n            \"artifacts\": [ ],\n            \"dependencies\": [ .pins[] |\n                {\n                    \"basedOn\": {\n                        \"basedOn\": null,\n                        \"packageRef\": {\n                            \"identity\": .identity,\n                            \"kind\": .kind,\n                            \"location\": .location,\n                            \"name\": .location | sub(\"\\\\.git$\"; \"\") | split(\"/\")[-1]\n                        },\n                        \"state\": {\n                            \"checkoutState\": .state,\n                            \"name\": \"sourceControlCheckout\"\n                        },\n                        \"subpath\": .location | sub(\"\\\\.git$\"; \"\") | split(\"/\")[-1]\n                    },\n                    \"packageRef\": {\n                        \"identity\": .identity,\n                        \"kind\": .kind,\n                        \"location\": .location,\n                        \"name\": .location | sub(\"\\\\.git$\"; \"\") | split(\"/\")[-1]\n                    },\n                    \"state\": {\n                        \"name\": \"edited\",\n                        \"path\": null\n                    },\n                    \"subpath\": .location | sub(\"\\\\.git$\"; \"\") | split(\"/\")[-1]\n                }\n            ],\n            \"prebuilts\": [ ]\n        },\n        \"version\": 7\n    }\n' < \"$vendorStaging/Package.resolved\" > \"$out/workspace-state.json\"\n\n# Symlink the packages from the staging area. There’s no reason to waste space copying them.\nln -s \"$vendorStaging/Packages\" \"$out/Packages\"\n");

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["src", 17, 49], ["version", 17, 53]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]], [["version", 20, 11], ["src", 20, 19], ["pname", 21, 3], ["__structuredAttrs", 23, 3], ["vendorHash", 25, 3], ["nativeBuildInputs", 27, 3], ["subPackages", 29, 3], ["checkFlags", 34, 3], ["postInstall", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { buildGoModule: false, callPackage: false, fetchFromGitHub: false, makeBinaryWrapper: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 17, 49], ["version", 17, 53]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 20, 11], ["src", 20, 19], ["pname", 21, 3], ["__structuredAttrs", 23, 3], ["vendorHash", 25, 3], ["nativeBuildInputs", 27, 3], ["subPackages", 29, 3], ["checkFlags", 34, 3], ["postInstall", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "14.9.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "jhaals",
       repo: "yopass",
       tag: version,
       hash: "sha256-QGa6T0XNQaYIKyhGSnBNMjEaJk9JgEldxdv974lMtBU=",
     }))));
-  const website = nix.thunk(() => nix.app(callPackage, nix.path(here, "./website.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
+  const website = nix.thunk(() => nix.app(callPackage, nix.path(here, "./website.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], src: src, version: version }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: version,
       src: src,
       pname: "yopass",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
   --add-flags "--asset-path ${website}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Secure sharing of secrets, passwords and files",
         homepage: "https://github.com/jhaals/yopass",
         changelog: nix.thunk(() => nix.str`https://github.com/jhaals/yopass/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

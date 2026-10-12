@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/coolercontrol-gui.nix", [[["description", 40, 5], ["mainProgram", 41, 5]], [["pname", 14, 3], ["version", 15, 11], ["src", 15, 19], ["sourceRoot", 16, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 23, 3], ["postInstall", 28, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { cmake: false, stdenv: false, qt6: false }, ellipsis: false };
 const formals$2 = { args: { version: false, src: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/coolercontrol-gui.nix", [["description", 40, 5], ["mainProgram", 41, 5]]);
-const pos$2 = nix.positions(here + "/coolercontrol-gui.nix", [["pname", 14, 3], ["version", 15, 11], ["src", 15, 19], ["sourceRoot", 16, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 23, 3], ["postInstall", 28, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const meta = nix.arg($_1, "meta");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "coolercontrol",
         version: version,
         src: src,
@@ -38,7 +37,7 @@ install -Dm644 "${src}/packaging/metadata/org.coolercontrol.CoolerControl-symbol
 install -Dm644 "${src}/packaging/metadata/org.coolercontrol.CoolerControl-alert-symbolic.svg" -t "$out/share/icons/hicolor/symbolic/apps/"
 `),
         meta: nix.thunk(() => nix.update(meta, {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           description: nix.thunk(() => nix.str`${nix.sel(meta, "description")} (GUI)`),
           mainProgram: "coolercontrol",
         })),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 9], ["hash", 20, 9]], [["url", 24, 9], ["hash", 25, 9]], [["url", 29, 5], ["hash", 30, 5]], [["name", 33, 5], ["exec", 34, 5], ["icon", 35, 5], ["comment", 36, 5], ["desktopName", 37, 5], ["genericName", 38, 5], ["categories", 39, 5]], [["description", 69, 5], ["homepage", 70, 5], ["sourceProvenance", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 76, 5]], [["pname", 44, 3], ["version", 45, 11], ["src", 47, 3], ["dontUnpack", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 51, 3], ["installPhase", 53, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeDesktopItem: false, makeWrapper: false, jre: false, useCCTweaked: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 9], ["hash", 20, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 9], ["hash", 25, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 33, 5], ["exec", 34, 5], ["icon", 35, 5], ["comment", 36, 5], ["desktopName", 37, 5], ["genericName", 38, 5], ["categories", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["sourceProvenance", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 11], ["src", 47, 3], ["dontUnpack", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 51, 3], ["installPhase", 53, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,21 +18,21 @@ export default nix.lambda((args) => (() => {
   const rev = "989cfe52a0458b991e0a7d87edec81d3fef472ac";
   const baseUrl = nix.thunk(() => nix.str`https://emux.cc/versions/${nix.app(nix.sel(lib, "substring"), 0n, 8n, rev)}/CCEmuX`);
   const jar = nix.thunk(() => (nix.asBool(useCCTweaked) ? nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`${baseUrl}-cct.jar`),
       hash: "sha256-nna5KRp6jVLkbWKOHGtQqaPr3Zl05mVkCf/8X9C5lRY=",
     }))) : nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`${baseUrl}-cc.jar`),
       hash: "sha256-2Z38O6z7OrHKe8GdLnexin749uJzQaCZglS+SwVD5YE=",
     })))));
   const desktopIcon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://github.com/CCEmuX/CCEmuX/raw/${rev}/src/main/resources/img/icon.png`),
       hash: "sha256-gqWURXaOFD/4aZnjmgtKb0T33NbrOdyRTMmLmV42q+4=",
     }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "CCEmuX",
       exec: "ccemux",
       icon: desktopIcon,
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Emulator"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ccemux",
       version: version,
       src: jar,
@@ -68,7 +63,7 @@ makeWrapper ${jre}/bin/java $out/bin/ccemux \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Modular ComputerCraft emulator",
         homepage: "https://github.com/CCEmuX/CCEmuX",
         sourceProvenance: nix.thunk(() => (() => {

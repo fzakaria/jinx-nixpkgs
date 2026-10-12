@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libelf.nix", [[["platforms", 45, 8]], [["path", 14, 3], ["extraPaths", 15, 3], ["outputs", 21, 3], ["noLibc", 27, 3], ["buildInputs", 29, 3], ["extraNativeBuildInputs", 37, 3], ["preBuild", 41, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false, m4: false, include: false, libcMinimal: false, libgcc: false, compatIfNeeded: false, csu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libelf.nix", [["platforms", 45, 8]]);
-const pos$2 = nix.positions(here + "/libelf.nix", [["path", 14, 3], ["extraPaths", 15, 3], ["outputs", 21, 3], ["noLibc", 27, 3], ["buildInputs", 29, 3], ["extraNativeBuildInputs", 37, 3], ["preBuild", 41, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const compatIfNeeded = nix.arg($, "compatIfNeeded");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/libelf",
       extraPaths: nix.thunk(() => ["lib/libc", "contrib/elftoolchain", "sys/sys"]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => nix.str`export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -B${csu}/lib"
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

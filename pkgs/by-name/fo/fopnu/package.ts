@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["sourceProvenance", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["dontConfigure", 32, 3], ["dontBuild", 33, 3], ["installPhase", 35, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, autoPatchelfHook: false, wrapGAppsHook3: false, "dbus-glib": false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["sourceProvenance", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["dontConfigure", 32, 3], ["dontBuild", 33, 3], ["installPhase", 35, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fopnu";
       const version = "1.68";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download2.fopnu.com/download/fopnu-${version}-1.x86_64.manualinstall.tar.gz`),
           hash: "sha256-q+nI0s4zu6+Lr8pdEyR8/zOkq5ULydYt2bntvzyalZo=",
         }))));
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "runHook preInstall\n\ninstall -D -m 0755 fopnu -t $out/bin\ninstall -D -m 0444 fopnu.desktop -t $out/share/applications\ninstall -D -m 0444 fopnu.png -t $out/share/icons/hicolor/48x48/apps\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "P2P file sharing system",
         homepage: "https://fopnu.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

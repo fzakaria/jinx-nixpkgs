@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["eval-hello-world", 116, 5], ["eval-periphemu", 117, 5]], [["tests", 115, 12]], [["description", 121, 5], ["homepage", 122, 5], ["license", 123, 5], ["platforms", 127, 5], ["maintainers", 128, 5], ["mainProgram", 133, 5]], [["pname", 36, 3], ["version", 37, 11], ["src", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["strictDeps", 65, 3], ["preBuild", 67, 3], ["buildPhase", 73, 3], ["patches", 79, 3], ["dontStrip", 85, 3], ["installPhase", 87, 3], ["passthru", 115, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, callPackage: false, patchelf: false, unzip: false, poco: false, openssl: false, SDL2: false, SDL2_mixer: false, ncurses: false, libpng: false, pngpp: false, libwebp: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["eval-hello-world", 116, 5], ["eval-periphemu", 117, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 115, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 121, 5], ["homepage", 122, 5], ["license", 123, 5], ["platforms", 127, 5], ["maintainers", 128, 5], ["mainProgram", 133, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 11], ["src", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["strictDeps", 65, 3], ["preBuild", 67, 3], ["buildPhase", 73, 3], ["patches", 79, 3], ["dontStrip", 85, 3], ["installPhase", 87, 3], ["passthru", 115, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const version = "2.8.3";
   const craftos2_lua = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "MCJack123",
       repo: "craftos2-lua",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-OCHN/ef83X4r5hZcPfFFvNJHjINCTiK+COf369/WPsA=",
     }))));
   const craftos2_rom = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "McJack123",
       repo: "craftos2-rom",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -47,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const pname = "craftos-pc";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "MCJack123",
           repo: "craftos2",
           rev: nix.thunk(() => nix.str`v${version_1}`),
@@ -77,15 +71,15 @@ cp -R ${craftos2_rom}/* $out/share/craftos
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mkdir -p resources/linux-icons\nunzip resources/linux-icons.zip -d resources/linux-icons\nfor dim in 16 24 32 48 64 96 128 256 1024; do\n  dir=\"$out/share/icons/hicolor/$dimx$dim/apps\"\n  mkdir -p \"$dir\"\n  cp \"resources/linux-icons/$dim.png\" \"$dir/craftos.png\"\ndone\n\nmkdir -p $out/share/applications\ncp resources/linux-icons/CraftOS-PC.desktop $out/share/applications/CraftOS-PC.desktop\n")}
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "eval-hello-world": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-eval-hello-world"), nix.thunk(() => ({})))),
           "eval-periphemu": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-eval-periphemu"), nix.thunk(() => ({})))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Implementation of the CraftOS-PC API written in C++ using SDL",
         homepage: "https://www.craftos-pc.cc",
         license: nix.thunk(() => (() => {
@@ -107,7 +101,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
         mainProgram: "craftos",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version: version_1,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["name", 22, 7], ["url", 23, 7], ["stripLen", 24, 7], ["sha256", 25, 7]], [["changelog", 70, 5], ["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["patches", 20, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["configureFlags", 39, 3], ["doInstallCheck", 43, 3], ["postInstall", 45, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, "pkg-config": false, autoreconfHook: false, glib: false, libusb1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 22, 7], ["url", 23, 7], ["stripLen", 24, 7], ["sha256", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 70, 5], ["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["patches", 20, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["configureFlags", 39, 3], ["doInstallCheck", 43, 3], ["postInstall", 45, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libticables2",
       version: "1.3.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/tilp/libticables2-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "08j5di0cgix9vcpdv7b8xhxdjkk9zz7fqfnv3l4apk3jdr8vcvqc",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "add-support-for-aarch64-macos-target-triple.patch",
             url: "https://github.com/debrouxl/tilibs/commit/ef41c51363b11521460f33e8c332db7b0a9ca085.patch",
             stripLen: 2n,
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "mkdir -p $out/etc/udev/rules.d\ncat > $out/etc/udev/rules.d/69-libsane.rules << EOF\n  ACTION!=\"add\", GOTO=\"libticables_end\"\n\n  # serial device (assume TI calculator)\n  KERNEL==\"ttyS[0-3]\", ENV{ID_PDA}=\"1\"\n  # parallel device (assume TI calculator)\n  SUBSYSTEM==\"ppdev\", ENV{ID_PDA}=\"1\"\n  # SilverLink\n  SUBSYSTEM==\"usb\", ATTR{idVendor}==\"0451\", ATTR{idProduct}==\"e001\", ENV{ID_PDA}=\"1\"\n  # TI-84+ DirectLink\n  SUBSYSTEM==\"usb\", ATTR{idVendor}==\"0451\", ATTR{idProduct}==\"e003\", ENV{ID_PDA}=\"1\"\n  # TI-89 Titanium DirectLink\n  SUBSYSTEM==\"usb\", ATTR{idVendor}==\"0451\", ATTR{idProduct}==\"e004\", ENV{ID_PDA}=\"1\"\n  # TI-84+ SE DirectLink\n  SUBSYSTEM==\"usb\", ATTR{idVendor}==\"0451\", ATTR{idProduct}==\"e008\", ENV{ID_PDA}=\"1\"\n  # TI-Nspire DirectLink\n  SUBSYSTEM==\"usb\", ATTR{idVendor}==\"0451\", ATTR{idProduct}==\"e012\", ENV{ID_PDA}=\"1\"\n\n  LABEL=\"libticables_end\"\nEOF\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: "http://lpg.ticalc.org/prj_tilp/news.html",
         description: "This library is part of the TiLP framework",
         homepage: "http://lpg.ticalc.org/prj_tilp/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["qtWrapperArgs", 34, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, qt5: false, libsForQt5: false, fetchgit: false, cmake: false, libsecret: false, restic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["qtWrapperArgs", 34, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libsecret = nix.arg($, "libsecret");
   const restic = nix.arg($, "restic");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "restique",
       version: "0-unstable-2024-10-20",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.srcbox.net/stefan/restique",
           rev: "340d8326c2a2221ec155512cc6ffb2c8a866c525",
           hash: "sha256-IBg8hRJ7nugHP+JLg0fTONgZ+oRdkJpeZzflrwSG20w=",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [restic]))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Restic GUI for Desktop/Laptop Backups",
         homepage: "https://git.srcbox.net/stefan/restique",
         license: nix.thunk(() => (() => {

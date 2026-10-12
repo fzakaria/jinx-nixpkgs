@@ -2,30 +2,26 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/binary-hashes.nix", [["name", 5, 7], ["url", 6, 7], ["hash", 7, 7]]);
-const pos$2 = nix.positions(here + "/binary-hashes.nix", [["name", 10, 7], ["url", 11, 7], ["hash", 12, 7]]);
-const pos$3 = nix.positions(here + "/binary-hashes.nix", [["name", 15, 7], ["url", 16, 7], ["hash", 17, 7]]);
-const pos$4 = nix.positions(here + "/binary-hashes.nix", [["aarch64-darwin-cpu", 4, 5], ["x86_64-linux-cpu", 9, 5], ["x86_64-linux-cuda", 14, 5]]);
-const pos$5 = nix.positions(here + "/binary-hashes.nix", [["2.9.0", 3, 3]]);
+const $pos = nix.positions(here + "/binary-hashes.nix", [[["name", 5, 7], ["url", 6, 7], ["hash", 7, 7]], [["name", 10, 7], ["url", 11, 7], ["hash", 12, 7]], [["name", 15, 7], ["url", 16, 7], ["hash", 17, 7]], [["aarch64-darwin-cpu", 4, 5], ["x86_64-linux-cpu", 9, 5], ["x86_64-linux-cuda", 14, 5]], [["2.9.0", 3, 3]]]);
 
 export default (version) => nix.builtins.getAttr(version, nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     "2.9.0": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "aarch64-darwin-cpu": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "libtorch-macos-arm64-2.9.0.zip",
         url: "https://download.pytorch.org/libtorch/cpu/libtorch-macos-arm64-2.9.0.zip",
         hash: "sha256-inwzvGPPKK6KVBoMijpXVKV+V3QcmQbBhYdFlZbZ/ho=",
       })),
       "x86_64-linux-cpu": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "libtorch-shared-with-deps-2.9.0-cpu.zip",
         url: "https://download.pytorch.org/libtorch/cpu/libtorch-shared-with-deps-2.9.0%2Bcpu.zip",
         hash: "sha256-GrfTahXLCOeMQD07+yEU4K6WCbmQMjv0GXc+EMS95e0=",
       })),
       "x86_64-linux-cuda": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "libtorch-shared-with-deps-2.9.0-cu130.zip",
         url: "https://download.pytorch.org/libtorch/cu130/libtorch-shared-with-deps-2.9.0%2Bcu130.zip",
         hash: "sha256-u8l7JIy2rdk6nxv6UxNmFcfOVcpjvZnIEr5CczVNRDQ=",

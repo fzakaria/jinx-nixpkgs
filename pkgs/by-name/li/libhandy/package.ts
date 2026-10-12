@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 43, 5], ["hash", 44, 5]], [["PKG_CONFIG_GLADEUI_2_0_MODULEDIR", 92, 5], ["PKG_CONFIG_GLADEUI_2_0_CATALOGDIR", 93, 5]], [["packageName", 130, 7], ["versionPolicy", 131, 7]], [["updateScript", 129, 5]], [["enableGlade", 138, 11]], [["glade", 135, 5]], [["changelog", 149, 5], ["description", 150, 5], ["mainProgram", 151, 5], ["homepage", 152, 5], ["license", 153, 5], ["teams", 154, 5], ["platforms", 155, 5]], [["pname", 29, 3], ["version", 30, 3], ["outputs", 32, 3], ["outputBin", 40, 3], ["src", 42, 3], ["depsBuildBuild", 47, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 63, 3], ["checkInputs", 71, 3], ["nativeCheckInputs", 75, 3], ["strictDeps", 83, 3], ["mesonFlags", 85, 3], ["env", 91, 3], ["doCheck", 96, 3], ["checkPhase", 98, 3], ["postFixup", 123, 3], ["passthru", 128, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, vala: false, "gi-docgen": false, glib: false, "gsettings-desktop-schemas": false, gtk3: false, enableGlade: true, glade: false, "xvfb-run": false, "gdk-pixbuf": false, librsvg: false, libxml2: false, "hicolor-icon-theme": false, "at-spi2-atk": false, "at-spi2-core": false, gnome: false, libhandy: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_GLADEUI_2_0_MODULEDIR", 92, 5], ["PKG_CONFIG_GLADEUI_2_0_CATALOGDIR", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 130, 7], ["versionPolicy", 131, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 129, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["enableGlade", 138, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["glade", 135, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 149, 5], ["description", 150, 5], ["mainProgram", 151, 5], ["homepage", 152, 5], ["license", 153, 5], ["teams", 154, 5], ["platforms", 155, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["outputs", 32, 3], ["outputBin", 40, 3], ["src", 42, 3], ["depsBuildBuild", 47, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 63, 3], ["checkInputs", 71, 3], ["nativeCheckInputs", 75, 3], ["strictDeps", 83, 3], ["mesonFlags", 85, 3], ["env", 91, 3], ["doCheck", 96, 3], ["checkPhase", 98, 3], ["postFixup", 123, 3], ["passthru", 128, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const libhandy = nix.arg($, "libhandy");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "libhandy",
       version: "1.8.3",
       outputs: nix.thunk(() => nix.concat(["out", "dev", "devdoc"], nix.app(nix.sel(lib, "optionals"), enableGlade, nix.thunk(() => ["glade"])))),
       outputBin: "dev",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libhandy/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libhandy-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-BbSXIpBz/1V/ELMm4HTFBm+HQ6MC1IIKuXvLXNLasIc=",
         })))),
@@ -60,7 +53,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dglade_catalog=${(nix.asBool(enableGlade) ? "enabled" : "disabled")}`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_GLADEUI_2_0_MODULEDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("glade")}/lib/glade/modules`),
         PKG_CONFIG_GLADEUI_2_0_CATALOGDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("glade")}/share/glade/catalogs`),
       })),
@@ -83,12 +76,12 @@ runHook postCheck
 `),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "libhandy", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "libhandy", versionPolicy: "odd-unstable" })))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(enableGlade)), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           glade: nix.thunk(() => (() => {
-            const libhandyWithGlade = nix.thunk(() => nix.app(nix.sel(libhandy, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, enableGlade: true }))));
+            const libhandyWithGlade = nix.thunk(() => nix.app(nix.sel(libhandy, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], enableGlade: true }))));
             return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(libhandy, "name")}-glade`), nix.thunk(() => ({})), nix.thunk(() => nix.str`cp -r "${nix.sel(libhandyWithGlade, "glade")}" "$out"
 chmod -R +w "$out"
 sed -e "s#${nix.sel(libhandyWithGlade, "out")}#${nix.sel(libhandy, "out")}#g" -e "s#${nix.sel(libhandyWithGlade, "glade")}#$out#g" -i $(find "$out" -type f)
@@ -96,7 +89,7 @@ sed -e "s#${nix.sel(libhandyWithGlade, "out")}#${nix.sel(libhandy, "out")}#g" -e
           })()),
         }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/libhandy/-/tags/${nix.sel(finalAttrs, "version")}`),
         description: "Building blocks for modern adaptive GNOME apps",
         mainProgram: "handy-1-demo",

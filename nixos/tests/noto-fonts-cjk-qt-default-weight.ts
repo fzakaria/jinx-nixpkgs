@@ -2,35 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/noto-fonts-cjk-qt-default-weight.nix", [[["maintainers", 4, 8]], [["enableDefaultPackages", 9, 7], ["fonts", 10, 7]], [["imports", 7, 5], ["fonts", 8, 5]], [["machine", 6, 9]], [["libraries", 19, 13]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 14, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/noto-fonts-cjk-qt-default-weight.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/noto-fonts-cjk-qt-default-weight.nix", [["enableDefaultPackages", 9, 7], ["fonts", 10, 7]]);
-const pos$3 = nix.positions(here + "/noto-fonts-cjk-qt-default-weight.nix", [["imports", 7, 5], ["fonts", 8, 5]]);
-const pos$4 = nix.positions(here + "/noto-fonts-cjk-qt-default-weight.nix", [["machine", 6, 9]]);
-const pos$5 = nix.positions(here + "/noto-fonts-cjk-qt-default-weight.nix", [["libraries", 19, 13]]);
-const pos$6 = nix.positions(here + "/noto-fonts-cjk-qt-default-weight.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "noto-fonts-cjk-qt",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "oxalica"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
         fonts: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           enableDefaultPackages: false,
           fonts: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "noto-fonts-cjk-sans"))]),
         })),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: nix.thunk(() => (() => {
       const script = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3"), "qt-default-weight", nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "pyqt6"))]),
         })), "from PyQt6.QtWidgets import QApplication\nfrom PyQt6.QtGui import QFont, QRawFont\n\napp = QApplication([])\nf = QRawFont.fromFont(QFont(\"Noto Sans CJK SC\", 20))\n\nassert f.styleName() == \"Regular\", f.styleName()\n"));
       return nix.str`machine.wait_for_x()

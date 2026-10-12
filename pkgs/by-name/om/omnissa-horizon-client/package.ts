@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 75, 7], ["hash", 76, 7]], [["pname", 72, 5], ["version", 73, 13], ["src", 74, 5], ["nativeBuildInputs", 78, 5], ["installPhase", 79, 5]], [["pname", 107, 15], ["version", 107, 21], ["runScript", 109, 7], ["targetPkgs", 111, 7]], [["name", 163, 5], ["desktopName", 164, 5], ["icon", 165, 5], ["exec", 166, 5], ["mimeTypes", 167, 5]], [["updateScript", 194, 12]], [["mainProgram", 197, 13], ["description", 198, 5], ["homepage", 199, 5], ["license", 200, 5], ["platforms", 201, 5], ["maintainers", 202, 5]], [["pname", 175, 3], ["version", 176, 11], ["dontUnpack", 178, 3], ["nativeBuildInputs", 180, 3], ["desktopItems", 182, 3], ["installPhase", 184, 3], ["unwrapped", 192, 3], ["passthru", 194, 3], ["meta", 196, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildFHSEnv: false, copyDesktopItems: false, fetchurl: false, "gsettings-desktop-schemas": false, makeDesktopItem: false, makeWrapper: false, opensc: false, liberation_ttf: false, writeText: false, writeTextDir: false, configText: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 75, 7], ["hash", 76, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 72, 5], ["version", 73, 13], ["src", 74, 5], ["nativeBuildInputs", 78, 5], ["installPhase", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 107, 15], ["version", 107, 21], ["runScript", 109, 7], ["targetPkgs", 111, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 163, 5], ["desktopName", 164, 5], ["icon", 165, 5], ["exec", 166, 5], ["mimeTypes", 167, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 194, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mainProgram", 197, 13], ["description", 198, 5], ["homepage", 199, 5], ["license", 200, 5], ["platforms", 201, 5], ["maintainers", 202, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 175, 3], ["version", 176, 11], ["dontUnpack", 178, 3], ["nativeBuildInputs", 180, 3], ["desktopItems", 182, 3], ["installPhase", 184, 3], ["unwrapped", 192, 3], ["passthru", 194, 3], ["meta", 196, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,11 +45,11 @@ export default nix.lambda((args) => (() => {
 --suffix LD_LIBRARY_PATH : "$out/lib/omnissa/horizon/crtbora:$out/lib/omnissa"
 `;
   const omnissaHorizonClientFiles = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "omnissa-horizon-files",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://download3.omnissa.com/software/CART27FQ2_LIN_2606_TARBALL/Omnissa-Horizon-Client-Linux-2606-8.19.0-32216036411.tar.gz",
           hash: "sha256-5kpZAPeiY4R3a8WRLLjWLndWXGhqrg7rC4d6EBoC2Ao=",
         })))),
@@ -84,7 +78,7 @@ ${nix.app(wrapBinCommands, "lib/omnissa/horizon/usb", "horizon-eucusbarbitrator"
 `),
     }))));
   const omnissaFHSUserEnv = (pname) => nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       runScript: nix.thunk(() => nix.str`${omnissaHorizonClientFiles}/bin/${pname}_wrapper`),
@@ -140,7 +134,7 @@ ${nix.app(wrapBinCommands, "lib/omnissa/horizon/usb", "horizon-eucusbarbitrator"
       })(),
     })));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "horizon-client",
       desktopName: "Omnissa Horizon Client",
       icon: nix.thunk(() => nix.str`${omnissaHorizonClientFiles}/share/icons/horizon-client.png`),
@@ -148,7 +142,7 @@ ${nix.app(wrapBinCommands, "lib/omnissa/horizon/usb", "horizon-eucusbarbitrator"
       mimeTypes: nix.thunk(() => ["x-scheme-handler/horizon-client", "x-scheme-handler/vmware-view"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "omnissa-horizon-client",
       version: version,
       dontUnpack: true,
@@ -161,9 +155,9 @@ ln -s ${nix.app(omnissaFHSUserEnv, "horizon-eucusbarbitrator")}/bin/horizon-eucu
 runHook postInstall
 `),
       unwrapped: omnissaHorizonClientFiles,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         mainProgram: mainProgram,
         description: "Allows you to connect to your Omnissa Horizon virtual desktop",
         homepage: "https://www.omnissa.com/products/horizon-8/",

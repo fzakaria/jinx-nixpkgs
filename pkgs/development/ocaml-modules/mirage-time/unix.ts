@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unix.nix", [[["description", 21, 5]], [["pname", 9, 3], ["src", 11, 25], ["version", 11, 29], ["duneVersion", 12, 3], ["propagatedBuildInputs", 14, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "mirage-time": false, lwt: false, duration: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unix.nix", [["description", 21, 5]]);
-const pos$2 = nix.positions(here + "/unix.nix", [["pname", 9, 3], ["src", 11, 25], ["version", 11, 29], ["duneVersion", 12, 3], ["propagatedBuildInputs", 14, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const duration = nix.arg($, "duration");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mirage-time-unix",
       src: nix.thunk(() => nix.attr(mirage_time, "src")),
       version: nix.thunk(() => nix.attr(mirage_time, "version")),
       duneVersion: "3",
       propagatedBuildInputs: nix.thunk(() => [mirage_time, lwt, duration]),
-      meta: nix.thunk(() => nix.update(nix.sel(mirage_time, "meta"), { [nix.POS]: pos$1, description: "Time operations for MirageOS on Unix" })),
+      meta: nix.thunk(() => nix.update(nix.sel(mirage_time, "meta"), { [nix.POS]: $pos[0], description: "Time operations for MirageOS on Unix" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=unix.ts.map

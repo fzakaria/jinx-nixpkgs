@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 23, 9], ["out", 24, 9]], [["hash", 28, 13]], [["0.1.0", 28, 5]], [["description", 39, 5], ["license", 40, 5]], [["pname", 12, 3], ["owner", 13, 3], ["repo", 14, 3], ["version", 15, 11], ["defaultVersion", 17, 3], ["release", 27, 3], ["releaseRev", 30, 3], ["propagatedBuildInputs", 32, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, "itree-io": false, json: false, QuickChick: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 23, 9], ["out", 24, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 28, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["0.1.0", 28, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 39, 5], ["license", 40, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["owner", 13, 3], ["repo", 14, 3], ["version", 15, 11], ["defaultVersion", 17, 3], ["release", 27, 3], ["releaseRev", 30, 3], ["propagatedBuildInputs", 32, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const QuickChick = nix.arg($, "QuickChick");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "async-test",
       owner: "liyishuai",
       repo: "coq-async-test",
@@ -29,23 +25,23 @@ export default nix.lambda((args) => (() => {
         const range = nix.thunk(() => nix.attr(from, "range"));
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               case: nix.thunk(() => nix.app(range, "8.12", "8.19")),
               out: "0.1.0",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "0.1.0": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-0DBUS20337tpBi64mlJIWTQvIAdUvWbFCM9Sat7MEA8=",
         })),
       })),
       releaseRev: (v) => nix.str`v${v}`,
       propagatedBuildInputs: nix.thunk(() => [itree_io, json, QuickChick]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "From interaction trees to asynchronous tests",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
       })),

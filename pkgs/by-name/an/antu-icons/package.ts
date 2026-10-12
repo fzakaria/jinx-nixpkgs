@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["propagatedBuildInputs", 19, 3], ["dontDropIconThemeCache", 21, 3], ["installPhase", 23, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitLab: false, "hicolor-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["propagatedBuildInputs", 19, 3], ["dontDropIconThemeCache", 21, 3], ["installPhase", 23, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "antu-icons",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "froodo_alexis",
           repo: "Antu-icons",
           rev: "a12a9e559b59c8ded47531e299a5516718ef9a28",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontDropIconThemeCache: true,
       installPhase: "runHook preInstall\nmkdir -p $out/share/icons/antu-icons\ncp -r * $out/share/icons/antu-icons\n\n# Remove broken symlinks\nfind $out/share/icons/antu-icons -xtype l -delete\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Smooth icon theme designed for Plasma Desktop",
         homepage: "https://gitlab.com/froodo_alexis/Antu-icons",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-nc-sa-30")),

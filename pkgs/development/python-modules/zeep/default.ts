@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["async", 57, 5], ["xmlsec", 58, 5]], [["changelog", 90, 5], ["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["optional-dependencies", 56, 3], ["pythonImportsCheck", 61, 3], ["nativeCheckInputs", 63, 3], ["disabledTests", 76, 3], ["preCheck", 85, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aioresponses: false, attrs: false, buildPythonPackage: false, defusedxml: false, fetchFromGitHub: false, freezegun: false, httpx: false, isodate: false, lxml: false, mock: false, packaging: false, platformdirs: false, pretend: false, "pytest-asyncio": false, "pytest-httpx": false, pytestCheckHook: false, pytz: false, requests: false, "requests-toolbelt": false, "requests-file": false, "requests-mock": false, setuptools: false, xmlsec: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["async", 57, 5], ["xmlsec", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 90, 5], ["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["optional-dependencies", 56, 3], ["pythonImportsCheck", 61, 3], ["nativeCheckInputs", 63, 3], ["disabledTests", 76, 3], ["preCheck", 85, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mvantellingen",
           repo: "python-zeep",
           tag: version,
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         requests_toolbelt,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         async: nix.thunk(() => [httpx]),
         xmlsec: nix.thunk(() => [xmlsec]),
       }));
@@ -85,14 +82,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const preCheck = "export HOME=$TMPDIR\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/mvantellingen/python-zeep/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python SOAP client",
         homepage: "http://docs.python-zeep.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

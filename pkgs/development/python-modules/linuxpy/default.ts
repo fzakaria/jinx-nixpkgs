@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["sha256", 18, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 14, 3], ["src", 16, 3], ["pythonImportsCheck", 21, 3], ["doCheck", 24, 3], ["nativeCheckInputs", 25, 3], ["nativeBuildInputs", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pytestCheckHook: false, setuptools: false, ward: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 14, 3], ["src", 16, 3], ["pythonImportsCheck", 21, 3], ["doCheck", 24, 3], ["nativeCheckInputs", 25, 3], ["nativeBuildInputs", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.25.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "sha256-eyNCkbq8YXah/iOWJPjhkH/IncX3OXgJNg5Q4FMcd1I=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, ward]);
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Human friendly interface to Linux subsystems using Python",
         homepage: "https://github.com/tiagocoutinho/linuxpy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 31, 26], ["version", 31, 32], ["hash", 32, 5]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["teams", 84, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 54, 3], ["postInstall", 62, 3], ["doCheck", 67, 3], ["checkPhase", 69, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, boto3: false, cryptography: false, eventlet: false, greenlet: false, "iana-etc": false, installShellFiles: false, libredirect: false, lxml: false, mock: false, pastedeploy: false, pbr: false, pyeclib: false, requests: false, setuptools: false, six: false, stestr: false, swiftclient: false, xattr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 31, 26], ["version", 31, 32], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["teams", 84, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 54, 3], ["postInstall", 62, 3], ["doCheck", 67, 3], ["checkPhase", 69, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const swiftclient = nix.arg($, "swiftclient");
   const xattr = nix.arg($, "xattr");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swift",
       version: "2.38.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-DX1qmFYv127uUfKjUgBWVrf6mGQ8BB833xn+EUR9p0Q=",
@@ -72,7 +70,7 @@ stestr run
 `),
       pythonImportsCheck: nix.thunk(() => ["swift"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OpenStack Object Storage",
         homepage: "https://github.com/openstack/swift",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

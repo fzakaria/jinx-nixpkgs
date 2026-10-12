@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mail.nix", [[["yarnLock", 25, 5], ["hash", 26, 5]], [["description", 40, 5]], [["pname", 12, 3], ["src", 13, 11], ["version", 13, 15], ["sourceRoot", 15, 3], ["postPatch", 17, 3], ["offlineCache", 24, 3], ["nativeBuildInputs", 29, 3], ["dontInstall", 35, 3], ["__structuredAttrs", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { src: false, version: false, meta: false, stdenv: false, fetchYarnDeps: false, nodejs: false, yarnConfigHook: false, yarnBuildHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mail.nix", [["yarnLock", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/mail.nix", [["description", 40, 5]]);
-const pos$3 = nix.positions(here + "/mail.nix", [["pname", 12, 3], ["src", 13, 11], ["version", 13, 15], ["sourceRoot", 15, 3], ["postPatch", 17, 3], ["offlineCache", 24, 3], ["nativeBuildInputs", 29, 3], ["dontInstall", 35, 3], ["__structuredAttrs", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   const yarnBuildHook = nix.arg($, "yarnBuildHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lasuite-drive-mail",
       src: src,
       version: version,
@@ -29,14 +27,14 @@ export default nix.lambda((args) => (() => {
     '${nix.builtins.placeholder("out")}'
 `),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/src/mail/yarn.lock`),
           hash: "sha256-UPIb9QJk+zC8wYeBeDnmlGLhHDhsEOoT+qquFM1XyqU=",
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, yarnConfigHook, yarnBuildHook]),
       dontInstall: true,
       __structuredAttrs: true,
-      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$2, description: "HTML mail templates for LaSuite Drive" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[1], description: "HTML mail templates for LaSuite Drive" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=mail.ts.map

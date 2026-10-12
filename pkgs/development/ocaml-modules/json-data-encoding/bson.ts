@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bson.nix", [[["description", 25, 5]], [["pname", 10, 3], ["version", 12, 32], ["src", 12, 40], ["doCheck", 12, 44], ["propagatedBuildInputs", 14, 3], ["checkInputs", 19, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "json-data-encoding": false, "ocplib-endian": false, crowbar: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bson.nix", [["description", 25, 5]]);
-const pos$2 = nix.positions(here + "/bson.nix", [["pname", 10, 3], ["version", 12, 32], ["src", 12, 40], ["doCheck", 12, 44], ["propagatedBuildInputs", 14, 3], ["checkInputs", 19, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const crowbar = nix.arg($, "crowbar");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "json-data-encoding-bson",
       version: nix.thunk(() => nix.attr(json_data_encoding, "version")),
       src: nix.thunk(() => nix.attr(json_data_encoding, "src")),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [json_data_encoding, ocplib_endian]),
       checkInputs: nix.thunk(() => [crowbar, alcotest]),
       meta: nix.thunk(() => nix.update(nix.sel(json_data_encoding, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Type-safe encoding to and decoding from JSON (bson support)",
       })),
     })));

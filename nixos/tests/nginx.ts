@@ -2,73 +2,39 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nginx.nix", [[["maintainers", 11, 5]], [["extraConfig", 33, 11]], [["root", 40, 11]], [["0.my.test", 32, 37], ["localhost", 39, 37]], [["enable", 18, 24], ["commonHttpConfig", 19, 24], ["virtualHosts", 32, 24], ["enableReload", 46, 24]], [["nginx", 18, 18]], [["root", 50, 13]], [["localhost", 49, 39]], [["virtualHosts", 49, 26]], [["nginx", 49, 20]], [["services", 49, 11]], [["configuration", 48, 35]], [["addr", 62, 15], ["port", 63, 15]], [["listen", 60, 51]], [["1.my.test", 60, 39]], [["virtualHosts", 60, 26]], [["nginx", 60, 20]], [["services", 60, 11]], [["configuration", 59, 41]], [["package", 69, 26]], [["nginx", 69, 20]], [["services", 69, 11]], [["configuration", 68, 44]], [["proxyPass", 74, 71]], [["~@#*$*!)", 74, 60]], [["locations", 74, 50]], [["!@$$(#*%", 74, 39]], [["package", 73, 26], ["virtualHosts", 74, 26]], [["nginx", 73, 20]], [["services", 73, 11]], [["configuration", 72, 47]], [["etagSystem", 48, 24], ["justReloadSystem", 59, 24], ["reloadRestartSystem", 68, 24], ["reloadWithErrorsSystem", 72, 24]], [["services", 18, 9], ["specialisation", 48, 9]], [["webserver", 15, 5]], [["name", 9, 3], ["meta", 10, 3], ["nodes", 14, 3], ["testScript", 79, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nginx.nix", [["maintainers", 11, 5]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/nginx.nix", [["extraConfig", 33, 11]]);
-const pos$3 = nix.positions(here + "/nginx.nix", [["root", 40, 11]]);
-const pos$4 = nix.positions(here + "/nginx.nix", [["0.my.test", 32, 37], ["localhost", 39, 37]]);
-const pos$5 = nix.positions(here + "/nginx.nix", [["enable", 18, 24], ["commonHttpConfig", 19, 24], ["virtualHosts", 32, 24], ["enableReload", 46, 24]]);
-const pos$6 = nix.positions(here + "/nginx.nix", [["nginx", 18, 18]]);
-const pos$7 = nix.positions(here + "/nginx.nix", [["root", 50, 13]]);
-const pos$8 = nix.positions(here + "/nginx.nix", [["localhost", 49, 39]]);
-const pos$9 = nix.positions(here + "/nginx.nix", [["virtualHosts", 49, 26]]);
-const pos$10 = nix.positions(here + "/nginx.nix", [["nginx", 49, 20]]);
-const pos$11 = nix.positions(here + "/nginx.nix", [["services", 49, 11]]);
-const pos$12 = nix.positions(here + "/nginx.nix", [["configuration", 48, 35]]);
-const pos$13 = nix.positions(here + "/nginx.nix", [["addr", 62, 15], ["port", 63, 15]]);
-const pos$14 = nix.positions(here + "/nginx.nix", [["listen", 60, 51]]);
-const pos$15 = nix.positions(here + "/nginx.nix", [["1.my.test", 60, 39]]);
-const pos$16 = nix.positions(here + "/nginx.nix", [["virtualHosts", 60, 26]]);
-const pos$17 = nix.positions(here + "/nginx.nix", [["nginx", 60, 20]]);
-const pos$18 = nix.positions(here + "/nginx.nix", [["services", 60, 11]]);
-const pos$19 = nix.positions(here + "/nginx.nix", [["configuration", 59, 41]]);
-const pos$20 = nix.positions(here + "/nginx.nix", [["package", 69, 26]]);
-const pos$21 = nix.positions(here + "/nginx.nix", [["nginx", 69, 20]]);
-const pos$22 = nix.positions(here + "/nginx.nix", [["services", 69, 11]]);
-const pos$23 = nix.positions(here + "/nginx.nix", [["configuration", 68, 44]]);
-const pos$24 = nix.positions(here + "/nginx.nix", [["proxyPass", 74, 71]]);
-const pos$25 = nix.positions(here + "/nginx.nix", [["~@#*$*!)", 74, 60]]);
-const pos$26 = nix.positions(here + "/nginx.nix", [["locations", 74, 50]]);
-const pos$27 = nix.positions(here + "/nginx.nix", [["!@$$(#*%", 74, 39]]);
-const pos$28 = nix.positions(here + "/nginx.nix", [["package", 73, 26], ["virtualHosts", 74, 26]]);
-const pos$29 = nix.positions(here + "/nginx.nix", [["nginx", 73, 20]]);
-const pos$30 = nix.positions(here + "/nginx.nix", [["services", 73, 11]]);
-const pos$31 = nix.positions(here + "/nginx.nix", [["configuration", 72, 47]]);
-const pos$32 = nix.positions(here + "/nginx.nix", [["etagSystem", 48, 24], ["justReloadSystem", 59, 24], ["reloadRestartSystem", 68, 24], ["reloadWithErrorsSystem", 72, 24]]);
-const pos$33 = nix.positions(here + "/nginx.nix", [["services", 18, 9], ["specialisation", 48, 9]]);
-const pos$34 = nix.positions(here + "/nginx.nix", [["webserver", 15, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$35 = nix.positions(here + "/nginx.nix", [["name", 9, 3], ["meta", 10, 3], ["nodes", 14, 3], ["testScript", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$35,
+    [nix.POS]: $pos[34],
     name: "nginx",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       webserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               commonHttpConfig: "log_format ceeformat '@cee: {\"status\":\"$status\",'\n  '\"request_time\":$request_time,'\n  '\"upstream_response_time\":$upstream_response_time,'\n  '\"pipe\":\"$pipe\",\"bytes_sent\":$bytes_sent,'\n  '\"connection\":\"$connection\",'\n  '\"remote_addr\":\"$remote_addr\",'\n  '\"host\":\"$host\",'\n  '\"timestamp\":\"$time_iso8601\",'\n  '\"request\":\"$request\",'\n  '\"http_referer\":\"$http_referer\",'\n  '\"upstream_addr\":\"$upstream_addr\"}';\n",
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 "0.my.test": nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   extraConfig: "access_log syslog:server=unix:/dev/log,facility=user,tag=mytag,severity=info ceeformat;\nlocation /favicon.ico { allow all; access_log off; log_not_found off; }\n",
                 })),
                 localhost: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   root: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "testdir", nix.thunk(() => ({})), "mkdir \"$out\"\necho hello world > \"$out/index.html\"\n")),
                 })),
               })),
@@ -76,19 +42,19 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             etagSystem: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   nginx: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     virtualHosts: nix.thunk(() => ({
-                      [nix.POS]: pos$8,
+                      [nix.POS]: $pos[7],
                       localhost: nix.thunk(() => ({
-                        [nix.POS]: pos$7,
+                        [nix.POS]: $pos[6],
                         root: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "testdir2", nix.thunk(() => ({})), "mkdir \"$out\"\necho content changed > \"$out/index.html\"\n")))),
                       })),
                     })),
@@ -97,18 +63,18 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             justReloadSystem: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   nginx: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     virtualHosts: nix.thunk(() => ({
-                      [nix.POS]: pos$15,
+                      [nix.POS]: $pos[14],
                       "1.my.test": nix.thunk(() => ({
-                        [nix.POS]: pos$14,
-                        listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$13, addr: "127.0.0.1", port: 8080n }))]),
+                        [nix.POS]: $pos[13],
+                        listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[12], addr: "127.0.0.1", port: 8080n }))]),
                       })),
                     })),
                   })),
@@ -116,31 +82,34 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             reloadRestartSystem: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
-                  nginx: nix.thunk(() => ({ [nix.POS]: pos$20, package: nix.thunk(() => nix.sel(pkgs, "nginxMainline")) })),
+                  [nix.POS]: $pos[20],
+                  nginx: nix.thunk(() => ({
+                    [nix.POS]: $pos[19],
+                    package: nix.thunk(() => nix.sel(pkgs, "nginxMainline")),
+                  })),
                 })),
               })),
             })),
             reloadWithErrorsSystem: nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$29,
+                  [nix.POS]: $pos[28],
                   nginx: nix.thunk(() => ({
-                    [nix.POS]: pos$28,
+                    [nix.POS]: $pos[27],
                     package: nix.thunk(() => nix.sel(pkgs, "nginxMainline")),
                     virtualHosts: nix.thunk(() => ({
-                      [nix.POS]: pos$27,
+                      [nix.POS]: $pos[26],
                       "!@$$(#*%": nix.thunk(() => ({
-                        [nix.POS]: pos$26,
+                        [nix.POS]: $pos[25],
                         locations: nix.thunk(() => ({
-                          [nix.POS]: pos$25,
-                          "~@#*$*!)": nix.thunk(() => ({ [nix.POS]: pos$24, proxyPass: ";;;" })),
+                          [nix.POS]: $pos[24],
+                          "~@#*$*!)": nix.thunk(() => ({ [nix.POS]: $pos[23], proxyPass: ";;;" })),
                         })),
                       })),
                     })),

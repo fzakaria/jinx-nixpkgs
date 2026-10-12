@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["BUILD_USER", 48, 5], ["BUILD_HOST", 49, 5]], [["syncthing", 102, 9], ["syncthing-defaults", 103, 9], ["syncthing-folders", 104, 9], ["syncthing-guiPassword", 105, 9], ["syncthing-guiPasswordFile", 106, 9], ["syncthing-init", 107, 9], ["syncthing-many-devices", 108, 9], ["syncthing-no-settings", 109, 9], ["syncthing-private-relay", 110, 9], ["syncthing-relay", 111, 9]], [["tests", 100, 5], ["updateScript", 114, 5]], [["homepage", 118, 5], ["description", 119, 5], ["donationPage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["mainProgram", 129, 5], ["platforms", 130, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["vendorHash", 34, 3], ["nativeBuildInputs", 36, 3], ["doCheck", 45, 3], ["env", 47, 3], ["buildPhase", 52, 3], ["installPhase", 63, 3], ["postInstall", 69, 3], ["passthru", 99, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, pkgsBuildBuild: false, go: false, darwin: false, nixosTests: false, "nix-update-script": false, target: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["BUILD_USER", 48, 5], ["BUILD_HOST", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["syncthing", 102, 9], ["syncthing-defaults", 103, 9], ["syncthing-folders", 104, 9], ["syncthing-guiPassword", 105, 9], ["syncthing-guiPasswordFile", 106, 9], ["syncthing-init", 107, 9], ["syncthing-many-devices", 108, 9], ["syncthing-no-settings", 109, 9], ["syncthing-private-relay", 110, 9], ["syncthing-relay", 111, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 100, 5], ["updateScript", 114, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 118, 5], ["description", 119, 5], ["donationPage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["mainProgram", 129, 5], ["platforms", 130, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["vendorHash", 34, 3], ["nativeBuildInputs", 36, 3], ["doCheck", 45, 3], ["env", 47, 3], ["buildPhase", 52, 3], ["installPhase", 63, 3], ["postInstall", 69, 3], ["passthru", 99, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const target = nix.argOr($, "target", () => "syncthing");
   nix.assert_(nix.builtins.elem(target, nix.thunk(() => ["syncthing", "stdiscosrv", "strelaysrv"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sy/syncthing/package.nix:17:1");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "syncthing",
       version: "2.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "syncthing",
           repo: "syncthing",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-ueUf9YEa5z7mG6MofIJ3Xco+PxVPi/85Rdi+1aean6c=",
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook"))]))),
       doCheck: false,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, BUILD_USER: "nix", BUILD_HOST: "nix" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], BUILD_USER: "nix", BUILD_HOST: "nix" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 (
   export GOOS="${nix.sel(pkgsBuildBuild, "go", "GOOS")}" GOARCH="${nix.sel(pkgsBuildBuild, "go", "GOARCH")}" CC=$CC_FOR_BUILD
@@ -53,9 +48,9 @@ runHook postInstall
 `),
       postInstall: nix.thunk(() => nix.add("# This installs man pages in the correct directory according to the suffix\n# on the filename\nfor mf in man/*.[1-9]; do\n  mantype=\"$(echo \"$mf\" | awk -F\".\" '{print $NF}')\"\n  mandir=\"$out/share/man/man$mantype\"\n  install -Dm644 \"$mf\" \"$mandir/$(basename \"$mf\")\"\ndone\n\ninstall -Dm644 etc/linux-desktop/syncthing-ui.desktop $out/share/applications/syncthing-ui.desktop\ninstall -Dm644 assets/logo-32.png   $out/share/icons/hicolor/32x32/apps/syncthing.png\ninstall -Dm644 assets/logo-64.png   $out/share/icons/hicolor/64x64/apps/syncthing.png\ninstall -Dm644 assets/logo-128.png  $out/share/icons/hicolor/128x128/apps/syncthing.png\ninstall -Dm644 assets/logo-256.png  $out/share/icons/hicolor/256x256/apps/syncthing.png\ninstall -Dm644 assets/logo-512.png  $out/share/icons/hicolor/512x512/apps/syncthing.png\ninstall -Dm644 assets/logo-only.svg $out/share/icons/hicolor/scalable/apps/syncthing.svg\n\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mkdir -p $out/lib/systemd/{system,user}\n\nsubstitute etc/linux-systemd/system/syncthing@.service \\\n           $out/lib/systemd/system/syncthing@.service \\\n           --replace-fail /usr/bin/syncthing $out/bin/syncthing\n\nsubstitute etc/linux-systemd/user/syncthing.service \\\n           $out/lib/systemd/user/syncthing.service \\\n           --replace-fail /usr/bin/syncthing $out/bin/syncthing\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           syncthing: nix.thunk(() => nix.attr(nixosTests, "syncthing")),
           "syncthing-defaults": nix.thunk(() => nix.attr(nixosTests, "syncthing-defaults")),
           "syncthing-folders": nix.thunk(() => nix.attr(nixosTests, "syncthing-folders")),
@@ -70,7 +65,7 @@ runHook postInstall
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://syncthing.net/",
         description: "Open Source Continuous File Synchronization",
         donationPage: "https://syncthing.net/donations/",

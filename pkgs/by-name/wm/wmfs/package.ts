@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["sha256", 21, 5], ["rev", 22, 5]], [["name", 30, 7], ["url", 31, 7], ["sha256", 32, 7]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]], [["pname", 14, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["buildInputs", 36, 3], ["preConfigure", 45, 3], ["makeFlags", 47, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, libx11: false, libxinerama: false, libxrandr: false, libxpm: false, libxft: false, imlib2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["sha256", 21, 5], ["rev", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 7], ["url", 31, 7], ["sha256", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["buildInputs", 36, 3], ["preConfigure", 45, 3], ["makeFlags", 47, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxft = nix.arg($, "libxft");
   const imlib2 = nix.arg($, "imlib2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wmfs",
       version: "201902",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xorg62",
           repo: "wmfs",
           sha256: "1m7dsmmlhq2qipim659cp9aqlriz1cwrrgspl8baa5pncln0gd5c",
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fno-common.patch",
             url: "https://github.com/xorg62/wmfs/commit/e4ec12618f4689d791892ebb49df9610a25d24d3.patch",
             sha256: "0qvwry9sikvr85anzha9x4gcx0r2ckwdxqw2in2l6bl9z9d9c0w2",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`MANPREFIX=${nix.builtins.placeholder("out")}/share/man`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Window manager from scratch",
         homepage: "https://github.com/xorg62/wmfs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

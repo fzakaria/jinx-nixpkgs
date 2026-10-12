@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["java", 14, 32]], [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pname", 29, 26], ["data", 30, 5]], [["updateScript", 54, 12]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5], ["platforms", 72, 5]], [["pname", 11, 3], ["version", 12, 3], ["gradle", 14, 3], ["nativeBuildInputs", 16, 3], ["src", 21, 3], ["mitmCache", 28, 3], ["__darwinAllowLocalNetworking", 39, 3], ["installPhase", 44, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gradle_8: false, jdk17: false, makeBinaryWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["java", 14, 32]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 26], ["data", 30, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5], ["platforms", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["gradle", 14, 3], ["nativeBuildInputs", 16, 3], ["src", 21, 3], ["mitmCache", 28, 3], ["__darwinAllowLocalNetworking", 39, 3], ["installPhase", 44, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gpx-animator",
       version: "1.8.2",
-      gradle: nix.thunk(() => nix.app(nix.sel(gradle_8, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, java: jdk17 })))),
+      gradle: nix.thunk(() => nix.app(nix.sel(gradle_8, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], java: jdk17 })))),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "gradle")), makeBinaryWrapper]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "gpx-animator",
           repo: "gpx-animator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-U6nrS7utnUCohCzkOdmehtSdu+5d0KJF81mXWc/666A=",
         })))),
       mitmCache: nix.thunk(() => nix.app(nix.sel(finalAttrs, "gradle", "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -47,11 +42,11 @@ makeWrapper ${jdk17}/bin/java $out/bin/gpx-animator \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GPX track to video animator",
         longDescription: "GPX Animator generates video from GPX files, it supports:\n\n- Multiple GPX tracks with multiple track segments\n- Skipping idle parts\n- Configurable color, label, width and time offset per track\n- Configurable video size, fps and speedup or total video time\n- Background map from any public TMS server\n",
         homepage: "https://gpx-animator.app",

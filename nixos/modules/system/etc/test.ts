@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["text", 22, 9]], [["text", 25, 9], ["mode", 26, 9]], [["passwd", 21, 23], ["hosts", 24, 23]], [["etc", 21, 19]], [["imports", 17, 7], ["environment", 21, 7]], [["nativeBuildInputs", 58, 9], ["fakeRootCommands", 66, 9]], [["test-etc-vm", 40, 3], ["test-etc-fakeroot", 55, 3]]]);
 const formals$1 = { args: { lib: false, coreutils: false, fakechroot: false, fakeroot: false, evalMinimalConfig: false, pkgsModule: false, runCommand: false, "util-linux": false, vmTools: false, writeText: false }, ellipsis: false };
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/test.nix", [["text", 22, 9]]);
-const pos$2 = nix.positions(here + "/test.nix", [["text", 25, 9], ["mode", 26, 9]]);
-const pos$3 = nix.positions(here + "/test.nix", [["passwd", 21, 23], ["hosts", 24, 23]]);
-const pos$4 = nix.positions(here + "/test.nix", [["etc", 21, 19]]);
-const pos$5 = nix.positions(here + "/test.nix", [["imports", 17, 7], ["environment", 21, 7]]);
-const pos$6 = nix.positions(here + "/test.nix", [["nativeBuildInputs", 58, 9], ["fakeRootCommands", 66, 9]]);
-const pos$7 = nix.positions(here + "/test.nix", [["test-etc-vm", 40, 3], ["test-etc-fakeroot", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         imports: nix.thunk(() => [pkgsModule, nix.path(here, "../etc/etc.nix")]),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            passwd: nix.thunk(() => ({ [nix.POS]: pos$1, text: passwdText })),
-            hosts: nix.thunk(() => ({ [nix.POS]: pos$2, text: hostsText, mode: "0751" })),
+            [nix.POS]: $pos[2],
+            passwd: nix.thunk(() => ({ [nix.POS]: $pos[0], text: passwdText })),
+            hosts: nix.thunk(() => ({ [nix.POS]: $pos[1], text: hostsText, mode: "0751" })),
           })),
         })),
       };
@@ -43,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const passwdText = "root:x:0:0:System administrator:/root:/run/current-system/sw/bin/bash\n";
   const hostsText = "127.0.0.1 localhost\n::1 localhost\n# testing...\n";
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       "test-etc-vm": nix.thunk(() => nix.app(nix.sel(vmTools, "runInLinuxVM"), nix.thunk(() => nix.app(runCommand, "test-etc-vm", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p /etc
 ${nix.sel(node, "config", "system", "build", "etcActivationCommands")}
 set -x
@@ -55,7 +49,7 @@ set +x
 touch $out
 `))))),
       "test-etc-fakeroot": nix.thunk(() => nix.app(runCommand, "test-etc", nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           nativeBuildInputs: nix.thunk(() => [fakeroot, fakechroot, coreutils, util_linux]),
           fakeRootCommands: nix.thunk(() => nix.str`mkdir -p /etc
 ${nix.sel(node, "config", "system", "build", "etcActivationCommands")}

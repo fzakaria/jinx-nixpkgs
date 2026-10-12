@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["url", 35, 7], ["sha256", 36, 7]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]], [["version", 14, 3], ["pname", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["patches", 32, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, intltool: false, "pkg-config": false, glib: false, polkit: false, cups: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 35, 7], ["sha256", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 14, 3], ["pname", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["patches", 32, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cups = nix.arg($, "cups");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "0.2.6",
       pname: "cups-pk-helper",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.freedesktop.org/software/cups-pk-helper/releases/cups-pk-helper-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0a52jw6rm7lr5nbyksiia0rn7sasyb5cjqcb95z1wxm2yprgi6lm",
         })))),
@@ -32,13 +29,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, polkit, cups]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.freedesktop.org/cups-pk-helper/cups-pk-helper/merge_requests/2.patch",
             sha256: "1kamhr5kn8c1y0q8xbip0fgr7maf3dyddlvab4n0iypk7rwwikl0",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "PolicyKit helper to configure cups with fine-grained privileges",
         homepage: "https://www.freedesktop.org/wiki/Software/cups-pk-helper/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 84, 5], ["longDescription", 85, 5], ["homepage", 91, 5], ["downloadPage", 92, 5], ["changelog", 93, 5], ["license", 96, 5], ["maintainers", 97, 5], ["mainProgram", 98, 5], ["outputsToInstall", 99, 5], ["platforms", 105, 5], ["sourceProvenance", 106, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 18, 3], ["nativeBuildInputs", 20, 3], ["postInstall", 25, 3], ["resourceDir", 58, 3], ["postFixup", 59, 3], ["preFixup", 70, 3], ["outputs", 75, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, _7zz: false, fetchurl: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 84, 5], ["longDescription", 85, 5], ["homepage", 91, 5], ["downloadPage", 92, 5], ["changelog", 93, 5], ["license", 96, 5], ["maintainers", 97, 5], ["mainProgram", 98, 5], ["outputsToInstall", 99, 5], ["platforms", 105, 5], ["sourceProvenance", 106, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 18, 3], ["nativeBuildInputs", 20, 3], ["postInstall", 25, 3], ["resourceDir", 58, 3], ["postFixup", 59, 3], ["preFixup", 70, 3], ["outputs", 75, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ghostty-bin",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://release.files.ghostty.org/${nix.sel(finalAttrs, "version")}/Ghostty.dmg`),
           hash: "sha256-GM/ysKbO6Q7q2cfTBk6AiiUqQLryFKp1LB7LeTuPX2k=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "mkdir -p $man/share\ncp -r $resourceDir/man $man/share/man\n",
       outputs: nix.thunk(() => ["out", "man", "shell_integration", "terminfo", "vim"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast, native, feature-rich terminal emulator pushing modern features",
         longDescription: "Ghostty is a terminal emulator that differentiates itself by being\nfast, feature-rich, and native. While there are many excellent terminal\nemulators available, they all force you to choose between speed,\nfeatures, or native UIs. Ghostty provides all three.\n",
         homepage: "https://ghostty.org/",

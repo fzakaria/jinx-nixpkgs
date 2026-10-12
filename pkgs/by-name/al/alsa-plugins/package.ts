@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["url", 45, 5]], [["updateScript", 44, 12]], [["description", 49, 5], ["homepage", 50, 5], ["license", 52, 5], ["maintainers", 58, 5], ["platforms", 61, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["passthru", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, fetchpatch: false, lib: false, "pkg-config": false, "alsa-lib": false, ffmpeg: false, libjack2: false, libogg: false, libpulseaudio: false, speexdsp: false, directoryListingUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 44, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 52, 5], ["maintainers", 58, 5], ["platforms", 61, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["passthru", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const speexdsp = nix.arg($, "speexdsp");
   const directoryListingUpdater = nix.arg($, "directoryListingUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "alsa-plugins",
       version: "1.2.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://alsa/plugins/alsa-plugins-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-e9ioPTBOji2GoliV2Nyw7wJFqN8y4nGVnNvcavObZvI=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ffmpeg-9-compatibility.patch",
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/alsa-plugins/-/raw/7f250af93b76e9b3d552af509beb8ea1356114d1/ffmpeg9.patch",
             hash: "sha256-heAl6Ym3iYI8mhuuQpwBpc0FeFYsQZRHx4UUvqiVtBo=",
@@ -44,11 +39,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [alsa_lib, ffmpeg, libjack2, libogg, libpulseaudio, speexdsp]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://alsa-project.org/files/pub/plugins/" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], url: "https://alsa-project.org/files/pub/plugins/" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Various plugins for ALSA",
         homepage: "https://alsa-project.org/",
         license: nix.thunk(() => (() => {

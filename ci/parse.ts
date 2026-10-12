@@ -2,9 +2,8 @@
 import * as nix from "../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/parse.nix", [[["root", 10, 7], ["fileset", 11, 7]], [["nativeBuildInputs", 16, 5]]]);
 const formals$1 = { args: { lib: false, nix: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/parse.nix", [["root", 10, 7], ["fileset", 11, 7]]);
-const pos$2 = nix.positions(here + "/parse.nix", [["nativeBuildInputs", 16, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const nixpkgs = nix.thunk(() => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "fileset")), null);
     return nix.app(nix.lookup(w, "toSource"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         root: nix.path(here, "../."),
         fileset: nix.thunk(() => nix.app(nix.lookup(w, "fileFilter"), (file) => nix.app(nix.sel(file, "hasExt"), "nix"), nix.path(here, "../."))),
       })));
   })());
-  return nix.app(runCommand, nix.thunk(() => nix.str`nix-parse-${nix.sel(nix$, "name")}`), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [nix$]) })), nix.thunk(() => nix.str`export NIX_STORE_DIR=$TMPDIR/store
+  return nix.app(runCommand, nix.thunk(() => nix.str`nix-parse-${nix.sel(nix$, "name")}`), nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [nix$]) })), nix.thunk(() => nix.str`export NIX_STORE_DIR=$TMPDIR/store
 export NIX_STATE_DIR=$TMPDIR/state
 nix-store --init
 

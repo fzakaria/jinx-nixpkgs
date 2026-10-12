@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["publisher", 11, 5], ["name", 12, 5], ["version", 13, 13], ["hash", 14, 5]], [["description", 18, 5], ["downloadPage", 19, 5], ["homepage", 20, 5], ["changelog", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]], [["mktplcRef", 10, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["publisher", 11, 5], ["name", 12, 5], ["version", 13, 13], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 18, 5], ["downloadPage", 19, 5], ["homepage", 20, 5], ["changelog", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 10, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,16 +11,16 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const version = "4.4.3";
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         publisher: "pranaygp",
         name: "vscode-css-peek",
         version: version,
         hash: "sha256-oY+mpDv2OTy5hFEk2DMNHi9epFm4Ay4qi0drCXPuYhU=",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Allow peeking to css ID and class strings as definitions from html files to respective CSS",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=pranaygp.vscode-css-peek",
         homepage: "https://github.com/pranaygp/vscode-css-peek",

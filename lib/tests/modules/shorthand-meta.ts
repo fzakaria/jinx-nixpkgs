@@ -2,16 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/shorthand-meta.nix", [[["type", 12, 13]], [["foo", 11, 16]], [["default", 14, 31]], [["meta", 11, 11], ["result", 14, 11]], [["options", 10, 9]], [["foo", 19, 12]], [["meta", 19, 7]], [["imports", 6, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/shorthand-meta.nix", [["type", 12, 13]]);
-const pos$2 = nix.positions(here + "/shorthand-meta.nix", [["foo", 11, 16]]);
-const pos$3 = nix.positions(here + "/shorthand-meta.nix", [["default", 14, 31]]);
-const pos$4 = nix.positions(here + "/shorthand-meta.nix", [["meta", 11, 11], ["result", 14, 11]]);
-const pos$5 = nix.positions(here + "/shorthand-meta.nix", [["options", 10, 9]]);
-const pos$6 = nix.positions(here + "/shorthand-meta.nix", [["foo", 19, 12]]);
-const pos$7 = nix.positions(here + "/shorthand-meta.nix", [["meta", 19, 7]]);
-const pos$8 = nix.positions(here + "/shorthand-meta.nix", [["imports", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,32 +12,32 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     imports: nix.thunk(() => [
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           options: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               foo: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                  [nix.POS]: pos$1,
+                  [nix.POS]: $pos[0],
                   type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
                 })))),
             })),
             result: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 default: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.sel(config, "meta", "foo")))),
               })))),
           })),
         };
       })(), formals$2),
       nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        meta: nix.thunk(() => ({ [nix.POS]: pos$6, foo: nix.thunk(() => ["one", "two"]) })),
+        [nix.POS]: $pos[6],
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[5], foo: nix.thunk(() => ["one", "two"]) })),
       })),
     ]),
   };

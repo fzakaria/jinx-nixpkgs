@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 38, 47]], [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_CTC_DECODER", 52, 5], ["USE_CUDA", 55, 5], ["TORCH_CUDA_ARCH_LIST", 56, 5], ["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_CUCTC_DECODER", 57, 5], ["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_CUDA", 58, 5], ["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_MULTIGPU_CUDA", 59, 5], ["USE_ROCM", 62, 5], ["PYTORCH_ROCM_ARCH", 63, 5], ["ROCM_PATH", 64, 5], ["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_MOD_demucs", 67, 5], ["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_MOD_fairseq", 70, 5], ["TORCHAUDIO_TEST_ALLOW_SKIP_IF_ON_PYTHON_310", 75, 5], ["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_QUANTIZATION", 81, 5]], [["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_CUCTC_DECODER", 161, 7], ["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_CUDA", 162, 7]], [["pname", 155, 5], ["dontCheckPythonMetadata", 157, 5], ["requiredSystemFeatures", 158, 5], ["env", 160, 5]], [["gpuCheck", 154, 12]], [["description", 167, 5], ["homepage", 168, 5], ["downloadPage", 169, 5], ["changelog", 170, 5], ["license", 171, 5], ["platforms", 172, 5], ["maintainers", 174, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["env", 50, 3], ["build-system", 84, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 92, 3], ["dependencies", 96, 3], ["pythonImportsCheck", 101, 3], ["nativeCheckInputs", 103, 3], ["disabledTestPaths", 117, 3], ["disabledTests", 122, 3], ["passthru", 154, 3], ["meta", 166, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, torch: false, torchcodec: false, expecttest: false, inflect: false, librosa: false, parameterized: false, pytestCheckHook: false, "pytorch-lightning": false, requests: false, scipy: false, sentencepiece: false, soundfile: false, unidecode: false, torchaudio: false, cudaSupport: true, rocmSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 38, 47]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_CTC_DECODER", 52, 5], ["USE_CUDA", 55, 5], ["TORCH_CUDA_ARCH_LIST", 56, 5], ["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_CUCTC_DECODER", 57, 5], ["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_CUDA", 58, 5], ["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_MULTIGPU_CUDA", 59, 5], ["USE_ROCM", 62, 5], ["PYTORCH_ROCM_ARCH", 63, 5], ["ROCM_PATH", 64, 5], ["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_MOD_demucs", 67, 5], ["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_MOD_fairseq", 70, 5], ["TORCHAUDIO_TEST_ALLOW_SKIP_IF_ON_PYTHON_310", 75, 5], ["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_QUANTIZATION", 81, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_CUCTC_DECODER", 161, 7], ["TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_CUDA", 162, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 155, 5], ["dontCheckPythonMetadata", 157, 5], ["requiredSystemFeatures", 158, 5], ["env", 160, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["gpuCheck", 154, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 167, 5], ["homepage", 168, 5], ["downloadPage", 169, 5], ["changelog", 170, 5], ["license", 171, 5], ["platforms", 172, 5], ["maintainers", 174, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["env", 50, 3], ["build-system", 84, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 92, 3], ["dependencies", 96, 3], ["pythonImportsCheck", 101, 3], ["nativeCheckInputs", 103, 3], ["disabledTestPaths", 117, 3], ["disabledTests", 122, 3], ["passthru", 154, 3], ["meta", 166, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,20 +31,20 @@ export default nix.lambda((args) => (() => {
   const hostPlatform = nix.thunk(() => nix.attr(stdenv, "hostPlatform"));
   const cudaCapabilities = nix.thunk(() => nix.attr(torch, "cudaCapabilities"));
   const cudaPackages = nix.thunk(() => nix.attr(torch, "cudaPackages"));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: $pos[7],
       pname: "torchaudio",
       version: "2.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "pytorch",
           repo: "audio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-TncROn9wfn5HOaIvupS2/KD9JCgwfHyfnbZRc+SiqJ0=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_CTC_DECODER: 1n,
         USE_CUDA: cudaSupport,
         TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), ";", cudaCapabilities)}`),
@@ -107,21 +100,21 @@ export default nix.lambda((args) => (() => {
           "test_lfilter_shape_6",
         ])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         gpuCheck: nix.thunk(() => nix.app(nix.sel(torchaudio, "overridePythonAttrs"), (old) => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-gpuCheck`),
             dontCheckPythonMetadata: true,
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), {
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_CUCTC_DECODER: 0n,
               TORCHAUDIO_TEST_ALLOW_SKIP_IF_NO_CUDA: 0n,
             })),
           }))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "PyTorch audio library",
         homepage: "https://pytorch.org/audio",
         downloadPage: "https://github.com/pytorch/audio",

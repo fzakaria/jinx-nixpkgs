@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 27]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 22, 3], ["patches", 24, 3], ["installPhase", 29, 3], ["postFixup", 44, 3], ["dontConfigure", 49, 3], ["dontBuild", 51, 3], ["strictDeps", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, makeWrapper: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 22, 3], ["patches", 24, 3], ["installPhase", 29, 3], ["postFixup", 44, 3], ["dontConfigure", 49, 3], ["dontBuild", 51, 3], ["strictDeps", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bqn",
       version: "0-unstable-2026-03-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mlochbaum",
           repo: "BQN",
           rev: "df1d848328194249e68635f8b8c04641d9fa6bdc",
@@ -48,7 +46,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mlochbaum/BQN/",
         description: "Original BQN implementation in Javascript",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

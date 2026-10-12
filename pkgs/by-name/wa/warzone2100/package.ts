@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 46, 5], ["hash", 47, 5]], [["url", 56, 5], ["hash", 57, 5]], [["package", 123, 7], ["command", 125, 7]], [["version", 122, 5], ["nixosTest", 127, 5]], [["url", 131, 5]], [["tests", 121, 12], ["updateScript", 130, 12]], [["description", 135, 5], ["mainProgram", 136, 5], ["longDescription", 137, 5], ["homepage", 148, 5], ["license", 149, 5], ["maintainers", 150, 5], ["platforms", 153, 5], ["broken", 156, 5]], [["pname", 52, 11], ["version", 53, 3], ["src", 55, 3], ["buildInputs", 60, 3], ["nativeBuildInputs", 83, 3], ["postPatch", 93, 3], ["cmakeFlags", 102, 3], ["postInstall", 117, 3], ["passthru", 121, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, ninja: false, p7zip: false, "pkg-config": false, asciidoctor: false, gettext: false, sdl3: false, libtheora: false, libvorbis: false, libopus: false, openal: false, "openal-soft": false, physfs: false, miniupnpc: false, libsodium: false, curl: false, libpng: false, freetype: false, harfbuzz: false, sqlite: false, which: false, "vulkan-headers": false, "vulkan-loader": false, shaderc: false, protobuf: false, libzip: false, testers: false, warzone2100: false, nixosTests: false, gitUpdater: false, withVideos: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 56, 5], ["hash", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 123, 7], ["command", 125, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 122, 5], ["nixosTest", 127, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 131, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 121, 12], ["updateScript", 130, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 135, 5], ["mainProgram", 136, 5], ["longDescription", 137, 5], ["homepage", 148, 5], ["license", 149, 5], ["maintainers", 150, 5], ["platforms", 153, 5], ["broken", 156, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 52, 11], ["version", 53, 3], ["src", 55, 3], ["buildInputs", 60, 3], ["nativeBuildInputs", 83, 3], ["postPatch", 93, 3], ["cmakeFlags", 102, 3], ["postInstall", 117, 3], ["passthru", 121, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,16 +43,16 @@ export default nix.lambda((args) => (() => {
   const withVideos = nix.argOr($, "withVideos", () => true);
   const pname = "warzone2100";
   const sequences = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "mirror://sourceforge/warzone2100/warzone2100/Videos/high-quality-en/sequences.wz",
       hash: "sha256-kP9VLKSnDiU34CfiLFCY6k7RvBG7f8lBOMbJQac9Kfo=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: "4.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/warzone2100/releases/${nix.sel(finalAttrs, "version")}/warzone2100_src.tar.xz`),
           hash: "sha256-le5NW4hoDqGxzyMLZ+qEAo4IokWLhGBayff7nrl8Tjc=",
         })))),
@@ -96,20 +89,20 @@ substituteInPlace CMakeLists.txt \\
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withVideos, nix.thunk(() => nix.str`ln -sn ${sequences} $out/share/warzone2100/sequences.wz
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: warzone2100,
               command: "(warzone2100 --version || [ $? -eq 1 ])",
             })))),
           nixosTest: nix.thunk(() => nix.sel(nixosTests, "warzone2100")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, url: "https://github.com/Warzone2100/warzone2100" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], url: "https://github.com/Warzone2100/warzone2100" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Free RTS game, originally developed by Pumpkin Studios",
         mainProgram: "warzone2100",
         longDescription: "  Warzone 2100 is an open source real-time strategy and real-time tactics\nhybrid computer game, originally developed by Pumpkin Studios and\npublished by Eidos Interactive.\n  In Warzone 2100, you command the forces of The Project in a battle to\nrebuild the world after mankind has almost been destroyed by nuclear\nmissiles. The game offers campaign, multi-player, and single-player\nskirmish modes. An extensive tech tree with over 400 different\ntechnologies, combined with the unit design system, allows for a wide\nvariety of possible units and tactics.\n",

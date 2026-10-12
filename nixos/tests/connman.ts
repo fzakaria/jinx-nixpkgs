@@ -2,81 +2,60 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/connman.nix", [[["maintainers", 5, 5]], [["vlans", 14, 22]], [["net.ipv6.conf.all.forwarding", 16, 26]], [["sysctl", 16, 19]], [["kernel", 16, 12]], [["address", 22, 13], ["prefixLength", 23, 13]], [["addresses", 20, 30]], [["ipv6", 20, 25]], [["eth1", 20, 20]], [["useDHCP", 19, 9], ["interfaces", 20, 9]], [["enable", 29, 9], ["config", 30, 9]], [["radvd", 28, 16]], [["imports", 12, 7], ["virtualisation", 14, 7], ["boot", 16, 7], ["networking", 18, 7], ["services", 28, 7]], [["vlans", 47, 22]], [["kernelModules", 50, 12], ["extraModprobeConfig", 51, 12]], [["enable", 57, 24], ["networkInterfaceBlacklist", 58, 24]], [["connman", 57, 16]], [["enable", 59, 27], ["interfaces", 60, 27]], [["wireless", 59, 18]], [["virtualisation", 47, 7], ["boot", 50, 7], ["services", 57, 7], ["networking", 59, 7]], [["router", 9, 9], ["client", 44, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 9, 3], ["testScript", 63, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/connman.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/connman.nix", [["vlans", 14, 22]]);
-const pos$3 = nix.positions(here + "/connman.nix", [["net.ipv6.conf.all.forwarding", 16, 26]]);
-const pos$4 = nix.positions(here + "/connman.nix", [["sysctl", 16, 19]]);
-const pos$5 = nix.positions(here + "/connman.nix", [["kernel", 16, 12]]);
-const pos$6 = nix.positions(here + "/connman.nix", [["address", 22, 13], ["prefixLength", 23, 13]]);
-const pos$7 = nix.positions(here + "/connman.nix", [["addresses", 20, 30]]);
-const pos$8 = nix.positions(here + "/connman.nix", [["ipv6", 20, 25]]);
-const pos$9 = nix.positions(here + "/connman.nix", [["eth1", 20, 20]]);
-const pos$10 = nix.positions(here + "/connman.nix", [["useDHCP", 19, 9], ["interfaces", 20, 9]]);
-const pos$11 = nix.positions(here + "/connman.nix", [["enable", 29, 9], ["config", 30, 9]]);
-const pos$12 = nix.positions(here + "/connman.nix", [["radvd", 28, 16]]);
-const pos$13 = nix.positions(here + "/connman.nix", [["imports", 12, 7], ["virtualisation", 14, 7], ["boot", 16, 7], ["networking", 18, 7], ["services", 28, 7]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$14 = nix.positions(here + "/connman.nix", [["vlans", 47, 22]]);
-const pos$15 = nix.positions(here + "/connman.nix", [["kernelModules", 50, 12], ["extraModprobeConfig", 51, 12]]);
-const pos$16 = nix.positions(here + "/connman.nix", [["enable", 57, 24], ["networkInterfaceBlacklist", 58, 24]]);
-const pos$17 = nix.positions(here + "/connman.nix", [["connman", 57, 16]]);
-const pos$18 = nix.positions(here + "/connman.nix", [["enable", 59, 27], ["interfaces", 60, 27]]);
-const pos$19 = nix.positions(here + "/connman.nix", [["wireless", 59, 18]]);
-const pos$20 = nix.positions(here + "/connman.nix", [["virtualisation", 47, 7], ["boot", 50, 7], ["services", 57, 7], ["networking", 59, 7]]);
-const pos$21 = nix.positions(here + "/connman.nix", [["router", 9, 9], ["client", 44, 9]]);
-const pos$22 = nix.positions(here + "/connman.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 9, 3], ["testScript", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     name: "connman",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "rnhmjoj"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       router: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: nix.thunk(() => [1n]) })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             kernel: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              sysctl: nix.thunk(() => ({ [nix.POS]: pos$3, "net.ipv6.conf.all.forwarding": true })),
+              [nix.POS]: $pos[3],
+              sysctl: nix.thunk(() => ({ [nix.POS]: $pos[2], "net.ipv6.conf.all.forwarding": true })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$6, address: "fd12::1", prefixLength: 64n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[5], address: "fd12::1", prefixLength: 64n })),
                   ]),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             radvd: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               config: "interface eth1 {\n  AdvSendAdvert on;\n  AdvManagedFlag on;\n  AdvOtherConfigFlag on;\n  prefix fd12::/64 {\n    AdvAutonomous off;\n  };\n};\n",
             })),
@@ -86,25 +65,25 @@ export default nix.lambda((args) => (() => {
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$20,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$14, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[19],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[13], vlans: nix.thunk(() => [1n]) })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             kernelModules: nix.thunk(() => ["mac80211_hwsim"]),
             extraModprobeConfig: "options mac80211_hwsim radios=1\n",
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             connman: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, true)),
               networkInterfaceBlacklist: nix.thunk(() => ["eth0"]),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             wireless: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, true)),
               interfaces: nix.thunk(() => ["wlan0"]),
             })),

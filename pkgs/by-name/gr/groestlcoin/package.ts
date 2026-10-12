@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["sha256", 29, 5]], [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["sha256", 40, 5]], [["description", 122, 5], ["longDescription", 123, 5], ["homepage", 129, 5], ["downloadPage", 130, 5], ["changelog", 131, 5], ["maintainers", 132, 5], ["license", 133, 5], ["platforms", 134, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["postInstall", 70, 3], ["cmakeFlags", 88, 3], ["nativeCheckInputs", 101, 3], ["checkFlags", 103, 3], ["enableParallelBuilding", 110, 3], ["__darwinAllowLocalNetworking", 112, 3], ["nativeInstallCheckInputs", 114, 3], ["versionCheckProgram", 117, 3], ["versionCheckProgramArg", 118, 3], ["doInstallCheck", 119, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, installShellFiles: false, darwin: false, boost: false, libevent: false, zeromq: false, zlib: false, db53: false, sqlite: false, qrencode: false, libsystemtap: false, qt5: false, python3: false, versionCheckHook: false, withGui: true, withWallet: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["sha256", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 122, 5], ["longDescription", 123, 5], ["homepage", 129, 5], ["downloadPage", 130, 5], ["changelog", 131, 5], ["maintainers", 132, 5], ["license", 133, 5], ["platforms", 134, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["postInstall", 70, 3], ["cmakeFlags", 88, 3], ["nativeCheckInputs", 101, 3], ["checkFlags", 103, 3], ["enableParallelBuilding", 110, 3], ["__darwinAllowLocalNetworking", 112, 3], ["nativeInstallCheckInputs", 114, 3], ["versionCheckProgram", 117, 3], ["versionCheckProgramArg", 118, 3], ["doInstallCheck", 119, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,16 +29,16 @@ export default nix.lambda((args) => (() => {
   const withGui = nix.argOr($, "withGui", () => true);
   const withWallet = nix.argOr($, "withWallet", () => true);
   const desktop = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://raw.githubusercontent.com/Groestlcoin/packaging/de4504844e47cf2c7604789650a5db4f3f7a48aa/debian/groestlcoin-qt.desktop",
       sha256: "0mxwq4jvcip44a796iwz7n1ljkhl3a4p47z7qlsxcfxw3zmm0k0k",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => (nix.asBool(withGui) ? "groestlcoin" : "groestlcoind")),
       version: "29.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Groestlcoin",
           repo: "groestlcoin",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +73,7 @@ install -Dm644 share/pixmaps/groestlcoin256.png $out/share/icons/hicolor/256x256
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Peer-to-peer electronic cash system",
         longDescription: "Groestlcoin is a free open source peer-to-peer electronic cash system that is\ncompletely decentralized, without the need for a central server or trusted\nparties. Users hold the crypto keys to their own money and transact directly\nwith each other, with the help of a P2P network to check for double-spending.\n",
         homepage: "https://groestlcoin.org/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["recurseForDerivations", 7, 7]], [["bootstrap-chicken", 15, 51]], [["bootstrap-chicken", 15, 7]], [["pkgs", 6, 5], ["fetchegg", 10, 5], ["eggDerivation", 12, 5], ["chicken", 14, 5], ["chickenEggs", 18, 5], ["egg2nix", 20, 5]]]);
 const formals$1 = { args: { lib: false, newScope: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["recurseForDerivations", 7, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["bootstrap-chicken", 15, 51]]);
-const pos$3 = nix.positions(here + "/default.nix", [["bootstrap-chicken", 15, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pkgs", 6, 5], ["fetchegg", 10, 5], ["eggDerivation", 12, 5], ["chicken", 14, 5], ["chickenEggs", 18, 5], ["egg2nix", 20, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const newScope = nix.arg($, "newScope");
   const callPackage = nix.thunk(() => nix.app(newScope, self));
   const self = nix.thunk(() => ({
-    [nix.POS]: pos$4,
-    pkgs: nix.thunk(() => nix.update(self, { [nix.POS]: pos$1, recurseForDerivations: false })),
+    [nix.POS]: $pos[3],
+    pkgs: nix.thunk(() => nix.update(self, { [nix.POS]: $pos[0], recurseForDerivations: false })),
     fetchegg: nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetchegg"), nix.thunk(() => ({})))),
     eggDerivation: nix.thunk(() => nix.app(callPackage, nix.path(here, "./eggDerivation.nix"), nix.thunk(() => ({})))),
     chicken: nix.thunk(() => nix.app(callPackage, nix.path(here, "./chicken.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        "bootstrap-chicken": nix.thunk(() => nix.app(nix.sel(self, "chicken", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "bootstrap-chicken": null })))),
+        [nix.POS]: $pos[2],
+        "bootstrap-chicken": nix.thunk(() => nix.app(nix.sel(self, "chicken", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], "bootstrap-chicken": null })))),
       })))),
     chickenEggs: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./eggs.nix"), nix.thunk(() => ({})))))),
     egg2nix: nix.thunk(() => nix.app(callPackage, nix.path(here, "./egg2nix.nix"), nix.thunk(() => ({})))),

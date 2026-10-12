@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["owner", 26, 5], ["repo", 27, 5], ["tag", 29, 5], ["hash", 30, 5]], [["yarnLock", 34, 5], ["hash", 35, 5]], [["default", 83, 11]], [["extraArgs", 86, 7]], [["tests", 83, 5], ["updateScript", 85, 5]], [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["teams", 97, 5], ["platforms", 98, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["offlineCache", 33, 3], ["nativeBuildInputs", 38, 3], ["postPatch", 45, 3], ["configurePhase", 54, 3], ["buildPhase", 66, 3], ["installPhase", 74, 3], ["passthru", 82, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, fetchFromGitHub: false, fetchYarnDeps: false, nodejs: false, "fixup-yarn-lock": false, yarn: false, nixosTests: false, git: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["yarnLock", 34, 5], ["hash", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["default", 83, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 86, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 83, 5], ["updateScript", 85, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["teams", 97, 5], ["platforms", 98, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["offlineCache", 33, 3], ["nativeBuildInputs", 38, 3], ["postPatch", 45, 3], ["configurePhase", 54, 3], ["buildPhase", 66, 3], ["installPhase", 74, 3], ["passthru", 82, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,23 +19,23 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const nix_update_script = nix.arg($, "nix-update-script");
   const renamesSed = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://raw.githubusercontent.com/zabbly/incus/0fa53811ff1043fd9f28c8b78851b60ca58e1b10/patches/ui-canonical-renames.sed",
       hash: "sha256-f0vd/Xp/kBbZkg6CBM4cZPlwg5WUL/zv3mCAEmugzCE=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "incus-ui-canonical",
       version: "0.21.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "zabbly",
           repo: "incus-ui-canonical",
           tag: nix.thunk(() => nix.str`incus-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-8RxAgtcKHCOMPOebENSmDsf7K7BYSv965GU2/xxP8GY=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-61z48VlhImykD/GJ5581Z95dIn7pv2ODZJfFKydGSPs=",
         })))),
@@ -58,18 +51,18 @@ substituteInPlace vite.config.ts \\
       buildPhase: "runHook preBuild\n\nyarn --offline build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ncp -r build/ui/ $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           default: nix.thunk(() => nix.sel(nixosTests, "incus", "ui")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex", "incus-([0-9\\.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Web user interface for Incus",
         homepage: "https://github.com/zabbly/incus-ui-canonical",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 42, 5], ["description", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["license", 46, 5], ["broken", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 30, 3], ["preInstall", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, which: false, "ocaml-ng": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["license", 46, 5], ["broken", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 30, 3], ["preInstall", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const ocaml_ng = nix.arg($, "ocaml-ng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libbap",
       version: "master-2022-07-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BinaryAnalysisPlatform",
           repo: "bap-bindings",
           rev: "4d324dd794f8e022e8eddecbb2ae2e7b28173947",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       })()),
       preInstall: "mkdir -p $out/lib\nmkdir -p $out/include\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/binaryanalysisplatform/bap-bindings",
         description: "C library for interacting with BAP",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "maurer"))]),

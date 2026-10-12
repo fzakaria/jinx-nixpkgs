@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["pname", 35, 13], ["version", 35, 19], ["src", 35, 27], ["hash", 36, 5]], [["CARGO_BUILD_TARGET", 71, 7]], [["rev-prefix", 74, 5]], [["updateScript", 73, 12]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 85, 5], ["platforms", 86, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cargoDeps", 34, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 57, 3], ["mesonFlags", 66, 3], ["env", 71, 3], ["passthru", 73, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, appstream: false, cargo: false, "desktop-file-utils": false, fetchFromCodeberg: false, gitUpdater: false, gtk4: false, libadwaita: false, libepoxy: false, libglvnd: false, meson: false, mpv: false, ninja: false, openssl: false, "pkg-config": false, rustPlatform: false, rustc: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 13], ["version", 35, 19], ["src", 35, 27], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CARGO_BUILD_TARGET", 71, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["rev-prefix", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 73, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 85, 5], ["platforms", 86, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cargoDeps", 34, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 57, 3], ["mesonFlags", 66, 3], ["env", 71, 3], ["passthru", 73, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const pname = "delfin";
       const version = "0.4.8";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "avery42",
           repo: "delfin",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-2ussvPXMX4wGE9N+Zh8KYIjbbqEKkPaNymN1Oqj8w8U=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -67,15 +61,15 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gtk4, libadwaita, libglvnd, libepoxy, mpv, openssl]);
       const mesonFlags = nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "profile", "release"))]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Stream movies and TV shows from Jellyfin",
         homepage: "https://www.delfin.avery.cafe/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -90,7 +84,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

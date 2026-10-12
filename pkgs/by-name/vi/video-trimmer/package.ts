@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["pname", 34, 26], ["version", 34, 32], ["src", 34, 40], ["hash", 35, 5]], [["CARGO_BUILD_TARGET", 70, 7]], [["updateScript", 83, 5]], [["homepage", 87, 5], ["description", 88, 5], ["changelog", 89, 5], ["maintainers", 90, 5], ["teams", 93, 5], ["license", 94, 5], ["platforms", 95, 5], ["mainProgram", 96, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoDeps", 33, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 60, 3], ["env", 70, 3], ["doCheck", 72, 3], ["strictDeps", 74, 3], ["preFixup", 76, 3], ["passthru", 82, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, rustPlatform: false, cargo: false, "pkg-config": false, meson: false, rustc: false, wrapGAppsHook4: false, "desktop-file-utils": false, "blueprint-compiler": false, ninja: false, gtk4: false, libadwaita: false, gst_all_1: false, "ffmpeg-headless": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 34, 26], ["version", 34, 32], ["src", 34, 40], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CARGO_BUILD_TARGET", 70, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 87, 5], ["description", 88, 5], ["changelog", 89, 5], ["maintainers", 90, 5], ["teams", 93, 5], ["license", 94, 5], ["platforms", 95, 5], ["mainProgram", 96, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoDeps", 33, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 60, 3], ["env", 70, 3], ["doCheck", 72, 3], ["strictDeps", 74, 3], ["preFixup", 76, 3], ["passthru", 82, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_headless = nix.arg($, "ffmpeg-headless");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "video-trimmer",
       version: "26.03.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "YaLTeR",
           repo: "video-trimmer",
@@ -42,7 +37,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-qHhN/BOSFTTco+Hy7Nn0h2ZcQw0eR0VEW7oVftpSkEM=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -73,7 +68,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       })),
       doCheck: true,
@@ -83,11 +78,11 @@ export default nix.lambda((args) => (() => {
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.gnome.org/YaLTeR/video-trimmer",
         description: "Trim videos quickly",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/YaLTeR/video-trimmer/-/releases/v${nix.sel(finalAttrs, "version")}`),

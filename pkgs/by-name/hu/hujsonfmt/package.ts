@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 27, 5], ["description", 28, 5], ["license", 29, 5], ["mainProgram", 30, 5], ["maintainers", 31, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["proxyVendor", 21, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["license", 29, 5], ["mainProgram", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["proxyVendor", 21, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const licenses = nix.thunk(() => nix.attr(lib, "licenses"));
   const maintainers = nix.thunk(() => nix.attr(lib, "maintainers"));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hujsonfmt",
       version: "0-unstable-2025-06-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tailscale",
           repo: "hujson",
           rev: "992244df8c5ad853c10f498549e0eab54e515d13",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-cvoj85BNnm/ZX1UnXKU2HjvjQkRZ9uN3U0BnD3DmiTE=",
       subPackages: nix.thunk(() => ["cmd/hujsonfmt"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://tailscale.com",
         description: "Automatic formatter for HuJSON / JSON With Comments and trailing Commas (JWCC)",
         license: nix.thunk(() => nix.sel(licenses, "bsd3")),

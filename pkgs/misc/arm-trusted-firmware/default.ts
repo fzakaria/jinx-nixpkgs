@@ -2,32 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 46, 11], ["repo", 47, 11], ["tag", 48, 11], ["hash", 49, 11]], [["NIX_CFLAGS_COMPILE", 107, 13]], [["homepage", 124, 13], ["description", 125, 13], ["license", 126, 13], ["maintainers", 130, 13]], [["pname", 42, 9], ["version", 43, 9], ["src", 45, 9], ["patches", 52, 9], ["postPatch", 57, 9], ["depsBuildBuild", 61, 9], ["nativeBuildInputs", 63, 9], ["rk3399-m0-oc-parameter", 75, 9], ["buildInputs", 77, 9], ["makeFlags", 79, 9], ["installPhase", 95, 9], ["hardeningDisable", 104, 9], ["dontStrip", 105, 9], ["env", 107, 9], ["meta", 121, 9]], [["depsBuildBuild", 147, 5], ["extraMakeFlags", 148, 5], ["filesToInstall", 153, 5], ["postInstall", 157, 5]], [["platforms", 165, 15]], [["platform", 164, 5], ["extraMeta", 165, 5], ["filesToInstall", 166, 5]], [["platforms", 171, 15]], [["platform", 170, 5], ["extraMeta", 171, 5], ["filesToInstall", 172, 5]], [["platforms", 177, 15]], [["platform", 176, 5], ["extraMeta", 177, 5], ["filesToInstall", 178, 5]], [["platforms", 183, 15]], [["platform", 182, 5], ["extraMeta", 183, 5], ["filesToInstall", 184, 5]], [["platforms", 194, 15]], [["extraMakeFlags", 192, 5], ["platform", 193, 5], ["extraMeta", 194, 5], ["filesToInstall", 195, 5]], [["platforms", 201, 15]], [["extraMakeFlags", 199, 5], ["platform", 200, 5], ["extraMeta", 201, 5], ["filesToInstall", 202, 5], ["platformCanUseHDCPBlob", 203, 5]], [["platforms", 209, 15]], [["extraMakeFlags", 207, 5], ["platform", 208, 5], ["extraMeta", 209, 5], ["filesToInstall", 210, 5]], [["platforms", 216, 15]], [["extraMakeFlags", 214, 5], ["platform", 215, 5], ["extraMeta", 216, 5], ["filesToInstall", 217, 5]], [["platforms", 223, 15]], [["extraMakeFlags", 221, 5], ["platform", 222, 5], ["extraMeta", 223, 5], ["filesToInstall", 224, 5]], [["buildArmTrustedFirmware", 140, 11], ["armTrustedFirmwareTools", 142, 3], ["armTrustedFirmwareAllwinner", 163, 3], ["armTrustedFirmwareAllwinnerH616", 169, 3], ["armTrustedFirmwareAllwinnerH6", 175, 3], ["armTrustedFirmwareQemu", 181, 3], ["armTrustedFirmwareRK3328", 191, 3], ["armTrustedFirmwareRK3399", 198, 3], ["armTrustedFirmwareRK3568", 206, 3], ["armTrustedFirmwareRK3588", 213, 3], ["armTrustedFirmwareS905", 220, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, dtc: false, gcc: false, openssl: false, pkgsCross: false, buildPackages: false, unfreeIncludeHDCPBlob: true }, ellipsis: false };
 const formals$2 = { args: { filesToInstall: false, installDir: true, platform: true, platformCanUseHDCPBlob: true, extraMakeFlags: true, extraMeta: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 46, 11], ["repo", 47, 11], ["tag", 48, 11], ["hash", 49, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 107, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 124, 13], ["description", 125, 13], ["license", 126, 13], ["maintainers", 130, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 42, 9], ["version", 43, 9], ["src", 45, 9], ["patches", 52, 9], ["postPatch", 57, 9], ["depsBuildBuild", 61, 9], ["nativeBuildInputs", 63, 9], ["rk3399-m0-oc-parameter", 75, 9], ["buildInputs", 77, 9], ["makeFlags", 79, 9], ["installPhase", 95, 9], ["hardeningDisable", 104, 9], ["dontStrip", 105, 9], ["env", 107, 9], ["meta", 121, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["depsBuildBuild", 147, 5], ["extraMakeFlags", 148, 5], ["filesToInstall", 153, 5], ["postInstall", 157, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["platforms", 165, 15]]);
-const pos$7 = nix.positions(here + "/default.nix", [["platform", 164, 5], ["extraMeta", 165, 5], ["filesToInstall", 166, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["platforms", 171, 15]]);
-const pos$9 = nix.positions(here + "/default.nix", [["platform", 170, 5], ["extraMeta", 171, 5], ["filesToInstall", 172, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["platforms", 177, 15]]);
-const pos$11 = nix.positions(here + "/default.nix", [["platform", 176, 5], ["extraMeta", 177, 5], ["filesToInstall", 178, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["platforms", 183, 15]]);
-const pos$13 = nix.positions(here + "/default.nix", [["platform", 182, 5], ["extraMeta", 183, 5], ["filesToInstall", 184, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["platforms", 194, 15]]);
-const pos$15 = nix.positions(here + "/default.nix", [["extraMakeFlags", 192, 5], ["platform", 193, 5], ["extraMeta", 194, 5], ["filesToInstall", 195, 5]]);
-const pos$16 = nix.positions(here + "/default.nix", [["platforms", 201, 15]]);
-const pos$17 = nix.positions(here + "/default.nix", [["extraMakeFlags", 199, 5], ["platform", 200, 5], ["extraMeta", 201, 5], ["filesToInstall", 202, 5], ["platformCanUseHDCPBlob", 203, 5]]);
-const pos$18 = nix.positions(here + "/default.nix", [["platforms", 209, 15]]);
-const pos$19 = nix.positions(here + "/default.nix", [["extraMakeFlags", 207, 5], ["platform", 208, 5], ["extraMeta", 209, 5], ["filesToInstall", 210, 5]]);
-const pos$20 = nix.positions(here + "/default.nix", [["platforms", 216, 15]]);
-const pos$21 = nix.positions(here + "/default.nix", [["extraMakeFlags", 214, 5], ["platform", 215, 5], ["extraMeta", 216, 5], ["filesToInstall", 217, 5]]);
-const pos$22 = nix.positions(here + "/default.nix", [["platforms", 223, 15]]);
-const pos$23 = nix.positions(here + "/default.nix", [["extraMakeFlags", 221, 5], ["platform", 222, 5], ["extraMeta", 223, 5], ["filesToInstall", 224, 5]]);
-const pos$24 = nix.positions(here + "/default.nix", [["buildArmTrustedFirmware", 140, 11], ["armTrustedFirmwareTools", 142, 3], ["armTrustedFirmwareAllwinner", 163, 3], ["armTrustedFirmwareAllwinnerH616", 169, 3], ["armTrustedFirmwareAllwinnerH6", 175, 3], ["armTrustedFirmwareQemu", 181, 3], ["armTrustedFirmwareRK3328", 191, 3], ["armTrustedFirmwareRK3399", 198, 3], ["armTrustedFirmwareRK3568", 206, 3], ["armTrustedFirmwareRK3588", 213, 3], ["armTrustedFirmwareS905", 220, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,7 +31,7 @@ export default nix.lambda((args) => (() => {
           const pname = nix.thunk(() => nix.str`arm-trusted-firmware${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(platform, null)), nix.thunk(() => nix.str`-${platform}`))}`);
           const version = "2.14.0";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "ARM-software",
               repo: "arm-trusted-firmware",
               tag: nix.thunk(() => nix.str`v${version}`),
@@ -87,11 +64,11 @@ runHook postInstall
           const hardeningDisable = nix.thunk(() => ["all"]);
           const dontStrip = true;
           const env = nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => ["-fomit-frame-pointer", "-no-pie"]))),
           }));
           const meta = nix.thunk(() => nix.update({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             homepage: "https://github.com/ARM-software/arm-trusted-firmware",
             description: "Reference implementation of secure world software for ARMv8-A",
             license: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(lib, "licenses", "bsd3"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(deleteHDCPBlobBeforeBuild)), nix.thunk(() => [nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable"))])))),
@@ -101,7 +78,7 @@ runHook postInstall
             })()),
           }, extraMeta));
           return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname,
             version,
             src,
@@ -121,10 +98,10 @@ runHook postInstall
         })(), nix.builtins.removeAttrs(args_2, nix.thunk(() => ["extraMeta"])))));
     })(), formals$2)));
   return {
-    [nix.POS]: pos$24,
+    [nix.POS]: $pos[23],
     buildArmTrustedFirmware: buildArmTrustedFirmware,
     armTrustedFirmwareTools: nix.thunk(() => nix.app(buildArmTrustedFirmware, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         depsBuildBuild: [],
         extraMakeFlags: nix.thunk(() => [
           nix.thunk(() => nix.str`HOSTCC=${nix.sel(stdenv, "cc", "targetPrefix")}gcc`),
@@ -136,47 +113,47 @@ runHook postInstall
       })))),
     armTrustedFirmwareAllwinner: nix.thunk(() => nix.app(buildArmTrustedFirmware, nix.thunk(() => (() => {
         const platform = "sun50i_a64";
-        const extraMeta = nix.thunk(() => ({ [nix.POS]: pos$6, platforms: nix.thunk(() => ["aarch64-linux"]) }));
+        const extraMeta = nix.thunk(() => ({ [nix.POS]: $pos[5], platforms: nix.thunk(() => ["aarch64-linux"]) }));
         const filesToInstall = nix.thunk(() => [nix.thunk(() => nix.str`build/${platform}/release/bl31.bin`)]);
-        return { [nix.POS]: pos$7, platform, extraMeta, filesToInstall };
+        return { [nix.POS]: $pos[6], platform, extraMeta, filesToInstall };
       })()))),
     armTrustedFirmwareAllwinnerH616: nix.thunk(() => nix.app(buildArmTrustedFirmware, nix.thunk(() => (() => {
         const platform = "sun50i_h616";
-        const extraMeta = nix.thunk(() => ({ [nix.POS]: pos$8, platforms: nix.thunk(() => ["aarch64-linux"]) }));
+        const extraMeta = nix.thunk(() => ({ [nix.POS]: $pos[7], platforms: nix.thunk(() => ["aarch64-linux"]) }));
         const filesToInstall = nix.thunk(() => [nix.thunk(() => nix.str`build/${platform}/release/bl31.bin`)]);
-        return { [nix.POS]: pos$9, platform, extraMeta, filesToInstall };
+        return { [nix.POS]: $pos[8], platform, extraMeta, filesToInstall };
       })()))),
     armTrustedFirmwareAllwinnerH6: nix.thunk(() => nix.app(buildArmTrustedFirmware, nix.thunk(() => (() => {
         const platform = "sun50i_h6";
-        const extraMeta = nix.thunk(() => ({ [nix.POS]: pos$10, platforms: nix.thunk(() => ["aarch64-linux"]) }));
+        const extraMeta = nix.thunk(() => ({ [nix.POS]: $pos[9], platforms: nix.thunk(() => ["aarch64-linux"]) }));
         const filesToInstall = nix.thunk(() => [nix.thunk(() => nix.str`build/${platform}/release/bl31.bin`)]);
-        return { [nix.POS]: pos$11, platform, extraMeta, filesToInstall };
+        return { [nix.POS]: $pos[10], platform, extraMeta, filesToInstall };
       })()))),
     armTrustedFirmwareQemu: nix.thunk(() => nix.app(buildArmTrustedFirmware, nix.thunk(() => (() => {
         const platform = "qemu";
-        const extraMeta = nix.thunk(() => ({ [nix.POS]: pos$12, platforms: nix.thunk(() => ["aarch64-linux"]) }));
+        const extraMeta = nix.thunk(() => ({ [nix.POS]: $pos[11], platforms: nix.thunk(() => ["aarch64-linux"]) }));
         const filesToInstall = nix.thunk(() => [
           nix.thunk(() => nix.str`build/${platform}/release/bl1.bin`),
           nix.thunk(() => nix.str`build/${platform}/release/bl2.bin`),
           nix.thunk(() => nix.str`build/${platform}/release/bl31.bin`),
         ]);
-        return { [nix.POS]: pos$13, platform, extraMeta, filesToInstall };
+        return { [nix.POS]: $pos[12], platform, extraMeta, filesToInstall };
       })()))),
     armTrustedFirmwareRK3328: nix.thunk(() => nix.app(buildArmTrustedFirmware, nix.thunk(() => (() => {
         const extraMakeFlags = nix.thunk(() => ["bl31"]);
         const platform = "rk3328";
-        const extraMeta = nix.thunk(() => ({ [nix.POS]: pos$14, platforms: nix.thunk(() => ["aarch64-linux"]) }));
+        const extraMeta = nix.thunk(() => ({ [nix.POS]: $pos[13], platforms: nix.thunk(() => ["aarch64-linux"]) }));
         const filesToInstall = nix.thunk(() => [nix.thunk(() => nix.str`build/${platform}/release/bl31/bl31.elf`)]);
-        return { [nix.POS]: pos$15, extraMakeFlags, platform, extraMeta, filesToInstall };
+        return { [nix.POS]: $pos[14], extraMakeFlags, platform, extraMeta, filesToInstall };
       })()))),
     armTrustedFirmwareRK3399: nix.thunk(() => nix.app(buildArmTrustedFirmware, nix.thunk(() => (() => {
         const extraMakeFlags = nix.thunk(() => ["bl31"]);
         const platform = "rk3399";
-        const extraMeta = nix.thunk(() => ({ [nix.POS]: pos$16, platforms: nix.thunk(() => ["aarch64-linux"]) }));
+        const extraMeta = nix.thunk(() => ({ [nix.POS]: $pos[15], platforms: nix.thunk(() => ["aarch64-linux"]) }));
         const filesToInstall = nix.thunk(() => [nix.thunk(() => nix.str`build/${platform}/release/bl31/bl31.elf`)]);
         const platformCanUseHDCPBlob = true;
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           extraMakeFlags,
           platform,
           extraMeta,
@@ -187,23 +164,23 @@ runHook postInstall
     armTrustedFirmwareRK3568: nix.thunk(() => nix.app(buildArmTrustedFirmware, nix.thunk(() => (() => {
         const extraMakeFlags = nix.thunk(() => ["bl31"]);
         const platform = "rk3568";
-        const extraMeta = nix.thunk(() => ({ [nix.POS]: pos$18, platforms: nix.thunk(() => ["aarch64-linux"]) }));
+        const extraMeta = nix.thunk(() => ({ [nix.POS]: $pos[17], platforms: nix.thunk(() => ["aarch64-linux"]) }));
         const filesToInstall = nix.thunk(() => [nix.thunk(() => nix.str`build/${platform}/release/bl31/bl31.elf`)]);
-        return { [nix.POS]: pos$19, extraMakeFlags, platform, extraMeta, filesToInstall };
+        return { [nix.POS]: $pos[18], extraMakeFlags, platform, extraMeta, filesToInstall };
       })()))),
     armTrustedFirmwareRK3588: nix.thunk(() => nix.app(buildArmTrustedFirmware, nix.thunk(() => (() => {
         const extraMakeFlags = nix.thunk(() => ["bl31"]);
         const platform = "rk3588";
-        const extraMeta = nix.thunk(() => ({ [nix.POS]: pos$20, platforms: nix.thunk(() => ["aarch64-linux"]) }));
+        const extraMeta = nix.thunk(() => ({ [nix.POS]: $pos[19], platforms: nix.thunk(() => ["aarch64-linux"]) }));
         const filesToInstall = nix.thunk(() => [nix.thunk(() => nix.str`build/${platform}/release/bl31/bl31.elf`)]);
-        return { [nix.POS]: pos$21, extraMakeFlags, platform, extraMeta, filesToInstall };
+        return { [nix.POS]: $pos[20], extraMakeFlags, platform, extraMeta, filesToInstall };
       })()))),
     armTrustedFirmwareS905: nix.thunk(() => nix.app(buildArmTrustedFirmware, nix.thunk(() => (() => {
         const extraMakeFlags = nix.thunk(() => ["bl31"]);
         const platform = "gxbb";
-        const extraMeta = nix.thunk(() => ({ [nix.POS]: pos$22, platforms: nix.thunk(() => ["aarch64-linux"]) }));
+        const extraMeta = nix.thunk(() => ({ [nix.POS]: $pos[21], platforms: nix.thunk(() => ["aarch64-linux"]) }));
         const filesToInstall = nix.thunk(() => [nix.thunk(() => nix.str`build/${platform}/release/bl31.bin`)]);
-        return { [nix.POS]: pos$23, extraMakeFlags, platform, extraMeta, filesToInstall };
+        return { [nix.POS]: $pos[22], extraMakeFlags, platform, extraMeta, filesToInstall };
       })()))),
   };
 })(), formals$1);

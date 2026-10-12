@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["NIX_CFLAGS_COMPILE", 65, 5]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]], [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["nativeCheckInputs", 52, 3], ["checkInputs", 54, 3], ["cmakeFlags", 56, 3], ["env", 64, 3], ["doCheck", 68, 3], ["postPatch", 71, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, fftw: false, fftwFloat: false, python3: false, datatype: true, libpng: false, enableStatic: true, enableOpenmp: true, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["nativeCheckInputs", 52, 3], ["checkInputs", 54, 3], ["cmakeFlags", 56, 3], ["env", 64, 3], ["doCheck", 68, 3], ["postPatch", 71, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const enableOpenmp = nix.argOr($, "enableOpenmp", () => false);
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`kissfft-${datatype}${nix.app(nix.sel(lib, "optionalString"), enableOpenmp, "-openmp")}`),
       version: "131.1.0",
       outputs: nix.thunk(() => ["bin", "dev", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mborgerding",
           repo: "kissfft",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,13 +48,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "KISSFFT_OPENMP", enableOpenmp)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-D__MATH_LONG_DOUBLE_CONSTANTS=1")),
       })),
       doCheck: true,
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "cc", "isClang")))) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "10")))), "substituteInPlace CMakeLists.txt \\\n  --replace \"-ffast-math\" \"\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Mixed-radix Fast Fourier Transform based up on the KISS principle",
         homepage: "https://github.com/mborgerding/kissfft",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,16 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 7], ["repo", 25, 7]], [["rev", 30, 11], ["hash", 31, 11]], [["rev", 35, 11], ["hash", 36, 11]], [["NIX_CFLAGS_COMPILE", 54, 7]], [["url", 84, 17], ["sha256", 85, 17], ["name", 86, 17]], [["name", 119, 7], ["shellHook", 120, 7]], [["src", 113, 26], ["updateScript", 114, 5], ["update", 118, 5]], [["description", 150, 5], ["longDescription", 151, 5], ["license", 168, 5], ["sourceProvenance", 189, 5], ["homepage", 190, 5], ["downloadPage", 191, 5], ["changelog", 192, 5], ["broken", 194, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 48, 3], ["env", 54, 3], ["dontUseCmakeConfigure", 61, 3], ["enableParallelBuilding", 62, 3], ["preBuild", 66, 3], ["makeTargets", 98, 3], ["installPhase", 103, 3], ["passthru", 112, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, m4: false, cmake: false, perl: false, writeScript: false, enableUnstable: true, gcc14Stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 7], ["repo", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev", 30, 11], ["hash", 31, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev", 35, 11], ["hash", 36, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 54, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 84, 17], ["sha256", 85, 17], ["name", 86, 17]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 119, 7], ["shellHook", 120, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["src", 113, 26], ["updateScript", 114, 5], ["update", 118, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 150, 5], ["longDescription", 151, 5], ["license", 168, 5], ["sourceProvenance", 189, 5], ["homepage", 190, 5], ["downloadPage", 191, 5], ["changelog", 192, 5], ["broken", 194, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 48, 3], ["env", 54, 3], ["dontUseCmakeConfigure", 61, 3], ["enableParallelBuilding", 62, 3], ["preBuild", 66, 3], ["makeTargets", 98, 3], ["installPhase", 103, 3], ["passthru", 112, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,22 +19,22 @@ export default nix.lambda((args) => (() => {
   const gcc14Stdenv = nix.arg($, "gcc14Stdenv");
   const stableVersion = "1.4.0";
   return nix.app(nix.sel(gcc14Stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "ath9k-htc-blobless-firmware",
       version: nix.thunk(() => (nix.asBool(enableUnstable) ? nix.str`${stableVersion}-unstable-2022-05-22` : stableVersion)),
-      src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => nix.update({ [nix.POS]: pos$1, owner: "qca", repo: "open-ath9k-htc-firmware" }, (nix.asBool(enableUnstable) ? {
-          [nix.POS]: pos$2,
+      src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => nix.update({ [nix.POS]: $pos[0], owner: "qca", repo: "open-ath9k-htc-firmware" }, (nix.asBool(enableUnstable) ? {
+          [nix.POS]: $pos[1],
           rev: "d856466a068afe4069335257c0d28295ff777d92",
           hash: "sha256-9OE6qYGABeXjf1r/Depd+811EJ2e8I0Ni5ePHSOh9G4=",
         } : {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-Q/A0ryIC5E1pt2Sh7o79gxHbe4OgdlrwflOWtxWSS5o=",
         }))))),
       postPatch: "patchShebangs target_firmware/firmware-crc.pl\nsubstituteInPlace target_firmware/CMakeLists.txt \\\n--replace-fail \"CMAKE_MINIMUM_REQUIRED(VERSION 2.6)\" \\\n               \"CMAKE_MINIMUM_REQUIRED(VERSION 3.10)\"\n",
       nativeBuildInputs: nix.thunk(() => [m4, cmake, perl]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add("-w", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableUnstable)), " -fpermissive"))),
       })),
       dontUseCmakeConfigure: true,
@@ -60,7 +52,7 @@ export default nix.lambda((args) => (() => {
                   const url = nix.thunk(() => nix.sel(urls_and_hashes, nix.key(nix.str`${nix.add(nix.app(toUpper, vname), "_URL")}`)));
                   const sha256 = nix.thunk(() => nix.selOr(urls_and_hashes, () => "", nix.key(nix.str`${nix.add(nix.app(toUpper, vname), "_SUM")}`)));
                   const name = nix.thunk(() => nix.app(last, nix.thunk(() => nix.app(splitString, "/", url))));
-                  return { [nix.POS]: pos$5, url, sha256, name };
+                  return { [nix.POS]: $pos[4], url, sha256, name };
                 })())))),
             nix.thunk(() => nix.app(map, (v) => nix.str`ln -sT ${v} toolchain/dl/${nix.sel(v, "name")}`)),
             nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n")),
@@ -78,13 +70,13 @@ ln -s htc_9271.fw "$out/lib/firmware/ath9k_htc/htc_9271-${stableVersion}.fw"
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         src: nix.thunk(() => nix.attr(finalAttrs, "src")),
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-updateScript`), nix.thunk(() => nix.str`nix-shell '<nixpkgs>' -A ${nix.sel(finalAttrs, "pname")}${nix.app(nix.sel(lib, "optionalString"), enableUnstable, "-unstable")}.passthru.update \\
 > pkgs/os-specific/linux/firmware/ath9k/urls-and-hashes-${nix.sel(finalAttrs, "version")}.nix
 `))),
         update: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-update`),
             shellHook: nix.thunk(() => nix.add(nix.add(nix.str`echo 'rec {'
 echo '  BASEDIR="$NIX_BUILD_TOP";'
@@ -97,7 +89,7 @@ make --dry-run --print-data-base -f ${nix.sel(finalAttrs, "src")}/Makefile downl
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Blobless, open source wifi firmware for ath9k_htc.ko",
         longDescription: "Firmware for Qualcomm Atheros cards which use the ath9k_htc.ko\nLinux driver, supporting 802.11 abgn on both 2.4ghz and 5ghz\nbands, 3x3-antenna MIMO, up to 600mbit/sec.\n\nMost devices which use this driver are based on the Qualcomm\nAtheros AR9271 chip, which is a PCIe device.  If your device\nis connected via USB, it will also include a Qualcomm Atheros\nAR7010, which bridges from a USB gadget interface to a PCIe\nhost interface.  This repository includes the firmware for\nboth chips.\n\nThis firmware is completely open source with no blobs, which\nis quite rare in the wifi world.  Wifi chips have their own\ndedicated general-purpose CPUs.  This source code allows you\nto see what those CPUs are doing and modify their behavior.\n",
         license: nix.thunk(() => (() => {

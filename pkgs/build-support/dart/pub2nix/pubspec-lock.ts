@@ -2,26 +2,13 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pubspec-lock.nix", [[["direct main", 41, 5], ["direct dev", 42, 5], ["direct overridden", 43, 5], ["transitive", 44, 5]], [["name", 63, 9], ["url", 64, 9], ["sha256", 65, 9]], [["packageRoot", 68, 60]], [["passthru", 68, 51]], [["name", 76, 7], ["url", 77, 7], ["rev", 78, 7], ["hash", 79, 7]], [["packageRoot", 90, 13]], [["passthru", 89, 11]], [["packageRoot", 113, 13]], [["passthru", 112, 11]], [["version", 131, 29]], [["passthru", 130, 9]], [["hosted", 148, 17], ["git", 149, 17], ["path", 150, 17], ["sdk", 151, 17]], [["version", 143, 27], ["source", 143, 35], ["src", 144, 9]], [["dependencies", 167, 5], ["dependencyVersions", 170, 5], ["dependencySources", 173, 5]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fetchurl: false, fetchgit: false, runCommand: false }, ellipsis: false };
 const formals$2 = { args: { src: false, packageRoot: true, pubspecLock: false, gitHashes: true, sdkSourceBuilders: true, customSourceBuilders: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pubspec-lock.nix", [["direct main", 41, 5], ["direct dev", 42, 5], ["direct overridden", 43, 5], ["transitive", 44, 5]]);
-const pos$2 = nix.positions(here + "/pubspec-lock.nix", [["name", 63, 9], ["url", 64, 9], ["sha256", 65, 9]]);
-const pos$3 = nix.positions(here + "/pubspec-lock.nix", [["packageRoot", 68, 60]]);
-const pos$4 = nix.positions(here + "/pubspec-lock.nix", [["passthru", 68, 51]]);
-const pos$5 = nix.positions(here + "/pubspec-lock.nix", [["name", 76, 7], ["url", 77, 7], ["rev", 78, 7], ["hash", 79, 7]]);
 const formals$3 = { args: { passthru: true }, ellipsis: true };
-const pos$6 = nix.positions(here + "/pubspec-lock.nix", [["packageRoot", 90, 13]]);
-const pos$7 = nix.positions(here + "/pubspec-lock.nix", [["passthru", 89, 11]]);
 const formals$4 = { args: { passthru: true }, ellipsis: true };
-const pos$8 = nix.positions(here + "/pubspec-lock.nix", [["packageRoot", 113, 13]]);
-const pos$9 = nix.positions(here + "/pubspec-lock.nix", [["passthru", 112, 11]]);
 const formals$5 = { args: { passthru: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/pubspec-lock.nix", [["version", 131, 29]]);
-const pos$11 = nix.positions(here + "/pubspec-lock.nix", [["passthru", 130, 9]]);
 const formals$6 = { args: { src: false }, ellipsis: true };
-const pos$12 = nix.positions(here + "/pubspec-lock.nix", [["hosted", 148, 17], ["git", 149, 17], ["path", 150, 17], ["sdk", 151, 17]]);
-const pos$13 = nix.positions(here + "/pubspec-lock.nix", [["version", 143, 27], ["source", 143, 35], ["src", 144, 9]]);
-const pos$14 = nix.positions(here + "/pubspec-lock.nix", [["dependencies", 167, 5], ["dependencyVersions", 170, 5], ["dependencySources", 173, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +27,7 @@ export default nix.lambda((args) => (() => {
     const customSourceBuilders = nix.argOr($_1, "customSourceBuilders", () => ({}));
     const dependencyVersions = nix.thunk(() => nix.builtins.mapAttrs((name) => (details) => nix.sel(details, "version"), nix.thunk(() => nix.sel(pubspecLock, "packages"))));
     const dependencyTypes = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "direct main": "main",
       "direct dev": "dev",
       "direct overridden": "overridden",
@@ -51,20 +38,20 @@ export default nix.lambda((args) => (() => {
       ])), nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.builtins.attrValues(dependencyTypes)), (dependencyType) => [])), nix.thunk(() => nix.sel(pubspecLock, "packages"))));
     const mkHostedDependencySource = (name) => (details) => (() => {
       const archive = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`pub-${name}-${nix.sel(details, "version")}.tar.gz`),
           url: nix.thunk(() => nix.str`${nix.sel(details, "description", "url")}/packages/${nix.sel(details, "description", "name")}/versions/${nix.sel(details, "version")}.tar.gz`),
           sha256: nix.thunk(() => nix.sel(details, "description", "sha256")),
         }))));
       return nix.app(runCommand, nix.thunk(() => nix.str`pub-${name}-${nix.sel(details, "version")}`), nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          passthru: nix.thunk(() => ({ [nix.POS]: pos$3, packageRoot: "." })),
+          [nix.POS]: $pos[3],
+          passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], packageRoot: "." })),
         })), nix.thunk(() => nix.str`mkdir -p "$out"
 tar xf '${archive}' -C "$out"
 `));
     })();
     const mkGitDependencySource = (name) => (details) => nix.app(nix.sel(nix.app(fetchgit, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: nix.thunk(() => nix.str`pub-${name}-${nix.sel(details, "version")}`),
         url: nix.thunk(() => nix.sel(details, "description", "url")),
         rev: nix.thunk(() => nix.sel(details, "description", "resolved-ref")),
@@ -73,9 +60,9 @@ tar xf '${archive}' -C "$out"
         const $_2 = nix.formals(args_2, formals$3);
         const passthru = nix.argOr($_2, "passthru", () => ({}));
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           passthru: nix.thunk(() => nix.update(passthru, {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             packageRoot: nix.thunk(() => nix.sel(details, "description", "path")),
           })),
         };
@@ -86,9 +73,9 @@ tar xf '${archive}' -C "$out"
           const $_2 = nix.formals(args_2, formals$4);
           const passthru = nix.argOr($_2, "passthru", () => ({}));
           return {
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             passthru: nix.thunk(() => nix.update(passthru, {
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               packageRoot: nix.thunk(() => nix.str`${packageRoot}/${nix.sel(details, "description", "path")}`),
             })),
           };
@@ -99,8 +86,8 @@ tar xf '${archive}' -C "$out"
         const $_2 = nix.formals(args_2, formals$5);
         const passthru = nix.arg($_2, "passthru");
         return {
-          [nix.POS]: pos$11,
-          passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$10, version: nix.thunk(() => nix.attr(details, "version")) })),
+          [nix.POS]: $pos[10],
+          passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: $pos[9], version: nix.thunk(() => nix.attr(details, "version")) })),
         };
       })(), formals$5));
     const sourceBuilders = nix.thunk(() => nix.update(nix.app(callPackage, nix.path(here, "../../../development/compilers/dart/package-source-builders"), nix.thunk(() => ({}))), customSourceBuilders));
@@ -109,11 +96,11 @@ tar xf '${archive}' -C "$out"
             const src_1 = nix.arg($_2, "src");
             return nix.force(src_1);
           })(), formals$6), nix.key(nix.force(name))), nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             version: nix.thunk(() => nix.attr(details, "version")),
             source: nix.thunk(() => nix.attr(details, "source")),
             src: nix.thunk(() => nix.app(addDependencySourceUtils, nix.thunk(() => nix.app(nix.sel({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 hosted: mkHostedDependencySource,
                 git: mkGitDependencySource,
                 path: mkPathDependencySource,
@@ -121,7 +108,7 @@ tar xf '${archive}' -C "$out"
               }, nix.key(nix.sel(details, "source"))), name, details)), details)),
           }))), nix.thunk(() => nix.sel(pubspecLock, "packages"))))));
     return {
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       dependencies: dependencies,
       dependencyVersions: dependencyVersions,
       dependencySources: dependencySources,

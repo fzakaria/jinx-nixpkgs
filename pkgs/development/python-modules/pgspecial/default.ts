@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]], [["PGDATABASE", 51, 5], ["PGUSER", 52, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 27, 3], ["dependencies", 32, 3], ["doCheck", 39, 3], ["nativeCheckInputs", 41, 3], ["pytestFlags", 48, 3], ["env", 50, 3], ["disabledTests", 55, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, click: false, configobj: false, fetchPypi: false, postgresql: false, postgresqlTestHook: false, psycopg: false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, sqlparse: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PGDATABASE", 51, 5], ["PGUSER", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 27, 3], ["dependencies", 32, 3], ["doCheck", 39, 3], ["nativeCheckInputs", 41, 3], ["pytestFlags", 48, 3], ["env", 50, 3], ["disabledTests", 55, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-2mx/zHvve7ATLcIEb3TsZROx/m8MgOVSjWMNFLfEhJ0=",
@@ -38,10 +35,10 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux"));
       const nativeCheckInputs = nix.thunk(() => [configobj, pytestCheckHook, postgresqlTestHook, postgresql]);
       const pytestFlags = nix.thunk(() => ["-vvv"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PGDATABASE: "_test_db", PGUSER: "postgres" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PGDATABASE: "_test_db", PGUSER: "postgres" }));
       const disabledTests = nix.thunk(() => ["test_slash_d_view_verbose", "test_slash_ddp", "test_slash_ddp_pattern"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Meta-commands handler for Postgres Database",
         homepage: "https://github.com/dbcli/pgspecial",
         changelog: nix.thunk(() => nix.str`https://github.com/dbcli/pgspecial/releases/tag/v${version}`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "SuperSandro2000"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

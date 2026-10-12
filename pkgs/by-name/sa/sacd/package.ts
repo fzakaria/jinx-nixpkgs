@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["url", 23, 7], ["name", 24, 7], ["sha256", 25, 7]], [["description", 34, 5], ["longDescription", 35, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["mainProgram", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["makeFlags", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 7], ["name", 24, 7], ["sha256", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["longDescription", 35, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["mainProgram", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["makeFlags", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sacd",
       version: "19.7.16.37",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Sound-Linux-More",
           repo: "sacd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/Sound-Linux-More/sacd/commit/a72def4fab234bcd68b444cf7447a8876b4e2ce8.patch",
             name: "makefile-prefix.patch",
             sha256: "0a7r4x0yqpg6l4vr84dq4wbrypabqm4vvcjv91am068gqjiw6w64",
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Converts SACD image files, Philips DSDIFF and Sony DSF files to 24-bit high resolution wave files. Handles both DST and DSD streams",
         longDescription: "Super Audio CD decoder. Converts SACD image files, Philips DSDIFF and Sony DSF files to 24-bit high resolution wave files.\nHandles both DST and DSD streams.\n",
         homepage: "https://github.com/Sound-Linux-More/sacd",

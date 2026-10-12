@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["platforms", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { cmake: false, docutils: false, fetchurl: false, lib: false, libbsd: false, ncurses: false, libpq: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["platforms", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const libpq = nix.arg($, "libpq");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pg_top",
       version: "4.1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pg_top.gitlab.io/source/pg_top-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-4El3GmfP5UDJOsDxyU5z/s3JKw0jlMb8EB/hvtywwVs=",
         })))),
       buildInputs: nix.thunk(() => [libbsd, libpq, ncurses]),
       nativeBuildInputs: nix.thunk(() => [cmake, docutils]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "'top' like tool for PostgreSQL",
         longDescription: "pg_top allows you to:\n * View currently running SQL statement of a process.\n * View query plan of a currently running SELECT statement.\n * View locks held by a process.\n * View I/O statistics per process.\n * View replication statistics for downstream nodes.\n",
         homepage: "https://pg_top.gitlab.io",

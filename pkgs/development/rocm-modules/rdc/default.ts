@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 65, 5], ["repo", 66, 5], ["tag", 67, 5], ["sparseCheckout", 68, 5], ["hash", 72, 5]], [["finalAttrs", 141, 54]], [["updateScript", 141, 12]], [["description", 144, 5], ["homepage", 145, 5], ["license", 146, 5], ["teams", 147, 5], ["platforms", 148, 5]], [["pname", 51, 3], ["version", 52, 3], ["outputs", 54, 3], ["src", 64, 3], ["sourceRoot", 74, 3], ["patches", 76, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 94, 3], ["cmakeFlags", 107, 3], ["postPatch", 127, 3], ["postInstall", 132, 3], ["passthru", 141, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, "pkg-config": false, amdsmi: false, "rocm-smi": false, "rocm-runtime": false, libcap: false, libdrm: false, grpc: false, protobuf: false, openssl: false, doxygen: false, graphviz: false, texliveSmall: false, gtest: false, buildDocs: true, buildTests: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 65, 5], ["repo", 66, 5], ["tag", 67, 5], ["sparseCheckout", 68, 5], ["hash", 72, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["finalAttrs", 141, 54]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 141, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 144, 5], ["homepage", 145, 5], ["license", 146, 5], ["teams", 147, 5], ["platforms", 148, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 51, 3], ["version", 52, 3], ["outputs", 54, 3], ["src", 64, 3], ["sourceRoot", 74, 3], ["patches", 76, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 94, 3], ["cmakeFlags", 107, 3], ["postPatch", 127, 3], ["postInstall", 132, 3], ["passthru", 141, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,12 +51,12 @@ export default nix.lambda((args) => (() => {
         ];
       })()))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rdc",
       version: "7.2.3",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildDocs, nix.thunk(() => ["doc"])), nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["test"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-systems",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -91,11 +87,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"file(STRINGS /etc/os-release LINUX_DISTRO LIMIT_COUNT 1 REGEX \\\"NAME=\\\")\" \"set(LINUX_DISTRO \\\"NixOS\\\")\"\n",
       postInstall: nix.thunk(() => nix.add("find $out/bin -executable -type f -exec \\\n  patchelf {} --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\" \\;\n", nix.app(nix.sel(lib, "optionalString"), buildTests, "mkdir -p $test\nmv $out/bin/rdctst_tests $test/bin\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simplifies administration and addresses infrastructure challenges in cluster and datacenter environments",
         homepage: "https://github.com/ROCm/rocm-systems/tree/develop/projects/rdc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

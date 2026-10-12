@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["tox-to-nox", 54, 5], ["uv", 58, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["optional-dependencies", 53, 3], ["nativeCheckInputs", 61, 3], ["pythonImportsCheck", 67, 3], ["disabledTests", 69, 3], ["disabledTestPaths", 78, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, attrs: false, argcomplete: false, colorlog: false, "dependency-groups": false, humanize: false, jinja2: false, packaging: false, tomli: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false, tox: false, uv: false, virtualenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tox-to-nox", 54, 5], ["uv", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["optional-dependencies", 53, 3], ["nativeCheckInputs", 61, 3], ["pythonImportsCheck", 67, 3], ["disabledTests", 69, 3], ["disabledTestPaths", 78, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const uv = nix.arg($, "uv");
   const virtualenv = nix.arg($, "virtualenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nox",
       version: "2026.08.17",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wntrblm",
           repo: "nox",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         virtualenv,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "tox-to-nox": nix.thunk(() => [jinja2, tox]),
         uv: nix.thunk(() => [uv]),
       })),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_uv", "test_noxfile_script_mode_url_req", "test_noxfile_script_mode"]),
       disabledTestPaths: nix.thunk(() => ["tests/test_tox_to_nox.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Flexible test automation for Python",
         homepage: "https://nox.thea.codes/",
         changelog: nix.thunk(() => nix.str`https://github.com/wntrblm/nox/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -4,7 +4,7 @@ nixpkgs, transpiled to TypeScript by [jinx](https://github.com/fzakaria/jinx).
 
 ## Status
 
-nixpkgs [6510408](https://github.com/NixOS/nixpkgs/commit/6510408d147d8c5e6d76043e899e9251756f6a75), compiled by jinx [df0e52b](https://github.com/fzakaria/jinx/commit/df0e52be4898d174bd2f9e0b0dee2b94852733fe)
+nixpkgs [6510408](https://github.com/NixOS/nixpkgs/commit/6510408d147d8c5e6d76043e899e9251756f6a75), compiled by jinx [22142f8](https://github.com/fzakaria/jinx/commit/22142f8e2b04a7e3f16336bc73399c75f0893047)
 on 2026-10-12.
 
 Parity with Nix: every attribute of nixpkgs' `ci/eval/outpaths.nix` for
@@ -29,7 +29,7 @@ One row per published revision, newest first.
 
 | date | nixpkgs | jinx | attributes | identical | both fail | differ | one side |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2026-10-12 | [6510408](https://github.com/NixOS/nixpkgs/commit/6510408d147d8c5e6d76043e899e9251756f6a75) | [df0e52b](https://github.com/fzakaria/jinx/commit/df0e52be4898d174bd2f9e0b0dee2b94852733fe) | 231,777 | 229,063 | 2,714 | 0 | 0 |
+| 2026-10-12 | [6510408](https://github.com/NixOS/nixpkgs/commit/6510408d147d8c5e6d76043e899e9251756f6a75) | [22142f8](https://github.com/fzakaria/jinx/commit/22142f8e2b04a7e3f16336bc73399c75f0893047) | 231,777 | 229,063 | 2,714 | 0 | 0 |
 
 ## Layout
 

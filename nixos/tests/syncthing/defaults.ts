@@ -2,28 +2,19 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/defaults.nix", [[["maintainers", 7, 8]], [["systemPackages", 15, 19]], [["path", 21, 34]], [["folder", 21, 27]], [["defaults", 21, 18]], [["enable", 20, 9], ["settings", 21, 9]], [["syncthing", 19, 16]], [["environment", 15, 7], ["services", 19, 7]], [["machine", 12, 14]], [["name", 6, 3], ["meta", 7, 3], ["containers", 12, 3], ["testScript", 25, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/defaults.nix", [["maintainers", 7, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/defaults.nix", [["systemPackages", 15, 19]]);
-const pos$3 = nix.positions(here + "/defaults.nix", [["path", 21, 34]]);
-const pos$4 = nix.positions(here + "/defaults.nix", [["folder", 21, 27]]);
-const pos$5 = nix.positions(here + "/defaults.nix", [["defaults", 21, 18]]);
-const pos$6 = nix.positions(here + "/defaults.nix", [["enable", 20, 9], ["settings", 21, 9]]);
-const pos$7 = nix.positions(here + "/defaults.nix", [["syncthing", 19, 16]]);
-const pos$8 = nix.positions(here + "/defaults.nix", [["environment", 15, 7], ["services", 19, 7]]);
-const pos$9 = nix.positions(here + "/defaults.nix", [["machine", 12, 14]]);
-const pos$10 = nix.positions(here + "/defaults.nix", [["name", 6, 3], ["meta", 7, 3], ["containers", 12, 3], ["testScript", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const expectedPath = "/tmp/syncthing-default";
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "syncthing-defaults",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -33,29 +24,29 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "libxml2")),
               nix.thunk(() => nix.sel(pkgs, "curl")),
             ]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             syncthing: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 defaults: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
-                  folder: nix.thunk(() => ({ [nix.POS]: pos$3, path: expectedPath })),
+                  [nix.POS]: $pos[3],
+                  folder: nix.thunk(() => ({ [nix.POS]: $pos[2], path: expectedPath })),
                 })),
               })),
             })),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["compile", 47, 5]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 61, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "typing-extensions": false, sigtools: false, mypy: false, "pytest-asyncio": false, "pytest-markdown-docs": false, pytestCheckHook: false, pythonOlder: false, gevent: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["compile", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 61, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pythonOlder = nix.arg($, "pythonOlder");
   const gevent = nix.arg($, "gevent");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "synchronicity",
       version: "0.12.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "modal-labs",
           repo: "synchronicity",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,12 +35,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, compile: nix.thunk(() => [sigtools]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], compile: nix.thunk(() => [sigtools]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([mypy, pytest_asyncio, pytest_markdown_docs, pytestCheckHook, sigtools], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.13")), nix.thunk(() => [gevent])))),
       disabledTests: nix.thunk(() => nix.concat(["test_blocking", "test_multithreaded", "test_nowrap"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_async"])))),
       pythonImportsCheck: nix.thunk(() => ["synchronicity"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Export blocking and async library versions from a single async implementation",
         homepage: "https://github.com/modal-labs/synchronicity",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

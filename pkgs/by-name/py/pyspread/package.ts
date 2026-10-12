@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["name", 59, 7], ["exec", 60, 7], ["icon", 61, 7], ["desktopName", 62, 7], ["genericName", 63, 7], ["comment", 64, 7], ["categories", 65, 7]], [["homepage", 84, 5], ["description", 85, 5], ["longDescription", 86, 5], ["license", 96, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["dependencies", 35, 3], ["doCheck", 54, 3], ["pythonImportsCheck", 55, 3], ["desktopItems", 57, 3], ["makeWrapperArgs", 73, 3], ["preFixup", 79, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitLab: false, qt6: false, R: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 59, 7], ["exec", 60, 7], ["icon", 61, 7], ["desktopName", 62, 7], ["genericName", 63, 7], ["comment", 64, 7], ["categories", 65, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 84, 5], ["description", 85, 5], ["longDescription", 86, 5], ["license", 96, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["dependencies", 35, 3], ["doCheck", 54, 3], ["pythonImportsCheck", 55, 3], ["desktopItems", 57, 3], ["makeWrapperArgs", 73, 3], ["preFixup", 79, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyspread",
       version: "2.4.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyspread",
           repo: "pyspread",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pyspread"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "pyspread",
             exec: "pyspread",
             icon: "pyspread",
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preFixup: "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://pyspread.gitlab.io/",
         description: "Python-oriented spreadsheet application",
         longDescription: "pyspread is a non-traditional spreadsheet application that is based on and\nwritten in the programming language Python. The goal of pyspread is to be\nthe most pythonic spreadsheet.\n\npyspread expects Python expressions in its grid cells, which makes a\nspreadsheet specific language obsolete. Each cell returns a Python object\nthat can be accessed from other cells. These objects can represent\nanything including lists or matrices.\n",

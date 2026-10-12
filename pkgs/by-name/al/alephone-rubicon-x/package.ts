@@ -2,28 +2,26 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 9, 5], ["hash", 10, 5]], [["description", 16, 5], ["longDescription", 17, 5], ["homepage", 20, 5]], [["pname", 4, 3], ["version", 5, 3], ["desktopName", 6, 3], ["zip", 8, 3], ["sourceRoot", 13, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { alephone: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 9, 5], ["hash", 10, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 16, 5], ["longDescription", 17, 5], ["homepage", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 4, 3], ["version", 5, 3], ["desktopName", 6, 3], ["zip", 8, 3], ["sourceRoot", 13, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const alephone = nix.arg($, "alephone");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(alephone, "makeWrapper"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rubicon-x",
       version: "20150620",
       desktopName: "Marathon-Rubicon-X",
       zip: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://files5.bungie.org/marathon/marathonRubiconX.zip",
           hash: "sha256-9UZii2VLDlAi0qJKq8LiMEPZDscfpLnnvuZcxROKuiQ=",
         })))),
       sourceRoot: "Rubicon X ƒ",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unofficial forth chapter of the Marathon series",
         longDescription: "Rubicon X is a free, cross platform, first person shooter that continues the story of Bungie’s Marathon trilogy. First released as Marathon:Rubicon in 2001, Rubicon X is a complete overhaul of the original. It features all new high-resolution artwork, new and updated maps, and enough surprises to feel like a whole new game.\n",
         homepage: "http://www.marathonrubicon.com/",

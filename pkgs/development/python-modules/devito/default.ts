@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["description", 164, 5], ["homepage", 165, 5], ["changelog", 166, 5], ["license", 167, 5], ["maintainers", 168, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["patches", 46, 3], ["pythonRemoveDeps", 53, 3], ["pythonRelaxDeps", 55, 3], ["build-system", 57, 3], ["dependencies", 62, 3], ["nativeCheckInputs", 76, 3], ["pytestFlags", 85, 3], ["disabledTestMarks", 89, 3], ["disabledTests", 95, 3], ["disabledTestPaths", 127, 3], ["pythonImportsCheck", 161, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, anytree: false, cgen: false, cloudpickle: false, codepy: false, llvmPackages: false, multidict: false, numpy: false, packaging: false, psutil: false, "py-cpuinfo": false, sympy: false, click: false, gcc: false, matplotlib: false, "pytest-xdist": false, pytestCheckHook: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 164, 5], ["homepage", 165, 5], ["changelog", 166, 5], ["license", 167, 5], ["maintainers", 168, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["patches", 46, 3], ["pythonRemoveDeps", 53, 3], ["pythonRelaxDeps", 55, 3], ["build-system", 57, 3], ["dependencies", 62, 3], ["nativeCheckInputs", 76, 3], ["pytestFlags", 85, 3], ["disabledTestMarks", 89, 3], ["disabledTests", 95, 3], ["disabledTestPaths", 127, 3], ["pythonImportsCheck", 161, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "devito",
       version: "4.8.23",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "devitocodes",
           repo: "devito",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +75,7 @@ export default nix.lambda((args) => (() => {
         ]))))),
       pythonImportsCheck: nix.thunk(() => ["devito"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Code generation framework for automated finite difference computation",
         homepage: "https://www.devitoproject.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/devitocodes/devito/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["updateScript", 47, 12]], [["homepage", 57, 5], ["changelog", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 65, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["buildNoDefaultFeatures", 26, 3], ["buildFeatures", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 40, 3], ["doCheck", 45, 3], ["passthru", 47, 3], ["postInstall", 49, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, "nix-update-script": false, "pkg-config": false, openssl: false, installShellFiles: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 47, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["changelog", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["buildNoDefaultFeatures", 26, 3], ["buildFeatures", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 40, 3], ["doCheck", 45, 3], ["passthru", 47, 3], ["postInstall", 49, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "alistral",
       version: "0.6.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RustyNova016",
           repo: "Alistral",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,12 +34,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd alistral \\\n  --bash <($out/bin/alistral --generate bash) \\\n  --fish <($out/bin/alistral --generate fish) \\\n  --zsh <($out/bin/alistral --generate zsh)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://rustynova016.github.io/Alistral/",
         changelog: nix.thunk(() => nix.str`https://github.com/RustyNova016/Alistral/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Power tools for Listenbrainz",

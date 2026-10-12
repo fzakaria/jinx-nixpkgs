@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["startx", 42, 26]], [["tests", 41, 12]], [["description", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["license", 52, 5], ["platforms", 53, 5]], [["pname", 15, 3], ["version", 16, 3], ["strictDeps", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["buildInputs", 28, 3], ["makeFlags", 36, 3], ["nativeInstallCheckInputs", 38, 3], ["doInstallCheck", 39, 3], ["passthru", 41, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libxcb: false, libxinerama: false, "libxcb-util": false, "libxcb-keysyms": false, "libxcb-wm": false, versionCheckHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["startx", 42, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 41, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["license", 52, 5], ["platforms", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["strictDeps", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["buildInputs", 28, 3], ["makeFlags", 36, 3], ["nativeInstallCheckInputs", 38, 3], ["doInstallCheck", 39, 3], ["passthru", 41, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bspwm",
       version: "0.9.12",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "baskerville",
           repo: "bspwm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, startx: nix.thunk(() => nix.attr(nixosTests, "startx")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], startx: nix.thunk(() => nix.attr(nixosTests, "startx")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tiling window manager based on binary space partitioning",
         homepage: "https://github.com/baskerville/bspwm",
         maintainers: nix.thunk(() => (() => {

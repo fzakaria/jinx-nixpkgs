@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5], ["stripRoot", 17, 5]], [["CGO_ENABLED", 26, 7]], [["traefik", 40, 26]], [["tests", 39, 12], ["updateScript", 43, 12]], [["homepage", 46, 5], ["description", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 14, 3], ["vendorHash", 20, 3], ["proxyVendor", 22, 3], ["subPackages", 24, 3], ["env", 26, 3], ["preBuild", 28, 3], ["passthru", 39, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, buildGo126Module: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5], ["stripRoot", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["traefik", 40, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 39, 12], ["updateScript", 43, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["description", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 54, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 14, 3], ["vendorHash", 20, 3], ["proxyVendor", 22, 3], ["subPackages", 24, 3], ["env", 26, 3], ["preBuild", 28, 3], ["passthru", 39, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGo126Module, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "traefik",
       version: "3.7.13",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/traefik/traefik/releases/download/v${nix.sel(finalAttrs, "version")}/traefik-v${nix.sel(finalAttrs, "version")}.src.tar.gz`),
           hash: "sha256-xwq4iqD0UM9xClVN4OkntEio1jGXU0JTFkXj+kpFkwE=",
           stripRoot: false,
@@ -30,7 +25,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-jlrZ78urMkNoBtV1VcfAA++1H+XuUaUxMA8ZX4w1lhg=",
       proxyVendor: true,
       subPackages: nix.thunk(() => ["cmd/traefik"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       preBuild: nix.thunk(() => nix.str`GOOS= GOARCH= go generate
 
 CODENAME=$(grep -Po "CODENAME \\?=\\s\\K.+$" Makefile)
@@ -41,12 +36,15 @@ ldflags+=" -X github.com/traefik/traefik/v${nix.app(nix.sel(lib, "versions", "ma
 ldflags+=" -X github.com/traefik/traefik/v${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/pkg/version.Codename=$CODENAME"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, traefik: nix.thunk(() => nix.attr(nixosTests, "traefik")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          traefik: nix.thunk(() => nix.attr(nixosTests, "traefik")),
+        })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://traefik.io",
         description: "Modern reverse proxy",
         changelog: nix.thunk(() => nix.str`https://github.com/traefik/traefik/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

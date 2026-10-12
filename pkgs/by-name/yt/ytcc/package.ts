@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5]], [["pname", 14, 3], ["version", 15, 11], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["nativeBuildInputs", 27, 3], ["dependencies", 32, 3], ["pythonRelaxDeps", 39, 3], ["nativeCheckInputs", 41, 3], ["disabledTests", 49, 3], ["postInstall", 65, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, gettext: false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 11], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["nativeBuildInputs", 27, 3], ["dependencies", 32, 3], ["pythonRelaxDeps", 39, 3], ["nativeCheckInputs", 41, 3], ["disabledTests", 49, 3], ["postInstall", 65, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const version = "2.8.0";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ytcc",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "woefe",
           repo: "ytcc",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "installManPage doc/ytcc.1\ninstallShellCompletion --cmd ytcc \\\n  --bash scripts/completions/bash/ytcc.completion.sh \\\n  --fish scripts/completions/fish/ytcc.fish \\\n  --zsh scripts/completions/zsh/_ytcc\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command Line tool to keep track of your favourite YouTube channels without signing up for a Google account",
         homepage: "https://github.com/woefe/ytcc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

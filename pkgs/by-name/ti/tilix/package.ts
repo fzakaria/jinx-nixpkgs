@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["test", 68, 18]], [["tests", 68, 12]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["mesonBuildType", 35, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 50, 3], ["postPatch", 60, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, python3: false, "pkg-config": false, ldc: false, dconf: false, dbus: false, "gsettings-desktop-schemas": false, "desktop-file-utils": false, gettext: false, gtkd: false, libsecret: false, wrapGAppsHook3: false, libunwind: false, appstream: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["test", 68, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 68, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["mesonBuildType", 35, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 50, 3], ["postPatch", 60, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const appstream = nix.arg($, "appstream");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tilix",
       version: "1.9.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gnunn1",
           repo: "tilix",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,14 +51,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dbus, gettext, dconf, gsettings_desktop_schemas, gtkd, libsecret, libunwind]),
       postPatch: "chmod +x meson_post_install.py\npatchShebangs meson_post_install.py\n# https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=tilix\nsubstituteInPlace source/gx/tilix/{prefeditor/prefdialog.d,terminal/terminal.d} \\\n  --replace-fail \"(Align.\" \"(GtkAlign.\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "tilix")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tiling terminal emulator following the Gnome Human Interface Guidelines",
         homepage: "https://gnunn1.github.io/tilix-web",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

@@ -2,13 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetch-mix-deps.nix", [[["outputHashAlgo", 33, 9], ["outputHash", 34, 9]], [["outputHashAlgo", 38, 9], ["outputHash", 39, 9]], [["outputHashAlgo", 43, 9], ["outputHash", 44, 9]], [["MIX_ENV", 58, 7], ["MIX_TARGET", 59, 7], ["MIX_DEBUG", 60, 7], ["DEBUG", 61, 7], ["MIX_REBAR", 63, 7], ["MIX_REBAR3", 64, 7], ["HEX_HTTP_CONCURRENCY", 67, 7], ["HEX_HTTP_TIMEOUT", 68, 7]], [["nativeBuildInputs", 50, 5], ["env", 57, 5], ["configurePhase", 72, 5], ["patches", 85, 13], ["dontBuild", 87, 5], ["installPhase", 89, 5], ["outputHashMode", 98, 5], ["impureEnvVars", 100, 5], ["meta", 101, 13]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, elixir: false, hex: false, rebar: false, rebar3: false, cacert: false, git: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, hash: true, sha256: true, src: false, mixEnv: true, mixTarget: true, debug: true, meta: true, patches: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fetch-mix-deps.nix", [["outputHashAlgo", 33, 9], ["outputHash", 34, 9]]);
-const pos$2 = nix.positions(here + "/fetch-mix-deps.nix", [["outputHashAlgo", 38, 9], ["outputHash", 39, 9]]);
-const pos$3 = nix.positions(here + "/fetch-mix-deps.nix", [["outputHashAlgo", 43, 9], ["outputHash", 44, 9]]);
-const pos$4 = nix.positions(here + "/fetch-mix-deps.nix", [["MIX_ENV", 58, 7], ["MIX_TARGET", 59, 7], ["MIX_DEBUG", 60, 7], ["DEBUG", 61, 7], ["MIX_REBAR", 63, 7], ["MIX_REBAR3", 64, 7], ["HEX_HTTP_CONCURRENCY", 67, 7], ["HEX_HTTP_TIMEOUT", 68, 7]]);
-const pos$5 = nix.positions(here + "/fetch-mix-deps.nix", [["nativeBuildInputs", 50, 5], ["env", 57, 5], ["configurePhase", 72, 5], ["patches", 85, 13], ["dontBuild", 87, 5], ["installPhase", 89, 5], ["outputHashMode", 98, 5], ["impureEnvVars", 100, 5], ["meta", 101, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,16 +31,16 @@ export default nix.lambda((args) => (() => {
     const meta = nix.argOr($_1, "meta", () => ({}));
     const patches = nix.argOr($_1, "patches", () => []);
     nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => !nix.asBool((nix.asBool(nix.has(attrs, "elixir")) || nix.asBool(nix.has(attrs, "hex"))))), "fetchMixDeps no longer takes `elixir` or `hex`. Build with the package set that has the versions you need, e.g. `beam27Packages.fetchMixDeps`, or derive one with `beamPackages.overrideScope (final: prev: { elixir = prev.elixir_1_18; })`."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/beam-modules/fetch-mix-deps.nix:26:1");
-    const hash_ = nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? { [nix.POS]: pos$1, outputHashAlgo: null, outputHash: hash } : (nix.asBool(!nix.eq(sha256, "")) ? { [nix.POS]: pos$2, outputHashAlgo: "sha256", outputHash: sha256 } : {
-      [nix.POS]: pos$3,
+    const hash_ = nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? { [nix.POS]: $pos[0], outputHashAlgo: null, outputHash: hash } : (nix.asBool(!nix.eq(sha256, "")) ? { [nix.POS]: $pos[1], outputHashAlgo: "sha256", outputHash: sha256 } : {
+      [nix.POS]: $pos[2],
       outputHashAlgo: "sha256",
       outputHash: nix.thunk(() => nix.sel(lib, "fakeSha256")),
     })));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update(attrs, nix.update({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         nativeBuildInputs: nix.thunk(() => [elixir, hex, cacert, git]),
         env: nix.thunk(() => nix.update({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           MIX_ENV: mixEnv,
           MIX_TARGET: mixTarget,
           MIX_DEBUG: nix.thunk(() => (nix.asBool(debug) ? 1n : 0n)),

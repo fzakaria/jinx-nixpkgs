@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 35, 12]], [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 15, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["__darwinAllowLocalNetworking", 28, 3], ["nativeInstallCheckInputs", 30, 3], ["doInstallCheck", 33, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchgit: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 35, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 15, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["__darwinAllowLocalNetworking", 28, 3], ["nativeInstallCheckInputs", 30, 3], ["doInstallCheck", 33, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "forgejo-mcp",
       version: "3.0.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.b4mad.industries/agentic-forges/forgejo-mcp.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Cq99Bj9I9oXM00fL9IBGq/EKj7Jv/fODffohR8APeik=",
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Model Context Protocol (MCP) server for interacting with the Forgejo REST API",
         longDescription: "This Model Context Protocol (MCP) server provides tools and resources for interacting with the Forgejo REST API",
         homepage: "https://git.b4mad.industries/agentic-forges/forgejo-mcp",

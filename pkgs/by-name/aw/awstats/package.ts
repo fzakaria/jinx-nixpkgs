@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["changelog", 69, 5], ["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 17, 3], ["outputs", 22, 3], ["propagatedBuildOutputs", 28, 3], ["buildInputs", 30, 3], ["preConfigure", 35, 3], ["preBuild", 41, 3], ["doCheck", 50, 3], ["installPhase", 52, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, perlPackages: false, jdk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 69, 5], ["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 17, 3], ["outputs", 22, 3], ["propagatedBuildOutputs", 28, 3], ["buildInputs", 30, 3], ["preConfigure", 35, 3], ["preBuild", 41, 3], ["doCheck", 50, 3], ["installPhase", 52, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "awstats";
       const version = "8.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/awstats/awstats-${version}.tar.gz`),
           sha256: "sha256-Pvdv+WxTmEd92KERNOJm5TikhwZ/aQajrIo4v9EcEeA=",
         }))));
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const installPhase = "mkdir \"$out\"\nmv wwwroot \"$out/wwwroot\"\nrm -r \"$out/wwwroot/classes/src/\"\n\nmkdir -p \"$out/share/awstats\"\nmv tools \"$out/share/awstats/tools\"\n\nmkdir -p \"$bin/bin\"\nln -s \"$out/wwwroot/cgi-bin/awstats.pl\" \"$bin/bin/awstats\"\n\nmkdir -p \"$doc/share/doc\"\nmv README.md docs/\nmv docs \"$doc/share/doc/awstats\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://www.awstats.org/docs/awstats_changelog.txt",
         description: "Real-time logfile analyzer to get advanced statistics",
         homepage: "https://awstats.org",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "awstats",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

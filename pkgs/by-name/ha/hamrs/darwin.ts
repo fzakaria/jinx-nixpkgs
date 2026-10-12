@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin.nix", [[["url", 16, 5], ["hash", 17, 5]], [["pname", 13, 11], ["version", 13, 17], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["sourceRoot", 22, 3], ["installPhase", 24, 3], ["meta", 33, 11]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, pname: false, version: false, meta: false, fetchurl: false, _7zz: false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/darwin.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/darwin.nix", [["pname", 13, 11], ["version", 13, 17], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["sourceRoot", 22, 3], ["installPhase", 24, 3], ["meta", 33, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const _7zz = nix.arg($, "_7zz");
   const undmg = nix.arg($, "undmg");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://hamrs-releases.s3.us-east-2.amazonaws.com/${nix.sel(finalAttrs, "version")}/HAMRS-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-IQ7r2OLwJW4auiNDddzZ99jXxrtPw3uYoGIUEHU1gtc=",
         })))),

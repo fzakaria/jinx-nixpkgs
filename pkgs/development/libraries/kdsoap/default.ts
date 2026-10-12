@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["description", 44, 5], ["longDescription", 45, 5], ["license", 52, 5], ["maintainers", 57, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["cmakeFlags", 35, 3], ["postInstall", 37, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, cmake: false, qtbase: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 44, 5], ["longDescription", 45, 5], ["license", 52, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["cmakeFlags", 35, 3], ["postInstall", 37, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kdsoap";
       const version = "2.2.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/KDAB/KDSoap/releases/download/kdsoap-${version}/kdsoap-${version}.tar.gz`),
           sha256: "sha256-2e8RlIRCGXyfpEvW+63IQrcoCmDfxAV3r2b97WN681Y=",
         }))));
@@ -34,7 +32,7 @@ substituteInPlace "$out/lib/cmake/${cmakeName}/KDSoapTargets-release.cmake" \\
   --replace $out/bin $dev/bin
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt-based client-side and server-side SOAP component",
         longDescription: "KD Soap is a Qt-based client-side and server-side SOAP component.\n\nIt can be used to create client applications for web services and also\nprovides the means to create web services without the need for any further\ncomponent such as a dedicated web server.\n",
         license: nix.thunk(() => (() => {
@@ -48,7 +46,7 @@ substituteInPlace "$out/lib/cmake/${cmakeName}/KDSoapTargets-release.cmake" \\
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

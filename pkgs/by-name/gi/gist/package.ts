@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 12, 10]], [["description", 15, 5], ["homepage", 16, 5], ["license", 17, 5], ["maintainers", 18, 5], ["platforms", 19, 5]], [["ruby", 8, 11], ["name", 9, 3], ["gemName", 10, 3], ["version", 11, 3], ["source", 12, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { buildRubyGem: false, lib: false, ruby: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 12, 10]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 15, 5], ["homepage", 16, 5], ["license", 17, 5], ["maintainers", 18, 5], ["platforms", 19, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ruby", 8, 11], ["name", 9, 3], ["gemName", 10, 3], ["version", 11, 3], ["source", 12, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
       const gemName = "gist";
       const version = "6.0.0";
       const source = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         sha256: "0qnd1jqd7b04871v4l73grcmi7c0pivm8nsfrqvwivm4n4b3c2hd",
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Upload code to https://gist.github.com (or github enterprise)",
         homepage: "http://defunkt.io/gist/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(ruby_1, "meta", "platforms")),
       }));
-      return { [nix.POS]: pos$3, ruby: ruby_1, name, gemName, version, source, meta };
+      return { [nix.POS]: $pos[2], ruby: ruby_1, name, gemName, version, source, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

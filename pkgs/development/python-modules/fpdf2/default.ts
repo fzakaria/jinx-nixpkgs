@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["homepage", 63, 5], ["description", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 38, 3], ["disabledTestPaths", 48, 3], ["disabledTests", 53, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, camelot: false, defusedxml: false, fetchFromGitHub: false, fonttools: false, lxml: false, pikepdf: false, pillow: false, "pytest-cov-stub": false, pytestCheckHook: false, qrcode: false, setuptools: false, uharfbuzz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 63, 5], ["description", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 38, 3], ["disabledTestPaths", 48, 3], ["disabledTests", 53, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.8.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "py-pdf",
           repo: "fpdf2",
           tag: version,
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         "test_insert_jpg_jpxdecode",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/py-pdf/fpdf2",
         description: "Simple PDF generation for Python",
         changelog: nix.thunk(() => nix.str`https://github.com/py-pdf/fpdf2/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 7], ["repo", 14, 7], ["tag", 15, 7], ["hash", 16, 7]], [["description", 29, 7], ["homepage", 30, 7], ["license", 31, 7], ["platforms", 32, 7], ["maintainers", 33, 7], ["mainProgram", 37, 7]], [["pname", 9, 5], ["version", 10, 5], ["src", 12, 5], ["postInstall", 19, 5], ["meta", 28, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, wsjtx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 7], ["repo", 14, 7], ["tag", 15, 7], ["hash", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 7], ["homepage", 30, 7], ["license", 31, 7], ["platforms", 32, 7], ["maintainers", 33, 7], ["mainProgram", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 5], ["version", 10, 5], ["src", 12, 5], ["postInstall", 19, 5], ["meta", 28, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const wsjtx = nix.arg($, "wsjtx");
   return nix.app(nix.sel(wsjtx, "overrideAttrs"), (finalAttrs) => (old) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wsjtz",
       version: "2.0.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sq9fve",
           repo: "wsjt-z",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postInstall: "mv $out/bin/wsjtx $out/bin/wsjtz\nmv $out/bin/wsjtx_app_version $out/bin/wsjtz_app_version\n\nsubstituteInPlace $out/share/applications/wsjtx.desktop \\\n  --replace-fail \"Exec=wsjtx\" \"Exec=wsjtz\" \\\n  --replace-fail \"Name=wsjtx\" \"Name=wsjtz\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "WSJT-X fork, primarily focused on automation and enhanced functionality",
         homepage: "https://github.com/sq9fve/wsjt-z",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

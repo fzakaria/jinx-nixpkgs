@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 41, 5], ["platforms", 42, 5], ["license", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildPhase", 27, 3], ["installPhase", 34, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ant: false, jdk: false, stripJavaArchivesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["platforms", 42, 5], ["license", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildPhase", 27, 3], ["installPhase", 34, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hydra-ant-logger",
       version: "2010.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NixOS",
           repo: "hydra-ant-logger",
           rev: "dae3224f4ed42418d3492bdf5bee4f825819006f",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nmkdir lib\nant\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm644 *.jar -t $out/share/java\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/NixOS/hydra-ant-logger",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

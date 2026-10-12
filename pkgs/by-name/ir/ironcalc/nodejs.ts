@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nodejs.nix", [[["src", 30, 24], ["pname", 31, 5], ["hash", 32, 5], ["fetcherVersion", 33, 5], ["preInstall", 34, 5]], [["src", 42, 24], ["hash", 43, 5]], [["description", 82, 5]], [["pname", 19, 3], ["version", 20, 22], ["src", 20, 30], ["postPatch", 22, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["pnpmDeps", 29, 3], ["makeCacheWritable", 39, 3], ["cargoDeps", 41, 3], ["cargoRoot", 46, 3], ["nativeBuildInputs", 48, 3], ["buildPhase", 60, 3], ["doCheck", 66, 3], ["checkPhase", 68, 3], ["installPhase", 74, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pnpm: false, pnpmConfigHook: false, fetchPnpmDeps: false, rustPlatform: false, "pkg-config": false, bzip2: false, zstd: false, ironcalc: false, nodejs: false, cargo: false, rustc: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nodejs.nix", [["src", 30, 24], ["pname", 31, 5], ["hash", 32, 5], ["fetcherVersion", 33, 5], ["preInstall", 34, 5]]);
-const pos$2 = nix.positions(here + "/nodejs.nix", [["src", 42, 24], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/nodejs.nix", [["description", 82, 5]]);
-const pos$4 = nix.positions(here + "/nodejs.nix", [["pname", 19, 3], ["version", 20, 22], ["src", 20, 30], ["postPatch", 22, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["pnpmDeps", 29, 3], ["makeCacheWritable", 39, 3], ["cargoDeps", 41, 3], ["cargoRoot", 46, 3], ["nativeBuildInputs", 48, 3], ["buildPhase", 60, 3], ["doCheck", 66, 3], ["checkPhase", 68, 3], ["installPhase", 74, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ironcalc-nodejs",
       version: nix.thunk(() => nix.attr(ironcalc, "version")),
       src: nix.thunk(() => nix.attr(ironcalc, "src")),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           src: nix.thunk(() => nix.attr(ironcalc, "src")),
           pname: "ironcalc-nodejs",
           hash: "sha256-WBISZTISqnti5MiI+/rECZw31YumSm7VPN+MYZNoS28=",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makeCacheWritable: true,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(ironcalc, "src")),
           hash: nix.thunk(() => nix.sel(ironcalc, "cargoHash")),
         })))),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\npnpm run test\nrunHook postCheck\n",
       installPhase: "runHook preInstall\nmkdir -p $out/lib/node_modules/@ironcalc/nodejs\ncp index.js index.d.ts package.json *.node $out/lib/node_modules/@ironcalc/nodejs/\nrunHook postInstall\n",
-      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { [nix.POS]: pos$3, description: "Node.js bindings for IronCalc" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { [nix.POS]: $pos[2], description: "Node.js bindings for IronCalc" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=nodejs.ts.map

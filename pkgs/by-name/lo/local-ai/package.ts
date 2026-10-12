@@ -2,33 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 87, 7], ["cmakeFlags", 88, 7]], [["cudaSupport", 97, 9], ["openclSupport", 98, 9], ["blasSupport", 99, 9], ["rpcSupport", 100, 9], ["vulkanSupport", 101, 9]], [["owner", 109, 11], ["repo", 110, 11], ["rev", 111, 11], ["hash", 112, 11], ["fetchSubmodules", 113, 11]], [["name", 107, 9], ["src", 108, 9], ["postPatch", 115, 9], ["cmakeFlags", 127, 9], ["buildInputs", 135, 9]], [["cudaSupport", 144, 9], ["rocmSupport", 145, 9], ["openclSupport", 146, 9], ["blasSupport", 147, 9], ["vulkanSupport", 148, 9]], [["name", 152, 5], ["src", 153, 24], ["sourceRoot", 154, 5], ["patches", 155, 5], ["nativeBuildInputs", 156, 5], ["cmakeFlags", 157, 5], ["preConfigure", 167, 5], ["postInstall", 168, 5]], [["espeak-ng", 187, 14]], [["name", 172, 5], ["src", 173, 24], ["sourceRoot", 174, 5], ["buildInputs", 175, 5], ["nativeBuildInputs", 179, 5], ["cmakeFlags", 183, 5], ["passthru", 187, 5]], [["name", 191, 5], ["src", 192, 24], ["sourceRoot", 193, 5], ["installPhase", 194, 5], ["postInstall", 195, 5]], [["owner", 208, 7], ["repo", 209, 7], ["rev", 210, 7], ["hash", 211, 7], ["fetchSubmodules", 212, 7]], [["name", 206, 5], ["src", 207, 5], ["postUnpack", 214, 5], ["postPatch", 217, 5], ["buildFlags", 221, 5], ["buildInputs", 222, 5], ["installPhase", 231, 5]], [["owner", 243, 7], ["repo", 244, 7], ["rev", 245, 7], ["hash", 246, 7]], [["name", 241, 5], ["src", 242, 5], ["nativeBuildInputs", 249, 5], ["buildInputs", 255, 5], ["cmakeFlags", 270, 5], ["postInstall", 280, 5]], [["owner", 288, 7], ["repo", 289, 7], ["tag", 290, 7], ["hash", 291, 7], ["fetchSubmodules", 292, 7]], [["name", 286, 5], ["src", 287, 5], ["installPhase", 294, 5], ["nativeBuildInputs", 301, 5]], [["owner", 307, 7], ["repo", 308, 7], ["rev", 309, 7], ["hash", 310, 7], ["fetchSubmodules", 311, 7]], [["name", 305, 5], ["src", 306, 5], ["installPhase", 313, 5], ["cmakeFlags", 320, 5], ["nativeBuildInputs", 323, 5], ["buildInputs", 324, 5]], [["owner", 340, 5], ["repo", 341, 5], ["tag", 342, 5], ["hash", 343, 5]], [["stdenv", 359, 35]], [["NIX_CFLAGS_COMPILE", 364, 9], ["GO_TAGS", 438, 9]], [["go-piper", 506, 9], ["llama-cpp-grpc", 507, 9], ["whisper-cpp", 508, 9], ["espeak-ng'", 509, 9], ["piper-phonemize", 510, 9], ["piper-tts'", 511, 9], ["llama-cpp-rpc", 512, 9], ["bark", 513, 9], ["stable-diffusion", 514, 9]], [["with_cublas", 520, 9], ["with_openblas", 521, 9], ["with_vulkan", 522, 9], ["with_tts", 523, 9], ["with_clblas", 524, 9]], [["self", 528, 57]], [["local-packages", 504, 14], ["features", 518, 14], ["tests", 528, 14], ["lib", 529, 14]], [["description", 532, 7], ["mainProgram", 533, 7], ["homepage", 534, 7], ["license", 535, 7], ["maintainers", 536, 7], ["platforms", 540, 7], ["broken", 543, 7]], [["pname", 360, 13], ["version", 360, 19], ["src", 360, 27], ["vendorHash", 362, 5], ["env", 364, 5], ["postPatch", 366, 5], ["postConfigure", 383, 5], ["buildInputs", 401, 5], ["nativeBuildInputs", 416, 5], ["enableParallelBuilding", 427, 5], ["modBuildPhase", 429, 5], ["proxyVendor", 434, 5], ["makeFlags", 440, 5], ["buildPhase", 447, 5], ["installPhase", 466, 5], ["postFixup", 476, 5], ["passthru", 504, 5], ["meta", 531, 5]]]);
 const formals$1 = { args: { config: false, callPackages: false, stdenv: false, lib: false, addDriverRunpath: false, fetchFromGitHub: false, protobuf: false, "protoc-gen-go": false, "protoc-gen-go-grpc": false, grpc: false, openssl: false, "llama-cpp": false, ffmpeg: false, cmake: false, "pkg-config": false, buildGoModule: false, makeWrapper: false, ncurses: false, which: false, opencv: false, curl: false, enable_upx: true, upx: false, enable_avx: true, enable_avx2: true, enable_avx512: true, enable_f16c: true, enable_fma: true, with_openblas: true, openblas: false, with_cublas: true, cudaPackages: false, with_clblas: true, clblast: false, "ocl-icd": false, "opencl-headers": false, with_vulkan: true, with_tts: true, onnxruntime: false, sonic: false, spdlog: false, fmt: false, "espeak-ng": false, "piper-tts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 87, 7], ["cmakeFlags", 88, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cudaSupport", 97, 9], ["openclSupport", 98, 9], ["blasSupport", 99, 9], ["rpcSupport", 100, 9], ["vulkanSupport", 101, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 109, 11], ["repo", 110, 11], ["rev", 111, 11], ["hash", 112, 11], ["fetchSubmodules", 113, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 107, 9], ["src", 108, 9], ["postPatch", 115, 9], ["cmakeFlags", 127, 9], ["buildInputs", 135, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["cudaSupport", 144, 9], ["rocmSupport", 145, 9], ["openclSupport", 146, 9], ["blasSupport", 147, 9], ["vulkanSupport", 148, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 152, 5], ["src", 153, 24], ["sourceRoot", 154, 5], ["patches", 155, 5], ["nativeBuildInputs", 156, 5], ["cmakeFlags", 157, 5], ["preConfigure", 167, 5], ["postInstall", 168, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["espeak-ng", 187, 14]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 172, 5], ["src", 173, 24], ["sourceRoot", 174, 5], ["buildInputs", 175, 5], ["nativeBuildInputs", 179, 5], ["cmakeFlags", 183, 5], ["passthru", 187, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 191, 5], ["src", 192, 24], ["sourceRoot", 193, 5], ["installPhase", 194, 5], ["postInstall", 195, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["owner", 208, 7], ["repo", 209, 7], ["rev", 210, 7], ["hash", 211, 7], ["fetchSubmodules", 212, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 206, 5], ["src", 207, 5], ["postUnpack", 214, 5], ["postPatch", 217, 5], ["buildFlags", 221, 5], ["buildInputs", 222, 5], ["installPhase", 231, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["owner", 243, 7], ["repo", 244, 7], ["rev", 245, 7], ["hash", 246, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["name", 241, 5], ["src", 242, 5], ["nativeBuildInputs", 249, 5], ["buildInputs", 255, 5], ["cmakeFlags", 270, 5], ["postInstall", 280, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["owner", 288, 7], ["repo", 289, 7], ["tag", 290, 7], ["hash", 291, 7], ["fetchSubmodules", 292, 7]]);
-const pos$15 = nix.positions(here + "/package.nix", [["name", 286, 5], ["src", 287, 5], ["installPhase", 294, 5], ["nativeBuildInputs", 301, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["owner", 307, 7], ["repo", 308, 7], ["rev", 309, 7], ["hash", 310, 7], ["fetchSubmodules", 311, 7]]);
-const pos$17 = nix.positions(here + "/package.nix", [["name", 305, 5], ["src", 306, 5], ["installPhase", 313, 5], ["cmakeFlags", 320, 5], ["nativeBuildInputs", 323, 5], ["buildInputs", 324, 5]]);
-const pos$18 = nix.positions(here + "/package.nix", [["owner", 340, 5], ["repo", 341, 5], ["tag", 342, 5], ["hash", 343, 5]]);
-const pos$19 = nix.positions(here + "/package.nix", [["stdenv", 359, 35]]);
-const pos$20 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 364, 9], ["GO_TAGS", 438, 9]]);
-const pos$21 = nix.positions(here + "/package.nix", [["go-piper", 506, 9], ["llama-cpp-grpc", 507, 9], ["whisper-cpp", 508, 9], ["espeak-ng'", 509, 9], ["piper-phonemize", 510, 9], ["piper-tts'", 511, 9], ["llama-cpp-rpc", 512, 9], ["bark", 513, 9], ["stable-diffusion", 514, 9]]);
-const pos$22 = nix.positions(here + "/package.nix", [["with_cublas", 520, 9], ["with_openblas", 521, 9], ["with_vulkan", 522, 9], ["with_tts", 523, 9], ["with_clblas", 524, 9]]);
-const pos$23 = nix.positions(here + "/package.nix", [["self", 528, 57]]);
-const pos$24 = nix.positions(here + "/package.nix", [["local-packages", 504, 14], ["features", 518, 14], ["tests", 528, 14], ["lib", 529, 14]]);
-const pos$25 = nix.positions(here + "/package.nix", [["description", 532, 7], ["mainProgram", 533, 7], ["homepage", 534, 7], ["license", 535, 7], ["maintainers", 536, 7], ["platforms", 540, 7], ["broken", 543, 7]]);
-const pos$26 = nix.positions(here + "/package.nix", [["pname", 360, 13], ["version", 360, 19], ["src", 360, 27], ["vendorHash", 362, 5], ["env", 364, 5], ["postPatch", 366, 5], ["postConfigure", 383, 5], ["buildInputs", 401, 5], ["nativeBuildInputs", 416, 5], ["enableParallelBuilding", 427, 5], ["modBuildPhase", 429, 5], ["proxyVendor", 434, 5], ["makeFlags", 440, 5], ["buildPhase", 447, 5], ["installPhase", 466, 5], ["postFixup", 476, 5], ["passthru", 504, 5], ["meta", 531, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -86,7 +61,7 @@ export default nix.lambda((args) => (() => {
   const cuda_cudart = nix.thunk(() => nix.attr(cudaPackages, "cuda_cudart"));
   const libcufft = nix.thunk(() => nix.attr(cudaPackages, "libcufft"));
   const llama_cpp_rpc = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(llama_cpp_grpc, "overrideAttrs"), (prev) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "llama-cpp-rpc",
       cmakeFlags: nix.thunk(() => nix.concat(nix.sel(prev, "cmakeFlags"), [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "GGML_AVX", false)),
@@ -96,7 +71,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "GGML_F16C", false)),
       ])),
     })), "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       cudaSupport: false,
       openclSupport: false,
       blasSupport: false,
@@ -104,10 +79,10 @@ export default nix.lambda((args) => (() => {
       vulkanSupport: false,
     }))));
   const llama_cpp_grpc = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(llama_cpp, "overrideAttrs"), (final) => (prev) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "llama-cpp-grpc",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "ggerganov",
           repo: "llama.cpp",
           rev: "d6d2c2ab8c8865784ba9fef37f2b2de3f2134d33",
@@ -135,7 +110,7 @@ cd ..
       ])),
       buildInputs: nix.thunk(() => nix.concat(nix.sel(prev, "buildInputs"), [protobuf, grpc, openssl, curl])),
     })), "override"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       cudaSupport: with_cublas,
       rocmSupport: false,
       openclSupport: with_clblas,
@@ -143,7 +118,7 @@ cd ..
       vulkanSupport: with_vulkan,
     }))));
   const espeak_ng$ = nix.thunk(() => nix.app(nix.sel(espeak_ng, "overrideAttrs"), (self_1) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "espeak-ng'",
       src: nix.thunk(() => nix.attr(go_piper, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(go_piper, "src", "name")}/espeak`),
@@ -163,7 +138,7 @@ cd ..
       postInstall: null,
     })));
   const piper_phonemize = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "piper-phonemize",
       src: nix.thunk(() => nix.attr(go_piper, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(go_piper, "src", "name")}/piper-phonemize`),
@@ -173,10 +148,10 @@ cd ..
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "ONNXRUNTIME_DIR", nix.thunk(() => nix.str`${nix.sel(onnxruntime, "dev")}`))),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "ESPEAK_NG_DIR", nix.thunk(() => nix.str`${espeak_ng$}`))),
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, "espeak-ng": espeak_ng$ })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[6], "espeak-ng": espeak_ng$ })),
     }))));
   const piper_tts$ = nix.thunk(() => nix.app(nix.sel(piper_tts, "overrideAttrs"), (self_1) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       name: "piper-tts'",
       src: nix.thunk(() => nix.attr(go_piper, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(go_piper, "src", "name")}/piper`),
@@ -184,10 +159,10 @@ cd ..
       postInstall: "cp CMakeFiles/piper.dir/src/cpp/piper.cpp.o $out/piper.o\ncd $out\nmkdir bin lib\nmv lib*so* lib/\nmv piper piper_phonemize bin/\nrm -rf cmake pkgconfig espeak-ng-data *.ort\n",
     })));
   const go_piper = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       name: "go-piper",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           owner: "mudler",
           repo: "go-piper",
           rev: "e10ca041a885d4a8f3871d52924b47792d5e5aa0",
@@ -206,10 +181,10 @@ cp *.a $out
 `),
     }))));
   const whisper_cpp = nix.thunk(() => nix.app(nix.sel(effectiveStdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       name: "whisper-cpp",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           owner: "ggerganov",
           repo: "whisper.cpp",
           rev: "6266a9f9e56a5b925e9892acf650f3eb1245814d",
@@ -230,10 +205,10 @@ cp *.a $out
       postInstall: "install -Dt $out/bin bin/*\n",
     }))));
   const bark = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       name: "bark",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           owner: "PABannier",
           repo: "bark.cpp",
           tag: "v1.0.0",
@@ -244,10 +219,10 @@ cp *.a $out
       nativeBuildInputs: nix.thunk(() => [cmake]),
     }))));
   const stable_diffusion = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       name: "stable-diffusion",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           owner: "richiejp",
           repo: "stable-diffusion.cpp",
           rev: "53e3b17eb3d0b5760ced06a1f98320b68b34aaae",
@@ -266,7 +241,7 @@ cp *.a $out
   const pname = "local-ai";
   const version = "2.28.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       owner: "mudler",
       repo: "LocalAI",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -282,14 +257,14 @@ ${cp} ${bark} sources/bark.cpp
 ${cp} ${stable_diffusion} sources/stablediffusion-ggml.cpp
 `;
   })());
-  const self = nix.thunk(() => nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({ [nix.POS]: pos$19, stdenv: effectiveStdenv })), nix.thunk(() => ({
-      [nix.POS]: pos$26,
+  const self = nix.thunk(() => nix.app(nix.sel(buildGoModule, "override"), nix.thunk(() => ({ [nix.POS]: $pos[18], stdenv: effectiveStdenv })), nix.thunk(() => ({
+      [nix.POS]: $pos[25],
       pname: pname,
       version: version,
       src: src,
       vendorHash: "sha256-1OY/y1AeL0K+vOU4Jk/cj7rToVLC9EkkNhgifB+icDM=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str` -isystem ${opencv}/include/opencv4`),
         GO_TAGS: nix.thunk(() => nix.builtins.concatStringsSep(" ", GO_TAGS)),
       })),
@@ -340,9 +315,9 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         "local-packages": nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           "go-piper": go_piper,
           "llama-cpp-grpc": llama_cpp_grpc,
           "whisper-cpp": whisper_cpp,
@@ -354,18 +329,18 @@ runHook postInstall
           "stable-diffusion": stable_diffusion,
         })),
         features: nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           with_cublas: with_cublas,
           with_openblas: with_openblas,
           with_vulkan: with_vulkan,
           with_tts: with_tts,
           with_clblas: with_clblas,
         })),
-        tests: nix.thunk(() => nix.app(callPackages, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$23, self: self })))),
+        tests: nix.thunk(() => nix.app(callPackages, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: $pos[22], self: self })))),
         lib: nix.thunk(() => nix.app(callPackages, nix.path(here, "./lib.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         description: "OpenAI alternative to run local LLMs, image and audio generation",
         mainProgram: "local-ai",
         homepage: "https://localai.io",

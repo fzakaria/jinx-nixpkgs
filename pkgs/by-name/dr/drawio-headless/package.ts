@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 34, 5], ["longDescription", 35, 5], ["maintainers", 40, 5], ["mainProgram", 43, 5], ["license", 44, 5]], [["name", 10, 3], ["executable", 12, 3], ["destination", 13, 3], ["text", 14, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, writeTextFile: false, runtimeShell: false, drawio: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 34, 5], ["longDescription", 35, 5], ["maintainers", 40, 5], ["mainProgram", 43, 5], ["license", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 10, 3], ["executable", 12, 3], ["destination", 13, 3], ["text", 14, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const drawio = nix.arg($, "drawio");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`${nix.sel(drawio, "pname")}-headless-${nix.sel(drawio, "version")}`),
       executable: true,
       destination: "/bin/drawio",
@@ -36,7 +35,7 @@ trap cleanup EXIT
 XDG_CONFIG_HOME="$tmpdir" ${xvfb_run}/bin/xvfb-run --auto-display ${drawio}/bin/drawio $@
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "xvfb wrapper around drawio",
         longDescription: "A wrapper around drawio (draw.io) for running in headless environments.\nRuns drawio under xvfb-run, with configuration going to a temporary\ndirectory.\n",
         maintainers: nix.thunk(() => (() => {

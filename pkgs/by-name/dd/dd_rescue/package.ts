@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hash", 13, 5], ["url", 14, 5]], [["url", 18, 5], ["sha256", 19, 5]], [["description", 39, 5], ["maintainers", 40, 5], ["platforms", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["mainProgram", 46, 5]], [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["dd_rhelp_src", 17, 3], ["buildInputs", 22, 3], ["preBuild", 24, 3], ["makeFlags", 30, 3], ["postInstall", 32, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoconf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hash", 13, 5], ["url", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 39, 5], ["maintainers", 40, 5], ["platforms", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["mainProgram", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["dd_rhelp_src", 17, 3], ["buildInputs", 22, 3], ["preBuild", 24, 3], ["makeFlags", 30, 3], ["postInstall", 32, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
       const version = "1.99.21";
       const pname = "dd_rescue";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256-YB3gyUX/8dsFfIbGUWX5rvRuIa2q9E4LOCtEOz+z/bk=",
           url: nix.thunk(() => nix.str`http://www.garloff.de/kurt/linux/ddrescue/dd_rescue-${version}.tar.bz2`),
         }))));
       const dd_rhelp_src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "http://www.kalysto.org/pkg/dd_rhelp-0.3.0.tar.gz",
           sha256: "0br6fs23ybmic3i5s1w4k4l8c2ph85ax94gfp2lzjpxbvl73cz1g",
         }))));
@@ -35,7 +32,7 @@ tar xf "${dd_rhelp_src}" -C "$out/share/dd_rescue"
 cp "$out/share/dd_rescue"/dd_rhelp*/dd_rhelp "$out/bin"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to copy data from a damaged block device",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -47,7 +44,7 @@ cp "$out/share/dd_rescue"/dd_rhelp*/dd_rhelp "$out/bin"
         mainProgram: "dd_rescue",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version,
         pname,
         src,

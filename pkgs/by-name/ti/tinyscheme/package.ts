@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["simple", 51, 5], ["fileIo", 55, 5], ["helpText", 65, 5]], [["tests", 49, 12]], [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["platforms", 81, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["prePatch", 21, 3], ["patches", 22, 3], ["postPatch", 38, 3], ["installPhase", 42, 3], ["passthru", 49, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dos2unix: false, runCommand: false, tinyscheme: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["simple", 51, 5], ["fileIo", 55, 5], ["helpText", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 49, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["platforms", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["prePatch", 21, 3], ["patches", 22, 3], ["postPatch", 38, 3], ["installPhase", 42, 3], ["passthru", 49, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tinyscheme";
       const version = "1.42";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/tinyscheme/${pname}-${version}.tar.gz`),
           sha256: "sha256-F7Cxv/0i89SdWDPiKhILM5A50s/aC0bW/FHdLwG0B60=",
         }))));
@@ -34,9 +30,9 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace scheme.c --replace \"init.scm\" \"$out/lib/init.scm\"\n";
       const installPhase = "mkdir -p $out/bin $out/lib\ncp init.scm $out/lib\ncp libtinyscheme* $out/lib\ncp scheme $out/bin/tinyscheme\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           simple: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-simple-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${tinyscheme}/bin/tinyscheme <<<"(quit 0)"
 echo "success" > $out
 `))),
@@ -55,7 +51,7 @@ EOF
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lightweight Scheme implementation",
         longDescription: "TinyScheme is a lightweight Scheme interpreter that implements as large a\nsubset of R5RS as was possible without getting very large and complicated.\n",
         homepage: "https://tinyscheme.sourceforge.net/",
@@ -65,7 +61,7 @@ EOF
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

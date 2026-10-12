@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sample_onnx_mnist.nix", [[["default", 10, 3], ["int8", 15, 3], ["fp16", 21, 3]], [["bf16", 28, 3]], [["dla", 36, 3]]]);
 const formals$1 = { args: { atLeast: false, backendStdenv: false, lib: false, mkTester: false, "sample-data": false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sample_onnx_mnist.nix", [["default", 10, 3], ["int8", 15, 3], ["fp16", 21, 3]]);
-const pos$2 = nix.positions(here + "/sample_onnx_mnist.nix", [["bf16", 28, 3]]);
-const pos$3 = nix.positions(here + "/sample_onnx_mnist.nix", [["dla", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const mkTester = nix.arg($, "mkTester");
   const sample_data = nix.arg($, "sample-data");
   return nix.update({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     default: nix.thunk(() => nix.app(mkTester, "sample_onnx_mnist", nix.thunk(() => [
         "sample_onnx_mnist",
         nix.thunk(() => nix.str`--datadir=${nix.add(nix.sel(sample_data, "outPath"), "/mnist")}`),
@@ -31,14 +29,14 @@ export default nix.lambda((args) => (() => {
         "--fp16",
       ]))),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(atLeast, "10")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       bf16: nix.thunk(() => nix.app(mkTester, "sample_onnx_mnist-bf16", nix.thunk(() => [
           "sample_onnx_mnist",
           nix.thunk(() => nix.str`--datadir=${nix.add(nix.sel(sample_data, "outPath"), "/mnist")}`),
           "--bf16",
         ]))),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => ["7.2", "8.7"]), nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities"))), [])), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       dla: nix.thunk(() => nix.app(mkTester, "sample_onnx_mnist-dla", nix.thunk(() => [
           "sample_onnx_mnist",
           nix.thunk(() => nix.str`--datadir=${nix.add(nix.sel(sample_data, "outPath"), "/mnist")}`),

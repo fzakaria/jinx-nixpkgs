@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["propagatedBuildInputs", 24, 3], ["installPhase", 29, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, coercer: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["propagatedBuildInputs", 24, 3], ["installPhase", 29, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const coercer = nix.arg($, "coercer");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "adcskiller",
       version: "0-unstable-2024-05-19",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grimlockx",
           repo: "ADCSKiller",
           rev: "d74bfea91f24a09df74262998d60f213609b45c6",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\n\ninstall -vD $pname.py $out/bin/$pname\n\nsubstituteInPlace $out/bin/$pname --replace-fail '\"Coercer\"' '\"coercer\"'\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python-based tool designed to automate the process of discovering and exploiting Active Directory Certificate Services (ADCS) vulnerabilities",
         homepage: "https://github.com/grimlockx/ADCSKiller",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

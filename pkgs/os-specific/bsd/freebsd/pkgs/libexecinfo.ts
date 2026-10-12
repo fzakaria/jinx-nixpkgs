@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libexecinfo.nix", [[["MK_TESTS", 35, 7]], [["path", 11, 3], ["extraPaths", 12, 3], ["outputs", 16, 3], ["noLibc", 22, 3], ["buildInputs", 24, 3], ["preBuild", 31, 3], ["env", 35, 3]]]);
 const formals$1 = { args: { mkDerivation: false, include: false, libelf: false, libcMinimal: false, libgcc: false, csu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libexecinfo.nix", [["MK_TESTS", 35, 7]]);
-const pos$2 = nix.positions(here + "/libexecinfo.nix", [["path", 11, 3], ["extraPaths", 12, 3], ["outputs", 16, 3], ["noLibc", 22, 3], ["buildInputs", 24, 3], ["preBuild", 31, 3], ["env", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libgcc = nix.arg($, "libgcc");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/libexecinfo",
       extraPaths: nix.thunk(() => ["contrib/libexecinfo"]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [include, libelf, libcMinimal, libgcc]),
       preBuild: nix.thunk(() => nix.str`export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -B${csu}/lib"
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, MK_TESTS: "no" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], MK_TESTS: "no" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=libexecinfo.ts.map

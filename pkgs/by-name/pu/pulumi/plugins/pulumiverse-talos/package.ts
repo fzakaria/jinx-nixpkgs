@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 17, 14]], [["description", 19, 5], ["mainProgram", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]], [["owner", 6, 3], ["repo", 7, 3], ["version", 8, 3], ["rev", 9, 3], ["hash", 10, 3], ["vendorHash", 11, 3], ["cmdGen", 12, 3], ["cmdRes", 13, 3], ["extraLdflags", 14, 3], ["pythonArgs", 17, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, mkPulumiPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 17, 14]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 19, 5], ["mainProgram", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 6, 3], ["repo", 7, 3], ["version", 8, 3], ["rev", 9, 3], ["hash", 10, 3], ["vendorHash", 11, 3], ["cmdGen", 12, 3], ["cmdRes", 13, 3], ["extraLdflags", 14, 3], ["pythonArgs", 17, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,9 +21,9 @@ export default nix.lambda((args) => (() => {
       const extraLdflags = nix.thunk(() => [
         nix.thunk(() => nix.str`-X=github.com/${owner}/${repo}/provider/pkg/version.Version=${version}`),
       ]);
-      const pythonArgs = nix.thunk(() => ({ [nix.POS]: pos$1, pname: "pulumiverse_talos" }));
+      const pythonArgs = nix.thunk(() => ({ [nix.POS]: $pos[0], pname: "pulumiverse_talos" }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Talos Linux resource package, providing IaC configuration of Talos k8s clusters",
         mainProgram: cmdRes,
         homepage: "https://www.pulumi.com/registry/packages/talos/",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner,
         repo,
         version,

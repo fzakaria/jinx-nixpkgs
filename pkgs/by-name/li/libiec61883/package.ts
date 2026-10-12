@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["name", 15, 5], ["sha256", 16, 5]], [["homepage", 24, 5], ["license", 25, 5], ["platforms", 26, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["propagatedBuildInputs", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libraw1394: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["name", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 24, 5], ["license", 25, 5], ["platforms", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["propagatedBuildInputs", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libraw1394 = nix.arg($, "libraw1394");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.2.0",
       pname: "libiec61883",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/libi/libiec61883/libiec61883_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           name: nix.thunk(() => nix.str`libiec61883-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "7c7879c6b9add3148baea697dfbfdcefffbc8ac74e8e6bcf46125ec1d21b373a",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       propagatedBuildInputs: nix.thunk(() => [libraw1394]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.linux1394.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

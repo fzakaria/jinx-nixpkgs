@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["compreffor", 57, 5], ["cffsubr", 58, 5], ["pathops", 59, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 46, 3], ["optional-dependencies", 56, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, booleanoperations: false, buildPythonPackage: false, cffsubr: false, compreffor: false, defcon: false, fetchFromGitHub: false, fontmath: false, fonttools: false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, "skia-pathops": false, syrupy: false, ufolib2: false, uharfbuzz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["compreffor", 57, 5], ["cffsubr", 58, 5], ["pathops", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 46, 3], ["optional-dependencies", 56, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const ufolib2 = nix.arg($, "ufolib2");
   const uharfbuzz = nix.arg($, "uharfbuzz");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ufo2ft",
       version: "3.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googlefonts",
           repo: "ufo2ft",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,14 +39,14 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => nix.concat([fontmath, fonttools, booleanoperations, cffsubr], nix.concat(nix.sel(fonttools, "optional-dependencies", "lxml"), nix.sel(fonttools, "optional-dependencies", "ufo")))),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, syrupy, ufolib2, uharfbuzz, defcon], nix.concat(nix.sel(finalAttrs, "passthru", "optional-dependencies", "compreffor"), nix.sel(finalAttrs, "passthru", "optional-dependencies", "pathops")))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         compreffor: nix.thunk(() => [compreffor]),
         cffsubr: [],
         pathops: nix.thunk(() => [skia_pathops]),
       })),
       pythonImportsCheck: nix.thunk(() => ["ufo2ft"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Bridge from UFOs to FontTools objects",
         homepage: "https://github.com/googlefonts/ufo2ft",
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/ufo2ft/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["io", 52, 5]], [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["broken", 93, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 44, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 55, 3], ["pythonImportsCheck", 65, 3], ["disabledTests", 67, 3], ["__darwinAllowLocalNetworking", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, awkward: false, cachetools: false, dask: false, "typing-extensions": false, pyarrow: false, distributed: false, hist: false, pandas: false, pytestCheckHook: false, uproot: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["io", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["broken", 93, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 44, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 55, 3], ["pythonImportsCheck", 65, 3], ["disabledTests", 67, 3], ["__darwinAllowLocalNetworking", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const uproot = nix.arg($, "uproot");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dask-awkward",
       version: "2026.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dask-contrib",
           repo: "dask-awkward",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [awkward, cachetools, dask, typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, io: nix.thunk(() => [pyarrow]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], io: nix.thunk(() => [pyarrow]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([distributed, hist, pandas, pytestCheckHook, uproot], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pythonImportsCheck: nix.thunk(() => ["dask_awkward"]),
       disabledTests: nix.thunk(() => [
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Native Dask collection for awkward arrays, and the library to use it",
         homepage: "https://github.com/dask-contrib/dask-awkward",
         changelog: nix.thunk(() => nix.str`https://github.com/dask-contrib/dask-awkward/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

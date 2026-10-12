@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mpris.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["updateScript", 22, 12], ["scriptName", 41, 12]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5], ["changelog", 49, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["passthru", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["postPatch", 32, 3], ["installFlags", 36, 3], ["stripDebugList", 40, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, "pkg-config": false, glib: false, "mpv-unwrapped": false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mpris.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/mpris.nix", [["updateScript", 22, 12], ["scriptName", 41, 12]]);
-const pos$3 = nix.positions(here + "/mpris.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5], ["changelog", 49, 5]]);
-const pos$4 = nix.positions(here + "/mpris.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["passthru", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["postPatch", 32, 3], ["installFlags", 36, 3], ["stripDebugList", 40, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const mpv_unwrapped = nix.arg($, "mpv-unwrapped");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mpv-mpris",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hoyon",
           repo: "mpv-mpris",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-jPncHlY2fIUzURhQ35ude1D8WkKQurAOdPedz1/osBU=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         scriptName: "mpris.so",
       })),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       stripDebugList: nix.thunk(() => ["share/mpv/scripts"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "MPRIS plugin for mpv",
         homepage: "https://github.com/hoyon/mpv-mpris",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

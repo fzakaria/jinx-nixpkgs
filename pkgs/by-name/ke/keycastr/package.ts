@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["updateScript", 27, 12]], [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5], ["sourceProvenance", 35, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 16, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 20, 3], ["passthru", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 27, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5], ["sourceProvenance", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 16, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 20, 3], ["passthru", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,20 +12,20 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "keycastr",
       version: "0.10.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/keycastr/keycastr/releases/download/v${nix.sel(finalAttrs, "version")}/KeyCastr.app.zip`),
           hash: "sha256-yXxj6tv0MEwEgCwMg3XJm1gIRYS+MU6WTINm7KMYt1I=",
         })))),
       sourceRoot: ".",
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\nmkdir -p $out/Applications\ncp -r KeyCastr.app $out/Applications/\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/keycastr/keycastr",
         description: "Open-source keystroke visualizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

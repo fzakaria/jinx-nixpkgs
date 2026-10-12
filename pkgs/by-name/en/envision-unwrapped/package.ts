@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["src", 55, 28], ["patches", 55, 32]], [["pname", 52, 26], ["version", 52, 32], ["src", 54, 5], ["hash", 57, 5]], [["updateScript", 102, 12]], [["broken", 105, 5], ["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["mainProgram", 109, 5], ["maintainers", 113, 5], ["platforms", 118, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["strictDeps", 49, 3], ["cargoDeps", 51, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 73, 3], ["doInstallCheck", 91, 3], ["versionCheckProgram", 92, 3], ["nativeInstallCheckInputs", 93, 3], ["postInstall", 97, 3], ["passthru", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { "appstream-glib": false, applyPatches: false, cairo: false, cargo: false, "desktop-file-utils": false, fetchFromGitLab: false, gdb: false, "gdk-pixbuf": false, git: false, glib: false, gtk4: false, gtksourceview5: false, lib: false, libadwaita: false, libgit2: false, libusb1: false, meson: false, ninja: false, "nix-update-script": false, openssl: false, "openxr-loader": false, pango: false, "pkg-config": false, rustPlatform: false, rustc: false, stdenv: false, "vte-gtk4": false, versionCheckHook: false, wrapGAppsHook4: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 55, 28], ["patches", 55, 32]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 52, 26], ["version", 52, 32], ["src", 54, 5], ["hash", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 102, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["broken", 105, 5], ["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["mainProgram", 109, 5], ["maintainers", 113, 5], ["platforms", 118, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["strictDeps", 49, 3], ["cargoDeps", 51, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 73, 3], ["doInstallCheck", 91, 3], ["versionCheckProgram", 92, 3], ["nativeInstallCheckInputs", 93, 3], ["postInstall", 97, 3], ["passthru", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "envision-unwrapped",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gabmus",
           repo: "envision",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,11 +51,11 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./support-headless-cli.patch")]),
       strictDeps: true,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
             })))),
@@ -100,11 +95,11 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gdb]))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: true,
         description: "UI for building, configuring and running Monado, the open source OpenXR runtime",
         homepage: "https://gitlab.com/gabmus/envision",

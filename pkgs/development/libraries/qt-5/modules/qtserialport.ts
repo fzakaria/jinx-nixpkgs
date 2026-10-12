@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtserialport.nix", [[["NIX_CFLAGS_COMPILE", 13, 7]], [["pname", 11, 3], ["propagatedBuildInputs", 12, 3], ["env", 13, 3]]]);
 const formals$1 = { args: { qtModule: false, stdenv: false, lib: false, qtbase: false, udev: false, udevSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtserialport.nix", [["NIX_CFLAGS_COMPILE", 13, 7]]);
-const pos$2 = nix.positions(here + "/qtserialport.nix", [["pname", 11, 3], ["propagatedBuildInputs", 12, 3], ["env", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const udevSupport = nix.argOr($, "udevSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qtserialport",
       propagatedBuildInputs: nix.thunk(() => [qtbase]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), udevSupport, nix.thunk(() => nix.str`-DNIXPKGS_LIBUDEV="${udev}/lib/libudev"`))),
       })),
     })));

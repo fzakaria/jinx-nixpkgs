@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 56, 7], ["hash", 57, 7]], [["pkg-config", 201, 18]], [["tests", 201, 12], ["tlDeps", 204, 12]], [["homepage", 220, 5], ["description", 221, 5], ["mainProgram", 222, 5], ["license", 223, 5], ["longDescription", 225, 5], ["pkgConfigModules", 244, 5], ["platforms", 245, 5], ["maintainers", 247, 5], ["teams", 248, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["outputs", 60, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 73, 3], ["strictDeps", 111, 3], ["patches", 113, 3], ["postPatch", 119, 3], ["dontDisableStatic", 130, 3], ["preConfigure", 132, 3], ["installTargets", 173, 3], ["postInstall", 181, 3], ["postFixup", 189, 3], ["doCheck", 194, 3], ["preCheck", 195, 3], ["enableParallelBuilding", 197, 3], ["setupHook", 199, 3], ["passthru", 201, 3], ["meta", 219, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bzip2: false, gfortran: false, libx11: false, libxmu: false, libxt: false, libjpeg: false, libpng: false, libtiff: false, ncurses: false, pango: false, pcre2: false, perl: false, readline: false, tcl: false, texliveSmall: false, tk: false, xz: false, zlib: false, less: false, texinfo: false, graphviz: false, icu: false, "pkg-config": false, bison: false, which: false, jdk: false, blas: false, lapack: false, curl: false, tzdata: false, withRecommendedPackages: true, enableStrictBarrier: true, enableMemoryProfiling: true, enableJava: true, static: true, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 56, 7], ["hash", 57, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 201, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 201, 12], ["tlDeps", 204, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 220, 5], ["description", 221, 5], ["mainProgram", 222, 5], ["license", 223, 5], ["longDescription", 225, 5], ["pkgConfigModules", 244, 5], ["platforms", 245, 5], ["maintainers", 247, 5], ["teams", 248, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["outputs", 60, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 73, 3], ["strictDeps", 111, 3], ["patches", 113, 3], ["postPatch", 119, 3], ["dontDisableStatic", 130, 3], ["preConfigure", 132, 3], ["installTargets", 173, 3], ["postInstall", 181, 3], ["postFixup", 189, 3], ["doCheck", 194, 3], ["preCheck", 195, 3], ["enableParallelBuilding", 197, 3], ["setupHook", 199, 3], ["passthru", 201, 3], ["meta", 219, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,14 +48,14 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   nix.assert_((nix.asBool(!nix.asBool(nix.sel(blas, "isILP64"))) && nix.asBool(!nix.asBool(nix.sel(lapack, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/r/R/package.nix:45:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "R",
       version: "4.6.1",
       src: nix.thunk(() => (() => {
         const pname = nix.thunk(() => nix.attr(finalAttrs, "pname"));
         const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://cran.r-project.org/src/base/R-${nix.app(nix.sel(lib, "versions", "major"), version)}/${pname}-${version}.tar.gz`),
             hash: "sha256-TabmHSwKrF8UoufkMstfzCae/oPaQpMFC6fwPf9OLPQ=",
           })));
@@ -153,9 +149,9 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
       enableParallelBuilding: true,
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         tlDeps: (ps) => [
@@ -174,7 +170,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
         ],
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://www.r-project.org/",
         description: "Free software environment for statistical computing and graphics",
         mainProgram: "R",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["preInstall", 19, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { bash: false, lib: false, buildFishPlugin: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["preInstall", 19, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const buildFishPlugin = nix.arg($, "buildFishPlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "foreign-env",
       version: "0-unstable-2023-08-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oh-my-fish",
           repo: "plugin-foreign-env",
           rev: "7f0cf099ae1e1e4ab38f46350ed6757d54471de7",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       preInstall: nix.thunk(() => nix.str`sed -i -e "s|bash|${nix.app(nix.sel(lib, "getExe"), bash)}|" functions/fenv.main.fish
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Foreign environment interface for Fish shell",
         homepage: "https://github.com/oh-my-fish/plugin-foreign-env",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

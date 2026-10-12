@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["NIX_CFLAGS_COMPILE", 51, 7], ["LDFLAGS", 62, 7]], [["updateScript", 76, 12]], [["homepage", 79, 5], ["description", 80, 5], ["longDescription", 81, 5], ["license", 87, 5], ["maintainers", 91, 5], ["platforms", 92, 5], ["broken", 95, 5]], [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["patches", 24, 3], ["preBuild", 43, 3], ["enableParallelBuilding", 48, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 50, 3], ["env", 51, 3], ["makeFlags", 63, 3], ["installFlags", 66, 3], ["outputs", 70, 3], ["passthru", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, "pkg-config": false, unstableGitUpdater: false, patches: true, pkgsBuildHost: false, enableStatic: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 51, 7], ["LDFLAGS", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 76, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 79, 5], ["description", 80, 5], ["longDescription", 81, 5], ["license", 87, 5], ["maintainers", 91, 5], ["platforms", 92, 5], ["broken", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["patches", 24, 3], ["preBuild", 43, 3], ["enableParallelBuilding", 48, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 50, 3], ["env", 51, 3], ["makeFlags", 63, 3], ["installFlags", 66, 3], ["outputs", 70, 3], ["passthru", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pkgsBuildHost = nix.arg($, "pkgsBuildHost");
   const enableStatic = nix.argOr($, "enableStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "9base",
       version: "6-unstable-2019-09-13",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.suckless.org/9base",
           rev: "63916da7bd6d73d9a405ce83fc4ca34845667cce",
           hash: "sha256-CNK7Ycmcl5vkmtA5VKwKxGZz8AoIG1JH/LTKoYmWSBI=",
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fcommon", "-D_DEFAULT_SOURCE", "-Wno-error=implicit-function-declaration"]))),
         LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableStatic, "-static")),
       })),
@@ -51,11 +47,11 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX_TROFF=${nix.builtins.placeholder("troff")}`)]),
       outputs: nix.thunk(() => ["out", "man", "troff"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://tools.suckless.org/9base/",
         description: "Port of various original Plan 9 tools for Unix, based on plan9port",
         longDescription: "9base is a port of various original Plan 9 tools for Unix, based on plan9port.\nIt also contains the Plan 9 libc, libbio, libregexp, libfmt and libutf.\nThe overall SLOC is about 66kSLOC, so this userland + all libs is much smaller than, e.g. bash.\n9base can be used to run werc instead of the full blown plan9port.\n",

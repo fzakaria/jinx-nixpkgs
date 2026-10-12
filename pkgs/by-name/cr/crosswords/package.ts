@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["updateScript", 58, 12]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 70, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 41, 3], ["mesonFlags", 48, 3], ["postInstall", 52, 3], ["passthru", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "blueprint-compiler": false, "desktop-file-utils": false, fetchFromGitLab: false, isocodes: false, "json-glib": false, libadwaita: false, libipuz: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, "shared-mime-info": false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 58, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 41, 3], ["mesonFlags", 48, 3], ["postInstall", 52, 3], ["passthru", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "crosswords",
       version: "0.3.18.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "jrb",
           repo: "crosswords",
@@ -50,11 +47,11 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "development", false))]),
       postInstall: "substituteInPlace $out/share/thumbnailers/crosswords.thumbnailer \\\n  --replace-fail \"TryExec=crosswords-thumbnailer\" \"TryExec=$out/bin/crosswords-thumbnailer\" \\\n  --replace-fail \"Exec=crosswords-thumbnailer\" \"Exec=$out/bin/crosswords-thumbnailer\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Crossword player and editor for GNOME",
         homepage: "https://gitlab.gnome.org/jrb/crosswords",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/jrb/crosswords/-/blob/${nix.sel(finalAttrs, "version")}/NEWS.md?ref_type=tags`),

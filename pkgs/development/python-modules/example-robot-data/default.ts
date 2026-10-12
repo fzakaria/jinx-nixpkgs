@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["cmakeFlags", 18, 5], ["nativeBuildInputs", 23, 5], ["propagatedBuildInputs", 27, 5], ["nativeCheckInputs", 32, 5], ["preCheck", 39, 5], ["pythonImportsCheck", 43, 5]]]);
 const formals$1 = { args: { lib: false, toPythonModule: false, pythonImportsCheckHook: false, "example-robot-data": false, python: false, pinocchio: false, buildStandalone: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["cmakeFlags", 18, 5], ["nativeBuildInputs", 23, 5], ["propagatedBuildInputs", 27, 5], ["nativeCheckInputs", 32, 5], ["preCheck", 39, 5], ["pythonImportsCheck", 43, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pinocchio = nix.arg($, "pinocchio");
   const buildStandalone = nix.argOr($, "buildStandalone", () => true);
   return nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(example_robot_data, "overrideAttrs"), (super$) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: nix.thunk(() => nix.str`py-${nix.sel(super$, "pname")}`),
         cmakeFlags: nix.thunk(() => nix.concat(nix.sel(super$, "cmakeFlags"), [
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_PYTHON_INTERFACE", true)),

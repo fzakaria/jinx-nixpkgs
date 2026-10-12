@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["MPLBACKEND", 54, 5]], [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 23, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["env", 52, 3], ["disabledTests", 57, 3], ["nativeCheckInputs", 62, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, niapy: false, nltk: false, numpy: false, pandas: false, plotly: false, "scikit-learn": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["MPLBACKEND", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["env", 52, 3], ["disabledTests", 57, 3], ["nativeCheckInputs", 62, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.13.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "firefly-cpp",
           repo: "NiaARM",
           tag: version,
@@ -36,12 +33,12 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["numpy", "plotly", "scikit-learn"]);
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [niapy, nltk, numpy, pandas, plotly, scikit_learn]);
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, MPLBACKEND: "Agg" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[1], MPLBACKEND: "Agg" }))));
       const disabledTests = nix.thunk(() => ["test_text_mining"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["niaarm"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Minimalistic framework for Numerical Association Rule Mining",
         mainProgram: "niaarm",
         homepage: "https://github.com/firefly-cpp/NiaARM",
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

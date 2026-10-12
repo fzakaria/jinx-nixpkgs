@@ -2,15 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["url", 9, 5], ["sha256", 10, 5]], [["url", 18, 5], ["relative", 19, 5], ["sha256", 20, 5]], [["url", 28, 5], ["stripLen", 29, 5], ["hunks", 30, 5], ["sha256", 38, 5]], [["url", 46, 5], ["relative", 47, 5], ["stripLen", 48, 5], ["extraPrefix", 49, 5], ["excludes", 50, 5], ["hunks", 52, 5], ["revert", 53, 5], ["sha256", 54, 5]], [["name", 58, 5], ["url", 59, 5], ["decode", 60, 5], ["sha256", 61, 5]], [["url", 69, 5], ["sha256", 70, 5]], [["url", 78, 5], ["sha256", 79, 5]], [["simple", 8, 3], ["relative", 17, 3], ["hunks", 27, 3], ["full", 45, 3], ["decode", 57, 3], ["fileWithSpace", 68, 3], ["fileWithApostrophe", 77, 3]]]);
 const formals$1 = { args: { testers: false, fetchpatch: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tests.nix", [["url", 9, 5], ["sha256", 10, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["url", 18, 5], ["relative", 19, 5], ["sha256", 20, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["url", 28, 5], ["stripLen", 29, 5], ["hunks", 30, 5], ["sha256", 38, 5]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["url", 46, 5], ["relative", 47, 5], ["stripLen", 48, 5], ["extraPrefix", 49, 5], ["excludes", 50, 5], ["hunks", 52, 5], ["revert", 53, 5], ["sha256", 54, 5]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["name", 58, 5], ["url", 59, 5], ["decode", 60, 5], ["sha256", 61, 5]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["url", 69, 5], ["sha256", 70, 5]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["url", 78, 5], ["sha256", 79, 5]]);
-const pos$8 = nix.positions(here + "/tests.nix", [["simple", 8, 3], ["relative", 17, 3], ["hunks", 27, 3], ["full", 45, 3], ["decode", 57, 3], ["fileWithSpace", 68, 3], ["fileWithApostrophe", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,27 +11,27 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const isFetchpatch2 = nix.thunk(() => nix.eq(nix.sel(fetchpatch, "version"), 2n));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     simple: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchpatch, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "https://github.com/facebook/zstd/commit/e1f85dbca3a0ed5ef06c8396912a0914db8dea6a.patch?full_index=1",
         sha256: nix.thunk(() => (nix.asBool(isFetchpatch2) ? "sha256-2kFh8FC96njAKH69uJp1vZSye47Suf76RfBodqosLU0=" : "sha256-PuYAqnJWAE+L9bsroOnnBGJhERW8LHrGSLtIEkKU9vg=")),
       })))),
     relative: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchpatch, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "https://github.com/boostorg/math/commit/7d482f6ebc356e6ec455ccb5f51a23971bf6ce5b.patch?full_index=1",
         relative: "include",
         sha256: nix.thunk(() => (nix.asBool(isFetchpatch2) ? "sha256-NS1CH+V5I29Yc0PHXdVxAn5tAHTvnGphRjhv4hZGYIo=" : "sha256-KlmIbixcds6GyKYt1fx5BxDIrU7msrgDdYo9Va/KJR4=")),
       })))),
     hunks: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchpatch, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: "https://github.com/openssh/openssh-portable/commit/35d5917652106aede47621bb3f64044604164043.patch?full_index=1",
         stripLen: 1n,
         hunks: nix.thunk(() => [2n, 3n, 4n, 5n, 6n, 7n]),
         sha256: nix.thunk(() => (nix.asBool(isFetchpatch2) ? "sha256-2eiufShDHVpiK9DaGUzfu1MlGrgE9OJAhmQcEcAViQw=" : "sha256-MV7uGgA1ESMR7W6H5FjAIxKcpySdQjWB+L2zaHjd96M=")),
       })))),
     full: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchpatch, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         url: "https://github.com/boostorg/math/commit/7d482f6ebc356e6ec455ccb5f51a23971bf6ce5b.patch?full_index=1",
         relative: "test",
         stripLen: 1n,
@@ -49,19 +42,19 @@ export default nix.lambda((args) => (() => {
         sha256: "sha256-+UKmEbr2rIAweCav/hR/7d4ZrYV84ht/domTrHtm8sM=",
       })))),
     decode: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchpatch, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "gcc.patch",
         url: "https://chromium.googlesource.com/aosp/platform/external/libchrome/+/f37ae3b1a873d74182a2ac31d96742ead9c1f523^!?format=TEXT",
         decode: "base64 -d",
         sha256: nix.thunk(() => (nix.asBool(isFetchpatch2) ? "sha256-oMvPlmzE51ArI+EvFxONXkqmNee39106/O1ikG0Bdso=" : "sha256-SJHk8XrutqAyoIdORlhCpBCN626P+uzed7mjKz5eQYY=")),
       })))),
     fileWithSpace: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchpatch, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         url: "https://github.com/jfly/annoying-filenames/commit/1e86a219f5fc9c4137b409bc9c38036f3922724b.patch?full_index=1",
         sha256: nix.thunk(() => (nix.asBool(isFetchpatch2) ? "sha256-HIS/I7tLl/XYcyLuyjrIkPmLPxJPAuAguMUmhL9Ei8g=" : "sha256-aptUvVojqIIIVNuHqkl+C+dZBGFfs+1MUd0FNV+4j4E=")),
       })))),
     fileWithApostrophe: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchpatch, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         url: "https://github.com/jfly/annoying-filenames/commit/8b6d8f8d7094ce646523b3369cfdf5030289c66c.patch",
         sha256: nix.thunk(() => (nix.asBool(isFetchpatch2) ? "sha256-CrQFmVvLEvWpo2ucVrWyLb5qk2GVOxyUbFN3hp9sV68=" : "sha256-CrQFmVvLEvWpo2ucVrWyLb5qk2GVOxyUbFN3hp9sV68=")),
       })))),

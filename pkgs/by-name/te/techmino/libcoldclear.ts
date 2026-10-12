@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcoldclear.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["webutil-0.1.0", 36, 7]], [["lockFile", 34, 5], ["outputHashes", 35, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 25, 3], ["cargoLock", 33, 3], ["postInstall", 40, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, ccloader: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcoldclear.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/libcoldclear.nix", [["webutil-0.1.0", 36, 7]]);
-const pos$3 = nix.positions(here + "/libcoldclear.nix", [["lockFile", 34, 5], ["outputHashes", 35, 5]]);
-const pos$4 = nix.positions(here + "/libcoldclear.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$5 = nix.positions(here + "/libcoldclear.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 25, 3], ["cargoLock", 33, 3], ["postInstall", 40, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ccloader = nix.arg($, "ccloader");
   const pcf = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "MinusKelvin",
       repo: "pcf",
       rev: "64cd95557f3cf56e11e4c91a963fce9700d85325",
       hash: "sha256-2/Y5thDN5fwthk+I/D7pORe7yQ1H0UpNjVvAeSYpD5Q=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libcoldclear",
       version: "0.1.0",
       src: nix.thunk(() => nix.str`${nix.sel(ccloader, "src")}/cold-clear`),
@@ -34,16 +30,16 @@ cd c-api
 ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       cargoLock: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         lockFile: nix.path(here, "./Cargo.lock"),
         outputHashes: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "webutil-0.1.0": "sha256-Zg98VmCUd/ZTlRTfTfkPJh4xX0QrepGxICbszebQw0I=",
         })),
       })),
       postInstall: "mkdir -p $out/include\ncp coldclear.h $out/include\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tetris AI",
         homepage: "https://github.com/26F-Studio/cold-clear",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

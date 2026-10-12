@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]], [["updateScript", 68, 5]], [["mainProgram", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["teams", 76, 5], ["platforms", 77, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 43, 3], ["postPatch", 50, 3], ["postInstall", 62, 3], ["passthru", 67, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "appstream-glib": false, "blueprint-compiler": false, "desktop-file-utils": false, "gobject-introspection": false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, gjs: false, gtk4: false, libadwaita: false, "libportal-gtk4": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["teams", 76, 5], ["platforms", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 43, 3], ["postPatch", 50, 3], ["postInstall", 62, 3], ["passthru", 67, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libportal_gtk4 = nix.arg($, "libportal-gtk4");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "junction",
       version: "1.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sonnyp",
           repo: "junction",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,11 +58,11 @@ substituteInPlace troll/gjspack/bin/gjspack --replace "/usr/bin/env -S gjs" "${g
 `),
       postInstall: "# autoPatchShebangs does not like \"/usr/bin/env -S <environment-setting> gjs -m\"\nsed -i \"1s|.*|#!/usr/bin/gjs -m|\" $out/bin/re.sonny.Junction\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "re.sonny.Junction",
         description: "Choose the application to open files and links",
         homepage: "https://apps.gnome.org/Junction/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["pythonPath", 26, 5]], [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["teams", 33, 5]], [["pname", 9, 3], ["namespace", 10, 3], ["version", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 20, 3], ["passthru", 25, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildKodiAddon: false, fetchFromGitHub: false, six: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pythonPath", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["teams", 33, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["namespace", 10, 3], ["version", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 20, 3], ["passthru", 25, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,23 +17,23 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.service.sponsorblock";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "siku2",
           repo: namespace,
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-9+0gIY12C+bZNsCRzla1IFmtVZiiGnS4TL3srkOBWsQ=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [six, requests]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, pythonPath: "resources/lib" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], pythonPath: "resources/lib" }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/siku2/script.service.sponsorblock",
         description: "Port of SponsorBlock for Invidious and YouTube Plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         namespace,
         version,

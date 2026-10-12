@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["homepage", 27, 5], ["description", 28, 5], ["maintainers", 29, 5], ["license", 30, 5], ["platforms", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontUnpack", 16, 3], ["installPhase", 18, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["maintainers", 29, 5], ["license", 30, 5], ["platforms", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontUnpack", 16, 3], ["installPhase", 18, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tai-ahom",
       version: "0-unstable-2015-07-06",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/enabling-languages/tai-languages/raw/b57a3ea4589af69bb8e87c6c4bb7cd367b52f0b7/ahom/.fonts/ttf/.original/AhomUnicode_FromMartin.ttf",
           hash: "sha256-U1vcVf/VgXhvK1f2Iw2JKkd2EzJgz7KbHAwnUanX8n4=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\ninstall -Dm644 $src $out/share/fonts/truetype/AhomUnicode.ttf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/enabling-languages/tai-languages",
         description: "Unicode-compliant Tai Ahom font",
         maintainers: nix.thunk(() => (() => {

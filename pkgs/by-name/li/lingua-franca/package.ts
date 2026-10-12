@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["_JAVA_HOME", 19, 7]], [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 39, 5], ["sourceProvenance", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["env", 19, 3], ["postPatch", 21, 3], ["installPhase", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, jdk17_headless: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["_JAVA_HOME", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 39, 5], ["sourceProvenance", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["env", 19, 3], ["postPatch", 21, 3], ["installPhase", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,23 +12,23 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const jdk17_headless = nix.arg($, "jdk17_headless");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lfc",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/lf-lang/lingua-franca/releases/download/v${nix.sel(finalAttrs, "version")}/lf-cli-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-LrAm77iPUlqVfRdYy2bZ4mim7DHIr5JxPdbrgxokGvc=",
         })))),
       buildInputs: nix.thunk(() => [jdk17_headless]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, _JAVA_HOME: nix.thunk(() => nix.str`${jdk17_headless}/`) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], _JAVA_HOME: nix.thunk(() => nix.str`${jdk17_headless}/`) })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace bin/lfc \\
   --replace 'base=\`dirname $(dirname \${abs_path})\`' "base='$out'" \\
   --replace "run_lfc_with_args" "${jdk17_headless}/bin/java -jar $out/lib/jars/org.lflang.lfc-${nix.sel(finalAttrs, "version")}-all.jar"
 `),
       installPhase: "cp -r ./ $out/\nchmod +x $out/bin/lfc\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Polyglot coordination language",
         longDescription: "Lingua Franca (LF) is a polyglot coordination language for concurrent\nand possibly time-sensitive applications ranging from low-level\nembedded code to distributed cloud and edge applications.\n",
         homepage: "https://github.com/lf-lang/lingua-franca",

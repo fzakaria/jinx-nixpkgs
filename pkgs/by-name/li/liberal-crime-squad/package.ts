@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["broken", 35, 5], ["description", 36, 5], ["longDescription", 37, 5], ["homepage", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5], ["license", 43, 5], ["platforms", 44, 5]], [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["enableParallelBuilding", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, autoreconfHook: false, libiconv: false, ncurses: false, SDL2: false, SDL2_mixer: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 35, 5], ["description", 36, 5], ["longDescription", 37, 5], ["homepage", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5], ["license", 43, 5], ["platforms", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["enableParallelBuilding", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "2016-07-06",
       pname: "liberal-crime-squad",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kamal-Sadek",
           repo: "Liberal-Crime-Squad",
           rev: "2ace84ebe4b65b9d4ef67430d5419d57d340f055",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libiconv, ncurses, SDL2, SDL2_mixer]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Humorous politically themed ncurses game",
         longDescription: "Welcome to Liberal Crime Squad! The Conservatives have taken the Executive, Legislative, and Judicial branches of government. Over time, the Liberal laws of this nation will erode and turn the country into a BACKWOODS YET CORPORATE NIGHTMARE. To prevent this from happening, the Liberal Crime Squad was established. The mood of the country is shifting, and we need to turn things around. Go out on the streets and indoctrinate Conservative automatons. That is, let them see their True Liberal Nature. Then arm them and send them forth to Stop Evil.\n",

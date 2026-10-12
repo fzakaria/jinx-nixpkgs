@@ -2,90 +2,78 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/shards.nix", [["url", 3, 5], ["rev", 4, 5], ["sha256", 5, 5]]);
-const pos$2 = nix.positions(here + "/shards.nix", [["url", 8, 5], ["rev", 9, 5], ["sha256", 10, 5]]);
-const pos$3 = nix.positions(here + "/shards.nix", [["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$4 = nix.positions(here + "/shards.nix", [["url", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$5 = nix.positions(here + "/shards.nix", [["url", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$6 = nix.positions(here + "/shards.nix", [["url", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$7 = nix.positions(here + "/shards.nix", [["url", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]]);
-const pos$8 = nix.positions(here + "/shards.nix", [["url", 38, 5], ["rev", 39, 5], ["sha256", 40, 5]]);
-const pos$9 = nix.positions(here + "/shards.nix", [["url", 43, 5], ["rev", 44, 5], ["sha256", 45, 5]]);
-const pos$10 = nix.positions(here + "/shards.nix", [["url", 48, 5], ["rev", 49, 5], ["sha256", 50, 5]]);
-const pos$11 = nix.positions(here + "/shards.nix", [["url", 53, 5], ["rev", 54, 5], ["sha256", 55, 5]]);
-const pos$12 = nix.positions(here + "/shards.nix", [["url", 58, 5], ["rev", 59, 5], ["sha256", 60, 5]]);
-const pos$13 = nix.positions(here + "/shards.nix", [["ameba", 2, 3], ["athena-negotiation", 7, 3], ["backtracer", 12, 3], ["db", 17, 3], ["exception_page", 22, 3], ["http_proxy", 27, 3], ["kemal", 32, 3], ["pg", 37, 3], ["protodec", 42, 3], ["radix", 47, 3], ["spectator", 52, 3], ["sqlite3", 57, 3]]);
+const $pos = nix.positions(here + "/shards.nix", [[["url", 3, 5], ["rev", 4, 5], ["sha256", 5, 5]], [["url", 8, 5], ["rev", 9, 5], ["sha256", 10, 5]], [["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["url", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["url", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["url", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["url", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]], [["url", 38, 5], ["rev", 39, 5], ["sha256", 40, 5]], [["url", 43, 5], ["rev", 44, 5], ["sha256", 45, 5]], [["url", 48, 5], ["rev", 49, 5], ["sha256", 50, 5]], [["url", 53, 5], ["rev", 54, 5], ["sha256", 55, 5]], [["url", 58, 5], ["rev", 59, 5], ["sha256", 60, 5]], [["ameba", 2, 3], ["athena-negotiation", 7, 3], ["backtracer", 12, 3], ["db", 17, 3], ["exception_page", 22, 3], ["http_proxy", 27, 3], ["kemal", 32, 3], ["pg", 37, 3], ["protodec", 42, 3], ["radix", 47, 3], ["spectator", 52, 3], ["sqlite3", 57, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$13,
+  [nix.POS]: $pos[12],
   ameba: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     url: "https://github.com/crystal-ameba/ameba.git",
     rev: "v1.6.1",
     sha256: "1qlgqpgycfxvvrfzih7b9ayb6fvkffz5aw0msbj70z2q7wvsq29p",
   })),
   "athena-negotiation": nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     url: "https://github.com/athena-framework/negotiation.git",
     rev: "v0.1.1",
     sha256: "1vkk59lqrxb0l8kyzs114i3c18zb2bdiah2xhazkk8q7x6fz4yzk",
   })),
   backtracer: nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     url: "https://github.com/sija/backtracer.cr.git",
     rev: "v1.2.2",
     sha256: "1rknyylsi14m7i77x7c3138wdw27i4f6sd78m3srw851p47bwr20",
   })),
   db: nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     url: "https://github.com/crystal-lang/crystal-db.git",
     rev: "v0.13.1",
     sha256: "02b79bdv5h460ay0vkpwi5q69b1qrm9z29z02p09xb03hijxskpd",
   })),
   exception_page: nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     url: "https://github.com/crystal-loot/exception_page.git",
     rev: "v0.4.1",
     sha256: "00vl6vgxhpwbzadlamjpq5zm8c4y0plj9kga63301isxc75vn4x1",
   })),
   http_proxy: nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     url: "https://github.com/mamantoha/http_proxy.git",
     rev: "v0.10.3",
     sha256: "1hgghjy611m9bbmq8drvzs30mymkq2s4d18lp19543qls58h80vs",
   })),
   kemal: nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     url: "https://github.com/kemalcr/kemal.git",
     rev: "v1.6.0",
     sha256: "1z64zaizzvb643rxxr70r23fzjrry2mvkwydngjyblcyvkrx074w",
   })),
   pg: nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     url: "https://github.com/will/crystal-pg.git",
     rev: "v0.28.0",
     sha256: "0g1kdpnz7sr7hpama0y3s70v5xjhi7jm2ypb1w503cfvr30qffpm",
   })),
   protodec: nix.thunk(() => ({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     url: "https://github.com/iv-org/protodec.git",
     rev: "v0.1.5",
     sha256: "09cm36skv2mxqrlczp0j1g7cf8wsfdqr8q39nxyj3ggc3yadp8bc",
   })),
   radix: nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     url: "https://github.com/luislavena/radix.git",
     rev: "v0.4.1",
     sha256: "1l08cydkdidq9yyil1wl240hvk41iycv04jrg6nx5mkvzw4z1bzg",
   })),
   spectator: nix.thunk(() => ({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     url: "https://github.com/icy-arctic-fox/spectator.git",
     rev: "v0.10.6",
     sha256: "0w6mv1q44is2m19pyspkyiwm84h55nchsm4pp82gdbb0j9ylhckx",
   })),
   sqlite3: nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     url: "https://github.com/crystal-lang/crystal-sqlite3.git",
     rev: "v0.21.0",
     sha256: "1mhg59l6qgmf14zjrais0jfn1h5jj9j32fy7fb0gkp9zhpa7x6vs",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 35, 12]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["sourceProvenance", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5], ["mainProgram", 45, 5]], [["pname", 12, 3], ["version", 13, 3], ["strictDeps", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["installPhase", 20, 3], ["nativeInstallCheckInputs", 29, 3], ["doInstallCheck", 30, 3], ["dontFixup", 33, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 35, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["sourceProvenance", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5], ["mainProgram", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["strictDeps", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["installPhase", 20, 3], ["nativeInstallCheckInputs", 29, 3], ["doInstallCheck", 30, 3], ["dontFixup", 33, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const manifest = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./manifest.json")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "graff",
       version: nix.thunk(() => nix.sel(manifest, "version")),
       strictDeps: true,
@@ -25,9 +23,9 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       dontFixup: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast agentic coding harness in Zig",
         homepage: "https://codegraff.com",
         changelog: nix.thunk(() => nix.str`https://github.com/justrach/codegraff/releases/tag/v${nix.sel(manifest, "version")}`),

@@ -2,24 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/grow-partition.nix", [[["enable", 16, 33]], [["directBoot", 16, 22], ["mountHostNixStore", 17, 22], ["useEFIBoot", 18, 22], ["fileSystems", 22, 22]], [["enable", 24, 24], ["efiSupport", 25, 24], ["efiInstallAsRemovable", 26, 24], ["device", 27, 24]], [["grub", 24, 19]], [["loader", 24, 12], ["growPartition", 29, 12]], [["device", 32, 13], ["fsType", 33, 13]], [["/", 32, 9]], [["enable", 37, 21]], [["config", 40, 17], ["lib", 40, 24], ["pkgs", 40, 28], ["label", 41, 9], ["partitionTableType", 42, 17], ["format", 43, 9], ["bootSize", 44, 9], ["additionalSpace", 45, 9], ["copyChannel", 46, 9]], [["diskImage", 39, 20]], [["switch", 37, 14], ["build", 39, 14]], [["virtualisation", 16, 7], ["boot", 24, 7], ["fileSystems", 31, 7], ["system", 37, 7]], [["maintainers", 53, 8]], [["efi", 56, 5], ["legacy", 57, 5], ["legacyGPT", 58, 5], ["hybrid", 59, 5]], [["name", 51, 3], ["meta", 53, 3], ["nodes", 55, 3], ["testScript", 62, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/grow-partition.nix", [["enable", 16, 33]]);
-const pos$2 = nix.positions(here + "/grow-partition.nix", [["directBoot", 16, 22], ["mountHostNixStore", 17, 22], ["useEFIBoot", 18, 22], ["fileSystems", 22, 22]]);
-const pos$3 = nix.positions(here + "/grow-partition.nix", [["enable", 24, 24], ["efiSupport", 25, 24], ["efiInstallAsRemovable", 26, 24], ["device", 27, 24]]);
-const pos$4 = nix.positions(here + "/grow-partition.nix", [["grub", 24, 19]]);
-const pos$5 = nix.positions(here + "/grow-partition.nix", [["loader", 24, 12], ["growPartition", 29, 12]]);
-const pos$6 = nix.positions(here + "/grow-partition.nix", [["device", 32, 13], ["fsType", 33, 13]]);
-const pos$7 = nix.positions(here + "/grow-partition.nix", [["/", 32, 9]]);
-const pos$8 = nix.positions(here + "/grow-partition.nix", [["enable", 37, 21]]);
-const pos$9 = nix.positions(here + "/grow-partition.nix", [["config", 40, 17], ["lib", 40, 24], ["pkgs", 40, 28], ["label", 41, 9], ["partitionTableType", 42, 17], ["format", 43, 9], ["bootSize", 44, 9], ["additionalSpace", 45, 9], ["copyChannel", 46, 9]]);
-const pos$10 = nix.positions(here + "/grow-partition.nix", [["diskImage", 39, 20]]);
-const pos$11 = nix.positions(here + "/grow-partition.nix", [["switch", 37, 14], ["build", 39, 14]]);
-const pos$12 = nix.positions(here + "/grow-partition.nix", [["virtualisation", 16, 7], ["boot", 24, 7], ["fileSystems", 31, 7], ["system", 37, 7]]);
-const pos$13 = nix.positions(here + "/grow-partition.nix", [["maintainers", 53, 8]]);
-const pos$14 = nix.positions(here + "/grow-partition.nix", [["efi", 56, 5], ["legacy", 57, 5], ["legacyGPT", 58, 5], ["hybrid", 59, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/grow-partition.nix", [["name", 51, 3], ["meta", 53, 3], ["nodes", 55, 3], ["testScript", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,20 +18,20 @@ export default nix.lambda((args) => (() => {
     const lib_1 = nix.arg($_1, "lib");
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        directBoot: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
+        [nix.POS]: $pos[1],
+        directBoot: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: false })),
         mountHostNixStore: false,
         useEFIBoot: nix.thunk(() => nix.eq(partitionTableType, "efi")),
         fileSystems: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({})))),
       })),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           grub: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             efiSupport: nix.thunk(() => nix.eq(partitionTableType, "efi")),
             efiInstallAsRemovable: nix.thunk(() => nix.eq(partitionTableType, "efi")),
@@ -55,16 +41,16 @@ export default nix.lambda((args) => (() => {
         growPartition: true,
       })),
       fileSystems: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        "/": nix.thunk(() => ({ [nix.POS]: pos$6, device: rootFsDevice, fsType: "ext4" })),
+        [nix.POS]: $pos[6],
+        "/": nix.thunk(() => ({ [nix.POS]: $pos[5], device: rootFsDevice, fsType: "ext4" })),
       })),
       system: nix.thunk(() => ({
-        [nix.POS]: pos$11,
-        switch: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
+        [nix.POS]: $pos[10],
+        switch: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true })),
         build: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           diskImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/make-disk-image.nix")), nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               config: config,
               lib: lib_1,
               pkgs: pkgs,
@@ -80,17 +66,17 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "grow-partition",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "arianvp"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       efi: nix.thunk(() => nix.app(externalModule, "efi")),
       legacy: nix.thunk(() => nix.app(externalModule, "legacy")),
       legacyGPT: nix.thunk(() => nix.app(externalModule, "legacy+gpt")),

@@ -2,16 +2,15 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["platforms", 37, 8]], [["path", 7, 3], ["extraPaths", 8, 3], ["patches", 12, 3], ["libcMinimal", 16, 3], ["NIX_CFLAGS_COMPILE", 18, 3], ["makeFlags", 20, 3], ["postPatch", 23, 3], ["postInstall", 28, 3], ["outputs", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["platforms", 37, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["path", 7, 3], ["extraPaths", 8, 3], ["patches", 12, 3], ["libcMinimal", 16, 3], ["NIX_CFLAGS_COMPILE", 18, 3], ["makeFlags", 20, 3], ["postPatch", 23, 3], ["postInstall", 28, 3], ["outputs", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "libexec/ld.so",
       extraPaths: nix.thunk(() => ["lib/libc/string", "lib/csu/os-note-elf.h"]),
       patches: nix.thunk(() => [nix.path(here, "./ldso-fix-makefile.patch")]),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mv $out/bin $out/libexec\n",
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "openbsd")),
       })),
     })));

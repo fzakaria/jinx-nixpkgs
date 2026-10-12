@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["homepage", 49, 5], ["description", 50, 5], ["longDescription", 51, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 8, 3], ["version", 9, 3], ["outputs", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["preConfigure", 31, 3], ["buildPhase", 36, 3], ["checkPhase", 40, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPerlPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 49, 5], ["description", 50, 5], ["longDescription", 51, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["outputs", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["preConfigure", 31, 3], ["buildPhase", 36, 3], ["checkPhase", 40, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.1";
       const outputs = nix.thunk(() => ["out"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bioperl",
           repo: "bioperl-ext",
           rev: nix.thunk(() => nix.str`bioperl-ext-release-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version)}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "make\n";
       const checkPhase = "runHook preCheck\n\nmake test\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/bioperl/bioperl-ext",
         description: "Write Perl Subroutines in Other Programming Languages",
         longDescription: "Part of BioPerl Extensions (BioPerl-Ext) distribution, a collection of Bioperl C-compiled extensions.\n",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         outputs,

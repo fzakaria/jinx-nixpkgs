@@ -2,23 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cockroachdb.nix", [[["memorySize", 65, 22]], [["kernelModules", 71, 12]], [["enable", 75, 23], ["servers", 76, 23], ["extraConfig", 77, 23]], [["address", 95, 35]], [["enable", 91, 28], ["insecure", 92, 28], ["openPorts", 93, 28], ["locality", 94, 28], ["listen", 95, 28], ["join", 96, 28]], [["chrony", 75, 16], ["cockroachdb", 91, 16]], [["ConditionPathExists", 98, 43]], [["unitConfig", 98, 32]], [["preStart", 102, 36]], [["chronyd", 98, 24], ["cockroachdb", 102, 24]], [["services", 98, 15]], [["virtualisation", 65, 7], ["boot", 71, 7], ["services", 75, 7], ["systemd", 98, 7]], [["maintainers", 109, 8]], [["node1", 112, 5], ["node2", 113, 5], ["node3", 114, 5]], [["name", 108, 3], ["meta", 109, 3], ["nodes", 111, 3], ["testScript", 120, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { nodes: false, pkgs: false, lib: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cockroachdb.nix", [["memorySize", 65, 22]]);
-const pos$2 = nix.positions(here + "/cockroachdb.nix", [["kernelModules", 71, 12]]);
-const pos$3 = nix.positions(here + "/cockroachdb.nix", [["enable", 75, 23], ["servers", 76, 23], ["extraConfig", 77, 23]]);
-const pos$4 = nix.positions(here + "/cockroachdb.nix", [["address", 95, 35]]);
-const pos$5 = nix.positions(here + "/cockroachdb.nix", [["enable", 91, 28], ["insecure", 92, 28], ["openPorts", 93, 28], ["locality", 94, 28], ["listen", 95, 28], ["join", 96, 28]]);
-const pos$6 = nix.positions(here + "/cockroachdb.nix", [["chrony", 75, 16], ["cockroachdb", 91, 16]]);
-const pos$7 = nix.positions(here + "/cockroachdb.nix", [["ConditionPathExists", 98, 43]]);
-const pos$8 = nix.positions(here + "/cockroachdb.nix", [["unitConfig", 98, 32]]);
-const pos$9 = nix.positions(here + "/cockroachdb.nix", [["preStart", 102, 36]]);
-const pos$10 = nix.positions(here + "/cockroachdb.nix", [["chronyd", 98, 24], ["cockroachdb", 102, 24]]);
-const pos$11 = nix.positions(here + "/cockroachdb.nix", [["services", 98, 15]]);
-const pos$12 = nix.positions(here + "/cockroachdb.nix", [["virtualisation", 65, 7], ["boot", 71, 7], ["services", 75, 7], ["systemd", 98, 7]]);
-const pos$13 = nix.positions(here + "/cockroachdb.nix", [["maintainers", 109, 8]]);
-const pos$14 = nix.positions(here + "/cockroachdb.nix", [["node1", 112, 5], ["node2", 113, 5], ["node3", 114, 5]]);
-const pos$15 = nix.positions(here + "/cockroachdb.nix", [["name", 108, 3], ["meta", 109, 3], ["nodes", 111, 3], ["testScript", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,37 +16,37 @@ export default nix.lambda((args) => (() => {
     const lib_1 = nix.arg($_1, "lib");
     const config = nix.arg($_1, "config");
     return {
-      [nix.POS]: pos$12,
-      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: 2048n })),
-      boot: nix.thunk(() => ({ [nix.POS]: pos$2, kernelModules: nix.thunk(() => ["ptp_kvm"]) })),
+      [nix.POS]: $pos[11],
+      virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], memorySize: 2048n })),
+      boot: nix.thunk(() => ({ [nix.POS]: $pos[1], kernelModules: nix.thunk(() => ["ptp_kvm"]) })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         chrony: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           enable: true,
           servers: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), [])),
           extraConfig: "refclock PHC /dev/ptp0 poll 2 prefer require refid KVM\nmakestep 0.1 3\n",
         })),
         cockroachdb: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           enable: true,
           insecure: true,
           openPorts: true,
           locality: locality,
-          listen: nix.thunk(() => ({ [nix.POS]: pos$4, address: myAddr })),
+          listen: nix.thunk(() => ({ [nix.POS]: $pos[3], address: myAddr })),
           join: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(joinNode, null)), joinNode)),
         })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           chronyd: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            unitConfig: nix.thunk(() => ({ [nix.POS]: pos$7, ConditionPathExists: "/dev/ptp0" })),
+            [nix.POS]: $pos[7],
+            unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[6], ConditionPathExists: "/dev/ptp0" })),
           })),
           cockroachdb: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             preStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "chrony")}/bin/chronyc waitsync
 `),
           })),
@@ -69,17 +55,17 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "cockroachdb",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "thoughtpolice"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       node1: nix.thunk(() => nix.app(makeNode, "country=us,region=east,dc=1", "192.168.1.1", null)),
       node2: nix.thunk(() => nix.app(makeNode, "country=us,region=west,dc=2b", "192.168.1.2", "192.168.1.1")),
       node3: nix.thunk(() => nix.app(makeNode, "country=eu,region=west,dc=2", "192.168.1.3", "192.168.1.1")),

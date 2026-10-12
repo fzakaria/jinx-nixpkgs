@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5]], [["description", 26, 5], ["longDescription", 27, 5], ["homepage", 32, 5], ["downloadPage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["dontUnpack", 15, 3], ["installPhase", 17, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["longDescription", 27, 5], ["homepage", 32, 5], ["downloadPage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["dontUnpack", 15, 3], ["installPhase", 17, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "7-segment-font",
       version: "3.0-unstable-2025-06-03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://torinak.com/font/7segment.ttf",
           hash: "sha256-zIjaEGDLR9ad192GH9pIU6/A3ZGAuR0oF3ZB3Ew3Xbs=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\ninstall -Dm444 \"$src\" \"$out/share/fonts/truetype/7segment.ttf\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Font that imitates classic seven-segment LCD and LED displays",
         longDescription: "A font that imitates classic seven-segment LCD and LED displays.\nBeside digits, it contains Latin letters and some symbols constructed from segments,\nwith separate dot and colon as used in calculators and digital clocks.\n",
         homepage: "https://torinak.com/font/7-segment",

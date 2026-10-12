@@ -2,59 +2,46 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/uwsgi.nix", [[["maintainers", 5, 5]], [["isSystemUser", 12, 9], ["group", 13, 9]], [["hello", 11, 19]], [["hello", 15, 20]], [["users", 11, 13], ["groups", 15, 13]], [["type", 27, 11], ["immediate-uid", 28, 11], ["immediate-gid", 29, 11], ["module", 30, 11], ["http", 31, 11], ["cap", 32, 11], ["pythonPackages", 33, 11], ["chdir", 34, 11]], [["type", 52, 11], ["master", 53, 11], ["workers", 54, 11], ["http-socket", 55, 11], ["http-socket-modifier1", 56, 11], ["php-index", 57, 11], ["php-docroot", 58, 11]], [["hello", 26, 26], ["php", 51, 26]], [["type", 24, 18], ["vassals", 26, 18]], [["enable", 18, 9], ["plugins", 19, 9], ["capabilities", 23, 9], ["instance", 24, 9]], [["uwsgi", 17, 16]], [["users", 11, 7], ["services", 17, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 65, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/uwsgi.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/uwsgi.nix", [["isSystemUser", 12, 9], ["group", 13, 9]]);
-const pos$3 = nix.positions(here + "/uwsgi.nix", [["hello", 11, 19]]);
-const pos$4 = nix.positions(here + "/uwsgi.nix", [["hello", 15, 20]]);
-const pos$5 = nix.positions(here + "/uwsgi.nix", [["users", 11, 13], ["groups", 15, 13]]);
-const pos$6 = nix.positions(here + "/uwsgi.nix", [["type", 27, 11], ["immediate-uid", 28, 11], ["immediate-gid", 29, 11], ["module", 30, 11], ["http", 31, 11], ["cap", 32, 11], ["pythonPackages", 33, 11], ["chdir", 34, 11]]);
-const pos$7 = nix.positions(here + "/uwsgi.nix", [["type", 52, 11], ["master", 53, 11], ["workers", 54, 11], ["http-socket", 55, 11], ["http-socket-modifier1", 56, 11], ["php-index", 57, 11], ["php-docroot", 58, 11]]);
-const pos$8 = nix.positions(here + "/uwsgi.nix", [["hello", 26, 26], ["php", 51, 26]]);
-const pos$9 = nix.positions(here + "/uwsgi.nix", [["type", 24, 18], ["vassals", 26, 18]]);
-const pos$10 = nix.positions(here + "/uwsgi.nix", [["enable", 18, 9], ["plugins", 19, 9], ["capabilities", 23, 9], ["instance", 24, 9]]);
-const pos$11 = nix.positions(here + "/uwsgi.nix", [["uwsgi", 17, 16]]);
-const pos$12 = nix.positions(here + "/uwsgi.nix", [["users", 11, 7], ["services", 17, 7]]);
-const pos$13 = nix.positions(here + "/uwsgi.nix", [["machine", 8, 9]]);
-const pos$14 = nix.positions(here + "/uwsgi.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "uwsgi",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              hello: nix.thunk(() => ({ [nix.POS]: pos$2, isSystemUser: true, group: "hello" })),
+              [nix.POS]: $pos[2],
+              hello: nix.thunk(() => ({ [nix.POS]: $pos[1], isSystemUser: true, group: "hello" })),
             })),
-            groups: nix.thunk(() => ({ [nix.POS]: pos$4, hello: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: $pos[3], hello: nix.thunk(() => ({})) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             uwsgi: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               enable: true,
               plugins: nix.thunk(() => ["python3", "php"]),
               capabilities: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),
               instance: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 type: "emperor",
                 vassals: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   hello: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     type: "normal",
                     "immediate-uid": "hello",
                     "immediate-gid": "hello",
@@ -78,7 +65,7 @@ def whoami():
 `))),
                   })),
                   php: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     type: "normal",
                     master: true,
                     workers: 2n,

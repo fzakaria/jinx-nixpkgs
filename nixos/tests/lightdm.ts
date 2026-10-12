@@ -2,56 +2,46 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lightdm.nix", [[["maintainers", 5, 5]], [["enable", 13, 47]], [["lightdm", 13, 39]], [["enable", 15, 44]], [["icewm", 15, 38]], [["enable", 12, 24], ["displayManager", 13, 24], ["windowManager", 15, 24]], [["defaultSession", 14, 31]], [["xserver", 12, 16], ["displayManager", 14, 16]], [["imports", 11, 7], ["services", 12, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["enableOCR", 18, 3], ["testScript", 20, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lightdm.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/lightdm.nix", [["enable", 13, 47]]);
-const pos$3 = nix.positions(here + "/lightdm.nix", [["lightdm", 13, 39]]);
-const pos$4 = nix.positions(here + "/lightdm.nix", [["enable", 15, 44]]);
-const pos$5 = nix.positions(here + "/lightdm.nix", [["icewm", 15, 38]]);
-const pos$6 = nix.positions(here + "/lightdm.nix", [["enable", 12, 24], ["displayManager", 13, 24], ["windowManager", 15, 24]]);
-const pos$7 = nix.positions(here + "/lightdm.nix", [["defaultSession", 14, 31]]);
-const pos$8 = nix.positions(here + "/lightdm.nix", [["xserver", 12, 16], ["displayManager", 14, 16]]);
-const pos$9 = nix.positions(here + "/lightdm.nix", [["imports", 11, 7], ["services", 12, 7]]);
-const pos$10 = nix.positions(here + "/lightdm.nix", [["machine", 8, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/lightdm.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["enableOCR", 18, 3], ["testScript", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "lightdm",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "aszlig"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               displayManager: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                lightdm: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+                [nix.POS]: $pos[2],
+                lightdm: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
               })),
               windowManager: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                icewm: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+                [nix.POS]: $pos[4],
+                icewm: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
               })),
             })),
-            displayManager: nix.thunk(() => ({ [nix.POS]: pos$7, defaultSession: "none+icewm" })),
+            displayManager: nix.thunk(() => ({ [nix.POS]: $pos[6], defaultSession: "none+icewm" })),
           })),
         };
       })(), formals$2),

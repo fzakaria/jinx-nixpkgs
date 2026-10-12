@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 40, 5], ["hash", 41, 5]], [["enableGplPlugins", 110, 9]], [["lgplOnly", 109, 7]], [["odd-unstable", 114, 46]], [["tests", 108, 5], ["updateScript", 114, 5]], [["cpeParts", 127, 17]], [["description", 118, 5], ["homepage", 119, 5], ["longDescription", 120, 5], ["license", 126, 5], ["identifiers", 127, 5], ["platforms", 128, 5], ["maintainers", 129, 5]], [["pname", 31, 3], ["version", 32, 3], ["outputs", 34, 3], ["src", 39, 3], ["separateDebugInfo", 44, 3], ["__structuredAttrs", 46, 3], ["strictDeps", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 60, 3], ["mesonFlags", 77, 3], ["postPatch", 98, 3], ["preFixup", 103, 3], ["passthru", 107, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, python3: false, "gst-plugins-base": false, orc: false, gettext: false, a52dec: false, libcdio: false, libdvdread: false, libmad: false, libmpeg2: false, x264: false, libintl: false, lib: false, enableGplPlugins: true, gstreamer: false, enableDocumentation: true, hotdoc: false, directoryListingUpdater: false, "gst-plugins-ugly": false, "apple-sdk_gstreamer": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["enableGplPlugins", 110, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["lgplOnly", 109, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["odd-unstable", 114, 46]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 108, 5], ["updateScript", 114, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["cpeParts", 127, 17]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 118, 5], ["homepage", 119, 5], ["longDescription", 120, 5], ["license", 126, 5], ["identifiers", 127, 5], ["platforms", 128, 5], ["maintainers", 129, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["outputs", 34, 3], ["src", 39, 3], ["separateDebugInfo", 44, 3], ["__structuredAttrs", 46, 3], ["strictDeps", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 60, 3], ["mesonFlags", 77, 3], ["postPatch", 98, 3], ["preFixup", 103, 3], ["passthru", 107, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const gst_plugins_ugly = nix.arg($, "gst-plugins-ugly");
   const apple_sdk_gstreamer = nix.arg($, "apple-sdk_gstreamer");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "gst-plugins-ugly",
       version: "1.28.7",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-K2gRcN3CK2soPK/u1I9CfDChcFaXSmqe0TfDVOD3cww=",
         })))),
@@ -68,21 +61,21 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs \\\n  scripts/extract-release-date-from-doap-file.py\n",
       preFixup: "moveToOutput \"lib/gstreamer-1.0/pkgconfig\" \"$dev\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          lgplOnly: nix.thunk(() => nix.app(nix.sel(gst_plugins_ugly, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableGplPlugins: false })))),
+          [nix.POS]: $pos[2],
+          lgplOnly: nix.thunk(() => nix.app(nix.sel(gst_plugins_ugly, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], enableGplPlugins: false })))),
         })),
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "odd-unstable": true })))),
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Gstreamer Ugly Plugins",
         homepage: "https://gstreamer.freedesktop.org",
         longDescription: "a set of plug-ins that have good quality and correct functionality,\nbut distributing them might pose problems.  The license on either\nthe plug-ins or the supporting libraries might not be how we'd\nlike. The code might be widely known to present patent problems.\n",
         license: nix.thunk(() => (nix.asBool(enableGplPlugins) ? nix.sel(lib, "licenses", "gpl2Plus") : nix.sel(lib, "licenses", "lgpl2Plus"))),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           cpeParts: nix.thunk(() => nix.app(nix.sel(gstreamer, "passthru", "gstreamerCpeParts"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

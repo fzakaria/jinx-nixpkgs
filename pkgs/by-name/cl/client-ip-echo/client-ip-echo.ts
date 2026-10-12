@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/client-ip-echo.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["isLibrary", 18, 3], ["isExecutable", 19, 3], ["executableHaskellDepends", 20, 3], ["description", 25, 3], ["license", 26, 3], ["mainProgram", 27, 3]]]);
 const formals$1 = { args: { mkDerivation: false, fetchFromGitHub: false, base: false, bytestring: false, network: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/client-ip-echo.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/client-ip-echo.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["isLibrary", 18, 3], ["isExecutable", 19, 3], ["executableHaskellDepends", 20, 3], ["description", 25, 3], ["license", 26, 3], ["mainProgram", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const network = nix.arg($, "network");
   const lib = nix.arg($, "lib");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "client-ip-echo",
       version: "0.1.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jerith666",
           repo: "client-ip-echo",
           rev: "e81db98d04c13966b2ec114e01f82487962055a7",

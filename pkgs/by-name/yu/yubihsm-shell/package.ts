@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["mainProgram", 112, 5], ["description", 113, 5], ["homepage", 114, 5], ["maintainers", 115, 5], ["license", 119, 5], ["platforms", 120, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 53, 3], ["hardeningDisable", 67, 3], ["postFixup", 72, 3], ["doInstallCheck", 80, 3], ["__darwinAllowLocalNetworking", 82, 3], ["nativeInstallCheckInputs", 84, 3], ["installCheckPhase", 89, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, openssl: false, libusb1: false, libedit: false, makeWrapper: false, curl: false, gengetopt: false, patchelf: false, "pkg-config": false, pcsclite: false, help2man: false, libiconv: false, versionCheckHook: false, jq: false, "yubihsm-connector": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 112, 5], ["description", 113, 5], ["homepage", 114, 5], ["maintainers", 115, 5], ["license", 119, 5], ["platforms", 120, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 53, 3], ["hardeningDisable", 67, 3], ["postFixup", 72, 3], ["doInstallCheck", 80, 3], ["__darwinAllowLocalNetworking", 82, 3], ["nativeInstallCheckInputs", 84, 3], ["installCheckPhase", 89, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const yubihsm_connector = nix.arg($, "yubihsm-connector");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "yubihsm-shell",
       version: "2.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Yubico",
           repo: "yubihsm-shell",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, yubihsm_connector]),
       installCheckPhase: "runHook preInstallCheck\n\n# yubihsm-shell should be able to connect to yubihsm-connector over http if postFixup worked\n# note that checkPhase is more extensive and seems to require a YubiHSM plugged in,\n# so we expect a failure here, but it should at least try to connect\nyubihsm-connector -d </dev/null 1>&2 2>connector.log &\nyubihsm_pid=$!\nidx=0\nwhile ! grep takeoff connector.log >/dev/null && [ $idx -lt 10 ]; do\n  idx=$((idx+1))\n  echo \"Waiting for yubihsm-connector startup (try: $idx)\" >&2\n  sleep 1\ndone\n$out/bin/yubihsm-shell -Pv1 </dev/null || true\nkill -INT \"$yubihsm_pid\" && { wait \"$yubihsm_pid\" || true; }\ncat connector.log >&2\ngrep -E 'GET.+/connector/status' connector.log >/dev/null\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "yubihsm-shell",
         description: "Thin wrapper around libyubihsm providing both an interactive and command-line interface to a YubiHSM",
         homepage: "https://github.com/Yubico/yubihsm-shell",

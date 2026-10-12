@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 41, 26], ["version", 41, 32], ["hash", 42, 5]], [["homepage", 87, 5], ["changelog", 88, 5], ["description", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5], ["license", 95, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 45, 3], ["pythonRelaxDeps", 47, 3], ["dependencies", 52, 3], ["doCheck", 82, 3], ["pythonImportsCheck", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, altair: false, anyio: false, blinker: false, buildPythonPackage: false, cachetools: false, click: false, fetchPypi: false, gitpython: false, httptools: false, itsdangerous: false, numpy: false, packaging: false, pandas: false, pillow: false, protobuf: false, pyarrow: false, pydeck: false, "python-multipart": false, requests: false, rich: false, setuptools: false, starlette: false, tenacity: false, toml: false, tornado: false, "typing-extensions": false, uvicorn: false, watchdog: false, websockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 41, 26], ["version", 41, 32], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 87, 5], ["changelog", 88, 5], ["description", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5], ["license", 95, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 45, 3], ["pythonRelaxDeps", 47, 3], ["dependencies", 52, 3], ["doCheck", 82, 3], ["pythonImportsCheck", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const watchdog = nix.arg($, "watchdog");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "streamlit",
       version: "1.62.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-nSVx2m5nmcuvD1lUj1dzkmJgqHppgHzz4vD2j59eTUU=",
@@ -83,7 +81,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["streamlit"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://streamlit.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/streamlit/streamlit/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Fastest way to build custom ML tools",

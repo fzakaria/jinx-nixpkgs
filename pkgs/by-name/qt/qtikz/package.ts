@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 21, 5], ["mainProgram", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["platforms", 25, 5], ["maintainers", 26, 5], ["longDescription", 27, 5]], [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["sha256", 36, 5]], [["url", 42, 7], ["sha256", 43, 7]], [["url", 47, 7], ["sha256", 48, 7]], [["QT_PLUGIN_PATH", 58, 7]], [["version", 17, 3], ["pname", 18, 3], ["meta", 20, 3], ["src", 32, 3], ["patches", 39, 3], ["nativeBuildInputs", 52, 3], ["env", 58, 3], ["buildInputs", 60, 3], ["qmakeFlags", 65, 3], ["qtWrapperArgs", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, libsForQt5: false, poppler: false, gnuplot: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 21, 5], ["mainProgram", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["platforms", 25, 5], ["maintainers", 26, 5], ["longDescription", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["sha256", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 42, 7], ["sha256", 43, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 47, 7], ["sha256", 48, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["QT_PLUGIN_PATH", 58, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 17, 3], ["pname", 18, 3], ["meta", 20, 3], ["src", 32, 3], ["patches", 39, 3], ["nativeBuildInputs", 52, 3], ["env", 58, 3], ["buildInputs", 60, 3], ["qmakeFlags", 65, 3], ["qtWrapperArgs", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12";
       const pname = "qtikz";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Editor for the TikZ language",
         mainProgram: "qtikz",
         homepage: "https://github.com/fhackenberger/ktikz",
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "You will also need a working *tex installation in your PATH, containing at least `preview` and `pgf`.\n",
       }));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "fhackenberger",
           repo: "ktikz",
           rev: version,
@@ -42,12 +37,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/fhackenberger/ktikz/commit/972685a406517bb85eb561f2c8e26f029eacd7db.patch",
             sha256: "13z40rcd4m4n088v7z2ns17lnpn0z3rzp31lsamic3qdcwjwa5k8",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/fhackenberger/ktikz/commit/ebe4dfb72ac8a137b475ef688b9f7ac3e5c7f242.patch",
             sha256: "GIgPh+iUBPftHKIpZR3a0FxmLhMLuPUapF/t+bCuqMs=",
           })))),
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook")),
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         QT_PLUGIN_PATH: nix.thunk(() => nix.str`${nix.sel(libsForQt5, "qtbase")}/${nix.sel(libsForQt5, "qtbase", "qtPluginPrefix")}`),
       }));
       const buildInputs = nix.thunk(() => [
@@ -73,7 +68,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const qtWrapperArgs = nix.thunk(() => [nix.thunk(() => nix.str`--prefix PATH : "${gnuplot}/bin"`)]);
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version,
         pname,
         meta,

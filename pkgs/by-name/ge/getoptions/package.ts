@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["makeFlags", 24, 3], ["doCheck", 26, 3], ["nativeCheckInputs", 28, 3], ["preCheck", 39, 3], ["checkTarget", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, shellspec: false, "busybox-sandbox-shell": false, ksh: false, mksh: false, yash: false, zsh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["makeFlags", 24, 3], ["doCheck", 26, 3], ["nativeCheckInputs", 28, 3], ["preCheck", 39, 3], ["checkTarget", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "getoptions";
       const version = "3.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ko1nksm",
           repo: "getoptions",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = nix.thunk(() => nix.add("sed -i '/shellspec -s posh/d' Makefile\nsed -i '/shellspec -s yash/d' Makefile\n", nix.app(nix.sel(lib, "strings", "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), "sed -i \"/shellspec -s 'busybox ash'/d\" Makefile\n")));
       const checkTarget = "test_in_various_shells";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Elegant option/argument parser for shell scripts (full support for bash and all POSIX shells)",
         homepage: "https://github.com/ko1nksm/getoptions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

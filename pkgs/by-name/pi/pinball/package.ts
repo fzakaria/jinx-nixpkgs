@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["NIX_CFLAGS_COMPILE", 44, 7]], [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["strictDeps", 42, 3], ["env", 44, 3], ["enableParallelBuilding", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, libglvnd: false, libtool: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, libsm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["strictDeps", 42, 3], ["env", 44, 3], ["enableParallelBuilding", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   const libsm = nix.arg($, "libsm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pinball",
       version: "0.3.20230219-unstable-2024-11-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adoptware",
           repo: "pinball",
           rev: "7f6887d8912340c0eee7f96b4c4bb84c8d889246",
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libglvnd, libtool, SDL2, SDL2_image, SDL2_mixer, libsm]),
       strictDeps: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2_image)}/include/SDL2`),
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2_mixer)}/include/SDL2`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/adoptware/pinball",
         description: "Emilia Pinball simulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

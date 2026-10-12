@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["1.2.0-unstable-2026-05-13", 18, 9], ["0-unstable-2019-05-17", 19, 9]], [["1.2.0-unstable-2026-05-13", 24, 9], ["0-unstable-2019-05-17", 25, 9]], [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 22, 5]], [["includedir", 38, 9]], [["name", 34, 7], ["version", 35, 28], ["cflags", 36, 7], ["variables", 37, 7], ["description", 40, 33]], [["includedir", 46, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 30, 3], ["pkgconfigItems", 32, 3], ["env", 44, 3], ["dontBuild", 49, 3], ["installPhase", 51, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, copyPkgconfigItems: false, makePkgconfigItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["1.2.0-unstable-2026-05-13", 18, 9], ["0-unstable-2019-05-17", 19, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["1.2.0-unstable-2026-05-13", 24, 9], ["0-unstable-2019-05-17", 25, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 22, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["includedir", 38, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 34, 7], ["version", 35, 28], ["cflags", 36, 7], ["variables", 37, 7], ["description", 40, 33]]);
-const pos$6 = nix.positions(here + "/package.nix", [["includedir", 46, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 30, 3], ["pkgconfigItems", 32, 3], ["env", 44, 3], ["dontBuild", 49, 3], ["installPhase", 51, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const copyPkgconfigItems = nix.arg($, "copyPkgconfigItems");
   const makePkgconfigItem = nix.arg($, "makePkgconfigItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "symfpu",
       version: "1.2.0-unstable-2026-05-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "martin-cs",
           repo: "symfpu",
           rev: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "1.2.0-unstable-2026-05-13": "40bdec00e99f8ea1b96c3dac0a05eed11c541639",
             "0-unstable-2019-05-17": "8fbe139bf0071cbe0758d2f6690a546c69ff0053",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "1.2.0-unstable-2026-05-13": "sha256-ho0tLWFlPozq5hD+qX6AQiCPxUuRPwnXe9dEfzXwSY0=",
             "0-unstable-2019-05-17": "sha256-ONGfvJMo/HXlbxHmkFs9O5nhs6aDM+XuNSPgY+ykxck=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -43,23 +36,23 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(makePkgconfigItem, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
             return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "symfpu",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             cflags: nix.thunk(() => ["-I${includedir}"]),
-            variables: nix.thunk(() => ({ [nix.POS]: pos$4, includedir: "@includedir@" })),
+            variables: nix.thunk(() => ({ [nix.POS]: $pos[3], includedir: "@includedir@" })),
             description: nix.thunk(() => nix.attr(from, "description")),
           };
           })()))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         includedir: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/include`),
       })),
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/include/symfpu\ncp -r * $out/include/symfpu/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Implementation of SMT-LIB / IEEE-754 operations in terms of bit-vector operations",
         homepage: "https://github.com/martin-cs/symfpu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

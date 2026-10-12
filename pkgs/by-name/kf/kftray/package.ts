@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 31, 7], ["cargoBuildFlags", 32, 7], ["src", 38, 28], ["version", 38, 32], ["cargoHash", 39, 7], ["buildInputs", 40, 7], ["nativeBuildInputs", 48, 7], ["doCheck", 53, 7]], [["owner", 61, 7], ["repo", 62, 7], ["tag", 63, 7], ["hash", 64, 7]], [["pname", 70, 9], ["version", 71, 9], ["src", 72, 9], ["cargoRoot", 73, 9], ["hash", 75, 7]], [["pname", 79, 28], ["version", 79, 34], ["src", 79, 42], ["pnpm", 80, 15], ["fetcherVersion", 81, 7], ["hash", 82, 7]], [["updateScript", 165, 7]], [["description", 169, 7], ["homepage", 170, 7], ["license", 171, 7], ["maintainers", 172, 7], ["mainProgram", 175, 7]], [["pname", 57, 5], ["version", 58, 5], ["src", 60, 5], ["cargoRoot", 67, 5], ["cargoDeps", 68, 5], ["pnpmDeps", 78, 5], ["buildInputs", 85, 5], ["nativeBuildInputs", 94, 5], ["postPatch", 105, 5], ["preBuild", 124, 5], ["postInstall", 131, 5], ["nativeCheckInputs", 135, 5], ["checkPhase", 141, 5], ["doCheck", 160, 5], ["strictDeps", 161, 5], ["__structuredAttrs", 162, 5], ["passthru", 164, 5], ["meta", 168, 5]]]);
 const formals$1 = { args: { "cargo-nextest": false, "cargo-tauri": false, fetchFromGitHub: false, fetchPnpmDeps: false, glib: false, gtk3: false, jq: false, lib: false, "libayatana-appindicator": false, libsoup_3: false, nodejs: false, openssl: false, perl: false, "pkg-config": false, pnpmConfigHook: false, pnpm_10: false, rustPlatform: false, stdenv: false, webkitgtk_4_1: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 31, 7], ["cargoBuildFlags", 32, 7], ["src", 38, 28], ["version", 38, 32], ["cargoHash", 39, 7], ["buildInputs", 40, 7], ["nativeBuildInputs", 48, 7], ["doCheck", 53, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 61, 7], ["repo", 62, 7], ["tag", 63, 7], ["hash", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 70, 9], ["version", 71, 9], ["src", 72, 9], ["cargoRoot", 73, 9], ["hash", 75, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 79, 28], ["version", 79, 34], ["src", 79, 42], ["pnpm", 80, 15], ["fetcherVersion", 81, 7], ["hash", 82, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 165, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 169, 7], ["homepage", 170, 7], ["license", 171, 7], ["maintainers", 172, 7], ["mainProgram", 175, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 57, 5], ["version", 58, 5], ["src", 60, 5], ["cargoRoot", 67, 5], ["cargoDeps", 68, 5], ["pnpmDeps", 78, 5], ["buildInputs", 85, 5], ["nativeBuildInputs", 94, 5], ["postPatch", 105, 5], ["preBuild", 124, 5], ["postInstall", 131, 5], ["nativeCheckInputs", 135, 5], ["checkPhase", 141, 5], ["doCheck", 160, 5], ["strictDeps", 161, 5], ["__structuredAttrs", 162, 5], ["passthru", 164, 5], ["meta", 168, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const cargoHash = nix.thunk(() => nix.selOr(finalAttrs, () => "sha256-NGGeUQUN8+2IZD6F5//G6E2XKG/zeqADr5ek75r7Puk=", "cargoDeps", "hash"));
       const kftrayBinaries = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "kftray-binaries",
           cargoBuildFlags: nix.thunk(() => ["-p", "kftray-helper", "-p", "kftui"]),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -48,11 +42,11 @@ export default nix.lambda((args) => (() => {
           doCheck: false,
         }))));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "kftray",
         version: "0.29.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "hcavarsan",
             repo: "kftray",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +54,7 @@ export default nix.lambda((args) => (() => {
           })))),
         cargoRoot: "./",
         cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -68,7 +62,7 @@ export default nix.lambda((args) => (() => {
             hash: cargoHash,
           })))),
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -117,11 +111,11 @@ ln -s ${kftrayBinaries}/bin/kftray-helper target/release
         strictDeps: true,
         __structuredAttrs: true,
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: "Kubectl port-forward manager",
           homepage: "https://github.com/hcavarsan/kftray",
           license: nix.thunk(() => (() => {

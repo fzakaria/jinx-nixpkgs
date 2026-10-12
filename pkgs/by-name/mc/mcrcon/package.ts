@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["homepage", 27, 5], ["description", 28, 5], ["longDescription", 29, 5], ["maintainers", 34, 5], ["license", 35, 5], ["mainProgram", 39, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildPhase", 18, 3], ["installPhase", 22, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["longDescription", 29, 5], ["maintainers", 34, 5], ["license", 35, 5], ["mainProgram", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildPhase", 18, 3], ["installPhase", 22, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mcrcon",
       version: "0.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Tiiffi",
           repo: "mcrcon",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "$CC mcrcon.c -o mcrcon\n",
       installPhase: "install -Dm 755 mcrcon $out/bin/mcrcon\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://bukkit.org/threads/admin-rcon-mcrcon-remote-connection-client-for-minecraft-servers.70910/",
         description: "Minecraft console client with Bukkit coloring support",
         longDescription: "Mcrcon is a powerful Minecraft RCON terminal client with Bukkit coloring support.\nIt is well suited for remote administration and to be used as part of automated server maintenance scripts.\nIt does not trigger \"IO: Broken pipe\" or \"IO: Connection reset\" spam bugs on the server side.\n",

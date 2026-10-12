@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["skipBulkUpdate", 44, 5]], [["changelog", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5]], [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["npmDepsHash", 21, 3], ["nativeBuildInputs", 23, 3], ["postInstall", 27, 3], ["dontNpmBuild", 40, 3], ["passthru", 42, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, makeWrapper: false, "playwright-driver": false, "playwright-test": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["skipBulkUpdate", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["npmDepsHash", 21, 3], ["nativeBuildInputs", 23, 3], ["postInstall", 27, 3], ["dontNpmBuild", 40, 3], ["passthru", 42, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "playwright-mcp";
       const version = "0.0.80";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Microsoft",
           repo: "playwright-mcp",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,9 +37,9 @@ wrapProgram $out/bin/playwright-mcp \\
   --run 'if [ -z "$PLAYWRIGHT_MCP_USER_DATA_DIR" ]; then export PLAYWRIGHT_MCP_ISOLATED=1; fi'
 `);
       const dontNpmBuild = true;
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], skipBulkUpdate: true }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/Microsoft/playwright-mcp/releases/tag/v${version}`),
         description: "Playwright MCP server",
         homepage: "https://github.com/Microsoft/playwright-mcp",
@@ -51,7 +48,7 @@ wrapProgram $out/bin/playwright-mcp \\
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kalekseev"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["name", 53, 9], ["script", 56, 9], ["nativeBuildInputs", 66, 9]], [["mainCommand", 50, 18]], [["tests", 50, 12]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 83, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["postInstall", 37, 3], ["nativeInstallCheckInputs", 44, 3], ["doInstallCheck", 48, 3], ["passthru", 50, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, openssl: false, stdenv: false, installShellFiles: false, versionCheckHook: false, testers: false, curl: false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 53, 9], ["script", 56, 9], ["nativeBuildInputs", 66, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainCommand", 50, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 50, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 83, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["postInstall", 37, 3], ["nativeInstallCheckInputs", 44, 3], ["doInstallCheck", 48, 3], ["passthru", 50, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const cacert = nix.arg($, "cacert");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "hydra-check",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "hydra-check",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           mainCommand: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "hydra-check-test",
               script: "set -e\nif curl hydra.nixos.org > /dev/null; then\n  hydra-check\nelse\n  echo \"no internet access, skipping test\"\nfi\ntouch $out\n",
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), curl, cacert]),
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Check hydra for the build status of a package",
         homepage: "https://github.com/nix-community/hydra-check",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

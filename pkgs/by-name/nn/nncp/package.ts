@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["CFGPATH", 33, 5], ["SENDMAIL", 34, 5]], [["versionLister", 54, 5]], [["updateScript", 53, 12]], [["broken", 60, 5], ["changelog", 61, 5], ["description", 62, 5], ["downloadPage", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["longDescription", 66, 5], ["maintainers", 81, 5], ["platforms", 84, 5]], [["pname", 14, 3], ["version", 15, 3], ["outputs", 16, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["env", 32, 3], ["preConfigure", 37, 3], ["buildPhase", 39, 3], ["installPhase", 45, 3], ["enableParallelBuilding", 51, 3], ["passthru", 53, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { cfgPath: true, curl: false, fetchurl: false, lib: false, genericUpdater: false, go: false, perl: false, stdenv: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFGPATH", 33, 5], ["SENDMAIL", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["versionLister", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["broken", 60, 5], ["changelog", 61, 5], ["description", 62, 5], ["downloadPage", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["longDescription", 66, 5], ["maintainers", 81, 5], ["platforms", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["outputs", 16, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["env", 32, 3], ["preConfigure", 37, 3], ["buildPhase", 39, 3], ["installPhase", 45, 3], ["enableParallelBuilding", 51, 3], ["passthru", 53, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,31 +17,31 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const writeShellScript = nix.arg($, "writeShellScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nncp",
       version: "8.13.0",
       outputs: nix.thunk(() => ["out", "doc", "info"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.nncpgo.org/download/nncp-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-jONoDpgAUZjYl14DF2CzqbM75tLWGETHmfd4yiM9BfQ=",
         })))),
       nativeBuildInputs: nix.thunk(() => [go]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFGPATH: cfgPath, SENDMAIL: "sendmail" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CFGPATH: cfgPath, SENDMAIL: "sendmail" })),
       preConfigure: "export GOCACHE=$NIX_BUILD_TOP/gocache",
       buildPhase: "runHook preBuild\n./build\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nPREFIX=$out ./install\nrunHook postInstall\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(genericUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             versionLister: nix.thunk(() => nix.app(writeShellScript, "nncp-versionLister", nix.thunk(() => nix.str`${curl}/bin/curl -s ${nix.sel(finalAttrs, "meta", "downloadPage")} | ${perl}/bin/perl -lne 'print $1 if /Release.*>([0-9.]+)</'
 `))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         changelog: "http://www.nncpgo.org/News.html",
         description: "Secure UUCP-like store-and-forward exchanging",

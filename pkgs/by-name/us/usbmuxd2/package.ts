@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5], ["leaveDotGit", 24, 5]], [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 42, 3], ["doInstallCheck", 49, 3], ["configureFlags", 51, 3], ["makeFlags", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, libimobiledevice: false, libusb1: false, avahi: false, clang: false, git: false, libgeneral: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5], ["leaveDotGit", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 42, 3], ["doInstallCheck", 49, 3], ["configureFlags", 51, 3], ["makeFlags", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const libgeneral = nix.arg($, "libgeneral");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "usbmuxd2",
       version: "unstable-2023-12-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tihmstar",
           repo: "usbmuxd2",
           rev: "2ce399ddbacb110bd5a83a6b8232d42c9a9b6e84",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`sbindir=${nix.builtins.placeholder("out")}/bin`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/tihmstar/usbmuxd2",
         description: "Socket daemon to multiplex connections from and to iOS devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

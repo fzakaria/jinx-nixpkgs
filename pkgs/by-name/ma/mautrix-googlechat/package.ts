@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["name", 26, 7], ["url", 27, 7], ["sha256", 28, 7]], [["e2be", 39, 5], ["metrics", 44, 5], ["sqlite", 47, 5]], [["withOlm", 63, 27]], [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["baseConfigPath", 32, 3], ["postInstall", 33, 3], ["optional-dependencies", 38, 3], ["propagatedBuildInputs", 52, 3], ["doCheck", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchpatch: false, lib: false, python3: false, enableE2be: true, enableMetrics: true, enableSqlite: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["sha256", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["e2be", 39, 5], ["metrics", 44, 5], ["sqlite", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["withOlm", 63, 27]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["baseConfigPath", 32, 3], ["postInstall", 33, 3], ["optional-dependencies", 38, 3], ["propagatedBuildInputs", 52, 3], ["doCheck", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mautrix",
           repo: "googlechat",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "mautrix-googlechat-entry-point.patch",
             url: "https://github.com/mautrix/googlechat/pull/81/commits/112fa3d27bc6f89a02321cb80d219de149e00df8.patch",
             sha256: "sha256-DsITDNLsIgBIqN6sD5JHaFW0LToxVUTzWc7mE2L09IQ=",
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           e2be: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w, "python-olm")),
             nix.thunk(() => nix.lookup(w, "pycryptodome")),
@@ -64,12 +59,12 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "commonmark")),
           nix.thunk(() => nix.lookup(w_1, "python-magic")),
           nix.thunk(() => nix.lookup(w_1, "protobuf")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "mautrix"), "override"), nix.thunk(() => ({ [nix.POS]: pos$4, withOlm: enableE2be })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "mautrix"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], withOlm: enableE2be })))),
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), enableE2be, nix.thunk(() => nix.sel(optional_dependencies, "e2be"))), nix.concat(nix.app(nix.sel(lib, "optionals"), enableMetrics, nix.thunk(() => nix.sel(optional_dependencies, "metrics"))), nix.app(nix.sel(lib, "optionals"), enableSqlite, nix.thunk(() => nix.sel(optional_dependencies, "sqlite"))))));
       })());
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/mautrix/googlechat",
         description: "Matrix-Google Chat puppeting bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -81,7 +76,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mautrix-googlechat",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         format,

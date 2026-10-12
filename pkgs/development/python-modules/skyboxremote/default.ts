@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]], [["spark", 25, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["optional-dependencies", 24, 3], ["nativeCheckInputs", 30, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "flit-core": false, pyspark: false, "pytest-cov-stub": false, "pytest-mock": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["spark", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 22, 3], ["optional-dependencies", 24, 3], ["nativeCheckInputs", 30, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,17 +20,17 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-GgRUMGnU91UQm9LNctYhHfRmfFujfc8fXc9KSwLrNBM=",
         }))));
       const build_system = nix.thunk(() => [flit_core]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, spark: nix.thunk(() => [pyspark]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], spark: nix.thunk(() => [pyspark]) }));
       const nativeCheckInputs = nix.thunk(() => [pytest_cov_stub, pytest_mock, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["skyboxremote"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Module for controlling a sky box",
         homepage: "https://pypi.org/project/skyboxremote/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

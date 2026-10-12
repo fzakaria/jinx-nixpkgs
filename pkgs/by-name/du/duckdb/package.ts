@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hash", 44, 24], ["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5]], [["updateScript", 180, 12], ["pythonHash", 181, 12]], [["changelog", 184, 5], ["description", 185, 5], ["homepage", 186, 5], ["license", 187, 5], ["mainProgram", 188, 5], ["maintainers", 189, 5], ["platforms", 194, 5]], [["pname", 38, 3], ["rev", 39, 22], ["version", 39, 26], ["src", 41, 3], ["outputs", 50, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 61, 3], ["cmakeFlags", 63, 3], ["doInstallCheck", 73, 3], ["nativeInstallCheckInputs", 75, 3], ["installCheckPhase", 77, 3], ["passthru", 180, 3], ["meta", 183, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, openssl: false, python3: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hash", 44, 24], ["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 180, 12], ["pythonHash", 181, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 184, 5], ["description", 185, 5], ["homepage", 186, 5], ["license", 187, 5], ["mainProgram", 188, 5], ["maintainers", 189, 5], ["platforms", 194, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["rev", 39, 22], ["version", 39, 26], ["src", 41, 3], ["outputs", 50, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 61, 3], ["cmakeFlags", 63, 3], ["doInstallCheck", 73, 3], ["nativeInstallCheckInputs", 75, 3], ["installCheckPhase", 77, 3], ["passthru", 180, 3], ["meta", 183, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   })());
   const versions = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./versions.json")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "duckdb",
       rev: nix.thunk(() => nix.attr(versions, "rev")),
       version: nix.thunk(() => nix.attr(versions, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: nix.thunk(() => nix.attr(versions, "hash")),
           owner: "duckdb",
           repo: "duckdb",
@@ -130,12 +127,12 @@ runHook postInstallCheck
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.path(here, "./update.sh"),
         pythonHash: nix.thunk(() => nix.sel(versions, "python_hash")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/duckdb/duckdb/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Embeddable SQL OLAP Database Management System",
         homepage: "https://duckdb.org/",

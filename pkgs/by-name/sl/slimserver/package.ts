@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["slimserver", 129, 28]], [["extraArgs", 133, 7]], [["tests", 128, 5], ["updateScript", 132, 5]], [["homepage", 141, 5], ["changelog", 142, 5], ["description", 143, 5], ["license", 146, 5], ["mainProgram", 147, 5], ["maintainers", 148, 5], ["platforms", 152, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 54, 3], ["prePatch", 81, 3], ["doCheck", 114, 3], ["installPhase", 116, 3], ["outputs", 125, 3], ["passthru", 127, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { faad2: false, fetchFromGitHub: false, flac: false, lame: false, lib: false, makeWrapper: false, "monkeys-audio": false, "nix-update-script": false, nixosTests: false, perlPackages: false, sox: false, stdenv: false, wavpack: false, zlib: false, enableUnfreeFirmware: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["slimserver", 129, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 133, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 128, 5], ["updateScript", 132, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 141, 5], ["changelog", 142, 5], ["description", 143, 5], ["license", 146, 5], ["mainProgram", 147, 5], ["maintainers", 148, 5], ["platforms", 152, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 54, 3], ["prePatch", 81, 3], ["doCheck", 114, 3], ["installPhase", 116, 3], ["outputs", 125, 3], ["passthru", 127, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "slimserver";
       const version = "9.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LMS-Community",
           repo: "slimserver",
           tag: version,
@@ -102,18 +97,18 @@ ln -s $out/slimserver.pl $out/bin/slimserver
 `);
       const outputs = nix.thunk(() => ["out"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           slimserver: nix.thunk(() => nix.attr(nixosTests, "slimserver")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "(9\\.[0-9.]+)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://lyrion.org/",
         changelog: nix.thunk(() => nix.str`https://lyrion.org/getting-started/changelog-lms${nix.app(nix.sel(lib, "versions", "major"), version)}`),
         description: "Lyrion Music Server (formerly Logitech Media Server) is open-source server software which controls a wide range of Squeezebox audio players",
@@ -129,7 +124,7 @@ ln -s $out/slimserver.pl $out/bin/slimserver
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

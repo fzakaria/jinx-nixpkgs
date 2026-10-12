@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["updateScript", 93, 12]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]], [["pname", 39, 3], ["version", 40, 3], ["__structuredAttrs", 41, 3], ["strictDeps", 42, 3], ["src", 44, 3], ["outputs", 51, 3], ["patches", 56, 3], ["postPatch", 61, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 80, 3], ["propagatedBuildInputs", 87, 3], ["doCheck", 91, 3], ["passthru", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildType: true, asciidoctor: false, gfortran: false, "pkg-config": false, python3: false, meson: false, ninja: false, cmake: false, mstore: false, "test-drive": false, blas: false, lapack: false, "mctc-lib": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 93, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["__structuredAttrs", 41, 3], ["strictDeps", 42, 3], ["src", 44, 3], ["outputs", 51, 3], ["patches", 56, 3], ["postPatch", 61, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 80, 3], ["propagatedBuildInputs", 87, 3], ["doCheck", 91, 3], ["passthru", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   nix.assert_(nix.builtins.elem(buildType, nix.thunk(() => ["meson", "cmake"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/nu/numsa/package.nix:32:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "numsa",
       version: "0.2.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grimme-lab",
           repo: "numsa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,11 +48,11 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [mctc_lib]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Solvent accessible surface area calculation",
         homepage: "https://github.com/grimme-lab/numsa",
         changelog: nix.thunk(() => nix.str`https://github.com/grimme-lab/numsa/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

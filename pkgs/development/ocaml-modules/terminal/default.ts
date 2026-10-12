@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 5], ["hash", 21, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 14, 3], ["version", 15, 3], ["minimalOCamlVersion", 17, 3], ["src", 19, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 30, 3], ["checkInputs", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, ocaml: false, "stdlib-shims": false, uutf: false, uucp: false, alcotest: false, fmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["minimalOCamlVersion", 17, 3], ["src", 19, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 30, 3], ["checkInputs", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const minimalOCamlVersion = "4.03";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/CraigFe/progress/releases/download/${version}/progress-${version}.tbz`),
           hash: "sha256-f4fwWXNjkoxFuoWa5aFDD2qjwp4lH/GlPPeG7Q4EWWE=",
         }))));
@@ -31,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08"));
       const checkInputs = nix.thunk(() => [alcotest, fmt]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Basic utilities for interacting with terminals",
         homepage: "https://github.com/CraigFe/progress",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         minimalOCamlVersion,

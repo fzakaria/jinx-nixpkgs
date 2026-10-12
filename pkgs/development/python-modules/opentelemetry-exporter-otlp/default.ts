@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 33, 5], ["description", 34, 5]], [["version", 12, 31], ["src", 12, 39], ["pname", 13, 3], ["pyproject", 14, 3], ["sourceRoot", 16, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["nativeCheckInputs", 25, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, hatchling: false, "opentelemetry-api": false, "opentelemetry-exporter-otlp-proto-grpc": false, "opentelemetry-exporter-otlp-proto-http": false, "opentelemetry-test-utils": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 33, 5], ["description", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 12, 31], ["src", 12, 39], ["pname", 13, 3], ["pyproject", 14, 3], ["sourceRoot", 16, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["nativeCheckInputs", 25, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const opentelemetry_test_utils = nix.arg($, "opentelemetry-test-utils");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(opentelemetry_api, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_api, "src")),
       pname: "opentelemetry-exporter-otlp",
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [opentelemetry_test_utils, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.exporter.otlp"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_api, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python/tree/main/exporter/opentelemetry-exporter-otlp",
         description: "OpenTelemetry Collector Exporters",
       })),

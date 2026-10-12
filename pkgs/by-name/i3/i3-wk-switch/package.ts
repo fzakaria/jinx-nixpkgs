@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 30, 5], ["mainProgram", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["license", 34, 5], ["homepage", 35, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["propagatedBuildInputs", 19, 3], ["dontBuild", 21, 3], ["doCheck", 22, 3], ["installPhase", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["mainProgram", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["license", 34, 5], ["homepage", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["propagatedBuildInputs", 19, 3], ["dontBuild", 21, 3], ["doCheck", 22, 3], ["installPhase", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "i3-wk-switch",
       version: "2020-03-18",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tmfink",
           repo: "i3-wk-switch",
           rev: "a618cb8f52120aa8d533bb7c0c8de3ff13b3dc06",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       installPhase: "mkdir -p \"$out/bin\"\ncp i3-wk-switch.py \"$out/bin/i3-wk-switch\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "XMonad-like workspace switching for i3 and sway",
         mainProgram: "i3-wk-switch",
         maintainers: [],

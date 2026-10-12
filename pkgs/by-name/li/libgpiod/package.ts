@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["rev-prefix", 34, 5], ["allowedVersions", 35, 5]], [["updateScript", 33, 12]], [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 22, 3], ["configureFlags", 28, 3], ["passthru", 33, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, gitUpdater: false, autoreconfHook: false, "autoconf-archive": false, "pkg-config": false, "enable-tools": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 34, 5], ["allowedVersions", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 22, 3], ["configureFlags", 28, 3], ["passthru", 33, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const enable_tools = nix.argOr($, "enable-tools", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libgpiod",
       version: "2.2.4",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-PtkJZ9p6r6S47RjiCRv4cVmlY4BHdB6FCMJ+M/IPnw0=",
@@ -35,11 +31,11 @@ export default nix.lambda((args) => (() => {
         "--enable-bindings-cxx",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v", allowedVersions: "^[0-9\\.]+$" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v", allowedVersions: "^[0-9\\.]+$" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C library and tools for interacting with the linux GPIO character device",
         longDescription: "Since linux 4.8 the GPIO sysfs interface is deprecated. User space should use\nthe character device instead. This library encapsulates the ioctl calls and\ndata structures behind a straightforward API.\n",
         homepage: "https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git/about/",

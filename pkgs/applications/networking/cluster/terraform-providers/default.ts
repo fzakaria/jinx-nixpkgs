@@ -2,23 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["CGO_ENABLED", 51, 11]], [["name", 59, 9], ["owner", 61, 11], ["repo", 62, 11], ["rev", 63, 11], ["hash", 64, 11]], [["homepage", 69, 17], ["license", 70, 9]], [["provider-source-address", 83, 17], ["updateScript", 84, 9]], [["pname", 40, 7], ["vendorHash", 42, 9], ["version", 43, 9], ["deleteVendor", 44, 9], ["proxyVendor", 45, 9], ["subPackages", 47, 7], ["doCheck", 48, 7], ["env", 51, 7], ["ldflags", 52, 7], ["src", 58, 7], ["meta", 68, 7], ["postInstall", 74, 7], ["passthru", 82, 7]], [["spdx", 101, 70]], [["mkProviderFetcher", 103, 7], ["owner", 104, 7]], [["propagatedBuildInputs", 108, 7]], [["spdx", 110, 68]], [["proxyVendor", 114, 63]], [["CGO_ENABLED", 117, 13]], [["env", 116, 11]], [["checkly_checkly", 101, 5], ["gitlabhq_gitlab", 102, 5], ["dmacvicar_libvirt", 107, 5], ["aminueza_minio", 110, 5], ["1password_onepassword", 113, 5]], [["ccloud", 130, 7], ["sapcc_ccloud", 131, 7], ["argocd", 132, 7], ["oboukili_argocd", 133, 7]], [["actualProviders", 139, 51], ["mkProvider", 139, 67]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, fetchFromGitLab: false, callPackage: false, config: false, writeShellScript: false, cdrtools: false }, ellipsis: false };
 const formals$2 = { args: { owner: false, repo: false, rev: false, spdx: true, version: true, hash: false, vendorHash: false, deleteVendor: true, proxyVendor: true, mkProviderFetcher: true, mkProviderGoModule: true, homepage: true, "provider-source-address": true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["CGO_ENABLED", 51, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 59, 9], ["owner", 61, 11], ["repo", 62, 11], ["rev", 63, 11], ["hash", 64, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 69, 17], ["license", 70, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["provider-source-address", 83, 17], ["updateScript", 84, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 40, 7], ["vendorHash", 42, 9], ["version", 43, 9], ["deleteVendor", 44, 9], ["proxyVendor", 45, 9], ["subPackages", 47, 7], ["doCheck", 48, 7], ["env", 51, 7], ["ldflags", 52, 7], ["src", 58, 7], ["meta", 68, 7], ["postInstall", 74, 7], ["passthru", 82, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["spdx", 101, 70]]);
-const pos$7 = nix.positions(here + "/default.nix", [["mkProviderFetcher", 103, 7], ["owner", 104, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 108, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["spdx", 110, 68]]);
-const pos$10 = nix.positions(here + "/default.nix", [["proxyVendor", 114, 63]]);
-const pos$11 = nix.positions(here + "/default.nix", [["CGO_ENABLED", 117, 13]]);
-const pos$12 = nix.positions(here + "/default.nix", [["env", 116, 11]]);
-const pos$13 = nix.positions(here + "/default.nix", [["checkly_checkly", 101, 5], ["gitlabhq_gitlab", 102, 5], ["dmacvicar_libvirt", 107, 5], ["aminueza_minio", 110, 5], ["1password_onepassword", 113, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["ccloud", 130, 7], ["sapcc_ccloud", 131, 7], ["argocd", 132, 7], ["oboukili_argocd", 133, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["actualProviders", 139, 51], ["mkProvider", 139, 67]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const provider_source_address = nix.argOr($_1, "provider-source-address", () => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["https://registry", ".io/providers"]), nix.thunk(() => ["registry", ".io"]), homepage));
       nix.assert_(nix.gt(nix.app(nix.sel(lib, "stringLength"), provider_source_address), 0n), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/networking/cluster/terraform-providers/default.nix:38:5");
       return nix.app(mkProviderGoModule, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: repo,
           vendorHash: vendorHash,
           version: version,
@@ -57,7 +43,7 @@ export default nix.lambda((args) => (() => {
           proxyVendor: proxyVendor,
           subPackages: nix.thunk(() => ["."]),
           doCheck: false,
-          env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
+          env: nix.thunk(() => ({ [nix.POS]: $pos[0], CGO_ENABLED: 0n })),
           ldflags: nix.thunk(() => [
             "-s",
             "-w",
@@ -65,7 +51,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.str`-X main.commit=${rev}`),
           ]),
           src: nix.thunk(() => nix.app(mkProviderFetcher, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: nix.thunk(() => nix.str`source-${rev}`),
               owner: owner,
               repo: repo,
@@ -73,7 +59,7 @@ export default nix.lambda((args) => (() => {
               hash: hash,
             })))),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             homepage: homepage,
             license: nix.thunk(() => nix.app(nix.sel(lib, "getLicenseFromSpdxId"), spdx)),
           })),
@@ -83,7 +69,7 @@ mv $out/bin/* "$dir/terraform-provider-$(basename ${provider_source_address})_${
 rmdir $out/bin
 `),
           passthru: nix.thunk(() => nix.update(attrs, {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "provider-source-address": provider_source_address,
             updateScript: nix.thunk(() => nix.app(writeShellScript, "update", nix.thunk(() => nix.str`./pkgs/applications/networking/cluster/terraform-providers/update-provider "${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["registry.terraform.io/", "/"]), nix.thunk(() => ["", "_"]), provider_source_address)}"
 `))),
@@ -93,21 +79,21 @@ rmdir $out/bin
   const list = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./providers.json")));
   const automated_providers = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (attrs) => nix.app(mkProvider, attrs), list));
   const special_providers = nix.thunk(() => ({
-    [nix.POS]: pos$13,
-    checkly_checkly: nix.thunk(() => nix.app(nix.sel(automated_providers, "checkly_checkly", "override"), nix.thunk(() => ({ [nix.POS]: pos$6, spdx: "MIT" })))),
-    gitlabhq_gitlab: nix.thunk(() => nix.app(nix.sel(automated_providers, "gitlabhq_gitlab", "override"), nix.thunk(() => ({ [nix.POS]: pos$7, mkProviderFetcher: fetchFromGitLab, owner: "gitlab-org" })))),
-    dmacvicar_libvirt: nix.thunk(() => nix.app(nix.sel(automated_providers, "dmacvicar_libvirt", "overrideAttrs"), (_) => ({ [nix.POS]: pos$8, propagatedBuildInputs: nix.thunk(() => [cdrtools]) }))),
-    aminueza_minio: nix.thunk(() => nix.app(nix.sel(automated_providers, "aminueza_minio", "override"), nix.thunk(() => ({ [nix.POS]: pos$9, spdx: "AGPL-3.0-only" })))),
-    "1password_onepassword": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(automated_providers, "1password_onepassword", "override"), nix.thunk(() => ({ [nix.POS]: pos$10, proxyVendor: true }))), "overrideAttrs"), (finalAttrs) => ({
-        [nix.POS]: pos$12,
-        env: nix.thunk(() => nix.update(nix.sel(finalAttrs, "env"), { [nix.POS]: pos$11, CGO_ENABLED: "1" })),
+    [nix.POS]: $pos[12],
+    checkly_checkly: nix.thunk(() => nix.app(nix.sel(automated_providers, "checkly_checkly", "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], spdx: "MIT" })))),
+    gitlabhq_gitlab: nix.thunk(() => nix.app(nix.sel(automated_providers, "gitlabhq_gitlab", "override"), nix.thunk(() => ({ [nix.POS]: $pos[6], mkProviderFetcher: fetchFromGitLab, owner: "gitlab-org" })))),
+    dmacvicar_libvirt: nix.thunk(() => nix.app(nix.sel(automated_providers, "dmacvicar_libvirt", "overrideAttrs"), (_) => ({ [nix.POS]: $pos[7], propagatedBuildInputs: nix.thunk(() => [cdrtools]) }))),
+    aminueza_minio: nix.thunk(() => nix.app(nix.sel(automated_providers, "aminueza_minio", "override"), nix.thunk(() => ({ [nix.POS]: $pos[8], spdx: "AGPL-3.0-only" })))),
+    "1password_onepassword": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(automated_providers, "1password_onepassword", "override"), nix.thunk(() => ({ [nix.POS]: $pos[9], proxyVendor: true }))), "overrideAttrs"), (finalAttrs) => ({
+        [nix.POS]: $pos[11],
+        env: nix.thunk(() => nix.update(nix.sel(finalAttrs, "env"), { [nix.POS]: $pos[10], CGO_ENABLED: "1" })),
       }))),
   }));
   const removed_providers = nix.thunk(() => (() => {
     const archived = (name) => (date) => nix.builtins.throw(nix.thunk(() => nix.str`the ${name} terraform provider has been archived by upstream on ${date}`));
     const removed = (name) => (date) => nix.builtins.throw(nix.thunk(() => nix.str`the ${name} terraform provider removed from nixpkgs on ${date}`));
     return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         ccloud: nix.thunk(() => nix.app(removed, "ccloud", "2025/11. Try sap-cloud-infrastructure_sci instead.")),
         sapcc_ccloud: nix.thunk(() => nix.app(removed, "sapcc_ccloud", "2025/11. Try sap-cloud-infrastructure_sci instead.")),
         argocd: nix.thunk(() => nix.app(removed, "argocd", "2025/12. Try argoproj-labs_argocd instead.")),
@@ -115,6 +101,10 @@ rmdir $out/bin
       })));
   })());
   const actualProviders = nix.thunk(() => nix.update(automated_providers, special_providers));
-  return nix.update(actualProviders, nix.update(removed_providers, { [nix.POS]: pos$15, actualProviders: actualProviders, mkProvider: mkProvider }));
+  return nix.update(actualProviders, nix.update(removed_providers, {
+    [nix.POS]: $pos[14],
+    actualProviders: actualProviders,
+    mkProvider: mkProvider,
+  }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

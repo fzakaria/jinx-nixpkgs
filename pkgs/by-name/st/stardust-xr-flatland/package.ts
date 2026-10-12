@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["STARDUST_RES_PREFIXES", 21, 7]], [["updateScript", 27, 12]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5], ["teams", 34, 5], ["platforms", 35, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["env", 21, 3], ["cargoHash", 23, 3], ["__structuredAttrs", 25, 3], ["passthru", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["STARDUST_RES_PREFIXES", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 27, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5], ["teams", 34, 5], ["platforms", 35, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["env", 21, 3], ["cargoHash", 23, 3], ["__structuredAttrs", 25, 3], ["passthru", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "stardust-xr-flatland",
       version: "0.51.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stardustxr",
           repo: "flatland",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,17 +24,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./fix-reify-test-signature.patch")]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         STARDUST_RES_PREFIXES: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/res`),
       })),
       cargoHash: "sha256-2LT/Szwzs83Poe7BojmUFh9yyUEhSgHmBR5QaO/BE4g=",
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Flat window for Stardust XR",
         homepage: "https://stardustxr.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["mainProgram", 33, 5], ["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 10, 3], ["version", 11, 11], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 23, 3], ["nativeCheckInputs", 25, 3], ["postPatch", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 33, 5], ["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 11], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 23, 3], ["nativeCheckInputs", 25, 3], ["postPatch", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "0.24.4";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "toml-sort",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pappasam",
           repo: "toml-sort",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pytestCheckHook"))]),
       postPatch: "substituteInPlace \"tests/test_cli.py\" \\\n  --replace-fail \"toml-sort\" \"$out/bin/toml-sort\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "toml-sort",
         homepage: "https://github.com/pappasam/toml-sort",
         description: "Command line utility to sort and format your toml files",

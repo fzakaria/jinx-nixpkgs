@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 7], ["repo", 20, 7], ["tag", 21, 7], ["hash", 22, 7]], [["textx-data-dsl", 51, 11], ["textx-example-project", 52, 11], ["textx-flow-codegen", 53, 11], ["textx-flow-dsl", 54, 11], ["textx-types-dsl", 55, 11]], [["textxTests", 49, 7]], [["tests", 48, 14]], [["changelog", 61, 7], ["description", 62, 7], ["mainProgram", 63, 7], ["homepage", 64, 7], ["license", 65, 7], ["maintainers", 66, 7]], [["pname", 14, 5], ["version", 15, 5], ["pyproject", 16, 5], ["src", 18, 5], ["outputs", 25, 5], ["build-system", 30, 5], ["dependencies", 32, 5], ["postInstall", 34, 5], ["pythonImportsCheck", 43, 5], ["doCheck", 46, 5], ["passthru", 48, 5], ["meta", 60, 5]], [["license", 87, 28], ["maintainers", 87, 36], ["description", 88, 7], ["homepage", 89, 7]], [["pname", 71, 5], ["version", 72, 5], ["pyproject", 73, 5], ["src", 75, 21], ["pathToSourceRoot", 76, 5], ["sourceRoot", 77, 5], ["build-system", 79, 5], ["dependencies", 81, 5], ["meta", 86, 5]], [["license", 110, 28], ["maintainers", 110, 36], ["description", 111, 7], ["homepage", 112, 7]], [["pname", 94, 5], ["version", 95, 5], ["pyproject", 96, 5], ["src", 98, 21], ["pathToSourceRoot", 100, 5], ["sourceRoot", 101, 5], ["build-system", 103, 5], ["dependencies", 104, 5], ["meta", 109, 5]], [["license", 130, 28], ["maintainers", 130, 36], ["description", 131, 7], ["homepage", 132, 7]], [["pname", 117, 5], ["version", 118, 5], ["pyproject", 119, 5], ["src", 121, 21], ["pathToSourceRoot", 123, 5], ["sourceRoot", 124, 5], ["build-system", 126, 5], ["dependencies", 127, 5], ["meta", 129, 5]], [["license", 150, 28], ["maintainers", 150, 36], ["description", 151, 7], ["homepage", 152, 7]], [["pname", 137, 5], ["version", 138, 5], ["pyproject", 139, 5], ["src", 141, 21], ["pathToSourceRoot", 143, 5], ["sourceRoot", 144, 5], ["build-system", 146, 5], ["dependencies", 147, 5], ["meta", 149, 5]], [["license", 170, 28], ["maintainers", 170, 36], ["description", 171, 7], ["homepage", 172, 7]], [["pname", 157, 5], ["version", 158, 5], ["pyproject", 159, 5], ["src", 161, 21], ["pathToSourceRoot", 163, 5], ["sourceRoot", 164, 5], ["build-system", 166, 5], ["dependencies", 167, 5], ["meta", 169, 5]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, python: false, fetchFromGitHub: false, arpeggio: false, click: false, callPackage: false, "flit-core": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 7], ["repo", 20, 7], ["tag", 21, 7], ["hash", 22, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["textx-data-dsl", 51, 11], ["textx-example-project", 52, 11], ["textx-flow-codegen", 53, 11], ["textx-flow-dsl", 54, 11], ["textx-types-dsl", 55, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["textxTests", 49, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 48, 14]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 61, 7], ["description", 62, 7], ["mainProgram", 63, 7], ["homepage", 64, 7], ["license", 65, 7], ["maintainers", 66, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["version", 15, 5], ["pyproject", 16, 5], ["src", 18, 5], ["outputs", 25, 5], ["build-system", 30, 5], ["dependencies", 32, 5], ["postInstall", 34, 5], ["pythonImportsCheck", 43, 5], ["doCheck", 46, 5], ["passthru", 48, 5], ["meta", 60, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["license", 87, 28], ["maintainers", 87, 36], ["description", 88, 7], ["homepage", 89, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 71, 5], ["version", 72, 5], ["pyproject", 73, 5], ["src", 75, 21], ["pathToSourceRoot", 76, 5], ["sourceRoot", 77, 5], ["build-system", 79, 5], ["dependencies", 81, 5], ["meta", 86, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["license", 110, 28], ["maintainers", 110, 36], ["description", 111, 7], ["homepage", 112, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 94, 5], ["version", 95, 5], ["pyproject", 96, 5], ["src", 98, 21], ["pathToSourceRoot", 100, 5], ["sourceRoot", 101, 5], ["build-system", 103, 5], ["dependencies", 104, 5], ["meta", 109, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["license", 130, 28], ["maintainers", 130, 36], ["description", 131, 7], ["homepage", 132, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["pname", 117, 5], ["version", 118, 5], ["pyproject", 119, 5], ["src", 121, 21], ["pathToSourceRoot", 123, 5], ["sourceRoot", 124, 5], ["build-system", 126, 5], ["dependencies", 127, 5], ["meta", 129, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["license", 150, 28], ["maintainers", 150, 36], ["description", 151, 7], ["homepage", 152, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["pname", 137, 5], ["version", 138, 5], ["pyproject", 139, 5], ["src", 141, 21], ["pathToSourceRoot", 143, 5], ["sourceRoot", 144, 5], ["build-system", 146, 5], ["dependencies", 147, 5], ["meta", 149, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["license", 170, 28], ["maintainers", 170, 36], ["description", 171, 7], ["homepage", 172, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["pname", 157, 5], ["version", 158, 5], ["pyproject", 159, 5], ["src", 161, 21], ["pathToSourceRoot", 163, 5], ["sourceRoot", 164, 5], ["build-system", 166, 5], ["dependencies", 167, 5], ["meta", 169, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "textx",
           repo: "textx",
           tag: version,
@@ -54,11 +39,11 @@ cp -r tests $testout/tests
       const pythonImportsCheck = nix.thunk(() => ["textx"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           textxTests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               "textx-data-dsl": textx_data_dsl,
               "textx-example-project": textx_example_project,
               "textx-flow-codegen": textx_flow_codegen,
@@ -68,7 +53,7 @@ cp -r tests $testout/tests
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/textX/textX/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Domain-specific languages and parsers in Python",
         mainProgram: "textx",
@@ -77,7 +62,7 @@ cp -r tests $testout/tests
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,
@@ -104,7 +89,7 @@ cp -r tests $testout/tests
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(textx, "meta"));
         return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         description: "Sample textX language for testing",
@@ -112,7 +97,7 @@ cp -r tests $testout/tests
       };
       })());
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         pyproject,
@@ -136,7 +121,7 @@ cp -r tests $testout/tests
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(textx, "meta"));
         return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         description: "Sample textX language for testing",
@@ -144,7 +129,7 @@ cp -r tests $testout/tests
       };
       })());
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version,
         pyproject,
@@ -168,7 +153,7 @@ cp -r tests $testout/tests
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(textx, "meta"));
         return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         description: "Sample textX language for testing",
@@ -176,7 +161,7 @@ cp -r tests $testout/tests
       };
       })());
       return {
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname,
         version,
         pyproject,
@@ -200,7 +185,7 @@ cp -r tests $testout/tests
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(textx, "meta"));
         return {
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         description: "Sample textX language for testing",
@@ -208,7 +193,7 @@ cp -r tests $testout/tests
       };
       })());
       return {
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         pname,
         version,
         pyproject,
@@ -232,7 +217,7 @@ cp -r tests $testout/tests
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(textx, "meta"));
         return {
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         description: "Sample textX sub-command for testing",
@@ -240,7 +225,7 @@ cp -r tests $testout/tests
       };
       })());
       return {
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         pname,
         version,
         pyproject,

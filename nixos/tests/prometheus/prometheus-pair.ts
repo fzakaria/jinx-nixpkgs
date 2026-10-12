@@ -2,69 +2,50 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/prometheus-pair.nix", [[["systemPackages", 10, 21]], [["allowedTCPPorts", 12, 29]], [["firewall", 12, 20]], [["scrape_interval", 16, 24]], [["targets", 25, 19]], [["job_name", 22, 15], ["static_configs", 23, 15]], [["enable", 15, 11], ["globalConfig", 16, 11], ["extraFlags", 17, 11], ["scrapeConfigs", 20, 11]], [["prometheus", 14, 18]], [["environment", 10, 9], ["networking", 12, 9], ["services", 14, 9]], [["systemPackages", 39, 21]], [["allowedTCPPorts", 41, 29]], [["firewall", 41, 20]], [["scrape_interval", 45, 24]], [["targets", 54, 19]], [["job_name", 51, 15], ["static_configs", 52, 15]], [["enable", 44, 11], ["globalConfig", 45, 11], ["extraFlags", 46, 11], ["scrapeConfigs", 49, 11]], [["prometheus", 43, 18]], [["environment", 39, 9], ["networking", 41, 9], ["services", 43, 9]], [["prometheus1", 7, 5], ["prometheus2", 36, 5]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 66, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/prometheus-pair.nix", [["systemPackages", 10, 21]]);
-const pos$2 = nix.positions(here + "/prometheus-pair.nix", [["allowedTCPPorts", 12, 29]]);
-const pos$3 = nix.positions(here + "/prometheus-pair.nix", [["firewall", 12, 20]]);
-const pos$4 = nix.positions(here + "/prometheus-pair.nix", [["scrape_interval", 16, 24]]);
-const pos$5 = nix.positions(here + "/prometheus-pair.nix", [["targets", 25, 19]]);
-const pos$6 = nix.positions(here + "/prometheus-pair.nix", [["job_name", 22, 15], ["static_configs", 23, 15]]);
-const pos$7 = nix.positions(here + "/prometheus-pair.nix", [["enable", 15, 11], ["globalConfig", 16, 11], ["extraFlags", 17, 11], ["scrapeConfigs", 20, 11]]);
-const pos$8 = nix.positions(here + "/prometheus-pair.nix", [["prometheus", 14, 18]]);
-const pos$9 = nix.positions(here + "/prometheus-pair.nix", [["environment", 10, 9], ["networking", 12, 9], ["services", 14, 9]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/prometheus-pair.nix", [["systemPackages", 39, 21]]);
-const pos$11 = nix.positions(here + "/prometheus-pair.nix", [["allowedTCPPorts", 41, 29]]);
-const pos$12 = nix.positions(here + "/prometheus-pair.nix", [["firewall", 41, 20]]);
-const pos$13 = nix.positions(here + "/prometheus-pair.nix", [["scrape_interval", 45, 24]]);
-const pos$14 = nix.positions(here + "/prometheus-pair.nix", [["targets", 54, 19]]);
-const pos$15 = nix.positions(here + "/prometheus-pair.nix", [["job_name", 51, 15], ["static_configs", 52, 15]]);
-const pos$16 = nix.positions(here + "/prometheus-pair.nix", [["enable", 44, 11], ["globalConfig", 45, 11], ["extraFlags", 46, 11], ["scrapeConfigs", 49, 11]]);
-const pos$17 = nix.positions(here + "/prometheus-pair.nix", [["prometheus", 43, 18]]);
-const pos$18 = nix.positions(here + "/prometheus-pair.nix", [["environment", 39, 9], ["networking", 41, 9], ["services", 43, 9]]);
-const pos$19 = nix.positions(here + "/prometheus-pair.nix", [["prometheus1", 7, 5], ["prometheus2", 36, 5]]);
-const pos$20 = nix.positions(here + "/prometheus-pair.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "prometheus-pair",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       prometheus1: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "prometheus", "port"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             prometheus: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
-              globalConfig: nix.thunk(() => ({ [nix.POS]: pos$4, scrape_interval: "2s" })),
+              globalConfig: nix.thunk(() => ({ [nix.POS]: $pos[3], scrape_interval: "2s" })),
               extraFlags: nix.thunk(() => ["--storage.tsdb.min-block-duration=15s"]),
               scrapeConfigs: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   job_name: "prometheus",
                   static_configs: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       targets: nix.thunk(() => [
                         nix.thunk(() => nix.str`prometheus1:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "port")))}`),
                         nix.thunk(() => nix.str`prometheus2:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "port")))}`),
@@ -82,32 +63,32 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "prometheus", "port"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             prometheus: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               enable: true,
-              globalConfig: nix.thunk(() => ({ [nix.POS]: pos$13, scrape_interval: "2s" })),
+              globalConfig: nix.thunk(() => ({ [nix.POS]: $pos[12], scrape_interval: "2s" })),
               extraFlags: nix.thunk(() => ["--storage.tsdb.min-block-duration=15s"]),
               scrapeConfigs: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   job_name: "prometheus",
                   static_configs: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$14,
+                      [nix.POS]: $pos[13],
                       targets: nix.thunk(() => [
                         nix.thunk(() => nix.str`prometheus1:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "port")))}`),
                         nix.thunk(() => nix.str`prometheus2:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "port")))}`),

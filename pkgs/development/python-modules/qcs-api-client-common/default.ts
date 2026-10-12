@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 31, 13], ["version", 31, 19], ["src", 31, 27], ["hash", 32, 5]], [["changelog", 67, 5], ["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["cargoDeps", 30, 3], ["buildAndTestSubdir", 35, 3], ["nativeBuildInputs", 37, 3], ["dependencies", 44, 3], ["preCheck", 50, 3], ["nativeCheckInputs", 54, 3], ["disabledTests", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, cargo: false, fetchFromGitHub: false, "grpc-interceptor": false, grpcio: false, httpx: false, lib: false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, pythonAtLeast: false, rustc: false, rustPlatform: false, syrupy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 31, 13], ["version", 31, 19], ["src", 31, 27], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 67, 5], ["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["cargoDeps", 30, 3], ["buildAndTestSubdir", 35, 3], ["nativeBuildInputs", 37, 3], ["dependencies", 44, 3], ["preCheck", 50, 3], ["nativeCheckInputs", 54, 3], ["disabledTests", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.15.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rigetti",
           repo: "qcs-api-client-rust",
           tag: nix.thunk(() => nix.str`common/v${version}`),
           hash: "sha256-ksB71Vd9PbKAHll2Y5VrCspsyUyhXwthHl2yVl6MQ7U=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytest_mock, pytestCheckHook, syrupy]);
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_refresh_interceptor"])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/rigetti/qcs-api-client-rust/blob/${nix.sel(src, "tag")}/qcs-api-client-common/CHANGELOG-py.md`),
         description: "Contains core QCS client functionality and middleware implementations",
         homepage: "https://github.com/rigetti/qcs-api-client-rust/tree/main/qcs-api-client-common",
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

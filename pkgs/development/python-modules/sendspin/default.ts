@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["cast", 55, 5]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 54, 3], ["nativeCheckInputs", 58, 3], ["pythonImportsCheck", 63, 3], ["disabledTests", 65, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, "aiosendspin-mpris": false, aiosendspin: false, av: false, buildPythonPackage: false, fetchFromGitHub: false, numpy: false, "pulsectl-asyncio": false, pychromecast: false, pyprojectVersionPatchHook: false, "pytest-asyncio": false, pytestCheckHook: false, qrcode: false, readchar: false, rich: false, setuptools: false, sounddevice: false, "textual-image": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cast", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 54, 3], ["nativeCheckInputs", 58, 3], ["pythonImportsCheck", 63, 3], ["disabledTests", 65, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const sounddevice = nix.arg($, "sounddevice");
   const textual_image = nix.arg($, "textual-image");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sendspin",
       version: "7.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Sendspin",
           repo: "sendspin-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,12 +51,12 @@ export default nix.lambda((args) => (() => {
         sounddevice,
         textual_image,
       ], nix.sel(aiosendspin, "optional-dependencies", "server"))),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cast: nix.thunk(() => [pychromecast]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], cast: nix.thunk(() => [pychromecast]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["sendspin"]),
       disabledTests: nix.thunk(() => ["test_multi_worker_starts_and_serves_status"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Synchronized audio player for Sendspin servers",
         homepage: "https://github.com/Sendspin/sendspin-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/Sendspin/sendspin-cli/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

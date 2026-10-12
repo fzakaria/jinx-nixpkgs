@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["fetchSubmodules", 27, 5], ["hash", 28, 5]], [["url", 57, 5], ["tag", 58, 5], ["hash", 59, 5]], [["url", 63, 5], ["tag", 64, 5], ["hash", 65, 5]], [["url", 69, 5], ["rev", 70, 5], ["hash", 71, 5]], [["url", 75, 5], ["tag", 76, 5], ["hash", 77, 5]], [["url", 81, 5], ["tag", 82, 5], ["hash", 83, 5]], [["description", 134, 5], ["homepage", 135, 5], ["mainProgram", 136, 5], ["license", 137, 5], ["platforms", 138, 5], ["maintainers", 139, 5], ["changelog", 140, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cryptopp-src", 56, 3], ["zlib-src", 62, 3], ["bzip2-src", 68, 3], ["xz-src", 74, 3], ["zstd-src", 80, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 93, 3], ["cmakeFlags", 104, 3], ["patches", 113, 3], ["postInstall", 120, 3], ["nativeInstallCheckInputs", 127, 3], ["versionCheckProgram", 130, 3], ["doInstallCheck", 131, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, fetchFromGitHub: false, cmake: false, openssl: false, qt6: false, "zlib-ng": false, bzip2: false, xz: false, zstd: false, cryptopp: false, "pkg-config": false, makeWrapper: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["fetchSubmodules", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 57, 5], ["tag", 58, 5], ["hash", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 63, 5], ["tag", 64, 5], ["hash", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 69, 5], ["rev", 70, 5], ["hash", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 75, 5], ["tag", 76, 5], ["hash", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 81, 5], ["tag", 82, 5], ["hash", 83, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["mainProgram", 136, 5], ["license", 137, 5], ["platforms", 138, 5], ["maintainers", 139, 5], ["changelog", 140, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cryptopp-src", 56, 3], ["zlib-src", 62, 3], ["bzip2-src", 68, 3], ["xz-src", 74, 3], ["zstd-src", 80, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 93, 3], ["cmakeFlags", 104, 3], ["patches", 113, 3], ["postInstall", 120, 3], ["nativeInstallCheckInputs", 127, 3], ["versionCheckProgram", 130, 3], ["doInstallCheck", 131, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "vpkedit",
       version: "4.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "craftablescience",
           repo: "VPKEdit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,31 +35,31 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-bxY190G12djkyfprrNt83+qzya44fnYV6Ij7D8SWelQ=",
         })))),
       "cryptopp-src": nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/weidai11/cryptopp.git",
           tag: "CRYPTOPP_8_9_0",
           hash: "sha256-HV+afSFkiXdy840JbHBTR8lLL0GMwsN3QdwaoQmicpQ=",
         })))),
       "zlib-src": nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://github.com/zlib-ng/zlib-ng.git",
           tag: "2.2.4",
           hash: "sha256-NZgnctJ6nA8Pp+wQ70p6m01LwY3wyl4G5bnLhQZYfps=",
         })))),
       "bzip2-src": nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: "git://sourceware.org/git/bzip2.git",
           rev: "fbc4b11da543753b3b803e5546f56e26ec90c2a7",
           hash: "sha256-kg/y9ZGbvaQd86tXxekxcv+h8nbNk3UvWad50fm5FtA=",
         })))),
       "xz-src": nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: "https://github.com/tukaani-project/xz.git",
           tag: "v5.8.0",
           hash: "sha256-oH9aI5norOBIzyybYU3SnHJL8PXJ9lmZRX/RN0e+NXs=",
         })))),
       "zstd-src": nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: "https://github.com/facebook/zstd.git",
           tag: "v1.5.7",
           hash: "sha256-tNFWIT9ydfozB8dWcmTMuZLCQmQudTFJIkSr0aG7S44=",
@@ -109,7 +102,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/vpkeditcli`),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "CLI/GUI tool to create, read, and write several pack file formats",
         homepage: "https://github.com/craftablescience/VPKEdit",
         mainProgram: "vpkeditcli",

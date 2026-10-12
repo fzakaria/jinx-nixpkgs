@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["name", 69, 7], ["desktopName", 70, 7], ["comment", 71, 7], ["icon", 72, 7], ["exec", 73, 7], ["categories", 74, 7]], [["extraArgs", 128, 5]], [["updateScript", 127, 12]], [["description", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["mainProgram", 138, 5], ["maintainers", 139, 5], ["platforms", 143, 5], ["sourceProvenance", 144, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["__structuredAttrs", 36, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["desktopItems", 67, 3], ["installPhase", 78, 3], ["postFixup", 104, 3], ["passthru", 127, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false, gtk3: false, zlib: false, "alsa-lib": false, dbus: false, libGL: false, libxcursor: false, libxext: false, libxi: false, libxinerama: false, libxkbcommon: false, libxrandr: false, libxscrnsaver: false, libxxf86vm: false, udev: false, "vulkan-loader": false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 69, 7], ["desktopName", 70, 7], ["comment", 71, 7], ["icon", 72, 7], ["exec", 73, 7], ["categories", 74, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 128, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 127, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["mainProgram", 138, 5], ["maintainers", 139, 5], ["platforms", 143, 5], ["sourceProvenance", 144, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["__structuredAttrs", 36, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["desktopItems", 67, 3], ["installPhase", 78, 3], ["postFixup", 104, 3], ["passthru", 127, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "clonehero",
       version: "1.1.0.6142",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/clonehero-game/releases/releases/download/v${nix.sel(finalAttrs, "version")}-final/Linux.x86_64-Standalone.tar`),
           hash: "sha256-Vylx2TCSKDxdDVIAaia1Krjo+xKNz7QqNJbeJsiqIx0=",
         })))),
@@ -68,7 +63,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "clonehero",
             desktopName: "Clone Hero",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -80,14 +75,14 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 clonehero \"$out/libexec/clonehero/clonehero\"\ninstall -Dm644 GameAssembly.so \"$out/lib/clonehero/GameAssembly.so\"\ninstall -Dm644 UnityPlayer.so \"$out/lib/clonehero/UnityPlayer.so\"\n\nmkdir -p \"$out/share\"\ncp -r clonehero_Data \"$out/share/clonehero\"\n\nmkdir -p \"$out/bin\" \"$out/share/icons/hicolor/128x128/apps\"\nln -s \"$out/libexec/clonehero/clonehero\" \"$out/bin/clonehero\"\nln -s \"$out/lib/clonehero/GameAssembly.so\" \"$out/libexec/clonehero/GameAssembly.so\"\nln -s \"$out/lib/clonehero/UnityPlayer.so\" \"$out/libexec/clonehero/UnityPlayer.so\"\nln -s \"$out/share/clonehero\" \"$out/libexec/clonehero/clonehero_Data\"\nln -s \"$out/share/clonehero/Resources/UnityPlayer.png\" \"$out/share/icons/hicolor/128x128/apps/clonehero.png\"\n\nrunHook postInstall\n",
       postFixup: "patchelf \\\n  --add-needed libasound.so.2 \\\n  --add-needed libdbus-1.so.3 \\\n  --add-needed libGL.so.1 \\\n  --add-needed libpthread.so.0 \\\n  --add-needed libudev.so.1 \\\n  --add-needed libvulkan.so.1 \\\n  --add-needed libwayland-client.so.0 \\\n  --add-needed libwayland-cursor.so.0 \\\n  --add-needed libwayland-egl.so.1 \\\n  --add-needed libX11.so.6 \\\n  --add-needed libXcursor.so.1 \\\n  --add-needed libXext.so.6 \\\n  --add-needed libXi.so.6 \\\n  --add-needed libXinerama.so.1 \\\n  --add-needed libxkbcommon.so.0 \\\n  --add-needed libXrandr.so.2 \\\n  --add-needed libXss.so.1 \\\n  --add-needed libXxf86vm.so.1 \\\n  \"$out/lib/clonehero/UnityPlayer.so\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)-final$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Clone of Guitar Hero and Rockband-style games",
         homepage: "https://clonehero.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

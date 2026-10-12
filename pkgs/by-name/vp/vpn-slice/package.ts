@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["updateScript", 48, 5]], [["homepage", 52, 5], ["description", 53, 5], ["mainProgram", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["build-system", 35, 3], ["dependencies", 39, 3], ["doCheck", 45, 3], ["passthru", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, "nix-update-script": false, fetchFromGitHub: false, iproute2: false, iptables: false, unixtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["mainProgram", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["build-system", 35, 3], ["dependencies", 39, 3], ["doCheck", 45, 3], ["passthru", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.16.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dlenski",
           repo: "vpn-slice",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -49,11 +46,11 @@ export default nix.lambda((args) => (() => {
       })());
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/dlenski/vpn-slice",
         description: "vpnc-script replacement for easy and secure split-tunnel VPN setup",
         mainProgram: "vpn-slice",
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

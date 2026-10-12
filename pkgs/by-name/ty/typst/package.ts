@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["leaveDotGit", 23, 5], ["postFetch", 24, 5]], [["GEN_ARTIFACTS", 43, 5], ["OPENSSL_NO_VENDOR", 44, 5]], [["packages", 75, 54]], [["updateScript", 72, 5], ["packages", 73, 5], ["wrapper", 74, 5], ["withPackages", 75, 5]], [["changelog", 79, 5], ["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["mainProgram", 83, 5], ["maintainers", 84, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["env", 42, 3], ["postPatch", 48, 3], ["postInstall", 59, 3], ["cargoTestFlags", 66, 3], ["doInstallCheck", 68, 3], ["nativeInstallCheckInputs", 69, 3], ["passthru", 71, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, "pkg-config": false, openssl: false, "nix-update-script": false, versionCheckHook: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["leaveDotGit", 23, 5], ["postFetch", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GEN_ARTIFACTS", 43, 5], ["OPENSSL_NO_VENDOR", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packages", 75, 54]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 72, 5], ["packages", 73, 5], ["wrapper", 74, 5], ["withPackages", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 79, 5], ["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["mainProgram", 83, 5], ["maintainers", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["env", 42, 3], ["postPatch", 48, 3], ["postInstall", 59, 3], ["cargoTestFlags", 66, 3], ["doInstallCheck", 68, 3], ["nativeInstallCheckInputs", 69, 3], ["passthru", 71, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "typst",
       version: "0.15.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "typst",
           repo: "typst",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,21 +33,21 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-+/2L4o9d8UENPtJAD/sSqf5ysOfHJYZgnvhOAoRdK40=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GEN_ARTIFACTS: "artifacts", OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GEN_ARTIFACTS: "artifacts", OPENSSL_NO_VENDOR: true })),
       postPatch: "substituteInPlace tests/src/tests.rs --replace-fail \\\n  'ARGS.num_threads' \\\n  'ARGS.test_threads'\nsubstituteInPlace tests/src/args.rs --replace-fail \\\n  'num_threads' \\\n  'test_threads'\n\nexport TYPST_COMMIT_SHA=\"$(cat COMMIT | cut -c1-8)\"\n",
       postInstall: "installManPage crates/typst-cli/artifacts/*.1\ninstallShellCompletion \\\n  crates/typst-cli/artifacts/typst.{bash,fish} \\\n  --zsh crates/typst-cli/artifacts/_typst\n",
       cargoTestFlags: nix.thunk(() => ["--workspace"]),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         packages: nix.thunk(() => nix.app(callPackage, nix.path(here, "./typst-packages.nix"), nix.thunk(() => ({})))),
         wrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({})))),
-        withPackages: (ps) => nix.app(nix.sel(finalAttrs, "passthru", "wrapper"), nix.thunk(() => ({ [nix.POS]: pos$3, packages: ps }))),
+        withPackages: (ps) => nix.app(nix.sel(finalAttrs, "passthru", "wrapper"), nix.thunk(() => ({ [nix.POS]: $pos[2], packages: ps }))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/typst/typst/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "New markup-based typesetting system that is powerful and easy to learn",
         homepage: "https://github.com/typst/typst",

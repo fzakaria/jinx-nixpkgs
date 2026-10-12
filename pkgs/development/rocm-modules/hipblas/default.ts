@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["sparseCheckout", 46, 5], ["hash", 50, 5]], [["finalAttrs", 118, 54]], [["buildTests", 120, 5], ["buildBenchmarks", 121, 5], ["buildSamples", 122, 5]], [["hipblas-tested", 119, 18]], [["updateScript", 118, 12], ["tests", 119, 12]], [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["teams", 129, 5], ["platforms", 130, 5]], [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 42, 3], ["sourceRoot", 52, 3], ["postPatch", 54, 3], ["nativeBuildInputs", 59, 3], ["propagatedBuildInputs", 66, 3], ["buildInputs", 68, 3], ["cmakeFlags", 81, 3], ["postInstall", 101, 3], ["passthru", 118, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, "rocm-cmake": false, clr: false, gfortran: false, "hipblas-common": false, rocblas: false, rocsolver: false, rocsparse: false, rocprim: false, gtest: false, "lapack-reference": false, buildTests: true, buildBenchmarks: true, buildSamples: true, hipblas: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["sparseCheckout", 46, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["finalAttrs", 118, 54]]);
-const pos$3 = nix.positions(here + "/default.nix", [["buildTests", 120, 5], ["buildBenchmarks", 121, 5], ["buildSamples", 122, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hipblas-tested", 119, 18]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 118, 12], ["tests", 119, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["teams", 129, 5], ["platforms", 130, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 42, 3], ["sourceRoot", 52, 3], ["postPatch", 54, 3], ["nativeBuildInputs", 59, 3], ["propagatedBuildInputs", 66, 3], ["buildInputs", 68, 3], ["cmakeFlags", 81, 3], ["postInstall", 101, 3], ["passthru", 118, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const buildSamples = nix.argOr($, "buildSamples", () => false);
   const hipblas = nix.arg($, "hipblas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "hipblas",
       version: "7.2.3",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["test"])), nix.concat(nix.app(nix.sel(lib, "optionals"), buildBenchmarks, nix.thunk(() => ["benchmark"])), nix.app(nix.sel(lib, "optionals"), buildSamples, nix.thunk(() => ["sample"])))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -60,12 +54,12 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["-DBUILD_CLIENTS_TESTS=ON"])), nix.concat(nix.app(nix.sel(lib, "optionals"), buildBenchmarks, nix.thunk(() => ["-DBUILD_CLIENTS_BENCHMARKS=ON"])), nix.app(nix.sel(lib, "optionals"), buildSamples, nix.thunk(() => ["-DBUILD_CLIENTS_SAMPLES=ON"])))))),
       postInstall: nix.thunk(() => nix.add(nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), buildTests, "mkdir -p $test/bin\nmv $out/bin/hipblas-test $test/bin\n"), nix.app(nix.sel(lib, "optionalString"), buildBenchmarks, "mkdir -p $benchmark/bin\nmv $out/bin/hipblas-bench $benchmark/bin\n")), nix.app(nix.sel(lib, "optionalString"), buildSamples, "mkdir -p $sample/bin\nmv $out/bin/example-* $sample/bin\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBool(buildTests) || nix.asBool(buildBenchmarks))) || nix.asBool(buildSamples))), "rmdir $out/bin\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], finalAttrs: finalAttrs })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "hipblas-tested": nix.thunk(() => nix.app(nix.sel(hipblas, "override"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               buildTests: true,
               buildBenchmarks: true,
               buildSamples: true,
@@ -73,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "ROCm BLAS marshalling library",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipblas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

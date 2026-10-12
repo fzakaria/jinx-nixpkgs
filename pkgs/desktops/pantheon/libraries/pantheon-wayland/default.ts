@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["updateScript", 49, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["teams", 56, 5], ["platforms", 57, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["outputs", 27, 3], ["depsBuildBuild", 32, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 43, 3], ["passthru", 48, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "gobject-introspection": false, meson: false, ninja: false, "pkg-config": false, vala: false, "wayland-scanner": false, glib: false, gtk4: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["teams", 56, 5], ["platforms", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["outputs", 27, 3], ["depsBuildBuild", 32, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 43, 3], ["passthru", 48, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pantheon-wayland",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "pantheon-wayland",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gobject_introspection, meson, ninja, pkg_config, vala, wayland_scanner]),
       propagatedBuildInputs: nix.thunk(() => [glib, gtk4]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wayland integration library to the Pantheon Desktop",
         homepage: "https://github.com/elementary/pantheon-wayland",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

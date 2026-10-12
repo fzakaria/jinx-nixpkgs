@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]], [["pname", 31, 5], ["version", 32, 13], ["src", 33, 5], ["npmDepsHash", 34, 5], ["dontNpmBuild", 35, 5]], [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["mainProgram", 111, 5], ["platforms", 112, 5]], [["pname", 39, 11], ["version", 39, 17], ["src", 39, 25], ["strictDeps", 41, 3], ["__structuredAttrs", 42, 3], ["nativeBuildInputs", 44, 3], ["postConfigure", 51, 3], ["buildInputs", 55, 3], ["postInstall", 66, 3], ["cmakeFlags", 70, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, systemdLibs: false, dbus: false, protobuf: false, jsoncpp: false, nodejs: false, cjson: false, bashNonInteractive: false, buildNpmPackage: false, libnftnl: false, libmnl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 31, 5], ["version", 32, 13], ["src", 33, 5], ["npmDepsHash", 34, 5], ["dontNpmBuild", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["mainProgram", 111, 5], ["platforms", 112, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 39, 11], ["version", 39, 17], ["src", 39, 25], ["strictDeps", 41, 3], ["__structuredAttrs", 42, 3], ["nativeBuildInputs", 44, 3], ["postConfigure", 51, 3], ["buildInputs", 55, 3], ["postInstall", 66, 3], ["cmakeFlags", 70, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const pname = "openthread-border-router";
   const version = "2026.09.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "openthread",
       repo: "ot-br-posix",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const frontendModules = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${pname}-frontend`),
       version: version,
       src: nix.thunk(() => nix.str`${src}/src/web/web-service/frontend`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       dontNpmBuild: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -85,7 +82,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_CXX_STANDARD", "17")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Thread border router for POSIX-based platforms",
         homepage: "https://github.com/openthread/ot-br-posix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

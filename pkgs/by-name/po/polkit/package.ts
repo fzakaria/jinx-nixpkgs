@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 57, 5], ["repo", 58, 5], ["rev", 59, 5], ["hash", 60, 5]], [["doCheck", 117, 11]], [["DESTDIR", 131, 5], ["PKG_CONFIG_SYSTEMD_SYSUSERS_DIR", 135, 5], ["PKG_CONFIG_SYSTEMD_TMPFILES_DIR", 136, 5]], [["homepage", 195, 5], ["description", 196, 5], ["license", 197, 5], ["platforms", 198, 5], ["badPlatforms", 199, 5], ["teams", 203, 5]], [["pname", 44, 3], ["version", 45, 3], ["disallowedReferences", 47, 3], ["outputs", 49, 3], ["src", 56, 3], ["patches", 63, 3], ["depsBuildBuild", 69, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 94, 3], ["propagatedBuildInputs", 105, 3], ["nativeCheckInputs", 109, 3], ["env", 123, 3], ["mesonFlags", 139, 3], ["doCheck", 161, 11], ["postPatch", 163, 3], ["postInstall", 177, 3], ["meta", 194, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, glib: false, expat: false, pam: false, meson: false, mesonEmulatorHook: false, ninja: false, perl: false, python3: false, gettext: false, duktape: false, "gobject-introspection": false, libxslt: false, "docbook-xsl-nons": false, dbus: false, "util-linux": false, docbook_xml_dtd_412: false, "gtk-doc": false, coreutils: false, useConsoleKit: true, useSystemd: true, systemdLibs: false, elogind: false, buildPackages: false, withIntrospection: true, doCheck: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 57, 5], ["repo", 58, 5], ["rev", 59, 5], ["hash", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["doCheck", 117, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["DESTDIR", 131, 5], ["PKG_CONFIG_SYSTEMD_SYSUSERS_DIR", 135, 5], ["PKG_CONFIG_SYSTEMD_TMPFILES_DIR", 136, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 195, 5], ["description", 196, 5], ["license", 197, 5], ["platforms", 198, 5], ["badPlatforms", 199, 5], ["teams", 203, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["disallowedReferences", 47, 3], ["outputs", 49, 3], ["src", 56, 3], ["patches", 63, 3], ["depsBuildBuild", 69, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 94, 3], ["propagatedBuildInputs", 105, 3], ["nativeCheckInputs", 109, 3], ["env", 123, 3], ["mesonFlags", 139, 3], ["doCheck", 161, 11], ["postPatch", 163, 3], ["postInstall", 177, 3], ["meta", 194, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const system = "/run/current-system/sw";
   const setuid = "/run/wrappers/bin";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "polkit",
       version: "127",
       disallowedReferences: nix.thunk(() => nix.app(nix.sel(lib, "optional"), useConsoleKit, systemdLibs)),
       outputs: nix.thunk(() => ["bin", "dev", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "polkit-org",
           repo: "polkit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -81,12 +77,12 @@ export default nix.lambda((args) => (() => {
             const w = nix.withScope(pp, null);
             return [
               nix.thunk(() => nix.lookup(w, "dbus-python")),
-              nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "python-dbusmock"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: false })))),
+              nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "python-dbusmock"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: false })))),
             ];
           })())),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         DESTDIR: "dest",
         PKG_CONFIG_SYSTEMD_SYSUSERS_DIR: "/usr/lib/sysusers.d",
         PKG_CONFIG_SYSTEMD_TMPFILES_DIR: "/usr/lib/tmpfiles.d",
@@ -133,7 +129,7 @@ rmdir --parents --ignore-fail-on-non-empty \\
 ! test -e "$DESTDIR"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/polkit-org/polkit",
         description: "Toolkit for defining and handling the policy that allows unprivileged processes to speak to privileged processes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

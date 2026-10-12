@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["sha256", 32, 5]], [["url", 39, 5], ["hash", 40, 5]], [["cgit", 115, 43]], [["tests", 115, 12]], [["homepage", 118, 5], ["description", 119, 5], ["license", 120, 5], ["platforms", 121, 5], ["maintainers", 122, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["gitSrc", 38, 3], ["separateDebugInfo", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["pythonPath", 61, 3], ["postPatch", 66, 3], ["preBuild", 83, 3], ["makeFlags", 88, 3], ["postInstall", 95, 3], ["stripDebugList", 111, 3], ["enableParallelBuilding", 113, 3], ["passthru", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openssl: false, zlib: false, asciidoc: false, libxml2: false, libxslt: false, luajit: false, docbook_xsl: false, "pkg-config": false, coreutils: false, gnused: false, groff: false, docutils: false, gzip: false, bzip2: false, lzip: false, xz: false, zstd: false, python3Packages: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cgit", 115, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 115, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 118, 5], ["description", 119, 5], ["license", 120, 5], ["platforms", 121, 5], ["maintainers", 122, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["gitSrc", 38, 3], ["separateDebugInfo", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["pythonPath", 61, 3], ["postPatch", 66, 3], ["preBuild", 83, 3], ["makeFlags", 88, 3], ["postInstall", 95, 3], ["stripDebugList", 111, 3], ["enableParallelBuilding", 113, 3], ["passthru", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,16 +30,16 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cgit",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.zx2c4.com/cgit/snapshot/cgit-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "c40fd71e120783d5e57d822208f3e17333cde2cd4baf3e7c8c75630b68afe12a",
         })))),
       gitSrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "mirror://kernel/software/scm/git/git-2.54.0.tar.xz",
           hash: "sha256-9okWI2TBDeee+Jqo2/SHMesFfjTtu9IKylEM4BVGgaM=",
         })))),
@@ -96,11 +91,11 @@ done
       stripDebugList: nix.thunk(() => ["cgit"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, cgit: nix.thunk(() => nix.attr(nixosTests, "cgit")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], cgit: nix.thunk(() => nix.attr(nixosTests, "cgit")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://git.zx2c4.com/cgit/about/",
         description: "Web frontend for git repositories",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

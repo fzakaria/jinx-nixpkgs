@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5], ["platforms", 61, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["deps", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["zigBuildFlags", 45, 3], ["postFixup", 50, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, zig_0_13: false, stdenv: false, fetchFromSourcehut: false, fcft: false, libxkbcommon: false, pixman: false, "pkg-config": false, scdoc: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5], ["platforms", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["deps", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["zigBuildFlags", 45, 3], ["postFixup", 50, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wayprompt",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~leon_plickat",
           repo: "wayprompt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       zigBuildFlags: nix.thunk(() => ["--system", nix.thunk(() => nix.str`${nix.sel(finalAttrs, "deps")}`)]),
       postFixup: "substituteInPlace $out/bin/wayprompt-ssh-askpass \\\n  --replace-fail wayprompt $out/bin/wayprompt\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git.sr.ht/~leon_plickat/wayprompt",
         description: "Multi-purpose (password-)prompt tool for Wayland",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

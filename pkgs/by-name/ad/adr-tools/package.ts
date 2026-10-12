@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["default", 79, 11]], [["tests", 79, 5], ["updateScript", 104, 5]], [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 112, 5], ["platforms", 113, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["checkInputs", 44, 3], ["dontConfigure", 46, 3], ["dontBuild", 47, 3], ["doCheck", 48, 3], ["patchPhase", 51, 3], ["checkPhase", 57, 3], ["installPhase", 61, 3], ["passthru", 78, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, installShellFiles: false, makeWrapper: false, "nix-update-script": false, bash: false, bashInteractive: false, coreutils: false, findutils: false, gawk: false, getopt: false, gnugrep: false, gnused: false, "adr-tools": false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["default", 79, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 79, 5], ["updateScript", 104, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 112, 5], ["platforms", 113, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["checkInputs", 44, 3], ["dontConfigure", 46, 3], ["dontBuild", 47, 3], ["doCheck", 48, 3], ["patchPhase", 51, 3], ["checkPhase", 57, 3], ["installPhase", 61, 3], ["passthru", 78, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const adr_tools = nix.arg($, "adr-tools");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "adr-tools",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "npryce",
           repo: "adr-tools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,9 +49,9 @@ makeWrapper $out/libexec/adr $out/bin/adr --prefix PATH : ${nix.app(nix.sel(lib,
 installShellCompletion --bash autocomplete/adr
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           default: nix.thunk(() => nix.app(runCommand, "adr-tools-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`set -euo pipefail
 export PATH=$PATH:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [adr_tools, gnugrep]))}
 
@@ -78,7 +74,7 @@ grep 'TESTED AMEND' doc/adr/0001-record-architecture-decisions.md | grep 0002-bl
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command-line tools for working with Architecture Decision Records",
         homepage: "https://github.com/npryce/adr-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

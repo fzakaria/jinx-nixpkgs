@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["externalEtc", 34, 13]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["maintainers", 92, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["passthru", 33, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["outputs", 51, 3], ["preAutoreconf", 61, 3], ["postAutoreconf", 65, 3], ["configureFlags", 76, 3], ["postFixup", 81, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, bison: false, flex: false, "pkg-config": false, expat: false, gsoap: false, openssl: false, zlib: false, externalEtc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["externalEtc", 34, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["maintainers", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["passthru", 33, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["outputs", 51, 3], ["preAutoreconf", 61, 3], ["postAutoreconf", 65, 3], ["configureFlags", 76, 3], ["postFixup", 81, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const externalEtc = nix.argOr($, "externalEtc", () => "/etc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "voms",
       version: "2.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "italiangrid",
           repo: "voms",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-odwaIGaiJEnxNeysScYknOTimpvvx1vhuHf82VGPoVg=",
         })))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, externalEtc: externalEtc })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], externalEtc: externalEtc })),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, bison, flex, pkg_config]),
       buildInputs: nix.thunk(() => [expat, gsoap, openssl, zlib]),
       outputs: nix.thunk(() => nix.concat(["bin", "out", "dev", "man"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(externalEtc, null)), "etc"))),
@@ -55,7 +52,7 @@ export GSOAP_SSL_PP_LIBS="$(pkg-config --libs gsoapssl++ zlib)"
 ln -s ${nix.app(nix.sel(lib, "escapeShellArg"), externalEtc)} "$out/etc"
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C/C++ VOMS server, client and APIs v2.x",
         homepage: "https://italiangrid.github.io/voms/",
         changelog: "https://github.com/italiangrid/voms/blob/master/ChangeLog",

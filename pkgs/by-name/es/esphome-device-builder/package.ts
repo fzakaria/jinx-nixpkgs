@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 15, 5], ["homepage", 16, 5], ["license", 17, 5], ["maintainers", 18, 5], ["mainProgram", 22, 5]], [["meta", 29, 17]], [["esphome", 27, 7], ["esphome-device-builder-frontend", 28, 7]], [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["frontend", 141, 5], ["updateScript", 142, 5]], [["changelog", 146, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["__structuredAttrs", 46, 3], ["nativeBuildInputs", 48, 3], ["build-system", 52, 3], ["dependencies", 56, 3], ["nativeCheckInputs", 74, 3], ["postPatch", 85, 3], ["__darwinAllowLocalNetworking", 103, 3], ["pytestFlags", 105, 3], ["disabledTestPaths", 109, 3], ["disabledTests", 114, 3], ["passthru", 140, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, python3Packages: false, fetchFromGitHub: false, gitMinimal: false, coreutils: false, versionCheckHook: false, esptool: false, esphome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 15, 5], ["homepage", 16, 5], ["license", 17, 5], ["maintainers", 18, 5], ["mainProgram", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["meta", 29, 17]]);
-const pos$3 = nix.positions(here + "/package.nix", [["esphome", 27, 7], ["esphome-device-builder-frontend", 28, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["frontend", 141, 5], ["updateScript", 142, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 146, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["__structuredAttrs", 46, 3], ["nativeBuildInputs", 48, 3], ["build-system", 52, 3], ["dependencies", 56, 3], ["nativeCheckInputs", 74, 3], ["postPatch", 85, 3], ["__darwinAllowLocalNetworking", 103, 3], ["pytestFlags", 105, 3], ["disabledTestPaths", 109, 3], ["disabledTests", 114, 3], ["passthru", 140, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const esptool = nix.arg($, "esptool");
   const esphome = nix.arg($, "esphome");
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "ESPHome Device Builder Dashboard",
     homepage: "https://esphome.io/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -37,17 +31,17 @@ export default nix.lambda((args) => (() => {
     mainProgram: "esphome-device-builder",
   }));
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       esphome: nix.thunk(() => nix.app(nix.sel(self, "toPythonModule"), esphome)),
-      "esphome-device-builder-frontend": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./frontend.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, meta: meta })))),
+      "esphome-device-builder-frontend": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./frontend.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], meta: meta })))),
     })));
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "esphome-device-builder",
       version: "1.14.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "esphome",
           repo: "device-builder",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -127,12 +121,12 @@ substituteInPlace tests/helpers/test_orphan_reaper.py \\
         "test_start_logs_ping_count_at_debug",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         frontend: nix.thunk(() => nix.sel(pythonPackages, "esphome-device-builder-frontend")),
         updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/esphome/device-builder/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
       })),
     }));

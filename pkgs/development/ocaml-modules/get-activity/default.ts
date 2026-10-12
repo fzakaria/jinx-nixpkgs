@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 7], ["hash", 22, 7]], [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["changelog", 45, 5], ["maintainers", 46, 5]], [["pname", 15, 3], ["version", 16, 30], ["src", 16, 38], ["patches", 18, 3], ["buildInputs", 26, 3], ["checkInputs", 34, 3], ["doCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchpatch: false, "get-activity-lib": false, ppx_expect: false, cmdliner: false, "dune-build-info": false, fmt: false, logs: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["changelog", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 30], ["src", 16, 38], ["patches", 18, 3], ["buildInputs", 26, 3], ["checkInputs", 34, 3], ["doCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "get-activity",
       version: nix.thunk(() => nix.attr(get_activity_lib, "version")),
       src: nix.thunk(() => nix.attr(get_activity_lib, "src")),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/tarides/get-activity/commit/3f1ccbbcf7fc65c69c7752726f6886fc92b986fa.patch",
             hash: "sha256-6uvkBEI/ZCPrJ3Aus0/L86zUIa+kOBD0k8ADMEi+pkI=",
           })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ppx_expect, alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/tarides/get-activity",
         description: "Collect activity and format as markdown for a journal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

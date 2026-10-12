@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]], [["EXECUTABLE", 76, 5], ["OPTS", 78, 5]], [["LDADD", 95, 5]], [["tests", 111, 26], ["updateScript", 112, 5]], [["description", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["mainProgram", 119, 5], ["maintainers", 120, 5], ["platforms", 121, 5]], [["pname", 39, 3], ["version", 42, 3], ["src", 44, 3], ["buildInputs", 51, 3], ["enableParallelBuilding", 68, 3], ["postPatch", 70, 3], ["env", 75, 3], ["installPhase", 101, 3], ["passthru", 110, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, flac: false, libgpiod: false, libmad: false, libpulseaudio: false, libvorbis: false, mpg123: false, audioBackend: true, alsaSupport: true, "alsa-lib": false, dsdSupport: true, faad2Support: true, faad2: false, ffmpegSupport: true, ffmpeg: false, opusSupport: true, opusfile: false, resampleSupport: true, soxr: false, sslSupport: true, openssl: false, portaudioSupport: true, portaudio: false, slimserver: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["EXECUTABLE", 76, 5], ["OPTS", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LDADD", 95, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 111, 26], ["updateScript", 112, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["mainProgram", 119, 5], ["maintainers", 120, 5], ["platforms", 121, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 42, 3], ["src", 44, 3], ["buildInputs", 51, 3], ["enableParallelBuilding", 68, 3], ["postPatch", 70, 3], ["env", 75, 3], ["installPhase", 101, 3], ["passthru", 110, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const pulseSupport = nix.thunk(() => nix.eq(audioBackend, "pulse"));
   const binName = nix.thunk(() => nix.str`squeezelite${nix.app(optionalString, pulseSupport, "-pulse")}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: binName,
       version: "2.0.0.1609",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ralph-irving",
           repo: "squeezelite",
           rev: "ab20df3dff76122b9e4f426cffd0346e752b93da",
@@ -57,11 +52,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postPatch: "substituteInPlace opus.c \\\n  --replace \"<opusfile.h>\" \"<opus/opusfile.h>\"\n",
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         EXECUTABLE: binName,
         OPTS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-DLINKALL", "-DGPIO"], nix.concat(nix.app(optional, dsdSupport, "-DDSD"), nix.concat(nix.app(optional, nix.thunk(() => !nix.asBool(faad2Support)), "-DNO_FAAD"), nix.concat(nix.app(optional, ffmpegSupport, "-DFFMPEG"), nix.concat(nix.app(optional, opusSupport, "-DOPUS"), nix.concat(nix.app(optional, portaudioSupport, "-DPORTAUDIO"), nix.concat(nix.app(optional, pulseSupport, "-DPULSEAUDIO"), nix.concat(nix.app(optional, resampleSupport, "-DRESAMPLE"), nix.concat(nix.app(optional, sslSupport, "-DUSE_SSL"), nix.app(optional, nix.thunk(() => nix.selOr(stdenv, () => nix.sel(stdenv, "hostPlatform", "isAarch64"), "hostPlatform", "isAarch32")), "-DRPI"))))))))))))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           LDADD: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lportaudio", "-lpthread"]))),
         }))))),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -72,12 +67,12 @@ install -Dm444 -t $out/share/man/man1 doc/squeezelite.1
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.attr(slimserver, "tests")),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Lightweight headless squeezebox client emulator",
         homepage: "https://github.com/ralph-irving/squeezelite",
         license: nix.thunk(() => (() => {

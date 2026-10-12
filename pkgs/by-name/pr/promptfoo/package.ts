@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 21, 7]], [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["env", 21, 3], ["preFixup", 24, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["env", 21, 3], ["preFixup", 24, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,21 +11,21 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "promptfoo",
       version: "0.118.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "promptfoo",
           repo: "promptfoo",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-MyK533JOVCuO613XWFc2tHLdc4v4IEF8H1xCpS/XxUE=",
         })))),
       npmDepsHash: "sha256-mpe00J5iRwaH7hJIDP3fDuJSUOKk01COpOOvF1YJMyg=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1" })),
       preFixup: "rm -rf $out/lib/node_modules/promptfoo/node_modules/app $out/lib/node_modules/promptfoo/node_modules/promptfoo-docs\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Test your prompts, models, RAGs. Evaluate and compare LLM outputs, catch regressions, and improve prompt quality",
         mainProgram: "promptfoo",
         homepage: "https://www.promptfoo.dev/",

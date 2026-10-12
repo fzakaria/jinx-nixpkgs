@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 52, 7], ["outputHash", 53, 7]], [["url", 56, 7], ["outputHash", 57, 7]], [["x86_64-linux", 51, 5], ["aarch64-darwin", 55, 5]], [["pname", 97, 11], ["version", 98, 19], ["nativeBuildInputs", 99, 11], ["outputHashAlgo", 103, 11], ["outputHashMode", 104, 11]], [["updateScript", 164, 12]], [["name", 168, 7], ["comment", 169, 7], ["desktopName", 170, 7], ["genericName", 171, 7], ["exec", 172, 7], ["icon", 173, 7], ["categories", 174, 7]], [["description", 179, 13], ["license", 180, 5], ["platforms", 181, 5], ["maintainers", 182, 5], ["mainProgram", 183, 5], ["homepage", 184, 5], ["downloadPage", 185, 5]], [["pname", 91, 11], ["version", 91, 17], ["src", 92, 3], ["dontBuild", 116, 3], ["buildInputs", 117, 3], ["nativeBuildInputs", 127, 3], ["installPhase", 135, 3], ["passthru", 164, 3], ["desktopItems", 166, 3], ["meta", 178, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, runCommand: false, megacmd: false, unzip: false, makeWrapper: false, autoPatchelfHook: false, makeDesktopItem: false, copyDesktopItems: false, libgcc: false, cairo: false, dbus: false, xorg_sys_opengl: false, systemd: false, libcap: false, libdrm: false, pulseaudio: false, libsndfile: false, flac: false, glib: false, libvorbis: false, libopus: false, mpg123: false, lame: false, libGL: false, "vulkan-loader": false, libasyncns: false, pango: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxi: false, libxinerama: false, libxfixes: false, libxext: false, libxdmcp: false, libxcursor: false, libxau: false, libx11: false, libxcb: false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 52, 7], ["outputHash", 53, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 56, 7], ["outputHash", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 51, 5], ["aarch64-darwin", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 97, 11], ["version", 98, 19], ["nativeBuildInputs", 99, 11], ["outputHashAlgo", 103, 11], ["outputHashMode", 104, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 164, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 168, 7], ["comment", 169, 7], ["desktopName", 170, 7], ["genericName", 171, 7], ["exec", 172, 7], ["icon", 173, 7], ["categories", 174, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 179, 13], ["license", 180, 5], ["platforms", 181, 5], ["maintainers", 182, 5], ["mainProgram", 183, 5], ["homepage", 184, 5], ["downloadPage", 185, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 91, 11], ["version", 91, 17], ["src", 92, 3], ["dontBuild", 116, 3], ["buildInputs", 117, 3], ["nativeBuildInputs", 127, 3], ["installPhase", 135, 3], ["passthru", 164, 3], ["desktopItems", 166, 3], ["meta", 178, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,14 +52,14 @@ export default nix.lambda((args) => (() => {
   const version = "2025.06.002";
   const description = "Free-to-play MMORPG";
   const srcOptions = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://mega.nz/file/QmBXXDiC#XoG19N2_uBIHVKDNId5mE4cod9q29iPkYOfGDgAX_Oo",
       outputHash: "IdcowkU2k2grg133jTf3EOENATCCige64BMYXtFupRE=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://mega.nz/file/xr4AHIrb#pD5wDIiYys2my4_59UWiYoqBpdyUQHf_CalPZe7hpME",
       outputHash: "PpDUFnobznB5FHYSF+m9S3RcNIdi7eWyxxDHRdS+zlY=",
     })),
@@ -100,11 +93,11 @@ export default nix.lambda((args) => (() => {
     libxscrnsaver,
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(runCommand, "mega-loe", nix.thunk(() => nix.update(nix.sel(srcOptions, nix.key(nix.sel(stdenv, "hostPlatform", "system"))), {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.str`${pname}-source`),
           version: version,
           nativeBuildInputs: nix.thunk(() => [megacmd, unzip]),
@@ -130,10 +123,10 @@ ln -s $loeHome/LoE_Data/Resources/UnityPlayer.png $icon
 
 runHook postInstall
 ` : "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r *.app $out/Applications\n\nrunHook postInstall\n")),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "legends-of-equestria",
             comment: description,
             desktopName: "Legends of Equestria",
@@ -144,7 +137,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: description,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), srcOptions)),

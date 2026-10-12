@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 11], ["repo", 17, 11], ["rev", 18, 11], ["hash", 19, 11]], [["version", 14, 9], ["src", 15, 9]], [["url", 26, 11], ["sha256", 27, 11]], [["version", 24, 9], ["src", 25, 9]], [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["platforms", 61, 26]], [["pname", 35, 3], ["src", 36, 20], ["version", 36, 24], ["nativeBuildInputs", 38, 3], ["strictDeps", 43, 3], ["createFindlibDestdir", 45, 3], ["buildPhase", 47, 3], ["makeFlags", 51, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchurl: false, ocaml: false, findlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 11], ["repo", 17, 11], ["rev", 18, 11], ["hash", 19, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 14, 9], ["src", 15, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 26, 11], ["sha256", 27, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 24, 9], ["src", 25, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["platforms", 61, 26]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["src", 36, 20], ["version", 36, 24], ["nativeBuildInputs", 38, 3], ["strictDeps", 43, 3], ["createFindlibDestdir", 45, 3], ["buildPhase", 47, 3], ["makeFlags", 51, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const params = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.07")) ? (() => {
     const version = "0.2";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "grain-lang",
         repo: "dypgen",
         rev: version,
         hash: "sha256-fKuO/e5YbA2B7XcghWl9pXxwvKw9YlhnmZDZcuKe3cs=",
       }))));
-    return { [nix.POS]: pos$2, version, src };
+    return { [nix.POS]: $pos[1], version, src };
   })() : (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.06")) ? {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     version: "20120619-1",
     src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: "http://dypgen.free.fr/dypgen-20120619-1.tar.bz2",
         sha256: "ecb53d6e469e9ec4d57ee6323ff498d45b78883ae13618492488e7c5151fdd97",
       })))),
   } : nix.builtins.throw(nix.thunk(() => nix.str`dypgen is not available for OCaml ${nix.sel(ocaml, "version")}`)))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-dypgen`),
       src: nix.thunk(() => nix.attr(params, "src")),
       version: nix.thunk(() => nix.attr(params, "version")),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "http://dypgen.free.fr",
         description: "Dypgen GLR self extensible parser generator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-b")),

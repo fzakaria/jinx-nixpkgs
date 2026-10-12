@@ -2,61 +2,44 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainers", 9, 8]], [["writableStore", 13, 22]], [["extraDependencies", 14, 14]], [["substituters", 16, 20], ["system-features", 17, 20], ["experimental-features", 18, 20]], [["nixPath", 15, 11], ["settings", 16, 11], ["enable", 19, 11]], [["host", 26, 13], ["guest", 27, 13]], [["onFeatures", 22, 9], ["paths", 23, 9], ["unsafeFollowSymlinks", 30, 9]], [["supported-feature", 21, 52]], [["enable", 20, 36], ["allowedPatterns", 21, 36]], [["nix-required-mounts", 20, 16]], [["isNormalUser", 32, 26]], [["person", 32, 19]], [["users", 32, 13]], [["rules", 33, 24]], [["tmpfiles", 33, 15]], [["virtualisation", 13, 7], ["system", 14, 7], ["nix", 15, 7], ["programs", 20, 7], ["users", 32, 7], ["systemd", 33, 7]], [["machine", 10, 9]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 10, 3], ["testScript", 39, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainers", 9, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["writableStore", 13, 22]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraDependencies", 14, 14]]);
-const pos$4 = nix.positions(here + "/default.nix", [["substituters", 16, 20], ["system-features", 17, 20], ["experimental-features", 18, 20]]);
-const pos$5 = nix.positions(here + "/default.nix", [["nixPath", 15, 11], ["settings", 16, 11], ["enable", 19, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["host", 26, 13], ["guest", 27, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["onFeatures", 22, 9], ["paths", 23, 9], ["unsafeFollowSymlinks", 30, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["supported-feature", 21, 52]]);
-const pos$9 = nix.positions(here + "/default.nix", [["enable", 20, 36], ["allowedPatterns", 21, 36]]);
-const pos$10 = nix.positions(here + "/default.nix", [["nix-required-mounts", 20, 16]]);
-const pos$11 = nix.positions(here + "/default.nix", [["isNormalUser", 32, 26]]);
-const pos$12 = nix.positions(here + "/default.nix", [["person", 32, 19]]);
-const pos$13 = nix.positions(here + "/default.nix", [["users", 32, 13]]);
-const pos$14 = nix.positions(here + "/default.nix", [["rules", 33, 24]]);
-const pos$15 = nix.positions(here + "/default.nix", [["tmpfiles", 33, 15]]);
-const pos$16 = nix.positions(here + "/default.nix", [["virtualisation", 13, 7], ["system", 14, 7], ["nix", 15, 7], ["programs", 20, 7], ["users", 32, 7], ["systemd", 33, 7]]);
-const pos$17 = nix.positions(here + "/default.nix", [["machine", 10, 9]]);
-const pos$18 = nix.positions(here + "/default.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 10, 3], ["testScript", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "nix-required-mounts",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "SomeoneSerge"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$16,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, writableStore: true })),
+          [nix.POS]: $pos[15],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], writableStore: true })),
           system: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraDependencies: nix.thunk(() => [
               nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs_1, "runCommand"), "deps", nix.thunk(() => ({})), "mkdir $out"), "inputDerivation")),
             ]),
           })),
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             nixPath: nix.thunk(() => [nix.thunk(() => nix.str`nixpkgs=${nix.path(here, "../../..")}`)]),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               "system-features": nix.thunk(() => ["supported-feature"]),
               "experimental-features": nix.thunk(() => ["nix-command"]),
@@ -64,19 +47,19 @@ export default nix.lambda((args) => (() => {
             enable: true,
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             "nix-required-mounts": nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               allowedPatterns: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 "supported-feature": nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   onFeatures: nix.thunk(() => ["supported-feature"]),
                   paths: nix.thunk(() => [
                     "/supported-feature-files",
                     nix.thunk(() => ({
-                      [nix.POS]: pos$6,
+                      [nix.POS]: $pos[5],
                       host: "/usr/lib/imaginary-fhs-drivers",
                       guest: "/run/opengl-driver/lib",
                     })),
@@ -87,16 +70,16 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$12,
-              person: nix.thunk(() => ({ [nix.POS]: pos$11, isNormalUser: true })),
+              [nix.POS]: $pos[11],
+              person: nix.thunk(() => ({ [nix.POS]: $pos[10], isNormalUser: true })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               rules: nix.thunk(() => [
                 "d /supported-feature-files 0755 person users -",
                 "f /usr/lib/libcuda.so 0444 root root - fakeContent",

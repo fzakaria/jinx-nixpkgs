@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 31, 5], ["homepage", 32, 5], ["sourceProvenance", 33, 5], ["license", 34, 5], ["changelog", 35, 5], ["maintainers", 36, 5], ["mainProgram", 40, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["extraNativeImageBuildArgs", 17, 3], ["doInstallCheck", 27, 3], ["nativeInstallCheckInputs", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildGraalvmNativeImage: false, fetchurl: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["sourceProvenance", 33, 5], ["license", 34, 5], ["changelog", 35, 5], ["maintainers", 36, 5], ["mainProgram", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["extraNativeImageBuildArgs", 17, 3], ["doInstallCheck", 27, 3], ["nativeInstallCheckInputs", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGraalvmNativeImage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "clj-kondo",
       version: "2026.08.04",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/clj-kondo/clj-kondo/releases/download/v${nix.sel(finalAttrs, "version")}/clj-kondo-${nix.sel(finalAttrs, "version")}-standalone.jar`),
           sha256: "sha256-iElpFiQzzKwbYKi7gIRXc81C38ix3s4vvuEwcP0gos0=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Linter for Clojure code that sparks joy",
         homepage: "https://github.com/clj-kondo/clj-kondo",
         sourceProvenance: nix.thunk(() => (() => {

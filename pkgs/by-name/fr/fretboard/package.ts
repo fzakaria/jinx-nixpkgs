@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["hash", 33, 5]], [["NIX_CFLAGS_COMPILE", 54, 7]], [["updateScript", 61, 5]], [["changelog", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["mainProgram", 69, 5], ["teams", 70, 5], ["platforms", 71, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoDeps", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 48, 3], ["env", 54, 3], ["passthru", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, "blueprint-compiler": false, cargo: false, "desktop-file-utils": false, fetchFromGitHub: false, glib: false, gtk4: false, libadwaita: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, rustPlatform: false, rustc: false, stdenv: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["mainProgram", 69, 5], ["teams", 70, 5], ["platforms", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoDeps", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 48, 3], ["env", 54, 3], ["passthru", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "fretboard",
       version: "9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bragefuglseth",
           repo: "fretboard",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-LTUZPOecX1OiLcfdiY/P2ffq91QcnFjW6knM9H/Z+Lc=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -59,15 +54,15 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [glib, gtk4, libadwaita]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=incompatible-function-pointer-types"]))))),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/bragefuglseth/fretboard/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Look up guitar chords",
         homepage: "https://apps.gnome.org/Fretboard/",

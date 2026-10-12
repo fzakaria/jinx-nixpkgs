@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["homepage", 52, 5], ["description", 53, 5], ["mainProgram", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5], ["license", 57, 5]], [["pname", 19, 3], ["version", 20, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["nativeInstallCheckInputs", 48, 3], ["doInstallCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, imlib2: false, autoreconfHook: false, "autoconf-archive": false, libx11: false, libxext: false, libxfixes: false, libxcomposite: false, libxinerama: false, "pkg-config": false, libbsd: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["mainProgram", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5], ["license", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["nativeInstallCheckInputs", 48, 3], ["doInstallCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const libbsd = nix.arg($, "libbsd");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "scrot",
       version: "1.12.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "resurrecting-open-source-projects",
           repo: "scrot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/resurrecting-open-source-projects/scrot",
         description: "Command-line screen capture utility",
         mainProgram: "scrot",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]], [["GSEXE", 41, 7]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 39, 3], ["env", 41, 3], ["configureFlags", 43, 3], ["postInstall", 45, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, ghostscript: false, libpng: false, makeWrapper: false, coreutils: false, bc: false, gnugrep: false, gawk: false, gnused: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GSEXE", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 39, 3], ["env", 41, 3], ["configureFlags", 43, 3], ["postInstall", 45, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const gnused = nix.arg($, "gnused");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fig2dev",
       version: "3.2.9a",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/mcj/fig2dev-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-YeGFOTF2hS8DuQGzsFsZ+8Wtglj/FC89pucLG4NRMyY=",
         })))),
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./CVE-2025-31162.patch"),
         nix.path(here, "./CVE-2025-31163.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fig2dev-prototypes.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-gfx/fig2dev/files/fig2dev-3.2.9a-prototypes.patch?id=93644497325b6df7a17f8bd05ad0495607aa5c34",
             hash: "sha256-F6z0m3Ez9JpgZg+TjVjuIZhAyTMHodB7O/l8lDTOL54=",
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => [libpng]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, GSEXE: nix.thunk(() => nix.str`${ghostscript}/bin/gs`) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], GSEXE: nix.thunk(() => nix.str`${ghostscript}/bin/gs`) })),
       configureFlags: nix.thunk(() => ["--enable-transfig"]),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/fig2ps2tex \\
     --set PATH ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, bc, gnugrep, gawk]))}
@@ -52,7 +48,7 @@ wrapProgram $out/bin/pic2tpic \\
     --set PATH ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnused]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool to convert Xfig files to other formats",
         homepage: "https://mcj.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "xfig")),

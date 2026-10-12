@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["gtk_doc", 98, 5], ["introspection", 99, 5], ["examples", 102, 5], ["tests", 103, 5], ["gstreamer", 105, 5], ["glib_debug", 107, 5]], [["pkg-config", 114, 11]], [["updateScript", 113, 5], ["tests", 114, 5]], [["changelog", 118, 5], ["description", 119, 5], ["longDescription", 120, 5], ["homepage", 127, 5], ["pkgConfigModules", 128, 5], ["platforms", 129, 5], ["license", 130, 5], ["maintainers", 134, 5]], [["pname", 28, 3], ["version", 29, 3], ["outputs", 31, 3], ["src", 38, 3], ["patches", 46, 3], ["postPatch", 58, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 86, 3], ["propagatedBuildInputs", 93, 3], ["mesonFlags", 97, 3], ["doCheck", 110, 3], ["passthru", 112, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, testers: false, fetchFromGitLab: false, "nix-update-script": false, meson: false, ninja: false, "pkg-config": false, glib: false, "gupnp-igd": false, gst_all_1: false, gnutls: false, enableDocumentation: true, "gtk-doc": false, docbook_xsl: false, docbook_xml_dtd_412: false, graphviz: false, python3: false, withIntrospection: true, buildPackages: false, "gobject-introspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gtk_doc", 98, 5], ["introspection", 99, 5], ["examples", 102, 5], ["tests", 103, 5], ["gstreamer", 105, 5], ["glib_debug", 107, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 114, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 113, 5], ["tests", 114, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 118, 5], ["description", 119, 5], ["longDescription", 120, 5], ["homepage", 127, 5], ["pkgConfigModules", 128, 5], ["platforms", 129, 5], ["license", 130, 5], ["maintainers", 134, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["outputs", 31, 3], ["src", 38, 3], ["patches", 46, 3], ["postPatch", 58, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 86, 3], ["propagatedBuildInputs", 93, 3], ["mesonFlags", 97, 3], ["doCheck", 110, 3], ["passthru", 112, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libnice",
       version: "0.1.24",
       outputs: nix.thunk(() => nix.concat(["bin", "out", "dev"], nix.app(nix.sel(lib, "optionals"), enableDocumentation, nix.thunk(() => ["devdoc"])))),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "libnice",
           repo: "libnice",
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]),
       propagatedBuildInputs: nix.thunk(() => [glib]),
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonEnable")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           gtk_doc: enableDocumentation,
           introspection: withIntrospection,
           examples: false,
@@ -67,15 +62,15 @@ export default nix.lambda((args) => (() => {
         })))),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/libnice/libnice/-/blob/${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "GLib ICE implementation",
         longDescription: "Libnice is an implementation of the IETF's Interactive Connectivity\nEstablishment (ICE) standard (RFC 5245) and the Session Traversal\nUtilities for NAT (STUN) standard (RFC 5389).\n\nIt provides a GLib-based library, libnice and a Glib-free library,\nlibstun as well as GStreamer elements.",

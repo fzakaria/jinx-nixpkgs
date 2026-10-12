@@ -2,46 +2,38 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tuned.nix", [[["maintainers", 5, 38]], [["type", 16, 13], ["replace", 17, 13], ["net.core.rmem_default", 19, 13], ["net.core.wmem_default", 20, 13]], [["sysctls", 15, 11]], [["test-profile", 14, 9]], [["enable", 11, 7], ["profiles", 13, 7]], [["tuned", 10, 14]], [["imports", 8, 5], ["services", 10, 5]], [["machine", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["enableOCR", 27, 3], ["testScript", 29, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tuned.nix", [["maintainers", 5, 38]]);
-const pos$2 = nix.positions(here + "/tuned.nix", [["type", 16, 13], ["replace", 17, 13], ["net.core.rmem_default", 19, 13], ["net.core.wmem_default", 20, 13]]);
-const pos$3 = nix.positions(here + "/tuned.nix", [["sysctls", 15, 11]]);
-const pos$4 = nix.positions(here + "/tuned.nix", [["test-profile", 14, 9]]);
-const pos$5 = nix.positions(here + "/tuned.nix", [["enable", 11, 7], ["profiles", 13, 7]]);
-const pos$6 = nix.positions(here + "/tuned.nix", [["tuned", 10, 14]]);
-const pos$7 = nix.positions(here + "/tuned.nix", [["imports", 8, 5], ["services", 10, 5]]);
-const pos$8 = nix.positions(here + "/tuned.nix", [["machine", 7, 9]]);
-const pos$9 = nix.positions(here + "/tuned.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["enableOCR", 27, 3], ["testScript", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "tuned",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "tuned", "meta"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           tuned: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             profiles: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               "test-profile": nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 sysctls: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   type: "sysctl",
                   replace: true,
                   "net.core.rmem_default": 262144n,

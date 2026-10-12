@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["name", 63, 7], ["desktopName", 64, 7], ["exec", 65, 7], ["comment", 66, 7]], [["description", 71, 5], ["homepage", 72, 5], ["downloadPage", 73, 5], ["changelog", 74, 5], ["maintainers", 75, 5], ["sourceProvenance", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["sourceRoot", 26, 3], ["postPatch", 28, 3], ["dontConfigure", 42, 3], ["dontBuild", 43, 3], ["installPhase", 45, 3], ["desktopItems", 61, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, copyDesktopItems: false, makeDesktopItem: false, unzip: false, jre8: false, logOutput: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 63, 7], ["desktopName", 64, 7], ["exec", 65, 7], ["comment", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["downloadPage", 73, 5], ["changelog", 74, 5], ["maintainers", 75, 5], ["sourceProvenance", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["sourceRoot", 26, 3], ["postPatch", 28, 3], ["dontConfigure", 42, 3], ["dontBuild", 43, 3], ["installPhase", 45, 3], ["desktopItems", 61, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jquake";
       const version = "1.8.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/fleneindre/fleneindre.github.io/raw/master/downloads/JQuake_${version}_linux.zip`),
           sha256: "sha256-Q9R5Qhk8Qodw2d99nL2aG5WGpIyvKmjzfkRK7xJzoc0=",
         }))));
@@ -43,7 +40,7 @@ substituteInPlace JQuake.sh \\
       const installPhase = "runHook preInstall\n\nchmod +x JQuake.sh\n\nmkdir -p $out/{bin,lib}\nmv JQuake.sh $out/bin/JQuake\nmv {JQuake.jar,JQuake_lib} $out/lib\nmv sounds $out/lib\n\nmkdir -p $out/share/licenses/jquake\nmv LICENSE* $out/share/licenses/jquake\n\nrunHook postInstall\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "JQuake",
             desktopName: "JQuake",
             exec: "JQuake",
@@ -51,7 +48,7 @@ substituteInPlace JQuake.sh \\
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Real-time earthquake map of Japan",
         homepage: "https://jquake.net",
         downloadPage: "https://jquake.net/en/terms.html?os=linux&arch=any",
@@ -69,7 +66,7 @@ substituteInPlace JQuake.sh \\
         mainProgram: "JQuake",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]], [["lockFile", 20, 13]], [["package", 52, 5], ["command", 53, 5]], [["version", 51, 18]], [["tests", 51, 12]], [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoLock", 20, 3], ["postPatch", 22, 3], ["cargoBuildFlags", 26, 3], ["postBuild", 31, 3], ["cargoTestFlags", 35, 3], ["outputs", 37, 3], ["postInstall", 43, 3], ["passthru", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { "cxx-rs": false, fetchFromGitHub: false, lib: false, rustPlatform: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lockFile", 20, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 52, 5], ["command", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 51, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 51, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoLock", 20, 3], ["postPatch", 22, 3], ["cargoBuildFlags", 26, 3], ["postBuild", 31, 3], ["cargoTestFlags", 35, 3], ["outputs", 37, 3], ["postInstall", 43, 3], ["passthru", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cxx-rs",
       version: "1.0.194",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dtolnay",
           repo: "cxx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-PIeF9VuyJOIs1x02YETKIP0+nCG3RZXLMJdFNlgAFzo=",
         })))),
-      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") })),
       postPatch: nix.thunk(() => nix.str`cp ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       cargoBuildFlags: nix.thunk(() => ["--workspace", "--exclude=demo"]),
@@ -38,14 +32,14 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "doc", "dev"]),
       postInstall: "mkdir -p $doc\ncp -r ./target/doc/* $doc\n\nmkdir -p $dev/include/rust\ninstall -D -m 0644 ./include/cxx.h $dev/include/rust\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: cxx_rs, command: "cxxbridge --version" })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: cxx_rs, command: "cxxbridge --version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Safe FFI between Rust and C++",
         mainProgram: "cxxbridge",
         homepage: "https://github.com/dtolnay/cxx",

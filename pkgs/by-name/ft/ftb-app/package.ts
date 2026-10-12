@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 13], ["hash", 18, 13]], [["url", 21, 13], ["hash", 22, 13]], [["aarch64-linux", 16, 11], ["x86_64-linux", 20, 11]], [["updateScript", 29, 12]], [["description", 32, 5], ["homepage", 33, 5], ["changelog", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5], ["platforms", 38, 5]], [["pname", 42, 54], ["src", 42, 60], ["version", 42, 64]], [["pname", 46, 5], ["src", 47, 5], ["version", 48, 5], ["passthru", 49, 5], ["meta", 50, 5], ["extraInstallCommands", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, appimageTools: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 13], ["hash", 18, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 13], ["hash", 22, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-linux", 16, 11], ["x86_64-linux", 20, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 29, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["changelog", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5], ["platforms", 38, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 42, 54], ["src", 42, 60], ["version", 42, 64]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 46, 5], ["src", 47, 5], ["version", 48, 5], ["passthru", 49, 5], ["meta", 50, 5], ["extraInstallCommands", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const version = "1.30.0";
   const src = nix.thunk(() => (() => {
     const src$ = nix.thunk(() => nix.selOr({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "aarch64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://piston.feed-the-beast.com/app/ftb-app-linux-${version}-arm64.AppImage`),
         hash: "sha256-ldH3LhdXwS3vhiUYA/DdO2l7tRpRMs0EC70eeNNHcSc=",
       })),
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://piston.feed-the-beast.com/app/ftb-app-linux-${version}-x86_64.AppImage`),
         hash: "sha256-NsZXfQj6exU2JWHCT+/NQJ/ivjVrIWVU7lajeS4bDrY=",
       })),
@@ -37,11 +31,11 @@ export default nix.lambda((args) => (() => {
     return nix.app(fetchurl, src$);
   })());
   const passthru = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
   }));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     description: "Feed the Beast desktop app",
     homepage: "https://www.feed-the-beast.com/ftb-app",
     changelog: nix.thunk(() => nix.str`https://www.feed-the-beast.com/ftb-app/changes#${version}`),
@@ -56,9 +50,9 @@ export default nix.lambda((args) => (() => {
       return nix.force(nix.lookup(w_1, "linux"));
     })()),
   }));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$6, pname: pname, src: src, version: version }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[5], pname: pname, src: src, version: version }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       src: src,
       version: version,

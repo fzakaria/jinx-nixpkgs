@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mpiSupport", 22, 45]], [["ENABLE_MPI", 42, 7]], [["description", 67, 5], ["homepage", 69, 7], ["changelog", 70, 7], ["license", 71, 7], ["platforms", 72, 7], ["maintainers", 74, 5], ["broken", 76, 5]], [["pname", 26, 5], ["version", 27, 5], ["src", 28, 5], ["buildInputs", 30, 5], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["postPatch", 35, 3], ["env", 42, 3], ["build-system", 44, 3], ["dontUseCmakeConfigure", 50, 3], ["nativeBuildInputs", 52, 3], ["dependencies", 57, 3], ["pythonImportsCheck", 61, 3], ["doCheck", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pkgs: false, buildPythonPackage: false, cmake: false, ninja: false, pip: false, setuptools: false, openmpi: false, numpy: false, mpiSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mpiSupport", 22, 45]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ENABLE_MPI", 42, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 69, 7], ["changelog", 70, 7], ["license", 71, 7], ["platforms", 72, 7], ["maintainers", 74, 5], ["broken", 76, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 5], ["version", 27, 5], ["src", 28, 5], ["buildInputs", 30, 5], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["postPatch", 35, 3], ["env", 42, 3], ["build-system", 44, 3], ["dontUseCmakeConfigure", 50, 3], ["nativeBuildInputs", 52, 3], ["dependencies", 57, 3], ["pythonImportsCheck", 61, 3], ["doCheck", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,9 +18,9 @@ export default nix.lambda((args) => (() => {
   const openmpi = nix.arg($, "openmpi");
   const numpy = nix.arg($, "numpy");
   const mpiSupport = nix.argOr($, "mpiSupport", () => false);
-  const conduit = nix.thunk(() => nix.app(nix.sel(pkgs, "conduit", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, mpiSupport: mpiSupport }))));
+  const conduit = nix.thunk(() => nix.app(nix.sel(pkgs, "conduit", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], mpiSupport: mpiSupport }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.attr(conduit, "pname")),
       version: nix.thunk(() => nix.attr(conduit, "version")),
       src: nix.thunk(() => nix.attr(conduit, "src")),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       pyproject: true,
       __structuredAttrs: true,
       postPatch: nix.thunk(() => nix.add(nix.selOr(conduit, () => "", "postPatch"), "substituteInPlace pyproject.toml \\\n  --replace-fail \\\n    \"cmake<=3.30.0\" \\\n    \"cmake\"\n")),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ENABLE_MPI: mpiSupport })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ENABLE_MPI: mpiSupport })),
       "build-system": nix.thunk(() => [cmake, ninja, pip, setuptools]),
       dontUseCmakeConfigure: true,
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(conduit, "nativeBuildInputs"), [openmpi])),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(conduit, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python bindings for the conduit library",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

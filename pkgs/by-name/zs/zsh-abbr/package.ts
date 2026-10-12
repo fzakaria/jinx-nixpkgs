@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5], ["fetchSubmodules", 16, 5]], [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 22, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5], ["fetchSubmodules", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 22, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zsh-abbr";
       const version = "6.5.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "olets",
           repo: "zsh-abbr",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const installPhase = "runHook preInstall\n\ninstall *.zsh -Dt $out/share/zsh/zsh-abbr/\ninstall completions/* -Dt $out/share/zsh/zsh-abbr/completions/\n\ninstall zsh-job-queue/*.zsh -Dt $out/share/zsh/zsh-abbr/zsh-job-queue/\ninstall zsh-job-queue/completions/* -Dt $out/share/zsh/zsh-abbr/zsh-job-queue/completions/\n\n# Required for `man` to find the manpage of abbr, since it looks via PATH\ninstallManPage man/man1/*\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/olets/zsh-abbr",
         description: "Zsh manager for auto-expanding abbreviations, inspired by fish shell",
         license: nix.thunk(() => (() => {
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

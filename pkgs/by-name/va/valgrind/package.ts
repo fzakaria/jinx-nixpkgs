@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["url", 25, 7], ["sha256", 26, 7]], [["url", 30, 7], ["hash", 31, 7]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["url", 42, 7], ["sha256", 43, 7]], [["updateScript", 92, 5]], [["homepage", 107, 5], ["description", 108, 5], ["longDescription", 110, 5], ["license", 118, 5], ["mainProgram", 119, 5], ["maintainers", 121, 5], ["platforms", 123, 5], ["badPlatforms", 128, 5], ["broken", 133, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["outputs", 47, 3], ["hardeningDisable", 54, 3], ["buildInputs", 60, 3], ["nativeBuildInputs", 66, 3], ["enableParallelBuilding", 71, 3], ["separateDebugInfo", 72, 3], ["preConfigure", 74, 3], ["configureFlags", 78, 3], ["doCheck", 80, 3], ["postInstall", 82, 3], ["passthru", 91, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, perl: false, gdb: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["sha256", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 42, 7], ["sha256", 43, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 92, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 107, 5], ["description", 108, 5], ["longDescription", 110, 5], ["license", 118, 5], ["mainProgram", 119, 5], ["maintainers", 121, 5], ["platforms", 123, 5], ["badPlatforms", 128, 5], ["broken", 133, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["outputs", 47, 3], ["hardeningDisable", 54, 3], ["buildInputs", 60, 3], ["nativeBuildInputs", 66, 3], ["enableParallelBuilding", 71, 3], ["separateDebugInfo", 72, 3], ["preConfigure", 74, 3], ["configureFlags", 78, 3], ["doCheck", 80, 3], ["postInstall", 82, 3], ["passthru", 91, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,29 +19,29 @@ export default nix.lambda((args) => (() => {
       const pname = "valgrind";
       const version = "3.27.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://sourceware.org/pub/valgrind/valgrind-${version}.tar.bz2`),
           hash: "sha256-XViRUuuAccAv6rjOarcZ5DGh+8PisXAPVDJjKouSZNw=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://bugsfiles.kde.org/attachment.cgi?id=148912",
             sha256: "Za+7K93pgnuEUQ+jDItEzWlN0izhbynX2crSOXBBY/I=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://bugsfiles.kde.org/attachment.cgi?id=186451",
             hash: "sha256-IGmyHwwGoy00hcz3XxQSDcwcU8zHLBJ9dfqTvWDQ520=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "reallocarray-test-musl.patch",
             url: "https://sourceware.org/git/?p=valgrind.git;a=patch;h=991961ece87e4cdc0771a05c956c55baa437bb07",
             hash: "sha256-U16384rLXMhLE5Em9z8FKYbshPlnq8l9ejC2+epL7M4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://git.yoctoproject.org/poky/plain/meta/recipes-devtools/valgrind/valgrind/use-appropriate-march-mcpu-mfpu-for-ARM-test-apps.patch?id=b7a9250590a16f1bdc8c7b563da428df814d4292",
             sha256: "sha256-sBZzn98Sf/ETFv8ubivgA6Y6fBNcyR8beB3ICDAyAH0=",
           })))),
@@ -65,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const postInstall = "for i in $out/libexec/valgrind/*.supp; do\n  substituteInPlace $i \\\n    --replace 'obj:/lib' 'obj:*/lib' \\\n    --replace 'obj:/usr/X11R6/lib' 'obj:*/lib' \\\n    --replace 'obj:/usr/lib' 'obj:*/lib'\ndone\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-valgrind", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -79,7 +72,7 @@ update-source-version ${pname} "$new_version"
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://valgrind.org/",
         description: "Debugging and profiling tool suite",
         longDescription: "Valgrind is an award-winning instrumentation framework for\nbuilding dynamic analysis tools.  There are Valgrind tools that\ncan automatically detect many memory management and threading\nbugs, and profile your programs in detail.  You can also use\nValgrind to build new tools.\n",
@@ -99,7 +92,7 @@ update-source-version ${pname} "$new_version"
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

@@ -2,7 +2,7 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/urls-and-hashes-1.4.0-unstable-2022-05-22.nix", [["BASEDIR", 2, 3], ["BINUTILS_URL", 3, 3], ["DL_DIR", 4, 3], ["GMP_SUM", 5, 3], ["GMP_URL", 6, 3], ["GCC_URL", 7, 3], ["BINUTILS_DIR", 8, 3], ["GCC_VER", 9, 3], ["MPFR_URL", 10, 3], ["MPC_VER", 11, 3], ["GMP_DIR", 12, 3], ["MPC_URL", 13, 3], ["GCC_DIR", 14, 3], ["MPC_SUM", 15, 3], ["GCC_SUM", 16, 3], ["BINUTILS_SUM", 17, 3], ["MPFR_DIR", 18, 3], ["MPC_DIR", 19, 3], ["MPFR_VER", 20, 3], ["GMP_VER", 21, 3], ["BINUTILS_VER", 22, 3], ["BUILD_DIR", 23, 3], ["MPFR_SUM", 24, 3], ["TOOLCHAIN_DIR", 25, 3]]);
+const $pos = nix.positions(here + "/urls-and-hashes-1.4.0-unstable-2022-05-22.nix", [[["BASEDIR", 2, 3], ["BINUTILS_URL", 3, 3], ["DL_DIR", 4, 3], ["GMP_SUM", 5, 3], ["GMP_URL", 6, 3], ["GCC_URL", 7, 3], ["BINUTILS_DIR", 8, 3], ["GCC_VER", 9, 3], ["MPFR_URL", 10, 3], ["MPC_VER", 11, 3], ["GMP_DIR", 12, 3], ["MPC_URL", 13, 3], ["GCC_DIR", 14, 3], ["MPC_SUM", 15, 3], ["GCC_SUM", 16, 3], ["BINUTILS_SUM", 17, 3], ["MPFR_DIR", 18, 3], ["MPC_DIR", 19, 3], ["MPFR_VER", 20, 3], ["GMP_VER", 21, 3], ["BINUTILS_VER", 22, 3], ["BUILD_DIR", 23, 3], ["MPFR_SUM", 24, 3], ["TOOLCHAIN_DIR", 25, 3]]]);
 
 export default nix.thunk(() => (() => {
   const BASEDIR = "$NIX_BUILD_TOP";
@@ -30,7 +30,7 @@ export default nix.thunk(() => (() => {
   const MPFR_SUM = "feced2d430dd5a97805fa289fed3fc8ff2b094c02d05287fd6133e7f1f0ec926";
   const TOOLCHAIN_DIR = nix.thunk(() => nix.str`${BASEDIR}/toolchain`);
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     BASEDIR,
     BINUTILS_URL,
     DL_DIR,

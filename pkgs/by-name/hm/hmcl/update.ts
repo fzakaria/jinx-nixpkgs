@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update.nix", [[["name", 11, 3], ["runtimeInputs", 12, 3], ["text", 20, 3]]]);
 const formals$1 = { args: { writeShellApplication: false, nix: false, "nix-update": false, curl: false, "common-updater-scripts": false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update.nix", [["name", 11, 3], ["runtimeInputs", 12, 3], ["text", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const jq = nix.arg($, "jq");
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "update-hmcl",
       runtimeInputs: nix.thunk(() => [curl, jq, nix$, common_updater_scripts, nix_update]),
       text: "get_latest_release() {\n    curl -fsSL ${GITHUB_TOKEN:+ -H \"Authorization: bearer $GITHUB_TOKEN\"} \\\n         \"https://api.github.com/repos/HMCL-dev/HMCL/releases\" | \\\n    jq -r 'map(select(.tag_name | test(\"^v\\\\d+\\\\.\\\\d+\\\\.\\\\d+$\")))[0].tag_name'\n}\n\nversion=$(get_latest_release)\nversion=\"${version#v}\"\n\nif [[ \"$UPDATE_NIX_OLD_VERSION\" == \"$version\" ]]; then\n    echo \"Already up to date!\"\n    exit 0\nfi\n\nif ! curl -fsSL \"https://docs.hmcl.net/changelog/stable.html\" | grep -q \"HMCL $version\"; then\n    echo \"Version $version found on GitHub but not yet listed in stable changelog. Skipping.\"\n    exit 0\nfi\n\nnix-update hmcl --version=\"$version\"\nupdate-source-version hmcl --source-key=terracottaBundleJava --ignore-same-version\nupdate-source-version hmcl --source-key=macOSProviderJava --ignore-same-version\n",

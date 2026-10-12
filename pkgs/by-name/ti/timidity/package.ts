@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["url", 95, 5], ["sha256", 96, 5]], [["NIX_CFLAGS_COMPILE", 107, 7]], [["tests", 130, 12]], [["homepage", 133, 5], ["license", 134, 5], ["description", 135, 5], ["maintainers", 136, 5], ["platforms", 137, 5], ["mainProgram", 138, 5]], [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["src", 25, 3], ["patches", 30, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 43, 3], ["enabledOutputModes", 54, 3], ["configureFlags", 68, 3], ["makeFlags", 90, 3], ["instruments", 94, 3], ["preBuild", 99, 3], ["env", 107, 3], ["postInstall", 110, 3], ["nativeInstallCheckInputs", 125, 3], ["doInstallCheck", 128, 3], ["passthru", 130, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, nixosTests: false, "pkg-config": false, libjack2: false, ncurses: false, "alsa-lib": false, buildPackages: false, versionCheckHook: false, enableVorbis: true, libvorbis: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 95, 5], ["sha256", 96, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 107, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 130, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 133, 5], ["license", 134, 5], ["description", 135, 5], ["maintainers", 136, 5], ["platforms", 137, 5], ["mainProgram", 138, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["src", 25, 3], ["patches", 30, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 43, 3], ["enabledOutputModes", 54, 3], ["configureFlags", 68, 3], ["makeFlags", 90, 3], ["instruments", 94, 3], ["preBuild", 99, 3], ["env", 107, 3], ["postInstall", 110, 3], ["nativeInstallCheckInputs", 125, 3], ["doInstallCheck", 128, 3], ["passthru", 130, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const enableVorbis = nix.argOr($, "enableVorbis", () => false);
   const libvorbis = nix.arg($, "libvorbis");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "timidity",
       version: "2.15.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/timidity/TiMidity++-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Fh/AOVrxa1H3EXrQB8PkNMglowj6Ka1Etibuj5uxyPU=",
         })))),
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
         ]))))),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`AR=${nix.sel(stdenv, "cc", "targetPrefix")}ar`)]),
       instruments: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://courses.cs.umbc.edu/pub/midia/instruments.tar.gz",
           sha256: "0lsh9l8l5h46z0y8ybsjd4pf6c22n33jsjvapfv3rjlfnasnqw67",
         })))),
@@ -68,7 +63,7 @@ ${nix.sel(buildPackages, "stdenv", "cc")}/bin/cc -o timidity/calcnewt -lm timidi
 # Remove dependencies of calcnewt so it doesn't try to remake it.
 sed -i 's/^\\(calcnewt\\$(EXEEXT):\\).*/\\1/g' timidity/Makefile
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       postInstall: nix.thunk(() => nix.add(nix.str`mkdir -p $out/share/timidity/;
 cp ${nix.path(here, "./timidity.cfg")} $out/share/timidity/timidity.cfg
 substituteAllInPlace $out/share/timidity/timidity.cfg
@@ -76,9 +71,9 @@ tar --strip-components=1 -xf $instruments -C $out/share/timidity/
 `, "chmod -Rh a+rX $out/share/timidity/\n")),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, tests: nix.thunk(() => nix.sel(nixosTests, "timidity")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], tests: nix.thunk(() => nix.sel(nixosTests, "timidity")) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://sourceforge.net/projects/timidity/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         description: "Software MIDI renderer",

@@ -2,17 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/xeus-cpp.nix", [[["backend", 40, 47]], [["owner", 46, 7], ["repo", 47, 7], ["tag", 48, 7], ["hash", 49, 7]], [["version", 44, 5], ["src", 45, 5], ["doCheck", 51, 5]], [["xeus", 54, 37]], [["owner", 57, 7], ["repo", 58, 7], ["tag", 59, 7], ["hash", 60, 7]], [["version", 55, 5], ["src", 56, 5]], [["owner", 81, 5], ["repo", 82, 5], ["tag", 83, 5], ["hash", 84, 5]], [["backend", 182, 13], ["flags", 183, 5]], [["description", 187, 5], ["mainProgram", 188, 5], ["homepage", 189, 5], ["license", 190, 5], ["maintainers", 191, 5], ["platforms", 192, 5]], [["pname", 77, 3], ["version", 78, 3], ["src", 80, 3], ["strictDeps", 87, 3], ["__structuredAttrs", 88, 3], ["__darwinAllowLocalNetworking", 89, 3], ["nativeBuildInputs", 91, 3], ["buildInputs", 97, 3], ["postPatch", 113, 3], ["cmakeFlags", 120, 3], ["postInstall", 127, 3], ["doCheck", 141, 3], ["checkInputs", 142, 3], ["checkPhase", 143, 3], ["doInstallCheck", 157, 3], ["installCheckPhase", 158, 3], ["passthru", 181, 3], ["meta", 186, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, "cpp-interop": false, cling: false, xeus: false, "xeus-zmq": false, nlohmann_json: false, argparse: false, pugixml: false, zeromq: false, openssl: false, libuuid: false, curl: false, makeWrapper: false, doctest: false, python3: false, jq: false, backend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/xeus-cpp.nix", [["backend", 40, 47]]);
-const pos$2 = nix.positions(here + "/xeus-cpp.nix", [["owner", 46, 7], ["repo", 47, 7], ["tag", 48, 7], ["hash", 49, 7]]);
-const pos$3 = nix.positions(here + "/xeus-cpp.nix", [["version", 44, 5], ["src", 45, 5], ["doCheck", 51, 5]]);
-const pos$4 = nix.positions(here + "/xeus-cpp.nix", [["xeus", 54, 37]]);
-const pos$5 = nix.positions(here + "/xeus-cpp.nix", [["owner", 57, 7], ["repo", 58, 7], ["tag", 59, 7], ["hash", 60, 7]]);
-const pos$6 = nix.positions(here + "/xeus-cpp.nix", [["version", 55, 5], ["src", 56, 5]]);
-const pos$7 = nix.positions(here + "/xeus-cpp.nix", [["owner", 81, 5], ["repo", 82, 5], ["tag", 83, 5], ["hash", 84, 5]]);
-const pos$8 = nix.positions(here + "/xeus-cpp.nix", [["backend", 182, 13], ["flags", 183, 5]]);
-const pos$9 = nix.positions(here + "/xeus-cpp.nix", [["description", 187, 5], ["mainProgram", 188, 5], ["homepage", 189, 5], ["license", 190, 5], ["maintainers", 191, 5], ["platforms", 192, 5]]);
-const pos$10 = nix.positions(here + "/xeus-cpp.nix", [["pname", 77, 3], ["version", 78, 3], ["src", 80, 3], ["strictDeps", 87, 3], ["__structuredAttrs", 88, 3], ["__darwinAllowLocalNetworking", 89, 3], ["nativeBuildInputs", 91, 3], ["buildInputs", 97, 3], ["postPatch", 113, 3], ["cmakeFlags", 120, 3], ["postInstall", 127, 3], ["doCheck", 141, 3], ["checkInputs", 142, 3], ["checkPhase", 143, 3], ["doInstallCheck", 157, 3], ["installCheckPhase", 158, 3], ["passthru", 181, 3], ["meta", 186, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const backend = nix.argOr($, "backend", () => "clang-repl");
   const stdenv = clangStdenv;
   const useCling = nix.thunk(() => nix.eq(backend, "cling"));
-  const cppInterop = nix.thunk(() => nix.app(nix.sel(cpp_interop, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, backend: backend }))));
+  const cppInterop = nix.thunk(() => nix.app(nix.sel(cpp_interop, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], backend: backend }))));
   const xeus_6 = nix.thunk(() => nix.app(nix.sel(xeus, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "6.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "jupyter-xeus",
           repo: "xeus",
           tag: "6.0.5",
@@ -52,11 +43,11 @@ export default nix.lambda((args) => (() => {
         })))),
       doCheck: false,
     })));
-  const xeus_zmq_4 = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(xeus_zmq, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, xeus: xeus_6 }))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$6,
+  const xeus_zmq_4 = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(xeus_zmq, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], xeus: xeus_6 }))), "overrideAttrs"), (old) => ({
+      [nix.POS]: $pos[5],
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "jupyter-xeus",
           repo: "xeus-zmq",
           tag: "4.0.0",
@@ -66,11 +57,11 @@ export default nix.lambda((args) => (() => {
   const resourceDir = nix.thunk(() => (nix.asBool(useCling) ? nix.str`${nix.sel(cling, "unwrapped")}/lib/clang/20` : nix.sel(cppInterop, "resourceDir")));
   const interpreterArgs = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => (nix.asBool(useCling) ? nix.sel(cling, "flags") : nix.sel(cppInterop, "interpreterArgs")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "xeus-cpp",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "compiler-research",
           repo: "xeus-cpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -141,9 +132,9 @@ ${jq}/bin/jq -e '[.. | .text? // empty | tostring] | add | contains("Hello world
 
 runHook postInstallCheck
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$8, backend: backend, flags: interpreterArgs })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[7], backend: backend, flags: interpreterArgs })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: nix.thunk(() => nix.str`Jupyter kernel for C++ based on CppInterOp (${backend} backend)`),
         mainProgram: "xcpp",
         homepage: "https://github.com/compiler-research/xeus-cpp",

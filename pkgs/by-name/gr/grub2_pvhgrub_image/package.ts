@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["target", 15, 16]], [["target", 16, 18]], [["i686-linux", 15, 5], ["x86_64-linux", 16, 5]], [["GRUB_CONFIGS", 23, 5], ["GRUB_FORMAT", 24, 5]], [["description", 52, 5], ["longDescription", 56, 5], ["teams", 80, 5], ["platforms", 81, 5]], [["name", 20, 3], ["env", 22, 3], ["buildInputs", 27, 3], ["dontUnpack", 31, 3], ["buildPhase", 33, 3], ["installPhase", 44, 3], ["dontFixup", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, grub2_xen: false, grub2_xen_pvh: false, grubPlatform: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["target", 15, 16]]);
-const pos$2 = nix.positions(here + "/package.nix", [["target", 16, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["i686-linux", 15, 5], ["x86_64-linux", 16, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["GRUB_CONFIGS", 23, 5], ["GRUB_FORMAT", 24, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 52, 5], ["longDescription", 56, 5], ["teams", 80, 5], ["platforms", 81, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 20, 3], ["env", 22, 3], ["buildInputs", 27, 3], ["dontUnpack", 31, 3], ["buildPhase", 33, 3], ["installPhase", 44, 3], ["dontFixup", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const grubPlatform = nix.argOr($, "grubPlatform", () => "xen_pvh");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "grubPlatform", grubPlatform, nix.thunk(() => ["xen", "xen_pvh"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gr/grub2_pvhgrub_image/package.nix:9:1");
   const targets = nix.thunk(() => ({
-    [nix.POS]: pos$3,
-    "i686-linux": nix.thunk(() => ({ [nix.POS]: pos$1, target: "i386" })),
+    [nix.POS]: $pos[2],
+    "i686-linux": nix.thunk(() => ({ [nix.POS]: $pos[0], target: "i386" })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       target: nix.thunk(() => (nix.asBool(nix.eq(grubPlatform, "xen_pvh")) ? "i386" : "x86_64")),
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: nix.thunk(() => nix.str`grub2_${grubPlatform}_image`),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         GRUB_CONFIGS: nix.thunk(() => nix.str`${nix.path(here, "./configs")}`),
         GRUB_FORMAT: nix.thunk(() => nix.str`${nix.sel(targets, nix.key(nix.sel(stdenv, "buildPlatform", "system")), "target")}-${grubPlatform}`),
       })),
@@ -50,7 +45,7 @@ cp grub-"$GRUB_FORMAT".bin $out/lib/grub-${grubPlatform}/
 `),
       dontFixup: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: nix.thunk(() => nix.str`PvGrub2 image for booting ${(nix.asBool(nix.eq(grubPlatform, "xen_pvh")) ? "PVH" : "PV")} Xen guests`),
         longDescription: nix.thunk(() => (nix.asBool(nix.eq(grubPlatform, "xen_pvh")) ? "This package provides a prebuilt PvGrub2 image for booting PVH Xen\nguests (also commonly referred to as PvhGrub2), which searches for\n`grub.cfg` on the guest disk and interprets it to load the kernel,\neliminating the need to copy the guest kernel to the Dom0.\n\nYou will need `pkgs.grub2_xen_pvh` to build a customized PvhGrub2\nimage. See [PvGrub2](https://wiki.xenproject.org/wiki/PvGrub2) for\nmore explanations.\n" : "This package provides a prebuilt PvGrub2 image for booting PV Xen\nguests, which searches for `grub.cfg` on the guest disk and interprets\nit to load the kernel, eliminating the need to copy the guest kernel\nto the Dom0.\n\nYou will need `pkgs.grub2_xen` to build a customized PvGrub2 image.\nSee [PvGrub2](https://wiki.xenproject.org/wiki/PvGrub2) for more\nexplanations.\n")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "xen"))]),

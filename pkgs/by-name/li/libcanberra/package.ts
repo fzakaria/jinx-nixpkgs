@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["sha256", 26, 5]], [["url", 60, 7], ["sha256", 61, 7], ["extraPrefix", 62, 7]], [["url", 65, 7], ["sha256", 66, 7], ["extraPrefix", 67, 7]], [["gtkModule", 80, 5]], [["description", 84, 5], ["mainProgram", 85, 5], ["longDescription", 86, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 29, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 36, 3], ["configureFlags", 50, 3], ["patches", 55, 3], ["postInstall", 71, 3], ["enableParallelBuilding", 77, 3], ["passthru", 79, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, "pkg-config": false, libtool: false, "gtk3-x11": false, gtkSupport: true, libpulseaudio: false, gst_all_1: false, libvorbis: false, libcap: false, withSystemd: true, systemdLibs: false, withAlsa: true, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 60, 7], ["sha256", 61, 7], ["extraPrefix", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 65, 7], ["sha256", 66, 7], ["extraPrefix", 67, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["gtkModule", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 84, 5], ["mainProgram", 85, 5], ["longDescription", 86, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 29, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 36, 3], ["configureFlags", 50, 3], ["patches", 55, 3], ["postInstall", 71, 3], ["enableParallelBuilding", 77, 3], ["passthru", 79, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const withAlsa = nix.argOr($, "withAlsa", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libcanberra",
       version: "0.30",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://0pointer.de/lennart/projects/libcanberra/libcanberra-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0wps39h8rx2b00vyvkia5j40fkak3dpipp1kzilqla0cgvk73dn2",
         })))),
@@ -52,13 +47,13 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-gtk-Don-t-assume-all-GdkDisplays-are-GdkX11Displays-.patch"),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://github.com/macports/macports-ports/raw/5a7965dfea7727d1ceedee46c7b0ccee9cb23468/audio/libcanberra/files/patch-configure.diff",
               sha256: "sha256-pEJy1krciUEg5BFIS8FJ4BubjfS/nt9aqi6BLnS1+4M=",
               extraPrefix: "",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://github.com/macports/macports-ports/raw/5a7965dfea7727d1ceedee46c7b0ccee9cb23468/audio/libcanberra/files/dynamic_lookup-11.patch",
               sha256: "sha256-nUjha2pKh5VZl0ZZzcr9NTo1TVuMqF4OcLiztxW+ofQ=",
               extraPrefix: "",
@@ -70,11 +65,11 @@ done
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(gtkSupport, null)), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           gtkModule: nix.thunk(() => (nix.asBool(nix.eq(gtkSupport, "gtk2")) ? "/lib/gtk-2.0" : "/lib/gtk-3.0/")),
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Implementation of the XDG Sound Theme and Name Specifications",
         mainProgram: "canberra-gtk-play",
         longDescription: "libcanberra is an implementation of the XDG Sound Theme and Name\nSpecifications, for generating event sounds on free desktops\nsuch as GNOME.  It comes with several backends (ALSA,\nPulseAudio, OSS, GStreamer, null) and is designed to be\nportable.\n",

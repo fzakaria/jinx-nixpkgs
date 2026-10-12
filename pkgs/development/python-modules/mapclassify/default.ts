@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 29, 5]], [["SETUPTOOLS_SCM_PRETEND_VERSION", 35, 7]], [["description", 96, 5], ["homepage", 97, 5], ["license", 99, 5], ["teams", 100, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 32, 3], ["env", 35, 3], ["propagatedBuildInputs", 37, 3], ["nativeCheckInputs", 45, 3], ["disabledTestPaths", 53, 3], ["disabledTests", 60, 3], ["pythonImportsCheck", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, geopandas: false, libpysal: false, matplotlib: false, networkx: false, numpy: false, pandas: false, "scikit-learn": false, scipy: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["SETUPTOOLS_SCM_PRETEND_VERSION", 35, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 96, 5], ["homepage", 97, 5], ["license", 99, 5], ["teams", 100, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 32, 3], ["env", 35, 3], ["propagatedBuildInputs", 37, 3], ["nativeCheckInputs", 45, 3], ["disabledTestPaths", 53, 3], ["disabledTests", 60, 3], ["pythonImportsCheck", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,19 +22,19 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mapclassify",
       version: "2.10.0-unstable-2026-07-20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pysal",
           repo: "mapclassify",
           rev: "e8d0550986742de3a4aca6e4e590dfc48d384f0f",
           hash: "sha256-UIPMOdDh4sfcFzDqWE70krMywPgXEUOqvPXU73wJQuM=",
         })))),
       "build-system": nix.thunk(() => [setuptools_scm]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: "2.10.0.dev20260720" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], SETUPTOOLS_SCM_PRETEND_VERSION: "2.10.0.dev20260720" })),
       propagatedBuildInputs: nix.thunk(() => [networkx, numpy, pandas, scikit_learn, scipy]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, geopandas, libpysal, matplotlib]),
       disabledTestPaths: nix.thunk(() => ["mapclassify/tests/test_greedy.py", "mapclassify/tests/test_rgba.py"]),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["mapclassify"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Classification Schemes for Choropleth Maps",
         homepage: "https://pysal.org/mapclassify/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

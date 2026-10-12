@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["RUSTFLAGS", 81, 5]], [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["platforms", 107, 5], ["maintainers", 108, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 68, 3], ["env", 79, 3], ["doCheck", 93, 3], ["doInstallCheck", 94, 3], ["postInstall", 96, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, systemd: false, coreutils: false, gnugrep: false, "pkg-config": false, fontconfig: false, libGL: false, libinput: false, libxkbcommon: false, libgbm: false, seatd: false, wayland: false, glibc: false, udevCheckHook: false, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["platforms", 107, 5], ["maintainers", 108, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 68, 3], ["env", 79, 3], ["doCheck", 93, 3], ["doInstallCheck", 94, 3], ["postInstall", 96, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "asusctl",
       version: "6.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenGamingCollective",
           repo: "asusctl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,7 +70,7 @@ substituteInPlace Makefile \\
       ]),
       buildInputs: nix.thunk(() => [fontconfig, libGL, libinput, libxkbcommon, libgbm, seatd, systemd, wayland]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RUSTFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.builtins.map((a) => nix.str`-C link-arg=${a}`, nix.thunk(() => [
               "-Wl,--push-state,--no-as-needed",
               "-lEGL",
@@ -90,7 +87,7 @@ patchelf $out/bin/rog-control-center \\
   --add-needed ${nix.app(nix.sel(lib, "getLib"), libxkbcommon)}/lib/libxkbcommon.so.0
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops",
         homepage: "https://github.com/OpenGamingCollective/asusctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

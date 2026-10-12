@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 70, 5], ["mainProgram", 71, 5], ["longDescription", 72, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["ldflags", 34, 3], ["tags", 48, 3], ["doCheck", 60, 3], ["postInstall", 62, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, lvm2: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["mainProgram", 71, 5], ["longDescription", 72, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["ldflags", 34, 3], ["tags", 48, 3], ["doCheck", 60, 3], ["postInstall", 62, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lvm2 = nix.arg($, "lvm2");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fetchit",
       version: "0.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "containers",
           repo: "fetchit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for i in bash fish zsh; do\n  installShellCompletion --cmd fetchit \\\n    --$i <($out/bin/fetchit completion $i)\ndone\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to manage the life cycle and configuration of Podman containers",
         mainProgram: "fetchit",
         longDescription: "FetchIt allows for a GitOps based approach to manage containers running on\na single host or multiple hosts based on a git repository. This allows for\nus to deploy a new host and provide the host a configuration value for\nFetchIt and automatically any containers defined in the git repository and\nbranch will be deployed onto the host. This can be beneficial for\nenvironments that do not require the complexity of Kubernetes to manage\nthe containers running on the host.\n",

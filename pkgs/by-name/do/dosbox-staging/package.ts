@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["package", 108, 9], ["command", 109, 9]], [["version", 107, 7]], [["rev-prefix", 113, 7]], [["tests", 106, 5], ["updateScript", 112, 5]], [["homepage", 118, 5], ["description", 119, 5], ["longDescription", 120, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 130, 5], ["priority", 131, 5]], [["pname", 33, 3], ["version", 34, 3], ["shortRev", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 52, 3], ["outputs", 73, 3], ["postPatch", 79, 3], ["postInstall", 88, 3], ["postFixup", 96, 3], ["passthru", 105, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, SDL2_net: false, "alsa-lib": false, fetchFromGitHub: false, fluidsynth: false, gitUpdater: false, glib: false, gtest: false, iir1: false, libGL: false, libGLU: false, libjack2: false, libmt32emu: false, libogg: false, libpng: false, libpulseaudio: false, libslirp: false, libsndfile: false, makeWrapper: false, meson: false, ninja: false, opusfile: false, "pkg-config": false, speexdsp: false, stdenv: false, testers: false, "zlib-ng": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 108, 9], ["command", 109, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 107, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["rev-prefix", 113, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 106, 5], ["updateScript", 112, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 118, 5], ["description", 119, 5], ["longDescription", 120, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 130, 5], ["priority", 131, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["shortRev", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 52, 3], ["outputs", 73, 3], ["postPatch", 79, 3], ["postInstall", 88, 3], ["postFixup", 96, 3], ["passthru", 105, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const zlib_ng = nix.arg($, "zlib-ng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "dosbox-staging",
       version: "0.82.2",
       shortRev: "f8c24f8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dosbox-staging",
           repo: "dosbox-staging",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,19 +76,19 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 $src/contrib/linux/org.dosbox-staging.dosbox-staging.desktop $out/share/applications/\n",
       postFixup: "mv $out/bin/dosbox $out/bin/dosbox-staging\nmakeWrapper $out/bin/dosbox-staging $out/bin/dosbox\n\npushd $man/share/man/man1/\nln -s dosbox.1.gz dosbox-staging.1.gz\npopd\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "dosbox --version",
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://dosbox-staging.github.io/",
         description: "Modernized DOS emulator; DOSBox fork",
         longDescription: "DOSBox Staging is an attempt to revitalize DOSBox's development\nprocess. It's not a rewrite, but a continuation and improvement on the\nexisting DOSBox codebase while leveraging modern development tools and\npractices.\n",

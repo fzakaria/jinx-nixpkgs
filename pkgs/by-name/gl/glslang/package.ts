@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["spirv-tools", 73, 5], ["spirv-headers", 76, 5]], [["homepage", 80, 35], ["changelog", 81, 5], ["description", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 24, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 35, 3], ["nativeCheckInputs", 40, 3], ["checkInputs", 44, 3], ["cmakeFlags", 48, 3], ["doCheck", 55, 3], ["disabledTests", 57, 3], ["postInstall", 66, 3], ["passthru", 71, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ctestCheckHook: false, gtest: false, python3: false, "spirv-headers": false, "spirv-tools": false, config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["spirv-tools", 73, 5], ["spirv-headers", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 80, 35], ["changelog", 81, 5], ["description", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 24, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 35, 3], ["nativeCheckInputs", 40, 3], ["checkInputs", 44, 3], ["cmakeFlags", 48, 3], ["doCheck", 55, 3], ["disabledTests", 57, 3], ["postInstall", 66, 3], ["passthru", 71, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const spirv_tools = nix.arg($, "spirv-tools");
   const config = nix.arg($, "config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "glslang",
       version: "16.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KhronosGroup",
           repo: "glslang",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,14 +43,14 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLittleEndian"))), nix.thunk(() => ["glslang-gtests"]))),
       postInstall: "# add a symlink for backwards compatibility\nln -s $bin/bin/glslang $bin/bin/glslangValidator\n",
       passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "spirv-tools": nix.thunk(() => nix.builtins.throw("'glslang' no longer pins to specific 'spirv-tools'")),
           "spirv-headers": nix.thunk(() => nix.builtins.throw("'glslang' no longer pins to specific 'spirv-headers'")),
         })))),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.str`https://github.com/KhronosGroup/glslang/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.md`),
         description: "Khronos reference front-end for GLSL and ESSL",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 33, 13], ["version", 33, 19], ["sha256", 34, 5]], [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 28, 3], ["version", 29, 3], ["format", 30, 3], ["src", 32, 3], ["propagatedBuildInputs", 37, 3], ["nativeCheckInputs", 59, 3], ["checkPhase", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, appdirs: false, asn1crypto: false, cffi: false, cryptography: false, furl: false, idna: false, orderedmultidict: false, packaging: false, peewee: false, py: false, pyasn1: false, pycparser: false, pyparsing: false, pyscrypt: false, "python-dateutil": false, pytz: false, requests: false, six: false, vobject: false, pytest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 33, 13], ["version", 33, 19], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["format", 30, 3], ["src", 32, 3], ["propagatedBuildInputs", 37, 3], ["nativeCheckInputs", 59, 3], ["checkPhase", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "f20f7e9922ee789c4b71379676ebfe656b675913fe524f2ee722e1b9ef4e5197",
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest]);
       const checkPhase = "pytest tests/test_collections.py\npytest tests/test_crypto.py\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.etesync.com/",
         description: "Python API to interact with an EteSync server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
@@ -76,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["description", 71, 5], ["longDescription", 73, 5], ["homepage", 79, 5], ["license", 81, 5], ["maintainers", 83, 5], ["platforms", 84, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 44, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, SDL: false, SDL_image: false, SDL_mixer: false, SDL_sound: false, libsigcxx_2_0: false, physfs: false, boost: false, expat: false, freetype: false, libjpeg: false, wxwidgets_3_2: false, lua: false, perl: false, "pkg-config": false, zlib: false, zip: false, bzip2: false, libpng: false, libtiff: false, fluidsynth: false, libmikmod: false, libvorbis: false, flac: false, libogg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 71, 5], ["longDescription", 73, 5], ["homepage", 79, 5], ["license", 81, 5], ["maintainers", 83, 5], ["platforms", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 44, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const flac = nix.arg($, "flac");
   const libogg = nix.arg($, "libogg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "asc",
       version: "2.6.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ValHaris",
           repo: "asc-hq",
           rev: "fa3bca082a5cea2b35812349f99b877f0113aef0",
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
         libsigcxx_2_0,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Turn based strategy game",
         longDescription: "Advanced Strategic Command is a free, turn based strategy game. It is\ndesigned in the tradition of the Battle Isle series from Bluebyte and is\ncurrently available for Windows and Linux.\n",
         homepage: "https://www.asc-hq.org/",

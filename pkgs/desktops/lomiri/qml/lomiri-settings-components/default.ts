@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["updateScript", 59, 12]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["teams", 66, 5], ["platforms", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["nativeCheckInputs", 50, 3], ["dontWrapQtApps", 55, 3], ["doCheck", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, cmake: false, "cmake-extras": false, "pkg-config": false, python3: false, qtbase: false, qtdeclarative: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 59, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["teams", 66, 5], ["platforms", 67, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["nativeCheckInputs", 50, 3], ["dontWrapQtApps", 55, 3], ["doCheck", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtdeclarative = nix.arg($, "qtdeclarative");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lomiri-settings-components",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-settings-components",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,11 +40,11 @@ substituteInPlace CMakeLists.txt \\
       dontWrapQtApps: true,
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "QML settings components for the Lomiri Desktop Environment",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-settings-components",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-settings-components/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

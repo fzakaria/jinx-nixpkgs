@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 34], ["repo", 15, 40], ["tag", 16, 11], ["hash", 17, 11]], [["version", 13, 9], ["src", 14, 9]], [["wyoming", 12, 7]], [["self", 10, 5], ["packageOverrides", 11, 5]], [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["url", 38, 7], ["hash", 39, 7]], [["all", 59, 5], ["respeaker", 60, 5], ["silerovad", 64, 5], ["webrtc", 67, 5]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["build-system", 43, 3], ["pythonRelaxDeps", 47, 3], ["dependencies", 52, 3], ["optional-dependencies", 58, 3], ["pythonImportsCheck", 72, 3], ["nativeCheckInputs", 76, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 34], ["repo", 15, 40], ["tag", 16, 11], ["hash", 17, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 13, 9], ["src", 14, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["wyoming", 12, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["self", 10, 5], ["packageOverrides", 11, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["all", 59, 5], ["respeaker", 60, 5], ["silerovad", 64, 5], ["webrtc", 67, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["build-system", 43, 3], ["pythonRelaxDeps", 47, 3], ["dependencies", 52, 3], ["optional-dependencies", 58, 3], ["pythonImportsCheck", 72, 3], ["nativeCheckInputs", 76, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,23 +12,23 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const python = nix.thunk(() => nix.app(nix.sel(python3Packages, "python", "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       self: python,
       packageOverrides: (self) => (super$) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         wyoming: nix.thunk(() => nix.app(nix.sel(super$, "wyoming", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "1.5.4";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(oldAttrs, "src"));
                 return {
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: nix.thunk(() => nix.attr(from, "owner")),
                 repo: nix.thunk(() => nix.attr(from, "repo")),
                 tag: version,
                 hash: "sha256-gx9IbFkwR5fiFFAZTiQKzBbVBJ/RYz29sztgbvAEeRQ=",
               };
               })())));
-            return { [nix.POS]: pos$2, version, src };
+            return { [nix.POS]: $pos[1], version, src };
           })())),
       }),
     }))));
@@ -45,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "rhasspy",
           repo: "wyoming-satellite",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,7 +45,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://github.com/rhasspy/wyoming-satellite/commit/69465fd56011179cb92e7ce95da2e79fb06a83fb.patch",
             hash: "sha256-njJ8kIVGOpYK6bDeGow3OSNHxKQ9NsUKAR3+lEUH3GE=",
           })))),
@@ -72,7 +64,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const optional_dependencies = nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           all: nix.thunk(() => nix.concat(nix.sel(self, "silerovad"), nix.sel(self, "webrtc"))),
           respeaker: nix.thunk(() => (() => {
             const w_2 = nix.withScope(python3Packages, null);
@@ -99,7 +91,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Remote voice satellite using Wyoming protocol",
         homepage: "https://github.com/rhasspy/wyoming-satellite",
         changelog: nix.thunk(() => nix.str`https://github.com/rhasspy/wyoming-satellite/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -111,7 +103,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wyoming-satellite",
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         pyproject,

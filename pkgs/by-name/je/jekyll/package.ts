@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 42, 12]], [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]], [["pname", 30, 3], ["exes", 31, 3], ["ruby", 33, 11], ["gemdir", 34, 3], ["nativeBuildInputs", 36, 3], ["postBuild", 38, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false, makeWrapper: false, ruby: false, writeShellScriptBin: false, withOptionalDependencies: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 42, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["exes", 31, 3], ["ruby", 33, 11], ["gemdir", 34, 3], ["nativeBuildInputs", 36, 3], ["postBuild", 38, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ fi
 exec ${ruby}/bin/ruby "$@"
 `)));
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jekyll",
       exes: nix.thunk(() => ["jekyll"]),
       ruby: ruby,
@@ -40,9 +38,9 @@ exec ${ruby}/bin/ruby "$@"
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postBuild: nix.thunk(() => nix.str`wrapProgram $out/bin/jekyll --prefix PATH : ${rubyWrapper}/bin
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Blog-aware, static site generator, written in Ruby",
         longDescription: "Jekyll is a simple, blog-aware, static site generator, written in Ruby.\nThink of it like a file-based CMS, without all the complexity. Jekyll\ntakes your content, renders Markdown and Liquid templates, and spits out a\ncomplete, static website ready to be served by Apache, Nginx or another\nweb server. Jekyll is the engine behind GitHub Pages, which you can use to\nhost sites right from your GitHub repositories.\n",
         homepage: "https://jekyllrb.com/",

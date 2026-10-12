@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]], [["src", 39, 13], ["cargoRoot", 40, 5], ["hash", 41, 5]], [["src", 45, 13], ["cargoRoot", 46, 5], ["hash", 47, 5]], [["description", 71, 5], ["homepage", 72, 5], ["maintainers", 73, 5], ["license", 77, 5], ["platforms", 78, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 36, 3], ["cargoDeps1", 38, 3], ["cargoDeps2", 44, 3], ["postPatch", 50, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, qt6: false, "opencascade-occt": false, libGLU: false, cmake: false, rustPlatform: false, cargo: false, rustc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 39, 13], ["cargoRoot", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 45, 13], ["cargoRoot", 46, 5], ["hash", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["maintainers", 73, 5], ["license", 77, 5], ["platforms", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 36, 3], ["cargoDeps1", 38, 3], ["cargoDeps2", 44, 3], ["postPatch", 50, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "librepcb";
       const version = "2.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "librepcb",
           repo: "librepcb",
           rev: version,
@@ -44,13 +40,13 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtbase"))]);
       const cargoDeps1 = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           cargoRoot: "libs/librepcb/rust-core",
           hash: "sha256-1wHk8ynP3VnkypwY/C7nikfMSF0qU0L+CbBKoVxjlEc=",
         }))));
       const cargoDeps2 = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: src,
           cargoRoot: "libs/slint",
           hash: "sha256-UX/7a0hzFBmPZKufcDKcICrXEM+rKcvqEq2pg1riBxo=",
@@ -74,7 +70,7 @@ directory = "${cargoDeps2}/source-registry-0"
 EOF
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Free EDA software to develop printed circuit boards",
         homepage: "https://librepcb.org/",
         maintainers: nix.thunk(() => (() => {
@@ -88,7 +84,7 @@ EOF
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

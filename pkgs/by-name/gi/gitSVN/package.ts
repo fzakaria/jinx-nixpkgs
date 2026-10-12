@@ -2,13 +2,13 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["svnSupport", 1, 36]]]);
 const formals$1 = { args: { git: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["svnSupport", 1, 36]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const git = nix.arg($, "git");
-  return nix.app(nix.sel(git, "override"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, svnSupport: true }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["git"])))));
+  return nix.app(nix.sel(git, "override"), nix.thunk(() => nix.update({ [nix.POS]: $pos[0], svnSupport: true }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["git"])))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

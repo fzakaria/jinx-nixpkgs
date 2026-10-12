@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["license", 17, 10]], [["url", 14, 5], ["hash", 15, 5], ["stripRoot", 16, 5], ["meta", 17, 5]], [["assets", 55, 12]], [["description", 59, 5]], [["pname", 22, 3], ["version", 23, 3], ["paths", 25, 3], ["nativeBuildInputs", 27, 3], ["postBuild", 29, 3], ["passthru", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, symlinkJoin: false, fetchzip: false, "phira-unwrapped": false, makeWrapper: false, libGL: false, libx11: false, libxi: false, libxcursor: false, overrideAssets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["license", 17, 10]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5], ["stripRoot", 16, 5], ["meta", 17, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["assets", 55, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["paths", 25, 3], ["nativeBuildInputs", 27, 3], ["postBuild", 29, 3], ["passthru", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libxcursor = nix.arg($, "libxcursor");
   const overrideAssets = nix.argOr($, "overrideAssets", () => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://github.com/TeamFlos/phira/releases/download/v${nix.sel(phira_unwrapped, "version")}/Phira-windows-x86_64-v${nix.sel(phira_unwrapped, "version")}.zip`),
       hash: "sha256-1/FBg1i8O83yusEAFlXiYWyabv04n1qkXwLgWaw8sTc=",
       stripRoot: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
     }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "phira",
       version: nix.thunk(() => nix.sel(phira_unwrapped, "version")),
       paths: nix.thunk(() => [phira_unwrapped]),
@@ -54,9 +50,9 @@ wrapper_options=(
 wrapProgram $out/bin/phira-main "\${wrapper_options[@]}"
 wrapProgram $out/bin/phira-monitor "\${wrapper_options[@]}"
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, assets: overrideAssets })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], assets: overrideAssets })),
       meta: nix.thunk(() => nix.update(nix.sel(phira_unwrapped, "meta"), {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: nix.thunk(() => nix.sel(phira_unwrapped, "meta", "description")),
       })),
     })));

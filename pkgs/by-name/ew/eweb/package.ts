@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 30, 5], ["description", 31, 5], ["mainProgram", 32, 5], ["platforms", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["installPhase", 23, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, python3: false, asciidoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 30, 5], ["description", 31, 5], ["mainProgram", 32, 5], ["platforms", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["installPhase", 23, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "eweb";
       const version = "9.10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/eweb/${pname}-${version}.tar.bz2`),
           sha256: "1xy7vm2sj5q6s620fm25klmnwnz9xkrxmx4q2f8h6c85ydisayd5",
         }))));
@@ -28,7 +26,7 @@ cp etangle.py $out/bin
 cp etangle.w etangle.html $out/share/doc/${pname}-${version}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://eweb.sourceforge.net/",
         description: "Asciidoc-based literate programming tool, written in Python",
         mainProgram: "etangle.py",
@@ -36,7 +34,7 @@ cp etangle.w etangle.html $out/share/doc/${pname}-${version}
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: [],
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildInputs, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, buildInputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

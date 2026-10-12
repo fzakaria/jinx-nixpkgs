@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["NIX_CFLAGS_COMPILE", 39, 7]], [["guacamole-server", 87, 26]], [["tests", 86, 12]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["mainProgram", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["env", 39, 3], ["strictDeps", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 55, 3], ["configureFlags", 73, 3], ["postPatch", 77, 3], ["postInstall", 81, 3], ["passthru", 86, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, autoPatchelfHook: false, autoreconfHook: false, cairo: false, "ffmpeg-headless": false, freerdp: false, libjpeg_turbo: false, libpng: false, libossp_uuid: false, libpulseaudio: false, libssh2: false, libtelnet: false, libvncserver: false, libvorbis: false, libwebp: false, libwebsockets: false, makeBinaryWrapper: false, openssl: false, pango: false, perl: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["guacamole-server", 87, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 86, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["mainProgram", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["env", 39, 3], ["strictDeps", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 55, 3], ["configureFlags", 73, 3], ["postPatch", 77, 3], ["postInstall", 81, 3], ["passthru", 86, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,18 +32,18 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "guacamole-server",
       version: "1.6.0-unstable-2026-08-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "guacamole-server",
           rev: "d3b7828977c63a5b197158d6cbbdaf1846b579fb",
           hash: "sha256-sxZLzF6m35EtfLRHb1+aqR3RF+piOuvPT9w9Hs3cor0=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=format-truncation",
             "-Wno-error=format-overflow",
@@ -82,14 +77,14 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/sbin/guacd --prefix LD_LIBRARY_PATH ":" $out/lib
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "guacamole-server": nix.thunk(() => nix.attr(nixosTests, "guacamole-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Clientless remote desktop gateway",
         homepage: "https://guacamole.apache.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

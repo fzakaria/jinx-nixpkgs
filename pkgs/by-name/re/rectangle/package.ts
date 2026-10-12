@@ -2,21 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["escape", 38, 38]], [["CFBundleInfoDictionaryVersion", 45, 9], ["CFBundlePackageType", 46, 9], ["LSMinimumSystemVersion", 47, 9], ["NSMainStoryboardFile", 48, 9], ["NSPrincipalClass", 49, 9]], [["CFBundleExecutable", 57, 7], ["CFBundleIdentifier", 58, 7], ["CFBundleInfoDictionaryVersion", 59, 7], ["CFBundleName", 60, 7], ["CFBundlePackageType", 61, 7], ["CFBundleVersion", 62, 7]], [["CFBundleURLSchemes", 115, 30]], [["CFBundleDevelopmentRegion", 109, 7], ["CFBundleExecutable", 110, 7], ["CFBundleIdentifier", 111, 7], ["CFBundleName", 112, 7], ["CFBundleShortVersionString", 113, 7], ["CFBundleVersion", 114, 7], ["CFBundleURLTypes", 115, 7], ["CFBundleIconFile", 116, 7], ["CFBundleIconName", 117, 7], ["LSApplicationCategoryType", 118, 7], ["LSUIElement", 119, 7], ["NSHumanReadableCopyright", 120, 7], ["SUFeedURL", 121, 7], ["SUPublicEDKey", 122, 7], ["SUScheduledCheckInterval", 123, 7]], [["owner", 131, 5], ["repo", 132, 5], ["tag", 133, 5], ["hash", 134, 5]], [["name", 269, 11], ["dylib", 270, 11]], [["name", 273, 11], ["dylib", 274, 11], ["localizations", 275, 11]], [["name", 262, 7], ["binary", 263, 7], ["sourceDir", 264, 7], ["plist", 265, 7], ["destDir", 266, 7], ["frameworks", 267, 7]], [["updateScript", 292, 12]], [["description", 295, 5], ["homepage", 296, 5], ["license", 297, 5], ["maintainers", 298, 5], ["platforms", 303, 5]], [["pname", 127, 3], ["version", 128, 3], ["src", 130, 3], ["nativeBuildInputs", 137, 3], ["buildInputs", 145, 3], ["postPatch", 149, 3], ["dontConfigure", 161, 3], ["buildPhase", 163, 3], ["installPhase", 230, 3], ["passthru", 292, 3], ["meta", 294, 3]]]);
 const formals$1 = { args: { lib: false, "apple-sdk_26": false, fetchFromGitHub: false, darwin: false, actool: false, ibtool: false, makeWrapper: false, "nix-update-script": false, swift: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["escape", 38, 38]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CFBundleInfoDictionaryVersion", 45, 9], ["CFBundlePackageType", 46, 9], ["LSMinimumSystemVersion", 47, 9], ["NSMainStoryboardFile", 48, 9], ["NSPrincipalClass", 49, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CFBundleExecutable", 57, 7], ["CFBundleIdentifier", 58, 7], ["CFBundleInfoDictionaryVersion", 59, 7], ["CFBundleName", 60, 7], ["CFBundlePackageType", 61, 7], ["CFBundleVersion", 62, 7]]);
 const formals$2 = { args: { name: false, binary: false, sourceDir: false, plist: false, destDir: false, frameworks: true }, ellipsis: false };
-const pos$5 = nix.positions(here + "/package.nix", [["CFBundleURLSchemes", 115, 30]]);
-const pos$6 = nix.positions(here + "/package.nix", [["CFBundleDevelopmentRegion", 109, 7], ["CFBundleExecutable", 110, 7], ["CFBundleIdentifier", 111, 7], ["CFBundleName", 112, 7], ["CFBundleShortVersionString", 113, 7], ["CFBundleVersion", 114, 7], ["CFBundleURLTypes", 115, 7], ["CFBundleIconFile", 116, 7], ["CFBundleIconName", 117, 7], ["LSApplicationCategoryType", 118, 7], ["LSUIElement", 119, 7], ["NSHumanReadableCopyright", 120, 7], ["SUFeedURL", 121, 7], ["SUPublicEDKey", 122, 7], ["SUScheduledCheckInterval", 123, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 131, 5], ["repo", 132, 5], ["tag", 133, 5], ["hash", 134, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 269, 11], ["dylib", 270, 11]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 273, 11], ["dylib", 274, 11], ["localizations", 275, 11]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 262, 7], ["binary", 263, 7], ["sourceDir", 264, 7], ["plist", 265, 7], ["destDir", 266, 7], ["frameworks", 267, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["updateScript", 292, 12]]);
-const pos$12 = nix.positions(here + "/package.nix", [["description", 295, 5], ["homepage", 296, 5], ["license", 297, 5], ["maintainers", 298, 5], ["platforms", 303, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 127, 3], ["version", 128, 3], ["src", 130, 3], ["nativeBuildInputs", 137, 3], ["buildInputs", 145, 3], ["postPatch", 149, 3], ["dontConfigure", 161, 3], ["buildPhase", 163, 3], ["installPhase", 230, 3], ["passthru", 292, 3], ["meta", 294, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const swift = nix.arg($, "swift");
   const stdenv = nix.arg($, "stdenv");
   const masShortcutSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "rxhanson",
       repo: "MASShortcut",
       rev: "2f9fbb3f959b7a683c6faaf9638d22afad37a235",
@@ -50,9 +38,9 @@ export default nix.lambda((args) => (() => {
     "User Defaults Storage/MASShortcutBinder.m",
   ]);
   const objName = (src) => nix.app(nix.sel(lib, "removeSuffix"), ".m", nix.thunk(() => nix.builtins.baseNameOf(src)));
-  const toPlist = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$2, escape: true }))));
+  const toPlist = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: $pos[1], escape: true }))));
   const mkAppPlist = (attrs) => nix.app(toPlist, nix.thunk(() => nix.update({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       CFBundleInfoDictionaryVersion: "6.0",
       CFBundlePackageType: "APPL",
       LSMinimumSystemVersion: "14.0",
@@ -60,7 +48,7 @@ export default nix.lambda((args) => (() => {
       NSPrincipalClass: "NSApplication",
     }, attrs)));
   const mkFrameworkPlist = (name) => nix.app(toPlist, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       CFBundleExecutable: name,
       CFBundleIdentifier: nix.thunk(() => nix.str`com.knollsoft.Rectangle.${name}`),
       CFBundleInfoDictionaryVersion: "6.0",
@@ -100,7 +88,7 @@ printf '%s' ${nix.app(nix.sel(lib, "escapeShellArg"), plist)} > "${app}/Contents
 `;
   })(), formals$2);
   const mainInfoPlist = (version) => nix.app(mkAppPlist, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       CFBundleDevelopmentRegion: "en",
       CFBundleExecutable: "Rectangle",
       CFBundleIdentifier: "com.knollsoft.Rectangle",
@@ -108,7 +96,7 @@ printf '%s' ${nix.app(nix.sel(lib, "escapeShellArg"), plist)} > "${app}/Contents
       CFBundleShortVersionString: version,
       CFBundleVersion: "100",
       CFBundleURLTypes: nix.thunk(() => [
-        nix.thunk(() => ({ [nix.POS]: pos$5, CFBundleURLSchemes: nix.thunk(() => ["rectangle"]) })),
+        nix.thunk(() => ({ [nix.POS]: $pos[4], CFBundleURLSchemes: nix.thunk(() => ["rectangle"]) })),
       ]),
       CFBundleIconFile: "AppIcon",
       CFBundleIconName: "AppIcon",
@@ -120,11 +108,11 @@ printf '%s' ${nix.app(nix.sel(lib, "escapeShellArg"), plist)} > "${app}/Contents
       SUScheduledCheckInterval: 172800n,
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "rectangle",
       version: "2.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "rxhanson",
           repo: "Rectangle",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -232,16 +220,16 @@ installLocalizations() {
 # Rectangle.app
 app="$out/Applications/Rectangle.app"
 ${nix.app(mkAppBundle, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           name: "Rectangle",
           binary: "$buildDir/Rectangle",
           sourceDir: "Rectangle",
           plist: nix.thunk(() => nix.app(mainInfoPlist, nix.thunk(() => nix.sel(finalAttrs, "version")))),
           destDir: "$out/Applications",
           frameworks: nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$8, name: "Sparkle", dylib: "$buildDir/libSparkle.dylib" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[7], name: "Sparkle", dylib: "$buildDir/libSparkle.dylib" })),
             nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               name: "MASShortcut",
               dylib: "$buildDir/libMASShortcut.dylib",
               localizations: nix.thunk(() => nix.str`${masShortcutSrc}/Framework/Resources`),
@@ -261,11 +249,11 @@ makeWrapper "$app/Contents/MacOS/Rectangle" "$out/bin/rectangle"
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         description: "Move and resize windows in macOS using keyboard shortcuts or snap areas",
         homepage: "https://rectangleapp.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

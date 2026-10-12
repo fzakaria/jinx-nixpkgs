@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cli.nix", [[["pname", 16, 3], ["version", 17, 24], ["src", 17, 32], ["meta", 17, 36], ["buildInputs", 19, 3], ["doCheck", 24, 3], ["preCheck", 26, 3], ["nativeCheckInputs", 30, 3], ["checkInputs", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildDunePackage: false, darwin: false, "conan-unix": false, "dune-site": false, alcotest: false, "conan-database": false, crowbar: false, fmt: false, rresult: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cli.nix", [["pname", 16, 3], ["version", 17, 24], ["src", 17, 32], ["meta", 17, 36], ["buildInputs", 19, 3], ["doCheck", 24, 3], ["preCheck", 26, 3], ["nativeCheckInputs", 30, 3], ["checkInputs", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const rresult = nix.arg($, "rresult");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "conan-cli",
       version: nix.thunk(() => nix.attr(conan_unix, "version")),
       src: nix.thunk(() => nix.attr(conan_unix, "src")),

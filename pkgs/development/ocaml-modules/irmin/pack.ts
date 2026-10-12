@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pack.nix", [[["description", 52, 5], ["mainProgram", 53, 5]], [["minimalOCamlVersion", 21, 3], ["pname", 23, 3], ["version", 25, 19], ["src", 25, 27], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 29, 3], ["checkInputs", 42, 3], ["doCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, index: false, ppx_irmin: false, irmin: false, optint: false, fmt: false, logs: false, lwt: false, mtime: false, cmdliner: false, checkseum: false, rusage: false, alcotest: false, "alcotest-lwt": false, astring: false, "irmin-test": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pack.nix", [["description", 52, 5], ["mainProgram", 53, 5]]);
-const pos$2 = nix.positions(here + "/pack.nix", [["minimalOCamlVersion", 21, 3], ["pname", 23, 3], ["version", 25, 19], ["src", 25, 27], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 29, 3], ["checkInputs", 42, 3], ["doCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const astring = nix.arg($, "astring");
   const irmin_test = nix.arg($, "irmin-test");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       minimalOCamlVersion: "4.12",
       pname: "irmin-pack",
       version: nix.thunk(() => nix.attr(irmin, "version")),
@@ -35,7 +34,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [astring, alcotest, alcotest_lwt, irmin_test]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Irmin backend which stores values in a pack file",
         mainProgram: "irmin_fsck",
       })),

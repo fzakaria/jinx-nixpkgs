@@ -2,34 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/haxe-packages.nix", [[["name", 46, 11], ["url", 47, 11], ["sha256", 48, 19], ["stripRoot", 49, 11]], [["libname", 61, 42], ["version", 61, 50]], [["homepage", 67, 11], ["license", 68, 11], ["platforms", 69, 11], ["description", 70, 11]], [["pname", 38, 9], ["version", 39, 17], ["buildInputs", 41, 9], ["src", 45, 9], ["installPhase", 52, 9], ["meta", 66, 9]], [["description", 81, 10]], [["libname", 78, 5], ["version", 79, 5], ["sha256", 80, 5], ["meta", 81, 5]], [["description", 88, 10]], [["libname", 85, 5], ["version", 86, 5], ["sha256", 87, 5], ["meta", 88, 5]], [["description", 95, 10]], [["libname", 92, 5], ["version", 93, 5], ["sha256", 94, 5], ["meta", 95, 5]], [["description", 102, 10]], [["libname", 99, 5], ["version", 100, 5], ["sha256", 101, 5], ["meta", 102, 5]], [["description", 116, 10]], [["libname", 106, 5], ["version", 107, 5], ["sha256", 108, 5], ["postFixup", 109, 5], ["meta", 116, 5]], [["description", 123, 10]], [["libname", 120, 5], ["version", 121, 5], ["sha256", 122, 5], ["meta", 123, 5], ["propagatedBuildInputs", 124, 5]], [["description", 131, 10]], [["libname", 128, 5], ["version", 129, 5], ["sha256", 130, 5], ["meta", 131, 5], ["propagatedBuildInputs", 132, 5]], [["description", 139, 10]], [["libname", 136, 5], ["version", 137, 5], ["sha256", 138, 5], ["meta", 139, 5]], [["owner", 150, 9], ["repo", 151, 9], ["rev", 152, 9], ["sha256", 153, 9]], [["libname", 155, 47], ["version", 155, 55]], [["homepage", 157, 9], ["license", 158, 9], ["platforms", 159, 9], ["description", 160, 9]], [["name", 148, 7], ["src", 149, 7], ["installPhase", 155, 7], ["meta", 156, 7]], [["format", 77, 3], ["heaps", 84, 3], ["hlopenal", 91, 3], ["hlsdl", 98, 3], ["hxcpp", 105, 3], ["hxjava", 119, 3], ["hxcs", 127, 3], ["hxnodejs_4", 135, 3], ["hxnodejs_6", 142, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, fetchFromGitHub: false, haxe: false, neko: false, jdk: false, mono: false }, ellipsis: false };
 const formals$2 = { args: { libname: false, version: false, files: true }, ellipsis: false };
 const formals$3 = { args: { libname: false, version: false, sha256: false, meta: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/haxe-packages.nix", [["name", 46, 11], ["url", 47, 11], ["sha256", 48, 19], ["stripRoot", 49, 11]]);
-const pos$2 = nix.positions(here + "/haxe-packages.nix", [["libname", 61, 42], ["version", 61, 50]]);
-const pos$3 = nix.positions(here + "/haxe-packages.nix", [["homepage", 67, 11], ["license", 68, 11], ["platforms", 69, 11], ["description", 70, 11]]);
-const pos$4 = nix.positions(here + "/haxe-packages.nix", [["pname", 38, 9], ["version", 39, 17], ["buildInputs", 41, 9], ["src", 45, 9], ["installPhase", 52, 9], ["meta", 66, 9]]);
-const pos$5 = nix.positions(here + "/haxe-packages.nix", [["description", 81, 10]]);
-const pos$6 = nix.positions(here + "/haxe-packages.nix", [["libname", 78, 5], ["version", 79, 5], ["sha256", 80, 5], ["meta", 81, 5]]);
-const pos$7 = nix.positions(here + "/haxe-packages.nix", [["description", 88, 10]]);
-const pos$8 = nix.positions(here + "/haxe-packages.nix", [["libname", 85, 5], ["version", 86, 5], ["sha256", 87, 5], ["meta", 88, 5]]);
-const pos$9 = nix.positions(here + "/haxe-packages.nix", [["description", 95, 10]]);
-const pos$10 = nix.positions(here + "/haxe-packages.nix", [["libname", 92, 5], ["version", 93, 5], ["sha256", 94, 5], ["meta", 95, 5]]);
-const pos$11 = nix.positions(here + "/haxe-packages.nix", [["description", 102, 10]]);
-const pos$12 = nix.positions(here + "/haxe-packages.nix", [["libname", 99, 5], ["version", 100, 5], ["sha256", 101, 5], ["meta", 102, 5]]);
-const pos$13 = nix.positions(here + "/haxe-packages.nix", [["description", 116, 10]]);
-const pos$14 = nix.positions(here + "/haxe-packages.nix", [["libname", 106, 5], ["version", 107, 5], ["sha256", 108, 5], ["postFixup", 109, 5], ["meta", 116, 5]]);
-const pos$15 = nix.positions(here + "/haxe-packages.nix", [["description", 123, 10]]);
-const pos$16 = nix.positions(here + "/haxe-packages.nix", [["libname", 120, 5], ["version", 121, 5], ["sha256", 122, 5], ["meta", 123, 5], ["propagatedBuildInputs", 124, 5]]);
-const pos$17 = nix.positions(here + "/haxe-packages.nix", [["description", 131, 10]]);
-const pos$18 = nix.positions(here + "/haxe-packages.nix", [["libname", 128, 5], ["version", 129, 5], ["sha256", 130, 5], ["meta", 131, 5], ["propagatedBuildInputs", 132, 5]]);
-const pos$19 = nix.positions(here + "/haxe-packages.nix", [["description", 139, 10]]);
-const pos$20 = nix.positions(here + "/haxe-packages.nix", [["libname", 136, 5], ["version", 137, 5], ["sha256", 138, 5], ["meta", 139, 5]]);
-const pos$21 = nix.positions(here + "/haxe-packages.nix", [["owner", 150, 9], ["repo", 151, 9], ["rev", 152, 9], ["sha256", 153, 9]]);
-const pos$22 = nix.positions(here + "/haxe-packages.nix", [["libname", 155, 47], ["version", 155, 55]]);
-const pos$23 = nix.positions(here + "/haxe-packages.nix", [["homepage", 157, 9], ["license", 158, 9], ["platforms", 159, 9], ["description", 160, 9]]);
-const pos$24 = nix.positions(here + "/haxe-packages.nix", [["name", 148, 7], ["src", 149, 7], ["installPhase", 155, 7], ["meta", 156, 7]]);
-const pos$25 = nix.positions(here + "/haxe-packages.nix", [["format", 77, 3], ["heaps", 84, 3], ["hlopenal", 91, 3], ["hlsdl", 98, 3], ["hxcpp", 105, 3], ["hxjava", 119, 3], ["hxcs", 127, 3], ["hxnodejs_4", 135, 3], ["hxnodejs_6", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,7 +36,7 @@ cp -dpR ${files} "$out/lib/haxe/${nix.app(withCommas, libname)}/${nix.app(withCo
     const sha256 = nix.arg($_1, "sha256");
     const meta = nix.arg($_1, "meta");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(attrs, {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: libname,
         version: version,
         buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), [haxe, neko])),
@@ -69,7 +45,7 @@ cp -dpR ${files} "$out/lib/haxe/${nix.app(withCommas, libname)}/${nix.app(withCo
             const url = nix.thunk(() => nix.str`http://lib.haxe.org/files/3.0/${nix.app(withCommas, name)}.zip`);
             const sha256_1 = sha256;
             const stripRoot = false;
-            return { [nix.POS]: pos$1, name, url, sha256: sha256_1, stripRoot };
+            return { [nix.POS]: $pos[0], name, url, sha256: sha256_1, stripRoot };
           })()))),
         installPhase: nix.thunk(() => nix.selOr(attrs, () => nix.str`runHook preInstall
 (
@@ -78,12 +54,12 @@ cp -dpR ${files} "$out/lib/haxe/${nix.app(withCommas, libname)}/${nix.app(withCo
   else
     cd $src
   fi
-  ${nix.app(installLibHaxe, nix.thunk(() => ({ [nix.POS]: pos$2, libname: libname, version: version })))}
+  ${nix.app(installLibHaxe, nix.thunk(() => ({ [nix.POS]: $pos[1], libname: libname, version: version })))}
 )
 runHook postInstall
 `, "installPhase")),
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           homepage: nix.thunk(() => nix.str`http://lib.haxe.org/p/${libname}`),
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -92,37 +68,37 @@ runHook postInstall
       })));
   })(), formals$3);
   return {
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     format: nix.thunk(() => nix.app(buildHaxeLib, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         libname: "format",
         version: "3.5.0",
         sha256: "sha256-5vZ7b+P74uGx0Gb7X/+jbsx5048dO/jv5nqCDtw5y/A=",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           description: "Haxe library for supporting different file formats",
         })),
       })))),
     heaps: nix.thunk(() => nix.app(buildHaxeLib, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         libname: "heaps",
         version: "1.9.1",
         sha256: "sha256-i5EIKnph80eEEHvGXDXhIL4t4+RW7OcUV5zb2f3ItlI=",
-        meta: nix.thunk(() => ({ [nix.POS]: pos$7, description: "GPU game framework" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[6], description: "GPU game framework" })),
       })))),
     hlopenal: nix.thunk(() => nix.app(buildHaxeLib, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         libname: "hlopenal",
         version: "1.5.0",
         sha256: "sha256-mJWFGBJPPAhVwsB2HzMfk4szSyjMT4aw543YhVqIan4=",
-        meta: nix.thunk(() => ({ [nix.POS]: pos$9, description: "OpenAL support for Haxe/HL" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[8], description: "OpenAL support for Haxe/HL" })),
       })))),
     hlsdl: nix.thunk(() => nix.app(buildHaxeLib, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         libname: "hlsdl",
         version: "1.10.0",
         sha256: "sha256-kmC2EMDy1mv0jFjwDj+m0CUvKal3V7uIGnMxJBRYGms=",
-        meta: nix.thunk(() => ({ [nix.POS]: pos$11, description: "SDL/GL support for Haxe/HL" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[10], description: "SDL/GL support for Haxe/HL" })),
       })))),
     hxcpp: nix.thunk(() => nix.app(buildHaxeLib, nix.thunk(() => (() => {
         const libname = "hxcpp";
@@ -135,56 +111,56 @@ runHook postInstall
 done
 `);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           description: "Runtime support library for the Haxe C++ backend",
         }));
-        return { [nix.POS]: pos$14, libname, version, sha256, postFixup, meta };
+        return { [nix.POS]: $pos[13], libname, version, sha256, postFixup, meta };
       })()))),
     hxjava: nix.thunk(() => nix.app(buildHaxeLib, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         libname: "hxjava",
         version: "3.2.0",
         sha256: "1vgd7qvsdxlscl3wmrrfi5ipldmr4xlsiwnj46jz7n6izff5261z",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           description: "Support library for the Java backend of the Haxe compiler",
         })),
         propagatedBuildInputs: nix.thunk(() => [jdk]),
       })))),
     hxcs: nix.thunk(() => nix.app(buildHaxeLib, nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         libname: "hxcs",
         version: "3.4.0",
         sha256: "0f5vgp2kqnpsbbkn2wdxmjf7xkl0qhk9lgl9kb8d5wdy89nac6q6",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           description: "Support library for the C# backend of the Haxe compiler",
         })),
         propagatedBuildInputs: nix.thunk(() => [mono]),
       })))),
     hxnodejs_4: nix.thunk(() => nix.app(buildHaxeLib, nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         libname: "hxnodejs",
         version: "4.0.9",
         sha256: "0b7ck48nsxs88sy4fhhr0x1bc8h2ja732zzgdaqzxnh3nir0bajm",
-        meta: nix.thunk(() => ({ [nix.POS]: pos$19, description: "Extern definitions for node.js 4.x" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[18], description: "Extern definitions for node.js 4.x" })),
       })))),
     hxnodejs_6: nix.thunk(() => (() => {
       const libname = "hxnodejs";
       const version = "6.9.0";
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           name: nix.thunk(() => nix.str`${libname}-${version}`),
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               owner: "HaxeFoundation",
               repo: "hxnodejs",
               rev: "cf80c6a077e705d39f752418e95555b346f4d9b2",
               sha256: "0mdiacr5b2m8jrlgyd2d3vp1fha69lcfb67x4ix7l7zfi8g460gs",
             })))),
-          installPhase: nix.thunk(() => nix.app(installLibHaxe, nix.thunk(() => ({ [nix.POS]: pos$22, libname: libname, version: version })))),
+          installPhase: nix.thunk(() => nix.app(installLibHaxe, nix.thunk(() => ({ [nix.POS]: $pos[21], libname: libname, version: version })))),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             homepage: nix.thunk(() => nix.str`http://lib.haxe.org/p/${libname}`),
             license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

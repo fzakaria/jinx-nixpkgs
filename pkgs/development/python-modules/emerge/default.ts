@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 53, 7], ["repo", 54, 7], ["tag", 55, 7], ["hash", 56, 7]], [["version", 51, 5], ["src", 52, 5], ["pythonRelaxDeps", 58, 5]], [["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["hash", 74, 5]], [["cudss", 116, 5], ["dxf", 121, 5], ["gerber", 124, 5], ["umfpack", 127, 5]], [["extraArgs", 152, 7]], [["cudaSupport", 146, 7], ["tests", 149, 5], ["updateScript", 151, 5]], [["description", 157, 5], ["homepage", 158, 5], ["mainProgram", 159, 5], ["license", 160, 5], ["maintainers", 161, 5], ["teams", 162, 5]], [["pname", 65, 3], ["version", 66, 3], ["pyproject", 67, 3], ["__structuredAttrs", 68, 3], ["src", 70, 3], ["postPatch", 77, 3], ["build-system", 83, 3], ["dependencies", 87, 3], ["nativeBuildInputs", 103, 3], ["buildInputs", 107, 3], ["optional-dependencies", 115, 3], ["pythonRelaxDeps", 132, 3], ["pythonImportsCheck", 137, 3], ["doCheck", 142, 3], ["passthru", 144, 3], ["meta", 156, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, buildPythonPackage: false, fetchFromGitHub: false, writableTmpDirAsHomeHook: false, "nix-update-script": false, cudaPackages: false, hatchling: false, emsutil: false, gmsh: false, joblib: false, loguru: false, matplotlib: false, mkl: false, msgpack: false, "msgpack-numpy": false, numba: false, numpy: false, psutil: false, pyvista: false, scipy: false, cupy: false, "nvmath-python": false, ezdxf: false, pygerber: false, callPackage: false, cudaSupport: true, withMkl: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 53, 7], ["repo", 54, 7], ["tag", 55, 7], ["hash", 56, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 51, 5], ["src", 52, 5], ["pythonRelaxDeps", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["hash", 74, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["cudss", 116, 5], ["dxf", 121, 5], ["gerber", 124, 5], ["umfpack", 127, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["extraArgs", 152, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["cudaSupport", 146, 7], ["tests", 149, 5], ["updateScript", 151, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 157, 5], ["homepage", 158, 5], ["mainProgram", 159, 5], ["license", 160, 5], ["maintainers", 161, 5], ["teams", 162, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 65, 3], ["version", 66, 3], ["pyproject", 67, 3], ["__structuredAttrs", 68, 3], ["src", 70, 3], ["postPatch", 77, 3], ["build-system", 83, 3], ["dependencies", 87, 3], ["nativeBuildInputs", 103, 3], ["buildInputs", 107, 3], ["optional-dependencies", 115, 3], ["pythonRelaxDeps", 132, 3], ["pythonImportsCheck", 137, 3], ["doCheck", 142, 3], ["passthru", 144, 3], ["meta", 156, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,23 +39,23 @@ export default nix.lambda((args) => (() => {
   const nvmath_python$ = nix.thunk(() => nix.app(nix.sel(nvmath_python, "overrideAttrs"), nix.thunk(() => (() => {
       const version = "0.9.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NVIDIA",
           repo: "nvmath-python",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-sIVvehCmkPvpPbHxhUPbKZ1cHnHTSlrgBHKSsHbUJPg=",
         }))));
       const pythonRelaxDeps = nix.thunk(() => ["cuda-core"]);
-      return { [nix.POS]: pos$2, version, src, pythonRelaxDeps };
+      return { [nix.POS]: $pos[1], version, src, pythonRelaxDeps };
     })())));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "emerge",
       version: "2.8.9",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "FennisRobert",
           repo: "EMerge",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,7 +80,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), withMkl, nix.thunk(() => [mkl])), nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "libcudss"))])))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         cudss: nix.thunk(() => [cupy, nix.thunk(() => nix.sel(cudaPackages, "libcudss")), nvmath_python$]),
         dxf: nix.thunk(() => [ezdxf]),
         gerber: nix.thunk(() => [pygerber]),
@@ -97,16 +90,16 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["emerge"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         cudaSupport: cudaSupport,
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests"), nix.thunk(() => ({})))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex=^v(2\\.[0-9].*)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Electromagnetic field computation program",
         homepage: "https://github.com/FennisRobert/EMerge",
         mainProgram: "emerge",

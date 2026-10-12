@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["ZSTD_SYS_USE_PKG_CONFIG", 34, 5]], [["wastebin", 38, 26]], [["tests", 37, 12]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["env", 33, 3], ["passthru", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, sqlite: false, zstd: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ZSTD_SYS_USE_PKG_CONFIG", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["wastebin", 38, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 37, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["env", 33, 3], ["passthru", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "wastebin",
       version: "3.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matze",
           repo: "wastebin",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,16 +28,16 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-hdu+t3xdS7KYcos6N1EkygCoAdaUOowldb0NGEOPtSQ=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [sqlite, zstd]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ZSTD_SYS_USE_PKG_CONFIG: true })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           wastebin: nix.thunk(() => nix.attr(nixosTests, "wastebin")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Pastebin service",
         homepage: "https://github.com/matze/wastebin",
         changelog: nix.thunk(() => nix.str`https://github.com/matze/wastebin/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

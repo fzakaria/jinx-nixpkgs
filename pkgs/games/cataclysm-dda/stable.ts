@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stable.nix", [[["tiles", 13, 13], ["debug", 13, 19], ["useXdgDir", 13, 25]], [["owner", 21, 7], ["repo", 22, 7], ["tag", 23, 7], ["hash", 24, 7]], [["changelog", 33, 7]], [["version", 18, 5], ["src", 20, 5], ["patches", 27, 5], ["meta", 32, 5]]]);
 const formals$1 = { args: { callPackage: false, fetchFromGitHub: false, pkgs: false, attachPkgs: false, tiles: true, debug: true, useXdgDir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/stable.nix", [["tiles", 13, 13], ["debug", 13, 19], ["useXdgDir", 13, 25]]);
-const pos$2 = nix.positions(here + "/stable.nix", [["owner", 21, 7], ["repo", 22, 7], ["tag", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/stable.nix", [["changelog", 33, 7]]);
-const pos$4 = nix.positions(here + "/stable.nix", [["version", 18, 5], ["src", 20, 5], ["patches", 27, 5], ["meta", 32, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const tiles = nix.argOr($, "tiles", () => true);
   const debug = nix.argOr($, "debug", () => false);
   const useXdgDir = nix.argOr($, "useXdgDir", () => false);
-  const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, tiles: tiles, debug: debug, useXdgDir: useXdgDir }))));
+  const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], tiles: tiles, debug: debug, useXdgDir: useXdgDir }))));
   const self = nix.thunk(() => nix.app(nix.sel(common, "overrideAttrs"), (common_1) => (() => {
       const version = "0.I-2026-06-11-1250";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "CleverRaven",
           repo: "Cataclysm-DDA",
           tag: nix.thunk(() => nix.str`cdda-${version}`),
@@ -29,10 +26,10 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./locale-path.patch")]);
       const meta = nix.thunk(() => nix.update(nix.sel(common_1, "meta"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/CleverRaven/Cataclysm-DDA/blob/${version}/data/changelog.txt`),
       }));
-      return { [nix.POS]: pos$4, version, src, patches, meta };
+      return { [nix.POS]: $pos[3], version, src, patches, meta };
     })()));
   return nix.app(attachPkgs, pkgs, self);
 })(), formals$1);

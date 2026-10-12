@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 7], ["hash", 16, 7]], [["url", 19, 7], ["hash", 20, 7]], [["x86_64-linux", 14, 5], ["aarch64-darwin", 18, 5]], [["url", 25, 90], ["hash", 25, 94]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 38, 5]], [["pname", 47, 7], ["version", 48, 7], ["src", 49, 7], ["meta", 50, 7], ["updateScript", 51, 7]], [["pname", 57, 7], ["version", 58, 7], ["src", 59, 7], ["meta", 60, 7], ["updateScript", 61, 7]]]);
 const formals$1 = { args: { stdenv: false, callPackage: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 7], ["hash", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 7], ["hash", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 14, 5], ["aarch64-darwin", 18, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 25, 90], ["hash", 25, 94]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 38, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 47, 7], ["version", 48, 7], ["src", 49, 7], ["meta", 50, 7], ["updateScript", 51, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 57, 7], ["version", 58, 7], ["src", 59, 7], ["meta", 60, 7], ["updateScript", 61, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const pname = "lens-desktop";
   const version = "2026.10.51501";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://api.k8slens.dev/binaries/Lens-${version}-latest.x86_64.AppImage`),
       hash: "sha512-NSCV9zkwhhpy3P1QB//OqFmZO7cfIMotosSwQyKacQUrOo6hcjPKetbXN1Nr5rIPdbeKdQGphArO5T/vY7NaCg==",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://api.k8slens.dev/binaries/Lens-${version}-latest-arm64.dmg`),
       hash: "sha512-Rl+rlJXUlgo84MWxBj6p4J/6se/5z9elU+g4iszAqgeJAqb5Onm7ASHUoCqSYdCJLFuttt7gBiVpOWqROCbW5w==",
     })),
@@ -35,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
       return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: nix.thunk(() => nix.attr(from, "url")),
       hash: nix.thunk(() => nix.attr(from, "hash")),
     };
     })())));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     description: "Kubernetes IDE",
     homepage: "https://k8slens.dev/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "lens")),
@@ -58,14 +52,14 @@ export default nix.lambda((args) => (() => {
   }));
   const updateScript = nix.path(here, "./update.sh");
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
       meta: meta,
       updateScript: updateScript,
     }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: src,

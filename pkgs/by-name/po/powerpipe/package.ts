@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["command", 56, 7], ["package", 57, 7], ["version", 58, 7]], [["version", 55, 11]], [["tests", 55, 5], ["updateScript", 60, 5]], [["changelog", 64, 5], ["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["proxyVendor", 24, 3], ["nativeBuildInputs", 26, 3], ["ldflags", 31, 3], ["doCheck", 37, 3], ["checkFlags", 39, 3], ["postInstall", 48, 3], ["passthru", 54, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, lib: false, makeWrapper: false, "nix-update-script": false, powerpipe: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["command", 56, 7], ["package", 57, 7], ["version", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 55, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 55, 5], ["updateScript", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 64, 5], ["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["proxyVendor", 24, 3], ["nativeBuildInputs", 26, 3], ["ldflags", 31, 3], ["doCheck", 37, 3], ["checkFlags", 39, 3], ["postInstall", 48, 3], ["passthru", 54, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const powerpipe = nix.arg($, "powerpipe");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "powerpipe",
       version: "1.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "turbot",
           repo: "powerpipe",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +43,11 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "wrapProgram $out/bin/powerpipe \\\n  --set-default POWERPIPE_UPDATE_CHECK false \\\n  --set-default POWERPIPE_TELEMETRY none\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), powerpipe)} --version`),
               package: powerpipe,
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +56,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/turbot/powerpipe/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Dynamically query your cloud, code, logs & more with SQL",
         homepage: "https://powerpipe.io/",

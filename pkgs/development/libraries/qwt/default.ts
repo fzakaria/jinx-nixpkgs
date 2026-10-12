@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 58, 5], ["platforms", 62, 5], ["maintainers", 63, 5]], [["pname", 13, 3], ["version", 14, 3], ["outputs", 16, 3], ["src", 21, 3], ["patches", 26, 3], ["propagatedBuildInputs", 39, 3], ["nativeBuildInputs", 44, 3], ["postPatch", 46, 3], ["qmakeFlags", 50, 3], ["dontWrapQtApps", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, qtbase: false, qtsvg: false, qttools: false, qmake: false, fixDarwinDylibNames: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 58, 5], ["platforms", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["outputs", 16, 3], ["src", 21, 3], ["patches", 26, 3], ["propagatedBuildInputs", 39, 3], ["nativeBuildInputs", 44, 3], ["postPatch", 46, 3], ["qmakeFlags", 50, 3], ["dontWrapQtApps", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.3.0";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/qwt/qwt-${version}.tar.bz2`),
           sha256: "sha256-3LCFiWwoquxVGMvAjA7itOYK2nrJKdgmOfYYmFGmEpo=",
         }))));
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const qmakeFlags = nix.thunk(() => [nix.thunk(() => nix.str`-after doc.path=$out/share/doc/qwt-${version}`)]);
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt widgets for technical applications",
         homepage: "http://qwt.sourceforge.net/",
         license: nix.thunk(() => (() => {
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bjornfor"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         outputs,

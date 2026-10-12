@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["extraPackages", 19, 3], ["python", 33, 11], ["usePython", 33, 18]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, soapysdr: false, limesuite: false, soapyairspy: false, soapyaudio: false, soapybladerf: false, soapyhackrf: false, soapyplutosdr: false, soapyremote: false, soapyrtlsdr: false, soapyuhd: false, python: true, usePython: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["extraPackages", 19, 3], ["python", 33, 11], ["usePython", 33, 18]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const python = nix.argOr($, "python", () => null);
   const usePython = nix.argOr($, "usePython", () => false);
   return nix.app(nix.sel(soapysdr, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       extraPackages: nix.thunk(() => nix.concat([
         limesuite,
         soapyairspy,

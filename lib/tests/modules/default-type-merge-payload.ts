@@ -2,63 +2,52 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default-type-merge-payload.nix", [[["elemType", 11, 17]], [["name", 8, 9], ["type", 9, 9], ["binOp", 10, 9], ["payload", 11, 9]], [["name", 6, 7], ["functor", 7, 7]], [["type", 19, 9]], [["foo", 18, 15]], [["options", 18, 7]], [["type", 24, 9]], [["foo", 23, 15]], [["options", 23, 7]], [["default", 30, 5]], [["result", 29, 11]], [["imports", 16, 3], ["options", 29, 3]]]);
 const formals$1 = { args: { lib: false, options: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default-type-merge-payload.nix", [["elemType", 11, 17]]);
-const pos$2 = nix.positions(here + "/default-type-merge-payload.nix", [["name", 8, 9], ["type", 9, 9], ["binOp", 10, 9], ["payload", 11, 9]]);
-const pos$3 = nix.positions(here + "/default-type-merge-payload.nix", [["name", 6, 7], ["functor", 7, 7]]);
-const pos$4 = nix.positions(here + "/default-type-merge-payload.nix", [["type", 19, 9]]);
-const pos$5 = nix.positions(here + "/default-type-merge-payload.nix", [["foo", 18, 15]]);
-const pos$6 = nix.positions(here + "/default-type-merge-payload.nix", [["options", 18, 7]]);
-const pos$7 = nix.positions(here + "/default-type-merge-payload.nix", [["type", 24, 9]]);
-const pos$8 = nix.positions(here + "/default-type-merge-payload.nix", [["foo", 23, 15]]);
-const pos$9 = nix.positions(here + "/default-type-merge-payload.nix", [["options", 23, 7]]);
-const pos$10 = nix.positions(here + "/default-type-merge-payload.nix", [["default", 30, 5]]);
-const pos$11 = nix.positions(here + "/default-type-merge-payload.nix", [["result", 29, 11]]);
-const pos$12 = nix.positions(here + "/default-type-merge-payload.nix", [["imports", 16, 3], ["options", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const options = nix.arg($, "options");
   const fooOf = (elemType) => nix.app(nix.sel(lib, "mkOptionType"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "foo",
       functor: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "foo",
         type: (payload) => nix.app(fooOf, nix.thunk(() => nix.sel(payload, "elemType"))),
         binOp: (a) => (_b) => nix.force(a),
-        payload: nix.thunk(() => ({ [nix.POS]: pos$1, elemType: elemType })),
+        payload: nix.thunk(() => ({ [nix.POS]: $pos[0], elemType: elemType })),
       })),
     })));
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               type: nix.thunk(() => nix.app(fooOf, nix.thunk(() => nix.sel(lib, "types", "int")))),
             })))),
         })),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               type: nix.thunk(() => nix.app(fooOf, nix.thunk(() => nix.sel(lib, "types", "int")))),
             })))),
         })),
       })),
     ]),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       result: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           default: nix.thunk(() => nix.builtins.seq(nix.thunk(() => nix.sel(options, "foo")), "ok")),
         })))),
     })),

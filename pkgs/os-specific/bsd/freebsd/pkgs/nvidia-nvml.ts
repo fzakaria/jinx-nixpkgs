@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nvidia-nvml.nix", [[["LOCALBASE", 20, 7]], [["platforms", 28, 8], ["license", 29, 8]], [["path", 9, 3], ["pname", 10, 3], ["src", 11, 27], ["version", 11, 31], ["extraNativeBuildInputs", 13, 3], ["runtimeDependencies", 17, 3], ["buildInputs", 18, 3], ["env", 20, 3], ["dontBuild", 22, 3], ["installPhase", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, "nvidia-driver": false, "nvidia-libs": false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nvidia-nvml.nix", [["LOCALBASE", 20, 7]]);
-const pos$2 = nix.positions(here + "/nvidia-nvml.nix", [["platforms", 28, 8], ["license", 29, 8]]);
-const pos$3 = nix.positions(here + "/nvidia-nvml.nix", [["path", 9, 3], ["pname", 10, 3], ["src", 11, 27], ["version", 11, 31], ["extraNativeBuildInputs", 13, 3], ["runtimeDependencies", 17, 3], ["buildInputs", 18, 3], ["env", 20, 3], ["dontBuild", 22, 3], ["installPhase", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const nvidia_libs = nix.arg($, "nvidia-libs");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       path: "...",
       pname: "nvidia-nvml",
       src: nix.thunk(() => nix.attr(nvidia_driver, "src")),
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
       runtimeDependencies: nix.thunk(() => [nvidia_libs]),
       buildInputs: nix.thunk(() => [nvidia_libs]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         LOCALBASE: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}`),
       })),
       dontBuild: true,
       installPhase: "mkdir -p $out/bin\nmake -C nvml install\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => ["x86_64-freebsd"]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),

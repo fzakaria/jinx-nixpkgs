@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["samba", 14, 15], ["usermod", 15, 7]], [["pname", 10, 3], ["patches", 12, 3], ["extraBuildInputs", 22, 3], ["extraCmakeFlags", 27, 3], ["postFixup", 30, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, replaceVars: false, qtdeclarative: false, samba: false, shadow: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["samba", 14, 15], ["usermod", 15, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["patches", 12, 3], ["extraBuildInputs", 22, 3], ["extraCmakeFlags", 27, 3], ["postFixup", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const samba = nix.arg($, "samba");
   const shadow = nix.arg($, "shadow");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kdenetwork-filesharing",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dependency-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             samba: samba,
             usermod: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), shadow, "usermod")),
           })))),

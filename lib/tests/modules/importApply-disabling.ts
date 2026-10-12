@@ -2,10 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/importApply-disabling.nix", [["imports", 2, 3], ["disabledModules", 3, 3]]);
+const $pos = nix.positions(here + "/importApply-disabling.nix", [[["imports", 2, 3], ["disabledModules", 3, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$1,
+  [nix.POS]: $pos[0],
   imports: nix.thunk(() => [nix.path(here, "./importApply.nix")]),
   disabledModules: nix.thunk(() => [nix.path(here, "./importApply-function.nix")]),
 }));

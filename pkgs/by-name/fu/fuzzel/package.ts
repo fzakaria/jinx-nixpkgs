@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5], ["platforms", 85, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["depsBuildBuild", 40, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 52, 3], ["mesonBuildType", 65, 3], ["mesonFlags", 67, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromCodeberg: false, "pkg-config": false, meson: false, ninja: false, "wayland-scanner": false, wayland: false, pixman: false, "wayland-protocols": false, libxkbcommon: false, scdoc: false, tllist: false, fcft: false, enableCairo: true, pngSupport: true, svgSupport: true, svgBackend: true, cairo: false, resvg: false, libpng: false, librsvg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5], ["platforms", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["depsBuildBuild", 40, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 52, 3], ["mesonBuildType", 65, 3], ["mesonFlags", 67, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   nix.assert_((!nix.asBool((nix.asBool(svgSupport) && nix.asBool(nix.eq(svgBackend, "nanosvg")))) || nix.asBool(enableCairo)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fu/fuzzel/package.nix:27:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fuzzel",
       version: "1.15.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dnkl",
           repo: "fuzzel",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "svg-backend", nix.thunk(() => (nix.asBool(svgSupport) ? nix.force(svgBackend) : "none")))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://codeberg.org/dnkl/fuzzel/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Wayland-native application launcher, similar to rofi’s drun mode",
         homepage: "https://codeberg.org/dnkl/fuzzel",

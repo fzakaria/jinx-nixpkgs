@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["broken", 74, 5]], [["pname", 21, 3], ["version", 22, 3], ["format", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["setupPyGlobalFlags", 45, 3], ["propagatedBuildInputs", 47, 3], ["dontUseCmakeConfigure", 55, 3], ["preConfigure", 58, 3], ["checkPhase", 62, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchPypi: false, buildPythonPackage: false, cmake: false, python: false, zlib: false, ncurses: false, docutils: false, pygments: false, numpy: false, scipy: false, "scikit-learn": false, spdlog: false, fmt: false, rapidjson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["broken", 74, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["format", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["setupPyGlobalFlags", 45, 3], ["propagatedBuildInputs", 47, 3], ["dontUseCmakeConfigure", 55, 3], ["preConfigure", 58, 3], ["checkPhase", 62, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.10.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-Yyqm3MlW6UL+bCufFfzWg9mBBQNhLxR+g++ZrQ6qM/E=",
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
 ${nix.sel(python, "interpreter")} setup.py check -ms
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Vowpal Wabbit is a fast machine learning library for online learning, and this is the python wrapper for the project",
         homepage: "https://github.com/JohnLangford/vowpal_wabbit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -67,7 +65,7 @@ ${nix.sel(python, "interpreter")} setup.py check -ms
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

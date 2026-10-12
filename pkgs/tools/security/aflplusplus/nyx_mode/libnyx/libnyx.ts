@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libnyx.nix", [[["lockFile", 20, 5]], [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["postUnpack", 14, 3], ["cargoLock", 19, 3], ["doCheck", 23, 3], ["installPhase", 25, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, aflplusplus: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libnyx.nix", [["lockFile", 20, 5]]);
-const pos$2 = nix.positions(here + "/libnyx.nix", [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/libnyx.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["postUnpack", 14, 3], ["cargoLock", 19, 3], ["doCheck", 23, 3], ["installPhase", 25, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const aflplusplus = nix.arg($, "aflplusplus");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.add(nix.sel(aflplusplus, "src"), "/nyx_mode/LIBNYX_VERSION")))),
       pname: "libnyx",
       src: nix.thunk(() => nix.sel(aflplusplus, "src")),
       postUnpack: nix.thunk(() => nix.str`sourceRoot="$sourceRoot/nyx_mode/libnyx/libnyx"
 cp ${nix.path(here, "./Cargo.lock")} "$sourceRoot/Cargo.lock"
 `),
-      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$1, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[0], lockFile: nix.path(here, "./Cargo.lock") })),
       doCheck: false,
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 mkdir -p $out/lib
@@ -30,7 +28,7 @@ cp "target/${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}/release/lib
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/nyx-fuzz/libnyx",
         description: "Rust library to build hypervisor-based snapshot fuzzers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

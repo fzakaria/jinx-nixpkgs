@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7]], [["url", 31, 9], ["hash", 32, 9]], [["pname", 18, 5], ["version", 19, 5], ["src", 21, 5], ["patches", 28, 5], ["nativeBuildInputs", 36, 5], ["buildPhase", 38, 5], ["installPhase", 52, 5]], [["owner", 64, 5], ["repo", 65, 5], ["rev", 66, 5], ["hash", 67, 5]], [["ncdns", 106, 18]], [["tests", 106, 12]], [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["maintainers", 112, 5]], [["pname", 60, 3], ["version", 61, 3], ["src", 63, 3], ["preBuild", 78, 3], ["vendorHash", 83, 3], ["buildInputs", 85, 3], ["patches", 87, 3], ["postPatch", 90, 3], ["preCheck", 95, 3], ["postInstall", 100, 3], ["passthru", 106, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false, libcap: false, go: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 9], ["hash", 32, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 5], ["version", 19, 5], ["src", 21, 5], ["patches", 28, 5], ["nativeBuildInputs", 36, 5], ["buildPhase", 38, 5], ["installPhase", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 64, 5], ["repo", 65, 5], ["rev", 66, 5], ["hash", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ncdns", 106, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 106, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["maintainers", 112, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 60, 3], ["version", 61, 3], ["src", 63, 3], ["preBuild", 78, 3], ["vendorHash", 83, 3], ["buildInputs", 85, 3], ["patches", 87, 3], ["postPatch", 90, 3], ["preCheck", 95, 3], ["postInstall", 100, 3], ["passthru", 106, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "x509-compressed";
       const version = "0.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "namecoin",
           repo: "x509-compressed",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +27,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/namecoin/x509-compressed/commit/b4fb598b.patch",
             hash: "sha256-S4Y4B4FH15IyaTJtSb03C8QffnsMXSYc6q1Gka/PVV4=",
           })))),
@@ -54,7 +47,7 @@ sed -e '/import "internal/d' \\
 `);
       const installPhase = "cp -r . \"$out\"\n";
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,
@@ -65,11 +58,11 @@ sed -e '/import "internal/d' \\
       };
     })())));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "ncdns",
       version: "unstable-2024-05-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "namecoin",
           repo: "ncdns",
           rev: "8a9f7c3037384f12fae400268d0a7f79d26b5532",
@@ -87,11 +80,11 @@ cp ${nix.path(here, "./ncdns-go.sum")} go.sum
       preCheck: "# needed to run the ncdns test suite\nln -s $PWD/vendor ../go/src\n",
       postInstall: "mkdir -p \"$out/share\"\ncp -r _doc \"$out/share/doc\"\ncp -r _tpl \"$out/share/tpl\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, ncdns: nix.thunk(() => nix.sel(nixosTests, "ncdns")) })),
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[4], ncdns: nix.thunk(() => nix.sel(nixosTests, "ncdns")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Namecoin to DNS bridge daemon",
         homepage: "https://github.com/namecoin/ncdns",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

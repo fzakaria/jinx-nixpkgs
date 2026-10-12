@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 72, 5], ["repo", 73, 5], ["tag", 74, 5], ["hash", 75, 5]], [["description", 218, 5], ["homepage", 219, 5], ["changelog", 220, 5], ["license", 221, 5], ["maintainers", 222, 5]], [["pname", 66, 3], ["version", 67, 3], ["pyproject", 68, 3], ["__structuredAttrs", 69, 3], ["src", 71, 3], ["postPatch", 78, 3], ["build-system", 85, 3], ["dependencies", 90, 3], ["pythonImportsCheck", 113, 3], ["nativeCheckInputs", 115, 3], ["disabledTests", 150, 3], ["disabledTestPaths", 157, 3], ["meta", 217, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, packaging: false, setuptools: false, "absl-py": false, "array-record": false, "dm-tree": false, etils: false, immutabledict: false, "importlib-resources": false, numpy: false, promise: false, protobuf: false, psutil: false, pyarrow: false, requests: false, "simple-parsing": false, "tensorflow-metadata": false, termcolor: false, toml: false, tqdm: false, wrapt: false, "apache-beam": false, beautifulsoup4: false, click: false, cloudpickle: false, datasets: false, dill: false, ffmpeg: false, imagemagick: false, jax: false, jaxlib: false, jinja2: false, langdetect: false, lxml: false, matplotlib: false, mlcroissant: false, mwparserfromhell: false, mwxml: false, networkx: false, nltk: false, opencv4: false, pandas: false, pillow: false, pycocotools: false, pydub: false, "pytest-xdist": false, pytestCheckHook: false, "scikit-image": false, scipy: false, sortedcontainers: false, tensorflow: false, tifffile: false, zarr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 72, 5], ["repo", 73, 5], ["tag", 74, 5], ["hash", 75, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 218, 5], ["homepage", 219, 5], ["changelog", 220, 5], ["license", 221, 5], ["maintainers", 222, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 66, 3], ["version", 67, 3], ["pyproject", 68, 3], ["__structuredAttrs", 69, 3], ["src", 71, 3], ["postPatch", 78, 3], ["build-system", 85, 3], ["dependencies", 90, 3], ["pythonImportsCheck", 113, 3], ["nativeCheckInputs", 115, 3], ["disabledTests", 150, 3], ["disabledTestPaths", 157, 3], ["meta", 217, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,13 +63,13 @@ export default nix.lambda((args) => (() => {
   const tifffile = nix.arg($, "tifffile");
   const zarr = nix.arg($, "zarr");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tensorflow-datasets",
       version: "4.9.10",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tensorflow",
           repo: "datasets",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -170,7 +168,7 @@ export default nix.lambda((args) => (() => {
         "tensorflow_datasets/text/c4_wsrs/c4_wsrs_test.py::C4WSRSTest",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library of datasets ready to use with TensorFlow",
         homepage: "https://www.tensorflow.org/datasets/overview",
         changelog: nix.thunk(() => nix.str`https://github.com/tensorflow/datasets/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

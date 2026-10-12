@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 7], ["repo", 24, 7], ["tag", 25, 7], ["hash", 26, 7]], [["owner", 31, 7], ["repo", 32, 7], ["tag", 33, 7], ["hash", 34, 7]], [["dyldinfo", 22, 5], ["machochecker", 30, 5], ["libtapi", 38, 5]], [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]], [["description", 197, 5], ["homepage", 198, 5], ["license", 199, 5], ["mainProgram", 200, 5], ["teams", 201, 5], ["platforms", 202, 5]], [["pname", 49, 3], ["version", 50, 3], ["outputs", 52, 3], ["src", 58, 3], ["patches", 65, 3], ["prePatch", 90, 3], ["xcodeHash", 122, 3], ["xcodeProject", 123, 3], ["nativeBuildInputs", 125, 3], ["buildInputs", 134, 3], ["hardeningDisable", 142, 3], ["dontUseCmakeConfigure", 144, 3], ["mesonBuildType", 148, 3], ["mesonFlags", 150, 3], ["doInstallCheck", 156, 3], ["installCheckPhase", 161, 3], ["postInstall", 188, 3], ["__structuredAttrs", 194, 3], ["meta", 196, 3]]]);
 const formals$1 = { args: { lib: false, cctools: false, cmake: false, darwin: false, fetchFromGitHub: false, libtapi: false, llvm: false, libxml2: false, meson: false, ninja: false, openssl: false, "pkg-config": false, stdenv: false, xar: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 7], ["repo", 24, 7], ["tag", 25, 7], ["hash", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 31, 7], ["repo", 32, 7], ["tag", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["dyldinfo", 22, 5], ["machochecker", 30, 5], ["libtapi", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 197, 5], ["homepage", 198, 5], ["license", 199, 5], ["mainProgram", 200, 5], ["teams", 201, 5], ["platforms", 202, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 49, 3], ["version", 50, 3], ["outputs", 52, 3], ["src", 58, 3], ["patches", 65, 3], ["prePatch", 90, 3], ["xcodeHash", 122, 3], ["xcodeProject", 123, 3], ["nativeBuildInputs", 125, 3], ["buildInputs", 134, 3], ["hardeningDisable", 142, 3], ["dontUseCmakeConfigure", 144, 3], ["mesonBuildType", 148, 3], ["mesonFlags", 150, 3], ["doInstallCheck", 156, 3], ["installCheckPhase", 161, 3], ["postInstall", 188, 3], ["__structuredAttrs", 194, 3], ["meta", 196, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const xar = nix.arg($, "xar");
   const otherSrcs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     dyldinfo: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "apple-oss-distributions",
         repo: "ld64",
         tag: "ld64-762",
         hash: "sha256-UIq/fwO40vk8yvoTfx+UlLhnuzkI0Ih+Ym6W/BwnP0s=",
       })))),
     machochecker: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         owner: "apple-oss-distributions",
         repo: "ld64",
         tag: "ld64-954.16",
@@ -50,12 +45,12 @@ export default nix.lambda((args) => (() => {
   const libtapisrc = nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`${nix.sel(otherSrcs, "libtapi")}`)));
   const llvmPath = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), llvm)}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ld64",
       version: "957.1",
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "apple-oss-distributions",
           repo: "ld64",
           tag: nix.thunk(() => nix.str`ld64-${nix.sel(finalAttrs, "version")}`),
@@ -159,7 +154,7 @@ runHook postInstallCheck
       postInstall: "ln -s ld-classic.1 \"$out/share/man/man1/ld.1\"\nln -s ld.1 \"$out/share/man/man1/ld64.1\"\nmoveToOutput lib/libprunetrie.a \"$dev\"\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Classic linker for Darwin",
         homepage: "https://opensource.apple.com/releases/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "apple-psl20")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["description", 23, 5], ["homepage", 24, 5], ["platforms", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["mainProgram", 28, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 18, 3], ["installFlags", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, libpulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["homepage", 24, 5], ["platforms", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["mainProgram", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 18, 3], ["installFlags", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const libpulseaudio = nix.arg($, "libpulseaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pavolctld",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.tjkeller.xyz/pavolctld",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-gNEXED+9BkCCLi8oW2GZi9Azd/zOWUvu/bY0a1WbE/A=",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libpulseaudio]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Minimal volume control/monitoring daemon for PulseAudio and PipeWire",
         homepage: "https://tjkeller.xyz/projects/pavolctld",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

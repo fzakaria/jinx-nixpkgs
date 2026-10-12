@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 30, 26], ["version", 30, 32], ["src", 31, 5], ["fetchAll", 32, 5], ["hash", 33, 5]], [["extraArgs", 89, 5]], [["updateScript", 88, 12]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["mainProgram", 105, 5], ["platforms", 106, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["zigDeps", 29, 3], ["nativeBuildInputs", 36, 3], ["postPatch", 46, 3], ["doCheck", 66, 3], ["dontUseZigBuild", 68, 3], ["dontUseZigCheck", 69, 3], ["dontUseZigInstall", 70, 3], ["postConfigure", 72, 3], ["postInstall", 78, 3], ["nativeInstallCheckInputs", 85, 3], ["doInstallCheck", 86, 3], ["passthru", 88, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, zig_0_16: false, installAgentSkills: false, installShellFiles: false, cctools: false, xcbuild: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 30, 26], ["version", 30, 32], ["src", 31, 5], ["fetchAll", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 88, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["mainProgram", 105, 5], ["platforms", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["zigDeps", 29, 3], ["nativeBuildInputs", 36, 3], ["postPatch", 46, 3], ["doCheck", 66, 3], ["dontUseZigBuild", 68, 3], ["dontUseZigCheck", 69, 3], ["dontUseZigInstall", 70, 3], ["postConfigure", 72, 3], ["postInstall", 78, 3], ["nativeInstallCheckInputs", 85, 3], ["doInstallCheck", 86, 3], ["passthru", 88, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "herdr",
       version: "0.9.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "herdrdev",
           repo: "herdr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-+gTWtEheyuI59yf2PqRbcbcFIW+/cYb7zZ2mPv2VN0Y=",
       zigDeps: nix.thunk(() => nix.app(nix.sel(zig_0_16, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/vendor/libghostty-vt`),
@@ -58,11 +53,11 @@ chmod -R u+w "$ZIG_GLOBAL_CACHE_DIR/p"
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--custom-dep", "zigDeps"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--custom-dep", "zigDeps"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Agent multiplexer that lives in your terminal",
         homepage: "https://herdr.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/herdrdev/herdr/releases/tag/v${nix.sel(finalAttrs, "version")}`),

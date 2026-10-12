@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 7], ["repo", 29, 7], ["tag", 30, 7], ["hash", 31, 7]], [["description", 67, 7], ["longDescription", 68, 7], ["homepage", 73, 7], ["license", 74, 7], ["maintainers", 75, 7], ["mainProgram", 79, 7]], [["pname", 22, 5], ["version", 23, 5], ["pyproject", 25, 5], ["src", 27, 5], ["build-system", 34, 5], ["nativeBuildInputs", 39, 5], ["makeWrapperArgs", 46, 5], ["dependencies", 52, 5], ["pythonImportsCheck", 64, 5], ["meta", 66, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, python3Packages: false, fetchFromGitHub: false, kdePackages: false, qt6: false, makeWrapper: false, x11Support: true, pynputSupport: true, hasDndSupport: true, enableDragAndDrop: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 7], ["repo", 29, 7], ["tag", 30, 7], ["hash", 31, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 7], ["longDescription", 68, 7], ["homepage", 73, 7], ["license", 74, 7], ["maintainers", 75, 7], ["mainProgram", 79, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 5], ["version", 23, 5], ["pyproject", 25, 5], ["src", 27, 5], ["build-system", 34, 5], ["nativeBuildInputs", 39, 5], ["makeWrapperArgs", 46, 5], ["dependencies", 52, 5], ["pythonImportsCheck", 64, 5], ["meta", 66, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const hasDndSupport = nix.argOr($, "hasDndSupport", () => (nix.asBool(x11Support) && nix.asBool(pynputSupport)));
   const enableDragAndDrop = nix.argOr($, "enableDragAndDrop", () => false);
   return nix.app(nix.sel(lib, "throwIf"), nix.thunk(() => (nix.asBool(enableDragAndDrop) && nix.asBool(!nix.asBool(hasDndSupport)))), "Drag and drop support is only available for linux with xorg.", nix.thunk(() => nix.sel(python3Packages, "buildPythonApplication")), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tuifimanager",
       version: "5.2.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GiorgosXou",
           repo: "TUIFIManager",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["TUIFIManager"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cross-platform terminal-based termux-oriented file manager",
         longDescription: "A cross-platform terminal-based termux-oriented file manager (and component),\nmeant to be used with a Uni-Curses project or as is. This project is mainly an\nattempt to get more attention to the Uni-Curses project.\n",
         homepage: "https://github.com/GiorgosXou/TUIFIManager",

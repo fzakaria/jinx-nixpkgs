@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["name", 24, 7], ["url", 25, 7], ["excludes", 26, 7], ["hash", 27, 7]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["build-system", 31, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, git: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["excludes", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["build-system", 31, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "git-privacy",
       version: "2.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "EMPRI-DEVOPS",
           repo: "git-privacy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-pkg_resources-is-deprecated.patch",
             url: "https://github.com/EMPRI-DEVOPS/git-privacy/commit/a54d7a8b9ce6a48db5383e09711059b5025bcb18.patch",
             excludes: nix.thunk(() => [".github/workflows/pytest.yml"]),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["TestGitPrivacy"]),
       pythonImportsCheck: nix.thunk(() => ["gitprivacy"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to redact Git author and committer dates",
         homepage: "https://github.com/EMPRI-DEVOPS/git-privacy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

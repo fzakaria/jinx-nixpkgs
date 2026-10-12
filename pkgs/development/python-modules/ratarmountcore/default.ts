@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]], [["full", 43, 5], ["_7z", 50, 5], ["bzip2", 51, 5], ["gzip", 52, 5], ["rar", 53, 5], ["xz", 54, 5], ["zstd", 55, 5]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["sourceRoot", 32, 3], ["postPatch", 34, 3], ["build-system", 40, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 58, 3], ["pythonImportsCheck", 67, 3], ["disabledTestPaths", 69, 3], ["disabledTests", 79, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fsspec: false, "indexed-gzip": false, "indexed-zstd": false, "libarchive-c": false, pytestCheckHook: false, "python-xz": false, writableTmpDirAsHomeHook: false, rapidgzip: false, rarfile: false, setuptools: false, zstandard: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["full", 43, 5], ["_7z", 50, 5], ["bzip2", 51, 5], ["gzip", 52, 5], ["rar", 53, 5], ["xz", 54, 5], ["zstd", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["sourceRoot", 32, 3], ["postPatch", 34, 3], ["build-system", 40, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 58, 3], ["pythonImportsCheck", 67, 3], ["disabledTestPaths", 69, 3], ["disabledTests", 79, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mxmlnkn",
           repo: "ratarmount",
           tag: nix.thunk(() => nix.str`core-v${version}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace tests/test_AutoMountLayer.py \\\n  --replace-fail 'f\"tests/{name}.tgz.tgz.gz\"' 'os.path.join(os.path.dirname(__file__), f\"../../tests/{name}.tgz.tgz.gz\")' \\\n  --replace-fail 'copy_test_file(\"tests/double-compressed-nested-tar.tgz.tgz\")' 'copy_test_file(os.path.join(os.path.dirname(__file__), \"../../tests/double-compressed-nested-tar.tgz.tgz\"))'\n";
       const build_system = nix.thunk(() => [setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         full: nix.thunk(() => [indexed_gzip, indexed_zstd, python_xz, rapidgzip, rarfile]),
         _7z: nix.thunk(() => [libarchive_c]),
         bzip2: nix.thunk(() => [rapidgzip]),
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         "test_URL",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for accessing archives by way of indexing",
         homepage: "https://github.com/mxmlnkn/ratarmount/tree/master/core",
         changelog: nix.thunk(() => nix.str`https://github.com/mxmlnkn/ratarmount/blob/${nix.sel(src, "rev")}/core/CHANGELOG.md`),
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

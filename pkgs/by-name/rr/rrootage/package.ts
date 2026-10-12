@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 19, 7], ["url", 20, 7], ["hash", 21, 15]], [["url", 29, 5], ["hash", 30, 5]], [["description", 89, 5], ["mainProgram", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 26, 3], ["version", 27, 11], ["src", 28, 3], ["patches", 33, 3], ["postPatch", 47, 3], ["buildInputs", 53, 3], ["makeFlags", 61, 3], ["hardeningDisable", 66, 3], ["installPhase", 71, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, libGL: false, libGLU: false, SDL: false, SDL_mixer: false, bulletml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 19, 7], ["url", 20, 7], ["hash", 21, 15]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 89, 5], ["mainProgram", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 11], ["src", 28, 3], ["patches", 33, 3], ["postPatch", 47, 3], ["buildInputs", 53, 3], ["makeFlags", 61, 3], ["hardeningDisable", 66, 3], ["installPhase", 71, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const version = "0.23a";
   const debianRevision = "16";
   const debianPatch = (patchname) => (hash) => nix.app(fetchpatch, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`${patchname}.patch`),
       url: nix.thunk(() => nix.str`https://sources.debian.org/data/main/r/rrootage/${version}-${debianRevision}/debian/patches/${patchname}.patch`),
       hash: hash,
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rrootage",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://downloads.sourceforge.net/rrootage/rRootage-${version}.tar.gz`),
           hash: "sha256-lk7b4hgC4+QNao2hm2ETLeys0Tv5pxushqvOASN5/wc=",
         })))),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["stackprotector", "fortify"]),
       installPhase: "runHook preInstall\n\ninstall -d \"$out\"/share/games\ncp -r rr_share \"$out\"/share/games/rrootage\ninstall -D src/rrootage \"$out\"/bin/rrootage\n\ninstall -D -m 644 readme.txt \"$out\"/share/licenses/rrootage/README.jp\ninstall -m 644 readme_e.txt \"$out\"/share/licenses/rrootage/README.en\n\ninstall -D -m 644 readme.txt \"$out\"/share/doc/rrootage/README.jp\ninstall -m 644 readme_e.txt \"$out\"/share/doc/rrootage/README.en\ninstall -m 644 readme_linux \"$out\"/share/doc/rrootage/README\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Abstract shooter created by Kenta Cho",
         mainProgram: "rrootage",
         homepage: "https://rrootage.sourceforge.net/",

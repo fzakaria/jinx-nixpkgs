@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 15, 9], ["hash", 16, 9]], [["version", 20, 9], ["hash", 21, 9]], [["version", 25, 9], ["hash", 26, 9]], [["url", 37, 5], ["hash", 38, 27]], [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 31, 3], ["version", 32, 3], ["minimalOCamlVersion", 34, 3], ["src", 36, 3], ["propagatedBuildInputs", 41, 3], ["doCheck", 42, 3], ["checkInputs", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, ocaml: false, ounit: false, ounit2: false, seq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 15, 9], ["hash", 16, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 20, 9], ["hash", 21, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 25, 9], ["hash", 26, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 37, 5], ["hash", 38, 27]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["minimalOCamlVersion", 34, 3], ["src", 36, 3], ["propagatedBuildInputs", 41, 3], ["doCheck", 42, 3], ["checkInputs", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,25 +15,25 @@ export default nix.lambda((args) => (() => {
   const ounit2 = nix.arg($, "ounit2");
   const seq = nix.arg($, "seq");
   const version_sha = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.12")) ? {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "1.12.0",
     hash: "sha256-oB8r8i9ywvSrq9jT52NeNcG/a8WkGtbVoAdFTdq60dQ=",
   } : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")) ? {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "1.11.0",
     hash: "sha256-AfwkR4DA9r5yrnlrH7dQ82feGGJP110H7nl4LtbfjU8=",
   } : {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     version: "1.9.0",
     hash: "sha256:1gas4ky49zgxph3870nffzkr6y41kkpqp4nj38pz1gh49zcf12aj",
   })));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "re",
       version: nix.thunk(() => nix.sel(version_sha, "version")),
       minimalOCamlVersion: "4.02",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://github.com/ocaml/ocaml-re/releases/download/${nix.sel(finalAttrs, "version")}/re-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: nix.thunk(() => nix.attr(version_sha, "hash")),
         })))),
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "1.12")) ? nix.force(ounit2) : nix.force(ounit))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/ocaml/ocaml-re",
         description: "Pure OCaml regular expressions, with support for Perl and POSIX-style strings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

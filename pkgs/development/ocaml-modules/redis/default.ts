@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 5], ["hash", 18, 5]], [["description", 30, 5], ["license", 31, 5], ["homepage", 32, 5]], [["pname", 11, 3], ["version", 12, 3], ["minimalOCamlVersion", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 21, 3], ["doCheck", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, re: false, "stdlib-shims": false, uuidm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["license", 31, 5], ["homepage", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["minimalOCamlVersion", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 21, 3], ["doCheck", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const stdlib_shims = nix.arg($, "stdlib-shims");
   const uuidm = nix.arg($, "uuidm");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "redis",
       version: "0.8",
       minimalOCamlVersion: "4.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/0xffea/ocaml-redis/releases/download/v${nix.sel(finalAttrs, "version")}/redis-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-Cli30Elur3tL/0bWK6PBBy229TK4jsQnN/0oVQux01I=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [re, stdlib_shims, uuidm]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Redis client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/0xffea/ocaml-redis",

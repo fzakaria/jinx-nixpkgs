@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["name", 72, 7], ["exec", 73, 7], ["icon", 74, 7], ["desktopName", 75, 7], ["comment", 76, 7], ["categories", 77, 7]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["vendorHash", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 47, 3], ["postInstall", 59, 3], ["preFixup", 64, 3], ["desktopItems", 70, 3], ["__structuredAttrs", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, "pkg-config": false, wrapGAppsHook3: false, makeDesktopItem: false, copyDesktopItems: false, desktopToDarwinBundle: false, gtk3: false, libglvnd: false, libxxf86vm: false, libxrandr: false, libxi: false, libxinerama: false, libxcursor: false, libx11: false, libxext: false, lpac: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 72, 7], ["exec", 73, 7], ["icon", 74, 7], ["desktopName", 75, 7], ["comment", 76, 7], ["categories", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["vendorHash", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 47, 3], ["postInstall", 59, 3], ["preFixup", 64, 3], ["desktopItems", 70, 3], ["__structuredAttrs", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "easylpac";
       const version = "0.8.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "creamlike1024",
           repo: "EasyLPAC",
           tag: version,
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "EasyLPAC",
             exec: "EasyLPAC",
             icon: "EasyLPAC",
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const __structuredAttrs = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GUI frontend for lpac, a C-based eUICC LPA",
         homepage: "https://github.com/creamlike1024/EasyLPAC",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -82,7 +79,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

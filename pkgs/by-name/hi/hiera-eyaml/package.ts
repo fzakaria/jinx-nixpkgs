@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 13, 12]], [["description", 16, 5], ["homepage", 17, 5], ["license", 18, 5], ["maintainers", 19, 5], ["platforms", 23, 5], ["mainProgram", 24, 5]], [["ruby", 9, 11], ["pname", 10, 3], ["gemdir", 11, 3], ["passthru", 13, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { lib: false, bundlerEnv: false, ruby: false, bundlerUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 13, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 16, 5], ["homepage", 17, 5], ["license", 18, 5], ["maintainers", 19, 5], ["platforms", 23, 5], ["mainProgram", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ruby", 9, 11], ["pname", 10, 3], ["gemdir", 11, 3], ["passthru", 13, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerEnv, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       ruby: ruby,
       pname: "hiera-eyaml",
       gemdir: nix.path(here, "./."),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "hiera-eyaml")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Per-value asymmetric encryption of sensitive data for Hiera",
         homepage: "https://github.com/voxpupuli/hiera-eyaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

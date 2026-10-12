@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]], [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["outputBin", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 57, 3], ["mesonFlags", 63, 3], ["doCheck", 69, 3], ["checkPhase", 71, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, vala: false, "gtk-doc": false, docbook_xsl: false, docbook_xml_dtd_43: false, gtk3: false, "gnome-desktop": false, dbus: false, "xvfb-run": false, libxml2: false, "hicolor-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["outputBin", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 57, 3], ["mesonFlags", 63, 3], ["doCheck", 69, 3], ["checkPhase", 71, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libhandy",
       version: "0.0.13",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       outputBin: "dev",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "source.puri.sm",
           owner: "Librem5",
           repo: "libhandy",
@@ -62,7 +60,7 @@ xvfb-run -s '-screen 0 800x600x24' dbus-run-session \\
   meson test --print-errorlogs
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library full of GTK widgets for mobile phones",
         mainProgram: "handy-0.0-demo",
         homepage: "https://source.puri.sm/Librem5/libhandy",

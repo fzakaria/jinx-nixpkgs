@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["aiohttp", 48, 5], ["pydantic", 49, 5], ["flask", 50, 5], ["yaml", 51, 5]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 66, 3], ["disabledTestPaths", 68, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, distutils: false, setuptools: false, aiohttp: false, pydantic: false, flask: false, pyyaml: false, fastapi: false, httpx: false, "mypy-boto3-s3": false, numpy: false, "pytest-asyncio": false, pytestCheckHook: false, scipy: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aiohttp", 48, 5], ["pydantic", 49, 5], ["flask", 50, 5], ["yaml", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 66, 3], ["disabledTestPaths", 68, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dependency-injector",
       version: "4.49.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ets-labs",
           repo: "python-dependency-injector",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [cython, distutils, setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aiohttp: nix.thunk(() => [aiohttp]),
         pydantic: nix.thunk(() => [pydantic]),
         flask: nix.thunk(() => [flask]),
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         "tests/unit/wiring/test_fastdepends.py",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Dependency injection microframework for Python",
         homepage: "https://github.com/ets-labs/python-dependency-injector",
         changelog: nix.thunk(() => nix.str`https://github.com/ets-labs/python-dependency-injector/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/main/changelog.rst`),

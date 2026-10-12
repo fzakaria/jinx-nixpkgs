@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["patchPhase", 19, 3], ["installPhase", 26, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["patchPhase", 19, 3], ["installPhase", 26, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cups-toshiba-estudio",
       version: "7.89",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://business.toshiba.com/downloads/KB/f1Ulds/15178/TOSHIBA_ColorMFP_CUPS.tar",
           sha256: "0qz4r7q55i0adf4fv3aqnfqgi2pz3jb1jixkqm9x6nk4vanyjf4r",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "patchShebangs lib/\ngunzip                share/cups/model/Toshiba/TOSHIBA_ColorMFP_CUPS.gz\nsed -i \"s+/usr+$out+\" share/cups/model/Toshiba/TOSHIBA_ColorMFP_CUPS\ngzip                  share/cups/model/Toshiba/TOSHIBA_ColorMFP_CUPS\n",
       installPhase: "mkdir -p $out/lib/cups/filter\nmkdir -p $out/share/cups/model/Toshiba\ncp {.,$out}/lib/cups/filter/est6550_Authentication\nchmod 755 $out/lib/cups/filter/est6550_Authentication\ncp {.,$out}/share/cups/model/Toshiba/TOSHIBA_ColorMFP_CUPS.gz\nchmod 755 $out/share/cups/model/Toshiba/TOSHIBA_ColorMFP_CUPS.gz\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Printer only driver for the Toshiba e-STUDIO class of printers",
         longDescription: "This driver supports the following printers: TOSHIBA e-STUDIO2000AC,\nTOSHIBA e-STUDIO2005AC, TOSHIBA e-STUDIO2040C, TOSHIBA e-STUDIO2050C,\nTOSHIBA e-STUDIO2055C, TOSHIBA e-STUDIO2500AC, TOSHIBA e-STUDIO2505AC,\nTOSHIBA e-STUDIO2540C, TOSHIBA e-STUDIO2550C, TOSHIBA e-STUDIO2555C,\nTOSHIBA e-STUDIO287CS, TOSHIBA e-STUDIO3005AC, TOSHIBA e-STUDIO3040C,\nTOSHIBA e-STUDIO3055C, TOSHIBA e-STUDIO347CS, TOSHIBA e-STUDIO3505AC,\nTOSHIBA e-STUDIO3540C, TOSHIBA e-STUDIO3555C, TOSHIBA e-STUDIO407CS,\nTOSHIBA e-STUDIO4505AC, TOSHIBA e-STUDIO4540C, TOSHIBA e-STUDIO4555C,\nTOSHIBA e-STUDIO5005AC, TOSHIBA e-STUDIO5055C, TOSHIBA e-STUDIO5506AC,\nTOSHIBA e-STUDIO5540C, TOSHIBA e-STUDIO5560C, TOSHIBA e-STUDIO6506AC,\nTOSHIBA e-STUDIO6540C, TOSHIBA e-STUDIO6550C, TOSHIBA e-STUDIO6560C,\nTOSHIBA e-STUDIO6570C and TOSHIBA e-STUDIO7506AC.\n",
         homepage: "https://business.toshiba.com/support/downloads/index.html",

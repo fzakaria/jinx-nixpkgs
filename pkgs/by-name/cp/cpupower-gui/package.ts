@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["sha256", 31, 5]], [["url", 38, 7], ["sha256", 39, 7]], [["url", 43, 7], ["sha256", 44, 7]], [["description", 96, 5], ["mainProgram", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 65, 3], ["propagatedBuildInputs", 71, 3], ["mesonFlags", 78, 3], ["preConfigure", 82, 3], ["strictDeps", 86, 3], ["dontWrapGApps", 87, 3], ["makeWrapperArgs", 89, 3], ["postFixup", 91, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, fetchpatch: false, "appstream-glib": false, "desktop-file-utils": false, gettext: false, glib: false, "gobject-introspection": false, gtk3: false, "hicolor-icon-theme": false, libappindicator: false, libhandy: false, meson: false, "pkg-config": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 38, 7], ["sha256", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 43, 7], ["sha256", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 96, 5], ["mainProgram", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 65, 3], ["propagatedBuildInputs", 71, 3], ["mesonFlags", 78, 3], ["preConfigure", 82, 3], ["strictDeps", 86, 3], ["dontWrapGApps", 87, 3], ["makeWrapperArgs", 89, 3], ["postFixup", 91, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vagnum08",
           repo: "cpupower-gui",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,12 +36,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/vagnum08/cpupower-gui/commit/97f8ac02fe33e412b59d3f3968c16a217753e74b.patch",
             sha256: "XYnpm03kq8JLMjAT73BMCJWlzz40IAuHESm715VV6G0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/vagnum08/cpupower-gui/commit/22ea668aa4ecf848149ea4c150aa840a25dc6ff8.patch",
             sha256: "sha256-Mri7Af1Y79lt2pvZl4DQSvrqSLIJLIjzyXwMPFEbGVI=",
           })))),
@@ -82,7 +78,7 @@ export default nix.lambda((args) => (() => {
       const makeWrapperArgs = nix.thunk(() => ["${gappsWrapperArgs[@]}"]);
       const postFixup = "wrapPythonProgramsIn $out/lib \"$out $propagatedBuildInputs\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Change the frequency limits of your cpu and its governor",
         mainProgram: "cpupower-gui",
         homepage: "https://github.com/vagnum08/cpupower-gui/",
@@ -93,7 +89,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

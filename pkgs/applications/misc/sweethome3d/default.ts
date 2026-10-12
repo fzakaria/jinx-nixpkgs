@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["hash", 14, 5]], [["homepage", 23, 5], ["description", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["platforms", 30, 5], ["mainProgram", 35, 5], ["broken", 37, 5]], [["pname", 45, 11], ["version", 46, 11], ["src", 47, 11], ["meta", 48, 11], ["patches", 49, 11]], [["pname", 55, 11], ["version", 56, 11], ["src", 57, 11], ["meta", 58, 11], ["patches", 59, 11]], [["application", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, stdenv: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 23, 5], ["description", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["platforms", 30, 5], ["mainProgram", 35, 5], ["broken", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 45, 11], ["version", 46, 11], ["src", 47, 11], ["meta", 48, 11], ["patches", 49, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 55, 11], ["version", 56, 11], ["src", 57, 11], ["meta", 58, 11], ["patches", 59, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["application", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const pname = "sweethome3d";
   const version = "7.5";
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`mirror://sourceforge/sweethome3d/SweetHome3D-${version}-src.zip`),
       hash: "sha256-+rAhq5sFXC34AMYCcdAYZzrUa3LDy4S5Zid4DlEVvTQ=",
     }))));
   const patches = nix.thunk(() => [nix.path(here, "./build-xml.patch"), nix.path(here, "./config.patch")]);
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     homepage: "https://www.sweethome3d.com/index.jsp",
     description: "Design and visualize your future home",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -40,16 +36,16 @@ export default nix.lambda((args) => (() => {
     broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
   }));
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     application: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: pname,
         version: version,
         src: src,
         meta: meta,
         patches: patches,
       }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname,
         version: version,
         src: src,

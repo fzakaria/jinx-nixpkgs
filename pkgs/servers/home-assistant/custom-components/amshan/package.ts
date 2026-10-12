@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["owner", 9, 3], ["domain", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dependencies", 20, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildHomeAssistantComponent: false, amshan: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 9, 3], ["domain", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dependencies", 20, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const domain = "amshan";
       const version = "2024.12.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "toreamun",
           repo: "amshan-homeassistant",
           tag: version,
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [amshan]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Home Assistant integration for electricity meters (AMS/HAN/P1)",
         longDescription: "The integration supports both streaming (serial port / TCP/IP) and MQTT\n(Tibber Pulse, energyintelligence.se etc.).\n",
         homepage: "https://github.com/toreamun/amshan-homeassistant",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "bjornfor"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, meta };
+      return { [nix.POS]: $pos[2], owner, domain, version, src, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

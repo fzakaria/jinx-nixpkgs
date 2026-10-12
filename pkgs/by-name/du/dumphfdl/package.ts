@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["updateScript", 51, 12]], [["homepage", 54, 5], ["changelog", 55, 5], ["description", 56, 5], ["longDescription", 57, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["badPlatforms", 66, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 43, 3], ["doInstallCheck", 48, 3], ["nativeInstallCheckInputs", 49, 3], ["passthru", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "nix-update-script": false, versionCheckHook: false, cmake: false, "pkg-config": false, libconfig: false, "liquid-dsp": false, fftwSinglePrec: false, glib: false, "soapysdr-with-plugins": false, sqlite: false, zeromq: false, gperftools: false, libacars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 51, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["changelog", 55, 5], ["description", 56, 5], ["longDescription", 57, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["badPlatforms", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 43, 3], ["doInstallCheck", 48, 3], ["nativeInstallCheckInputs", 49, 3], ["passthru", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gperftools = nix.arg($, "gperftools");
   const libacars = nix.arg($, "libacars");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dumphfdl",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "szpajder",
           repo: "dumphfdl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,11 +49,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/szpajder/dumphfdl",
         changelog: nix.thunk(() => nix.str`https://github.com/szpajder/dumphfdl/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Decoder for Multichannel HFDL aircraft communication",

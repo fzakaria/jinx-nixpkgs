@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["NIX_CFLAGS_COMPILE", 24, 5]], [["description", 47, 5], ["longDescription", 48, 5], ["license", 55, 5], ["homepage", 56, 5], ["broken", 58, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["env", 23, 3], ["buildInputs", 27, 3], ["configureFlags", 37, 3], ["postConfigure", 42, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, readline: false, perl: false, libharu: false, libx11: false, libpng: false, libxt: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["longDescription", 48, 5], ["license", 55, 5], ["homepage", 56, 5], ["broken", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["env", 23, 3], ["buildInputs", 27, 3], ["configureFlags", 37, 3], ["postConfigure", 42, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,15 +18,15 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "emboss",
       version: "6.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "7184a763d39ad96bb598bfd531628a34aa53e474db9e7cac4416c2a40ab10c6e",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       buildInputs: nix.thunk(() => [readline, perl, libharu, libpng, libx11, libxt, zlib]),
       configureFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--with-hpdf=${libharu}`),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postConfigure: "sed -i 's@$(bindir)/embossupdate@true@' Makefile\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "European Molecular Biology Open Software Suite",
         longDescription: "EMBOSS is a free Open Source software analysis package\nspecially developed for the needs of the molecular biology (e.g. EMBnet)\nuser community, including libraries. The software automatically copes with\ndata in a variety of formats and even allows transparent retrieval of\nsequence data from the web.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

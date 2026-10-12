@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urlSuffix", 29, 9], ["hash", 30, 9]], [["urlSuffix", 33, 9], ["hash", 34, 9]], [["x86_64-linux", 28, 7], ["aarch64-darwin", 32, 7]], [["url", 45, 5], ["hash", 46, 20], ["stripRoot", 47, 5]], [["name", 114, 7], ["desktopName", 115, 7], ["comment", 116, 7], ["exec", 117, 7], ["icon", 118, 7], ["categories", 119, 7], ["mimeTypes", 120, 7]], [["description", 125, 5], ["homepage", 126, 5], ["sourceProvenance", 127, 5], ["license", 128, 5], ["changelog", 141, 5], ["maintainers", 142, 5], ["platforms", 143, 5], ["mainProgram", 144, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["dontBuild", 73, 3], ["dontConfigure", 74, 3], ["installPhase", 76, 3], ["preFixup", 101, 3], ["desktopItems", 112, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchzip: false, autoPatchelfHook: false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false, gtk3: false, "xdg-user-dirs": false, keybinder3: false, libnotify: false, gst_all_1: false, libva: false, libvdpau: false, lcms2: false, libarchive: false, "alsa-lib": false, libpulseaudio: false, libgbm: false, libxscrnsaver: false, libxv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urlSuffix", 29, 9], ["hash", 30, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["urlSuffix", 33, 9], ["hash", 34, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 28, 7], ["aarch64-darwin", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 45, 5], ["hash", 46, 20], ["stripRoot", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 114, 7], ["desktopName", 115, 7], ["comment", 116, 7], ["exec", 117, 7], ["icon", 118, 7], ["categories", 119, 7], ["mimeTypes", 120, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 125, 5], ["homepage", 126, 5], ["sourceProvenance", 127, 5], ["license", 128, 5], ["changelog", 141, 5], ["maintainers", 142, 5], ["platforms", 143, 5], ["mainProgram", 144, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["dontBuild", 73, 3], ["dontConfigure", 74, 3], ["installPhase", 76, 3], ["preFixup", 101, 3], ["desktopItems", 112, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,24 +29,24 @@ export default nix.lambda((args) => (() => {
   const libxscrnsaver = nix.arg($, "libxscrnsaver");
   const libxv = nix.arg($, "libxv");
   const dist = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       urlSuffix: "linux-x86_64.tar.gz",
       hash: "sha256-A8JUYzEMQH1sEKYrKZ84QZAgYbz0OvpHa3t9RIUVE9c=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       urlSuffix: "macos-universal.zip",
       hash: "sha256-LSNvFL1ud/FkzNSGk17ZqN2debnqsjlVDHd4NBjTds0=",
     })),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`appflowy: No source for system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "appflowy",
       version: "0.11.9",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://github.com/AppFlowy-IO/appflowy/releases/download/${nix.sel(finalAttrs, "version")}/AppFlowy-${nix.sel(finalAttrs, "version")}-${nix.sel(dist, "urlSuffix")}`),
           hash: nix.thunk(() => nix.attr(dist, "hash")),
           stripRoot: false,
@@ -84,7 +78,7 @@ makeWrapper $out/opt/AppFlowy $out/bin/appflowy \\
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), "makeWrapper $out/Applications/AppFlowy.app/Contents/MacOS/AppFlowy $out/bin/appflowy\n"))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "appflowy",
               desktopName: "AppFlowy",
               comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -95,7 +89,7 @@ makeWrapper $out/opt/AppFlowy $out/bin/appflowy \\
             })))),
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Open-source alternative to Notion",
         homepage: "https://www.appflowy.io/",
         sourceProvenance: nix.thunk(() => (() => {

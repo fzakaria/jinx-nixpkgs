@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bin.nix", [[["url", 68, 5], ["sha256", 69, 5]], [["prettyName", 96, 12]], [["description", 99, 5], ["sourceProvenance", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["maintainers", 107, 5]], [["pname", 64, 3], ["version", 65, 3], ["src", 67, 3], ["nativeBuildInputs", 72, 3], ["dontUnpack", 77, 3], ["dontConfigure", 78, 3], ["buildPhase", 80, 3], ["installPhase", 85, 3], ["passthru", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, qemu: false, writeScript: false, writeScriptBin: false, ncurses: false, bash: false, coreutils: false, unixtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bin.nix", [["url", 68, 5], ["sha256", 69, 5]]);
-const pos$2 = nix.positions(here + "/bin.nix", [["prettyName", 96, 12]]);
-const pos$3 = nix.positions(here + "/bin.nix", [["description", 99, 5], ["sourceProvenance", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["maintainers", 107, 5]]);
-const pos$4 = nix.positions(here + "/bin.nix", [["pname", 64, 3], ["version", 65, 3], ["src", 67, 3], ["nativeBuildInputs", 72, 3], ["dontUnpack", 77, 3], ["dontConfigure", 78, 3], ["buildPhase", 80, 3], ["installPhase", 85, 3], ["passthru", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,7 +58,7 @@ exec ${wrapLegacyBinary} "$TARGET-unwrapped" "$TARGET"
       const pname = nix.thunk(() => nix.str`${nix.sel(passthru, "prettyName")}-unwrapped`);
       const version = "1.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://ftp.openwatcom.org/install/open-watcom-c-linux-${version}`),
           sha256: "1wzkvc6ija0cjj5mcyjng5b7hnnc5axidz030c0jh05pgvi4nj7p",
         }))));
@@ -72,9 +69,9 @@ exec ${wrapLegacyBinary} "$TARGET-unwrapped" "$TARGET"
 wrapInPlace install-bin-unwrapped
 `);
       const installPhase = "# Command line options to do an unattended install are documented in\n# https://github.com/open-watcom/open-watcom-v2/blob/master/bld/setupgui/setup.txt\nscript -c \"./install-bin-unwrapped -dDstDir=$out -dFullInstall=1 -i\"\n\nfor e in $(find $out/binl -type f -executable); do\n  echo \"Wrapping $e\"\n  wrapInPlace \"$e\"\ndone\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, prettyName: "open-watcom-bin" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], prettyName: "open-watcom-bin" }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Project to maintain and enhance the Watcom C, C++, and Fortran cross compilers and tools",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -86,7 +83,7 @@ wrapInPlace install-bin-unwrapped
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "blitz"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

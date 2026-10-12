@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["ASSET_OUT_DIR", 51, 7]], [["updateScript", 70, 12]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 82, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["__structuredAttrs", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["preCheck", 46, 3], ["env", 51, 3], ["__darwinAllowLocalNetworking", 54, 3], ["doCheck", 56, 3], ["nativeInstallCheckInputs", 57, 3], ["doInstallCheck", 58, 3], ["versionCheckProgramArg", 59, 3], ["postInstall", 61, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { fetchFromGitLab: false, lib: false, nettle: false, "nix-update-script": false, rustPlatform: false, "pkg-config": false, capnproto: false, installShellFiles: false, openssl: false, cacert: false, sqlite: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ASSET_OUT_DIR", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 70, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 82, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["__structuredAttrs", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["preCheck", 46, 3], ["env", 51, 3], ["__darwinAllowLocalNetworking", 54, 3], ["doCheck", 56, 3], ["nativeInstallCheckInputs", 57, 3], ["doInstallCheck", 58, 3], ["versionCheckProgramArg", 59, 3], ["postInstall", 61, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sequoia-sq",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sequoia-pgp",
           repo: "sequoia-sq",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.str`export HOME=$(mktemp -d)
 export SSL_CERT_FILE=${cacert}/etc/ssl/certs/ca-bundle.crt
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ASSET_OUT_DIR: "target" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ASSET_OUT_DIR: "target" })),
       __darwinAllowLocalNetworking: true,
       doCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
@@ -60,11 +56,11 @@ installShellCompletion \\
   --zsh ${nix.sel(finalAttrs, "env", "ASSET_OUT_DIR")}/shell-completions/_sq
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command line application exposing a useful set of OpenPGP functionality for common tasks",
         homepage: "https://sequoia-pgp.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/sequoia-pgp/sequoia-sq/-/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),

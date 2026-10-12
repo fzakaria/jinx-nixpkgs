@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["x86_64-linux", 60, 9], ["aarch64-linux", 61, 9], ["aarch64-darwin", 62, 9]], [["src", 28, 26], ["version", 28, 30], ["pname", 29, 5], ["nativeBuildInputs", 31, 5], ["dontConfigure", 38, 5], ["dontFixup", 39, 5], ["buildPhase", 41, 5], ["installPhase", 49, 5], ["outputHash", 58, 5], ["outputHashAlgo", 66, 5], ["outputHashMode", 67, 5]], [["package", 103, 7], ["version", 104, 7]], [["version", 102, 11]], [["tests", 102, 5], ["updateScript", 106, 5]], [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5]], [["pname", 14, 3], ["version", 15, 3], ["strictDeps", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["node_modules", 27, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 76, 3], ["buildPhase", 80, 3], ["installPhase", 90, 3], ["passthru", 101, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { bun: false, lib: false, fetchFromGitHub: false, mystmd: false, nodejs: false, stdenv: false, testers: false, "nix-update-script": false, makeWrapper: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 60, 9], ["aarch64-linux", 61, 9], ["aarch64-darwin", 62, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 28, 26], ["version", 28, 30], ["pname", 29, 5], ["nativeBuildInputs", 31, 5], ["dontConfigure", 38, 5], ["dontFixup", 39, 5], ["buildPhase", 41, 5], ["installPhase", 49, 5], ["outputHash", 58, 5], ["outputHashAlgo", 66, 5], ["outputHashMode", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 103, 7], ["version", 104, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 102, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 102, 5], ["updateScript", 106, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["strictDeps", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["node_modules", 27, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 76, 3], ["buildPhase", 80, 3], ["installPhase", 90, 3], ["passthru", 101, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "mystmd",
       version: "1.9.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jupyter-book",
           repo: "mystmd",
           tag: nix.thunk(() => nix.str`mystmd@${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-SopL2yIFWWCMm7afjkMrG4Z7Ohxxb5gfCrKNRX5tyo8=",
         })))),
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
@@ -48,7 +41,7 @@ export default nix.lambda((args) => (() => {
           buildPhase: "runHook preBuild\nexport BUN_INSTALL_CACHE_DIR=$(mktemp -d)\nbun install --no-progress --frozen-lockfile --no-cache\n\nrunHook postBuild\n",
           installPhase: "runHook preInstall\n\nmkdir -p $out/node_modules\ncp -R ./node_modules $out\n\nrunHook postInstall\n",
           outputHash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "x86_64-linux": "sha256-4EQkvsoji9M4VCrdwyHm+ncd4XFjgAf34Kt+YeM3qjs=",
             "aarch64-linux": "sha256-xm4T1BL3AyRsYOERz4LhG4ZJQkSMzspoA+l60OND3E0=",
             "aarch64-darwin": "sha256-ZUx+jF7IcEbUCnUUeW0uOFgEpO9UIJpP3/VpUJ5ulAM=",
@@ -76,11 +69,11 @@ wrapProgram $out/bin/myst --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"),
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
@@ -88,7 +81,7 @@ runHook postInstall
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Command line tools for working with MyST Markdown",
         homepage: "https://github.com/jupyter-book/mystmd",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter-book/mystmd/blob/${nix.sel(finalAttrs, "src", "rev")}/packages/myst-cli/CHANGELOG.md`),

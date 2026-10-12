@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 37, 5], ["homepage", 38, 5], ["sourceProvenance", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 23, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["sourceProvenance", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 23, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "sslmate-agent";
       const version = "1.99.11";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://packages.sslmate.com/debian/pool/sslmate2/s/sslmate-client/${pname}_${version}-1_amd64.deb`),
           sha256: "sha256-LBiZI0pGAFWnvTigEhtkhHq4FGdbYiMzjLheMuP0YTU=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [dpkg, autoPatchelfHook]);
       const installPhase = "runHook preInstall\n\n# Not moving etc because it only contains init.rd setttings\nmv usr $out\nmv lib $out\n\nsubstituteInPlace $out/lib/systemd/system/sslmate-agent.service \\\n  --replace \"/usr/s\" \"$out/\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Daemon for managing SSL/TLS certificates on a server",
         homepage: "https://sslmate.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -35,7 +33,15 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         maintainers: [],
       }));
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        src,
+        nativeBuildInputs,
+        installPhase,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["url", 26, 7], ["hash", 27, 7]], [["url", 32, 7], ["hash", 33, 7]], [["smokeTest", 42, 18]], [["tests", 42, 12]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["teams", 52, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["buildInputs", 37, 3], ["configureFlags", 39, 3], ["passthru", 42, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { buildPecl: false, fetchFromGitHub: false, fetchpatch: false, lib: false, php: false, runCommand: false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 32, 7], ["hash", 33, 7]]);
 const formals$2 = { args: { all: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/default.nix", [["smokeTest", 42, 18]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 42, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["teams", 52, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["buildInputs", 37, 3], ["configureFlags", 39, 3], ["passthru", 42, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const systemd = nix.arg($, "systemd");
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "systemd",
       version: "0.1.2-unstable-2018-06-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "systemd",
           repo: "php-systemd",
           rev: "22cf92a6b54ef4c5c13c301fc97d7a7b1615ee62",
@@ -34,12 +28,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/systemd/php-systemd/commit/0f25ec9aab7747e85445a48213020ea6adda3658.diff",
             hash: "sha256-SNRYDRxaeP9LlHxfZOak0OSqZ3AJA+I9Ln0k+yO0DvE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/systemd/php-systemd/commit/23575461b8cc55fa9c4132a58393b6438c2aff5c.diff",
             hash: "sha256-KBGWdNE7spXpqbeS4c2D5IU3Dz8zGxx4r22FDOA0KzM=",
           })))),
@@ -47,9 +41,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(systemd, "dev"))]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-systemd=${nix.sel(systemd, "dev")}`)]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           smokeTest: nix.thunk(() => nix.app(runCommand, "php-systemd-smoke-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`echo "<?php sd_journal_send('MESSAGE=Hello world.'); ?>" |
   ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(php, "withExtensions"), nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
@@ -61,7 +55,7 @@ echo ok > $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "PHP extension allowing native interaction with systemd and its journal",
         homepage: "https://github.com/systemd/php-systemd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

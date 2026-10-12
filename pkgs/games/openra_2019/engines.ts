@@ -2,16 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/engines.nix", [[["description", 18, 9], ["homepage", 19, 9]], [["owner", 28, 9], ["repo", 29, 9], ["rev", 30, 17], ["sha256", 30, 21], ["postFetch", 30, 28]], [["version", 16, 15], ["meta", 17, 7], ["mods", 21, 7], ["src", 27, 7]], [["postInstall", 34, 9]], [["version", 47, 7], ["rev", 48, 7], ["sha256", 49, 7]], [["version", 55, 7], ["rev", 56, 7], ["sha256", 57, 7]], [["version", 61, 5], ["rev", 62, 5], ["sha256", 63, 5]], [["release", 44, 3], ["playtest", 52, 3], ["bleed", 60, 3]]]);
 const formals$1 = { args: { buildOpenRAEngine: false, fetchFromGitHub: false, postFetch: false }, ellipsis: false };
 const formals$2 = { args: { version: false, rev: false, sha256: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/engines.nix", [["description", 18, 9], ["homepage", 19, 9]]);
-const pos$2 = nix.positions(here + "/engines.nix", [["owner", 28, 9], ["repo", 29, 9], ["rev", 30, 17], ["sha256", 30, 21], ["postFetch", 30, 28]]);
-const pos$3 = nix.positions(here + "/engines.nix", [["version", 16, 15], ["meta", 17, 7], ["mods", 21, 7], ["src", 27, 7]]);
-const pos$4 = nix.positions(here + "/engines.nix", [["postInstall", 34, 9]]);
-const pos$5 = nix.positions(here + "/engines.nix", [["version", 47, 7], ["rev", 48, 7], ["sha256", 49, 7]]);
-const pos$6 = nix.positions(here + "/engines.nix", [["version", 55, 7], ["rev", 56, 7], ["sha256", 57, 7]]);
-const pos$7 = nix.positions(here + "/engines.nix", [["version", 61, 5], ["rev", 62, 5], ["sha256", 63, 5]]);
-const pos$8 = nix.positions(here + "/engines.nix", [["release", 44, 3], ["playtest", 52, 3], ["bleed", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,16 +17,16 @@ export default nix.lambda((args) => (() => {
     const rev = nix.arg($_1, "rev");
     const sha256 = nix.arg($_1, "sha256");
     return (name) => nix.app(nix.sel(nix.app(buildOpenRAEngine, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: version,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           description: "Open-source re-implementation of Westwood Studios' 2D Command and Conquer games",
           homepage: "https://www.openra.net/",
         })),
         mods: nix.thunk(() => ["cnc", "d2k", "ra", "ts"]),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "OpenRA",
             repo: "OpenRA",
             rev: rev,
@@ -41,7 +34,7 @@ export default nix.lambda((args) => (() => {
             postFetch: postFetch,
           })))),
       })), name), "overrideAttrs"), (origAttrs) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         postInstall: nix.thunk(() => nix.str`${nix.sel(origAttrs, "postInstall")}
 cp -r mods/ts $out/lib/openra/mods/
 cp mods/ts/icon.png $(mkdirp $out/share/pixmaps)/openra-ts.png
@@ -50,21 +43,21 @@ cp mods/ts/icon.png $(mkdirp $out/share/pixmaps)/openra-ts.png
       }));
   })(), formals$2);
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     release: (name) => nix.app(buildUpstreamOpenRAEngine, nix.thunk(() => (() => {
         const version = "20190314";
         const rev = nix.thunk(() => nix.str`${name}-${version}`);
         const sha256 = "15pvn5cx3g0nzbrgpsfz8dngad5wkzp5dz25ydzn8bmxafiijvcr";
-        return { [nix.POS]: pos$5, version, rev, sha256 };
+        return { [nix.POS]: $pos[4], version, rev, sha256 };
       })()), name),
     playtest: (name) => nix.app(buildUpstreamOpenRAEngine, nix.thunk(() => (() => {
         const version = "20190302";
         const rev = nix.thunk(() => nix.str`${name}-${version}`);
         const sha256 = "1vqvfk2p2lpk3m0d3rpvj34i8cmk3mfc7w4cn4llqd9zp4kk9pya";
-        return { [nix.POS]: pos$6, version, rev, sha256 };
+        return { [nix.POS]: $pos[5], version, rev, sha256 };
       })()), name),
     bleed: nix.thunk(() => nix.app(buildUpstreamOpenRAEngine, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         version: "8ee1102",
         rev: "8ee11028d72cde7556b31d45f556b40be65b4b70",
         sha256: "0f1fpf37ms8d7fhlh3rjzsxsk9w23iyi3phs2i7g561292d5rk3l",

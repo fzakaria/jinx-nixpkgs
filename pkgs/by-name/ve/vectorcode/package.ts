@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 11], ["repo", 24, 11], ["tag", 25, 11], ["hash", 26, 11]], [["pname", 29, 11], ["version", 30, 19], ["src", 30, 27], ["hash", 31, 11]], [["version", 21, 9], ["src", 22, 9], ["cargoDeps", 28, 9], ["pythonRelaxDeps", 33, 9], ["postPatch", 34, 9], ["build-system", 35, 9], ["nativeBuildInputs", 39, 9], ["dependencies", 46, 9], ["disabledTests", 51, 9], ["disabledTestPaths", 63, 9]], [["chromadb", 20, 7], ["lsprotocol", 95, 7], ["pygls", 96, 7]], [["packageOverrides", 18, 5]], [["owner", 106, 5], ["repo", 107, 5], ["tag", 108, 5], ["hash", 109, 5]], [["intel", 142, 5], ["legacy", 146, 5], ["lsp", 151, 5], ["mcp", 155, 5]], [["python", 217, 13], ["chromadb", 218, 27]], [["description", 222, 5], ["homepage", 223, 5], ["changelog", 224, 5], ["license", 225, 5], ["maintainers", 226, 5], ["mainProgram", 227, 5], ["badPlatforms", 228, 5]], [["pname", 101, 3], ["version", 102, 3], ["pyproject", 103, 3], ["src", 105, 3], ["build-system", 112, 3], ["pythonRelaxDeps", 116, 3], ["dependencies", 120, 3], ["optional-dependencies", 141, 3], ["nativeBuildInputs", 161, 3], ["postInstall", 165, 3], ["makeWrapperArgs", 171, 3], ["pythonImportsCheck", 178, 3], ["nativeCheckInputs", 180, 3], ["versionCheckProgramArg", 189, 3], ["disabledTests", 191, 3], ["passthru", 215, 3], ["meta", 221, 3]]]);
 const formals$1 = { args: { lib: false, cargo: false, fetchFromGitHub: false, installShellFiles: false, "pkg-config": false, protobuf: false, python3: false, rustc: false, rustPlatform: false, versionCheckHook: false, lspSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 11], ["repo", 24, 11], ["tag", 25, 11], ["hash", 26, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 11], ["version", 30, 19], ["src", 30, 27], ["hash", 31, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 21, 9], ["src", 22, 9], ["cargoDeps", 28, 9], ["pythonRelaxDeps", 33, 9], ["postPatch", 34, 9], ["build-system", 35, 9], ["nativeBuildInputs", 39, 9], ["dependencies", 46, 9], ["disabledTests", 51, 9], ["disabledTestPaths", 63, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["chromadb", 20, 7], ["lsprotocol", 95, 7], ["pygls", 96, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["packageOverrides", 18, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 106, 5], ["repo", 107, 5], ["tag", 108, 5], ["hash", 109, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["intel", 142, 5], ["legacy", 146, 5], ["lsp", 151, 5], ["mcp", 155, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["python", 217, 13], ["chromadb", 218, 27]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 222, 5], ["homepage", 223, 5], ["changelog", 224, 5], ["license", 225, 5], ["maintainers", 226, 5], ["mainProgram", 227, 5], ["badPlatforms", 228, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 101, 3], ["version", 102, 3], ["pyproject", 103, 3], ["src", 105, 3], ["build-system", 112, 3], ["pythonRelaxDeps", 116, 3], ["dependencies", 120, 3], ["optional-dependencies", 141, 3], ["nativeBuildInputs", 161, 3], ["postInstall", 165, 3], ["makeWrapperArgs", 171, 3], ["pythonImportsCheck", 178, 3], ["nativeCheckInputs", 180, 3], ["versionCheckProgramArg", 189, 3], ["disabledTests", 191, 3], ["passthru", 215, 3], ["meta", 221, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const lspSupport = nix.argOr($, "lspSupport", () => true);
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       packageOverrides: (self) => (super$) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         chromadb: nix.thunk(() => nix.app(nix.sel(super$, "chromadb", "overridePythonAttrs"), (old) => (() => {
             const version = "0.6.3";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: "chroma-core",
                 repo: "chroma",
                 tag: version,
                 hash: "sha256-yvAX8buETsdPvMQmRK5+WFz4fVaGIdNlfhSadtHwU5U=",
               }))));
             const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 pname: "chromadb",
                 version: version,
                 src: src,
@@ -89,7 +80,7 @@ export default nix.lambda((args) => (() => {
               "chromadb/test/db/test_migrations.py::test_migrations[sqlite]",
             ]);
             return {
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               version,
               src,
               cargoDeps,
@@ -111,7 +102,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.20";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           owner: "Davidyz",
           repo: "VectorCode",
           tag: version,
@@ -145,7 +136,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           intel: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "openvino")),
             nix.thunk(() => nix.lookup(w_2, "optimum")),
@@ -202,13 +193,13 @@ export default nix.lambda((args) => (() => {
       const passthru = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(python, "pkgs"));
         return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         python: python,
         chromadb: nix.thunk(() => nix.attr(from, "chromadb")),
       };
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Code repository indexing tool to supercharge your LLM experience",
         homepage: "https://github.com/Davidyz/VectorCode",
         changelog: nix.thunk(() => nix.str`https://github.com/Davidyz/VectorCode/releases/tag/${nix.sel(src, "tag")}`),
@@ -221,7 +212,7 @@ export default nix.lambda((args) => (() => {
         badPlatforms: nix.thunk(() => ["aarch64-linux"]),
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version,
         pyproject,

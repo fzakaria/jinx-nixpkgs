@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["changelog", 79, 5], ["description", 80, 5], ["downloadPage", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["pythonRelaxDeps", 44, 3], ["pythonRemoveDeps", 45, 3], ["build-system", 47, 3], ["dependencies", 49, 3], ["pythonImportsCheck", 68, 3], ["disabledTests", 70, 3], ["nativeCheckInputs", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "setuptools-scm": false, capstone: false, "cmsis-pack-manager": false, colorama: false, "importlib-metadata": false, "importlib-resources": false, intelhex: false, intervaltree: false, lark: false, natsort: false, prettytable: false, pyelftools: false, "pylink-square": false, pyusb: false, pyyaml: false, "typing-extensions": false, hidapi: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 79, 5], ["description", 80, 5], ["downloadPage", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["pythonRelaxDeps", 44, 3], ["pythonRemoveDeps", 45, 3], ["build-system", 47, 3], ["dependencies", 49, 3], ["pythonImportsCheck", 68, 3], ["disabledTests", 70, 3], ["nativeCheckInputs", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.42.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyocd",
           repo: "pyOCD",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_transfer_err_not_flushed"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/pyocd/pyOCD/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python library for programming and debugging Arm Cortex-M microcontrollers",
         downloadPage: "https://github.com/pyocd/pyOCD",
@@ -75,7 +73,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

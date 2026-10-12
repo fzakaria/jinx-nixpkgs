@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["changelog", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 39, 3], ["pythonImportsCheck", 44, 3], ["disabledTests", 48, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, cloudpickle: false, "typing-extensions": false, pytestCheckHook: false, "pytest-asyncio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 39, 3], ["pythonImportsCheck", 44, 3], ["disabledTests", 48, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "submitit",
       version: "1.5.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebookincubator",
           repo: "submitit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["submitit"]),
       disabledTests: nix.thunk(() => nix.concat(["test_setup"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_requeuing"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/facebookincubator/submitit/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python 3.8+ toolbox for submitting jobs to Slurm",
         homepage: "https://github.com/facebookincubator/submitit",

@@ -2,17 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/freeform-deprecated-malicous.nix", [[["freeformType", 8, 7]], [["type", 7, 5]], [["freeformType", 14, 7]], [["type", 13, 5]], [["freeformType", 20, 7]], [["type", 19, 5]], [["freeformType", 31, 7]], [["type", 30, 5]], [["either", 6, 11], ["eitherBehindNullor", 12, 11], ["oneOf", 18, 11], ["number", 29, 11]], [["options", 6, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/freeform-deprecated-malicous.nix", [["freeformType", 8, 7]]);
-const pos$2 = nix.positions(here + "/freeform-deprecated-malicous.nix", [["type", 7, 5]]);
-const pos$3 = nix.positions(here + "/freeform-deprecated-malicous.nix", [["freeformType", 14, 7]]);
-const pos$4 = nix.positions(here + "/freeform-deprecated-malicous.nix", [["type", 13, 5]]);
-const pos$5 = nix.positions(here + "/freeform-deprecated-malicous.nix", [["freeformType", 20, 7]]);
-const pos$6 = nix.positions(here + "/freeform-deprecated-malicous.nix", [["type", 19, 5]]);
-const pos$7 = nix.positions(here + "/freeform-deprecated-malicous.nix", [["freeformType", 31, 7]]);
-const pos$8 = nix.positions(here + "/freeform-deprecated-malicous.nix", [["type", 30, 5]]);
-const pos$9 = nix.positions(here + "/freeform-deprecated-malicous.nix", [["either", 6, 11], ["eitherBehindNullor", 12, 11], ["oneOf", 18, 11], ["number", 29, 11]]);
-const pos$10 = nix.positions(here + "/freeform-deprecated-malicous.nix", [["options", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,27 +11,27 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       either: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               freeformType: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "int")), nix.thunk(() => nix.sel(types, "int")))),
             })))),
         })))),
       eitherBehindNullor: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               freeformType: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "int")), nix.thunk(() => nix.sel(types, "int")))))),
             })))),
         })))),
       oneOf: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               freeformType: nix.thunk(() => nix.app(nix.sel(types, "oneOf"), nix.thunk(() => [
                   nix.thunk(() => nix.sel(types, "int")),
                   nix.thunk(() => nix.sel(types, "int")),
@@ -48,8 +39,8 @@ export default nix.lambda((args) => (() => {
             })))),
         })))),
       number: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$8,
-          type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({ [nix.POS]: pos$7, freeformType: nix.thunk(() => nix.sel(types, "number")) })))),
+          [nix.POS]: $pos[7],
+          type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({ [nix.POS]: $pos[6], freeformType: nix.thunk(() => nix.sel(types, "number")) })))),
         })))),
     })),
   };

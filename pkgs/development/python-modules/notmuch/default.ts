@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 10, 21], ["version", 10, 27], ["src", 10, 35], ["sourceRoot", 12, 3], ["format", 14, 3], ["buildInputs", 16, 3], ["postPatch", 21, 3], ["doCheck", 27, 3], ["pythonImportsCheck", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, notmuch: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 21], ["version", 10, 27], ["src", 10, 35], ["sourceRoot", 12, 3], ["format", 14, 3], ["buildInputs", 16, 3], ["postPatch", 21, 3], ["doCheck", 27, 3], ["pythonImportsCheck", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const notmuch = nix.arg($, "notmuch");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(notmuch, "pname")),
       version: nix.thunk(() => nix.attr(notmuch, "version")),
       src: nix.thunk(() => nix.attr(notmuch, "src")),
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["notmuch"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python wrapper around notmuch",
         homepage: "https://notmuchmail.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

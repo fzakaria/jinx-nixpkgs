@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-thisroot.nix", [[["description", 13, 7], ["maintainers", 14, 7]], [["meta", 12, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, root: false, bash: false, fish: false, tcsh: false, zsh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-thisroot.nix", [["description", 13, 7], ["maintainers", 14, 7]]);
-const pos$2 = nix.positions(here + "/test-thisroot.nix", [["meta", 12, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const tcsh = nix.arg($, "tcsh");
   const zsh = nix.arg($, "zsh");
   return nix.app(runCommand, "test-thisroot", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Test for root thisroot.* sourcing",
         maintainers: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat((() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

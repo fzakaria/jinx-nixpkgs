@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lib.nix", [[["genFinalPackage", 4, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lib.nix", [["genFinalPackage", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     genFinalPackage: (pkg) => (args_1) => (() => {
       const expectedArgs = nix.thunk(() => nix.app(nix.sel(lib, "naturalSort"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), args_1))));
       const existingArgs = nix.thunk(() => (() => {

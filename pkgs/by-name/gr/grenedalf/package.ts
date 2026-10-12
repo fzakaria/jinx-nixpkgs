@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 7], ["sha256", 23, 7]], [["version", 19, 5], ["name", 20, 5], ["src", 21, 5], ["configureFlags", 25, 5], ["patches", 30, 5]], [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5], ["fetchSubmodules", 42, 5]], [["homepage", 82, 5], ["description", 83, 5], ["longDescription", 84, 5], ["platforms", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 45, 3], ["postPatch", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 60, 3], ["cmakeFlags", 68, 3], ["installPhase", 72, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, autoconf: false, "pkg-config": false, libz: false, bzip2: false, xz: false, libdeflate: false, htslib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 7], ["sha256", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 19, 5], ["name", 20, 5], ["src", 21, 5], ["configureFlags", 25, 5], ["patches", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5], ["fetchSubmodules", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 82, 5], ["description", 83, 5], ["longDescription", 84, 5], ["platforms", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 45, 3], ["postPatch", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 60, 3], ["cmakeFlags", 68, 3], ["installPhase", 72, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,20 +23,20 @@ export default nix.lambda((args) => (() => {
       const version = "1.16";
       const name = nix.thunk(() => nix.str`${nix.sel(oldAttrs, "pname")}-nocurl-${version}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/samtools/htslib/releases/download/${version}/htslib-${version}.tar.bz2`),
           sha256: "sha256-YGt8ev9zc0zwM+zRVvQFKfpXkvVFJJUqKJOMoIkNeSQ=",
         }))));
       const configureFlags = nix.thunk(() => ["--disable-libcurl", "--disable-plugins"]);
       const patches = [];
-      return { [nix.POS]: pos$2, version, name, src, configureFlags, patches };
+      return { [nix.POS]: $pos[1], version, name, src, configureFlags, patches };
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "grenedalf",
       version: "0.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "lczech",
           repo: "grenedalf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DHTSLIB_DIR=${htslib_gr}`)]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp ../bin/grenedalf $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/lczech/grenedalf",
         description: "Collection of commands for working with population genetic data",
         longDescription: "grenedalf is a collection of commands for working with population genetic\ndata, in particular from pool sequencing. Its main focus are statistical\nanalyses such as Tajima's D and Fst. The statistics follow the approaches\nof PoPoolation and PoPoolation2, as well as poolfstat and npstat. However,\ncompared to those, grenedalf is significantly more scalable, more user\nfriendly, and offers more settings and input file formats.\n",

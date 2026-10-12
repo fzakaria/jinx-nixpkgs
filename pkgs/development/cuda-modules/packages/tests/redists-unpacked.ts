@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/redists-unpacked.nix", [[["redistsForPlatform", 19, 13]], [["license", 23, 5]], [["passthru", 18, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { cudaNamePrefix: false, cudaPackages: false, lib: false, linkFarm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/redists-unpacked.nix", [["redistsForPlatform", 19, 13]]);
-const pos$2 = nix.positions(here + "/redists-unpacked.nix", [["license", 23, 5]]);
-const pos$3 = nix.positions(here + "/redists-unpacked.nix", [["passthru", 18, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const redistsForPlatform = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (value) => (nix.asBool(nix.has(value, "passthru", "redistName")) && nix.asBool(!nix.eq(nix.selOr(value, () => null, "src"), null))), cudaPackages));
   const linkedWithoutLicenses = nix.thunk(() => nix.app(linkFarm, nix.thunk(() => nix.str`${cudaNamePrefix}-redists-unpacked`), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (drv) => nix.sel(drv, "src"), redistsForPlatform))));
   return nix.app(nix.sel(linkedWithoutLicenses, "overrideAttrs"), (prevAttrs) => ({
-      [nix.POS]: pos$3,
-      passthru: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "passthru"), { [nix.POS]: pos$1, redistsForPlatform: redistsForPlatform })),
+      [nix.POS]: $pos[2],
+      passthru: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "passthru"), { [nix.POS]: $pos[0], redistsForPlatform: redistsForPlatform })),
       meta: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (drv) => nix.app(nix.sel(lib, "toList"), nix.thunk(() => nix.selOr(drv, () => [], "meta", "license"))), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), redistsForPlatform)))))),
       })),
     }));

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["url", 30, 7], ["sha256", 31, 7]], [["url", 37, 7], ["hash", 38, 7]], [["homepage", 78, 5], ["description", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 26, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["configureFlags", 55, 3], ["installFlags", 61, 3], ["preConfigure", 66, 3], ["postPatch", 73, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, autoreconfHook: false, fetchbzr: false, fetchpatch: false, "pkg-config": false, gtk3: false, glib: false, file: false, "gobject-introspection": false, "json-glib": false, libsoup_3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["sha256", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 78, 5], ["description", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 26, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["configureFlags", 55, 3], ["installFlags", 61, 3], ["preConfigure", 66, 3], ["postPatch", 73, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,23 +20,23 @@ export default nix.lambda((args) => (() => {
   const json_glib = nix.arg($, "json-glib");
   const libsoup_3 = nix.arg($, "libsoup_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "timezonemap",
       version: "0.4.5.1",
       src: nix.thunk(() => nix.app(fetchbzr, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "lp:timezonemap",
           rev: "58",
           sha256: "sha256-wCJXwgnN+aZVerjQCm8oT3xIcwmc4ArcEoCh9pMrt+E=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.launchpad.net/ubuntu/+source/libtimezonemap/plain/debian/patches/timezone-map-Never-try-to-access-to-free-d-or-null-values.patch?id=88f72f724e63df061204f6818c9a1e7d8c003e29",
             sha256: "sha256-M5eR0uaqpJOeW2Ya1Al+3ZciXukzHpnjJTMVvdO0dPE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://git.launchpad.net/ubuntu/+source/libtimezonemap/plain/debian/patches/port-to-libsoup3.patch?id=b8346a99d4abece742bce73780ccf0edfa0b99f0",
             hash: "sha256-BHLVA3Vcakl9COAiSPo0OyFOUz4ejsxB22gJW/+m7NI=",
           })))),
@@ -59,7 +55,7 @@ done
 `),
       postPatch: "sed \"s|/usr/share/libtimezonemap|$out/share/libtimezonemap|g\" -i ./src/tz.h\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://launchpad.net/timezonemap",
         description: "GTK+3 Timezone Map Widget",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

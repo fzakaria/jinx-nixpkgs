@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ppx.nix", [[["pname", 22, 5], ["version", 23, 23], ["src", 23, 31], ["meta", 23, 35], ["propagatedBuildInputs", 25, 5], ["doCheck", 31, 5], ["nativeCheckInputs", 32, 5], ["checkInputs", 33, 5]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, ocaml: false, cstruct: false, sexplib: false, ppxlib: false, "ocaml-migrate-parsetree-2": false, crowbar: false, fmt: false, cppo: false, ppx_sexp_conv: false, "cstruct-unix": false, "cstruct-sexp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ppx.nix", [["pname", 22, 5], ["version", 23, 23], ["src", 23, 31], ["meta", 23, 35], ["propagatedBuildInputs", 25, 5], ["doCheck", 31, 5], ["nativeCheckInputs", 32, 5], ["checkInputs", 33, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const cstruct_unix = nix.arg($, "cstruct-unix");
   const cstruct_sexp = nix.arg($, "cstruct-sexp");
   return (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.selOr(cstruct, () => "1", "version")), "3")) ? nix.force(cstruct) : nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "ppx_cstruct",
       version: nix.thunk(() => nix.attr(cstruct, "version")),
       src: nix.thunk(() => nix.attr(cstruct, "src")),

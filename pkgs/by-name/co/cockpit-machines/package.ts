@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 24, 5], ["postFetch", 25, 5]], [["updateScript", 52, 5], ["cockpitPath", 53, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["platforms", 63, 5], ["license", 64, 5], ["teams", 65, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 28, 3], ["cockpitSrc", 34, 3], ["postPatch", 36, 3], ["passthru", 51, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cockpit: false, nodejs: false, gettext: false, writeShellScriptBin: false, fetchFromGitHub: false, gitUpdater: false, libosinfo: false, "osinfo-db": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 24, 5], ["postFetch", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 52, 5], ["cockpitPath", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["platforms", 63, 5], ["license", 64, 5], ["teams", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 28, 3], ["cockpitSrc", 34, 3], ["postPatch", 36, 3], ["passthru", 51, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libosinfo = nix.arg($, "libosinfo");
   const osinfo_db = nix.arg($, "osinfo-db");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cockpit-machines",
       version: "357",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cockpit-project",
           repo: "cockpit-machines",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,12 +38,12 @@ export default nix.lambda((args) => (() => {
       cockpitSrc: nix.thunk(() => nix.sel(cockpit, "src")),
       postPatch: "mkdir -p pkg; cp -r $cockpitSrc/pkg/lib pkg\nmkdir -p test; cp -r $cockpitSrc/test/common test\n\nsubstituteInPlace Makefile \\\n  --replace-fail '$(MAKE) package-lock.json' 'true' \\\n  --replace-fail '$(COCKPIT_REPO_FILES) | tar x' \"\" \\\n  --replace-fail '/usr/local' \"$out\"\n\nsubstituteInPlace src/manifest.json \\\n  --replace-fail '\"/usr/share/dbus-1/system.d/org.libvirt.conf\"' '\"/etc/systemd/system/libvirt-dbus.service\"'\n\npatchShebangs build.js\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         cockpitPath: nix.thunk(() => [libosinfo, osinfo_db]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cockpit UI for virtual machines",
         homepage: "https://github.com/cockpit-project/cockpit-machines",
         changelog: nix.thunk(() => nix.str`https://github.com/cockpit-project/cockpit-machines/releases/tag/${nix.sel(finalAttrs, "version")}`),

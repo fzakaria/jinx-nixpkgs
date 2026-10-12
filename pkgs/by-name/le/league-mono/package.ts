@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["outputs", 16, 3], ["installPhase", 23, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["outputs", 16, 3], ["installPhase", 23, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "league-mono",
       version: "2.300",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/theleagueof/league-mono/releases/download/${nix.sel(finalAttrs, "version")}/LeagueMono-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-b945/ej5jVzq5enyiCmgdtqB7CcfxBGR7NJFWlydK0c=",
         })))),
       outputs: nix.thunk(() => ["out", "web", "variable", "variableweb"]),
       installPhase: "runHook preInstall\n\ninstall -D -m444 -t $out/share/fonts/truetype $src/static/TTF/*.ttf\ninstall -D -m444 -t $out/share/fonts/opentype $src/static/OTF/*.otf\ninstall -D -m444 -t $web/share/fonts/webfont $src/static/WOFF2/*.woff2\ninstall -D -m444 -t $variable/share/fonts/truetype $src/variable/TTF/*.ttf\ninstall -D -m444 -t $variableweb/share/fonts/webfont $src/variable/WOFF2/*.woff2\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "monospace/variable font fun",
         longDescription: "Five weights of monospace fun. League Mono is a mashup of sorts, inspired\nby some beautiful forms found in both Fira Mono, Libertinus Mono, and\nCourier(?!). League Mono was created in glyphs using masters for the\nUltraLight, Regular, and Bold weights, and interpolated instances for the\nLight and SemiBold weights. This, unfortunately, is not supported by UFO\nfiles, which is why there is a Glyphs source and source files for each\nweight.\n",
         homepage: "https://www.theleagueofmoveabletype.com/league-mono",

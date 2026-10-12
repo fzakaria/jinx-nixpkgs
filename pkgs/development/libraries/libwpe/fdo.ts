@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fdo.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["description", 49, 5], ["license", 50, 5], ["homepage", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["depsBuildBuild", 27, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, "pkg-config": false, ninja: false, "wayland-scanner": false, wayland: false, libepoxy: false, glib: false, libwpe: false, libxkbcommon: false, libGL: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fdo.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/fdo.nix", [["description", 49, 5], ["license", 50, 5], ["homepage", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$3 = nix.positions(here + "/fdo.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["depsBuildBuild", 27, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wpebackend-fdo";
       const version = "1.16.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://wpewebkit.org/releases/wpebackend-fdo-${version}.tar.xz`),
           sha256: "sha256-VErhQBL45+QmuMtSLrCqqsgxrXw1YB0c8x03Zw4Ouzs=",
         }))));
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config, meson, ninja, wayland_scanner]);
       const buildInputs = nix.thunk(() => [wayland, libepoxy, glib, libwpe, libxkbcommon, libGL, libx11]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Freedesktop.org backend for WPE WebKit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         homepage: "https://wpewebkit.org",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

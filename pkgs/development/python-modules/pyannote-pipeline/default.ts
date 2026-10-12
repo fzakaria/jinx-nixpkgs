@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["pythonImportsCheck", 60, 3], ["nativeCheckInputs", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, docopt: false, filelock: false, optuna: false, "pyannote-core": false, "pyannote-database": false, pyyaml: false, scipy: false, tqdm: false, pytestCheckHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["pythonImportsCheck", 60, 3], ["nativeCheckInputs", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyannote",
           repo: "pyannote-pipeline",
           tag: version,
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pyannote.pipeline"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, versionCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tunable pipelines",
         homepage: "https://github.com/pyannote/pyannote-pipeline",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pyannote-pipeline",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

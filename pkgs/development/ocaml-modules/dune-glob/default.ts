@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 21, 25], ["description", 22, 5], ["maintainers", 23, 5], ["license", 24, 5]], [["pname", 10, 3], ["src", 11, 18], ["version", 11, 22], ["dontAddPrefix", 13, 3], ["propagatedBuildInputs", 15, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, dune: false, "dune-private-libs": false, re: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 21, 25], ["description", 22, 5], ["maintainers", 23, 5], ["license", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["src", 11, 18], ["version", 11, 22], ["dontAddPrefix", 13, 3], ["propagatedBuildInputs", 15, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const dune_private_libs = nix.arg($, "dune-private-libs");
   const re = nix.arg($, "re");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dune-glob",
       src: nix.thunk(() => nix.attr(dune, "src")),
       version: nix.thunk(() => nix.attr(dune, "version")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(dune, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Glob string matching language supported by dune",
         maintainers: [],

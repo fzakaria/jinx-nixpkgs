@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["trimesh", 55, 5], ["glfw", 59, 5], ["pygame", 60, 5], ["PySDL2", 61, 5], ["PySide2", 62, 5], ["pyqt5", 63, 5], ["pdf", 64, 5], ["av", 65, 5]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 25]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["optional-dependencies", 54, 3], ["doCheck", 69, 3], ["pythonImportsCheck", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, moderngl: false, numpy: false, pillow: false, pyglet: false, pyglm: false, trimesh: false, scipy: false, glfw: false, pygame: false, pysdl2: false, pyside2: false, pyqt5: false, reportlab: false, av: false, mesa: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["trimesh", 55, 5], ["glfw", 59, 5], ["pygame", 60, 5], ["PySDL2", 61, 5], ["PySide2", 62, 5], ["pyqt5", 63, 5], ["pdf", 64, 5], ["av", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 25]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["optional-dependencies", 54, 3], ["doCheck", 69, 3], ["pythonImportsCheck", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "moderngl",
           repo: "moderngl_window",
           tag: version,
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [moderngl, numpy, pillow, pyglet, pyglm]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         trimesh: nix.thunk(() => [trimesh, scipy]),
         glfw: nix.thunk(() => [glfw]),
         pygame: nix.thunk(() => [pygame]),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross platform helper library for ModernGL making window creation and resource loading simple",
         homepage: "https://github.com/moderngl/moderngl-window",
         changelog: nix.thunk(() => nix.str`https://github.com/moderngl/moderngl-window/blob/${version}/CHANGELOG.md`),
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["tests", 50, 12]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["outputs", 30, 3], ["installPhase", 35, 3], ["preFixup", 45, 3], ["passthru", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, installShellFiles: false, python3: false, sqlite: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 50, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["outputs", 30, 3], ["installPhase", 35, 3], ["preFixup", 45, 3], ["passthru", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tuptime",
       version: "5.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rfmoz",
           repo: "tuptime",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,9 +33,9 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`wrapProgram $out/share/tuptime/db-tuptime-migrate-4.0-to-5.0.sh \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [sqlite]))}"
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "tuptime")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], tests: nix.thunk(() => nix.sel(nixosTests, "tuptime")) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Total uptime & downtime statistics utility",
         homepage: "https://github.com/rfrail3/tuptime",
         changelog: "https://github.com/rfrail3/tuptime/blob/master/CHANGELOG",

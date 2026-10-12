@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["svnSupport", 4, 5], ["guiSupport", 5, 5], ["sendEmailSupport", 6, 5], ["withSsh", 7, 5], ["withLibsecret", 8, 5]]]);
 const formals$1 = { args: { git: false, stdenv: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["svnSupport", 4, 5], ["guiSupport", 5, 5], ["sendEmailSupport", 6, 5], ["withSsh", 7, 5], ["withLibsecret", 8, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(git, "override"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       svnSupport: nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))),
       guiSupport: true,
       sendEmailSupport: nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))),

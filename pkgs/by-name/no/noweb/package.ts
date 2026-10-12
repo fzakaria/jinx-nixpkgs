@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["sourceRoot", 22, 3], ["patches", 24, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["preBuild", 37, 3], ["makeFlags", 41, 3], ["preInstall", 48, 3], ["installTargets", 59, 3], ["postInstall", 65, 3], ["outputs", 86, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nawk: false, groff: false, "icon-lang": false, useIcon: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["sourceRoot", 22, 3], ["patches", 24, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["preBuild", 37, 3], ["makeFlags", 41, 3], ["preInstall", 48, 3], ["installTargets", 59, 3], ["postInstall", 65, 3], ["outputs", 86, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const icon_lang = nix.arg($, "icon-lang");
   const useIcon = nix.argOr($, "useIcon", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "noweb",
       version: "2.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nrnrnr",
           repo: "noweb",
           rev: nix.thunk(() => nix.str`v${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -67,7 +65,7 @@ ln -s "$tex" "$out/share/texmf"
 `),
       outputs: nix.thunk(() => ["out", "tex"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple, extensible literate-programming tool",
         homepage: "https://www.cs.tufts.edu/~nr/noweb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

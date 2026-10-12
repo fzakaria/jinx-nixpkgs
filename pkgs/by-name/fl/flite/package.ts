@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["url", 39, 7], ["hash", 40, 7]], [["url", 44, 7], ["hash", 45, 7], ["extraPrefix", 46, 7]], [["alsa", 52, 7], ["pulseaudio", 53, 7]], [["command", 70, 7], ["package", 71, 7]], [["version", 68, 11]], [["tests", 68, 5], ["updateScript", 74, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 27, 3], ["patches", 34, 3], ["buildInputs", 50, 3], ["configureFlags", 58, 3], ["enableParallelBuilding", 65, 3], ["passthru", 67, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "alsa-lib": false, libpulseaudio: false, "nix-update-script": false, testers: false, audioBackend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7], ["extraPrefix", 46, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["alsa", 52, 7], ["pulseaudio", 53, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["command", 70, 7], ["package", 71, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 68, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 68, 5], ["updateScript", 74, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 27, 3], ["patches", 34, 3], ["buildInputs", 50, 3], ["configureFlags", 58, 3], ["enableParallelBuilding", 65, 3], ["passthru", 67, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const audioBackend = nix.argOr($, "audioBackend", () => "pulseaudio");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "audioBackend", audioBackend, nix.thunk(() => ["alsa", "pulseaudio"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fl/flite/package.nix:12:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "flite",
       version: "2.2",
       outputs: nix.thunk(() => ["bin", "dev", "lib", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "festvox",
           repo: "flite",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,26 +31,26 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/festvox/flite/commit/54c65164840777326bbb83517568e38a128122ef.patch",
             hash: "sha256-hvKzdX7adiqd9D+9DbnfNdqEULg1Hhqe1xElYxNM1B8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/0d316feccaf89c1bd804d6001274426a7135c93a/audio/flite/files/patch-configure",
             hash: "sha256-D2wOtmHFcuA8JRtIds03yPrBGtMuhLJHuufEQdpcB58=",
             extraPrefix: "",
           })))),
       ]),
-      buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.selOr({ [nix.POS]: pos$4, alsa: alsa_lib, pulseaudio: libpulseaudio }, () => nix.builtins.throw(nix.thunk(() => nix.str`${audioBackend} is not a supported backend!`)), nix.key(nix.force(audioBackend)))))),
+      buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.selOr({ [nix.POS]: $pos[3], alsa: alsa_lib, pulseaudio: libpulseaudio }, () => nix.builtins.throw(nix.thunk(() => nix.str`${audioBackend} is not a supported backend!`)), nix.key(nix.force(audioBackend)))))),
       configureFlags: nix.thunk(() => nix.concat(["--enable-shared"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.str`--with-audio=${audioBackend}`)])))),
       enableParallelBuilding: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               command: "flite --help",
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
@@ -66,7 +58,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Small, fast run-time speech synthesis engine",
         homepage: "http://www.festvox.org/flite/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

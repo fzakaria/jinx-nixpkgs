@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mspdebug.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]], [["version", 20, 3], ["pname", 21, 3], ["src", 22, 3], ["enableParallelBuilding", 29, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 33, 3], ["postPatch", 39, 3], ["runtimeDependencies", 48, 3], ["postFixup", 49, 3], ["installFlags", 56, 3], ["makeFlags", 60, 3], ["unameS", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoPatchelfHook: false, "libusb-compat-0_1": false, readline: true, enableReadline: true, hidapi: true, "pkg-config": true, mspds: true, enableMspds: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mspdebug.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/mspdebug.nix", [["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/mspdebug.nix", [["version", 20, 3], ["pname", 21, 3], ["src", 22, 3], ["enableParallelBuilding", 29, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 33, 3], ["postPatch", 39, 3], ["runtimeDependencies", 48, 3], ["postFixup", 49, 3], ["installFlags", 56, 3], ["makeFlags", 60, 3], ["unameS", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.26";
       const pname = "mspdebug";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dlbeer",
           repo: "mspdebug",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +46,7 @@ substituteInPlace Makefile --replace brew true
       const makeFlags = nix.thunk(() => nix.concat(["UNAME_S=$(unameS)"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enableReadline)), "WITHOUT_READLINE=1")));
       const unameS = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "Darwin"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free programmer, debugger, and gdb proxy for MSP430 MCUs",
         mainProgram: "mspdebug",
         homepage: "https://dlbeer.co.nz/mspdebug/",
@@ -60,7 +58,7 @@ substituteInPlace Makefile --replace brew true
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         src,

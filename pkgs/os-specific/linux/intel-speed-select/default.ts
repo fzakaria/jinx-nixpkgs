@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 19, 5], ["mainProgram", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["broken", 27, 5]], [["pname", 8, 3], ["src", 9, 20], ["version", 9, 24], ["makeFlags", 11, 3], ["postPatch", 13, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, kernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 19, 5], ["mainProgram", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["broken", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["src", 9, 20], ["version", 9, 24], ["makeFlags", 11, 3], ["postPatch", 13, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const kernel = nix.arg($, "kernel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "intel-speed-select",
       src: nix.thunk(() => nix.attr(kernel, "src")),
       version: nix.thunk(() => nix.attr(kernel, "version")),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`bindir=${nix.builtins.placeholder("out")}/bin`)]),
       postPatch: "cd tools/power/x86/intel-speed-select\nsed -i 's,/usr,,g' Makefile\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Tool to enumerate and control the Intel Speed Select Technology features",
         mainProgram: "intel-speed-select",
         homepage: "https://www.kernel.org/",

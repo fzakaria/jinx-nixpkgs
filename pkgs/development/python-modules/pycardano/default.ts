@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cbor2", 28, 44]], [["rev", 32, 9], ["hash", 33, 9]], [["version", 29, 5], ["src", 30, 5], ["pythonImportsCheck", 36, 5]], [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["broken", 94, 5]], [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["src", 44, 3], ["build-system", 51, 3], ["dependencies", 55, 3], ["nativeCheckInputs", 75, 3], ["pythonRelaxDeps", 79, 3], ["pythonImportsCheck", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, "blockfrost-python": false, cachetools: false, cbor2: false, cose: false, docker: false, ecpy: false, frozendict: false, frozenlist: false, mnemonic: false, ogmios: false, "poetry-core": false, pprintpp: false, pynacl: false, requests: false, setuptools: false, typeguard: false, "websocket-client": false, websockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cbor2", 28, 44]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev", 32, 9], ["hash", 33, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 29, 5], ["src", 30, 5], ["pythonImportsCheck", 36, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["broken", 94, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["src", 44, 3], ["build-system", 51, 3], ["dependencies", 55, 3], ["nativeCheckInputs", 75, 3], ["pythonRelaxDeps", 79, 3], ["pythonImportsCheck", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,22 +29,22 @@ export default nix.lambda((args) => (() => {
   const typeguard = nix.arg($, "typeguard");
   const websocket_client = nix.arg($, "websocket-client");
   const websockets = nix.arg($, "websockets");
-  const cose_0_9_dev8 = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(cose, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cbor2: cbor2 }))), "overridePythonAttrs"), (old) => (() => {
+  const cose_0_9_dev8 = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(cose, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], cbor2: cbor2 }))), "overridePythonAttrs"), (old) => (() => {
       const version = "0.9.dev8";
       const src = nix.thunk(() => nix.app(nix.sel(old, "src", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-/jwq2C2nvHInsgPG4jZCr+XsvlUJdYewAkasrUPVaHM=",
         }))));
       const pythonImportsCheck = nix.thunk(() => ["cose"]);
-      return { [nix.POS]: pos$3, version, src, pythonImportsCheck };
+      return { [nix.POS]: $pos[2], version, src, pythonImportsCheck };
     })()));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname = "pycardano";
       const version = "0.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "Python-Cardano",
           repo: "pycardano",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -79,7 +74,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["ogmios", "websockets"]);
       const pythonImportsCheck = nix.thunk(() => ["pycardano"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Lightweight Cardano library in Python",
         homepage: "https://github.com/Python-Cardano/pycardano",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -90,7 +85,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(cbor2, "withCExtensions")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

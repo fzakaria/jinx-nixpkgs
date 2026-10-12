@@ -2,37 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tika.nix", [[["enable", 11, 11]], [["tika", 10, 18]], [["services", 10, 9]], [["machine", 7, 5]], [["maintainers", 22, 8]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 16, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tika.nix", [["enable", 11, 11]]);
-const pos$2 = nix.positions(here + "/tika.nix", [["tika", 10, 18]]);
-const pos$3 = nix.positions(here + "/tika.nix", [["services", 10, 9]]);
-const pos$4 = nix.positions(here + "/tika.nix", [["machine", 7, 5]]);
-const pos$5 = nix.positions(here + "/tika.nix", [["maintainers", 22, 8]]);
-const pos$6 = nix.positions(here + "/tika.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 16, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "tika-server",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            tika: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+            [nix.POS]: $pos[1],
+            tika: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
           })),
         };
       })(), formals$2),
     })),
     testScript: "machine.start()\nmachine.wait_for_unit(\"tika.service\")\nmachine.wait_for_open_port(9998)\n",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$5, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[4], maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=tika.ts.map

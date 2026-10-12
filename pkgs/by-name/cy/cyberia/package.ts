@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["name", 38, 5], ["src", 39, 26], ["hash", 40, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 20, 3], ["version", 21, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["cargoRoot", 33, 3], ["buildAndTestSubdir", 34, 3], ["cargoHash", 35, 3], ["npmDeps", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { rustPlatform: false, fetchFromForgejo: false, fetchNpmDeps: false, "cargo-tauri": false, nodejs: false, npmHooks: false, "pkg-config": false, lib: false, stdenv: false, wrapGAppsHook4: false, dbus: false, "glib-networking": false, gtk3: false, webkitgtk_4_1: false, "alsa-lib": false, libappindicator: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 5], ["src", 39, 26], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["cargoRoot", 33, 3], ["buildAndTestSubdir", 34, 3], ["cargoHash", 35, 3], ["npmDeps", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const libappindicator = nix.arg($, "libappindicator");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cyberia",
       version: "0.2.8",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.gay",
           owner: "zutyosh",
           repo: "Cyberia",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       cargoHash: "sha256-ghdZyJt/hE+r/D+FqyLrUNSvVDZf+FRv463K33XrNbs=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-aZsQHb1Hj7dmz/04E6KJ5AMKKTcN+4fSK8phwDg2YAU=",
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [wrapGAppsHook4])))),
       buildInputs: nix.thunk(() => nix.concat([dbus, gtk3], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [glib_networking, webkitgtk_4_1, alsa_lib, libappindicator])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "VRCX style client for Resonite",
         homepage: "https://git.gay/zutyosh/Cyberia",
         changelog: nix.thunk(() => nix.str`https://git.gay/zutyosh/Cyberia/releases/tag/v${nix.sel(finalAttrs, "version")}`),

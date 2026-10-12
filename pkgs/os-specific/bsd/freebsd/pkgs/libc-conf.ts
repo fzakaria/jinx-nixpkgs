@@ -2,14 +2,14 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libc-conf.nix", [[["path", 5, 3], ["extraPaths", 6, 3], ["postPatch", 12, 3], ["dontBuild", 16, 3], ["installTargets", 17, 3], ["MK_TESTS", 18, 3]]]);
 const formals$1 = { args: { mkDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libc-conf.nix", [["path", 5, 3], ["extraPaths", 6, 3], ["postPatch", 12, 3], ["dontBuild", 16, 3], ["installTargets", 17, 3], ["MK_TESTS", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "lib/libc",
       extraPaths: nix.thunk(() => ["lib/libc_nonshared", "lib/libsys", "sys/sys"]),
       postPatch: "sed -E -i -e '/afterinstallconfig/d' -e '/master.passwd/d' \"lib/libc/gen/Makefile.inc\"\n",

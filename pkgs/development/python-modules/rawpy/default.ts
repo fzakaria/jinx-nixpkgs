@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["RAWPY_USE_SYSTEM_LIBRAW", 63, 5]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 97, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["postPatch", 39, 3], ["build-system", 44, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 54, 3], ["dependencies", 58, 3], ["env", 62, 3], ["pythonImportsCheck", 66, 3], ["preCheck", 72, 3], ["nativeCheckInputs", 76, 3], ["disabledTests", 82, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, setuptools: false, "pkg-config": false, libraw: false, numpy: false, imageio: false, pytestCheckHook: false, "scikit-image": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["RAWPY_USE_SYSTEM_LIBRAW", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 97, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["postPatch", 39, 3], ["build-system", 44, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 54, 3], ["dependencies", 58, 3], ["env", 62, 3], ["pythonImportsCheck", 66, 3], ["preCheck", 72, 3], ["nativeCheckInputs", 76, 3], ["disabledTests", 82, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scikit_image = nix.arg($, "scikit-image");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rawpy",
       version: "0.27.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "letmaik",
           repo: "rawpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libraw]),
       dependencies: nix.thunk(() => [numpy]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RAWPY_USE_SYSTEM_LIBRAW: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RAWPY_USE_SYSTEM_LIBRAW: 1n })),
       pythonImportsCheck: nix.thunk(() => ["rawpy", "rawpy._rawpy"]),
       preCheck: "rm -rf rawpy\n",
       nativeCheckInputs: nix.thunk(() => [imageio, pytestCheckHook, scikit_image]),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         "testThumbExtractBitmap",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "RAW image processing for Python, a wrapper for libraw",
         homepage: "https://github.com/letmaik/rawpy",
         changelog: nix.thunk(() => nix.str`https://github.com/letmaik/rawpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

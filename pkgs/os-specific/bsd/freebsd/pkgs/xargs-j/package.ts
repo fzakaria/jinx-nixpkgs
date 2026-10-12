@@ -2,21 +2,20 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["runtimeShell", 10, 13]], [["name", 4, 3], ["src", 5, 3], ["dir", 6, 3], ["isExecutable", 7, 3], ["replacements", 9, 3]]]);
 const formals$1 = { args: { replaceVarsWith: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["runtimeShell", 10, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 4, 3], ["src", 5, 3], ["dir", 6, 3], ["isExecutable", 7, 3], ["replacements", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const replaceVarsWith = nix.arg($, "replaceVarsWith");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(replaceVarsWith, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "xargs-j",
       src: nix.path(here, "./xargs-j.sh"),
       dir: "bin",
       isExecutable: true,
-      replacements: nix.thunk(() => ({ [nix.POS]: pos$1, runtimeShell: runtimeShell })),
+      replacements: nix.thunk(() => ({ [nix.POS]: $pos[0], runtimeShell: runtimeShell })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

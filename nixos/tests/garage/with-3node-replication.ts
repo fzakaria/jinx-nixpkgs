@@ -2,15 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-3node-replication.nix", [[["replication_factor", 12, 9], ["consistency_mode", 13, 9]], [["replication_mode", 17, 9]], [["extraSettings", 25, 15], ["publicV6Address", 26, 7]], [["extraSettings", 29, 15], ["publicV6Address", 30, 7]], [["extraSettings", 33, 15], ["publicV6Address", 34, 7]], [["extraSettings", 37, 15], ["publicV6Address", 38, 7]], [["node1", 24, 5], ["node2", 28, 5], ["node3", 32, 5], ["node4", 36, 5]], [["name", 21, 3], ["nodes", 23, 3], ["testScript", 42, 3]]]);
 const formals$1 = { args: { lib: false, mkNode: false, package: false, testScriptSetup: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/with-3node-replication.nix", [["replication_factor", 12, 9], ["consistency_mode", 13, 9]]);
-const pos$2 = nix.positions(here + "/with-3node-replication.nix", [["replication_mode", 17, 9]]);
-const pos$3 = nix.positions(here + "/with-3node-replication.nix", [["extraSettings", 25, 15], ["publicV6Address", 26, 7]]);
-const pos$4 = nix.positions(here + "/with-3node-replication.nix", [["extraSettings", 29, 15], ["publicV6Address", 30, 7]]);
-const pos$5 = nix.positions(here + "/with-3node-replication.nix", [["extraSettings", 33, 15], ["publicV6Address", 34, 7]]);
-const pos$6 = nix.positions(here + "/with-3node-replication.nix", [["extraSettings", 37, 15], ["publicV6Address", 38, 7]]);
-const pos$7 = nix.positions(here + "/with-3node-replication.nix", [["node1", 24, 5], ["node2", 28, 5], ["node3", 32, 5], ["node4", 36, 5]]);
-const pos$8 = nix.positions(here + "/with-3node-replication.nix", [["name", 21, 3], ["nodes", 23, 3], ["testScript", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,16 +11,32 @@ export default nix.lambda((args) => (() => {
   const mkNode = nix.arg($, "mkNode");
   const package$ = nix.arg($, "package");
   const testScriptSetup = nix.arg($, "testScriptSetup");
-  const extraSettings = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(package$, "version")), "2")) ? { [nix.POS]: pos$1, replication_factor: 3n, consistency_mode: "consistent" } : { [nix.POS]: pos$2, replication_mode: "3" }));
+  const extraSettings = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(package$, "version")), "2")) ? { [nix.POS]: $pos[0], replication_factor: 3n, consistency_mode: "consistent" } : { [nix.POS]: $pos[1], replication_mode: "3" }));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: nix.thunk(() => nix.str`garage-${nix.sel(package$, "version")}-3node-replication`),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
-      node1: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({ [nix.POS]: pos$3, extraSettings: extraSettings, publicV6Address: "fc00:1::1" })))),
-      node2: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({ [nix.POS]: pos$4, extraSettings: extraSettings, publicV6Address: "fc00:1::2" })))),
-      node3: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({ [nix.POS]: pos$5, extraSettings: extraSettings, publicV6Address: "fc00:1::3" })))),
-      node4: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({ [nix.POS]: pos$6, extraSettings: extraSettings, publicV6Address: "fc00:1::4" })))),
+      [nix.POS]: $pos[6],
+      node1: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          extraSettings: extraSettings,
+          publicV6Address: "fc00:1::1",
+        })))),
+      node2: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({
+          [nix.POS]: $pos[3],
+          extraSettings: extraSettings,
+          publicV6Address: "fc00:1::2",
+        })))),
+      node3: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({
+          [nix.POS]: $pos[4],
+          extraSettings: extraSettings,
+          publicV6Address: "fc00:1::3",
+        })))),
+      node4: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({
+          [nix.POS]: $pos[5],
+          extraSettings: extraSettings,
+          publicV6Address: "fc00:1::4",
+        })))),
     })),
     testScript: nix.thunk(() => nix.str`${testScriptSetup}
 

@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/manuallyPackaged.nix", [[["arcmenu@arcmenu.com", 3, 3], ["argos@pew.worldwidemann.com", 4, 3], ["EasyScreenCast@iacopodeenosee.gmail.com", 5, 3], ["forge@jmmaranan.com", 6, 3], ["gsconnect@andyholmes.github.io", 7, 3], ["guillotine@fopdoodle.net", 8, 3], ["impatience@gfxmonk.net", 9, 3], ["pop-shell@system76.com", 10, 3], ["systemd-manager@hardpixel.eu", 14, 3], ["unite@hardpixel.eu", 15, 3], ["valent@andyholmes.ca", 16, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/manuallyPackaged.nix", [["arcmenu@arcmenu.com", 3, 3], ["argos@pew.worldwidemann.com", 4, 3], ["EasyScreenCast@iacopodeenosee.gmail.com", 5, 3], ["forge@jmmaranan.com", 6, 3], ["gsconnect@andyholmes.github.io", 7, 3], ["guillotine@fopdoodle.net", 8, 3], ["impatience@gfxmonk.net", 9, 3], ["pop-shell@system76.com", 10, 3], ["systemd-manager@hardpixel.eu", 14, 3], ["unite@hardpixel.eu", 15, 3], ["valent@andyholmes.ca", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "arcmenu@arcmenu.com": nix.thunk(() => nix.app(callPackage, nix.path(here, "./arcmenu"), nix.thunk(() => ({})))),
     "argos@pew.worldwidemann.com": nix.thunk(() => nix.app(callPackage, nix.path(here, "./argos"), nix.thunk(() => ({})))),
     "EasyScreenCast@iacopodeenosee.gmail.com": nix.thunk(() => nix.app(callPackage, nix.path(here, "./EasyScreenCast"), nix.thunk(() => ({})))),

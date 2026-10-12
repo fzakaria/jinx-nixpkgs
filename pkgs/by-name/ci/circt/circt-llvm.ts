@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/circt-llvm.nix", [[["maintainers", 112, 26]], [["pname", 12, 3], ["version", 13, 19], ["src", 13, 27], ["requiredSystemFeatures", 15, 3], ["__structuredAttrs", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 25, 3], ["preConfigure", 30, 3], ["cmakeFlags", 34, 3], ["outputs", 48, 3], ["postPatch", 56, 3], ["postInstall", 62, 3], ["postFixup", 91, 3], ["doCheck", 108, 3], ["checkTarget", 109, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, ninja: false, circt: false, llvm: false, python3: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/circt-llvm.nix", [["maintainers", 112, 26]]);
-const pos$2 = nix.positions(here + "/circt-llvm.nix", [["pname", 12, 3], ["version", 13, 19], ["src", 13, 27], ["requiredSystemFeatures", 15, 3], ["__structuredAttrs", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 25, 3], ["preConfigure", 30, 3], ["cmakeFlags", 34, 3], ["outputs", 48, 3], ["postPatch", 56, 3], ["postInstall", 62, 3], ["postFixup", 91, 3], ["doCheck", 108, 3], ["checkTarget", 109, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.add(nix.sel(circt, "pname"), "-llvm")),
       version: nix.thunk(() => nix.attr(circt, "version")),
       src: nix.thunk(() => nix.attr(circt, "src")),
@@ -47,7 +46,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => nix.update(nix.sel(llvm, "meta"), (() => {
         const from = nix.thunk(() => nix.sel(circt, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
       };
       })())),

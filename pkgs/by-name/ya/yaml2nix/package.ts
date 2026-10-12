@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["name", 23, 7], ["nativeBuildInputs", 24, 7], ["script", 25, 7]], [["convert", 22, 11]], [["tests", 22, 5], ["updateScript", 41, 5]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["maintainers", 48, 5], ["license", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["passthru", 21, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 23, 7], ["nativeBuildInputs", 24, 7], ["script", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["convert", 22, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 22, 5], ["updateScript", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["maintainers", 48, 5], ["license", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["passthru", 21, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "yaml2nix",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "euank",
           repo: "yaml2nix",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +25,11 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-3N0V/5lqiE2lTXu9oUsO3FOXhWqkNlomceqIVDGGuOM=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           convert: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-convert-test`),
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "cat <<EOF > test.yaml\nfoo: \"bar\"\nbaz:\n  - qux\nEOF\n\ncat <<EOF > expected.nix\n{ foo = \"bar\"; baz = [ \"qux\" ]; }\nEOF\n\nyaml2nix test.yaml > test.nix\n\ndiff test.nix expected.nix && touch $out\n",
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Command line tool to convert YAML into a Nix expression",
         homepage: "https://github.com/euank/yaml2nix",
         changelog: nix.thunk(() => nix.str`https://github.com/euank/yaml2nix/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

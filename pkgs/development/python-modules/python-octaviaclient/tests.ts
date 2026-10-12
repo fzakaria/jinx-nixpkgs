@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["pname", 17, 3], ["version", 18, 34], ["src", 18, 42], ["pyproject", 19, 3], ["dontBuild", 21, 3], ["dontInstall", 22, 3], ["nativeCheckInputs", 24, 3], ["checkPhase", 38, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "python-octaviaclient": false, "python-openstackclient": false, hacking: false, "requests-mock": false, doc8: false, docutils: false, pygments: false, "python-subunit": false, oslotest: false, stestr: false, testscenarios: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["pname", 17, 3], ["version", 18, 34], ["src", 18, 42], ["pyproject", 19, 3], ["dontBuild", 21, 3], ["dontInstall", 22, 3], ["nativeCheckInputs", 24, 3], ["checkPhase", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const stestr = nix.arg($, "stestr");
   const testscenarios = nix.arg($, "testscenarios");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "python-octaviaclient-tests",
       version: nix.thunk(() => nix.attr(python_octaviaclient, "version")),
       src: nix.thunk(() => nix.attr(python_octaviaclient, "src")),

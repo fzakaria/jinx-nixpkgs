@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["withAdapters", 102, 5]], [["description", 106, 5], ["longDescription", 107, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["mainProgram", 129, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["sourceRoot", 50, 3], ["pythonRelaxDeps", 52, 3], ["build-system", 67, 3], ["dependencies", 71, 3], ["doCheck", 99, 3], ["passthru", 101, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, agate: false, click: false, daff: false, "dbt-adapters": false, "dbt-common": false, "dbt-extractor": false, "dbt-protos": false, "dbt-semantic-interfaces": false, jinja2: false, logbook: false, mashumaro: false, networkx: false, packaging: false, pathspec: false, protobuf: false, pydantic: false, "pydantic-settings": false, pytz: false, pyyaml: false, requests: false, "snowplow-tracker": false, sqlparse: false, "typing-extensions": false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["withAdapters", 102, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 106, 5], ["longDescription", 107, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["mainProgram", 129, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["sourceRoot", 50, 3], ["pythonRelaxDeps", 52, 3], ["build-system", 67, 3], ["dependencies", 71, 3], ["doCheck", 99, 3], ["passthru", 101, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dbt-core",
       version: "1.11.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dbt-labs",
           repo: "dbt-core",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -93,11 +90,11 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(mashumaro, "optional-dependencies", "msgpack"))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         withAdapters: nix.thunk(() => nix.app(callPackage, nix.path(here, "./with-adapters.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Enables data analysts and engineers to transform their data using the same practices that software engineers use to build applications",
         longDescription: "The dbt tool needs adapters to data sources in order to work. The available\nadapters are:\n\n  dbt-bigquery\n  dbt-postgres\n  dbt-redshift\n  dbt-snowflake\n\nAn example of building this package with a few adapters:\n\n  dbt.withAdapters (adapters: [\n    adapters.dbt-bigquery\n    adapters.dbt-postgres\n  ])\n",
         homepage: "https://github.com/dbt-labs/dbt-core",

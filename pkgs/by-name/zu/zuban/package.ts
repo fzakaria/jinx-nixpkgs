@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]], [["updateScript", 38, 5]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]], [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["postInstall", 22, 3], ["buildAndTestSubdir", 27, 3], ["cargoHash", 29, 3], ["nativeInstallCheckInputs", 31, 3], ["doInstallCheck", 35, 3], ["passthru", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, rustPlatform: false, versionCheckHook: false, "nix-update-script": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["postInstall", 22, 3], ["buildAndTestSubdir", 27, 3], ["cargoHash", 29, 3], ["nativeInstallCheckInputs", 31, 3], ["doInstallCheck", 35, 3], ["passthru", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zuban",
       version: "0.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zubanls",
           repo: "zuban",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +33,11 @@ cp -r third_party $out/${nix.sel(python3, "sitePackages")}/zuban/
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Mypy-compatible Python Language Server built in Rust",
         homepage: "https://zubanls.com",
         changelog: "https://zubanls.com/blog/",

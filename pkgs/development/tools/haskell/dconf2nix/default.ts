@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainers", 11, 7]], [["nativeBuildInputs", 28, 11]], [["updateScript", 20, 5], ["tests", 25, 5]], [["passthru", 19, 3]]]);
 const formals$1 = { args: { haskell: false, haskellPackages: false, lib: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainers", 11, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 28, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 20, 5], ["tests", 25, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["passthru", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,15 +12,15 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const runCommand = nix.arg($, "runCommand");
   const dconf2nix = nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "justStaticExecutables"), nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), (oldAttrs) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "maintainers"), [nix.thunk(() => nix.sel(lib, "maintainers", "gvolpe"))])),
       }), nix.thunk(() => nix.sel(haskellPackages, "dconf2nix"))))));
   return nix.app(nix.sel(dconf2nix, "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => nix.app(runCommand, "dconf2nix-tests", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [dconf2nix]) })), "dconf2nix > $out\n")),
+        tests: nix.thunk(() => nix.app(runCommand, "dconf2nix-tests", nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [dconf2nix]) })), "dconf2nix > $out\n")),
       })),
     }));
 })(), formals$1);

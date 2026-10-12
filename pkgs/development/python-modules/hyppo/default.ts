@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["homepage", 70, 5], ["description", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["postPatch", 41, 3], ["build-system", 45, 3], ["dependencies", 47, 3], ["nativeCheckInputs", 59, 3], ["enabledTestPaths", 65, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, autograd: false, future: false, numba: false, numpy: false, pandas: false, patsy: false, "scikit-learn": false, scipy: false, statsmodels: false, matplotlib: false, "pytest-xdist": false, pytestCheckHook: false, seaborn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 70, 5], ["description", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["postPatch", 41, 3], ["build-system", 45, 3], ["dependencies", 47, 3], ["nativeCheckInputs", 59, 3], ["enabledTestPaths", 65, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "neurodata",
           repo: "hyppo",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_xdist, pytestCheckHook, matplotlib, seaborn]);
       const enabledTestPaths = nix.thunk(() => ["hyppo"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/neurodata/hyppo",
         description: "Python package for multivariate hypothesis testing",
         changelog: nix.thunk(() => nix.str`https://github.com/neurodata/hyppo/releases/tag/v${version}`),
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

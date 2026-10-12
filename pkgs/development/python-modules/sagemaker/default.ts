@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["local", 106, 5], ["scipy", 111, 5], ["huggingface", 112, 5]], [["description", 117, 5], ["homepage", 118, 5], ["changelog", 119, 5], ["license", 120, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["build-system", 54, 3], ["pythonRelaxDeps", 58, 3], ["dependencies", 69, 3], ["doCheck", 98, 3], ["pythonImportsCheck", 100, 3], ["optional-dependencies", 105, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, attrs: false, boto3: false, cloudpickle: false, docker: false, fastapi: false, "google-pasta": false, graphene: false, "importlib-metadata": false, jsonschema: false, numpy: false, omegaconf: false, packaging: false, pandas: false, pathos: false, platformdirs: false, protobuf: false, psutil: false, pyyaml: false, requests: false, "sagemaker-core": false, schema: false, "smdebug-rulesconfig": false, tblib: false, tqdm: false, urllib3: false, uvicorn: false, scipy: false, accelerate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["local", 106, 5], ["scipy", 111, 5], ["huggingface", 112, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 117, 5], ["homepage", 118, 5], ["changelog", 119, 5], ["license", 120, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["build-system", 54, 3], ["pythonRelaxDeps", 58, 3], ["dependencies", 69, 3], ["doCheck", 98, 3], ["pythonImportsCheck", 100, 3], ["optional-dependencies", 105, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.256.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aws",
           repo: "sagemaker-python-sdk",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -95,20 +92,20 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["sagemaker", "sagemaker.lineage.visualizer"]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         local: nix.thunk(() => [urllib3, docker, pyyaml]),
         scipy: nix.thunk(() => [scipy]),
         huggingface: nix.thunk(() => [accelerate]),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for training and deploying machine learning models on Amazon SageMaker",
         homepage: "https://github.com/aws/sagemaker-python-sdk/",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/sagemaker-python-sdk/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5], ["platforms", 77, 5]], [["pname", 9, 3], ["version", 11, 3], ["src", 13, 3], ["prePatch", 21, 3], ["patches", 38, 3], ["buildInputs", 43, 3], ["installPhase", 47, 3], ["enableParallelBuilding", 55, 3], ["makeFlags", 57, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, libgit2: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5], ["platforms", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 11, 3], ["src", 13, 3], ["prePatch", 21, 3], ["patches", 38, 3], ["buildInputs", 43, 3], ["installPhase", 47, 3], ["enableParallelBuilding", 55, 3], ["makeFlags", 57, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "debase";
       const version = "3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "toasterllc",
           repo: "debase",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +34,7 @@ runHook postInstall
         nix.thunk(() => nix.str`ARCHS=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x86_64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "arm64" : nix.builtins.throw(nix.thunk(() => nix.str`unsupported system: ${nix.sel(stdenv, "system")}`))))}`),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "TUI for drag-and-drop manipulation of git commits",
         homepage: "https://toaster.llc/debase",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
@@ -51,7 +49,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

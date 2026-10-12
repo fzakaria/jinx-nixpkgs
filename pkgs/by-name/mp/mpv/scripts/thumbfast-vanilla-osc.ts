@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/thumbfast-vanilla-osc.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["branch", 18, 48]], [["updateScript", 18, 12]], [["description", 23, 5], ["homepage", 24, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 18, 3], ["scriptPath", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, unstableGitUpdater: false, buildLua: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/thumbfast-vanilla-osc.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/thumbfast-vanilla-osc.nix", [["branch", 18, 48]]);
-const pos$3 = nix.positions(here + "/thumbfast-vanilla-osc.nix", [["updateScript", 18, 12]]);
-const pos$4 = nix.positions(here + "/thumbfast-vanilla-osc.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$5 = nix.positions(here + "/thumbfast-vanilla-osc.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 18, 3], ["scriptPath", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,23 +12,23 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const buildLua = nix.arg($, "buildLua");
   return nix.app(buildLua, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "thumbfast-vanilla-osc",
       version: "0-unstable-2025-02-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "po5",
           repo: "thumbfast",
           rev: "9d78edc167553ccea6290832982d0bc15838b4ac",
           hash: "sha256-AG3w5B8lBcSXV4cbvX3nQ9hri/895xDbTsdaqF+RL64=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, branch: "vanilla-osc" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], branch: "vanilla-osc" })))),
       })),
       scriptPath: "player/lua/osc.lua",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Modified version of the vanilla UI with thumbfast support",
         homepage: "https://github.com/po5/thumbfast",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

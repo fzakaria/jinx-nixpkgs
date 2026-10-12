@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5], ["forceFetchGit", 57, 5], ["fetchLFS", 58, 5]], [["pname", 62, 26], ["version", 62, 32], ["src", 62, 40], ["hash", 63, 5]], [["runtimeDeps", 139, 13]], [["description", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["platforms", 146, 5], ["mainProgram", 147, 5], ["maintainers", 148, 5]], [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["src", 52, 3], ["cargoDeps", 61, 3], ["buildInputs", 66, 3], ["dependencies", 68, 3], ["nativeBuildInputs", 92, 3], ["pythonRemoveDeps", 100, 3], ["pythonImportsCheck", 105, 3], ["makeWrapperArgs", 107, 3], ["nativeCheckInputs", 111, 3], ["pytestFlags", 122, 3], ["disabledTests", 126, 3], ["passthru", 137, 3], ["meta", 142, 3]]]);
 const formals$1 = { args: { lib: false, libiconv: false, python3: false, fetchFromGitHub: false, makeWrapper: false, rustPlatform: false, stdenvNoCC: false, e2fsprogs: false, "erofs-utils": false, jefferson: false, lz4: false, lziprecover: false, lzop: false, p7zip: false, partclone: false, sasquatch: false, "sasquatch-v4be": false, simg2img: false, ubi_reader: false, unar: false, upx: false, zstd: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5], ["forceFetchGit", 57, 5], ["fetchLFS", 58, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 62, 26], ["version", 62, 32], ["src", 62, 40], ["hash", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["runtimeDeps", 139, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["platforms", 146, 5], ["mainProgram", 147, 5], ["maintainers", 148, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["src", 52, 3], ["cargoDeps", 61, 3], ["buildInputs", 66, 3], ["dependencies", 68, 3], ["nativeBuildInputs", 92, 3], ["pythonRemoveDeps", 100, 3], ["pythonImportsCheck", 105, 3], ["makeWrapperArgs", 107, 3], ["nativeCheckInputs", 111, 3], ["pytestFlags", 122, 3], ["disabledTests", 126, 3], ["passthru", 137, 3], ["meta", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,12 +47,12 @@ export default nix.lambda((args) => (() => {
     lz4,
   ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), partclone)));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "unblob",
       version: "26.6.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "onekey-sec",
           repo: "unblob",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +61,7 @@ export default nix.lambda((args) => (() => {
           fetchLFS: true,
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -129,9 +125,9 @@ export default nix.lambda((args) => (() => {
         "test_all_handlers[filesystem.yaffs]",
         "test_all_handlers[filesystem.btrfs_stream]",
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, runtimeDeps: runtimeDeps })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], runtimeDeps: runtimeDeps })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Extract files from any kind of container formats",
         homepage: "https://unblob.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

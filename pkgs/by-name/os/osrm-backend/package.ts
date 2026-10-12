@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 45, 7]], [["osrm-backend", 58, 26]], [["tests", 57, 12]], [["broken", 63, 5], ["homepage", 64, 5], ["description", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["env", 45, 3], ["postInstall", 52, 3], ["passthru", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, bzip2: false, libxml2: false, libzip: false, boost: false, lua: false, luabind: false, onetbb: false, expat: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["osrm-backend", 58, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 57, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["broken", 63, 5], ["homepage", 64, 5], ["description", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["env", 45, 3], ["postInstall", 52, 3], ["passthru", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const expat = nix.arg($, "expat");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "osrm-backend",
       version: "26.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Project-OSRM",
           repo: "osrm-backend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,19 +35,19 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [bzip2, libxml2, libzip, boost, lua, luabind, onetbb, expat]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=uninitialized", "-Wno-error=maybe-uninitialized"]))),
       })),
       postInstall: "mkdir -p $out/share/osrm-backend\ncp -r ../profiles $out/share/osrm-backend/profiles\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "osrm-backend": nix.thunk(() => nix.attr(nixosTests, "osrm-backend")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://project-osrm.org/",
         description: "Open Source Routing Machine computes shortest paths in a graph. It was designed to run well with map data from the Openstreetmap Project",

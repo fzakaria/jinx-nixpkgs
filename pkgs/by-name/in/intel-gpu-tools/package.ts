@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 49, 5], ["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["changelog", 102, 5], ["homepage", 103, 5], ["description", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["maintainers", 110, 5]], [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 68, 3], ["preConfigure", 95, 3], ["hardeningDisable", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, bison: false, docbook_xsl: false, docutils: false, flex: false, "gtk-doc": false, meson: false, ninja: false, "pkg-config": false, "util-macros": false, "alsa-lib": false, cairo: false, curl: false, elfutils: false, glib: false, gsl: false, json_c: false, kmod: false, libdrm: false, liboping: false, libpciaccess: false, libunwind: false, libx11: false, libxext: false, libxrandr: false, libxv: false, openssl: false, peg: false, procps: false, python3: false, udev: false, valgrind: false, xmlrpc_c: false, xorgproto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 49, 5], ["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 102, 5], ["homepage", 103, 5], ["description", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["maintainers", 110, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 68, 3], ["preConfigure", 95, 3], ["hardeningDisable", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const xmlrpc_c = nix.arg($, "xmlrpc_c");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "intel-gpu-tools",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "drm",
           repo: "igt-gpu-tools",
@@ -97,7 +95,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "patchShebangs lib man scripts tests\n",
       hardeningDisable: nix.thunk(() => ["bindnow"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),
         homepage: "https://drm.pages.freedesktop.org/igt-gpu-tools/",
         description: "Tools for development and testing of the Intel DRM driver",

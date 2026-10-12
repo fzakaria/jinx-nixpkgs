@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["openssl", 16, 7]], [["pname", 12, 3], ["patches", 14, 3], ["extraNativeBuildInputs", 20, 3], ["extraBuildInputs", 21, 3], ["postFixup", 29, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, replaceVars: false, openssl: false, pam: false, "pkg-config": false, qtwayland: false, freerdp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["openssl", 16, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["patches", 14, 3], ["extraNativeBuildInputs", 20, 3], ["extraBuildInputs", 21, 3], ["postFixup", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const qtwayland = nix.arg($, "qtwayland");
   const freerdp = nix.arg($, "freerdp");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "krdp",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-openssl-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             openssl: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), openssl)),
           })))),
       ]),

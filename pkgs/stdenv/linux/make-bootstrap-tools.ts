@@ -2,17 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-bootstrap-tools.nix", [[["NIX_CFLAGS_COMPILE", 14, 5], ["NIX_CFLAGS_LINK", 18, 5]], [["aclSupport", 27, 5], ["attrSupport", 28, 5], ["singleBinary", 30, 5]], [["acl", 33, 39]], [["useMusl", 36, 5], ["enableStatic", 37, 5], ["enableMinimal", 38, 5], ["extraConfig", 39, 5]], [["enableLTO", 51, 5], ["isl", 52, 5]], [["withAllTargets", 56, 5], ["enableGold", 58, 5], ["enableShared", 60, 5]], [["bootBinutils", 65, 7], ["coreutilsMinimal", 66, 7], ["tarMinimal", 67, 7], ["busyboxMinimal", 68, 7], ["bootGCC", 69, 7], ["libc", 70, 7], ["patchelf", 71, 7]], [["system", 78, 36], ["libc", 79, 35], ["lib", 80, 13], ["bootstrapFiles", 80, 17], ["config", 80, 32]], [["bootstrapTools", 84, 13], ["busybox", 85, 30]], [["coreutilsMinimal", 25, 3], ["tarMinimal", 33, 3], ["busyboxMinimal", 35, 3], ["bootGCC", 50, 3], ["bootBinutils", 55, 3], ["build", 63, 3], ["bootstrapFiles", 75, 19], ["bootstrapTools", 77, 3], ["test", 83, 3]]]);
 const formals$1 = { args: { pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-bootstrap-tools.nix", [["NIX_CFLAGS_COMPILE", 14, 5], ["NIX_CFLAGS_LINK", 18, 5]]);
-const pos$2 = nix.positions(here + "/make-bootstrap-tools.nix", [["aclSupport", 27, 5], ["attrSupport", 28, 5], ["singleBinary", 30, 5]]);
-const pos$3 = nix.positions(here + "/make-bootstrap-tools.nix", [["acl", 33, 39]]);
-const pos$4 = nix.positions(here + "/make-bootstrap-tools.nix", [["useMusl", 36, 5], ["enableStatic", 37, 5], ["enableMinimal", 38, 5], ["extraConfig", 39, 5]]);
-const pos$5 = nix.positions(here + "/make-bootstrap-tools.nix", [["enableLTO", 51, 5], ["isl", 52, 5]]);
-const pos$6 = nix.positions(here + "/make-bootstrap-tools.nix", [["withAllTargets", 56, 5], ["enableGold", 58, 5], ["enableShared", 60, 5]]);
-const pos$7 = nix.positions(here + "/make-bootstrap-tools.nix", [["bootBinutils", 65, 7], ["coreutilsMinimal", 66, 7], ["tarMinimal", 67, 7], ["busyboxMinimal", 68, 7], ["bootGCC", 69, 7], ["libc", 70, 7], ["patchelf", 71, 7]]);
-const pos$8 = nix.positions(here + "/make-bootstrap-tools.nix", [["system", 78, 36], ["libc", 79, 35], ["lib", 80, 13], ["bootstrapFiles", 80, 17], ["config", 80, 32]]);
-const pos$9 = nix.positions(here + "/make-bootstrap-tools.nix", [["bootstrapTools", 84, 13], ["busybox", 85, 30]]);
-const pos$10 = nix.positions(here + "/make-bootstrap-tools.nix", [["coreutilsMinimal", 25, 3], ["tarMinimal", 33, 3], ["busyboxMinimal", 35, 3], ["bootGCC", 50, 3], ["bootBinutils", 55, 3], ["build", 63, 3], ["bootstrapFiles", 75, 19], ["bootstrapTools", 77, 3], ["test", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,34 +13,34 @@ export default nix.lambda((args) => (() => {
   const config = nix.thunk(() => nix.attr(pkgs, "config"));
   const libc = nix.thunk(() => nix.attr(pkgs, "libc"));
   const patchelf = nix.thunk(() => nix.app(nix.sel(pkgs, "patchelf", "overrideAttrs"), (previousAttrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       NIX_CFLAGS_COMPILE: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "NIX_CFLAGS_COMPILE"), ["-static-libgcc", "-static-libstdc++"])),
       NIX_CFLAGS_LINK: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "NIX_CFLAGS_LINK"), ["-static-libgcc", "-static-libstdc++"])),
     })));
   return (() => {
     const coreutilsMinimal = nix.thunk(() => nix.app(nix.sel(pkgs, "coreutils", "override"), (args_1) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aclSupport: false,
         attrSupport: false,
         singleBinary: "symlinks",
       })));
-    const tarMinimal = nix.thunk(() => nix.app(nix.sel(pkgs, "gnutar", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, acl: null }))));
+    const tarMinimal = nix.thunk(() => nix.app(nix.sel(pkgs, "gnutar", "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], acl: null }))));
     const busyboxMinimal = nix.thunk(() => nix.app(nix.sel(pkgs, "busybox", "override"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         useMusl: nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), nix.thunk(() => nix.sel(pkgs, "musl")))),
         enableStatic: true,
         enableMinimal: true,
         extraConfig: "CONFIG_ASH y\nCONFIG_ASH_ECHO y\nCONFIG_ASH_TEST y\nCONFIG_ASH_OPTIMIZE_FOR_SIZE y\nCONFIG_MKDIR y\nCONFIG_TAR y\nCONFIG_UNXZ y\n",
       }))));
-    const bootGCC = nix.thunk(() => nix.app(nix.sel(pkgs, "gcc", "cc", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, enableLTO: false, isl: null }))));
+    const bootGCC = nix.thunk(() => nix.app(nix.sel(pkgs, "gcc", "cc", "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], enableLTO: false, isl: null }))));
     const bootBinutils = nix.thunk(() => nix.app(nix.sel(pkgs, "binutils", "bintools", "override"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         withAllTargets: false,
         enableGold: false,
         enableShared: false,
       }))));
     const build = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./stdenv-bootstrap-tools.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         bootBinutils: bootBinutils,
         coreutilsMinimal: coreutilsMinimal,
         tarMinimal: tarMinimal,
@@ -63,7 +54,7 @@ export default nix.lambda((args) => (() => {
         const from = nix.thunk(() => nix.sel(stdenv, "buildPlatform"));
         const from_1 = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
         return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         system: nix.thunk(() => nix.attr(from, "system")),
         libc: nix.thunk(() => nix.attr(from_1, "libc")),
         lib: lib,
@@ -72,12 +63,12 @@ export default nix.lambda((args) => (() => {
       };
       })())));
     const test = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./test-bootstrap-tools.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         bootstrapTools: bootstrapTools,
         busybox: nix.thunk(() => nix.attr(bootstrapFiles, "busybox")),
       }))));
     return {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       coreutilsMinimal,
       tarMinimal,
       busyboxMinimal,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["url", 28, 7], ["sha256", 29, 7]], [["url", 33, 7], ["sha256", 34, 7]], [["packageName", 54, 7]], [["updateScript", 53, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 65, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 48, 3], ["configureFlags", 50, 3], ["passthru", 52, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, "pkg-config": false, libxml2: false, libxslt: false, intltool: false, gnome: false, python3Packages: false, fetchpatch: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["sha256", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 33, 7], ["sha256", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageName", 54, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 53, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 65, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 48, 3], ["configureFlags", 50, 3], ["passthru", 52, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,18 +22,18 @@ export default nix.lambda((args) => (() => {
       const version = "0.20.10";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-doc-utils/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gnome-doc-utils-${version}.tar.xz`),
           sha256: "19n4x25ndzngaciiyd8dd6s2mf9gv6nv3wv27ggns2smm7zkj1nb",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://src.fedoraproject.org/rpms/gnome-doc-utils/raw/6b8908abe5af61a952db7174c5d1843708d61f1b/f/gnome-doc-utils-0.14.0-package.patch",
             sha256: "sha256-V2L2/30NoHY/wj3+dsombxveWRSUJb2YByOKtEgVx/0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://src.fedoraproject.org/rpms/gnome-doc-utils/raw/6b8908abe5af61a952db7174c5d1843708d61f1b/f/gnome-doc-utils-0.20.10-python3.patch",
             sha256: "sha256-niH/Yx5H44rsRgkCZS8LWLFB9ZvuInt75zugzoVUhH0=",
           })))),
@@ -49,11 +43,11 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "libxml2"))]);
       const configureFlags = nix.thunk(() => ["--disable-scrollkeeper"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: pname })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[3], packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Collection of documentation utilities for the GNOME project",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-doc-utils",
         license: nix.thunk(() => (() => {
@@ -66,7 +60,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

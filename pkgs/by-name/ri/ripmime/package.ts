@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["NIX_CFLAGS_COMPILE", 23, 5]], [["NIX_LDFLAGS", 26, 5]], [["description", 30, 5], ["maintainers", 31, 5], ["homepage", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5], ["license", 35, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["preInstall", 17, 3], ["env", 22, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 26, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 30, 5], ["maintainers", 31, 5], ["homepage", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5], ["license", 35, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["preInstall", 17, 3], ["env", 22, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,20 +11,20 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ripmime",
       version: "1.4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "inflex",
           repo: "ripMIME",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-D05cz10NTkgc+d3BzUvEkrmMGV/iw4r6m6tizc5TmaI=",
         })))),
       preInstall: "sed -i Makefile -e \"s@LOCATION=.*@LOCATION=$out@\" -e \"s@man/man1@share/&@\"\nmkdir -p \"$out/bin\" \"$out/share/man/man1\"\n",
-      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: " -Wno-error " }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-liconv" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: " -Wno-error " }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_LDFLAGS: "-liconv" }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Attachment extractor for MIME messages",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

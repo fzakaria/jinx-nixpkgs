@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["url", 24, 5], ["hash", 25, 5]], [["name", 40, 7], ["desktopName", 41, 7], ["exec", 42, 7], ["icon", 43, 7], ["comment", 44, 7], ["categories", 45, 7]], [["changelog", 60, 5], ["homepage", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5], ["sourceProvenance", 65, 5], ["license", 66, 5], ["platforms", 67, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["dontUnpack", 27, 3], ["nativeBuildInputs", 29, 3], ["desktopItems", 38, 3], ["installPhase", 49, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, makeBinaryWrapper: false, copyDesktopItems: false, makeDesktopItem: false, desktopToDarwinBundle: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 40, 7], ["desktopName", 41, 7], ["exec", 42, 7], ["icon", 43, 7], ["comment", 44, 7], ["categories", 45, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 60, 5], ["homepage", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5], ["sourceProvenance", 65, 5], ["license", 66, 5], ["platforms", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["dontUnpack", 27, 3], ["nativeBuildInputs", 29, 3], ["desktopItems", 38, 3], ["installPhase", 49, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const unzip = nix.arg($, "unzip");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/logisim-evolution/logisim-evolution/raw/9e0afa3cd6a8bfa75dab61830822cde83c70bb4b/artwork/logisim-evolution-icon.svg",
       hash: "sha256-DNRimhNFt6jLdjqv7o2cNz38K6XnevxD0rGymym3xBs=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "logisim-evolution",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/logisim-evolution/logisim-evolution/releases/download/v${nix.sel(finalAttrs, "version")}/logisim-evolution-${nix.sel(finalAttrs, "version")}-all.jar`),
           hash: "sha256-/mOGoyF6WRvMMRpO2knh9Do4m0md09D29A80T8hfJXc=",
         })))),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([makeBinaryWrapper, copyDesktopItems, unzip], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [desktopToDarwinBundle])))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "logisim-evolution",
             desktopName: "Logisim-evolution",
             exec: "logisim-evolution",
@@ -56,7 +52,7 @@ install -Dm444 ${icon} $out/share/icons/hicolor/scalable/apps/logisim-evolution.
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/logisim-evolution/logisim-evolution/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/logisim-evolution/logisim-evolution",
         description: "Digital logic designer and simulator",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["teams", 68, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 38, 3], ["pytestFlags", 47, 3], ["disabledTestMarks", 51, 3], ["disabledTests", 57, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, pystac: false, "pytest-benchmark": false, "pytest-console-scripts": false, "pytest-mock": false, "pytest-recording": false, "python-dateutil": false, requests: false, "requests-mock": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["teams", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 38, 3], ["pytestFlags", 47, 3], ["disabledTestMarks", 51, 3], ["disabledTests", 57, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stac-utils",
           repo: "pystac-client",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,14 +46,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_filter_conversion_to_cql2_json", "test_filter_conversion_to_cql2_text"]);
       const pythonImportsCheck = nix.thunk(() => ["pystac_client"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python client for working with STAC Catalogs and APIs",
         homepage: "https://github.com/stac-utils/pystac-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

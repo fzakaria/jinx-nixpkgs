@@ -2,12 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mkkops.nix", [[["rev", 28, 9], ["owner", 29, 9], ["repo", 30, 9], ["sha256", 31, 17]], [["description", 57, 9], ["mainProgram", 58, 9], ["homepage", 59, 9], ["changelog", 60, 9], ["license", 61, 9], ["maintainers", 62, 9]], [["pname", 25, 7], ["src", 27, 7], ["vendorHash", 34, 7], ["nativeBuildInputs", 36, 7], ["subPackages", 38, 7], ["ldflags", 40, 7], ["doCheck", 47, 7], ["postInstall", 49, 7], ["meta", 56, 7]], [["constructDrv", 9, 3], ["excludeDrvArgNames", 11, 3], ["extendDrvArgs", 16, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, stdenv: false }, ellipsis: false };
 const formals$2 = { args: { version: false, sha256: false, rev: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mkkops.nix", [["rev", 28, 9], ["owner", 29, 9], ["repo", 30, 9], ["sha256", 31, 17]]);
-const pos$2 = nix.positions(here + "/mkkops.nix", [["description", 57, 9], ["mainProgram", 58, 9], ["homepage", 59, 9], ["changelog", 60, 9], ["license", 61, 9], ["maintainers", 62, 9]]);
-const pos$3 = nix.positions(here + "/mkkops.nix", [["pname", 25, 7], ["src", 27, 7], ["vendorHash", 34, 7], ["nativeBuildInputs", 36, 7], ["subPackages", 38, 7], ["ldflags", 40, 7], ["doCheck", 47, 7], ["postInstall", 49, 7], ["meta", 56, 7]]);
-const pos$4 = nix.positions(here + "/mkkops.nix", [["constructDrv", 9, 3], ["excludeDrvArgNames", 11, 3], ["extendDrvArgs", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       constructDrv: buildGoModule,
       excludeDrvArgNames: nix.thunk(() => ["sha256", "rev"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -26,10 +23,10 @@ export default nix.lambda((args) => (() => {
         const sha256 = nix.arg($_1, "sha256");
         const rev = nix.argOr($_1, "rev", () => nix.force(version));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "kops",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               rev: rev,
               owner: "kubernetes",
               repo: "kops",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
           doCheck: false,
           postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd kops \\\n  --bash <($GOPATH/bin/kops completion bash) \\\n  --fish <($GOPATH/bin/kops completion fish) \\\n  --zsh <($GOPATH/bin/kops completion zsh)\n")),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             description: "Easiest way to get a production Kubernetes up and running",
             mainProgram: "kops",
             homepage: "https://github.com/kubernetes/kops",

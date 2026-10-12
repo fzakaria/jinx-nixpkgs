@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["django", 31, 7]], [["self", 29, 5], ["packageOverrides", 30, 5]], [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["name", 68, 7], ["url", 69, 7], ["hash", 70, 7]], [["name", 73, 7], ["url", 74, 7], ["excludes", 75, 7], ["hash", 76, 7]], [["python3", 127, 46]], [["amazon", 230, 5], ["asgi", 234, 5], ["google", 237, 5], ["google-errors", 241, 5], ["ldap", 244, 5], ["postgres", 246, 5], ["rollbar", 247, 5], ["saml", 248, 5], ["sphinx", 253, 5], ["wsgi", 255, 5]], [["CI_DATABASE", 290, 5], ["DJANGO_SETTINGS_MODULE", 291, 5], ["CI_DB_PORT", 294, 5], ["CI_DB_PASSWORD", 295, 5], ["CI_REDIS_HOST", 296, 5], ["CI_REDIS_PORT", 297, 5]], [["weblate", 371, 28]], [["python", 369, 13], ["tests", 370, 5]], [["description", 376, 5], ["homepage", 377, 5], ["changelog", 378, 5], ["license", 379, 5], ["platforms", 383, 5], ["maintainers", 384, 5], ["mainProgram", 385, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["outputs", 42, 3], ["src", 47, 3], ["postPatch", 54, 3], ["patches", 66, 3], ["build-system", 80, 3], ["nativeBuildInputs", 82, 3], ["postBuild", 85, 3], ["pythonRelaxDeps", 105, 3], ["dependencies", 120, 3], ["optional-dependencies", 229, 3], ["nativeCheckInputs", 259, 3], ["env", 289, 3], ["postgresqlTestUserOptions", 301, 3], ["postgresqlTestSetupPost", 303, 3], ["disabledTestPaths", 316, 3], ["passthru", 368, 3], ["meta", 375, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, gettext: false, borgbackup: false, writeText: false, postgresqlTestHook: false, postgresql: false, redisTestHook: false, fontconfig: false, nixosTests: false, fetchpatch: false, gitSVN: false, subversion: false, "git-review": false, tesseract: false, licensee: false, mercurial: false, openssh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["django", 31, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["self", 29, 5], ["packageOverrides", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 68, 7], ["url", 69, 7], ["hash", 70, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 73, 7], ["url", 74, 7], ["excludes", 75, 7], ["hash", 76, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["python3", 127, 46]]);
-const pos$7 = nix.positions(here + "/package.nix", [["amazon", 230, 5], ["asgi", 234, 5], ["google", 237, 5], ["google-errors", 241, 5], ["ldap", 244, 5], ["postgres", 246, 5], ["rollbar", 247, 5], ["saml", 248, 5], ["sphinx", 253, 5], ["wsgi", 255, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["CI_DATABASE", 290, 5], ["DJANGO_SETTINGS_MODULE", 291, 5], ["CI_DB_PORT", 294, 5], ["CI_DB_PASSWORD", 295, 5], ["CI_REDIS_HOST", 296, 5], ["CI_REDIS_PORT", 297, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["weblate", 371, 28]]);
-const pos$10 = nix.positions(here + "/package.nix", [["python", 369, 13], ["tests", 370, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 376, 5], ["homepage", 377, 5], ["changelog", 378, 5], ["license", 379, 5], ["platforms", 383, 5], ["maintainers", 384, 5], ["mainProgram", 385, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["outputs", 42, 3], ["src", 47, 3], ["postPatch", 54, 3], ["patches", 66, 3], ["build-system", 80, 3], ["nativeBuildInputs", 82, 3], ["postBuild", 85, 3], ["pythonRelaxDeps", 105, 3], ["dependencies", 120, 3], ["optional-dependencies", 229, 3], ["nativeCheckInputs", 259, 3], ["env", 289, 3], ["postgresqlTestUserOptions", 301, 3], ["postgresqlTestSetupPost", 303, 3], ["disabledTestPaths", 316, 3], ["passthru", 368, 3], ["meta", 375, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,20 +27,20 @@ export default nix.lambda((args) => (() => {
   const mercurial = nix.arg($, "mercurial");
   const openssh = nix.arg($, "openssh");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       self: python,
-      packageOverrides: (_final) => (prev) => ({ [nix.POS]: pos$1, django: nix.thunk(() => nix.sel(prev, "django_6_0")) }),
+      packageOverrides: (_final) => (prev) => ({ [nix.POS]: $pos[0], django: nix.thunk(() => nix.sel(prev, "django_6_0")) }),
     }))));
   const python3Packages = nix.thunk(() => nix.sel(python, "pkgs"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "weblate",
       version: "2026.9.1",
       pyproject: true,
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "static"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "WeblateOrg",
           repo: "weblate",
           tag: nix.thunk(() => nix.str`weblate-${nix.sel(finalAttrs, "version")}`),
@@ -69,13 +58,13 @@ substituteInPlace weblate/vcs/git.py \\
 `),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "typing_improvement",
             url: "https://github.com/WeblateOrg/weblate/commit/df5aa0fd19287feb035eaf02323c72bcce92d1ad.patch",
             hash: "sha256-oOxCD5/g2XPwXtOKHHiiKV9caITxfoiWTzolwgwZobc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "fix_migration",
             url: "https://github.com/WeblateOrg/weblate/commit/7c4235779f89a421c7c6c24ee5bbbaa4f0ab50f1.patch",
             excludes: nix.thunk(() => ["docs/changes.rst"]),
@@ -113,7 +102,7 @@ ${manage} collectstatic --no-input
           nix.thunk(() => nix.lookup(w_1, "altcha")),
           nix.thunk(() => nix.lookup(w_1, "argon2-cffi-bindings")),
           nix.thunk(() => nix.lookup(w_1, "argon2-cffi")),
-          nix.thunk(() => nix.app(nix.lookup(w_1, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(borgbackup, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, python3: python })))))),
+          nix.thunk(() => nix.app(nix.lookup(w_1, "toPythonModule"), nix.thunk(() => nix.app(nix.sel(borgbackup, "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], python3: python })))))),
           nix.thunk(() => nix.lookup(w_1, "celery")),
           nix.thunk(() => nix.lookup(w_1, "certifi")),
           nix.thunk(() => nix.lookup(w_1, "cffi")),
@@ -198,7 +187,7 @@ ${manage} collectstatic --no-input
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           amazon: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "boto3"))]),
           asgi: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "granian"))]),
           google: nix.thunk(() => [
@@ -243,7 +232,7 @@ ${manage} collectstatic --no-input
         ], nix.concat(nix.sel(nix.lookup(w_3, "social-auth-core"), "optional-dependencies", "saml"), nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies")))));
       })()),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         CI_DATABASE: "postgresql",
         DJANGO_SETTINGS_MODULE: "weblate.settings_test",
         CI_DB_PORT: "",
@@ -301,12 +290,15 @@ ${nix.sel(python, "pythonOnBuildForHost", "interpreter")} manage.py check
         "weblate/trans/tests/test_alert.py::WebsiteAlertSettingTest::test_website_alerts_enabled",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         python: python,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$9, weblate: nix.thunk(() => nix.attr(nixosTests, "weblate")) })),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[8],
+          weblate: nix.thunk(() => nix.attr(nixosTests, "weblate")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Web based translation tool with tight version control integration",
         homepage: "https://weblate.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/WeblateOrg/weblate/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

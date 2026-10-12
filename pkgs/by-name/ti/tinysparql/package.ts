@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 47, 5], ["hash", 50, 5]], [["name", 59, 7], ["url", 60, 7], ["hash", 61, 7]], [["packageName", 179, 41]], [["package", 181, 7]], [["pkg-config", 180, 11]], [["updateScript", 179, 5], ["tests", 180, 5]], [["homepage", 186, 5], ["description", 187, 5], ["mainProgram", 188, 5], ["teams", 189, 5], ["license", 190, 5], ["platforms", 191, 5], ["pkgConfigModules", 192, 5], ["broken", 197, 5]], [["pname", 37, 3], ["version", 38, 3], ["outputs", 40, 3], ["src", 46, 3], ["patches", 53, 3], ["strictDeps", 65, 3], ["depsBuildBuild", 67, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 89, 3], ["nativeCheckInputs", 101, 3], ["mesonFlags", 106, 3], ["doCheck", 125, 3], ["postPatch", 127, 3], ["preCheck", 137, 3], ["checkPhase", 155, 3], ["postCheck", 168, 3], ["postFixup", 173, 3], ["passthru", 178, 3], ["meta", 185, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, gettext: false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, asciidoc: false, "gobject-introspection": false, buildPackages: false, withIntrospection: true, vala: false, python3: false, libxml2: false, glib: false, wrapGAppsNoGuiHook: false, sqlite: false, libstemmer: false, gnome: false, icu: false, libuuid: false, libsoup_3: false, "json-glib": false, avahi: false, dbus: false, "man-db": false, writeText: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 47, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 59, 7], ["url", 60, 7], ["hash", 61, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 179, 41]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 181, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pkg-config", 180, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 179, 5], ["tests", 180, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 186, 5], ["description", 187, 5], ["mainProgram", 188, 5], ["teams", 189, 5], ["license", 190, 5], ["platforms", 191, 5], ["pkgConfigModules", 192, 5], ["broken", 197, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["outputs", 40, 3], ["src", 46, 3], ["patches", 53, 3], ["strictDeps", 65, 3], ["depsBuildBuild", 67, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 89, 3], ["nativeCheckInputs", 101, 3], ["mesonFlags", 106, 3], ["doCheck", 125, 3], ["postPatch", 127, 3], ["preCheck", 137, 3], ["checkPhase", 155, 3], ["postCheck", 168, 3], ["postFixup", 173, 3], ["passthru", 178, 3], ["meta", 185, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "tinysparql",
       version: "3.11.1",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => (() => {
             const w = nix.withScope(finalAttrs, null);
             return nix.str`mirror://gnome/sources/tinysparql/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.lookup(w, "version")))}/tinysparql-${nix.lookup(w, "version")}.tar.xz`;
@@ -59,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "tinysparql-sqlite-double-value-precision.patch",
             url: "https://gitlab.gnome.org/GNOME/tinysparql/-/commit/47d5bf9313d0ccb1feb7169eed9047d0e1597a39.patch",
             hash: "sha256-k6eELZCEEtD8s7GiMckjTlf6QcAiUNY1Mraw7GROsm4=",
@@ -121,18 +114,21 @@ runHook postCheck
       postCheck: "# Clean up out symlinks\nrm -r $out/lib\n",
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: nix.thunk(() => nix.sel(finalAttrs, "pname")) })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
+            [nix.POS]: $pos[2],
+            packageName: nix.thunk(() => nix.sel(finalAttrs, "pname")),
+          })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://tracker.gnome.org/",
         description: "Desktop-neutral user information store, search tool and indexer",
         mainProgram: "tinysparql",

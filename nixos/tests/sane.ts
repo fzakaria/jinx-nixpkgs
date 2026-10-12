@@ -2,65 +2,51 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sane.nix", [[["fontDirectories", 16, 5]], [["nativeBuildInputs", 27, 9], ["FONTCONFIG_FILE", 28, 9]], [["extraModprobeConfig", 41, 9], ["kernelModules", 44, 9], ["extraModulePackages", 45, 9]], [["ExecStart", 56, 23]], [["wantedBy", 48, 9], ["description", 49, 9], ["serviceConfig", 56, 9]], [["fake-webcam", 47, 24]], [["services", 47, 15]], [["enable", 60, 21]], [["sane", 60, 16]], [["extraDependencies", 61, 14]], [["SANE_DEBUG_V4L", 67, 29]], [["systemPackages", 62, 19], ["variables", 67, 19]], [["boot", 39, 7], ["systemd", 47, 7], ["hardware", 60, 7], ["system", 61, 7], ["environment", 62, 7]], [["machine", 36, 9]], [["name", 35, 3], ["nodes", 36, 3], ["testScript", 69, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sane.nix", [["fontDirectories", 16, 5]]);
-const pos$2 = nix.positions(here + "/sane.nix", [["nativeBuildInputs", 27, 9], ["FONTCONFIG_FILE", 28, 9]]);
 const formals$2 = { args: { pkgs: false, config: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/sane.nix", [["extraModprobeConfig", 41, 9], ["kernelModules", 44, 9], ["extraModulePackages", 45, 9]]);
-const pos$4 = nix.positions(here + "/sane.nix", [["ExecStart", 56, 23]]);
-const pos$5 = nix.positions(here + "/sane.nix", [["wantedBy", 48, 9], ["description", 49, 9], ["serviceConfig", 56, 9]]);
-const pos$6 = nix.positions(here + "/sane.nix", [["fake-webcam", 47, 24]]);
-const pos$7 = nix.positions(here + "/sane.nix", [["services", 47, 15]]);
-const pos$8 = nix.positions(here + "/sane.nix", [["enable", 60, 21]]);
-const pos$9 = nix.positions(here + "/sane.nix", [["sane", 60, 16]]);
-const pos$10 = nix.positions(here + "/sane.nix", [["extraDependencies", 61, 14]]);
-const pos$11 = nix.positions(here + "/sane.nix", [["SANE_DEBUG_V4L", 67, 29]]);
-const pos$12 = nix.positions(here + "/sane.nix", [["systemPackages", 62, 19], ["variables", 67, 19]]);
-const pos$13 = nix.positions(here + "/sane.nix", [["boot", 39, 7], ["systemd", 47, 7], ["hardware", 60, 7], ["system", 61, 7], ["environment", 62, 7]]);
-const pos$14 = nix.positions(here + "/sane.nix", [["machine", 36, 9]]);
-const pos$15 = nix.positions(here + "/sane.nix", [["name", 35, 3], ["nodes", 36, 3], ["testScript", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const text = "66263666188646651519653683416";
   const fontsConf = nix.thunk(() => nix.app(nix.sel(pkgs, "makeFontsConf"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fontDirectories: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dejavu_fonts", "minimal"))]),
     }))));
   const image = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "image.png", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "imagemagickBig"))]),
       FONTCONFIG_FILE: fontsConf,
     })), nix.thunk(() => nix.str`magick -pointsize 100 label:${text} $out
 `)));
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "sane",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraModprobeConfig: "options v4l2loopback devices=1 max_buffers=2 exclusive_caps=1 card_label=VirtualCam\n",
             kernelModules: nix.thunk(() => ["v4l2loopback"]),
             extraModulePackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "v4l2loopback"))]),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "fake-webcam": nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 description: nix.thunk(() => nix.str`fill /dev/video0 with ${image}`),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   ExecStart: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(pkgs_1, "ffmpeg")}/bin/ffmpeg -framerate 30 -re -stream_loop -1 -i ${image} -f v4l2 -pix_fmt gray /dev/video0`),
                   ]),
@@ -69,18 +55,18 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           hardware: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            sane: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
+            [nix.POS]: $pos[8],
+            sane: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true })),
           })),
-          system: nix.thunk(() => ({ [nix.POS]: pos$10, extraDependencies: nix.thunk(() => [image]) })),
+          system: nix.thunk(() => ({ [nix.POS]: $pos[9], extraDependencies: nix.thunk(() => [image]) })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "fswebcam")),
               nix.thunk(() => nix.sel(pkgs_1, "tesseract")),
               nix.thunk(() => nix.sel(pkgs_1, "v4l-utils")),
             ]),
-            variables: nix.thunk(() => ({ [nix.POS]: pos$11, SANE_DEBUG_V4L: "128" })),
+            variables: nix.thunk(() => ({ [nix.POS]: $pos[10], SANE_DEBUG_V4L: "128" })),
           })),
         };
       })(), formals$2),

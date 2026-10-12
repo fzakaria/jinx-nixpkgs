@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["postPatch", 28, 3], ["makeFlags", 39, 3], ["buildInputs", 40, 3], ["postInstall", 44, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, makeWrapper: false, moreutils: false, perlPackages: false, gtk3: false, pango: false, harfbuzz: false, "gdk-pixbuf": false, "at-spi2-atk": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["postPatch", 28, 3], ["makeFlags", 39, 3], ["buildInputs", 40, 3], ["postInstall", 44, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const at_spi2_atk = nix.arg($, "at-spi2-atk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gprename",
       version: "20230429",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/gprename/gprename-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-Du9OO2qeB1jUEJFcVYmLbJAGi2p/IVe3sqladq09AyY=",
         })))),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         ]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Complete batch renamer for files and directories",
         homepage: "https://gprename.sourceforge.net/index.php",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

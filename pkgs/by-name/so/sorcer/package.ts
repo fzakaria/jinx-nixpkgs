@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["broken", 52, 5], ["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["postPatch", 37, 3], ["installPhase", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, boost: false, cairomm_1_0: false, cmake: false, libsndfile: false, lv2: false, ntk: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 52, 5], ["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["postPatch", 37, 3], ["installPhase", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const ntk = nix.arg($, "ntk");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sorcer",
       version: "1.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openAVproductions",
           repo: "openAV-Sorcer",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Fix build with lv2 1.18: https://github.com/brummer10/guitarix/commit/c0334c72\nfind . -type f -exec fgrep -q LV2UI_Descriptor {} \\; \\\n  -exec sed -i {} -e 's/const struct _\\?LV2UI_Descriptor/const LV2UI_Descriptor/' \\;\n\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required (VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       installPhase: "make install\ncp -a ../presets/* \"$out/lib/lv2\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         homepage: "http://openavproductions.com/sorcer/",
         description: "Wavetable LV2 plugin synth, targeted at the electronic / dubstep genre",

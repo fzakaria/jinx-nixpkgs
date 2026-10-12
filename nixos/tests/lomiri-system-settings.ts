@@ -2,67 +2,42 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lomiri-system-settings.nix", [[["maintainers", 4, 8]], [["enable", 13, 24]], [["enable", 34, 18]], [["enable", 33, 9], ["cups-pdf", 34, 9]], [["enable", 36, 23]], [["xserver", 13, 16], ["printing", 32, 16], ["upower", 36, 16]], [["UITK_ICON_THEME", 21, 11]], [["systemPackages", 16, 9], ["variables", 20, 9]], [["supportedLocales", 25, 12]], [["packages", 27, 13]], [["imports", 9, 7], ["services", 13, 7], ["environment", 15, 7], ["i18n", 25, 7], ["fonts", 27, 7]], [["machine", 6, 9]], [["name", 46, 11], ["type", 47, 11], ["element", 48, 11]], [["name", 51, 11], ["type", 52, 11], ["element", 53, 11]], [["name", 57, 11], ["type", 58, 11], ["element", 59, 11], ["skipOCR", 60, 11]], [["name", 65, 11], ["type", 66, 11], ["element", 67, 11]], [["name", 70, 11], ["type", 71, 11], ["element", 72, 11]], [["name", 75, 11], ["type", 76, 11], ["element", 77, 11]], [["name", 80, 11], ["type", 81, 11], ["element", 82, 11]], [["name", 85, 11], ["type", 86, 11], ["element", 87, 11]], [["name", 90, 11], ["type", 91, 11], ["element", 92, 11]], [["name", 97, 11], ["type", 98, 11], ["element", 99, 11]], [["name", 102, 11], ["type", 103, 11], ["element", 104, 11]], [["name", 107, 11], ["type", 108, 11], ["element", 109, 11]], [["name", 112, 11], ["type", 113, 11], ["element", 114, 11]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["enableOCR", 39, 3], ["testScript", 41, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lomiri-system-settings.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/lomiri-system-settings.nix", [["enable", 13, 24]]);
-const pos$3 = nix.positions(here + "/lomiri-system-settings.nix", [["enable", 34, 18]]);
-const pos$4 = nix.positions(here + "/lomiri-system-settings.nix", [["enable", 33, 9], ["cups-pdf", 34, 9]]);
-const pos$5 = nix.positions(here + "/lomiri-system-settings.nix", [["enable", 36, 23]]);
-const pos$6 = nix.positions(here + "/lomiri-system-settings.nix", [["xserver", 13, 16], ["printing", 32, 16], ["upower", 36, 16]]);
-const pos$7 = nix.positions(here + "/lomiri-system-settings.nix", [["UITK_ICON_THEME", 21, 11]]);
-const pos$8 = nix.positions(here + "/lomiri-system-settings.nix", [["systemPackages", 16, 9], ["variables", 20, 9]]);
-const pos$9 = nix.positions(here + "/lomiri-system-settings.nix", [["supportedLocales", 25, 12]]);
-const pos$10 = nix.positions(here + "/lomiri-system-settings.nix", [["packages", 27, 13]]);
-const pos$11 = nix.positions(here + "/lomiri-system-settings.nix", [["imports", 9, 7], ["services", 13, 7], ["environment", 15, 7], ["i18n", 25, 7], ["fonts", 27, 7]]);
-const pos$12 = nix.positions(here + "/lomiri-system-settings.nix", [["machine", 6, 9]]);
-const pos$13 = nix.positions(here + "/lomiri-system-settings.nix", [["name", 46, 11], ["type", 47, 11], ["element", 48, 11]]);
-const pos$14 = nix.positions(here + "/lomiri-system-settings.nix", [["name", 51, 11], ["type", 52, 11], ["element", 53, 11]]);
-const pos$15 = nix.positions(here + "/lomiri-system-settings.nix", [["name", 57, 11], ["type", 58, 11], ["element", 59, 11], ["skipOCR", 60, 11]]);
-const pos$16 = nix.positions(here + "/lomiri-system-settings.nix", [["name", 65, 11], ["type", 66, 11], ["element", 67, 11]]);
-const pos$17 = nix.positions(here + "/lomiri-system-settings.nix", [["name", 70, 11], ["type", 71, 11], ["element", 72, 11]]);
-const pos$18 = nix.positions(here + "/lomiri-system-settings.nix", [["name", 75, 11], ["type", 76, 11], ["element", 77, 11]]);
-const pos$19 = nix.positions(here + "/lomiri-system-settings.nix", [["name", 80, 11], ["type", 81, 11], ["element", 82, 11]]);
-const pos$20 = nix.positions(here + "/lomiri-system-settings.nix", [["name", 85, 11], ["type", 86, 11], ["element", 87, 11]]);
-const pos$21 = nix.positions(here + "/lomiri-system-settings.nix", [["name", 90, 11], ["type", 91, 11], ["element", 92, 11]]);
-const pos$22 = nix.positions(here + "/lomiri-system-settings.nix", [["name", 97, 11], ["type", 98, 11], ["element", 99, 11]]);
-const pos$23 = nix.positions(here + "/lomiri-system-settings.nix", [["name", 102, 11], ["type", 103, 11], ["element", 104, 11]]);
-const pos$24 = nix.positions(here + "/lomiri-system-settings.nix", [["name", 107, 11], ["type", 108, 11], ["element", 109, 11]]);
-const pos$25 = nix.positions(here + "/lomiri-system-settings.nix", [["name", 112, 11], ["type", 113, 11], ["element", 114, 11]]);
-const pos$26 = nix.positions(here + "/lomiri-system-settings.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["enableOCR", 39, 3], ["testScript", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     name: "lomiri-system-settings-standalone",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[5],
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             printing: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
-              "cups-pdf": nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+              "cups-pdf": nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
             })),
-            upower: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+            upower: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "lomiri")), null);
               return [
@@ -70,11 +45,11 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.lookup(w, "lomiri-system-settings")),
               ];
             })()),
-            variables: nix.thunk(() => ({ [nix.POS]: pos$7, UITK_ICON_THEME: "suru" })),
+            variables: nix.thunk(() => ({ [nix.POS]: $pos[6], UITK_ICON_THEME: "suru" })),
           })),
-          i18n: nix.thunk(() => ({ [nix.POS]: pos$9, supportedLocales: nix.thunk(() => ["all"]) })),
+          i18n: nix.thunk(() => ({ [nix.POS]: $pos[8], supportedLocales: nix.thunk(() => ["all"]) })),
           fonts: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             packages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "ubuntu-classic"))];
@@ -86,71 +61,76 @@ export default nix.lambda((args) => (() => {
     enableOCR: true,
     testScript: nix.thunk(() => (() => {
       const settingsPages = nix.thunk(() => [
-        nix.thunk(() => ({ [nix.POS]: pos$13, name: "wifi", type: "internal", element: "networks" })),
+        nix.thunk(() => ({ [nix.POS]: $pos[12], name: "wifi", type: "internal", element: "networks" })),
         nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           name: "bluetooth",
           type: "internal",
           element: "discoverable|None detected",
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           name: "vpn",
           type: "internal",
           element: "Add|Manual|Configuration",
           skipOCR: true,
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           name: "appearance",
           type: "internal",
           element: "Background image|blur effects",
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           name: "desktop",
           type: "internal",
           element: "workspaces|Icon size",
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           name: "sound",
           type: "internal",
           element: "Silent Mode|Message sound",
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           name: "language",
           type: "internal",
           element: "Display language|External keyboard",
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           name: "notification",
           type: "internal",
           element: "Apps that notify",
         })),
-        nix.thunk(() => ({ [nix.POS]: pos$21, name: "gestures", type: "internal", element: "Edge drag" })),
         nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[20],
+          name: "gestures",
+          type: "internal",
+          element: "Edge drag",
+        })),
+        nix.thunk(() => ({
+          [nix.POS]: $pos[21],
           name: "printing",
           type: "internal",
           element: "Configured printers|no printers configured",
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           name: "mouse",
           type: "internal",
           element: "Cursor speed|Wheel scrolling speed",
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           name: "timedate",
           type: "internal",
           element: "Time zone|Set the time and date",
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           name: "security-privacy",
           type: "internal",
           element: "Locking|unlocking|permissions",

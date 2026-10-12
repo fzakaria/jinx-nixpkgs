@@ -2,45 +2,29 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/firewall.nix", [[["systemd", 23, 25]], [["systemd", 24, 27]], [["ipset", 23, 19], ["virtual", 24, 19]], [["plugins", 23, 11]], [["enable", 13, 9], ["stopForFirewall", 14, 9], ["settingsFiles", 15, 9], ["runAsRoot", 19, 9], ["settings", 20, 9]], [["reaction", 12, 16]], [["enable", 27, 27]], [["firewall", 27, 18]], [["services", 12, 7], ["networking", 27, 7]], [["machine", 9, 9]], [["enable", 76, 27]], [["graphics", 78, 20]], [["virtualisation", 78, 5]], [["machine", 77, 21]], [["sshBackdoor", 76, 15], ["nodes", 77, 15]], [["maintainers", 81, 8]], [["name", 7, 3], ["nodes", 9, 3], ["testScript", 30, 3], ["interactive", 76, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/firewall.nix", [["systemd", 23, 25]]);
-const pos$2 = nix.positions(here + "/firewall.nix", [["systemd", 24, 27]]);
-const pos$3 = nix.positions(here + "/firewall.nix", [["ipset", 23, 19], ["virtual", 24, 19]]);
-const pos$4 = nix.positions(here + "/firewall.nix", [["plugins", 23, 11]]);
-const pos$5 = nix.positions(here + "/firewall.nix", [["enable", 13, 9], ["stopForFirewall", 14, 9], ["settingsFiles", 15, 9], ["runAsRoot", 19, 9], ["settings", 20, 9]]);
-const pos$6 = nix.positions(here + "/firewall.nix", [["reaction", 12, 16]]);
-const pos$7 = nix.positions(here + "/firewall.nix", [["enable", 27, 27]]);
-const pos$8 = nix.positions(here + "/firewall.nix", [["firewall", 27, 18]]);
-const pos$9 = nix.positions(here + "/firewall.nix", [["services", 12, 7], ["networking", 27, 7]]);
-const pos$10 = nix.positions(here + "/firewall.nix", [["machine", 9, 9]]);
-const pos$11 = nix.positions(here + "/firewall.nix", [["enable", 76, 27]]);
-const pos$12 = nix.positions(here + "/firewall.nix", [["graphics", 78, 20]]);
-const pos$13 = nix.positions(here + "/firewall.nix", [["virtualisation", 78, 5]]);
-const pos$14 = nix.positions(here + "/firewall.nix", [["machine", 77, 21]]);
-const pos$15 = nix.positions(here + "/firewall.nix", [["sshBackdoor", 76, 15], ["nodes", 77, 15]]);
-const pos$16 = nix.positions(here + "/firewall.nix", [["maintainers", 81, 8]]);
-const pos$17 = nix.positions(here + "/firewall.nix", [["name", 7, 3], ["nodes", 9, 3], ["testScript", 30, 3], ["interactive", 76, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "reaction-firewall-interaction",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             reaction: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               stopForFirewall: true,
               settingsFiles: nix.thunk(() => [
@@ -48,36 +32,36 @@ export default nix.lambda((args) => (() => {
               ]),
               runAsRoot: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 plugins: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
-                  ipset: nix.thunk(() => ({ [nix.POS]: pos$1, systemd: false })),
-                  virtual: nix.thunk(() => ({ [nix.POS]: pos$2, systemd: false })),
+                  [nix.POS]: $pos[2],
+                  ipset: nix.thunk(() => ({ [nix.POS]: $pos[0], systemd: false })),
+                  virtual: nix.thunk(() => ({ [nix.POS]: $pos[1], systemd: false })),
                 })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            [nix.POS]: $pos[7],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
           })),
         };
       })(), formals$2),
     })),
     testScript: "start_all()\n\nmachine.wait_for_unit(\"multi-user.target\")\nmachine.wait_for_unit(\"firewall.service\")\nmachine.wait_for_unit(\"reaction.service\")\n\ndef check_reaction_in_iptables(context = \"\"):\n  with subtest(\"check reaction chain exists\"):\n    machine.sleep(3)\n    output = machine.succeed(\"iptables -nvL\")\n    assert \"reaction\" in output, f\"error: reaction chain missing in iptables, {context}\"\n\ncheck_reaction_in_iptables()\n\nwith subtest(\"reload firewall\"):\n  machine.succeed(\"systemctl reload firewall\")\n  output = machine.succeed(\"journalctl -u firewall.service --no-pager\")\n  assert \"ERROR\" not in output, \"firewall reload failed due to reaction\"\n\n  check_reaction_in_iptables(context=\"after firewall reload\")\n\nwith subtest(\"restart firewall\"):\n  machine.succeed(\"systemctl restart firewall\")\n  output = machine.succeed(\"journalctl -u reaction.service --no-pager\")\n  assert \"INFO stop command\" in output and \"INFO start command\" in output, \"reaction did not restart when firewall was restarted\"\n\n  check_reaction_in_iptables(context=\"after firewall restart\")\n\nwith subtest(\"stop reaction manually and verify chains are cleaned up\"):\n  machine.succeed(\"systemctl stop reaction\")\n  machine.sleep(3)\n  output = machine.succeed(\"iptables -nvL\")\n  assert \"reaction\" not in output, \"reaction chain still exists after the service was stopped\"\n\n  with subtest(\"start reaction again and verify it works\"):\n    machine.succeed(\"systemctl start reaction\")\n    machine.wait_for_unit(\"reaction.service\")\n\n    check_reaction_in_iptables()\n",
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$15,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
+      [nix.POS]: $pos[14],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         machine: (_) => ({
-          [nix.POS]: pos$13,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$12, graphics: false })),
+          [nix.POS]: $pos[12],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[11], graphics: false })),
         }),
       })),
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return nix.concat([nix.thunk(() => nix.lookup(w, "ppom"))], nix.sel(lib, "teams", "ngi", "members"));

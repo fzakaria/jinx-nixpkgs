@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]], [["description", 24, 5], ["mainProgram", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchCrate: false, "cargo-hack": false, rustc: false, zlib: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["mainProgram", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,21 +19,21 @@ export default nix.lambda((args) => (() => {
       const pname = "btfdump";
       const version = "0.0.4";
       const src = nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-iLYGFXB4goiY7eJXXBhX9Y1TOltsW40ogeBhvTV2NvU=",
         }))));
       const cargoHash = "sha256-uGp9XaqepceUmaEKBVEcu8oorfMAOk8BCPIHtun8Sto=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "BTF introspection tool",
         mainProgram: "btf",
         homepage: "https://github.com/anakryiko/btfdump",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: [],
       }));
-      return { [nix.POS]: pos$3, pname, version, src, cargoHash, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, cargoHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["updateScript", 148, 12]], [["description", 151, 5], ["homepage", 152, 5], ["license", 153, 5], ["maintainers", 154, 5], ["platforms", 156, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["configurePhase", 36, 3], ["buildPhase", 72, 3], ["doCheck", 78, 3], ["nativeCheckInputs", 79, 3], ["checkInputs", 82, 3], ["checkPhase", 85, 3], ["outputs", 93, 3], ["installPhase", 99, 3], ["preFixup", 139, 3], ["passthru", 148, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, coreutils: false, libpcap: false, which: false, libcap: false, makeWrapper: false, "nix-update-script": false, perl: false, libmnl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 148, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 151, 5], ["homepage", 152, 5], ["license", 153, 5], ["maintainers", 154, 5], ["platforms", 156, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["configurePhase", 36, 3], ["buildPhase", 72, 3], ["doCheck", 78, 3], ["nativeCheckInputs", 79, 3], ["checkInputs", 82, 3], ["checkPhase", 85, 3], ["outputs", 93, 3], ["installPhase", 99, 3], ["preFixup", 139, 3], ["passthru", 148, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const libmnl = nix.arg($, "libmnl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openonload",
       version: "9.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Xilinx-CNS",
           repo: "onload",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -113,11 +110,11 @@ runHook postInstall
 `),
       preFixup: "# The test apps have a build directory in RPATH, which patchelf can't\n# remove by default because the required library libefcp.so is there.\n# By removing the library, patchelf is unblocked from removing the build\n# directory from RPATH. This doesn't break the binary because the library\n# is also available from other RPATH entries.\nrm -v build/gnu_x86_64/lib/cplane/*.so*\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OpenOnLoad high performance network stack from Solarflare",
         homepage: "https://www.openonload.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/utils.nix", [[["packagePath", 34, 17], ["name", 37, 17], ["platform", 40, 9]], [["0", 225, 11], ["1", 226, 11], ["1-10", 227, 11], ["11-100", 228, 11], ["101-500", 229, 11], ["501-1000", 230, 11], ["501+", 231, 11], ["1001-2500", 232, 11], ["2501-5000", 233, 11], ["5001+", 234, 11]], [["uniqueStrings", 3, 17], ["convertToPackagePlatformAttr", 17, 3], ["convertToPackagePlatformAttrs", 66, 3], ["extractPackageNames", 88, 3], ["groupByPlatform", 115, 3], ["groupByKernel", 139, 3], ["groupAttrdiffBy", 181, 3], ["groupAttrdiffByPlatform", 192, 3], ["groupAttrdiffByKernel", 194, 3], ["getLabels", 216, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/utils.nix", [["packagePath", 34, 17], ["name", 37, 17], ["platform", 40, 9]]);
-const pos$2 = nix.positions(here + "/utils.nix", [["0", 225, 11], ["1", 226, 11], ["1-10", 227, 11], ["11-100", 228, 11], ["101-500", 229, 11], ["501-1000", 230, 11], ["501+", 231, 11], ["1001-2500", 232, 11], ["2501-5000", 233, 11], ["5001+", 234, 11]]);
-const pos$3 = nix.positions(here + "/utils.nix", [["uniqueStrings", 3, 17], ["convertToPackagePlatformAttr", 17, 3], ["convertToPackagePlatformAttrs", 66, 3], ["extractPackageNames", 88, 3], ["groupByPlatform", 115, 3], ["groupByKernel", 139, 3], ["groupAttrdiffBy", 181, 3], ["groupAttrdiffByPlatform", 192, 3], ["groupAttrdiffByKernel", 194, 3], ["getLabels", 216, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const packagePath = nix.thunk(() => nix.app(nix.sel(lib, "init"), splittedPath));
       const name = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ".", packagePath));
       return (nix.asBool(nix.eq(name, "")) ? null : {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         packagePath: packagePath,
         name: name,
         platform: nix.thunk(() => nix.app(nix.sel(lib, "last"), splittedPath)),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
     const getLabels = (rebuildCountByKernel) => nix.app(nix.sel(lib, "mergeAttrsList"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (kernel) => (rebuildCount) => (() => {
           const range = (from) => (to) => (nix.asBool(nix.le(from, rebuildCount)) && nix.asBool((nix.asBool(nix.eq(to, null)) || nix.asBool(nix.le(rebuildCount, to)))));
           return nix.app(nix.sel(lib, "mapAttrs'"), (number) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`10.rebuild-${kernel}: ${number}`)), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               "0": nix.thunk(() => nix.app(range, 0n, 0n)),
               "1": nix.thunk(() => nix.app(range, 1n, 1n)),
               "1-10": nix.thunk(() => nix.app(range, 1n, 10n)),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
             })));
         })(), rebuildCountByKernel)));
     return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       uniqueStrings,
       convertToPackagePlatformAttr,
       convertToPackagePlatformAttrs,

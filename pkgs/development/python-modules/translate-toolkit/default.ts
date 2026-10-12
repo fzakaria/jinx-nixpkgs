@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["chardet", 60, 5], ["fluent", 61, 5], ["ical", 62, 5], ["ini", 63, 5], ["levenshtein", 64, 5], ["markdown", 65, 5], ["php", 66, 5], ["rc", 67, 5], ["spellcheck", 68, 5], ["subtitles", 69, 5], ["toml", 70, 5], ["yaml", 71, 5]], [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["__structuredAttrs", 39, 3], ["src", 43, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["pythonRelaxDeps", 57, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 74, 3], ["disabledTests", 83, 3], ["pythonImportsCheck", 88, 3], ["__darwinAllowLocalNetworking", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "setuptools-scm": false, lxml: false, "unicode-segmentation-rs": false, "charset-normalizer": false, "fluent-syntax": false, vobject: false, iniparse: false, rapidfuzz: false, mistletoe: false, phply: false, pyparsing: false, pyenchant: false, aeidon: false, tomlkit: false, "ruamel-yaml": false, pytestCheckHook: false, addBinToPathHook: false, "pytest-xdist": false, gettext: false, syrupy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["chardet", 60, 5], ["fluent", 61, 5], ["ical", 62, 5], ["ini", 63, 5], ["levenshtein", 64, 5], ["markdown", 65, 5], ["php", 66, 5], ["rc", 67, 5], ["spellcheck", 68, 5], ["subtitles", 69, 5], ["toml", 70, 5], ["yaml", 71, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["__structuredAttrs", 39, 3], ["src", 43, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["pythonRelaxDeps", 57, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 74, 3], ["disabledTests", 83, 3], ["pythonImportsCheck", 88, 3], ["__darwinAllowLocalNetworking", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const syrupy = nix.arg($, "syrupy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "translate-toolkit",
       version: "3.19.19",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "translate",
           repo: "translate",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [lxml, unicode_segmentation_rs]),
       pythonRelaxDeps: nix.thunk(() => ["lxml"]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         chardet: nix.thunk(() => [charset_normalizer]),
         fluent: nix.thunk(() => [fluent_syntax]),
         ical: nix.thunk(() => [vobject]),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["translate"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Useful localization tools for building localization & translation systems",
         homepage: "https://toolkit.translatehouse.org/",
         changelog: nix.thunk(() => nix.str`https://docs.translatehouse.org/projects/translate-toolkit/en/latest/releases/${nix.sel(finalAttrs, "src", "tag")}.html`),

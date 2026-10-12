@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 7], ["hash", 16, 7]], [["homepage", 28, 7], ["description", 29, 7], ["sourceProvenance", 30, 7], ["license", 31, 7], ["maintainers", 32, 7], ["platforms", 33, 7]], [["pname", 12, 5], ["version", 13, 5], ["src", 14, 5], ["dontUnpack", 19, 5], ["installPhase", 21, 5], ["meta", 27, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 7], ["hash", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 28, 7], ["description", 29, 7], ["sourceProvenance", 30, 7], ["license", 31, 7], ["maintainers", 32, 7], ["platforms", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 5], ["version", 13, 5], ["src", 14, 5], ["dontUnpack", 19, 5], ["installPhase", 21, 5], ["meta", 27, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const jarName = nix.thunk(() => nix.str`jmx_prometheus_javaagent-${nix.sel(finalAttrs, "version")}.jar`);
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "jmx-prometheus-javaagent",
         version: "1.0.1",
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`mirror://maven/io/prometheus/jmx/jmx_prometheus_javaagent/${nix.sel(finalAttrs, "version")}/${jarName}`),
             hash: "sha256-fWH3N/1mFhDMwUrqeXZPqh6pSjQMvI8AKbPS7eo9gME=",
           })))),
@@ -29,7 +27,7 @@ mkdir -p $out/lib
 cp $src $out/lib/${jarName}
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://github.com/prometheus/jmx_exporter",
           description: "Process for exposing JMX Beans via HTTP for Prometheus consumption",
           sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),

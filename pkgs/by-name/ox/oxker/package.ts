@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]], [["updateScript", 29, 12]], [["name", 37, 7], ["desktopName", 38, 7], ["comment", 39, 7], ["exec", 40, 7], ["icon", 41, 7], ["terminal", 42, 7], ["categories", 43, 7], ["keywords", 49, 7]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 20, 3], ["checkFlags", 23, 3], ["passthru", 29, 3], ["nativeBuildInputs", 31, 3], ["desktopItems", 35, 3], ["postInstall", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchCrate: false, rustPlatform: false, "nix-update-script": false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 29, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 37, 7], ["desktopName", 38, 7], ["comment", 39, 7], ["exec", 40, 7], ["icon", 41, 7], ["terminal", 42, 7], ["categories", 43, 7], ["keywords", 49, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 20, 3], ["checkFlags", 23, 3], ["passthru", 29, 3], ["nativeBuildInputs", 31, 3], ["desktopItems", 35, 3], ["postInstall", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "oxker",
       version: "0.13.4",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-W2swVJd/rygvt/q3YqqI1bVMmuitre4k9Zwl9JYZZbs=",
@@ -35,13 +31,13 @@ export default nix.lambda((args) => (() => {
           "--skip=ui::draw_blocks::help::tests::test_draw_blocks_help_one_and_two_definitions",
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             desktopName: "oxker",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir --parents $out/share/icons/hicolor/scalable/apps\ncp .github/logo.svg $out/share/icons/hicolor/scalable/apps/oxker.svg\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple TUI to view & control docker containers",
         homepage: "https://github.com/mrjackwills/oxker",
         changelog: nix.thunk(() => nix.str`https://github.com/mrjackwills/oxker/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["updateScript", 67, 5]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5], ["teams", 76, 5], ["mainProgram", 77, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 43, 3], ["dependencies", 52, 3], ["dontWrapGApps", 58, 3], ["preFixup", 59, 3], ["postFixup", 62, 3], ["passthru", 66, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, meson: false, ninja: false, "pkg-config": false, "appstream-glib": false, "desktop-file-utils": false, "gobject-introspection": false, wrapGAppsHook4: false, glib: false, gtk4: false, librsvg: false, libadwaita: false, "glib-networking": false, webkitgtk_6_0: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5], ["teams", 76, 5], ["mainProgram", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 43, 3], ["dependencies", 52, 3], ["dontWrapGApps", 58, 3], ["preFixup", 59, 3], ["postFixup", 62, 3], ["passthru", 66, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_6_0 = nix.arg($, "webkitgtk_6_0");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wike",
       version: "3.2.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hugolabe",
           repo: "Wike",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,11 +57,11 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       postFixup: "wrapPythonProgramsIn \"$out/share/wike\" \"$out ${pythonPath[*]}\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wikipedia Reader for the GNOME Desktop",
         homepage: "https://hugolabe.github.io/Wike",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

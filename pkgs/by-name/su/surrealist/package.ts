@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 15], ["repo", 42, 15], ["rev", 43, 15], ["hash", 44, 15]], [["version", 39, 21], ["src", 40, 13], ["vendorHash", 46, 13]], [["buildGoModule", 34, 7]], [["owner", 56, 5], ["repo", 57, 5], ["rev", 58, 5], ["hash", 59, 5]], [["src", 63, 26], ["cargoRoot", 63, 30], ["hash", 64, 5]], [["x86_64-linux", 98, 9], ["aarch64-linux", 99, 9]], [["src", 68, 26], ["version", 68, 30], ["pname", 69, 5], ["impureEnvVars", 70, 5], ["nativeBuildInputs", 74, 5], ["dontConfigure", 78, 5], ["buildPhase", 79, 5], ["installPhase", 88, 5], ["outputHash", 96, 5], ["outputHashMode", 103, 5]], [["ESBUILD_BINARY_PATH", 131, 5], ["OPENSSL_NO_VENDOR", 132, 5]], [["description", 170, 5], ["homepage", 171, 5], ["license", 172, 5], ["mainProgram", 173, 5], ["maintainers", 174, 5], ["platforms", 178, 5]], [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["cargoDeps", 62, 3], ["node_modules", 67, 3], ["nativeBuildInputs", 106, 3], ["buildInputs", 121, 3], ["env", 130, 3], ["cargoRoot", 135, 3], ["buildAndTestSubdir", 136, 3], ["postPatch", 139, 3], ["postFixup", 147, 3], ["configurePhase", 153, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { buildGoModule: false, bun: false, cairo: false, "cargo-tauri": false, cargo: false, esbuild: false, fetchFromGitHub: false, "gdk-pixbuf": false, "glib-networking": false, "gobject-introspection": false, jq: false, lib: false, libsoup_3: false, makeBinaryWrapper: false, moreutils: false, nodejs: false, openssl: false, pango: false, "pkg-config": false, rustc: false, rustPlatform: false, stdenv: false, typescript_5: false, webkitgtk_4_1: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 15], ["repo", 42, 15], ["rev", 43, 15], ["hash", 44, 15]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 39, 21], ["src", 40, 13], ["vendorHash", 46, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildGoModule", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 56, 5], ["repo", 57, 5], ["rev", 58, 5], ["hash", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["src", 63, 26], ["cargoRoot", 63, 30], ["hash", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["x86_64-linux", 98, 9], ["aarch64-linux", 99, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["src", 68, 26], ["version", 68, 30], ["pname", 69, 5], ["impureEnvVars", 70, 5], ["nativeBuildInputs", 74, 5], ["dontConfigure", 78, 5], ["buildPhase", 79, 5], ["installPhase", 88, 5], ["outputHash", 96, 5], ["outputHashMode", 103, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["ESBUILD_BINARY_PATH", 131, 5], ["OPENSSL_NO_VENDOR", 132, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 170, 5], ["homepage", 171, 5], ["license", 172, 5], ["mainProgram", 173, 5], ["maintainers", 174, 5], ["platforms", 178, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["cargoDeps", 62, 3], ["node_modules", 67, 3], ["nativeBuildInputs", 106, 3], ["buildInputs", 121, 3], ["env", 130, 3], ["cargoRoot", 135, 3], ["buildAndTestSubdir", 136, 3], ["postPatch", 139, 3], ["postFixup", 147, 3], ["configurePhase", 153, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const esbuild_21_5 = nix.thunk(() => (() => {
     const version = "0.21.5";
     return nix.app(nix.sel(esbuild, "override"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         buildGoModule: (args_1) => nix.app(buildGoModule, nix.thunk(() => nix.update(args_1, {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             version: version,
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: "evanw",
                 repo: "esbuild",
                 rev: nix.thunk(() => nix.str`v${version}`),
@@ -60,24 +51,24 @@ export default nix.lambda((args) => (() => {
       })));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "surrealist",
       version: "3.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "surrealdb",
           repo: "surrealist",
           rev: nix.thunk(() => nix.str`surrealist-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-L2O3iMoNptNgzEy7gXptAaHXhv4J5ED/72GLrH43/kQ=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
           hash: "sha256-NhgSfiBb4FGEnirpDFWI3MIMElen8frKDFKmCBJlSBY=",
         })))),
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "surrealist-node_modules",
@@ -87,7 +78,7 @@ export default nix.lambda((args) => (() => {
           buildPhase: "runHook preBuild\n\nexport BUN_INSTALL_CACHE_DIR=$(mktemp -d)\n\nbun install --no-progress --frozen-lockfile --no-cache\n\nrunHook postBuild\n",
           installPhase: "runHook preInstall\n\nmkdir -p $out/node_modules\ncp -R ./node_modules $out\n\nrunHook postInstall\n",
           outputHash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "x86_64-linux": "sha256-tZYIiWHaeryV/f9AFNknRZp8om0y8QH8RCxoqgmbR5g=",
             "aarch64-linux": "sha256-6nB8wcXIYR1WcYqZrNFl0Jfdz/Z3PttULQHsQcfAsOk=",
           }, () => nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}: Platform ${nix.sel(stdenv, "hostPlatform", "system")} is not packaged yet. Supported platforms: x86_64-linux, aarch64-linux.`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -109,7 +100,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [cairo, gdk_pixbuf, libsoup_3, openssl, pango, webkitgtk_4_1]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), esbuild_21_5)),
         OPENSSL_NO_VENDOR: 1n,
       })),
@@ -135,7 +126,7 @@ export PATH="$PWD/node_modules/.bin:$PATH"
 runHook postConfigure
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Visual management of your SurrealDB database",
         homepage: "https://surrealdb.com/surrealist",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["description", 53, 5]], [["pname", 23, 3], ["version", 25, 19], ["src", 25, 27], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 29, 3], ["doCheck", 45, 3], ["checkInputs", 46, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, irmin: false, ppx_irmin: false, mtime: false, astring: false, fmt: false, jsonm: false, logs: false, lwt: false, "metrics-unix": false, "ocaml-syntax-shims": false, cmdliner: false, metrics: false, "alcotest-lwt": false, hex: false, vector: false, "qcheck-alcotest": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["description", 53, 5]]);
-const pos$2 = nix.positions(here + "/test.nix", [["pname", 23, 3], ["version", 25, 19], ["src", 25, 27], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 29, 3], ["doCheck", 45, 3], ["checkInputs", 46, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const vector = nix.arg($, "vector");
   const qcheck_alcotest = nix.arg($, "qcheck-alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "irmin-test",
       version: nix.thunk(() => nix.attr(irmin, "version")),
       src: nix.thunk(() => nix.attr(irmin, "src")),
@@ -48,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       checkInputs: nix.thunk(() => [hex, qcheck_alcotest, vector]),
-      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { [nix.POS]: pos$1, description: "Irmin test suite" })),
+      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { [nix.POS]: $pos[0], description: "Irmin test suite" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=test.ts.map

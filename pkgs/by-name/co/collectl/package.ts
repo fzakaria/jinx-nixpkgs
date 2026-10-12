@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ssh", 64, 7], ["ipmitool", 65, 7]], [["owner", 74, 5], ["repo", 75, 5], ["rev", 76, 5], ["hash", 77, 5]], [["run", 103, 18]], [["tests", 103, 12]], [["description", 106, 5], ["longDescription", 107, 5], ["homepage", 116, 5], ["downloadPage", 117, 5], ["license", 118, 5], ["maintainers", 122, 5], ["platforms", 123, 5], ["mainProgram", 124, 5]], [["pname", 70, 3], ["version", 71, 3], ["src", 73, 3], ["strictDeps", 80, 3], ["patches", 82, 3], ["buildInputs", 87, 3], ["dontBuild", 93, 3], ["installPhase", 95, 3], ["passthru", 103, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, coreutils: false, dmidecode: false, gnugrep: false, inetutils: false, openssh: false, pciutils: false, perl: false, procps: false, rpm: false, "util-linux": false, xterm: false, ipmitool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ssh", 64, 7], ["ipmitool", 65, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 74, 5], ["repo", 75, 5], ["rev", 76, 5], ["hash", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["run", 103, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 103, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 106, 5], ["longDescription", 107, 5], ["homepage", 116, 5], ["downloadPage", 117, 5], ["license", 118, 5], ["maintainers", 122, 5], ["platforms", 123, 5], ["mainProgram", 124, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 70, 3], ["version", 71, 3], ["src", 73, 3], ["strictDeps", 80, 3], ["patches", 82, 3], ["buildInputs", 87, 3], ["dontBuild", 93, 3], ["installPhase", 95, 3], ["passthru", 103, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,17 +43,17 @@ export default nix.lambda((args) => (() => {
         "cd",
         "stty",
       ])), nix.update(nix.app(mkTools, util_linux, nix.thunk(() => ["renice"])), nix.update(nix.app(mkTools, gnugrep, nix.thunk(() => ["grep", "egrep"])), nix.update(nix.app(mkTools, inetutils, nix.thunk(() => ["hostname", "ping"])), nix.update(nix.app(mkTools, procps, nix.thunk(() => ["ps"])), nix.update(nix.app(mkTools, pciutils, nix.thunk(() => ["lspci"])), nix.update(nix.app(mkTools, xterm, nix.thunk(() => ["resize"])), nix.update(nix.app(mkTools, dmidecode, nix.thunk(() => ["dmidecode"])), nix.update(nix.app(mkTools, rpm, nix.thunk(() => ["rpm"])), {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       ssh: nix.thunk(() => nix.app(getExe, openssh)),
       ipmitool: nix.thunk(() => nix.app(getExe, ipmitool)),
     })))))))));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "collectl",
       version: "4.3.20.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "sharkcz",
           repo: "collectl",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,14 +68,14 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nbash ./INSTALL\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           run: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Performance monitoring tool for Linux systems",
         longDescription: "Collectl is a light-weight performance monitoring tool capable of reporting\ninteractively as well as logging to disk. It reports statistics on cpu, disk,\ninfiniband, lustre, memory, network, nfs, process, quadrics, slabs and more\nin easy to read format.\n\nThe `--config` option allows specifying a custom configuration file path,\noverriding the default configuration file in the package's etc directory.\n",
         homepage: "https://github.com/sharkcz/collectl",

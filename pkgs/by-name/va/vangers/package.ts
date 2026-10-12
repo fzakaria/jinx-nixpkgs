@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 64, 5], ["homepage", 65, 5], ["mainProgram", 66, 5], ["platforms", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["strictDeps", 36, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 48, 3], ["installPhase", 53, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, callPackage: false, stdenv: false, cmake: false, installShellFiles: false, SDL2: false, SDL2_net: false, libogg: false, libvorbis: false, ffmpeg_7: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["mainProgram", 66, 5], ["platforms", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["strictDeps", 36, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 48, 3], ["installPhase", 53, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const clunk = nix.thunk(() => nix.app(callPackage, nix.path(here, "./clunk.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vangers",
       version: "2.0-unstable-2024-09-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KranX",
           repo: "Vangers",
           rev: "72145feed605856c6711bbbcb4f9db99db3434fd",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, installShellFiles]),
       installPhase: "runHook preInstall\n\ninstallBin server/vangers_server\ninstallBin src/vangers\ninstallBin surmap/surmap\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Video game that combines elements of the racing and role-playing genres",
         homepage: "https://github.com/KranX/Vangers",
         mainProgram: "vangers",

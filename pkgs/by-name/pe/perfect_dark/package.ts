@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5], ["postFetch", 33, 5]], [["hardcodeZeroVersion", 102, 41]], [["updateScript", 102, 5]], [["description", 106, 5], ["longDescription", 107, 5], ["homepage", 124, 5], ["license", 125, 5], ["maintainers", 131, 5], ["mainProgram", 135, 5], ["platforms", 136, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["enableParallelBuilding", 41, 3], ["hardeningDisable", 44, 3], ["cmakeFlags", 46, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["postPatch", 62, 3], ["preConfigure", 81, 3], ["installPhase", 85, 3], ["passthru", 101, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "sdl2-compat": false, cmake: false, libGL: false, "pkg-config": false, python3: false, zlib: false, unstableGitUpdater: false, romID: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5], ["postFetch", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 102, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 106, 5], ["longDescription", 107, 5], ["homepage", 124, 5], ["license", 125, 5], ["maintainers", 131, 5], ["mainProgram", 135, 5], ["platforms", 136, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["enableParallelBuilding", 41, 3], ["hardeningDisable", 44, 3], ["cmakeFlags", 46, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["postPatch", 62, 3], ["preConfigure", 81, 3], ["installPhase", 85, 3], ["passthru", 101, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const roms = nix.thunk(() => ["ntsc-final", "pal-final", "jpn-final"]);
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "romID", romID, roms), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pe/perfect_dark/package.nix:21:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "perfect_dark",
       version: "0-unstable-2026-08-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "perfect-dark-pc-port",
           repo: "perfect_dark",
           rev: "32a1cb9f268dd3ac73016801025c6bbbfa20130f",
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
       preConfigure: "patchShebangs --build tools/assetmgr\n",
       installPhase: "runHook preInstall\n\npushd ..\ninstall -Dm755 build/pd.* $out/bin/io.github.perfect_dark_pc_port.perfect_dark\ninstall -Dm644 dist/linux/io.github.perfect_dark_pc_port.perfect_dark.desktop \\\n        -t $out/share/applications\ninstall -Dm644 dist/linux/io.github.perfect_dark_pc_port.perfect_dark.png \\\n        -t $out/share/icons/hicolor/256x256/apps\ninstall -Dm644 dist/linux/io.github.perfect_dark_pc_port.perfect_dark.metainfo.xml \\\n        -t $out/share/metainfo\npopd\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Modern cross-platform port of Perfect Dark",
         longDescription: nix.thunk(() => nix.str`This is a port of Ryan Dywer's decompilation of classic N64
 shooter Perfect Dark to modern systems.

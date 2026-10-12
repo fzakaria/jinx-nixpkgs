@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/udev_rules_type1.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 55, 5], ["homepage", 56, 5], ["platforms", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontBuild", 17, 3], ["unpackPhase", 19, 3], ["patchPhase", 40, 3], ["installPhase", 44, 3], ["dontStrip", 51, 3], ["dontPatchELF", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libsaneUDevRuleNumber: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/udev_rules_type1.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/udev_rules_type1.nix", [["description", 55, 5], ["homepage", 56, 5], ["platforms", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/udev_rules_type1.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontBuild", 17, 3], ["unpackPhase", 19, 3], ["patchPhase", 40, 3], ["installPhase", 44, 3], ["dontStrip", 51, 3], ["dontPatchELF", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "brother-udev-rule-type1";
       const version = "1.0.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://download.brother.com/welcome/dlf006654/brother-udev-rule-type1-${version}.all.deb`),
           sha256: "0i0x5jw135pli4jl9mgnr5n2rrdvml57nw84yq2999r4frza53xi",
         }))));
@@ -32,7 +30,7 @@ chmod 644 $out/etc/udev/rules.d/${libsaneUDevRuleNumber}-brother-libsane-type1.r
       const dontStrip = true;
       const dontPatchELF = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Brother type1 scanners udev rules",
         homepage: "http://www.brother.com",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -43,7 +41,7 @@ chmod 644 $out/etc/udev/rules.d/${libsaneUDevRuleNumber}-brother-libsane-type1.r
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

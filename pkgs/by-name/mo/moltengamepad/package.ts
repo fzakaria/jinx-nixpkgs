@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["platforms", 60, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["strictDeps", 29, 3], ["__structuredAttrs", 30, 3], ["enableParallelBuilding", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["preBuild", 39, 3], ["installPhase", 43, 3], ["nativeInstallCheckInputs", 52, 3], ["doInstallCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, udev: false, "go-md2man": false, linuxHeaders: false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["strictDeps", 29, 3], ["__structuredAttrs", 30, 3], ["enableParallelBuilding", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["preBuild", 39, 3], ["installPhase", 43, 3], ["nativeInstallCheckInputs", 52, 3], ["doInstallCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "moltengamepad",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jgeumlek",
           repo: "MoltenGamepad",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jgeumlek/MoltenGamepad",
         description: "Flexible Linux input device translator, geared for gamepads",
         mainProgram: "moltengamepad",

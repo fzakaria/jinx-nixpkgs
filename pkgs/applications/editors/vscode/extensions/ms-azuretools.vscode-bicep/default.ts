@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["publisher", 11, 5], ["name", 12, 5], ["version", 13, 5], ["hash", 14, 5]], [["description", 24, 5], ["downloadPage", 25, 5], ["homepage", 26, 5], ["license", 27, 5]], [["mktplcRef", 10, 3], ["buildInputs", 17, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { "azure-cli": false, bicep: false, "bicep-lsp": false, lib: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["publisher", 11, 5], ["name", 12, 5], ["version", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 24, 5], ["downloadPage", 25, 5], ["homepage", 26, 5], ["license", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 10, 3], ["buildInputs", 17, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         publisher: "ms-azuretools",
         name: "vscode-bicep",
         version: "0.47.16",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       })),
       buildInputs: nix.thunk(() => [azure_cli, bicep, bicep_lsp]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Visual Studio Code extension for Bicep language",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep",
         homepage: "https://github.com/Azure/bicep/tree/main/src/vscode-bicep",

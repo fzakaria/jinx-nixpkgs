@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["dev", 62, 5], ["docs", 63, 5], ["json", 72, 5], ["multiprocessing", 80, 5], ["optional", 81, 5], ["serialization", 82, 5]], [["description", 94, 5], ["longDescription", 95, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["build-system", 51, 3], ["dependencies", 56, 3], ["optional-dependencies", 61, 3], ["nativeCheckInputs", 85, 3], ["pythonImportsCheck", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonOlder: false, setuptools: false, "setuptools-scm": false, numpy: false, "ruamel-yaml": false, invoke: false, ipython: false, msgpack: false, "myst-parser": false, orjson: false, pandas: false, pint: false, pydantic: false, pymongo: false, requests: false, "roman-numerals": false, sphinx: false, "sphinx-markdown-builder": false, "sphinx-rtd-theme": false, torch: false, tqdm: false, pytestCheckHook: false, "pytest-benchmark": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dev", 62, 5], ["docs", 63, 5], ["json", 72, 5], ["multiprocessing", 80, 5], ["optional", 81, 5], ["serialization", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 94, 5], ["longDescription", 95, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["build-system", 51, 3], ["dependencies", 56, 3], ["optional-dependencies", 61, 3], ["nativeCheckInputs", 85, 3], ["pythonImportsCheck", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_benchmark = nix.arg($, "pytest-benchmark");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "monty",
       version: "2026.7.16",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "materialyzeai",
           repo: "monty",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,12 +63,20 @@ export default nix.lambda((args) => (() => {
         const multiprocessing = nix.thunk(() => [tqdm]);
         const optional = nix.thunk(() => nix.concat(dev, nix.concat(json, nix.concat(multiprocessing, serialization))));
         const serialization = nix.thunk(() => [msgpack]);
-        return { [nix.POS]: pos$2, dev, docs, json, multiprocessing, optional, serialization };
+        return {
+          [nix.POS]: $pos[1],
+          dev,
+          docs,
+          json,
+          multiprocessing,
+          optional,
+          serialization,
+        };
       })()),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, pytest_benchmark], nix.sel(finalAttrs, "passthru", "optional-dependencies", "optional"))),
       pythonImportsCheck: nix.thunk(() => ["monty"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Serves as a complement to the Python standard library by providing a suite of tools to solve many common problems",
         longDescription: "\n      Monty implements supplementary useful functions for Python that are not part of the\n      standard library. Examples include useful utilities like transparent support for zipped files, useful design\n      patterns such as singleton and cached_class, and many more.\n    ",
         homepage: "https://github.com/materialyzeai/monty",

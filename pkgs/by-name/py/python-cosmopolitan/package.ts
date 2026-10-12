@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 36, 5], ["description", 37, 5], ["platforms", 38, 5], ["badPlatforms", 39, 5], ["license", 40, 5], ["teams", 41, 5], ["mainProgram", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 15, 3], ["buildFlags", 21, 3], ["checkTarget", 22, 3], ["enableParallelBuilding", 23, 3], ["doCheck", 25, 3], ["dontConfigure", 26, 3], ["dontFixup", 27, 3], ["installPhase", 29, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cosmopolitan: false, unzip: false, "bintools-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 36, 5], ["description", 37, 5], ["platforms", 38, 5], ["badPlatforms", 39, 5], ["license", 40, 5], ["teams", 41, 5], ["mainProgram", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 15, 3], ["buildFlags", 21, 3], ["checkTarget", 22, 3], ["enableParallelBuilding", 23, 3], ["doCheck", 25, 3], ["dontConfigure", 26, 3], ["dontFixup", 27, 3], ["installPhase", 29, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const bintools_unwrapped = nix.arg($, "bintools-unwrapped");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "python-cosmopolitan",
       version: "3.6.14",
       src: nix.thunk(() => nix.sel(cosmopolitan, "dist")),
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "runHook preInstall\ninstall o/third_party/python/*.com -Dt $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://justine.lol/cosmopolitan/",
         description: "Actually Portable Python using Cosmopolitan",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "x86_64")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mpris.nix", [[["description", 16, 8]], [["name", 9, 3], ["buildInputs", 10, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { buildAstalModule: false, gvfs: false, "json-glib": false, libsoup_3: false, quarrel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mpris.nix", [["description", 16, 8]]);
-const pos$2 = nix.positions(here + "/mpris.nix", [["name", 9, 3], ["buildInputs", 10, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const libsoup_3 = nix.arg($, "libsoup_3");
   const quarrel = nix.arg($, "quarrel");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "mpris",
       buildInputs: nix.thunk(() => [gvfs, json_glib, libsoup_3, quarrel]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for mpris players" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "Astal module for mpris players" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=mpris.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 26], ["version", 23, 32], ["hash", 24, 5]], [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["build-system", 27, 3], ["dependencies", 32, 3], ["doCheck", 41, 3], ["pythonNamespaces", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, deepmerge: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, jsonschema: false, picobox: false, pyyaml: false, "sphinx-mdinclude": false, "sphinxcontrib-httpdomain": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 26], ["version", 23, 32], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["build-system", 27, 3], ["dependencies", 32, 3], ["doCheck", 41, 3], ["pythonNamespaces", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const sphinx_mdinclude = nix.arg($, "sphinx-mdinclude");
   const sphinxcontrib_httpdomain = nix.arg($, "sphinxcontrib-httpdomain");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sphinxcontrib-openapi",
       version: "0.8.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-34g4CKW15LQROtaXGFxDo/Qt89znBFOveLpwdpB+miA=",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       pythonNamespaces: nix.thunk(() => ["sphinxcontrib"]),
       pythonImportsCheck: nix.thunk(() => ["sphinxcontrib.openapi"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ikalnytskyi/sphinxcontrib-openapi",
         description: "OpenAPI (fka Swagger) spec renderer for Sphinx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

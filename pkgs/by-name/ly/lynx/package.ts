@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 19, 5], ["hash", 23, 5]], [["NIX_CFLAGS_COMPILE", 52, 5]], [["changelog", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5], ["license", 61, 5], ["platforms", 62, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["enableParallelBuilding", 26, 3], ["configureFlags", 28, 3], ["depsBuildBuild", 35, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["postConfigure", 46, 3], ["env", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, fetchurl: false, "pkg-config": false, ncurses: false, gzip: false, sslSupport: true, openssl: false, nukeReferences: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 19, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5], ["license", 61, 5], ["platforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["enableParallelBuilding", 26, 3], ["configureFlags", 28, 3], ["depsBuildBuild", 35, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["postConfigure", 46, 3], ["env", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nukeReferences = nix.arg($, "nukeReferences");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lynx",
       version: "2.9.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://invisible-island.net/archives/lynx/tarballs/lynx${nix.sel(finalAttrs, "version")}.tar.bz2`),
             nix.thunk(() => nix.str`https://invisible-mirror.net/archives/lynx/tarballs/lynx${nix.sel(finalAttrs, "version")}.tar.bz2`),
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([ncurses, gzip], nix.app(nix.sel(lib, "optional"), sslSupport, openssl))),
       postConfigure: "make cfg_defs.h\nnuke-refs cfg_defs.h\n",
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://lynx.invisible-island.net/lynx${nix.sel(finalAttrs, "version")}/CHANGES.html`),
         description: "Text-mode web browser",
         homepage: "https://lynx.invisible-island.net/",

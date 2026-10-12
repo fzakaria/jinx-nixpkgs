@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["timeout", 13, 10]], [["nativeBuildInputs", 9, 5], ["meta", 13, 5]]]);
 const formals$1 = { args: { runCommand: false, collectl: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["timeout", 13, 10]]);
-const pos$2 = nix.positions(here + "/test.nix", [["nativeBuildInputs", 9, 5], ["meta", 13, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const collectl = nix.arg($, "collectl");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(runCommand, "collectl-test", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => [collectl, coreutils]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 60n })),
     })), nix.thunk(() => nix.str`# Test basic functionality - limit to 5 seconds to avoid hanging
 timeout 5s collectl -c1 >/dev/null || true
 

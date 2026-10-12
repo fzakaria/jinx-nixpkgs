@@ -2,62 +2,50 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/api.nix", [[["maintainers", 5, 8]], [["enabled", 14, 15]], [["type", 18, 15], ["format", 19, 15]], [["demo_logs", 17, 13]], [["codec", 29, 17]], [["type", 25, 15], ["inputs", 26, 15], ["path", 27, 15], ["encoding", 28, 15]], [["file", 24, 13]], [["api", 14, 11], ["sources", 16, 11], ["sinks", 23, 11]], [["enable", 11, 9], ["journaldAccess", 12, 9], ["settings", 13, 9]], [["vector", 10, 16]], [["services", 10, 7]], [["machineapi", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 37, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/api.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/api.nix", [["enabled", 14, 15]]);
-const pos$3 = nix.positions(here + "/api.nix", [["type", 18, 15], ["format", 19, 15]]);
-const pos$4 = nix.positions(here + "/api.nix", [["demo_logs", 17, 13]]);
-const pos$5 = nix.positions(here + "/api.nix", [["codec", 29, 17]]);
-const pos$6 = nix.positions(here + "/api.nix", [["type", 25, 15], ["inputs", 26, 15], ["path", 27, 15], ["encoding", 28, 15]]);
-const pos$7 = nix.positions(here + "/api.nix", [["file", 24, 13]]);
-const pos$8 = nix.positions(here + "/api.nix", [["api", 14, 11], ["sources", 16, 11], ["sinks", 23, 11]]);
-const pos$9 = nix.positions(here + "/api.nix", [["enable", 11, 9], ["journaldAccess", 12, 9], ["settings", 13, 9]]);
-const pos$10 = nix.positions(here + "/api.nix", [["vector", 10, 16]]);
-const pos$11 = nix.positions(here + "/api.nix", [["services", 10, 7]]);
-const pos$12 = nix.positions(here + "/api.nix", [["machineapi", 7, 9]]);
-const pos$13 = nix.positions(here + "/api.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "vector-api",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "happysalada"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machineapi: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             vector: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               journaldAccess: false,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                api: nix.thunk(() => ({ [nix.POS]: pos$2, enabled: true })),
+                [nix.POS]: $pos[7],
+                api: nix.thunk(() => ({ [nix.POS]: $pos[1], enabled: true })),
                 sources: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
-                  demo_logs: nix.thunk(() => ({ [nix.POS]: pos$3, type: "demo_logs", format: "json" })),
+                  [nix.POS]: $pos[3],
+                  demo_logs: nix.thunk(() => ({ [nix.POS]: $pos[2], type: "demo_logs", format: "json" })),
                 })),
                 sinks: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   file: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     type: "file",
                     inputs: nix.thunk(() => ["demo_logs"]),
                     path: "/var/lib/vector/logs.log",
-                    encoding: nix.thunk(() => ({ [nix.POS]: pos$5, codec: "json" })),
+                    encoding: nix.thunk(() => ({ [nix.POS]: $pos[4], codec: "json" })),
                   })),
                 })),
               })),

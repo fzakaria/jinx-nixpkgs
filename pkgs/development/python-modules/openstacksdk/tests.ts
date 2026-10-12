@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["pname", 18, 3], ["version", 19, 26], ["src", 19, 34], ["pyproject", 20, 3], ["dontBuild", 22, 3], ["dontInstall", 23, 3], ["nativeCheckInputs", 25, 3], ["disabledTests", 40, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, ddt: false, hacking: false, jsonschema: false, keyring: false, openstacksdk: false, "oslo-config": false, oslotest: false, "prometheus-client": false, "requests-mock": false, statsd: false, stestrCheckHook: false, testscenarios: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["pname", 18, 3], ["version", 19, 26], ["src", 19, 34], ["pyproject", 20, 3], ["dontBuild", 22, 3], ["dontInstall", 23, 3], ["nativeCheckInputs", 25, 3], ["disabledTests", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const stestrCheckHook = nix.arg($, "stestrCheckHook");
   const testscenarios = nix.arg($, "testscenarios");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "openstacksdk-tests",
       version: nix.thunk(() => nix.attr(openstacksdk, "version")),
       src: nix.thunk(() => nix.attr(openstacksdk, "src")),

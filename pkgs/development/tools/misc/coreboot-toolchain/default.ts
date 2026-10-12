@@ -2,11 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 32, 11], ["rev", 33, 11], ["hash", 34, 11], ["fetchSubmodules", 35, 11], ["leaveDotGit", 36, 11], ["postFetch", 37, 11]], [["homepage", 79, 11], ["description", 80, 11], ["license", 81, 11], ["maintainers", 88, 11], ["platforms", 92, 11]], [["pname", 28, 9], ["version", 29, 9], ["src", 31, 9], ["archives", 43, 9], ["nativeBuildInputs", 45, 9], ["buildInputs", 51, 9], ["enableParallelBuilding", 57, 9], ["dontConfigure", 58, 9], ["dontInstall", 59, 9], ["postPatch", 61, 9], ["buildPhase", 73, 9], ["meta", 78, 9]]]);
 const formals$1 = { args: { stdenv: false, lib: false, callPackage: false }, ellipsis: false };
 const formals$2 = { args: { bison: false, callPackage: false, curl: false, fetchgit: false, flex: false, getopt: false, git: false, gnat14: false, gcc14: false, lib: false, perl: false, stdenvNoCC: false, zlib: false, withAda: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 32, 11], ["rev", 33, 11], ["hash", 34, 11], ["fetchSubmodules", 35, 11], ["leaveDotGit", 36, 11], ["postFetch", 37, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 79, 11], ["description", 80, 11], ["license", 81, 11], ["maintainers", 88, 11], ["platforms", 92, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 9], ["version", 29, 9], ["src", 31, 9], ["archives", 43, 9], ["nativeBuildInputs", 45, 9], ["buildInputs", 51, 9], ["enableParallelBuilding", 57, 9], ["dontConfigure", 58, 9], ["dontInstall", 59, 9], ["postPatch", 61, 9], ["buildPhase", 73, 9], ["meta", 78, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
       const zlib = nix.arg($_1, "zlib");
       const withAda = nix.argOr($_1, "withAda", () => true);
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.str`coreboot-toolchain-${arch}`),
           version: "26.09",
           src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: "https://review.coreboot.org/coreboot",
               rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
               hash: "sha256-4NA1T7o/pWobo08B89VyuITaYkMVq5e+bTBys07BnrE=",
@@ -66,7 +64,7 @@ patchShebangs util/genbuild_h/genbuild_h.sh
 make crossgcc-${arch} CPUS=$NIX_BUILD_CORES DEST=$out
 `),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             homepage: "https://www.coreboot.org",
             description: nix.thunk(() => nix.str`Coreboot toolchain for ${arch} targets`),
             license: nix.thunk(() => (() => {

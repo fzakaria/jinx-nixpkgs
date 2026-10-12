@@ -2,30 +2,18 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/renovate.nix", [[["maintainers", 4, 8]], [["platform", 15, 11], ["endpoint", 16, 11], ["autodiscover", 17, 11], ["gitAuthor", 18, 11]], [["RENOVATE_TOKEN", 21, 11]], [["enable", 13, 9], ["settings", 14, 9], ["credentials", 20, 9]], [["HTTP_PORT", 31, 25]], [["server", 31, 18]], [["enable", 30, 9], ["settings", 31, 9]], [["renovate", 12, 16], ["forgejo", 29, 16]], [["systemPackages", 24, 19]], [["enableStrictShellChecks", 33, 15]], [["services", 12, 7], ["environment", 24, 7], ["systemd", 33, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 9, 3], ["testScript", 36, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/renovate.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/renovate.nix", [["platform", 15, 11], ["endpoint", 16, 11], ["autodiscover", 17, 11], ["gitAuthor", 18, 11]]);
-const pos$3 = nix.positions(here + "/renovate.nix", [["RENOVATE_TOKEN", 21, 11]]);
-const pos$4 = nix.positions(here + "/renovate.nix", [["enable", 13, 9], ["settings", 14, 9], ["credentials", 20, 9]]);
-const pos$5 = nix.positions(here + "/renovate.nix", [["HTTP_PORT", 31, 25]]);
-const pos$6 = nix.positions(here + "/renovate.nix", [["server", 31, 18]]);
-const pos$7 = nix.positions(here + "/renovate.nix", [["enable", 30, 9], ["settings", 31, 9]]);
-const pos$8 = nix.positions(here + "/renovate.nix", [["renovate", 12, 16], ["forgejo", 29, 16]]);
-const pos$9 = nix.positions(here + "/renovate.nix", [["systemPackages", 24, 19]]);
-const pos$10 = nix.positions(here + "/renovate.nix", [["enableStrictShellChecks", 33, 15]]);
-const pos$11 = nix.positions(here + "/renovate.nix", [["services", 12, 7], ["environment", 24, 7], ["systemd", 33, 7]]);
-const pos$12 = nix.positions(here + "/renovate.nix", [["machine", 9, 9]]);
-const pos$13 = nix.positions(here + "/renovate.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 9, 3], ["testScript", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "renovate",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -35,44 +23,44 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             renovate: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 platform: "forgejo",
                 endpoint: "http://localhost:3000",
                 autodiscover: true,
                 gitAuthor: "Renovate <renovate@example.com>",
               })),
-              credentials: nix.thunk(() => ({ [nix.POS]: pos$3, RENOVATE_TOKEN: "/etc/renovate-token" })),
+              credentials: nix.thunk(() => ({ [nix.POS]: $pos[2], RENOVATE_TOKEN: "/etc/renovate-token" })),
             })),
             forgejo: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                server: nix.thunk(() => ({ [nix.POS]: pos$5, HTTP_PORT: 3000n })),
+                [nix.POS]: $pos[5],
+                server: nix.thunk(() => ({ [nix.POS]: $pos[4], HTTP_PORT: 3000n })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(config, "services", "forgejo", "package")),
               nix.thunk(() => nix.sel(pkgs, "tea")),
               nix.thunk(() => nix.sel(pkgs, "git")),
             ]),
           })),
-          systemd: nix.thunk(() => ({ [nix.POS]: pos$10, enableStrictShellChecks: true })),
+          systemd: nix.thunk(() => ({ [nix.POS]: $pos[9], enableStrictShellChecks: true })),
         };
       })(), formals$2),
     })),

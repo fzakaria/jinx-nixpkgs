@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libsignal-jni.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["LIBCLANG_PATH", 38, 5], ["BINDGEN_EXTRA_CLANG_ARGS", 43, 5], ["RUSTFLAGS", 49, 5], ["BORING_BSSL_SOURCE_EXTERNAL", 50, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["env", 37, 3], ["buildAndTestSubdir", 53, 3], ["cargoBuildFlags", 55, 3], ["installPhase", 60, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, cmake: false, "pkg-config": false, protobuf: false, perl: false, jdk: false, gitMinimal: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libsignal-jni.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/libsignal-jni.nix", [["LIBCLANG_PATH", 38, 5], ["BINDGEN_EXTRA_CLANG_ARGS", 43, 5], ["RUSTFLAGS", 49, 5], ["BORING_BSSL_SOURCE_EXTERNAL", 50, 5]]);
-const pos$3 = nix.positions(here + "/libsignal-jni.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5]]);
-const pos$4 = nix.positions(here + "/libsignal-jni.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["env", 37, 3], ["buildAndTestSubdir", 53, 3], ["cargoBuildFlags", 55, 3], ["installPhase", 60, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libsignal-jni",
       version: "0.102.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "signalapp",
           repo: "libsignal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-bdp+DJWmg4czoZAP0GalCuK73/8lDTvVrRAwUCNJQXE=",
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, protobuf, perl, jdk, gitMinimal]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.sel(llvmPackages, "libclang", "lib")}/lib`),
         BINDGEN_EXTRA_CLANG_ARGS: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`-isystem ${nix.sel(llvmPackages, "libclang", "lib")}/lib/clang/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(llvmPackages, "libclang", "version")))}/include` : nix.str`-isystem ${nix.sel(stdenv, "cc", "libc", "dev")}/include -isystem ${nix.sel(llvmPackages, "libclang", "lib")}/lib/clang/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(llvmPackages, "libclang", "version")))}/include`)),
         RUSTFLAGS: "--cfg aes_armv8 --cfg tokio_unstable",
@@ -51,7 +48,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Signal Protocol JNI native library",
         homepage: "https://github.com/signalapp/libsignal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

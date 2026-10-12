@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-extensions.nix", [[["ghidra", 12, 62]], [["name", 26, 7], ["paths", 27, 7], ["nativeBuildInputs", 28, 7], ["postBuild", 32, 7], ["meta", 45, 24]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, symlinkJoin: false, makeBinaryWrapper: false, desktopToDarwinBundle: false, ghidra: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/with-extensions.nix", [["ghidra", 12, 62]]);
-const pos$2 = nix.positions(here + "/with-extensions.nix", [["name", 26, 7], ["paths", 27, 7], ["nativeBuildInputs", 28, 7], ["postBuild", 32, 7], ["meta", 45, 24]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const ghidra = nix.arg($, "ghidra");
-  const ghidra_extensions = nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensions.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, ghidra: ghidra }))));
+  const ghidra_extensions = nix.thunk(() => nix.app(callPackage, nix.path(here, "./extensions.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], ghidra: ghidra }))));
   const allExtensions = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (pkg) => nix.app(nix.sel(lib, "isDerivation"), pkg), ghidra_extensions));
   const withExtensions = (f) => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`${nix.sel(ghidra, "pname")}-with-extensions-${nix.app(nix.sel(lib, "getVersion"), ghidra)}`),
       paths: nix.thunk(() => nix.app(f, allExtensions)),
       nativeBuildInputs: nix.thunk(() => nix.concat([makeBinaryWrapper], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), desktopToDarwinBundle))),

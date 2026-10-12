@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 26]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["makeFlags", 36, 3], ["strictDeps", 38, 3], ["doCheck", 40, 3], ["enableParallelBuilding", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, autoreconfHook: false, fetchFromGitea: false, guile: false, "pkg-config": false, sqlite: false, stdenv: false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["makeFlags", 36, 3], ["strictDeps", 38, 3], ["doCheck", 40, 3], ["enableParallelBuilding", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "guile-sqlite3",
       version: "0.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "notabug.org",
           owner: "guile-sqlite3",
           repo: "guile-sqlite3",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(guile, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://notabug.org/guile-sqlite3/guile-sqlite3",
         description: "Guile bindings for the SQLite3 database engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

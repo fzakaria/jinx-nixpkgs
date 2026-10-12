@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["homepage", 40, 5], ["description", 41, 5], ["sourceProvenance", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["installPhase", 31, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, autoPatchelfHook: false, bzip2: false, xz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["sourceProvenance", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["installPhase", 31, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "stt",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/coqui-ai/STT/releases/download/v${nix.sel(finalAttrs, "version")}/native_client.tflite.Linux.tar.xz`),
           hash: "sha256-RVYc64pLYumQoVUEFZdxfUUaBMozaqgD0h/yiMaWN90=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "install -D stt $out/bin/stt\ninstall -D coqui-stt.h $out/include/coqui-stt.h\ninstall -D libkenlm.so $out/lib/libkenlm.so\ninstall -D libsox.so.3 $out/lib/libsox.so.3\ninstall -D libstt.so $out/lib/libstt.so\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/coqui-ai/STT",
         description: "Deep learning toolkit for Speech-to-Text, battle-tested in research and production",
         sourceProvenance: nix.thunk(() => (() => {

@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetch-grist-enterprise.nix", [[["pname", 17, 5], ["version", 18, 13], ["src", 20, 5], ["dontUnpack", 22, 5], ["dontFixup", 23, 5], ["nativeBuildInputs", 25, 5], ["buildPhase", 30, 5], ["installPhase", 38, 5], ["outputHash", 44, 5], ["outputHashAlgo", 45, 5], ["outputHashMode", 46, 5]], [["yarnLock", 49, 5], ["hash", 50, 5]], [["src", 16, 3], ["offlineCache", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cacert: false, curl: false, fetchYarnDeps: false }, ellipsis: false };
 const formals$2 = { args: { gristSrc: false, version: false, hash: false, offlineCacheHash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fetch-grist-enterprise.nix", [["pname", 17, 5], ["version", 18, 13], ["src", 20, 5], ["dontUnpack", 22, 5], ["dontFixup", 23, 5], ["nativeBuildInputs", 25, 5], ["buildPhase", 30, 5], ["installPhase", 38, 5], ["outputHash", 44, 5], ["outputHashAlgo", 45, 5], ["outputHashMode", 46, 5]]);
-const pos$2 = nix.positions(here + "/fetch-grist-enterprise.nix", [["yarnLock", 49, 5], ["hash", 50, 5]]);
-const pos$3 = nix.positions(here + "/fetch-grist-enterprise.nix", [["src", 16, 3], ["offlineCache", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
     const offlineCacheHash = nix.arg($_1, "offlineCacheHash");
     return (() => {
       const src = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "grist-enterprise-src",
           version: version,
           src: gristSrc,
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
           outputHashMode: "recursive",
         })));
       const offlineCache = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${src}/ext/yarn.lock`),
           hash: offlineCacheHash,
         }))));
-      return { [nix.POS]: pos$3, src, offlineCache };
+      return { [nix.POS]: $pos[2], src, offlineCache };
     })();
   })(), formals$2);
 })(), formals$1);

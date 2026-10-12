@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["name", 24, 7], ["url", 25, 7], ["sha256", 26, 7]], [["homepage", 57, 5], ["description", 58, 5], ["mainProgram", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["nativeBuildInputs", 30, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 41, 3], ["postInstall", 48, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, installShellFiles: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["sha256", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["description", 58, 5], ["mainProgram", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["nativeBuildInputs", 30, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 41, 3], ["postInstall", 48, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "watson",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jazzband",
           repo: "Watson",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-completion.patch",
             url: "https://github.com/jazzband/Watson/commit/43ad061a981eb401c161266f497e34df891a5038.patch",
             sha256: "sha256-v8/asP1wooHKjyy9XXB4Rtf6x+qmGDHpRoHEne/ZCxc=",
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "installShellCompletion --bash --name watson watson.completion\ninstallShellCompletion --zsh --name _watson watson.zsh-completion\ninstallShellCompletion --fish watson.fish\n",
       pythonImportsCheck: nix.thunk(() => ["watson"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/jazzband/Watson",
         description: "Wonderful CLI to track your time",
         mainProgram: "watson",

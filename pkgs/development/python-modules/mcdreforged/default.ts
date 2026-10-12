@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["changelog", 58, 5], ["longDescription", 59, 5], ["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 50, 3], ["pythonRelaxDeps", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, lib: false, pytestCheckHook: false, versionCheckHook: false, colorama: false, colorlog: false, packaging: false, parse: false, pathspec: false, "prompt-toolkit": false, psutil: false, requests: false, resolvelib: false, "ruamel-yaml": false, setuptools: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 58, 5], ["longDescription", 59, 5], ["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 50, 3], ["pythonRelaxDeps", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mcdreforged",
       version: "2.15.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MCDReforged",
           repo: "MCDReforged",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, versionCheckHook]),
       pythonRelaxDeps: nix.thunk(() => ["ruamel.yaml"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/MCDReforged/MCDReforged/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         longDescription: "MCDReforged (abbreviated as MCDR) is a tool which provides the\nmanagement ability of the Minecraft server using custom plugin\nsystem.  It doesn't need to modify or mod the original Minecraft\nserver at all.\n\nFrom in-game calculator, player high-light, to manipulate\nscoreboard, manage structure file and backup / load backup, you\ncan implement these by using MCDR and related plugins.\n",
         description: "Minecraft server control tool",

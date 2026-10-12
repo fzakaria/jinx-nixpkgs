@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 31, 5], ["mainProgram", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]], [["shellPath", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 20, 3], ["postPatch", 22, 3], ["configureFlags", 26, 3], ["buildInputs", 28, 3], ["meta", 30, 3], ["passthru", 39, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, buildPackages: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["mainProgram", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["shellPath", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 20, 3], ["postPatch", 22, 3], ["configureFlags", 26, 3], ["buildInputs", 28, 3], ["meta", 30, 3], ["passthru", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "oksh";
       const version = "7.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ibara",
           repo: "oksh",
           rev: nix.thunk(() => nix.str`oksh-${version}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => ["--no-strip"]);
       const buildInputs = nix.thunk(() => [ncurses]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Portable OpenBSD ksh, based on the Public Domain Korn Shell (pdksh)",
         mainProgram: "oksh",
         homepage: "https://github.com/ibara/oksh",
@@ -41,9 +38,9 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, shellPath: "/bin/oksh" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], shellPath: "/bin/oksh" }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

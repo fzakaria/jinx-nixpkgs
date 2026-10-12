@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["rev-prefix", 30, 7]], [["extensionUuid", 27, 5], ["extensionPortalSlug", 28, 5], ["updateScript", 29, 5]], [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["passthru", 26, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, ninja: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extensionUuid", 27, 5], ["extensionPortalSlug", 28, 5], ["updateScript", 29, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["passthru", 26, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gnome-shell-extension-valent";
       const version = "1.0.0.alpha.49";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "andyholmes",
           repo: "gnome-shell-extension-valent",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,13 +25,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const nativeBuildInputs = nix.thunk(() => [meson, ninja]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         extensionUuid: "valent@andyholmes.ca",
         extensionPortalSlug: "valent",
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GNOME Shell integration for Valent",
         homepage: "https://valent.andyholmes.ca/",
         changelog: nix.thunk(() => nix.str`https://github.com/andyholmes/gnome-shell-extension-valent/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { [nix.POS]: pos$5, pname, version, src, nativeBuildInputs, passthru, meta };
+      return { [nix.POS]: $pos[4], pname, version, src, nativeBuildInputs, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

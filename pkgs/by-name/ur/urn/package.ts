@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 20, 5], ["ignoreCollisions", 21, 5], ["paths", 22, 5]], [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["sha256", 43, 5]], [["homepage", 65, 5], ["description", 66, 5], ["mainProgram", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["urn-rt", 74, 13]], [["pname", 36, 3], ["version", 37, 11], ["src", 39, 3], ["nativeBuildInputs", 46, 3], ["propagatedBuildInputs", 49, 3], ["makeFlags", 51, 3], ["installPhase", 53, 3], ["meta", 64, 3], ["passthru", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, buildEnv: false, makeWrapper: false, lua: false, luajit: false, readline: false, useLuaJit: true, extraLibraries: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 20, 5], ["ignoreCollisions", 21, 5], ["paths", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["sha256", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["mainProgram", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["urn-rt", 74, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 11], ["src", 39, 3], ["nativeBuildInputs", 46, 3], ["propagatedBuildInputs", 49, 3], ["makeFlags", 51, 3], ["installPhase", 53, 3], ["meta", 64, 3], ["passthru", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const extraLibraries = nix.argOr($, "extraLibraries", () => []);
   const version = "0.7.2";
   const urn_rt = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`urn-rt-${version}`),
       ignoreCollisions: true,
       paths: nix.thunk(() => (nix.asBool(useLuaJit) ? [luajit, readline] : [lua])),
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const concatMapStringsSep = nix.thunk(() => nix.attr(lib, "concatMapStringsSep"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`urn${nix.app(optionalString, nix.thunk(() => !nix.eq(extraLibraries, [])), "-with-libraries")}`),
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "urn",
           repo: "urn",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +50,7 @@ wrapProgram $out/bin/urn \\
   --prefix LD_LIBRARY_PATH : ${urn_rt}/lib/
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://urn-lang.com",
         description: "Yet another Lisp variant which compiles to Lua",
         mainProgram: "urn",
@@ -62,7 +58,7 @@ wrapProgram $out/bin/urn \\
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, "urn-rt": urn_rt })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], "urn-rt": urn_rt })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

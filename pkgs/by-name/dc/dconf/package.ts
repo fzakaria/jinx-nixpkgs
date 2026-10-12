@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 44, 5], ["sha256", 45, 5]], [["packageName", 92, 7]], [["dconf", 94, 36]], [["updateScript", 91, 5], ["tests", 94, 5]], [["homepage", 98, 5], ["license", 99, 5], ["platforms", 100, 5], ["badPlatforms", 101, 5], ["teams", 105, 5], ["mainProgram", 106, 5]], [["pname", 29, 3], ["version", 30, 3], ["__structuredAttrs", 32, 3], ["strictDeps", 33, 3], ["outputs", 35, 3], ["src", 43, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 63, 3], ["mesonFlags", 72, 3], ["nativeCheckInputs", 78, 3], ["doCheck", 82, 3], ["postPatch", 85, 3], ["passthru", 90, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, mesonEmulatorHook: false, ninja: false, python3: false, vala: false, libxslt: false, "pkg-config": false, glib: false, "bash-completion": false, dbus: false, gnome: false, "gtk-doc": false, "docbook-xsl-nons": false, docbook_xml_dtd_42: false, nixosTests: false, buildPackages: false, "gobject-introspection": false, withIntrospection: true, withDocs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 44, 5], ["sha256", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 92, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["dconf", 94, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 91, 5], ["tests", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 98, 5], ["license", 99, 5], ["platforms", 100, 5], ["badPlatforms", 101, 5], ["teams", 105, 5], ["mainProgram", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["__structuredAttrs", 32, 3], ["strictDeps", 33, 3], ["outputs", 35, 3], ["src", 43, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 63, 3], ["mesonFlags", 72, 3], ["nativeCheckInputs", 78, 3], ["doCheck", 82, 3], ["postPatch", 85, 3], ["passthru", 90, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const withIntrospection = nix.argOr($, "withIntrospection", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gobject_introspection)) && nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages))));
   const withDocs = nix.argOr($, "withDocs", () => nix.force(withIntrospection));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dconf",
       version: "0.49.0",
       __structuredAttrs: true,
       strictDeps: true,
       outputs: nix.thunk(() => nix.concat(["out", "lib", "dev", "man"], nix.app(nix.sel(lib, "optional"), withDocs, "devdoc"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/dconf/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/dconf-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "FqR+SaWBVtu5ZXjhcIMlKZ5MGe6pvhKNW9Ev0JY9bDY=",
         })))),
@@ -67,12 +62,12 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))),
       postPatch: "chmod +x tests/test-dconf.py tests/shellcheck.sh\npatchShebangs tests/test-dconf.py tests/shellcheck.sh\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "dconf" })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, dconf: nix.thunk(() => nix.attr(nixosTests, "dconf")) })),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "dconf" })))),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], dconf: nix.thunk(() => nix.attr(nixosTests, "dconf")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.gnome.org/GNOME/dconf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

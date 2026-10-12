@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetcher.nix", [[["src", 16, 13], ["fetchAll", 16, 17], ["nativeBuildInputs", 18, 5], ["outputHashAlgo", 20, 5], ["outputHashMode", 21, 5], ["outputHash", 22, 5]]]);
 const formals$1 = { args: { lib: false, zig: false, runCommand: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, name: true, src: false, fetchAll: true, hash: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fetcher.nix", [["src", 16, 13], ["fetchAll", 16, 17], ["nativeBuildInputs", 18, 5], ["outputHashAlgo", 20, 5], ["outputHashMode", 21, 5], ["outputHash", 22, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
     const fetchAll = nix.argOr($_1, "fetchAll", () => false);
     const hash = nix.argOr($_1, "hash", () => nix.sel(lib, "fakeHash"));
     return nix.app(runCommand, nix.thunk(() => nix.str`${name}-zig-deps`), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         src: src,
         fetchAll: fetchAll,
         nativeBuildInputs: nix.thunk(() => [zig]),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["rev-prefix", 62, 40]], [["updateScript", 62, 12]], [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["maintainers", 68, 5], ["license", 69, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 37, 3], ["pythonRelaxDeps", 49, 3], ["nativeCheckInputs", 53, 3], ["preCheck", 55, 3], ["pythonImportsCheck", 60, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, jsonschema: false, peewee: false, platformdirs: false, iso8601: false, "rfc3339-validator": false, "strict-rfc3339": false, tomlkit: false, deprecation: false, timeslot: false, pytestCheckHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 62, 40]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 62, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["maintainers", 68, 5], ["license", 69, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 37, 3], ["pythonRelaxDeps", 49, 3], ["nativeCheckInputs", 53, 3], ["preCheck", 55, 3], ["pythonImportsCheck", 60, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.17";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ActivityWatch",
           repo: "aw-core",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -54,11 +50,11 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# Fake home folder for tests that write to $HOME\nexport HOME=\"$TMPDIR\"\n";
       const pythonImportsCheck = nix.thunk(() => ["aw_core"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Core library for ActivityWatch",
         mainProgram: "aw-cli",
         homepage: "https://github.com/ActivityWatch/aw-core",
@@ -69,7 +65,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

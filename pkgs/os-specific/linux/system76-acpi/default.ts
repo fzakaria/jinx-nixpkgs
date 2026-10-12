@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["moduleName", 12, 12]], [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["NIX_CFLAGS_COMPILE", 40, 7]], [["maintainers", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["broken", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["longDescription", 52, 5]], [["name", 8, 3], ["pname", 9, 3], ["version", 10, 3], ["passthru", 12, 3], ["src", 14, 3], ["hardeningDisable", 21, 3], ["nativeBuildInputs", 23, 3], ["buildFlags", 25, 3], ["installPhase", 29, 3], ["env", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["moduleName", 12, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 40, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["maintainers", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["broken", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["longDescription", 52, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 8, 3], ["pname", 9, 3], ["version", 10, 3], ["passthru", 12, 3], ["src", 14, 3], ["hardeningDisable", 21, 3], ["nativeBuildInputs", 23, 3], ["buildFlags", 25, 3], ["installPhase", 29, 3], ["env", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const kernel = nix.arg($, "kernel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),
       pname: "system76-acpi-module",
       version: "1.0.2",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, moduleName: "system76_acpi" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], moduleName: "system76_acpi" })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "pop-os",
           repo: "system76-acpi-dkms",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,11 +38,11 @@ mv lib/udev/hwdb.d/* $out/lib/udev/hwdb.d
 runHook postInstall
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "ahoneybun"))];

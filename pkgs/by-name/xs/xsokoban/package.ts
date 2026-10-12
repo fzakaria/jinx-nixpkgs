@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["NIX_CFLAGS_COMPILE", 27, 7]], [["description", 66, 5], ["homepage", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["env", 27, 3], ["hardeningDisable", 29, 3], ["prePatch", 31, 3], ["preConfigure", 36, 3], ["preBuild", 58, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false, xorgproto: false, libxpm: false, libxt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["env", 27, 3], ["hardeningDisable", 29, 3], ["prePatch", 31, 3], ["preConfigure", 36, 3], ["preBuild", 58, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const libxpm = nix.arg($, "libxpm");
   const libxt = nix.arg($, "libxt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xsokoban",
       version: "3.3c",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.cs.cornell.edu/andru/release/xsokoban-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "006lp8y22b9pi81x1a9ldfgkl1fbmkdzfw0lqw5y9svmisbafbr9",
         })))),
       buildInputs: nix.thunk(() => [libx11, xorgproto, libxpm, libxt]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(libxpm, "dev")}/include/X11 -Wno-error=implicit-int -Wno-error=implicit-function-declaration`),
       })),
       hardeningDisable: nix.thunk(() => ["format"]),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "sed -e 's/getline/my_getline/' -i score.c\nsed -e 's/getpass/my_getpass/' -i externs.h display.c\n# gcc15\nsed -e 's/Score(_false_)/Score()/g' -i main.c\n\nchmod a+rw config.h\ncat >>config.h <<EOF\n#define HERE \"@nixos-packaged\"\n#define WWW 0\n#define OWNER \"$(whoami)\"\n#define ROOTDIR \"$out/lib/xsokoban\"\n#define ANYLEVEL 1\n#define SCOREFILE \".xsokoban-score\"\n#define LOCKFILE \".xsokoban-score-lock\"\nEOF\n\nsed -i main.c \\\n  -e 's/getpass[(][^)]*[)]/PASSWORD/' \\\n  -e '/if [(]owner[)]/iowner=1;'\n",
       preBuild: "sed -i Makefile \\\n  -e \"s@/usr/local/@$out/@\" \\\n  -e \"s@ /bin/@ @\"\nmkdir -p $out/bin $out/share $out/man/man1 $out/lib\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "X sokoban",
         homepage: "https://www.cs.cornell.edu/andru/xsokoban.html",
         mainProgram: "xsokoban",

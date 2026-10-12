@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tesseract5.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["updateScript", 45, 12]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["enableParallelBuilding", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["passthru", 45, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, autoreconfHook: false, "pkg-config": false, curl: false, leptonica: false, libarchive: false, libpng: false, libtiff: false, icu: false, pango: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tesseract5.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/tesseract5.nix", [["updateScript", 45, 12]]);
-const pos$3 = nix.positions(here + "/tesseract5.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]]);
-const pos$4 = nix.positions(here + "/tesseract5.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["enableParallelBuilding", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["passthru", 45, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const icu = nix.arg($, "icu");
   const pango = nix.arg($, "pango");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tesseract",
       version: "5.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tesseract-ocr",
           repo: "tesseract",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => [curl, leptonica, libarchive, libpng, libtiff, icu, pango]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OCR engine",
         homepage: "https://github.com/tesseract-ocr/tesseract",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

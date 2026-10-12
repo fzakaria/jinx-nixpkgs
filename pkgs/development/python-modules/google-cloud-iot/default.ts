@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 16, 3], ["version", 17, 3], ["format", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 25, 3], ["nativeCheckInputs", 34, 3], ["postPatch", 42, 3], ["disabledTests", 49, 3], ["pythonImportsCheck", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "google-api-core": false, "grpc-google-iam-v1": false, libcst: false, mock: false, "proto-plus": false, protobuf: false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["format", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 25, 3], ["nativeCheckInputs", 34, 3], ["postPatch", 42, 3], ["disabledTests", 49, 3], ["pythonImportsCheck", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-pLQgcwR89F+9jcSDtW/5+6Gy+Wk7XQf4iD49vDPkN9U=",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_list_device_registries"]);
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.iot", "google.cloud.iot_v1"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cloud IoT API API client library",
         homepage: "https://github.com/googleapis/python-iot",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-iot/blob/v${version}/CHANGELOG.md`),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

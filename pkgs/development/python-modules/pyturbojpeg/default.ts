@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["libturbojpeg", 28, 7]], [["changelog", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 36, 3], ["disabledTests", 41, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, libjpeg_turbo: false, setuptools: false, numpy: false, "pytest-memray": false, pytestCheckHook: false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libturbojpeg", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 36, 3], ["disabledTests", 41, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyturbojpeg",
       version: "2.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lilohuang",
           repo: "PyTurboJPEG",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./lib-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             libturbojpeg: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libjpeg_turbo)}/lib/libturbojpeg${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
       ]),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_library_loading_error_message"]),
       pythonImportsCheck: nix.thunk(() => ["turbojpeg"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/lilohuang/PyTurboJPEG/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python wrapper of libjpeg-turbo for decoding and encoding JPEG image",
         homepage: "https://github.com/lilohuang/PyTurboJPEG",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["updateScript", 28, 5], ["eafPythonDeps", 29, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["files", 22, 3], ["passthru", 27, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, melpaBuild: false, fetchFromGitHub: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 28, 5], ["eafPythonDeps", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["files", 22, 3], ["passthru", 27, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "eaf-pyqterminal",
       version: "0-unstable-2025-10-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mumu-lhl",
           repo: "eaf-pyqterminal",
           rev: "37b7b2afbdd47c89d85ff6e3412e1dc6c555ab50",
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       files: "(\"*.el\"\n \"*.py\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         eafPythonDeps: (ps) => (() => {
           const w = nix.withScope(ps, null);
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })(),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Terminal written in PyQt6 for the EAF",
         homepage: "https://github.com/mumu-lhl/eaf-pyqterminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

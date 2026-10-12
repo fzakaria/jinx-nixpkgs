@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 7, 3], ["nativeBuildInputs", 9, 3], ["script", 14, 3], ["hash", 22, 3]]]);
 const formals$1 = { args: { "pnpm-fixup-state-db": false, testers: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 7, 3], ["nativeBuildInputs", 9, 3], ["script", 14, 3], ["hash", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "pnpm-fixup-state-db-test",
       nativeBuildInputs: nix.thunk(() => [pnpm_fixup_state_db, sqlite]),
       script: nix.thunk(() => nix.str`install -Dm644 ${nix.path(here, "./index.db")} ./store/index.db

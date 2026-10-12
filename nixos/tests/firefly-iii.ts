@@ -2,40 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/firefly-iii.nix", [[["maintainers", 10, 5], ["platforms", 11, 5]], [["text", 18, 30]], [["firefly-iii-appkey", 18, 9]], [["etc", 17, 19]], [["APP_KEY_FILE", 24, 11], ["LOG_CHANNEL", 25, 11], ["SITE_OWNER", 26, 11]], [["enable", 21, 9], ["enableNginx", 22, 9], ["settings", 23, 9]], [["firefly-iii", 20, 16]], [["environment", 17, 7], ["services", 20, 7]], [["text", 35, 30]], [["text", 36, 25]], [["firefly-iii-appkey", 35, 9], ["postgres-pass", 36, 9]], [["etc", 34, 19]], [["APP_KEY_FILE", 42, 11], ["LOG_CHANNEL", 43, 11], ["SITE_OWNER", 44, 11], ["DB_CONNECTION", 45, 11], ["DB_DATABASE", 46, 11], ["DB_USERNAME", 47, 11], ["DB_PASSWORD_FILE", 48, 11], ["PGSQL_SCHEMA", 49, 11]], [["enable", 39, 9], ["enableNginx", 40, 9], ["settings", 41, 9]], [["enable", 54, 9], ["package", 55, 9], ["authentication", 56, 9], ["initialScript", 60, 9]], [["firefly-iii", 38, 16], ["postgresql", 53, 16]], [["environment", 34, 7], ["services", 38, 7]], [["text", 73, 30]], [["text", 74, 22]], [["firefly-iii-appkey", 73, 9], ["mysql-pass", 74, 9]], [["etc", 72, 19]], [["APP_KEY_FILE", 80, 11], ["LOG_CHANNEL", 81, 11], ["SITE_OWNER", 82, 11], ["DB_CONNECTION", 83, 11], ["DB_DATABASE", 84, 11], ["DB_USERNAME", 85, 11], ["DB_PASSWORD_FILE", 86, 11], ["DB_SOCKET", 87, 11]], [["enable", 77, 9], ["enableNginx", 78, 9], ["settings", 79, 9]], [["character-set-server", 99, 25]], [["mysqld", 99, 18]], [["enable", 92, 9], ["package", 93, 9], ["initialScript", 94, 9], ["settings", 99, 9]], [["firefly-iii", 76, 16], ["mysql", 91, 16]], [["environment", 72, 7], ["services", 76, 7]], [["fireflySqlite", 14, 9], ["fireflyPostgresql", 31, 9], ["fireflyMysql", 69, 9]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 14, 3], ["testScript", 103, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/firefly-iii.nix", [["maintainers", 10, 5], ["platforms", 11, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/firefly-iii.nix", [["text", 18, 30]]);
-const pos$3 = nix.positions(here + "/firefly-iii.nix", [["firefly-iii-appkey", 18, 9]]);
-const pos$4 = nix.positions(here + "/firefly-iii.nix", [["etc", 17, 19]]);
-const pos$5 = nix.positions(here + "/firefly-iii.nix", [["APP_KEY_FILE", 24, 11], ["LOG_CHANNEL", 25, 11], ["SITE_OWNER", 26, 11]]);
-const pos$6 = nix.positions(here + "/firefly-iii.nix", [["enable", 21, 9], ["enableNginx", 22, 9], ["settings", 23, 9]]);
-const pos$7 = nix.positions(here + "/firefly-iii.nix", [["firefly-iii", 20, 16]]);
-const pos$8 = nix.positions(here + "/firefly-iii.nix", [["environment", 17, 7], ["services", 20, 7]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/firefly-iii.nix", [["text", 35, 30]]);
-const pos$10 = nix.positions(here + "/firefly-iii.nix", [["text", 36, 25]]);
-const pos$11 = nix.positions(here + "/firefly-iii.nix", [["firefly-iii-appkey", 35, 9], ["postgres-pass", 36, 9]]);
-const pos$12 = nix.positions(here + "/firefly-iii.nix", [["etc", 34, 19]]);
-const pos$13 = nix.positions(here + "/firefly-iii.nix", [["APP_KEY_FILE", 42, 11], ["LOG_CHANNEL", 43, 11], ["SITE_OWNER", 44, 11], ["DB_CONNECTION", 45, 11], ["DB_DATABASE", 46, 11], ["DB_USERNAME", 47, 11], ["DB_PASSWORD_FILE", 48, 11], ["PGSQL_SCHEMA", 49, 11]]);
-const pos$14 = nix.positions(here + "/firefly-iii.nix", [["enable", 39, 9], ["enableNginx", 40, 9], ["settings", 41, 9]]);
-const pos$15 = nix.positions(here + "/firefly-iii.nix", [["enable", 54, 9], ["package", 55, 9], ["authentication", 56, 9], ["initialScript", 60, 9]]);
-const pos$16 = nix.positions(here + "/firefly-iii.nix", [["firefly-iii", 38, 16], ["postgresql", 53, 16]]);
-const pos$17 = nix.positions(here + "/firefly-iii.nix", [["environment", 34, 7], ["services", 38, 7]]);
 const formals$4 = { args: { pkgs: false }, ellipsis: true };
-const pos$18 = nix.positions(here + "/firefly-iii.nix", [["text", 73, 30]]);
-const pos$19 = nix.positions(here + "/firefly-iii.nix", [["text", 74, 22]]);
-const pos$20 = nix.positions(here + "/firefly-iii.nix", [["firefly-iii-appkey", 73, 9], ["mysql-pass", 74, 9]]);
-const pos$21 = nix.positions(here + "/firefly-iii.nix", [["etc", 72, 19]]);
-const pos$22 = nix.positions(here + "/firefly-iii.nix", [["APP_KEY_FILE", 80, 11], ["LOG_CHANNEL", 81, 11], ["SITE_OWNER", 82, 11], ["DB_CONNECTION", 83, 11], ["DB_DATABASE", 84, 11], ["DB_USERNAME", 85, 11], ["DB_PASSWORD_FILE", 86, 11], ["DB_SOCKET", 87, 11]]);
-const pos$23 = nix.positions(here + "/firefly-iii.nix", [["enable", 77, 9], ["enableNginx", 78, 9], ["settings", 79, 9]]);
-const pos$24 = nix.positions(here + "/firefly-iii.nix", [["character-set-server", 99, 25]]);
-const pos$25 = nix.positions(here + "/firefly-iii.nix", [["mysqld", 99, 18]]);
-const pos$26 = nix.positions(here + "/firefly-iii.nix", [["enable", 92, 9], ["package", 93, 9], ["initialScript", 94, 9], ["settings", 99, 9]]);
-const pos$27 = nix.positions(here + "/firefly-iii.nix", [["firefly-iii", 76, 16], ["mysql", 91, 16]]);
-const pos$28 = nix.positions(here + "/firefly-iii.nix", [["environment", 72, 7], ["services", 76, 7]]);
-const pos$29 = nix.positions(here + "/firefly-iii.nix", [["fireflySqlite", 14, 9], ["fireflyPostgresql", 31, 9], ["fireflyMysql", 69, 9]]);
-const pos$30 = nix.positions(here + "/firefly-iii.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 14, 3], ["testScript", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,34 +14,34 @@ export default nix.lambda((args) => (() => {
   const db_pass = "Test2Test2";
   const app_key = "TestTestTestTestTestTestTestTest";
   return {
-    [nix.POS]: pos$30,
+    [nix.POS]: $pos[29],
     name: "firefly-iii",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "savyajha"))]),
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       fireflySqlite: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              "firefly-iii-appkey": nix.thunk(() => ({ [nix.POS]: pos$2, text: app_key })),
+              [nix.POS]: $pos[2],
+              "firefly-iii-appkey": nix.thunk(() => ({ [nix.POS]: $pos[1], text: app_key })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             "firefly-iii": nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               enableNginx: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 APP_KEY_FILE: "/etc/firefly-iii-appkey",
                 LOG_CHANNEL: "stdout",
                 SITE_OWNER: "mail@example.com",
@@ -83,23 +54,23 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$11,
-              "firefly-iii-appkey": nix.thunk(() => ({ [nix.POS]: pos$9, text: app_key })),
-              "postgres-pass": nix.thunk(() => ({ [nix.POS]: pos$10, text: db_pass })),
+              [nix.POS]: $pos[10],
+              "firefly-iii-appkey": nix.thunk(() => ({ [nix.POS]: $pos[8], text: app_key })),
+              "postgres-pass": nix.thunk(() => ({ [nix.POS]: $pos[9], text: db_pass })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             "firefly-iii": nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               enable: true,
               enableNginx: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 APP_KEY_FILE: "/etc/firefly-iii-appkey",
                 LOG_CHANNEL: "stdout",
                 SITE_OWNER: "mail@example.com",
@@ -111,7 +82,7 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "postgresql_16")),
               authentication: "local all postgres peer\nlocal firefly firefly password\n",
@@ -128,23 +99,23 @@ CREATE SCHEMA AUTHORIZATION firefly;
         const $_1 = nix.formals(args_1, formals$4);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$20,
-              "firefly-iii-appkey": nix.thunk(() => ({ [nix.POS]: pos$18, text: app_key })),
-              "mysql-pass": nix.thunk(() => ({ [nix.POS]: pos$19, text: db_pass })),
+              [nix.POS]: $pos[19],
+              "firefly-iii-appkey": nix.thunk(() => ({ [nix.POS]: $pos[17], text: app_key })),
+              "mysql-pass": nix.thunk(() => ({ [nix.POS]: $pos[18], text: db_pass })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             "firefly-iii": nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               enable: true,
               enableNginx: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 APP_KEY_FILE: "/etc/firefly-iii-appkey",
                 LOG_CHANNEL: "stdout",
                 SITE_OWNER: "mail@example.com",
@@ -156,7 +127,7 @@ CREATE SCHEMA AUTHORIZATION firefly;
               })),
             })),
             mysql: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "mariadb")),
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "firefly-init.sql", nix.thunk(() => nix.str`create database firefly DEFAULT CHARACTER SET utf8mb4;
@@ -164,8 +135,8 @@ create user 'firefly'@'localhost' identified by '${db_pass}';
 grant all on firefly.* to 'firefly'@'localhost';
 `))),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$25,
-                mysqld: nix.thunk(() => ({ [nix.POS]: pos$24, "character-set-server": "utf8mb4" })),
+                [nix.POS]: $pos[24],
+                mysqld: nix.thunk(() => ({ [nix.POS]: $pos[23], "character-set-server": "utf8mb4" })),
               })),
             })),
           })),

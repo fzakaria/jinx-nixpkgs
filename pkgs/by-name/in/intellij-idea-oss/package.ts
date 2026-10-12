@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 35, 7], ["hash", 36, 7]], [["version", 14, 5], ["buildNumber", 15, 5], ["buildType", 16, 5], ["ideaHash", 17, 5], ["androidHash", 18, 5], ["jpsHash", 19, 5], ["restarterHash", 20, 5], ["mvnDeps", 21, 5], ["repositories", 22, 5], ["kotlin-jps-plugin", 34, 5]], [["homepage", 67, 5], ["description", 68, 5], ["longDescription", 69, 5], ["maintainers", 73, 5], ["teams", 77, 5], ["license", 78, 5], ["sourceProvenance", 79, 5], ["knownVulnerabilities", 80, 5]], [["src", 42, 11], ["fsnotifier", 42, 15], ["version", 44, 5], ["buildNumber", 45, 5], ["jetbrains-libdbm", 48, 3], ["jdk", 51, 3], ["pname", 53, 3], ["wmClass", 55, 3], ["product", 56, 3], ["productShort", 57, 3], ["extraLdPath", 59, 3], ["extraWrapperArgs", 60, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { fsnotifier: false, jetbrains: false, lib: false, maven: false, stdenv: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 35, 7], ["hash", 36, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 14, 5], ["buildNumber", 15, 5], ["buildType", 16, 5], ["ideaHash", 17, 5], ["androidHash", 18, 5], ["jpsHash", 19, 5], ["restarterHash", 20, 5], ["mvnDeps", 21, 5], ["repositories", 22, 5], ["kotlin-jps-plugin", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["longDescription", 69, 5], ["maintainers", 73, 5], ["teams", 77, 5], ["license", 78, 5], ["sourceProvenance", 79, 5], ["knownVulnerabilities", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 42, 11], ["fsnotifier", 42, 15], ["version", 44, 5], ["buildNumber", 45, 5], ["jetbrains-libdbm", 48, 3], ["jdk", 51, 3], ["pname", 53, 3], ["wmClass", 55, 3], ["product", 56, 3], ["productShort", 57, 3], ["extraLdPath", 59, 3], ["extraWrapperArgs", 60, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   const src = nix.thunk(() => nix.app(nix.sel(jetbrains, "mkJetBrainsSource"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "2025.3.4",
       buildNumber: "253.32098.37",
       buildType: "idea",
@@ -39,13 +36,13 @@ export default nix.lambda((args) => (() => {
         "packages.jetbrains.team/maven/p/kt/bootstrap",
       ]),
       "kotlin-jps-plugin": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         version: "2.2.20",
         hash: "sha256-+jGghK2+yq+YFm5zT7ob+WTgTiJnHXAjDtlZjOzSISQ=",
       })),
     }))));
   return nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       src: src,
       fsnotifier: fsnotifier,
       version: nix.thunk(() => nix.attr(src, "version")),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--set M2 "${maven}/maven/bin"`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.jetbrains.com/idea/",
         description: "Free Java, Kotlin, Groovy and Scala IDE from JetBrains (built from source)",
         longDescription: "IDE for Java SE, Groovy & Scala development Powerful environment for building Google Android apps Integration with JUnit, TestNG, popular SCMs, Ant & Maven.\nAlso known as IntelliJ.\n",

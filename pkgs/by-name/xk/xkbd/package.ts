@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, freetype: false, libxrender: false, libxft: false, xorgproto: false, xinput: false, libxi: false, libxext: false, libxtst: false, libxpm: false, libx11: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xkbd";
       const version = "0.8.18";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mahatma-kaganovich",
           repo: "xkbd",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mahatma-kaganovich/xkbd",
         description: "On-screen soft keyboard for X11",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -55,7 +53,15 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         mainProgram: "xkbd",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildInputs, nativeBuildInputs, meta };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        src,
+        buildInputs,
+        nativeBuildInputs,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

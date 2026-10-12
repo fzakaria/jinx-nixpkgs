@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["strictDeps", 33, 3], ["cmakeFlags", 35, 3], ["doCheck", 40, 3], ["dontUseCmakeInstall", 42, 3], ["preConfigure", 44, 3], ["installPhase", 51, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, catch2: false, cmake: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["strictDeps", 33, 3], ["cmakeFlags", 35, 3], ["doCheck", 40, 3], ["dontUseCmakeInstall", 42, 3], ["preConfigure", 44, 3], ["installPhase", 51, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sqlite-modern-cpp",
       version: "3.2-unstable-2023-12-03",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SqliteModernCpp",
           repo: "sqlite_modern_cpp",
           rev: "6e3009973025e0016d5573529067714201338c80",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "substituteInPlace CMakeLists.txt \\\n  --replace-fail 'find_package(sqlite3 CONFIG REQUIRED)' \\\n                 'find_package(SQLite3 REQUIRED)' \\\n  --replace-fail 'sqlite3::sqlite3' 'SQLite::SQLite3'\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/include\ncp -r $src/hdr/. $out/include/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight C++ wrapper around sqlite3 C api",
         homepage: "https://github.com/SqliteModernCpp/sqlite_modern_cpp",
         changelog: "https://github.com/SqliteModernCpp/sqlite_modern_cpp/releases",

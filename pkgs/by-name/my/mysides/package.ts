@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontBuild", 18, 3], ["nativeBuildInputs", 19, 3], ["unpackPhase", 24, 3], ["installPhase", 29, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libarchive: false, p7zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontBuild", 18, 3], ["nativeBuildInputs", 19, 3], ["unpackPhase", 24, 3], ["installPhase", 29, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mysides";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mosen/mysides/releases/download/v${version}/mysides-${version}.pkg`),
           sha256: "sha256-dpRrj3xb9xQSXXXxragUDgNPBaniiMc6evRF12wqVRQ=",
         }))));
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const unpackPhase = "7z x $src\nbsdtar -xf Payload~\n";
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ninstall -Dm755 usr/local/bin/mysides -t $out/bin\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Manage macOS Finder sidebar favorites",
         homepage: "https://github.com/mosen/mysides",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

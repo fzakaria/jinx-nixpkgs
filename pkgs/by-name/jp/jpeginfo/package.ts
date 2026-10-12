@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5], ["platforms", 24, 5], ["mainProgram", 25, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libjpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5], ["platforms", 24, 5], ["mainProgram", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libjpeg = nix.arg($, "libjpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jpeginfo",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.kokkonen.net/tjko/src/jpeginfo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-J09r4j/Qib2ehxW2dkOmbKL2OlAwKL3qPlcSKNULZp4=",
         })))),
       buildInputs: nix.thunk(() => [libjpeg]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Prints information and tests integrity of JPEG/JFIF files",
         homepage: "https://www.kokkonen.net/tjko/projects.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

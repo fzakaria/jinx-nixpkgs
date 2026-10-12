@@ -2,103 +2,50 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/heimdal.nix", [[["extraGroups", 11, 27]], [["alice", 11, 21]], [["users", 11, 15]], [["autologinUser", 13, 24]], [["principal", 61, 19], ["access", 62, 19]], [["principal", 65, 19], ["access", 66, 19]], [["acl", 59, 15]], [["FOO.BAR", 58, 13]], [["realms", 57, 20]], [["enable", 56, 11], ["settings", 57, 11]], [["getty", 13, 18], ["kerberos_server", 55, 18]], [["vlans", 15, 24]], [["timeZone", 17, 14]], [["enable", 22, 20]], [["10.0.0.1", 23, 17], ["10.0.0.2", 24, 17]], [["domain", 20, 11], ["useDHCP", 21, 11], ["firewall", 22, 11], ["hosts", 23, 11]], [["Address", 29, 25]], [["name", 28, 11], ["networkConfig", 29, 11]], [["01-eth1", 27, 34]], [["networks", 27, 25]], [["network", 27, 17]], [["default_realm", 36, 25]], [["admin_server", 40, 15], ["default", 41, 15], ["kdc", 42, 15]], [["admin_server", 47, 17], ["kpasswd_server", 48, 17], ["kdc", 49, 17]], [["FOO.BAR", 46, 15]], [["libdefaults", 36, 13], ["logging", 39, 13], ["realms", 45, 13]], [["enable", 33, 11], ["package", 34, 11], ["settings", 35, 11]], [["krb5", 32, 18]], [["imports", 9, 9], ["users", 11, 9], ["services", 13, 9], ["virtualisation", 15, 9], ["time", 17, 9], ["networking", 19, 9], ["systemd", 27, 9], ["security", 32, 9]], [["extraGroups", 86, 27]], [["alice", 86, 21]], [["users", 86, 15]], [["autologinUser", 88, 24]], [["getty", 88, 18]], [["vlans", 90, 24]], [["timeZone", 92, 14]], [["10.0.0.1", 97, 17], ["10.0.0.2", 98, 17]], [["domain", 95, 11], ["useDHCP", 96, 11], ["hosts", 97, 11]], [["Address", 103, 25]], [["name", 102, 11], ["networkConfig", 103, 11]], [["01-eth1", 101, 34]], [["networks", 101, 25]], [["network", 101, 17]], [["default_realm", 110, 25]], [["admin_server", 113, 15], ["default", 114, 15], ["kdc", 115, 15]], [["admin_server", 120, 17], ["kpasswd_server", 121, 17], ["kdc", 122, 17]], [["FOO.BAR", 119, 15]], [["libdefaults", 110, 13], ["logging", 112, 13], ["realms", 118, 13]], [["enable", 107, 11], ["package", 108, 11], ["settings", 109, 11]], [["krb5", 106, 18]], [["imports", 84, 9], ["users", 86, 9], ["services", 88, 9], ["virtualisation", 90, 9], ["time", 92, 9], ["networking", 94, 9], ["systemd", 101, 9], ["security", 106, 9]], [["server", 6, 5], ["client", 81, 5]], [["maintainers", 256, 8]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 130, 3], ["meta", 256, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/heimdal.nix", [["extraGroups", 11, 27]]);
-const pos$2 = nix.positions(here + "/heimdal.nix", [["alice", 11, 21]]);
-const pos$3 = nix.positions(here + "/heimdal.nix", [["users", 11, 15]]);
-const pos$4 = nix.positions(here + "/heimdal.nix", [["autologinUser", 13, 24]]);
-const pos$5 = nix.positions(here + "/heimdal.nix", [["principal", 61, 19], ["access", 62, 19]]);
-const pos$6 = nix.positions(here + "/heimdal.nix", [["principal", 65, 19], ["access", 66, 19]]);
-const pos$7 = nix.positions(here + "/heimdal.nix", [["acl", 59, 15]]);
-const pos$8 = nix.positions(here + "/heimdal.nix", [["FOO.BAR", 58, 13]]);
-const pos$9 = nix.positions(here + "/heimdal.nix", [["realms", 57, 20]]);
-const pos$10 = nix.positions(here + "/heimdal.nix", [["enable", 56, 11], ["settings", 57, 11]]);
-const pos$11 = nix.positions(here + "/heimdal.nix", [["getty", 13, 18], ["kerberos_server", 55, 18]]);
-const pos$12 = nix.positions(here + "/heimdal.nix", [["vlans", 15, 24]]);
-const pos$13 = nix.positions(here + "/heimdal.nix", [["timeZone", 17, 14]]);
-const pos$14 = nix.positions(here + "/heimdal.nix", [["enable", 22, 20]]);
-const pos$15 = nix.positions(here + "/heimdal.nix", [["10.0.0.1", 23, 17], ["10.0.0.2", 24, 17]]);
-const pos$16 = nix.positions(here + "/heimdal.nix", [["domain", 20, 11], ["useDHCP", 21, 11], ["firewall", 22, 11], ["hosts", 23, 11]]);
-const pos$17 = nix.positions(here + "/heimdal.nix", [["Address", 29, 25]]);
-const pos$18 = nix.positions(here + "/heimdal.nix", [["name", 28, 11], ["networkConfig", 29, 11]]);
-const pos$19 = nix.positions(here + "/heimdal.nix", [["01-eth1", 27, 34]]);
-const pos$20 = nix.positions(here + "/heimdal.nix", [["networks", 27, 25]]);
-const pos$21 = nix.positions(here + "/heimdal.nix", [["network", 27, 17]]);
-const pos$22 = nix.positions(here + "/heimdal.nix", [["default_realm", 36, 25]]);
-const pos$23 = nix.positions(here + "/heimdal.nix", [["admin_server", 40, 15], ["default", 41, 15], ["kdc", 42, 15]]);
-const pos$24 = nix.positions(here + "/heimdal.nix", [["admin_server", 47, 17], ["kpasswd_server", 48, 17], ["kdc", 49, 17]]);
-const pos$25 = nix.positions(here + "/heimdal.nix", [["FOO.BAR", 46, 15]]);
-const pos$26 = nix.positions(here + "/heimdal.nix", [["libdefaults", 36, 13], ["logging", 39, 13], ["realms", 45, 13]]);
-const pos$27 = nix.positions(here + "/heimdal.nix", [["enable", 33, 11], ["package", 34, 11], ["settings", 35, 11]]);
-const pos$28 = nix.positions(here + "/heimdal.nix", [["krb5", 32, 18]]);
-const pos$29 = nix.positions(here + "/heimdal.nix", [["imports", 9, 9], ["users", 11, 9], ["services", 13, 9], ["virtualisation", 15, 9], ["time", 17, 9], ["networking", 19, 9], ["systemd", 27, 9], ["security", 32, 9]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$30 = nix.positions(here + "/heimdal.nix", [["extraGroups", 86, 27]]);
-const pos$31 = nix.positions(here + "/heimdal.nix", [["alice", 86, 21]]);
-const pos$32 = nix.positions(here + "/heimdal.nix", [["users", 86, 15]]);
-const pos$33 = nix.positions(here + "/heimdal.nix", [["autologinUser", 88, 24]]);
-const pos$34 = nix.positions(here + "/heimdal.nix", [["getty", 88, 18]]);
-const pos$35 = nix.positions(here + "/heimdal.nix", [["vlans", 90, 24]]);
-const pos$36 = nix.positions(here + "/heimdal.nix", [["timeZone", 92, 14]]);
-const pos$37 = nix.positions(here + "/heimdal.nix", [["10.0.0.1", 97, 17], ["10.0.0.2", 98, 17]]);
-const pos$38 = nix.positions(here + "/heimdal.nix", [["domain", 95, 11], ["useDHCP", 96, 11], ["hosts", 97, 11]]);
-const pos$39 = nix.positions(here + "/heimdal.nix", [["Address", 103, 25]]);
-const pos$40 = nix.positions(here + "/heimdal.nix", [["name", 102, 11], ["networkConfig", 103, 11]]);
-const pos$41 = nix.positions(here + "/heimdal.nix", [["01-eth1", 101, 34]]);
-const pos$42 = nix.positions(here + "/heimdal.nix", [["networks", 101, 25]]);
-const pos$43 = nix.positions(here + "/heimdal.nix", [["network", 101, 17]]);
-const pos$44 = nix.positions(here + "/heimdal.nix", [["default_realm", 110, 25]]);
-const pos$45 = nix.positions(here + "/heimdal.nix", [["admin_server", 113, 15], ["default", 114, 15], ["kdc", 115, 15]]);
-const pos$46 = nix.positions(here + "/heimdal.nix", [["admin_server", 120, 17], ["kpasswd_server", 121, 17], ["kdc", 122, 17]]);
-const pos$47 = nix.positions(here + "/heimdal.nix", [["FOO.BAR", 119, 15]]);
-const pos$48 = nix.positions(here + "/heimdal.nix", [["libdefaults", 110, 13], ["logging", 112, 13], ["realms", 118, 13]]);
-const pos$49 = nix.positions(here + "/heimdal.nix", [["enable", 107, 11], ["package", 108, 11], ["settings", 109, 11]]);
-const pos$50 = nix.positions(here + "/heimdal.nix", [["krb5", 106, 18]]);
-const pos$51 = nix.positions(here + "/heimdal.nix", [["imports", 84, 9], ["users", 86, 9], ["services", 88, 9], ["virtualisation", 90, 9], ["time", 92, 9], ["networking", 94, 9], ["systemd", 101, 9], ["security", 106, 9]]);
-const pos$52 = nix.positions(here + "/heimdal.nix", [["server", 6, 5], ["client", 81, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$53 = nix.positions(here + "/heimdal.nix", [["maintainers", 256, 8]]);
-const pos$54 = nix.positions(here + "/heimdal.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 130, 3], ["meta", 256, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$54,
+    [nix.POS]: $pos[53],
     name: "kerberos_server-heimdal",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$52,
+      [nix.POS]: $pos[51],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              alice: nix.thunk(() => ({ [nix.POS]: pos$1, extraGroups: nix.thunk(() => ["wheel"]) })),
+              [nix.POS]: $pos[1],
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[0], extraGroups: nix.thunk(() => ["wheel"]) })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            getty: nix.thunk(() => ({ [nix.POS]: pos$4, autologinUser: "alice" })),
+            [nix.POS]: $pos[10],
+            getty: nix.thunk(() => ({ [nix.POS]: $pos[3], autologinUser: "alice" })),
             kerberos_server: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 realms: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   "FOO.BAR": nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     acl: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$5, principal: "kadmin/admin@FOO.BAR", access: "all" })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[4], principal: "kadmin/admin@FOO.BAR", access: "all" })),
                       nix.thunk(() => ({
-                        [nix.POS]: pos$6,
+                        [nix.POS]: $pos[5],
                         principal: "alice/admin@FOO.BAR",
                         access: nix.thunk(() => ["add", "cpw", "delete", "get", "list", "modify"]),
                       })),
@@ -108,52 +55,52 @@ export default nix.lambda((args) => (() => {
               })),
             })),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$12, vlans: nix.thunk(() => [1n]) })),
-          time: nix.thunk(() => ({ [nix.POS]: pos$13, timeZone: "Etc/UTC" })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[11], vlans: nix.thunk(() => [1n]) })),
+          time: nix.thunk(() => ({ [nix.POS]: $pos[12], timeZone: "Etc/UTC" })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             domain: "foo.bar",
             useDHCP: false,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$14, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: false })),
             hosts: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               "10.0.0.1": nix.thunk(() => ["server.foo.bar"]),
               "10.0.0.2": nix.thunk(() => ["client.foo.bar"]),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             network: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               networks: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 "01-eth1": nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   name: "eth1",
-                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$17, Address: "10.0.0.1/24" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[16], Address: "10.0.0.1/24" })),
                 })),
               })),
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             krb5: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs_1, "heimdal")),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$26,
-                libdefaults: nix.thunk(() => ({ [nix.POS]: pos$22, default_realm: "FOO.BAR" })),
+                [nix.POS]: $pos[25],
+                libdefaults: nix.thunk(() => ({ [nix.POS]: $pos[21], default_realm: "FOO.BAR" })),
                 logging: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   admin_server: "SYSLOG:DEBUG:AUTH",
                   default: "SYSLOG:DEBUG:AUTH",
                   kdc: "SYSLOG:DEBUG:AUTH",
                 })),
                 realms: nix.thunk(() => ({
-                  [nix.POS]: pos$25,
+                  [nix.POS]: $pos[24],
                   "FOO.BAR": nix.thunk(() => ({
-                    [nix.POS]: pos$24,
+                    [nix.POS]: $pos[23],
                     admin_server: "server.foo.bar",
                     kpasswd_server: "server.foo.bar",
                     kdc: nix.thunk(() => ["server.foo.bar"]),
@@ -169,64 +116,64 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$51,
+          [nix.POS]: $pos[50],
           imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$31,
-              alice: nix.thunk(() => ({ [nix.POS]: pos$30, extraGroups: nix.thunk(() => ["wheel"]) })),
+              [nix.POS]: $pos[30],
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[29], extraGroups: nix.thunk(() => ["wheel"]) })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$34,
-            getty: nix.thunk(() => ({ [nix.POS]: pos$33, autologinUser: "alice" })),
+            [nix.POS]: $pos[33],
+            getty: nix.thunk(() => ({ [nix.POS]: $pos[32], autologinUser: "alice" })),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$35, vlans: nix.thunk(() => [1n]) })),
-          time: nix.thunk(() => ({ [nix.POS]: pos$36, timeZone: "Etc/UTC" })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[34], vlans: nix.thunk(() => [1n]) })),
+          time: nix.thunk(() => ({ [nix.POS]: $pos[35], timeZone: "Etc/UTC" })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             domain: "foo.bar",
             useDHCP: false,
             hosts: nix.thunk(() => ({
-              [nix.POS]: pos$37,
+              [nix.POS]: $pos[36],
               "10.0.0.1": nix.thunk(() => ["server.foo.bar"]),
               "10.0.0.2": nix.thunk(() => ["client.foo.bar"]),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$43,
+            [nix.POS]: $pos[42],
             network: nix.thunk(() => ({
-              [nix.POS]: pos$42,
+              [nix.POS]: $pos[41],
               networks: nix.thunk(() => ({
-                [nix.POS]: pos$41,
+                [nix.POS]: $pos[40],
                 "01-eth1": nix.thunk(() => ({
-                  [nix.POS]: pos$40,
+                  [nix.POS]: $pos[39],
                   name: "eth1",
-                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$39, Address: "10.0.0.2/24" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[38], Address: "10.0.0.2/24" })),
                 })),
               })),
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$50,
+            [nix.POS]: $pos[49],
             krb5: nix.thunk(() => ({
-              [nix.POS]: pos$49,
+              [nix.POS]: $pos[48],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs_1, "heimdal")),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$48,
-                libdefaults: nix.thunk(() => ({ [nix.POS]: pos$44, default_realm: "FOO.BAR" })),
+                [nix.POS]: $pos[47],
+                libdefaults: nix.thunk(() => ({ [nix.POS]: $pos[43], default_realm: "FOO.BAR" })),
                 logging: nix.thunk(() => ({
-                  [nix.POS]: pos$45,
+                  [nix.POS]: $pos[44],
                   admin_server: "SYSLOG:DEBUG:AUTH",
                   default: "SYSLOG:DEBUG:AUTH",
                   kdc: "SYSLOG:DEBUG:AUTH",
                 })),
                 realms: nix.thunk(() => ({
-                  [nix.POS]: pos$47,
+                  [nix.POS]: $pos[46],
                   "FOO.BAR": nix.thunk(() => ({
-                    [nix.POS]: pos$46,
+                    [nix.POS]: $pos[45],
                     admin_server: "server.foo.bar",
                     kpasswd_server: "server.foo.bar",
                     kdc: nix.thunk(() => ["server.foo.bar"]),
@@ -365,7 +312,7 @@ with subtest("Server: kpasswd alice"):
 `;
     })(), formals$4),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$53,
+      [nix.POS]: $pos[52],
       maintainers: nix.thunk(() => nix.sel(pkgs, "heimdal", "meta", "maintainers")),
     })),
   };

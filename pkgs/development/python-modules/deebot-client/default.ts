@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["pname", 40, 26], ["version", 40, 32], ["src", 40, 40], ["hash", 41, 5]], [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["disabled", 30, 3], ["src", 32, 3], ["cargoDeps", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["pythonRelaxDeps", 53, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 66, 3], ["preCheck", 76, 3], ["pythonImportsCheck", 80, 3], ["disabledTests", 82, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aiomqtt: false, buildPythonPackage: false, cachetools: false, cryptography: false, defusedxml: false, docker: false, fetchFromGitHub: false, orjson: false, "pkg-config": false, pycountry: false, pyprojectVersionPatchHook: false, "pytest-asyncio": false, "pytest-codspeed": false, pytestCheckHook: false, pythonOlder: false, rustPlatform: false, syrupy: false, testfixtures: false, xz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 40, 26], ["version", 40, 32], ["src", 40, 40], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["disabled", 30, 3], ["src", 32, 3], ["cargoDeps", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["pythonRelaxDeps", 53, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 66, 3], ["preCheck", 76, 3], ["pythonImportsCheck", 80, 3], ["disabledTests", 82, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,20 +29,20 @@ export default nix.lambda((args) => (() => {
   const testfixtures = nix.arg($, "testfixtures");
   const xz = nix.arg($, "xz");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "deebot-client",
       version: "18.6.0",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.14")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DeebotUniverse",
           repo: "client.py",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-keO5pDzaIc/55xqCig10JWWJPkaLXmu03K969WDt8gQ=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -85,7 +82,7 @@ export default nix.lambda((args) => (() => {
         "test_client_reconnect_on_broker_error",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Deebot client library",
         homepage: "https://github.com/DeebotUniverse/client.py",
         changelog: nix.thunk(() => nix.str`https://github.com/DeebotUniverse/client.py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

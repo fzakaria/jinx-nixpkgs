@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["propagateRns", 9, 9]], [["lxmf", 8, 7]]]);
 const formals$1 = { args: { python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["propagateRns", 9, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lxmf", 8, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const python3Packages = nix.arg($, "python3Packages");
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({
-      [nix.POS]: pos$2,
-      lxmf: nix.thunk(() => nix.app(nix.sel(super$, "lxmf", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, propagateRns: true })))),
+      [nix.POS]: $pos[1],
+      lxmf: nix.thunk(() => nix.app(nix.sel(super$, "lxmf", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], propagateRns: true })))),
     })));
   return nix.app(nix.sel(pythonPackages, "toPythonApplication"), nix.thunk(() => nix.sel(pythonPackages, "lxmf")));
 })(), formals$1);

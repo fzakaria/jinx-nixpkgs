@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enabledPlugins", 17, 49]], [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]], [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]], [["NIX_CFLAGS_COMPILE", 67, 7]], [["collectd", 83, 26]], [["tests", 82, 12]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 31, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 54, 3], ["configureFlags", 59, 3], ["env", 67, 3], ["postConfigure", 70, 3], ["postInstall", 74, 3], ["enableParallelBuilding", 80, 3], ["passthru", 82, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, callPackage: false, autoreconfHook: false, "pkg-config": false, libtool: false, bison: false, flex: false, perl: false, nixosTests: false, enabledPlugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enabledPlugins", 17, 49]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 67, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["collectd", 83, 26]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 82, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 31, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 54, 3], ["configureFlags", 59, 3], ["env", 67, 3], ["postConfigure", 70, 3], ["postInstall", 74, 3], ["enableParallelBuilding", 80, 3], ["passthru", 82, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const nixosTests = nix.arg($, "nixosTests");
   const enabledPlugins = nix.argOr($, "enabledPlugins", () => null);
-  const plugins = nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, enabledPlugins: enabledPlugins }))));
+  const plugins = nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], enabledPlugins: enabledPlugins }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "collectd",
       version: "5.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "collectd",
           repo: "collectd",
           tag: nix.thunk(() => nix.str`collectd-${nix.sel(finalAttrs, "version")}`),
@@ -42,13 +34,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix-broken-dash-t-option.patch",
             url: "https://github.com/collectd/collectd/commit/3f575419e7ccb37a3b10ecc82adb2e83ff2826e1.patch",
             hash: "sha256-XkDxLITmG0FLpgf8Ut1bDqulM4DmPs8Xrec2QB1tkks=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "no_include_longintrepr.patch",
             url: "https://github.com/collectd/collectd/commit/623e95394e0e62e7f9ced2104b786d21e9c0bf53.patch",
             hash: "sha256-0eD7yNW3TWVyNMpLsADhYFDvy6COoCaI0kS1XJrwDgM=",
@@ -58,21 +50,21 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libtool], nix.sel(plugins, "buildInputs"))),
       configureFlags: nix.thunk(() => nix.concat(["--localstatedir=/var", "--disable-werror"], nix.concat(nix.sel(plugins, "configureFlags"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ["--with-fp-layout=nothing"]))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: "-DATTRIBUTE_UNUSED=__attribute__((unused))",
       })),
       postConfigure: "substituteInPlace Makefile --replace-fail '$(mkinstalldirs) $(DESTDIR)$(localstatedir)/' '#'\n",
       postInstall: "if [ -d $out/share/collectd/java ]; then\n  mv $out/share/collectd/java $out/share/\nfi\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           collectd: nix.thunk(() => nix.attr(nixosTests, "collectd")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Daemon which collects system performance statistics periodically",
         homepage: "https://collectd.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

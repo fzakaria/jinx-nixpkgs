@@ -2,26 +2,24 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["system", 4, 5], ["overlays", 5, 5], ["config", 6, 5]], [["maintainers", 12, 8], ["description", 13, 8], ["broken", 14, 8]], [["pname", 10, 3], ["version", 11, 3], ["meta", 12, 3]]]);
 const formals$1 = { args: { nixpkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["system", 4, 5], ["overlays", 5, 5], ["config", 6, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["maintainers", 12, 8], ["description", 13, 8], ["broken", 14, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.arg($, "nixpkgs");
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       system: "x86_64-linux",
       overlays: [],
       config: nix.thunk(() => ({})),
     }))));
   return nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "a",
       version: "0",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => ["hello"]),
         description: "Some package",
         broken: true,

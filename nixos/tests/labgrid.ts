@@ -2,29 +2,20 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/labgrid.nix", [[["maintainers", 4, 8]], [["enable", 12, 36], ["openFirewall", 13, 36]], [["coordinator", 12, 24]], [["labgrid", 12, 16]], [["services", 12, 7]], [["LG_COORDINATOR", 20, 9]], [["variables", 19, 19], ["systemPackages", 22, 19]], [["environment", 19, 7]], [["coordinator", 9, 9], ["client", 16, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 9, 3], ["testScript", 25, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/labgrid.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/labgrid.nix", [["enable", 12, 36], ["openFirewall", 13, 36]]);
-const pos$3 = nix.positions(here + "/labgrid.nix", [["coordinator", 12, 24]]);
-const pos$4 = nix.positions(here + "/labgrid.nix", [["labgrid", 12, 16]]);
-const pos$5 = nix.positions(here + "/labgrid.nix", [["services", 12, 7]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/labgrid.nix", [["LG_COORDINATOR", 20, 9]]);
-const pos$7 = nix.positions(here + "/labgrid.nix", [["variables", 19, 19], ["systemPackages", 22, 19]]);
-const pos$8 = nix.positions(here + "/labgrid.nix", [["environment", 19, 7]]);
-const pos$9 = nix.positions(here + "/labgrid.nix", [["coordinator", 9, 9], ["client", 16, 9]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/labgrid.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 9, 3], ["testScript", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "Labgrid",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -34,17 +25,17 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       coordinator: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             labgrid: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              coordinator: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, openFirewall: true })),
+              [nix.POS]: $pos[2],
+              coordinator: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, openFirewall: true })),
             })),
           })),
         };
@@ -53,10 +44,10 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            variables: nix.thunk(() => ({ [nix.POS]: pos$6, LG_COORDINATOR: "coordinator:20408" })),
+            [nix.POS]: $pos[6],
+            variables: nix.thunk(() => ({ [nix.POS]: $pos[5], LG_COORDINATOR: "coordinator:20408" })),
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "labgrid"))]),
           })),
         };

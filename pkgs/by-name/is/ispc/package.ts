@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 116, 5], ["platforms", 117, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 46, 3], ["postPatch", 53, 3], ["testedTargets", 61, 11], ["patches", 64, 3], ["doCheck", 68, 3], ["hardeningDisable", 74, 3], ["checkPhase", 76, 3], ["cmakeFlags", 89, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, which: false, m4: false, python3: false, bison: false, flex: false, llvmPackages: false, ncurses: false, onetbb: false, testedTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 116, 5], ["platforms", 117, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 46, 3], ["postPatch", 53, 3], ["testedTargets", 61, 11], ["patches", 64, 3], ["doCheck", 68, 3], ["hardeningDisable", 74, 3], ["checkPhase", 76, 3], ["cmakeFlags", 89, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const onetbb = nix.arg($, "onetbb");
   const testedTargets = nix.argOr($, "testedTargets", () => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32")))) ? ["neon-i32x4"] : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")) ? ["rvv-x4"] : ["sse2-i32x4"])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ispc",
       version: "1.31.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ispc",
           repo: "ispc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +79,7 @@ done
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "RISCV_ENABLED", nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")) ? "TRUE" : "FALSE")))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Intel 'Single Program, Multiple Data' Compiler, a vectorised language",
         homepage: "https://ispc.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/ispc/ispc/releases/tag/v${nix.sel(finalAttrs, "version")}`),

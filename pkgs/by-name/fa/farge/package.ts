@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["ghostscriptSupport", 39, 31]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5], ["mainProgram", 66, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["wrapperPath", 33, 3], ["installPhase", 49, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, makeBinaryWrapper: false, bc: false, libnotify: false, feh: false, grim: false, imagemagick: false, slurp: false, "wl-clipboard": false, xcolor: false, waylandSupport: true, x11Support: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ghostscriptSupport", 39, 31]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5], ["mainProgram", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["wrapperPath", 33, 3], ["installPhase", 49, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const waylandSupport = nix.argOr($, "waylandSupport", () => true);
   const x11Support = nix.argOr($, "x11Support", () => true);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "farge",
       version: "1.0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sdushantha",
           repo: "farge",
           rev: "2ff6669e2350644d4f0b1bd84526efe5eae3c302",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
           bc,
           feh,
           libnotify,
-          nix.thunk(() => nix.app(nix.sel(imagemagick, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, ghostscriptSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(imagemagick, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], ghostscriptSupport: true })))),
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [grim, slurp, wl_clipboard])), nix.app(nix.sel(lib, "optional"), x11Support, xcolor)))))),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 install -Dm755 farge $out/bin/farge
@@ -49,7 +46,7 @@ wrapProgram $out/bin/farge \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "View the color value of a specific pixel on your screen",
         homepage: "https://github.com/sdushantha/farge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

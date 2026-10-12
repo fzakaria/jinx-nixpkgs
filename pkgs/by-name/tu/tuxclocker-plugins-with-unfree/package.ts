@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 8, 32], ["meta", 8, 40], ["pname", 10, 3], ["name", 11, 3], ["paths", 13, 3]]]);
 const formals$1 = { args: { symlinkJoin: false, "tuxclocker-nvidia-plugin": false, "tuxclocker-plugins": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 8, 32], ["meta", 8, 40], ["pname", 10, 3], ["name", 11, 3], ["paths", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tuxclocker-plugins-with-unfree";
       const name = nix.thunk(() => nix.str`${pname}-${version}`);
       const paths = nix.thunk(() => [tuxclocker_nvidia_plugin, tuxclocker_plugins]);
-      return { [nix.POS]: pos$1, version, meta, pname, name, paths };
+      return { [nix.POS]: $pos[0], version, meta, pname, name, paths };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5], ["fetchSubmodules", 38, 5]], [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["platforms", 104, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["preConfigure", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 54, 3], ["autoreconfPhase", 73, 3], ["configureFlags", 75, 3], ["preBuild", 80, 3], ["postInstall", 91, 3], ["dontUseCmakeConfigure", 96, 3], ["enableParallelBuilding", 97, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, curl: false, expat: false, fetchFromGitHub: false, git: false, json_c: false, libcap: false, libmaxminddb: false, libmysqlclient: false, libpcap: false, libsodium: false, ndpi: false, "net-snmp": false, openssl: false, "pkg-config": false, rdkafka: false, gtest: false, rrdtool: false, hiredis: false, sqlite: false, which: false, zeromq: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5], ["fetchSubmodules", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["platforms", 104, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["preConfigure", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 54, 3], ["autoreconfPhase", 73, 3], ["configureFlags", 75, 3], ["preBuild", 80, 3], ["postInstall", 91, 3], ["dontUseCmakeConfigure", 96, 3], ["enableParallelBuilding", 97, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const zeromq = nix.arg($, "zeromq");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ntopng",
       version: "7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ntop",
           repo: "ntopng",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,7 +74,7 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High-speed web-based traffic analysis and flow collection tool",
         homepage: "https://www.ntop.org/products/traffic-analysis/ntop/",
         changelog: nix.thunk(() => nix.str`https://github.com/ntop/ntopng/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

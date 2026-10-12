@@ -2,31 +2,26 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/console-timeout.nix", [[["script", 6, 38]], [["generate-output", 6, 22]], [["services", 6, 13]], [["systemd", 6, 5]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 18, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/console-timeout.nix", [["script", 6, 38]]);
-const pos$2 = nix.positions(here + "/console-timeout.nix", [["generate-output", 6, 22]]);
-const pos$3 = nix.positions(here + "/console-timeout.nix", [["services", 6, 13]]);
-const pos$4 = nix.positions(here + "/console-timeout.nix", [["systemd", 6, 5]]);
-const pos$5 = nix.positions(here + "/console-timeout.nix", [["machine", 5, 9]]);
-const pos$6 = nix.positions(here + "/console-timeout.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "console-timeout",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "generate-output": nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               script: "echo \"match that\"\nsleep 1\n\nfor i in $(seq 15); do\n  echo \"line $i\"\ndone\n\necho \"match this\"\n",
             })),
           })),

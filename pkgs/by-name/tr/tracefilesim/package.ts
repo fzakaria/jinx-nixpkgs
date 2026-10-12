@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 27, 5], ["mainProgram", 28, 5], ["homepage", 29, 5], ["maintainers", 30, 5], ["license", 31, 5], ["platforms", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["hardeningDisable", 19, 3], ["installPhase", 21, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["mainProgram", 28, 5], ["homepage", 29, 5], ["maintainers", 30, 5], ["license", 31, 5], ["platforms", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["hardeningDisable", 19, 3], ["installPhase", 21, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tracefilesim",
       version: "unstable-2015-11-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GarCoSim",
           repo: "TraceFileSim",
           rev: "368aa6b1d6560e7ecbd16fca47000c8f528f3da2",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["fortify"]),
       installPhase: "mkdir --parents \"$out/bin\"\ncp ./traceFileSim \"$out/bin\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Ease the analysis of existing memory management techniques, as well as the prototyping of new memory management techniques",
         mainProgram: "traceFileSim",
         homepage: "https://github.com/GarCoSim",

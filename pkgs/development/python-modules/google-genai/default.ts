@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["aiohttp", 63, 5]], [["changelog", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["pythonRelaxDeps", 42, 3], ["dependencies", 48, 3], ["optional-dependencies", 62, 3], ["pythonImportsCheck", 66, 3], ["nativeCheckInputs", 68, 3], ["doCheck", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { aiohttp: false, anyio: false, buildPythonPackage: false, distro: false, fetchFromGitHub: false, "google-auth": false, httpx: false, lib: false, packaging: false, pkginfo: false, pydantic: false, pytestCheckHook: false, requests: false, setuptools: false, sniffio: false, tenacity: false, twine: false, "typing-extensions": false, websockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aiohttp", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["pythonRelaxDeps", 42, 3], ["dependencies", 48, 3], ["optional-dependencies", 62, 3], ["pythonImportsCheck", 66, 3], ["nativeCheckInputs", 68, 3], ["doCheck", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.16.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "python-genai",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -54,12 +51,12 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
         websockets,
       ], nix.sel(google_auth, "optional-dependencies", "requests")));
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, aiohttp: nix.thunk(() => [aiohttp]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], aiohttp: nix.thunk(() => [aiohttp]) }));
       const pythonImportsCheck = nix.thunk(() => ["google.genai"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-genai/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Google Generative AI Python SDK",
         homepage: "https://github.com/googleapis/python-genai",
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["pname", 48, 5], ["data", 49, 5]], [["name", 88, 7], ["desktopName", 89, 7], ["exec", 90, 7], ["icon", 91, 7], ["comment", 92, 7], ["categories", 93, 7]], [["changelog", 101, 5], ["description", 102, 5], ["homepage", 103, 5], ["longDescription", 104, 5], ["sourceProvenance", 108, 5], ["license", 112, 5], ["platforms", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 35, 3], ["__darwinAllowLocalNetworking", 45, 3], ["mitmCache", 47, 3], ["preBuild", 52, 3], ["gradleBuildTask", 54, 3], ["installPhase", 56, 3], ["desktopItems", 86, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gradle_8: false, jdk: false, "quark-engine": false, coreutils: false, makeBinaryWrapper: false, librsvg: false, makeDesktopItem: false, copyDesktopItems: false, desktopToDarwinBundle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 48, 5], ["data", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 88, 7], ["desktopName", 89, 7], ["exec", 90, 7], ["icon", 91, 7], ["comment", 92, 7], ["categories", 93, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 101, 5], ["description", 102, 5], ["homepage", 103, 5], ["longDescription", 104, 5], ["sourceProvenance", 108, 5], ["license", 112, 5], ["platforms", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 35, 3], ["__darwinAllowLocalNetworking", 45, 3], ["mitmCache", 47, 3], ["preBuild", 52, 3], ["gradleBuildTask", 54, 3], ["installPhase", 56, 3], ["desktopItems", 86, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const gradle = gradle_8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jadx",
       version: "1.5.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "skylot",
           repo: "jadx",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./nix-build.patch")]),
       nativeBuildInputs: nix.thunk(() => nix.concat([gradle, jdk, librsvg, makeBinaryWrapper, copyDesktopItems], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [desktopToDarwinBundle])))),
       __darwinAllowLocalNetworking: true,
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: "jadx", data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: "jadx", data: nix.path(here, "./deps.json") })))),
       preBuild: nix.thunk(() => nix.str`export JADX_VERSION=${nix.sel(finalAttrs, "version")}`),
       gradleBuildTask: "pack",
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -66,7 +62,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "jadx",
             desktopName: "JADX",
             exec: "jadx-gui",
@@ -76,7 +72,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/skylot/jadx/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Dex to Java decompiler",
         homepage: "https://github.com/skylot/jadx",

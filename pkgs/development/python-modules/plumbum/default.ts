@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["url", 47, 7], ["hash", 48, 7]], [["ssh", 71, 5]], [["description", 94, 5], ["changelog", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["postPatch", 52, 3], ["build-system", 61, 3], ["dependencies", 66, 3], ["optional-dependencies", 70, 3], ["nativeCheckInputs", 74, 3], ["pytestFlags", 88, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, "hatch-vcs": false, hatchling: false, "typing-extensions": false, paramiko: false, mount: false, openssh: false, ps: false, psutil: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-mock": false, "pytest-timeout": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 47, 7], ["hash", 48, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["ssh", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 94, 5], ["changelog", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["postPatch", 52, 3], ["build-system", 61, 3], ["dependencies", 66, 3], ["optional-dependencies", 70, 3], ["nativeCheckInputs", 74, 3], ["pytestFlags", 88, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "plumbum",
       version: "2.0.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tomerfiliba",
           repo: "plumbum",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/tomerfiliba/plumbum/commit/217a22f361ea590c77da5f73d1387fe8a57fd742.patch",
             hash: "sha256-Cp01aeTkJS5wy6ZZs95suzKV/HKziy1YIQtk4jYT2Gg=",
           })))),
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace plumbum/lib.py \\\n  --replace-fail \\\n    'r\"\\s*(\\d+)\\s+(\\d+)\"' \\\n    'r\"\\s*(\\d+)\\s+(-?\\d+)\"'\n")),
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, ssh: nix.thunk(() => [paramiko]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[2], ssh: nix.thunk(() => [paramiko]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
         mount,
         openssh,
@@ -68,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pytestFlags: nix.thunk(() => ["--deselect=tests/test_local.py::TestLocalMachine::test_local"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Module Shell Combinators",
         changelog: nix.thunk(() => nix.str`https://github.com/tomerfiliba/plumbum/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/tomerfiliba/plumbum",

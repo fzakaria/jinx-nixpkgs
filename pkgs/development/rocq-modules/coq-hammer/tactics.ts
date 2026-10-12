@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tactics.nix", [[["case", 12, 31], ["out", 12, 36]], [["hash", 27, 17]], [["hash", 28, 17]], [["hash", 29, 17]], [["hash", 30, 17]], [["hash", 31, 18]], [["hash", 32, 18]], [["hash", 33, 18]], [["hash", 34, 18]], [["hash", 35, 18]], [["1.3.3+9.2", 27, 5], ["1.3.3+9.1", 28, 5], ["1.3.2+9.1", 29, 5], ["1.3.2+9.0", 30, 5], ["1.3.2+8.20", 31, 5], ["1.3.2+8.19", 32, 5], ["1.3.2+8.18", 33, 5], ["1.3.2+8.17", 34, 5], ["1.3.2+8.16", 35, 5]], [["owner", 55, 7], ["repo", 56, 7], ["defaultVersion", 57, 7], ["release", 58, 7], ["releaseRev", 59, 7]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["version", 43, 11], ["pname", 44, 3], ["owner", 47, 5], ["repo", 48, 5], ["defaultVersion", 49, 5], ["release", 50, 5], ["releaseRev", 51, 5], ["passthru", 53, 3], ["propagatedBuildInputs", 63, 3], ["mlPlugin", 65, 3], ["buildFlags", 67, 3], ["installTargets", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tactics.nix", [["case", 12, 31], ["out", 12, 36]]);
-const pos$2 = nix.positions(here + "/tactics.nix", [["hash", 27, 17]]);
-const pos$3 = nix.positions(here + "/tactics.nix", [["hash", 28, 17]]);
-const pos$4 = nix.positions(here + "/tactics.nix", [["hash", 29, 17]]);
-const pos$5 = nix.positions(here + "/tactics.nix", [["hash", 30, 17]]);
-const pos$6 = nix.positions(here + "/tactics.nix", [["hash", 31, 18]]);
-const pos$7 = nix.positions(here + "/tactics.nix", [["hash", 32, 18]]);
-const pos$8 = nix.positions(here + "/tactics.nix", [["hash", 33, 18]]);
-const pos$9 = nix.positions(here + "/tactics.nix", [["hash", 34, 18]]);
-const pos$10 = nix.positions(here + "/tactics.nix", [["hash", 35, 18]]);
-const pos$11 = nix.positions(here + "/tactics.nix", [["1.3.3+9.2", 27, 5], ["1.3.3+9.1", 28, 5], ["1.3.2+9.1", 29, 5], ["1.3.2+9.0", 30, 5], ["1.3.2+8.20", 31, 5], ["1.3.2+8.19", 32, 5], ["1.3.2+8.18", 33, 5], ["1.3.2+8.17", 34, 5], ["1.3.2+8.16", 35, 5]]);
-const pos$12 = nix.positions(here + "/tactics.nix", [["owner", 55, 7], ["repo", 56, 7], ["defaultVersion", 57, 7], ["release", 58, 7], ["releaseRev", 59, 7]]);
-const pos$13 = nix.positions(here + "/tactics.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$14 = nix.positions(here + "/tactics.nix", [["version", 43, 11], ["pname", 44, 3], ["owner", 47, 5], ["repo", 48, 5], ["defaultVersion", 49, 5], ["release", 50, 5], ["releaseRev", 51, 5], ["passthru", 53, 3], ["propagatedBuildInputs", 63, 3], ["mlPlugin", 65, 3], ["buildFlags", 67, 3], ["installTargets", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const owner = "lukaszcz";
   const repo = "coqhammer";
-  const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+  const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
   const defaultVersion = nix.thunk(() => nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
       nix.thunk(() => nix.app(case$, "9.2", "1.3.3+9.2")),
       nix.thunk(() => nix.app(case$, "9.1", "1.3.3+9.1")),
@@ -39,47 +26,47 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(case$, "8.16", "1.3.2+8.16")),
     ]), null));
   const release = nix.thunk(() => ({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     "1.3.3+9.2": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       hash: "sha256-2KE0mXpGTvoJXLoWsDTHKGrXKF0y8XEUSCXUQ4q+0YA=",
     })),
     "1.3.3+9.1": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       hash: "sha256-iDOZii/JMXqtVGvuh3I1R4YxjqWKcAwCLWTPYca2Dik=",
     })),
     "1.3.2+9.1": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       hash: "sha256-tf+Hrfv/ZrLXryTjJchvLfydxzjkXB2hbL7P280Clzw=",
     })),
     "1.3.2+9.0": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       hash: "sha256-/UHtK9fjpHTbra4/Cnsjt8fg1fvxx7U6kGjQPm15NwM=",
     })),
     "1.3.2+8.20": nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       hash: "sha256-RuX2aInSjwebs/aEOoisNxqcIPqDA2kWehN9tFYqOx4=",
     })),
     "1.3.2+8.19": nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       hash: "sha256-Zd7piAWlKPAZKEz7HVWxhnzOLbA/eR9C/E0T298MJVY=",
     })),
     "1.3.2+8.18": nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       hash: "sha256-D+tQ+1YrSbbqc54U5UlxW1Hhly49TB2pu1LEPL2Eo64=",
     })),
     "1.3.2+8.17": nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       hash: "sha256-2fw66z3yFKs5g+zNCeYXiEyxPzjUr+lGDciiQiuuMAs=",
     })),
     "1.3.2+8.16": nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       hash: "sha256-+j2Mg9n4heXbhjRaqiTQfgBxRqfw6TPYbIuCdhu8OeE=",
     })),
   }));
   const releaseRev = (v) => nix.str`refs/tags/v${v}`;
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       version: version,
       pname: "coq-hammer-tactics",
       owner: owner,
@@ -88,7 +75,7 @@ export default nix.lambda((args) => (() => {
       release: release,
       releaseRev: releaseRev,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         owner: owner,
         repo: repo,
         defaultVersion: defaultVersion,
@@ -100,7 +87,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["tactics"]),
       installTargets: nix.thunk(() => ["install-tactics"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "Reconstruction tactics for the hammer for Coq",
         homepage: "https://github.com/lukaszcz/coqhammer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

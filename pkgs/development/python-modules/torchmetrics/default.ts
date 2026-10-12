@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["pname", 61, 5], ["doCheck", 62, 5], ["dontInstall", 66, 5]], [["check", 60, 18]], [["tests", 60, 12]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["dependencies", 39, 3], ["buildInputs", 46, 3], ["nativeCheckInputs", 48, 3], ["doCheck", 59, 3], ["passthru", 60, 3], ["pytestFlags", 69, 3], ["disabledTestPaths", 74, 3], ["pythonImportsCheck", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, numpy: false, "lightning-utilities": false, packaging: false, torch: false, ipython: false, pytestCheckHook: false, "pytest-doctestplus": false, "pytest-xdist": false, "pytorch-lightning": false, "scikit-image": false, transformers: false, torchmetrics: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 61, 5], ["doCheck", 62, 5], ["dontInstall", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["check", 60, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 60, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["dependencies", 39, 3], ["buildInputs", 46, 3], ["nativeCheckInputs", 48, 3], ["doCheck", 59, 3], ["passthru", 60, 3], ["pytestFlags", 69, 3], ["disabledTestPaths", 74, 3], ["pythonImportsCheck", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const transformers = nix.arg($, "transformers");
   const torchmetrics = nix.arg($, "torchmetrics");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "torchmetrics",
       version: "1.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Lightning-AI",
           repo: "torchmetrics",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,11 +47,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           check: nix.thunk(() => nix.app(nix.sel(torchmetrics, "overridePythonAttrs"), (_) => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-check`),
               doCheck: true,
               dontInstall: true,
@@ -76,7 +71,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["torchmetrics"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Machine learning metrics for distributed, scalable PyTorch applications (used in pytorch-lightning)",
         homepage: "https://lightning.ai/docs/torchmetrics/",
         changelog: nix.thunk(() => nix.str`https://github.com/Lightning-AI/torchmetrics/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

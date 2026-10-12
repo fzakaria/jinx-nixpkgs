@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["sshfs", 22, 7]], [["url", 27, 7], ["hash", 28, 7]], [["url", 31, 7], ["hash", 32, 7]], [["pname", 18, 3], ["patches", 20, 3], ["postFixup", 37, 3], ["extraNativeBuildInputs", 42, 3], ["extraBuildInputs", 43, 3], ["extraCmakeFlags", 53, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, replaceVars: false, sshfs: false, qtbase: false, qtconnectivity: false, qtmultimedia: false, "pkg-config": false, wayland: false, "wayland-protocols": false, libei: false, libevdev: false, libfakekey: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["sshfs", 22, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["patches", 20, 3], ["postFixup", 37, 3], ["extraNativeBuildInputs", 42, 3], ["extraBuildInputs", 43, 3], ["extraCmakeFlags", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,20 +22,20 @@ export default nix.lambda((args) => (() => {
   const libfakekey = nix.arg($, "libfakekey");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kdeconnect-kde",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-sshfs-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             sshfs: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), sshfs)),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://invent.kde.org/network/kdeconnect-kde/-/commit/a0d71485a540270421261e05cbe9102a0031ec34.diff",
             hash: "sha256-Klfz3a4AfUMNGWqk/E8xqRvqg7Wn0PrB9+aYmUHoNGM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://invent.kde.org/network/kdeconnect-kde/-/commit/e00d56efce0409a4a7905f7f105d06d5c96031d0.diff",
             hash: "sha256-nRaQSR/jKHgaiSmrJaYNqSI0Hd2QmtwHWUZY8TeL/2Y=",
           })))),

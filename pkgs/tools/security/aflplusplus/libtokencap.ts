@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libtokencap.nix", [[["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["version", 8, 3], ["pname", 9, 3], ["src", 11, 3], ["postUnpack", 12, 3], ["sourceRoot", 13, 3], ["makeFlags", 15, 3], ["preInstall", 17, 3], ["postInstall", 21, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, aflplusplus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libtokencap.nix", [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$2 = nix.positions(here + "/libtokencap.nix", [["version", 8, 3], ["pname", 9, 3], ["src", 11, 3], ["postUnpack", 12, 3], ["sourceRoot", 13, 3], ["makeFlags", 15, 3], ["preInstall", 17, 3], ["postInstall", 21, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const aflplusplus = nix.arg($, "aflplusplus");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), aflplusplus)),
       pname: "libtokencap",
       src: nix.thunk(() => nix.sel(aflplusplus, "src")),
@@ -28,7 +27,7 @@ END
 chmod +x $out/bin/get-libtokencap-so
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/AFLplusplus/AFLplusplus",
         description: "strcmp & memcmp token capture library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

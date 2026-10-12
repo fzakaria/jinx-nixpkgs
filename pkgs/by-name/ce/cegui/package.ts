@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["branch", 53, 5], ["hardcodeZeroVersion", 59, 5]], [["updateScript", 52, 12]], [["broken", 64, 5], ["homepage", 65, 5], ["description", 66, 5], ["mainProgram", 67, 5], ["license", 68, 5], ["platforms", 69, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["cmakeFlags", 45, 3], ["passthru", 52, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ogre: false, freetype: false, boost: false, expat: false, libiconv: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["branch", 53, 5], ["hardcodeZeroVersion", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 64, 5], ["homepage", 65, 5], ["description", 66, 5], ["mainProgram", 67, 5], ["license", 68, 5], ["platforms", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["cmakeFlags", 45, 3], ["passthru", 52, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cegui",
       version: "0-unstable-2025-04-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "paroj",
           repo: "cegui",
           rev: "a630bcc3f1e4b66edcf0fd00edcb9b29ad8446a3",
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-DCMAKE_OSX_ARCHITECTURES=${nix.sel(stdenv, "hostPlatform", "darwinArch")}`),
         ])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, branch: "v0", hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], branch: "v0", hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/paroj/cegui",
         description: "C++ Library for creating GUIs",

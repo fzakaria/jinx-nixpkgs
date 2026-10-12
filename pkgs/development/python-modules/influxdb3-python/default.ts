@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pandas", 46, 5], ["polars", 47, 5], ["dataframe", 48, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 45, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, certifi: false, fetchFromGitHub: false, pyarrow: false, "python-dateutil": false, reactivex: false, setuptools: false, pandas: false, polars: false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pandas", 46, 5], ["polars", 47, 5], ["dataframe", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 45, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const polars = nix.arg($, "polars");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "influxdb3-python",
       version: "0.21.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "InfluxCommunity",
           repo: "influxdb3-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,13 +39,13 @@ substituteInPlace setup.py \\
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [certifi, pyarrow, python_dateutil, reactivex, urllib3]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pandas: nix.thunk(() => [pandas]),
         polars: nix.thunk(() => [polars]),
         dataframe: nix.thunk(() => [pandas, polars]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python module that provides a simple and convenient way to interact with InfluxDB 3.0",
         homepage: "https://github.com/InfluxCommunity/influxdb3-python",
         changelog: nix.thunk(() => nix.str`https://github.com/InfluxCommunity/influxdb3-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

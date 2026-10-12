@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]], [["updateScript", 131, 12]], [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["platforms", 140, 5], ["mainProgram", 141, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["patches", 49, 3], ["postPatch", 56, 3], ["buildInputs", 61, 3], ["nativeBuildInputs", 97, 3], ["cmakeFlags", 108, 3], ["checkInputs", 110, 3], ["checkTarget", 111, 3], ["preCheck", 112, 3], ["doCheck", 122, 3], ["postInstall", 124, 3], ["passthru", 131, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, boost: false, chromaprint: false, cmake: false, fetchFromGitHub: false, fftw: false, "glib-networking": false, gnutls: false, gst_all_1: false, kdsingleapplication: false, lib: false, libxdmcp: false, libcdio: false, libebur128: false, libidn2: false, libmtp: false, "libpthread-stubs": false, libpulseaudio: false, libselinux: false, libsepol: false, libtasn1: false, ninja: false, "nix-update-script": false, "p11-kit": false, "pkg-config": false, qt6: false, sqlite: false, stdenv: false, taglib: false, "util-linux": false, sparsehash: false, gtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 131, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["platforms", 140, 5], ["mainProgram", 141, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["patches", 49, 3], ["postPatch", 56, 3], ["buildInputs", 61, 3], ["nativeBuildInputs", 97, 3], ["cmakeFlags", 108, 3], ["checkInputs", 110, 3], ["checkTarget", 111, 3], ["preCheck", 112, 3], ["doCheck", 122, 3], ["postInstall", 124, 3], ["passthru", 131, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const sparsehash = nix.arg($, "sparsehash");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "strawberry",
       version: "1.2.21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "strawberrymusicplayer",
           repo: "strawberry",
           rev: nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "version")),
@@ -104,11 +101,11 @@ export default nix.lambda((args) => (() => {
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Music player and music collection organizer",
         homepage: "https://www.strawberrymusicplayer.org/",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/jonaski/strawberry/${nix.sel(finalAttrs, "finalPackage", "version")}/Changelog`),

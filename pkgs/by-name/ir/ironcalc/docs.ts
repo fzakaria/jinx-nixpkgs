@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/docs.nix", [[["description", 40, 5]], [["pname", 9, 3], ["version", 10, 22], ["src", 10, 30], ["postPatch", 12, 3], ["npmDepsHash", 16, 3], ["nativeBuildInputs", 18, 3], ["buildPhase", 23, 3], ["installPhase", 34, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, ironcalc: false, gitMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/docs.nix", [["description", 40, 5]]);
-const pos$2 = nix.positions(here + "/docs.nix", [["pname", 9, 3], ["version", 10, 22], ["src", 10, 30], ["postPatch", 12, 3], ["npmDepsHash", 16, 3], ["nativeBuildInputs", 18, 3], ["buildPhase", 23, 3], ["installPhase", 34, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const ironcalc = nix.arg($, "ironcalc");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ironcalc-docs",
       version: nix.thunk(() => nix.attr(ironcalc, "version")),
       src: nix.thunk(() => nix.attr(ironcalc, "src")),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gitMinimal]),
       buildPhase: "runHook preBuild\n\n# Icons are expected in public/\nmkdir -p src/public\ncp -v src/*.svg src/*.png src/public/ || true\n\nnpm run build > tmp 2>&1\nrunHook postBuild\n",
       installPhase: "mkdir -p $out/share/doc/ironcalc\ncp -r src/.vitepress/dist/* $out/share/doc/ironcalc/\n",
-      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { [nix.POS]: pos$1, description: "Documentation for IronCalc" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ironcalc, "meta"), { [nix.POS]: $pos[0], description: "Documentation for IronCalc" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=docs.ts.map

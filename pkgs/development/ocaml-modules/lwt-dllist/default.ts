@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["checkInputs", 17, 3], ["doCheck", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["checkInputs", 17, 3], ["doCheck", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lwt-dllist",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/lwt-dllist/releases/download/v${nix.sel(finalAttrs, "version")}/lwt-dllist-v${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-6GznXkDwDVFRTPiy5x5RhMTLXa6WE2viRhNAbPwNum4=",
         })))),
       checkInputs: nix.thunk(() => [lwt]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Mutable doubly-linked list with Lwt iterators",
         homepage: "https://github.com/mirage/lwt-dllist",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

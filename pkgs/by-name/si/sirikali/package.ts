@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 40, 3], ["qtWrapperArgs", 46, 3], ["doCheck", 56, 3], ["cmakeFlags", 58, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, libpwquality: false, "hicolor-icon-theme": false, fetchFromGitHub: false, cmake: false, "pkg-config": false, qt6: false, kdePackages: false, fscrypt: false, gocryptfs: false, sshfs: false, libgcrypt: false, libsecret: false, withKWallet: true, withLibsecret: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 40, 3], ["qtWrapperArgs", 46, 3], ["doCheck", 56, 3], ["cmakeFlags", 58, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const withKWallet = nix.argOr($, "withKWallet", () => true);
   const withLibsecret = nix.argOr($, "withLibsecret", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sirikali",
       version: "1.8.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mhogomchungu",
           repo: "sirikali",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         "-DBUILD_WITH_QT6=true",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt/C++ GUI front end to sshfs, ecryptfs-simple, gocryptfs and fscrypt",
         longDescription: "Sirikali also supports `cryfs`, but `cryfs` is no longer available in Nixpkgs.",
         homepage: "https://github.com/mhogomchungu/sirikali",

@@ -2,26 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-sysusers-immutable.nix", [[["maintainers", 13, 8]], [["enable", 16, 22]], [["sysusers", 16, 13]], [["hashedPasswordFile", 22, 22]], [["isSystemUser", 25, 7], ["group", 26, 7], ["home", 27, 7], ["initialHashedPassword", 28, 7]], [["root", 22, 17], ["sysuser", 24, 17]], [["mutableUsers", 17, 11], ["users", 22, 11]], [["text", 20, 37]], [["rootpw.secret", 20, 21]], [["etc", 20, 17]], [["isSystemUser", 33, 9], ["group", 34, 9], ["home", 35, 9], ["initialPassword", 36, 9]], [["new-sysuser", 32, 19]], [["users", 32, 13]], [["users", 32, 7]], [["configuration", 31, 35]], [["new-generation", 31, 20]], [["systemd", 16, 5], ["users", 17, 5], ["environment", 20, 5], ["specialisation", 31, 5]], [["machine", 15, 9]], [["name", 11, 3], ["meta", 13, 3], ["nodes", 15, 3], ["testScript", 41, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["maintainers", 13, 8]]);
-const pos$2 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["enable", 16, 22]]);
-const pos$3 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["sysusers", 16, 13]]);
-const pos$4 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["hashedPasswordFile", 22, 22]]);
-const pos$5 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["isSystemUser", 25, 7], ["group", 26, 7], ["home", 27, 7], ["initialHashedPassword", 28, 7]]);
-const pos$6 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["root", 22, 17], ["sysuser", 24, 17]]);
-const pos$7 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["mutableUsers", 17, 11], ["users", 22, 11]]);
-const pos$8 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["text", 20, 37]]);
-const pos$9 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["rootpw.secret", 20, 21]]);
-const pos$10 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["etc", 20, 17]]);
-const pos$11 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["isSystemUser", 33, 9], ["group", 34, 9], ["home", 35, 9], ["initialPassword", 36, 9]]);
-const pos$12 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["new-sysuser", 32, 19]]);
-const pos$13 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["users", 32, 13]]);
-const pos$14 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["users", 32, 7]]);
-const pos$15 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["configuration", 31, 35]]);
-const pos$16 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["new-generation", 31, 20]]);
-const pos$17 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["systemd", 16, 5], ["users", 17, 5], ["environment", 20, 5], ["specialisation", 31, 5]]);
-const pos$18 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["machine", 15, 9]]);
-const pos$19 = nix.positions(here + "/systemd-sysusers-immutable.nix", [["name", 11, 3], ["meta", 13, 3], ["nodes", 15, 3], ["testScript", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,34 +12,34 @@ export default nix.lambda((args) => (() => {
   const sysuserPassword = "$y$j9T$3aiOV/8CADAK22OK2QT3/0$67OKd50Z4qTaZ8c/eRWHLIM.o3ujtC1.n9ysmJfv639";
   const newSysuserPassword = "mellow";
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "activation-sysusers-immutable",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          sysusers: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          sysusers: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           mutableUsers: false,
           users: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             root: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               hashedPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "/etc/rootpw.secret")),
             })),
             sysuser: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               isSystemUser: true,
               group: "wheel",
               home: "/sysuser",
@@ -66,24 +48,24 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            "rootpw.secret": nix.thunk(() => ({ [nix.POS]: pos$8, text: rootPassword })),
+            [nix.POS]: $pos[8],
+            "rootpw.secret": nix.thunk(() => ({ [nix.POS]: $pos[7], text: rootPassword })),
           })),
         })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           "new-generation": nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   "new-sysuser": nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     isSystemUser: true,
                     group: "wheel",
                     home: "/new-sysuser",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["documize", 37, 43]], [["tests", 37, 12]], [["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["doCheck", 23, 3], ["nativeBuildInputs", 25, 3], ["preBuild", 33, 3], ["subPackages", 35, 3], ["passthru", 37, 3], ["postInstall", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "go-bindata": false, "go-bindata-assetfs": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["documize", 37, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 37, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["doCheck", 23, 3], ["nativeBuildInputs", 25, 3], ["preBuild", 33, 3], ["subPackages", 35, 3], ["passthru", 37, 3], ["postInstall", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const go_bindata_assetfs = nix.arg($, "go-bindata-assetfs");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "documize-community",
       version: "3.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "documize",
           repo: "community",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,15 +30,15 @@ export default nix.lambda((args) => (() => {
       preBuild: "cd edition",
       subPackages: nix.thunk(() => ["."]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           documize: nix.thunk(() => nix.attr(nixosTests, "documize")),
         })),
       })),
       postInstall: "mv $out/bin/edition $out/bin/documize\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open source Confluence alternative for internal & external docs built with Golang + EmberJS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         maintainers: [],

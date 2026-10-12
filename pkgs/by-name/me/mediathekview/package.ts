@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 64, 5], ["homepage", 65, 5], ["sourceProvenance", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["version", 14, 3], ["pname", 15, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 26, 3], ["doInstallCheck", 54, 3], ["installCheckPhase", 57, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, stdenv: false, fetchurl: false, makeWrapper: false, libglvnd: false, libnotify: false, openjdk25: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["sourceProvenance", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 14, 3], ["pname", 15, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 26, 3], ["doInstallCheck", 54, 3], ["installCheckPhase", 57, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openjdk25 = nix.arg($, "openjdk25");
   const zip = nix.arg($, "zip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "14.4.2",
       pname: "mediathekview",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.mediathekview.de/stabil/MediathekView-${nix.sel(finalAttrs, "version")}-linux.tar.gz`),
           sha256: "sha256-sDZSXYzak2RKQiW1OGpgSvFlkZrttsoOxVqRaodol24=",
         })))),
@@ -56,7 +54,7 @@ runHook postInstall
 runHook preCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Offers access to the Mediathek of different tv stations (ARD, ZDF, Arte, etc.)",
         homepage: "https://mediathekview.de/",
         sourceProvenance: nix.thunk(() => (() => {

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["pyproject", 21, 3], ["build-system", 23, 3], ["preCheck", 27, 3], ["postPatch", 31, 3], ["dependencies", 41, 3], ["disabledTestPaths", 45, 3], ["nativeCheckInputs", 50, 3], ["pytestFlags", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, networkx: false, pytestCheckHook: false, "pytest-cov-stub": false, pydot: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["pyproject", 21, 3], ["build-system", 23, 3], ["preCheck", 27, 3], ["postPatch", 31, 3], ["dependencies", 41, 3], ["disabledTestPaths", 45, 3], ["nativeCheckInputs", 50, 3], ["pytestFlags", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "phart";
       const version = "1.1.4";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-JpHjEVKpOPSNUdUjZxWBHt6AFCpci1nSRWhDXxG6nyw=",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-Wignore::DeprecationWarning"]);
       const pythonImportsCheck = nix.thunk(() => ["phart"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python Hierarchical ASCII Representation Tool",
         homepage: "https://github.com/scottvr/phart",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

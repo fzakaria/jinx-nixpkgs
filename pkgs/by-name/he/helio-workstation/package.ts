@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 5]], [["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 48, 3], ["preBuild", 53, 3], ["buildFlags", 57, 3], ["installPhase", 59, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "alsa-lib": false, freetype: false, libxrandr: false, libxinerama: false, libxext: false, libxcursor: false, libxcomposite: false, libx11: false, curl: false, libGL: false, libjack2: false, zenity: false, "pkg-config": false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 48, 3], ["preBuild", 53, 3], ["buildFlags", 57, 3], ["installPhase", 59, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "helio-workstation",
       version: "3.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "helio-fm",
           repo: "helio-sequencer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +63,7 @@ substituteInPlace $out/share/applications/Helio.desktop \\
   --replace "/usr/bin/helio" "$out/bin/helio"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "One music sequencer for all major platforms, both desktop and mobile",
         mainProgram: "helio",
         homepage: "https://helio.fm/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 26], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["changelog", 27, 5], ["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["owner", 10, 3], ["domain", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dependencies", 21, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, openai: false, demoji: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 26], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 27, 5], ["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 10, 3], ["domain", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dependencies", 21, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const openai = nix.arg($, "openai");
   const demoji = nix.arg($, "demoji");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "skye-harris",
       domain: "local_openai",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: nix.thunk(() => nix.attr(finalAttrs, "owner")),
           repo: "hass_local_openai_llm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       dependencies: nix.thunk(() => [openai, demoji]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/skye-harris/hass_local_openai_llm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Home Assistant LLM integration for local OpenAI-compatible services (llama.cpp, vLLM, etc.)",
         homepage: "https://github.com/skye-harris/hass_local_openai_llm",

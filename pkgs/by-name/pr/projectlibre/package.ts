@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5], ["platforms", 76, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 26, 3], ["runtimeDeps", 33, 3], ["buildPhase", 39, 3], ["installPhase", 45, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, ant: false, jdk: false, makeWrapper: false, stripJavaArchivesHook: false, coreutils: false, jre: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5], ["platforms", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 26, 3], ["runtimeDeps", 33, 3], ["buildPhase", 39, 3], ["installPhase", 45, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "projectlibre",
       version: "1.9.8",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.code.sf.net/p/projectlibre/code",
           rev: "0530be227f4a10c5545cce8d3db20ac5a4d76a66",
           hash: "sha256-eGoPtHy1XfPLnJXNDOMcek4spNKkNyZdby0IsZFZfME=",
@@ -54,7 +52,7 @@ wrapProgram $out/bin/projectlibre \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Project-Management Software similar to MS-Project",
         homepage: "https://www.projectlibre.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cpal10")),

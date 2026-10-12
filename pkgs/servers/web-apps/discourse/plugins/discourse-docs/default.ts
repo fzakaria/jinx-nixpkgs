@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["sha256", 13, 5]], [["homepage", 16, 5], ["license", 17, 5], ["description", 18, 5]], [["name", 8, 3], ["src", 9, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { lib: false, mkDiscoursePlugin: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 16, 5], ["license", 17, 5], ["description", 18, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 8, 3], ["src", 9, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const mkDiscoursePlugin = nix.arg($, "mkDiscoursePlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(mkDiscoursePlugin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "discourse-docs",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "discourse",
           repo: "discourse-docs",
           rev: "89bae0e929387ed5697fd3c5eedf9b3dbe85bead",
           sha256: "sha256-ycDyYRi7uab4vxHY8K2kUytWBmTuFTFHYGD1AHpzC+0=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/discourse/discourse-docs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Find and filter knowledge base topics",

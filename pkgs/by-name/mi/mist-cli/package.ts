@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["updateScript", 54, 12]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["sourceProvenance", 63, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["dontBuild", 28, 3], ["unpackPhase", 30, 3], ["installPhase", 39, 3], ["postInstall", 47, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, installShellFiles: false, xar: false, cpio: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["sourceProvenance", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["dontBuild", 28, 3], ["unpackPhase", 30, 3], ["installPhase", 39, 3], ["postInstall", 47, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cpio = nix.arg($, "cpio");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mist-cli",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ninxsoft/mist-cli/releases/download/v${nix.sel(finalAttrs, "version")}/mist-cli.${nix.sel(finalAttrs, "version")}.pkg`),
           hash: "sha256-rUIA40JTXndE7W2wQiayhAP9RPTQMeJV8d6NUy/Immk=",
         })))),
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -D usr/local/bin/mist \"$out/bin/mist\"\n\nrunHook postInstall\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform")))), "installShellCompletion --cmd mist \\\n  --bash <($out/bin/mist --generate-completion-script bash) \\\n  --fish <($out/bin/mist --generate-completion-script fish) \\\n  --zsh <($out/bin/mist --generate-completion-script zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-line tool that downloads macOS firmwares and installers",
         homepage: "https://github.com/ninxsoft/mist-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["shared", 86, 39]], [["url", 93, 5], ["hash", 94, 5]], [["rev-prefix", 226, 5], ["odd-unstable", 227, 5], ["url", 228, 5]], [["updateScript", 225, 12]], [["description", 232, 5], ["homepage", 233, 5], ["changelog", 234, 5], ["mainProgram", 235, 5], ["license", 236, 5], ["platforms", 237, 5], ["maintainers", 238, 5]], [["version", 89, 3], ["pname", 90, 3], ["src", 92, 3], ["nativeBuildInputs", 97, 3], ["buildInputs", 110, 3], ["cmakeFlags", 177, 3], ["preFixup", 196, 3], ["postPatch", 214, 3], ["doInstallCheck", 220, 3], ["nativeInstallCheckInputs", 221, 3], ["passthru", 225, 3], ["meta", 231, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, withAi: true, cmake: false, "desktop-file-utils": false, intltool: false, llvmPackages: false, ninja: false, perl: false, "pkg-config": false, wrapGAppsHook3: false, saxon: false, SDL2: false, "adwaita-icon-theme": false, "alsa-lib": false, cairo: false, curl: false, exiv2: false, glib: false, "glib-networking": false, gmic: false, graphicsmagick: false, gtk3: false, icu: false, isocodes: false, jasper: false, "json-glib": false, lcms2: false, lensfun: false, lerc: false, libaom: false, libarchive: false, libavif: false, libdatrie: false, libepoxy: false, libexif: false, libgcrypt: false, "libgpg-error": false, libgphoto2: false, libheif: false, libjpeg: false, libjxl: false, libpng: false, librsvg: false, libsecret: false, "libsysprof-capture": false, libthai: false, libtiff: false, libwebp: false, libxml2: false, libxslt: false, lua5_4: false, onnxruntime: false, "util-linux": false, openexr: false, openjpeg: false, "osm-gps-map": false, pcre2: false, portmidi: false, potrace: false, pugixml: false, sqlite: false, colord: false, "colord-gtk": false, libselinux: false, libsepol: false, libx11: false, libxdmcp: false, libxkbcommon: false, libxtst: false, "ocl-icd": false, "gtk-mac-integration": false, versionCheckHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["shared", 86, 39]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 93, 5], ["hash", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 226, 5], ["odd-unstable", 227, 5], ["url", 228, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 225, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 232, 5], ["homepage", 233, 5], ["changelog", 234, 5], ["mainProgram", 235, 5], ["license", 236, 5], ["platforms", 237, 5], ["maintainers", 238, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 89, 3], ["pname", 90, 3], ["src", 92, 3], ["nativeBuildInputs", 97, 3], ["buildInputs", 110, 3], ["cmakeFlags", 177, 3], ["preFixup", 196, 3], ["postPatch", 214, 3], ["doInstallCheck", 220, 3], ["nativeInstallCheckInputs", 221, 3], ["passthru", 225, 3], ["meta", 231, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -87,12 +82,12 @@ export default nix.lambda((args) => (() => {
   const gtk_mac_integration = nix.arg($, "gtk-mac-integration");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const gitUpdater = nix.arg($, "gitUpdater");
-  const pugixml_shared = nix.thunk(() => nix.app(nix.sel(pugixml, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, shared: true }))));
+  const pugixml_shared = nix.thunk(() => nix.app(nix.sel(pugixml, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], shared: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const version = "5.6.2";
       const pname = "darktable";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/darktable-org/darktable/releases/download/release-${version}/darktable-${version}.tar.xz`),
           hash: "sha256-0tqSxnBAHTULV2Qx8h5YvuQDSOH1B4IBqKG4wnBYWDQ=",
         }))));
@@ -191,16 +186,16 @@ gappsWrapperArgs+=(
       const doInstallCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "rev-prefix": "release-",
             "odd-unstable": true,
             url: "https://github.com/darktable-org/darktable.git",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Virtual lighttable and darkroom for photographers",
         homepage: "https://www.darktable.org",
         changelog: nix.thunk(() => nix.str`https://github.com/darktable-org/darktable/releases/tag/release-${version}`),
@@ -220,7 +215,7 @@ gappsWrapperArgs+=(
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version,
         pname,
         src,

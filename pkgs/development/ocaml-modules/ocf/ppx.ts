@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ppx.nix", [[["url", 17, 7], ["hash", 18, 7], ["includes", 19, 7]], [["description", 29, 5]], [["pname", 9, 3], ["minimalOCamlVersion", 10, 3], ["src", 12, 17], ["version", 12, 21], ["patches", 14, 3], ["buildInputs", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { fetchpatch: false, buildDunePackage: false, ocf: false, ppxlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ppx.nix", [["url", 17, 7], ["hash", 18, 7], ["includes", 19, 7]]);
-const pos$2 = nix.positions(here + "/ppx.nix", [["description", 29, 5]]);
-const pos$3 = nix.positions(here + "/ppx.nix", [["pname", 9, 3], ["minimalOCamlVersion", 10, 3], ["src", 12, 17], ["version", 12, 21], ["patches", 14, 3], ["buildInputs", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,21 +12,21 @@ export default nix.lambda((args) => (() => {
   const ocf = nix.arg($, "ocf");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ocf_ppx",
       minimalOCamlVersion: "4.11",
       src: nix.thunk(() => nix.attr(ocf, "src")),
       version: nix.thunk(() => nix.attr(ocf, "version")),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://framagit.org/zoggy/ocf/-/commit/38b1f6420e5c01b3ea6b2fed99b6b62e4c848dc0.patch",
             hash: "sha256-GymTdK/dOYGianvNIKkl9OhBGW+4dX5TqAkQuEF5FmA=",
             includes: nix.thunk(() => ["*.ml"]),
           })))),
       ]),
       buildInputs: nix.thunk(() => [ppxlib, ocf]),
-      meta: nix.thunk(() => nix.update(nix.sel(ocf, "meta"), { [nix.POS]: pos$2, description: "Preprocessor for Ocf library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ocf, "meta"), { [nix.POS]: $pos[1], description: "Preprocessor for Ocf library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=ppx.ts.map

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pbt.nix", [[["description", 27, 5]], [["pname", 9, 3], ["version", 10, 20], ["src", 10, 28], ["minimalOCamlVersion", 12, 3], ["duneVersion", 13, 3], ["checkInputs", 15, 3], ["doCheck", 19, 3], ["propagatedBuildInputs", 21, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, zarith: false, "ff-sig": false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pbt.nix", [["description", 27, 5]]);
-const pos$2 = nix.positions(here + "/pbt.nix", [["pname", 9, 3], ["version", 10, 20], ["src", 10, 28], ["minimalOCamlVersion", 12, 3], ["duneVersion", 13, 3], ["checkInputs", 15, 3], ["doCheck", 19, 3], ["propagatedBuildInputs", 21, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const ff_sig = nix.arg($, "ff-sig");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ff-pbt",
       version: nix.thunk(() => nix.attr(ff_sig, "version")),
       src: nix.thunk(() => nix.attr(ff_sig, "src")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       propagatedBuildInputs: nix.thunk(() => [zarith, ff_sig]),
       meta: nix.thunk(() => nix.update(nix.sel(ff_sig, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Property based testing library for finite fields over the package ff-sig",
       })),
     })));

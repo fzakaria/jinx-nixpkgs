@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["description", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["platforms", 122, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 44, 3], ["nativeCheckInputs", 51, 3], ["buildInputs", 55, 3], ["cmakeFlags", 90, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, fetchpatch: false, fetchFromGitHub: false, armadillo: false, cmake: false, gmp: false, glog: false, gtest: false, openssl: false, gflags: false, gnuradio: false, thrift: false, enableRawUdp: true, libpcap: false, orc: false, "pkg-config": false, blas: false, lapack: false, matio: false, pugixml: false, protobuf: false, enableOsmosdr: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["platforms", 122, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 44, 3], ["nativeCheckInputs", 51, 3], ["buildInputs", 55, 3], ["cmakeFlags", 90, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gnss-sdr";
       const version = "0.0.21";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gnss-sdr",
           repo: "gnss-sdr",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -87,14 +85,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "LAPACK_LIBRARIES", "-llapack")),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open source Global Navigation Satellite Systems software-defined receiver",
         homepage: "https://gnss-sdr.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

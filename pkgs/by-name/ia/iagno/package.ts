@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["packageName", 57, 41]], [["updateScript", 57, 5]], [["homepage", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["teams", 64, 5], ["license", 65, 5], ["platforms", 66, 5]], [["pname", 23, 3], ["version", 24, 3], ["__structuredAttrs", 26, 3], ["strictDeps", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 45, 3], ["passthru", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "desktop-file-utils": false, "glycin-loaders": false, gnome: false, gst_all_1: false, gtk4: false, itstool: false, libadwaita: false, "libglycin-gtk4": false, libglycin: false, libxml2: false, meson: false, ninja: false, "pkg-config": false, vala: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 57, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["teams", 64, 5], ["license", 65, 5], ["platforms", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["__structuredAttrs", 26, 3], ["strictDeps", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 45, 3], ["passthru", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "iagno",
       version: "50.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/iagno/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/iagno-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-/f1i0YdEGuofHWoOy71OJ3B/XI3cB5cUHKdQ3TBdyII=",
         })))),
@@ -61,11 +57,11 @@ export default nix.lambda((args) => (() => {
         libglycin_gtk4,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "iagno" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "iagno" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/iagno",
         description: "Computer version of the game Reversi, more popularly called Othello",
         mainProgram: "iagno",

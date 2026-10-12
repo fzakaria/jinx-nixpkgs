@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/models.nix", [[["pname", 14, 5], ["version", 15, 26], ["hash", 16, 5]], [["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["description", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 19, 3], ["build-system", 25, 3], ["doCheck", 28, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, fetchPypi: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/models.nix", [["pname", 14, 5], ["version", 15, 26], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/models.nix", [["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["description", 36, 5]]);
-const pos$3 = nix.positions(here + "/models.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 19, 3], ["build-system", 25, 3], ["doCheck", 28, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "face-recognition-models",
       version: "0.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "face_recognition_models",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-t5vSAKiMh8mp1EbJkK5xxaYm0fNzAXTm1XAVf/HYls8=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["face_recognition_models"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ageitgey/face_recognition_models",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
         maintainers: [],

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/4.01.17.nix", [[["url", 40, 5], ["sha256", 41, 5]], [["description", 96, 5], ["homepage", 97, 5], ["sourceProvenance", 98, 5], ["license", 99, 5], ["platforms", 100, 5], ["maintainers", 101, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 44, 3], ["dontPatchELF", 46, 3], ["dontStrip", 47, 3], ["installPhase", 49, 3], ["ppdFileCommands", 88, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cups: false, "libusb-compat-0_1": false, fetchurl: false, patchPpdFilesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/4.01.17.nix", [["url", 40, 5], ["sha256", 41, 5]]);
-const pos$2 = nix.positions(here + "/4.01.17.nix", [["description", 96, 5], ["homepage", 97, 5], ["sourceProvenance", 98, 5], ["license", 99, 5], ["platforms", 100, 5], ["maintainers", 101, 5]]);
-const pos$3 = nix.positions(here + "/4.01.17.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 44, 3], ["dontPatchELF", 46, 3], ["dontStrip", 47, 3], ["installPhase", 49, 3], ["ppdFileCommands", 88, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const appendPath = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")), "64"));
   const libPath = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [cups, libusb_compat_0_1])), nix.str`:$out/lib:${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/lib`));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "samsung-unified-linux-driver",
       version: "4.01.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.bchemnet.com/suldr/driver/UnifiedLinuxDriver-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1vv3pzvqpg1dq3xjr8161x2yp3v7ca75vil56ranhw5pkjwq66x0",
         })))),
@@ -69,7 +67,7 @@ runHook postInstall
 `),
       ppdFileCommands: nix.thunk(() => ["pstosecps", "pstospl", "pstosplc", "rastertospl"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Samsung's Linux printing drivers; includes binaries without source code",
         homepage: "http://www.samsung.com/",
         sourceProvenance: nix.thunk(() => (() => {

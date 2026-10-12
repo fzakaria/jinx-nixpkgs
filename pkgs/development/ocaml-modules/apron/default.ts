@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["license", 62, 5], ["homepage", 63, 5], ["maintainers", 64, 5], ["description", 65, 5], ["platforms", 66, 26]], [["pname", 18, 3], ["version", 19, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["propagatedBuildInputs", 38, 3], ["outputs", 44, 3], ["configurePhase", 49, 3], ["postInstall", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, perl: false, gmp: false, mpfr: false, ppl: false, ocaml: false, findlib: false, camlidl: false, mlgmpidl: false, flint: false, pplite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 62, 5], ["homepage", 63, 5], ["maintainers", 64, 5], ["description", 65, 5], ["platforms", 66, 26]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["propagatedBuildInputs", 38, 3], ["outputs", 44, 3], ["configurePhase", 49, 3], ["postInstall", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const flint = nix.arg($, "flint");
   const pplite = nix.arg($, "pplite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-apron`),
       version: "0.9.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "antoinemine",
           repo: "apron",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ runHook postConfigure
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         homepage: "https://github.com/antoinemine/apron",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

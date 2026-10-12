@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 301, 5], ["platforms", 302, 5], ["timeout", 311, 5]], [["pname", 77, 3], ["nativeBuildInputs", 78, 3], ["doCheck", 95, 3], ["outputs", 96, 3], ["dontUseGnConfigure", 101, 3], ["hardeningDisable", 105, 3], ["patches", 107, 3], ["postPatch", 128, 3], ["cmakeFlags", 178, 3], ["propagatedBuildInputs", 211, 3], ["buildInputs", 287, 3], ["requiredSystemFeatures", 291, 3], ["preConfigure", 293, 3], ["separateDebugInfo", 298, 3], ["meta", 300, 3]]]);
 const formals$1 = { args: { qtModule: false, qtdeclarative: false, qtwebchannel: false, qtpositioning: false, qtwebsockets: false, buildPackages: false, bison: false, coreutils: false, fetchpatch2: false, flex: false, gperf: false, ninja: false, "pkg-config": false, python3: false, which: false, nodejs: false, libxext: false, libxdamage: false, libxcomposite: false, xrandr: false, libxkbfile: false, libpciaccess: false, libxcursor: false, libxscrnsaver: false, libxrandr: false, libxtst: false, libxshmfence: false, libxi: false, cups: false, fontconfig: false, freetype: false, harfbuzz: false, icu: false, dbus: false, expat: false, libdrm: false, zlib: false, minizip: false, libjpeg: false, libpng: false, libtiff: false, libwebp: false, libopus: false, jsoncpp: false, protobuf: false, srtp: false, snappy: false, nss: false, libevent: false, openssl: false, "alsa-lib": false, pulseaudio: false, libcap: false, pciutils: false, systemd: false, pipewire: false, gn: false, ffmpeg: false, lib: false, stdenv: false, glib: false, libxml2: false, libxslt: false, lcms2: false, libkrb5: false, libgbm: false, libva: false, enableProprietaryCodecs: true, bootstrap_cmds: false, cctools: false, xcbuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 301, 5], ["platforms", 302, 5], ["timeout", 311, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 77, 3], ["nativeBuildInputs", 78, 3], ["doCheck", 95, 3], ["outputs", 96, 3], ["dontUseGnConfigure", 101, 3], ["hardeningDisable", 105, 3], ["patches", 107, 3], ["postPatch", 128, 3], ["cmakeFlags", 178, 3], ["propagatedBuildInputs", 211, 3], ["buildInputs", 287, 3], ["requiredSystemFeatures", 291, 3], ["preConfigure", 293, 3], ["separateDebugInfo", 298, 3], ["meta", 300, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -80,7 +79,7 @@ export default nix.lambda((args) => (() => {
   const cctools = nix.arg($, "cctools");
   const xcbuild = nix.arg($, "xcbuild");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qtwebengine",
       nativeBuildInputs: nix.thunk(() => nix.concat([
         bison,
@@ -234,7 +233,7 @@ return()'
       preConfigure: "export NINJAFLAGS=\"-j$NIX_BUILD_CORES\"\n",
       separateDebugInfo: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Web engine based on the Chromium web browser",
         platforms: nix.thunk(() => [
           "aarch64-darwin",

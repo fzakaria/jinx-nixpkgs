@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 3], ["extraNativeBuildInputs", 18, 3], ["extraBuildInputs", 19, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qtmultimedia: false, qtsvg: false, qtwayland: false, qtimageformats: false, "pkg-config": false, cfitsio: false, exiv2: false, baloo: false, kimageannotator: false, lcms2: false, libtiff: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["extraNativeBuildInputs", 18, 3], ["extraBuildInputs", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const lcms2 = nix.arg($, "lcms2");
   const libtiff = nix.arg($, "libtiff");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "gwenview",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [

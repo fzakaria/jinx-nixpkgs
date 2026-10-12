@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 23, 7], ["hash", 24, 7]], [["modprobeVersion", 28, 17]], [["src", 22, 5], ["patches", 26, 5]], [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["driverLink", 48, 34]], [["driverLink", 56, 34]], [["NIX_CFLAGS_COMPILE", 117, 5], ["CGO_ENABLED", 121, 5], ["GOFLAGS", 122, 5], ["GOARCH", 123, 18], ["GOOS", 123, 25], ["NIX_LDFLAGS", 124, 5]], [["homepage", 168, 5], ["description", 169, 5], ["license", 170, 5], ["platforms", 171, 5], ["mainProgram", 172, 5], ["maintainers", 173, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["postPatch", 60, 3], ["postFixup", 102, 3], ["enableParallelBuilding", 110, 3], ["preBuild", 112, 3], ["env", 116, 3], ["nativeBuildInputs", 130, 3], ["buildInputs", 138, 3], ["makeFlags", 145, 3], ["postInstall", 152, 3], ["disallowedReferences", 165, 3], ["meta", 167, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, addDriverRunpath: false, fetchFromGitHub: false, "pkg-config": false, elfutils: false, libcap: false, libseccomp: false, "rpcsvc-proto": false, libtirpc: false, makeWrapper: false, removeReferencesTo: false, replaceVars: false, applyPatches: false, "nvidia-modprobe": false, go: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 23, 7], ["hash", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["modprobeVersion", 28, 17]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 22, 5], ["patches", 26, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["driverLink", 48, 34]]);
-const pos$6 = nix.positions(here + "/package.nix", [["driverLink", 56, 34]]);
-const pos$7 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 117, 5], ["CGO_ENABLED", 121, 5], ["GOFLAGS", 122, 5], ["GOARCH", 123, 18], ["GOOS", 123, 25], ["NIX_LDFLAGS", 124, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 168, 5], ["description", 169, 5], ["license", 170, 5], ["platforms", 171, 5], ["mainProgram", 172, 5], ["maintainers", 173, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["postPatch", 60, 3], ["postFixup", 102, 3], ["enableParallelBuilding", 110, 3], ["preBuild", 112, 3], ["env", 116, 3], ["nativeBuildInputs", 130, 3], ["buildInputs", 138, 3], ["makeFlags", 145, 3], ["postInstall", 152, 3], ["disallowedReferences", 165, 3], ["meta", 167, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,22 +25,22 @@ export default nix.lambda((args) => (() => {
   const go = nix.arg($, "go");
   const modprobeVersion = "550.54.14";
   const patchedModprobe = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: nix.thunk(() => nix.app(nix.sel(nvidia_modprobe, "src", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: modprobeVersion,
           hash: "sha256-iBRMkvOXacs/llTtvc/ZC5i/q9gc8lMuUHxMbu8A+Kg=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./modprobe.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, modprobeVersion: modprobeVersion })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./modprobe.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], modprobeVersion: modprobeVersion })))),
       ]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "libnvidia-container",
       version: "1.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "NVIDIA",
           repo: "libnvidia-container",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,11 +48,11 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-ldcache-don-t-use-ldcache.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-nvc-nvidia-docker-compatible-binary-lookups.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
           })))),
       ]),
@@ -112,7 +104,7 @@ done
       enableParallelBuilding: true,
       preBuild: "HOME=\"$(mktemp -d)\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), libtirpc)}/include/tirpc`),
             "-DWITH_TIRPC",
@@ -138,7 +130,7 @@ wrapProgram $out/bin/nvidia-container-cli --prefix LD_LIBRARY_PATH : ${libraryPa
       })()),
       disallowedReferences: nix.thunk(() => [go]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://github.com/NVIDIA/libnvidia-container",
         description: "NVIDIA container runtime library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

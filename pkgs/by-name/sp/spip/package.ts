@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["packages", 13, 5]], [["url", 22, 5], ["hash", 23, 5]], [["url", 27, 5], ["hash", 28, 5]], [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["description", 62, 5], ["license", 63, 5], ["homepage", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInput", 45, 3], ["installPhase", 47, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchurl: false, lib: false, makeWrapper: false, rPackages: false, rWrapper: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["packages", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 62, 5], ["license", 63, 5], ["homepage", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInput", 45, 3], ["installPhase", 47, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const rWrapper = nix.arg($, "rWrapper");
   const stdenv = nix.arg($, "stdenv");
   const my_r_packages = nix.thunk(() => nix.app(nix.sel(rWrapper, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       packages: nix.thunk(() => (() => {
         const w = nix.withScope(rPackages, null);
         return [
@@ -32,21 +27,21 @@ export default nix.lambda((args) => (() => {
     }))));
   const transcriptome_url = "https://kumisystems.dl.sourceforge.net/project/splicing-prediction-pipeline/transcriptome/";
   const transcriptome19 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.add(transcriptome_url, "/transcriptome_hg19.RData")),
       hash: "sha256-E8UmHoNoySSIde+TRE6bxVP0PrccpKDvIHBGCvWnYOw=",
     }))));
   const transcriptome38 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.add(transcriptome_url, "/transcriptome_hg38.RData")),
       hash: "sha256-mQMMZVN1byXMYjFoRdezmoZtnhUur2CHOP/j/pmw8as=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "spip",
       version: "0-unstable-2023-04-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "LBGC-CFB",
           repo: "SPiP",
           rev: "cae95fe0ee7a2602630b7a4eacbf7cfa0e1763f0",
@@ -67,7 +62,7 @@ makeWrapper ${my_r_packages}/bin/Rscript $out/bin/spip \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Random forest model for splice prediction in genomics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/LBGC-CFB/SPiP",

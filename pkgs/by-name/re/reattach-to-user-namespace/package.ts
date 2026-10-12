@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildFlags", 18, 3], ["installPhase", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildFlags", 18, 3], ["installPhase", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "reattach-to-user-namespace";
       const version = "2.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ChrisJohnsen",
           repo: "tmux-MacOSX-pasteboard",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -25,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const buildFlags = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-darwin")) ? ["ARCHES=x86_64"] : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-darwin")) ? ["ARCHES=arm64"] : nix.builtins.throw(nix.thunk(() => nix.str`reattach-to-user-namespace isn't being built for ${nix.sel(stdenv, "hostPlatform", "system")} yet.`)))));
       const installPhase = "mkdir -p $out/bin\ncp reattach-to-user-namespace $out/bin/\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Wrapper that provides access to the Mac OS X pasteboard service",
         homepage: "https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildFlags, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, buildFlags, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

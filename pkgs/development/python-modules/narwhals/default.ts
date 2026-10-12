@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["dask", 40, 5], ["pandas", 42, 5], ["polars", 43, 5], ["pyarrow", 44, 5], ["pyspark", 45, 5], ["ibis", 46, 5], ["sqlframe", 52, 5]], [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["maintainers", 110, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 55, 3], ["pythonImportsCheck", 64, 3], ["disabledTests", 66, 3], ["disabledTestPaths", 96, 3], ["pytestFlags", 101, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, dask: false, duckdb: false, fetchFromGitHub: false, "uv-build": false, hypothesis: false, "ibis-framework": false, packaging: false, pandas: false, polars: false, "pyarrow-hotfix": false, pyarrow: false, pyspark: false, "pytest-env": false, "pytest-xdist": false, pytestCheckHook: false, rich: false, sqlframe: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dask", 40, 5], ["pandas", 42, 5], ["polars", 43, 5], ["pyarrow", 44, 5], ["pyspark", 45, 5], ["ibis", 46, 5], ["sqlframe", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["maintainers", 110, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 55, 3], ["pythonImportsCheck", 64, 3], ["disabledTests", 66, 3], ["disabledTestPaths", 96, 3], ["pytestFlags", 101, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.23.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "narwhals-dev",
           repo: "narwhals",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [uv_build]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         dask: nix.thunk(() => nix.concat([dask], nix.sel(dask, "optional-dependencies", "dataframe"))),
         pandas: nix.thunk(() => [pandas]),
         polars: nix.thunk(() => [polars]),
@@ -77,7 +74,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["tests/tpch_q1_test.py"])));
       const pytestFlags = nix.thunk(() => ["-Wignore::DeprecationWarning"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight and extensible compatibility layer between dataframe libraries",
         homepage: "https://github.com/narwhals-dev/narwhals",
         changelog: nix.thunk(() => nix.str`https://github.com/narwhals-dev/narwhals/releases/tag/${nix.sel(src, "tag")}`),
@@ -88,7 +85,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

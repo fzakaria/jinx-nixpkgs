@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["gds", 54, 7]], [["org.gnome.system.proxy", 111, 9], ["org.gnome.system.proxy.http", 112, 9], ["org.gnome.system.proxy.https", 113, 9], ["org.gnome.system.proxy.ftp", 114, 9], ["org.gnome.system.proxy.socks", 115, 9]], [["schemaIdToVariableMapping", 110, 7], ["src", 117, 28]], [["hardcodeGsettingsPatch", 109, 5], ["updateScript", 120, 5]], [["description", 132, 5], ["homepage", 133, 5], ["license", 134, 5], ["platforms", 135, 5], ["badPlatforms", 136, 5], ["mainProgram", 140, 5]], [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 37, 3], ["patches", 44, 3], ["postPatch", 58, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 82, 3], ["mesonFlags", 91, 3], ["doCheck", 101, 3], ["postFixup", 103, 3], ["passthru", 108, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, "_experimental-update-script-combinators": false, curl: false, duktape: false, fetchFromGitHub: false, "gi-docgen": false, gitUpdater: false, glib: false, "gobject-introspection": false, "gsettings-desktop-schemas": false, makeHardcodeGsettingsPatch: false, meson: false, ninja: false, "pkg-config": false, stdenv: false, replaceVars: false, vala: false, buildPackages: false, withIntrospection: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gds", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["org.gnome.system.proxy", 111, 9], ["org.gnome.system.proxy.http", 112, 9], ["org.gnome.system.proxy.https", 113, 9], ["org.gnome.system.proxy.ftp", 114, 9], ["org.gnome.system.proxy.socks", 115, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["schemaIdToVariableMapping", 110, 7], ["src", 117, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["hardcodeGsettingsPatch", 109, 5], ["updateScript", 120, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 132, 5], ["homepage", 133, 5], ["license", 134, 5], ["platforms", 135, 5], ["badPlatforms", 136, 5], ["mainProgram", 140, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 37, 3], ["patches", 44, 3], ["postPatch", 58, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 82, 3], ["mesonFlags", 91, 3], ["doCheck", 101, 3], ["postFixup", 103, 3], ["passthru", 108, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const withIntrospection = nix.argOr($, "withIntrospection", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gobject_introspection)) && nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "libproxy",
       version: "0.5.12",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), withIntrospection, nix.thunk(() => ["devdoc"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libproxy",
           repo: "libproxy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +41,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [
           nix.path(here, "./skip-gsettings-detection.patch"),
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-gsettings.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               gds: nix.thunk(() => nix.app(nix.sel(glib, "getSchemaPath"), gsettings_desktop_schemas)),
             })))),
         ])))),
@@ -62,11 +56,11 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         hardcodeGsettingsPatch: nix.thunk(() => nix.app(makeHardcodeGsettingsPatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             schemaIdToVariableMapping: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               "org.gnome.system.proxy": "gds",
               "org.gnome.system.proxy.http": "gds",
               "org.gnome.system.proxy.https": "gds",
@@ -82,7 +76,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Library that provides automatic proxy configuration management",
         homepage: "https://libproxy.github.io/libproxy/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -2,38 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/taskchampion-sync-server.nix", [[["enable", 7, 41], ["host", 8, 41], ["openFirewall", 9, 41]], [["taskchampion-sync-server", 7, 16]], [["services", 7, 7]], [["systemPackages", 14, 21]], [["environment", 14, 9]], [["server", 6, 5], ["client", 11, 5]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 17, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/taskchampion-sync-server.nix", [["enable", 7, 41], ["host", 8, 41], ["openFirewall", 9, 41]]);
-const pos$2 = nix.positions(here + "/taskchampion-sync-server.nix", [["taskchampion-sync-server", 7, 16]]);
-const pos$3 = nix.positions(here + "/taskchampion-sync-server.nix", [["services", 7, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/taskchampion-sync-server.nix", [["systemPackages", 14, 21]]);
-const pos$5 = nix.positions(here + "/taskchampion-sync-server.nix", [["environment", 14, 9]]);
-const pos$6 = nix.positions(here + "/taskchampion-sync-server.nix", [["server", 6, 5], ["client", 11, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/taskchampion-sync-server.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "taskchampion-sync-server",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          "taskchampion-sync-server": nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, host: "0.0.0.0", openFirewall: true })),
+          [nix.POS]: $pos[1],
+          "taskchampion-sync-server": nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true, host: "0.0.0.0", openFirewall: true })),
         })),
       })),
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "taskwarrior3"))]),
           })),
         };

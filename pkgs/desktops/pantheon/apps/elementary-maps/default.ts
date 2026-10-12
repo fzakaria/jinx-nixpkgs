@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["updateScript", 53, 5]], [["homepage", 57, 5], ["description", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["teams", 61, 5], ["mainProgram", 62, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 42, 3], ["passthru", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, glib: false, meson: false, ninja: false, "pkg-config": false, vala: false, wrapGAppsHook4: false, geoclue2: false, "geocode-glib_2": false, granite7: false, gtk4: false, libadwaita: false, libshumate: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 57, 5], ["description", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["teams", 61, 5], ["mainProgram", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 42, 3], ["passthru", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libshumate = nix.arg($, "libshumate");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "elementary-maps",
       version: "8.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "maps",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,11 +38,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [glib, meson, ninja, pkg_config, vala, wrapGAppsHook4]),
       buildInputs: nix.thunk(() => [geoclue2, geocode_glib_2, glib, granite7, gtk4, libadwaita, libshumate]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/elementary/maps",
         description: "Map viewer designed for elementary OS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/clippy-helper.nix", [[["homepage", 51, 5], ["description", 52, 5], ["longDescription", 53, 5], ["license", 58, 5], ["maintainers", 62, 5], ["platforms", 63, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 32, 3], ["configureFlags", 39, 3], ["installPhase", 43, 3], ["enableParallelBuilding", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, frrSource: false, frrVersion: false, autoreconfHook: false, flex: false, bison: false, "pkg-config": false, elfutils: false, perl: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/clippy-helper.nix", [["homepage", 51, 5], ["description", 52, 5], ["longDescription", 53, 5], ["license", 58, 5], ["maintainers", 62, 5], ["platforms", 63, 5]]);
-const pos$2 = nix.positions(here + "/clippy-helper.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 32, 3], ["configureFlags", 39, 3], ["installPhase", 43, 3], ["enableParallelBuilding", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "frr-clippy-helper",
       version: frrVersion,
       src: frrSource,
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/bin\ncp lib/clippy $out/bin\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://frrouting.org/",
         description: "FRR routing daemon suite: CLI helper tool clippy",
         longDescription: "This small tool is used to support generating CLI code for FRR. It is split out here,\nto support cross-compiling, because it needs to be compiled with the build system toolchain\nand not the target host one.\n",

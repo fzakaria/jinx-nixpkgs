@@ -2,31 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["bintools", 135, 11]], [["owner", 146, 5], ["repo", 147, 5], ["hash", 150, 13], ["rev", 150, 18]], [["disallowedReferences", 169, 7], ["disallowedRequisites", 175, 7]], [["disallowedReferences", 184, 7], ["disallowedRequisites", 191, 7]], [["disallowedReferences", 200, 7]], [["disallowedReferences", 209, 7]], [["out", 168, 5], ["lib", 183, 5], ["doc", 199, 5], ["man", 208, 5]], [["disallowedReferences", 219, 7], ["disallowedRequisites", 224, 7]], [["jit", 218, 5]], [["CFLAGS", 285, 5], ["NIX_CFLAGS_COMPILE", 294, 5]], [["PERL", 296, 38]], [["PYTHON", 297, 40]], [["TCLSH", 298, 37]], [["locale", 368, 7]], [["jitSupport", 523, 13], ["pythonSupport", 524, 13], ["perlSupport", 525, 13], ["tclSupport", 526, 13], ["llvm", 528, 34], ["postgresql", 529, 11], ["stdenv", 530, 11], ["postgresqlTestExtension", 531, 11], ["postgresqlBuildExtension", 532, 11]], [["callPackage", 536, 11]], [["postgresql", 541, 53]], [["out", 546, 9], ["man", 547, 9]], [["finalPackage", 544, 28], ["outputs", 545, 7]], [["postgresql", 552, 7], ["postgresql-replication", 553, 7], ["postgresql-tls-client-cert", 554, 7], ["postgresql-wal-receiver", 555, 7], ["pkg-config", 556, 7]], [["postgresql-jit", 559, 7]], [["dlSuffix", 508, 13], ["psqlSchema", 510, 5], ["withJIT", 512, 5], ["withoutJIT", 517, 5], ["pkgs", 519, 5], ["withPackages", 541, 5], ["pg_config", 543, 5], ["tests", 551, 5]], [["homepage", 564, 5], ["description", 565, 5], ["license", 566, 5], ["changelog", 567, 5], ["teams", 568, 5], ["pkgConfigModules", 569, 5], ["platforms", 575, 5], ["broken", 577, 5]], [["version", 142, 11], ["pname", 143, 3], ["src", 145, 3], ["__structuredAttrs", 153, 3], ["outputs", 155, 3], ["outputChecks", 167, 3], ["strictDeps", 232, 3], ["buildInputs", 234, 3], ["nativeBuildInputs", 256, 3], ["enableParallelBuilding", 273, 3], ["separateDebugInfo", 275, 3], ["buildFlags", 277, 3], ["env", 279, 3], ["configureFlags", 300, 3], ["patches", 350, 3], ["installTargets", 389, 3], ["postPatch", 391, 3], ["postInstall", 409, 3], ["postFixup", 478, 3], ["doCheck", 486, 3], ["doInstallCheck", 487, 3], ["installCheckTarget", 505, 3], ["passthru", 507, 3], ["meta", 563, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, fetchurl: false, lib: false, replaceVars: false, hash: false, muslPatches: true, rev: false, version: false, darwin: false, freebsd: false, glibc: false, libuuid: false, libxml2: false, lz4: false, openssl: false, readline: false, tzdata: false, zlib: false, zstd: false, bison: false, "docbook-xsl-nons": false, docbook_xml_dtd_45: false, flex: false, libxslt: false, makeBinaryWrapper: false, "pkg-config": false, removeReferencesTo: false, buildPackages: false, newScope: false, nixosTests: false, self: false, testers: false, withBlocksize: true, withWalBlocksize: true, bonjourSupport: true, curlSupport: true, curl: false, gssSupport: true, libkrb5: false, icuSupport: true, icu: false, jitSupport: true, llvmPackages: false, nukeReferences: false, overrideCC: false, ldapSupport: true, openldap: false, nlsSupport: true, gettext: false, numaSupport: true, numactl: false, pamSupport: true, "linux-pam": false, perlSupport: true, perl: false, pythonSupport: true, python3: false, tclSupport: true, tcl: false, selinuxSupport: true, libselinux: false, systemdSupport: true, systemdLibs: false, uringSupport: true, liburing: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["bintools", 135, 11]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["owner", 146, 5], ["repo", 147, 5], ["hash", 150, 13], ["rev", 150, 18]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["disallowedReferences", 169, 7], ["disallowedRequisites", 175, 7]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["disallowedReferences", 184, 7], ["disallowedRequisites", 191, 7]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["disallowedReferences", 200, 7]]);
-const pos$6 = nix.positions(here + "/generic.nix", [["disallowedReferences", 209, 7]]);
-const pos$7 = nix.positions(here + "/generic.nix", [["out", 168, 5], ["lib", 183, 5], ["doc", 199, 5], ["man", 208, 5]]);
-const pos$8 = nix.positions(here + "/generic.nix", [["disallowedReferences", 219, 7], ["disallowedRequisites", 224, 7]]);
-const pos$9 = nix.positions(here + "/generic.nix", [["jit", 218, 5]]);
-const pos$10 = nix.positions(here + "/generic.nix", [["CFLAGS", 285, 5], ["NIX_CFLAGS_COMPILE", 294, 5]]);
-const pos$11 = nix.positions(here + "/generic.nix", [["PERL", 296, 38]]);
-const pos$12 = nix.positions(here + "/generic.nix", [["PYTHON", 297, 40]]);
-const pos$13 = nix.positions(here + "/generic.nix", [["TCLSH", 298, 37]]);
-const pos$14 = nix.positions(here + "/generic.nix", [["locale", 368, 7]]);
-const pos$15 = nix.positions(here + "/generic.nix", [["jitSupport", 523, 13], ["pythonSupport", 524, 13], ["perlSupport", 525, 13], ["tclSupport", 526, 13], ["llvm", 528, 34], ["postgresql", 529, 11], ["stdenv", 530, 11], ["postgresqlTestExtension", 531, 11], ["postgresqlBuildExtension", 532, 11]]);
-const pos$16 = nix.positions(here + "/generic.nix", [["callPackage", 536, 11]]);
-const pos$17 = nix.positions(here + "/generic.nix", [["postgresql", 541, 53]]);
-const pos$18 = nix.positions(here + "/generic.nix", [["out", 546, 9], ["man", 547, 9]]);
-const pos$19 = nix.positions(here + "/generic.nix", [["finalPackage", 544, 28], ["outputs", 545, 7]]);
-const pos$20 = nix.positions(here + "/generic.nix", [["postgresql", 552, 7], ["postgresql-replication", 553, 7], ["postgresql-tls-client-cert", 554, 7], ["postgresql-wal-receiver", 555, 7], ["pkg-config", 556, 7]]);
-const pos$21 = nix.positions(here + "/generic.nix", [["postgresql-jit", 559, 7]]);
-const pos$22 = nix.positions(here + "/generic.nix", [["dlSuffix", 508, 13], ["psqlSchema", 510, 5], ["withJIT", 512, 5], ["withoutJIT", 517, 5], ["pkgs", 519, 5], ["withPackages", 541, 5], ["pg_config", 543, 5], ["tests", 551, 5]]);
-const pos$23 = nix.positions(here + "/generic.nix", [["homepage", 564, 5], ["description", 565, 5], ["license", 566, 5], ["changelog", 567, 5], ["teams", 568, 5], ["pkgConfigModules", 569, 5], ["platforms", 575, 5], ["broken", 577, 5]]);
-const pos$24 = nix.positions(here + "/generic.nix", [["version", 142, 11], ["pname", 143, 3], ["src", 145, 3], ["__structuredAttrs", 153, 3], ["outputs", 155, 3], ["outputChecks", 167, 3], ["strictDeps", 232, 3], ["buildInputs", 234, 3], ["nativeBuildInputs", 256, 3], ["enableParallelBuilding", 273, 3], ["separateDebugInfo", 275, 3], ["buildFlags", 277, 3], ["env", 279, 3], ["configureFlags", 300, 3], ["patches", 350, 3], ["installTargets", 389, 3], ["postPatch", 391, 3], ["postInstall", 409, 3], ["postFixup", 478, 3], ["doCheck", 486, 3], ["doInstallCheck", 487, 3], ["installCheckTarget", 505, 3], ["passthru", 507, 3], ["meta", 563, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -106,20 +83,26 @@ export default nix.lambda((args) => (() => {
   const zstdEnabled = nix.thunk(() => nix.app(atLeast, "15"));
   const dlSuffix = nix.thunk(() => (nix.asBool(nix.app(olderThan, "16")) ? ".so" : nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")));
   const stdenv$ = nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "cc", "isClang"))) ? nix.app(overrideCC, nix.thunk(() => nix.sel(llvmPackages, "stdenv")), nix.thunk(() => nix.app(nix.sel(llvmPackages, "stdenv", "cc", "override"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         bintools: nix.thunk(() => nix.sel(buildPackages, nix.key(nix.str`llvmPackages_${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(llvmPackages, "release_version")))}`), "bintools")),
       }))))) : nix.force(stdenv)));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       version: version,
       pname: "postgresql",
-      src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ [nix.POS]: pos$2, owner: "postgres", repo: "postgres", hash: hash, rev: rev })))),
+      src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          owner: "postgres",
+          repo: "postgres",
+          hash: hash,
+          rev: rev,
+        })))),
       __structuredAttrs: true,
       outputs: nix.thunk(() => nix.concat(["out", "dev", "doc", "lib", "man"], nix.concat(nix.app(nix.sel(lib, "optionals"), jitSupport, nix.thunk(() => ["jit"])), nix.concat(nix.app(nix.sel(lib, "optionals"), perlSupport, nix.thunk(() => ["plperl"])), nix.concat(nix.app(nix.sel(lib, "optionals"), pythonSupport, nix.thunk(() => ["plpython3"])), nix.app(nix.sel(lib, "optionals"), tclSupport, nix.thunk(() => ["pltcl"]))))))),
       outputChecks: nix.thunk(() => nix.update({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         out: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           disallowedReferences: nix.thunk(() => nix.concat(["dev", "doc", "man"], nix.app(nix.sel(lib, "optionals"), jitSupport, nix.thunk(() => ["jit"])))),
           disallowedRequisites: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.sel(stdenv$, "cc")),
@@ -128,7 +111,7 @@ export default nix.lambda((args) => (() => {
           ], nix.builtins.map(nix.thunk(() => nix.sel(lib, "getDev")), nix.thunk(() => nix.builtins.filter((drv) => nix.has(drv, "dev"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs"))))))),
         })),
         lib: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           disallowedReferences: nix.thunk(() => nix.concat(["out", "dev", "doc", "man"], nix.app(nix.sel(lib, "optionals"), jitSupport, nix.thunk(() => ["jit"])))),
           disallowedRequisites: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.sel(stdenv$, "cc")),
@@ -137,17 +120,17 @@ export default nix.lambda((args) => (() => {
           ], nix.builtins.map(nix.thunk(() => nix.sel(lib, "getDev")), nix.thunk(() => nix.builtins.filter((drv) => nix.has(drv, "dev"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs"))))))),
         })),
         doc: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           disallowedReferences: nix.thunk(() => nix.concat(["out", "dev", "man"], nix.app(nix.sel(lib, "optionals"), jitSupport, nix.thunk(() => ["jit"])))),
         })),
         man: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           disallowedReferences: nix.thunk(() => nix.concat(["out", "dev", "doc"], nix.app(nix.sel(lib, "optionals"), jitSupport, nix.thunk(() => ["jit"])))),
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), jitSupport, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           jit: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             disallowedReferences: nix.thunk(() => ["dev", "doc", "man"]),
             disallowedRequisites: nix.thunk(() => nix.concat([
               nix.thunk(() => nix.sel(stdenv$, "cc")),
@@ -173,17 +156,17 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       buildFlags: nix.thunk(() => ["world"]),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         CFLAGS: "-fdata-sections -ffunction-sections -flto",
         NIX_CFLAGS_COMPILE: "-UUSE_PRIVATE_ENCODING_FUNCS",
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), perlSupport, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           PERL: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), perl)),
         }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), pythonSupport, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           PYTHON: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), python3)),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), tclSupport, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           TCLSH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), tcl)}/bin/tclsh`),
         }))))))),
       configureFlags: nix.thunk(() => (() => {
@@ -213,7 +196,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./patches/paths-for-split-outputs.patch"),
         nix.path(here, "./patches/paths-with-postgresql-suffix.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/locale-binary-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             locale: nix.thunk(() => nix.str`${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.sel(darwin, "adv_cmds") : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")) ? nix.sel(freebsd, "locale") : nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(stdenv, "cc", "libc")))))}/bin/locale`),
           })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv$, "hostPlatform", "isMusl")), nix.thunk(() => nix.builtins.map(fetchurl, nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), muslPatches))))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv$, "hostPlatform", "isLinux")), nix.thunk(() => [nix.path(here, "./patches/socketdir-in-run-13+.patch")])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv$, "hostPlatform", "isDarwin")) && nix.asBool(nix.app(olderThan, "16")))), nix.thunk(() => [nix.path(here, "./patches/export-dynamic-darwin-15-.patch")])))))),
@@ -267,14 +250,14 @@ wrapProgram $out/bin/initdb --prefix PATH ":" ${nix.sel(glibc, "bin")}/bin
       doInstallCheck: nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(nix.sel(stdenv$, "hostPlatform", "isDarwin"))) && nix.asBool(!nix.asBool(nix.sel(stdenv$, "hostPlatform", "isMusl"))))) && nix.asBool((nix.asBool(nix.eq(withBlocksize, null)) && nix.asBool(nix.eq(withWalBlocksize, null)))))),
       installCheckTarget: "check-world",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         dlSuffix: dlSuffix,
         psqlSchema: nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version)),
         withJIT: nix.thunk(() => (nix.asBool(jitSupport) ? nix.app(nix.sel(finalAttrs, "finalPackage", "withPackages"), (_) => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "jit"))]) : null)),
         withoutJIT: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "withPackages"), (_) => [])),
         pkgs: nix.thunk(() => (() => {
           const scope = nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             jitSupport: jitSupport,
             pythonSupport: pythonSupport,
             perlSupport: perlSupport,
@@ -287,38 +270,38 @@ wrapProgram $out/bin/initdb --prefix PATH ":" ${nix.sel(glibc, "bin")}/bin
           }));
           const newSelf = nix.thunk(() => nix.update(self, scope));
           const newSuper = nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             callPackage: nix.thunk(() => nix.app(newScope, nix.thunk(() => nix.update(scope, nix.sel(finalAttrs, "finalPackage", "pkgs"))))),
           }));
           return nix.app(nix.builtins.import(nix.path(here, "./ext.nix")), newSelf, newSuper);
         })()),
         withPackages: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             postgresql: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         pg_config: nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./pg_config.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
             outputs: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               out: nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "out", nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
               man: nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "man", nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
             })),
           })))),
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           postgresql: nix.thunk(() => nix.app(nix.sel(nixosTests, "postgresql", "postgresql", "passthru", "override"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           "postgresql-replication": nix.thunk(() => nix.app(nix.sel(nixosTests, "postgresql", "postgresql-replication", "passthru", "override"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           "postgresql-tls-client-cert": nix.thunk(() => nix.app(nix.sel(nixosTests, "postgresql", "postgresql-tls-client-cert", "passthru", "override"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           "postgresql-wal-receiver": nix.thunk(() => nix.app(nix.sel(nixosTests, "postgresql", "postgresql-wal-receiver", "passthru", "override"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), jitSupport, nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             "postgresql-jit": nix.thunk(() => nix.app(nix.sel(nixosTests, "postgresql", "postgresql-jit", "passthru", "override"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           }))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         homepage: "https://www.postgresql.org",
         description: "Powerful, open source object-relational database system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "postgresql")),

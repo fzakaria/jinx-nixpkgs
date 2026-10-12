@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5], ["stripRoot", 18, 5]], [["NIX_CFLAGS_COMPILE", 27, 7]], [["url", 32, 9], ["hash", 33, 9], ["stripRoot", 34, 9]], [["url", 37, 9], ["hash", 38, 9], ["stripRoot", 39, 9]], [["url", 42, 9], ["hash", 43, 9]], [["maintainers", 64, 5], ["homepage", 65, 5], ["description", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5], ["license", 69, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patchPhase", 21, 3], ["buildInputs", 26, 3], ["env", 27, 3], ["installPhase", 29, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchurl: false, libx11: false, withBigAtlas: true, withEphemeris: true, withMoonsEphemeris: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5], ["stripRoot", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 32, 9], ["hash", 33, 9], ["stripRoot", 34, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 37, 9], ["hash", 38, 9], ["stripRoot", 39, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 42, 9], ["hash", 43, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["maintainers", 64, 5], ["homepage", 65, 5], ["description", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5], ["license", 69, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patchPhase", 21, 3], ["buildInputs", 26, 3], ["env", 27, 3], ["installPhase", 29, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,33 +16,33 @@ export default nix.lambda((args) => (() => {
   const withEphemeris = nix.argOr($, "withEphemeris", () => true);
   const withMoonsEphemeris = nix.argOr($, "withMoonsEphemeris", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "astrolog",
       version: "7.70",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.astrolog.org/ftp/ast77src.zip",
           hash: "sha256-rG7njEtnHwUDqWstj0bQxm2c9CbsOmWOCYs0FtiVoJE=",
           stripRoot: false,
         })))),
       patchPhase: "sed -i \"s:~/astrolog:$out/astrolog:g\" astrolog.h\nsubstituteInPlace Makefile --replace cc \"$CC\" --replace strip \"$STRIP\"\n",
       buildInputs: nix.thunk(() => [libx11]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-format-security" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-format-security" })),
       installPhase: nix.thunk(() => (() => {
         const ephemeris = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "http://astrolog.org/ftp/ephem/astephem.zip",
             hash: "sha256-+on9LE27hCPRacHaIo6wz6M3V+G1QpyJ1Rp4wHbycM0=",
             stripRoot: false,
           }))));
         const moonsEphemeris = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://www.astrolog.org/ftp/ephem/moons/sepm.zip",
             hash: "sha256-bHJc1yyR2loSOC4QJWsYNtKRYpxN9ZnKK5cWCapAptI=",
             stripRoot: false,
           }))));
         const atlas = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "http://astrolog.org/ftp/atlas/atlasbig.as",
             hash: "sha256-sEiuc7azeBA5959QOIo0qllXqHo7LABGV4sB08xNWsM=",
           }))));
@@ -67,7 +61,7 @@ cp -r ${moonsEphemeris}/*.se1 $out/ephemeris
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "kmein"))];

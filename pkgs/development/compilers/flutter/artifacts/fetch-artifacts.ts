@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetch-artifacts.nix", [[["systemPlatform", 39, 17]], [["flutterTools", 38, 7]], [["supportedTargetFlutterPlatforms", 34, 5], ["flutter", 37, 5]], [["x86_64-linux", 55, 9], ["aarch64-linux", 56, 9], ["aarch64-darwin", 57, 9]], [["flutterPlatform", 66, 15]], [["nativeBuildInputs", 46, 5], ["NIX_FLUTTER_TOOLS_VM_OPTIONS", 52, 5], ["NIX_FLUTTER_OPERATING_SYSTEM", 53, 5], ["outputHash", 61, 5], ["outputHashMode", 62, 5], ["outputHashAlgo", 63, 5], ["passthru", 65, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, lndir: false, cacert: false, unzip: false, flutterPlatform: false, systemPlatform: false, flutter: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fetch-artifacts.nix", [["systemPlatform", 39, 17]]);
-const pos$2 = nix.positions(here + "/fetch-artifacts.nix", [["flutterTools", 38, 7]]);
-const pos$3 = nix.positions(here + "/fetch-artifacts.nix", [["supportedTargetFlutterPlatforms", 34, 5], ["flutter", 37, 5]]);
-const pos$4 = nix.positions(here + "/fetch-artifacts.nix", [["x86_64-linux", 55, 9], ["aarch64-linux", 56, 9], ["aarch64-darwin", 57, 9]]);
-const pos$5 = nix.positions(here + "/fetch-artifacts.nix", [["flutterPlatform", 66, 15]]);
-const pos$6 = nix.positions(here + "/fetch-artifacts.nix", [["nativeBuildInputs", 46, 5], ["NIX_FLUTTER_TOOLS_VM_OPTIONS", 52, 5], ["NIX_FLUTTER_OPERATING_SYSTEM", 53, 5], ["outputHash", 61, 5], ["outputHashMode", 62, 5], ["outputHashAlgo", 63, 5], ["passthru", 65, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const hash = nix.arg($, "hash");
   const flutterPlatforms = nix.thunk(() => ["android", "ios", "web", "linux", "windows", "macos", "fuchsia", "universal"]);
   const flutter$ = nix.thunk(() => nix.app(nix.sel(flutter, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       supportedTargetFlutterPlatforms: [],
       flutter: nix.thunk(() => nix.app(nix.sel(flutter, "unwrapped", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          flutterTools: nix.thunk(() => nix.app(nix.sel(flutter, "unwrapped", "tools", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, systemPlatform: systemPlatform })))),
+          [nix.POS]: $pos[1],
+          flutterTools: nix.thunk(() => nix.app(nix.sel(flutter, "unwrapped", "tools", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], systemPlatform: systemPlatform })))),
         })))),
     }))));
   return nix.app(runCommand, nix.thunk(() => nix.str`flutter-artifacts-${flutterPlatform}-${systemPlatform}`), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       nativeBuildInputs: nix.thunk(() => [lndir, flutter$, unzip]),
       NIX_FLUTTER_TOOLS_VM_OPTIONS: nix.thunk(() => nix.str`--root-certs-file=${cacert}/etc/ssl/certs/ca-bundle.crt`),
       NIX_FLUTTER_OPERATING_SYSTEM: nix.thunk(() => nix.sel({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "x86_64-linux": "linux",
         "aarch64-linux": "linux",
         "aarch64-darwin": "macos",
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
       outputHash: hash,
       outputHashMode: "recursive",
       outputHashAlgo: "sha256",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, flutterPlatform: flutterPlatform })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], flutterPlatform: flutterPlatform })),
     })), nix.thunk(() => nix.add(nix.add(nix.add(nix.str`export FLUTTER_ROOT="$NIX_BUILD_TOP"
 lndir -silent '${flutter$}' "$FLUTTER_ROOT"
 rm --recursive --force "$FLUTTER_ROOT/bin/cache"

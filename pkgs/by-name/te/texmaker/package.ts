@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5], ["mainProgram", 59, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 34, 3], ["qmakeFlags", 40, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, "pkg-config": false, qt6: false, qt6Packages: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 34, 3], ["qmakeFlags", 40, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "texmaker",
       version: "6.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.xm1math.net/texmaker/texmaker-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Jey7FtFW7RUosxUR03ydp4WKLe8yi4fxf8h39X9ROc8=",
         })))),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`METAINFODIR=${nix.builtins.placeholder("out")}/share/metainfo`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "TeX and LaTeX editor",
         longDescription: "This editor is a full fledged IDE for TeX and\nLaTeX editing with completion, structure viewer, preview,\nspell checking and support of any compilation chain.\n",
         homepage: "http://www.xm1math.net/texmaker/",

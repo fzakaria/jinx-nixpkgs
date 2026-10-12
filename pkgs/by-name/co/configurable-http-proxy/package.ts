@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["changelog", 23, 5], ["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["mainProgram", 27, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["dontNpmBuild", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 23, 5], ["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["mainProgram", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["dontNpmBuild", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "configurable-http-proxy";
       const version = "4.5.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jupyterhub",
           repo: "configurable-http-proxy",
           tag: version,
@@ -25,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-3HzVI7L1BH9PEBcb7CWWRQqWdSlWiCTo0qqnlSHGn7Y=";
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/jupyterhub/configurable-http-proxy/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Configurable-on-the-fly HTTP Proxy",
         homepage: "https://github.com/jupyterhub/configurable-http-proxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         mainProgram: "configurable-http-proxy",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, npmDepsHash, dontNpmBuild, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

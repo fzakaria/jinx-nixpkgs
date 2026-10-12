@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["url", 26, 5], ["hash", 27, 5]], [["startwindow", 75, 18]], [["tests", 75, 12]], [["description", 78, 5], ["downloadPage", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["sourceProvenance", 82, 5], ["license", 86, 5], ["platforms", 87, 5], ["mainProgram", 88, 5], ["maintainers", 89, 5], ["longDescription", 90, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildPhase", 37, 3], ["installPhase", 46, 3], ["passthru", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenv: false, fetchzip: false, ant: false, jdk: false, makeWrapper: false, stripJavaArchivesHook: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["startwindow", 75, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 75, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 78, 5], ["downloadPage", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["sourceProvenance", 82, 5], ["license", 86, 5], ["platforms", 87, 5], ["mainProgram", 88, 5], ["maintainers", 89, 5], ["longDescription", 90, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildPhase", 37, 3], ["installPhase", 46, 3], ["passthru", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const minimalJavaVersion = "11";
   const newsPlugin = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://www.tvbrowser.org/data/uploads/1372016422809_543/NewsPlugin.jar",
       hash: "sha256-5XoypuMd2AFBE2SJ6EdECuvq6D81HLLuu9UoA9kcKAM=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tvbrowser",
       version: "4.2.7",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://sourceforge/tvbrowser/TV-Browser%20Releases%20%28Java%20${minimalJavaVersion}%20and%20higher%29/${nix.sel(finalAttrs, "version")}/tvbrowser_${nix.sel(finalAttrs, "version")}_src.zip`),
           hash: "sha256-dmNfI6T0MU7UtMH+C/2hiAeDwZlFCB4JofQViZezoqI=",
         })))),
@@ -72,14 +67,14 @@ makeWrapper  \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           startwindow: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Electronic TV Program Guide",
         downloadPage: "https://www.tvbrowser.org/index.php?id=tv-browser",
         homepage: "https://www.tvbrowser.org/",

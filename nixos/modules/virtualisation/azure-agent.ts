@@ -2,15 +2,15 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/azure-agent.nix", [[["imports", 11, 5]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/azure-agent.nix", [["imports", 11, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const w = nix.withScope(lib, null);
   return nix.app(nix.lookup(w, "warn"), "`virtualisation.azure.agent` provided by `azure-agent.nix` module has been replaced\nby `services.waagent` options, and will be removed in a future release.\n", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       imports: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["virtualisation", "azure", "agent", "enable"]), nix.thunk(() => ["services", "waagent", "enable"]))),
         nix.thunk(() => nix.app(nix.lookup(w, "mkRenamedOptionModule"), nix.thunk(() => ["virtualisation", "azure", "agent", "verboseLogging"]), nix.thunk(() => ["services", "waagent", "settings", "Logs", "Verbose"]))),

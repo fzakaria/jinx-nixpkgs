@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["driverPath", 41, 12]], [["description", 44, 5], ["homepage", 45, 5], ["sourceProvenance", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["unpackPhase", 20, 3], ["buildPhase", 27, 3], ["installPhase", 33, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, unzip: false, "libfprint-tod": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["driverPath", 41, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["sourceProvenance", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["unpackPhase", 20, 3], ["buildPhase", 27, 3], ["installPhase", 33, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const libfprint_tod = nix.arg($, "libfprint-tod");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libfprint-2-tod1-goodix-550a",
       version: "0.0.9",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://download.lenovo.com/pccbbs/mobiles/r1slg01w.zip",
           sha256: "sha256-6tp8Unu6rs27oB5VAqfRqHmv5D9N3njl5qv6We0b/Ec=",
         })))),
@@ -31,9 +28,9 @@ export default nix.lambda((args) => (() => {
   usr/lib/x86_64-linux-gnu/libfprint-2/tod-1/libfprint-tod-goodix-550a-$version.so
 `),
       installPhase: "mkdir -p \"$out/lib/libfprint-2/tod-1/\"\nmkdir -p \"$out/lib/udev/rules.d/\"\n\ncp usr/lib/x86_64-linux-gnu/libfprint-2/tod-1/libfprint-tod-goodix-550a-$version.so \"$out/lib/libfprint-2/tod-1/\"\ncp lib/udev/rules.d/60-libfprint-2-tod1-goodix.rules \"$out/lib/udev/rules.d/\"\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, driverPath: "/lib/libfprint-2/tod-1" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], driverPath: "/lib/libfprint-2/tod-1" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Goodix 550a driver module for libfprint-2-tod Touch OEM Driver (from Lenovo)",
         homepage: "https://support.lenovo.com/us/en/downloads/ds560884-goodix-fingerprint-driver-for-linux-thinkpad-e14-gen-4-e15-gen-4",
         sourceProvenance: nix.thunk(() => (() => {

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 5], ["version", 21, 13], ["hash", 22, 5]], [["code_style", 34, 5], ["docs", 37, 5], ["tests", 42, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["optional-dependencies", 33, 3], ["pythonImportsCheck", 50, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, sphinx: false, "pre-commit": false, ipython: false, "myst-parser": false, "sphinx-book-theme": false, pytest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 13], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["code_style", 34, 5], ["docs", 37, 5], ["tests", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["optional-dependencies", 33, 3], ["pythonImportsCheck", 50, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0.post1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "sphinx_remove_toctrees",
           version: version,
           hash: "sha256-SAjR7fFRwG7/bSw5Iux+vJ/Tqhdi3hsuFnSjf1rJzi0=",
@@ -33,21 +30,21 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [sphinx]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         code_style: nix.thunk(() => [pre_commit]),
         docs: nix.thunk(() => [ipython, myst_parser, sphinx_book_theme]),
         tests: nix.thunk(() => [ipython, myst_parser, pytest, sphinx_book_theme]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["sphinx_remove_toctrees"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Reduce your documentation build size by selectively removing toctrees from pages",
         homepage: "https://pypi.org/project/sphinx-remove-toctrees/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

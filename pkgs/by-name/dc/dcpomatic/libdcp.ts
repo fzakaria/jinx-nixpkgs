@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libdcp.nix", [[["url", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 77, 5], ["homepage", 78, 5], ["downloadPage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 52, 3], ["propagatedBuildInputs", 70, 3], ["__structuredAttrs", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, wafHook: false, python3: false, gitMinimal: false, "pkg-config": false, openssl: false, libxmlxx: false, libcxml: false, xmlsec: false, imagemagick: false, libsndfile: false, openjpeg: false, boost: false, xercesc: false, "ffmpeg-headless": false, fmt: false, "fast-float": false, libtool: false, libharu: false, asdcplib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libdcp.nix", [["url", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/libdcp.nix", [["description", 77, 5], ["homepage", 78, 5], ["downloadPage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]]);
-const pos$3 = nix.positions(here + "/libdcp.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 52, 3], ["propagatedBuildInputs", 70, 3], ["__structuredAttrs", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libharu = nix.arg($, "libharu");
   const asdcplib = nix.arg($, "asdcplib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libdcp",
       version: "1.10.63",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.carlh.net/git/libdcp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-nT9wSOY/OPNRxpjnp+wblx7Jbx/S0uP7lL68zBK4NFk=",
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [asdcplib]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "DCP handling library",
         homepage: "https://git.carlh.net/cgit/libdcp",
         downloadPage: "https://git.carlh.net/cgit/libdcp",

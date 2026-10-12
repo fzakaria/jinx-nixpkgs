@@ -2,10 +2,8 @@
 import * as nix from "../runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetchurl.nix", [[["builder", 42, 5], ["outputHashMode", 45, 5], ["name", 48, 7], ["url", 49, 7], ["executable", 50, 7], ["unpack", 51, 7], ["system", 54, 5], ["preferLocalBuild", 57, 5], ["impureEnvVars", 60, 5], ["urls", 69, 5]], [["__impure", 71, 24]], [["outputHashAlgo", 71, 58], ["outputHash", 71, 73]]]);
 const formals$1 = { args: { system: true, url: false, hash: true, md5: true, sha1: true, sha256: true, sha512: true, outputHash: true, outputHashAlgo: true, executable: true, unpack: true, name: true, impure: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fetchurl.nix", [["builder", 42, 5], ["outputHashMode", 45, 5], ["name", 48, 7], ["url", 49, 7], ["executable", 50, 7], ["unpack", 51, 7], ["system", 54, 5], ["preferLocalBuild", 57, 5], ["impureEnvVars", 60, 5], ["urls", 69, 5]]);
-const pos$2 = nix.positions(here + "/fetchurl.nix", [["__impure", 71, 24]]);
-const pos$3 = nix.positions(here + "/fetchurl.nix", [["outputHashAlgo", 71, 58], ["outputHash", 71, 73]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const name = nix.argOr($, "name", () => nix.builtins.baseNameOf(nix.thunk(() => nix.builtins.toString(url))));
   const impure = nix.argOr($, "impure", () => false);
   return nix.app(nix.builtins.derivation, nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       builder: "builtin:fetchurl",
       outputHashMode: nix.thunk(() => (nix.asBool((nix.asBool(unpack) || nix.asBool(executable))) ? "recursive" : "flat")),
       name: name,
@@ -34,5 +32,5 @@ export default nix.lambda((args) => (() => {
       preferLocalBuild: true,
       impureEnvVars: nix.thunk(() => ["http_proxy", "https_proxy", "ftp_proxy", "all_proxy", "no_proxy"]),
       urls: nix.thunk(() => [url]),
-    }, (nix.asBool(impure) ? { [nix.POS]: pos$2, __impure: true } : { [nix.POS]: pos$3, outputHashAlgo: outputHashAlgo, outputHash: outputHash }))));
+    }, (nix.asBool(impure) ? { [nix.POS]: $pos[1], __impure: true } : { [nix.POS]: $pos[2], outputHashAlgo: outputHashAlgo, outputHash: outputHash }))));
 })(), formals$1);

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["postPatch", 45, 3], ["installPhase", 50, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, makeWrapper: false, perlPackages: false, coreutils: false, zip: false, imagemagick: false, pngcrush: false, lcms2: false, facedetect: false, fbida: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["postPatch", 45, 3], ["installPhase", 50, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const facedetect = nix.arg($, "facedetect");
   const fbida = nix.arg($, "fbida");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fgallery",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.thregr.org/~wavexx/software/fgallery/releases/fgallery-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-FvF0wkRe3wTPUG9/GEBxkaxvZ1B4wEd9kI9rURHKxn0=",
         })))),
@@ -57,7 +55,7 @@ wrapProgram "$out/share/fgallery/fgallery" \\
     --set PATH "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, zip, imagemagick, pngcrush, lcms2, facedetect, fbida]))}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Static photo gallery generator",
         homepage: "https://www.thregr.org/~wavexx/software/fgallery/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["updateScript", 61, 12]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["strictDeps", 32, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 47, 3], ["postInstall", 56, 3], ["passthru", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { fetchFromGitLab: false, lib: false, libxkbcommon: false, makeWrapper: false, meson: false, ninja: false, "nix-update-script": false, pixman: false, "pkg-config": false, scdoc: false, stdenv: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, wlroots_0_19: false, xwayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 61, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["strictDeps", 32, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 47, 3], ["postInstall", 56, 3], ["passthru", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const wlroots_0_19 = nix.arg($, "wlroots_0_19");
   const xwayland = nix.arg($, "xwayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wayback",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "wayback",
           repo: "wayback",
@@ -44,11 +41,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxkbcommon, pixman, wayland, wayland_protocols, wlroots_0_19, xwayland]),
       postInstall: "wrapProgram \"$out/bin/wayback-session\" \\\n  --set XWAYBACK_PATH \"$out/bin/Xwayback\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "X11 compatibility layer leveraging wlroots and Xwayland",
         homepage: "https://wayback.freedesktop.org",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/wayback/wayback/-/releases/${nix.sel(finalAttrs, "version")}`),

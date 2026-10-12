@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["pythonRelaxDeps", 32, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 45, 3], ["doCheck", 52, 3], ["checkPhase", 53, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, beautifulsoup4: false, click: false, "gtts-token": false, mock: false, pytest: false, requests: false, six: false, testfixtures: false, twine: false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["pythonRelaxDeps", 32, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 45, 3], ["doCheck", 52, 3], ["checkPhase", 53, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pndurette",
           repo: "gTTS",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "pytest\n";
       const pythonImportsCheck = nix.thunk(() => ["gtts"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library and CLI tool to interface with Google Translate text-to-speech API",
         mainProgram: "gtts-cli",
         homepage: "https://gtts.readthedocs.io",
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

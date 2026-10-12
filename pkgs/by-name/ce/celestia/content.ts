@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/content.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 31, 5], ["maintainers", 32, 5], ["license", 33, 5]], [["pname", 11, 3], ["version", 12, 3], ["strictDeps", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gettext: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/content.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/content.nix", [["description", 31, 5], ["maintainers", 32, 5], ["license", 33, 5]]);
-const pos$3 = nix.positions(here + "/content.nix", [["pname", 11, 3], ["version", 12, 3], ["strictDeps", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "celestia-content",
       version: "0-unstable-2026-07-19",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CelestiaProject",
           repo: "CelestiaContent",
           rev: "724b9545b72c56c1a9afeda35d48f611e4f0d20f",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, gettext, imagemagick]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Data files for Celestia space simulator",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

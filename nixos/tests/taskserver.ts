@@ -2,41 +2,16 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/taskserver.nix", [[["outputs", 6, 9], ["buildInputs", 13, 9], ["caTemplate", 14, 9], ["certTemplate", 20, 9], ["crlTemplate", 27, 9], ["userCertTemplate", 30, 9]], [["users", 80, 26]], [["users", 84, 29]], [["testOrganisation", 80, 9], ["anotherOrganisation", 84, 9]], [["enable", 75, 27], ["listenHost", 76, 27], ["openFirewall", 77, 27], ["fqdn", 78, 27], ["organisations", 79, 27]], [["taskserver", 75, 16]], [["cert", 89, 14]], [["cert", 90, 18], ["key", 91, 18], ["crl", 92, 18]], [["ca", 89, 11], ["server", 90, 11]], [["manual", 88, 33]], [["pki", 88, 29]], [["taskserver", 88, 18]], [["services", 88, 9]], [["configuration", 87, 36]], [["manual_config", 87, 22]], [["services", 75, 7], ["specialisation", 87, 7]], [["systemPackages", 100, 21]], [["isNormalUser", 104, 27]], [["isNormalUser", 105, 25]], [["isNormalUser", 106, 25]], [["isNormalUser", 107, 25]], [["alice", 104, 21], ["bob", 105, 21], ["foo", 106, 21], ["bar", 107, 21]], [["users", 104, 15]], [["environment", 100, 9], ["users", 104, 9]], [["server", 74, 5], ["client1", 97, 5], ["client2", 110, 5]], [["name", 71, 3], ["nodes", 73, 3], ["testScript", 113, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/taskserver.nix", [["outputs", 6, 9], ["buildInputs", 13, 9], ["caTemplate", 14, 9], ["certTemplate", 20, 9], ["crlTemplate", 27, 9], ["userCertTemplate", 30, 9]]);
-const pos$2 = nix.positions(here + "/taskserver.nix", [["users", 80, 26]]);
-const pos$3 = nix.positions(here + "/taskserver.nix", [["users", 84, 29]]);
-const pos$4 = nix.positions(here + "/taskserver.nix", [["testOrganisation", 80, 9], ["anotherOrganisation", 84, 9]]);
-const pos$5 = nix.positions(here + "/taskserver.nix", [["enable", 75, 27], ["listenHost", 76, 27], ["openFirewall", 77, 27], ["fqdn", 78, 27], ["organisations", 79, 27]]);
-const pos$6 = nix.positions(here + "/taskserver.nix", [["taskserver", 75, 16]]);
-const pos$7 = nix.positions(here + "/taskserver.nix", [["cert", 89, 14]]);
-const pos$8 = nix.positions(here + "/taskserver.nix", [["cert", 90, 18], ["key", 91, 18], ["crl", 92, 18]]);
-const pos$9 = nix.positions(here + "/taskserver.nix", [["ca", 89, 11], ["server", 90, 11]]);
-const pos$10 = nix.positions(here + "/taskserver.nix", [["manual", 88, 33]]);
-const pos$11 = nix.positions(here + "/taskserver.nix", [["pki", 88, 29]]);
-const pos$12 = nix.positions(here + "/taskserver.nix", [["taskserver", 88, 18]]);
-const pos$13 = nix.positions(here + "/taskserver.nix", [["services", 88, 9]]);
-const pos$14 = nix.positions(here + "/taskserver.nix", [["configuration", 87, 36]]);
-const pos$15 = nix.positions(here + "/taskserver.nix", [["manual_config", 87, 22]]);
-const pos$16 = nix.positions(here + "/taskserver.nix", [["services", 75, 7], ["specialisation", 87, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$17 = nix.positions(here + "/taskserver.nix", [["systemPackages", 100, 21]]);
-const pos$18 = nix.positions(here + "/taskserver.nix", [["isNormalUser", 104, 27]]);
-const pos$19 = nix.positions(here + "/taskserver.nix", [["isNormalUser", 105, 25]]);
-const pos$20 = nix.positions(here + "/taskserver.nix", [["isNormalUser", 106, 25]]);
-const pos$21 = nix.positions(here + "/taskserver.nix", [["isNormalUser", 107, 25]]);
-const pos$22 = nix.positions(here + "/taskserver.nix", [["alice", 104, 21], ["bob", 105, 21], ["foo", 106, 21], ["bar", 107, 21]]);
-const pos$23 = nix.positions(here + "/taskserver.nix", [["users", 104, 15]]);
-const pos$24 = nix.positions(here + "/taskserver.nix", [["environment", 100, 9], ["users", 104, 9]]);
-const pos$25 = nix.positions(here + "/taskserver.nix", [["server", 74, 5], ["client1", 97, 5], ["client2", 110, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$26 = nix.positions(here + "/taskserver.nix", [["name", 71, 3], ["nodes", 73, 3], ["testScript", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const snakeOil = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "snakeoil-certs", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       outputs: nix.thunk(() => ["out", "cacert", "cert", "key", "crl"]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnutls", "bin"))]),
       caTemplate: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "snakeoil-ca.template", "cn = server\nexpiration_days = -1\ncert_signing_key\nca\n")),
@@ -45,43 +20,43 @@ export default nix.lambda((args) => (() => {
       userCertTemplate: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "snakeoil-user-cert.template", "organization = snakeoil\ncn = server\nexpiration_days = -1\ntls_www_client\nencryption_key\nsigning_key\n")),
     })), "certtool -p --bits 4096 --outfile ca.key\ncerttool -s --template \"$caTemplate\" --load-privkey ca.key \\\n            --outfile \"$cacert\"\ncerttool -p --bits 4096 --outfile \"$key\"\ncerttool -c --template \"$certTemplate\" \\\n            --load-ca-privkey ca.key \\\n            --load-ca-certificate \"$cacert\" \\\n            --load-privkey \"$key\" \\\n            --outfile \"$cert\"\ncerttool --generate-crl --template \"$crlTemplate\" \\\n                        --load-ca-privkey ca.key \\\n                        --load-ca-certificate \"$cacert\" \\\n                        --outfile \"$crl\"\n\nmkdir \"$out\"\n\n# Stripping key information before the actual PEM-encoded values is solely\n# to make test output a bit less verbose when copying the client key to the\n# actual client.\ncerttool -p --bits 4096 | sed -n \\\n  -e '/^----* *BEGIN/,/^----* *END/p' > \"$out/alice.key\"\n\ncerttool -c --template \"$userCertTemplate\" \\\n            --load-privkey \"$out/alice.key\" \\\n            --load-ca-privkey ca.key \\\n            --load-ca-certificate \"$cacert\" \\\n            --outfile \"$out/alice.cert\"\n"));
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     name: "taskserver",
     nodes: nix.thunk(() => (() => {
       const server = nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           taskserver: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             listenHost: "::",
             openFirewall: true,
             fqdn: "server",
             organisations: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              testOrganisation: nix.thunk(() => ({ [nix.POS]: pos$2, users: nix.thunk(() => ["alice", "foo"]) })),
-              anotherOrganisation: nix.thunk(() => ({ [nix.POS]: pos$3, users: nix.thunk(() => ["bob"]) })),
+              [nix.POS]: $pos[3],
+              testOrganisation: nix.thunk(() => ({ [nix.POS]: $pos[1], users: nix.thunk(() => ["alice", "foo"]) })),
+              anotherOrganisation: nix.thunk(() => ({ [nix.POS]: $pos[2], users: nix.thunk(() => ["bob"]) })),
             })),
           })),
         })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           manual_config: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 taskserver: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   pki: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     manual: nix.thunk(() => ({
-                      [nix.POS]: pos$9,
-                      ca: nix.thunk(() => ({ [nix.POS]: pos$7, cert: nix.thunk(() => nix.sel(snakeOil, "cacert")) })),
+                      [nix.POS]: $pos[8],
+                      ca: nix.thunk(() => ({ [nix.POS]: $pos[6], cert: nix.thunk(() => nix.sel(snakeOil, "cacert")) })),
                       server: nix.thunk(() => ({
-                        [nix.POS]: pos$8,
+                        [nix.POS]: $pos[7],
                         cert: nix.thunk(() => nix.sel(snakeOil, "cert")),
                         key: nix.thunk(() => nix.sel(snakeOil, "key")),
                         crl: nix.thunk(() => nix.sel(snakeOil, "crl")),
@@ -98,28 +73,28 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "taskwarrior2")),
               nix.thunk(() => nix.sel(pkgs_1, "gnutls")),
             ]),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$22,
-              alice: nix.thunk(() => ({ [nix.POS]: pos$18, isNormalUser: true })),
-              bob: nix.thunk(() => ({ [nix.POS]: pos$19, isNormalUser: true })),
-              foo: nix.thunk(() => ({ [nix.POS]: pos$20, isNormalUser: true })),
-              bar: nix.thunk(() => ({ [nix.POS]: pos$21, isNormalUser: true })),
+              [nix.POS]: $pos[21],
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[17], isNormalUser: true })),
+              bob: nix.thunk(() => ({ [nix.POS]: $pos[18], isNormalUser: true })),
+              foo: nix.thunk(() => ({ [nix.POS]: $pos[19], isNormalUser: true })),
+              bar: nix.thunk(() => ({ [nix.POS]: $pos[20], isNormalUser: true })),
             })),
           })),
         };
       })(), formals$2);
       const client2 = client1;
-      return { [nix.POS]: pos$25, server, client1, client2 };
+      return { [nix.POS]: $pos[24], server, client1, client2 };
     })()),
     testScript: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);

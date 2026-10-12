@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 31, 5], ["owner", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["sqlalchemy", 72, 5], ["numpy", 73, 5], ["pandas", 74, 5], ["arrow", 75, 5], ["orjson", 76, 5]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 25, 3], ["version", 26, 3], ["format", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["setupPyBuildFlags", 38, 3], ["enableParallelBuilding", 39, 3], ["propagatedBuildInputs", 41, 3], ["nativeCheckInputs", 50, 3], ["disabledTestPaths", 59, 3], ["pythonImportsCheck", 64, 3], ["optional-dependencies", 71, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, cython: false, certifi: false, "importlib-metadata": false, urllib3: false, pytz: false, zstandard: false, lz4: false, sqlalchemy: false, numpy: false, pandas: false, pyarrow: false, orjson: false, "pytest-dotenv": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 31, 5], ["owner", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sqlalchemy", 72, 5], ["numpy", 73, 5], ["pandas", 74, 5], ["arrow", 75, 5], ["orjson", 76, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["format", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["setupPyBuildFlags", 38, 3], ["enableParallelBuilding", 39, 3], ["propagatedBuildInputs", 41, 3], ["nativeCheckInputs", 50, 3], ["disabledTestPaths", 59, 3], ["pythonImportsCheck", 64, 3], ["optional-dependencies", 71, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "clickhouse-connect",
           owner: "ClickHouse",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         "clickhouse_connect.driverc.npconv",
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         sqlalchemy: nix.thunk(() => [sqlalchemy]),
         numpy: nix.thunk(() => [numpy]),
         pandas: nix.thunk(() => [pandas]),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         orjson: nix.thunk(() => [orjson]),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "ClickHouse Database Core Driver for Python, Pandas, and Superset",
         homepage: "https://github.com/ClickHouse/clickhouse-connect",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

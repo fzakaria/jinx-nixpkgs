@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libnvshmem.nix", [[["owner", 70, 5], ["repo", 71, 5], ["tag", 72, 5], ["hash", 73, 5]], [["CUDA_HOME", 145, 7]], [["pname", 252, 28], ["version", 252, 34], ["rev-prefix", 253, 7]], [["message", 259, 9], ["assertion", 260, 9]], [["updateScript", 251, 5], ["brokenAssertions", 256, 5]], [["description", 266, 5], ["homepage", 267, 5], ["changelog", 268, 5], ["broken", 269, 5], ["license", 272, 5], ["platforms", 273, 5], ["maintainers", 277, 5], ["teams", 281, 5]], [["__structuredAttrs", 61, 3], ["strictDeps", 62, 3], ["name", 65, 3], ["pname", 66, 3], ["version", 67, 3], ["src", 69, 3], ["outputs", 76, 3], ["nativeBuildInputs", 78, 3], ["postPatch", 99, 3], ["enableParallelBuilding", 115, 3], ["buildInputs", 117, 3], ["env", 145, 3], ["cmakeFlags", 148, 3], ["postInstall", 195, 3], ["postFixup", 203, 3], ["doCheck", 248, 3], ["passthru", 250, 3], ["meta", 265, 3]]]);
 const formals$1 = { args: { _cuda: false, autoAddDriverRunpath: false, backendStdenv: false, buildPackages: false, cmake: false, cccl: false, cuda_cudart: false, cuda_nvcc: false, cuda_nvml_dev: false, cuda_nvrtc: false, cuda_nvtx: false, cudaAtLeast: false, cudaMajorMinorVersion: false, cudaNamePrefix: false, fetchFromGitHub: false, flags: false, gdrcopy: false, lib: false, libfabric: false, libnvjitlink: false, mpi: false, nccl: false, ninja: false, patchelf: false, pmix: false, python3Packages: false, "rdma-core": false, removeReferencesTo: false, ucx: false, gitUpdater: false, withGdrcopy: true, withIbgda: true, withLibfabric: true, withMpi: true, withNccl: true, withPmix: true, withUcx: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libnvshmem.nix", [["owner", 70, 5], ["repo", 71, 5], ["tag", 72, 5], ["hash", 73, 5]]);
-const pos$2 = nix.positions(here + "/libnvshmem.nix", [["CUDA_HOME", 145, 7]]);
-const pos$3 = nix.positions(here + "/libnvshmem.nix", [["pname", 252, 28], ["version", 252, 34], ["rev-prefix", 253, 7]]);
-const pos$4 = nix.positions(here + "/libnvshmem.nix", [["message", 259, 9], ["assertion", 260, 9]]);
-const pos$5 = nix.positions(here + "/libnvshmem.nix", [["updateScript", 251, 5], ["brokenAssertions", 256, 5]]);
-const pos$6 = nix.positions(here + "/libnvshmem.nix", [["description", 266, 5], ["homepage", 267, 5], ["changelog", 268, 5], ["broken", 269, 5], ["license", 272, 5], ["platforms", 273, 5], ["maintainers", 277, 5], ["teams", 281, 5]]);
-const pos$7 = nix.positions(here + "/libnvshmem.nix", [["__structuredAttrs", 61, 3], ["strictDeps", 62, 3], ["name", 65, 3], ["pname", 66, 3], ["version", 67, 3], ["src", 69, 3], ["outputs", 76, 3], ["nativeBuildInputs", 78, 3], ["postPatch", 99, 3], ["enableParallelBuilding", 115, 3], ["buildInputs", 117, 3], ["env", 145, 3], ["cmakeFlags", 148, 3], ["postInstall", 195, 3], ["postFixup", 203, 3], ["doCheck", 248, 3], ["passthru", 250, 3], ["meta", 265, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,14 +59,14 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const teams = nix.thunk(() => nix.attr(lib, "teams"));
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       __structuredAttrs: true,
       strictDeps: true,
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "libnvshmem",
       version: "3.6.5-0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NVIDIA",
           repo: "nvshmem",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -100,7 +94,7 @@ export default nix.lambda((args) => (() => {
         rdma_core,
       ], nix.concat(nix.app(optionals, withLibfabric, nix.thunk(() => [libfabric])), nix.concat(nix.app(optionals, withGdrcopy, nix.thunk(() => [gdrcopy])), nix.concat(nix.app(optionals, withNccl, nix.thunk(() => [nccl])), nix.concat(nix.app(optionals, withPmix, nix.thunk(() => [pmix])), nix.app(optionals, withUcx, nix.thunk(() => [ucx])))))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CUDA_HOME: nix.thunk(() => nix.sel(nix.app(getBin, cuda_nvcc), "outPath")),
       })),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => [
@@ -148,23 +142,23 @@ remove-references-to ${nix.app(concatMapStringsSep, " ", (p) => nix.str`-t "${p}
 `)),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             "rev-prefix": "v",
           })))),
         brokenAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             message: nix.thunk(() => nix.str`NVSHMEM does not support CUDA releases earlier than 11.7 (found ${cudaMajorMinorVersion})`),
             assertion: nix.thunk(() => nix.app(cudaAtLeast, "11.7")),
           })),
         ]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Parallel programming interface for NVIDIA GPUs based on OpenSHMEM",
         homepage: "https://github.com/NVIDIA/nvshmem",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/nvshmem/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

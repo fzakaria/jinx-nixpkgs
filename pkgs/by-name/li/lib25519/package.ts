@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["package", 82, 7], ["command", 83, 7], ["version", 84, 7]], [["version", 81, 11]], [["updateScript", 80, 5], ["tests", 81, 5]], [["homepage", 89, 5], ["description", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 101, 5], ["teams", 106, 5], ["platforms", 108, 33]], [["pname", 14, 3], ["version", 15, 3], ["strictDeps", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["postPatch", 27, 3], ["configurePhase", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["preFixup", 61, 3], ["doInstallCheck", 72, 3], ["installCheckPhase", 73, 3], ["passthru", 79, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, python3: false, fetchzip: false, testers: false, valgrind: false, valgrindSupport: true, librandombytes: false, libcpucycles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 82, 7], ["command", 83, 7], ["version", 84, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 81, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 80, 5], ["tests", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 89, 5], ["description", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 101, 5], ["teams", 106, 5], ["platforms", 108, 33]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["strictDeps", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["postPatch", 27, 3], ["configurePhase", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["preFixup", 61, 3], ["doInstallCheck", 72, 3], ["installCheckPhase", 73, 3], ["passthru", 79, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const librandombytes = nix.arg($, "librandombytes");
   const libcpucycles = nix.arg($, "libcpucycles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lib25519",
       version: "20260614",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://lib25519.cr.yp.to/lib25519-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-k6hVfUckgrRGVmvbt5SW3Vg1woscGzPBpOYnfYx5t44=",
         })))),
@@ -46,12 +41,12 @@ runHook postConfigure
       doInstallCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       installCheckPhase: "runHook preInstallCheck\n$out/bin/lib25519-test\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "lib25519-test | head -n 2 | grep version",
               version: nix.thunk(() => nix.str`lib25519 version ${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +56,7 @@ runHook postConfigure
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libcpucycles, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://lib25519.cr.yp.to",
         description: "Microlibrary for X25519/Ed25519 cryptography",
         changelog: "https://lib25519.cr.yp.to/download.html",

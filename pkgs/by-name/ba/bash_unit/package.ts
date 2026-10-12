@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 48, 5], ["homepage", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patchPhase", 18, 3], ["doCheck", 32, 3], ["checkPhase", 34, 3], ["installPhase", 42, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patchPhase", 18, 3], ["doCheck", 32, 3], ["checkPhase", 34, 3], ["installPhase", 42, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bash_unit",
       version: "2.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bash-unit",
           repo: "bash_unit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\n./bash_unit ./tests/test_core.sh\n\nrunHook postCheck\n",
       installPhase: "mkdir -p $out/bin\ncp bash_unit $out/bin/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bash unit testing enterprise edition framework for professionals",
         homepage: "https://github.com/bash-unit/bash_unit",
         maintainers: nix.thunk(() => (() => {

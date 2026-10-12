@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]], [["simple-cmake", 45, 5]], [["tests", 44, 12]], [["changelog", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 33, 3], ["cmakeFlags", 35, 3], ["checkInputs", 41, 3], ["doCheck", 42, 3], ["passthru", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, nlohmann_json: false, doctest: false, callPackage: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["simple-cmake", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 44, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 33, 3], ["cmakeFlags", 35, 3], ["checkInputs", 41, 3], ["doCheck", 42, 3], ["passthru", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "inja",
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pantor",
           repo: "inja",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "cmake-install-pc.patch",
             url: "https://github.com/pantor/inja/commit/ebb7aeb3ae49ccb49a642aaecb0d41483078b8bd.patch",
             hash: "sha256-Cz0EbYwGwFcfhKd8lJzXDy2DpMAcHkz7EC/vVFV60c0=",
@@ -49,14 +44,14 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [doctest]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "simple-cmake": nix.thunk(() => nix.app(callPackage, nix.path(here, "./simple-cmake-test"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/pantor/inja/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Template engine for modern C++, loosely inspired by jinja for python",
         homepage: "https://github.com/pantor/inja",

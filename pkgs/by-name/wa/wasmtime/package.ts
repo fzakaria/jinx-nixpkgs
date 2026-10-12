@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 20, 7], ["hash", 21, 7], ["cargoHash", 22, 7]], [["version", 25, 7], ["hash", 26, 7], ["cargoHash", 27, 7]], [["lts-36", 19, 5], ["main", 24, 5]], [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5], ["fetchSubmodules", 43, 5]], [["python3-wasmtime", 120, 7]], [["extraArgs", 125, 11]], [["attrPath", 133, 11]], [["tests", 119, 5], ["updateScript", 122, 5]], [["description", 140, 5], ["homepage", 141, 5], ["license", 142, 5], ["mainProgram", 143, 5], ["maintainers", 144, 5], ["platforms", 148, 5], ["changelog", 149, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["auditable", 47, 3], ["cargoHash", 49, 3], ["cargoBuildFlags", 50, 3], ["outputs", 57, 3], ["__structuredAttrs", 63, 3], ["nativeBuildInputs", 65, 3], ["doCheck", 70, 3], ["postInstall", 81, 3], ["nativeInstallCheckInputs", 113, 3], ["doInstallCheck", 116, 3], ["passthru", 118, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, buildPackages: false, cmake: false, installShellFiles: false, versionCheckHook: false, "_experimental-update-script-combinators": false, "nix-update-script": false, python3: false, enableShared: true, enableStatic: true, variant: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 20, 7], ["hash", 21, 7], ["cargoHash", 22, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 25, 7], ["hash", 26, 7], ["cargoHash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["lts-36", 19, 5], ["main", 24, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5], ["fetchSubmodules", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["python3-wasmtime", 120, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 125, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["attrPath", 133, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 119, 5], ["updateScript", 122, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 140, 5], ["homepage", 141, 5], ["license", 142, 5], ["mainProgram", 143, 5], ["maintainers", 144, 5], ["platforms", 148, 5], ["changelog", 149, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["auditable", 47, 3], ["cargoHash", 49, 3], ["cargoBuildFlags", 50, 3], ["outputs", 57, 3], ["__structuredAttrs", 63, 3], ["nativeBuildInputs", 65, 3], ["doCheck", 70, 3], ["postInstall", 81, 3], ["nativeInstallCheckInputs", 113, 3], ["doInstallCheck", 116, 3], ["passthru", 118, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,15 +22,15 @@ export default nix.lambda((args) => (() => {
   const enableStatic = nix.argOr($, "enableStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const variant = nix.argOr($, "variant", () => "main");
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "lts-36": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "36.0.17",
       hash: "sha256-+zwOVdidbJs8IWL1vwghkwvWwaYOQ5LvVlY2BGs0Lbg=",
       cargoHash: "sha256-V64KmH4M/biKmMZh/kT8nd4v8xOlHjOoWEO9RCWyX1c=",
     })),
     main: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "49.0.2",
       hash: "sha256-XwJOxAswT93KPPe1/Vv2DHHeNRUhfq68x2giRDQmK9o=",
       cargoHash: "sha256-TjVJ0M5LFAsxHUFF88fHvSAzKqq7ZqPT2zOSnQ8X16o=",
@@ -48,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const source = nix.thunk(() => nix.sel(sources, nix.key(nix.force(variant))));
   const hasPythonBinding = nix.thunk(() => nix.eq(variant, "main"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "wasmtime",
       version: nix.thunk(() => nix.sel(source, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "bytecodealliance",
           repo: "wasmtime",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -89,22 +80,22 @@ cp -r target/${cargoShortTarget}/release/build/wasmtime-c-api-impl-*/out/include
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), hasPythonBinding, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "python3-wasmtime": nix.thunk(() => nix.sel(python3, "pkgs", "wasmtime")),
           })))),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => nix.concat([
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 extraArgs: nix.thunk(() => ["--version-regex", "^v(\\d+\\.\\d+\\.\\d+)$"]),
               })))),
           ], nix.app(nix.sel(lib, "optionals"), hasPythonBinding, nix.thunk(() => [
-              nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$7, attrPath: "python3.pkgs.wasmtime" })))),
+              nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[6], attrPath: "python3.pkgs.wasmtime" })))),
             ])))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Standalone JIT-style runtime for WebAssembly, using Cranelift",
         homepage: "https://wasmtime.dev/",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "WITH"), nix.thunk(() => nix.sel(lib, "licenses", "asl20")), nix.thunk(() => nix.sel(lib, "licenses", "llvm-exception")))),

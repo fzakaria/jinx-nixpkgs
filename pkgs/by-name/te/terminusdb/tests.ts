@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["pname", 11, 3], ["src", 12, 24], ["version", 12, 28], ["nativeCheckInputs", 14, 3], ["sourceRoot", 20, 3], ["npmDepsHash", 22, 3], ["postPatch", 25, 3], ["dontNpmBuild", 34, 3], ["doCheck", 35, 3], ["preCheck", 38, 3], ["checkPhase", 93, 3], ["postCheck", 103, 3], ["installPhase", 109, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchpatch2: false, terminusdb: false, procps: false, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["pname", 11, 3], ["src", 12, 24], ["version", 12, 28], ["nativeCheckInputs", 14, 3], ["sourceRoot", 20, 3], ["npmDepsHash", 22, 3], ["postPatch", 25, 3], ["dontNpmBuild", 34, 3], ["doCheck", 35, 3], ["preCheck", 38, 3], ["checkPhase", 93, 3], ["postCheck", 103, 3], ["installPhase", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const curl = nix.arg($, "curl");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "terminusdb-tests",
       src: nix.thunk(() => nix.attr(terminusdb, "src")),
       version: nix.thunk(() => nix.attr(terminusdb, "version")),

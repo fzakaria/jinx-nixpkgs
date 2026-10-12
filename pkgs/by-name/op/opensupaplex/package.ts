@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["NIX_CFLAGS_COMPILE", 50, 7]], [["package", 77, 5], ["command", 78, 5], ["version", 79, 5]], [["version", 76, 18]], [["tests", 76, 12]], [["name", 84, 7], ["exec", 85, 7], ["icon", 86, 7], ["desktopName", 87, 7], ["comment", 88, 7], ["categories", 89, 7]], [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 104, 5], ["mainProgram", 105, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["enableParallelBuilding", 48, 3], ["env", 50, 3], ["preBuild", 55, 3], ["postBuild", 60, 3], ["installPhase", 64, 3], ["passthru", 76, 3], ["desktopItems", 82, 3], ["stripExclude", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, makeDesktopItem: false, copyDesktopItems: false, testers: false, opensupaplex: false, SDL2: false, SDL2_mixer: false, desktopToDarwinBundle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 77, 5], ["command", 78, 5], ["version", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 76, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 76, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 84, 7], ["exec", 85, 7], ["icon", 86, 7], ["desktopName", 87, 7], ["comment", 88, 7], ["categories", 89, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 104, 5], ["mainProgram", 105, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["enableParallelBuilding", 48, 3], ["env", 50, 3], ["preBuild", 55, 3], ["postBuild", 60, 3], ["installPhase", 64, 3], ["passthru", 76, 3], ["desktopItems", 82, 3], ["stripExclude", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://raw.githubusercontent.com/sergiou87/open-supaplex/b102548699cf16910b59559f689ecfad88d2a7d2/open-supaplex.svg",
       sha256: "sha256-nKeSBUGjSulbEP7xxc6smsfCRjyc/xsLykH0o3Rq5wo=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "opensupaplex",
       version: "7.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "sergiou87",
           repo: "open-supaplex",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2_mixer]),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-DFILE_DATA_PATH=${nix.builtins.placeholder("out")}/lib/opensupaplex`),
             "-DFILE_FHS_XDG_DIRS",
@@ -69,11 +61,11 @@ cp ${icon} $out/share/icons/hicolor/scalable/apps/open-supaplex.svg
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: opensupaplex,
               command: "opensupaplex --help",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,7 +74,7 @@ runHook postInstall
       })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "opensupaplex",
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             icon: "open-supaplex",
@@ -93,7 +85,7 @@ runHook postInstall
       ]),
       stripExclude: nix.thunk(() => ["lib/opensupaplex/*"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Decompilation of Supaplex in C and SDL",
         homepage: "https://github.com/sergiou87/open-supaplex",
         changelog: nix.thunk(() => nix.str`https://github.com/sergiou87/open-supaplex/blob/master/changelog/v${nix.sel(finalAttrs, "version")}.txt`),

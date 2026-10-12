@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 31, 5], ["homepage", 32, 5], ["changelog", 33, 5], ["license", 34, 5], ["mainProgram", 35, 5], ["maintainers", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 17, 3], ["checkPhase", 19, 3], ["postInstall", 26, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["changelog", 33, 5], ["license", 34, 5], ["mainProgram", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 17, 3], ["checkPhase", 19, 3], ["postInstall", 26, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const bash = nix.arg($, "bash");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aws-signing-helper",
       version: "1.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aws",
           repo: "rolesanywhere-credential-helper",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ runHook postCheck
 `),
       postInstall: "mv $out/bin/rolesanywhere-credential-helper $out/bin/aws_signing_helper\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "AWS Signing Helper for IAM Roles Anywhere",
         homepage: "https://github.com/aws/rolesanywhere-credential-helper",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/rolesanywhere-credential-helper/releases/tag/v${nix.sel(finalAttrs, "version")}`),

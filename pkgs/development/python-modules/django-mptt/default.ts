@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["license", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 32, 3], ["nativeCheckInputs", 34, 3], ["doCheck", 41, 3], ["preCheck", 43, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, django: false, "django-js-asset": false, "model-bakery": false, pytestCheckHook: false, "pytest-django": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["license", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 32, 3], ["nativeCheckInputs", 34, 3], ["doCheck", 41, 3], ["preCheck", 43, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.18";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "django-mptt",
           repo: "django-mptt",
           rev: version,
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(django, "version")), "6.1"));
       const preCheck = "export DJANGO_SETTINGS_MODULE=tests.settings\nexport PYTHONPATH=$(pwd)/tests:$PYTHONPATH\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utilities for implementing a modified pre-order traversal tree in Django",
         homepage: "https://github.com/django-mptt/django-mptt",
         maintainers: nix.thunk(() => (() => {
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 20, 3], ["dontBuild", 26, 3], ["installPhase", 28, 3], ["doInstallCheck", 44, 3], ["installCheckPhase", 45, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, makeWrapper: false, perl: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 20, 3], ["dontBuild", 26, 3], ["installPhase", 28, 3], ["doInstallCheck", 44, 3], ["installCheckPhase", 45, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "listadmin";
       const version = "2.73";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/listadmin/${version}/listadmin-${version}.tar.gz`),
           sha256: "00333d65ygdbm1hqr4yp2j8vh1cgh3hyfm7iy9y1alf0p0f6aqac",
         }))));
@@ -43,7 +41,7 @@ wrapProgram $out/bin/listadmin \\
       const doInstallCheck = true;
       const installCheckPhase = "$out/bin/listadmin --help 2> /dev/null\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line mailman moderator queue manipulation",
         longDescription: "listadmin is a command line tool to manipulate the queues of messages\nheld for moderator approval by mailman. It is designed to keep user\ninteraction to a minimum, in theory you could run it from cron to prune\nthe queue. It can use the score from a header added by SpamAssassin to\nfilter, or it can match specific senders, subjects, or reasons.\n",
         homepage: "https://sourceforge.net/projects/listadmin/",
@@ -56,7 +54,7 @@ wrapProgram $out/bin/listadmin \\
         mainProgram: "listadmin",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

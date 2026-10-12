@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["updateScript", 55, 12]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["dependencies", 20, 3], ["buildPhase", 33, 3], ["installPhase", 41, 3], ["passthru", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 55, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["dependencies", 20, 3], ["buildPhase", 33, 3], ["installPhase", 41, 3], ["passthru", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "2025.08.24";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TakWolf",
           repo: "ark-pixel-font",
           tag: version,
@@ -43,11 +40,11 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "runHook preBuild\n\npython -m tools.cli --cleanup\n\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\n\ninstall -Dm444 build/outputs/*.bdf -t $out/share/fonts/bdf\ninstall -Dm444 build/outputs/*.otf -t $out/share/fonts/opentype\ninstall -Dm444 build/outputs/*.ttf -t $out/share/fonts/truetype\ninstall -Dm444 build/outputs/*.woff2 -t $out/share/fonts/woff2\ninstall -Dm444 build/outputs/*.pcf -t $out/share/fonts/pcf\ninstall -Dm444 build/outputs/*.otc -t $out/share/fonts/otc\ninstall -Dm444 build/outputs/*.ttc -t $out/share/fonts/ttc\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open source pan-CJK pixel font",
         homepage: "https://ark-pixel-font.takwolf.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

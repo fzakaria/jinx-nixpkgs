@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["jdk", 33, 45]], [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["broken", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5]], [["pname", 17, 3], ["version", 18, 11], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["patches", 32, 3], ["mvnHash", 36, 3], ["mvnJdk", 37, 3], ["mvnParameters", 38, 3], ["installPhase", 40, 3], ["postFixup", 53, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, maven: false, fetchFromGitHub: false, replaceVars: false, openjdk25: false, libarchive: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["jdk", 33, 45]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["broken", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 11], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["patches", 32, 3], ["mvnHash", 36, 3], ["mvnJdk", 37, 3], ["mvnParameters", 38, 3], ["installPhase", 40, 3], ["postFixup", 53, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const jdk = openjdk25;
   const version = "5.9.6";
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cratedb",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crate",
           repo: "crate",
           tag: version,
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [libarchive, makeWrapper]),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-poms.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, jdk: jdk })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-poms.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], jdk: jdk })))),
       ]),
       mvnHash: "sha256-p0LSR6I876/JNfrLp19PnLAx00gL4E2mZK+CO8X2IzU=",
       mvnJdk: jdk,
@@ -51,7 +48,7 @@ runHook postInstall
 `),
       postFixup: "# By default it wants to write to $out/data and $out/logs. Bad program.\nwrapProgram $out/bin/crate \\\n  --set CRATE_DISABLE_GC_LOGGING 1 \\\n  --add-flags '-Cpath.data=\"${XDG_DATA_HOME:-$HOME/.local/share}/crate\"' \\\n  --add-flags '-Cpath.logs=\"${XDG_STATE_HOME:-$HOME/.local/state}/crate\"'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Distributed and scalable SQL database",
         longDescription: "CrateDB is a distributed SQL database that makes it simple to store and analyze massive\namounts of data in real-time.\n\nCrateDB offers the benefits of an SQL database and the scalability and flexibility typically\nassociated with NoSQL databases. Modest CrateDB clusters can ingest tens of thousands of records\nper second without breaking a sweat. You can run ad-hoc queries using standard SQL.\nCrateDB's blazing-fast distributed query execution engine parallelizes query workloads across\nthe whole cluster.\n",
         homepage: "https://cratedb.com/database",

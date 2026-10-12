@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["hook", 44, 5], ["persistentregistry", 45, 5], ["security", 46, 5], ["zcml", 51, 5]], [["homepage", 74, 5], ["description", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 43, 3], ["pythonImportsCheck", 57, 3], ["nativeCheckInputs", 59, 3], ["unittestFlagsArray", 64, 3], ["preCheck", 67, 3], ["pythonNamespaces", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "zope-event": false, "zope-hookable": false, "zope-interface": false, persistent: false, "zope-configuration": false, "zope-i18nmessageid": false, "zope-location": false, "zope-proxy": false, "zope-security": false, unittestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hook", 44, 5], ["persistentregistry", 45, 5], ["security", 46, 5], ["zcml", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 74, 5], ["description", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 43, 3], ["pythonImportsCheck", 57, 3], ["nativeCheckInputs", 59, 3], ["unittestFlagsArray", 64, 3], ["preCheck", 67, 3], ["pythonNamespaces", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zopefoundation",
           repo: "zope.component",
           tag: version,
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [zope_event, zope_hookable, zope_interface]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         hook: [],
         persistentregistry: nix.thunk(() => [persistent]),
         security: nix.thunk(() => [zope_location, zope_proxy, zope_security]),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm src/zope/component/tests/test_interface.py\n";
       const pythonNamespaces = nix.thunk(() => ["zope"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/zopefoundation/zope.component",
         description: "Zope Component Architecture",
         changelog: nix.thunk(() => nix.str`https://github.com/zopefoundation/zope.component/blob/${version}/CHANGES.rst`),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

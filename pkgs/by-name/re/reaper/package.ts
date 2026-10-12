@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 52, 11], ["aarch64-linux", 53, 11]], [["url", 46, 5], ["hash", 47, 5]], [["updateScript", 141, 12]], [["description", 144, 5], ["homepage", 145, 5], ["sourceProvenance", 146, 5], ["license", 147, 5], ["platforms", 148, 5], ["maintainers", 153, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 58, 3], ["sourceRoot", 70, 3], ["buildInputs", 72, 3], ["runtimeDependencies", 80, 3], ["dontBuild", 87, 3], ["dontStrip", 88, 3], ["installPhase", 90, 3], ["passthru", 141, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, makeWrapper: false, undmg: false, "alsa-lib": false, curl: false, gtk3: false, lame: false, libxml2_13: false, libjack2: false, "ffmpeg-headless": false, vlc: false, "xdg-utils": false, xdotool: false, which: false, openssl: false, jackSupport: true, jackLibrary: true, pulseaudioSupport: true, libpulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 52, 11], ["aarch64-linux", 53, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 141, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 144, 5], ["homepage", 145, 5], ["sourceProvenance", 146, 5], ["license", 147, 5], ["platforms", 148, 5], ["maintainers", 153, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 58, 3], ["sourceRoot", 70, 3], ["buildInputs", 72, 3], ["runtimeDependencies", 80, 3], ["dontBuild", 87, 3], ["dontStrip", 88, 3], ["installPhase", 90, 3], ["passthru", 141, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,14 +32,14 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const url_for_platform = (version) => (arch) => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`https://www.reaper.fm/files/${nix.app(nix.sel(lib, "versions", "major"), version)}.x/reaper${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}_universal.dmg` : nix.str`https://www.reaper.fm/files/${nix.app(nix.sel(lib, "versions", "major"), version)}.x/reaper${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}_linux_${arch}.tar.xz`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "reaper",
       version: "7.81",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.app(url_for_platform, nix.thunk(() => nix.sel(finalAttrs, "version")), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "qemuArch")))),
           hash: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "sha256-z3ym5rqsymPBNbKdfifrqC2KSuRnwOR/VpGBSKc91iQ=" : nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "x86_64-linux": "sha256-1WVIaKD08xowslG1T//DLKmsV42ZgV6HwAkD1Ln3iLk=",
             "aarch64-linux": "sha256-Bb/IVY1uundgUBytGvl9MtUZ5l7TWCbaw0MUIwYvBb4=",
           }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))))),
@@ -93,9 +89,9 @@ substituteInPlace $out/share/applications/cockos-reaper.desktop \\
 
 runHook postInstall
 `)),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./updater.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./updater.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Digital audio workstation",
         homepage: "https://www.reaper.fm/",
         sourceProvenance: nix.thunk(() => (() => {

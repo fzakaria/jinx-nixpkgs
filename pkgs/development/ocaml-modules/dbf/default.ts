@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 12, 3], ["version", 13, 3], ["minimalOCamlVersion", 15, 3], ["duneVersion", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["propagatedBuildInputs", 27, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, ppx_cstruct: false, rresult: false, "cstruct-unix": false, core_kernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["minimalOCamlVersion", 15, 3], ["duneVersion", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["propagatedBuildInputs", 27, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const cstruct_unix = nix.arg($, "cstruct-unix");
   const core_kernel = nix.arg($, "core_kernel");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dbf",
       version: "0.2.0",
       minimalOCamlVersion: "4.08",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pveber",
           repo: "dbf",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ppx_cstruct]),
       propagatedBuildInputs: nix.thunk(() => [rresult, cstruct_unix, core_kernel]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "DBF format parsing",
         homepage: "https://github.com/pveber/dbf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

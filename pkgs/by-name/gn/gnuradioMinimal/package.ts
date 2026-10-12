@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableModTool", 16, 7]], [["gnuradio-companion", 20, 7], ["python-support", 21, 7], ["examples", 22, 7], ["gr-qtgui", 23, 7], ["gr-utils", 24, 7], ["gr-modtool", 25, 7], ["gr-blocktool", 26, 7], ["sphinx", 27, 7], ["doxygen", 28, 7], ["gr-ctrlport", 31, 7]], [["volk", 14, 5], ["uhd", 18, 5], ["features", 19, 5]], [["doWrap", 11, 3], ["packageOverrides", 12, 11], ["unwrapped", 13, 3]]]);
 const formals$1 = { args: { gnuradio: false, volk: false, uhdMinimal: false, packageOverrides: true, unwrappedFeaturesOverride: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableModTool", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gnuradio-companion", 20, 7], ["python-support", 21, 7], ["examples", 22, 7], ["gr-qtgui", 23, 7], ["gr-utils", 24, 7], ["gr-modtool", 25, 7], ["gr-blocktool", 26, 7], ["sphinx", 27, 7], ["doxygen", 28, 7], ["gr-ctrlport", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["volk", 14, 5], ["uhd", 18, 5], ["features", 19, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["doWrap", 11, 3], ["packageOverrides", 12, 11], ["unwrapped", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,15 +13,15 @@ export default nix.lambda((args) => (() => {
   const packageOverrides = nix.argOr($, "packageOverrides", () => (self) => (super$) => ({}));
   const unwrappedFeaturesOverride = nix.argOr($, "unwrappedFeaturesOverride", () => ({}));
   return nix.app(nix.sel(gnuradio, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       doWrap: false,
       packageOverrides: packageOverrides,
       unwrapped: nix.thunk(() => nix.app(nix.sel(gnuradio, "unwrapped", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          volk: nix.thunk(() => nix.app(nix.sel(volk, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableModTool: false })))),
+          [nix.POS]: $pos[2],
+          volk: nix.thunk(() => nix.app(nix.sel(volk, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableModTool: false })))),
           uhd: uhdMinimal,
           features: nix.thunk(() => nix.update({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "gnuradio-companion": false,
             "python-support": false,
             examples: false,

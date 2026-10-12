@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ARCHS", 63, 5], ["ARCH_CONFIGS", 64, 5], ["PLATFORM", 65, 5], ["RC_DARWIN_KERNEL_VERSION", 66, 5], ["DSTROOT", 68, 5], ["SDKROOT_RESOLVED", 70, 5], ["SDKVERSION", 71, 5], ["CTFCONVERT", 73, 5], ["CTFINSERT", 74, 5], ["CTFMERGE", 75, 5], ["DSYMUTIL", 76, 5], ["IIG", 77, 5], ["LIBTOOL", 78, 5], ["LIPO", 79, 5], ["MIG", 80, 5], ["MIGCOM", 81, 5], ["NMEDIT", 82, 5], ["UNIFDEF", 83, 5], ["HOST_SDKROOT_RESOLVED", 85, 5], ["HOST_OS_VERSION", 86, 5], ["HOST_BISON", 88, 5], ["HOST_CC", 89, 5], ["HOST_CODESIGN", 90, 5], ["HOST_CODESIGN_ALLOCATE", 91, 5], ["HOST_FLEX", 92, 5], ["HOST_GM4", 93, 5]], [["pname", 18, 3], ["releaseName", 19, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 51, 3], ["env", 62, 3], ["buildFlags", 96, 3], ["installTargets", 97, 3], ["postInstall", 101, 3]]]);
 const formals$1 = { args: { lib: false, AvailabilityVersions: false, "apple-sdk": false, bison: false, bootstrap_cmds: false, buildPackages: false, flex: false, gnum4: false, mkAppleDerivation: false, perl: false, python3: false, stdenv: false, unifdef: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ARCHS", 63, 5], ["ARCH_CONFIGS", 64, 5], ["PLATFORM", 65, 5], ["RC_DARWIN_KERNEL_VERSION", 66, 5], ["DSTROOT", 68, 5], ["SDKROOT_RESOLVED", 70, 5], ["SDKVERSION", 71, 5], ["CTFCONVERT", 73, 5], ["CTFINSERT", 74, 5], ["CTFMERGE", 75, 5], ["DSYMUTIL", 76, 5], ["IIG", 77, 5], ["LIBTOOL", 78, 5], ["LIPO", 79, 5], ["MIG", 80, 5], ["MIGCOM", 81, 5], ["NMEDIT", 82, 5], ["UNIFDEF", 83, 5], ["HOST_SDKROOT_RESOLVED", 85, 5], ["HOST_OS_VERSION", 86, 5], ["HOST_BISON", 88, 5], ["HOST_CC", 89, 5], ["HOST_CODESIGN", 90, 5], ["HOST_CODESIGN_ALLOCATE", 91, 5], ["HOST_FLEX", 92, 5], ["HOST_GM4", 93, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["releaseName", 19, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 51, 3], ["env", 62, 3], ["buildFlags", 96, 3], ["installTargets", 97, 3], ["postInstall", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const unifdef = nix.arg($, "unifdef");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "xnuHeaders",
       releaseName: "xnu",
       postPatch: nix.thunk(() => nix.str`rm bsd/sys/make_symbol_aliasing.sh
@@ -64,7 +63,7 @@ patchShebangs .
         python3,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         ARCHS: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinArch")),
         ARCH_CONFIGS: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinArch")),
         PLATFORM: "MacOSX",

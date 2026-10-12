@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 16, 3], ["version", 17, 35], ["src", 17, 43], ["patches", 17, 47], ["pyproject", 18, 3], ["postPatch", 20, 3], ["build-system", 24, 3], ["buildInputs", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 35, 3], ["disabledTestPaths", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cmdline: false, "importlib-metadata": false, mock: false, pytestCheckHook: false, pytest: false, "pytest-fixture-config": false, "pytest-shutil": false, setuptools: false, virtualenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 35], ["src", 17, 43], ["patches", 17, 47], ["pyproject", 18, 3], ["postPatch", 20, 3], ["build-system", 24, 3], ["buildInputs", 26, 3], ["dependencies", 28, 3], ["nativeCheckInputs", 35, 3], ["disabledTestPaths", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const virtualenv = nix.arg($, "virtualenv");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "pytest-virtualenv",
       version: nix.thunk(() => nix.attr(pytest_fixture_config, "version")),
       src: nix.thunk(() => nix.attr(pytest_fixture_config, "src")),
@@ -33,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [cmdline, mock, pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["tests/integration/*"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Create a Python virtual environment in your test that cleans up on teardown. The fixture has utility methods to install packages and list what’s installed",
         homepage: "https://github.com/manahl/pytest-plugins",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

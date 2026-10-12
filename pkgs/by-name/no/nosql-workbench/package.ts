@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 11], ["hash", 18, 11]], [["url", 21, 11], ["hash", 22, 11]], [["aarch64-darwin", 16, 9], ["x86_64-linux", 20, 9]], [["description", 28, 5], ["homepage", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]], [["pname", 42, 7], ["version", 43, 7], ["src", 44, 7], ["meta", 45, 7], ["sourceRoot", 48, 5], ["nativeBuildInputs", 53, 5], ["buildInputs", 55, 5], ["installPhase", 57, 5]], [["pname", 83, 60], ["version", 83, 66], ["src", 83, 74]], [["pname", 70, 7], ["version", 71, 7], ["src", 72, 7], ["meta", 73, 7], ["extraPkgs", 76, 5], ["extraInstallCommands", 81, 5]]]);
 const formals$1 = { args: { appimageTools: false, lib: false, fetchurl: false, jdk21: false, stdenv: false, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 11], ["hash", 18, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 11], ["hash", 22, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-darwin", 16, 9], ["x86_64-linux", 20, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 42, 7], ["version", 43, 7], ["src", 44, 7], ["meta", 45, 7], ["sourceRoot", 48, 5], ["nativeBuildInputs", 53, 5], ["buildInputs", 55, 5], ["installPhase", 57, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 83, 60], ["version", 83, 66], ["src", 83, 74]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 70, 7], ["version", 71, 7], ["src", 72, 7], ["meta", 73, 7], ["extraPkgs", 76, 5], ["extraInstallCommands", 81, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const pname = "nosql-workbench";
   const version = "3.20.2";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "aarch64-darwin": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://s3.amazonaws.com/nosql-workbench/NoSQL%20Workbench-mac-arm64-${version}.dmg`),
         hash: "sha256-U6Gea89/cXY9Fd6JAWrUtf7Q4VfEXDPzbjCQcHMRjiE=",
       })),
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://s3.amazonaws.com/nosql-workbench/NoSQL%20Workbench-linux-${version}.AppImage`),
         hash: "sha256-O62JsVHJ5OE6HLt3Pg9XVrd3j1eoY3O+bjqroowGEOE=",
       })),
     }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     description: "Visual tool that provides data modeling, data visualization, and query development features to help you design, create, query, and manage DynamoDB tables",
     homepage: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html",
     changelog: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkbenchDocumentHistory.html",
@@ -47,7 +41,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["aarch64-darwin", "x86_64-linux"]),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -57,14 +51,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [jdk21]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\nmv NoSQL\\ Workbench.app $out/Applications/\n\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: src,
       meta: meta,
       extraPkgs: (pkgs) => [nix.thunk(() => nix.sel(pkgs, "jdk21"))],
       extraInstallCommands: nix.thunk(() => (() => {
-        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$6, pname: pname, version: version, src: src }))));
+        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[5], pname: pname, version: version, src: src }))));
         const internal_filename = "@amznnosql-workbench";
         return nix.str`# Install XDG Desktop file and its icon
 install -Dm444 ${appimageContents}/${internal_filename}.desktop -t $out/share/applications

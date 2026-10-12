@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["plugins", 36, 7]], [["updateScript", 55, 12]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["mainProgram", 62, 5], ["maintainers", 63, 5], ["platforms", 67, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["buildFeatures", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 34, 3], ["nativeCheckInputs", 43, 3], ["nativeInstallCheckInputs", 47, 3], ["versionCheckProgramArg", 50, 3], ["versionCheckKeepEnvironment", 52, 3], ["doInstallCheck", 53, 3], ["passthru", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, "alsa-lib-with-plugins": false, "alsa-plugins": false, pipewire: false, writableTmpDirAsHomeHook: false, versionCheckHook: false, "nix-update-script": false, enableSound: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["plugins", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 55, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["mainProgram", 62, 5], ["maintainers", 63, 5], ["platforms", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["buildFeatures", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 34, 3], ["nativeCheckInputs", 43, 3], ["nativeInstallCheckInputs", 47, 3], ["versionCheckProgramArg", 50, 3], ["versionCheckKeepEnvironment", 52, 3], ["doInstallCheck", 53, 3], ["passthru", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const enableSound = nix.argOr($, "enableSound", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "timr-tui",
       version: "1.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sectore",
           repo: "timr-tui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), enableSound, nix.thunk(() => ["sound"]))),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(enableSound) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => [pkg_config]))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(enableSound) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => [
-          nix.thunk(() => nix.app(nix.sel(alsa_lib_with_plugins, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, plugins: nix.thunk(() => [alsa_plugins, pipewire]) })))),
+          nix.thunk(() => nix.app(nix.sel(alsa_lib_with_plugins, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], plugins: nix.thunk(() => [alsa_plugins, pipewire]) })))),
         ]))),
       nativeCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
@@ -46,11 +42,11 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["HOME"]))),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "TUI to organize your time: Pomodoro, Countdown, Timer, Event",
         homepage: "https://github.com/sectore/timr-tui",
         changelog: nix.thunk(() => nix.str`https://github.com/sectore/timr-tui/releases/tag/v${nix.sel(finalAttrs, "version")}`),

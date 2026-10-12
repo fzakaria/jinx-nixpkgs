@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["__finalAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["postPatch", 30, 3], ["preInstall", 37, 3], ["doInstallCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, hidapi: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["__finalAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["postPatch", 30, 3], ["preInstall", 37, 3], ["doInstallCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const hidapi = nix.arg($, "hidapi");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "footswitch",
       version: "1.0-unstable-2023-10-10",
       __finalAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rgerganov",
           repo: "footswitch",
           rev: "b7493170ecc956ac87df2c36183253c945be2dcf",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin $out/lib/udev/rules.d\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line utilities for programming PCsensor and Scythe foot switches",
         homepage: "https://github.com/rgerganov/footswitch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

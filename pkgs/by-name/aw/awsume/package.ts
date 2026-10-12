@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["AWSUME_SKIP_ALIAS_SETUP", 20, 7]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["env", 20, 3], ["nativeBuildInputs", 22, 3], ["dependencies", 24, 3], ["postPatch", 33, 3], ["postInstall", 39, 3], ["doCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, installShellFiles: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["AWSUME_SKIP_ALIAS_SETUP", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["env", 20, 3], ["nativeBuildInputs", 22, 3], ["dependencies", 24, 3], ["postPatch", 33, 3], ["postInstall", 39, 3], ["doCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "awsume",
       version: "4.5.7",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trek10inc",
           repo: "awsume",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-UTwqu2czo2ASql18dj0qwPGmKCF0QxVqyX7PZMWRUeg=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, AWSUME_SKIP_ALIAS_SETUP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], AWSUME_SKIP_ALIAS_SETUP: 1n })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       dependencies: nix.thunk(() => (() => {
         const w = nix.withScope(python3Packages, null);
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "installShellCompletion --cmd awsume \\\n  --bash <(PYTHONPATH=./awsume/configure python3 -c\"import autocomplete; print(autocomplete.SCRIPTS['bash'])\") \\\n  --zsh <(PYTHONPATH=./awsume/configure python3 -c\"import autocomplete; print(autocomplete.ZSH_AUTOCOMPLETE_FUNCTION)\") \\\n  --fish <(PYTHONPATH=./awsume/configure python3 -c\"import autocomplete; print(autocomplete.SCRIPTS['fish'])\") \\\n\nrm -f $out/bin/awsume.bat\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utility for easily assuming AWS IAM roles from the command line",
         homepage: "https://github.com/trek10inc/awsume",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

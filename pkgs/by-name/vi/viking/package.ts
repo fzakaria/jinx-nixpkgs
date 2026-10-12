@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 46, 5], ["hash", 47, 5]], [["description", 101, 5], ["mainProgram", 102, 5], ["longDescription", 103, 5], ["homepage", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["platforms", 116, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 63, 3], ["configureFlags", 81, 3], ["doCheck", 92, 3], ["preFixup", 94, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, desktopToDarwinBundle: false, docbook_xml_dtd_45: false, docbook_xsl: false, intltool: false, itstool: false, libxslt: false, "pkg-config": false, wrapGAppsHook3: false, xxd: false, "yelp-tools": false, curl: false, "gdk-pixbuf": false, gtk3: false, "json-glib": false, libnova: false, libxml2: false, gpsbabel: false, withGeoClue: true, geoclue2: false, withGeoTag: true, gexiv2_0_10: false, withMagic: true, file: false, withMapnik: true, mapnik: false, withMBTiles: true, sqlite: false, withMd5Hash: true, nettle: false, withOAuth: true, liboauth: false, withRealtimeGPSTracking: true, gpsd: false, xz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 101, 5], ["mainProgram", 102, 5], ["longDescription", 103, 5], ["homepage", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["platforms", 116, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 63, 3], ["configureFlags", 81, 3], ["doCheck", 92, 3], ["preFixup", 94, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const gpsd = nix.arg($, "gpsd");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "viking",
       version: "1.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/viking/viking-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-/iHVwRHvIId9HNlbGkvDT6rp3ToXuskj9BjhJxo8/JE=",
         })))),
@@ -83,7 +81,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GPS data editor and analyzer",
         mainProgram: "viking",
         longDescription: "Viking is a free/open source program to manage GPS data.  You\ncan import and plot tracks and waypoints, show Openstreetmaps\nand/or Terraserver maps under it, download geocaches for an area\non the map, make new tracks and waypoints, see real-time GPS\nposition, etc.\n",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 55, 5], ["homepage", 56, 5], ["sourceProvenance", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["url", 69, 7], ["hash", 70, 7]], [["buildInputs", 64, 13], ["meta", 64, 25], ["pname", 65, 5], ["version", 66, 5], ["src", 68, 5], ["nativeBuildInputs", 73, 5], ["autoPatchelfIgnoreMissingDeps", 78, 5], ["dontUnpack", 82, 5], ["dontWrapQtApps", 83, 5], ["installPhase", 85, 5]], [["pname", 106, 30], ["version", 106, 36], ["meta", 106, 44], ["targetPkgs", 107, 3], ["runScript", 114, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, autoPatchelfHook: false, buildFHSEnv: false, dpkg: false, fetchurl: false, glib: false, gst_all_1: false, libGL: false, libgudev: false, "libudev-zero": false, libxcb: false, libxkbfile: false, libxml2_13: false, libxslt: false, openal: false, qt6Packages: false, wayland: false, "libxcb-image": false, "libxcb-keysyms": false, "libxcb-render-util": false, "libxcb-wm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["sourceProvenance", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 69, 7], ["hash", 70, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildInputs", 64, 13], ["meta", 64, 25], ["pname", 65, 5], ["version", 66, 5], ["src", 68, 5], ["nativeBuildInputs", 73, 5], ["autoPatchelfIgnoreMissingDeps", 78, 5], ["dontUnpack", 82, 5], ["dontWrapQtApps", 83, 5], ["installPhase", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 106, 30], ["version", 106, 36], ["meta", 106, 44], ["targetPkgs", 107, 3], ["runScript", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
     libxcb_wm,
   ]);
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Desktop Client for Nx Witness Video Systems",
     homepage: "https://nxvms.com/",
     sourceProvenance: nix.thunk(() => (() => {
@@ -74,13 +71,13 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["x86_64-linux"]),
   }));
   const nxwitness_client = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       buildInputs: buildInputs,
       meta: meta,
       pname: "nxwitness-client",
       version: nix.thunk(() => nix.str`${version}.${build}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://updates.networkoptix.com/default/${build}/linux/nxwitness-client-${nix.sel(finalAttrs, "version")}-linux_x64.deb`),
           hash: "sha256-qp3frZqVr6nJonUrcyM2xIliWkwf4aSge3oyWkrzzSs=",
         })))),
@@ -106,7 +103,7 @@ rm -r $out/lib/libva-drivers
 `),
     })));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.attr(nxwitness_client, "pname")),
       version: nix.thunk(() => nix.attr(nxwitness_client, "version")),
       meta: nix.thunk(() => nix.attr(nxwitness_client, "meta")),

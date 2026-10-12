@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["draw", 48, 5], ["draw5", 54, 5]], [["rev-prefix", 93, 5], ["allowedVersions", 94, 5]], [["updateScript", 92, 12]], [["description", 98, 5], ["mainProgram", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 104, 5]], [["version", 25, 3], ["pname", 26, 3], ["pyproject", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 47, 3], ["build-system", 62, 3], ["dontWrapQtApps", 67, 3], ["preFixup", 69, 3], ["checkInputs", 73, 3], ["nativeCheckInputs", 75, 3], ["pythonImportsCheck", 77, 3], ["preCheck", 82, 3], ["passthru", 92, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pyparsing: false, "typing-extensions": false, pytestCheckHook: false, setuptools: false, cython: false, numpy: false, fonttools: false, pillow: false, pyside6: false, matplotlib: false, pymupdf: false, pyqt5: false, withGui: true, qt6: false, librecad: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["draw", 48, 5], ["draw5", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev-prefix", 93, 5], ["allowedVersions", 94, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 92, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 98, 5], ["mainProgram", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 104, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 25, 3], ["pname", 26, 3], ["pyproject", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 47, 3], ["build-system", 62, 3], ["dontWrapQtApps", 67, 3], ["preFixup", 69, 3], ["checkInputs", 73, 3], ["nativeCheckInputs", 75, 3], ["pythonImportsCheck", 77, 3], ["preCheck", 82, 3], ["passthru", 92, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ezdxf";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mozman",
           repo: "ezdxf",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))])));
       const dependencies = nix.thunk(() => nix.concat([pyparsing, typing_extensions, numpy, fonttools], nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(qt6, "qtbase"))], nix.sel(optional_dependencies, "draw"))))));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         draw: nix.thunk(() => [pyside6, matplotlib, pymupdf, pillow]),
         draw5: nix.thunk(() => [pyqt5, matplotlib, pymupdf, pillow]),
       }));
@@ -59,15 +54,15 @@ export default nix.lambda((args) => (() => {
       const preCheck = nix.thunk(() => nix.str`ln -s "${librecad}/${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Applications/LibreCAD.app/Contents/Resources" : "share/librecad")}/fonts" fonts/librecad
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "rev-prefix": "v",
             allowedVersions: "^[0-9]+\\.[0-9]+\\.[0-9]+$",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python package to read and write DXF drawings (interface to the DXF file format)",
         mainProgram: "ezdxf",
         homepage: "https://ezdxf.mozman.at/",
@@ -77,7 +72,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version,
         pname,
         pyproject,

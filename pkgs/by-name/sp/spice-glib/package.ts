@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 83, 5], ["owner", 84, 5], ["repo", 85, 5], ["tag", 86, 5], ["hash", 87, 5], ["fetchSubmodules", 88, 5]], [["PKG_CONFIG_POLKIT_GOBJECT_1_POLICYDIR", 163, 7]], [["description", 198, 5], ["longDescription", 199, 5], ["homepage", 216, 5], ["license", 217, 5], ["maintainers", 218, 5], ["platforms", 222, 5]], [["__structuredAttrs", 70, 3], ["strictDeps", 71, 3], ["pname", 73, 3], ["version", 74, 3], ["outputs", 76, 3], ["src", 82, 3], ["postUnpack", 91, 3], ["depsBuildBuild", 95, 3], ["nativeBuildInputs", 99, 3], ["buildInputs", 130, 3], ["env", 163, 3], ["mesonFlags", 165, 3], ["postPatch", 179, 3], ["meta", 197, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, acl: false, buildPackages: false, cyrus_sasl: false, libepoxy: false, gettext: false, "gi-docgen": false, "gobject-introspection": false, gst_all_1: false, gtk3: false, hwdata: false, "json-glib": false, libcacard: false, libcap_ng: false, libjpeg_turbo: false, libopus: false, libsoup_3: false, libusb1: false, lz4: false, meson: false, mesonEmulatorHook: false, ninja: false, openssl: false, perl: false, phodav: false, pixman: false, "pkg-config": false, polkit: false, python3: false, "spice-protocol": false, usbredir: false, vala: false, "wayland-protocols": false, "wayland-scanner": false, zlib: false, wrapGAppsHook3: false, wrapGAppsNoGuiHook: false, withIntrospection: true, withGtk: true, withPolkit: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 83, 5], ["owner", 84, 5], ["repo", 85, 5], ["tag", 86, 5], ["hash", 87, 5], ["fetchSubmodules", 88, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_POLKIT_GOBJECT_1_POLICYDIR", 163, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 198, 5], ["longDescription", 199, 5], ["homepage", 216, 5], ["license", 217, 5], ["maintainers", 218, 5], ["platforms", 222, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["__structuredAttrs", 70, 3], ["strictDeps", 71, 3], ["pname", 73, 3], ["version", 74, 3], ["outputs", 76, 3], ["src", 82, 3], ["postUnpack", 91, 3], ["depsBuildBuild", 95, 3], ["nativeBuildInputs", 99, 3], ["buildInputs", 130, 3], ["env", 163, 3], ["mesonFlags", 165, 3], ["postPatch", 179, 3], ["meta", 197, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,14 +50,14 @@ export default nix.lambda((args) => (() => {
   const withGtk = nix.argOr($, "withGtk", () => false);
   const withPolkit = nix.argOr($, "withPolkit", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       __structuredAttrs: true,
       strictDeps: true,
       pname: nix.thunk(() => (nix.asBool(withGtk) ? "spice-gtk" : "spice-glib")),
       version: "0.43",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "spice",
           repo: "spice-gtk",
@@ -99,7 +96,7 @@ export default nix.lambda((args) => (() => {
         zlib,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), withPolkit, nix.thunk(() => [polkit, acl])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libcap_ng, libepoxy])), nix.concat(nix.app(nix.sel(lib, "optionals"), withGtk, nix.thunk(() => [gtk3])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(withGtk) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => [wayland_protocols]))))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_POLKIT_GOBJECT_1_POLICYDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/polkit-1/actions`),
       })),
       mesonFlags: nix.thunk(() => nix.concat([
@@ -114,7 +111,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ["-Dcoroutine=gthread"])))),
       postPatch: nix.thunk(() => nix.add("# get rid of absolute path to helper in store so we can use a setuid wrapper\nsubstituteInPlace src/usb-acl-helper.c \\\n  --replace-fail 'ACL_HELPER_PATH\"/' '\"'\n# don't try to setcap/suid in a nix builder\nsubstituteInPlace src/meson.build \\\n  --replace-fail \"meson.add_install_script('../build-aux/setcap-or-suid',\" \\\n  \"# meson.add_install_script('../build-aux/setcap-or-suid',\"\n\npatchShebangs subprojects/keycodemapdb/tools/keymap-gen\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# drm/drm_fourcc.h is a Linux kernel uAPI header; only one constant is used\nsubstituteInPlace src/channel-display.c --replace-fail \\\n  '#include <drm/drm_fourcc.h>' \\\n  '#define DRM_FORMAT_MOD_INVALID 0x00ffffffffffffffULL'\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: nix.thunk(() => nix.add("SPICE Glib client library", nix.app(nix.sel(lib, "optionalString"), withGtk, " with GTK+3 widget"))),
         longDescription: nix.thunk(() => (nix.asBool(withGtk) ? "spice-glib provides support for Glib apps to interact with the SPICE\nprotocol and spice-gtk itself provides a GTK 3 SPICE widget.\nThe package features glib-based objects for SPICE protocol parsing and a GTK widget\nfor embedding the SPICE display into other applications such as virt-manager.\nPython bindings are available too.\nThis package is also available without the GTK+3 widget, use 'spice-glib' for this.\n" : "spice-glib provides support for Glib apps to interact with the SPICE\nprotocol. It features glib-based objects for SPICE protocol parsing.\nPython bindings are available too.\nThis package is also available with a GTK+3 widget, use 'spice-gtk' for this.\n")),
         homepage: "https://www.spice-space.org/",

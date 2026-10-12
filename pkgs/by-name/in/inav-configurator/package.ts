@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["url", 23, 5], ["sha256", 24, 5]], [["name", 57, 7], ["exec", 58, 7], ["icon", 59, 7], ["comment", 60, 7], ["desktopName", 61, 7], ["genericName", 62, 7]], [["description", 67, 5], ["mainProgram", 68, 5], ["longDescription", 69, 5], ["homepage", 74, 5], ["sourceProvenance", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 81, 5], ["knownVulnerabilities", 82, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["icon", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["unpackCmd", 38, 3], ["installPhase", 40, 3], ["desktopItems", 55, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeDesktopItem: false, copyDesktopItems: false, electron: false, wrapGAppsHook3: false, "gsettings-desktop-schemas": false, gtk3: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 57, 7], ["exec", 58, 7], ["icon", 59, 7], ["comment", 60, 7], ["desktopName", 61, 7], ["genericName", 62, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["longDescription", 69, 5], ["homepage", 74, 5], ["sourceProvenance", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 81, 5], ["knownVulnerabilities", 82, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["icon", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["unpackCmd", 38, 3], ["installPhase", 40, 3], ["desktopItems", 55, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +21,12 @@ export default nix.lambda((args) => (() => {
       const pname = "inav-configurator";
       const version = "9.0.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/iNavFlight/inav-configurator/releases/download/${version}/INAV-Configurator_linux_x64_${version}.zip`),
           sha256: "sha256-n56QE0ZJ2slL0WZbnBl2pEgAUoDMuh467gWt+eRwa9c=",
         }))));
       const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://raw.githubusercontent.com/iNavFlight/inav-configurator/bf3fc89e6df51ecb83a386cd000eebf16859879e/images/inav_icon_128.png",
           sha256: "1i844dzzc5s5cr4vfpi6k2kdn8jiqq2n6c0fjqvsp4wdidwjahzw",
         }))));
@@ -52,7 +48,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: pname,
             exec: pname,
             icon: pname,
@@ -62,7 +58,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "INav flight control system configuration tool",
         mainProgram: "inav-configurator",
         longDescription: "A crossplatform configuration tool for the iNav flight control system.\nVarious types of aircraft are supported by the tool and by iNav, e.g.\nquadcopters, hexacopters, octocopters and fixed-wing aircraft.\n",
@@ -83,7 +79,7 @@ runHook postInstall
         knownVulnerabilities: nix.thunk(() => ["Uses Electron 38.7.2, EOL on 28-Jan-2026, with several known CVEs."]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

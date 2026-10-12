@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test_jre_minimal.nix", [[["jdk", 10, 5], ["jre", 11, 5]]]);
 const formals$1 = { args: { runCommand: false, callPackage: false, jdk: false, jre_minimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test_jre_minimal.nix", [["jdk", 10, 5], ["jre", 11, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const jdk = nix.arg($, "jdk");
   const jre_minimal = nix.arg($, "jre_minimal");
-  const hello = nix.thunk(() => nix.app(callPackage, nix.path(here, "./hello.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, jdk: jdk, jre: jre_minimal }))));
+  const hello = nix.thunk(() => nix.app(callPackage, nix.path(here, "./hello.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], jdk: jdk, jre: jre_minimal }))));
   return nix.app(runCommand, "test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${hello}/bin/hello | grep "Hello, world!"
 touch $out
 `));

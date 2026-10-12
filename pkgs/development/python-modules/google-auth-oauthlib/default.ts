@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["tool", 36, 5]], [["extraArgs", 60, 5]], [["updateScript", 59, 12]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 76, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["optional-dependencies", 35, 3], ["nativeCheckInputs", 39, 3], ["disabledTests", 44, 3], ["pythonImportsCheck", 53, 3], ["__darwinAllowLocalNetworking", 55, 3], ["passthru", 59, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "google-auth": false, "requests-oauthlib": false, click: false, pytestCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tool", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraArgs", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 59, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 76, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["optional-dependencies", 35, 3], ["nativeCheckInputs", 39, 3], ["disabledTests", 44, 3], ["pythonImportsCheck", 53, 3], ["__darwinAllowLocalNetworking", 55, 3], ["passthru", 59, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "google-auth-oauthlib",
       version: "1.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "google-cloud-python",
           tag: nix.thunk(() => nix.str`google-auth-oauthlib-v${nix.sel(finalAttrs, "version")}`),
@@ -37,15 +32,15 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/packages/google-auth-oauthlib`),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [google_auth, requests_oauthlib]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, tool: nix.thunk(() => [click]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], tool: nix.thunk(() => [click]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       disabledTests: nix.thunk(() => nix.concat(["test_run_local_server_occupied_port"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_run_local_server_bind_addr"])))),
       pythonImportsCheck: nix.thunk(() => ["google_auth_oauthlib"]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => [
               "--version-regex",
               "google-auth-oauthlib-v([0-9.]+)",
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Google Authentication Library: oauthlib integration",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-auth-oauthlib",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/${nix.sel(finalAttrs, "src", "tag")}/packages/google-auth-oauthlib/CHANGELOG.md`),

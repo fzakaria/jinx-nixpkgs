@@ -2,114 +2,98 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/binary-hashes.nix", [["name", 12, 7], ["url", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/binary-hashes.nix", [["name", 17, 7], ["url", 18, 7], ["hash", 19, 7]]);
-const pos$3 = nix.positions(here + "/binary-hashes.nix", [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]]);
-const pos$4 = nix.positions(here + "/binary-hashes.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$5 = nix.positions(here + "/binary-hashes.nix", [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]]);
-const pos$6 = nix.positions(here + "/binary-hashes.nix", [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]]);
-const pos$7 = nix.positions(here + "/binary-hashes.nix", [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]]);
-const pos$8 = nix.positions(here + "/binary-hashes.nix", [["name", 47, 7], ["url", 48, 7], ["hash", 49, 7]]);
-const pos$9 = nix.positions(here + "/binary-hashes.nix", [["name", 52, 7], ["url", 53, 7], ["hash", 54, 7]]);
-const pos$10 = nix.positions(here + "/binary-hashes.nix", [["name", 57, 7], ["url", 58, 7], ["hash", 59, 7]]);
-const pos$11 = nix.positions(here + "/binary-hashes.nix", [["name", 62, 7], ["url", 63, 7], ["hash", 64, 7]]);
-const pos$12 = nix.positions(here + "/binary-hashes.nix", [["name", 67, 7], ["url", 68, 7], ["hash", 69, 7]]);
-const pos$13 = nix.positions(here + "/binary-hashes.nix", [["name", 72, 7], ["url", 73, 7], ["hash", 74, 7]]);
-const pos$14 = nix.positions(here + "/binary-hashes.nix", [["name", 77, 7], ["url", 78, 7], ["hash", 79, 7]]);
-const pos$15 = nix.positions(here + "/binary-hashes.nix", [["name", 82, 7], ["url", 83, 7], ["hash", 84, 7]]);
-const pos$16 = nix.positions(here + "/binary-hashes.nix", [["x86_64-linux-310", 11, 5], ["x86_64-linux-311", 16, 5], ["x86_64-linux-312", 21, 5], ["x86_64-linux-313", 26, 5], ["x86_64-linux-314", 31, 5], ["aarch64-darwin-310", 36, 5], ["aarch64-darwin-311", 41, 5], ["aarch64-darwin-312", 46, 5], ["aarch64-darwin-313", 51, 5], ["aarch64-darwin-314", 56, 5], ["aarch64-linux-310", 61, 5], ["aarch64-linux-311", 66, 5], ["aarch64-linux-312", 71, 5], ["aarch64-linux-313", 76, 5], ["aarch64-linux-314", 81, 5]]);
-const pos$17 = nix.positions(here + "/binary-hashes.nix", [["2.13.0", 10, 3]]);
+const $pos = nix.positions(here + "/binary-hashes.nix", [[["name", 12, 7], ["url", 13, 7], ["hash", 14, 7]], [["name", 17, 7], ["url", 18, 7], ["hash", 19, 7]], [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]], [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]], [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]], [["name", 47, 7], ["url", 48, 7], ["hash", 49, 7]], [["name", 52, 7], ["url", 53, 7], ["hash", 54, 7]], [["name", 57, 7], ["url", 58, 7], ["hash", 59, 7]], [["name", 62, 7], ["url", 63, 7], ["hash", 64, 7]], [["name", 67, 7], ["url", 68, 7], ["hash", 69, 7]], [["name", 72, 7], ["url", 73, 7], ["hash", 74, 7]], [["name", 77, 7], ["url", 78, 7], ["hash", 79, 7]], [["name", 82, 7], ["url", 83, 7], ["hash", 84, 7]], [["x86_64-linux-310", 11, 5], ["x86_64-linux-311", 16, 5], ["x86_64-linux-312", 21, 5], ["x86_64-linux-313", 26, 5], ["x86_64-linux-314", 31, 5], ["aarch64-darwin-310", 36, 5], ["aarch64-darwin-311", 41, 5], ["aarch64-darwin-312", 46, 5], ["aarch64-darwin-313", 51, 5], ["aarch64-darwin-314", 56, 5], ["aarch64-linux-310", 61, 5], ["aarch64-linux-311", 66, 5], ["aarch64-linux-312", 71, 5], ["aarch64-linux-313", 76, 5], ["aarch64-linux-314", 81, 5]], [["2.13.0", 10, 3]]]);
 
 export default (version) => nix.builtins.getAttr(version, nix.thunk(() => ({
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     "2.13.0": nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       "x86_64-linux-310": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "torch-2.13.0+cu130-cp310-cp310-linux_x86_64.whl",
         url: "https://download.pytorch.org/whl/cu130/torch-2.13.0%2Bcu130-cp310-cp310-manylinux_2_28_x86_64.whl",
         hash: "sha256-g3ZymBCRSPEN4SQoezkrxY10+ZOOlDDyb5/Wae+4r5w=",
       })),
       "x86_64-linux-311": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "torch-2.13.0+cu130-cp311-cp311-linux_x86_64.whl",
         url: "https://download.pytorch.org/whl/cu130/torch-2.13.0%2Bcu130-cp311-cp311-manylinux_2_28_x86_64.whl",
         hash: "sha256-eUZkwFo0cKXnOER7VElcxrvx78pIvyeUJwqJfZ9DVsQ=",
       })),
       "x86_64-linux-312": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "torch-2.13.0+cu130-cp312-cp312-linux_x86_64.whl",
         url: "https://download.pytorch.org/whl/cu130/torch-2.13.0%2Bcu130-cp312-cp312-manylinux_2_28_x86_64.whl",
         hash: "sha256-jbczjmiVw9S9iaAv9CCVB9Hwzy/+s7iYU4taB9HqjB4=",
       })),
       "x86_64-linux-313": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "torch-2.13.0+cu130-cp313-cp313-linux_x86_64.whl",
         url: "https://download.pytorch.org/whl/cu130/torch-2.13.0%2Bcu130-cp313-cp313-manylinux_2_28_x86_64.whl",
         hash: "sha256-lb260vB4a9RIky5LcqZASqIikNtuyVTiTt+m0zyDPI8=",
       })),
       "x86_64-linux-314": nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "torch-2.13.0+cu130-cp314-cp314-linux_x86_64.whl",
         url: "https://download.pytorch.org/whl/cu130/torch-2.13.0%2Bcu130-cp314-cp314-manylinux_2_28_x86_64.whl",
         hash: "sha256-4jEwKkVymNAjb3veMQglaPbNBhO2a060aEnorVPC440=",
       })),
       "aarch64-darwin-310": nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "torch-2.13.0-cp310-none-macosx_14_0_arm64.whl",
         url: "https://download.pytorch.org/whl/cpu/torch-2.13.0-cp310-cp310-macosx_14_0_arm64.whl",
         hash: "sha256-lPDeEpkW93uNwseo7/ZEz+3f5Z45yfVen24XVDQQKB0=",
       })),
       "aarch64-darwin-311": nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: "torch-2.13.0-cp311-none-macosx_14_0_arm64.whl",
         url: "https://download.pytorch.org/whl/cpu/torch-2.13.0-cp311-cp311-macosx_14_0_arm64.whl",
         hash: "sha256-52+bzsxSuP9xEjmi91R9U1PflYeKsjLwdzwdlZKLkvg=",
       })),
       "aarch64-darwin-312": nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: "torch-2.13.0-cp312-none-macosx_14_0_arm64.whl",
         url: "https://download.pytorch.org/whl/cpu/torch-2.13.0-cp312-cp312-macosx_14_0_arm64.whl",
         hash: "sha256-L+Ioq6KQ0UufMbBJvlUNvUacP9MBPXoZcFswRU2pcCc=",
       })),
       "aarch64-darwin-313": nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         name: "torch-2.13.0-cp313-none-macosx_14_0_arm64.whl",
         url: "https://download.pytorch.org/whl/cpu/torch-2.13.0-cp313-cp313-macosx_14_0_arm64.whl",
         hash: "sha256-M0SYmc5UlsG4S0hTF52U/RAgKK4UBzFNn7lWu3nnDQk=",
       })),
       "aarch64-darwin-314": nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: "torch-2.13.0-cp314-cp314-macosx_14_0_arm64.whl",
         url: "https://download.pytorch.org/whl/cpu/torch-2.13.0-cp314-cp314-macosx_14_0_arm64.whl",
         hash: "sha256-2EmzkOB9jTM86OyvkbJzxlbFmDeaGcms8TGKiD9rORw=",
       })),
       "aarch64-linux-310": nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         name: "torch-2.13.0+cpu-cp310-cp310-manylinux_2_28_aarch64.whl",
         url: "https://download.pytorch.org/whl/cpu/torch-2.13.0%2Bcpu-cp310-cp310-manylinux_2_28_aarch64.whl",
         hash: "sha256-8CjkKL3e6VzbhuJHAlTpXJr2KTYkiFUMIA7UeTElqBc=",
       })),
       "aarch64-linux-311": nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         name: "torch-2.13.0+cpu-cp311-cp311-manylinux_2_28_aarch64.whl",
         url: "https://download.pytorch.org/whl/cpu/torch-2.13.0%2Bcpu-cp311-cp311-manylinux_2_28_aarch64.whl",
         hash: "sha256-hEU7aVCOx5kC+JnF7ZSVrLniu+n9pfHV1vGePDhC4ac=",
       })),
       "aarch64-linux-312": nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         name: "torch-2.13.0+cpu-cp312-cp312-manylinux_2_28_aarch64.whl",
         url: "https://download.pytorch.org/whl/cpu/torch-2.13.0%2Bcpu-cp312-cp312-manylinux_2_28_aarch64.whl",
         hash: "sha256-bzB8LDLXZP/G/2iTuAH61tR1Lz5nlmy4q/GENCfAJgQ=",
       })),
       "aarch64-linux-313": nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         name: "torch-2.13.0+cpu-cp313-cp313-manylinux_2_28_aarch64.whl",
         url: "https://download.pytorch.org/whl/cpu/torch-2.13.0%2Bcpu-cp313-cp313-manylinux_2_28_aarch64.whl",
         hash: "sha256-C499BCMCeui5DHl3xifzN58yU2OggiTf+tm0staEqD0=",
       })),
       "aarch64-linux-314": nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         name: "torch-2.13.0+cpu-cp314-cp314-manylinux_2_28_aarch64.whl",
         url: "https://download.pytorch.org/whl/cpu/torch-2.13.0%2Bcpu-cp314-cp314-manylinux_2_28_aarch64.whl",
         hash: "sha256-ygIfnrL4NFyD+gPjoEWHMIr7jfcb1HJnCz7OAN9YYhw=",

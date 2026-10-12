@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/web.nix", [[["pname", 20, 26], ["version", 20, 32], ["hash", 21, 5]], [["name", 26, 7], ["url", 27, 7], ["includes", 28, 7], ["hash", 29, 7]], [["mailman", 56, 43]], [["tests", 56, 12]], [["homepage", 59, 5], ["description", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 42, 3], ["propagatedBuildInputs", 43, 3], ["doCheck", 50, 3], ["makeWrapperArgs", 52, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false, fetchpatch: false, sassc: false, hyperkitty: false, postorius: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/web.nix", [["pname", 20, 26], ["version", 20, 32], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/web.nix", [["name", 26, 7], ["url", 27, 7], ["includes", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/web.nix", [["mailman", 56, 43]]);
-const pos$4 = nix.positions(here + "/web.nix", [["tests", 56, 12]]);
-const pos$5 = nix.positions(here + "/web.nix", [["homepage", 59, 5], ["description", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$6 = nix.positions(here + "/web.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 42, 3], ["propagatedBuildInputs", 43, 3], ["doCheck", 50, 3], ["makeWrapperArgs", 52, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const w = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
   return nix.app(nix.lookup(w, "buildPythonPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mailman_web",
       version: "0.0.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-3wnduej6xMQzrjGhGXQznfJud/Uoy3BDduukRJeahL8=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "django-5.2.patch",
             url: "https://gitlab.com/mailman/mailman-web/-/commit/bf3eae03ba6ed416ff58e63ea30dd4b95f310e46.patch",
             includes: nix.thunk(() => ["pyproject.toml"]),
@@ -49,11 +44,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [sassc]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, mailman: nix.thunk(() => nix.attr(nixosTests, "mailman")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          mailman: nix.thunk(() => nix.attr(nixosTests, "mailman")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.com/mailman/mailman-web",
         description: "Django project for Mailman 3 web interface",
         mainProgram: "mailman-web",

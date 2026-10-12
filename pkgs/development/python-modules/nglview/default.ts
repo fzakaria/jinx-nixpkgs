@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 37, 3], ["dependencies", 45, 3], ["pythonImportsCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["disabledTests", 61, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pythonRelaxDepsHook: false, notebook: false, ipywidgets: false, ipykernel: false, numpy: false, "jupyter-packaging": false, "jupyter-core": false, "notebook-shim": false, "setuptools-scm": false, writableTmpDirAsHomeHook: false, pytestCheckHook: false, mock: false, pillow: false, ase: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 37, 3], ["dependencies", 45, 3], ["pythonImportsCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["disabledTests", 61, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-LAz/LFseKgpy4zkwh85ErgMIUkxapflTV4EtPtvCboM=",
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, mock, pillow, ase]);
       const disabledTests = nix.thunk(() => ["test_show_schrodinger", "test_movie_maker"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "IPython/Jupyter widget to interactively view molecular structures and trajectories",
         homepage: "https://github.com/nglviewer/nglview",
         changelog: nix.thunk(() => nix.str`https://github.com/nglviewer/nglview/releases/tag/v${version}`),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,16 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/attrList-valueMeta-definitions-file-diagnostic-forwarding.nix", [[["my-flag", 9, 20]], [["flags", 9, 14]], [["_file", 8, 7], ["config", 9, 7]], [["elemType", 15, 7], ["asAttrs", 16, 7], ["mergeAttrValues", 17, 7]], [["type", 14, 5]], [["type", 20, 29]], [["flags", 13, 11], ["argv", 20, 11]], [["argv", 24, 10]], [["imports", 6, 3], ["options", 13, 3], ["config", 24, 3]]]);
 const formals$1 = { args: { lib: false, options: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/attrList-valueMeta-definitions-file-diagnostic-forwarding.nix", [["my-flag", 9, 20]]);
-const pos$2 = nix.positions(here + "/attrList-valueMeta-definitions-file-diagnostic-forwarding.nix", [["flags", 9, 14]]);
-const pos$3 = nix.positions(here + "/attrList-valueMeta-definitions-file-diagnostic-forwarding.nix", [["_file", 8, 7], ["config", 9, 7]]);
-const pos$4 = nix.positions(here + "/attrList-valueMeta-definitions-file-diagnostic-forwarding.nix", [["elemType", 15, 7], ["asAttrs", 16, 7], ["mergeAttrValues", 17, 7]]);
-const pos$5 = nix.positions(here + "/attrList-valueMeta-definitions-file-diagnostic-forwarding.nix", [["type", 14, 5]]);
-const pos$6 = nix.positions(here + "/attrList-valueMeta-definitions-file-diagnostic-forwarding.nix", [["type", 20, 29]]);
-const pos$7 = nix.positions(here + "/attrList-valueMeta-definitions-file-diagnostic-forwarding.nix", [["flags", 13, 11], ["argv", 20, 11]]);
-const pos$8 = nix.positions(here + "/attrList-valueMeta-definitions-file-diagnostic-forwarding.nix", [["argv", 24, 10]]);
-const pos$9 = nix.positions(here + "/attrList-valueMeta-definitions-file-diagnostic-forwarding.nix", [["imports", 6, 3], ["options", 13, 3], ["config", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,35 +13,35 @@ export default nix.lambda((args) => (() => {
   const mkMerge = nix.thunk(() => nix.attr(lib, "mkMerge"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         _file: "the-defs-file.nix",
         config: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          flags: nix.thunk(() => ({ [nix.POS]: pos$1, "my-flag": 3.14 })),
+          [nix.POS]: $pos[1],
+          flags: nix.thunk(() => ({ [nix.POS]: $pos[0], "my-flag": 3.14 })),
         })),
       })),
     ]),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       flags: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           type: nix.thunk(() => nix.app(nix.sel(types, "attrListWith"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               elemType: nix.thunk(() => nix.sel(types, "anything")),
               asAttrs: true,
               mergeAttrValues: (_name) => (vs) => nix.app(nix.sel(lib, "head"), vs),
             })))),
         })))),
       argv: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       argv: nix.thunk(() => nix.app(mkMerge, nix.thunk(() => nix.sel(options, "flags", "valueMeta", "definitions")))),
     })),
   };

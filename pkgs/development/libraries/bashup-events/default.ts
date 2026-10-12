@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["bashup-events32", 4, 3], ["bashup-events44", 5, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["bashup-events32", 4, 3], ["bashup-events44", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "bashup-events32": nix.thunk(() => nix.app(callPackage, nix.path(here, "./3.2.nix"), nix.thunk(() => ({})))),
     "bashup-events44": nix.thunk(() => nix.app(callPackage, nix.path(here, "./4.4.nix"), nix.thunk(() => ({})))),
   };

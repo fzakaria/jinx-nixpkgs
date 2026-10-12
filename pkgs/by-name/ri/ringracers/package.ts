@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["name", 34, 5], ["url", 35, 5], ["hash", 36, 5], ["stripRoot", 37, 5]], [["name", 71, 7], ["exec", 72, 7], ["icon", 73, 7], ["comment", 74, 7], ["desktopName", 75, 7], ["startupWMClass", 76, 7], ["categories", 77, 7]], [["description", 113, 5], ["homepage", 114, 5], ["platforms", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["mainProgram", 121, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["assets", 33, 3], ["strictDeps", 40, 3], ["enableParallelBuilding", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["cmakeFlags", 62, 3], ["desktopItems", 69, 3], ["installPhase", 81, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchFromGitHub: false, cmake: false, curl: false, nasm: false, "game-music-emu": false, libpng: false, SDL2: false, SDL2_mixer: false, libvpx: false, libyuv: false, zlib: false, makeBinaryWrapper: false, makeDesktopItem: false, copyDesktopItems: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 5], ["url", 35, 5], ["hash", 36, 5], ["stripRoot", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 71, 7], ["exec", 72, 7], ["icon", 73, 7], ["comment", 74, 7], ["desktopName", 75, 7], ["startupWMClass", 76, 7], ["categories", 77, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["platforms", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["mainProgram", 121, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["assets", 33, 3], ["strictDeps", 40, 3], ["enableParallelBuilding", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["cmakeFlags", 62, 3], ["desktopItems", 69, 3], ["installPhase", 81, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ringracers",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KartKrewDev",
           repo: "RingRacers",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-iMbrbZCarMebP+ruu1JH4kwks6rR9A9CMquDUnMCUhU=",
         })))),
       assets: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-assets`),
           url: nix.thunk(() => nix.str`https://github.com/KartKrewDev/RingRacers/releases/download/v${nix.sel(finalAttrs, "version")}/Dr.Robotnik.s-Ring-Racers-v${nix.sel(finalAttrs, "version")}-Assets.zip`),
           hash: "sha256-vL3Ceu6/tIOl/+TJFjntCksDdjpgLc1aNHvSx6x8/90=",
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "ringracers",
             exec: "ringracers",
             icon: "ringracers",
@@ -96,7 +92,7 @@ chmod +x $out/bin/ringracers
 runHook postInstall
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Kart racing video game based on Sonic Robo Blast 2 (SRB2), itself based on a modified version of Doom Legacy",
         homepage: "https://kartkrew.org",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),

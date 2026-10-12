@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["changelog", 88, 5], ["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["mainProgram", 92, 5], ["platforms", 93, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["paintSrc", 26, 3], ["docoptSrc", 33, 3], ["buildPhase", 40, 3], ["installPhase", 64, 3], ["doInstallCheck", 84, 3], ["nativeInstallCheckInputs", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, makeWrapper: false, ruby: false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 88, 5], ["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["mainProgram", 92, 5], ["platforms", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["paintSrc", 26, 3], ["docoptSrc", 33, 3], ["buildPhase", 40, 3], ["installPhase", 64, 3], ["doInstallCheck", 84, 3], ["nativeInstallCheckInputs", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "haiti",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "noraj",
           repo: "haiti",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,14 +26,14 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, ruby]),
       paintSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "janlelis",
           repo: "paint",
           rev: "7076784c5d57f178690d19e4f8644441ff73f518",
           hash: "sha256-uITUfcZjOACeCGsozpUxAYd98Y9oFTgyXems2Q3aYRU=",
         })))),
       docoptSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "docopt",
           repo: "docopt.rb",
           rev: "794c47d7cb62ca71d65086623a55881449bc2f9e",
@@ -86,7 +82,7 @@ runHook postInstall
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/noraj/haiti/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "CLI tool to identify hash types",
         homepage: "https://github.com/noraj/haiti",

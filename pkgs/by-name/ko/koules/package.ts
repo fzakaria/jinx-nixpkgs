@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["url", 27, 5], ["hash", 28, 5]], [["desktopName", 73, 7], ["name", 74, 7], ["exec", 75, 7], ["icon", 76, 7], ["comment", 77, 7], ["categories", 78, 7]], [["homepage", 86, 5], ["description", 87, 5], ["mainProgram", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["prePatch", 44, 3], ["postPatch", 48, 3], ["preBuild", 54, 3], ["installPhase", 60, 3], ["desktopItems", 71, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchzip: false, copyDesktopItems: false, gccmakedep: false, imake: false, installShellFiles: false, libx11: false, libxext: false, makeDesktopItem: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["desktopName", 73, 7], ["name", 74, 7], ["exec", 75, 7], ["icon", 76, 7], ["comment", 77, 7], ["categories", 78, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 86, 5], ["description", 87, 5], ["mainProgram", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["prePatch", 44, 3], ["postPatch", 48, 3], ["preBuild", 54, 3], ["installPhase", 60, 3], ["desktopItems", 71, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const imagemagick = nix.arg($, "imagemagick");
   const debian_extras = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "mirror://debian/pool/main/k/koules/koules_1.4-29.debian.tar.xz",
       hash: "sha256-8AQGU3uAu1nCKeu4nqCDOL7FcSJeYvD1pmidEPLLekY=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "koules",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://www.ucw.cz/~hubicka/koules/packages/koules${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-w2+T/q/uvVmYO/RBACQOZ6hKi6yr1+5SjJMEbe/kohs=",
         })))),
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -Dm755 xkoules $out/bin/xkoules\ninstall -Dm755 koules.sndsrv.linux $out/lib/koules.sndsrv.linux\ninstall -m644 sounds/* $out/lib/\nmkdir -p $out/share/icons/hicolor/32x32/apps\nmagick Koules.xpm -background none -extent 32x32-1 -gravity center $out/share/icons/hicolor/32x32/apps/koules.png\ninstallManPage xkoules.6\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             desktopName: "Koules",
             name: "koules",
             exec: "xkoules",
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.ucw.cz/~hubicka/koules/English/",
         description: "Fast arcade game based on the fundamental law of body attraction",
         mainProgram: "xkoules",

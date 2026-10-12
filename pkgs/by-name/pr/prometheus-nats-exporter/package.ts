@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["rev-prefix", 35, 33]], [["package", 38, 9]], [["prometheus-nats-exporter-version", 37, 7]], [["updateScript", 35, 5], ["tests", 36, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["preCheck", 23, 3], ["ldflags", 28, 3], ["passthru", 34, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, gitUpdater: false, testers: false, "prometheus-nats-exporter": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 35, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 38, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["prometheus-nats-exporter-version", 37, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 35, 5], ["tests", 36, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["preCheck", 23, 3], ["ldflags", 28, 3], ["passthru", 34, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "prometheus-nats-exporter";
       const version = "0.15.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nats-io",
           repo: "prometheus-nats-exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,15 +27,15 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# Fix `insecure algorithm SHA1-RSA` problem\nexport GODEBUG=x509sha1=1;\n";
       const ldflags = nix.thunk(() => ["-s", "-w", nix.thunk(() => nix.str`-X main.version=${version}`)]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          "prometheus-nats-exporter-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: prometheus_nats_exporter })))),
+          [nix.POS]: $pos[3],
+          "prometheus-nats-exporter-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: prometheus_nats_exporter })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Exporter for NATS metrics",
         homepage: "https://github.com/nats-io/prometheus-nats-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -51,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

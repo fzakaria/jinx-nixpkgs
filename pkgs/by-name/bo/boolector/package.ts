@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["cmakeFlags", 39, 3], ["nativeCheckInputs", 46, 3], ["doCheck", 47, 3], ["preCheck", 48, 3], ["postCheck", 63, 3], ["postInstall", 69, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, python3: false, cmake: false, lingeling: false, btor2tools: false, gtest: false, gmp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["cmakeFlags", 39, 3], ["nativeCheckInputs", 46, 3], ["doCheck", 47, 3], ["preCheck", 48, 3], ["postCheck", 63, 3], ["postInstall", 69, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const gmp = nix.arg($, "gmp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "boolector",
       version: "3.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "boolector",
           repo: "boolector",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +46,7 @@ patchShebangs ..
       postCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "rm -rf bin\nmv bin.back bin\n")),
       postInstall: "cp $out/include/boolector/boolector.h $out/include/boolector.h\ncp $out/include/boolector/btortypes.h $out/include/btortypes.h\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extremely fast SMT solver for bit-vectors and arrays",
         homepage: "https://boolector.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

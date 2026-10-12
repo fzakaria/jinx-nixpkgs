@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["homepage", 94, 5], ["description", 95, 5], ["longDescription", 96, 5], ["license", 106, 5], ["mainProgram", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["doCheck", 42, 3], ["strictDeps", 43, 3], ["postPatch", 45, 3], ["postInstall", 52, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, autoreconfHook: false, bc: false, fetchFromGitHub: false, gettext: false, makeWrapper: false, perl: false, python3: false, screen: false, stdenv: false, vim: false, tmux: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 94, 5], ["description", 95, 5], ["longDescription", 96, 5], ["license", 106, 5], ["mainProgram", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["doCheck", 42, 3], ["strictDeps", 43, 3], ["postPatch", 45, 3], ["postInstall", 52, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "snack"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "byobu",
       version: "7.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dustinkirkland",
           repo: "byobu",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -80,7 +78,7 @@ for file in $out/bin/byobu*; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.byobu.org/",
         description: "Text-based window manager and terminal multiplexer",
         longDescription: "Byobu is a text-based window manager and terminal multiplexer. It was\noriginally designed to provide elegant enhancements to the otherwise\nfunctional, plain, practical GNU Screen, for the Ubuntu server\ndistribution. Byobu now includes an enhanced profiles, convenient\nkeybindings, configuration utilities, and toggle-able system status\nnotifications for both the GNU Screen window manager and the more modern\nTmux terminal multiplexer, and works on most Linux, BSD, and Mac\ndistributions.\n",

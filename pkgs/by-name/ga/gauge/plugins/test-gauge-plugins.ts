@@ -2,9 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-gauge-plugins.nix", [[["nativeBuildInputs", 16, 27]]]);
 const formals$1 = { args: { runCommand: false, gauge: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { plugins: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-gauge-plugins.nix", [["nativeBuildInputs", 16, 27]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const plugins = nix.arg($_1, "plugins");
     const gaugeWithPlugins = nix.thunk(() => nix.app(nix.sel(gauge, "withPlugins"), (_) => nix.force(plugins)));
-    return nix.app(runCommand, "gauge-test", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [gaugeWithPlugins]) })), nix.thunk(() => nix.str`mkdir $out
+    return nix.app(runCommand, "gauge-test", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [gaugeWithPlugins]) })), nix.thunk(() => nix.str`mkdir $out
 echo $(gauge install || true) > $out/output.txt
 
 function checkPlugin() {

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["updateScript", 41, 12]], [["description", 44, 5], ["homepage", 45, 5], ["downloadPage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5], ["sourceProvenance", 51, 5]], [["__structuredAttrs", 9, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["npmDepsHash", 19, 3], ["postPatch", 21, 3], ["dontNpmBuild", 35, 3], ["npmFlags", 39, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchzip: false, "nix-update-script": false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 41, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["downloadPage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5], ["sourceProvenance", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["__structuredAttrs", 9, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["npmDepsHash", 19, 3], ["postPatch", 21, 3], ["dontNpmBuild", 35, 3], ["npmFlags", 39, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       __structuredAttrs: true,
       pname: "9router",
       version: "0.5.86",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/9router/-/9router-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-djgKrsZ19tbGQ5GEhYaMrolk7aU5wXVPClACTHYB2zI=",
         })))),
@@ -40,11 +37,11 @@ cp ${nix.path(here, "./package-lock.json")} package-lock.json
       dontNpmBuild: true,
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Local AI gateway routing requests across multiple AI providers",
         homepage: "https://github.com/decolua/9router",
         downloadPage: "https://www.npmjs.com/package/9router",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 9], ["sha256", 18, 9]], [["url", 22, 9], ["sha256", 23, 9]], [["description", 42, 5], ["mainProgram", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["prePatch", 34, 3], ["patches", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, allegro: false, libjpeg: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 9], ["sha256", 18, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 9], ["sha256", 23, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["mainProgram", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["prePatch", 34, 3], ["patches", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "racer",
       version: "1.1",
       src: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://hippo.nipax.cz/src/racer-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0fll1qkqfcjq87k0jzsilcw701z92lfxn2y5ga1n038772lymxl9",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://hippo.nipax.cz/src/racer-${nix.sel(finalAttrs, "version")}.64.tar.gz`),
           sha256: "0rjy3gmlhwfkb9zs58j0mc0dar0livwpbc19r6zw5r2k6r7xdan0",
         }))) : nix.builtins.throw("System not supported")))),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       prePatch: "sed -i s,/usr/local,$out, Makefile src/HGFX.cpp src/STDH.cpp\nsed -i s,/usr/share,$out/share, src/HGFX.cpp src/STDH.cpp\n",
       patches: nix.thunk(() => [nix.path(here, "./mkdir.patch")]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Car racing game",
         mainProgram: "racer",
         homepage: "http://hippo.nipax.cz/download.en.php",

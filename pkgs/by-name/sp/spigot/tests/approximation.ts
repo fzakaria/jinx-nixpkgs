@@ -2,22 +2,21 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/approximation.nix", [[["timeout", 20, 8]], [["pname", 7, 3], ["version", 8, 20], ["nativeBuildInputs", 10, 3], ["dontInstall", 12, 3], ["buildCommand", 14, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { stdenv: false, spigot: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/approximation.nix", [["timeout", 20, 8]]);
-const pos$2 = nix.positions(here + "/approximation.nix", [["pname", 7, 3], ["version", 8, 20], ["nativeBuildInputs", 10, 3], ["dontInstall", 12, 3], ["buildCommand", 14, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenv = nix.arg($, "stdenv");
   const spigot = nix.arg($, "spigot");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "spigot-approximation",
       version: nix.thunk(() => nix.attr(spigot, "version")),
       nativeBuildInputs: nix.thunk(() => [spigot]),
       dontInstall: true,
       buildCommand: "[ \"$(spigot -b2 -d32 '(pi/1-355/113)')\" = \"-0.00000000000000000000010001111001\" ]\n[ \"$(spigot -b2 -d32 '(e/1-1457/536)')\" = \"-0.00000000000000000001110101101011\" ]\ntouch $out\n",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 10n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 10n })),
     })));
 })(), formals$1);
 //# sourceMappingURL=approximation.ts.map

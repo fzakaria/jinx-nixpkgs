@@ -2,45 +2,36 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nginx-grpc-error-pages.nix", [[["return", 14, 20]], [["useGrpcErrorPages", 16, 17], ["extraConfig", 17, 17]], [["=/", 14, 15], ["/grpc.reflection.v1.ServerReflection", 15, 15]], [["locations", 13, 13]], [["test", 12, 24]], [["enable", 10, 11], ["virtualHosts", 12, 11]], [["nginx", 9, 18]], [["services", 9, 9]], [["webserver", 6, 5]], [["name", 3, 3], ["containers", 5, 3], ["testScript", 29, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nginx-grpc-error-pages.nix", [["return", 14, 20]]);
-const pos$2 = nix.positions(here + "/nginx-grpc-error-pages.nix", [["useGrpcErrorPages", 16, 17], ["extraConfig", 17, 17]]);
-const pos$3 = nix.positions(here + "/nginx-grpc-error-pages.nix", [["=/", 14, 15], ["/grpc.reflection.v1.ServerReflection", 15, 15]]);
-const pos$4 = nix.positions(here + "/nginx-grpc-error-pages.nix", [["locations", 13, 13]]);
-const pos$5 = nix.positions(here + "/nginx-grpc-error-pages.nix", [["test", 12, 24]]);
-const pos$6 = nix.positions(here + "/nginx-grpc-error-pages.nix", [["enable", 10, 11], ["virtualHosts", 12, 11]]);
-const pos$7 = nix.positions(here + "/nginx-grpc-error-pages.nix", [["nginx", 9, 18]]);
-const pos$8 = nix.positions(here + "/nginx-grpc-error-pages.nix", [["services", 9, 9]]);
-const pos$9 = nix.positions(here + "/nginx-grpc-error-pages.nix", [["webserver", 6, 5]]);
-const pos$10 = nix.positions(here + "/nginx-grpc-error-pages.nix", [["name", 3, 3], ["containers", 5, 3], ["testScript", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "nginx-grpc-error-pages",
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       webserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 test: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$3,
-                    "=/": nix.thunk(() => ({ [nix.POS]: pos$1, return: "200 blub" })),
+                    [nix.POS]: $pos[2],
+                    "=/": nix.thunk(() => ({ [nix.POS]: $pos[0], return: "200 blub" })),
                     "/grpc.reflection.v1.ServerReflection": nix.thunk(() => ({
-                      [nix.POS]: pos$2,
+                      [nix.POS]: $pos[1],
                       useGrpcErrorPages: true,
                       extraConfig: "grpc_pass unix:/run/some-service.sock;\n# Let's pretend there was a more sophisticated check here\nreturn 401;\n",
                     })),

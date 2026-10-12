@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 44, 5]], [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["nativeBuildInputs", 28, 3], ["cmakeFlags", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["nativeBuildInputs", 28, 3], ["cmakeFlags", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const GTE_VERSION_MAJOR = "8";
   const GTE_VERSION_MINOR = "2";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gtmathematics",
       version: nix.thunk(() => nix.str`${GTE_VERSION_MAJOR}.${GTE_VERSION_MINOR}`),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "davideberly",
           repo: "GeometricTools",
           tag: nix.thunk(() => nix.str`GTE-version-${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "GTE_VERSION_MINOR", nix.thunk(() => nix.str`${GTE_VERSION_MINOR}`))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "A collection of source code for computing in the fields of mathematics, geometry, graphics, image analysis and physics.",
         homepage: "https://www.geometrictools.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

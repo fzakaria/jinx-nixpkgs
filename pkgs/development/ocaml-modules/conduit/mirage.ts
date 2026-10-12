@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mirage.nix", [[["description", 53, 5]], [["pname", 25, 3], ["version", 27, 25], ["src", 27, 33], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 31, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "conduit-lwt": false, ppx_sexp_conv: false, sexplib0: false, uri: false, cstruct: false, "mirage-flow": false, "mirage-flow-combinators": false, "mirage-crypto-rng": false, "mirage-ptime": false, "mirage-mtime": false, "dns-client-mirage": false, vchan: false, xenstore: false, tls: false, "tls-mirage": false, ipaddr: false, "ipaddr-sexp": false, tcpip: false, "ca-certs-nss": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mirage.nix", [["description", 53, 5]]);
-const pos$2 = nix.positions(here + "/mirage.nix", [["pname", 25, 3], ["version", 27, 25], ["src", 27, 33], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 31, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const tcpip = nix.arg($, "tcpip");
   const ca_certs_nss = nix.arg($, "ca-certs-nss");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "conduit-mirage",
       version: nix.thunk(() => nix.attr(conduit_lwt, "version")),
       src: nix.thunk(() => nix.attr(conduit_lwt, "src")),
@@ -55,7 +54,7 @@ export default nix.lambda((args) => (() => {
         ca_certs_nss,
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(conduit_lwt, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Network connection establishment library for MirageOS",
       })),
     })));

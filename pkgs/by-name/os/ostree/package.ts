@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 68, 5], ["hash", 69, 5]], [["python3", 79, 7], ["openssl", 80, 7]], [["package", 175, 9]], [["musl", 171, 7], ["installedTests", 172, 7], ["ostree-full", 173, 15], ["pkg-config", 174, 7]], [["tests", 170, 5]], [["description", 181, 5], ["homepage", 182, 5], ["license", 183, 5], ["platforms", 184, 5], ["maintainers", 185, 5], ["pkgConfigModules", 186, 5]], [["pname", 57, 3], ["version", 58, 3], ["outputs", 60, 3], ["src", 67, 3], ["patches", 72, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 102, 3], ["enableParallelBuilding", 130, 3], ["configureFlags", 132, 3], ["makeFlags", 143, 3], ["preConfigure", 152, 3], ["postFixup", 156, 3], ["passthru", 169, 3], ["meta", 180, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, "gtk-doc": false, nixosTests: false, pkgsCross: false, curl: false, glib: false, xz: false, e2fsprogs: false, libsoup_3: false, gpgme: false, which: false, makeWrapper: false, autoconf: false, automake: false, libtool: false, fuse3: false, "util-linuxMinimal": false, libselinux: false, libsodium: false, libarchive: false, libcap: false, bzip2: false, bison: false, libxslt: false, "docbook-xsl-nons": false, docbook_xml_dtd_42: false, python3: false, buildPackages: false, withComposefs: true, composefs: false, withGjs: true, gjs: false, withIntrospection: true, "gobject-introspection": false, withSystemd: true, systemdLibs: false, replaceVars: false, openssl: false, "ostree-full": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 68, 5], ["hash", 69, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["python3", 79, 7], ["openssl", 80, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 175, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["musl", 171, 7], ["installedTests", 172, 7], ["ostree-full", 173, 15], ["pkg-config", 174, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 170, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 181, 5], ["homepage", 182, 5], ["license", 183, 5], ["platforms", 184, 5], ["maintainers", 185, 5], ["pkgConfigModules", 186, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 57, 3], ["version", 58, 3], ["outputs", 60, 3], ["src", 67, 3], ["patches", 72, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 102, 3], ["enableParallelBuilding", 130, 3], ["configureFlags", 132, 3], ["makeFlags", 143, 3], ["preConfigure", 152, 3], ["postFixup", 156, 3], ["passthru", 169, 3], ["meta", 180, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,19 +55,19 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pyyaml"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "ostree",
       version: "2026.2",
       outputs: nix.thunk(() => ["out", "dev", "man", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ostreedev/ostree/releases/download/v${nix.sel(finalAttrs, "version")}/libostree-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ooHy22MfNyHs1Lnid5oer1bi0D8sxHYpqfARfxIBaoM=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./fix-1592.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-test-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             python3: nix.thunk(() => nix.sel(testPython, "interpreter")),
             openssl: nix.thunk(() => nix.str`${openssl}/bin/openssl`),
           })))),
@@ -133,20 +127,20 @@ done
 `));
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           musl: nix.thunk(() => nix.sel(pkgsCross, "musl64", "ostree")),
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "ostree")),
           "ostree-full": ostree_full,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Git for operating system binaries",
         homepage: "https://ostreedev.github.io/ostree/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

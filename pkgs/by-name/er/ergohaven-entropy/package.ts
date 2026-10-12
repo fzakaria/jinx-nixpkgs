@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["NIX_CFLAGS_COMPILE", 74, 5]], [["name", 78, 5], ["exec", 79, 5], ["icon", 80, 5], ["desktopName", 81, 5], ["comment", 82, 5], ["categories", 83, 5]], [["description", 126, 5], ["longDescription", 127, 5], ["homepage", 134, 5], ["license", 135, 5], ["platforms", 136, 5], ["maintainers", 137, 5], ["mainProgram", 138, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["cargoHash", 47, 3], ["__structuredAttrs", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 59, 3], ["env", 73, 3], ["desktopItems", 77, 3], ["postInstall", 89, 3], ["postFixup", 114, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, "pkg-config": false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, iconConvTools: false, hidapi: false, systemd: false, libxcb: false, libxkbcommon: false, "xkeyboard-config": false, openssl: false, gtk3: false, libglvnd: false, libx11: false, libxrandr: false, wayland: false, stdenv: false, fetchFromGitHub: false, python3: false, ibus: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 78, 5], ["exec", 79, 5], ["icon", 80, 5], ["desktopName", 81, 5], ["comment", 82, 5], ["categories", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 126, 5], ["longDescription", 127, 5], ["homepage", 134, 5], ["license", 135, 5], ["platforms", 136, 5], ["maintainers", 137, 5], ["mainProgram", 138, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["cargoHash", 47, 3], ["__structuredAttrs", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 59, 3], ["env", 73, 3], ["desktopItems", 77, 3], ["postInstall", 89, 3], ["postFixup", 114, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ergohaven-entropy",
       version: "0.3.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ergohaven",
           repo: "entropy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,11 +65,11 @@ export default nix.lambda((args) => (() => {
         xkeyboard_config,
       ]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "entropy",
             exec: "entropy",
             icon: "entropy",
@@ -103,7 +99,7 @@ wrapProgram $out/share/entropy/ibus/entropy-ibus-engine \\
   --prefix GI_TYPELIB_PATH : ${nix.app(nix.sel(lib, "makeSearchPath"), "lib/girepository-1.0", nix.thunk(() => [glib, ibus]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Modern app for programmable keyboards and input devices",
         longDescription: "Entropy is a desktop app with a modern, minimalist, and intuitive\ninterface for configuring programmable input devices running Vial-QMK\nor Vial-RMK firmware: split keyboards, macropads, trackballs, touchpad\nmodules, and other hardware that exposes keyboard-style firmware\nfeatures through HID.\n",
         homepage: "https://github.com/ergohaven/entropy",

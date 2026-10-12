@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["updateScript", 68, 12]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["teams", 76, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["pythonRemoveDeps", 33, 3], ["build-system", 35, 3], ["dependencies", 40, 3], ["doCheck", 56, 3], ["postInstall", 58, 3], ["pythonImportsCheck", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, attrs: false, beautifulsoup4: false, buildPythonPackage: false, certvalidator: false, colorama: false, cryptoparser: false, dnspython: false, fetchFromGitLab: false, pathlib2: false, pyfakefs: false, "python-dateutil": false, pycryptodome: false, requests: false, setuptools: false, "setuptools-scm": false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 68, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["teams", 76, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["pythonRemoveDeps", 33, 3], ["build-system", 35, 3], ["dependencies", 40, 3], ["doCheck", 56, 3], ["postInstall", 58, 3], ["pythonImportsCheck", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cryptolyzer",
       version: "1.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coroner",
           repo: "cryptolyzer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,9 +55,12 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "find $out -name \"__pycache__\" -type d | xargs rm -rv\n\n# Prevent creating more binary byte code later (e.g. during\n# pythonImportsCheck)\nexport PYTHONDONTWRITEBYTECODE=1\n",
       pythonImportsCheck: nix.thunk(() => ["cryptolyzer"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "../cryptodatahub/update.sh") })),
+      passthru: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        updateScript: nix.path(here, "../cryptodatahub/update.sh"),
+      })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cryptographic protocol analyzer",
         homepage: "https://gitlab.com/coroner/cryptolyzer",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/coroner/cryptolyzer/-/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),

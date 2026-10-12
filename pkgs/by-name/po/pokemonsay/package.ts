@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 63, 5], ["changelog", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["installPhase", 48, 3], ["doInstallCheck", 55, 3], ["installCheckPhase", 56, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, cowsay: false, coreutils: false, findutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["changelog", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["installPhase", 48, 3], ["doInstallCheck", 55, 3], ["installCheckPhase", 56, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const findutils = nix.arg($, "findutils");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pokemonsay",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "HRKings",
           repo: "pokemonsay-newgenerations",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +53,7 @@ substituteInPlace pokemonthink.sh \\
       doInstallCheck: true,
       installCheckPhase: "(set -x\n  test \"$($out/bin/pokemonsay --list | wc -l)\" -ge 992\n)\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Print pokemon in the CLI! An adaptation of the classic cowsay",
         changelog: nix.thunk(() => nix.str`https://github.com/HRKings/pokemonsay-newgenerations/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/HRKings/pokemonsay-newgenerations",

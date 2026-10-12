@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["sourceRoot", 40, 3], ["build-system", 42, 3], ["pythonRelaxDeps", 44, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 68, 3], ["nativeCheckInputs", 70, 3], ["enabledTestPaths", 74, 3], ["pytestFlags", 78, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, appdirs: false, cryptography: false, httpx: false, "opentelemetry-api": false, "opentelemetry-exporter-otlp-proto-http": false, "opentelemetry-sdk": false, packaging: false, portalocker: false, pydantic: false, pyjwt: false, rich: false, tomli: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["sourceRoot", 40, 3], ["build-system", 42, 3], ["pythonRelaxDeps", 44, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 68, 3], ["nativeCheckInputs", 70, 3], ["enabledTestPaths", 74, 3], ["pytestFlags", 78, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const tomli = nix.arg($, "tomli");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "crewai-core",
       version: "1.15.18",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crewAIInc",
           repo: "crewAI",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests"]),
       pytestFlags: nix.thunk(() => ["--confcutdir=tests", "--override-ini=addopts="]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Shared utilities for CrewAI (version, paths, user-data, telemetry, printer)",
         homepage: "https://github.com/crewAIInc/crewAI/tree/main/lib/crewai-core",
         changelog: nix.thunk(() => nix.str`https://github.com/crewAIInc/crewAI/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["providedSessions", 59, 5]], [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["maintainers", 66, 5], ["license", 67, 5], ["platforms", 68, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["patches", 41, 3], ["buildFlags", 43, 3], ["postFixup", 45, 3], ["makeFlags", 56, 3], ["passthru", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, makeWrapper: false, surf: false, wmctrl: false, matchbox: false, xdotool: false, unclutter: false, xmodmap: false, xkbutils: false, pulseaudio: false, "xprintidle-ng": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["providedSessions", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["maintainers", 66, 5], ["license", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["patches", 41, 3], ["buildFlags", 43, 3], ["postFixup", 45, 3], ["makeFlags", 56, 3], ["passthru", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "surf-display";
       const version = "unstable-2022-10-07";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://code.it-zukunft-schule.de/cgit/surf-display",
           rev: "ad0bd30642f8334d42bb08ea5c1b9dd03fccc4d1",
           hash: "sha256-wiyFh1te3afASIODn0cA5QXcqnrP/8Bk6hBAZYbKJQQ=",
@@ -56,9 +53,9 @@ wrapProgram $out/bin/surf-display \\
    --prefix PATH ':' ${nix.app(nix.sel(lib, "makeBinPath"), buildInputs)}
 `);
       const makeFlags = nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, providedSessions: nix.thunk(() => ["surf-display"]) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], providedSessions: nix.thunk(() => ["surf-display"]) }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Kiosk browser session manager based on the surf browser",
         mainProgram: "surf-display",
         homepage: "https://code.it-zukunft-schule.de/cgit/surf-display/",
@@ -67,7 +64,7 @@ wrapProgram $out/bin/surf-display \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

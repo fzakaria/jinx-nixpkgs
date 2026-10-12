@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["updateScript", 53, 12]], [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["teams", 61, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libxdmcp: false, libexif: false, "libfm-qt": false, "libpthread-stubs": false, "lxqt-build-tools": false, "menu-cache": false, qtbase: false, qtimageformats: false, qtsvg: false, qttools: false, qtwayland: false, wrapQtAppsHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 53, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["teams", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lximage-qt";
       const version = "2.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxqt",
           repo: "lximage-qt",
           rev: version,
@@ -51,11 +48,11 @@ export default nix.lambda((args) => (() => {
         qtwayland,
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/lxqt/lximage-qt",
         description: "Image viewer and screenshot tool for lxqt",
         mainProgram: "lximage-qt",
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

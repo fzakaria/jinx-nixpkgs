@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 7], ["hash", 15, 7]], [["url", 18, 7], ["hash", 19, 7]], [["x86_64-linux", 13, 5], ["aarch64-linux", 17, 5]], [["srcs", 66, 13], ["updateScript", 67, 5]], [["description", 85, 5], ["homepage", 86, 5], ["downloadPage", 87, 5], ["platforms", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5]], [["pname", 36, 3], ["version", 37, 11], ["src", 37, 19], ["nativeBuildInputs", 39, 3], ["sourceRoot", 43, 3], ["dontBuild", 45, 3], ["installPhase", 46, 3], ["passthru", 65, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, makeWrapper: false, electron: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 18, 7], ["hash", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 13, 5], ["aarch64-linux", 17, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["srcs", 66, 13], ["updateScript", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["downloadPage", 87, 5], ["platforms", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 11], ["src", 37, 19], ["nativeBuildInputs", 39, 3], ["sourceRoot", 43, 3], ["dontBuild", 45, 3], ["installPhase", 46, 3], ["passthru", 65, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const version = "7.1.330";
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/aunetx/deezer-linux/releases/download/v${version}/deezer-desktop-${version}-x64.tar.xz`),
         hash: "sha256-DZ5BjNJYS0Ke7Cgc0xCjojbUWpMfOR5lKOMyN4gOhIA=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/aunetx/deezer-linux/releases/download/v${version}/deezer-desktop-${version}-arm64.tar.xz`),
         hash: "sha256-oKDwECjatV/dT/cnGN6Sk6RTIVDiKI8R0AAYmRvVlmo=",
       })))),
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "system")} not supported`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const archDir = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "arm64" : nix.builtins.throw("Unsupported architecture"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "deezer-desktop",
       version: version,
       src: src,
@@ -60,7 +55,7 @@ makeWrapper "${nix.app(nix.sel(lib, "getExe"), electron)}" "$out/bin/deezer-desk
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         srcs: srcs,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-deezer-desktop", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts
@@ -78,7 +73,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Unofficial Linux port of the music streaming application",
         homepage: "https://github.com/aunetx/deezer-linux",
         downloadPage: "https://github.com/aunetx/deezer-linux/releases",

@@ -2,22 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/livekit.nix", [[["maintainers", 9, 8]], [["key", 15, 9]], [["port", 17, 16]], [["enable", 13, 7], ["keyFile", 14, 7], ["settings", 17, 7]], [["livekit", 12, 14]], [["enable", 24, 19]], [["port", 25, 17]], [["ingress", 24, 11], ["redis", 25, 11]], [["livekit", 23, 18]], [["services", 23, 9]], [["inheritParentConfig", 21, 7], ["configuration", 22, 7]], [["ingress", 20, 20]], [["services", 12, 5], ["specialisation", 20, 5]], [["machine", 11, 9]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 31, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/livekit.nix", [["maintainers", 9, 8]]);
-const pos$2 = nix.positions(here + "/livekit.nix", [["key", 15, 9]]);
-const pos$3 = nix.positions(here + "/livekit.nix", [["port", 17, 16]]);
-const pos$4 = nix.positions(here + "/livekit.nix", [["enable", 13, 7], ["keyFile", 14, 7], ["settings", 17, 7]]);
-const pos$5 = nix.positions(here + "/livekit.nix", [["livekit", 12, 14]]);
-const pos$6 = nix.positions(here + "/livekit.nix", [["enable", 24, 19]]);
-const pos$7 = nix.positions(here + "/livekit.nix", [["port", 25, 17]]);
-const pos$8 = nix.positions(here + "/livekit.nix", [["ingress", 24, 11], ["redis", 25, 11]]);
-const pos$9 = nix.positions(here + "/livekit.nix", [["livekit", 23, 18]]);
-const pos$10 = nix.positions(here + "/livekit.nix", [["services", 23, 9]]);
-const pos$11 = nix.positions(here + "/livekit.nix", [["inheritParentConfig", 21, 7], ["configuration", 22, 7]]);
-const pos$12 = nix.positions(here + "/livekit.nix", [["ingress", 20, 20]]);
-const pos$13 = nix.positions(here + "/livekit.nix", [["services", 12, 5], ["specialisation", 20, 5]]);
-const pos$14 = nix.positions(here + "/livekit.nix", [["machine", 11, 9]]);
-const pos$15 = nix.positions(here + "/livekit.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,38 +11,38 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "livekit",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "quadradical"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           livekit: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
-            keyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeYAML"), "keys.yaml", nix.thunk(() => ({ [nix.POS]: pos$2, key: "f6lQGaHtM5HfgZjIcec3cOCRfiDqIine4CpZZnqdT5cE" })))),
-            settings: nix.thunk(() => ({ [nix.POS]: pos$3, port: 8000n })),
+            keyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeYAML"), "keys.yaml", nix.thunk(() => ({ [nix.POS]: $pos[1], key: "f6lQGaHtM5HfgZjIcec3cOCRfiDqIine4CpZZnqdT5cE" })))),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[2], port: 8000n })),
           })),
         })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           ingress: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             inheritParentConfig: true,
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 livekit: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
-                  ingress: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
-                  redis: nix.thunk(() => ({ [nix.POS]: pos$7, port: 6379n })),
+                  [nix.POS]: $pos[7],
+                  ingress: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
+                  redis: nix.thunk(() => ({ [nix.POS]: $pos[6], port: 6379n })),
                 })),
               })),
             })),

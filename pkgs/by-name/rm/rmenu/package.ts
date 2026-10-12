@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["tag", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["hash", 25, 5]], [["updateScript", 83, 12]], [["changelog", 86, 5], ["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["cargoHash", 43, 3], ["postInstall", 45, 3], ["preFixup", 70, 3], ["doInstallCheck", 80, 3], ["nativeInstallCheckInputs", 81, 3], ["passthru", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, glib: false, gtk3: false, lib: false, libsoup_3: false, networkmanager: false, "pkg-config": false, rustPlatform: false, versionCheckHook: false, webkitgtk_4_1: false, wrapGAppsHook3: false, xdotool: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["tag", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 83, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 86, 5], ["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["cargoHash", 43, 3], ["postInstall", 45, 3], ["preFixup", 70, 3], ["doInstallCheck", 80, 3], ["nativeInstallCheckInputs", 81, 3], ["passthru", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xdotool = nix.arg($, "xdotool");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rmenu",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "imgurbot12",
           repo: "rmenu",
@@ -43,11 +40,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/imgurbot12/rmenu/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Another customizable Application-Launcher written in Rust",
         homepage: "https://github.com/imgurbot12/rmenu",

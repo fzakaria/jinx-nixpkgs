@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5], ["badPlatforms", 78, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["strictDeps", 54, 3], ["enableParallelBuilding", 55, 3], ["postPatch", 57, 3], ["cmakeFlags", 66, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, sdl3: false, "sdl3-image": false, libpulseaudio: false, pipewire: false, fftwFloat: false, freetype: false, glew: false, libGL: false, curl: false, "yaml-cpp": false, libebur128: false, clang: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5], ["badPlatforms", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["strictDeps", 54, 3], ["enableParallelBuilding", 55, 3], ["postPatch", 57, 3], ["cmakeFlags", 66, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libebur128 = nix.arg($, "libebur128");
   const clang = nix.arg($, "clang");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pulse-visualizer",
       version: "1.3.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Audio-Solutions",
           repo: "pulse-visualizer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \" -march=native\" \"\" \\\n  --replace-fail \" -mtune=native\" \"\" \\\n  --replace-fail \"-Wl,-s\" \"\" \\\n  --replace-fail \" -s\" \"\" \\\n  --replace-fail 'set(CMAKE_INSTALL_PREFIX \"/usr\" CACHE PATH \"Installation prefix\" FORCE)' \"\"\n",
       cmakeFlags: nix.thunk(() => ["-G Ninja", "-DCMAKE_CXX_COMPILER=clang++", "-DCMAKE_C_COMPILER=clang"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Real-time audio visualizer inspired by MiniMeters",
         homepage: "https://github.com/Audio-Solutions/pulse-visualizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

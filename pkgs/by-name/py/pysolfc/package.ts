@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["url", 28, 7], ["hash", 29, 7]], [["pname", 24, 5], ["version", 25, 5], ["src", 27, 5], ["installPhase", 32, 5]], [["url", 44, 7], ["hash", 45, 7]], [["pname", 40, 5], ["version", 41, 5], ["src", 43, 5], ["installPhase", 48, 5]], [["url", 87, 9], ["rev-prefix", 88, 9]], [["url", 91, 9], ["attrPath", 92, 9]], [["url", 95, 9], ["attrPath", 96, 9]], [["updateScript", 83, 12]], [["description", 102, 5], ["mainProgram", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]], [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["cardsets", 23, 3], ["music", 39, 3], ["propagatedBuildInputs", 55, 3], ["patches", 70, 3], ["nativeBuildInputs", 72, 3], ["postInstall", 74, 3], ["doCheck", 81, 3], ["passthru", 83, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, python3Packages: false, "desktop-file-utils": false, "freecell-solver": false, "black-hole-solver": false, "_experimental-update-script-combinators": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 5], ["version", 25, 5], ["src", 27, 5], ["installPhase", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 40, 5], ["version", 41, 5], ["src", 43, 5], ["installPhase", 48, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 87, 9], ["rev-prefix", 88, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 91, 9], ["attrPath", 92, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 95, 9], ["attrPath", 96, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["updateScript", 83, 12]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 102, 5], ["mainProgram", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["cardsets", 23, 3], ["music", 39, 3], ["propagatedBuildInputs", 55, 3], ["patches", 70, 3], ["nativeBuildInputs", 72, 3], ["postInstall", 74, 3], ["doCheck", 81, 3], ["passthru", 83, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/pysolfc/PySolFC-${version}.tar.xz`),
           hash: "sha256-jijrrWhj80n/XFKMFLptDZCsclIhdJHiTrX6CGjVju8=",
         }))));
@@ -39,13 +29,13 @@ export default nix.lambda((args) => (() => {
           const pname_1 = "pysol-cardsets";
           const version_1 = "3.1";
           const src_1 = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`mirror://sourceforge/pysolfc/PySolFC-Cardsets-${version_1}.tar.bz2`),
               hash: "sha256-NyCnMlMZ6d5+IiyG4cVn/zlDlArLJSs0dIqZiD7Nv4M=",
             }))));
           const installPhase = "runHook preInstall\ncp -r $src $out\nrunHook postInstall\n";
           return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: pname_1,
             version: version_1,
             src: src_1,
@@ -56,13 +46,13 @@ export default nix.lambda((args) => (() => {
           const pname_1 = "pysol-music";
           const version_1 = "4.50";
           const src_1 = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: nix.thunk(() => nix.str`mirror://sourceforge/pysolfc/pysol-music-${version_1}.tar.xz`),
               hash: "sha256-sOl5U98aIorrQHJRy34s0HHaSW8hMUE7q84FMQAj5Yg=",
             }))));
           const installPhase = "runHook preInstall\ncp -r $src $out\nrunHook postInstall\n";
           return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             pname: pname_1,
             version: version_1,
             src: src_1,
@@ -90,27 +80,27 @@ export default nix.lambda((args) => (() => {
       const postInstall = "mkdir $out/share/PySolFC/cardsets\ncp -r $cardsets/* $out/share/PySolFC/cardsets\ncp -r $music/data/music $out/share/PySolFC\n";
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => nix.builtins.map((updater) => nix.sel(updater, "command"), nix.thunk(() => [
               nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   url: "https://github.com/shlomif/PySolFC.git",
                   "rev-prefix": "pysolfc-",
                 })))),
               nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   url: "https://github.com/shlomif/PySolFC-CardSets.git",
                   attrPath: "pysolfc.cardsets",
                 })))),
               nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   url: "https://github.com/shlomif/pysol-music.git",
                   attrPath: "pysolfc.music",
                 })))),
             ]))))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Collection of more than 1000 solitaire card games",
         mainProgram: "pysol.py",
         homepage: "https://pysolfc.sourceforge.io",
@@ -118,7 +108,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname,
         version,
         format,

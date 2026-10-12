@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 24, 5], ["hash", 25, 5]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["INPUT_VERSION", 67, 7], ["NIX_CFLAGS_COMPILE", 70, 7]], [["name", 75, 9], ["url", 76, 9], ["hash", 77, 9]], [["name", 102, 7], ["desktopName", 103, 7], ["exec", 104, 7], ["icon", 105, 7], ["comment", 106, 7], ["terminal", 107, 7], ["categories", 108, 7]], [["pname", 113, 5], ["version", 114, 26], ["src", 114, 34], ["modRoot", 115, 5], ["subPackages", 118, 5], ["doCheck", 121, 5], ["vendorHash", 123, 5], ["nativeBuildInputs", 125, 5], ["preBuild", 131, 5], ["ldflags", 150, 5], ["tags", 158, 5]], [["extraArgs", 177, 5]], [["core", 112, 12], ["updateScript", 176, 12]], [["description", 184, 5], ["homepage", 185, 5], ["changelog", 186, 5], ["license", 187, 5], ["mainProgram", 188, 5], ["maintainers", 189, 5], ["platforms", 194, 5], ["sourceProvenance", 195, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["__structuredAttrs", 41, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["cmakeFlags", 56, 3], ["env", 67, 3], ["preBuild", 72, 3], ["dontWrapQtApps", 85, 3], ["installPhase", 87, 3], ["desktopItems", 100, 3], ["passthru", 112, 3], ["meta", 183, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, fetchurl: false, makeDesktopItem: false, "nix-update-script": false, protobuf: false, "protoc-gen-go": false, "protoc-gen-go-grpc": false, cmake: false, copyDesktopItems: false, ninja: false, qt6Packages: false, "throne-srslist-info": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["INPUT_VERSION", 67, 7], ["NIX_CFLAGS_COMPILE", 70, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 75, 9], ["url", 76, 9], ["hash", 77, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 102, 7], ["desktopName", 103, 7], ["exec", 104, 7], ["icon", 105, 7], ["comment", 106, 7], ["terminal", 107, 7], ["categories", 108, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 113, 5], ["version", 114, 26], ["src", 114, 34], ["modRoot", 115, 5], ["subPackages", 118, 5], ["doCheck", 121, 5], ["vendorHash", 123, 5], ["nativeBuildInputs", 125, 5], ["preBuild", 131, 5], ["ldflags", 150, 5], ["tags", 158, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 177, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["core", 112, 12], ["updateScript", 176, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 184, 5], ["homepage", 185, 5], ["changelog", 186, 5], ["license", 187, 5], ["mainProgram", 188, 5], ["maintainers", 189, 5], ["platforms", 194, 5], ["sourceProvenance", 195, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["__structuredAttrs", 41, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["cmakeFlags", 56, 3], ["env", 67, 3], ["preBuild", 72, 3], ["dontWrapQtApps", 85, 3], ["installPhase", 87, 3], ["desktopItems", 100, 3], ["passthru", 112, 3], ["meta", 183, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,16 +22,16 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const qt6Packages = nix.arg($, "qt6Packages");
   const throne_srslist_info = nix.argOr($, "throne-srslist-info", () => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     rev: "1aa995b5fc30c26b931a61171aea2ab49c3d1711",
     hash: "sha256-jKYUjgxpE1zwcVv+9Fdj8H1QnPZpTzmzVsMfOMOKGFw=",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "throne",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "throneproj",
           repo: "Throne",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,13 +56,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "NKR_ELEVATION_HINT", "On NixOS, use programs.throne with tunMode.enable.")),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         INPUT_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         NIX_CFLAGS_COMPILE: "-Wno-error=maybe-uninitialized",
       })),
       preBuild: nix.thunk(() => (() => {
         const srslist = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: nix.thunk(() => nix.str`throne-srslist-${nix.sel(throne_srslist_info, "rev")}.h`),
             url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/throneproj/routeprofiles/${nix.sel(throne_srslist_info, "rev")}/srslist.h`),
             hash: nix.thunk(() => nix.sel(throne_srslist_info, "hash")),
@@ -93,7 +84,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "throne",
             desktopName: "Throne",
             exec: "Throne",
@@ -104,9 +95,9 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         core: nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pname: "throne-core",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -140,10 +131,10 @@ runHook postInstall
               "noparentcheck",
             ]),
           })))),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$7, extraArgs: nix.thunk(() => ["--subpackage", "core"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[6], extraArgs: nix.thunk(() => ["--subpackage", "core"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Qt based cross-platform GUI proxy configuration manager",
         homepage: "https://github.com/throneproj/Throne",
         changelog: nix.thunk(() => nix.str`https://github.com/throneproj/Throne/releases/tag/${nix.sel(finalAttrs, "version")}`),

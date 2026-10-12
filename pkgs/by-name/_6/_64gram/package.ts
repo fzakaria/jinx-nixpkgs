@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 7], ["repo", 17, 7], ["tag", 18, 7], ["hash", 19, 7], ["fetchSubmodules", 20, 7]], [["description", 24, 7], ["license", 25, 7], ["platforms", 26, 7], ["homepage", 27, 7], ["changelog", 28, 7], ["maintainers", 29, 7], ["mainProgram", 30, 7]], [["pname", 12, 5], ["version", 13, 5], ["src", 15, 5], ["meta", 23, 5]], [["pname", 9, 3], ["withWebkit", 10, 11], ["unwrapped", 11, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "telegram-desktop": false, withWebkit: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 7], ["repo", 17, 7], ["tag", 18, 7], ["hash", 19, 7], ["fetchSubmodules", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 7], ["license", 25, 7], ["platforms", 26, 7], ["homepage", 27, 7], ["changelog", 28, 7], ["maintainers", 29, 7], ["mainProgram", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 5], ["version", 13, 5], ["src", 15, 5], ["meta", 23, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["withWebkit", 10, 11], ["unwrapped", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const telegram_desktop = nix.arg($, "telegram-desktop");
   const withWebkit = nix.argOr($, "withWebkit", () => true);
   return nix.app(nix.sel(telegram_desktop, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "64gram",
       withWebkit: withWebkit,
       unwrapped: nix.thunk(() => nix.app(nix.sel(telegram_desktop, "unwrapped", "overrideAttrs"), (old) => (() => {
           const pname = "64gram-unwrapped";
           const version = "1.2.10";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "TDesktop-x64",
               repo: "tdesktop",
               tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
               fetchSubmodules: true,
             }))));
           const meta = nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             description: "Unofficial Telegram Desktop providing Windows 64bit build and extra features",
             license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
             })()),
             mainProgram: "Telegram",
           }));
-          return { [nix.POS]: pos$3, pname, version, src, meta };
+          return { [nix.POS]: $pos[2], pname, version, src, meta };
         })())),
     })));
 })(), formals$1);

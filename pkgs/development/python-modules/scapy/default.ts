@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["all", 58, 5], ["cli", 64, 5]], [["description", 82, 5], ["mainProgram", 83, 5], ["longDescription", 84, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5]], [["pname", 24, 3], ["version", 25, 3], ["format", 26, 3], ["disabled", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["postPatch", 39, 3], ["buildInputs", 55, 3], ["optional-dependencies", 57, 3], ["doCheck", 68, 3], ["nativeCheckInputs", 69, 3], ["checkPhase", 74, 3], ["pythonImportsCheck", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, stdenv: false, lib: false, isPyPy: false, mock: false, "python-can": false, brotli: false, ipython: false, cryptography: false, withVoipSupport: true, sox: false, matplotlib: false, pyx: false, withManufDb: true, wireshark: false, libpcap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 58, 5], ["cli", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 82, 5], ["mainProgram", 83, 5], ["longDescription", 84, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["format", 26, 3], ["disabled", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["postPatch", 39, 3], ["buildInputs", 55, 3], ["optional-dependencies", 57, 3], ["doCheck", 68, 3], ["nativeCheckInputs", 69, 3], ["checkPhase", 74, 3], ["pythonImportsCheck", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "secdev",
           repo: "scapy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +49,7 @@ substituteInPlace "scapy/libs/winpcapy.py" \\
 `))));
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optional"), withVoipSupport, sox));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [cryptography, ipython, matplotlib, pyx]),
         cli: nix.thunk(() => [ipython]),
       }));
@@ -61,7 +58,7 @@ substituteInPlace "scapy/libs/winpcapy.py" \\
       const checkPhase = "# TODO: be more specific about files\npatchShebangs .\n.config/ci/test.sh\n";
       const pythonImportsCheck = nix.thunk(() => ["scapy"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python-based network packet manipulation program and library",
         mainProgram: "scapy",
         longDescription: "Scapy is a powerful Python-based interactive packet manipulation program\nand library.\n\nIt is able to forge or decode packets of a wide number of protocols, send\nthem on the wire, capture them, store or read them using pcap files,\nmatch requests and replies, and much more. It is designed to allow fast\npacket prototyping by using default values that work.\n\nIt can easily handle most classical tasks like scanning, tracerouting,\nprobing, unit tests, attacks or network discovery (it can replace hping,\n85% of nmap, arpspoof, arp-sk, arping, tcpdump, wireshark, p0f, etc.). It\nalso performs very well at a lot of other specific tasks that most other\ntools can't handle, like sending invalid frames, injecting your own\n802.11 frames, combining techniques (VLAN hopping+ARP cache poisoning,\nVoIP decoding on WEP protected channel, ...), etc.\n\nScapy supports Python 2.7 and Python 3 (3.4 to 3.8). It's intended to be\ncross platform, and runs on many different platforms (Linux, OSX, *BSD,\nand Windows).\n",
@@ -75,7 +72,7 @@ substituteInPlace "scapy/libs/winpcapy.py" \\
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

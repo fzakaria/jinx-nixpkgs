@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 38, 5], ["hash", 39, 5]], [["description", 92, 5], ["homepage", 93, 5], ["sourceProvenance", 94, 5], ["license", 95, 5], ["platforms", 96, 5], ["maintainers", 97, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["installPhase", 71, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, fetchurl: false, autoPatchelfHook: false, dbus: false, "directx-shader-compiler": false, fontconfig: false, freetype: false, glib: false, libdrm: false, libGLU: false, libglvnd: false, libice: false, libkrb5: false, libsm: false, libx11: false, libxcb: false, libxi: false, libxkbcommon: false, libxml2_13: false, ncurses: false, wayland: false, "libxcb-util": false, zlib: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["sourceProvenance", 94, 5], ["license", 95, 5], ["platforms", 96, 5], ["maintainers", 97, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["installPhase", 71, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const buildNum = "2026-05-28-1806";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rgp",
       version: "2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gpuopen.com/download/RadeonDeveloperToolSuite-${buildNum}.tgz`),
           hash: "sha256-hMUAo72JVfDEv8Rp0/0YZDXX7p8ioVH40WtK/PQnRb8=",
         })))),
@@ -71,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/opt/rgp $out/bin\ncp -r . $out/opt/rgp/\n\nchmod +x $out/opt/rgp/scripts/*\npatchShebangs $out/opt/rgp/scripts\n\nfor prog in RadeonDeveloperPanel RadeonDeveloperService RadeonDeveloperServiceCLI RadeonGPUAnalyzer RadeonGPUProfiler RadeonMemoryVisualizer RadeonRaytracingAnalyzer rga rtda; do\n  # makeWrapper is needed so that executables are started from the opt\n  # directory, where qt.conf and other tools are.\n  # Unset Qt theme, it does not work if the nixos Qt version is different from the packaged one.\n  makeWrapper \\\n    $out/opt/rgp/$prog \\\n    $out/bin/$prog \\\n    --unset QT_QPA_PLATFORMTHEME \\\n    --unset QT_STYLE_OVERRIDE \\\n    --prefix LD_LIBRARY_PATH : $out/opt/rgp/lib\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool from AMD that allows for deep inspection of GPU workloads",
         homepage: "https://gpuopen.com/rgp/",
         sourceProvenance: nix.thunk(() => (() => {

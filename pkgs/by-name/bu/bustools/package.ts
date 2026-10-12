@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["package", 33, 5], ["command", 34, 5]], [["version", 32, 18]], [["tests", 32, 12]], [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 42, 5], ["downloadPage", 43, 5], ["changelog", 44, 5], ["maintainers", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["postPatch", 26, 3], ["passthru", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, zlib: false, testers: false, bustools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 33, 5], ["command", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 32, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 32, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 42, 5], ["downloadPage", 43, 5], ["changelog", 44, 5], ["maintainers", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["postPatch", 26, 3], ["passthru", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const bustools = nix.arg($, "bustools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "bustools",
       version: "0.45.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BUStools",
           repo: "bustools",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,14 +29,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib]),
       postPatch: "substituteInPlace CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required(VERSION 2.8.12)' \\\n  'cmake_minimum_required(VERSION 3.5)'\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: bustools, command: "bustools version" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: bustools, command: "bustools version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Program for manipulating BUS files for single cell RNA-Seq datasets",
         longDescription: "bustools is a program for manipulating BUS files for single cell RNA-Seq datasets. It can be used to error correct barcodes, collapse UMIs, produce gene count or transcript compatibility count matrices, and is useful for many other tasks. It is also part of the kallisto | bustools workflow for pre-processing single-cell RNA-seq data.\n",
         homepage: "https://www.kallistobus.tools/",

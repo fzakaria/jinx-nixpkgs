@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["FONTCONFIG_FILE", 73, 7]], [["updateScript", 85, 12]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 34, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 52, 3], ["checkInputs", 57, 3], ["cmakeFlags", 62, 3], ["env", 73, 3], ["preBuild", 75, 3], ["doCheck", 83, 3], ["passthru", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fontconfig: false, llvmPackages: false, "nix-update-script": false, stdenv: false, fmt: false, "jrl-cmakemodules": false, mimalloc: false, crocoddyl: false, pinocchio: false, catch2_3: false, gbenchmark: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["FONTCONFIG_FILE", 73, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 85, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 34, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 52, 3], ["checkInputs", 57, 3], ["cmakeFlags", 62, 3], ["env", 73, 3], ["preBuild", 75, 3], ["doCheck", 83, 3], ["passthru", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const catch2_3 = nix.arg($, "catch2_3");
   const gbenchmark = nix.arg($, "gbenchmark");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "aligator",
       version: "0.19.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Simple-Robotics",
           repo: "aligator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,17 +47,17 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "GENERATE_PYTHON_STUBS", false)),
       ])),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
       })),
       preBuild: "# silence matplotlib warning\nexport MPLCONFIGDIR=$(mktemp -d)\n\n# Fontconfig error: No writable cache directories\nexport XDG_CACHE_HOME=$(mktemp -d)\n",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Versatile and efficient framework for constrained trajectory optimization",
         homepage: "https://github.com/Simple-Robotics/aligator",
         changelog: nix.thunk(() => nix.str`https://github.com/Simple-Robotics/aligator/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

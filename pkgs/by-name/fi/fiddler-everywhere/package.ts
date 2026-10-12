@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["pname", 18, 54], ["version", 18, 60], ["src", 18, 68]], [["updateScript", 37, 12]], [["description", 50, 5], ["homepage", 51, 5], ["downloadPage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5], ["platforms", 57, 5]], [["pname", 21, 11], ["version", 21, 17], ["src", 21, 25], ["extraPkgs", 23, 3], ["nativeBuildInputs", 25, 3], ["extraInstallCommands", 27, 3], ["passthru", 37, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { appimageTools: false, fetchurl: false, lib: false, makeWrapper: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 18, 54], ["version", 18, 60], ["src", 18, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["downloadPage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5], ["platforms", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 11], ["version", 21, 17], ["src", 21, 25], ["extraPkgs", 23, 3], ["nativeBuildInputs", 25, 3], ["extraInstallCommands", 27, 3], ["passthru", 37, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pname = "fiddler-everywhere";
   const version = "8.2.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://downloads.getfiddler.com/linux/fiddler-everywhere-${version}.AppImage`),
       hash: "sha256-cP9DEnDUj0m3DJ71ASe3b3AH7ljUHOdw4bkQrHkey6I=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -40,11 +36,11 @@ substituteInPlace $out/share/applications/fiddler-everywhere.desktop \\
 wrapProgram $out/bin/fiddler-everywhere --set DESKTOPINTEGRATION false
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-fiddler-everywhere", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\nversion=\"$(curl -si https://api.getfiddler.com/linux/latest-linux \\\n  | grep -Fi 'Location:' \\\n  | pcre2grep -o1 'https://downloads.getfiddler.com/linux/fiddler-everywhere-(([0-9]\\.?)+).AppImage')\"\nupdate-source-version fiddler-everywhere \"$version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Web debugging proxy by Telerik",
         homepage: "https://www.telerik.com/fiddler/fiddler-everywhere",
         downloadPage: "https://www.telerik.com/download/fiddler-everywhere",

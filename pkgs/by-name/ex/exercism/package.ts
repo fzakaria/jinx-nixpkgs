@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["updateScript", 28, 12]], [["homepage", 38, 35], ["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["doCheck", 22, 3], ["subPackages", 24, 3], ["nativeBuildInputs", 26, 3], ["passthru", 28, 3], ["postInstall", 30, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, installShellFiles: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 28, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 38, 35], ["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["doCheck", 22, 3], ["subPackages", 24, 3], ["nativeBuildInputs", 26, 3], ["passthru", 28, 3], ["postInstall", 30, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "exercism",
       version: "3.5.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "exercism",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,14 +28,14 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["./exercism"]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postInstall: "installShellCompletion --cmd exercism \\\n  --bash shell/exercism_completion.bash \\\n  --fish shell/exercism.fish \\\n  --zsh shell/exercism_completion.zsh\n",
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Go based command line tool for exercism.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

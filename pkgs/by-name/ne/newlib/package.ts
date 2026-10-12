@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["name", 26, 7], ["url", 27, 7], ["sha256", 28, 7]], [["incdir", 132, 5], ["libdir", 133, 5]], [["description", 137, 5], ["homepage", 138, 5], ["license", 146, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["depsBuildBuild", 32, 3], ["preConfigure", 38, 3], ["configurePlatforms", 54, 3], ["configureFlags", 60, 3], ["enableParallelBuilding", 104, 3], ["enableParallelInstalling", 106, 3], ["dontDisableStatic", 107, 3], ["postInstall", 110, 3], ["passthru", 131, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { stdenvNoLibc: false, fetchurl: false, buildPackages: false, lib: false, fetchpatch: false, texinfo: false, nanoizeNewlib: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["sha256", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["incdir", 132, 5], ["libdir", 133, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 137, 5], ["homepage", 138, 5], ["license", 146, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["depsBuildBuild", 32, 3], ["preConfigure", 38, 3], ["configurePlatforms", 54, 3], ["configureFlags", 60, 3], ["enableParallelBuilding", 104, 3], ["enableParallelInstalling", 106, 3], ["dontDisableStatic", 107, 3], ["postInstall", 110, 3], ["passthru", 131, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const nanoizeNewlib = nix.argOr($, "nanoizeNewlib", () => false);
   return nix.app(nix.sel(stdenvNoLibc, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "newlib",
       version: "4.6.0.20260123",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`ftp://sourceware.org/pub/newlib/newlib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-b/J+O/AiZm9D94AiVb5oDu/3IqwYGxcl0h4ugxhgTuM=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nanoizeNewlib, nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "newlib-3.3.0-no-nano-cxx.patch",
               url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/sys-libs/newlib/files/newlib-3.3.0-no-nano-cxx.patch?id=9ee5a1cd6f8da6d084b93b3dbd2e8022a147cfbf",
               sha256: "sha256-S3mf7vwrzSMWZIGE+d61UDH+/SK/ao1hTPee1sElgco=",
@@ -85,12 +81,12 @@ cp $out${nix.sel(finalAttrs, "passthru", "incdir")}/newlib.h $out${nix.sel(final
 )
 `)), "[ \"$(find $out -type f | wc -l)\" -gt 0 ] || (echo '$out is empty' 1>&2 && exit 1)")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         incdir: nix.thunk(() => nix.str`/${nix.sel(stdenvNoLibc, "targetPlatform", "config")}/include`),
         libdir: nix.thunk(() => nix.str`/${nix.sel(stdenvNoLibc, "targetPlatform", "config")}/lib`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C library intended for use on embedded systems",
         homepage: "https://sourceware.org/newlib/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

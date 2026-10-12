@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["pkg-config", 32, 18]], [["tests", 32, 12]], [["changelog", 37, 5], ["homepage", 38, 5], ["description", 39, 5], ["longDescription", 41, 5], ["mainProgram", 57, 5], ["license", 58, 5], ["pkgConfigModules", 59, 5], ["platforms", 60, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 18, 3], ["hardeningDisable", 26, 3], ["buildInputs", 28, 3], ["strictDeps", 30, 3], ["passthru", 32, 3], ["__structuredAttrs", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, libiconv: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 32, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 32, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 37, 5], ["homepage", 38, 5], ["description", 39, 5], ["longDescription", 41, 5], ["mainProgram", 57, 5], ["license", 58, 5], ["pkgConfigModules", 59, 5], ["platforms", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 18, 3], ["hardeningDisable", 26, 3], ["buildInputs", 28, 3], ["strictDeps", 30, 3], ["passthru", 32, 3], ["__structuredAttrs", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libidn",
       version: "1.44",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/libidn/libidn-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-SZYIurOmVlCg6lKIjBOo3uvj9xQI4xms2exS4C6xOVk=",
         })))),
@@ -30,15 +26,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconv)),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://codeberg.org/libidn/libidn/src/tag/v${nix.sel(finalAttrs, "version")}/NEWS`),
         homepage: "https://www.gnu.org/software/libidn/",
         description: "Library for internationalized domain names",

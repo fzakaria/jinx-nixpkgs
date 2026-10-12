@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontWrapQtApps", 19, 3], ["propagatedBuildInputs", 21, 3], ["installPhase", 31, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontWrapQtApps", 19, 3], ["propagatedBuildInputs", 21, 3], ["installPhase", 31, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "utterly-nord-plasma",
       version: "3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "HimDek",
           repo: "utterly-nord-plasma",
           rev: "ae0de9d555b518226627b2d10ee5df4a18073c60",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/{color-schemes,Kvantum,plasma/look-and-feel,sddm/themes,wallpapers,konsole}\n\ncp -a look-and-feel $out/share/plasma/look-and-feel/Utterly-Nord\ncp -a look-and-feel-solid $out/share/plasma/look-and-feel/Utterly-Nord-Solid\ncp -a look-and-feel-light $out/share/plasma/look-and-feel/Utterly-Nord-Light\ncp -a look-and-feel-light-solid $out/share/plasma/look-and-feel/Utterly-Nord-Light-Solid\n\ncp -a *.colors $out/share/color-schemes/\n\ncp -a wallpaper $out/share/wallpapers/Utterly-Nord\n\ncp -a kvantum $out/share/Kvantum/Utterly-Nord\ncp -a kvantum-solid $out/share/Kvantum/Utterly-Nord-Solid\ncp -a kvantum-light $out/share/Kvantum/Utterly-Nord-Light\ncp -a kvantum-light-solid $out/share/Kvantum/Utterly-Nord-Light-Solid\n\ncp -a *.colorscheme $out/share/konsole/\n\ncp -a sddm $out/share/sddm/themes/Utterly-Nord\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Plasma theme with Nordic Colors, transparency, blur and round edges for UI elements",
         homepage: "https://himdek.com/Utterly-Nord-Plasma/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

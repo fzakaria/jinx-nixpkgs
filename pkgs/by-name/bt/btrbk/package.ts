@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["sha256", 26, 5]], [["btrbk", 72, 7], ["btrbk-no-timer", 73, 7], ["btrbk-section-order", 74, 7], ["btrbk-doas", 75, 7]], [["versionLister", 80, 5]], [["tests", 70, 12], ["updateScript", 79, 12]], [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["preInstall", 39, 3], ["preFixup", 56, 3], ["passthru", 70, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bash: false, "btrfs-progs": false, openssh: false, perl: false, perlPackages: false, "util-linux": false, asciidoctor: false, mbuffer: false, makeWrapper: false, genericUpdater: false, curl: false, writeShellScript: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["btrbk", 72, 7], ["btrbk-no-timer", 73, 7], ["btrbk-section-order", 74, 7], ["btrbk-doas", 75, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["versionLister", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 70, 12], ["updateScript", 79, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["preInstall", 39, 3], ["preFixup", 56, 3], ["passthru", 70, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "btrbk",
       version: "0.32.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://digint.ch/download/btrbk/releases/btrbk-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "f1PPVaAHVwyd5aHE+UbKc3L61eBXyLHJ16/CF2zDLNM=",
         })))),
@@ -63,22 +58,22 @@ substituteInPlace ssh_filter_btrbk.sh --replace logger ${util_linux}/bin/logger
   --prefix PATH ':' "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [btrfs_progs, bash, mbuffer, openssh]))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           btrbk: nix.thunk(() => nix.attr(nixosTests, "btrbk")),
           "btrbk-no-timer": nix.thunk(() => nix.attr(nixosTests, "btrbk-no-timer")),
           "btrbk-section-order": nix.thunk(() => nix.attr(nixosTests, "btrbk-section-order")),
           "btrbk-doas": nix.thunk(() => nix.attr(nixosTests, "btrbk-doas")),
         })),
         updateScript: nix.thunk(() => nix.app(genericUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             versionLister: nix.thunk(() => nix.app(writeShellScript, "btrbk-versionLister", nix.thunk(() => nix.str`${curl}/bin/curl -s https://digint.ch/download/btrbk/releases/ | ${perl}/bin/perl -lne 'print $1 if /btrbk-([0-9.]*)\\.tar/'
 `))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Backup tool for btrfs subvolumes",
         homepage: "https://digint.ch/btrbk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["updateScript", 51, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["mesonFlags", 35, 3], ["prePatch", 39, 3], ["postInstall", 45, 3], ["passthru", 50, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, python3: false, perl: false, libxslt: false, gettext: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["mesonFlags", 35, 3], ["prePatch", 39, 3], ["postInstall", 45, 3], ["passthru", 50, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xkeyboard-config",
       version: "2.48",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/data/xkeyboard-config/xkeyboard-config-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-t3BBMk8BCfdxYe5DdD/gS6pIWGavhGDTHkdq0/dkj9U=",
         })))),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       prePatch: "patchShebangs rules/merge.py rules/compat/map-variants.py rules/generate-options-symbols.py rules/xml2lst.pl\n",
       postInstall: "ln -s share \"$out/etc\"\nmkdir -p \"$out/lib\" && ln -s ../share/pkgconfig \"$out/lib/\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 
@@ -50,7 +47,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Provides a consistent, well-structured, database of keyboard configuration data",
         homepage: "https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config",
         license: nix.thunk(() => (() => {

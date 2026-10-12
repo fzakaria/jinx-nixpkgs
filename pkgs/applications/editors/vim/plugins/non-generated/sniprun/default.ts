@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["mainProgram", 52, 10]], [["pname", 29, 5], ["version", 30, 13], ["src", 30, 21], ["cargoHash", 32, 5], ["nativeBuildInputs", 34, 5], ["postInstall", 36, 5], ["doCheck", 50, 5], ["meta", 52, 5]], [["sniprun", 61, 7]], [["attrPath", 69, 7]], [["updateScript", 68, 5], ["sniprun-bin", 73, 13]], [["homepage", 77, 5], ["changelog", 78, 5], ["maintainers", 79, 5], ["license", 80, 5]], [["pname", 56, 3], ["version", 57, 11], ["src", 57, 19], ["patches", 59, 3], ["propagatedBuildInputs", 65, 3], ["passthru", 67, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, makeWrapper: false, bashInteractive: false, coreutils: false, curl: false, gnugrep: false, gnused: false, procps: false, vimUtils: false, replaceVars: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mainProgram", 52, 10]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 29, 5], ["version", 30, 13], ["src", 30, 21], ["cargoHash", 32, 5], ["nativeBuildInputs", 34, 5], ["postInstall", 36, 5], ["doCheck", 50, 5], ["meta", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["sniprun", 61, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["attrPath", 69, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 68, 5], ["sniprun-bin", 73, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["homepage", 77, 5], ["changelog", 78, 5], ["maintainers", 79, 5], ["license", 80, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 56, 3], ["version", 57, 11], ["src", 57, 19], ["patches", 59, 3], ["propagatedBuildInputs", 65, 3], ["passthru", 67, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "1.3.22";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "michaelb",
       repo: "sniprun",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-lehL28qI1YArYK38v5tGRe7SSzHxU8Fbf10fG4ShMUw=",
     }))));
   const sniprun_bin = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sniprun-bin",
       version: version,
       src: src,
@@ -46,27 +39,27 @@ export default nix.lambda((args) => (() => {
   --prefix PATH ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bashInteractive, coreutils, curl, gnugrep, gnused, procps]))}
 `),
       doCheck: false,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "sniprun" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[1], mainProgram: "sniprun" })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "sniprun",
       version: version,
       src: src,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             sniprun: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), sniprun_bin)),
           })))),
       ]),
       propagatedBuildInputs: nix.thunk(() => [sniprun_bin]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, attrPath: "vimPlugins.sniprun.sniprun-bin" })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[4], attrPath: "vimPlugins.sniprun.sniprun-bin" })))),
         "sniprun-bin": sniprun_bin,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/michaelb/sniprun/",
         changelog: nix.thunk(() => nix.str`https://github.com/michaelb/sniprun/blob/v${version}/CHANGELOG.md`),
         maintainers: nix.thunk(() => (() => {

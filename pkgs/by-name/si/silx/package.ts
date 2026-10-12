@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]], [["changelog", 34, 5], ["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 18, 3], ["dependencies", 23, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { python3Packages: false, fetchPypi: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 34, 5], ["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 18, 3], ["dependencies", 23, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "silx",
       version: "2.2.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-XZujZ7VxXMTLkBE4jz1xIA1763Z2yRCVL9E1CjQsVx8=",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://github.com/silx-kit/silx/blob/main/CHANGELOG.rst",
         description: "Software to support data assessment, reduction and analysis at synchrotron radiation facilities",
         homepage: "https://github.com/silx-kit/silx",

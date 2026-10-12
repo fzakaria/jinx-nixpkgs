@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["homepage", 37, 5], ["description", 38, 5], ["platforms", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["doInstallCheck", 25, 3], ["dontUnpack", 27, 3], ["dontBuild", 28, 3], ["installPhase", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["platforms", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["doInstallCheck", 25, 3], ["dontUnpack", 27, 3], ["dontBuild", 28, 3], ["installPhase", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "picoprobe-udev-rules",
       version: "unstable-2023-01-31",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://raw.githubusercontent.com/probe-rs/webpage/1cba61acc6ecb5ff96f74641269844ad88ad8ad5/static/files/69-probe-rs.rules",
           sha256: "sha256-vQMPX3Amttja0u03KWGnPDAVTGM9ekJ+IBTjW+xlJS0=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\ninstall -D $src $out/lib/udev/rules.d/69-probe-rs.rules\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://probe.rs/docs/getting-started/probe-setup/#udev-rules",
         description: "Picoprobe udev rules list",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

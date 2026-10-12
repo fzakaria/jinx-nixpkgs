@@ -2,15 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pcre.nix", [[["maintainers", 12, 8]], [["timeZone", 17, 12]], [["enable", 19, 9], ["adminAddr", 20, 9], ["phpPackage", 21, 9], ["enablePHP", 22, 9], ["phpOptions", 23, 9], ["extraConfig", 24, 9]], [["httpd", 18, 16]], [["time", 17, 7], ["services", 18, 7]], [["machine", 14, 14]], [["name", 11, 3], ["meta", 12, 3], ["containers", 14, 3], ["testScript", 41, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, php: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pcre.nix", [["maintainers", 12, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/pcre.nix", [["timeZone", 17, 12]]);
-const pos$3 = nix.positions(here + "/pcre.nix", [["enable", 19, 9], ["adminAddr", 20, 9], ["phpPackage", 21, 9], ["enablePHP", 22, 9], ["phpOptions", 23, 9], ["extraConfig", 24, 9]]);
-const pos$4 = nix.positions(here + "/pcre.nix", [["httpd", 18, 16]]);
-const pos$5 = nix.positions(here + "/pcre.nix", [["time", 17, 7], ["services", 18, 7]]);
-const pos$6 = nix.positions(here + "/pcre.nix", [["machine", 14, 14]]);
-const pos$7 = nix.positions(here + "/pcre.nix", [["name", 11, 3], ["meta", 12, 3], ["containers", 14, 3], ["testScript", 41, 3]]);
 
 export default nix.thunk(() => (() => {
   const testString = "can-use-subgroups";
@@ -20,24 +14,24 @@ export default nix.thunk(() => (() => {
     const lib = nix.arg($, "lib");
     const php = nix.arg($, "php");
     return {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: nix.thunk(() => nix.str`php-${nix.sel(php, "version")}-httpd-pcre-jit-test`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => nix.sel(lib, "teams", "php", "members")),
       })),
       containers: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$5,
-            time: nix.thunk(() => ({ [nix.POS]: pos$2, timeZone: "UTC" })),
+            [nix.POS]: $pos[4],
+            time: nix.thunk(() => ({ [nix.POS]: $pos[1], timeZone: "UTC" })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               httpd: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 enable: true,
                 adminAddr: "please@dont.contact",
                 phpPackage: php,

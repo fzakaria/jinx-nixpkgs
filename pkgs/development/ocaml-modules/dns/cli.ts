@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cli.nix", [[["description", 68, 5], ["mainProgram", 69, 5]], [["pname", 30, 3], ["version", 32, 17], ["src", 32, 25], ["buildInputs", 36, 3], ["doCheck", 62, 3], ["checkInputs", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, dns: false, "dns-tsig": false, "dns-client-lwt": false, "dns-server": false, "dns-certify": false, "dns-resolver": false, dnssec: false, bos: false, cmdliner: false, fpath: false, x509: false, "mirage-crypto": false, "mirage-crypto-pk": false, "mirage-crypto-rng": false, "mirage-mtime": false, ohex: false, ptime: false, mtime: false, logs: false, fmt: false, ipaddr: false, lwt: false, randomconv: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cli.nix", [["description", 68, 5], ["mainProgram", 69, 5]]);
-const pos$2 = nix.positions(here + "/cli.nix", [["pname", 30, 3], ["version", 32, 17], ["src", 32, 25], ["buildInputs", 36, 3], ["doCheck", 62, 3], ["checkInputs", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const randomconv = nix.arg($, "randomconv");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dns-cli",
       version: nix.thunk(() => nix.attr(dns, "version")),
       src: nix.thunk(() => nix.attr(dns, "src")),
@@ -66,7 +65,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Unix command line utilities using uDNS",
         mainProgram: "odns",
       })),

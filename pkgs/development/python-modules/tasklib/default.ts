@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]], [["homepage", 35, 5], ["description", 36, 5], ["changelog", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["license", 40, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["nativeCheckInputs", 28, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, six: false, pytz: false, tzlocal: false, fetchPypi: false, taskwarrior2: false, writeShellScriptBin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 35, 5], ["description", 36, 5], ["changelog", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["license", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["nativeCheckInputs", 28, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-XM1zG1JjbdEEV6i42FjLDQJv+qsePnUbr3kb+APjfXs=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [six, pytz, tzlocal]);
       const nativeCheckInputs = nix.thunk(() => [taskwarrior2, nix.thunk(() => nix.app(writeShellScriptBin, "wsl", "true"))]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/robgolding/tasklib",
         description: "Library for interacting with taskwarrior databases",
         changelog: nix.thunk(() => nix.str`https://github.com/GothenburgBitFactory/tasklib/releases/tag/${version}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

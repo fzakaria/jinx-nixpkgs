@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["url", 47, 7]], [["openssl", 78, 30]], [["license", 164, 5], ["homepage", 165, 5], ["description", 166, 5], ["changelog", 167, 5], ["platforms", 168, 5], ["maintainers", 169, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["postPatch", 60, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 75, 3], ["doInstallCheck", 87, 3], ["preInstallCheck", 89, 3], ["installCheckPhase", 114, 3], ["nativeInstallCheckInputs", 138, 3], ["cmakeFlags", 143, 3], ["requiredSystemFeatures", 161, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, "c-ares": false, cmake: false, crc32c: false, curl: false, gbenchmark: false, grpc: false, gtest: false, ninja: false, nlohmann_json: false, openssl: false, "pkg-config": false, protobuf: false, pkgsBuildHost: false, apis: true, staticOnly: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 47, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["openssl", 78, 30]]);
-const pos$5 = nix.positions(here + "/package.nix", [["license", 164, 5], ["homepage", 165, 5], ["description", 166, 5], ["changelog", 167, 5], ["platforms", 168, 5], ["maintainers", 169, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["patches", 45, 3], ["postPatch", 60, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 75, 3], ["doInstallCheck", 87, 3], ["preInstallCheck", 89, 3], ["installCheckPhase", 114, 3], ["nativeInstallCheckInputs", 138, 3], ["cmakeFlags", 143, 3], ["requiredSystemFeatures", 161, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const staticOnly = nix.argOr($, "staticOnly", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const googleapisRev = "8cd3749f4b98f2eeeef511c16431979aeb3a6502";
   const googleapis = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "googleapis-src",
       owner: "googleapis",
       repo: "googleapis",
@@ -41,25 +36,25 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-w7jq21qLEiMhuI20C6iUeSskAfZCkZgDCPu5Flr8D48=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "google-cloud-cpp",
       version: "2.44.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "googleapis",
           repo: "google-cloud-cpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-vE3oGGT33cITdAd4e5Xnlx9tX5Sz+wIFQXzj5hdcGDI=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-googleapis-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, url: googleapis })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-googleapis-path.patch"), nix.thunk(() => ({ [nix.POS]: $pos[2], url: googleapis })))),
       ]),
       postPatch: "substituteInPlace cmake/GoogleCloudCppFeatures.cmake \\\n  --replace-fail \\\n    \"bigtable;bigquery;iam;logging;pubsub;spanner;storage\" \\\n    \"bigtable;bigquery;iam;logging;pubsub;spanner;storage;universe_domain\" \\\n\nsed -e '1i #include <algorithm>' -i google/cloud/testing_util/command_line_parsing.cc\n",
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [
         c_ares,
         crc32c,
-        nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, openssl: openssl })))),
+        nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], openssl: openssl })))),
         grpc,
         nlohmann_json,
         openssl,
@@ -108,7 +103,7 @@ runHook postInstallCheck
         ]))))),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://github.com/googleapis/google-cloud-cpp",
         description: "C++ Idiomatic Clients for Google Cloud Platform services",

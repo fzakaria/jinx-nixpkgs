@@ -2,21 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["name", 27, 15], ["expectedArray", 28, 7], ["script", 29, 7]], [["platforms", 42, 11]], [["elfFile", 39, 17], ["nativeBuildInputs", 40, 9], ["meta", 41, 9]], [["name", 48, 5], ["src", 49, 5]], [["name", 53, 5], ["src", 54, 5]], [["shellcheck", 47, 3], ["shfmt", 52, 3]], [["name", 63, 7], ["elfFile", 64, 7], ["runpathEntries", 65, 7]], [["name", 61, 5], ["drv", 62, 5], ["expectedBuilderLogEntries", 67, 5]], [["name", 76, 7], ["elfFile", 77, 7], ["runpathEntries", 78, 7]], [["name", 74, 5], ["drv", 75, 5], ["expectedBuilderLogEntries", 80, 5]], [["name", 86, 5], ["elfFile", 87, 5], ["runpathEntries", 88, 5]], [["name", 94, 5], ["elfFile", 95, 5], ["runpathEntries", 96, 5]], [["notElfFileFails", 60, 3], ["staticElfFileFails", 73, 3], ["hello", 85, 3], ["libstdcplusplus", 93, 3]]]);
 const formals$1 = { args: { emptyFile: false, getRunpathEntries: false, hello: false, lib: false, pkgsStatic: false, stdenv: false, testers: false }, ellipsis: false };
 const formals$2 = { args: { name: false, elfFile: false, runpathEntries: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["name", 27, 15], ["expectedArray", 28, 7], ["script", 29, 7]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["platforms", 42, 11]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["elfFile", 39, 17], ["nativeBuildInputs", 40, 9], ["meta", 41, 9]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["name", 48, 5], ["src", 49, 5]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["name", 53, 5], ["src", 54, 5]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["shellcheck", 47, 3], ["shfmt", 52, 3]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["name", 63, 7], ["elfFile", 64, 7], ["runpathEntries", 65, 7]]);
-const pos$8 = nix.positions(here + "/tests.nix", [["name", 61, 5], ["drv", 62, 5], ["expectedBuilderLogEntries", 67, 5]]);
-const pos$9 = nix.positions(here + "/tests.nix", [["name", 76, 7], ["elfFile", 77, 7], ["runpathEntries", 78, 7]]);
-const pos$10 = nix.positions(here + "/tests.nix", [["name", 74, 5], ["drv", 75, 5], ["expectedBuilderLogEntries", 80, 5]]);
-const pos$11 = nix.positions(here + "/tests.nix", [["name", 86, 5], ["elfFile", 87, 5], ["runpathEntries", 88, 5]]);
-const pos$12 = nix.positions(here + "/tests.nix", [["name", 94, 5], ["elfFile", 95, 5], ["runpathEntries", 96, 5]]);
-const pos$13 = nix.positions(here + "/tests.nix", [["notElfFileFails", 60, 3], ["staticElfFileFails", 73, 3], ["hello", 85, 3], ["libstdcplusplus", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,45 +27,50 @@ export default nix.lambda((args) => (() => {
     const elfFile = nix.arg($_1, "elfFile");
     const runpathEntries = nix.arg($_1, "runpathEntries");
     return nix.app(nix.sel(nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: name,
         expectedArray: runpathEntries,
         script: "set -eu\nnixLog \"running getRunpathEntries with ${elfFile@Q} to populate actualArray\"\ngetRunpathEntries \"$elfFile\" actualArray || {\n  nixErrorLog \"getRunpathEntries failed\"\n  exit 1\n}\n",
       }))), "overrideAttrs"), (prevAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         elfFile: elfFile,
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "nativeBuildInputs"), [getRunpathEntries])),
         meta: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "meta"), {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         })),
       }));
   })(), formals$2);
   return nix.update(nix.app(recurseIntoAttrs, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       shellcheck: nix.thunk(() => nix.app(shellcheck, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: "getRunpathEntries",
           src: nix.path(here, "./getRunpathEntries.bash"),
         })))),
       shfmt: nix.thunk(() => nix.app(shfmt, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: "getRunpathEntries",
           src: nix.path(here, "./getRunpathEntries.bash"),
         })))),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       notElfFileFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           name: "notElfFileFails",
-          drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({ [nix.POS]: pos$7, name: "notElfFile", elfFile: emptyFile, runpathEntries: [] })))),
+          drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
+              [nix.POS]: $pos[6],
+              name: "notElfFile",
+              elfFile: emptyFile,
+              runpathEntries: [],
+            })))),
           expectedBuilderLogEntries: nix.thunk(() => ["getRunpathEntries failed"]),
         })))),
       staticElfFileFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           name: "staticElfFileFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               name: "staticElfFile",
               elfFile: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgsStatic, "hello")))),
               runpathEntries: [],
@@ -85,7 +78,7 @@ export default nix.lambda((args) => (() => {
           expectedBuilderLogEntries: nix.thunk(() => ["getRunpathEntries failed"]),
         })))),
       hello: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           name: "hello",
           elfFile: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), hello)),
           runpathEntries: nix.thunk(() => [
@@ -93,7 +86,7 @@ export default nix.lambda((args) => (() => {
           ]),
         })))),
       libstdcplusplus: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           name: "libstdcplusplus",
           elfFile: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/lib/libstdc++.so`),
           runpathEntries: nix.thunk(() => [

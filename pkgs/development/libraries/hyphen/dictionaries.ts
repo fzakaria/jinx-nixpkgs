@@ -2,64 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dictionaries.nix", [[["url", 27, 9], ["rev", 28, 9], ["hash", 29, 9]], [["description", 32, 9], ["homepage", 33, 9], ["license", 34, 9], ["maintainers", 35, 9], ["platforms", 36, 9]], [["version", 24, 7], ["pname", 25, 7], ["src", 26, 7], ["meta", 31, 7], ["dontBuild", 38, 7], ["installPhase", 39, 7]], [["subdir", 68, 15], ["shortName", 69, 15], ["shortDescription", 70, 15], ["dictFilePath", 71, 7], ["dictFileName", 72, 7], ["filenameAliases", 73, 7], ["readmeFilePath", 74, 7]], [["subdir", 90, 7], ["shortName", 91, 7], ["shortDescription", 92, 7], ["dictFileName", 93, 7], ["filenameAliases", 94, 7], ["readmeFileName", 95, 7]], [["subdir", 102, 7], ["shortName", 103, 7], ["shortDescription", 104, 7], ["dictFileName", 105, 7], ["readmeFileName", 106, 7]], [["subdir", 113, 7], ["shortName", 114, 7], ["shortDescription", 115, 7], ["dictFileName", 116, 7], ["readmeFileName", 117, 7]], [["subdir", 124, 7], ["shortName", 125, 7], ["shortDescription", 126, 7], ["dictFileName", 127, 7], ["readmeFileName", 128, 7]], [["subdir", 139, 7], ["shortName", 140, 7], ["shortDescription", 141, 7], ["dictFileName", 142, 7], ["filenameAliases", 143, 7], ["dictFilePath", 144, 7], ["readmeFilePath", 145, 7]], [["subdir", 152, 7], ["shortName", 153, 7], ["shortDescription", 154, 7], ["dictFileName", 155, 7], ["readmeFileName", 156, 7]], [["subdir", 163, 7], ["shortName", 164, 7], ["shortDescription", 165, 7], ["dictFileName", 166, 7], ["dictFilePath", 167, 7], ["readmeFilePath", 168, 7]], [["subdir", 175, 7], ["shortName", 176, 7], ["shortDescription", 177, 7], ["dictFileName", 178, 7], ["readmeFileName", 179, 7]], [["subdir", 184, 7], ["shortName", 185, 7], ["shortDescription", 186, 7], ["dictFileName", 187, 7], ["readmeFileName", 188, 7]], [["subdir", 193, 7], ["shortName", 194, 7], ["shortDescription", 195, 7], ["dictFileName", 196, 7], ["readmeFileName", 197, 7]], [["subdir", 204, 7], ["shortName", 205, 7], ["shortDescription", 206, 7], ["dictFileName", 207, 7], ["readmeFileName", 208, 7]], [["subdir", 229, 7], ["shortName", 230, 7], ["shortDescription", 231, 7], ["dictFileName", 232, 7], ["filenameAliases", 233, 7], ["readmeFileName", 234, 7]], [["homepage", 245, 11], ["platforms", 246, 11], ["license", 247, 11], ["maintainers", 248, 11], ["description", 250, 9]], [["nativeBuildInputs", 239, 7], ["version", 240, 7], ["pname", 241, 7], ["src", 242, 7], ["meta", 243, 7], ["installPhase", 252, 7]], [["subdir", 262, 7], ["shortName", 263, 7], ["shortDescription", 264, 7], ["dictFileName", 265, 7], ["dictFilePath", 266, 7], ["readmeFilePath", 267, 7]], [["subdir", 296, 7], ["shortName", 297, 7], ["shortDescription", 298, 7], ["dictFileName", 299, 7], ["filenameAliases", 300, 7], ["readmeFileName", 301, 7]], [["subdir", 308, 7], ["shortName", 309, 7], ["shortDescription", 310, 7], ["dictFileName", 311, 7], ["readmeFileName", 312, 7]], [["subdir", 324, 7], ["shortName", 325, 7], ["shortDescription", 326, 7], ["dictFileName", 327, 7], ["filenameAliases", 328, 7], ["readmeFileName", 329, 7]], [["subdir", 336, 7], ["shortName", 337, 7], ["shortDescription", 338, 7], ["dictFileName", 339, 7], ["readmeFileName", 340, 7]], [["subdir", 347, 7], ["shortName", 348, 7], ["shortDescription", 349, 7], ["dictFileName", 350, 7], ["readmeFileName", 351, 7]], [["subdir", 358, 7], ["shortName", 359, 7], ["shortDescription", 360, 7], ["dictFileName", 361, 7], ["readmeFileName", 362, 7]], [["subdir", 369, 7], ["shortName", 370, 7], ["shortDescription", 371, 7], ["dictFileName", 372, 7], ["dictFilePath", 373, 7], ["readmeFilePath", 374, 7]], [["subdir", 382, 7], ["shortName", 383, 7], ["shortDescription", 384, 7], ["dictFileName", 385, 7], ["filenameAliases", 386, 7], ["readmeFileName", 387, 7]], [["subdir", 394, 7], ["shortName", 395, 7], ["shortDescription", 396, 7], ["dictFileName", 397, 7], ["dictFilePath", 398, 7], ["readmeFilePath", 399, 7]], [["subdir", 406, 7], ["shortName", 407, 7], ["shortDescription", 408, 7], ["dictFileName", 409, 7], ["dictFilePath", 410, 7], ["readmeFilePath", 411, 7]], [["subdir", 418, 7], ["shortName", 419, 7], ["shortDescription", 420, 7], ["dictFileName", 421, 7], ["readmeFileName", 422, 7]], [["subdir", 429, 7], ["shortName", 430, 7], ["shortDescription", 431, 7], ["dictFileName", 432, 7], ["readmeFileName", 433, 7]], [["subdir", 441, 7], ["shortName", 442, 7], ["shortDescription", 443, 7], ["dictFileName", 444, 7], ["filenameAliases", 445, 7], ["readmeFileName", 446, 7]], [["subdir", 453, 7], ["shortName", 454, 7], ["shortDescription", 455, 7], ["dictFileName", 456, 7], ["readmeFileName", 457, 7]], [["subdir", 462, 7], ["shortName", 463, 7], ["shortDescription", 464, 7], ["dictFileName", 465, 7], ["readmeFileName", 466, 7]], [["subdir", 473, 7], ["shortName", 474, 7], ["shortDescription", 475, 7], ["dictFileName", 476, 7]], [["subdir", 483, 7], ["shortName", 484, 7], ["shortDescription", 485, 7], ["dictFileName", 486, 7]], [["subdir", 493, 7], ["shortName", 494, 7], ["shortDescription", 495, 7], ["dictFileName", 496, 7], ["readmeFileName", 497, 7]], [["subdir", 504, 7], ["shortName", 505, 7], ["shortDescription", 506, 7], ["dictFileName", 507, 7], ["readmeFileName", 508, 7]], [["subdir", 513, 7], ["shortName", 514, 7], ["shortDescription", 515, 7], ["dictFileName", 516, 7], ["readmeFileName", 517, 7]], [["subdir", 524, 7], ["shortName", 525, 7], ["shortDescription", 526, 7], ["dictFileName", 527, 7], ["readmeFileName", 528, 7]], [["subdir", 535, 7], ["shortName", 536, 7], ["shortDescription", 537, 7], ["dictFileName", 538, 7], ["readmeFileName", 539, 7]], [["subdir", 546, 7], ["shortName", 547, 7], ["shortDescription", 548, 7], ["dictFileName", 549, 7]], [["subdir", 556, 7], ["shortName", 557, 7], ["shortDescription", 558, 7], ["dictFileName", 559, 7], ["readmeFileName", 560, 7]], [["subdir", 567, 7], ["shortName", 568, 7], ["shortDescription", 569, 7], ["dictFileName", 570, 7], ["readmeFileName", 571, 7]], [["subdir", 578, 7], ["shortName", 579, 7], ["shortDescription", 580, 7], ["dictFileName", 581, 7], ["readmeFileName", 582, 7]], [["subdir", 589, 7], ["shortName", 590, 7], ["shortDescription", 591, 7], ["dictFileName", 592, 7], ["dictFilePath", 593, 7], ["readmeFilePath", 594, 7]], [["subdir", 599, 7], ["shortName", 600, 7], ["shortDescription", 601, 7], ["dictFileName", 602, 7], ["dictFilePath", 603, 7], ["readmeFilePath", 604, 7]], [["subdir", 612, 7], ["shortName", 613, 7], ["shortDescription", 614, 7], ["dictFileName", 615, 7], ["readmeFileName", 616, 7]], [["subdir", 623, 7], ["shortName", 624, 7], ["shortDescription", 625, 7], ["dictFileName", 626, 7], ["readmeFileName", 627, 7]], [["subdir", 634, 7], ["shortName", 635, 7], ["shortDescription", 636, 7], ["dictFileName", 637, 7], ["readmeFileName", 638, 7]], [["subdir", 645, 7], ["shortName", 646, 7], ["shortDescription", 647, 7], ["dictFileName", 648, 7], ["readmeFileName", 649, 7]], [["subdir", 656, 7], ["shortName", 657, 7], ["shortDescription", 658, 7], ["dictFileName", 659, 7], ["dictFilePath", 660, 7]], [["af_NA", 87, 5], ["af_ZA", 88, 5], ["af-za", 89, 5], ["as_IN", 100, 5], ["as-in", 101, 5], ["be_BY", 111, 5], ["be-by", 112, 5], ["bg_BG", 122, 5], ["bg-bg", 123, 5], ["ca_ES_valencia", 133, 5], ["ca_AD", 134, 5], ["ca_FR", 135, 5], ["ca_IT", 136, 5], ["ca_ES", 137, 5], ["ca-es", 138, 5], ["cs_CZ", 150, 5], ["cs-cz", 151, 5], ["da_DK", 161, 5], ["da-dk", 162, 5], ["de_DE", 173, 5], ["de-de", 174, 5], ["de_AT", 182, 5], ["de-at", 183, 5], ["de_CH", 191, 5], ["de-ch", 192, 5], ["el_GR", 202, 5], ["el-gr", 203, 5], ["en_GB", 213, 5], ["en_ZA", 214, 5], ["en_NA", 215, 5], ["en_ZW", 216, 5], ["en_AU", 217, 5], ["en_CA", 218, 5], ["en_IE", 219, 5], ["en_IN", 220, 5], ["en_BZ", 221, 5], ["en_BS", 222, 5], ["en_GH", 223, 5], ["en_JM", 224, 5], ["en_MW", 225, 5], ["en_NZ", 226, 5], ["en_TT", 227, 5], ["en-gb", 228, 5], ["en_US", 237, 5], ["en-us", 238, 5], ["eo", 261, 5], ["es_AR", 272, 5], ["es_BO", 273, 5], ["es_CL", 274, 5], ["es_CO", 275, 5], ["es_CR", 276, 5], ["es_CU", 277, 5], ["es_DO", 278, 5], ["es_EC", 279, 5], ["es_GQ", 280, 5], ["es_GT", 281, 5], ["es_HN", 282, 5], ["es_MX", 283, 5], ["es_NI", 284, 5], ["es_PA", 285, 5], ["es_PE", 286, 5], ["es_PH", 287, 5], ["es_PR", 288, 5], ["es_PY", 289, 5], ["es_SV", 290, 5], ["es_US", 291, 5], ["es_UY", 292, 5], ["es_VE", 293, 5], ["es_ES", 294, 5], ["es-es", 295, 5], ["et_EE", 306, 5], ["et-ee", 307, 5], ["fr_BE", 317, 5], ["fr_CA", 318, 5], ["fr_CH", 319, 5], ["fr_LU", 320, 5], ["fr_MC", 321, 5], ["fr_FR", 322, 5], ["fr-fr", 323, 5], ["gl_ES", 334, 5], ["gl-es", 335, 5], ["hr_HR", 345, 5], ["hr-hr", 346, 5], ["hu_HU", 356, 5], ["hu-hu", 357, 5], ["id_ID", 367, 5], ["id-id", 368, 5], ["it-CH", 379, 5], ["it_IT", 380, 5], ["it-it", 381, 5], ["kn_IN", 392, 5], ["kn-in", 393, 5], ["lt_LT", 404, 5], ["lt-lt", 405, 5], ["lv_LV", 416, 5], ["lv-lv", 417, 5], ["mn_MN", 427, 5], ["mn-mn", 428, 5], ["nl_BE", 438, 5], ["nl_NL", 439, 5], ["nl-nl", 440, 5], ["nb_NO", 451, 5], ["nb-no", 452, 5], ["nn_NO", 460, 5], ["nn-no", 461, 5], ["or_IN", 471, 5], ["or-in", 472, 5], ["pa_IN", 481, 5], ["pa-in", 482, 5], ["pl_PL", 491, 5], ["pl-pl", 492, 5], ["pt_BR", 502, 5], ["pt-br", 503, 5], ["pt_PT", 511, 5], ["pt-pt", 512, 5], ["ro_RO", 522, 5], ["ro-ro", 523, 5], ["ru_RU", 533, 5], ["ru-ru", 534, 5], ["sa_IN", 544, 5], ["sa-in", 545, 5], ["sk_SK", 554, 5], ["sk-sk", 555, 5], ["sl_SI", 565, 5], ["sl-si", 566, 5], ["sq_AL", 576, 5], ["sq-al", 577, 5], ["sr_SR", 587, 5], ["sr-sr", 588, 5], ["sr_SR_LATN", 597, 5], ["sr-sr-latn", 598, 5], ["sv_FI", 609, 5], ["sv_SE", 610, 5], ["sv-se", 611, 5], ["te_IN", 621, 5], ["te-in", 622, 5], ["th_TH", 632, 5], ["th-th", 633, 5], ["uk_UA", 643, 5], ["uk-ua", 644, 5], ["zu_ZA", 654, 5], ["zu-za", 655, 5]], [["name", 670, 5], ["paths", 671, 5]], [["all", 669, 3]]]);
 const formals$1 = { args: { hyphen: false, stdenv: false, lib: false, fetchgit: false, symlinkJoin: false }, ellipsis: false };
 const formals$2 = { args: { subdir: false, shortName: false, dictFileName: false, shortDescription: false, dictFilePath: false, filenameAliases: true, readmeFilePath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dictionaries.nix", [["url", 27, 9], ["rev", 28, 9], ["hash", 29, 9]]);
-const pos$2 = nix.positions(here + "/dictionaries.nix", [["description", 32, 9], ["homepage", 33, 9], ["license", 34, 9], ["maintainers", 35, 9], ["platforms", 36, 9]]);
-const pos$3 = nix.positions(here + "/dictionaries.nix", [["version", 24, 7], ["pname", 25, 7], ["src", 26, 7], ["meta", 31, 7], ["dontBuild", 38, 7], ["installPhase", 39, 7]]);
 const formals$3 = { args: { subdir: false, shortName: false, shortDescription: false, dictFileName: false, filenameAliases: true, readmeFileName: true }, ellipsis: false };
-const pos$4 = nix.positions(here + "/dictionaries.nix", [["subdir", 68, 15], ["shortName", 69, 15], ["shortDescription", 70, 15], ["dictFilePath", 71, 7], ["dictFileName", 72, 7], ["filenameAliases", 73, 7], ["readmeFilePath", 74, 7]]);
-const pos$5 = nix.positions(here + "/dictionaries.nix", [["subdir", 90, 7], ["shortName", 91, 7], ["shortDescription", 92, 7], ["dictFileName", 93, 7], ["filenameAliases", 94, 7], ["readmeFileName", 95, 7]]);
-const pos$6 = nix.positions(here + "/dictionaries.nix", [["subdir", 102, 7], ["shortName", 103, 7], ["shortDescription", 104, 7], ["dictFileName", 105, 7], ["readmeFileName", 106, 7]]);
-const pos$7 = nix.positions(here + "/dictionaries.nix", [["subdir", 113, 7], ["shortName", 114, 7], ["shortDescription", 115, 7], ["dictFileName", 116, 7], ["readmeFileName", 117, 7]]);
-const pos$8 = nix.positions(here + "/dictionaries.nix", [["subdir", 124, 7], ["shortName", 125, 7], ["shortDescription", 126, 7], ["dictFileName", 127, 7], ["readmeFileName", 128, 7]]);
-const pos$9 = nix.positions(here + "/dictionaries.nix", [["subdir", 139, 7], ["shortName", 140, 7], ["shortDescription", 141, 7], ["dictFileName", 142, 7], ["filenameAliases", 143, 7], ["dictFilePath", 144, 7], ["readmeFilePath", 145, 7]]);
-const pos$10 = nix.positions(here + "/dictionaries.nix", [["subdir", 152, 7], ["shortName", 153, 7], ["shortDescription", 154, 7], ["dictFileName", 155, 7], ["readmeFileName", 156, 7]]);
-const pos$11 = nix.positions(here + "/dictionaries.nix", [["subdir", 163, 7], ["shortName", 164, 7], ["shortDescription", 165, 7], ["dictFileName", 166, 7], ["dictFilePath", 167, 7], ["readmeFilePath", 168, 7]]);
-const pos$12 = nix.positions(here + "/dictionaries.nix", [["subdir", 175, 7], ["shortName", 176, 7], ["shortDescription", 177, 7], ["dictFileName", 178, 7], ["readmeFileName", 179, 7]]);
-const pos$13 = nix.positions(here + "/dictionaries.nix", [["subdir", 184, 7], ["shortName", 185, 7], ["shortDescription", 186, 7], ["dictFileName", 187, 7], ["readmeFileName", 188, 7]]);
-const pos$14 = nix.positions(here + "/dictionaries.nix", [["subdir", 193, 7], ["shortName", 194, 7], ["shortDescription", 195, 7], ["dictFileName", 196, 7], ["readmeFileName", 197, 7]]);
-const pos$15 = nix.positions(here + "/dictionaries.nix", [["subdir", 204, 7], ["shortName", 205, 7], ["shortDescription", 206, 7], ["dictFileName", 207, 7], ["readmeFileName", 208, 7]]);
-const pos$16 = nix.positions(here + "/dictionaries.nix", [["subdir", 229, 7], ["shortName", 230, 7], ["shortDescription", 231, 7], ["dictFileName", 232, 7], ["filenameAliases", 233, 7], ["readmeFileName", 234, 7]]);
-const pos$17 = nix.positions(here + "/dictionaries.nix", [["homepage", 245, 11], ["platforms", 246, 11], ["license", 247, 11], ["maintainers", 248, 11], ["description", 250, 9]]);
-const pos$18 = nix.positions(here + "/dictionaries.nix", [["nativeBuildInputs", 239, 7], ["version", 240, 7], ["pname", 241, 7], ["src", 242, 7], ["meta", 243, 7], ["installPhase", 252, 7]]);
-const pos$19 = nix.positions(here + "/dictionaries.nix", [["subdir", 262, 7], ["shortName", 263, 7], ["shortDescription", 264, 7], ["dictFileName", 265, 7], ["dictFilePath", 266, 7], ["readmeFilePath", 267, 7]]);
-const pos$20 = nix.positions(here + "/dictionaries.nix", [["subdir", 296, 7], ["shortName", 297, 7], ["shortDescription", 298, 7], ["dictFileName", 299, 7], ["filenameAliases", 300, 7], ["readmeFileName", 301, 7]]);
-const pos$21 = nix.positions(here + "/dictionaries.nix", [["subdir", 308, 7], ["shortName", 309, 7], ["shortDescription", 310, 7], ["dictFileName", 311, 7], ["readmeFileName", 312, 7]]);
-const pos$22 = nix.positions(here + "/dictionaries.nix", [["subdir", 324, 7], ["shortName", 325, 7], ["shortDescription", 326, 7], ["dictFileName", 327, 7], ["filenameAliases", 328, 7], ["readmeFileName", 329, 7]]);
-const pos$23 = nix.positions(here + "/dictionaries.nix", [["subdir", 336, 7], ["shortName", 337, 7], ["shortDescription", 338, 7], ["dictFileName", 339, 7], ["readmeFileName", 340, 7]]);
-const pos$24 = nix.positions(here + "/dictionaries.nix", [["subdir", 347, 7], ["shortName", 348, 7], ["shortDescription", 349, 7], ["dictFileName", 350, 7], ["readmeFileName", 351, 7]]);
-const pos$25 = nix.positions(here + "/dictionaries.nix", [["subdir", 358, 7], ["shortName", 359, 7], ["shortDescription", 360, 7], ["dictFileName", 361, 7], ["readmeFileName", 362, 7]]);
-const pos$26 = nix.positions(here + "/dictionaries.nix", [["subdir", 369, 7], ["shortName", 370, 7], ["shortDescription", 371, 7], ["dictFileName", 372, 7], ["dictFilePath", 373, 7], ["readmeFilePath", 374, 7]]);
-const pos$27 = nix.positions(here + "/dictionaries.nix", [["subdir", 382, 7], ["shortName", 383, 7], ["shortDescription", 384, 7], ["dictFileName", 385, 7], ["filenameAliases", 386, 7], ["readmeFileName", 387, 7]]);
-const pos$28 = nix.positions(here + "/dictionaries.nix", [["subdir", 394, 7], ["shortName", 395, 7], ["shortDescription", 396, 7], ["dictFileName", 397, 7], ["dictFilePath", 398, 7], ["readmeFilePath", 399, 7]]);
-const pos$29 = nix.positions(here + "/dictionaries.nix", [["subdir", 406, 7], ["shortName", 407, 7], ["shortDescription", 408, 7], ["dictFileName", 409, 7], ["dictFilePath", 410, 7], ["readmeFilePath", 411, 7]]);
-const pos$30 = nix.positions(here + "/dictionaries.nix", [["subdir", 418, 7], ["shortName", 419, 7], ["shortDescription", 420, 7], ["dictFileName", 421, 7], ["readmeFileName", 422, 7]]);
-const pos$31 = nix.positions(here + "/dictionaries.nix", [["subdir", 429, 7], ["shortName", 430, 7], ["shortDescription", 431, 7], ["dictFileName", 432, 7], ["readmeFileName", 433, 7]]);
-const pos$32 = nix.positions(here + "/dictionaries.nix", [["subdir", 441, 7], ["shortName", 442, 7], ["shortDescription", 443, 7], ["dictFileName", 444, 7], ["filenameAliases", 445, 7], ["readmeFileName", 446, 7]]);
-const pos$33 = nix.positions(here + "/dictionaries.nix", [["subdir", 453, 7], ["shortName", 454, 7], ["shortDescription", 455, 7], ["dictFileName", 456, 7], ["readmeFileName", 457, 7]]);
-const pos$34 = nix.positions(here + "/dictionaries.nix", [["subdir", 462, 7], ["shortName", 463, 7], ["shortDescription", 464, 7], ["dictFileName", 465, 7], ["readmeFileName", 466, 7]]);
-const pos$35 = nix.positions(here + "/dictionaries.nix", [["subdir", 473, 7], ["shortName", 474, 7], ["shortDescription", 475, 7], ["dictFileName", 476, 7]]);
-const pos$36 = nix.positions(here + "/dictionaries.nix", [["subdir", 483, 7], ["shortName", 484, 7], ["shortDescription", 485, 7], ["dictFileName", 486, 7]]);
-const pos$37 = nix.positions(here + "/dictionaries.nix", [["subdir", 493, 7], ["shortName", 494, 7], ["shortDescription", 495, 7], ["dictFileName", 496, 7], ["readmeFileName", 497, 7]]);
-const pos$38 = nix.positions(here + "/dictionaries.nix", [["subdir", 504, 7], ["shortName", 505, 7], ["shortDescription", 506, 7], ["dictFileName", 507, 7], ["readmeFileName", 508, 7]]);
-const pos$39 = nix.positions(here + "/dictionaries.nix", [["subdir", 513, 7], ["shortName", 514, 7], ["shortDescription", 515, 7], ["dictFileName", 516, 7], ["readmeFileName", 517, 7]]);
-const pos$40 = nix.positions(here + "/dictionaries.nix", [["subdir", 524, 7], ["shortName", 525, 7], ["shortDescription", 526, 7], ["dictFileName", 527, 7], ["readmeFileName", 528, 7]]);
-const pos$41 = nix.positions(here + "/dictionaries.nix", [["subdir", 535, 7], ["shortName", 536, 7], ["shortDescription", 537, 7], ["dictFileName", 538, 7], ["readmeFileName", 539, 7]]);
-const pos$42 = nix.positions(here + "/dictionaries.nix", [["subdir", 546, 7], ["shortName", 547, 7], ["shortDescription", 548, 7], ["dictFileName", 549, 7]]);
-const pos$43 = nix.positions(here + "/dictionaries.nix", [["subdir", 556, 7], ["shortName", 557, 7], ["shortDescription", 558, 7], ["dictFileName", 559, 7], ["readmeFileName", 560, 7]]);
-const pos$44 = nix.positions(here + "/dictionaries.nix", [["subdir", 567, 7], ["shortName", 568, 7], ["shortDescription", 569, 7], ["dictFileName", 570, 7], ["readmeFileName", 571, 7]]);
-const pos$45 = nix.positions(here + "/dictionaries.nix", [["subdir", 578, 7], ["shortName", 579, 7], ["shortDescription", 580, 7], ["dictFileName", 581, 7], ["readmeFileName", 582, 7]]);
-const pos$46 = nix.positions(here + "/dictionaries.nix", [["subdir", 589, 7], ["shortName", 590, 7], ["shortDescription", 591, 7], ["dictFileName", 592, 7], ["dictFilePath", 593, 7], ["readmeFilePath", 594, 7]]);
-const pos$47 = nix.positions(here + "/dictionaries.nix", [["subdir", 599, 7], ["shortName", 600, 7], ["shortDescription", 601, 7], ["dictFileName", 602, 7], ["dictFilePath", 603, 7], ["readmeFilePath", 604, 7]]);
-const pos$48 = nix.positions(here + "/dictionaries.nix", [["subdir", 612, 7], ["shortName", 613, 7], ["shortDescription", 614, 7], ["dictFileName", 615, 7], ["readmeFileName", 616, 7]]);
-const pos$49 = nix.positions(here + "/dictionaries.nix", [["subdir", 623, 7], ["shortName", 624, 7], ["shortDescription", 625, 7], ["dictFileName", 626, 7], ["readmeFileName", 627, 7]]);
-const pos$50 = nix.positions(here + "/dictionaries.nix", [["subdir", 634, 7], ["shortName", 635, 7], ["shortDescription", 636, 7], ["dictFileName", 637, 7], ["readmeFileName", 638, 7]]);
-const pos$51 = nix.positions(here + "/dictionaries.nix", [["subdir", 645, 7], ["shortName", 646, 7], ["shortDescription", 647, 7], ["dictFileName", 648, 7], ["readmeFileName", 649, 7]]);
-const pos$52 = nix.positions(here + "/dictionaries.nix", [["subdir", 656, 7], ["shortName", 657, 7], ["shortDescription", 658, 7], ["dictFileName", 659, 7], ["dictFilePath", 660, 7]]);
-const pos$53 = nix.positions(here + "/dictionaries.nix", [["af_NA", 87, 5], ["af_ZA", 88, 5], ["af-za", 89, 5], ["as_IN", 100, 5], ["as-in", 101, 5], ["be_BY", 111, 5], ["be-by", 112, 5], ["bg_BG", 122, 5], ["bg-bg", 123, 5], ["ca_ES_valencia", 133, 5], ["ca_AD", 134, 5], ["ca_FR", 135, 5], ["ca_IT", 136, 5], ["ca_ES", 137, 5], ["ca-es", 138, 5], ["cs_CZ", 150, 5], ["cs-cz", 151, 5], ["da_DK", 161, 5], ["da-dk", 162, 5], ["de_DE", 173, 5], ["de-de", 174, 5], ["de_AT", 182, 5], ["de-at", 183, 5], ["de_CH", 191, 5], ["de-ch", 192, 5], ["el_GR", 202, 5], ["el-gr", 203, 5], ["en_GB", 213, 5], ["en_ZA", 214, 5], ["en_NA", 215, 5], ["en_ZW", 216, 5], ["en_AU", 217, 5], ["en_CA", 218, 5], ["en_IE", 219, 5], ["en_IN", 220, 5], ["en_BZ", 221, 5], ["en_BS", 222, 5], ["en_GH", 223, 5], ["en_JM", 224, 5], ["en_MW", 225, 5], ["en_NZ", 226, 5], ["en_TT", 227, 5], ["en-gb", 228, 5], ["en_US", 237, 5], ["en-us", 238, 5], ["eo", 261, 5], ["es_AR", 272, 5], ["es_BO", 273, 5], ["es_CL", 274, 5], ["es_CO", 275, 5], ["es_CR", 276, 5], ["es_CU", 277, 5], ["es_DO", 278, 5], ["es_EC", 279, 5], ["es_GQ", 280, 5], ["es_GT", 281, 5], ["es_HN", 282, 5], ["es_MX", 283, 5], ["es_NI", 284, 5], ["es_PA", 285, 5], ["es_PE", 286, 5], ["es_PH", 287, 5], ["es_PR", 288, 5], ["es_PY", 289, 5], ["es_SV", 290, 5], ["es_US", 291, 5], ["es_UY", 292, 5], ["es_VE", 293, 5], ["es_ES", 294, 5], ["es-es", 295, 5], ["et_EE", 306, 5], ["et-ee", 307, 5], ["fr_BE", 317, 5], ["fr_CA", 318, 5], ["fr_CH", 319, 5], ["fr_LU", 320, 5], ["fr_MC", 321, 5], ["fr_FR", 322, 5], ["fr-fr", 323, 5], ["gl_ES", 334, 5], ["gl-es", 335, 5], ["hr_HR", 345, 5], ["hr-hr", 346, 5], ["hu_HU", 356, 5], ["hu-hu", 357, 5], ["id_ID", 367, 5], ["id-id", 368, 5], ["it-CH", 379, 5], ["it_IT", 380, 5], ["it-it", 381, 5], ["kn_IN", 392, 5], ["kn-in", 393, 5], ["lt_LT", 404, 5], ["lt-lt", 405, 5], ["lv_LV", 416, 5], ["lv-lv", 417, 5], ["mn_MN", 427, 5], ["mn-mn", 428, 5], ["nl_BE", 438, 5], ["nl_NL", 439, 5], ["nl-nl", 440, 5], ["nb_NO", 451, 5], ["nb-no", 452, 5], ["nn_NO", 460, 5], ["nn-no", 461, 5], ["or_IN", 471, 5], ["or-in", 472, 5], ["pa_IN", 481, 5], ["pa-in", 482, 5], ["pl_PL", 491, 5], ["pl-pl", 492, 5], ["pt_BR", 502, 5], ["pt-br", 503, 5], ["pt_PT", 511, 5], ["pt-pt", 512, 5], ["ro_RO", 522, 5], ["ro-ro", 523, 5], ["ru_RU", 533, 5], ["ru-ru", 534, 5], ["sa_IN", 544, 5], ["sa-in", 545, 5], ["sk_SK", 554, 5], ["sk-sk", 555, 5], ["sl_SI", 565, 5], ["sl-si", 566, 5], ["sq_AL", 576, 5], ["sq-al", 577, 5], ["sr_SR", 587, 5], ["sr-sr", 588, 5], ["sr_SR_LATN", 597, 5], ["sr-sr-latn", 598, 5], ["sv_FI", 609, 5], ["sv_SE", 610, 5], ["sv-se", 611, 5], ["te_IN", 621, 5], ["te-in", 622, 5], ["th_TH", 632, 5], ["th-th", 633, 5], ["uk_UA", 643, 5], ["uk-ua", 644, 5], ["zu_ZA", 654, 5], ["zu-za", 655, 5]]);
-const pos$54 = nix.positions(here + "/dictionaries.nix", [["name", 670, 5], ["paths", 671, 5]]);
-const pos$55 = nix.positions(here + "/dictionaries.nix", [["all", 669, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -81,13 +27,13 @@ export default nix.lambda((args) => (() => {
         const version = "24.8";
         const pname = nix.thunk(() => nix.str`hyphen-dict-${shortName}-libreoffice`);
         const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://anongit.freedesktop.org/git/libreoffice/dictionaries.git",
             rev: "e4ad1862342d7e1365978499ca951ae4788c9dc0",
             hash: "sha256-sv3KnmrewE1dRxeO+TqfOjfHjoJpzJ6p8MdBDiT3Ips=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: nix.thunk(() => nix.str`Hyphen dictionary for ${shortDescription} from LibreOffice`),
           homepage: "https://wiki.documentfoundation.org/Development/Dictionaries",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -113,7 +59,7 @@ if [ -n "${readmeFilePath}" ]; then
 fi
 runHook postInstall
 `);
-        return { [nix.POS]: pos$3, version, pname, src, meta, dontBuild, installPhase };
+        return { [nix.POS]: $pos[2], version, pname, src, meta, dontBuild, installPhase };
       })()));
   })(), formals$2);
   const mkDictFromLibreofficeGit = nix.lambda((args_1) => (() => {
@@ -125,7 +71,7 @@ runHook postInstall
     const filenameAliases = nix.argOr($_1, "filenameAliases", () => "");
     const readmeFileName = nix.argOr($_1, "readmeFileName", () => "");
     return nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         subdir: subdir,
         shortName: shortName,
         shortDescription: shortDescription,
@@ -137,7 +83,7 @@ runHook postInstall
   })(), formals$3);
   const dicts = nix.thunk(() => (() => {
     const af_za = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         subdir: "af_ZA",
         shortName: "af-za",
         shortDescription: "Afrikaans",
@@ -148,7 +94,7 @@ runHook postInstall
     const af_NA = af_za;
     const af_ZA = af_za;
     const as_in = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         subdir: "as_IN",
         shortName: "as-in",
         shortDescription: "Assamese",
@@ -157,7 +103,7 @@ runHook postInstall
       }))));
     const as_IN = as_in;
     const be_by = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         subdir: "be_BY",
         shortName: "be-by",
         shortDescription: "Belarussian",
@@ -166,7 +112,7 @@ runHook postInstall
       }))));
     const be_BY = be_by;
     const bg_bg = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         subdir: "bg_BG",
         shortName: "bg-bg",
         shortDescription: "Bulgarian",
@@ -175,7 +121,7 @@ runHook postInstall
       }))));
     const bg_BG = bg_bg;
     const ca_es = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         subdir: "ca",
         shortName: "ca-es",
         shortDescription: "Catalan",
@@ -190,7 +136,7 @@ runHook postInstall
     const ca_IT = ca_es;
     const ca_ES = ca_es;
     const cs_cz = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         subdir: "cs_CZ",
         shortName: "cs-cz",
         shortDescription: "Czech",
@@ -199,7 +145,7 @@ runHook postInstall
       }))));
     const cs_CZ = cs_cz;
     const da_dk = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         subdir: "da_DK",
         shortName: "da-dk",
         shortDescription: "Danish",
@@ -209,7 +155,7 @@ runHook postInstall
       }))));
     const da_DK = da_dk;
     const de_de = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         subdir: "de",
         shortName: "de-de",
         shortDescription: "German (Germany)",
@@ -218,7 +164,7 @@ runHook postInstall
       }))));
     const de_DE = de_de;
     const de_at = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         subdir: "de",
         shortName: "de-at",
         shortDescription: "German (Austria)",
@@ -227,7 +173,7 @@ runHook postInstall
       }))));
     const de_AT = de_at;
     const de_ch = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         subdir: "de",
         shortName: "de-ch",
         shortDescription: "German (Switzerland)",
@@ -236,7 +182,7 @@ runHook postInstall
       }))));
     const de_CH = de_ch;
     const el_gr = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         subdir: "el_GR",
         shortName: "el-gr",
         shortDescription: "Greek",
@@ -245,7 +191,7 @@ runHook postInstall
       }))));
     const el_GR = el_gr;
     const en_gb = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         subdir: "en",
         shortName: "en-gb",
         shortDescription: "English (Great Britain)",
@@ -269,7 +215,7 @@ runHook postInstall
     const en_NZ = en_gb;
     const en_TT = en_gb;
     const en_us = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         nativeBuildInputs: nix.thunk(() => nix.sel(hyphen, "nativeBuildInputs")),
         version: nix.thunk(() => nix.sel(hyphen, "version")),
         pname: "hyphen-dict-en-us",
@@ -277,7 +223,7 @@ runHook postInstall
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(hyphen, "meta"));
           return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           homepage: nix.thunk(() => nix.attr(from, "homepage")),
           platforms: nix.thunk(() => nix.attr(from, "platforms")),
           license: nix.thunk(() => nix.attr(from, "license")),
@@ -289,7 +235,7 @@ runHook postInstall
       }))));
     const en_US = en_us;
     const eo = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         subdir: "eo",
         shortName: "eo",
         shortDescription: "Esperanto",
@@ -298,7 +244,7 @@ runHook postInstall
         readmeFilePath: "desc_eo.txt",
       }))));
     const es_es = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         subdir: "es",
         shortName: "es-es",
         shortDescription: "Spanish",
@@ -330,7 +276,7 @@ runHook postInstall
     const es_VE = es_es;
     const es_ES = es_es;
     const et_ee = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         subdir: "et_EE",
         shortName: "et-ee",
         shortDescription: "Estonian",
@@ -339,7 +285,7 @@ runHook postInstall
       }))));
     const et_EE = et_ee;
     const fr_fr = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         subdir: "fr_FR",
         shortName: "fr-fr",
         shortDescription: "French",
@@ -354,7 +300,7 @@ runHook postInstall
     const fr_MC = fr_fr;
     const fr_FR = fr_fr;
     const gl_es = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         subdir: "gl",
         shortName: "gl-es",
         shortDescription: "Galician",
@@ -363,7 +309,7 @@ runHook postInstall
       }))));
     const gl_ES = gl_es;
     const hr_hr = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         subdir: "hr_HR",
         shortName: "hr-hr",
         shortDescription: "Croatian",
@@ -372,7 +318,7 @@ runHook postInstall
       }))));
     const hr_HR = hr_hr;
     const hu_hu = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         subdir: "hu_HU",
         shortName: "hu-hu",
         shortDescription: "Hungarian",
@@ -381,7 +327,7 @@ runHook postInstall
       }))));
     const hu_HU = hu_hu;
     const id_id = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         subdir: "id",
         shortName: "id-id",
         shortDescription: "Indonesian",
@@ -391,7 +337,7 @@ runHook postInstall
       }))));
     const id_ID = id_id;
     const it_it = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         subdir: "it_IT",
         shortName: "it-it",
         shortDescription: "Italian",
@@ -402,7 +348,7 @@ runHook postInstall
     const it_CH = it_it;
     const it_IT = it_it;
     const kn_in = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         subdir: "kn_IN",
         shortName: "kn-in",
         shortDescription: "Kannada",
@@ -412,7 +358,7 @@ runHook postInstall
       }))));
     const kn_IN = kn_in;
     const lt_lt = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         subdir: "lt_LT",
         shortName: "lt-lt",
         shortDescription: "Lithuanian",
@@ -422,7 +368,7 @@ runHook postInstall
       }))));
     const lt_LT = lt_lt;
     const lv_lv = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         subdir: "lv_LV",
         shortName: "lv-lv",
         shortDescription: "Latvian",
@@ -431,7 +377,7 @@ runHook postInstall
       }))));
     const lv_LV = lv_lv;
     const mn_mn = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         subdir: "mn_MN",
         shortName: "mn-mn",
         shortDescription: "Mongolian",
@@ -440,7 +386,7 @@ runHook postInstall
       }))));
     const mn_MN = mn_mn;
     const nl_nl = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         subdir: "nl_NL",
         shortName: "nl-nl",
         shortDescription: "Dutch",
@@ -451,7 +397,7 @@ runHook postInstall
     const nl_BE = nl_nl;
     const nl_NL = nl_nl;
     const nb_no = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         subdir: "no",
         shortName: "nb-no",
         shortDescription: "Norwegian (Bokmål)",
@@ -460,7 +406,7 @@ runHook postInstall
       }))));
     const nb_NO = nb_no;
     const nn_no = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         subdir: "no",
         shortName: "nn-no",
         shortDescription: "Norwegian (Nynorsk)",
@@ -469,7 +415,7 @@ runHook postInstall
       }))));
     const nn_NO = nn_no;
     const or_in = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         subdir: "or_IN",
         shortName: "or-in",
         shortDescription: "Oriya",
@@ -477,7 +423,7 @@ runHook postInstall
       }))));
     const or_IN = or_in;
     const pa_in = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         subdir: "pa_IN",
         shortName: "pa-in",
         shortDescription: "Panjabi",
@@ -485,7 +431,7 @@ runHook postInstall
       }))));
     const pa_IN = pa_in;
     const pl_pl = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         subdir: "pl_PL",
         shortName: "pl-pl",
         shortDescription: "Polish",
@@ -494,7 +440,7 @@ runHook postInstall
       }))));
     const pl_PL = pl_pl;
     const pt_br = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         subdir: "pt_BR",
         shortName: "pt-br",
         shortDescription: "Portuguese (Brazil)",
@@ -503,7 +449,7 @@ runHook postInstall
       }))));
     const pt_BR = pt_br;
     const pt_pt = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         subdir: "pt_PT",
         shortName: "pt-pt",
         shortDescription: "Portuguese (Portugal)",
@@ -512,7 +458,7 @@ runHook postInstall
       }))));
     const pt_PT = pt_pt;
     const ro_ro = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         subdir: "ro",
         shortName: "ro-ro",
         shortDescription: "Romanian",
@@ -521,7 +467,7 @@ runHook postInstall
       }))));
     const ro_RO = ro_ro;
     const ru_ru = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$41,
+        [nix.POS]: $pos[40],
         subdir: "ru_RU",
         shortName: "ru-ru",
         shortDescription: "Russian (Russia)",
@@ -530,7 +476,7 @@ runHook postInstall
       }))));
     const ru_RU = ru_ru;
     const sa_in = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         subdir: "sa_IN",
         shortName: "sa-in",
         shortDescription: "Sanskrit (India)",
@@ -538,7 +484,7 @@ runHook postInstall
       }))));
     const sa_IN = sa_in;
     const sk_sk = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         subdir: "sk_SK",
         shortName: "sk-sk",
         shortDescription: "Slovak",
@@ -547,7 +493,7 @@ runHook postInstall
       }))));
     const sk_SK = sk_sk;
     const sl_si = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$44,
+        [nix.POS]: $pos[43],
         subdir: "sl_SI",
         shortName: "sl-si",
         shortDescription: "Slovenian",
@@ -556,7 +502,7 @@ runHook postInstall
       }))));
     const sl_SI = sl_si;
     const sq_al = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         subdir: "sq_AL",
         shortName: "sq-al",
         shortDescription: "Albanian",
@@ -565,7 +511,7 @@ runHook postInstall
       }))));
     const sq_AL = sq_al;
     const sr_sr = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        [nix.POS]: pos$46,
+        [nix.POS]: $pos[45],
         subdir: "sr",
         shortName: "sr-sr",
         shortDescription: "Serbian (Cyrillic)",
@@ -575,7 +521,7 @@ runHook postInstall
       }))));
     const sr_SR = sr_sr;
     const sr_sr_latn = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         subdir: "sr",
         shortName: "sr-sr-latn",
         shortDescription: "Serbian (Latin)",
@@ -585,7 +531,7 @@ runHook postInstall
       }))));
     const sr_SR_LATN = sr_sr_latn;
     const sv_se = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$48,
+        [nix.POS]: $pos[47],
         subdir: "sv_SE",
         shortName: "sv-se",
         shortDescription: "Swedish",
@@ -595,7 +541,7 @@ runHook postInstall
     const sv_FI = sv_se;
     const sv_SE = sv_se;
     const te_in = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$49,
+        [nix.POS]: $pos[48],
         subdir: "te_IN",
         shortName: "te-in",
         shortDescription: "Telugu",
@@ -604,7 +550,7 @@ runHook postInstall
       }))));
     const te_IN = te_in;
     const th_th = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$50,
+        [nix.POS]: $pos[49],
         subdir: "th_TH",
         shortName: "th-th",
         shortDescription: "Thai",
@@ -613,7 +559,7 @@ runHook postInstall
       }))));
     const th_TH = th_th;
     const uk_ua = nix.thunk(() => nix.app(mkDictFromLibreofficeGit, nix.thunk(() => ({
-        [nix.POS]: pos$51,
+        [nix.POS]: $pos[50],
         subdir: "uk_UA",
         shortName: "uk-ua",
         shortDescription: "Ukrainian",
@@ -622,7 +568,7 @@ runHook postInstall
       }))));
     const uk_UA = uk_ua;
     const zu_za = nix.thunk(() => nix.app(mkDictFromLibreofficeGitCustom, nix.thunk(() => ({
-        [nix.POS]: pos$52,
+        [nix.POS]: $pos[51],
         subdir: "zu_ZA",
         shortName: "zu-za",
         shortDescription: "Zulu",
@@ -631,7 +577,7 @@ runHook postInstall
       }))));
     const zu_ZA = zu_za;
     return {
-      [nix.POS]: pos$53,
+      [nix.POS]: $pos[52],
       af_NA,
       af_ZA,
       "af-za": af_za,
@@ -777,9 +723,9 @@ runHook postInstall
     };
   })());
   return nix.update(dicts, {
-    [nix.POS]: pos$55,
+    [nix.POS]: $pos[54],
     all: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$54,
+        [nix.POS]: $pos[53],
         name: "hyphen-all",
         paths: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), dicts)))),
       })))),

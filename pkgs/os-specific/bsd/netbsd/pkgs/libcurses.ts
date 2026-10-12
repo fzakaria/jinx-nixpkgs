@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcurses.nix", [[["NIX_CFLAGS_COMPILE", 13, 7]], [["path", 11, 3], ["buildInputs", 12, 3], ["env", 13, 3], ["propagatedBuildInputs", 21, 3], ["MKDOC", 22, 3], ["makeFlags", 23, 3], ["postPatch", 24, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, stdenv: false, libterminfo: false, compatIfNeeded: false, defaultMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcurses.nix", [["NIX_CFLAGS_COMPILE", 13, 7]]);
-const pos$2 = nix.positions(here + "/libcurses.nix", [["path", 11, 3], ["buildInputs", 12, 3], ["env", 13, 3], ["propagatedBuildInputs", 21, 3], ["MKDOC", 22, 3], ["makeFlags", 23, 3], ["postPatch", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const compatIfNeeded = nix.arg($, "compatIfNeeded");
   const defaultMakeFlags = nix.arg($, "defaultMakeFlags");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/libcurses",
       buildInputs: nix.thunk(() => [libterminfo]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-D__scanflike(a,b)=", "-D__va_list=va_list", "-D__warn_references(a,b)="], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-D__strong_alias(a,b)="))))),
       })),
       propagatedBuildInputs: compatIfNeeded,

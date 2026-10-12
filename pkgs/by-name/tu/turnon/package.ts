@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 73, 5], ["platforms", 74, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["doCheck", 32, 3], ["checkFlags", 34, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 50, 3], ["postPatch", 55, 3], ["postBuild", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, rustPlatform: false, cairo: false, pango: false, "pkg-config": false, libadwaita: false, "blueprint-compiler": false, wrapGAppsHook4: false, "gsettings-desktop-schemas": false, just: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 73, 5], ["platforms", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["doCheck", 32, 3], ["checkFlags", 34, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 50, 3], ["postPatch", 55, 3], ["postBuild", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const just = nix.arg($, "just");
   const version = "3.2.2";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "turnon",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "swsnr",
           repo: "turnon",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -51,7 +49,7 @@ substituteInPlace de.swsnr.turnon.desktop --replace-fail "DBusActivatable=true" 
 `),
       postBuild: "cargo build --release\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Turn on devices in your local network",
         homepage: "https://codeberg.org/swsnr/turnon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "eupl12")),

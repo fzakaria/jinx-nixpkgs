@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/5.x.nix", [[["url", 40, 5], ["hash", 41, 5]], [["packageName", 110, 7], ["attrPath", 111, 7], ["versionPolicy", 112, 7]], [["pkg-config", 116, 18]], [["updateScript", 109, 5], ["tests", 116, 12]], [["description", 119, 5], ["homepage", 120, 5], ["pkgConfigModules", 121, 5], ["platforms", 122, 5], ["license", 123, 5], ["teams", 124, 5]], [["pname", 27, 3], ["version", 28, 3], ["__structuredAttrs", 30, 3], ["strictDeps", 31, 3], ["outputs", 33, 3], ["src", 39, 3], ["patches", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 64, 3], ["propagatedBuildInputs", 72, 3], ["nativeCheckInputs", 79, 3], ["mesonFlags", 84, 3], ["doCheck", 88, 3], ["checkPhase", 90, 3], ["postFixup", 103, 3], ["passthru", 108, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, glib: false, pcre2: false, gtk4: false, pango: false, fribidi: false, vala: false, "gi-docgen": false, libxml2: false, perl: false, gettext: false, gnome: false, "gobject-introspection": false, dbus: false, "xvfb-run": false, "shared-mime-info": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/5.x.nix", [["url", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/5.x.nix", [["packageName", 110, 7], ["attrPath", 111, 7], ["versionPolicy", 112, 7]]);
-const pos$3 = nix.positions(here + "/5.x.nix", [["pkg-config", 116, 18]]);
-const pos$4 = nix.positions(here + "/5.x.nix", [["updateScript", 109, 5], ["tests", 116, 12]]);
-const pos$5 = nix.positions(here + "/5.x.nix", [["description", 119, 5], ["homepage", 120, 5], ["pkgConfigModules", 121, 5], ["platforms", 122, 5], ["license", 123, 5], ["teams", 124, 5]]);
-const pos$6 = nix.positions(here + "/5.x.nix", [["pname", 27, 3], ["version", 28, 3], ["__structuredAttrs", 30, 3], ["strictDeps", 31, 3], ["outputs", 33, 3], ["src", 39, 3], ["patches", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 64, 3], ["propagatedBuildInputs", 72, 3], ["nativeCheckInputs", 79, 3], ["mesonFlags", 84, 3], ["doCheck", 88, 3], ["checkPhase", 90, 3], ["postFixup", 103, 3], ["passthru", 108, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gtksourceview",
       version: "5.20.0",
       __structuredAttrs: true,
       strictDeps: true,
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gtksourceview/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gtksourceview-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-44vNI/UrhurfD+TYveaY46jKECMiuLTPGlGsKUpEjBs=",
         })))),
@@ -77,20 +72,20 @@ runHook postCheck
 `),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packageName: "gtksourceview",
             attrPath: "gtksourceview5",
             versionPolicy: "odd-unstable",
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Source code editing widget for GTK",
         homepage: "https://gitlab.gnome.org/GNOME/gtksourceview",
         pkgConfigModules: nix.thunk(() => ["gtksourceview-5"]),

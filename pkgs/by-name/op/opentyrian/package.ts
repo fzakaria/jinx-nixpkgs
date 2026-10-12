@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["url", 23, 5], ["sha256", 24, 5]], [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["data", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["enableParallelBuilding", 33, 3], ["makeFlags", 35, 3], ["postInstall", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchzip: false, SDL2: false, SDL2_net: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["data", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["enableParallelBuilding", 33, 3], ["makeFlags", 35, 3], ["postInstall", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const SDL2_net = nix.arg($, "SDL2_net");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "opentyrian",
       version: "2.1.20221123",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "opentyrian",
           repo: "opentyrian",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-fVcc8v1c9uU72X6afEo4VoMo6YuDECQSwDQ/TQjgwUY=",
         })))),
       data: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://camanis.net/tyrian/tyrian21.zip",
           sha256: "1biz6hf6s7qrwn8ky0g6p8w7yg715w7yklpn6258bkks1s15hpdb",
         })))),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`)]),
       postInstall: "mkdir -p $out/share/games/tyrian\ncp -r $data/* $out/share/games/tyrian/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open source port of the game \"Tyrian\"",
         mainProgram: "opentyrian",
         homepage: "https://github.com/opentyrian/opentyrian",

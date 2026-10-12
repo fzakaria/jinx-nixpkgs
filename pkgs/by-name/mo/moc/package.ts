@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 62, 5], ["rev", 63, 5], ["hash", 64, 5]], [["url", 70, 7], ["hash", 71, 7], ["stripLen", 72, 7]], [["url", 77, 7], ["hash", 78, 7], ["stripLen", 79, 7]], [["description", 159, 5], ["homepage", 160, 5], ["license", 161, 5], ["maintainers", 162, 5], ["platforms", 166, 5], ["mainProgram", 167, 5]], [["pname", 58, 3], ["version", 59, 3], ["src", 61, 3], ["patches", 67, 3], ["postPatch", 87, 3], ["nativeBuildInputs", 91, 3], ["buildInputs", 98, 3], ["configureFlags", 132, 3], ["meta", 158, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchsvn: false, fetchpatch2: false, "pkg-config": false, autoreconfHook: false, "autoconf-archive": false, gettext: false, ncurses: false, db: false, popt: false, libtool: false, libiconv: false, alsaSupport: true, "alsa-lib": false, pulseSupport: true, libpulseaudio: false, jackSupport: true, libjack2: false, ossSupport: true, aacSupport: true, faad2: false, libid3tag: false, flacSupport: true, flac: false, midiSupport: true, timidity: false, modplugSupport: true, libmodplug: false, mp3Support: true, libmad: false, musepackSupport: true, libmpc: false, libmpcdec: false, taglib: false, vorbisSupport: true, libvorbis: false, speexSupport: true, speex: false, ffmpegSupport: true, ffmpeg: false, sndfileSupport: true, libsndfile: false, wavpackSupport: true, wavpack: false, curlSupport: true, curl: false, samplerateSupport: true, libsamplerate: false, withDebug: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 62, 5], ["rev", 63, 5], ["hash", 64, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 70, 7], ["hash", 71, 7], ["stripLen", 72, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 77, 7], ["hash", 78, 7], ["stripLen", 79, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 159, 5], ["homepage", 160, 5], ["license", 161, 5], ["maintainers", 162, 5], ["platforms", 166, 5], ["mainProgram", 167, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 58, 3], ["version", 59, 3], ["src", 61, 3], ["patches", 67, 3], ["postPatch", 87, 3], ["nativeBuildInputs", 91, 3], ["buildInputs", 98, 3], ["configureFlags", 132, 3], ["meta", 158, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -62,24 +58,24 @@ export default nix.lambda((args) => (() => {
   const libsamplerate = nix.arg($, "libsamplerate");
   const withDebug = nix.argOr($, "withDebug", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "moc",
       version: "2.6-alpha3-unstable-2019-09-14",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "svn://svn.daper.net/moc/trunk",
           rev: "3005",
           hash: "sha256-JksJxHQgQ8hPTFtLvEvZuFh2lflDNrEmDTMWWwVnjZQ=",
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://cygwin.com/cgit/cygwin-packages/moc/plain/Support-for-recent-ffmpeg-change.patch?id=ab70f1306b8416852915be4347003aac3bdc216",
             hash: "sha256-5hLEFBJ+7Nvxn6pNj4bngcg2qJsCzxiuP6yEj+7tvs0=",
             stripLen: 1n,
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://cygwin.com/cgit/cygwin-packages/moc/plain/ffmpeg-7.0.patch?id=ab70f1306b8416852915be4347003aac3bdc216e",
             hash: "sha256-dYw6DNyw61MGfv+GdBz5Dtrr9fVph1tf7vxexWONwF8=",
             stripLen: 1n,
@@ -113,7 +109,7 @@ export default nix.lambda((args) => (() => {
         "--without-rcc",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Terminal audio player designed to be powerful and easy to use",
         homepage: "http://moc.daper.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

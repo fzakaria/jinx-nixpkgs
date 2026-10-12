@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "plasma-overdose-kde-theme",
       version: "0-unstable-2022-05-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Notify-ctrl",
           repo: "Plasma-Overdose",
           rev: "d8bf078b4819885d590db27cd1d25d8f4f08fe4c",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share\nmv colorschemes $out/share/color-schemes\nmv plasma $out/share/plasma\n\nmkdir -p $out/share/aurorae\nmv aurorae $out/share/aurorae/themes\n\nmkdir -p $out/share/icons/Plasma-Overdose\nmv cursors/index.theme $out/share/icons/Plasma-Overdose/cursor.theme\nmv cursors/cursors $out/share/icons/Plasma-Overdose/cursors\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cute KDE theme inspired by the game Needy Girl Overdose",
         homepage: "https://github.com/Notify-ctrl/Plasma-Overdose",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["SETUPTOOLS_SCM_PRETEND_VERSION", 31, 7]], [["tango", 38, 5]], [["optional-dependencies", 37, 12]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["env", 31, 3], ["dependencies", 33, 3], ["passthru", 37, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchgit: false, setuptools: false, "setuptools-scm": false, numpy: false, pytango: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["SETUPTOOLS_SCM_PRETEND_VERSION", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tango", 38, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["optional-dependencies", 37, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 23, 3], ["env", 31, 3], ["dependencies", 33, 3], ["passthru", 37, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,30 +16,30 @@ export default nix.lambda((args) => (() => {
   const pytango = nix.arg($, "pytango");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "zapf",
       version: "0.6.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://forge.frm2.tum.de/review/mlz/pils/zapf",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-dY3pmYbLzReXrMLjN5aZ2BVoKi1EtFGB/Gs1GoP4IDE=",
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SETUPTOOLS_SCM_PRETEND_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       dependencies: nix.thunk(() => [numpy]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, tango: nix.thunk(() => [pytango]) })),
+        [nix.POS]: $pos[3],
+        "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[2], tango: nix.thunk(() => [pytango]) })),
       })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["zapf"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Client library for the PILS PLC interface specification",
         homepage: "https://forge.frm2.tum.de/review/plugins/gitiles/mlz/pils/zapf",
         changelog: nix.thunk(() => nix.str`https://forge.frm2.tum.de/review/plugins/gitiles/mlz/pils/zapf/+/refs/tags/v${nix.sel(finalAttrs, "version")}`),

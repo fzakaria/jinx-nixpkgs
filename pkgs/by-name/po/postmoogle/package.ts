@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["description", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["mainProgram", 30, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["tags", 17, 3], ["vendorHash", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["mainProgram", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["tags", 17, 3], ["vendorHash", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "postmoogle",
       version: "0.9.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "etkecc",
           repo: "postmoogle",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       tags: nix.thunk(() => ["timetzdata", "goolm"]),
       vendorHash: null,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Matrix <-> Email bridge in the form of an SMTP server",
         homepage: "https://github.com/etkecc/postmoogle",
         changelog: nix.thunk(() => nix.str`https://github.com/etkecc/postmoogle/releases/tag/v${nix.sel(finalAttrs, "version")}`),

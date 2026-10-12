@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 48, 5], ["mainProgram", 49, 5]], [["pname", 19, 3], ["doCheck", 20, 11], ["src", 20, 19], ["version", 20, 23], ["modRoot", 21, 3], ["runVend", 22, 3], ["vendorHash", 23, 3], ["ldflags", 25, 3], ["nativeBuildInputs", 31, 3], ["postInstall", 33, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { buildGoModule: false, doCheck: true, fetchFromGitHub: false, installShellFiles: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 48, 5], ["mainProgram", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["doCheck", 20, 11], ["src", 20, 19], ["version", 20, 23], ["modRoot", 21, 3], ["runVend", 22, 3], ["vendorHash", 23, 3], ["ldflags", 25, 3], ["nativeBuildInputs", 31, 3], ["postInstall", 33, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const version = "26.2.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "redpanda-data",
       repo: "redpanda",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const postInstall = "for shell in bash fish zsh; do\n  $out/bin/rpk generate shell-completion $shell > rpk.$shell\n  installShellCompletion rpk.$shell\ndone\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Redpanda client",
         homepage: "https://redpanda.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsl11")),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "rpk",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         doCheck: doCheck_1,
         src: src_1,

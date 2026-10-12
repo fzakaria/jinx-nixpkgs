@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["NIX_CFLAGS_COMPILE", 48, 7]], [["noiseFiles", 72, 9], ["docFiles", 79, 9]], [["homepage", 94, 5], ["description", 95, 5], ["license", 96, 5], ["platforms", 97, 5], ["maintainers", 98, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["outputs", 21, 3], ["buildInputs", 30, 3], ["configurePhase", 34, 3], ["buildPhase", 43, 3], ["env", 48, 3], ["installPhase", 50, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, skawarePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["noiseFiles", 72, 9], ["docFiles", 79, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 94, 5], ["description", 95, 5], ["license", 96, 5], ["platforms", 97, 5], ["maintainers", 98, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["outputs", 21, 3], ["buildInputs", 30, 3], ["configurePhase", 34, 3], ["buildPhase", 43, 3], ["env", 48, 3], ["installPhase", 50, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const skawarePackages = nix.arg($, "skawarePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fdtools",
       version: "2024.12.07",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://code.dogmap.org/fdtools/releases/fdtools-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-URK5FBpCbhcp2haug0lWtc9wOvwJHPTWZe4u8HDeaYc=",
         })))),
@@ -35,7 +31,7 @@ substituteInPlace conf-compile/defaults/host_link.sh \\
 echo "${nix.sel(skawarePackages, "skalibs", "lib")}/lib/skalibs/sysdeps" > conf-compile/defaults/depend_skalibs_sysdeps
 `),
       buildPhase: "bash package/build\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       installPhase: nix.thunk(() => nix.str`mkdir -p $bin/bin
 tools=( grabconsole multitee pipecycle recvfd seek0 sendfd setblock setstate statfile vc-get vc-lock vc-switch )
 
@@ -56,7 +52,7 @@ mv man/man1/* $man/share/man/man1/
 mv man/man8/* $man/share/man/man8/
 
 ${nix.app(nix.sel(skawarePackages, "cleanPackaging", "commonFileActions"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           noiseFiles: nix.thunk(() => [
             "conf-compile/**/*",
             "src/**/*",
@@ -73,7 +69,7 @@ ${nix.sel(skawarePackages, "cleanPackaging", "checkForRemainingFiles")}
 touch $out
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://code.dogmap.org/fdtools/",
         description: "Set of utilities for working with file descriptors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

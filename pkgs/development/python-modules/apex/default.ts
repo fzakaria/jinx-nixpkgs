@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 36, 47]], [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["APEX_CPP_EXT", 88, 5]], [["CUDA_HOME", 91, 5], ["TORCH_CUDA_ARCH_LIST", 92, 5], ["APEX_CUDA_EXT", 95, 5], ["APEX_ALL_CONTRIB_EXT", 99, 5], ["NVCC_APPEND_FLAGS", 101, 5]], [["requiredSystemFeatures", 199, 5], ["doCheck", 200, 5]], [["gpuCheck", 198, 12]], [["description", 204, 5], ["homepage", 205, 5], ["license", 206, 5], ["maintainers", 207, 5], ["broken", 208, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["patches", 49, 3], ["postPatch", 60, 3], ["env", 87, 3], ["preBuild", 107, 3], ["build-system", 111, 3], ["buildInputs", 117, 3], ["nativeBuildInputs", 137, 3], ["dependencies", 141, 3], ["pythonImportsCheck", 150, 3], ["nativeCheckInputs", 166, 3], ["preCheck", 171, 3], ["doCheck", 179, 3], ["disabledTestPaths", 180, 3], ["disabledTests", 191, 3], ["passthru", 198, 3], ["meta", 203, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, ninja: false, setuptools: false, torch: false, pybind11: false, writableTmpDirAsHomeHook: false, cxxfilt: false, numpy: false, packaging: false, pytest: false, pyyaml: false, tqdm: false, onnxscript: false, pytestCheckHook: false, torchvision: false, apex: false, cudaPackages: false, cudaSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 36, 47]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["APEX_CPP_EXT", 88, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["CUDA_HOME", 91, 5], ["TORCH_CUDA_ARCH_LIST", 92, 5], ["APEX_CUDA_EXT", 95, 5], ["APEX_ALL_CONTRIB_EXT", 99, 5], ["NVCC_APPEND_FLAGS", 101, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["requiredSystemFeatures", 199, 5], ["doCheck", 200, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["gpuCheck", 198, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 204, 5], ["homepage", 205, 5], ["license", 206, 5], ["maintainers", 207, 5], ["broken", 208, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["patches", 49, 3], ["postPatch", 60, 3], ["env", 87, 3], ["preBuild", 107, 3], ["build-system", 111, 3], ["buildInputs", 117, 3], ["nativeBuildInputs", 137, 3], ["dependencies", 141, 3], ["pythonImportsCheck", 150, 3], ["nativeCheckInputs", 166, 3], ["preCheck", 171, 3], ["doCheck", 179, 3], ["disabledTestPaths", 180, 3], ["disabledTests", 191, 3], ["passthru", 198, 3], ["meta", 203, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const apex = nix.arg($, "apex");
   const cudaPackages = nix.arg($, "cudaPackages");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(torch, "cudaSupport"));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: $pos[7],
       pname: "apex",
       version: "25.09",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "nvidia",
           repo: "apex",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,8 +49,8 @@ export default nix.lambda((args) => (() => {
     'version="0.1",' \\
     'version="${nix.sel(finalAttrs, "version")}",'
 `)),
-      env: nix.thunk(() => nix.update({ [nix.POS]: pos$3, APEX_CPP_EXT: 1n }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+      env: nix.thunk(() => nix.update({ [nix.POS]: $pos[2], APEX_CPP_EXT: 1n }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
+          [nix.POS]: $pos[3],
           CUDA_HOME: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc"))), "outPath")),
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.sel(torch, "cudaCapabilities")))}`),
           APEX_CUDA_EXT: 1n,
@@ -105,15 +98,15 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTests: nix.thunk(() => ["test_layer_norm_export_cuda", "test_rms_export_cuda"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         gpuCheck: nix.thunk(() => nix.app(nix.sel(apex, "overridePythonAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Tools for easy mixed precision and distributed training in Pytorch",
         homepage: "https://github.com/nvidia/apex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

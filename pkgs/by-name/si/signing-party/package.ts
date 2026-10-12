@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 47, 5], ["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["sha256", 51, 5]], [["homepage", 281, 5], ["description", 282, 5], ["longDescription", 283, 5], ["license", 303, 5], ["maintainers", 310, 5], ["platforms", 311, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["patches", 55, 3], ["postPatch", 57, 3], ["preBuild", 64, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 79, 3], ["postInstall", 87, 3], ["postFixup", 159, 3], ["meta", 280, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoconf: false, automake: false, makeWrapper: false, python3: false, perl: false, perlPackages: false, libmd: false, gnupg: false, which: false, getopt: false, libpaper: false, "net-tools": false, qprint: false, sendmailPath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 47, 5], ["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["sha256", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 281, 5], ["description", 282, 5], ["longDescription", 283, 5], ["license", 303, 5], ["maintainers", 310, 5], ["platforms", 311, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["patches", 55, 3], ["postPatch", 57, 3], ["preBuild", 64, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 79, 3], ["postInstall", 87, 3], ["postFixup", 159, 3], ["meta", 280, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,11 +45,11 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "signing-party",
       version: "2.12",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "signing-party-team",
           repo: "signing-party",
@@ -161,7 +159,7 @@ export default nix.lambda((args) => (() => {
       })()}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://salsa.debian.org/signing-party-team/signing-party",
         description: "Collection of several projects relating to OpenPGP",
         longDescription: "This is a collection of several projects relating to OpenPGP.\n\n* caff: CA - Fire and Forget signs and mails a key\n* pgp-clean: removes all non-self signatures from key\n* pgp-fixkey: removes broken packets from keys\n* gpg-mailkeys: simply mail out a signed key to its owner\n* gpg-key2ps: generate PostScript file with fingerprint paper slips\n* gpgdir: recursive directory encryption tool\n* gpglist: show who signed which of your UIDs\n* gpgsigs: annotates list of GnuPG keys with already done signatures\n* gpgparticipants: create list of party participants for the organiser\n* gpgwrap: a passphrase wrapper\n* keyanalyze: minimum signing distance (MSD) analysis on keyrings\n* keylookup: ncurses wrapper around gpg --search\n* sig2dot: converts a list of GnuPG signatures to a .dot file\n* springgraph: creates a graph from a .dot file\n* keyart: creates a random ASCII art of a PGP key file\n* gpg-key2latex: generate LaTeX file with fingerprint paper slips\n",

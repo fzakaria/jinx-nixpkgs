@@ -2,9 +2,9 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 9, 3], ["version", 10, 11], ["src", 10, 19], ["passthru", 11, 17], ["installPhase", 13, 3]]]);
 const formals$1 = { args: { stdenv: false, "libayatana-appindicator": false }, ellipsis: false };
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 11], ["src", 10, 19], ["passthru", 11, 17], ["installPhase", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +29,7 @@ substituteInPlace "$out/linux/tray.cc" \\
 runHook postInstall
 `);
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname,
           version: version_1,
           src: src_1,

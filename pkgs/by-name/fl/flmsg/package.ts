@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]], [["version", 12, 3], ["pname", 13, 3], ["src", 14, 3], ["patches", 20, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 29, 3], ["nativeInstallCheckInputs", 33, 3], ["doInstallCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fltk_1_3: false, libjpeg: false, "pkg-config": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pname", 13, 3], ["src", 14, 3], ["patches", 20, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 29, 3], ["nativeInstallCheckInputs", 33, 3], ["doInstallCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "4.0.24",
       pname: "flmsg",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/fldigi/flmsg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-kzQHmND5zK/Hy40Z0RRstnJ5x5cjxDax0l2idjmeBpQ=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Digital modem message program",
         homepage: "https://sourceforge.net/projects/fldigi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

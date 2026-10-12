@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["forceFetchGit", 25, 5], ["hash", 26, 5]], [["pname", 30, 26], ["version", 30, 32], ["src", 30, 40], ["hash", 31, 5]], [["updateScript", 58, 12]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["cargoDeps", 29, 3], ["nativeBuildInputs", 34, 3], ["dependencies", 42, 3], ["preBuild", 44, 3], ["preCheck", 48, 3], ["nativeCheckInputs", 52, 3], ["enabledTestPaths", 54, 3], ["pythonImportsCheck", 56, 3], ["passthru", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "setuptools-rust": false, rustPlatform: false, rustc: false, cargo: false, milksnake: false, cffi: false, pytestCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["forceFetchGit", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 30, 26], ["version", 30, 32], ["src", 30, 40], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 58, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["cargoDeps", 29, 3], ["nativeBuildInputs", 34, 3], ["dependencies", 42, 3], ["preBuild", 44, 3], ["preCheck", 48, 3], ["nativeCheckInputs", 52, 3], ["enabledTestPaths", 54, 3], ["pythonImportsCheck", 56, 3], ["passthru", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "symbolic",
       version: "13.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "getsentry",
           repo: "symbolic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-o7LqQb+tWpAl+W5sHI51tfd2FEZOpPPgChIpkXjM1D8=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -56,11 +52,11 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["py"]),
       pythonImportsCheck: nix.thunk(() => ["symbolic"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python library for dealing with symbol files and more",
         homepage: "https://github.com/getsentry/symbolic",
         changelog: nix.thunk(() => nix.str`https://github.com/getsentry/symbolic/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

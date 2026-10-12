@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["dask-image", 66, 5], ["cli", 68, 5], ["tensorstore", 82, 5], ["validate", 83, 5]], [["description", 176, 5], ["homepage", 177, 5], ["changelog", 178, 5], ["license", 179, 5], ["maintainers", 180, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["sourceRoot", 46, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["optional-dependencies", 65, 3], ["nativeCheckInputs", 86, 3], ["pythonImportsCheck", 94, 3], ["disabledTestPaths", 96, 3], ["disabledTests", 134, 3], ["meta", 175, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "dask-image": false, dask: false, deepdiff: false, fetchFromGitHub: false, hatchling: false, imagecodecs: false, imageio: false, "importlib-resources": false, itk: false, "itkwasm-downsample": false, "itkwasm-image-io": false, itkwasm: false, jsonschema: false, nibabel: false, numpy: false, platformdirs: false, pooch: false, psutil: false, pytestCheckHook: false, "rich-argparse": false, rich: false, tensorstore: false, tifffile: false, "typing-extensions": false, writableTmpDirAsHomeHook: false, zarr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dask-image", 66, 5], ["cli", 68, 5], ["tensorstore", 82, 5], ["validate", 83, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 176, 5], ["homepage", 177, 5], ["changelog", 178, 5], ["license", 179, 5], ["maintainers", 180, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["sourceRoot", 46, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["optional-dependencies", 65, 3], ["nativeCheckInputs", 86, 3], ["pythonImportsCheck", 94, 3], ["disabledTestPaths", 96, 3], ["disabledTests", 134, 3], ["meta", 175, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const zarr = nix.arg($, "zarr");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ngff-zarr",
       version: "0.43.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fideus-labs",
           repo: "ngff-zarr",
           tag: nix.thunk(() => nix.str`py-v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
         zarr,
       ], nix.sel(dask, "optional-dependencies", "array"))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "dask-image": nix.thunk(() => [dask_image]),
         cli: nix.thunk(() => nix.concat([
           dask,
@@ -148,7 +145,7 @@ export default nix.lambda((args) => (() => {
         "test_cli_itk_input_writes_orientation_automatically",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open Microscopy Environment (OME) Next Generation File Format (NGFF) Zarr implementation",
         homepage: "https://github.com/fideus-labs/ngff-zarr",
         changelog: nix.thunk(() => nix.str`https://github.com/fideus-labs/ngff-zarr/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

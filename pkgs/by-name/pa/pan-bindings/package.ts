@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["name", 21, 7], ["src", 22, 15], ["version", 22, 19], ["modRoot", 23, 7], ["vendorHash", 24, 7]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5]], [["pname", 30, 3], ["src", 32, 11], ["version", 32, 15], ["cmakeFlags", 34, 3], ["patchPhase", 39, 3], ["buildInputs", 46, 3], ["nativeBuildInputs", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildGoModule: false, cmake: false, ncurses: false, asio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 21, 7], ["src", 22, 15], ["version", 22, 19], ["modRoot", 23, 7], ["vendorHash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["src", 32, 11], ["version", 32, 15], ["cmakeFlags", 34, 3], ["patchPhase", 39, 3], ["buildInputs", 46, 3], ["nativeBuildInputs", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const asio = nix.arg($, "asio");
   const version = "unstable-2025-06-15";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "lschulz",
       repo: "pan-bindings",
       rev: "708d7f36a0a32816b2b0d8e2e5a4d79f2144f406",
       hash: "sha256-wGHa8NV8M+9dHvn8UqejderyA1UgYQUcTOKocRFhg6U=",
     }))));
   const goDeps = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "pan-bindings-goDeps",
       src: src,
       version: version,
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-3MybV76pHDnKgN2ENRgsyAvynXQctv0fJcRGzesmlww=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pan-bindings",
       src: src,
       version: version,
@@ -47,7 +44,7 @@ runHook postPatch
       buildInputs: nix.thunk(() => [ncurses, asio]),
       nativeBuildInputs: nix.thunk(() => [cmake, nix.thunk(() => nix.sel(goDeps, "go"))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "SCION PAN Bindings for C, C++, and Python",
         homepage: "https://github.com/lschulz/pan-bindings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 32, 5], ["hash", 33, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 56, 3], ["doCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, "adb-shell": false, "alive-progress": false, buildPythonPackage: false, fetchFromGitHub: false, hatasm: false, manuf: false, netaddr: false, netifaces: false, paramiko: false, pefile: false, pyasyncore: false, pychromecast: false, pydantic: false, pyopenssl: false, pysnmp: false, requests: false, scapy: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 56, 3], ["doCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const scapy = nix.arg($, "scapy");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pex-entysec",
       version: "1.0.0-unstable-2024-10-13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "EntySec",
           repo: "Pex",
           rev: "0a776da9afc1a88fcb74fac96648666748b3d965",
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pex"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of special tools for providing high quality penetration testing using pure python programming language",
         homepage: "https://github.com/EntySec/Pex",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

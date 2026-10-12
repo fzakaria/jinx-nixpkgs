@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["smoke-test", 61, 11]], [["tests", 61, 5]], [["description", 65, 5], ["longDescription", 66, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 82, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 32, 3], ["doCheck", 34, 3], ["ldflags", 39, 3], ["postInstall", 43, 3], ["passthru", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, buildGoModule: false, makeWrapper: false, coreutils: false, git: false, openssh: false, bash: false, gnused: false, gnugrep: false, gitUpdater: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["smoke-test", 61, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 65, 5], ["longDescription", 66, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 82, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 32, 3], ["doCheck", 34, 3], ["ldflags", 39, 3], ["postInstall", 43, 3], ["passthru", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "buildkite-agent",
       version: "3.137.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "buildkite",
           repo: "agent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,14 +44,14 @@ wrapProgram $out/bin/buildkite-agent \\
   --prefix PATH : '${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssh, git, coreutils, gnused, gnugrep]))}'
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "buildkite-agents")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Build runner for buildkite.com",
         longDescription: "The buildkite-agent is a small, reliable, and cross-platform build runner\nthat makes it easy to run automated builds on your own infrastructure.\nIt’s main responsibilities are polling buildkite.com for work, running\nbuild jobs, reporting back the status code and output log of the job,\nand uploading the job's artifacts.\n",
         homepage: "https://buildkite.com/docs/agent",

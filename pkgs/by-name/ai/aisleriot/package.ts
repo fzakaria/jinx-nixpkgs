@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["packageName", 58, 7]], [["updateScript", 57, 5]], [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["teams", 66, 5], ["license", 67, 5], ["platforms", 68, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 40, 3], ["prePatch", 47, 3], ["mesonFlags", 54, 3], ["passthru", 56, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, itstool: false, gtk3: false, wrapGAppsHook3: false, meson: false, librsvg: false, libxml2: false, "desktop-file-utils": false, guile: false, "libcanberra-gtk3": false, ninja: false, "yelp-tools": false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["teams", 66, 5], ["license", 67, 5], ["platforms", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 40, 3], ["prePatch", 47, 3], ["mesonFlags", 54, 3], ["passthru", 56, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const yelp_tools = nix.arg($, "yelp-tools");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "aisleriot",
       version: "3.22.35",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/aisleriot/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/aisleriot-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-AeYEzXAJo2wMXxVCSpBORvg2LDBrpfa8cfrIpedGO/A=",
         })))),
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
       prePatch: "patchShebangs cards/meson_svgz.sh\npatchShebangs data/meson_desktopfile.py\npatchShebangs data/icons/meson_updateiconcache.py\npatchShebangs src/lib/meson_compileschemas.py\n",
       mesonFlags: nix.thunk(() => ["-Dtheme_kde=false"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "aisleriot" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "aisleriot" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/aisleriot",
         description: "Collection of patience games written in guile scheme",
         mainProgram: "sol",

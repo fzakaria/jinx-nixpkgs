@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["name", 49, 7], ["desktopName", 50, 7], ["icon", 51, 7], ["exec", 52, 7], ["comment", 53, 7], ["categories", 54, 7]], [["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 27, 3], ["__structuredAttrs", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["desktopItems", 47, 3], ["installPhase", 58, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, "pkg-config": false, libsForQt5: false, libogg: false, libvorbis: false, libresample: false, portaudio: false, portmidi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 49, 7], ["desktopName", 50, 7], ["icon", 51, 7], ["exec", 52, 7], ["comment", 53, 7], ["categories", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 27, 3], ["__structuredAttrs", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["desktopItems", 47, 3], ["installPhase", 58, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const portaudio = nix.arg($, "portaudio");
   const portmidi = nix.arg($, "portmidi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wahjam",
       version: "1.3.1-unstable-2023-05-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wahjam",
           repo: "wahjam",
           rev: "4fde74da3be1fa53cdc2d3bc4b577b40951d6809",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "wahjam",
             desktopName: "Wahjam",
             icon: "net.jammr.jammr",
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/bin\nmkdir -p $out/share/icons/hicolor/scalable/apps\n\ncp qtclient/wahjam $out/bin/wahjam\ncp qtclient/net.jammr.jammr.svg $out/share/icons/hicolor/scalable/apps\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Software for musicians to play together over the internet",
         mainProgram: "wahjam",
         homepage: "https://github.com/wahjam/wahjam",

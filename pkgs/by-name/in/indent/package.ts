@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["name", 23, 7], ["url", 24, 7], ["hash", 25, 7]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["NIX_CFLAGS_COMPILE", 47, 7]], [["static", 58, 18]], [["tests", 58, 12]], [["homepage", 60, 5], ["description", 61, 5], ["mainProgram", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["postPatch", 35, 3], ["makeFlags", 40, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 44, 3], ["depsBuildBuild", 45, 3], ["env", 47, 3], ["hardeningDisable", 54, 3], ["doCheck", 56, 3], ["passthru", 58, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, libintl: false, texinfo: false, buildPackages: false, pkgsStatic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 23, 7], ["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 47, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["static", 58, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 58, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["mainProgram", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["postPatch", 35, 3], ["makeFlags", 40, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 44, 3], ["depsBuildBuild", 45, 3], ["env", 47, 3], ["hardeningDisable", 54, 3], ["doCheck", 56, 3], ["passthru", 58, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const pkgsStatic = nix.arg($, "pkgsStatic");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "indent",
       version: "2.2.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/indent/indent-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-nmRjT8TOZ5eyBLy4iXzhT90KtIyldpb3h2fFnK5XgJU=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2023-40305.part-1.patch",
             url: "https://git.savannah.gnu.org/cgit/indent.git/patch/?id=df4ab2d19e247d059e0025789ba513418073ab6f",
             hash: "sha256-OLXBlYTdEuFK8SIsyC5Xr/hHWlvXiRqY2h79w+H5pGk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2023-40305.part-2.patch",
             url: "https://git.savannah.gnu.org/cgit/indent.git/patch/?id=2685cc0bef0200733b634932ea7399b6cf91b6d7",
             hash: "sha256-t+QF7N1aqQ28J2O8esZ2bc5K042cUuZR4MeMeuWIgPw=",
@@ -52,17 +45,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libintl]),
       depsBuildBuild: nix.thunk(() => [nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-implicit-function-declaration"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(stdenv, "cc")))), "13")))), "-Wno-unused-but-set-variable"))))),
       })),
       hardeningDisable: nix.thunk(() => ["format"]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, static: nix.thunk(() => nix.sel(pkgsStatic, "indent")) })),
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[4], static: nix.thunk(() => nix.sel(pkgsStatic, "indent")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://www.gnu.org/software/indent/",
         description: "Source code reformatter",
         mainProgram: "indent",

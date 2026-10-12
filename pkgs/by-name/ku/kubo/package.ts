@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["kubo", 37, 26], ["ipget", 37, 31], ["repoVersion", 38, 5]], [["repoVersion", 16, 12], ["tests", 36, 12]], [["url", 20, 5], ["hash", 21, 5]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5]], [["pname", 12, 3], ["version", 13, 3], ["rev", 14, 3], ["passthru", 16, 3], ["src", 19, 3], ["postUnpack", 25, 3], ["sourceRoot", 32, 3], ["subPackages", 34, 3], ["vendorHash", 41, 3], ["outputs", 43, 3], ["nativeBuildInputs", 49, 3], ["postPatch", 51, 3], ["postInstall", 58, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchurl: false, nixosTests: false, stdenv: false, callPackage: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["kubo", 37, 26], ["ipget", 37, 31], ["repoVersion", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["repoVersion", 16, 12], ["tests", 36, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["rev", 14, 3], ["passthru", 16, 3], ["src", 19, 3], ["postUnpack", 25, 3], ["sourceRoot", 32, 3], ["subPackages", 34, 3], ["vendorHash", 41, 3], ["outputs", 43, 3], ["nativeBuildInputs", 49, 3], ["postPatch", 51, 3], ["postInstall", 58, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,17 +19,17 @@ export default nix.lambda((args) => (() => {
       const version = "0.43.1";
       const rev = nix.thunk(() => nix.str`v${version}`);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         repoVersion: "18",
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           kubo: nix.thunk(() => nix.attr(nixosTests, "kubo")),
           ipget: nix.thunk(() => nix.attr(nixosTests, "ipget")),
           repoVersion: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-repoVersion.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/ipfs/kubo/releases/download/${rev}/kubo-source.tar.gz`),
           hash: "sha256-Rw+Q1VHzT/ZbUzKZ6PVe09Ly0GL9FcmY6lPQlbrD7SY=",
         }))));
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace 'misc/systemd/ipfs.service' \\\n  --replace-fail '/usr/local/bin/ipfs' \"$out/bin/ipfs\"\nsubstituteInPlace 'misc/systemd/ipfs-hardened.service' \\\n  --replace-fail '/usr/local/bin/ipfs' \"$out/bin/ipfs\"\n";
       const postInstall = nix.thunk(() => nix.add("install --mode=444 -D 'misc/systemd/ipfs-api.socket' \"$systemd_unit/etc/systemd/system/ipfs-api.socket\"\ninstall --mode=444 -D 'misc/systemd/ipfs-gateway.socket' \"$systemd_unit/etc/systemd/system/ipfs-gateway.socket\"\ninstall --mode=444 -D 'misc/systemd/ipfs.service' \"$systemd_unit/etc/systemd/system/ipfs.service\"\n\ninstall --mode=444 -D 'misc/systemd/ipfs-api.socket' \"$systemd_unit_hardened/etc/systemd/system/ipfs-api.socket\"\ninstall --mode=444 -D 'misc/systemd/ipfs-gateway.socket' \"$systemd_unit_hardened/etc/systemd/system/ipfs-gateway.socket\"\ninstall --mode=444 -D 'misc/systemd/ipfs-hardened.service' \"$systemd_unit_hardened/etc/systemd/system/ipfs.service\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd ipfs \\\n  --bash <($out/bin/ipfs commands completion bash) \\\n  --fish <($out/bin/ipfs commands completion fish) \\\n  --zsh <($out/bin/ipfs commands completion zsh)\n")));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "IPFS implementation in Go",
         homepage: "https://ipfs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/ipfs/kubo/releases/tag/${rev}`),
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         rev,

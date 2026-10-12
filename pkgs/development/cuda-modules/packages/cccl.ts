@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cccl.nix", [[["name", 34, 9], ["url", 35, 9], ["stripLen", 36, 9], ["hash", 37, 9]], [["name", 44, 9], ["url", 45, 9], ["stripLen", 46, 9], ["extraPrefix", 47, 9], ["hash", 48, 9]], [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 65, 5], ["changelog", 66, 5]], [["redistName", 9, 3], ["pname", 10, 3], ["outputs", 17, 3], ["prePatch", 19, 3], ["patches", 28, 3], ["postInstall", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { buildRedist: false, cudaAtLeast: false, cudaOlder: false, lib: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cccl.nix", [["name", 34, 9], ["url", 35, 9], ["stripLen", 36, 9], ["hash", 37, 9]]);
-const pos$2 = nix.positions(here + "/cccl.nix", [["name", 44, 9], ["url", 45, 9], ["stripLen", 46, 9], ["extraPrefix", 47, 9], ["hash", 48, 9]]);
-const pos$3 = nix.positions(here + "/cccl.nix", [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 65, 5], ["changelog", 66, 5]]);
-const pos$4 = nix.positions(here + "/cccl.nix", [["redistName", 9, 3], ["pname", 10, 3], ["outputs", 17, 3], ["prePatch", 19, 3], ["patches", 28, 3], ["postInstall", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       redistName: "cuda",
       pname: nix.thunk(() => (nix.asBool(nix.app(cudaAtLeast, "13.3")) ? "cccl" : "cuda_cccl")),
       outputs: nix.thunk(() => ["out"]),
       prePatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(cudaAtLeast, "13.0")), "nixLog \"removing top-level $PWD/include/nv directory\"\nrm -rfv \"$PWD/include/nv\"\nnixLog \"un-nesting top-level $PWD/include/cccl directory\"\nmv -v \"$PWD/include/cccl\"/* \"$PWD/include/\"\nnixLog \"removing empty $PWD/include/cccl directory\"\nrmdir -v \"$PWD/include/cccl\"\n")),
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(cudaAtLeast, "12.9")) && nix.asBool(nix.app(cudaOlder, "13.0")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               name: "fix-missing-_CCCL_PP_SPLICE_WITH_IMPL20",
               url: "https://github.com/NVIDIA/cccl/commit/2c2276d8b19d737cb16811ce2eb761030f472e60.patch",
               stripLen: 1n,
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
             })))),
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(cudaAtLeast, "13.2")) && nix.asBool(nix.app(cudaOlder, "13.3")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "fix-invalid-cpp-syntax",
               url: "https://github.com/NVIDIA/cccl/commit/8e41eeabe54ab9ae48ad5640cfa7153b0a1071af.patch",
               stripLen: 2n,
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(cudaAtLeast, "13.0")), "nixLog \"creating alias for ${!outputInclude:?}/include/cccl\"\nln -srv \"${!outputInclude:?}/include\" \"${!outputInclude:?}/include/cccl\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Building blocks that make it easier to write safe and efficient CUDA C++ code",
         longDescription: "The goal of CCCL is to provide CUDA C++ developers with building blocks that make it easier to write safe and\nefficient code.\n",
         homepage: "https://github.com/NVIDIA/cccl",

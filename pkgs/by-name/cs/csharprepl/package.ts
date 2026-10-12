@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 19, 5], ["homepage", 20, 5], ["changelog", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["maintainers", 24, 5], ["mainProgram", 25, 5]], [["pname", 8, 3], ["nugetName", 9, 3], ["version", 10, 3], ["dotnet-sdk", 12, 3], ["dotnet-runtime", 14, 3], ["nugetHash", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { buildDotnetGlobalTool: false, dotnetCorePackages: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 19, 5], ["homepage", 20, 5], ["changelog", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["maintainers", 24, 5], ["mainProgram", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["nugetName", 9, 3], ["version", 10, 3], ["dotnet-sdk", 12, 3], ["dotnet-runtime", 14, 3], ["nugetHash", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   const lib = nix.arg($, "lib");
   return nix.app(buildDotnetGlobalTool, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "csharprepl",
       nugetName: "CSharpRepl",
       version: "0.6.7",
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0")),
       nugetHash: "sha256-a0CiU3D6RZp1FF459NIUUry5TFRDgm4FRhqJZNAGYWs=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "C# REPL with syntax highlighting",
         homepage: "https://fuqua.io/CSharpRepl",
         changelog: "https://github.com/waf/CSharpRepl/blob/main/CHANGELOG.md",

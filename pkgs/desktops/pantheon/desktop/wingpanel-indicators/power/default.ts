@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]], [["gnome_power_manager", 36, 7]], [["updateScript", 60, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["teams", 68, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["passthru", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, "nix-update-script": false, "gnome-power-manager": false, "pkg-config": false, meson: false, ninja: false, vala: false, "elementary-settings-daemon": false, gettext: false, gtk3: false, granite: false, libgtop: false, libnotify: false, udev: false, wingpanel: false, libgee: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gnome_power_manager", 36, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["teams", 68, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["passthru", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const pname = "wingpanel-indicator-power";
       const version = "8.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "wingpanel-indicator-power",
           rev: version,
           sha256: "sha256-AeeL/OcQ7V3HT3IWhTQHx/dcCSqL/0s/fShPq96V3xE=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, gnome_power_manager: gnome_power_manager })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], gnome_power_manager: gnome_power_manager })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [gettext, meson, ninja, pkg_config, vala]);
       const buildInputs = nix.thunk(() => [
@@ -55,11 +51,11 @@ export default nix.lambda((args) => (() => {
         wingpanel,
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Power Indicator for Wingpanel",
         homepage: "https://github.com/elementary/wingpanel-indicator-power",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -67,7 +63,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

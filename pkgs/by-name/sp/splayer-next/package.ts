@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["leaveDotGit", 40, 5], ["postFetch", 41, 5]], [["pname", 51, 7], ["version", 52, 7], ["src", 53, 7], ["prePatch", 54, 7], ["pnpm", 56, 13], ["fetcherVersion", 57, 5], ["hash", 58, 5]], [["pname", 63, 7], ["version", 64, 7], ["src", 65, 7], ["hash", 67, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 94, 5], ["FFMPEG_MODE", 95, 5]], [["X-KDE-Protocols", 191, 19]], [["name", 177, 7], ["desktopName", 178, 7], ["exec", 179, 7], ["terminal", 180, 7], ["type", 181, 7], ["icon", 182, 7], ["startupWMClass", 183, 7], ["comment", 184, 7], ["categories", 185, 7], ["mimeTypes", 190, 7], ["extraConfig", 191, 7]], [["extraArgs", 195, 47]], [["updateScript", 195, 12]], [["description", 198, 5], ["homepage", 199, 5], ["changelog", 200, 5], ["license", 201, 5], ["sourceProvenance", 202, 5], ["maintainers", 206, 5], ["mainProgram", 207, 5], ["platforms", 208, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["pnpmDeps", 49, 3], ["cargoDeps", 61, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 85, 3], ["env", 93, 3], ["strictDeps", 98, 3], ["__structuredAttrs", 99, 3], ["prePatch", 101, 3], ["postPatch", 105, 3], ["buildPhase", 118, 3], ["installPhase", 147, 3], ["desktopItems", 175, 3], ["passthru", 195, 3], ["meta", 197, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, nodejs: false, electron_43: false, rustPlatform: false, cargo: false, rustc: false, python3: false, "pkg-config": false, openssl: false, "ffmpeg-headless": false, "alsa-lib": false, libpulseaudio: false, pipewire: false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false, removeReferencesTo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["leaveDotGit", 40, 5], ["postFetch", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 51, 7], ["version", 52, 7], ["src", 53, 7], ["prePatch", 54, 7], ["pnpm", 56, 13], ["fetcherVersion", 57, 5], ["hash", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 63, 7], ["version", 64, 7], ["src", 65, 7], ["hash", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 94, 5], ["FFMPEG_MODE", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["X-KDE-Protocols", 191, 19]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 177, 7], ["desktopName", 178, 7], ["exec", 179, 7], ["terminal", 180, 7], ["type", 181, 7], ["icon", 182, 7], ["startupWMClass", 183, 7], ["comment", 184, 7], ["categories", 185, 7], ["mimeTypes", 190, 7], ["extraConfig", 191, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 195, 47]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 195, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 198, 5], ["homepage", 199, 5], ["changelog", 200, 5], ["license", 201, 5], ["sourceProvenance", 202, 5], ["maintainers", 206, 5], ["mainProgram", 207, 5], ["platforms", 208, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["pnpmDeps", 49, 3], ["cargoDeps", 61, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 85, 3], ["env", 93, 3], ["strictDeps", 98, 3], ["__structuredAttrs", 99, 3], ["prePatch", 101, 3], ["postPatch", 105, 3], ["buildPhase", 118, 3], ["installPhase", 147, 3], ["desktopItems", 175, 3], ["passthru", 195, 3], ["meta", 197, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const pnpm = pnpm_11;
   const shareDir = "$out/share/SPlayer-Next";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "splayer-next",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SPlayer-Dev",
           repo: "SPlayer-Next",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +47,7 @@ export default nix.lambda((args) => (() => {
           postFetch: "cd \"$out\"\ngit rev-parse HEAD > $out/COMMIT\ngit log -1 --format=%cI > $out/SOURCE_DATE_EPOCH\nfind \"$out\" -name .git -print0 | xargs -0 rm -rf\n",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -66,7 +57,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-Ll+nfLfKQapsBc/vGabmd4xuSvYg/XnyLBg9w9hYlhY=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -87,7 +78,11 @@ export default nix.lambda((args) => (() => {
         removeReferencesTo,
       ]),
       buildInputs: nix.thunk(() => [openssl, ffmpeg_headless, alsa_lib, libpulseaudio, pipewire]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: "1", FFMPEG_MODE: "system" })),
+      env: nix.thunk(() => ({
+        [nix.POS]: $pos[3],
+        ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
+        FFMPEG_MODE: "system",
+      })),
       strictDeps: true,
       __structuredAttrs: true,
       prePatch: "rm .npmrc\n",
@@ -157,7 +152,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "top.imsyy.splayer_next",
             desktopName: "SPlayer-Next",
             exec: "SPlayer-Next %U",
@@ -168,15 +163,15 @@ runHook postInstall
             comment: "Cross-platform desktop music player with rich lyric support and wide audio format compatibility",
             categories: nix.thunk(() => ["AudioVideo", "Audio", "Music"]),
             mimeTypes: nix.thunk(() => ["x-scheme-handler/orpheus"]),
-            extraConfig: nix.thunk(() => ({ [nix.POS]: pos$5, "X-KDE-Protocols": "orpheus" })),
+            extraConfig: nix.thunk(() => ({ [nix.POS]: $pos[4], "X-KDE-Protocols": "orpheus" })),
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$7, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: $pos[7],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[6], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Cross-platform desktop music player with rich lyric support and wide audio format compatibility",
         homepage: "https://github.com/SPlayer-Dev/SPlayer-Next",
         changelog: nix.thunk(() => nix.str`https://github.com/SPlayer-Dev/SPlayer-Next/releases/tag/v${nix.sel(finalAttrs, "version")}`),

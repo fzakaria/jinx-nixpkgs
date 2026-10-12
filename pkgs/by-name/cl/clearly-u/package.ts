@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildPhase", 25, 3], ["installPhase", 33, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, mkfontscale: false, fonttosfnt: false, libfaketime: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildPhase", 25, 3], ["installPhase", 33, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fonttosfnt = nix.arg($, "fonttosfnt");
   const libfaketime = nix.arg($, "libfaketime");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "clearly-u",
       version: "12-1.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.math.nmsu.edu/~mleisher/Software/cu/cu${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "1xn14jbv3m1khy7ydvad9ydkn7yygdbhjy9wm1v000jzjwr3lv21",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "# convert bdf fonts to otb\nfor i in *.bdf; do\n  name=$(basename \"$i\" .bdf)\n  faketime -f \"1970-01-01 00:00:01\" fonttosfnt -g 2 -m 2 -v -o \"$name.otb\" \"$i\"\ndone\n",
       installPhase: "# install otb and bdf fonts\nfontDir=\"$out/share/fonts\"\ninstall -m 644 -D *.bdf *.otb -t \"$fontDir\"\nmkfontdir \"$fontDir\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unicode font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

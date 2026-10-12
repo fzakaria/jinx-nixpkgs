@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]], [["FONTCONFIG_FILE", 65, 7]], [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["maintainers", 89, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["__structuredAttrs", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["configureFlags", 56, 3], ["sourceRoot", 62, 3], ["env", 65, 3], ["preBuild", 68, 3], ["doCheck", 70, 3], ["checkTarget", 71, 3], ["postPatch", 74, 3], ["postInstall", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fontconfig: false, gfortran: false, "pkg-config": false, blas: false, bzip2: false, cbc: false, clp: false, doxygen: false, graphviz: false, ipopt: false, lapack: false, libamplsolver: false, osi: false, texliveSmall: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["FONTCONFIG_FILE", 65, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["maintainers", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["__structuredAttrs", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["configureFlags", 56, 3], ["sourceRoot", 62, 3], ["env", 65, 3], ["preBuild", 68, 3], ["doCheck", 70, 3], ["checkTarget", 71, 3], ["postPatch", 74, 3], ["postInstall", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   nix.assert_((nix.asBool(!nix.asBool(nix.sel(blas, "isILP64"))) && nix.asBool(!nix.asBool(nix.sel(lapack, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/bo/bonmin/package.nix:22:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bonmin",
       version: "1.8.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coin-or",
           repo: "Bonmin",
           rev: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--with-asl-lib=-lipoptamplinterface -lamplsolver"]))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/Bonmin`),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
       })),
       preBuild: "export XDG_CACHE_HOME=$(mktemp -d)",
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace test/Makefile.in --replace-fail \\\n  \"./unitTest\\$(EXEEXT)\" \\\n  \"\"\n")),
       postInstall: "make install-doxygen-docs",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open-source code for solving general MINLP (Mixed Integer NonLinear Programming) problems",
         mainProgram: "bonmin",
         homepage: "https://github.com/coin-or/Bonmin",

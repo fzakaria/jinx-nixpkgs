@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 29, 3], ["enableParallelBuilding", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["configureFlags", 49, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, freetype: false, giflib: false, gtk3: false, lcms2: false, libjpeg: false, libpng: false, libtiff: false, openjpeg: false, gifsicle: false, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 29, 3], ["enableParallelBuilding", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["configureFlags", 49, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gifsicle = nix.arg($, "gifsicle");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mtPaint",
       version: "3.50.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wjaguar",
           repo: "mtPaint",
           rev: "8304376e8861a8a603371b0f188db30f9cafdc17",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [freetype, giflib, gtk3, lcms2, libjpeg, libpng, libtiff, openjpeg, gifsicle]),
       configureFlags: nix.thunk(() => ["gtk3", "intl", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple GTK painting program",
         longDescription: "mtPaint is a simple GTK painting program designed for\ncreating icons and pixel based artwork.  It can edit indexed palette\nor 24 bit RGB images and offers basic painting and palette manipulation\ntools. It also has several other more powerful features such as channels,\nlayers and animation.\nDue to its simplicity and lack of dependencies it runs well on\nGNU/Linux, Windows and older PC hardware.\n",
         homepage: "https://mtpaint.sourceforge.net/",

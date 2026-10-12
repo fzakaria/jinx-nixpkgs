@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/eio.nix", [[["description", 18, 5]], [["pname", 8, 3], ["src", 10, 20], ["version", 10, 24], ["propagatedBuildInputs", 12, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, httpun: false, "gluten-eio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/eio.nix", [["description", 18, 5]]);
-const pos$2 = nix.positions(here + "/eio.nix", [["pname", 8, 3], ["src", 10, 20], ["version", 10, 24], ["propagatedBuildInputs", 12, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const httpun = nix.arg($, "httpun");
   const gluten_eio = nix.arg($, "gluten-eio");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "httpun-eio",
       src: nix.thunk(() => nix.attr(httpun, "src")),
       version: nix.thunk(() => nix.attr(httpun, "version")),
       propagatedBuildInputs: nix.thunk(() => [gluten_eio, httpun]),
-      meta: nix.thunk(() => nix.update(nix.sel(httpun, "meta"), { [nix.POS]: pos$1, description: "EIO support for httpun" })),
+      meta: nix.thunk(() => nix.update(nix.sel(httpun, "meta"), { [nix.POS]: $pos[0], description: "EIO support for httpun" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=eio.ts.map

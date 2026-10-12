@@ -2,115 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/themes.nix", [[["bgDark", 7, 7], ["bgLight", 8, 7], ["status", 9, 7]], [["src", 5, 5], ["paths", 6, 5], ["rightCharacter", 11, 5]], [["bgDark", 16, 7], ["bgLight", 17, 7], ["status", 18, 7]], [["src", 14, 5], ["paths", 15, 5]], [["bgDark", 24, 7], ["bgLight", 25, 7], ["status", 26, 7]], [["src", 22, 5], ["paths", 23, 5]], [["bgDark", 32, 7], ["bgLight", 33, 7], ["status", 34, 7]], [["src", 30, 5], ["paths", 31, 5]], [["bgDark", 40, 7], ["bgLight", 41, 7], ["status", 42, 7]], [["src", 38, 5], ["paths", 39, 5]], [["bgDark", 48, 7], ["bgLight", 49, 7], ["status", 50, 7]], [["src", 46, 5], ["paths", 47, 5]], [["bgDark", 56, 7], ["bgLight", 57, 7], ["status", 58, 7]], [["src", 54, 5], ["paths", 55, 5]], [["bgDark", 64, 7], ["bgLight", 65, 7], ["status", 66, 7]], [["src", 62, 5], ["paths", 63, 5]], [["bgDark", 72, 7], ["bgLight", 73, 7], ["status", 74, 7]], [["src", 70, 5], ["paths", 71, 5]], [["bgDark", 80, 7], ["bgLight", 81, 7], ["status", 82, 7]], [["src", 78, 5], ["paths", 79, 5]], [["bgDark", 88, 7], ["bgLight", 89, 7], ["status", 90, 7]], [["src", 86, 5], ["paths", 87, 5]], [["bgDark", 96, 7], ["bgLight", 97, 7], ["status", 98, 7]], [["src", 94, 5], ["paths", 95, 5]], [["bgDark", 104, 7], ["bgLight", 105, 7], ["status", 106, 7]], [["src", 102, 5], ["paths", 103, 5]], [["bgDark", 112, 7], ["bgLight", 113, 7], ["status", 114, 7]], [["src", 110, 5], ["paths", 111, 5]], [["bgDark", 120, 7], ["bgLight", 121, 7], ["status", 122, 7]], [["src", 118, 5], ["paths", 119, 5]], [["bgDark", 128, 7], ["bgLight", 129, 7], ["status", 130, 7]], [["src", 126, 5], ["paths", 127, 5]], [["bgDark", 136, 7], ["bgLight", 137, 7], ["status", 138, 7]], [["src", 134, 5], ["paths", 135, 5]], [["bgDark", 144, 7], ["bgLight", 145, 7], ["status", 146, 7]], [["src", 142, 5], ["paths", 143, 5]], [["bgDark", 152, 7], ["bgLight", 153, 7], ["status", 154, 7]], [["src", 150, 5], ["paths", 151, 5]], [["bgDark", 160, 7], ["bgLight", 161, 7], ["status", 162, 7]], [["src", 158, 5], ["paths", 159, 5]], [["bgDark", 168, 7], ["bgLight", 169, 7], ["status", 170, 7]], [["src", 166, 5], ["paths", 167, 5]], [["bgDark", 176, 7], ["bgLight", 177, 7], ["status", 178, 7]], [["src", 174, 5], ["paths", 175, 5]], [["bgDark", 184, 7], ["bgLight", 185, 7], ["status", 186, 7]], [["src", 182, 5], ["paths", 183, 5]], [["bgDark", 192, 7], ["bgLight", 193, 7], ["status", 194, 7]], [["src", 190, 5], ["paths", 191, 5]], [["bgDark", 200, 7], ["bgLight", 201, 7], ["status", 202, 7]], [["src", 198, 5], ["paths", 199, 5]], [["bgDark", 208, 7], ["bgLight", 209, 7], ["status", 210, 7]], [["src", 206, 5], ["paths", 207, 5]], [["bgDark", 216, 7], ["bgLight", 217, 7], ["status", 218, 7]], [["src", 214, 5], ["paths", 215, 5]], [["bgDark", 224, 7], ["bgLight", 225, 7], ["status", 226, 7]], [["src", 222, 5], ["paths", 223, 5]], [["bgDark", 232, 7], ["bgLight", 233, 7], ["status", 234, 7]], [["src", 230, 5], ["paths", 231, 5]], [["bgDark", 240, 7], ["bgLight", 241, 7], ["status", 242, 7]], [["src", 238, 5], ["paths", 239, 5]], [["bgDark", 248, 7], ["bgLight", 249, 7], ["status", 250, 7]], [["src", 246, 5], ["paths", 247, 5]], [["bgDark", 256, 7], ["bgLight", 257, 7], ["status", 258, 7]], [["src", 254, 5], ["paths", 255, 5]], [["bgDark", 264, 7], ["bgLight", 265, 7], ["status", 266, 7]], [["src", 262, 5], ["paths", 263, 5]], [["bgDark", 272, 7], ["bgLight", 273, 7], ["status", 274, 7]], [["src", 270, 5], ["paths", 271, 5]], [["bgDark", 280, 7], ["bgLight", 281, 7], ["status", 282, 7]], [["src", 278, 5], ["paths", 279, 5]], [["bgDark", 288, 7], ["bgLight", 289, 7], ["status", 290, 7]], [["src", 286, 5], ["paths", 287, 5]], [["bgDark", 296, 7], ["bgLight", 297, 7], ["status", 298, 7]], [["src", 294, 5], ["paths", 295, 5]], [["bgDark", 304, 7], ["bgLight", 305, 7], ["status", 306, 7]], [["src", 302, 5], ["paths", 303, 5]], [["bgDark", 312, 7], ["bgLight", 313, 7], ["status", 314, 7]], [["src", 310, 5], ["paths", 311, 5]], [["bgDark", 320, 7], ["bgLight", 321, 7], ["status", 322, 7]], [["src", 318, 5], ["paths", 319, 5]], [["bgDark", 328, 7], ["bgLight", 329, 7], ["status", 330, 7]], [["src", 326, 5], ["paths", 327, 5]], [["bgDark", 336, 7], ["bgLight", 337, 7], ["status", 338, 7]], [["src", 334, 5], ["paths", 335, 5]], [["bgDark", 344, 7], ["bgLight", 345, 7], ["status", 346, 7]], [["src", 342, 5], ["paths", 343, 5]], [["bgDark", 352, 7], ["bgLight", 353, 7], ["status", 354, 7]], [["src", 350, 5], ["paths", 351, 5]], [["bgDark", 360, 7], ["bgLight", 361, 7], ["status", 362, 7]], [["src", 358, 5], ["paths", 359, 5]], [["bgDark", 368, 7], ["bgLight", 369, 7], ["status", 370, 7]], [["src", 366, 5], ["paths", 367, 5], ["rightCharacter", 372, 5]], [["bgDark", 377, 7], ["bgLight", 378, 7], ["status", 379, 7]], [["src", 375, 5], ["paths", 376, 5]], [["bgDark", 385, 7], ["bgLight", 386, 7], ["status", 387, 7]], [["src", 383, 5], ["paths", 384, 5]], [["aoi", 4, 3], ["kureikei", 13, 3], ["kureikeiBikini", 21, 3], ["kureikeiHomebuiltComputer", 29, 3], ["kureikeiPresent", 37, 3], ["kureikeiRecoding", 45, 3], ["kureikeiRecodingKimiya", 53, 3], ["kureikeiSummerKimono", 61, 3], ["kureikeiUniform", 69, 3], ["kureikeiAsyuihira", 77, 3], ["kureikeiHasumikaoru", 85, 3], ["kureikeiKohakumuro", 93, 3], ["kureikeiKosake", 101, 3], ["kureikeiKunimi", 109, 3], ["kureikeiMaru", 117, 3], ["kureikeiMugya", 125, 3], ["kureikeiNanatunatu", 133, 3], ["kureikeiNekopan", 141, 3], ["kureikeiNyamco", 149, 3], ["kureikeiPoyoyonchihiro", 157, 3], ["kureikeiShitimiNanami", 165, 3], ["kureikeiTakiOuno", 173, 3], ["kureikeiTori", 181, 3], ["kureikeiYoite", 189, 3], ["shizuku", 197, 3], ["shizuku5thAnniversary", 205, 3], ["shizuku7thAnniversary", 213, 3], ["shizukuDate", 221, 3], ["shizukuHanabi", 229, 3], ["shizukuHaregi", 237, 3], ["shizukuHeianKomachi", 245, 3], ["shizukuHotaru", 253, 3], ["shizukuIdol", 261, 3], ["shizukuKotatsu", 269, 3], ["shizukuKotatsuNight", 277, 3], ["shizukuLiteratureGirl", 285, 3], ["shizukuLiteratureGirlWithGlasses", 293, 3], ["shizukuMaidCool", 301, 3], ["shizukuMaidCute", 309, 3], ["shizukuMeijiMizugi", 317, 3], ["shizukuMermaid", 325, 3], ["shizukuMiko", 333, 3], ["shizukuOffice", 341, 3], ["shizukuSakura", 349, 3], ["shizukuTaishoRoman", 357, 3], ["shizukuTeaBreak", 365, 3], ["shizukuWebRadio", 374, 3], ["shizukuWinterLamp", 382, 3]]]);
 const formals$1 = { args: { themeSources: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/themes.nix", [["bgDark", 7, 7], ["bgLight", 8, 7], ["status", 9, 7]]);
-const pos$2 = nix.positions(here + "/themes.nix", [["src", 5, 5], ["paths", 6, 5], ["rightCharacter", 11, 5]]);
-const pos$3 = nix.positions(here + "/themes.nix", [["bgDark", 16, 7], ["bgLight", 17, 7], ["status", 18, 7]]);
-const pos$4 = nix.positions(here + "/themes.nix", [["src", 14, 5], ["paths", 15, 5]]);
-const pos$5 = nix.positions(here + "/themes.nix", [["bgDark", 24, 7], ["bgLight", 25, 7], ["status", 26, 7]]);
-const pos$6 = nix.positions(here + "/themes.nix", [["src", 22, 5], ["paths", 23, 5]]);
-const pos$7 = nix.positions(here + "/themes.nix", [["bgDark", 32, 7], ["bgLight", 33, 7], ["status", 34, 7]]);
-const pos$8 = nix.positions(here + "/themes.nix", [["src", 30, 5], ["paths", 31, 5]]);
-const pos$9 = nix.positions(here + "/themes.nix", [["bgDark", 40, 7], ["bgLight", 41, 7], ["status", 42, 7]]);
-const pos$10 = nix.positions(here + "/themes.nix", [["src", 38, 5], ["paths", 39, 5]]);
-const pos$11 = nix.positions(here + "/themes.nix", [["bgDark", 48, 7], ["bgLight", 49, 7], ["status", 50, 7]]);
-const pos$12 = nix.positions(here + "/themes.nix", [["src", 46, 5], ["paths", 47, 5]]);
-const pos$13 = nix.positions(here + "/themes.nix", [["bgDark", 56, 7], ["bgLight", 57, 7], ["status", 58, 7]]);
-const pos$14 = nix.positions(here + "/themes.nix", [["src", 54, 5], ["paths", 55, 5]]);
-const pos$15 = nix.positions(here + "/themes.nix", [["bgDark", 64, 7], ["bgLight", 65, 7], ["status", 66, 7]]);
-const pos$16 = nix.positions(here + "/themes.nix", [["src", 62, 5], ["paths", 63, 5]]);
-const pos$17 = nix.positions(here + "/themes.nix", [["bgDark", 72, 7], ["bgLight", 73, 7], ["status", 74, 7]]);
-const pos$18 = nix.positions(here + "/themes.nix", [["src", 70, 5], ["paths", 71, 5]]);
-const pos$19 = nix.positions(here + "/themes.nix", [["bgDark", 80, 7], ["bgLight", 81, 7], ["status", 82, 7]]);
-const pos$20 = nix.positions(here + "/themes.nix", [["src", 78, 5], ["paths", 79, 5]]);
-const pos$21 = nix.positions(here + "/themes.nix", [["bgDark", 88, 7], ["bgLight", 89, 7], ["status", 90, 7]]);
-const pos$22 = nix.positions(here + "/themes.nix", [["src", 86, 5], ["paths", 87, 5]]);
-const pos$23 = nix.positions(here + "/themes.nix", [["bgDark", 96, 7], ["bgLight", 97, 7], ["status", 98, 7]]);
-const pos$24 = nix.positions(here + "/themes.nix", [["src", 94, 5], ["paths", 95, 5]]);
-const pos$25 = nix.positions(here + "/themes.nix", [["bgDark", 104, 7], ["bgLight", 105, 7], ["status", 106, 7]]);
-const pos$26 = nix.positions(here + "/themes.nix", [["src", 102, 5], ["paths", 103, 5]]);
-const pos$27 = nix.positions(here + "/themes.nix", [["bgDark", 112, 7], ["bgLight", 113, 7], ["status", 114, 7]]);
-const pos$28 = nix.positions(here + "/themes.nix", [["src", 110, 5], ["paths", 111, 5]]);
-const pos$29 = nix.positions(here + "/themes.nix", [["bgDark", 120, 7], ["bgLight", 121, 7], ["status", 122, 7]]);
-const pos$30 = nix.positions(here + "/themes.nix", [["src", 118, 5], ["paths", 119, 5]]);
-const pos$31 = nix.positions(here + "/themes.nix", [["bgDark", 128, 7], ["bgLight", 129, 7], ["status", 130, 7]]);
-const pos$32 = nix.positions(here + "/themes.nix", [["src", 126, 5], ["paths", 127, 5]]);
-const pos$33 = nix.positions(here + "/themes.nix", [["bgDark", 136, 7], ["bgLight", 137, 7], ["status", 138, 7]]);
-const pos$34 = nix.positions(here + "/themes.nix", [["src", 134, 5], ["paths", 135, 5]]);
-const pos$35 = nix.positions(here + "/themes.nix", [["bgDark", 144, 7], ["bgLight", 145, 7], ["status", 146, 7]]);
-const pos$36 = nix.positions(here + "/themes.nix", [["src", 142, 5], ["paths", 143, 5]]);
-const pos$37 = nix.positions(here + "/themes.nix", [["bgDark", 152, 7], ["bgLight", 153, 7], ["status", 154, 7]]);
-const pos$38 = nix.positions(here + "/themes.nix", [["src", 150, 5], ["paths", 151, 5]]);
-const pos$39 = nix.positions(here + "/themes.nix", [["bgDark", 160, 7], ["bgLight", 161, 7], ["status", 162, 7]]);
-const pos$40 = nix.positions(here + "/themes.nix", [["src", 158, 5], ["paths", 159, 5]]);
-const pos$41 = nix.positions(here + "/themes.nix", [["bgDark", 168, 7], ["bgLight", 169, 7], ["status", 170, 7]]);
-const pos$42 = nix.positions(here + "/themes.nix", [["src", 166, 5], ["paths", 167, 5]]);
-const pos$43 = nix.positions(here + "/themes.nix", [["bgDark", 176, 7], ["bgLight", 177, 7], ["status", 178, 7]]);
-const pos$44 = nix.positions(here + "/themes.nix", [["src", 174, 5], ["paths", 175, 5]]);
-const pos$45 = nix.positions(here + "/themes.nix", [["bgDark", 184, 7], ["bgLight", 185, 7], ["status", 186, 7]]);
-const pos$46 = nix.positions(here + "/themes.nix", [["src", 182, 5], ["paths", 183, 5]]);
-const pos$47 = nix.positions(here + "/themes.nix", [["bgDark", 192, 7], ["bgLight", 193, 7], ["status", 194, 7]]);
-const pos$48 = nix.positions(here + "/themes.nix", [["src", 190, 5], ["paths", 191, 5]]);
-const pos$49 = nix.positions(here + "/themes.nix", [["bgDark", 200, 7], ["bgLight", 201, 7], ["status", 202, 7]]);
-const pos$50 = nix.positions(here + "/themes.nix", [["src", 198, 5], ["paths", 199, 5]]);
-const pos$51 = nix.positions(here + "/themes.nix", [["bgDark", 208, 7], ["bgLight", 209, 7], ["status", 210, 7]]);
-const pos$52 = nix.positions(here + "/themes.nix", [["src", 206, 5], ["paths", 207, 5]]);
-const pos$53 = nix.positions(here + "/themes.nix", [["bgDark", 216, 7], ["bgLight", 217, 7], ["status", 218, 7]]);
-const pos$54 = nix.positions(here + "/themes.nix", [["src", 214, 5], ["paths", 215, 5]]);
-const pos$55 = nix.positions(here + "/themes.nix", [["bgDark", 224, 7], ["bgLight", 225, 7], ["status", 226, 7]]);
-const pos$56 = nix.positions(here + "/themes.nix", [["src", 222, 5], ["paths", 223, 5]]);
-const pos$57 = nix.positions(here + "/themes.nix", [["bgDark", 232, 7], ["bgLight", 233, 7], ["status", 234, 7]]);
-const pos$58 = nix.positions(here + "/themes.nix", [["src", 230, 5], ["paths", 231, 5]]);
-const pos$59 = nix.positions(here + "/themes.nix", [["bgDark", 240, 7], ["bgLight", 241, 7], ["status", 242, 7]]);
-const pos$60 = nix.positions(here + "/themes.nix", [["src", 238, 5], ["paths", 239, 5]]);
-const pos$61 = nix.positions(here + "/themes.nix", [["bgDark", 248, 7], ["bgLight", 249, 7], ["status", 250, 7]]);
-const pos$62 = nix.positions(here + "/themes.nix", [["src", 246, 5], ["paths", 247, 5]]);
-const pos$63 = nix.positions(here + "/themes.nix", [["bgDark", 256, 7], ["bgLight", 257, 7], ["status", 258, 7]]);
-const pos$64 = nix.positions(here + "/themes.nix", [["src", 254, 5], ["paths", 255, 5]]);
-const pos$65 = nix.positions(here + "/themes.nix", [["bgDark", 264, 7], ["bgLight", 265, 7], ["status", 266, 7]]);
-const pos$66 = nix.positions(here + "/themes.nix", [["src", 262, 5], ["paths", 263, 5]]);
-const pos$67 = nix.positions(here + "/themes.nix", [["bgDark", 272, 7], ["bgLight", 273, 7], ["status", 274, 7]]);
-const pos$68 = nix.positions(here + "/themes.nix", [["src", 270, 5], ["paths", 271, 5]]);
-const pos$69 = nix.positions(here + "/themes.nix", [["bgDark", 280, 7], ["bgLight", 281, 7], ["status", 282, 7]]);
-const pos$70 = nix.positions(here + "/themes.nix", [["src", 278, 5], ["paths", 279, 5]]);
-const pos$71 = nix.positions(here + "/themes.nix", [["bgDark", 288, 7], ["bgLight", 289, 7], ["status", 290, 7]]);
-const pos$72 = nix.positions(here + "/themes.nix", [["src", 286, 5], ["paths", 287, 5]]);
-const pos$73 = nix.positions(here + "/themes.nix", [["bgDark", 296, 7], ["bgLight", 297, 7], ["status", 298, 7]]);
-const pos$74 = nix.positions(here + "/themes.nix", [["src", 294, 5], ["paths", 295, 5]]);
-const pos$75 = nix.positions(here + "/themes.nix", [["bgDark", 304, 7], ["bgLight", 305, 7], ["status", 306, 7]]);
-const pos$76 = nix.positions(here + "/themes.nix", [["src", 302, 5], ["paths", 303, 5]]);
-const pos$77 = nix.positions(here + "/themes.nix", [["bgDark", 312, 7], ["bgLight", 313, 7], ["status", 314, 7]]);
-const pos$78 = nix.positions(here + "/themes.nix", [["src", 310, 5], ["paths", 311, 5]]);
-const pos$79 = nix.positions(here + "/themes.nix", [["bgDark", 320, 7], ["bgLight", 321, 7], ["status", 322, 7]]);
-const pos$80 = nix.positions(here + "/themes.nix", [["src", 318, 5], ["paths", 319, 5]]);
-const pos$81 = nix.positions(here + "/themes.nix", [["bgDark", 328, 7], ["bgLight", 329, 7], ["status", 330, 7]]);
-const pos$82 = nix.positions(here + "/themes.nix", [["src", 326, 5], ["paths", 327, 5]]);
-const pos$83 = nix.positions(here + "/themes.nix", [["bgDark", 336, 7], ["bgLight", 337, 7], ["status", 338, 7]]);
-const pos$84 = nix.positions(here + "/themes.nix", [["src", 334, 5], ["paths", 335, 5]]);
-const pos$85 = nix.positions(here + "/themes.nix", [["bgDark", 344, 7], ["bgLight", 345, 7], ["status", 346, 7]]);
-const pos$86 = nix.positions(here + "/themes.nix", [["src", 342, 5], ["paths", 343, 5]]);
-const pos$87 = nix.positions(here + "/themes.nix", [["bgDark", 352, 7], ["bgLight", 353, 7], ["status", 354, 7]]);
-const pos$88 = nix.positions(here + "/themes.nix", [["src", 350, 5], ["paths", 351, 5]]);
-const pos$89 = nix.positions(here + "/themes.nix", [["bgDark", 360, 7], ["bgLight", 361, 7], ["status", 362, 7]]);
-const pos$90 = nix.positions(here + "/themes.nix", [["src", 358, 5], ["paths", 359, 5]]);
-const pos$91 = nix.positions(here + "/themes.nix", [["bgDark", 368, 7], ["bgLight", 369, 7], ["status", 370, 7]]);
-const pos$92 = nix.positions(here + "/themes.nix", [["src", 366, 5], ["paths", 367, 5], ["rightCharacter", 372, 5]]);
-const pos$93 = nix.positions(here + "/themes.nix", [["bgDark", 377, 7], ["bgLight", 378, 7], ["status", 379, 7]]);
-const pos$94 = nix.positions(here + "/themes.nix", [["src", 375, 5], ["paths", 376, 5]]);
-const pos$95 = nix.positions(here + "/themes.nix", [["bgDark", 385, 7], ["bgLight", 386, 7], ["status", 387, 7]]);
-const pos$96 = nix.positions(here + "/themes.nix", [["src", 383, 5], ["paths", 384, 5]]);
-const pos$97 = nix.positions(here + "/themes.nix", [["aoi", 4, 3], ["kureikei", 13, 3], ["kureikeiBikini", 21, 3], ["kureikeiHomebuiltComputer", 29, 3], ["kureikeiPresent", 37, 3], ["kureikeiRecoding", 45, 3], ["kureikeiRecodingKimiya", 53, 3], ["kureikeiSummerKimono", 61, 3], ["kureikeiUniform", 69, 3], ["kureikeiAsyuihira", 77, 3], ["kureikeiHasumikaoru", 85, 3], ["kureikeiKohakumuro", 93, 3], ["kureikeiKosake", 101, 3], ["kureikeiKunimi", 109, 3], ["kureikeiMaru", 117, 3], ["kureikeiMugya", 125, 3], ["kureikeiNanatunatu", 133, 3], ["kureikeiNekopan", 141, 3], ["kureikeiNyamco", 149, 3], ["kureikeiPoyoyonchihiro", 157, 3], ["kureikeiShitimiNanami", 165, 3], ["kureikeiTakiOuno", 173, 3], ["kureikeiTori", 181, 3], ["kureikeiYoite", 189, 3], ["shizuku", 197, 3], ["shizuku5thAnniversary", 205, 3], ["shizuku7thAnniversary", 213, 3], ["shizukuDate", 221, 3], ["shizukuHanabi", 229, 3], ["shizukuHaregi", 237, 3], ["shizukuHeianKomachi", 245, 3], ["shizukuHotaru", 253, 3], ["shizukuIdol", 261, 3], ["shizukuKotatsu", 269, 3], ["shizukuKotatsuNight", 277, 3], ["shizukuLiteratureGirl", 285, 3], ["shizukuLiteratureGirlWithGlasses", 293, 3], ["shizukuMaidCool", 301, 3], ["shizukuMaidCute", 309, 3], ["shizukuMeijiMizugi", 317, 3], ["shizukuMermaid", 325, 3], ["shizukuMiko", 333, 3], ["shizukuOffice", 341, 3], ["shizukuSakura", 349, 3], ["shizukuTaishoRoman", 357, 3], ["shizukuTeaBreak", 365, 3], ["shizukuWebRadio", 374, 3], ["shizukuWinterLamp", 382, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const themeSources = nix.arg($, "themeSources");
   return {
-    [nix.POS]: pos$97,
+    [nix.POS]: $pos[96],
     aoi: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.sel(themeSources, "aoi")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         bgDark: "AoiNight/AoiBackground-300.png",
         bgLight: "Aoi/AoiBackground-300.png",
         status: "Aoi",
@@ -118,450 +22,450 @@ export default nix.lambda((args) => (() => {
       rightCharacter: true,
     })),
     kureikei: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         bgDark: "",
         bgLight: "KureiKei/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiBikini: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         bgDark: "",
         bgLight: "KureiKeiBikini/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiHomebuiltComputer: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         bgDark: "",
         bgLight: "KureiKeiHomebuiltComputer~Kronotokage/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiPresent: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         bgDark: "",
         bgLight: "KureiKeiPresent/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiRecoding: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         bgDark: "",
         bgLight: "KureiKeiRecoding/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiRecodingKimiya: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         bgDark: "",
         bgLight: "KureiKeiRecoding~KIMIYA/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiSummerKimono: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         bgDark: "",
         bgLight: "KureiKeiSummerKimono/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiUniform: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         bgDark: "",
         bgLight: "KureiKeiUniform/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiAsyuihira: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         bgDark: "",
         bgLight: "KureiKei~AsYuihira/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiHasumikaoru: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         bgDark: "",
         bgLight: "KureiKei~hasumikaoru/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiKohakumuro: nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         bgDark: "",
         bgLight: "KureiKei~kohakumuro/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiKosake: nix.thunk(() => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         bgDark: "",
         bgLight: "KureiKei~kosake/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiKunimi: nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         bgDark: "",
         bgLight: "KureiKei~kunimi/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiMaru: nix.thunk(() => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         bgDark: "",
         bgLight: "KureiKei~maru/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiMugya: nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         bgDark: "",
         bgLight: "KureiKei~mugya/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiNanatunatu: nix.thunk(() => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         bgDark: "",
         bgLight: "KureiKei~nanatunatu/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiNekopan: nix.thunk(() => ({
-      [nix.POS]: pos$36,
+      [nix.POS]: $pos[35],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         bgDark: "",
         bgLight: "KureiKei~nekopan/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiNyamco: nix.thunk(() => ({
-      [nix.POS]: pos$38,
+      [nix.POS]: $pos[37],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         bgDark: "",
         bgLight: "KureiKei~nyamco/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiPoyoyonchihiro: nix.thunk(() => ({
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         bgDark: "",
         bgLight: "KureiKei~poyoyonchihiro/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiShitimiNanami: nix.thunk(() => ({
-      [nix.POS]: pos$42,
+      [nix.POS]: $pos[41],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$41,
+        [nix.POS]: $pos[40],
         bgDark: "",
         bgLight: "KureiKei~ShitimiNanami/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiTakiOuno: nix.thunk(() => ({
-      [nix.POS]: pos$44,
+      [nix.POS]: $pos[43],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         bgDark: "",
         bgLight: "KureiKei~TakiOuno/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiTori: nix.thunk(() => ({
-      [nix.POS]: pos$46,
+      [nix.POS]: $pos[45],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         bgDark: "",
         bgLight: "KureiKei~tori/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     kureikeiYoite: nix.thunk(() => ({
-      [nix.POS]: pos$48,
+      [nix.POS]: $pos[47],
       src: nix.thunk(() => nix.sel(themeSources, "kureikei")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         bgDark: "",
         bgLight: "KureiKei~yoite/KureiKeiBackground-300.png",
         status: "KureiKei",
       })),
     })),
     shizuku: nix.thunk(() => ({
-      [nix.POS]: pos$50,
+      [nix.POS]: $pos[49],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$49,
+        [nix.POS]: $pos[48],
         bgDark: "",
         bgLight: "Shizuku/ShizukuBackground-300.png",
         status: "Shizuku",
       })),
     })),
     shizuku5thAnniversary: nix.thunk(() => ({
-      [nix.POS]: pos$52,
+      [nix.POS]: $pos[51],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$51,
+        [nix.POS]: $pos[50],
         bgDark: "",
         bgLight: "Shizuku5thAnniversary/ShizukuBackground-300.png",
         status: "Shizuku5thAnniversary",
       })),
     })),
     shizuku7thAnniversary: nix.thunk(() => ({
-      [nix.POS]: pos$54,
+      [nix.POS]: $pos[53],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$53,
+        [nix.POS]: $pos[52],
         bgDark: "",
         bgLight: "Shizuku7thAnniversary/ShizukuBackground-300.png",
         status: "Shizuku",
       })),
     })),
     shizukuDate: nix.thunk(() => ({
-      [nix.POS]: pos$56,
+      [nix.POS]: $pos[55],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$55,
+        [nix.POS]: $pos[54],
         bgDark: "",
         bgLight: "ShizukuDate/ShizukuBackground-300.png",
         status: "ShizukuDate",
       })),
     })),
     shizukuHanabi: nix.thunk(() => ({
-      [nix.POS]: pos$58,
+      [nix.POS]: $pos[57],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$57,
+        [nix.POS]: $pos[56],
         bgDark: "ShizukuHanabi/ShizukuBackground-300.png",
         bgLight: "",
         status: "ShizukuHanabi",
       })),
     })),
     shizukuHaregi: nix.thunk(() => ({
-      [nix.POS]: pos$60,
+      [nix.POS]: $pos[59],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$59,
+        [nix.POS]: $pos[58],
         bgDark: "",
         bgLight: "ShizukuHaregi/ShizukuBackground-300.png",
         status: "ShizukuHaregi",
       })),
     })),
     shizukuHeianKomachi: nix.thunk(() => ({
-      [nix.POS]: pos$62,
+      [nix.POS]: $pos[61],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$61,
+        [nix.POS]: $pos[60],
         bgDark: "",
         bgLight: "ShizukuHeianKomachi/ShizukuBackground-300.png",
         status: "ShizukuHeianKomachi",
       })),
     })),
     shizukuHotaru: nix.thunk(() => ({
-      [nix.POS]: pos$64,
+      [nix.POS]: $pos[63],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$63,
+        [nix.POS]: $pos[62],
         bgDark: "ShizukuHotaru/ShizukuBackground-300.png",
         bgLight: "",
         status: "Shizuku",
       })),
     })),
     shizukuIdol: nix.thunk(() => ({
-      [nix.POS]: pos$66,
+      [nix.POS]: $pos[65],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$65,
+        [nix.POS]: $pos[64],
         bgDark: "",
         bgLight: "ShizukuIdol/ShizukuBackground-300.png",
         status: "ShizukuIdol",
       })),
     })),
     shizukuKotatsu: nix.thunk(() => ({
-      [nix.POS]: pos$68,
+      [nix.POS]: $pos[67],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$67,
+        [nix.POS]: $pos[66],
         bgDark: "",
         bgLight: "ShizukuKotatsu/ShizukuBackground-300.png",
         status: "ShizukuKotatsu",
       })),
     })),
     shizukuKotatsuNight: nix.thunk(() => ({
-      [nix.POS]: pos$70,
+      [nix.POS]: $pos[69],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$69,
+        [nix.POS]: $pos[68],
         bgDark: "",
         bgLight: "ShizukuKotatsuNight/ShizukuBackground-300.png",
         status: "ShizukuKotatsu",
       })),
     })),
     shizukuLiteratureGirl: nix.thunk(() => ({
-      [nix.POS]: pos$72,
+      [nix.POS]: $pos[71],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$71,
+        [nix.POS]: $pos[70],
         bgDark: "",
         bgLight: "ShizukuLiteratureGirl/ShizukuBackground-300.png",
         status: "ShizukuLiteratureGirl",
       })),
     })),
     shizukuLiteratureGirlWithGlasses: nix.thunk(() => ({
-      [nix.POS]: pos$74,
+      [nix.POS]: $pos[73],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$73,
+        [nix.POS]: $pos[72],
         bgDark: "",
         bgLight: "ShizukuLiteratureGirlwithGlasses/ShizukuBackground-300.png",
         status: "ShizukuLiteratureGirlwithGlasses",
       })),
     })),
     shizukuMaidCool: nix.thunk(() => ({
-      [nix.POS]: pos$76,
+      [nix.POS]: $pos[75],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$75,
+        [nix.POS]: $pos[74],
         bgDark: "",
         bgLight: "ShizukuMaidCool/ShizukuBackground-300.png",
         status: "ShizukuMaidCool",
       })),
     })),
     shizukuMaidCute: nix.thunk(() => ({
-      [nix.POS]: pos$78,
+      [nix.POS]: $pos[77],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$77,
+        [nix.POS]: $pos[76],
         bgDark: "",
         bgLight: "ShizukuMaidCute/ShizukuBackground-300.png",
         status: "ShizukuMaidCute",
       })),
     })),
     shizukuMeijiMizugi: nix.thunk(() => ({
-      [nix.POS]: pos$80,
+      [nix.POS]: $pos[79],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$79,
+        [nix.POS]: $pos[78],
         bgDark: "",
         bgLight: "ShizukuMeijiMizugi/ShizukuBackground-300.png",
         status: "ShizukuMeijiMizugi",
       })),
     })),
     shizukuMermaid: nix.thunk(() => ({
-      [nix.POS]: pos$82,
+      [nix.POS]: $pos[81],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$81,
+        [nix.POS]: $pos[80],
         bgDark: "",
         bgLight: "ShizukuMermaid/ShizukuBackground-300.png",
         status: "ShizukuMermaid",
       })),
     })),
     shizukuMiko: nix.thunk(() => ({
-      [nix.POS]: pos$84,
+      [nix.POS]: $pos[83],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$83,
+        [nix.POS]: $pos[82],
         bgDark: "ShizukuMikoNight/ShizukuBackground-300.png",
         bgLight: "ShizukuMiko/ShizukuBackground-300.png",
         status: "ShizukuMiko",
       })),
     })),
     shizukuOffice: nix.thunk(() => ({
-      [nix.POS]: pos$86,
+      [nix.POS]: $pos[85],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$85,
+        [nix.POS]: $pos[84],
         bgDark: "",
         bgLight: "ShizukuOffice/ShizukuBackground-300.png",
         status: "Shizuku",
       })),
     })),
     shizukuSakura: nix.thunk(() => ({
-      [nix.POS]: pos$88,
+      [nix.POS]: $pos[87],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$87,
+        [nix.POS]: $pos[86],
         bgDark: "ShizukuSakuraNight/ShizukuBackground-300.png",
         bgLight: "ShizukuSakura/ShizukuBackground-300.png",
         status: "ShizukuSakura",
       })),
     })),
     shizukuTaishoRoman: nix.thunk(() => ({
-      [nix.POS]: pos$90,
+      [nix.POS]: $pos[89],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$89,
+        [nix.POS]: $pos[88],
         bgDark: "",
         bgLight: "ShizukuTaishoRoman/ShizukuBackground-300.png",
         status: "ShizukuTaishoRoman",
       })),
     })),
     shizukuTeaBreak: nix.thunk(() => ({
-      [nix.POS]: pos$92,
+      [nix.POS]: $pos[91],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$91,
+        [nix.POS]: $pos[90],
         bgDark: "",
         bgLight: "ShizukuTeaBreak/ShizukuBackground-300.png",
         status: "Shizuku",
@@ -569,20 +473,20 @@ export default nix.lambda((args) => (() => {
       rightCharacter: true,
     })),
     shizukuWebRadio: nix.thunk(() => ({
-      [nix.POS]: pos$94,
+      [nix.POS]: $pos[93],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$93,
+        [nix.POS]: $pos[92],
         bgDark: "",
         bgLight: "ShizukuWebRadio/ShizukuBackground-300.png",
         status: "ShizukuWebRadio",
       })),
     })),
     shizukuWinterLamp: nix.thunk(() => ({
-      [nix.POS]: pos$96,
+      [nix.POS]: $pos[95],
       src: nix.thunk(() => nix.sel(themeSources, "shizuku")),
       paths: nix.thunk(() => ({
-        [nix.POS]: pos$95,
+        [nix.POS]: $pos[94],
         bgDark: "",
         bgLight: "ShizukuWinterLamp/ShizukuBackground-300.png",
         status: "ShizukuWinterLamp",

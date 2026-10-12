@@ -2,11 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/define-submoduleWith-shorthand.nix", [["config", 2, 13]]);
-const pos$2 = nix.positions(here + "/define-submoduleWith-shorthand.nix", [["submodule", 2, 3]]);
+const $pos = nix.positions(here + "/define-submoduleWith-shorthand.nix", [[["config", 2, 13]], [["submodule", 2, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
-  submodule: nix.thunk(() => ({ [nix.POS]: pos$1, config: true })),
+  [nix.POS]: $pos[1],
+  submodule: nix.thunk(() => ({ [nix.POS]: $pos[0], config: true })),
 }));
 //# sourceMappingURL=define-submoduleWith-shorthand.ts.map

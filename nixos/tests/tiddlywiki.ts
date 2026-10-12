@@ -2,45 +2,36 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tiddlywiki.nix", [[["enable", 6, 27]], [["tiddlywiki", 6, 16]], [["services", 6, 7]], [["postBootCommands", 9, 12]], [["port", 16, 11], ["credentials", 17, 11], ["readers", 18, 11]], [["enable", 14, 9], ["listenOptions", 15, 9]], [["tiddlywiki", 13, 16]], [["boot", 9, 7], ["services", 13, 7]], [["default", 5, 5], ["configured", 8, 5]], [["name", 3, 3], ["nodes", 4, 3], ["testScript", 24, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tiddlywiki.nix", [["enable", 6, 27]]);
-const pos$2 = nix.positions(here + "/tiddlywiki.nix", [["tiddlywiki", 6, 16]]);
-const pos$3 = nix.positions(here + "/tiddlywiki.nix", [["services", 6, 7]]);
-const pos$4 = nix.positions(here + "/tiddlywiki.nix", [["postBootCommands", 9, 12]]);
-const pos$5 = nix.positions(here + "/tiddlywiki.nix", [["port", 16, 11], ["credentials", 17, 11], ["readers", 18, 11]]);
-const pos$6 = nix.positions(here + "/tiddlywiki.nix", [["enable", 14, 9], ["listenOptions", 15, 9]]);
-const pos$7 = nix.positions(here + "/tiddlywiki.nix", [["tiddlywiki", 13, 16]]);
-const pos$8 = nix.positions(here + "/tiddlywiki.nix", [["boot", 9, 7], ["services", 13, 7]]);
-const pos$9 = nix.positions(here + "/tiddlywiki.nix", [["default", 5, 5], ["configured", 8, 5]]);
-const pos$10 = nix.positions(here + "/tiddlywiki.nix", [["name", 3, 3], ["nodes", 4, 3], ["testScript", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "tiddlywiki",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       default: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          tiddlywiki: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+          [nix.POS]: $pos[1],
+          tiddlywiki: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         })),
       })),
       configured: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           postBootCommands: "echo \"username,password\nsomelogin,somesecret\" > /var/lib/wikiusers.csv\n",
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           tiddlywiki: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             enable: true,
             listenOptions: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               port: 3000n,
               credentials: "../wikiusers.csv",
               readers: "(authenticated)",

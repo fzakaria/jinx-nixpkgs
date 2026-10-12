@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["lsprotocol", 17, 7], ["pygls", 18, 7]], [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["build-system", 42, 3], ["dontUseCmakeConfigure", 45, 3], ["dependencies", 47, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 53, 3], ["preCheck", 65, 3], ["disabledTests", 69, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, "cmake-format": false, cmake: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["lsprotocol", 17, 7], ["pygls", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["build-system", 42, 3], ["dontUseCmakeConfigure", 45, 3], ["dependencies", 47, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 53, 3], ["preCheck", 65, 3], ["disabledTests", 69, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       lsprotocol: nix.thunk(() => nix.sel(self, "lsprotocol_2023")),
       pygls: nix.thunk(() => nix.sel(self, "pygls_1")),
     })));
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cmake-language-server",
       version: "0.1.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "regen100",
           repo: "cmake-language-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         "test_completions_triggercharacter",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CMake LSP Implementation",
         homepage: "https://github.com/regen100/cmake-language-server",
         changelog: nix.thunk(() => nix.str`https://github.com/regen100/cmake-language-server/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

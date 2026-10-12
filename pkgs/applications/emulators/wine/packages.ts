@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/packages.nix", [[["pname", 48, 7], ["version", 49, 15], ["patches", 49, 23], ["autoconf", 54, 9], ["hexdump", 55, 9], ["perl", 56, 9], ["python3", 57, 9], ["gitMinimal", 58, 9], ["pkgArches", 60, 7], ["geckos", 61, 7], ["mingwGccs", 62, 7], ["monos", 63, 7], ["platforms", 64, 7]], [["pname", 73, 7], ["version", 74, 15], ["patches", 74, 23], ["pkgArches", 75, 7], ["mingwGccs", 76, 7], ["geckos", 81, 7], ["monos", 82, 7], ["configureFlags", 83, 7], ["platforms", 85, 7], ["mainProgram", 89, 7]], [["pkgconfig64remove", 113, 9]], [["pname", 95, 7], ["version", 96, 15], ["patches", 96, 23], ["stdenv", 97, 7], ["pkgArches", 98, 7], ["geckos", 102, 7], ["mingwGccs", 106, 7], ["monos", 110, 7], ["buildScript", 111, 7], ["platforms", 118, 7], ["mainProgram", 119, 7]], [["pname", 125, 7], ["version", 126, 15], ["patches", 126, 23], ["mingwSupport", 127, 7], ["pkgArches", 128, 7], ["mingwGccs", 129, 7], ["geckos", 138, 7], ["monos", 139, 7], ["configureFlags", 140, 7], ["platforms", 145, 7], ["mainProgram", 149, 7]], [["wine32", 45, 3], ["wine64", 70, 3], ["wineWow", 92, 3], ["wineWow64", 122, 3]]]);
 const formals$1 = { args: { stdenv_32bit: false, lib: false, pkgs: false, pkgsi686Linux: false, pkgsCross: false, callPackage: false, replaceVars: false, moltenvk: false, src: false, pnameSuffix: true, useStaging: true, autoconf: false, hexdump: false, perl: false, python3: false, gitMinimal: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/packages.nix", [["pname", 48, 7], ["version", 49, 15], ["patches", 49, 23], ["autoconf", 54, 9], ["hexdump", 55, 9], ["perl", 56, 9], ["python3", 57, 9], ["gitMinimal", 58, 9], ["pkgArches", 60, 7], ["geckos", 61, 7], ["mingwGccs", 62, 7], ["monos", 63, 7], ["platforms", 64, 7]]);
-const pos$2 = nix.positions(here + "/packages.nix", [["pname", 73, 7], ["version", 74, 15], ["patches", 74, 23], ["pkgArches", 75, 7], ["mingwGccs", 76, 7], ["geckos", 81, 7], ["monos", 82, 7], ["configureFlags", 83, 7], ["platforms", 85, 7], ["mainProgram", 89, 7]]);
-const pos$3 = nix.positions(here + "/packages.nix", [["pkgconfig64remove", 113, 9]]);
-const pos$4 = nix.positions(here + "/packages.nix", [["pname", 95, 7], ["version", 96, 15], ["patches", 96, 23], ["stdenv", 97, 7], ["pkgArches", 98, 7], ["geckos", 102, 7], ["mingwGccs", 106, 7], ["monos", 110, 7], ["buildScript", 111, 7], ["platforms", 118, 7], ["mainProgram", 119, 7]]);
-const pos$5 = nix.positions(here + "/packages.nix", [["pname", 125, 7], ["version", 126, 15], ["patches", 126, 23], ["mingwSupport", 127, 7], ["pkgArches", 128, 7], ["mingwGccs", 129, 7], ["geckos", 138, 7], ["monos", 139, 7], ["configureFlags", 140, 7], ["platforms", 145, 7], ["mainProgram", 149, 7]]);
-const pos$6 = nix.positions(here + "/packages.nix", [["wine32", 45, 3], ["wine64", 70, 3], ["wineWow", 92, 3], ["wineWow64", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,9 +40,9 @@ export default nix.lambda((args) => (() => {
       "replaceVars",
     ])));
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     wine32: nix.thunk(() => nix.app(nix.sel(pkgsi686Linux, "callPackage"), nix.path(here, "./base.nix"), nix.thunk(() => nix.update(baseArgs, {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: "wine",
         version: version,
         patches: patches,
@@ -66,7 +61,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
       })))),
     wine64: nix.thunk(() => nix.app(callPackage, nix.path(here, "./base.nix"), nix.thunk(() => nix.update(baseArgs, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "wine64",
         version: version,
         patches: patches,
@@ -82,7 +77,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wine",
       })))),
     wineWow: nix.thunk(() => nix.app(callPackage, nix.path(here, "./base.nix"), nix.thunk(() => nix.update(baseArgs, {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "wine-wow",
         version: version,
         patches: patches,
@@ -98,7 +93,7 @@ export default nix.lambda((args) => (() => {
         })()),
         monos: nix.thunk(() => [mono]),
         buildScript: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./builder-wow.sh"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pkgconfig64remove: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "dev", "lib/pkgconfig", nix.thunk(() => [
                 nix.thunk(() => nix.sel(pkgs, "glib")),
                 nix.thunk(() => nix.sel(pkgs, "gst_all_1", "gstreamer")),
@@ -108,7 +103,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wine",
       })))),
     wineWow64: nix.thunk(() => nix.app(callPackage, nix.path(here, "./base.nix"), nix.thunk(() => nix.update(baseArgs, {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "wine-wow64",
         version: version,
         patches: patches,

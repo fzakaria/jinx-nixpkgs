@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]], [["homepage", 102, 5], ["downloadPage", 103, 5], ["changelog", 104, 5], ["description", 105, 5], ["platforms", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]], [["pname", 19, 3], ["version", 20, 3], ["runtimeLoaderEnvVariableName", 22, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["preConfigure", 47, 3], ["configureFlags", 51, 3], ["postInstall", 56, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { stdenv: false, autoconf: false, automake: false, itstool: false, intltool: false, "pkg-config": false, fetchFromGitHub: false, glib: false, gettext: false, sqlite: false, mono: false, stfl: false, makeWrapper: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 102, 5], ["downloadPage", 103, 5], ["changelog", 104, 5], ["description", 105, 5], ["platforms", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["runtimeLoaderEnvVariableName", 22, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["preConfigure", 47, 3], ["configureFlags", 51, 3], ["postInstall", 56, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "unstable-2023-07-01";
       const runtimeLoaderEnvVariableName = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "DYLD_FALLBACK_LIBRARY_PATH" : "LD_LIBRARY_PATH"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "meebey",
           repo: "smuxi",
           rev: "3e4b5050b66944532e95df3c31245c8ae6379b3f",
@@ -62,7 +60,7 @@ cp -a lib/log4net.dll $out/lib/smuxi/
 cp -a lib/Nini.dll $out/lib/smuxi/
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://smuxi.im/",
         downloadPage: "https://smuxi.im/download/",
         changelog: nix.thunk(() => nix.str`https://github.com/meebey/smuxi/releases/tag/v${version}`),
@@ -75,7 +73,7 @@ cp -a lib/Nini.dll $out/lib/smuxi/
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         runtimeLoaderEnvVariableName,

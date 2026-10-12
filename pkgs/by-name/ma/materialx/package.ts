@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["pname", 51, 30], ["version", 51, 36], ["meta", 51, 44]], [["moduleNames", 75, 9], ["package", 76, 9]], [["cmake-config", 74, 7]], [["tests", 73, 5]], [["changelog", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5], ["license", 87, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["propagatedBuildInputs", 44, 3], ["cmakeFlags", 55, 3], ["pythonImportsCheck", 62, 3], ["postInstall", 64, 3], ["passthru", 72, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libGL: false, libx11: false, libxt: false, imath: false, openimageio: false, python3Packages: false, pythonSupport: true, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 51, 30], ["version", 51, 36], ["meta", 51, 44]]);
-const pos$3 = nix.positions(here + "/package.nix", [["moduleNames", 75, 9], ["package", 76, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cmake-config", 74, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 73, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5], ["license", 87, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["propagatedBuildInputs", 44, 3], ["cmakeFlags", 55, 3], ["pythonImportsCheck", 62, 3], ["postInstall", 64, 3], ["passthru", 72, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pythonSupport = nix.argOr($, "pythonSupport", () => false);
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "materialx",
       version: "1.39.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AcademySoftwareFoundation",
           repo: "MaterialX",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [imath, openimageio, libGL]),
       propagatedBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [libx11, libxt])), nix.app(nix.sel(lib, "optionals"), pythonSupport, nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(python3Packages, "mkPythonMetaPackage"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
@@ -61,18 +55,18 @@ mkdir -p $(dirname $target_dir)
 ln -s $out/python $target_dir
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               moduleNames: nix.thunk(() => ["MaterialX"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/AcademySoftwareFoundation/MaterialX/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Open standard for representing rich material and look-development content in computer graphics",
         homepage: "https://materialx.org",

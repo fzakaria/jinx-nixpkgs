@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["TZDIR", 31, 7]], [["config", 61, 7]], [["starship", 64, 28]], [["jsonschema", 60, 5], ["tests", 63, 5]], [["description", 69, 5], ["homepage", 70, 5], ["downloadPage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["mainProgram", 79, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["env", 31, 3], ["postInstall", 33, 3], ["cargoHash", 52, 3], ["nativeCheckInputs", 54, 3], ["passthru", 59, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, installShellFiles: false, writableTmpDirAsHomeHook: false, gitMinimal: false, nixosTests: false, buildPackages: false, tzdata: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["TZDIR", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["config", 61, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["starship", 64, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["jsonschema", 60, 5], ["tests", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["downloadPage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["mainProgram", 79, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["env", 31, 3], ["postInstall", 33, 3], ["cargoHash", 52, 3], ["nativeCheckInputs", 54, 3], ["passthru", 59, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const tzdata = nix.arg($, "tzdata");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "starship",
       version: "1.26.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "starship",
           repo: "starship",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +30,10 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => [writableTmpDirAsHomeHook]))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, TZDIR: nix.thunk(() => nix.str`${tzdata}/share/zoneinfo`) })),
+      env: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        TZDIR: nix.thunk(() => nix.str`${tzdata}/share/zoneinfo`),
+      })),
       postInstall: nix.thunk(() => nix.add("presetdir=$out/share/starship/presets/\nmkdir -p $presetdir\ncp docs/public/presets/toml/*.toml $presetdir\ninstall -Dm644 .github/config-schema.json $out/share/starship/config-schema.json\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages)), nix.thunk(() => (() => {
           const emulator = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages));
           return nix.str`installShellCompletion --cmd starship \\
@@ -49,18 +46,18 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-IO/H75FKU3/2oAJ8AKerGujMDfun8w4fV7gETMxWOt0=",
       nativeCheckInputs: nix.thunk(() => [gitMinimal, writableTmpDirAsHomeHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         jsonschema: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           config: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/starship/config-schema.json`),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           starship: nix.thunk(() => nix.attr(nixosTests, "starship")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Minimal, blazing fast, and extremely customizable prompt for any shell",
         homepage: "https://starship.rs",
         downloadPage: "https://github.com/starship/starship",

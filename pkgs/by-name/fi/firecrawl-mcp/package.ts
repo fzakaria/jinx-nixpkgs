@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 27, 5], ["hash", 28, 5]], [["pname", 39, 26], ["version", 39, 32], ["src", 39, 40], ["pnpm", 40, 5], ["fetcherVersion", 41, 5], ["hash", 42, 5]], [["updateScript", 78, 12]], [["homepage", 81, 5], ["changelog", 82, 5], ["description", 83, 5], ["longDescription", 84, 5], ["license", 98, 5], ["mainProgram", 99, 5], ["maintainers", 100, 5], ["platforms", 103, 5]], [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 31, 3], ["pnpmDeps", 38, 3], ["buildPhase", 45, 3], ["installPhase", 53, 3], ["passthru", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, fetchPnpmDeps: false, makeWrapper: false, nodejs: false, pnpm_11: false, pnpmConfigHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 39, 26], ["version", 39, 32], ["src", 39, 40], ["pnpm", 40, 5], ["fetcherVersion", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 78, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 81, 5], ["changelog", 82, 5], ["description", 83, 5], ["longDescription", 84, 5], ["license", 98, 5], ["mainProgram", 99, 5], ["maintainers", 100, 5], ["platforms", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 31, 3], ["pnpmDeps", 38, 3], ["buildPhase", 45, 3], ["installPhase", 53, 3], ["passthru", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "firecrawl-mcp",
       version: "3.24.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "firecrawl",
           repo: "firecrawl-mcp-server",
           rev: "2ca018dcf85356f5299959eebd184baabb1f40c0",
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, nodejs, pnpmConfigHook, pnpm_11]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -68,11 +64,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} "$out/bin/firecrawl-mcp" 
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://docs.firecrawl.dev/mcp-server",
         changelog: nix.thunk(() => nix.str`https://github.com/firecrawl/firecrawl-mcp-server/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "A Model Context Protocol (MCP) server that brings Firecrawl to MCP-compatible AI agents",

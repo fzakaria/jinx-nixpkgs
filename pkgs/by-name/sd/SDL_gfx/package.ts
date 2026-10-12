@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["SDL_CONFIG", 24, 7]], [["homepage", 34, 5], ["description", 35, 5], ["longDescription", 36, 5], ["license", 53, 5], ["teams", 54, 5], ["platforms", 55, 24]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["propagatedBuildInputs", 22, 3], ["env", 24, 3], ["configureFlags", 26, 3], ["strictDeps", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, SDL: false, fetchurl: false, stdenv: false, enableSdltest: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SDL_CONFIG", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["longDescription", 36, 5], ["license", 53, 5], ["teams", 54, 5], ["platforms", 55, 24]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["propagatedBuildInputs", 22, 3], ["env", 24, 3], ["configureFlags", 26, 3], ["strictDeps", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const enableSdltest = nix.argOr($, "enableSdltest", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "SDL_gfx",
       version: "2.0.27",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.ferzkopp.net/Software/SDL_gfx-2.0/SDL_gfx-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-37FaxfjOeklS3BLSrtl0dRjF5rM1wOMWNtI/k8Yw9Bk=",
         })))),
       buildInputs: nix.thunk(() => [SDL]),
       propagatedBuildInputs: nix.thunk(() => [SDL]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SDL_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), SDL)), "sdl-config")),
       })),
       configureFlags: nix.thunk(() => [
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://sourceforge.net/projects/sdlgfx/",
         description: "SDL graphics drawing primitives and support functions",
         longDescription: "The SDL_gfx library evolved out of the SDL_gfxPrimitives code which\nprovided basic drawing routines such as lines, circles or polygons and\nSDL_rotozoom which implemented a interpolating rotozoomer for SDL\nsurfaces.\n\nThe current components of the SDL_gfx library are:\n\n- Graphic Primitives (SDL_gfxPrimitives.h)\n- Rotozoomer (SDL_rotozoom.h)\n- Framerate control (SDL_framerate.h)\n- MMX image filters (SDL_imageFilter.h)\n- Custom Blit functions (SDL_gfxBlitFunc.h)\n\nThe library is backwards compatible to the above mentioned code. Its is\nwritten in plain C and can be used in C++ code.\n",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["DJANGO_SETTINGS", 43, 7]], [["description", 46, 5], ["changelog", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["buildInputs", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 41, 3], ["env", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, distutils: false, django: false, djangorestframework: false, fetchFromGitHub: false, "persisting-theory": false, "pytest-django": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["DJANGO_SETTINGS", 43, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 46, 5], ["changelog", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["buildInputs", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 41, 3], ["env", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.17.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "agateblue",
           repo: "django-dynamic-preferences",
           tag: version,
@@ -36,9 +33,9 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [persisting_theory]);
       const nativeCheckInputs = nix.thunk(() => [djangorestframework, pytestCheckHook, pytest_django]);
       const pythonImportsCheck = nix.thunk(() => ["dynamic_preferences"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS: "tests.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], DJANGO_SETTINGS: "tests.settings" }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Dynamic global and instance settings for your django project",
         changelog: nix.thunk(() => nix.str`https://github.com/agateblue/django-dynamic-preferences/blob/${version}/HISTORY.rst`),
         homepage: "https://github.com/agateblue/django-dynamic-preferences",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

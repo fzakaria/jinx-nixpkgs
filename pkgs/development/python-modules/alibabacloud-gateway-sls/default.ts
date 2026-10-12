@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 5], ["version", 26, 26], ["hash", 27, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 44, 3], ["doCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, "alibabacloud-darabonba-array": false, "alibabacloud-darabonba-encode-util": false, "alibabacloud-darabonba-map": false, "alibabacloud-darabonba-signature-util": false, "alibabacloud-darabonba-string": false, "alibabacloud-gateway-sls-util": false, "alibabacloud-gateway-spi": false, "alibabacloud-openapi-util": false, "alibabacloud-tea-util": false, buildPythonPackage: false, fetchPypi: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 5], ["version", 26, 26], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 44, 3], ["doCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "alibabacloud-gateway-sls",
       version: "0.4.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "alibabacloud_gateway_sls",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-EGaFojtJqy8Ggu4sPhYNqbUOpGbeUxtOklm8jAWD1h4=",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["alibabacloud_gateway_sls"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Aliyun Gateway SLS Library for Python",
         homepage: "https://pypi.org/project/alibabacloud-gateway-sls/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["version", 26, 13], ["src", 26, 21], ["pname", 28, 5], ["sourceRoot", 30, 5], ["npmDepsHash", 32, 5], ["nativeBuildInputs", 34, 5], ["installPhase", 36, 5]], [["extraArgs", 100, 7]], [["frontend", 98, 13], ["updateScript", 99, 5], ["tests", 105, 5]], [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["mainProgram", 112, 5], ["maintainers", 113, 5], ["broken", 114, 5]], [["version", 54, 11], ["src", 54, 19], ["pname", 56, 3], ["mvnHash", 58, 3], ["mvnJdk", 59, 3], ["mvnParameters", 61, 3], ["nativeBuildInputs", 68, 3], ["configurePhase", 73, 3], ["doCheck", 83, 3], ["installPhase", 85, 3], ["passthru", 97, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, biome: false, buildNpmPackage: false, fetchFromGitHub: false, jdk25: false, maven: false, makeWrapper: false, unzip: false, nixosTests: false, writeText: false, stdenv: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 26, 13], ["src", 26, 21], ["pname", 28, 5], ["sourceRoot", 30, 5], ["npmDepsHash", 32, 5], ["nativeBuildInputs", 34, 5], ["installPhase", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 100, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["frontend", 98, 13], ["updateScript", 99, 5], ["tests", 105, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["mainProgram", 112, 5], ["maintainers", 113, 5], ["broken", 114, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 54, 11], ["src", 54, 19], ["pname", 56, 3], ["mvnHash", 58, 3], ["mvnJdk", 59, 3], ["mvnParameters", 61, 3], ["nativeBuildInputs", 68, 3], ["configurePhase", 73, 3], ["doCheck", 83, 3], ["installPhase", 85, 3], ["passthru", 97, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "7.3.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Athou",
       repo: "commafeed",
       tag: version,
       hash: "sha256-AmmXM6lLGa5t9tHe4Ae8LCkIR/nkY89/4D2KIQnVcNU=",
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: version,
       src: src,
       pname: "commafeed-frontend",
@@ -49,7 +44,7 @@ git.commit.id = none
 git.commit.id.abbrev = none
 `)));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: version,
       src: src,
       pname: "commafeed",
@@ -82,13 +77,13 @@ makeWrapper ${jdk25}/bin/java $out/bin/commafeed \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         frontend: frontend,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
         tests: nix.thunk(() => nix.sel(nixosTests, "commafeed")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Google Reader inspired self-hosted RSS reader",
         homepage: "https://github.com/Athou/commafeed",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

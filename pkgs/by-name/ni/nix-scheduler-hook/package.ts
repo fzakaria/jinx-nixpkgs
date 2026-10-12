@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["name", 27, 5], ["paths", 28, 5]], [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["rev-prefix", 79, 7]], [["updateScript", 78, 5]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 24]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["postUnpack", 64, 3], ["installPhase", 69, 3], ["passthru", 77, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchFromCodeberg: false, clangStdenv: false, lib: false, nixVersions: false, meson: false, cmake: false, ninja: false, boost: false, "pkg-config": false, nlohmann_json: false, curl: false, openpbs: false, symlinkJoin: false, slurm: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 5], ["paths", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["rev-prefix", 79, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 78, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 24]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["postUnpack", 64, 3], ["installPhase", 69, 3], ["passthru", 77, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const slurm = nix.arg($, "slurm");
   const gitUpdater = nix.arg($, "gitUpdater");
   const restclient_cpp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "mrtazz",
       repo: "restclient-cpp",
       rev: "3356f816b161279cfbe318c45cb07c07fb8de6df",
       hash: "sha256-9//KssNRD7OJFNFdXgzsu7rKP/Nlb4wtmBjfhOt2Vgw=",
     }))));
   const slurmJoined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "slurm",
       paths: nix.thunk(() => [slurm, nix.thunk(() => nix.sel(slurm, "dev"))]),
     }))));
@@ -46,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nix-scheduler-hook";
       const version = "0.11.0";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "lisanna",
           repo: "nix-scheduler-hook",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -68,13 +62,13 @@ cp -r ${restclient_cpp} $sourceRoot/subprojects/restclient-cpp
 `);
       const installPhase = "mkdir -p $out/bin\nmv src/nsh $out/bin\nmkdir -p $out/lib\nshopt -s extglob\nmv subprojects/restclient-cpp/librestclient_cpp.so!(*p) $out/lib\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nix$, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Nix build hook that forwards builds to job schedulers",
         homepage: "https://codeberg.org/lisanna/nix-scheduler-hook",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -87,7 +81,7 @@ cp -r ${restclient_cpp} $sourceRoot/subprojects/restclient-cpp
       };
       })());
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

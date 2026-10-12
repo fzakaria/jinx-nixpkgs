@@ -2,23 +2,20 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/declare-enable-nested.nix", [[["default", 6, 7], ["example", 7, 7], ["type", 8, 7], ["description", 9, 7]], [["enable", 5, 5]], [["set", 4, 11]], [["options", 4, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/declare-enable-nested.nix", [["default", 6, 7], ["example", 7, 7], ["type", 8, 7], ["description", 9, 7]]);
-const pos$2 = nix.positions(here + "/declare-enable-nested.nix", [["enable", 5, 5]]);
-const pos$3 = nix.positions(here + "/declare-enable-nested.nix", [["set", 4, 11]]);
-const pos$4 = nix.positions(here + "/declare-enable-nested.nix", [["options", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       set: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             default: false,
             example: true,
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),

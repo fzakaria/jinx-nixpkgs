@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugins.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["docker", 30, 5], ["vagrant", 31, 5]], [["description", 40, 5], ["homepage", 41, 5], ["maintainers", 42, 5], ["license", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["pythonRemoveDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["optional-dependencies", 29, 3], ["pythonImportsCheck", 34, 3], ["doCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "setuptools-scm": false, "python-vagrant": false, docker: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plugins.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/plugins.nix", [["docker", 30, 5], ["vagrant", 31, 5]]);
-const pos$3 = nix.positions(here + "/plugins.nix", [["description", 40, 5], ["homepage", 41, 5], ["maintainers", 42, 5], ["license", 43, 5]]);
-const pos$4 = nix.positions(here + "/plugins.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["pythonRemoveDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["optional-dependencies", 29, 3], ["pythonImportsCheck", 34, 3], ["doCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.8.12";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ansible-community",
           repo: "molecule-plugins",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,21 +27,21 @@ export default nix.lambda((args) => (() => {
       const pythonRemoveDeps = nix.thunk(() => ["molecule"]);
       const nativeBuildInputs = nix.thunk(() => [setuptools_scm]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         docker: nix.thunk(() => [docker]),
         vagrant: nix.thunk(() => [python_vagrant]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["molecule_plugins"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Collection on molecule plugins",
         homepage: "https://github.com/ansible-community/molecule-plugins",
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

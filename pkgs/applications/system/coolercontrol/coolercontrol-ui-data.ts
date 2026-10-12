@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/coolercontrol-ui-data.nix", [[["description", 24, 5]], [["pname", 10, 3], ["version", 11, 11], ["src", 11, 19], ["sourceRoot", 12, 3], ["npmDepsFetcherVersion", 14, 3], ["npmDepsHash", 15, 3], ["postBuild", 17, 3], ["dontInstall", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false }, ellipsis: false };
 const formals$2 = { args: { version: false, src: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/coolercontrol-ui-data.nix", [["description", 24, 5]]);
-const pos$2 = nix.positions(here + "/coolercontrol-ui-data.nix", [["pname", 10, 3], ["version", 11, 11], ["src", 11, 19], ["sourceRoot", 12, 3], ["npmDepsFetcherVersion", 14, 3], ["npmDepsHash", 15, 3], ["postBuild", 17, 3], ["dontInstall", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const meta = nix.arg($_1, "meta");
     return nix.app(buildNpmPackage, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "coolercontrol-ui",
         version: version,
         src: src,
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
         postBuild: "cp -r dist $out\n",
         dontInstall: true,
         meta: nix.thunk(() => nix.update(meta, {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           description: nix.thunk(() => nix.str`${nix.sel(meta, "description")} (UI data)`),
         })),
       })));

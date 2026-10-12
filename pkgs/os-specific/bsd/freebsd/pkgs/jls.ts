@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jls.nix", [[["mainProgram", 13, 8]], [["path", 8, 3], ["buildInputs", 9, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, libjail: false, libxo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/jls.nix", [["mainProgram", 13, 8]]);
-const pos$2 = nix.positions(here + "/jls.nix", [["path", 8, 3], ["buildInputs", 9, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const libjail = nix.arg($, "libjail");
   const libxo = nix.arg($, "libxo");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.sbin/jls",
       buildInputs: nix.thunk(() => [libjail, libxo]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "jls" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "jls" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=jls.ts.map

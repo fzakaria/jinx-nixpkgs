@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]], [["jsonutil", 35, 5]], [["description", 58, 5], ["longDescription", 59, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["prePatch", 25, 3], ["nativeBuildInputs", 29, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 49, 3], ["disabledTests", 51, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, isPyPy: false, mock: false, pytestCheckHook: false, pythonAtLeast: false, setuptools: false, simplejson: false, twisted: false, versioneer: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["jsonutil", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 58, 5], ["longDescription", 59, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["prePatch", 25, 3], ["nativeBuildInputs", 29, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 49, 3], ["disabledTests", 51, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,19 +23,19 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-8RHsCEieQ3/uHPkNai+sUBR2hDJAVrYy5DMlp6YRw6c=",
         }))));
       const prePatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), isPyPy, "grep -rl 'utf-8-with-signature-unix' ./ | xargs sed -i -e \"s|utf-8-with-signature-unix|utf-8|g\"\n"));
       const nativeBuildInputs = nix.thunk(() => [setuptools, versioneer]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, jsonutil: nix.thunk(() => [simplejson]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], jsonutil: nix.thunk(() => [simplejson]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([mock, twisted, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["pyutil"]);
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["test_decimal", "test_float"])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Collection of mature utilities for Python programmers",
         longDescription: "These are a few data structures, classes and functions which\nwe've needed over many years of Python programming and which\nseem to be of general use to other Python programmers. Many of\nthe modules that have existed in pyutil over the years have\nsubsequently been obsoleted by new features added to the\nPython language or its standard library, thus showing that\nwe're not alone in wanting tools like these.\n",
         homepage: "https://github.com/tpltnt/pyutil",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,34 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/armagetronad.nix", [[["enable", 17, 25]], [["graphics", 17, 16]], [["options", 19, 27]], [["memorySize", 18, 22], ["qemu", 19, 22]], [["XAUTHORITY", 22, 19]], [["systemPackages", 21, 9], ["variables", 22, 9]], [["user", 24, 40]], [["auto", 24, 35]], [["displayManager", 24, 20]], [["imports", 13, 7], ["hardware", 17, 7], ["virtualisation", 18, 7], ["environment", 20, 7], ["test-support", 24, 7]], [["maintainers", 31, 5]], [["SERVER_OPTIONS", 44, 13], ["CYCLE_RUBBER", 45, 13], ["SIZE_FACTOR", 46, 13]], [["SAY", 49, 13]], [["enable", 40, 11], ["name", 41, 11], ["port", 42, 11], ["settings", 43, 11], ["roundSettings", 48, 11]], [["SERVER_OPTIONS", 61, 13], ["CYCLE_RUBBER", 62, 13], ["SIZE_FACTOR", 63, 13]], [["SAY", 66, 13]], [["enable", 56, 11], ["name", 57, 11], ["package", 58, 11], ["port", 59, 11], ["settings", 60, 11], ["roundSettings", 65, 11]], [["SERVER_OPTIONS", 78, 13], ["CYCLE_RUBBER", 79, 13], ["SIZE_FACTOR", 80, 13]], [["SAY", 83, 13]], [["enable", 73, 11], ["name", 74, 11], ["package", 75, 11], ["port", 76, 11], ["settings", 77, 11], ["roundSettings", 82, 11]], [["high-rubber", 39, 9], ["sty", 55, 9], ["trunk", 72, 9]], [["servers", 38, 29]], [["armagetronad", 38, 16]], [["services", 38, 7]], [["server", 37, 5], ["client1", 92, 5], ["client2", 93, 5]], [["name", 29, 3], ["meta", 30, 3], ["enableOCR", 34, 3], ["nodes", 36, 3], ["testScript", 96, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/armagetronad.nix", [["enable", 17, 25]]);
-const pos$2 = nix.positions(here + "/armagetronad.nix", [["graphics", 17, 16]]);
-const pos$3 = nix.positions(here + "/armagetronad.nix", [["options", 19, 27]]);
-const pos$4 = nix.positions(here + "/armagetronad.nix", [["memorySize", 18, 22], ["qemu", 19, 22]]);
-const pos$5 = nix.positions(here + "/armagetronad.nix", [["XAUTHORITY", 22, 19]]);
-const pos$6 = nix.positions(here + "/armagetronad.nix", [["systemPackages", 21, 9], ["variables", 22, 9]]);
-const pos$7 = nix.positions(here + "/armagetronad.nix", [["user", 24, 40]]);
-const pos$8 = nix.positions(here + "/armagetronad.nix", [["auto", 24, 35]]);
-const pos$9 = nix.positions(here + "/armagetronad.nix", [["displayManager", 24, 20]]);
-const pos$10 = nix.positions(here + "/armagetronad.nix", [["imports", 13, 7], ["hardware", 17, 7], ["virtualisation", 18, 7], ["environment", 20, 7], ["test-support", 24, 7]]);
-const pos$11 = nix.positions(here + "/armagetronad.nix", [["maintainers", 31, 5]]);
-const pos$12 = nix.positions(here + "/armagetronad.nix", [["SERVER_OPTIONS", 44, 13], ["CYCLE_RUBBER", 45, 13], ["SIZE_FACTOR", 46, 13]]);
-const pos$13 = nix.positions(here + "/armagetronad.nix", [["SAY", 49, 13]]);
-const pos$14 = nix.positions(here + "/armagetronad.nix", [["enable", 40, 11], ["name", 41, 11], ["port", 42, 11], ["settings", 43, 11], ["roundSettings", 48, 11]]);
-const pos$15 = nix.positions(here + "/armagetronad.nix", [["SERVER_OPTIONS", 61, 13], ["CYCLE_RUBBER", 62, 13], ["SIZE_FACTOR", 63, 13]]);
-const pos$16 = nix.positions(here + "/armagetronad.nix", [["SAY", 66, 13]]);
-const pos$17 = nix.positions(here + "/armagetronad.nix", [["enable", 56, 11], ["name", 57, 11], ["package", 58, 11], ["port", 59, 11], ["settings", 60, 11], ["roundSettings", 65, 11]]);
-const pos$18 = nix.positions(here + "/armagetronad.nix", [["SERVER_OPTIONS", 78, 13], ["CYCLE_RUBBER", 79, 13], ["SIZE_FACTOR", 80, 13]]);
-const pos$19 = nix.positions(here + "/armagetronad.nix", [["SAY", 83, 13]]);
-const pos$20 = nix.positions(here + "/armagetronad.nix", [["enable", 73, 11], ["name", 74, 11], ["package", 75, 11], ["port", 76, 11], ["settings", 77, 11], ["roundSettings", 82, 11]]);
-const pos$21 = nix.positions(here + "/armagetronad.nix", [["high-rubber", 39, 9], ["sty", 55, 9], ["trunk", 72, 9]]);
-const pos$22 = nix.positions(here + "/armagetronad.nix", [["servers", 38, 29]]);
-const pos$23 = nix.positions(here + "/armagetronad.nix", [["armagetronad", 38, 16]]);
-const pos$24 = nix.positions(here + "/armagetronad.nix", [["services", 38, 7]]);
-const pos$25 = nix.positions(here + "/armagetronad.nix", [["server", 37, 5], ["client1", 92, 5], ["client2", 93, 5]]);
-const pos$26 = nix.positions(here + "/armagetronad.nix", [["name", 29, 3], ["meta", 30, 3], ["enableOCR", 34, 3], ["nodes", 36, 3], ["testScript", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,105 +15,108 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       imports: nix.thunk(() => [
         nix.path(here, "./common/user-account.nix"),
         nix.path(here, "./common/x11.nix"),
       ]),
       hardware: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        graphics: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+        [nix.POS]: $pos[1],
+        graphics: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
       })),
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         memorySize: 384n,
         qemu: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           options: nix.thunk(() => ["-vga none -device virtio-gpu-pci"]),
         })),
       })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "armagetronad"))]),
         variables: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           XAUTHORITY: nix.thunk(() => nix.str`/home/${user}/.Xauthority`),
         })),
       })),
       "test-support": nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        displayManager: nix.thunk(() => ({ [nix.POS]: pos$8, auto: nix.thunk(() => ({ [nix.POS]: pos$7, user: user })) })),
+        [nix.POS]: $pos[8],
+        displayManager: nix.thunk(() => ({
+          [nix.POS]: $pos[7],
+          auto: nix.thunk(() => ({ [nix.POS]: $pos[6], user: user })),
+        })),
       })),
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     name: "armagetronad",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "numinit"))]),
       };
     })()),
     enableOCR: true,
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           armagetronad: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             servers: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               "high-rubber": nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 enable: true,
                 name: "Smoke Test High Rubber Server",
                 port: 4534n,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   SERVER_OPTIONS: "High Rubber server made to run smoke tests.",
                   CYCLE_RUBBER: 40n,
                   SIZE_FACTOR: 0.5,
                 })),
                 roundSettings: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   SAY: nix.thunk(() => ["NixOS Smoke Test Server", "https://nixos.org"]),
                 })),
               })),
               sty: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 enable: true,
                 name: "Smoke Test sty+ct+ap Server",
                 package: nix.thunk(() => nix.sel(pkgs, "armagetronad", "0.2.9-sty+ct+ap", "dedicated")),
                 port: 4535n,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   SERVER_OPTIONS: "sty+ct+ap server made to run smoke tests.",
                   CYCLE_RUBBER: 20n,
                   SIZE_FACTOR: 0.5,
                 })),
                 roundSettings: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   SAY: nix.thunk(() => ["NixOS Smoke Test sty+ct+ap Server", "https://nixos.org"]),
                 })),
               })),
               trunk: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 enable: true,
                 name: "Smoke Test trunk Server",
                 package: nix.thunk(() => nix.sel(pkgs, "armagetronad", "0.4", "dedicated")),
                 port: 4536n,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   SERVER_OPTIONS: "0.4 server made to run smoke tests.",
                   CYCLE_RUBBER: 20n,
                   SIZE_FACTOR: 0.5,
                 })),
                 roundSettings: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   SAY: nix.thunk(() => ["NixOS Smoke Test 0.4 Server", "https://nixos.org"]),
                 })),
               })),

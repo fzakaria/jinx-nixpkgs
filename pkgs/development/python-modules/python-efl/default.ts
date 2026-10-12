@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 32, 5], ["hash", 33, 5]], [["updateScript", 78, 12]], [["description", 81, 5], ["homepage", 82, 5], ["platforms", 83, 5], ["license", 84, 5], ["maintainers", 88, 5], ["teams", 91, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["disabled", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["build-system", 40, 3], ["dependencies", 45, 3], ["preConfigure", 49, 3], ["nativeCheckInputs", 53, 3], ["preCheck", 57, 3], ["enabledTestPaths", 69, 3], ["disabledTestPaths", 71, 3], ["passthru", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildPythonPackage: false, pythonAtLeast: false, "pkg-config": false, enlightenment: false, packaging: false, setuptools: false, "dbus-python": false, pytestCheckHook: false, directoryListingUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 78, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 81, 5], ["homepage", 82, 5], ["platforms", 83, 5], ["license", 84, 5], ["maintainers", 88, 5], ["teams", 91, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["disabled", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["build-system", 40, 3], ["dependencies", 45, 3], ["preConfigure", 49, 3], ["nativeCheckInputs", 53, 3], ["preCheck", 57, 3], ["enabledTestPaths", 69, 3], ["disabledTestPaths", 71, 3], ["passthru", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.13"));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://download.enlightenment.org/rel/bindings/python/python-efl-${version}.tar.xz`),
           hash: "sha256-3Ns5fhIHihnpDYDnxvPP00WIZL/o1UWLzgNott4GKNc=",
         }))));
@@ -46,11 +43,11 @@ export default nix.lambda((args) => (() => {
         "tests/elementary/test_02_image_icon.py",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python bindings for Enlightenment Foundation Libraries",
         homepage: "https://github.com/DaveMDS/python-efl",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "enlightenment"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

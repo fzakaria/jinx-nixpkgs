@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gtk3: false, glib: false, glibmm_2_4: false, gtkmm3: false, gtkspell3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gtkspellmm";
       const version = "3.0.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.add("mirror://sourceforge/project/gtkspell/gtkspellmm/", nix.str`gtkspellmm-${version}.tar.xz`)),
           sha256: "0i8mxwyfv5mskachafa4qlh315q0cfph7s66s1s34nffadbmm1sv",
         }))));
@@ -30,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [gtk3, glib, glibmm_2_4, gtkmm3]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C++ binding for the gtkspell library",
         homepage: "https://gtkspell.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

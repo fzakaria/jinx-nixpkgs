@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 7], ["repo", 22, 7], ["tag", 23, 7], ["fetchSubmodules", 24, 7], ["hash", 25, 7]], [["doCheck", 47, 61]], [["referencing", 47, 20]], [["tests", 47, 14]], [["description", 52, 7], ["homepage", 53, 7], ["changelog", 54, 7], ["license", 55, 7], ["maintainers", 56, 7]], [["pname", 16, 5], ["version", 17, 5], ["pyproject", 18, 5], ["src", 20, 5], ["build-system", 28, 5], ["dependencies", 33, 5], ["nativeCheckInputs", 39, 5], ["doCheck", 45, 5], ["passthru", 47, 5], ["pythonImportsCheck", 49, 5], ["meta", 51, 5]]]);
 const formals$1 = { args: { lib: false, attrs: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, jsonschema: false, pytestCheckHook: false, "rpds-py": false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 7], ["repo", 22, 7], ["tag", 23, 7], ["fetchSubmodules", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 47, 61]]);
-const pos$3 = nix.positions(here + "/default.nix", [["referencing", 47, 20]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 47, 14]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 52, 7], ["homepage", 53, 7], ["changelog", 54, 7], ["license", 55, 7], ["maintainers", 56, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 5], ["pyproject", 18, 5], ["src", 20, 5], ["build-system", 28, 5], ["dependencies", 33, 5], ["nativeCheckInputs", 39, 5], ["doCheck", 45, 5], ["passthru", 47, 5], ["pythonImportsCheck", 49, 5], ["meta", 51, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.37.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-jsonschema",
           repo: "referencing",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,15 +34,15 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [jsonschema, pytestCheckHook]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          referencing: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
+          [nix.POS]: $pos[2],
+          referencing: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true })))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["referencing"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cross-specification JSON referencing",
         homepage: "https://github.com/python-jsonschema/referencing",
         changelog: nix.thunk(() => nix.str`https://github.com/python-jsonschema/referencing/releases/tag/${nix.sel(src, "tag")}`),
@@ -58,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

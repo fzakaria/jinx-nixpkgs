@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 22, 5], ["homepage", 23, 5], ["changelog", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["mainProgram", 29, 5]], [["__structuredAttrs", 7, 3], ["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["modRoot", 18, 3], ["vendorHash", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 22, 5], ["homepage", 23, 5], ["changelog", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["mainProgram", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["__structuredAttrs", 7, 3], ["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["modRoot", 18, 3], ["vendorHash", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "balena-compose-parser";
       const version = "0.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "balena-io-modules",
           repo: "balena-compose-parser",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const modRoot = "lib";
       const vendorHash = "sha256-t3snmAQe+rbclrvNjmFl9O9KAc5OFU9zH3r+1+B+JI4=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "compose-go wrapper for parsing balena-compatible docker-compose.yml files ",
         homepage: "https://github.com/balena-io-modules/balena-compose-parser",
         changelog: nix.thunk(() => nix.str`https://github.com/balena-io-modules/balena-compose-parser/blob/v${version}/CHANGELOG.md`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "balena-compose-parser",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         __structuredAttrs,
         pname,
         version,

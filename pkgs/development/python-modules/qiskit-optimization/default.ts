@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["broken", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["downloadPage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 39, 3], ["propagatedBuildInputs", 41, 3], ["nativeCheckInputs", 50, 3], ["pythonImportsCheck", 57, 3], ["pytestFlags", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, decorator: false, docplex: false, networkx: false, numpy: false, qiskit: false, scipy: false, pytestCheckHook: false, ddt: false, pylatexenc: false, "qiskit-aer": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["broken", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["downloadPage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 39, 3], ["propagatedBuildInputs", 41, 3], ["nativeCheckInputs", 50, 3], ["pythonImportsCheck", 57, 3], ["pytestFlags", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qiskit",
           repo: "qiskit-optimization",
           tag: version,
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["qiskit_optimization"]);
       const pytestFlags = nix.thunk(() => ["--durations=10"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: true,
         description: "Software for developing quantum computing programs",
         homepage: "https://qiskit.org",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

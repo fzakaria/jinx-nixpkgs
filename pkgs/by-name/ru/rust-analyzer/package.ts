@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 13, 13], ["version", 13, 19], ["src", 14, 39], ["meta", 14, 43], ["nativeBuildInputs", 15, 5]]]);
 const formals$1 = { args: { rustPlatform: false, runCommand: false, makeWrapper: false, "rust-analyzer-unwrapped": false, pname: true, version: true, rustSrc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 13, 13], ["version", 13, 19], ["src", 14, 39], ["meta", 14, 43], ["nativeBuildInputs", 15, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => nix.sel(rust_analyzer_unwrapped, "version"));
   const rustSrc = nix.argOr($, "rustSrc", () => nix.sel(rustPlatform, "rustLibSrc"));
   return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.attr(rust_analyzer_unwrapped, "src")),

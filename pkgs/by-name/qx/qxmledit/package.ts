@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["broken", 53, 5], ["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["changelog", 58, 5], ["mainProgram", 59, 5]], [["pname", 10, 3], ["version", 11, 3], ["outputs", 13, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["qmakeFlags", 35, 3], ["preConfigure", 41, 3], ["dontWrapQtApps", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libsForQt5: false, libGLU: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 53, 5], ["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["changelog", 58, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["outputs", 13, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["qmakeFlags", 35, 3], ["preConfigure", 41, 3], ["dontWrapQtApps", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const libGLU = nix.arg($, "libGLU");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "qxmledit",
       version: "0.9.17",
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lbellonda",
           repo: "qxmledit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "export QXMLEDIT_INST_DATA_DIR=\"$out/share/data\"\nexport QXMLEDIT_INST_TRANSLATIONS_DIR=\"$out/share/i18n\"\nexport QXMLEDIT_INST_INCLUDE_DIR=\"$out/include\"\nexport QXMLEDIT_INST_DIR=\"$out/bin\"\nexport QXMLEDIT_INST_LIB_DIR=\"$out/lib\"\nexport QXMLEDIT_INST_DOC_DIR=\"$doc\"\n",
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Simple XML editor based on qt libraries",
         homepage: "https://sourceforge.net/projects/qxmledit",

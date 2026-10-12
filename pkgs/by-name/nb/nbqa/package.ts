@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 7], ["repo", 24, 7], ["tag", 25, 7], ["hash", 26, 7]], [["toolchain", 33, 27]], [["dependencies", 108, 13], ["doCheck", 109, 13]], [["withTools", 103, 7], ["updateScript", 113, 7]], [["homepage", 117, 7], ["changelog", 118, 7], ["description", 119, 7], ["license", 120, 7], ["maintainers", 121, 7], ["mainProgram", 122, 7]], [["pname", 18, 5], ["version", 19, 5], ["pyproject", 20, 5], ["src", 22, 5], ["build-system", 29, 5], ["optional-dependencies", 33, 5], ["dependencies", 48, 5], ["postPatch", 56, 5], ["nativeCheckInputs", 63, 5], ["disabledTests", 79, 5], ["disabledTestPaths", 95, 5], ["passthru", 100, 5], ["meta", 116, 5]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, ruff: false, addBinToPathHook: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 7], ["repo", 24, 7], ["tag", 25, 7], ["hash", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["toolchain", 33, 27]]);
 const formals$2 = { args: { dependencies: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/package.nix", [["dependencies", 108, 13], ["doCheck", 109, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["withTools", 103, 7], ["updateScript", 113, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 117, 7], ["changelog", 118, 7], ["description", 119, 7], ["license", 120, 7], ["maintainers", 121, 7], ["mainProgram", 122, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 5], ["version", 19, 5], ["pyproject", 20, 5], ["src", 22, 5], ["build-system", 29, 5], ["optional-dependencies", 33, 5], ["dependencies", 48, 5], ["postPatch", 56, 5], ["nativeCheckInputs", 63, 5], ["disabledTests", 79, 5], ["disabledTestPaths", 95, 5], ["passthru", 100, 5], ["meta", 116, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nbQA-dev",
           repo: "nbQA",
           tag: version,
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })());
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         toolchain: nix.thunk(() => nix.concat((() => {
           const w_1 = nix.withScope(python3Packages, null);
           return [
@@ -87,12 +82,12 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_include_exclude.py"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         withTools: (selector) => nix.app(nix.sel(nbqa, "overridePythonAttrs"), nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const dependencies_1 = nix.arg($_1, "dependencies");
             return {
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               dependencies: nix.thunk(() => nix.concat(dependencies_1, nix.app(selector, python3Packages))),
               doCheck: false,
             };
@@ -100,7 +95,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/nbQA-dev/nbQA",
         changelog: "https://nbqa.readthedocs.io/en/latest/history.html",
         description: "Run ruff, isort, pyupgrade, mypy, pylint, flake8, black, blacken-docs, and more on Jupyter Notebooks",
@@ -112,7 +107,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "nbqa",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

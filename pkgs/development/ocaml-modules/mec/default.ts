@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["duneVersion", 23, 3], ["minimalOCamlVersion", 25, 3], ["propagatedBuildInputs", 27, 3], ["buildInputs", 36, 3], ["checkInputs", 40, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, buildDunePackage: false, zarith: false, eqaf: false, "bigarray-compat": false, hex: false, "ff-sig": false, ff: false, alcotest: false, bisect_ppx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["duneVersion", 23, 3], ["minimalOCamlVersion", 25, 3], ["propagatedBuildInputs", 27, 3], ["buildInputs", 36, 3], ["checkInputs", 40, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const bisect_ppx = nix.arg($, "bisect_ppx");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mec",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gitlab.com/nomadic-labs/cryptography/ocaml-ec/-/archive/${nix.sel(finalAttrs, "version")}/ocaml-ec-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-uIcGj/exSfuuzsv6C/bnJXpYRu3OY3dcKMW/7+qwi2U=",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zarith]),
       checkInputs: nix.thunk(() => [alcotest, bisect_ppx]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Mec - Mini Elliptic Curve library",
         homepage: "https://gitlab.com/nomadic-labs/cryptography/ocaml-ec",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

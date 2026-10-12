@@ -2,24 +2,22 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/default.nix", [["src", 7, 5], ["filter", 8, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lockFile", 16, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 4, 3], ["src", 6, 3], ["cargoLock", 16, 3]]);
+const $pos = nix.positions(here + "/default.nix", [[["src", 7, 5], ["filter", 8, 5]], [["lockFile", 16, 13]], [["name", 4, 3], ["src", 6, 3], ["cargoLock", 16, 3]]]);
 
 export default nix.thunk(() => (() => {
   const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../.")), nix.thunk(() => ({})))), null);
   return nix.app(nix.sel(nix.lookup(w, "rustPlatform"), "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "convert-to-import-cargo-lock",
       src: nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "lib"), "cleanSourceWith"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           src: nix.path(here, "./."),
           filter: (name) => (type) => (() => {
             const name$ = nix.thunk(() => nix.app(nix.builtins.baseNameOf, name));
             return (nix.asBool(!nix.eq(name$, "default.nix")) && nix.asBool(!nix.eq(name$, "target")));
           })(),
         })))),
-      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") })),
     })));
 })());
 //# sourceMappingURL=default.ts.map

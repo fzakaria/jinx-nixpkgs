@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 81, 9], ["repo", 82, 9], ["tag", 83, 9], ["hash", 84, 9]], [["version", 78, 15], ["src", 80, 7]], [["owner", 93, 5], ["repo", 94, 5], ["tag", 95, 5], ["hash", 96, 5]], [["cava", 161, 7], ["dbusmenu-gtk", 162, 7], ["gps", 163, 7], ["jack", 164, 7], ["libevdev", 165, 7], ["libinput", 166, 7], ["libnl", 167, 7], ["libudev", 168, 7], ["man-pages", 169, 7], ["mpd", 170, 7], ["mpris", 171, 7], ["pipewire", 172, 7], ["pulseaudio", 173, 7], ["rfkill", 174, 7], ["sndio", 175, 7], ["systemd", 176, 7], ["tests", 177, 7], ["upower_glib", 178, 7], ["wireplumber", 179, 7]], [["experimental", 182, 7], ["niri", 183, 7]], [["PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR", 187, 5]], [["updateScript", 209, 5]], [["homepage", 213, 5], ["description", 214, 5], ["changelog", 215, 5], ["license", 216, 5], ["mainProgram", 217, 5], ["maintainers", 218, 5], ["platforms", 225, 5]], [["pname", 89, 3], ["version", 90, 3], ["src", 92, 3], ["postUnpack", 99, 3], ["nativeBuildInputs", 106, 3], ["propagatedBuildInputs", 116, 3], ["buildInputs", 122, 3], ["nativeCheckInputs", 156, 3], ["doCheck", 157, 3], ["mesonFlags", 159, 3], ["env", 186, 3], ["postPatch", 190, 3], ["preFixup", 195, 3], ["nativeInstallCheckInputs", 202, 3], ["doInstallCheck", 206, 3], ["passthru", 208, 3], ["meta", 212, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bash: false, fetchFromGitHub: false, SDL2: false, "alsa-lib": false, catch2_3: false, fftw: false, glib: false, "gobject-introspection": false, gpsd: false, "gtk-layer-shell": false, gtkmm3: false, iniparser: false, jsoncpp: false, "libdbusmenu-gtk3": false, libevdev: false, "libinotify-kqueue": false, libinput: false, libjack2: false, libmpdclient: false, libnl: false, libpulseaudio: false, libsigcxx_2_0: false, libxkbcommon: false, meson: false, ncurses: false, ninja: false, pipewire: false, "pkg-config": false, playerctl: false, portaudio: false, python3: false, scdoc: false, sndio: false, spdlog: false, systemdMinimal: false, udev: false, upower: false, versionCheckHook: false, wayland: false, "wayland-scanner": false, wireplumber: false, wrapGAppsHook3: false, cavaSupport: true, enableManpages: true, evdevSupport: true, experimentalPatches: true, gpsSupport: true, inputSupport: true, jackSupport: true, mpdSupport: true, mprisSupport: true, niriSupport: true, nlSupport: true, pipewireSupport: true, pulseSupport: true, rfkillSupport: true, runTests: true, sndioSupport: true, systemdSupport: true, traySupport: true, udevSupport: true, upowerSupport: true, wireplumberSupport: true, withMediaPlayer: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 81, 9], ["repo", 82, 9], ["tag", 83, 9], ["hash", 84, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 78, 15], ["src", 80, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 93, 5], ["repo", 94, 5], ["tag", 95, 5], ["hash", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cava", 161, 7], ["dbusmenu-gtk", 162, 7], ["gps", 163, 7], ["jack", 164, 7], ["libevdev", 165, 7], ["libinput", 166, 7], ["libnl", 167, 7], ["libudev", 168, 7], ["man-pages", 169, 7], ["mpd", 170, 7], ["mpris", 171, 7], ["pipewire", 172, 7], ["pulseaudio", 173, 7], ["rfkill", 174, 7], ["sndio", 175, 7], ["systemd", 176, 7], ["tests", 177, 7], ["upower_glib", 178, 7], ["wireplumber", 179, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["experimental", 182, 7], ["niri", 183, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR", 187, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 209, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 213, 5], ["description", 214, 5], ["changelog", 215, 5], ["license", 216, 5], ["mainProgram", 217, 5], ["maintainers", 218, 5], ["platforms", 225, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 89, 3], ["version", 90, 3], ["src", 92, 3], ["postUnpack", 99, 3], ["nativeBuildInputs", 106, 3], ["propagatedBuildInputs", 116, 3], ["buildInputs", 122, 3], ["nativeCheckInputs", 156, 3], ["doCheck", 157, 3], ["mesonFlags", 159, 3], ["env", 186, 3], ["postPatch", 190, 3], ["preFixup", 195, 3], ["nativeInstallCheckInputs", 202, 3], ["doInstallCheck", 206, 3], ["passthru", 208, 3], ["meta", 212, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -85,10 +77,10 @@ export default nix.lambda((args) => (() => {
   const libcava = nix.thunk(() => (() => {
     const version = "0.10.7-beta";
     return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LukashonakV",
           repo: "cava",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -97,11 +89,11 @@ export default nix.lambda((args) => (() => {
     };
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "waybar",
       version: "0.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "Alexays",
           repo: "Waybar",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -126,7 +118,7 @@ popd
       nativeCheckInputs: nix.thunk(() => [catch2_3]),
       doCheck: runTests,
       mesonFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonEnable")), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           cava: nix.thunk(() => (nix.asBool(cavaSupport) && nix.asBool(nix.app(nix.sel(lib, "asserts", "assertMsg"), sndioSupport, "Sndio support is required for Cava")))),
           "dbusmenu-gtk": traySupport,
           gps: gpsSupport,
@@ -146,9 +138,9 @@ popd
           tests: runTests,
           upower_glib: upowerSupport,
           wireplumber: wireplumberSupport,
-        }))), nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonBool")), nix.thunk(() => ({ [nix.POS]: pos$5, experimental: experimentalPatches, niri: niriSupport }))))),
+        }))), nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonBool")), nix.thunk(() => ({ [nix.POS]: $pos[4], experimental: experimentalPatches, niri: niriSupport }))))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), systemdSupport, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/user`),
         })))),
       postPatch: nix.thunk(() => nix.str`substituteInPlace include/util/command.hpp \\
@@ -162,11 +154,11 @@ wrapProgram $out/bin/waybar-mediaplayer.py \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://github.com/alexays/waybar",
         description: "Highly customizable Wayland bar for Sway and Wlroots based compositors",
         changelog: nix.thunk(() => nix.str`https://github.com/alexays/waybar/releases/tag/${nix.sel(finalAttrs, "version")}`),

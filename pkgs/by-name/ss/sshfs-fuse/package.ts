@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 45, 7]], [["changelog", 76, 5], ["description", 77, 5], ["longDescription", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["nativeCheckInputs", 40, 3], ["env", 45, 3], ["postInstall", 49, 3], ["outputs", 57, 3], ["checkPhase", 63, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, "pkg-config": false, ninja: false, docutils: false, makeWrapper: false, fuse3: false, "macfuse-stubs": false, glib: false, which: false, python3Packages: false, openssh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 76, 5], ["description", 77, 5], ["longDescription", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["nativeCheckInputs", 40, 3], ["env", 45, 3], ["postInstall", 49, 3], ["outputs", 57, 3], ["checkPhase", 63, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const openssh = nix.arg($, "openssh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sshfs-fuse",
       version: "3.7.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libfuse",
           repo: "sshfs",
           tag: nix.thunk(() => nix.str`sshfs-${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [fuse3, glib]),
       nativeCheckInputs: nix.thunk(() => [which, nix.thunk(() => nix.sel(python3Packages, "pytest"))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")), "-D_FILE_OFFSET_BITS=64")),
       })),
       postInstall: nix.thunk(() => nix.add("mkdir -p $out/sbin\nln -sf $out/bin/sshfs $out/sbin/mount.sshfs\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.str`wrapProgram $out/bin/sshfs --prefix PATH : "${openssh}/bin"
@@ -56,7 +53,7 @@ substituteInPlace test/util.py --replace "/dev/fuse" "/dev/null"
 ${nix.sel(python3Packages, "python", "interpreter")} -m pytest test/
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/libfuse/sshfs/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog.rst`),
         description: "FUSE-based filesystem that allows remote filesystems to be mounted over SSH",
         longDescription: nix.thunk(() => nix.sel(macfuse_stubs, "warning")),

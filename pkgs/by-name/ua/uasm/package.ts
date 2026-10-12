@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["NIX_CFLAGS_COMPILE", 31, 7]], [["package", 71, 5], ["command", 72, 5], ["version", 73, 5]], [["version", 70, 18]], [["tests", 70, 12]], [["homepage", 77, 5], ["description", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5], ["license", 85, 5], ["broken", 86, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["enableParallelBuilding", 20, 3], ["makefile", 22, 3], ["env", 31, 3], ["installPhase", 38, 3], ["outputs", 57, 3], ["postPatch", 62, 3], ["passthru", 70, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, testers: false, uasm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 71, 5], ["command", 72, 5], ["version", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 70, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 70, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5], ["license", 85, 5], ["broken", 86, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["enableParallelBuilding", 20, 3], ["makefile", 22, 3], ["env", 31, 3], ["installPhase", 38, 3], ["outputs", 57, 3], ["postPatch", 62, 3], ["passthru", 70, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const uasm = nix.arg($, "uasm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "uasm",
       version: "2.57",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Terraspace",
           repo: "UASM",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}r`),
@@ -32,7 +26,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       makefile: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Makefile-OSX-Clang-64.mak" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) ? "Makefile-DOS-GCC.mak" : "Makefile-Linux-GCC-64.mak"))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-std=c99",
             "-Wno-incompatible-pointer-types",
@@ -55,11 +49,11 @@ substituteInPlace Makefile-Linux-GCC-64.mak \\
   --replace-fail "CC = gcc" "CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: uasm,
               command: "uasm -h",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +61,7 @@ substituteInPlace Makefile-Linux-GCC-64.mak \\
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://www.terraspace.co.uk/uasm.html",
         description: "Free MASM-compatible assembler based on JWasm",
         mainProgram: "uasm",

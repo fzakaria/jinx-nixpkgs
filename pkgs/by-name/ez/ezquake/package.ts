@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 5]], [["updateScript", 73, 12]], [["homepage", 76, 5], ["description", 77, 5], ["mainProgram", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["enableParallelBuilding", 57, 3], ["installPhase", 59, 3], ["passthru", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { SDL2: false, cmake: false, curlMinimal: false, expat: false, fetchFromGitHub: false, jansson: false, lib: false, libGL: false, libx11: false, libjpeg: false, libpng: false, libsndfile: false, minizip: false, "nix-update-script": false, pcre2: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 73, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["description", 77, 5], ["mainProgram", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["enableParallelBuilding", 57, 3], ["installPhase", 59, 3], ["passthru", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ezquake",
       version: "3.6.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "QW-Group",
           repo: "ezquake-source",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,11 +64,11 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://ezquake.com/",
         description: "Modern QuakeWorld client focused on competitive online play",
         mainProgram: "ezquake",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["scripts", 21, 12]], [["platforms", 30, 28], ["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontBuild", 19, 3], ["passthru", 21, 3], ["installPhase", 23, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, weechat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["scripts", 21, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["platforms", 30, 28], ["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontBuild", 19, 3], ["passthru", 21, 3], ["installPhase", 23, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,19 +15,19 @@ export default nix.lambda((args) => (() => {
       const pname = "edit-weechat";
       const version = "1.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "keith",
           repo: "edit-weechat",
           rev: version,
           sha256: "1s42r0l0xkhlp6rbc23cm4vlda91il6cg53w33hqfhd2wz91s66w",
         }))));
       const dontBuild = true;
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["edit.py"]) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], scripts: nix.thunk(() => ["edit.py"]) }));
       const installPhase = "runHook preInstall\ninstall -D edit.py $out/share/edit.py\nrunHook postInstall\n";
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(weechat, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "This simple weechat plugin allows you to compose messages in your $EDITOR",
         homepage: "https://github.com/keith/edit-weechat",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

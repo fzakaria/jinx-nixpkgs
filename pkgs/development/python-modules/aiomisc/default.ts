@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 29, 26], ["version", 29, 32], ["hash", 30, 5]], [["aiohttp", 54, 5], ["cron", 56, 5], ["raven", 58, 5], ["rich", 62, 5], ["uvloop", 63, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 44, 3], ["optional-dependencies", 53, 3], ["pythonImportsCheck", 66, 3], ["doCheck", 69, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, aiocontextvars: false, aiohttp: false, aiothreads: false, "async-timeout": false, buildPythonPackage: false, colorlog: false, croniter: false, fastapi: false, fetchPypi: false, "logging-journald": false, setuptools: false, "setuptools-scm": false, pytestCheckHook: false, raven: false, rich: false, setproctitle: false, uvloop: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 29, 26], ["version", 29, 32], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aiohttp", 54, 5], ["cron", 56, 5], ["raven", 58, 5], ["rich", 62, 5], ["uvloop", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 44, 3], ["optional-dependencies", 53, 3], ["pythonImportsCheck", 66, 3], ["doCheck", 69, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const setproctitle = nix.arg($, "setproctitle");
   const uvloop = nix.arg($, "uvloop");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "aiomisc",
       version: "18.0.28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-SA/iJD23E6ze1TuzycDQTcW5/nLoMgTdF9qzhrBVaTQ=",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => nix.concat([aiothreads, colorlog], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [logging_journald])))),
       nativeCheckInputs: nix.thunk(() => nix.concat([aiocontextvars, async_timeout, fastapi, pytestCheckHook, setproctitle], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aiohttp: nix.thunk(() => [aiohttp]),
         cron: nix.thunk(() => [croniter]),
         raven: nix.thunk(() => [aiohttp, raven]),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aiomisc"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Miscellaneous utils for asyncio",
         homepage: "https://github.com/aiokitchen/aiomisc",
         changelog: "https://github.com/aiokitchen/aiomisc/blob/master/CHANGELOG.md",

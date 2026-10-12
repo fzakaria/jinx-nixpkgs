@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["url", 29, 5], ["hash", 30, 5], ["stripRoot", 31, 5]], [["NIX_LDFLAGS", 76, 7]], [["changelog", 81, 5], ["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["platforms", 90, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["models", 27, 3], ["patches", 34, 3], ["sourceRoot", 39, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 45, 3], ["cmakeFlags", 51, 3], ["buildInputs", 57, 3], ["installPhase", 65, 3], ["env", 76, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, fetchzip: false, glslang: false, installShellFiles: false, lib: false, libwebp: false, ncnn: false, stdenv: false, "vulkan-headers": false, "vulkan-loader": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5], ["stripRoot", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 76, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 81, 5], ["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["platforms", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["models", 27, 3], ["patches", 34, 3], ["sourceRoot", 39, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 45, 3], ["cmakeFlags", 51, 3], ["buildInputs", 57, 3], ["installPhase", 65, 3], ["env", 76, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const vulkan_headers = nix.arg($, "vulkan-headers");
   const vulkan_loader = nix.arg($, "vulkan-loader");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "upscayl-ncnn",
       version: "20240601-103425",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "upscayl",
           repo: "upscayl-ncnn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-rGnjL+sU5x3VXHnvuYXVdxGmHdj9eBkIZK3CwL89lN0=",
         })))),
       models: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesrgan-ncnn-vulkan-20220424-ubuntu.zip",
           hash: "sha256-1YiPzv1eGnHrazJFRvl37+C1F2xnoEbN0UQYkxLT+JQ=",
           stripRoot: false,
@@ -59,11 +55,11 @@ ln -s ${nix.sel(finalAttrs, "models")}/models $out/share
 runHook postInstall
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader]))}`))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/upscayl/upscayl-ncnn/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Upscayl backend powered by the NCNN framework and Real-ESRGAN architecture",
         homepage: "https://github.com/upscayl/upscayl-ncnn",

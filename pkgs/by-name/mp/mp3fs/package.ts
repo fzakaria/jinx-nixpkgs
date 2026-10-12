@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["name", 30, 7], ["url", 32, 7], ["hash", 33, 7]], [["description", 55, 5], ["longDescription", 56, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["enableParallelBuilding", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, flac: false, fuse3: false, lame: false, libid3tag: false, libvorbis: false, autoreconfHook: false, "pkg-config": false, pandoc: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["longDescription", 56, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["enableParallelBuilding", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pandoc = nix.arg($, "pandoc");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mp3fs",
       version: "1.1.1-unstable-2023-01-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "khenriks",
           repo: "mp3fs",
           rev: "cd2ca80eb3912ff8385e6d537df10d9a768a3a96",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Enable fuse3 support.patch",
             url: "https://github.com/khenriks/mp3fs/commit/6e1326de4a19b236eef88b89599755adf394526f.patch?full_index=1",
             hash: "sha256-V2HZy0jiXAHGAjre+QtCdGev7maWJ8hW3F2e/87CEKA=",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [flac, fuse3, lame, libid3tag, libvorbis, zlib]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "FUSE file system that transparently transcodes to MP3",
         longDescription: "A read-only FUSE filesystem which transcodes between audio formats\n(currently FLAC and Ogg Vorbis to MP3) on the fly when opened and read.\nThis can let you use a FLAC or Ogg Vorbis collection with software\nand/or hardware which only understands the MP3 format, or transcode\nfiles through simple drag-and-drop in a file browser.\n",
         homepage: "https://khenriks.github.io/mp3fs/",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["version", 13, 11], ["source", 17, 3], ["buildFfmpeg", 24, 3], ["buildFfplay", 25, 3], ["buildAvdevice", 26, 3], ["buildAvfilter", 27, 3], ["buildPostproc", 28, 3], ["buildSwresample", 29, 3], ["buildSwscale", 30, 3], ["withAlsa", 32, 3], ["withAmf", 33, 3], ["withAom", 34, 3], ["withAss", 35, 3], ["withBluray", 36, 3], ["withBzlib", 37, 3], ["withCudaLLVM", 38, 3], ["withCuvid", 39, 3], ["withDrm", 40, 3], ["withGmp", 41, 3], ["withNetwork", 42, 3], ["withNvcodec", 43, 3], ["withFontconfig", 44, 3], ["withFreetype", 45, 3], ["withFribidi", 46, 3], ["withGnutls", 47, 3], ["withIconv", 48, 3], ["withLzma", 49, 3], ["withMp3lame", 50, 3], ["withOpencl", 51, 3], ["withOpenjpeg", 52, 3], ["withOpenmpt", 53, 3], ["withOpus", 54, 3], ["withRist", 55, 3], ["withSoxr", 56, 3], ["withSpeex", 57, 3], ["withSrt", 58, 3], ["withSsh", 59, 3], ["withSvtav1", 60, 3], ["withTheora", 61, 3], ["withV4l2", 62, 3], ["withVaapi", 63, 3], ["withVidStab", 64, 3], ["withVorbis", 65, 3], ["withVpx", 66, 3], ["withVulkan", 67, 3], ["withWebp", 68, 3], ["withX264", 69, 3], ["withX265", 70, 3], ["withXml2", 71, 3], ["withXvid", 72, 3], ["withZimg", 73, 3], ["withZlib", 74, 3], ["withZvbi", 75, 3]], [["name", 82, 9], ["url", 83, 9], ["hash", 84, 9]], [["license", 109, 26], ["pkgConfigModules", 109, 34], ["mainProgram", 110, 7], ["description", 111, 7], ["homepage", 112, 7], ["maintainers", 113, 7]], [["pname", 78, 5], ["patches", 80, 5], ["configureFlags", 88, 5], ["doCheck", 106, 5], ["meta", 108, 5]]]);
 const formals$1 = { args: { "ffmpeg-headless": false, fetchFromGitHub: false, fetchpatch2: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 13, 11], ["source", 17, 3], ["buildFfmpeg", 24, 3], ["buildFfplay", 25, 3], ["buildAvdevice", 26, 3], ["buildAvfilter", 27, 3], ["buildPostproc", 28, 3], ["buildSwresample", 29, 3], ["buildSwscale", 30, 3], ["withAlsa", 32, 3], ["withAmf", 33, 3], ["withAom", 34, 3], ["withAss", 35, 3], ["withBluray", 36, 3], ["withBzlib", 37, 3], ["withCudaLLVM", 38, 3], ["withCuvid", 39, 3], ["withDrm", 40, 3], ["withGmp", 41, 3], ["withNetwork", 42, 3], ["withNvcodec", 43, 3], ["withFontconfig", 44, 3], ["withFreetype", 45, 3], ["withFribidi", 46, 3], ["withGnutls", 47, 3], ["withIconv", 48, 3], ["withLzma", 49, 3], ["withMp3lame", 50, 3], ["withOpencl", 51, 3], ["withOpenjpeg", 52, 3], ["withOpenmpt", 53, 3], ["withOpus", 54, 3], ["withRist", 55, 3], ["withSoxr", 56, 3], ["withSpeex", 57, 3], ["withSrt", 58, 3], ["withSsh", 59, 3], ["withSvtav1", 60, 3], ["withTheora", 61, 3], ["withV4l2", 62, 3], ["withVaapi", 63, 3], ["withVidStab", 64, 3], ["withVorbis", 65, 3], ["withVpx", 66, 3], ["withVulkan", 67, 3], ["withWebp", 68, 3], ["withX264", 69, 3], ["withX265", 70, 3], ["withXml2", 71, 3], ["withXvid", 72, 3], ["withZimg", 73, 3], ["withZlib", 74, 3], ["withZvbi", 75, 3]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 82, 9], ["url", 83, 9], ["hash", 84, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["license", 109, 26], ["pkgConfigModules", 109, 34], ["mainProgram", 110, 7], ["description", 111, 7], ["homepage", 112, 7], ["maintainers", 113, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 78, 5], ["patches", 80, 5], ["configureFlags", 88, 5], ["doCheck", 106, 5], ["meta", 108, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "5.1.10";
   return nix.app(nix.sel(nix.app(nix.sel(ffmpeg_headless, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: version,
       source: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Servarr",
           repo: "FFmpeg",
           rev: "9eecad42d64ab888b9bb366df998b5b7cac0e2bc",
@@ -78,11 +74,11 @@ export default nix.lambda((args) => (() => {
       withZlib: false,
       withZvbi: false,
     }))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "servarr-ffmpeg",
       patches: nix.thunk(() => nix.concat(nix.sel(old, "patches"), [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix_build_failure_due_to_libjxl_version_to_new",
             url: "https://git.ffmpeg.org/gitweb/ffmpeg.git/patch/75b1a555a70c178a9166629e43ec2f6250219eb2",
             hash: "sha256-+2kzfPJf5piim+DqEgDuVEEX5HLwRsxq0dWONJ4ACrU=",
@@ -103,7 +99,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(old, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         license: nix.thunk(() => nix.attr(from, "license")),
         pkgConfigModules: nix.thunk(() => nix.attr(from, "pkgConfigModules")),
         mainProgram: "ffprobe",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 19, 13], ["owner", 20, 5], ["repo", 21, 5], ["sha256", 22, 5]], [["description", 26, 5], ["mainProgram", 27, 5], ["homepage", 28, 5], ["maintainers", 29, 5], ["license", 33, 5]], [["pname", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["subPackages", 12, 3], ["vendorHash", 14, 3], ["doCheck", 16, 3], ["src", 18, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 19, 13], ["owner", 20, 5], ["repo", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["mainProgram", 27, 5], ["homepage", 28, 5], ["maintainers", 29, 5], ["license", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["subPackages", 12, 3], ["vendorHash", 14, 3], ["doCheck", 16, 3], ["src", 18, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-WjOPmkzOZC0cXOJKAU6iU/Y+NzBv6fHB8xwNMKDnhvY=";
       const doCheck = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: rev,
           owner: "rogpeppe",
           repo: "godef",
           sha256: "sha256-0qmKn0TIrRH3B54/7/XB1zjaVA4R3LbbsPzLByfEJuo=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Print where symbols are defined in Go source code",
         mainProgram: "godef",
         homepage: "https://github.com/rogpeppe/godef/",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         rev,

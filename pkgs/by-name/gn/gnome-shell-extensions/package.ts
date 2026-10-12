@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["gmenu_path", 27, 7]], [["gtop_path", 30, 7]], [["packageName", 67, 41]], [["updateScript", 67, 5]], [["homepage", 71, 5], ["changelog", 72, 5], ["description", 73, 5], ["teams", 74, 5], ["license", 75, 5], ["platforms", 76, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["nativeBuildInputs", 34, 3], ["mesonFlags", 42, 3], ["preFixup", 44, 3], ["passthru", 66, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, gettext: false, "pkg-config": false, libgtop: false, glib: false, gnome: false, "gnome-menus": false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gmenu_path", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["gtop_path", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageName", 67, 41]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 71, 5], ["changelog", 72, 5], ["description", 73, 5], ["teams", 74, 5], ["license", 75, 5], ["platforms", 76, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["nativeBuildInputs", 34, 3], ["mesonFlags", 42, 3], ["preFixup", 44, 3], ["passthru", 66, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,21 +20,21 @@ export default nix.lambda((args) => (() => {
   const gnome_menus = nix.arg($, "gnome-menus");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gnome-shell-extensions",
       version: "50.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-shell-extensions/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-shell-extensions-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ofHWxSjS0pJuh02+nbFuu7nRiVZPil2++bMWqwSPodE=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix_gmenu.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             gmenu_path: nix.thunk(() => nix.str`${gnome_menus}/lib/girepository-1.0`),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix_gtop.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             gtop_path: nix.thunk(() => nix.str`${libgtop}/lib/girepository-1.0`),
           })))),
       ]),
@@ -67,11 +61,11 @@ for f in $extensiondir/*; do
 done
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "gnome-shell-extensions" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[3], packageName: "gnome-shell-extensions" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-shell-extensions",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-shell-extensions/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Modify and extend GNOME Shell functionality and behavior",

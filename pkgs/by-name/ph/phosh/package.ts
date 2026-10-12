@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 52, 5], ["group", 53, 5], ["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5], ["forceFetchGit", 59, 5]], [["domain", 64, 5], ["owner", 65, 5], ["repo", 66, 5], ["rev", 67, 5], ["hash", 68, 5], ["forceFetchGit", 70, 5]], [["domain", 78, 5], ["group", 79, 5], ["owner", 80, 5], ["repo", 81, 5], ["tag", 82, 5], ["hash", 83, 5], ["forceFetchGit", 85, 5]], [["phosh", 173, 11]], [["providedSessions", 172, 5], ["tests", 173, 5], ["updateScript", 174, 5]], [["description", 178, 5], ["homepage", 179, 5], ["changelog", 180, 5], ["license", 181, 5], ["maintainers", 182, 5], ["platforms", 186, 5], ["mainProgram", 187, 5]], [["pname", 74, 3], ["version", 75, 3], ["src", 77, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 100, 3], ["nativeCheckInputs", 130, 3], ["doCheck", 136, 3], ["postPatch", 138, 3], ["mesonFlags", 143, 3], ["checkPhase", 154, 3], ["preFixup", 164, 3], ["passthru", 171, 3], ["meta", 177, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "nix-update-script": false, meson: false, ninja: false, "pkg-config": false, python3: false, "wayland-scanner": false, wrapGAppsHook4: false, libadwaita: false, libhandy: false, libxkbcommon: false, libgudev: false, callaudiod: false, pulseaudio: false, evince: false, glib: false, modemmanager: false, gtk4: false, "gnome-bluetooth": false, "gnome-control-center": false, "gnome-desktop": false, "gnome-session": false, "gnome-shell": false, gcr_3: false, pam: false, systemd: false, upower: false, wayland: false, dbus: false, "xvfb-run": false, phoc: false, feedbackd: false, networkmanager: false, polkit: false, libsecret: false, "evolution-data-server": false, nixosTests: false, gmobile: false, appstream: false, qrcodegen: false, "gobject-introspection": false, docutils: false, "gi-docgen": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 52, 5], ["group", 53, 5], ["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5], ["forceFetchGit", 59, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["domain", 64, 5], ["owner", 65, 5], ["repo", 66, 5], ["rev", 67, 5], ["hash", 68, 5], ["forceFetchGit", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["domain", 78, 5], ["group", 79, 5], ["owner", 80, 5], ["repo", 81, 5], ["tag", 82, 5], ["hash", 83, 5], ["forceFetchGit", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["phosh", 173, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["providedSessions", 172, 5], ["tests", 173, 5], ["updateScript", 174, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 178, 5], ["homepage", 179, 5], ["changelog", 180, 5], ["license", 181, 5], ["maintainers", 182, 5], ["platforms", 186, 5], ["mainProgram", 187, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 74, 3], ["version", 75, 3], ["src", 77, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 100, 3], ["nativeCheckInputs", 130, 3], ["doCheck", 136, 3], ["postPatch", 138, 3], ["mesonFlags", 143, 3], ["checkPhase", 154, 3], ["preFixup", 164, 3], ["passthru", 171, 3], ["meta", 177, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,7 +53,7 @@ export default nix.lambda((args) => (() => {
   const docutils = nix.arg($, "docutils");
   const gi_docgen = nix.arg($, "gi-docgen");
   const libcall_ui = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       domain: "gitlab.gnome.org",
       group: "World",
       owner: "Phosh",
@@ -69,7 +63,7 @@ export default nix.lambda((args) => (() => {
       forceFetchGit: true,
     }))));
   const gvc = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       domain: "gitlab.gnome.org",
       owner: "GNOME",
       repo: "libgnome-volume-control",
@@ -78,11 +72,11 @@ export default nix.lambda((args) => (() => {
       forceFetchGit: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "phosh",
       version: "0.54.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "Phosh",
@@ -158,13 +152,13 @@ runHook postCheck
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         providedSessions: nix.thunk(() => ["phosh"]),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, phosh: nix.thunk(() => nix.sel(nixosTests, "phosh")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], phosh: nix.thunk(() => nix.sel(nixosTests, "phosh")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Pure Wayland shell for mobile devices",
         homepage: "https://gitlab.gnome.org/World/Phosh/phosh",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/Phosh/phosh/-/blob/v${nix.sel(finalAttrs, "version")}/debian/changelog`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["ssl_implementation", 40, 13]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["preConfigure", 21, 3], ["cmakeFlags", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["passthru", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, cmake: false, "pkg-config": false, "libubox-nossl": false, ssl_implementation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ssl_implementation", 40, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["preConfigure", 21, 3], ["cmakeFlags", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["passthru", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libubox_nossl = nix.arg($, "libubox-nossl");
   const ssl_implementation = nix.arg($, "ssl_implementation");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ustream-ssl",
       version: "0-unstable-2025-10-03",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.openwrt.org/project/ustream-ssl.git",
           rev: "5a81c108d20e24724ed847cc4be033f2a74e6635",
           hash: "sha256-IC5740+1YT3TDayath3Md3hdjuml1S1A/OWYd0GxbDc=",
@@ -38,9 +35,9 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [ssl_implementation]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, ssl_implementation: ssl_implementation })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], ssl_implementation: ssl_implementation })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "ustream SSL wrapper",
         homepage: "https://git.openwrt.org/?p=project/ustream-ssl.git;a=summary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

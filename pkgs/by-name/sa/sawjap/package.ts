@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 33, 5], ["mainProgram", 34, 5]], [["pname", 9, 3], ["src", 11, 19], ["version", 11, 23], ["prePatch", 13, 3], ["strictDeps", 15, 3], ["nativeBuildInputs", 17, 3], ["buildInputs", 21, 3], ["buildPhase", 23, 3], ["dontInstall", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { stdenv: false, ocamlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 33, 5], ["mainProgram", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["src", 11, 19], ["version", 11, 23], ["prePatch", 13, 3], ["strictDeps", 15, 3], ["nativeBuildInputs", 17, 3], ["buildInputs", 21, 3], ["buildPhase", 23, 3], ["dontInstall", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const findlib = nix.thunk(() => nix.attr(ocamlPackages, "findlib"));
   const sawja = nix.thunk(() => nix.attr(ocamlPackages, "sawja"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "sawjap",
       src: nix.thunk(() => nix.attr(sawja, "src")),
       version: nix.thunk(() => nix.attr(sawja, "version")),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nmkdir -p $out/bin\nocamlfind opt -o $out/bin/sawjap -package sawja -linkpkg sawjap.ml\nrunHook postBuild\n",
       dontInstall: true,
       meta: nix.thunk(() => nix.update(nix.sel(sawja, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Pretty-print .class files",
         mainProgram: "sawjap",
       })),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["name", 31, 7], ["url", 32, 7], ["sha256", 33, 7]], [["name", 38, 7], ["url", 39, 7], ["sha256", 40, 7]], [["description", 77, 5], ["mainProgram", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["qmakeFlags", 66, 3], ["preInstall", 71, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, fetchpatch: false, libsForQt5: false, "pkg-config": false, lua: false, flam3: false, libxml2: false, libpng: false, libjpeg: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 31, 7], ["url", 32, 7], ["sha256", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 38, 7], ["url", 39, 7], ["sha256", 40, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 77, 5], ["mainProgram", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["qmakeFlags", 66, 3], ["preInstall", 71, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "qosmic",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bitsed",
           repo: "qosmic",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,13 +31,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "allow-overriding-PREFIX.patch",
             url: "https://github.com/bitsed/qosmic/commit/77fb3a577b0710efae2a1d9ed97c26ae16f3a5ba.patch",
             sha256: "0v9hj9s78cb6bg8ca0wjkbr3c7ml1n51n8h4a70zpzzgzz7rli5b",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix-class-QButtonGroup-include-errors-with-Qt-5.11.patch",
             url: "https://github.com/bitsed/qosmic/commit/3f6e1ea8d384a124dbc2d568171a4da798480752.patch",
             sha256: "0bp6b759plkqs32nvfpkfvf3qqzc9716k3ycwnjvwabbvpg1xwbl",
@@ -64,7 +60,7 @@ export default nix.lambda((args) => (() => {
       qmakeFlags: nix.thunk(() => ["CONFIG+=link_pkgconfig"]),
       preInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv qosmic.app $out/Applications\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cosmic recursive flame fractal editor",
         mainProgram: "qosmic",
         homepage: "https://github.com/bitsed/qosmic",

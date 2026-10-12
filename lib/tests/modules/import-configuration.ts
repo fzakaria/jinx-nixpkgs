@@ -2,14 +2,13 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/import-configuration.nix", [[["modules", 3, 30]], [["imports", 6, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/import-configuration.nix", [["modules", 3, 30]]);
-const pos$2 = nix.positions(here + "/import-configuration.nix", [["imports", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const myconf = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({ [nix.POS]: pos$1, modules: nix.thunk(() => [nix.thunk(() => ({}))]) }))));
-  return { [nix.POS]: pos$2, imports: nix.thunk(() => [myconf]) };
+  const myconf = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({ [nix.POS]: $pos[0], modules: nix.thunk(() => [nix.thunk(() => ({}))]) }))));
+  return { [nix.POS]: $pos[1], imports: nix.thunk(() => [myconf]) };
 })(), formals$1);
 //# sourceMappingURL=import-configuration.ts.map

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 14, 7], ["aarch64-linux", 15, 7], ["x86_64-linux", 16, 7]], [["aarch64-darwin", 29, 9], ["aarch64-linux", 30, 9], ["x86_64-linux", 31, 9]], [["url", 25, 5], ["sha256", 27, 5]], [["updateScript", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 78, 5], ["platforms", 83, 5], ["sourceProvenance", 88, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["dontConfigure", 36, 3], ["dontBuild", 37, 3], ["dontPatchELF", 38, 3], ["dontStrip", 39, 3], ["installPhase", 41, 3], ["preFixup", 48, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses6: false, "libxcrypt-legacy": false, xz: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 14, 7], ["aarch64-linux", 15, 7], ["x86_64-linux", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-darwin", 29, 9], ["aarch64-linux", 30, 9], ["x86_64-linux", 31, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 27, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 78, 5], ["platforms", 83, 5], ["sourceProvenance", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["dontConfigure", 36, 3], ["dontBuild", 37, 3], ["dontPatchELF", 38, 3], ["dontStrip", 39, 3], ["installPhase", 41, 3], ["preFixup", 48, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zstd = nix.arg($, "zstd");
   const platform = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-darwin": "darwin-arm64",
     "aarch64-linux": "aarch64",
     "x86_64-linux": "x86_64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gcc-arm-embedded",
       version: "15.3.rel2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://gitlab.arm.com/api/v4/projects/tooling%2Fgnu-toolchains-for-arm/packages/generic/gnu-toolchain/${nix.sel(finalAttrs, "version")}/arm-gnu-toolchain-${nix.sel(finalAttrs, "version")}-${platform}-arm-none-eabi.tar.xz`),
           sha256: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "aarch64-darwin": "b6ccf805aa4fb8c50406256f99cf802385894b86c0cb6c0185dc0e2b5f8288b9",
             "aarch64-linux": "9fc9e6baedf2b6779bd39ce4cc458d3529e200bc92bebe28be18f8942a456ad8",
             "x86_64-linux": "0662b2f01e0cd8b951fd110911d339c35b05998c68a12b3530bbbb4bf6c7874e",
@@ -57,9 +52,9 @@ export default nix.lambda((args) => (() => {
           ]))} "$f" || true
 done
 `))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Pre-built GNU toolchain from ARM Cortex-M & Cortex-R processors",
         homepage: "https://developer.arm.com/open-source/gnu-toolchain/gnu-rm",
         license: nix.thunk(() => (() => {

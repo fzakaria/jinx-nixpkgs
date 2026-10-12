@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unwrapped.nix", [[["updateScript", 50, 13]], [["pname", 21, 5], ["src", 22, 5], ["version", 23, 5], ["meta", 24, 5], ["dontBuild", 27, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 31, 3], ["passthru", 49, 3], ["nativeInstallCheckInputs", 53, 3], ["versionCheckProgramArg", 54, 3], ["doInstallCheck", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, versionCheckHook: false, installShellFiles: false, writeShellApplication: false, curl: false, gnugrep: false, "common-updater-scripts": false, pname: true, src: false, version: false, meta: false, updateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unwrapped.nix", [["updateScript", 50, 13]]);
-const pos$2 = nix.positions(here + "/unwrapped.nix", [["pname", 21, 5], ["src", 22, 5], ["version", 23, 5], ["meta", 24, 5], ["dontBuild", 27, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 31, 3], ["passthru", 49, 3], ["nativeInstallCheckInputs", 53, 3], ["versionCheckProgramArg", 54, 3], ["doInstallCheck", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const meta = nix.arg($, "meta");
   const updateScript = nix.arg($, "updateScript");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       src: src,
       version: version,
@@ -31,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n\ninstall -Dm755 acli $out/bin/acli\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform")))), "installShellCompletion --cmd acli \\\n  --bash <($out/bin/acli completion bash) \\\n  --fish <($out/bin/acli completion fish) \\\n  --zsh <($out/bin/acli completion zsh)\n\nmkdir -p $out/share/powershell\n$out/bin/acli completion powershell > $out/share/powershell/acli.Completion.ps1\n")), "runHook postInstall\n")),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: updateScript })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], updateScript: updateScript })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-v",
       doInstallCheck: true,

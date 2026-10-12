@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["url", 28, 7], ["hash", 29, 7]], [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 13, 3], ["version", 14, 3], ["minimalOCamlVersion", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["propagatedBuildInputs", 33, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch2: false, buildDunePackage: false, logs: false, ppx_yojson_conv_lib: false, trace: false, uutf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["minimalOCamlVersion", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["propagatedBuildInputs", 33, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const trace = nix.arg($, "trace");
   const uutf = nix.arg($, "uutf");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "linol",
       version: "0.11",
       minimalOCamlVersion: "4.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "c-cube",
           repo: "linol",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,14 +29,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/c-cube/linol/commit/cf50e29c358ece3a417cb47bf7d17b06b6219d65.patch?full_index=1",
             hash: "sha256-oguHTX20Jr7IatCN1mQZ1JfuX1bN1Fz7trJb8yyNzZM=",
           })))),
       ]),
       propagatedBuildInputs: nix.thunk(() => [logs, ppx_yojson_conv_lib, trace, uutf]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "LSP server library",
         homepage: "https://github.com/c-cube/linol",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/c-cube/linol/refs/tags/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

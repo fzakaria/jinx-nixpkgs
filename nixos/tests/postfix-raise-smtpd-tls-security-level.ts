@@ -2,37 +2,31 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/postfix-raise-smtpd-tls-security-level.nix", [[["smtpd_tls_security_level", 12, 11]], [["enable", 9, 9], ["enableSubmissions", 10, 9], ["submissionsOptions", 11, 9]], [["postfix", 8, 16]], [["systemPackages", 16, 19]], [["imports", 7, 7], ["services", 8, 7], ["environment", 16, 7]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 41, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/postfix-raise-smtpd-tls-security-level.nix", [["smtpd_tls_security_level", 12, 11]]);
-const pos$2 = nix.positions(here + "/postfix-raise-smtpd-tls-security-level.nix", [["enable", 9, 9], ["enableSubmissions", 10, 9], ["submissionsOptions", 11, 9]]);
-const pos$3 = nix.positions(here + "/postfix-raise-smtpd-tls-security-level.nix", [["postfix", 8, 16]]);
-const pos$4 = nix.positions(here + "/postfix-raise-smtpd-tls-security-level.nix", [["systemPackages", 16, 19]]);
-const pos$5 = nix.positions(here + "/postfix-raise-smtpd-tls-security-level.nix", [["imports", 7, 7], ["services", 8, 7], ["environment", 16, 7]]);
-const pos$6 = nix.positions(here + "/postfix-raise-smtpd-tls-security-level.nix", [["machine", 4, 9]]);
-const pos$7 = nix.positions(here + "/postfix-raise-smtpd-tls-security-level.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 41, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "postfix",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const pkgs = nix.arg($, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           imports: nix.thunk(() => [nix.path(here, "common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             postfix: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               enableSubmissions: true,
-              submissionsOptions: nix.thunk(() => ({ [nix.POS]: pos$1, smtpd_tls_security_level: "none" })),
+              submissionsOptions: nix.thunk(() => ({ [nix.POS]: $pos[0], smtpd_tls_security_level: "none" })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             systemPackages: nix.thunk(() => (() => {
               const checkConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "check-config", nix.thunk(() => nix.str`#!${nix.sel(pkgs, "python3", "interpreter")}
 import sys

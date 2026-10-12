@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["updateScript", 52, 12]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["mainProgram", 58, 5], ["platforms", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["__structuredAttrs", 29, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["cmakeFlags", 42, 3], ["doCheck", 50, 3], ["passthru", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, SDL2: false, libx11: false, ncurses: false, "nix-update-script": false, enableSDL: true, enableGUI: true, enableX11: true, enableCurses: true, enableTests: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["mainProgram", 58, 5], ["platforms", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["__structuredAttrs", 29, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["cmakeFlags", 42, 3], ["doCheck", 50, 3], ["passthru", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const enableCurses = nix.argOr($, "enableCurses", () => true);
   const enableTests = nix.argOr($, "enableTests", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hasciicam",
       version: "2.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dyne",
           repo: "hasciicam",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +45,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: enableTests,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "ASCII art webcam and video viewer",
         homepage: "https://github.com/dyne/hasciicam",
         changelog: nix.thunk(() => nix.str`https://github.com/dyne/hasciicam/releases/tag/v${nix.sel(finalAttrs, "version")}`),

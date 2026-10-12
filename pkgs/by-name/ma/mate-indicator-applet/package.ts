@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["url", 48, 5], ["odd-unstable", 49, 5], ["rev-prefix", 50, 5]], [["updateScript", 47, 12]], [["homepage", 54, 5], ["description", 55, 5], ["longDescription", 56, 5], ["license", 67, 5], ["platforms", 71, 5], ["teams", 72, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["configureFlags", 43, 3], ["enableParallelBuilding", 45, 3], ["passthru", 47, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gettext: false, gtk3: false, "libayatana-indicator": false, "mate-panel": false, "hicolor-icon-theme": false, wrapGAppsHook3: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 48, 5], ["odd-unstable", 49, 5], ["rev-prefix", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 47, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["longDescription", 56, 5], ["license", 67, 5], ["platforms", 71, 5], ["teams", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["configureFlags", 43, 3], ["enableParallelBuilding", 45, 3], ["passthru", 47, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mate-indicator-applet",
       version: "1.28.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-indicator-applet-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "zrPXA5cKPlWNfNffCxwhceOvdSolSVrO0uIiwemtSc0=",
         })))),
@@ -37,16 +33,16 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-ayatana-indicators"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.mate-desktop.org/mate-indicator-applet",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/mate-desktop/mate-indicator-applet",
         description: "MATE panel indicator applet",
         longDescription: "A small applet to display information from various applications\nconsistently in the panel.\n\nThe indicator applet exposes Ayatana Indicators in the MATE Panel.\nAyatana Indicators are an initiative by Canonical to provide crisp and\nclean system and application status indication. They take the form of\nan icon and associated menu, displayed (usually) in the desktop panel.\nExisting indicators include the Message Menu, Battery Menu and Sound\nmenu.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["homepage", 33, 5], ["description", 34, 5], ["mainProgram", 35, 5], ["sourceProvenance", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["jre8", 13, 11], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildPhase", 22, 3], ["installPhase", 26, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre8: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["mainProgram", 35, 5], ["sourceProvenance", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["jre8", 13, 11], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildPhase", 22, 3], ["installPhase", 26, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const jre8 = nix.arg($, "jre8");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "galen",
       version: "2.4.4",
       jre8: jre8,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/galenframework/galen/releases/download/galen-${nix.sel(finalAttrs, "version")}/galen-bin-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "13dq8cf0yy24vym6z7p8hb0mybgpcl4j5crsaq8a6pjfxz6d17mq",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "mkdir -p $out/bin\n",
       installPhase: "cat galen | sed -e \"s,java,$jre8/bin/java,\" > $out/bin/galen\nchmod +x $out/bin/galen\ncp galen.jar $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://galenframework.com",
         description: "Automated layout testing for websites",
         mainProgram: "galen",

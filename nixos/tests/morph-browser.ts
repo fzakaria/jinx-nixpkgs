@@ -2,21 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/morph-browser.nix", [[["maintainers", 12, 14]], [["enable", 25, 30]], [["xserver", 25, 22]], [["UITK_ICON_THEME", 33, 17]], [["systemPackages", 28, 15], ["variables", 32, 15]], [["supportedLocales", 37, 18]], [["packages", 39, 19]], [["imports", 21, 13], ["services", 25, 13], ["environment", 27, 13], ["i18n", 37, 13], ["fonts", 39, 13]], [["machine", 14, 15]], [["name", 11, 9], ["meta", 12, 9], ["nodes", 14, 9], ["enableOCR", 45, 9], ["testScript", 47, 9]], [["withQt6", 81, 19]], [["qt5", 80, 3], ["qt6", 81, 3]]]);
 const formals$1 = { args: { withQt6: false }, ellipsis: false };
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/morph-browser.nix", [["maintainers", 12, 14]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/morph-browser.nix", [["enable", 25, 30]]);
-const pos$3 = nix.positions(here + "/morph-browser.nix", [["xserver", 25, 22]]);
-const pos$4 = nix.positions(here + "/morph-browser.nix", [["UITK_ICON_THEME", 33, 17]]);
-const pos$5 = nix.positions(here + "/morph-browser.nix", [["systemPackages", 28, 15], ["variables", 32, 15]]);
-const pos$6 = nix.positions(here + "/morph-browser.nix", [["supportedLocales", 37, 18]]);
-const pos$7 = nix.positions(here + "/morph-browser.nix", [["packages", 39, 19]]);
-const pos$8 = nix.positions(here + "/morph-browser.nix", [["imports", 21, 13], ["services", 25, 13], ["environment", 27, 13], ["i18n", 37, 13], ["fonts", 39, 13]]);
-const pos$9 = nix.positions(here + "/morph-browser.nix", [["machine", 14, 15]]);
-const pos$10 = nix.positions(here + "/morph-browser.nix", [["name", 11, 9], ["meta", 12, 9], ["nodes", 14, 9], ["enableOCR", 45, 9], ["testScript", 47, 9]]);
-const pos$11 = nix.positions(here + "/morph-browser.nix", [["withQt6", 81, 19]]);
-const pos$12 = nix.positions(here + "/morph-browser.nix", [["qt5", 80, 3], ["qt6", 81, 3]]);
 
 export default nix.thunk(() => (() => {
   const makeTest = nix.thunk(() => nix.builtins.import(nix.path(here, "./make-test-python.nix")));
@@ -29,27 +18,27 @@ export default nix.thunk(() => (() => {
         const lib = nix.arg($_1, "lib");
         nix.assert_(nix.app(nix.sel(lib, "assertMsg"), withQt6, "`lomiri.morph-browser` has been dropped, cannot test it."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/morph-browser.nix:9:7");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           name: "morph-browser-qt6-standalone",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
           })),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$3);
               const config = nix.arg($_2, "config");
               const pkgs_1 = nix.arg($_2, "pkgs");
               return {
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
-                  xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+                  [nix.POS]: $pos[2],
+                  xserver: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
                 })),
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   systemPackages: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "lomiri-qt6")), null);
                     return [
@@ -57,11 +46,11 @@ export default nix.thunk(() => (() => {
                       nix.thunk(() => nix.lookup(w, "morph-browser")),
                     ];
                   })()),
-                  variables: nix.thunk(() => ({ [nix.POS]: pos$4, UITK_ICON_THEME: "suru" })),
+                  variables: nix.thunk(() => ({ [nix.POS]: $pos[3], UITK_ICON_THEME: "suru" })),
                 })),
-                i18n: nix.thunk(() => ({ [nix.POS]: pos$6, supportedLocales: nix.thunk(() => ["all"]) })),
+                i18n: nix.thunk(() => ({ [nix.POS]: $pos[5], supportedLocales: nix.thunk(() => ["all"]) })),
                 fonts: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   packages: nix.thunk(() => (() => {
                     const w = nix.withScope(pkgs_1, null);
                     return [nix.thunk(() => nix.lookup(w, "ubuntu-classic"))];
@@ -103,9 +92,9 @@ with subtest("morph browser localisation works"):
       })(), formals$2));
   })(), formals$1);
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     qt5: nix.thunk(() => nix.builtins.throw("`lomiri.morph-browser` has been removed because it relied on the known-vulnerable `libsForQt5.qtwebengine`. For testing the Qt6 version of Morph, please use `nixosTests.morph-browser.qt6` instead.")),
-    qt6: nix.thunk(() => nix.app(generic, nix.thunk(() => ({ [nix.POS]: pos$11, withQt6: true })))),
+    qt6: nix.thunk(() => nix.app(generic, nix.thunk(() => ({ [nix.POS]: $pos[10], withQt6: true })))),
   };
 })());
 //# sourceMappingURL=morph-browser.ts.map

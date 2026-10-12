@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["homepage", 70, 5], ["description", 71, 5], ["longDescription", 72, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 28]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["cmakeFlags", 49, 3], ["postPatch", 54, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libdeflate: false, libunistring: false, ncurses: false, pandoc: false, "pkg-config": false, zlib: false, multimediaSupport: true, ffmpeg: false, qrcodegenSupport: true, qrcodegen: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["description", 71, 5], ["longDescription", 72, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["cmakeFlags", 49, 3], ["postPatch", 54, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const qrcodegenSupport = nix.argOr($, "qrcodegenSupport", () => true);
   const qrcodegen = nix.arg($, "qrcodegen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "notcurses",
       version: "3.0.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dankamongmen",
           repo: "notcurses",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ncurses, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/dankamongmen/notcurses",
         description: "Blingful TUIs and character graphics",
         longDescription: "Notcurses is a library facilitating complex TUIs on modern terminal\nemulators, supporting vivid colors, multimedia, and Unicode to the maximum\ndegree possible. Things can be done with Notcurses that simply can't be\ndone with NCURSES.\n\nIt is not a source-compatible X/Open Curses implementation, nor a\nreplacement for NCURSES on existing systems.\n",

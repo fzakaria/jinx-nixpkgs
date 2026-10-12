@@ -2,21 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ocis.nix", [[["libraries", 13, 9], ["flakeIgnore", 14, 9]], [["maintainers", 165, 8]], [["memorySize", 173, 22]], [["text", 181, 39]], [["text", 187, 47]], [["ocis/ocis.env", 181, 23], ["ocis/config/ocis.yaml", 187, 23]], [["systemPackages", 174, 19], ["etc", 181, 19]], [["OCIS_INSECURE", 193, 11]], [["enable", 190, 9], ["configDir", 191, 9], ["environment", 192, 9], ["environmentFile", 195, 9]], [["ocis", 189, 16]], [["virtualisation", 173, 7], ["environment", 174, 7], ["services", 189, 7]], [["machine", 170, 9]], [["name", 163, 3], ["meta", 165, 3], ["nodes", 170, 3], ["testScript", 199, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ocis.nix", [["libraries", 13, 9], ["flakeIgnore", 14, 9]]);
-const pos$2 = nix.positions(here + "/ocis.nix", [["maintainers", 165, 8]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/ocis.nix", [["memorySize", 173, 22]]);
-const pos$4 = nix.positions(here + "/ocis.nix", [["text", 181, 39]]);
-const pos$5 = nix.positions(here + "/ocis.nix", [["text", 187, 47]]);
-const pos$6 = nix.positions(here + "/ocis.nix", [["ocis/ocis.env", 181, 23], ["ocis/config/ocis.yaml", 187, 23]]);
-const pos$7 = nix.positions(here + "/ocis.nix", [["systemPackages", 174, 19], ["etc", 181, 19]]);
-const pos$8 = nix.positions(here + "/ocis.nix", [["OCIS_INSECURE", 193, 11]]);
-const pos$9 = nix.positions(here + "/ocis.nix", [["enable", 190, 9], ["configDir", 191, 9], ["environment", 192, 9], ["environmentFile", 195, 9]]);
-const pos$10 = nix.positions(here + "/ocis.nix", [["ocis", 189, 16]]);
-const pos$11 = nix.positions(here + "/ocis.nix", [["virtualisation", 173, 7], ["environment", 174, 7], ["services", 189, 7]]);
-const pos$12 = nix.positions(here + "/ocis.nix", [["machine", 170, 9]]);
-const pos$13 = nix.positions(here + "/ocis.nix", [["name", 163, 3], ["meta", 165, 3], ["nodes", 170, 3], ["testScript", 199, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const adminUser = "admin";
   const adminPassword = "hunter2";
   const testRunner = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "test-runner", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "selenium"))]),
       flakeIgnore: nix.thunk(() => ["E501"]),
     })), "import sys\nfrom selenium.webdriver.common.by import By\nfrom selenium.webdriver import Firefox\nfrom selenium.webdriver.firefox.options import Options\nfrom selenium.webdriver.support.ui import WebDriverWait\nfrom selenium.webdriver.support import expected_conditions as EC\n\noptions = Options()\noptions.add_argument('--headless')\ndriver = Firefox(options=options)\n\nuser = sys.argv[1]\npassword = sys.argv[2]\ndriver.implicitly_wait(20)\ndriver.get('https://localhost:9200/login')\nwait = WebDriverWait(driver, 10)\nwait.until(EC.title_contains(\"Sign in\"))\ndriver.find_element(By.XPATH, '//*[@id=\"oc-login-username\"]').send_keys(user)\ndriver.find_element(By.XPATH, '//*[@id=\"oc-login-password\"]').send_keys(password)\ndriver.find_element(By.XPATH, '//*[@id=\"root\"]//button').click()\nwait.until(EC.title_contains(\"Personal\"))\n"));
   const testConfig = "token_manager:\n  jwt_secret: kaKYgfso*d9GA-yTM.&BTOUEuMz%Ai0H\nmachine_auth_api_key: sGWRG1JZ&qe&pe@N1HKK4#qH*B&@xLnO\nsystem_user_api_key: h+m4aHPUtOtUJFKrc5B2=04C=7fDZaT-\ntransfer_secret: 4-R6AfUjQn0P&+h2+$skf0lJqmre$j=x\nsystem_user_id: db180e0a-b38a-4edf-a4cd-a3d358248537\nadmin_user_id: ea623f50-742d-4fd0-95bb-c61767b070d4\ngraph:\n  application:\n    id: 11971eab-d560-4b95-a2d4-50726676bbd0\n  events:\n    tls_insecure: true\n  spaces:\n    insecure: true\n  identity:\n    ldap:\n      bind_password: ^F&Vn7@mYGYGuxr$#qm^gGy@FVq=.w=y\n  service_account:\n    service_account_id: df39a290-3f3e-4e39-b67b-8b810ca2abac\n    service_account_secret: .demKypQ$=pGl+yRar!#YaFjLYCr4YwE\nidp:\n  ldap:\n    bind_password: bv53IjS28x.nxth*%aRbE70%4TGNXbLU\nidm:\n  service_user_passwords:\n    admin_password: hunter2\n    idm_password: ^F&Vn7@mYGYGuxr$#qm^gGy@FVq=.w=y\n    reva_password: z-%@fWipLliR8lD#fl.0teC#9QbhJ^eb\n    idp_password: bv53IjS28x.nxth*%aRbE70%4TGNXbLU\nproxy:\n  oidc:\n    insecure: true\n  insecure_backends: true\n  service_account:\n    service_account_id: df39a290-3f3e-4e39-b67b-8b810ca2abac\n    service_account_secret: .demKypQ$=pGl+yRar!#YaFjLYCr4YwE\nfrontend:\n  app_handler:\n    insecure: true\n  archiver:\n    insecure: true\n  service_account:\n    service_account_id: df39a290-3f3e-4e39-b67b-8b810ca2abac\n    service_account_secret: .demKypQ$=pGl+yRar!#YaFjLYCr4YwE\nauth_basic:\n  auth_providers:\n    ldap:\n      bind_password: z-%@fWipLliR8lD#fl.0teC#9QbhJ^eb\nauth_bearer:\n  auth_providers:\n    oidc:\n      insecure: true\nusers:\n  drivers:\n    ldap:\n      bind_password: z-%@fWipLliR8lD#fl.0teC#9QbhJ^eb\ngroups:\n  drivers:\n    ldap:\n      bind_password: z-%@fWipLliR8lD#fl.0teC#9QbhJ^eb\nocdav:\n  insecure: true\nocm:\n  service_account:\n    service_account_id: df39a290-3f3e-4e39-b67b-8b810ca2abac\n    service_account_secret: .demKypQ$=pGl+yRar!#YaFjLYCr4YwE\nthumbnails:\n  thumbnail:\n    transfer_secret: 2%11!zAu*AYE&=d*8dfoZs8jK&5ZMm*%\n    webdav_allow_insecure: true\n    cs3_allow_insecure: true\nsearch:\n  events:\n    tls_insecure: true\n  service_account:\n    service_account_id: df39a290-3f3e-4e39-b67b-8b810ca2abac\n    service_account_secret: .demKypQ$=pGl+yRar!#YaFjLYCr4YwE\naudit:\n  events:\n    tls_insecure: true\nsettings:\n  service_account_ids:\n  - df39a290-3f3e-4e39-b67b-8b810ca2abac\nsharing:\n  events:\n    tls_insecure: true\nstorage_users:\n  events:\n    tls_insecure: true\n  mount_id: ef72cb8b-809c-4592-bfd2-1df603295205\n  service_account:\n    service_account_id: df39a290-3f3e-4e39-b67b-8b810ca2abac\n    service_account_secret: .demKypQ$=pGl+yRar!#YaFjLYCr4YwE\nnotifications:\n  notifications:\n    events:\n      tls_insecure: true\n  service_account:\n    service_account_id: df39a290-3f3e-4e39-b67b-8b810ca2abac\n    service_account_secret: .demKypQ$=pGl+yRar!#YaFjLYCr4YwE\nnats:\n  nats:\n    tls_skip_verify_client_cert: true\ngateway:\n  storage_registry:\n    storage_users_mount_id: ef72cb8b-809c-4592-bfd2-1df603295205\nuserlog:\n  service_account:\n    service_account_id: df39a290-3f3e-4e39-b67b-8b810ca2abac\n    service_account_secret: .demKypQ$=pGl+yRar!#YaFjLYCr4YwE\nauth_service:\n  service_account:\n    service_account_id: df39a290-3f3e-4e39-b67b-8b810ca2abac\n    service_account_secret: .demKypQ$=pGl+yRar!#YaFjLYCr4YwE\nclientlog:\n  service_account:\n    service_account_id: df39a290-3f3e-4e39-b67b-8b810ca2abac\n    service_account_secret: .demKypQ$=pGl+yRar!#YaFjLYCr4YwE";
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "ocis",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -46,38 +34,38 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$11,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, memorySize: 2048n })),
+          [nix.POS]: $pos[10],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[2], memorySize: 2048n })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "firefox-unwrapped")),
               nix.thunk(() => nix.sel(pkgs, "geckodriver")),
               testRunner,
             ]),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "ocis/ocis.env": nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 text: nix.thunk(() => nix.str`ADMIN_PASSWORD=${adminPassword}
 IDM_CREATE_DEMO_USERS=true
 `),
               })),
-              "ocis/config/ocis.yaml": nix.thunk(() => ({ [nix.POS]: pos$5, text: testConfig })),
+              "ocis/config/ocis.yaml": nix.thunk(() => ({ [nix.POS]: $pos[4], text: testConfig })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             ocis: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               configDir: "/etc/ocis/config",
-              environment: nix.thunk(() => ({ [nix.POS]: pos$8, OCIS_INSECURE: "true" })),
+              environment: nix.thunk(() => ({ [nix.POS]: $pos[7], OCIS_INSECURE: "true" })),
               environmentFile: "/etc/ocis/ocis.env",
             })),
           })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["homepage", 64, 5], ["description", 65, 5], ["mainProgram", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["__structuredAttrs", 43, 3], ["vendorHash", 45, 3], ["ldflags", 47, 3], ["checkFlags", 51, 3], ["nativeInstallCheckInputs", 55, 3], ["versionCheckProgramArg", 59, 3], ["versionCheckKeepEnvironment", 60, 3], ["doInstallCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, versionCheckHook: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["mainProgram", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["__structuredAttrs", 43, 3], ["vendorHash", 45, 3], ["ldflags", 47, 3], ["checkFlags", 51, 3], ["nativeInstallCheckInputs", 55, 3], ["versionCheckProgramArg", 59, 3], ["versionCheckKeepEnvironment", 60, 3], ["doInstallCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +33,11 @@ export default nix.lambda((args) => (() => {
     "TestDownload_FirstStream",
   ]);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "youtubedr",
       version: "2.10.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kkdai",
           repo: "youtube",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/kkdai/youtube",
         description: "YouTube video download CLI",
         mainProgram: "youtubedr",

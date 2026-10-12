@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5], ["stripRoot", 24, 5]], [["updateScript", 69, 5]], [["deprecated", 76, 7], ["free", 77, 7], ["fullName", 78, 7], ["redistributable", 79, 7], ["shortName", 80, 7], ["url", 81, 7]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["sourceProvenance", 83, 5], ["mainProgram", 88, 5], ["platforms", 89, 5], ["maintainers", 94, 5]], [["pname", 15, 3], ["version", 16, 3], ["strictDeps", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["installPhase", 35, 3], ["doInstallCheck", 60, 3], ["nativeInstallCheckInputs", 61, 3], ["versionCheckKeepEnvironment", 66, 3], ["passthru", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, makeWrapper: false, fetchzip: false, "nix-update-script": false, "nodejs-slim": false, writableTmpDirAsHomeHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5], ["stripRoot", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["deprecated", 76, 7], ["free", 77, 7], ["fullName", 78, 7], ["redistributable", 79, 7], ["shortName", 80, 7], ["url", 81, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["sourceProvenance", 83, 5], ["mainProgram", 88, 5], ["platforms", 89, 5], ["maintainers", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["strictDeps", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["installPhase", 35, 3], ["doInstallCheck", 60, 3], ["nativeInstallCheckInputs", 61, 3], ["versionCheckKeepEnvironment", 66, 3], ["passthru", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const arch = nix.thunk(() => nix.attr(from, "arch"));
   const platform = nix.thunk(() => nix.attr(from, "platform"));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "copilot-language-server",
       version: "1.551.2",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/github/copilot-language-server-release/releases/download/${nix.sel(finalAttrs, "version")}/copilot-language-server-js-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-wDV1F8rzO49sp2XxcZdvwyWKSzu+2CWahZ2kLoVoGRE=",
           stripRoot: false,
@@ -63,15 +59,15 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook, versionCheckHook]),
       versionCheckKeepEnvironment: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), nix.thunk(() => ["HOME"]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Use GitHub Copilot with any editor or IDE via the Language Server Protocol",
         homepage: "https://github.com/features/copilot",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             deprecated: false,
             free: false,
             fullName: "GitHub Copilot Product Specific Terms",

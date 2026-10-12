@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["CGO_ENABLED", 33, 7]], [["command", 48, 7], ["package", 49, 7]], [["version", 47, 11]], [["tests", 47, 5], ["updateScript", 51, 5]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["subPackages", 27, 3], ["allowGoReference", 31, 3], ["env", 33, 3], ["ldflags", 35, 3], ["postInstall", 42, 3], ["passthru", 46, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, makeWrapper: false, go: false, testers: false, "terraform-plugin-docs": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["command", 48, 7], ["package", 49, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 47, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 47, 5], ["updateScript", 51, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["subPackages", 27, 3], ["allowGoReference", 31, 3], ["env", 33, 3], ["ldflags", 35, 3], ["postInstall", 42, 3], ["passthru", 46, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const terraform_plugin_docs = nix.arg($, "terraform-plugin-docs");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "terraform-plugin-docs",
       version: "0.25.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hashicorp",
           repo: "terraform-plugin-docs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       subPackages: nix.thunk(() => ["cmd/tfplugindocs"]),
       allowGoReference: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -46,11 +40,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/tfplugindocs --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [go]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               command: "tfplugindocs --version",
               package: terraform_plugin_docs,
             })))),
@@ -58,7 +52,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Generate and validate Terraform plugin/provider documentation",
         homepage: "https://github.com/hashicorp/terraform-plugin-docs",
         changelog: nix.thunk(() => nix.str`https://github.com/hashicorp/terraform-plugin-docs/releases/tag/v${nix.sel(finalAttrs, "version")}`),

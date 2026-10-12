@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 65, 5], ["platforms", 66, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["proxyVendor", 26, 3], ["postPatch", 28, 3], ["preBuild", 32, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 42, 3], ["ldflags", 49, 3], ["subPackages", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { augeas: false, buildGoModule: false, fetchFromGitHub: false, gotools: false, lib: false, libvirt: false, libxml2: false, nex: false, "pkg-config": false, ragel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 65, 5], ["platforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["proxyVendor", 26, 3], ["postPatch", 28, 3], ["preBuild", 32, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 42, 3], ["ldflags", 49, 3], ["subPackages", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const ragel = nix.arg($, "ragel");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mgmt",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "purpleidea",
           repo: "mgmt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       subPackages: nix.thunk(() => ["."]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Next generation distributed, event-driven, parallel config management",
         homepage: "https://mgmtconfig.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,37 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["enabled", 11, 7], ["targets", 19, 7], ["extraCmakeFlags", 22, 7]], [["enabled", 25, 7], ["targets", 26, 7], ["extraCmakeFlags", 29, 7], ["onlyFor", 30, 7]], [["enabled", 36, 7], ["targets", 37, 7], ["extraCmakeFlags", 40, 7], ["onlyFor", 41, 7]], [["targets", 47, 7]], [["targets", 54, 7]], [["targets", 64, 7]], [["targets", 71, 7]], [["targets", 78, 7]], [["targets", 90, 7]], [["targets", 99, 7]], [["enabled", 104, 7], ["targets", 105, 7]], [["enabled", 117, 7], ["targets", 118, 7]], [["enabled", 129, 7], ["targets", 130, 7]], [["enabled", 136, 7], ["targets", 137, 7]], [["enabled", 143, 7], ["targets", 144, 7]], [["enabled", 156, 7], ["targets", 157, 7]], [["targets", 171, 7]], [["enabled", 181, 7], ["targets", 182, 7]], [["targets", 191, 7]], [["enabled", 196, 7], ["targets", 197, 7]], [["enabled", 206, 7], ["targets", 207, 7]], [["enabled", 215, 7], ["targets", 216, 7]], [["_mha", 10, 5], ["gemm_multiply_multiply", 24, 5], ["gemm_multiply_multiply_wp", 35, 5], ["grouped_conv_bwd", 46, 5], ["grouped_conv_fwd", 53, 5], ["grouped_conv_bwd_3d1", 63, 5], ["grouped_conv_bwd_3d2", 70, 5], ["grouped_conv_fwd_3d1", 77, 5], ["grouped_conv_fwd_3d2", 89, 5], ["grouped_conv_fwd_nd", 98, 5], ["batched_gemm1", 103, 5], ["batched_gemm2", 116, 5], ["gemm_universal1", 128, 5], ["gemm_universal2", 135, 5], ["gemm_other1", 142, 5], ["gemm_other2", 155, 5], ["conv", 170, 5], ["pool", 180, 5], ["other0", 190, 5], ["other1", 195, 5], ["other2", 205, 5], ["other3", 214, 5]], [["broken", 280, 11]], [["requiredSystemFeatures", 241, 17], ["pname", 242, 9], ["makeTargets", 243, 9], ["preBuild", 244, 9], ["preConfigure", 257, 9], ["cmakeFlags", 269, 9], ["postBuild", 272, 9], ["meta", 279, 9]], [["part", 286, 58]], [["parts", 312, 7]], [["broken", 316, 7]], [["pname", 292, 5], ["parts_dirs", 293, 5], ["disallowedReferences", 294, 5], ["preBuild", 295, 5], ["passthru", 311, 5], ["meta", 314, 5]]]);
 const formals$1 = { args: { lib: false, clr: false, composable_kernel_base: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["enabled", 11, 7], ["targets", 19, 7], ["extraCmakeFlags", 22, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["enabled", 25, 7], ["targets", 26, 7], ["extraCmakeFlags", 29, 7], ["onlyFor", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["enabled", 36, 7], ["targets", 37, 7], ["extraCmakeFlags", 40, 7], ["onlyFor", 41, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["targets", 47, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["targets", 54, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["targets", 64, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["targets", 71, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["targets", 78, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["targets", 90, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["targets", 99, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["enabled", 104, 7], ["targets", 105, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["enabled", 117, 7], ["targets", 118, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["enabled", 129, 7], ["targets", 130, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["enabled", 136, 7], ["targets", 137, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["enabled", 143, 7], ["targets", 144, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["enabled", 156, 7], ["targets", 157, 7]]);
-const pos$17 = nix.positions(here + "/default.nix", [["targets", 171, 7]]);
-const pos$18 = nix.positions(here + "/default.nix", [["enabled", 181, 7], ["targets", 182, 7]]);
-const pos$19 = nix.positions(here + "/default.nix", [["targets", 191, 7]]);
-const pos$20 = nix.positions(here + "/default.nix", [["enabled", 196, 7], ["targets", 197, 7]]);
-const pos$21 = nix.positions(here + "/default.nix", [["enabled", 206, 7], ["targets", 207, 7]]);
-const pos$22 = nix.positions(here + "/default.nix", [["enabled", 215, 7], ["targets", 216, 7]]);
-const pos$23 = nix.positions(here + "/default.nix", [["_mha", 10, 5], ["gemm_multiply_multiply", 24, 5], ["gemm_multiply_multiply_wp", 35, 5], ["grouped_conv_bwd", 46, 5], ["grouped_conv_fwd", 53, 5], ["grouped_conv_bwd_3d1", 63, 5], ["grouped_conv_bwd_3d2", 70, 5], ["grouped_conv_fwd_3d1", 77, 5], ["grouped_conv_fwd_3d2", 89, 5], ["grouped_conv_fwd_nd", 98, 5], ["batched_gemm1", 103, 5], ["batched_gemm2", 116, 5], ["gemm_universal1", 128, 5], ["gemm_universal2", 135, 5], ["gemm_other1", 142, 5], ["gemm_other2", 155, 5], ["conv", 170, 5], ["pool", 180, 5], ["other0", 190, 5], ["other1", 195, 5], ["other2", 205, 5], ["other3", 214, 5]]);
 const formals$2 = { args: { part: false, targets: false, extraCmakeFlags: true, requiredSystemFeatures: true, enabled: true, onlyFor: true }, ellipsis: false };
-const pos$24 = nix.positions(here + "/default.nix", [["broken", 280, 11]]);
-const pos$25 = nix.positions(here + "/default.nix", [["requiredSystemFeatures", 241, 17], ["pname", 242, 9], ["makeTargets", 243, 9], ["preBuild", 244, 9], ["preConfigure", 257, 9], ["cmakeFlags", 269, 9], ["postBuild", 272, 9], ["meta", 279, 9]]);
-const pos$26 = nix.positions(here + "/default.nix", [["part", 286, 58]]);
-const pos$27 = nix.positions(here + "/default.nix", [["parts", 312, 7]]);
-const pos$28 = nix.positions(here + "/default.nix", [["broken", 316, 7]]);
-const pos$29 = nix.positions(here + "/default.nix", [["pname", 292, 5], ["parts_dirs", 293, 5], ["disallowedReferences", 294, 5], ["preBuild", 295, 5], ["passthru", 311, 5], ["meta", 314, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,29 +13,29 @@ export default nix.lambda((args) => (() => {
   const composable_kernel_base = nix.arg($, "composable_kernel_base");
   const miOpenReqLibsOnly = nix.thunk(() => nix.attr(composable_kernel_base, "miOpenReqLibsOnly"));
   const parts = nix.thunk(() => ({
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     _mha: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => ["device_mha_instance"]),
       extraCmakeFlags: nix.thunk(() => ["-DHIP_CLANG_NUM_PARALLEL_JOBS=2"]),
     })),
     gemm_multiply_multiply: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => ["device_gemm_multiply_multiply_instance"]),
       extraCmakeFlags: nix.thunk(() => ["-DHIP_CLANG_NUM_PARALLEL_JOBS=2"]),
       onlyFor: nix.thunk(() => ["gfx942", "gfx950"]),
     })),
     gemm_multiply_multiply_wp: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => ["device_gemm_multiply_multiply_wp_instance"]),
       extraCmakeFlags: nix.thunk(() => ["-DHIP_CLANG_NUM_PARALLEL_JOBS=2"]),
       onlyFor: nix.thunk(() => ["gfx942", "gfx950"]),
     })),
     grouped_conv_bwd: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       targets: nix.thunk(() => [
         "device_grouped_conv1d_bwd_weight_instance",
         "device_grouped_conv2d_bwd_data_instance",
@@ -71,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     grouped_conv_fwd: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       targets: nix.thunk(() => [
         "device_grouped_conv1d_fwd_instance",
         "device_grouped_conv2d_fwd_instance",
@@ -82,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     grouped_conv_bwd_3d1: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       targets: nix.thunk(() => [
         "device_grouped_conv3d_bwd_data_instance",
         "device_grouped_conv3d_bwd_data_bilinear_instance",
@@ -90,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     grouped_conv_bwd_3d2: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       targets: nix.thunk(() => [
         "device_grouped_conv3d_bwd_weight_instance",
         "device_grouped_conv3d_bwd_weight_bilinear_instance",
@@ -98,7 +70,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     grouped_conv_fwd_3d1: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       targets: nix.thunk(() => [
         "device_grouped_conv3d_fwd_instance",
         "device_grouped_conv3d_fwd_clamp_instance",
@@ -111,7 +83,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     grouped_conv_fwd_3d2: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       targets: nix.thunk(() => [
         "device_grouped_conv3d_fwd_convscale_relu_instance",
         "device_grouped_conv3d_fwd_dynamic_op_instance",
@@ -121,11 +93,11 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     grouped_conv_fwd_nd: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       targets: nix.thunk(() => ["device_grouped_convnd_bwd_weight_instance"]),
     })),
     batched_gemm1: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_batched_gemm_instance",
@@ -139,7 +111,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     batched_gemm2: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_batched_gemm_softmax_gemm_permute_instance",
@@ -152,12 +124,12 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     gemm_universal1: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => ["device_gemm_universal_instance", "device_gemm_universal_batched_instance"]),
     })),
     gemm_universal2: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_gemm_universal_reduce_instance",
@@ -165,7 +137,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     gemm_other1: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_gemm_instance",
@@ -179,7 +151,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     gemm_other2: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_gemm_add_relu_add_layernorm_instance",
@@ -195,7 +167,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     conv: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       targets: nix.thunk(() => [
         "device_conv1d_bwd_data_instance",
         "device_conv2d_bwd_data_instance",
@@ -206,7 +178,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     pool: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_avg_pool2d_bwd_instance",
@@ -217,11 +189,11 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     other0: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       targets: nix.thunk(() => ["device_quantization_instance"]),
     })),
     other1: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_batchnorm_instance",
@@ -232,7 +204,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     other2: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_column_to_image_instance",
@@ -242,7 +214,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     other3: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       enabled: nix.thunk(() => !nix.asBool(miOpenReqLibsOnly)),
       targets: nix.thunk(() => [
         "device_normalization_bwd_data_instance",
@@ -263,7 +235,7 @@ export default nix.lambda((args) => (() => {
     const onlyFor = nix.argOr($_1, "onlyFor", () => []);
     const supported = nix.thunk(() => (nix.asBool(enabled) && nix.asBool((nix.asBool(nix.eq(onlyFor, [])) || nix.asBool(!nix.eq(nix.app(nix.sel(lib, "lists", "intersectLists"), nix.thunk(() => nix.sel(composable_kernel_base, "gpuTargets")), onlyFor), []))))));
     return (nix.asBool(supported) ? nix.app(nix.sel(composable_kernel_base, "overrideAttrs"), (old) => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         requiredSystemFeatures: requiredSystemFeatures,
         pname: nix.thunk(() => nix.str`composable_kernel${nix.sel(clr, "gpuArchSuffix")}-${part}`),
         makeTargets: targets,
@@ -275,19 +247,19 @@ substituteInPlace $(find ./ -name "Makefile" -type f) \\
         preConfigure: nix.thunk(() => nix.add(nix.selOr(old, () => "", "preConfigure"), "MEM_GB_TOTAL=$(awk '/MemTotal/ { printf \"%d \\n\", $2/1024/1024 }' /proc/meminfo)\nMEM_GB_AVAILABLE=$(awk '/MemAvailable/ { printf \"%d \\n\", $2/1024/1024 }' /proc/meminfo)\nAPPX_GB=$((MEM_GB_AVAILABLE > MEM_GB_TOTAL ? MEM_GB_TOTAL : MEM_GB_AVAILABLE))\nMAX_CORES=$((1 + APPX_GB/3))\nMAX_CORES=$((MAX_CORES < NIX_BUILD_CORES/3 ? NIX_BUILD_CORES/3 : MAX_CORES))\nexport NIX_BUILD_CORES=\"$((NIX_BUILD_CORES > MAX_CORES ? MAX_CORES : NIX_BUILD_CORES))\"\necho \"Picked new core limit NIX_BUILD_CORES=$NIX_BUILD_CORES based on available mem: $APPX_GB GB\"\ncmakeFlagsArray+=(\n  \"-DCK_PARALLEL_COMPILE_JOBS=$NIX_BUILD_CORES\"\n)\n")),
         cmakeFlags: nix.thunk(() => nix.concat(nix.sel(old, "cmakeFlags"), extraCmakeFlags)),
         postBuild: "find . -name \"*.o\" -type f | while read -r file; do\n  mkdir -p \"$out/$(dirname \"$file\")\"\n  cp --reflink=auto \"$file\" \"$out/$file\"\ndone\nexit 0\n",
-        meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$24, broken: false })),
+        meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: $pos[23], broken: false })),
       })) : null);
   })(), formals$2);
-  const composable_kernel_parts = nix.thunk(() => nix.builtins.mapAttrs((part) => (targets) => nix.app(tensorOpBuilder, nix.thunk(() => nix.update(targets, { [nix.POS]: pos$26, part: part }))), parts));
+  const composable_kernel_parts = nix.thunk(() => nix.builtins.mapAttrs((part) => (targets) => nix.app(tensorOpBuilder, nix.thunk(() => nix.update(targets, { [nix.POS]: $pos[25], part: part }))), parts));
   return nix.app(nix.sel(composable_kernel_base, "overrideAttrs"), (finalAttrs) => (old) => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       pname: nix.thunk(() => nix.str`composable_kernel${nix.sel(clr, "gpuArchSuffix")}`),
       parts_dirs: nix.thunk(() => nix.builtins.filter((x) => !nix.eq(x, null), nix.thunk(() => nix.builtins.attrValues(composable_kernel_parts)))),
       disallowedReferences: nix.thunk(() => nix.builtins.filter((x) => !nix.eq(x, null), nix.thunk(() => nix.builtins.attrValues(composable_kernel_parts)))),
       preBuild: "for dir in $parts_dirs; do\n  find \"$dir\" -type f -name \"*.o\" | while read -r file; do\n    # Extract the relative path by removing the output directory prefix\n    rel_path=\"${file#\"$dir/\"}\"\n\n    # Create parent directory if it doesn't exist\n    mkdir -p \"$(dirname \"$rel_path\")\"\n\n    # Copy the file back to its original location, give it a future timestamp\n    # so make treats it as up to date\n    cp --reflink=auto --no-preserve=all \"$file\" \"$rel_path\"\n    touch -d \"now +10 hours\" \"$rel_path\"\n  done\ndone\n",
-      passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), { [nix.POS]: pos$27, parts: composable_kernel_parts })),
+      passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), { [nix.POS]: $pos[26], parts: composable_kernel_parts })),
       meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         broken: nix.thunk(() => !nix.asBool(nix.sel(finalAttrs, "passthru", "anyGfx9Target"))),
       })),
     }));

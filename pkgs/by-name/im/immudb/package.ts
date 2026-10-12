@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["changelog", 67, 5], ["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 74, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["preBuild", 36, 3], ["vendorHash", 42, 3], ["nativeBuildInputs", 44, 3], ["tags", 46, 3], ["ldflags", 48, 3], ["subPackages", 50, 3], ["postInstall", 56, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchzip: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 67, 5], ["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["preBuild", 36, 3], ["vendorHash", 42, 3], ["nativeBuildInputs", 44, 3], ["tags", 46, 3], ["ldflags", 48, 3], ["subPackages", 50, 3], ["postInstall", 56, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const webconsoleVersion = "1.0.18";
   const webconsoleDist = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/codenotary/immudb-webconsole/releases/download/v${webconsoleVersion}/immudb-webconsole.tar.gz`),
       sha256: "sha256-4BhTK+gKO8HW1CelGa30THpfkqfqFthK+b7p9QWl4Pw=",
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "immudb",
       version: "1.11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "codenotary",
           repo: "immudb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +49,7 @@ go generate -mod=mod -tags webconsole ./webconsole
       subPackages: nix.thunk(() => ["cmd/immudb", "cmd/immuclient", "cmd/immuadmin"]),
       postInstall: "mkdir -p share/completions\nfor executable in immudb immuclient immuadmin; do\n  for shell in bash fish zsh; do\n    $out/bin/$executable completion $shell > share/completions/$executable.$shell\n    installShellCompletion share/completions/$executable.$shell\n  done\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/codenotary/immudb/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Immutable database based on zero trust, SQL and Key-Value, tamperproof, data change history",
         homepage: "https://github.com/codenotary/immudb",

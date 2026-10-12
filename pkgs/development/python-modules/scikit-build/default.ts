@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 29, 5], ["version", 30, 13], ["hash", 31, 5]], [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]], [["changelog", 97, 5], ["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["maintainers", 104, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 34, 3], ["postPatch", 47, 3], ["build-system", 51, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 64, 3], ["dontUseCmakeConfigure", 74, 3], ["disabledTests", 76, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch: false, "hatch-fancy-pypi-readme": false, "hatch-vcs": false, hatchling: false, distro: false, packaging: false, setuptools: false, wheel: false, cmake: false, cython: false, git: false, pytestCheckHook: false, "pytest-mock": false, requests: false, virtualenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 29, 5], ["version", 30, 13], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 97, 5], ["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["maintainers", 104, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 34, 3], ["postPatch", 47, 3], ["build-system", 51, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 64, 3], ["dontUseCmakeConfigure", 74, 3], ["disabledTests", 76, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.19.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "scikit_build",
           version: version,
           hash: "sha256-uajQf8otXRDZMiC8V6aFFh1yrx/HYoXVXFZN2qhi5YQ=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "test-cmake4-install-path-normalization.patch",
             url: "https://github.com/scikit-build/scikit-build/commit/c73be45c664349554fcbc5ab3919b74b33c3bc1e.patch",
             hash: "sha256-ekuOVj6dfPYkNRCFnvLJqW1WL7KnbCVBBmq0+zlH7YY=",
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         "test_sdist_with_symlinks",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-build/scikit-build/blob/${version}/CHANGES.rst`),
         description: "Improved build system generator for CPython C/C++/Fortran/Cython extensions",
         homepage: "https://github.com/scikit-build/scikit-build",
@@ -87,7 +84,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

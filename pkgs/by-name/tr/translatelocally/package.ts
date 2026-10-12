@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 13], ["hash", 30, 5], ["fetchSubmodules", 31, 5]], [["nativeBuildInputs", 86, 11]], [["cli-translate", 83, 5]], [["tests", 82, 12]], [["mainProgram", 99, 5], ["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 104, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 34, 3], ["postPatch", 39, 3], ["postConfigure", 51, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 61, 3], ["cmakeFlags", 73, 3], ["passthru", 82, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, qt6: false, libarchive: false, pcre2: false, protobuf: false, gperftools: false, blas: false, runCommand: false, translatelocally: false, "translatelocally-models": false, buildArch: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 13], ["hash", 30, 5], ["fetchSubmodules", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 86, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cli-translate", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 82, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 99, 5], ["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 104, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 34, 3], ["postPatch", 39, 3], ["postConfigure", 51, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 61, 3], ["cmakeFlags", 73, 3], ["passthru", 82, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const buildArch = nix.argOr($, "buildArch", () => "x86-64");
   const rev = "27771d884d3607cf6331da16b15e27aba819573d";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "translatelocally",
       version: "0-unstable-2024-05-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "XapaJIaMnu",
           repo: "translateLocally",
           rev: rev,
@@ -71,11 +66,11 @@ substituteInPlace 3rd_party/bergamot-translator/3rd_party/marian-dev/src/3rd_par
         nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => nix.str`-DBUILD_ARCH=${buildArch}`))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "cli-translate": nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test-cli-translate`), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [
                 translatelocally,
                 nix.thunk(() => nix.sel(translatelocally_models, "fr-en-tiny")),
@@ -84,7 +79,7 @@ substituteInPlace 3rd_party/bergamot-translator/3rd_party/marian-dev/src/3rd_par
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mainProgram: "translateLocally",
         homepage: "https://translatelocally.com/",
         description: "Fast and secure translation on your local machine, powered by marian and Bergamot",

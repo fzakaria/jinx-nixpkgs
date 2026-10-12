@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["changelog", 75, 5], ["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 83, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildPhase", 18, 3], ["installPhase", 26, 3], ["postFixup", 68, 3], ["doCheck", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 75, 5], ["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildPhase", 18, 3], ["installPhase", 26, 3], ["postFixup", 68, 3], ["doCheck", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "blst",
       version: "0.3.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "supranational",
           repo: "blst",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +67,7 @@ runHook postInstall
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool -id $out/lib/libblst.dylib $out/lib/libblst.dylib\n")),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/supranational/blst/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Multilingual BLS12-381 signature library",
         homepage: "https://github.com/supranational/blst",

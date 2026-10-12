@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtModule.nix", [[["pname", 28, 13], ["version", 28, 19], ["src", 28, 27], ["patches", 29, 5], ["buildInputs", 31, 5], ["nativeBuildInputs", 33, 5], ["propagatedBuildInputs", 42, 5]], [["depsBuildBuild", 47, 5]], [["homepage", 109, 7], ["description", 110, 7], ["license", 111, 7], ["maintainers", 117, 7], ["platforms", 121, 7]], [["outputs", 51, 5], ["setOutputFlags", 56, 5], ["preHook", 58, 5], ["preConfigure", 63, 5], ["dontWrapQtApps", 88, 5], ["postFixup", 90, 5], ["__structuredAttrs", 106, 5], ["meta", 108, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, mkDerivation: false, perl: false, qmake: false, patches: false, srcs: false, pkgsHostTarget: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtModule.nix", [["pname", 28, 13], ["version", 28, 19], ["src", 28, 27], ["patches", 29, 5], ["buildInputs", 31, 5], ["nativeBuildInputs", 33, 5], ["propagatedBuildInputs", 42, 5]]);
-const pos$2 = nix.positions(here + "/qtModule.nix", [["depsBuildBuild", 47, 5]]);
-const pos$3 = nix.positions(here + "/qtModule.nix", [["homepage", 109, 7], ["description", 110, 7], ["license", 111, 7], ["maintainers", 117, 7], ["platforms", 121, 7]]);
-const pos$4 = nix.positions(here + "/qtModule.nix", [["outputs", 51, 5], ["setOutputFlags", 56, 5], ["preHook", 58, 5], ["preConfigure", 63, 5], ["dontWrapQtApps", 88, 5], ["postFixup", 90, 5], ["__structuredAttrs", 106, 5], ["meta", 108, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.thunk(() => nix.selOr(args_1, () => nix.sel(srcs, nix.key(nix.force(pname)), "version"), "version"));
     const src = nix.thunk(() => nix.selOr(args_1, () => nix.sel(srcs, nix.key(nix.force(pname)), "src"), "src"));
     return nix.app(mkDerivation, nix.thunk(() => nix.update(args_1, nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: pname,
         version: version,
         src: src,
@@ -36,10 +33,10 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_1, () => [], "nativeBuildInputs"), nix.concat([perl, qmake], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => [nix.thunk(() => nix.sel(pkgsHostTarget, "qt5", "qtbase", "dev"))]))))),
         propagatedBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.has(args_1, "qtInputs")), "qt5.qtModule's qtInputs argument is deprecated", nix.thunk(() => nix.selOr(args_1, () => [], "qtInputs"))), nix.selOr(args_1, () => [], "propagatedBuildInputs"))),
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           depsBuildBuild: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc"))], nix.selOr(args_1, () => [], "depsBuildBuild"))),
         }))), {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         outputs: nix.thunk(() => nix.selOr(args_1, () => ["out", "dev"], "outputs")),
         setOutputFlags: nix.thunk(() => nix.selOr(args_1, () => false, "setOutputFlags")),
         preHook: nix.thunk(() => nix.str`. ${nix.path(here, "./hooks/move-qt-dev-tools.sh")}
@@ -66,7 +63,7 @@ ${nix.selOr(args_1, () => "", "postFixup")}
 `),
         __structuredAttrs: true,
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           homepage: "https://www.qt.io",
           description: "Cross-platform application framework for C++",
           license: nix.thunk(() => (() => {

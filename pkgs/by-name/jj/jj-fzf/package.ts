@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 28, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 30, 3], ["dontConfigure", 37, 3], ["dontBuild", 38, 3], ["makeFlags", 39, 3], ["patches", 40, 3], ["postPatch", 41, 3], ["postInstall", 47, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, bashInteractive: false, coreutils: false, fetchFromGitHub: false, fzf: false, gawk: false, gnused: false, jujutsu: false, makeWrapper: false, pandoc: false, python3: false, unixtools: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 28, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 30, 3], ["dontConfigure", 37, 3], ["dontBuild", 38, 3], ["makeFlags", 39, 3], ["patches", 40, 3], ["postPatch", 41, 3], ["postInstall", 47, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const unixtools = nix.arg($, "unixtools");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jj-fzf",
       version: "0.38.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tim-janik",
           repo: "jj-fzf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +55,7 @@ patchShebangs --host jj-fzf *.sh contrib/*.sh
         ]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Text UI for Jujutsu based on fzf",
         homepage: "https://github.com/tim-janik/jj-fzf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

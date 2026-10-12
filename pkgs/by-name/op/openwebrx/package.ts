@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 7], ["repo", 29, 7], ["tag", 30, 7], ["hash", 31, 7]], [["homepage", 40, 7], ["description", 41, 7], ["license", 42, 7]], [["pname", 23, 5], ["version", 24, 5], ["format", 25, 5], ["src", 27, 5], ["pythonImportsCheck", 34, 5], ["meta", 39, 5]], [["owner", 51, 7], ["repo", 52, 7], ["tag", 53, 7], ["hash", 54, 7]], [["homepage", 81, 7], ["description", 82, 7], ["license", 83, 7], ["platforms", 84, 7]], [["pname", 47, 5], ["version", 48, 5], ["src", 50, 5], ["postPatch", 57, 5], ["nativeBuildInputs", 63, 5], ["buildInputs", 68, 5], ["nativeInstallCheckInputs", 76, 5], ["versionCheckProgram", 77, 5], ["doInstallCheck", 78, 5], ["meta", 80, 5]], [["owner", 95, 5], ["repo", 96, 5], ["tag", 97, 5], ["hash", 98, 5]], [["js8py", 129, 13], ["owrx_connector", 129, 19]], [["homepage", 133, 5], ["description", 134, 5], ["mainProgram", 135, 5], ["license", 136, 5], ["broken", 138, 5]], [["pname", 90, 3], ["version", 91, 3], ["format", 92, 3], ["src", 94, 3], ["dependencies", 101, 3], ["pythonImportsCheck", 119, 3], ["nativeInstallCheckInputs", 125, 3], ["doInstallCheck", 126, 3], ["passthru", 128, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, python3Packages: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, libsamplerate: false, fftwFloat: false, "rtl-sdr": false, "soapysdr-with-plugins": false, csdr: false, direwolf: false, sox: false, wsjtx: false, codecserver: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 7], ["repo", 29, 7], ["tag", 30, 7], ["hash", 31, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 40, 7], ["description", 41, 7], ["license", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 5], ["version", 24, 5], ["format", 25, 5], ["src", 27, 5], ["pythonImportsCheck", 34, 5], ["meta", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 51, 7], ["repo", 52, 7], ["tag", 53, 7], ["hash", 54, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 81, 7], ["description", 82, 7], ["license", 83, 7], ["platforms", 84, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 47, 5], ["version", 48, 5], ["src", 50, 5], ["postPatch", 57, 5], ["nativeBuildInputs", 63, 5], ["buildInputs", 68, 5], ["nativeInstallCheckInputs", 76, 5], ["versionCheckProgram", 77, 5], ["doInstallCheck", 78, 5], ["meta", 80, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 95, 5], ["repo", 96, 5], ["tag", 97, 5], ["hash", 98, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["js8py", 129, 13], ["owrx_connector", 129, 19]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 133, 5], ["description", 134, 5], ["mainProgram", 135, 5], ["license", 136, 5], ["broken", 138, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 90, 3], ["version", 91, 3], ["format", 92, 3], ["src", 94, 3], ["dependencies", 101, 3], ["pythonImportsCheck", 119, 3], ["nativeInstallCheckInputs", 125, 3], ["doInstallCheck", 126, 3], ["passthru", 128, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jketterl",
           repo: "js8py",
           tag: version,
@@ -45,18 +36,18 @@ export default nix.lambda((args) => (() => {
         }))));
       const pythonImportsCheck = nix.thunk(() => ["js8py", "test"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jketterl/js8py",
         description: "Library to decode the output of the js8 binary of JS8Call",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
-      return { [nix.POS]: pos$3, pname, version, format, src, pythonImportsCheck, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, src, pythonImportsCheck, meta };
     })())));
   const owrx_connector = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "owrx_connector";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "jketterl",
           repo: "owrx_connector",
           tag: version,
@@ -69,14 +60,14 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgram = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/rtl_connector`);
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/jketterl/owrx_connector",
         description: "Set of connectors that are used by OpenWebRX to interface with SDR hardware",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,
@@ -94,7 +85,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "jketterl",
           repo: "openwebrx",
           tag: version,
@@ -120,9 +111,9 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["csdr", "owrx", "test"]);
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$8, js8py: js8py, owrx_connector: owrx_connector }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[7], js8py: js8py, owrx_connector: owrx_connector }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://github.com/jketterl/openwebrx",
         description: "Simple DSP library and command-line tool for Software Defined Radio",
         mainProgram: "openwebrx",
@@ -130,7 +121,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version,
         format,

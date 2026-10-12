@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 52, 5]], [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["qmakeFlags", 35, 3], ["doCheck", 37, 3], ["postFixup", 39, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, fetchFromGitHub: false, perl: false, qmake: false, qtdeclarative: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["qmakeFlags", 35, 3], ["doCheck", 37, 3], ["postFixup", 39, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const qmake = nix.arg($, "qmake");
   const qtdeclarative = nix.arg($, "qtdeclarative");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "qtfeedback",
       version: "5.0.0-beta1-unstable-2018-03-29",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qt",
           repo: "qtfeedback",
           rev: "a14bd0bb1373cde86e09e3619fb9dc70f34c71f2",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postFixup: "# Drop QMAKE_PRL_BUILD_DIR because it references the build dir\nfind \"$out/lib\" -type f -name '*.prl' \\\n  -exec sed -i -e '/^QMAKE_PRL_BUILD_DIR/d' {} \\;\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt Tactile Feedback",
         homepage: "https://github.com/qt/qtfeedback",
         license: nix.thunk(() => (() => {

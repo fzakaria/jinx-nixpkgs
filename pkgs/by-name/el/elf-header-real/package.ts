@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["outputsToInstall", 38, 5], ["description", 39, 5], ["longDescription", 40, 5], ["platforms", 44, 5], ["maintainers", 45, 5]], [["pname", 18, 3], ["version", 19, 18], ["src", 21, 3], ["dontUnpack", 23, 3], ["dontBuild", 25, 3], ["installPhase", 27, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, glibc: false, musl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["outputsToInstall", 38, 5], ["description", 39, 5], ["longDescription", 40, 5], ["platforms", 44, 5], ["maintainers", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 18], ["src", 21, 3], ["dontUnpack", 23, 3], ["dontBuild", 25, 3], ["installPhase", 27, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libc = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "targetPlatform", "isMusl")) ? nix.force(musl) : nix.force(glibc)));
   const headerPath = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "targetPlatform", "isMusl")) ? nix.str`musl-${nix.sel(libc, "version")}/include/elf.h` : nix.str`glibc-${nix.sel(libc, "version")}/elf/elf.h`));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "elf-header",
       version: nix.thunk(() => nix.attr(libc, "version")),
       src: null,
@@ -30,7 +29,7 @@ tar -xf \\
   > "$out/include/elf.h"
 `),
       meta: nix.thunk(() => nix.update(nix.sel(libc, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         outputsToInstall: nix.thunk(() => ["out"]),
         description: "Datastructures of ELF according to the target platform's libc",
         longDescription: "The Executable and Linkable Format (ELF, formerly named Extensible Linking\nFormat), is usually defined in a header like this.\n",

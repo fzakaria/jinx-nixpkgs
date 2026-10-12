@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5], ["postFetch", 19, 5]], [["changelog", 29, 5], ["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5], ["maintainers", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 24, 3], ["dontNpmBuild", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "npm-lockfile-fix": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5], ["postFetch", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 29, 5], ["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 24, 3], ["dontNpmBuild", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pm2";
       const version = "6.0.14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Unitech",
           repo: "pm2",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-sX3yQ/40rDc1G/ybegICmic7+GuaCsDLcM1X6OD0B1E=";
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/Unitech/pm2/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Node.js production process manager with a built-in load balancer",
         homepage: "https://github.com/Unitech/pm2",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "jeremyschlatter"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, dontNpmBuild, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, npmDepsHash, dontNpmBuild, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

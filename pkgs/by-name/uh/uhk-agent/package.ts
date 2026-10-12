@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["name", 20, 5], ["sha256", 21, 5]], [["pname", 25, 13], ["version", 25, 19], ["src", 25, 27]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 79, 5], ["sourceProvenance", 80, 5]], [["pname", 29, 11], ["version", 29, 17], ["src", 29, 25], ["dontUnpack", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["autoPatchelfIgnoreMissingDeps", 44, 3], ["installPhase", 48, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, fetchurl: false, appimageTools: false, electron: false, makeWrapper: false, asar: false, autoPatchelfHook: false, libusb1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["name", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 25, 13], ["version", 25, 19], ["src", 25, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 79, 5], ["sourceProvenance", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 11], ["version", 29, 17], ["src", 29, 25], ["dontUnpack", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["autoPatchelfIgnoreMissingDeps", 44, 3], ["installPhase", 48, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const pname = "uhk-agent";
   const version = "11.0.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/UltimateHackingKeyboard/agent/releases/download/v${version}/UHK.Agent-${version}-linux-x86_64.AppImage`),
       name: nix.thunk(() => nix.str`${pname}-${version}.AppImage`),
       sha256: "sha256-decdwGkN/d7A4KNbQiKoWiZ0CCFxTD+F4ukPWxw2R3k=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -64,7 +61,7 @@ makeWrapper "${electron}/bin/electron" "$out/bin/${pname}" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Configuration application of the Ultimate Hacking Keyboard",
         homepage: "https://github.com/UltimateHackingKeyboard/agent",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

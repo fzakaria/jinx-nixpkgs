@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 7, 3], ["version", 9, 5], ["src", 10, 5], ["cargoDeps", 11, 5], ["meta", 12, 5], ["__structuredAttrs", 14, 3], ["cargoBuildFlags", 16, 3]]]);
 const formals$1 = { args: { rustPlatform: false, ddccontrol: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 9, 5], ["src", 10, 5], ["cargoDeps", 11, 5], ["meta", 12, 5], ["__structuredAttrs", 14, 3], ["cargoBuildFlags", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const rustPlatform = nix.arg($, "rustPlatform");
   const ddccontrol = nix.arg($, "ddccontrol");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "ddccontrol-dbgen",
       version: nix.thunk(() => nix.attr(ddccontrol, "version")),
       src: nix.thunk(() => nix.attr(ddccontrol, "src")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["description", 102, 5], ["license", 103, 5], ["sourceProvenance", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5], ["downloadPage", 110, 5], ["homepage", 111, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["dontUnpack", 32, 3], ["installPhase", 34, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, perl: false, ghostscript: false, coreutils: false, gnugrep: false, which: false, file: false, gnused: false, dpkg: false, makeWrapper: false, libredirect: false, debugLvl: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 102, 5], ["license", 103, 5], ["sourceProvenance", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5], ["downloadPage", 110, 5], ["homepage", 111, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["dontUnpack", 32, 3], ["installPhase", 34, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cups-brother-dcpt725dw";
       const version = "3.5.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf105181/dcpt725dwpdrv-${version}.i386.deb`),
           hash: "sha256-fK6RHaW/ej1nFgSaTbzWxVgjIW32YTbJbd1xD37ZE7c=",
         }))));
@@ -85,7 +83,7 @@ ln -s "$out/opt/brother/Printers/dcpt725dw/cupswrapper/brother_dcpt725dw_printer
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Brother DCP-T725DW printer driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         sourceProvenance: nix.thunk(() => (() => {
@@ -101,7 +99,7 @@ runHook postInstall
         homepage: "http://www.brother.com/",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

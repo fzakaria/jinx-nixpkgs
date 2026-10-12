@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 29, 5], ["owner", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["kerberos", 48, 5], ["gsaapi", 49, 5], ["sqlalchemy", 50, 5], ["external-authentication-token-cache", 51, 5], ["all", 52, 5]], [["changelog", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 55, 3], ["pythonImportsCheck", 63, 3], ["disabledTestPaths", 65, 3], ["disabledTestMarks", 72, 3], ["disabledTests", 74, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, boto3: false, buildPythonPackage: false, fetchFromGitHub: false, httpretty: false, keyring: false, lz4: false, orjson: false, pytestCheckHook: false, "python-dateutil": false, pytz: false, "requests-gssapi": false, "requests-kerberos": false, requests: false, setuptools: false, sqlalchemy: false, testcontainers: false, tzlocal: false, zstandard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 29, 5], ["owner", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["kerberos", 48, 5], ["gsaapi", 49, 5], ["sqlalchemy", 50, 5], ["external-authentication-token-cache", 51, 5], ["all", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 55, 3], ["pythonImportsCheck", 63, 3], ["disabledTestPaths", 65, 3], ["disabledTestMarks", 72, 3], ["disabledTests", 74, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.338.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "trino-python-client",
           owner: "trinodb",
           tag: version,
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [lz4, orjson, python_dateutil, pytz, requests, tzlocal, zstandard]);
       const optional_dependencies = nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           kerberos: nix.thunk(() => [requests_kerberos]),
           gsaapi: nix.thunk(() => [requests_gssapi]),
           sqlalchemy: nix.thunk(() => [sqlalchemy]),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         "test_multithreaded_oauth2_authentication_flow",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/trinodb/trino-python-client/blob/${nix.sel(src, "tag")}/CHANGES.md`),
         description: "Client for the Trino distributed SQL Engine",
         homepage: "https://github.com/trinodb/trino-python-client",
@@ -78,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

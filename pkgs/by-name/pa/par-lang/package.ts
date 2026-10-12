@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["name", 68, 7], ["desktopName", 69, 7], ["genericName", 70, 7], ["categories", 71, 7], ["exec", 72, 7]], [["extraArgs", 76, 47]], [["updateScript", 76, 12]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["postFixup", 40, 3], ["doInstallCheck", 56, 3], ["installCheckPhase", 57, 3], ["desktopItems", 66, 3], ["passthru", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, stdenv: false, "pkg-config": false, openssl: false, libGL: false, libxkbcommon: false, wayland: false, libxrandr: false, libxi: false, libxcursor: false, libx11: false, makeDesktopItem: false, copyDesktopItems: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 68, 7], ["desktopName", 69, 7], ["genericName", 70, 7], ["categories", 71, 7], ["exec", 72, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 76, 47]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 76, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["postFixup", 40, 3], ["doInstallCheck", 56, 3], ["installCheckPhase", 57, 3], ["desktopItems", 66, 3], ["passthru", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "par-lang",
       version: "0-unstable-2026-09-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "par-team",
           repo: "par-lang",
           rev: "553fbca88e8973aed81f1428cfca2efcd020207e",
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/par new hello\ndiff -U3 --color=auto <($out/bin/par run --package hello 2>&1) <(echo 'Hello, World!')\n\nrunHook postInstallCheck\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "par-playground",
             desktopName: "Par Playground",
             genericName: "Experimental concurrent programming language",
@@ -60,11 +55,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Experimental concurrent programming language",
         homepage: "https://github.com/par-team/par-lang",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

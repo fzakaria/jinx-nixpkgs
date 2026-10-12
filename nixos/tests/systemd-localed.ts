@@ -2,37 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-localed.nix", [[["maintainers", 4, 8]], [["enable", 10, 32]], [["layout", 12, 26]], [["xkb", 12, 22]], [["graphical-desktop", 10, 14], ["xserver", 12, 14]], [["services", 10, 5]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 15, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-localed.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/systemd-localed.nix", [["enable", 10, 32]]);
-const pos$3 = nix.positions(here + "/systemd-localed.nix", [["layout", 12, 26]]);
-const pos$4 = nix.positions(here + "/systemd-localed.nix", [["xkb", 12, 22]]);
-const pos$5 = nix.positions(here + "/systemd-localed.nix", [["graphical-desktop", 10, 14], ["xserver", 12, 14]]);
-const pos$6 = nix.positions(here + "/systemd-localed.nix", [["services", 10, 5]]);
-const pos$7 = nix.positions(here + "/systemd-localed.nix", [["machine", 6, 9]]);
-const pos$8 = nix.positions(here + "/systemd-localed.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "systemd-localed",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "haansn08"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            "graphical-desktop": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$4, xkb: nix.thunk(() => ({ [nix.POS]: pos$3, layout: "jp" })) })),
+            [nix.POS]: $pos[4],
+            "graphical-desktop": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+            xserver: nix.thunk(() => ({
+              [nix.POS]: $pos[3],
+              xkb: nix.thunk(() => ({ [nix.POS]: $pos[2], layout: "jp" })),
+            })),
           })),
         };
       })(), formals$2),

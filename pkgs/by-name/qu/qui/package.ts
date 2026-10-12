@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pname", 38, 9], ["version", 39, 9], ["src", 40, 9], ["sourceRoot", 41, 9], ["pnpm", 43, 7], ["fetcherVersion", 44, 7], ["hash", 45, 7]], [["pname", 25, 5], ["src", 26, 26], ["version", 26, 30], ["nativeBuildInputs", 28, 5], ["sourceRoot", 34, 5], ["pnpmDeps", 36, 5], ["postBuild", 48, 5], ["installPhase", 52, 5]], [["extraArgs", 92, 7]], [["testService", 97, 11]], [["updateScript", 91, 5], ["tests", 97, 5]], [["description", 101, 5], ["license", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["maintainers", 105, 5], ["mainProgram", 109, 5], ["platforms", 110, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["qui-web", 24, 3], ["vendorHash", 57, 3], ["preBuild", 59, 3], ["ldflags", 63, 3], ["preCheck", 72, 3], ["checkFlags", 76, 3], ["nativeInstallCheckInputs", 81, 3], ["versionCheckProgramArg", 84, 3], ["doInstallCheck", 85, 3], ["__darwinAllowLocalNetworking", 88, 3], ["passthru", 90, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, buildGo127Module: false, fetchFromGitHub: false, stdenvNoCC: false, nixosTests: false, "nix-update-script": false, nodejs: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 38, 9], ["version", 39, 9], ["src", 40, 9], ["sourceRoot", 41, 9], ["pnpm", 43, 7], ["fetcherVersion", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 5], ["src", 26, 26], ["version", 26, 30], ["nativeBuildInputs", 28, 5], ["sourceRoot", 34, 5], ["pnpmDeps", 36, 5], ["postBuild", 48, 5], ["installPhase", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 92, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["testService", 97, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 91, 5], ["tests", 97, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 101, 5], ["license", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["maintainers", 105, 5], ["mainProgram", 109, 5], ["platforms", 110, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["qui-web", 24, 3], ["vendorHash", 57, 3], ["preBuild", 59, 3], ["ldflags", 63, 3], ["preCheck", 72, 3], ["checkFlags", 76, 3], ["nativeInstallCheckInputs", 81, 3], ["versionCheckProgramArg", 84, 3], ["doInstallCheck", 85, 3], ["__darwinAllowLocalNetworking", 88, 3], ["passthru", 90, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,25 +19,25 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "qui",
       version: "1.30.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "autobrr",
           repo: "qui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-LoMTUeMABJMzTobwa3PwlX7ffDWm3C344ZGRaWiboT4=",
         })))),
       "qui-web": nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs$) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-web`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11]),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/web`),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname: nix.thunk(() => nix.attr(finalAttrs$, "pname")),
               version: nix.thunk(() => nix.attr(finalAttrs$, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs$, "src")),
@@ -70,12 +63,12 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "qui-web"]) })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, testService: nix.thunk(() => nix.sel(nixosTests, "qui")) })),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--subpackage", "qui-web"]) })))),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[4], testService: nix.thunk(() => nix.sel(nixosTests, "qui")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Modern alternative webUI for qBittorrent, with multi-instance support",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://github.com/autobrr/qui",

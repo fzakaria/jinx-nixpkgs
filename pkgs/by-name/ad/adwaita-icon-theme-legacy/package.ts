@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["packageName", 28, 7]], [["updateScript", 27, 5]], [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["teams", 37, 5], ["platforms", 38, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["passthru", 26, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, gtk4: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 27, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["teams", 37, 5], ["platforms", 38, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["passthru", 26, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "adwaita-icon-theme-legacy",
       version: "46.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/adwaita-icon-theme-legacy/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/adwaita-icon-theme-legacy-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-VISA9YWJpUty0Ygzt1WxX/vVZ+MYcknXTi4fj5nyL7Q=",
         })))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, gtk4]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "adwaita-icon-theme-legacy" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "adwaita-icon-theme-legacy" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fullcolor icon theme providing fallback for legacy apps",
         homepage: "https://gitlab.gnome.org/GNOME/adwaita-icon-theme-legacy",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/adwaita-icon-theme-legacy/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

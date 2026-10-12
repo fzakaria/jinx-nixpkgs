@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["settingsExample", 47, 12]], [["description", 50, 5], ["mainProgram", 51, 5], ["longDescription", 52, 5], ["homepage", 59, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 19, 3], ["src", 25, 20], ["sourceRoot", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["postInstall", 40, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, getdns: false, libyaml: false, openssl: false, systemdLibs: false, yq: false, stubby: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["settingsExample", 47, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["mainProgram", 51, 5], ["longDescription", 52, 5], ["homepage", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 19, 3], ["src", 25, 20], ["sourceRoot", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["postInstall", 40, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const yq = nix.arg($, "yq");
   const stubby = nix.arg($, "stubby");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "stubby",
       version: "0.4.3",
       outputs: nix.thunk(() => ["out", "man", "stubbyExampleJson"]),
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([getdns, libyaml, openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [systemdLibs])))),
       postInstall: "rm -r $out/share/doc\nyq \\\n  < $NIX_BUILD_TOP/$sourceRoot/stubby.yml.example \\\n  > $stubbyExampleJson\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         settingsExample: nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.sel(stubby, "stubbyExampleJson")))))),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(getdns, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Local DNS Privacy stub resolver (using DNS-over-TLS)",
         mainProgram: "stubby",
         longDescription: "Stubby is an application that acts as a local DNS Privacy stub\nresolver (using RFC 7858, aka DNS-over-TLS). Stubby encrypts DNS\nqueries sent from a client machine (desktop or laptop) to a DNS\nPrivacy resolver increasing end user privacy. Stubby is developed by\nthe getdns team.\n",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["updateScript", 60, 12]], [["description", 63, 5], ["longDescription", 64, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["platforms", 71, 37], ["maintainers", 72, 5], ["mainProgram", 73, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 35, 3], ["checkFlags", 39, 3], ["nativeInstallCheckInputs", 44, 3], ["versionCheckProgram", 47, 3], ["doInstallCheck", 58, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "cargo-tauri": false, wrapGAppsHook4: false, webkitgtk_4_1: false, "pkg-config": false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["longDescription", 64, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["platforms", 71, 37], ["maintainers", 72, 5], ["mainProgram", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 35, 3], ["checkFlags", 39, 3], ["nativeInstallCheckInputs", 44, 3], ["versionCheckProgram", 47, 3], ["doInstallCheck", 58, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "arnis",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "louis-e",
           repo: "arnis",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,13 +41,13 @@ export default nix.lambda((args) => (() => {
       })()),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cargo_tauri, "hook", "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Real world location generator for Minecraft Java Edition",
         longDescription: "Open source project written in Rust generates any chosen location from\nthe real world in Minecraft Java Edition with a high level of detail.\n",
         homepage: "https://github.com/louis-e/arnis",

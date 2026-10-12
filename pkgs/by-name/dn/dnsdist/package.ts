@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["cargoRoot", 82, 26], ["src", 82, 36], ["hash", 83, 5]], [["tests", 92, 12]], [["changelog", 95, 5], ["description", 96, 5], ["mainProgram", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 45, 3], ["configureFlags", 62, 3], ["cargoDeps", 81, 3], ["cargoRoot", 86, 3], ["doCheck", 88, 3], ["enableParallelBuilding", 90, 3], ["passthru", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { boost: false, cargo: false, fetchurl: false, fstrm: false, lib: false, libbpf: false, libcap: false, libedit: false, libsodium: false, lua: false, "net-snmp": false, nghttp2: false, nixosTests: false, openssl: false, "pkg-config": false, protobuf: false, python3: false, re2: false, rustPlatform: false, stdenv: false, systemd: false, "xdp-tools": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cargoRoot", 82, 26], ["src", 82, 36], ["hash", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 92, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 95, 5], ["description", 96, 5], ["mainProgram", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 45, 3], ["configureFlags", 62, 3], ["cargoDeps", 81, 3], ["cargoRoot", 86, 3], ["doCheck", 88, 3], ["enableParallelBuilding", 90, 3], ["passthru", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const xdp_tools = nix.arg($, "xdp-tools");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dnsdist",
       version: "2.0.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.powerdns.com/releases/dnsdist-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-YKCU155Ci4bl7KGITWi0lb1NA3rw9u/BRI4WvMDTIrw=",
         })))),
@@ -86,7 +82,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-boost=${nix.sel(boost, "dev")}`),
       ]),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-O9FKlT8bqDz+rQBocZ5ZWMimYyRTfPrKBxp+hDs10c4=",
@@ -94,9 +90,9 @@ export default nix.lambda((args) => (() => {
       cargoRoot: "dnsdist-rust-lib/rust",
       doCheck: true,
       enableParallelBuilding: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "dnsdist")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], tests: nix.thunk(() => nix.sel(nixosTests, "dnsdist")) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: "https://www.dnsdist.org/changelog.html",
         description: "DNS Loadbalancer",
         mainProgram: "dnsdist",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["installPhase", 46, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "alsa-lib": false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["installPhase", 46, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const qtgraphicaleffects = nix.thunk(() => nix.attr(qt5, "qtgraphicaleffects"));
   const qtquickcontrols2 = nix.thunk(() => nix.attr(qt5, "qtquickcontrols2"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "opensoundmeter",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "psmokotnin",
           repo: "osm",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [alsa_lib, qtgraphicaleffects, qtquickcontrols2]),
       installPhase: "runHook preInstall\n\ninstall OpenSoundMeter -Dt $out/bin\ninstall OpenSoundMeter.desktop -m444 -Dt $out/share/applications\ninstall icons/white.png -m444 -D $out/share/icons/OpenSoundMeter.png\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sound measurement application for tuning audio systems in real-time",
         homepage: "https://opensoundmeter.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

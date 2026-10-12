@@ -2,54 +2,43 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/autobrr.nix", [[["maintainers", 5, 8]], [["enable", 8, 22]], [["autobrr", 8, 14]], [["port", 14, 18]], [["enable", 13, 9], ["settings", 14, 9]], [["autobrr", 12, 16]], [["services", 12, 7]], [["configuration", 11, 33]], [["settingsPort", 11, 20]], [["services", 8, 5], ["specialisation", 11, 5]], [["machine", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 19, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/autobrr.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/autobrr.nix", [["enable", 8, 22]]);
-const pos$3 = nix.positions(here + "/autobrr.nix", [["autobrr", 8, 14]]);
-const pos$4 = nix.positions(here + "/autobrr.nix", [["port", 14, 18]]);
-const pos$5 = nix.positions(here + "/autobrr.nix", [["enable", 13, 9], ["settings", 14, 9]]);
-const pos$6 = nix.positions(here + "/autobrr.nix", [["autobrr", 12, 16]]);
-const pos$7 = nix.positions(here + "/autobrr.nix", [["services", 12, 7]]);
-const pos$8 = nix.positions(here + "/autobrr.nix", [["configuration", 11, 33]]);
-const pos$9 = nix.positions(here + "/autobrr.nix", [["settingsPort", 11, 20]]);
-const pos$10 = nix.positions(here + "/autobrr.nix", [["services", 8, 5], ["specialisation", 11, 5]]);
-const pos$11 = nix.positions(here + "/autobrr.nix", [["machine", 7, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$12 = nix.positions(here + "/autobrr.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "autobrr",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "av-gal"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          autobrr: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          autobrr: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           settingsPort: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 autobrr: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   enable: true,
-                  settings: nix.thunk(() => ({ [nix.POS]: pos$4, port: 7777n })),
+                  settings: nix.thunk(() => ({ [nix.POS]: $pos[3], port: 7777n })),
                 })),
               })),
             })),

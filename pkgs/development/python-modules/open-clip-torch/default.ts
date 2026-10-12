@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 56, 3], ["pythonImportsCheck", 65, 3], ["disabledTestPaths", 67, 3], ["disabledTests", 75, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "pdm-backend": false, ftfy: false, "huggingface-hub": false, protobuf: false, regex: false, safetensors: false, sentencepiece: false, timm: false, torch: false, torchvision: false, tqdm: false, braceexpand: false, pandas: false, pytestCheckHook: false, requests: false, transformers: false, webdataset: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 56, 3], ["pythonImportsCheck", 65, 3], ["disabledTestPaths", 67, 3], ["disabledTests", 75, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const transformers = nix.arg($, "transformers");
   const webdataset = nix.arg($, "webdataset");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "open-clip-torch",
       version: "3.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mlfoundations",
           repo: "open_clip",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
         "test_training",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open source implementation of CLIP",
         homepage: "https://github.com/mlfoundations/open_clip",
         changelog: nix.thunk(() => nix.str`https://github.com/mlfoundations/open_clip/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

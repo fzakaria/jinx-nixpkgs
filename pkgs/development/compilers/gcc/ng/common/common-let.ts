@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common-let.nix", [[["license", 14, 5], ["teams", 15, 5]], [["original", 21, 9], ["release_version", 22, 9], ["version", 23, 9]], [["original", 27, 9], ["release_version", 28, 9], ["version", 29, 9]], [["url", 38, 9], ["rev", 39, 30], ["hash", 40, 9]], [["url", 44, 9], ["hash", 45, 9]], [["gcc_meta", 13, 3], ["releaseInfo", 18, 3], ["monorepoSrc", 33, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: true, fetchgit: true, release_version: true, gitRelease: true, officialRelease: true, "monorepoSrc'": true, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common-let.nix", [["license", 14, 5], ["teams", 15, 5]]);
-const pos$2 = nix.positions(here + "/common-let.nix", [["original", 21, 9], ["release_version", 22, 9], ["version", 23, 9]]);
-const pos$3 = nix.positions(here + "/common-let.nix", [["original", 27, 9], ["release_version", 28, 9], ["version", 29, 9]]);
-const pos$4 = nix.positions(here + "/common-let.nix", [["url", 38, 9], ["rev", 39, 30], ["hash", 40, 9]]);
-const pos$5 = nix.positions(here + "/common-let.nix", [["url", 44, 9], ["hash", 45, 9]]);
-const pos$6 = nix.positions(here + "/common-let.nix", [["gcc_meta", 13, 3], ["releaseInfo", 18, 3], ["monorepoSrc", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   return (() => {
     const gcc_meta = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gcc"))]),
     }));
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const release_version_1 = nix.thunk(() => nix.selOr(args_1, () => nix.sel(original, "version"), "version"));
       const version_1 = nix.thunk(() => nix.sel(gitRelease, "rev-version"));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         original,
         release_version: release_version_1,
         version: version_1,
@@ -42,23 +37,23 @@ export default nix.lambda((args) => (() => {
       const release_version_1 = nix.thunk(() => nix.selOr(args_1, () => nix.sel(original, "version"), "version"));
       const version_1 = nix.thunk(() => (nix.asBool(nix.has(original, "candidate")) ? nix.str`${release_version_1}-${nix.sel(original, "candidate")}` : nix.force(release_version_1)));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         original,
         release_version: release_version_1,
         version: version_1,
       };
     })()));
     const monorepoSrc = nix.thunk(() => (nix.asBool(!nix.eq(monorepoSrc$, null)) ? nix.force(monorepoSrc$) : (nix.asBool(!nix.eq(gitRelease, null)) ? nix.app(fetchgit, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         url: "https://gcc.gnu.org/git/gcc.git",
         rev: nix.thunk(() => nix.attr(gitRelease, "rev")),
         hash: nix.thunk(() => nix.sel(releaseInfo, "original", "sha256")),
       }))) : nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         url: nix.thunk(() => nix.str`mirror://gcc/releases/gcc-${nix.sel(releaseInfo, "version")}/gcc-${nix.sel(releaseInfo, "version")}.tar.xz`),
         hash: nix.thunk(() => nix.sel(releaseInfo, "original", "sha256")),
       }))))));
-    return { [nix.POS]: pos$6, gcc_meta, releaseInfo, monorepoSrc };
+    return { [nix.POS]: $pos[5], gcc_meta, releaseInfo, monorepoSrc };
   })();
 })(), formals$1);
 //# sourceMappingURL=common-let.ts.map

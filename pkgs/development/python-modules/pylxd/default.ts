@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["pythonRelaxDeps", 30, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 44, 3], ["disabledTestPaths", 50, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cryptography: false, ddt: false, fetchFromGitHub: false, "mock-services": false, pytestCheckHook: false, "python-dateutil": false, requests: false, urllib3: false, "requests-toolbelt": false, "requests-unixsocket": false, setuptools: false, ws4py: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["pythonRelaxDeps", 30, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 44, 3], ["disabledTestPaths", 50, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "canonical",
           repo: "pylxd",
           tag: version,
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["integration", "migration"]);
       const pythonImportsCheck = nix.thunk(() => ["pylxd"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for interacting with the LXD REST API",
         homepage: "https://pylxd.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/canonical/pylxd/releases/tag/${nix.sel(src, "tag")}`),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

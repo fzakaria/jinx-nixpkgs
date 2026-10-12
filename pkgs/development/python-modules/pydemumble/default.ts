@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]], [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["postPatch", 24, 3], ["build-system", 31, 3], ["dontUseCmakeConfigure", 35, 3], ["nativeBuildInputs", 36, 3], ["nativeCheckInputs", 41, 3], ["enabledTestPaths", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "scikit-build-core": false, cmake: false, pytestCheckHook: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["postPatch", 24, 3], ["build-system", 31, 3], ["dontUseCmakeConfigure", 35, 3], ["nativeBuildInputs", 36, 3], ["nativeCheckInputs", 41, 3], ["enabledTestPaths", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "angr",
           repo: "pydemumble",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/"]);
       const pythonImportsCheck = nix.thunk(() => ["pydemumble"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Demumble wrapper library",
         longDescription: "Python wrapper library for demumble; demumble is a tool to\ndemangle C++, Rust, and Swift symbol names.\n",
         homepage: "https://github.com/angr/pydemumble",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

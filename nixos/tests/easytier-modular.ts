@@ -2,66 +2,16 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/easytier-modular.nix", [[["allowedTCPPorts", 15, 33], ["allowedUDPPorts", 19, 33]], [["useDHCP", 14, 24], ["firewall", 15, 24]], [["network_name", 31, 19], ["network_secret", 32, 19]], [["instance_name", 27, 17], ["dev_name", 28, 17], ["rpc_portal", 29, 17], ["network_identity", 30, 17]], [["settings", 26, 24]], [["imports", 25, 15], ["easytier", 26, 15]], [["easytier-default", 24, 29]], [["services", 24, 20]], [["networking", 14, 13], ["system", 24, 13]], [["vlans", 45, 28]], [["address", 51, 17], ["prefixLength", 52, 17]], [["addresses", 49, 45]], [["ipv4", 49, 40]], [["address", 57, 17], ["prefixLength", 58, 17]], [["addresses", 55, 45]], [["ipv4", 55, 40]], [["eth1", 49, 35], ["eth2", 55, 35]], [["interfaces", 49, 24]], [["ipv4", 63, 15], ["listeners", 64, 15]], [["settings", 62, 57]], [["easytier", 62, 48]], [["easytier-default", 62, 29]], [["services", 62, 20]], [["virtualisation", 45, 13], ["networking", 49, 13], ["system", 62, 13]], [["allowedTCPPorts", 72, 33], ["allowedUDPPorts", 73, 33]], [["firewall", 72, 24]], [["network_name", 89, 21], ["network_secret", 90, 21]], [["bind_device", 95, 21], ["no_tun", 96, 21]], [["instance_name", 83, 19], ["ipv4", 84, 19], ["rpc_portal", 86, 19], ["network_identity", 88, 19], ["listeners", 93, 19], ["flags", 94, 19]], [["peers", 78, 17], ["settings", 82, 17]], [["imports", 76, 15], ["easytier", 77, 15]], [["easytier-second", 75, 29]], [["services", 75, 20]], [["networking", 72, 13], ["system", 75, 13]], [["vlans", 105, 24]], [["ipv4", 107, 20]], [["settings", 107, 11], ["peers", 108, 11]], [["easytier", 106, 44]], [["easytier-default", 106, 25]], [["services", 106, 16]], [["virtualisation", 105, 9], ["system", 106, 9]], [["vlans", 113, 24]], [["ipv4", 115, 20]], [["settings", 115, 11], ["peers", 116, 11]], [["easytier", 114, 44]], [["easytier-default", 114, 25]], [["services", 114, 16]], [["virtualisation", 113, 9], ["system", 114, 9]], [["relay", 41, 7], ["peer1", 104, 7], ["peer2", 112, 7]], [["maintainers", 160, 8]], [["_class", 3, 3], ["name", 5, 3], ["nodes", 7, 3], ["testScript", 121, 3], ["meta", 160, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/easytier-modular.nix", [["allowedTCPPorts", 15, 33], ["allowedUDPPorts", 19, 33]]);
-const pos$2 = nix.positions(here + "/easytier-modular.nix", [["useDHCP", 14, 24], ["firewall", 15, 24]]);
-const pos$3 = nix.positions(here + "/easytier-modular.nix", [["network_name", 31, 19], ["network_secret", 32, 19]]);
-const pos$4 = nix.positions(here + "/easytier-modular.nix", [["instance_name", 27, 17], ["dev_name", 28, 17], ["rpc_portal", 29, 17], ["network_identity", 30, 17]]);
-const pos$5 = nix.positions(here + "/easytier-modular.nix", [["settings", 26, 24]]);
-const pos$6 = nix.positions(here + "/easytier-modular.nix", [["imports", 25, 15], ["easytier", 26, 15]]);
-const pos$7 = nix.positions(here + "/easytier-modular.nix", [["easytier-default", 24, 29]]);
-const pos$8 = nix.positions(here + "/easytier-modular.nix", [["services", 24, 20]]);
-const pos$9 = nix.positions(here + "/easytier-modular.nix", [["networking", 14, 13], ["system", 24, 13]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/easytier-modular.nix", [["vlans", 45, 28]]);
-const pos$11 = nix.positions(here + "/easytier-modular.nix", [["address", 51, 17], ["prefixLength", 52, 17]]);
-const pos$12 = nix.positions(here + "/easytier-modular.nix", [["addresses", 49, 45]]);
-const pos$13 = nix.positions(here + "/easytier-modular.nix", [["ipv4", 49, 40]]);
-const pos$14 = nix.positions(here + "/easytier-modular.nix", [["address", 57, 17], ["prefixLength", 58, 17]]);
-const pos$15 = nix.positions(here + "/easytier-modular.nix", [["addresses", 55, 45]]);
-const pos$16 = nix.positions(here + "/easytier-modular.nix", [["ipv4", 55, 40]]);
-const pos$17 = nix.positions(here + "/easytier-modular.nix", [["eth1", 49, 35], ["eth2", 55, 35]]);
-const pos$18 = nix.positions(here + "/easytier-modular.nix", [["interfaces", 49, 24]]);
-const pos$19 = nix.positions(here + "/easytier-modular.nix", [["ipv4", 63, 15], ["listeners", 64, 15]]);
-const pos$20 = nix.positions(here + "/easytier-modular.nix", [["settings", 62, 57]]);
-const pos$21 = nix.positions(here + "/easytier-modular.nix", [["easytier", 62, 48]]);
-const pos$22 = nix.positions(here + "/easytier-modular.nix", [["easytier-default", 62, 29]]);
-const pos$23 = nix.positions(here + "/easytier-modular.nix", [["services", 62, 20]]);
-const pos$24 = nix.positions(here + "/easytier-modular.nix", [["virtualisation", 45, 13], ["networking", 49, 13], ["system", 62, 13]]);
-const pos$25 = nix.positions(here + "/easytier-modular.nix", [["allowedTCPPorts", 72, 33], ["allowedUDPPorts", 73, 33]]);
-const pos$26 = nix.positions(here + "/easytier-modular.nix", [["firewall", 72, 24]]);
-const pos$27 = nix.positions(here + "/easytier-modular.nix", [["network_name", 89, 21], ["network_secret", 90, 21]]);
-const pos$28 = nix.positions(here + "/easytier-modular.nix", [["bind_device", 95, 21], ["no_tun", 96, 21]]);
-const pos$29 = nix.positions(here + "/easytier-modular.nix", [["instance_name", 83, 19], ["ipv4", 84, 19], ["rpc_portal", 86, 19], ["network_identity", 88, 19], ["listeners", 93, 19], ["flags", 94, 19]]);
-const pos$30 = nix.positions(here + "/easytier-modular.nix", [["peers", 78, 17], ["settings", 82, 17]]);
-const pos$31 = nix.positions(here + "/easytier-modular.nix", [["imports", 76, 15], ["easytier", 77, 15]]);
-const pos$32 = nix.positions(here + "/easytier-modular.nix", [["easytier-second", 75, 29]]);
-const pos$33 = nix.positions(here + "/easytier-modular.nix", [["services", 75, 20]]);
-const pos$34 = nix.positions(here + "/easytier-modular.nix", [["networking", 72, 13], ["system", 75, 13]]);
-const pos$35 = nix.positions(here + "/easytier-modular.nix", [["vlans", 105, 24]]);
-const pos$36 = nix.positions(here + "/easytier-modular.nix", [["ipv4", 107, 20]]);
-const pos$37 = nix.positions(here + "/easytier-modular.nix", [["settings", 107, 11], ["peers", 108, 11]]);
-const pos$38 = nix.positions(here + "/easytier-modular.nix", [["easytier", 106, 44]]);
-const pos$39 = nix.positions(here + "/easytier-modular.nix", [["easytier-default", 106, 25]]);
-const pos$40 = nix.positions(here + "/easytier-modular.nix", [["services", 106, 16]]);
-const pos$41 = nix.positions(here + "/easytier-modular.nix", [["virtualisation", 105, 9], ["system", 106, 9]]);
-const pos$42 = nix.positions(here + "/easytier-modular.nix", [["vlans", 113, 24]]);
-const pos$43 = nix.positions(here + "/easytier-modular.nix", [["ipv4", 115, 20]]);
-const pos$44 = nix.positions(here + "/easytier-modular.nix", [["settings", 115, 11], ["peers", 116, 11]]);
-const pos$45 = nix.positions(here + "/easytier-modular.nix", [["easytier", 114, 44]]);
-const pos$46 = nix.positions(here + "/easytier-modular.nix", [["easytier-default", 114, 25]]);
-const pos$47 = nix.positions(here + "/easytier-modular.nix", [["services", 114, 16]]);
-const pos$48 = nix.positions(here + "/easytier-modular.nix", [["virtualisation", 113, 9], ["system", 114, 9]]);
-const pos$49 = nix.positions(here + "/easytier-modular.nix", [["relay", 41, 7], ["peer1", 104, 7], ["peer2", 112, 7]]);
-const pos$50 = nix.positions(here + "/easytier-modular.nix", [["maintainers", 160, 8]]);
-const pos$51 = nix.positions(here + "/easytier-modular.nix", [["_class", 3, 3], ["name", 5, 3], ["nodes", 7, 3], ["testScript", 121, 3], ["meta", 160, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$51,
+    [nix.POS]: $pos[50],
     _class: "nixosTest",
     name: "easytier-modular",
     nodes: nix.thunk(() => (() => {
@@ -70,32 +20,32 @@ export default nix.lambda((args) => (() => {
         const pkgs = nix.arg($_1, "pkgs");
         return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 useDHCP: false,
                 firewall: nix.thunk(() => ({
-                  [nix.POS]: pos$1,
+                  [nix.POS]: $pos[0],
                   allowedTCPPorts: nix.thunk(() => [11010n, 11011n]),
                   allowedUDPPorts: nix.thunk(() => [11010n, 11011n]),
                 })),
               })),
               system: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   "easytier-default": nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     imports: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "easytier", "services", "default"))]),
                     easytier: nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       settings: nix.thunk(() => ({
-                        [nix.POS]: pos$4,
+                        [nix.POS]: $pos[3],
                         instance_name: "default",
                         dev_name: "et_def",
                         rpc_portal: "0.0.0.0:11000",
                         network_identity: nix.thunk(() => ({
-                          [nix.POS]: pos$3,
+                          [nix.POS]: $pos[2],
                           network_name: "easytier_test",
                           network_secret: "easytier_test_secret",
                         })),
@@ -109,49 +59,49 @@ export default nix.lambda((args) => (() => {
           ]));
       })(), formals$2);
       return {
-        [nix.POS]: pos$49,
+        [nix.POS]: $pos[48],
         relay: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const args_2 = args_1;
           const pkgs = nix.arg($_1, "pkgs");
           return nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
               nix.thunk(() => nix.app(genPeer, nix.thunk(() => ({
-                  [nix.POS]: pos$24,
-                  virtualisation: nix.thunk(() => ({ [nix.POS]: pos$10, vlans: nix.thunk(() => [1n, 2n]) })),
+                  [nix.POS]: $pos[23],
+                  virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[9], vlans: nix.thunk(() => [1n, 2n]) })),
                   networking: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
+                    [nix.POS]: $pos[17],
                     interfaces: nix.thunk(() => ({
-                      [nix.POS]: pos$17,
+                      [nix.POS]: $pos[16],
                       eth1: nix.thunk(() => ({
-                        [nix.POS]: pos$13,
+                        [nix.POS]: $pos[12],
                         ipv4: nix.thunk(() => ({
-                          [nix.POS]: pos$12,
+                          [nix.POS]: $pos[11],
                           addresses: nix.thunk(() => [
-                            nix.thunk(() => ({ [nix.POS]: pos$11, address: "192.168.1.11", prefixLength: 24n })),
+                            nix.thunk(() => ({ [nix.POS]: $pos[10], address: "192.168.1.11", prefixLength: 24n })),
                           ]),
                         })),
                       })),
                       eth2: nix.thunk(() => ({
-                        [nix.POS]: pos$16,
+                        [nix.POS]: $pos[15],
                         ipv4: nix.thunk(() => ({
-                          [nix.POS]: pos$15,
+                          [nix.POS]: $pos[14],
                           addresses: nix.thunk(() => [
-                            nix.thunk(() => ({ [nix.POS]: pos$14, address: "192.168.2.11", prefixLength: 24n })),
+                            nix.thunk(() => ({ [nix.POS]: $pos[13], address: "192.168.2.11", prefixLength: 24n })),
                           ]),
                         })),
                       })),
                     })),
                   })),
                   system: nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$22,
+                      [nix.POS]: $pos[21],
                       "easytier-default": nix.thunk(() => ({
-                        [nix.POS]: pos$21,
+                        [nix.POS]: $pos[20],
                         easytier: nix.thunk(() => ({
-                          [nix.POS]: pos$20,
+                          [nix.POS]: $pos[19],
                           settings: nix.thunk(() => ({
-                            [nix.POS]: pos$19,
+                            [nix.POS]: $pos[18],
                             ipv4: "10.144.144.1",
                             listeners: nix.thunk(() => ["tcp://0.0.0.0:11010", "wss://0.0.0.0:11011"]),
                           })),
@@ -161,37 +111,37 @@ export default nix.lambda((args) => (() => {
                   })),
                 })), args_2)),
               nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   firewall: nix.thunk(() => ({
-                    [nix.POS]: pos$25,
+                    [nix.POS]: $pos[24],
                     allowedTCPPorts: nix.thunk(() => [11020n]),
                     allowedUDPPorts: nix.thunk(() => [11020n]),
                   })),
                 })),
                 system: nix.thunk(() => ({
-                  [nix.POS]: pos$33,
+                  [nix.POS]: $pos[32],
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$32,
+                    [nix.POS]: $pos[31],
                     "easytier-second": nix.thunk(() => ({
-                      [nix.POS]: pos$31,
+                      [nix.POS]: $pos[30],
                       imports: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "easytier", "services", "default"))]),
                       easytier: nix.thunk(() => ({
-                        [nix.POS]: pos$30,
+                        [nix.POS]: $pos[29],
                         peers: nix.thunk(() => ["tcp://192.168.1.11:11010", "tcp://192.168.2.11:11010"]),
                         settings: nix.thunk(() => ({
-                          [nix.POS]: pos$29,
+                          [nix.POS]: $pos[28],
                           instance_name: "second",
                           ipv4: "10.144.144.4",
                           rpc_portal: "0.0.0.0:11001",
                           network_identity: nix.thunk(() => ({
-                            [nix.POS]: pos$27,
+                            [nix.POS]: $pos[26],
                             network_name: "easytier_test",
                             network_secret: "easytier_test_secret",
                           })),
                           listeners: nix.thunk(() => ["tcp://0.0.0.0:11020"]),
-                          flags: nix.thunk(() => ({ [nix.POS]: pos$28, bind_device: false, no_tun: true })),
+                          flags: nix.thunk(() => ({ [nix.POS]: $pos[27], bind_device: false, no_tun: true })),
                         })),
                       })),
                     })),
@@ -201,17 +151,17 @@ export default nix.lambda((args) => (() => {
             ]));
         })(), formals$3),
         peer1: nix.thunk(() => nix.app(genPeer, nix.thunk(() => ({
-            [nix.POS]: pos$41,
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$35, vlans: nix.thunk(() => [1n]) })),
+            [nix.POS]: $pos[40],
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[34], vlans: nix.thunk(() => [1n]) })),
             system: nix.thunk(() => ({
-              [nix.POS]: pos$40,
+              [nix.POS]: $pos[39],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$39,
+                [nix.POS]: $pos[38],
                 "easytier-default": nix.thunk(() => ({
-                  [nix.POS]: pos$38,
+                  [nix.POS]: $pos[37],
                   easytier: nix.thunk(() => ({
-                    [nix.POS]: pos$37,
-                    settings: nix.thunk(() => ({ [nix.POS]: pos$36, ipv4: "10.144.144.2" })),
+                    [nix.POS]: $pos[36],
+                    settings: nix.thunk(() => ({ [nix.POS]: $pos[35], ipv4: "10.144.144.2" })),
                     peers: nix.thunk(() => ["tcp://192.168.1.11:11010"]),
                   })),
                 })),
@@ -219,17 +169,17 @@ export default nix.lambda((args) => (() => {
             })),
           })))),
         peer2: nix.thunk(() => nix.app(genPeer, nix.thunk(() => ({
-            [nix.POS]: pos$48,
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$42, vlans: nix.thunk(() => [2n]) })),
+            [nix.POS]: $pos[47],
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[41], vlans: nix.thunk(() => [2n]) })),
             system: nix.thunk(() => ({
-              [nix.POS]: pos$47,
+              [nix.POS]: $pos[46],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$46,
+                [nix.POS]: $pos[45],
                 "easytier-default": nix.thunk(() => ({
-                  [nix.POS]: pos$45,
+                  [nix.POS]: $pos[44],
                   easytier: nix.thunk(() => ({
-                    [nix.POS]: pos$44,
-                    settings: nix.thunk(() => ({ [nix.POS]: pos$43, ipv4: "10.144.144.3" })),
+                    [nix.POS]: $pos[43],
+                    settings: nix.thunk(() => ({ [nix.POS]: $pos[42], ipv4: "10.144.144.3" })),
                     peers: nix.thunk(() => ["wss://192.168.2.11:11011"]),
                   })),
                 })),
@@ -240,7 +190,7 @@ export default nix.lambda((args) => (() => {
     })()),
     testScript: "start_all()\n\nwith subtest(\"Waiting for all services...\"):\n    relay.wait_for_unit(\"easytier-default.service\")\n    relay.wait_for_unit(\"easytier-second.service\")\n    peer1.wait_for_unit(\"easytier-default.service\")\n    peer2.wait_for_unit(\"easytier-default.service\")\n\nwith subtest(\"relay is accessible by the other hosts\"):\n    peer1.succeed(\"ping -c5 192.168.1.11\")\n    peer2.succeed(\"ping -c5 192.168.2.11\")\n\nwith subtest(\"The other hosts are in separate vlans\"):\n    peer1.fail(\"ping -c5 192.168.2.11\")\n    peer2.fail(\"ping -c5 192.168.1.11\")\n\nwith subtest(\"Each host can ping themselves through EasyTier\"):\n    relay.succeed(\"ping -c5 10.144.144.1\")\n    peer1.succeed(\"ping -c5 10.144.144.2\")\n    peer2.succeed(\"ping -c5 10.144.144.3\")\n\nwith subtest(\"Relay is accessible by the other hosts through EasyTier\"):\n    peer1.succeed(\"ping -c5 10.144.144.1\")\n    peer2.succeed(\"ping -c5 10.144.144.1\")\n\nwith subtest(\"Relay can access the other hosts through EasyTier\"):\n    relay.succeed(\"ping -c5 10.144.144.2\")\n    relay.succeed(\"ping -c5 10.144.144.3\")\n\nwith subtest(\"The other hosts in separate vlans can access each other through EasyTier\"):\n    peer1.succeed(\"ping -c5 10.144.144.3\")\n    peer2.succeed(\"ping -c5 10.144.144.2\")\n\nwith subtest(\"Relay Second is accessible through EasyTier\"):\n    peer1.succeed(\"ping -c5 10.144.144.4\")\n    peer2.succeed(\"ping -c5 10.144.144.4\")\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$50,
+      [nix.POS]: $pos[49],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "moraxyc"))];

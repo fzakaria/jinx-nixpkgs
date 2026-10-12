@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 47, 5], ["hash", 48, 5]], [["url", 55, 7], ["hash", 56, 7]], [["load_gst_plugins", 63, 7]], [["description", 102, 5], ["mainProgram", 103, 5], ["longDescription", 105, 5], ["license", 126, 5], ["maintainers", 128, 5], ["platforms", 129, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["patches", 51, 3], ["preConfigure", 69, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 77, 3], ["doCheck", 97, 3], ["doInstallCheck", 98, 3], ["installCheckPhase", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch2: false, replaceVars: false, libtool: false, gettext: false, zlib: false, bzip2: false, flac: false, libvorbis: false, exiv2: false, libgsf: false, "pkg-config": false, rpmSupport: true, rpm: false, gstreamerSupport: true, gst_all_1: false, gstPlugins: true, gtkSupport: true, glib: false, gtk3: false, videoSupport: true, libmpeg2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 55, 7], ["hash", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["load_gst_plugins", 63, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 102, 5], ["mainProgram", 103, 5], ["longDescription", 105, 5], ["license", 126, 5], ["maintainers", 128, 5], ["platforms", 129, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["patches", 51, 3], ["preConfigure", 69, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 77, 3], ["doCheck", 97, 3], ["doInstallCheck", 98, 3], ["installCheckPhase", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,23 +35,23 @@ export default nix.lambda((args) => (() => {
   const videoSupport = nix.argOr($, "videoSupport", () => true);
   const libmpeg2 = nix.arg($, "libmpeg2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libextractor",
       version: "1.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/libextractor/libextractor-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-u48xLFHSAlciQ/ETxrYtghAwGrMMuu5gT5g32HjN91U=",
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sources.debian.org/data/main/libe/libextractor/1%3A1.13-4/debian/patches/exiv2-0.28.diff",
             hash: "sha256-Re5iwlSyEpWu3PcHibaRKSfmdyHSZGMOdMZ6svTofvs=",
           })))),
       ], nix.app(nix.sel(lib, "optionals"), gstreamerSupport, nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gst-hardcode-plugins.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               load_gst_plugins: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (plugin) => nix.str`gst_registry_scan_path(gst_registry_get(), "${nix.app(nix.sel(lib, "getLib"), plugin)}/lib/gstreamer-1.0");`, nix.thunk(() => nix.app(gstPlugins, gst_all_1)))),
             })))),
         ])))),
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       installCheckPhase: "make check",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple library for keyword extraction",
         mainProgram: "extract",
         longDescription: "GNU libextractor is a library used to extract meta-data from files\nof arbitrary type.  It is designed to use helper-libraries to perform\nthe actual extraction, and to be trivially extendable by linking\nagainst external extractors for additional file types.\n\nThe goal is to provide developers of file-sharing networks or\nWWW-indexing bots with a universal library to obtain simple keywords\nto match against queries.  libextractor contains a shell-command\nextract that, similar to the well-known file command, can extract\nmeta-data from a file an print the results to stdout.\n\nCurrently, libextractor supports the following formats: HTML, PDF,\nPS, OLE2 (DOC, XLS, PPT), OpenOffice (sxw), StarOffice (sdw), DVI,\nMAN, FLAC, MP3 (ID3v1 and ID3v2), NSF(E) (NES music), SID (C64\nmusic), OGG, WAV, EXIV2, JPEG, GIF, PNG, TIFF, DEB, RPM, TAR(.GZ),\nZIP, ELF, S3M (Scream Tracker 3), XM (eXtended Module), IT (Impulse\nTracker), FLV, REAL, RIFF (AVI), MPEG, QT and ASF.  Also, various\nadditional MIME types are detected.\n",

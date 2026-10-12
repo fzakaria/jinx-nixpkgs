@@ -2,44 +2,27 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/glance.nix", [[["enable", 11, 11]], [["glance", 10, 18]], [["services", 10, 9]], [["path", 20, 33]], [["glance-location", 20, 17]], [["port", 26, 20]], [["type", 34, 25]], [["_secret", 38, 27]], [["type", 36, 25], ["location", 37, 25]], [["size", 32, 21], ["widgets", 33, 21]], [["name", 29, 17], ["columns", 30, 17]], [["server", 26, 13], ["pages", 27, 13]], [["enable", 24, 11], ["settings", 25, 11]], [["glance", 23, 18]], [["services", 23, 9]], [["machine_default", 7, 5], ["machine_configured", 15, 5]], [["maintainers", 81, 8]], [["name", 4, 3], ["nodes", 6, 3], ["extraPythonPackages", 51, 3], ["testScript", 59, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/glance.nix", [["enable", 11, 11]]);
-const pos$2 = nix.positions(here + "/glance.nix", [["glance", 10, 18]]);
-const pos$3 = nix.positions(here + "/glance.nix", [["services", 10, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/glance.nix", [["path", 20, 33]]);
-const pos$5 = nix.positions(here + "/glance.nix", [["glance-location", 20, 17]]);
-const pos$6 = nix.positions(here + "/glance.nix", [["port", 26, 20]]);
-const pos$7 = nix.positions(here + "/glance.nix", [["type", 34, 25]]);
-const pos$8 = nix.positions(here + "/glance.nix", [["_secret", 38, 27]]);
-const pos$9 = nix.positions(here + "/glance.nix", [["type", 36, 25], ["location", 37, 25]]);
-const pos$10 = nix.positions(here + "/glance.nix", [["size", 32, 21], ["widgets", 33, 21]]);
-const pos$11 = nix.positions(here + "/glance.nix", [["name", 29, 17], ["columns", 30, 17]]);
-const pos$12 = nix.positions(here + "/glance.nix", [["server", 26, 13], ["pages", 27, 13]]);
-const pos$13 = nix.positions(here + "/glance.nix", [["enable", 24, 11], ["settings", 25, 11]]);
-const pos$14 = nix.positions(here + "/glance.nix", [["glance", 23, 18]]);
-const pos$15 = nix.positions(here + "/glance.nix", [["services", 23, 9]]);
-const pos$16 = nix.positions(here + "/glance.nix", [["machine_default", 7, 5], ["machine_configured", 15, 5]]);
-const pos$17 = nix.positions(here + "/glance.nix", [["maintainers", 81, 8]]);
-const pos$18 = nix.positions(here + "/glance.nix", [["name", 4, 3], ["nodes", 6, 3], ["extraPythonPackages", 51, 3], ["testScript", 59, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "glance",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine_default: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            glance: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+            [nix.POS]: $pos[1],
+            glance: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
           })),
         };
       })(), formals$2),
@@ -47,37 +30,37 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         const secrets = nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "glance-location": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             path: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "location-secret", "Nivelles, Belgium")))),
           })),
         }));
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             glance: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$12,
-                server: nix.thunk(() => ({ [nix.POS]: pos$6, port: 5678n })),
+                [nix.POS]: $pos[11],
+                server: nix.thunk(() => ({ [nix.POS]: $pos[5], port: 5678n })),
                 pages: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     name: "Home",
                     columns: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$10,
+                        [nix.POS]: $pos[9],
                         size: "full",
                         widgets: nix.thunk(() => [
-                          nix.thunk(() => ({ [nix.POS]: pos$7, type: "calendar" })),
+                          nix.thunk(() => ({ [nix.POS]: $pos[6], type: "calendar" })),
                           nix.thunk(() => ({
-                            [nix.POS]: pos$9,
+                            [nix.POS]: $pos[8],
                             type: "weather",
                             location: nix.thunk(() => ({
-                              [nix.POS]: pos$8,
+                              [nix.POS]: $pos[7],
                               _secret: nix.thunk(() => nix.sel(secrets, "glance-location", "path")),
                             })),
                           })),
@@ -121,7 +104,7 @@ yaml_parsed = yaml.load(yaml_contents, Loader=yaml.FullLoader)
 location = yaml_parsed["pages"][0]["columns"][0]["widgets"][1]["location"]
 assert location == "Nivelles, Belgium"
 `),
-    meta: nix.thunk(() => ({ [nix.POS]: pos$17, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[16], maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=glance.ts.map

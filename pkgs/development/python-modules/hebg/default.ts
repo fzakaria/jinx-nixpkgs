@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]], [["MPLBACKEND", 46, 58]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 41, 3], ["env", 46, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, networkx: false, matplotlib: false, numpy: false, tqdm: false, scipy: false, "setuptools-scm": false, pytestCheckHook: false, "pytest-check": false, "pytest-mock": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["MPLBACKEND", 46, 58]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 41, 3], ["env", 46, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-11bz+FbnaEVLiXT1eujMw8lvABlzVOeROOsdVgsyfjQ=",
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => [networkx, matplotlib, numpy, tqdm, scipy]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_check, pytest_mock]);
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, MPLBACKEND: "Agg" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[1], MPLBACKEND: "Agg" }))));
       const disabledTests = nix.thunk(() => ["test_exec_codegen"]);
       const pythonImportsCheck = nix.thunk(() => ["hebg"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Hierarchical Explainable Behaviors using Graphs",
         homepage: "https://github.com/IRLL/HEB_graphs",
         changelog: nix.thunk(() => nix.str`https://github.com/IRLL/HEB_graphs/releases/tag/${version}`),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["platforms", 25, 5], ["maintainers", 26, 5]], [["name", 10, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, kernel: false, rtl8189es: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["platforms", 25, 5], ["maintainers", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 10, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "rtl8189fs";
       const version = "2025-09-26";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jwrdegoede",
           repo: "rtl8189ES_linux",
           rev: "876e627a5b6a8021700391b4249a4a31edfebe5c",
           hash: "sha256-3v40I09TDGWdpllS3WfshPkXbT5Q2pWMTalHLUlU3lU=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Driver for Realtek rtl8189fs",
         homepage: "https://github.com/jwrdegoede/rtl8189ES_linux/tree/rtl8189fs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "puffnfresh"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, name, pname, version, src, meta };
+      return { [nix.POS]: $pos[2], name, pname, version, src, meta };
     })());
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

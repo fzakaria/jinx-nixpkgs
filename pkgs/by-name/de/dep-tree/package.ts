@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 10, 7], ["repo", 11, 7], ["rev", 12, 7], ["hash", 13, 7]], [["owner", 16, 7], ["repo", 17, 7], ["rev", 18, 7], ["hash", 19, 7]], [["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7]], [["owner", 28, 7], ["repo", 29, 7], ["rev", 30, 7], ["hash", 31, 7]], [["react-stl-viewer", 9, 5], ["react-gcode-viewer", 15, 5], ["graphql-js", 21, 5], ["warp", 27, 5]], [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]], [["description", 70, 5], ["longDescription", 71, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]], [["pname", 38, 11], ["version", 38, 17], ["src", 40, 3], ["vendorHash", 47, 3], ["preCheck", 49, 3], ["checkPhase", 54, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, linkFarm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 10, 7], ["repo", 11, 7], ["rev", 12, 7], ["hash", 13, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 16, 7], ["repo", 17, 7], ["rev", 18, 7], ["hash", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 28, 7], ["repo", 29, 7], ["rev", 30, 7], ["hash", 31, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["react-stl-viewer", 9, 5], ["react-gcode-viewer", 15, 5], ["graphql-js", 21, 5], ["warp", 27, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 70, 5], ["longDescription", 71, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 38, 11], ["version", 38, 17], ["src", 40, 3], ["vendorHash", 47, 3], ["preCheck", 49, 3], ["checkPhase", 54, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,30 +12,30 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const linkFarm = nix.arg($, "linkFarm");
   const testDeps = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     "react-stl-viewer": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "gabotechs",
         repo: "react-stl-viewer",
         rev: "2.2.4",
         hash: "sha256-0u9q0UgOn43PE1Y6BUhl1l6RnVjpPraFqZWB+HhQ0s8=",
       })))),
     "react-gcode-viewer": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         owner: "gabotechs",
         repo: "react-gcode-viewer",
         rev: "2.2.4",
         hash: "sha256-FHBICLdy0k4j3pPKStg+nkIktMpKS1ADa4m1vYHJ+AQ=",
       })))),
     "graphql-js": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner: "graphql",
         repo: "graphql-js",
         rev: "v17.0.0-alpha.2",
         hash: "sha256-y55SNiMivL7bRsjLEIpsKKyaluI4sXhREpiB6A5jfDU=",
       })))),
     warp: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         owner: "seanmonstar",
         repo: "warp",
         rev: "v0.3.3",
@@ -52,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const pname = "dep-tree";
   const version = "0.23.4";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           owner: "gabotechs",
           repo: "dep-tree",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -68,7 +61,7 @@ export default nix.lambda((args) => (() => {
 `),
       checkPhase: "runHook preCheck\n# We do not set trimpath for tests, in case they reference test assets\nexport GOFLAGS=${GOFLAGS//-trimpath/}\n\n# checkFlags is not able to skip tests via pattern.\n# possibly requires fixing in buildGoModule.\n# For now, this is the new checkPhase\ngo test ./... -skip='TestRoot.*|TestFilesFromArgs.*'\n# these tests were not feasibly fixable.\n# a LARGE portion of the original source would need to be edited via patch for this to work.\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Tool for visualizing interconnectedness of codebases in multiple languages",
         longDescription: "dep-tree is a tool for interactively visualizing the complexity of a code base.\nIt helps analyze the interconnectedness of the codebase and create goals to improve maintainability.\n",
         homepage: "https://github.com/gabotechs/dep-tree",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["pname", 22, 26], ["data", 23, 5]], [["description", 33, 5], ["longDescription", 35, 5], ["homepage", 41, 5], ["license", 43, 5], ["platforms", 47, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["mitmCache", 21, 3], ["installPhase", 26, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gradle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 22, 26], ["data", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["longDescription", 35, 5], ["homepage", 41, 5], ["license", 43, 5], ["platforms", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["mitmCache", 21, 3], ["installPhase", 26, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gradle = nix.arg($, "gradle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rhino",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mozilla",
           repo: "rhino",
           tag: "Rhino1_8_0_Release",
@@ -27,13 +24,13 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [gradle]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
       installPhase: "mkdir -p \"$out/share/java\"\ncp -v rhino-all/build/libs/rhino-all-*.jar \"$out/share/java/js-$pkgver.jar\"\nln -s \"js-$pkgver.jar\" \"$out/share/java/js.jar\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Implementation of JavaScript written in Java",
         longDescription: "Rhino is an open-source implementation of JavaScript written\nentirely in Java.  It is typically embedded into Java applications\nto provide scripting to end users.\n",
         homepage: "https://rhino.github.io/",

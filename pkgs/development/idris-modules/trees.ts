@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/trees.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 25, 5], ["homepage", 26, 5], ["maintainers", 27, 5]], [["pname", 9, 3], ["version", 10, 3], ["idrisDeps", 12, 3], ["src", 17, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { "build-idris-package": false, fetchFromGitHub: false, contrib: false, bi: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/trees.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/trees.nix", [["description", 25, 5], ["homepage", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/trees.nix", [["pname", 9, 3], ["version", 10, 3], ["idrisDeps", 12, 3], ["src", 17, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const bi = nix.arg($, "bi");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "trees",
       version: "2018-03-19",
       idrisDeps: nix.thunk(() => [contrib, bi]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "clayrat",
           repo: "idris-trees",
           rev: "dc17f9598bd78ec2b283d91b3c58617960d88c85",
           sha256: "1c3p69875qc4zdk28im9xz45zw46ajgcmxpqmig63y0z4v3gwxww",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Trees in Idris",
         homepage: "https://github.com/clayrat/idris-trees",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "brainrape"))]),

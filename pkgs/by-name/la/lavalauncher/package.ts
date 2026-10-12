@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 22, 5], ["version", 23, 26], ["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["homepage", 51, 5], ["description", 52, 5], ["longDescription", 53, 5], ["changelog", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 28], ["broken", 76, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["depsBuildBuild", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 40, 3], ["strictDeps", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, cairo: false, fetchFromSourcehut: false, librsvg: false, libxkbcommon: false, meson: false, ninja: false, "pkg-config": false, scdoc: false, stdenv: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 22, 5], ["version", 23, 26], ["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["longDescription", 53, 5], ["changelog", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 28], ["broken", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["depsBuildBuild", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 40, 3], ["strictDeps", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lavalauncher",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "lavalauncher-source",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           owner: "~leon_plickat",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git.sr.ht/~leon_plickat/lavalauncher",
         description: "Simple launcher panel for Wayland desktops",
         longDescription: "LavaLauncher is a simple launcher panel for Wayland desktops.\n\nIt displays a dynamically sized bar with user defined buttons. Buttons\nconsist of an image, which is displayed as the button icon on the bar, and\nat least one shell command, which is executed when the user activates the\nbutton.\n\nButtons can be activated with pointer and touch events.\n\nA single LavaLauncher instance can provide multiple such bars, across\nmultiple outputs.\n\nThe Wayland compositor must implement the Layer-Shell and XDG-Output for\nLavaLauncher to work.\n",

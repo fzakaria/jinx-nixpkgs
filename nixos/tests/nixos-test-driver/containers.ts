@@ -2,30 +2,17 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containers.nix", [[["maintainers", 4, 8], ["hydraPlatforms", 11, 8]], [["vlans", 15, 22]], [["virtualisation", 15, 7]], [["vlans", 18, 22]], [["virtualisation", 18, 7]], [["n1", 14, 5], ["n2", 17, 5]], [["vlans", 26, 22]], [["virtualisation", 26, 7]], [["vlans", 29, 22]], [["virtualisation", 29, 7]], [["vlans", 32, 22]], [["virtualisation", 32, 7]], [["c1", 25, 5], ["c2", 28, 5], ["c12", 31, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 13, 3], ["containers", 24, 3], ["testScript", 39, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/containers.nix", [["maintainers", 4, 8], ["hydraPlatforms", 11, 8]]);
-const pos$2 = nix.positions(here + "/containers.nix", [["vlans", 15, 22]]);
-const pos$3 = nix.positions(here + "/containers.nix", [["virtualisation", 15, 7]]);
-const pos$4 = nix.positions(here + "/containers.nix", [["vlans", 18, 22]]);
-const pos$5 = nix.positions(here + "/containers.nix", [["virtualisation", 18, 7]]);
-const pos$6 = nix.positions(here + "/containers.nix", [["n1", 14, 5], ["n2", 17, 5]]);
-const pos$7 = nix.positions(here + "/containers.nix", [["vlans", 26, 22]]);
-const pos$8 = nix.positions(here + "/containers.nix", [["virtualisation", 26, 7]]);
-const pos$9 = nix.positions(here + "/containers.nix", [["vlans", 29, 22]]);
-const pos$10 = nix.positions(here + "/containers.nix", [["virtualisation", 29, 7]]);
-const pos$11 = nix.positions(here + "/containers.nix", [["vlans", 32, 22]]);
-const pos$12 = nix.positions(here + "/containers.nix", [["virtualisation", 32, 7]]);
-const pos$13 = nix.positions(here + "/containers.nix", [["c1", 25, 5], ["c2", 28, 5], ["c12", 31, 5]]);
-const pos$14 = nix.positions(here + "/containers.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 13, 3], ["containers", 24, 3], ["testScript", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "containers",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jfly"))];
@@ -33,29 +20,29 @@ export default nix.lambda((args) => (() => {
       hydraPlatforms: [],
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       n1: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: $pos[2],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: nix.thunk(() => [1n]) })),
       })),
       n2: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, vlans: nix.thunk(() => [2n]) })),
+        [nix.POS]: $pos[4],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[3], vlans: nix.thunk(() => [2n]) })),
       })),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       c1: nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$7, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: $pos[7],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[6], vlans: nix.thunk(() => [1n]) })),
       })),
       c2: nix.thunk(() => ({
-        [nix.POS]: pos$10,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$9, vlans: nix.thunk(() => [2n]) })),
+        [nix.POS]: $pos[9],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[8], vlans: nix.thunk(() => [2n]) })),
       })),
       c12: nix.thunk(() => ({
-        [nix.POS]: pos$12,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$11, vlans: nix.thunk(() => [1n, 2n]) })),
+        [nix.POS]: $pos[11],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[10], vlans: nix.thunk(() => [1n, 2n]) })),
       })),
     })),
     testScript: "c1.start()\nc2.start()\nc12.start()\n\nc1.succeed(\"echo hello > /hello.txt\")\nc1.copy_from_machine(\"/hello.txt\")\n\nc1.systemctl(\"start network-online.target\")\nc2.systemctl(\"start network-online.target\")\nc12.systemctl(\"start network-online.target\")\nc1.wait_for_unit(\"network-online.target\")\nc2.wait_for_unit(\"network-online.target\")\nc12.wait_for_unit(\"network-online.target\")\n\n# Confirm containers in vlan 1 can talk to each other.\nc1.succeed(\"ping -c 1 c12\")\nc12.succeed(\"ping -c 1 c1\")\n\n# Confirm containers in vlan 2 can talk to each other.\nc2.succeed(\"ping -c 1 c12\")\nc12.succeed(\"ping -c 1 c2\")\n\n# Confirm containers in separate vlans cannot talk to each other.\nc1.fail(\"ping -c 1 -W 1 c2\")\n\nn1.start()\nn2.start()\nn1.systemctl(\"start network-online.target\")\nn2.systemctl(\"start network-online.target\")\nn1.wait_for_unit(\"network-online.target\")\nn2.wait_for_unit(\"network-online.target\")\n\n# Confirm containers and nodes in the same vlan can talk to each other.\nc1.succeed(\"ping -c 1 n1\")\nn1.succeed(\"ping -c 1 c1\")\nc2.succeed(\"ping -c 1 n2\")\nn2.succeed(\"ping -c 1 c2\")\n\n# Confirm containers and nodes in different vlans cannot talk to each other.\nc1.fail(\"ping -c 1 -W 1 n2\")\nn1.fail(\"ping -c 1 -W 1 c2\")\nc2.fail(\"ping -c 1 -W 1 n1\")\nn2.fail(\"ping -c 1 -W 1 c1\")\n",

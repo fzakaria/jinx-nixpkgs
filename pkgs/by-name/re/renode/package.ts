@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["owner", 59, 11], ["repo", 60, 11], ["rev", 61, 11], ["hash", 62, 11]], [["name", 67, 13], ["url", 68, 13], ["hash", 69, 13]], [["version", 57, 9], ["src", 58, 9], ["patches", 64, 9]], [["owner", 81, 5], ["repo", 82, 5], ["rev", 83, 5], ["hash", 84, 5], ["fetchSubmodules", 85, 5]], [["updateScript", 222, 12]], [["changelog", 225, 5], ["description", 226, 5], ["downloadPage", 227, 5], ["homepage", 228, 5], ["license", 229, 5], ["maintainers", 230, 5], ["platforms", 234, 5]], [["pname", 77, 3], ["version", 78, 3], ["src", 80, 3], ["disallowedReferences", 88, 3], ["projectFile", 94, 3], ["dotnet-sdk", 96, 11], ["dotnet-runtime", 96, 22], ["nugetDeps", 98, 3], ["patches", 100, 3], ["dotnetFlags", 102, 3], ["dotnetInstallFlags", 108, 3], ["installPath", 110, 3], ["postPatch", 112, 3], ["nativeBuildInputs", 134, 3], ["runtimeDeps", 139, 3], ["dontUseCmakeConfigure", 143, 3], ["enableParallelBuilding", 145, 3], ["preBuild", 147, 3], ["postInstall", 201, 3], ["postFixup", 216, 3], ["executables", 220, 3], ["passthru", 222, 3], ["meta", 224, 3]]]);
 const formals$1 = { args: { buildDotnetModule: false, cmake: false, dconf: false, dotnetCorePackages: false, fetchFromGitHub: false, fetchpatch: false, gcc: false, glibcLocalesUtf8: false, "gtk3-x11": false, gtk3: false, lib: false, python313Packages: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 59, 11], ["repo", 60, 11], ["rev", 61, 11], ["hash", 62, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 67, 13], ["url", 68, 13], ["hash", 69, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 57, 9], ["src", 58, 9], ["patches", 64, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 81, 5], ["repo", 82, 5], ["rev", 83, 5], ["hash", 84, 5], ["fetchSubmodules", 85, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 222, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 225, 5], ["description", 226, 5], ["downloadPage", 227, 5], ["homepage", 228, 5], ["license", 229, 5], ["maintainers", 230, 5], ["platforms", 234, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 77, 3], ["version", 78, 3], ["src", 80, 3], ["disallowedReferences", 88, 3], ["projectFile", 94, 3], ["dotnet-sdk", 96, 11], ["dotnet-runtime", 96, 22], ["nugetDeps", 98, 3], ["patches", 100, 3], ["dotnetFlags", 102, 3], ["dotnetInstallFlags", 108, 3], ["installPath", 110, 3], ["postPatch", 112, 3], ["nativeBuildInputs", 134, 3], ["runtimeDeps", 139, 3], ["dontUseCmakeConfigure", 143, 3], ["enableParallelBuilding", 145, 3], ["preBuild", 147, 3], ["postInstall", 201, 3], ["postFixup", 216, 3], ["executables", 220, 3], ["passthru", 222, 3], ["meta", 224, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0"));
   const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_10_0"));
   const resources = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "renode",
       repo: "renode-resources",
       rev: "14b80cde0a136b684f316eb7f6a31aeaae0684bf",
@@ -52,10 +45,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.lookup(w, "construct")),
         nix.thunk(() => nix.lookup(w, "pyelftools")),
         nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "robotframework"), "overridePythonAttrs"), (oldAttrs) => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             version: "6.1",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 owner: "robotframework",
                 repo: "robotframework",
                 rev: "v6.1",
@@ -63,7 +56,7 @@ export default nix.lambda((args) => (() => {
               })))),
             patches: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "patches"), [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   name: "python3.13-support.patch",
                   url: "https://github.com/robotframework/robotframework/commit/921e352556dc8538b72de1e693e2a244d420a26d.patch",
                   hash: "sha256-aSaror26x4kVkLVetPEbrJG4H1zstHsNWqmwqOys3zo=",
@@ -73,11 +66,11 @@ export default nix.lambda((args) => (() => {
       ]));
   })());
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "renode",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "renode",
           repo: "renode",
           rev: "ab721d88e135a1bcb8ed2ecc5a38f51cbe61fdd2",
@@ -177,9 +170,9 @@ makeWrapper "$out/lib/renode/renode-test" "$out/bin/renode-test" \\
 `),
       postFixup: "mv $out/bin/Renode $out/bin/renode\n",
       executables: nix.thunk(() => ["Renode"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://github.com/renode/renode/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.rst`),
         description: "Virtual development framework for complex embedded systems",
         downloadPage: "https://github.com/renode/renode",

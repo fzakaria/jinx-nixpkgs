@@ -2,20 +2,12 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/atuin.nix", [[["maintainers", 11, 8]], [["systemPackages", 16, 19]], [["environment", 16, 7]], [["enable", 25, 29]], [["enable", 28, 11], ["port", 29, 11], ["host", 30, 11], ["openFirewall", 31, 11], ["openRegistration", 32, 11]], [["postgresql", 25, 18], ["atuin", 27, 18]], [["services", 25, 9]], [["server", 22, 5], ["client", 36, 5]], [["name", 10, 3], ["meta", 11, 3], ["defaults", 13, 3], ["nodes", 21, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/atuin.nix", [["maintainers", 11, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/atuin.nix", [["systemPackages", 16, 19]]);
-const pos$3 = nix.positions(here + "/atuin.nix", [["environment", 16, 7]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$4 = nix.positions(here + "/atuin.nix", [["enable", 25, 29]]);
-const pos$5 = nix.positions(here + "/atuin.nix", [["enable", 28, 11], ["port", 29, 11], ["host", 30, 11], ["openFirewall", 31, 11], ["openRegistration", 32, 11]]);
-const pos$6 = nix.positions(here + "/atuin.nix", [["postgresql", 25, 18], ["atuin", 27, 18]]);
-const pos$7 = nix.positions(here + "/atuin.nix", [["services", 25, 9]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$8 = nix.positions(here + "/atuin.nix", [["server", 22, 5], ["client", 36, 5]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/atuin.nix", [["name", 10, 3], ["meta", 11, 3], ["defaults", 13, 3], ["nodes", 21, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,10 +17,10 @@ export default nix.lambda((args) => (() => {
   const testPass = "password";
   const testEmail = "test.testerman@test.com";
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "atuin",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "devusb"))];
@@ -38,24 +30,24 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "atuin"))]),
         })),
       };
     })(), formals$2),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            postgresql: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+            [nix.POS]: $pos[5],
+            postgresql: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
             atuin: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               port: testPort,
               host: "0.0.0.0",

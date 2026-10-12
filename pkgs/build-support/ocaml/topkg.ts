@@ -2,11 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/topkg.nix", [[["dontAddStaticConfigureFlags", 27, 7], ["configurePlatforms", 28, 7], ["strictDeps", 29, 7], ["buildPhase", 30, 23], ["installPhase", 30, 34]], [["platforms", 48, 9]], [["name", 36, 7], ["nativeBuildInputs", 38, 7], ["buildInputs", 45, 7], ["meta", 47, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, findlib: false, topkg: false, ocamlbuild: false, cmdliner: false, b0: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, nativeBuildInputs: true, buildInputs: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/topkg.nix", [["dontAddStaticConfigureFlags", 27, 7], ["configurePlatforms", 28, 7], ["strictDeps", 29, 7], ["buildPhase", 30, 23], ["installPhase", 30, 34]]);
-const pos$2 = nix.positions(here + "/topkg.nix", [["platforms", 48, 9]]);
-const pos$3 = nix.positions(here + "/topkg.nix", [["name", 36, 7], ["nativeBuildInputs", 38, 7], ["buildInputs", 45, 7], ["meta", 47, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,19 +25,19 @@ export default nix.lambda((args) => (() => {
     const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
     const buildInputs = nix.argOr($_1, "buildInputs", () => []);
     return (nix.asBool((nix.asBool(nix.has(args_2, "minimalOCamlVersion")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), nix.thunk(() => nix.sel(args_2, "minimalOCamlVersion")))))) ? nix.builtins.throw(nix.thunk(() => nix.str`${pname}-${version} is not available for OCaml ${nix.sel(ocaml, "version")}`)) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         dontAddStaticConfigureFlags: true,
         configurePlatforms: [],
         strictDeps: true,
         buildPhase: nix.thunk(() => nix.attr(topkg, "buildPhase")),
         installPhase: nix.thunk(() => nix.attr(topkg, "installPhase")),
       }, nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["minimalOCamlVersion"])), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}-${version}`),
         nativeBuildInputs: nix.thunk(() => nix.concat([ocaml, findlib, ocamlbuild, topkg], nativeBuildInputs)),
         buildInputs: nix.thunk(() => nix.concat([topkg], buildInputs)),
         meta: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "meta"), {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           platforms: nix.thunk(() => nix.selOr(args_2, () => nix.sel(ocaml, "meta", "platforms"), "meta", "platforms")),
         })),
       })))));

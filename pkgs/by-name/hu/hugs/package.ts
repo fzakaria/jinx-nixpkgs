@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["NIX_CFLAGS_COMPILE", 21, 7]], [["mainProgram", 47, 5], ["homepage", 48, 5], ["description", 49, 5], ["maintainers", 50, 5], ["license", 51, 5], ["platforms", 52, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["env", 21, 3], ["postUnpack", 26, 3], ["preConfigure", 28, 3], ["configureFlags", 30, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bison: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 47, 5], ["homepage", 48, 5], ["description", 49, 5], ["maintainers", 50, 5], ["license", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["env", 21, 3], ["postUnpack", 26, 3], ["preConfigure", 28, 3], ["configureFlags", 30, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const bison = nix.arg($, "bison");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hugs98",
       version: "2006-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "augustss",
           repo: "hugs98-plus-Sep2006",
           rev: "1f7b60e05b12df00d715d535bb01c189bc1b9b3c",
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [bison]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-int", "-Wno-error=implicit-function-declaration"]))),
       })),
       postUnpack: "find -type f -exec sed -i 's@/bin/cp@cp@' {} +",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         "--enable-pthreads",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "hugs",
         homepage: "https://www.haskell.org/hugs",
         description: "Haskell interpreter",

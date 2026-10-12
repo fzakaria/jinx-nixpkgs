@@ -2,104 +2,78 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/userborn-subids-immutable-etc.nix", [[["enable", 8, 23]], [["userborn", 8, 14]], [["enable", 9, 25]], [["systemd", 9, 17]], [["initrd", 9, 10]], [["useNetworkd", 10, 16]], [["enable", 12, 7], ["mutable", 13, 7]], [["overlay", 11, 16]], [["etc", 11, 12]], [["services", 8, 5], ["boot", 9, 5], ["networking", 10, 5], ["system", 11, 5]], [["isNormalUser", 18, 11]], [["startUid", 24, 11], ["count", 25, 11]], [["startGid", 30, 11], ["count", 31, 11]], [["isNormalUser", 21, 7], ["subUidRanges", 22, 7], ["subGidRanges", 28, 7]], [["alice", 18, 5], ["explicit", 20, 5]], [["maintainers", 40, 8]], [["users", 47, 13]], [["pkgs", 52, 31]], [["isNormalUser", 55, 17]], [["bob", 55, 13]], [["users", 54, 17]], [["nixpkgs", 52, 11], ["imports", 53, 11], ["users", 54, 11]], [["inheritParentConfig", 50, 9], ["configuration", 51, 9]], [["with-bob", 49, 22]], [["imports", 45, 7], ["users", 47, 7], ["specialisation", 49, 7]], [["machine", 42, 9]], [["name", 38, 3], ["meta", 40, 3], ["nodes", 42, 3], ["testScript", 61, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["enable", 8, 23]]);
-const pos$2 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["userborn", 8, 14]]);
-const pos$3 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["enable", 9, 25]]);
-const pos$4 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["systemd", 9, 17]]);
-const pos$5 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["initrd", 9, 10]]);
-const pos$6 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["useNetworkd", 10, 16]]);
-const pos$7 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["enable", 12, 7], ["mutable", 13, 7]]);
-const pos$8 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["overlay", 11, 16]]);
-const pos$9 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["etc", 11, 12]]);
-const pos$10 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["services", 8, 5], ["boot", 9, 5], ["networking", 10, 5], ["system", 11, 5]]);
-const pos$11 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["isNormalUser", 18, 11]]);
-const pos$12 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["startUid", 24, 11], ["count", 25, 11]]);
-const pos$13 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["startGid", 30, 11], ["count", 31, 11]]);
-const pos$14 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["isNormalUser", 21, 7], ["subUidRanges", 22, 7], ["subGidRanges", 28, 7]]);
-const pos$15 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["alice", 18, 5], ["explicit", 20, 5]]);
-const pos$16 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["maintainers", 40, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$17 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["users", 47, 13]]);
-const pos$18 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["pkgs", 52, 31]]);
-const pos$19 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["isNormalUser", 55, 17]]);
-const pos$20 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["bob", 55, 13]]);
-const pos$21 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["users", 54, 17]]);
-const pos$22 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["nixpkgs", 52, 11], ["imports", 53, 11], ["users", 54, 11]]);
-const pos$23 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["inheritParentConfig", 50, 9], ["configuration", 51, 9]]);
-const pos$24 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["with-bob", 49, 22]]);
-const pos$25 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["imports", 45, 7], ["users", 47, 7], ["specialisation", 49, 7]]);
-const pos$26 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["machine", 42, 9]]);
-const pos$27 = nix.positions(here + "/userborn-subids-immutable-etc.nix", [["name", 38, 3], ["meta", 40, 3], ["nodes", 42, 3], ["testScript", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const common = nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      userborn: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+      [nix.POS]: $pos[1],
+      userborn: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
     })),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       initrd: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        systemd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+        [nix.POS]: $pos[3],
+        systemd: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
       })),
     })),
-    networking: nix.thunk(() => ({ [nix.POS]: pos$6, useNetworkd: true })),
+    networking: nix.thunk(() => ({ [nix.POS]: $pos[5], useNetworkd: true })),
     system: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       etc: nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        overlay: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true, mutable: false })),
+        [nix.POS]: $pos[7],
+        overlay: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true, mutable: false })),
       })),
     })),
   }));
   const users = nix.thunk(() => ({
-    [nix.POS]: pos$15,
-    alice: nix.thunk(() => ({ [nix.POS]: pos$11, isNormalUser: true })),
+    [nix.POS]: $pos[14],
+    alice: nix.thunk(() => ({ [nix.POS]: $pos[10], isNormalUser: true })),
     explicit: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       isNormalUser: true,
-      subUidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$12, startUid: 700000n, count: 65536n }))]),
-      subGidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$13, startGid: 700000n, count: 65536n }))]),
+      subUidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[11], startUid: 700000n, count: 65536n }))]),
+      subGidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[12], startGid: 700000n, count: 65536n }))]),
     })),
   }));
   return {
-    [nix.POS]: pos$27,
+    [nix.POS]: $pos[26],
     name: "userborn-subids-immutable-etc",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "rvdp"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           imports: nix.thunk(() => [common]),
-          users: nix.thunk(() => ({ [nix.POS]: pos$17, users: users })),
+          users: nix.thunk(() => ({ [nix.POS]: $pos[16], users: users })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             "with-bob": nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               inheritParentConfig: false,
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$22,
-                nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$18, pkgs: pkgs })),
+                [nix.POS]: $pos[21],
+                nixpkgs: nix.thunk(() => ({ [nix.POS]: $pos[17], pkgs: pkgs })),
                 imports: nix.thunk(() => [common]),
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   users: nix.thunk(() => nix.update(users, {
-                    [nix.POS]: pos$20,
-                    bob: nix.thunk(() => ({ [nix.POS]: pos$19, isNormalUser: true })),
+                    [nix.POS]: $pos[19],
+                    bob: nix.thunk(() => ({ [nix.POS]: $pos[18], isNormalUser: true })),
                   })),
                 })),
               })),

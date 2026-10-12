@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 18, 3], ["pname", 20, 5], ["version", 21, 5], ["meta", 22, 5], ["outputs", 23, 5], ["nativeBuildInputs", 25, 3], ["paths", 26, 3], ["postBuild", 27, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, makeWrapper: false, parallel: false, perlPackages: false, extraPerlPackages: true, willCite: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 18, 3], ["pname", 20, 5], ["version", 21, 5], ["meta", 22, 5], ["outputs", 23, 5], ["nativeBuildInputs", 25, 3], ["paths", 26, 3], ["postBuild", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
   })());
   const willCite = nix.argOr($, "willCite", () => false);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`parallel-full-${nix.sel(parallel, "version")}`),
       pname: nix.thunk(() => nix.attr(parallel, "pname")),
       version: nix.thunk(() => nix.attr(parallel, "version")),

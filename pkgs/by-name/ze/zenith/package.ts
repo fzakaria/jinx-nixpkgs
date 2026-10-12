@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 37, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 21, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildFeatures", 29, 3], ["postInstall", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, nvidiaSupport: true, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 21, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildFeatures", 29, 3], ["postInstall", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nvidiaSupport = nix.argOr($, "nvidiaSupport", () => false);
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zenith",
       version: "0.15.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bvaisvil",
           repo: "zenith",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nvidiaSupport, "nvidia")),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nvidiaSupport, "wrapProgram $out/bin/zenith \\\n  --suffix LD_LIBRARY_PATH : \"/run/opengl-driver/lib\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.add("Sort of like top or htop but with zoom-able charts, network, and disk usage", nix.app(nix.sel(lib, "optionalString"), nvidiaSupport, ", and NVIDIA GPU usage"))),
         mainProgram: "zenith",
         homepage: "https://github.com/bvaisvil/zenith",

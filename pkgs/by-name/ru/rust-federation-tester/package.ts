@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["matrix-synapse", 54, 26]], [["tests", 53, 12]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["__structuredAttrs", 20, 3], ["cargoHash", 22, 3], ["cargoTestFlags", 23, 3], ["cargoBuildFlags", 24, 3], ["nativeCheckInputs", 31, 3], ["checkFlags", 33, 3], ["passthru", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { rustPlatform: false, fetchFromGitHub: false, lib: false, nixosTests: false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["matrix-synapse", 54, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 53, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["__structuredAttrs", 20, 3], ["cargoHash", 22, 3], ["cargoTestFlags", 23, 3], ["cargoBuildFlags", 24, 3], ["nativeCheckInputs", 31, 3], ["checkFlags", 33, 3], ["passthru", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const cacert = nix.arg($, "cacert");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rust-federation-tester",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MTRNord",
           repo: "rust-federation-tester",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,14 +47,14 @@ export default nix.lambda((args) => (() => {
           "test_concurrent_requests",
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "matrix-synapse": nix.thunk(() => nix.attr(nixosTests, "matrix-synapse")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Matrix-Federation-Tester in Rust",
         homepage: "https://connectivity-tester.mtrnord.blog/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

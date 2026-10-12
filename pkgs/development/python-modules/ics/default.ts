@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 38, 3], ["disabledTests", 43, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, arrow: false, attrs: false, buildPythonPackage: false, fetchFromGitHub: false, "pytest-flakes": false, pytestCheckHook: false, setuptools: false, tatsu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 38, 3], ["disabledTests", 43, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ics-py",
           repo: "ics-py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_event", "test_many_lines", "test_timezone_not_dropped", "test_gehol"]);
       const pythonImportsCheck = nix.thunk(() => ["ics"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pythonic and easy iCalendar library (RFC 5545)",
         longDescription: "Ics.py is a pythonic and easy iCalendar library. Its goals are to read and\nwrite ics data in a developer friendly way.\n",
         homepage: "http://icspy.readthedocs.org/",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

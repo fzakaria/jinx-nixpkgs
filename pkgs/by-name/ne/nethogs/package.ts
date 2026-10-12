@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 36, 5], ["longDescription", 37, 5], ["license", 46, 5], ["homepage", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["makeFlags", 25, 3], ["installFlags", 30, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ncurses: false, libpcap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["longDescription", 37, 5], ["license", 46, 5], ["homepage", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["makeFlags", 25, 3], ["installFlags", 30, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const libpcap = nix.arg($, "libpcap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nethogs",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "raboof",
           repo: "nethogs",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)", "sbin=$(out)/bin"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small 'net top' tool, grouping bandwidth by process",
         longDescription: "NetHogs is a small 'net top' tool. Instead of breaking the traffic down\nper protocol or per subnet, like most tools do, it groups bandwidth by\nprocess. NetHogs does not rely on a special kernel module to be loaded.\nIf there's suddenly a lot of network traffic, you can fire up NetHogs\nand immediately see which PID is causing this. This makes it easy to\nidentify programs that have gone wild and are suddenly taking up your\nbandwidth.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

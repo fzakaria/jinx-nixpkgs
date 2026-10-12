@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["fast", 54, 5], ["mongo", 58, 5], ["redis", 62, 5], ["proxy", 63, 5], ["i18n", 64, 5], ["signature", 65, 5]], [["rev-prefix", 87, 5], ["ignoredVersions", 88, 5]], [["updateScript", 86, 12]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["pythonRelaxDeps", 43, 3], ["dependencies", 45, 3], ["optional-dependencies", 53, 3], ["nativeCheckInputs", 68, 3], ["pytestFlags", 79, 3], ["pythonImportsCheck", 84, 3], ["passthru", 86, 3], ["__darwinAllowLocalNetworking", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, aiodns: false, aiofiles: false, "aiohttp-socks": false, aiohttp: false, aresponses: false, babel: false, buildPythonPackage: false, certifi: false, cryptography: false, fetchFromGitHub: false, gitUpdater: false, hatchling: false, "magic-filter": false, motor: false, pycryptodomex: false, pydantic: false, pymongo: false, "pytest-aiohttp": false, "pytest-asyncio": false, "pytest-lazy-fixture": false, pytestCheckHook: false, pytz: false, redis: false, uvloop: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fast", 54, 5], ["mongo", 58, 5], ["redis", 62, 5], ["proxy", 63, 5], ["i18n", 64, 5], ["signature", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev-prefix", 87, 5], ["ignoredVersions", 88, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 86, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["pythonRelaxDeps", 43, 3], ["dependencies", 45, 3], ["optional-dependencies", 53, 3], ["nativeCheckInputs", 68, 3], ["pytestFlags", 79, 3], ["pythonImportsCheck", 84, 3], ["passthru", 86, 3], ["__darwinAllowLocalNetworking", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const redis = nix.arg($, "redis");
   const uvloop = nix.arg($, "uvloop");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "aiogram",
       version: "3.31.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aiogram",
           repo: "aiogram",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["aiohttp"]),
       dependencies: nix.thunk(() => [aiofiles, aiohttp, certifi, magic_filter, pydantic]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         fast: nix.thunk(() => [aiodns, uvloop]),
         mongo: nix.thunk(() => [motor, pymongo]),
         redis: nix.thunk(() => [redis]),
@@ -73,12 +68,12 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["-Wignore::DeprecationWarning"]),
       pythonImportsCheck: nix.thunk(() => ["aiogram"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v", ignoredVersions: "4.1" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v", ignoredVersions: "4.1" })))),
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Modern and fully asynchronous framework for Telegram Bot API",
         homepage: "https://github.com/aiogram/aiogram",
         changelog: nix.thunk(() => nix.str`https://github.com/aiogram/aiogram/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,18 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/memories.nix", [[["version", 16, 7], ["appHash", 17, 7], ["srcHash", 18, 7]], [["version", 21, 7], ["appHash", 22, 7], ["srcHash", 23, 7]], [["32", 15, 5], ["33", 20, 5], ["34", 25, 5]], [["homepage", 32, 5], ["changelog", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["owner", 43, 7], ["repo", 44, 7], ["tag", 45, 7], ["hash", 46, 7]], [["description", 54, 7], ["mainProgram", 55, 7]], [["pname", 39, 5], ["version", 40, 34], ["src", 42, 5], ["sourceRoot", 49, 5], ["vendorHash", 51, 5], ["meta", 53, 5]], [["url", 64, 5], ["hash", 65, 5]], [["exiftool", 70, 7], ["ffmpeg", 71, 7], ["ffprobe", 72, 7], ["go-vod", 73, 7]], [["description", 92, 5], ["longDescription", 93, 5]], [["pname", 60, 3], ["version", 61, 32], ["src", 63, 3], ["patches", 68, 3], ["postPatch", 77, 3], ["installPhase", 86, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { stdenv: false, buildGoModule: false, exiftool: false, fetchurl: false, "ffmpeg-headless": false, fetchFromGitHub: false, lib: false, replaceVars: false, ncVersion: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/memories.nix", [["version", 16, 7], ["appHash", 17, 7], ["srcHash", 18, 7]]);
-const pos$2 = nix.positions(here + "/memories.nix", [["version", 21, 7], ["appHash", 22, 7], ["srcHash", 23, 7]]);
-const pos$3 = nix.positions(here + "/memories.nix", [["32", 15, 5], ["33", 20, 5], ["34", 25, 5]]);
-const pos$4 = nix.positions(here + "/memories.nix", [["homepage", 32, 5], ["changelog", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$5 = nix.positions(here + "/memories.nix", [["owner", 43, 7], ["repo", 44, 7], ["tag", 45, 7], ["hash", 46, 7]]);
-const pos$6 = nix.positions(here + "/memories.nix", [["description", 54, 7], ["mainProgram", 55, 7]]);
-const pos$7 = nix.positions(here + "/memories.nix", [["pname", 39, 5], ["version", 40, 34], ["src", 42, 5], ["sourceRoot", 49, 5], ["vendorHash", 51, 5], ["meta", 53, 5]]);
-const pos$8 = nix.positions(here + "/memories.nix", [["url", 64, 5], ["hash", 65, 5]]);
-const pos$9 = nix.positions(here + "/memories.nix", [["exiftool", 70, 7], ["ffmpeg", 71, 7], ["ffprobe", 72, 7], ["go-vod", 73, 7]]);
-const pos$10 = nix.positions(here + "/memories.nix", [["description", 92, 5], ["longDescription", 93, 5]]);
-const pos$11 = nix.positions(here + "/memories.nix", [["pname", 60, 3], ["version", 61, 32], ["src", 63, 3], ["patches", 68, 3], ["postPatch", 77, 3], ["installPhase", 86, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,15 +17,15 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const ncVersion = nix.arg($, "ncVersion");
   const latestVersionForNc = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "32": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "7.8.2",
       appHash: "sha256-O59G5kUkYlYxr8p/vEqs3LqLRKJZbeEgDhdY5eHfnZg=",
       srcHash: "sha256-KyUfrKHnRO3lMin0seSNFRnRRTPo12NbbvbkSpxSMQE=",
     })),
     "33": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "8.1.0",
       appHash: "sha256-SQ1gPdfICFqNBJM0dJOfKIJ/E1tBBcBQOjRdb/mKb04=",
       srcHash: "sha256-T0oz5d4kPX/Pm06vKGTrltUFd1pKccsz5IDjv/Vmuz0=",
@@ -44,7 +34,7 @@ export default nix.lambda((args) => (() => {
   }));
   const currentVersionInfo = nix.thunk(() => nix.selOr(latestVersionForNc, () => nix.builtins.throw(nix.thunk(() => nix.str`memories currently does not support nextcloud version ${ncVersion}`)), nix.key(nix.force(ncVersion))));
   const commonMeta = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     homepage: "https://apps.nextcloud.com/apps/memories",
     changelog: nix.thunk(() => nix.str`https://github.com/pulsejet/memories/blob/v${nix.sel(currentVersionInfo, "version")}/CHANGELOG.md`),
     license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -57,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const pname = "go-vod";
       const version = nix.thunk(() => nix.attr(currentVersionInfo, "version"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "pulsejet",
           repo: "memories",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,23 +56,23 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/go-vod`);
       const vendorHash = null;
       const meta = nix.thunk(() => nix.update(commonMeta, {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Extremely minimal on-demand video transcoding server in go",
         mainProgram: "go-vod",
       }));
-      return { [nix.POS]: pos$7, pname, version, src, sourceRoot, vendorHash, meta };
+      return { [nix.POS]: $pos[6], pname, version, src, sourceRoot, vendorHash, meta };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "nextcloud-app-memories";
       const version = nix.thunk(() => nix.attr(currentVersionInfo, "version"));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           url: nix.thunk(() => nix.str`https://github.com/pulsejet/memories/releases/download/v${version}/memories.tar.gz`),
           hash: nix.thunk(() => nix.sel(currentVersionInfo, "appHash")),
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./memories-paths.diff"), nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             exiftool: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), exiftool)),
             ffmpeg: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ffmpeg_headless)),
             ffprobe: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), ffmpeg_headless, "ffprobe")),
@@ -98,12 +88,12 @@ substituteInPlace lib/Service/BinExt.php \\
 `);
       const installPhase = "mkdir -p $out\ncp -r ./* $out/\n";
       const meta = nix.thunk(() => nix.update(commonMeta, {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Fast, modern and advanced photo management suite",
         longDescription: "All settings related to required packages and installed programs are hardcoded in program code and cannot be changed.\n",
       }));
       return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname,
         version,
         src,

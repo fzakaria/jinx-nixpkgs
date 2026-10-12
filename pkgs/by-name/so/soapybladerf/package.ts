@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["url", 38, 7], ["hash", 39, 7]], [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 17, 3], ["version", 18, 11], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["patches", 36, 3], ["cmakeFlags", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, libbladeRF: false, soapysdr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 11], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["patches", 36, 3], ["cmakeFlags", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const soapysdr = nix.arg($, "soapysdr");
   const version = "0.4.2";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "soapybladerf",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pothosware",
           repo: "SoapyBladeRF",
           rev: nix.thunk(() => nix.str`soapy-bladerf-${version}`),
@@ -34,14 +31,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libbladeRF, soapysdr]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/pothosware/SoapyBladeRF/commit/f141b61624f24a56aa3bdf7b0cc61c9fa65c26a3.patch",
             hash: "sha256-szqHbSAHiK0F83bxYnrblEBi/U7tpD0AXotYV1eTFxU=",
           })))),
       ]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DSoapySDR_DIR=${soapysdr}/share/cmake/SoapySDR/`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/pothosware/SoapyBladeRF",
         description: "SoapySDR plugin for BladeRF devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

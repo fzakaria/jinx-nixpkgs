@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qt3d.nix", [[["pname", 11, 3], ["postPatch", 15, 3], ["propagatedBuildInputs", 20, 3], ["cmakeFlags", 27, 3]]]);
 const formals$1 = { args: { lib: false, qtModule: false, qtbase: false, qtdeclarative: false, qtmultimedia: false, assimp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qt3d.nix", [["pname", 11, 3], ["postPatch", 15, 3], ["propagatedBuildInputs", 20, 3], ["cmakeFlags", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const qtmultimedia = nix.arg($, "qtmultimedia");
   const assimp = nix.arg($, "assimp");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "qt3d",
       postPatch: "rm -rf src/3rdparty/assimp/src\nsubstituteInPlace src/core/configure.cmake --replace-fail \"WrapQt3DAssimp 5\" \"WrapQt3DAssimp 6\"\n",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative, qtmultimedia, assimp]),

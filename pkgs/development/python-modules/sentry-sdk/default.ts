@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 76, 5], ["repo", 77, 5], ["tag", 78, 5], ["hash", 79, 5]], [["aiohttp", 96, 5], ["anthropic", 97, 5], ["asyncpg", 99, 5], ["asyncio", 100, 5], ["beam", 101, 5], ["bottle", 102, 5], ["celery", 103, 5], ["celery-redbeat", 104, 5], ["chalice", 105, 5], ["clickhouse-driver", 106, 5], ["django", 107, 5], ["falcon", 108, 5], ["fastapi", 109, 5], ["flask", 110, 5], ["grpcio", 115, 5], ["http2", 119, 5], ["httpx", 120, 5], ["huey", 121, 5], ["huggingface-hub", 122, 5], ["langchain", 123, 5], ["litestar", 125, 5], ["loguru", 126, 5], ["openai", 127, 5], ["pure_eval", 134, 5], ["pymongo", 139, 5], ["pyspark", 140, 5], ["quart", 141, 5], ["rq", 145, 5], ["sanic", 146, 5], ["sqlalchemy", 147, 5], ["starlette", 148, 5], ["tornado", 151, 5]], [["description", 235, 5], ["homepage", 236, 5], ["changelog", 237, 5], ["license", 238, 5], ["maintainers", 239, 5]], [["pname", 71, 3], ["version", 72, 3], ["pyproject", 73, 3], ["src", 75, 3], ["postPatch", 82, 3], ["build-system", 86, 3], ["dependencies", 90, 3], ["optional-dependencies", 95, 3], ["nativeCheckInputs", 155, 3], ["__darwinAllowLocalNetworking", 175, 3], ["disabledTestPaths", 177, 3], ["disabledTests", 182, 3], ["pythonImportsCheck", 232, 3], ["meta", 234, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, setuptools: false, certifi: false, urllib3: false, aiohttp: false, anthropic: false, "apache-beam": false, asttokens: false, asyncpg: false, blinker: false, bottle: false, celery: false, "celery-redbeat": false, chalice: false, "clickhouse-driver": false, django: false, executing: false, falcon: false, fastapi: false, flask: false, grpcio: false, httpcore: false, httpx: false, huey: false, "huggingface-hub": false, langchain: false, litestar: false, loguru: false, markupsafe: false, openai: false, protobuf: false, "pure-eval": false, pymongo: false, pyspark: false, quart: false, rq: false, sanic: false, sqlalchemy: false, starlette: false, tiktoken: false, tornado: false, brotli: false, jsonschema: false, pip: false, pyrsistent: false, pysocks: false, "pytest-asyncio": false, pytestCheckHook: false, "pytest-forked": false, "pytest-localserver": false, "pytest-xdist": false, "pytest-watch": false, responses: false, socksio: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 76, 5], ["repo", 77, 5], ["tag", 78, 5], ["hash", 79, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aiohttp", 96, 5], ["anthropic", 97, 5], ["asyncpg", 99, 5], ["asyncio", 100, 5], ["beam", 101, 5], ["bottle", 102, 5], ["celery", 103, 5], ["celery-redbeat", 104, 5], ["chalice", 105, 5], ["clickhouse-driver", 106, 5], ["django", 107, 5], ["falcon", 108, 5], ["fastapi", 109, 5], ["flask", 110, 5], ["grpcio", 115, 5], ["http2", 119, 5], ["httpx", 120, 5], ["huey", 121, 5], ["huggingface-hub", 122, 5], ["langchain", 123, 5], ["litestar", 125, 5], ["loguru", 126, 5], ["openai", 127, 5], ["pure_eval", 134, 5], ["pymongo", 139, 5], ["pyspark", 140, 5], ["quart", 141, 5], ["rq", 145, 5], ["sanic", 146, 5], ["sqlalchemy", 147, 5], ["starlette", 148, 5], ["tornado", 151, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 235, 5], ["homepage", 236, 5], ["changelog", 237, 5], ["license", 238, 5], ["maintainers", 239, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 71, 3], ["version", 72, 3], ["pyproject", 73, 3], ["src", 75, 3], ["postPatch", 82, 3], ["build-system", 86, 3], ["dependencies", 90, 3], ["optional-dependencies", 95, 3], ["nativeCheckInputs", 155, 3], ["__darwinAllowLocalNetworking", 175, 3], ["disabledTestPaths", 177, 3], ["disabledTests", 182, 3], ["pythonImportsCheck", 232, 3], ["meta", 234, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -69,12 +66,12 @@ export default nix.lambda((args) => (() => {
   const socksio = nix.arg($, "socksio");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sentry-sdk",
       version: "2.70.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "getsentry",
           repo: "sentry-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -84,7 +81,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [certifi, urllib3]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aiohttp: nix.thunk(() => [aiohttp]),
         anthropic: nix.thunk(() => [anthropic]),
         asyncpg: nix.thunk(() => [asyncpg]),
@@ -171,7 +168,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(pythonAtLeast, "3.13")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), nix.thunk(() => ["test_profile_stops_when_segment_ends", "test_segment_span_has_profiler_id"])))),
       pythonImportsCheck: nix.thunk(() => ["sentry_sdk"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Official Python SDK for Sentry.io",
         homepage: "https://github.com/getsentry/sentry-python",
         changelog: nix.thunk(() => nix.str`https://github.com/getsentry/sentry-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

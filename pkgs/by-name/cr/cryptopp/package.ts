@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["CXXFLAGS", 47, 5]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 65, 5], ["platforms", 69, 5], ["maintainers", 70, 5]], [["pname", 14, 3], ["version", 15, 3], ["underscoredVersion", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["postPatch", 30, 3], ["buildInputs", 36, 3], ["makeFlags", 38, 3], ["buildFlags", 40, 3], ["enableParallelBuilding", 43, 3], ["hardeningDisable", 44, 3], ["env", 46, 3], ["doCheck", 50, 3], ["preInstall", 53, 3], ["installTargets", 55, 3], ["installFlags", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, enableStatic: true, enableShared: true, withOpenMP: true, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 65, 5], ["platforms", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["underscoredVersion", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["postPatch", 30, 3], ["buildInputs", 36, 3], ["makeFlags", 38, 3], ["buildFlags", 40, 3], ["enableParallelBuilding", 43, 3], ["hardeningDisable", 44, 3], ["env", 46, 3], ["doCheck", 50, 3], ["preInstall", 53, 3], ["installTargets", 55, 3], ["installFlags", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.9.0";
       const underscoredVersion = nix.thunk(() => nix.app(nix.sel(lib, "strings", "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "weidai11",
           repo: "cryptopp",
           rev: nix.thunk(() => nix.str`CRYPTOPP_${underscoredVersion}`),
@@ -35,13 +32,13 @@ export default nix.lambda((args) => (() => {
       const buildFlags = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), enableStatic, "static"), nix.concat(nix.app(nix.sel(lib, "optional"), enableShared, "shared"), ["libcryptopp.pc"])));
       const enableParallelBuilding = true;
       const hardeningDisable = nix.thunk(() => ["fortify"]);
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withOpenMP, nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-fopenmp" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withOpenMP, nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-fopenmp" }))));
       const doCheck = true;
       const preInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableStatic)), "rm -f libcryptopp.a"));
       const installTargets = nix.thunk(() => ["install-lib"]);
       const installFlags = nix.thunk(() => ["LDCONF=true"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free C++ class library of cryptographic schemes",
         homepage: "https://cryptopp.com/",
         changelog: nix.thunk(() => [
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         underscoredVersion,

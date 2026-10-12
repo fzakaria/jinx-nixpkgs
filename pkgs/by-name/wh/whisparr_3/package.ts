@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["yarnLock", 116, 9], ["hash", 117, 9]], [["src", 103, 28], ["version", 103, 32], ["pname", 104, 7], ["__structuredAttrs", 106, 7], ["strictDeps", 107, 7], ["nativeBuildInputs", 109, 7], ["yarnOfflineCache", 115, 7], ["yarnBuildFlags", 120, 7], ["installPhase", 122, 7]], [["PackageAuthor", 131, 9], ["PackageVersion", 132, 9], ["UpdateMethod", 133, 9], ["UpdateMethodMessage", 134, 9]], [["whisparr_3", 138, 36]], [["subpackage", 142, 9], ["use-github-releases", 143, 9], ["version-regex", 144, 9]], [["extraArgs", 141, 7]], [["frontend", 102, 5], ["package_info", 129, 5], ["tests", 138, 5], ["updateScript", 140, 5]], [["changelog", 150, 5], ["description", 151, 5], ["homepage", 152, 5], ["license", 153, 5], ["mainProgram", 154, 5], ["maintainers", 155, 5], ["sourceProvenance", 156, 5], ["platforms", 161, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["patches", 31, 3], ["postPatch", 36, 3], ["installPath", 38, 3], ["postInstall", 40, 3], ["dotnet-sdk", 48, 3], ["dotnet-runtime", 49, 3], ["nugetDeps", 51, 3], ["projectFile", 53, 3], ["executables", 58, 3], ["dotnetFlags", 60, 3], ["__darwinAllowLocalNetworking", 68, 3], ["doCheck", 69, 3], ["preCheck", 71, 3], ["testProjectFile", 75, 3], ["dotnetTestFlags", 86, 3], ["testFilters", 90, 3], ["disabledTests", 95, 3], ["passthru", 101, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false, fetchYarnDeps: false, lib: false, "nix-update-script": false, nixosTests: false, nodejs_24: false, "servarr-ffmpeg": false, stdenvNoCC: false, withFFmpeg: true, writeText: false, yarnBuildHook: false, yarnConfigHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 116, 9], ["hash", 117, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 103, 28], ["version", 103, 32], ["pname", 104, 7], ["__structuredAttrs", 106, 7], ["strictDeps", 107, 7], ["nativeBuildInputs", 109, 7], ["yarnOfflineCache", 115, 7], ["yarnBuildFlags", 120, 7], ["installPhase", 122, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["PackageAuthor", 131, 9], ["PackageVersion", 132, 9], ["UpdateMethod", 133, 9], ["UpdateMethodMessage", 134, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["whisparr_3", 138, 36]]);
-const pos$6 = nix.positions(here + "/package.nix", [["subpackage", 142, 9], ["use-github-releases", 143, 9], ["version-regex", 144, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 141, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["frontend", 102, 5], ["package_info", 129, 5], ["tests", 138, 5], ["updateScript", 140, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["changelog", 150, 5], ["description", 151, 5], ["homepage", 152, 5], ["license", 153, 5], ["mainProgram", 154, 5], ["maintainers", 155, 5], ["sourceProvenance", 156, 5], ["platforms", 161, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["patches", 31, 3], ["postPatch", 36, 3], ["installPath", 38, 3], ["postInstall", 40, 3], ["dotnet-sdk", 48, 3], ["dotnet-runtime", 49, 3], ["nugetDeps", 51, 3], ["projectFile", 53, 3], ["executables", 58, 3], ["dotnetFlags", 60, 3], ["__darwinAllowLocalNetworking", 68, 3], ["doCheck", 69, 3], ["preCheck", 71, 3], ["testProjectFile", 75, 3], ["dotnetTestFlags", 86, 3], ["testFilters", 90, 3], ["disabledTests", 95, 3], ["passthru", 101, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const yarnBuildHook = nix.arg($, "yarnBuildHook");
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "whisparr",
       version: "3.6.2-release.1727",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Whisparr",
           repo: "Whisparr-Eros",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -85,9 +76,9 @@ cp ${nix.sel(finalAttrs, "passthru", "package_info")} $dotnetInstallPath/../pack
         "NzbDrone.Mono.Test.EnvironmentInfo.ReleaseFileVersionAdapterFixture.should_get_version_info",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         frontend: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-frontend`),
@@ -95,7 +86,7 @@ cp ${nix.sel(finalAttrs, "passthru", "package_info")} $dotnetInstallPath/../pack
             strictDeps: true,
             nativeBuildInputs: nix.thunk(() => [nodejs_24, yarnBuildHook, yarnConfigHook]),
             yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
                 hash: "sha256-nL36qET7Zhej9Ar+69XeK8wRC13fTMN7r34z/7L3KJM=",
               })))),
@@ -103,20 +94,20 @@ cp ${nix.sel(finalAttrs, "passthru", "package_info")} $dotnetInstallPath/../pack
             installPhase: "runHook preInstall\nmv _output/UI $out\nrunHook postInstall\n",
           })))),
         package_info: nix.thunk(() => nix.app(writeText, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-package_info`), nix.thunk(() => nix.app(nix.sel(lib, "generators", "toKeyValue"), nix.thunk(() => ({})), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               PackageAuthor: "[NixOS](https://nixos.org)",
               PackageVersion: nix.thunk(() => nix.sel(finalAttrs, "version")),
               UpdateMethod: "External",
               UpdateMethodMessage: "Whisparr is managed by Nix. Update it through your system configuration.",
             })))))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           whisparr_3: nix.thunk(() => nix.attr(nixosTests, "whisparr_3")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             extraArgs: nix.thunk(() => nix.app(nix.sel(lib, "cli", "toCommandLineGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 subpackage: "frontend",
                 "use-github-releases": true,
                 "version-regex": "v(\\d+\\.\\d+\\.\\d+-release\\.\\d+)$",
@@ -124,7 +115,7 @@ cp ${nix.sel(finalAttrs, "passthru", "package_info")} $dotnetInstallPath/../pack
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         changelog: nix.thunk(() => nix.str`https://github.com/Whisparr/Whisparr-Eros/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Adult video collection manager for Usenet and BitTorrent users",
         homepage: "https://github.com/Whisparr/Whisparr-Eros",

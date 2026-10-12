@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 27, 5], ["license", 28, 30]], [["pname", 9, 3], ["version", 10, 23], ["nativeBuildInputs", 12, 3], ["doInstallCheck", 16, 3], ["dontUnpack", 18, 3], ["dontBuild", 19, 3], ["installPhase", 20, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "uhk-agent": false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 27, 5], ["license", 28, 30]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 23], ["nativeBuildInputs", 12, 3], ["doInstallCheck", 16, 3], ["dontUnpack", 18, 3], ["dontBuild", 19, 3], ["installPhase", 20, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const uhk_agent = nix.arg($, "uhk-agent");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "uhk-udev-rules",
       version: nix.thunk(() => nix.attr(uhk_agent, "version")),
       nativeBuildInputs: nix.thunk(() => [udevCheckHook]),
@@ -27,7 +26,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(uhk_agent, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "udev rules for UHK keyboards from https://ultimatehackingkeyboard.com",
         license: nix.thunk(() => nix.attr(from, "license")),
       };

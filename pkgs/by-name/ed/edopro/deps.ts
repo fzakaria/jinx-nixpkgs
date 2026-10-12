@@ -2,10 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/deps.nix", [["assets-hash", 4, 3], ["edopro-version", 5, 3], ["edopro-rev", 6, 3], ["edopro-hash", 7, 3], ["irrlicht-version", 8, 3], ["irrlicht-rev", 9, 3], ["irrlicht-hash", 10, 3]]);
+const $pos = nix.positions(here + "/deps.nix", [[["assets-hash", 4, 3], ["edopro-version", 5, 3], ["edopro-rev", 6, 3], ["edopro-hash", 7, 3], ["irrlicht-version", 8, 3], ["irrlicht-rev", 9, 3], ["irrlicht-hash", 10, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$1,
+  [nix.POS]: $pos[0],
   "assets-hash": "sha256-cta4k6yxrdaFFfum0eshEzLODExBfA+oVPqcOpXG9uk=",
   "edopro-version": "41.0.2",
   "edopro-rev": "e5c0578aa504d0831dcbe29dbacd018f7b885b2c",

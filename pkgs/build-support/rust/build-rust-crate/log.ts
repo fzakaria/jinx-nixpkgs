@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/log.nix", [[["echo_colored", 42, 3], ["noisily", 52, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/log.nix", [["echo_colored", 42, 3], ["noisily", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ echo $echo_args $start_escape"$@"$reset
 `;
   const echo_conditional_colored_body = (colors) => (start_escape) => (nix.asBool(nix.eq(colors, "always")) ? nix.app(echo_colored_body, start_escape) : "echo \"$@\"");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     echo_colored: (colors) => nix.str`echo_colored() {
   ${nix.app(echo_conditional_colored_body, colors, "\\033[0;1;32m")}
 }

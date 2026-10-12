@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["isFromBootstrapFiles", 13, 15]], [["passthru", 12, 5]], [["__contentAddressed", 18, 5], ["outputHashAlgo", 19, 5], ["outputHashMode", 20, 5]], [["system", 24, 13], ["bootstrapFiles", 24, 20], ["extraAttrs", 25, 5]]]);
 const formals$1 = { args: { lib: false, libc: false, config: false, system: false, bootstrapFiles: false, isFromBootstrapFiles: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["isFromBootstrapFiles", 13, 15]]);
-const pos$2 = nix.positions(here + "/default.nix", [["passthru", 12, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["__contentAddressed", 18, 5], ["outputHashAlgo", 19, 5], ["outputHashMode", 20, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["system", 24, 13], ["bootstrapFiles", 24, 20], ["extraAttrs", 25, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const bootstrapFiles = nix.arg($, "bootstrapFiles");
   const isFromBootstrapFiles = nix.argOr($, "isFromBootstrapFiles", () => false);
   const maybeDenoteProvenance = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), isFromBootstrapFiles, nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, isFromBootstrapFiles: isFromBootstrapFiles })),
+      [nix.POS]: $pos[1],
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], isFromBootstrapFiles: isFromBootstrapFiles })),
     }))));
   const maybeContentAddressed = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "contentAddressedByDefault")), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       __contentAddressed: true,
       outputHashAlgo: "sha256",
       outputHashMode: "recursive",
     }))));
   const args_1 = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     system: system,
     bootstrapFiles: bootstrapFiles,
     extraAttrs: maybeContentAddressed,

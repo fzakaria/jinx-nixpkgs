@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["broken", 77, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["buildInputs", 27, 3], ["preConfigure", 34, 3], ["checkPhase", 48, 3], ["pythonImportsCheck", 59, 3], ["installPhase", 61, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchurl: false, python: false, apr: false, aprutil: false, bash: false, gcc: false, pycxx: false, subversion: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["broken", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["buildInputs", 27, 3], ["preConfigure", 34, 3], ["checkPhase", 48, 3], ["pythonImportsCheck", 59, 3], ["installPhase", 61, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.25";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/pysvn/pysvn/V${version}/pysvn-${version}.tar.gz`),
           hash: "sha256-M9LzUr/6FZSUWFQdGM6Ew1/ySE5C/Q7cNXi+jGa+JdY=",
         }))));
@@ -62,7 +60,7 @@ mv -v ../Docs $out/share/doc/pysvn-${version}
 rm -v $out/share/doc/pysvn-${version}/generate_cpp_docs_from_html_docs.py
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python bindings for Subversion",
         homepage: "https://pysvn.sourceforge.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -73,7 +71,7 @@ rm -v $out/share/doc/pysvn-${version}/generate_cpp_docs_from_html_docs.py
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

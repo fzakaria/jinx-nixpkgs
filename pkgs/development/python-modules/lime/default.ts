@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 26, 26], ["version", 26, 32], ["hash", 27, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 46, 3], ["disabledTestPaths", 48, 3], ["pythonImportsCheck", 55, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, setuptools: false, matplotlib: false, numpy: false, scipy: false, tqdm: false, "scikit-learn": false, "scikit-image": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 26, 26], ["version", 26, 32], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 46, 3], ["disabledTestPaths", 48, 3], ["pythonImportsCheck", 55, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const scikit_image = nix.arg($, "scikit-image");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lime",
       version: "0.2.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-dpYOTwVf61Pom1AiODuvyHtj8lusYmWYSwozPRpX94E=",
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         "lime.lime_text",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Local Interpretable Model-Agnostic Explanations for machine learning classifiers",
         homepage: "https://github.com/marcotcr/lime",
         changelog: nix.thunk(() => nix.str`https://github.com/marcotcr/lime/releases/tag/${nix.sel(finalAttrs, "version")}`),

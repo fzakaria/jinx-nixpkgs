@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["nativeBuildInputs", 32, 3], ["pythonRelaxDeps", 36, 3], ["dependencies", 40, 3], ["pythonImportsCheck", 46, 3], ["nativeCheckInputs", 48, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { aiofiles: false, aiohttp: false, aiointercept: false, aioresponses: false, buildPythonPackage: false, fetchFromGitHub: false, freezegun: false, lib: false, orjson: false, pyprojectVersionPatchHook: false, "pytest-asyncio": false, pytestCheckHook: false, setuptools: false, syrupy_6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["nativeBuildInputs", 32, 3], ["pythonRelaxDeps", 36, 3], ["dependencies", 40, 3], ["pythonImportsCheck", 46, 3], ["nativeCheckInputs", 48, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const syrupy_6 = nix.arg($, "syrupy_6");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "imgw-pib",
       version: "2.5.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bieniu",
           repo: "imgw-pib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         syrupy_6,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/bieniu/imgw-pib/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python async wrapper for IMGW-PIB API",
         homepage: "https://github.com/bieniu/imgw-pib",

@@ -2,44 +2,36 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/xpadneo.nix", [[["maintainers", 4, 8]], [["overall", 11, 11], ["triggers", 12, 11]], [["disable_deadzones", 15, 11], ["trigger_rumble_mode", 16, 11]], [["enable", 9, 9], ["rumbleAttenuation", 10, 9], ["settings", 14, 9]], [["xpadneo", 8, 23]], [["hardware", 8, 14]], [["config", 8, 7]], [["machine", 7, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 25, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/xpadneo.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/xpadneo.nix", [["overall", 11, 11], ["triggers", 12, 11]]);
-const pos$3 = nix.positions(here + "/xpadneo.nix", [["disable_deadzones", 15, 11], ["trigger_rumble_mode", 16, 11]]);
-const pos$4 = nix.positions(here + "/xpadneo.nix", [["enable", 9, 9], ["rumbleAttenuation", 10, 9], ["settings", 14, 9]]);
-const pos$5 = nix.positions(here + "/xpadneo.nix", [["xpadneo", 8, 23]]);
-const pos$6 = nix.positions(here + "/xpadneo.nix", [["hardware", 8, 14]]);
-const pos$7 = nix.positions(here + "/xpadneo.nix", [["config", 8, 7]]);
-const pos$8 = nix.positions(here + "/xpadneo.nix", [["machine", 7, 5]]);
-const pos$9 = nix.positions(here + "/xpadneo.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "xpadneo",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kira-bruneau"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         config: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hardware: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             xpadneo: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
-              rumbleAttenuation: nix.thunk(() => ({ [nix.POS]: pos$2, overall: 50n, triggers: 25n })),
-              settings: nix.thunk(() => ({ [nix.POS]: pos$3, disable_deadzones: 1n, trigger_rumble_mode: 2n })),
+              rumbleAttenuation: nix.thunk(() => ({ [nix.POS]: $pos[1], overall: 50n, triggers: 25n })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[2], disable_deadzones: 1n, trigger_rumble_mode: 2n })),
             })),
           })),
         })),

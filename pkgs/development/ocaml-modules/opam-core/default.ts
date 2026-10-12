@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 34, 5], ["maintainers", 35, 5]], [["pname", 15, 3], ["src", 17, 18], ["version", 17, 22], ["propagatedBuildInputs", 19, 3], ["configureFlags", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, opam: false, jsonm: false, ocamlgraph: false, re: false, sha: false, swhid_core: false, uutf: false, patch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 34, 5], ["maintainers", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["src", 17, 18], ["version", 17, 22], ["propagatedBuildInputs", 19, 3], ["configureFlags", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const uutf = nix.arg($, "uutf");
   const patch = nix.arg($, "patch");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "opam-core",
       src: nix.thunk(() => nix.attr(opam, "src")),
       version: nix.thunk(() => nix.attr(opam, "version")),
       propagatedBuildInputs: nix.thunk(() => [jsonm, ocamlgraph, uutf, re, sha, swhid_core, patch]),
       configureFlags: nix.thunk(() => ["--disable-checks"]),
       meta: nix.thunk(() => nix.update(nix.sel(opam, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Small standard library extensions, and generic system interaction modules used by opam",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

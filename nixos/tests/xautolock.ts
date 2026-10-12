@@ -2,38 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/xautolock.nix", [["maintainers", 3, 8]]);
-const pos$2 = nix.positions(here + "/xautolock.nix", [["user", 11, 38]]);
-const pos$3 = nix.positions(here + "/xautolock.nix", [["auto", 11, 33]]);
-const pos$4 = nix.positions(here + "/xautolock.nix", [["displayManager", 11, 18]]);
-const pos$5 = nix.positions(here + "/xautolock.nix", [["enable", 12, 32], ["time", 13, 32]]);
-const pos$6 = nix.positions(here + "/xautolock.nix", [["xautolock", 12, 22]]);
-const pos$7 = nix.positions(here + "/xautolock.nix", [["xserver", 12, 14]]);
-const pos$8 = nix.positions(here + "/xautolock.nix", [["imports", 6, 5], ["test-support", 11, 5], ["services", 12, 5]]);
-const pos$9 = nix.positions(here + "/xautolock.nix", [["machine", 5, 9]]);
-const pos$10 = nix.positions(here + "/xautolock.nix", [["name", 2, 3], ["meta", 3, 3], ["nodes", 5, 3], ["testScript", 16, 3]]);
+const $pos = nix.positions(here + "/xautolock.nix", [[["maintainers", 3, 8]], [["user", 11, 38]], [["auto", 11, 33]], [["displayManager", 11, 18]], [["enable", 12, 32], ["time", 13, 32]], [["xautolock", 12, 22]], [["xserver", 12, 14]], [["imports", 6, 5], ["test-support", 11, 5], ["services", 12, 5]], [["machine", 5, 9]], [["name", 2, 3], ["meta", 3, 3], ["nodes", 5, 3], ["testScript", 16, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$10,
+  [nix.POS]: $pos[9],
   name: "xautolock",
-  meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+  meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     machine: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       imports: nix.thunk(() => [
         nix.path(here, "./common/x11.nix"),
         nix.path(here, "./common/user-account.nix"),
       ]),
       "test-support": nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        displayManager: nix.thunk(() => ({ [nix.POS]: pos$3, auto: nix.thunk(() => ({ [nix.POS]: pos$2, user: "bob" })) })),
+        [nix.POS]: $pos[3],
+        displayManager: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          auto: nix.thunk(() => ({ [nix.POS]: $pos[1], user: "bob" })),
+        })),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         xserver: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          xautolock: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, time: 1n })),
+          [nix.POS]: $pos[5],
+          xautolock: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true, time: 1n })),
         })),
       })),
     })),

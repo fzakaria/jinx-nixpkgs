@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["makeFlags", 29, 3], ["preInstall", 33, 3], ["postInstall", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, glib: false, lib: false, writeScriptBin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["makeFlags", 29, 3], ["preInstall", 33, 3], ["postInstall", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const writeScriptBin = nix.arg($, "writeScriptBin");
   const fake_dconf = nix.thunk(() => nix.app(writeScriptBin, "dconf", "echo -n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "flat-remix-gnome",
       version: "20250926",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "daniruiz",
           repo: "flat-remix-gnome",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/share/gnome-shell/\ntouch $out/share/gnome-shell/gnome-shell-theme.gresource\n",
       postInstall: "rm $out/share/gnome-shell/gnome-shell-theme.gresource.old\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GNOME Shell theme inspired by material design",
         homepage: "https://drasite.com/flat-remix-gnome",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 26, 5], ["buildCommand", 28, 5]], [["NIX_CFLAGS_COMPILE", 63, 7]], [["description", 84, 5]], [["releaseName", 41, 3], ["outputs", 43, 3], ["xcodeHash", 48, 3], ["postPatch", 50, 3], ["env", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 67, 3], ["postInstall", 78, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, bzip2: false, libmd: false, libresolv: false, libutil: false, libxo: false, mkAppleDerivation: false, ncurses: false, "pkg-config": false, shell_cmds: false, sourceRelease: false, stdenvNoCC: false, xz: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 26, 5], ["buildCommand", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["releaseName", 41, 3], ["outputs", 43, 3], ["xcodeHash", 48, 3], ["postPatch", 50, 3], ["env", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 67, 3], ["postInstall", 78, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const libplatform = nix.thunk(() => nix.app(sourceRelease, "libplatform"));
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "text_cmds-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -t "$out/include" \\
   '${libplatform}/private/_simple.h' \\
@@ -42,13 +39,13 @@ install -D -t "$out/include/CommonCrypto" \\
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       releaseName: "text_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-8Z6Goz94xP3HqAaSnFUurhZE8l3G1mK5KviXtxSPQhI=",
       postPatch: "# Improve compatiblity with libmd in nixpkgs.\nsubstituteInPlace md5/md5.c \\\n  --replace-fail '<sha224.h>' '<sha2.h>' \\\n  --replace-fail SHA224_Init SHA224Init \\\n  --replace-fail SHA224_Update SHA224Update \\\n  --replace-fail SHA224_End SHA224End \\\n  --replace-fail SHA224_Data SHA224Data \\\n  --replace-fail SHA224_CTX SHA2_CTX \\\n  --replace-fail '<sha384.h>' '<sha512.h>' \\\n  --replace-fail 'const void *, unsigned int, char *' 'const uint8_t *, size_t, char *'\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
@@ -56,7 +53,7 @@ install -D -t "$out/include/CommonCrypto" \\
       postInstall: nix.thunk(() => nix.str`# Patch the shebangs to use \`sh\` from shell_cmds.
 HOST_PATH='${nix.app(nix.sel(lib, "getBin"), shell_cmds)}/bin' patchShebangs --host "$out/bin"
 `),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: "Text commands for Darwin" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[2], description: "Text commands for Darwin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

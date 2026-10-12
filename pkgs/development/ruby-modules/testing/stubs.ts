@@ -2,14 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stubs.nix", [[["name", 12, 15], ["text", 13, 7], ["builder", 24, 7], ["args", 25, 7], ["system", 29, 7], ["passAsFile", 30, 7]], [["mkDerivation", 41, 13], ["stubbed", 42, 5]], [["stdenv", 45, 5], ["stubbed", 46, 5]], [["fetchurl", 52, 13], ["ruby", 53, 5]], [["ruby", 50, 3], ["buildRubyGem", 51, 3], ["stdenv", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, ruby: false, callPackage: false }, ellipsis: true };
 const formals$2 = { args: { name: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/stubs.nix", [["name", 12, 15], ["text", 13, 7], ["builder", 24, 7], ["args", 25, 7], ["system", 29, 7], ["passAsFile", 30, 7]]);
 const formals$3 = { args: { url: true, urls: true }, ellipsis: true };
-const pos$2 = nix.positions(here + "/stubs.nix", [["mkDerivation", 41, 13], ["stubbed", 42, 5]]);
-const pos$3 = nix.positions(here + "/stubs.nix", [["stdenv", 45, 5], ["stubbed", 46, 5]]);
-const pos$4 = nix.positions(here + "/stubs.nix", [["fetchurl", 52, 13], ["ruby", 53, 5]]);
-const pos$5 = nix.positions(here + "/stubs.nix", [["ruby", 50, 3], ["buildRubyGem", 51, 3], ["stdenv", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
     const argSet = args_1;
     const name = nix.arg($_1, "name");
     return nix.app(nix.builtins.derivation, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: name,
         text: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (v) => nix.builtins.elem(n, nix.thunk(() => ["name", "system"])), argSet)))),
         builder: nix.thunk(() => nix.sel(stdenv, "shell")),
@@ -37,12 +33,12 @@ export default nix.lambda((args) => (() => {
     const urls = nix.argOr($_1, "urls", () => []);
     return nix.str`fetchurl:${(nix.asBool(nix.eq(urls, [])) ? nix.force(url) : nix.builtins.head(urls))}`;
   })(), formals$3);
-  const stdenv$ = nix.thunk(() => nix.update(stdenv, { [nix.POS]: pos$2, mkDerivation: mkDerivation, stubbed: true }));
-  const ruby$ = nix.thunk(() => nix.update(ruby, { [nix.POS]: pos$3, stdenv: stdenv$, stubbed: true }));
+  const stdenv$ = nix.thunk(() => nix.update(stdenv, { [nix.POS]: $pos[1], mkDerivation: mkDerivation, stubbed: true }));
+  const ruby$ = nix.thunk(() => nix.update(ruby, { [nix.POS]: $pos[2], stdenv: stdenv$, stubbed: true }));
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     ruby: ruby$,
-    buildRubyGem: nix.thunk(() => nix.app(callPackage, nix.path(here, "../gem"), nix.thunk(() => ({ [nix.POS]: pos$4, fetchurl: fetchurl, ruby: ruby$ })))),
+    buildRubyGem: nix.thunk(() => nix.app(callPackage, nix.path(here, "../gem"), nix.thunk(() => ({ [nix.POS]: $pos[3], fetchurl: fetchurl, ruby: ruby$ })))),
     stdenv: stdenv$,
   };
 })(), formals$1);

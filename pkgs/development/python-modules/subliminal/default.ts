@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["description", 104, 5], ["mainProgram", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]], [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["src", 46, 3], ["build-system", 53, 3], ["dependencies", 58, 3], ["nativeCheckInputs", 79, 3], ["pythonImportsCheck", 90, 3], ["disabledTests", 92, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "hatch-vcs": false, babelfish: false, beautifulsoup4: false, chardet: false, click: false, "click-option-group": false, defusedxml: false, "dogpile-cache": false, enzyme: false, guessit: false, knowit: false, srt: false, pysubs2: false, rarfile: false, requests: false, platformdirs: false, stevedore: false, tomli: false, tomlkit: false, colorama: false, pypandoc: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-xdist": false, mypy: false, sympy: false, vcrpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 104, 5], ["mainProgram", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["src", 46, 3], ["build-system", 53, 3], ["dependencies", 58, 3], ["nativeCheckInputs", 79, 3], ["pythonImportsCheck", 90, 3], ["disabledTests", 92, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Diaoul",
           repo: "subliminal",
           tag: version,
@@ -93,7 +91,7 @@ export default nix.lambda((args) => (() => {
         "test_hash",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library to search and download subtitles",
         mainProgram: "subliminal",
         homepage: "https://github.com/Diaoul/subliminal",
@@ -105,7 +103,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kikit.nix", [[["python3", 17, 72]], [["makeTarget", 22, 7], ["resultZip", 23, 7], ["description", 24, 7]], [["makeTarget", 27, 7], ["resultZip", 28, 7], ["description", 29, 7]], [["kikit", 21, 5], ["kikit-library", 26, 5]], [["description", 58, 5]], [["pname", 35, 3], ["src", 36, 26], ["version", 36, 30], ["nativeBuildInputs", 38, 3], ["propagatedBuildInputs", 44, 3], ["buildPhase", 46, 3], ["installPhase", 52, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, bc: false, kikit: false, zip: false, python3: false, addonName: false, addonPath: false, "strip-nondeterminism": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kikit.nix", [["python3", 17, 72]]);
-const pos$2 = nix.positions(here + "/kikit.nix", [["makeTarget", 22, 7], ["resultZip", 23, 7], ["description", 24, 7]]);
-const pos$3 = nix.positions(here + "/kikit.nix", [["makeTarget", 27, 7], ["resultZip", 28, 7], ["description", 29, 7]]);
-const pos$4 = nix.positions(here + "/kikit.nix", [["kikit", 21, 5], ["kikit-library", 26, 5]]);
-const pos$5 = nix.positions(here + "/kikit.nix", [["description", 58, 5]]);
-const pos$6 = nix.positions(here + "/kikit.nix", [["pname", 35, 3], ["src", 36, 26], ["version", 36, 30], ["nativeBuildInputs", 38, 3], ["propagatedBuildInputs", 44, 3], ["buildPhase", 46, 3], ["installPhase", 52, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,17 +19,17 @@ export default nix.lambda((args) => (() => {
       const w = nix.withScope(ps, null);
       return [nix.thunk(() => nix.lookup(w, "click"))];
     })()));
-  const kikit_module = nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "toPythonModule"), nix.thunk(() => nix.app(nix.sel(kikit, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, python3: python3 }))))));
+  const kikit_module = nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "toPythonModule"), nix.thunk(() => nix.app(nix.sel(kikit, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], python3: python3 }))))));
   const targetSpecs = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     kikit: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       makeTarget: "pcm-kikit",
       resultZip: "pcm-kikit.zip",
       description: "KiCad plugin and a CLI tool to automate several tasks in a standard KiCad workflow",
     })),
     "kikit-library": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       makeTarget: "pcm-lib",
       resultZip: "pcm-kikit-lib.zip",
       description: "KiKit uses these symbols and footprints to annotate your boards (e.g., to place a tab in a panel)",
@@ -42,7 +37,7 @@ export default nix.lambda((args) => (() => {
   }));
   const targetSpec = nix.thunk(() => nix.sel(targetSpecs, nix.key(nix.force(addonName))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`kicadaddon-${addonName}`),
       src: nix.thunk(() => nix.attr(kikit_module, "src")),
       version: nix.thunk(() => nix.attr(kikit_module, "version")),
@@ -56,7 +51,7 @@ strip-nondeterminism --type zip build/${nix.sel(targetSpec, "resultZip")}
 mv build/${nix.sel(targetSpec, "resultZip")} $out/${addonPath}
 `),
       meta: nix.thunk(() => nix.update(nix.sel(kikit_module, "meta"), {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: nix.thunk(() => nix.sel(targetSpec, "description")),
       })),
     })));

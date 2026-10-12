@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["yarnLock", 58, 5], ["hash", 59, 5]], [["celery", 100, 5], ["diskcache", 106, 5], ["compress", 111, 5]], [["changelog", 137, 5], ["description", 138, 5], ["homepage", 139, 5], ["license", 140, 5], ["maintainers", 141, 5]], [["pname", 41, 3], ["version", 42, 3], ["pyproject", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 52, 3], ["yarnOfflineCache", 57, 3], ["preConfigure", 64, 3], ["preBuild", 71, 3], ["build-system", 78, 3], ["dependencies", 80, 3], ["pythonRelaxDeps", 94, 3], ["optional-dependencies", 99, 3], ["nativeCheckInputs", 114, 3], ["enabledTestPaths", 125, 3], ["disabledTestPaths", 129, 3], ["pythonImportsCheck", 134, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, yarnConfigHook: false, fetchYarnDeps: false, nodejs: false, setuptools: false, flask: false, werkzeug: false, plotly: false, "dash-html-components": false, "dash-core-components": false, "dash-table": false, "importlib-metadata": false, "typing-extensions": false, requests: false, retrying: false, "nest-asyncio": false, celery: false, kombu: false, redis: false, diskcache: false, multiprocess: false, psutil: false, "flask-compress": false, flaky: false, numpy: false, pytestCheckHook: false, "pytest-mock": false, mock: false, pyyaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["yarnLock", 58, 5], ["hash", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["celery", 100, 5], ["diskcache", 106, 5], ["compress", 111, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 137, 5], ["description", 138, 5], ["homepage", 139, 5], ["license", 140, 5], ["maintainers", 141, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 41, 3], ["version", 42, 3], ["pyproject", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 52, 3], ["yarnOfflineCache", 57, 3], ["preConfigure", 64, 3], ["preBuild", 71, 3], ["build-system", 78, 3], ["dependencies", 80, 3], ["pythonRelaxDeps", 94, 3], ["optional-dependencies", 99, 3], ["nativeCheckInputs", 114, 3], ["enabledTestPaths", 125, 3], ["disabledTestPaths", 129, 3], ["pythonImportsCheck", 134, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const mock = nix.arg($, "mock");
   const pyyaml = nix.arg($, "pyyaml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dash",
       version: "3.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "plotly",
           repo: "dash",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, nodejs]),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/@plotly/dash-jupyterlab/yarn.lock`),
           hash: "sha256-Nvm9BS55q/HW9ArpHD01F5Rmx8PLS3yqaz1yDK8Sg68=",
         })))),
@@ -78,7 +74,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonRelaxDeps: nix.thunk(() => ["werkzeug", "flask"]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         celery: nix.thunk(() => nix.concat([celery, kombu, redis], nix.sel(celery, "optional-dependencies", "redis"))),
         diskcache: nix.thunk(() => [diskcache, multiprocess, psutil]),
         compress: nix.thunk(() => [flask_compress]),
@@ -88,7 +84,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/unit/test_browser.py", "tests/unit/test_app_runners.py"]),
       pythonImportsCheck: nix.thunk(() => ["dash"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/plotly/dash/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Python framework for building analytical web applications",
         homepage: "https://dash.plot.ly/",

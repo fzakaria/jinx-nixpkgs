@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 40, 11], ["homepage", 41, 11], ["changelog", 42, 11], ["license", 43, 11], ["maintainers", 44, 11], ["mainProgram", 47, 11]], [["pname", 24, 11], ["version", 25, 11], ["src", 26, 11], ["cargoHash", 27, 11], ["nativeBuildInputs", 30, 9], ["cargoBuildFlags", 32, 9], ["cargoTestFlags", 37, 9], ["meta", 39, 9]], [["pname", 55, 5], ["cargoHash", 56, 5]], [["pname", 70, 7], ["version", 73, 9], ["src", 74, 9], ["postPatch", 77, 7], ["npmDepsHash", 82, 7], ["installPhase", 84, 7]], [["web", 69, 14]], [["pname", 60, 5], ["cargoHash", 61, 5], ["postPatch", 63, 5], ["passthru", 69, 5]], [["sshx", 54, 3], ["sshx-server", 59, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, rustPlatform: false, fetchFromGitHub: false, protobuf: false, buildNpmPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
 const formals$2 = { args: { pname: false, cargoHash: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 11], ["homepage", 41, 11], ["changelog", 42, 11], ["license", 43, 11], ["maintainers", 44, 11], ["mainProgram", 47, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 11], ["version", 25, 11], ["src", 26, 11], ["cargoHash", 27, 11], ["nativeBuildInputs", 30, 9], ["cargoBuildFlags", 32, 9], ["cargoTestFlags", 37, 9], ["meta", 39, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 55, 5], ["cargoHash", 56, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 70, 7], ["version", 73, 9], ["src", 74, 9], ["postPatch", 77, 7], ["npmDepsHash", 82, 7], ["installPhase", 84, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["web", 69, 14]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 60, 5], ["cargoHash", 61, 5], ["postPatch", 63, 5], ["passthru", 69, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["sshx", 54, 3], ["sshx-server", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const version = "0.4.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "ekzhang",
       repo: "sshx",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +36,7 @@ export default nix.lambda((args) => (() => {
         const cargoBuildFlags = nix.thunk(() => ["--package", pname_1]);
         const cargoTestFlags = cargoBuildFlags;
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Fast, collaborative live terminal sharing over the web",
           homepage: "https://github.com/ekzhang/sshx",
           changelog: nix.thunk(() => nix.str`https://github.com/ekzhang/sshx/releases/tag/v${version_1}`),
@@ -55,7 +48,7 @@ export default nix.lambda((args) => (() => {
           mainProgram: pname_1,
         }));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: pname_1,
           version: version_1,
           src: src_1,
@@ -68,9 +61,9 @@ export default nix.lambda((args) => (() => {
       })(), args_2)));
   })(), formals$2);
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     sshx: nix.thunk(() => nix.app(mkSshxPackage, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "sshx",
         cargoHash: "sha256-QftBUGDQvCSHoOBLnEzNOe1dMTpVTvMDXNp5qZr0C2M=",
       })))),
@@ -82,9 +75,9 @@ export default nix.lambda((args) => (() => {
   --replace-fail 'ServeFile::new("build/spa.html")' 'ServeFile::new("${nix.sel(passthru, "web", "outPath")}/spa.html")'
 `);
         const passthru = nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           web: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               pname: "sshx-web",
               version: version,
               src: src,
@@ -95,7 +88,7 @@ export default nix.lambda((args) => (() => {
               installPhase: "cp -r build $out\n",
             })))),
         }));
-        return { [nix.POS]: pos$7, pname, cargoHash, postPatch, passthru };
+        return { [nix.POS]: $pos[6], pname, cargoHash, postPatch, passthru };
       })()))),
   };
 })(), formals$1);

@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make.nix", [[["path", 8, 3], ["version", 9, 3], ["postPatch", 10, 3], ["postInstall", 20, 3], ["extraPaths", 23, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make.nix", [["path", 8, 3], ["version", 9, 3], ["postPatch", 10, 3], ["postInstall", 20, 3], ["extraPaths", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "contrib/bmake",
       version: "9.2",
       postPatch: nix.thunk(() => nix.add("# make needs this to pick up our sys make files\nexport NIX_CFLAGS_COMPILE+=\" -D_PATH_DEFSYSPATH=\\\"$out/share/mk\\\"\"\n\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace $BSDSRCDIR/share/mk/bsd.sys.mk \\\n  --replace '-Wl,--fatal-warnings' \"\" \\\n  --replace '-Wl,--warn-shared-textrel' \"\"\n"))),

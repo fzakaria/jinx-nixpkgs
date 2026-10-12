@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pname", 34, 26], ["version", 34, 32], ["src", 34, 40], ["pnpm", 35, 5], ["fetcherVersion", 36, 5], ["hash", 37, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 50, 7]], [["name", 66, 7], ["exec", 67, 7], ["icon", 68, 7], ["desktopName", 69, 7], ["startupWMClass", 70, 7], ["categories", 71, 7]], [["updateScript", 108, 12]], [["description", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 116, 5], ["maintainers", 117, 5], ["mainProgram", 121, 5], ["platforms", 122, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["pnpmDeps", 33, 3], ["nativeBuildInputs", 40, 3], ["env", 50, 3], ["postBuild", 52, 3], ["desktopItems", 64, 3], ["installPhase", 75, 3], ["postFixup", 99, 3], ["passthru", 108, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, actool: false, electron_42: false, python3: false, copyDesktopItems: false, nodejs: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, makeDesktopItem: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 34, 26], ["version", 34, 32], ["src", 34, 40], ["pnpm", 35, 5], ["fetcherVersion", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 66, 7], ["exec", 67, 7], ["icon", 68, 7], ["desktopName", 69, 7], ["startupWMClass", 70, 7], ["categories", 71, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 108, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 116, 5], ["maintainers", 117, 5], ["mainProgram", 121, 5], ["platforms", 122, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["pnpmDeps", 33, 3], ["nativeBuildInputs", 40, 3], ["env", 50, 3], ["postBuild", 52, 3], ["desktopItems", 64, 3], ["installPhase", 75, 3], ["postFixup", 99, 3], ["passthru", 108, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pear-desktop",
       version: "3.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pear-devs",
           repo: "pear-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./fix-mpris-desktop-entry.patch")]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,7 +43,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-y4eLjikf9X/682RdK0ZvW7+GR1Ei82UJ5SVop09B9wg=",
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper, python3, nodejs, pnpmConfigHook, pnpm_11], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [actool])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [copyDesktopItems]))))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       postBuild: nix.thunk(() => nix.str`pnpm build
 
 cp -r ${nix.sel(electron_42, "dist")} electron-dist
@@ -62,7 +56,7 @@ chmod -R u+w electron-dist
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "com.github.th-ch.youtube-music",
             exec: "pear-desktop %u",
             icon: "pear-desktop",
@@ -80,11 +74,11 @@ chmod -R u+w electron-dist
   --inherit-argv0
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Electron wrapper around YouTube Music",
         homepage: "https://github.com/pear-devs/pear-desktop",
         changelog: nix.thunk(() => nix.str`https://github.com/pear-devs/pear-desktop/blob/master/changelog.md#${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "src", "tag")))}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["description", 74, 5], ["homepage", 75, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["disabled", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["pythonRelaxDeps", 43, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 56, 3], ["disabledTestPaths", 66, 3], ["pythonImportsCheck", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonOlder: false, "flit-core": false, docutils: false, jinja2: false, "markdown-it-py": false, "mdit-py-plugins": false, pyyaml: false, sphinx: false, "typing-extensions": false, beautifulsoup4: false, defusedxml: false, "pytest-param-files": false, "pytest-regressions": false, pytestCheckHook: false, "sphinx-pytest": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["disabled", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["pythonRelaxDeps", 43, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 56, 3], ["disabledTestPaths", 66, 3], ["pythonImportsCheck", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const sphinx_pytest = nix.arg($, "sphinx-pytest");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "myst-parser",
       version: "5.1.0-unstable-2026-07-12",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.11")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "executablebooks",
           repo: "myst-parser",
           rev: "e843b5ff61d9834b4864a95bf6a668909c2de3a6",
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_renderers/test_fixtures_sphinx.py"]),
       pythonImportsCheck: nix.thunk(() => ["myst_parser"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sphinx and Docutils extension to parse MyST",
         homepage: "https://myst-parser.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

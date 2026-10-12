@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["sha256", 30, 5]], [["NIX_CFLAGS_COMPILE", 49, 7]], [["name", 77, 7], ["exec", 78, 7], ["desktopName", 79, 7], ["icon", 80, 7], ["categories", 81, 7]], [["homepage", 86, 5], ["description", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["env", 49, 3], ["enableParallelBuilding", 50, 3], ["postPatch", 52, 3], ["installPhase", 63, 3], ["postInstall", 71, 3], ["desktopItems", 75, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, curl: false, libGL: false, libx11: false, libxxf86dga: false, "alsa-lib": false, libxrandr: false, libxxf86vm: false, libxext: false, SDL2: false, glibc: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 77, 7], ["exec", 78, 7], ["desktopName", 79, 7], ["icon", 80, 7], ["categories", 81, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 86, 5], ["description", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["env", 49, 3], ["enableParallelBuilding", 50, 3], ["postPatch", 52, 3], ["installPhase", 63, 3], ["postInstall", 71, 3], ["desktopItems", 75, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x64" : nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "Quake3e",
       version: "2025-10-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ec-",
           repo: "Quake3e",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
         glibc,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), SDL2)}/include/SDL2`),
       })),
       enableParallelBuilding: true,
@@ -75,7 +71,7 @@ runHook postInstall
       postInstall: "install -Dm644 code/unix/quake3.svg $out/share/icons/hicolor/scalable/apps/quake3e.svg\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "Quake3e",
             exec: "quake3e",
             desktopName: "Quake3e",
@@ -84,7 +80,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/ec-/Quake3e",
         description: "Improved Quake III Arena engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 22, 5], ["group", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["domain", 35, 5], ["group", 36, 5], ["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["pname", 44, 26], ["version", 44, 32], ["src", 44, 40], ["hash", 45, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5], ["license", 83, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["cargoDeps", 43, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 61, 3], ["strictDeps", 67, 3], ["prePatch", 69, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, "gnome-desktop": false, libadwaita: false, meson: false, ninja: false, "pkg-config": false, "xdg-desktop-portal": false, rustc: false, "desktop-file-utils": false, cargo: false, docutils: false, glib: false, rustPlatform: false, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 22, 5], ["group", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["domain", 35, 5], ["group", 36, 5], ["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 44, 26], ["version", 44, 32], ["src", 44, 40], ["hash", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5], ["license", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["cargoDeps", 43, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 61, 3], ["strictDeps", 67, 3], ["prePatch", 69, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const gettext = nix.arg($, "gettext");
   const pfs = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       domain: "gitlab.gnome.org",
       group: "World",
       owner: "Phosh",
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-u0Ac3DJ0FaawlRNQwPp6tVKJkUaFHH/r1T0QRa4bIaU=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xdg-desktop-portal-phosh",
       version: "0.55.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "Phosh",
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-oHjBuQ9kD1RnBKSi+w3xxYBPrByzqsmKVOMIoHepoyQ=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -77,7 +73,7 @@ chmod +w -R subprojects/pfs # Allow patches for subprojects to work
 rm subprojects/pfs/Cargo.lock
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "A backend implementation for xdg-desktop-portal that is using GTK/GNOME/Phosh to provide interfaces that aren't provided by the GTK portal",
         homepage: "https://gitlab.gnome.org/World/Phosh/xdg-desktop-portal-phosh",
         changelog: "https://gitlab.gnome.org/World/Phosh/xdg-desktop-portal-phosh/-/blob/main/NEWS",

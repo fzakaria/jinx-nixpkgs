@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["markdown_path", 39, 7]], [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["patches", 37, 3], ["postPatch", 43, 3], ["installPhase", 47, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeWrapper: false, replaceVars: false, perlPackages: false, usePandoc: true, pandoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["markdown_path", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["patches", 37, 3], ["postPatch", 43, 3], ["installPhase", 47, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const markdownpl_path = nix.thunk(() => nix.str`${nix.sel(perlPackages, "TextMarkdown")}/bin/Markdown.pl`);
   const pandoc_path = nix.thunk(() => nix.str`${pandoc}/bin/pandoc`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bashblog",
       version: "0-unstable-2022-03-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cfenollosa",
           repo: "bashblog",
           rev: "c3d4cc1d905560ecfefce911c319469f7a7ff8a8",
@@ -36,14 +33,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([TextMarkdown], nix.app(nix.sel(lib, "optionals"), usePandoc, nix.thunk(() => [pandoc])))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-Setting-markdown_bin.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             markdown_path: nix.thunk(() => (nix.asBool(usePandoc) ? nix.force(pandoc_path) : nix.force(markdownpl_path))),
           })))),
       ]),
       postPatch: "patchShebangs bb.sh\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ninstall -Dm755 bb.sh $out/bin/bashblog\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Single Bash script to create blogs",
         mainProgram: "bashblog",
         homepage: "https://github.com/cfenollosa/bashblog",

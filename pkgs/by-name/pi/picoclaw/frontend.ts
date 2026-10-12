@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["pname", 28, 7], ["version", 29, 7], ["src", 30, 7], ["sourceRoot", 31, 7], ["pnpm", 33, 13], ["fetcherVersion", 34, 5], ["hash", 35, 5]], [["pname", 15, 3], ["src", 16, 22], ["version", 16, 26], ["sourceRoot", 18, 3], ["nativeBuildInputs", 20, 3], ["npmDeps", 25, 3], ["pnpmDeps", 26, 3], ["npmConfigHook", 37, 3], ["installPhase", 39, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, picoclaw: false, fetchPnpmDeps: false, nodejs: false, pnpmConfigHook: false, pnpm_10: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["pname", 28, 7], ["version", 29, 7], ["src", 30, 7], ["sourceRoot", 31, 7], ["pnpm", 33, 13], ["fetcherVersion", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["pname", 15, 3], ["src", 16, 22], ["version", 16, 26], ["sourceRoot", 18, 3], ["nativeBuildInputs", 20, 3], ["npmDeps", 25, 3], ["pnpmDeps", 26, 3], ["npmConfigHook", 37, 3], ["installPhase", 39, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pnpm_10 = nix.arg($, "pnpm_10");
   const pnpm = pnpm_10;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "picoclaw-launcher-frontend",
       src: nix.thunk(() => nix.attr(picoclaw, "src")),
       version: nix.thunk(() => nix.attr(picoclaw, "version")),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpm]),
       npmDeps: null,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),

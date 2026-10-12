@@ -2,18 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["scalaVersion", 24, 7], ["hash", 25, 7]], [["scalaVersion", 28, 7], ["hash", 29, 7]], [["scalaVersion", 32, 7], ["hash", 33, 7]], [["ammonite_2_12", 23, 5], ["ammonite_2_13", 27, 5], ["ammonite_3_3", 31, 5]], [["url", 44, 9], ["hash", 45, 17]], [["name", 95, 13], ["runtimeInputs", 97, 13], ["text", 107, 13]], [["command", 94, 11], ["supportedFeatures", 184, 11]], [["updateScript", 93, 9]], [["description", 198, 9], ["longDescription", 199, 9], ["homepage", 205, 9], ["changelog", 206, 9], ["license", 207, 9], ["sourceProvenance", 208, 9], ["mainProgram", 209, 9], ["maintainers", 210, 9], ["platforms", 215, 9]], [["pname", 40, 7], ["version", 41, 7], ["src", 43, 7], ["dontUnpack", 48, 7], ["installPhase", 52, 7], ["passthru", 91, 7], ["doInstallCheck", 188, 7], ["installCheckPhase", 189, 7], ["meta", 197, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, writeShellApplication: false, "common-updater-scripts": false, coreutils: false, git: false, gnugrep: false, gnused: false, jq: false, nix: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["scalaVersion", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["scalaVersion", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["scalaVersion", 32, 7], ["hash", 33, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["ammonite_2_12", 23, 5], ["ammonite_2_13", 27, 5], ["ammonite_3_3", 31, 5]]);
 const formals$2 = { args: { scalaVersion: false, hash: false }, ellipsis: false };
-const pos$5 = nix.positions(here + "/default.nix", [["url", 44, 9], ["hash", 45, 17]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 95, 13], ["runtimeInputs", 97, 13], ["text", 107, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["command", 94, 11], ["supportedFeatures", 184, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["updateScript", 93, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 198, 9], ["longDescription", 199, 9], ["homepage", 205, 9], ["changelog", 206, 9], ["license", 207, 9], ["sourceProvenance", 208, 9], ["mainProgram", 209, 9], ["maintainers", 210, 9], ["platforms", 215, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 40, 7], ["version", 41, 7], ["src", 43, 7], ["dontUnpack", 48, 7], ["installPhase", 52, 7], ["passthru", 91, 7], ["doInstallCheck", 188, 7], ["installCheckPhase", 189, 7], ["meta", 197, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const owner = "com-lihaoyi";
   const repo = "Ammonite";
   const variants = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     ammonite_2_12: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       scalaVersion: "2.12",
       hash: "sha256-gMyTQDPmHsl6b3CBCsIHb/8z2FwL3+Txuz0siFgvSws=",
     })),
     ammonite_2_13: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       scalaVersion: "2.13",
       hash: "sha256-NCB5ZuW+CqxFlYY10mF6TUHdZl1E8QFygPdyW2FtCe4=",
     })),
     ammonite_3_3: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       scalaVersion: "3.3",
       hash: "sha256-H3/wjBDA8b+a+4FISohLQ10eB7VOMUqj+M39bZOefbw=",
     })),
@@ -57,7 +48,7 @@ export default nix.lambda((args) => (() => {
         const pname = "ammonite";
         const version = "3.0.9";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: nix.thunk(() => nix.str`https://github.com/${owner}/${repo}/releases/download/${version}/${scalaVersion}-${version}`),
             hash: hash,
           }))));
@@ -100,11 +91,11 @@ fi
 `;
         })());
         const passthru = nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           updateScript: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   name: "update-ammonite",
                   runtimeInputs: nix.thunk(() => [common_updater_scripts, coreutils, git, gnugrep, gnused, jq, nix$]),
                   text: nix.thunk(() => nix.str`# stdout is reserved for the JSON expected by the \`commit\`
@@ -186,7 +177,7 @@ jq --null-input --compact-output \\
         const doInstallCheck = true;
         const installCheckPhase = "runHook preInstallCheck\n\n$out/bin/amm -h \"$PWD\" -c 'val foo = 21; println(foo * 2)' | grep 42\n\nrunHook postInstallCheck\n";
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           description: nix.thunk(() => nix.str`Improved Scala REPL, built for Scala ${scalaVersion}`),
           longDescription: "The Ammonite-REPL is an improved Scala REPL, re-implemented from first principles.\nIt is much more featureful than the default REPL and comes\nwith a lot of ergonomic improvements and configurability\nthat may be familiar to people coming from IDEs or other REPLs such as IPython or Zsh.\n",
           homepage: nix.thunk(() => nix.str`https://github.com/${owner}/${repo}`),
@@ -207,7 +198,7 @@ jq --null-input --compact-output \\
           platforms: nix.thunk(() => nix.sel(jre, "meta", "platforms")),
         }));
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           pname,
           version,
           src,

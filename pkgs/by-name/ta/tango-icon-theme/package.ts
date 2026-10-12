@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["description", 56, 5], ["homepage", 57, 5], ["platforms", 58, 5], ["license", 59, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["depsBuildBuild", 25, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 38, 3], ["strictDeps", 43, 3], ["dontDropIconThemeCache", 45, 3], ["configureFlags", 47, 3], ["postInstall", 49, 3], ["__structuredAttrs", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, intltool: false, "pkg-config": false, iconnamingutils: false, imagemagick: false, librsvg: false, gtk3: false, "hicolor-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["platforms", 58, 5], ["license", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["depsBuildBuild", 25, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 38, 3], ["strictDeps", 43, 3], ["dontDropIconThemeCache", 45, 3], ["configureFlags", 47, 3], ["postInstall", 49, 3], ["__structuredAttrs", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tango-icon-theme",
       version: "0.8.90",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://tango.freedesktop.org/releases/tango-icon-theme-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-bpjYAy1X2BisyQfsR+anGIUf8lGufCmq+4aHQ+tlyI4=",
         })))),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "gtk-update-icon-cache $out/share/icons/Tango\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Basic set of icons",
         homepage: "https://tango.freedesktop.org/Tango_Icon_Library",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

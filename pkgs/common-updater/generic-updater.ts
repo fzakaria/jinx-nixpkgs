@@ -2,9 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic-updater.nix", [[["name", 144, 3], ["command", 145, 3], ["supportedFeatures", 159, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "common-updater-scripts": false, coreutils: false, gnugrep: false, gnused: false, nix: false, writeScript: false }, ellipsis: false };
 const formals$2 = { args: { name: true, pname: true, version: true, attrPath: true, versionLister: false, allowedVersions: true, ignoredVersions: true, "rev-prefix": true, "rev-suffix": true, "odd-unstable": true, "patchlevel-unstable": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic-updater.nix", [["name", 144, 3], ["command", 145, 3], ["supportedFeatures", 159, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -139,7 +139,7 @@ fi
 echo "" >> ${fileForGitCommands}
 `)));
     return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "generic-update-script",
       command: nix.thunk(() => [
         updateScript,

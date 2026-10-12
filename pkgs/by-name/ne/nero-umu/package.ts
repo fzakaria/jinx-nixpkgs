@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["homepage", 80, 5], ["description", 81, 5], ["license", 82, 5], ["mainProgram", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postUnpack", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["runtimeDeps", 49, 3], ["cmakeFlags", 59, 3], ["installPhase", 63, 3], ["preFixup", 73, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, qt6: false, qt6Packages: false, icu: false, icoextract: false, icoutils: false, "umu-launcher": false, winetricks: false, mangohud: false, gamescope: false, gamemode: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 80, 5], ["description", 81, 5], ["license", 82, 5], ["mainProgram", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postUnpack", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["runtimeDeps", 49, 3], ["cmakeFlags", 59, 3], ["installPhase", 63, 3], ["preFixup", 73, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gamescope = nix.arg($, "gamescope");
   const gamemode = nix.arg($, "gamemode");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nero-umu",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SeongGino",
           repo: "Nero-umu",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +62,7 @@ ln -s ${nix.sel(qt6Packages, "quazip", "src")} source/lib/quazip
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/SeongGino/Nero-umu",
         description: "Fast and efficient Proton prefix runner and manager using umu as backend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,9 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 19, 13], ["hash", 19, 18], ["url", 20, 5]]]);
 const formals$1 = { args: { lib: false, fetchpatch: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, debianRevision: true, area: true, patch: false, name: true, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 19, 13], ["hash", 19, 18], ["url", 20, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const prefix = nix.thunk(() => nix.app(substring, 0n, nix.thunk(() => (nix.asBool(nix.app(hasPrefix, "lib", pname)) ? 4n : 1n)), pname));
       const versionString = nix.thunk(() => (nix.asBool(nix.eq(debianRevision, null)) ? nix.force(version) : nix.str`${version}-${debianRevision}`));
       return nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: name,
           hash: hash,
           url: nix.thunk(() => nix.add(nix.str`https://sources.debian.org/data/${area}/${prefix}/`, nix.str`${pname}/${versionString}/debian/patches/${patch}`)),

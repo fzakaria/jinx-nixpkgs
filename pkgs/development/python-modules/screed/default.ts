@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]], [["description", 33, 5], ["mainProgram", 34, 5], ["homepage", 35, 5], ["maintainers", 36, 5], ["license", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["pythonImportsCheck", 21, 3], ["checkInputs", 22, 3], ["disabledTests", 26, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, "setuptools-scm": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 33, 5], ["mainProgram", 34, 5], ["homepage", 35, 5], ["maintainers", 36, 5], ["license", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["pythonImportsCheck", 21, 3], ["checkInputs", 22, 3], ["disabledTests", 26, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-N+gWl8fbqVoFNVTltahq/zKXBeHPXfxee42lht7gcrg=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["Test_convert_shell", "Test_fa_shell_command", "Test_fq_shell_command"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple read-only sequence database, designed for short reads",
         mainProgram: "screed",
         homepage: "https://pypi.org/project/screed/",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

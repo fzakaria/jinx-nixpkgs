@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["name", 69, 5], ["paths", 70, 5], ["postBuild", 78, 5]], [["meta", 89, 5], ["pname", 90, 5], ["src", 91, 5], ["version", 94, 3], ["nativeBuildInputs", 99, 3], ["buildInputs", 105, 3], ["wrapProgramFlags", 154, 3], ["unpackPhase", 177, 3], ["installPhase", 187, 3], ["preFixup", 229, 3], ["dontConfigure", 235, 3], ["dontBuild", 236, 3], ["preferLocalBuild", 239, 3], ["dontStrip", 242, 3], ["autoPatchelfIgnoreMissingDeps", 245, 3]]]);
 const formals$1 = { args: { addDriverRunpath: false, autoPatchelfHook: false, lib: false, makeWrapper: false, stdenv: false, symlinkJoin: false, lang: false, meta: false, pname: false, src: false, version: false, "alsa-lib": false, cudaPackages: false, cups: false, dbus: false, flite: false, fontconfig: false, freetype: false, "gcc-unwrapped": false, glib: false, gmpxx: false, keyutils: false, libGL: false, libGLU: false, libpcap: false, libtins: false, libuuid: false, libxkbcommon: false, libxml2: false, llvmPackages: false, matio: false, mpfr: false, ncurses: false, opencv4: false, openjdk11: false, openssl: false, pciutils: false, tre: false, unixodbc: false, "libxcb-image": false, "libxcb-keysyms": false, xkeyboard_config: false, libxtst: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxmu: false, libxi: false, libxinerama: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, libsm: false, libice: false, libxcb: false, zlib: false, cudaSupport: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["name", 69, 5], ["paths", 70, 5], ["postBuild", 78, 5]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["meta", 89, 5], ["pname", 90, 5], ["src", 91, 5], ["version", 94, 3], ["nativeBuildInputs", 99, 3], ["buildInputs", 105, 3], ["wrapProgramFlags", 154, 3], ["unpackPhase", 177, 3], ["installPhase", 187, 3], ["preFixup", 229, 3], ["dontConfigure", 235, 3], ["dontBuild", 236, 3], ["preferLocalBuild", 239, 3], ["dontStrip", 242, 3], ["autoPatchelfIgnoreMissingDeps", 245, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -69,7 +68,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const cudaSupport = nix.arg($, "cudaSupport");
   const cudaEnv = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "mathematica-cuda-env",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(cudaPackages, null);
@@ -89,7 +88,7 @@ ln -s lib $out/lib64
 `),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       meta: meta,
       pname: pname,
       src: src,

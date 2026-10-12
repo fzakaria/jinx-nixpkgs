@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["disabledTests", 15, 9]], [["extraLibs", 10, 5]], [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["homepage", 54, 5], ["description", 55, 5], ["longDescription", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["installPhase", 38, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, python3: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["disabledTests", 15, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraLibs", 10, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["longDescription", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["installPhase", 38, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const makeWrapper = nix.arg($, "makeWrapper");
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "buildEnv", "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       extraLibs: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return [
           nix.thunk(() => nix.lookup(w, "tkinter")),
           nix.thunk(() => nix.lookup(w, "requests")),
           nix.thunk(() => nix.lookup(w, "pillow")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "watchdog"), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, disabledTests: nix.thunk(() => ["test_select_fd"]) })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "watchdog"), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[0], disabledTests: nix.thunk(() => ["test_select_fd"]) })))),
           nix.thunk(() => nix.lookup(w, "semantic-version")),
           nix.thunk(() => nix.lookup(w, "psutil")),
           nix.thunk(() => nix.lookup(w, "tomli-w")),
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "edmarketconnector",
       version: "6.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "EDCD",
           repo: "EDMarketConnector",
           tag: nix.thunk(() => nix.str`Release/${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +53,7 @@ makeWrapper ${pythonEnv}/bin/python $out/bin/edmarketconnector \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/EDCD/EDMarketConnector",
         description: "Uploads Elite: Dangerous market data to popular trading tools",
         longDescription: "Downloads commodity market and other station data from the game Elite: Dangerous for use with all popular online and offline trading tools.",

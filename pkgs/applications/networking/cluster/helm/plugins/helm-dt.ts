@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/helm-dt.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["CGO_ENABLED", 33, 7]], [["description", 43, 5], ["homepage", 44, 5], ["maintainers", 45, 5], ["license", 46, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["vendorHash", 17, 3], ["ldflags", 19, 3], ["postPatch", 27, 3], ["doCheck", 32, 3], ["env", 33, 3], ["postInstall", 35, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/helm-dt.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/helm-dt.nix", [["CGO_ENABLED", 33, 7]]);
-const pos$3 = nix.positions(here + "/helm-dt.nix", [["description", 43, 5], ["homepage", 44, 5], ["maintainers", 45, 5], ["license", 46, 5]]);
-const pos$4 = nix.positions(here + "/helm-dt.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["vendorHash", 17, 3], ["ldflags", 19, 3], ["postPatch", 27, 3], ["doCheck", 32, 3], ["env", 33, 3], ["postInstall", 35, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "helm-dt";
       const version = "0.9.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vmware-labs",
           repo: "distribution-tooling-for-helm",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,10 +29,10 @@ export default nix.lambda((args) => (() => {
       ]);
       const postPatch = "sed -i '/^hooks:/,+2 d' plugin.yaml\n";
       const doCheck = false;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 1n }));
       const postInstall = "install -dm755 $out/helm-dt/bin\nmv $out/bin/dt $out/helm-dt/bin/dt\nrmdir $out/bin\ninstall -m644 -Dt $out/helm-dt plugin.yaml\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Helm Distribution plugin is a set of utilities and Helm Plugin for making offline work with Helm Charts easier",
         homepage: "https://github.com/vmware-labs/distribution-tooling-for-helm",
         maintainers: nix.thunk(() => (() => {
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["yarnLock", 34, 5], ["hash", 35, 5]], [["yarnLock", 39, 5], ["hash", 40, 5]], [["yarnLock", 44, 5], ["hash", 45, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 57, 7]], [["name", 153, 7], ["exec", 154, 7], ["icon", 155, 7], ["desktopName", 156, 7], ["genericName", 157, 7], ["comment", 158, 7], ["type", 159, 7], ["categories", 160, 7], ["startupWMClass", 165, 7]], [["description", 170, 5], ["homepage", 171, 5], ["changelog", 172, 5], ["license", 173, 5], ["maintainers", 174, 5], ["platforms", 175, 5], ["mainProgram", 176, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["offlineCache", 33, 3], ["offlineCacheApp", 38, 3], ["offlineCacheBackend", 43, 3], ["nativeBuildInputs", 48, 3], ["env", 57, 3], ["configurePhase", 59, 3], ["buildPhase", 90, 3], ["installPhase", 104, 3], ["doCheck", 140, 3], ["checkPhase", 142, 3], ["desktopItems", 151, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, electron: false, yarn: false, "fixup-yarn-lock": false, fetchFromGitHub: false, fetchYarnDeps: false, nodejs: false, typescript_5: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["yarnLock", 39, 5], ["hash", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["yarnLock", 44, 5], ["hash", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 57, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 153, 7], ["exec", 154, 7], ["icon", 155, 7], ["desktopName", 156, 7], ["genericName", 157, 7], ["comment", 158, 7], ["type", 159, 7], ["categories", 160, 7], ["startupWMClass", 165, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 170, 5], ["homepage", 171, 5], ["changelog", 172, 5], ["license", 173, 5], ["maintainers", 174, 5], ["platforms", 175, 5], ["mainProgram", 176, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["offlineCache", 33, 3], ["offlineCacheApp", 38, 3], ["offlineCacheBackend", 43, 3], ["nativeBuildInputs", 48, 3], ["env", 57, 3], ["configurePhase", 59, 3], ["buildPhase", 90, 3], ["installPhase", 104, 3], ["doCheck", 140, 3], ["checkPhase", 142, 3], ["desktopItems", 151, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,29 +23,29 @@ export default nix.lambda((args) => (() => {
       const pname = "mqtt-explorer";
       const version = "0.4.0-beta.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "thomasnordquist",
           repo: "MQTT-Explorer",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-oFS4RnuWQoicPemZbPBAp8yQjRbhAyo/jiaw8V0MBAo=",
         }))));
       const offlineCache = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${src}/yarn.lock`),
           hash: "sha256-yEL6Vb1Yry3Vns2GF0aagGksRwsCgXR5ZfmrDPxeqos=",
         }))));
       const offlineCacheApp = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           yarnLock: nix.thunk(() => nix.str`${src}/app/yarn.lock`),
           hash: "sha256-4oGWBXZHdN+wSpn3fPzTdpaIcywAVdFVYmsOIhcgvUE=",
         }))));
       const offlineCacheBackend = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           yarnLock: nix.thunk(() => nix.str`${src}/backend/yarn.lock`),
           hash: "sha256-gg6KrcQz7MdIgFdlbuGiDf/tVd7lSOjwXFIq56tpaTc=",
         }))));
       const nativeBuildInputs = nix.thunk(() => nix.concat([nodejs, yarn, typescript_5, fixup_yarn_lock, makeWrapper], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [copyDesktopItems]))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$5, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[4], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const configurePhase = nix.thunk(() => nix.str`runHook preConfigure
 
 # Yarn writes cache directories etc to $HOME.
@@ -125,7 +118,7 @@ runHook postInstall
       const checkPhase = "export ELECTRON_OVERRIDE_DIST_PATH=\"$electron_dist\"\n\nyarn test:app --offline\nyarn test:backend --offline\n\nunset ELECTRON_OVERRIDE_DIST_PATH\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: pname,
             exec: nix.thunk(() => nix.sel(meta, "mainProgram")),
             icon: "mqtt-explorer",
@@ -138,7 +131,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "All-round MQTT client that provides a structured topic overview",
         homepage: "https://github.com/thomasnordquist/MQTT-Explorer",
         changelog: nix.thunk(() => nix.str`https://github.com/thomasnordquist/MQTT-Explorer/releases/tag/v${version}`),
@@ -151,7 +144,7 @@ runHook postInstall
         mainProgram: "mqtt-explorer",
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

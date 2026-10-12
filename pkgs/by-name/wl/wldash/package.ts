@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5], ["sourceProvenance", 70, 5]], [["pname", 25, 11], ["version", 25, 17], ["buildNoDefaultFeatures", 27, 3], ["buildFeatures", 28, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 43, 3], ["cargoPatches", 50, 3], ["cargoHash", 55, 3], ["dontPatchELF", 57, 3], ["postInstall", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, "alsa-lib": false, dbus: false, fetchFromGitHub: false, fontconfig: false, libpulseaudio: false, libxkbcommon: false, "pkg-config": false, rustPlatform: false, wayland: false, enableAlsaWidget: true, enablePulseaudioWidget: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5], ["sourceProvenance", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 11], ["version", 25, 17], ["buildNoDefaultFeatures", 27, 3], ["buildFeatures", 28, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 43, 3], ["cargoPatches", 50, 3], ["cargoHash", 55, 3], ["dontPatchELF", 57, 3], ["postInstall", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const version = "0.3.0";
   const libraryPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [wayland, libxkbcommon])));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       buildNoDefaultFeatures: true,
       buildFeatures: nix.thunk(() => nix.concat(["yaml-cfg", "json-cfg"], nix.concat(nix.app(nix.sel(lib, "optionals"), enableAlsaWidget, nix.thunk(() => ["alsa-widget"])), nix.app(nix.sel(lib, "optionals"), enablePulseaudioWidget, nix.thunk(() => ["pulseaudio-widget"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kennylevinsen",
           repo: "wldash",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`patchelf --set-rpath ${libraryPath}:$(patchelf --print-rpath $out/bin/wldash) $out/bin/wldash
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Wayland launcher/dashboard",
         homepage: "https://github.com/kennylevinsen/wldash",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

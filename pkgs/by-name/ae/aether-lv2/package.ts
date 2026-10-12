@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5], ["fetchSubmodules", 22, 5]], [["NIX_CFLAGS_COMPILE", 35, 7]], [["homepage", 47, 5], ["description", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5], ["license", 51, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["env", 35, 3], ["installPhase", 41, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, lv2: false, libx11: false, libGL: false, libGLU: false, libgbm: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5], ["fetchSubmodules", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["description", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5], ["license", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["env", 35, 3], ["installPhase", 41, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libgbm = nix.arg($, "libgbm");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "aether-lv2",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Dougal-s",
           repo: "aether",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,12 +31,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [lv2, libx11, libGL, libGLU, libgbm]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=array-bounds", "-Wno-error=stringop-overflow"]))),
       })),
       installPhase: "mkdir -p $out/lib/lv2\ncp -r aether.lv2 $out/lib/lv2\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://dougal-s.github.io/Aether/",
         description: "Algorithmic reverb LV2 based on Cloudseed",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "magnetophon"))]),

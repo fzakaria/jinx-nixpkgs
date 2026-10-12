@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 48, 7], ["repo", 49, 7], ["rev", 50, 7], ["hash", 51, 7]], [["yarnLock", 61, 7], ["hash", 62, 7]], [["description", 93, 7], ["homepage", 94, 7], ["license", 95, 7], ["maintainers", 96, 7], ["platforms", 97, 7], ["sourceProvenance", 98, 7]], [["pname", 44, 5], ["version", 45, 5], ["src", 47, 5], ["nativeBuildInputs", 54, 5], ["yarnOfflineCache", 60, 5], ["buildPhase", 65, 5], ["distPhase", 76, 5], ["installPhase", 78, 5], ["meta", 92, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, yarnConfigHook: false, npmHooks: false, "nodejs-slim": false, fetchYarnDeps: false, flavour: true, accents: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 48, 7], ["repo", 49, 7], ["rev", 50, 7], ["hash", 51, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 61, 7], ["hash", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 93, 7], ["homepage", 94, 7], ["license", 95, 7], ["maintainers", 96, 7], ["platforms", 97, 7], ["sourceProvenance", 98, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 44, 5], ["version", 45, 5], ["src", 47, 5], ["nativeBuildInputs", 54, 5], ["yarnOfflineCache", 60, 5], ["buildPhase", 65, 5], ["distPhase", 76, 5], ["installPhase", 78, 5], ["meta", 92, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
     "lavender",
   ]);
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`Invalid accent, valid accents are ${nix.builtins.toString(validAccents)}`), validAccents, accents, nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`Invalid flavour, valid flavours are ${nix.builtins.toString(validFlavours)}`), validFlavours, flavour, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "catppuccin-discord",
       version: "0-unstable-2024-12-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "catppuccin",
           repo: "discord",
           rev: "16b1e5156583ee376ded4fa602842fa540826bbc",
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         nodejs_slim,
       ]),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-2N4UI6Ap+zk7jtDCAsjGtwfDSiyOtB9YDOXUxYRCw60=",
         })))),
@@ -72,7 +69,7 @@ done;
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Soothing pastel theme for Discord",
         homepage: "https://github.com/catppuccin/discord",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

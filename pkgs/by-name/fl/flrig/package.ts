@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["FLTK_CONFIG", 30, 7]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["mainProgram", 38, 5]], [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 26, 3], ["env", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fltk_1_3: false, libjpeg: false, eudev: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["FLTK_CONFIG", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["mainProgram", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 26, 3], ["env", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +18,18 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.12";
       const pname = "flrig";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/fldigi/flrig-${version}.tar.gz`),
           hash: "sha256-wW3AB7aOe+Xas2M4EIXQvFyIQpBhFuzZ4W7nXJ1azL8=",
         }))));
       const buildInputs = nix.thunk(() => [fltk_1_3, libjpeg, eudev]);
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         FLTK_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), fltk_1_3)), "fltk-config")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Digital modem rig control program",
         homepage: "https://sourceforge.net/projects/fldigi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "flrig",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version,
         pname,
         src,

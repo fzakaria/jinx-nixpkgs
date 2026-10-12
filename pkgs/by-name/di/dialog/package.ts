@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["maintainers", 48, 5], ["platforms", 51, 28]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["strictDeps", 30, 3], ["configureFlags", 32, 3], ["installTargets", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libtool: false, ncurses: false, enableShared: true, unicodeSupport: true, withLibrary: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["maintainers", 48, 5], ["platforms", 51, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["strictDeps", 30, 3], ["configureFlags", 32, 3], ["installTargets", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const withLibrary = nix.argOr($, "withLibrary", () => true);
   nix.assert_((!nix.asBool(unicodeSupport) || nix.asBool(nix.sel(ncurses, "unicodeSupport"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/di/dialog/package.nix:12:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dialog",
       version: "1.3-20260107",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://invisible-island.net/archives/dialog/dialog-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-eLPdGNleUPC+j5ucHnz/4oyb8c3yDVs+8XJ5xNo1xbU=",
         })))),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ncurses, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://invisible-island.net/dialog/dialog.html",
         description: "Display dialog boxes from shell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

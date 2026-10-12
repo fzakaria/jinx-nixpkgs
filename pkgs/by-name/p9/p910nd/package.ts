@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 23, 3], ["enableParallelBuilding", 25, 3], ["installPhase", 28, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 23, 3], ["enableParallelBuilding", 25, 3], ["installPhase", 28, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "p910nd",
       version: "0.97",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kenyapcomau",
           repo: "p910nd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\n\ninstall -Dm555 -t $out/bin p910nd\ninstall -Dm444 -t $out/share/doc/p910nd *.md\ninstallManPage p910nd.?\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small printer daemon passing jobs directly to the printer",
         longDescription: "p910nd is a small printer daemon intended for diskless platforms that\ndoes not spool to disk but passes the job directly to the printer.\nNormally a lpr daemon on a spooling host connects to it with a TCP\nconnection on port 910n (where n=0, 1, or 2 for lp0, 1 and 2\nrespectively). p910nd is particularly useful for diskless platforms.\nCommon Unix Printing System (CUPS) supports this protocol, it's called\nthe AppSocket protocol and has the scheme socket://. LPRng also supports\nthis protocol and the syntax is lp=remotehost%9100 in /etc/printcap.\n",
         homepage: "https://github.com/kenyapcomau/p910nd",

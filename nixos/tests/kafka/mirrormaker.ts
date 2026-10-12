@@ -2,38 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mirrormaker.nix", [[["allowedTCPPorts", 12, 25]], [["firewall", 12, 16]], [["diskSize", 17, 20], ["memorySize", 18, 20]], [["systemPackages", 20, 17]], [["listeners", 28, 9], ["listener.security.protocol.map", 32, 9], ["controller.listener.names", 36, 9], ["process.roles", 38, 9], ["log.dirs", 43, 9], ["num.partitions", 44, 9], ["offsets.topic.replication.factor", 45, 9], ["transaction.state.log.replication.factor", 46, 9], ["transaction.state.log.min.isr", 47, 9]], [["enable", 23, 7], ["formatLogDirs", 25, 7], ["settings", 27, 7]], [["apache-kafka", 22, 14]], [["StateDirectory", 54, 21]], [["after", 52, 7], ["requires", 53, 7], ["serviceConfig", 54, 7]], [["apache-kafka", 51, 22]], [["services", 51, 13]], [["networking", 12, 5], ["virtualisation", 17, 5], ["environment", 20, 5], ["services", 22, 5], ["systemd", 51, 5]], [["node.id", 64, 11], ["controller.quorum.voters", 65, 11]], [["clusterId", 61, 9], ["settings", 63, 9]], [["apache-kafka", 60, 16]], [["services", 60, 7]], [["node.id", 75, 11], ["controller.quorum.voters", 76, 11]], [["clusterId", 72, 9], ["settings", 74, 9]], [["apache-kafka", 71, 16]], [["services", 71, 7]], [["kafkaa1", 59, 5], ["kafkab1", 70, 5]], [["maintainers", 127, 5]], [["diskSize", 136, 24], ["memorySize", 137, 24]], [["ExecStart", 146, 13], ["Restart", 149, 13], ["RestartSec", 150, 13]], [["after", 141, 11], ["requires", 142, 11], ["wantedBy", 143, 11], ["serviceConfig", 145, 11]], [["kafka-connect-mirror-maker", 140, 26]], [["services", 140, 17]], [["virtualisation", 136, 9], ["systemd", 140, 9]], [["kafkaa1", 131, 26], ["kafkab1", 131, 34], ["mirrormaker", 133, 5]], [["name", 125, 3], ["meta", 126, 3], ["nodes", 130, 3], ["testScript", 156, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mirrormaker.nix", [["allowedTCPPorts", 12, 25]]);
-const pos$2 = nix.positions(here + "/mirrormaker.nix", [["firewall", 12, 16]]);
-const pos$3 = nix.positions(here + "/mirrormaker.nix", [["diskSize", 17, 20], ["memorySize", 18, 20]]);
-const pos$4 = nix.positions(here + "/mirrormaker.nix", [["systemPackages", 20, 17]]);
-const pos$5 = nix.positions(here + "/mirrormaker.nix", [["listeners", 28, 9], ["listener.security.protocol.map", 32, 9], ["controller.listener.names", 36, 9], ["process.roles", 38, 9], ["log.dirs", 43, 9], ["num.partitions", 44, 9], ["offsets.topic.replication.factor", 45, 9], ["transaction.state.log.replication.factor", 46, 9], ["transaction.state.log.min.isr", 47, 9]]);
-const pos$6 = nix.positions(here + "/mirrormaker.nix", [["enable", 23, 7], ["formatLogDirs", 25, 7], ["settings", 27, 7]]);
-const pos$7 = nix.positions(here + "/mirrormaker.nix", [["apache-kafka", 22, 14]]);
-const pos$8 = nix.positions(here + "/mirrormaker.nix", [["StateDirectory", 54, 21]]);
-const pos$9 = nix.positions(here + "/mirrormaker.nix", [["after", 52, 7], ["requires", 53, 7], ["serviceConfig", 54, 7]]);
-const pos$10 = nix.positions(here + "/mirrormaker.nix", [["apache-kafka", 51, 22]]);
-const pos$11 = nix.positions(here + "/mirrormaker.nix", [["services", 51, 13]]);
-const pos$12 = nix.positions(here + "/mirrormaker.nix", [["networking", 12, 5], ["virtualisation", 17, 5], ["environment", 20, 5], ["services", 22, 5], ["systemd", 51, 5]]);
-const pos$13 = nix.positions(here + "/mirrormaker.nix", [["node.id", 64, 11], ["controller.quorum.voters", 65, 11]]);
-const pos$14 = nix.positions(here + "/mirrormaker.nix", [["clusterId", 61, 9], ["settings", 63, 9]]);
-const pos$15 = nix.positions(here + "/mirrormaker.nix", [["apache-kafka", 60, 16]]);
-const pos$16 = nix.positions(here + "/mirrormaker.nix", [["services", 60, 7]]);
-const pos$17 = nix.positions(here + "/mirrormaker.nix", [["node.id", 75, 11], ["controller.quorum.voters", 76, 11]]);
-const pos$18 = nix.positions(here + "/mirrormaker.nix", [["clusterId", 72, 9], ["settings", 74, 9]]);
-const pos$19 = nix.positions(here + "/mirrormaker.nix", [["apache-kafka", 71, 16]]);
-const pos$20 = nix.positions(here + "/mirrormaker.nix", [["services", 71, 7]]);
-const pos$21 = nix.positions(here + "/mirrormaker.nix", [["kafkaa1", 59, 5], ["kafkab1", 70, 5]]);
-const pos$22 = nix.positions(here + "/mirrormaker.nix", [["maintainers", 127, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$23 = nix.positions(here + "/mirrormaker.nix", [["diskSize", 136, 24], ["memorySize", 137, 24]]);
-const pos$24 = nix.positions(here + "/mirrormaker.nix", [["ExecStart", 146, 13], ["Restart", 149, 13], ["RestartSec", 150, 13]]);
-const pos$25 = nix.positions(here + "/mirrormaker.nix", [["after", 141, 11], ["requires", 142, 11], ["wantedBy", 143, 11], ["serviceConfig", 145, 11]]);
-const pos$26 = nix.positions(here + "/mirrormaker.nix", [["kafka-connect-mirror-maker", 140, 26]]);
-const pos$27 = nix.positions(here + "/mirrormaker.nix", [["services", 140, 17]]);
-const pos$28 = nix.positions(here + "/mirrormaker.nix", [["virtualisation", 136, 9], ["systemd", 140, 9]]);
-const pos$29 = nix.positions(here + "/mirrormaker.nix", [["kafkaa1", 131, 26], ["kafkab1", 131, 34], ["mirrormaker", 133, 5]]);
-const pos$30 = nix.positions(here + "/mirrormaker.nix", [["name", 125, 3], ["meta", 126, 3], ["nodes", 130, 3], ["testScript", 156, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,28 +14,28 @@ export default nix.lambda((args) => (() => {
   const clusterAId = "ihzlrasUQ9O3Yy0ZWYkd6w";
   const clusterBId = "Bnu_zrzKRH6-7KcK7t3I5Q";
   const kafkaConfig = nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      firewall: nix.thunk(() => ({ [nix.POS]: pos$1, allowedTCPPorts: nix.thunk(() => [9092n, 9093n]) })),
+      [nix.POS]: $pos[1],
+      firewall: nix.thunk(() => ({ [nix.POS]: $pos[0], allowedTCPPorts: nix.thunk(() => [9092n, 9093n]) })),
     })),
     virtualisation: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       diskSize: 1024n,
       memorySize: nix.thunk(() => nix.mul(1024n, 2n)),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "apacheKafka"))]),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       "apache-kafka": nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         enable: true,
         formatLogDirs: true,
         settings: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           listeners: nix.thunk(() => ["PLAINTEXT://:9092", "CONTROLLER://:9093"]),
           "listener.security.protocol.map": nix.thunk(() => ["PLAINTEXT:PLAINTEXT", "CONTROLLER:PLAINTEXT"]),
           "controller.listener.names": nix.thunk(() => ["CONTROLLER"]),
@@ -78,29 +49,29 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         "apache-kafka": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           after: nix.thunk(() => ["network-online.target"]),
           requires: nix.thunk(() => ["network-online.target"]),
-          serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$8, StateDirectory: "apache-kafka" })),
+          serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[7], StateDirectory: "apache-kafka" })),
         })),
       })),
     })),
   }));
   const extraKafkaConfig = nix.thunk(() => ({
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     kafkaa1: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         "apache-kafka": nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           clusterId: nix.thunk(() => nix.str`${clusterAId}`),
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             "node.id": 1n,
             "controller.quorum.voters": nix.thunk(() => ["1@kafkaa1:9093"]),
           })),
@@ -108,14 +79,14 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     kafkab1: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         "apache-kafka": nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           clusterId: nix.thunk(() => nix.str`${clusterBId}`),
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             "node.id": 1n,
             "controller.quorum.voters": nix.thunk(() => ["1@kafkab1:9093"]),
           })),
@@ -126,40 +97,40 @@ export default nix.lambda((args) => (() => {
   const kafkaNodes = nix.thunk(() => nix.builtins.mapAttrs((_) => (val) => nix.app(mkMerge, nix.thunk(() => [val, kafkaConfig])), extraKafkaConfig));
   const mirrorMakerProperties = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "mm2.properties", "name = A->B\n\nclusters = A, B\n\nA.bootstrap.servers = kafkaa1:9092\nB.bootstrap.servers = kafkab1:9092\n\nA->B.enabled = true\nA->B.topics = .*\n\nB->A.enabled = false\nB->A.topics = .*\n\nreplication.factor=1\nreplication.policy.class=org.apache.kafka.connect.mirror.IdentityReplicationPolicy\n\ntasks.max = 2\nrefresh.topics.enabled = true\nrefresh.topics.interval.seconds = 5\nsync.topic.configs.enabled = true\n\ncheckpoints.topic.replication.factor=1\nheartbeats.topic.replication.factor=1\noffset-syncs.topic.replication.factor=1\n\noffset.storage.replication.factor=1\nstatus.storage.replication.factor=1\nconfig.storage.replication.factor=1\n\nemit.checkpoints.enabled = true\nemit.checkpoints.interval.seconds = 5\n"));
   return {
-    [nix.POS]: pos$30,
+    [nix.POS]: $pos[29],
     name: "kafka-mirrormaker",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "jpds"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       kafkaa1: nix.thunk(() => nix.attr(kafkaNodes, "kafkaa1")),
       kafkab1: nix.thunk(() => nix.attr(kafkaNodes, "kafkab1")),
       mirrormaker: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             diskSize: 1024n,
             memorySize: nix.thunk(() => nix.mul(1024n, 2n)),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               "kafka-connect-mirror-maker": nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 after: nix.thunk(() => ["network-online.target"]),
                 requires: nix.thunk(() => ["network-online.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "apacheKafka")}/bin/connect-mirror-maker.sh ${mirrorMakerProperties}
 `),
                   Restart: "on-failure",

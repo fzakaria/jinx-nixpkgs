@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchurl", 10, 44]], [["updateScript", 15, 5]], [["description", 19, 5], ["homepage", 20, 5], ["changelog", 21, 5], ["sourceProvenance", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["platforms", 28, 5], ["mainProgram", 32, 5], ["mainDarwinApp", 33, 5]], [["pname", 37, 11], ["passthru", 37, 17], ["meta", 37, 26], ["version", 38, 55], ["src", 38, 63]]]);
 const formals$1 = { args: { callPackage: false, fetchurl: false, lib: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchurl", 10, 44]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 15, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 19, 5], ["homepage", 20, 5], ["changelog", 21, 5], ["sourceProvenance", 22, 5], ["license", 23, 5], ["maintainers", 24, 5], ["platforms", 28, 5], ["mainProgram", 32, 5], ["mainDarwinApp", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 37, 11], ["passthru", 37, 17], ["meta", 37, 26], ["version", 38, 55], ["src", 38, 63]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
-  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl }))));
+  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl }))));
   const pname = "slack";
-  const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     description: "Desktop client for Slack",
     homepage: "https://slack.com",
     changelog: "https://slack.com/release-notes",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(callPackage, nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.path(here, "./darwin.nix") : nix.path(here, "./linux.nix"))), nix.thunk(() => (() => {
       const from_1 = nix.thunk(() => nix.selOr(sources, () => nix.sel(sources, "x86_64-linux"), nix.key(nix.force(system))));
       return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       passthru: passthru,
       meta: meta,

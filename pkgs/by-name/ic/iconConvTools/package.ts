@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["license", 35, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildInputs", 13, 3], ["patchPhase", 15, 3], ["buildPhase", 21, 3], ["installPhase", 26, 3], ["dontPatchELF", 28, 3], ["dontStrip", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, icoutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["license", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildInputs", 13, 3], ["patchPhase", 15, 3], ["buildPhase", 21, 3], ["installPhase", 26, 3], ["dontPatchELF", 28, 3], ["dontStrip", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const icoutils = nix.arg($, "icoutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "icon-conv-tools",
       version: "0.0.0",
       src: nix.path(here, "./bin"),
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       dontPatchELF: true,
       dontStrip: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Tools for icon conversion specific to nix package manager",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

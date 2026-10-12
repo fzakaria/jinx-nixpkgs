@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["homepage", 77, 5], ["description", 78, 5], ["mainProgram", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 25, 3], ["buildInputs", 42, 3], ["configureFlags", 61, 3], ["enableParallelBuilding", 66, 3], ["makeFlags", 68, 3], ["nativeInstallCheckInputs", 72, 3], ["versionCheckProgramArg", 73, 3], ["doInstallCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, SDL: false, SDL_ttf: false, "alsa-lib": false, jack2: false, libmpg123: false, ffmpeg: false, cdparanoia: false, dejavu_fonts: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["mainProgram", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 25, 3], ["buildInputs", 42, 3], ["configureFlags", 61, 3], ["enableParallelBuilding", 66, 3], ["makeFlags", 68, 3], ["nativeInstallCheckInputs", 72, 3], ["versionCheckProgramArg", 73, 3], ["doInstallCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const dejavu_fonts = nix.arg($, "dejavu_fonts");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xwax",
       version: "1.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://xwax.org/releases/xwax-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-m+2PoUMYKBhlA2H0kld1W/iR8UMWEGaqp7yoxszp9jI=",
         })))),
@@ -53,7 +51,7 @@ substituteInPlace import \\
       versionCheckProgramArg: "-h",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://xwax.org",
         description: "Digital vinyl on Linux",
         mainProgram: "xwax",

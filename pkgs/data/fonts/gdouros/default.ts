@@ -2,21 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 11, 7], ["file", 12, 7], ["hash", 13, 7], ["description", 14, 7]], [["version", 17, 7], ["file", 18, 7], ["hash", 19, 7], ["description", 20, 7]], [["version", 23, 7], ["file", 24, 7], ["hash", 25, 7], ["description", 26, 7]], [["version", 29, 7], ["file", 30, 7], ["hash", 31, 7], ["description", 32, 7]], [["version", 35, 7], ["file", 36, 7], ["hash", 37, 7], ["description", 38, 7]], [["version", 41, 7], ["file", 42, 7], ["hash", 43, 7], ["description", 44, 7]], [["version", 47, 7], ["file", 48, 7], ["hash", 49, 7], ["description", 50, 7]], [["version", 53, 7], ["file", 54, 7], ["hash", 55, 7], ["description", 56, 7]], [["version", 59, 7], ["file", 60, 7], ["hash", 61, 7], ["description", 62, 7]], [["aegan", 10, 5], ["aegyptus", 16, 5], ["akkadian", 22, 5], ["assyrian", 28, 5], ["eemusic", 34, 5], ["maya", 40, 5], ["symbola", 46, 5], ["textfonts", 52, 5], ["unidings", 58, 5]], [["url", 78, 9], ["stripRoot", 79, 9], ["hash", 80, 17]], [["description", 90, 17], ["license", 95, 9], ["homepage", 96, 9]], [["pname", 75, 15], ["version", 75, 21], ["src", 77, 7], ["nativeBuildInputs", 83, 7], ["postInstall", 85, 7], ["meta", 89, 7]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 11, 7], ["file", 12, 7], ["hash", 13, 7], ["description", 14, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 17, 7], ["file", 18, 7], ["hash", 19, 7], ["description", 20, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 23, 7], ["file", 24, 7], ["hash", 25, 7], ["description", 26, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 29, 7], ["file", 30, 7], ["hash", 31, 7], ["description", 32, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 35, 7], ["file", 36, 7], ["hash", 37, 7], ["description", 38, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 41, 7], ["file", 42, 7], ["hash", 43, 7], ["description", 44, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 47, 7], ["file", 48, 7], ["hash", 49, 7], ["description", 50, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 53, 7], ["file", 54, 7], ["hash", 55, 7], ["description", 56, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["version", 59, 7], ["file", 60, 7], ["hash", 61, 7], ["description", 62, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["aegan", 10, 5], ["aegyptus", 16, 5], ["akkadian", 22, 5], ["assyrian", 28, 5], ["eemusic", 34, 5], ["maya", 40, 5], ["symbola", 46, 5], ["textfonts", 52, 5], ["unidings", 58, 5]]);
 const formals$2 = { args: { version: false, file: false, hash: false, description: false }, ellipsis: false };
-const pos$11 = nix.positions(here + "/default.nix", [["url", 78, 9], ["stripRoot", 79, 9], ["hash", 80, 17]]);
-const pos$12 = nix.positions(here + "/default.nix", [["description", 90, 17], ["license", 95, 9], ["homepage", 96, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["pname", 75, 15], ["version", 75, 21], ["src", 77, 7], ["nativeBuildInputs", 83, 7], ["postInstall", 85, 7], ["meta", 89, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,65 +13,65 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   const fonts = nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     aegan: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "13.00",
       file: "Aegean.zip",
       hash: "sha256-3HmCqCMZLN6zF1N/EirQOPnHKTGHoc4aHKoZxFYTB34=",
       description: "Aegean",
     })),
     aegyptus: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "13.00",
       file: "Aegyptus.zip",
       hash: "sha256-SSAK707xhpsUTq8tSBcrzNGunCYad58amtCqAWuevnY=",
       description: "Egyptian Hieroglyphs, Coptic, Meroitic",
     })),
     akkadian: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "13.00",
       file: "Akkadian.zip",
       hash: "sha256-wXiDYyfujAs6fklOCqXq7Ms7wP5RbPlpNVwkUy7CV4k=",
       description: "Sumero-Akkadian Cuneiform",
     })),
     assyrian: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "13.00",
       file: "Assyrian.zip",
       hash: "sha256-CZj1sc89OexQ0INb7pbEu5GfE/w2E5JmhjT8cosoLSg=",
       description: "Neo-Assyrian in Unicode with OpenType",
     })),
     eemusic: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "13.00",
       file: "EEMusic.zip",
       hash: "sha256-LxOcQOPEImw0wosxJotbOJRbe0qlK5dR+kazuhm99Kg=",
       description: "Byzantine Musical Notation in Unicode with OpenType",
     })),
     maya: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "13.00",
       file: "Maya%20Hieroglyphs.zip",
       hash: "sha256-PAwF1lGqm6XVf4NQCA8AFLGU40N0Xsn5Q8x9ikHJDhY=",
       description: "Maya Hieroglyphs",
     })),
     symbola: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: "13.00",
       file: "Symbola.zip",
       hash: "sha256-TsHWmzkEyMa8JOZDyjvk7PDhm239oH/FNllizNFf398=",
       description: "Basic Latin, Greek, Cyrillic and many Symbol blocks of Unicode",
     })),
     textfonts: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       version: "13.00",
       file: "Textfonts.zip",
       hash: "sha256-7S3NiiyDvyYoDrLPt2z3P9bEEFOEZACv2sIHG1Tn6yI=",
       description: "Aroania, Anaktoria, Alexander, Avdira and Asea",
     })),
     unidings: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       version: "13.00",
       file: "Unidings.zip",
       hash: "sha256-WUY+Ylphep6WuzqLQ3Owv+vK5Yuu/aAkn4GOFXL0uQY=",
@@ -97,11 +85,11 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const description = nix.arg($_1, "description");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         pname: pname,
         version: version,
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             url: nix.thunk(() => nix.str`https://web.archive.org/web/20221006174450/https://dn-works.com/wp-content/uploads/2020/UFAS-Fonts/${file}`),
             stripRoot: false,
             hash: hash,
@@ -110,7 +98,7 @@ export default nix.lambda((args) => (() => {
         postInstall: nix.thunk(() => nix.str`install -Dm644 *.{odt,ods,pdf,xlsx} -t "$out/share/doc/${pname}" || true  # install docs if any
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           description: description,
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
           homepage: "https://web.archive.org/web/20221006174450/https://dn-works.com/ufas/",

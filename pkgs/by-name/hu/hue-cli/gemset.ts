@@ -2,23 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/gemset.nix", [["remotes", 10, 7], ["sha256", 11, 7], ["type", 12, 7]]);
-const pos$2 = nix.positions(here + "/gemset.nix", [["dependencies", 3, 5], ["groups", 7, 5], ["platforms", 8, 5], ["source", 9, 5], ["version", 14, 5]]);
-const pos$3 = nix.positions(here + "/gemset.nix", [["remotes", 21, 7], ["sha256", 22, 7], ["type", 23, 7]]);
-const pos$4 = nix.positions(here + "/gemset.nix", [["dependencies", 17, 5], ["groups", 18, 5], ["platforms", 19, 5], ["source", 20, 5], ["version", 25, 5]]);
-const pos$5 = nix.positions(here + "/gemset.nix", [["remotes", 31, 7], ["sha256", 32, 7], ["type", 33, 7]]);
-const pos$6 = nix.positions(here + "/gemset.nix", [["groups", 28, 5], ["platforms", 29, 5], ["source", 30, 5], ["version", 35, 5]]);
-const pos$7 = nix.positions(here + "/gemset.nix", [["hue-cli", 2, 3], ["hue-lib", 16, 3], ["json", 27, 3]]);
+const $pos = nix.positions(here + "/gemset.nix", [[["remotes", 10, 7], ["sha256", 11, 7], ["type", 12, 7]], [["dependencies", 3, 5], ["groups", 7, 5], ["platforms", 8, 5], ["source", 9, 5], ["version", 14, 5]], [["remotes", 21, 7], ["sha256", 22, 7], ["type", 23, 7]], [["dependencies", 17, 5], ["groups", 18, 5], ["platforms", 19, 5], ["source", 20, 5], ["version", 25, 5]], [["remotes", 31, 7], ["sha256", 32, 7], ["type", 33, 7]], [["groups", 28, 5], ["platforms", 29, 5], ["source", 30, 5], ["version", 35, 5]], [["hue-cli", 2, 3], ["hue-lib", 16, 3], ["json", 27, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$7,
+  [nix.POS]: $pos[6],
   "hue-cli": nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     dependencies: nix.thunk(() => ["hue-lib", "json"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "10gjf59pamfy2m17fs271d9ffrg1194b1m6vxzn6p7smzry52h9z",
       type: "gem",
@@ -26,12 +20,12 @@ export default nix.thunk(() => ({
     version: "0.1.4",
   })),
   "hue-lib": nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     dependencies: nix.thunk(() => ["json"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1pyl8g8gisdhl79gbzvnddqrsbq0lmflzg7n6yi6xrp5b5290shz",
       type: "gem",
@@ -39,11 +33,11 @@ export default nix.thunk(() => ({
     version: "0.7.4",
   })),
   json: nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "098m3q2jrx4xbf0knrbmflsynmmb5x9q9b0bzpmj7jmm1cr30mna",
       type: "gem",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 34, 3], ["version", 35, 11], ["format", 36, 3], ["src", 38, 3], ["propagatedBuildInputs", 45, 3], ["pythonImportsCheck", 60, 3], ["doCheck", 63, 3], ["nativeCheckInputs", 71, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, click: false, fastapi: false, jinja2: false, mypy: false, nbconvert: false, "python-multipart": false, pandas: false, "types-requests": false, "types-ujson": false, uvicorn: false, autoflake: false, pytestCheckHook: false, black: false, coverage: false, flake8: false, httpx: false, ipython: false, "pytest-cov-stub": false, requests: false, "requests-toolbelt": false, nbdev: false, "pytest-mock": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 11], ["format", 36, 3], ["src", 38, 3], ["propagatedBuildInputs", 45, 3], ["pythonImportsCheck", 60, 3], ["doCheck", 63, 3], ["nativeCheckInputs", 71, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const version = "0.10.11";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "unstructured-api-tools",
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Unstructured-IO",
           repo: "unstructured-api-tools",
           tag: version,
@@ -76,7 +74,7 @@ export default nix.lambda((args) => (() => {
         pytest_mock,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "",
         mainProgram: "unstructured_api_tools",
         homepage: "https://github.com/Unstructured-IO/unstructured-api-tools",

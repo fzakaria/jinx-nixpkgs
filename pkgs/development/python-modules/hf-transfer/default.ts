@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 31, 13], ["version", 31, 19], ["src", 31, 27], ["hash", 32, 5]], [["OPENSSL_NO_VENDOR", 53, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["cargoDeps", 30, 3], ["build-system", 35, 3], ["buildInputs", 43, 3], ["pythonImportsCheck", 50, 3], ["env", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cargo: false, "pkg-config": false, rustPlatform: false, rustc: false, openssl: false, stdenv: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 31, 13], ["version", 31, 19], ["src", 31, 27], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["OPENSSL_NO_VENDOR", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["cargoDeps", 30, 3], ["build-system", 35, 3], ["buildInputs", 43, 3], ["pythonImportsCheck", 50, 3], ["env", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "huggingface",
           repo: "hf_transfer",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-mcU3YuJVfuwBvtLfqceV3glcJcpjSX7M3VjvbvLCxZg=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -48,9 +44,9 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))));
       const pythonImportsCheck = nix.thunk(() => ["hf_transfer"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], OPENSSL_NO_VENDOR: true }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "High speed download python library",
         homepage: "https://github.com/huggingface/hf_transfer",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/hf_transfer/releases/tag/v${version}`),
@@ -61,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

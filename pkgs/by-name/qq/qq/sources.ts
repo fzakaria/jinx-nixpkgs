@@ -2,30 +2,27 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sources.nix", [[["version", 6, 5], ["url", 7, 5], ["hash", 8, 5]], [["version", 11, 5], ["url", 12, 5], ["hash", 13, 5]], [["version", 16, 5], ["url", 17, 5], ["hash", 18, 5]], [["aarch64-darwin", 5, 3], ["aarch64-linux", 10, 3], ["x86_64-linux", 15, 3]]]);
 const formals$1 = { args: {  }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sources.nix", [["version", 6, 5], ["url", 7, 5], ["hash", 8, 5]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["version", 11, 5], ["url", 12, 5], ["hash", 13, 5]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["version", 16, 5], ["url", 17, 5], ["hash", 18, 5]]);
-const pos$4 = nix.positions(here + "/sources.nix", [["aarch64-darwin", 5, 3], ["aarch64-linux", 10, 3], ["x86_64-linux", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "7.0.2-2026-09-24",
       url: "https://qqdl.gtimg.cn/qqfile/QQNTV2/9.9.36/release/837fcb63/QQ_7.0.2_260924_01.dmg",
       hash: "sha256-0nC3jwshBTJjcHZTKog9yGWYUbbaqSRRmDmFq58yFvA=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "3.2.34-2026-09-24",
       url: "https://qqdl.gtimg.cn/qqfile/QQNTV2/9.9.36/release/9ee04bef/QQ_3.2.34_260924_arm64_01.deb",
       hash: "sha256-GBuJXLVzVI45blS7BUjMqS/9wbGksBj6RVG7BiOF/co=",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "3.2.34-2026-09-24",
       url: "https://qqdl.gtimg.cn/qqfile/QQNTV2/9.9.36/release/9ee04bef/QQ_3.2.34_260924_amd64_01.deb",
       hash: "sha256-Q2xl4d0oQi4SiiHL3bX+Ti5sB51/J/7CVB4BTTjMM24=",

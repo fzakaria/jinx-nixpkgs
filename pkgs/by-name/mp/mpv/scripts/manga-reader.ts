@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/manga-reader.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["updateScript", 18, 12]], [["description", 21, 5], ["longDescription", 22, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["pname", 9, 3], ["version", 11, 3], ["src", 12, 3], ["passthru", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, unstableGitUpdater: false, buildLua: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/manga-reader.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/manga-reader.nix", [["updateScript", 18, 12]]);
-const pos$3 = nix.positions(here + "/manga-reader.nix", [["description", 21, 5], ["longDescription", 22, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$4 = nix.positions(here + "/manga-reader.nix", [["pname", 9, 3], ["version", 11, 3], ["src", 12, 3], ["passthru", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,22 +12,22 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const buildLua = nix.arg($, "buildLua");
   return nix.app(buildLua, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "manga-reader",
       version: "0-unstable-2026-06-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Dudemanguy",
           repo: "mpv-manga-reader",
           rev: "0551b033ac22b97298d94e480216748f68786b9f",
           hash: "sha256-TmRWBKgTlgOszOI1CLHveGMNH23UHSvbijz8wC4M/mM=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Manga reading script for mpv",
         longDescription: "mpv-manga-reader is a script aimed at making mpv a usable manga reader.\n",
         homepage: "https://github.com/Dudemanguy/mpv-manga-reader",

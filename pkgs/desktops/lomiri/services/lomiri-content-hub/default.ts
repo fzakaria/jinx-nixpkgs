@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["name", 61, 7], ["url", 62, 7], ["hash", 63, 7]], [["pkg-config", 189, 7]], [["vm", 194, 7]], [["tests", 188, 5], ["updateScript", 196, 5]], [["description", 200, 5], ["longDescription", 201, 5], ["homepage", 205, 5], ["changelog", 206, 5], ["license", 207, 5], ["mainProgram", 211, 5], ["teams", 212, 5], ["platforms", 213, 5], ["pkgConfigModules", 214, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["outputs", 49, 3], ["patches", 58, 3], ["postPatch", 67, 3], ["strictDeps", 85, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 99, 3], ["nativeCheckInputs", 121, 3], ["checkInputs", 126, 3], ["dontWrapQtApps", 128, 3], ["cmakeFlags", 130, 3], ["preBuild", 142, 3], ["doCheck", 167, 3], ["enableParallelChecking", 170, 3], ["preFixup", 172, 3], ["postFixup", 181, 3], ["passthru", 187, 3], ["meta", 199, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchpatch: false, gitUpdater: false, nixosTests: false, testers: false, cmake: false, "cmake-extras": false, "dbus-test-runner": false, gettext: false, glib: false, "gsettings-qt": false, gtest: false, libapparmor: false, libnotify: false, "lomiri-api": false, "lomiri-app-launch": false, "lomiri-download-manager": false, "lomiri-ui-toolkit": false, "pkg-config": false, "properties-cpp": false, qtbase: false, qtdeclarative: false, qtfeedback: true, qtgraphicaleffects: true, qttools: false, validatePkgConfig: false, wrapGAppsHook3: false, "xvfb-run": false, withDocumentation: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 61, 7], ["url", 62, 7], ["hash", 63, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pkg-config", 189, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["vm", 194, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 188, 5], ["updateScript", 196, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 200, 5], ["longDescription", 201, 5], ["homepage", 205, 5], ["changelog", 206, 5], ["license", 207, 5], ["mainProgram", 211, 5], ["teams", 212, 5], ["platforms", 213, 5], ["pkgConfigModules", 214, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["outputs", 49, 3], ["patches", 58, 3], ["postPatch", 67, 3], ["strictDeps", 85, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 99, 3], ["nativeCheckInputs", 121, 3], ["checkInputs", 126, 3], ["dontWrapQtApps", 128, 3], ["cmakeFlags", 130, 3], ["preBuild", 142, 3], ["doCheck", 167, 3], ["enableParallelChecking", 170, 3], ["preFixup", 172, 3], ["postFixup", 181, 3], ["passthru", 187, 3], ["meta", 199, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const withDocumentation = nix.argOr($, "withDocumentation", () => true);
   const withQt6 = nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionAtLeast"), nix.thunk(() => nix.sel(qtbase, "version")), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "lomiri-content-hub",
       version: "2.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-content-hub",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +53,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => nix.concat(["out", "dev", "examples"], nix.app(nix.sel(lib, "optionals"), withDocumentation, nix.thunk(() => ["doc"])))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-lomiri-content-hub-Fix-compatibility-with-gtest-1.18.patch",
             url: "https://gitlab.com/ubports/development/core/lomiri-content-hub/-/commit/518229b4a08aeab9953dc3f885d156188f2eb5aa.patch",
             hash: "sha256-3nrlm/zBGwDCJSRqkH0y3evvmsJpGk+uNJxJD6O8Efg=",
@@ -118,18 +112,18 @@ export QML2_IMPORT_PATH=${nix.app(listToQtVar, nix.thunk(() => nix.concat([qtdec
       preFixup: "for exampleExe in lomiri-content-hub-test-{importer,exporter,sharer}; do\n  moveToOutput bin/$exampleExe $examples\n  moveToOutput share/applications/$exampleExe.desktop $examples\ndone\nmoveToOutput share/icons $examples\nmoveToOutput share/lomiri-content-hub/peers $examples\n",
       postFixup: "for exampleBin in $examples/bin/*; do\n  wrapGApp $exampleBin\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withQt6)), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             vm: nix.thunk(() => nix.sel(nixosTests, "lomiri", "desktop-appinteractions")),
           }))))),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Content sharing/picking service for the Lomiri desktop",
         longDescription: "lomiri-content-hub is a mediation service to let applications share content between them,\neven if they are not running at the same time.\n",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-content-hub",

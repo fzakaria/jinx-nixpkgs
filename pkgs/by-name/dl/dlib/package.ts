@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["sha256", 30, 5]], [["python-dlib", 86, 7]], [["tests", 85, 5], ["cudaSupport", 89, 7], ["cudaPackages", 90, 7], ["sse4Support", 91, 7], ["avxSupport", 92, 7]], [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["cmakeFlags", 37, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 63, 3], ["passthru", 84, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libpng: false, libjpeg: false, libwebp: false, blas: false, lapack: false, config: false, guiSupport: true, libx11: false, enableShared: true, sse4Support: true, avxSupport: true, cudaSupport: true, cudaPackages: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["python-dlib", 86, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 85, 5], ["cudaSupport", 89, 7], ["cudaPackages", 90, 7], ["sse4Support", 91, 7], ["avxSupport", 92, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["cmakeFlags", 37, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 63, 3], ["passthru", 84, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dlib";
       const version = "20.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "davisking",
           repo: "dlib",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -72,9 +68,9 @@ export default nix.lambda((args) => (() => {
           ];
         })())))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "python-dlib": nix.thunk(() => nix.sel(python3Packages, "dlib")),
         })),
         cudaSupport: cudaSupport,
@@ -83,7 +79,7 @@ export default nix.lambda((args) => (() => {
         avxSupport: avxSupport,
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "General purpose cross-platform C++ machine learning library",
         homepage: "http://www.dlib.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),
@@ -94,7 +90,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

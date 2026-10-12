@@ -2,19 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontends.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["name", 30, 19], ["hash", 30, 24], ["url", 31, 11]], [["name", 36, 9], ["hash", 37, 9]], [["name", 40, 9], ["hash", 41, 9]], [["name", 44, 9], ["hash", 45, 9]], [["name", 48, 9], ["hash", 49, 9]], [["name", 52, 9], ["hash", 53, 9]], [["name", 56, 9], ["hash", 57, 9]], [["name", 60, 9], ["hash", 61, 9]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["platforms", 87, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["buildInputs", 65, 3], ["nativeBuildInputs", 71, 3], ["enableParallelBuilding", 76, 3], ["preConfigure", 79, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoconf: false, "sane-backends": false, libx11: false, gtk2: false, "pkg-config": false, "libusb-compat-0_1": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontends.nix", [["url", 19, 5], ["sha256", 20, 5]]);
 const formals$2 = { args: { name: false, hash: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/frontends.nix", [["name", 30, 19], ["hash", 30, 24], ["url", 31, 11]]);
-const pos$3 = nix.positions(here + "/frontends.nix", [["name", 36, 9], ["hash", 37, 9]]);
-const pos$4 = nix.positions(here + "/frontends.nix", [["name", 40, 9], ["hash", 41, 9]]);
-const pos$5 = nix.positions(here + "/frontends.nix", [["name", 44, 9], ["hash", 45, 9]]);
-const pos$6 = nix.positions(here + "/frontends.nix", [["name", 48, 9], ["hash", 49, 9]]);
-const pos$7 = nix.positions(here + "/frontends.nix", [["name", 52, 9], ["hash", 53, 9]]);
-const pos$8 = nix.positions(here + "/frontends.nix", [["name", 56, 9], ["hash", 57, 9]]);
-const pos$9 = nix.positions(here + "/frontends.nix", [["name", 60, 9], ["hash", 61, 9]]);
-const pos$10 = nix.positions(here + "/frontends.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["platforms", 87, 5]]);
-const pos$11 = nix.positions(here + "/frontends.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["buildInputs", 65, 3], ["nativeBuildInputs", 71, 3], ["enableParallelBuilding", 76, 3], ["preConfigure", 79, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libusb_compat_0_1 = nix.argOr($, "libusb-compat-0_1", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "sane-frontends",
       version: "1.0.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://alioth-archive.debian.org/releases/sane/${nix.sel(finalAttrs, "pname")}/${nix.sel(finalAttrs, "version")}/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1ad4zr7rcxpda8yzvfkq1rfjgx9nl6lan5a628wvpdbh3fn9v0z7",
         })))),
@@ -43,7 +33,7 @@ export default nix.lambda((args) => (() => {
           const name = nix.arg($_1, "name");
           const hash = nix.arg($_1, "hash");
           return nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: name,
               hash: hash,
               url: nix.thunk(() => nix.str`https://src.fedoraproject.org/rpms/sane-frontends/raw/89f752d7e236e86be8d64b7ac6991a36f9e9f7d0/f/${name}`),
@@ -51,37 +41,37 @@ export default nix.lambda((args) => (() => {
         })(), formals$2);
         return nix.builtins.map(fetchFedoraPatch, nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "0001-src-scanadf.c-Fix-segfault-when-scanadf-h-d-device.patch",
               hash: "sha256-sSUWm5fL7YTebzXh3Thb/qwgr7d++1Y+74uI8R5oF0g=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "frontends-scanadf-segv.patch",
               hash: "sha256-VRag9nMk8ZCjg9Oq0siHdT8J6sbNjq9cU2ktOH2vkLo=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "sane-frontends-1.0.14-array-out-of-bounds.patch",
               hash: "sha256-a0lzbAogSrXsK5jVeNffDS+zFxpuDHXpHQlOJ5874+U=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: "sane-frontends-1.0.14-sane-backends-1.0.20.patch",
               hash: "sha256-ViYjxXGj58P6EaZ+fIiAydrgbyS1ivn39uN3EWcvnZg=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               name: "sane-frontends-1.0.14-xcam-man.patch",
               hash: "sha256-HGANgQPujn/jjOMGs9LlzYvYZphMWwbsI74NCad5ADc=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               name: "sane-frontends-c99.patch",
               hash: "sha256-LPELEG11wEom05ECAMgXUDRWvrbuU4nT3apuS1eITyA=",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               name: "sane-frontends-configure-c99.patch",
               hash: "sha256-SPvMDCZv8VRGP+cXRFjVbqgbTeVhdLOTEQbbBgSMLvY=",
             })),
@@ -92,7 +82,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       preConfigure: "autoconf\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Scanner Access Now Easy",
         homepage: "http://www.sane-project.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

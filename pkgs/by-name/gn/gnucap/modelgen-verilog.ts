@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/modelgen-verilog.nix", [[["url", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]], [["description", 48, 5], ["homepage", 49, 5], ["mainProgram", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 33, 3], ["preInstall", 35, 3], ["postInstall", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { fetchgit: false, fetchpatch: false, gnucap: false, installShellFiles: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/modelgen-verilog.nix", [["url", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/modelgen-verilog.nix", [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/modelgen-verilog.nix", [["description", 48, 5], ["homepage", 49, 5], ["mainProgram", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/modelgen-verilog.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 33, 3], ["preInstall", 35, 3], ["postInstall", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gnucap-modelgen-verilog",
       version: "20260729-dev",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://https.git.savannah.gnu.org/git/gnucap/gnucap-modelgen-verilog.git",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-GfMfwSZOpi/NKWLporb8pVEeNthxWV7gIxbeiebo3Fk=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gnucap-modelgen-verilog-fprintf.patch",
             url: "https://codeberg.org/gnucap/gnucap-modelgen-verilog/commit/172fc7cddb66b79febab3b87fc1b9e87bee80308.patch",
             hash: "sha256-oURJ96qr7RnT6Pn5+GRO1k9K/8CLXfOfdoZgWYO8a58=",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "export GNUCAP_EXEC_PREFIX=$out\nexport GNUCAP_DATA=$out/share/gnucap\nmkdir -p $out/include/gnucap\nexport GNUCAP_INCLUDEDIR=$out/include/gnucap\nexport GNUCAP_PKGLIBDIR=$out/lib/gnucap\n",
       postInstall: "installManPage man/*.*\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "gnucap modelgen to preprocess, parse and dump vams files",
         homepage: "http://www.gnucap.org/",
         mainProgram: "gnucap-mg-vams",

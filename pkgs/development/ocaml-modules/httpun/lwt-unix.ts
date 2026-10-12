@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt-unix.nix", [[["description", 18, 5]], [["pname", 8, 3], ["version", 10, 24], ["src", 10, 32], ["propagatedBuildInputs", 12, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "httpun-lwt": false, "gluten-lwt-unix": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt-unix.nix", [["description", 18, 5]]);
-const pos$2 = nix.positions(here + "/lwt-unix.nix", [["pname", 8, 3], ["version", 10, 24], ["src", 10, 32], ["propagatedBuildInputs", 12, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const httpun_lwt = nix.arg($, "httpun-lwt");
   const gluten_lwt_unix = nix.arg($, "gluten-lwt-unix");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "httpun-lwt-unix",
       version: nix.thunk(() => nix.attr(httpun_lwt, "version")),
       src: nix.thunk(() => nix.attr(httpun_lwt, "src")),
       propagatedBuildInputs: nix.thunk(() => [httpun_lwt, gluten_lwt_unix]),
-      meta: nix.thunk(() => nix.update(nix.sel(httpun_lwt, "meta"), { [nix.POS]: pos$1, description: "Lwt + Unix support for httpun" })),
+      meta: nix.thunk(() => nix.update(nix.sel(httpun_lwt, "meta"), { [nix.POS]: $pos[0], description: "Lwt + Unix support for httpun" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lwt-unix.ts.map

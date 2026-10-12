@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lib.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["homepage", 60, 5], ["description", 61, 5], ["maintainers", 62, 5], ["license", 65, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["propagatedBuildInputs", 35, 3], ["nativeBuildInputs", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, menhir: false, alcotest: false, base: false, "dune-build-info": false, either: false, fix: false, fpath: false, menhirLib: false, menhirSdk: false, "ocaml-version": false, "ocamlformat-rpc-lib": false, "ocp-indent": false, stdio: false, uuseg: false, csexp: false, astring: false, result: false, "camlp-streams": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lib.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/lib.nix", [["homepage", 60, 5], ["description", 61, 5], ["maintainers", 62, 5], ["license", 65, 5]]);
-const pos$3 = nix.positions(here + "/lib.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["propagatedBuildInputs", 35, 3], ["nativeBuildInputs", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const result = nix.arg($, "result");
   const camlp_streams = nix.arg($, "camlp-streams");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ocamlformat-mlx-lib",
       version: "0.28.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ocaml-mlx",
           repo: "ocamlformat-mlx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [menhir]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ocaml-mlx/ocamlformat-mlx",
         description: "OCaml .mlx Code Formatter",
         maintainers: nix.thunk(() => (() => {

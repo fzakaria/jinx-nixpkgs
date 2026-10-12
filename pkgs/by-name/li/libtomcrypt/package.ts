@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["name", 21, 7], ["url", 22, 7], ["sha256", 23, 7]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["buildInputs", 27, 3], ["postPatch", 31, 3], ["preBuild", 37, 3], ["makefile", 45, 3], ["enableParallelBuilding", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, libtool: false, libtommath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 21, 7], ["url", 22, 7], ["sha256", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["buildInputs", 27, 3], ["postPatch", 31, 3], ["preBuild", 37, 3], ["makefile", 45, 3], ["enableParallelBuilding", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const libtommath = nix.arg($, "libtommath");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libtomcrypt",
       version: "1.18.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/libtom/libtomcrypt/releases/download/v${nix.sel(finalAttrs, "version")}/crypt-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "113vfrgapyv72lalhd3nkw7jnks8az0gcb5wqn9hj19nhcxlrbcn",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2019-17362.patch",
             url: "https://github.com/libtom/libtomcrypt/pull/508/commits/25c26a3b7a9ad8192ccc923e15cf62bf0108ef94.patch",
             sha256: "1bwsj0pwffxw648wd713z3xcyrbxc2z646psrzp38ys564fjh5zf",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       makefile: "makefile.shared",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fairly comprehensive, modular and portable cryptographic toolkit",
         homepage: "https://www.libtom.net/LibTomCrypt/",
         changelog: nix.thunk(() => nix.str`https://github.com/libtom/libtomcrypt/raw/v${nix.sel(finalAttrs, "version")}/changes`),

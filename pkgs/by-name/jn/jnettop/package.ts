@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["url", 35, 7], ["sha256", 36, 7]], [["name", 42, 7], ["url", 43, 7], ["sha256", 44, 7]], [["description", 51, 5], ["longDescription", 53, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["patches", 32, 3], ["preConfigure", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { fetchurl: false, fetchpatch: false, lib: false, stdenv: false, autoconf: false, libpcap: false, ncurses: false, "pkg-config": false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 35, 7], ["sha256", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 42, 7], ["url", 43, 7], ["sha256", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 51, 5], ["longDescription", 53, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["patches", 32, 3], ["preConfigure", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jnettop",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://jnettop.kubs.info/dist/jnettop-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1855np7c4b0bqzhf1l1dyzxb90fpnvrirdisajhci5am6als31z9",
         })))),
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./no-dns-resolution.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sources.debian.net/data/main/j/jnettop/0.13.0-1/debian/patches/0001-Use-64-bit-integers-for-byte-totals-support-bigger-u.patch",
             sha256: "1b0alc12sj8pzcb66f8xslbqlbsvq28kz34v6jfhbb1q25hyr7jg",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "ncurses-6.3.patch",
             url: "https://sourceforge.net/p/jnettop/patches/5/attachment/jnettop-0.13.0-ncurses-6.3.patch",
             sha256: "1a0g3bal6f2fh1sq9q5kfwljrnskfvrhdzhjadcds34gzsr26v7x",
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "autoconf ",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Network traffic visualizer",
         longDescription: "Jnettop is a traffic visualiser, which captures traffic going\nthrough the host it is running from and displays streams sorted\nby bandwidth they use.\n",
         homepage: "https://sourceforge.net/projects/jnettop/",

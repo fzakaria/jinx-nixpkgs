@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["pname", 16, 3], ["src", 17, 20], ["version", 17, 24], ["nativeCheckInputs", 19, 3], ["dontConfigure", 24, 3], ["dontBuild", 25, 3], ["doCheck", 26, 3], ["checkPhase", 28, 3], ["installPhase", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, coq: false, itauto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["pname", 16, 3], ["src", 17, 20], ["version", 17, 24], ["nativeCheckInputs", 19, 3], ["dontConfigure", 24, 3], ["dontBuild", 25, 3], ["doCheck", 26, 3], ["checkPhase", 28, 3], ["installPhase", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const itauto = nix.arg($, "itauto");
   const excluded = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "isEq"), "8.16", nix.thunk(() => nix.sel(itauto, "version")))), nix.thunk(() => ["arith.v", "refl_bool.v"])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.str`coq${nix.sel(coq, "coq-version")}-itauto-test`),
       src: nix.thunk(() => nix.attr(itauto, "src")),
       version: nix.thunk(() => nix.attr(itauto, "version")),

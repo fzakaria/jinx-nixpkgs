@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["broken", 42, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["configureFlags", 30, 3], ["doInstallCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, mkTclDerivation: false, fetchzip: false, graphicsmagick: false, tcl: false, tk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["broken", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["configureFlags", 30, 3], ["doInstallCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const tk = nix.arg($, "tk");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tclmagick",
       version: "1.3.43",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/graphicsmagick/GraphicsMagick-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-CpZztiBF0HqH4XWIAyE9IbZVpBcgrDzyASv47wTneQ0=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tcl and Tk Interfaces to GraphicsMagick and ImageMagick",
         homepage: "http://www.graphicsmagick.org/TclMagick/doc/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "tcltk")),

@@ -2,15 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wine.nix", [[["maintainers", 23, 9]], [["systemPackages", 29, 23]], [["diskSize", 30, 26]], [["environment", 29, 11], ["virtualisation", 30, 11]], [["machine", 26, 13]], [["name", 21, 15], ["meta", 22, 7], ["nodes", 26, 7], ["testScript", 33, 7]], [["name", 19, 5], ["value", 20, 5]]]);
 const formals$1 = { args: { pkgs: false, lib: false, runTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wine.nix", [["maintainers", 23, 9]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/wine.nix", [["systemPackages", 29, 23]]);
-const pos$3 = nix.positions(here + "/wine.nix", [["diskSize", 30, 26]]);
-const pos$4 = nix.positions(here + "/wine.nix", [["environment", 29, 11], ["virtualisation", 30, 11]]);
-const pos$5 = nix.positions(here + "/wine.nix", [["machine", 26, 13]]);
-const pos$6 = nix.positions(here + "/wine.nix", [["name", 21, 15], ["meta", 22, 7], ["nodes", 26, 7], ["testScript", 33, 7]]);
-const pos$7 = nix.positions(here + "/wine.nix", [["name", 19, 5], ["value", 20, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,29 +20,29 @@ export default nix.lambda((args) => (() => {
   const makeWineTest = (packageSet) => (exes) => (variant) => (() => {
     const name = nix.thunk(() => nix.str`${packageSet}-${variant}`);
     const value = nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: name,
         meta: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "chkno"))]),
           };
         })()),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 systemPackages: nix.thunk(() => [
                   nix.thunk(() => nix.sel(pkgs_1, nix.key(nix.str`${packageSet}`), nix.key(nix.str`${variant}`))),
                 ]),
               })),
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, diskSize: 800n })),
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[2], diskSize: 800n })),
             };
           })(), formals$2),
         })),
@@ -60,7 +54,7 @@ assert 'Hello, world!' in greeting
 `, nix.app(optionalString, nix.thunk(() => nix.eq(variant, "full")), "machine.fail(\n    \"fgrep 'Could not find Wine Gecko. HTML rendering will be disabled.' wine-stderr\"\n)\n")), exes)}
 `),
       }))));
-    return { [nix.POS]: pos$7, name, value };
+    return { [nix.POS]: $pos[6], name, value };
   })();
   const variants = nix.thunk(() => ["base", "full", "minimal", "staging", "unstable", "wayland"]);
   return nix.app(listToAttrs, nix.thunk(() => nix.concat(nix.builtins.map(nix.thunk(() => nix.app(makeWineTest, "winePackages", nix.thunk(() => [hello32]))), variants), nix.app(optionals, nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "is64bit")), nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(makeWineTest, "wineWow64Packages", nix.thunk(() => [hello32, hello64]))), nix.thunk(() => nix.app(nix.sel(lib, "remove"), "wayland", variants))))))));

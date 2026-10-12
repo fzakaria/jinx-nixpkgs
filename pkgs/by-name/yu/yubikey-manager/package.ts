@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["homepage", 80, 5], ["changelog", 81, 5], ["description", 82, 5], ["license", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5], ["mainProgram", 92, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 29, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["pythonRelaxDeps", 46, 3], ["postInstall", 50, 3], ["nativeCheckInputs", 73, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3Packages: false, installShellFiles: false, procps: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 80, 5], ["changelog", 81, 5], ["description", 82, 5], ["license", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5], ["mainProgram", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 29, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["pythonRelaxDeps", 46, 3], ["postInstall", 50, 3], ["nativeCheckInputs", 73, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.9.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Yubico",
           repo: "yubikey-manager",
           tag: version,
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://developers.yubico.com/yubikey-manager",
         changelog: nix.thunk(() => nix.str`https://github.com/Yubico/yubikey-manager/releases/tag/${nix.sel(src, "tag")}`),
         description: "Command line tool for configuring any YubiKey over all USB transports",
@@ -79,7 +77,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ykman",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

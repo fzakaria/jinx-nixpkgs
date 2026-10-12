@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 21, 9], ["rev", 22, 9], ["hash", 23, 9]], [["version", 27, 9], ["rev", 28, 9], ["hash", 29, 9]], [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 26], ["hash", 42, 30]], [["description", 50, 5], ["license", 51, 5], ["homepage", 52, 5], ["maintainers", 53, 5]], [["pname", 34, 3], ["pyproject", 35, 3], ["version", 36, 24], ["src", 39, 3], ["nativeBuildInputs", 45, 3], ["nativeCheckInputs", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, python: false, fetchFromGitHub: false, setuptools: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 21, 9], ["rev", 22, 9], ["hash", 23, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 27, 9], ["rev", 28, 9], ["hash", 29, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 26], ["hash", 42, 30]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 50, 5], ["license", 51, 5], ["homepage", 52, 5], ["maintainers", 53, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["pyproject", 35, 3], ["version", 36, 24], ["src", 39, 3], ["nativeBuildInputs", 45, 3], ["nativeCheckInputs", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,20 +17,20 @@ export default nix.lambda((args) => (() => {
     const version = "1.5.1";
     const rev = version;
     const hash = "sha256-M8vASxhaJPgkiTrAckxz7gk/QHkrFlNz7fFbnLEBT+M=";
-    return { [nix.POS]: pos$1, version, rev, hash };
+    return { [nix.POS]: $pos[0], version, rev, hash };
   })() : {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "1.5.1-unstable-2023-11-03",
     rev: "b763a757bb2bef2ab63620611ddd8006d5e9e4a2",
     hash: "sha256-11WajEDtisiJsKQjZMSd5sDog3DuuBzf1PcgSY+uuXY=",
   }));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "asn1crypto",
       pyproject: true,
       version: nix.thunk(() => nix.attr(provenance, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "wbond",
           repo: "asn1crypto",
           rev: nix.thunk(() => nix.attr(provenance, "rev")),
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [setuptools]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast ASN.1 parser and serializer with definitions for private keys, public keys, certificates, CRL, OCSP, CMS, PKCS#3, PKCS#7, PKCS#8, PKCS#12, PKCS#5, X.509 and TSP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/wbond/asn1crypto",

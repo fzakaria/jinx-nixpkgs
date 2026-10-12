@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["sha256", 33, 5]], [["updateScript", 91, 12]], [["description", 94, 5], ["homepage", 95, 5], ["downloadPage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["sourceProvenance", 99, 5], ["platforms", 100, 5], ["maintainers", 105, 5], ["mainProgram", 114, 5]], [["pname", 28, 3], ["version", 29, 22], ["src", 31, 3], ["dontUnpack", 36, 3], ["dontBuild", 37, 3], ["__noChroot", 38, 3], ["dontStrip", 40, 3], ["nativeBuildInputs", 42, 3], ["strictDeps", 48, 3], ["installPhase", 50, 3], ["doInstallCheck", 83, 3], ["nativeInstallCheckInputs", 84, 3], ["versionCheckKeepEnvironment", 88, 3], ["versionCheckProgramArg", 89, 3], ["passthru", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, makeBinaryWrapper: false, autoPatchelfHook: false, "alsa-lib": false, procps: false, ripgrep: false, bubblewrap: false, socat: false, zstd: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, manifest: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 91, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["downloadPage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["sourceProvenance", 99, 5], ["platforms", 100, 5], ["maintainers", 105, 5], ["mainProgram", 114, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 22], ["src", 31, 3], ["dontUnpack", 36, 3], ["dontBuild", 37, 3], ["__noChroot", 38, 3], ["dontStrip", 40, 3], ["nativeBuildInputs", 42, 3], ["strictDeps", 48, 3], ["installPhase", 50, 3], ["doInstallCheck", 83, 3], ["nativeInstallCheckInputs", 84, 3], ["versionCheckKeepEnvironment", 88, 3], ["versionCheckProgramArg", 89, 3], ["passthru", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const platformKey = nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "node", "platform")}-${nix.sel(stdenv, "hostPlatform", "node", "arch")}`);
   const platformManifestEntry = nix.thunk(() => nix.sel(manifest, "platforms", nix.key(nix.force(platformKey))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "claude-code",
       version: nix.thunk(() => nix.attr(manifest, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`${baseUrl}/${nix.sel(finalAttrs, "version")}/${platformKey}/${nix.sel(platformManifestEntry, "binary")}`),
           sha256: nix.thunk(() => nix.sel(platformManifestEntry, "checksum")),
         })))),
@@ -63,9 +60,9 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook, versionCheckHook]),
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       versionCheckProgramArg: "--version",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster",
         homepage: "https://github.com/anthropics/claude-code",
         downloadPage: "https://claude.com/product/claude-code",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pname", 51, 7], ["version", 52, 7], ["src", 53, 7], ["fetcherVersion", 55, 5], ["hash", 56, 5]], [["NUXT_TELEMETRY_DISABLED", 59, 7]], [["elk-zone", 92, 28]], [["updateScript", 90, 5], ["tests", 91, 5]], [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5], ["platforms", 103, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["patches", 33, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 41, 3], ["pnpmDeps", 49, 3], ["env", 59, 3], ["doCheck", 61, 3], ["checkPhase", 63, 3], ["preBuild", 72, 3], ["installPhase", 76, 3], ["passthru", 89, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, "nix-update-script": false, lib: false, nodejs: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, stdenvNoCC: false, pnpmBuildHook: false, makeWrapper: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 51, 7], ["version", 52, 7], ["src", 53, 7], ["fetcherVersion", 55, 5], ["hash", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NUXT_TELEMETRY_DISABLED", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["elk-zone", 92, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 90, 5], ["tests", 91, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5], ["platforms", 103, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["patches", 33, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 41, 3], ["pnpmDeps", 49, 3], ["env", 59, 3], ["doCheck", 61, 3], ["checkPhase", 63, 3], ["preBuild", 72, 3], ["installPhase", 76, 3], ["passthru", 89, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "elk",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elk-zone",
           repo: "elk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,14 +36,14 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pnpm-workspace.yaml --replace-fail \\\n  \"verifyDepsBeforeRun: install\" \\\n  \"verifyDepsBeforeRun: false\"\n",
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmBuildHook, pnpmConfigHook, pnpm, makeWrapper]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           fetcherVersion: 4n,
           hash: "sha256-+5hbR1nBInUKTalF7ZHMqPfi/etplR5aNsEE/a/ZASs=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NUXT_TELEMETRY_DISABLED: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NUXT_TELEMETRY_DISABLED: "1" })),
       doCheck: true,
       checkPhase: "runHook preCheck\n\n# Runs the 'test:unit:ci' script, which does not need network access.\npnpm run test:unit:ci\n\nrunHook postCheck\n",
       preBuild: "pnpm run prepare\n",
@@ -65,15 +59,15 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/elk \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "elk-zone": nix.thunk(() => nix.attr(nixosTests, "elk-zone")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Nimble Mastodon web client",
         homepage: "https://github.com/elk-zone/elk",
         changelog: nix.thunk(() => nix.str`https://github.com/elk-zone/elk/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

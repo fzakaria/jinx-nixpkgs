@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["stripRoot", 22, 5], ["hash", 23, 5]], [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5]], [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 18, 3], ["nativeBuildInputs", 26, 3], ["postInstall", 28, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["stripRoot", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 18, 3], ["nativeBuildInputs", 26, 3], ["postInstall", 28, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vollkorn",
       version: "4.105",
       outputs: nix.thunk(() => ["out", "webfont", "doc"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://vollkorn-typeface.com/download/vollkorn-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           stripRoot: false,
           hash: "sha256-oG79GgCwCavbMFAPakza08IPmt13Gwujrkc/NKTai7g=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`install -Dm444 {Fontlog,OFL-FAQ,OFL}.txt -t $doc/share/doc/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}/
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://vollkorn-typeface.com/",
         description: "Free and healthy typeface for bread and butter use",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

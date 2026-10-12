@@ -2,26 +2,20 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/systemd-user-linger.nix", [["isNormalUser", 7, 9], ["linger", 8, 9], ["uid", 9, 9]]);
-const pos$2 = nix.positions(here + "/systemd-user-linger.nix", [["isNormalUser", 13, 9], ["linger", 14, 9], ["uid", 15, 9]]);
-const pos$3 = nix.positions(here + "/systemd-user-linger.nix", [["alice", 6, 7], ["bob", 12, 7]]);
-const pos$4 = nix.positions(here + "/systemd-user-linger.nix", [["users", 5, 11]]);
-const pos$5 = nix.positions(here + "/systemd-user-linger.nix", [["users", 5, 5]]);
-const pos$6 = nix.positions(here + "/systemd-user-linger.nix", [["machine", 4, 9]]);
-const pos$7 = nix.positions(here + "/systemd-user-linger.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 20, 3]]);
+const $pos = nix.positions(here + "/systemd-user-linger.nix", [[["isNormalUser", 7, 9], ["linger", 8, 9], ["uid", 9, 9]], [["isNormalUser", 13, 9], ["linger", 14, 9], ["uid", 15, 9]], [["alice", 6, 7], ["bob", 12, 7]], [["users", 5, 11]], [["users", 5, 5]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 20, 3]]]);
 
 export default nix.thunk(() => (() => {
   const name = "systemd-user-linger";
   const nodes = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     machine: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       users: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         users: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          alice: nix.thunk(() => ({ [nix.POS]: pos$1, isNormalUser: true, linger: true, uid: 1000n })),
-          bob: nix.thunk(() => ({ [nix.POS]: pos$2, isNormalUser: true, linger: false, uid: 1001n })),
+          [nix.POS]: $pos[2],
+          alice: nix.thunk(() => ({ [nix.POS]: $pos[0], isNormalUser: true, linger: true, uid: 1000n })),
+          bob: nix.thunk(() => ({ [nix.POS]: $pos[1], isNormalUser: true, linger: false, uid: 1001n })),
         })),
       })),
     })),
@@ -43,6 +37,6 @@ with subtest("mutable users can linger"):
     machine.succeed("test -e /var/lib/systemd/linger/clare")
 `;
   })());
-  return { [nix.POS]: pos$7, name, nodes, testScript };
+  return { [nix.POS]: $pos[6], name, nodes, testScript };
 })());
 //# sourceMappingURL=systemd-user-linger.ts.map

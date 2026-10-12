@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["extraArgs", 96, 5]], [["updateScript", 95, 12]], [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["cmakeFlags", 54, 3], ["postPatch", 62, 3], ["installPhase", 78, 3], ["strictDeps", 93, 3], ["passthru", 95, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gitMinimal: false, "nix-update-script": false, python312: false, python312Packages: false, eigen: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 95, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["cmakeFlags", 54, 3], ["postPatch", 62, 3], ["installPhase", 78, 3], ["strictDeps", 93, 3], ["passthru", 95, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,25 +18,25 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const llvmPackages = nix.arg($, "llvmPackages");
   const prjxrayDb = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "openxc7",
       repo: "prjxray-db",
       rev: "381966a746cb4cf4a7f854f0e53caa3bf74fbe62",
       hash: "sha256-tQ1KfYj6kQq3fKBv6PAsqxm9btMNWFd5fT9UzOGMlkE=",
     }))));
   const nextpnrXilinxMeta = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "openxc7",
       repo: "nextpnr-xilinx-meta",
       rev: "491aefcc15be159efc8ad8bff2a1a4b93fe487fe",
       hash: "sha256-oRVFPzdw9ctzT6iQ8YI3Q92LZTIlRPBZvJVjMqvDJQE=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "nextpnr-xilinx",
       version: "0.8.2-unstable-2026-03-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "openXC7",
           repo: "nextpnr-xilinx",
           rev: "96bb068afdb941e9292509a28b079c14c26ceca6",
@@ -86,11 +80,11 @@ runHook postInstall
 `),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Place and route tool for Xilinx 7-series FPGAs",
         homepage: "https://github.com/openXC7/nextpnr-xilinx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

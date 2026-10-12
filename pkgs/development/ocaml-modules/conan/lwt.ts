@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt.nix", [[["pname", 13, 3], ["version", 14, 19], ["src", 14, 27], ["meta", 14, 31], ["propagatedBuildInputs", 16, 3], ["doCheck", 22, 3], ["checkInputs", 24, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, conan: false, lwt: false, bstr: false, alcotest: false, crowbar: false, fmt: false, rresult: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt.nix", [["pname", 13, 3], ["version", 14, 19], ["src", 14, 27], ["meta", 14, 31], ["propagatedBuildInputs", 16, 3], ["doCheck", 22, 3], ["checkInputs", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const rresult = nix.arg($, "rresult");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "conan-lwt",
       version: nix.thunk(() => nix.attr(conan, "version")),
       src: nix.thunk(() => nix.attr(conan, "src")),

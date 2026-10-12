@@ -2,92 +2,30 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hadoop.nix", [[["fs.defaultFS", 12, 11]], [["dfs.nameservices", 16, 11], ["dfs.ha.namenodes.ns1", 17, 11], ["dfs.namenode.shared.edits.dir.ns1", 18, 11], ["dfs.namenode.rpc-address.ns1.nn1", 19, 11], ["dfs.namenode.rpc-address.ns1.nn2", 20, 11], ["dfs.namenode.servicerpc-address.ns1.nn1", 21, 11], ["dfs.namenode.servicerpc-address.ns1.nn2", 22, 11], ["dfs.namenode.http-address.ns1.nn1", 23, 11], ["dfs.namenode.http-address.ns1.nn2", 24, 11], ["dfs.client.failover.proxy.provider.ns1", 27, 11], ["dfs.ha.automatic-failover.enabled.ns1", 29, 11], ["dfs.ha.fencing.methods", 30, 11], ["ha.zookeeper.quorum", 31, 11]], [["yarn.resourcemanager.zk-address", 34, 11], ["yarn.resourcemanager.ha.enabled", 35, 11], ["yarn.resourcemanager.ha.rm-ids", 36, 11], ["yarn.resourcemanager.hostname.rm1", 37, 11], ["yarn.resourcemanager.hostname.rm2", 38, 11], ["yarn.resourcemanager.ha.automatic-failover.enabled", 39, 11], ["yarn.resourcemanager.cluster-id", 40, 11], ["yarn.resourcemanager.webapp.address.rm1", 44, 11], ["yarn.resourcemanager.webapp.address.rm2", 45, 11]], [["enable", 52, 32]], [["zookeeper", 52, 22]], [["allowedTCPPorts", 53, 33]], [["firewall", 53, 24]], [["services", 52, 13], ["networking", 53, 13]], [["enable", 63, 17], ["openFirewall", 64, 17]], [["enable", 66, 25]], [["namenode", 62, 20], ["zkfc", 66, 20]], [["package", 61, 23], ["coreSite", 61, 31], ["hdfsSite", 61, 40], ["hdfs", 62, 15]], [["hadoop", 60, 22]], [["services", 60, 13]], [["enable", 75, 17], ["openFirewall", 76, 17]], [["enable", 78, 25]], [["namenode", 74, 20], ["zkfc", 78, 20]], [["package", 73, 23], ["coreSite", 73, 31], ["hdfsSite", 73, 40], ["hdfs", 74, 15]], [["hadoop", 72, 22]], [["services", 72, 13]], [["enable", 88, 17], ["openFirewall", 89, 17]], [["journalnode", 87, 20]], [["package", 86, 23], ["coreSite", 86, 31], ["hdfsSite", 86, 40], ["hdfs", 87, 15]], [["hadoop", 85, 22]], [["services", 85, 13]], [["enable", 99, 17], ["openFirewall", 100, 17]], [["journalnode", 98, 20]], [["package", 97, 23], ["coreSite", 97, 31], ["hdfsSite", 97, 40], ["hdfs", 98, 15]], [["hadoop", 96, 22]], [["services", 96, 13]], [["enable", 110, 17], ["openFirewall", 111, 17]], [["journalnode", 109, 20]], [["package", 108, 23], ["coreSite", 108, 31], ["hdfsSite", 108, 40], ["hdfs", 109, 15]], [["hadoop", 107, 22]], [["services", 107, 13]], [["diskSize", 119, 28]], [["enable", 123, 17], ["openFirewall", 124, 17]], [["datanode", 122, 20]], [["package", 121, 23], ["coreSite", 121, 31], ["hdfsSite", 121, 40], ["hdfs", 122, 15]], [["hadoop", 120, 22]], [["virtualisation", 119, 13], ["services", 120, 13]], [["enable", 141, 17], ["openFirewall", 142, 17]], [["resourcemanager", 140, 20]], [["package", 135, 17], ["coreSite", 136, 17], ["hdfsSite", 137, 17], ["yarnSite", 138, 17], ["yarn", 140, 15]], [["hadoop", 133, 22]], [["services", 133, 13]], [["enable", 157, 17], ["openFirewall", 158, 17]], [["resourcemanager", 156, 20]], [["package", 151, 17], ["coreSite", 152, 17], ["hdfsSite", 153, 17], ["yarnSite", 154, 17], ["yarn", 156, 15]], [["hadoop", 149, 22]], [["services", 149, 13]], [["memorySize", 165, 28]], [["enable", 174, 17], ["openFirewall", 175, 17], ["useCGroups", 176, 17]], [["nodemanager", 173, 20]], [["package", 168, 17], ["coreSite", 169, 17], ["hdfsSite", 170, 17], ["yarnSite", 171, 17], ["yarn", 173, 15]], [["hadoop", 166, 22]], [["virtualisation", 165, 13], ["services", 166, 13]], [["enable", 184, 27]], [["gatewayRole", 184, 15], ["package", 186, 17], ["coreSite", 187, 17], ["hdfsSite", 188, 17], ["yarnSite", 189, 17]], [["hadoop", 183, 22]], [["services", 183, 13]], [["zk1", 49, 9], ["nn1", 57, 9], ["nn2", 69, 9], ["jn1", 82, 9], ["jn2", 93, 9], ["jn3", 104, 9], ["dn1", 116, 9], ["rm1", 130, 9], ["rm2", 146, 9], ["nm1", 162, 9], ["client", 180, 9]], [["name", 7, 5], ["nodes", 9, 5], ["testScript", 195, 5]]]);
 const formals$1 = { args: { package: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/hadoop.nix", [["fs.defaultFS", 12, 11]]);
-const pos$2 = nix.positions(here + "/hadoop.nix", [["dfs.nameservices", 16, 11], ["dfs.ha.namenodes.ns1", 17, 11], ["dfs.namenode.shared.edits.dir.ns1", 18, 11], ["dfs.namenode.rpc-address.ns1.nn1", 19, 11], ["dfs.namenode.rpc-address.ns1.nn2", 20, 11], ["dfs.namenode.servicerpc-address.ns1.nn1", 21, 11], ["dfs.namenode.servicerpc-address.ns1.nn2", 22, 11], ["dfs.namenode.http-address.ns1.nn1", 23, 11], ["dfs.namenode.http-address.ns1.nn2", 24, 11], ["dfs.client.failover.proxy.provider.ns1", 27, 11], ["dfs.ha.automatic-failover.enabled.ns1", 29, 11], ["dfs.ha.fencing.methods", 30, 11], ["ha.zookeeper.quorum", 31, 11]]);
-const pos$3 = nix.positions(here + "/hadoop.nix", [["yarn.resourcemanager.zk-address", 34, 11], ["yarn.resourcemanager.ha.enabled", 35, 11], ["yarn.resourcemanager.ha.rm-ids", 36, 11], ["yarn.resourcemanager.hostname.rm1", 37, 11], ["yarn.resourcemanager.hostname.rm2", 38, 11], ["yarn.resourcemanager.ha.automatic-failover.enabled", 39, 11], ["yarn.resourcemanager.cluster-id", 40, 11], ["yarn.resourcemanager.webapp.address.rm1", 44, 11], ["yarn.resourcemanager.webapp.address.rm2", 45, 11]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$4 = nix.positions(here + "/hadoop.nix", [["enable", 52, 32]]);
-const pos$5 = nix.positions(here + "/hadoop.nix", [["zookeeper", 52, 22]]);
-const pos$6 = nix.positions(here + "/hadoop.nix", [["allowedTCPPorts", 53, 33]]);
-const pos$7 = nix.positions(here + "/hadoop.nix", [["firewall", 53, 24]]);
-const pos$8 = nix.positions(here + "/hadoop.nix", [["services", 52, 13], ["networking", 53, 13]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$9 = nix.positions(here + "/hadoop.nix", [["enable", 63, 17], ["openFirewall", 64, 17]]);
-const pos$10 = nix.positions(here + "/hadoop.nix", [["enable", 66, 25]]);
-const pos$11 = nix.positions(here + "/hadoop.nix", [["namenode", 62, 20], ["zkfc", 66, 20]]);
-const pos$12 = nix.positions(here + "/hadoop.nix", [["package", 61, 23], ["coreSite", 61, 31], ["hdfsSite", 61, 40], ["hdfs", 62, 15]]);
-const pos$13 = nix.positions(here + "/hadoop.nix", [["hadoop", 60, 22]]);
-const pos$14 = nix.positions(here + "/hadoop.nix", [["services", 60, 13]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$15 = nix.positions(here + "/hadoop.nix", [["enable", 75, 17], ["openFirewall", 76, 17]]);
-const pos$16 = nix.positions(here + "/hadoop.nix", [["enable", 78, 25]]);
-const pos$17 = nix.positions(here + "/hadoop.nix", [["namenode", 74, 20], ["zkfc", 78, 20]]);
-const pos$18 = nix.positions(here + "/hadoop.nix", [["package", 73, 23], ["coreSite", 73, 31], ["hdfsSite", 73, 40], ["hdfs", 74, 15]]);
-const pos$19 = nix.positions(here + "/hadoop.nix", [["hadoop", 72, 22]]);
-const pos$20 = nix.positions(here + "/hadoop.nix", [["services", 72, 13]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$21 = nix.positions(here + "/hadoop.nix", [["enable", 88, 17], ["openFirewall", 89, 17]]);
-const pos$22 = nix.positions(here + "/hadoop.nix", [["journalnode", 87, 20]]);
-const pos$23 = nix.positions(here + "/hadoop.nix", [["package", 86, 23], ["coreSite", 86, 31], ["hdfsSite", 86, 40], ["hdfs", 87, 15]]);
-const pos$24 = nix.positions(here + "/hadoop.nix", [["hadoop", 85, 22]]);
-const pos$25 = nix.positions(here + "/hadoop.nix", [["services", 85, 13]]);
 const formals$6 = { args: {  }, ellipsis: true };
-const pos$26 = nix.positions(here + "/hadoop.nix", [["enable", 99, 17], ["openFirewall", 100, 17]]);
-const pos$27 = nix.positions(here + "/hadoop.nix", [["journalnode", 98, 20]]);
-const pos$28 = nix.positions(here + "/hadoop.nix", [["package", 97, 23], ["coreSite", 97, 31], ["hdfsSite", 97, 40], ["hdfs", 98, 15]]);
-const pos$29 = nix.positions(here + "/hadoop.nix", [["hadoop", 96, 22]]);
-const pos$30 = nix.positions(here + "/hadoop.nix", [["services", 96, 13]]);
 const formals$7 = { args: {  }, ellipsis: true };
-const pos$31 = nix.positions(here + "/hadoop.nix", [["enable", 110, 17], ["openFirewall", 111, 17]]);
-const pos$32 = nix.positions(here + "/hadoop.nix", [["journalnode", 109, 20]]);
-const pos$33 = nix.positions(here + "/hadoop.nix", [["package", 108, 23], ["coreSite", 108, 31], ["hdfsSite", 108, 40], ["hdfs", 109, 15]]);
-const pos$34 = nix.positions(here + "/hadoop.nix", [["hadoop", 107, 22]]);
-const pos$35 = nix.positions(here + "/hadoop.nix", [["services", 107, 13]]);
 const formals$8 = { args: {  }, ellipsis: true };
-const pos$36 = nix.positions(here + "/hadoop.nix", [["diskSize", 119, 28]]);
-const pos$37 = nix.positions(here + "/hadoop.nix", [["enable", 123, 17], ["openFirewall", 124, 17]]);
-const pos$38 = nix.positions(here + "/hadoop.nix", [["datanode", 122, 20]]);
-const pos$39 = nix.positions(here + "/hadoop.nix", [["package", 121, 23], ["coreSite", 121, 31], ["hdfsSite", 121, 40], ["hdfs", 122, 15]]);
-const pos$40 = nix.positions(here + "/hadoop.nix", [["hadoop", 120, 22]]);
-const pos$41 = nix.positions(here + "/hadoop.nix", [["virtualisation", 119, 13], ["services", 120, 13]]);
 const formals$9 = { args: { options: false }, ellipsis: true };
-const pos$42 = nix.positions(here + "/hadoop.nix", [["enable", 141, 17], ["openFirewall", 142, 17]]);
-const pos$43 = nix.positions(here + "/hadoop.nix", [["resourcemanager", 140, 20]]);
-const pos$44 = nix.positions(here + "/hadoop.nix", [["package", 135, 17], ["coreSite", 136, 17], ["hdfsSite", 137, 17], ["yarnSite", 138, 17], ["yarn", 140, 15]]);
-const pos$45 = nix.positions(here + "/hadoop.nix", [["hadoop", 133, 22]]);
-const pos$46 = nix.positions(here + "/hadoop.nix", [["services", 133, 13]]);
 const formals$10 = { args: { options: false }, ellipsis: true };
-const pos$47 = nix.positions(here + "/hadoop.nix", [["enable", 157, 17], ["openFirewall", 158, 17]]);
-const pos$48 = nix.positions(here + "/hadoop.nix", [["resourcemanager", 156, 20]]);
-const pos$49 = nix.positions(here + "/hadoop.nix", [["package", 151, 17], ["coreSite", 152, 17], ["hdfsSite", 153, 17], ["yarnSite", 154, 17], ["yarn", 156, 15]]);
-const pos$50 = nix.positions(here + "/hadoop.nix", [["hadoop", 149, 22]]);
-const pos$51 = nix.positions(here + "/hadoop.nix", [["services", 149, 13]]);
 const formals$11 = { args: { options: false }, ellipsis: true };
-const pos$52 = nix.positions(here + "/hadoop.nix", [["memorySize", 165, 28]]);
-const pos$53 = nix.positions(here + "/hadoop.nix", [["enable", 174, 17], ["openFirewall", 175, 17], ["useCGroups", 176, 17]]);
-const pos$54 = nix.positions(here + "/hadoop.nix", [["nodemanager", 173, 20]]);
-const pos$55 = nix.positions(here + "/hadoop.nix", [["package", 168, 17], ["coreSite", 169, 17], ["hdfsSite", 170, 17], ["yarnSite", 171, 17], ["yarn", 173, 15]]);
-const pos$56 = nix.positions(here + "/hadoop.nix", [["hadoop", 166, 22]]);
-const pos$57 = nix.positions(here + "/hadoop.nix", [["virtualisation", 165, 13], ["services", 166, 13]]);
 const formals$12 = { args: { options: false }, ellipsis: true };
-const pos$58 = nix.positions(here + "/hadoop.nix", [["enable", 184, 27]]);
-const pos$59 = nix.positions(here + "/hadoop.nix", [["gatewayRole", 184, 15], ["package", 186, 17], ["coreSite", 187, 17], ["hdfsSite", 188, 17], ["yarnSite", 189, 17]]);
-const pos$60 = nix.positions(here + "/hadoop.nix", [["hadoop", 183, 22]]);
-const pos$61 = nix.positions(here + "/hadoop.nix", [["services", 183, 13]]);
-const pos$62 = nix.positions(here + "/hadoop.nix", [["zk1", 49, 9], ["nn1", 57, 9], ["nn2", 69, 9], ["jn1", 82, 9], ["jn2", 93, 9], ["jn3", 104, 9], ["dn1", 116, 9], ["rm1", 130, 9], ["rm2", 146, 9], ["nm1", 162, 9], ["client", 180, 9]]);
-const pos$63 = nix.positions(here + "/hadoop.nix", [["name", 7, 5], ["nodes", 9, 5], ["testScript", 195, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const package$ = nix.arg($, "package");
     return {
-      [nix.POS]: pos$63,
+      [nix.POS]: $pos[62],
       name: nix.thunk(() => nix.str`hadoop-${nix.sel(package$, "version")}-combined`),
       nodes: nix.thunk(() => (() => {
-        const coreSite = nix.thunk(() => ({ [nix.POS]: pos$1, "fs.defaultFS": "hdfs://ns1" }));
+        const coreSite = nix.thunk(() => ({ [nix.POS]: $pos[0], "fs.defaultFS": "hdfs://ns1" }));
         const hdfsSite = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "dfs.nameservices": "ns1",
           "dfs.ha.namenodes.ns1": "nn1,nn2",
           "dfs.namenode.shared.edits.dir.ns1": "qjournal://jn1:8485;jn2:8485;jn3:8485/ns1",
@@ -103,7 +41,7 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           "ha.zookeeper.quorum": "zk1:2181",
         }));
         const yarnSite = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "yarn.resourcemanager.zk-address": "zk1:2181",
           "yarn.resourcemanager.ha.enabled": "true",
           "yarn.resourcemanager.ha.rm-ids": "rm1,rm2",
@@ -115,36 +53,36 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           "yarn.resourcemanager.webapp.address.rm2": "rm2:8088",
         }));
         return {
-          [nix.POS]: pos$62,
+          [nix.POS]: $pos[61],
           zk1: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             return {
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                zookeeper: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+                [nix.POS]: $pos[4],
+                zookeeper: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
               })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [2181n]) })),
+                [nix.POS]: $pos[6],
+                firewall: nix.thunk(() => ({ [nix.POS]: $pos[5], allowedTCPPorts: nix.thunk(() => [2181n]) })),
               })),
             };
           })(), formals$2),
           nn1: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             return {
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   hdfs: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
-                    namenode: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true, openFirewall: true })),
-                    zkfc: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+                    [nix.POS]: $pos[10],
+                    namenode: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true, openFirewall: true })),
+                    zkfc: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
                   })),
                 })),
               })),
@@ -153,18 +91,18 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           nn2: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$4);
             return {
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   hdfs: nix.thunk(() => ({
-                    [nix.POS]: pos$17,
-                    namenode: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true, openFirewall: true })),
-                    zkfc: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true })),
+                    [nix.POS]: $pos[16],
+                    namenode: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: true, openFirewall: true })),
+                    zkfc: nix.thunk(() => ({ [nix.POS]: $pos[15], enable: true })),
                   })),
                 })),
               })),
@@ -173,17 +111,17 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           jn1: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$5);
             return {
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   hdfs: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
-                    journalnode: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true, openFirewall: true })),
+                    [nix.POS]: $pos[21],
+                    journalnode: nix.thunk(() => ({ [nix.POS]: $pos[20], enable: true, openFirewall: true })),
                   })),
                 })),
               })),
@@ -192,17 +130,17 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           jn2: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$6);
             return {
-              [nix.POS]: pos$30,
+              [nix.POS]: $pos[29],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$28,
+                  [nix.POS]: $pos[27],
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   hdfs: nix.thunk(() => ({
-                    [nix.POS]: pos$27,
-                    journalnode: nix.thunk(() => ({ [nix.POS]: pos$26, enable: true, openFirewall: true })),
+                    [nix.POS]: $pos[26],
+                    journalnode: nix.thunk(() => ({ [nix.POS]: $pos[25], enable: true, openFirewall: true })),
                   })),
                 })),
               })),
@@ -211,17 +149,17 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           jn3: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$7);
             return {
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$33,
+                  [nix.POS]: $pos[32],
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   hdfs: nix.thunk(() => ({
-                    [nix.POS]: pos$32,
-                    journalnode: nix.thunk(() => ({ [nix.POS]: pos$31, enable: true, openFirewall: true })),
+                    [nix.POS]: $pos[31],
+                    journalnode: nix.thunk(() => ({ [nix.POS]: $pos[30], enable: true, openFirewall: true })),
                   })),
                 })),
               })),
@@ -230,18 +168,18 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           dn1: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$8);
             return {
-              [nix.POS]: pos$41,
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$36, diskSize: 4096n })),
+              [nix.POS]: $pos[40],
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[35], diskSize: 4096n })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$40,
+                [nix.POS]: $pos[39],
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$39,
+                  [nix.POS]: $pos[38],
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   hdfs: nix.thunk(() => ({
-                    [nix.POS]: pos$38,
-                    datanode: nix.thunk(() => ({ [nix.POS]: pos$37, enable: true, openFirewall: true })),
+                    [nix.POS]: $pos[37],
+                    datanode: nix.thunk(() => ({ [nix.POS]: $pos[36], enable: true, openFirewall: true })),
                   })),
                 })),
               })),
@@ -251,18 +189,18 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
             const $_1 = nix.formals(args_1, formals$9);
             const options = nix.arg($_1, "options");
             return {
-              [nix.POS]: pos$46,
+              [nix.POS]: $pos[45],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$45,
+                [nix.POS]: $pos[44],
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$44,
+                  [nix.POS]: $pos[43],
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   yarnSite: yarnSite,
                   yarn: nix.thunk(() => ({
-                    [nix.POS]: pos$43,
-                    resourcemanager: nix.thunk(() => ({ [nix.POS]: pos$42, enable: true, openFirewall: true })),
+                    [nix.POS]: $pos[42],
+                    resourcemanager: nix.thunk(() => ({ [nix.POS]: $pos[41], enable: true, openFirewall: true })),
                   })),
                 })),
               })),
@@ -272,18 +210,18 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
             const $_1 = nix.formals(args_1, formals$10);
             const options = nix.arg($_1, "options");
             return {
-              [nix.POS]: pos$51,
+              [nix.POS]: $pos[50],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$50,
+                [nix.POS]: $pos[49],
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$49,
+                  [nix.POS]: $pos[48],
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   yarnSite: yarnSite,
                   yarn: nix.thunk(() => ({
-                    [nix.POS]: pos$48,
-                    resourcemanager: nix.thunk(() => ({ [nix.POS]: pos$47, enable: true, openFirewall: true })),
+                    [nix.POS]: $pos[47],
+                    resourcemanager: nix.thunk(() => ({ [nix.POS]: $pos[46], enable: true, openFirewall: true })),
                   })),
                 })),
               })),
@@ -293,19 +231,19 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
             const $_1 = nix.formals(args_1, formals$11);
             const options = nix.arg($_1, "options");
             return {
-              [nix.POS]: pos$57,
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$52, memorySize: 2048n })),
+              [nix.POS]: $pos[56],
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[51], memorySize: 2048n })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$56,
+                [nix.POS]: $pos[55],
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$55,
+                  [nix.POS]: $pos[54],
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,
                   yarnSite: yarnSite,
                   yarn: nix.thunk(() => ({
-                    [nix.POS]: pos$54,
-                    nodemanager: nix.thunk(() => ({ [nix.POS]: pos$53, enable: true, openFirewall: true, useCGroups: false })),
+                    [nix.POS]: $pos[53],
+                    nodemanager: nix.thunk(() => ({ [nix.POS]: $pos[52], enable: true, openFirewall: true, useCGroups: false })),
                   })),
                 })),
               })),
@@ -315,12 +253,12 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
             const $_1 = nix.formals(args_1, formals$12);
             const options = nix.arg($_1, "options");
             return {
-              [nix.POS]: pos$61,
+              [nix.POS]: $pos[60],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$60,
+                [nix.POS]: $pos[59],
                 hadoop: nix.thunk(() => ({
-                  [nix.POS]: pos$59,
-                  gatewayRole: nix.thunk(() => ({ [nix.POS]: pos$58, enable: true })),
+                  [nix.POS]: $pos[58],
+                  gatewayRole: nix.thunk(() => ({ [nix.POS]: $pos[57], enable: true })),
                   package: package$,
                   coreSite: coreSite,
                   hdfsSite: hdfsSite,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/compiler.nix", [[["6.4.1", 30, 9], ["6.3.2", 31, 9], ["6.2.0", 32, 9], ["6.1.1", 33, 9], ["6.0.1", 34, 9], ["5.9.1", 35, 9], ["5.8.2", 36, 9]], [["url", 27, 5], ["hash", 28, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5], ["broken", 60, 5]], [["pname", 23, 3], ["version", 24, 11], ["src", 26, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 47, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, ocaml: false, buildDunePackage: false, cmdliner: false, yojson: false, ppxlib: false, findlib: false, menhir: false, menhirLib: false, sedlex: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/compiler.nix", [["6.4.1", 30, 9], ["6.3.2", 31, 9], ["6.2.0", 32, 9], ["6.1.1", 33, 9], ["6.0.1", 34, 9], ["5.9.1", 35, 9], ["5.8.2", 36, 9]]);
-const pos$2 = nix.positions(here + "/compiler.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/compiler.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5], ["broken", 60, 5]]);
-const pos$4 = nix.positions(here + "/compiler.nix", [["pname", 23, 3], ["version", 24, 11], ["src", 26, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 47, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const sedlex = nix.arg($, "sedlex");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.13")) ? "6.4.1" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.11")) ? "6.0.1" : "5.8.2")));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "js_of_ocaml-compiler",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/ocsigen/js_of_ocaml/releases/download/${version}/js_of_ocaml-${version}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "6.4.1": "sha256-5Zu//K76ujGRYgVWUUt/U7sySeP4gaBw1yckI03/2Bk=",
             "6.3.2": "sha256-qTr8llTsNGRwH7zg3M86i+uVCKyxLGBFd2vyzxBsq8A=",
             "6.2.0": "sha256-fMZBd40bFyo1KogzPuDoxiE2WgrPzZuH44v9243Spdo=",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cmdliner, ppxlib]),
       propagatedBuildInputs: nix.thunk(() => [menhirLib, yojson, findlib, sedlex]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Compiler from OCaml bytecode to Javascript",
         homepage: "https://ocsigen.org/js_of_ocaml/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

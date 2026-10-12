@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 171, 5], ["homepage", 172, 5], ["changelog", 173, 5], ["license", 174, 5], ["maintainers", 175, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 32, 3], ["postPatch", 39, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["pythonImportsCheck", 57, 3], ["nativeCheckInputs", 59, 3], ["disabledTests", 67, 3], ["disabledTestPaths", 132, 3], ["meta", 170, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, frozendict: false, loguru: false, pydantic: false, torch: false, transformers: false, accelerate: false, nbconvert: false, nbformat: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 171, 5], ["homepage", 172, 5], ["changelog", 173, 5], ["license", 174, 5], ["maintainers", 175, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 32, 3], ["postPatch", 39, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["pythonImportsCheck", 57, 3], ["nativeCheckInputs", 59, 3], ["disabledTests", 67, 3], ["disabledTestPaths", 132, 3], ["meta", 170, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "compressed-tensors",
       version: "0.18.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "neuralmagic",
           repo: "compressed-tensors",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -114,7 +112,7 @@ export default nix.lambda((args) => (() => {
           "tests/test_utils/test_match.py",
         ])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Safetensors extension to efficiently store sparse quantized tensors on disk",
         homepage: "https://github.com/neuralmagic/compressed-tensors",
         changelog: nix.thunk(() => nix.str`https://github.com/neuralmagic/compressed-tensors/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

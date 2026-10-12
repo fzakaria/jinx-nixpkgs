@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]], [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]], [["url", 57, 9], ["hash", 58, 9]], [["url", 61, 9], ["hash", 62, 9]], [["x86_64-linux", 56, 7], ["aarch64-linux", 60, 7]], [["stripRoot", 67, 7]], [["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["hash", 74, 5]], [["url", 77, 5], ["hash", 78, 5]], [["url", 81, 5], ["hash", 82, 5]], [["url", 85, 5], ["hash", 86, 5], ["stripRoot", 87, 5]], [["owner", 90, 5], ["repo", 91, 5], ["tag", 92, 5], ["hash", 93, 5]], [["owner", 101, 5], ["repo", 102, 5], ["tag", 103, 5], ["hash", 104, 5]], [["description", 224, 5], ["homepage", 225, 5], ["changelog", 226, 5], ["license", 227, 5], ["mainProgram", 228, 5], ["platforms", 229, 5], ["maintainers", 233, 5]], [["pname", 97, 3], ["version", 98, 3], ["src", 100, 3], ["strictDeps", 107, 3], ["__structuredAttrs", 108, 3], ["nativeBuildInputs", 110, 3], ["buildInputs", 118, 3], ["postUnpack", 148, 3], ["postPatch", 156, 3], ["cmakeBuildType", 160, 3], ["cmakeFlags", 162, 3], ["installPhase", 189, 3], ["postFixup", 210, 3], ["meta", 223, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchzip: false, "abseil-cpp": false, "alsa-lib": false, cmake: false, cxxopts: false, dbus: false, fmt: false, freetype: false, libGL: false, libglvnd: false, libpng: false, libpulseaudio: false, libusb1: false, libx11: false, libxcb: false, libxcursor: false, libxi: false, libxkbcommon: false, libxrandr: false, libxscrnsaver: false, libxtst: false, makeWrapper: false, ninja: false, nlohmann_json: false, nodtool: false, "pkg-config": false, python3: false, sdl3: false, tracy: false, "vulkan-loader": false, wayland: false, xxhash: false, zlib: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 57, 9], ["hash", 58, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 61, 9], ["hash", 62, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["x86_64-linux", 56, 7], ["aarch64-linux", 60, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["stripRoot", 67, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["hash", 74, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 77, 5], ["hash", 78, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["url", 81, 5], ["hash", 82, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["url", 85, 5], ["hash", 86, 5], ["stripRoot", 87, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["owner", 90, 5], ["repo", 91, 5], ["tag", 92, 5], ["hash", 93, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["owner", 101, 5], ["repo", 102, 5], ["tag", 103, 5], ["hash", 104, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["description", 224, 5], ["homepage", 225, 5], ["changelog", 226, 5], ["license", 227, 5], ["mainProgram", 228, 5], ["platforms", 229, 5], ["maintainers", 233, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 97, 3], ["version", 98, 3], ["src", 100, 3], ["strictDeps", 107, 3], ["__structuredAttrs", 108, 3], ["nativeBuildInputs", 110, 3], ["buildInputs", 118, 3], ["postUnpack", 148, 3], ["postPatch", 156, 3], ["cmakeBuildType", 160, 3], ["cmakeFlags", 162, 3], ["installPhase", 189, 3], ["postFixup", 210, 3], ["meta", 223, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,68 +45,68 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   const auroraSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "encounter",
       repo: "aurora",
       rev: "08122911e8621acb7ded6563813b264bec1494b5",
       hash: "sha256-vdeHq7b+RHEwHN60pGU/FEWW/CqYZMJ2MC86CnF3iMg=",
     }))));
   const borealisSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "encounter",
       repo: "borealis",
       rev: "8a1c87eb89c8448183e8d9054bcb1efac380940c",
       hash: "sha256-dwqUh1fhDAmc1JBv0D6c8TSCNdrsDulmfhUD7GEw8EA=",
     }))));
   const dawnSrc = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => nix.update(nix.sel({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: "https://github.com/encounter/dawn/releases/download/v20260807.225922/dawn-linux-x86_64.tar.gz",
         hash: "sha256-deRtiZ221q6PO9zejJBwa56fCM63KEh6y2p7nM+MOYU=",
       })),
       "aarch64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         url: "https://github.com/encounter/dawn/releases/download/v20260807.225922/dawn-linux-aarch64.tar.gz",
         hash: "sha256-WUs7dDxNbQtt5x8AIDmVuFWhcZVgSyUUuRJvr5yrREo=",
       })),
-    }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))), { [nix.POS]: pos$6, stripRoot: false }))));
+    }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))), { [nix.POS]: $pos[5], stripRoot: false }))));
   const imguiSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       owner: "ocornut",
       repo: "imgui",
       tag: "v1.91.9b-docking",
       hash: "sha256-mQOJ6jCN+7VopgZ61yzaCnt4R1QLrW7+47xxMhFRHLQ=",
     }))));
   const sqliteSrc = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       url: "https://sqlite.org/2026/sqlite-amalgamation-3510300.zip",
       hash: "sha256-pNMR8zxaaqfAzQ0AQBOXMct4usdjey1Q0Gnitg06UhM=",
     }))));
   const rmluiSrc = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       url: "https://github.com/encounter/RmlUi/archive/215513c51ee1b3b75fc794518dda0576c462279f.tar.gz",
       hash: "sha256-erJDGImoTfgr6IeZDYTsqK2bOTgVRm3F3iQGXhch5YA=",
     }))));
   const minizSrc = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       url: "https://github.com/richgel999/miniz/releases/download/3.0.2/miniz-3.0.2.zip",
       hash: "sha256-DXysXkQEmoDAMMg1F8KexkwpXNyiHNzLJqXR9SMEkxk=",
       stripRoot: false,
     }))));
   const picosha2Src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       owner: "okdshin",
       repo: "PicoSHA2",
       tag: "v1.0.1",
       hash: "sha256-3psCzbrwR+vO9TyTKOx+gEaWuHDx6pSgLOQ3DqrJsnI=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: "dusklight",
       version: "2.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           owner: "TwilitRealm",
           repo: "dusklight",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -196,7 +183,7 @@ sed -i '/add_subdirectory(tests)/d' "$sourceRoot/extern/aurora/CMakeLists.txt"
   --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader, libGL, libglvnd, alsa_lib, libpulseaudio]))}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "Reverse-engineered reimplementation of The Legend of Zelda: Twilight Princess",
         homepage: "https://github.com/TwilitRealm/dusklight",
         changelog: nix.thunk(() => nix.str`https://github.com/TwilitRealm/dusklight/releases/tag/v${nix.sel(finalAttrs, "version")}`),

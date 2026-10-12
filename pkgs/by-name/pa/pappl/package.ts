@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 65, 5], ["changelog", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["outputs", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["doInstallCheck", 57, 3], ["installCheckPhase", 58, 3], ["enableParallelBuilding", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, avahi: false, cups: false, gnutls: false, libjpeg: false, libpng: false, libusb1: false, "pkg-config": false, withPAMSupport: true, pam: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["changelog", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["outputs", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["doInstallCheck", 57, 3], ["installCheckPhase", 58, 3], ["enableParallelBuilding", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pappl",
       version: "1.4.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "michaelrsweet",
           repo: "pappl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "$out/bin/pappl-makeresheader --help\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C-based framework/library for developing CUPS Printer Applications",
         changelog: nix.thunk(() => nix.str`https://github.com/michaelrsweet/pappl/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),
         mainProgram: "pappl-makeresheader",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/git.nix", [[["description", 58, 5]], [["pname", 26, 3], ["version", 28, 19], ["src", 28, 27], ["propagatedBuildInputs", 30, 3], ["checkInputs", 48, 3], ["doCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, git: false, irmin: false, ppx_irmin: false, "git-unix": false, "irmin-watcher": false, digestif: false, cstruct: false, fmt: false, astring: false, fpath: false, logs: false, lwt: false, uri: false, "cohttp-lwt-unix": false, mimic: false, "irmin-test": false, mtime: false, alcotest: false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/git.nix", [["description", 58, 5]]);
-const pos$2 = nix.positions(here + "/git.nix", [["pname", 26, 3], ["version", 28, 19], ["src", 28, 27], ["propagatedBuildInputs", 30, 3], ["checkInputs", 48, 3], ["doCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const cacert = nix.arg($, "cacert");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "irmin-git",
       version: nix.thunk(() => nix.attr(irmin, "version")),
       src: nix.thunk(() => nix.attr(irmin, "src")),
@@ -52,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       checkInputs: nix.thunk(() => [mtime, alcotest, irmin_test, cacert]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { [nix.POS]: pos$1, description: "Git backend for Irmin" })),
+      meta: nix.thunk(() => nix.update(nix.sel(irmin, "meta"), { [nix.POS]: $pos[0], description: "Git backend for Irmin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=git.ts.map

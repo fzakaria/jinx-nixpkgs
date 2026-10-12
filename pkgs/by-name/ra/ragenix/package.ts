@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["RAGENIX_NIX_BIN_PATH", 21, 7]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["env", 21, 3], ["checkNoDefaultFeatures", 23, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 27, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, nix: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RAGENIX_NIX_BIN_PATH", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["env", 21, 3], ["checkNoDefaultFeatures", 23, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 27, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ragenix",
       version: "2025.03.09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yaxitech",
           repo: "ragenix",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -28,14 +25,14 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-aM7kjyJJ8h4Yd1k2FTE8Vk/ezAXcCbfdAPxuNewptNQ=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RAGENIX_NIX_BIN_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix$)),
       })),
       checkNoDefaultFeatures: true,
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: "set -euo pipefail\n\n# Provide a symlink from `agenix` to `ragenix` for compat\nln -sr \"$out/bin/ragenix\" \"$out/bin/agenix\"\n\n# Stdout of build.rs\nbuildOut=$(grep -m 1 -Rl 'RAGENIX_COMPLETIONS_BASH=/' target/ | head -n 1)\nprintf \"found build script output at %s\\n\" \"$buildOut\"\n\nset +u # required due to `installShellCompletion`'s implementation\ninstallShellCompletion --bash \"$(grep -oP 'RAGENIX_COMPLETIONS_BASH=\\K.+' \"$buildOut\")\"\ninstallShellCompletion --zsh  \"$(grep -oP 'RAGENIX_COMPLETIONS_ZSH=\\K.+'  \"$buildOut\")\"\ninstallShellCompletion --fish \"$(grep -oP 'RAGENIX_COMPLETIONS_FISH=\\K.+' \"$buildOut\")\"\nset -x\n\ninstallManPage docs/ragenix.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Age-encrypted secrets for NixOS, drop-in replacement for agenix",
         homepage: "https://github.com/yaxitech/ragenix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

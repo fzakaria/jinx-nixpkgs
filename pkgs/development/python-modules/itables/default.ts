@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 41, 13], ["version", 41, 19], ["hash", 42, 5]], [["all", 61, 5], ["pandas", 74, 5], ["polars", 75, 5], ["narwhals", 76, 5], ["style", 77, 5], ["notebook", 81, 5], ["widget", 82, 5], ["dash", 86, 5], ["streamlit", 90, 5], ["marimo", 91, 5], ["other_dataframes", 92, 5]], [["HATCH_BUILD_NO_HOOKS", 102, 7]], [["description", 115, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 40, 3], ["pyproject", 45, 3], ["build-system", 47, 3], ["nativeBuildInputs", 55, 3], ["optional-dependencies", 60, 3], ["doCheck", 99, 3], ["env", 102, 3], ["postInstall", 108, 3], ["pythonImportsCheck", 112, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, python: false, dash: false, hatchling: false, "hatch-jupyter-builder": false, pyyaml: false, setuptools: false, nodejs: false, ipython: false, numpy: false, pandas: false, polars: false, narwhals: false, matplotlib: false, anywidget: false, traitlets: false, streamlit: false, marimo: false, pyarrow: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 41, 13], ["version", 41, 19], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 61, 5], ["pandas", 74, 5], ["polars", 75, 5], ["narwhals", 76, 5], ["style", 77, 5], ["notebook", 81, 5], ["widget", 82, 5], ["dash", 86, 5], ["streamlit", 90, 5], ["marimo", 91, 5], ["other_dataframes", 92, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["HATCH_BUILD_NO_HOOKS", 102, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 115, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 40, 3], ["pyproject", 45, 3], ["build-system", 47, 3], ["nativeBuildInputs", 55, 3], ["optional-dependencies", 60, 3], ["doCheck", 99, 3], ["env", 102, 3], ["postInstall", 108, 3], ["pythonImportsCheck", 112, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "itables";
       const version = "2.9.1";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-tUfwiCtW5eN+1qiEULPjRJKqA/WqpM8P4AtUkzuet+k=",
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [dash, hatchling, hatch_jupyter_builder, pyyaml, setuptools]);
       const nativeBuildInputs = nix.thunk(() => [nodejs]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [
           pandas,
           polars,
@@ -72,12 +68,12 @@ export default nix.lambda((args) => (() => {
         other_dataframes: nix.thunk(() => [narwhals, pyarrow]),
       }));
       const doCheck = false;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, HATCH_BUILD_NO_HOOKS: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], HATCH_BUILD_NO_HOOKS: true }));
       const postInstall = nix.thunk(() => nix.str`cp -R itables $out/${nix.sel(python, "sitePackages")}
 `);
       const pythonImportsCheck = nix.thunk(() => ["itables"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Pandas and Polar DataFrames as interactive DataTables",
         homepage: "https://github.com/mwouts/itables",
         changelog: nix.thunk(() => nix.str`https://github.com/mwouts/itables/releases/tag/v${version}`),
@@ -88,7 +84,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

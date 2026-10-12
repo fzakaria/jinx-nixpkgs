@@ -2,59 +2,43 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/immich-vectorchord-reindex.nix", [[["cores", 10, 9], ["memorySize", 11, 9], ["diskSize", 12, 9]], [["IMMICH_LOG_LEVEL", 17, 21]], [["enable", 16, 9], ["environment", 17, 9]], [["cargo-pgrx_0_17_0", 28, 15]], [["owner", 34, 21], ["repo", 35, 21], ["tag", 36, 21], ["hash", 37, 21]], [["src", 45, 42], ["hash", 46, 21]], [["version", 32, 19], ["src", 33, 19], ["patches", 42, 19], ["cargoDeps", 44, 19]], [["extensions", 20, 27]], [["immich", 15, 16], ["postgresql", 20, 16]], [["extensions", 59, 29]], [["postgresql", 59, 18]], [["services", 59, 9]], [["configuration", 57, 52]], [["immich-vectorchord-upgraded", 57, 22]], [["virtualisation", 9, 7], ["services", 15, 7], ["specialisation", 57, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 67, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["cores", 10, 9], ["memorySize", 11, 9], ["diskSize", 12, 9]]);
-const pos$2 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["IMMICH_LOG_LEVEL", 17, 21]]);
-const pos$3 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["enable", 16, 9], ["environment", 17, 9]]);
-const pos$4 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["cargo-pgrx_0_17_0", 28, 15]]);
-const pos$5 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["owner", 34, 21], ["repo", 35, 21], ["tag", 36, 21], ["hash", 37, 21]]);
-const pos$6 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["src", 45, 42], ["hash", 46, 21]]);
-const pos$7 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["version", 32, 19], ["src", 33, 19], ["patches", 42, 19], ["cargoDeps", 44, 19]]);
-const pos$8 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["extensions", 20, 27]]);
-const pos$9 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["immich", 15, 16], ["postgresql", 20, 16]]);
-const pos$10 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["extensions", 59, 29]]);
-const pos$11 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["postgresql", 59, 18]]);
-const pos$12 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["services", 59, 9]]);
-const pos$13 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["configuration", 57, 52]]);
-const pos$14 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["immich-vectorchord-upgraded", 57, 22]]);
-const pos$15 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["virtualisation", 9, 7], ["services", 15, 7], ["specialisation", 57, 7]]);
-const pos$16 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["machine", 5, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$17 = nix.positions(here + "/immich-vectorchord-reindex.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "immich-vectorchord-reindex",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, cores: 2n, memorySize: 2048n, diskSize: 4096n })),
+          [nix.POS]: $pos[14],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], cores: 2n, memorySize: 2048n, diskSize: 4096n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             immich: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
-              environment: nix.thunk(() => ({ [nix.POS]: pos$2, IMMICH_LOG_LEVEL: "verbose" })),
+              environment: nix.thunk(() => ({ [nix.POS]: $pos[1], IMMICH_LOG_LEVEL: "verbose" })),
             })),
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               extensions: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), (ps) => (() => {
                   const vectorchord = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(ps, "vectorchord", "override"), nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       "cargo-pgrx_0_17_0": nix.thunk(() => nix.sel(pkgs, "cargo-pgrx_0_16_0")),
                     }))), "overrideAttrs"), (finalAttrs) => (_) => ({
-                      [nix.POS]: pos$7,
+                      [nix.POS]: $pos[6],
                       version: "1.0.0",
                       src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-                          [nix.POS]: pos$5,
+                          [nix.POS]: $pos[4],
                           owner: "tensorchord",
                           repo: "vectorchord",
                           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,7 +46,7 @@ export default nix.lambda((args) => (() => {
                         })))),
                       patches: [],
                       cargoDeps: nix.thunk(() => nix.app(nix.sel(pkgs, "rustPlatform", "fetchCargoVendor"), nix.thunk(() => ({
-                          [nix.POS]: pos$6,
+                          [nix.POS]: $pos[5],
                           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
                           hash: "sha256-kwe2x7OTjpdPonZsvnR1C/89D5W/R5JswYF79YcSFEA=",
                         })))),
@@ -72,15 +56,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             "immich-vectorchord-upgraded": nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   postgresql: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     extensions: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 40n, (ps) => [
                         nix.thunk(() => nix.sel(ps, "pgvector")),
                         nix.thunk(() => nix.sel(ps, "vectorchord")),

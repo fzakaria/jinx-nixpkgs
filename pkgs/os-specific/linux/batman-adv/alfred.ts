@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/alfred.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]], [["pname", 16, 3], ["version", 17, 17], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["preBuild", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gpsd: false, libcap: false, libnl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/alfred.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/alfred.nix", [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]]);
-const pos$3 = nix.positions(here + "/alfred.nix", [["pname", 16, 3], ["version", 17, 17], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["preBuild", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "alfred";
       const version = nix.thunk(() => nix.attr(cfg, "version"));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.open-mesh.org/batman/releases/batman-adv-${version}/${pname}-${version}.tar.gz`),
           sha256: nix.thunk(() => nix.sel(cfg, "sha256", nix.key(pname))),
         }))));
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gpsd, libcap, libnl]);
       const preBuild = "makeFlags=\"PREFIX=$out\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.open-mesh.org/projects/batman-adv/wiki/Wiki",
         description: "B.A.T.M.A.N. routing protocol in a linux kernel module for layer 2, information distribution tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

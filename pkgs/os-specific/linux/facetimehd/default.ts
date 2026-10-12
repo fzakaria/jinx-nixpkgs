@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 51, 5]], [["name", 10, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 24, 3], ["preConfigure", 31, 3], ["hardeningDisable", 35, 3], ["nativeBuildInputs", 37, 3], ["makeFlags", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 10, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 24, 3], ["preConfigure", 31, 3], ["hardeningDisable", 35, 3], ["nativeBuildInputs", 37, 3], ["makeFlags", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "facetimehd";
       const version = "0.7.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "patjak",
           repo: "facetimehd",
           rev: version,
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`KDIR=${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`),
       ]));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/patjak/bcwc_pcie",
         description: "Linux driver for the Facetime HD (Broadcom 1570) PCIe webcam",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name,
         pname,
         version,

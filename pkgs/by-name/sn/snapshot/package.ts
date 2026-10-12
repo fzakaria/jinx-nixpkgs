@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["CARGO_BUILD_TARGET", 82, 7]], [["packageName", 85, 5]], [["updateScript", 84, 12]], [["homepage", 89, 5], ["description", 90, 5], ["teams", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["mainProgram", 94, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoVendorDir", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 49, 3], ["postPatch", 68, 3], ["preFixup", 74, 3], ["env", 82, 3], ["passthru", 84, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, libglycin: false, "libglycin-gtk4": false, "glycin-loaders": false, cargo: false, "desktop-file-utils": false, meson: false, ninja: false, "pkg-config": false, rustc: false, rustPlatform: false, wrapGAppsHook4: false, glib: false, gst_all_1: false, gtk4: false, libadwaita: false, libcamera: false, lcms2: false, libseccomp: false, pipewire: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CARGO_BUILD_TARGET", 82, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 84, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 89, 5], ["description", 90, 5], ["teams", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["mainProgram", 94, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoVendorDir", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 49, 3], ["postPatch", 68, 3], ["preFixup", 74, 3], ["env", 82, 3], ["passthru", 84, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "snapshot",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/snapshot/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/snapshot-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-7J2vmIPrkDMJEbtR5rae7YydvdVDjoZK3JDuVaX+nu0=",
         })))),
@@ -83,15 +78,15 @@ export default nix.lambda((args) => (() => {
 )
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "snapshot" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "snapshot" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.gnome.org/GNOME/snapshot",
         description: "Take pictures and videos on your computer, tablet, or phone",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

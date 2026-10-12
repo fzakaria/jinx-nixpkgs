@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 50, 7]], [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["maintainers", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["broken", 67, 5]], [["pname", 17, 3], ["version", 18, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["configureScript", 43, 3], ["configureFlags", 44, 3], ["env", 50, 3], ["enableParallelBuilding", 52, 3], ["postInstall", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bison: false, "desktop-file-utils": false, gettext: false, "pkg-config": false, glib: false, libxml2: false, libbfd: false, zlib: false, gnutls: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["maintainers", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["broken", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["configureScript", 43, 3], ["configureFlags", 44, 3], ["env", 50, 3], ["enableParallelBuilding", 52, 3], ["postInstall", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const gnutls = nix.arg($, "gnutls");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gtk-gnutella",
       version: "1.3.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gtk-gnutella",
           repo: "gtk-gnutella",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gnutls, libbfd, libxml2, zlib]),
       configureScript: "./build.sh",
       configureFlags: nix.thunk(() => ["--configure-only", "--topless"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       enableParallelBuilding: true,
       postInstall: "install -Dm0444 src/gtk-gnutella.man $out/share/man/man1/gtk-gnutella.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GTK Gnutella client, optimized for speed and scalability",
         mainProgram: "gtk-gnutella",
         homepage: "https://gtk-gnutella.sourceforge.net/",

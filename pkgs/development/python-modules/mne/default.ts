@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["hdf5", 69, 25]], [["description", 113, 5], ["mainProgram", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["build-system", 52, 3], ["dependencies", 57, 3], ["optional-dependencies", 69, 3], ["nativeCheckInputs", 74, 3], ["preCheck", 84, 3], ["disabledTests", 89, 3], ["disabledTestMarks", 104, 3], ["pythonImportsCheck", 110, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, stdenv: false, hatchling: false, "hatch-vcs": false, numpy: false, scipy: false, flaky: false, pandas: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-timeout": false, writableTmpDirAsHomeHook: false, matplotlib: false, decorator: false, jinja2: false, pooch: false, tqdm: false, packaging: false, "lazy-loader": false, h5io: false, pymatreader: false, procps: false, optipng: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hdf5", 69, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 113, 5], ["mainProgram", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["build-system", 52, 3], ["dependencies", 57, 3], ["optional-dependencies", 69, 3], ["nativeCheckInputs", 74, 3], ["preCheck", 84, 3], ["disabledTests", 89, 3], ["disabledTestMarks", 104, 3], ["pythonImportsCheck", 110, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mne-tools",
           repo: "mne-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,7 +63,7 @@ substituteInPlace mne/utils/config.py \\
         jinja2,
         lazy_loader,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, hdf5: nix.thunk(() => [h5io, pymatreader]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], hdf5: nix.thunk(() => [h5io, pymatreader]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([
         flaky,
         pandas,
@@ -85,7 +82,7 @@ substituteInPlace mne/utils/config.py \\
       const disabledTestMarks = nix.thunk(() => ["slowtest", "ultraslowtest", "pgtest"]);
       const pythonImportsCheck = nix.thunk(() => ["mne"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Magnetoencephelography and electroencephalography in Python",
         mainProgram: "mne",
         homepage: "https://mne.tools",
@@ -97,7 +94,7 @@ substituteInPlace mne/utils/config.py \\
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

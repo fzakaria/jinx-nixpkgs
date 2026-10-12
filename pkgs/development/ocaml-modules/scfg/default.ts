@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 22, 5], ["hash", 23, 5]], [["description", 50, 5], ["homepage", 51, 5], ["downloadPage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 34, 3], ["checkInputs", 43, 3], ["doCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchzip: false, bos: false, cmdliner: false, fmt: false, fpath: false, menhir: false, menhirLib: false, prelude: false, sedlex: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["downloadPage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 34, 3], ["checkInputs", 43, 3], ["doCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const sedlex = nix.arg($, "sedlex");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "scfg",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.zapashcanon.fr/zapashcanon/scfg/archive/${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-XyNVmI0W0B1JqR+uuojpHe9L5KKLhyoH8vN8+9i7Xcg=",
         })))),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to work with the scfg configuration file",
         homepage: "https://ocaml.org/p/scfg/",
         downloadPage: "https://git.zapashcanon.fr/zapashcanon/scfg",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["NIX_CFLAGS_COMPILE", 21, 7]], [["url", 29, 7], ["sha256", 30, 7]], [["description", 68, 5], ["homepage", 69, 5], ["maintainers", 70, 5], ["license", 71, 5], ["platforms", 72, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["env", 21, 3], ["patches", 23, 3], ["makeFlags", 34, 3], ["buildFlags", 55, 3], ["doCheck", 57, 3], ["checkTarget", 58, 3], ["enableParallelBuilding", 60, 3], ["postInstall", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, enableShared: true, enableStatic: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 29, 7], ["sha256", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["maintainers", 70, 5], ["license", 71, 5], ["platforms", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["env", 21, 3], ["patches", 23, 3], ["makeFlags", 34, 3], ["buildFlags", 55, 3], ["doCheck", 57, 3], ["checkTarget", 58, 3], ["enableParallelBuilding", 60, 3], ["postInstall", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const enableStatic = nix.argOr($, "enableStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "http-parser",
       version: "2.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nodejs",
           repo: "http-parser",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "1vda4dp75pjf5fcph73sy0ifm3xrssrmf927qd1x8g3q46z0cv6c",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error" })),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./enable-static-shared.patch")], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch32")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://github.com/nodejs/http-parser/commit/4f15b7d510dc7c6361a26a7c6d2f7c3a17f8d878.patch",
               sha256: "sha256-rZZMJeow3V1fTnjadRaRa+xTq3pdhZn/eJ4xjxEDoU4=",
             })))),
@@ -61,7 +57,7 @@ export default nix.lambda((args) => (() => {
 ln -sf libhttp_parser.${nix.sel(finalAttrs, "version")}.dll.a $out/lib/libhttp_parser.dll.a
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "HTTP message parser written in C",
         homepage: "https://github.com/nodejs/http-parser",
         maintainers: [],

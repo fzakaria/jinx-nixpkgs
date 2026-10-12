@@ -2,17 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withHashedPasswords", 3, 3], ["withCertgen", 4, 3], ["withThumbnails", 5, 3], ["withFastThumbnails", 6, 3], ["withMediaProcessing", 7, 3], ["withBasicAudioMetadata", 8, 3], ["withZeroMQ", 9, 3], ["withFTP", 10, 3], ["withFTPS", 11, 3], ["withTFTP", 12, 3], ["withSMB", 13, 3], ["withMagic", 14, 3], ["nameSuffix", 15, 3], ["longDescription", 16, 3]], [["updateScript", 22, 7]], [["description", 27, 7]], [["passthru", 21, 5], ["meta", 25, 5]]]);
 const formals$1 = { args: { copyparty: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withHashedPasswords", 3, 3], ["withCertgen", 4, 3], ["withThumbnails", 5, 3], ["withFastThumbnails", 6, 3], ["withMediaProcessing", 7, 3], ["withBasicAudioMetadata", 8, 3], ["withZeroMQ", 9, 3], ["withFTP", 10, 3], ["withFTPS", 11, 3], ["withTFTP", 12, 3], ["withSMB", 13, 3], ["withMagic", 14, 3], ["nameSuffix", 15, 3], ["longDescription", 16, 3]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 27, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["passthru", 21, 5], ["meta", 25, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const copyparty = nix.arg($, "copyparty");
   return nix.app(nix.sel(nix.app(nix.sel(copyparty, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       withHashedPasswords: false,
       withCertgen: false,
       withThumbnails: false,
@@ -28,10 +25,10 @@ export default nix.lambda((args) => (() => {
       nameSuffix: "-min",
       longDescription: "Minimal variant, minimal dependencies and fewest features",
     }))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$4,
-      passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), { [nix.POS]: pos$2, updateScript: null })),
+      [nix.POS]: $pos[3],
+      passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), { [nix.POS]: $pos[1], updateScript: null })),
       meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: nix.thunk(() => nix.add(nix.sel(old, "meta", "description"), " - minimal variant")),
       })),
     }));

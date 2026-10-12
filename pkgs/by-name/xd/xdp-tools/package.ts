@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]], [["BPF_CFLAGS", 68, 5], ["CLANG", 73, 5], ["PRODUCTION", 75, 5], ["DYNAMIC_LIBXDP", 76, 5], ["FORCE_SYSTEM_LIBBPF", 77, 5], ["FORCE_EMACS", 78, 5]], [["homepage", 102, 5], ["description", 103, 5], ["license", 104, 5], ["maintainers", 109, 5], ["platforms", 114, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["outputs", 38, 3], ["buildInputs", 43, 3], ["depsBuildBuild", 50, 3], ["nativeBuildInputs", 53, 3], ["nativeCheckInputs", 60, 3], ["hardeningDisable", 64, 3], ["env", 66, 3], ["makeFlags", 81, 3], ["enableParallelBuilding", 86, 3], ["postInstall", 88, 3], ["stripDebugList", 95, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, fetchFromGitHub: false, fetchpatch: false, libbpf: false, elfutils: false, zlib: false, libpcap: false, bpftools: false, llvmPackages: false, "pkg-config": false, m4: false, "emacs-nox": false, "wireshark-cli": false, nukeReferences: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["BPF_CFLAGS", 68, 5], ["CLANG", 73, 5], ["PRODUCTION", 75, 5], ["DYNAMIC_LIBXDP", 76, 5], ["FORCE_SYSTEM_LIBBPF", 77, 5], ["FORCE_EMACS", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 102, 5], ["description", 103, 5], ["license", 104, 5], ["maintainers", 109, 5], ["platforms", 114, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["outputs", 38, 3], ["buildInputs", 43, 3], ["depsBuildBuild", 50, 3], ["nativeBuildInputs", 53, 3], ["nativeCheckInputs", 60, 3], ["hardeningDisable", 64, 3], ["env", 66, 3], ["makeFlags", 81, 3], ["enableParallelBuilding", 86, 3], ["postInstall", 88, 3], ["stripDebugList", 95, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const wireshark_cli = nix.arg($, "wireshark-cli");
   const nukeReferences = nix.arg($, "nukeReferences");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xdp-tools",
       version: "1.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xdp-project",
           repo: "xdp-tools",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "musl.patch",
             url: "https://github.com/xdp-project/xdp-tools/commit/2ff228be7926ba01e13c8d328828a270af2e7e0d.patch",
             hash: "sha256-jYdcC36nL4P4IadwGfva8nqMerd/2HHw2RYhc+wR9nk=",
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [wireshark_cli]),
       hardeningDisable: nix.thunk(() => ["zerocallusedregs"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         BPF_CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fno-stack-protector", "-Wno-error=unused-command-line-argument"]))),
         CLANG: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "llvmPackages", "clang")))),
         PRODUCTION: 1n,
@@ -72,7 +68,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "# Note that even the static libxdp would refer to BPF_OBJECT_DIR ?=$(LIBDIR)/bpf\nrm \"$lib\"/lib/*.a\n# Drop unfortunate references to glibc.dev/include at least from $lib\nnuke-refs \"$lib\"/lib/bpf/*.o\n",
       stripDebugList: nix.thunk(() => ["bin", "lib", "share/xdp-tools"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/xdp-project/xdp-tools",
         description: "Library and utilities for use with XDP",
         license: nix.thunk(() => (() => {

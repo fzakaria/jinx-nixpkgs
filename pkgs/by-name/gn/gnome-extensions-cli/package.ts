@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 5], ["version", 16, 26], ["hash", 17, 5]], [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["pythonRelaxDeps", 25, 3], ["build-system", 30, 3], ["dependencies", 34, 3], ["pythonImportsCheck", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, python3Packages: false, "gobject-introspection": false, wrapGAppsNoGuiHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 5], ["version", 16, 26], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["pythonRelaxDeps", 25, 3], ["build-system", 30, 3], ["dependencies", 34, 3], ["pythonImportsCheck", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const wrapGAppsNoGuiHook = nix.arg($, "wrapGAppsNoGuiHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gnome-extensions-cli",
       version: "0.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "gnome_extensions_cli",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-5OL0ma17rXA+USDATVQXO3ORWDAwoGB3x85BSIsRapY=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["gnome_extensions_cli"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/essembeh/gnome-extensions-cli",
         description: "Command line tool to manage your GNOME Shell extensions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

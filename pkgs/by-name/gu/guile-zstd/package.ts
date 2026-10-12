@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 32, 3], ["makeFlags", 33, 3], ["doCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitea: false, autoreconfHook: false, "pkg-config": false, guile: false, texinfo: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 32, 3], ["makeFlags", 33, 3], ["doCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "guile-zstd",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "notabug.org",
           owner: "guile-zstd",
           repo: "guile-zstd",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["GUILE_AUTO_COMPILE=0"]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GNU Guile library providing bindings to zstd",
         homepage: "https://notabug.org/guile-zstd/guile-zstd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

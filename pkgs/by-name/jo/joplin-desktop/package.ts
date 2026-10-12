@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 38, 12]], [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["postFetch", 44, 5], ["hash", 48, 27]], [["src", 55, 7], ["missingHashes", 56, 7], ["hash", 58, 5]], [["patches", 64, 7]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 98, 5], ["YARN_ENABLE_SCRIPTS", 103, 5], ["YARN_IGNORE_PATH", 106, 5]], [["name", 231, 7], ["desktopName", 232, 7], ["exec", 233, 7], ["icon", 234, 7], ["comment", 235, 7], ["categories", 236, 7], ["startupWMClass", 237, 7], ["mimeTypes", 238, 7]], [["description", 243, 5], ["mainProgram", 244, 5], ["longDescription", 245, 5], ["homepage", 252, 5], ["license", 253, 5], ["maintainers", 254, 5], ["platforms", 257, 29]], [["pname", 35, 3], ["version", 36, 25], ["passthru", 38, 3], ["src", 40, 3], ["missingHashes", 51, 3], ["offlineCache", 53, 3], ["defaultPlugins", 62, 3], ["buildInputs", 70, 3], ["nativeBuildInputs", 75, 3], ["env", 97, 3], ["postPatch", 109, 3], ["buildPhase", 119, 3], ["installPhase", 183, 3], ["postFixup", 221, 3], ["desktopItems", 229, 3], ["meta", 242, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, nodejs: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, fetchFromGitHub: false, "yarn-berry_4": false, python3: false, "pkg-config": false, pango: false, cairo: false, pixman: false, libsecret: false, electron: false, xcbuild: false, buildPackages: false, callPackage: false, libGL: false, libnotify: false, clang_20: false, jq: false, glib: false, "gsettings-desktop-schemas": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 38, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["postFetch", 44, 5], ["hash", 48, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 55, 7], ["missingHashes", 56, 7], ["hash", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["patches", 64, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 98, 5], ["YARN_ENABLE_SCRIPTS", 103, 5], ["YARN_IGNORE_PATH", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 231, 7], ["desktopName", 232, 7], ["exec", 233, 7], ["icon", 234, 7], ["comment", 235, 7], ["categories", 236, 7], ["startupWMClass", 237, 7], ["mimeTypes", 238, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 243, 5], ["mainProgram", 244, 5], ["longDescription", 245, 5], ["homepage", 252, 5], ["license", 253, 5], ["maintainers", 254, 5], ["platforms", 257, 29]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 25], ["passthru", 38, 3], ["src", 40, 3], ["missingHashes", 51, 3], ["offlineCache", 53, 3], ["defaultPlugins", 62, 3], ["buildInputs", 70, 3], ["nativeBuildInputs", 75, 3], ["env", 97, 3], ["postPatch", 109, 3], ["buildPhase", 119, 3], ["installPhase", 183, 3], ["postFixup", 221, 3], ["desktopItems", 229, 3], ["meta", 242, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const yarn_berry = yarn_berry_4;
   const releaseData = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./release-data.json")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "joplin-desktop",
       version: nix.thunk(() => nix.attr(releaseData, "version")),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], updateScript: nix.path(here, "./update.py") })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "laurent22",
           repo: "joplin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,14 +48,14 @@ export default nix.lambda((args) => (() => {
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: nix.thunk(() => nix.sel(releaseData, "deps_hash")),
         })))),
       defaultPlugins: nix.thunk(() => [
         nix.thunk(() => nix.app(callPackage, nix.path(here, "./joplin-plugin-backup.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             patches: nix.thunk(() => [
               nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/packages/default-plugins/plugin-patches/io.github.jackgruber.backup.diff")),
             ]),
@@ -86,7 +79,7 @@ export default nix.lambda((args) => (() => {
         jq,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcbuild, nix.thunk(() => nix.sel(buildPackages, "cctools")), clang_20])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [copyDesktopItems]))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         ELECTRON_SKIP_BINARY_DOWNLOAD: 1n,
         YARN_ENABLE_SCRIPTS: 0n,
         YARN_IGNORE_PATH: 1n,
@@ -180,7 +173,7 @@ runHook postInstall
       postFixup: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "chmod a+x $out/share/joplin-desktop/resources/build/7zip/7za\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "chmod a+x $out/Applications/Joplin.app/Contents/Resources/build/7zip/7za\n"))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "appimagekit-joplin",
             desktopName: "Joplin",
             exec: "joplin-desktop %U",
@@ -194,7 +187,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Open source note taking and to-do application with synchronisation capabilities",
         mainProgram: "joplin-desktop",
         longDescription: "Joplin is a free, open source note taking and to-do application, which can\nhandle a large number of notes organised into notebooks. The notes are\nsearchable, can be copied, tagged and modified either from the\napplications directly or from your own text editor. The notes are in\nMarkdown format.\n",

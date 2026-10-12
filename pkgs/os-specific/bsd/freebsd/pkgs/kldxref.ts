@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kldxref.nix", [[["platforms", 30, 8]], [["path", 10, 3], ["extraPaths", 11, 3], ["buildInputs", 15, 3], ["extraNativeBuildInputs", 17, 3], ["preBuild", 21, 3], ["postPatch", 26, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false, compatIfNeeded: false, libelf: false, elfcopy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kldxref.nix", [["platforms", 30, 8]]);
-const pos$2 = nix.positions(here + "/kldxref.nix", [["path", 10, 3], ["extraPaths", 11, 3], ["buildInputs", 15, 3], ["extraNativeBuildInputs", 17, 3], ["preBuild", 21, 3], ["postPatch", 26, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libelf = nix.arg($, "libelf");
   const elfcopy = nix.arg($, "elfcopy");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.sbin/kldxref",
       extraPaths: nix.thunk(() => ["lib/libkldelf"]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD"))), nix.thunk(() => [libelf])), compatIfNeeded)),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "make -C $BSDSRCDIR/lib/libkldelf $makeFlags\n",
       postPatch: "sed -i 's/FTS_PHYSICAL/FTS_LOGICAL/' $BSDSRCDIR/usr.sbin/kldxref/kldxref.c\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

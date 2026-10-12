@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["out", 58, 20]], [["binlore", 58, 12]], [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["makeFlags", 35, 3], ["postPatch", 40, 3], ["doCheck", 51, 3], ["checkTarget", 52, 3], ["passthru", 58, 3], ["nativeInstallCheckInputs", 62, 3], ["versionCheckProgramArg", 63, 3], ["doInstallCheck", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, asciidoctor: false, gawk: false, gnused: false, coreutils: false, runtimeShell: false, binlore: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["out", 58, 20]]);
-const pos$3 = nix.positions(here + "/package.nix", [["binlore", 58, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["makeFlags", 35, 3], ["postPatch", 40, 3], ["doCheck", 51, 3], ["checkTarget", 52, 3], ["passthru", 58, 3], ["nativeInstallCheckInputs", 62, 3], ["versionCheckProgramArg", 63, 3], ["doInstallCheck", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const binlore = nix.arg($, "binlore");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "esh",
       version: "0.1.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jirutka",
           repo: "esh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,9 +45,9 @@ substituteInPlace tests/test-dump.exp \\
       doCheck: true,
       checkTarget: "test",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         binlore: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           out: nix.thunk(() => nix.app(nix.sel(binlore, "synthesize"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")), "execer can bin/esh\n")),
         })),
       })),
@@ -59,7 +55,7 @@ substituteInPlace tests/test-dump.exp \\
       versionCheckProgramArg: "-V",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple templating engine based on shell",
         mainProgram: "esh",
         homepage: "https://github.com/jirutka/esh",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["homepage", 32, 5], ["platforms", 33, 5], ["teams", 34, 5], ["license", 35, 5]], [["pname", 11, 3], ["version", 13, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["vendorHash", 25, 3], ["buildInputs", 26, 3], ["ldflags", 27, 3], ["doCheck", 28, 3], ["prodyVendor", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, git: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 32, 5], ["platforms", 33, 5], ["teams", 34, 5], ["license", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 13, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["vendorHash", 25, 3], ["buildInputs", 26, 3], ["ldflags", 27, 3], ["doCheck", 28, 3], ["prodyVendor", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const data = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "../data.json")));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gitlab-workhorse",
       version: "19.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: nix.thunk(() => nix.sel(data, "owner")),
           repo: nix.thunk(() => nix.sel(data, "repo")),
           rev: nix.thunk(() => nix.sel(data, "rev")),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       prodyVendor: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.gitlab.com/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gitlab"))]),

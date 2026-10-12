@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["url", 44, 5], ["rev-prefix", 45, 5]], [["updateScript", 43, 12]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontWrapQtApps", 20, 3], ["dontBuild", 23, 3], ["postPatch", 25, 3], ["installPhase", 33, 3], ["passthru", 43, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, kdePackages: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 44, 5], ["rev-prefix", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontWrapQtApps", 20, 3], ["dontBuild", 23, 3], ["postPatch", 25, 3], ["installPhase", 33, 3], ["passthru", 43, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fokus",
       version: "3.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "divinae",
           repo: "focus-plasmoid",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,15 +33,15 @@ substituteInPlace package/contents/ui/Sfx.qml \\
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/plasma/plasmoids/com.dv.fokus\ncp -r package/* $out/share/plasma/plasmoids/com.dv.fokus/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/divinae/focus-plasmoid.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple pomodoro KDE Plasma plasmoid",
         homepage: "https://gitlab.com/divinae/focus-plasmoid",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/divinae/focus-plasmoid/-/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

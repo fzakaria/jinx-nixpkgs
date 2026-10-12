@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["nix-update", 46, 71]], [["nix-update-script", 46, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 59, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["makeWrapperArgs", 26, 3], ["checkPhase", 37, 3], ["passthru", 45, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fetchFromGitHub: false, nix: false, "nix-prefetch-git": false, "nixpkgs-review": false, python3Packages: false, "nix-update": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nix-update", 46, 71]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nix-update-script", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["makeWrapperArgs", 26, 3], ["checkPhase", 37, 3], ["passthru", 45, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const nix_update = nix.arg($, "nix-update");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nix-update",
       version: "1.16.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Mic92",
           repo: "nix-update",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
       ]),
       checkPhase: "runHook preCheck\n\n$out/bin/nix-update --help >/dev/null\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        "nix-update-script": nix.thunk(() => nix.app(callPackage, nix.path(here, "./nix-update-script.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, "nix-update": nix_update })))),
+        [nix.POS]: $pos[2],
+        "nix-update-script": nix.thunk(() => nix.app(callPackage, nix.path(here, "./nix-update-script.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], "nix-update": nix_update })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Swiss-knife for updating nix packages",
         homepage: "https://github.com/Mic92/nix-update/",
         changelog: nix.thunk(() => nix.str`https://github.com/Mic92/nix-update/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

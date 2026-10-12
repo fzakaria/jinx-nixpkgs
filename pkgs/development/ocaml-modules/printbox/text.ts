@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/text.nix", [[["description", 25, 5]], [["pname", 12, 3], ["src", 13, 22], ["version", 13, 26], ["propagatedBuildInputs", 15, 3], ["doCheck", 21, 3], ["nativeCheckInputs", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, lib: false, ocaml: false, printbox: false, uucp: false, uutf: false, mdx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/text.nix", [["description", 25, 5]]);
-const pos$2 = nix.positions(here + "/text.nix", [["pname", 12, 3], ["src", 13, 22], ["version", 13, 26], ["propagatedBuildInputs", 15, 3], ["doCheck", 21, 3], ["nativeCheckInputs", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const uutf = nix.arg($, "uutf");
   const mdx = nix.arg($, "mdx");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "printbox-text",
       src: nix.thunk(() => nix.attr(printbox, "src")),
       version: nix.thunk(() => nix.attr(printbox, "version")),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => (nix.asBool(nix.sel(printbox, "doCheck")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")))),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       meta: nix.thunk(() => nix.update(nix.sel(printbox, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Text renderer for printbox, using unicode edges",
       })),
     })));

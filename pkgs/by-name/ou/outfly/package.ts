@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["name", 56, 7], ["exec", 57, 7], ["desktopName", 58, 7], ["categories", 59, 7]], [["updateScript", 62, 12]], [["description", 65, 5], ["homepage", 66, 5], ["downloadPage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 22, 3], ["runtimeInputs", 29, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 44, 3], ["doCheck", 45, 3], ["postFixup", 47, 3], ["cargoHash", 52, 3], ["desktopItems", 54, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromCodeberg: false, rustPlatform: false, makeDesktopItem: false, "pkg-config": false, libxkbcommon: false, "alsa-lib": false, libGL: false, "vulkan-loader": false, wayland: false, libxrandr: false, libxcursor: false, libx11: false, libxi: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 56, 7], ["exec", 57, 7], ["desktopName", 58, 7], ["categories", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["downloadPage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 22, 3], ["runtimeInputs", 29, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 44, 3], ["doCheck", 45, 3], ["postFixup", 47, 3], ["cargoHash", 52, 3], ["desktopItems", 54, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "outfly";
       const version = "0.15.0";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "outfly",
           repo: "outfly",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-UXqS4JfKuLxeTW1MDMnKLzw8oHf1Gpgv8SktTtf12mc=";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "outfly",
             exec: "outfly",
             desktopName: "OutFly",
@@ -54,11 +50,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Breathtaking 3D space game in the rings of Jupiter",
         homepage: "https://yunicode.itch.io/outfly",
         downloadPage: "https://codeberg.org/outfly/outfly/releases",
@@ -83,7 +79,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "outfly",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

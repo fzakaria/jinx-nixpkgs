@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["changelog", 20, 5], ["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]], [["owner", 8, 3], ["domain", 9, 3], ["version", 10, 3], ["src", 12, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildHomeAssistantComponent: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 20, 5], ["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 8, 3], ["domain", 9, 3], ["version", 10, 3], ["src", 12, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,21 +15,21 @@ export default nix.lambda((args) => (() => {
       const domain = "luxer";
       const version = "0.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tjhorner",
           repo: "home-assistant-luxer-one",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-bzAdroFE25L0gy1FURYF5p8BaTjzHKtmpKWweDAQH0s=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/tjhorner/home-assistant-luxer-one/releases/tag/${nix.sel(src, "tag")}`),
         description: "Home Assistant integration for Luxer One",
         homepage: "https://github.com/tjhorner/home-assistant-luxer-one",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "haylin"))]),
       }));
-      return { [nix.POS]: pos$3, owner, domain, version, src, meta };
+      return { [nix.POS]: $pos[2], owner, domain, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

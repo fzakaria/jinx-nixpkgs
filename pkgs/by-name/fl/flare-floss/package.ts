@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["fetchSubmodules", 16, 5], ["hash", 17, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["postPatch", 20, 3], ["pythonRelaxDeps", 25, 3], ["build-system", 27, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 49, 3], ["postInstall", 55, 3], ["preCheck", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["fetchSubmodules", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["postPatch", 20, 3], ["pythonRelaxDeps", 25, 3], ["build-system", 27, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 49, 3], ["postInstall", 55, 3], ["preCheck", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mandiant",
           repo: "flare-floss",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "mkdir -p $out/share/flare-floss/\ncp -r floss/sigs $out/share/flare-floss/\n";
       const preCheck = "export HOME=$(mktemp -d)\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Automatically extract obfuscated strings from malware",
         homepage: "https://github.com/mandiant/flare-floss",
         changelog: nix.thunk(() => nix.str`https://github.com/mandiant/flare-floss/releases/tag/v${version}`),
@@ -72,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/login.nix", [[["path", 9, 3], ["buildInputs", 10, 3], ["extraNativeBuildInputs", 15, 3], ["postPatch", 17, 3], ["MK_TESTS", 21, 3], ["MK_SETUID_LOGIN", 22, 3], ["postInstall", 24, 3]]]);
 const formals$1 = { args: { mkDerivation: false, libutil: false, libpam: false, libbsm: false, cap_mkdb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/login.nix", [["path", 9, 3], ["buildInputs", 10, 3], ["extraNativeBuildInputs", 15, 3], ["postPatch", 17, 3], ["MK_TESTS", 21, 3], ["MK_SETUID_LOGIN", 22, 3], ["postInstall", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const libbsm = nix.arg($, "libbsm");
   const cap_mkdb = nix.arg($, "cap_mkdb");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "usr.bin/login",
       buildInputs: nix.thunk(() => [libutil, libpam, libbsm]),
       extraNativeBuildInputs: nix.thunk(() => [cap_mkdb]),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 5], ["version", 23, 26], ["hash", 24, 5]], [["updateScript", 42, 12]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["pythonImportsCheck", 37, 3], ["doCheck", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cryptography: false, fetchPypi: false, hatchling: false, "nix-update-script": false, pydantic: false, pyjwt: false, requests: false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 5], ["version", 23, 26], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 42, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["pythonImportsCheck", 37, 3], ["doCheck", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "stackit-core",
       version: "0.3.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "stackit_core",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-v9ItsZYLRz4DSk/xxDDHk5r/HKCVh8D0fgIKet1E01I=",
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["stackit.core"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Core functionality for the STACKIT SDK",
         homepage: "https://github.com/stackitcloud/stackit-sdk-python",
         changelog: nix.thunk(() => nix.str`https://github.com/stackitcloud/stackit-sdk-python/releases/tag/core/v${nix.sel(finalAttrs, "version")}`),

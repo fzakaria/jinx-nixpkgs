@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["CXXFLAGS", 35, 7]], [["matterjs-server", 73, 36]], [["tests", 73, 5], ["updateScript", 74, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 86, 5], ["platforms", 87, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["npmDepsHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["env", 35, 3], ["preBuild", 37, 3], ["postBuild", 40, 3], ["dontNpmInstall", 46, 3], ["makeWrapperArgs", 48, 3], ["installPhase", 54, 3], ["doInstallCheck", 69, 3], ["versionCheckProgramArg", 70, 3], ["passthru", 72, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, makeBinaryWrapper: false, nodejs: false, udev: false, versionCheckHook: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["matterjs-server", 73, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 73, 5], ["updateScript", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 86, 5], ["platforms", 87, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["npmDepsHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["env", 35, 3], ["preBuild", 37, 3], ["postBuild", 40, 3], ["dontNpmInstall", 46, 3], ["makeWrapperArgs", 48, 3], ["installPhase", 54, 3], ["doInstallCheck", 69, 3], ["versionCheckProgramArg", 70, 3], ["passthru", 72, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "matterjs-server",
       version: "1.4.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matter-js",
           repo: "matterjs-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-haKiheg/+f1rgC/narKRTk3nWZgl0GMlSOz0QqzVbUo=",
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, versionCheckHook]),
       buildInputs: nix.thunk(() => [udev]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=c++20" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-std=c++20" })),
       preBuild: "npm run version -- --apply",
       postBuild: "shopt -s globstar\nrm node_modules/**/build/{config.gypi,Makefile,*.target.mk}\nshopt -u globstar\n",
       dontNpmInstall: true,
@@ -58,15 +53,15 @@ runHook postInstall
       doInstallCheck: true,
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "matterjs-server": nix.thunk(() => nix.attr(nixosTests, "matterjs-server")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Matter server based on Matter.js",
         homepage: "https://github.com/matter-js/matterjs-server",
         changelog: nix.thunk(() => nix.str`https://github.com/matter-js/matterjs-server/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

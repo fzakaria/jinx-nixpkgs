@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 30, 5], ["description", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 38], ["license", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 20, 3], ["cmakeFlags", 22, 3], ["dontWrapQtApps", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, cmake: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 30, 5], ["description", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 38], ["license", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 20, 3], ["cmakeFlags", 22, 3], ["dontWrapQtApps", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libdbusmenu-qt5";
       const version = "0.9.3+16";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.launchpad.net/ubuntu/+source/libdbusmenu-qt",
           rev: nix.thunk(() => nix.str`import/${version}.04.20160218-1`),
           hash: "sha256-nXZv1m/dQv8vt+xPS7WTC8nKfbEJ45WtZ8vVBencPg0=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libsForQt5, "qtbase", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://launchpad.net/libdbusmenu-qt",
         description: "Provides a Qt implementation of the DBusMenu spec",
         maintainers: [],
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

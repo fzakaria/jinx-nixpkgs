@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["description", 99, 5], ["homepage", 100, 5], ["downloadPage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["dependencies", 49, 3], ["pythonImportsCheck", 59, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 77, 3], ["disabledTestPaths", 93, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, gym: false, gymnasium: false, packaging: false, tensorboard: false, torch: false, tqdm: false, wandb: false, flax: false, hypothesis: false, jax: false, mujoco: false, optax: false, pettingzoo: false, pygame: false, pymunk: false, "pytest-xdist": false, pytestCheckHook: false, "warp-lang": false, "warp-nn": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 99, 5], ["homepage", 100, 5], ["downloadPage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["dependencies", 49, 3], ["pythonImportsCheck", 59, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 77, 3], ["disabledTestPaths", 93, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const warp_nn = nix.arg($, "warp-nn");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "skrl",
       version: "2.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Toni-SM",
           repo: "skrl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["tests/memories/torch/test_base.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Reinforcement learning library using PyTorch focusing on readability and simplicity",
         homepage: "https://skrl.readthedocs.io",
         downloadPage: "https://github.com/Toni-SM/skrl",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["doInstallIntermediates", 21, 5], ["enableSeparateIntermediatesOutput", 22, 5]], [["previousIntermediates", 32, 5]], [["maintainers", 37, 5]], [["meta", 36, 3]]]);
 const formals$1 = { args: { haskell: false, haskellPackages: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["doInstallIntermediates", 21, 5], ["enableSeparateIntermediatesOutput", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["previousIntermediates", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["maintainers", 37, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const overrideCabal = nix.thunk(() => nix.attr(from, "overrideCabal"));
   const temporary = nix.thunk(() => nix.sel(haskellPackages, "temporary"));
   const temporary_full_build_with_incremental_output = nix.thunk(() => nix.app(overrideCabal, (drv) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       doInstallIntermediates: true,
       enableSeparateIntermediatesOutput: true,
     }), temporary));
   const temporary_incremental_build = nix.thunk(() => nix.app(overrideCabal, (drv) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       previousIntermediates: nix.thunk(() => nix.sel(temporary_full_build_with_incremental_output, "intermediates")),
     }), temporary));
   return nix.app(nix.sel(temporary_incremental_build, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         maintainers: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "meta", "maintainers"), [
           nix.thunk(() => nix.sel(lib, "maintainers", "_9999years")),
           nix.thunk(() => nix.sel(lib, "maintainers", "Gabriella439")),

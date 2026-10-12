@@ -2,53 +2,35 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/immich.nix", [[["cores", 10, 9], ["memorySize", 11, 9], ["diskSize", 12, 9]], [["url", 34, 9], ["hash", 35, 9]], [["source", 33, 30]], [["photos", 33, 23]], [["systemPackages", 15, 19], ["etc", 33, 19]], [["IMMICH_LOG_LEVEL", 19, 21]], [["_secret", 25, 28]], [["enabled", 23, 13], ["cronExpression", 25, 13]], [["database", 22, 18]], [["_secret", 28, 49]], [["password", 28, 40]], [["transport", 28, 30]], [["smtp", 28, 25]], [["backup", 22, 11], ["notifications", 28, 11]], [["enable", 18, 9], ["environment", 19, 9], ["host", 20, 9], ["settings", 21, 9]], [["immich", 17, 16]], [["virtualisation", 9, 7], ["environment", 15, 7], ["services", 17, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 39, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/immich.nix", [["cores", 10, 9], ["memorySize", 11, 9], ["diskSize", 12, 9]]);
-const pos$2 = nix.positions(here + "/immich.nix", [["url", 34, 9], ["hash", 35, 9]]);
-const pos$3 = nix.positions(here + "/immich.nix", [["source", 33, 30]]);
-const pos$4 = nix.positions(here + "/immich.nix", [["photos", 33, 23]]);
-const pos$5 = nix.positions(here + "/immich.nix", [["systemPackages", 15, 19], ["etc", 33, 19]]);
-const pos$6 = nix.positions(here + "/immich.nix", [["IMMICH_LOG_LEVEL", 19, 21]]);
-const pos$7 = nix.positions(here + "/immich.nix", [["_secret", 25, 28]]);
-const pos$8 = nix.positions(here + "/immich.nix", [["enabled", 23, 13], ["cronExpression", 25, 13]]);
-const pos$9 = nix.positions(here + "/immich.nix", [["database", 22, 18]]);
-const pos$10 = nix.positions(here + "/immich.nix", [["_secret", 28, 49]]);
-const pos$11 = nix.positions(here + "/immich.nix", [["password", 28, 40]]);
-const pos$12 = nix.positions(here + "/immich.nix", [["transport", 28, 30]]);
-const pos$13 = nix.positions(here + "/immich.nix", [["smtp", 28, 25]]);
-const pos$14 = nix.positions(here + "/immich.nix", [["backup", 22, 11], ["notifications", 28, 11]]);
-const pos$15 = nix.positions(here + "/immich.nix", [["enable", 18, 9], ["environment", 19, 9], ["host", 20, 9], ["settings", 21, 9]]);
-const pos$16 = nix.positions(here + "/immich.nix", [["immich", 17, 16]]);
-const pos$17 = nix.positions(here + "/immich.nix", [["virtualisation", 9, 7], ["environment", 15, 7], ["services", 17, 7]]);
-const pos$18 = nix.positions(here + "/immich.nix", [["machine", 5, 9]]);
-const pos$19 = nix.positions(here + "/immich.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "immich-nixos",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$17,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, cores: 2n, memorySize: 4096n, diskSize: 4096n })),
+          [nix.POS]: $pos[16],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], cores: 2n, memorySize: 4096n, diskSize: 4096n })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "immich-cli"))];
             })()),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               photos: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 source: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchzip"), nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     url: "https://github.com/user-attachments/files/22865871/IMGP5923.zip",
                     hash: "sha256-ux0IG1qCB1s8GKsZp9R0rvwEZxeXm5FnuS9kYstKVmo=",
                   })))),
@@ -56,32 +38,32 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             immich: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               enable: true,
-              environment: nix.thunk(() => ({ [nix.POS]: pos$6, IMMICH_LOG_LEVEL: "verbose" })),
+              environment: nix.thunk(() => ({ [nix.POS]: $pos[5], IMMICH_LOG_LEVEL: "verbose" })),
               host: "",
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 backup: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   database: nix.thunk(() => ({
-                    [nix.POS]: pos$8,
+                    [nix.POS]: $pos[7],
                     enabled: true,
                     cronExpression: nix.thunk(() => ({
-                      [nix.POS]: pos$7,
+                      [nix.POS]: $pos[6],
                       _secret: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "cron", "0 02 * * *")}`),
                     })),
                   })),
                 })),
                 notifications: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   smtp: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     transport: nix.thunk(() => ({
-                      [nix.POS]: pos$11,
-                      password: nix.thunk(() => ({ [nix.POS]: pos$10, _secret: "/etc/shadow" })),
+                      [nix.POS]: $pos[10],
+                      password: nix.thunk(() => ({ [nix.POS]: $pos[9], _secret: "/etc/shadow" })),
                     })),
                   })),
                 })),

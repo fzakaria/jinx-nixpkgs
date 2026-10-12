@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["homepage", 41, 5], ["description", 42, 5], ["mainProgram", 43, 5], ["license", 44, 5], ["teams", 45, 5], ["platforms", 46, 5]], [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["configureFlags", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, gengetopt: false, "pkg-config": false, fetchFromGitLab: false, pari: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["mainProgram", 43, 5], ["license", 44, 5], ["teams", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["configureFlags", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const pari = nix.arg($, "pari");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "2.2.1",
       pname: "lcalc",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sagemath",
           repo: "lcalc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pari]),
       configureFlags: nix.thunk(() => ["--with-pari"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.com/sagemath/lcalc",
         description: "Program for calculating with L-functions",
         mainProgram: "lcalc",

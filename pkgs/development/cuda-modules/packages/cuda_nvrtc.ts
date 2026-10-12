@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_nvrtc.nix", [[["description", 22, 5], ["longDescription", 23, 5], ["homepage", 27, 5]], [["redistName", 7, 3], ["pname", 8, 3], ["outputs", 10, 3], ["allowFHSReferences", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { buildRedist: false, cudaAtLeast: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_nvrtc.nix", [["description", 22, 5], ["longDescription", 23, 5], ["homepage", 27, 5]]);
-const pos$2 = nix.positions(here + "/cuda_nvrtc.nix", [["redistName", 7, 3], ["pname", 8, 3], ["outputs", 10, 3], ["allowFHSReferences", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const cudaAtLeast = nix.arg($, "cudaAtLeast");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "cuda_nvrtc",
       outputs: nix.thunk(() => nix.concat(["out", "dev", "include", "lib"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(cudaAtLeast, "11.5")), nix.thunk(() => ["static"])), ["stubs"]))),
       allowFHSReferences: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Runtime compilation library for CUDA C++",
         longDescription: "NVRTC is a runtime compilation library for CUDA C++. It accepts CUDA C++ source code in character string form\nand creates handles that can be used to obtain the PTX.\n",
         homepage: "https://docs.nvidia.com/cuda/nvrtc",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 58, 29], ["license", 59, 5], ["homepage", 60, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5]], [["pname", 35, 11], ["version", 35, 17], ["pyproject", 36, 3], ["src", 38, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["postFixup", 48, 3], ["shellHook", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { nix: false, nixfmt: false, makeWrapper: false, python3Packages: false, lib: false, "nix-prefetch-scripts": false, "luarocks-nix": false, lua5_1: false, lua5_2: false, lua5_3: false, lua5_4: false, luajit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 58, 29], ["license", 59, 5], ["homepage", 60, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 11], ["version", 35, 17], ["pyproject", 36, 3], ["src", 38, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["postFixup", 48, 3], ["shellHook", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(attrs, "project"));
   const version = nix.thunk(() => nix.attr(from, "version"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       pyproject: true,
@@ -51,7 +50,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(attrs, "project"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from_1, "description")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         homepage: nix.thunk(() => nix.sel(attrs, "project", "urls", "Homepage")),

@@ -2,52 +2,31 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["enable", 8, 27]], [["enable", 7, 21], ["nixos", 8, 21]], [["enable", 10, 32]], [["channel", 10, 24]], [["installer", 10, 14]], [["documentation", 7, 7], ["system", 10, 7]], [["configuration", 5, 5]], [["maintainers", 27, 5]], [["enable", 38, 9], ["unprivilegedContainers", 39, 9], ["systemConfig", 40, 9], ["defaultConfig", 43, 9], ["usernetConfig", 52, 9], ["bridgeConfig", 55, 9]], [["diskSize", 32, 7], ["cores", 33, 7], ["memorySize", 34, 7], ["writableStore", 35, 7], ["lxc", 37, 7]], [["systemPackages", 65, 17]], [["startGid", 78, 11], ["count", 79, 11]], [["startUid", 84, 11], ["count", 85, 11]], [["isNormalUser", 72, 7], ["password", 73, 7], ["description", 74, 7], ["extraGroups", 75, 7], ["subGidRanges", 76, 7], ["subUidRanges", 82, 7]], [["startGid", 96, 11], ["count", 97, 11]], [["startUid", 102, 11], ["count", 103, 11]], [["isNormalUser", 91, 7], ["password", 92, 7], ["description", 93, 7], ["subGidRanges", 94, 7], ["subUidRanges", 100, 7]], [["alice", 71, 17], ["bob", 90, 17]], [["users", 71, 11]], [["virtualisation", 31, 5], ["environment", 65, 5], ["users", 71, 5]], [["machine", 30, 9]], [["name", 24, 3], ["meta", 26, 3], ["nodes", 30, 3], ["testScript", 109, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["enable", 8, 27]]);
-const pos$2 = nix.positions(here + "/default.nix", [["enable", 7, 21], ["nixos", 8, 21]]);
-const pos$3 = nix.positions(here + "/default.nix", [["enable", 10, 32]]);
-const pos$4 = nix.positions(here + "/default.nix", [["channel", 10, 24]]);
-const pos$5 = nix.positions(here + "/default.nix", [["installer", 10, 14]]);
-const pos$6 = nix.positions(here + "/default.nix", [["documentation", 7, 7], ["system", 10, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["configuration", 5, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["maintainers", 27, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["enable", 38, 9], ["unprivilegedContainers", 39, 9], ["systemConfig", 40, 9], ["defaultConfig", 43, 9], ["usernetConfig", 52, 9], ["bridgeConfig", 55, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["diskSize", 32, 7], ["cores", 33, 7], ["memorySize", 34, 7], ["writableStore", 35, 7], ["lxc", 37, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["systemPackages", 65, 17]]);
-const pos$12 = nix.positions(here + "/default.nix", [["startGid", 78, 11], ["count", 79, 11]]);
-const pos$13 = nix.positions(here + "/default.nix", [["startUid", 84, 11], ["count", 85, 11]]);
-const pos$14 = nix.positions(here + "/default.nix", [["isNormalUser", 72, 7], ["password", 73, 7], ["description", 74, 7], ["extraGroups", 75, 7], ["subGidRanges", 76, 7], ["subUidRanges", 82, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["startGid", 96, 11], ["count", 97, 11]]);
-const pos$16 = nix.positions(here + "/default.nix", [["startUid", 102, 11], ["count", 103, 11]]);
-const pos$17 = nix.positions(here + "/default.nix", [["isNormalUser", 91, 7], ["password", 92, 7], ["description", 93, 7], ["subGidRanges", 94, 7], ["subUidRanges", 100, 7]]);
-const pos$18 = nix.positions(here + "/default.nix", [["alice", 71, 17], ["bob", 90, 17]]);
-const pos$19 = nix.positions(here + "/default.nix", [["users", 71, 11]]);
-const pos$20 = nix.positions(here + "/default.nix", [["virtualisation", 31, 5], ["environment", 65, 5], ["users", 71, 5]]);
-const pos$21 = nix.positions(here + "/default.nix", [["machine", 30, 9]]);
-const pos$22 = nix.positions(here + "/default.nix", [["name", 24, 3], ["meta", 26, 3], ["nodes", 30, 3], ["testScript", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const releases = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../release.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       configuration: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         documentation: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
           nixos: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
           })),
         })),
         system: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           installer: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             channel: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
             })),
           })),
@@ -57,24 +36,24 @@ export default nix.lambda((args) => (() => {
   const lxc_image_metadata = nix.thunk(() => nix.add(nix.sel(releases, "incusContainerMeta", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))), nix.str`/tarball/nixos-image-lxc-*-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}.tar.xz`));
   const lxc_image_rootfs = nix.thunk(() => nix.add(nix.sel(releases, "containerTarball", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))), nix.str`/tarball/nixos-image-lxc-*-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}.tar.xz`));
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     name: "lxc-container-unprivileged",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "lxc", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           diskSize: 6144n,
           cores: 2n,
           memorySize: 512n,
           writableStore: true,
           lxc: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             enable: true,
             unprivilegedContainers: true,
             systemConfig: "lxc.lxcpath = /tmp/lxc\n",
@@ -84,32 +63,32 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "wget")),
             nix.thunk(() => nix.sel(pkgs, "dnsmasq")),
           ]),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             alice: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               isNormalUser: true,
               password: "test",
               description: "Lxc unprivileged user with access to lxcbr0",
               extraGroups: nix.thunk(() => ["lxc-user"]),
-              subGidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$12, startGid: 100000n, count: 65536n }))]),
-              subUidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$13, startUid: 100000n, count: 65536n }))]),
+              subGidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[11], startGid: 100000n, count: 65536n }))]),
+              subUidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[12], startUid: 100000n, count: 65536n }))]),
             })),
             bob: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               isNormalUser: true,
               password: "test",
               description: "Lxc unprivileged user without access to lxcbr0",
-              subGidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$15, startGid: 100000n, count: 65536n }))]),
-              subUidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$16, startUid: 100000n, count: 65536n }))]),
+              subGidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[14], startGid: 100000n, count: 65536n }))]),
+              subUidRanges: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[15], startUid: 100000n, count: 65536n }))]),
             })),
           })),
         })),

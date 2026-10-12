@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["pname", 35, 26], ["version", 35, 32], ["src", 35, 40], ["hash", 36, 5]], [["updateScript", 67, 12]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cargoDeps", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 49, 3], ["postInstall", 60, 3], ["passthru", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, meson: false, ninja: false, rustc: false, cargo: false, rustPlatform: false, "xdg-desktop-portal": false, cairo: false, pango: false, libgbm: false, libGL: false, libxkbcommon: false, glib: false, pipewire: false, wayland: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 26], ["version", 35, 32], ["src", 35, 40], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 67, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cargoDeps", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 49, 3], ["postInstall", 60, 3], ["passthru", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xdg-desktop-portal-luminous",
       version: "0.1.21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "waycrate",
           repo: "xdg-desktop-portal-luminous",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-m1/PmGj1ZZJdH9AiUxe+6hVs0cwGuegY56gFeWSswA4=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -73,11 +69,11 @@ export default nix.lambda((args) => (() => {
   $out/libexec/xdg-desktop-portal-luminous
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "xdg-desktop-portal backend for wlroots based compositors, providing screenshot and screencast",
         homepage: "https://github.com/waycrate/xdg-desktop-portal-luminous",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

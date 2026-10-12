@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["LC_ALL", 72, 7]], [["rev-prefix", 80, 5]], [["updateScript", 79, 12]], [["description", 84, 5], ["homepage", 85, 5], ["platforms", 86, 5], ["license", 87, 5]], [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 58, 3], ["postPatch", 67, 3], ["env", 72, 3], ["mesonFlags", 74, 3], ["passthru", 79, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, gitUpdater: false, meson: false, mesonEmulatorHook: false, ninja: false, glib: false, check: false, python3: false, vala: false, "gtk-doc": false, glibcLocales: false, libxml2: false, libxslt: false, "pkg-config": false, sqlite: false, docbook_xsl: false, docbook_xml_dtd_43: false, "gobject-introspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LC_ALL", 72, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 79, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["platforms", 86, 5], ["license", 87, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 58, 3], ["postPatch", 67, 3], ["env", 72, 3], ["mesonFlags", 74, 3], ["passthru", 79, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const docbook_xml_dtd_43 = nix.arg($, "docbook_xml_dtd_43");
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libaccounts-glib",
       version: "1.27",
       outputs: nix.thunk(() => ["out", "dev", "devdoc", "py"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "accounts-sso",
           repo: "libaccounts-glib",
           rev: nix.thunk(() => nix.str`VERSION_${nix.sel(finalAttrs, "version")}`),
@@ -64,17 +59,17 @@ export default nix.lambda((args) => (() => {
         sqlite,
       ]),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), "substituteInPlace meson.build \\\n  --replace \"subdir('tests')\" \"\"\n")),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LC_ALL: "en_US.UTF-8" })),
       mesonFlags: nix.thunk(() => [
         "-Dinstall-py-overrides=true",
         nix.thunk(() => nix.str`-Dpy-overrides-dir=${nix.builtins.placeholder("py")}/${nix.sel(python3, "sitePackages")}/gi/overrides`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "VERSION_" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "VERSION_" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Library for managing accounts which can be used from GLib applications",
         homepage: "https://gitlab.com/accounts-sso/libaccounts-glib",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["fetchSubmodules", 31, 5], ["hash", 32, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["cmakeFlags", 59, 3], ["postInstall", 68, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, wrapGAppsHook3: false, cmake: false, "pkg-config": false, fftwFloat: false, "alsa-lib": false, zlib: false, wavpack: false, wxwidgets_3_2: false, udev: false, jackaudioSupport: true, libjack2: false, imagemagick: false, libicns: false, "yaml-cpp": false, makeWrapper: false, includeDemo: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["fetchSubmodules", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["cmakeFlags", 59, 3], ["postInstall", 68, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const includeDemo = nix.argOr($, "includeDemo", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "grandorgue",
       version: "3.17.2-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GrandOrgue",
           repo: "grandorgue",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         ])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(includeDemo)), "-DINSTALL_DEMO=OFF"))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin,lib}\nmv $out/GrandOrgue.app $out/Applications/\nfor lib in $out/Applications/GrandOrgue.app/Contents/Frameworks/lib*; do\n  ln -s $lib $out/lib/\ndone\nmakeWrapper $out/{Applications/GrandOrgue.app/Contents/MacOS,bin}/GrandOrgue\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Virtual Pipe Organ Software",
         homepage: "https://github.com/GrandOrgue/grandorgue",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

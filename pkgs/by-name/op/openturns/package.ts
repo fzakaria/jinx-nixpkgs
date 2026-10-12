@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["homepage", 84, 5], ["description", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["cmakeFlags", 65, 3], ["checkTarget", 74, 3], ["strictDeps", 79, 3], ["doCheck", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, boost: false, "ceres-solver": false, cmake: false, cminpack: false, dlib: false, fetchFromGitHub: false, hdf5: false, "hmat-oss": false, ipopt: false, libxml2: false, nlopt: false, pagmo2: false, primesieve: false, python3Packages: false, spectra: false, stdenv: false, swig: false, onetbb: false, runTests: true, enablePython: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 84, 5], ["description", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["cmakeFlags", 65, 3], ["checkTarget", 74, 3], ["strictDeps", 79, 3], ["doCheck", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const runTests = nix.argOr($, "runTests", () => false);
   const enablePython = nix.argOr($, "enablePython", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openturns",
       version: "1.26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openturns",
           repo: "openturns",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +73,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       doCheck: runTests,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://openturns.github.io/www/",
         description: "Multivariate probabilistic modeling and uncertainty treatment library",
         changelog: nix.thunk(() => nix.str`https://github.com/openturns/openturns/raw/v${nix.sel(finalAttrs, "version")}/ChangeLog`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 15, 35], ["out", 15, 40]], [["rev", 23, 22], ["hash", 24, 22]], [["rev", 25, 22], ["hash", 26, 22]], [["rev", 27, 22], ["hash", 28, 22]], [["20230107", 23, 11], ["20210328", 25, 11], ["20181102", 27, 11]], [["pname", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["defaultVersion", 13, 3], ["release", 23, 3], ["propagatedBuildInputs", 30, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 15, 35], ["out", 15, 40]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev", 23, 22], ["hash", 24, 22]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev", 25, 22], ["hash", 26, 22]]);
-const pos$4 = nix.positions(here + "/default.nix", [["rev", 27, 22], ["hash", 28, 22]]);
-const pos$5 = nix.positions(here + "/default.nix", [["20230107", 23, 11], ["20210328", 25, 11], ["20181102", 27, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["defaultVersion", 13, 3], ["release", 23, 3], ["propagatedBuildInputs", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "StructTact",
       owner: "uwplse",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.9", "9.3")), "20230107")),
@@ -32,19 +27,19 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "20230107": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           rev: "2f2ff253be29bb09f36cab96d036419b18a95b00",
           hash: "sha256-4mWdnWD8m1ddgqWHqzjqclhinXJaB/YoLlmLeeL0yZA=",
         })),
         "20210328": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           rev: "179bd5312e9d8b63fc3f4071c628cddfc496d741",
           hash: "sha256:1y5r1zm3hli10ah6lnj7n8hxad6rb6rgldd0g7m2fjibzvwqzhdg",
         })),
         "20181102": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           rev: "82a85b7ec07e71fa6b30cfc05f6a7bfb09ef2510",
           hash: "sha256:08zry20flgj7qq37xk32kzmg4fg6d4wi9m7pf9aph8fd3j2a0b5v",
         })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 29, 3], ["postInstall", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, "pkg-config": false, stdenv: false, fetchurl: false, ncurses: false, gettext: false, python3: false, python3Packages: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 29, 3], ["postInstall", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "calcurse",
       version: "4.8.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://calcurse.org/files/calcurse-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-hJuoUsfze2dyNlywxCqUzeD+de+6kTY+lqDn73l7pWU=",
         })))),
@@ -40,7 +38,7 @@ buildPythonPath "${nix.sel(python3Packages, "httplib2")} ${nix.sel(python3Packag
 patchPythonScript $out/bin/calcurse-caldav
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Calendar and scheduling application for the command line",
         longDescription: "calcurse is a calendar and scheduling application for the command line. It helps\nkeep track of events, appointments and everyday tasks. A configurable notification\nsystem reminds users of upcoming deadlines, the curses based interface can be\ncustomized to suit user needs and a very powerful set of command line options can\nbe used to filter and format appointments, making it suitable for use in scripts.\n",
         homepage: "https://calcurse.org/",

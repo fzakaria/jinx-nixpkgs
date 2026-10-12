@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["updateScript", 62, 12]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5], ["mainProgram", 70, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["zigWayland", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["postPatch", 42, 3], ["dontUseZigCheck", 60, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, zig_0_15: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, wayland: false, "wayland-scanner": false, "wayland-protocols": false, "wlr-protocols": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5], ["mainProgram", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["zigWayland", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["postPatch", 42, 3], ["dontUseZigCheck", 60, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const wlr_protocols = nix.arg($, "wlr-protocols");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "zsnow",
       version: "0-unstable-2025-12-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DarkVanityOfLight",
           repo: "ZSnoW",
           rev: "db8491639e45dbb925652512cb5941f1ea1a1ec2",
           hash: "sha256-h9o/6X2WPfeJrLIx3WnVo0l4i80zHnmO2KkYuVJY2Sk=",
         })))),
       zigWayland: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ifreund",
           repo: "zig-wayland",
           tag: "v0.4.0",
@@ -58,11 +54,11 @@ substituteInPlace build.zig.zon \\
 `),
       dontUseZigCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "XSnow for Wayland",
         homepage: "https://github.com/DarkVanityOfLight/ZSnoW",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-nc-sa-40")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["NIX_CFLAGS_COMPILE", 24, 7]], [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 42, 5], ["downloadPage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["env", 24, 3], ["configureScript", 26, 3], ["doCheck", 28, 3], ["checkTarget", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenv: false, libffi: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 42, 5], ["downloadPage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["env", 24, 3], ["configureScript", 26, 3], ["doCheck", 28, 3], ["checkTarget", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,21 +13,21 @@ export default nix.lambda((args) => (() => {
   const libffi = nix.arg($, "libffi");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "newlisp",
       version: "10.7.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.newlisp.org/downloads/newlisp-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-3C0P9lHCsnW8SvOvi6WYUab7bh6t3CCudftgsekBJuw=",
         })))),
       buildInputs: nix.thunk(() => [libffi, readline]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       configureScript: "./configure-alt",
       doCheck: true,
       checkTarget: "testall",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lisp-like, general-purpose scripting language",
         longDescription: "newLISP is a Lisp-like, general-purpose scripting language. It is\nespecially well-suited for applications in AI, simulation, natural\nlanguage processing, big data, machine learning and statistics. Because\nof its small resource requirements, newLISP is excellent for embedded\nsystems applications. Most of the functions you will ever need are\nalready built in. This includes networking functions, support for\ndistributed and multicore processing, and Bayesian statistics.\n",
         homepage: "https://www.newlisp.org/",

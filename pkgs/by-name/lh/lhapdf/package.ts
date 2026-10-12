@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["lib", 45, 48], ["stdenv", 45, 52], ["fetchurl", 45, 59]], [["pdf_sets", 45, 5]], [["description", 54, 5], ["license", 55, 5], ["homepage", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["configureFlags", 34, 3], ["preBuild", 36, 3], ["strictDeps", 40, 3], ["enableParallelBuilding", 42, 3], ["passthru", 44, 3], ["postInstall", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bash: false, python3: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lib", 45, 48], ["stdenv", 45, 52], ["fetchurl", 45, 59]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pdf_sets", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 54, 5], ["license", 55, 5], ["homepage", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["configureFlags", 34, 3], ["preBuild", 36, 3], ["strictDeps", 40, 3], ["enableParallelBuilding", 42, 3], ["passthru", 44, 3], ["postInstall", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lhapdf",
       version: "6.5.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.hepforge.org/archive/lhapdf/LHAPDF-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-ZB1eoJQreeREfhXlozSR/zxwMtcdYYEZk14UrSf146U=",
         })))),
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        pdf_sets: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./pdf_sets.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib, stdenv: stdenv, fetchurl: fetchurl })))),
+        [nix.POS]: $pos[2],
+        pdf_sets: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./pdf_sets.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib, stdenv: stdenv, fetchurl: fetchurl })))),
       })),
       postInstall: "patchShebangs --build $out/bin/lhapdf-config\nwrapProgram $out/bin/lhapdf --prefix PYTHONPATH : \"$(toPythonPath \"$out\")\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "General purpose interpolator, used for evaluating Parton Distribution Functions from discretised data files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         homepage: "https://www.lhapdf.org",

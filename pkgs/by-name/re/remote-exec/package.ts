@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["url", 26, 7], ["hash", 27, 7]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 32, 3], ["dependencies", 37, 3], ["doCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["checkInputs", 50, 3], ["disabledTestPaths", 55, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchpatch: false, fetchFromGitHub: false, rsync: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 32, 3], ["dependencies", 37, 3], ["doCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["checkInputs", 50, 3], ["disabledTestPaths", 55, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.13.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "remote-cli",
           repo: "remote",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/remote-cli/remote/commit/a2073c30c7f576ad7ceb46e39f996de8d06bf186.patch",
             hash: "sha256-As0j+yY6LamhOCGFzvjUQoXFv46BN/tRBpvIS7r6DaI=",
           })))),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       })());
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test/test_file_changes.py"])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Work with remote hosts seamlessly via rsync and ssh",
         homepage: "https://github.com/remote-cli/remote",
         changelog: nix.thunk(() => nix.str`https://github.com/remote-cli/remote/releases/tag/v${version}`),
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["explicitRequires", 68, 21], ["lndir", 68, 38], ["emacs", 68, 44]], [["LIBRARY_PATH", 71, 29]], [["emacs", 52, 13], ["explicitRequires", 52, 19], ["nativeBuildInputs", 53, 5], ["preferLocalBuild", 59, 5], ["allowSubstitutes", 60, 5], ["deps", 64, 5], ["meta", 200, 21]]]);
 const formals$1 = { args: { lib: false, lndir: false, makeBinaryWrapper: false, runCommand: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["explicitRequires", 68, 21], ["lndir", 68, 38], ["emacs", 68, 44]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["LIBRARY_PATH", 71, 29]]);
-const pos$3 = nix.positions(here + "/wrapper.nix", [["emacs", 52, 13], ["explicitRequires", 52, 19], ["nativeBuildInputs", 53, 5], ["preferLocalBuild", 59, 5], ["allowSubstitutes", 60, 5], ["deps", 64, 5], ["meta", 200, 21]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,19 +19,19 @@ export default nix.lambda((args) => (() => {
     return (packagesFun) => (() => {
       const explicitRequires = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), packagesFun)) ? nix.app(packagesFun, self) : nix.force(packagesFun)));
       return nix.app(runCommand, nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "appendToName"), "with-packages", emacs), "name")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           emacs: emacs,
           explicitRequires: explicitRequires,
           nativeBuildInputs: nix.thunk(() => [emacs, lndir, makeBinaryWrapper]),
           preferLocalBuild: true,
           allowSubstitutes: false,
           deps: nix.thunk(() => nix.app(runCommand, "emacs-packages-deps", nix.thunk(() => nix.update({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               explicitRequires: explicitRequires,
               lndir: lndir,
               emacs: emacs,
             }, nix.app(nix.sel(lib, "optionalAttrs"), withNativeCompilation, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 LIBRARY_PATH: nix.thunk(() => nix.attr(emacs, "LIBRARY_PATH")),
               }))))), nix.thunk(() => nix.str`findInputsOld() {
   local pkg="$1"; shift

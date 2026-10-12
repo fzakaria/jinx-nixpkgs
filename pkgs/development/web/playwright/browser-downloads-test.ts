@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/browser-downloads-test.nix", [[["name", 19, 15], ["revision", 20, 38], ["browserVersion", 21, 7]], [["nativeBuildInputs", 30, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, nodejs: false, "playwright-core": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/browser-downloads-test.nix", [["name", 19, 15], ["revision", 20, 38], ["browserVersion", 21, 7]]);
-const pos$2 = nix.positions(here + "/browser-downloads-test.nix", [["nativeBuildInputs", 30, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const browserDownloads = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), browserNames, (name) => nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(browsersJSON, nix.key(nix.force(name))));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: name,
         revision: nix.thunk(() => nix.attr(from, "revision")),
         browserVersion: nix.thunk(() => nix.selOr(browsersJSON, () => "", nix.key(nix.force(name)), "browserVersion")),
       };
       })()))));
   const browserDownloadsExpectedJSON = nix.thunk(() => nix.builtins.toFile("playwright-browser-downloads.json", nix.thunk(() => nix.builtins.toJSON(browserDownloads))));
-  return nix.app(runCommand, "playwright-browser-downloads-test", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [nodejs]) })), nix.thunk(() => nix.str`node ${nix.path(here, "./browser-downloads-test.js")} ${playwright_core} ${browserDownloadsExpectedJSON}
+  return nix.app(runCommand, "playwright-browser-downloads-test", nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [nodejs]) })), nix.thunk(() => nix.str`node ${nix.path(here, "./browser-downloads-test.js")} ${playwright_core} ${browserDownloadsExpectedJSON}
 touch $out
 `));
 })(), formals$1);

@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["name", 24, 9], ["paths", 25, 9]], [["unwrapped", 47, 14]], [["passthru", 47, 5]], [["name", 13, 3], ["nativeBuildInputs", 15, 3], ["paths", 16, 3], ["postBuild", 18, 3], ["meta", 45, 24], ["passthru", 46, 3]]]);
 const formals$1 = { args: { lib: false, "obs-studio": false, symlinkJoin: false, makeWrapper: false }, ellipsis: false };
 const formals$2 = { args: { plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["name", 24, 9], ["paths", 25, 9]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["unwrapped", 47, 14]]);
-const pos$3 = nix.positions(here + "/wrapper.nix", [["passthru", 47, 5]]);
-const pos$4 = nix.positions(here + "/wrapper.nix", [["name", 13, 3], ["nativeBuildInputs", 15, 3], ["paths", 16, 3], ["postBuild", 18, 3], ["meta", 45, 24], ["passthru", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +16,13 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const plugins = nix.argOr($_1, "plugins", () => []);
     return nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: nix.thunk(() => nix.str`wrapped-${nix.sel(obs_studio, "name")}`),
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
         paths: nix.thunk(() => nix.concat([obs_studio], plugins)),
         postBuild: nix.thunk(() => (() => {
           const pluginArguments = nix.thunk(() => nix.app(nix.sel(lib, "lists", "concatMap"), (plugin) => nix.selOr(plugin, () => [], "obsWrapperArguments"), plugins));
-          const pluginsJoined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$1, name: "obs-studio-plugins", paths: plugins }))));
+          const pluginsJoined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: $pos[0], name: "obs-studio-plugins", paths: plugins }))));
           const wrapCommandLine = nix.thunk(() => nix.concat([
             "wrapProgram",
             "$out/bin/obs",
@@ -42,8 +39,8 @@ echo 'Plugins are at ${pluginsJoined}/share/obs/obs-plugins' > $out/share/obs/ob
         })()),
         meta: nix.thunk(() => nix.attr(obs_studio, "meta")),
         passthru: nix.thunk(() => nix.update(nix.sel(obs_studio, "passthru"), {
-          [nix.POS]: pos$3,
-          passthru: nix.thunk(() => ({ [nix.POS]: pos$2, unwrapped: obs_studio })),
+          [nix.POS]: $pos[2],
+          passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], unwrapped: obs_studio })),
         })),
       })));
   })(), formals$2);

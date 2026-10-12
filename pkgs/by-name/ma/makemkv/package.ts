@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 26, 7], ["hash", 30, 7]], [["urls", 33, 7], ["hash", 37, 7]], [["bin", 25, 10], ["oss", 32, 10]], [["oldVersion", 100, 20]], [["name", 94, 9], ["runtimeInputs", 95, 9], ["runtimeEnv", 100, 9], ["text", 101, 9]], [["srcs", 92, 15], ["updateScript", 93, 7]], [["description", 119, 7], ["longDescription", 120, 7], ["sourceProvenance", 129, 7], ["license", 130, 7], ["homepage", 134, 7], ["platforms", 135, 7], ["maintainers", 136, 7]], [["pname", 41, 5], ["version", 42, 5], ["srcs", 44, 5], ["sourceRoot", 45, 5], ["patches", 46, 5], ["enableParallelBuilding", 53, 5], ["nativeBuildInputs", 54, 5], ["buildInputs", 59, 5], ["runtimeDependencies", 66, 5], ["qtWrapperArgs", 68, 5], ["installPhase", 74, 5], ["passthru", 91, 5], ["meta", 118, 5]]]);
 const formals$1 = { args: { autoPatchelfHook: false, "common-updater-scripts": false, curl: false, expat: false, fetchurl: false, ffmpeg_8: false, lib: false, stdenv: false, qt5: false, openssl: false, "pkg-config": false, rubyPackages: false, writeShellApplication: false, zlib: false, withJava: true, jre_headless: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 26, 7], ["hash", 30, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["urls", 33, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["bin", 25, 10], ["oss", 32, 10]]);
-const pos$4 = nix.positions(here + "/package.nix", [["oldVersion", 100, 20]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 94, 9], ["runtimeInputs", 95, 9], ["runtimeEnv", 100, 9], ["text", 101, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["srcs", 92, 15], ["updateScript", 93, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 119, 7], ["longDescription", 120, 7], ["sourceProvenance", 129, 7], ["license", 130, 7], ["homepage", 134, 7], ["platforms", 135, 7], ["maintainers", 136, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 41, 5], ["version", 42, 5], ["srcs", 44, 5], ["sourceRoot", 45, 5], ["patches", 46, 5], ["enableParallelBuilding", 53, 5], ["nativeBuildInputs", 54, 5], ["buildInputs", 59, 5], ["runtimeDependencies", 66, 5], ["qtWrapperArgs", 68, 5], ["installPhase", 74, 5], ["passthru", 91, 5], ["meta", 118, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,9 +26,9 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
       const srcs = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         bin: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://www.makemkv.com/download/makemkv-bin-${version}.tar.gz`),
               nix.thunk(() => nix.str`https://www.makemkv.com/download/old/makemkv-bin-${version}.tar.gz`),
@@ -43,7 +36,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-8SZedIdaGG79+7vsdFmmTpaQM1FeU8vE2AXwo3TwoSQ=",
           })))),
         oss: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://www.makemkv.com/download/makemkv-oss-${version}.tar.gz`),
               nix.thunk(() => nix.str`https://www.makemkv.com/download/old/makemkv-oss-${version}.tar.gz`),
@@ -52,7 +45,7 @@ export default nix.lambda((args) => (() => {
           })))),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: "makemkv",
         version: "2.0.0",
         srcs: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "srcs")))),
@@ -72,22 +65,22 @@ export default nix.lambda((args) => (() => {
         })()),
         installPhase: "runHook preInstall\n\ninstall -Dm555 -t \"$out\"/bin                              out/{makemkv,mmccextr,mmgplsrv} \\\n                                                          ../makemkv-bin-\"$version\"/bin/amd64/makemkvcon\ninstall -D     -t \"$out\"/lib                              out/lib{driveio,makemkv,mmbd}.so.*\ninstall -D     -t \"$out\"/share/MakeMKV                    ../makemkv-bin-\"$version\"/src/share/*\ninstall -Dm444 -t \"$out\"/share/applications               ../makemkv-oss-\"$version\"/makemkvgui/share/makemkv.desktop\ninstall -Dm444 -t \"$out\"/share/icons/hicolor/16x16/apps   ../makemkv-oss-\"$version\"/makemkvgui/share/icons/16x16/*\ninstall -Dm444 -t \"$out\"/share/icons/hicolor/32x32/apps   ../makemkv-oss-\"$version\"/makemkvgui/share/icons/32x32/*\ninstall -Dm444 -t \"$out\"/share/icons/hicolor/64x64/apps   ../makemkv-oss-\"$version\"/makemkvgui/share/icons/64x64/*\ninstall -Dm444 -t \"$out\"/share/icons/hicolor/128x128/apps ../makemkv-oss-\"$version\"/makemkvgui/share/icons/128x128/*\ninstall -Dm444 -t \"$out\"/share/icons/hicolor/256x256/apps ../makemkv-oss-\"$version\"/makemkvgui/share/icons/256x256/*\n\nrunHook postInstall\n",
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           srcs: srcs,
           updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 name: "update-makemkv",
                 runtimeInputs: nix.thunk(() => [
                   common_updater_scripts,
                   curl,
                   nix.thunk(() => nix.sel(rubyPackages, "nokogiri")),
                 ]),
-                runtimeEnv: nix.thunk(() => ({ [nix.POS]: pos$4, oldVersion: version })),
+                runtimeEnv: nix.thunk(() => ({ [nix.POS]: $pos[3], oldVersion: version })),
                 text: "get_version() {\n  # shellcheck disable=SC2016\n  curl --fail --silent 'https://forum.makemkv.com/forum/viewtopic.php?f=3&t=224' \\\n    | nokogiri -e 'puts $_.css(\"head title\").first.text.match(/\\bMakeMKV (\\d+\\.\\d+\\.\\d+) /)[1]'\n}\nnewVersion=$(get_version)\nif [ \"$oldVersion\" == \"$newVersion\" ]; then\n  echo \"$0: New version same as old version, nothing to do.\" >&2\n  exit\nfi\nupdate-source-version makemkv \"$newVersion\" --source-key=passthru.srcs.bin\nupdate-source-version makemkv \"$newVersion\" --source-key=passthru.srcs.oss --ignore-same-version\n",
               })))))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           description: "Convert blu-ray and dvd to mkv",
           longDescription: "makemkv is a one-click QT application that transcodes an encrypted\nblu-ray or DVD disc into a more portable set of mkv files, preserving\nsubtitles, chapter marks, all video and audio tracks.\n\nProgram is time-limited -- it will stop functioning after 60 days. You\ncan always download the latest version from makemkv.com that will reset the\nexpiration date.\n",
           sourceProvenance: nix.thunk(() => (() => {

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["NIX_CFLAGS_COMPILE", 46, 7]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["postPatch", 32, 3], ["mesonFlags", 45, 3], ["env", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["postPatch", 32, 3], ["mesonFlags", 45, 3], ["env", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libu2f-emu",
       version: "0-unstable-2020-09-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Agnoctopus",
           repo: "libu2f-emu",
           rev: "d1c4b9c2e1c42e8931033912c8b609521f2a7756",
@@ -32,9 +29,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       postPatch: "# Upstream meson.build uses error() instead of warning() for missing\n# doxygen/dot, which fails the configure.\nsubstituteInPlace meson.build \\\n  --replace-fail \"error('Skip doc:\" \"warning('Skip doc:\" \\\n  --replace-fail \"error('Skip dot in doc:\" \"warning('Skip dot in doc:\"\n\n# Fix header guard typo: TRANSaCTION_H -> TRANSACTION_H\nsubstituteInPlace src/usb/transaction.h \\\n  --replace-fail \"define TRANSaCTION_H\" \"define TRANSACTION_H\"\n",
       mesonFlags: nix.thunk(() => ["--warnlevel=2"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Universal 2nd Factor (U2F) Emulation C Library",
         homepage: "https://github.com/Agnoctopus/libu2f-emu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

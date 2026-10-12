@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["python3", 16, 52]], [["mailmanEnv", 37, 11], ["webEnv", 49, 11]], [["callPackage", 14, 7], ["python3", 16, 7], ["hyperkitty", 18, 7], ["mailman", 20, 7], ["mailman-hyperkitty", 22, 7], ["postorius", 24, 7], ["web", 26, 7], ["buildEnvs", 28, 7]]]);
 const formals$1 = { args: { newScope: false, lib: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["python3", 16, 52]]);
 const formals$2 = { args: { web: true, mailman: true, "mailman-hyperkitty": true, withHyperkitty: true, withLDAP: true }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["mailmanEnv", 37, 11], ["webEnv", 49, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["callPackage", 14, 7], ["python3", 16, 7], ["hyperkitty", 18, 7], ["mailman", 20, 7], ["mailman-hyperkitty", 22, 7], ["postorius", 24, 7], ["web", 26, 7], ["buildEnvs", 28, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const self = nix.thunk(() => nix.app(nix.sel(lib, "makeExtensible"), (self_1) => (() => {
       const callPackage = nix.thunk(() => nix.attr(self_1, "callPackage"));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         callPackage: nix.thunk(() => nix.app(newScope, self_1)),
-        python3: nix.thunk(() => nix.app(callPackage, nix.path(here, "./python.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, python3: python3 })))),
+        python3: nix.thunk(() => nix.app(callPackage, nix.path(here, "./python.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], python3: python3 })))),
         hyperkitty: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hyperkitty.nix"), nix.thunk(() => ({})))),
         mailman: nix.thunk(() => nix.app(callPackage, nix.path(here, "./package.nix"), nix.thunk(() => ({})))),
         "mailman-hyperkitty": nix.thunk(() => nix.app(callPackage, nix.path(here, "./mailman-hyperkitty.nix"), nix.thunk(() => ({})))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
           const withHyperkitty = nix.argOr($_1, "withHyperkitty", () => false);
           const withLDAP = nix.argOr($_1, "withLDAP", () => false);
           return {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             mailmanEnv: nix.thunk(() => nix.app(nix.sel(self_1, "python3", "withPackages"), (ps) => nix.concat([mailman, nix.thunk(() => nix.sel(ps, "psycopg2"))], nix.concat(nix.app(nix.sel(lib, "optional"), withHyperkitty, mailman_hyperkitty), nix.app(nix.sel(lib, "optionals"), withLDAP, nix.thunk(() => [
                   nix.thunk(() => nix.sel(ps, "python-ldap")),
                   nix.thunk(() => nix.sel(ps, "django-auth-ldap")),

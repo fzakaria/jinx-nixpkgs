@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["platforms", 60, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["dmidecodeProgram", 25, 3], ["modprobeProgram", 26, 3], ["postPatch", 27, 3], ["strictDeps", 38, 3], ["__structuredAttrs", 39, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 41, 3], ["installFlags", 46, 3], ["postInstall", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perl: false, sysfsutils: false, dmidecode: false, kmod: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["dmidecodeProgram", 25, 3], ["modprobeProgram", 26, 3], ["postPatch", 27, 3], ["strictDeps", 38, 3], ["__structuredAttrs", 39, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 41, 3], ["installFlags", 46, 3], ["postInstall", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const dmidecode = nix.arg($, "dmidecode");
   const kmod = nix.arg($, "kmod");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "edac-utils",
       version: "0.18-unstable-2023-01-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grondo",
           repo: "edac-utils",
           rev: "8fdc1d40e30f65737fef6c3ddcd1d2cd769f6277",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`sbindir=${nix.builtins.placeholder("out")}/bin`)]),
       postInstall: "rm -r \"$out\"/etc/init.d\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/grondo/edac-utils",
         description: "Handles the reporting of hardware-related memory errors",
         mainProgram: "edac-util",

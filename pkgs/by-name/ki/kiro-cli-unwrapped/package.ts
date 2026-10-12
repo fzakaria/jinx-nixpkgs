@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 9], ["hash", 28, 9]], [["url", 31, 9], ["hash", 32, 9]], [["url", 35, 9], ["hash", 36, 9]], [["x86_64-linux", 26, 7], ["aarch64-linux", 30, 7], ["aarch64-darwin", 34, 7]], [["updateScript", 87, 12]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["sourceProvenance", 93, 5], ["maintainers", 94, 5], ["mainProgram", 98, 5], ["platforms", 99, 5]], [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["sourceRoot", 41, 3], ["strictDeps", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["nativeInstallCheckInputs", 59, 3], ["doInstallCheck", 60, 3], ["dontConfigure", 62, 3], ["dontBuild", 63, 3], ["installPhase", 65, 3], ["passthru", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, undmg: false, versionCheckHook: false, xz: false, bzip2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 9], ["hash", 28, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 9], ["hash", 32, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 35, 9], ["hash", 36, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 26, 7], ["aarch64-linux", 30, 7], ["aarch64-darwin", 34, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 87, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["sourceProvenance", 93, 5], ["maintainers", 94, 5], ["mainProgram", 98, 5], ["platforms", 99, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["sourceRoot", 41, 3], ["strictDeps", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["nativeInstallCheckInputs", 59, 3], ["doInstallCheck", 60, 3], ["dontConfigure", 62, 3], ["dontBuild", 63, 3], ["installPhase", 65, 3], ["passthru", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const bzip2 = nix.arg($, "bzip2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "kiro-cli-unwrapped",
       version: "2.27.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://desktop-release.q.us-east-1.amazonaws.com/${nix.sel(finalAttrs, "version")}/kirocli-x86_64-linux.tar.gz`),
             hash: "sha256-PA1yaKS/tz+OgngiBJl4+leOAgsnGvwQIcdTJgLUXZk=",
           })))),
         "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://desktop-release.q.us-east-1.amazonaws.com/${nix.sel(finalAttrs, "version")}/kirocli-aarch64-linux.tar.gz`),
             hash: "sha256-M61UYsMRG6TvUn8dWL2gip0Zl+Cuc4QafCynNOvLotA=",
           })))),
         "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://desktop-release.q.us-east-1.amazonaws.com/${nix.sel(finalAttrs, "version")}/Kiro%20CLI.dmg`),
             hash: "sha256-hQ2hPgZn9bxO9kVSa1ugilDchELNkrrR/8dUanzoGVw=",
           })))),
@@ -53,9 +47,9 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       dontBuild: true,
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -Dm755 bin/kiro-cli      -t $out/bin\ninstall -Dm755 bin/kiro-cli-chat -t $out/bin\ninstall -Dm755 bin/kiro-cli-term -t $out/bin\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/bin $out/Applications\ncp -r \"../Kiro CLI.app\" \"$out/Applications/\"\nln -s \"$out/Applications/Kiro CLI.app/Contents/MacOS/kiro-cli\" $out/bin/kiro-cli\nfor bin in kiro-cli-chat kiro-cli-term; do\n  if [[ -e \"$out/Applications/Kiro CLI.app/Contents/MacOS/$bin\" ]]; then\n    ln -s \"$out/Applications/Kiro CLI.app/Contents/MacOS/$bin\" \"$out/bin/$bin\"\n  fi\ndone\n")), "runHook postInstall\n")),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Command-line interface for Kiro, an agentic IDE",
         homepage: "https://kiro.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

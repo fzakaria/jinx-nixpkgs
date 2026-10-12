@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["dockapps", 68, 5]], [["homepage", 72, 5], ["description", 73, 5], ["longDescription", 74, 5], ["changelog", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["configureFlags", 60, 3], ["passthru", 67, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromRepoOrCz: false, autoreconfHook: false, callPackage: false, "pkg-config": false, imagemagick: false, libx11: false, libxext: false, libxft: false, libxinerama: false, libxmu: false, libxpm: false, libxrandr: false, libxres: false, libexif: false, libjpeg: false, libpng: false, libtiff: false, giflib: false, libwebp: false, pango: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["dockapps", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["longDescription", 74, 5], ["changelog", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["configureFlags", 60, 3], ["passthru", 67, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libwebp = nix.arg($, "libwebp");
   const pango = nix.arg($, "pango");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "windowmaker",
       version: "0.96.0",
       src: nix.thunk(() => nix.app(fetchFromRepoOrCz, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "wmaker-crm",
           rev: nix.thunk(() => nix.str`wmaker-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-6DS5KztCNWPQL6/qJ5vlkOup2ourxSNf6LLTFYpPWi8=",
@@ -63,11 +60,11 @@ export default nix.lambda((args) => (() => {
       ]),
       configureFlags: nix.thunk(() => ["--enable-modelock", "--enable-randr", "--enable-webp", "--with-x"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         dockapps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./dockapps"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://windowmaker.org/",
         description: "NeXTSTEP-like window manager",
         longDescription: "Window Maker is an X11 window manager originally designed to provide\nintegration support for the GNUstep Desktop Environment. In every way\npossible, it reproduces the elegant look and feel of the NEXTSTEP user\ninterface. It is fast, feature rich, easy to configure, and easy to\nuse. It is also free software, with contributions being made by\nprogrammers from around the world.\n",

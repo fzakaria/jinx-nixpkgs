@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["nativeBuildInputs", 37, 11]], [["noSyntaxError", 31, 11]], [["tests", 31, 5], ["updateScript", 54, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 64, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["dontBuild", 22, 3], ["installPhase", 24, 3], ["passthru", 30, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, runCommand: false, writeScriptBin: false, expect: false, nano: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 37, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["noSyntaxError", 31, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 31, 5], ["updateScript", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["dontBuild", 22, 3], ["installPhase", 24, 3], ["passthru", 30, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nano-syntax-highlighting";
       const version = "2026.10.01";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "galenguyer",
           repo: "nano-syntax-highlighting",
           tag: version,
@@ -33,12 +28,12 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "mkdir -p $out/share\n\ninstall *.nanorc $out/share/\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           noSyntaxError: nix.thunk(() => (() => {
             const expectScript = nix.thunk(() => nix.app(writeScriptBin, nix.thunk(() => nix.str`${pname}-test-syntax.exp`), nix.thunk(() => nix.builtins.readFile(nix.path(here, "./test-syntax.exp")))));
-            return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-test-noSyntaxError`), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [expect, nano]) })), nix.thunk(() => nix.str`set -euo pipefail
+            return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-test-noSyntaxError`), nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [expect, nano]) })), nix.thunk(() => nix.str`set -euo pipefail
 # For each nanorc file and each syntax, execute text-syntax.exp
 for nanorcPath in ${nix.sel(finalAttrs, "finalPackage")}/share/*.nanorc; do
   nano --rcfile "$nanorcPath" --listsyntaxes \\
@@ -52,7 +47,7 @@ touch $out
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Improved Nano Syntax Highlighting Files, fork of nanorc",
         homepage: "https://github.com/galenguyer/nano-syntax-highlighting",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -63,7 +58,7 @@ touch $out
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

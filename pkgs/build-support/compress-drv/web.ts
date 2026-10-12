@@ -2,10 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/web.nix", [[["br", 132, 5], ["gz", 133, 5], ["zstd", 137, 5]], [["formats", 142, 3], ["compressors", 143, 3], ["extraFindOperands", 144, 11]]]);
 const formals$1 = { args: { brotli: false, compressDrv: false, lib: false, zopfli: false, zstd: false }, ellipsis: false };
 const formals$2 = { args: { formats: true, extraFormats: true, compressors: true, extraFindOperands: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/web.nix", [["br", 132, 5], ["gz", 133, 5], ["zstd", 137, 5]]);
-const pos$2 = nix.positions(here + "/web.nix", [["formats", 142, 3], ["compressors", 143, 3], ["extraFindOperands", 144, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,14 +32,14 @@ export default nix.lambda((args) => (() => {
     ]);
     const extraFormats = nix.argOr($_1, "extraFormats", () => []);
     const compressors = nix.argOr($_1, "compressors", () => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       br: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), brotli)} --keep --no-copy-stat {}`),
       gz: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), zopfli)} --keep {}`),
       zstd: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), zstd)} --force --keep --quiet -19 {}`),
     }));
     const extraFindOperands = nix.argOr($_1, "extraFindOperands", () => "");
     return nix.app(compressDrv, drv, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         formats: nix.thunk(() => nix.concat(formats, extraFormats)),
         compressors: compressors,
         extraFindOperands: extraFindOperands,

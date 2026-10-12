@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["rev-prefix", 68, 7], ["ignoredVersions", 69, 7]], [["skipBulkUpdate", 66, 5], ["updateScript", 67, 5]], [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["sourceRoot", 40, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["propagatedBuildInputs", 49, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 53, 3], ["passthru", 64, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "langchain-core": false, msgpack: false, ormsgpack: false, "dataclasses-json": false, numpy: false, pandas: false, pycryptodome: false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, redis: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 68, 7], ["ignoredVersions", 69, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 66, 5], ["updateScript", 67, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["sourceRoot", 40, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["propagatedBuildInputs", 49, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 53, 3], ["passthru", 64, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const redis = nix.arg($, "redis");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "langgraph-checkpoint",
       version: "4.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "langchain-ai",
           repo: "langgraph",
           tag: nix.thunk(() => nix.str`checkpoint==${nix.sel(finalAttrs, "version")}`),
@@ -55,16 +51,16 @@ export default nix.lambda((args) => (() => {
         redis,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "rev-prefix": "checkpoint==",
             ignoredVersions: "a|b|dev|rc",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langgraph/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Library with base interfaces for LangGraph checkpoint savers",
         homepage: "https://github.com/langchain-ai/langgraph/tree/main/libs/checkpoint",

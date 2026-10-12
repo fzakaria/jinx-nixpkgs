@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["package", 76, 5], ["command", 77, 5]], [["version", 75, 18]], [["tests", 75, 12]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 89, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 59, 3], ["cmakeFlags", 63, 3], ["postInstall", 69, 3], ["passthru", 75, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, testers: false, cmake: false, gsl: false, libtool: false, findutils: false, llvmPackages: false, mpi: false, nest: false, "pkg-config": false, boost: false, python3: false, readline: false, withPython: true, withMpi: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 76, 5], ["command", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 75, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 75, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 89, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 59, 3], ["cmakeFlags", 63, 3], ["postInstall", 69, 3], ["passthru", 75, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const withPython = nix.argOr($, "withPython", () => false);
   const withMpi = nix.argOr($, "withMpi", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nest",
       version: "3.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nest",
           repo: "nest-simulator",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,14 +49,14 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# Alternative to autoPatchElf, moves libraries where\n# Nest expects them to be\nfind $out/lib/nest -exec ln -s {} $out/lib \\;\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: nest, command: "nest --version" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: nest, command: "nest --version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Command line tool for simulating neural networks",
         homepage: "https://www.nest-simulator.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/nest/nest-simulator/releases/tag/v${nix.sel(finalAttrs, "version")}`),

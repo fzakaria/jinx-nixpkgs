@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["pkg-config", 49, 11]], [["tests", 49, 5]], [["includedir", 68, 9], ["libdir", 69, 9]], [["name", 55, 7], ["version", 56, 28], ["cflags", 57, 7], ["libs", 58, 7], ["libsPrivate", 62, 7], ["variables", 67, 7], ["description", 71, 33]], [["pkgConfigModules", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["doCheck", 24, 3], ["cmakeFlags", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["outputs", 43, 3], ["passthru", 48, 3], ["pkgconfigItems", 53, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, cmake: false, copyPkgconfigItems: false, makePkgconfigItem: false, lib: false, testers: false, ctestCheckHook: false, ninja: false, "double-conversion": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 49, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["includedir", 68, 9], ["libdir", 69, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 55, 7], ["version", 56, 28], ["cflags", 57, 7], ["libs", 58, 7], ["libsPrivate", 62, 7], ["variables", 67, 7], ["description", 71, 33]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pkgConfigModules", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["doCheck", 24, 3], ["cmakeFlags", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["outputs", 43, 3], ["passthru", 48, 3], ["pkgconfigItems", 53, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const double_conversion = nix.arg($, "double-conversion");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "json.cpp",
       version: "0-unstable-2025-10-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jart",
           repo: "json.cpp",
           rev: "6ec4e44a5bbaadbe677473378c3d2133644c58a1",
@@ -44,9 +38,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [double_conversion]),
       outputs: nix.thunk(() => ["out", "dev"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
@@ -58,14 +52,14 @@ export default nix.lambda((args) => (() => {
             const libs = nix.thunk(() => [nix.thunk(() => nix.str`-L${nix.sel(variables, "libdir")}`), "-ljson"]);
             const libsPrivate = nix.thunk(() => ["-ldouble-conversion"]);
             const variables = nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               includedir: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/include`),
               libdir: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib`),
             }));
             const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
             const description = nix.thunk(() => nix.attr(from, "description"));
             return {
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name,
               version,
               cflags,
@@ -77,7 +71,7 @@ export default nix.lambda((args) => (() => {
           })()))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pkgConfigModules: nix.thunk(() => ["json.cpp"]),
         description: "JSON for Classic C++",
         homepage: "https://github.com/jart/json.cpp",

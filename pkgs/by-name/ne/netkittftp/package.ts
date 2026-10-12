@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 13, 5], ["hash", 18, 5]], [["url", 24, 7], ["hash", 25, 7]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 21, 3], ["preInstall", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 13, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 21, 3], ["preInstall", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "netkit-tftp",
       version: "0.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`mirror://ubuntu/pool/universe/n/netkit-tftp/netkit-tftp_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
             nix.thunk(() => nix.str`ftp://ftp.uk.linux.org/pub/linux/Networking/netkit/netkit-tftp-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -29,14 +26,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sources.debian.org/data/main/n/netkit-tftp/0.17-23/debian/patches/debian_changes_0.17-18.patch",
             hash: "sha256-kprmSMoNF6E8GGRIPWDLWcqfPRxdUeheeLoFNqI3Uv0=",
           })))),
       ]),
       preInstall: "\n    mkdir -p $out/man/man{1,8} $out/sbin $out/bin\n  ",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Netkit TFTP client and server",
         homepage: "ftp://ftp.uk.linux.org/pub/linux/Networking/netkit/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

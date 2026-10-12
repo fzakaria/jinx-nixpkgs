@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 25, 14]], [["url", 24, 5], ["passthru", 25, 5], ["stripRoot", 26, 5], ["sha256", 27, 5]], [["updateScript", 57, 12]], [["broken", 61, 5], ["homepage", 62, 5], ["description", 63, 5], ["maintainers", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["preConfigure", 46, 3], ["doCheck", 50, 3], ["nativeCheckInputs", 51, 3], ["postInstall", 53, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, meson: false, ninja: false, "pkg-config": false, python3: false, python3Packages: false, "wayland-scanner": false, libxkbcommon: false, libgbm: false, pixman: false, libxcb: false, wayland: false, gtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 25, 14]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 5], ["passthru", 25, 5], ["stripRoot", 26, 5], ["sha256", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 61, 5], ["homepage", 62, 5], ["description", 63, 5], ["maintainers", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["preConfigure", 46, 3], ["doCheck", 50, 3], ["nativeCheckInputs", 51, 3], ["postInstall", 53, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,15 +23,15 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sommelier",
       version: "126.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => (() => {
           const url = nix.thunk(() => nix.str`https://chromium.googlesource.com/chromiumos/platform2/+archive/${nix.sel(passthru, "rev")}/vm_tools/sommelier.tar.gz`);
-          const passthru = nix.thunk(() => ({ [nix.POS]: pos$1, rev: "fd3798efe23f2edbc48f86f2fbd82ba5059fd875" }));
+          const passthru = nix.thunk(() => ({ [nix.POS]: $pos[0], rev: "fd3798efe23f2edbc48f86f2fbd82ba5059fd875" }));
           const stripRoot = false;
           const sha256 = "BmWZnMcK7IGaEAkVPulyb3hngsmuI0D1YtQEbqMjV5c=";
-          return { [nix.POS]: pos$2, url, passthru, stripRoot, sha256 };
+          return { [nix.POS]: $pos[1], url, passthru, stripRoot, sha256 };
         })()))),
       nativeBuildInputs: nix.thunk(() => [
         meson,
@@ -50,9 +46,9 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [gtest]),
       postInstall: "rm $out/bin/sommelier_test # why does it install the test binary? o_O\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: true,
         homepage: "https://chromium.googlesource.com/chromiumos/platform2/+/refs/heads/main/vm_tools/sommelier/",
         description: "Nested Wayland compositor with support for X11 forwarding",

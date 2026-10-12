@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 38, 5], ["sha256", 39, 5]], [["url", 45, 7], ["sha256", 46, 7]], [["url", 51, 7], ["sha256", 52, 7]], [["name", 56, 7], ["url", 57, 7], ["sha256", 58, 7]], [["NIX_CFLAGS_COMPILE", 91, 7]], [["packageName", 101, 7], ["attrPath", 102, 7], ["versionPolicy", 103, 7]], [["updateScript", 100, 5]], [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["teams", 116, 5], ["platforms", 117, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 42, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 76, 3], ["env", 91, 3], ["postPatch", 93, 3], ["passthru", 99, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, intltool: false, meson: false, ninja: false, itstool: false, libxml2: false, python3: false, gtk3: false, "json-glib": false, isocodes: false, openssl: false, gnome: false, "gobject-introspection": false, vala: false, libgee: false, sqlite: false, "gtk-doc": false, "yelp-tools": false, mysqlSupport: true, libmysqlclient: true, postgresSupport: true, libpq: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 38, 5], ["sha256", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 45, 7], ["sha256", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 51, 7], ["sha256", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 56, 7], ["url", 57, 7], ["sha256", 58, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 91, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["packageName", 101, 7], ["attrPath", 102, 7], ["versionPolicy", 103, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 100, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["teams", 116, 5], ["platforms", 117, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 42, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 76, 3], ["env", 91, 3], ["postPatch", 93, 3], ["passthru", 99, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,27 +36,27 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(mysqlSupport) || nix.asBool(!nix.eq(libmysqlclient, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libgda6/package.nix:30:1");
   nix.assert_((!nix.asBool(postgresSupport) || nix.asBool(!nix.eq(libpq, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libgda6/package.nix:31:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "libgda",
       version: "6.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgda/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libgda-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0w564z7krgjk19r39mi5qn4kggpdg9ggbyn9pb4aavb61r14npwr",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.gnome.org/GNOME/libgda/-/commit/657b2f8497da907559a6769c5b1d2d7b5bd40688.patch",
             sha256: "Qx4S9KQsTAr4M0QJi0Xr5kKuHSp4NwZJHoRPYyxIyTk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.gnome.org/GNOME/libgda/-/commit/57f618a3b2a3758ee3dcbf9bbdc566122dd8566d.patch",
             sha256: "pyfymUd61m1kHaGyMbUQMma+szB8mlqGWwcFBBQawf8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "CVE-2021-39359.patch",
             url: "https://gitlab.gnome.org/GNOME/libgda/-/commit/bebdffb4de586fb43fd07ac549121f4b22f6812d.patch",
             sha256: "sha256-UjHP1nhb5n6TOdaMdQeE2s828T4wv/0ycG3FAk+I1QA=",
@@ -85,21 +77,21 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => nix.concat([gtk3, json_glib, isocodes, openssl, libgee, sqlite], nix.concat(nix.app(nix.sel(lib, "optionals"), mysqlSupport, nix.thunk(() => [libmysqlclient])), nix.app(nix.sel(lib, "optionals"), postgresSupport, nix.thunk(() => [libpq]))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=incompatible-function-pointer-types")),
       })),
       postPatch: "patchShebangs \\\n  providers/raw_spec.py \\\n  providers/mysql/gen_bin.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             packageName: "libgda",
             attrPath: "libgda6",
             versionPolicy: "odd-unstable",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Database access library",
         homepage: "https://www.gnome-db.org/",
         license: nix.thunk(() => (() => {

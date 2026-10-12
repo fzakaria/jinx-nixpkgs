@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 30, 26], ["version", 30, 32], ["hash", 31, 5]], [["google", 48, 5]], [["vdirsyncer", 75, 26]], [["tests", 74, 12]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 51, 3], ["preCheck", 60, 3], ["disabledTests", 64, 3], ["nativeInstallCheckInputs", 70, 3], ["passthru", 74, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch: false, click: false, "click-log": false, requests: false, hypothesis: false, pytestCheckHook: false, "pytest-cov-stub": false, setuptools: false, "setuptools-scm": false, aiostream: false, "aiohttp-oauthlib": false, aiohttp: false, "pytest-asyncio": false, trustme: false, aioresponses: false, nixosTests: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 30, 26], ["version", 30, 32], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["google", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["vdirsyncer", 75, 26]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 74, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 51, 3], ["preCheck", 60, 3], ["disabledTests", 64, 3], ["nativeInstallCheckInputs", 70, 3], ["passthru", 74, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,19 +28,19 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "vdirsyncer",
       version: "0.20.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-/rGlM1AKlcFP0VVzOhBW/jWRklU9gsB8a6BPy/xAsS0=",
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [click, click_log, requests, aiostream, aiohttp]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, google: nix.thunk(() => [aiohttp_oauthlib]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], google: nix.thunk(() => [aiohttp_oauthlib]) })),
       nativeCheckInputs: nix.thunk(() => [
         hypothesis,
         pytestCheckHook,
@@ -58,14 +53,14 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_create_collections", "test_request_ssl", "test_verbosity"]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           vdirsyncer: nix.thunk(() => nix.attr(nixosTests, "vdirsyncer")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Synchronize calendars and contacts",
         homepage: "https://github.com/pimutils/vdirsyncer",
         changelog: nix.thunk(() => nix.str`https://github.com/pimutils/vdirsyncer/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),

@@ -2,12 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["bigEndian", 3, 22]]]);
 const formals$1 = { args: { sasquatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["bigEndian", 3, 22]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const sasquatch = nix.arg($, "sasquatch");
-  return nix.app(nix.sel(sasquatch, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, bigEndian: true })));
+  return nix.app(nix.sel(sasquatch, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], bigEndian: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["extraArgs", 34, 7]], [["plemoljp-hs", 31, 13], ["plemoljp-nf", 31, 25], ["updateScript", 33, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["installPhase", 19, 3], ["passthru", 30, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, "nix-update-script": false, "plemoljp-hs": false, "plemoljp-nf": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["plemoljp-hs", 31, 13], ["plemoljp-nf", 31, 25], ["updateScript", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["installPhase", 19, 3], ["passthru", 30, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const plemoljp_hs = nix.arg($, "plemoljp-hs");
   const plemoljp_nf = nix.arg($, "plemoljp-nf");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "plemoljp",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/yuru7/PlemolJP/releases/download/v${nix.sel(finalAttrs, "version")}/PlemolJP_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-X4DUAU7uicWtm8o3L9HmfU9By1YMnnjVrVU0iyw273A=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm444 PlemolJP/*.ttf -t $out/share/fonts/truetype/plemoljp\ninstall -Dm444 PlemolJP35/*.ttf -t $out/share/fonts/truetype/plemoljp-35\ninstall -Dm444 PlemolJPConsole/*.ttf -t $out/share/fonts/truetype/plemoljp-console\ninstall -Dm444 PlemolJP35Console/*.ttf -t $out/share/fonts/truetype/plemoljp-35console\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "plemoljp-hs": plemoljp_hs,
         "plemoljp-nf": plemoljp_nf,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => [
               "--version-regex=^v([0-9.]+)$",
               "--subpackage",
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Composite font of IBM Plex Mono and IBM Plex Sans JP",
         homepage: "https://github.com/yuru7/PlemolJP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

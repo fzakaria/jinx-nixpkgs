@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 19, 3], ["nativeBuildInputs", 25, 3], ["configureFlags", 29, 3], ["enableParallelBuilding", 33, 3], ["doCheck", 35, 3], ["postInstall", 37, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 19, 3], ["nativeBuildInputs", 25, 3], ["configureFlags", 29, 3], ["enableParallelBuilding", 33, 3], ["doCheck", 35, 3], ["postInstall", 37, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "shtk",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jmmv",
           repo: "shtk",
           tag: nix.thunk(() => nix.str`shtk-${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postInstall: "# The \"shtk\" binary is only used when building packages that need shtk at\n# runtime, so it's only a developer tool.\nmoveToOutput bin \"$dev\"\n\nmoveToOutput share/aclocal \"$dev\"\nmoveToOutput lib/pkgconfig \"$dev\"\n\nsubstituteInPlace \"$dev/lib/pkgconfig/shtk.pc\" \\\n  --replace-fail \"$out/bin/shtk\" \"$dev/bin/shtk\"\n\n# Do not install tests.  This is a weird pattern that not many packages\n# follow.\nrm -rf \"$out/tests\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Application toolkit for programmers writing POSIX-compliant shell scripts",
         longDescription: "The Shell Toolkit, or shtk for short, is an application toolkit\nfor programmers writing POSIX-compliant shell scripts.\n\nshtk provides a collection of reusable modules that work on a wide\nvariety of operating systems and shell interpreters. These modules are all\nready to be used by calling the provided shtk_import primitive and\n\"compiling\" the shell scripts into their final form using the shtk(1)\nutility.\n\nshtk is purely written in the shell scripting language so there are no\ndependencies to be installed, and is known to be compatible with at least\nbash, dash, pdksh and zsh.\n",
         homepage: "https://github.com/jmmv/shtk",

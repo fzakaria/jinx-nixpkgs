@@ -2,39 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/icecast.nix", [[["maintainers", 9, 33]], [["password", 16, 13]], [["enable", 14, 7], ["hostname", 15, 7], ["admin", 16, 7]], [["icecast", 13, 14]], [["services", 13, 5]], [["machine", 12, 9]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 12, 3], ["testScript", 20, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/icecast.nix", [["maintainers", 9, 33]]);
-const pos$2 = nix.positions(here + "/icecast.nix", [["password", 16, 13]]);
-const pos$3 = nix.positions(here + "/icecast.nix", [["enable", 14, 7], ["hostname", 15, 7], ["admin", 16, 7]]);
-const pos$4 = nix.positions(here + "/icecast.nix", [["icecast", 13, 14]]);
-const pos$5 = nix.positions(here + "/icecast.nix", [["services", 13, 5]]);
-const pos$6 = nix.positions(here + "/icecast.nix", [["machine", 12, 9]]);
-const pos$7 = nix.positions(here + "/icecast.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 12, 3], ["testScript", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "icecast",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "icecast", "meta"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           icecast: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             hostname: "nixos.test",
-            admin: nix.thunk(() => ({ [nix.POS]: pos$2, password: "test" })),
+            admin: nix.thunk(() => ({ [nix.POS]: $pos[1], password: "test" })),
           })),
         })),
       })),

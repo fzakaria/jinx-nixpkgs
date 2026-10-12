@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["lockFileContents", 36, 7]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 19, 3], ["postPatch", 28, 3], ["cargoLock", 31, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 43, 3], ["runtimeDependencies", 54, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, fetchFromGitHub: false, rustPlatform: false, stdenv: false, libGL: false, libxrandr: false, libxi: false, libxinerama: false, libxcursor: false, libx11: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lockFileContents", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 19, 3], ["postPatch", 28, 3], ["cargoLock", 31, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 43, 3], ["runtimeDependencies", 54, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "urdf-viz",
       version: "0.46.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openrr",
           repo: "urdf-viz",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       cargoLock: nix.thunk(() => (() => {
         const fixupLockFile = (path) => nix.builtins.readFile(path);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           lockFileContents: nix.thunk(() => nix.app(fixupLockFile, nix.path(here, "./Cargo.lock"))),
         };
       })()),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       runtimeDependencies: nix.thunk(() => [libGL, libx11, libxcursor, libxrandr, libxinerama, libxi]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Visualizer for URDF and XACRO files",
         homepage: "https://github.com/openrr/urdf-viz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

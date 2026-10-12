@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchSubmodules", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["BORING_BSSL_INCLUDE_PATH", 44, 5], ["BORING_BSSL_PATH", 45, 5], ["NIX_LDFLAGS", 46, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 13, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 37, 3], ["env", 43, 3], ["cargoHash", 49, 3], ["cargoBuildFlags", 51, 3], ["postFixup", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, xcodebuild: false, protobuf: false, boringssl: false, withShared: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchSubmodules", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["BORING_BSSL_INCLUDE_PATH", 44, 5], ["BORING_BSSL_PATH", 45, 5], ["NIX_LDFLAGS", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 37, 3], ["env", 43, 3], ["cargoHash", 49, 3], ["cargoBuildFlags", 51, 3], ["postFixup", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const boringssl = nix.arg($, "boringssl");
   const withShared = nix.argOr($, "withShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libsignal-ffi",
       version: "0.102.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           fetchSubmodules: true,
           owner: "signalapp",
           repo: "libsignal",
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), withShared, "substituteInPlace rust/bridge/ffi/Cargo.toml \\\n  --replace-fail 'crate-type = [\"staticlib\"]' 'crate-type = [\"cdylib\"]'\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(boringssl, "passthru", "isShared")), "substituteInPlace $cargoDepsCopy/*/boring-sys-*/build/main.rs \\\n  --replace-fail \"cargo:rustc-link-lib=static=crypto\" \"cargo:rustc-link-lib=dylib=crypto\" \\\n  --replace-fail \"cargo:rustc-link-lib=static=ssl\" \"cargo:rustc-link-lib=dylib=ssl\"\n"))),
       nativeBuildInputs: nix.thunk(() => nix.concat([protobuf, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcodebuild])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         BORING_BSSL_INCLUDE_PATH: nix.thunk(() => nix.add(nix.sel(boringssl, "dev"), "/include")),
         BORING_BSSL_PATH: boringssl,
         NIX_LDFLAGS: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "-lc++" : "-lstdc++")),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["-p", "libsignal-ffi"]),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withShared) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), "dylib=\"$out/lib/libsignal_ffi.dylib\"\ninstall_name_tool -id \"$dylib\" \"$dylib\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C ABI library which exposes Signal protocol logic",
         homepage: "https://github.com/signalapp/libsignal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

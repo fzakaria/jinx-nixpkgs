@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/trivial.nix", [[["type", 8, 7]], [["type", 12, 7], ["default", 13, 7]], [["fun", 7, 5], ["result", 11, 5]], [["fun", 17, 10]], [["options", 6, 3], ["config", 17, 3]]]);
 const formals$1 = { args: { lib: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/trivial.nix", [["type", 8, 7]]);
-const pos$2 = nix.positions(here + "/trivial.nix", [["type", 12, 7], ["default", 13, 7]]);
-const pos$3 = nix.positions(here + "/trivial.nix", [["fun", 7, 5], ["result", 11, 5]]);
-const pos$4 = nix.positions(here + "/trivial.nix", [["fun", 17, 10]]);
-const pos$5 = nix.positions(here + "/trivial.nix", [["options", 6, 3], ["config", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,20 +11,20 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       fun: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.app(nix.sel(types, "functionTo"), nix.thunk(() => nix.sel(types, "str")))),
         })))),
       result: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           type: nix.thunk(() => nix.sel(types, "str")),
           default: nix.thunk(() => nix.app(nix.sel(config, "fun"), "input")),
         })))),
     })),
-    config: nix.thunk(() => ({ [nix.POS]: pos$4, fun: (input) => nix.str`input is ${input}` })),
+    config: nix.thunk(() => ({ [nix.POS]: $pos[3], fun: (input) => nix.str`input is ${input}` })),
   };
 })(), formals$1);
 //# sourceMappingURL=trivial.ts.map

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 59, 5], ["homepage", 60, 5], ["maintainers", 61, 5]], [["pname", 23, 5], ["version", 24, 5], ["src", 25, 5], ["postPatch", 26, 5], ["pyproject", 28, 3], ["sourceRoot", 30, 3], ["build-system", 32, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 42, 3], ["mesonFlags", 47, 3], ["pythonImportsCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "nanoarrow-c": false, cython: false, meson: false, "meson-python": false, "pkg-config": false, zlib: false, "zstd-c": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["maintainers", 61, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 23, 5], ["version", 24, 5], ["src", 25, 5], ["postPatch", 26, 5], ["pyproject", 28, 3], ["sourceRoot", 30, 3], ["build-system", 32, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 42, 3], ["mesonFlags", 47, 3], ["pythonImportsCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const zstd_c = nix.arg($, "zstd-c");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(nanoarrow_c, "pname")),
       version: nix.thunk(() => nix.attr(nanoarrow_c, "version")),
       src: nix.thunk(() => nix.attr(nanoarrow_c, "src")),
@@ -35,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["nanoarrow"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => nix.update(nix.sel(nanoarrow_c, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python bindings to the nanoarrow C library",
         homepage: "https://github.com/apache/arrow-nanoarrow/tree/main/python",
         maintainers: nix.thunk(() => (() => {

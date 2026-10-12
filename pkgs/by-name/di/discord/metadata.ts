@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/metadata.nix", [[["branch", 13, 9], ["binaryName", 14, 9], ["desktopName", 15, 9], ["self", 16, 9]], [["branch", 19, 9], ["binaryName", 20, 9], ["desktopName", 21, 9], ["self", 22, 9]], [["branch", 25, 9], ["binaryName", 26, 9], ["desktopName", 27, 9], ["self", 28, 9]], [["branch", 31, 9], ["binaryName", 32, 9], ["desktopName", 33, 9], ["self", 34, 9]], [["discord", 12, 7], ["discord-ptb", 18, 7], ["discord-canary", 24, 7], ["discord-development", 30, 7]], [["branch", 39, 9], ["binaryName", 40, 9], ["desktopName", 41, 9], ["self", 42, 9]], [["branch", 45, 9], ["binaryName", 46, 9], ["desktopName", 47, 9], ["self", 48, 9]], [["branch", 51, 9], ["binaryName", 52, 9], ["desktopName", 53, 9], ["self", 54, 9]], [["branch", 57, 9], ["binaryName", 58, 9], ["desktopName", 59, 9], ["self", 60, 9]], [["discord", 38, 7], ["discord-ptb", 44, 7], ["discord-canary", 50, 7], ["discord-development", 56, 7]], [["x86_64-linux", 11, 5], ["aarch64-darwin", 37, 5], ["default", 64, 5]], [["description", 68, 5], ["downloadPage", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5], ["platforms", 81, 5], ["sourceProvenance", 85, 5]], [["mainProgram", 101, 7]], [["source", 99, 13], ["meta", 100, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, discord: false, "discord-ptb": false, "discord-canary": false, "discord-development": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/metadata.nix", [["branch", 13, 9], ["binaryName", 14, 9], ["desktopName", 15, 9], ["self", 16, 9]]);
-const pos$2 = nix.positions(here + "/metadata.nix", [["branch", 19, 9], ["binaryName", 20, 9], ["desktopName", 21, 9], ["self", 22, 9]]);
-const pos$3 = nix.positions(here + "/metadata.nix", [["branch", 25, 9], ["binaryName", 26, 9], ["desktopName", 27, 9], ["self", 28, 9]]);
-const pos$4 = nix.positions(here + "/metadata.nix", [["branch", 31, 9], ["binaryName", 32, 9], ["desktopName", 33, 9], ["self", 34, 9]]);
-const pos$5 = nix.positions(here + "/metadata.nix", [["discord", 12, 7], ["discord-ptb", 18, 7], ["discord-canary", 24, 7], ["discord-development", 30, 7]]);
-const pos$6 = nix.positions(here + "/metadata.nix", [["branch", 39, 9], ["binaryName", 40, 9], ["desktopName", 41, 9], ["self", 42, 9]]);
-const pos$7 = nix.positions(here + "/metadata.nix", [["branch", 45, 9], ["binaryName", 46, 9], ["desktopName", 47, 9], ["self", 48, 9]]);
-const pos$8 = nix.positions(here + "/metadata.nix", [["branch", 51, 9], ["binaryName", 52, 9], ["desktopName", 53, 9], ["self", 54, 9]]);
-const pos$9 = nix.positions(here + "/metadata.nix", [["branch", 57, 9], ["binaryName", 58, 9], ["desktopName", 59, 9], ["self", 60, 9]]);
-const pos$10 = nix.positions(here + "/metadata.nix", [["discord", 38, 7], ["discord-ptb", 44, 7], ["discord-canary", 50, 7], ["discord-development", 56, 7]]);
-const pos$11 = nix.positions(here + "/metadata.nix", [["x86_64-linux", 11, 5], ["aarch64-darwin", 37, 5], ["default", 64, 5]]);
-const pos$12 = nix.positions(here + "/metadata.nix", [["description", 68, 5], ["downloadPage", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5], ["platforms", 81, 5], ["sourceProvenance", 85, 5]]);
-const pos$13 = nix.positions(here + "/metadata.nix", [["mainProgram", 101, 7]]);
-const pos$14 = nix.positions(here + "/metadata.nix", [["source", 99, 13], ["meta", 100, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,30 +15,30 @@ export default nix.lambda((args) => (() => {
   const discord_development = nix.arg($, "discord-development");
   const variants = nix.thunk(() => (() => {
     const x86_64_linux = nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       discord: nix.thunk(() => (() => {
         const branch = "stable";
         const desktopName = "Discord";
         const binaryName = desktopName;
         const self = discord;
-        return { [nix.POS]: pos$1, branch, binaryName, desktopName, self };
+        return { [nix.POS]: $pos[0], branch, binaryName, desktopName, self };
       })()),
       "discord-ptb": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         branch: "ptb",
         binaryName: "DiscordPTB",
         desktopName: "Discord PTB",
         self: discord_ptb,
       })),
       "discord-canary": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         branch: "canary",
         binaryName: "DiscordCanary",
         desktopName: "Discord Canary",
         self: discord_canary,
       })),
       "discord-development": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         branch: "development",
         binaryName: "DiscordDevelopment",
         desktopName: "Discord Development",
@@ -59,46 +46,46 @@ export default nix.lambda((args) => (() => {
       })),
     }));
     const aarch64_darwin = nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       discord: nix.thunk(() => (() => {
         const branch = "stable";
         const desktopName = "Discord";
         const binaryName = desktopName;
         const self = discord;
-        return { [nix.POS]: pos$6, branch, binaryName, desktopName, self };
+        return { [nix.POS]: $pos[5], branch, binaryName, desktopName, self };
       })()),
       "discord-ptb": nix.thunk(() => (() => {
         const branch = "ptb";
         const desktopName = "Discord PTB";
         const binaryName = desktopName;
         const self = discord_ptb;
-        return { [nix.POS]: pos$7, branch, binaryName, desktopName, self };
+        return { [nix.POS]: $pos[6], branch, binaryName, desktopName, self };
       })()),
       "discord-canary": nix.thunk(() => (() => {
         const branch = "canary";
         const desktopName = "Discord Canary";
         const binaryName = desktopName;
         const self = discord_canary;
-        return { [nix.POS]: pos$8, branch, binaryName, desktopName, self };
+        return { [nix.POS]: $pos[7], branch, binaryName, desktopName, self };
       })()),
       "discord-development": nix.thunk(() => (() => {
         const branch = "development";
         const desktopName = "Discord Development";
         const binaryName = desktopName;
         const self = discord_development;
-        return { [nix.POS]: pos$9, branch, binaryName, desktopName, self };
+        return { [nix.POS]: $pos[8], branch, binaryName, desktopName, self };
       })()),
     }));
     const default$ = x86_64_linux;
     return {
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       "x86_64-linux": x86_64_linux,
       "aarch64-darwin": aarch64_darwin,
       default: default$,
     };
   })());
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     description: "All-in-one cross-platform voice and text chat for gamers",
     downloadPage: "https://discordapp.com/download",
     homepage: "https://discordapp.com/",
@@ -127,10 +114,10 @@ export default nix.lambda((args) => (() => {
       const platformName = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "osx" : "linux"));
       const source = nix.thunk(() => nix.sel(sources, nix.key(nix.str`${platformName}-${nix.sel(args_1, "branch")}`)));
       return nix.update(args_1, {
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         source: source,
         meta: nix.thunk(() => nix.update(meta, {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           mainProgram: nix.thunk(() => nix.sel(args_1, "binaryName")),
         })),
       });

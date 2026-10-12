@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pinnacle-config.nix", [[["PINNACLE_PROTOBUF_API_DEFS", 20, 5], ["PINNACLE_PROTOBUF_SNOWCAP_API_DEFS", 21, 5], ["nativeBuildInputs", 23, 5], ["buildInputs", 27, 5]]]);
 const formals$1 = { args: { rustPlatform: false, protobuf: false, "pkg-config": false, seatd: false, libxkbcommon: false, libinput: false, lua5_4: false, "libdisplay-info_0_3": false, libgbm: false, "pinnacle-src": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pinnacle-config.nix", [["PINNACLE_PROTOBUF_API_DEFS", 20, 5], ["PINNACLE_PROTOBUF_SNOWCAP_API_DEFS", 21, 5], ["nativeBuildInputs", 23, 5], ["buildInputs", 27, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const libgbm = nix.arg($, "libgbm");
   const pinnacle_src = nix.arg($, "pinnacle-src");
   return (args_1) => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_1, nix.thunk(() => ["nativeBuildInputs", "buildInputs"])), {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       PINNACLE_PROTOBUF_API_DEFS: nix.thunk(() => nix.str`${pinnacle_src}/api/protobuf`),
       PINNACLE_PROTOBUF_SNOWCAP_API_DEFS: nix.thunk(() => nix.str`${pinnacle_src}/snowcap/api/protobuf`),
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_1, () => [], "nativeBuildInputs"), [protobuf, pkg_config])),

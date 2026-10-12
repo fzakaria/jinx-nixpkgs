@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 41, 5], ["sha256", 42, 5]], [["load_plugins", 51, 7]], [["packageName", 106, 7], ["versionPolicy", 107, 7]], [["updateScript", 105, 5]], [["homepage", 112, 5], ["description", 113, 5], ["teams", 114, 5], ["license", 115, 5], ["platforms", 116, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["patches", 45, 3], ["strictDeps", 65, 3], ["depsBuildBuild", 67, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 82, 3], ["passthru", 104, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, replaceVars: false, meson: false, ninja: false, "pkg-config": false, gettext: false, gperf: false, glib: false, localsearch: false, sqlite: false, libarchive: false, libdmapsharing: false, libsoup_3: false, librest: false, gnome: false, libxml2: false, lua5_4: false, liboauth: false, libmediaart: false, grilo: false, gst_all_1: false, "gnome-online-accounts": false, gmime: false, gom: false, "json-glib": false, avahi: false, tinysparql: false, dleyna: false, itstool: false, "totem-pl-parser": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 41, 5], ["sha256", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["load_plugins", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 106, 7], ["versionPolicy", 107, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 105, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 112, 5], ["description", 113, 5], ["teams", 114, 5], ["license", 115, 5], ["platforms", 116, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["patches", 45, 3], ["strictDeps", 65, 3], ["depsBuildBuild", 67, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 82, 3], ["passthru", 104, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,13 +43,13 @@ export default nix.lambda((args) => (() => {
       const pname = "grilo-plugins";
       const version = "0.3.18";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/grilo-plugins/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/grilo-plugins-${version}.tar.xz`),
           sha256: "jjznTucXw8Mi0MsPjfJrsJFAKKXQFuKAVf+0nMmkbF4=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./chromaprint-gst-plugins.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             load_plugins: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (plugin) => nix.str`gst_registry_scan_path(gst_registry_get(), "${nix.app(nix.sel(lib, "getLib"), plugin)}/lib/gstreamer-1.0");`, nix.thunk(() => (() => {
                 const w = nix.withScope(gst_all_1, null);
                 return [
@@ -90,11 +85,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(gst_all_1, "gstreamer")),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.gnome.org/GNOME/grilo-plugins",
         description: "Collection of plugins for the Grilo framework",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
@@ -102,7 +97,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

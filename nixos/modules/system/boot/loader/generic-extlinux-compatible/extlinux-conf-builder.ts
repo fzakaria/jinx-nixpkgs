@@ -2,20 +2,19 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/extlinux-conf-builder.nix", [[["path", 7, 5], ["bash", 12, 20]], [["src", 4, 3], ["isExecutable", 5, 3], ["replacements", 6, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/extlinux-conf-builder.nix", [["path", 7, 5], ["bash", 12, 20]]);
-const pos$2 = nix.positions(here + "/extlinux-conf-builder.nix", [["src", 4, 3], ["isExecutable", 5, 3], ["replacements", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(pkgs, "replaceVarsWith"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.path(here, "./extlinux-conf-builder.sh"),
       isExecutable: true,
       replacements: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         path: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "coreutils")),
             nix.thunk(() => nix.sel(pkgs, "gnused")),

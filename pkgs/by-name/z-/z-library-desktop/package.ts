@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["version", 99, 55]], [["updateScript", 103, 12]], [["homepage", 106, 5], ["description", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5], ["sourceProvenance", 111, 5], ["mainProgram", 112, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildPhase", 38, 3], ["installPhase", 49, 3], ["postInstall", 91, 3], ["passthru", 103, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, makeBinaryWrapper: false, replaceVars: false, dpkg: false, asar: false, electron: false, darwin: false, libsecret: false, "pkg-config": false, buildNpmPackage: false, removeReferencesTo: false, xcbuild: false, tor: false, xray: false, obfs4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 99, 55]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 103, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 106, 5], ["description", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5], ["sourceProvenance", 111, 5], ["mainProgram", 112, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildPhase", 38, 3], ["installPhase", 49, 3], ["postInstall", 91, 3], ["passthru", 103, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const xray = nix.arg($, "xray");
   const obfs4 = nix.arg($, "obfs4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "z-library-desktop",
       version: "3.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20260927191559/https://dln1.ncdn.ec/general-files/soft/desktop/Z-Library_3.2.1_amd64.deb",
           hash: "sha256-1zmcFIoZWuKUgS4YhyYrsIYISEFD1diEqtNbZvs4lC4=",
         })))),
@@ -82,11 +78,14 @@ runHook postInstall
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`mkdir -p $out/Applications/Z-Library.app/Contents/{MacOS,Resources}
 ln -s $out/bin/z-library $out/Applications/Z-Library.app/Contents/MacOS/Z-Library
 ln -s $phome/resources/app/dist/icon.icns $out/Applications/Z-Library.app/Contents/Resources/icon.icns
-install -Dm444 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))} $out/Applications/Z-Library.app/Contents/Info.plist
+install -Dm444 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            version: nix.thunk(() => nix.attr(finalAttrs, "version")),
+          })))} $out/Applications/Z-Library.app/Contents/Info.plist
 `))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.rb") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.rb") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://z-library.sk",
         description: "Client for the online library Z-Library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

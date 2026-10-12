@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["url", 37, 7], ["hash", 38, 7]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 92, 5], ["mainProgram", 93, 5], ["platforms", 94, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 55, 3], ["makeFlags", 57, 3], ["dontConfigure", 62, 3], ["installPhase", 65, 3], ["postInstall", 79, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, wget: false, unzip: false, mawk: false, sqlite: false, which: false, lua5_3: false, installShellFiles: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 92, 5], ["mainProgram", 93, 5], ["platforms", 94, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 55, 3], ["makeFlags", 57, 3], ["dontConfigure", 62, 3], ["installPhase", 65, 3], ["postInstall", 79, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openrussian-cli",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rhaberkorn",
           repo: "openrussian-cli",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/rhaberkorn/openrussian-cli/commit/984e555acbadbd1aed7df17ab53e2c586a2f8f68.patch",
             hash: "sha256-/z4YrEeuejtCtwiFXksFREwgQoWvtI0Kl9w75KDQfF8=",
           })))),
@@ -70,7 +67,7 @@ runHook postInstall
 `),
       postInstall: "installShellCompletion --cmd openrussian --bash ./openrussian-completion.bash\ninstallManPage ./openrussian.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Offline Console Russian Dictionary (based on openrussian.org)",
         homepage: "https://github.com/rhaberkorn/openrussian-cli",
         license: nix.thunk(() => (() => {

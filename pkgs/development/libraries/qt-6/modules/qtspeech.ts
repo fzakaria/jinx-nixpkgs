@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtspeech.nix", [[["pname", 14, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["propagatedBuildInputs", 21, 3]]]);
 const formals$1 = { args: { qtModule: false, lib: false, stdenv: false, qtbase: false, qtmultimedia: false, "pkg-config": false, flite: false, "alsa-lib": false, "speechd-minimal": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtspeech.nix", [["pname", 14, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["propagatedBuildInputs", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const speechd_minimal = nix.arg($, "speechd-minimal");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "qtspeech",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [flite, alsa_lib, speechd_minimal]))),

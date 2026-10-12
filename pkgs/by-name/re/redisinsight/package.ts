@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["name", 44, 5], ["src", 45, 26], ["patches", 45, 30], ["hash", 46, 5]], [["name", 50, 5], ["src", 51, 26], ["patches", 51, 30], ["postPatch", 52, 5], ["hash", 53, 5]], [["name", 57, 5], ["src", 58, 26], ["patches", 58, 30], ["postPatch", 59, 5], ["hash", 60, 5]], [["name", 164, 7], ["exec", 165, 7], ["icon", 166, 7], ["desktopName", 167, 7], ["genericName", 168, 7], ["comment", 169, 7], ["categories", 170, 7], ["startupWMClass", 171, 7]], [["description", 176, 5], ["homepage", 177, 5], ["license", 178, 5], ["maintainers", 179, 5], ["platforms", 182, 5], ["teams", 183, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["baseOfflineCache", 43, 3], ["innerOfflineCache", 49, 3], ["apiOfflineCache", 56, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 73, 3], ["postPatch", 78, 3], ["dontYarnInstallDeps", 87, 3], ["configurePhase", 89, 3], ["buildPhase", 113, 3], ["installPhase", 139, 3], ["desktopItems", 162, 3], ["meta", 175, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchYarnDeps: false, makeDesktopItem: false, copyDesktopItems: false, "dart-sass": false, makeWrapper: false, "nodejs-slim_24": false, "pkg-config": false, yarnConfigHook: false, electron_41: false, libsecret: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 44, 5], ["src", 45, 26], ["patches", 45, 30], ["hash", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 50, 5], ["src", 51, 26], ["patches", 51, 30], ["postPatch", 52, 5], ["hash", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 57, 5], ["src", 58, 26], ["patches", 58, 30], ["postPatch", 59, 5], ["hash", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 164, 7], ["exec", 165, 7], ["icon", 166, 7], ["desktopName", 167, 7], ["genericName", 168, 7], ["comment", 169, 7], ["categories", 170, 7], ["startupWMClass", 171, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 176, 5], ["homepage", 177, 5], ["license", 178, 5], ["maintainers", 179, 5], ["platforms", 182, 5], ["teams", 183, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["baseOfflineCache", 43, 3], ["innerOfflineCache", 49, 3], ["apiOfflineCache", 56, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 73, 3], ["postPatch", 78, 3], ["dontYarnInstallDeps", 87, 3], ["configurePhase", 89, 3], ["buildPhase", 113, 3], ["installPhase", 139, 3], ["desktopItems", 162, 3], ["meta", 175, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const electron = electron_41;
   const nodejs = nodejs_slim_24;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "redisinsight",
       version: "3.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "redis",
           repo: "RedisInsight",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,14 +36,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./remove-cpu-features.patch")]),
       baseOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`redisinsight-${nix.sel(finalAttrs, "version")}-base-offline-cache`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
           hash: "sha256-lfCasq3C0jD4wNpguxSOxwrR0Sx3ZfwK95Ib31TShSQ=",
         })))),
       innerOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.str`redisinsight-${nix.sel(finalAttrs, "version")}-inner-offline-cache`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -57,7 +51,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-vdBSquVsIeMh5eZMRxYdVz3iuhM27RgEtI6FZqjCP74=",
         })))),
       apiOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: nix.thunk(() => nix.str`redisinsight-${nix.sel(finalAttrs, "version")}-api-offline-cache`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -145,7 +139,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "redisinsight",
             exec: "redisinsight %u",
             icon: "redisinsight",
@@ -157,7 +151,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Developer GUI for Redis",
         homepage: "https://github.com/redis/RedisInsight",
         license: nix.thunk(() => nix.sel(lib, "licenses", "sspl")),

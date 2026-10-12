@@ -2,68 +2,59 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/szurubooru.nix", [[["maintainers", 5, 10]], [["enable", 15, 11], ["initialScript", 16, 11]], [["domain", 31, 15], ["secretFile", 32, 15], ["debug", 33, 15]], [["port", 28, 13], ["host", 29, 13], ["settings", 30, 13]], [["host", 38, 13], ["port", 39, 13], ["name", 40, 13], ["user", 41, 13], ["passwordFile", 42, 13]], [["enable", 23, 11], ["dataDir", 25, 11], ["server", 27, 11], ["database", 37, 11]], [["postgresql", 14, 18], ["szurubooru", 22, 18]], [["services", 14, 9]], [["machine", 7, 11]], [["name", 4, 5], ["meta", 5, 5], ["nodes", 7, 5], ["testScript", 47, 5]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/szurubooru.nix", [["maintainers", 5, 10]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/szurubooru.nix", [["enable", 15, 11], ["initialScript", 16, 11]]);
-const pos$3 = nix.positions(here + "/szurubooru.nix", [["domain", 31, 15], ["secretFile", 32, 15], ["debug", 33, 15]]);
-const pos$4 = nix.positions(here + "/szurubooru.nix", [["port", 28, 13], ["host", 29, 13], ["settings", 30, 13]]);
-const pos$5 = nix.positions(here + "/szurubooru.nix", [["host", 38, 13], ["port", 39, 13], ["name", 40, 13], ["user", 41, 13], ["passwordFile", 42, 13]]);
-const pos$6 = nix.positions(here + "/szurubooru.nix", [["enable", 23, 11], ["dataDir", 25, 11], ["server", 27, 11], ["database", 37, 11]]);
-const pos$7 = nix.positions(here + "/szurubooru.nix", [["postgresql", 14, 18], ["szurubooru", 22, 18]]);
-const pos$8 = nix.positions(here + "/szurubooru.nix", [["services", 14, 9]]);
-const pos$9 = nix.positions(here + "/szurubooru.nix", [["machine", 7, 11]]);
-const pos$10 = nix.positions(here + "/szurubooru.nix", [["name", 4, 5], ["meta", 5, 5], ["nodes", 7, 5], ["testScript", 47, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       name: "szurubooru",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "ratcornu"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         machine: nix.thunk(() => (() => {
           const dbpass = "changeme";
           return nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const config = nix.arg($_1, "config");
             return {
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 postgresql: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   enable: true,
                   initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "init.sql", nix.thunk(() => nix.str`CREATE USER ${nix.sel(config, "services", "szurubooru", "database", "user")} WITH PASSWORD '${dbpass}';
 CREATE DATABASE ${nix.sel(config, "services", "szurubooru", "database", "name")} WITH OWNER ${nix.sel(config, "services", "szurubooru", "database", "user")};
 `))),
                 })),
                 szurubooru: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   enable: true,
                   dataDir: "/var/lib/szurubooru",
                   server: nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     port: 6666n,
                     host: "127.0.0.1",
                     settings: nix.thunk(() => ({
-                      [nix.POS]: pos$3,
+                      [nix.POS]: $pos[2],
                       domain: "http://127.0.0.1",
                       secretFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secret", "secret")),
                       debug: 1n,
                     })),
                   })),
                   database: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     host: "localhost",
                     port: 5432n,
                     name: "szurubooru",

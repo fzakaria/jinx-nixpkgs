@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["tcl", 27, 7]], [["dejagnu", 61, 13]], [["tests", 60, 12]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["postInstall", 46, 3], ["doCheck", 51, 3], ["installCheckTarget", 52, 3], ["tclRequiresCheck", 53, 3], ["outputs", 55, 3], ["passthru", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, fetchFromGitHub: false, tcl: false, makeWrapper: false, autoreconfHook: false, bashNonInteractive: false, replaceVars: false, dejagnu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tcl", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["dejagnu", 61, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 60, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["postInstall", 46, 3], ["doCheck", 51, 3], ["installCheckTarget", 52, 3], ["tclRequiresCheck", 53, 3], ["outputs", 55, 3], ["passthru", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const dejagnu = nix.arg($, "dejagnu");
   return nix.app(nix.sel(tcl, "mkTclDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "expect",
       version: "6.0a2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tcltk-depot",
           repo: "expect",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-build-time-run-tcl.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             tcl: nix.thunk(() => nix.str`${nix.sel(buildPackages, "tcl")}/bin/tclsh`),
           })))),
         nix.path(here, "./freebsd-unversioned.patch"),
@@ -51,11 +46,11 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
       tclRequiresCheck: nix.thunk(() => ["Expect"]),
       outputs: nix.thunk(() => ["out", "dev"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, dejagnu: dejagnu })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], dejagnu: dejagnu })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tool for automating interactive applications",
         homepage: "https://expect.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

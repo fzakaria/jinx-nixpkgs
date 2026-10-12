@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["NIX_CFLAGS_COMPILE", 39, 5], ["NIX_LDFLAGS", 40, 5]], [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["preConfigure", 28, 3], ["enableParallelBuilding", 33, 3], ["env", 35, 3], ["nativeInstallCheckInputs", 43, 3], ["doInstallCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gtk3: false, openssl: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 39, 5], ["NIX_LDFLAGS", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["preConfigure", 28, 3], ["enableParallelBuilding", 33, 3], ["env", 35, 3], ["nativeInstallCheckInputs", 43, 3], ["doInstallCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "macopix",
       version: "3.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://rosegray.sakura.ne.jp/macopix/macopix-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-1AjqdPPCc9UQWqLdWlA+Va+MmvKL8dAIfJURPifN7RI=",
         })))),
@@ -31,14 +28,14 @@ export default nix.lambda((args) => (() => {
       preConfigure: "# Build fails on Linux with windres.\nexport ac_cv_prog_WINDRES=\n",
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-fcommon -std=gnu99",
         NIX_LDFLAGS: "-lX11",
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Mascot Constructive Pilot for X",
         mainProgram: "macopix",
         homepage: "http://rosegray.sakura.ne.jp/macopix/index-e.html",

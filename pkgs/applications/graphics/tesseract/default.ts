@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["tesseractBase", 15, 5], ["languages", 16, 5]], [["tesseractBase", 21, 7], ["languages", 22, 7]], [["tesseractBase", 28, 7], ["languages", 29, 7]], [["tesseract3", 14, 3], ["tesseract4", 19, 3], ["tesseract5", 26, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["tesseractBase", 15, 5], ["languages", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tesseractBase", 21, 7], ["languages", 22, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tesseractBase", 28, 7], ["languages", 29, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tesseract3", 14, 3], ["tesseract4", 19, 3], ["tesseract5", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const base5 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tesseract5.nix"), nix.thunk(() => ({}))));
   const languages = nix.thunk(() => nix.app(callPackage, nix.path(here, "./languages.nix"), nix.thunk(() => ({}))));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     tesseract3: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         tesseractBase: base3,
         languages: nix.thunk(() => nix.sel(languages, "v3")),
       })))),
     tesseract4: nix.thunk(() => nix.app(lowPrio, nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           tesseractBase: base4,
           languages: nix.thunk(() => nix.sel(languages, "v4")),
         })))))),
     tesseract5: nix.thunk(() => nix.app(lowPrio, nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           tesseractBase: base5,
           languages: nix.thunk(() => nix.sel(languages, "v4")),
         })))))),

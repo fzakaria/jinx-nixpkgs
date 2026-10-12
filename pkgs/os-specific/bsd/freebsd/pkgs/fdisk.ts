@@ -2,15 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fdisk.nix", [[["path", 3, 3], ["buildInputs", 5, 3]]]);
 const formals$1 = { args: { mkDerivation: false, libgeom: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fdisk.nix", [["path", 3, 3], ["buildInputs", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDerivation = nix.arg($, "mkDerivation");
   const libgeom = nix.arg($, "libgeom");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "sbin/fdisk",
       buildInputs: nix.thunk(() => [libgeom]),
     })));

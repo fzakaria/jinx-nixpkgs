@@ -2,18 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/oci-common.nix", [[["canTouchEfiVariables", 44, 19]], [["device", 46, 5], ["splashImage", 47, 5], ["extraConfig", 48, 5], ["efiInstallAsRemovable", 53, 5], ["efiSupport", 54, 5]], [["efi", 44, 15], ["grub", 45, 15]], [["kernelParams", 15, 8], ["growPartition", 31, 8], ["loader", 44, 8]], [["device", 34, 5], ["fsType", 35, 5], ["autoResize", 36, 5]], [["device", 40, 5], ["fsType", 41, 5]], [["/", 33, 15], ["/boot", 39, 15]], [["timeServers", 58, 14], ["useNetworkd", 64, 14]], [["enable", 60, 20]], [["openssh", 60, 12]], [["imports", 12, 3], ["boot", 15, 3], ["fileSystems", 33, 3], ["networking", 58, 3], ["services", 60, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/oci-common.nix", [["canTouchEfiVariables", 44, 19]]);
-const pos$2 = nix.positions(here + "/oci-common.nix", [["device", 46, 5], ["splashImage", 47, 5], ["extraConfig", 48, 5], ["efiInstallAsRemovable", 53, 5], ["efiSupport", 54, 5]]);
-const pos$3 = nix.positions(here + "/oci-common.nix", [["efi", 44, 15], ["grub", 45, 15]]);
-const pos$4 = nix.positions(here + "/oci-common.nix", [["kernelParams", 15, 8], ["growPartition", 31, 8], ["loader", 44, 8]]);
-const pos$5 = nix.positions(here + "/oci-common.nix", [["device", 34, 5], ["fsType", 35, 5], ["autoResize", 36, 5]]);
-const pos$6 = nix.positions(here + "/oci-common.nix", [["device", 40, 5], ["fsType", 41, 5]]);
-const pos$7 = nix.positions(here + "/oci-common.nix", [["/", 33, 15], ["/boot", 39, 15]]);
-const pos$8 = nix.positions(here + "/oci-common.nix", [["timeServers", 58, 14], ["useNetworkd", 64, 14]]);
-const pos$9 = nix.positions(here + "/oci-common.nix", [["enable", 60, 20]]);
-const pos$10 = nix.positions(here + "/oci-common.nix", [["openssh", 60, 12]]);
-const pos$11 = nix.positions(here + "/oci-common.nix", [["imports", 12, 3], ["boot", 15, 3], ["fileSystems", 33, 3], ["networking", 58, 3], ["services", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "oci"));
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     imports: nix.thunk(() => [nix.path(here, "../profiles/qemu-guest.nix")]),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       kernelParams: nix.thunk(() => [
         "nvme.shutdown_timeout=10",
         "nvme_core.shutdown_timeout=10",
@@ -37,10 +27,10 @@ export default nix.lambda((args) => (() => {
       ]),
       growPartition: true,
       loader: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        efi: nix.thunk(() => ({ [nix.POS]: pos$1, canTouchEfiVariables: false })),
+        [nix.POS]: $pos[2],
+        efi: nix.thunk(() => ({ [nix.POS]: $pos[0], canTouchEfiVariables: false })),
         grub: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           device: nix.thunk(() => (nix.asBool(nix.sel(cfg, "efi")) ? "nodev" : "/dev/sda")),
           splashImage: null,
           extraConfig: "serial --unit=0 --speed=115200 --word=8 --parity=no --stop=1\nterminal_input --append serial\nterminal_output --append serial\n",
@@ -50,23 +40,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     fileSystems: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       "/": nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         device: "/dev/disk/by-label/nixos",
         fsType: "ext4",
         autoResize: true,
       })),
-      "/boot": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "efi")), nix.thunk(() => ({ [nix.POS]: pos$6, device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
+      "/boot": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "efi")), nix.thunk(() => ({ [nix.POS]: $pos[5], device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
     })),
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       timeServers: nix.thunk(() => ["169.254.169.254"]),
       useNetworkd: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$10,
-      openssh: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+      [nix.POS]: $pos[9],
+      openssh: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
     })),
   };
 })(), formals$1);

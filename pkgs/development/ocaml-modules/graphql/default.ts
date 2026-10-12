@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 27, 5]], [["pname", 10, 3], ["version", 12, 28], ["src", 12, 36], ["duneVersion", 14, 3], ["propagatedBuildInputs", 16, 3], ["checkInputs", 22, 3], ["doCheck", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, alcotest: false, graphql_parser: false, rresult: false, yojson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 12, 28], ["src", 12, 36], ["duneVersion", 14, 3], ["propagatedBuildInputs", 16, 3], ["checkInputs", 22, 3], ["doCheck", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const rresult = nix.arg($, "rresult");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "graphql",
       version: nix.thunk(() => nix.attr(graphql_parser, "version")),
       src: nix.thunk(() => nix.attr(graphql_parser, "src")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(graphql_parser, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Build GraphQL schemas and execute queries against them",
       })),
     })));

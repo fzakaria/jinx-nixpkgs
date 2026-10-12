@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 34, 7], ["aarch64-linux", 35, 7], ["aarch64-darwin", 36, 7]], [["x86_64-linux", 42, 7], ["aarch64-linux", 43, 7], ["aarch64-darwin", 44, 7]], [["basic", 52, 9], ["sdk", 53, 9], ["sqlplus", 54, 9], ["tools", 55, 9], ["odbc", 56, 9]], [["basic", 59, 9], ["sdk", 60, 9], ["sqlplus", 61, 9], ["tools", 62, 9], ["odbc", 63, 9]], [["basic", 66, 9], ["sdk", 67, 9], ["sqlplus", 68, 9], ["tools", 69, 9], ["odbc", 70, 9]], [["x86_64-linux", 51, 7], ["aarch64-linux", 58, 7], ["aarch64-darwin", 65, 7]], [["basic", 79, 9], ["tools", 80, 9]], [["aarch64-darwin", 78, 7]], [["x86_64-linux", 88, 7], ["aarch64-linux", 89, 7], ["aarch64-darwin", 90, 7]], [["x86_64-linux", 96, 7], ["aarch64-linux", 97, 7], ["aarch64-darwin", 98, 7]], [["aarch64-darwin", 104, 7]], [["url", 117, 7], ["sha256", 118, 7]], [["description", 180, 5], ["longDescription", 181, 5], ["sourceProvenance", 186, 5], ["license", 187, 5], ["platforms", 188, 5], ["maintainers", 193, 5], ["hydraPlatforms", 194, 5]], [["pname", 133, 11], ["version", 133, 17], ["srcs", 133, 25], ["buildInputs", 135, 3], ["nativeBuildInputs", 141, 3], ["outputs", 148, 3], ["unpackCmd", 154, 3], ["installPhase", 156, 3], ["postFixup", 171, 3], ["meta", 179, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, fixDarwinDylibNames: false, unzip: false, _7zz: false, libaio: false, makeWrapper: false, odbcSupport: true, unixodbc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 34, 7], ["aarch64-linux", 35, 7], ["aarch64-darwin", 36, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 42, 7], ["aarch64-linux", 43, 7], ["aarch64-darwin", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["basic", 52, 9], ["sdk", 53, 9], ["sqlplus", 54, 9], ["tools", 55, 9], ["odbc", 56, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["basic", 59, 9], ["sdk", 60, 9], ["sqlplus", 61, 9], ["tools", 62, 9], ["odbc", 63, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["basic", 66, 9], ["sdk", 67, 9], ["sqlplus", 68, 9], ["tools", 69, 9], ["odbc", 70, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["x86_64-linux", 51, 7], ["aarch64-linux", 58, 7], ["aarch64-darwin", 65, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["basic", 79, 9], ["tools", 80, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["aarch64-darwin", 78, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["x86_64-linux", 88, 7], ["aarch64-linux", 89, 7], ["aarch64-darwin", 90, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["x86_64-linux", 96, 7], ["aarch64-linux", 97, 7], ["aarch64-darwin", 98, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["aarch64-darwin", 104, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["url", 117, 7], ["sha256", 118, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["description", 180, 5], ["longDescription", 181, 5], ["sourceProvenance", 186, 5], ["license", 187, 5], ["platforms", 188, 5], ["maintainers", 193, 5], ["hydraPlatforms", 194, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 133, 11], ["version", 133, 17], ["srcs", 133, 25], ["buildInputs", 135, 3], ["nativeBuildInputs", 141, 3], ["outputs", 148, 3], ["unpackCmd", 154, 3], ["installPhase", 156, 3], ["postFixup", 171, 3], ["meta", 179, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,21 +24,21 @@ export default nix.lambda((args) => (() => {
   const throwSystem = "unsupported";
   const components = nix.thunk(() => nix.concat(["basic", "sdk", "sqlplus", "tools"], nix.app(optional, odbcSupport, "odbc")));
   const version = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "21.10.0.0.0",
     "aarch64-linux": "19.10.0.0.0",
     "aarch64-darwin": "23.3.0.23.09",
   }, () => throwSystem, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const directory = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x86_64-linux": "2110000",
     "aarch64-linux": "191000",
     "aarch64-darwin": "233023",
   }, () => throwSystem, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const hashes = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       basic: "sha256-uo0QBOmx7TQyroD+As60IhjEkz//+0Cm1tWvLI3edaE=",
       sdk: "sha256-TIBFi1jHLJh+SUNFvuL7aJpxh61hG6gXhFIhvdPgpts=",
       sqlplus: "sha256-mF9kLjhZXe/fasYDfmZrYPL2CzAp3xDbi624RJDA4lM=",
@@ -59,7 +46,7 @@ export default nix.lambda((args) => (() => {
       odbc: "sha256-3M6/cEtUrIFzQay8eHNiLGE+L0UF+VTmzp4cSBcrzlk=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       basic: "sha256-DNntH20BAmo5kOz7uEgW2NXaNfwdvJ8l8oMnp50BOsY=",
       sdk: "sha256-8VpkNyLyFMUfQwbZpSDV/CB95RoXfaMr8w58cRt/syw=",
       sqlplus: "sha256-iHcyijHhAvjsAqN9R+Rxo2R47k940VvPbScc2MWYn0Q=",
@@ -67,7 +54,7 @@ export default nix.lambda((args) => (() => {
       odbc: "sha256-T+RIIKzZ9xEg/E72pfs5xqHz2WuIWKx/oRfDrQbw3ms=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       basic: "sha256-G83bWDhw9wwjLVee24oy/VhJcCik7/GtKOzgOXuo1/4=",
       sdk: "sha256-PerfzgietrnAkbH9IT7XpmaFuyJkPHx0vl4FCtjPzLs=",
       sqlplus: "sha256-khOjmaExAb3rzWEwJ/o4XvRMQruiMw+UgLFtsOGn1nY=",
@@ -76,25 +63,25 @@ export default nix.lambda((args) => (() => {
     })),
   }, () => throwSystem, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const rels = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$8,
-    "aarch64-darwin": nix.thunk(() => ({ [nix.POS]: pos$7, basic: "1", tools: "1" })),
+    [nix.POS]: $pos[7],
+    "aarch64-darwin": nix.thunk(() => ({ [nix.POS]: $pos[6], basic: "1", tools: "1" })),
   }, () => ({}), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const arch = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     "x86_64-linux": "linux.x64",
     "aarch64-linux": "linux.arm64",
     "aarch64-darwin": "macos.arm64",
   }, () => throwSystem, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const shortArch = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     "x86_64-linux": "linux",
     "aarch64-linux": "linux",
     "aarch64-darwin": "mac",
   }, () => throwSystem, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
-  const suffix = nix.thunk(() => nix.selOr({ [nix.POS]: pos$11, "aarch64-darwin": ".dmg" }, () => "dbru.zip", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const suffix = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[10], "aarch64-darwin": ".dmg" }, () => "dbru.zip", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const srcFilename = (component) => (arch_1) => (version_1) => (rel) => nix.add(nix.add(nix.str`instantclient-${component}-${arch_1}-${version_1}`, nix.app(optionalString, nix.thunk(() => !nix.eq(rel, "")), nix.thunk(() => nix.str`-${rel}`))), suffix);
   const fetcher = (srcFilename_1) => (hash) => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       url: nix.thunk(() => nix.str`https://download.oracle.com/otn_software/${shortArch}/instantclient/${directory}/${srcFilename_1}`),
       sha256: hash,
     })));
@@ -103,7 +90,7 @@ export default nix.lambda((args) => (() => {
   const pname = "oracle-instantclient";
   const extLib = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: pname,
       version: version,
       srcs: srcs,
@@ -131,7 +118,7 @@ ln -sfn $out/bin/sqlplus $out/bin/sqlplus64
 `),
       postFixup: nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "for exe in \"$out/bin/\"* ; do\n  if [ ! -L \"$exe\" ]; then\n    install_name_tool -add_rpath \"$lib/lib\" \"$exe\"\n  fi\ndone\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "Oracle instant client libraries and sqlplus CLI",
         longDescription: "Oracle instant client provides access to Oracle databases (OCI,\nOCCI, Pro*C, ODBC or JDBC). This package includes the sqlplus\ncommand line SQL client.\n",
         sourceProvenance: nix.thunk(() => (() => {

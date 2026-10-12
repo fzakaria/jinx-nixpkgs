@@ -2,54 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/logkeys.nix", [[["maintainers", 4, 8]], [["autologinUser", 11, 22]], [["enable", 14, 9], ["device", 15, 9]], [["getty", 11, 16], ["logkeys", 13, 16]], [["ExecStartPre", 21, 46]], [["serviceConfig", 21, 32]], [["logkeys", 21, 24]], [["services", 21, 15]], [["imports", 9, 7], ["services", 11, 7], ["systemd", 21, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/logkeys.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/logkeys.nix", [["autologinUser", 11, 22]]);
-const pos$3 = nix.positions(here + "/logkeys.nix", [["enable", 14, 9], ["device", 15, 9]]);
-const pos$4 = nix.positions(here + "/logkeys.nix", [["getty", 11, 16], ["logkeys", 13, 16]]);
-const pos$5 = nix.positions(here + "/logkeys.nix", [["ExecStartPre", 21, 46]]);
-const pos$6 = nix.positions(here + "/logkeys.nix", [["serviceConfig", 21, 32]]);
-const pos$7 = nix.positions(here + "/logkeys.nix", [["logkeys", 21, 24]]);
-const pos$8 = nix.positions(here + "/logkeys.nix", [["services", 21, 15]]);
-const pos$9 = nix.positions(here + "/logkeys.nix", [["imports", 9, 7], ["services", 11, 7], ["systemd", 21, 7]]);
-const pos$10 = nix.positions(here + "/logkeys.nix", [["machine", 6, 9]]);
-const pos$11 = nix.positions(here + "/logkeys.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "logkeys",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "h7x4"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            getty: nix.thunk(() => ({ [nix.POS]: pos$2, autologinUser: "alice" })),
-            logkeys: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, device: "virtio-kbd" })),
+            [nix.POS]: $pos[3],
+            getty: nix.thunk(() => ({ [nix.POS]: $pos[1], autologinUser: "alice" })),
+            logkeys: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true, device: "virtio-kbd" })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               logkeys: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   ExecStartPre: nix.thunk(() => [
                     nix.thunk(() => nix.str`+${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "coreutils")), "ln")} -s /dev/input/by-path/pci-0000:00:0a.0-event-kbd /dev/input/virtio-kbd`),
                   ]),

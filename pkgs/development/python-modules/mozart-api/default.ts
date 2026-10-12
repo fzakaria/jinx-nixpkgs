@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 5], ["version", 26, 26], ["hash", 27, 5]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["doCheck", 46, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "poetry-core": false, aenum: false, aioconsole: false, aiohttp: false, "aiohttp-retry": false, inflection: false, pydantic: false, "python-dateutil": false, "typing-extensions": false, urllib3: false, websockets: false, zeroconf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 5], ["version", 26, 26], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["doCheck", 46, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const websockets = nix.arg($, "websockets");
   const zeroconf = nix.arg($, "zeroconf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mozart-api",
       version: "6.2.0.44.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "mozart_api",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-UZE80lrcmsqNoh0Cj59Neq/W6SJVUVqySRbPp+aQI3Q=",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["mozart_api"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "REST API for the Bang & Olufsen Mozart platform",
         homepage: "https://github.com/bang-olufsen/mozart-open-api",
         changelog: nix.thunk(() => nix.str`https://github.com/bang-olufsen/mozart-open-api/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withBluez", 54, 33]], [["repo", 71, 5], ["owner", 72, 5], ["tag", 73, 5], ["hash", 74, 5]], [["NIX_CFLAGS_COMPILE", 173, 7]], [["description", 226, 5], ["longDescription", 227, 5], ["homepage", 232, 5], ["changelog", 233, 5], ["license", 234, 5], ["platforms", 235, 5], ["maintainers", 236, 5], ["mainProgram", 240, 5]], [["pname", 62, 3], ["version", 63, 3], ["outputs", 65, 3], ["src", 70, 3], ["patches", 77, 3], ["depsBuildBuild", 81, 3], ["nativeBuildInputs", 85, 3], ["buildInputs", 104, 3], ["strictDeps", 158, 3], ["cmakeFlags", 160, 3], ["env", 173, 3], ["dontWrapGApps", 175, 3], ["shellHook", 177, 3], ["postPatch", 182, 3], ["postInstall", 186, 3], ["preFixup", 212, 3], ["postFixup", 218, 3], ["meta", 225, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, asciidoctor: false, bcg729: false, bison: false, buildPackages: false, "c-ares": false, cmake: false, darwinMinVersionHook: false, fixDarwinDylibNames: false, flex: false, gettext: false, glib: false, gmp: false, gnutls: false, libcap: false, libgcrypt: false, "libgpg-error": false, libkrb5: false, libmaxminddb: false, libnl: false, libopus: false, libpcap: false, libsmi: false, libssh: false, libxml2: false, lua5_5: false, lz4: false, makeWrapper: false, minizip: false, nghttp2: false, nghttp3: false, ninja: false, "opencore-amr": false, openssl: false, pcre2: false, perl: false, "pkg-config": false, python3: false, sbc: false, snappy: false, spandsp3: false, speexdsp: false, wrapGAppsHook3: false, "zlib-ng": false, zstd: false, brotli: false, withQt: true, qt6: false, "libpcap'": true, withExtras: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withBluez", 54, 33]]);
-const pos$2 = nix.positions(here + "/package.nix", [["repo", 71, 5], ["owner", 72, 5], ["tag", 73, 5], ["hash", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 173, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 226, 5], ["longDescription", 227, 5], ["homepage", 232, 5], ["changelog", 233, 5], ["license", 234, 5], ["platforms", 235, 5], ["maintainers", 236, 5], ["mainProgram", 240, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 62, 3], ["version", 63, 3], ["outputs", 65, 3], ["src", 70, 3], ["patches", 77, 3], ["depsBuildBuild", 81, 3], ["nativeBuildInputs", 85, 3], ["buildInputs", 104, 3], ["strictDeps", 158, 3], ["cmakeFlags", 160, 3], ["env", 173, 3], ["dontWrapGApps", 175, 3], ["shellHook", 177, 3], ["postPatch", 182, 3], ["postInstall", 186, 3], ["preFixup", 212, 3], ["postFixup", 218, 3], ["meta", 225, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -62,18 +58,18 @@ export default nix.lambda((args) => (() => {
   const withQt = nix.argOr($, "withQt", () => true);
   const qt6 = nix.arg($, "qt6");
   const libpcap$ = nix.argOr($, "libpcap'", () => nix.app(nix.sel(libpcap, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       withBluez: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
     }))));
   const withExtras = nix.argOr($, "withExtras", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const isAppBundle = nix.thunk(() => (nix.asBool(withQt) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`wireshark-${(nix.asBool(withQt) ? "qt" : "cli")}`),
       version: "4.6.9",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           repo: "wireshark",
           owner: "wireshark",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -142,7 +138,7 @@ export default nix.lambda((args) => (() => {
           "-DHAVE_C99_VSNPRINTF_EXITCODE=0",
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DQT_NO_DEBUG"]))),
       })),
       dontWrapGApps: true,
@@ -152,7 +148,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), isAppBundle, "rm -rf $out/Applications/Wireshark.app/Contents/MacOS/extcap $out/Applications/Wireshark.app/Contents/PlugIns\nmkdir -p $out/Applications/Wireshark.app/Contents/PlugIns\ncp -r $out/lib/wireshark/plugins $out/Applications/Wireshark.app/Contents/PlugIns/wireshark\ncp -r $out/libexec/wireshark/extcap $out/Applications/Wireshark.app/Contents/MacOS/extcap\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Powerful network protocol analyzer",
         longDescription: "Wireshark (formerly known as \"Ethereal\") is a powerful network\nprotocol analyzer developed by an international team of networking\nexperts. It runs on UNIX, macOS and Windows.\n",
         homepage: "https://www.wireshark.org",

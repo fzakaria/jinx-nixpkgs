@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/from-git-source.nix", [[["url", 20, 13], ["rev", 20, 17], ["hash", 20, 21]], [["lib", 48, 38]], [["pname", 16, 3], ["version", 17, 11], ["doCheck", 17, 19], ["src", 19, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["strictDeps", 30, 3], ["enableParallelBuilding", 33, 3], ["preBuild", 35, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, fetchgit: false, gmp: false, mltonBootstrap: false, url: true, rev: false, hash: false, stdenv: false, version: false, which: false, doCheck: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/from-git-source.nix", [["url", 20, 13], ["rev", 20, 17], ["hash", 20, 21]]);
-const pos$2 = nix.positions(here + "/from-git-source.nix", [["lib", 48, 38]]);
-const pos$3 = nix.positions(here + "/from-git-source.nix", [["pname", 16, 3], ["version", 17, 11], ["doCheck", 17, 19], ["src", 19, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["strictDeps", 30, 3], ["enableParallelBuilding", 33, 3], ["preBuild", 35, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const doCheck = nix.argOr($, "doCheck", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mlton",
       version: version,
       doCheck: doCheck,
-      src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, rev: rev, hash: hash })))),
+      src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, rev: rev, hash: hash })))),
       nativeBuildInputs: nix.thunk(() => [which, mltonBootstrap]),
       buildInputs: nix.thunk(() => [gmp]),
       strictDeps: true,
@@ -41,7 +39,7 @@ makeFlagsArray=(
   WITH_GMP_LIB_DIR="${gmp}/lib"
   )
 `),
-      meta: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib })))),
+      meta: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib })))),
     })));
 })(), formals$1);
 //# sourceMappingURL=from-git-source.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["FFLAGS", 31, 5], ["FCFLAGS", 32, 5]], [["description", 36, 5], ["mainProgram", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["doCheck", 28, 3], ["env", 30, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, netcdf: false, hdf5: false, curl: false, gfortran: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["FFLAGS", 31, 5], ["FCFLAGS", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["mainProgram", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["doCheck", 28, 3], ["env", 30, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const gfortran = nix.arg($, "gfortran");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "netcdf-fortran",
       version: "4.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Unidata",
           repo: "netcdf-fortran",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,12 +29,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [netcdf, hdf5, curl]),
       doCheck: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         FFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=legacy"]))),
         FCFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=legacy"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fortran API to manipulate netcdf files",
         mainProgram: "nf-config",
         homepage: "https://www.unidata.ucar.edu/software/netcdf/",

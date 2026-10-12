@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 59, 5], ["owner", 60, 5], ["repo", 61, 5], ["rev", 62, 5], ["hash", 63, 5]], [["url", 76, 5], ["hash", 77, 5]], [["usePoppler", 193, 30]], [["package", 198, 11]], [["pname", 203, 13], ["buildInputs", 204, 13]], [["poppler-with-gtk-tests", 202, 11]], [["cups-filters", 184, 9], ["inkscape", 185, 9], ["scribus", 186, 9], ["gegl", 190, 9], ["vips", 191, 9], ["gdal", 193, 7], ["python-poppler-qt5", 194, 7], ["pkg-config", 196, 7]], [["testData", 180, 13], ["tests", 181, 5]], [["homepage", 211, 5], ["changelog", 212, 5], ["description", 213, 5], ["longDescription", 214, 5], ["license", 218, 5], ["platforms", 219, 5], ["maintainers", 220, 5], ["teams", 221, 5], ["pkgConfigModules", 222, 5]], [["pname", 67, 3], ["version", 68, 3], ["outputs", 70, 3], ["src", 75, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 97, 3], ["propagatedBuildInputs", 108, 3], ["nativeCheckInputs", 133, 3], ["cmakeFlags", 137, 3], ["disallowedReferences", 150, 3], ["dontWrapQtApps", 152, 3], ["preConfigure", 154, 3], ["preCheck", 167, 3], ["postCheck", 172, 3], ["doCheck", 177, 3], ["passthru", 179, 3], ["meta", 210, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitLab: false, cairo: false, "clang-tools": false, cmake: false, boost: false, curl: false, fontconfig: false, freetype: false, glib: false, harfbuzz: false, lcms: false, libiconv: false, libintl: false, libjpeg: false, libtiff: false, ninja: false, "noto-fonts-cjk-sans": false, openjpeg: false, "pkg-config": false, python3: false, zlib: false, withData: true, poppler_data: false, qt5Support: true, qt6Support: true, qtbase: true, introspectionSupport: true, "gobject-introspection": true, gpgmeSupport: true, gpgme: true, utils: true, nss: true, minimal: true, suffix: true, "cups-filters": false, gdal: false, gegl: false, gtk3: false, inkscape: false, scribus: false, vips: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 59, 5], ["owner", 60, 5], ["repo", 61, 5], ["rev", 62, 5], ["hash", 63, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 76, 5], ["hash", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["usePoppler", 193, 30]]);
-const pos$4 = nix.positions(here + "/default.nix", [["package", 198, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 203, 13], ["buildInputs", 204, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["poppler-with-gtk-tests", 202, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["cups-filters", 184, 9], ["inkscape", 185, 9], ["scribus", 186, 9], ["gegl", 190, 9], ["vips", 191, 9], ["gdal", 193, 7], ["python-poppler-qt5", 194, 7], ["pkg-config", 196, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["testData", 180, 13], ["tests", 181, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["homepage", 211, 5], ["changelog", 212, 5], ["description", 213, 5], ["longDescription", 214, 5], ["license", 218, 5], ["platforms", 219, 5], ["maintainers", 220, 5], ["teams", 221, 5], ["pkgConfigModules", 222, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 67, 3], ["version", 68, 3], ["outputs", 70, 3], ["src", 75, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 97, 3], ["propagatedBuildInputs", 108, 3], ["nativeCheckInputs", 133, 3], ["cmakeFlags", 137, 3], ["disallowedReferences", 150, 3], ["dontWrapQtApps", 152, 3], ["preConfigure", 154, 3], ["preCheck", 167, 3], ["postCheck", 172, 3], ["doCheck", 177, 3], ["passthru", 179, 3], ["meta", 210, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -63,7 +54,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const mkFlag = (optset) => (flag) => nix.str`-DENABLE_${flag}=${(nix.asBool(optset) ? "on" : "off")}`;
   const testData = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       domain: "gitlab.freedesktop.org",
       owner: "poppler",
       repo: "test",
@@ -71,12 +62,12 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-2eH4dZs2J0CeTWrXOYEHb0Xnpfa7tX8mi7AX2E9D41U=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: nix.thunk(() => nix.str`poppler-${suffix}`),
       version: "26.09.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://poppler.freedesktop.org/poppler-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-gFnq22gFNAdo8TjEZbV/gWTJK0oHc8N+8DHqbA2Yey4=",
         })))),
@@ -108,24 +99,24 @@ cmakeFlagsArray+=(-DTESTDATADIR=$TMPDIR/testdata)
       postCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), gpgmeSupport, "export HOME=\"$HOME_orig\"\nunset -v HOME_orig\n")),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         testData: testData,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "cups-filters": cups_filters,
           inkscape: inkscape,
           scribus: scribus,
           gegl: gegl,
           vips: vips,
-          gdal: nix.thunk(() => nix.app(nix.sel(gdal, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, usePoppler: true })))),
+          gdal: nix.thunk(() => nix.app(nix.sel(gdal, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], usePoppler: true })))),
           "python-poppler-qt5": nix.thunk(() => nix.sel(python3, "pkgs", "poppler-qt5")),
           "pkg-config": nix.thunk(() => nix.update(nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(minimal)), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "poppler-with-gtk-tests": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (old) => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   pname: nix.thunk(() => nix.str`${nix.sel(old, "pname")}-gtk-tests`),
                   buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [gtk3])),
                 }))),
@@ -133,7 +124,7 @@ cmakeFlagsArray+=(-DTESTDATADIR=$TMPDIR/testdata)
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://poppler.freedesktop.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/poppler/poppler/-/blob/poppler-${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "PDF rendering library",

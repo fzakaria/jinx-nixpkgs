@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["pname", 92, 30], ["version", 92, 36], ["meta", 92, 44]], [["withPlugins", 85, 12]], [["homepage", 101, 5], ["changelog", 102, 5], ["description", 103, 5], ["platforms", 104, 5], ["mainProgram", 105, 5], ["maintainers", 106, 5], ["license", 107, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["sourceRoot", 37, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 57, 3], ["pytestFlags", 68, 3], ["disabledTests", 73, 3], ["__darwinAllowLocalNetworking", 78, 3], ["makeWrapperArgs", 80, 3], ["passthru", 85, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, python: false, runCommand: false, fetchFromGitHub: false, configargparse: false, acme: false, configobj: false, cryptography: false, distro: false, josepy: false, parsedatetime: false, pyrfc3339: false, setuptools: false, dialog: false, gnureadline: false, "pytest-xdist": false, pytestCheckHook: false, "python-dateutil": false, writeShellScriptBin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 92, 30], ["version", 92, 36], ["meta", 92, 44]]);
-const pos$3 = nix.positions(here + "/default.nix", [["withPlugins", 85, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 101, 5], ["changelog", 102, 5], ["description", 103, 5], ["platforms", 104, 5], ["mainProgram", 105, 5], ["maintainers", 106, 5], ["license", 107, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["sourceRoot", 37, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 57, 3], ["pytestFlags", 68, 3], ["disabledTests", 73, 3], ["__darwinAllowLocalNetworking", 78, 3], ["makeWrapperArgs", 80, 3], ["passthru", 85, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const python_dateutil = nix.arg($, "python-dateutil");
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "certbot",
       version: "5.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "certbot",
           repo: "certbot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,11 +61,11 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       makeWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--prefix PATH : ${dialog}/bin`)]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         withPlugins: (f) => (() => {
           const pythonEnv = nix.thunk(() => nix.app(nix.sel(python, "withPackages"), f));
           return nix.app(runCommand, nix.thunk(() => nix.str`certbot-with-plugins-${nix.sel(finalAttrs, "version")}`), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
@@ -80,7 +76,7 @@ ln -s ${pythonEnv}/bin/certbot
         })(),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/certbot/certbot",
         changelog: nix.thunk(() => nix.str`https://github.com/certbot/certbot/blob/${nix.sel(finalAttrs, "src", "tag")}/certbot/CHANGELOG.md`),
         description: "ACME client that can obtain certs and extensibly update server configurations",

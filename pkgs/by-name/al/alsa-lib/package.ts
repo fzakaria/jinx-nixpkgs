@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["pkg-config", 41, 11]], [["url", 43, 7]], [["tests", 41, 5], ["updateScript", 42, 5]], [["homepage", 48, 5], ["changelog", 49, 5], ["description", 50, 5], ["mainProgram", 51, 5], ["longDescription", 53, 5], ["license", 58, 5], ["pkgConfigModules", 59, 5], ["platforms", 63, 5], ["maintainers", 64, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["enableParallelBuilding", 28, 3], ["postInstall", 30, 3], ["outputs", 35, 3], ["passthru", 40, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "alsa-topology-conf": false, "alsa-ucm-conf": false, testers: false, directoryListingUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 41, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 43, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 41, 5], ["updateScript", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["changelog", 49, 5], ["description", 50, 5], ["mainProgram", 51, 5], ["longDescription", 53, 5], ["license", 58, 5], ["pkgConfigModules", 59, 5], ["platforms", 63, 5], ["maintainers", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["enableParallelBuilding", 28, 3], ["postInstall", 30, 3], ["outputs", 35, 3], ["passthru", 40, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const directoryListingUpdater = nix.arg($, "directoryListingUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "alsa-lib",
       version: "1.2.16.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://alsa/lib/alsa-lib-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-90Dbf0iCVZRP/UQoQW7jOQqWdChWkWQz30aMKBQ2SA4=",
         })))),
@@ -35,15 +30,15 @@ ln -s ${alsa_topology_conf}/share/alsa/topology $out/share/alsa
 `),
       outputs: nix.thunk(() => ["out", "dev"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://www.alsa-project.org/files/pub/lib/" })))),
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], url: "https://www.alsa-project.org/files/pub/lib/" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "http://www.alsa-project.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/alsa-project/alsa-lib/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "ALSA, the Advanced Linux Sound Architecture libraries",

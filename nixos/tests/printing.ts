@@ -2,28 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/printing.nix", [[["maintainers", 17, 5]], [["enable", 24, 9], ["stateless", 25, 9], ["startWhenNeeded", 26, 9], ["listenAddresses", 27, 9], ["defaultShared", 28, 9], ["openFirewall", 29, 9], ["extraConf", 30, 9]], [["printing", 23, 16]], [["name", 40, 11], ["deviceUri", 41, 11], ["model", 42, 11]], [["ensurePrinters", 38, 25]], [["printers", 38, 16]], [["services", 23, 7], ["hardware", 38, 7]], [["enable", 50, 25], ["startWhenNeeded", 51, 25], ["listenAddresses", 52, 25]], [["printing", 50, 16]], [["name", 56, 11], ["deviceUri", 57, 11], ["location", 58, 11], ["model", 59, 11]], [["name", 62, 11], ["deviceUri", 63, 11], ["model", 64, 11]], [["description", 69, 11], ["location", 70, 11], ["printers", 71, 11]], [["description", 74, 11], ["location", 75, 11], ["printers", 76, 11]], [["Basement", 68, 9], ["House", 73, 9]], [["ensurePrinters", 54, 25], ["ensureClasses", 67, 25], ["ensureDefaultPrinter", 82, 25]], [["printers", 54, 16]], [["services", 50, 7], ["hardware", 54, 7]], [["server", 20, 9], ["client", 47, 9]], [["name", 15, 3], ["meta", 16, 3], ["nodes", 20, 3], ["testScript", 85, 3]]]);
 const formals$1 = { args: { pkgs: false, testName: false, socket: true, listenTcp: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/printing.nix", [["maintainers", 17, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/printing.nix", [["enable", 24, 9], ["stateless", 25, 9], ["startWhenNeeded", 26, 9], ["listenAddresses", 27, 9], ["defaultShared", 28, 9], ["openFirewall", 29, 9], ["extraConf", 30, 9]]);
-const pos$3 = nix.positions(here + "/printing.nix", [["printing", 23, 16]]);
-const pos$4 = nix.positions(here + "/printing.nix", [["name", 40, 11], ["deviceUri", 41, 11], ["model", 42, 11]]);
-const pos$5 = nix.positions(here + "/printing.nix", [["ensurePrinters", 38, 25]]);
-const pos$6 = nix.positions(here + "/printing.nix", [["printers", 38, 16]]);
-const pos$7 = nix.positions(here + "/printing.nix", [["services", 23, 7], ["hardware", 38, 7]]);
 const formals$3 = { args: { lib: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/printing.nix", [["enable", 50, 25], ["startWhenNeeded", 51, 25], ["listenAddresses", 52, 25]]);
-const pos$9 = nix.positions(here + "/printing.nix", [["printing", 50, 16]]);
-const pos$10 = nix.positions(here + "/printing.nix", [["name", 56, 11], ["deviceUri", 57, 11], ["location", 58, 11], ["model", 59, 11]]);
-const pos$11 = nix.positions(here + "/printing.nix", [["name", 62, 11], ["deviceUri", 63, 11], ["model", 64, 11]]);
-const pos$12 = nix.positions(here + "/printing.nix", [["description", 69, 11], ["location", 70, 11], ["printers", 71, 11]]);
-const pos$13 = nix.positions(here + "/printing.nix", [["description", 74, 11], ["location", 75, 11], ["printers", 76, 11]]);
-const pos$14 = nix.positions(here + "/printing.nix", [["Basement", 68, 9], ["House", 73, 9]]);
-const pos$15 = nix.positions(here + "/printing.nix", [["ensurePrinters", 54, 25], ["ensureClasses", 67, 25], ["ensureDefaultPrinter", 82, 25]]);
-const pos$16 = nix.positions(here + "/printing.nix", [["printers", 54, 16]]);
-const pos$17 = nix.positions(here + "/printing.nix", [["services", 50, 7], ["hardware", 54, 7]]);
-const pos$18 = nix.positions(here + "/printing.nix", [["server", 20, 9], ["client", 47, 9]]);
-const pos$19 = nix.positions(here + "/printing.nix", [["name", 15, 3], ["meta", 16, 3], ["nodes", 20, 3], ["testScript", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const listenTcp = nix.argOr($, "listenTcp", () => true);
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: testName,
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             printing: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               stateless: true,
               startWhenNeeded: socket,
@@ -56,12 +38,12 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           hardware: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             printers: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               ensurePrinters: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   name: "DeskjetLocal",
                   deviceUri: "usb://foobar/printers/foobar",
                   model: "drv:///sample.drv/deskjet.ppd",
@@ -75,45 +57,45 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             printing: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               startWhenNeeded: socket,
               listenAddresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.asBool(listenTcp)), [])),
             })),
           })),
           hardware: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             printers: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               ensurePrinters: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   name: "DeskjetRemote",
                   deviceUri: "ipp://server/printers/DeskjetLocal",
                   location: "",
                   model: "drv:///sample.drv/deskjet.ppd",
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   name: "DeskjetRemote2",
                   deviceUri: "ipp://server/printers/DeskjetLocal",
                   model: "drv:///sample.drv/deskjet.ppd",
                 })),
               ]),
               ensureClasses: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 Basement: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   description: "All the printers in my basement",
                   location: "Floor 0",
                   printers: nix.thunk(() => ["DeskjetRemote"]),
                 })),
                 House: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   description: "All the printers in my house",
                   location: "Home",
                   printers: nix.thunk(() => ["DeskjetRemote", "DeskjetRemote2"]),

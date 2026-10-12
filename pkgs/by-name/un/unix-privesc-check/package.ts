@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["external", 57, 9]], [["scripts", 37, 7], ["interpreter", 38, 7], ["inputs", 39, 7], ["fake", 56, 7], ["execer", 63, 7]], [["unix-privesc-check", 36, 5]], [["description", 79, 5], ["mainProgram", 80, 5], ["homepage", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5], ["license", 84, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 31, 3], ["solutions", 35, 3], ["installPhase", 72, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, resholve: false, fetchurl: false, gawk: false, bash: false, binutils: false, coreutils: false, file: false, findutils: false, glibc: false, gnugrep: false, gnused: false, "net-tools": false, openssh: false, postgresql: false, ps: false, "util-linux": false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["external", 57, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["scripts", 37, 7], ["interpreter", 38, 7], ["inputs", 39, 7], ["fake", 56, 7], ["execer", 63, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["unix-privesc-check", 36, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 79, 5], ["mainProgram", 80, 5], ["homepage", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5], ["license", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 31, 3], ["solutions", 35, 3], ["installPhase", 72, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,19 +26,19 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "unix-privesc-check",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pentestmonkey.net/tools/unix-privesc-check/unix-privesc-check-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-4fhef2n6ut0jdWo9dqDj2GSyHih2O2DOLmGBKQ0cGWk=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./unix-privesc-check.patch")]),
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "unix-privesc-check": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           scripts: nix.thunk(() => ["bin/unix-privesc-check"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [
@@ -63,7 +58,10 @@ export default nix.lambda((args) => (() => {
             util_linux,
             which,
           ]),
-          fake: nix.thunk(() => ({ [nix.POS]: pos$2, external: nix.thunk(() => ["lanscan", "mount", "passwd"]) })),
+          fake: nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            external: nix.thunk(() => ["lanscan", "mount", "passwd"]),
+          })),
           execer: nix.thunk(() => [
             nix.thunk(() => nix.str`cannot:${nix.sel(glibc, "bin")}/bin/ldd`),
             nix.thunk(() => nix.str`cannot:${postgresql}/bin/psql`),
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
       })),
       installPhase: "runHook preInstall\ninstall -Dm 755 unix-privesc-check $out/bin/unix-privesc-check\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Find misconfigurations that could allow local unprivilged users to escalate privileges to other users or to access local apps",
         mainProgram: "unix-privesc-check",
         homepage: "https://pentestmonkey.net/tools/audit/unix-privesc-check",

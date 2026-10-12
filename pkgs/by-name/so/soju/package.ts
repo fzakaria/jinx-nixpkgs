@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["soju", 57, 18]], [["tests", 57, 12]], [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 75, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["ldflags", 33, 3], ["tags", 40, 3], ["postBuild", 45, 3], ["checkFlags", 49, 3], ["postInstall", 53, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromCodeberg: false, installShellFiles: false, lib: false, nixosTests: false, pam: false, scdoc: false, withModernCSqlite: true, withPam: true, withSqlite: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["soju", 57, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 57, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["ldflags", 33, 3], ["tags", 40, 3], ["postBuild", 45, 3], ["checkFlags", 49, 3], ["postInstall", 53, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const withPam = nix.argOr($, "withPam", () => false);
   const withSqlite = nix.argOr($, "withSqlite", () => true);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "soju",
       version: "0.11.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emersion",
           repo: "soju",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,11 +42,11 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["-skip TestPostgresMigrations"]),
       postInstall: "installManPage doc/soju.1 doc/sojuctl.1\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, soju: nix.thunk(() => nix.sel(nixosTests, "soju")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], soju: nix.thunk(() => nix.sel(nixosTests, "soju")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "User-friendly IRC bouncer",
         longDescription: "soju is a user-friendly IRC bouncer. soju connects to upstream IRC servers\non behalf of the user to provide extra functionality. soju supports many\nfeatures such as multiple users, numerous IRCv3 extensions, chat history\nplayback and detached channels. It is well-suited for both small and large\ndeployments.\n",
         homepage: "https://soju.im",

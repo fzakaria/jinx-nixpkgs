@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["updateScript", 39, 12]], [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["license", 46, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["dontUnpack", 27, 3], ["installPhase", 29, 3], ["passthru", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, python3: false, dict: false, glibcLocales: false, libfaketime: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 39, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["license", 46, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["dontUnpack", 27, 3], ["installPhase", 29, 3], ["passthru", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dict-db-wiktionary";
       const version = "20240901";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dumps.wikimedia.org/enwiktionary/${version}/enwiktionary-${version}-pages-articles.xml.bz2`),
           sha256: "f37e899a9091a1b01137c7b0f3d58813edf3039e9e94ae656694c88859bbe756",
         }))));
@@ -35,9 +32,9 @@ faketime -f "$source_date" ${nix.sel(python3, "interpreter")} -O ${nix.path(here
 faketime -f "$source_date" dictzip wiktionary-en.dict
 echo en_US.UTF-8 > locale
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "DICT version of English Wiktionary",
         homepage: "https://en.wiktionary.org/",
         maintainers: nix.thunk(() => (() => {
@@ -54,7 +51,7 @@ echo en_US.UTF-8 > locale
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

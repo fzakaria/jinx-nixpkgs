@@ -2,16 +2,15 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/multilib.nix", [[["platforms", 36, 8]], [["name", 4, 3], ["buildCommand", 9, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/multilib.nix", [["platforms", 36, 8]]);
-const pos$2 = nix.positions(here + "/multilib.nix", [["name", 4, 3], ["buildCommand", 9, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "cc-multilib-test",
       buildCommand: nix.thunk(() => nix.str`NIX_DEBUG=1 $CC -v
 NIX_DEBUG=1 $CXX -v
@@ -39,7 +38,7 @@ $CXX -m64 -o cxx64-check ${nix.path(here, "./cxx-main.cc")}
 touch $out
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "x86_64")),
       })),
     })));

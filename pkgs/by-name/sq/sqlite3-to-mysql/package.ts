@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["package", 56, 7], ["command", 57, 7]], [["nixosTest", 54, 5], ["version", 55, 5]], [["tests", 53, 12]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["dependencies", 27, 3], ["pythonRelaxDeps", 45, 3], ["doCheck", 50, 3], ["passthru", 53, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, nixosTests: false, testers: false, "sqlite3-to-mysql": false, mysql84: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 56, 7], ["command", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nixosTest", 54, 5], ["version", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 53, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["dependencies", 27, 3], ["pythonRelaxDeps", 45, 3], ["doCheck", 50, 3], ["passthru", 53, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const sqlite3_to_mysql = nix.arg($, "sqlite3-to-mysql");
   const mysql84 = nix.arg($, "mysql84");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sqlite3-to-mysql",
       version: "2.5.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "techouse",
           repo: "sqlite3-to-mysql",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,19 +53,19 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["mysql-connector-python"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           nixosTest: nix.thunk(() => nix.sel(nixosTests, "sqlite3-to-mysql")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: sqlite3_to_mysql,
               command: "sqlite3mysql --version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple Python tool to transfer data from SQLite 3 to MySQL",
         homepage: "https://github.com/techouse/sqlite3-to-mysql",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

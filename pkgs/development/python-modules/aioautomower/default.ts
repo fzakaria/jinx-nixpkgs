@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["nativeBuildInputs", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 50, 3], ["pythonImportsCheck", 61, 3], ["disabledTests", 63, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aiointercept: false, aioresponses: false, buildPythonPackage: false, fetchFromGitHub: false, freezegun: false, ical: false, mashumaro: false, orjson: false, hatchling: false, pyjwt: false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, "python-dateutil": false, pyprojectVersionPatchHook: false, syrupy: false, "time-machine": false, tzlocal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["nativeBuildInputs", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 50, 3], ["pythonImportsCheck", 61, 3], ["disabledTests", 63, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const time_machine = nix.arg($, "time-machine");
   const tzlocal = nix.arg($, "tzlocal");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aioautomower",
       version: "2.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Thomas55555",
           repo: "aioautomower",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aioautomower"]),
       disabledTests: nix.thunk(() => ["test_set_datetime", "test_message_event", "test_async_get_messages"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Module to communicate with the Automower Connect API",
         homepage: "https://github.com/Thomas55555/aioautomower",
         changelog: nix.thunk(() => nix.str`https://github.com/Thomas55555/aioautomower/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

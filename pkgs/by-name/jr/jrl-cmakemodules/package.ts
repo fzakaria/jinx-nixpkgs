@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["updateScript", 80, 5], ["docsNativeBuildInputs", 81, 5], ["docsCmakeFlags", 91, 5]], [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5]], [["pname", 38, 3], ["version", 39, 3], ["__structuredAttrs", 41, 3], ["srictDeps", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 51, 3], ["cmakeFlags", 53, 3], ["doCheck", 58, 3], ["checkInputs", 60, 3], ["passthru", 79, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, doxygen: false, graphviz: false, ghostscript: false, pdf2svg: false, "pkg-config": false, texliveBasic: false, writableTmpDirAsHomeHook: false, catch2_3: false, cppad: false, gmp: false, llvmPackages: false, matio: false, mpfr: false, python3Packages: false, simde: false, suitesparse: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 80, 5], ["docsNativeBuildInputs", 81, 5], ["docsCmakeFlags", 91, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["__structuredAttrs", 41, 3], ["srictDeps", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 51, 3], ["cmakeFlags", 53, 3], ["doCheck", 58, 3], ["checkInputs", 60, 3], ["passthru", 79, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,13 +34,13 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(ps, "xcolor")),
     ]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jrl-cmakemodules",
       version: "2.3.0",
       __structuredAttrs: true,
       srictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jrl-umi3218",
           repo: "jrl-cmakemodules",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
         suitesparse,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp"))])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         docsNativeBuildInputs: nix.thunk(() => [
           cmake,
@@ -93,7 +90,7 @@ export default nix.lambda((args) => (() => {
         ]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CMake utility toolbox",
         homepage: "https://github.com/jrl-umi3218/jrl-cmakemodules",
         changelog: nix.thunk(() => nix.str`https://github.com/jrl-umi3218/jrl-cmakemodules/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["pname", 18, 54], ["version", 18, 60], ["src", 18, 68]], [["name", 40, 7], ["desktopName", 41, 7], ["exec", 42, 7], ["icon", 43, 7], ["genericName", 44, 7], ["comment", 45, 7], ["categories", 46, 7], ["startupNotify", 47, 7]], [["updateScript", 51, 12]], [["mainProgram", 54, 5], ["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5], ["changelog", 60, 5]], [["pname", 21, 11], ["version", 21, 17], ["src", 21, 25], ["extraInstallCommands", 23, 3], ["extraPkgs", 31, 3], ["desktopItems", 38, 3], ["passthru", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { appimageTools: false, lib: false, fetchurl: false, "nix-update-script": false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 18, 54], ["version", 18, 60], ["src", 18, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 40, 7], ["desktopName", 41, 7], ["exec", 42, 7], ["icon", 43, 7], ["genericName", 44, 7], ["comment", 45, 7], ["categories", 46, 7], ["startupNotify", 47, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 51, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 54, 5], ["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5], ["changelog", 60, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 11], ["version", 21, 17], ["src", 21, 25], ["extraInstallCommands", 23, 3], ["extraPkgs", 31, 3], ["desktopItems", 38, 3], ["passthru", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pname = "simplenote";
   const version = "2.27.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/Automattic/simplenote-electron/releases/download/v${version}/Simplenote-linux-${version}-x86_64.AppImage`),
       hash: "sha512-jf9mnmf+5Xcowxgx7uizWVmv88gPdYwojQ2f+xhbqnXaHD3dSbcW2YdxiV3qjmFsRzUgwZvBVOGpOMvnSHuQDA==",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -46,7 +41,7 @@ cp -r ${appimageContents}/usr/share/icons $out/share
       })(),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: pname,
             desktopName: "Simplenote",
             exec: pname,
@@ -58,11 +53,11 @@ cp -r ${appimageContents}/usr/share/icons $out/share
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mainProgram: "simplenote",
         description: "The simplest way to keep notes",
         homepage: "https://github.com/Automattic/simplenote-electron",

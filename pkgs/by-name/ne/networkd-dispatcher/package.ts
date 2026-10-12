@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["url", 32, 7], ["hash", 33, 7]], [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["checkInputs", 58, 3], ["installPhase", 63, 3], ["doCheck", 73, 3], ["preFixup", 75, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, installShellFiles: false, python3Packages: false, python3: false, asciidoc: false, wrapGAppsNoGuiHook: false, iw: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["checkInputs", 58, 3], ["installPhase", 63, 3], ["doCheck", 73, 3], ["preFixup", 75, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsNoGuiHook = nix.arg($, "wrapGAppsNoGuiHook");
   const iw = nix.arg($, "iw");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "networkd-dispatcher",
       version: "2.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "craftyguy",
           repo: "networkd-dispatcher",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./support_nix_store_path.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/craftyguy/networkd-dispatcher/-/commit/4796368d88da516fafda321d8565ae8ccf465120.patch",
             hash: "sha256-RAoCSmZCjTXxVKesatWjiePY4xECGn5pwvOOV0clL+Q=",
           })))),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=("--prefix" "PATH" ":" "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [iw]))}")
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Dispatcher service for systemd-networkd connection status changes",
         mainProgram: "networkd-dispatcher",
         homepage: "https://gitlab.com/craftyguy/networkd-dispatcher",

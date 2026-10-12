@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["license", 58, 5], ["homepage", 59, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["buildInputs", 28, 3], ["postPatch", 33, 3], ["preBuild", 42, 3], ["installPhase", 47, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, zlib: false, boost: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["license", 58, 5], ["homepage", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["buildInputs", 28, 3], ["postPatch", 33, 3], ["preBuild", 42, 3], ["installPhase", 47, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const boost = nix.arg($, "boost");
   const glucose$ = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "http://www.labri.fr/perso/lsimon/downloads/softwares/glucose-syrup.tgz",
       hash: "sha256-jboqQX/Z8RcPG30UVHaI7hLJKpgOCwCeha7BpaSgBS8=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "aspino",
       version: "0-unstable-2018-03-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "alviano",
           repo: "aspino",
           rev: "4d7483e328bdf9a00ef1eb7f2868e7b0f2a82d56",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ninstall -m0755 build/release/{aspino,fairino-{bs,ls,ps},maxino-2015-{k16,kdyn}} $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "SAT/PseudoBoolean/MaxSat/ASP solver using glucose",
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

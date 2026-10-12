@@ -2,35 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/snmpd.nix", [[["systemPackages", 6, 17]], [["enable", 11, 7], ["configText", 12, 7]], [["snmpd", 10, 14]], [["environment", 6, 5], ["services", 10, 5]], [["snmpd", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 18, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/snmpd.nix", [["systemPackages", 6, 17]]);
-const pos$2 = nix.positions(here + "/snmpd.nix", [["enable", 11, 7], ["configText", 12, 7]]);
-const pos$3 = nix.positions(here + "/snmpd.nix", [["snmpd", 10, 14]]);
-const pos$4 = nix.positions(here + "/snmpd.nix", [["environment", 6, 5], ["services", 10, 5]]);
-const pos$5 = nix.positions(here + "/snmpd.nix", [["snmpd", 5, 9]]);
-const pos$6 = nix.positions(here + "/snmpd.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "snmpd",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       snmpd: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "net-snmp"))];
           })()),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          snmpd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, configText: "rocommunity public\n" })),
+          [nix.POS]: $pos[2],
+          snmpd: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, configText: "rocommunity public\n" })),
         })),
       })),
     })),

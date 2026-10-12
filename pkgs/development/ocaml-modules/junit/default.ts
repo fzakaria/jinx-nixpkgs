@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["homepage", 29, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, ptime: false, tyxml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["homepage", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const ptime = nix.arg($, "ptime");
   const tyxml = nix.arg($, "tyxml");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "junit",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Khady/ocaml-junit/releases/download/${nix.sel(finalAttrs, "version")}/junit-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-j+4lfuQEWq8z8ik/zfA5phWqv8km+tGEzqG/63cbhTM=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [ptime, tyxml]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OCaml package for the creation of JUnit XML reports, proving a typed API to produce valid reports acceptable to Jenkins, comes with packages supporting OUnit and Alcotest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
         maintainers: [],

@@ -2,10 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetch-hex.nix", [[["url", 22, 5], ["sha256", 23, 13]], [["pname", 15, 3], ["version", 16, 11], ["dontBuild", 17, 3], ["dontConfigure", 18, 3], ["dontFixup", 19, 3], ["src", 21, 3], ["unpackCmd", 26, 3], ["installPhase", 41, 3], ["meta", 49, 11]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
 const formals$2 = { args: { pkg: false, version: false, sha256: false, meta: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fetch-hex.nix", [["url", 22, 5], ["sha256", 23, 13]]);
-const pos$2 = nix.positions(here + "/fetch-hex.nix", [["pname", 15, 3], ["version", 16, 11], ["dontBuild", 17, 3], ["dontConfigure", 18, 3], ["dontFixup", 19, 3], ["src", 21, 3], ["unpackCmd", 26, 3], ["installPhase", 41, 3], ["meta", 49, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +18,14 @@ export default nix.lambda((args) => (() => {
     const sha256 = nix.arg($_1, "sha256");
     const meta = nix.argOr($_1, "meta", () => ({}));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: pkg,
         version: version,
         dontBuild: true,
         dontConfigure: true,
         dontFixup: true,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://repo.hex.pm/tarballs/${pkg}-${version}.tar`),
             sha256: sha256,
           })))),

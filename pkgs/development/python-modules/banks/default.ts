@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["SSL_CERT_FILE", 32, 7]], [["all", 47, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["env", 32, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cacert: false, deprecated: false, "eval-type-backport": false, fetchFromGitHub: false, filetype: false, griffe: false, hatchling: false, jinja2: false, litellm: false, platformdirs: false, pydantic: false, "pytest-asyncio": false, pytestCheckHook: false, redis: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["SSL_CERT_FILE", 32, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["all", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["env", 32, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const redis = nix.arg($, "redis");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "banks",
       version: "2.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "masci",
           repo: "banks",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+8TDRnZGPYDG0WFDVvr7Fj+JKT4+/RRjNEs+dqPHtAw=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       })),
       "build-system": nix.thunk(() => [hatchling]),
@@ -53,11 +49,11 @@ export default nix.lambda((args) => (() => {
         platformdirs,
         pydantic,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, all: nix.thunk(() => [litellm, redis]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[2], all: nix.thunk(() => [litellm, redis]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_asyncio, pytestCheckHook], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["banks"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Module that provides tools and functions to build prompts text and chat messages from generic blueprints",
         homepage: "https://github.com/masci/banks",
         changelog: nix.thunk(() => nix.str`https://github.com/masci/banks/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 58, 5], ["longDescription", 59, 5], ["license", 73, 5], ["platforms", 74, 5], ["changelog", 75, 5], ["homepage", 76, 5], ["maintainers", 77, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 51, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, kconfig: false, kcoreaddons: false, kwidgetsaddons: false, wrapQtAppsHook: false, kdbusaddons: false, "kde-cli-tools": false, "plasma-workspace": false, "qtstyleplugin-kvantum": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["longDescription", 59, 5], ["license", 73, 5], ["platforms", 74, 5], ["changelog", 75, 5], ["homepage", 76, 5], ["maintainers", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 51, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const plasma_workspace = nix.arg($, "plasma-workspace");
   const qtstyleplugin_kvantum = nix.arg($, "qtstyleplugin-kvantum");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "koi",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "baduhai",
           repo: "Koi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +46,7 @@ substituteInPlace src/plugins/kvantumstyle.cpp \\
       nativeBuildInputs: nix.thunk(() => [cmake, wrapQtAppsHook]),
       buildInputs: nix.thunk(() => [kconfig, kcoreaddons, kwidgetsaddons]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Scheduling LIGHT/DARK Theme Converter for the KDE Plasma Desktop",
         longDescription: "Koi is a program designed to provide the KDE Plasma Desktop functionality to automatically switch between light and dark themes. Koi is under semi-active development, and while it is stable enough to use daily, expect bugs. Koi is designed to be used with Plasma, and while some features may function under different desktop environments, they are unlikely to work and untested.\n\nFeatures:\n\n- Toggle between light and dark presets based on time\n- Change Plasma style\n- Change Qt colour scheme\n- Change Icon theme\n- Change GTK theme\n- Change wallpaper\n- Hide application to system tray\n- Toggle between LIGHT/DARK themes by clicking mouse wheel\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

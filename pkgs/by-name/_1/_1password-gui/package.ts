@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 33], ["hash", 25, 37]], [["description", 29, 5], ["homepage", 30, 5], ["sourceProvenance", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 38, 5], ["mainProgram", 43, 5]], [["pname", 50, 7], ["version", 51, 7], ["src", 52, 7], ["meta", 53, 7]], [["pname", 59, 7], ["version", 60, 7], ["src", 61, 7], ["meta", 62, 7], ["polkitPolicyOwners", 63, 7]]]);
 const formals$1 = { args: { stdenv: false, callPackage: false, channel: true, fetchurl: false, lib: false, polkitPolicyOwners: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 33], ["hash", 25, 37]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["sourceProvenance", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 38, 5], ["mainProgram", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 50, 7], ["version", 51, 7], ["src", 52, 7], ["meta", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 59, 7], ["version", 60, 7], ["src", 61, 7], ["meta", 62, 7], ["polkitPolicyOwners", 63, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const sourcesChanOsArch = nix.thunk(() => nix.selOr(sourcesChanOs, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported architecture ${hostArch}`)), "sources", nix.key(nix.force(hostArch))));
   const version = nix.thunk(() => nix.attr(sourcesChanOs, "version"));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.attr(sourcesChanOsArch, "url")),
       hash: nix.thunk(() => nix.attr(sourcesChanOsArch, "hash")),
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "Multi-platform password manager",
     homepage: "https://1password.com/",
     sourceProvenance: nix.thunk(() => (() => {
@@ -49,8 +46,8 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
     mainProgram: "1password",
   }));
-  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, version: version, src: src, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,

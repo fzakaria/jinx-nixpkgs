@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/webui.nix", [[["pname", 22, 26], ["version", 22, 32], ["src", 22, 40], ["pnpm", 23, 13], ["sourceRoot", 24, 5], ["fetcherVersion", 25, 5], ["hash", 26, 5]], [["description", 52, 5]], [["pname", 16, 3], ["version", 17, 20], ["src", 17, 28], ["sourceRoot", 19, 3], ["pnpmDeps", 21, 3], ["nativeBuildInputs", 29, 3], ["buildPhase", 35, 3], ["installPhase", 43, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, nodejs: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/webui.nix", [["pname", 22, 26], ["version", 22, 32], ["src", 22, 40], ["pnpm", 23, 13], ["sourceRoot", 24, 5], ["fetcherVersion", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/webui.nix", [["description", 52, 5]]);
-const pos$3 = nix.positions(here + "/webui.nix", [["pname", 16, 3], ["version", 17, 20], ["src", 17, 28], ["sourceRoot", 19, 3], ["pnpmDeps", 21, 3], ["nativeBuildInputs", 29, 3], ["buildPhase", 35, 3], ["installPhase", 43, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "woodpecker-webui",
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.attr(common, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(common, "src", "name")}/web`),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ncp -r dist $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Woodpecker Continuous Integration server webui",
       })),
     }));

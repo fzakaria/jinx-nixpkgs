@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 37, 7], ["version", 38, 7], ["src", 39, 7], ["pnpmWorkspaces", 40, 7], ["pnpm", 42, 13], ["fetcherVersion", 43, 5], ["hash", 44, 5]], [["bookorbit", 92, 28]], [["tests", 91, 5], ["updateScript", 95, 5]], [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["mainProgram", 104, 5], ["platforms", 105, 5]], [["pname", 18, 3], ["version", 19, 3], ["__structuredAttrs", 20, 3], ["strictDeps", 21, 3], ["src", 23, 3], ["pnpmWorkspaces", 30, 3], ["pnpmDeps", 35, 3], ["nativeBuildInputs", 47, 3], ["buildPhase", 55, 3], ["installPhase", 64, 3], ["passthru", 90, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, nodejs: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, ffmpeg: false, makeWrapper: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 37, 7], ["version", 38, 7], ["src", 39, 7], ["pnpmWorkspaces", 40, 7], ["pnpm", 42, 13], ["fetcherVersion", 43, 5], ["hash", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["bookorbit", 92, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 91, 5], ["updateScript", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["mainProgram", 104, 5], ["platforms", 105, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["__structuredAttrs", 20, 3], ["strictDeps", 21, 3], ["src", 23, 3], ["pnpmWorkspaces", 30, 3], ["pnpmDeps", 35, 3], ["nativeBuildInputs", 47, 3], ["buildPhase", 55, 3], ["installPhase", 64, 3], ["passthru", 90, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "bookorbit",
       version: "3.2.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bookorbit",
           repo: "bookorbit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       pnpmWorkspaces: nix.thunk(() => ["client...", "server..."]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -75,15 +70,15 @@ makeWrapper ${nodejs}/bin/node $out/bin/bookorbit-migrate \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           bookorbit: nix.thunk(() => nix.attr(nixosTests, "bookorbit")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "BookOrbit, self-hosted library management and reading platform for ebooks, PDFs, audiobooks, and comics.",
         homepage: "https://github.com/bookorbit/bookorbit",
         changelog: nix.thunk(() => nix.str`https://github.com/bookorbit/bookorbit/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

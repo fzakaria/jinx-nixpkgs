@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["postPatch", 45, 3], ["build-system", 52, 3], ["dependencies", 56, 3], ["pythonImportsCheck", 70, 3], ["nativeCheckInputs", 72, 3], ["disabledTests", 81, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "absl-py": false, etils: false, flax: false, jax: false, jaxlib: false, "ml-collections": false, numpy: false, packaging: false, "typing-extensions": false, wrapt: false, chex: false, keras: false, pytestCheckHook: false, tensorflow: false, "tensorflow-datasets": false, torch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["postPatch", 45, 3], ["build-system", 52, 3], ["dependencies", 56, 3], ["pythonImportsCheck", 70, 3], ["nativeCheckInputs", 72, 3], ["disabledTests", 81, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const tensorflow_datasets = nix.arg($, "tensorflow-datasets");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "clu",
       version: "0.0.12",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "CommonLoopUtils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [chex, keras, pytestCheckHook, tensorflow, tensorflow_datasets, torch]),
       disabledTests: nix.thunk(() => ["test_collection_mixed_async", "test_async_execution"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Common training loops in JAX",
         homepage: "https://github.com/google/CommonLoopUtils",
         changelog: nix.thunk(() => nix.str`https://github.com/google/CommonLoopUtils/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, libxtst: false, "pkg-config": false, cmake: false, libevdev: false, gtkSupport: true, gtk3: false, glib: false, wrapGAppsHook3: false, fltkSupport: true, fltk: false, qtSupport: true, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const qtSupport = nix.argOr($, "qtSupport", () => true);
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xautoclick",
       version: "0.34",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qarkai",
           repo: "xautoclick",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "bump-cmake-required-version.patch",
             url: "https://github.com/qarkai/xautoclick/commit/a6cd4058fa7d8579bf4ada3f48441f333fca9dab.patch?full_index=1",
             hash: "sha256-4ovcaVrXQqFZX85SnewtfjZpipcGTw52ZrTkT6iWZQM=",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook")),
         ])))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Autoclicker application, which enables you to automatically click the left mousebutton",
         homepage: "https://github.com/qarkai/xautoclick",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

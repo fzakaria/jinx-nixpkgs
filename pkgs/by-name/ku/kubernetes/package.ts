@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["WHAT", 54, 7]], [["kubectl", 98, 15]], [["updateScript", 96, 5], ["tests", 97, 5]], [["description", 103, 5], ["license", 104, 5], ["homepage", 105, 5], ["teams", 106, 5], ["platforms", 107, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["vendorHash", 35, 3], ["doCheck", 37, 3], ["nativeBuildInputs", 39, 3], ["outputs", 46, 3], ["patches", 52, 3], ["env", 54, 3], ["buildPhase", 56, 3], ["installPhase", 65, 3], ["passthru", 95, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, which: false, makeWrapper: false, rsync: false, installShellFiles: false, runtimeShell: false, kubectl: false, nixosTests: false, "nix-update-script": false, components: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["WHAT", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["kubectl", 98, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 96, 5], ["tests", 97, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 103, 5], ["license", 104, 5], ["homepage", 105, 5], ["teams", 106, 5], ["platforms", 107, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["vendorHash", 35, 3], ["doCheck", 37, 3], ["nativeBuildInputs", 39, 3], ["outputs", 46, 3], ["patches", 52, 3], ["env", 54, 3], ["buildPhase", 56, 3], ["installPhase", 65, 3], ["passthru", 95, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +27,11 @@ export default nix.lambda((args) => (() => {
     "cmd/kube-scheduler",
   ]);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kubernetes",
       version: "1.37.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kubernetes",
           repo: "kubernetes",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, which, rsync, installShellFiles]),
       outputs: nix.thunk(() => ["out", "man", "pause"]),
       patches: nix.thunk(() => [nix.path(here, "./fixup-addonmanager-lib-path.patch")]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, WHAT: nix.thunk(() => nix.builtins.toString(components)) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], WHAT: nix.thunk(() => nix.builtins.toString(components)) })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 substituteInPlace "hack/update-generated-docs.sh" --replace "make" "make SHELL=${runtimeShell}"
 patchShebangs ./hack ./cluster/addons/addon-manager
@@ -84,12 +79,12 @@ installShellCompletion --cmd kubeadm \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => nix.update(nix.sel(nixosTests, "kubernetes"), { [nix.POS]: pos$3, kubectl: kubectl })),
+        tests: nix.thunk(() => nix.update(nix.sel(nixosTests, "kubernetes"), { [nix.POS]: $pos[2], kubectl: kubectl })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Production-Grade Container Scheduling and Management",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://kubernetes.io",

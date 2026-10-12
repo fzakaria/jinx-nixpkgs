@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["preBuild", 49, 21], ["postInstall", 53, 21]], [["nzbhydra2", 85, 28]], [["tests", 84, 5], ["updateScript", 87, 5]], [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 99, 5], ["mainProgram", 100, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["mvnHash", 47, 3], ["mvnFetchExtraArgs", 49, 3], ["mvnJdk", 57, 3], ["doCheck", 59, 3], ["mvnDepsParameters", 61, 3], ["mvnParameters", 62, 3], ["nativeBuildInputs", 64, 3], ["installPhase", 68, 3], ["passthru", 83, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, makeWrapper: false, python3: false, nixosTests: false, maven: false, fetchFromGitHub: false, jdk: false, "nix-update-script": false, xmlstarlet: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["preBuild", 49, 21], ["postInstall", 53, 21]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nzbhydra2", 85, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 84, 5], ["updateScript", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 99, 5], ["mainProgram", 100, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["mvnHash", 47, 3], ["mvnFetchExtraArgs", 49, 3], ["mvnJdk", 57, 3], ["doCheck", 59, 3], ["mvnDepsParameters", 61, 3], ["mvnParameters", 62, 3], ["nativeBuildInputs", 64, 3], ["installPhase", 68, 3], ["passthru", 83, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nzbhydra2";
       const version = "8.9.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "theotherp",
           repo: "nzbhydra2",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const mvnHash = "sha256-Z+Y97yd9TQMuTyqtWOOZZ52rgp4KomID/ns0gGG5rvg=";
       const mvnFetchExtraArgs = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         preBuild: nix.thunk(() => nix.str`mvn -nsu "${timestampParameter}" --projects org.nzbhydra:github-release-plugin "-Dmaven.repo.local=$out/.m2" clean install
 `),
         postInstall: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), xmlstarlet)} ed -L -u "/metadata/versioning/lastUpdated" -v "0" $out/.m2/org/nzbhydra/github-release-plugin/maven-metadata-local.xml
@@ -70,15 +65,15 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), python3)} "$out/bin/nzbhydra2" \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           nzbhydra2: nix.thunk(() => nix.attr(nixosTests, "nzbhydra2")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Usenet meta search",
         homepage: "https://github.com/theotherp/nzbhydra2",
         changelog: nix.thunk(() => nix.str`https://github.com/theotherp/nzbhydra2/releases/tag/v${version}`),
@@ -94,7 +89,7 @@ runHook postInstall
         mainProgram: "nzbhydra2",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

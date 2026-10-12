@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["name", 26, 5], ["src", 27, 26], ["fetcherVersion", 28, 5], ["hash", 29, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nodejs", 22, 3], ["npmDepsFetcherVersion", 24, 3], ["npmDeps", 25, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 36, 3], ["buildPhase", 41, 3], ["installPhase", 49, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, buildNpmPackage: false, fetchNpmDeps: false, jq: false, moreutils: false, nodejs_22: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["name", 26, 5], ["src", 27, 26], ["fetcherVersion", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/frontend.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/frontend.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nodejs", 22, 3], ["npmDepsFetcherVersion", 24, 3], ["npmDeps", 25, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 36, 3], ["buildPhase", 41, 3], ["installPhase", 49, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const moreutils = nix.arg($, "moreutils");
   const nodejs_22 = nix.arg($, "nodejs_22");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "glitchtip-frontend",
       version: "6.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "glitchtip",
           repo: "glitchtip-frontend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nodejs: nodejs_22,
       npmDepsFetcherVersion: 2n,
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           fetcherVersion: 2n,
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nnpm run build-prod\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ncp -r dist/glitchtip-frontend/browser $out/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Frontend for GlitchTip",
         homepage: "https://glitchtip.com",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/glitchtip/glitchtip-frontend/-/releases/v${nix.sel(finalAttrs, "version")}`),

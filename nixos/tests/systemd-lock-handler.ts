@@ -2,32 +2,18 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-lock-handler.nix", [[["maintainers", 5, 8]], [["enable", 22, 37]], [["systemd-lock-handler", 22, 16]], [["ExecStart", 30, 25]], [["partOf", 26, 11], ["onSuccess", 27, 11], ["before", 28, 11], ["wantedBy", 29, 11], ["serviceConfig", 30, 11]], [["ExecStart", 36, 25]], [["partOf", 33, 11], ["after", 34, 11], ["wantedBy", 35, 11], ["serviceConfig", 36, 11]], [["ExecStart", 42, 25]], [["partOf", 39, 11], ["before", 40, 11], ["wantedBy", 41, 11], ["serviceConfig", 42, 11]], [["test-lock", 25, 9], ["test-unlock", 32, 9], ["test-sleep", 38, 9]], [["services", 24, 20]], [["user", 24, 15]], [["imports", 20, 7], ["services", 22, 7], ["systemd", 24, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 5, 3], ["enableOCR", 7, 3], ["nodes", 9, 3], ["testScript", 47, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-lock-handler.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/systemd-lock-handler.nix", [["enable", 22, 37]]);
-const pos$3 = nix.positions(here + "/systemd-lock-handler.nix", [["systemd-lock-handler", 22, 16]]);
-const pos$4 = nix.positions(here + "/systemd-lock-handler.nix", [["ExecStart", 30, 25]]);
-const pos$5 = nix.positions(here + "/systemd-lock-handler.nix", [["partOf", 26, 11], ["onSuccess", 27, 11], ["before", 28, 11], ["wantedBy", 29, 11], ["serviceConfig", 30, 11]]);
-const pos$6 = nix.positions(here + "/systemd-lock-handler.nix", [["ExecStart", 36, 25]]);
-const pos$7 = nix.positions(here + "/systemd-lock-handler.nix", [["partOf", 33, 11], ["after", 34, 11], ["wantedBy", 35, 11], ["serviceConfig", 36, 11]]);
-const pos$8 = nix.positions(here + "/systemd-lock-handler.nix", [["ExecStart", 42, 25]]);
-const pos$9 = nix.positions(here + "/systemd-lock-handler.nix", [["partOf", 39, 11], ["before", 40, 11], ["wantedBy", 41, 11], ["serviceConfig", 42, 11]]);
-const pos$10 = nix.positions(here + "/systemd-lock-handler.nix", [["test-lock", 25, 9], ["test-unlock", 32, 9], ["test-sleep", 38, 9]]);
-const pos$11 = nix.positions(here + "/systemd-lock-handler.nix", [["services", 24, 20]]);
-const pos$12 = nix.positions(here + "/systemd-lock-handler.nix", [["user", 24, 15]]);
-const pos$13 = nix.positions(here + "/systemd-lock-handler.nix", [["imports", 20, 7], ["services", 22, 7], ["systemd", 24, 7]]);
-const pos$14 = nix.positions(here + "/systemd-lock-handler.nix", [["machine", 9, 9]]);
-const pos$15 = nix.positions(here + "/systemd-lock-handler.nix", [["name", 3, 3], ["meta", 5, 3], ["enableOCR", 7, 3], ["nodes", 9, 3], ["testScript", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "systemd-lock-handler",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "liff"))];
@@ -35,7 +21,7 @@ export default nix.lambda((args) => (() => {
     })),
     enableOCR: true,
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
@@ -43,46 +29,46 @@ export default nix.lambda((args) => (() => {
         const lib_1 = nix.arg($_1, "lib");
         const touch = nix.thunk(() => nix.str`${nix.app(nix.sel(lib_1, "getBin"), nix.thunk(() => nix.sel(pkgs, "coreutils")))}/bin/touch`);
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           imports: nix.thunk(() => [nix.path(here, "common/wayland-cage.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            "systemd-lock-handler": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            "systemd-lock-handler": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             user: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 "test-lock": nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   partOf: nix.thunk(() => ["lock.target"]),
                   onSuccess: nix.thunk(() => ["unlock.target"]),
                   before: nix.thunk(() => ["lock.target"]),
                   wantedBy: nix.thunk(() => ["lock.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     ExecStart: nix.thunk(() => nix.str`${touch} /tmp/lock.target.activated`),
                   })),
                 })),
                 "test-unlock": nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   partOf: nix.thunk(() => ["unlock.target"]),
                   after: nix.thunk(() => ["unlock.target"]),
                   wantedBy: nix.thunk(() => ["unlock.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     ExecStart: nix.thunk(() => nix.str`${touch} /tmp/unlock.target.activated`),
                   })),
                 })),
                 "test-sleep": nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   partOf: nix.thunk(() => ["sleep.target"]),
                   before: nix.thunk(() => ["sleep.target"]),
                   wantedBy: nix.thunk(() => ["sleep.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$8,
+                    [nix.POS]: $pos[7],
                     ExecStart: nix.thunk(() => nix.str`${touch} /tmp/sleep.target.activated`),
                   })),
                 })),

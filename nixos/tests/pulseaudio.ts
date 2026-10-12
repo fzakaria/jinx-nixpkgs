@@ -2,35 +2,12 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pulseaudio.nix", [[["url", 11, 11], ["hash", 12, 11]], [["sox", 26, 39], ["alsa-utils", 26, 43]], [["sox", 27, 55], ["alsa-utils", 27, 59]], [["testPlay", 26, 11], ["testPlay32", 27, 11]], [["maintainers", 33, 11], ["broken", 34, 11]], [["enable", 43, 15], ["support32Bit", 44, 15], ["systemWide", 45, 23]], [["package", 48, 15]], [["pulseaudio", 42, 22]], [["systemPackages", 51, 25]], [["imports", 41, 13], ["services", 42, 13], ["environment", 51, 13]], [["extraGroups", 58, 31]], [["alice", 58, 25]], [["users", 58, 19]], [["wantedBy", 59, 41]], [["pulseaudio", 59, 30]], [["services", 59, 21]], [["users", 58, 13], ["systemd", 59, 13]], [["machine", 37, 15]], [["name", 31, 9], ["meta", 32, 9], ["nodes", 37, 9], ["enableOCR", 62, 9], ["testScript", 64, 9]], [["systemWide", 94, 5], ["fullVersion", 95, 5]], [["systemWide", 98, 5], ["fullVersion", 99, 5]], [["systemWide", 102, 5], ["fullVersion", 103, 5]], [["systemWide", 106, 5], ["fullVersion", 107, 5]], [["user", 93, 3], ["system", 97, 3], ["userFull", 101, 3], ["systemFull", 105, 3]]]);
 const formals$1 = { args: { systemWide: true, fullVersion: true }, ellipsis: false };
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pulseaudio.nix", [["url", 11, 11], ["hash", 12, 11]]);
 const formals$3 = { args: { sox: false, "alsa-utils": false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/pulseaudio.nix", [["sox", 26, 39], ["alsa-utils", 26, 43]]);
-const pos$3 = nix.positions(here + "/pulseaudio.nix", [["sox", 27, 55], ["alsa-utils", 27, 59]]);
-const pos$4 = nix.positions(here + "/pulseaudio.nix", [["testPlay", 26, 11], ["testPlay32", 27, 11]]);
-const pos$5 = nix.positions(here + "/pulseaudio.nix", [["maintainers", 33, 11], ["broken", 34, 11]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$6 = nix.positions(here + "/pulseaudio.nix", [["enable", 43, 15], ["support32Bit", 44, 15], ["systemWide", 45, 23]]);
-const pos$7 = nix.positions(here + "/pulseaudio.nix", [["package", 48, 15]]);
-const pos$8 = nix.positions(here + "/pulseaudio.nix", [["pulseaudio", 42, 22]]);
-const pos$9 = nix.positions(here + "/pulseaudio.nix", [["systemPackages", 51, 25]]);
-const pos$10 = nix.positions(here + "/pulseaudio.nix", [["imports", 41, 13], ["services", 42, 13], ["environment", 51, 13]]);
-const pos$11 = nix.positions(here + "/pulseaudio.nix", [["extraGroups", 58, 31]]);
-const pos$12 = nix.positions(here + "/pulseaudio.nix", [["alice", 58, 25]]);
-const pos$13 = nix.positions(here + "/pulseaudio.nix", [["users", 58, 19]]);
-const pos$14 = nix.positions(here + "/pulseaudio.nix", [["wantedBy", 59, 41]]);
-const pos$15 = nix.positions(here + "/pulseaudio.nix", [["pulseaudio", 59, 30]]);
-const pos$16 = nix.positions(here + "/pulseaudio.nix", [["services", 59, 21]]);
-const pos$17 = nix.positions(here + "/pulseaudio.nix", [["users", 58, 13], ["systemd", 59, 13]]);
-const pos$18 = nix.positions(here + "/pulseaudio.nix", [["machine", 37, 15]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$19 = nix.positions(here + "/pulseaudio.nix", [["name", 31, 9], ["meta", 32, 9], ["nodes", 37, 9], ["enableOCR", 62, 9], ["testScript", 64, 9]]);
-const pos$20 = nix.positions(here + "/pulseaudio.nix", [["systemWide", 94, 5], ["fullVersion", 95, 5]]);
-const pos$21 = nix.positions(here + "/pulseaudio.nix", [["systemWide", 98, 5], ["fullVersion", 99, 5]]);
-const pos$22 = nix.positions(here + "/pulseaudio.nix", [["systemWide", 102, 5], ["fullVersion", 103, 5]]);
-const pos$23 = nix.positions(here + "/pulseaudio.nix", [["systemWide", 106, 5], ["fullVersion", 107, 5]]);
-const pos$24 = nix.positions(here + "/pulseaudio.nix", [["user", 93, 3], ["system", 97, 3], ["userFull", 101, 3], ["systemFull", 105, 3]]);
 
 export default nix.thunk(() => (() => {
   const mkTest = nix.lambda((args) => (() => {
@@ -42,7 +19,7 @@ export default nix.thunk(() => (() => {
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         const testFile = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://file-examples.com/storage/fe5947fd2362fc197a3c2df/2017/11/file_example_MP3_700KB.mp3",
             hash: "sha256-+iggJW8s0/LfA/okfXsB550/55Q0Sq3OoIzuBrzOPJQ=",
           }))));
@@ -57,61 +34,64 @@ touch /tmp/${key}_success
 `));
         })(), formals$3);
         const testers = nix.thunk(() => nix.builtins.mapAttrs(makeTestPlay, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             testPlay: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               sox: nix.thunk(() => nix.attr(pkgs, "sox")),
               "alsa-utils": nix.thunk(() => nix.attr(pkgs, "alsa-utils")),
             })),
             testPlay32: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(pkgs, "pkgsi686Linux"));
               return {
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               sox: nix.thunk(() => nix.attr(from, "sox")),
               "alsa-utils": nix.thunk(() => nix.attr(from, "alsa-utils")),
             };
             })()),
           }))));
         return {
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           name: nix.thunk(() => nix.str`pulseaudio${nix.app(nix.sel(lib, "optionalString"), fullVersion, "Full")}${nix.app(nix.sel(lib, "optionalString"), systemWide, "-systemWide")}`),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             maintainers: nix.thunk(() => nix.sel(pkgs, "pulseaudio", "meta", "maintainers")),
             broken: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")),
           })),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$4);
               return nix.update({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 imports: nix.thunk(() => [nix.path(here, "./common/wayland-cage.nix")]),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
-                  pulseaudio: nix.thunk(() => nix.update({ [nix.POS]: pos$6, enable: true, support32Bit: true, systemWide: systemWide }, nix.app(nix.sel(lib, "optionalAttrs"), fullVersion, nix.thunk(() => ({ [nix.POS]: pos$7, package: nix.thunk(() => nix.sel(pkgs, "pulseaudioFull")) }))))),
+                  [nix.POS]: $pos[7],
+                  pulseaudio: nix.thunk(() => nix.update({ [nix.POS]: $pos[5], enable: true, support32Bit: true, systemWide: systemWide }, nix.app(nix.sel(lib, "optionalAttrs"), fullVersion, nix.thunk(() => ({
+                      [nix.POS]: $pos[6],
+                      package: nix.thunk(() => nix.sel(pkgs, "pulseaudioFull")),
+                    }))))),
                 })),
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   systemPackages: nix.thunk(() => nix.concat([
                     nix.thunk(() => nix.sel(testers, "testPlay")),
                     nix.thunk(() => nix.sel(pkgs, "pavucontrol")),
                   ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86_64")), nix.thunk(() => nix.sel(testers, "testPlay32"))))),
                 })),
               }, nix.app(nix.sel(lib, "optionalAttrs"), systemWide, nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   users: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     users: nix.thunk(() => ({
-                      [nix.POS]: pos$12,
-                      alice: nix.thunk(() => ({ [nix.POS]: pos$11, extraGroups: nix.thunk(() => ["pulse-access"]) })),
+                      [nix.POS]: $pos[11],
+                      alice: nix.thunk(() => ({ [nix.POS]: $pos[10], extraGroups: nix.thunk(() => ["pulse-access"]) })),
                     })),
                   })),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$15,
-                      pulseaudio: nix.thunk(() => ({ [nix.POS]: pos$14, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+                      [nix.POS]: $pos[14],
+                      pulseaudio: nix.thunk(() => ({ [nix.POS]: $pos[13], wantedBy: nix.thunk(() => ["multi-user.target"]) })),
                     })),
                   })),
                 }))));
@@ -141,11 +121,11 @@ machine.screenshot("Pavucontrol")
       })(), formals$2));
   })(), formals$1);
   return nix.builtins.mapAttrs((key) => (val) => nix.app(mkTest, val), nix.thunk(() => ({
-      [nix.POS]: pos$24,
-      user: nix.thunk(() => ({ [nix.POS]: pos$20, systemWide: false, fullVersion: false })),
-      system: nix.thunk(() => ({ [nix.POS]: pos$21, systemWide: true, fullVersion: false })),
-      userFull: nix.thunk(() => ({ [nix.POS]: pos$22, systemWide: false, fullVersion: true })),
-      systemFull: nix.thunk(() => ({ [nix.POS]: pos$23, systemWide: true, fullVersion: true })),
+      [nix.POS]: $pos[23],
+      user: nix.thunk(() => ({ [nix.POS]: $pos[19], systemWide: false, fullVersion: false })),
+      system: nix.thunk(() => ({ [nix.POS]: $pos[20], systemWide: true, fullVersion: false })),
+      userFull: nix.thunk(() => ({ [nix.POS]: $pos[21], systemWide: false, fullVersion: true })),
+      systemFull: nix.thunk(() => ({ [nix.POS]: $pos[22], systemWide: true, fullVersion: true })),
     })));
 })());
 //# sourceMappingURL=pulseaudio.ts.map

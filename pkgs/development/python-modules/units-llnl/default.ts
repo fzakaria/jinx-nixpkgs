@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["top-level", 49, 5]], [["pname", 22, 5], ["version", 23, 5], ["src", 24, 5], ["meta", 25, 5], ["pyproject", 27, 3], ["build-system", 29, 3], ["nativeBuildInputs", 34, 3], ["dontUseCmakeConfigure", 38, 3], ["cmakeFlags", 39, 3], ["doCheck", 47, 3], ["passthru", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "units-llnl": false, nanobind: false, "scikit-build-core": false, cmake: false, cmakeFlags: true, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["top-level", 49, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 22, 5], ["version", 23, 5], ["src", 24, 5], ["meta", 25, 5], ["pyproject", 27, 3], ["build-system", 29, 3], ["nativeBuildInputs", 34, 3], ["dontUseCmakeConfigure", 38, 3], ["cmakeFlags", 39, 3], ["doCheck", 47, 3], ["passthru", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const cmakeFlags = nix.argOr($, "cmakeFlags", () => nix.sel(units_llnl, "cmakeFlags"));
   const ninja = nix.arg($, "ninja");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(units_llnl, "pname")),
       version: nix.thunk(() => nix.attr(units_llnl, "version")),
       src: nix.thunk(() => nix.attr(units_llnl, "src")),
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "UNITS_BUILD_PYTHON_LIBRARY", true)),
       ])),
       doCheck: false,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, "top-level": units_llnl })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], "top-level": units_llnl })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["fetchSubmodules", 23, 5], ["hash", 24, 5]], [["src", 28, 13], ["hash", 29, 5]], [["NIX_CFLAGS_COMPILE", 32, 7]], [["changelog", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["teams", 67, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoDeps", 27, 3], ["env", 32, 3], ["postConfigure", 37, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPecl: false, cargo: false, rustc: false, fetchFromGitHub: false, rustPlatform: false, curl: false, pcre2: false, valgrind: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["fetchSubmodules", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 28, 13], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 32, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["teams", 67, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoDeps", 27, 3], ["env", 32, 3], ["postConfigure", 37, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ddtrace";
       const version = "1.19.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DataDog",
           repo: "dd-trace-php",
           rev: version,
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-pfhoj5a+kUVOuMnAHgL2s05Pcc6uhlTcp2t5aj1eJ0E=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           hash: "sha256-Onkkea1xntfSKVr2aoCy1Z9wGIdv/L7HRh7LGxv738M=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-O2" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-O2" }));
       const postConfigure = "substituteInPlace Makefile --replace-fail '/$(builddir)/components-rs' '$(builddir)/components-rs'\n";
       const nativeBuildInputs = nix.thunk(() => [
         cargo,
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const buildInputs = nix.thunk(() => nix.concat([curl, pcre2], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [valgrind])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/DataDog/dd-trace-php/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Datadog Tracing PHP Client",
         homepage: "https://github.com/DataDog/dd-trace-php",
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "php"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

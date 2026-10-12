@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 24, 3], ["dontWrapQtApps", 28, 3], ["build-system", 30, 3], ["pythonRelaxDeps", 35, 3], ["dependencies", 42, 3], ["doCheck", 60, 3], ["postFixup", 63, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 24, 3], ["dontWrapQtApps", 28, 3], ["build-system", 30, 3], ["pythonRelaxDeps", 35, 3], ["dependencies", 42, 3], ["doCheck", 60, 3], ["postFixup", 63, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cfclient",
       version: "2025.12.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bitcraze",
           repo: "crazyflie-clients-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postFixup: "wrapQtApp \"$out/bin/cfclient\" \\\n  --set QT_QPA_PLATFORM \"wayland\" \\\n  --set XDG_CURRENT_DESKTOP \"Wayland\" \\\n  ${qtWrapperArgs[@]}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Host applications and library for Crazyflie drones written in Python",
         homepage: "https://github.com/bitcraze/crazyflie-clients-python",
         changelog: nix.thunk(() => nix.str`https://github.com/bitcraze/crazyflie-clients-python/releases/tag/${nix.sel(finalAttrs, "version")}`),

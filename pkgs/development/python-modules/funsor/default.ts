@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 60, 3], ["preCheck", 75, 3], ["pythonImportsCheck", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, makefun: false, multipledispatch: false, numpy: false, "opt-einsum": false, "typing-extensions": false, "pyro-ppl": false, torch: false, pandas: false, pillow: false, "pyro-api": false, pytestCheckHook: false, "pytest-xdist": false, requests: false, scipy: false, torchvision: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 60, 3], ["preCheck", 75, 3], ["pythonImportsCheck", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const torchvision = nix.arg($, "torchvision");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "funsor",
       version: "0.4.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyro-ppl",
           repo: "funsor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export FUNSOR_BACKEND=torch\n",
       pythonImportsCheck: nix.thunk(() => ["funsor"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Functional tensors for probabilistic programming",
         homepage: "https://funsor.pyro.ai",
         changelog: nix.thunk(() => nix.str`https://github.com/pyro-ppl/funsor/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

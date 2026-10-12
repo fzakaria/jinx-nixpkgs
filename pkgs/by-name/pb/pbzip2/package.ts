@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["url", 26, 7], ["extraPrefix", 27, 7], ["hash", 28, 7]], [["url", 31, 7], ["extraPrefix", 32, 7], ["hash", 33, 7]], [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 14, 3], ["version", 15, 11], ["src", 17, 3], ["patches", 22, 3], ["postPatch", 37, 3], ["buildInputs", 42, 3], ["installFlags", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, bzip2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["extraPrefix", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 31, 7], ["extraPrefix", 32, 7], ["hash", 33, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 11], ["src", 17, 3], ["patches", 22, 3], ["postPatch", 37, 3], ["buildInputs", 42, 3], ["installFlags", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const major = "1.1";
   const version = nix.thunk(() => nix.str`${major}.13`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pbzip2",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://launchpad.net/pbzip2/${major}/${nix.sel(finalAttrs, "version")}/+download/pbzip2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1rnvgcdixjzbrmcr1nv9b6ccrjfrhryaj7jwz28yxxv6lam3xlcg",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/freebsd/freebsd-ports/raw/974d3ff054965d2bd2ab884a0579ed06c5a08b07/archivers/pbzip2/files/patch-BZ2StreamScanner.cpp",
             extraPrefix: "",
             hash: "sha256-dvXdp+5S41akavy+mvPGHpUxHxenXS7bbTVBVkIJj0s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/freebsd/freebsd-ports/raw/974d3ff054965d2bd2ab884a0579ed06c5a08b07/archivers/pbzip2/files/patch-BZ2StreamScanner.h",
             extraPrefix: "",
             hash: "sha256-/twP8HyHP4cAVgb5cUPq0CgDxUgDYPdd9haH9wDOrz8=",
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bzip2]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://launchpad.net/pbzip2",
         description: "Parallel implementation of bzip2 for multi-core machines",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

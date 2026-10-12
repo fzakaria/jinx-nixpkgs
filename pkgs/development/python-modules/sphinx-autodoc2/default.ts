@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pname", 34, 7], ["version", 35, 28], ["debianRevision", 36, 7], ["patch", 37, 7], ["hash", 38, 7]], [["changelog", 74, 5], ["homepage", 75, 5], ["description", 76, 5], ["license", 77, 5], ["mainProgram", 78, 5], ["maintainers", 79, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["preCheck", 52, 3], ["nativeCheckInputs", 59, 3], ["disabledTests", 66, 3], ["pythonImportsCheck", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchDebianPatch: false, "flit-core": false, astroid: false, "typing-extensions": false, typer: false, pytestCheckHook: false, "pytest-regressions": false, sphinx: false, defusedxml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 34, 7], ["version", 35, 28], ["debianRevision", 36, 7], ["patch", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 74, 5], ["homepage", 75, 5], ["description", 76, 5], ["license", 77, 5], ["mainProgram", 78, 5], ["maintainers", 79, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["preCheck", 52, 3], ["nativeCheckInputs", 59, 3], ["disabledTests", 66, 3], ["pythonImportsCheck", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const sphinx = nix.arg($, "sphinx");
   const defusedxml = nix.arg($, "defusedxml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sphinx-autodoc2",
       version: "0.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sphinx-extensions2",
           repo: "sphinx-autodoc2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: "python-sphinx-autodoc2",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "9",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_sphinx_build_directives"]),
       pythonImportsCheck: nix.thunk(() => ["autodoc2"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/sphinx-extensions2/sphinx-autodoc2/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/sphinx-extensions2/sphinx-autodoc2",
         description: "Sphinx extension that automatically generates API documentation for your Python packages",

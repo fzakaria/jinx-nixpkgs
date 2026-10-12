@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["oscore", 33, 5], ["tinydtls", 39, 5], ["ws", 40, 5], ["prettyprint", 41, 5]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["optional-dependencies", 32, 3], ["nativeCheckInputs", 49, 3], ["disabledTestPaths", 51, 3], ["disabledTests", 58, 3], ["pythonImportsCheck", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "cbor-diag": false, cbor2: false, cryptography: false, dtlssocket: false, fetchFromGitHub: false, filelock: false, ge25519: false, pygments: false, pytestCheckHook: false, setuptools: false, termcolor: false, websockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["oscore", 33, 5], ["tinydtls", 39, 5], ["ws", 40, 5], ["prettyprint", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["optional-dependencies", 32, 3], ["nativeCheckInputs", 49, 3], ["disabledTestPaths", 51, 3], ["disabledTests", 58, 3], ["pythonImportsCheck", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const termcolor = nix.arg($, "termcolor");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "aiocoap",
       version: "0.4.17",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chrysn",
           repo: "aiocoap",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         oscore: nix.thunk(() => [cbor2, cryptography, filelock, ge25519]),
         tinydtls: nix.thunk(() => [dtlssocket]),
         ws: nix.thunk(() => [websockets]),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_uri_parser", "test_001", "test_help", "test_blame"]),
       pythonImportsCheck: nix.thunk(() => ["aiocoap"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python CoAP library",
         homepage: "https://aiocoap.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/chrysn/aiocoap/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

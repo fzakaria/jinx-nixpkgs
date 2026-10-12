@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 17, 12]], [["description", 20, 5], ["homepage", 21, 5], ["changelog", 22, 5], ["license", 23, 5], ["platforms", 24, 5], ["maintainers", 25, 5], ["mainProgram", 26, 5]], [["pname", 13, 3], ["exes", 14, 3], ["gemdir", 15, 3], ["passthru", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, ruby: false, bundlerApp: false, bundlerUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 17, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 20, 5], ["homepage", 21, 5], ["changelog", 22, 5], ["license", 23, 5], ["platforms", 24, 5], ["maintainers", 25, 5], ["mainProgram", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["exes", 14, 3], ["gemdir", 15, 3], ["passthru", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const gems = nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix")));
   const version = nix.thunk(() => nix.sel(gems, "brakeman", "version"));
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "brakeman",
       exes: nix.thunk(() => ["brakeman"]),
       gemdir: nix.path(here, "./."),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "brakeman")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Static analysis security scanner for Ruby on Rails",
         homepage: "https://brakemanscanner.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/presidentbeef/brakeman/blob/v${version}/CHANGES.md`),

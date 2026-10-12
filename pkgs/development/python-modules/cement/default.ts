@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["name", 37, 7], ["url", 38, 7], ["includes", 39, 7], ["hash", 40, 7]], [["colorlog", 47, 5], ["jinja2", 48, 5], ["mustache", 49, 5], ["generate", 50, 5], ["redis", 51, 5], ["memcached", 52, 5], ["tabulate", 53, 5], ["watchdog", 54, 5], ["yaml", 55, 5], ["cli", 56, 5]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["mainProgram", 93, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["build-system", 44, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 62, 3], ["pythonImportsCheck", 70, 3], ["doCheck", 73, 3], ["disabledTests", 75, 3], ["disabledTestPaths", 80, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, colorlog: false, fetchFromGitHub: false, fetchpatch: false, jinja2: false, mock: false, "pdm-backend": false, pylibmc: false, pystache: false, "pytest-cov-stub": false, pytestCheckHook: false, pyyaml: false, redis: false, requests: false, tabulate: false, watchdog: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 37, 7], ["url", 38, 7], ["includes", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["colorlog", 47, 5], ["jinja2", 48, 5], ["mustache", 49, 5], ["generate", 50, 5], ["redis", 51, 5], ["memcached", 52, 5], ["tabulate", 53, 5], ["watchdog", 54, 5], ["yaml", 55, 5], ["cli", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["mainProgram", 93, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["build-system", 44, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 62, 3], ["pythonImportsCheck", 70, 3], ["doCheck", 73, 3], ["disabledTests", 75, 3], ["disabledTestPaths", 80, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "datafolklabs",
           repo: "cement",
           tag: version,
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "python-3.14.patch",
             url: "https://github.com/datafolklabs/cement/commit/8b038170d82be7dbd283d72b9c5db3cceec7163b.patch",
             includes: nix.thunk(() => ["tests/*"]),
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const build_system = nix.thunk(() => [pdm_backend]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         colorlog: nix.thunk(() => [colorlog]),
         jinja2: nix.thunk(() => [jinja2]),
         mustache: nix.thunk(() => [pystache]),
@@ -73,7 +69,7 @@ export default nix.lambda((args) => (() => {
         "tests/ext/test_ext_smtp.py",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CLI Application Framework for Python",
         homepage: "https://builtoncement.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/datafolklabs/cement/blob/${version}/CHANGELOG.md`),
@@ -85,7 +81,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cement",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

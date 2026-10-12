@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["NIX_CFLAGS_COMPILE", 43, 7]], [["description", 48, 5], ["longDescription", 50, 5], ["homepage", 64, 5], ["downloadPage", 65, 5], ["license", 67, 5], ["maintainers", 69, 5], ["platforms", 73, 5]], [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["depsBuildBuild", 21, 3], ["buildInputs", 23, 3], ["configureFlags", 32, 3], ["env", 43, 3], ["doCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { buildPackages: false, fetchurl: false, lib: false, stdenv: false, "argp-standalone": false, libgcrypt: false, readline: false, "libgpg-error": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["longDescription", 50, 5], ["homepage", 64, 5], ["downloadPage", 65, 5], ["license", 67, 5], ["maintainers", 69, 5], ["platforms", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["depsBuildBuild", 21, 3], ["buildInputs", 23, 3], ["configureFlags", 32, 3], ["env", 43, 3], ["doCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const libgpg_error = nix.arg($, "libgpg-error");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "1.6.20",
       pname: "freeipmi",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/freeipmi/freeipmi-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-nMZEUw7mKf+5TW/SCefLSouK5md/idLcRh7+2bLnCfI=",
         })))),
@@ -31,12 +28,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libgcrypt, readline, libgpg_error], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [argp_standalone])))),
       configureFlags: nix.thunk(() => nix.concat(["--with-dont-check-for-root"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ["ac_cv_file__dev_urandom=true", "ac_cv_file__dev_random=true"])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Implementation of the Intelligent Platform Management Interface",
         longDescription: "GNU FreeIPMI provides in-band and out-of-band IPMI software based on\nthe IPMI v1.5/2.0 specification.  The IPMI specification defines a\nset of interfaces for platform management and is implemented by a\nnumber vendors for system management.  The features of IPMI that\nmost users will be interested in are sensor monitoring, system event\nmonitoring, power control, and serial-over-LAN (SOL).  The FreeIPMI\ntools and libraries listed below should provide users with the\nability to access and utilize these and many other features.  A\nnumber of useful features for large HPC or cluster environments have\nalso been implemented into FreeIPMI. See the README or FAQ for more\ninfo.\n",
         homepage: "https://www.gnu.org/software/freeipmi/",

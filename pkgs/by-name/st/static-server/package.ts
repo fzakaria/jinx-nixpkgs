@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["version", 29, 28]], [["package", 56, 7]], [["version", 55, 5]], [["tests", 54, 12]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["patches", 26, 3], ["nativeCheckInputs", 33, 3], ["preCheck", 39, 3], ["ldflags", 46, 3], ["doCheck", 52, 3], ["passthru", 54, 3], ["__darwinAllowLocalNetworking", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, curl: false, openssl: false, stdenv: false, testers: false, "static-server": false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 29, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 56, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 54, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["patches", 26, 3], ["nativeCheckInputs", 33, 3], ["preCheck", 39, 3], ["ldflags", 46, 3], ["doCheck", 52, 3], ["passthru", 54, 3], ["__darwinAllowLocalNetworking", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const static_server = nix.arg($, "static-server");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "static-server",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eliben",
           repo: "static-server",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,22 +29,25 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-1p3dCLLo+MTPxf/Y3zjxTagUi+tq7nZSj4ZB/aakJGY=",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./version.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./version.patch"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            version: nix.thunk(() => nix.attr(finalAttrs, "version")),
+          })))),
       ]),
       nativeCheckInputs: nix.thunk(() => [curl, openssl]),
       preCheck: "openssl ecparam -name prime256v1 -genkey -noout -out testdata/datafiles/key.pem\nopenssl req -x509 -new -key testdata/datafiles/key.pem -sha256 -days 36500 \\\n  -subj \"/O=Acme Co\" -addext \"subjectAltName=IP:127.0.0.1\" \\\n  -out testdata/datafiles/cert.pem\n",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: static_server })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: static_server })))),
         })),
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Simple, zero-configuration HTTP server CLI for serving static files",
         homepage: "https://github.com/eliben/static-server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["tests", 22, 12]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["teams", 29, 5]], [["pname", 9, 3], ["version", 11, 24], ["src", 11, 32], ["dontBuild", 13, 3], ["installPhase", 15, 3], ["passthru", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, hockeypuck: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["tests", 22, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["teams", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 11, 24], ["src", 11, 32], ["dontBuild", 13, 3], ["installPhase", 15, 3], ["passthru", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,15 +12,18 @@ export default nix.lambda((args) => (() => {
   const hockeypuck = nix.arg($, "hockeypuck");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hockeypuck-web",
       version: nix.thunk(() => nix.attr(hockeypuck, "version")),
       src: nix.thunk(() => nix.attr(hockeypuck, "src")),
       dontBuild: true,
       installPhase: "mkdir -p $out/share/\n\ncp -vr contrib/webroot $out/share/\ncp -vr contrib/templates $out/share/\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, tests: nix.thunk(() => nix.sel(nixosTests, "hockeypuck")) })),
+      passthru: nix.thunk(() => ({
+        [nix.POS]: $pos[0],
+        tests: nix.thunk(() => nix.sel(nixosTests, "hockeypuck")),
+      })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OpenPGP Key Server web resources",
         homepage: "https://github.com/hockeypuck/hockeypuck",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

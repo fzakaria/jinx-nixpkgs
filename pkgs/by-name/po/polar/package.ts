@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 16, 5], ["ruby", 17, 13], ["gemdir", 18, 5]], [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]], [["description", 75, 5], ["longDescription", 76, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]], [["pname", 24, 3], ["version", 26, 3], ["src", 28, 3], ["prePatch", 35, 3], ["buildInputs", 41, 3], ["nativeBuildInputs", 46, 3], ["doInstallCheck", 50, 3], ["installPhase", 57, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ruby: false, bundlerEnv: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 16, 5], ["ruby", 17, 13], ["gemdir", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 75, 5], ["longDescription", 76, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 26, 3], ["src", 28, 3], ["prePatch", 35, 3], ["buildInputs", 41, 3], ["nativeBuildInputs", 46, 3], ["doInstallCheck", 50, 3], ["installPhase", 57, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const bundlerEnv = nix.arg($, "bundlerEnv");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const gems = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "polar-env",
       ruby: ruby,
       gemdir: nix.path(here, "./."),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "polar",
       version: "unstable-2021-01-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "cmaion",
           repo: "polar",
           rev: "be15f5f897f8a919dd639009873147dca2a9cea0",
@@ -53,7 +50,7 @@ EOF
     done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-line tools to interact with Polar watches",
         longDescription: "A set of command line tools written in Ruby to interact with Polar watches\nand decode raw data files.\n\nUdev rules can be added as:\n\n  services.udev.packages = [ pkgs.polar ]\n",
         homepage: "https://github.com/cmaion/polar",

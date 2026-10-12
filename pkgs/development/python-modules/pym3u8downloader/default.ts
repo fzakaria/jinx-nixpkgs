@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["TEST_SERVER_PORT", 38, 9], ["postPatch", 40, 9], ["doCheck", 51, 9], ["nativeCheckInputs", 53, 9], ["preCheck", 55, 9], ["postCheck", 60, 9]], [["pytest", 37, 7]], [["tests", 36, 5]], [["description", 68, 5], ["longDescription", 69, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["pythonImportsCheck", 31, 3], ["doCheck", 33, 3], ["passthru", 35, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, setuptools: false, pyloggermanager: false, requests: false, pym3u8downloader: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["TEST_SERVER_PORT", 38, 9], ["postPatch", 40, 9], ["doCheck", 51, 9], ["nativeCheckInputs", 53, 9], ["preCheck", 55, 9], ["postCheck", 60, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pytest", 37, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 36, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 68, 5], ["longDescription", 69, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["pythonImportsCheck", 31, 3], ["doCheck", 33, 3], ["passthru", 35, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coldsofttech",
           repo: "pym3u8downloader",
           tag: version,
@@ -36,11 +31,11 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pym3u8downloader"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pytest: nix.thunk(() => nix.app(nix.sel(pym3u8downloader, "overridePythonAttrs"), (previousPythonAttrs) => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               TEST_SERVER_PORT: "8000",
               postPatch: nix.thunk(() => nix.add(nix.selOr(previousPythonAttrs, () => "", "postPatch"), "# Patch test data location\nsubstituteInPlace tests/commonclass.py \\\n  --replace-fail \\\n    \"f'https://raw.githubusercontent.com/coldsofttech/pym3u8downloader/{branch_name}/tests/files'\" \\\n    \"'http://localhost:$TEST_SERVER_PORT/tests/files'\"\n# Patch the `is_internet_connected()` method\nsubstituteInPlace pym3u8downloader/__main__.py \\\n  --replace-fail \"'http://www.github.com'\" \"'http://localhost:$TEST_SERVER_PORT'\"\n")),
               doCheck: true,
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python class to download and concatenate video files from M3U8 playlists",
         longDescription: "M3U8 Downloader is a Python class designed to\ndownload and concatenate video files from M3U8 playlists.\nThis class provides functionality to handle M3U8 playlist files,\ndownload video segments,\nconcatenate them into a single video file,\nand manage various error conditions.\n",
         homepage: "https://github.com/coldsofttech/pym3u8downloader",
@@ -63,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

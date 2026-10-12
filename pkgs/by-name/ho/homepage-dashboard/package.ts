@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["pname", 45, 7], ["version", 46, 7], ["src", 47, 7], ["pnpm", 49, 5], ["fetcherVersion", 50, 5], ["hash", 51, 5]], [["PYTHON", 66, 7]], [["homepage-dashboard", 122, 28]], [["tests", 121, 5], ["updateScript", 124, 5]], [["description", 128, 5], ["changelog", 129, 5], ["mainProgram", 130, 5], ["homepage", 131, 5], ["license", 132, 5], ["maintainers", 133, 5], ["platforms", 134, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["pnpmDeps", 43, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 62, 3], ["env", 66, 3], ["preBuild", 68, 3], ["buildPhase", 88, 3], ["installPhase", 95, 3], ["doDist", 118, 3], ["passthru", 120, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, "node-gyp-build": false, makeBinaryWrapper: false, nodejs: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, python3: false, stdenv: false, unixtools: false, cctools: false, lib: false, nixosTests: false, enableLocalIcons: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 45, 7], ["version", 46, 7], ["src", 47, 7], ["pnpm", 49, 5], ["fetcherVersion", 50, 5], ["hash", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["PYTHON", 66, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage-dashboard", 122, 28]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 121, 5], ["updateScript", 124, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 128, 5], ["changelog", 129, 5], ["mainProgram", 130, 5], ["homepage", 131, 5], ["license", 132, 5], ["maintainers", 133, 5], ["platforms", 134, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["pnpmDeps", 43, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 62, 3], ["env", 66, 3], ["preBuild", 68, 3], ["buildPhase", 88, 3], ["installPhase", 95, 3], ["doDist", 118, 3], ["passthru", 120, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const enableLocalIcons = nix.argOr($, "enableLocalIcons", () => false);
   const dashboardIcons = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "homarr-labs",
       repo: "dashboard-icons",
       rev: "f222c55843b888a82e9f2fe2697365841cbe6025",
@@ -41,18 +34,18 @@ cp -r --no-preserve=mode ${dashboardIcons}/svg/. $out/share/homepage/public/icon
 cp ${dashboardIcons}/LICENSE $out/share/homepage/public/icons/
 `);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "homepage-dashboard",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "gethomepage",
           repo: "homepage",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-DQ0rBBbq2qCMMnasA9lQADUExQf3tWVruanok7DkR1k=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -62,7 +55,7 @@ cp ${dashboardIcons}/LICENSE $out/share/homepage/public/icons/
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([makeBinaryWrapper, nodejs, pnpmConfigHook, pnpm_10], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools])))),
       buildInputs: nix.thunk(() => [node_gyp_build]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, PYTHON: nix.thunk(() => nix.str`${python3}/bin/python`) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], PYTHON: nix.thunk(() => nix.str`${python3}/bin/python`) })),
       preBuild: "# patch next.js file-system-cache to use NIXPKGS_HOMEPAGE_CACHE_DIR\n# related:\n# * https://github.com/NixOS/nixpkgs/issues/328621 (\"homepage-dashboard: Failed to update prerender cache\")\n# * https://github.com/NixOS/nixpkgs/pull/337902 (\"nixos/homepage-dashboard: set an explicit cache dir\")\n# * https://github.com/NixOS/nixpkgs/issues/458494 (\"homepage-dashboard: Dashboard styles are destroyed after a server restart\")\n\n# source file\nsubstituteInPlace node_modules/next/dist/server/lib/incremental-cache/file-system-cache.js \\\n  --replace-fail 'this.serverDistDir = ctx.serverDistDir;' \\\n                 'this.serverDistDir = require(\"path\").join((process.env.NIXPKGS_HOMEPAGE_CACHE_DIR || \"/var/cache/homepage-dashboard\"), \"homepage\");'\n\n# bundled runtimes\nfor bundle in node_modules/next/dist/compiled/next-server/*.runtime.prod.js; do\n  substituteInPlace \"$bundle\" \\\n    --replace-fail 'this.serverDistDir=e.serverDistDir' \\\n                   'this.serverDistDir=(process.env.NIXPKGS_HOMEPAGE_CACHE_DIR||\"/var/cache/homepage-dashboard\")+\"/homepage\"'\ndone\n",
       buildPhase: "runHook preBuild\nmkdir -p config\npnpm build\nrunHook postBuild\n",
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -88,15 +81,15 @@ runHook postInstall
 `),
       doDist: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "homepage-dashboard": nix.thunk(() => nix.attr(nixosTests, "homepage-dashboard")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Highly customisable dashboard with Docker and service API integrations",
         changelog: nix.thunk(() => nix.str`https://github.com/gethomepage/homepage/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         mainProgram: "homepage",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["sha256", 12, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["patches", 15, 3], ["makeFlags", 20, 3], ["preBuild", 22, 3], ["postInstall", 27, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["sha256", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["platforms", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["patches", 15, 3], ["makeFlags", 20, 3], ["preBuild", 22, 3], ["postInstall", 27, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ttaenc",
       version: "3.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/tta/ttaenc-${nix.sel(finalAttrs, "version")}-src.tgz`),
           sha256: "sha256-ssnIsBWsxYZPCCoBV/LgnFEX0URTIctheOkltEi+PcY=",
         })))),
@@ -29,7 +27,7 @@ install -dm755 "$out/share/doc/ttaenc"
 install -m644 "ChangeLog-${nix.sel(finalAttrs, "version")}" README "$out/share/doc/ttaenc"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lossless compressor for multichannel 8, 16 and 24 bits audio data, with the ability of password data protection",
         homepage: "https://sourceforge.net/projects/tta/",
         license: nix.thunk(() => (() => {

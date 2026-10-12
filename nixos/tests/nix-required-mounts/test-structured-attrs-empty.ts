@@ -2,12 +2,12 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-structured-attrs-empty.nix", [[["__structuredAttrs", 5, 70]]]);
 const formals$1 = { args: { pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-structured-attrs-empty.nix", [["__structuredAttrs", 5, 70]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs")), nix.thunk(() => ({}))));
-  return nix.app(nix.sel(pkgs, "runCommand"), "nix-required-mounts-structured-attrs-no-features", nix.thunk(() => ({ [nix.POS]: pos$1, __structuredAttrs: true })), "touch $out\n");
+  return nix.app(nix.sel(pkgs, "runCommand"), "nix-required-mounts-structured-attrs-no-features", nix.thunk(() => ({ [nix.POS]: $pos[0], __structuredAttrs: true })), "touch $out\n");
 })(), formals$1);
 //# sourceMappingURL=test-structured-attrs-empty.ts.map

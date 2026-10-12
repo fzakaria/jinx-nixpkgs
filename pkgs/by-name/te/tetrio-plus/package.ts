@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 13], ["hash", 23, 5]], [["yarnLock", 27, 5], ["hash", 28, 5]], [["description", 94, 5], ["longDescription", 95, 5], ["homepage", 98, 5], ["downloadPage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 107, 5], ["platforms", 108, 5]], [["pname", 33, 3], ["version", 34, 11], ["src", 34, 19], ["nativeBuildInputs", 36, 3], ["buildPhase", 43, 3], ["installPhase", 85, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchYarnDeps: false, yarn: false, "fixup-yarn-lock": false, nodejs: false, asar: false, tpsecore: false, "tetrio-desktop": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 13], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 94, 5], ["longDescription", 95, 5], ["homepage", 98, 5], ["downloadPage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 107, 5], ["platforms", 108, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 11], ["src", 34, 19], ["nativeBuildInputs", 36, 3], ["buildPhase", 43, 3], ["installPhase", 85, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const version = "0.28.1";
   const tag = nix.thunk(() => nix.str`electron-v${version}-tetrio-v${nix.sel(tetrio_desktop, "version")}`);
   const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "UniQMG",
       repo: "tetrio-plus",
       tag: tag,
       hash: "sha256-+yOqHH/RtzjVKHVpVsw2RhECMskCyAyWnjBJNslbGaw=",
     }))));
   const offlineCache = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       yarnLock: nix.thunk(() => nix.str`${src}/resources/desktop-ci/yarn.lock`),
       hash: "sha256-ZU4ObEpJwnC71V5IemG5XWNbX/xvlWdKsXulus7ec5A=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tetrio-plus",
       version: version,
       src: src,
@@ -82,7 +79,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nasar pack out $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Modified TETR.IO desktop app.asar with many customization tools",
         longDescription: "To use this, `override` the `withTetrioPlus` attribute of `tetrio-desktop`.\n",
         homepage: "https://gitlab.com/UniQMG/tetrio-plus",

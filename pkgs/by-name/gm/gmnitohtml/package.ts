@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["homepage", 48, 5], ["changelog", 49, 5], ["description", 50, 5], ["longDescription", 51, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 60, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["nativeBuildInputs", 27, 3], ["postBuild", 32, 3], ["postInstall", 36, 3], ["doInstallCheck", 40, 3], ["installCheckPhase", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromSourcehut: false, scdoc: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["changelog", 49, 5], ["description", 50, 5], ["longDescription", 51, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["nativeBuildInputs", 27, 3], ["postBuild", 32, 3], ["postInstall", 36, 3], ["doInstallCheck", 40, 3], ["installCheckPhase", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gmnitohtml",
       version: "0.1.3",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~adnano",
           repo: "gmnitohtml",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n$out/bin/gmnitohtml --help\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git.sr.ht/~adnano/gmnitohtml",
         changelog: "https://git.sr.ht/~adnano/gmnitohtml/log",
         description: "Gemini text to HTML converter",

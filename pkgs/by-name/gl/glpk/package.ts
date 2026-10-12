@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["name", 51, 7], ["url", 52, 7], ["sha256", 53, 7]], [["pname", 58, 15], ["version", 58, 21], ["debianRevision", 59, 7], ["patch", 60, 7], ["hash", 61, 7]], [["description", 75, 5], ["longDescription", 77, 5], ["homepage", 84, 5], ["license", 85, 5], ["teams", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5]], [["version", 20, 3], ["pname", 21, 3], ["src", 23, 3], ["buildInputs", 28, 3], ["configureFlags", 35, 3], ["patches", 39, 3], ["postPatch", 65, 3], ["doCheck", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, fetchDebianPatch: false, libmysqlclient: false, withGmp: true, gmp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 51, 7], ["url", 52, 7], ["sha256", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 58, 15], ["version", 58, 21], ["debianRevision", 59, 7], ["patch", 60, 7], ["hash", 61, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 75, 5], ["longDescription", 77, 5], ["homepage", 84, 5], ["license", 85, 5], ["teams", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 20, 3], ["pname", 21, 3], ["src", 23, 3], ["buildInputs", 28, 3], ["configureFlags", 35, 3], ["patches", 39, 3], ["postPatch", 65, 3], ["doCheck", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0";
       const pname = "glpk";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/glpk/glpk-${version}.tar.gz`),
           sha256: "sha256-ShAT7rtQ9yj8YBvdgzsLKHAzPDs+WoFu66kh2VvsbxU=",
         }))));
@@ -32,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withGmp, nix.thunk(() => ["--with-gmp"])));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "error_recovery.patch",
             url: "https://raw.githubusercontent.com/sagemath/sage/d3c1f607e32f964bf0cab877a63767c86fd00266/build/pkgs/glpk/patches/error_recovery.patch",
             sha256: "sha256-2hNtUEoGTFt3JgUvLH3tPWnz+DZcXNhjXzS+/V89toA=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: pname,
             version: version,
             debianRevision: "2",
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace configure \\\n  --replace '-I/usr/include/mysql' '$(mysql_config --include)'\n";
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GNU Linear Programming Kit",
         longDescription: "The GNU Linear Programming Kit is intended for solving large\nscale linear programming problems by means of the revised\nsimplex method.  It is a set of routines written in the ANSI C\nprogramming language and organized in the form of a library.\n",
         homepage: "https://www.gnu.org/software/glpk/",
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version,
         pname,
         src,

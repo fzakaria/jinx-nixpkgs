@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["NIX_CFLAGS_COMPILE", 57, 7]], [["requiredSystemFeatures", 100, 5], ["doInstallCheck", 101, 5]], [["gpuCheck", 99, 12]], [["description", 105, 5], ["mainProgram", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5]], [["pname", 17, 3], ["version", 18, 3], ["strictDeps", 20, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["configureFlags", 35, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["env", 57, 3], ["enableParallelBuilding", 71, 3], ["makeFlags", 74, 3], ["installFlags", 78, 3], ["doInstallCheck", 80, 3], ["nativeInstallCheckInputs", 81, 3], ["installCheckPhase", 82, 3], ["passthru", 99, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, gccStdenv: false, cudaPackages: false, autoAddDriverRunpath: false, fetchFromGitLab: false, config: false, cudaSupport: true, "pkg-config": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["requiredSystemFeatures", 100, 5], ["doInstallCheck", 101, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["gpuCheck", 99, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 105, 5], ["mainProgram", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["strictDeps", 20, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["configureFlags", 35, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["env", 57, 3], ["enableParallelBuilding", 71, 3], ["makeFlags", 74, 3], ["installFlags", 78, 3], ["doInstallCheck", 80, 3], ["nativeInstallCheckInputs", 81, 3], ["installCheckPhase", 82, 3], ["passthru", 99, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const stdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(gccStdenv)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "truecrack",
       version: "3.6",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kalilinux",
           repo: "packages/truecrack",
           tag: nix.thunk(() => nix.str`kali/${nix.sel(finalAttrs, "version")}+git20150326-0kali4`),
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [autoAddDriverRunpath])))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart"))]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fcommon", "-Wno-error=implicit-function-declaration"]))),
       })),
       enableParallelBuilding: true,
@@ -57,15 +52,15 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       installCheckPhase: "runHook preInstallCheck\n\necho \"Cracking test volumes\"\n$out/bin/truecrack -t test/ripemd160_aes.test.tc -w test/passwords.txt | grep -aF \"Found password\"\n$out/bin/truecrack -t test/ripemd160_aes.test.tc -c test/tes -m 4 | grep -aF \"Found password\"\n$out/bin/truecrack -t test/ripemd160_aes.test.tc -w test/passwords.txt | grep -aF \"Found password\"\n$out/bin/truecrack -t test/whirlpool_aes.test.tc -w test/passwords.txt -k whirlpool | grep -aF \"Found password\"\n$out/bin/truecrack -t test/sha512_aes.test.tc -w test/passwords.txt -k sha512 | grep -aF \"Found password\"\n$out/bin/truecrack -t test/ripemd160_aes.test.tc -w test/passwords.txt | grep -aF \"Found password\"\n$out/bin/truecrack -t test/ripemd160_serpent.test.tc -w test/passwords.txt -e serpent | grep -aF \"Found password\"\n$out/bin/truecrack -t test/ripemd160_twofish.test.tc -w test/passwords.txt -e twofish | grep -aF \"Found password\"\necho \"Finished cracking test volumes\"\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         gpuCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (oldAttrs) => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doInstallCheck: true,
           }))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Brute-force password cracker for TrueCrypt volumes, optimized for Nvidia Cuda technology",
         mainProgram: "truecrack",
         homepage: "https://gitlab.com/kalilinux/packages/truecrack",

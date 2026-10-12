@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 24, 5], ["owner", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["name", 84, 7], ["icon", 85, 7], ["exec", 86, 7], ["terminal", 87, 7], ["desktopName", 88, 7], ["comment", 89, 7], ["categories", 90, 7], ["mimeTypes", 94, 7]], [["version", 100, 28], ["src", 100, 36], ["pname", 101, 7], ["dotnet-sdk", 103, 7], ["dotnet-runtime", 104, 7], ["projectFile", 105, 7], ["nugetDeps", 107, 7], ["installPhase", 109, 7]], [["backend", 99, 5]], [["description", 121, 5], ["longDescription", 122, 5], ["license", 126, 5], ["homepage", 127, 5], ["downloadPage", 128, 5], ["maintainers", 129, 5], ["platforms", 133, 5], ["broken", 134, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nodejs", 30, 3], ["makeCacheWritable", 31, 3], ["npmFlags", 32, 3], ["npmDepsHash", 33, 3], ["nativeBuildInputs", 35, 3], ["postPatch", 40, 3], ["buildPhase", 47, 3], ["installPhase", 62, 3], ["desktopItems", 82, 3], ["passthru", 98, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, nodejs_24: false, electron_42: false, makeWrapper: false, fetchFromGitHub: false, buildNpmPackage: false, makeDesktopItem: false, copyDesktopItems: false, buildDotnetModule: false, dotnetCorePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 24, 5], ["owner", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 84, 7], ["icon", 85, 7], ["exec", 86, 7], ["terminal", 87, 7], ["desktopName", 88, 7], ["comment", 89, 7], ["categories", 90, 7], ["mimeTypes", 94, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 100, 28], ["src", 100, 36], ["pname", 101, 7], ["dotnet-sdk", 103, 7], ["dotnet-runtime", 104, 7], ["projectFile", 105, 7], ["nugetDeps", 107, 7], ["installPhase", 109, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["backend", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 121, 5], ["longDescription", 122, 5], ["license", 126, 5], ["homepage", 127, 5], ["downloadPage", 128, 5], ["maintainers", 129, 5], ["platforms", 133, 5], ["broken", 134, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nodejs", 30, 3], ["makeCacheWritable", 31, 3], ["npmFlags", 32, 3], ["npmDepsHash", 33, 3], ["nativeBuildInputs", 35, 3], ["postPatch", 40, 3], ["buildPhase", 47, 3], ["installPhase", 62, 3], ["desktopItems", 82, 3], ["passthru", 98, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const electron = electron_42;
   const dotnet = nix.thunk(() => nix.sel(dotnetCorePackages, "dotnet_10"));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "vrcx",
       version: "2026.09.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "VRCX",
           owner: "vrcx-team",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +75,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "vrcx",
             icon: "vrcx",
             exec: "vrcx %u",
@@ -92,9 +87,9 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         backend: nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-backend`),
@@ -106,7 +101,7 @@ runHook postInstall
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Friendship management tool for VRChat",
         longDescription: "VRCX is an assistant/companion application for VRChat that provides information about and helps you accomplish various things\nrelated to VRChat in a more convenient fashion than relying on the plain VRChat client (desktop or VR), or website alone.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

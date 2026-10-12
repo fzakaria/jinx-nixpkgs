@@ -2,1063 +2,931 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/release_sources.nix", [["url", 5, 7], ["locale", 6, 7], ["arch", 7, 7], ["sha256", 8, 7]]);
-const pos$2 = nix.positions(here + "/release_sources.nix", [["url", 11, 7], ["locale", 12, 7], ["arch", 13, 7], ["sha256", 14, 7]]);
-const pos$3 = nix.positions(here + "/release_sources.nix", [["url", 17, 7], ["locale", 18, 7], ["arch", 19, 7], ["sha256", 20, 7]]);
-const pos$4 = nix.positions(here + "/release_sources.nix", [["url", 23, 7], ["locale", 24, 7], ["arch", 25, 7], ["sha256", 26, 7]]);
-const pos$5 = nix.positions(here + "/release_sources.nix", [["url", 29, 7], ["locale", 30, 7], ["arch", 31, 7], ["sha256", 32, 7]]);
-const pos$6 = nix.positions(here + "/release_sources.nix", [["url", 35, 7], ["locale", 36, 7], ["arch", 37, 7], ["sha256", 38, 7]]);
-const pos$7 = nix.positions(here + "/release_sources.nix", [["url", 41, 7], ["locale", 42, 7], ["arch", 43, 7], ["sha256", 44, 7]]);
-const pos$8 = nix.positions(here + "/release_sources.nix", [["url", 47, 7], ["locale", 48, 7], ["arch", 49, 7], ["sha256", 50, 7]]);
-const pos$9 = nix.positions(here + "/release_sources.nix", [["url", 53, 7], ["locale", 54, 7], ["arch", 55, 7], ["sha256", 56, 7]]);
-const pos$10 = nix.positions(here + "/release_sources.nix", [["url", 59, 7], ["locale", 60, 7], ["arch", 61, 7], ["sha256", 62, 7]]);
-const pos$11 = nix.positions(here + "/release_sources.nix", [["url", 65, 7], ["locale", 66, 7], ["arch", 67, 7], ["sha256", 68, 7]]);
-const pos$12 = nix.positions(here + "/release_sources.nix", [["url", 71, 7], ["locale", 72, 7], ["arch", 73, 7], ["sha256", 74, 7]]);
-const pos$13 = nix.positions(here + "/release_sources.nix", [["url", 77, 7], ["locale", 78, 7], ["arch", 79, 7], ["sha256", 80, 7]]);
-const pos$14 = nix.positions(here + "/release_sources.nix", [["url", 83, 7], ["locale", 84, 7], ["arch", 85, 7], ["sha256", 86, 7]]);
-const pos$15 = nix.positions(here + "/release_sources.nix", [["url", 89, 7], ["locale", 90, 7], ["arch", 91, 7], ["sha256", 92, 7]]);
-const pos$16 = nix.positions(here + "/release_sources.nix", [["url", 95, 7], ["locale", 96, 7], ["arch", 97, 7], ["sha256", 98, 7]]);
-const pos$17 = nix.positions(here + "/release_sources.nix", [["url", 101, 7], ["locale", 102, 7], ["arch", 103, 7], ["sha256", 104, 7]]);
-const pos$18 = nix.positions(here + "/release_sources.nix", [["url", 107, 7], ["locale", 108, 7], ["arch", 109, 7], ["sha256", 110, 7]]);
-const pos$19 = nix.positions(here + "/release_sources.nix", [["url", 113, 7], ["locale", 114, 7], ["arch", 115, 7], ["sha256", 116, 7]]);
-const pos$20 = nix.positions(here + "/release_sources.nix", [["url", 119, 7], ["locale", 120, 7], ["arch", 121, 7], ["sha256", 122, 7]]);
-const pos$21 = nix.positions(here + "/release_sources.nix", [["url", 125, 7], ["locale", 126, 7], ["arch", 127, 7], ["sha256", 128, 7]]);
-const pos$22 = nix.positions(here + "/release_sources.nix", [["url", 131, 7], ["locale", 132, 7], ["arch", 133, 7], ["sha256", 134, 7]]);
-const pos$23 = nix.positions(here + "/release_sources.nix", [["url", 137, 7], ["locale", 138, 7], ["arch", 139, 7], ["sha256", 140, 7]]);
-const pos$24 = nix.positions(here + "/release_sources.nix", [["url", 143, 7], ["locale", 144, 7], ["arch", 145, 7], ["sha256", 146, 7]]);
-const pos$25 = nix.positions(here + "/release_sources.nix", [["url", 149, 7], ["locale", 150, 7], ["arch", 151, 7], ["sha256", 152, 7]]);
-const pos$26 = nix.positions(here + "/release_sources.nix", [["url", 155, 7], ["locale", 156, 7], ["arch", 157, 7], ["sha256", 158, 7]]);
-const pos$27 = nix.positions(here + "/release_sources.nix", [["url", 161, 7], ["locale", 162, 7], ["arch", 163, 7], ["sha256", 164, 7]]);
-const pos$28 = nix.positions(here + "/release_sources.nix", [["url", 167, 7], ["locale", 168, 7], ["arch", 169, 7], ["sha256", 170, 7]]);
-const pos$29 = nix.positions(here + "/release_sources.nix", [["url", 173, 7], ["locale", 174, 7], ["arch", 175, 7], ["sha256", 176, 7]]);
-const pos$30 = nix.positions(here + "/release_sources.nix", [["url", 179, 7], ["locale", 180, 7], ["arch", 181, 7], ["sha256", 182, 7]]);
-const pos$31 = nix.positions(here + "/release_sources.nix", [["url", 185, 7], ["locale", 186, 7], ["arch", 187, 7], ["sha256", 188, 7]]);
-const pos$32 = nix.positions(here + "/release_sources.nix", [["url", 191, 7], ["locale", 192, 7], ["arch", 193, 7], ["sha256", 194, 7]]);
-const pos$33 = nix.positions(here + "/release_sources.nix", [["url", 197, 7], ["locale", 198, 7], ["arch", 199, 7], ["sha256", 200, 7]]);
-const pos$34 = nix.positions(here + "/release_sources.nix", [["url", 203, 7], ["locale", 204, 7], ["arch", 205, 7], ["sha256", 206, 7]]);
-const pos$35 = nix.positions(here + "/release_sources.nix", [["url", 209, 7], ["locale", 210, 7], ["arch", 211, 7], ["sha256", 212, 7]]);
-const pos$36 = nix.positions(here + "/release_sources.nix", [["url", 215, 7], ["locale", 216, 7], ["arch", 217, 7], ["sha256", 218, 7]]);
-const pos$37 = nix.positions(here + "/release_sources.nix", [["url", 221, 7], ["locale", 222, 7], ["arch", 223, 7], ["sha256", 224, 7]]);
-const pos$38 = nix.positions(here + "/release_sources.nix", [["url", 227, 7], ["locale", 228, 7], ["arch", 229, 7], ["sha256", 230, 7]]);
-const pos$39 = nix.positions(here + "/release_sources.nix", [["url", 233, 7], ["locale", 234, 7], ["arch", 235, 7], ["sha256", 236, 7]]);
-const pos$40 = nix.positions(here + "/release_sources.nix", [["url", 239, 7], ["locale", 240, 7], ["arch", 241, 7], ["sha256", 242, 7]]);
-const pos$41 = nix.positions(here + "/release_sources.nix", [["url", 245, 7], ["locale", 246, 7], ["arch", 247, 7], ["sha256", 248, 7]]);
-const pos$42 = nix.positions(here + "/release_sources.nix", [["url", 251, 7], ["locale", 252, 7], ["arch", 253, 7], ["sha256", 254, 7]]);
-const pos$43 = nix.positions(here + "/release_sources.nix", [["url", 257, 7], ["locale", 258, 7], ["arch", 259, 7], ["sha256", 260, 7]]);
-const pos$44 = nix.positions(here + "/release_sources.nix", [["url", 263, 7], ["locale", 264, 7], ["arch", 265, 7], ["sha256", 266, 7]]);
-const pos$45 = nix.positions(here + "/release_sources.nix", [["url", 269, 7], ["locale", 270, 7], ["arch", 271, 7], ["sha256", 272, 7]]);
-const pos$46 = nix.positions(here + "/release_sources.nix", [["url", 275, 7], ["locale", 276, 7], ["arch", 277, 7], ["sha256", 278, 7]]);
-const pos$47 = nix.positions(here + "/release_sources.nix", [["url", 281, 7], ["locale", 282, 7], ["arch", 283, 7], ["sha256", 284, 7]]);
-const pos$48 = nix.positions(here + "/release_sources.nix", [["url", 287, 7], ["locale", 288, 7], ["arch", 289, 7], ["sha256", 290, 7]]);
-const pos$49 = nix.positions(here + "/release_sources.nix", [["url", 293, 7], ["locale", 294, 7], ["arch", 295, 7], ["sha256", 296, 7]]);
-const pos$50 = nix.positions(here + "/release_sources.nix", [["url", 299, 7], ["locale", 300, 7], ["arch", 301, 7], ["sha256", 302, 7]]);
-const pos$51 = nix.positions(here + "/release_sources.nix", [["url", 305, 7], ["locale", 306, 7], ["arch", 307, 7], ["sha256", 308, 7]]);
-const pos$52 = nix.positions(here + "/release_sources.nix", [["url", 311, 7], ["locale", 312, 7], ["arch", 313, 7], ["sha256", 314, 7]]);
-const pos$53 = nix.positions(here + "/release_sources.nix", [["url", 317, 7], ["locale", 318, 7], ["arch", 319, 7], ["sha256", 320, 7]]);
-const pos$54 = nix.positions(here + "/release_sources.nix", [["url", 323, 7], ["locale", 324, 7], ["arch", 325, 7], ["sha256", 326, 7]]);
-const pos$55 = nix.positions(here + "/release_sources.nix", [["url", 329, 7], ["locale", 330, 7], ["arch", 331, 7], ["sha256", 332, 7]]);
-const pos$56 = nix.positions(here + "/release_sources.nix", [["url", 335, 7], ["locale", 336, 7], ["arch", 337, 7], ["sha256", 338, 7]]);
-const pos$57 = nix.positions(here + "/release_sources.nix", [["url", 341, 7], ["locale", 342, 7], ["arch", 343, 7], ["sha256", 344, 7]]);
-const pos$58 = nix.positions(here + "/release_sources.nix", [["url", 347, 7], ["locale", 348, 7], ["arch", 349, 7], ["sha256", 350, 7]]);
-const pos$59 = nix.positions(here + "/release_sources.nix", [["url", 353, 7], ["locale", 354, 7], ["arch", 355, 7], ["sha256", 356, 7]]);
-const pos$60 = nix.positions(here + "/release_sources.nix", [["url", 359, 7], ["locale", 360, 7], ["arch", 361, 7], ["sha256", 362, 7]]);
-const pos$61 = nix.positions(here + "/release_sources.nix", [["url", 365, 7], ["locale", 366, 7], ["arch", 367, 7], ["sha256", 368, 7]]);
-const pos$62 = nix.positions(here + "/release_sources.nix", [["url", 371, 7], ["locale", 372, 7], ["arch", 373, 7], ["sha256", 374, 7]]);
-const pos$63 = nix.positions(here + "/release_sources.nix", [["url", 377, 7], ["locale", 378, 7], ["arch", 379, 7], ["sha256", 380, 7]]);
-const pos$64 = nix.positions(here + "/release_sources.nix", [["url", 383, 7], ["locale", 384, 7], ["arch", 385, 7], ["sha256", 386, 7]]);
-const pos$65 = nix.positions(here + "/release_sources.nix", [["url", 389, 7], ["locale", 390, 7], ["arch", 391, 7], ["sha256", 392, 7]]);
-const pos$66 = nix.positions(here + "/release_sources.nix", [["url", 395, 7], ["locale", 396, 7], ["arch", 397, 7], ["sha256", 398, 7]]);
-const pos$67 = nix.positions(here + "/release_sources.nix", [["url", 401, 7], ["locale", 402, 7], ["arch", 403, 7], ["sha256", 404, 7]]);
-const pos$68 = nix.positions(here + "/release_sources.nix", [["url", 407, 7], ["locale", 408, 7], ["arch", 409, 7], ["sha256", 410, 7]]);
-const pos$69 = nix.positions(here + "/release_sources.nix", [["url", 413, 7], ["locale", 414, 7], ["arch", 415, 7], ["sha256", 416, 7]]);
-const pos$70 = nix.positions(here + "/release_sources.nix", [["url", 419, 7], ["locale", 420, 7], ["arch", 421, 7], ["sha256", 422, 7]]);
-const pos$71 = nix.positions(here + "/release_sources.nix", [["url", 425, 7], ["locale", 426, 7], ["arch", 427, 7], ["sha256", 428, 7]]);
-const pos$72 = nix.positions(here + "/release_sources.nix", [["url", 431, 7], ["locale", 432, 7], ["arch", 433, 7], ["sha256", 434, 7]]);
-const pos$73 = nix.positions(here + "/release_sources.nix", [["url", 437, 7], ["locale", 438, 7], ["arch", 439, 7], ["sha256", 440, 7]]);
-const pos$74 = nix.positions(here + "/release_sources.nix", [["url", 443, 7], ["locale", 444, 7], ["arch", 445, 7], ["sha256", 446, 7]]);
-const pos$75 = nix.positions(here + "/release_sources.nix", [["url", 449, 7], ["locale", 450, 7], ["arch", 451, 7], ["sha256", 452, 7]]);
-const pos$76 = nix.positions(here + "/release_sources.nix", [["url", 455, 7], ["locale", 456, 7], ["arch", 457, 7], ["sha256", 458, 7]]);
-const pos$77 = nix.positions(here + "/release_sources.nix", [["url", 461, 7], ["locale", 462, 7], ["arch", 463, 7], ["sha256", 464, 7]]);
-const pos$78 = nix.positions(here + "/release_sources.nix", [["url", 467, 7], ["locale", 468, 7], ["arch", 469, 7], ["sha256", 470, 7]]);
-const pos$79 = nix.positions(here + "/release_sources.nix", [["url", 473, 7], ["locale", 474, 7], ["arch", 475, 7], ["sha256", 476, 7]]);
-const pos$80 = nix.positions(here + "/release_sources.nix", [["url", 479, 7], ["locale", 480, 7], ["arch", 481, 7], ["sha256", 482, 7]]);
-const pos$81 = nix.positions(here + "/release_sources.nix", [["url", 485, 7], ["locale", 486, 7], ["arch", 487, 7], ["sha256", 488, 7]]);
-const pos$82 = nix.positions(here + "/release_sources.nix", [["url", 491, 7], ["locale", 492, 7], ["arch", 493, 7], ["sha256", 494, 7]]);
-const pos$83 = nix.positions(here + "/release_sources.nix", [["url", 497, 7], ["locale", 498, 7], ["arch", 499, 7], ["sha256", 500, 7]]);
-const pos$84 = nix.positions(here + "/release_sources.nix", [["url", 503, 7], ["locale", 504, 7], ["arch", 505, 7], ["sha256", 506, 7]]);
-const pos$85 = nix.positions(here + "/release_sources.nix", [["url", 509, 7], ["locale", 510, 7], ["arch", 511, 7], ["sha256", 512, 7]]);
-const pos$86 = nix.positions(here + "/release_sources.nix", [["url", 515, 7], ["locale", 516, 7], ["arch", 517, 7], ["sha256", 518, 7]]);
-const pos$87 = nix.positions(here + "/release_sources.nix", [["url", 521, 7], ["locale", 522, 7], ["arch", 523, 7], ["sha256", 524, 7]]);
-const pos$88 = nix.positions(here + "/release_sources.nix", [["url", 527, 7], ["locale", 528, 7], ["arch", 529, 7], ["sha256", 530, 7]]);
-const pos$89 = nix.positions(here + "/release_sources.nix", [["url", 533, 7], ["locale", 534, 7], ["arch", 535, 7], ["sha256", 536, 7]]);
-const pos$90 = nix.positions(here + "/release_sources.nix", [["url", 539, 7], ["locale", 540, 7], ["arch", 541, 7], ["sha256", 542, 7]]);
-const pos$91 = nix.positions(here + "/release_sources.nix", [["url", 545, 7], ["locale", 546, 7], ["arch", 547, 7], ["sha256", 548, 7]]);
-const pos$92 = nix.positions(here + "/release_sources.nix", [["url", 551, 7], ["locale", 552, 7], ["arch", 553, 7], ["sha256", 554, 7]]);
-const pos$93 = nix.positions(here + "/release_sources.nix", [["url", 557, 7], ["locale", 558, 7], ["arch", 559, 7], ["sha256", 560, 7]]);
-const pos$94 = nix.positions(here + "/release_sources.nix", [["url", 563, 7], ["locale", 564, 7], ["arch", 565, 7], ["sha256", 566, 7]]);
-const pos$95 = nix.positions(here + "/release_sources.nix", [["url", 569, 7], ["locale", 570, 7], ["arch", 571, 7], ["sha256", 572, 7]]);
-const pos$96 = nix.positions(here + "/release_sources.nix", [["url", 575, 7], ["locale", 576, 7], ["arch", 577, 7], ["sha256", 578, 7]]);
-const pos$97 = nix.positions(here + "/release_sources.nix", [["url", 581, 7], ["locale", 582, 7], ["arch", 583, 7], ["sha256", 584, 7]]);
-const pos$98 = nix.positions(here + "/release_sources.nix", [["url", 587, 7], ["locale", 588, 7], ["arch", 589, 7], ["sha256", 590, 7]]);
-const pos$99 = nix.positions(here + "/release_sources.nix", [["url", 593, 7], ["locale", 594, 7], ["arch", 595, 7], ["sha256", 596, 7]]);
-const pos$100 = nix.positions(here + "/release_sources.nix", [["url", 599, 7], ["locale", 600, 7], ["arch", 601, 7], ["sha256", 602, 7]]);
-const pos$101 = nix.positions(here + "/release_sources.nix", [["url", 605, 7], ["locale", 606, 7], ["arch", 607, 7], ["sha256", 608, 7]]);
-const pos$102 = nix.positions(here + "/release_sources.nix", [["url", 611, 7], ["locale", 612, 7], ["arch", 613, 7], ["sha256", 614, 7]]);
-const pos$103 = nix.positions(here + "/release_sources.nix", [["url", 617, 7], ["locale", 618, 7], ["arch", 619, 7], ["sha256", 620, 7]]);
-const pos$104 = nix.positions(here + "/release_sources.nix", [["url", 623, 7], ["locale", 624, 7], ["arch", 625, 7], ["sha256", 626, 7]]);
-const pos$105 = nix.positions(here + "/release_sources.nix", [["url", 629, 7], ["locale", 630, 7], ["arch", 631, 7], ["sha256", 632, 7]]);
-const pos$106 = nix.positions(here + "/release_sources.nix", [["url", 635, 7], ["locale", 636, 7], ["arch", 637, 7], ["sha256", 638, 7]]);
-const pos$107 = nix.positions(here + "/release_sources.nix", [["url", 641, 7], ["locale", 642, 7], ["arch", 643, 7], ["sha256", 644, 7]]);
-const pos$108 = nix.positions(here + "/release_sources.nix", [["url", 647, 7], ["locale", 648, 7], ["arch", 649, 7], ["sha256", 650, 7]]);
-const pos$109 = nix.positions(here + "/release_sources.nix", [["url", 653, 7], ["locale", 654, 7], ["arch", 655, 7], ["sha256", 656, 7]]);
-const pos$110 = nix.positions(here + "/release_sources.nix", [["url", 659, 7], ["locale", 660, 7], ["arch", 661, 7], ["sha256", 662, 7]]);
-const pos$111 = nix.positions(here + "/release_sources.nix", [["url", 665, 7], ["locale", 666, 7], ["arch", 667, 7], ["sha256", 668, 7]]);
-const pos$112 = nix.positions(here + "/release_sources.nix", [["url", 671, 7], ["locale", 672, 7], ["arch", 673, 7], ["sha256", 674, 7]]);
-const pos$113 = nix.positions(here + "/release_sources.nix", [["url", 677, 7], ["locale", 678, 7], ["arch", 679, 7], ["sha256", 680, 7]]);
-const pos$114 = nix.positions(here + "/release_sources.nix", [["url", 683, 7], ["locale", 684, 7], ["arch", 685, 7], ["sha256", 686, 7]]);
-const pos$115 = nix.positions(here + "/release_sources.nix", [["url", 689, 7], ["locale", 690, 7], ["arch", 691, 7], ["sha256", 692, 7]]);
-const pos$116 = nix.positions(here + "/release_sources.nix", [["url", 695, 7], ["locale", 696, 7], ["arch", 697, 7], ["sha256", 698, 7]]);
-const pos$117 = nix.positions(here + "/release_sources.nix", [["url", 701, 7], ["locale", 702, 7], ["arch", 703, 7], ["sha256", 704, 7]]);
-const pos$118 = nix.positions(here + "/release_sources.nix", [["url", 707, 7], ["locale", 708, 7], ["arch", 709, 7], ["sha256", 710, 7]]);
-const pos$119 = nix.positions(here + "/release_sources.nix", [["url", 713, 7], ["locale", 714, 7], ["arch", 715, 7], ["sha256", 716, 7]]);
-const pos$120 = nix.positions(here + "/release_sources.nix", [["url", 719, 7], ["locale", 720, 7], ["arch", 721, 7], ["sha256", 722, 7]]);
-const pos$121 = nix.positions(here + "/release_sources.nix", [["url", 725, 7], ["locale", 726, 7], ["arch", 727, 7], ["sha256", 728, 7]]);
-const pos$122 = nix.positions(here + "/release_sources.nix", [["url", 731, 7], ["locale", 732, 7], ["arch", 733, 7], ["sha256", 734, 7]]);
-const pos$123 = nix.positions(here + "/release_sources.nix", [["url", 737, 7], ["locale", 738, 7], ["arch", 739, 7], ["sha256", 740, 7]]);
-const pos$124 = nix.positions(here + "/release_sources.nix", [["url", 743, 7], ["locale", 744, 7], ["arch", 745, 7], ["sha256", 746, 7]]);
-const pos$125 = nix.positions(here + "/release_sources.nix", [["url", 749, 7], ["locale", 750, 7], ["arch", 751, 7], ["sha256", 752, 7]]);
-const pos$126 = nix.positions(here + "/release_sources.nix", [["url", 755, 7], ["locale", 756, 7], ["arch", 757, 7], ["sha256", 758, 7]]);
-const pos$127 = nix.positions(here + "/release_sources.nix", [["url", 761, 7], ["locale", 762, 7], ["arch", 763, 7], ["sha256", 764, 7]]);
-const pos$128 = nix.positions(here + "/release_sources.nix", [["url", 767, 7], ["locale", 768, 7], ["arch", 769, 7], ["sha256", 770, 7]]);
-const pos$129 = nix.positions(here + "/release_sources.nix", [["url", 773, 7], ["locale", 774, 7], ["arch", 775, 7], ["sha256", 776, 7]]);
-const pos$130 = nix.positions(here + "/release_sources.nix", [["url", 779, 7], ["locale", 780, 7], ["arch", 781, 7], ["sha256", 782, 7]]);
-const pos$131 = nix.positions(here + "/release_sources.nix", [["url", 785, 7], ["locale", 786, 7], ["arch", 787, 7], ["sha256", 788, 7]]);
-const pos$132 = nix.positions(here + "/release_sources.nix", [["url", 791, 7], ["locale", 792, 7], ["arch", 793, 7], ["sha256", 794, 7]]);
-const pos$133 = nix.positions(here + "/release_sources.nix", [["version", 2, 3], ["sources", 3, 3]]);
+const $pos = nix.positions(here + "/release_sources.nix", [[["url", 5, 7], ["locale", 6, 7], ["arch", 7, 7], ["sha256", 8, 7]], [["url", 11, 7], ["locale", 12, 7], ["arch", 13, 7], ["sha256", 14, 7]], [["url", 17, 7], ["locale", 18, 7], ["arch", 19, 7], ["sha256", 20, 7]], [["url", 23, 7], ["locale", 24, 7], ["arch", 25, 7], ["sha256", 26, 7]], [["url", 29, 7], ["locale", 30, 7], ["arch", 31, 7], ["sha256", 32, 7]], [["url", 35, 7], ["locale", 36, 7], ["arch", 37, 7], ["sha256", 38, 7]], [["url", 41, 7], ["locale", 42, 7], ["arch", 43, 7], ["sha256", 44, 7]], [["url", 47, 7], ["locale", 48, 7], ["arch", 49, 7], ["sha256", 50, 7]], [["url", 53, 7], ["locale", 54, 7], ["arch", 55, 7], ["sha256", 56, 7]], [["url", 59, 7], ["locale", 60, 7], ["arch", 61, 7], ["sha256", 62, 7]], [["url", 65, 7], ["locale", 66, 7], ["arch", 67, 7], ["sha256", 68, 7]], [["url", 71, 7], ["locale", 72, 7], ["arch", 73, 7], ["sha256", 74, 7]], [["url", 77, 7], ["locale", 78, 7], ["arch", 79, 7], ["sha256", 80, 7]], [["url", 83, 7], ["locale", 84, 7], ["arch", 85, 7], ["sha256", 86, 7]], [["url", 89, 7], ["locale", 90, 7], ["arch", 91, 7], ["sha256", 92, 7]], [["url", 95, 7], ["locale", 96, 7], ["arch", 97, 7], ["sha256", 98, 7]], [["url", 101, 7], ["locale", 102, 7], ["arch", 103, 7], ["sha256", 104, 7]], [["url", 107, 7], ["locale", 108, 7], ["arch", 109, 7], ["sha256", 110, 7]], [["url", 113, 7], ["locale", 114, 7], ["arch", 115, 7], ["sha256", 116, 7]], [["url", 119, 7], ["locale", 120, 7], ["arch", 121, 7], ["sha256", 122, 7]], [["url", 125, 7], ["locale", 126, 7], ["arch", 127, 7], ["sha256", 128, 7]], [["url", 131, 7], ["locale", 132, 7], ["arch", 133, 7], ["sha256", 134, 7]], [["url", 137, 7], ["locale", 138, 7], ["arch", 139, 7], ["sha256", 140, 7]], [["url", 143, 7], ["locale", 144, 7], ["arch", 145, 7], ["sha256", 146, 7]], [["url", 149, 7], ["locale", 150, 7], ["arch", 151, 7], ["sha256", 152, 7]], [["url", 155, 7], ["locale", 156, 7], ["arch", 157, 7], ["sha256", 158, 7]], [["url", 161, 7], ["locale", 162, 7], ["arch", 163, 7], ["sha256", 164, 7]], [["url", 167, 7], ["locale", 168, 7], ["arch", 169, 7], ["sha256", 170, 7]], [["url", 173, 7], ["locale", 174, 7], ["arch", 175, 7], ["sha256", 176, 7]], [["url", 179, 7], ["locale", 180, 7], ["arch", 181, 7], ["sha256", 182, 7]], [["url", 185, 7], ["locale", 186, 7], ["arch", 187, 7], ["sha256", 188, 7]], [["url", 191, 7], ["locale", 192, 7], ["arch", 193, 7], ["sha256", 194, 7]], [["url", 197, 7], ["locale", 198, 7], ["arch", 199, 7], ["sha256", 200, 7]], [["url", 203, 7], ["locale", 204, 7], ["arch", 205, 7], ["sha256", 206, 7]], [["url", 209, 7], ["locale", 210, 7], ["arch", 211, 7], ["sha256", 212, 7]], [["url", 215, 7], ["locale", 216, 7], ["arch", 217, 7], ["sha256", 218, 7]], [["url", 221, 7], ["locale", 222, 7], ["arch", 223, 7], ["sha256", 224, 7]], [["url", 227, 7], ["locale", 228, 7], ["arch", 229, 7], ["sha256", 230, 7]], [["url", 233, 7], ["locale", 234, 7], ["arch", 235, 7], ["sha256", 236, 7]], [["url", 239, 7], ["locale", 240, 7], ["arch", 241, 7], ["sha256", 242, 7]], [["url", 245, 7], ["locale", 246, 7], ["arch", 247, 7], ["sha256", 248, 7]], [["url", 251, 7], ["locale", 252, 7], ["arch", 253, 7], ["sha256", 254, 7]], [["url", 257, 7], ["locale", 258, 7], ["arch", 259, 7], ["sha256", 260, 7]], [["url", 263, 7], ["locale", 264, 7], ["arch", 265, 7], ["sha256", 266, 7]], [["url", 269, 7], ["locale", 270, 7], ["arch", 271, 7], ["sha256", 272, 7]], [["url", 275, 7], ["locale", 276, 7], ["arch", 277, 7], ["sha256", 278, 7]], [["url", 281, 7], ["locale", 282, 7], ["arch", 283, 7], ["sha256", 284, 7]], [["url", 287, 7], ["locale", 288, 7], ["arch", 289, 7], ["sha256", 290, 7]], [["url", 293, 7], ["locale", 294, 7], ["arch", 295, 7], ["sha256", 296, 7]], [["url", 299, 7], ["locale", 300, 7], ["arch", 301, 7], ["sha256", 302, 7]], [["url", 305, 7], ["locale", 306, 7], ["arch", 307, 7], ["sha256", 308, 7]], [["url", 311, 7], ["locale", 312, 7], ["arch", 313, 7], ["sha256", 314, 7]], [["url", 317, 7], ["locale", 318, 7], ["arch", 319, 7], ["sha256", 320, 7]], [["url", 323, 7], ["locale", 324, 7], ["arch", 325, 7], ["sha256", 326, 7]], [["url", 329, 7], ["locale", 330, 7], ["arch", 331, 7], ["sha256", 332, 7]], [["url", 335, 7], ["locale", 336, 7], ["arch", 337, 7], ["sha256", 338, 7]], [["url", 341, 7], ["locale", 342, 7], ["arch", 343, 7], ["sha256", 344, 7]], [["url", 347, 7], ["locale", 348, 7], ["arch", 349, 7], ["sha256", 350, 7]], [["url", 353, 7], ["locale", 354, 7], ["arch", 355, 7], ["sha256", 356, 7]], [["url", 359, 7], ["locale", 360, 7], ["arch", 361, 7], ["sha256", 362, 7]], [["url", 365, 7], ["locale", 366, 7], ["arch", 367, 7], ["sha256", 368, 7]], [["url", 371, 7], ["locale", 372, 7], ["arch", 373, 7], ["sha256", 374, 7]], [["url", 377, 7], ["locale", 378, 7], ["arch", 379, 7], ["sha256", 380, 7]], [["url", 383, 7], ["locale", 384, 7], ["arch", 385, 7], ["sha256", 386, 7]], [["url", 389, 7], ["locale", 390, 7], ["arch", 391, 7], ["sha256", 392, 7]], [["url", 395, 7], ["locale", 396, 7], ["arch", 397, 7], ["sha256", 398, 7]], [["url", 401, 7], ["locale", 402, 7], ["arch", 403, 7], ["sha256", 404, 7]], [["url", 407, 7], ["locale", 408, 7], ["arch", 409, 7], ["sha256", 410, 7]], [["url", 413, 7], ["locale", 414, 7], ["arch", 415, 7], ["sha256", 416, 7]], [["url", 419, 7], ["locale", 420, 7], ["arch", 421, 7], ["sha256", 422, 7]], [["url", 425, 7], ["locale", 426, 7], ["arch", 427, 7], ["sha256", 428, 7]], [["url", 431, 7], ["locale", 432, 7], ["arch", 433, 7], ["sha256", 434, 7]], [["url", 437, 7], ["locale", 438, 7], ["arch", 439, 7], ["sha256", 440, 7]], [["url", 443, 7], ["locale", 444, 7], ["arch", 445, 7], ["sha256", 446, 7]], [["url", 449, 7], ["locale", 450, 7], ["arch", 451, 7], ["sha256", 452, 7]], [["url", 455, 7], ["locale", 456, 7], ["arch", 457, 7], ["sha256", 458, 7]], [["url", 461, 7], ["locale", 462, 7], ["arch", 463, 7], ["sha256", 464, 7]], [["url", 467, 7], ["locale", 468, 7], ["arch", 469, 7], ["sha256", 470, 7]], [["url", 473, 7], ["locale", 474, 7], ["arch", 475, 7], ["sha256", 476, 7]], [["url", 479, 7], ["locale", 480, 7], ["arch", 481, 7], ["sha256", 482, 7]], [["url", 485, 7], ["locale", 486, 7], ["arch", 487, 7], ["sha256", 488, 7]], [["url", 491, 7], ["locale", 492, 7], ["arch", 493, 7], ["sha256", 494, 7]], [["url", 497, 7], ["locale", 498, 7], ["arch", 499, 7], ["sha256", 500, 7]], [["url", 503, 7], ["locale", 504, 7], ["arch", 505, 7], ["sha256", 506, 7]], [["url", 509, 7], ["locale", 510, 7], ["arch", 511, 7], ["sha256", 512, 7]], [["url", 515, 7], ["locale", 516, 7], ["arch", 517, 7], ["sha256", 518, 7]], [["url", 521, 7], ["locale", 522, 7], ["arch", 523, 7], ["sha256", 524, 7]], [["url", 527, 7], ["locale", 528, 7], ["arch", 529, 7], ["sha256", 530, 7]], [["url", 533, 7], ["locale", 534, 7], ["arch", 535, 7], ["sha256", 536, 7]], [["url", 539, 7], ["locale", 540, 7], ["arch", 541, 7], ["sha256", 542, 7]], [["url", 545, 7], ["locale", 546, 7], ["arch", 547, 7], ["sha256", 548, 7]], [["url", 551, 7], ["locale", 552, 7], ["arch", 553, 7], ["sha256", 554, 7]], [["url", 557, 7], ["locale", 558, 7], ["arch", 559, 7], ["sha256", 560, 7]], [["url", 563, 7], ["locale", 564, 7], ["arch", 565, 7], ["sha256", 566, 7]], [["url", 569, 7], ["locale", 570, 7], ["arch", 571, 7], ["sha256", 572, 7]], [["url", 575, 7], ["locale", 576, 7], ["arch", 577, 7], ["sha256", 578, 7]], [["url", 581, 7], ["locale", 582, 7], ["arch", 583, 7], ["sha256", 584, 7]], [["url", 587, 7], ["locale", 588, 7], ["arch", 589, 7], ["sha256", 590, 7]], [["url", 593, 7], ["locale", 594, 7], ["arch", 595, 7], ["sha256", 596, 7]], [["url", 599, 7], ["locale", 600, 7], ["arch", 601, 7], ["sha256", 602, 7]], [["url", 605, 7], ["locale", 606, 7], ["arch", 607, 7], ["sha256", 608, 7]], [["url", 611, 7], ["locale", 612, 7], ["arch", 613, 7], ["sha256", 614, 7]], [["url", 617, 7], ["locale", 618, 7], ["arch", 619, 7], ["sha256", 620, 7]], [["url", 623, 7], ["locale", 624, 7], ["arch", 625, 7], ["sha256", 626, 7]], [["url", 629, 7], ["locale", 630, 7], ["arch", 631, 7], ["sha256", 632, 7]], [["url", 635, 7], ["locale", 636, 7], ["arch", 637, 7], ["sha256", 638, 7]], [["url", 641, 7], ["locale", 642, 7], ["arch", 643, 7], ["sha256", 644, 7]], [["url", 647, 7], ["locale", 648, 7], ["arch", 649, 7], ["sha256", 650, 7]], [["url", 653, 7], ["locale", 654, 7], ["arch", 655, 7], ["sha256", 656, 7]], [["url", 659, 7], ["locale", 660, 7], ["arch", 661, 7], ["sha256", 662, 7]], [["url", 665, 7], ["locale", 666, 7], ["arch", 667, 7], ["sha256", 668, 7]], [["url", 671, 7], ["locale", 672, 7], ["arch", 673, 7], ["sha256", 674, 7]], [["url", 677, 7], ["locale", 678, 7], ["arch", 679, 7], ["sha256", 680, 7]], [["url", 683, 7], ["locale", 684, 7], ["arch", 685, 7], ["sha256", 686, 7]], [["url", 689, 7], ["locale", 690, 7], ["arch", 691, 7], ["sha256", 692, 7]], [["url", 695, 7], ["locale", 696, 7], ["arch", 697, 7], ["sha256", 698, 7]], [["url", 701, 7], ["locale", 702, 7], ["arch", 703, 7], ["sha256", 704, 7]], [["url", 707, 7], ["locale", 708, 7], ["arch", 709, 7], ["sha256", 710, 7]], [["url", 713, 7], ["locale", 714, 7], ["arch", 715, 7], ["sha256", 716, 7]], [["url", 719, 7], ["locale", 720, 7], ["arch", 721, 7], ["sha256", 722, 7]], [["url", 725, 7], ["locale", 726, 7], ["arch", 727, 7], ["sha256", 728, 7]], [["url", 731, 7], ["locale", 732, 7], ["arch", 733, 7], ["sha256", 734, 7]], [["url", 737, 7], ["locale", 738, 7], ["arch", 739, 7], ["sha256", 740, 7]], [["url", 743, 7], ["locale", 744, 7], ["arch", 745, 7], ["sha256", 746, 7]], [["url", 749, 7], ["locale", 750, 7], ["arch", 751, 7], ["sha256", 752, 7]], [["url", 755, 7], ["locale", 756, 7], ["arch", 757, 7], ["sha256", 758, 7]], [["url", 761, 7], ["locale", 762, 7], ["arch", 763, 7], ["sha256", 764, 7]], [["url", 767, 7], ["locale", 768, 7], ["arch", 769, 7], ["sha256", 770, 7]], [["url", 773, 7], ["locale", 774, 7], ["arch", 775, 7], ["sha256", 776, 7]], [["url", 779, 7], ["locale", 780, 7], ["arch", 781, 7], ["sha256", 782, 7]], [["url", 785, 7], ["locale", 786, 7], ["arch", 787, 7], ["sha256", 788, 7]], [["url", 791, 7], ["locale", 792, 7], ["arch", 793, 7], ["sha256", 794, 7]], [["version", 2, 3], ["sources", 3, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$133,
+  [nix.POS]: $pos[132],
   version: "157.0.1",
   sources: nix.thunk(() => [
     nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/af/thunderbird-157.0.1.tar.xz",
       locale: "af",
       arch: "linux-x86_64",
       sha256: "db20299c3034fa29d3b2ada0ab35a10b90dcc079f8bfb47c4c911eeb4f0aacaf",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/ar/thunderbird-157.0.1.tar.xz",
       locale: "ar",
       arch: "linux-x86_64",
       sha256: "cb677f1b9f7f3c7c703b929713baa67e80f458ef7822bc108f24ea86f4457b03",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/ast/thunderbird-157.0.1.tar.xz",
       locale: "ast",
       arch: "linux-x86_64",
       sha256: "e5936015ad59033d06c2c3651bb4d4ddb2ef9a3707f1e9d2861b61101a78a9f8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/be/thunderbird-157.0.1.tar.xz",
       locale: "be",
       arch: "linux-x86_64",
       sha256: "100ffef0fd7a45a1a37d40040d77120a0d960d30460a7fd15cdd7bc094690224",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/bg/thunderbird-157.0.1.tar.xz",
       locale: "bg",
       arch: "linux-x86_64",
       sha256: "59e9f09e3361cb7f6e5a03051443687f3a9257a85dd321209c3cde68240cce91",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/br/thunderbird-157.0.1.tar.xz",
       locale: "br",
       arch: "linux-x86_64",
       sha256: "2eed639e55c75af7c7c4f6847f0114f39f27fd83408675fc5652d7af771b73e4",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/ca/thunderbird-157.0.1.tar.xz",
       locale: "ca",
       arch: "linux-x86_64",
       sha256: "63ee174513243e04c80d468aede0cc9482bcc046d246d7648944e7696b0b4ba0",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/cak/thunderbird-157.0.1.tar.xz",
       locale: "cak",
       arch: "linux-x86_64",
       sha256: "828f13c03ed04fc019f79f4cfecaa81af1bfb057de3f494abacd7e249d200ed8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/cs/thunderbird-157.0.1.tar.xz",
       locale: "cs",
       arch: "linux-x86_64",
       sha256: "eb506333cead6142921702d948631620530da179036fc4cd5030c55374021d48",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/cy/thunderbird-157.0.1.tar.xz",
       locale: "cy",
       arch: "linux-x86_64",
       sha256: "fd738ff8f0668e4157527636f3816f954e1c32d8b3e1d893ef22e13c2970841e",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/da/thunderbird-157.0.1.tar.xz",
       locale: "da",
       arch: "linux-x86_64",
       sha256: "38cd985f9c83f6e7860d1e1237d62eb408f0c2e816cae8901362da247c282533",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/de/thunderbird-157.0.1.tar.xz",
       locale: "de",
       arch: "linux-x86_64",
       sha256: "a6078fd6a6d7c5ad32d82294bb7044ed87317c2d9cfe916593e40da96b8524f1",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/dsb/thunderbird-157.0.1.tar.xz",
       locale: "dsb",
       arch: "linux-x86_64",
       sha256: "9edce1683fbcbf3b01da57995aeb6e2ef709ab87fb9b5a51c78960146808ec42",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/el/thunderbird-157.0.1.tar.xz",
       locale: "el",
       arch: "linux-x86_64",
       sha256: "2e5c87809176aaf558d5c0234af9b28d8b8957c10997bfc5cd4ef0adbb8490cd",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/en-CA/thunderbird-157.0.1.tar.xz",
       locale: "en-CA",
       arch: "linux-x86_64",
       sha256: "fa9a127106c2bbfcbf459a0879e9beac7e5846603bacc9d313b86ebb4965009d",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/en-GB/thunderbird-157.0.1.tar.xz",
       locale: "en-GB",
       arch: "linux-x86_64",
       sha256: "425aa703c4267d7f0313f171184a4f77348b030f168b7997b3f5fd10b098d449",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/en-US/thunderbird-157.0.1.tar.xz",
       locale: "en-US",
       arch: "linux-x86_64",
       sha256: "9d6a12447fe8976adc4740bb9593973d3ad495cfff800dbd91fcb8e7a8f03ad6",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/es-AR/thunderbird-157.0.1.tar.xz",
       locale: "es-AR",
       arch: "linux-x86_64",
       sha256: "e98bdd06842f7030ed52064483f4e4a4b6d95abaefb4261bf9fd1507cf882921",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/es-ES/thunderbird-157.0.1.tar.xz",
       locale: "es-ES",
       arch: "linux-x86_64",
       sha256: "5a29d79b9c8aeaebe731333e1c4650aa90b5ec8b43723f877b58807a858edd69",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/es-MX/thunderbird-157.0.1.tar.xz",
       locale: "es-MX",
       arch: "linux-x86_64",
       sha256: "69132d917c41b537116cd339253647d052e4074cf0b60f614d020b4640c10bdd",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/et/thunderbird-157.0.1.tar.xz",
       locale: "et",
       arch: "linux-x86_64",
       sha256: "ecd81251415ac0a4c5387dd07b433c2b7827314347337fe67626ba46570197b9",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/eu/thunderbird-157.0.1.tar.xz",
       locale: "eu",
       arch: "linux-x86_64",
       sha256: "2d218cf5b731dff59aeb98b11afa5e01219b55ddc2b5ec9a6f7ece61ed8d6a96",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/fi/thunderbird-157.0.1.tar.xz",
       locale: "fi",
       arch: "linux-x86_64",
       sha256: "eb7343962483ea427742240dd2c7c32c12f5d6dffa93af0cdc08481038dfa8f9",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/fr/thunderbird-157.0.1.tar.xz",
       locale: "fr",
       arch: "linux-x86_64",
       sha256: "a6c56973269fbe24d2e33022ec8a6b1891ece70379fc372a4777dd2479417cc7",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/fy-NL/thunderbird-157.0.1.tar.xz",
       locale: "fy-NL",
       arch: "linux-x86_64",
       sha256: "89e98ae6a063d1d521ffae3b9b4dbce47404a6be6af604ca2ccd8116cacaa63b",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/ga-IE/thunderbird-157.0.1.tar.xz",
       locale: "ga-IE",
       arch: "linux-x86_64",
       sha256: "dca286768d4ab0afd2f7a26e957d4576a8dbab7a692f1d9ee3f91686ebcd50f1",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/gd/thunderbird-157.0.1.tar.xz",
       locale: "gd",
       arch: "linux-x86_64",
       sha256: "c1886a0ab0dab61edcc2338edc4a8a46cff06c5a51c04e7a15d1fccb6d3e0c06",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/gl/thunderbird-157.0.1.tar.xz",
       locale: "gl",
       arch: "linux-x86_64",
       sha256: "db6deefc6236a9a38703c3708dc1db2c4ec50b51b931ed95c9dbb7049cf19b80",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/he/thunderbird-157.0.1.tar.xz",
       locale: "he",
       arch: "linux-x86_64",
       sha256: "a45c37254f76ffb57576e30d01a255428126e139219827bdf1309aa4a82693a8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/hr/thunderbird-157.0.1.tar.xz",
       locale: "hr",
       arch: "linux-x86_64",
       sha256: "f1dde2c1ceb10f01ca18cc107d4eb1249653720e04ce3e4b9e0c26d379ef88a8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/hsb/thunderbird-157.0.1.tar.xz",
       locale: "hsb",
       arch: "linux-x86_64",
       sha256: "cc410c696a75cf82185f31e7d1498400d48702c4037bda3abe6b8c777a5c3750",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/hu/thunderbird-157.0.1.tar.xz",
       locale: "hu",
       arch: "linux-x86_64",
       sha256: "3fc0cbffb45fa389f599c21ceb4bb4c28974062ade1a31282b088467912e7121",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$33,
+      [nix.POS]: $pos[32],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/hy-AM/thunderbird-157.0.1.tar.xz",
       locale: "hy-AM",
       arch: "linux-x86_64",
       sha256: "92f85eedc45f82471ed57411aabfce8dcad8b632d869b9d82e35482e89a4d8b7",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/id/thunderbird-157.0.1.tar.xz",
       locale: "id",
       arch: "linux-x86_64",
       sha256: "c2e2d4f5572f4a0f621d1bc57ee9ab37babcf3f69440392c9a28e0b4692919f2",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/is/thunderbird-157.0.1.tar.xz",
       locale: "is",
       arch: "linux-x86_64",
       sha256: "aaa8722230812966ac6f81ba1deb26dd8d5f564701eb01b84268c1b678c001a3",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$36,
+      [nix.POS]: $pos[35],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/it/thunderbird-157.0.1.tar.xz",
       locale: "it",
       arch: "linux-x86_64",
       sha256: "172b67464bbfe908b2caa5db9a71cdf7b44d31f3c4acac0cd6a273e63c32c7d7",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$37,
+      [nix.POS]: $pos[36],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/ja/thunderbird-157.0.1.tar.xz",
       locale: "ja",
       arch: "linux-x86_64",
       sha256: "8afe0a670c580dff7cf86f7b096a4a012c716210ecf97d95fdfb42191dc4d88f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$38,
+      [nix.POS]: $pos[37],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/ka/thunderbird-157.0.1.tar.xz",
       locale: "ka",
       arch: "linux-x86_64",
       sha256: "3162ddf7db67d2f751472a20f700d5a6512704b3caab94a182eff675cbb6be70",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$39,
+      [nix.POS]: $pos[38],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/kab/thunderbird-157.0.1.tar.xz",
       locale: "kab",
       arch: "linux-x86_64",
       sha256: "7516f9242f3ad27e0d240d38dfb42bddd376bd0a21581ff57e5de1654675e883",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/kk/thunderbird-157.0.1.tar.xz",
       locale: "kk",
       arch: "linux-x86_64",
       sha256: "250f6d24e825b031fbb5b32c79ffee1659eee8c645611ce567d417ada66639e5",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$41,
+      [nix.POS]: $pos[40],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/ko/thunderbird-157.0.1.tar.xz",
       locale: "ko",
       arch: "linux-x86_64",
       sha256: "67be3baca318e3a2a8a404b81cc9cee1fe9f406d7007effead686495bd7c57cc",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$42,
+      [nix.POS]: $pos[41],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/lt/thunderbird-157.0.1.tar.xz",
       locale: "lt",
       arch: "linux-x86_64",
       sha256: "85415d6097b8c9aa924a7f7905698b3545249cdb386f47c5f9ea2bc8bc14c9e8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$43,
+      [nix.POS]: $pos[42],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/lv/thunderbird-157.0.1.tar.xz",
       locale: "lv",
       arch: "linux-x86_64",
       sha256: "1a3d0b6442b402aaad5ecf243033d2788913a1ad4277ea5840e2fbb9e6b4142a",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$44,
+      [nix.POS]: $pos[43],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/ms/thunderbird-157.0.1.tar.xz",
       locale: "ms",
       arch: "linux-x86_64",
       sha256: "93691b4ab69b2502c03d803100ee213bf628ff2b74d4d5c702108aab7cff8363",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$45,
+      [nix.POS]: $pos[44],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/nb-NO/thunderbird-157.0.1.tar.xz",
       locale: "nb-NO",
       arch: "linux-x86_64",
       sha256: "20a41098fc1884687641c501cb78592961aca83d6e6b4312e7b2d635e0f91c33",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$46,
+      [nix.POS]: $pos[45],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/nl/thunderbird-157.0.1.tar.xz",
       locale: "nl",
       arch: "linux-x86_64",
       sha256: "4cc8fd6abb58822306019313510a02def1848fb800401e093ca945a1187ce20e",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$47,
+      [nix.POS]: $pos[46],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/nn-NO/thunderbird-157.0.1.tar.xz",
       locale: "nn-NO",
       arch: "linux-x86_64",
       sha256: "8275599c7fa21c08e8c741e846cdaabf4d34c24d6941b394f4998140d330ef31",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$48,
+      [nix.POS]: $pos[47],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/pa-IN/thunderbird-157.0.1.tar.xz",
       locale: "pa-IN",
       arch: "linux-x86_64",
       sha256: "ab1bdad6aaf93374a9e1c5b7ff8ede5f7f53ce0b23eae9dc0b5c5a55c6290177",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$49,
+      [nix.POS]: $pos[48],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/pl/thunderbird-157.0.1.tar.xz",
       locale: "pl",
       arch: "linux-x86_64",
       sha256: "d6d5d391f477058236dd40668176a8b8e03b6bfb635f6ea58ee965038cc7a07d",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$50,
+      [nix.POS]: $pos[49],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/pt-BR/thunderbird-157.0.1.tar.xz",
       locale: "pt-BR",
       arch: "linux-x86_64",
       sha256: "f05ec7f2dc5a0671359354c14d3f918c5bd03f4e8a82db64fb9db4ae76687bda",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$51,
+      [nix.POS]: $pos[50],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/pt-PT/thunderbird-157.0.1.tar.xz",
       locale: "pt-PT",
       arch: "linux-x86_64",
       sha256: "5e4478fc6437d3370396f8a9cbef6d66931ff3bb309779c372112a5436f4e2eb",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$52,
+      [nix.POS]: $pos[51],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/rm/thunderbird-157.0.1.tar.xz",
       locale: "rm",
       arch: "linux-x86_64",
       sha256: "5ffadbdb8ae9f2eb39b69fd1bc5181fed8bcd8046b52382e0e72184d6a9742e8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$53,
+      [nix.POS]: $pos[52],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/ro/thunderbird-157.0.1.tar.xz",
       locale: "ro",
       arch: "linux-x86_64",
       sha256: "49d4c87d7136d6acbf6c5fc0a77157dadbdf57e8d45f374f65d5e7415de15eae",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$54,
+      [nix.POS]: $pos[53],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/ru/thunderbird-157.0.1.tar.xz",
       locale: "ru",
       arch: "linux-x86_64",
       sha256: "8c96c1808a194ca92ed77568bbe61c03fdb530948eb1d6865dfe3e06a5188bf6",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$55,
+      [nix.POS]: $pos[54],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/sk/thunderbird-157.0.1.tar.xz",
       locale: "sk",
       arch: "linux-x86_64",
       sha256: "9ca2cd979dad07a0d33a3200cb31c41c403f70df28e1e6ff842f8c4ceab9754f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$56,
+      [nix.POS]: $pos[55],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/sl/thunderbird-157.0.1.tar.xz",
       locale: "sl",
       arch: "linux-x86_64",
       sha256: "c335078d62319ee660c7d5289e22f928836af7a869d9e69ffcd1d101904dd332",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$57,
+      [nix.POS]: $pos[56],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/sq/thunderbird-157.0.1.tar.xz",
       locale: "sq",
       arch: "linux-x86_64",
       sha256: "9da1e5f6d73b4e81a69b6ea37ee9eacd265245c125856ca287b90a8544f18015",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$58,
+      [nix.POS]: $pos[57],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/sr/thunderbird-157.0.1.tar.xz",
       locale: "sr",
       arch: "linux-x86_64",
       sha256: "04edb379692a4581687f71b08e5713b96a95e23748945c010c2aa0c26be5c9a7",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$59,
+      [nix.POS]: $pos[58],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/sv-SE/thunderbird-157.0.1.tar.xz",
       locale: "sv-SE",
       arch: "linux-x86_64",
       sha256: "9024108e70ef9fba30b2a6ff9c988a167680f2b46837c489346a98061ada8a12",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$60,
+      [nix.POS]: $pos[59],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/th/thunderbird-157.0.1.tar.xz",
       locale: "th",
       arch: "linux-x86_64",
       sha256: "8703f069a5e44ab30a483989755b9905f9ec188dcb60ea78bb7e2ae1340f32c2",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$61,
+      [nix.POS]: $pos[60],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/tr/thunderbird-157.0.1.tar.xz",
       locale: "tr",
       arch: "linux-x86_64",
       sha256: "f1cec459d60fd880935493f8c43ee093b0780cf7803e14aa4d01e49cea19b6c3",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$62,
+      [nix.POS]: $pos[61],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/uk/thunderbird-157.0.1.tar.xz",
       locale: "uk",
       arch: "linux-x86_64",
       sha256: "ec5500c834c52b81eedf253d1540827ce7956e2848914ce6cc588f729679f328",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$63,
+      [nix.POS]: $pos[62],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/uz/thunderbird-157.0.1.tar.xz",
       locale: "uz",
       arch: "linux-x86_64",
       sha256: "42acdc089370a1b4d2fa3eb6c597f6eafe59ba12fba4eb0c488b986d16cc7084",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$64,
+      [nix.POS]: $pos[63],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/vi/thunderbird-157.0.1.tar.xz",
       locale: "vi",
       arch: "linux-x86_64",
       sha256: "1d3543b08e3db3c6017cc51ec850f1aa965b71862ea9fe52760ccf2475721399",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$65,
+      [nix.POS]: $pos[64],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/zh-CN/thunderbird-157.0.1.tar.xz",
       locale: "zh-CN",
       arch: "linux-x86_64",
       sha256: "94ccfc5639c13035eabc5fa1b85766fa74afa321936266edec8efd913f5059da",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$66,
+      [nix.POS]: $pos[65],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/linux-x86_64/zh-TW/thunderbird-157.0.1.tar.xz",
       locale: "zh-TW",
       arch: "linux-x86_64",
       sha256: "8ee79ef6661b588fb9145f8fffc5189acdaae265a7ec32cac2caa2bb28cfafe2",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$67,
+      [nix.POS]: $pos[66],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/af/Thunderbird%20157.0.1.dmg",
       locale: "af",
       arch: "mac",
       sha256: "158e3df7a35b0445e142b1dcd478f4b5fd7870fbf42ed61b55c13df36ef41d09",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$68,
+      [nix.POS]: $pos[67],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/ar/Thunderbird%20157.0.1.dmg",
       locale: "ar",
       arch: "mac",
       sha256: "02ffd4e9a821f174a1e9e50ccd379321aa63d01fcf532680c6e42a68d05696ab",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$69,
+      [nix.POS]: $pos[68],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/ast/Thunderbird%20157.0.1.dmg",
       locale: "ast",
       arch: "mac",
       sha256: "43c6c88709fa0312b72d04d5e42d0a72db96edf8eeb14f849c5aca4d909f8c25",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$70,
+      [nix.POS]: $pos[69],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/be/Thunderbird%20157.0.1.dmg",
       locale: "be",
       arch: "mac",
       sha256: "decbbc30dd6811c9248f31dd103440a3ac1ade4666d5b24ccb84c9c53f078dda",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$71,
+      [nix.POS]: $pos[70],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/bg/Thunderbird%20157.0.1.dmg",
       locale: "bg",
       arch: "mac",
       sha256: "bbb660bbbc5a9e1398b9e3a0752bd64822a63f989f3ba597af11433d1f7121ce",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$72,
+      [nix.POS]: $pos[71],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/br/Thunderbird%20157.0.1.dmg",
       locale: "br",
       arch: "mac",
       sha256: "e97847891b4e32d2552d619fb039bdab114027997c70ba031bfc31705c184253",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$73,
+      [nix.POS]: $pos[72],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/ca/Thunderbird%20157.0.1.dmg",
       locale: "ca",
       arch: "mac",
       sha256: "5fc66f0821eb3d3bfcf005569b13a4fdd3bf900cc04d3bb93b57d5b7be9a1dba",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$74,
+      [nix.POS]: $pos[73],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/cak/Thunderbird%20157.0.1.dmg",
       locale: "cak",
       arch: "mac",
       sha256: "b57b7823200b42068a7dff816429054a985aa917aab0fa98e81c0b2fd064c957",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$75,
+      [nix.POS]: $pos[74],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/cs/Thunderbird%20157.0.1.dmg",
       locale: "cs",
       arch: "mac",
       sha256: "c9ff5c8d816dc06263720af128275fd815058d6040e5cf85bc493c25e5f074e5",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$76,
+      [nix.POS]: $pos[75],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/cy/Thunderbird%20157.0.1.dmg",
       locale: "cy",
       arch: "mac",
       sha256: "1c9414125233455e2536b3caa1210743583069635a71087e96a8675d612ad17d",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$77,
+      [nix.POS]: $pos[76],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/da/Thunderbird%20157.0.1.dmg",
       locale: "da",
       arch: "mac",
       sha256: "61b08fe44b7d0a6960160a3320c5dd27f83dd6b5f2e0f8486f34c4e75c09113f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$78,
+      [nix.POS]: $pos[77],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/de/Thunderbird%20157.0.1.dmg",
       locale: "de",
       arch: "mac",
       sha256: "b5f763a2355644352fa41e6f14a75f66aa871c4f1d315d88fcc4174406916e5a",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$79,
+      [nix.POS]: $pos[78],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/dsb/Thunderbird%20157.0.1.dmg",
       locale: "dsb",
       arch: "mac",
       sha256: "673553d2095d2810d226c1b11e820149b5f3a103459db06fa55d5ca4ad2fdbd7",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$80,
+      [nix.POS]: $pos[79],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/el/Thunderbird%20157.0.1.dmg",
       locale: "el",
       arch: "mac",
       sha256: "648ab3ee9652832268c9e6c36d87d9003d139561b761cd39a3ce0f4b0a838087",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$81,
+      [nix.POS]: $pos[80],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/en-CA/Thunderbird%20157.0.1.dmg",
       locale: "en-CA",
       arch: "mac",
       sha256: "9542e3ae12cb21615821734e6185ea70ff92e0c059140bdcba37733bb9d699bf",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$82,
+      [nix.POS]: $pos[81],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/en-GB/Thunderbird%20157.0.1.dmg",
       locale: "en-GB",
       arch: "mac",
       sha256: "832af971d8ebe756ec3c14a23251ce1944bd27dead3185dac5bf2c1335869321",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$83,
+      [nix.POS]: $pos[82],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/en-US/Thunderbird%20157.0.1.dmg",
       locale: "en-US",
       arch: "mac",
       sha256: "8397bd44504d1f23c6c480cc9e67136a8f5899aa72e66bf684a4e76a74f8705b",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$84,
+      [nix.POS]: $pos[83],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/es-AR/Thunderbird%20157.0.1.dmg",
       locale: "es-AR",
       arch: "mac",
       sha256: "ebd18f8f7673d77a1f4d49103a5e725a70c0419443dd1e7f4bdd35ec783a3d20",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$85,
+      [nix.POS]: $pos[84],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/es-ES/Thunderbird%20157.0.1.dmg",
       locale: "es-ES",
       arch: "mac",
       sha256: "608659e838aedf1d634969d5cd1aef5c6a770df4631f1ec2699b5f23ef10ecbd",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$86,
+      [nix.POS]: $pos[85],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/es-MX/Thunderbird%20157.0.1.dmg",
       locale: "es-MX",
       arch: "mac",
       sha256: "6007a04863c62f5aa752df1a624af4482a31c55a4b37dfedab952355c19e8cf2",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$87,
+      [nix.POS]: $pos[86],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/et/Thunderbird%20157.0.1.dmg",
       locale: "et",
       arch: "mac",
       sha256: "3fd876afac64a489773949f48966a890158be6d9107eb81487d7eaaa3e680a52",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$88,
+      [nix.POS]: $pos[87],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/eu/Thunderbird%20157.0.1.dmg",
       locale: "eu",
       arch: "mac",
       sha256: "6c97d2ba131d279778e0a6262ab90cbb4add25f4ccc6c0247f4c7eead3e2a6a1",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$89,
+      [nix.POS]: $pos[88],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/fi/Thunderbird%20157.0.1.dmg",
       locale: "fi",
       arch: "mac",
       sha256: "73e3d2edb62d2c8803d5fcc97b998ddf74d671393834a78a0fc1f2351c0a712f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$90,
+      [nix.POS]: $pos[89],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/fr/Thunderbird%20157.0.1.dmg",
       locale: "fr",
       arch: "mac",
       sha256: "077fc06e5ad05b0689a113f9f0f55b3f256e93e80a85d900bba412703bce28ef",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$91,
+      [nix.POS]: $pos[90],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/fy-NL/Thunderbird%20157.0.1.dmg",
       locale: "fy-NL",
       arch: "mac",
       sha256: "f78c76a7c48a354d1a6091f65b7bfe34d50d954c324e613ad323b305fd21a146",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$92,
+      [nix.POS]: $pos[91],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/ga-IE/Thunderbird%20157.0.1.dmg",
       locale: "ga-IE",
       arch: "mac",
       sha256: "86a700bf13c8dfc9ddb588c341e3339fbaf254a5c31cac329530d18b8693b7b8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$93,
+      [nix.POS]: $pos[92],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/gd/Thunderbird%20157.0.1.dmg",
       locale: "gd",
       arch: "mac",
       sha256: "5196035e124d3f76386c5de11f3297395bd46026ad0f0cf8464e88a513a149ce",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$94,
+      [nix.POS]: $pos[93],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/gl/Thunderbird%20157.0.1.dmg",
       locale: "gl",
       arch: "mac",
       sha256: "a0d879806a7d334c69fe295c153096f556debf0fce3b5afc89ed528d77a4b88c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$95,
+      [nix.POS]: $pos[94],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/he/Thunderbird%20157.0.1.dmg",
       locale: "he",
       arch: "mac",
       sha256: "c6a490fdf407d4ea07752e44249e6fa5ed73baf496d9baeab44b39a1a21dd8a8",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$96,
+      [nix.POS]: $pos[95],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/hr/Thunderbird%20157.0.1.dmg",
       locale: "hr",
       arch: "mac",
       sha256: "94ef059e764b2e6e2db99d683ba3ed48c9614959f069c4e3da53a2e0aaf69bb2",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$97,
+      [nix.POS]: $pos[96],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/hsb/Thunderbird%20157.0.1.dmg",
       locale: "hsb",
       arch: "mac",
       sha256: "b932a9142988676a020f03adfa94ab5c1be101fbdaf21ce706ba52ac6a3d491c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$98,
+      [nix.POS]: $pos[97],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/hu/Thunderbird%20157.0.1.dmg",
       locale: "hu",
       arch: "mac",
       sha256: "9d84066259ce4859f4eb87e4a25dadab394264e196a4bb6e90fa6fdab1e096e6",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$99,
+      [nix.POS]: $pos[98],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/hy-AM/Thunderbird%20157.0.1.dmg",
       locale: "hy-AM",
       arch: "mac",
       sha256: "13d039526667322fb1b59481a8cbfa02eeed4c307cfc5dd7e5e26a2fe38d0bd5",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$100,
+      [nix.POS]: $pos[99],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/id/Thunderbird%20157.0.1.dmg",
       locale: "id",
       arch: "mac",
       sha256: "9a562baac22110c728dc50e703743f62d40ea5676d82219f10e7ca15085af9e1",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$101,
+      [nix.POS]: $pos[100],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/is/Thunderbird%20157.0.1.dmg",
       locale: "is",
       arch: "mac",
       sha256: "19c0bafd779bcb3529eb81d4aebb3198f3d555fe4db20dbcfd290cfc02b691c7",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$102,
+      [nix.POS]: $pos[101],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/it/Thunderbird%20157.0.1.dmg",
       locale: "it",
       arch: "mac",
       sha256: "7d00896b55537fac277df146783f274a51ea5609cb04f642919efcf35834c247",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$103,
+      [nix.POS]: $pos[102],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/ja-JP-mac/Thunderbird%20157.0.1.dmg",
       locale: "ja-JP-mac",
       arch: "mac",
       sha256: "659cd90b38ca5837dd212a61a3aa3ae31f99a4ed13f0d56b8df14f3fd6f3986c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$104,
+      [nix.POS]: $pos[103],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/ka/Thunderbird%20157.0.1.dmg",
       locale: "ka",
       arch: "mac",
       sha256: "5f83a411510f1eb1b908d7d4b4e09830ef3b38042da7a14b708bf30d19fc0a21",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$105,
+      [nix.POS]: $pos[104],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/kab/Thunderbird%20157.0.1.dmg",
       locale: "kab",
       arch: "mac",
       sha256: "ed72afdf6daa9d153e06308da35b304cfadffc7463ae4744c529ac27a8bbdd8c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$106,
+      [nix.POS]: $pos[105],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/kk/Thunderbird%20157.0.1.dmg",
       locale: "kk",
       arch: "mac",
       sha256: "ff6241291240e950cd30721b138cfe0fbd928bd8096c7dd3149e871f5e16c676",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$107,
+      [nix.POS]: $pos[106],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/ko/Thunderbird%20157.0.1.dmg",
       locale: "ko",
       arch: "mac",
       sha256: "4e1d2a265bfbc02c3cd8f1b2996034b5832f623cc4bbe1b22c42460cf824dcc9",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$108,
+      [nix.POS]: $pos[107],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/lt/Thunderbird%20157.0.1.dmg",
       locale: "lt",
       arch: "mac",
       sha256: "039fd569f0006c0a5691bf001d7d71fcc268de8a6ec94672adf08a678f219e44",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$109,
+      [nix.POS]: $pos[108],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/lv/Thunderbird%20157.0.1.dmg",
       locale: "lv",
       arch: "mac",
       sha256: "46483808760117aa752c74946aa251bdebe2bb569f8d699531d442bf1cc5ef9a",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$110,
+      [nix.POS]: $pos[109],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/ms/Thunderbird%20157.0.1.dmg",
       locale: "ms",
       arch: "mac",
       sha256: "d77abe2011a97176dc0f24e769c249c17beb8f532fb8370181c12fcf943f7e9b",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$111,
+      [nix.POS]: $pos[110],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/nb-NO/Thunderbird%20157.0.1.dmg",
       locale: "nb-NO",
       arch: "mac",
       sha256: "193dc9999aac3d80ac2c740224b09f45ada9910f36aa7674f46efb834a981f8e",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$112,
+      [nix.POS]: $pos[111],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/nl/Thunderbird%20157.0.1.dmg",
       locale: "nl",
       arch: "mac",
       sha256: "efced9975673eb7750f999ee40ec7f9e44f387dad2dc1246d6aa7bb1be5f7c86",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$113,
+      [nix.POS]: $pos[112],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/nn-NO/Thunderbird%20157.0.1.dmg",
       locale: "nn-NO",
       arch: "mac",
       sha256: "8b74a1a176d14983e4b9ae65f381919296b3051267cbaf8330c58ce2308c88ed",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$114,
+      [nix.POS]: $pos[113],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/pa-IN/Thunderbird%20157.0.1.dmg",
       locale: "pa-IN",
       arch: "mac",
       sha256: "b33ad40f27f0436313169c11b23950030d6fe5e42225ef517183f71bb1c1bf1a",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$115,
+      [nix.POS]: $pos[114],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/pl/Thunderbird%20157.0.1.dmg",
       locale: "pl",
       arch: "mac",
       sha256: "c0d6bf2582a2302ac171946ce33c4cb94acf4f9b4a65b1d50b3d85e8261b8327",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$116,
+      [nix.POS]: $pos[115],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/pt-BR/Thunderbird%20157.0.1.dmg",
       locale: "pt-BR",
       arch: "mac",
       sha256: "a1f1b71086f413895c30357aa107233522274ece245f49502050c6184d6d2e57",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$117,
+      [nix.POS]: $pos[116],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/pt-PT/Thunderbird%20157.0.1.dmg",
       locale: "pt-PT",
       arch: "mac",
       sha256: "a542ed449ae393ff9f56d45f31331636241d1f8e56091bf2fe8b16cf46a00eff",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$118,
+      [nix.POS]: $pos[117],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/rm/Thunderbird%20157.0.1.dmg",
       locale: "rm",
       arch: "mac",
       sha256: "878b596884e31ce195b981b71ef91ffbb532ac6aca9f2c50986759c1ff82b382",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$119,
+      [nix.POS]: $pos[118],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/ro/Thunderbird%20157.0.1.dmg",
       locale: "ro",
       arch: "mac",
       sha256: "dc09caea1326ebf18597d1b19dc678d197f558595c8e8fd50238e18631d7c91a",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$120,
+      [nix.POS]: $pos[119],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/ru/Thunderbird%20157.0.1.dmg",
       locale: "ru",
       arch: "mac",
       sha256: "45f43c8d89ef19810fca5f8593620fa99cf9e4b103aaa95cd868dc0c7e90fdab",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$121,
+      [nix.POS]: $pos[120],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/sk/Thunderbird%20157.0.1.dmg",
       locale: "sk",
       arch: "mac",
       sha256: "95c273d90703e63976afea8805be3490ac0c28927fdebc2318d16f5117d7a9f4",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$122,
+      [nix.POS]: $pos[121],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/sl/Thunderbird%20157.0.1.dmg",
       locale: "sl",
       arch: "mac",
       sha256: "bba44638bc132ad6bc6ad929d3524910562710e1da2ea18fe5f230f7b9e57fdd",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$123,
+      [nix.POS]: $pos[122],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/sq/Thunderbird%20157.0.1.dmg",
       locale: "sq",
       arch: "mac",
       sha256: "5f93d27aa4e099b9892a16a968b4aebcf274bb0be5be9c17e61532d4b4b9f0ce",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$124,
+      [nix.POS]: $pos[123],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/sr/Thunderbird%20157.0.1.dmg",
       locale: "sr",
       arch: "mac",
       sha256: "794c0b2ad1fdd58970b3cf6969f12ddcd985a00549a3c65dc68cfc2fcf64a47f",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$125,
+      [nix.POS]: $pos[124],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/sv-SE/Thunderbird%20157.0.1.dmg",
       locale: "sv-SE",
       arch: "mac",
       sha256: "dade9eb50aff638ae33ff6fb437ea5d6b845bd1a5de4ec4d2c6cab1cda66f6fc",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$126,
+      [nix.POS]: $pos[125],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/th/Thunderbird%20157.0.1.dmg",
       locale: "th",
       arch: "mac",
       sha256: "ceea69f6702c11f0cba454091b5bef1c5dacb7eef0244fce46866d4ba6be1396",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$127,
+      [nix.POS]: $pos[126],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/tr/Thunderbird%20157.0.1.dmg",
       locale: "tr",
       arch: "mac",
       sha256: "06deb6709be96b807258a58a88387ead5406f0c0d6292ae99a553dc1d3f60cfd",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$128,
+      [nix.POS]: $pos[127],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/uk/Thunderbird%20157.0.1.dmg",
       locale: "uk",
       arch: "mac",
       sha256: "af78c9b175b1031ecb3f9cd76a9370393c9848594b250f35d71ffdd49b0b2c36",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$129,
+      [nix.POS]: $pos[128],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/uz/Thunderbird%20157.0.1.dmg",
       locale: "uz",
       arch: "mac",
       sha256: "344473529d41ca0c6569d218bd7eeeb2348c1ab778580ee207d55fa445ec9d29",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$130,
+      [nix.POS]: $pos[129],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/vi/Thunderbird%20157.0.1.dmg",
       locale: "vi",
       arch: "mac",
       sha256: "039620ec52060c64fba437fcf0f524f7d96b65636477ad992dafefd49b6a2772",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$131,
+      [nix.POS]: $pos[130],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/zh-CN/Thunderbird%20157.0.1.dmg",
       locale: "zh-CN",
       arch: "mac",
       sha256: "d7d80a0d922860d62674e2799de81d5e6c90ad1d5bad9b4867abb537e2096477",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$132,
+      [nix.POS]: $pos[131],
       url: "https://archive.mozilla.org/pub/thunderbird/releases/157.0.1/mac/zh-TW/Thunderbird%20157.0.1.dmg",
       locale: "zh-TW",
       arch: "mac",

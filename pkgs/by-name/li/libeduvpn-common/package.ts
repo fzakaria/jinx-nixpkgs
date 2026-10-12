@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["changelog", 31, 5], ["description", 32, 5], ["homepage", 33, 5], ["maintainers", 34, 5], ["license", 38, 5], ["platforms", 39, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 16, 3], ["buildPhase", 18, 3], ["installPhase", 24, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 31, 5], ["description", 32, 5], ["homepage", 33, 5], ["maintainers", 34, 5], ["license", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 16, 3], ["buildPhase", 18, 3], ["installPhase", 24, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libeduvpn-common",
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://codeberg.org/eduVPN/eduvpn-common/releases/download/${nix.sel(finalAttrs, "version")}/eduvpn-common-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-pMxcHiX6Ct6QpU13JnoEyqt7bd58dmOxoncIp6PDvgo=",
         })))),
@@ -31,7 +29,7 @@ install -Dt $out/lib libeduvpn-common-${nix.sel(finalAttrs, "version")}.so
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://codeberg.org/eduVPN/eduvpn-common/raw/tag/${nix.sel(finalAttrs, "version")}/CHANGES.md`),
         description: "Code to be shared between eduVPN clients",
         homepage: "https://codeberg.org/eduVPN/eduvpn-common",

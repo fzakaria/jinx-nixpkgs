@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-composer-repository.nix", [[["composerNoDev", 43, 7], ["composerNoPlugins", 44, 7], ["composerNoScripts", 45, 7], ["composerStrictValidation", 46, 7], ["name", 48, 7], ["dontPatchShebangs", 51, 7], ["nativeBuildInputs", 53, 7], ["buildInputs", 59, 7], ["strictDeps", 61, 7], ["configurePhase", 64, 7], ["buildPhase", 71, 7], ["doCheck", 78, 7], ["checkPhase", 79, 7], ["installPhase", 86, 7], ["doInstallCheck", 93, 7], ["installCheckPhase", 94, 7], ["outputHashMode", 101, 7], ["outputHashAlgo", 102, 7], ["outputHash", 104, 7]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, php: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-composer-repository.nix", [["composerNoDev", 43, 7], ["composerNoPlugins", 44, 7], ["composerNoScripts", 45, 7], ["composerStrictValidation", 46, 7], ["name", 48, 7], ["dontPatchShebangs", 51, 7], ["nativeBuildInputs", 53, 7], ["buildInputs", 59, 7], ["strictDeps", 61, 7], ["configurePhase", 64, 7], ["buildPhase", 71, 7], ["doCheck", 78, 7], ["checkPhase", 79, 7], ["installPhase", 86, 7], ["doInstallCheck", 93, 7], ["installCheckPhase", 94, 7], ["outputHashMode", 101, 7], ["outputHashAlgo", 102, 7], ["outputHash", 104, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
     nix.assert_((nix.asBool(nix.has(previousAttrs, "composerNoPlugins")) || nix.asBool(nix.builtins.throw("mkComposerRepository expects composerNoPlugins argument."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/php/builders/v1/build-composer-repository.nix:34:5");
     nix.assert_((nix.asBool(nix.has(previousAttrs, "composerNoScripts")) || nix.asBool(nix.builtins.throw("mkComposerRepository expects composerNoScripts argument."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/php/builders/v1/build-composer-repository.nix:38:5");
     return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       composerNoDev: nix.thunk(() => nix.selOr(previousAttrs, () => true, "composerNoDev")),
       composerNoPlugins: nix.thunk(() => nix.selOr(previousAttrs, () => true, "composerNoPlugins")),
       composerNoScripts: nix.thunk(() => nix.selOr(previousAttrs, () => true, "composerNoScripts")),

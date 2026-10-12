@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["homepage", 41, 5], ["description", 42, 5], ["sourceProvenance", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5], ["platforms", 47, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["dontUnpack", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["installPhase", 31, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jre: false, "htmlunit-driver": false, chromedriver: false, chromeSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["sourceProvenance", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["dontUnpack", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["installPhase", 31, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "selenium-server-standalone";
       const version = nix.thunk(() => nix.str`${minorVersion}.${patchVersion}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://selenium-release.storage.googleapis.com/${minorVersion}/selenium-server-standalone-${version}.jar`),
           sha256: "1jzkx0ahsb27zzzfvjqv660x9fz2pbcddgmhdzdmasxns5vipxxc",
         }))));
@@ -38,7 +36,7 @@ makeWrapper ${jre}/bin/java $out/bin/selenium-server \\
   --add-flags "org.openqa.grid.selenium.GridLauncherV3"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.seleniumhq.org/",
         description: "Selenium Server for remote WebDriver",
         sourceProvenance: nix.thunk(() => (() => {
@@ -51,7 +49,7 @@ makeWrapper ${jre}/bin/java $out/bin/selenium-server \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

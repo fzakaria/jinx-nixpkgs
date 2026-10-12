@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["homepage", 23, 5], ["description", 24, 5], ["longDescription", 25, 5], ["downloadPage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5], ["mainProgram", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installFlags", 19, 3], ["makeFlags", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, xsel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 23, 5], ["description", 24, 5], ["longDescription", 25, 5], ["downloadPage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5], ["mainProgram", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installFlags", 19, 3], ["makeFlags", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const xsel = nix.arg($, "xsel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "yank",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mptre",
           repo: "yank",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`YANKCMD=${xsel}/bin/xsel`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mptre/yank",
         description: "Yank terminal output to clipboard",
         longDescription: "Read input from stdin and display a selection interface that allows a\nfield to be selected and copied to the clipboard. Fields are determined\nby splitting the input on a delimiter sequence, optionally specified\nusing the -d option. New line, carriage return and tab characters are\nalways treated as delimiters.\n",

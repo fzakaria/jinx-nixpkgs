@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["src", 34, 13], ["sourceRoot", 34, 17], ["hash", 35, 5]], [["CFLAGS", 57, 5], ["PYO3_USE_ABI3_FORWARD_COMPATIBILITY", 59, 5]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 19, 3], ["version", 20, 3], ["format", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["sourceRoot", 31, 3], ["cargoDeps", 33, 3], ["nativeBuildInputs", 38, 3], ["postPatch", 49, 3], ["dontUseCmakeConfigure", 54, 3], ["env", 56, 3], ["dependencies", 62, 3], ["pythonImportsCheck", 67, 3], ["nativeCheckInputs", 69, 3], ["disabledTestPaths", 74, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, boto3: false, pytestCheckHook: false, cmake: false, hypothesis: false, rustPackages: false, "setuptools-rust": false, torch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 34, 13], ["sourceRoot", 34, 17], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["CFLAGS", 57, 5], ["PYO3_USE_ABI3_FORWARD_COMPATIBILITY", 59, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["format", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["sourceRoot", 31, 3], ["cargoDeps", 33, 3], ["nativeBuildInputs", 38, 3], ["postPatch", 49, 3], ["dontUseCmakeConfigure", 54, 3], ["env", 56, 3], ["dependencies", 62, 3], ["pythonImportsCheck", 67, 3], ["nativeCheckInputs", 69, 3], ["disabledTestPaths", 74, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const format = "pyproject";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "awslabs",
           repo: "s3-connector-for-pytorch",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/s3torchconnectorclient`);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           sourceRoot: sourceRoot,
           hash: "sha256-xYfBnyZM43FNxPnnP6a45ZLCCve/B3713RNmgG0LNBc=",
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
 `);
       const dontUseCmakeConfigure = true;
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CFLAGS: "-Wno-stringop-overflow -Wno-array-bounds -Wno-restrict",
         PYO3_USE_ABI3_FORWARD_COMPATIBILITY: "1",
       }));
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Low-level S3 client for PyTorch data loading",
           homepage: "https://github.com/awslabs/s3-connector-for-pytorch",
           changelog: nix.thunk(() => nix.str`https://github.com/awslabs/s3-connector-for-pytorch/releases/tag/v${version}`),
@@ -78,7 +74,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         format,

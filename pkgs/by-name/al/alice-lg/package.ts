@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["yarnLock", 33, 7], ["hash", 34, 7]], [["pname", 28, 5], ["src", 29, 5], ["version", 30, 26], ["yarnOfflineCache", 32, 5], ["nativeBuildInputs", 37, 5], ["configurePhase", 43, 5], ["buildPhase", 60, 5], ["installPhase", 68, 5]], [["ui", 27, 12], ["tests", 85, 5], ["updateScript", 86, 5]], [["homepage", 90, 5], ["description", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["passthru", 27, 3], ["preBuild", 77, 3], ["subPackages", 81, 3], ["doCheck", 82, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, fetchYarnDeps: false, stdenv: false, "nix-update-script": false, yarn: false, nodejs: false, nixosTests: false, "fixup-yarn-lock": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 5], ["src", 29, 5], ["version", 30, 26], ["yarnOfflineCache", 32, 5], ["nativeBuildInputs", 37, 5], ["configurePhase", 43, 5], ["buildPhase", 60, 5], ["installPhase", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ui", 27, 12], ["tests", 85, 5], ["updateScript", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 90, 5], ["description", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["passthru", 27, 3], ["preBuild", 77, 3], ["subPackages", 81, 3], ["doCheck", 82, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const fixup_yarn_lock = nix.arg($, "fixup-yarn-lock");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "alice-lg",
       version: "6.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alice-lg",
           repo: "alice-lg",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,14 +30,14 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-OkOUgW6BHJKIdY1soMqTXhL6RYy3567iL1/VZasIdvQ=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         ui: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: "alice-lg-ui",
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/ui`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/ui/yarn.lock")),
                 hash: "sha256-PwByNIegKYTOT8Yg3nDMDFZiLRVkbX07z99YaDiBsIY=",
               })))),
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/alice-lg"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/alice-lg/alice-lg",
         description: "Looking-glass for BGP sessions",
         changelog: "https://github.com/alice-lg/alice-lg/blob/main/CHANGELOG.md",

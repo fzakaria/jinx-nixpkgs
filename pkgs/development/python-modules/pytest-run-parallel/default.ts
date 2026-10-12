@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["psutil", 39, 5]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pytest: false, psutil: false, "pytest-cov-stub": false, "pytest-order": false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["psutil", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pytest-run-parallel",
       version: "0.9.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Quansight-Labs",
           repo: "pytest-run-parallel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [pytest]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, psutil: nix.thunk(() => [psutil]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], psutil: nix.thunk(() => [psutil]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytest_order, pytest_xdist, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pytest_run_parallel"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple pytest plugin to run tests concurrently",
         homepage: "https://github.com/Quansight-Labs/pytest-run-parallel",
         changelog: nix.thunk(() => nix.str`https://github.com/Quansight-Labs/pytest-run-parallel/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

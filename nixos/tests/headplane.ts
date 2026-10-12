@@ -2,19 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/headplane.nix", [[["maintainers", 9, 8]], [["base_domain", 21, 11], ["override_local_dns", 22, 11]], [["server_url", 18, 9], ["ip_prefixes", 19, 9], ["dns", 20, 9]], [["enable", 16, 7], ["settings", 17, 7]], [["cookie_secret_path", 29, 9], ["cookie_secure", 30, 9], ["base_url", 33, 9], ["cookie_max_age", 34, 9], ["cookie_domain", 35, 9]], [["enabled", 38, 9], ["issuer", 39, 9], ["client_id", 40, 9], ["client_secret_path", 41, 9], ["headscale_api_key_path", 42, 9], ["redirect_uri", 43, 9], ["strict_validation", 44, 9], ["user_storage_file", 45, 9]], [["server", 28, 16], ["oidc", 37, 16]], [["enable", 27, 7], ["settings", 28, 7]], [["headscale", 15, 14], ["headplane", 26, 14]], [["services", 15, 5]], [["machine", 14, 9]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 14, 3], ["testScript", 50, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/headplane.nix", [["maintainers", 9, 8]]);
-const pos$2 = nix.positions(here + "/headplane.nix", [["base_domain", 21, 11], ["override_local_dns", 22, 11]]);
-const pos$3 = nix.positions(here + "/headplane.nix", [["server_url", 18, 9], ["ip_prefixes", 19, 9], ["dns", 20, 9]]);
-const pos$4 = nix.positions(here + "/headplane.nix", [["enable", 16, 7], ["settings", 17, 7]]);
-const pos$5 = nix.positions(here + "/headplane.nix", [["cookie_secret_path", 29, 9], ["cookie_secure", 30, 9], ["base_url", 33, 9], ["cookie_max_age", 34, 9], ["cookie_domain", 35, 9]]);
-const pos$6 = nix.positions(here + "/headplane.nix", [["enabled", 38, 9], ["issuer", 39, 9], ["client_id", 40, 9], ["client_secret_path", 41, 9], ["headscale_api_key_path", 42, 9], ["redirect_uri", 43, 9], ["strict_validation", 44, 9], ["user_storage_file", 45, 9]]);
-const pos$7 = nix.positions(here + "/headplane.nix", [["server", 28, 16], ["oidc", 37, 16]]);
-const pos$8 = nix.positions(here + "/headplane.nix", [["enable", 27, 7], ["settings", 28, 7]]);
-const pos$9 = nix.positions(here + "/headplane.nix", [["headscale", 15, 14], ["headplane", 26, 14]]);
-const pos$10 = nix.positions(here + "/headplane.nix", [["services", 15, 5]]);
-const pos$11 = nix.positions(here + "/headplane.nix", [["machine", 14, 9]]);
-const pos$12 = nix.positions(here + "/headplane.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 14, 3], ["testScript", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const oidcClientSecret = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "oidc-client-secret", "client-secret"));
   const headscaleApiKey = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "headscale-api-key", "headscale-api-key"));
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "headplane",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -37,28 +26,28 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           headscale: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               server_url: "http://127.0.0.1",
               ip_prefixes: nix.thunk(() => ["100.64.0.0/10"]),
-              dns: nix.thunk(() => ({ [nix.POS]: pos$2, base_domain: "tailnet", override_local_dns: false })),
+              dns: nix.thunk(() => ({ [nix.POS]: $pos[1], base_domain: "tailnet", override_local_dns: false })),
             })),
           })),
           headplane: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               server: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 cookie_secret_path: cookieSecret,
                 cookie_secure: false,
                 base_url: "http://127.0.0.1:3000",
@@ -66,7 +55,7 @@ export default nix.lambda((args) => (() => {
                 cookie_domain: "127.0.0.1",
               })),
               oidc: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 enabled: false,
                 issuer: "https://provider.example.com/issuer-url",
                 client_id: "your-client-id",

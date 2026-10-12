@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5], ["platforms", 70, 5]], [["pname", 15, 3], ["version", 16, 11], ["src", 17, 3], ["nativeBuildInputs", 21, 3], ["unpackPhase", 25, 3], ["dontBuild", 32, 3], ["installPhase", 33, 3], ["dontStrip", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchurl: false, innoextract: false, runtimeShell: false, wineWow64Packages: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5], ["platforms", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 11], ["src", 17, 3], ["nativeBuildInputs", 21, 3], ["unpackPhase", 25, 3], ["dontBuild", 32, 3], ["installPhase", 33, 3], ["dontStrip", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "iscc";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/jrsoftware/issrc/releases/download/is-${tagVersion}/innosetup-${version_1}.exe`),
           hash: "sha256-9Bdg4fGuFdIIm7arFi4hcguSrnUG7XBmezkgAGPWjjQ=",
         }))));
@@ -54,7 +52,7 @@ runHook postInstall
 `);
       const dontStrip = 1n;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Compiler for Inno Setup, a tool for creating Windows installers",
         homepage: "https://jrsoftware.org/isinfo.php",
         changelog: "https://jrsoftware.org/files/is6-whatsnew.htm",
@@ -67,7 +65,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(wineWow64Packages, "stable", "meta", "platforms")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version: version_1,
         src,

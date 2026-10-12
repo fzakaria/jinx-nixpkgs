@@ -2,47 +2,39 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["enable", 11, 19]], [["monado", 11, 12]], [["Type", 17, 7], ["NotifyAccess", 18, 7], ["ExecStart", 19, 7]], [["RUST_BACKTRACE", 21, 17]], [["wantedBy", 14, 5], ["serviceConfig", 16, 5], ["environment", 21, 5]], [["stardust-xr-server", 13, 25]], [["services", 13, 16]], [["user", 13, 11]], [["imports", 8, 3], ["services", 11, 3], ["systemd", 13, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/common.nix", [["enable", 11, 19]]);
-const pos$2 = nix.positions(here + "/common.nix", [["monado", 11, 12]]);
-const pos$3 = nix.positions(here + "/common.nix", [["Type", 17, 7], ["NotifyAccess", 18, 7], ["ExecStart", 19, 7]]);
-const pos$4 = nix.positions(here + "/common.nix", [["RUST_BACKTRACE", 21, 17]]);
-const pos$5 = nix.positions(here + "/common.nix", [["wantedBy", 14, 5], ["serviceConfig", 16, 5], ["environment", 21, 5]]);
-const pos$6 = nix.positions(here + "/common.nix", [["stardust-xr-server", 13, 25]]);
-const pos$7 = nix.positions(here + "/common.nix", [["services", 13, 16]]);
-const pos$8 = nix.positions(here + "/common.nix", [["user", 13, 11]]);
-const pos$9 = nix.positions(here + "/common.nix", [["imports", 8, 3], ["services", 11, 3], ["systemd", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     imports: nix.thunk(() => [nix.path(here, "../common/openxr.nix")]),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       monado: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
       })),
     })),
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       user: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "stardust-xr-server": nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             wantedBy: nix.thunk(() => ["xdg-desktop-autostart.target"]),
             serviceConfig: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               Type: "notify",
               NotifyAccess: "all",
               ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "stardust-xr-server")))} -e ${nix.app(nix.sel(pkgs, "writeShellScript"), "notifyReady", "systemd-notify --ready")}`),
             })),
-            environment: nix.thunk(() => ({ [nix.POS]: pos$4, RUST_BACKTRACE: "full" })),
+            environment: nix.thunk(() => ({ [nix.POS]: $pos[3], RUST_BACKTRACE: "full" })),
           })),
         })),
       })),

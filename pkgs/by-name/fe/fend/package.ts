@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["name", 64, 7], ["desktopName", 65, 7], ["genericName", 66, 7], ["comment", 67, 7], ["icon", 68, 7], ["exec", 69, 7], ["terminal", 70, 7], ["categories", 71, 7]], [["package", 82, 39]], [["assertion", 84, 9], ["expected", 85, 9], ["actual", 88, 9]], [["version", 82, 7], ["units", 83, 7]], [["updateScript", 80, 5], ["tests", 81, 5]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["mainProgram", 104, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["postBuild", 43, 3], ["preFixup", 48, 3], ["doInstallCheck", 52, 3], ["installCheckPhase", 54, 3], ["postInstall", 58, 3], ["desktopItems", 62, 3], ["passthru", 79, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, pandoc: false, "pkg-config": false, openssl: false, installShellFiles: false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false, testers: false, writeText: false, runCommand: false, fend: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 64, 7], ["desktopName", 65, 7], ["genericName", 66, 7], ["comment", 67, 7], ["icon", 68, 7], ["exec", 69, 7], ["terminal", 70, 7], ["categories", 71, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 82, 39]]);
-const pos$4 = nix.positions(here + "/package.nix", [["assertion", 84, 9], ["expected", 85, 9], ["actual", 88, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 82, 7], ["units", 83, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 80, 5], ["tests", 81, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["mainProgram", 104, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["postBuild", 43, 3], ["preFixup", 48, 3], ["doInstallCheck", 52, 3], ["installCheckPhase", 54, 3], ["postInstall", 58, 3], ["desktopItems", 62, 3], ["passthru", 79, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const fend = nix.arg($, "fend");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "fend",
       version: "1.5.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "printfn",
           repo: "fend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +42,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -D -m 444 $src/icon/icon.svg $out/share/icons/hicolor/scalable/apps/fend.svg\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fend",
             desktopName: "fend",
             genericName: "Calculator",
@@ -61,13 +54,13 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: fend })))),
+          [nix.POS]: $pos[4],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: fend })))),
           units: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               assertion: "fend does simple math and unit conversions",
               expected: nix.thunk(() => nix.app(writeText, "expected", "36 kph\n")),
               actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), fend)} '(100 meters) / (10 seconds) to kph' > $out
@@ -76,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Arbitrary-precision unit-aware calculator",
         homepage: "https://github.com/printfn/fend",
         changelog: nix.thunk(() => nix.str`https://github.com/printfn/fend/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

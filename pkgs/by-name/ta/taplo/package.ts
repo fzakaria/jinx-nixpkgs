@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["nativeBuildInputs", 101, 13]], [["toml-test", 65, 7]], [["updateScript", 62, 5], ["tests", 64, 5]], [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["mainProgram", 124, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoPatches", 32, 3], ["cargoHash", 38, 3], ["buildAndTestSubdir", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["buildFeatures", 49, 3], ["postInstall", 51, 3], ["nativeInstallCheckInputs", 58, 3], ["doInstallCheck", 59, 3], ["passthru", 61, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, openssl: false, installShellFiles: false, versionCheckHook: false, "nix-update-script": false, runCommand: false, makeBinaryWrapper: false, "toml-test": false, withLsp: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 101, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["toml-test", 65, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 62, 5], ["tests", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["mainProgram", 124, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoPatches", 32, 3], ["cargoHash", 38, 3], ["buildAndTestSubdir", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["buildFeatures", 49, 3], ["postInstall", 51, 3], ["nativeInstallCheckInputs", 58, 3], ["doInstallCheck", 59, 3], ["passthru", 61, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const toml_test = nix.arg($, "toml-test");
   const withLsp = nix.argOr($, "withLsp", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "taplo",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tamasfe",
           repo: "taplo",
           tag: nix.thunk(() => nix.str`release-taplo-cli-${nix.sel(finalAttrs, "version")}`),
@@ -46,10 +41,10 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "toml-test": nix.thunk(() => (() => {
             const skips = nix.thunk(() => [
               "invalid/table/append-with-dotted-keys-04",
@@ -80,7 +75,7 @@ export default nix.lambda((args) => (() => {
               "valid/string/quoted-unicode",
             ]);
             return nix.app(runCommand, "taplo-toml-test", nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, toml_test]),
               })), nix.thunk(() => nix.str`makeWrapper ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} ./taplo-toml-test --add-flag toml-test
 toml-test test -decoder=./taplo-toml-test -toml=1.0 ${nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (a) => nix.str`-skip ${a}`, skips)}
@@ -90,7 +85,7 @@ touch "$out"
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "TOML toolkit written in Rust",
         homepage: "https://taplo.tamasfe.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

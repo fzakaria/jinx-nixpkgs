@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/propagate-inputs.nix", [[["homepage", 39, 9], ["description", 40, 9], ["license", 41, 9], ["maintainers", 42, 9], ["platforms", 43, 9]], [["pname", 17, 5], ["version", 18, 5], ["src", 20, 20], ["patches", 22, 5], ["strictDeps", 24, 5], ["dontBuild", 26, 5], ["buildInputs", 28, 5], ["configureFlags", 31, 5], ["installTargets", 33, 5], ["__structuredAttrs", 35, 5], ["meta", 37, 5]], [["cups-headers", 68, 5]], [["propagatedBuildInputs", 51, 3], ["buildPhase", 60, 3], ["passthru", 67, 3]]]);
 const formals$1 = { args: { lib: false, cups: false, darwin: false, db: false, libiconv: false, ncurses: false, stdenv: false, stdenvNoCC: false, xcbuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/propagate-inputs.nix", [["homepage", 39, 9], ["description", 40, 9], ["license", 41, 9], ["maintainers", 42, 9], ["platforms", 43, 9]]);
-const pos$2 = nix.positions(here + "/propagate-inputs.nix", [["pname", 17, 5], ["version", 18, 5], ["src", 20, 20], ["patches", 22, 5], ["strictDeps", 24, 5], ["dontBuild", 26, 5], ["buildInputs", 28, 5], ["configureFlags", 31, 5], ["installTargets", 33, 5], ["__structuredAttrs", 35, 5], ["meta", 37, 5]]);
-const pos$3 = nix.positions(here + "/propagate-inputs.nix", [["cups-headers", 68, 5]]);
-const pos$4 = nix.positions(here + "/propagate-inputs.nix", [["propagatedBuildInputs", 51, 3], ["buildPhase", 60, 3], ["passthru", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const xcbuild = nix.arg($, "xcbuild");
   const cupsHeaders = nix.thunk(() => nix.app(nix.sel(darwin, "bootstrapStdenv", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getName"), cups)}-headers`),
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), cups)),
       src: nix.thunk(() => nix.attr(cups, "src")),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cups, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: nix.thunk(() => nix.attr(from, "description")),
         license: nix.thunk(() => nix.attr(from, "license")),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return (self) => (super$) => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(super$, () => [], "propagatedBuildInputs"), [
       libiconv,
       nix.thunk(() => nix.sel(darwin, "libresolv")),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
   ln -s "$header" "usr/include/$(basename "$header")"
 done
 `)),
-    passthru: nix.thunk(() => nix.update(nix.selOr(super$, () => ({}), "passthru"), { [nix.POS]: pos$3, "cups-headers": cupsHeaders })),
+    passthru: nix.thunk(() => nix.update(nix.selOr(super$, () => ({}), "passthru"), { [nix.POS]: $pos[2], "cups-headers": cupsHeaders })),
   });
 })(), formals$1);
 //# sourceMappingURL=propagate-inputs.ts.map

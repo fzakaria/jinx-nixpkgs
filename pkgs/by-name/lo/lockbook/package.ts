@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["changelog", 60, 5], ["maintainers", 61, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["doCheck", 26, 3], ["cargoBuildFlags", 27, 3], ["nativeBuildInputs", 32, 3], ["postFixup", 37, 3], ["postInstall", 42, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, "nfs-utils": true, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["changelog", 60, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["doCheck", 26, 3], ["cargoBuildFlags", 27, 3], ["nativeBuildInputs", 32, 3], ["postFixup", 37, 3], ["postInstall", 42, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const isLinux = nix.thunk(() => nix.attr(from, "isLinux"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lockbook",
       version: "26.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lockbook",
           repo: "lockbook",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --bash --name lockbook.bash <($out/bin/lockbook completions bash)\ninstallShellCompletion --zsh --name _lockbook <($out/bin/lockbook completions zsh)\ninstallShellCompletion --fish --name lockbook.fish <($out/bin/lockbook completions fish)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Private, polished note-taking platform",
         longDescription: "Write notes, sketch ideas, and store files in one secure place.\nShare seamlessly, keep data synced, and access it on any\nplatform—even offline. Lockbook encrypts files so even we\ncan’t see them, but don’t take our word for it:\nLockbook is 100% open-source.\n",
         homepage: "https://lockbook.net",

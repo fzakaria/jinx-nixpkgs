@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 7], ["repo", 18, 7], ["rev", 19, 7], ["hash", 20, 7]], [["package", 45, 9], ["version", 46, 9]], [["version", 44, 13]], [["updateScript", 43, 7], ["tests", 44, 7]], [["description", 51, 7], ["homepage", 52, 7], ["license", 53, 7], ["mainProgram", 54, 7], ["maintainers", 55, 7], ["platforms", 56, 7]], [["pname", 13, 5], ["version", 14, 5], ["src", 16, 5], ["vendorHash", 23, 5], ["nativeBuildInputs", 25, 5], ["postInstall", 29, 5], ["subPackages", 40, 5], ["passthru", 42, 5], ["meta", 50, 5]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, ffmpeg: false, lib: false, makeBinaryWrapper: false, "nix-update-script": false, pulseaudio: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 7], ["repo", 18, 7], ["rev", 19, 7], ["hash", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 45, 9], ["version", 46, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 44, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 43, 7], ["tests", 44, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 51, 7], ["homepage", 52, 7], ["license", 53, 7], ["mainProgram", 54, 7], ["maintainers", 55, 7], ["platforms", 56, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 5], ["version", 14, 5], ["src", 16, 5], ["vendorHash", 23, 5], ["nativeBuildInputs", 25, 5], ["postInstall", 29, 5], ["subPackages", 40, 5], ["passthru", 42, 5], ["meta", 50, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sblast";
       const version = "0.7.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ugjka",
           repo: "sblast",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,19 +32,19 @@ export default nix.lambda((args) => (() => {
 `);
       const subPackages = ".";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: self,
               version: nix.thunk(() => nix.str`v${version}`),
             })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Blast your Linux audio to DLNA receivers",
         homepage: "https://github.com/ugjka/sblast",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -61,7 +56,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

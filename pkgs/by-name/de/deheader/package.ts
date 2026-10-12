@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 61, 5], ["mainProgram", 62, 5], ["longDescription", 63, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 75, 5]], [["pname", 12, 3], ["version", 13, 3], ["outputs", 14, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 28, 3], ["buildPhase", 39, 3], ["doCheck", 49, 3], ["installPhase", 51, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3: false, xmlto: false, "docbook-xsl-nons": false, fetchFromGitLab: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["mainProgram", 62, 5], ["longDescription", 63, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["outputs", 14, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 28, 3], ["buildPhase", 39, 3], ["doCheck", 49, 3], ["installPhase", 51, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "deheader",
       version: "1.11",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "esr",
           repo: "deheader",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       installPhase: "runHook preInstall\n\ninstall -Dm755 ./deheader -t $out/bin\ninstallManPage ./deheader.1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to find and optionally remove unneeded includes in C or C++ source files",
         mainProgram: "deheader",
         longDescription: "This tool takes a list of C or C++ sourcefiles and generates a report\non which #includes can be omitted from them -- the test, for each foo.c\nor foo.cc or foo.cpp, is simply whether 'rm foo.o; make foo.o' returns a\nzero status. Optionally, with the -r option, the unneeded headers are removed.\nThe tool also reports on headers required for strict portability.\n",

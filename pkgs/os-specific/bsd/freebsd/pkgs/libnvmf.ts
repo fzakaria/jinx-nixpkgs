@@ -2,15 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libnvmf.nix", [[["path", 6, 3], ["extraPaths", 7, 3], ["buildInputs", 11, 3], ["postPatch", 13, 3], ["postInstall", 16, 3], ["alwaysKeepStatic", 20, 3]]]);
 const formals$1 = { args: { mkDerivation: false, libnv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libnvmf.nix", [["path", 6, 3], ["extraPaths", 7, 3], ["buildInputs", 11, 3], ["postPatch", 13, 3], ["postInstall", 16, 3], ["alwaysKeepStatic", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDerivation = nix.arg($, "mkDerivation");
   const libnv = nix.arg($, "libnv");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "lib/libnvmf",
       extraPaths: nix.thunk(() => ["sys/libkern", "sys/dev/nvmf"]),
       buildInputs: nix.thunk(() => [libnv]),

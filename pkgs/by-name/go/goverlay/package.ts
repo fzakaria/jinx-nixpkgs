@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["updateScript", 131, 12]], [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["mainProgram", 139, 5], ["platforms", 140, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["outputs", 45, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 62, 3], ["installFlags", 68, 3], ["buildPhase", 70, 3], ["preFixup", 85, 3], ["passthru", 131, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { bash: false, coreutils: false, curl: false, fetchFromGitHub: false, fpc: false, git: false, glib: false, gnugrep: false, gnused: false, iproute2: false, kmod: false, "lazarus-qt6": false, lib: false, libnotify: false, libx11: false, libz: false, mangohud: false, "nix-update-script": false, p7zip: false, patchelfUnstable: false, pciutils: false, polkit: false, procps: false, psmisc: false, qt6Packages: false, SDL2: false, stdenv: false, which: false, writableTmpDirAsHomeHook: false, "xdg-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 131, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["mainProgram", 139, 5], ["platforms", 140, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["outputs", 45, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 62, 3], ["installFlags", 68, 3], ["buildPhase", 70, 3], ["preFixup", 85, 3], ["passthru", 131, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "goverlay",
       version: "1.9.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "benjamimgois",
           repo: "goverlay",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -107,11 +104,11 @@ patchelf $out/libexec/pascube --set-rpath ${nix.app(nix.sel(lib, "makeLibraryPat
 patchelf $out/libexec/bgmod-splash --set-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libx11, nix.thunk(() => nix.sel(qt6Packages, "libqtpas"))]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open source project that aims to create a Graphical UI to help manage Linux overlays",
         homepage: "https://github.com/benjamimgois/goverlay",
         changelog: nix.thunk(() => nix.str`https://github.com/benjamimgois/goverlay/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

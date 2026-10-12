@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["QUARK_RELEASE", 47, 7]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["env", 47, 3], ["build-system", 49, 3], ["dependencies", 54, 3], ["pythonRelaxDeps", 73, 3], ["pythonImportsCheck", 75, 3], ["doCheck", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "mypy-protobuf": false, evaluate: false, joblib: false, ninja: false, numpy: false, onnx: false, onnxscript: false, onnxslim: false, pandas: false, plotly: false, protobuf: false, pydantic: false, rich: false, scipy: false, sentencepiece: false, tqdm: false, zstandard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["QUARK_RELEASE", 47, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["env", 47, 3], ["build-system", 49, 3], ["dependencies", 54, 3], ["pythonRelaxDeps", 73, 3], ["pythonImportsCheck", 75, 3], ["doCheck", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,19 +29,19 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "amd-quark",
       version: "0.11.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "amd",
           repo: "Quark",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-x0y3NFbXAF1SnlzQSkWKEWiz0qRPYHWvQ6oTizKpyQw=",
         })))),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail '\"protobuf-protoc-bin==31.1\",' \"\"\nsubstituteInPlace setup.py \\\n  --replace-fail 'subprocess.check_output([\"git\", \"rev-parse\", \"--short\", \"HEAD\"])' 'b\"nix\"'\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, QUARK_RELEASE: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], QUARK_RELEASE: "1" })),
       "build-system": nix.thunk(() => [setuptools, mypy_protobuf]),
       dependencies: nix.thunk(() => [
         evaluate,
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["quark"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "AMD Quark Model Optimizer",
         homepage: "https://github.com/amd/Quark",
         changelog: nix.thunk(() => nix.str`https://github.com/amd/Quark/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

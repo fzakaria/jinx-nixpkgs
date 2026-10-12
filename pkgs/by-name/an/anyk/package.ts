@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 13], ["sha256", 23, 17], ["extension", 24, 5], ["stripRoot", 25, 5]], [["jdk_headless", 33, 32]], [["pname", 34, 5], ["version", 35, 5], ["src", 37, 5], ["mvnHash", 39, 5], ["installPhase", 41, 5]], [["nativeBuildInputs", 51, 9]], [["desktopName", 109, 7], ["name", 110, 7], ["exec", 111, 7], ["icon", 112, 7], ["categories", 113, 7]], [["description", 138, 5], ["longDescription", 139, 5], ["homepage", 144, 5], ["license", 145, 5], ["maintainers", 146, 5], ["platforms", 147, 5], ["sourceProvenance", 148, 5], ["mainProgram", 149, 5]], [["pname", 96, 3], ["version", 97, 11], ["src", 97, 19], ["dontConfigure", 99, 3], ["dontBuild", 100, 3], ["nativeBuildInputs", 102, 3], ["desktopItems", 107, 3], ["installPhase", 117, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, maven: false, fetchzip: false, jre: false, writeScript: false, runCommandLocal: false, bash: false, unzip: false, makeWrapper: false, libredirect: false, xsettingsd: false, makeDesktopItem: false, copyDesktopItems: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 13], ["sha256", 23, 17], ["extension", 24, 5], ["stripRoot", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["jdk_headless", 33, 32]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 34, 5], ["version", 35, 5], ["src", 37, 5], ["mvnHash", 39, 5], ["installPhase", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 51, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["desktopName", 109, 7], ["name", 110, 7], ["exec", 111, 7], ["icon", 112, 7], ["categories", 113, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 138, 5], ["longDescription", 139, 5], ["homepage", 144, 5], ["license", 145, 5], ["maintainers", 146, 5], ["platforms", 147, 5], ["sourceProvenance", 148, 5], ["mainProgram", 149, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 96, 3], ["version", 97, 11], ["src", 97, 19], ["dontConfigure", 99, 3], ["dontBuild", 100, 3], ["nativeBuildInputs", 102, 3], ["desktopItems", 107, 3], ["installPhase", 117, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,21 +27,21 @@ export default nix.lambda((args) => (() => {
   const url = nix.thunk(() => nix.attr(from, "url"));
   const sha256 = nix.thunk(() => nix.attr(from, "sha256"));
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: url,
       sha256: sha256,
       extension: "zip",
       stripRoot: false,
     }))));
-  const soapDeps = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(maven, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, jdk_headless: jre }))), "buildMavenPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+  const soapDeps = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(maven, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], jdk_headless: jre }))), "buildMavenPackage"), nix.thunk(() => ({
+      [nix.POS]: $pos[2],
       pname: "anyk-soap-deps",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(nix.sel(lib, "sources", "sourceFilesBySuffices"), nix.path(here, "./."), nix.thunk(() => ["pom.xml"]))),
       mvnHash: "sha256-6pezqcTIPR5NYFQUmLZ5Y3TOd+XRcB/eRmNSAEoBmls=",
       installPhase: "mkdir -p $out/share/java\ncp target/lib/*.jar $out/share/java/\n",
     }))));
-  const anykSoapPatch = nix.thunk(() => nix.app(runCommandLocal, "anyk-patch", nix.thunk(() => ({ [nix.POS]: pos$4, nativeBuildInputs: nix.thunk(() => [unzip]) })), nix.thunk(() => nix.str`mkdir $out
+  const anykSoapPatch = nix.thunk(() => nix.app(runCommandLocal, "anyk-patch", nix.thunk(() => ({ [nix.POS]: $pos[3], nativeBuildInputs: nix.thunk(() => [unzip]) })), nix.thunk(() => nix.str`mkdir $out
 cd $out
 unzip ${src}/application/abevjava.jar \\
   hu/piller/enykp/niszws/ClientStubBuilder.class
@@ -85,7 +79,7 @@ fi
 exec ${jre}/bin/java -Dswing.systemlaf=javax.swing.plaf.metal.MetalLookAndFeel $SCALING_PROP "$@"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "anyk",
       version: version,
       src: src,
@@ -94,7 +88,7 @@ exec ${jre}/bin/java -Dswing.systemlaf=javax.swing.plaf.metal.MetalLookAndFeel $
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             desktopName: "ÁNYK",
             name: "anyk",
             exec: "anyk",
@@ -121,7 +115,7 @@ install -D $out/opt/abevjava.png $out/share/icons/hicolor/32x32/apps/anyk.png
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Tool for filling forms for the Hungarian government",
         longDescription: "Official tool for filling Hungarian government forms.\n\nUse `anyk-java` to install form templates/help files like this: `anyk-java -jar NAV_IGAZOL.jar`\n",
         homepage: "https://nav.gov.hu/nyomtatvanyok/letoltesek/nyomtatvanykitolto_programok/nyomtatvany_apeh/keretprogramok/javakitolto",

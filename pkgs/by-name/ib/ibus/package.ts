@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["postBuild", 50, 5]], [["nativeBuildInputs", 61, 9]], [["owner", 74, 5], ["repo", 75, 5], ["tag", 76, 5], ["hash", 77, 5]], [["pythonInterpreter", 82, 7], ["pythonSitePackages", 83, 7], ["prefix", 85, 7], ["datarootdir", 86, 7], ["localedir", 87, 7], ["PYTHON", 89, 7]], [["name", 97, 7], ["url", 98, 7], ["hash", 99, 7]], [["installed-tests", 237, 7]], [["tests", 236, 5], ["updateScript", 239, 5]], [["changelog", 243, 5], ["homepage", 244, 5], ["description", 245, 5], ["license", 246, 5], ["platforms", 247, 5], ["mainProgram", 248, 5], ["maintainers", 249, 5]], [["pname", 70, 3], ["version", 71, 3], ["src", 73, 3], ["patches", 80, 3], ["outputs", 103, 3], ["postPatch", 111, 3], ["preAutoreconf", 124, 3], ["configureFlags", 126, 3], ["makeFlags", 156, 3], ["depsBuildBuild", 161, 3], ["nativeBuildInputs", 165, 3], ["propagatedBuildInputs", 184, 3], ["buildInputs", 188, 3], ["enableParallelBuilding", 212, 3], ["strictDeps", 213, 3], ["doCheck", 215, 3], ["doInstallCheck", 217, 3], ["nativeInstallCheckInputs", 218, 3], ["versionCheckProgramArg", 219, 3], ["versionCheckProgram", 220, 3], ["postInstall", 222, 3], ["postFixup", 228, 3], ["passthru", 235, 3], ["meta", 242, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, replaceVars: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, gettext: false, makeWrapper: false, "pkg-config": false, vala: false, wrapGAppsHook3: false, dbus: false, systemd: false, dconf: true, glib: false, "gdk-pixbuf": false, "gobject-introspection": false, gtk3: false, gtk4: false, "gtk-doc": false, "libdbusmenu-gtk3": false, runCommand: false, isocodes: false, "cldr-annotations": false, "unicode-character-database": false, "unicode-emoji": false, python3: false, "json-glib": false, libnotify: true, enableUI: true, withWayland: true, libxkbcommon: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, buildPackages: false, runtimeShell: false, nixosTests: false, versionCheckHook: false, "nix-update-script": false, libx11: false, libOnly: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["postBuild", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 61, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 74, 5], ["repo", 75, 5], ["tag", 76, 5], ["hash", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pythonInterpreter", 82, 7], ["pythonSitePackages", 83, 7], ["prefix", 85, 7], ["datarootdir", 86, 7], ["localedir", 87, 7], ["PYTHON", 89, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 97, 7], ["url", 98, 7], ["hash", 99, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["installed-tests", 237, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 236, 5], ["updateScript", 239, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["changelog", 243, 5], ["homepage", 244, 5], ["description", 245, 5], ["license", 246, 5], ["platforms", 247, 5], ["mainProgram", 248, 5], ["maintainers", 249, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 70, 3], ["version", 71, 3], ["src", 73, 3], ["patches", 80, 3], ["outputs", 103, 3], ["postPatch", 111, 3], ["preAutoreconf", 124, 3], ["configureFlags", 126, 3], ["makeFlags", 156, 3], ["depsBuildBuild", 161, 3], ["nativeBuildInputs", 165, 3], ["propagatedBuildInputs", 184, 3], ["buildInputs", 188, 3], ["enableParallelBuilding", 212, 3], ["strictDeps", 213, 3], ["doCheck", 215, 3], ["doInstallCheck", 217, 3], ["nativeInstallCheckInputs", 218, 3], ["versionCheckProgramArg", 219, 3], ["versionCheckProgram", 220, 3], ["postInstall", 222, 3], ["postFixup", 228, 3], ["passthru", 235, 3], ["meta", 242, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -62,21 +54,21 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pygobject3"))];
     })()));
   const python3BuildEnv = nix.thunk(() => nix.app(nix.sel(python3, "pythonOnBuildForHost", "buildEnv", "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       postBuild: nix.thunk(() => nix.str`makeWrapper ${nix.sel(glib, "dev")}/bin/gdbus-codegen $out/bin/gdbus-codegen --unset PYTHONPATH
 makeWrapper ${nix.sel(glib, "dev")}/bin/glib-genmarshal $out/bin/glib-genmarshal --unset PYTHONPATH
 makeWrapper ${nix.sel(glib, "dev")}/bin/glib-mkenums $out/bin/glib-mkenums --unset PYTHONPATH
 `),
     }))));
-  const dbus_launch = nix.thunk(() => nix.app(runCommand, "sandbox-dbus-launch", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${dbus}/bin/dbus-launch $out/bin/dbus-launch \\
+  const dbus_launch = nix.thunk(() => nix.app(runCommand, "sandbox-dbus-launch", nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${dbus}/bin/dbus-launch $out/bin/dbus-launch \\
   --add-flags --config-file=${dbus}/share/dbus-1/session.conf
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "ibus",
       version: "1.5.34",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "ibus",
           repo: "ibus",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -84,7 +76,7 @@ makeWrapper ${nix.sel(glib, "dev")}/bin/glib-mkenums $out/bin/glib-mkenums --uns
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pythonInterpreter: nix.thunk(() => nix.sel(python3Runtime, "interpreter")),
             pythonSitePackages: nix.thunk(() => nix.sel(python3, "sitePackages")),
             prefix: null,
@@ -94,7 +86,7 @@ makeWrapper ${nix.sel(glib, "dev")}/bin/glib-mkenums $out/bin/glib-mkenums --uns
           })))),
         nix.path(here, "./build-without-dbus-launch.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "fix-gtk-crashes.patch",
             url: "https://github.com/ibus/ibus/commit/c534999a9dbea2666864250d74e058ecfb46e76f.patch",
             hash: "sha256-1h48hvdrDh2Qh4+SufL147CxlfiwvP/Jv509X0WnbrA=",
@@ -176,15 +168,15 @@ substituteInPlace bus/services/org.freedesktop.IBus.session.generic.service.in -
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(libOnly)), "# It has some hardcoded FHS paths and also we do not use it\n# since we set up the environment in NixOS tests anyway.\nmoveToOutput \"bin/ibus-desktop-testing-runner\" \"$installedTests\"\n")),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(libOnly)), "# set necessary environment also for tests\nfor f in $installedTests/libexec/installed-tests/ibus/*; do\n    wrapGApp $f\ndone\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(libOnly)), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "installed-tests": nix.thunk(() => nix.sel(nixosTests, "installed-tests", "ibus")),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: nix.thunk(() => nix.str`https://github.com/ibus/ibus/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         homepage: "https://github.com/ibus/ibus",
         description: "Intelligent Input Bus, input method framework",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tunein.nix", [[["version", 14, 26], ["pname", 15, 5], ["sha256", 16, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 19, 3], ["dependencies", 23, 3], ["pythonImportsCheck", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, pythonPackages: false, fetchPypi: false, mopidy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tunein.nix", [["version", 14, 26], ["pname", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/tunein.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/tunein.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 19, 3], ["dependencies", 23, 3], ["pythonImportsCheck", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const mopidy = nix.arg($, "mopidy");
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mopidy-tunein",
       version: "1.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "Mopidy-TuneIn",
           sha256: "01y1asylscr73yqx071imhrzfzlg07wmqqzkdvpgm6r35marc2li",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [mopidy]),
       pythonImportsCheck: nix.thunk(() => ["mopidy_tunein.tunein"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Mopidy extension for playing music from tunein",
         homepage: "https://github.com/kingosticks/mopidy-tunein",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

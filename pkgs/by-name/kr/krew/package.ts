@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["leaveDotGit", 20, 5], ["postFetch", 21, 5]], [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["license", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 27, 3], ["subPackages", 29, 3], ["nativeBuildInputs", 31, 3], ["ldflags", 33, 3], ["preBuild", 39, 3], ["postFixup", 43, 3], ["doInstallCheck", 48, 3], ["nativeInstallCheckInputs", 49, 3], ["versionCheckKeepEnvironment", 53, 3], ["versionCheckProgramArg", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, makeWrapper: false, gitMinimal: false, writableTmpDirAsHomeHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["leaveDotGit", 20, 5], ["postFetch", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["license", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 27, 3], ["subPackages", 29, 3], ["nativeBuildInputs", 31, 3], ["ldflags", 33, 3], ["preBuild", 39, 3], ["postFixup", 43, 3], ["doInstallCheck", 48, 3], ["nativeInstallCheckInputs", 49, 3], ["versionCheckKeepEnvironment", 53, 3], ["versionCheckProgramArg", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "krew",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kubernetes-sigs",
           repo: "krew",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Package manager for kubectl plugins",
         mainProgram: "krew",
         homepage: "https://github.com/kubernetes-sigs/krew",

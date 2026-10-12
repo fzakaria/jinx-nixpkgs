@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["NIX_CFLAGS_COMPILE", 26, 7]], [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5], ["broken", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 23, 3], ["env", 26, 3], ["makeFlags", 28, 3], ["enableParallelBuilding", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5], ["broken", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 23, 3], ["env", 26, 3], ["makeFlags", 28, 3], ["enableParallelBuilding", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const kernel = nix.arg($, "kernel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dddvb",
       version: "0.9.40a",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DigitalDevices",
           repo: "dddvb",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,14 +24,14 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "sed -i '/depmod/d' Makefile\n",
       nativeBuildInputs: nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies")),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-format-security" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-format-security" })),
       makeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`KDIR=${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`),
         "MDIR=$(out)",
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/DigitalDevices/dddvb",
         description: "Device driver for all Digital Devices DVB demodulator and modulator cards",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

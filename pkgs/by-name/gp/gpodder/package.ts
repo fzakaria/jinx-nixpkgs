@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["updateScript", 89, 12]], [["description", 92, 5], ["longDescription", 93, 5], ["homepage", 97, 5], ["license", 98, 5], ["platforms", 99, 5], ["maintainers", 100, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 30, 3], ["build-system", 34, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["nativeCheckInputs", 53, 3], ["doCheck", 60, 3], ["propagatedBuildInputs", 62, 3], ["makeFlags", 75, 3], ["installCheckPhase", 82, 3], ["makeWrapperArgs", 87, 3], ["passthru", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, gitUpdater: false, "adwaita-icon-theme": false, "gobject-introspection": false, gtk3: false, intltool: false, python3Packages: false, wrapGAppsHook3: false, "xdg-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 89, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 92, 5], ["longDescription", 93, 5], ["homepage", 97, 5], ["license", 98, 5], ["platforms", 99, 5], ["maintainers", 100, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 30, 3], ["build-system", 34, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["nativeCheckInputs", 53, 3], ["doCheck", 60, 3], ["propagatedBuildInputs", 62, 3], ["makeFlags", 75, 3], ["installCheckPhase", 82, 3], ["makeWrapperArgs", 87, 3], ["passthru", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gpodder",
       version: "3.11.5",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gpodder",
           repo: "gpodder",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -86,11 +83,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdg_utils]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Podcatcher written in python",
         longDescription: "gPodder downloads and manages free audio and video content (podcasts)\nfor you. Listen directly on your computer or on your mobile devices.\n",
         homepage: "http://gpodder.org/",

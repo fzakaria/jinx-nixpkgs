@@ -2,26 +2,16 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pkgs", 6, 49], ["lib", 6, 54]], [["listsAsDuplicateKeys", 43, 17], ["listToValue", 43, 38], ["atomsCoercedToLists", 44, 9]], [["type", 51, 13], ["default", 52, 13], ["description", 53, 13]], [["type", 56, 13], ["default", 57, 13], ["description", 58, 13]], [["sections", 50, 11], ["globalSection", 55, 11]], [["options", 49, 9]], [["atom", 62, 17]], [["types", 62, 11]], [["globalSection", 72, 13], ["sections", 73, 13]], [["type", 48, 7], ["lib", 62, 7], ["generate", 63, 7]], [["format", 27, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pkgs", 6, 49], ["lib", 6, 54]]);
 const formals$2 = { args: { listsAsDuplicateKeys: true, listToValue: true, atomsCoercedToLists: true }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["listsAsDuplicateKeys", 43, 17], ["listToValue", 43, 38], ["atomsCoercedToLists", 44, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["type", 51, 13], ["default", 52, 13], ["description", 53, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["type", 56, 13], ["default", 57, 13], ["description", 58, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["sections", 50, 11], ["globalSection", 55, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["options", 49, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["atom", 62, 17]]);
-const pos$8 = nix.positions(here + "/default.nix", [["types", 62, 11]]);
 const formals$3 = { args: { sections: true, globalSection: true }, ellipsis: true };
-const pos$9 = nix.positions(here + "/default.nix", [["globalSection", 72, 13], ["sections", 73, 13]]);
-const pos$10 = nix.positions(here + "/default.nix", [["type", 48, 7], ["lib", 62, 7], ["generate", 63, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["format", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
-  const common = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../ini/default.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs, lib: lib }))), "common"));
+  const common = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../ini/default.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs, lib: lib }))), "common"));
   const ignoredArgs = nix.thunk(() => nix.attr(common, "ignoredArgs"));
   const iniAtom = nix.thunk(() => nix.attr(common, "iniAtom"));
   const iniSection = nix.thunk(() => nix.attr(common, "iniSection"));
@@ -34,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const attrsOf = nix.thunk(() => nix.attr(from_1, "attrsOf"));
   const submodule = nix.thunk(() => nix.attr(from_1, "submodule"));
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const args_2 = args_1;
@@ -45,38 +35,41 @@ export default nix.lambda((args) => (() => {
       nix.assert_((!nix.asBool(!nix.eq(atomsCoercedToLists, null)) || nix.asBool((nix.asBool(listsAsDuplicateKeys) || nix.asBool(!nix.eq(listToValue, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/pkgs-lib/formats/ini-with-global-section/default.nix:39:5");
       const atomsCoercedToLists$ = nix.thunk(() => (nix.asBool(nix.eq(atomsCoercedToLists, null)) ? false : nix.force(atomsCoercedToLists)));
       const atom = nix.thunk(() => nix.app(iniAtom, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           listsAsDuplicateKeys: listsAsDuplicateKeys,
           listToValue: listToValue,
           atomsCoercedToLists: atomsCoercedToLists$,
         }))));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         type: nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             options: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               sections: nix.thunk(() => nix.app(mkOption, nix.thunk(() => (() => {
                   const type = nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(iniSection, atom))));
                   const default$ = nix.thunk(() => ({}));
                   const description = nix.thunk(() => nix.sel(type, "description"));
-                  return { [nix.POS]: pos$3, type, default: default$, description };
+                  return { [nix.POS]: $pos[2], type, default: default$, description };
                 })()))),
               globalSection: nix.thunk(() => nix.app(mkOption, nix.thunk(() => (() => {
                   const type = nix.thunk(() => nix.app(iniSection, atom));
                   const default$ = nix.thunk(() => ({}));
                   const description = nix.thunk(() => nix.add("global ", nix.sel(type, "description")));
-                  return { [nix.POS]: pos$4, type, default: default$, description };
+                  return { [nix.POS]: $pos[3], type, default: default$, description };
                 })()))),
             })),
           })))),
-        lib: nix.thunk(() => ({ [nix.POS]: pos$8, types: nix.thunk(() => ({ [nix.POS]: pos$7, atom: atom })) })),
+        lib: nix.thunk(() => ({
+          [nix.POS]: $pos[7],
+          types: nix.thunk(() => ({ [nix.POS]: $pos[6], atom: atom })),
+        })),
         generate: (name) => nix.lambda((args_3) => (() => {
           const $_2 = nix.formals(args_3, formals$3);
           const sections = nix.argOr($_2, "sections", () => ({}));
           const globalSection = nix.argOr($_2, "globalSection", () => ({}));
           return nix.app(nix.sel(pkgs, "writeText"), name, nix.thunk(() => nix.app(toINIWithGlobalSection, nix.thunk(() => nix.builtins.removeAttrs(args_2, ignoredArgs)), nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 globalSection: nix.thunk(() => nix.app(maybeCoerceList, listToValue, globalSection)),
                 sections: nix.thunk(() => nix.app(maybeCoerceAllLists, listToValue, sections)),
               })))));

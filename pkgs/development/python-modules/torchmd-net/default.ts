@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["PYTORCH_ENABLE_MPS_FALLBACK", 49, 5]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["env", 45, 3], ["pythonRemoveDeps", 52, 3], ["dependencies", 56, 3], ["pythonImportsCheck", 67, 3], ["nativeCheckInputs", 69, 3], ["disabledTests", 75, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, ase: false, h5py: false, lightning: false, numpy: false, torch: false, "torch-geometric": false, tqdm: false, "warp-lang": false, "pytest-xdist": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PYTORCH_ENABLE_MPS_FALLBACK", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["env", 45, 3], ["pythonRemoveDeps", 52, 3], ["dependencies", 56, 3], ["pythonImportsCheck", 67, 3], ["nativeCheckInputs", 69, 3], ["disabledTests", 75, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,27 +25,27 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "torchmd-net",
       version: "3.0.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "torchmd",
           repo: "torchmd-net",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-FBeeNkc7mJQYmMwlsW3Un+3RHvErJM7rWKUqSCYYUCM=",
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, PYTORCH_ENABLE_MPS_FALLBACK: true })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[1], PYTORCH_ENABLE_MPS_FALLBACK: true })))),
       pythonRemoveDeps: nix.thunk(() => ["setuptools"]),
       dependencies: nix.thunk(() => [ase, h5py, lightning, numpy, torch, torch_geometric, tqdm, warp_lang]),
       pythonImportsCheck: nix.thunk(() => ["torchmdnet"]),
       nativeCheckInputs: nix.thunk(() => [pytest_xdist, pytestCheckHook, writableTmpDirAsHomeHook]),
       disabledTests: nix.thunk(() => nix.concat(["test_dataset_s66x8", "test_torchscript_then_compile"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_ase_calculator", "test_torch_export_then_compile"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library to train state-of-the-art neural networks potentials (NNPs)",
         homepage: "https://github.com/torchmd/torchmd-net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

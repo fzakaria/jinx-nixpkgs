@@ -2,61 +2,50 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rsyncd.nix", [[["allowedTCPPorts", 11, 31]], [["firewall", 11, 22]], [["reverse lookup", 17, 17], ["forward lookup", 18, 17]], [["path", 22, 19], ["comment", 23, 19]], [["tmp", 21, 17]], [["globalSection", 16, 15], ["sections", 20, 15]], [["enable", 13, 13], ["socketActivated", 14, 21], ["settings", 15, 13]], [["rsyncd", 12, 20]], [["enable", 29, 15]], [["networking", 11, 11], ["services", 12, 11], ["nix", 29, 11]], [["a", 33, 7], ["b", 34, 7]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 37, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/rsyncd.nix", [["allowedTCPPorts", 11, 31]]);
-const pos$2 = nix.positions(here + "/rsyncd.nix", [["firewall", 11, 22]]);
-const pos$3 = nix.positions(here + "/rsyncd.nix", [["reverse lookup", 17, 17], ["forward lookup", 18, 17]]);
-const pos$4 = nix.positions(here + "/rsyncd.nix", [["path", 22, 19], ["comment", 23, 19]]);
-const pos$5 = nix.positions(here + "/rsyncd.nix", [["tmp", 21, 17]]);
-const pos$6 = nix.positions(here + "/rsyncd.nix", [["globalSection", 16, 15], ["sections", 20, 15]]);
-const pos$7 = nix.positions(here + "/rsyncd.nix", [["enable", 13, 13], ["socketActivated", 14, 21], ["settings", 15, 13]]);
-const pos$8 = nix.positions(here + "/rsyncd.nix", [["rsyncd", 12, 20]]);
-const pos$9 = nix.positions(here + "/rsyncd.nix", [["enable", 29, 15]]);
-const pos$10 = nix.positions(here + "/rsyncd.nix", [["networking", 11, 11], ["services", 12, 11], ["nix", 29, 11]]);
-const pos$11 = nix.positions(here + "/rsyncd.nix", [["a", 33, 7], ["b", 34, 7]]);
-const pos$12 = nix.positions(here + "/rsyncd.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "rsyncd",
     nodes: nix.thunk(() => (() => {
       const mkNode = (socketActivated) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "rsyncd", "port"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             rsyncd: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               socketActivated: socketActivated,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                globalSection: nix.thunk(() => ({ [nix.POS]: pos$3, "reverse lookup": false, "forward lookup": false })),
+                [nix.POS]: $pos[5],
+                globalSection: nix.thunk(() => ({ [nix.POS]: $pos[2], "reverse lookup": false, "forward lookup": false })),
                 sections: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  tmp: nix.thunk(() => ({ [nix.POS]: pos$4, path: "/nix/store", comment: "test module" })),
+                  [nix.POS]: $pos[4],
+                  tmp: nix.thunk(() => ({ [nix.POS]: $pos[3], path: "/nix/store", comment: "test module" })),
                 })),
               })),
             })),
           })),
-          nix: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+          nix: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
         };
       })(), formals$2);
       return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         a: nix.thunk(() => nix.app(mkNode, false)),
         b: nix.thunk(() => nix.app(mkNode, true)),
       };

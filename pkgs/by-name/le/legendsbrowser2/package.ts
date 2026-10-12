@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["updateScript", 35, 12]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5], ["license", 43, 5]], [["pname", 8, 3], ["version", 9, 3], ["sourceRoot", 11, 3], ["src", 12, 3], ["vendorHash", 18, 3], ["installPhase", 20, 3], ["ldflags", 29, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 35, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5], ["license", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["sourceRoot", 11, 3], ["src", 12, 3], ["vendorHash", 18, 3], ["installPhase", 20, 3], ["ldflags", 29, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "legendsbrowser2",
       version: "2.0.10",
       sourceRoot: "source/backend",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "robertjanetzko",
           repo: "LegendsBrowser2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X main.Version=${nix.sel(finalAttrs, "version")}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Multi-platform, open source, legends viewer for dwarf fortress 0.47 written in go",
         homepage: "https://github.com/robertjanetzko/LegendsBrowser2",
         changelog: nix.thunk(() => nix.str`https://github.com/robertjanetzko/LegendsBrowser2/releases/tag/${nix.sel(finalAttrs, "version")}`),

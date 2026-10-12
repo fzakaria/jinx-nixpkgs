@@ -2,39 +2,28 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/declare-submoduleWith-modules.nix", [[["type", 8, 13], ["default", 9, 13]], [["inner", 7, 19]], [["options", 7, 11]], [["modules", 5, 7]], [["type", 4, 5], ["default", 14, 5]], [["submodule", 3, 11]], [["type", 22, 11], ["default", 23, 11]], [["outer", 21, 17]], [["options", 21, 9]], [["inner", 28, 7], ["outer", 29, 7]], [["submodule", 17, 10]], [["options", 3, 3], ["config", 17, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/declare-submoduleWith-modules.nix", [["type", 8, 13], ["default", 9, 13]]);
-const pos$2 = nix.positions(here + "/declare-submoduleWith-modules.nix", [["inner", 7, 19]]);
-const pos$3 = nix.positions(here + "/declare-submoduleWith-modules.nix", [["options", 7, 11]]);
-const pos$4 = nix.positions(here + "/declare-submoduleWith-modules.nix", [["modules", 5, 7]]);
-const pos$5 = nix.positions(here + "/declare-submoduleWith-modules.nix", [["type", 4, 5], ["default", 14, 5]]);
-const pos$6 = nix.positions(here + "/declare-submoduleWith-modules.nix", [["submodule", 3, 11]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/declare-submoduleWith-modules.nix", [["type", 22, 11], ["default", 23, 11]]);
-const pos$8 = nix.positions(here + "/declare-submoduleWith-modules.nix", [["outer", 21, 17]]);
-const pos$9 = nix.positions(here + "/declare-submoduleWith-modules.nix", [["options", 21, 9]]);
-const pos$10 = nix.positions(here + "/declare-submoduleWith-modules.nix", [["inner", 28, 7], ["outer", 29, 7]]);
-const pos$11 = nix.positions(here + "/declare-submoduleWith-modules.nix", [["submodule", 17, 10]]);
-const pos$12 = nix.positions(here + "/declare-submoduleWith-modules.nix", [["options", 3, 3], ["config", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       submodule: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               modules: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   options: nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     inner: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                        [nix.POS]: pos$1,
+                        [nix.POS]: $pos[0],
                         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         default: false,
                       })))),
@@ -46,24 +35,24 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       submodule: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const lib_1 = nix.arg($_1, "lib");
             return {
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               options: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 outer: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOption"), nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     type: nix.thunk(() => nix.sel(lib_1, "types", "bool")),
                     default: false,
                   })))),
               })),
             };
           })(), formals$2),
-          nix.thunk(() => ({ [nix.POS]: pos$10, inner: true, outer: true })),
+          nix.thunk(() => ({ [nix.POS]: $pos[9], inner: true, outer: true })),
         ]))),
     })),
   };

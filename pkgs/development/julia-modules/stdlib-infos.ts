@@ -2,15 +2,15 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stdlib-infos.nix", [[["buildInputs", 27, 5]]]);
 const formals$1 = { args: { julia: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/stdlib-infos.nix", [["buildInputs", 27, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const julia = nix.arg($, "julia");
   const runCommand = nix.arg($, "runCommand");
   const juliaExpression = "using Pkg\nopen(ENV[\"out\"], \"w\") do io\n    println(io, \"stdlib_root: \\\"$(Sys.STDLIB)\\\"\")\n\n    println(io, \"julia_version: \\\"$(string(VERSION))\\\"\")\n\n    stdlibs = Pkg.Types.stdlibs()\n    println(io, \"stdlibs:\")\n    for (uuid, (name, version)) in stdlibs\n        println(io, \"  \\\"$(uuid)\\\": \")\n        println(io, \"    name: $name\")\n        println(io, \"    version: $version\")\n    end\nend\n";
-  return nix.app(runCommand, "julia-stdlib-infos.yml", nix.thunk(() => ({ [nix.POS]: pos$1, buildInputs: nix.thunk(() => [julia]) })), nix.thunk(() => nix.str`# Prevent a warning where Julia tries to download package server info
+  return nix.app(runCommand, "julia-stdlib-infos.yml", nix.thunk(() => ({ [nix.POS]: $pos[0], buildInputs: nix.thunk(() => [julia]) })), nix.thunk(() => nix.str`# Prevent a warning where Julia tries to download package server info
 export JULIA_PKG_SERVER=""
 
 julia -e '${juliaExpression}';

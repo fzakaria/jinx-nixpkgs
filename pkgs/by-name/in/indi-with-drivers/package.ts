@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 12, 3], ["paths", 14, 3], ["nativeBuildInputs", 16, 3], ["postBuild", 18, 3], ["meta", 23, 21]]]);
 const formals$1 = { args: { lib: false, buildEnv: false, makeBinaryWrapper: false, indilib: true, pname: true, version: true, extraDrivers: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 12, 3], ["paths", 14, 3], ["nativeBuildInputs", 16, 3], ["postBuild", 18, 3], ["meta", 23, 21]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => nix.sel(indilib, "version"));
   const extraDrivers = nix.argOr($, "extraDrivers", () => []);
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`${pname}-${version}`),
       paths: nix.thunk(() => nix.concat([indilib], extraDrivers)),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),

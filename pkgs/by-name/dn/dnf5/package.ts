@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["NIX_CFLAGS_COMPILE", 90, 7]], [["updateScript", 133, 12]], [["description", 136, 5], ["homepage", 137, 5], ["changelog", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["mainProgram", 144, 5], ["platforms", 145, 5]], [["pname", 38, 3], ["version", 39, 3], ["outputs", 41, 3], ["src", 46, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 67, 3], ["env", 90, 3], ["cmakeFlags", 92, 3], ["postBuild", 108, 3], ["prePatch", 112, 3], ["nativeInstallCheckInputs", 127, 3], ["doInstallCheck", 128, 3], ["preVersionCheck", 129, 3], ["passthru", 133, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, appstream: false, cmake: false, createrepo_c: false, doxygen: false, gettext: false, help2man: false, "pkg-config": false, python3: false, python3Packages: false, cppunit: false, fmt: false, json_c: false, libmodulemd: false, librepo: false, "util-linux": false, libsolv: false, libxml2: false, libyaml: false, libpkgmanifest: false, acl: false, pcre2: false, rpm: false, "sdbus-cpp_2": false, sphinx: false, sqlite: false, systemdLibs: false, versionCheckHook: false, toml11: false, zchunk: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 90, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 133, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 136, 5], ["homepage", 137, 5], ["changelog", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["mainProgram", 144, 5], ["platforms", 145, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["outputs", 41, 3], ["src", 46, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 67, 3], ["env", 90, 3], ["cmakeFlags", 92, 3], ["postBuild", 108, 3], ["prePatch", 112, 3], ["nativeInstallCheckInputs", 127, 3], ["doInstallCheck", 128, 3], ["preVersionCheck", 129, 3], ["passthru", 133, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const zchunk = nix.arg($, "zchunk");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dnf5",
       version: "5.4.6.0",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rpm-software-management",
           repo: "dnf5",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -85,7 +81,7 @@ export default nix.lambda((args) => (() => {
         zchunk,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-restrict -Wno-maybe-uninitialized",
       })),
       cmakeFlags: nix.thunk(() => [
@@ -104,11 +100,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       preVersionCheck: "export HOME=$(mktemp -d)\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Next-generation RPM package management system",
         homepage: "https://github.com/rpm-software-management/dnf5",
         changelog: nix.thunk(() => nix.str`https://github.com/rpm-software-management/dnf5/releases/tag/${nix.sel(finalAttrs, "version")}`),

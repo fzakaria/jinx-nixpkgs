@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 57, 5], ["hash", 58, 5]], [["xsel", 74, 7], ["xprop", 75, 7], ["xdotool", 76, 7], ["uname", 77, 7], ["whereis", 78, 7], ["gsettings", 79, 7]], [["name", 155, 5], ["exec", 156, 5], ["comment", 157, 5], ["icon", 158, 5], ["desktopName", 159, 5], ["genericName", 160, 5], ["categories", 161, 5], ["mimeTypes", 162, 5]], [["description", 166, 5], ["homepage", 167, 5], ["maintainers", 168, 5], ["platforms", 171, 5], ["license", 172, 5], ["mainProgram", 173, 5]], [["pname", 53, 3], ["version", 54, 3], ["src", 56, 3], ["sourceRoot", 61, 3], ["strictDeps", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 70, 3], ["patches", 72, 3], ["postPatch", 83, 3], ["configurePhase", 88, 3], ["buildPhase", 104, 3], ["outputFiles", 112, 3], ["binPaths", 122, 3], ["installPhase", 124, 3], ["desktopItem", 154, 3], ["meta", 165, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, mono: false, makeWrapper: false, writeText: false, icoutils: false, replaceVars: false, xsel: false, xprop: false, xdotool: false, coreutils: false, unixtools: false, glib: false, makeDesktopItem: false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 57, 5], ["hash", 58, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["xsel", 74, 7], ["xprop", 75, 7], ["xdotool", 76, 7], ["uname", 77, 7], ["whereis", 78, 7], ["gsettings", 79, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 155, 5], ["exec", 156, 5], ["comment", 157, 5], ["icon", 158, 5], ["desktopName", 159, 5], ["genericName", 160, 5], ["categories", 161, 5], ["mimeTypes", 162, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 166, 5], ["homepage", 167, 5], ["maintainers", 168, 5], ["platforms", 171, 5], ["license", 172, 5], ["mainProgram", 173, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 53, 3], ["version", 54, 3], ["src", 56, 3], ["sourceRoot", 61, 3], ["strictDeps", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 70, 3], ["patches", 72, 3], ["postPatch", 83, 3], ["configurePhase", 88, 3], ["buildPhase", 104, 3], ["outputFiles", 112, 3], ["binPaths", 122, 3], ["installPhase", 124, 3], ["desktopItem", 154, 3], ["meta", 165, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,11 +44,11 @@ export default nix.lambda((args) => (() => {
     return nix.app(writeText, "load-paths.patch", nix.thunk(() => nix.app(replaceStrings, nix.thunk(() => ["$OUTPUT_LC$", "$DO_LOADS$"]), nix.thunk(() => [outputLc, loads]), patchTemplate)));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "keepass",
       version: "2.61.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/keepass/KeePass-${nix.sel(finalAttrs, "version")}-Source.zip`),
           hash: "sha256-cRvZ7HB2ZhZ4Rp5Ruuh23rrAegjDLxscazuP5edhwTo=",
         })))),
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [icoutils]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             xsel: nix.thunk(() => nix.str`${xsel}/bin/xsel`),
             xprop: nix.thunk(() => nix.str`${xprop}/bin/xprop`),
             xdotool: nix.thunk(() => nix.str`${xdotool}/bin/xdotool`),
@@ -111,7 +107,7 @@ ${nix.path(here, "./extractWinRscIconsToStdFreeDesktopDir.sh")} \\
 runHook postInstall
 `),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "keepass",
           exec: "keepass",
           comment: "Password manager",
@@ -122,7 +118,7 @@ runHook postInstall
           mimeTypes: nix.thunk(() => ["application/x-keepass2"]),
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GUI password manager with strong cryptography",
         homepage: "http://www.keepass.info/",
         maintainers: nix.thunk(() => (() => {

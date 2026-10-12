@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["email", 65, 5], ["i18n", 66, 5], ["pdf", 67, 5], ["s3", 68, 5], ["tinymce", 69, 5]], [["description", 151, 5], ["homepage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5]], [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["src", 48, 3], ["build-system", 55, 3], ["dependencies", 57, 3], ["optional-dependencies", 64, 3], ["nativeCheckInputs", 72, 3], ["pytestFlags", 98, 3], ["disabledTests", 100, 3], ["disabledTestPaths", 118, 3], ["pythonImportsCheck", 128, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, itsdangerous: false, jinja2: false, "python-multipart": false, starlette: false, aiobotocore: false, babel: false, "email-validator": false, nh3: false, reportlab: false, arrow: false, boto3: false, httpx2: false, markdown: false, minio: false, mongoengine: false, openpyxl: false, pillow: false, pydantic: false, "pytest-asyncio": false, pytestCheckHook: false, sqlalchemy: false, "sqlalchemy-file": false, "sqlalchemy-utils": false, tablib: false, testcontainers: false, tinydb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["email", 65, 5], ["i18n", 66, 5], ["pdf", 67, 5], ["s3", 68, 5], ["tinymce", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 151, 5], ["homepage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["src", 48, 3], ["build-system", 55, 3], ["dependencies", 57, 3], ["optional-dependencies", 64, 3], ["nativeCheckInputs", 72, 3], ["pytestFlags", 98, 3], ["disabledTests", 100, 3], ["disabledTestPaths", 118, 3], ["pythonImportsCheck", 128, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jowilf",
           repo: "starlette-admin",
           tag: version,
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [itsdangerous, jinja2, python_multipart, starlette]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         email: nix.thunk(() => [email_validator]),
         i18n: nix.thunk(() => [babel]),
         pdf: nix.thunk(() => [reportlab]),
@@ -119,7 +116,7 @@ export default nix.lambda((args) => (() => {
         "starlette_admin.views",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast, beautiful and extensible administrative interface framework for Starlette & FastApi applications",
         homepage: "https://github.com/jowilf/starlette-admin",
         changelog: "https://jowilf.github.io/starlette-admin/changelog/",
@@ -130,7 +127,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

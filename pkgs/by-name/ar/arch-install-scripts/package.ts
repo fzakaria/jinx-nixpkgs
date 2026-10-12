@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 30, 5], ["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["external", 93, 12]], [["mount", 100, 9], ["umount", 101, 9]], [["scripts", 69, 7], ["interpreter", 76, 7], ["inputs", 79, 7], ["execer", 88, 7], ["fake", 93, 7], ["fix", 99, 7], ["keep", 104, 7]], [["profile", 63, 5]], [["description", 115, 5], ["longDescription", 116, 5], ["homepage", 119, 5], ["license", 120, 5], ["maintainers", 121, 5], ["platforms", 122, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 37, 3], ["postPatch", 42, 3], ["installFlags", 56, 3], ["doCheck", 58, 3], ["solutions", 60, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, resholve: false, fetchFromGitLab: false, asciidoc: false, bash: false, coreutils: false, gawk: false, gnugrep: false, gnum4: false, gnused: false, pacman: false, "util-linux": false, chrootPath: true, chrootSetprivPath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 30, 5], ["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["external", 93, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mount", 100, 9], ["umount", 101, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["scripts", 69, 7], ["interpreter", 76, 7], ["inputs", 79, 7], ["execer", 88, 7], ["fake", 93, 7], ["fix", 99, 7], ["keep", 104, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["profile", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 115, 5], ["longDescription", 116, 5], ["homepage", 119, 5], ["license", 120, 5], ["maintainers", 121, 5], ["platforms", 122, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 37, 3], ["postPatch", 42, 3], ["installFlags", 56, 3], ["doCheck", 58, 3], ["solutions", 60, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +29,11 @@ export default nix.lambda((args) => (() => {
   ]);
   const chrootSetprivPath = nix.argOr($, "chrootSetprivPath", () => "/usr/bin/setpriv");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "arch-install-scripts",
       version: "31",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.archlinux.org",
           owner: "archlinux",
           repo: "arch-install-scripts",
@@ -62,9 +56,9 @@ substituteInPlace ./arch-chroot.in \\
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       doCheck: true,
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         profile: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           scripts: nix.thunk(() => ["bin/arch-chroot", "bin/genfstab", "bin/pacstrap"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [coreutils, gawk, gnugrep, gnused, pacman, util_linux]),
@@ -73,10 +67,10 @@ substituteInPlace ./arch-chroot.in \\
             nix.thunk(() => nix.str`cannot:${pacman}/bin/pacman-key`),
           ]),
           fake: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             external: nix.thunk(() => ["systemd-escape", "systemd-run"]),
           })),
-          fix: nix.thunk(() => ({ [nix.POS]: pos$3, mount: true, umount: true })),
+          fix: nix.thunk(() => ({ [nix.POS]: $pos[2], mount: true, umount: true })),
           keep: nix.thunk(() => [
             "$setup",
             "$pid_unshare",
@@ -87,7 +81,7 @@ substituteInPlace ./arch-chroot.in \\
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Useful scripts for installing Arch Linux",
         longDescription: "A small suite of scripts aimed at automating some menial tasks when installing Arch Linux.\n",
         homepage: "https://github.com/archlinux/arch-install-scripts",

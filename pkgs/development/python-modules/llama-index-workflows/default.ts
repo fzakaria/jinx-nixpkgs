@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 5], ["version", 18, 26], ["hash", 19, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["postPatch", 22, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "eval-type-backport": false, fetchPypi: false, "uv-build": false, "llama-index-instrumentation": false, pydantic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 26], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["postPatch", 22, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["pythonImportsCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const llama_index_instrumentation = nix.arg($, "llama-index-instrumentation");
   const pydantic = nix.arg($, "pydantic");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "llama-index-workflows",
       version: "2.25.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "llama_index_workflows",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-8aapDMwrgY4/2w+WYN6zQBmww/U1M+nOyzVAiCtSf0k=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [eval_type_backport, llama_index_instrumentation, pydantic]),
       pythonImportsCheck: nix.thunk(() => ["workflows"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Event-driven, async-first, step-based way to control the execution flow of AI applications like Agents",
         homepage: "https://pypi.org/project/llama-index-workflows/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 36, 5], ["sha256", 37, 5]], [["name", 90, 7], ["url", 91, 7], ["sha256", 92, 7]], [["description", 139, 5], ["homepage", 140, 5], ["license", 141, 5], ["platforms", 142, 5], ["maintainers", 143, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 41, 3], ["patches", 84, 3], ["postPatch", 96, 3], ["configurePhase", 113, 3], ["postInstall", 115, 3], ["preCheck", 130, 3], ["checkTarget", 135, 3], ["doCheck", 136, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, perlPackages: false, gettext: false, makeWrapper: false, ImageMagick: false, which: false, highlight: false, gitSupport: true, git: false, docutilsSupport: true, python3: false, docutils: false, monotoneSupport: true, monotone: false, bazaarSupport: true, breezy: false, cvsSupport: true, cvs: false, cvsps: false, subversionSupport: true, subversion: false, mercurialSupport: true, mercurial: false, extraUtils: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 36, 5], ["sha256", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 90, 7], ["url", 91, 7], ["sha256", 92, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 139, 5], ["homepage", 140, 5], ["license", 141, 5], ["platforms", 142, 5], ["maintainers", 143, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 41, 3], ["patches", 84, 3], ["postPatch", 96, 3], ["configurePhase", 113, 3], ["postInstall", 115, 3], ["preCheck", 130, 3], ["checkTarget", 135, 3], ["doCheck", 136, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ikiwiki";
       const version = "3.20200202.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/i/ikiwiki/ikiwiki_${version}.orig.tar.xz`),
           sha256: "0skrc8r4wh4mjfgw1c94awr5sacfb9nfsbm4frikanc9xsy16ksr",
         }))));
@@ -82,7 +79,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./remove-markdown-tests.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Catch-up-to-highlight-4.0-API-change",
             url: "http://source.ikiwiki.branchable.com/?p=source.git;a=patch;h=9ea3f9dfe7c0341f4e002b48728b8139293e19d0",
             sha256: "16s4wvsfclx0a5cm2awr69dvw2vsi8lpm0d7kyl5w0kjlmzfc7h9",
@@ -121,7 +118,7 @@ done
       const checkTarget = "test";
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wiki compiler, storing pages and history in a RCS",
         homepage: "http://ikiwiki.info/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -129,7 +126,7 @@ done
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "wentasah"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

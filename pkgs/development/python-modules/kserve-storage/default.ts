@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 5], ["version", 29, 13], ["hash", 30, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 33, 3], ["pythonRelaxDeps", 37, 3], ["dependencies", 40, 3], ["pythonImportsCheck", 50, 3], ["nativeCheckInputs", 52, 3], ["disabledTests", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, "azure-identity": false, "azure-storage-blob": false, "azure-storage-file-share": false, boto3: false, "google-cloud-storage": false, "huggingface-hub": false, requests: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 5], ["version", 29, 13], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 33, 3], ["pythonRelaxDeps", 37, 3], ["dependencies", 40, 3], ["pythonImportsCheck", 50, 3], ["nativeCheckInputs", 52, 3], ["disabledTests", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.16.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "kserve_storage",
           version: version,
           hash: "sha256-xgLnWegsPF18RLxwxt0dfnrZwsX7AK3b8AdT594Bac4=",
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["test_local_path_with_out_dir_exist"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "KServe Storage Handler. This module is responsible to download the models from the provided source",
         homepage: "https://pypi.org/project/kserve-storage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

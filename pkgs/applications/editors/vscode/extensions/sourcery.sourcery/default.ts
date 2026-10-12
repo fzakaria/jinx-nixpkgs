@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["arch", 15, 7], ["hash", 16, 7]], [["arch", 19, 7], ["hash", 20, 7]], [["x86_64-linux", 14, 5], ["aarch64-darwin", 18, 5]], [["platformTable", 13, 12]], [["name", 25, 5], ["publisher", 26, 5], ["version", 27, 5]], [["changelog", 39, 5], ["description", 40, 5], ["downloadPage", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["passthru", 13, 3], ["mktplcRef", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 33, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "vscode-utils": false, autoPatchelfHook: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["arch", 15, 7], ["hash", 16, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arch", 19, 7], ["hash", 20, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["x86_64-linux", 14, 5], ["aarch64-darwin", 18, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["platformTable", 13, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 25, 5], ["publisher", 26, 5], ["version", 27, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["changelog", 39, 5], ["description", 40, 5], ["downloadPage", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["passthru", 13, 3], ["mktplcRef", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 33, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,31 +15,36 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         platformTable: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "x86_64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             arch: "linux-x64",
             hash: "sha256-zaMrQ0/w/gz3WW8/tVPBCPNAUookGs5yHLWjR3drZNE=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             arch: "darwin-arm64",
             hash: "sha256-fyfFyiuYwbtqChzTlfZ8E72ikQWOrlTAo7m9l9U/Eb8=",
           })),
         })),
       })),
-      mktplcRef: nix.thunk(() => nix.update({ [nix.POS]: pos$5, name: "sourcery", publisher: "sourcery", version: "1.44.0" }, nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform ${system}`)), "passthru", "platformTable", nix.key(nix.force(system))))),
+      mktplcRef: nix.thunk(() => nix.update({
+        [nix.POS]: $pos[4],
+        name: "sourcery",
+        publisher: "sourcery",
+        version: "1.44.0",
+      }, nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform ${system}`)), "passthru", "platformTable", nix.key(nix.force(system))))),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
         zlib,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: "https://sourcery.ai/changelog/",
         description: "VSCode extension for Sourcery, an AI-powered code review and pair programming tool for Python",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=sourcery.sourcery",

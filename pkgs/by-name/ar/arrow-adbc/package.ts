@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["fetchSubmodules", 32, 5], ["hash", 33, 5]], [["pname", 86, 9], ["version", 87, 9], ["src", 88, 9], ["vendorHash", 89, 9], ["sourceRoot", 91, 7], ["dontBuild", 94, 7], ["dontInstall", 95, 7]], [["extraArgs", 98, 7]], [["go-package", 84, 5], ["updateScript", 97, 5]], [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5]], [["pname", 23, 3], ["version", 24, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["src", 28, 3], ["vendorHash", 36, 3], ["preConfigure", 39, 3], ["modRoot", 47, 3], ["goModules", 48, 57], ["preBuild", 49, 3], ["nativeBuildInputs", 60, 3], ["cmakeFlags", 68, 3], ["buildInputs", 75, 3], ["passthru", 83, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildGoModule: false, cmake: false, "pkg-config": false, nanoarrow: false, fmt: false, gtest: false, libpq: false, sqlite: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["fetchSubmodules", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 86, 9], ["version", 87, 9], ["src", 88, 9], ["vendorHash", 89, 9], ["sourceRoot", 91, 7], ["dontBuild", 94, 7], ["dontInstall", 95, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 98, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["go-package", 84, 5], ["updateScript", 97, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["src", 28, 3], ["vendorHash", 36, 3], ["preConfigure", 39, 3], ["modRoot", 47, 3], ["goModules", 48, 57], ["preBuild", 49, 3], ["nativeBuildInputs", 60, 3], ["cmakeFlags", 68, 3], ["buildInputs", 75, 3], ["passthru", 83, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +22,13 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "go-package"));
       return {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "arrow-adbc",
       version: "24",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "arrow-adbc",
           tag: nix.thunk(() => nix.str`apache-arrow-adbc-${nix.sel(finalAttrs, "version")}`),
@@ -56,9 +51,9 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.builtins.map((driver) => nix.app(nix.sel(lib, "cmakeBool"), nix.thunk(() => nix.str`ADBC_DRIVER_${driver}`), true), nix.thunk(() => ["FLIGHTSQL", "MANAGER", "POSTGRESQL", "SQLITE"]))),
       buildInputs: nix.thunk(() => [fmt, gtest, libpq, nanoarrow, sqlite]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "go-package": nix.thunk(() => nix.app(buildGoModule, (finalGoAttrs) => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -68,12 +63,12 @@ export default nix.lambda((args) => (() => {
             dontInstall: true,
           }))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "apache-arrow-adbc-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Database connectivity API standard and libraries for Apache Arrow",
         homepage: "https://arrow.apache.org/adbc/",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/arrow-adbc/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

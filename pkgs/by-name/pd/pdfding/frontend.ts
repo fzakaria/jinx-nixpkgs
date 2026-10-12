@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["url", 14, 5], ["hash", 15, 5], ["stripRoot", 16, 5], ["postFetch", 17, 5]], [["src", 32, 26], ["name", 33, 5], ["hash", 34, 5]], [["pdfjs", 73, 13]], [["description", 77, 5]], [["pname", 28, 3], ["src", 29, 21], ["version", 29, 25], ["npmDeps", 31, 3], ["nativeBuildInputs", 37, 3], ["strictDeps", 42, 3], ["__structuredAttrs", 43, 3], ["buildPhase", 46, 3], ["passthru", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchNpmDeps: false, fetchzip: false, npmHooks: false, nodejs: false, pdfding: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["url", 14, 5], ["hash", 15, 5], ["stripRoot", 16, 5], ["postFetch", 17, 5]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["src", 32, 26], ["name", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/frontend.nix", [["pdfjs", 73, 13]]);
-const pos$4 = nix.positions(here + "/frontend.nix", [["description", 77, 5]]);
-const pos$5 = nix.positions(here + "/frontend.nix", [["pname", 28, 3], ["src", 29, 21], ["version", 29, 25], ["npmDeps", 31, 3], ["nativeBuildInputs", 37, 3], ["strictDeps", 42, 3], ["__structuredAttrs", 43, 3], ["buildPhase", 46, 3], ["passthru", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const pdfjsVersion = "6.1.200";
   const pdfjsHash = "sha256-IylR6X6qmyP7jvT12AerDd2UD0nqqOWljfT8wgKoFsg=";
   const pdfjs = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/mozilla/pdf.js/releases/download/v${pdfjsVersion}/pdfjs-${pdfjsVersion}-legacy-dist.zip`),
       hash: pdfjsHash,
       stripRoot: false,
       postFetch: "rm -rf $out/web/locale \\\n$out/web/standard_fonts \\\n$out/web/compressed.tracemonkey-pldi-09.pdf\n\n# remove source maps\nfind \"$out\" -name '*.map' -exec rm -f '{}' \\;\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pdfding-frontend",
       src: nix.thunk(() => nix.attr(pdfding, "src")),
       version: nix.thunk(() => nix.attr(pdfding, "version")),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           name: nix.thunk(() => nix.str`pdfding-${nix.sel(finalAttrs, "version")}-npm-deps`),
           hash: "sha256-1Yf6jEKB9a1nRAmeHj7hhnDlMPzKCz3ufp0thgGnGtQ=",
@@ -64,8 +60,8 @@ cp -r pdfding/static/js $out/pdfding/static
 
 runHook postBuild
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, pdfjs: pdfjs })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$4, description: "PdfDing frontend" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], pdfjs: pdfjs })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[3], description: "PdfDing frontend" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=frontend.ts.map

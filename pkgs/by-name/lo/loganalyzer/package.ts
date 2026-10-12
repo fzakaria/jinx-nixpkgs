@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["fetchSubmodules", 16, 5], ["hash", 17, 5]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["downloadPage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 25, 3], ["sourceRoot", 29, 3], ["buildPhase", 31, 3], ["installFlags", 40, 3], ["postInstall", 42, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["fetchSubmodules", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["downloadPage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 25, 3], ["sourceRoot", 29, 3], ["buildPhase", 31, 3], ["installFlags", 40, 3], ["postInstall", 42, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "loganalyzer";
       const version = "23.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pbek",
           repo: "loganalyzer",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool that helps you to analyze your log files by reducing the content with patterns you define",
         homepage: "https://github.com/pbek/loganalyzer",
         changelog: "https://github.com/pbek/loganalyzer/blob/develop/CHANGELOG.md",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

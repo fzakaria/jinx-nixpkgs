@@ -2,25 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 30, 9], ["url", 31, 9], ["hash", 32, 9]], [["name", 40, 13], ["url", 41, 13], ["hash", 42, 13]], [["name", 46, 13], ["url", 47, 13], ["hash", 48, 13]], [["name", 52, 13], ["url", 53, 13], ["hash", 54, 13]], [["name", 60, 13], ["url", 61, 13], ["hash", 62, 13]], [["name", 65, 13], ["url", 66, 13], ["hash", 67, 13]], [["name", 70, 13], ["url", 71, 13], ["hash", 72, 13]], [["name", 78, 13], ["url", 79, 13], ["hash", 80, 13]], [["name", 83, 13], ["url", 84, 13], ["hash", 85, 13]], [["name", 88, 13], ["url", 89, 13], ["hash", 90, 13]], [["name", 97, 13], ["url", 98, 13], ["hash", 99, 13]], [["name", 102, 13], ["url", 103, 13], ["hash", 104, 13]], [["name", 107, 13], ["url", 108, 13], ["hash", 109, 13]], [["x86_64-linux", 38, 9], ["aarch64-linux", 58, 9], ["aarch32-linux", 76, 9], ["i686-linux", 94, 9]], [["name", 130, 7], ["desktopName", 131, 7], ["exec", 132, 7], ["icon", 133, 7], ["comment", 134, 7], ["categories", 135, 7]], [["name", 142, 7], ["desktopName", 143, 7], ["exec", 144, 7], ["icon", 145, 7], ["comment", 146, 7], ["categories", 147, 7]], [["homepage", 179, 5], ["description", 180, 5], ["license", 181, 5], ["mainProgram", 182, 5], ["platforms", 183, 5], ["maintainers", 189, 5]], [["pname", 21, 3], ["version", 22, 3], ["srcs", 24, 3], ["unpackPhase", 116, 3], ["nativeBuildInputs", 122, 3], ["desktopItems", 128, 3], ["buildInputs", 155, 3], ["installPhase", 166, 3], ["meta", 178, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, libx11: false, libxpm: false, "alsa-lib": false, bzip2: false, zlib: false, kdePackages: false, libgcc: false, libxfixes: false, libjack2: false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 30, 9], ["url", 31, 9], ["hash", 32, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 40, 13], ["url", 41, 13], ["hash", 42, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 46, 13], ["url", 47, 13], ["hash", 48, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 52, 13], ["url", 53, 13], ["hash", 54, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 60, 13], ["url", 61, 13], ["hash", 62, 13]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 65, 13], ["url", 66, 13], ["hash", 67, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 70, 13], ["url", 71, 13], ["hash", 72, 13]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 78, 13], ["url", 79, 13], ["hash", 80, 13]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 83, 13], ["url", 84, 13], ["hash", 85, 13]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 88, 13], ["url", 89, 13], ["hash", 90, 13]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 97, 13], ["url", 98, 13], ["hash", 99, 13]]);
-const pos$12 = nix.positions(here + "/package.nix", [["name", 102, 13], ["url", 103, 13], ["hash", 104, 13]]);
-const pos$13 = nix.positions(here + "/package.nix", [["name", 107, 13], ["url", 108, 13], ["hash", 109, 13]]);
-const pos$14 = nix.positions(here + "/package.nix", [["x86_64-linux", 38, 9], ["aarch64-linux", 58, 9], ["aarch32-linux", 76, 9], ["i686-linux", 94, 9]]);
-const pos$15 = nix.positions(here + "/package.nix", [["name", 130, 7], ["desktopName", 131, 7], ["exec", 132, 7], ["icon", 133, 7], ["comment", 134, 7], ["categories", 135, 7]]);
-const pos$16 = nix.positions(here + "/package.nix", [["name", 142, 7], ["desktopName", 143, 7], ["exec", 144, 7], ["icon", 145, 7], ["comment", 146, 7], ["categories", 147, 7]]);
-const pos$17 = nix.positions(here + "/package.nix", [["homepage", 179, 5], ["description", 180, 5], ["license", 181, 5], ["mainProgram", 182, 5], ["platforms", 183, 5], ["maintainers", 189, 5]]);
-const pos$18 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["srcs", 24, 3], ["unpackPhase", 116, 3], ["nativeBuildInputs", 122, 3], ["desktopItems", 128, 3], ["buildInputs", 155, 3], ["installPhase", 166, 3], ["meta", 178, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,28 +30,28 @@ export default nix.lambda((args) => (() => {
         const versionNoPoint = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), version));
         return nix.concat([
           nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               name: "stereo-tool-icon.png",
               url: nix.thunk(() => nix.str`https://download.thimeo.com/stereo_tool_icon_${versionNoPoint}.png`),
               hash: "sha256-dcivH6Cc7pdQ99m80vS4E5mp/SHtTlNu1EHc+0ALIGM=",
             })))),
         ], nix.selOr({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           "x86_64-linux": nix.thunk(() => [
             nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 name: "alsa",
                 url: nix.thunk(() => nix.str`https://download.thimeo.com/stereo_tool_gui_64_${versionNoPoint}`),
                 hash: "sha256-YDrB7MX2EbG9Eknx5XlOAaW/2sPTZzPIGXzFcwKGqK8=",
               })))),
             nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 name: "jack",
                 url: nix.thunk(() => nix.str`https://download.thimeo.com/stereo_tool_gui_jack_64_${versionNoPoint}`),
                 hash: "sha256-YDrB7MX2EbG9Eknx5XlOAaW/2sPTZzPIGXzFcwKGqK8=",
               })))),
             nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 name: "cmd",
                 url: nix.thunk(() => nix.str`https://download.thimeo.com/stereo_tool_cmd_64_${versionNoPoint}`),
                 hash: "sha256-+hm8G5jwgFqDzy7BsYSfJh3x9asx7voc4NdIqkBDGmE=",
@@ -76,19 +59,19 @@ export default nix.lambda((args) => (() => {
           ]),
           "aarch64-linux": nix.thunk(() => [
             nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 name: "alsa",
                 url: nix.thunk(() => nix.str`https://download.thimeo.com/stereo_tool_gui_pi2_64_${versionNoPoint}`),
                 hash: "sha256-nr3VlRpWELe4vlaKenPa3ZtOHjD66BXbGDd2WjTI70E=",
               })))),
             nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 name: "jack",
                 url: nix.thunk(() => nix.str`https://download.thimeo.com/stereo_tool_gui_jack_pi2_64_${versionNoPoint}`),
                 hash: "sha256-nr3VlRpWELe4vlaKenPa3ZtOHjD66BXbGDd2WjTI70E=",
               })))),
             nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 name: "cmd",
                 url: nix.thunk(() => nix.str`https://download.thimeo.com/stereo_tool_pi2_64_${versionNoPoint}`),
                 hash: "sha256-QyJ/BulqWEIpGfbd6qGT4ejOtdVJ0/M2pEvJasRZUNE=",
@@ -96,19 +79,19 @@ export default nix.lambda((args) => (() => {
           ]),
           "aarch32-linux": nix.thunk(() => [
             nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 name: "alsa",
                 url: nix.thunk(() => nix.str`https://download.thimeo.com/stereo_tool_gui_pi2_${versionNoPoint}`),
                 hash: "sha256-ryw4m08Ru2GI/Wq0UZwjmect7OAHaftfy+0J1S1bYh8=",
               })))),
             nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 name: "jack",
                 url: nix.thunk(() => nix.str`https://download.thimeo.com/stereo_tool_gui_jack_pi2_${versionNoPoint}`),
                 hash: "sha256-ryw4m08Ru2GI/Wq0UZwjmect7OAHaftfy+0J1S1bYh8=",
               })))),
             nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 name: "cmd",
                 url: nix.thunk(() => nix.str`https://download.thimeo.com/stereo_tool_pi2_${versionNoPoint}`),
                 hash: "sha256-l9VWraDHJXfNJVb8/VvHENvdknT6ccPBmt/mGlwND00=",
@@ -116,19 +99,19 @@ export default nix.lambda((args) => (() => {
           ]),
           "i686-linux": nix.thunk(() => [
             nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 name: "alsa",
                 url: nix.thunk(() => nix.str`https://download.thimeo.com/stereo_tool_gui_${versionNoPoint}`),
                 hash: "sha256-OnGn/OUkXFZ4SnmibpF/0kxeq8YZIWMMVafy6i96GeA=",
               })))),
             nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 name: "jack",
                 url: nix.thunk(() => nix.str`https://download.thimeo.com/stereo_tool_gui_jack_${versionNoPoint}`),
                 hash: "sha256-OnGn/OUkXFZ4SnmibpF/0kxeq8YZIWMMVafy6i96GeA=",
               })))),
             nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 name: "cmd",
                 url: nix.thunk(() => nix.str`https://download.thimeo.com/stereo_tool_cmd_${versionNoPoint}`),
                 hash: "sha256-GDpfSeL14XkvroIF6pm5CzNYiEz/v5uzfyjw+7K1idE=",
@@ -140,7 +123,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook, makeWrapper, copyDesktopItems]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             name: "stereotool-alsa",
             desktopName: "Stereotool-Alsa",
             exec: "stereo_tool_gui",
@@ -149,7 +132,7 @@ export default nix.lambda((args) => (() => {
             categories: nix.thunk(() => ["AudioVideo", "Audio", "AudioVideoEditing"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             name: "stereotool-jack",
             desktopName: "Stereotool-Jack",
             exec: "stereo_tool_gui_jack",
@@ -170,7 +153,7 @@ cp stereo-tool-icon.png $out/share/icons/hicolor/48x48/apps/stereo-tool-icon.png
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         homepage: "https://www.thimeo.com/stereo-tool/",
         description: "Stereo Tool is a software-based audio processor which offers outstanding audio quality and comes with many unique features",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -182,7 +165,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         pname,
         version,
         srcs,

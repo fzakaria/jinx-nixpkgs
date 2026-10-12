@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]], [["description", 34, 5], ["mainProgram", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 18, 3], ["nativeCheckInputs", 20, 3], ["dontUseCargoParallelTests", 25, 3], ["postgresqlTestSetupPost", 27, 3], ["postgresqlTestUserOptions", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, postgresqlTestHook: false, postgresql: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["mainProgram", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 18, 3], ["nativeCheckInputs", 20, 3], ["dontUseCargoParallelTests", 25, 3], ["postgresqlTestSetupPost", 27, 3], ["postgresqlTestUserOptions", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestHook = nix.arg($, "postgresqlTestHook");
   const postgresql = nix.arg($, "postgresql");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "reshape",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-viS//3ZFqogI0BbZ0rypo5zpQUgqKiLgK585iw3BMgM=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postgresqlTestSetupPost: "export POSTGRES_CONNECTION_STRING=\"user=$PGUSER dbname=$PGDATABASE host=$PGHOST\"\n",
       postgresqlTestUserOptions: "LOGIN SUPERUSER",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Easy-to-use, zero-downtime schema migration tool for Postgres",
         mainProgram: "reshape",
         homepage: "https://github.com/fabianlindfors/reshape",

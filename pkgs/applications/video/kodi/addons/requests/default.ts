@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["attrPath", 32, 7]], [["pythonPath", 30, 5], ["updateScript", 31, 5]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["teams", 40, 5]], [["pname", 13, 3], ["namespace", 14, 3], ["version", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["passthru", 29, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, rel: false, buildKodiAddon: false, fetchzip: false, addonUpdateScript: false, certifi: false, chardet: false, idna: false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["attrPath", 32, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pythonPath", 30, 5], ["updateScript", 31, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["teams", 40, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["namespace", 14, 3], ["version", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["passthru", 29, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,25 +21,25 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.module.requests";
       const version = "2.31.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mirrors.kodi.tv/addons/${nix.app(nix.sel(lib, "toLower"), rel)}/${namespace}/${namespace}-${version}.zip`),
           sha256: "sha256-05BSD5aoN2CTnjqaSKYMb93j5nIfLvpJHyeQsK++sTw=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [certifi, chardet, idna, urllib3]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pythonPath: "lib",
-        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "kodi.packages.requests" })))),
+        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], attrPath: "kodi.packages.requests" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://python-requests.org",
         description: "Python HTTP for Humans",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         namespace,
         version,

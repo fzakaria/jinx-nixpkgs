@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]], [["yarnLock", 59, 5], ["hash", 60, 5]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5], ["platforms", 88, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 47, 3], ["yarnOfflineCache", 58, 3], ["preConfigure", 63, 3], ["mesonFlags", 69, 3], ["postPatch", 73, 3], ["postFixup", 77, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, "desktop-file-utils": false, fetchFromGitHub: false, fetchYarnDeps: false, "fixup-yarn-lock": false, gjs: false, "glib-networking": false, "gobject-introspection": false, gst_all_1: false, gtk4: false, libadwaita: false, libsoup_3: false, meson: false, ninja: false, "pkg-config": false, stdenv: false, wrapGAppsHook4: false, yarn: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 59, 5], ["hash", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5], ["platforms", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 47, 3], ["yarnOfflineCache", 58, 3], ["preConfigure", 63, 3], ["mesonFlags", 69, 3], ["postPatch", 73, 3], ["postFixup", 77, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const yarn = nix.arg($, "yarn");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sticky-notes",
       version: "0.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vixalien",
           repo: "sticky",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
         libsoup_3,
       ]),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-NDGuG2rXJH0bHsD7yQMY6HAZDkMq0j63SYVz8+X3fPQ=",
         })))),
@@ -73,7 +70,7 @@ export default nix.lambda((args) => (() => {
 `),
       postFixup: "sed -i \"1 a imports.package._findEffectiveEntryPointName = () => 'com.vixalien.sticky';\" $out/bin/.com.vixalien.sticky-wrapped\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple sticky notes app for GNOME",
         homepage: "https://github.com/vixalien/sticky",
         changelog: nix.thunk(() => nix.str`https://github.com/vixalien/sticky/releases/tag/v${nix.sel(finalAttrs, "version")}`),

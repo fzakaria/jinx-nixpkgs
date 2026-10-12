@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableJavaFX", 11, 5]], [["url", 19, 5], ["stripRoot", 20, 5], ["hash", 21, 5]], [["name", 31, 9], ["exec", 32, 9], ["icon", 33, 9], ["desktopName", 34, 9], ["genericName", 35, 9], ["comment", 36, 9], ["categories", 37, 9]], [["description", 60, 5], ["homepage", 61, 5], ["downloadPage", 62, 5], ["license", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["installPhase", 27, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, makeDesktopItem: false, makeWrapper: false, openjdk17: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableJavaFX", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 5], ["stripRoot", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 31, 9], ["exec", 32, 9], ["icon", 33, 9], ["desktopName", 34, 9], ["genericName", 35, 9], ["comment", 36, 9], ["categories", 37, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["downloadPage", 62, 5], ["license", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["installPhase", 27, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const makeWrapper = nix.arg($, "makeWrapper");
   const openjdk17 = nix.arg($, "openjdk17");
-  const jre = nix.thunk(() => nix.app(nix.sel(openjdk17, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
+  const jre = nix.thunk(() => nix.app(nix.sel(openjdk17, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableJavaFX: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ganttproject-bin",
       version: "3.3.3316",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://dl.ganttproject.biz/ganttproject-${nix.sel(finalAttrs, "version")}/ganttproject-${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-tiEq/xdC0gXiUInLS9xGR/vI/BpdSA+mSf5yukuejc4=",
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [jre]),
       installPhase: nix.thunk(() => (() => {
         const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "ganttproject",
             exec: "ganttproject",
             icon: "ganttproject",
@@ -56,7 +52,7 @@ cp -rv "${desktopItem}/share/applications" "$out/share"
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Project scheduling and management",
         homepage: "https://www.ganttproject.biz/",
         downloadPage: "https://www.ganttproject.biz/download",

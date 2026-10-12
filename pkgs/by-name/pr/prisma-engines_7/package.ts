@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["OPENSSL_NO_VENDOR", 26, 7]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["env", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["preBuild", 32, 3], ["cargoBuildFlags", 42, 3], ["doCheck", 48, 3], ["setupHook", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, openssl: false, "pkg-config": false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["env", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["preBuild", 32, 3], ["cargoBuildFlags", 42, 3], ["doCheck", 48, 3], ["setupHook", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "prisma-engines_7",
       version: "7.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "prisma",
           repo: "prisma-engines",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-GRpfrAZrpAgW06v5IaY44JguA1fGyJJ3fxC+pCfg18c=",
         })))),
       cargoHash: "sha256-zLl2ErsCTXZVShPFLH94GLJ0q2FrMnfnecnfKD7VDL4=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       preBuild: nix.thunk(() => nix.str`export OPENSSL_DIR=${nix.app(nix.sel(lib, "getDev"), openssl)}
@@ -42,7 +39,7 @@ export GIT_HASH=0000000000000000000000000000000000000000
       doCheck: false,
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Collection of engines that power the core stack for Prisma",
         homepage: "https://www.prisma.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

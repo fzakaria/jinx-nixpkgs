@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/client.nix", [[["pname", 14, 3], ["version", 15, 11], ["src", 15, 19], ["pnpmDeps", 15, 23], ["nativeBuildInputs", 17, 3], ["API_ENDPOINT", 23, 3], ["buildPhase", 25, 3], ["installPhase", 41, 3], ["meta", 48, 11]]]);
 const formals$1 = { args: { stdenv: false, src: false, version: false, meta: false, pnpmDeps: false, apiEndpoint: true, pnpmConfigHook: false, pnpm_11: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/client.nix", [["pname", 14, 3], ["version", 15, 11], ["src", 15, 19], ["pnpmDeps", 15, 23], ["nativeBuildInputs", 17, 3], ["API_ENDPOINT", 23, 3], ["buildPhase", 25, 3], ["installPhase", 41, 3], ["meta", 48, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pnpm_11 = nix.arg($, "pnpm_11");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "your_spotify_client",
       version: version,
       src: src,

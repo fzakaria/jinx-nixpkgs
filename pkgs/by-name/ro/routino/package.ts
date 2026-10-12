@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["url", 23, 7], ["sha256", 24, 7]], [["url", 27, 7], ["sha256", 28, 7]], [["CLANG", 50, 5]], [["homepage", 56, 5], ["changelog", 57, 5], ["description", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patchFlags", 20, 3], ["patches", 21, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["outputs", 44, 3], ["env", 49, 3], ["makeFlags", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, perl: false, zlib: false, bzip2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 7], ["sha256", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 27, 7], ["sha256", 28, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CLANG", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["changelog", 57, 5], ["description", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patchFlags", 20, 3], ["patches", 21, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["outputs", 44, 3], ["env", 49, 3], ["makeFlags", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const bzip2 = nix.arg($, "bzip2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "routino",
       version: "3.4.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://routino.org/download/routino-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-TroGfTLJfKk4itbpfA9aPBDUiCk2ckDXjFE3XYzBHlQ=",
         })))),
       patchFlags: nix.thunk(() => ["-p0"]),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://raw.githubusercontent.com/macports/macports-ports/18fd229516a46e7272003acbe555735b2a902db7/gis/routino/files/patch-Makefile_conf.diff",
               sha256: "1b7hpa4sizansnwwxq1c031nxwdwh71pg08jl9z9apiab8pjsn53",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://raw.githubusercontent.com/macports/macports-ports/18fd229516a46e7272003acbe555735b2a902db7/gis/routino/files/patch-src_Makefile_dylib_extension.diff",
               sha256: "1kigxcfr7977baxdsfvrw6q453cpqlzqakhj7av2agxkcvwyilpv",
             })))),
@@ -45,10 +40,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [perl]),
       buildInputs: nix.thunk(() => [zlib, bzip2]),
       outputs: nix.thunk(() => ["out", "doc"]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$4, CLANG: "1" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: $pos[3], CLANG: "1" })))),
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "http://www.routino.org/",
         changelog: "http://routino.org/software/NEWS.txt",
         description: "OpenStreetMap Routing Software",

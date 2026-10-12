@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["cmakeFlags", 40, 5]], [["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["fetchSubmodules", 74, 5], ["hash", 75, 5]], [["rev", 83, 7]], [["CXXFLAGS", 105, 5], ["GTEST_FILTER", 113, 5]], [["homepage", 185, 5], ["downloadPage", 186, 5], ["description", 187, 5], ["changelog", 188, 5], ["longDescription", 189, 5], ["license", 196, 5], ["mainProgram", 197, 5], ["platforms", 198, 5], ["maintainers", 202, 5]], [["pname", 67, 3], ["version", 68, 3], ["src", 70, 3], ["patches", 78, 3], ["postPatch", 99, 3], ["env", 104, 3], ["cmakeFlags", 116, 3], ["nativeBuildInputs", 130, 3], ["buildInputs", 136, 3], ["qtWrapperArgs", 171, 3], ["doCheck", 175, 3], ["postInstall", 178, 3], ["meta", 184, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, tracy: false, cmake: false, ninja: false, qt6: false, "aws-sdk-cpp": false, boost: false, bzip2: false, geos: false, geographiclib: false, glm: false, gtest: false, "howard-hinnant-date": false, libsm: false, libcpr: false, libGLU: false, libjpeg: false, libpng: false, libtiff: false, libzip: false, onetbb: false, openssl: false, python3: false, "range-v3": false, re2: false, spdlog: false, stb: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["cmakeFlags", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["fetchSubmodules", 74, 5], ["hash", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev", 83, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CXXFLAGS", 105, 5], ["GTEST_FILTER", 113, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 185, 5], ["downloadPage", 186, 5], ["description", 187, 5], ["changelog", 188, 5], ["longDescription", 189, 5], ["license", 196, 5], ["mainProgram", 197, 5], ["platforms", 198, 5], ["maintainers", 202, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 67, 3], ["version", 68, 3], ["src", 70, 3], ["patches", 78, 3], ["postPatch", 99, 3], ["env", 104, 3], ["cmakeFlags", 116, 3], ["nativeBuildInputs", 130, 3], ["buildInputs", 136, 3], ["qtWrapperArgs", 171, 3], ["doCheck", 175, 3], ["postInstall", 178, 3], ["meta", 184, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const stb = nix.arg($, "stb");
   const zlib = nix.arg($, "zlib");
   const libtiffWithCxx = nix.thunk(() => nix.app(nix.sel(libtiff, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "cmakeFlags"), ["-Dcxx=ON"])),
     })));
   const gtestSkip = nix.thunk(() => [
@@ -65,11 +60,11 @@ export default nix.lambda((args) => (() => {
     "MarkerModelTest.*",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "supercell-wx",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "dpaulat",
           repo: "supercell-wx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-release`),
@@ -78,7 +73,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./patches/use-find-package.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/skip-git-versioning.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, rev: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/skip-git-versioning.patch"), nix.thunk(() => ({ [nix.POS]: $pos[2], rev: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")) })))),
         nix.path(here, "./patches/fix-cmake-install.patch"),
         nix.path(here, "./patches/libtiff-cxx.patch"),
         nix.path(here, "./patches/explicit-link-aws-crt.patch"),
@@ -87,7 +82,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace external/maplibre-native-qt/src/core/CMakeLists.txt \\\n  --replace-fail \"CMAKE_SOURCE_DIR\" \"PROJECT_SOURCE_DIR\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         CXXFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
             "-Wno-error=deprecated-declarations",
             "-Wno-error=free-nonheap-object",
@@ -143,7 +138,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postInstall: "install -m0644 -D \"$src/scwx-qt/res/linux/supercell-wx.desktop\" \"$out/share/applications/supercell-wx.desktop\"\ninstall -m0644 -D \"$src/scwx-qt/res/icons/scwx-256.png\"  \"$out/share/icons/hicolor/256x256/apps/supercell-wx.png\"\ninstall -m0644 -D \"$src/scwx-qt/res/icons/scwx-64.png\"  \"$out/share/icons/hicolor/64x64/apps/supercell-wx.png\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://supercellwx.net/",
         downloadPage: "https://github.com/dpaulat/supercell-wx/releases",
         description: "Live visualization of NEXRAD weather data and alerts",

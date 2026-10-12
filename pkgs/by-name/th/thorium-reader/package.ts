@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 46, 7]], [["name", 83, 7], ["desktopName", 84, 7], ["exec", 85, 7], ["terminal", 86, 7], ["type", 87, 7], ["icon", 88, 7], ["startupWMClass", 89, 7], ["mimeTypes", 90, 7], ["comment", 101, 7], ["categories", 102, 7]], [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 114, 5], ["mainProgram", 115, 5]], [["pname", 16, 3], ["version", 17, 3], ["nodejs", 18, 3], ["npmDepsHash", 19, 3], ["makeCacheWritable", 20, 3], ["src", 22, 3], ["patches", 34, 3], ["postBuild", 36, 3], ["env", 46, 3], ["nativeBuildInputs", 52, 3], ["postInstall", 63, 3], ["desktopItems", 81, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, nodejs_24: false, makeShellWrapper: false, makeBinaryWrapper: false, electron: false, copyDesktopItems: false, makeDesktopItem: false, desktopToDarwinBundle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 83, 7], ["desktopName", 84, 7], ["exec", 85, 7], ["terminal", 86, 7], ["type", 87, 7], ["icon", 88, 7], ["startupWMClass", 89, 7], ["mimeTypes", 90, 7], ["comment", 101, 7], ["categories", 102, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 114, 5], ["mainProgram", 115, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["nodejs", 18, 3], ["npmDepsHash", 19, 3], ["makeCacheWritable", 20, 3], ["src", 22, 3], ["patches", 34, 3], ["postBuild", 36, 3], ["env", 46, 3], ["nativeBuildInputs", 52, 3], ["postInstall", 63, 3], ["desktopItems", 81, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "thorium-reader",
       version: "3.4.0",
       nodejs: nodejs_24,
       npmDepsHash: "sha256-IwdU77fRJJ7Ch5rWop3lFpf14XHklFDa8w6YJCFtJRU=",
       makeCacheWritable: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "edrlab",
           repo: "thorium-reader",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./remove-dist-npm-install.patch")]),
       postBuild: "# copy node modules manually\ncp -r node_modules dist/node_modules\n\n# remove unnecessary npm deps\npushd dist\nnpm prune --production --ignore-scripts --offline --no-audit --no-fund\npopd\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       nativeBuildInputs: nix.thunk(() => nix.concat([copyDesktopItems], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [makeShellWrapper])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [makeBinaryWrapper, desktopToDarwinBundle]))))),
       postInstall: nix.thunk(() => (() => {
         const ozoneFlags = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "--add-flags \"\\${NIXOS_OZONE_WL:+\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}\""));
@@ -55,7 +51,7 @@ ${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "makeBinaryWrapper"
       })()),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "thorium-reader",
             desktopName: "Thorium",
             exec: "thorium-reader %u",
@@ -79,7 +75,7 @@ ${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "makeBinaryWrapper"
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "EPUB reader",
         homepage: "https://www.edrlab.org/software/thorium-reader/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

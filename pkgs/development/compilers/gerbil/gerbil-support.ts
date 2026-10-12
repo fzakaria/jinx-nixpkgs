@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gerbil-support.nix", [[["name", 54, 5], ["value", 55, 5]], [["gerbil", 76, 5], ["gambit-params", 77, 5], ["gerbilPackages", 78, 5], ["git-version", 79, 5], ["version-path", 80, 5], ["gerbilInputs", 81, 5], ["nativeBuildInputs", 82, 5], ["buildInputs", 83, 5], ["buildScript", 84, 5], ["postInstall", 85, 5], ["softwareName", 86, 5]], [["version", 106, 9], ["git-version", 107, 9]], [["version", 111, 9], ["git-version", 112, 9]], [["fun", 142, 22]], [["pre-src", 159, 11], ["version", 160, 11], ["git-version", 161, 11]], [["prePackages-unstable", 168, 9]], [["gerbil-support", 166, 5]], [["pre-pkg", 209, 17]], [["meta", 202, 9], ["pname", 203, 9], ["version", 204, 9], ["nativeBuildInputs", 205, 9], ["postInstall", 206, 9], ["passthru", 208, 7], ["src", 211, 7], ["buildInputs", 212, 7], ["postPatch", 214, 7], ["postConfigure", 232, 7], ["buildPhase", 239, 7], ["installPhase", 245, 7], ["dontFixup", 263, 7], ["checkPhase", 265, 7], ["doCheck", 277, 7]], [["pppToName", 51, 3], ["callPpp", 52, 3], ["pppToKV", 53, 3], ["ppplToPpa", 57, 3], ["prePackages-unstable", 59, 3], ["prePackage-defaults", 75, 3], ["ppaToPl", 89, 3], ["gerbilPackages-unstable", 90, 3], ["resolve-pre-src", 92, 3], ["gerbilVersionFromGit", 94, 3], ["gerbilSkippableFiles", 119, 3], ["gerbilSourceFilter", 130, 3], ["gerbilFilterSource", 137, 3], ["gerbilLoadPath", 140, 3], ["path-src", 142, 3], ["view", 144, 3], ["sha256-of-pre-src", 146, 3], ["overrideSrcIfShaDiff", 148, 3], ["pkgsOverrideGerbilPackageSrc", 165, 3], ["gerbilPackage", 176, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, callPackage: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gerbil-support.nix", [["name", 54, 5], ["value", 55, 5]]);
-const pos$2 = nix.positions(here + "/gerbil-support.nix", [["gerbil", 76, 5], ["gambit-params", 77, 5], ["gerbilPackages", 78, 5], ["git-version", 79, 5], ["version-path", 80, 5], ["gerbilInputs", 81, 5], ["nativeBuildInputs", 82, 5], ["buildInputs", 83, 5], ["buildScript", 84, 5], ["postInstall", 85, 5], ["softwareName", 86, 5]]);
-const pos$3 = nix.positions(here + "/gerbil-support.nix", [["version", 106, 9], ["git-version", 107, 9]]);
-const pos$4 = nix.positions(here + "/gerbil-support.nix", [["version", 111, 9], ["git-version", 112, 9]]);
-const pos$5 = nix.positions(here + "/gerbil-support.nix", [["fun", 142, 22]]);
-const pos$6 = nix.positions(here + "/gerbil-support.nix", [["pre-src", 159, 11], ["version", 160, 11], ["git-version", 161, 11]]);
-const pos$7 = nix.positions(here + "/gerbil-support.nix", [["prePackages-unstable", 168, 9]]);
-const pos$8 = nix.positions(here + "/gerbil-support.nix", [["gerbil-support", 166, 5]]);
-const pos$9 = nix.positions(here + "/gerbil-support.nix", [["pre-pkg", 209, 17]]);
-const pos$10 = nix.positions(here + "/gerbil-support.nix", [["meta", 202, 9], ["pname", 203, 9], ["version", 204, 9], ["nativeBuildInputs", 205, 9], ["postInstall", 206, 9], ["passthru", 208, 7], ["src", 211, 7], ["buildInputs", 212, 7], ["postPatch", 214, 7], ["postConfigure", 232, 7], ["buildPhase", 239, 7], ["installPhase", 245, 7], ["dontFixup", 263, 7], ["checkPhase", 265, 7], ["doCheck", 277, 7]]);
-const pos$11 = nix.positions(here + "/gerbil-support.nix", [["pppToName", 51, 3], ["callPpp", 52, 3], ["pppToKV", 53, 3], ["ppplToPpa", 57, 3], ["prePackages-unstable", 59, 3], ["prePackage-defaults", 75, 3], ["ppaToPl", 89, 3], ["gerbilPackages-unstable", 90, 3], ["resolve-pre-src", 92, 3], ["gerbilVersionFromGit", 94, 3], ["gerbilSkippableFiles", 119, 3], ["gerbilSourceFilter", 130, 3], ["gerbilFilterSource", 137, 3], ["gerbilLoadPath", 140, 3], ["path-src", 142, 3], ["view", 144, 3], ["sha256-of-pre-src", 146, 3], ["overrideSrcIfShaDiff", 148, 3], ["pkgsOverrideGerbilPackageSrc", 165, 3], ["gerbilPackage", 176, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const sha256_of_pre_src = nix.thunk(() => nix.attr(from_1, "sha256-of-pre-src"));
   const view = nix.thunk(() => nix.attr(from_1, "view"));
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     pppToName: (ppp) => nix.app(removeSuffix, ".nix", nix.thunk(() => nix.builtins.baseNameOf(ppp))),
     callPpp: (ppp) => nix.app(callPackage, ppp, prePackage_defaults),
     pppToKV: (ppp) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.app(pppToName, ppp)),
       value: nix.thunk(() => nix.app(callPpp, ppp)),
     }),
@@ -78,7 +68,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./glow-lang.nix"),
       ]))),
     "prePackage-defaults": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       gerbil: nix.thunk(() => nix.sel(pkgs, "gerbil-unstable")),
       "gambit-params": nix.thunk(() => nix.sel(pkgs, "gambit-support", "unstable-params")),
       gerbilPackages: gerbilPackages_unstable,
@@ -99,12 +89,12 @@ export default nix.lambda((args) => (() => {
       return (nix.asBool(nix.app(pathExists, version_file)) ? (() => {
         const m = nix.thunk(() => nix.app(match, "\\(import :clan/versioning.*\\)\n\\(register-software \"([-_.A-Za-z0-9]+)\" \"([-_.A-Za-z0-9]+)\"\\) ;; ([-0-9]+)\n", nix.thunk(() => nix.app(readFile, version_file))));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.str`${nix.app(elemAt, m, 2n)}-git`),
           "git-version": nix.thunk(() => nix.app(elemAt, m, 1n)),
         };
       })() : {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: "0.0-git",
         "git-version": nix.thunk(() => (() => {
           const gitpath = nix.thunk(() => nix.str`${srcDir}/.git`);
@@ -128,7 +118,7 @@ export default nix.lambda((args) => (() => {
     })(),
     gerbilFilterSource: nix.thunk(() => nix.app(filterSource, gerbilSourceFilter)),
     gerbilLoadPath: (gerbilInputs) => nix.app(concatStringsSep, ":", nix.thunk(() => nix.builtins.map((x) => nix.add(x, "/gerbil/lib"), gerbilInputs))),
-    "path-src": (path) => ({ [nix.POS]: pos$5, fun: (_) => nix.force(path) }),
+    "path-src": (path) => ({ [nix.POS]: $pos[4], fun: (_) => nix.force(path) }),
     view: nix.thunk(() => nix.app(traceSeqN, 4n)),
     "sha256-of-pre-src": (pre_src) => (nix.asBool(nix.has(pre_src, "sha256")) ? nix.sel(pre_src, "sha256") : "none"),
     overrideSrcIfShaDiff: (name) => (new_pre_src) => (super$) => (() => {
@@ -136,7 +126,7 @@ export default nix.lambda((args) => (() => {
       const new_sha256 = nix.thunk(() => nix.app(sha256_of_pre_src, new_pre_src));
       return (nix.asBool(nix.eq(old_sha256, new_sha256)) ? {} : nix.app(view, nix.thunk(() => nix.str`Overriding ${name} old-sha256: ${old_sha256} new-sha256: ${new_sha256}`), nix.thunk(() => nix.attrsDyn({}, [
           [nix.force(name), nix.thunk(() => nix.update(nix.sel(super$, nix.key(nix.force(name))), {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "pre-src": new_pre_src,
             version: "override",
             "git-version": nix.thunk(() => (nix.asBool(nix.has(new_pre_src, "rev")) ? nix.app(substring, 0n, 7n, nix.thunk(() => nix.sel(new_pre_src, "rev"))) : "unknown")),
@@ -144,9 +134,9 @@ export default nix.lambda((args) => (() => {
         ]))));
     })(),
     pkgsOverrideGerbilPackageSrc: (name) => (pre_src) => (pkgs_1) => (super$) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       "gerbil-support": nix.thunk(() => nix.app((super_support) => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         "prePackages-unstable": nix.thunk(() => nix.app((super_ppu) => nix.update(super_ppu, nix.app(overrideSrcIfShaDiff, name, pre_src, super_ppu)), nix.thunk(() => nix.sel(super_support, "prePackages-unstable")))),
       }), nix.thunk(() => nix.sel(super$, "gerbil-support")))),
     }),
@@ -174,7 +164,7 @@ export default nix.lambda((args) => (() => {
           const version_1 = version;
           const nativeBuildInputs_1 = nativeBuildInputs;
           const postInstall_1 = postInstall;
-          const passthru = nix.thunk(() => ({ [nix.POS]: pos$9, "pre-pkg": pre_pkg }));
+          const passthru = nix.thunk(() => ({ [nix.POS]: $pos[8], "pre-pkg": pre_pkg }));
           const src = nix.thunk(() => nix.app(resolve_pre_src, pre_src));
           const buildInputs_1 = nix.thunk(() => nix.concat([gerbil], nix.concat(gerbilInputs, buildInputs_)));
           const postPatch = nix.thunk(() => nix.str`set -e ;
@@ -207,7 +197,7 @@ runHook postCheck
 `);
           const doCheck = true;
           return {
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             meta: meta_1,
             pname: pname_1,
             version: version_1,

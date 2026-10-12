@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ounit.nix", [[["pname", 8, 3], ["src", 10, 19], ["version", 10, 23], ["meta", 10, 31], ["propagatedBuildInputs", 12, 3], ["doCheck", 17, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, junit: false, ounit2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ounit.nix", [["pname", 8, 3], ["src", 10, 19], ["version", 10, 23], ["meta", 10, 31], ["propagatedBuildInputs", 12, 3], ["doCheck", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const junit = nix.arg($, "junit");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "junit_ounit",
       src: nix.thunk(() => nix.attr(junit, "src")),
       version: nix.thunk(() => nix.attr(junit, "version")),

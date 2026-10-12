@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["rev-prefix", 86, 40]], [["updateScript", 86, 12]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["mainProgram", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 46, 3], ["configureFlags", 48, 3], ["enableParallelBuilding", 60, 3], ["makeFlags", 62, 3], ["doInstallCheck", 67, 3], ["nativeInstallCheckInputs", 69, 3], ["postInstall", 76, 3], ["installCheckPhase", 80, 3], ["passthru", 86, 3], ["__structuredAttrs", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, darwin: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, kyua: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 86, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 86, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["mainProgram", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 46, 3], ["configureFlags", 48, 3], ["enableParallelBuilding", 60, 3], ["makeFlags", 62, 3], ["doInstallCheck", 67, 3], ["nativeInstallCheckInputs", 69, 3], ["postInstall", 76, 3], ["installCheckPhase", 80, 3], ["passthru", 86, 3], ["__structuredAttrs", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const stdenv$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.sel(darwin, "bootstrapStdenv") : nix.force(stdenv)));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "atf",
       version: "0.23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "freebsd",
           repo: "atf",
           tag: nix.thunk(() => nix.str`atf-${nix.sel(finalAttrs, "version")}`),
@@ -48,12 +44,12 @@ export default nix.lambda((args) => (() => {
       postInstall: "rm -r $out/tests\n",
       installCheckPhase: "runHook preInstallCheck\nHOME=$TMPDIR PATH=$out/bin:$PATH kyua test\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "atf-" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "atf-" })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Libraries to write tests in C, C++, and shell",
         homepage: "https://github.com/freebsd/atf/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

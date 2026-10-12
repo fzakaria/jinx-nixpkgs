@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["homepage", 41, 5], ["description", 42, 5], ["mainProgram", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 12, 3], ["version", 13, 3], ["rev", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["unpackCmd", 29, 3], ["installPhase", 34, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, perl: false, perlPackages: false, bluez: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["mainProgram", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["rev", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["unpackCmd", 29, 3], ["installPhase", 34, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2017-02-19";
       const rev = "2d8b34402df01c6f7f4b8622de9e8b82fadf4153";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/winterheart/broadcom-bt-firmware/${rev}/tools/bt-fw-converter.pl`),
           sha256: "c259b414a4a273c89a0fa7159b3ef73d1ea62b6de91c3a7c2fcc832868e39f4b",
         }))));
@@ -35,7 +33,7 @@ substituteInPlace $out/bin/bt-fw-converter --replace /usr/bin/hex2hcd ${bluez}/b
 wrapProgram $out/bin/bt-fw-converter --set PERL5LIB $PERL5LIB
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/winterheart/broadcom-bt-firmware/",
         description: "Tool that converts hex to hcd based on inf file",
         mainProgram: "bt-fw-converter",
@@ -47,7 +45,7 @@ wrapProgram $out/bin/bt-fw-converter --set PERL5LIB $PERL5LIB
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         rev,

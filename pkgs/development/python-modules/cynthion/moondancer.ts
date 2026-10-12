@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/moondancer.nix", [[["rustcTarget", 14, 12]], [["rust", 14, 7]], [["localSystem", 12, 5], ["crossSystem", 13, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5]], [["pname", 21, 3], ["version", 23, 11], ["src", 23, 19], ["sourceRoot", 25, 3], ["cargoHash", 27, 3], ["auditable", 30, 3], ["nativeBuildInputs", 32, 3], ["RUSTFLAGS", 38, 3], ["postInstall", 42, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, src: false, version: false, stdenv: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/moondancer.nix", [["rustcTarget", 14, 12]]);
-const pos$2 = nix.positions(here + "/moondancer.nix", [["rust", 14, 7]]);
-const pos$3 = nix.positions(here + "/moondancer.nix", [["localSystem", 12, 5], ["crossSystem", 13, 5]]);
-const pos$4 = nix.positions(here + "/moondancer.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5]]);
-const pos$5 = nix.positions(here + "/moondancer.nix", [["pname", 21, 3], ["version", 23, 11], ["src", 23, 19], ["sourceRoot", 25, 3], ["cargoHash", 27, 3], ["auditable", 30, 3], ["nativeBuildInputs", 32, 3], ["RUSTFLAGS", 38, 3], ["postInstall", 42, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const llvmPackages = nix.arg($, "llvmPackages");
   const cross = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       localSystem: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")),
       crossSystem: nix.thunk(() => nix.update(nix.sel(lib, "systems", "examples", "riscv32-embedded"), {
-        [nix.POS]: pos$2,
-        rust: nix.thunk(() => ({ [nix.POS]: pos$1, rustcTarget: "riscv32imac-unknown-none-elf" })),
+        [nix.POS]: $pos[1],
+        rust: nix.thunk(() => ({ [nix.POS]: $pos[0], rustcTarget: "riscv32imac-unknown-none-elf" })),
       })),
     }))));
   const rustPlatform = nix.thunk(() => nix.attr(cross, "rustPlatform"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "moondancer",
       version: version,
       src: src,
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       RUSTFLAGS: "-C linker=lld -C link-arg=-Tmemory.x -C link-arg=-Tlink.x -C link-dead-code",
       postInstall: "llvm-objcopy -O binary \\\n  $out/bin/moondancer \\\n  $out/bin/moondancer.bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Moondancer SoC firmware for the Great Scott Gadgets Cynthion",
         homepage: "https://github.com/greatscottgadgets/cynthion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

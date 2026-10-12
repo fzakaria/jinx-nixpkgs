@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin.nix", [[["url", 18, 5], ["hash", 19, 5]], [["updateScript", 38, 12]], [["platforms", 57, 5], ["sourceProvenance", 60, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["sourceRoot", 25, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["passthru", 38, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, meta: false, stdenvNoCC: false, _7zz: false, fetchurl: false, writeShellScript: false, coreutils: false, curl: false, xmlstarlet: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/darwin.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/darwin.nix", [["updateScript", 38, 12]]);
-const pos$3 = nix.positions(here + "/darwin.nix", [["platforms", 57, 5], ["sourceProvenance", 60, 5]]);
-const pos$4 = nix.positions(here + "/darwin.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["sourceRoot", 25, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["passthru", 38, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const xmlstarlet = nix.arg($, "xmlstarlet");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "proton-vpn",
       version: "6.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://protonvpn.com/download/macos/${nix.sel(finalAttrs, "version")}/ProtonVPN_mac_v${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-1QpJ8UxQsO+K1oqJ/JaF1WmbotT5LLTDQxcpG0JUNfg=",
         })))),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [_7zz]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -R ./ProtonVPN/ProtonVPN.app $out/Applications\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "proton-vpn-update-script", nix.thunk(() => nix.str`set -euo pipefail
 export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, xmlstarlet, common_updater_scripts, coreutils]))}"
 
@@ -47,7 +44,7 @@ update-source-version proton-vpn "$version" --file=./pkgs/by-name/pr/proton-vpn/
 `))),
       })),
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         platforms: nix.thunk(() => ["aarch64-darwin"]),
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

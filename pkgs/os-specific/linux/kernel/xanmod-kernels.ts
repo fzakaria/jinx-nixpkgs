@@ -2,19 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/xanmod-kernels.nix", [[["version", 18, 7], ["hash", 19, 7], ["isLTS", 20, 7]], [["version", 24, 7], ["hash", 25, 7]], [["lts", 17, 5], ["main", 23, 5]], [["owner", 46, 11], ["repo", 47, 11], ["rev", 48, 11], ["hash", 49, 19]], [["CPU_FREQ_DEFAULT_GOV_PERFORMANCE", 56, 13], ["CPU_FREQ_DEFAULT_GOV_SCHEDUTIL", 57, 13], ["PREEMPT", 60, 13], ["TCP_CONG_BBR", 63, 13], ["DEFAULT_BBR", 64, 13], ["HZ", 67, 13], ["HZ_250", 68, 13], ["NO_HZ", 69, 13], ["NO_HZ_FULL", 70, 13], ["NO_HZ_IDLE", 71, 13], ["CPU_IDLE_GOV_HALTPOLL", 74, 13], ["CPU_IDLE_GOV_LADDER", 75, 13], ["CPU_IDLE_GOV_TEO", 76, 13], ["RCU_EXPERT", 79, 13], ["RCU_FANOUT", 80, 13], ["RCU_FANOUT_LEAF", 81, 13], ["RCU_BOOST", 82, 13], ["RCU_BOOST_DELAY", 83, 13], ["RCU_EXP_KTHREAD", 84, 13], ["RCU_NOCB_CPU", 85, 13], ["RCU_DOUBLE_CHECK_CB_TIME", 86, 13], ["X86_FRED", 89, 13], ["X86_POSTED_MSI", 90, 13]], [["PREEMPT_VOLUNTARY", 93, 13]], [["PREEMPT", 97, 13], ["PREEMPT_LAZY", 98, 13]], [["command", 102, 11], ["supportedFeatures", 106, 11]], [["updateScript", 101, 23]], [["branch", 114, 11], ["maintainers", 115, 11], ["teams", 122, 11], ["description", 123, 11], ["broken", 124, 11]], [["version", 41, 17], ["pname", 42, 9], ["modDirVersion", 43, 9], ["src", 45, 9], ["structuredExtraConfig", 52, 9], ["extraPassthru", 101, 9], ["isLTS", 111, 17], ["extraMeta", 113, 9]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, buildLinux: false, variant: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/xanmod-kernels.nix", [["version", 18, 7], ["hash", 19, 7], ["isLTS", 20, 7]]);
-const pos$2 = nix.positions(here + "/xanmod-kernels.nix", [["version", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/xanmod-kernels.nix", [["lts", 17, 5], ["main", 23, 5]]);
 const formals$2 = { args: { version: false, suffix: true, hash: false, isLTS: true }, ellipsis: false };
-const pos$4 = nix.positions(here + "/xanmod-kernels.nix", [["owner", 46, 11], ["repo", 47, 11], ["rev", 48, 11], ["hash", 49, 19]]);
-const pos$5 = nix.positions(here + "/xanmod-kernels.nix", [["CPU_FREQ_DEFAULT_GOV_PERFORMANCE", 56, 13], ["CPU_FREQ_DEFAULT_GOV_SCHEDUTIL", 57, 13], ["PREEMPT", 60, 13], ["TCP_CONG_BBR", 63, 13], ["DEFAULT_BBR", 64, 13], ["HZ", 67, 13], ["HZ_250", 68, 13], ["NO_HZ", 69, 13], ["NO_HZ_FULL", 70, 13], ["NO_HZ_IDLE", 71, 13], ["CPU_IDLE_GOV_HALTPOLL", 74, 13], ["CPU_IDLE_GOV_LADDER", 75, 13], ["CPU_IDLE_GOV_TEO", 76, 13], ["RCU_EXPERT", 79, 13], ["RCU_FANOUT", 80, 13], ["RCU_FANOUT_LEAF", 81, 13], ["RCU_BOOST", 82, 13], ["RCU_BOOST_DELAY", 83, 13], ["RCU_EXP_KTHREAD", 84, 13], ["RCU_NOCB_CPU", 85, 13], ["RCU_DOUBLE_CHECK_CB_TIME", 86, 13], ["X86_FRED", 89, 13], ["X86_POSTED_MSI", 90, 13]]);
-const pos$6 = nix.positions(here + "/xanmod-kernels.nix", [["PREEMPT_VOLUNTARY", 93, 13]]);
-const pos$7 = nix.positions(here + "/xanmod-kernels.nix", [["PREEMPT", 97, 13], ["PREEMPT_LAZY", 98, 13]]);
-const pos$8 = nix.positions(here + "/xanmod-kernels.nix", [["command", 102, 11], ["supportedFeatures", 106, 11]]);
-const pos$9 = nix.positions(here + "/xanmod-kernels.nix", [["updateScript", 101, 23]]);
-const pos$10 = nix.positions(here + "/xanmod-kernels.nix", [["branch", 114, 11], ["maintainers", 115, 11], ["teams", 122, 11], ["description", 123, 11], ["broken", 124, 11]]);
-const pos$11 = nix.positions(here + "/xanmod-kernels.nix", [["version", 41, 17], ["pname", 42, 9], ["modDirVersion", 43, 9], ["src", 45, 9], ["structuredExtraConfig", 52, 9], ["extraPassthru", 101, 9], ["isLTS", 111, 17], ["extraMeta", 113, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,15 +15,15 @@ export default nix.lambda((args) => (() => {
   const buildLinux = nix.arg($, "buildLinux");
   const variant = nix.arg($, "variant");
   const variants = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     lts: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "6.18.55",
       hash: "sha256-iaXQh/16QepauEYqDTrDpb2nR/pYpXVFbjAh4PFbf4Q=",
       isLTS: true,
     })),
     main: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "7.2.9",
       hash: "sha256-BQU4U4YdDVxUGasAiCgoZ7jWMkPcTfkHDiimyKIhwQ4=",
     })),
@@ -49,7 +39,7 @@ export default nix.lambda((args) => (() => {
         const pname = "linux-xanmod";
         const modDirVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "pad"), 3n, nix.thunk(() => nix.str`${version_1}-${suffix}`)));
         const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             owner: "xanmod",
             repo: "linux",
             rev: modDirVersion,
@@ -58,7 +48,7 @@ export default nix.lambda((args) => (() => {
         const structuredExtraConfig = nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "kernel")), null);
           return nix.update({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             CPU_FREQ_DEFAULT_GOV_PERFORMANCE: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 60n, nix.thunk(() => nix.lookup(w, "yes")))),
             CPU_FREQ_DEFAULT_GOV_SCHEDUTIL: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 60n, nix.thunk(() => nix.lookup(w, "no")))),
             PREEMPT: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 60n, nix.thunk(() => nix.lookup(w, "yes")))),
@@ -83,25 +73,25 @@ export default nix.lambda((args) => (() => {
             X86_FRED: nix.thunk(() => nix.lookup(w, "yes")),
             X86_POSTED_MSI: nix.thunk(() => nix.lookup(w, "yes")),
           }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version_1)), "7.0")), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               PREEMPT_VOLUNTARY: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 60n, nix.thunk(() => nix.lookup(w, "no")))),
             }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version_1)), "6.13")), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               PREEMPT: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 70n, nix.thunk(() => nix.lookup(w, "no")))),
               PREEMPT_LAZY: nix.thunk(() => nix.lookup(w, "yes")),
             })))));
         })());
         const extraPassthru = nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           updateScript: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             command: nix.thunk(() => [nix.path(here, "./update-xanmod.sh"), variant]),
             supportedFeatures: nix.thunk(() => ["commit"]),
           })),
         }));
         const isLTS_1 = isLTS;
         const extraMeta = nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           branch: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version_1)),
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -118,7 +108,7 @@ export default nix.lambda((args) => (() => {
           broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")),
         }));
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           version: version_1,
           pname,
           modDirVersion,

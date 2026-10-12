@@ -2,39 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nexus.nix", [[["maintainers", 10, 5]], [["memorySize", 18, 24], ["diskSize", 19, 24]], [["enable", 21, 24]], [["nexus", 21, 18]], [["virtualisation", 18, 9], ["services", 21, 9]], [["server", 15, 5]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 13, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nexus.nix", [["maintainers", 10, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/nexus.nix", [["memorySize", 18, 24], ["diskSize", 19, 24]]);
-const pos$3 = nix.positions(here + "/nexus.nix", [["enable", 21, 24]]);
-const pos$4 = nix.positions(here + "/nexus.nix", [["nexus", 21, 18]]);
-const pos$5 = nix.positions(here + "/nexus.nix", [["virtualisation", 18, 9], ["services", 21, 9]]);
-const pos$6 = nix.positions(here + "/nexus.nix", [["server", 15, 5]]);
-const pos$7 = nix.positions(here + "/nexus.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 13, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "nexus",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "ironpinguin"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$5,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2047n, diskSize: 8192n })),
+          [nix.POS]: $pos[4],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 2047n, diskSize: 8192n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            nexus: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[3],
+            nexus: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           })),
         };
       })(), formals$2),

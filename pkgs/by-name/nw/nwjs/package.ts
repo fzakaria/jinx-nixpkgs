@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 64, 5], ["paths", 65, 5], ["extraOutputsToInstall", 108, 5]], [["makeWrapper", 137, 46]], [["url", 185, 11], ["hash", 186, 11]], [["url", 189, 11], ["hash", 190, 11]], [["url", 193, 11], ["hash", 194, 11]], [["url", 197, 11], ["hash", 198, 11]], [["normal-arm64", 184, 9], ["normal-x64", 188, 9], ["sdk-arm64", 192, 9], ["sdk-x64", 196, 9]], [["name", 203, 7], ["runtimeInputs", 204, 7], ["text", 209, 7]], [["srcs", 175, 5], ["updateScript", 202, 5]], [["description", 224, 5], ["homepage", 225, 5], ["platforms", 226, 5], ["changelog", 230, 5], ["sourceProvenance", 231, 5], ["maintainers", 232, 5], ["mainProgram", 236, 5], ["license", 237, 5]], [["pname", 116, 3], ["version", 117, 3], ["src", 119, 3], ["nativeBuildInputs", 133, 3], ["buildInputs", 140, 3], ["appendRunpaths", 144, 3], ["preFixup", 150, 3], ["installPhase", 156, 3], ["passthru", 174, 3], ["meta", 223, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, buildPackages: false, "alsa-lib": false, "at-spi2-core": false, atk: false, buildEnv: false, cairo: false, cups: false, dbus: false, expat: false, ffmpeg: false, fontconfig: false, freetype: false, "gdk-pixbuf": false, glib: false, gtk3: false, libGL: false, libcap: false, libdrm: false, libgbm: false, libnotify: false, libuuid: false, libx11: false, libxcb: false, libxcomposite: false, libxcursor: false, libxdamage: false, libxext: false, libxfixes: false, libxi: false, libxkbcommon: false, libxrandr: false, libxrender: false, libxscrnsaver: false, libxshmfence: false, libxtst: false, nspr: false, nss: false, pango: false, sqlite: false, systemd: false, udev: false, writeShellApplication: false, "common-updater-scripts": false, curl: false, jq: false, sdk: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 64, 5], ["paths", 65, 5], ["extraOutputsToInstall", 108, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["makeWrapper", 137, 46]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 185, 11], ["hash", 186, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 189, 11], ["hash", 190, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 193, 11], ["hash", 194, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 197, 11], ["hash", 198, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["normal-arm64", 184, 9], ["normal-x64", 188, 9], ["sdk-arm64", 192, 9], ["sdk-x64", 196, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 203, 7], ["runtimeInputs", 204, 7], ["text", 209, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["srcs", 175, 5], ["updateScript", 202, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 224, 5], ["homepage", 225, 5], ["platforms", 226, 5], ["changelog", 230, 5], ["sourceProvenance", 231, 5], ["maintainers", 232, 5], ["mainProgram", 236, 5], ["license", 237, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 116, 3], ["version", 117, 3], ["src", 119, 3], ["nativeBuildInputs", 133, 3], ["buildInputs", 140, 3], ["appendRunpaths", 144, 3], ["preFixup", 150, 3], ["installPhase", 156, 3], ["passthru", 174, 3], ["meta", 223, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -68,7 +58,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const sdk = nix.argOr($, "sdk", () => false);
   const nwEnv = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "nwjs-env",
       paths: nix.thunk(() => [
         alsa_lib,
@@ -113,7 +103,7 @@ export default nix.lambda((args) => (() => {
       extraOutputsToInstall: nix.thunk(() => ["lib", "out"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "nwjs",
       version: "0.117.0",
       src: nix.thunk(() => (() => {
@@ -124,7 +114,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [
         autoPatchelfHook,
         nix.thunk(() => nix.app(nix.sel(buildPackages, "wrapGAppsHook3", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             makeWrapper: nix.thunk(() => nix.sel(buildPackages, "makeShellWrapper")),
           })))),
       ]),
@@ -152,35 +142,35 @@ ln -s $out/share/nwjs/lib/libnw.so $out/lib/libnw.so
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         srcs: nix.thunk(() => (() => {
           const mkUrl = (flavor) => (arch) => nix.str`https://dl.nwjs.io/v${nix.sel(finalAttrs, "version")}/nwjs-${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(flavor, "sdk")), "sdk-")}v${nix.sel(finalAttrs, "version")}-linux-${arch}.tar.gz`;
           return {
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             "normal-arm64": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 url: nix.thunk(() => nix.app(mkUrl, "normal", "arm64")),
                 hash: "sha256-fYzBiRradqodDhIeI3rXYnGC/W/VrpKsLiuvtwiWL5w=",
               })))),
             "normal-x64": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 url: nix.thunk(() => nix.app(mkUrl, "normal", "x64")),
                 hash: "sha256-KIHtHzqQMdWNj6DwcU0L2se0XVK97Alc1yqk8x4I3r8=",
               })))),
             "sdk-arm64": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 url: nix.thunk(() => nix.app(mkUrl, "sdk", "arm64")),
                 hash: "sha256-2BHtclshr1mEovMTbyW0g0BNPgpsO2PcGSlpHxncvKQ=",
               })))),
             "sdk-x64": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 url: nix.thunk(() => nix.app(mkUrl, "sdk", "x64")),
                 hash: "sha256-ZkQ7WgnrtDpW8xHpX8F4wBhTUG17cgM2BeqmsaFwTuw=",
               })))),
           };
         })()),
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               name: "update-nwjs",
               runtimeInputs: nix.thunk(() => [common_updater_scripts, curl, jq]),
               text: nix.thunk(() => nix.str`LATEST_VERSION="$(curl -sL https://nwjs.io/versions.json | jq -r '.stable' | sed 's/^v//')"
@@ -196,7 +186,7 @@ done
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "App runtime based on Chromium and node.js",
         homepage: "https://nwjs.io/",
         platforms: nix.thunk(() => ["aarch64-linux", "x86_64-linux"]),

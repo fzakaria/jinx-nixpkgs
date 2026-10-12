@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["LIBGIT2_NO_VENDOR", 54, 5], ["RUSTONIG_SYSTEM_LIBONIG", 55, 5]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["nativeCheckInputs", 35, 3], ["buildNoDefaultFeatures", 40, 3], ["checkFlags", 42, 3], ["preCheck", 47, 3], ["env", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, libgit2: false, oniguruma: false, zlib: false, gitMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBGIT2_NO_VENDOR", 54, 5], ["RUSTONIG_SYSTEM_LIBONIG", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["nativeCheckInputs", 35, 3], ["buildNoDefaultFeatures", 40, 3], ["checkFlags", 42, 3], ["preCheck", 47, 3], ["env", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "git-dive",
       version: "0.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gitext-rs",
           repo: "git-dive",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,9 +33,9 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       checkFlags: nix.thunk(() => ["--skip=screenshot"]),
       preCheck: "export HOME=$(mktemp -d)\ngit config --global user.name nixbld\ngit config --global user.email nixbld@example.com\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBGIT2_NO_VENDOR: 1n, RUSTONIG_SYSTEM_LIBONIG: true })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Dive into a file's history to find root cause",
         homepage: "https://github.com/gitext-rs/git-dive",
         changelog: nix.thunk(() => nix.str`https://github.com/gitext-rs/git-dive/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["sourceProvenance", 38, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["outputs", 16, 3], ["installPhase", 21, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["sourceProvenance", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["outputs", 16, 3], ["installPhase", 21, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +14,14 @@ export default nix.lambda((args) => (() => {
       const pname = "ipw2200-firmware";
       const version = "3.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://src.fedoraproject.org/repo/pkgs/ipw2200-firmware/ipw2200-fw-${version}.tgz/eaba788643c7cc7483dd67ace70f6e99/ipw2200-fw-${version}.tgz`),
           hash: "sha256-xoGMEcGMwDDVX/g/ZLK62P7vSF53QvhPlKYdgRpiWL0=",
         }))));
       const outputs = nix.thunk(() => ["out", "doc"]);
       const installPhase = "runHook preInstall\n\ninstall -D -m644 ipw2200-bss.fw     $out/lib/firmware/ipw2200-bss.fw\ninstall -D -m644 ipw2200-ibss.fw    $out/lib/firmware/ipw2200-ibss.fw\ninstall -D -m644 ipw2200-sniffer.fw $out/lib/firmware/ipw2200-sniffer.fw\ninstall -D -m644 LICENSE.ipw2200-fw ${!outputDoc}/share/doc/intel2200BGFirmware/LICENSE\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Firmware for Intel 2200BG cards",
         homepage: "https://ipw2200.sourceforge.net/firmware.php",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w_1, "binaryFirmware"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, outputs, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, outputs, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

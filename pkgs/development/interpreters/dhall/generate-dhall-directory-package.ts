@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generate-dhall-directory-package.nix", [[["name", 24, 5], ["buildCommand", 26, 5], ["nativeBuildInputs", 30, 5]]]);
 const formals$1 = { args: { "dhall-nixpkgs": false, lib: false, stdenv: false }, ellipsis: false };
 const formals$2 = { args: { src: false, file: true, document: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generate-dhall-directory-package.nix", [["name", 24, 5], ["buildCommand", 26, 5], ["nativeBuildInputs", 30, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const file = nix.argOr($_1, "file", () => "package.dhall");
       const document = nix.argOr($_1, "document", () => false);
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "dhall-directory-package.nix",
           buildCommand: nix.thunk(() => nix.str`dhall-to-nixpkgs directory --fixed-output-derivations --file "${file}" "${src}" ${nix.app(nix.sel(lib, "optionalString"), document, "--document")} > $out
 `),

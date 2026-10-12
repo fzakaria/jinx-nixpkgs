@@ -2,25 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["sha256", 21, 15]], [["sha256", 22, 15]], [["hash", 23, 15]], [["hash", 24, 15]], [["hash", 25, 15]], [["hash", 26, 15]], [["hash", 27, 15]], [["hash", 28, 15]], [["hash", 29, 15]], [["hash", 30, 15]], [["hash", 31, 15]], [["hash", 32, 15]], [["hash", 33, 15]], [["hash", 34, 15]], [["2.0.6", 21, 7], ["2.0.5", 22, 7], ["2.0.3", 23, 7], ["2.0.2", 24, 7], ["2.0.1", 25, 7], ["2.0.0", 26, 7], ["1.1.4", 27, 7], ["1.1.3", 28, 7], ["1.1.2", 29, 7], ["1.1.1", 30, 7], ["1.0.5", 31, 7], ["1.0.4", 32, 7], ["1.0.3", 33, 7], ["1.0.1", 34, 7]], [["cases", 40, 11], ["out", 44, 19]], [["description", 75, 7], ["license", 76, 7]], [["namePrefix", 13, 5], ["pname", 17, 5], ["owner", 18, 5], ["version", 19, 13], ["release", 20, 5], ["defaultVersion", 37, 5], ["propagatedBuildInputs", 67, 5], ["useCoqifVersion", 72, 5], ["meta", 74, 5]]]);
 const formals$1 = { args: { "rocq-core": false, mkRocqDerivation: false, mathcomp: false, "mathcomp-bigenough": false, lib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["sha256", 21, 15]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sha256", 22, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 23, 15]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 24, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 25, 15]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 26, 15]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 27, 15]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hash", 28, 15]]);
-const pos$9 = nix.positions(here + "/default.nix", [["hash", 29, 15]]);
-const pos$10 = nix.positions(here + "/default.nix", [["hash", 30, 15]]);
-const pos$11 = nix.positions(here + "/default.nix", [["hash", 31, 15]]);
-const pos$12 = nix.positions(here + "/default.nix", [["hash", 32, 15]]);
-const pos$13 = nix.positions(here + "/default.nix", [["hash", 33, 15]]);
-const pos$14 = nix.positions(here + "/default.nix", [["hash", 34, 15]]);
-const pos$15 = nix.positions(here + "/default.nix", [["2.0.6", 21, 7], ["2.0.5", 22, 7], ["2.0.3", 23, 7], ["2.0.2", 24, 7], ["2.0.1", 25, 7], ["2.0.0", 26, 7], ["1.1.4", 27, 7], ["1.1.3", 28, 7], ["1.1.2", 29, 7], ["1.1.1", 30, 7], ["1.0.5", 31, 7], ["1.0.4", 32, 7], ["1.0.3", 33, 7], ["1.0.1", 34, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["cases", 40, 11], ["out", 44, 19]]);
-const pos$17 = nix.positions(here + "/default.nix", [["description", 75, 7], ["license", 76, 7]]);
-const pos$18 = nix.positions(here + "/default.nix", [["namePrefix", 13, 5], ["pname", 17, 5], ["owner", 18, 5], ["version", 19, 13], ["release", 20, 5], ["defaultVersion", 37, 5], ["propagatedBuildInputs", 67, 5], ["useCoqifVersion", 72, 5], ["meta", 74, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,72 +14,72 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = nix.argOr($, "version", () => null);
   const derivation = nix.thunk(() => nix.app(mkRocqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       namePrefix: nix.thunk(() => ["rocq", "mathcomp"]),
       pname: "real-closed",
       owner: "math-comp",
       version: version,
       release: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         "2.0.6": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sha256: "sha256-c+0nlNTjTf115vjvnpLrgXye5YdjsWlsCBpGZj+hU9E=",
         })),
         "2.0.5": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           sha256: "sha256-nns1TF3isv8FpWqtXilfMEVKvR50fvS6MXnYVzbCzVs=",
         })),
         "2.0.3": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-heZ7aZ7TO9YNAESIvbAc1qqzO91xMyLAox8VKueIk/s=",
         })),
         "2.0.2": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-hBo9JMtmXDYBmf5ihKGksQLHv3c0+zDBnd8/aI2V/ao=",
         })),
         "2.0.1": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256-tQTI3PCl0q1vWpps28oATlzOI8TpVQh1jhTwVmhaZic=",
         })),
         "2.0.0": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256-sZvfiC5+5Lg4nRhfKKqyFzovCj2foAhqaq/w9F2bdU8=",
         })),
         "1.1.4": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256-8Hs6XfowbpeRD8RhMRf4ZJe2xf8kE0e8m7bPUzR/IM4=",
         })),
         "1.1.3": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hash: "sha256:1vwmmnzy8i4f203i2s60dn9i0kr27lsmwlqlyyzdpsghvbr8h5b7",
         })),
         "1.1.2": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           hash: "sha256:0907x4nf7nnvn764q3x9lx41g74rilvq5cki5ziwgpsdgb98pppn",
         })),
         "1.1.1": nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           hash: "sha256:0ksjscrgq1i79vys4zrmgvzy2y4ylxa8wdsf4kih63apw6v5ws6b",
         })),
         "1.0.5": nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           hash: "sha256:0q8nkxr9fba4naylr5xk7hfxsqzq2pvwlg1j0xxlhlgr3fmlavg2",
         })),
         "1.0.4": nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           hash: "sha256:058v9dj973h9kfhqmvcy9a6xhhxzljr90cf99hdfcdx68fi2ha1b",
         })),
         "1.0.3": nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           hash: "sha256:1xbzkzqgw5p42dx1liy6wy8lzdk39zwd6j14fwvv5735k660z7yb",
         })),
         "1.0.1": nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           hash: "sha256:0j81gkjbza5vg89v4n9z598mfdbql416963rj4b8fzm7dp2r4rxg",
         })),
       })),
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (rocq) => (mc) => (out) => ({ [nix.POS]: pos$16, cases: nix.thunk(() => [rocq, mc]), out: out });
+        const case$ = (rocq) => (mc) => (out) => ({ [nix.POS]: $pos[15], cases: nix.thunk(() => [rocq, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(rocq_core, "version")),
@@ -120,7 +103,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mathcomp, "field")), mathcomp_bigenough]),
       useCoqifVersion: (v) => (nix.asBool((nix.asBool(!nix.eq(v, null)) && nix.asBool(!nix.eq(v, "dev")))) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "2.0.3", v))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         description: "Mathematical Components Library on real closed fields",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-c")),
       })),

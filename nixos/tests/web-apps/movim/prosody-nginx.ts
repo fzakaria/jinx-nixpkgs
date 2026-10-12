@@ -2,75 +2,61 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/prosody-nginx.nix", [[["domain", 5, 5], ["port", 6, 5], ["info", 7, 5], ["description", 8, 5]], [["JID", 13, 7], ["username", 14, 7], ["password", 15, 7]], [["domain", 11, 5], ["admin", 12, 5]], [["maintainers", 23, 5]], [["systemPackages", 30, 21]], [["description", 40, 29], ["info", 40, 41], ["xmppdomain", 41, 13]], [["domain", 36, 27], ["port", 36, 34], ["enable", 37, 11], ["verbose", 38, 11], ["podConfig", 39, 11], ["nginx", 43, 11]], [["url", 51, 15], ["description", 52, 15]], [["domain", 56, 31], ["enabled", 57, 13], ["extraConfig", 58, 13]], [["enable", 47, 11], ["xmppComplianceSuite", 48, 11], ["disco_items", 49, 11], ["virtualHosts", 55, 11], ["extraConfig", 70, 11]], [["movim", 35, 18], ["prosody", 46, 18]], [["extraHosts", 79, 20]], [["environment", 30, 9], ["services", 35, 9], ["networking", 79, 9]], [["server", 27, 5]], [["name", 20, 3], ["meta", 22, 3], ["nodes", 26, 3], ["testScript", 86, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/prosody-nginx.nix", [["domain", 5, 5], ["port", 6, 5], ["info", 7, 5], ["description", 8, 5]]);
-const pos$2 = nix.positions(here + "/prosody-nginx.nix", [["JID", 13, 7], ["username", 14, 7], ["password", 15, 7]]);
-const pos$3 = nix.positions(here + "/prosody-nginx.nix", [["domain", 11, 5], ["admin", 12, 5]]);
-const pos$4 = nix.positions(here + "/prosody-nginx.nix", [["maintainers", 23, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/prosody-nginx.nix", [["systemPackages", 30, 21]]);
-const pos$6 = nix.positions(here + "/prosody-nginx.nix", [["description", 40, 29], ["info", 40, 41], ["xmppdomain", 41, 13]]);
-const pos$7 = nix.positions(here + "/prosody-nginx.nix", [["domain", 36, 27], ["port", 36, 34], ["enable", 37, 11], ["verbose", 38, 11], ["podConfig", 39, 11], ["nginx", 43, 11]]);
-const pos$8 = nix.positions(here + "/prosody-nginx.nix", [["url", 51, 15], ["description", 52, 15]]);
-const pos$9 = nix.positions(here + "/prosody-nginx.nix", [["domain", 56, 31], ["enabled", 57, 13], ["extraConfig", 58, 13]]);
-const pos$10 = nix.positions(here + "/prosody-nginx.nix", [["enable", 47, 11], ["xmppComplianceSuite", 48, 11], ["disco_items", 49, 11], ["virtualHosts", 55, 11], ["extraConfig", 70, 11]]);
-const pos$11 = nix.positions(here + "/prosody-nginx.nix", [["movim", 35, 18], ["prosody", 46, 18]]);
-const pos$12 = nix.positions(here + "/prosody-nginx.nix", [["extraHosts", 79, 20]]);
-const pos$13 = nix.positions(here + "/prosody-nginx.nix", [["environment", 30, 9], ["services", 35, 9], ["networking", 79, 9]]);
-const pos$14 = nix.positions(here + "/prosody-nginx.nix", [["server", 27, 5]]);
-const pos$15 = nix.positions(here + "/prosody-nginx.nix", [["name", 20, 3], ["meta", 22, 3], ["nodes", 26, 3], ["testScript", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const movim = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     domain: "movim.local",
     port: 8080n,
     info: "No ToS in tests",
     description: "NixOS testing server",
   }));
   const prosody = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     domain: "prosody.local",
     admin: nix.thunk(() => (() => {
       const JID = nix.thunk(() => nix.str`${username}@${nix.sel(prosody, "domain")}`);
       const username = "romeo";
       const password = "juliet";
-      return { [nix.POS]: pos$2, JID, username, password };
+      return { [nix.POS]: $pos[1], JID, username, password };
     })()),
   }));
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "movim-prosody-nginx",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "toastal"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "websocat"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             movim: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               domain: nix.thunk(() => nix.attr(movim, "domain")),
               port: nix.thunk(() => nix.attr(movim, "port")),
               enable: true,
               verbose: true,
               podConfig: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 description: nix.thunk(() => nix.attr(movim, "description")),
                 info: nix.thunk(() => nix.attr(movim, "info")),
                 xmppdomain: nix.thunk(() => nix.sel(prosody, "domain")),
@@ -78,19 +64,19 @@ export default nix.lambda((args) => (() => {
               nginx: nix.thunk(() => ({})),
             })),
             prosody: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               enable: true,
               xmppComplianceSuite: false,
               disco_items: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   url: nix.thunk(() => nix.str`upload.${nix.sel(prosody, "domain")}`),
                   description: "File Uploads",
                 })),
               ]),
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${nix.sel(prosody, "domain")}`, nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   domain: nix.thunk(() => nix.attr(prosody, "domain")),
                   enabled: true,
                   extraConfig: nix.thunk(() => nix.str`Component "pubsub.${nix.sel(prosody, "domain")}" "pubsub"
@@ -109,7 +95,7 @@ Component "upload.${nix.sel(prosody, "domain")}" "http_file_share"
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             extraHosts: nix.thunk(() => nix.str`127.0.0.1 ${nix.sel(movim, "domain")}
 127.0.0.1 ${nix.sel(prosody, "domain")}
 `),

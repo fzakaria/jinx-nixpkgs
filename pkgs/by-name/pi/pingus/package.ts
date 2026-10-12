@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["sha256", 36, 5]], [["description", 76, 5], ["homepage", 77, 5], ["mainProgram", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5], ["license", 84, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["cmakeFlags", 66, 3], ["doCheck", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, makeWrapper: false, libGL: false, libGLU: false, SDL2: false, SDL2_image: false, fmt: false, gtest: false, libpng: false, libsigcxx_2_0: false, argpp: false, geomcpp: false, logmich: false, priocpp: false, strutcpp: false, tinycmmc: false, tinygettext: false, uitest: false, wstsound: false, xdgcpp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["mainProgram", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5], ["license", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["cmakeFlags", 66, 3], ["doCheck", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const wstsound = nix.arg($, "wstsound");
   const xdgcpp = nix.arg($, "xdgcpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pingus",
       version: "0.7.6-unstable-2025-07-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Pingus",
           repo: "pingus",
           rev: "b0ceeeeb95428c73b1b81208211535c61acfc5d0",
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DWARNINGS=ON", "-DWERROR=ON", "-DBUILD_EXTRA=OFF", "-DBUILD_TESTS=OFF"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Puzzle game with mechanics similar to Lemmings",
         homepage: "https://pingus.seul.org/",
         mainProgram: "pingus",

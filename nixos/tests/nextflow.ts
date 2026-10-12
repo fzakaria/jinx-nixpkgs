@@ -2,35 +2,26 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nextflow.nix", [[["imageName", 6, 5], ["imageDigest", 7, 5], ["sha256", 8, 5], ["finalImageName", 9, 5]], [["owner", 15, 7], ["repo", 16, 7], ["rev", 17, 7], ["hash", 18, 7]], [["name", 13, 5], ["src", 14, 5], ["installPhase", 20, 5]], [["name", 25, 5], ["text", 26, 5]], [["systemPackages", 47, 19]], [["enable", 52, 16]], [["docker", 52, 9]], [["environment", 47, 7], ["virtualisation", 51, 7]], [["machine", 44, 9]], [["name", 42, 3], ["nodes", 44, 3], ["testScript", 56, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nextflow.nix", [["imageName", 6, 5], ["imageDigest", 7, 5], ["sha256", 8, 5], ["finalImageName", 9, 5]]);
-const pos$2 = nix.positions(here + "/nextflow.nix", [["owner", 15, 7], ["repo", 16, 7], ["rev", 17, 7], ["hash", 18, 7]]);
-const pos$3 = nix.positions(here + "/nextflow.nix", [["name", 13, 5], ["src", 14, 5], ["installPhase", 20, 5]]);
-const pos$4 = nix.positions(here + "/nextflow.nix", [["name", 25, 5], ["text", 26, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$5 = nix.positions(here + "/nextflow.nix", [["systemPackages", 47, 19]]);
-const pos$6 = nix.positions(here + "/nextflow.nix", [["enable", 52, 16]]);
-const pos$7 = nix.positions(here + "/nextflow.nix", [["docker", 52, 9]]);
-const pos$8 = nix.positions(here + "/nextflow.nix", [["environment", 47, 7], ["virtualisation", 51, 7]]);
-const pos$9 = nix.positions(here + "/nextflow.nix", [["machine", 44, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/nextflow.nix", [["name", 42, 3], ["nodes", 44, 3], ["testScript", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const bash = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "pullImage"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       imageName: "quay.io/nextflow/bash",
       imageDigest: "sha256:bea0e244b7c5367b2b0de687e7d28f692013aa18970941c7dd184450125163ac",
       sha256: "161s9f24njjx87qrwq0c9nmnwvyc6iblcxka7hirw78lm7i9x4w5",
       finalImageName: "quay.io/nextflow/bash",
     }))));
   const hello = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "nextflow-hello",
       src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "nextflow-io",
           repo: "hello",
           rev: "afff16a9b45c8e8a4f5a3743780ac13a541762f8",
@@ -39,7 +30,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "cp -r $src $out\n",
     }))));
   const run_nextflow_pipeline = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "run-nextflow-pipeline",
       text: nix.thunk(() => nix.str`export NXF_OFFLINE=true
 for d in true false; do
@@ -55,21 +46,21 @@ done
 `),
     }))));
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "nextflow",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             systemPackages: nix.thunk(() => [run_nextflow_pipeline, nix.thunk(() => nix.sel(pkgs, "nextflow"))]),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            docker: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+            [nix.POS]: $pos[6],
+            docker: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
           })),
         };
       })(), formals$2),

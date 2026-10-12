@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["updateScript", 78, 12]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["teams", 88, 5], ["mainProgram", 89, 5], ["platforms", 90, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 47, 3], ["postInstall", 70, 3], ["cmakeBuildType", 75, 3], ["separateDebugInfo", 76, 3], ["passthru", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, gcc16Stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libGL: false, libxkbcommon: false, hyprgraphics: false, hyprlang: false, hyprutils: false, "hyprwayland-scanner": false, pam: false, "sdbus-cpp_2": false, systemdLibs: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, cairo: false, file: false, libjpeg: false, libwebp: false, pango: false, libdrm: false, libgbm: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 78, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["teams", 88, 5], ["mainProgram", 89, 5], ["platforms", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 47, 3], ["postInstall", 70, 3], ["cmakeBuildType", 75, 3], ["separateDebugInfo", 76, 3], ["passthru", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const libgbm = nix.arg($, "libgbm");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(gcc16Stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hyprlock",
       version: "0.9.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hyprwm",
           repo: "hyprlock",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,11 +67,11 @@ export default nix.lambda((args) => (() => {
       cmakeBuildType: "RelWithDebInfo",
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Hyprland's GPU-accelerated screen locking utility",
         homepage: "https://github.com/hyprwm/hyprlock",
         changelog: nix.thunk(() => nix.str`https://github.com/hyprwm/hyprlock/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

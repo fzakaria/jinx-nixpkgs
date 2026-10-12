@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 22, 5], ["paths", 23, 5]], [["owner", 36, 5], ["repo", 37, 5], ["rev", 39, 5], ["fetchSubmodules", 40, 5], ["hash", 41, 5]], [["libresolv", 49, 7]], [["gn", 92, 11], ["clang_base_path", 93, 11]], [["mainProgram", 97, 12]], [["pname", 87, 7], ["version", 88, 28], ["src", 88, 36], ["vendorHash", 89, 7], ["patches", 90, 7], ["subPackages", 96, 7], ["meta", 97, 7]], [["build-naive", 86, 5]], [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 112, 5]], [["pname", 30, 3], ["version", 32, 3], ["src", 35, 3], ["patches", 44, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 64, 3], ["buildPhase", 66, 3], ["installPhase", 76, 3], ["passthru", 85, 3], ["strictDeps", 101, 3], ["__structuredAttrs", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, replaceVars: false, stdenvNoCC: false, symlinkJoin: false, buildPackages: false, gn: false, ninja: false, python3: false, xcbuild: false, "apple-sdk_15": false, darwin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 22, 5], ["paths", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 39, 5], ["fetchSubmodules", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["libresolv", 49, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["gn", 92, 11], ["clang_base_path", 93, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 97, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 87, 7], ["version", 88, 28], ["src", 88, 36], ["vendorHash", 89, 7], ["patches", 90, 7], ["subPackages", 96, 7], ["meta", 97, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["build-naive", 86, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 112, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 32, 3], ["src", 35, 3], ["patches", 44, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 64, 3], ["buildPhase", 66, 3], ["installPhase", 76, 3], ["passthru", 85, 3], ["strictDeps", 101, 3], ["__structuredAttrs", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const apple_sdk_15 = nix.arg($, "apple-sdk_15");
   const darwin = nix.arg($, "darwin");
   const llvmCcAndBintools = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "llvmCcAndBintools",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.sel(buildPackages, "rustc", "llvmPackages", "llvm")),
@@ -37,11 +29,11 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "cronet-go",
       version: "150.0.7871.63-3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "SagerNet",
           repo: "cronet-go",
           rev: "049f2909701ca088c9569f6b303bba5376a2b2ff",
@@ -49,7 +41,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-705cctVHseRSJuEPFxlTRJJUWsNgZ4y5ZQ9nwhyTqFY=",
         })))),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./cflags.patch")], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libresolv.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             libresolv: nix.thunk(() => nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(darwin, "libresolv")))),
           }))))))),
       postPatch: "patchShebangs --build naiveproxy/src/build/toolchain/apple/linker_driver.py\n",
@@ -69,28 +61,28 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r lib include include_cgo.go $out/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         "build-naive": nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pname: nix.thunk(() => nix.add(nix.sel(finalAttrs, "pname"), "-build-naive")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             vendorHash: "sha256-pyeE+JPuRQEjNzrF+o9jslBcBM1vruuL+I/DCIa2BG0=",
             patches: nix.thunk(() => [
               nix.thunk(() => nix.app(replaceVars, nix.path(here, "./build-naive.patch"), nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   gn: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), gn)),
                   clang_base_path: llvmCcAndBintools,
                 })))),
             ]),
             subPackages: nix.thunk(() => ["cmd/build-naive"]),
-            meta: nix.thunk(() => ({ [nix.POS]: pos$5, mainProgram: "build-naive" })),
+            meta: nix.thunk(() => ({ [nix.POS]: $pos[4], mainProgram: "build-naive" })),
           })))),
       })),
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Go bindings for naiveproxy",
         homepage: "https://github.com/SagerNet/cronet-go",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

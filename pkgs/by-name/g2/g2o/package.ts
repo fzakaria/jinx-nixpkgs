@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["broken", 90, 5]], [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["strictDeps", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["outputs", 43, 3], ["separateDebugInfo", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 62, 3], ["dontWrapQtApps", 64, 3], ["cmakeFlags", 66, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, eigen: false, suitesparse: false, blas: false, lapack: false, libGLU: false, libsForQt5: false, spdlog: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["broken", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["strictDeps", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["outputs", 43, 3], ["separateDebugInfo", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 62, 3], ["dontWrapQtApps", 64, 3], ["cmakeFlags", 66, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const spdlog = nix.arg($, "spdlog");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "g2o",
       version: "20241228",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RainerKuemmerle",
           repo: "g2o",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}_git`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./remove-compiler-reference.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-fmt-format-string.patch",
             url: "https://github.com/RainerKuemmerle/g2o/commit/18b1894778a7a758a8fb1d4db49f45661ea4ea38.patch",
             hash: "sha256-sS9dYNB1RCTLVc5dnO/fDpcUD2i3ag8Gl/nDwUP43yw=",
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "DISABLE_SSE4_A", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "sse4_aSupport"))))),
         ])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "General Framework for Graph Optimization",
         homepage: "https://github.com/RainerKuemmerle/g2o",
         license: nix.thunk(() => (() => {

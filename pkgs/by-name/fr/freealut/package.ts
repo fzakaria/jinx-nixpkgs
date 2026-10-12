@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["pkg-config", 22, 18]], [["tests", 22, 12]], [["homepage", 25, 5], ["description", 26, 5], ["mainProgram", 27, 5], ["license", 28, 5], ["pkgConfigModules", 29, 5], ["platforms", 30, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["passthru", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openal: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 22, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 22, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 25, 5], ["description", 26, 5], ["mainProgram", 27, 5], ["license", 28, 5], ["pkgConfigModules", 29, 5], ["platforms", 30, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["passthru", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,24 +13,24 @@ export default nix.lambda((args) => (() => {
   const openal = nix.arg($, "openal");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "freealut",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.openal.org/openal_webstf/downloads/freealut-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0kzlil6112x2429nw6mycmif8y6bxr2cwjcvp18vh6s7g63ymlb0",
         })))),
       buildInputs: nix.thunk(() => [openal]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://openal.org/",
         description: "Free implementation of OpenAL's ALUT standard",
         mainProgram: "freealut-config",

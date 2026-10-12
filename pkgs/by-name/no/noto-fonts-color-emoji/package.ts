@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 27, 3], ["depsBuildBuild", 29, 3], ["nativeBuildInputs", 35, 3], ["postPatch", 44, 3], ["buildFlags", 55, 3], ["enableParallelBuilding", 57, 3], ["installPhase", 59, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, buildPackages: false, python3Packages: false, "pkg-config": false, cairo: false, imagemagick: false, zopfli: false, nototools: false, pngquant: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 27, 3], ["depsBuildBuild", 29, 3], ["nativeBuildInputs", 35, 3], ["postPatch", 44, 3], ["buildFlags", 55, 3], ["enableParallelBuilding", 57, 3], ["installPhase", 59, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "noto-fonts-color-emoji";
       const version = "2.051";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googlefonts",
           repo: "noto-emoji",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const installPhase = "runHook preInstall\nmkdir -p $out/share/fonts/noto\ncp NotoColorEmoji.ttf $out/share/fonts/noto\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Color emoji font",
         homepage: "https://github.com/googlefonts/noto-emoji",
         license: nix.thunk(() => (() => {
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

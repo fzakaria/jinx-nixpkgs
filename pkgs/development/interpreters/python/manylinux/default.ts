@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["buildInputs", 13, 9]], [["libgcc_s.so.1", 47, 7], ["libstdc++.so.6", 48, 7], ["libm.so.6", 49, 7], ["libdl.so.2", 50, 7], ["librt.so.1", 51, 7], ["libc.so.6", 52, 7], ["libnsl.so.1", 53, 7], ["libutil.so.1", 54, 7], ["libpthread.so.0", 55, 7], ["libresolv.so.2", 56, 7], ["libX11.so.6", 57, 7], ["libXext.so.6", 58, 7], ["libXrender.so.1", 59, 7], ["libICE.so.6", 60, 7], ["libSM.so.6", 61, 7], ["libGL.so.1", 62, 7], ["libgobject-2.0.so.0", 63, 7], ["libgthread-2.0.so.0", 64, 7], ["libglib-2.0.so.0", 65, 7], ["libz.so.1", 66, 7], ["libexpat.so.1", 67, 7]], [["libpanelw.so.5", 78, 7], ["libncursesw.so.5", 79, 7], ["libcrypt.so.1", 80, 7]], [["manylinux1", 90, 3], ["manylinux2010", 91, 3], ["manylinux2014", 92, 3], ["manylinux1Package", 97, 3], ["manylinux2010Package", 98, 3], ["manylinux2014Package", 99, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["buildInputs", 13, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libgcc_s.so.1", 47, 7], ["libstdc++.so.6", 48, 7], ["libm.so.6", 49, 7], ["libdl.so.2", 50, 7], ["librt.so.1", 51, 7], ["libc.so.6", 52, 7], ["libnsl.so.1", 53, 7], ["libutil.so.1", 54, 7], ["libpthread.so.0", 55, 7], ["libresolv.so.2", 56, 7], ["libX11.so.6", 57, 7], ["libXext.so.6", 58, 7], ["libXrender.so.1", 59, 7], ["libICE.so.6", 60, 7], ["libSM.so.6", 61, 7], ["libGL.so.1", 62, 7], ["libgobject-2.0.so.0", 63, 7], ["libgthread-2.0.so.0", 64, 7], ["libglib-2.0.so.0", 65, 7], ["libz.so.1", 66, 7], ["libexpat.so.1", 67, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["libpanelw.so.5", 78, 7], ["libncursesw.so.5", 79, 7], ["libcrypt.so.1", 80, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["manylinux1", 90, 3], ["manylinux2010", 91, 3], ["manylinux2014", 92, 3], ["manylinux1Package", 97, 3], ["manylinux2010Package", 98, 3], ["manylinux2014Package", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const createManyLinuxPackage = (name) => (libs) => (() => {
     const drvs = nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), libs))));
     const names = nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), libs));
-    return nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({ [nix.POS]: pos$1, buildInputs: drvs })), nix.thunk(() => nix.str`mkdir -p $out/lib
+    return nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({ [nix.POS]: $pos[0], buildInputs: drvs })), nix.thunk(() => nix.str`mkdir -p $out/lib
 num_found=0
 
 IFS=:
@@ -44,7 +41,7 @@ fi
   const manylinux2014Libs = nix.thunk(() => nix.app(getLibOutputs, nix.thunk(() => (() => {
       const w = nix.withScope(pkgs, null);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "libgcc_s.so.1": nix.thunk(() => nix.lookup(w, "glibc")),
         "libstdc++.so.6": nix.thunk(() => nix.sel(nix.lookup(w, "stdenv"), "cc", "cc")),
         "libm.so.6": nix.thunk(() => nix.lookup(w, "glibc")),
@@ -72,14 +69,14 @@ fi
   const manylinux1Libs = nix.thunk(() => nix.app(getLibOutputs, nix.thunk(() => nix.update(manylinux2010Libs, (() => {
       const w_1 = nix.withScope(pkgs, null);
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "libpanelw.so.5": nix.thunk(() => nix.lookup(w_1, "ncurses5")),
         "libncursesw.so.5": nix.thunk(() => nix.lookup(w_1, "ncurses5")),
         "libcrypt.so.1": nix.thunk(() => nix.lookup(w_1, "libxcrypt")),
       };
     })()))));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     manylinux1: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), manylinux1Libs)))),
     manylinux2010: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), manylinux2010Libs)))),
     manylinux2014: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), manylinux2014Libs)))),

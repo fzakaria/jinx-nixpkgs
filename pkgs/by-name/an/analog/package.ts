@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["homepage", 50, 5], ["license", 51, 5], ["description", 52, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["postPatch", 29, 3], ["installPhase", 39, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, bzip2: false, gd: false, libjpeg: false, libpng: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["license", 51, 5], ["description", 52, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["postPatch", 29, 3], ["installPhase", 39, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "analog",
       version: "6.0.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "c-amie",
           repo: "analog-ce",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +36,7 @@ substituteInPlace src/Makefile \\
 `),
       installPhase: "mkdir -p $out/bin $out/etc $out/share/doc/$pname $out/share/man/man1 $out/share/$pname\nmv analog $out/bin/\ncp examples/big.cfg $out/etc/analog.cfg\nmv analog.man $out/share/man/man1/analog.1\nmv docs $out/share/doc/$pname/manual\nmv how-to $out/share/doc/$pname/\nmv lang images examples $out/share/$pname/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/c-amie/analog-ce",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         description: "Powerful tool to generate web server statistics",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["updateScript", 26, 28]], [["pname", 9, 3], ["version", 10, 26], ["meta", 10, 34], ["src", 12, 3], ["installPhase", 17, 3], ["passthru", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, moralerspace: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 26, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 26], ["meta", 10, 34], ["src", 12, 3], ["installPhase", 17, 3], ["passthru", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const moralerspace = nix.arg($, "moralerspace");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "moralerspace-hw",
       version: nix.thunk(() => nix.attr(moralerspace, "version")),
       meta: nix.thunk(() => nix.attr(moralerspace, "meta")),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/yuru7/moralerspace/releases/download/v${nix.sel(finalAttrs, "version")}/MoralerspaceHW_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-gd195o0acZL8AhGvcLLQYxd1VWvUYjpVRMOT5D7zDME=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm644 *.ttf -t $out/share/fonts/moralerspace-hw\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.attr(moralerspace, "updateScript")),
       })),
     }));

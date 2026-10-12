@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 57, 5], ["license", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["nativeBuildInputs", 24, 3], ["dependencies", 29, 3], ["buildInputs", 34, 3], ["postInstall", 36, 3], ["pythonImportsCheck", 48, 3], ["dontWrapQtApps", 51, 3], ["preFixup", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, qt5: false, stdenv: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["license", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["nativeBuildInputs", 24, 3], ["dependencies", 29, 3], ["buildInputs", 34, 3], ["postInstall", 36, 3], ["pythonImportsCheck", 48, 3], ["dontWrapQtApps", 51, 3], ["preFixup", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vimiv-qt",
       version: "0.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "karlch",
           repo: "vimiv-qt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       preFixup: "wrapQtApp $out/bin/vimiv\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Image viewer with Vim-like keybindings (Qt port)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         homepage: "https://github.com/karlch/vimiv-qt",

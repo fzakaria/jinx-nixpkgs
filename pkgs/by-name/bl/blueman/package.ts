@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["sha256", 36, 5]], [["homepage", 100, 5], ["description", 101, 5], ["mainProgram", 102, 5], ["license", 103, 5], ["platforms", 104, 5], ["changelog", 105, 5], ["maintainers", 106, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["postPatch", 60, 3], ["pythonPath", 64, 3], ["propagatedUserEnvPkgs", 69, 3], ["configureFlags", 71, 3], ["dontWrapGApps", 79, 3], ["makeWrapperArgs", 81, 3], ["postFixup", 93, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { config: false, stdenv: false, lib: false, fetchurl: false, intltool: false, "pkg-config": false, python3Packages: false, bluez: false, gtk3: false, obex_data_server: false, "xdg-utils": false, dnsmasq: false, dhcpcd: false, iproute2: false, "adwaita-icon-theme": false, librsvg: false, wrapGAppsHook3: false, "gobject-introspection": false, networkmanager: false, withPulseAudio: true, libpulseaudio: false, procps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 100, 5], ["description", 101, 5], ["mainProgram", 102, 5], ["license", 103, 5], ["platforms", 104, 5], ["changelog", 105, 5], ["maintainers", 106, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["postPatch", 60, 3], ["pythonPath", 64, 3], ["propagatedUserEnvPkgs", 69, 3], ["configureFlags", 71, 3], ["dontWrapGApps", 79, 3], ["makeWrapperArgs", 81, 3], ["postFixup", 93, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "blueman";
       const version = "2.4.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/blueman-project/blueman/releases/download/${version}/blueman-${version}.tar.xz`),
           sha256: "sha256-xxKnN/mFWQZoTAdNFm1PEMfxZTeK+WYSgYu//Pv45WY=",
         }))));
@@ -81,7 +79,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postFixup = "# This mimics ../../../development/interpreters/python/wrap.sh\nwrapPythonProgramsIn \"$out/bin\" \"$out ${pythonPath[*]}\"\nwrapPythonProgramsIn \"$out/libexec\" \"$out ${pythonPath[*]}\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/blueman-project/blueman",
         description: "GTK-based Bluetooth Manager",
         mainProgram: "blueman-manager",
@@ -91,7 +89,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

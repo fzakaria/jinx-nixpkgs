@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build.zig.zon.nix", [[["url", 13, 7], ["hash", 14, 7]], [["name", 11, 5], ["path", 12, 5]], [["url", 20, 7], ["hash", 21, 7]], [["name", 18, 5], ["path", 19, 5]], [["url", 27, 7], ["hash", 28, 7]], [["name", 25, 5], ["path", 26, 5]]]);
 const formals$1 = { args: { linkFarm: false, fetchzip: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build.zig.zon.nix", [["url", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/build.zig.zon.nix", [["name", 11, 5], ["path", 12, 5]]);
-const pos$3 = nix.positions(here + "/build.zig.zon.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$4 = nix.positions(here + "/build.zig.zon.nix", [["name", 18, 5], ["path", 19, 5]]);
-const pos$5 = nix.positions(here + "/build.zig.zon.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$6 = nix.positions(here + "/build.zig.zon.nix", [["name", 25, 5], ["path", 26, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,28 +12,28 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "fcft-3.0.0-zcx6CxQfAAAOlHFehXv7HwRPcuo7StCjZAtapZbSB6fq",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://git.sr.ht/~novakane/zig-fcft/archive/v3.0.0.tar.gz",
             hash: "sha256-/sd+lUK/M48Vfqth1z9BJp/dJ/SMahoCfPqhMJD3lgQ=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "pixman-0.3.0-LClMnz2VAAAs7QSCGwLimV5VUYx0JFnX5xWU6HwtMuDX",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://codeberg.org/ifreund/zig-pixman/archive/v0.3.0.tar.gz",
             hash: "sha256-8tA4auo5FEI4IPnomV6bkpQHUe302tQtorFQZ1l14NU=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "wayland-0.6.0-dev-lQa1krD8AQBlMqwuhAMJjPQKXvpRByZBxxqMVAZ7yzbG",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://codeberg.org/ifreund/zig-wayland/archive/4a150a04f76f7329e80280661355c04328369d1f.tar.gz",
             hash: "sha256-B5nA05xYm6iRDDRFC2KUbhBCtjwmApka+BcDCZRssfw=",
           })))),

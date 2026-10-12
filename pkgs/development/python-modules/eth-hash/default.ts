@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pycryptodome", 50, 5], ["pysha3", 51, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["nativeCheckInputs", 29, 3], ["checkPhase", 38, 3], ["optional-dependencies", 49, 3], ["__structuredAttrs", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, isPyPy: false, pytest: false, "pytest-xdist": false, pycryptodome: false, "safe-pysha3": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pycryptodome", 50, 5], ["pysha3", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["nativeCheckInputs", 29, 3], ["checkPhase", 38, 3], ["optional-dependencies", 49, 3], ["__structuredAttrs", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ethereum",
           repo: "eth-hash",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,13 +31,13 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest, pytest_xdist], nix.concat(nix.sel(optional_dependencies, "pycryptodome"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(isPyPy)), nix.thunk(() => nix.sel(optional_dependencies, "pysha3"))))));
       const checkPhase = nix.thunk(() => nix.add(nix.add("runHook preCheck\npytest tests/core tests/backends/pycryptodome\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(isPyPy)), "pytest tests/backends/pysha3\n")), "runHook postCheck\n"));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pycryptodome: nix.thunk(() => [pycryptodome]),
         pysha3: nix.thunk(() => [safe_pysha3]),
       }));
       const __structuredAttrs = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Ethereum hashing function keccak256",
         homepage: "https://github.com/ethereum/eth-hash",
         changelog: nix.thunk(() => nix.str`https://github.com/ethereum/eth-hash/blob/v${version}/docs/release_notes.rst`),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

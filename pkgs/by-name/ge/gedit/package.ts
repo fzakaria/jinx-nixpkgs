@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 39, 5], ["group", 40, 5], ["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]], [["ignoredVersions", 88, 40]], [["updateScript", 88, 12]], [["homepage", 91, 5], ["description", 92, 5], ["maintainers", 93, 5], ["license", 94, 5], ["platforms", 95, 5], ["mainProgram", 96, 5]], [["pname", 30, 3], ["version", 31, 3], ["outputs", 33, 3], ["src", 38, 3], ["patches", 48, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 71, 3], ["enableParallelBuilding", 86, 3], ["passthru", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, meson: false, mesonEmulatorHook: false, fetchFromGitLab: false, "pkg-config": false, gtk3: false, "gtk-mac-integration": false, glib: false, "libgedit-amtk": false, "libgedit-gtksourceview": false, "libgedit-tepl": false, libpeas: false, libxml2: false, "gsettings-desktop-schemas": false, wrapGAppsHook3: false, "gtk-doc": false, "gobject-introspection": false, "docbook-xsl-nons": false, ninja: false, gitUpdater: false, gspell: false, itstool: false, "desktop-file-utils": false, vala: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 39, 5], ["group", 40, 5], ["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ignoredVersions", 88, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 88, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 91, 5], ["description", 92, 5], ["maintainers", 93, 5], ["license", 94, 5], ["platforms", 95, 5], ["mainProgram", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["outputs", 33, 3], ["src", 38, 3], ["patches", 48, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 71, 3], ["enableParallelBuilding", 86, 3], ["passthru", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gedit",
       version: "50.0",
       outputs: nix.thunk(() => ["out", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "gedit",
@@ -77,11 +73,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [gtk_mac_integration])))),
       enableParallelBuilding: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "(alpha|beta|rc).*" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], ignoredVersions: "(alpha|beta|rc).*" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/World/gedit/gedit",
         description: "Former GNOME text editor",
         maintainers: nix.thunk(() => (() => {

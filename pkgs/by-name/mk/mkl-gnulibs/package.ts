@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["platforms", 71, 7]], [["mkl-gnulibs", 80, 47]], [["gnu-openmp", 80, 13]], [["isILP64", 75, 7], ["implementation", 76, 7], ["blasProvider", 77, 7], ["blasImplementation", 78, 7], ["provider", 79, 7], ["tests", 80, 7]], [["strictDeps", 21, 5], ["__structuredAttrs", 22, 5], ["nativeBuildInputs", 24, 5], ["postFixup", 29, 5], ["meta", 70, 5], ["passthru", 74, 5]]]);
 const formals$1 = { args: { callPackage: false, gcc: false, mkl: false, patchelf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["platforms", 71, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mkl-gnulibs", 80, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["gnu-openmp", 80, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["isILP64", 75, 7], ["implementation", 76, 7], ["blasProvider", 77, 7], ["blasImplementation", 78, 7], ["provider", 79, 7], ["tests", 80, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["strictDeps", 21, 5], ["__structuredAttrs", 22, 5], ["nativeBuildInputs", 24, 5], ["postFixup", 29, 5], ["meta", 70, 5], ["passthru", 74, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const mkl = nix.arg($, "mkl");
   const patchelf = nix.arg($, "patchelf");
   return nix.app(nix.sel(mkl, "overrideAttrs"), (finalAttrs) => (o) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       strictDeps: true,
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "nativeBuildInputs"), [gcc, patchelf])),
@@ -56,18 +52,18 @@ substituteAll ${nix.path(here, "./mkl.pc.in")} $out/lib/pkgconfig/mkl.pc
 # Need slightly different name for numpy, which special cases "mkl"
 substituteAll ${nix.path(here, "./mkl.pc.in")} $out/lib/pkgconfig/mkl_rt.pc
 `)),
-      meta: nix.thunk(() => nix.update(nix.selOr(o, () => ({}), "meta"), { [nix.POS]: pos$1, platforms: nix.thunk(() => ["x86_64-linux"]) })),
+      meta: nix.thunk(() => nix.update(nix.selOr(o, () => ({}), "meta"), { [nix.POS]: $pos[0], platforms: nix.thunk(() => ["x86_64-linux"]) })),
       passthru: nix.thunk(() => nix.update(nix.selOr(o, () => ({}), "passthru"), {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         isILP64: false,
         implementation: "mkl",
         blasProvider: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
         blasImplementation: "mkl",
         provider: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "gnu-openmp": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               "mkl-gnulibs": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),

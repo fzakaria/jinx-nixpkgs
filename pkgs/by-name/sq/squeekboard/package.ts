@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 30, 5], ["group", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]], [["pname", 39, 13], ["version", 39, 19], ["src", 39, 27], ["hash", 40, 5]], [["phosh", 66, 18]], [["tests", 66, 12]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 73, 5], ["platforms", 74, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 55, 3], ["passthru", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cargo: false, meson: false, ninja: false, "pkg-config": false, "gnome-desktop": false, glib: false, gtk3: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, libbsd: false, libxml2: false, libxkbcommon: false, rustPlatform: false, rustc: false, feedbackd: false, wrapGAppsHook3: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 30, 5], ["group", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 39, 13], ["version", 39, 19], ["src", 39, 27], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["phosh", 66, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 66, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 73, 5], ["platforms", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 55, 3], ["passthru", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "squeekboard";
       const version = "1.43.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "Phosh",
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-UsUr4UnYNo2ybEdNyOD/IiafEZ1YJFwRQ3CVy76X2H0=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -74,11 +69,11 @@ export default nix.lambda((args) => (() => {
         feedbackd,
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, phosh: nix.thunk(() => nix.sel(nixosTests, "phosh")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], phosh: nix.thunk(() => nix.sel(nixosTests, "phosh")) })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Virtual keyboard supporting Wayland",
         homepage: "https://gitlab.gnome.org/World/Phosh/squeekboard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -90,7 +85,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

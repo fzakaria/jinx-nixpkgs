@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["owner", 6, 3], ["repo", 7, 3], ["version", 8, 3], ["rev", 9, 3], ["hash", 10, 3], ["vendorHash", 11, 3], ["cmdGen", 12, 3], ["cmdRes", 13, 3], ["extraLdflags", 14, 3], ["postConfigure", 17, 3], ["fetchSubmodules", 32, 3], ["__darwinAllowLocalNetworking", 33, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, mkPulumiPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 6, 3], ["repo", 7, 3], ["version", 8, 3], ["rev", 9, 3], ["hash", 10, 3], ["vendorHash", 11, 3], ["cmdGen", 12, 3], ["cmdRes", 13, 3], ["extraLdflags", 14, 3], ["postConfigure", 17, 3], ["fetchSubmodules", 32, 3], ["__darwinAllowLocalNetworking", 33, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +38,7 @@ VERSION=v${version} go generate cmd/${cmdRes}/main.go
       const fetchSubmodules = true;
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Native Azure Pulumi Provider",
         mainProgram: "pulumi-resource-azure-native",
         homepage: "https://github.com/pulumi/pulumi-azure-native",
@@ -50,7 +49,7 @@ VERSION=v${version} go generate cmd/${cmdRes}/main.go
         })()),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         owner,
         repo,
         version,

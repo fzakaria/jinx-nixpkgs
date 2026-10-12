@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["rapidjson", 26, 7]], [["changelog", 40, 5], ["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["version", 13, 3], ["pname", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["build-system", 30, 3], ["nativeCheckInputs", 32, 3], ["disabledTestPaths", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rapidjson: false, pytestCheckHook: false, pytz: false, setuptools: false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rapidjson", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 40, 5], ["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 13, 3], ["pname", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["build-system", 30, 3], ["nativeCheckInputs", 32, 3], ["disabledTestPaths", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "python-rapidjson";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-rapidjson",
           repo: "python-rapidjson",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./rapidjson-include-dir.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             rapidjson: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), rapidjson)),
           })))),
       ]);
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytz]);
       const disabledTestPaths = nix.thunk(() => ["benchmarks"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/python-rapidjson/python-rapidjson/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
         homepage: "https://github.com/python-rapidjson/python-rapidjson",
         description: "Python wrapper around rapidjson",
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version,
         pname,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/3dovideo.nix", [[["owner", 36, 9], ["repo", 37, 9], ["rev", 38, 9], ["hash", 39, 9]], [["pname", 32, 7], ["version", 33, 7], ["src", 35, 7], ["isLibrary", 42, 7], ["isExecutable", 43, 7], ["buildDepends", 45, 7], ["description", 53, 7], ["license", 54, 7]], [["name", 62, 5], ["sha256", 63, 5], ["message", 64, 5]], [["name", 59, 3], ["src", 61, 3], ["buildCommand", 78, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, requireFile: false, writeText: false, fetchFromGitHub: false, haskellPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/3dovideo.nix", [["owner", 36, 9], ["repo", 37, 9], ["rev", 38, 9], ["hash", 39, 9]]);
-const pos$2 = nix.positions(here + "/3dovideo.nix", [["pname", 32, 7], ["version", 33, 7], ["src", 35, 7], ["isLibrary", 42, 7], ["isExecutable", 43, 7], ["buildDepends", 45, 7], ["description", 53, 7], ["license", 54, 7]]);
-const pos$3 = nix.positions(here + "/3dovideo.nix", [["name", 62, 5], ["sha256", 63, 5], ["message", 64, 5]]);
-const pos$4 = nix.positions(here + "/3dovideo.nix", [["name", 59, 3], ["src", 61, 3], ["buildCommand", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
         const pname = "uqm3donix";
         const version = "0.1.0.0";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "aszlig",
             repo: "uqm3donix",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         const description = "Extract video files from a Star Control II 3DO image";
         const license = nix.thunk(() => nix.sel(lib, "licenses", "bsd3"));
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname,
           version,
           src,
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
       })()));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "uqm-3dovideo",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => (() => {
           const name = "videos.tar";
@@ -74,7 +71,7 @@ add it to the Nix store.
 
 [*] ${helper}/bin/uqm3donix CDIMAGE ${name}
 `);
-          return { [nix.POS]: pos$3, name, sha256, message };
+          return { [nix.POS]: $pos[2], name, sha256, message };
         })()))),
       buildCommand: nix.thunk(() => nix.str`mkdir -vp "$out"
 tar xf "$src" -C "$out" --strip-components=3

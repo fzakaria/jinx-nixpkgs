@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 5], ["hash", 43, 5]], [["description", 96, 5], ["longDescription", 97, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["mainProgram", 102, 5], ["maintainers", 103, 5], ["license", 104, 5], ["platforms", 105, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["patches", 46, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 65, 3], ["cmakeFlags", 69, 3], ["postPatch", 75, 3], ["postFixup", 81, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, coreutils: false, getent: false, gnugrep: false, gnused: false, gnutar: false, "util-linux": false, cmake: false, findutils: false, gettext: false, mandoc: false, makeWrapper: false, perlPackages: false, boost: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 96, 5], ["longDescription", 97, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["mainProgram", 102, 5], ["maintainers", 103, 5], ["license", 104, 5], ["platforms", 105, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["patches", 46, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 65, 3], ["cmakeFlags", 69, 3], ["postPatch", 75, 3], ["postFixup", 81, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const scripts_bin_path = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, getent, gnugrep, gnused, gnutar, util_linux])));
   const upstream_version = "1.6.13";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "schroot",
       version: nix.thunk(() => nix.str`${upstream_version}-5`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://codeberg.org/shelter/reschroot/archive/release/reschroot-${upstream_version}.tar.gz`),
           hash: "sha256-wF1qG7AhDUAeZSLu4sRl4LQ8bJj3EB1nH56e+Is6zPU=",
         })))),
@@ -76,7 +74,7 @@ done
 rm -vrf $out/lib $out/include
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight virtualisation tool",
         longDescription: "Schroot is a program that allows the user to run a command or a login shell in a chroot environment.\n",
         homepage: "https://codeberg.org/shelter/reschroot",

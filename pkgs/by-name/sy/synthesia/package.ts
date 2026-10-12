@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]], [["name", 24, 7], ["desktopName", 25, 7], ["comment", 26, 7], ["exec", 27, 7], ["icon", 28, 7], ["categories", 29, 7], ["startupWMClass", 33, 7]], [["url", 43, 5], ["hash", 44, 5]], [["description", 72, 5], ["homepage", 73, 5], ["downloadPage", 74, 5], ["sourceProvenance", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 19, 3], ["version", 20, 3], ["desktopItems", 22, 3], ["nativeBuildInputs", 37, 3], ["src", 42, 3], ["dontUnpack", 47, 3], ["dontBuild", 49, 3], ["installPhase", 51, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenvNoCC: false, runtimeShell: false, copyDesktopItems: false, makeDesktopItem: false, wineWow64Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["desktopName", 25, 7], ["comment", 26, 7], ["exec", 27, 7], ["icon", 28, 7], ["categories", 29, 7], ["startupWMClass", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 43, 5], ["hash", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["downloadPage", 74, 5], ["sourceProvenance", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["desktopItems", 22, 3], ["nativeBuildInputs", 37, 3], ["src", 42, 3], ["dontUnpack", 47, 3], ["dontBuild", 49, 3], ["installPhase", 51, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const wineWow64Packages = nix.arg($, "wineWow64Packages");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "synthesia.png",
       url: "https://cdn.synthesia.app/images/headerIcon.png",
       hash: "sha256-M9cQqHwwjko5pchdNtIMjYwd4joIvBphAYnpw73qYzM=",
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "10.9";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "synthesia",
             desktopName: "Synthesia",
             comment: nix.thunk(() => nix.sel(meta, "description")),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems, nix.thunk(() => nix.sel(wineWow64Packages, "stable"))]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://cdn.synthesia.app/files/Synthesia-${version}-installer.exe`),
           hash: "sha256-BFTsbesfMqxY1731ss6S0w8BcUaoqjVrr62VeU1BfrU=",
         }))));
@@ -66,7 +62,7 @@ install -Dm644 ${icon} $out/share/icons/hicolor/48x48/apps/synthesia.png
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fun way to learn how to play the piano",
         homepage: "https://synthesiagame.com/",
         downloadPage: "https://synthesiagame.com/download",
@@ -82,7 +78,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(wineWow64Packages, "stable", "meta", "platforms")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         desktopItems,

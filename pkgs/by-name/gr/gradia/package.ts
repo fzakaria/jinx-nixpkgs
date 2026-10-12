@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["extraLoaders", 74, 9]], [["updateScript", 88, 12]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 99, 5], ["platforms", 100, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 50, 3], ["postPatch", 60, 3], ["dependencies", 65, 3], ["postInstall", 71, 3], ["dontWrapGApps", 82, 3], ["preFixup", 84, 3], ["passthru", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, meson: false, ninja: false, appstream: false, gtksourceview5: false, "desktop-file-utils": false, "gobject-introspection": false, wrapGAppsHook4: false, "blueprint-compiler": false, "pkg-config": false, libadwaita: false, "libportal-gtk4": false, gnome: false, librsvg: false, "webp-pixbuf-loader": false, libsoup_3: false, bash: false, "glib-networking": false, tesseract: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraLoaders", 74, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 88, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 99, 5], ["platforms", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 50, 3], ["postPatch", 60, 3], ["dependencies", 65, 3], ["postInstall", 71, 3], ["dontWrapGApps", 82, 3], ["preFixup", 84, 3], ["passthru", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const tesseract = nix.arg($, "tesseract");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gradia",
       version: "1.13.0",
       pyproject: false,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AlexanderVanhee",
           repo: "Gradia",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,18 +73,18 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       postInstall: nix.thunk(() => nix.str`export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           extraLoaders: nix.thunk(() => [librsvg, webp_pixbuf_loader]),
         })))}"
 `),
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Make your screenshots ready for the world",
         homepage: "https://github.com/AlexanderVanhee/Gradia",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

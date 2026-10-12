@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["NIX_CFLAGS_COMPILE", 58, 7]], [["description", 65, 5], ["longDescription", 67, 5], ["license", 77, 5], ["homepage", 78, 5], ["platforms", 79, 5], ["hydraPlatforms", 80, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 19, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["postPatch", 37, 3], ["preConfigure", 43, 3], ["configureFlags", 48, 3], ["env", 58, 3], ["enableParallelBuilding", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, gccStdenv: false, fetchurl: false, autoconf: false, automake: false, libtool: false, "pkg-config": false, freetype: false, SDL: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["longDescription", 67, 5], ["license", 77, 5], ["homepage", 78, 5], ["platforms", 79, 5], ["hydraPlatforms", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 19, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["postPatch", 37, 3], ["preConfigure", 43, 3], ["configureFlags", 48, 3], ["env", 58, 3], ["enableParallelBuilding", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const stdenv = gccStdenv;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "agg",
       version: "2.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.antigrain.com/agg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "07wii4i824vy9qsvjsgqxppgqmfdxq0xa87i5yk53fijriadq7mb",
         })))),
@@ -43,12 +40,12 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--x-libraries=${nix.app(nix.sel(lib, "getLib"), libx11)}/lib`),
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fpermissive"]))),
       })),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "High quality rendering engine for C++",
         longDescription: "Anti-Grain Geometry (AGG) is an Open Source, free of charge\ngraphic library, written in industrially standard C++.  The\nterms and conditions of use AGG are described on The License\npage.  AGG doesn't depend on any graphic API or technology.\nBasically, you can think of AGG as of a rendering engine that\nproduces pixel images in memory from some vectorial data.  But\nof course, AGG can do much more than that.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

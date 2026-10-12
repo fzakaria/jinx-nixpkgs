@@ -2,70 +2,43 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/versions.nix", [["rev", 8, 9], ["sha256", 9, 9]]);
-const pos$2 = nix.positions(here + "/versions.nix", [["version", 6, 7], ["src", 7, 7]]);
-const pos$3 = nix.positions(here + "/versions.nix", [["rev", 15, 17], ["sha256", 16, 17]]);
-const pos$4 = nix.positions(here + "/versions.nix", [["rev", 17, 19], ["sha256", 18, 19]]);
-const pos$5 = nix.positions(here + "/versions.nix", [["rev", 19, 20], ["sha256", 20, 20]]);
-const pos$6 = nix.positions(here + "/versions.nix", [["rev", 21, 20], ["sha256", 22, 20]]);
-const pos$7 = nix.positions(here + "/versions.nix", [["symbols", 15, 9], ["templates", 17, 9], ["footprints", 19, 9], ["packages3d", 21, 9]]);
-const pos$8 = nix.positions(here + "/versions.nix", [["version", 13, 7], ["libSources", 14, 7]]);
-const pos$9 = nix.positions(here + "/versions.nix", [["kicadVersion", 5, 5], ["libVersion", 12, 5]]);
-const pos$10 = nix.positions(here + "/versions.nix", [["rev", 30, 9], ["sha256", 31, 9]]);
-const pos$11 = nix.positions(here + "/versions.nix", [["version", 28, 7], ["src", 29, 7]]);
-const pos$12 = nix.positions(here + "/versions.nix", [["rev", 37, 17], ["sha256", 38, 17]]);
-const pos$13 = nix.positions(here + "/versions.nix", [["rev", 39, 19], ["sha256", 40, 19]]);
-const pos$14 = nix.positions(here + "/versions.nix", [["rev", 41, 20], ["sha256", 42, 20]]);
-const pos$15 = nix.positions(here + "/versions.nix", [["rev", 43, 20], ["sha256", 44, 20]]);
-const pos$16 = nix.positions(here + "/versions.nix", [["symbols", 37, 9], ["templates", 39, 9], ["footprints", 41, 9], ["packages3d", 43, 9]]);
-const pos$17 = nix.positions(here + "/versions.nix", [["version", 35, 7], ["libSources", 36, 7]]);
-const pos$18 = nix.positions(here + "/versions.nix", [["kicadVersion", 27, 5], ["libVersion", 34, 5]]);
-const pos$19 = nix.positions(here + "/versions.nix", [["rev", 52, 9], ["sha256", 53, 9]]);
-const pos$20 = nix.positions(here + "/versions.nix", [["version", 50, 7], ["src", 51, 7]]);
-const pos$21 = nix.positions(here + "/versions.nix", [["rev", 59, 17], ["sha256", 60, 17]]);
-const pos$22 = nix.positions(here + "/versions.nix", [["rev", 61, 19], ["sha256", 62, 19]]);
-const pos$23 = nix.positions(here + "/versions.nix", [["rev", 63, 20], ["sha256", 64, 20]]);
-const pos$24 = nix.positions(here + "/versions.nix", [["rev", 65, 20], ["sha256", 66, 20]]);
-const pos$25 = nix.positions(here + "/versions.nix", [["symbols", 59, 9], ["templates", 61, 9], ["footprints", 63, 9], ["packages3d", 65, 9]]);
-const pos$26 = nix.positions(here + "/versions.nix", [["version", 57, 7], ["libSources", 58, 7]]);
-const pos$27 = nix.positions(here + "/versions.nix", [["kicadVersion", 49, 5], ["libVersion", 56, 5]]);
-const pos$28 = nix.positions(here + "/versions.nix", [["kicad", 4, 3], ["kicad-testing", 26, 3], ["kicad-unstable", 48, 3]]);
+const $pos = nix.positions(here + "/versions.nix", [[["rev", 8, 9], ["sha256", 9, 9]], [["version", 6, 7], ["src", 7, 7]], [["rev", 15, 17], ["sha256", 16, 17]], [["rev", 17, 19], ["sha256", 18, 19]], [["rev", 19, 20], ["sha256", 20, 20]], [["rev", 21, 20], ["sha256", 22, 20]], [["symbols", 15, 9], ["templates", 17, 9], ["footprints", 19, 9], ["packages3d", 21, 9]], [["version", 13, 7], ["libSources", 14, 7]], [["kicadVersion", 5, 5], ["libVersion", 12, 5]], [["rev", 30, 9], ["sha256", 31, 9]], [["version", 28, 7], ["src", 29, 7]], [["rev", 37, 17], ["sha256", 38, 17]], [["rev", 39, 19], ["sha256", 40, 19]], [["rev", 41, 20], ["sha256", 42, 20]], [["rev", 43, 20], ["sha256", 44, 20]], [["symbols", 37, 9], ["templates", 39, 9], ["footprints", 41, 9], ["packages3d", 43, 9]], [["version", 35, 7], ["libSources", 36, 7]], [["kicadVersion", 27, 5], ["libVersion", 34, 5]], [["rev", 52, 9], ["sha256", 53, 9]], [["version", 50, 7], ["src", 51, 7]], [["rev", 59, 17], ["sha256", 60, 17]], [["rev", 61, 19], ["sha256", 62, 19]], [["rev", 63, 20], ["sha256", 64, 20]], [["rev", 65, 20], ["sha256", 66, 20]], [["symbols", 59, 9], ["templates", 61, 9], ["footprints", 63, 9], ["packages3d", 65, 9]], [["version", 57, 7], ["libSources", 58, 7]], [["kicadVersion", 49, 5], ["libVersion", 56, 5]], [["kicad", 4, 3], ["kicad-testing", 26, 3], ["kicad-unstable", 48, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$28,
+  [nix.POS]: $pos[27],
   kicad: nix.thunk(() => ({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     kicadVersion: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "10.0.6",
       src: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         rev: "e757247bdec054f139487cc5c63ce6a5e76f7432",
         sha256: "0x9376x4nigqnx4d82qixz41p779svjdsgkxv6l0kmn3snvwbcgk",
       })),
     })),
     libVersion: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       version: "10.0.6",
       libSources: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         symbols: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           rev: "a496b9e6752ef1a44e3711409f39d080d74519a0",
           sha256: "0ynmi6qg5cac37vn0q986vh2a560ab8vb24yg7bfbkyj8b5xk353",
         })),
         templates: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           rev: "46d7ee8fe0c19837672c33c3747c2fe87eaae853",
           sha256: "0zs29zn8qjgxv0w1vyr8yxmj02m8752zagn4vcraqgik46dwg2id",
         })),
         footprints: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           rev: "e0779daea58396261bd88a84b2b126eff8b90794",
           sha256: "11hhdk8g7hsm50817x7204lzm1qpjpfjr82gyrnhdshnnzd0hbf7",
         })),
         packages3d: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           rev: "125f0268659a530ec6b78fec645f86228f09aae7",
           sha256: "1mkcf6yn64pqjk51srnv5cidcji0hrx8nfh0q5zyc4ca7p7984li",
         })),
@@ -73,38 +46,38 @@ export default nix.thunk(() => ({
     })),
   })),
   "kicad-testing": nix.thunk(() => ({
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     kicadVersion: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       version: "10.0-2026-08-14",
       src: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         rev: "29b1e0f34f2fefcaebe6f53103390e6a79f0646f",
         sha256: "12hnm0kwxf1m6z0xflh75swkfbwvykkasmv3a2n0bhqgl9snafbp",
       })),
     })),
     libVersion: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       version: "10.0-2026-08-14",
       libSources: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         symbols: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           rev: "94d8f4635e3ce67695aae0ee16d983d32346feaf",
           sha256: "12w7qbqm9wk6b7d8ljdd46afskkqc2aanh8fyf36frwqy1mjfx87",
         })),
         templates: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           rev: "cafa8b3ef4735f830212299da26629e9bcd62c02",
           sha256: "0zs29zn8qjgxv0w1vyr8yxmj02m8752zagn4vcraqgik46dwg2id",
         })),
         footprints: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           rev: "a2d01395d25f14158f2ca0b17adcc8fcb45fe443",
           sha256: "0jr9q1yrlxbb796wrsrnlplb2a05k3z0g1m1dn3c87cf9ffmlaz0",
         })),
         packages3d: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           rev: "67538dca1b8583dec9bd2a45d4eeced6fa287923",
           sha256: "1gqqi91g1yynfgmxl5l34g1rg3gjksl54xd1zsgp4kvyi5w50b3r",
         })),
@@ -112,38 +85,38 @@ export default nix.thunk(() => ({
     })),
   })),
   "kicad-unstable": nix.thunk(() => ({
-    [nix.POS]: pos$27,
+    [nix.POS]: $pos[26],
     kicadVersion: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       version: "2026-07-22",
       src: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         rev: "6e8e92d84aae47e19af95340c0ce10e040970015",
         sha256: "091q9hk69pn2n6mibdm3729kpr14pi5ya7iw1nss53r59j5c15y8",
       })),
     })),
     libVersion: nix.thunk(() => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       version: "2026-07-22",
       libSources: nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         symbols: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           rev: "60d2dc9981920ee40eb5caa4dc01b23f713beca7",
           sha256: "12w7qbqm9wk6b7d8ljdd46afskkqc2aanh8fyf36frwqy1mjfx87",
         })),
         templates: nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           rev: "3ed4538b0f965d821df63a5fffc4441e723cfe7f",
           sha256: "0zs29zn8qjgxv0w1vyr8yxmj02m8752zagn4vcraqgik46dwg2id",
         })),
         footprints: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           rev: "2c7f07017725b44b98f30849e1b83e29fed43718",
           sha256: "0jr9q1yrlxbb796wrsrnlplb2a05k3z0g1m1dn3c87cf9ffmlaz0",
         })),
         packages3d: nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           rev: "e9fd30d7cee55a427d26db7aa9ac635e4a5599df",
           sha256: "1gqqi91g1yynfgmxl5l34g1rg3gjksl54xd1zsgp4kvyi5w50b3r",
         })),

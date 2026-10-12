@@ -2,63 +2,55 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gnome-flashback.nix", [[["maintainers", 4, 8]], [["enable", 15, 24]], [["enable", 18, 9], ["debug", 19, 9]], [["enable", 23, 9], ["user", 24, 9]], [["gdm", 17, 31], ["autoLogin", 22, 31], ["defaultSession", 39, 31]], [["wmName", 33, 11], ["wmLabel", 34, 11], ["wmCommand", 35, 11], ["enableGnomePanel", 36, 11]], [["customSessions", 30, 47]], [["enable", 27, 37], ["debug", 28, 37], ["flashback", 30, 37]], [["gnome", 27, 31]], [["xserver", 15, 16], ["displayManager", 17, 16], ["desktopManager", 27, 16]], [["imports", 13, 7], ["services", 15, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 42, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gnome-flashback.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/gnome-flashback.nix", [["enable", 15, 24]]);
-const pos$3 = nix.positions(here + "/gnome-flashback.nix", [["enable", 18, 9], ["debug", 19, 9]]);
-const pos$4 = nix.positions(here + "/gnome-flashback.nix", [["enable", 23, 9], ["user", 24, 9]]);
-const pos$5 = nix.positions(here + "/gnome-flashback.nix", [["gdm", 17, 31], ["autoLogin", 22, 31], ["defaultSession", 39, 31]]);
-const pos$6 = nix.positions(here + "/gnome-flashback.nix", [["wmName", 33, 11], ["wmLabel", 34, 11], ["wmCommand", 35, 11], ["enableGnomePanel", 36, 11]]);
-const pos$7 = nix.positions(here + "/gnome-flashback.nix", [["customSessions", 30, 47]]);
-const pos$8 = nix.positions(here + "/gnome-flashback.nix", [["enable", 27, 37], ["debug", 28, 37], ["flashback", 30, 37]]);
-const pos$9 = nix.positions(here + "/gnome-flashback.nix", [["gnome", 27, 31]]);
-const pos$10 = nix.positions(here + "/gnome-flashback.nix", [["xserver", 15, 16], ["displayManager", 17, 16], ["desktopManager", 27, 16]]);
-const pos$11 = nix.positions(here + "/gnome-flashback.nix", [["imports", 13, 7], ["services", 15, 7]]);
-const pos$12 = nix.positions(here + "/gnome-flashback.nix", [["machine", 6, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/gnome-flashback.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "gnome-flashback",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.concat(nix.sel(lib, "teams", "gnome", "members"), [nix.thunk(() => nix.sel(lib, "maintainers", "chpatrick"))])),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         const user = nix.thunk(() => nix.sel(nodes, "machine", "users", "users", "alice"));
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[9],
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              gdm: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, debug: true })),
-              autoLogin: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, user: nix.thunk(() => nix.sel(user, "name")) })),
+              [nix.POS]: $pos[4],
+              gdm: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true, debug: true })),
+              autoLogin: nix.thunk(() => ({
+                [nix.POS]: $pos[3],
+                enable: true,
+                user: nix.thunk(() => nix.sel(user, "name")),
+              })),
               defaultSession: "gnome-flashback-metacitytest",
             })),
             desktopManager: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               gnome: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 enable: true,
                 debug: true,
                 flashback: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   customSessions: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$6,
+                      [nix.POS]: $pos[5],
                       wmName: "metacitytest",
                       wmLabel: "Metacity",
                       wmCommand: nix.thunk(() => nix.str`${nix.sel(pkgs, "metacity")}/bin/metacity`),

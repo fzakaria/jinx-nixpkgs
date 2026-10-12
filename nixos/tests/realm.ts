@@ -2,51 +2,42 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/realm.nix", [[["maintainers", 6, 5]], [["enable", 13, 9], ["statusPage", 14, 9]], [["enable", 17, 25]], [["listen", 24, 15], ["remote", 25, 15]], [["endpoints", 22, 11]], [["enable", 20, 9], ["config", 21, 9]], [["nginx", 12, 16], ["resolved", 17, 16], ["realm", 19, 16]], [["services", 12, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 32, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/realm.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/realm.nix", [["enable", 13, 9], ["statusPage", 14, 9]]);
-const pos$3 = nix.positions(here + "/realm.nix", [["enable", 17, 25]]);
-const pos$4 = nix.positions(here + "/realm.nix", [["listen", 24, 15], ["remote", 25, 15]]);
-const pos$5 = nix.positions(here + "/realm.nix", [["endpoints", 22, 11]]);
-const pos$6 = nix.positions(here + "/realm.nix", [["enable", 20, 9], ["config", 21, 9]]);
-const pos$7 = nix.positions(here + "/realm.nix", [["nginx", 12, 16], ["resolved", 17, 16], ["realm", 19, 16]]);
-const pos$8 = nix.positions(here + "/realm.nix", [["services", 12, 7]]);
-const pos$9 = nix.positions(here + "/realm.nix", [["machine", 9, 9]]);
-const pos$10 = nix.positions(here + "/realm.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "realm",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ocfox"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            nginx: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, statusPage: true })),
-            resolved: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[6],
+            nginx: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, statusPage: true })),
+            resolved: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
             realm: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               config: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 endpoints: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$4, listen: "0.0.0.0:1000", remote: "127.0.0.1:80" })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[3], listen: "0.0.0.0:1000", remote: "127.0.0.1:80" })),
                 ]),
               })),
             })),

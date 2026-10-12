@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 18, 5], ["homepage", 19, 5], ["maintainers", 20, 5], ["platforms", 21, 5], ["sourceProvenance", 22, 5], ["license", 23, 5], ["mainProgram", 24, 5]], [["src", 31, 7], ["version", 32, 7], ["meta", 33, 7], ["updateScript", 34, 7]], [["unwrapped", 57, 15], ["updateScript", 57, 25]], [["pname", 38, 5], ["version", 39, 13], ["targetPkgs", 41, 5], ["runScript", 54, 5], ["passthru", 56, 5], ["meta", 60, 13]], [["pname", 63, 75]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, buildFHSEnv: false, callPackage: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 18, 5], ["homepage", 19, 5], ["maintainers", 20, 5], ["platforms", 21, 5], ["sourceProvenance", 22, 5], ["license", 23, 5], ["mainProgram", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 31, 7], ["version", 32, 7], ["meta", 33, 7], ["updateScript", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["unwrapped", 57, 15], ["updateScript", 57, 25]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 38, 5], ["version", 39, 13], ["targetPkgs", 41, 5], ["runScript", 54, 5], ["passthru", 56, 5], ["meta", 60, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 63, 75]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), "sources", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))))));
   const version = nix.thunk(() => nix.sel(sources, "version"));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Atlassian Command Line Interface",
     homepage: "https://developer.atlassian.com/cloud/acli/guides/introduction",
     maintainers: nix.thunk(() => (() => {
@@ -37,14 +33,14 @@ export default nix.lambda((args) => (() => {
   }));
   const updateScript = nix.path(here, "./update.py");
   const unwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: src,
       version: version,
       meta: meta,
       updateScript: updateScript,
     }))));
   const wrapped = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "acli",
       version: version,
       targetPkgs: (p) => (() => {
@@ -59,9 +55,9 @@ export default nix.lambda((args) => (() => {
         ];
       })(),
       runScript: "acli",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, unwrapped: unwrapped, updateScript: updateScript })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], unwrapped: unwrapped, updateScript: updateScript })),
       meta: meta,
     }))));
-  return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isLinux")) ? nix.force(wrapped) : nix.app(nix.sel(unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, pname: "acli" }))));
+  return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isLinux")) ? nix.force(wrapped) : nix.app(nix.sel(unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], pname: "acli" }))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

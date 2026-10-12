@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["license", 76, 5], ["homepage", 77, 5], ["description", 78, 5], ["maintainers", 79, 5]], [["pname", 21, 3], ["version", 22, 3], ["minimalOCamlVersion", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 45, 3], ["postPatch", 54, 3], ["buildPhase", 58, 3], ["installPhase", 64, 3], ["outputs", 70, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitLab: false, clang: false, libclang: false, libllvm: false, flint: false, mpfr: false, pplite: false, ocaml: false, menhir: false, apron: false, "arg-complete": false, camlidl: false, yojson: false, zarith: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 76, 5], ["homepage", 77, 5], ["description", 78, 5], ["maintainers", 79, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["minimalOCamlVersion", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 45, 3], ["postPatch", 54, 3], ["buildPhase", 58, 3], ["installPhase", 64, 3], ["outputs", 70, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const zarith = nix.arg($, "zarith");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mopsa",
       version: "1.1",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mopsa",
           repo: "mopsa-analyzer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +46,7 @@ runHook postInstall
 `),
       outputs: nix.thunk(() => ["bin", "out"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
         homepage: "https://mopsa.lip6.fr/",
         description: "Modular and Open Platform for Static Analysis using Abstract Interpretation",

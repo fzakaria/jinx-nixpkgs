@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 26, 5], ["longDescription", 27, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 16, 3], ["doCheck", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["longDescription", 27, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 16, 3], ["doCheck", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mtx",
       version: "1.3.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/mtx/mtx-stable/${nix.sel(finalAttrs, "version")}/mtx-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0261c5e90b98b6138cd23dadecbc7bc6e2830235145ed2740290e1f35672d843",
         })))),
       postPatch: "substituteInPlace mtx.h                     \\\n  --replace-fail                            \\\n    \"typedef enum { false, true } boolean;\" \\\n    \"typedef bool boolean;\"\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Media Changer Tools",
         longDescription: "The mtx command controls single or multi-drive SCSI media changers such as\ntape changers, autoloaders, tape libraries, or optical media jukeboxes. It\ncan also be used with media changers that use the 'ATTACHED' API, presuming\nthat they properly report the MChanger bit as required by the SCSI T-10 SMC\nspecification.\n",
         homepage: "https://sourceforge.net/projects/mtx/",

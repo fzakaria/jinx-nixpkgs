@@ -2,31 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["lib", 15, 21]], [["lib", 114, 11], ["stdenv", 115, 11], ["fetchzip", 116, 11], ["fetchurl", 117, 11]], [["domain", 123, 32], ["owner", 123, 39], ["repo", 123, 45]], [["release", 122, 19], ["releaseRev", 122, 27], ["location", 123, 11]], [["fetcher", 125, 53]], [["case", 137, 11], ["out", 138, 11]], [["case", 141, 11], ["out", 142, 11]], [["case", 145, 11], ["out", 146, 11]], [["case", 149, 11], ["out", 150, 11]], [["case", 153, 11], ["out", 154, 11]], [["case", 157, 11], ["out", 158, 11]], [["rocq-version", 174, 39]], [["ROCQBIN", 208, 11]], [["COQBIN", 210, 51]], [["ROCQUSERCONTRIB", 212, 19], ["COQUSERCONTRIB", 213, 11]], [["platforms", 226, 13]], [["homepage", 232, 17]], [["case", 230, 15], ["out", 231, 15]], [["rocqFilter", 237, 13], ["broken", 238, 13]], [["name", 187, 7], ["version", 189, 25], ["src", 189, 33], ["nativeBuildInputs", 191, 7], ["buildInputs", 202, 7], ["enableParallelBuilding", 204, 15], ["env", 206, 7], ["preBuild", 217, 7], ["meta", 223, 7]], [["installFlags", 245, 7]], [["buildPhase", 248, 7], ["installPhase", 253, 7]], [["preConfigurePhases", 262, 7], ["configureFlags", 263, 7], ["buildPhase", 264, 7], ["installPhase", 265, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rocqPackages: false, "rocq-core": false, coq: false, which: false, fetchzip: false, fetchurl: false, dune: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["lib", 15, 21]]);
 const formals$2 = { args: { pname: false, version: true, fetcher: true, owner: true, domain: true, repo: true, defaultVersion: true, releaseRev: true, displayVersion: true, release: true, buildInputs: true, nativeBuildInputs: true, extraBuildInputs: true, extraNativeBuildInputs: true, overrideBuildInputs: true, overrideNativeBuildInputs: true, namePrefix: true, enableParallelBuilding: true, extraInstallFlags: true, setROCQBIN: true, mlPlugin: true, useMelquiondRemake: true, dropAttrs: true, keepAttrs: true, dropDerivationAttrs: true, useDuneifVersion: true, useDune: true, "opam-name": true, useCoq: true, useCoqifVersion: true }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["lib", 114, 11], ["stdenv", 115, 11], ["fetchzip", 116, 11], ["fetchurl", 117, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["domain", 123, 32], ["owner", 123, 39], ["repo", 123, 45]]);
-const pos$4 = nix.positions(here + "/default.nix", [["release", 122, 19], ["releaseRev", 122, 27], ["location", 123, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["fetcher", 125, 53]]);
-const pos$6 = nix.positions(here + "/default.nix", [["case", 137, 11], ["out", 138, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["case", 141, 11], ["out", 142, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["case", 145, 11], ["out", 146, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["case", 149, 11], ["out", 150, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["case", 153, 11], ["out", 154, 11]]);
-const pos$11 = nix.positions(here + "/default.nix", [["case", 157, 11], ["out", 158, 11]]);
-const pos$12 = nix.positions(here + "/default.nix", [["rocq-version", 174, 39]]);
-const pos$13 = nix.positions(here + "/default.nix", [["ROCQBIN", 208, 11]]);
-const pos$14 = nix.positions(here + "/default.nix", [["COQBIN", 210, 51]]);
-const pos$15 = nix.positions(here + "/default.nix", [["ROCQUSERCONTRIB", 212, 19], ["COQUSERCONTRIB", 213, 11]]);
-const pos$16 = nix.positions(here + "/default.nix", [["platforms", 226, 13]]);
-const pos$17 = nix.positions(here + "/default.nix", [["homepage", 232, 17]]);
-const pos$18 = nix.positions(here + "/default.nix", [["case", 230, 15], ["out", 231, 15]]);
-const pos$19 = nix.positions(here + "/default.nix", [["rocqFilter", 237, 13], ["broken", 238, 13]]);
-const pos$20 = nix.positions(here + "/default.nix", [["name", 187, 7], ["version", 189, 25], ["src", 189, 33], ["nativeBuildInputs", 191, 7], ["buildInputs", 202, 7], ["enableParallelBuilding", 204, 15], ["env", 206, 7], ["preBuild", 217, 7], ["meta", 223, 7]]);
-const pos$21 = nix.positions(here + "/default.nix", [["installFlags", 245, 7]]);
-const pos$22 = nix.positions(here + "/default.nix", [["buildPhase", 248, 7], ["installPhase", 253, 7]]);
-const pos$23 = nix.positions(here + "/default.nix", [["preConfigurePhases", 262, 7], ["configureFlags", 263, 7], ["buildPhase", 264, 7], ["installPhase", 265, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const fetchurl = nix.arg($, "fetchurl");
   const dune = nix.arg($, "dune");
-  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./extra-lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: nix.thunk(() => nix.attr(args0, "lib")) }))));
+  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./extra-lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(args0, "lib")) }))));
   const concatStringsSep = nix.thunk(() => nix.attr(lib_1, "concatStringsSep"));
   const flip = nix.thunk(() => nix.attr(lib_1, "flip"));
   const foldl = nix.thunk(() => nix.attr(lib_1, "foldl"));
@@ -126,44 +104,44 @@ export default nix.lambda((args) => (() => {
         "useCoqifVersion",
       ], dropAttrs)), keepAttrs));
     const fetch = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../rocq/meta-fetch/default.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         lib: lib_1,
         stdenv: stdenv,
         fetchzip: fetchzip,
         fetchurl: fetchurl,
       })), nix.thunk(() => nix.update({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         release: release,
         releaseRev: releaseRev,
-        location: nix.thunk(() => ({ [nix.POS]: pos$3, domain: domain, owner: owner, repo: repo })),
-      }, nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "fetcher")), nix.thunk(() => ({ [nix.POS]: pos$5, fetcher: fetcher })))))));
+        location: nix.thunk(() => ({ [nix.POS]: $pos[2], domain: domain, owner: owner, repo: repo })),
+      }, nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "fetcher")), nix.thunk(() => ({ [nix.POS]: $pos[4], fetcher: fetcher })))))));
     const fetched = nix.thunk(() => nix.app(fetch, nix.thunk(() => (nix.asBool(!nix.eq(version, null)) ? nix.force(version) : nix.force(defaultVersion)))));
     const display_pkg = (n) => (sep) => (v) => (() => {
       const d = nix.thunk(() => nix.selOr(displayVersion, () => (nix.asBool(nix.eq(sep, "")) ? ".." : true), nix.key(nix.force(n))));
       return nix.add(nix.add(n, nix.app(optionalString, nix.thunk(() => (nix.asBool(!nix.eq(v, "")) && nix.asBool(!nix.eq(v, null)))), nix.thunk(() => nix.app(switch$, d, nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$6, case: true, out: nix.thunk(() => nix.add(sep, v)) })),
+            nix.thunk(() => ({ [nix.POS]: $pos[5], case: true, out: nix.thunk(() => nix.add(sep, v)) })),
             nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               case: ".",
               out: nix.thunk(() => nix.add(sep, nix.app(nix.sel(versions, "major"), v))),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               case: "..",
               out: nix.thunk(() => nix.add(sep, nix.app(nix.sel(versions, "majorMinor"), v))),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               case: "...",
               out: nix.thunk(() => nix.add(sep, nix.app(nix.sel(versions, "majorMinorPatch"), v))),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               case: isFunction,
               out: nix.thunk(() => nix.app(optionalString, nix.thunk(() => !nix.eq(nix.app(d, v), "")), nix.thunk(() => nix.add(sep, nix.app(d, v))))),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               case: isString,
               out: nix.thunk(() => nix.app(optionalString, nix.thunk(() => !nix.eq(d, "")), nix.thunk(() => nix.add(sep, d)))),
             })),
@@ -179,7 +157,7 @@ export default nix.lambda((args) => (() => {
     const prefix_name = nix.thunk(() => nix.app(foldl, append_version, "", namePrefix_1));
     const opam_name_1 = nix.thunk(() => nix.selOr(args_2, () => nix.app(concatStringsSep, "-", nix.thunk(() => nix.concat(namePrefix_1, [pname]))), "opam-name"));
     const rocq_core_1 = nix.thunk(() => (nix.asBool(useCoq_1) ? nix.update(coq, {
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       "rocq-version": nix.thunk(() => nix.sel(coq, "coq-version")),
     }) : nix.sel(args0, "rocq-core")));
     const rocqlib_flags = nix.thunk(() => [
@@ -191,7 +169,7 @@ export default nix.lambda((args) => (() => {
     ]);
     const ROCQUSERCONTRIB = nix.thunk(() => nix.str`$out/lib/coq/${nix.sel(rocq_core_1, "rocq-version")}/user-contrib`);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.app(removeAttrs, nix.thunk(() => nix.update({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           name: nix.thunk(() => nix.add(prefix_name, nix.app(display_pkg, pname, "-", nix.thunk(() => nix.sel(fetched, "version"))))),
           version: nix.thunk(() => nix.attr(fetched, "version")),
           src: nix.thunk(() => nix.attr(fetched, "src")),
@@ -201,30 +179,30 @@ export default nix.lambda((args) => (() => {
               ])), nix.concat(nix.selOr(args_2, () => [], "nativeBuildInputs"), extraNativeBuildInputs)))), "overrideNativeBuildInputs")),
           buildInputs: nix.thunk(() => nix.selOr(args_2, () => nix.concat([rocq_core_1], nix.concat(nix.selOr(args_2, () => [], "buildInputs"), extraBuildInputs)), "overrideBuildInputs")),
           enableParallelBuilding: enableParallelBuilding,
-          env: nix.thunk(() => nix.update(nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(setROCQBIN) && nix.asBool(!nix.asBool(useCoq_1)))), nix.thunk(() => ({ [nix.POS]: pos$13, ROCQBIN: nix.thunk(() => nix.str`${rocq_core_1}/bin/`) }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(setROCQBIN) && nix.asBool(useCoq_1))), nix.thunk(() => ({ [nix.POS]: pos$14, COQBIN: nix.thunk(() => nix.str`${rocq_core_1}/bin/`) }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "useMelquiondRemake")), nix.thunk(() => ({
-              [nix.POS]: pos$15,
+          env: nix.thunk(() => nix.update(nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(setROCQBIN) && nix.asBool(!nix.asBool(useCoq_1)))), nix.thunk(() => ({ [nix.POS]: $pos[12], ROCQBIN: nix.thunk(() => nix.str`${rocq_core_1}/bin/`) }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(setROCQBIN) && nix.asBool(useCoq_1))), nix.thunk(() => ({ [nix.POS]: $pos[13], COQBIN: nix.thunk(() => nix.str`${rocq_core_1}/bin/`) }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "useMelquiondRemake")), nix.thunk(() => ({
+              [nix.POS]: $pos[14],
               ROCQUSERCONTRIB: ROCQUSERCONTRIB,
               COQUSERCONTRIB: ROCQUSERCONTRIB,
             }))), nix.selOr(args_2, () => ({}), "env"))))),
           preBuild: nix.thunk(() => nix.add(nix.app(optionalString, nix.thunk(() => (nix.asBool((nix.asBool(useCoq_1) && nix.asBool(useDune_1))) && nix.asBool(nix.app(nix.sel(lib_1, "versionAtLeast"), nix.thunk(() => nix.sel(rocq_core_1, "rocq-version")), "9.0")))), "export COQPATH=\"$ROCQPATH\"\n"), nix.selOr(args_2, () => "", "preBuild"))),
           meta: nix.thunk(() => nix.update(nix.update({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             platforms: nix.thunk(() => nix.sel(rocq_core_1, "meta", "platforms")),
           }, nix.update(nix.app(switch$, domain, nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 case: nix.thunk(() => nix.app(nix.sel(pred, "union"), isGitHubDomain, isGitLabDomain)),
                 out: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   homepage: nix.thunk(() => nix.str`https://${domain}/${owner}/${repo}`),
                 })),
               })),
-            ]), nix.thunk(() => ({}))), nix.app(optionalAttrs, nix.thunk(() => nix.selOr(fetched, () => false, "broken")), nix.thunk(() => ({ [nix.POS]: pos$19, rocqFilter: true, broken: true }))))), nix.selOr(args_2, () => ({}), "meta"))),
+            ]), nix.thunk(() => ({}))), nix.app(optionalAttrs, nix.thunk(() => nix.selOr(fetched, () => false, "broken")), nix.thunk(() => ({ [nix.POS]: $pos[18], rocqFilter: true, broken: true }))))), nix.selOr(args_2, () => ({}), "meta"))),
         }, nix.update(nix.app(optionalAttrs, nix.thunk(() => (nix.asBool(!nix.asBool(nix.has(args_2, "installPhase"))) && nix.asBool(!nix.asBool(nix.has(args_2, "useMelquiondRemake"))))), nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             installFlags: nix.thunk(() => nix.concat(rocqlib_flags, nix.concat(docdir_flags, extraInstallFlags))),
           }))), nix.update(nix.app(optionalAttrs, useDune_1, nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             buildPhase: nix.thunk(() => nix.str`runHook preBuild
 dune build -p ${opam_name_1} \${enableParallelBuilding:+-j $NIX_BUILD_CORES}
 runHook postBuild
@@ -236,7 +214,7 @@ mv $OCAMLFIND_DESTDIR/coq $out/lib/coq/${nix.sel(rocq_core_1, "rocq-version")}
 runHook postInstall
 `),
           }))), nix.update(nix.app(optionalAttrs, nix.thunk(() => nix.has(args_2, "useMelquiondRemake")), nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             preConfigurePhases: nix.thunk(() => ["autoconf"]),
             configureFlags: nix.thunk(() => [
               nix.thunk(() => nix.str`--libdir=${ROCQUSERCONTRIB}/${nix.selOr(useMelquiondRemake, () => "", "logpath")}`),

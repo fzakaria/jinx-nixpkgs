@@ -2,59 +2,38 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/paretosecurity.nix", [[["maintainers", 4, 8]], [["inviteId", 12, 43]], [["alice", 12, 37]], [["enable", 11, 31], ["users", 12, 31]], [["paretosecurity", 11, 16]], [["imports", 9, 7], ["services", 11, 7]], [["enable", 20, 31]], [["enable", 23, 47]], [["lightdm", 23, 39]], [["enable", 24, 44]], [["xfce", 24, 39]], [["enable", 22, 24], ["displayManager", 23, 24], ["desktopManager", 24, 24]], [["enable", 27, 9], ["user", 28, 9]], [["autoLogin", 26, 31]], [["paretosecurity", 20, 16], ["xserver", 22, 16], ["displayManager", 26, 16]], [["x", 33, 9], ["y", 34, 9]], [["resolution", 32, 22]], [["XAUTHORITY", 38, 29]], [["systemPackages", 37, 19], ["variables", 38, 19]], [["imports", 18, 7], ["services", 20, 7], ["virtualisation", 32, 7], ["environment", 37, 7]], [["terminal", 6, 9], ["xfce", 15, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["enableOCR", 41, 3], ["testScript", 43, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/paretosecurity.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/paretosecurity.nix", [["inviteId", 12, 43]]);
-const pos$3 = nix.positions(here + "/paretosecurity.nix", [["alice", 12, 37]]);
-const pos$4 = nix.positions(here + "/paretosecurity.nix", [["enable", 11, 31], ["users", 12, 31]]);
-const pos$5 = nix.positions(here + "/paretosecurity.nix", [["paretosecurity", 11, 16]]);
-const pos$6 = nix.positions(here + "/paretosecurity.nix", [["imports", 9, 7], ["services", 11, 7]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/paretosecurity.nix", [["enable", 20, 31]]);
-const pos$8 = nix.positions(here + "/paretosecurity.nix", [["enable", 23, 47]]);
-const pos$9 = nix.positions(here + "/paretosecurity.nix", [["lightdm", 23, 39]]);
-const pos$10 = nix.positions(here + "/paretosecurity.nix", [["enable", 24, 44]]);
-const pos$11 = nix.positions(here + "/paretosecurity.nix", [["xfce", 24, 39]]);
-const pos$12 = nix.positions(here + "/paretosecurity.nix", [["enable", 22, 24], ["displayManager", 23, 24], ["desktopManager", 24, 24]]);
-const pos$13 = nix.positions(here + "/paretosecurity.nix", [["enable", 27, 9], ["user", 28, 9]]);
-const pos$14 = nix.positions(here + "/paretosecurity.nix", [["autoLogin", 26, 31]]);
-const pos$15 = nix.positions(here + "/paretosecurity.nix", [["paretosecurity", 20, 16], ["xserver", 22, 16], ["displayManager", 26, 16]]);
-const pos$16 = nix.positions(here + "/paretosecurity.nix", [["x", 33, 9], ["y", 34, 9]]);
-const pos$17 = nix.positions(here + "/paretosecurity.nix", [["resolution", 32, 22]]);
-const pos$18 = nix.positions(here + "/paretosecurity.nix", [["XAUTHORITY", 38, 29]]);
-const pos$19 = nix.positions(here + "/paretosecurity.nix", [["systemPackages", 37, 19], ["variables", 38, 19]]);
-const pos$20 = nix.positions(here + "/paretosecurity.nix", [["imports", 18, 7], ["services", 20, 7], ["virtualisation", 32, 7], ["environment", 37, 7]]);
-const pos$21 = nix.positions(here + "/paretosecurity.nix", [["terminal", 6, 9], ["xfce", 15, 9]]);
-const pos$22 = nix.positions(here + "/paretosecurity.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["enableOCR", 41, 3], ["testScript", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     name: "paretosecurity",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "zupo"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       terminal: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             paretosecurity: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               users: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 alice: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   inviteId: "test-invite-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                 })),
               })),
@@ -66,36 +45,36 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$15,
-            paretosecurity: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            [nix.POS]: $pos[14],
+            paretosecurity: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               enable: true,
               displayManager: nix.thunk(() => ({
-                [nix.POS]: pos$9,
-                lightdm: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
+                [nix.POS]: $pos[8],
+                lightdm: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true })),
               })),
               desktopManager: nix.thunk(() => ({
-                [nix.POS]: pos$11,
-                xfce: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+                [nix.POS]: $pos[10],
+                xfce: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
               })),
             })),
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$14,
-              autoLogin: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true, user: "alice" })),
+              [nix.POS]: $pos[13],
+              autoLogin: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true, user: "alice" })),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$17,
-            resolution: nix.thunk(() => ({ [nix.POS]: pos$16, x: 640n, y: 480n })),
+            [nix.POS]: $pos[16],
+            resolution: nix.thunk(() => ({ [nix.POS]: $pos[15], x: 640n, y: 480n })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xdotool"))]),
-            variables: nix.thunk(() => ({ [nix.POS]: pos$18, XAUTHORITY: "/home/alice/.Xauthority" })),
+            variables: nix.thunk(() => ({ [nix.POS]: $pos[17], XAUTHORITY: "/home/alice/.Xauthority" })),
           })),
         };
       })(), formals$3),

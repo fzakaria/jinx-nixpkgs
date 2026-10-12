@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["RUSTFLAGS", 13, 9]], [["platforms", 17, 9]], [["nativeBuildInputs", 11, 7], ["env", 12, 7], ["meta", 16, 7]]]);
 const formals$1 = { args: { pkgsCross: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["RUSTFLAGS", 13, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["platforms", 17, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 11, 7], ["env", 12, 7], ["meta", 16, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const pkgs$ = nix.thunk(() => nix.sel(pkgsCross, "wasm32-wasip1"));
   const call = (name) => nix.app(override, nix.thunk(() => nix.app(nix.sel(pkgs$, "callPackage"), nix.thunk(() => nix.add(root, nix.str`/${name}`)), nix.thunk(() => ({})))));
   const override = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs$, "lld"))])),
       env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         RUSTFLAGS: nix.thunk(() => nix.add(nix.selOr(old, () => "", "env", "RUSTFLAGS"), " -C linker=wasm-ld")),
       })),
       meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.selOr(old, () => nix.sel(lib, "platforms", "linux"), "meta", "platforms")),
       })),
     }));

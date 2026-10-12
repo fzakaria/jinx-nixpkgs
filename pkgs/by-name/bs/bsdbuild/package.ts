@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["homepage", 69, 5], ["description", 70, 5], ["longDescription", 72, 5], ["license", 83, 5], ["platforms", 84, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 27, 3], ["prePatch", 33, 3], ["configureFlags", 61, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, libtool: false, "pkg-config": false, gettext: false, mandoc: false, ed: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["description", 70, 5], ["longDescription", 72, 5], ["license", 83, 5], ["platforms", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 27, 3], ["prePatch", 33, 3], ["configureFlags", 61, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const mandoc = nix.arg($, "mandoc");
   const ed = nix.arg($, "ed");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bsdbuild",
       version: "3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://stable.hypertriton.com/bsdbuild/bsdbuild-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1zrdjh7a6z4khhfw9zrp490afq306cpl5v8wqz2z55ys7k1n5ifl",
         })))),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         "--with-manpages=yes",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://bsdbuild.hypertriton.com",
         description: "Cross-platform build system",
         longDescription: "BSDBuild is a cross-platform build system. Derived from the\ntraditional 4.4BSD make libraries, BSDBuild allows BSD-style\nMakefiles (without BSD make extensions), and works natively\nunder most operating systems and make flavors. Since BSDBuild\nis implemented as a library (as opposed to a macro package),\nMakefiles are edited directly, as opposed to being compiled\n(however, if the build directory is separate from the source\ndirectory, BSDBuild will produce the required Makefiles in place).\n",

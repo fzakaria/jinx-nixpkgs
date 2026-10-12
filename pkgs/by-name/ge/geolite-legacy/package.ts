@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5], ["nativeBuildInputs", 19, 5], ["stripRoot", 20, 5]], [["url", 24, 5], ["hash", 25, 5], ["nativeBuildInputs", 26, 5], ["stripRoot", 27, 5]], [["name", 38, 7], ["runtimeInputs", 39, 7], ["text", 43, 7]], [["updateScript", 37, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]], [["pname", 12, 3], ["version", 13, 3], ["geoip", 16, 3], ["extra", 23, 3], ["buildCommand", 30, 3], ["passthru", 36, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, zstd: false, writeShellApplication: false, "common-updater-scripts": false, pcre2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5], ["nativeBuildInputs", 19, 5], ["stripRoot", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5], ["nativeBuildInputs", 26, 5], ["stripRoot", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 38, 7], ["runtimeInputs", 39, 7], ["text", 43, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["geoip", 16, 3], ["extra", 23, 3], ["buildCommand", 30, 3], ["passthru", 36, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const pname = "geolite-legacy";
       const version = "20260204";
       const geoip = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://archive.archlinux.org/packages/g/geoip-database/geoip-database-${version}-1-any.pkg.tar.zst`),
           hash: "sha256-OJSBPAwzJO+qjjgQwpG7bsaJ8C4DpLMRbLMYfK+DSFA=",
           nativeBuildInputs: nix.thunk(() => [zstd]),
           stripRoot: false,
         }))));
       const extra = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://archive.archlinux.org/packages/g/geoip-database-extra/geoip-database-extra-${version}-1-any.pkg.tar.zst`),
           hash: "sha256-L7uJtbkXD5H5bbZNsrFDzHwKZvhg/6fOwo0DM2Iuh9o=",
           nativeBuildInputs: nix.thunk(() => [zstd]),
@@ -41,16 +36,16 @@ cp ${geoip}/usr/share/GeoIP/*.dat $out/share/GeoIP
 cp ${extra}/usr/share/GeoIP/*.dat $out/share/GeoIP
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "update-geolite-legacy",
               runtimeInputs: nix.thunk(() => [common_updater_scripts, pcre2]),
               text: "url=https://archive.archlinux.org/packages/g/geoip-database/\n\nversion=$(list-directory-versions --pname geoip-database --url $url |\n          pcre2grep -o1 '^(\\d{8})-1-any\\.pkg\\.tar\\.zst$' |\n          sort -n |\n          tail -1)\n\nfor key in geoip extra; do\n    update-source-version \"$UPDATE_NIX_ATTR_PATH\" \"$version\" --source-key=$key --ignore-same-version\ndone\n",
             })))))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GeoLite Legacy IP geolocation databases",
         homepage: "https://mailfud.org/geoip-legacy/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
@@ -60,7 +55,16 @@ cp ${extra}/usr/share/GeoIP/*.dat $out/share/GeoIP
           return [nix.thunk(() => nix.lookup(w, "fpletz"))];
         })()),
       }));
-      return { [nix.POS]: pos$6, pname, version, geoip, extra, buildCommand, passthru, meta };
+      return {
+        [nix.POS]: $pos[5],
+        pname,
+        version,
+        geoip,
+        extra,
+        buildCommand,
+        passthru,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

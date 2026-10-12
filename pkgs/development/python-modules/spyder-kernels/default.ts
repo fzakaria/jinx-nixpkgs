@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["description", 103, 5], ["homepage", 104, 5], ["downloadPage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["build-system", 48, 3], ["pythonRelaxDeps", 50, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 63, 3], ["disabledTests", 80, 3], ["pythonImportsCheck", 98, 3], ["__darwinAllowLocalNetworking", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, setuptools: false, cloudpickle: false, ipykernel: false, ipython: false, "jupyter-client": false, pyxdg: false, pyzmq: false, wurlitzer: false, anyio: false, django: false, flaky: false, h5py: false, numpy: false, pandas: false, pillow: false, polars: false, pyarrow: false, pydicom: false, pytestCheckHook: false, scipy: false, writableTmpDirAsHomeHook: false, xarray: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 103, 5], ["homepage", 104, 5], ["downloadPage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["build-system", 48, 3], ["pythonRelaxDeps", 50, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 63, 3], ["disabledTests", 80, 3], ["pythonImportsCheck", 98, 3], ["__darwinAllowLocalNetworking", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xarray = nix.arg($, "xarray");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "spyder-kernels",
       version: "3.1.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "spyder-ide",
           repo: "spyder-kernels",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +79,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["spyder_kernels"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Jupyter kernels for Spyder's console",
         homepage: "https://docs.spyder-ide.org/current/ipythonconsole.html",
         downloadPage: "https://github.com/spyder-ide/spyder-kernels/releases",

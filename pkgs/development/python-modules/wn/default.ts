@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]], [["web", 30, 25]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["optional-dependencies", 30, 3], ["nativeCheckInputs", 34, 3], ["pytestFlags", 40, 3], ["preCheck", 42, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pytestCheckHook: false, "pytest-benchmark": false, hatchling: false, httpx: false, tomli: false, starlette: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["web", 30, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["optional-dependencies", 30, 3], ["nativeCheckInputs", 34, 3], ["pytestFlags", 40, 3], ["preCheck", 42, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,20 +21,20 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-z2mDEFx7Qn5LKyji4CgFhxvCUblZeXLf2hjy4i6lMjQ=",
         }))));
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [httpx, tomli]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, web: nix.thunk(() => [starlette]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], web: nix.thunk(() => [starlette]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pytest_benchmark], nix.sel(optional_dependencies, "web")));
       const pytestFlags = nix.thunk(() => ["--benchmark-disable"]);
       const preCheck = "export HOME=$(mktemp -d)\n";
       const pythonImportsCheck = nix.thunk(() => ["wn"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Modern, interlingual wordnet interface for Python",
         homepage: "https://github.com/goodmami/wn",
         changelog: nix.thunk(() => nix.str`https://github.com/goodmami/wn/blob/v${version}/CHANGELOG.md`),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["badPlatforms", 28, 8]], [["name", 9, 3], ["src", 11, 3], ["strictDeps", 13, 3], ["nativeBuildInputs", 15, 3], ["doCheck", 20, 3], ["installPhase", 22, 3], ["__structuredAttrs", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, swift: false, swiftpm: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["badPlatforms", 28, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 9, 3], ["src", 11, 3], ["strictDeps", 13, 3], ["nativeBuildInputs", 15, 3], ["doCheck", 20, 3], ["installPhase", 22, 3], ["__structuredAttrs", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const swiftpm = nix.arg($, "swiftpm");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "swift-test-swift-testing",
       src: nix.path(here, "./src"),
       strictDeps: true,
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "touch \"$out\"\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         badPlatforms: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isDarwin"))]),
       })),
     })));

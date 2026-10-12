@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["updateScript", 16, 12]], [["pname", 19, 5], ["version", 20, 26], ["hash", 21, 5]], [["pname", 35, 34], ["version", 35, 40], ["debianRevision", 36, 13]], [["patch", 44, 11], ["hash", 45, 11]], [["patch", 49, 11], ["hash", 50, 11]], [["patch", 53, 11], ["hash", 54, 11]], [["patch", 58, 11], ["hash", 59, 11]], [["patch", 62, 11], ["hash", 63, 11]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 75, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["passthru", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["propagatedBuildInputs", 26, 3], ["patches", 29, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, fetchDebianPatch: false, fetchPypi: false, buildPythonPackage: false, m2crypto: false, setuptools: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["updateScript", 16, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 26], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 35, 34], ["version", 35, 40], ["debianRevision", 36, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["patch", 44, 11], ["hash", 45, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["patch", 49, 11], ["hash", 50, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["patch", 53, 11], ["hash", 54, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["patch", 58, 11], ["hash", 59, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["patch", 62, 11], ["hash", 63, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 75, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["passthru", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["propagatedBuildInputs", 26, 3], ["patches", 29, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "pysimplesoap",
       version: "1.16.2",
       pyproject: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "PySimpleSOAP",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-sbv00NCt/5tlIZfWGqG3ZzGtYYhJ4n0o/lyyUJFtZ+E=",
@@ -41,39 +32,39 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       propagatedBuildInputs: nix.thunk(() => [m2crypto]),
       patches: nix.thunk(() => nix.concat(nix.builtins.map((args_1) => nix.app(fetchDebianPatch, nix.thunk(() => nix.update({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "5",
           }, args_1))), nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             patch: "Add-quotes-to-SOAPAction-header-in-SoapClient.patch",
             hash: "sha256-xA8Wnrpr31H8wy3zHSNfezFNjUJt1HbSXn3qUMzeKc0=",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             patch: "fix-httplib2-version-check.patch",
             hash: "sha256-zUeF3v0N/eMyRVRH3tQLfuUfMKOD/B/aqEwFh/7HxH4=",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             patch: "reorder-type-check-to-avoid-a-TypeError.patch",
             hash: "sha256-2p5Cqvh0SPfJ8B38wb/xq7jWGYgpI9pavA6qkMUb6hA=",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             patch: "Support-integer-values-in-maxOccurs-attribute.patch",
             hash: "sha256-IZ0DP7io+ihcnB5547cR53FAdnpRLR6z4J5KsNrkfaI=",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             patch: "PR204.patch",
             hash: "sha256-JlxeTnKDFxvEMFBthZsaYRbNOoBvLJhBnXCRoiL/nVw=",
           })),
         ])), [nix.path(here, "./stringIO.patch")])),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Python simple and lightweight SOAP Library",
         homepage: "https://github.com/pysimplesoap/pysimplesoap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

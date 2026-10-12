@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["postFetch", 40, 5]], [["PREFIX", 99, 7], ["DESTDIR", 100, 7]], [["zenroom", 130, 42]], [["updateScript", 129, 12], ["tests", 130, 12]], [["description", 133, 5], ["longDescription", 134, 5], ["homepage", 139, 5], ["changelog", 140, 5], ["mainProgram", 141, 5], ["platforms", 142, 5], ["license", 143, 5], ["maintainers", 150, 5], ["teams", 151, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 48, 3], ["__structuredAttrs", 53, 3], ["strictDeps", 54, 3], ["dontUseCmakeConfigure", 57, 3], ["dontUseMesonConfigure", 60, 3], ["dontUseNinjaBuild", 61, 3], ["dontUseNinjaCheck", 62, 3], ["dontUseNinjaInstall", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 71, 3], ["buildFlags", 75, 3], ["hardeningDisable", 97, 3], ["env", 99, 3], ["preInstall", 102, 3], ["postInstall", 106, 3], ["nativeCheckInputs", 110, 3], ["doCheck", 116, 3], ["checkTarget", 117, 3], ["preCheck", 119, 3], ["passthru", 129, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, xxd: false, which: false, readline: false, callPackage: false, jq: false, meson: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["postFetch", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PREFIX", 99, 7], ["DESTDIR", 100, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["zenroom", 130, 42]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 129, 12], ["tests", 130, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 133, 5], ["longDescription", 134, 5], ["homepage", 139, 5], ["changelog", 140, 5], ["mainProgram", 141, 5], ["platforms", 142, 5], ["license", 143, 5], ["maintainers", 150, 5], ["teams", 151, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 48, 3], ["__structuredAttrs", 53, 3], ["strictDeps", 54, 3], ["dontUseCmakeConfigure", 57, 3], ["dontUseMesonConfigure", 60, 3], ["dontUseNinjaBuild", 61, 3], ["dontUseNinjaCheck", 62, 3], ["dontUseNinjaInstall", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 71, 3], ["buildFlags", 75, 3], ["hardeningDisable", 97, 3], ["env", 99, 3], ["preInstall", 102, 3], ["postInstall", 106, 3], ["nativeCheckInputs", 110, 3], ["doCheck", 116, 3], ["checkTarget", 117, 3], ["preCheck", 119, 3], ["passthru", 129, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const isMusl = nix.thunk(() => nix.attr(from, "isMusl"));
   const isUnix = nix.thunk(() => nix.attr(from, "isUnix"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "zenroom",
       version: "5.38.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dyne",
           repo: "Zenroom",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(isLinux) && nix.asBool(!nix.asBool(isMusl)))), nix.thunk(() => ["linux-lib", "linux-exe"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(isLinux) && nix.asBool(isMusl))), nix.thunk(() => ["musl"])), nix.concat(nix.app(nix.sel(lib, "optionals"), isDarwin, nix.thunk(() => ["osx-lib", "osx-exe"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool((nix.asBool(isUnix) && nix.asBool(!nix.asBool(isLinux)))) && nix.asBool(!nix.asBool(isDarwin)))), nix.thunk(() => ["posix-lib", "posix-exe"]))))))),
       hardeningDisable: nix.thunk(() => ["format"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PREFIX: "",
         DESTDIR: nix.thunk(() => nix.builtins.placeholder("out")),
       })),
@@ -71,15 +66,15 @@ export default nix.lambda((args) => (() => {
       checkTarget: nix.thunk(() => nix.add("check", nix.app(nix.sel(lib, "optionalString"), isDarwin, "-osx"))),
       preCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), isDarwin, "# on darwin, we're using GNU base64\nsubstituteInPlace test/zencode/cookbook_{hash_pdf,ecdh_encrypt_json}.bats \\\n  --replace-fail \\\n    'cmd_base64=\"base64 -b 0\"' \\\n    'cmd_base64=\"base64 -w 0\"'\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             zenroom: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "No-code cryptographic virtual machine",
         longDescription: "Zenroom is a tiny, portable, and fully isolated crypto VM for building\nprivacy-preserving applications, smart contracts, and secure data\nworkflows.\n",
         homepage: "https://github.com/dyne/Zenroom",

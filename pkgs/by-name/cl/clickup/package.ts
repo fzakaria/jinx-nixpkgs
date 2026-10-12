@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["pname", 23, 13], ["version", 23, 19], ["src", 23, 27], ["extraPkgs", 24, 5]], [["pname", 27, 54], ["version", 27, 60], ["src", 27, 68]], [["name", 65, 5], ["runtimeInputs", 66, 5], ["text", 70, 5]], [["updateScript", 64, 12]], [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["mainProgram", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]], [["pname", 30, 11], ["version", 30, 17], ["src", 32, 3], ["nativeBuildInputs", 34, 3], ["installPhase", 39, 3], ["passthru", 64, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, appimageTools: false, fetchurl: false, makeWrapper: false, writeShellApplication: false, curl: false, "common-updater-scripts": false, "desktop-file-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 23, 13], ["version", 23, 19], ["src", 23, 27], ["extraPkgs", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 54], ["version", 27, 60], ["src", 27, 68]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 65, 5], ["runtimeInputs", 66, 5], ["text", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 64, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["mainProgram", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 30, 11], ["version", 30, 17], ["src", 32, 3], ["nativeBuildInputs", 34, 3], ["installPhase", 39, 3], ["passthru", 64, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const pname = "clickup";
   const version = "3.5.262";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://web.archive.org/web/20260727110257/https://desktop.clickup.com/linux",
       hash: "sha256-8stmEBpvU75JSMBZCjcObLndq+51bqTYb0PK1Yypudc=",
     }))));
   const appimage = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: src,
       extraPkgs: (pkgs) => [nix.thunk(() => nix.sel(pkgs, "libxkbfile"))],
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: appimage,
@@ -67,16 +61,16 @@ wrapProgram $out/bin/${pname} \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "update-clickup",
               runtimeInputs: nix.thunk(() => [curl, common_updater_scripts]),
               text: "upstream_version=\"$(curl --silent --location --range 0-0 --dump-header - --output /dev/null https://desktop.clickup.com/linux | grep --only-matching --extended-regexp '[0-9]+\\.[0-9]+\\.[0-9]+')\"\n\ncurrent_version=\"$(nix-instantiate --eval --strict -A clickup.version | tr -d '\"')\"\n\nif [[ \"$current_version\" = \"$upstream_version\" ]]; then\n  echo \"clickup is already up-to-date at $current_version\"\n  exit 0\nfi\n\necho \"Updating clickup from $current_version to $upstream_version\"\n\necho \"Saving new version to archive.org...\"\narchived_url=\"$(curl --silent --max-time 600 --output /dev/null --dump-header - \"https://web.archive.org/save/https://desktop.clickup.com/linux\" | grep --ignore-case '^location:' | tr -d '\\r' | cut -d' ' -f2)\"\n\nif [[ -z \"$archived_url\" || \"$archived_url\" != *\"web.archive.org/web/\"* ]]; then\n  echo \"error: failed to archive URL on archive.org\" >&2\n  exit 1\nfi\n\nupdate-source-version clickup \"$upstream_version\" \"\" \"$archived_url\" \\\n  --source-key=src.src\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "All in one project management solution",
         homepage: "https://clickup.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

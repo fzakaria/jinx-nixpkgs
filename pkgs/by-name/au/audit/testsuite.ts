@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/testsuite.nix", [[["owner", 50, 5], ["repo", 51, 5], ["rev", 52, 5], ["hash", 53, 5]], [["url", 59, 7], ["hash", 60, 7]], [["name", 113, 5], ["runtimeInputs", 114, 5], ["text", 118, 5]], [["updateScript", 70, 12], ["runner", 112, 12]], [["description", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["maintainers", 146, 5], ["mainProgram", 147, 5], ["platforms", 148, 5]], [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["patches", 56, 3], ["postPatch", 64, 3], ["passthru", 70, 3], ["buildInputs", 72, 3], ["nativeBuildInputs", 81, 3], ["doCheck", 85, 3], ["installPhase", 87, 3], ["fixupPhase", 101, 3], ["meta", 142, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, unstableGitUpdater: false, audit: false, liburing: false, nmap: false, psmisc: false, glibc: false, perlPackages: false, makeWrapper: false, iptables: false, coreutils: false, writeShellApplication: false, systemd: false, iproute2: false, inetutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/testsuite.nix", [["owner", 50, 5], ["repo", 51, 5], ["rev", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/testsuite.nix", [["url", 59, 7], ["hash", 60, 7]]);
-const pos$3 = nix.positions(here + "/testsuite.nix", [["name", 113, 5], ["runtimeInputs", 114, 5], ["text", 118, 5]]);
-const pos$4 = nix.positions(here + "/testsuite.nix", [["updateScript", 70, 12], ["runner", 112, 12]]);
-const pos$5 = nix.positions(here + "/testsuite.nix", [["description", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["maintainers", 146, 5], ["mainProgram", 147, 5], ["platforms", 148, 5]]);
-const pos$6 = nix.positions(here + "/testsuite.nix", [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["patches", 56, 3], ["postPatch", 64, 3], ["passthru", 70, 3], ["buildInputs", 72, 3], ["nativeBuildInputs", 81, 3], ["doCheck", 85, 3], ["installPhase", 87, 3], ["fixupPhase", 101, 3], ["meta", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const testEnv = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [iptables, iproute2, inetutils])));
   const disabledTests = nix.thunk(() => ["syscall_socketcall", "filter_exclude", "field_compare"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "audit-testsuite",
       version: "0-unstable-2025-08-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linux-audit",
           repo: "audit-testsuite",
           rev: "25296c6623e95312437a58f76bb771ba31187bed",
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/tweag/audit-testsuite/commit/bd3f8b612ce3290d86a82170e69ac510818d52e3.patch",
             hash: "sha256-rsSQ9uTjTEnDnB1Wlt2/Of2HmS+ajCIX7Iw/FRA4Fng=",
           })))),
@@ -61,10 +56,10 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`substituteInPlace tests/Makefile ${nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (t) => nix.str`--replace-fail '${t}' ''`, disabledTests)}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
         runner: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "audit-testsuite-runner",
             runtimeInputs: nix.thunk(() => [coreutils, systemd]),
             text: nix.thunk(() => nix.str`# log to journal for easier introspection in a VM test
@@ -121,7 +116,7 @@ wrapProgram $out/runtests.pl \\
   --prefix PATH : ${testEnv}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "A simple, self-contained regression test suite for the Linux Kernel's audit subsystem",
         homepage: "https://github.com/linux-audit/audit-testsuite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

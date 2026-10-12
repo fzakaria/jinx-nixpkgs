@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bin.nix", [[["pname", 16, 5], ["version", 17, 13], ["format", 18, 5], ["hash", 19, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 22, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, numpy: false, "absl-py": false, mock: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bin.nix", [["pname", 16, 5], ["version", 17, 13], ["format", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/bin.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5]]);
-const pos$3 = nix.positions(here + "/bin.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 22, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.15.0";
       const format = "wheel";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "tensorflow_estimator",
           version: version,
           format: "wheel",
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const propagatedBuildInputs = nix.thunk(() => [mock, numpy, absl_py]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "TensorFlow Estimator is a high-level API that encapsulates model training, evaluation, prediction, and exporting",
         homepage: "http://tensorflow.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
-      return { [nix.POS]: pos$3, pname, version, format, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=bin.ts.map

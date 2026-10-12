@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["url", 17, 13], ["sha256", 17, 17]], [["msse", 23, 7]], [["homepage", 30, 13], ["description", 31, 5], ["maintainers", 32, 5], ["license", 33, 5], ["platforms", 34, 5]], [["pname", 14, 11], ["version", 14, 17], ["src", 16, 3], ["patches", 20, 3], ["doCheck", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, replaceVars: false, pname: false, version: false, url: false, sha256: false, homepage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["url", 17, 13], ["sha256", 17, 17]]);
-const pos$2 = nix.positions(here + "/common.nix", [["msse", 23, 7]]);
-const pos$3 = nix.positions(here + "/common.nix", [["homepage", 30, 13], ["description", 31, 5], ["maintainers", 32, 5], ["license", 33, 5], ["platforms", 34, 5]]);
-const pos$4 = nix.positions(here + "/common.nix", [["pname", 14, 11], ["version", 14, 17], ["src", 16, 3], ["patches", 20, 3], ["doCheck", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const sha256 = nix.arg($, "sha256");
   const homepage = nix.arg($, "homepage");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha256: sha256 })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, sha256: sha256 })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./configure.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             msse: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), "-msse")),
           })))),
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: homepage,
         description: "Subband sinusoidal modeling library for time stretching and pitch scaling audio",
         maintainers: [],

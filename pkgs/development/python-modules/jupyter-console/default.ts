@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 82, 5], ["mainProgram", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["teams", 87, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["pythonImportsCheck", 61, 3], ["nativeCheckInputs", 63, 3], ["preCheck", 69, 3], ["disabledTests", 73, 3], ["__darwinAllowLocalNetworking", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, ipykernel: false, ipython: false, "jupyter-client": false, "jupyter-core": false, "prompt-toolkit": false, pygments: false, pyzmq: false, traitlets: false, flaky: false, pexpect: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 82, 5], ["mainProgram", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["teams", 87, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["pythonImportsCheck", 61, 3], ["nativeCheckInputs", 63, 3], ["preCheck", 69, 3], ["disabledTests", 73, 3], ["__darwinAllowLocalNetworking", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.6.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jupyter",
           repo: "jupyter_console",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_console_starts", "test_display_text"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Jupyter terminal console",
         mainProgram: "jupyter-console",
         homepage: "https://github.com/jupyter/jupyter_console",
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "jupyter"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt.nix", [[["pname", 27, 3], ["version", 29, 20], ["src", 29, 28], ["postPatch", 29, 32], ["duneVersion", 30, 3], ["propagatedBuildInputs", 32, 3], ["doCheck", 42, 3], ["nativeCheckInputs", 43, 3], ["checkInputs", 46, 3], ["meta", 64, 20]]]);
 const formals$1 = { args: { buildDunePackage: false, carton: false, lwt: false, decompress: false, optint: false, bigstringaf: false, alcotest: false, "alcotest-lwt": false, cstruct: false, fmt: false, logs: false, "mirage-flow": false, result: false, rresult: false, ke: false, base64: false, bos: false, checkseum: false, digestif: false, fpath: false, "stdlib-shims": false, "git-binary": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt.nix", [["pname", 27, 3], ["version", 29, 20], ["src", 29, 28], ["postPatch", 29, 32], ["duneVersion", 30, 3], ["propagatedBuildInputs", 32, 3], ["doCheck", 42, 3], ["nativeCheckInputs", 43, 3], ["checkInputs", 46, 3], ["meta", 64, 20]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const stdlib_shims = nix.arg($, "stdlib-shims");
   const git_binary = nix.arg($, "git-binary");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "carton-lwt",
       version: nix.thunk(() => nix.attr(carton, "version")),
       src: nix.thunk(() => nix.attr(carton, "src")),

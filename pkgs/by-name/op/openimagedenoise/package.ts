@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["changelog", 66, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["patches", 27, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 45, 3], ["cmakeFlags", 54, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { cmake: false, config: false, cudaPackages: false, cudaSupport: true, fetchzip: false, ispc: false, lib: false, python3: false, stdenv: false, onetbb: false, xcodebuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["changelog", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["patches", 27, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 45, 3], ["cmakeFlags", 54, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const onetbb = nix.arg($, "onetbb");
   const xcodebuild = nix.arg($, "xcodebuild");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openimagedenoise",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/RenderKit/oidn/releases/download/v${nix.sel(finalAttrs, "version")}/oidn-${nix.sel(finalAttrs, "version")}.src.tar.gz`),
           hash: "sha256-SM0Bn4qgeqRJAXr2MMjNjfWJVTcciERZxMHiyx4Z1hA=",
         })))),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "TBB_ROOT", nix.thunk(() => nix.str`${onetbb}`))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.openimagedenoise.org",
         description: "High-Performance Denoising Library for Ray Tracing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

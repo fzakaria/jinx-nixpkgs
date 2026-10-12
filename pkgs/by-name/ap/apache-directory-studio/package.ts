@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 9], ["sha256", 24, 9]], [["name", 30, 5], ["exec", 31, 5], ["icon", 32, 5], ["comment", 33, 5], ["desktopName", 34, 5], ["genericName", 35, 5], ["categories", 36, 5]], [["description", 81, 5], ["homepage", 82, 5], ["sourceProvenance", 83, 5], ["license", 87, 5], ["platforms", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5]], [["pname", 16, 3], ["version", 17, 3], ["versionWithDate", 18, 3], ["src", 20, 3], ["desktopItem", 29, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 46, 3], ["installPhase", 52, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jdk: false, makeWrapper: false, autoPatchelfHook: false, makeDesktopItem: false, glib: false, libsecret: false, webkitgtk_4_1: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 9], ["sha256", 24, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 5], ["exec", 31, 5], ["icon", 32, 5], ["comment", 33, 5], ["desktopName", 34, 5], ["genericName", 35, 5], ["categories", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["sourceProvenance", 83, 5], ["license", 87, 5], ["platforms", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["versionWithDate", 18, 3], ["src", 20, 3], ["desktopItem", 29, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 46, 3], ["installPhase", 52, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "apache-directory-studio",
       version: "2.0.0-M17",
       versionWithDate: "2.0.0.v20210717-M17",
       src: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/directory/studio/${nix.sel(finalAttrs, "versionWithDate")}/ApacheDirectoryStudio-${nix.sel(finalAttrs, "versionWithDate")}-linux.gtk.x86_64.tar.gz`),
           sha256: "19zdspzv4n3mfgb1g45s3wh0vbvn6a9zjd4xi5x2afmdjkzlwxi4",
         }))) : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)))),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "apache-directory-studio",
           exec: "ApacheDirectoryStudio",
           icon: "apache-directory-studio",
@@ -65,7 +62,7 @@ magick icon.xpm $out/share/icons/hicolor/48x48/apps/apache-directory-studio.png
 install -D -t "$out/share/applications" ${nix.sel(finalAttrs, "desktopItem")}/share/applications/*
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Eclipse-based LDAP browser and directory client",
         homepage: "https://directory.apache.org/studio/",
         sourceProvenance: nix.thunk(() => (() => {

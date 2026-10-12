@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5], ["postCheckout", 36, 5]], [["homepage", 95, 5], ["description", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["maintainers", 99, 5], ["mainProgram", 100, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["dontAddPrefix", 67, 3], ["wafConfigureFlags", 69, 3], ["wafInstallFlags", 80, 3], ["postInstall", 82, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, ensureNewerSourcesForZipFilesHook: false, python3: false, "pkg-config": false, wafHook: false, SDL2: false, libx11: false, freetype: false, opusfile: false, libopus: false, libogg: false, libvorbis: false, bzip2: false, "hlsdk-portable": false, makeWrapper: false, buildSdk: true, buildServer: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5], ["postCheckout", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["description", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["maintainers", 99, 5], ["mainProgram", 100, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["dontAddPrefix", 67, 3], ["wafConfigureFlags", 69, 3], ["wafInstallFlags", 80, 3], ["postInstall", 82, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const buildServer = nix.argOr($, "buildServer", () => false);
   const exe = nix.thunk(() => (nix.asBool(buildServer) ? "xash" : "xash3d"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xash3d-fwgs",
       version: "0-unstable-2026-04-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FWGS",
           repo: "xash3d-fwgs",
           rev: "255c9bcaed1cf02bc4c22276c8e39d5cdbfc0fb5",
@@ -54,7 +52,7 @@ makeWrapper $out/bin/${exe}-unwrapped $out/bin/${exe} \\
   --prefix ${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "DYLD_LIBRARY_PATH" : "LD_LIBRARY_PATH")} : "$out/lib"
 `, nix.app(nix.sel(lib, "optionalString"), buildSdk, nix.thunk(() => nix.str`cp -TR ${hlsdk_portable}/valve $out/lib/valve`)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/FWGS/xash3d-fwgs",
         description: "Xash3D FWGS engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 7], ["owner", 24, 7], ["repo", 25, 7], ["rev", 26, 7], ["hash", 27, 7]], [["homepage", 50, 7], ["description", 51, 7], ["license", 52, 7], ["platforms", 53, 7]], [["pname", 19, 5], ["version", 20, 13], ["src", 22, 5], ["patches", 32, 5], ["mesonFlags", 34, 5], ["postPatch", 41, 5], ["meta", 49, 5]]]);
 const formals$1 = { args: { lib: false, libfprint: false, fetchFromGitLab: false }, ellipsis: false };
 const formals$2 = { args: { postPatch: true, mesonFlags: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 7], ["owner", 24, 7], ["repo", 25, 7], ["rev", 26, 7], ["hash", 27, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 7], ["description", 51, 7], ["license", 52, 7], ["platforms", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 5], ["version", 20, 13], ["src", 22, 5], ["patches", 32, 5], ["mesonFlags", 34, 5], ["postPatch", 41, 5], ["meta", 49, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
       const mesonFlags = nix.argOr($_1, "mesonFlags", () => []);
       const version = "1.94.9+tod1";
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "libfprint-tod",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             domain: "gitlab.freedesktop.org",
             owner: "3v1n0",
             repo: "libfprint",
@@ -43,7 +41,7 @@ patchShebangs \\
   ./tests/*.sh
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://gitlab.freedesktop.org/3v1n0/libfprint",
           description: "Library designed to make it easy to add support for consumer fingerprint readers, with support for loaded drivers",
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

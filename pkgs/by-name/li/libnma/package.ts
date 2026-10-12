@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 41, 5], ["sha256", 42, 5]], [["org.gnome.nm-applet.eap", 97, 9]], [["schemaIdToVariableMapping", 96, 7], ["src", 99, 28]], [["packageName", 104, 11], ["versionPolicy", 105, 11]], [["hardcodeGsettingsPatch", 95, 5], ["updateScript", 101, 5]], [["homepage", 116, 5], ["description", 117, 5], ["license", 118, 5], ["teams", 119, 5], ["platforms", 120, 5]], [["pname", 31, 3], ["version", 32, 3], ["outputs", 34, 3], ["src", 40, 3], ["patches", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 66, 3], ["mesonFlags", 80, 3], ["postPatch", 85, 3], ["postInstall", 90, 3], ["passthru", 94, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, meson: false, mesonEmulatorHook: false, ninja: false, gettext: false, "gtk-doc": false, "pkg-config": false, vala: false, networkmanager: false, gnome: false, isocodes: false, libxml2: false, docbook_xsl: false, docbook_xml_dtd_43: false, "mobile-broadband-provider-info": false, "gobject-introspection": false, gtk3: false, withGtk4: true, gtk4: false, withGnome: true, gcr_4: false, glib: false, lib: false, "_experimental-update-script-combinators": false, makeHardcodeGsettingsPatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 41, 5], ["sha256", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["org.gnome.nm-applet.eap", 97, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["schemaIdToVariableMapping", 96, 7], ["src", 99, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageName", 104, 11], ["versionPolicy", 105, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["hardcodeGsettingsPatch", 95, 5], ["updateScript", 101, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 116, 5], ["description", 117, 5], ["license", 118, 5], ["teams", 119, 5], ["platforms", 120, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["outputs", 34, 3], ["src", 40, 3], ["patches", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 66, 3], ["mesonFlags", 80, 3], ["postPatch", 85, 3], ["postInstall", 90, 3], ["passthru", 94, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   const makeHardcodeGsettingsPatch = nix.arg($, "makeHardcodeGsettingsPatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "libnma",
       version: "1.10.6",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libnma/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libnma-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "U6b7KxkK03xZhsrtPpi+3nw8YCOZ7k+TyPwFQwPXbas=",
         })))),
@@ -72,20 +66,20 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "glib-compile-schemas $out/share/glib-2.0/schemas\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         hardcodeGsettingsPatch: nix.thunk(() => nix.app(makeHardcodeGsettingsPatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            schemaIdToVariableMapping: nix.thunk(() => ({ [nix.POS]: pos$2, "org.gnome.nm-applet.eap": "NM_APPLET_GSETTINGS" })),
+            [nix.POS]: $pos[2],
+            schemaIdToVariableMapping: nix.thunk(() => ({ [nix.POS]: $pos[1], "org.gnome.nm-applet.eap": "NM_APPLET_GSETTINGS" })),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           })))),
         updateScript: nix.thunk(() => (() => {
-          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "libnma", versionPolicy: "odd-unstable" }))));
+          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[3], packageName: "libnma", versionPolicy: "odd-unstable" }))));
           const updateGsettingsPatch = nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "libnma.hardcodeGsettingsPatch", nix.path(here, "./hardcode-gsettings.patch")));
           return nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [updateSource, updateGsettingsPatch]));
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://gitlab.gnome.org/GNOME/libnma",
         description: "NetworkManager UI utilities (libnm version)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

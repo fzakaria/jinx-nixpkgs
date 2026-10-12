@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build.nix", [[["NIX_CFLAGS_COMPILE", 77, 7]], [["description", 136, 5], ["homepage", 137, 5], ["license", 138, 5], ["platforms", 141, 5], ["maintainers", 142, 5]], [["pname", 24, 3], ["version", 25, 11], ["src", 26, 11], ["buildInputs_libraries", 28, 3], ["buildInputs", 38, 3], ["postPatch", 40, 3], ["configureFlags", 69, 3], ["env", 77, 3], ["configurePhase", 81, 3], ["extraLdOptions", 92, 3], ["buildPhase", 98, 3], ["installPhase", 121, 3], ["dontStrip", 133, 3], ["meta", 135, 3], ["outputsToInstall", 145, 3]]]);
 const formals$1 = { args: { gccStdenv: false, lib: false, coreutils: false, openssl: false, zlib: false, sqlite: false, version: false, "git-version": false, src: false, "gambit-support": false, "gambit-git-version": false, "gambit-stampYmd": false, "gambit-stampHms": false, "gambit-params": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build.nix", [["NIX_CFLAGS_COMPILE", 77, 7]]);
-const pos$2 = nix.positions(here + "/build.nix", [["description", 136, 5], ["homepage", 137, 5], ["license", 138, 5], ["platforms", 141, 5], ["maintainers", 142, 5]]);
-const pos$3 = nix.positions(here + "/build.nix", [["pname", 24, 3], ["version", 25, 11], ["src", 26, 11], ["buildInputs_libraries", 28, 3], ["buildInputs", 38, 3], ["postPatch", 40, 3], ["configureFlags", 69, 3], ["env", 77, 3], ["configurePhase", 81, 3], ["extraLdOptions", 92, 3], ["buildPhase", 98, 3], ["installPhase", 121, 3], ["dontStrip", 133, 3], ["meta", 135, 3], ["outputsToInstall", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,7 +52,7 @@ done
         "--enable-march=",
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       }));
       const configurePhase = nix.thunk(() => nix.str`export CC=${nix.sel(gccStdenv, "cc")}/bin/${nix.sel(gccStdenv, "cc", "targetPrefix")}gcc \\
@@ -95,7 +93,7 @@ runHook postBuild
       const installPhase = nix.thunk(() => nix.add("runHook preInstall\nmkdir -p $out/gerbil $out/bin\n./install.sh\n(cd $out/bin ; ln -s ../gerbil/bin/* .)\nrunHook postInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "libgerbil=\"$(realpath \"$out/gerbil/lib/libgerbil.so\")\"\ninstall_name_tool -id \"$libgerbil\" \"$libgerbil\"\n")));
       const dontStrip = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Gerbil Scheme",
         homepage: "https://github.com/vyzo/gerbil",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
@@ -107,7 +105,7 @@ runHook postBuild
       }));
       const outputsToInstall = nix.thunk(() => ["out"]);
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version: version_1,
         src: src_1,

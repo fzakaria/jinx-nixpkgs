@@ -2,10 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["GIT_SSL_CAINFO", 85, 9]], [["name", 55, 13], ["cacert", 58, 7], ["manifest", 59, 7], ["rev", 60, 7], ["repoRepoURL", 61, 7], ["repoRepoRev", 62, 7], ["referenceDir", 63, 7], ["outputHash", 66, 13], ["outputHashAlgo", 66, 24], ["outputHashMode", 67, 5], ["preferLocalBuild", 69, 5], ["enableParallelBuilding", 70, 5], ["impureEnvVars", 72, 5], ["nativeBuildInputs", 77, 5], ["strictDeps", 82, 5], ["__structuredAttrs", 83, 5], ["env", 85, 5], ["repoInitFlags", 87, 13], ["createMirror", 87, 27], ["local_manifests", 87, 40], ["buildCommand", 89, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, gitRepo: false, cacert: false, copyPathsToStore: false }, ellipsis: false };
 const formals$2 = { args: { name: false, manifest: false, rev: true, outputHash: false, outputHashAlgo: false, repoRepoURL: true, repoRepoRev: true, referenceDir: true, manifestName: true, localManifests: true, createMirror: true, useArchive: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["GIT_SSL_CAINFO", 85, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 55, 13], ["cacert", 58, 7], ["manifest", 59, 7], ["rev", 60, 7], ["repoRepoURL", 61, 7], ["repoRepoRev", 62, 7], ["referenceDir", 63, 7], ["outputHash", 66, 13], ["outputHashAlgo", 66, 24], ["outputHashMode", 67, 5], ["preferLocalBuild", 69, 5], ["enableParallelBuilding", 70, 5], ["impureEnvVars", 72, 5], ["nativeBuildInputs", 77, 5], ["strictDeps", 82, 5], ["__structuredAttrs", 83, 5], ["env", 85, 5], ["repoInitFlags", 87, 13], ["createMirror", 87, 27], ["local_manifests", 87, 40], ["buildCommand", 89, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(optional, createMirror, "--mirror"), nix.concat(nix.app(optional, useArchive, "--archive"), extraRepoInitFlags))));
       const local_manifests = nix.thunk(() => nix.app(copyPathsToStore, localManifests));
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: name,
           cacert: cacert,
           manifest: manifest,
@@ -60,7 +59,7 @@ export default nix.lambda((args) => (() => {
           strictDeps: true,
           __structuredAttrs: true,
           env: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             GIT_SSL_CAINFO: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
           })),
           repoInitFlags: repoInitFlags,

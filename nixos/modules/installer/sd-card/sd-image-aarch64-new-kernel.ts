@@ -2,18 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sd-image-aarch64-new-kernel.nix", [[["kernelPackages", 6, 8]], [["imports", 4, 3], ["boot", 6, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sd-image-aarch64-new-kernel.nix", [["kernelPackages", 6, 8]]);
-const pos$2 = nix.positions(here + "/sd-image-aarch64-new-kernel.nix", [["imports", 4, 3], ["boot", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     imports: nix.thunk(() => [nix.path(here, "./sd-image-aarch64.nix")]),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
     })),
   };

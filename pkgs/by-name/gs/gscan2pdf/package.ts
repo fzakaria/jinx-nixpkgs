@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["mainProgram", 145, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["postPatch", 78, 3], ["postInstall", 83, 3], ["enableParallelBuilding", 99, 3], ["installTargets", 101, 3], ["outputs", 103, 3], ["nativeCheckInputs", 108, 3], ["checkPhase", 125, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchpatch: false, perlPackages: false, wrapGAppsHook3: false, librsvg: false, "sane-backends": false, "sane-frontends": false, imagemagick: false, libtiff: false, djvulibre: false, "poppler-utils": false, ghostscript: false, unpaper: false, pdftk: false, "xvfb-run": false, file: false, tesseract: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["mainProgram", 145, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["postPatch", 78, 3], ["postInstall", 83, 3], ["enableParallelBuilding", 99, 3], ["installTargets", 101, 3], ["outputs", 103, 3], ["nativeCheckInputs", 108, 3], ["checkPhase", 125, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gscan2pdf";
       const version = "2.13.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/gscan2pdf/gscan2pdf-${version}.tar.xz`),
           hash: "sha256-DUME9nI9B2+Gj+sBPj176SXfuxDc3CMXfby/Zga31fo=",
         }))));
@@ -105,7 +103,7 @@ wrapProgram "$out/bin/gscan2pdf" \\
       })()));
       const checkPhase = "# Skip a failing test, due to a change in ImageMagick:\n# https://sourceforge.net/p/gscan2pdf/bugs/439/\nrm t/04_Page.t\n\n# Skip a failing test, due to a breaking change in ImageMagick:\n# https://sourceforge.net/p/gscan2pdf/bugs/442/\n# https://github.com/ImageMagick/ImageMagick/issues/8714\nrm t/113_save_pdf_with_downsample.t\n\nexport XDG_CACHE_HOME=\"$(mktemp -d)\"\nxvfb-run -s '-screen 0 800x600x24' \\\n  make test\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GUI to produce PDFs or DjVus from scanned documents",
         homepage: "https://gscan2pdf.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -116,7 +114,7 @@ wrapProgram "$out/bin/gscan2pdf" \\
         mainProgram: "gscan2pdf",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

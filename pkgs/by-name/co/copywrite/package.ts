@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["CGO_ENABLED", 35, 7]], [["updateScript", 52, 12]], [["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["ldflags", 28, 3], ["env", 35, 3], ["checkFlags", 37, 3], ["nativeBuildInputs", 41, 3], ["postInstall", 42, 3], ["nativeInstallCheckInputs", 49, 3], ["doInstallCheck", 50, 3], ["passthru", 52, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, versionCheckHook: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["ldflags", 28, 3], ["env", 35, 3], ["checkFlags", 37, 3], ["nativeBuildInputs", 41, 3], ["postInstall", 42, 3], ["nativeInstallCheckInputs", 49, 3], ["doInstallCheck", 50, 3], ["passthru", 52, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const commitHash = "b3e6599f43beff698f471c6f46888045453fa030";
   const shortCommitHash = nix.thunk(() => nix.builtins.substring(0n, 7n, commitHash));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "copywrite",
       version: "0.25.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hashicorp",
           repo: "copywrite",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/hashicorp/copywrite/cmd.version=${nix.sel(finalAttrs, "version")}`),
         nix.thunk(() => nix.str`-X github.com/hashicorp/copywrite/cmd.commit=${shortCommitHash}`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       checkFlags: nix.thunk(() => [
         "-skip=Test_FormatCopyrightYears_AutoDetect|Test_FormatCopyrightYearsForNewHeaders_AutoDetect",
       ]),
@@ -47,11 +43,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-copywrite", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl jq nix-update\n\nset -eu -o pipefail\n\ngh_metadata=\"$(curl -sS https://api.github.com/repos/hashicorp/copywrite/tags)\"\nversion=\"$(echo \"$gh_metadata\" | jq -r '.[] | .name' | sort --version-sort | tail -1)\"\ncommit_hash=\"$(echo \"$gh_metadata\" | jq -r --arg ver \"$version\" '.[] | select(.name == $ver).commit.sha')\"\n\nfilename=\"$(nix-instantiate --eval -E \"with import ./. {}; (builtins.unsafeGetAttrPos \\\"version\\\" copywrite).file\" | tr -d '\"')\"\nsed -i \"s/commitHash = \\\"[^\\\"]*\\\"/commitHash = \\\"$commit_hash\\\"/\" $filename\n\nnix-update copywrite\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Automate copyright headers and license files at scale",
         mainProgram: "copywrite",
         homepage: "https://github.com/hashicorp/copywrite",

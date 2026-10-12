@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["src", 31, 52], ["version", 31, 56]], [["extraArgs", 40, 7]], [["nixos", 46, 7]], [["updateScript", 39, 5], ["tests", 45, 5]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["doCheck", 25, 3], ["buildInputs", 27, 3], ["ui", 31, 3], ["preConfigure", 34, 3], ["passthru", 38, 3], ["subPackages", 52, 3], ["ldflags", 56, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, sqlite: false, callPackage: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 31, 52], ["version", 31, 56]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 40, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nixos", 46, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 39, 5], ["tests", 45, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["doCheck", 25, 3], ["buildInputs", 27, 3], ["ui", 31, 3], ["preConfigure", 34, 3], ["passthru", 38, 3], ["subPackages", 52, 3], ["ldflags", 56, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gotify-server",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gotify",
           repo: "server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,17 +29,17 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       buildInputs: nix.thunk(() => [sqlite]),
       ui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./ui.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
         })))),
       preConfigure: nix.thunk(() => nix.str`cp -r ${nix.sel(finalAttrs, "ui")} ui/build
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           nixos: nix.thunk(() => nix.sel(nixosTests, "gotify-server")),
         })),
       })),
@@ -58,7 +52,7 @@ export default nix.lambda((args) => (() => {
         "-X main.BuildDate=unknown",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Simple server for sending and receiving messages in real-time per WebSocket",
         homepage: "https://gotify.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

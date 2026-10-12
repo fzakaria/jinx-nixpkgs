@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/paperwork-backend.nix", [[["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 30, 3], ["version", 31, 39], ["src", 31, 47], ["pyproject", 32, 3], ["sourceRoot", 34, 3], ["patches", 36, 3], ["patchFlags", 41, 3], ["postPatch", 43, 3], ["propagatedBuildInputs", 48, 3], ["nativeBuildInputs", 65, 3], ["preBuild", 72, 3], ["nativeCheckInputs", 76, 3], ["preCheck", 83, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, callPackage: false, pyenchant: false, "scikit-learn": false, pypillowfight: false, pycountry: false, whoosh: false, termcolor: false, pygobject3: false, pyocr: false, natsort: false, libinsane: false, distro: false, "openpaperwork-core": false, "openpaperwork-gtk": false, psutil: false, gtk3: false, poppler_gi: false, gettext: false, which: false, "shared-mime-info": false, libreoffice: false, unittestCheckHook: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/paperwork-backend.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$2 = nix.positions(here + "/paperwork-backend.nix", [["pname", 30, 3], ["version", 31, 39], ["src", 31, 47], ["pyproject", 32, 3], ["sourceRoot", 34, 3], ["patches", 36, 3], ["patchFlags", 41, 3], ["postPatch", 43, 3], ["propagatedBuildInputs", 48, 3], ["nativeBuildInputs", 65, 3], ["preBuild", 72, 3], ["nativeCheckInputs", 76, 3], ["preCheck", 83, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +35,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./src.nix"), nix.thunk(() => ({}))));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "paperwork-backend",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -66,7 +65,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [libreoffice, openpaperwork_gtk, psutil, unittestCheckHook]),
       preCheck: "export HOME=$TMPDIR\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Backend part of Paperwork (Python API, no UI)",
         homepage: "https://openpaper.work",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

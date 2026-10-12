@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["package", 49, 7], ["command", 50, 7], ["version", 51, 7]], [["version", 48, 11]], [["tests", 48, 5], ["updateScript", 54, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 64, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["subPackages", 27, 3], ["vendorHash", 29, 3], ["ldflags", 31, 3], ["postInstall", 40, 3], ["passthru", 47, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { boring: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, lib: false, stdenv: false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 49, 7], ["command", 50, 7], ["version", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 48, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 48, 5], ["updateScript", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["subPackages", 27, 3], ["vendorHash", 29, 3], ["ldflags", 31, 3], ["postInstall", 40, 3], ["passthru", 47, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "boring",
       version: "0.16.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alebeck",
           repo: "boring",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,11 +37,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd boring      \\\n  --bash <($out/bin/boring --shell bash) \\\n  --fish <($out/bin/boring --shell fish) \\\n  --zsh  <($out/bin/boring --shell zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: boring,
               command: "boring version",
               version: nix.thunk(() => nix.str`boring ${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "SSH tunnel manager",
         homepage: "https://github.com/alebeck/boring",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

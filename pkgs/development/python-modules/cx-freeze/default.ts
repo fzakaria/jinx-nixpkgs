@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 191, 5], ["homepage", 192, 5], ["changelog", 193, 5], ["license", 194, 5], ["maintainers", 195, 5], ["mainProgram", 196, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["build-system", 45, 3], ["buildInputs", 49, 3], ["pythonRelaxDeps", 51, 3], ["pythonRemoveDeps", 53, 3], ["dependencies", 55, 3], ["makeWrapperArgs", 66, 3], ["pythonImportsCheck", 73, 3], ["nativeCheckInputs", 77, 3], ["versionCheckProgram", 87, 3], ["preCheck", 89, 3], ["disabledTests", 98, 3], ["meta", 190, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, filelock: false, "freeze-core": false, packaging: false, distutils: false, ncurses: false, patchelf: false, dmgbuild: false, darwin: false, python: false, "pytest-mock": false, pytestCheckHook: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 191, 5], ["homepage", 192, 5], ["changelog", 193, 5], ["license", 194, 5], ["maintainers", 195, 5], ["mainProgram", 196, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["build-system", 45, 3], ["buildInputs", 49, 3], ["pythonRelaxDeps", 51, 3], ["pythonRemoveDeps", 53, 3], ["dependencies", 55, 3], ["makeWrapperArgs", 66, 3], ["pythonImportsCheck", 73, 3], ["nativeCheckInputs", 77, 3], ["versionCheckProgram", 87, 3], ["preCheck", 89, 3], ["disabledTests", 98, 3], ["meta", 190, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.5.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "marcelotduarte",
           repo: "cx_Freeze",
           tag: version,
@@ -142,7 +140,7 @@ substituteInPlace tests/conftest.py \\
           "test_freezer_default_bin_includes",
         ]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Set of scripts and modules for freezing Python scripts into executables",
         homepage: "https://marcelotduarte.github.io/cx_Freeze",
         changelog: nix.thunk(() => nix.str`https://github.com/marcelotduarte/cx_Freeze/releases/tag/${nix.sel(src, "tag")}`),
@@ -151,7 +149,7 @@ substituteInPlace tests/conftest.py \\
         mainProgram: "cxfreeze",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

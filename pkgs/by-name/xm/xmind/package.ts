@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 38, 5], ["hash", 39, 5]], [["description", 100, 5], ["homepage", 101, 5], ["sourceProvenance", 102, 5], ["mainProgram", 103, 5], ["license", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["runtimeDependencies", 73, 3], ["installPhase", 77, 3], ["preFixup", 90, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, autoPatchelfHook: false, glib: false, "at-spi2-atk": false, cairo: false, pango: false, gtk3: false, nss: false, nspr: false, cups: false, dbus: false, libdrm: false, libxkbcommon: false, "alsa-lib": false, expat: false, libxrandr: false, libxfixes: false, libxext: false, libxdamage: false, libxcomposite: false, libx11: false, libxkbfile: false, libxcb: false, libgbm: false, systemd: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["sourceProvenance", 102, 5], ["mainProgram", 103, 5], ["license", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["runtimeDependencies", 73, 3], ["installPhase", 77, 3], ["preFixup", 90, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xmind",
       version: "26.05.01106-202608091931",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dl3.xmind.app/Xmind-for-Linux-amd64bit-${nix.sel(finalAttrs, "version")}.deb`),
           hash: "sha256-AXjDS/izF4sUn9nrIoQrzPuvHiRsb8T5EQOSQIHz8kA=",
         })))),
@@ -79,7 +77,7 @@ export default nix.lambda((args) => (() => {
   --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL]))} $out/opt/xmind/xmind
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "All-in-one thinking tool featuring mind mapping, AI generation, and real-time collaboration",
         homepage: "https://xmind.app",
         sourceProvenance: nix.thunk(() => (() => {

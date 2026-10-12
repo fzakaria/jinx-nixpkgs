@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pkgs", 15, 7], ["lib", 16, 7], ["makeWrapper", 17, 7], ["nodejs", 18, 7], ["fetchElmDeps", 19, 7]], [["lib", 33, 17], ["writeScriptBin", 34, 24], ["stdenv", 34, 39], ["elm", 35, 24]], [["fetchElmDeps", 30, 15], ["nodejs", 30, 28], ["elmLib", 32, 7], ["elm-doc-preview", 38, 7], ["elm-git-install", 40, 7], ["elm-graphql", 42, 7], ["elm-json", 44, 7], ["elm-language-server", 46, 7], ["elm-live", 48, 7], ["elm-optimize-level-2", 50, 7], ["elm-review", 52, 7], ["elm-spa", 54, 7], ["elm-test-rs", 56, 7], ["elm-test", 58, 7], ["elm-upgrade", 60, 7], ["elm-verify-examples", 62, 7], ["elm-watch", 64, 7], ["elm-xref", 66, 7], ["lamdera", 68, 7], ["elm-wrap", 70, 7]], [["elm-analyse", 73, 7], ["create-elm-app", 74, 7], ["elm-pages", 75, 7]]]);
 const formals$1 = { args: { pkgs: false, lib: false, makeWrapper: false, nodejs: false, config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pkgs", 15, 7], ["lib", 16, 7], ["makeWrapper", 17, 7], ["nodejs", 18, 7], ["fetchElmDeps", 19, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lib", 33, 17], ["writeScriptBin", 34, 24], ["stdenv", 34, 39], ["elm", 35, 24]]);
-const pos$3 = nix.positions(here + "/default.nix", [["fetchElmDeps", 30, 15], ["nodejs", 30, 28], ["elmLib", 32, 7], ["elm-doc-preview", 38, 7], ["elm-git-install", 40, 7], ["elm-graphql", 42, 7], ["elm-json", 44, 7], ["elm-language-server", 46, 7], ["elm-live", 48, 7], ["elm-optimize-level-2", 50, 7], ["elm-review", 52, 7], ["elm-spa", 54, 7], ["elm-test-rs", 56, 7], ["elm-test", 58, 7], ["elm-upgrade", 60, 7], ["elm-verify-examples", 62, 7], ["elm-watch", 64, 7], ["elm-xref", 66, 7], ["lamdera", 68, 7], ["elm-wrap", 70, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["elm-analyse", 73, 7], ["create-elm-app", 74, 7], ["elm-pages", 75, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const fetchElmDeps = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./lib/fetchElmDeps.nix"), nix.thunk(() => ({}))));
   const hs98Pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./packages/ghc9_8")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pkgs: pkgs,
       lib: lib,
       makeWrapper: makeWrapper,
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(pkgs, "newScope")), (self) => nix.app(assembleScope, self, nix.thunk(() => (() => {
         const w = nix.withScope(self, null);
         return nix.update({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           fetchElmDeps: fetchElmDeps,
           nodejs: nodejs,
           elmLib: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./lib"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               lib: lib,
               writeScriptBin: nix.thunk(() => nix.attr(pkgs, "writeScriptBin")),
               stdenv: nix.thunk(() => nix.attr(pkgs, "stdenv")),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
           lamdera: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./packages/lamdera"), nix.thunk(() => ({})))),
           "elm-wrap": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./packages/elm-wrap"), nix.thunk(() => ({})))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "elm-analyse": nix.thunk(() => nix.app(nix.builtins.throw, "elmPackages.elm-analyse has not be released since May 2019 so it has been removed.")),
             "create-elm-app": nix.thunk(() => nix.app(nix.builtins.throw, "'elmPackages.create-elm-app' has not had a release since December 2020, so it was removed.")),
             "elm-pages": nix.thunk(() => nix.app(nix.builtins.throw, "'elmPackages.elm-pages' has been removed, as it was broken in nixpkgs and was not maintained.")),

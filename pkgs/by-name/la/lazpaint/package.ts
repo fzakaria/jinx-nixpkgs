@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["description", 79, 5], ["homepage", 80, 5], ["downloadPage", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["bgrabitmap", 23, 3], ["bgracontrols", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["runtimeDependencies", 48, 3], ["preConfigure", 52, 3], ["buildPhase", 56, 3], ["preFixup", 74, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "lazarus-qt5": false, fpc: false, autoPatchelfHook: false, libsForQt5: false, libx11: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["downloadPage", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["bgrabitmap", 23, 3], ["bgracontrols", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["runtimeDependencies", 48, 3], ["preConfigure", 52, 3], ["buildPhase", 56, 3], ["preFixup", 74, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,25 +17,25 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lazpaint",
       version: "7.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bgrabitmap",
           repo: "lazpaint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-yT1HyvJcYEJgMkQxzCSD8s7/ttemxZaur9T+As8WdIo=",
         })))),
       bgrabitmap: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "bgrabitmap",
           repo: "bgrabitmap",
           tag: "v11.6.6",
           hash: "sha256-bA8tvo7Srm5kIZTVWEA2+gjqHab7LByyL/zqdQxeFlA=",
         })))),
       bgracontrols: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "bgrabitmap",
           repo: "bgracontrols",
           tag: "v9.0.2",
@@ -78,7 +74,7 @@ runHook postBuild
       preFixup: nix.thunk(() => nix.str`qtWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [python3]))})
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Image editor like PaintBrush or Paint.Net",
         homepage: "https://lazpaint.github.io",
         downloadPage: "https://github.com/bgrabitmap/lazpaint/",

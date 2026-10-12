@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["receive_sharing_intent", 21, 5]], [["CXXFLAGS", 35, 7]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["pubspecLock", 19, 3], ["gitHashes", 20, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 30, 3], ["env", 35, 3], ["postInstall", 37, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, flutter329: false, libappindicator: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["receive_sharing_intent", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CXXFLAGS", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["pubspecLock", 19, 3], ["gitHashes", 20, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 30, 3], ["env", 35, 3], ["postInstall", 37, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libretrack";
       const version = "1.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "proninyaroslav",
           repo: "libretrack",
           tag: version,
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const gitHashes = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         receive_sharing_intent: "sha256-YsvnLOZvYZMyKx3J596Q3/hY2Fn/AFT6nhLTTHdMFOE=",
       }));
       const postPatch = nix.thunk(() => nix.str`substituteInPlace linux/CMakeLists.txt \\
@@ -36,12 +32,12 @@ export default nix.lambda((args) => (() => {
 `);
       const nativeBuildInputs = nix.thunk(() => [libappindicator]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-deprecated-literal-operator"]))),
       }));
       const postInstall = "substituteInPlace snap/gui/org.proninyaroslav.libretrack.desktop \\\n  --replace-fail 'Icon=${SNAP}/meta/gui/libretrack.png' 'Icon=libretrack' \\\n\ninstall -Dm644 snap/gui/org.proninyaroslav.libretrack.desktop -t $out/share/applications\ninstall -Dm644 linux/icons/app-icon.svg $out/share/icons/hicolor/scalable/apps/libretrack.svg\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Private, cross-platform package tracking app",
         homepage: "https://github.com/proninyaroslav/libretrack",
         changelog: nix.thunk(() => nix.str`https://github.com/proninyaroslav/libretrack/releases/tag/${version}`),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

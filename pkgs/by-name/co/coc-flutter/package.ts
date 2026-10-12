@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 15], ["repo", 28, 15], ["rev", 29, 15], ["hash", 30, 15]], [["version", 25, 21], ["src", 26, 13], ["vendorHash", 32, 13]], [["buildGoModule", 20, 7]], [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]], [["src", 50, 26], ["hash", 51, 5]], [["ESBUILD_BINARY_PATH", 62, 7]], [["extraArgs", 64, 47]], [["updateScript", 64, 12]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["yarnOfflineCache", 49, 3], ["nativeBuildInputs", 54, 3], ["env", 62, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, esbuild: false, buildGoModule: false, yarnBuildHook: false, yarnInstallHook: false, yarnConfigHook: false, nodejs: false, fetchYarnDeps: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 15], ["repo", 28, 15], ["rev", 29, 15], ["hash", 30, 15]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 25, 21], ["src", 26, 13], ["vendorHash", 32, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildGoModule", 20, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["src", 50, 26], ["hash", 51, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ESBUILD_BINARY_PATH", 62, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 64, 47]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 64, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["yarnOfflineCache", 49, 3], ["nativeBuildInputs", 54, 3], ["env", 62, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const esbuild$ = nix.thunk(() => (() => {
     const version = "0.9.0";
     return nix.app(nix.sel(esbuild, "override"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         buildGoModule: (args_1) => nix.app(buildGoModule, nix.thunk(() => nix.update(args_1, {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             version: version,
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: "evanw",
                 repo: "esbuild",
                 rev: nix.thunk(() => nix.str`v${version}`),
@@ -46,32 +37,32 @@ export default nix.lambda((args) => (() => {
       })));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "coc-flutter",
       version: "1.9.3-unstable-2023-03-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "iamcco",
           repo: "coc-flutter",
           rev: "883c269eaacbeddbd4fb08e32e6a05051933429d",
           hash: "sha256-K3NvqZnAEj/qfsvomYl7dPtEo3ad7w1dCfZHjMRwbAA=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-aEjfhjkMlHSdISfG9baRfaUiTUbj8TPZi2edAFiqKlg=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnBuildHook, yarnConfigHook, yarnInstallHook, nodejs, esbuild$]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), esbuild$)),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$7, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[7],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[6], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Flutter support for (Neo)vim",
         homepage: "https://github.com/iamcco/coc-flutter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nativeBuildInputs", 87, 9], ["buildCommandPython", 88, 17]], [["url", 106, 13]], [["src", 104, 19], ["version", 104, 23], ["updateScript", 105, 11]], [["name", 98, 9], ["owner", 99, 9], ["repo", 100, 9], ["rev", 101, 9], ["hash", 102, 9], ["passthru", 103, 9]], [["position", 115, 9]], [["meta", 113, 7]], [["owner", 140, 5], ["repo", 141, 5], ["tag", 142, 5], ["hash", 143, 5]], [["url", 155, 7], ["hash", 156, 7]], [["fontDirectories", 267, 11]], [["FONTCONFIG_FILE", 264, 5], ["PKG_CONFIG_POLKIT_GOBJECT_1_ACTIONDIR", 274, 5]], [["installedTests", 354, 9], ["passthruMatches", 356, 9]], [["updateScript", 328, 5], ["filesInstalledToEtc", 329, 5], ["test-firmware", 344, 13], ["fwupd-efi", 347, 13], ["tests", 349, 5]], [["homepage", 374, 5], ["changelog", 375, 5], ["maintainers", 376, 5], ["license", 380, 5], ["platforms", 381, 5]], [["pname", 124, 3], ["version", 125, 3], ["outputs", 130, 3], ["src", 139, 3], ["patches", 146, 3], ["postPatch", 160, 3], ["strictDeps", 174, 3], ["depsBuildBuild", 176, 3], ["nativeBuildInputs", 181, 3], ["buildInputs", 203, 3], ["mesonFlags", 227, 3], ["dontWrapGApps", 257, 3], ["doCheck", 259, 3], ["env", 262, 3], ["nativeCheckInputs", 277, 3], ["preCheck", 282, 3], ["postInstall", 289, 3], ["preFixup", 294, 3], ["postFixup", 310, 3], ["separateDebugInfo", 325, 3], ["passthru", 327, 3], ["meta", 373, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, runCommand: false, python3: false, fetchFromGitHub: false, unstableGitUpdater: false, fetchpatch2: false, "pkg-config": false, pkgsBuildBuild: false, ensureNewerSourcesForZipFilesHook: false, gettext: false, "gi-docgen": false, "gobject-introspection": false, meson: false, ninja: false, "shared-mime-info": false, vala: false, wrapGAppsNoGuiHook: false, writableTmpDirAsHomeHook: false, mesonEmulatorHook: false, "bash-completion": false, curl: false, elfutils: false, "fwupd-efi": false, gnutls: false, gusb: false, libdrm: false, libgudev: false, libjcat: false, libmbim: false, libmnl: false, libqmi: false, libuuid: false, libxmlb: false, libxml2: false, modemmanager: false, pango: false, polkit: false, readline: false, sqlite: false, "tpm2-tss": false, xz: false, hwdata: false, makeFontsConf: false, freefont_ttf: false, libredirect: false, bubblewrap: false, efibootmgr: false, "tpm2-tools": false, nixosTests: false, "nix-update-script": false, enablePassim: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 87, 9], ["buildCommandPython", 88, 17]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 106, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 104, 19], ["version", 104, 23], ["updateScript", 105, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 98, 9], ["owner", 99, 9], ["repo", 100, 9], ["rev", 101, 9], ["hash", 102, 9], ["passthru", 103, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["position", 115, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["meta", 113, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 140, 5], ["repo", 141, 5], ["tag", 142, 5], ["hash", 143, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 155, 7], ["hash", 156, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["fontDirectories", 267, 11]]);
-const pos$10 = nix.positions(here + "/package.nix", [["FONTCONFIG_FILE", 264, 5], ["PKG_CONFIG_POLKIT_GOBJECT_1_ACTIONDIR", 274, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["installedTests", 354, 9], ["passthruMatches", 356, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["updateScript", 328, 5], ["filesInstalledToEtc", 329, 5], ["test-firmware", 344, 13], ["fwupd-efi", 347, 13], ["tests", 349, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["homepage", 374, 5], ["changelog", 375, 5], ["maintainers", 376, 5], ["license", 380, 5], ["platforms", 381, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 124, 3], ["version", 125, 3], ["outputs", 130, 3], ["src", 139, 3], ["patches", 146, 3], ["postPatch", 160, 3], ["strictDeps", 174, 3], ["depsBuildBuild", 176, 3], ["nativeBuildInputs", 181, 3], ["buildInputs", 203, 3], ["mesonFlags", 227, 3], ["dontWrapGApps", 257, 3], ["doCheck", 259, 3], ["env", 262, 3], ["nativeCheckInputs", 277, 3], ["preCheck", 282, 3], ["postInstall", 289, 3], ["preFixup", 294, 3], ["postFixup", 310, 3], ["separateDebugInfo", 325, 3], ["passthru", 327, 3], ["meta", 373, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -74,33 +61,33 @@ export default nix.lambda((args) => (() => {
   const enablePassim = nix.argOr($, "enablePassim", () => false);
   const isx86 = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86"));
   const runPythonCommand = (name) => (buildCommandPython) => nix.app(runCommand, name, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [python3]),
       buildCommandPython: buildCommandPython,
     })), "exec python3 -c \"$buildCommandPython\"\n");
   const test_firmware = nix.thunk(() => (() => {
     const version = "0-unstable-2022-04-02";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: nix.thunk(() => nix.str`fwupd-test-firmware-${version}`),
         owner: "fwupd",
         repo: "fwupd-test-firmware",
         rev: "39954e434d63e20e85870dd1074818f48a0c08b7",
         hash: "sha256-d4qG3fKyxkfN91AplRYqARFz+aRr+R37BpE450bPxi0=",
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: src,
           version: version,
           updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`${nix.sel(test_firmware, "meta", "homepage")}.git`),
             })))),
         })),
       }))));
     return nix.update(src, {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       meta: nix.thunk(() => nix.update(nix.sel(src, "meta"), {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         position: nix.thunk(() => (() => {
           const pos = nix.thunk(() => nix.builtins.unsafeGetAttrPos("updateScript", test_firmware));
           return nix.add(nix.add(nix.sel(pos, "file"), ":"), nix.builtins.toString(nix.thunk(() => nix.sel(pos, "line"))));
@@ -109,12 +96,12 @@ export default nix.lambda((args) => (() => {
     });
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: "fwupd",
       version: "2.1.6",
       outputs: nix.thunk(() => ["out", "lib", "dev", "devdoc", "man", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "fwupd",
           repo: "fwupd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -125,7 +112,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0002-Add-output-for-installed-tests.patch"),
         nix.path(here, "./0003-Add-option-for-installation-sysconfdir.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: "https://github.com/fwupd/fwupd/commit/c2ff6e0bf9e3fea5b8502ed12fdc9ab604a51518.patch",
             hash: "sha256-Y8YbECfUGqvpNTlKCLOXgRSIZYO+MsZYIMcMgIQfkIs=",
           })))),
@@ -195,9 +182,9 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       doCheck: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         FONTCONFIG_FILE: nix.thunk(() => (() => {
-          const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$9, fontDirectories: nix.thunk(() => [freefont_ttf]) }))));
+          const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[8], fontDirectories: nix.thunk(() => [freefont_ttf]) }))));
           return nix.force(fontsConf);
         })()),
         PKG_CONFIG_POLKIT_GOBJECT_1_ACTIONDIR: "/run/current-system/sw/share/polkit-1/actions",
@@ -223,7 +210,7 @@ cp --recursive --dereference "${test_firmware}/installed-tests/tests" "$installe
       postFixup: "# Since we had to disable wrapGAppsHook, we need to wrap the executables manually.\nfind -L \"$out/bin\" \"$out/libexec\" -type f -executable -print0 \\\n  | while IFS= read -r -d '' file; do\n  if [[ \"$file\" != *.efi ]]; then\n    echo \"Wrapping program $file\"\n    wrapGApp \"$file\"\n  fi\ndone\n\n# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\nmoveToOutput \"etc/doc\" \"$devdoc\"\n",
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         filesInstalledToEtc: nix.thunk(() => [
           "fwupd/fwupd.conf",
@@ -243,7 +230,7 @@ cp --recursive --dereference "${test_firmware}/installed-tests/tests" "$installe
         tests: nix.thunk(() => (() => {
           const listToPy = (list) => nix.str`[${nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", (f) => nix.str`'${f}'`, list)}]`;
           return {
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "fwupd")),
             passthruMatches: nix.thunk(() => nix.app(runPythonCommand, "fwupd-test-passthru-matches", nix.thunk(() => nix.str`import itertools
 import configparser
@@ -262,7 +249,7 @@ pathlib.Path(os.getenv('out')).touch()
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         homepage: "https://fwupd.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/fwupd/fwupd/releases/tag/${nix.sel(finalAttrs, "version")}`),
         maintainers: nix.thunk(() => (() => {

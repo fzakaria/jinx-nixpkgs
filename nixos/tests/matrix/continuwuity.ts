@@ -2,22 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/continuwuity.nix", [[["server_name", 15, 11], ["address", 16, 11], ["admin_execute", 17, 11]], [["global", 14, 18]], [["RUST_BACKTRACE", 19, 26]], [["enable", 13, 9], ["settings", 14, 9], ["extraEnvironment", 19, 9]], [["matrix-continuwuity", 12, 16]], [["allowedTCPPorts", 21, 27]], [["firewall", 21, 18]], [["services", 12, 7], ["networking", 21, 7]], [["libraries", 28, 53]], [["systemPackages", 27, 21]], [["environment", 27, 9]], [["continuwuity", 11, 5], ["client", 24, 5]], [["maintainers", 103, 8]], [["name", 8, 11], ["nodes", 10, 3], ["testScript", 92, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/continuwuity.nix", [["server_name", 15, 11], ["address", 16, 11], ["admin_execute", 17, 11]]);
-const pos$2 = nix.positions(here + "/continuwuity.nix", [["global", 14, 18]]);
-const pos$3 = nix.positions(here + "/continuwuity.nix", [["RUST_BACKTRACE", 19, 26]]);
-const pos$4 = nix.positions(here + "/continuwuity.nix", [["enable", 13, 9], ["settings", 14, 9], ["extraEnvironment", 19, 9]]);
-const pos$5 = nix.positions(here + "/continuwuity.nix", [["matrix-continuwuity", 12, 16]]);
-const pos$6 = nix.positions(here + "/continuwuity.nix", [["allowedTCPPorts", 21, 27]]);
-const pos$7 = nix.positions(here + "/continuwuity.nix", [["firewall", 21, 18]]);
-const pos$8 = nix.positions(here + "/continuwuity.nix", [["services", 12, 7], ["networking", 21, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/continuwuity.nix", [["libraries", 28, 53]]);
-const pos$10 = nix.positions(here + "/continuwuity.nix", [["systemPackages", 27, 21]]);
-const pos$11 = nix.positions(here + "/continuwuity.nix", [["environment", 27, 9]]);
-const pos$12 = nix.positions(here + "/continuwuity.nix", [["continuwuity", 11, 5], ["client", 24, 5]]);
-const pos$13 = nix.positions(here + "/continuwuity.nix", [["maintainers", 103, 8]]);
-const pos$14 = nix.positions(here + "/continuwuity.nix", [["name", 8, 11], ["nodes", 10, 3], ["testScript", 92, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,44 +13,44 @@ export default nix.lambda((args) => (() => {
   const user = "alice";
   const pass = "my-secret-password";
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: name,
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       continuwuity: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "matrix-continuwuity": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               global: nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 server_name: name,
                 address: nix.thunk(() => ["0.0.0.0"]),
                 admin_execute: nix.thunk(() => [nix.thunk(() => nix.str`users create ${user} ${pass}`)]),
               })),
             })),
-            extraEnvironment: nix.thunk(() => ({ [nix.POS]: pos$3, RUST_BACKTRACE: "yes" })),
+            extraEnvironment: nix.thunk(() => ({ [nix.POS]: $pos[2], RUST_BACKTRACE: "yes" })),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [6167n]) })),
+          [nix.POS]: $pos[6],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[5], allowedTCPPorts: nix.thunk(() => [6167n]) })),
         })),
       })),
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "do_test", nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "mautrix"))]),
                 })), nix.thunk(() => nix.str`import asyncio
 
@@ -131,7 +118,7 @@ if __name__ == "__main__":
     })),
     testScript: "start_all()\n\nwith subtest(\"start continuwuity\"):\n      continuwuity.wait_for_unit(\"continuwuity.service\")\n      continuwuity.wait_for_open_port(6167)\n\nwith subtest(\"ensure messages can be exchanged\"):\n      client.succeed(\"do_test >&2\")\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

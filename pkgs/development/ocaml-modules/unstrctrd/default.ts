@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 25, 3], ["checkInputs", 30, 3], ["doCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { alcotest: false, angstrom: false, bigstringaf: false, buildDunePackage: false, crowbar: false, fetchzip: false, fmt: false, hxd: false, ke: false, lib: false, rresult: false, uutf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 25, 3], ["checkInputs", 30, 3], ["doCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "unstrctrd";
       const version = "0.5";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/dinosaure/unstrctrd/releases/download/v${version}/unstrctrd-${version}.tbz`),
           hash: "sha256-WmjFDxgFTkOmHwcy+9aXBz688DvBBqSeevl2K3/Sv9Y=",
         }))));
@@ -33,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [alcotest, bigstringaf, crowbar, fmt, hxd, ke, rresult]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for parsing email headers",
         homepage: "https://github.com/dinosaure/unstrctrd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

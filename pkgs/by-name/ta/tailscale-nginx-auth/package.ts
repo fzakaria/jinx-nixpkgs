@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["CGO_ENABLED", 12, 7]], [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["mainProgram", 34, 5], ["maintainers", 35, 5]], [["pname", 9, 3], ["version", 10, 23], ["src", 10, 31], ["vendorHash", 10, 35], ["env", 12, 3], ["subPackages", 14, 3], ["ldflags", 16, 3], ["postInstall", 23, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGo127Module: false, tailscale: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 12, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["mainProgram", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 23], ["src", 10, 31], ["vendorHash", 10, 35], ["env", 12, 3], ["subPackages", 14, 3], ["ldflags", 16, 3], ["postInstall", 23, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const buildGo127Module = nix.arg($, "buildGo127Module");
   const tailscale = nix.arg($, "tailscale");
   return nix.app(buildGo127Module, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tailscale-nginx-auth",
       version: nix.thunk(() => nix.attr(tailscale, "version")),
       src: nix.thunk(() => nix.attr(tailscale, "src")),
       vendorHash: nix.thunk(() => nix.attr(tailscale, "vendorHash")),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cmd/nginx-auth"]),
       ldflags: nix.thunk(() => [
         "-w",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mv $out/bin/nginx-auth $out/bin/tailscale.nginx-auth\nsed -i -e \"s#/usr/sbin#$out/bin#\" ./cmd/nginx-auth/tailscale.nginx-auth.service\ninstall -D -m0444 -t $out/lib/systemd/system ./cmd/nginx-auth/tailscale.nginx-auth.service\ninstall -D -m0444 -t $out/lib/systemd/system ./cmd/nginx-auth/tailscale.nginx-auth.socket\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://tailscale.com",
         description: "Tool that allows users to use Tailscale Whois authentication with NGINX as a reverse proxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

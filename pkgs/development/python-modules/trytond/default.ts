@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 36, 13], ["version", 36, 19], ["hash", 37, 5]], [["description", 87, 5], ["longDescription", 88, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["broken", 99, 5], ["maintainers", 100, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["doCheck", 69, 3], ["nativeCheckInputs", 71, 3], ["preCheck", 76, 3], ["unittestFlagsArray", 81, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, defusedxml: false, lxml: false, relatorio: false, genshi: false, "python-dateutil": false, polib: false, "python-sql": false, werkzeug: false, passlib: false, pydot: false, levenshtein: false, html2text: false, weasyprint: false, gevent: false, pillow: false, pwdlib: false, simpleeval: false, withPostgresql: true, psycopg2: false, unittestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 36, 13], ["version", 36, 19], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 87, 5], ["longDescription", 88, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["broken", 99, 5], ["maintainers", 100, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["doCheck", 69, 3], ["nativeCheckInputs", 71, 3], ["preCheck", 76, 3], ["unittestFlagsArray", 81, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.8.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-9X7/+cP4rKUJcfj3wa3ONyMkpXaHz36hrIZxeGvOpp4=",
@@ -70,7 +68,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export TRYTOND_DATABASE_URI=\"sqlite://\"\nexport DB_NAME=\":memory:\";\n";
       const unittestFlagsArray = nix.thunk(() => ["-s", "trytond.tests"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Server of the Tryton application platform",
         longDescription: "The server for Tryton, a three-tier high-level general purpose\napplication platform under the license GPL-3 written in Python and using\nPostgreSQL as database engine.\n\nIt is the core base of a complete business solution providing\nmodularity, scalability and security.\n",
         homepage: "http://www.tryton.org/",
@@ -86,7 +84,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

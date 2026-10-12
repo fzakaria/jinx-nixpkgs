@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["sha256", 16, 5]], [["url", 22, 7], ["hash", 23, 7]], [["homepage", 30, 5], ["description", 31, 5], ["maintainers", 32, 5], ["license", 33, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["build-system", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 30, 5], ["description", 31, 5], ["maintainers", 32, 5], ["license", 33, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["build-system", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,28 +17,28 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.1.post2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "0705a66297ebd2f508a60dc94e22881c754301eb81db93963322f6b3bdcb63a3",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/tgalal/python-axolotl-curve25519/commit/901f4fb12e1290b72fbd26ea1f40755b079fa241.patch",
             hash: "sha256-hdhaOysRXI9q5D9e/bfy0887bpEFSvUyrbl32nBgteQ=",
           })))),
       ]);
       const build_system = nix.thunk(() => [setuptools]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/tgalal/python-axolotl-curve25519",
         description: "Curve25519 with ed25519 signatures",
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 7], ["hash", 16, 7]], [["url", 19, 7], ["hash", 20, 7]], [["url", 23, 7], ["hash", 24, 7]], [["x86_64-linux", 14, 5], ["aarch64-linux", 18, 5], ["aarch64-darwin", 22, 5]], [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["SVM_RELEASES_LIST_JSON", 45, 7]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["cargoHash", 39, 3], ["doCheck", 42, 3], ["env", 45, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, fetchurl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 7], ["hash", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 7], ["hash", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 14, 5], ["aarch64-linux", 18, 5], ["aarch64-darwin", 22, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["SVM_RELEASES_LIST_JSON", 45, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["cargoHash", 39, 3], ["doCheck", 42, 3], ["env", 45, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,29 +13,29 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const stdenv = nix.arg($, "stdenv");
   const solc_versions = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "https://raw.githubusercontent.com/ethereum/solc-bin/bdd7dd3fda6e4a00c0697d891a1a7ae9f2b3a5fd/linux-amd64/list.json",
         hash: "sha256-H6D6XbIw5sDZlbc2c51vIMRmOqs2nDIcaNzCaOvnLsw=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "https://raw.githubusercontent.com/nikitastupin/solc/99b5867237b37952d372e0dab400d6788feda315/linux/aarch64/list.json",
         hash: "sha256-u6WRAcnR9mN9ERfFdLOxxSc9ASQIQvmS8uG+Z4H6OAU=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: "https://raw.githubusercontent.com/alloy-rs/solc-builds/e4b80d33bc4d015b2fc3583e217fbf248b2014e1/macosx/aarch64/list.json",
         hash: "sha256-h0B1g7x80jU9iCFCMYw+HlmdKQt1wfhIkV5W742kw6w=",
       })))),
   }));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "bulloak",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "alexfertel",
           repo: "bulloak",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,11 +44,11 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-yaRaB3U8Wxhp7SK5E44CF8AudhG7ar7L5ey+CRVfYqc=",
       doCheck: false,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         SVM_RELEASES_LIST_JSON: nix.thunk(() => nix.selOr(solc_versions, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Solidity test generator based on the Branching Tree Technique",
         homepage: "https://github.com/alexfertel/bulloak",
         license: nix.thunk(() => (() => {

@@ -2,27 +2,23 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/extensions.nix", [[["enable", 8, 9], ["baseUrl", 9, 9], ["authType", 10, 9], ["extensions", 11, 9]], [["freshrss", 7, 16]], [["services", 7, 7]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["extraPythonPackages", 17, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/extensions.nix", [["enable", 8, 9], ["baseUrl", 9, 9], ["authType", 10, 9], ["extensions", 11, 9]]);
-const pos$2 = nix.positions(here + "/extensions.nix", [["freshrss", 7, 16]]);
-const pos$3 = nix.positions(here + "/extensions.nix", [["services", 7, 7]]);
-const pos$4 = nix.positions(here + "/extensions.nix", [["machine", 4, 9]]);
-const pos$5 = nix.positions(here + "/extensions.nix", [["name", 2, 3], ["nodes", 4, 3], ["extraPythonPackages", 17, 3], ["testScript", 22, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$5,
+  [nix.POS]: $pos[4],
   name: "freshrss-extensions",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           freshrss: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             enable: true,
             baseUrl: "http://localhost",
             authType: "none",

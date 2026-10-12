@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]], [["description", 83, 5], ["mainProgram", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["maintainers", 88, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["dontBuild", 37, 3], ["nativeBuildInputs", 39, 3], ["installPhase", 41, 3], ["nativeCheckInputs", 57, 3], ["checkPhase", 70, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, gdb: false, python3: false, "bintools-unwrapped": false, file: false, ps: false, git: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 83, 5], ["mainProgram", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["maintainers", 88, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["dontBuild", 37, 3], ["nativeBuildInputs", 39, 3], ["installPhase", 41, 3], ["nativeCheckInputs", 57, 3], ["checkPhase", 70, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
       ]));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gef",
       version: "2026.01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hugsy",
           repo: "gef",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,7 +71,7 @@ sed -i 's+/bin/ls+${coreutils}/bin/ls+g' tests/runtests.py
 make test
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modern experience for GDB with advanced debugging features for exploit developers & reverse engineers",
         mainProgram: "gef",
         homepage: "https://github.com/hugsy/gef",

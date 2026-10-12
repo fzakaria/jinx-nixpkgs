@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["desktopName", 13, 5], ["genericName", 14, 5], ["categories", 15, 5], ["exec", 16, 5], ["name", 17, 5]], [["url", 25, 5], ["sha256", 28, 5]], [["homepage", 60, 5], ["description", 61, 5], ["sourceProvenance", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["jre", 35, 11], ["installPhase", 37, 3], ["desktopItems", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, jre: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["desktopName", 13, 5], ["genericName", 14, 5], ["categories", 15, 5], ["exec", 16, 5], ["name", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["sourceProvenance", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["jre", 35, 11], ["installPhase", 37, 3], ["desktopItems", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       desktopName: "JDiskReport",
       genericName: "A graphical utility to visualize disk usage",
       categories: nix.thunk(() => ["Utility"]),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jdiskreport";
       const version = "1.4.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://www.jgoodies.com/download/jdiskreport/jdiskreport-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.zip`),
           sha256: "0d5mzkwsbh9s9b1vyvpaawqc09b0q41l2a7pmwf7386b1fsx6d58",
         }))));
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\nunzip $src\n\njar=$(ls */*.jar)\n\nmkdir -p $out/share/java\nmv $jar $out/share/java\n\nmkdir -p $out/bin\ncat > $out/bin/jdiskreport <<EOF\n#! $SHELL -e\nexec $jre/bin/java -jar $out/share/java/$(basename $jar)\nEOF\nchmod +x $out/bin/jdiskreport\n\nrunHook postInstall\n";
       const desktopItems = nix.thunk(() => [desktopItem]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.jgoodies.com/freeware/jdiskreport/",
         description: "Graphical utility to visualize disk usage",
         sourceProvenance: nix.thunk(() => (() => {
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "jdiskreport",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

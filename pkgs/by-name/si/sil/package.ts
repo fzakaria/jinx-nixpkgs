@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["sha256", 31, 5], ["stripRoot", 32, 5]], [["NIX_CFLAGS_COMPILE", 62, 7]], [["saveDirCreation", 82, 5]], [["tests", 81, 12]], [["description", 89, 5], ["longDescription", 90, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 103, 5], ["mainProgram", 104, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 36, 3], ["sourceRoot", 45, 3], ["makefile", 47, 3], ["postPatch", 49, 3], ["preConfigure", 54, 3], ["env", 62, 3], ["installPhase", 64, 3], ["passthru", 81, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, stdenv: false, fetchzip: false, ncurses: false, libx11: false, libxaw: false, libxt: false, libxext: false, libxmu: false, makeWrapper: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["sha256", 31, 5], ["stripRoot", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["saveDirCreation", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 81, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 89, 5], ["longDescription", 90, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 103, 5], ["mainProgram", 104, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 36, 3], ["sourceRoot", 45, 3], ["makefile", 47, 3], ["postPatch", 49, 3], ["preConfigure", 54, 3], ["env", 62, 3], ["installPhase", 64, 3], ["passthru", 81, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const setup = nix.thunk(() => nix.app(writeScript, "setup", "mkdir -p \"$ANGBAND_PATH\"\n# Copy all the data files into place\ncp -ar $1/* \"$ANGBAND_PATH\"\n# The copied files are not writable, make them so\nchmod +w -R \"$ANGBAND_PATH\"\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "Sil",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.amirrorclear.net/flowers/game/sil/Sil-130-src.zip",
           sha256: "1amp2mr3fxascra0k76sdsvikjh8g76nqh46kka9379zd35lfq8w",
           stripRoot: false,
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
       makefile: "Makefile.std",
       postPatch: "# Allow usage of ANGBAND_PATH\nsubstituteInPlace config.h --replace \"#define FIXED_PATHS\" \"\"\n",
       preConfigure: "buildFlagsArray+=(\"LIBS=-lXaw -lXext -lSM -lICE -lXmu -lXt -lX11 -lncurses\")\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fcommon" })),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 
 # the makefile doesn't have a sensible install target, so we have to do it ourselves
@@ -58,16 +53,16 @@ wrapProgram $out/bin/sil \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           saveDirCreation: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "save-dir-creation", nix.thunk(() => ({})), nix.thunk(() => nix.str`HOME=$(pwd) ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "sil")))} --help
 test -d .sil && touch $out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Rogue-like game set in the First Age of Middle-earth",
         longDescription: "A game of adventure set in the First Age of Middle-earth, when the world still\nrang with Elven song and gleamed with Dwarven mail.\n\nWalk the dark halls of Angband.  Slay creatures black and fell.  Wrest a shining\nSilmaril from Morgoth’s iron crown.\n",
         homepage: "http://www.amirrorclear.net/flowers/game/sil/index.html",

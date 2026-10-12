@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["url", 32, 7], ["hash", 33, 7]], [["description", 71, 5], ["mainProgram", 72, 5], ["license", 73, 5], ["platforms", 77, 5], ["broken", 78, 5], ["maintainers", 79, 5], ["homepage", 80, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 29, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["preConfigure", 60, 3], ["postInstall", 64, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, makeWrapper: false, "pkg-config": false, gettext: false, imagemagick: false, curl: false, libpng: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, SDL2_ttf: false, xercesc: false, "xdg-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["mainProgram", 72, 5], ["license", 73, 5], ["platforms", 77, 5], ["broken", 78, 5], ["maintainers", 79, 5], ["homepage", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 29, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["preConfigure", 60, 3], ["postInstall", 64, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const xercesc = nix.arg($, "xercesc");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "enigma",
       version: "1.30",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Enigma-Game/Enigma/releases/download/${nix.sel(finalAttrs, "version")}/Enigma-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-rmS5H7wrEJcAcdDXjtW07enuOGjeLm6VaVRvxYQ3+K8=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/Enigma-Game/Enigma/pull/70/commits/d25051eb6228c885e779a9674f8ee3979da30663.patch",
             hash: "sha256-L5C4NCZDDUKji9Tg4geKaiw3CkSY6rCoawqGKqR4dFM=",
           })))),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/enigma --suffix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdg_utils]))}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Puzzle game inspired by Oxyd on the Atari ST and Rock'n'Roll on the Amiga",
         mainProgram: "enigma",
         license: nix.thunk(() => (() => {

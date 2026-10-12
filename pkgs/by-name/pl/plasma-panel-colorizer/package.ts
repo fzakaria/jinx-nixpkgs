@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["updateScript", 52, 12]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["sourceProvenance", 74, 5], ["platforms", 75, 46]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["propagatedUserEnvPkgs", 40, 3], ["strictDeps", 42, 3], ["cmakeFlags", 44, 3], ["dontWrapQtApps", 50, 3], ["passthru", 52, 3], ["patches", 54, 3], ["postPatch", 56, 3], ["postInstall", 61, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, kdePackages: false, "nix-update-script": false, makeWrapper: false, python3: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["sourceProvenance", 74, 5], ["platforms", 75, 46]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["propagatedUserEnvPkgs", 40, 3], ["strictDeps", 42, 3], ["cmakeFlags", 44, 3], ["dontWrapQtApps", 50, 3], ["passthru", 52, 3], ["patches", 54, 3], ["postPatch", 56, 3], ["postInstall", 61, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(p, "pygobject3")),
     ]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "plasma-panel-colorizer",
       version: "8.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "luisbocanegra",
           repo: "plasma-panel-colorizer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontWrapQtApps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       patches: nix.thunk(() => [nix.path(here, "./use-dbus-service-directly.patch")]),
@@ -64,7 +61,7 @@ wrapProgram $out/share/plasma/plasmoids/luisbocanegra.panel.colorizer/contents/u
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kdePackages, "kwindowsystem", "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fully-featured widget to bring Latte-Dock and WM status bar customization features to the default KDE Plasma panel",
         homepage: "https://github.com/luisbocanegra/plasma-panel-colorizer",
         changelog: "https://github.com/luisbocanegra/plasma-panel-colorizer/blob/main/CHANGELOG.md",

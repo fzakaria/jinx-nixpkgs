@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["standard", 12, 3]]]);
 const formals$1 = { args: { runTestOn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["standard", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTestOn = nix.arg($, "runTestOn");
   const supportedSystems = nix.thunk(() => ["x86_64-linux", "aarch64-linux", "i686-linux"]);
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     standard: nix.thunk(() => nix.app(runTestOn, supportedSystems, nix.path(here, "./standard.nix"))),
   };
 })(), formals$1);

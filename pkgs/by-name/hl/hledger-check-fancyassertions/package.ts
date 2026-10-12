@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 14, 5], ["url", 15, 5], ["hash", 16, 5]], [["libraries", 23, 5], ["ghc", 37, 31]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]], [["pname", 10, 3], ["version", 11, 41], ["src", 13, 3], ["dontUnpack", 19, 3], ["dontBuild", 20, 3], ["executable", 22, 3], ["installPhase", 40, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, haskellPackages: false, fetchurl: false, writers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 14, 5], ["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["libraries", 23, 5], ["ghc", 37, 31]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 41], ["src", 13, 3], ["dontUnpack", 19, 3], ["dontBuild", 20, 3], ["executable", 22, 3], ["installPhase", 40, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const from = nix.thunk(() => nix.sel(haskellPackages, "hledger-lib"));
       const version = nix.thunk(() => nix.attr(from, "version"));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`hledger-check-fancyassertion-${version}.hs`),
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/simonmichael/hledger/hledger-lib-${version}/bin/hledger-check-fancyassertions.hs`),
           hash: "sha256-ISA7ED0HgyWOxfaufaFpNb1dHfE+1+Xh4SRCZ64yM6E=",
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const dontUnpack = true;
       const dontBuild = true;
       const executable = nix.thunk(() => nix.app(nix.sel(writers, "writeHaskell"), "hledger-check-fancyassertions", nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           libraries: nix.thunk(() => (() => {
             const w = nix.withScope(haskellPackages, null);
             return [
@@ -53,7 +50,7 @@ install -D $executable $out/bin/${pname}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Complex account balance assertions for hledger journals",
         homepage: "https://hledger.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/simonmichael/hledger/blob/${version}/hledger/CHANGES.md`),
@@ -63,7 +60,7 @@ runHook postInstall
         mainProgram: "hledger-check-fancyassertions",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

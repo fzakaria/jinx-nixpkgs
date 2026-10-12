@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]], [["ZSTD_SYS_USE_PKG_CONFIG", 66, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["mainProgram", 78, 13], ["maintainers", 79, 5]], [["pname", 35, 3], ["version", 36, 3], ["buildFeatures", 38, 11], ["src", 40, 3], ["cargoHash", 47, 3], ["buildInputs", 49, 3], ["nativeBuildInputs", 56, 3], ["doCheck", 63, 3], ["env", 65, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, file: false, lib: false, "pkg-config": false, rustPlatform: false, sqlite: false, zstd: false, cmake: false, python3: false, wayland: false, withPolars: true, withPython: true, withUi: true, buildFeatures: true, mainProgram: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ZSTD_SYS_USE_PKG_CONFIG", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["mainProgram", 78, 13], ["maintainers", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["buildFeatures", 38, 11], ["src", 40, 3], ["cargoHash", 47, 3], ["buildInputs", 49, 3], ["nativeBuildInputs", 56, 3], ["doCheck", 63, 3], ["env", 65, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const buildFeatures = nix.argOr($, "buildFeatures", () => nix.concat(["apply", "feature_capable", "fetch", "foreach", "geocode", "luau", "to"], nix.concat(nix.app(nix.sel(lib, "optional"), withPolars, "polars"), nix.concat(nix.app(nix.sel(lib, "optional"), withPython, "python"), nix.app(nix.sel(lib, "optional"), withUi, "ui")))));
   const mainProgram = nix.argOr($, "mainProgram", () => "qsv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qsv",
       version: "23.0.1",
       buildFeatures: buildFeatures,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dathere",
           repo: "qsv",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,9 +39,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([file, sqlite, zstd], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "elem"), "ui", buildFeatures)) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), wayland))),
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook")), cmake], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "python", buildFeatures)), python3))),
       doCheck: false,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ZSTD_SYS_USE_PKG_CONFIG: true })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CSVs sliced, diced & analyzed",
         homepage: "https://github.com/dathere/qsv",
         changelog: nix.thunk(() => nix.str`https://github.com/dathere/qsv/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

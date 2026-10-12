@@ -2,50 +2,42 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/hashes.nix", [["hash", 9, 7], ["url", 10, 7]]);
-const pos$2 = nix.positions(here + "/hashes.nix", [["hash", 13, 7], ["url", 14, 7]]);
-const pos$3 = nix.positions(here + "/hashes.nix", [["hash", 17, 7], ["url", 18, 7]]);
-const pos$4 = nix.positions(here + "/hashes.nix", [["aarch64-linux", 8, 5], ["x86_64-linux", 12, 5], ["aarch64-darwin", 16, 5]]);
-const pos$5 = nix.positions(here + "/hashes.nix", [["hash", 23, 7], ["url", 24, 7]]);
-const pos$6 = nix.positions(here + "/hashes.nix", [["hash", 27, 7], ["url", 28, 7]]);
-const pos$7 = nix.positions(here + "/hashes.nix", [["hash", 31, 7], ["url", 32, 7]]);
-const pos$8 = nix.positions(here + "/hashes.nix", [["aarch64-linux", 22, 5], ["x86_64-linux", 26, 5], ["aarch64-darwin", 30, 5]]);
-const pos$9 = nix.positions(here + "/hashes.nix", [["25", 7, 3], ["17", 21, 3]]);
+const $pos = nix.positions(here + "/hashes.nix", [[["hash", 9, 7], ["url", 10, 7]], [["hash", 13, 7], ["url", 14, 7]], [["hash", 17, 7], ["url", 18, 7]], [["aarch64-linux", 8, 5], ["x86_64-linux", 12, 5], ["aarch64-darwin", 16, 5]], [["hash", 23, 7], ["url", 24, 7]], [["hash", 27, 7], ["url", 28, 7]], [["hash", 31, 7], ["url", 32, 7]], [["aarch64-linux", 22, 5], ["x86_64-linux", 26, 5], ["aarch64-darwin", 30, 5]], [["25", 7, 3], ["17", 21, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$9,
+  [nix.POS]: $pos[8],
   "25": nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       hash: "sha256-LG5e9jCExfOcZ8v1wz0jyFLfhI0QzVDXbmZ//5yc8rw=",
       url: "https://download.oracle.com/graalvm/25/archive/graalvm-jdk-25.0.3_linux-aarch64_bin.tar.gz",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       hash: "sha256-G1KWYTw9ElIdWU4cmTAt+I2OHwfXSreYPb9XIAC5LHw=",
       url: "https://download.oracle.com/graalvm/25/archive/graalvm-jdk-25.0.3_linux-x64_bin.tar.gz",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       hash: "sha256-o/Aih4g9drGLK4DeVrC+Vymss8BLgdSwsP38/ZNSKPM=",
       url: "https://download.oracle.com/graalvm/25/archive/graalvm-jdk-25.0.3_macos-aarch64_bin.tar.gz",
     })),
   })),
   "17": nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       hash: "sha256-vZkdSGuS3rdDN7iB4PE6dkycHpD8NYgZCA9zIfpRdeg=",
       url: "https://download.oracle.com/graalvm/17/archive/graalvm-jdk-17.0.12_linux-aarch64_bin.tar.gz",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       hash: "sha256-tvPaziTPGWDseQIW9MhvANT0PfZOTotUj2OC8EiUcT8=",
       url: "https://download.oracle.com/graalvm/17/archive/graalvm-jdk-17.0.12_linux-x64_bin.tar.gz",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       hash: "sha256-TN/cbJOV9nc+/NGRtmBfG3yOG3irkAq1z/NHIKP+/8U=",
       url: "https://download.oracle.com/graalvm/17/archive/graalvm-jdk-17.0.12_macos-aarch64_bin.tar.gz",
     })),

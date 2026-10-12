@@ -2,46 +2,39 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gs1200-exporter.nix", [[["maintainers", 4, 8]], [["enable", 7, 7], ["address", 8, 7], ["passwordFile", 9, 7]], [["gs1200-exporter", 6, 14]], [["rules", 11, 22]], [["tmpfiles", 11, 13]], [["services", 6, 5], ["systemd", 11, 5]], [["machine", 5, 14]], [["name", 3, 3], ["meta", 4, 3], ["containers", 5, 3], ["testScript", 15, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gs1200-exporter.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/gs1200-exporter.nix", [["enable", 7, 7], ["address", 8, 7], ["passwordFile", 9, 7]]);
-const pos$3 = nix.positions(here + "/gs1200-exporter.nix", [["gs1200-exporter", 6, 14]]);
-const pos$4 = nix.positions(here + "/gs1200-exporter.nix", [["rules", 11, 22]]);
-const pos$5 = nix.positions(here + "/gs1200-exporter.nix", [["tmpfiles", 11, 13]]);
-const pos$6 = nix.positions(here + "/gs1200-exporter.nix", [["services", 6, 5], ["systemd", 11, 5]]);
-const pos$7 = nix.positions(here + "/gs1200-exporter.nix", [["machine", 5, 14]]);
-const pos$8 = nix.positions(here + "/gs1200-exporter.nix", [["name", 3, 3], ["meta", 4, 3], ["containers", 5, 3], ["testScript", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "gs1200-exporter",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "DerGrumpf"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "gs1200-exporter": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             enable: true,
             address: "192.168.2.4",
             passwordFile: "/run/secrets/gs1200-password",
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           tmpfiles: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             rules: nix.thunk(() => ["f /run/secrets/gs1200-password 0400 root root - testpassword"]),
           })),
         })),

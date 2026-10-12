@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["sha256", 26, 5]], [["description", 80, 5], ["license", 83, 5], ["maintainers", 88, 5], ["homepage", 89, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["postPatch", 39, 3], ["makeFlags", 46, 3], ["preConfigure", 50, 3], ["postBuild", 54, 3], ["installPhase", 59, 3], ["outputs", 74, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, bdftopcf: false, fontforge: false, SDL: false, SDL_image: false, mkfontscale: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 80, 5], ["license", 83, 5], ["maintainers", 88, 5], ["homepage", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["postPatch", 39, 3], ["makeFlags", 46, 3], ["preConfigure", 50, 3], ["postBuild", 54, 3], ["installPhase", 59, 3], ["outputs", 74, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "TextCharWidth"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "unscii",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://viznut.fi/unscii/unscii-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           sha256: "0msvqrq7x36p76a2n5bzkadh95z954ayqa08wxd017g4jpa1a4jd",
         })))),
@@ -43,7 +41,7 @@ done
       installPhase: "# install fonts for use in X11 and GTK applications\ninstall -m444 -Dt \"$out/share/fonts/misc\"     *.pcf.gz\ninstall -m444 -Dt \"$out/share/fonts/opentype\" *.otf\nmkfontdir   \"$out/share/fonts/misc\"\nmkfontscale \"$out/share/fonts/opentype\"\n\n# install other formats in $extra\ninstall -m444 -Dt \"$extra/share/fonts/truetype\" *.ttf\ninstall -m444 -Dt \"$extra/share/fonts/svg\"      *.svg\ninstall -m444 -Dt \"$extra/share/fonts/web\"      *.woff\ninstall -m444 -Dt \"$extra/share/fonts/misc\"     *.hex\nmkfontscale \"$extra\"/share/fonts/*\n",
       outputs: nix.thunk(() => ["out", "extra"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bitmapped character-art-friendly Unicode fonts",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

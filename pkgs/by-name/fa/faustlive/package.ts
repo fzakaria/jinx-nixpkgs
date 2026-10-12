@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5], ["fetchSubmodules", 37, 5]], [["description", 79, 5], ["mainProgram", 80, 5], ["longDescription", 81, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 32, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 51, 3], ["cmakeFlags", 72, 3], ["postPatch", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, which: false, "alsa-lib": false, curl: false, faust: false, flac: false, gnutls: false, libjack2: false, libmicrohttpd: false, libmpg123: false, libogg: false, libopus: false, libsndfile: false, libtasn1: false, libvorbis: false, libxcb: false, llvm: false, "p11-kit": false, qrencode: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5], ["fetchSubmodules", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 79, 5], ["mainProgram", 80, 5], ["longDescription", 81, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 32, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 51, 3], ["cmakeFlags", 72, 3], ["postPatch", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const qrencode = nix.arg($, "qrencode");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "faustlive",
       version: "2.5.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grame-cncm",
           repo: "faustlive",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -78,7 +76,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON"]),
       postPatch: "cd Build",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Standalone just-in-time Faust compiler",
         mainProgram: "FaustLive",
         longDescription: "FaustLive is a standalone just-in-time Faust compiler. It tries to bring\ntogether the convenience of a standalone interpreted language with the\nefficiency of a compiled language. It's ideal for fast prototyping.\n",

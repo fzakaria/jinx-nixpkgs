@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["ifc", 72, 5], ["las", 76, 5], ["ply", 79, 5], ["postgres", 82, 5]], [["changelog", 130, 5], ["description", 131, 5], ["downloadPage", 132, 5], ["homepage", 133, 5], ["license", 134, 5], ["mainProgram", 135, 5], ["teams", 136, 5]], [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["build-system", 49, 3], ["pythonRelaxDeps", 54, 3], ["dependencies", 60, 3], ["optional-dependencies", 71, 3], ["nativeCheckInputs", 87, 3], ["checkInputs", 94, 3], ["nativeInstallCheckInputs", 96, 3], ["installCheckPhase", 103, 3], ["pytestFlags", 123, 3], ["pythonImportsCheck", 125, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, addBinToPathHook: false, buildPythonPackage: false, setuptools: false, "setuptools-scm": false, lz4: false, "mapbox-earcut": false, numba: false, numpy: false, psutil: false, pygltflib: false, pyproj: false, pyzmq: false, ifcopenshell: false, lark: false, laspy: false, plyfile: false, "psycopg2-binary": false, "pytest-benchmark": false, "pytest-cov-stub": false, pytestCheckHook: false, writeText: false, moreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ifc", 72, 5], ["las", 76, 5], ["ply", 79, 5], ["postgres", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 130, 5], ["description", 131, 5], ["downloadPage", 132, 5], ["homepage", 133, 5], ["license", 134, 5], ["mainProgram", 135, 5], ["teams", 136, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["build-system", 49, 3], ["pythonRelaxDeps", 54, 3], ["dependencies", 60, 3], ["optional-dependencies", 71, 3], ["nativeCheckInputs", 87, 3], ["checkInputs", 94, 3], ["nativeInstallCheckInputs", 96, 3], ["installCheckPhase", 103, 3], ["pytestFlags", 123, 3], ["pythonImportsCheck", 125, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "py3dtiles",
       version: "12.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "py3dtiles",
           repo: "py3dtiles",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["mapbox_earcut", "numba", "numpy", "pyzmq"]),
       dependencies: nix.thunk(() => [lz4, mapbox_earcut, numba, numpy, psutil, pygltflib, pyproj, pyzmq]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ifc: nix.thunk(() => [ifcopenshell, lark]),
         las: nix.thunk(() => [laspy]),
         ply: nix.thunk(() => [plyfile]),
@@ -77,7 +74,7 @@ runHook postInstallCheck
       pytestFlags: nix.thunk(() => ["--benchmark-disable"]),
       pythonImportsCheck: nix.thunk(() => ["py3dtiles"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: "https://py3dtiles.org/main/changelog.html",
         description: "Python module to manage 3DTiles format",
         downloadPage: "https://gitlab.com/py3dtiles/py3dtiles",

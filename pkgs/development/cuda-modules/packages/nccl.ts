@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nccl.nix", [[["2.32.3-1", 72, 7], ["2.28.7-1", 73, 7], ["2.26.6-1", 74, 7], ["2.25.1-1", 75, 7]], [["owner", 68, 5], ["repo", 69, 5], ["tag", 70, 5], ["hash", 71, 5]], [["NIX_CFLAGS_COMPILE", 102, 7]], [["message", 170, 9], ["assertion", 171, 9]], [["pname", 177, 28], ["version", 177, 34], ["rev-prefix", 178, 7]], [["platformAssertions", 168, 5], ["updateScript", 176, 5]], [["description", 183, 5], ["homepage", 184, 5], ["changelog", 185, 5], ["license", 186, 5], ["platforms", 187, 5], ["badPlatforms", 193, 5], ["maintainers", 194, 5], ["teams", 197, 5]], [["__structuredAttrs", 46, 3], ["strictDeps", 47, 3], ["name", 50, 3], ["pname", 51, 3], ["version", 57, 3], ["src", 67, 3], ["outputs", 79, 3], ["nativeBuildInputs", 85, 3], ["buildInputs", 96, 3], ["env", 102, 3], ["postPatch", 104, 3], ["makeFlags", 128, 3], ["enableParallelBuilding", 137, 3], ["postFixup", 139, 3], ["disallowedRequisites", 165, 3], ["passthru", 167, 3], ["meta", 182, 3]]]);
 const formals$1 = { args: { _cuda: false, autoAddDriverRunpath: false, backendStdenv: false, cccl: false, cuda_cudart: false, cuda_nvcc: false, cudaAtLeast: false, cudaNamePrefix: false, fetchFromGitHub: false, flags: false, gdrcopy: false, lib: false, patchelf: false, python3: false, "rdma-core": false, removeReferencesTo: false, which: false, gitUpdater: false, withGdrcopy: true, withRdmaCore: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nccl.nix", [["2.32.3-1", 72, 7], ["2.28.7-1", 73, 7], ["2.26.6-1", 74, 7], ["2.25.1-1", 75, 7]]);
-const pos$2 = nix.positions(here + "/nccl.nix", [["owner", 68, 5], ["repo", 69, 5], ["tag", 70, 5], ["hash", 71, 5]]);
-const pos$3 = nix.positions(here + "/nccl.nix", [["NIX_CFLAGS_COMPILE", 102, 7]]);
-const pos$4 = nix.positions(here + "/nccl.nix", [["message", 170, 9], ["assertion", 171, 9]]);
-const pos$5 = nix.positions(here + "/nccl.nix", [["pname", 177, 28], ["version", 177, 34], ["rev-prefix", 178, 7]]);
-const pos$6 = nix.positions(here + "/nccl.nix", [["platformAssertions", 168, 5], ["updateScript", 176, 5]]);
-const pos$7 = nix.positions(here + "/nccl.nix", [["description", 183, 5], ["homepage", 184, 5], ["changelog", 185, 5], ["license", 186, 5], ["platforms", 187, 5], ["badPlatforms", 193, 5], ["maintainers", 194, 5], ["teams", 197, 5]]);
-const pos$8 = nix.positions(here + "/nccl.nix", [["__structuredAttrs", 46, 3], ["strictDeps", 47, 3], ["name", 50, 3], ["pname", 51, 3], ["version", 57, 3], ["src", 67, 3], ["outputs", 79, 3], ["nativeBuildInputs", 85, 3], ["buildInputs", 96, 3], ["env", 102, 3], ["postPatch", 104, 3], ["makeFlags", 128, 3], ["enableParallelBuilding", 137, 3], ["postFixup", 139, 3], ["disallowedRequisites", 165, 3], ["passthru", 167, 3], ["meta", 182, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,19 +46,19 @@ export default nix.lambda((args) => (() => {
   const versionAtLeast = nix.thunk(() => nix.attr(lib, "versionAtLeast"));
   const versionOlder = nix.thunk(() => nix.attr(lib, "versionOlder"));
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       __structuredAttrs: true,
       strictDeps: true,
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "nccl",
       version: nix.thunk(() => (nix.asBool(nix.app(cudaAtLeast, "12.0")) ? "2.32.3-1" : (nix.asBool(nix.app(cudaAtLeast, "11.7")) ? "2.28.7-1" : (nix.asBool(nix.app(cudaAtLeast, "11.6")) ? "2.26.6-1" : "2.25.1-1")))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "NVIDIA",
           repo: "nccl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: nix.thunk(() => nix.app(getAttr, nix.thunk(() => nix.sel(finalAttrs, "version")), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               "2.32.3-1": "sha256-xUllfdWAL0Ee9P9T9CZC2ddkPRnSXZXgwApgO398i6g=",
               "2.28.7-1": "sha256-NM19OiBBGmv3cGoVoRLKSh9Y59hiDoei9NIrRnTqWeA=",
               "2.26.6-1": "sha256-vkWMGXCy+dIpYCecdafmOAGlnfRxIQ5Y2ZQuMjinraI=",
@@ -83,7 +76,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.app(getInclude, cuda_nvcc)), cccl, cuda_cudart]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-unused-function"]))),
       })),
       postPatch: nix.thunk(() => nix.add(nix.add("patchShebangs ./src/device/generate.py\npatchShebangs ./src/device/symmetric/generate.py\n\nnixLog \"patching $PWD/makefiles/common.mk to remove NVIDIA's ccbin declaration\"\nsubstituteInPlace ./makefiles/common.mk \\\n  --replace-fail \\\n    '-ccbin $(CXX)' \\\n    \"\"\n", nix.app(optionalString, nix.thunk(() => nix.app(versionOlder, nix.thunk(() => nix.sel(finalAttrs, "version")), "2.27.3-1")), "nixLog \"patching $PWD/makefiles/common.mk to remove NVIDIA's std hardcoding\"\nsubstituteInPlace ./makefiles/common.mk \\\n  --replace-fail \\\n    '-std=c++11' \\\n    '$(CXXSTD)'\n")), nix.app(optionalString, nix.thunk(() => nix.app(versionAtLeast, nix.thunk(() => nix.sel(finalAttrs, "version")), "2.30.7-1")), "nixLog \"patching shebang in $PWD/src/misc/generate_git_version.py\"\npatchShebangs ./src/misc/generate_git_version.py\n"))),
@@ -104,23 +97,23 @@ patchelf --add-rpath "${nix.app(makeLibraryPath, nix.thunk(() => nix.concat(nix.
 `)))),
       disallowedRequisites: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getBin"), cuda_nvcc))]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         platformAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             message: "Pre-Thor Jetson devices (CUDA capabilities < 10.1) are not supported by NCCL",
             assertion: nix.thunk(() => (nix.asBool(!nix.asBool(hasJetsonCudaCapability)) || nix.asBool(nix.app(all, nix.thunk(() => nix.app(flip, versionAtLeast, "10.1")), requestedJetsonCudaCapabilities)))),
           })),
         ]),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Multi-GPU and multi-node collective communication primitives for NVIDIA GPUs",
         homepage: "https://developer.nvidia.com/nccl",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/nccl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

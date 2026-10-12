@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 40, 5], ["sha256", 41, 5]], [["gtkSupport", 66, 44]], [["packageName", 97, 7], ["versionPolicy", 98, 7]], [["updateScript", 96, 5]], [["homepage", 103, 5], ["description", 104, 5], ["mainProgram", 105, 5], ["platforms", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 58, 3], ["postPatch", 82, 3], ["preFixup", 91, 3], ["passthru", 95, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, gnome: false, "pkg-config": false, meson: false, ninja: false, exiv2: false, libheif: false, libjpeg: false, libtiff: false, gst_all_1: false, libraw: false, glib: false, gtk3: false, "gsettings-desktop-schemas": false, libjxl: false, librsvg: false, libwebp: false, libx11: false, lcms2: false, bison: false, brasero: false, flex: false, "clutter-gtk": false, colord: false, wrapGAppsHook3: false, "shared-mime-info": false, python3: false, "desktop-file-utils": false, itstool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 40, 5], ["sha256", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gtkSupport", 66, 44]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 97, 7], ["versionPolicy", 98, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 103, 5], ["description", 104, 5], ["mainProgram", 105, 5], ["platforms", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 58, 3], ["postPatch", 82, 3], ["preFixup", 91, 3], ["passthru", 95, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   const itstool = nix.arg($, "itstool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gthumb",
       version: "3.12.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gthumb/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gthumb-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-HDGuxNoV7Ma6AcAa8LH4JTf7JQuXDIboBm1enDEfZIE=",
         })))),
@@ -72,7 +67,7 @@ export default nix.lambda((args) => (() => {
         glib,
         gsettings_desktop_schemas,
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], gtkSupport: true })))),
         nix.thunk(() => nix.sel(gst_all_1, "gst-libav")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-ugly")),
@@ -91,11 +86,11 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix XDG_DATA_DIRS : "${shared_mime_info}/share")
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gthumb", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "gthumb", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.gnome.org/GNOME/gthumb",
         description: "Image browser and viewer for GNOME",
         mainProgram: "gthumb",

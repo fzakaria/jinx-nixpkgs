@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["moduleNames", 44, 9], ["package", 45, 9]], [["cmake-config", 43, 7]], [["tests", 42, 5]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["platforms", 57, 5], ["maintainers", 58, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 21, 3], ["__structuredAttrs", 22, 3], ["patches", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 35, 3], ["doCheck", 39, 3], ["passthru", 41, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, boost: false, gmp: false, mpfr: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["moduleNames", 44, 9], ["package", 45, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cmake-config", 43, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["platforms", 57, 5], ["maintainers", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 21, 3], ["__structuredAttrs", 22, 3], ["patches", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 35, 3], ["doCheck", 39, 3], ["passthru", 41, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const mpfr = nix.arg($, "mpfr");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cgal",
       version: "6.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/CGAL/cgal/releases/download/v${nix.sel(finalAttrs, "version")}/CGAL-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-tr53xgdlqEVjNd6ZHur2/+xVJWmE5Knsxql8N7v+hb8=",
         })))),
@@ -37,18 +32,18 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [boost]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               moduleNames: nix.thunk(() => ["CGAL"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Computational Geometry Algorithms Library",
         homepage: "http://cgal.org",
         license: nix.thunk(() => (() => {

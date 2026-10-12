@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["ujson", 54, 5], ["orjson", 57, 5], ["msgpack", 60, 5], ["pyyaml", 63, 5], ["tomlkit", 66, 5], ["cbor2", 69, 5], ["bson", 72, 5], ["msgspec", 75, 5], ["tomllib", 78, 5]], [["changelog", 101, 5], ["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["build-system", 43, 3], ["dependencies", 48, 3], ["optional-dependencies", 53, 3], ["nativeCheckInputs", 83, 3], ["disabledTestPaths", 93, 3], ["pythonImportsCheck", 98, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, attrs: false, buildPythonPackage: false, cbor2: false, fetchFromGitHub: false, hatchling: false, "hatch-vcs": false, hypothesis: false, immutables: false, motor: false, msgpack: false, msgspec: false, orjson: false, pymongo: false, "pytest-xdist": false, pytestCheckHook: false, pyyaml: false, "tomli-w": false, tomlkit: false, "typing-extensions": false, ujson: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ujson", 54, 5], ["orjson", 57, 5], ["msgpack", 60, 5], ["pyyaml", 63, 5], ["tomlkit", 66, 5], ["cbor2", 69, 5], ["bson", 72, 5], ["msgspec", 75, 5], ["tomllib", 78, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 101, 5], ["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["build-system", 43, 3], ["dependencies", 48, 3], ["optional-dependencies", 53, 3], ["nativeCheckInputs", 83, 3], ["disabledTestPaths", 93, 3], ["pythonImportsCheck", 98, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const ujson = nix.arg($, "ujson");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cattrs",
       version: "26.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-attrs",
           repo: "cattrs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
       dependencies: nix.thunk(() => [attrs, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ujson: nix.thunk(() => [ujson]),
         orjson: nix.thunk(() => [orjson]),
         msgpack: nix.thunk(() => [msgpack]),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["bench"]),
       pythonImportsCheck: nix.thunk(() => ["cattr"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/python-attrs/cattrs/blob/${nix.sel(finalAttrs, "src", "tag")}/HISTORY.md`),
         description: "Python custom class converters for attrs",
         homepage: "https://github.com/python-attrs/cattrs",

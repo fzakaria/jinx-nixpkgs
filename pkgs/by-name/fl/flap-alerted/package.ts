@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["CGO_ENABLED", 33, 7]], [["flap-alerted", 55, 36]], [["updateScript", 54, 5], ["tests", 55, 5]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]], [["pname", 20, 3], ["version", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["vendorHash", 31, 3], ["env", 33, 3], ["ldflags", 35, 3], ["tags", 41, 3], ["nativeInstallCheckInputs", 50, 3], ["doInstallCheck", 51, 3], ["passthru", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false, "nix-update-script": false, nixosTests: false, withHttpApi: true, withLog: true, withScript: true, withWebhook: true, withCollector: true, withHistory: true, withRoaFilter: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["flap-alerted", 55, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 54, 5], ["tests", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["vendorHash", 31, 3], ["env", 33, 3], ["ldflags", 35, 3], ["tags", 41, 3], ["nativeInstallCheckInputs", 50, 3], ["doInstallCheck", 51, 3], ["passthru", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const withHistory = nix.argOr($, "withHistory", () => true);
   const withRoaFilter = nix.argOr($, "withRoaFilter", () => false);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "flap-alerted",
       version: "4.5.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kioubit",
           repo: "FlapAlerted",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-D4+FLAMt/cHXCks4GQI33ymbZIHzBajpvKU6QQntofk=",
         })))),
       vendorHash: null,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -48,15 +43,15 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "flap-alerted": nix.thunk(() => nix.attr(nixosTests, "flap-alerted")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "BGP Update based flap detection & statistics",
         homepage: "https://github.com/Kioubit/FlapAlerted",
         changelog: nix.thunk(() => nix.str`https://github.com/Kioubit/FlapAlerted/releases/tag/v${nix.sel(finalAttrs, "version")}`),

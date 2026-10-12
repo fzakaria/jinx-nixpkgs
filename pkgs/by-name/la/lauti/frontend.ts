@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["yarnLock", 17, 5], ["hash", 18, 5]], [["homepage", 45, 7], ["description", 46, 7], ["license", 47, 7], ["maintainers", 48, 7]], [["pname", 13, 3], ["version", 14, 11], ["src", 14, 19], ["offlineCache", 16, 3], ["nativeBuildInputs", 21, 3], ["preBuild", 28, 3], ["installPhase", 32, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchYarnDeps: false, src: false, version: false, nodejs: false, lauti: false, yarnConfigHook: false, yarnBuildHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["yarnLock", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["homepage", 45, 7], ["description", 46, 7], ["license", 47, 7], ["maintainers", 48, 7]]);
-const pos$3 = nix.positions(here + "/frontend.nix", [["pname", 13, 3], ["version", 14, 11], ["src", 14, 19], ["offlineCache", 16, 3], ["nativeBuildInputs", 21, 3], ["preBuild", 28, 3], ["installPhase", 32, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   const yarnBuildHook = nix.arg($, "yarnBuildHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lauti",
       version: version,
       src: src,
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-RKalgQ6dXNOxMeC6pSKe9Lo0KXN0gfeX0I/pkcv2FXs=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(lauti, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: nix.thunk(() => nix.attr(from, "description")),
         license: nix.thunk(() => nix.attr(from, "license")),

@@ -2,48 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/borgbackup.nix", [[["maintainers", 46, 5]], [["device", 54, 11], ["fsType", 55, 11], ["options", 56, 11]], [["fileSystems", 53, 24]], [["mode", 69, 15], ["passphrase", 70, 23]], [["within", 74, 15], ["yearly", 75, 15]], [["keep", 73, 19]], [["paths", 62, 13], ["repo", 63, 13], ["preHook", 64, 13], ["encryption", 68, 13], ["compression", 72, 13], ["prune", 73, 13], ["exclude", 77, 13], ["extraCreateArgs", 78, 13], ["wrapper", 84, 13], ["postHook", 85, 13], ["startAt", 86, 13]], [["mode", 92, 24]], [["paths", 90, 13], ["repo", 91, 13], ["encryption", 92, 13], ["wrapper", 93, 13], ["startAt", 94, 13]], [["mode", 105, 15], ["passphrase", 106, 23]], [["dumpCommand", 98, 13], ["createCommand", 101, 13], ["repo", 102, 13], ["encryption", 104, 13], ["startAt", 108, 13]], [["mode", 114, 24]], [["BORG_RSH", 116, 25]], [["paths", 112, 13], ["repo", 113, 13], ["encryption", 114, 13], ["startAt", 115, 13], ["environment", 116, 13]], [["mode", 122, 24]], [["BORG_RSH", 124, 25]], [["paths", 120, 13], ["repo", 121, 13], ["encryption", 122, 13], ["startAt", 123, 13], ["environment", 124, 13]], [["mode", 132, 24]], [["dumpCommand", 128, 13], ["repo", 131, 13], ["encryption", 132, 13], ["startAt", 133, 13], ["extraArgs", 135, 13]], [["mode", 141, 24]], [["BORG_RSH", 143, 25]], [["dumpCommand", 139, 13], ["repo", 140, 13], ["encryption", 141, 13], ["startAt", 142, 13], ["environment", 143, 13]], [["mode", 153, 24]], [["BORG_RSH", 155, 25]], [["inhibitsSleep", 147, 13], ["dumpCommand", 149, 13], ["repo", 152, 13], ["encryption", 153, 13], ["startAt", 154, 13], ["environment", 155, 13]], [["local", 61, 11], ["localMount", 89, 11], ["localTar", 97, 11], ["remote", 111, 11], ["remoteAppendOnly", 119, 11], ["commandSuccess", 127, 11], ["commandFail", 138, 11], ["sleepInhibited", 146, 11]], [["jobs", 59, 29]], [["borgbackup", 59, 18]], [["virtualisation", 53, 9], ["services", 59, 9]], [["PasswordAuthentication", 167, 13], ["KbdInteractiveAuthentication", 168, 13]], [["enable", 165, 11], ["settings", 166, 11]], [["authorizedKeys", 173, 11], ["path", 174, 11]], [["authorizedKeysAppendOnly", 179, 11], ["path", 180, 11], ["quota", 181, 11]], [["repo1", 172, 35], ["repo2", 178, 35]], [["repos", 172, 29]], [["openssh", 164, 18], ["borgbackup", 172, 18]], [["services", 164, 9]], [["client", 50, 5], ["server", 161, 5]], [["name", 44, 3], ["meta", 45, 3], ["nodes", 49, 3], ["testScript", 186, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/borgbackup.nix", [["maintainers", 46, 5]]);
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/borgbackup.nix", [["device", 54, 11], ["fsType", 55, 11], ["options", 56, 11]]);
-const pos$3 = nix.positions(here + "/borgbackup.nix", [["fileSystems", 53, 24]]);
-const pos$4 = nix.positions(here + "/borgbackup.nix", [["mode", 69, 15], ["passphrase", 70, 23]]);
-const pos$5 = nix.positions(here + "/borgbackup.nix", [["within", 74, 15], ["yearly", 75, 15]]);
-const pos$6 = nix.positions(here + "/borgbackup.nix", [["keep", 73, 19]]);
-const pos$7 = nix.positions(here + "/borgbackup.nix", [["paths", 62, 13], ["repo", 63, 13], ["preHook", 64, 13], ["encryption", 68, 13], ["compression", 72, 13], ["prune", 73, 13], ["exclude", 77, 13], ["extraCreateArgs", 78, 13], ["wrapper", 84, 13], ["postHook", 85, 13], ["startAt", 86, 13]]);
-const pos$8 = nix.positions(here + "/borgbackup.nix", [["mode", 92, 24]]);
-const pos$9 = nix.positions(here + "/borgbackup.nix", [["paths", 90, 13], ["repo", 91, 13], ["encryption", 92, 13], ["wrapper", 93, 13], ["startAt", 94, 13]]);
-const pos$10 = nix.positions(here + "/borgbackup.nix", [["mode", 105, 15], ["passphrase", 106, 23]]);
-const pos$11 = nix.positions(here + "/borgbackup.nix", [["dumpCommand", 98, 13], ["createCommand", 101, 13], ["repo", 102, 13], ["encryption", 104, 13], ["startAt", 108, 13]]);
-const pos$12 = nix.positions(here + "/borgbackup.nix", [["mode", 114, 24]]);
-const pos$13 = nix.positions(here + "/borgbackup.nix", [["BORG_RSH", 116, 25]]);
-const pos$14 = nix.positions(here + "/borgbackup.nix", [["paths", 112, 13], ["repo", 113, 13], ["encryption", 114, 13], ["startAt", 115, 13], ["environment", 116, 13]]);
-const pos$15 = nix.positions(here + "/borgbackup.nix", [["mode", 122, 24]]);
-const pos$16 = nix.positions(here + "/borgbackup.nix", [["BORG_RSH", 124, 25]]);
-const pos$17 = nix.positions(here + "/borgbackup.nix", [["paths", 120, 13], ["repo", 121, 13], ["encryption", 122, 13], ["startAt", 123, 13], ["environment", 124, 13]]);
-const pos$18 = nix.positions(here + "/borgbackup.nix", [["mode", 132, 24]]);
-const pos$19 = nix.positions(here + "/borgbackup.nix", [["dumpCommand", 128, 13], ["repo", 131, 13], ["encryption", 132, 13], ["startAt", 133, 13], ["extraArgs", 135, 13]]);
-const pos$20 = nix.positions(here + "/borgbackup.nix", [["mode", 141, 24]]);
-const pos$21 = nix.positions(here + "/borgbackup.nix", [["BORG_RSH", 143, 25]]);
-const pos$22 = nix.positions(here + "/borgbackup.nix", [["dumpCommand", 139, 13], ["repo", 140, 13], ["encryption", 141, 13], ["startAt", 142, 13], ["environment", 143, 13]]);
-const pos$23 = nix.positions(here + "/borgbackup.nix", [["mode", 153, 24]]);
-const pos$24 = nix.positions(here + "/borgbackup.nix", [["BORG_RSH", 155, 25]]);
-const pos$25 = nix.positions(here + "/borgbackup.nix", [["inhibitsSleep", 147, 13], ["dumpCommand", 149, 13], ["repo", 152, 13], ["encryption", 153, 13], ["startAt", 154, 13], ["environment", 155, 13]]);
-const pos$26 = nix.positions(here + "/borgbackup.nix", [["local", 61, 11], ["localMount", 89, 11], ["localTar", 97, 11], ["remote", 111, 11], ["remoteAppendOnly", 119, 11], ["commandSuccess", 127, 11], ["commandFail", 138, 11], ["sleepInhibited", 146, 11]]);
-const pos$27 = nix.positions(here + "/borgbackup.nix", [["jobs", 59, 29]]);
-const pos$28 = nix.positions(here + "/borgbackup.nix", [["borgbackup", 59, 18]]);
-const pos$29 = nix.positions(here + "/borgbackup.nix", [["virtualisation", 53, 9], ["services", 59, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$30 = nix.positions(here + "/borgbackup.nix", [["PasswordAuthentication", 167, 13], ["KbdInteractiveAuthentication", 168, 13]]);
-const pos$31 = nix.positions(here + "/borgbackup.nix", [["enable", 165, 11], ["settings", 166, 11]]);
-const pos$32 = nix.positions(here + "/borgbackup.nix", [["authorizedKeys", 173, 11], ["path", 174, 11]]);
-const pos$33 = nix.positions(here + "/borgbackup.nix", [["authorizedKeysAppendOnly", 179, 11], ["path", 180, 11], ["quota", 181, 11]]);
-const pos$34 = nix.positions(here + "/borgbackup.nix", [["repo1", 172, 35], ["repo2", 178, 35]]);
-const pos$35 = nix.positions(here + "/borgbackup.nix", [["repos", 172, 29]]);
-const pos$36 = nix.positions(here + "/borgbackup.nix", [["openssh", 164, 18], ["borgbackup", 172, 18]]);
-const pos$37 = nix.positions(here + "/borgbackup.nix", [["services", 164, 9]]);
-const pos$38 = nix.positions(here + "/borgbackup.nix", [["client", 50, 5], ["server", 161, 5]]);
-const pos$39 = nix.positions(here + "/borgbackup.nix", [["name", 44, 3], ["meta", 45, 3], ["nodes", 49, 3], ["testScript", 186, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,28 +27,28 @@ export default nix.lambda((args) => (() => {
   const privateKeyAppendOnly = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "id_ed25519", "-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW\nQyNTUxOQAAACBacZuz1ELGQdhI7PF6dGFafCDlvh8pSEc4cHjkW0QjLwAAAJC9YTxxvWE8\ncQAAAAtzc2gtZWQyNTUxOQAAACBacZuz1ELGQdhI7PF6dGFafCDlvh8pSEc4cHjkW0QjLw\nAAAEAAhV7wTl5dL/lz+PF/d4PnZXuG1Id6L/mFEiGT1tZsuFpxm7PUQsZB2Ejs8Xp0YVp8\nIOW+HylIRzhweORbRCMvAAAADXJzY2h1ZXR6QGt1cnQ=\n-----END OPENSSH PRIVATE KEY-----\n"));
   const publicKeyAppendOnly = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFpxm7PUQsZB2Ejs8Xp0YVp8IOW+HylIRzhweORbRCMv root@client\n";
   return {
-    [nix.POS]: pos$39,
+    [nix.POS]: $pos[38],
     name: "borgbackup",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "dotlambda"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$38,
+      [nix.POS]: $pos[37],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             fileSystems: nix.thunk(() => nix.attrsDyn({}, [
               [localRepoMount, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 device: "tmpfs",
                 fsType: "tmpfs",
                 options: nix.thunk(() => ["noauto"]),
@@ -94,23 +56,23 @@ export default nix.lambda((args) => (() => {
             ])),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             borgbackup: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               jobs: nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 local: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   paths: dataDir,
                   repo: localRepo,
                   preHook: nix.thunk(() => nix.str`# Don't append a timestamp
 archiveName="${archiveName}"
 `),
-                  encryption: nix.thunk(() => ({ [nix.POS]: pos$4, mode: "repokey", passphrase: passphrase })),
+                  encryption: nix.thunk(() => ({ [nix.POS]: $pos[3], mode: "repokey", passphrase: passphrase })),
                   compression: "auto,zlib,9",
                   prune: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
-                    keep: nix.thunk(() => ({ [nix.POS]: pos$5, within: "1y", yearly: 5n })),
+                    [nix.POS]: $pos[5],
+                    keep: nix.thunk(() => ({ [nix.POS]: $pos[4], within: "1y", yearly: 5n })),
                   })),
                   exclude: nix.thunk(() => [nix.thunk(() => nix.str`*/${excludeFile}`)]),
                   extraCreateArgs: nix.thunk(() => ["--exclude-caches", "--exclude-if-present", ".dont backup"]),
@@ -119,72 +81,72 @@ archiveName="${archiveName}"
                   startAt: [],
                 })),
                 localMount: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   paths: dataDir,
                   repo: localRepoMount,
-                  encryption: nix.thunk(() => ({ [nix.POS]: pos$8, mode: "none" })),
+                  encryption: nix.thunk(() => ({ [nix.POS]: $pos[7], mode: "none" })),
                   wrapper: null,
                   startAt: [],
                 })),
                 localTar: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   dumpCommand: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeScript"), "createTarArchive", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs_1, "gnutar")))} cf - ${dataDir}
 `))),
                   createCommand: "import-tar",
                   repo: localTarRepo,
-                  encryption: nix.thunk(() => ({ [nix.POS]: pos$10, mode: "repokey", passphrase: passphrase })),
+                  encryption: nix.thunk(() => ({ [nix.POS]: $pos[9], mode: "repokey", passphrase: passphrase })),
                   startAt: [],
                 })),
                 remote: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   paths: dataDir,
                   repo: remoteRepo,
-                  encryption: nix.thunk(() => ({ [nix.POS]: pos$12, mode: "none" })),
+                  encryption: nix.thunk(() => ({ [nix.POS]: $pos[11], mode: "none" })),
                   startAt: [],
                   environment: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     BORG_RSH: "ssh -oStrictHostKeyChecking=no -i /root/id_ed25519",
                   })),
                 })),
                 remoteAppendOnly: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   paths: dataDir,
                   repo: remoteRepo,
-                  encryption: nix.thunk(() => ({ [nix.POS]: pos$15, mode: "none" })),
+                  encryption: nix.thunk(() => ({ [nix.POS]: $pos[14], mode: "none" })),
                   startAt: [],
                   environment: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     BORG_RSH: "ssh -oStrictHostKeyChecking=no -i /root/id_ed25519.appendOnly",
                   })),
                 })),
                 commandSuccess: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   dumpCommand: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeScript"), "commandSuccess", "echo -n test\n")),
                   repo: remoteRepo,
-                  encryption: nix.thunk(() => ({ [nix.POS]: pos$18, mode: "none" })),
+                  encryption: nix.thunk(() => ({ [nix.POS]: $pos[17], mode: "none" })),
                   startAt: [],
                   extraArgs: nix.thunk(() => ["--rsh=ssh -oStrictHostKeyChecking=no -i /root/id_ed25519"]),
                 })),
                 commandFail: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   dumpCommand: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/false`),
                   repo: remoteRepo,
-                  encryption: nix.thunk(() => ({ [nix.POS]: pos$20, mode: "none" })),
+                  encryption: nix.thunk(() => ({ [nix.POS]: $pos[19], mode: "none" })),
                   startAt: [],
                   environment: nix.thunk(() => ({
-                    [nix.POS]: pos$21,
+                    [nix.POS]: $pos[20],
                     BORG_RSH: "ssh -oStrictHostKeyChecking=no -i /root/id_ed25519",
                   })),
                 })),
                 sleepInhibited: nix.thunk(() => ({
-                  [nix.POS]: pos$25,
+                  [nix.POS]: $pos[24],
                   inhibitsSleep: true,
                   dumpCommand: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeScript"), "sleepInhibited", "cat /dev/zero\n")),
                   repo: remoteRepo,
-                  encryption: nix.thunk(() => ({ [nix.POS]: pos$23, mode: "none" })),
+                  encryption: nix.thunk(() => ({ [nix.POS]: $pos[22], mode: "none" })),
                   startAt: [],
                   environment: nix.thunk(() => ({
-                    [nix.POS]: pos$24,
+                    [nix.POS]: $pos[23],
                     BORG_RSH: "ssh -oStrictHostKeyChecking=no -i /root/id_ed25519",
                   })),
                 })),
@@ -196,29 +158,29 @@ archiveName="${archiveName}"
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 PasswordAuthentication: false,
                 KbdInteractiveAuthentication: false,
               })),
             })),
             borgbackup: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               repos: nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 repo1: nix.thunk(() => ({
-                  [nix.POS]: pos$32,
+                  [nix.POS]: $pos[31],
                   authorizedKeys: nix.thunk(() => [publicKey]),
                   path: "/data/borgbackup",
                 })),
                 repo2: nix.thunk(() => ({
-                  [nix.POS]: pos$33,
+                  [nix.POS]: $pos[32],
                   authorizedKeysAppendOnly: nix.thunk(() => [publicKeyAppendOnly]),
                   path: "/data/borgbackup",
                   quota: ".5G",

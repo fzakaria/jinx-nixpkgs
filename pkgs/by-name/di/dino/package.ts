@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["gtkSupport", 42, 60]], [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["NIX_LDFLAGS", 98, 5]], [["broken", 118, 5], ["description", 119, 5], ["mainProgram", 120, 5], ["homepage", 121, 5], ["license", 122, 5], ["platforms", 123, 5], ["maintainers", 124, 5]], [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["postPatch", 55, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 69, 3], ["doCheck", 94, 3], ["env", 97, 3], ["postFixup", 109, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, vala: false, ninja: false, wrapGAppsHook4: false, "pkg-config": false, gettext: false, "gobject-introspection": false, glib: false, "gdk-pixbuf": false, gtk4: false, "glib-networking": false, libadwaita: false, libcanberra: false, libnotify: false, libsoup_3: false, libgee: false, "libomemo-c": false, libgcrypt: false, meson: false, sqlite: false, gpgme: false, qrencode: false, icu: false, srtp: false, libnice: false, gnutls: false, gst_all_1: false, "webrtc-audio-processing": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["gtkSupport", 42, 60]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 98, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 118, 5], ["description", 119, 5], ["mainProgram", 120, 5], ["homepage", 121, 5], ["license", 122, 5], ["platforms", 123, 5], ["maintainers", 124, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["postPatch", 55, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 69, 3], ["doCheck", 94, 3], ["env", 97, 3], ["postFixup", 109, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const webrtc_audio_processing = nix.arg($, "webrtc-audio-processing");
   const gstreamer = nix.thunk(() => nix.attr(gst_all_1, "gstreamer"));
   const gst_plugins_base = nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-base"));
-  const gst_plugins_good = nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, gtkSupport: true }))));
+  const gst_plugins_good = nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], gtkSupport: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dino",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "dino",
           repo: "dino",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,10 +87,10 @@ export default nix.lambda((args) => (() => {
         webrtc_audio_processing,
       ]),
       doCheck: true,
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-lgpg-error" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_LDFLAGS: "-lgpg-error" })))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "cd \"$out/lib/dino/plugins/\"\nfor f in *.dylib; do\n  mv \"$f\" \"$(basename \"$f\" .dylib).so\"\ndone\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Modern Jabber/XMPP Client using GTK/Vala",
         mainProgram: "dino",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["homepage", 38, 5], ["changelog", 39, 5], ["description", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["strictDeps", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 26, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, libarchive: false, "iucode-tool": false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["changelog", 39, 5], ["description", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["strictDeps", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 26, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const iucode_tool = nix.arg($, "iucode-tool");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "microcode-intel",
       version: "20260925",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "Intel-Linux-Processor-Microcode-Data-Files",
           tag: nix.thunk(() => nix.str`microcode-${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ echo kernel/x86/microcode/GenuineIntel.bin | bsdtar --uid 0 --gid 0 -cnf - -T - 
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.intel.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Microcode for Intel processors",

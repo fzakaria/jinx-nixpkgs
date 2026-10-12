@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 8, 3], ["version", 9, 22], ["src", 9, 30], ["pyproject", 10, 3], ["build-system", 12, 3], ["buildInputs", 14, 3], ["preConfigure", 16, 3], ["doCheck", 21, 3], ["pythonImportsCheck", 22, 3], ["dontCheckPythonMetadata", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, libgpiod: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 22], ["src", 9, 30], ["pyproject", 10, 3], ["build-system", 12, 3], ["buildInputs", 14, 3], ["preConfigure", 16, 3], ["doCheck", 21, 3], ["pythonImportsCheck", 22, 3], ["dontCheckPythonMetadata", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const libgpiod = nix.arg($, "libgpiod");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "gpiod",
       version: nix.thunk(() => nix.attr(libgpiod, "version")),
       src: nix.thunk(() => nix.attr(libgpiod, "src")),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["gpiod"]),
       dontCheckPythonMetadata: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python bindings for libgpiod",
         homepage: "https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git/about/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

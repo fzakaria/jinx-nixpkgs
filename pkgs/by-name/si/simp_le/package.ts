@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 11], ["repo", 17, 11], ["tag", 18, 11], ["hash", 19, 11]], [["version", 14, 9], ["src", 15, 9]], [["owner", 25, 11], ["repo", 26, 11], ["tag", 27, 11], ["hash", 28, 11]], [["version", 23, 9], ["src", 24, 9], ["dependencies", 30, 9]], [["certbot", 13, 7], ["josepy", 22, 7]], [["self", 11, 5], ["packageOverrides", 12, 5]], [["pname", 44, 13], ["version", 44, 19], ["hash", 45, 5]], [["homepage", 79, 5], ["description", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 85, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["postPatch", 48, 3], ["pythonRelaxDeps", 55, 3], ["dependencies", 60, 3], ["checkPhase", 72, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, fetchPypi: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 11], ["repo", 17, 11], ["tag", 18, 11], ["hash", 19, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 14, 9], ["src", 15, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 25, 11], ["repo", 26, 11], ["tag", 27, 11], ["hash", 28, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 23, 9], ["src", 24, 9], ["dependencies", 30, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["certbot", 13, 7], ["josepy", 22, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["self", 11, 5], ["packageOverrides", 12, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 44, 13], ["version", 44, 19], ["hash", 45, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 79, 5], ["description", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 85, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["postPatch", 48, 3], ["pythonRelaxDeps", 55, 3], ["dependencies", 60, 3], ["checkPhase", 72, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,25 +13,25 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const bash = nix.arg($, "bash");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       self: python,
       packageOverrides: (self) => (super$) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         certbot: nix.thunk(() => nix.app(nix.sel(super$, "certbot", "overridePythonAttrs"), nix.thunk(() => (() => {
             const version = "3.1.0";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: "certbot",
                 repo: "certbot",
                 tag: nix.thunk(() => nix.str`v${version}`),
                 hash: "sha256-lYGJgUNDzX+bE64GJ+djdKR+DXmhpcNbFJrAEnP86yQ=",
               }))));
-            return { [nix.POS]: pos$2, version, src };
+            return { [nix.POS]: $pos[1], version, src };
           })()))),
         josepy: nix.thunk(() => nix.app(nix.sel(super$, "josepy", "overridePythonAttrs"), (old) => (() => {
             const version = "1.15.0";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 owner: "certbot",
                 repo: "josepy",
                 tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +44,7 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.lookup(w, "cryptography")),
               ];
             })());
-            return { [nix.POS]: pos$4, version, src, dependencies };
+            return { [nix.POS]: $pos[3], version, src, dependencies };
           })())),
       }),
     }))));
@@ -61,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.20.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pname: pname,
           version: version,
           hash: "sha256-p6+OF8MuAzcdTV4/CvZpjGaOrg7xcNuEddk7yC2sXIE=",
@@ -88,7 +80,7 @@ substituteInPlace simp_le.py \\
       })());
       const checkPhase = "runHook preCheck\n$out/bin/simp_le --test\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://github.com/zenhack/simp_le",
         description: "Simple Let's Encrypt client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -99,7 +91,7 @@ substituteInPlace simp_le.py \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         pyproject,

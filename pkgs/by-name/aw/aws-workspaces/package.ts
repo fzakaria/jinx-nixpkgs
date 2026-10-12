@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 30, 5], ["text", 32, 5]], [["pname", 47, 3], ["version", 48, 30], ["runScript", 50, 3], ["includeClosures", 52, 3], ["targetPkgs", 54, 3], ["extraBwrapArgs", 75, 3], ["extraInstallCommands", 81, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, writeShellApplication: false, buildFHSEnv: false, webkitgtk_4_1: false, ffmpeg_8: false, gtk4: false, libepoxy: false, wayland: false, libxcb: false, libxi: false, pango: false, atk: false, cairo: false, "gdk-pixbuf": false, protobufc: false, cyrus_sasl: false, pcsclite: false, libfido2: false, lz4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 30, 5], ["text", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 30], ["runScript", 50, 3], ["includeClosures", 52, 3], ["targetPkgs", 54, 3], ["extraBwrapArgs", 75, 3], ["extraInstallCommands", 81, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const lz4 = nix.arg($, "lz4");
   const workspacesclient = nix.thunk(() => nix.app(callPackage, nix.path(here, "./workspacesclient.nix"), nix.thunk(() => ({}))));
   const custom_lsb_release = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "lsb_release",
       text: "# \"Fake\" lsb_release script\n# This only exists so that \"lsb_release -r\" will return the below string\n# when placed in the $PATH\n\nif [ \"$#\" -ne 1 ] || [ \"$1\" != \"-r\" ] ; then\n    echo \"Expected only '-r' argument\"\n    exit 1\nfi\n\necho \"Release: 24.04\"\n",
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "aws-workspaces",
       version: nix.thunk(() => nix.attr(workspacesclient, "version")),
       runScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), workspacesclient)),

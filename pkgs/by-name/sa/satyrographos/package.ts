@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["sha256", 14, 5]], [["yojson", 30, 37]], [["changelog", 40, 5], ["description", 41, 5], ["homepage", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5], ["license", 45, 5]], [["pname", 18, 11], ["version", 18, 17], ["src", 18, 25], ["nativeBuildInputs", 20, 3], ["buildInputs", 24, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { ocamlPackages: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yojson", 30, 37]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 40, 5], ["description", 41, 5], ["homepage", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5], ["license", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 11], ["version", 18, 17], ["src", 18, 25], ["nativeBuildInputs", 20, 3], ["buildInputs", 24, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const pname = "satyrographos";
   const version = "0.0.2.13";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "na4zagin3",
       repo: "satyrographos",
       tag: nix.thunk(() => nix.str`v${version}`),
       sha256: "sha256-f9iJTr4nV7dFCMkI8+zv9qvYWRSw8H/xbbZm2LR9cB4=",
     }))));
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "opam-format")),
           nix.thunk(() => nix.lookup(w_1, "opam-state")),
           nix.thunk(() => nix.lookup(w_1, "ppx_deriving")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "ppx_deriving_yojson"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, yojson: nix.thunk(() => nix.lookup(w_1, "yojson_2")) })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "ppx_deriving_yojson"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], yojson: nix.thunk(() => nix.lookup(w_1, "yojson_2")) })))),
           nix.thunk(() => nix.lookup(w_1, "ppx_import")),
           nix.thunk(() => nix.lookup(w_1, "ppx_jane")),
           nix.thunk(() => nix.lookup(w_1, "shexp")),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/na4zagin3/satyrographos/releases/tag/${nix.sel(src, "rev")}`),
         description: "Package manager for SATySFi",
         homepage: "https://github.com/na4zagin3/satyrographos",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ppx.nix", [[["0.16.0", 17, 9], ["0.17.0", 18, 9]], [["url", 14, 5], ["hash", 15, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["pname", 10, 3], ["version", 11, 11], ["minimalOCamlVersion", 12, 3], ["src", 13, 3], ["buildInputs", 22, 3], ["doCheck", 23, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, fetchurl: false, lib: false, ppxlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ppx.nix", [["0.16.0", 17, 9], ["0.17.0", 18, 9]]);
-const pos$2 = nix.positions(here + "/ppx.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$3 = nix.positions(here + "/ppx.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$4 = nix.positions(here + "/ppx.nix", [["pname", 10, 3], ["version", 11, 11], ["minimalOCamlVersion", 12, 3], ["src", 13, 3], ["buildInputs", 22, 3], ["doCheck", 23, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,15 +13,15 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? "0.17.0" : "0.16.0"));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "reason-react-ppx",
       version: version,
       minimalOCamlVersion: "4.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/reasonml/reason-react/releases/download/${nix.sel(finalAttrs, "version")}/reason-react-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "0.16.0": "sha256-esPB+mvHHTQ3mUYILrkOjMELJxRDIsWleFcxIwOPQ1w=",
             "0.17.0": "sha256-ArZ6CL1UjcGYPBvGnvQX7Qa16+mQT3T8mETHprT/MYw=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ppxlib]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "React.js JSX PPX",
         homepage: "https://github.com/reasonml/reason-react",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

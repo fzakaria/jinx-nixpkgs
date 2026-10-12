@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 52, 5], ["hash", 53, 5]], [["broken", 153, 5], ["description", 155, 5], ["longDescription", 157, 5], ["homepage", 162, 5], ["license", 163, 5], ["maintainers", 164, 5], ["platforms", 165, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["patches", 56, 3], ["outputs", 64, 3], ["configureFlags", 72, 3], ["enableParallelBuilding", 90, 3], ["nativeBuildInputs", 92, 3], ["buildInputs", 99, 3], ["doCheck", 108, 3], ["postInstall", 110, 3], ["postFixup", 137, 3], ["meta", 151, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, autoconf: false, automake: false, gfortran: false, hwloc: false, openssh: false, perl: false, python3: false, removeReferencesTo: false, ch4backend: false, withPm: true, pmix: false, pmixSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["broken", 153, 5], ["description", 155, 5], ["longDescription", 157, 5], ["homepage", 162, 5], ["license", 163, 5], ["maintainers", 164, 5], ["platforms", 165, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["patches", 56, 3], ["outputs", 64, 3], ["configureFlags", 72, 3], ["enableParallelBuilding", 90, 3], ["nativeBuildInputs", 92, 3], ["buildInputs", 99, 3], ["doCheck", 108, 3], ["postInstall", 110, 3], ["postFixup", 137, 3], ["meta", 151, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mpich";
       const version = "5.0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.mpich.org/static/downloads/${version}/mpich-${version}.tar.gz`),
           hash: "sha256-kowvGNNQqRRD/oAkrQHOLGAJ6cVR4Kc+eX/FZ/EZE30=",
         }))));
@@ -74,7 +72,7 @@ remove-references-to \\
   $(find "$bin"/bin -type f)
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => (nix.asBool(pmixSupport) && nix.asBool(!nix.eq(withPm, [])))),
         description: "Implementation of the Message Passing Interface (MPI) standard",
         longDescription: "MPICH2 is a free high-performance and portable implementation of\nthe Message Passing Interface (MPI) standard, both version 1 and\nversion 2.\n",
@@ -84,7 +82,7 @@ remove-references-to \\
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

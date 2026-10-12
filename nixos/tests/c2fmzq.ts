@@ -2,45 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/c2fmzq.nix", [[["maintainers", 4, 8]], [["verbose", 12, 9], ["allow-new-accounts", 14, 9], ["auto-approve-new-accounts", 15, 9], ["licenses", 16, 9]], [["enable", 8, 7], ["port", 9, 7], ["passphraseFile", 10, 7], ["settings", 11, 7]], [["c2fmzq-server", 7, 14]], [["C2FMZQ_PASSPHRASE", 21, 9], ["C2FMZQ_API_SERVER", 22, 9]], [["sessionVariables", 20, 7], ["systemPackages", 24, 7]], [["services", 7, 5], ["environment", 19, 5]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 41, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/c2fmzq.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/c2fmzq.nix", [["verbose", 12, 9], ["allow-new-accounts", 14, 9], ["auto-approve-new-accounts", 15, 9], ["licenses", 16, 9]]);
-const pos$3 = nix.positions(here + "/c2fmzq.nix", [["enable", 8, 7], ["port", 9, 7], ["passphraseFile", 10, 7], ["settings", 11, 7]]);
-const pos$4 = nix.positions(here + "/c2fmzq.nix", [["c2fmzq-server", 7, 14]]);
-const pos$5 = nix.positions(here + "/c2fmzq.nix", [["C2FMZQ_PASSPHRASE", 21, 9], ["C2FMZQ_API_SERVER", 22, 9]]);
-const pos$6 = nix.positions(here + "/c2fmzq.nix", [["sessionVariables", 20, 7], ["systemPackages", 24, 7]]);
-const pos$7 = nix.positions(here + "/c2fmzq.nix", [["services", 7, 5], ["environment", 19, 5]]);
-const pos$8 = nix.positions(here + "/c2fmzq.nix", [["machine", 6, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/c2fmzq.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "c2FmZQ",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "hmenke"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "c2fmzq-server": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             port: 8080n,
             passphraseFile: nix.thunk(() => nix.builtins.toFile("pwfile", "hunter2")),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               verbose: 3n,
               "allow-new-accounts": true,
               "auto-approve-new-accounts": true,
@@ -49,9 +41,9 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           sessionVariables: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             C2FMZQ_PASSPHRASE: "lol",
             C2FMZQ_API_SERVER: "http://localhost:8080",
           })),

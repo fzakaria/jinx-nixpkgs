@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["package", 82, 9], ["command", 83, 9]], [["help-output", 81, 7]], [["tests", 79, 5]], [["homepage", 89, 5], ["description", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 56, 3], ["nativeCheckInputs", 62, 3], ["cmakeFlags", 67, 3], ["disabledTests", 73, 3], ["passthru", 78, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, "clang-tools": false, colordiff: false, flex: false, libclang: false, llvm: false, unifdef: false, testers: false, cvise: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["package", 82, 9], ["command", 83, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["help-output", 81, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 79, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 89, 5], ["description", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 56, 3], ["nativeCheckInputs", 62, 3], ["cmakeFlags", 67, 3], ["disabledTests", 73, 3], ["passthru", 78, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.12.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "marxin",
           repo: "cvise",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -64,14 +59,14 @@ substituteInPlace cvise/utils/testing.py \\
       ]);
       const disabledTests = nix.thunk(() => ["test_simple_reduction"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          "help-output": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: cvise, command: "cvise --version" })))),
+          [nix.POS]: $pos[2],
+          "help-output": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: cvise, command: "cvise --version" })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/marxin/cvise",
         description: "Super-parallel Python port of C-Reduce",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ncsa")),
@@ -79,7 +74,7 @@ substituteInPlace cvise/utils/testing.py \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

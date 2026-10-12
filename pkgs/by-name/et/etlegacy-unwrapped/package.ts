@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["longDescription", 118, 5], ["maintainers", 123, 5], ["mainProgram", 126, 5], ["platforms", 127, 5]], [["pname", 42, 3], ["version", 43, 11], ["__structuredAttrs", 45, 3], ["strictDeps", 46, 3], ["src", 48, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 60, 3], ["cmakeFlags", 78, 3], ["nativeInstallCheckInputs", 111, 3], ["doInstallCheck", 112, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, writeScriptBin: false, fetchFromGitHub: false, cjson: false, cmake: false, curl: false, freetype: false, glew: false, libjpeg: false, libogg: false, libpng: false, libtheora: false, libx11: false, lua5_4: false, minizip: false, openal: false, SDL2: false, sqlite: false, zlib: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["longDescription", 118, 5], ["maintainers", 123, 5], ["mainProgram", 126, 5], ["platforms", 127, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 11], ["__structuredAttrs", 45, 3], ["strictDeps", 46, 3], ["src", 48, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 60, 3], ["cmakeFlags", 78, 3], ["nativeInstallCheckInputs", 111, 3], ["doInstallCheck", 112, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,13 +35,13 @@ fi
 `)));
   const binarySuffix = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x86_64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "aarch64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")) ? "i386" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported architecture: ${nix.sel(stdenv, "hostPlatform", "system")}`))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "etlegacy-unwrapped",
       version: version,
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "etlegacy",
           repo: "etlegacy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -102,7 +100,7 @@ fi
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ET: Legacy is an open source project based on the code of Wolfenstein: Enemy Territory which was released in 2010 under the terms of the GPLv3 license",
         homepage: "https://etlegacy.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

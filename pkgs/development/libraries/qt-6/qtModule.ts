@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtModule.nix", [[["pname", 23, 13], ["version", 23, 19], ["src", 23, 27], ["patches", 24, 5], ["buildInputs", 26, 5], ["nativeBuildInputs", 28, 5], ["propagatedBuildInputs", 36, 5], ["cmakeFlags", 40, 5], ["moveToDev", 56, 5], ["outputs", 58, 5], ["separateDebugInfo", 63, 5], ["dontWrapQtApps", 65, 5]], [["homepage", 75, 7], ["description", 76, 7], ["license", 77, 7], ["maintainers", 83, 7], ["platforms", 86, 7], ["position", 87, 7]], [["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, darwinVersionInputs: false, cmake: false, ninja: false, perl: false, moveBuildTree: false, srcs: false, patches: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtModule.nix", [["pname", 23, 13], ["version", 23, 19], ["src", 23, 27], ["patches", 24, 5], ["buildInputs", 26, 5], ["nativeBuildInputs", 28, 5], ["propagatedBuildInputs", 36, 5], ["cmakeFlags", 40, 5], ["moveToDev", 56, 5], ["outputs", 58, 5], ["separateDebugInfo", 63, 5], ["dontWrapQtApps", 65, 5]]);
-const pos$2 = nix.positions(here + "/qtModule.nix", [["homepage", 75, 7], ["description", 76, 7], ["license", 77, 7], ["maintainers", 83, 7], ["platforms", 86, 7], ["position", 87, 7]]);
-const pos$3 = nix.positions(here + "/qtModule.nix", [["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.thunk(() => nix.selOr(args_1, () => nix.sel(srcs, nix.key(nix.force(pname)), "version"), "version"));
     const src = nix.thunk(() => nix.selOr(args_1, () => nix.sel(srcs, nix.key(nix.force(pname)), "src"), "src"));
     return nix.update(nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(args_1, {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: pname,
         version: version,
         src: src,
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
         separateDebugInfo: nix.thunk(() => nix.selOr(args_1, () => true, "separateDebugInfo")),
         dontWrapQtApps: nix.thunk(() => nix.selOr(args_1, () => true, "dontWrapQtApps")),
       }))), {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       meta: nix.thunk(() => (() => {
         const pos = nix.thunk(() => nix.builtins.unsafeGetAttrPos("pname", args_1));
         return nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://www.qt.io/",
           description: "Cross-platform application framework for C++",
           license: nix.thunk(() => (() => {

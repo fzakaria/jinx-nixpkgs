@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["packageName", 67, 7], ["versionPolicy", 68, 7]], [["updateScript", 66, 5]], [["homepage", 73, 5], ["changelog", 74, 5], ["description", 75, 5], ["mainProgram", 76, 5], ["teams", 77, 5], ["license", 78, 5], ["platforms", 79, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 49, 3], ["dontWrapGApps", 59, 3], ["preFixup", 61, 3], ["passthru", 65, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, "desktop-file-utils": false, meson: false, ninja: false, "pkg-config": false, gnome: false, gtk3: false, wrapGAppsHook3: false, "gobject-introspection": false, itstool: false, python3: false, "at-spi2-core": false, gettext: false, libwnck: false, librsvg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 67, 7], ["versionPolicy", 68, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 73, 5], ["changelog", 74, 5], ["description", 75, 5], ["mainProgram", 76, 5], ["teams", 77, 5], ["license", 78, 5], ["platforms", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 49, 3], ["dontWrapGApps", 59, 3], ["preFixup", 61, 3], ["passthru", 65, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const libwnck = nix.arg($, "libwnck");
   const librsvg = nix.arg($, "librsvg");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "accerciser",
       version: "3.48.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/accerciser/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/accerciser-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-kCiOiQCidKOu4gUw6zkWRZlK6YZyIJFroPXEZ3v+n00=",
         })))),
@@ -63,11 +59,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "accerciser", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "accerciser", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/accerciser",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/accerciser/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Interactive Python accessibility explorer",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchSubmodules", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["withLcms2", 39, 24]], [["rev-prefix", 49, 5], ["ignoredVersions", 50, 5]], [["updateScript", 48, 12]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["postPatch", 43, 3], ["passthru", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, vapoursynth: false, ffmpeg: false, xxhash: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchSubmodules", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["withLcms2", 39, 24]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 49, 5], ["ignoredVersions", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["postPatch", 43, 3], ["passthru", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const xxhash = nix.arg($, "xxhash");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "vapoursynth-bestsource",
       version: "13",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           fetchSubmodules: true,
           owner: "vapoursynth",
           repo: "bestsource",
@@ -38,16 +33,16 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [
         vapoursynth,
-        nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withLcms2: true })))),
+        nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], withLcms2: true })))),
         xxhash,
       ]),
       postPatch: "substituteInPlace meson.build \\\n  --replace-fail \"vapoursynth_dep.get_variable(pkgconfig: 'libdir')\" \"get_option('libdir')\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "R", ignoredVersions: "*-RC*" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "R", ignoredVersions: "*-RC*" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Wrapper library around FFmpeg that ensures sample and frame accurate access to audio and video",
         homepage: "https://github.com/vapoursynth/bestsource",
         license: nix.thunk(() => (() => {

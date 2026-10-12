@@ -2,29 +2,25 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/hashes.nix", [["sha256", 6, 7], ["url", 7, 7]]);
-const pos$2 = nix.positions(here + "/hashes.nix", [["sha256", 10, 7], ["url", 11, 7]]);
-const pos$3 = nix.positions(here + "/hashes.nix", [["sha256", 14, 7], ["url", 15, 7]]);
-const pos$4 = nix.positions(here + "/hashes.nix", [["aarch64-linux", 5, 5], ["x86_64-linux", 9, 5], ["aarch64-darwin", 13, 5]]);
-const pos$5 = nix.positions(here + "/hashes.nix", [["version", 3, 3], ["hashes", 4, 3]]);
+const $pos = nix.positions(here + "/hashes.nix", [[["sha256", 6, 7], ["url", 7, 7]], [["sha256", 10, 7], ["url", 11, 7]], [["sha256", 14, 7], ["url", 15, 7]], [["aarch64-linux", 5, 5], ["x86_64-linux", 9, 5], ["aarch64-darwin", 13, 5]], [["version", 3, 3], ["hashes", 4, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$5,
+  [nix.POS]: $pos[4],
   version: "25.2.4",
   hashes: nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       sha256: "0y5n2c3pz5fvrdmmi5iply1gk3wmvb7d7i33vrg1x0lbv0fbqjfv",
       url: "https://github.com/oracle/graaljs/releases/download/graal-25.2.4/graalnode24-community-25.2.4-linux-aarch64.tar.gz",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       sha256: "12jjgc1j51s9l5n0rz5grfh4d1px3gash1w19806mqa8wyxkj3nn",
       url: "https://github.com/oracle/graaljs/releases/download/graal-25.2.4/graalnode24-community-25.2.4-linux-amd64.tar.gz",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       sha256: "1wm7wdim18vaknkxnjgxg981dkpb6zr5qjwaq0i3j0fqlpq48sp8",
       url: "https://github.com/oracle/graaljs/releases/download/graal-25.2.4/graalnode24-community-25.2.4-macos-aarch64.tar.gz",
     })),

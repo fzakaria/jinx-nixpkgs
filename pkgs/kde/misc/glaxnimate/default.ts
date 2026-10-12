@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["fetchSubmodules", 24, 5], ["hash", 25, 5]], [["package", 46, 5], ["command", 47, 5]], [["version", 45, 18]], [["tests", 45, 12]], [["homepage", 51, 5], ["license", 52, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["extraBuildInputs", 28, 3], ["qtWrapperArgs", 36, 3], ["passthru", 45, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, fetchFromGitLab: false, qttools: false, potrace: false, ffmpeg: false, libarchive: false, python3Packages: false, testers: false, glaxnimate: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["fetchSubmodules", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["package", 46, 5], ["command", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 45, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 45, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 51, 5], ["license", 52, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["extraBuildInputs", 28, 3], ["qtWrapperArgs", 36, 3], ["passthru", 45, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "glaxnimate";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "invent.kde.org",
           owner: "graphics",
           repo: "glaxnimate",
@@ -43,18 +38,18 @@ export default nix.lambda((args) => (() => {
           ]))}`),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: glaxnimate,
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), xvfb_run)} glaxnimate --version`),
             })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://glaxnimate.org/",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
@@ -71,7 +66,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "glaxnimate",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

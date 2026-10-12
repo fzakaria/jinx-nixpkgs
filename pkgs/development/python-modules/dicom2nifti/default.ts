@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["homepage", 78, 5], ["description", 79, 5], ["mainProgram", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 29, 3], ["postPatch", 36, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 53, 3], ["disabledTests", 60, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, gdcm: false, nibabel: false, numpy: false, pydicom: false, scipy: false, pillow: false, pylibjpeg: false, "pylibjpeg-libjpeg": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 78, 5], ["description", 79, 5], ["mainProgram", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 29, 3], ["postPatch", 36, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 53, 3], ["disabledTests", 60, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "icometrix",
           repo: "dicom2nifti",
           tag: version,
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         "test_gantry_resampling",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/icometrix/dicom2nifti",
         description: "Library for converting dicom files to nifti",
         mainProgram: "dicom2nifti",
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

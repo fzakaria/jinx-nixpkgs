@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 46, 5], ["hash", 47, 5]], [["NIX_CFLAGS_COMPILE", 118, 7]], [["description", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["platforms", 137, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["postPatch", 50, 3], ["buildInputs", 73, 3], ["nativeBuildInputs", 94, 3], ["enableParallelBuilding", 111, 3], ["hardeningDisable", 114, 3], ["env", 118, 3], ["preConfigure", 120, 3], ["configureFlags", 124, 3], ["preInstall", 128, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false, bison: false, mksh: false, perl: false, libxinerama: false, libxt: false, libxext: false, libtirpc: false, motif: false, libxft: false, xbitmaps: false, libjpeg: false, libxmu: false, libxdmcp: false, libxscrnsaver: false, bdftopcf: false, ncompress: false, mkfontdir: false, tcl: false, libxaw: false, libxcrypt: false, glibcLocales: false, autoPatchelfHook: false, makeWrapper: false, xset: false, xrdb: false, autoreconfHook: false, opensp: false, flex: false, libxpm: false, "rpcsvc-proto": false, sessreg: false, "pkg-config": false, lmdb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 118, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["platforms", 137, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["postPatch", 50, 3], ["buildInputs", 73, 3], ["nativeBuildInputs", 94, 3], ["enableParallelBuilding", 111, 3], ["hardeningDisable", 114, 3], ["env", 118, 3], ["preConfigure", 120, 3], ["configureFlags", 124, 3], ["preInstall", 128, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const lmdb = nix.arg($, "lmdb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cde",
       version: "2.5.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/cdesktopenv/cde-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-K1jAjr8Ka7nUoyGRzSXiBPXYy6gbzKo2/HL1xKqXmFQ=",
         })))),
@@ -116,13 +113,13 @@ patchShebangs autogen.sh config.rpath contrib programs
       ]),
       enableParallelBuilding: true,
       hardeningDisable: nix.thunk(() => ["fortify"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       preConfigure: nix.thunk(() => nix.str`export LOCALE_ARCHIVE="${glibcLocales}/lib/locale/locale-archive"
 `),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-tcl=${tcl}/lib`)]),
       preInstall: "mkdir -p $out/opt/dt/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Common Desktop Environment",
         homepage: "https://sourceforge.net/projects/cdesktopenv/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

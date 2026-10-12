@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]], [["rev-prefix", 157, 33]], [["targetPrefix", 156, 13], ["updateScript", 157, 5]], [["description", 161, 5], ["homepage", 162, 5], ["license", 163, 5], ["teams", 167, 5], ["platforms", 168, 5]], [["pname", 31, 3], ["version", 32, 3], ["outputs", 34, 3], ["src", 42, 3], ["xcodeHash", 49, 3], ["postUnpack", 51, 3], ["patches", 70, 3], ["postPatch", 83, 3], ["strictDeps", 115, 3], ["nativeBuildInputs", 117, 3], ["buildInputs", 123, 3], ["mesonBuildType", 128, 3], ["mesonFlags", 130, 3], ["postInstall", 135, 3], ["__structuredAttrs", 153, 3], ["passthru", 155, 3], ["meta", 160, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPackages: false, ld64: false, llvm: false, meson: false, ninja: false, openssl: false, xar: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 157, 33]]);
-const pos$4 = nix.positions(here + "/package.nix", [["targetPrefix", 156, 13], ["updateScript", 157, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 161, 5], ["homepage", 162, 5], ["license", 163, 5], ["teams", 167, 5], ["platforms", 168, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["outputs", 34, 3], ["src", 42, 3], ["xcodeHash", 49, 3], ["postUnpack", 51, 3], ["patches", 70, 3], ["postPatch", 83, 3], ["strictDeps", 115, 3], ["nativeBuildInputs", 117, 3], ["buildInputs", 123, 3], ["mesonBuildType", 128, 3], ["mesonFlags", 130, 3], ["postInstall", 135, 3], ["__structuredAttrs", 153, 3], ["passthru", 155, 3], ["meta", 160, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const targetPrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "targetPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => nix.str`${nix.sel(stdenv, "targetPlatform", "config")}-`)));
   const xnu = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "xnu-src",
       owner: "apple-oss-distributions",
       repo: "xnu",
@@ -33,12 +28,12 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-uHmAOm6k9ZXWfyqHiDSpm+tZqUbERlr6rXSJ4xNACkM=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`${targetPrefix}cctools`),
       version: "1010.6",
       outputs: nix.thunk(() => ["out", "dev", "man", "gas", "libtool"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "apple-oss-distributions",
           repo: "cctools",
           rev: nix.thunk(() => nix.str`cctools-${nix.sel(finalAttrs, "version")}`),
@@ -126,12 +121,12 @@ ln -s "$libtool/bin/${targetPrefix}libtool" "$out/bin/${targetPrefix}libtool"
 `),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         targetPrefix: targetPrefix,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "cctools-" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "cctools-" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Classic linker for Darwin",
         homepage: "https://opensource.apple.com/releases/",
         license: nix.thunk(() => (() => {

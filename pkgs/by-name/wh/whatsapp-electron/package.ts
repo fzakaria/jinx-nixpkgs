@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["pname", 26, 26], ["version", 26, 32], ["src", 26, 40], ["hash", 27, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 39, 7]], [["name", 74, 7], ["exec", 75, 7], ["icon", 76, 7], ["desktopName", 77, 7], ["startupWMClass", 78, 7], ["categories", 79, 7]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["mainProgram", 93, 5], ["platforms", 94, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["npmDeps", 25, 3], ["patches", 30, 3], ["nativeBuildInputs", 32, 3], ["env", 39, 3], ["buildPhase", 41, 3], ["installPhase", 53, 3], ["postFixup", 63, 3], ["desktopItems", 72, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, makeWrapper: false, electron: false, stdenv: false, copyDesktopItems: false, nodejs: false, fetchNpmDeps: false, makeDesktopItem: false, npmHooks: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 26, 26], ["version", 26, 32], ["src", 26, 40], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 74, 7], ["exec", 75, 7], ["icon", 76, 7], ["desktopName", 77, 7], ["startupWMClass", 78, 7], ["categories", 79, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["mainProgram", 93, 5], ["platforms", 94, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["npmDeps", 25, 3], ["patches", 30, 3], ["nativeBuildInputs", 32, 3], ["env", 39, 3], ["buildPhase", 41, 3], ["installPhase", 53, 3], ["postFixup", 63, 3], ["desktopItems", 72, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const npmHooks = nix.arg($, "npmHooks");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "whatsapp",
       version: "1.2.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dagmoller",
           repo: "whatsapp-electron",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-hz3pBudNFJprEZpT53UnsQtWRoiWXco+HnVZtunor2c=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -42,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./icon.patch")]),
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper, nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [copyDesktopItems])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 npm install
@@ -63,7 +58,7 @@ runHook postBuild
 `))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "com.github.dagmoller.whatsapp-electron",
             exec: "whatsapp-electron %u",
             icon: "whatsapp",
@@ -73,7 +68,7 @@ runHook postBuild
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Electron wrapper around Whatsapp",
         homepage: "https://github.com/dagmoller/whatsapp-electron",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

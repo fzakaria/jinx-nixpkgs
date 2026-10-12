@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 25, 5]], [["pname", 9, 3], ["format", 10, 3], ["version", 11, 27], ["src", 11, 35], ["preConfigure", 14, 3], ["buildInputs", 18, 3], ["doCheck", 21, 3], ["pythonImportsCheck", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pybind11: false, tinyobjloader: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["format", 10, 3], ["version", 11, 27], ["src", 11, 35], ["preConfigure", 14, 3], ["buildInputs", 18, 3], ["doCheck", 21, 3], ["pythonImportsCheck", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const pybind11 = nix.arg($, "pybind11");
   const tinyobjloader = nix.arg($, "tinyobjloader");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "tinyobjloader-py",
       format: "setuptools",
       version: nix.thunk(() => nix.attr(tinyobjloader, "version")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["tinyobjloader"]),
       meta: nix.thunk(() => nix.update(nix.sel(tinyobjloader, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python wrapper for the C++ wavefront .obj loader tinyobjloader",
       })),
     })));

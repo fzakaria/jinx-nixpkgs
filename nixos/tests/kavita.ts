@@ -2,40 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kavita.nix", [[["maintainers", 5, 5]], [["enable", 13, 11], ["tokenKeyFile", 14, 11]], [["kavita", 12, 18]], [["services", 12, 9]], [["kavita", 9, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 19, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/kavita.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/kavita.nix", [["enable", 13, 11], ["tokenKeyFile", 14, 11]]);
-const pos$3 = nix.positions(here + "/kavita.nix", [["kavita", 12, 18]]);
-const pos$4 = nix.positions(here + "/kavita.nix", [["services", 12, 9]]);
-const pos$5 = nix.positions(here + "/kavita.nix", [["kavita", 9, 5]]);
-const pos$6 = nix.positions(here + "/kavita.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "kavita",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "misterio77"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       kavita: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             kavita: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               tokenKeyFile: nix.thunk(() => nix.builtins.toFile("kavita.key", "d26ba694b455271a8872415830fb7b5c58f8da98f9ef7f58b2ca4c34bd406512")),
             })),

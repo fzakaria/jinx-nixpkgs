@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchgit", 17, 13], ["fetchFromGitiles", 17, 22], ["fetchFromGitHub", 17, 39]], [["path", 27, 9]], [["manifest", 33, 15], ["__toString", 34, 7]], [["jq", 47, 9]], [["license", 49, 12]], [["name", 45, 7], ["substitutions", 46, 7], ["meta", 49, 7]], [["url", 71, 7], ["rev", 72, 7], ["hash", 73, 7]], [["fetchers", 77, 15], ["importGclientDeps", 77, 24], ["gclientUnpackHook", 77, 42]], [["nativeBuildInputs", 66, 5], ["buildInputs", 67, 5], ["depot_tools_checkout", 70, 5], ["passthru", 76, 5]]]);
 const formals$1 = { args: { lib: false, python3: false, runCommand: false, makeWrapper: false, fetchgit: false, nurl: false, writers: false, callPackage: false, fetchFromGitiles: false, fetchFromGitHub: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchgit", 17, 13], ["fetchFromGitiles", 17, 22], ["fetchFromGitHub", 17, 39]]);
-const pos$2 = nix.positions(here + "/package.nix", [["path", 27, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["manifest", 33, 15], ["__toString", 34, 7]]);
 const formals$2 = { args: { lib: false, makeSetupHook: false, jq: false }, ellipsis: false };
-const pos$4 = nix.positions(here + "/package.nix", [["jq", 47, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["license", 49, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 45, 7], ["substitutions", 46, 7], ["meta", 49, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 71, 7], ["rev", 72, 7], ["hash", 73, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["fetchers", 77, 15], ["importGclientDeps", 77, 24], ["gclientUnpackHook", 77, 42]]);
-const pos$9 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 66, 5], ["buildInputs", 67, 5], ["depot_tools_checkout", 70, 5], ["passthru", 76, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildPackages = nix.arg($, "buildPackages");
   const fetchers = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     fetchgit: fetchgit,
     fetchFromGitiles: fetchFromGitiles,
     fetchFromGitHub: fetchFromGitHub,
@@ -37,9 +29,13 @@ export default nix.lambda((args) => (() => {
     const depsAttrs = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), depsAttrsOrFile)) ? nix.force(depsAttrsOrFile) : nix.app(nix.sel(lib, "importJSON"), depsAttrsOrFile)));
     const fetchdep = (dep) => nix.app(nix.sel(fetchers, nix.key(nix.sel(dep, "fetcher"))), nix.thunk(() => nix.sel(dep, "args")));
     const fetchedDeps = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_name) => fetchdep, depsAttrs));
-    const manifestContents = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (dep) => ({ [nix.POS]: pos$2, path: dep }), fetchedDeps));
+    const manifestContents = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (dep) => ({ [nix.POS]: $pos[1], path: dep }), fetchedDeps));
     const manifest = nix.thunk(() => nix.app(nix.sel(writers, "writeJSON"), "gclient-manifest.json", manifestContents));
-    return nix.update(manifestContents, { [nix.POS]: pos$3, manifest: manifest, __toString: (_) => nix.force(manifest) });
+    return nix.update(manifestContents, {
+      [nix.POS]: $pos[2],
+      manifest: manifest,
+      __toString: (_) => nix.force(manifest),
+    });
   })();
   const gclientUnpackHook = nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
@@ -47,14 +43,14 @@ export default nix.lambda((args) => (() => {
       const makeSetupHook = nix.arg($_1, "makeSetupHook");
       const jq = nix.arg($_1, "jq");
       return nix.app(makeSetupHook, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           name: "gclient-unpack-hook",
           substitutions: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             jq: nix.thunk(() => nix.app(nix.sel(lib_1, "getExe"), nix.thunk(() => nix.sel(buildPackages, "jq")))),
           })),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             license: nix.thunk(() => nix.sel(lib_1, "licenses", "mit")),
           })),
         })), nix.path(here, "./gclient-unpack-hook.sh"));
@@ -69,17 +65,17 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(runCommand, "gclient2nix", nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => [python]),
       depot_tools_checkout: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: "https://chromium.googlesource.com/chromium/tools/depot_tools",
           rev: "604a436d8af23ca0b9fd3d1d8be193fc9a4679f6",
           hash: "sha256-tNJq/a4j0AHmn2FS4zbwkWeEMYlp4uXDcpPzP9D3ULE=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         fetchers: fetchers,
         importGclientDeps: importGclientDeps,
         gclientUnpackHook: gclientUnpackHook,

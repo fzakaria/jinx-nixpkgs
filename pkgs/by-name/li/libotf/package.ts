@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["url", 25, 7], ["sha256", 26, 7]], [["url", 30, 7], ["sha256", 31, 7]], [["url", 34, 7], ["sha256", 35, 7]], [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["outputs", 51, 3], ["postInstall", 56, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, autoreconfHook: false, libxaw: false, freetype: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["sha256", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 30, 7], ["sha256", 31, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 34, 7], ["sha256", 35, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["outputs", 51, 3], ["postInstall", 56, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,23 +19,23 @@ export default nix.lambda((args) => (() => {
       const pname = "libotf";
       const version = "0.9.16";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/m17n/${pname}-${version}.tar.gz`),
           sha256: "0sq6g3xaxw388akws6qrllp3kp2sxgk2dv4j79k6mm52rnihrnv8",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/debian/libotf/-/raw/1be04cedf887720eb8f5efb3594dc2cefd96b1f1/debian/patches/0002-use-pkg-config-not-freetype-config.patch",
             sha256: "sha256-VV9iGoNWIEie6UiLLTJBD+zxpvj0acgqkcBeAN1V6Kc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://salsa.debian.org/debian/libotf/-/raw/1be04cedf887720eb8f5efb3594dc2cefd96b1f1/debian/patches/0001-do-not-add-flags-for-required-packages-to-pc-file.patch",
             sha256: "sha256-3kzqNPAHNVJQ1F4fyifq3AqLdChWli/k7wOq+ha+iDs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://salsa.debian.org/debian/libotf/-/raw/1be04cedf887720eb8f5efb3594dc2cefd96b1f1/debian/patches/0001-libotf-config-modify-to-support-multi-arch.patch",
             sha256: "sha256-SUlI87h+MtYWWtrAegzAnSds8JhxZwTJltDcj/se/Qc=",
           })))),
@@ -55,7 +50,7 @@ substituteInPlace $dev/bin/libotf-config \\
   --replace "pkg-config" "${pkg_config}/bin/pkg-config"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.nongnu.org/m17n/",
         description: "Multilingual text processing library (libotf)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -66,7 +61,7 @@ substituteInPlace $dev/bin/libotf-config \\
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

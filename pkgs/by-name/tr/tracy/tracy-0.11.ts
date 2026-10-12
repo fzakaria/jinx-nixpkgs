@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tracy-0.11.nix", [[["version", 9, 3], ["srcHash", 10, 3], ["patches", 11, 3], ["extraBuildInputs", 14, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, capstone: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tracy-0.11.nix", [["version", 9, 3], ["srcHash", 10, 3], ["patches", 11, 3], ["extraBuildInputs", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const capstone = nix.arg($, "capstone");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "0.11.1",
     srcHash: "sha256-HofqYJT1srDJ6Y1f18h7xtAbI/Gvvz0t9f0wBNnOZK8=",
     patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinMinVersion")), "11")))), nix.path(here, "./dont-use-the-uniformtypeidentifiers-framework.patch"))),

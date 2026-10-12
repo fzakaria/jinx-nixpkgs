@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["url", 35, 5], ["sha256", 36, 5]], [["description", 59, 5], ["mainProgram", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["homepage", 64, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 24, 3], ["setSourceRoot", 30, 3], ["gpl", 34, 3], ["postPatch", 39, 3], ["buildPhase", 48, 3], ["installPhase", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitLab: false, yodl: false, icmake: false, flexcpp: false, bobcat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["homepage", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 24, 3], ["setSourceRoot", 30, 3], ["gpl", 34, 3], ["postPatch", 39, 3], ["buildPhase", 48, 3], ["installPhase", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bisonc++";
       const version = "6.04.00";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fbb-git",
           repo: "bisoncpp",
           rev: "6.04.00",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [yodl, icmake, flexcpp]);
       const setSourceRoot = "sourceRoot=\"$(echo */bisonc++)\"\n";
       const gpl = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt",
           sha256: "sha256:0hq6i0dm4420825fdm0lnnppbil6z67ls67n5kgjcd912dszjxw1",
         }))));
@@ -46,7 +43,7 @@ done
       const buildPhase = "./build program\n./build man\n./build manual\n";
       const installPhase = "./build install x\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Parser generator like bison, but it generates C++ code",
         mainProgram: "bisonc++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -58,7 +55,7 @@ done
         homepage: "https://fbb-git.gitlab.io/bisoncpp/",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

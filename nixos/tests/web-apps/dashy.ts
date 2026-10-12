@@ -2,85 +2,68 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dashy.nix", [[["title", 5, 7]], [["name", 13, 13], ["url", 14, 13]], [["name", 10, 9], ["items", 11, 9]], [["pageInfo", 4, 5], ["sections", 8, 5]], [["maintainers", 25, 8]], [["enableNginx", 33, 11], ["domain", 34, 11]], [["enable", 31, 9], ["virtualHost", 32, 9]], [["addr", 42, 11], ["port", 43, 11]], [["listen", 40, 81]], [["virtualHosts", 40, 22]], [["dashy", 30, 16], ["nginx", 40, 16]], [["extraHosts", 38, 18]], [["services", 30, 7], ["networking", 38, 7]], [["settings", 51, 22]], [["dashy", 51, 16]], [["services", 51, 7]], [["container", 48, 5], ["custom", 50, 5]], [["name", 24, 3], ["meta", 25, 3], ["defaults", 27, 3], ["containers", 47, 3], ["testScript", 55, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/dashy.nix", [["title", 5, 7]]);
-const pos$2 = nix.positions(here + "/dashy.nix", [["name", 13, 13], ["url", 14, 13]]);
-const pos$3 = nix.positions(here + "/dashy.nix", [["name", 10, 9], ["items", 11, 9]]);
-const pos$4 = nix.positions(here + "/dashy.nix", [["pageInfo", 4, 5], ["sections", 8, 5]]);
-const pos$5 = nix.positions(here + "/dashy.nix", [["maintainers", 25, 8]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/dashy.nix", [["enableNginx", 33, 11], ["domain", 34, 11]]);
-const pos$7 = nix.positions(here + "/dashy.nix", [["enable", 31, 9], ["virtualHost", 32, 9]]);
-const pos$8 = nix.positions(here + "/dashy.nix", [["addr", 42, 11], ["port", 43, 11]]);
-const pos$9 = nix.positions(here + "/dashy.nix", [["listen", 40, 81]]);
-const pos$10 = nix.positions(here + "/dashy.nix", [["virtualHosts", 40, 22]]);
-const pos$11 = nix.positions(here + "/dashy.nix", [["dashy", 30, 16], ["nginx", 40, 16]]);
-const pos$12 = nix.positions(here + "/dashy.nix", [["extraHosts", 38, 18]]);
-const pos$13 = nix.positions(here + "/dashy.nix", [["services", 30, 7], ["networking", 38, 7]]);
-const pos$14 = nix.positions(here + "/dashy.nix", [["settings", 51, 22]]);
-const pos$15 = nix.positions(here + "/dashy.nix", [["dashy", 51, 16]]);
-const pos$16 = nix.positions(here + "/dashy.nix", [["services", 51, 7]]);
-const pos$17 = nix.positions(here + "/dashy.nix", [["container", 48, 5], ["custom", 50, 5]]);
-const pos$18 = nix.positions(here + "/dashy.nix", [["name", 24, 3], ["meta", 25, 3], ["defaults", 27, 3], ["containers", 47, 3], ["testScript", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const customSettings = nix.thunk(() => ({
-    [nix.POS]: pos$4,
-    pageInfo: nix.thunk(() => ({ [nix.POS]: pos$1, title: "My Custom Dashy Title" })),
+    [nix.POS]: $pos[3],
+    pageInfo: nix.thunk(() => ({ [nix.POS]: $pos[0], title: "My Custom Dashy Title" })),
     sections: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "My Section",
         items: nix.thunk(() => [
-          nix.thunk(() => ({ [nix.POS]: pos$2, name: "NixOS", url: "https://nixos.org" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[1], name: "NixOS", url: "https://nixos.org" })),
         ]),
       })),
     ]),
   }));
   const customSettingsYaml = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "yaml_1_2"), nix.thunk(() => ({}))), "generate"), "custom-conf.yaml", customSettings));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "dashy",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "therealgramdalf"))]),
     })),
     defaults: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       return {
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           dashy: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             enable: true,
-            virtualHost: nix.thunk(() => ({ [nix.POS]: pos$6, enableNginx: true, domain: "dashy.local" })),
+            virtualHost: nix.thunk(() => ({ [nix.POS]: $pos[5], enableNginx: true, domain: "dashy.local" })),
           })),
           nginx: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(config, "services", "dashy", "virtualHost", "domain")}`, nix.thunk(() => ({
-                [nix.POS]: pos$9,
-                listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$8, addr: "127.0.0.1", port: 80n }))]),
+                [nix.POS]: $pos[8],
+                listen: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[7], addr: "127.0.0.1", port: 80n }))]),
               }))],
             ])),
           })),
         })),
-        networking: nix.thunk(() => ({ [nix.POS]: pos$12, extraHosts: "127.0.0.1 dashy.local" })),
+        networking: nix.thunk(() => ({ [nix.POS]: $pos[11], extraHosts: "127.0.0.1 dashy.local" })),
       };
     })(), formals$2),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       container: nix.thunk(() => ({})),
       custom: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$15,
-          dashy: nix.thunk(() => ({ [nix.POS]: pos$14, settings: customSettings })),
+          [nix.POS]: $pos[14],
+          dashy: nix.thunk(() => ({ [nix.POS]: $pos[13], settings: customSettings })),
         })),
       })),
     })),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 32, 5]], [["useQt", 50, 7], ["useGtk", 51, 7]], [["homepage", 86, 5], ["description", 87, 5], ["longDescription", 88, 5], ["license", 94, 5], ["platforms", 95, 5], ["mainProgram", 96, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 48, 3], ["postPatch", 62, 3], ["qtWrapperArgs", 78, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, kdePackages: false, gettext: false, gphoto2: false, libgphoto2: false, libsForQt5: false, libv4l: false, libxml2: false, ninja: false, "pkg-config": false, guvcview: false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["useQt", 50, 7], ["useGtk", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 86, 5], ["description", 87, 5], ["longDescription", 88, 5], ["license", 94, 5], ["platforms", 95, 5], ["mainProgram", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 48, 3], ["postPatch", 62, 3], ["qtWrapperArgs", 78, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const guvcview = nix.arg($, "guvcview");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qstopmotion",
       version: "2.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/qstopmotion/Version_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/qstopmotion-${nix.sel(finalAttrs, "version")}-Source.tar.gz`),
           hash: "sha256-jyBUyadkSuQKXOrr5XZ1jy6of1Qw8S2HPxuOrPc7RnE=",
         })))),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         pkg_config,
       ]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(guvcview, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, useQt: true, useGtk: false })))),
+        nix.thunk(() => nix.app(nix.sel(guvcview, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], useQt: true, useGtk: false })))),
         nix.thunk(() => nix.sel(libsForQt5, "qtbase")),
         nix.thunk(() => nix.sel(libsForQt5, "qtimageformats")),
         nix.thunk(() => nix.sel(libsForQt5, "qtmultimedia")),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg]))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.qstopmotion.org",
         description: "Create stopmotion animation with a (web)camera",
         longDescription: "Qstopmotion is a tool to create stopmotion\nanimation. Its users are able to create stop-motions from pictures\nimported from a camera or from the harddrive and export the\nanimation to different video formats such as mpeg or avi.\n",

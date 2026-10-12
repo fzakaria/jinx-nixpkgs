@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 31, 7], ["homepage", 32, 7], ["license", 33, 7], ["maintainers", 34, 7], ["platforms", 35, 7], ["mainProgram", 36, 7]], [["pname", 12, 5], ["gemdir", 13, 5], ["exes", 15, 5], ["meta", 30, 5]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false, makeWrapper: false, epubcheck: false, bundlerUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 31, 7], ["homepage", 32, 7], ["license", 33, 7], ["maintainers", 34, 7], ["platforms", 35, 7], ["mainProgram", 36, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 12, 5], ["gemdir", 13, 5], ["exes", 15, 5], ["meta", 30, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const epubcheck = nix.arg($, "epubcheck");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const app = nix.thunk(() => nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kramdown-asciidoc",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["kramdoc"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Kramdown extension for converting Markdown documents to AsciiDoc",
         homepage: "https://asciidoctor.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

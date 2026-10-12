@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 27, 5], ["homepage", 28, 5], ["sourceProvenance", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["mainProgram", 32, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["dontUnpack", 20, 3], ["installPhase", 22, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["sourceProvenance", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["mainProgram", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["dontUnpack", 20, 3], ["installPhase", 22, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tessera",
       version: "0.10.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://oss.sonatype.org/service/local/repositories/releases/content/com/jpmorgan/quorum/tessera-app/${nix.sel(finalAttrs, "version")}/tessera-app-${nix.sel(finalAttrs, "version")}-app.jar`),
           sha256: "1zn8w7q0q5man0407kb82lw4mlvyiy9whq2f6izf2b5415f9s0m4",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`makeWrapper ${jre}/bin/java $out/bin/tessera --add-flags "-jar $src"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Enterprise Implementation of Quorum's transaction manager",
         homepage: "https://github.com/jpmorganchase/tessera",
         sourceProvenance: nix.thunk(() => (() => {

@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["type", 10, 5], ["description", 11, 5], ["readOnly", 14, 5], ["internal", 15, 5]], [["result", 9, 11]], [["configFile", 24, 24], ["binPath", 25, 7]], [["wrapper", 31, 9]], [["runtimeInputs", 28, 24], ["config", 29, 15], ["options", 29, 22], ["check", 30, 7]], [["pname", 19, 5], ["meta", 20, 30], ["version", 20, 35], ["nativeBuildInputs", 21, 5], ["paths", 22, 5], ["env", 23, 5], ["passthru", 27, 5], ["postBuild", 34, 5]], [["result", 18, 10]], [["options", 9, 3], ["config", 18, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, config: false, options: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["type", 10, 5], ["description", 11, 5], ["readOnly", 14, 5], ["internal", 15, 5]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["result", 9, 11]]);
-const pos$3 = nix.positions(here + "/wrapper.nix", [["configFile", 24, 24], ["binPath", 25, 7]]);
-const pos$4 = nix.positions(here + "/wrapper.nix", [["wrapper", 31, 9]]);
-const pos$5 = nix.positions(here + "/wrapper.nix", [["runtimeInputs", 28, 24], ["config", 29, 15], ["options", 29, 22], ["check", 30, 7]]);
-const pos$6 = nix.positions(here + "/wrapper.nix", [["pname", 19, 5], ["meta", 20, 30], ["version", 20, 35], ["nativeBuildInputs", 21, 5], ["paths", 22, 5], ["env", 23, 5], ["passthru", 27, 5], ["postBuild", 34, 5]]);
-const pos$7 = nix.positions(here + "/wrapper.nix", [["result", 18, 10]]);
-const pos$8 = nix.positions(here + "/wrapper.nix", [["options", 9, 3], ["config", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const options = nix.arg($, "options");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       result: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.sel(lib, "types", "package")),
           description: "The wrapped treefmt package.\n",
           readOnly: true,
@@ -31,28 +24,28 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       result: nix.thunk(() => nix.app(nix.sel(pkgs, "symlinkJoin"), (finalAttrs) => (() => {
           const from = nix.thunk(() => nix.sel(config, "package"));
           return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: nix.thunk(() => nix.sel(config, "name")),
           meta: nix.thunk(() => nix.attr(from, "meta")),
           version: nix.thunk(() => nix.attr(from, "version")),
           nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeBinaryWrapper"))]),
           paths: nix.thunk(() => [nix.thunk(() => nix.sel(config, "package"))]),
           env: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             configFile: nix.thunk(() => nix.attr(config, "configFile")),
             binPath: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(config, "runtimeInputs")))),
           })),
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             runtimeInputs: nix.thunk(() => nix.attr(config, "runtimeInputs")),
             config: config,
             options: options,
             check: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../check-wrapper.nix"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 wrapper: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           })),

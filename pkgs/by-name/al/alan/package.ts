@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["installPhase", 29, 3], ["nativeBuildInputs", 46, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cgreen: false, openjdk: false, "pkg-config": false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["installPhase", 29, 3], ["nativeBuildInputs", 46, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "alan",
       version: "3.0beta8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alan-if",
           repo: "alan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/alan/examples\n# Build the release tarball\nmake package\n# The release tarball isn't split up into subdirectories\ntar -xf alan*.tgz --strip-components=1 -C $out/share/alan\nmv $out/share/alan/*.alan $out/share/alan/examples\nchmod a-x $out/share/alan/examples/*.alan\nmv $out/share/alan/{alan,arun} $out/bin\n# a2a3 isn't included in the release tarball\ncp bin/a2a3 $out/bin\n\nrunHook postInstall\n",
       nativeBuildInputs: nix.thunk(() => [cgreen, openjdk, pkg_config, which]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.alanif.se/",
         description: "Alan interactive fiction language",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),

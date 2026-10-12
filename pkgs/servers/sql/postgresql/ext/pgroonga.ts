@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pgroonga.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 48, 5], ["version", 49, 26], ["src", 49, 34], ["nativeBuildInputs", 51, 5], ["dontConfigure", 53, 5], ["buildPhase", 55, 5], ["installPhase", 78, 5]], [["regression", 47, 18]], [["tests", 47, 12]], [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["platforms", 92, 5], ["maintainers", 93, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["mesonFlags", 38, 3], ["mesonInstallFlags", 45, 3], ["passthru", 47, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, groonga: false, lib: false, meson: false, "msgpack-c": false, ninja: false, "pkg-config": false, postgresql: false, postgresqlBuildExtension: false, ruby: false, stdenvNoCC: false, xxhash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pgroonga.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/pgroonga.nix", [["pname", 48, 5], ["version", 49, 26], ["src", 49, 34], ["nativeBuildInputs", 51, 5], ["dontConfigure", 53, 5], ["buildPhase", 55, 5], ["installPhase", 78, 5]]);
-const pos$3 = nix.positions(here + "/pgroonga.nix", [["regression", 47, 18]]);
-const pos$4 = nix.positions(here + "/pgroonga.nix", [["tests", 47, 12]]);
-const pos$5 = nix.positions(here + "/pgroonga.nix", [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["platforms", 92, 5], ["maintainers", 93, 5]]);
-const pos$6 = nix.positions(here + "/pgroonga.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["mesonFlags", 38, 3], ["mesonInstallFlags", 45, 3], ["passthru", 47, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const xxhash = nix.arg($, "xxhash");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pgroonga",
       version: "4.0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pgroonga",
           repo: "pgroonga",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,11 +38,11 @@ export default nix.lambda((args) => (() => {
       ]),
       mesonInstallFlags: nix.thunk(() => [nix.thunk(() => nix.str`--destdir=${nix.builtins.placeholder("out")}`)]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           regression: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-regression`),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -79,7 +74,7 @@ runHook postBuild
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "PostgreSQL extension to use Groonga as the index",
         longDescription: "PGroonga is a PostgreSQL extension to use Groonga as the index.\nPostgreSQL supports full text search against languages that use only alphabet and digit.\nIt means that PostgreSQL doesn't support full text search against Japanese, Chinese and so on.\nYou can use super fast full text search feature against all languages by installing PGroonga into your PostgreSQL.\n",
         homepage: "https://pgroonga.github.io/",

@@ -2,16 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 26, 9], ["hash", 27, 9]], [["version", 31, 9], ["hash", 32, 9]], [["version", 36, 9], ["hash", 37, 9]], [["version", 41, 9], ["hash", 42, 9]], [["version", 46, 9], ["hash", 47, 9]], [["version", 53, 9], ["hash", 54, 9]], [["url", 64, 5], ["hash", 65, 13]], [["description", 94, 5], ["homepage", 95, 5], ["mainProgram", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]], [["pname", 60, 11], ["version", 61, 11], ["minimalOCamlVersion", 62, 3], ["src", 63, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 71, 3], ["propagatedBuildInputs", 75, 3], ["doCheck", 79, 3], ["nativeCheckInputs", 80, 3], ["checkInputs", 87, 3], ["postInstall", 90, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, cmdliner: false, cppo: false, "dune-build-info": false, fetchurl: false, jq: false, lib: false, makeWrapper: false, menhirLib: false, merlin: false, nodejs: false, ocaml: false, ounit2: false, ppxlib: false, reason: false, stdenv: false, tree: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 26, 9], ["hash", 27, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 31, 9], ["hash", 32, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 36, 9], ["hash", 37, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 41, 9], ["hash", 42, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 46, 9], ["hash", 47, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 53, 9], ["hash", 54, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["url", 64, 5], ["hash", 65, 13]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 94, 5], ["homepage", 95, 5], ["mainProgram", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 60, 11], ["version", 61, 11], ["minimalOCamlVersion", 62, 3], ["src", 63, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 71, 3], ["propagatedBuildInputs", 75, 3], ["doCheck", 79, 3], ["nativeCheckInputs", 80, 3], ["checkInputs", 87, 3], ["postInstall", 90, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,39 +26,39 @@ export default nix.lambda((args) => (() => {
   const tree = nix.arg($, "tree");
   const pname = "melange";
   const versionHash = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.5")) ? {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "7.0.1-55",
     hash: "sha256:8377c0860da82528ebde16a0133f270c1a03de35036bd44bbd8cfb87070a7afb",
   } : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.4")) ? {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "7.0.1-54",
     hash: "sha256:49bf9d3dd10d0d7f58abe6755a40c246d36b5fbf6b5e189f2c634c47a9de7f33",
   } : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.3")) ? {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     version: "7.0.1-53",
     hash: "sha256:25177453269467832be7b6416f1104132265a3309b9098e6b5185b9c0df05150",
   } : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.2")) ? {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     version: "5.1.0-52",
     hash: "sha256-EGIInGCo3JADYyE4mLw5Fzkm4OB+V9yi2ayV0lVq3v0=",
   } : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.1")) ? {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     version: "5.1.0-51",
     hash: "sha256-DIF8vZLEKsFf6m5tl1/T6zqjHyKxDMois2h//tDhsJI=",
   } : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")) ? nix.builtins.throw(nix.thunk(() => nix.str`melange is not available for OCaml ${nix.sel(ocaml, "version")}`)) : {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     version: "5.1.0-414",
     hash: "sha256-Sv1XyOqCNhICTsXzetXh/zqX/tdTupYZ0Q1nZRLfpe0=",
   })))))));
   const version = nix.thunk(() => nix.sel(versionHash, "version"));
   const hash = nix.thunk(() => nix.sel(versionHash, "hash"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       version: version,
       minimalOCamlVersion: "4.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: nix.thunk(() => nix.str`https://github.com/melange-re/${pname}/releases/download/${version}/${pname}-${version}.tbz`),
           hash: hash,
         })))),
@@ -78,7 +70,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ounit2]),
       postInstall: "wrapProgram \"$out/bin/melc\" --set MELANGELIB \"$OCAMLFIND_DESTDIR/melange/melange:$OCAMLFIND_DESTDIR/melange/js/melange\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Toolchain to produce JS from Reason/OCaml",
         homepage: "https://melange.re/",
         mainProgram: "melc",

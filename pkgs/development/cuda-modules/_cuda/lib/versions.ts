@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/versions.nix", [[["majorMinorPatch", 32, 3], ["trimComponents", 72, 3]]]);
 const formals$1 = { args: { _cuda: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/versions.nix", [["majorMinorPatch", 32, 3], ["trimComponents", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const cudaLib = nix.thunk(() => nix.sel(_cuda, "lib"));
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     majorMinorPatch: nix.thunk(() => nix.app(nix.sel(cudaLib, "trimComponents"), 3n)),
     trimComponents: (n) => (v) => nix.app(nix.sel(lib, "pipe"), v, nix.thunk(() => [
         nix.thunk(() => nix.sel(lib, "splitVersion")),

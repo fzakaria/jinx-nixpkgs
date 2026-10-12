@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 7], ["repo", 47, 7], ["tag", 48, 7], ["hash", 49, 7]], [["version", 44, 5], ["src", 45, 5]], [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]], [["url", 71, 7], ["sha256", 72, 7]], [["package", 170, 9]], [["version", 169, 7]], [["updateScript", 167, 5], ["tests", 168, 5]], [["description", 176, 5], ["homepage", 177, 5], ["license", 178, 5], ["mainProgram", 179, 5], ["maintainers", 180, 5], ["platforms", 184, 5]], [["pname", 54, 3], ["version", 55, 3], ["src", 57, 3], ["patches", 64, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 88, 3], ["cmakeFlags", 112, 3], ["strictDeps", 123, 3], ["preConfigure", 125, 3], ["installPhase", 140, 3], ["preFixup", 156, 3], ["passthru", 166, 3], ["meta", 175, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, addDriverRunpath: false, boost: false, cmake: false, cubeb: false, curl: false, fetchFromGitHub: false, fetchpatch2: false, fmt_9: false, gamemode: false, glm: false, glslang: false, gtk3: false, hidapi: false, imgui: false, libxrender: false, libpng: false, libusb1: false, libzip: false, nasm: false, ninja: false, "nix-update-script": false, "pkg-config": false, pugixml: false, rapidjson: false, stdenv: false, testers: false, "vulkan-headers": false, "vulkan-loader": false, wayland: false, "wayland-scanner": false, wrapGAppsHook3: false, wxwidgets_3_2: false, zarchive: false, bluez: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 7], ["repo", 47, 7], ["tag", 48, 7], ["hash", 49, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 44, 5], ["src", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 71, 7], ["sha256", 72, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 170, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 169, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 167, 5], ["tests", 168, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 176, 5], ["homepage", 177, 5], ["license", 178, 5], ["mainProgram", 179, 5], ["maintainers", 180, 5], ["platforms", 184, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 55, 3], ["src", 57, 3], ["patches", 64, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 88, 3], ["cmakeFlags", 112, 3], ["strictDeps", 123, 3], ["preConfigure", 125, 3], ["installPhase", 140, 3], ["preFixup", 156, 3], ["passthru", 166, 3], ["meta", 175, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,20 +46,20 @@ export default nix.lambda((args) => (() => {
   const imgui$ = nix.thunk(() => nix.app(nix.sel(imgui, "overrideAttrs"), nix.thunk(() => (() => {
       const version = "1.91.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ocornut",
           repo: "imgui",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-J4gz4rnydu8JlzqNC/OIoVoRcgeFd6B1Qboxu5drOKY=",
         }))));
-      return { [nix.POS]: pos$2, version, src };
+      return { [nix.POS]: $pos[1], version, src };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "cemu",
       version: "2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "cemu-project",
           repo: "Cemu",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +69,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0000-spirv-tools-opt-cmakelists.patch"),
         nix.path(here, "./0002-cemu-imgui.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/cemu-project/Cemu/commit/c1c2962b6633017cd956c6925288e2529c532ee4.diff?full_index=1",
             sha256: "sha256-Dz7WnCf5+Vbr/ETX71wIo/x/zPWdrsOtPH7bsL5Bd+A=",
           })))),
@@ -145,18 +137,18 @@ substituteInPlace dependencies/gamemode/lib/gamemode_client.h --replace-fail "li
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Software to emulate Wii U games and applications on PC",
         homepage: "https://cemu.info",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

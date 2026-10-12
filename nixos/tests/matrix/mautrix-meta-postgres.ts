@@ -2,40 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mautrix-meta-postgres.nix", [[["maintainers", 13, 8]], [["name", 24, 15], ["ensureDBOwnership", 25, 15]], [["enable", 20, 11], ["ensureUsers", 22, 11], ["ensureDatabases", 29, 11]], [["name", 42, 22]], [["compress", 58, 21], ["names", 59, 21]], [["compress", 62, 21], ["names", 63, 21]], [["bind_addresses", 52, 17], ["port", 55, 17], ["resources", 56, 17], ["tls", 66, 17], ["type", 67, 17]], [["database", 42, 13], ["enable_registration", 44, 13], ["enable_registration_without_verification", 47, 13], ["listeners", 49, 13]], [["enable", 40, 11], ["settings", 41, 11]], [["address", 83, 15], ["domain", 84, 15]], [["username", 94, 17], ["avatar", 95, 17]], [["port", 88, 15], ["as_token", 90, 15], ["hs_token", 91, 15], ["bot", 93, 15]], [["type", 100, 15], ["uri", 101, 15]], [["allow", 105, 15], ["default", 106, 15], ["require", 107, 15]], [["permissions", 110, 20]], [["homeserver", 82, 13], ["appservice", 87, 13], ["database", 99, 13], ["encryption", 104, 13], ["bridge", 110, 13]], [["enable", 74, 11], ["environmentFile", 76, 11], ["settings", 81, 11]], [["instagram", 73, 41]], [["instances", 73, 31]], [["postgresql", 19, 18], ["matrix-synapse", 39, 18], ["mautrix-meta", 73, 18]], [["wants", 35, 11], ["after", 36, 11]], [["mautrix-meta-instagram", 34, 26]], [["services", 34, 17]], [["allowedTCPPorts", 114, 29]], [["firewall", 114, 20]], [["services", 19, 9], ["systemd", 34, 9], ["networking", 114, 9]], [["libraries", 126, 15], ["flakeIgnore", 127, 15]], [["systemPackages", 123, 21]], [["environment", 123, 9]], [["server", 16, 5], ["client", 120, 5]], [["name", 12, 3], ["meta", 13, 3], ["nodes", 15, 3], ["testScript", 180, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mautrix-meta-postgres.nix", [["maintainers", 13, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/mautrix-meta-postgres.nix", [["name", 24, 15], ["ensureDBOwnership", 25, 15]]);
-const pos$3 = nix.positions(here + "/mautrix-meta-postgres.nix", [["enable", 20, 11], ["ensureUsers", 22, 11], ["ensureDatabases", 29, 11]]);
-const pos$4 = nix.positions(here + "/mautrix-meta-postgres.nix", [["name", 42, 22]]);
-const pos$5 = nix.positions(here + "/mautrix-meta-postgres.nix", [["compress", 58, 21], ["names", 59, 21]]);
-const pos$6 = nix.positions(here + "/mautrix-meta-postgres.nix", [["compress", 62, 21], ["names", 63, 21]]);
-const pos$7 = nix.positions(here + "/mautrix-meta-postgres.nix", [["bind_addresses", 52, 17], ["port", 55, 17], ["resources", 56, 17], ["tls", 66, 17], ["type", 67, 17]]);
-const pos$8 = nix.positions(here + "/mautrix-meta-postgres.nix", [["database", 42, 13], ["enable_registration", 44, 13], ["enable_registration_without_verification", 47, 13], ["listeners", 49, 13]]);
-const pos$9 = nix.positions(here + "/mautrix-meta-postgres.nix", [["enable", 40, 11], ["settings", 41, 11]]);
-const pos$10 = nix.positions(here + "/mautrix-meta-postgres.nix", [["address", 83, 15], ["domain", 84, 15]]);
-const pos$11 = nix.positions(here + "/mautrix-meta-postgres.nix", [["username", 94, 17], ["avatar", 95, 17]]);
-const pos$12 = nix.positions(here + "/mautrix-meta-postgres.nix", [["port", 88, 15], ["as_token", 90, 15], ["hs_token", 91, 15], ["bot", 93, 15]]);
-const pos$13 = nix.positions(here + "/mautrix-meta-postgres.nix", [["type", 100, 15], ["uri", 101, 15]]);
-const pos$14 = nix.positions(here + "/mautrix-meta-postgres.nix", [["allow", 105, 15], ["default", 106, 15], ["require", 107, 15]]);
-const pos$15 = nix.positions(here + "/mautrix-meta-postgres.nix", [["permissions", 110, 20]]);
-const pos$16 = nix.positions(here + "/mautrix-meta-postgres.nix", [["homeserver", 82, 13], ["appservice", 87, 13], ["database", 99, 13], ["encryption", 104, 13], ["bridge", 110, 13]]);
-const pos$17 = nix.positions(here + "/mautrix-meta-postgres.nix", [["enable", 74, 11], ["environmentFile", 76, 11], ["settings", 81, 11]]);
-const pos$18 = nix.positions(here + "/mautrix-meta-postgres.nix", [["instagram", 73, 41]]);
-const pos$19 = nix.positions(here + "/mautrix-meta-postgres.nix", [["instances", 73, 31]]);
-const pos$20 = nix.positions(here + "/mautrix-meta-postgres.nix", [["postgresql", 19, 18], ["matrix-synapse", 39, 18], ["mautrix-meta", 73, 18]]);
-const pos$21 = nix.positions(here + "/mautrix-meta-postgres.nix", [["wants", 35, 11], ["after", 36, 11]]);
-const pos$22 = nix.positions(here + "/mautrix-meta-postgres.nix", [["mautrix-meta-instagram", 34, 26]]);
-const pos$23 = nix.positions(here + "/mautrix-meta-postgres.nix", [["services", 34, 17]]);
-const pos$24 = nix.positions(here + "/mautrix-meta-postgres.nix", [["allowedTCPPorts", 114, 29]]);
-const pos$25 = nix.positions(here + "/mautrix-meta-postgres.nix", [["firewall", 114, 20]]);
-const pos$26 = nix.positions(here + "/mautrix-meta-postgres.nix", [["services", 19, 9], ["systemd", 34, 9], ["networking", 114, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$27 = nix.positions(here + "/mautrix-meta-postgres.nix", [["libraries", 126, 15], ["flakeIgnore", 127, 15]]);
-const pos$28 = nix.positions(here + "/mautrix-meta-postgres.nix", [["systemPackages", 123, 21]]);
-const pos$29 = nix.positions(here + "/mautrix-meta-postgres.nix", [["environment", 123, 9]]);
-const pos$30 = nix.positions(here + "/mautrix-meta-postgres.nix", [["server", 16, 5], ["client", 120, 5]]);
-const pos$31 = nix.positions(here + "/mautrix-meta-postgres.nix", [["name", 12, 3], ["meta", 13, 3], ["nodes", 15, 3], ["testScript", 180, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,46 +17,46 @@ export default nix.lambda((args) => (() => {
   const asToken = "this-is-my-totally-randomly-generated-as-token";
   const hsToken = "this-is-my-totally-randomly-generated-hs-token";
   return {
-    [nix.POS]: pos$31,
+    [nix.POS]: $pos[30],
     name: "mautrix-meta-postgres",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(pkgs, "mautrix-meta", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$2, name: "mautrix-meta-instagram", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: $pos[1], name: "mautrix-meta-instagram", ensureDBOwnership: true })),
               ]),
               ensureDatabases: nix.thunk(() => ["mautrix-meta-instagram"]),
             })),
             "matrix-synapse": nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                database: nix.thunk(() => ({ [nix.POS]: pos$4, name: "sqlite3" })),
+                [nix.POS]: $pos[7],
+                database: nix.thunk(() => ({ [nix.POS]: $pos[3], name: "sqlite3" })),
                 enable_registration: true,
                 enable_registration_without_verification: true,
                 listeners: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     bind_addresses: nix.thunk(() => ["0.0.0.0"]),
                     port: 8008n,
                     resources: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$5, compress: true, names: nix.thunk(() => ["client"]) })),
-                      nix.thunk(() => ({ [nix.POS]: pos$6, compress: false, names: nix.thunk(() => ["federation"]) })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[4], compress: true, names: nix.thunk(() => ["client"]) })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[5], compress: false, names: nix.thunk(() => ["federation"]) })),
                     ]),
                     tls: false,
                     type: "http",
@@ -95,33 +65,33 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "mautrix-meta": nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               instances: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 instagram: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   enable: true,
                   environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "my-secrets", nix.thunk(() => nix.str`AS_TOKEN=${asToken}
 HS_TOKEN=${hsToken}
 `))),
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
-                    homeserver: nix.thunk(() => ({ [nix.POS]: pos$10, address: homeserverUrl, domain: homeserverDomain })),
+                    [nix.POS]: $pos[15],
+                    homeserver: nix.thunk(() => ({ [nix.POS]: $pos[9], address: homeserverUrl, domain: homeserverDomain })),
                     appservice: nix.thunk(() => ({
-                      [nix.POS]: pos$12,
+                      [nix.POS]: $pos[11],
                       port: 8009n,
                       as_token: "$AS_TOKEN",
                       hs_token: "$HS_TOKEN",
-                      bot: nix.thunk(() => ({ [nix.POS]: pos$11, username: botUserName, avatar: "" })),
+                      bot: nix.thunk(() => ({ [nix.POS]: $pos[10], username: botUserName, avatar: "" })),
                     })),
                     database: nix.thunk(() => ({
-                      [nix.POS]: pos$13,
+                      [nix.POS]: $pos[12],
                       type: "postgres",
                       uri: "postgres:///mautrix-meta-instagram?host=/var/run/postgresql",
                     })),
-                    encryption: nix.thunk(() => ({ [nix.POS]: pos$14, allow: false, default: false, require: false })),
+                    encryption: nix.thunk(() => ({ [nix.POS]: $pos[13], allow: false, default: false, require: false })),
                     bridge: nix.thunk(() => ({
-                      [nix.POS]: pos$15,
+                      [nix.POS]: $pos[14],
                       permissions: nix.thunk(() => nix.attrsDyn({}, [[nix.str`@${userName}:server`, "user"]])),
                     })),
                   })),
@@ -130,19 +100,19 @@ HS_TOKEN=${hsToken}
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               "mautrix-meta-instagram": nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 wants: nix.thunk(() => ["postgres.service"]),
                 after: nix.thunk(() => ["postgres.service"]),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$25,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$24, allowedTCPPorts: nix.thunk(() => [8008n, 8009n]) })),
+            [nix.POS]: $pos[24],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[23], allowedTCPPorts: nix.thunk(() => [8008n, 8009n]) })),
           })),
         };
       })(), formals$2),
@@ -150,12 +120,12 @@ HS_TOKEN=${hsToken}
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "do_test", nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "python3Packages", "matrix-nio"))]),
                   flakeIgnore: nix.thunk(() => ["E501"]),
                 })), nix.thunk(() => nix.str`import sys

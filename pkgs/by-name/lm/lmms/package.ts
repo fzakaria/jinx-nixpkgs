@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 66, 5], ["repo", 67, 5], ["rev", 68, 5], ["hash", 69, 5], ["fetchSubmodules", 70, 5]], [["WINE_LOCATION", 159, 7]], [["updateScript", 185, 12]], [["description", 188, 5], ["mainProgram", 189, 5], ["homepage", 190, 5], ["license", 191, 5], ["platforms", 192, 5], ["maintainers", 193, 5]], [["pname", 62, 3], ["version", 63, 3], ["src", 65, 3], ["strictDeps", 73, 3], ["__structuredAttrs", 74, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 86, 3], ["patches", 152, 3], ["cmakeFlags", 163, 3], ["passthru", 185, 3], ["meta", 187, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, unstableGitUpdater: false, cmake: false, "pkg-config": false, "alsa-lib": false, carla: false, fftwFloat: false, fltk: false, fluidsynth: false, glibc_multi: false, lame: false, libgig: false, libjack2: false, libogg: false, libpulseaudio: false, libsamplerate: false, libsoundio: false, libsndfile: false, libvorbis: false, libxinerama: false, libxcursor: false, libxft: false, lilv: false, lv2: false, perl5: false, perl5Packages: false, portaudio: false, qt5: false, sndio: false, SDL2: false, suil: false, wineWow64Packages: false, withALSA: true, withPulseAudio: true, withSoundio: true, withPortAudio: true, withSndio: true, withJACK: true, withSDL: true, withOggVorbis: true, withMP3Lame: true, withSoundFont: true, withZyn: true, withSWH: true, withSID: true, withGIG: true, withLV2: true, withVST: true, withCarla: true, withWine: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 66, 5], ["repo", 67, 5], ["rev", 68, 5], ["hash", 69, 5], ["fetchSubmodules", 70, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["WINE_LOCATION", 159, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 185, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 188, 5], ["mainProgram", 189, 5], ["homepage", 190, 5], ["license", 191, 5], ["platforms", 192, 5], ["maintainers", 193, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 62, 3], ["version", 63, 3], ["src", 65, 3], ["strictDeps", 73, 3], ["__structuredAttrs", 74, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 86, 3], ["patches", 152, 3], ["cmakeFlags", 163, 3], ["passthru", 185, 3], ["meta", 187, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -66,11 +62,11 @@ export default nix.lambda((args) => (() => {
   const withWine = nix.argOr($, "withWine", () => false);
   const winePackages = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), wineWow64Packages)) ? nix.force(wineWow64Packages) : nix.sel(wineWow64Packages, "minimal")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lmms",
       version: "1.2.2-unstable-2026-04-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LMMS",
           repo: "lmms",
           rev: "fc3dfda961a7923326d2b0d5747e5d8fd941af98",
@@ -99,7 +95,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(perl5Packages, "XMLParser")),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), withGIG, nix.thunk(() => [libgig])), nix.concat(nix.app(nix.sel(lib, "optionals"), withLV2, nix.thunk(() => [lilv, lv2, suil])), nix.concat(nix.app(nix.sel(lib, "optionals"), withCarla, nix.thunk(() => [carla])), nix.concat(nix.app(nix.sel(lib, "optionals"), withWine, nix.thunk(() => [glibc_multi, winePackages])), nix.app(nix.sel(lib, "optionals"), withZyn, nix.thunk(() => [libxinerama, libxcursor, libxft]))))))))))))))))))),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./0002-fix-gigplayer-linking.patch")], nix.app(nix.sel(lib, "optionals"), withWine, nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-fix-add-unique-string-to-FindWine-for-replacement-in.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, WINE_LOCATION: winePackages })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-fix-add-unique-string-to-FindWine-for-replacement-in.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], WINE_LOCATION: winePackages })))),
         ])))),
       cmakeFlags: nix.thunk(() => [
         "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
@@ -122,11 +118,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WANT_CARLA", withCarla)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "DAW similar to FL Studio (music production software)",
         mainProgram: "lmms",
         homepage: "https://lmms.io",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 32, 13], ["version", 32, 19], ["format", 33, 5], ["hash", 34, 5], ["dist", 35, 5], ["python", 36, 5]], [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 23, 3], ["version", 24, 3], ["format", 26, 3], ["src", 31, 3], ["pythonRelaxDeps", 39, 3], ["propagatedBuildInputs", 41, 3], ["pythonImportsCheck", 59, 3], ["doCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, bleach: false, bokeh: false, "linkify-it-py": false, markdown: false, "markdown-it-py": false, "mdit-py-plugins": false, narwhals: false, pandas: false, param: false, "pyviz-comms": false, pyct: false, requests: false, setuptools: false, tqdm: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 32, 13], ["version", 32, 19], ["format", 33, 5], ["hash", 34, 5], ["dist", 35, 5], ["python", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["format", 26, 3], ["src", 31, 3], ["pythonRelaxDeps", 39, 3], ["propagatedBuildInputs", 41, 3], ["pythonImportsCheck", 59, 3], ["doCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.5";
       const format = "wheel";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           format: "wheel",
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["panel"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High level dashboarding library for python visualization libraries",
         mainProgram: "panel",
         homepage: "https://github.com/holoviz/panel",
@@ -73,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

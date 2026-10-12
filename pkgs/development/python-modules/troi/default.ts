@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["teams", 87, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["pythonRelaxDeps", 44, 3], ["pythonRemoveDeps", 45, 3], ["dependencies", 51, 3], ["optional-dependencies", 70, 3], ["nativeCheckInputs", 75, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, click: false, "lb-matching-tools": false, liblistenbrainz: false, "more-itertools": false, mutagen: false, peewee: false, "psycopg2-binary": false, "py-sonic": false, "python-dateutil": false, regex: false, requests: false, "scikit-learn": false, spotipy: false, tqdm: false, ujson: false, unidecode: false, pytestCheckHook: false, "requests-mock": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["teams", 87, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["pythonRelaxDeps", 44, 3], ["pythonRemoveDeps", 45, 3], ["dependencies", 51, 3], ["optional-dependencies", 70, 3], ["nativeCheckInputs", 75, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.07.31.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "metabrainz",
           repo: "troi-recommendation-playground",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, requests_mock]);
       const pythonImportsCheck = nix.thunk(() => ["troi"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ListenBrainz' empathic music recommendation/playlisting engine",
         homepage: "https://github.com/metabrainz/troi-recommendation-playground",
         changelog: nix.thunk(() => nix.str`https://github.com/metabrainz/troi-recommendation-playground/releases/tag/${nix.sel(src, "tag")}`),
@@ -76,7 +74,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["package", 39, 7], ["version", 40, 7]], [["nimdow", 37, 5], ["version", 38, 5]], [["tests", 36, 12]], [["description", 47, 7], ["platforms", 48, 7], ["license", 49, 7], ["maintainers", 50, 7], ["mainProgram", 51, 7]], [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["lockFile", 21, 3], ["nimFlags", 23, 3], ["postInstall", 27, 3], ["postPatch", 32, 3], ["passthru", 36, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildNimPackage: false, fetchFromGitHub: false, nixosTests: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 39, 7], ["version", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nimdow", 37, 5], ["version", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 36, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 47, 7], ["platforms", 48, 7], ["license", 49, 7], ["maintainers", 50, 7], ["mainProgram", 51, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["lockFile", 21, 3], ["nimFlags", 23, 3], ["postInstall", 27, 3], ["postPatch", 32, 3], ["passthru", 36, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const testers = nix.arg($, "testers");
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nimdow",
       version: "0.7.41",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "avahe-kellenberger",
           repo: "nimdow",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,19 +28,19 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -D config.default.toml $out/share/nimdow/config.default.toml\ninstall -D nimdow.desktop $out/share/applications/nimdow.desktop\n",
       postPatch: "substituteInPlace src/nimdowpkg/config/configloader.nim --replace \"/usr/share/nimdow\" \"$out/share/nimdow\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           nimdow: nix.thunk(() => nix.sel(nixosTests, "nimdow")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "src", "meta"), {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Nim based tiling window manager",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

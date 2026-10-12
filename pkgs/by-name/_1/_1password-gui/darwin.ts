@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin.nix", [[["updateScript", 34, 12]], [["pname", 13, 5], ["version", 14, 5], ["src", 15, 5], ["meta", 16, 5], ["nativeBuildInputs", 19, 3], ["sourceRoot", 24, 3], ["installPhase", 26, 3], ["dontFixup", 32, 3], ["passthru", 34, 3]]]);
 const formals$1 = { args: { stdenv: false, pname: false, version: false, src: false, meta: false, unzip: false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/darwin.nix", [["updateScript", 34, 12]]);
-const pos$2 = nix.positions(here + "/darwin.nix", [["pname", 13, 5], ["version", 14, 5], ["src", 15, 5], ["meta", 16, 5], ["nativeBuildInputs", 19, 3], ["sourceRoot", 24, 3], ["installPhase", 26, 3], ["dontFixup", 32, 3], ["passthru", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const undmg = nix.arg($, "undmg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: src,
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "mkdir -p $out/Applications\ncp -r *.app $out/Applications\n",
       dontFixup: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], updateScript: nix.path(here, "./update.sh") })),
     })));
 })(), formals$1);
 //# sourceMappingURL=darwin.ts.map

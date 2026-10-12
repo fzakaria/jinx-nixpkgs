@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["pname", 28, 5], ["version", 30, 13], ["src", 30, 21], ["nodejs", 30, 25], ["npmWorkspace", 32, 5], ["npmDepsHash", 34, 5], ["installPhase", 36, 5]], [["extraArgs", 94, 7]], [["testService", 99, 11]], [["webui", 92, 5], ["updateScript", 93, 5], ["tests", 99, 5]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["mainProgram", 111, 5]], [["pname", 47, 11], ["version", 47, 17], ["src", 47, 25], ["cargoHash", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 56, 3], ["preConfigure", 58, 3], ["postPatch", 63, 3], ["postInstall", 69, 3], ["nativeInstallCheckInputs", 75, 3], ["doInstallCheck", 78, 3], ["checkFlags", 80, 3], ["__darwinAllowLocalNetworking", 89, 3], ["passthru", 91, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, "pkg-config": false, openssl: false, buildNpmPackage: false, nodejs: false, "nix-update-script": false, nixosTests: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 5], ["version", 30, 13], ["src", 30, 21], ["nodejs", 30, 25], ["npmWorkspace", 32, 5], ["npmDepsHash", 34, 5], ["installPhase", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 94, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["testService", 99, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["webui", 92, 5], ["updateScript", 93, 5], ["tests", 99, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["mainProgram", 111, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 47, 11], ["version", 47, 17], ["src", 47, 25], ["cargoHash", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 56, 3], ["preConfigure", 58, 3], ["postPatch", 63, 3], ["postInstall", 69, 3], ["nativeInstallCheckInputs", 75, 3], ["doInstallCheck", 78, 3], ["checkFlags", 80, 3], ["__darwinAllowLocalNetworking", 89, 3], ["passthru", 91, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const pname = "rqbit";
   const version = "9.0.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "ikatson",
       repo: "rqbit",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-biF8AtHl2aYdxmuu0UNqN3Id2R0WoCOb5nKpdhCnKNY=",
     }))));
   const rqbit_webui = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "rqbit-webui",
       version: version,
       src: src,
@@ -45,7 +39,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/dist\ncp -r ./crates/librqbit/webui/dist/** $out/dist\n\nrunHook postInstall\n",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: src,
@@ -67,13 +61,16 @@ cp -R ${rqbit_webui}/dist/** crates/librqbit/webui/dist
       ]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         webui: rqbit_webui,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--subpackage", "webui"]) })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, testService: nix.thunk(() => nix.sel(nixosTests, "rqbit")) })),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--subpackage", "webui"]) })))),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[3],
+          testService: nix.thunk(() => nix.sel(nixosTests, "rqbit")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Bittorrent client in Rust",
         homepage: "https://github.com/ikatson/rqbit",
         changelog: nix.thunk(() => nix.str`https://github.com/ikatson/rqbit/releases/tag/v${version}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 22, 3], ["buildInputs", 23, 3], ["installPhase", 24, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 22, 3], ["buildInputs", 23, 3], ["installPhase", 24, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zsh-nix-shell",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chisui",
           repo: "zsh-nix-shell",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bash]),
       installPhase: "install -D nix-shell.plugin.zsh --target-directory=$out/share/zsh/plugins/zsh-nix-shell\ninstall -D scripts/* --target-directory=$out/share/zsh/plugins/zsh-nix-shell/scripts\nln -s $out/share/zsh/plugins/zsh-nix-shell $out/share/zsh-nix-shell\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Zsh plugin that lets you use zsh in nix-shell shell",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

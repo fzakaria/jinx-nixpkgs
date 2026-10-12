@@ -2,105 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugins.nix", [[["isEclipsePlugin", 29, 11]], [["name", 24, 17], ["buildInputs", 26, 9], ["passthru", 28, 9]], [["srcs", 57, 9], ["buildCommand", 59, 9]], [["dontBuild", 85, 9], ["doCheck", 86, 9], ["installPhase", 88, 9]], [["url", 129, 7], ["sha256", 130, 7]], [["url", 134, 7], ["sha256", 135, 7]], [["homepage", 139, 7], ["description", 140, 7], ["sourceProvenance", 141, 7], ["license", 142, 7], ["platforms", 143, 7]], [["pname", 125, 5], ["version", 126, 5], ["srcFeature", 128, 5], ["srcPlugin", 133, 5], ["meta", 138, 5]], [["url", 152, 7], ["hash", 153, 7]], [["url", 157, 7], ["hash", 158, 7]], [["homepage", 162, 7], ["description", 163, 7], ["sourceProvenance", 164, 7], ["license", 165, 7], ["platforms", 166, 7]], [["pname", 148, 5], ["version", 149, 5], ["srcFeature", 151, 5], ["srcPlugin", 156, 5], ["meta", 161, 5]], [["url", 175, 7], ["sha256", 176, 7]], [["description", 186, 7], ["homepage", 187, 7], ["sourceProvenance", 188, 7], ["license", 189, 7], ["platforms", 190, 7]], [["pname", 171, 5], ["version", 172, 5], ["src", 174, 5], ["buildCommand", 179, 5], ["meta", 185, 5]], [["url", 199, 7], ["sha256", 200, 7]], [["description", 210, 7], ["homepage", 211, 7], ["sourceProvenance", 212, 7], ["license", 213, 7], ["platforms", 214, 7]], [["pname", 195, 5], ["version", 196, 5], ["src", 198, 5], ["buildCommand", 203, 5], ["meta", 209, 5]], [["url", 223, 7], ["hash", 224, 7]], [["url", 228, 7], ["hash", 229, 7]], [["homepage", 233, 7], ["description", 234, 7], ["sourceProvenance", 235, 7], ["license", 236, 7], ["platforms", 237, 7]], [["pname", 219, 5], ["version", 220, 5], ["srcFeature", 222, 5], ["srcPlugin", 227, 5], ["meta", 232, 5]], [["url", 246, 7], ["sha256", 247, 7]], [["url", 251, 7], ["sha256", 252, 7]], [["homepage", 256, 7], ["description", 257, 7], ["sourceProvenance", 258, 7], ["license", 259, 7], ["platforms", 260, 7]], [["pname", 242, 5], ["version", 243, 5], ["srcFeature", 245, 5], ["srcPlugin", 250, 5], ["meta", 255, 5]], [["stripRoot", 270, 7], ["url", 271, 7], ["hash", 272, 7]], [["homepage", 276, 7], ["description", 277, 7], ["sourceProvenance", 278, 7], ["license", 279, 7], ["platforms", 280, 7], ["maintainers", 281, 7]], [["pname", 265, 5], ["version", 267, 5], ["src", 269, 5], ["meta", 275, 5]], [["stripRoot", 290, 7], ["url", 291, 7], ["sha256", 292, 7]], [["homepage", 296, 7], ["description", 297, 7], ["sourceProvenance", 298, 7], ["license", 299, 7], ["platforms", 300, 7]], [["pname", 286, 5], ["version", 287, 5], ["src", 289, 5], ["meta", 295, 5]], [["url", 310, 7], ["sha256", 311, 7]], [["url", 315, 7], ["sha256", 316, 7]], [["homepage", 320, 7], ["description", 321, 7], ["sourceProvenance", 322, 7], ["license", 323, 7], ["platforms", 324, 7]], [["pname", 306, 5], ["version", 307, 5], ["srcFeature", 309, 5], ["srcPlugin", 314, 5], ["meta", 319, 5]], [["url", 334, 7], ["sha256", 335, 7]], [["url", 340, 9], ["sha256", 341, 9]], [["url", 345, 9], ["sha256", 346, 9]], [["homepage", 353, 7], ["description", 354, 7], ["sourceProvenance", 355, 7], ["platforms", 356, 7], ["maintainers", 357, 7]], [["pname", 329, 5], ["version", 330, 5], ["version_", 331, 5], ["srcFeature", 333, 5], ["srcPlugins", 338, 5], ["propagatedBuildInputs", 350, 5], ["meta", 352, 5]], [["url", 366, 7], ["hash", 367, 7], ["postFetch", 368, 7]], [["homepage", 379, 7], ["description", 380, 7], ["sourceProvenance", 381, 7], ["license", 382, 7]], [["pname", 362, 5], ["version", 363, 5], ["src", 365, 5], ["meta", 378, 5]], [["stripRoot", 391, 7], ["url", 392, 7], ["sha256", 393, 7]], [["homepage", 397, 7], ["description", 398, 7], ["sourceProvenance", 399, 7], ["license", 400, 7], ["platforms", 401, 7]], [["pname", 387, 5], ["version", 388, 5], ["src", 390, 5], ["meta", 396, 5]], [["url", 410, 7], ["sha256", 411, 7]], [["url", 415, 7], ["sha256", 416, 7]], [["homepage", 420, 7], ["description", 421, 7], ["sourceProvenance", 422, 7], ["license", 423, 7], ["platforms", 424, 7]], [["pname", 406, 5], ["version", 407, 5], ["srcFeature", 409, 5], ["srcPlugin", 414, 5], ["meta", 419, 5]], [["url", 433, 7], ["sha256", 434, 7], ["stripRoot", 435, 7]], [["homepage", 439, 7], ["description", 440, 7], ["sourceProvenance", 441, 7]], [["pname", 429, 5], ["version", 430, 5], ["src", 432, 5], ["meta", 438, 5]], [["stripRoot", 450, 7], ["url", 451, 7], ["sha256", 452, 7]], [["homepage", 456, 7], ["description", 457, 7], ["sourceProvenance", 458, 7], ["license", 459, 7], ["platforms", 460, 7], ["maintainers", 461, 7]], [["pname", 446, 5], ["version", 447, 5], ["src", 449, 5], ["meta", 455, 5]], [["url", 471, 7], ["sha256", 472, 7]], [["url", 480, 13], ["sha256", 481, 13]], [["n", 486, 11], ["h", 487, 11]], [["n", 490, 11], ["h", 491, 11]], [["n", 494, 11], ["h", 495, 11]], [["n", 498, 11], ["h", 499, 11]], [["n", 502, 11], ["h", 503, 11]], [["n", 506, 11], ["h", 507, 11]], [["n", 510, 11], ["h", 511, 11]], [["description", 518, 7], ["homepage", 519, 7], ["sourceProvenance", 520, 7], ["license", 521, 7], ["platforms", 522, 7]], [["pname", 467, 5], ["version", 468, 5], ["srcFeature", 470, 5], ["srcPlugins", 475, 5], ["propagatedBuildInputs", 515, 5], ["meta", 517, 5]], [["url", 531, 7], ["sha256", 532, 7]], [["url", 536, 7], ["sha256", 537, 7]], [["homepage", 541, 7], ["description", 542, 7], ["sourceProvenance", 543, 7], ["license", 544, 7], ["platforms", 545, 7]], [["pname", 527, 5], ["version", 528, 5], ["srcFeature", 530, 5], ["srcPlugin", 535, 5], ["meta", 540, 5]], [["stripRoot", 557, 7], ["url", 558, 7], ["sha256", 559, 7], ["postFetch", 560, 7]], [["homepage", 566, 7], ["description", 567, 7], ["sourceProvenance", 568, 7], ["license", 569, 7], ["platforms", 570, 7]], [["pname", 550, 5], ["version", 551, 5], ["owner", 552, 5], ["repo", 553, 5], ["rev", 554, 5], ["src", 556, 5], ["meta", 565, 5]], [["stripRoot", 579, 7], ["url", 580, 7], ["sha256", 581, 7]], [["homepage", 585, 7], ["description", 586, 7], ["sourceProvenance", 587, 7], ["license", 588, 7], ["platforms", 589, 7]], [["pname", 575, 5], ["version", 576, 5], ["src", 578, 5], ["meta", 584, 5]], [["url", 598, 7], ["hash", 599, 7]], [["url", 603, 7], ["hash", 604, 7]], [["homepage", 608, 7], ["description", 609, 7], ["sourceProvenance", 610, 7], ["license", 611, 7], ["platforms", 612, 7]], [["pname", 594, 5], ["version", 595, 5], ["srcFeature", 597, 5], ["srcPlugin", 602, 5], ["meta", 607, 5]], [["stripRoot", 624, 7], ["url", 625, 7], ["sha256", 626, 7]], [["homepage", 630, 7], ["description", 631, 7], ["sourceProvenance", 632, 7], ["license", 633, 7], ["platforms", 634, 7], ["maintainers", 635, 7]], [["pname", 617, 5], ["version", 618, 5], ["owner", 619, 5], ["repo", 620, 5], ["date", 621, 5], ["src", 623, 5], ["meta", 629, 5]], [["url", 644, 7], ["sha256", 645, 7]], [["url", 649, 7], ["sha256", 650, 7]], [["homepage", 654, 7], ["description", 655, 7], ["sourceProvenance", 656, 7], ["license", 657, 7], ["platforms", 658, 7]], [["pname", 640, 5], ["version", 641, 5], ["srcFeature", 643, 5], ["srcPlugin", 648, 5], ["meta", 653, 5]], [["url", 667, 7], ["sha256", 668, 7]], [["homepage", 672, 7], ["description", 673, 7], ["sourceProvenance", 674, 7], ["platforms", 675, 7], ["maintainers", 676, 7]], [["pname", 663, 5], ["version", 664, 5], ["src", 666, 5], ["meta", 671, 5]], [["buildEclipsePluginBase", 14, 3], ["buildEclipsePlugin", 37, 3], ["buildEclipseUpdateSite", 77, 3], ["acejump", 124, 3], ["ansi-econsole", 147, 3], ["antlr-runtime_4_5", 170, 3], ["antlr-runtime_4_7", 194, 3], ["anyedittools", 218, 3], ["autodetect-encoding", 241, 3], ["cdt", 264, 3], ["checkstyle", 285, 3], ["color-theme", 305, 3], ["cup", 328, 3], ["drools", 361, 3], ["eclemma", 386, 3], ["findbugs", 405, 3], ["freemarker", 428, 3], ["embed-cdt", 445, 3], ["gnuarmeclipse", 464, 3], ["jsonedit", 466, 3], ["jdt-codemining", 526, 3], ["rustdt", 549, 3], ["spotbugs", 574, 3], ["testng", 593, 3], ["vrapper", 616, 3], ["yedit", 639, 3], ["zest", 662, 3]], [["bytecode-outline", 682, 3], ["ivyde", 683, 3], ["ivyderv", 684, 3], ["ivy", 685, 3], ["ivyant", 686, 3], ["scala", 687, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchzip: false, unzip: false, config: false }, ellipsis: false };
 const formals$2 = { args: { name: true, buildInputs: true, passthru: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/plugins.nix", [["isEclipsePlugin", 29, 11]]);
-const pos$2 = nix.positions(here + "/plugins.nix", [["name", 24, 17], ["buildInputs", 26, 9], ["passthru", 28, 9]]);
 const formals$3 = { args: { name: true, srcFeature: false, srcPlugin: true, srcPlugins: true }, ellipsis: true };
-const pos$3 = nix.positions(here + "/plugins.nix", [["srcs", 57, 9], ["buildCommand", 59, 9]]);
 const formals$4 = { args: { name: true }, ellipsis: true };
-const pos$4 = nix.positions(here + "/plugins.nix", [["dontBuild", 85, 9], ["doCheck", 86, 9], ["installPhase", 88, 9]]);
-const pos$5 = nix.positions(here + "/plugins.nix", [["url", 129, 7], ["sha256", 130, 7]]);
-const pos$6 = nix.positions(here + "/plugins.nix", [["url", 134, 7], ["sha256", 135, 7]]);
-const pos$7 = nix.positions(here + "/plugins.nix", [["homepage", 139, 7], ["description", 140, 7], ["sourceProvenance", 141, 7], ["license", 142, 7], ["platforms", 143, 7]]);
-const pos$8 = nix.positions(here + "/plugins.nix", [["pname", 125, 5], ["version", 126, 5], ["srcFeature", 128, 5], ["srcPlugin", 133, 5], ["meta", 138, 5]]);
-const pos$9 = nix.positions(here + "/plugins.nix", [["url", 152, 7], ["hash", 153, 7]]);
-const pos$10 = nix.positions(here + "/plugins.nix", [["url", 157, 7], ["hash", 158, 7]]);
-const pos$11 = nix.positions(here + "/plugins.nix", [["homepage", 162, 7], ["description", 163, 7], ["sourceProvenance", 164, 7], ["license", 165, 7], ["platforms", 166, 7]]);
-const pos$12 = nix.positions(here + "/plugins.nix", [["pname", 148, 5], ["version", 149, 5], ["srcFeature", 151, 5], ["srcPlugin", 156, 5], ["meta", 161, 5]]);
-const pos$13 = nix.positions(here + "/plugins.nix", [["url", 175, 7], ["sha256", 176, 7]]);
-const pos$14 = nix.positions(here + "/plugins.nix", [["description", 186, 7], ["homepage", 187, 7], ["sourceProvenance", 188, 7], ["license", 189, 7], ["platforms", 190, 7]]);
-const pos$15 = nix.positions(here + "/plugins.nix", [["pname", 171, 5], ["version", 172, 5], ["src", 174, 5], ["buildCommand", 179, 5], ["meta", 185, 5]]);
-const pos$16 = nix.positions(here + "/plugins.nix", [["url", 199, 7], ["sha256", 200, 7]]);
-const pos$17 = nix.positions(here + "/plugins.nix", [["description", 210, 7], ["homepage", 211, 7], ["sourceProvenance", 212, 7], ["license", 213, 7], ["platforms", 214, 7]]);
-const pos$18 = nix.positions(here + "/plugins.nix", [["pname", 195, 5], ["version", 196, 5], ["src", 198, 5], ["buildCommand", 203, 5], ["meta", 209, 5]]);
-const pos$19 = nix.positions(here + "/plugins.nix", [["url", 223, 7], ["hash", 224, 7]]);
-const pos$20 = nix.positions(here + "/plugins.nix", [["url", 228, 7], ["hash", 229, 7]]);
-const pos$21 = nix.positions(here + "/plugins.nix", [["homepage", 233, 7], ["description", 234, 7], ["sourceProvenance", 235, 7], ["license", 236, 7], ["platforms", 237, 7]]);
-const pos$22 = nix.positions(here + "/plugins.nix", [["pname", 219, 5], ["version", 220, 5], ["srcFeature", 222, 5], ["srcPlugin", 227, 5], ["meta", 232, 5]]);
-const pos$23 = nix.positions(here + "/plugins.nix", [["url", 246, 7], ["sha256", 247, 7]]);
-const pos$24 = nix.positions(here + "/plugins.nix", [["url", 251, 7], ["sha256", 252, 7]]);
-const pos$25 = nix.positions(here + "/plugins.nix", [["homepage", 256, 7], ["description", 257, 7], ["sourceProvenance", 258, 7], ["license", 259, 7], ["platforms", 260, 7]]);
-const pos$26 = nix.positions(here + "/plugins.nix", [["pname", 242, 5], ["version", 243, 5], ["srcFeature", 245, 5], ["srcPlugin", 250, 5], ["meta", 255, 5]]);
-const pos$27 = nix.positions(here + "/plugins.nix", [["stripRoot", 270, 7], ["url", 271, 7], ["hash", 272, 7]]);
-const pos$28 = nix.positions(here + "/plugins.nix", [["homepage", 276, 7], ["description", 277, 7], ["sourceProvenance", 278, 7], ["license", 279, 7], ["platforms", 280, 7], ["maintainers", 281, 7]]);
-const pos$29 = nix.positions(here + "/plugins.nix", [["pname", 265, 5], ["version", 267, 5], ["src", 269, 5], ["meta", 275, 5]]);
-const pos$30 = nix.positions(here + "/plugins.nix", [["stripRoot", 290, 7], ["url", 291, 7], ["sha256", 292, 7]]);
-const pos$31 = nix.positions(here + "/plugins.nix", [["homepage", 296, 7], ["description", 297, 7], ["sourceProvenance", 298, 7], ["license", 299, 7], ["platforms", 300, 7]]);
-const pos$32 = nix.positions(here + "/plugins.nix", [["pname", 286, 5], ["version", 287, 5], ["src", 289, 5], ["meta", 295, 5]]);
-const pos$33 = nix.positions(here + "/plugins.nix", [["url", 310, 7], ["sha256", 311, 7]]);
-const pos$34 = nix.positions(here + "/plugins.nix", [["url", 315, 7], ["sha256", 316, 7]]);
-const pos$35 = nix.positions(here + "/plugins.nix", [["homepage", 320, 7], ["description", 321, 7], ["sourceProvenance", 322, 7], ["license", 323, 7], ["platforms", 324, 7]]);
-const pos$36 = nix.positions(here + "/plugins.nix", [["pname", 306, 5], ["version", 307, 5], ["srcFeature", 309, 5], ["srcPlugin", 314, 5], ["meta", 319, 5]]);
-const pos$37 = nix.positions(here + "/plugins.nix", [["url", 334, 7], ["sha256", 335, 7]]);
-const pos$38 = nix.positions(here + "/plugins.nix", [["url", 340, 9], ["sha256", 341, 9]]);
-const pos$39 = nix.positions(here + "/plugins.nix", [["url", 345, 9], ["sha256", 346, 9]]);
-const pos$40 = nix.positions(here + "/plugins.nix", [["homepage", 353, 7], ["description", 354, 7], ["sourceProvenance", 355, 7], ["platforms", 356, 7], ["maintainers", 357, 7]]);
-const pos$41 = nix.positions(here + "/plugins.nix", [["pname", 329, 5], ["version", 330, 5], ["version_", 331, 5], ["srcFeature", 333, 5], ["srcPlugins", 338, 5], ["propagatedBuildInputs", 350, 5], ["meta", 352, 5]]);
-const pos$42 = nix.positions(here + "/plugins.nix", [["url", 366, 7], ["hash", 367, 7], ["postFetch", 368, 7]]);
-const pos$43 = nix.positions(here + "/plugins.nix", [["homepage", 379, 7], ["description", 380, 7], ["sourceProvenance", 381, 7], ["license", 382, 7]]);
-const pos$44 = nix.positions(here + "/plugins.nix", [["pname", 362, 5], ["version", 363, 5], ["src", 365, 5], ["meta", 378, 5]]);
-const pos$45 = nix.positions(here + "/plugins.nix", [["stripRoot", 391, 7], ["url", 392, 7], ["sha256", 393, 7]]);
-const pos$46 = nix.positions(here + "/plugins.nix", [["homepage", 397, 7], ["description", 398, 7], ["sourceProvenance", 399, 7], ["license", 400, 7], ["platforms", 401, 7]]);
-const pos$47 = nix.positions(here + "/plugins.nix", [["pname", 387, 5], ["version", 388, 5], ["src", 390, 5], ["meta", 396, 5]]);
-const pos$48 = nix.positions(here + "/plugins.nix", [["url", 410, 7], ["sha256", 411, 7]]);
-const pos$49 = nix.positions(here + "/plugins.nix", [["url", 415, 7], ["sha256", 416, 7]]);
-const pos$50 = nix.positions(here + "/plugins.nix", [["homepage", 420, 7], ["description", 421, 7], ["sourceProvenance", 422, 7], ["license", 423, 7], ["platforms", 424, 7]]);
-const pos$51 = nix.positions(here + "/plugins.nix", [["pname", 406, 5], ["version", 407, 5], ["srcFeature", 409, 5], ["srcPlugin", 414, 5], ["meta", 419, 5]]);
-const pos$52 = nix.positions(here + "/plugins.nix", [["url", 433, 7], ["sha256", 434, 7], ["stripRoot", 435, 7]]);
-const pos$53 = nix.positions(here + "/plugins.nix", [["homepage", 439, 7], ["description", 440, 7], ["sourceProvenance", 441, 7]]);
-const pos$54 = nix.positions(here + "/plugins.nix", [["pname", 429, 5], ["version", 430, 5], ["src", 432, 5], ["meta", 438, 5]]);
-const pos$55 = nix.positions(here + "/plugins.nix", [["stripRoot", 450, 7], ["url", 451, 7], ["sha256", 452, 7]]);
-const pos$56 = nix.positions(here + "/plugins.nix", [["homepage", 456, 7], ["description", 457, 7], ["sourceProvenance", 458, 7], ["license", 459, 7], ["platforms", 460, 7], ["maintainers", 461, 7]]);
-const pos$57 = nix.positions(here + "/plugins.nix", [["pname", 446, 5], ["version", 447, 5], ["src", 449, 5], ["meta", 455, 5]]);
-const pos$58 = nix.positions(here + "/plugins.nix", [["url", 471, 7], ["sha256", 472, 7]]);
 const formals$5 = { args: { n: false, h: false }, ellipsis: false };
-const pos$59 = nix.positions(here + "/plugins.nix", [["url", 480, 13], ["sha256", 481, 13]]);
-const pos$60 = nix.positions(here + "/plugins.nix", [["n", 486, 11], ["h", 487, 11]]);
-const pos$61 = nix.positions(here + "/plugins.nix", [["n", 490, 11], ["h", 491, 11]]);
-const pos$62 = nix.positions(here + "/plugins.nix", [["n", 494, 11], ["h", 495, 11]]);
-const pos$63 = nix.positions(here + "/plugins.nix", [["n", 498, 11], ["h", 499, 11]]);
-const pos$64 = nix.positions(here + "/plugins.nix", [["n", 502, 11], ["h", 503, 11]]);
-const pos$65 = nix.positions(here + "/plugins.nix", [["n", 506, 11], ["h", 507, 11]]);
-const pos$66 = nix.positions(here + "/plugins.nix", [["n", 510, 11], ["h", 511, 11]]);
-const pos$67 = nix.positions(here + "/plugins.nix", [["description", 518, 7], ["homepage", 519, 7], ["sourceProvenance", 520, 7], ["license", 521, 7], ["platforms", 522, 7]]);
-const pos$68 = nix.positions(here + "/plugins.nix", [["pname", 467, 5], ["version", 468, 5], ["srcFeature", 470, 5], ["srcPlugins", 475, 5], ["propagatedBuildInputs", 515, 5], ["meta", 517, 5]]);
-const pos$69 = nix.positions(here + "/plugins.nix", [["url", 531, 7], ["sha256", 532, 7]]);
-const pos$70 = nix.positions(here + "/plugins.nix", [["url", 536, 7], ["sha256", 537, 7]]);
-const pos$71 = nix.positions(here + "/plugins.nix", [["homepage", 541, 7], ["description", 542, 7], ["sourceProvenance", 543, 7], ["license", 544, 7], ["platforms", 545, 7]]);
-const pos$72 = nix.positions(here + "/plugins.nix", [["pname", 527, 5], ["version", 528, 5], ["srcFeature", 530, 5], ["srcPlugin", 535, 5], ["meta", 540, 5]]);
-const pos$73 = nix.positions(here + "/plugins.nix", [["stripRoot", 557, 7], ["url", 558, 7], ["sha256", 559, 7], ["postFetch", 560, 7]]);
-const pos$74 = nix.positions(here + "/plugins.nix", [["homepage", 566, 7], ["description", 567, 7], ["sourceProvenance", 568, 7], ["license", 569, 7], ["platforms", 570, 7]]);
-const pos$75 = nix.positions(here + "/plugins.nix", [["pname", 550, 5], ["version", 551, 5], ["owner", 552, 5], ["repo", 553, 5], ["rev", 554, 5], ["src", 556, 5], ["meta", 565, 5]]);
-const pos$76 = nix.positions(here + "/plugins.nix", [["stripRoot", 579, 7], ["url", 580, 7], ["sha256", 581, 7]]);
-const pos$77 = nix.positions(here + "/plugins.nix", [["homepage", 585, 7], ["description", 586, 7], ["sourceProvenance", 587, 7], ["license", 588, 7], ["platforms", 589, 7]]);
-const pos$78 = nix.positions(here + "/plugins.nix", [["pname", 575, 5], ["version", 576, 5], ["src", 578, 5], ["meta", 584, 5]]);
-const pos$79 = nix.positions(here + "/plugins.nix", [["url", 598, 7], ["hash", 599, 7]]);
-const pos$80 = nix.positions(here + "/plugins.nix", [["url", 603, 7], ["hash", 604, 7]]);
-const pos$81 = nix.positions(here + "/plugins.nix", [["homepage", 608, 7], ["description", 609, 7], ["sourceProvenance", 610, 7], ["license", 611, 7], ["platforms", 612, 7]]);
-const pos$82 = nix.positions(here + "/plugins.nix", [["pname", 594, 5], ["version", 595, 5], ["srcFeature", 597, 5], ["srcPlugin", 602, 5], ["meta", 607, 5]]);
-const pos$83 = nix.positions(here + "/plugins.nix", [["stripRoot", 624, 7], ["url", 625, 7], ["sha256", 626, 7]]);
-const pos$84 = nix.positions(here + "/plugins.nix", [["homepage", 630, 7], ["description", 631, 7], ["sourceProvenance", 632, 7], ["license", 633, 7], ["platforms", 634, 7], ["maintainers", 635, 7]]);
-const pos$85 = nix.positions(here + "/plugins.nix", [["pname", 617, 5], ["version", 618, 5], ["owner", 619, 5], ["repo", 620, 5], ["date", 621, 5], ["src", 623, 5], ["meta", 629, 5]]);
-const pos$86 = nix.positions(here + "/plugins.nix", [["url", 644, 7], ["sha256", 645, 7]]);
-const pos$87 = nix.positions(here + "/plugins.nix", [["url", 649, 7], ["sha256", 650, 7]]);
-const pos$88 = nix.positions(here + "/plugins.nix", [["homepage", 654, 7], ["description", 655, 7], ["sourceProvenance", 656, 7], ["license", 657, 7], ["platforms", 658, 7]]);
-const pos$89 = nix.positions(here + "/plugins.nix", [["pname", 640, 5], ["version", 641, 5], ["srcFeature", 643, 5], ["srcPlugin", 648, 5], ["meta", 653, 5]]);
-const pos$90 = nix.positions(here + "/plugins.nix", [["url", 667, 7], ["sha256", 668, 7]]);
-const pos$91 = nix.positions(here + "/plugins.nix", [["homepage", 672, 7], ["description", 673, 7], ["sourceProvenance", 674, 7], ["platforms", 675, 7], ["maintainers", 676, 7]]);
-const pos$92 = nix.positions(here + "/plugins.nix", [["pname", 663, 5], ["version", 664, 5], ["src", 666, 5], ["meta", 671, 5]]);
-const pos$93 = nix.positions(here + "/plugins.nix", [["buildEclipsePluginBase", 14, 3], ["buildEclipsePlugin", 37, 3], ["buildEclipseUpdateSite", 77, 3], ["acejump", 124, 3], ["ansi-econsole", 147, 3], ["antlr-runtime_4_5", 170, 3], ["antlr-runtime_4_7", 194, 3], ["anyedittools", 218, 3], ["autodetect-encoding", 241, 3], ["cdt", 264, 3], ["checkstyle", 285, 3], ["color-theme", 305, 3], ["cup", 328, 3], ["drools", 361, 3], ["eclemma", 386, 3], ["findbugs", 405, 3], ["freemarker", 428, 3], ["embed-cdt", 445, 3], ["gnuarmeclipse", 464, 3], ["jsonedit", 466, 3], ["jdt-codemining", 526, 3], ["rustdt", 549, 3], ["spotbugs", 574, 3], ["testng", 593, 3], ["vrapper", 616, 3], ["yedit", 639, 3], ["zest", 662, 3]]);
-const pos$94 = nix.positions(here + "/plugins.nix", [["bytecode-outline", 682, 3], ["ivyde", 683, 3], ["ivyderv", 684, 3], ["ivy", 685, 3], ["ivyant", 686, 3], ["scala", 687, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -118,10 +25,10 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.argOr($_1, "buildInputs", () => []);
       const passthru = nix.argOr($_1, "passthru", () => ({}));
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(attrs, {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: name,
           buildInputs: nix.thunk(() => nix.concat(buildInputs, [unzip])),
-          passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$1, isEclipsePlugin: true }, passthru)),
+          passthru: nix.thunk(() => nix.update({ [nix.POS]: $pos[0], isEclipsePlugin: true }, passthru)),
         })));
     })(), formals$2);
     const buildEclipsePlugin = nix.lambda((args_1) => (() => {
@@ -135,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nix.assert_((!nix.asBool(!nix.eq(srcPlugin, null)) || nix.asBool(nix.eq(srcPlugins, []))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/editors/eclipse/plugins.nix:46:5");
       const pSrcs = nix.thunk(() => (nix.asBool(!nix.eq(srcPlugin, null)) ? [srcPlugin] : nix.force(srcPlugins)));
       return nix.app(buildEclipsePluginBase, nix.thunk(() => nix.update(attrs, {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           srcs: nix.thunk(() => nix.concat([srcFeature], pSrcs)),
           buildCommand: nix.thunk(() => nix.str`dropinDir="$out/eclipse/dropins/${name}"
 
@@ -154,7 +61,7 @@ done
       const attrs = args_1;
       const name = nix.argOr($_1, "name", () => nix.str`eclipse-plugin-${nix.sel(attrs, "pname")}-${nix.sel(attrs, "version")}`);
       return nix.app(buildEclipsePluginBase, nix.thunk(() => nix.update(attrs, {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           dontBuild: true,
           doCheck: false,
           installPhase: nix.thunk(() => nix.str`dropinDir="$out/eclipse/dropins/${name}"
@@ -195,17 +102,17 @@ cd ..
         const pname = "acejump";
         const version = "1.0.0.201610261941";
         const srcFeature = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: nix.thunk(() => nix.str`https://tobiasmelcher.github.io/acejumpeclipse/features/acejump.feature_${version}.jar`),
             sha256: "1szswjxp9g70ibfbv3p8dlq1bngq7nc22kp657z9i9kp8309md2d",
           }))));
         const srcPlugin = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: nix.thunk(() => nix.str`https://tobiasmelcher.github.io/acejumpeclipse/plugins/acejump_${version}.jar`),
             sha256: "1cn64xj2bm69vnn9db2xxh6kq148v83w5nx3183mrqb59ym3v9kf",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           homepage: "https://github.com/tobiasmelcher/EclipseAceJump",
           description: "Provides fast jumps to text based on initial letter",
           sourceProvenance: nix.thunk(() => (() => {
@@ -215,23 +122,23 @@ cd ..
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
-        return { [nix.POS]: pos$8, pname, version, srcFeature, srcPlugin, meta };
+        return { [nix.POS]: $pos[7], pname, version, srcFeature, srcPlugin, meta };
       })())));
     const ansi_econsole = nix.thunk(() => nix.app(buildEclipsePlugin, nix.thunk(() => (() => {
         const pname = "ansi-econsole";
         const version = "1.3.5.201612301822";
         const srcFeature = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/mihnita/ansi-econsole/8dcf0a2531cbf091310c0e01db1a1310557fc383/AnsiConSitePublished/features/net.mihai-nita.ansicon_${version}.jar`),
             hash: "sha256-o9hnMuZeohU+AKS+ueU8dWS9HomrnqaKpWYMG5vMeJs=",
           }))));
         const srcPlugin = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/mihnita/ansi-econsole/8dcf0a2531cbf091310c0e01db1a1310557fc383/AnsiConSitePublished/plugins/net.mihai-nita.ansicon.plugin_${version}.jar`),
             hash: "sha256-WK7WxNZHvmMHGycC/12sIKj4wKIhWT8x1Anp3zuggsg=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           homepage: "https://mihai-nita.net/java/#ePluginAEC",
           description: "Adds support for ANSI escape sequences in the Eclipse console",
           sourceProvenance: nix.thunk(() => (() => {
@@ -241,13 +148,13 @@ cd ..
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
-        return { [nix.POS]: pos$12, pname, version, srcFeature, srcPlugin, meta };
+        return { [nix.POS]: $pos[11], pname, version, srcFeature, srcPlugin, meta };
       })())));
     const antlr_runtime_4_5 = nix.thunk(() => nix.app(buildEclipsePluginBase, nix.thunk(() => (() => {
         const pname = "antlr-runtime";
         const version = "4.5.3";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             url: nix.thunk(() => nix.str`https://www.antlr.org/download/${pname}-${version}.jar`),
             sha256: "0lm78i2annlczlc2cg5xvby0g1dyl0sh1y5xc2pymjlmr67a1g4k",
           }))));
@@ -256,7 +163,7 @@ mkdir -p $dropinDir
 cp -v $src $dropinDir/${pname}-${version}.jar
 `);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           description: "Powerful parser generator for processing structured text or binary files",
           homepage: "https://www.antlr.org/",
           sourceProvenance: nix.thunk(() => (() => {
@@ -266,13 +173,13 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
-        return { [nix.POS]: pos$15, pname, version, src, buildCommand, meta };
+        return { [nix.POS]: $pos[14], pname, version, src, buildCommand, meta };
       })())));
     const antlr_runtime_4_7 = nix.thunk(() => nix.app(buildEclipsePluginBase, nix.thunk(() => (() => {
         const pname = "antlr-runtime";
         const version = "4.7.1";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             url: nix.thunk(() => nix.str`https://www.antlr.org/download/${pname}-${version}.jar`),
             sha256: "07f91mjclacrvkl8a307w2abq5wcqp0gcsnh0jg90ddfpqcnsla3",
           }))));
@@ -281,7 +188,7 @@ mkdir -p $dropinDir
 cp -v $src $dropinDir/${pname}-${version}.jar
 `);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           description: "Powerful parser generator for processing structured text or binary files",
           homepage: "https://www.antlr.org/",
           sourceProvenance: nix.thunk(() => (() => {
@@ -291,23 +198,23 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
-        return { [nix.POS]: pos$18, pname, version, src, buildCommand, meta };
+        return { [nix.POS]: $pos[17], pname, version, src, buildCommand, meta };
       })())));
     const anyedittools = nix.thunk(() => nix.app(buildEclipsePlugin, nix.thunk(() => (() => {
         const pname = "anyedit";
         const version = "2.7.3.202502241151";
         const srcFeature = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/iloveeclipse/plugins/f0560d1c628e0dba776831b1dea98d929515ebe5/features/AnyEditTools_${version}.jar`),
             hash: "sha256-liEw+H8yTCrYQMe3gVQhJuxPXlSpEs4QwB2yv8n/CiE=",
           }))));
         const srcPlugin = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/iloveeclipse/plugins/f0560d1c628e0dba776831b1dea98d929515ebe5/plugins/de.loskutov.anyedit.AnyEditTools_${version}.jar`),
             hash: "sha256-LrWCWJWZxsnMiBnTwXdWaXUoyXMYpLqXMUkHEOna2kk=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           homepage: "https://github.com/iloveeclipse/plugins",
           description: "Adds new tools to the context menu of text-based editors",
           sourceProvenance: nix.thunk(() => (() => {
@@ -317,23 +224,23 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
-        return { [nix.POS]: pos$22, pname, version, srcFeature, srcPlugin, meta };
+        return { [nix.POS]: $pos[21], pname, version, srcFeature, srcPlugin, meta };
       })())));
     const autodetect_encoding = nix.thunk(() => nix.app(buildEclipsePlugin, nix.thunk(() => (() => {
         const pname = "autodetect-encoding";
         const version = "1.8.5.201801191359";
         const srcFeature = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             url: nix.thunk(() => nix.str`https://github.com/cypher256/eclipse-encoding-plugin/raw/master/eclipse.encoding.updatesite.snapshot/features/eclipse.encoding.plugin.feature_${version}.jar`),
             sha256: "1m8ypsc1dwz0y6yhjgxsdi9813d38jllv7javgwvcd30g042a3kx",
           }))));
         const srcPlugin = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             url: nix.thunk(() => nix.str`https://github.com/cypher256/eclipse-encoding-plugin/raw/master/eclipse.encoding.updatesite.snapshot/plugins/mergedoc.encoding_${version}.jar`),
             sha256: "1n2rzybfcwp3ss2qi0fhd8vm38vdwav8j837lqiqlfcnvzwsk86m",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           homepage: "https://github.com/cypher256/eclipse-encoding-plugin",
           description: "Show file encoding and line ending for the active editor in the eclipse status bar",
           sourceProvenance: nix.thunk(() => (() => {
@@ -343,19 +250,19 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
-        return { [nix.POS]: pos$26, pname, version, srcFeature, srcPlugin, meta };
+        return { [nix.POS]: $pos[25], pname, version, srcFeature, srcPlugin, meta };
       })())));
     const cdt = nix.thunk(() => nix.app(buildEclipseUpdateSite, nix.thunk(() => (() => {
         const pname = "cdt";
         const version = "11.4.0";
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             stripRoot: false,
             url: nix.thunk(() => nix.str`https://www.eclipse.org/downloads/download.php?r=1&nf=1&file=/tools/cdt/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${pname}-${version}/${pname}-${version}.zip`),
             hash: "sha256-39AoB5cKRQMFpRaOlrTEsyEKZYVqdTp1tMtlaDjjZ84=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           homepage: "https://eclipse.org/cdt/",
           description: "C/C++ development tooling",
           sourceProvenance: nix.thunk(() => (() => {
@@ -366,19 +273,19 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bjornfor"))]),
         }));
-        return { [nix.POS]: pos$29, pname, version, src, meta };
+        return { [nix.POS]: $pos[28], pname, version, src, meta };
       })())));
     const checkstyle = nix.thunk(() => nix.app(buildEclipseUpdateSite, nix.thunk(() => (() => {
         const pname = "checkstyle";
         const version = "8.7.0.201801131309";
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             stripRoot: false,
             url: nix.thunk(() => nix.str`mirror://sourceforge/project/eclipse-cs/Eclipse%20Checkstyle%20Plug-in/8.7.0/net.sf.eclipsecs-updatesite_${version}.zip`),
             sha256: "07fymk705x4mwq7vh2i6frsf67jql4bzrkdzhb4n74zb0g1dib60",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           homepage: "https://eclipse-cs.sourceforge.net/",
           description: "Checkstyle integration into the Eclipse IDE",
           sourceProvenance: nix.thunk(() => (() => {
@@ -388,23 +295,23 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
-        return { [nix.POS]: pos$32, pname, version, src, meta };
+        return { [nix.POS]: $pos[31], pname, version, src, meta };
       })())));
     const color_theme = nix.thunk(() => nix.app(buildEclipsePlugin, nix.thunk(() => (() => {
         const pname = "color-theme";
         const version = "1.0.0.201410260308";
         const srcFeature = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             url: nix.thunk(() => nix.str`https://eclipse-color-theme.github.io/update/features/com.github.eclipsecolortheme.feature_${version}.jar`),
             sha256: "128b9b1cib5ff0w1114ns5mrbrhj2kcm358l4dpnma1s8gklm8g2",
           }))));
         const srcPlugin = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             url: nix.thunk(() => nix.str`https://eclipse-color-theme.github.io/update/plugins/com.github.eclipsecolortheme_${version}.jar`),
             sha256: "0wz61909bhqwzpqwll27ia0cn3anyp81haqx3rj1iq42cbl42h0y",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           homepage: "http://eclipsecolorthemes.org/",
           description: "Plugin to switch color themes conveniently and without side effects",
           sourceProvenance: nix.thunk(() => (() => {
@@ -414,32 +321,32 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
-        return { [nix.POS]: pos$36, pname, version, srcFeature, srcPlugin, meta };
+        return { [nix.POS]: $pos[35], pname, version, srcFeature, srcPlugin, meta };
       })())));
     const cup = nix.thunk(() => nix.app(buildEclipsePlugin, nix.thunk(() => (() => {
         const pname = "cup";
         const version = "1.1.0.201604221613";
         const version_ = "1.0.0.201604221613";
         const srcFeature = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             url: nix.thunk(() => nix.str`http://www2.in.tum.de/projects/cup/eclipse/features/CupEclipsePluginFeature_${version}.jar`),
             sha256: "13nnsf0cqg02z3af6xg45rhcgiffsibxbx6h1zahjv7igvqgkyna",
           }))));
         const srcPlugins = nix.thunk(() => [
           nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$38,
+              [nix.POS]: $pos[37],
               url: nix.thunk(() => nix.str`http://www2.in.tum.de/projects/cup/eclipse/plugins/CupReferencedLibraries_${version_}.jar`),
               sha256: "0kif8kivrysprva1pxzajm88gi967qf7idhb6ga2xpvsdcris91j",
             })))),
           nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$39,
+              [nix.POS]: $pos[38],
               url: nix.thunk(() => nix.str`http://www2.in.tum.de/projects/cup/eclipse/plugins/de.tum.in.www2.CupPlugin_${version}.jar`),
               sha256: "022phbrsny3gb8npb6sxyqqxacx138q5bd7dq3gqxh3kprx5chbl",
             })))),
         ]);
         const propagatedBuildInputs = nix.thunk(() => [zest]);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$40,
+          [nix.POS]: $pos[39],
           homepage: "http://www2.cs.tum.edu/projects/cup/eclipse.php",
           description: "IDE for developing CUP based parsers",
           sourceProvenance: nix.thunk(() => (() => {
@@ -450,7 +357,7 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "romildo"))]),
         }));
         return {
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           pname,
           version,
           version_,
@@ -464,13 +371,13 @@ cp -v $src $dropinDir/${pname}-${version}.jar
         const pname = "drools";
         const version = "7.17.0.Final";
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             url: nix.thunk(() => nix.str`https://download.jboss.org/drools/release/${version}/droolsjbpm-tools-distribution-${version}.zip`),
             hash: "sha512-dWTS72R2VRgGnG6JafMwZ+wd+1e13pil0SAz2HDMXUmtgYa9iLLtma3SjcDJeWdOoblzWHRu7Ihblx3+Ogb2sQ==",
             postFetch: "# update site is a couple levels deep, alongside some other irrelevant stuff\ncd $out;\nfind . -type f -not -path ./binaries/org.drools.updatesite/\\* -exec rm {} \\;\nrmdir sources;\nmv binaries/org.drools.updatesite/* .;\nrmdir binaries/org.drools.updatesite binaries;\n",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           homepage: "https://www.drools.org/",
           description: "Drools is a Business Rules Management System (BRMS) solution",
           sourceProvenance: nix.thunk(() => (() => {
@@ -479,20 +386,20 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           })()),
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         }));
-        return { [nix.POS]: pos$44, pname, version, src, meta };
+        return { [nix.POS]: $pos[43], pname, version, src, meta };
       })())));
     const eclemma = nix.thunk(() => nix.app(buildEclipseUpdateSite, nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         pname: "eclemma",
         version: "2.3.2.201409141915",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$45,
+            [nix.POS]: $pos[44],
             stripRoot: false,
             url: "mirror://sourceforge/project/eclemma/01_EclEmma_Releases/2.3.2/eclemma-2.3.2.zip",
             sha256: "0w1kwcjh45p7msv5vpc8i6dsqwrnfmjama6vavpnxlji56jd3c43",
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$46,
+          [nix.POS]: $pos[45],
           homepage: "https://www.eclemma.org/",
           description: "EclEmma is a free Java code coverage tool for Eclipse",
           sourceProvenance: nix.thunk(() => (() => {
@@ -507,17 +414,17 @@ cp -v $src $dropinDir/${pname}-${version}.jar
         const pname = "findbugs";
         const version = "3.0.1.20150306-5afe4d1";
         const srcFeature = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$48,
+            [nix.POS]: $pos[47],
             url: nix.thunk(() => nix.str`http://findbugs.cs.umd.edu/eclipse/features/edu.umd.cs.findbugs.plugin.eclipse_${version}.jar`),
             sha256: "1m9fav2xlb9wrx2d00lpnh2sy0w5yzawynxm6xhhbfdzd0vpfr9v",
           }))));
         const srcPlugin = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$49,
+            [nix.POS]: $pos[48],
             url: nix.thunk(() => nix.str`http://findbugs.cs.umd.edu/eclipse/plugins/edu.umd.cs.findbugs.plugin.eclipse_${version}.jar`),
             sha256: "10p3mrbp9wi6jhlmmc23qv7frh605a23pqsc7w96569bsfb5wa8q",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$50,
+          [nix.POS]: $pos[49],
           homepage: "http://findbugs.sourceforge.net/",
           description: "Plugin that uses static analysis to look for bugs in Java code",
           sourceProvenance: nix.thunk(() => (() => {
@@ -527,19 +434,19 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
-        return { [nix.POS]: pos$51, pname, version, srcFeature, srcPlugin, meta };
+        return { [nix.POS]: $pos[50], pname, version, srcFeature, srcPlugin, meta };
       })())));
     const freemarker = nix.thunk(() => nix.app(buildEclipseUpdateSite, nix.thunk(() => (() => {
         const pname = "freemarker";
         const version = "1.5.305";
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             url: nix.thunk(() => nix.str`https://github.com/ddekany/jbosstools-freemarker/releases/download/v${version}/freemarker.site-${version}.zip`),
             sha256: "1qrhi300vk07gi14r445wvy0bvghbjd6c4k7q09pqpaxv6raiczn",
             stripRoot: false,
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$53,
+          [nix.POS]: $pos[52],
           homepage: "https://github.com/ddekany/jbosstools-freemarker",
           description: "Plugin that provides an editor for Apache FreeMarker files",
           sourceProvenance: nix.thunk(() => (() => {
@@ -547,19 +454,19 @@ cp -v $src $dropinDir/${pname}-${version}.jar
             return [nix.thunk(() => nix.lookup(w, "binaryBytecode"))];
           })()),
         }));
-        return { [nix.POS]: pos$54, pname, version, src, meta };
+        return { [nix.POS]: $pos[53], pname, version, src, meta };
       })())));
     const embed_cdt = nix.thunk(() => nix.app(buildEclipseUpdateSite, nix.thunk(() => (() => {
         const pname = "embed-cdt";
         const version = "6.3.1";
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$55,
+            [nix.POS]: $pos[54],
             stripRoot: true,
             url: nix.thunk(() => nix.str`https://github.com/eclipse-embed-cdt/eclipse-plugins/archive/v${version}.zip`),
             sha256: "sha256-0wHRIls48NGDQzD+wuX79Thgiax+VVYVPJw2Z6NEzsg=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$56,
+          [nix.POS]: $pos[55],
           homepage: "https://github.com/eclipse-embed-cdt/eclipse-plugins",
           description: "Embedded C/C++ Development Tools (formerly GNU MCU/ARM Eclipse)",
           sourceProvenance: nix.thunk(() => (() => {
@@ -570,14 +477,14 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bjornfor"))]),
         }));
-        return { [nix.POS]: pos$57, pname, version, src, meta };
+        return { [nix.POS]: $pos[56], pname, version, src, meta };
       })())));
     const gnuarmeclipse = embed_cdt;
     const jsonedit = nix.thunk(() => nix.app(buildEclipsePlugin, nix.thunk(() => (() => {
         const pname = "jsonedit";
         const version = "1.1.1";
         const srcFeature = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$58,
+            [nix.POS]: $pos[57],
             url: nix.thunk(() => nix.str`https://boothen.github.io/Json-Eclipse-Plugin/features/jsonedit-feature_${version}.jar`),
             sha256: "0zkg8d8x3l5jpfxi0mz9dn62wmy4fjgpwdikj280fvsklmcw5b86",
           }))));
@@ -587,44 +494,44 @@ cp -v $src $dropinDir/${pname}-${version}.jar
             const n = nix.arg($_1, "n");
             const h = nix.arg($_1, "h");
             return nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$59,
+                [nix.POS]: $pos[58],
                 url: nix.thunk(() => nix.str`https://boothen.github.io/Json-Eclipse-Plugin/plugins/jsonedit-${n}_${version}.jar`),
                 sha256: h,
               })));
           })(), formals$5);
           return nix.builtins.map(fetch, nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$60,
+                [nix.POS]: $pos[59],
                 n: "core",
                 h: "0svs0aswnhl26cqw6bmw30cisx4cr50kc5njg272sy5c1dqjm1zq",
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$61,
+                [nix.POS]: $pos[60],
                 n: "editor",
                 h: "1q62dinrbb18aywbvii4mlr7rxa20rdsxxd6grix9y8h9776q4l5",
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$62,
+                [nix.POS]: $pos[61],
                 n: "folding",
                 h: "1qh4ijfb1gl9xza5ydi87v1kyima3a9sh7lncwdy1way3pdhln1y",
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$63,
+                [nix.POS]: $pos[62],
                 n: "model",
                 h: "1pr6k2pdfdwx8jqs7gx7wzn3gxsql3sk6lnjha8m15lv4al6d4kj",
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$64,
+                [nix.POS]: $pos[63],
                 n: "outline",
                 h: "1jgr2g16j3id8v367jbgd6kx6g2w636fbzmd8jvkvkh7y1jgjqxm",
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$65,
+                [nix.POS]: $pos[64],
                 n: "preferences",
                 h: "027fhaqa5xbil6dmhvkbpha3pgw6dpmc2im3nlliyds57mdmdb1h",
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$66,
+                [nix.POS]: $pos[65],
                 n: "text",
                 h: "0clywylyidrxlqs0n816nhgjmk1c3xl7sn904ki4q050amfy0wb2",
               })),
@@ -632,7 +539,7 @@ cp -v $src $dropinDir/${pname}-${version}.jar
         })());
         const propagatedBuildInputs = nix.thunk(() => [antlr_runtime_4_7]);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$67,
+          [nix.POS]: $pos[66],
           description: "Adds support for JSON files to Eclipse",
           homepage: "https://github.com/boothen/Json-Eclipse-Plugin",
           sourceProvenance: nix.thunk(() => (() => {
@@ -643,7 +550,7 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
         return {
-          [nix.POS]: pos$68,
+          [nix.POS]: $pos[67],
           pname,
           version,
           srcFeature,
@@ -656,17 +563,17 @@ cp -v $src $dropinDir/${pname}-${version}.jar
         const pname = "jdt-codemining";
         const version = "1.0.0.201806221018";
         const srcFeature = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$69,
+            [nix.POS]: $pos[68],
             url: nix.thunk(() => nix.str`http://oss.opensagres.fr/jdt-codemining/snapshot/features/jdt-codemining-feature_${version}.jar`),
             sha256: "1vy30rsb9xifn4r1r2n84d48g6riadzli1xvhfs1mf5pkm5ljwl6",
           }))));
         const srcPlugin = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$70,
+            [nix.POS]: $pos[69],
             url: nix.thunk(() => nix.str`http://oss.opensagres.fr/jdt-codemining/snapshot/plugins/org.eclipse.jdt.codemining_${version}.jar`),
             sha256: "0qdzlqcjcm2i4mwhmcdml0am83z1dayrcmf37ji7vmw6iwdk1xmp",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$71,
+          [nix.POS]: $pos[70],
           homepage: "https://github.com/angelozerr/jdt-codemining",
           description: "Provides JDT Java CodeMining",
           sourceProvenance: nix.thunk(() => (() => {
@@ -676,7 +583,7 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
-        return { [nix.POS]: pos$72, pname, version, srcFeature, srcPlugin, meta };
+        return { [nix.POS]: $pos[71], pname, version, srcFeature, srcPlugin, meta };
       })())));
     const rustdt = nix.thunk(() => nix.app(buildEclipseUpdateSite, nix.thunk(() => (() => {
         const pname = "rustdt";
@@ -685,7 +592,7 @@ cp -v $src $dropinDir/${pname}-${version}.jar
         const repo = "rustdt.github.io";
         const rev = "5cbe753008c40555c493092a6f4ae1ffbff0b3ce";
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$73,
+            [nix.POS]: $pos[72],
             stripRoot: false,
             url: nix.thunk(() => nix.str`https://github.com/${owner}/${repo}/archive/${rev}.zip`),
             sha256: "1xfj4j27d1h4bdf2v7f78zi8lz4zkkj7s9kskmsqx5jcs2d459yp",
@@ -693,7 +600,7 @@ cp -v $src $dropinDir/${pname}-${version}.jar
 `),
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$74,
+          [nix.POS]: $pos[73],
           homepage: "https://github.com/RustDT",
           description: "Rust development tooling",
           sourceProvenance: nix.thunk(() => (() => {
@@ -703,19 +610,19 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
-        return { [nix.POS]: pos$75, pname, version, owner, repo, rev, src, meta };
+        return { [nix.POS]: $pos[74], pname, version, owner, repo, rev, src, meta };
       })())));
     const spotbugs = nix.thunk(() => nix.app(buildEclipseUpdateSite, nix.thunk(() => (() => {
         const pname = "spotbugs";
         const version = "3.1.11";
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$76,
+            [nix.POS]: $pos[75],
             stripRoot: false,
             url: nix.thunk(() => nix.str`https://github.com/spotbugs/spotbugs/releases/download/${version}/eclipsePlugin.zip`),
             sha256: "0aanqwx3gy1arpbkqd846381hiy6272lzwhfjl94x8jhfykpqqbj",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$77,
+          [nix.POS]: $pos[76],
           homepage: "https://spotbugs.github.io/",
           description: "Plugin that uses static analysis to look for bugs in Java code",
           sourceProvenance: nix.thunk(() => (() => {
@@ -725,23 +632,23 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
-        return { [nix.POS]: pos$78, pname, version, src, meta };
+        return { [nix.POS]: $pos[77], pname, version, src, meta };
       })())));
     const testng = nix.thunk(() => nix.app(buildEclipsePlugin, nix.thunk(() => (() => {
         const pname = "testng";
         const version = "6.9.13.201609291640";
         const srcFeature = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$79,
+            [nix.POS]: $pos[78],
             url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/testng-team/testng-eclipse-update-site/0eb404d0c65dc0ef25b19145bb44a56326a53da6/updatesites/${version}/features/org.testng.eclipse_${version}.jar`),
             hash: "sha256-JahgneGUJN4jVxgXdkhhj5/TENXKXG635UO9Q7Vnnws=",
           }))));
         const srcPlugin = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$80,
+            [nix.POS]: $pos[79],
             url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/testng-team/testng-eclipse-update-site/0eb404d0c65dc0ef25b19145bb44a56326a53da6/updatesites/${version}/plugins/org.testng.eclipse_${version}.jar`),
             hash: "sha256-DTE60G+1ZnBT0i6FHuYDQlzwxhwAeXbHN3hgkYbhn8g=",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$81,
+          [nix.POS]: $pos[80],
           homepage: "https://testng.org/doc/",
           description: "Eclipse plugin for the TestNG testing framework",
           sourceProvenance: nix.thunk(() => (() => {
@@ -751,7 +658,7 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
-        return { [nix.POS]: pos$82, pname, version, srcFeature, srcPlugin, meta };
+        return { [nix.POS]: $pos[81], pname, version, srcFeature, srcPlugin, meta };
       })())));
     const vrapper = nix.thunk(() => nix.app(buildEclipseUpdateSite, nix.thunk(() => (() => {
         const pname = "vrapper";
@@ -760,13 +667,13 @@ cp -v $src $dropinDir/${pname}-${version}.jar
         const repo = "vrapper";
         const date = "20170311";
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$83,
+            [nix.POS]: $pos[82],
             stripRoot: false,
             url: nix.thunk(() => nix.str`https://github.com/${owner}/${repo}/releases/download/${version}/vrapper_${version}_${date}.zip`),
             sha256: "0nyirf6km97q211cxfy01kidxac20m8ba3kk9xj73ykrhsk3cxjp",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$84,
+          [nix.POS]: $pos[83],
           homepage: "https://github.com/vrapper/vrapper",
           description: "Wrapper to provide a Vim-like input scheme for moving around and editing text",
           sourceProvenance: nix.thunk(() => (() => {
@@ -777,23 +684,23 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "stumoss"))]),
         }));
-        return { [nix.POS]: pos$85, pname, version, owner, repo, date, src, meta };
+        return { [nix.POS]: $pos[84], pname, version, owner, repo, date, src, meta };
       })())));
     const yedit = nix.thunk(() => nix.app(buildEclipsePlugin, nix.thunk(() => (() => {
         const pname = "yedit";
         const version = "1.0.20.201509041456";
         const srcFeature = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$86,
+            [nix.POS]: $pos[85],
             url: nix.thunk(() => nix.str`http://dadacoalition.org/yedit/features/org.dadacoalition.yedit.feature_${version}-RELEASE.jar`),
             sha256: "0rps73y19gwlrdr8jjrg3rhcaaagghnmri8297inxc5q2dvg0mlk",
           }))));
         const srcPlugin = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$87,
+            [nix.POS]: $pos[86],
             url: nix.thunk(() => nix.str`http://dadacoalition.org/yedit/plugins/org.dadacoalition.yedit_${version}-RELEASE.jar`),
             sha256: "1wpyw4z28ka60z36f8m71kz1giajcm26wb9bpv18sjiqwdgx9v0z",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$88,
+          [nix.POS]: $pos[87],
           homepage: "https://github.com/oyse/yedit",
           description: "YAML editor plugin for Eclipse",
           sourceProvenance: nix.thunk(() => (() => {
@@ -803,18 +710,18 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
-        return { [nix.POS]: pos$89, pname, version, srcFeature, srcPlugin, meta };
+        return { [nix.POS]: $pos[88], pname, version, srcFeature, srcPlugin, meta };
       })())));
     const zest = nix.thunk(() => nix.app(buildEclipseUpdateSite, nix.thunk(() => (() => {
         const pname = "zest";
         const version = "3.9.101";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$90,
+            [nix.POS]: $pos[89],
             url: nix.thunk(() => nix.str`http://archive.eclipse.org/tools/gef/downloads/drops/${version}/R201408150207/GEF-${pname}-${version}.zip`),
             sha256: "01scn7cmcrjcp387spjm8ifgwrwwi77ypildandbisfvhj3qqs7m",
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$91,
+          [nix.POS]: $pos[90],
           homepage: "https://www.eclipse.org/gef/zest/",
           description: "Eclipse Visualization Toolkit",
           sourceProvenance: nix.thunk(() => (() => {
@@ -824,10 +731,10 @@ cp -v $src $dropinDir/${pname}-${version}.jar
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "romildo"))]),
         }));
-        return { [nix.POS]: pos$92, pname, version, src, meta };
+        return { [nix.POS]: $pos[91], pname, version, src, meta };
       })())));
     return {
-      [nix.POS]: pos$93,
+      [nix.POS]: $pos[92],
       buildEclipsePluginBase,
       buildEclipsePlugin,
       buildEclipseUpdateSite,
@@ -857,7 +764,7 @@ cp -v $src $dropinDir/${pname}-${version}.jar
       zest,
     };
   })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      [nix.POS]: pos$94,
+      [nix.POS]: $pos[93],
       "bytecode-outline": nix.thunk(() => nix.builtins.throw("eclipses.plugins.bytecode-outline has been removed due to being removed upstream.")),
       ivyde: nix.thunk(() => nix.builtins.throw("eclipses.plugins.ivyde has been removed due to being archived upstream.")),
       ivyderv: nix.thunk(() => nix.builtins.throw("eclipses.plugins.inyderv has been removed due to being archived upstream.")),

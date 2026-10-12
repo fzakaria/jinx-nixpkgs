@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["leaveDotGit", 18, 5], ["postFetch", 19, 5], ["hash", 25, 5]], [["package", 343, 7], ["version", 344, 7]], [["version", 342, 11]], [["tests", 342, 5], ["updateScript", 346, 5]], [["homepage", 350, 5], ["description", 351, 5], ["longDescription", 352, 5], ["license", 359, 5], ["mainProgram", 360, 5], ["maintainers", 361, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 28, 3], ["postPatch", 30, 3], ["subPackages", 35, 3], ["excludedPackages", 37, 3], ["ldflags", 39, 3], ["preBuild", 45, 3], ["__darwinAllowLocalNetworking", 50, 3], ["nativeCheckInputs", 52, 3], ["preCheck", 54, 3], ["disabledTests", 63, 3], ["checkFlags", 331, 3], ["postInstall", 335, 3], ["passthru", 341, 3], ["meta", 349, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, testers: false, minica: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["leaveDotGit", 18, 5], ["postFetch", 19, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 343, 7], ["version", 344, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 342, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 342, 5], ["updateScript", 346, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 350, 5], ["description", 351, 5], ["longDescription", 352, 5], ["license", 359, 5], ["mainProgram", 360, 5], ["maintainers", 361, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 28, 3], ["postPatch", 30, 3], ["subPackages", 35, 3], ["excludedPackages", 37, 3], ["ldflags", 39, 3], ["preBuild", 45, 3], ["__darwinAllowLocalNetworking", 50, 3], ["nativeCheckInputs", 52, 3], ["preCheck", 54, 3], ["disabledTests", 63, 3], ["checkFlags", 331, 3], ["postInstall", 335, 3], ["passthru", 341, 3], ["meta", 349, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const minica = nix.arg($, "minica");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "boulder",
       version: "0.20260504.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "letsencrypt",
           repo: "boulder",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -318,11 +313,11 @@ ldflags+=" -X \\"github.com/letsencrypt/boulder/core.BuildTime=$(date -u -d @0)\
       ]),
       postInstall: "for i in $($out/bin/boulder --list); do\n  ln -s $out/bin/boulder $out/bin/$i\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.sel(finalAttrs, "version")),
             })))),
@@ -330,7 +325,7 @@ ldflags+=" -X \\"github.com/letsencrypt/boulder/core.BuildTime=$(date -u -d @0)\
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/letsencrypt/boulder",
         description: "ACME-based certificate authority, written in Go",
         longDescription: "This is an implementation of an ACME-based CA. The ACME protocol allows\nthe CA to automatically verify that an applicant for a certificate\nactually controls an identifier, and allows domain holders to issue and\nrevoke certificates for their domains. Boulder is the software that runs\nLet's Encrypt.\n",

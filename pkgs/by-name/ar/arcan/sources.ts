@@ -2,34 +2,22 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sources.nix", [[["owner", 14, 11], ["repo", 15, 11], ["tag", 16, 11], ["hash", 17, 11]], [["pname", 10, 9], ["version", 11, 9], ["src", 13, 9]], [["owner", 28, 7], ["repo", 29, 7], ["rev", 30, 7], ["hash", 31, 7]], [["pname", 24, 5], ["version", 25, 5], ["src", 27, 5]], [["owner", 40, 7], ["repo", 41, 7], ["rev", 42, 7], ["hash", 43, 7]], [["pname", 36, 5], ["version", 37, 5], ["src", 39, 5]], [["owner", 52, 7], ["repo", 53, 7], ["rev", 54, 7], ["hash", 55, 7]], [["pname", 48, 5], ["version", 49, 5], ["src", 51, 5]], [["owner", 64, 7], ["repo", 65, 7], ["rev", 66, 7], ["hash", 67, 7]], [["pname", 60, 5], ["version", 61, 5], ["src", 63, 5]], [["owner", 76, 7], ["repo", 77, 7], ["rev", 78, 7], ["hash", 79, 7]], [["pname", 72, 5], ["version", 73, 5], ["src", 75, 5]], [["letoram-arcan", 7, 3], ["letoram-openal", 23, 3], ["libuvc", 35, 3], ["luajit", 47, 3], ["tracy", 59, 3], ["letoram-tracy", 71, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchFromCodeberg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sources.nix", [["owner", 14, 11], ["repo", 15, 11], ["tag", 16, 11], ["hash", 17, 11]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["pname", 10, 9], ["version", 11, 9], ["src", 13, 9]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["owner", 28, 7], ["repo", 29, 7], ["rev", 30, 7], ["hash", 31, 7]]);
-const pos$4 = nix.positions(here + "/sources.nix", [["pname", 24, 5], ["version", 25, 5], ["src", 27, 5]]);
-const pos$5 = nix.positions(here + "/sources.nix", [["owner", 40, 7], ["repo", 41, 7], ["rev", 42, 7], ["hash", 43, 7]]);
-const pos$6 = nix.positions(here + "/sources.nix", [["pname", 36, 5], ["version", 37, 5], ["src", 39, 5]]);
-const pos$7 = nix.positions(here + "/sources.nix", [["owner", 52, 7], ["repo", 53, 7], ["rev", 54, 7], ["hash", 55, 7]]);
-const pos$8 = nix.positions(here + "/sources.nix", [["pname", 48, 5], ["version", 49, 5], ["src", 51, 5]]);
-const pos$9 = nix.positions(here + "/sources.nix", [["owner", 64, 7], ["repo", 65, 7], ["rev", 66, 7], ["hash", 67, 7]]);
-const pos$10 = nix.positions(here + "/sources.nix", [["pname", 60, 5], ["version", 61, 5], ["src", 63, 5]]);
-const pos$11 = nix.positions(here + "/sources.nix", [["owner", 76, 7], ["repo", 77, 7], ["rev", 78, 7], ["hash", 79, 7]]);
-const pos$12 = nix.positions(here + "/sources.nix", [["pname", 72, 5], ["version", 73, 5], ["src", 75, 5]]);
-const pos$13 = nix.positions(here + "/sources.nix", [["letoram-arcan", 7, 3], ["letoram-openal", 23, 3], ["libuvc", 35, 3], ["luajit", 47, 3], ["tracy", 59, 3], ["letoram-tracy", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     "letoram-arcan": nix.thunk(() => (() => {
       const self = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "arcan",
         version: "0.7.1",
         src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "letoram",
             repo: "arcan",
             tag: nix.thunk(() => nix.sel(self, "version")),
@@ -39,11 +27,11 @@ export default nix.lambda((args) => (() => {
       return nix.force(self);
     })()),
     "letoram-openal": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "letoram-openal",
       version: "0.6.2-unstable-2025-06-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "letoram",
           repo: "openal",
           rev: "731bdaefeb9cfcc52267bb8fc884248e4420e9ec",
@@ -51,11 +39,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     libuvc: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libuvc",
       version: "0.0.7-unstable-2024-03-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "libuvc",
           repo: "libuvc",
           rev: "047920bcdfb1dac42424c90de5cc77dfc9fba04d",
@@ -63,11 +51,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     luajit: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "luajit",
       version: "2.1-unstable-2024-04-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "LuaJIT",
           repo: "LuaJIT",
           rev: "9b5e837ac2dfdc0638830c048a47ca9378c504d3",
@@ -75,11 +63,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     tracy: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "tracy",
       version: "0.9.1-unstable-2023-10-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           owner: "wolfpld",
           repo: "tracy",
           rev: "93537dff336e0796b01262e8271e4d63bf39f195",
@@ -87,11 +75,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     "letoram-tracy": nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "letoram-tracy",
       version: "0-unstable-2024-04-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           owner: "letoram",
           repo: "tracy",
           rev: "5b3513d9838317bfc0e72344b94aa4443943c2fd",

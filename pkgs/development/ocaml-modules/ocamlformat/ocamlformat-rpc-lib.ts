@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ocamlformat-rpc-lib.nix", [[["version", 14, 76]], [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 20, 3], ["src", 21, 11], ["version", 21, 15], ["propagatedBuildInputs", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, ocaml: false, csexp: false, sexplib0: false, callPackage: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ocamlformat-rpc-lib.nix", [["version", 14, 76]]);
-const pos$2 = nix.positions(here + "/ocamlformat-rpc-lib.nix", [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/ocamlformat-rpc-lib.nix", [["pname", 20, 3], ["src", 21, 11], ["version", 21, 15], ["propagatedBuildInputs", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const csexp = nix.arg($, "csexp");
   const sexplib0 = nix.arg($, "sexplib0");
   const callPackage = nix.arg($, "callPackage");
-  const version_arg = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.13")) ? {} : { [nix.POS]: pos$1, version: "0.20.0" }));
+  const version_arg = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.13")) ? {} : { [nix.POS]: $pos[0], version: "0.20.0" }));
   const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, version_arg))));
   const src = nix.thunk(() => nix.attr(from, "src"));
   const version = nix.thunk(() => nix.attr(from, "version"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ocamlformat-rpc-lib",
       src: src,
       version: version,
       propagatedBuildInputs: nix.thunk(() => [csexp, sexplib0]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ocaml-ppx/ocamlformat",
         description: "Auto-formatter for OCaml code (RPC mode)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

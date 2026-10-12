@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/makeMinimal.nix", [[["platforms", 69, 8]], [["path", 11, 18], ["buildInputs", 13, 3], ["nativeBuildInputs", 14, 3], ["skipIncludesPhase", 19, 3], ["makeFlags", 21, 3], ["postPatch", 23, 3], ["configureFlags", 28, 3], ["buildPhase", 30, 3], ["installPhase", 38, 3], ["postInstall", 55, 3], ["extraPaths", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false, make: false, bsdSetupHook: false, freebsdSetupHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/makeMinimal.nix", [["platforms", 69, 8]]);
-const pos$2 = nix.positions(here + "/makeMinimal.nix", [["path", 11, 18], ["buildInputs", 13, 3], ["nativeBuildInputs", 14, 3], ["skipIncludesPhase", 19, 3], ["makeFlags", 21, 3], ["postPatch", 23, 3], ["configureFlags", 28, 3], ["buildPhase", 30, 3], ["installPhase", 38, 3], ["postInstall", 55, 3], ["extraPaths", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const bsdSetupHook = nix.arg($, "bsdSetupHook");
   const freebsdSetupHook = nix.arg($, "freebsdSetupHook");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: nix.thunk(() => nix.attr(make, "path")),
       buildInputs: [],
       nativeBuildInputs: nix.thunk(() => [bsdSetupHook, freebsdSetupHook]),
@@ -30,7 +29,7 @@ ${nix.sel(make, "postPatch")}
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "targetPlatform", "isFreeBSD"))), "boot_mk=\"$BSDSRCDIR/tools/build/mk\"\ncp \"$boot_mk\"/Makefile.boot* \"$out/share/mk\"\nreplaced_mk=\"$out/share/mk.orig\"\nmkdir \"$replaced_mk\"\nmv \"$out\"/share/mk/bsd.{lib,prog}.mk \"$replaced_mk\"\nfor m in bsd.{lib,prog}.mk; do\n  cp \"$boot_mk/$m\" \"$out/share/mk\"\n  substituteInPlace \"$out/share/mk/$m\" --replace '../../../share/mk' '../mk.orig'\ndone\n")),
       extraPaths: nix.thunk(() => nix.sel(make, "extraPaths")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

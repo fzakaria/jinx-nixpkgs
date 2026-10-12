@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["disabled", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["postPatch", 29, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "pytest-asyncio": false, "pytest-timeout": false, pytestCheckHook: false, pythonOlder: false, serialx: false, "uv-build": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["disabled", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["postPatch", 29, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const serialx = nix.arg($, "serialx");
   const uv_build = nix.arg($, "uv-build");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "denon-rs232",
       version: "4.2.3",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.12")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "home-assistant-libs",
           repo: "denon-rs232",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_timeout, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["denon_rs232"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Async library to control Denon receivers over RS232",
         homepage: "https://github.com/home-assistant-libs/denon-rs232",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/denon-rs232/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

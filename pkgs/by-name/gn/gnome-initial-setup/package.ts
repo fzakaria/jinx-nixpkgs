@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 43, 5], ["hash", 44, 5]], [["tzdata", 49, 15], ["tecla", 50, 7]], [["packageName", 94, 41]], [["updateScript", 94, 5]], [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["platforms", 102, 5], ["teams", 103, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["patches", 47, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 64, 3], ["mesonFlags", 87, 3], ["passthru", 93, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, replaceVars: false, dconf: false, gettext: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, gnome: false, accountsservice: false, fontconfig: false, gdm: false, geoclue2: false, "geocode-glib_2": false, glib: false, "gnome-desktop": false, gtk4: false, libgweather: false, "json-glib": false, krb5: false, libpwquality: false, libsecret: false, networkmanager: false, pango: false, polkit: false, webkitgtk_6_0: false, systemd: false, libadwaita: false, "libnma-gtk4": false, tzdata: false, "gnome-tecla": false, "gsettings-desktop-schemas": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tzdata", 49, 15], ["tecla", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 94, 41]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["platforms", 102, 5], ["teams", 103, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["patches", 47, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 64, 3], ["mesonFlags", 87, 3], ["passthru", 93, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,16 +42,16 @@ export default nix.lambda((args) => (() => {
   const gnome_tecla = nix.arg($, "gnome-tecla");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gnome-initial-setup",
       version: "50.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-initial-setup/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-initial-setup-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-su0FI1iW9H9VJJirWrKfVQHmqMQe5kXyqRhiCx3pHmA=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, tzdata: tzdata, tecla: gnome_tecla })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], tzdata: tzdata, tecla: gnome_tecla })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [dconf, gettext, meson, ninja, pkg_config, systemd, wrapGAppsHook4]),
       buildInputs: nix.thunk(() => [
@@ -87,11 +82,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dvendor-conf-file=${nix.path(here, "./vendor.conf")}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gnome-initial-setup" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "gnome-initial-setup" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple, easy, and safe way to prepare a new system",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-initial-setup",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-initial-setup/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

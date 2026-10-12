@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 27, 5], ["version", 28, 26], ["hash", 29, 5]], [["tests", 49, 12]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["teams", 55, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["pythonImportsCheck", 44, 3], ["doCheck", 47, 3], ["passthru", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, jsonschema: false, "jupyter-events": false, "jupyter-server": false, "jupyter-server-fileid": false, "jupyter-ydoc": false, pycrdt: false, "pycrdt-websocket": false, "jupyter-collaboration": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 27, 5], ["version", 28, 26], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 49, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["teams", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["pythonImportsCheck", 44, 3], ["doCheck", 47, 3], ["passthru", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pycrdt_websocket = nix.arg($, "pycrdt-websocket");
   const jupyter_collaboration = nix.arg($, "jupyter-collaboration");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jupyter-server-ydoc",
       version: "3.0.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "jupyter_server_ydoc",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-8ATHnGxKzgPt/5F2u4aV+WmWYJzToCxNAZeQWikyM4c=",
@@ -46,9 +43,9 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["jupyter_server_ydoc"]),
       doCheck: false,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: jupyter_collaboration })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], tests: jupyter_collaboration })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Jupyter-server extension integrating collaborative shared models",
         homepage: "https://github.com/jupyterlab/jupyter-collaboration/tree/main/projects/jupyter-server-ydoc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

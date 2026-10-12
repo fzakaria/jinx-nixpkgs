@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["version", 17, 13], ["hash", 18, 5]], [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["patches", 21, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["doCheck", 35, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch2: false, setuptools: false, packaging: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 13], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["patches", 21, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["doCheck", 35, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "asterisk_mbox",
           version: version,
           hash: "sha256-BiT5q4XOnE1DZV+GU+hTn6EMgbYP17lLGhXc4wbCCIg=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "distutils-deprecated.patch",
             url: "https://github.com/PhracturedBlue/asterisk_mbox/commit/bab84525306a0c41aadd3aab4ebba7c062253d07.patch",
             hash: "sha256-2j7jIl3Ydn2dHJhEzu/77Zkxhw58NIebgULifpTVidY=",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["asterisk_mbox"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Client side of a client/server to interact with Asterisk voicemail mailboxes",
         homepage: "https://github.com/PhracturedBlue/asterisk_mbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,68 +2,54 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/file-sink.nix", [[["maintainers", 5, 8]], [["type", 15, 22]], [["type", 17, 28]], [["type", 19, 25]], [["journald", 15, 13], ["vector_metrics", 17, 13], ["vector_logs", 19, 13]], [["codec", 31, 17]], [["type", 24, 15], ["inputs", 25, 15], ["path", 29, 15], ["encoding", 30, 15]], [["type", 36, 15], ["inputs", 37, 15], ["address", 38, 15]], [["file", 23, 13], ["prometheus_exporter", 35, 13]], [["sources", 14, 11], ["sinks", 22, 11]], [["enable", 11, 9], ["journaldAccess", 12, 9], ["settings", 13, 9]], [["vector", 10, 16]], [["services", 10, 7]], [["machine", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 46, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/file-sink.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/file-sink.nix", [["type", 15, 22]]);
-const pos$3 = nix.positions(here + "/file-sink.nix", [["type", 17, 28]]);
-const pos$4 = nix.positions(here + "/file-sink.nix", [["type", 19, 25]]);
-const pos$5 = nix.positions(here + "/file-sink.nix", [["journald", 15, 13], ["vector_metrics", 17, 13], ["vector_logs", 19, 13]]);
-const pos$6 = nix.positions(here + "/file-sink.nix", [["codec", 31, 17]]);
-const pos$7 = nix.positions(here + "/file-sink.nix", [["type", 24, 15], ["inputs", 25, 15], ["path", 29, 15], ["encoding", 30, 15]]);
-const pos$8 = nix.positions(here + "/file-sink.nix", [["type", 36, 15], ["inputs", 37, 15], ["address", 38, 15]]);
-const pos$9 = nix.positions(here + "/file-sink.nix", [["file", 23, 13], ["prometheus_exporter", 35, 13]]);
-const pos$10 = nix.positions(here + "/file-sink.nix", [["sources", 14, 11], ["sinks", 22, 11]]);
-const pos$11 = nix.positions(here + "/file-sink.nix", [["enable", 11, 9], ["journaldAccess", 12, 9], ["settings", 13, 9]]);
-const pos$12 = nix.positions(here + "/file-sink.nix", [["vector", 10, 16]]);
-const pos$13 = nix.positions(here + "/file-sink.nix", [["services", 10, 7]]);
-const pos$14 = nix.positions(here + "/file-sink.nix", [["machine", 7, 9]]);
-const pos$15 = nix.positions(here + "/file-sink.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "vector-test1",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "happysalada"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             vector: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               journaldAccess: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 sources: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  journald: nix.thunk(() => ({ [nix.POS]: pos$2, type: "journald" })),
-                  vector_metrics: nix.thunk(() => ({ [nix.POS]: pos$3, type: "internal_metrics" })),
-                  vector_logs: nix.thunk(() => ({ [nix.POS]: pos$4, type: "internal_logs" })),
+                  [nix.POS]: $pos[4],
+                  journald: nix.thunk(() => ({ [nix.POS]: $pos[1], type: "journald" })),
+                  vector_metrics: nix.thunk(() => ({ [nix.POS]: $pos[2], type: "internal_metrics" })),
+                  vector_logs: nix.thunk(() => ({ [nix.POS]: $pos[3], type: "internal_logs" })),
                 })),
                 sinks: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   file: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     type: "file",
                     inputs: nix.thunk(() => ["journald", "vector_logs"]),
                     path: "/var/lib/vector/logs.log",
-                    encoding: nix.thunk(() => ({ [nix.POS]: pos$6, codec: "json" })),
+                    encoding: nix.thunk(() => ({ [nix.POS]: $pos[5], codec: "json" })),
                   })),
                   prometheus_exporter: nix.thunk(() => ({
-                    [nix.POS]: pos$8,
+                    [nix.POS]: $pos[7],
                     type: "prometheus_exporter",
                     inputs: nix.thunk(() => ["vector_metrics"]),
                     address: "[::]:9598",

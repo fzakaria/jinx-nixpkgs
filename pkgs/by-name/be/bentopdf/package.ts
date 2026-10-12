@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["SIMPLE_MODE", 28, 7]], [["caddy", 41, 37], ["nginx", 41, 43]], [["tests", 40, 5], ["updateScript", 43, 5]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 19, 3], ["npmDepsFetcherVersion", 20, 3], ["npmBuildFlags", 22, 3], ["env", 28, 3], ["installPhase", 30, 3], ["passthru", 39, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "nix-update-script": false, nixosTests: false, simpleMode: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SIMPLE_MODE", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["caddy", 41, 37], ["nginx", 41, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 40, 5], ["updateScript", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 19, 3], ["npmDepsFetcherVersion", 20, 3], ["npmBuildFlags", 22, 3], ["env", 28, 3], ["installPhase", 30, 3], ["passthru", 39, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const simpleMode = nix.argOr($, "simpleMode", () => true);
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "bentopdf",
       version: "2.8.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alam00000",
           repo: "bentopdf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,16 +28,16 @@ export default nix.lambda((args) => (() => {
       npmDepsFetcherVersion: 2n,
       npmBuildFlags: nix.thunk(() => ["--", "--mode", "production"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SIMPLE_MODE: nix.thunk(() => nix.app(nix.sel(lib, "boolToString"), simpleMode)),
       })),
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r dist/* $out/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "bentopdf"));
           return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           caddy: nix.thunk(() => nix.attr(from, "caddy")),
           nginx: nix.thunk(() => nix.attr(from, "nginx")),
         };
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Privacy-first PDF toolkit",
         homepage: "https://bentopdf.com",
         changelog: "https://github.com/alam00000/bentopdf/releases",

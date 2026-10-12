@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["updateScript", 41, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["installFlags", 38, 3], ["passthru", 40, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, wrapWithXFileSearchPathHook: false, xorgproto: false, libx11: false, libxaw: false, libxmu: false, libxt: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["installFlags", 38, 3], ["passthru", 40, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libxt = nix.arg($, "libxt");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xmag",
       version: "1.0.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/app/xmag-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Mm08WD15W7U6xgnRROf3+xSZurp+rsFLjmzSMuoGlTI=",
         })))),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [xorgproto, libx11, libxaw, libxmu, libxt]),
       installFlags: nix.thunk(() => ["appdefaultdir=$(out)/share/X11/app-defaults"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
@@ -45,7 +42,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utility to display a magnified snapshot of a portion of an X11 screen.",
         homepage: "https://gitlab.freedesktop.org/xorg/app/xmag",
         license: nix.thunk(() => (() => {

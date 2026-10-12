@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]], [["pname", 20, 3], ["version", 21, 3], ["strictDeps", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["cmakeFlags", 53, 3], ["installPhase", 63, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, juce: false, libspecbleach: false, fftwFloat: false, freetype: false, "alsa-lib": false, libGL: false, libx11: false, libxcursor: false, libxext: false, libxinerama: false, libxrandr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["strictDeps", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["cmakeFlags", 53, 3], ["installPhase", 63, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const libxinerama = nix.arg($, "libxinerama");
   const libxrandr = nix.arg($, "libxrandr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "noise-repellent",
       version: "0.3.2",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lucianodato",
           repo: "noise-repellent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/lv2 $out/lib/vst3\ncp -r \"NoiseRepellent_artefacts/Release/LV2/Noise Repellent.lv2\" $out/lib/lv2/\ncp -r \"NoiseRepellent_artefacts/Release/VST3/Noise Repellent.vst3\" $out/lib/vst3/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Audio plugin for broadband noise reduction (LV2, VST3)",
         homepage: "https://github.com/lucianodato/noise-repellent",
         changelog: nix.thunk(() => nix.str`https://github.com/lucianodato/noise-repellent/releases/tag/v${nix.sel(finalAttrs, "version")}`),

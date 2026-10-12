@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["pname", 35, 28], ["version", 35, 34], ["patch", 36, 7], ["debianRevision", 37, 7], ["hash", 38, 7]], [["homepage", 58, 5], ["description", 59, 5], ["longDescription", 60, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 25]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["strictDeps", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, autoreconfHook: false, fetchFromGitHub: false, fetchDebianPatch: false, fetchpatch2: false, flex: false, gtk3: false, intltool: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 35, 28], ["version", 35, 34], ["patch", 36, 7], ["debianRevision", 37, 7], ["hash", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["description", 59, 5], ["longDescription", 60, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 25]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["strictDeps", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "galculator",
       version: "2.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "galculator",
           repo: "galculator",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,14 +30,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fno-common.patch",
             url: "https://github.com/galculator/galculator/commit/501a9e3feeb2e56889c0ff98ab6d0ab20348ccd6.patch",
             hash: "sha256-qVJHcfJTtl0hK8pzSp6MjhYAh1NbIIWr3rBDodIYBvk=",
           })))),
         nix.path(here, "./gettext-0.25.patch"),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             patch: "0002-Declare-function-parameters-as-required-by-C23.patch",
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gtk3, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://galculator.sourceforge.net/",
         description: "GTK algebraic and RPN calculator",
         longDescription: "galculator is a GTK-based calculator. Its main features include:\n\n- Algebraic, RPN (Reverse Polish Notation), Formula Entry and Paper modes;\n- Basic and Scientific Modes\n- Decimal, hexadecimal, octal and binary number base\n- Radiant, degree and grad support\n- User defined constants and functions\n- A bunch of common functions\n- Binary arithmetic of configurable bit length and signedness\n- Quad-precision floating point arithmetic, and 112-bit binary arithmetic\n",

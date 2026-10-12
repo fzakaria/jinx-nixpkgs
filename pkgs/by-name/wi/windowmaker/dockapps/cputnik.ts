@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cputnik.nix", [[["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["pname", 11, 3], ["version", 13, 30], ["src", 13, 38], ["sourceRoot", 15, 3], ["buildInputs", 17, 3], ["preBuild", 23, 3], ["hardeningDisable", 30, 3], ["installPhase", 32, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "dockapps-sources": false, libx11: false, libxext: false, libxpm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cputnik.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$2 = nix.positions(here + "/cputnik.nix", [["pname", 11, 3], ["version", 13, 30], ["src", 13, 38], ["sourceRoot", 15, 3], ["buildInputs", 17, 3], ["preBuild", 23, 3], ["hardeningDisable", 30, 3], ["installPhase", 32, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const libxpm = nix.arg($, "libxpm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "cputnik",
       version: nix.thunk(() => nix.attr(dockapps_sources, "version")),
       src: nix.thunk(() => nix.attr(dockapps_sources, "src")),
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 -t $out/bin/ cputnik\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Calendar clock with antialiased text",
         homepage: "https://www.dockapps.net/wmcalclock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 9, 3], ["version", 10, 3], ["minimalOCamlVersion", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["preConfigure", 24, 3], ["propagatedBuildInputs", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitLab: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["minimalOCamlVersion", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["preConfigure", 24, 3], ["propagatedBuildInputs", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const readline = nix.arg($, "readline");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "readline",
       version: "0.2",
       minimalOCamlVersion: "4.14",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.inria.fr",
           owner: "acg",
           repo: "dev/readline-ocaml",
@@ -32,7 +30,7 @@ echo "(-L${nix.app(nix.sel(lib, "getOutput"), "lib", readline)}/lib -lreadline)"
 `),
       propagatedBuildInputs: nix.thunk(() => [readline]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OCaml bindings for GNU Readline",
         homepage: "https://acg.gitlabpages.inria.fr/dev/readline-ocaml/readline/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill20")),

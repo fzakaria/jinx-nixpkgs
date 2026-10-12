@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["hash", 34, 5]], [["updateScript", 93, 12]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["sourceProvenance", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5]], [["pname", 28, 3], ["version", 29, 3], ["revision", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["unpackPhase", 64, 3], ["installPhase", 72, 3], ["preFixup", 89, 3], ["passthru", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, "squashfs-tools": false, makeBinaryWrapper: false, "alsa-lib": false, atk: false, "at-spi2-atk": false, cups: false, gtk3: false, libdrm: false, libsecret: false, libxkbcommon: false, libgbm: false, libGL: false, pango: false, sqlite: false, systemd: false, wayland: false, libxext: false, libx11: false, libxcb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 93, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["sourceProvenance", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["revision", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["unpackPhase", 64, 3], ["installPhase", 72, 3], ["preFixup", 89, 3], ["passthru", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxcb = nix.arg($, "libxcb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tradingview",
       version: "3.4.0",
       revision: "73",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://api.snapcraft.io/api/v1/snaps/download/nJdITJ6ZJxdvfu8Ch7n5kH5P99ClzBYV_${nix.sel(finalAttrs, "revision")}.snap`),
           hash: "sha512-1VDbejiLW8HrvZ/2aoUpphVIuq8g/2+gvdZ0gPaO5vxDStwarJAcobyQ/xVXySZDzoyFQ974aQBV7M0c1AuXng==",
         })))),
@@ -81,9 +78,9 @@ makeWrapper $out/share/tradingview/tradingview $out/bin/tradingview \\
 runHook postInstall
 `),
       preFixup: "patchelf --add-needed libGL.so.1 $out/share/tradingview/tradingview\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Charting platform for traders and investors",
         homepage: "https://www.tradingview.com/desktop/",
         changelog: "https://www.tradingview.com/support/solutions/43000673888/",

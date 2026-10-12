@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 32, 5], ["hash", 33, 5]], [["sbcl", 90, 18]], [["tests", 90, 12]], [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["teams", 97, 5], ["platforms", 98, 5], ["changelog", 99, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["propagatedBuildInputs", 47, 3], ["configureFlags", 59, 3], ["hardeningDisable", 72, 3], ["doInstallCheck", 76, 3], ["installCheckTarget", 77, 3], ["postInstall", 79, 3], ["passthru", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, libtool: false, autoconf: false, automake: false, texinfo: false, gmp: false, mpfr: false, libffi: false, makeWrapper: false, noUnicode: true, gcc: false, clang: false, threadSupport: true, useBoehmgc: true, boehmgc: false, sbcl: false, fixDarwinDylibNames: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sbcl", 90, 18]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 90, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["teams", 97, 5], ["platforms", 98, 5], ["changelog", 99, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 36, 3], ["propagatedBuildInputs", 47, 3], ["configureFlags", 59, 3], ["hardeningDisable", 72, 3], ["doInstallCheck", 76, 3], ["installCheckTarget", 77, 3], ["postInstall", 79, 3], ["passthru", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ecl";
       const version = "26.5.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://common-lisp.net/project/ecl/static/files/release/ecl-${version}.tgz`),
           hash: "sha256-oBpbzajFtz5Z3aNJT9E+X+xdtqodrXgsPMO7V/FjNDU=",
         }))));
@@ -58,9 +54,12 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`sed -e 's/@[-a-zA-Z_]*@//g' -i $out/bin/ecl-config
 wrapProgram "$out/bin/ecl" --prefix PATH ':' "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cc, nix.thunk(() => nix.sel(cc, "bintools", "bintools"))]))}"
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sbcl: sbcl })) }));
+      const passthru = nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], sbcl: sbcl })),
+      }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lisp implementation aiming to be small, fast and easy to embed",
         homepage: "https://common-lisp.net/project/ecl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -70,7 +69,7 @@ wrapProgram "$out/bin/ecl" --prefix PATH ':' "${nix.app(nix.sel(lib, "makeBinPat
         changelog: nix.thunk(() => nix.str`https://gitlab.com/embeddable-common-lisp/ecl/-/raw/${version}/CHANGELOG`),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 19, 5], ["group", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 41, 5]], [["pname", 9, 3], ["version", 11, 3], ["nativeBuildInputs", 13, 3], ["buildInputs", 14, 3], ["src", 18, 3], ["cmakeFlags", 28, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitLab: false, lib: false, python3: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 19, 5], ["group", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 11, 3], ["nativeBuildInputs", 13, 3], ["buildInputs", 14, 3], ["src", 18, 3], ["cmakeFlags", 28, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bc-decaf",
       version: "1.0.2-unstable-2025-06-25",
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [python3]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.linphone.org",
           group: "BC",
           owner: "public/external",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cmakeFlags: nix.thunk(() => ["-DENABLE_STATIC=NO", "-DBUILD_SHARED_LIBS=ON", "-DENABLE_STRICT=NO"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Elliptic curve library supporting Ed448-Goldilocks and Curve25519. Belledonne Communications' fork for Linphone",
         homepage: "https://gitlab.linphone.org/BC/public/external/decaf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]], [["pname", 16, 3], ["version", 17, 11], ["src", 19, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["projectFile", 29, 3], ["nugetDeps", 33, 3], ["runtimeDeps", 34, 3], ["dotnet-sdk", 42, 3], ["dotnetBuildFlags", 43, 3], ["executables", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { buildDotnetModule: false, fetchFromGitHub: false, icu: false, libgcc: false, openssl: false, stdenv: false, zlib: false, dotnetCorePackages: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 11], ["src", 19, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["projectFile", 29, 3], ["nugetDeps", 33, 3], ["runtimeDeps", 34, 3], ["dotnet-sdk", 42, 3], ["dotnetBuildFlags", 43, 3], ["executables", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "3.0.5";
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sockseek",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fiso64",
           repo: "sockseek",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       dotnetBuildFlags: nix.thunk(() => ["--property:OpenApiGenerateDocuments=false"]),
       executables: nix.thunk(() => ["sockseek"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Advanced download tool for Soulseek, soon a client",
         homepage: "https://github.com/fiso64/sockseek",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

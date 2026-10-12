@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["duneVersion", 19, 3], ["minimalOCamlVersion", 21, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 28, 3], ["checkInputs", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, alcotest: false, eqaf: false, fmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["duneVersion", 19, 3], ["minimalOCamlVersion", 21, 3], ["propagatedBuildInputs", 23, 3], ["doCheck", 28, 3], ["checkInputs", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const eqaf = nix.arg($, "eqaf");
   const fmt = nix.arg($, "fmt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "callipyge",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/oklm-wsh/Callipyge/releases/download/v${nix.sel(finalAttrs, "version")}/callipyge-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-T/94a88xvK51TggjXecdKc9kyTE9aIyueIt5T24sZB0=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/oklm-wsh/Callipyge",
         description: "Curve25519 in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

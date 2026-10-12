@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 7], ["repo", 38, 7], ["rev", 39, 7], ["hash", 40, 7]], [["version", 34, 5], ["src", 36, 5], ["buildInputs", 43, 5]], [["url", 55, 5], ["sha256", 56, 5]], [["avahi", 68, 7], ["freeipmi", 69, 7], ["libgpiod", 70, 7], ["libusb", 71, 7], ["neon", 72, 7], ["libmodbus", 73, 7], ["netsnmp", 74, 7]], [["description", 153, 5], ["longDescription", 154, 5], ["homepage", 159, 5], ["platforms", 160, 5], ["maintainers", 161, 5], ["license", 162, 5], ["priority", 167, 5]], [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["patches", 59, 3], ["buildInputs", 78, 3], ["nativeBuildInputs", 95, 3], ["doInstallCheck", 101, 3], ["configureFlags", 102, 3], ["enableParallelBuilding", 120, 3], ["stripDebugList", 124, 3], ["postInstall", 134, 3], ["meta", 152, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, avahi: false, coreutils: false, fetchurl: false, freeipmi: false, gd: false, "i2c-tools": false, libgpiod_1: false, libmodbus: false, libtool: false, libusb1: false, makeWrapper: false, neon: false, "net-snmp": false, openssl: false, "pkg-config": false, replaceVars: false, systemd: false, udev: false, gnused: false, withApcModbus: true, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 7], ["repo", 38, 7], ["rev", 39, 7], ["hash", 40, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 34, 5], ["src", 36, 5], ["buildInputs", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 55, 5], ["sha256", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["avahi", 68, 7], ["freeipmi", 69, 7], ["libgpiod", 70, 7], ["libusb", 71, 7], ["neon", 72, 7], ["libmodbus", 73, 7], ["netsnmp", 74, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 153, 5], ["longDescription", 154, 5], ["homepage", 159, 5], ["platforms", 160, 5], ["maintainers", 161, 5], ["license", 162, 5], ["priority", 167, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["patches", 59, 3], ["buildInputs", 78, 3], ["nativeBuildInputs", 95, 3], ["doInstallCheck", 101, 3], ["configureFlags", 102, 3], ["enableParallelBuilding", 120, 3], ["stripDebugList", 124, 3], ["postInstall", 134, 3], ["meta", 152, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,10 +32,10 @@ export default nix.lambda((args) => (() => {
   const withApcModbus = nix.argOr($, "withApcModbus", () => false);
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libmodbus$ = nix.thunk(() => nix.app(nix.sel(libmodbus, "overrideAttrs"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "3.1.11-withUsbRTU-NUT",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "networkupstools",
           repo: "libmodbus",
           rev: "8b9bdcde6938f85415098af74b720b7ad5ed74b4",
@@ -50,18 +45,18 @@ export default nix.lambda((args) => (() => {
     })));
   const modbus = nix.thunk(() => (nix.asBool(withApcModbus) ? nix.force(libmodbus$) : nix.force(libmodbus)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nut",
       version: "2.8.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://networkupstools.org/source/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/nut-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-ATC6gup58Euk80xSSahZQ5d+/ZhO199q7BpRjVo1lPg=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./nutshutdown-conf-default.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             avahi: nix.thunk(() => nix.str`${avahi}/lib`),
             freeipmi: nix.thunk(() => nix.str`${freeipmi}/lib`),
             libgpiod: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.str`${libgpiod_1}/lib` : "/homeless-shelter")),
@@ -107,7 +102,7 @@ substituteInPlace $out/lib/systemd/system/nut-driver-enumerator.path \\
 rm $out/etc/udev/rules.d/52-nut-ipmipsu.rules
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Network UPS Tools",
         longDescription: "Network UPS Tools is a collection of programs which provide a common\ninterface for monitoring and administering UPS, PDU and SCD hardware.\nIt uses a layered approach to connect all of the parts.\n",
         homepage: "https://networkupstools.org/",

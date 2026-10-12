@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/6.nix", [[["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5]], [["zoneinfo", 59, 7]], [["geos", 71, 7], ["gdal", 72, 7], ["extension", 73, 7]], [["argon2", 90, 5], ["bcrypt", 91, 5]], [["version", 144, 30], ["product", 145, 9], ["update", 146, 9], ["vendor", 147, 9]], [["type", 150, 9], ["spec", 151, 9]], [["cpeParts", 143, 7], ["purlParts", 149, 7]], [["changelog", 139, 5], ["description", 140, 5], ["homepage", 141, 5], ["identifiers", 142, 5], ["license", 154, 5], ["maintainers", 155, 5]], [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["disabled", 48, 3], ["src", 50, 3], ["patches", 57, 3], ["postPatch", 77, 3], ["build-system", 82, 3], ["dependencies", 84, 3], ["optional-dependencies", 89, 3], ["nativeCheckInputs", 94, 3], ["preCheck", 113, 3], ["checkPhase", 126, 3], ["__darwinAllowLocalNetworking", 136, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonOlder: false, replaceVars: false, setuptools: false, geos: false, gdal: false, withGdal: true, asgiref: false, sqlparse: false, "argon2-cffi": false, bcrypt: false, aiosmtpd: false, docutils: false, geoip2: false, jinja2: false, numpy: false, pillow: false, pylibmc: false, pymemcache: false, python: false, pyyaml: false, pytz: false, redis: false, selenium: false, tblib: false, tzdata: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/6.nix", [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5]]);
-const pos$2 = nix.positions(here + "/6.nix", [["zoneinfo", 59, 7]]);
-const pos$3 = nix.positions(here + "/6.nix", [["geos", 71, 7], ["gdal", 72, 7], ["extension", 73, 7]]);
-const pos$4 = nix.positions(here + "/6.nix", [["argon2", 90, 5], ["bcrypt", 91, 5]]);
-const pos$5 = nix.positions(here + "/6.nix", [["version", 144, 30], ["product", 145, 9], ["update", 146, 9], ["vendor", 147, 9]]);
-const pos$6 = nix.positions(here + "/6.nix", [["type", 150, 9], ["spec", 151, 9]]);
-const pos$7 = nix.positions(here + "/6.nix", [["cpeParts", 143, 7], ["purlParts", 149, 7]]);
-const pos$8 = nix.positions(here + "/6.nix", [["changelog", 139, 5], ["description", 140, 5], ["homepage", 141, 5], ["identifiers", 142, 5], ["license", 154, 5], ["maintainers", 155, 5]]);
-const pos$9 = nix.positions(here + "/6.nix", [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["disabled", 48, 3], ["src", 50, 3], ["patches", 57, 3], ["postPatch", 77, 3], ["build-system", 82, 3], ["dependencies", 84, 3], ["optional-dependencies", 89, 3], ["nativeCheckInputs", 94, 3], ["preCheck", 113, 3], ["checkPhase", 126, 3], ["__darwinAllowLocalNetworking", 136, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const tblib = nix.arg($, "tblib");
   const tzdata = nix.arg($, "tzdata");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "django",
       version: "6.1.2",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.12")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "django",
           repo: "django",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./6.x/zoneinfo.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             zoneinfo: nix.thunk(() => nix.add(tzdata, "/share/zoneinfo")),
           })))),
         nix.path(here, "./6.x/pythonpath.patch"),
@@ -67,7 +59,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./6.x/invalidate-importlib-cache.patch"),
       ], nix.app(nix.sel(lib, "optionals"), withGdal, nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./6.x/gdal.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               geos: geos,
               gdal: gdal,
               extension: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")),
@@ -79,7 +71,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [asgiref, sqlparse]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         argon2: nix.thunk(() => [argon2_cffi]),
         bcrypt: nix.thunk(() => [bcrypt]),
       })),
@@ -122,21 +114,21 @@ runHook postCheck
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           changelog: nix.thunk(() => nix.str`https://docs.djangoproject.com/en/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/releases/${nix.sel(finalAttrs, "version")}/`),
           description: "High-level Python Web framework that encourages rapid development and clean, pragmatic design",
           homepage: "https://www.djangoproject.com",
           identifiers: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             cpeParts: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               product: "django",
               update: "*",
               vendor: "djangoproject",
             })),
             purlParts: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               type: "pypi",
               spec: nix.thunk(() => nix.str`django@${nix.sel(finalAttrs, "version")}`),
             })),

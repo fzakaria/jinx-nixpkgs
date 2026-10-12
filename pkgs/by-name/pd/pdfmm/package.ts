@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["external", 44, 7]], [["$toutLu", 49, 10]], [["scripts", 31, 5], ["interpreter", 34, 5], ["inputs", 35, 5], ["fake", 42, 5], ["execer", 46, 5], ["keep", 49, 5]], [["default", 30, 13]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dontBuild", 24, 3], ["installPhase", 26, 3], ["solutions", 30, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { bash: false, coreutils: false, fetchFromGitHub: false, ghostscript: false, locale: false, zenity: false, gnused: false, lib: false, resholve: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["external", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["$toutLu", 49, 10]]);
-const pos$4 = nix.positions(here + "/package.nix", [["scripts", 31, 5], ["interpreter", 34, 5], ["inputs", 35, 5], ["fake", 42, 5], ["execer", 46, 5], ["keep", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["default", 30, 13]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dontBuild", 24, 3], ["installPhase", 26, 3], ["solutions", 30, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const resholve = nix.arg($, "resholve");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pdfmm",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jpfleury",
           repo: "pdfmm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,19 +30,19 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "install -Dm 0755 pdfmm $out/bin/pdfmm\n",
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         default: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           scripts: nix.thunk(() => ["bin/pdfmm"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [coreutils, ghostscript, locale, zenity, gnused]),
-          fake: nix.thunk(() => ({ [nix.POS]: pos$2, external: nix.thunk(() => ["xmessage"]) })),
+          fake: nix.thunk(() => ({ [nix.POS]: $pos[1], external: nix.thunk(() => ["xmessage"]) })),
           execer: nix.thunk(() => [nix.thunk(() => nix.str`cannot:${zenity}/bin/zenity`)]),
-          keep: nix.thunk(() => ({ [nix.POS]: pos$3, $toutLu: true })),
+          keep: nix.thunk(() => ({ [nix.POS]: $pos[2], $toutLu: true })),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Graphical assistant to reduce the size of a PDF file",
         homepage: "https://github.com/jpfleury/pdfmm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

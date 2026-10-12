@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ELECTRON_SKIP_BINARY_DOWNLOAD", 42, 5], ["CI", 44, 5]], [["name", 85, 7], ["comment", 86, 7], ["genericName", 87, 7], ["desktopName", 88, 7], ["exec", 89, 7], ["terminal", 90, 7], ["type", 91, 7], ["icon", 92, 7], ["categories", 93, 7], ["mimeTypes", 98, 7]], [["homepage", 103, 5], ["description", 104, 5], ["mainProgram", 105, 5], ["license", 106, 31], ["maintainers", 107, 5], ["platforms", 111, 5], ["broken", 112, 5]], [["pname", 18, 3], ["__structuredAttrs", 20, 3], ["version", 22, 24], ["src", 22, 32], ["sourceRoot", 23, 3], ["npmBuildScript", 25, 3], ["npmDepsFetcherVersion", 27, 3], ["npmDepsHash", 28, 3], ["patches", 30, 3], ["nativeBuildInputs", 35, 3], ["env", 41, 3], ["postConfigure", 47, 3], ["installPhase", 63, 3], ["desktopItems", 83, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, makeDesktopItem: false, copyDesktopItems: false, electron_42: false, zip: false, makeWrapper: false, "gomuks-web": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 42, 5], ["CI", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 85, 7], ["comment", 86, 7], ["genericName", 87, 7], ["desktopName", 88, 7], ["exec", 89, 7], ["terminal", 90, 7], ["type", 91, 7], ["icon", 92, 7], ["categories", 93, 7], ["mimeTypes", 98, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 103, 5], ["description", 104, 5], ["mainProgram", 105, 5], ["license", 106, 31], ["maintainers", 107, 5], ["platforms", 111, 5], ["broken", 112, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["__structuredAttrs", 20, 3], ["version", 22, 24], ["src", 22, 32], ["sourceRoot", 23, 3], ["npmBuildScript", 25, 3], ["npmDepsFetcherVersion", 27, 3], ["npmDepsHash", 28, 3], ["patches", 30, 3], ["nativeBuildInputs", 35, 3], ["env", 41, 3], ["postConfigure", 47, 3], ["installPhase", 63, 3], ["desktopItems", 83, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const gomuks_web = nix.arg($, "gomuks-web");
   const electron = electron_42;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gomuks-desktop",
       __structuredAttrs: true,
       version: nix.thunk(() => nix.attr(gomuks_web, "version")),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-eAQev2MSzweUVofoLceFCrL1OMsqYXmegpHKgJwHDXA=",
       patches: nix.thunk(() => [nix.path(here, "./resources-path.patch")]),
       nativeBuildInputs: nix.thunk(() => [zip, makeWrapper, copyDesktopItems]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, ELECTRON_SKIP_BINARY_DOWNLOAD: "1", CI: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], ELECTRON_SKIP_BINARY_DOWNLOAD: "1", CI: "1" })),
       postConfigure: nix.thunk(() => nix.str`# electron files need to be writable on Darwin
 cp -r ${nix.sel(electron, "dist")} electron-dist
 chmod -R u+w electron-dist
@@ -67,7 +64,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gomuks-desktop",
             comment: "Matrix client written in Go (Electron frontend)",
             genericName: "Matrix Client",
@@ -83,7 +80,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gomuks_web, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://maunium.net/go/gomuks/",
         description: nix.thunk(() => nix.str`${nix.sel(gomuks_web, "meta", "description")} (Electron frontend)`),
         mainProgram: "gomuks-desktop",

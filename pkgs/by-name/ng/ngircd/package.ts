@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["configureFlags", 20, 3], ["buildInputs", 29, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, zlib: false, openssl: false, pam: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["configureFlags", 20, 3], ["buildInputs", 29, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ngircd",
       version: "28",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ngircd.barton.de/pub/ngircd/ngircd-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-tIujIKkx1EWuM1xH+IqUBqIPXHHGI77l93VdBSLUNe4=",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [zlib, pam, openssl, libiconv]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Next Generation IRC Daemon",
         mainProgram: "ngircd",
         homepage: "https://ngircd.barton.de",

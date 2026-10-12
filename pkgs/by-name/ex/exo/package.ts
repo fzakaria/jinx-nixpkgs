@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 42, 28], ["src", 42, 34], ["version", 42, 38], ["hash", 43, 7]], [["RUSTC_BOOTSTRAP", 47, 9]], [["pname", 31, 5], ["version", 34, 5], ["src", 35, 13], ["pyproject", 36, 5], ["__structuredAttrs", 37, 5], ["buildAndTestSubdir", 39, 5], ["cargoDeps", 41, 5], ["env", 47, 5], ["nativeBuildInputs", 49, 5], ["doCheck", 55, 5]], [["pname", 68, 9], ["version", 69, 9], ["src", 70, 9], ["sourceRoot", 71, 9], ["fetcherVersion", 73, 7], ["hash", 74, 7]], [["pname", 59, 5], ["src", 60, 13], ["version", 60, 17], ["__structuredAttrs", 61, 5], ["sourceRoot", 63, 5], ["npmDepsFetcherVersion", 64, 5], ["npmDeps", 66, 5]], [["dashboard", 87, 7]], [["updateScript", 222, 5], ["exo-pyo3-bindings", 223, 5], ["exo-dashboard", 224, 5]], [["description", 228, 5], ["homepage", 229, 5], ["changelog", 230, 5], ["license", 231, 5], ["maintainers", 232, 5], ["mainProgram", 233, 5], ["knownVulnerabilities", 234, 5]], [["pname", 79, 3], ["pyproject", 80, 3], ["__structuredAttrs", 81, 3], ["version", 83, 11], ["src", 83, 19], ["patches", 85, 3], ["postPatch", 91, 3], ["build-system", 110, 3], ["pythonRelaxDeps", 114, 3], ["pythonRemoveDeps", 116, 3], ["dependencies", 120, 3], ["postInstall", 164, 3], ["pythonImportsCheck", 168, 3], ["nativeCheckInputs", 173, 3], ["preCheck", 180, 3], ["disabledTests", 184, 3], ["disabledTestPaths", 216, 3], ["passthru", 221, 3], ["meta", 227, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3Packages: false, replaceVars: false, macmon: false, rustPlatform: false, buildNpmPackage: false, fetchNpmDeps: false, writableTmpDirAsHomeHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 42, 28], ["src", 42, 34], ["version", 42, 38], ["hash", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["RUSTC_BOOTSTRAP", 47, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 5], ["version", 34, 5], ["src", 35, 13], ["pyproject", 36, 5], ["__structuredAttrs", 37, 5], ["buildAndTestSubdir", 39, 5], ["cargoDeps", 41, 5], ["env", 47, 5], ["nativeBuildInputs", 49, 5], ["doCheck", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 68, 9], ["version", 69, 9], ["src", 70, 9], ["sourceRoot", 71, 9], ["fetcherVersion", 73, 7], ["hash", 74, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 59, 5], ["src", 60, 13], ["version", 60, 17], ["__structuredAttrs", 61, 5], ["sourceRoot", 63, 5], ["npmDepsFetcherVersion", 64, 5], ["npmDeps", 66, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["dashboard", 87, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 222, 5], ["exo-pyo3-bindings", 223, 5], ["exo-dashboard", 224, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 228, 5], ["homepage", 229, 5], ["changelog", 230, 5], ["license", 231, 5], ["maintainers", 232, 5], ["mainProgram", 233, 5], ["knownVulnerabilities", 234, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 79, 3], ["pyproject", 80, 3], ["__structuredAttrs", 81, 3], ["version", 83, 11], ["src", 83, 19], ["patches", 85, 3], ["postPatch", 91, 3], ["build-system", 110, 3], ["pythonRelaxDeps", 114, 3], ["pythonRemoveDeps", 116, 3], ["dependencies", 120, 3], ["postInstall", 164, 3], ["pythonImportsCheck", 168, 3], ["nativeCheckInputs", 173, 3], ["preCheck", 180, 3], ["disabledTests", 184, 3], ["disabledTestPaths", 216, 3], ["passthru", 221, 3], ["meta", 227, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "1.0.71";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "exo",
       owner: "exo-explore",
       repo: "exo",
@@ -37,7 +28,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-k3jtrJCxLx8nq1R70CtZWFyNVXEa5Ltw0MgdA0qFVXA=",
     }))));
   const pyo3_bindings = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "exo-pyo3-bindings",
       version: "0.2.1",
       src: src,
@@ -45,13 +36,13 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       buildAndTestSubdir: "rust/exo_pyo3_bindings",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-gwOdA2sHz8n4GfNjK+OYmttXUTle4WYmAE2Y0KXYrwg=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], RUSTC_BOOTSTRAP: 1n })),
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")),
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
@@ -59,7 +50,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
     })));
   const dashboard = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "exo-dashboard",
       src: src,
       version: version,
@@ -67,7 +58,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/dashboard`),
       npmDepsFetcherVersion: 2n,
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -77,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })))),
     })));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "exo",
       pyproject: true,
       __structuredAttrs: true,
@@ -85,7 +76,7 @@ export default nix.lambda((args) => (() => {
       src: src,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./inject-dashboard-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             dashboard: nix.thunk(() => nix.str`${dashboard}/lib/node_modules/${nix.sel(dashboard, "pname")}/build`),
           })))),
       ]),
@@ -167,13 +158,13 @@ export default nix.lambda((args) => (() => {
         ])))),
       disabledTestPaths: nix.thunk(() => ["src/exo/worker/tests/unittests/test_mlx/test_tokenizers.py"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         "exo-pyo3-bindings": pyo3_bindings,
         "exo-dashboard": dashboard,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Run your own AI cluster at home with everyday devices",
         homepage: "https://github.com/exo-explore/exo",
         changelog: nix.thunk(() => nix.str`https://github.com/exo-explore/exo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

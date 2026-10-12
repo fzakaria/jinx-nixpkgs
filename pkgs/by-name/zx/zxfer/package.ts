@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["external", 59, 10]], [["$LCAT", 65, 7], ["$LZFS", 66, 7], ["$PROGRESS_DIALOG", 67, 7], ["$RZFS", 68, 7], ["$input_optionts", 69, 7], ["$option_O", 70, 7], ["$option_T", 71, 7]], [["$AWK", 74, 7], ["$RSYNC", 75, 7]], [["scripts", 48, 5], ["interpreter", 49, 5], ["inputs", 50, 5], ["fake", 59, 5], ["keep", 64, 5], ["fix", 73, 5], ["execer", 77, 5]], [["default", 47, 13]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["postPatch", 32, 3], ["installPhase", 38, 3], ["solutions", 47, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, bash: false, fetchFromGitHub: false, installShellFiles: false, coreutils: false, gawk: false, gnugrep: false, gnused: false, openssh: false, resholve: false, rsync: false, which: false, zfs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["external", 59, 10]]);
-const pos$3 = nix.positions(here + "/package.nix", [["$LCAT", 65, 7], ["$LZFS", 66, 7], ["$PROGRESS_DIALOG", 67, 7], ["$RZFS", 68, 7], ["$input_optionts", 69, 7], ["$option_O", 70, 7], ["$option_T", 71, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["$AWK", 74, 7], ["$RSYNC", 75, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["scripts", 48, 5], ["interpreter", 49, 5], ["inputs", 50, 5], ["fake", 59, 5], ["keep", 64, 5], ["fix", 73, 5], ["execer", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["default", 47, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["postPatch", 32, 3], ["installPhase", 38, 3], ["solutions", 47, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const zfs = nix.arg($, "zfs");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "zxfer",
       version: "1.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "allanjude",
           repo: "zxfer",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,18 +38,18 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\n\ninstallManPage zxfer.1m zxfer.8\ninstall -Dm755 zxfer -t $out/bin/\n\nrunHook postInstall\n",
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         default: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           scripts: nix.thunk(() => ["bin/zxfer"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/sh`),
           inputs: nix.thunk(() => [coreutils, gawk, gnugrep, gnused, openssh, rsync, which]),
           fake: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             external: nix.thunk(() => ["kldload", "kldstat", "svcadm"]),
           })),
           keep: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             $LCAT: true,
             $LZFS: true,
             $PROGRESS_DIALOG: true,
@@ -66,7 +59,7 @@ export default nix.lambda((args) => (() => {
             $option_T: true,
           })),
           fix: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             $AWK: nix.thunk(() => ["awk"]),
             $RSYNC: nix.thunk(() => ["rsync"]),
           })),
@@ -74,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Popular script for managing ZFS snapshot replication",
         homepage: "https://github.com/allanjude/zxfer",
         changelog: nix.thunk(() => nix.str`https://github.com/allanjude/zxfer/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,20 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/compyte.nix", [[["owner", 8, 5], ["repo", 9, 5], ["rev", 10, 5], ["sha256", 11, 5]], [["pname", 4, 3], ["version", 5, 3], ["src", 7, 3], ["installPhase", 14, 3]]]);
 const formals$1 = { args: { mkDerivation: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/compyte.nix", [["owner", 8, 5], ["repo", 9, 5], ["rev", 10, 5], ["sha256", 11, 5]]);
-const pos$2 = nix.positions(here + "/compyte.nix", [["pname", 4, 3], ["version", 5, 3], ["src", 7, 3], ["installPhase", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDerivation = nix.arg($, "mkDerivation");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "compyte",
       version: "git-20150817",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "inducer",
           repo: "compyte",
           rev: "ac1c71d46428c14aa1bd1c09d7da19cd0298d5cc",

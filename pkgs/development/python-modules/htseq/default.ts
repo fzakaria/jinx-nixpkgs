@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["htseq-qa", 42, 5]], [["extraArgs", 59, 5]], [["updateScript", 58, 12]], [["homepage", 66, 5], ["description", 67, 5], ["maintainers", 68, 5], ["license", 69, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["build-system", 29, 3], ["dependencies", 36, 3], ["optional-dependencies", 41, 3], ["pythonImportsCheck", 45, 3], ["nativeCheckInputs", 47, 3], ["preCheck", 53, 3], ["passthru", 58, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, swig: false, cython: false, matplotlib: false, numpy: false, pandas: false, pysam: false, setuptools: false, pytestCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["htseq-qa", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraArgs", 59, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 58, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 66, 5], ["description", 67, 5], ["maintainers", 68, 5], ["license", 69, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["build-system", 29, 3], ["dependencies", 36, 3], ["optional-dependencies", 41, 3], ["pythonImportsCheck", 45, 3], ["nativeCheckInputs", 47, 3], ["preCheck", 53, 3], ["passthru", 58, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "htseq",
           repo: "htseq",
           rev: nix.thunk(() => nix.str`release_${version}`),
@@ -38,19 +33,19 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [swig]);
       const build_system = nix.thunk(() => [cython, numpy, pysam, setuptools]);
       const dependencies = nix.thunk(() => [numpy, pysam]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, "htseq-qa": nix.thunk(() => [matplotlib]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], "htseq-qa": nix.thunk(() => [matplotlib]) }));
       const pythonImportsCheck = nix.thunk(() => ["HTSeq"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pandas, pytestCheckHook], nix.sel(optional_dependencies, "htseq-qa")));
       const preCheck = "rm -r src HTSeq\nexport PATH=$out/bin:$PATH\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "release_(.+)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://htseq.readthedocs.io/",
         description: "Framework to work with high-throughput sequencing data",
         maintainers: nix.thunk(() => (() => {
@@ -60,7 +55,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

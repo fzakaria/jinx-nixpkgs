@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]], [["src", 18, 47], ["version", 18, 51]], [["src", 19, 47], ["version", 19, 51]], [["client", 18, 3], ["server", 19, 3], ["tests", 20, 20]]]);
 const formals$1 = { args: { callPackage: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 18, 47], ["version", 18, 51]]);
-const pos$3 = nix.positions(here + "/default.nix", [["src", 19, 47], ["version", 19, 51]]);
-const pos$4 = nix.positions(here + "/default.nix", [["client", 18, 3], ["server", 19, 3], ["tests", 20, 20]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "2.5-unstable-2026-07-25";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "rr-",
       repo: "szurubooru",
       rev: "10ac8509ff73d539360215f65b95ad704e6a2740",
       hash: "sha256-7uvhB1kaRUpPr2qWcoVNXtOzK218w8SY3AsCPF0HeF4=",
     }))));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
-      const client = nix.thunk(() => nix.app(callPackage, nix.path(here, "./client.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
-      const server = nix.thunk(() => nix.app(callPackage, nix.path(here, "./server.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, src: src, version: version }))));
+      const client = nix.thunk(() => nix.app(callPackage, nix.path(here, "./client.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], src: src, version: version }))));
+      const server = nix.thunk(() => nix.app(callPackage, nix.path(here, "./server.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], src: src, version: version }))));
       const tests = nix.thunk(() => nix.attr(server, "tests"));
-      return { [nix.POS]: pos$4, client, server, tests };
+      return { [nix.POS]: $pos[3], client, server, tests };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

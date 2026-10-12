@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["basic-functionality", 25, 11]], [["tests", 25, 5], ["updateScript", 26, 5]], [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["changelog", 47, 5], ["maintainers", 48, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["passthru", 24, 3], ["nativeBuildInputs", 29, 3], ["postInstall", 34, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromSourcehut: false, rustPlatform: false, installShellFiles: false, scdoc: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["basic-functionality", 25, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 25, 5], ["updateScript", 26, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["changelog", 47, 5], ["maintainers", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["passthru", 24, 3], ["nativeBuildInputs", 29, 3], ["postInstall", 34, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "stargazer",
       version: "1.3.4",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~zethra",
           repo: "stargazer",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,9 +27,9 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-p1COGfMjHNZeAWYdVzCo/mHM75Tt5klxtYWn8tAuH0g=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "basic-functionality": nix.thunk(() => nix.sel(nixosTests, "stargazer")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles, scdoc]),
       postInstall: "scdoc < doc/stargazer.scd  > stargazer.1\nscdoc < doc/stargazer-ini.scd  > stargazer.ini.5\ninstallManPage stargazer.1\ninstallManPage stargazer.ini.5\ninstallShellCompletion completions/stargazer.{bash,zsh,fish}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast and easy to use Gemini server",
         mainProgram: "stargazer",
         homepage: "https://sr.ht/~zethra/stargazer/",

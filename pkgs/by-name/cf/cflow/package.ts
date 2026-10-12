@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 35, 5], ["mainProgram", 36, 5], ["longDescription", 38, 5], ["license", 51, 5], ["homepage", 53, 5], ["maintainers", 55, 5], ["platforms", 57, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 18, 3], ["buildInputs", 25, 3], ["doCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gettext: false, emacs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["mainProgram", 36, 5], ["longDescription", 38, 5], ["license", 51, 5], ["homepage", 53, 5], ["maintainers", 55, 5], ["platforms", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 18, 3], ["buildInputs", 25, 3], ["doCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const emacs = nix.arg($, "emacs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cflow",
       version: "1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/cflow/cflow-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-gyFie1W2x4d/akP8xvn4RqlLFHaggaA1Rl96eNNJmrg=",
         })))),
@@ -31,7 +29,7 @@ substituteInPlace "src/cflow.h" \\
       buildInputs: nix.thunk(() => nix.concat([gettext], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "lists", "any"), (x) => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), x), nix.thunk(() => ["i686-cygwin"])))), emacs))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to analyze the control flow of C programs",
         mainProgram: "cflow",
         longDescription: "GNU cflow analyzes a collection of C source files and prints a\ngraph, charting control flow within the program.\n\nGNU cflow is able to produce both direct and inverted flowgraphs\nfor C sources.  Optionally a cross-reference listing can be\ngenerated.  Two output formats are implemented: POSIX and GNU\n(extended).\n\nThe package also provides Emacs major mode for examining the\nproduced flowcharts in Emacs.\n",

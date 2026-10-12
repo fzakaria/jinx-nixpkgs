@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 38, 11], ["hash", 39, 11]], [["url", 42, 11], ["hash", 43, 11]], [["x86_64-linux", 37, 9], ["aarch64-linux", 41, 9]], [["pname", 34, 26], ["version", 34, 32], ["src", 35, 5]], [["homepage", 133, 5], ["changelog", 134, 5], ["description", 135, 5], ["sourceProvenance", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["platforms", 139, 5], ["mainProgram", 143, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 54, 3], ["installPhase", 77, 3], ["autoPatchelfIgnoreMissingDeps", 88, 3], ["dontWrapQtApps", 93, 3], ["preFixup", 95, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, appimageTools: false, autoPatchelfHook: false, qt6: false, cjson: false, curl: false, e2fsprogs: false, expat: false, fontconfig: false, freetype: false, glib: false, glibc: false, harfbuzz: false, libGL: false, libx11: false, "libgpg-error": false, libselinux: false, libxcb: false, libxcrypt: false, "libxcrypt-legacy": false, libxkbcommon: false, "p11-kit": false, pango: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 38, 11], ["hash", 39, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 11], ["hash", 43, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 37, 9], ["aarch64-linux", 41, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 34, 26], ["version", 34, 32], ["src", 35, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 133, 5], ["changelog", 134, 5], ["description", 135, 5], ["sourceProvenance", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["platforms", 139, 5], ["mainProgram", 143, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 54, 3], ["installPhase", 77, 3], ["autoPatchelfIgnoreMissingDeps", 88, 3], ["dontWrapQtApps", 93, 3], ["preFixup", 95, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,22 +33,22 @@ export default nix.lambda((args) => (() => {
   const p11_kit = nix.arg($, "p11-kit");
   const pango = nix.arg($, "pango");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "navicat-premium",
       version: "17.3.7",
       src: nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 url: "https://web.archive.org/web/20260203040321/https://dn.navicat.com/download/navicat17-premium-en-x86_64.AppImage",
                 hash: "sha256-bIIqDwhajE7+S/Mx7lUn3FC1ZvRbk5mwxYwsmELBlRc=",
               })))),
             "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 url: "https://web.archive.org/web/20260203040711/https://dn.navicat.com/download/navicat17-premium-en-aarch64.AppImage",
                 hash: "sha256-2WOSwezm/utHaKUktrsWAfoXzCVMz+lfa1wyx0NtXMs=",
               })))),
@@ -119,7 +114,7 @@ wrapQtApp $out/bin/navicat \\
   --chdir $out
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.navicat.com/products/navicat-premium",
         changelog: "https://www.navicat.com/products/navicat-premium-release-note",
         description: "Database development tool that allows you to simultaneously connect to many databases",

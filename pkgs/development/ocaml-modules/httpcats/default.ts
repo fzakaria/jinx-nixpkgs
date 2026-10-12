@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 24, 5], ["hash", 25, 5]], [["homepage", 50, 5], ["description", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["propagatedBuildInputs", 28, 3], ["__darwinAllowLocalNetworking", 38, 3], ["doCheck", 40, 3], ["checkInputs", 41, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { fetchurl: false, buildDunePackage: false, lib: false, logs: false, fmt: false, h2: false, h1: false, "ca-certs": false, bstr: false, "tls-miou-unix": false, "dns-client-miou-unix": false, "happy-eyeballs-miou-unix": false, "mirage-crypto-rng": false, alcotest: false, digestif: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 50, 5], ["description", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["propagatedBuildInputs", 28, 3], ["__darwinAllowLocalNetworking", 38, 3], ["doCheck", 40, 3], ["checkInputs", 41, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const digestif = nix.arg($, "digestif");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "httpcats",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/robur-coop/httpcats/releases/download/v${nix.sel(finalAttrs, "version")}/httpcats-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-4H7Mbtmunb9a4k9//MQ5NX034+/idIxNTg3K1zLqNxI=",
         })))),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [logs, fmt, mirage_crypto_rng, alcotest, digestif]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/robur-coop/httpcats/",
         description: "A simple HTTP client / server using h1, h2, and miou",
         changelog: nix.thunk(() => nix.str`https://github.com/robur-coop/httpcats/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

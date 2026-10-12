@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["sslh", 56, 26]], [["tests", 55, 12]], [["description", 60, 5], ["license", 61, 5], ["homepage", 62, 5], ["maintainers", 63, 5], ["platforms", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["buildInputs", 27, 3], ["makeFlags", 38, 3], ["postInstall", 43, 3], ["installFlags", 51, 3], ["hardeningDisable", 53, 3], ["passthru", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libcap: false, libev: false, libconfig: false, perl: false, tcp_wrappers: false, pcre2: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["sslh", 56, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 55, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["license", 61, 5], ["homepage", 62, 5], ["maintainers", 63, 5], ["platforms", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["buildInputs", 27, 3], ["makeFlags", 38, 3], ["postInstall", 43, 3], ["installFlags", 51, 3], ["hardeningDisable", 53, 3], ["passthru", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sslh",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yrutschle",
           repo: "sslh",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       hardeningDisable: nix.thunk(() => ["format"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, sslh: nix.thunk(() => nix.attr(nixosTests, "sslh")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], sslh: nix.thunk(() => nix.attr(nixosTests, "sslh")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Applicative Protocol Multiplexer (e.g. share SSH and HTTPS on the same port)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://www.rutschle.net/tech/sslh/README.html",

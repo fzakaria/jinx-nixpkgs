@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["longDescription", 63, 5], ["license", 68, 5], ["platforms", 69, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["cmakeFlags", 52, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, flac: false, freetype: false, glew: false, libjpeg: false, libvorbis: false, openal: false, udev: false, libx11: false, libxcursor: false, libxrandr: false, libxrender: false, "libxcb-image": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["longDescription", 63, 5], ["license", 68, 5], ["platforms", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["cmakeFlags", 52, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libxrender = nix.arg($, "libxrender");
   const libxcb_image = nix.arg($, "libxcb-image");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sfml",
       version: "2.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SFML",
           repo: "SFML",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SFML_USE_SYSTEM_DEPS", true)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple and fast multimedia library",
         homepage: "https://www.sfml-dev.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/SFML/SFML/blob/${nix.sel(finalAttrs, "version")}/changelog.md`),

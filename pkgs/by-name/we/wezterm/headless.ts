@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/headless.nix", [[["pname", 9, 3], ["version", 11, 5], ["src", 12, 5], ["postPatch", 13, 5], ["cargoHash", 14, 5], ["meta", 15, 5], ["nativeBuildInputs", 18, 3], ["buildInputs", 20, 3], ["cargoBuildFlags", 22, 3], ["doCheck", 29, 3], ["postInstall", 31, 3]]]);
 const formals$1 = { args: { openssl: false, "pkg-config": false, rustPlatform: false, wezterm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/headless.nix", [["pname", 9, 3], ["version", 11, 5], ["src", 12, 5], ["postPatch", 13, 5], ["cargoHash", 14, 5], ["meta", 15, 5], ["nativeBuildInputs", 18, 3], ["buildInputs", 20, 3], ["cargoBuildFlags", 22, 3], ["doCheck", 29, 3], ["postInstall", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const wezterm = nix.arg($, "wezterm");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "wezterm-headless",
       version: nix.thunk(() => nix.attr(wezterm, "version")),
       src: nix.thunk(() => nix.attr(wezterm, "src")),

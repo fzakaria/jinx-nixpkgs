@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["packageName", 52, 41]], [["updateScript", 52, 5]], [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["teams", 59, 5], ["license", 60, 5], ["platforms", 61, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 40, 3], ["postPatch", 46, 3], ["passthru", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, gettext: false, fetchurl: false, "pkg-config": false, gtk4: false, glib: false, meson: false, ninja: false, upower: false, python3: false, "desktop-file-utils": false, wrapGAppsHook4: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 52, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["teams", 59, 5], ["license", 60, 5], ["platforms", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 40, 3], ["postPatch", 46, 3], ["passthru", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-power-manager",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-power-manager/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-power-manager-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-vyQ9Y4n4v6cclYU07SZpspllxH9Vw8vkmDspbQ+Z5dc=",
         })))),
@@ -47,11 +43,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk4, glib, upower]),
       postPatch: "substituteInPlace meson_post_install.sh \\\n  --replace-fail \"gtk-update-icon-cache\" \"gtk4-update-icon-cache\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-power-manager" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-power-manager" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-power-manager",
         description: "View battery and power statistics provided by UPower",
         mainProgram: "gnome-power-statistics",

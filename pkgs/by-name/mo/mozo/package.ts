@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["url", 47, 5], ["odd-unstable", 48, 5], ["rev-prefix", 49, 5]], [["updateScript", 46, 12]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["teams", 58, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 19, 3], ["doCheck", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 34, 3], ["buildInputs", 39, 3], ["enableParallelBuilding", 44, 3], ["passthru", 46, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchurl: false, "pkg-config": false, gettext: false, "mate-menus": false, gtk3: false, glib: false, wrapGAppsHook3: false, "gobject-introspection": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 47, 5], ["odd-unstable", 48, 5], ["rev-prefix", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 46, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["teams", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 19, 3], ["doCheck", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 34, 3], ["buildInputs", 39, 3], ["enableParallelBuilding", 44, 3], ["passthru", 46, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const doCheck = false;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/mozo-${version}.tar.xz`),
           sha256: "/piYT/1qqMNtBZS879ugPeObQtQeAHJRaAOE8870SSQ=",
         }))));
@@ -37,16 +33,16 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gtk3, glib]);
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.mate-desktop.org/mozo",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "MATE Desktop menu editor",
         mainProgram: "mozo",
         homepage: "https://github.com/mate-desktop/mozo",
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "mate"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

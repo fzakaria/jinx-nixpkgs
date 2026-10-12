@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["url", 29, 11], ["hash", 30, 11]], [["url", 33, 11], ["hash", 34, 11]], [["aarch64-linux", 28, 9], ["x86_64-linux", 32, 9]], [["downloadToTemp", 40, 7], ["recursiveHash", 41, 7], ["postFetch", 42, 7]], [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["pname", 64, 5], ["version", 65, 26], ["doCheck", 65, 34], ["src", 67, 5], ["postPatch", 69, 5], ["npmDepsHash", 75, 5], ["buildPhase", 77, 5], ["checkPhase", 83, 5], ["installPhase", 89, 5]], [["doCheck", 123, 7]], [["withCheck", 122, 5]], [["extraArgs", 134, 5]], [["tests", 121, 12], ["updateScript", 133, 12]], [["MLN_PRECOMPILE", 128, 5], ["MLN_CORE_LIBRARY_PATH", 129, 5], ["MLN_CORE_LIBRARY_HEADERS_PATH", 130, 5]], [["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["teams", 147, 5], ["sourceProvenance", 148, 5], ["platforms", 152, 5]], [["pname", 49, 3], ["version", 50, 3], ["src", 52, 3], ["patches", 59, 3], ["cargoHash", 61, 3], ["webui", 63, 3], ["preBuild", 94, 3], ["nativeBuildInputs", 99, 3], ["buildInputs", 101, 3], ["nativeCheckInputs", 108, 3], ["doCheck", 114, 3], ["checkFlags", 116, 3], ["passthru", 121, 3], ["env", 127, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, buildNpmPackage: false, rustPlatform: false, "pkg-config": false, curl: false, libuv: false, libz: false, openssl: false, postgresql: false, postgresqlTestHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 11], ["hash", 30, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 33, 11], ["hash", 34, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["aarch64-linux", 28, 9], ["x86_64-linux", 32, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["downloadToTemp", 40, 7], ["recursiveHash", 41, 7], ["postFetch", 42, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 64, 5], ["version", 65, 26], ["doCheck", 65, 34], ["src", 67, 5], ["postPatch", 69, 5], ["npmDepsHash", 75, 5], ["buildPhase", 77, 5], ["checkPhase", 83, 5], ["installPhase", 89, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["doCheck", 123, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["withCheck", 122, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["extraArgs", 134, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["tests", 121, 12], ["updateScript", 133, 12]]);
-const pos$12 = nix.positions(here + "/package.nix", [["MLN_PRECOMPILE", 128, 5], ["MLN_CORE_LIBRARY_PATH", 129, 5], ["MLN_CORE_LIBRARY_HEADERS_PATH", 130, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["teams", 147, 5], ["sourceProvenance", 148, 5], ["platforms", 152, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 49, 3], ["version", 50, 3], ["src", 52, 3], ["patches", 59, 3], ["cargoHash", 61, 3], ["webui", 63, 3], ["preBuild", 94, 3], ["nativeBuildInputs", 99, 3], ["buildInputs", 101, 3], ["nativeCheckInputs", 108, 3], ["doCheck", 114, 3], ["checkFlags", 116, 3], ["passthru", 121, 3], ["env", 127, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,37 +23,37 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const mlnRelease = "core-fa8a9c8e3261ce64940127aecc1d52f540c21c57";
   const mlnHeaders = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/maplibre/maplibre-native/releases/download/${mlnRelease}/maplibre-native-headers.tar.gz`),
       hash: "sha256-SqZaqePNbqBZoUgMJIsZf0zqKc8EAwInYNRciv/jX1A=",
     }))));
   const mlnLibrary = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
       const sources = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "aarch64-linux": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/maplibre/maplibre-native/releases/download/${mlnRelease}/libmaplibre-native-core-amalgam-linux-arm64-vulkan.a`),
           hash: "sha256-iug/ZEIoM0LUczPkVbzVelILoc1uzsM519V2em7Va4U=",
         })),
         "x86_64-linux": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/maplibre/maplibre-native/releases/download/${mlnRelease}/libmaplibre-native-core-amalgam-linux-x64-vulkan.a`),
           hash: "sha256-FoUFDoUw+eM/aaXMfO7iuoUrv8gUGVdBW1tiqxjYCbI=",
         })),
       }));
       return nix.update(nix.sel(sources, nix.key(nix.sel(stdenv, "hostPlatform", "system"))), {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         downloadToTemp: true,
         recursiveHash: true,
         postFetch: "install -Dm644 $downloadedFile $out/libmbgl-core-amalgam.a\n",
       });
     })())));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: "martin",
       version: "1.16.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           owner: "maplibre",
           repo: "martin",
           tag: nix.thunk(() => nix.str`martin-v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +62,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./dont-build-webui.patch")]),
       cargoHash: "sha256-p5sAkmMTirMdmXnVb2aqGKhPYpX/uluvzq0uw4W1Bt8=",
       webui: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pname: "martin-ui",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           doCheck: nix.thunk(() => nix.attr(finalAttrs, "doCheck")),
@@ -98,24 +85,24 @@ cp -r ${nix.sel(finalAttrs, "webui")} martin/martin-ui/dist
       doCheck: false,
       checkFlags: nix.thunk(() => ["--skip=test_nonexistent_tables_functions_generate_warning"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(postgresqlTestHook, "meta", "broken"))), nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            withCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$8, doCheck: true })))),
+            [nix.POS]: $pos[8],
+            withCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[7], doCheck: true })))),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             extraArgs: nix.thunk(() => ["--version-regex=martin-v(.*)", "--subpackage=webui"]),
           })))),
       })),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         MLN_PRECOMPILE: 1n,
         MLN_CORE_LIBRARY_PATH: nix.thunk(() => nix.str`${mlnLibrary}/libmbgl-core-amalgam.a`),
         MLN_CORE_LIBRARY_HEADERS_PATH: nix.thunk(() => nix.str`${mlnHeaders}`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "Blazing fast and lightweight PostGIS vector tiles server",
         homepage: "https://martin.maplibre.org/",
         license: nix.thunk(() => (() => {

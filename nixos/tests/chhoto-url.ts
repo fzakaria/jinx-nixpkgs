@@ -2,51 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/chhoto-url.nix", [[["maintainers", 5, 8]], [["port", 10, 16]], [["enable", 9, 7], ["settings", 10, 7], ["environmentFiles", 11, 7]], [["chhoto-url", 8, 14]], [["services", 8, 5]], [["machine", 7, 9]], [["allowedTCPPorts", 21, 25]], [["firewall", 21, 16]], [["port", 25, 14]], [["port", 26, 15]], [["from", 24, 9], ["host", 25, 9], ["guest", 26, 9]], [["forwardPorts", 22, 20]], [["networking", 21, 5], ["virtualisation", 22, 5]], [["machine", 20, 21]], [["enable", 31, 27]], [["graphics", 32, 39]], [["virtualisation", 32, 24]], [["nodes", 20, 15], ["sshBackdoor", 31, 15], ["defaults", 32, 15]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["interactive", 20, 3], ["testScript", 34, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/chhoto-url.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/chhoto-url.nix", [["port", 10, 16]]);
-const pos$3 = nix.positions(here + "/chhoto-url.nix", [["enable", 9, 7], ["settings", 10, 7], ["environmentFiles", 11, 7]]);
-const pos$4 = nix.positions(here + "/chhoto-url.nix", [["chhoto-url", 8, 14]]);
-const pos$5 = nix.positions(here + "/chhoto-url.nix", [["services", 8, 5]]);
-const pos$6 = nix.positions(here + "/chhoto-url.nix", [["machine", 7, 9]]);
-const pos$7 = nix.positions(here + "/chhoto-url.nix", [["allowedTCPPorts", 21, 25]]);
-const pos$8 = nix.positions(here + "/chhoto-url.nix", [["firewall", 21, 16]]);
-const pos$9 = nix.positions(here + "/chhoto-url.nix", [["port", 25, 14]]);
-const pos$10 = nix.positions(here + "/chhoto-url.nix", [["port", 26, 15]]);
-const pos$11 = nix.positions(here + "/chhoto-url.nix", [["from", 24, 9], ["host", 25, 9], ["guest", 26, 9]]);
-const pos$12 = nix.positions(here + "/chhoto-url.nix", [["forwardPorts", 22, 20]]);
-const pos$13 = nix.positions(here + "/chhoto-url.nix", [["networking", 21, 5], ["virtualisation", 22, 5]]);
-const pos$14 = nix.positions(here + "/chhoto-url.nix", [["machine", 20, 21]]);
-const pos$15 = nix.positions(here + "/chhoto-url.nix", [["enable", 31, 27]]);
-const pos$16 = nix.positions(here + "/chhoto-url.nix", [["graphics", 32, 39]]);
-const pos$17 = nix.positions(here + "/chhoto-url.nix", [["virtualisation", 32, 24]]);
-const pos$18 = nix.positions(here + "/chhoto-url.nix", [["nodes", 20, 15], ["sshBackdoor", 31, 15], ["defaults", 32, 15]]);
-const pos$19 = nix.positions(here + "/chhoto-url.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["interactive", 20, 3], ["testScript", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "chhoto-url",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "chhoto-url": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$2, port: 8000n })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[1], port: 8000n })),
             environmentFiles: nix.thunk(() => [
               nix.thunk(() => nix.builtins.toFile("chhoto-url.env", "api_key=api_key\npassword=password\n")),
             ]),
@@ -55,32 +37,32 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$7, allowedTCPPorts: nix.thunk(() => [8000n]) })),
+            [nix.POS]: $pos[7],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[6], allowedTCPPorts: nix.thunk(() => [8000n]) })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 from: "host",
-                host: nix.thunk(() => ({ [nix.POS]: pos$9, port: 8000n })),
-                guest: nix.thunk(() => ({ [nix.POS]: pos$10, port: 8000n })),
+                host: nix.thunk(() => ({ [nix.POS]: $pos[8], port: 8000n })),
+                guest: nix.thunk(() => ({ [nix.POS]: $pos[9], port: 8000n })),
               })),
             ]),
           })),
         })),
       })),
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: true })),
       defaults: nix.thunk(() => ({
-        [nix.POS]: pos$17,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$16, graphics: false })),
+        [nix.POS]: $pos[16],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[15], graphics: false })),
       })),
     })),
     testScript: nix.thunk(() => nix.str`import json

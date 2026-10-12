@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["NIX_CFLAGS_COMPILE", 33, 7]], [["description", 42, 5], ["mainProgram", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["homepage", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["sourceRoot", 23, 3], ["postPatch", 25, 3], ["env", 33, 3], ["hardeningDisable", 35, 3], ["preInstall", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, dos2unix: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["mainProgram", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["homepage", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["sourceRoot", 23, 3], ["postPatch", 25, 3], ["env", 33, 3], ["hardeningDisable", 35, 3], ["preInstall", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,22 +13,22 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bwbasic",
       version: "3.40",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/bwbasic/bwbasic/version%20${nix.sel(finalAttrs, "version")}/bwbasic-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-tWiUIqCdBarhFDSX0iV55VxOEh7iuAbnOLSDuMAAog8=",
         })))),
       nativeBuildInputs: nix.thunk(() => [dos2unix, unzip]),
       sourceRoot: ".",
       postPatch: "dos2unix configure\npatchShebangs configure\nchmod +x configure\nsubstituteInPlace bwbasic.h \\\n  --replace-fail \"extern int putenv (const char *buffer)\" \"extern int putenv (char *buffer)\"\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=c89" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=c89" })),
       hardeningDisable: nix.thunk(() => ["format"]),
       preInstall: "mkdir -p $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Bywater BASIC Interpreter",
         mainProgram: "bwbasic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["reaction", 70, 28]], [["mkReactionPlugin", 67, 41], ["plugins", 67, 58], ["updateScript", 68, 5], ["tests", 69, 5]], [["changelog", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5], ["teams", 83, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 31, 3], ["checkFlags", 38, 3], ["cargoTestFlags", 47, 3], ["postInstall", 52, 3], ["nativeInstallCheckInputs", 62, 3], ["versionCheckProgramArg", 63, 3], ["doInstallCheck", 64, 3], ["passthru", 66, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, rustPlatform: false, fetchFromGitLab: false, versionCheckHook: false, installShellFiles: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["reaction", 70, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mkReactionPlugin", 67, 41], ["plugins", 67, 58], ["updateScript", 68, 5], ["tests", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5], ["teams", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 31, 3], ["checkFlags", 38, 3], ["cargoTestFlags", 47, 3], ["postInstall", 52, 3], ["nativeInstallCheckInputs", 62, 3], ["versionCheckProgramArg", 63, 3], ["doInstallCheck", 64, 3], ["passthru", 66, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "reaction",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "framagit.org",
           owner: "ppom",
           repo: "reaction",
@@ -52,18 +48,18 @@ export default nix.lambda((args) => (() => {
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins"), nix.thunk(() => ({}))));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mkReactionPlugin: nix.thunk(() => nix.attr(from, "mkReactionPlugin")),
         plugins: nix.thunk(() => nix.attr(from, "plugins")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           reaction: nix.thunk(() => nix.attr(nixosTests, "reaction")),
         }, nix.sel(finalAttrs, "passthru", "plugins"))),
       };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://framagit.org/ppom/reaction/-/releases/v${nix.sel(finalAttrs, "version")}`),
         description: "Scan logs and take action: an alternative to fail2ban",
         homepage: "https://framagit.org/ppom/reaction",

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 93, 5], ["repo", 94, 5], ["rev", 95, 5], ["hash", 96, 5]], [["PYTHONDONTWRITEBYTECODE", 156, 7]], [["name", 232, 5], ["desktopName", 233, 5], ["comment", 234, 5], ["exec", 235, 5], ["icon", 236, 5], ["categories", 237, 5]], [["url", 256, 7], ["hash", 257, 7]], [["url", 261, 7], ["hash", 262, 7]], [["appver", 252, 5], ["semver", 253, 5], ["binSrc", 255, 5], ["binSrcArm", 260, 5], ["distributedRenpy", 265, 5], ["updateScript", 273, 5]], [["description", 277, 5], ["mainProgram", 278, 5], ["homepage", 279, 5], ["changelog", 280, 5], ["license", 281, 5], ["platforms", 282, 5], ["maintainers", 283, 5], ["sourceProvenance", 287, 5]], [["pname", 88, 3], ["version", 90, 3], ["src", 92, 3], ["__structuredAttrs", 99, 3], ["strictDeps", 100, 3], ["nativeBuildInputs", 102, 3], ["buildInputs", 110, 3], ["enableParallelBuilding", 126, 3], ["patches", 128, 3], ["postPatch", 137, 3], ["env", 156, 3], ["buildPhase", 158, 3], ["installPhase", 192, 3], ["desktopItems", 231, 3], ["dontStrip", 241, 3], ["dontPatchShebangs", 242, 3], ["dontPatchELF", 243, 3], ["postFixup", 244, 3], ["nativeInstallCheckInputs", 248, 3], ["doInstallCheck", 249, 3], ["passthru", 251, 3], ["meta", 276, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, assimp: false, copyDesktopItems: false, desktopToDarwinBundle: false, fetchFromGitHub: false, fetchurl: false, fetchzip: false, ffmpeg: false, freetype: false, fribidi: false, glew: false, harfbuzz: false, libGL: false, libGLU: false, libjpeg: false, libpng: false, makeBinaryWrapper: false, makeDesktopItem: false, openssl: false, "pkg-config": false, python312: false, SDL2: false, SDL2_image: false, versionCheckHook: false, zenity: false, zlib: false, minimal: true, withDoc: true, withDistributedLibs: true, withAarch64LinuxDistributedLibs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 93, 5], ["repo", 94, 5], ["rev", 95, 5], ["hash", 96, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PYTHONDONTWRITEBYTECODE", 156, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 232, 5], ["desktopName", 233, 5], ["comment", 234, 5], ["exec", 235, 5], ["icon", 236, 5], ["categories", 237, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 256, 7], ["hash", 257, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 261, 7], ["hash", 262, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["appver", 252, 5], ["semver", 253, 5], ["binSrc", 255, 5], ["binSrcArm", 260, 5], ["distributedRenpy", 265, 5], ["updateScript", 273, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 277, 5], ["mainProgram", 278, 5], ["homepage", 279, 5], ["changelog", 280, 5], ["license", 281, 5], ["platforms", 282, 5], ["maintainers", 283, 5], ["sourceProvenance", 287, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 88, 3], ["version", 90, 3], ["src", 92, 3], ["__structuredAttrs", 99, 3], ["strictDeps", 100, 3], ["nativeBuildInputs", 102, 3], ["buildInputs", 110, 3], ["enableParallelBuilding", 126, 3], ["patches", 128, 3], ["postPatch", 137, 3], ["env", 156, 3], ["buildPhase", 158, 3], ["installPhase", 192, 3], ["desktopItems", 231, 3], ["dontStrip", 241, 3], ["dontPatchShebangs", 242, 3], ["dontPatchELF", 243, 3], ["postFixup", 244, 3], ["nativeInstallCheckInputs", 248, 3], ["doInstallCheck", 249, 3], ["passthru", 251, 3], ["meta", 276, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -76,11 +69,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "renpy",
       version: "8.5.3.26051504-unstable-2026-05-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "renpy",
           repo: "renpy",
           rev: "cb1a79e8d2e02936baaf9d3c6ec9ac28d68b9014",
@@ -126,7 +119,7 @@ nightly = False
 version_name = "We Can Go to the Moon"
 EOF
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PYTHONDONTWRITEBYTECODE: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PYTHONDONTWRITEBYTECODE: "1" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 ./setup.py build_ext --inplace -j $NIX_BUILD_CORES
@@ -169,7 +162,7 @@ cp -ar ${nix.sel(finalAttrs, "passthru", "distributedRenpy")}/renpy $out/share/r
 runHook postInstall
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(minimal)), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "renpy",
             desktopName: "Ren'Py",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -184,16 +177,16 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         appver: nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.builtins.match("([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+).*", nix.thunk(() => nix.sel(finalAttrs, "version")))))),
         semver: nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.builtins.match("([0-9]+\\.[0-9]+\\.[0-9]+).*", nix.thunk(() => nix.sel(finalAttrs, "version")))))),
         binSrc: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: nix.thunk(() => nix.str`https://www.renpy.org/dl/${nix.sel(finalAttrs, "passthru", "semver")}/renpy-${nix.sel(finalAttrs, "passthru", "semver")}-sdk.tar.bz2`),
             hash: "sha256-l91zD0n/c5E80YfgZ/m5AbIj/RKL5OFosfwz7RHu7aQ=",
           })))),
         binSrcArm: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: nix.thunk(() => nix.str`https://www.renpy.org/dl/${nix.sel(finalAttrs, "passthru", "semver")}/renpy-${nix.sel(finalAttrs, "passthru", "semver")}-sdkarm.tar.bz2`),
             hash: "sha256-51+swtUfDK0on9wVVXOyzJKxHtV6m4u9X1wvpp85stI=",
           })))),
@@ -201,7 +194,7 @@ runHook postInstall
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Visual Novel Engine",
         mainProgram: "renpy",
         homepage: "https://renpy.org/",

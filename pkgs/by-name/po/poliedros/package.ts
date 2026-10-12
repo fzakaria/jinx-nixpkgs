@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["updateScript", 50, 12]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5]], [["pname", 20, 3], ["version", 21, 11], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["pythonPath", 42, 3], ["buildInputs", 44, 3], ["dontWrapGApps", 46, 3], ["makeWrapperArgs", 48, 3], ["passthru", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, ninja: false, meson: false, "pkg-config": false, wrapGAppsHook4: false, glib: false, "desktop-file-utils": false, "appstream-glib": false, "gobject-introspection": false, libadwaita: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 50, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 11], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["pythonPath", 42, 3], ["buildInputs", 44, 3], ["dontWrapGApps", 46, 3], ["makeWrapperArgs", 48, 3], ["passthru", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "1.5.3";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "poliedros",
       version: version,
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kriptolix",
           repo: "Poliedros",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,11 +48,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Multi-type dice roller",
         homepage: "https://github.com/kriptolix/Poliedros",
         changelog: nix.thunk(() => nix.str`https://github.com/kriptolix/Poliedros/releases/tag/v${version}`),

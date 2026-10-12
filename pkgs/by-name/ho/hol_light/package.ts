@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]], [["description", 122, 5], ["homepage", 123, 5], ["mainProgram", 124, 5], ["license", 125, 5], ["platforms", 126, 5], ["maintainers", 127, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["patches", 49, 3], ["strictDeps", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 62, 3], ["propagatedBuildInputs", 69, 3], ["setupHook", 76, 3], ["buildPhase", 85, 3], ["installPhase", 93, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeBinaryWrapper: false, writeText: false, ocamlPackages: false, ledit: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 122, 5], ["homepage", 123, 5], ["mainProgram", 124, 5], ["license", 125, 5], ["platforms", 126, 5], ["maintainers", 127, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["patches", 49, 3], ["strictDeps", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 62, 3], ["propagatedBuildInputs", 69, 3], ["setupHook", 76, 3], ["buildPhase", 85, 3], ["installPhase", 93, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const ocamlPath = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), nix.thunk(() => nix.str`/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib`), nix.thunk(() => [camlp5, camlp_streams, fmt, pcre2, zarith])));
   const stublibsPath = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), nix.thunk(() => nix.str`/lib/ocaml/${nix.sel(ocaml, "version")}/site-lib/stublibs`), nix.thunk(() => [zarith, pcre2])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hol_light",
       version: "0-unstable-2026-09-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jrh13",
           repo: "hol-light",
           rev: "72f2059e632021b940636156925a7500a3f253fd",
@@ -64,7 +62,7 @@ ln -s hol_light "$out/bin/hol.sh"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Interactive theorem prover based on Higher-Order Logic",
         homepage: "http://www.cl.cam.ac.uk/~jrh13/hol-light/",
         mainProgram: "hol_light",

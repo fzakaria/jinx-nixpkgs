@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]], [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]], [["NIX_CFLAGS_COMPILE", 83, 5]], [["tests", 98, 12]], [["description", 101, 5], ["homepage", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5], ["license", 109, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["hardeningDisable", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 62, 3], ["propagatedBuildInputs", 73, 3], ["cmakeFlags", 80, 3], ["env", 82, 3], ["postInstall", 86, 3], ["postFixup", 90, 3], ["outputs", 96, 3], ["passthru", 98, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "bash-completion": false, perl: false, ncurses: false, zlib: false, sqlite: false, libffi: false, mcpp: false, cmake: false, bison: false, flex: false, doxygen: false, graphviz: false, makeWrapper: false, python3: false, callPackage: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 98, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5], ["license", 109, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["hardeningDisable", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 62, 3], ["propagatedBuildInputs", 73, 3], ["cmakeFlags", 80, 3], ["env", 82, 3], ["postInstall", 86, 3], ["postFixup", 90, 3], ["outputs", 96, 3], ["passthru", 98, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const toolsPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [mcpp, python3])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "souffle",
       version: "2.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "souffle-lang",
           repo: "souffle",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./threads.patch"),
         nix.path(here, "./includes.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "replace-copy-assignment.patch",
             url: "https://github.com/souffle-lang/souffle/commit/73ebe789ec21772a0c5558639606354bfc3bcbd1.patch",
             hash: "sha256-L9SK3Dh2cRwxKfEckUSiGGTDsWIZ5B8hoYYcslJpZl4=",
@@ -58,7 +53,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bash_completion, ncurses, zlib, sqlite, libffi, python3]),
       propagatedBuildInputs: nix.thunk(() => [ncurses, zlib, sqlite, libffi]),
       cmakeFlags: nix.thunk(() => ["-DSOUFFLE_GIT=OFF"]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=unused-but-set-variable" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-error=unused-but-set-variable" })))),
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/souffle" --prefix PATH : "${toolsPath}"
 `),
       postFixup: nix.thunk(() => nix.str`substituteInPlace "$out/bin/souffle-compile.py" \\
@@ -67,11 +62,11 @@ export default nix.lambda((args) => (() => {
 `),
       outputs: nix.thunk(() => ["out"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Translator of declarative Datalog programs into the C++ language",
         homepage: "https://souffle-lang.github.io/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["clangStdenv", 39, 69], ["objfw", 39, 81], ["writeTextDir", 39, 87]], [["build-hello-world", 39, 5]], [["rev-suffix", 42, 40]], [["tests", 38, 12], ["updateScript", 42, 12]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["preConfigure", 31, 3], ["configureFlags", 32, 3], ["doCheck", 36, 3], ["passthru", 38, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { autoconf: false, autogen: false, automake: false, clangStdenv: false, fetchFromGitea: false, gitUpdater: false, lib: false, objfw: false, writeTextDir: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["clangStdenv", 39, 69], ["objfw", 39, 81], ["writeTextDir", 39, 87]]);
-const pos$3 = nix.positions(here + "/package.nix", [["build-hello-world", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["rev-suffix", 42, 40]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 38, 12], ["updateScript", 42, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["preConfigure", 31, 3], ["configureFlags", 32, 3], ["doCheck", 36, 3], ["passthru", 38, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const objfw = nix.arg($, "objfw");
   const writeTextDir = nix.arg($, "writeTextDir");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "objfw",
       version: "1.5.7",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.nil.im",
           owner: "ObjFW",
           repo: "ObjFW",
@@ -39,20 +33,20 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--without-tls"]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "build-hello-world": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./test-build-and-run.nix")), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               clangStdenv: clangStdenv,
               objfw: objfw,
               writeTextDir: writeTextDir,
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-suffix": "-release" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-suffix": "-release" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Portable framework for the Objective-C language",
         homepage: "https://objfw.nil.im",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

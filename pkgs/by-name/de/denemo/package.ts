@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["NIX_CFLAGS_COMPILE", 60, 7]], [["pname", 64, 7], ["version", 65, 7], ["debianRevision", 66, 7], ["patch", 67, 7], ["hash", 68, 7]], [["pname", 71, 7], ["version", 72, 7], ["debianRevision", 73, 7], ["patch", 74, 7], ["hash", 75, 7]], [["pname", 78, 7], ["version", 79, 7], ["debianRevision", 80, 7], ["patch", 81, 7], ["hash", 82, 7]], [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["buildInputs", 40, 3], ["env", 60, 3], ["patches", 62, 3], ["preFixup", 86, 3], ["nativeBuildInputs", 92, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, fetchDebianPatch: false, "pkg-config": false, libjack2: false, gettext: false, intltool: false, guile: false, lilypond: false, glib: false, libxml2: false, librsvg: false, libsndfile: false, aubio: false, gtk3: false, gtksourceview3: false, evince: false, fluidsynth: false, rubberband: false, autoreconfHook: false, "gtk-doc": false, portaudio: false, portmidi: false, fftw: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 64, 7], ["version", 65, 7], ["debianRevision", 66, 7], ["patch", 67, 7], ["hash", 68, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 71, 7], ["version", 72, 7], ["debianRevision", 73, 7], ["patch", 74, 7], ["hash", 75, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 78, 7], ["version", 79, 7], ["debianRevision", 80, 7], ["patch", 81, 7], ["hash", 82, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["buildInputs", 40, 3], ["env", 60, 3], ["patches", 62, 3], ["preFixup", 86, 3], ["nativeBuildInputs", 92, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const fftw = nix.arg($, "fftw");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "denemo",
       version: "2.6.49",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.savannah.gnu.org/git/denemo.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-TUdaGOChqwK3fAmdaP9Lg2FGrEWF0yjwqsRXK7h/83Y=",
@@ -68,12 +62,12 @@ export default nix.lambda((args) => (() => {
         portmidi,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: "denemo",
             version: "2.6.49",
             debianRevision: "0.2",
@@ -81,7 +75,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-l1eXjQieH5ySqwaTJAE8lUq/FsB//cl02Wgt0TRQBMo=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname: "denemo",
             version: "2.6.49",
             debianRevision: "0.2",
@@ -89,7 +83,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-H3hRmAPazYRkwQI97vNR9kpV0lYpIiAXyMfrnJl+lNo=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             pname: "denemo",
             version: "2.6.49",
             debianRevision: "0.2",
@@ -103,7 +97,7 @@ export default nix.lambda((args) => (() => {
 `),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, gtk_doc, wrapGAppsHook3, intltool, gettext, pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Music notation and composition software used with lilypond",
         homepage: "http://denemo.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["arch", 16, 11], ["hash", 17, 11]], [["arch", 20, 11], ["hash", 21, 11]], [["arch", 24, 11], ["hash", 25, 11]], [["x86_64-linux", 15, 9], ["aarch64-linux", 19, 9], ["aarch64-darwin", 23, 9]], [["name", 30, 7], ["publisher", 31, 7], ["version", 32, 7]], [["updateScript", 58, 12]], [["description", 61, 5], ["downloadPage", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 70, 5]], [["mktplcRef", 12, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 41, 3], ["dontPatchELF", 49, 3], ["appendRunpaths", 54, 3], ["passthru", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, "vscode-extension-update-script": false, autoPatchelfHook: false, stdenv: false, "alsa-lib": false, libuuid: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["arch", 16, 11], ["hash", 17, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arch", 20, 11], ["hash", 21, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["arch", 24, 11], ["hash", 25, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 15, 9], ["aarch64-linux", 19, 9], ["aarch64-darwin", 23, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 30, 7], ["publisher", 31, 7], ["version", 32, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 58, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 61, 5], ["downloadPage", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 70, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["mktplcRef", 12, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 41, 3], ["dontPatchELF", 49, 3], ["appendRunpaths", 54, 3], ["passthru", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,28 +15,28 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const libuuid = nix.arg($, "libuuid");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       mktplcRef: nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             arch: "linux-x64",
             hash: "sha256-dZwOBehoYEqaYskvcPB55IKnG1CMToioyUJXlndqorA=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             arch: "linux-arm64",
             hash: "sha256-/EaOfoubfq1ufwB7TTQ2hqmh1ZJiZ1+B6QeYu3MoFPI=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             arch: "darwin-arm64",
             hash: "sha256-JhZWNlGXljsjmT3/xDi9Z7I4a2vsi/9EkWYbnlteE98=",
           })),
         }));
         return nix.update({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: "vscode-speech",
           publisher: "ms-vscode",
           version: "0.16.0",
@@ -56,11 +49,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/vscode/extensions/ms-vscode.vscode-speech/node_modules/@vscode/node-speech/build/Release`),
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Enables speech-to-text and text-to-speech capabilities in VS Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-speech",
         homepage: "https://github.com/microsoft/vscode",

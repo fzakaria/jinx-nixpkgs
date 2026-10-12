@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/server.nix", [[["version", 11, 11], ["src", 11, 19], ["vendorHash", 11, 23], ["pname", 12, 3], ["patches", 14, 3], ["ldflags", 18, 3], ["doCheck", 23, 3]]]);
 const formals$1 = { args: { buildGoModule: false, pname: false, version: false, src: false, vendorHash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/server.nix", [["version", 11, 11], ["src", 11, 19], ["vendorHash", 11, 23], ["pname", 12, 3], ["patches", 14, 3], ["ldflags", 18, 3], ["doCheck", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const vendorHash = nix.arg($, "vendorHash");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: version,
       src: src,
       vendorHash: vendorHash,

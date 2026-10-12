@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["FONTCONFIG_FILE", 45, 7]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 76, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["outputs", 32, 3], ["cmakeFlags", 38, 3], ["env", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 56, 3], ["preInstallCheck", 61, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fontconfig: false, scipy: false, boost: false, "jrl-cmakemodules": false, eigen: false, numpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["FONTCONFIG_FILE", 45, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 76, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["outputs", 32, 3], ["cmakeFlags", 38, 3], ["env", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 56, 3], ["preInstallCheck", 61, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const numpy = nix.arg($, "numpy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "eigenpy",
       version: "3.13.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stack-of-tasks",
           repo: "eigenpy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         "-DBUILD_TESTING_SCIPY=ON",
       ])),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
       })),
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(jrl_cmakemodules, "docsNativeBuildInputs"), [scipy])),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       preInstallCheck: "make test\n",
       pythonImportsCheck: nix.thunk(() => ["eigenpy"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Bindings between Numpy and Eigen using Boost.Python",
         homepage: "https://github.com/stack-of-tasks/eigenpy",
         changelog: nix.thunk(() => nix.str`https://github.com/stack-of-tasks/eigenpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

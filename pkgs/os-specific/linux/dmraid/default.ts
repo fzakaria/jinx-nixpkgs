@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["url", 28, 7], ["sha256", 29, 7], ["stripLen", 30, 7], ["extraPrefix", 31, 7]], [["url", 34, 7], ["sha256", 35, 7], ["stripLen", 36, 7], ["extraPrefix", 37, 7]], [["description", 58, 5], ["longDescription", 59, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["license", 67, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["postPatch", 41, 3], ["preConfigure", 48, 3], ["buildInputs", 50, 3], ["enableParallelBuilding", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, lvm2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 28, 7], ["sha256", 29, 7], ["stripLen", 30, 7], ["extraPrefix", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 34, 7], ["sha256", 35, 7], ["stripLen", 36, 7], ["extraPrefix", 37, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 58, 5], ["longDescription", 59, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["license", 67, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["postPatch", 41, 3], ["preConfigure", 48, 3], ["buildInputs", 50, 3], ["enableParallelBuilding", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dmraid";
       const version = "1.0.0.rc16";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://people.redhat.com/~heinzm/sw/dmraid/src/old/dmraid-${version}.tar.bz2`),
           sha256: "0m92971gyqp61darxbiri6a48jz3wq3gkp8r2k39320z0i6w8jgq",
         }))));
@@ -30,14 +26,14 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./dmraid-fix-build-with-gcc15.patch"),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://raw.githubusercontent.com/void-linux/void-packages/fceed4b8e96b3c1da07babf6f67b6ed1588a28b2/srcpkgs/dmraid/patches/006-musl-libc.patch",
               sha256: "1j8xda0fpz8lxjxnqdidy7qb866qrzwpbca56yjdg6vf4x21hx6w",
               stripLen: 2n,
               extraPrefix: "1.0.0.rc16/",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://raw.githubusercontent.com/void-linux/void-packages/fceed4b8e96b3c1da07babf6f67b6ed1588a28b2/srcpkgs/dmraid/patches/007-fix-loff_t-musl.patch",
               sha256: "0msnq39qnzg3b1pdksnz1dgqwa3ak03g41pqh0lw3h7w5rjc016k",
               stripLen: 2n,
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [lvm2]);
       const enableParallelBuilding = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Old-style RAID configuration utility",
         longDescription: "Old RAID configuration utility (still under development, though).\nIt is fully compatible with modern kernels and mdadm recognizes\nits volumes. May be needed for rescuing an older system or nuking\nthe metadata when reformatting.\n",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

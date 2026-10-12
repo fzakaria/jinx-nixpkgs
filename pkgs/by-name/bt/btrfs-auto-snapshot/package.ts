@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["longDescription", 60, 5]], [["version", 17, 3], ["pname", 18, 3], ["src", 20, 3], ["dontBuild", 27, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 31, 3], ["wrapperPath", 35, 3], ["postFixup", 47, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, coreutils: false, getopt: false, gnugrep: false, gnused: false, gawk: false, "btrfs-progs": false, syslogSupport: true, "util-linux": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["longDescription", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 17, 3], ["pname", 18, 3], ["src", 20, 3], ["dontBuild", 27, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 31, 3], ["wrapperPath", 35, 3], ["postFixup", 47, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const pname = "btrfs-auto-snapshot";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hunleyd",
           repo: "btrfs-auto-snapshot",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${wrapperPath}"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "BTRFS Automatic Snapshot Service for Linux",
         homepage: "https://github.com/hunleyd/btrfs-auto-snapshot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "btrfs-auto-snapshot is a Bash script designed to bring as much of the\nfunctionality of the wonderful ZFS snapshot tool zfs-auto-snapshot to\nBTRFS as possible. Designed to run from cron (using\n/etc/cron.{daily,hourly,weekly}) it automatically creates a snapshot of\nthe specified BTRFS filesystem (or, optionally, all of them) and then\nautomatically purges the oldest snapshots of that type (hourly, daily, et\nal) based on a user-defined retention policy.\n\nSnapshots are stored in a '.btrfs' directory at the root of the BTRFS\nfilesystem being snapped and are read-only by default.\n",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         src,

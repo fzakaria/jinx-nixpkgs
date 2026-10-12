@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libopcodes.nix", [[["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 13, 3], ["version", 14, 37], ["src", 14, 45], ["outputs", 16, 3], ["patches", 21, 3], ["postPatch", 26, 3], ["depsBuildBuild", 31, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 38, 3], ["configurePlatforms", 40, 3], ["configureFlags", 44, 3], ["enableParallelBuilding", 51, 3], ["__structuredAttrs", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, autoreconfHook: false, bison: false, "binutils-unwrapped_2_38": false, libiberty: false, libbfd_2_38: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libopcodes.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$2 = nix.positions(here + "/libopcodes.nix", [["pname", 13, 3], ["version", 14, 37], ["src", 14, 45], ["outputs", 16, 3], ["patches", 21, 3], ["postPatch", 26, 3], ["depsBuildBuild", 31, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 38, 3], ["configurePlatforms", 40, 3], ["configureFlags", 44, 3], ["enableParallelBuilding", 51, 3], ["__structuredAttrs", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libiberty = nix.arg($, "libiberty");
   const libbfd_2_38 = nix.arg($, "libbfd_2_38");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "libopcodes",
       version: nix.thunk(() => nix.attr(binutils_unwrapped_2_38, "version")),
       src: nix.thunk(() => nix.attr(binutils_unwrapped_2_38, "src")),
@@ -38,7 +37,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Library from binutils for manipulating machine code",
         homepage: "https://www.gnu.org/software/binutils/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

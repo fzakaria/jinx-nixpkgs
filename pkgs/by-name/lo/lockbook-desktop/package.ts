@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["desktopName", 57, 5], ["name", 58, 5], ["comment", 59, 5], ["icon", 60, 5], ["exec", 61, 5], ["categories", 62, 5]], [["description", 74, 5], ["longDescription", 75, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["changelog", 85, 5], ["maintainers", 86, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["runtimeDependencies", 45, 3], ["doCheck", 50, 3], ["cargoBuildFlags", 51, 3], ["desktopItems", 56, 3], ["postInstall", 69, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, gtk3: false, glib: false, "gobject-introspection": false, "gdk-pixbuf": false, libxkbcommon: false, "vulkan-loader": false, makeDesktopItem: false, autoPatchelfHook: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["desktopName", 57, 5], ["name", 58, 5], ["comment", 59, 5], ["icon", 60, 5], ["exec", 61, 5], ["categories", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["longDescription", 75, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["changelog", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["runtimeDependencies", 45, 3], ["doCheck", 50, 3], ["cargoBuildFlags", 51, 3], ["desktopItems", 56, 3], ["postInstall", 69, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const desc = "Private, polished note-taking platform";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lockbook-desktop",
       version: "26.9.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lockbook",
           repo: "lockbook",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       cargoBuildFlags: nix.thunk(() => ["--package", "lockbook-desktop"]),
       desktopItems: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           desktopName: "Lockbook",
           name: "lockbook-desktop",
           comment: desc,
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postInstall: "install -D docs/graphics/logo.svg $out/share/icons/hicolor/scalable/apps/lockbook.svg\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: desc,
         longDescription: "Write notes, sketch ideas, and store files in one secure place.\nShare seamlessly, keep data synced, and access it on any\nplatform—even offline. Lockbook encrypts files so even we\ncan’t see them, but don’t take our word for it:\nLockbook is 100% open-source.\n",
         homepage: "https://lockbook.net",

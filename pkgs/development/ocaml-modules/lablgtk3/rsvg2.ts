@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rsvg2.nix", [[["description", 22, 5]], [["pname", 10, 3], ["version", 12, 22], ["src", 12, 30], ["nativeBuildInputs", 14, 3], ["buildInputs", 15, 3], ["propagatedBuildInputs", 16, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "dune-configurator": false, lablgtk3: false, librsvg: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rsvg2.nix", [["description", 22, 5]]);
-const pos$2 = nix.positions(here + "/rsvg2.nix", [["pname", 10, 3], ["version", 12, 22], ["src", 12, 30], ["nativeBuildInputs", 14, 3], ["buildInputs", 15, 3], ["propagatedBuildInputs", 16, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "lablgtk3-rsvg2",
       version: nix.thunk(() => nix.attr(lablgtk3, "version")),
       src: nix.thunk(() => nix.attr(lablgtk3, "src")),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [lablgtk3, librsvg]),
-      meta: nix.thunk(() => nix.update(nix.sel(lablgtk3, "meta"), { [nix.POS]: pos$1, description: "OCaml interface to Gnome rsvg2 library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(lablgtk3, "meta"), { [nix.POS]: $pos[0], description: "OCaml interface to Gnome rsvg2 library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=rsvg2.ts.map

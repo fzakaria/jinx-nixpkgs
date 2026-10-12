@@ -2,24 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/server.nix", [[["allowedTCPPorts", 9, 23]], [["address", 31, 7], ["prefixLength", 32, 7]], [["addresses", 29, 33]], [["ipv4", 29, 28]], [["lo", 29, 25]], [["firewall", 9, 14], ["interfaces", 29, 14]], [["Type", 13, 19], ["ExecStart", 14, 19]], [["SNAKEOIL_PUBLIC_KEY", 16, 7]], [["description", 12, 5], ["serviceConfig", 13, 5], ["environment", 15, 5], ["wantedBy", 18, 5], ["after", 19, 5]], [["mock-google-metadata", 11, 20]], [["services", 11, 11]], [["KbdInteractiveAuthentication", 23, 29], ["PasswordAuthentication", 24, 29]], [["enable", 22, 20], ["settings", 23, 20]], [["openssh", 22, 12]], [["enable", 26, 26]], [["googleOsLogin", 26, 12]], [["networking", 9, 3], ["systemd", 11, 3], ["services", 22, 3], ["security", 26, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/server.nix", [["allowedTCPPorts", 9, 23]]);
-const pos$2 = nix.positions(here + "/server.nix", [["address", 31, 7], ["prefixLength", 32, 7]]);
-const pos$3 = nix.positions(here + "/server.nix", [["addresses", 29, 33]]);
-const pos$4 = nix.positions(here + "/server.nix", [["ipv4", 29, 28]]);
-const pos$5 = nix.positions(here + "/server.nix", [["lo", 29, 25]]);
-const pos$6 = nix.positions(here + "/server.nix", [["firewall", 9, 14], ["interfaces", 29, 14]]);
-const pos$7 = nix.positions(here + "/server.nix", [["Type", 13, 19], ["ExecStart", 14, 19]]);
-const pos$8 = nix.positions(here + "/server.nix", [["SNAKEOIL_PUBLIC_KEY", 16, 7]]);
-const pos$9 = nix.positions(here + "/server.nix", [["description", 12, 5], ["serviceConfig", 13, 5], ["environment", 15, 5], ["wantedBy", 18, 5], ["after", 19, 5]]);
-const pos$10 = nix.positions(here + "/server.nix", [["mock-google-metadata", 11, 20]]);
-const pos$11 = nix.positions(here + "/server.nix", [["services", 11, 11]]);
-const pos$12 = nix.positions(here + "/server.nix", [["KbdInteractiveAuthentication", 23, 29], ["PasswordAuthentication", 24, 29]]);
-const pos$13 = nix.positions(here + "/server.nix", [["enable", 22, 20], ["settings", 23, 20]]);
-const pos$14 = nix.positions(here + "/server.nix", [["openssh", 22, 12]]);
-const pos$15 = nix.positions(here + "/server.nix", [["enable", 26, 26]]);
-const pos$16 = nix.positions(here + "/server.nix", [["googleOsLogin", 26, 12]]);
-const pos$17 = nix.positions(here + "/server.nix", [["networking", 9, 3], ["systemd", 11, 3], ["services", 22, 3], ["security", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,56 +12,56 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$6,
-      firewall: nix.thunk(() => ({ [nix.POS]: pos$1, allowedTCPPorts: nix.thunk(() => [80n]) })),
+      [nix.POS]: $pos[5],
+      firewall: nix.thunk(() => ({ [nix.POS]: $pos[0], allowedTCPPorts: nix.thunk(() => [80n]) })),
       interfaces: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         lo: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           ipv4: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             addresses: nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$2, address: "169.254.169.254", prefixLength: 32n })),
+              nix.thunk(() => ({ [nix.POS]: $pos[1], address: "169.254.169.254", prefixLength: 32n })),
             ]),
           })),
         })),
       })),
     })),
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         "mock-google-metadata": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           description: "Mock Google metadata service",
           serviceConfig: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             Type: "simple",
             ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "python3")}/bin/python ${nix.path(here, "./server.py")}`),
           })),
-          environment: nix.thunk(() => ({ [nix.POS]: pos$8, SNAKEOIL_PUBLIC_KEY: snakeOilPublicKey })),
+          environment: nix.thunk(() => ({ [nix.POS]: $pos[7], SNAKEOIL_PUBLIC_KEY: snakeOilPublicKey })),
           wantedBy: nix.thunk(() => ["multi-user.target"]),
           after: nix.thunk(() => ["network.target"]),
         })),
       })),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       openssh: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         enable: true,
         settings: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           KbdInteractiveAuthentication: false,
           PasswordAuthentication: false,
         })),
       })),
     })),
     security: nix.thunk(() => ({
-      [nix.POS]: pos$16,
-      googleOsLogin: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
+      [nix.POS]: $pos[15],
+      googleOsLogin: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: true })),
     })),
   };
 })(), formals$1);

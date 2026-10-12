@@ -2,34 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/azure-common.nix", [[["default", 19, 7], ["description", 20, 7]], [["acceleratedNetworking", 18, 5]], [["azure", 17, 26]], [["virtualisation", 17, 11]], [["enable", 25, 22]], [["enable", 31, 33]], [["enable", 30, 25], ["network", 31, 25]], [["PermitRootLogin", 69, 31], ["ClientAliveInterval", 70, 31]], [["enable", 68, 22], ["settings", 69, 22]], [["extraRules", 84, 19]], [["waagent", 25, 14], ["cloud-init", 30, 14], ["openssh", 68, 14], ["udev", 84, 14]], [["Restart", 32, 49]], [["serviceConfig", 32, 35]], [["cloud-config", 32, 22]], [["Driver", 59, 19]], [["Unmanaged", 60, 18]], [["matchConfig", 59, 7], ["linkConfig", 60, 7]], [["99-azure-unmanaged-devices.network", 58, 30]], [["networks", 58, 21]], [["services", 32, 13], ["network", 58, 13]], [["unmanaged", 62, 31]], [["useNetworkd", 35, 16], ["networkmanager", 62, 16], ["hostName", 73, 16], ["usePredictableInterfaceNames", 82, 16]], [["kernelModules", 48, 17], ["availableKernelModules", 57, 17]], [["kernelParams", 39, 10], ["initrd", 48, 10]], [["systemPackages", 77, 17]], [["services", 25, 5], ["systemd", 32, 5], ["networking", 35, 5], ["boot", 39, 5], ["environment", 77, 5]], [["options", 17, 3], ["config", 24, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/azure-common.nix", [["default", 19, 7], ["description", 20, 7]]);
-const pos$2 = nix.positions(here + "/azure-common.nix", [["acceleratedNetworking", 18, 5]]);
-const pos$3 = nix.positions(here + "/azure-common.nix", [["azure", 17, 26]]);
-const pos$4 = nix.positions(here + "/azure-common.nix", [["virtualisation", 17, 11]]);
-const pos$5 = nix.positions(here + "/azure-common.nix", [["enable", 25, 22]]);
-const pos$6 = nix.positions(here + "/azure-common.nix", [["enable", 31, 33]]);
-const pos$7 = nix.positions(here + "/azure-common.nix", [["enable", 30, 25], ["network", 31, 25]]);
-const pos$8 = nix.positions(here + "/azure-common.nix", [["PermitRootLogin", 69, 31], ["ClientAliveInterval", 70, 31]]);
-const pos$9 = nix.positions(here + "/azure-common.nix", [["enable", 68, 22], ["settings", 69, 22]]);
-const pos$10 = nix.positions(here + "/azure-common.nix", [["extraRules", 84, 19]]);
-const pos$11 = nix.positions(here + "/azure-common.nix", [["waagent", 25, 14], ["cloud-init", 30, 14], ["openssh", 68, 14], ["udev", 84, 14]]);
-const pos$12 = nix.positions(here + "/azure-common.nix", [["Restart", 32, 49]]);
-const pos$13 = nix.positions(here + "/azure-common.nix", [["serviceConfig", 32, 35]]);
-const pos$14 = nix.positions(here + "/azure-common.nix", [["cloud-config", 32, 22]]);
-const pos$15 = nix.positions(here + "/azure-common.nix", [["Driver", 59, 19]]);
-const pos$16 = nix.positions(here + "/azure-common.nix", [["Unmanaged", 60, 18]]);
-const pos$17 = nix.positions(here + "/azure-common.nix", [["matchConfig", 59, 7], ["linkConfig", 60, 7]]);
-const pos$18 = nix.positions(here + "/azure-common.nix", [["99-azure-unmanaged-devices.network", 58, 30]]);
-const pos$19 = nix.positions(here + "/azure-common.nix", [["networks", 58, 21]]);
-const pos$20 = nix.positions(here + "/azure-common.nix", [["services", 32, 13], ["network", 58, 13]]);
-const pos$21 = nix.positions(here + "/azure-common.nix", [["unmanaged", 62, 31]]);
-const pos$22 = nix.positions(here + "/azure-common.nix", [["useNetworkd", 35, 16], ["networkmanager", 62, 16], ["hostName", 73, 16], ["usePredictableInterfaceNames", 82, 16]]);
-const pos$23 = nix.positions(here + "/azure-common.nix", [["kernelModules", 48, 17], ["availableKernelModules", 57, 17]]);
-const pos$24 = nix.positions(here + "/azure-common.nix", [["kernelParams", 39, 10], ["initrd", 48, 10]]);
-const pos$25 = nix.positions(here + "/azure-common.nix", [["systemPackages", 77, 17]]);
-const pos$26 = nix.positions(here + "/azure-common.nix", [["services", 25, 5], ["systemd", 32, 5], ["networking", 35, 5], ["boot", 39, 5], ["environment", 77, 5]]);
-const pos$27 = nix.positions(here + "/azure-common.nix", [["options", 17, 3], ["config", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,15 +13,15 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "virtualisation", "azure"));
   const mlxDrivers = nix.thunk(() => ["mlx4_en", "mlx4_core", "mlx5_core"]);
   return {
-    [nix.POS]: pos$27,
+    [nix.POS]: $pos[26],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         azure: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           acceleratedNetworking: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               default: false,
               description: "Whether the machine's network interface has enabled accelerated networking.",
             })))),
@@ -55,63 +29,63 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$11,
-        waagent: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+        [nix.POS]: $pos[10],
+        waagent: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
         "cloud-init": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           enable: true,
-          network: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+          network: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
         })),
         openssh: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           enable: true,
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             PermitRootLogin: "prohibit-password",
             ClientAliveInterval: 180n,
           })),
         })),
         udev: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           extraRules: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (i) => nix.str`ENV{DEVTYPE}=="disk", KERNEL!="sda" SUBSYSTEM=="block", SUBSYSTEMS=="scsi", KERNELS=="?:0:0:${nix.builtins.toString(i)}", ATTR{removable}=="0", SYMLINK+="disk/by-lun/${nix.builtins.toString(i)}"
 `, nix.thunk(() => nix.app(nix.sel(lib, "range"), 1n, 15n)))),
         })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           "cloud-config": nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$12, Restart: "on-failure" })),
+            [nix.POS]: $pos[12],
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[11], Restart: "on-failure" })),
           })),
         })),
         network: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           networks: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             "99-azure-unmanaged-devices.network": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "acceleratedNetworking")), nix.thunk(() => ({
-                [nix.POS]: pos$17,
-                matchConfig: nix.thunk(() => ({ [nix.POS]: pos$15, Driver: mlxDrivers })),
-                linkConfig: nix.thunk(() => ({ [nix.POS]: pos$16, Unmanaged: "yes" })),
+                [nix.POS]: $pos[16],
+                matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[14], Driver: mlxDrivers })),
+                linkConfig: nix.thunk(() => ({ [nix.POS]: $pos[15], Unmanaged: "yes" })),
               })))),
           })),
         })),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         useNetworkd: true,
         networkmanager: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           unmanaged: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "acceleratedNetworking")), nix.thunk(() => nix.builtins.map((drv) => nix.str`driver:${drv}`, mlxDrivers)))),
         })),
         hostName: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "")),
         usePredictableInterfaceNames: false,
       })),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         kernelParams: nix.thunk(() => [
           "console=ttyS0",
           "earlyprintk=ttyS0",
@@ -120,13 +94,13 @@ export default nix.lambda((args) => (() => {
           "boot.panic_on_fail",
         ]),
         initrd: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           kernelModules: nix.thunk(() => ["hv_vmbus", "hv_netvsc", "hv_utils", "hv_storvsc"]),
           availableKernelModules: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "acceleratedNetworking")), mlxDrivers)),
         })),
       })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         systemPackages: nix.thunk(() => [
           nix.thunk(() => nix.sel(pkgs, "cryptsetup")),
           nix.thunk(() => nix.sel(pkgs, "sg3_utils")),

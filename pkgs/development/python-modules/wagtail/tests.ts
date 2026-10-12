@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["pname", 20, 3], ["src", 21, 21], ["version", 21, 25], ["pyproject", 22, 3], ["dontBuild", 24, 3], ["dontInstall", 25, 3], ["checkInputs", 27, 3], ["checkPhase", 43, 3]]]);
 const formals$1 = { args: { "azure-mgmt-cdn": false, "azure-mgmt-frontdoor": false, boto3: false, buildPythonPackage: false, "django-pattern-library": false, elasticsearch: false, freezegun: false, jinja2: false, msrest: false, "python-dateutil": false, python: false, pytz: false, responses: false, wagtail: false, "wagtail-factories": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["pname", 20, 3], ["src", 21, 21], ["version", 21, 25], ["pyproject", 22, 3], ["dontBuild", 24, 3], ["dontInstall", 25, 3], ["checkInputs", 27, 3], ["checkPhase", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const wagtail = nix.arg($, "wagtail");
   const wagtail_factories = nix.arg($, "wagtail-factories");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "wagtail-tests",
       src: nix.thunk(() => nix.attr(wagtail, "src")),
       version: nix.thunk(() => nix.attr(wagtail, "version")),

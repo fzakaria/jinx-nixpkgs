@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["yarnLock", 31, 7], ["hash", 32, 7]], [["pname", 26, 5], ["version", 27, 26], ["src", 28, 5], ["offlineCache", 30, 5], ["nativeBuildInputs", 35, 5], ["postInstall", 41, 5]], [["updateScript", 101, 12]], [["description", 104, 5], ["mainProgram", 105, 5], ["downloadPage", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["ui", 25, 3], ["proxyVendor", 47, 3], ["vendorHash", 48, 3], ["subPackages", 52, 3], ["ldflags", 54, 3], ["nativeBuildInputs", 68, 3], ["preBuild", 70, 3], ["prePatch", 77, 3], ["installPhase", 82, 3], ["doInstallCheck", 89, 3], ["installCheckPhase", 90, 3], ["postInstall", 94, 3], ["passthru", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, "nix-update-script": false, stdenv: false, fetchYarnDeps: false, yarnConfigHook: false, yarnBuildHook: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 5], ["version", 27, 26], ["src", 28, 5], ["offlineCache", 30, 5], ["nativeBuildInputs", 35, 5], ["postInstall", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 101, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 104, 5], ["mainProgram", 105, 5], ["downloadPage", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["ui", 25, 3], ["proxyVendor", 47, 3], ["vendorHash", 48, 3], ["subPackages", 52, 3], ["ldflags", 54, 3], ["nativeBuildInputs", 68, 3], ["preBuild", 70, 3], ["prePatch", 77, 3], ["installPhase", 82, 3], ["doInstallCheck", 89, 3], ["installCheckPhase", 90, 3], ["postInstall", 94, 3], ["passthru", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const yarnBuildHook = nix.arg($, "yarnBuildHook");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "argocd",
       version: "3.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "argoproj",
           repo: "argo-cd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Dpn4KHKs766/cmh0gLwaFExQ2tMRbdXZK+2v2jM3iF8=",
         })))),
       ui: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "argocd-ui",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/ui")),
           offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/ui/yarn.lock`),
               hash: "sha256-/B7FviD0a3VDmbbM59Ksmr8apuTRHrRbTtfX4QgO8JM=",
             })))),
@@ -72,11 +67,11 @@ stat ./ui/dist/app/index.html # Sanity check
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd argocd \\\n  --bash <($out/bin/argocd completion bash) \\\n  --fish <($out/bin/argocd completion fish) \\\n  --zsh <($out/bin/argocd completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Declarative continuous deployment for Kubernetes",
         mainProgram: "argocd",
         downloadPage: "https://github.com/argoproj/argo-cd",

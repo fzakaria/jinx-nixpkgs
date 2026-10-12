@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["NIX_CFLAGS_COMPILE", 20, 5]], [["url", 24, 5], ["hash", 25, 5]], [["homepage", 46, 5], ["changelog", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 13, 3], ["version", 14, 3], ["minimalOCamlVersion", 16, 3], ["env", 19, 3], ["src", 23, 3], ["propagatedBuildInputs", 28, 3], ["__darwinAllowLocalNetworking", 32, 3], ["doCheck", 33, 3], ["checkInputs", 35, 3], ["nativeCheckInputs", 41, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, ocaml: false, buildDunePackage: false, fetchurl: false, alcotest: false, domain_shims: false, mdx: false, "thread-table": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 46, 5], ["changelog", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["minimalOCamlVersion", 16, 3], ["env", 19, 3], ["src", 23, 3], ["propagatedBuildInputs", 28, 3], ["__darwinAllowLocalNetworking", 32, 3], ["doCheck", 33, 3], ["checkInputs", 35, 3], ["nativeCheckInputs", 41, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const mdx = nix.arg($, "mdx");
   const thread_table = nix.arg($, "thread-table");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "domain-local-await",
       version: "1.0.1",
       minimalOCamlVersion: "5.0",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")), nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")), nix.thunk(() => ({ [nix.POS]: $pos[0], NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/domain-local-await/releases/download/${nix.sel(finalAttrs, "version")}/domain-local-await-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-KVIRPFPLB+KwVLLchs5yk5Ex2rggfI8xOa2yPmTN+m8=",
         })))),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, domain_shims, mdx]),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/ocaml-multicore/ocaml-domain-local-await",
         changelog: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/ocaml-domain-local-await/raw/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),
         description: "Scheduler independent blocking mechanism",

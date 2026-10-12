@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["build-system", 30, 3], ["nativeCheckInputs", 32, 3], ["__darwinAllowLocalNetworking", 35, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, "flit-core": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["build-system", 30, 3], ["nativeCheckInputs", 32, 3], ["__darwinAllowLocalNetworking", 35, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mahmoud",
           repo: "boltons",
           tag: version,
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "pytest9-compat.patch",
             url: "https://github.com/mahmoud/boltons/commit/a2af58548936c51a3d859f780e54ba170a6829bb.patch",
             hash: "sha256-NRjfEKb0doJEtS5GyrF0dJYYr2u+ukogfUmmVnsHAwM=",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["boltons"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Constructs, recipes, and snippets extending the Python standard library",
         longDescription: "Boltons is a set of over 200 BSD-licensed, pure-Python utilities\nin the same spirit as - and yet conspicuously missing from - the\nstandard library, including:\n\n- Atomic file saving, bolted on with fileutils\n- A highly-optimized OrderedMultiDict, in dictutils\n- Two types of PriorityQueue, in queueutils\n- Chunked and windowed iteration, in iterutils\n- Recursive data structure iteration and merging, with iterutils.remap\n- Exponential backoff functionality, including jitter, through\niterutils.backoff\n- A full-featured TracebackInfo type, for representing stack\ntraces, in tbutils\n",
         homepage: "https://github.com/mahmoud/boltons",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

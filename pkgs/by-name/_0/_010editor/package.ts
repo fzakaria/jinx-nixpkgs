@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 72, 7], ["exec", 73, 7], ["icon", 74, 7], ["desktopName", 75, 7], ["genericName", 76, 7], ["categories", 77, 7], ["mimeTypes", 78, 7]], [["url", 90, 7], ["hash", 91, 7]], [["url", 95, 7], ["hash", 96, 7]], [["x86_64-linux", 89, 5], ["aarch64-darwin", 94, 5]], [["srcs", 88, 12], ["updateScript", 101, 5]], [["description", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["maintainers", 119, 5], ["platforms", 120, 5], ["sourceProvenance", 124, 5], ["mainProgram", 125, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 23, 3], ["strictDeps", 25, 3], ["dontBuild", 26, 3], ["dontConfigure", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 38, 3], ["installPhase", 45, 3], ["desktopItems", 70, 3], ["passthru", 88, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchurl: false, autoPatchelfHook: false, copyDesktopItems: false, makeWrapper: false, makeDesktopItem: false, cups: false, qt6: false, undmg: false, "xkeyboard-config": false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 72, 7], ["exec", 73, 7], ["icon", 74, 7], ["desktopName", 75, 7], ["genericName", 76, 7], ["categories", 77, 7], ["mimeTypes", 78, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 90, 7], ["hash", 91, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 95, 7], ["hash", 96, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 89, 5], ["aarch64-darwin", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["srcs", 88, 12], ["updateScript", 101, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["maintainers", 119, 5], ["platforms", 120, 5], ["sourceProvenance", 124, 5], ["mainProgram", 125, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 23, 3], ["strictDeps", 25, 3], ["dontBuild", 26, 3], ["dontConfigure", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 38, 3], ["installPhase", 45, 3], ["desktopItems", 70, 3], ["passthru", 88, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const xkeyboard_config = nix.arg($, "xkeyboard-config");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "010editor",
       version: "16.0.4",
       src: nix.thunk(() => nix.sel(finalAttrs, "passthru", "srcs", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -66,7 +60,7 @@ runHook postInstall
       })()),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "010editor",
             exec: "010editor %f",
             icon: "010",
@@ -77,16 +71,16 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         srcs: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://download.sweetscape.com/010EditorLinux64Installer${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: "sha256-M1D2Bmi45sYiB0Ci+0X0AxyIeR+On60xt4jP1Jsy5tA=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://download.sweetscape.com/010EditorMacARM64Installer${nix.sel(finalAttrs, "version")}.dmg`),
               hash: "sha256-+yU5JdPNS2BfiZLsBLyyC+ieVNqbIWba3teBlTIDWtk=",
             })))),
@@ -104,7 +98,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Text and hex editor",
         homepage: "https://www.sweetscape.com/010editor/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

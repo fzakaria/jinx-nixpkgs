@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["requiredLv2Packages", 32, 12]], [["description", 38, 5], ["license", 39, 5], ["homepage", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["installPhase", 25, 3], ["passthru", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "bankstown-lv2": false, "lsp-plugins": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["requiredLv2Packages", 32, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["license", 39, 5], ["homepage", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["installPhase", 25, 3], ["passthru", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const bankstown_lv2 = nix.arg($, "bankstown-lv2");
   const lsp_plugins = nix.arg($, "lsp-plugins");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gpd-pocket-4-pipewire",
       version: "0.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Manawyrm",
           repo: "gpd-pocket-4-pipewire",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pipewire.conf.d/sink-gpd-pocket-4.conf \\\n  --replace-fail /usr/share/pipewire/pipewire.conf.d $out/share/pipewire/pipewire.conf.d\n",
       installPhase: "install -dDm0755 \"$out/share/pipewire/pipewire.conf.d/\"\ninstall -v -D -m0644 \"pipewire.conf.d/gpd-pocket-4-mp-48k-l.wav\" \"$out/share/pipewire/pipewire.conf.d/gpd-pocket-4-mp-48k-l.wav\"\ninstall -v -D -m0644 \"pipewire.conf.d/gpd-pocket-4-mp-48k-r.wav\" \"$out/share/pipewire/pipewire.conf.d/gpd-pocket-4-mp-48k-r.wav\"\ninstall -v -D -m0644 \"pipewire.conf.d/sink-gpd-pocket-4.conf\" \"$out/share/pipewire/pipewire.conf.d/sink-gpd-pocket-4.conf\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         requiredLv2Packages: nix.thunk(() => [bankstown_lv2, lsp_plugins]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pipewire audio DSP for internal speakers of GPD Pocket 4",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/Manawyrm/gpd-pocket-4-pipewire/",

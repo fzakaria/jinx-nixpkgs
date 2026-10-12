@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 11], ["hash", 17, 11]], [["url", 20, 11], ["hash", 21, 11]], [["url", 24, 11], ["hash", 25, 11]], [["aarch64-linux", 15, 9], ["x86_64-linux", 19, 9], ["aarch64-darwin", 23, 9]], [["updateScript", 30, 12]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["changelog", 37, 5], ["mainProgram", 38, 5], ["platforms", 39, 5], ["sourceProvenance", 44, 5]], [["pname", 50, 7], ["version", 51, 7], ["src", 52, 7], ["passthru", 53, 7], ["meta", 54, 7], ["sourceRoot", 57, 5], ["nativeBuildInputs", 59, 5], ["unpackPhase", 61, 5], ["installPhase", 63, 5]], [["pname", 74, 56], ["src", 74, 62], ["version", 74, 66]], [["pname", 78, 7], ["version", 79, 7], ["src", 80, 7], ["passthru", 81, 7], ["meta", 82, 7], ["extraInstallCommands", 85, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, appimageTools: false, fetchurl: false, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 11], ["hash", 17, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 11], ["hash", 21, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 24, 11], ["hash", 25, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["aarch64-linux", 15, 9], ["x86_64-linux", 19, 9], ["aarch64-darwin", 23, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 30, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["changelog", 37, 5], ["mainProgram", 38, 5], ["platforms", 39, 5], ["sourceProvenance", 44, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 50, 7], ["version", 51, 7], ["src", 52, 7], ["passthru", 53, 7], ["meta", 54, 7], ["sourceRoot", 57, 5], ["nativeBuildInputs", 59, 5], ["unpackPhase", 61, 5], ["installPhase", 63, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 74, 56], ["src", 74, 62], ["version", 74, 66]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 78, 7], ["version", 79, 7], ["src", 80, 7], ["passthru", 81, 7], ["meta", 82, 7], ["extraInstallCommands", 85, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,26 +15,26 @@ export default nix.lambda((args) => (() => {
   const pname = "dbgate";
   const version = "7.2.4";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "aarch64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/dbgate/dbgate/releases/download/v${version}/dbgate-${version}-linux_arm64.AppImage`),
         hash: "sha256-9X8AyFcKy94blybAEU/H83Ku5oFQU4piVtCTNn4mobE=",
       })),
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/dbgate/dbgate/releases/download/v${version}/dbgate-${version}-linux_x86_64.AppImage`),
         hash: "sha256-v3HPdY5so4IYY8tfk5mqjKOglCvcKk7uKYHV51DoiLM=",
       })),
       "aarch64-darwin": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://github.com/dbgate/dbgate/releases/download/v${version}/dbgate-${version}-mac_universal.dmg`),
         hash: "sha256-GPdDglP2DVGCdchvj1Q5oLU3+DSzTccUbH5LmHGRj/M=",
       })),
     }, () => nix.builtins.throw(nix.thunk(() => nix.str`dbgate: ${nix.sel(stdenv, "hostPlatform", "system")} is unsupported.`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))));
-  const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") }));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     description: "Database manager for MySQL, PostgreSQL, SQL Server, MongoDB, SQLite and others",
     homepage: "https://dbgate.org/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -56,7 +48,7 @@ export default nix.lambda((args) => (() => {
     sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: src,
@@ -67,9 +59,9 @@ export default nix.lambda((args) => (() => {
       unpackPhase: nix.thunk(() => nix.str`7zz x ${src}`),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r *.app $out/Applications\n\nrunHook postInstall\n",
     }))) : (() => {
-    const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$8, pname: pname, src: src, version: version }))));
+    const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[7], pname: pname, src: src, version: version }))));
     return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: pname,
         version: version,
         src: src,

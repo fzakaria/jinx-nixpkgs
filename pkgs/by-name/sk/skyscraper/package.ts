@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["PREFIX", 64, 7]], [["description", 67, 5], ["homepage", 68, 5], ["downloadPage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["postPatch", 43, 3], ["postInstall", 47, 3], ["preFixup", 52, 3], ["env", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, qt6: false, mdbtools: false, p7zip: false, python3: false, sqlite: false, installShellFiles: false, enableXdg: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PREFIX", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["downloadPage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["postPatch", 43, 3], ["postInstall", 47, 3], ["preFixup", 52, 3], ["env", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const enableXdg = nix.argOr($, "enableXdg", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "skyscraper",
       version: "3.20.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Gemba",
           repo: "skyscraper",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,9 +42,9 @@ chmod +x $out/bin/*.py
 sed -i '2i\\\\export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [mdbtools, sqlite]))}:$PATH"' \\
   $out/bin/mdb2sqlite.sh
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Powerful and versatile game data scraper written in Qt and C++",
         homepage: "https://gemba.github.io/skyscraper/",
         downloadPage: nix.thunk(() => nix.str`https://github.com/Gemba/skyscraper/releases/tag/${nix.sel(finalAttrs, "version")}`),

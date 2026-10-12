@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["fetchSubmodules", 16, 5], ["hash", 17, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["broken", 66, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 20, 3], ["nativeBuildInputs", 25, 3], ["cmakeFlags", 27, 3], ["preConfigure", 33, 3], ["doCheck", 37, 3], ["checkPhase", 38, 3], ["installPhase", 44, 3], ["postPatch", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["fetchSubmodules", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["broken", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 20, 3], ["nativeBuildInputs", 25, 3], ["cmakeFlags", 27, 3], ["preConfigure", 33, 3], ["doCheck", 37, 3], ["checkPhase", 38, 3], ["installPhase", 44, 3], ["postPatch", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "l8w8jwt",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GlitchedPolygons",
           repo: "l8w8jwt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p -m777 $out/include $out/lib64\ncp -pr $src/include/l8w8jwt $out/include\ncp -pr l8w8jwt/bin/release/libl8w8jwt.a $out/lib64\n\nrunHook postInstall\n",
       postPatch: "substituteInPlace lib/chillbuff/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Minimal, OpenSSL-less and super lightweight JWT library written in C",
         homepage: "https://codeberg.org/GlitchedPolygons/l8w8jwt",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/GlitchedPolygons/l8w8jwt/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["NIX_CFLAGS_COMPILE", 67, 7]], [["doCheck", 116, 59]], [["valkey", 115, 7], ["unitTests", 116, 7], ["valkey-python", 117, 7]], [["tests", 114, 5], ["serverBin", 119, 5]], [["homepage", 123, 5], ["description", 124, 5], ["license", 125, 5], ["platforms", 126, 5], ["teams", 127, 5], ["changelog", 128, 5], ["mainProgram", 129, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["strictDeps", 48, 3], ["preBuild", 50, 3], ["makeFlags", 55, 3], ["enableParallelBuilding", 65, 3], ["env", 67, 3], ["doCheck", 70, 3], ["nativeCheckInputs", 72, 3], ["checkPhase", 78, 3], ["passthru", 113, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, lua: false, jemalloc: false, "pkg-config": false, nixosTests: false, tcl: false, which: false, ps: false, getconf: false, python3Packages: false, withSystemd: true, systemd: false, tlsSupport: true, openssl: false, useSystemJemalloc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 67, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["doCheck", 116, 59]]);
-const pos$4 = nix.positions(here + "/package.nix", [["valkey", 115, 7], ["unitTests", 116, 7], ["valkey-python", 117, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 114, 5], ["serverBin", 119, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 123, 5], ["description", 124, 5], ["license", 125, 5], ["platforms", 126, 5], ["teams", 127, 5], ["changelog", 128, 5], ["mainProgram", 129, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["strictDeps", 48, 3], ["preBuild", 50, 3], ["makeFlags", 55, 3], ["enableParallelBuilding", 65, 3], ["env", 67, 3], ["doCheck", 70, 3], ["nativeCheckInputs", 72, 3], ["checkPhase", 78, 3], ["passthru", 113, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const useSystemJemalloc = nix.argOr($, "useSystemJemalloc", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "valkey",
       version: "9.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "valkey-io",
           repo: "valkey",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,24 +46,24 @@ export default nix.lambda((args) => (() => {
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), withSystemd, nix.thunk(() => ["USE_SYSTEMD=yes"])), nix.app(nix.sel(lib, "optionals"), tlsSupport, nix.thunk(() => ["BUILD_TLS=yes"])))))),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-std=c11"]))))),
       })),
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => nix.concat([which, tcl, ps], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => [getconf])))),
       checkPhase: "runHook preCheck\n\n# disable test \"Connect multiple replicas at the same time\": even\n# upstream find this test too timing-sensitive\nsubstituteInPlace tests/integration/replication.tcl \\\n  --replace-fail 'foreach mdl {no yes} dualchannel {no yes}' 'foreach mdl {} dualchannel {}'\n\nsubstituteInPlace tests/support/server.tcl \\\n  --replace-fail 'exec /usr/bin/env' 'exec env'\n\nsed -i '/^proc wait_load_handlers_disconnected/{n ; s/wait_for_condition 50 100/wait_for_condition 50 500/; }' \\\n  tests/support/util.tcl\n\nCLIENTS=\"$NIX_BUILD_CORES\"\nif (( $CLIENTS > 4)); then\n  CLIENTS=4\nfi\n\n# Skip some more flaky tests.\n# Skip test requiring custom jemalloc (unit/memefficiency, unit/type/string).\n./runtest \\\n  --no-latency \\\n  --timeout 2000 \\\n  --clients \"$CLIENTS\" \\\n  --tags -leaks \\\n  --skipunit unit/memefficiency \\\n  --skipunit unit/type/string \\\n  --skipunit integration/failover \\\n  --skipunit integration/aof-multi-part \\\n  --skipunit integration/dual-channel-replication\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           valkey: nix.thunk(() => nix.sel(nixosTests, "valkey")),
-          unitTests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
+          unitTests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], doCheck: true })))),
           "valkey-python": nix.thunk(() => nix.sel(python3Packages, "valkey")),
         })),
         serverBin: "valkey-server",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://valkey.io/",
         description: "High-performance data structure server that primarily serves key/value workloads",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

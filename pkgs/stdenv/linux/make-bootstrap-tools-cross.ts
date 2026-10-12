@@ -2,24 +2,22 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-bootstrap-tools-cross.nix", [[["supportedSystems", 10, 5]], [["pkgs", 16, 7]], [["armv5tel-unknown-linux-gnueabi", 28, 5], ["armv6l-unknown-linux-gnueabihf", 29, 5], ["armv7l-unknown-linux-gnueabihf", 30, 5], ["aarch64-unknown-linux-gnu", 31, 5], ["mipsel-unknown-linux-gnu", 32, 5], ["mips64el-unknown-linux-gnuabin32", 33, 5], ["mips64el-unknown-linux-gnuabi64", 34, 5], ["powerpc64-unknown-linux-gnuabielfv1", 35, 5], ["powerpc64-unknown-linux-gnuabielfv2", 36, 5], ["powerpc64le-unknown-linux-gnu", 37, 5], ["riscv64-unknown-linux-gnu", 38, 5], ["s390x-unknown-linux-gnu", 39, 5], ["loongarch64-unknown-linux-gnu", 40, 5], ["aarch64-unknown-linux-musl", 43, 5], ["armv6l-unknown-linux-musleabihf", 44, 5], ["riscv64-unknown-linux-musl", 45, 5]]]);
 const formals$1 = { args: { system: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-bootstrap-tools-cross.nix", [["supportedSystems", 10, 5]]);
-const pos$2 = nix.positions(here + "/make-bootstrap-tools-cross.nix", [["pkgs", 16, 7]]);
-const pos$3 = nix.positions(here + "/make-bootstrap-tools-cross.nix", [["armv5tel-unknown-linux-gnueabi", 28, 5], ["armv6l-unknown-linux-gnueabihf", 29, 5], ["armv7l-unknown-linux-gnueabihf", 30, 5], ["aarch64-unknown-linux-gnu", 31, 5], ["mipsel-unknown-linux-gnu", 32, 5], ["mips64el-unknown-linux-gnuabin32", 33, 5], ["mips64el-unknown-linux-gnuabi64", 34, 5], ["powerpc64-unknown-linux-gnuabielfv1", 35, 5], ["powerpc64-unknown-linux-gnuabielfv2", 36, 5], ["powerpc64le-unknown-linux-gnu", 37, 5], ["riscv64-unknown-linux-gnu", 38, 5], ["s390x-unknown-linux-gnu", 39, 5], ["loongarch64-unknown-linux-gnu", 40, 5], ["aarch64-unknown-linux-musl", 43, 5], ["armv6l-unknown-linux-musleabihf", 44, 5], ["riscv64-unknown-linux-musl", 45, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const lib = nix.thunk(() => nix.attr(releaseLib, "lib"));
-  const releaseLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../top-level/release-lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, supportedSystems: [] }))));
+  const releaseLib = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../top-level/release-lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], supportedSystems: [] }))));
   const make = (crossSystem) => nix.app(nix.builtins.import(nix.path(here, "./make-bootstrap-tools.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pkgs: nix.thunk(() => nix.app(nix.sel(releaseLib, "pkgsForCross"), crossSystem, system)),
     })));
   return nix.app(nix.sel(lib, "mapAttrs"), (n) => make, nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "systems", "examples")), null);
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "armv5tel-unknown-linux-gnueabi": nix.thunk(() => nix.lookup(w, "armv5tel-multiplatform")),
         "armv6l-unknown-linux-gnueabihf": nix.thunk(() => nix.lookup(w, "raspberryPi")),
         "armv7l-unknown-linux-gnueabihf": nix.thunk(() => nix.lookup(w, "armv7l-hf-multiplatform")),

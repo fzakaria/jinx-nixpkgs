@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["group", 29, 7], ["owner", 30, 7], ["repo", 31, 7], ["rev", 32, 7], ["hash", 33, 7]], [["owner", 37, 7], ["repo", 38, 7], ["rev", 39, 7], ["hash", 40, 7]], [["devxlib", 28, 5], ["pw2qmcpack", 36, 5]], [["owner", 50, 5], ["repo", 51, 5], ["rev", 52, 5], ["hash", 53, 5]], [["mpi", 87, 24]], [["description", 126, 5], ["longDescription", 127, 5], ["homepage", 133, 5], ["license", 134, 5], ["platforms", 135, 5], ["maintainers", 138, 5]], [["version", 46, 3], ["pname", 47, 3], ["src", 49, 3], ["prePatch", 57, 3], ["patches", 82, 3], ["passthru", 87, 3], ["nativeBuildInputs", 89, 3], ["buildInputs", 96, 3], ["propagatedBuildInputs", 107, 3], ["propagatedUserEnvPkgs", 108, 3], ["cmakeFlags", 110, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchFromGitHub: false, git: false, cmake: false, gfortran: false, "pkg-config": false, fftw: false, blas: false, lapack: false, scalapack: false, wannier90: false, hdf5: false, libmbd: false, libxc: false, enableMpi: true, mpi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["group", 29, 7], ["owner", 30, 7], ["repo", 31, 7], ["rev", 32, 7], ["hash", 33, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 37, 7], ["repo", 38, 7], ["rev", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["devxlib", 28, 5], ["pw2qmcpack", 36, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["rev", 52, 5], ["hash", 53, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["mpi", 87, 24]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 126, 5], ["longDescription", 127, 5], ["homepage", 133, 5], ["license", 134, 5], ["platforms", 135, 5], ["maintainers", 138, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 46, 3], ["pname", 47, 3], ["src", 49, 3], ["prePatch", 57, 3], ["patches", 82, 3], ["passthru", 87, 3], ["nativeBuildInputs", 89, 3], ["buildInputs", 96, 3], ["propagatedBuildInputs", 107, 3], ["propagatedUserEnvPkgs", 108, 3], ["cmakeFlags", 110, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,9 +28,9 @@ export default nix.lambda((args) => (() => {
   nix.assert_(!nix.asBool(nix.sel(blas, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/science/chemistry/quantum-espresso/default.nix:22:1");
   nix.assert_(!nix.asBool(nix.sel(lapack, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/science/chemistry/quantum-espresso/default.nix:23:1");
   const gitSubmodules = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     devxlib: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         group: "max-centre",
         owner: "components",
         repo: "devicexlib",
@@ -44,7 +38,7 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-p3fRplVG4YSN6ILNlOwf+aSEhpTJPXqiS1+wnzWVA2U=",
       })))),
     pw2qmcpack: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         owner: "QMCPACK",
         repo: "pw2qmcpack",
         rev: "f72ab25fa4ea755c1b4b230ae8074b47d5509c70",
@@ -55,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.5";
       const pname = "quantum-espresso";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "QEF",
           repo: "q-e",
           rev: nix.thunk(() => nix.str`qe-${version}`),
@@ -80,7 +74,7 @@ substituteInPlace cmake/quantum_espresso.pc.in \\
   --replace 'moduledir="\${prefix}/@QE_INSTALL_Fortran_MODULES@/qe"' 'moduledir="@CMAKE_INSTALL_FULL_INCLUDEDIR@/qe"'
 `);
       const patches = nix.thunk(() => [nix.path(here, "./findLibxc.patch")]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, mpi: mpi }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[4], mpi: mpi }));
       const nativeBuildInputs = nix.thunk(() => [cmake, gfortran, git, pkg_config]);
       const buildInputs = nix.thunk(() => nix.concat([fftw, blas, lapack, wannier90, libmbd, libxc, hdf5], nix.app(nix.sel(lib, "optional"), enableMpi, scalapack)));
       const propagatedBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableMpi, mpi));
@@ -99,7 +93,7 @@ substituteInPlace cmake/quantum_espresso.pc.in \\
           "-DQE_ENABLE_SCALAPACK=ON",
         ]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Electronic-structure calculations and materials modeling at the nanoscale",
         longDescription: "Quantum ESPRESSO is an integrated suite of Open-Source computer codes for\nelectronic-structure calculations and materials modeling at the\nnanoscale. It is based on density-functional theory, plane waves, and\npseudopotentials.\n",
         homepage: "https://www.quantum-espresso.org/",
@@ -108,7 +102,7 @@ substituteInPlace cmake/quantum_espresso.pc.in \\
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "costrouc"))]),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         version,
         pname,
         src,

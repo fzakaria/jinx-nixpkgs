@@ -2,13 +2,13 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withQt", 8, 5], ["withWxGTK", 9, 5]]]);
 const formals$1 = { args: { gnuplot: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["withQt", 8, 5], ["withWxGTK", 9, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const gnuplot = nix.arg($, "gnuplot");
-  return nix.app(nix.sel(gnuplot, "override"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, withQt: true, withWxGTK: false }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["gnuplot"])))));
+  return nix.app(nix.sel(gnuplot, "override"), nix.thunk(() => nix.update({ [nix.POS]: $pos[0], withQt: true, withWxGTK: false }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["gnuplot"])))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

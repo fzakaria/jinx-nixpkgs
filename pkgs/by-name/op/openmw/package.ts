@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["colladaSupport", 44, 37]], [["name", 48, 9], ["url", 49, 9], ["hash", 50, 9]], [["patches", 45, 5], ["cmakeFlags", 53, 5]], [["cmakeFlags", 74, 5]], [["owner", 83, 5], ["repo", 84, 5], ["tag", 85, 5], ["hash", 86, 5]], [["LANG", 137, 7]], [["extraArgs", 140, 5]], [["updateScript", 139, 12]], [["description", 147, 5], ["changelog", 148, 5], ["homepage", 149, 5], ["license", 150, 5], ["maintainers", 151, 5], ["platforms", 155, 5], ["badPlatforms", 157, 5]], [["pname", 38, 3], ["version", 39, 3], ["__structuredAttrs", 41, 3], ["strictDeps", 42, 3], ["osg'", 44, 3], ["bullet'", 73, 3], ["src", 82, 3], ["postPatch", 89, 3], ["nativeBuildInputs", 97, 3], ["dontWrapQtApps", 106, 3], ["buildInputs", 108, 3], ["cmakeFlags", 130, 3], ["env", 137, 3], ["passthru", 139, 3], ["meta", 146, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, "nix-update-script": false, SDL2: false, boost: false, bullet: false, cmake: false, "collada-dom": false, ffmpeg: false, libxt: false, lua: false, luajit: false, lz4: false, mygui: false, openal: false, openscenegraph: false, "pkg-config": false, qt6Packages: false, recastnavigation: false, unshield: false, "yaml-cpp": false, GLPreference: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["colladaSupport", 44, 37]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 48, 9], ["url", 49, 9], ["hash", 50, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["patches", 45, 5], ["cmakeFlags", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cmakeFlags", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 83, 5], ["repo", 84, 5], ["tag", 85, 5], ["hash", 86, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["LANG", 137, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 140, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 139, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 147, 5], ["changelog", 148, 5], ["homepage", 149, 5], ["license", 150, 5], ["maintainers", 151, 5], ["platforms", 155, 5], ["badPlatforms", 157, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["__structuredAttrs", 41, 3], ["strictDeps", 42, 3], ["osg'", 44, 3], ["bullet'", 73, 3], ["src", 82, 3], ["postPatch", 89, 3], ["nativeBuildInputs", 97, 3], ["dontWrapQtApps", 106, 3], ["buildInputs", 108, 3], ["cmakeFlags", 130, 3], ["env", 137, 3], ["passthru", 139, 3], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,16 +38,16 @@ export default nix.lambda((args) => (() => {
   const isAarch64Linux = nix.thunk(() => (nix.asBool(isLinux) && nix.asBool(isAarch64)));
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "GLPreference", GLPreference, nix.thunk(() => ["GLVND", "LEGACY"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/op/openmw/package.nix:33:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "openmw",
       version: "0.51.0",
       __structuredAttrs: true,
       strictDeps: true,
-      "osg'": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(openscenegraph, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, colladaSupport: true }))), "overrideAttrs"), (oldAttrs) => ({
-          [nix.POS]: pos$3,
+      "osg'": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(openscenegraph, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], colladaSupport: true }))), "overrideAttrs"), (oldAttrs) => ({
+          [nix.POS]: $pos[2],
           patches: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "patches"), [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 name: "darwin-osg-plugins-fix.patch",
                 url: "https://gitlab.com/OpenMW/openmw-dep/-/raw/1305497c009dc0e7a6a70fe14f0a2f92b96cbcb4/macos/osg.patch",
                 hash: "sha256-G8Y+fnR6FRGxECWrei/Ixch3A3PkRfH6b5q9iawsSCY=",
@@ -70,7 +61,7 @@ export default nix.lambda((args) => (() => {
           ], nix.builtins.map((plugin) => nix.app(nix.sel(lib, "cmakeBool"), nix.thunk(() => nix.str`BUILD_OSG_PLUGIN_${plugin}`), true), nix.thunk(() => ["BMP", "DAE", "DDS", "FREETYPE", "JPEG", "OSG", "PNG", "TGA"]))))),
         }))),
       "bullet'": nix.thunk(() => nix.app(nix.sel(bullet, "overrideAttrs"), (oldAttrs) => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "cmakeFlags"), [
             "-Wno-dev",
             nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "OpenGL_GL_PREFERENCE", GLPreference)),
@@ -79,7 +70,7 @@ export default nix.lambda((args) => (() => {
           ])),
         }))),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "OpenMW",
           repo: "openmw",
           tag: nix.thunk(() => nix.str`openmw-${nix.sel(finalAttrs, "version")}`),
@@ -120,16 +111,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "OPENMW_USE_SYSTEM_RECASTNAVIGATION", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "OPENMW_OSX_DEPLOYMENT", isDarwin)),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$6, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[5], LANG: "C.UTF-8" })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             extraArgs: nix.thunk(() => ["--version-regex", "openmw-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Unofficial open source engine reimplementation of the game Morrowind",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/OpenMW/openmw/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         homepage: "https://openmw.org",

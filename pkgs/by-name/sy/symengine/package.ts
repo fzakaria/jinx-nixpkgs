@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["url", 33, 7], ["hash", 34, 7]], [["url", 37, 7], ["hash", 38, 7]], [["description", 64, 5], ["homepage", 65, 5], ["platforms", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["patches", 31, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 44, 3], ["cmakeFlags", 51, 3], ["doCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, cmake: false, gmp: false, flint: false, mpfr: false, libmpc: false, withShared: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["platforms", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["patches", 31, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 44, 3], ["cmakeFlags", 51, 3], ["doCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libmpc = nix.arg($, "libmpc");
   const withShared = nix.argOr($, "withShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "symengine",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "symengine",
           repo: "symengine",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/symengine/symengine/commit/c149b874b8ff947e51e8e58670a0d37daf588f86.patch?full_index=1",
             hash: "sha256-LqkJRPdsbE8OE8G6AkpWX9B+GqnOQjUNPHpKKIcCL3Q=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/symengine/symengine/commit/186f72e208220efd12362c336a49378076f63f30.patch?full_index=1",
             hash: "sha256-CuQra9K3MTxm8M0bt3LooJz9HgW0/Jy6ydRBCvEgkO4=",
           })))),
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast symbolic manipulation library",
         homepage: "https://github.com/symengine/symengine",
         platforms: nix.thunk(() => (() => {

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/semgrep-core.nix", [[["lib", 11, 42]], [["pname", 31, 7], ["version", 32, 28], ["format", 33, 7], ["dist", 34, 7], ["python", 35, 15], ["platform", 36, 22], ["hash", 36, 31]], [["description", 87, 5], ["mainProgram", 88, 5], ["sourceProvenance", 89, 5], ["platforms", 90, 5]], [["pname", 14, 3], ["version", 15, 20], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 24, 3], ["nativeBuildInputs", 39, 3], ["unpackPhase", 49, 3], ["dontConfigure", 55, 3], ["dontBuild", 56, 3], ["installPhase", 58, 3], ["dontPatchELF", 77, 3], ["dontStrip", 78, 3], ["postFixup", 79, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchPypi: false, patchelf: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/semgrep-core.nix", [["lib", 11, 42]]);
-const pos$2 = nix.positions(here + "/semgrep-core.nix", [["pname", 31, 7], ["version", 32, 28], ["format", 33, 7], ["dist", 34, 7], ["python", 35, 15], ["platform", 36, 22], ["hash", 36, 31]]);
-const pos$3 = nix.positions(here + "/semgrep-core.nix", [["description", 87, 5], ["mainProgram", 88, 5], ["sourceProvenance", 89, 5], ["platforms", 90, 5]]);
-const pos$4 = nix.positions(here + "/semgrep-core.nix", [["pname", 14, 3], ["version", 15, 20], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 24, 3], ["nativeBuildInputs", 39, 3], ["unpackPhase", 49, 3], ["dontConfigure", 55, 3], ["dontBuild", 56, 3], ["installPhase", 58, 3], ["dontPatchELF", 77, 3], ["dontStrip", 78, 3], ["postFixup", 79, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const patchelf = nix.arg($, "patchelf");
   const unzip = nix.arg($, "unzip");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "semgrep-core",
       version: nix.thunk(() => nix.attr(common, "version")),
       __structuredAttrs: true,
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
         const data = nix.thunk(() => nix.selOr(common, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), "core", nix.key(nix.force(system))));
         const python = nix.thunk(() => nix.sel(common, "pythonWheelTag"));
         return nix.app(fetchPypi, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: "semgrep",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             format: "wheel",
@@ -61,7 +58,7 @@ runHook postInstall
   $out/bin/semgrep-core
 `))),
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: nix.thunk(() => nix.add(nix.sel(common, "meta", "description"), " - core binary")),
         mainProgram: "semgrep-core",
         sourceProvenance: nix.thunk(() => (() => {

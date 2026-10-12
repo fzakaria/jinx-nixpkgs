@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/async.nix", [[["description", 67, 5]], [["pname", 26, 3], ["version", 29, 5], ["src", 30, 5], ["minimalOCamlVersion", 33, 3], ["buildInputs", 35, 3], ["propagatedBuildInputs", 37, 3], ["__darwinAllowLocalNetworking", 54, 3], ["doCheck", 56, 3], ["checkInputs", 57, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, ppx_sexp_conv: false, base: false, async: false, async_kernel: false, async_unix: false, cohttp: false, "conduit-async": false, core_unix: true, uri: false, "uri-sexp": false, logs: false, fmt: false, sexplib0: false, ipaddr: false, "magic-mime": false, ounit: false, "mirage-crypto": false, core: false, digestif: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/async.nix", [["description", 67, 5]]);
-const pos$2 = nix.positions(here + "/async.nix", [["pname", 26, 3], ["version", 29, 5], ["src", 30, 5], ["minimalOCamlVersion", 33, 3], ["buildInputs", 35, 3], ["propagatedBuildInputs", 37, 3], ["__darwinAllowLocalNetworking", 54, 3], ["doCheck", 56, 3], ["checkInputs", 57, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const core = nix.arg($, "core");
   const digestif = nix.arg($, "digestif");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "cohttp-async",
       version: nix.thunk(() => nix.attr(cohttp, "version")),
       src: nix.thunk(() => nix.attr(cohttp, "src")),
@@ -56,7 +55,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => nix.concat([ounit, core, digestif], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(cohttp, "version")), "6.0.0")), nix.thunk(() => [mirage_crypto])))),
       meta: nix.thunk(() => nix.update(nix.sel(cohttp, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "CoHTTP implementation for the Async concurrency library",
       })),
     })));

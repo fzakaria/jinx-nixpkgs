@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 40, 5], ["mainProgram", 41, 5], ["longDescription", 42, 5], ["homepage", 47, 5], ["downloadPage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["outputs", 22, 3], ["nativeBuildInputs", 30, 3], ["enableParallelBuilding", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, libtool: false, ghostscript: false, groff: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["mainProgram", 41, 5], ["longDescription", 42, 5], ["homepage", 47, 5], ["downloadPage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["outputs", 22, 3], ["nativeBuildInputs", 30, 3], ["enableParallelBuilding", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const groff = nix.arg($, "groff");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fstrcmp",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://sourceforge.net/projects/fstrcmp/files/fstrcmp/${nix.sel(finalAttrs, "version")}/fstrcmp-${nix.sel(finalAttrs, "version")}.D001.tar.gz`),
           sha256: "0yg3y3k0wz50gmhgigfi2dx725w1gc8snb95ih7vpcnj6kabgz9a",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [libtool, ghostscript, groff, autoreconfHook]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Make fuzzy comparisons of strings and byte arrays",
         mainProgram: "fstrcmp",
         longDescription: "The fstrcmp project provides a library that is used to make fuzzy\ncomparisons of strings and byte arrays, including multi-byte character\nstrings.\n",

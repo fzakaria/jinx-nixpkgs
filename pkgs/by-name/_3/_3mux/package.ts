@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]], [["name", 23, 7], ["url", 24, 7], ["hash", 25, 7]], [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]], [["description", 54, 5], ["mainProgram", 55, 5], ["longDescription", 56, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 65, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["nativeBuildInputs", 36, 3], ["vendorHash", 38, 3], ["excludedPackages", 42, 3], ["postInstall", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchpatch: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 23, 7], ["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 54, 5], ["mainProgram", 55, 5], ["longDescription", 56, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["nativeBuildInputs", 36, 3], ["vendorHash", 38, 3], ["excludedPackages", 42, 3], ["postInstall", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "3mux",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aaronjanse",
           repo: "3mux",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,13 +25,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "use-shorter-uuids.patch",
             url: "https://github.com/aaronjanse/3mux/commit/6dd36694586f96e3c82ef7db1a0e7917ceb05794.patch",
             hash: "sha256-FnFupOIIQi66mvjshn3EQ6XRzC4cLx3vGTeTUM1HOwM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "darwin-go-1.18-fix.patch",
             url: "https://github.com/aaronjanse/3mux/commit/f2c26c1037927896d6e9a17ea038f8260620fbd4.patch",
             hash: "sha256-RC3p30r0PGUKrxo8uOLL02oyfLqLfhNjBYy6E+OQ2f0=",
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       excludedPackages: nix.thunk(() => ["fuzz"]),
       postInstall: "wrapProgram $out/bin/3mux --prefix PATH : $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Terminal multiplexer inspired by i3",
         mainProgram: "3mux",
         longDescription: "Terminal multiplexer with out-of-the-box support for search,\nmouse-controlled scrollback, and i3-like keybindings\n",

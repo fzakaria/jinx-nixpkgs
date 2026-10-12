@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["owner", 70, 7], ["repo", 71, 7], ["tag", 72, 7], ["hash", 73, 7]], [["pname", 66, 5], ["version", 67, 5], ["src", 69, 5], ["nativeBuildInputs", 76, 5], ["installPhase", 78, 5]], [["modelVersion", 28, 12], ["voicevox-onnxruntime", 63, 12], ["models", 65, 12], ["wrapped", 94, 12]], [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["ORT_LIB_LOCATION", 52, 7]], [["changelog", 109, 5], ["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["maintainers", 113, 5]], [["pname", 23, 3], ["version", 27, 3], ["passthru", 28, 3], ["src", 30, 3], ["cargoHash", 37, 3], ["postPatch", 39, 3], ["cargoBuildFlags", 46, 3], ["buildFeatures", 49, 3], ["env", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 59, 3], ["doCheck", 61, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, runCommand: false, rustPlatform: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, python3: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 70, 7], ["repo", 71, 7], ["tag", 72, 7], ["hash", 73, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 66, 5], ["version", 67, 5], ["src", 69, 5], ["nativeBuildInputs", 76, 5], ["installPhase", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["modelVersion", 28, 12], ["voicevox-onnxruntime", 63, 12], ["models", 65, 12], ["wrapped", 94, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ORT_LIB_LOCATION", 52, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 109, 5], ["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["maintainers", 113, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 27, 3], ["passthru", 28, 3], ["src", 30, 3], ["cargoHash", 37, 3], ["postPatch", 39, 3], ["cargoBuildFlags", 46, 3], ["buildFeatures", 49, 3], ["env", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 59, 3], ["doCheck", 61, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,26 +18,26 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const openssl = nix.arg($, "openssl");
   const openjtalk_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "VOICEVOX",
       repo: "open_jtalk",
       rev: "1.11",
       hash: "sha256-SBLdQ8D62QgktI8eI6eSNzdYt5PmGo6ZUCKxd01Z8UE=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "voicevox-core",
       version: "0.16.2",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         modelVersion: "0.16.4",
         "voicevox-onnxruntime": nix.thunk(() => nix.app(callPackage, nix.path(here, "./onnxruntime.nix"), nix.thunk(() => ({})))),
         models: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: "voicevox-models",
             version: nix.thunk(() => nix.sel(finalAttrs, "passthru", "modelVersion")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 owner: "VOICEVOX",
                 repo: "voicevox_vvm",
                 tag: nix.thunk(() => nix.sel(finalAttrs, "passthru", "modelVersion")),
@@ -61,7 +54,7 @@ ln -s ${nix.sel(finalAttrs, "passthru", "models")} "$out"/lib/model
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "patchelf --add-rpath '$ORIGIN' \"$out\"/lib/libvoicevox_core*\n"))))),
       })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "VOICEVOX",
           repo: "voicevox_core",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -75,12 +68,12 @@ patch -d $cargoDepsCopy/*/open_jtalk-sys-* -p1 < ./openjtalk.patch
 `),
       cargoBuildFlags: nix.thunk(() => ["-p voicevox_core_c_api"]),
       buildFeatures: nix.thunk(() => ["load-onnxruntime"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$6, ORT_LIB_LOCATION: "dummy" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[5], ORT_LIB_LOCATION: "dummy" })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://github.com/VOICEVOX/voicevox_core/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Core library for the VOICEVOX speech synthesis software",
         homepage: "https://github.com/VOICEVOX/voicevox_core",

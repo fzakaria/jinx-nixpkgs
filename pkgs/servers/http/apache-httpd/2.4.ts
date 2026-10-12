@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/2.4.nix", [[["url", 44, 5], ["hash", 45, 5]], [["name", 52, 7], ["url", 53, 7], ["hash", 54, 7]], [["NIX_LDFLAGS", 101, 5]], [["acme-integration", 158, 7], ["proxy", 159, 7], ["php", 160, 7], ["cross", 161, 7]], [["apr", 149, 7], ["aprutil", 150, 7], ["sslSupport", 151, 7], ["proxySupport", 152, 7], ["ldapSupport", 153, 7], ["luaSupport", 154, 7], ["lua5", 155, 7], ["tests", 157, 5]], [["description", 169, 5], ["homepage", 170, 5], ["license", 171, 5], ["platforms", 172, 5], ["maintainers", 173, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["patches", 48, 3], ["outputs", 59, 3], ["setOutputFlags", 65, 3], ["depsBuildBuild", 67, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 76, 3], ["postPatch", 91, 3], ["env", 100, 3], ["configureFlags", 104, 3], ["enableParallelBuilding", 132, 3], ["stripDebugList", 134, 3], ["postInstall", 140, 3], ["passthru", 147, 3], ["meta", 168, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch2: false, autoreconfHook: false, "pkg-config": false, perl: false, zlib: false, apr: false, aprutil: false, pcre2: false, libiconv: false, lynx: false, withLynx: true, which: false, libxcrypt: false, buildPackages: false, pkgsCross: false, runCommand: false, nixosTests: false, proxySupport: true, sslSupport: true, openssl: false, http2Support: true, nghttp2: false, ldapSupport: true, openldap: false, libxml2Support: true, libxml2: false, brotliSupport: true, brotli: false, luaSupport: true, lua5: false, systemdSupport: true, systemdLibs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/2.4.nix", [["url", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/2.4.nix", [["name", 52, 7], ["url", 53, 7], ["hash", 54, 7]]);
-const pos$3 = nix.positions(here + "/2.4.nix", [["NIX_LDFLAGS", 101, 5]]);
-const pos$4 = nix.positions(here + "/2.4.nix", [["acme-integration", 158, 7], ["proxy", 159, 7], ["php", 160, 7], ["cross", 161, 7]]);
-const pos$5 = nix.positions(here + "/2.4.nix", [["apr", 149, 7], ["aprutil", 150, 7], ["sslSupport", 151, 7], ["proxySupport", 152, 7], ["ldapSupport", 153, 7], ["luaSupport", 154, 7], ["lua5", 155, 7], ["tests", 157, 5]]);
-const pos$6 = nix.positions(here + "/2.4.nix", [["description", 169, 5], ["homepage", 170, 5], ["license", 171, 5], ["platforms", 172, 5], ["maintainers", 173, 5]]);
-const pos$7 = nix.positions(here + "/2.4.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["patches", 48, 3], ["outputs", 59, 3], ["setOutputFlags", 65, 3], ["depsBuildBuild", 67, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 76, 3], ["postPatch", 91, 3], ["env", 100, 3], ["configureFlags", 104, 3], ["enableParallelBuilding", 132, 3], ["stripDebugList", 134, 3], ["postInstall", 140, 3], ["passthru", 147, 3], ["meta", 168, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,13 +46,13 @@ export default nix.lambda((args) => (() => {
       const pname = "apache-httpd";
       const version = "2.4.69";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/httpd/httpd-${version}.tar.bz2`),
           hash: "sha256-xebrxm40m4fX/GkWrnzCqAjtNIAD3hNM+enYnT4sxz0=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "apache-httpd-cross-compile.patch",
             url: "https://gitlab.com/buildroot.org/buildroot/-/raw/5dae8cddeecf16c791f3c138542ec51c4e627d75/package/apache/0001-cross-compile.patch",
             hash: "sha256-KGnAa6euOt6dkZQwURyVITcfqTkDkSR8zpE97DywUUw=",
@@ -75,7 +69,7 @@ sed -i configure.in \\
   -e 's|perlbin=.*|perlbin="/usr/bin/env perl"|'
 ${nix.app(nix.sel(lib, "optionalString"), withLynx, nix.thunk(() => nix.str`sed -i support/apachectl.in -e 's|@LYNX_PATH@|${lynx}/bin/lynx|'`))}
 `);
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-lgcc_s" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_LDFLAGS: "-lgcc_s" }))));
       const configureFlags = nix.thunk(() => nix.concat([
         nix.thunk(() => nix.str`--with-apr=${nix.sel(apr, "dev")}`),
         nix.thunk(() => nix.str`--with-apr-util=${nix.sel(aprutil, "dev")}`),
@@ -102,7 +96,7 @@ ${nix.app(nix.sel(lib, "optionalString"), withLynx, nix.thunk(() => nix.str`sed 
       const stripDebugList = nix.thunk(() => ["lib", "modules", "bin"]);
       const postInstall = "mkdir -p $doc/share/doc/httpd\nmv $out/manual $doc/share/doc/httpd\nmkdir -p $dev/bin\nmv $out/bin/apxs $dev/bin/apxs\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         apr: apr,
         aprutil: aprutil,
         sslSupport: sslSupport,
@@ -111,7 +105,7 @@ ${nix.app(nix.sel(lib, "optionalString"), withLynx, nix.thunk(() => nix.str`sed 
         luaSupport: luaSupport,
         lua5: lua5,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "acme-integration": nix.thunk(() => nix.sel(nixosTests, "acme", "httpd")),
           proxy: nix.thunk(() => nix.sel(nixosTests, "proxy")),
           php: nix.thunk(() => nix.sel(nixosTests, "php", "httpd")),
@@ -121,7 +115,7 @@ head -n1 ${nix.sel(pkgsCross, "aarch64-multiplatform", "apacheHttpd")}/bin/dbmma
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Apache HTTPD, the world's most popular web server",
         homepage: "https://httpd.apache.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -132,7 +126,7 @@ head -n1 ${nix.sel(pkgsCross, "aarch64-multiplatform", "apacheHttpd")}/bin/dbmma
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

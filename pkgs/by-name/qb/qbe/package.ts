@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["can-run-hello-world", 32, 11]], [["tests", 32, 5]], [["homepage", 36, 5], ["description", 37, 5], ["maintainers", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["mainProgram", 41, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["makeFlags", 16, 3], ["doCheck", 21, 3], ["enableParallelBuilding", 23, 3], ["patches", 25, 3], ["passthru", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["can-run-hello-world", 32, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 36, 5], ["description", 37, 5], ["maintainers", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["mainProgram", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["makeFlags", 16, 3], ["doCheck", 21, 3], ["enableParallelBuilding", 23, 3], ["patches", 25, 3], ["passthru", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "qbe",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://c9x.me/compile/release/qbe-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-UgtJnZF/YtD54OBy9HzGRAEHx5tC9Wo2YcUidGwrv+s=",
         })))),
@@ -32,14 +28,14 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       patches: nix.thunk(() => [nix.path(here, "./001-dont-hardcode-tmp.patch")]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "can-run-hello-world": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-can-run-hello-world.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://c9x.me/compile/",
         description: "Small compiler backend written in C",
         maintainers: nix.thunk(() => (() => {

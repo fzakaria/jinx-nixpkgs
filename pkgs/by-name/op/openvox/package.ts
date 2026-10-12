@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ruby", 10, 24]], [["package", 17, 7], ["command", 18, 7], ["version", 19, 47]], [["version", 16, 11]], [["tests", 16, 5], ["updateScript", 21, 5]], [["description", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["mainProgram", 29, 5], ["maintainers", 30, 5]], [["pname", 11, 3], ["gemdir", 12, 3], ["exes", 13, 3], ["passthru", 15, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { bundlerApp: false, bundlerUpdateScript: false, lib: false, openvox: false, ruby_3_4: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ruby", 10, 24]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 17, 7], ["command", 18, 7], ["version", 19, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 16, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 16, 5], ["updateScript", 21, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["mainProgram", 29, 5], ["maintainers", 30, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["gemdir", 12, 3], ["exes", 13, 3], ["passthru", 15, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const openvox = nix.arg($, "openvox");
   const ruby_3_4 = nix.arg($, "ruby_3_4");
   const testers = nix.arg($, "testers");
-  return nix.app(nix.sel(bundlerApp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, ruby: ruby_3_4 })), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+  return nix.app(nix.sel(bundlerApp, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], ruby: ruby_3_4 })), nix.thunk(() => ({
+      [nix.POS]: $pos[5],
       pname: "openvox",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["puppet"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "openvox"));
               return {
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: openvox,
               command: "HOME=$(mktemp -d) puppet --version",
               version: nix.thunk(() => nix.attr(from, "version")),
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "openvox")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Server automation framework and application",
         homepage: "https://github.com/OpenVoxProject/openvox",
         changelog: "https://github.com/OpenVoxProject/openvox/blob/main/CHANGELOG.md",

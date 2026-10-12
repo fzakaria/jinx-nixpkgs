@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["homepage", 42, 5], ["description", 43, 5], ["longDescription", 44, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 24], ["mainProgram", 58, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["postConfigure", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromSourcehut: false, "pkg-config": false, "river-classic": false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, zig_0_15: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["longDescription", 44, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 24], ["mainProgram", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["postConfigure", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_15 = nix.arg($, "zig_0_15");
   const zig = zig_0_15;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rivercarro",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~novakane",
           repo: "rivercarro",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(zig, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git.sr.ht/~novakane/rivercarro",
         description: "Layout generator for river Wayland compositor, fork of rivertile",
         longDescription: "A slightly modified version of rivertile layout generator for river.\n\nCompared to rivertile, rivercarro adds:\n- Monocle layout, views will takes all the usable area on the screen.\n- Gaps instead of padding around views or layout area.\n- Modify gaps size at runtime.\n- Smart gaps, if there is only one view, gaps will be disable.\n- Limit the width of the usable area of the screen.\n",

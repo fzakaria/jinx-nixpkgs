@@ -2,80 +2,64 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [[["emptyDiskImages", 10, 9], ["useBootLoader", 14, 9], ["mountHostNixStore", 16, 9], ["useEFIBoot", 17, 9]], [["enable", 19, 32]], [["canTouchEfiVariables", 20, 23]], [["systemd-boot", 19, 19], ["efi", 20, 19]], [["enable", 24, 9], ["emergencyAccess", 25, 9]], [["systemd", 23, 19]], [["loader", 19, 12], ["initrd", 23, 12]], [["systemPackages", 22, 19]], [["fsType", 30, 15]], [["/", 30, 11]], [["rootDevice", 32, 24]], [["fileSystems", 29, 9], ["virtualisation", 32, 9]], [["configuration", 28, 38]], [["boot-btrfs-raid", 28, 22]], [["virtualisation", 9, 7], ["boot", 19, 7], ["environment", 22, 7], ["specialisation", 28, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 36, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["emptyDiskImages", 10, 9], ["useBootLoader", 14, 9], ["mountHostNixStore", 16, 9], ["useEFIBoot", 17, 9]]);
-const pos$2 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["enable", 19, 32]]);
-const pos$3 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["canTouchEfiVariables", 20, 23]]);
-const pos$4 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["systemd-boot", 19, 19], ["efi", 20, 19]]);
-const pos$5 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["enable", 24, 9], ["emergencyAccess", 25, 9]]);
-const pos$6 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["systemd", 23, 19]]);
-const pos$7 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["loader", 19, 12], ["initrd", 23, 12]]);
-const pos$8 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["systemPackages", 22, 19]]);
-const pos$9 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["fsType", 30, 15]]);
-const pos$10 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["/", 30, 11]]);
-const pos$11 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["rootDevice", 32, 24]]);
-const pos$12 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["fileSystems", 29, 9], ["virtualisation", 32, 9]]);
-const pos$13 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["configuration", 28, 38]]);
-const pos$14 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["boot-btrfs-raid", 28, 22]]);
-const pos$15 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["virtualisation", 9, 7], ["boot", 19, 7], ["environment", 22, 7], ["specialisation", 28, 7]]);
-const pos$16 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["machine", 5, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$17 = nix.positions(here + "/systemd-initrd-btrfs-raid.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "systemd-initrd-btrfs-raid",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             emptyDiskImages: nix.thunk(() => [512n, 512n]),
             useBootLoader: true,
             mountHostNixStore: true,
             useEFIBoot: true,
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
-              efi: nix.thunk(() => ({ [nix.POS]: pos$3, canTouchEfiVariables: true })),
+              [nix.POS]: $pos[3],
+              "systemd-boot": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+              efi: nix.thunk(() => ({ [nix.POS]: $pos[2], canTouchEfiVariables: true })),
             })),
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              systemd: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, emergencyAccess: true })),
+              [nix.POS]: $pos[5],
+              systemd: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true, emergencyAccess: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "btrfs-progs"))];
             })()),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             "boot-btrfs-raid": nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 fileSystems: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     "/": nix.thunk(() => ({
-                      [nix.POS]: pos$9,
+                      [nix.POS]: $pos[8],
                       fsType: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "btrfs")),
                     })),
                   })))),
-                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$11, rootDevice: "/dev/vdb" })),
+                virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[10], rootDevice: "/dev/vdb" })),
               })),
             })),
           })),

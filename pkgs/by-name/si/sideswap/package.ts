@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["name", 55, 7], ["exec", 56, 7], ["desktopName", 57, 7], ["genericName", 58, 7], ["icon", 59, 7], ["comment", 60, 7], ["categories", 61, 7], ["startupNotify", 65, 7], ["startupWMClass", 66, 7], ["terminal", 67, 7]], [["src", 81, 32], ["nativeBuildInputs", 82, 11]], [["rev-prefix", 92, 23]], [["supportedFeatures", 94, 11]], [["supportedFeatures", 102, 11]], [["command", 106, 9], ["supportedFeatures", 113, 9]], [["command", 118, 9], ["supportedFeatures", 119, 9]], [["lib", 76, 5], ["pubspecSource", 78, 5], ["updateScript", 89, 5]], [["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["mainProgram", 128, 5], ["platforms", 129, 5], ["maintainers", 130, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["pubspecLock", 34, 3], ["gitHashes", 35, 3], ["extraWrapProgramArgs", 38, 3], ["postInstall", 47, 3], ["desktopItems", 53, 3], ["nativeBuildInputs", 70, 3], ["passthru", 74, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, flutter341: false, callPackage: false, makeDesktopItem: false, copyDesktopItems: false, "_experimental-update-script-combinators": false, gitUpdater: false, runCommand: false, sideswap: false, "yq-go": false, dart: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 55, 7], ["exec", 56, 7], ["desktopName", 57, 7], ["genericName", 58, 7], ["icon", 59, 7], ["comment", 60, 7], ["categories", 61, 7], ["startupNotify", 65, 7], ["startupWMClass", 66, 7], ["terminal", 67, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 81, 32], ["nativeBuildInputs", 82, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["rev-prefix", 92, 23]]);
-const pos$5 = nix.positions(here + "/package.nix", [["supportedFeatures", 94, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["supportedFeatures", 102, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["command", 106, 9], ["supportedFeatures", 113, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["command", 118, 9], ["supportedFeatures", 119, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["lib", 76, 5], ["pubspecSource", 78, 5], ["updateScript", 89, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["mainProgram", 128, 5], ["platforms", 129, 5], ["maintainers", 130, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["pubspecLock", 34, 3], ["gitHashes", 35, 3], ["extraWrapProgramArgs", 38, 3], ["postInstall", 47, 3], ["desktopItems", 53, 3], ["nativeBuildInputs", 70, 3], ["passthru", 74, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const dart = nix.arg($, "dart");
   const libsideswap_client = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libsideswap-client.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(flutter341, "buildFlutterApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "sideswap",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sideswap-io",
           repo: "sideswapclient",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -D -m644 assets/icon/icon_linux.svg $out/share/icons/hicolor/scalable/apps/sideswap.svg\ninstall -D -m644 assets/icon/icon_linux.png $out/share/icons/hicolor/256x256/apps/sideswap.png\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "sideswap",
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             desktopName: "SideSwap",
@@ -63,18 +53,18 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         lib: libsideswap_client,
         pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             nativeBuildInputs: nix.thunk(() => [yq_go]),
           })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.update(nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" }))), { [nix.POS]: pos$5, supportedFeatures: [] })),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "sideswap.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$6, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "v" }))), { [nix.POS]: $pos[4], supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "sideswap.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: $pos[5], supportedFeatures: [] })),
             nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               command: nix.thunk(() => [
                 nix.thunk(() => nix.sel(dart, "fetchGitHashesScript")),
                 "--input",
@@ -85,14 +75,14 @@ export default nix.lambda((args) => (() => {
               supportedFeatures: [],
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               command: nix.thunk(() => [nix.path(here, "./update-libsideswap-client.sh")]),
               supportedFeatures: [],
             })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Cross‑platform, non‑custodial wallet and atomic swap marketplace for the Liquid Network",
         homepage: "https://sideswap.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withCustomModes", 115, 44]], [["url", 192, 7], ["hash", 193, 7]], [["package", 293, 45]], [["version", 293, 13]], [["updateScript", 292, 7], ["tests", 293, 7]], [["pname", 188, 13], ["meta", 188, 19], ["version", 189, 5], ["src", 191, 5], ["strictDeps", 198, 5], ["nativeBuildInputs", 200, 5], ["buildInputs", 206, 5], ["rpath", 216, 5], ["binpath", 217, 5], ["installPhase", 219, 5], ["postInstall", 287, 5], ["passthru", 291, 5]], [["url", 303, 7], ["hash", 304, 7]], [["package", 340, 45]], [["version", 340, 13]], [["updateScript", 339, 7], ["tests", 340, 7]], [["pname", 298, 13], ["meta", 298, 19], ["version", 299, 5], ["uuid", 300, 5], ["src", 302, 5], ["dontPatch", 307, 5], ["dontConfigure", 308, 5], ["dontBuild", 309, 5], ["dontFixup", 310, 5], ["nativeBuildInputs", 312, 5], ["sourceRoot", 317, 5], ["installPhase", 319, 5], ["postInstall", 334, 5], ["passthru", 338, 5]], [["description", 345, 5], ["homepage", 346, 5], ["changelog", 347, 5], ["license", 348, 5], ["maintainers", 349, 5], ["platforms", 357, 5], ["sourceProvenance", 360, 5], ["mainProgram", 361, 5]]]);
 const formals$1 = { args: { bintools: false, fetchurl: false, lib: false, makeWrapper: false, patchelf: false, stdenvNoCC: false, testers: false, dpkg: false, "alsa-lib": false, "at-spi2-atk": false, "at-spi2-core": false, atk: false, cairo: false, cups: false, dbus: false, expat: false, fontconfig: false, freetype: false, "gcc-unwrapped": false, "gdk-pixbuf": false, glib: false, gtk3: false, gtk4: false, libdrm: false, libglvnd: false, libkrb5: false, libx11: false, libxcb: false, libxcomposite: false, libxcursor: false, libxdamage: false, libxext: false, libxfixes: false, libxi: false, libxkbcommon: false, libxrandr: false, libxrender: false, libxscrnsaver: false, libxshmfence: false, libxtst: false, libgbm: false, nspr: false, nss: false, pango: false, pipewire: false, "vulkan-loader": false, wayland: false, coreutils: false, commandLineArgs: true, systemd: false, libexif: false, pciutils: false, curl: false, liberation_ttf: false, "util-linux": false, wget: false, "xdg-utils": false, flac: false, harfbuzz: false, icu: false, libopus: false, libpng: false, snappy: false, "speechd-minimal": false, bzip2: false, libcap: false, libpulseaudio: false, pulseSupport: true, "adwaita-icon-theme": false, "gsettings-desktop-schemas": false, libva: false, libvaSupport: true, addDriverRunpath: false, undmg: false, plasmaSupport: true, qt6: false, kdePackages: false, cacert: false, libsecret: false, libuuid: false, withSymlink: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withCustomModes", 115, 44]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 192, 7], ["hash", 193, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 293, 45]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 293, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 292, 7], ["tests", 293, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 188, 13], ["meta", 188, 19], ["version", 189, 5], ["src", 191, 5], ["strictDeps", 198, 5], ["nativeBuildInputs", 200, 5], ["buildInputs", 206, 5], ["rpath", 216, 5], ["binpath", 217, 5], ["installPhase", 219, 5], ["postInstall", 287, 5], ["passthru", 291, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 303, 7], ["hash", 304, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["package", 340, 45]]);
-const pos$9 = nix.positions(here + "/package.nix", [["version", 340, 13]]);
-const pos$10 = nix.positions(here + "/package.nix", [["updateScript", 339, 7], ["tests", 340, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 298, 13], ["meta", 298, 19], ["version", 299, 5], ["uuid", 300, 5], ["src", 302, 5], ["dontPatch", 307, 5], ["dontConfigure", 308, 5], ["dontBuild", 309, 5], ["dontFixup", 310, 5], ["nativeBuildInputs", 312, 5], ["sourceRoot", 317, 5], ["installPhase", 319, 5], ["postInstall", 334, 5], ["passthru", 338, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["description", 345, 5], ["homepage", 346, 5], ["changelog", 347, 5], ["license", 348, 5], ["maintainers", 349, 5], ["platforms", 357, 5], ["sourceProvenance", 360, 5], ["mainProgram", 361, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -100,7 +89,7 @@ export default nix.lambda((args) => (() => {
   const libuuid = nix.arg($, "libuuid");
   const withSymlink = nix.argOr($, "withSymlink", () => true);
   const pname = "microsoft-edge";
-  const opusWithCustomModes = nix.thunk(() => nix.app(nix.sel(libopus, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCustomModes: true }))));
+  const opusWithCustomModes = nix.thunk(() => nix.app(nix.sel(libopus, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withCustomModes: true }))));
   const deps = nix.thunk(() => nix.concat([
     alsa_lib,
     at_spi2_atk,
@@ -168,12 +157,12 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(kdePackages, "breeze")),
     ]))))));
   const linux = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       meta: meta,
       version: "154.0.4258.62",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/microsoft-edge-stable_${nix.sel(finalAttrs, "version")}-1_amd64.deb`),
           hash: "sha256-9CXepZ8Ki6wAIBaFoHDpR1Q8V9E1wTC6c+CGPPLFBrE=",
         })))),
@@ -249,25 +238,25 @@ runHook postInstall
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withSymlink, "ln -s $out/bin/microsoft-edge-stable $out/bin/microsoft-edge\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
     })));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: pname,
       meta: meta,
       version: "154.0.4258.62",
       uuid: "0f45f474-1930-45f2-aec6-2c58136eb0fd",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: nix.thunk(() => nix.str`https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/${nix.sel(finalAttrs, "uuid")}/MicrosoftEdge-${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-kPWWjoDJIU7+2i+lZlebfhurZj/hGtCXlktWWM5ApMA=",
         })))),
@@ -292,19 +281,19 @@ runHook postInstall
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withSymlink, "ln -s $out/bin/microsoft-edge-stable $out/bin/microsoft-edge\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
     })));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     description: "Web browser from Microsoft",
     homepage: "https://www.microsoft.com/en-us/edge",
     changelog: "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel",

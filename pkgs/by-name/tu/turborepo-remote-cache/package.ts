@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["pname", 26, 26], ["version", 26, 32], ["src", 26, 40], ["pnpm", 27, 5], ["fetcherVersion", 28, 5], ["hash", 29, 5]], [["turborepo-remote-cache", 78, 36]], [["tests", 78, 5], ["updateScript", 79, 5]], [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["pnpmDeps", 25, 3], ["nativeBuildInputs", 32, 3], ["postPatch", 40, 3], ["buildPhase", 50, 3], ["installPhase", 62, 3], ["passthru", 77, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, "nodejs-slim_24": false, pnpm_10: false, pnpmConfigHook: false, jq: false, fetchFromGitHub: false, fetchPnpmDeps: false, makeWrapper: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 26, 26], ["version", 26, 32], ["src", 26, 40], ["pnpm", 27, 5], ["fetcherVersion", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["turborepo-remote-cache", 78, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 78, 5], ["updateScript", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["pnpmDeps", 25, 3], ["nativeBuildInputs", 32, 3], ["postPatch", 40, 3], ["buildPhase", 50, 3], ["installPhase", 62, 3], ["passthru", 77, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "turborepo-remote-cache",
       version: "2.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ducktors",
           repo: "turborepo-remote-cache",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-VvSF8Uj/Am0V5g0taAxHk32/WHgZ5KBEywNduK6ZE/I=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -60,15 +55,15 @@ makeWrapper ${nodejs_slim_24}/bin/node "$out/bin/turborepo-remote-cache" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "turborepo-remote-cache": nix.thunk(() => nix.attr(nixosTests, "turborepo-remote-cache")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/ducktors/turborepo-remote-cache",
         description: "This project is an open-source implementation of the Turborepo custom remote cache server.",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

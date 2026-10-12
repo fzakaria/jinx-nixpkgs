@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 7], ["hash", 14, 7]], [["url", 17, 7], ["hash", 18, 7]], [["x86_64-linux", 12, 5], ["aarch64-darwin", 16, 5]], [["description", 22, 5], ["homepage", 23, 5], ["maintainers", 24, 5], ["license", 28, 5], ["platforms", 29, 5], ["mainProgram", 30, 5]], [["pname", 36, 7], ["version", 37, 7], ["meta", 38, 7], ["src", 40, 5]], [["pname", 45, 7], ["version", 46, 7], ["meta", 47, 7], ["src", 49, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 17, 7], ["hash", 18, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 12, 5], ["aarch64-darwin", 16, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 22, 5], ["homepage", 23, 5], ["maintainers", 24, 5], ["license", 28, 5], ["platforms", 29, 5], ["mainProgram", 30, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 36, 7], ["version", 37, 7], ["meta", 38, 7], ["src", 40, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 45, 7], ["version", 46, 7], ["meta", 47, 7], ["src", 49, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const pname = "upscayl";
   const version = "2.15.0";
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/upscayl/upscayl/releases/download/v${version}/upscayl-${version}-linux.AppImage`),
         hash: "sha256-ZFlFfliby5nneepELc5gi6zaM5FrcBmohit8YlKqgik=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/upscayl/upscayl/releases/download/v${version}/upscayl-${version}-mac.zip`),
         hash: "sha256-gXqeRaNW0g7ZVkCSbxps9SqPMuVSzLTCGL5F3Om/iwo=",
       })))),
   }));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     description: "Free and Open Source AI Image Upscaler",
     homepage: "https://upscayl.github.io/",
     maintainers: nix.thunk(() => (() => {
@@ -47,13 +42,13 @@ export default nix.lambda((args) => (() => {
     mainProgram: "upscayl",
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.sel(srcs, nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
     }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       meta: meta,

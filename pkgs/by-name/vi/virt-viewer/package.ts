@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 41, 5], ["sha256", 42, 5]], [["url", 49, 7], ["sha256", 50, 7]], [["url", 55, 7], ["hash", 56, 7]], [["homepage", 112, 5], ["description", 113, 5], ["maintainers", 114, 5], ["platforms", 118, 5], ["license", 119, 5], ["mainProgram", 120, 5]], [["downloadPage", 124, 7]], [["updateInfo", 123, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["patches", 45, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 71, 3], ["propagatedUserEnvPkgs", 99, 3], ["mesonFlags", 101, 3], ["strictDeps", 105, 3], ["postPatch", 107, 3], ["meta", 111, 3], ["passthru", 122, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "bash-completion": false, fetchurl: false, fetchpatch: false, gdbm: false, glib: false, gst_all_1: false, "gsettings-desktop-schemas": false, "gtk-vnc": false, gtk3: false, intltool: false, libcap: false, libgovirt: false, ovirtSupport: true, libvirt: false, "libvirt-glib": false, libxml2: false, meson: false, ninja: false, "pkg-config": false, python3: false, "shared-mime-info": false, "spice-gtk": false, "spice-protocol": false, spiceSupport: true, vte: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 41, 5], ["sha256", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 49, 7], ["sha256", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 55, 7], ["hash", 56, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 112, 5], ["description", 113, 5], ["maintainers", 114, 5], ["platforms", 118, 5], ["license", 119, 5], ["mainProgram", 120, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["downloadPage", 124, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateInfo", 123, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["patches", 45, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 71, 3], ["propagatedUserEnvPkgs", 99, 3], ["mesonFlags", 101, 3], ["strictDeps", 105, 3], ["postPatch", 107, 3], ["meta", 111, 3], ["passthru", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,22 +36,22 @@ export default nix.lambda((args) => (() => {
   const vte = nix.arg($, "vte");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "virt-viewer",
       version: "11.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://releases.pagure.org/virt-viewer/virt-viewer-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-pD+iMlxMHHelyMmAZaww7wURohrJjlkPIjQIabrZq9A=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/virt-viewer/virt-viewer/-/commit/98d9f202ef768f22ae21b5c43a080a1aa64a7107.patch",
             sha256: "sha256-3AbnkbhWOh0aNjUkmVoSV/9jFQtvTllOr7plnkntb2o=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.com/virt-viewer/virt-viewer/-/commit/a634fa8d9fbc59b093f2f07110b2c867f622599d.patch",
             hash: "sha256-xNwpuVwYajlfQUbT6aDrTBqwa61Je8EhD0C9+PL/qx0=",
           })))),
@@ -90,7 +84,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       postPatch: "patchShebangs build-aux/post_install.py\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://virt-manager.org/",
         description: "Viewer for remote virtual machines",
         maintainers: nix.thunk(() => (() => {
@@ -108,8 +102,8 @@ export default nix.lambda((args) => (() => {
         mainProgram: "virt-viewer",
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateInfo: nix.thunk(() => ({ [nix.POS]: pos$5, downloadPage: "https://virt-manager.org/download.html" })),
+        [nix.POS]: $pos[5],
+        updateInfo: nix.thunk(() => ({ [nix.POS]: $pos[4], downloadPage: "https://virt-manager.org/download.html" })),
       })),
     }));
 })(), formals$1);

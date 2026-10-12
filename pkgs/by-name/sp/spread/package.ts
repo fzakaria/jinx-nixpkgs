@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["updateScript", 56, 12]], [["mainProgram", 59, 5], ["license", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["subPackages", 26, 3], ["nativeBuildInputs", 28, 3], ["patches", 30, 3], ["postPatch", 38, 3], ["postInstall", 45, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, bash: false, coreutils: false, gnutar: false, gzip: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 56, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 59, 5], ["license", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["subPackages", 26, 3], ["nativeBuildInputs", 28, 3], ["patches", 30, 3], ["postPatch", 38, 3], ["postInstall", 45, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gzip = nix.arg($, "gzip");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "spread",
       version: "2026.07.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "canonical",
           repo: "spread",
           rev: "d6447c43754c8ca0741901e9db73d5fdb4d21c93",
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/spread --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash, coreutils, gnutar, gzip]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "spread",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         description: "Convenient full-system test (task) distribution",

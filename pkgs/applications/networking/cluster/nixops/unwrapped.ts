@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unwrapped.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["nixos", 56, 11]], [["tagPrefix", 58, 7]], [["tests", 56, 5], ["updateScript", 57, 5]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 38, 3], ["postInstall", 45, 3], ["pythonImportsCheck", 53, 3], ["passthru", 55, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonApplication: false, fetchFromGitHub: false, unstableGitUpdater: false, "poetry-core": false, sphinx: false, pluggy: false, prettytable: false, typeguard: false, "typing-extensions": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unwrapped.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/unwrapped.nix", [["nixos", 56, 11]]);
-const pos$3 = nix.positions(here + "/unwrapped.nix", [["tagPrefix", 58, 7]]);
-const pos$4 = nix.positions(here + "/unwrapped.nix", [["tests", 56, 5], ["updateScript", 57, 5]]);
-const pos$5 = nix.positions(here + "/unwrapped.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]]);
-const pos$6 = nix.positions(here + "/unwrapped.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 38, 3], ["postInstall", 45, 3], ["pythonImportsCheck", 53, 3], ["passthru", 55, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0-unstable-2025-12-28";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NixOS",
           repo: "nixops",
           rev: "fd4b8031dbaf753545188b7c380194e47604dbac",
@@ -41,15 +36,15 @@ export default nix.lambda((args) => (() => {
       const postInstall = "doc_cache=$(mktemp -d)\nsphinx-build -b man -d $doc_cache doc/ $out/share/man/man1\n\nhtml=$(mktemp -d)\nsphinx-build -b html -d $doc_cache doc/ $out/share/nixops/doc\n";
       const pythonImportsCheck = nix.thunk(() => ["nixops"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           nixos: nix.thunk(() => nix.sel(nixosTests, "nixops", "unstable")),
         })),
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagPrefix: "v" })))),
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], tagPrefix: "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tool for deploying to NixOS machines in a network or cloud",
         homepage: "https://github.com/NixOS/nixops",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -64,7 +59,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "nixops",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

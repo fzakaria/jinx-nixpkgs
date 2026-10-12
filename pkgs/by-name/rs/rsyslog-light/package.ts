@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withLibyaml", 6, 3], ["withKrb5", 7, 3], ["withSystemd", 8, 3], ["withJemalloc", 9, 3], ["withMysql", 10, 3], ["withPostgres", 11, 3], ["withDbi", 12, 3], ["withNetSnmp", 13, 3], ["withUuid", 14, 3], ["withCurl", 15, 3], ["withGnutls", 16, 3], ["withGcrypt", 17, 3], ["withLognorm", 18, 3], ["withMaxminddb", 19, 3], ["withOpenssl", 20, 3], ["withRelp", 21, 3], ["withKsi", 22, 3], ["withLogging", 23, 3], ["withNet", 24, 3], ["withHadoop", 25, 3], ["withRdkafka", 26, 3], ["withMongo", 27, 3], ["withCzmq", 28, 3], ["withRabbitmq", 29, 3], ["withHiredis", 30, 3]]]);
 const formals$1 = { args: { rsyslog: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withLibyaml", 6, 3], ["withKrb5", 7, 3], ["withSystemd", 8, 3], ["withJemalloc", 9, 3], ["withMysql", 10, 3], ["withPostgres", 11, 3], ["withDbi", 12, 3], ["withNetSnmp", 13, 3], ["withUuid", 14, 3], ["withCurl", 15, 3], ["withGnutls", 16, 3], ["withGcrypt", 17, 3], ["withLognorm", 18, 3], ["withMaxminddb", 19, 3], ["withOpenssl", 20, 3], ["withRelp", 21, 3], ["withKsi", 22, 3], ["withLogging", 23, 3], ["withNet", 24, 3], ["withHadoop", 25, 3], ["withRdkafka", 26, 3], ["withMongo", 27, 3], ["withCzmq", 28, 3], ["withRabbitmq", 29, 3], ["withHiredis", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const rsyslog = nix.arg($, "rsyslog");
   return nix.app(nix.sel(rsyslog, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       withLibyaml: false,
       withKrb5: false,
       withSystemd: false,

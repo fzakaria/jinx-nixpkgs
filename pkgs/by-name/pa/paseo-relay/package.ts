@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["elixir", 10, 7]], [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["pname", 26, 5], ["src", 27, 26], ["version", 27, 30], ["hash", 28, 5]], [["extraArgs", 35, 47]], [["updateScript", 35, 12]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["mixFodDeps", 25, 3], ["postInstall", 31, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { beamMinimal29Packages: false, lib: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["elixir", 10, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 5], ["src", 27, 26], ["version", 27, 30], ["hash", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 35, 47]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 35, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["mixFodDeps", 25, 3], ["postInstall", 31, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +11,20 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
-  const beamPackages = nix.thunk(() => nix.app(nix.sel(beamMinimal29Packages, "overrideScope"), (final) => (prev) => ({ [nix.POS]: pos$1, elixir: nix.thunk(() => nix.sel(final, "elixir_1_20")) })));
+  const beamPackages = nix.thunk(() => nix.app(nix.sel(beamMinimal29Packages, "overrideScope"), (final) => (prev) => ({ [nix.POS]: $pos[0], elixir: nix.thunk(() => nix.sel(final, "elixir_1_20")) })));
   return nix.app(nix.sel(beamPackages, "mixRelease"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "paseo-relay",
       version: "0-unstable-2026-08-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "getpaseo",
           repo: "paseo-relay",
           rev: "3fc41c96c8c63f3a7109e832899cc57d473c4531",
           hash: "sha256-53r3Mz1GCv5Vozbg02YfiGABn8HTvoao5R+4CxTKj3w=",
         })))),
       mixFodDeps: nix.thunk(() => nix.app(nix.sel(beamPackages, "fetchMixDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.str`mix-deps-${nix.sel(finalAttrs, "pname")}`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -38,11 +32,11 @@ export default nix.lambda((args) => (() => {
         })))),
       postInstall: "mv $out/bin/paseo_relay $out/bin/paseo-relay\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "A distributed, protocol-compatible relay for Paseo",
         homepage: "https://github.com/getpaseo/paseo-relay",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["fetchSubmodules", 38, 5], ["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["dr_libs", 29, 3], ["clap-juce-extensions", 37, 3], ["prePatch", 45, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 57, 3], ["cmakeFlags", 68, 3], ["installPhase", 73, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, freetype: false, juce: false, libx11: false, libxcursor: false, libxext: false, libxinerama: false, libxrandr: false, libglvnd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["fetchSubmodules", 38, 5], ["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["dr_libs", 29, 3], ["clap-juce-extensions", 37, 3], ["prePatch", 45, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 57, 3], ["cmakeFlags", 68, 3], ["installPhase", 73, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,21 +24,21 @@ export default nix.lambda((args) => (() => {
       const pname = "ysfx";
       const version = "0-unstable-2026-03-13";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JoepVanlier",
           repo: "ysfx",
           rev: "370c91915b0f26f5051705620b0712d06753bd41",
           hash: "sha256-9PFBDUOvLCQcZvL8TsG8MVZYzdHsaKK/Pb7S5A1dJBE=",
         }))));
       const dr_libs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "mackron",
           repo: "dr_libs",
           rev: "e4a7765e598e9e54dc0f520b7e4416359bee80cc",
           hash: "sha256-rWabyCP47vd+EfibBWy6iQY/nFN/OXPNhkuOTSboJaU=",
         }))));
       const clap_juce_extensions = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           fetchSubmodules: true,
           owner: "free-audio",
           repo: "clap-juce-extensions",
@@ -68,7 +64,7 @@ ln -s ${clap_juce_extensions} thirdparty/clap-juce-extensions
       const cmakeFlags = nix.thunk(() => ["-DYSFX_PLUGIN_COPY=OFF", "-DYSFX_PLUGIN_USE_SYSTEM_JUCE=ON"]);
       const installPhase = "runHook preInstall\n\nmkdir -p $out/lib\ncp -r ysfx_plugin_artefacts/Release/VST3 $out/lib/vst3\ncp -r ysfx_plugin_artefacts/Release/CLAP $out/lib/clap\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Hosting library for JSFX",
         homepage: "https://github.com/JoepVanlier/ysfx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -76,7 +72,7 @@ ln -s ${clap_juce_extensions} thirdparty/clap-juce-extensions
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

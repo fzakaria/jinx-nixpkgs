@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["buildFeatures", 24, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, withNotification: true, withYubikey: true, withStrictCaller: true, withAll: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["buildFeatures", 24, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const withStrictCaller = nix.argOr($, "withStrictCaller", () => false);
   const withAll = nix.argOr($, "withAll", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "git-credential-keepassxc",
       version: "0.14.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Frederick888",
           repo: "git-credential-keepassxc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-zHSMbfP9ge3JYGyUI2XMGtQwQnsDPkWDnm0F3WWwfNc=",
       buildFeatures: nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optional"), withNotification, "notification"), nix.concat(nix.app(nix.sel(lib, "optional"), withYubikey, "yubikey"), nix.concat(nix.app(nix.sel(lib, "optional"), withStrictCaller, "strict-caller"), nix.app(nix.sel(lib, "optional"), withAll, "all")))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Helper that allows Git (and shell scripts) to use KeePassXC as credential store",
         longDescription: "git-credential-keepassxc is a Git credential helper that allows Git\n(and shell scripts) to get/store logins from/to KeePassXC.\nIt communicates with KeePassXC using keepassxc-protocol which is\noriginally designed for browser extensions.\n",
         homepage: "https://github.com/Frederick888/git-credential-keepassxc",

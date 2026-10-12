@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/flutter.nix", [[["dart", 30, 9], ["engineVersion", 31, 9], ["patches", 32, 9], ["pubspecLock", 33, 9], ["version", 34, 9], ["flutterSrc", 36, 7], ["systemPlatform", 37, 7]], [["dart", 165, 9], ["engineVersion", 166, 9], ["artifactHashes", 167, 9], ["channel", 168, 9], ["tools", 170, 7], ["sdk", 174, 7]], [["description", 178, 7], ["longDescription", 179, 7], ["homepage", 183, 7], ["license", 184, 7], ["sourceProvenance", 185, 7], ["platforms", 186, 7], ["mainProgram", 191, 7], ["maintainers", 192, 7], ["teams", 195, 7]], [["name", 41, 5], ["src", 42, 13], ["patches", 42, 17], ["version", 42, 25], ["nativeBuildInputs", 44, 5], ["__structuredAttrs", 52, 5], ["strictDeps", 53, 5], ["preConfigure", 55, 5], ["postPatch", 62, 5], ["buildPhase", 67, 5], ["installPhase", 118, 5], ["postInstall", 140, 5], ["doInstallCheck", 146, 5], ["nativeInstallCheckInputs", 147, 5], ["installCheckPhase", 152, 5], ["passthru", 162, 5], ["meta", 177, 5]]]);
 const formals$1 = { args: { version: false, engineVersion: false, patches: false, channel: false, dart: false, src: false, pubspecLock: false, artifactHashes: true, lib: false, stdenv: false, callPackage: false, makeWrapper: false, darwin: false, gitMinimal: false, which: false, jq: false, writableTmpDirAsHomeHook: false, installShellFiles: false, flutterTools: true, aapt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/flutter.nix", [["dart", 30, 9], ["engineVersion", 31, 9], ["patches", 32, 9], ["pubspecLock", 33, 9], ["version", 34, 9], ["flutterSrc", 36, 7], ["systemPlatform", 37, 7]]);
-const pos$2 = nix.positions(here + "/flutter.nix", [["dart", 165, 9], ["engineVersion", 166, 9], ["artifactHashes", 167, 9], ["channel", 168, 9], ["tools", 170, 7], ["sdk", 174, 7]]);
-const pos$3 = nix.positions(here + "/flutter.nix", [["description", 178, 7], ["longDescription", 179, 7], ["homepage", 183, 7], ["license", 184, 7], ["sourceProvenance", 185, 7], ["platforms", 186, 7], ["mainProgram", 191, 7], ["maintainers", 192, 7], ["teams", 195, 7]]);
-const pos$4 = nix.positions(here + "/flutter.nix", [["name", 41, 5], ["src", 42, 13], ["patches", 42, 17], ["version", 42, 25], ["nativeBuildInputs", 44, 5], ["__structuredAttrs", 52, 5], ["strictDeps", 53, 5], ["preConfigure", 55, 5], ["postPatch", 62, 5], ["buildPhase", 67, 5], ["installPhase", 118, 5], ["postInstall", 140, 5], ["doInstallCheck", 146, 5], ["nativeInstallCheckInputs", 147, 5], ["installCheckPhase", 152, 5], ["passthru", 162, 5], ["meta", 177, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const aapt = nix.arg($, "aapt");
   const dart_1 = nix.thunk(() => nix.sel(args_1, "dart"));
   const flutterTools_1 = nix.thunk(() => nix.selOr(args_1, () => nix.app(callPackage, nix.path(here, "./flutter-tools.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         dart: dart_1,
         engineVersion: engineVersion,
         patches: patches,
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         systemPlatform: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")),
       }))), "flutterTools"));
   const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: nix.thunk(() => nix.str`flutter-${version}-unwrapped`),
       src: src,
       patches: patches,
@@ -130,7 +127,7 @@ $out/bin/flutter --version | fgrep --quiet '${nix.builtins.substring(0n, 10n, en
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         dart: dart_1,
         engineVersion: engineVersion,
         artifactHashes: artifactHashes,
@@ -139,7 +136,7 @@ runHook postInstallCheck
         sdk: unwrapped,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Makes it easy and fast to build beautiful apps for mobile and beyond",
         longDescription: "Flutter is Google's SDK for crafting beautiful,\nfast user experiences for mobile, web, and desktop from a single codebase.\n",
         homepage: "https://flutter.dev",

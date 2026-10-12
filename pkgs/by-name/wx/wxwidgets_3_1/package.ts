@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5], ["fetchSubmodules", 37, 5]], [["SEARCH_LIB", 93, 5]], [["compat28", 117, 13], ["compat30", 117, 22], ["unicode", 117, 31]], [["homepage", 121, 5], ["description", 122, 5], ["longDescription", 123, 5], ["license", 133, 5], ["platforms", 137, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 40, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 50, 3], ["configureFlags", 69, 3], ["env", 92, 3], ["preConfigure", 99, 3], ["postInstall", 108, 3], ["enableParallelBuilding", 114, 3], ["passthru", 116, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, curl: false, gst_all_1: false, gtk3: false, libGL: false, libGLU: false, libsm: false, libxinerama: false, libxtst: false, libxxf86vm: false, "pkg-config": false, xorgproto: false, compat28: true, compat30: true, unicode: true, withCurl: true, withPrivateFonts: true, withEGL: true, withMesa: true, withWebKit: true, webkitgtk_4_1: false, libpng: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5], ["fetchSubmodules", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SEARCH_LIB", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["compat28", 117, 13], ["compat30", 117, 22], ["unicode", 117, 31]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 121, 5], ["description", 122, 5], ["longDescription", 123, 5], ["license", 133, 5], ["platforms", 137, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 40, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 50, 3], ["configureFlags", 69, 3], ["env", 92, 3], ["preConfigure", 99, 3], ["postInstall", 108, 3], ["enableParallelBuilding", 114, 3], ["passthru", 116, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "wxwidgets",
       version: "3.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wxWidgets",
           repo: "wxWidgets",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +64,7 @@ export default nix.lambda((args) => (() => {
           "--with-libiconv",
         ])), nix.app(nix.sel(lib, "optionals"), withWebKit, nix.thunk(() => ["--enable-webview", "--enable-webviewwebkit"])))))))))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           SEARCH_LIB: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               nix.thunk(() => nix.str`${nix.sel(libGLU, "out")}/lib`),
               nix.thunk(() => nix.str`${nix.sel(libGL, "out")}/lib`),
@@ -77,9 +73,9 @@ export default nix.lambda((args) => (() => {
       preConfigure: "substituteInPlace configure --replace \\\n  'SEARCH_INCLUDE=' 'DUMMY_SEARCH_INCLUDE='\nsubstituteInPlace configure --replace \\\n  'SEARCH_LIB=' 'DUMMY_SEARCH_LIB='\nsubstituteInPlace configure --replace \\\n  /usr /no-such-path\n",
       postInstall: "\n    pushd $out/include\n    ln -s wx-*/* .\n    popd\n  ",
       enableParallelBuilding: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, compat28: compat28, compat30: compat30, unicode: unicode })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], compat28: compat28, compat30: compat30, unicode: unicode })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.wxwidgets.org/",
         description: "Cross-Platform C++ GUI Library",
         longDescription: "wxWidgets gives you a single, easy-to-use API for writing GUI applications\non multiple platforms that still utilize the native platform's controls\nand utilities. Link with the appropriate library for your platform and\ncompiler, and your application will adopt the look and feel appropriate to\nthat platform. On top of great GUI functionality, wxWidgets gives you:\nonline help, network programming, streams, clipboard and drag and drop,\nmultithreading, image loading and saving in a variety of popular formats,\ndatabase support, HTML viewing and printing, and much more.\n",

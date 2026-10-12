@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 22, 5], ["hash", 23, 5]], [["homepage", 131, 5], ["description", 132, 5], ["mainProgram", 133, 5], ["longDescription", 134, 5], ["license", 140, 5], ["maintainers", 141, 5], ["platforms", 142, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 26, 3], ["dontConfigure", 30, 3], ["depsBuildBuild", 32, 3], ["buildInputs", 38, 3], ["enableParallelBuilding", 51, 3], ["hardeningDisable", 53, 3], ["makeFlags", 57, 3], ["preBuild", 61, 3], ["installFlags", 97, 3], ["doCheck", 103, 3], ["checkTarget", 105, 3], ["checkFlags", 107, 3], ["checkPhase", 112, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { stdenv: false, buildPackages: false, lib: false, fetchzip: false, gpm: false, libffi: false, libGL: false, libx11: false, libxext: false, libxpm: false, libxrandr: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 131, 5], ["description", 132, 5], ["mainProgram", 133, 5], ["longDescription", 134, 5], ["license", 140, 5], ["maintainers", 141, 5], ["platforms", 142, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 26, 3], ["dontConfigure", 30, 3], ["depsBuildBuild", 32, 3], ["buildInputs", 38, 3], ["enableParallelBuilding", 51, 3], ["hardeningDisable", 53, 3], ["makeFlags", 57, 3], ["preBuild", 61, 3], ["installFlags", 97, 3], ["doCheck", 103, 3], ["checkTarget", 105, 3], ["checkFlags", 107, 3], ["checkPhase", 112, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fbc";
       const version = "1.10.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/freebasic/fbc/releases/download/${version}/FreeBASIC-${version}-source-bootstrap.tar.xz`),
           hash: "sha256-LBROv3m1DrEfSStMbNuLC+fldYNfSS+D09bJyNMNPP0=",
         }))));
@@ -73,7 +71,7 @@ buildFlagsArray+=("FBC=$PWD/patched-fbc/bin/fbc${nix.sel(stdenv, "buildPlatform"
       const checkFlags = nix.thunk(() => ["UNITTEST_RUN_ARGS=--verbose", "ABORT_CMD=false"]);
       const checkPhase = "runHook preCheck\n\n# Some tests fail with too much parallelism\nexport maxCheckJobs=50\nexport checkJobs=$(($NIX_BUILD_CORES<=$maxCheckJobs ? $NIX_BUILD_CORES : $maxCheckJobs))\nif [ -z \"$enableParallelChecking\" ]; then\n  checkJobs=1\nfi\n\n# Run check targets in series, else the logs are a mess\nfor target in $checkTarget; do\n  make $target -j$checkJobs $makeFlags $checkFlags\ndone\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.freebasic.net/",
         description: "Multi-platform BASIC Compiler",
         mainProgram: "fbc",
@@ -89,7 +87,7 @@ buildFlagsArray+=("FBC=$PWD/patched-fbc/bin/fbc${nix.sel(stdenv, "buildPlatform"
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

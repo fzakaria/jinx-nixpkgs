@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/buildGnomeExtension.nix", [[["url", 32, 9], ["sha256", 35, 17], ["stripRoot", 36, 9], ["postFetch", 42, 9]], [["description", 61, 9], ["longDescription", 62, 9], ["homepage", 63, 9], ["license", 64, 9], ["platforms", 65, 9], ["maintainers", 66, 9]], [["gnome-extensions", 74, 11]], [["extensionPortalSlug", 69, 9], ["extensionUuid", 71, 9], ["tests", 73, 9]], [["pname", 29, 7], ["version", 30, 7], ["src", 31, 7], ["nativeBuildInputs", 46, 7], ["buildPhase", 47, 7], ["installPhase", 54, 7], ["meta", 60, 7], ["passthru", 68, 7]]]);
 const formals$1 = { args: { pkgs: false, lib: false, stdenv: false, fetchzip: false, nixosTests: false }, ellipsis: false };
 const formals$2 = { args: { uuid: false, name: false, pname: false, description: false, link: false, version: false, sha256: false, metadata: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/buildGnomeExtension.nix", [["url", 32, 9], ["sha256", 35, 17], ["stripRoot", 36, 9], ["postFetch", 42, 9]]);
-const pos$2 = nix.positions(here + "/buildGnomeExtension.nix", [["description", 61, 9], ["longDescription", 62, 9], ["homepage", 63, 9], ["license", 64, 9], ["platforms", 65, 9], ["maintainers", 66, 9]]);
-const pos$3 = nix.positions(here + "/buildGnomeExtension.nix", [["gnome-extensions", 74, 11]]);
-const pos$4 = nix.positions(here + "/buildGnomeExtension.nix", [["extensionPortalSlug", 69, 9], ["extensionUuid", 71, 9], ["tests", 73, 9]]);
-const pos$5 = nix.positions(here + "/buildGnomeExtension.nix", [["pname", 29, 7], ["version", 30, 7], ["src", 31, 7], ["nativeBuildInputs", 46, 7], ["buildPhase", 47, 7], ["installPhase", 54, 7], ["meta", 60, 7], ["passthru", 68, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
     const sha256 = nix.arg($_1, "sha256");
     const metadata = nix.arg($_1, "metadata");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: nix.thunk(() => nix.str`gnome-shell-extension-${pname}`),
         version: nix.thunk(() => nix.builtins.toString(version)),
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://extensions.gnome.org/extension-data/${nix.builtins.replaceStrings(nix.thunk(() => ["@"]), nix.thunk(() => [""]), uuid)}.v${nix.builtins.toString(version)}.shell-extension.zip`),
             sha256: sha256,
             stripRoot: false,
@@ -50,7 +46,7 @@ cp -r -T . $out/share/gnome-shell/extensions/${uuid}
 runHook postInstall
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: nix.thunk(() => nix.builtins.head(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "\n", description)))),
           longDescription: description,
           homepage: link,
@@ -59,11 +55,11 @@ runHook postInstall
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "honnip"))]),
         })),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           extensionPortalSlug: pname,
           extensionUuid: uuid,
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "gnome-extensions": nix.thunk(() => nix.sel(nixosTests, "gnome-extensions")),
           })),
         })),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["yarnLock", 60, 5], ["hash", 61, 5]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["build-system", 42, 3], ["nativeBuildInputs", 51, 3], ["offlineCache", 59, 3], ["dependencies", 64, 3], ["pythonImportsCheck", 69, 3], ["doCheck", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-jupyter-builder": false, hatchling: false, jupyterlab: false, nodejs: false, pyprojectVersionPatchHook: false, writableTmpDirAsHomeHook: false, "yarn-berry_3": false, "jupyter-packaging": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["yarnLock", 60, 5], ["hash", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["build-system", 42, 3], ["nativeBuildInputs", 51, 3], ["offlineCache", 59, 3], ["dependencies", 64, 3], ["pythonImportsCheck", 69, 3], ["doCheck", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const yarn_berry_3 = nix.arg($, "yarn-berry_3");
   const jupyter_packaging = nix.arg($, "jupyter-packaging");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jupyterlab-execute-time",
       version: "3.3.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "deshaw",
           repo: "jupyterlab-execute-time",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(yarn_berry_3, "yarnBerryConfigHook")),
       ]),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_3, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-aCuw+4FqA0JPMr++AgE4WI+KmXda1IosaU2yk/vE7vw=",
         })))),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["jupyterlab_execute_time"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "JupyterLab extension for displaying cell timings",
         homepage: "https://github.com/deshaw/jupyterlab-execute-time",
         changelog: nix.thunk(() => nix.str`https://github.com/deshaw/jupyterlab-execute-time/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

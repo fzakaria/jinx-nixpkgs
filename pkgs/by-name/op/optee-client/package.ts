@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 22, 3], ["strictDeps", 28, 3], ["enableParallelBuilding", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["makeFlags", 38, 3], ["preFixup", 54, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, isNixOS: true, lib: false, libuuid: false, "pkg-config": false, stdenv: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 22, 3], ["strictDeps", 28, 3], ["enableParallelBuilding", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["makeFlags", 38, 3], ["preFixup", 54, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "optee-client",
       version: "4.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OP-TEE",
           repo: "optee_client",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       preFixup: "mkdir -p \"$lib\" \"$dev\"\nmv \"$out/lib\" \"$lib\"\nmv \"$out/include\" \"$dev\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Normal world client for OPTEE OS",
         homepage: "https://github.com/OP-TEE/optee_client",
         changelog: nix.thunk(() => nix.str`https://github.com/OP-TEE/optee_client/releases/tag/${nix.sel(finalAttrs, "version")}`),

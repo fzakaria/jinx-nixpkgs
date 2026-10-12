@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 17, 3], ["src", 18, 32], ["version", 18, 36], ["minimalOCamlVersion", 20, 3], ["propagatedBuildInputs", 22, 3], ["buildInputs", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, ppx_hash: false, bigstringaf: false, either: false, ezjsonm: false, zarith: false, zarith_stubs_js: true, hex: false, "json-data-encoding": false, "json-data-encoding-bson": false, ppx_expect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["src", 18, 32], ["version", 18, 36], ["minimalOCamlVersion", 20, 3], ["propagatedBuildInputs", 22, 3], ["buildInputs", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const json_data_encoding_bson = nix.arg($, "json-data-encoding-bson");
   const ppx_expect = nix.arg($, "ppx_expect");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "data-encoding",
       src: nix.thunk(() => nix.attr(json_data_encoding, "src")),
       version: nix.thunk(() => nix.attr(json_data_encoding, "version")),
@@ -39,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [ppx_expect]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://gitlab.com/nomadic-labs/data-encoding",
         description: "Library of JSON and binary encoding combinators",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

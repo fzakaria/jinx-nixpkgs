@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 7], ["hash", 21, 7]], [["url", 27, 9], ["hash", 28, 9]], [["url", 34, 7], ["hash", 35, 7]], [["src", 19, 5], ["patches", 23, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 39, 3], ["propagatedBuildInputs", 41, 3], ["doCheck", 47, 3], ["checkInputs", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchpatch: false, applyPatches: false, buildDunePackage: false, ocaml: false, cppo: false, gettext: false, fileutils: false, ounit2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 27, 9], ["hash", 28, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["src", 19, 5], ["patches", 23, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 39, 3], ["propagatedBuildInputs", 41, 3], ["doCheck", 47, 3], ["checkInputs", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,24 +18,24 @@ export default nix.lambda((args) => (() => {
   const fileutils = nix.arg($, "fileutils");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gettext",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://github.com/gildor478/ocaml-gettext/releases/download/v${nix.sel(finalAttrs, "version")}/gettext-${nix.sel(finalAttrs, "version")}.tbz`),
               hash: "sha256-CN2d9Vsq8YOOIxK+S+lCtDddvBjCrtDKGSRIh1DjT10=",
             })))),
           patches: nix.thunk(() => nix.concat([
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 url: "https://github.com/gildor478/ocaml-gettext/commit/5462396bee53cb13d8d6fde4c6d430412a17b64d.patch",
                 hash: "sha256-tOR+xgZTadvNeQpZnFTJEvZglK8P+ySvYnE3c1VWvKQ=",
               })))),
           ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.4")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 url: "https://github.com/gildor478/ocaml-gettext/commit/5d521981e39dcaeada6bbe7b15c5432d6de5d33c.patch",
                 hash: "sha256-82ajmpyXSd2RdVq/ND4lS8PIugRSkKe5oL8BL9CsLo4=",
               }))))))),
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "OCaml Bindings to gettext",
         homepage: "https://github.com/gildor478/ocaml-gettext",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 37, 7], ["mainProgram", 38, 7]], [["pname", 11, 3], ["version", 12, 3], ["se_url", 13, 22], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 24, 3], ["makeFlags", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bison: false, flex: false, libsepol: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 7], ["mainProgram", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["se_url", 13, 22], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 24, 3], ["makeFlags", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const libsepol = nix.arg($, "libsepol");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "checkpolicy",
       version: "3.11",
       se_url: nix.thunk(() => nix.attr(libsepol, "se_url")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "se_url")}/${nix.sel(finalAttrs, "version")}/checkpolicy-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-m4G/zu9/qdAvmHLlanhvND3FjvS1cT3ODVxBbluEzvo=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`LIBSEPOLA=${nix.app(nix.sel(lib, "getLib"), libsepol)}/lib/libsepol.a`),
       ]),
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(libsepol, "meta")), nix.thunk(() => ["outputsToInstall", "name"])), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SELinux policy compiler",
         mainProgram: "checkpolicy",
       })),

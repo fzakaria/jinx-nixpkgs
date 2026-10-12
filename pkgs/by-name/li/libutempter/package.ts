@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["homepage", 53, 5], ["description", 54, 5], ["longDescription", 55, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 20, 3], ["buildInputs", 22, 3], ["patches", 24, 3], ["patchFlags", 34, 3], ["prePatch", 36, 3], ["makeFlags", 40, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, fetchpatch: false, lib: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["longDescription", 55, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 20, 3], ["buildInputs", 22, 3], ["patches", 24, 3], ["patchFlags", 34, 3], ["prePatch", 36, 3], ["makeFlags", 40, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libutempter",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "altlinux",
           repo: "libutempter",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-alt1`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./exec_path.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "build-overwrite-already-existing-symlinks-during-ins.patch",
             url: "https://github.com/altlinux/libutempter/commit/717116b93d496a19f7f8abf8702517de0053f66e.patch",
             hash: "sha256-4YaxgbORNm+rlp0YzYKj5a7/zJl1dxo72i/Rei9qulg=",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         "mandir=${out}/share/man",
       ])),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/altlinux/libutempter",
         description: "Interface for terminal emulators such as screen and xterm to record user sessions to utmp and wtmp files",
         longDescription: "The bundled utempter binary must be able to run as a user belonging to group utmp.\nOn NixOS systems, this can be achieved by creating a setguid wrapper.\n",

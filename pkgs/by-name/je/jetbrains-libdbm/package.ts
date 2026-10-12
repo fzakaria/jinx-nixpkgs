@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["teams", 65, 5], ["platforms", 66, 5]], [["pname", 15, 3], ["version", 20, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["sourceRoot", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["patches", 44, 3], ["postPatch", 45, 3], ["installPhase", 52, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { callPackage: false, cmake: false, fetchFromGitHub: false, glib: false, lib: false, libx11: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["teams", 65, 5], ["platforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 20, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["sourceRoot", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["patches", 44, 3], ["postPatch", 45, 3], ["installPhase", 52, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const libdbusmenu_jb = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libdbusmenu.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jetbrains-libdbm",
       version: "2025.3.4",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jetbrains",
           repo: "intellij-community",
           tag: nix.thunk(() => nix.str`idea/${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ cp ${libdbusmenu_jb}/lib/libdbusmenu-glib.a libdbusmenu-glib.a
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\nmv libdbm.so $out/lib/libdbm.so\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "libdbusmenu wrapper by JetBrains for their IDEs",
         homepage: "https://github.com/JetBrains/intellij-community/tree/master/native/LinuxGlobalMenu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

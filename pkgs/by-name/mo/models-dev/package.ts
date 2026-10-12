@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 13, 7], ["version", 14, 28], ["src", 14, 36], ["__structuredAttrs", 16, 7], ["strictDeps", 17, 7], ["impureEnvVars", 19, 7], ["nativeBuildInputs", 24, 7], ["dontConfigure", 29, 7], ["buildPhase", 31, 7], ["installPhase", 44, 7], ["dontFixup", 54, 7], ["outputHash", 56, 7], ["outputHashAlgo", 57, 7], ["outputHashMode", 58, 7]], [["owner", 69, 5], ["repo", 70, 5], ["rev", 71, 5], ["hash", 72, 5]], [["extraArgs", 108, 7]], [["jsonschema", 105, 5], ["node_modules", 106, 5], ["updateScript", 107, 5]], [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["platforms", 120, 5], ["maintainers", 121, 5]], [["pname", 62, 3], ["version", 63, 3], ["__structuredAttrs", 65, 3], ["strictDeps", 66, 3], ["src", 68, 3], ["nativeBuildInputs", 75, 3], ["configurePhase", 77, 3], ["buildPhase", 85, 3], ["installPhase", 95, 3], ["passthru", 104, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, bun: false, fetchFromGitHub: false, "nix-update-script": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 13, 7], ["version", 14, 28], ["src", 14, 36], ["__structuredAttrs", 16, 7], ["strictDeps", 17, 7], ["impureEnvVars", 19, 7], ["nativeBuildInputs", 24, 7], ["dontConfigure", 29, 7], ["buildPhase", 31, 7], ["installPhase", 44, 7], ["dontFixup", 54, 7], ["outputHash", 56, 7], ["outputHashAlgo", 57, 7], ["outputHashMode", 58, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 69, 5], ["repo", 70, 5], ["rev", 71, 5], ["hash", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 108, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["jsonschema", 105, 5], ["node_modules", 106, 5], ["updateScript", 107, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["platforms", 120, 5], ["maintainers", 121, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 62, 3], ["version", 63, 3], ["__structuredAttrs", 65, 3], ["strictDeps", 66, 3], ["src", 68, 3], ["nativeBuildInputs", 75, 3], ["configurePhase", 77, 3], ["buildPhase", 85, 3], ["installPhase", 95, 3], ["passthru", 104, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const node_modules = (finalAttrs) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
       version: nix.thunk(() => nix.attr(finalAttrs, "version")),
       src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -36,13 +31,13 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
     })));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "models-dev",
       version: "0.0.5-unstable-2026-10-02",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "anomalyco",
           repo: "models.dev",
           rev: "e752025f46d6ab6357e7df98e169e7357b033293",
@@ -65,16 +60,16 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/dist\ncp -R ./dist $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         jsonschema: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/dist/model-schema.json`),
         node_modules: nix.thunk(() => nix.app(node_modules, finalAttrs)),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version=branch", "--subpackage", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Comprehensive open-source database of AI model specifications, pricing, and capabilities",
         homepage: "https://github.com/anomalyco/models.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

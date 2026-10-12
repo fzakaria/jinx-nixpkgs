@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["name", 40, 5], ["src", 41, 5], ["hash", 42, 5]], [["SNAPSHOT_IGNORE", 93, 5]], [["description", 97, 5], ["mainProgram", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["npmDeps", 39, 3], ["npmRoot", 45, 3], ["postPatch", 47, 3], ["build-system", 52, 3], ["dependencies", 57, 3], ["pythonRelaxDeps", 74, 3], ["nativeBuildInputs", 76, 3], ["nativeCheckInputs", 81, 3], ["pythonImportsCheck", 83, 3], ["__darwinAllowLocalNetworking", 86, 3], ["disabledTestPaths", 89, 3], ["env", 91, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchNpmDeps: false, stdenv: false, babel: false, beancount: false, beangulp: false, beanquery: false, cheroot: false, click: false, flask: false, "flask-babel": false, "hatch-vcs": false, hatchling: false, jinja2: false, "markdown-it-py": false, nodejs: false, npmHooks: false, ply: false, pytestCheckHook: false, simplejson: false, watchfiles: false, werkzeug: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 40, 5], ["src", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["SNAPSHOT_IGNORE", 93, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 97, 5], ["mainProgram", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["npmDeps", 39, 3], ["npmRoot", 45, 3], ["postPatch", 47, 3], ["build-system", 52, 3], ["dependencies", 57, 3], ["pythonRelaxDeps", 74, 3], ["nativeBuildInputs", 76, 3], ["nativeCheckInputs", 81, 3], ["pythonImportsCheck", 83, 3], ["__darwinAllowLocalNetworking", 86, 3], ["disabledTestPaths", 89, 3], ["env", 91, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,19 +32,19 @@ export default nix.lambda((args) => (() => {
   const watchfiles = nix.arg($, "watchfiles");
   const werkzeug = nix.arg($, "werkzeug");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fava",
       version: "1.30.16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "beancount",
           repo: "fava",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-TXsDfNZrqTfHZ1rH3JHPSS103ab6nxP3BOFrUQ8CQH4=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps-${nix.sel(finalAttrs, "version")}`),
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/${nix.sel(finalAttrs, "npmRoot")}`),
           hash: "sha256-WjdFEZqfD2rJpKs5ad7/YUlgBBrO92DGkiTp9v5PJhE=",
@@ -81,11 +77,11 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_core_watcher.py"]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         SNAPSHOT_IGNORE: nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(beancount, "version"))), "2")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Web interface for beancount",
         mainProgram: "fava",
         homepage: "https://beancount.github.io/fava",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 19, 3], ["nativeBuildInputs", 21, 3], ["nativeCheckInputs", 25, 3], ["preCheck", 31, 3], ["installPhase", 35, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, perlPackages: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 19, 3], ["nativeBuildInputs", 21, 3], ["nativeCheckInputs", 25, 3], ["preCheck", 31, 3], ["installPhase", 35, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wakeonlan";
       const version = "0.42";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jpoliv",
           repo: "wakeonlan",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm -f t/93_pod_spell.t\n";
       const installPhase = "install -Dt $out/bin wakeonlan\ninstallManPage blib/man1/wakeonlan.1\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Perl script for waking up computers via Wake-On-LAN magic packets",
         homepage: "https://github.com/jpoliv/wakeonlan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic1")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wakeonlan",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

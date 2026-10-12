@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 55, 5], ["teams", 56, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, licomp: false, pytestCheckHook: false, jsonschema: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 55, 5], ["teams", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const jsonschema = nix.arg($, "jsonschema");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "licomp-dwheeler",
       version: "0.5.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hesa",
           repo: "licomp-dwheeler",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, jsonschema]),
       pythonImportsCheck: nix.thunk(() => ["licomp_dwheeler"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implementation of Licomp using David Wheeler's graph",
         homepage: "https://github.com/hesa/licomp-dwheeler",
         changelog: nix.thunk(() => nix.str`https://github.com/hesa/licomp-dwheeler/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

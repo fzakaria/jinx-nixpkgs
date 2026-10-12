@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["name", 45, 7], ["runtimeInputs", 46, 7], ["text", 53, 7]], [["crateVersion", 42, 13], ["releaseDate", 42, 26], ["updateScript", 44, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5]], [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["doInstallCheck", 33, 3], ["nativeInstallCheckInputs", 34, 3], ["preVersionCheck", 37, 3], ["passthru", 41, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, versionCheckHook: false, writeShellApplication: false, curl: false, "yq-go": false, "common-updater-scripts": false, nix: false, "nix-update": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 45, 7], ["runtimeInputs", 46, 7], ["text", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["crateVersion", 42, 13], ["releaseDate", 42, 26], ["updateScript", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["doInstallCheck", 33, 3], ["nativeInstallCheckInputs", 34, 3], ["preVersionCheck", 37, 3], ["passthru", 41, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const crateVersion = "0.2.1";
   const releaseDate = "2026.09.28";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "systemd-lsp",
       version: nix.thunk(() => nix.str`${crateVersion}-${releaseDate}`),
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JFryy",
           repo: "systemd-lsp",
           tag: nix.thunk(() => nix.str`v${releaseDate}`),
@@ -41,18 +37,18 @@ export default nix.lambda((args) => (() => {
       preVersionCheck: nix.thunk(() => nix.str`version=${crateVersion}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         crateVersion: crateVersion,
         releaseDate: releaseDate,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-update-script`),
               runtimeInputs: nix.thunk(() => [curl, yq_go, common_updater_scripts, nix$, nix_update]),
               text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./update.bash"))),
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Language server implementation for systemd unit files made in Rust",
         homepage: "https://github.com/JFryy/systemd-lsp",
         changelog: nix.thunk(() => nix.str`https://github.com/JFryy/systemd-lsp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/obs-mute-filter.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["license", 34, 5], ["platforms", 35, 31]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["postInstall", 23, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "obs-studio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/obs-mute-filter.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/obs-mute-filter.nix", [["description", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["license", 34, 5], ["platforms", 35, 31]]);
-const pos$3 = nix.positions(here + "/obs-mute-filter.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["postInstall", 23, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "obs-mute-filter";
       const version = "0.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "norihiro",
           repo: "obs-mute-filter",
           rev: version,
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OBS Studio plugin to mute audio of a source",
         homepage: "https://github.com/norihiro/obs-mute-filter",
         maintainers: nix.thunk(() => (() => {
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

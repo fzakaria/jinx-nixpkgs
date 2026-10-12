@@ -2,40 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/overlayfs.nix", [[["maintainers", 4, 8]], [["emptyDiskImages", 9, 22]], [["hostId", 10, 18]], [["systemPackages", 11, 19]], [["virtualisation", 9, 7], ["networking", 10, 7], ["environment", 11, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 14, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/overlayfs.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/overlayfs.nix", [["emptyDiskImages", 9, 22]]);
-const pos$3 = nix.positions(here + "/overlayfs.nix", [["hostId", 10, 18]]);
-const pos$4 = nix.positions(here + "/overlayfs.nix", [["systemPackages", 11, 19]]);
-const pos$5 = nix.positions(here + "/overlayfs.nix", [["virtualisation", 9, 7], ["networking", 10, 7], ["environment", 11, 7]]);
-const pos$6 = nix.positions(here + "/overlayfs.nix", [["machine", 6, 9]]);
-const pos$7 = nix.positions(here + "/overlayfs.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "overlayfs",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "bachp"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, emptyDiskImages: nix.thunk(() => [512n]) })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$3, hostId: "deadbeef" })),
+          [nix.POS]: $pos[4],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], emptyDiskImages: nix.thunk(() => [512n]) })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[2], hostId: "deadbeef" })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "parted"))];

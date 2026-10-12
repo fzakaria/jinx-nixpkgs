@@ -2,45 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/netbird.nix", [[["maintainers", 5, 8]], [["port", 13, 24]], [["custom", 13, 17]], [["enable", 14, 12]], [["enable", 12, 9], ["clients", 13, 9], ["ui", 14, 9]], [["netbird", 11, 16]], [["services", 11, 7]], [["node", 10, 5]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 52, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/netbird.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/netbird.nix", [["port", 13, 24]]);
-const pos$3 = nix.positions(here + "/netbird.nix", [["custom", 13, 17]]);
-const pos$4 = nix.positions(here + "/netbird.nix", [["enable", 14, 12]]);
-const pos$5 = nix.positions(here + "/netbird.nix", [["enable", 12, 9], ["clients", 13, 9], ["ui", 14, 9]]);
-const pos$6 = nix.positions(here + "/netbird.nix", [["netbird", 11, 16]]);
-const pos$7 = nix.positions(here + "/netbird.nix", [["services", 11, 7]]);
-const pos$8 = nix.positions(here + "/netbird.nix", [["node", 10, 5]]);
-const pos$9 = nix.positions(here + "/netbird.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "netbird",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nazarewk"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       node: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           netbird: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             clients: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              custom: nix.thunk(() => ({ [nix.POS]: pos$2, port: 51819n })),
+              [nix.POS]: $pos[2],
+              custom: nix.thunk(() => ({ [nix.POS]: $pos[1], port: 51819n })),
             })),
-            ui: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+            ui: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
           })),
         })),
       })),

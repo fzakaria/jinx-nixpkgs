@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["platforms", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["preConfigure", 33, 3], ["configureFlags", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, emacs: false, texliveBasic: false, ghostscript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["preConfigure", 33, 3], ["configureFlags", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "13.2";
       const outputs = nix.thunk(() => ["out", "tex"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/auctex/auctex-${version}.tar.gz`),
           hash: "sha256-Hn5AKrz4RmlOuncZklvwlcI+8zpeZgIgHHS2ymCUQDU=",
         }))));
@@ -35,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const preConfigure = "mkdir -p \"$tex\"\nexport HOME=$(mktemp -d)\n";
       const configureFlags = nix.thunk(() => ["--with-lispdir=${out}/share/emacs/site-lisp", "--with-texmf-dir=${tex}"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.gnu.org/software/auctex",
         description: "Extensible package for writing and formatting TeX files in GNU Emacs and XEmacs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         outputs,

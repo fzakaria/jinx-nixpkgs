@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 18, 5], ["buildCommand", 19, 5], ["outputHashMode", 25, 5], ["outputHash", 26, 5]], [["package", 49, 7], ["version", 50, 7]], [["testVersion", 48, 5]], [["tests", 47, 12]], [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["sourceProvenance", 60, 5]], [["pname", 15, 3], ["version", 16, 3], ["deps", 17, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["dontUnpack", 36, 3], ["installPhase", 38, 3], ["passthru", 47, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, jre8: false, coursier: false, makeWrapper: false, installShellFiles: false, setJavaClassPath: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 18, 5], ["buildCommand", 19, 5], ["outputHashMode", 25, 5], ["outputHash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 49, 7], ["version", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["testVersion", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 47, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["sourceProvenance", 60, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["deps", 17, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["dontUnpack", 36, 3], ["installPhase", 38, 3], ["passthru", 47, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const jre = jre8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "scalafix",
       version: "0.12.0",
       deps: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-deps-${nix.sel(finalAttrs, "version")}`),
           buildCommand: nix.thunk(() => nix.str`export COURSIER_CACHE=$(pwd)
 ${coursier}/bin/cs fetch ch.epfl.scala:scalafix-cli_2.13.13:${nix.sel(finalAttrs, "version")} > deps
@@ -47,18 +42,18 @@ installShellCompletion --cmd ${nix.sel(finalAttrs, "pname")} \\
   --zsh  <($out/bin/${nix.sel(finalAttrs, "pname")} --zsh)
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           testVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Refactoring and linting tool for Scala",
         mainProgram: "scalafix",
         homepage: "https://scalacenter.github.io/scalafix/",

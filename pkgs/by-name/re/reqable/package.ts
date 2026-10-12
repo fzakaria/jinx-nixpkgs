@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["hash", 35, 5]], [["updateScript", 85, 12]], [["description", 88, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["changelog", 91, 5], ["mainProgram", 92, 5], ["license", 93, 5], ["sourceProvenance", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["installPhase", 65, 3], ["dontWrapGApps", 75, 3], ["preFixup", 77, 3], ["passthru", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, autoPatchelfHook: false, wrapGAppsHook3: false, fontconfig: false, atk: false, cairo: false, "gdk-pixbuf": false, glib: false, gtk3: false, harfbuzz: false, libdbusmenu: false, "libdbusmenu-gtk3": false, libepoxy: false, libgcrypt: false, "libgpg-error": false, lz4: false, nspr: false, nss: false, pango: false, "util-linux": false, xz: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 85, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["changelog", 91, 5], ["mainProgram", 92, 5], ["license", 93, 5], ["sourceProvenance", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["installPhase", 65, 3], ["dontWrapGApps", 75, 3], ["preFixup", 77, 3], ["passthru", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "reqable",
       version: "3.2.23",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/reqable/reqable-app/releases/download/${nix.sel(finalAttrs, "version")}/reqable-app-linux-x86_64.deb`),
           hash: "sha256-qZx5TX+3yi42WbnSIwwHrv97LnkJKI3rry1J2838wxo=",
         })))),
@@ -69,11 +66,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapper $out/share/reqable/reqable $out/bin/reqable \\\n  --prefix LD_LIBRARY_PATH : $out/share/reqable/lib \\\n  ${gappsWrapperArgs[@]}\n\nrm -r $out/share/pixmaps\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Generation API debugging and testing one-stop solution",
         homepage: "https://reqable.com",
         downloadPage: "https://github.com/reqable/reqable-app/releases",

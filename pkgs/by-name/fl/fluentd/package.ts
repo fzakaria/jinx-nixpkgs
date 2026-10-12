@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fluentd", 16, 18]], [["updateScript", 15, 12], ["tests", 16, 12]], [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5], ["platforms", 25, 5]], [["ruby", 10, 11], ["pname", 12, 3], ["gemdir", 13, 3], ["passthru", 15, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, bundlerEnv: false, ruby: false, bundlerUpdateScript: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fluentd", 16, 18]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 15, 12], ["tests", 16, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5], ["platforms", 25, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ruby", 10, 11], ["pname", 12, 3], ["gemdir", 13, 3], ["passthru", 15, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(bundlerEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       ruby: ruby,
       pname: "fluentd",
       gemdir: nix.path(here, "./."),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "fluentd")),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$1, fluentd: nix.thunk(() => nix.sel(nixosTests, "fluentd")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[0], fluentd: nix.thunk(() => nix.sel(nixosTests, "fluentd")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Data collector",
         homepage: "https://www.fluentd.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

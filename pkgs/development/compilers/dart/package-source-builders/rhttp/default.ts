@@ -2,14 +2,9 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["_0_9_1", 32, 9], ["_0_9_6", 33, 9], ["_0_9_8", 34, 9], ["_0_10_0", 35, 9], ["_0_11_0", 36, 9], ["_0_12_0", 37, 9], ["_0_15_1", 38, 9]], [["RUSTFLAGS", 46, 9]], [["libraryPath", 48, 14]], [["pname", 12, 5], ["version", 13, 13], ["src", 13, 21], ["sourceRoot", 15, 5], ["unpackPhase", 17, 5], ["cargoHash", 30, 5], ["env", 46, 5], ["passthru", 48, 5]], [["output_lib", 63, 7]], [["pname", 53, 3], ["version", 54, 11], ["src", 54, 19], ["passthru", 55, 17], ["prePatch", 57, 3], ["patches", 61, 3], ["postPatch", 67, 3], ["installPhase", 71, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, stdenv: false, replaceVars: false }, ellipsis: false };
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["_0_9_1", 32, 9], ["_0_9_6", 33, 9], ["_0_9_8", 34, 9], ["_0_10_0", 35, 9], ["_0_11_0", 36, 9], ["_0_12_0", 37, 9], ["_0_15_1", 38, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["RUSTFLAGS", 46, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["libraryPath", 48, 14]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 5], ["version", 13, 13], ["src", 13, 21], ["sourceRoot", 15, 5], ["unpackPhase", 17, 5], ["cargoHash", 30, 5], ["env", 46, 5], ["passthru", 48, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["output_lib", 63, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 53, 3], ["version", 54, 11], ["src", 54, 19], ["passthru", 55, 17], ["prePatch", 57, 3], ["patches", 61, 3], ["postPatch", 67, 3], ["installPhase", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
     const rustDep = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "rhttp-rs",
         version: version,
         src: src,
@@ -39,7 +34,7 @@ chmod -R u+w -- "$sourceRoot"
 runHook postUnpack
 `),
         cargoHash: nix.thunk(() => nix.selOr({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           _0_9_1: "sha256-ZVl1nesepZnmOWeJPOgE6IDCokQm5FedbA5MBvr5S8c=",
           _0_9_6: "sha256-vvzb+jNN5lmRrKJ3zqvORvdduqEHRmbp85L/9Zegh/E=",
           _0_9_8: "sha256-cwb1wYVXOE5YABlMxUDt+OMlDpIlipqeNI7ZFAGHCqo=",
@@ -51,11 +46,11 @@ runHook postUnpack
 Please add cargoHash here. If the cargoHash
 is the same with existing versions, add an alias here.
 `)), nix.key(nix.add("_", nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version))))),
-        env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "--cfg reqwest_unstable" })),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$3, libraryPath: "lib/librhttp.so" })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTFLAGS: "--cfg reqwest_unstable" })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], libraryPath: "lib/librhttp.so" })),
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "rhttp",
         version: version,
         src: src,
@@ -63,7 +58,7 @@ is the same with existing versions, add an alias here.
         prePatch: "if [ -d rhttp ]; then pushd rhttp; fi\n",
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./cargokit.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               output_lib: nix.thunk(() => nix.str`${rustDep}/${nix.sel(rustDep, "passthru", "libraryPath")}`),
             })))),
         ]),

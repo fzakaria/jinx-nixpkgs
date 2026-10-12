@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["homepage", 54, 5], ["description", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["license", 58, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["cmakeFlags", 44, 3], ["doCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, perl: false, libminc: false, bicpl: false, itk_5_2: false, fftwFloat: false, gsl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["license", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["cmakeFlags", 44, 3], ["doCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const fftwFloat = nix.arg($, "fftwFloat");
   const gsl = nix.arg($, "gsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "EZminc",
       version: "2.2.00-unstable-2023-10-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BIC-MNI",
           repo: "EZminc",
           rev: "5fdf112e837000d155891e423041d7065ea13c3f",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/BIC-MNI/EZminc",
         description: "Collection of Perl and shell scripts for processing MINC files",
         maintainers: nix.thunk(() => (() => {

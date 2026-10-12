@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 16, 5], ["version", 17, 5], ["src", 18, 5], ["meta", 19, 5], ["propagatedBuildInputs", 22, 3], ["format", 27, 3], ["installPhase", 28, 3]]]);
 const formals$1 = { args: { python3: false, addr: true, port: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 16, 5], ["version", 17, 5], ["src", 18, 5], ["meta", 19, 5], ["propagatedBuildInputs", 22, 3], ["format", 27, 3], ["installPhase", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(python3, "pkgs", "timetagger"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),

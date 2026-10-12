@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["hydraPlatforms", 55, 5]], [["version", 16, 11], ["pname", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["dontPatchELF", 31, 3], ["makeFlags", 32, 3], ["postFixup", 38, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fixDarwinDylibNames: false, "oracle-instantclient": false, libaio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["hydraPlatforms", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 16, 11], ["pname", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["dontPatchELF", 31, 3], ["makeFlags", 32, 3], ["postFixup", 38, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const version = "5.6.2";
   const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [nix.thunk(() => nix.sel(oracle_instantclient, "lib"))])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       pname: "odpic",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oracle",
           repo: "odpi",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +40,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
 `))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Oracle ODPI-C library",
         homepage: "https://oracle.github.io/odpi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

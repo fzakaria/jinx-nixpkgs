@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 9], ["hash", 15, 9]], [["url", 19, 9], ["hash", 20, 9]], [["description", 38, 5], ["homepage", 39, 5], ["downloadPage", 40, 5], ["changelog", 41, 5], ["sourceProvenance", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 47, 5], ["longDescription", 48, 5], ["mainProgram", 57, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontUnpack", 25, 3], ["dontConfigure", 26, 3], ["dontBuild", 27, 3], ["installPhase", 29, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 9], ["hash", 15, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 9], ["hash", 20, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["downloadPage", 40, 5], ["changelog", 41, 5], ["sourceProvenance", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 47, 5], ["longDescription", 48, 5], ["mainProgram", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontUnpack", 25, 3], ["dontConfigure", 26, 3], ["dontBuild", 27, 3], ["installPhase", 29, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,15 +11,15 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zbctl",
       version: "8.4.19",
       src: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenvNoCC, "hostPlatform", "system"), "x86_64-darwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/camunda/zeebe/releases/download/${nix.sel(finalAttrs, "version")}/zbctl.darwin`),
           hash: "sha256-RuZX9TWuXBxxegLw0La0l9/6zh96V/2trJvZUoCvTKk=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenvNoCC, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/camunda/zeebe/releases/download/${nix.sel(finalAttrs, "version")}/zbctl`),
           hash: "sha256-NTJqmcOzpOzHjrtOHBU2J3u0f7sESBeZMbb8kx3zR38=",
         }))) : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`))))),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\ninstall -Dm755 $src $out/bin/zbctl\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command line interface to interact with Camunda 8 and Zeebe",
         homepage: "https://docs.camunda.io/docs/apis-clients/cli-client/",
         downloadPage: "https://github.com/camunda/zeebe/releases",

@@ -2,75 +2,58 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/installation-cd-graphical-base.nix", [[["extraConfig", 13, 19]], [["polkit", 13, 12]], [["enable", 21, 20]], [["enable", 28, 27]], [["enable", 29, 22]], [["enable", 34, 31]], [["xserver", 21, 12], ["spice-vdagentd", 28, 12], ["qemuGuest", 29, 12], ["xe-guest-utilities", 34, 12]], [["enable", 25, 19]], [["enable", 30, 31]], [["guest", 30, 25]], [["enable", 32, 30]], [["enable", 37, 35]], [["guest", 37, 29]], [["vmware", 30, 18], ["hypervGuest", 32, 18], ["virtualbox", 37, 18]], [["enable", 40, 17]], [["plymouth", 40, 8]], [["defaultPackages", 42, 15]], [["imports", 5, 3], ["security", 13, 3], ["services", 21, 3], ["powerManagement", 25, 3], ["virtualisation", 30, 3], ["boot", 40, 3], ["environment", 42, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/installation-cd-graphical-base.nix", [["extraConfig", 13, 19]]);
-const pos$2 = nix.positions(here + "/installation-cd-graphical-base.nix", [["polkit", 13, 12]]);
-const pos$3 = nix.positions(here + "/installation-cd-graphical-base.nix", [["enable", 21, 20]]);
-const pos$4 = nix.positions(here + "/installation-cd-graphical-base.nix", [["enable", 28, 27]]);
-const pos$5 = nix.positions(here + "/installation-cd-graphical-base.nix", [["enable", 29, 22]]);
-const pos$6 = nix.positions(here + "/installation-cd-graphical-base.nix", [["enable", 34, 31]]);
-const pos$7 = nix.positions(here + "/installation-cd-graphical-base.nix", [["xserver", 21, 12], ["spice-vdagentd", 28, 12], ["qemuGuest", 29, 12], ["xe-guest-utilities", 34, 12]]);
-const pos$8 = nix.positions(here + "/installation-cd-graphical-base.nix", [["enable", 25, 19]]);
-const pos$9 = nix.positions(here + "/installation-cd-graphical-base.nix", [["enable", 30, 31]]);
-const pos$10 = nix.positions(here + "/installation-cd-graphical-base.nix", [["guest", 30, 25]]);
-const pos$11 = nix.positions(here + "/installation-cd-graphical-base.nix", [["enable", 32, 30]]);
-const pos$12 = nix.positions(here + "/installation-cd-graphical-base.nix", [["enable", 37, 35]]);
-const pos$13 = nix.positions(here + "/installation-cd-graphical-base.nix", [["guest", 37, 29]]);
-const pos$14 = nix.positions(here + "/installation-cd-graphical-base.nix", [["vmware", 30, 18], ["hypervGuest", 32, 18], ["virtualbox", 37, 18]]);
-const pos$15 = nix.positions(here + "/installation-cd-graphical-base.nix", [["enable", 40, 17]]);
-const pos$16 = nix.positions(here + "/installation-cd-graphical-base.nix", [["plymouth", 40, 8]]);
-const pos$17 = nix.positions(here + "/installation-cd-graphical-base.nix", [["defaultPackages", 42, 15]]);
-const pos$18 = nix.positions(here + "/installation-cd-graphical-base.nix", [["imports", 5, 3], ["security", 13, 3], ["services", 21, 3], ["powerManagement", 25, 3], ["virtualisation", 30, 3], ["boot", 40, 3], ["environment", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     imports: nix.thunk(() => [nix.path(here, "./installation-cd-base.nix")]),
     security: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       polkit: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         extraConfig: "polkit.addRule(function(action, subject) {\n  if (subject.isInGroup(\"wheel\")) {\n    return polkit.Result.YES;\n  }\n});\n",
       })),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$7,
-      xserver: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
-      "spice-vdagentd": nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
-      qemuGuest: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+      [nix.POS]: $pos[6],
+      xserver: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
+      "spice-vdagentd": nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
+      qemuGuest: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
       "xe-guest-utilities": nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         enable: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")),
       })),
     })),
-    powerManagement: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
+    powerManagement: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true })),
     virtualisation: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       vmware: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         guest: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           enable: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")),
         })),
       })),
       hypervGuest: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         enable: nix.thunk(() => (nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")) || nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")))),
       })),
       virtualbox: nix.thunk(() => ({
-        [nix.POS]: pos$13,
-        guest: nix.thunk(() => ({ [nix.POS]: pos$12, enable: false })),
+        [nix.POS]: $pos[12],
+        guest: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: false })),
       })),
     })),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$16,
-      plymouth: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
+      [nix.POS]: $pos[15],
+      plymouth: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: true })),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       defaultPackages: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [

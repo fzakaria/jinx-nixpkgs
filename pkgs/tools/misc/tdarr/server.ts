@@ -2,20 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/server.nix", [[["linux_x64", 8, 5], ["linux_arm64", 9, 5], ["darwin_x64", 10, 5], ["darwin_arm64", 11, 5]], [["pname", 4, 3], ["component", 5, 3], ["hashes", 7, 3], ["includeInPath", 14, 3], ["installIcons", 15, 3]]]);
 const formals$1 = { args: { callPackage: false, ccextractor: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/server.nix", [["linux_x64", 8, 5], ["linux_arm64", 9, 5], ["darwin_x64", 10, 5], ["darwin_arm64", 11, 5]]);
-const pos$2 = nix.positions(here + "/server.nix", [["pname", 4, 3], ["component", 5, 3], ["hashes", 7, 3], ["includeInPath", 14, 3], ["installIcons", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const ccextractor = nix.arg($, "ccextractor");
   return nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({})), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "tdarr-server",
       component: "server",
       hashes: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         linux_x64: "sha256-dAXcBPJ8wOxx4gg50mN6nEgUcDqEOn17eByX2FvphrQ=",
         linux_arm64: "sha256-MDDhkSmMTiOEezKpInR86TItkVnX20IKblUf2JUKnKg=",
         darwin_x64: "sha256-faCNm8eeJzQq3Doyac/vtmx80dOTaWVMIErgNwz77xk=",

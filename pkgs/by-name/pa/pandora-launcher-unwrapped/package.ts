@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["OPENSSL_NO_VENDOR", 80, 7]], [["name", 87, 5], ["desktopName", 88, 5], ["genericName", 89, 5], ["exec", 90, 5], ["icon", 91, 5]], [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["mainProgram", 142, 5]], [["pname", 32, 3], ["version", 33, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 61, 3], ["doCheck", 78, 3], ["env", 80, 3], ["dontUpdateAutotoolsGnuConfigScripts", 82, 3], ["cargoVendorDir", 83, 3], ["dontCargoSetupPostUnpack", 84, 3], ["desktopItems", 86, 3], ["postInstall", 94, 3], ["doInstallCheck", 103, 3], ["installCheckPhase", 105, 3], ["postFixup", 123, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { addDriverRunpath: false, lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, imagemagick: false, patchelf: false, "pkg-config": false, "alsa-lib": false, dbus: false, fontconfig: false, libGL: false, libseccomp: false, libxcb: false, libxkbcommon: false, openssl: false, udev: false, "vulkan-loader": false, wayland: false, copyDesktopItems: false, makeDesktopItem: false, "apple-sdk_15": false, msaClientID: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 80, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 87, 5], ["desktopName", 88, 5], ["genericName", 89, 5], ["exec", 90, 5], ["icon", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["mainProgram", 142, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 61, 3], ["doCheck", 78, 3], ["env", 80, 3], ["dontUpdateAutotoolsGnuConfigScripts", 82, 3], ["cargoVendorDir", 83, 3], ["dontCargoSetupPostUnpack", 84, 3], ["desktopItems", 86, 3], ["postInstall", 94, 3], ["doInstallCheck", 103, 3], ["installCheckPhase", 105, 3], ["postFixup", 123, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const apple_sdk_15 = nix.arg($, "apple-sdk_15");
   const msaClientID = nix.argOr($, "msaClientID", () => null);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pandora-launcher-unwrapped",
       version: "6.0.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Moulberry",
           repo: "PandoraLauncher",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,12 +56,12 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => nix.concat([fontconfig, openssl], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, dbus, libseccomp, libxcb, libxkbcommon, udev, wayland])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_15]))))),
       doCheck: false,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: true })),
       dontUpdateAutotoolsGnuConfigScripts: true,
       cargoVendorDir: "vendor",
       dontCargoSetupPostUnpack: true,
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "com.moulberry.pandoralauncher",
             desktopName: "Pandora Launcher",
             genericName: "Unofficial Minecraft Launcher",
@@ -86,7 +82,7 @@ runHook postInstallCheck
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`patchelf --add-rpath "${nix.sel(addDriverRunpath, "driverLink")}/lib:${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, vulkan_loader, wayland]))}" $out/bin/pandora_launcher
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Minecraft launcher that balances ease-of-use with powerful instance management features",
         homepage: "https://github.com/Moulberry/PandoraLauncher",
         changelog: nix.thunk(() => nix.str`https://github.com/Moulberry/PandoraLauncher/releases/tag/v${nix.sel(finalAttrs, "version")}`),

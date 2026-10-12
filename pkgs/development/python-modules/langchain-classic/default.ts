@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["rev-prefix", 110, 7], ["ignoredVersions", 111, 7]], [["skipBulkUpdate", 108, 5], ["updateScript", 109, 5]], [["description", 118, 5], ["homepage", 119, 5], ["license", 120, 5], ["maintainers", 121, 5]], [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["__structuredAttrs", 47, 3], ["src", 49, 3], ["sourceRoot", 56, 3], ["build-system", 58, 3], ["dependencies", 60, 3], ["nativeCheckInputs", 70, 3], ["enabledTestPaths", 94, 3], ["disabledTests", 99, 3], ["passthru", 107, 3], ["pythonImportsCheck", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "langchain-core": false, "langchain-text-splitters": false, langsmith: false, pydantic: false, pyyaml: false, requests: false, sqlalchemy: false, blockbuster: false, cffi: false, freezegun: false, "langchain-openai": false, "langchain-tests": false, lark: false, numpy: false, packaging: false, pandas: false, "pytest-asyncio": false, "pytest-dotenv": false, "pytest-mock": false, "pytest-socket": false, "pytest-xdist": false, pytest8_3CheckHook: false, "requests-mock": false, responses: false, syrupy: false, toml: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 110, 7], ["ignoredVersions", 111, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 108, 5], ["updateScript", 109, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 118, 5], ["homepage", 119, 5], ["license", 120, 5], ["maintainers", 121, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["__structuredAttrs", 47, 3], ["src", 49, 3], ["sourceRoot", 56, 3], ["build-system", 58, 3], ["dependencies", 60, 3], ["nativeCheckInputs", 70, 3], ["enabledTestPaths", 94, 3], ["disabledTests", 99, 3], ["passthru", 107, 3], ["pythonImportsCheck", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,13 +39,13 @@ export default nix.lambda((args) => (() => {
   const toml = nix.arg($, "toml");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "langchain-classic",
       version: "1.0.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "langchain-ai",
           repo: "langchain",
           tag: nix.thunk(() => nix.str`langchain-classic==${nix.sel(finalAttrs, "version")}`),
@@ -92,17 +88,17 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/unit_tests"]),
       disabledTests: nix.thunk(() => ["test_socket_disabled", "test_configurable"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "rev-prefix": "langchain-classic==",
             ignoredVersions: "a|b|dev|rc",
           })))),
       })),
       pythonImportsCheck: nix.thunk(() => ["langchain_classic"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Classic (0.x) compatibility layer for LangChain",
         homepage: "https://github.com/langchain-ai/langchain/tree/master/libs/langchain",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

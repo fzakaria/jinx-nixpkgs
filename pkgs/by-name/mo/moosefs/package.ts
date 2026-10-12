@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["moosefs", 57, 26]], [["tests", 56, 12]], [["broken", 62, 5], ["homepage", 63, 5], ["description", 64, 5], ["platforms", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["strictDeps", 36, 3], ["buildFlags", 38, 3], ["postPatch", 43, 3], ["preBuild", 48, 3], ["doCheck", 54, 3], ["passthru", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, fuse3: false, "pkg-config": false, libpcap: false, zlib: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["moosefs", 57, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 56, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 62, 5], ["homepage", 63, 5], ["description", 64, 5], ["platforms", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["strictDeps", 36, 3], ["buildFlags", 38, 3], ["postPatch", 43, 3], ["preBuild", 48, 3], ["doCheck", 54, 3], ["passthru", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "moosefs",
       version: "4.59.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "moosefs",
           repo: "moosefs",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +35,14 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace config.h --replace \\\n  \"#define HAVE_STRUCT_STAT_ST_BIRTHTIME 1\" \\\n  \"#undef HAVE_STRUCT_STAT_ST_BIRTHTIME\"\n")),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, moosefs: nix.thunk(() => nix.attr(nixosTests, "moosefs")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          moosefs: nix.thunk(() => nix.attr(nixosTests, "moosefs")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://moosefs.com",
         description: "Open Source, Petabyte, Fault-Tolerant, Highly Performing, Scalable Network Distributed File System",

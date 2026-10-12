@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["rule", 27, 5], ["testFile", 28, 5]], [["tests", 26, 12]], [["description", 32, 5], ["homepage", 33, 5], ["changelog", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["dontNpmBuild", 22, 3], ["dontCheckForBrokenSymlinks", 24, 3], ["passthru", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildNpmPackage: false, textlint: false, "textlint-rule-diacritics": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rule", 27, 5], ["testFile", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 26, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["changelog", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["dontNpmBuild", 22, 3], ["dontCheckForBrokenSymlinks", 24, 3], ["passthru", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "textlint-rule-diacritics";
       const version = "1.0.0-unstable-2023-01-05";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sapegin",
           repo: "textlint-rule-diacritics",
           rev: "07977d866aa6ce514bc6ed3a1087b2bb5869bfb4",
@@ -30,15 +26,15 @@ export default nix.lambda((args) => (() => {
       const dontNpmBuild = true;
       const dontCheckForBrokenSymlinks = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             rule: textlint_rule_diacritics,
             testFile: nix.path(here, "./test.md"),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Textlint rule to check correct usage of diacritics",
         homepage: "https://github.com/sapegin/textlint-rule-diacritics?tab=readme-ov-file",
         changelog: nix.thunk(() => nix.str`https://github.com/sapegin/textlint-rule-diacritics/releases/tag/${nix.sel(src, "rev")}`),
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

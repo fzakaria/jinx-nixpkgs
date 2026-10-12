@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["GIT_HASH", 36, 5], ["GIT_HASH_SHORT", 37, 5], ["PYO3_PYTHON", 38, 5], ["INFLUXDB3_BUILD_VERSION", 46, 7]], [["extraArgs", 71, 5]], [["updateScript", 70, 12]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["env", 35, 3], ["postPatch", 41, 3], ["buildNoDefaultFeatures", 48, 3], ["buildFeatures", 49, 3], ["postInstall", 56, 3], ["doCheck", 68, 3], ["passthru", 70, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, protobuf: false, python3: false, "rust-jemalloc-sys-unprefixed": false, rustc: false, makeWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GIT_HASH", 36, 5], ["GIT_HASH_SHORT", 37, 5], ["PYO3_PYTHON", 38, 5], ["INFLUXDB3_BUILD_VERSION", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 70, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["env", 35, 3], ["postPatch", 41, 3], ["buildNoDefaultFeatures", 48, 3], ["buildFeatures", 49, 3], ["postInstall", 56, 3], ["doCheck", 68, 3], ["passthru", 70, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "influxdb3",
       version: "3.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "influxdata",
           repo: "influxdb",
           rev: "73f689bb31d5ca13c4f950fefb40d5f6e6163019",
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [rust_jemalloc_sys_unprefixed, python3]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         GIT_HASH: "000000000000000000000000000000000000000000000000000",
         GIT_HASH_SHORT: "0000000",
         PYO3_PYTHON: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), python3)),
@@ -55,11 +50,14 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version-regex", "v(3.*)"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
+            [nix.POS]: $pos[2],
+            extraArgs: nix.thunk(() => ["--version-regex", "v(3.*)"]),
+          })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Scalable datastore for metrics, events, and real-time analytics",
         homepage: "https://github.com/influxdata/influxdb",
         license: nix.thunk(() => (() => {

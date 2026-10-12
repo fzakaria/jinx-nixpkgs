@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 50, 5], ["description", 51, 5], ["maintainers", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["preFixup", 36, 3], ["dontWrapGApps", 39, 3], ["postInstall", 41, 3], ["doCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, wrapGAppsHook3: false, "gobject-introspection": false, "mpv-shim-default-shaders": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["maintainers", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["preFixup", 36, 3], ["dontWrapGApps", 39, 3], ["postInstall", 41, 3], ["doCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const mpv_shim_default_shaders = nix.arg($, "mpv-shim-default-shaders");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "plex-mpv-shim",
       version: "1.11.0-unstable-2025-03-17",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iwalton3",
           repo: "plex-mpv-shim",
           rev: "fb1f1f3325285e33f9ce3425e9361f5f99277d9a",
@@ -45,7 +43,7 @@ ln -s ${mpv_shim_default_shaders}/share/mpv-shim-default-shaders $out/${nix.sel(
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/iwalton3/plex-mpv-shim",
         description: "Allows casting of videos to MPV via the Plex mobile and web app",
         maintainers: nix.thunk(() => (() => {

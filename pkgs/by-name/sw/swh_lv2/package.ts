@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["homepage", 36, 5], ["description", 37, 5], ["longDescription", 38, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patchPhase", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["installPhase", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fftwSinglePrec: false, libxslt: false, lv2: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 36, 5], ["description", 37, 5], ["longDescription", 38, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patchPhase", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["installPhase", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const lv2 = nix.arg($, "lv2");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swh-lv2",
       version: "1.0.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "swh",
           repo: "lv2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ sed -e "s#PREFIX = /usr/local#PREFIX = $out#" -i Makefile
       buildInputs: nix.thunk(() => [fftwSinglePrec, lv2]),
       installPhase: "make install-system",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/swh/lv2",
         description: "LV2 version of Steve Harris' SWH plugins",
         longDescription: "SWH plugins include:\namp, fast overdrive, overdrive (with colourisation), comb\nfilter, waveshaper, ringmod, divider, diode, decliper, pitch\nscaler, 16 band equaliser, sinus wavewrapper, hermes filter,\nchorus, flanger, decimater, oscillator, gverb, phasers, harmonic\ngenerators, surround encoders and more.\n",

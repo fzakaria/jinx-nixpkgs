@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["sha256", 26, 5]], [["packageName", 57, 7], ["attrPath", 58, 7], ["versionPolicy", 59, 7], ["freeze", 60, 7]], [["updateScript", 56, 5]], [["description", 65, 5], ["longDescription", 67, 5], ["homepage", 77, 5], ["license", 79, 5], ["maintainers", 81, 5], ["platforms", 82, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 44, 3], ["doCheck", 53, 3], ["passthru", 55, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, python3: false, gtk3: false, glibmm_2_4: false, cairomm_1_0: false, pangomm_1_4: false, atkmm: false, libepoxy: false, gnome: false, glib: false, "gdk-pixbuf": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 57, 7], ["attrPath", 58, 7], ["versionPolicy", 59, 7], ["freeze", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 65, 5], ["longDescription", 67, 5], ["homepage", 77, 5], ["license", 79, 5], ["maintainers", 81, 5], ["platforms", 82, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 44, 3], ["doCheck", 53, 3], ["passthru", 55, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gtkmm",
       version: "3.24.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gtkmm/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gtkmm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "erfiJmgIcW4mw5kkrOH7RtqGwX7znZiWJMQjFLMrWnY=",
         })))),
@@ -42,9 +38,9 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [glibmm_2_4, gtk3, atkmm, cairomm_1_0, pangomm_1_4]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packageName: "gtkmm",
             attrPath: "gtkmm3",
             versionPolicy: "odd-unstable",
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C++ interface to the GTK graphical user interface library",
         longDescription: "gtkmm is the official C++ interface for the popular GUI library\nGTK.  Highlights include typesafe callbacks, and a\ncomprehensive set of widgets that are easily extensible via\ninheritance.  You can create user interfaces either in code or\nwith the Glade User Interface designer, using libglademm.\nThere's extensive documentation, including API reference and a\ntutorial.\n",
         homepage: "https://gtkmm.gnome.org/",

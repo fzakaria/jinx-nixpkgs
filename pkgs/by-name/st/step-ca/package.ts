@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["forceFetchGit", 26, 5], ["hash", 27, 5]], [["step-ca", 65, 18]], [["tests", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 30, 3], ["ldflags", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["postPatch", 40, 3], ["preBuild", 45, 3], ["postInstall", 49, 3], ["preCheck", 53, 3], ["__darwinAllowLocalNetworking", 59, 3], ["checkFlags", 63, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, buildGoModule: false, coreutils: false, pcsclite: false, "pkg-config": false, hsmSupport: true, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["forceFetchGit", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["step-ca", 65, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 65, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 30, 3], ["ldflags", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["postPatch", 40, 3], ["preBuild", 45, 3], ["postInstall", 49, 3], ["preCheck", 53, 3], ["__darwinAllowLocalNetworking", 59, 3], ["checkFlags", 63, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "step-ca";
       const version = "0.30.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "smallstep",
           repo: "certificates",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,11 +42,14 @@ substituteInPlace systemd/step-ca.service --replace "/bin/kill" "${coreutils}/bi
       const __darwinAllowLocalNetworking = true;
       const checkFlags = nix.thunk(() => ["-p 1"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "step-ca": nix.thunk(() => nix.sel(nixosTests, "step-ca")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          "step-ca": nix.thunk(() => nix.sel(nixosTests, "step-ca")),
+        })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Private certificate authority (X.509 & SSH) & ACME server for secure automated certificate management, so you can use TLS everywhere & SSO for SSH",
         homepage: "https://smallstep.com/certificates/",
         changelog: nix.thunk(() => nix.str`https://github.com/smallstep/certificates/releases/tag/v${version}`),
@@ -65,7 +64,7 @@ substituteInPlace systemd/step-ca.service --replace "/bin/kill" "${coreutils}/bi
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

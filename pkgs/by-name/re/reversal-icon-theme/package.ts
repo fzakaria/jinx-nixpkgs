@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 7], ["repo", 41, 7], ["rev", 42, 7], ["hash", 43, 7]], [["updateScript", 88, 14]], [["description", 91, 7], ["homepage", 92, 7], ["license", 93, 7], ["platforms", 94, 7], ["maintainers", 95, 7]], [["pname", 36, 13], ["version", 37, 5], ["src", 39, 5], ["nativeBuildInputs", 46, 5], ["propagatedBuildInputs", 51, 5], ["dontDropIconThemeCache", 57, 5], ["dontPatchELF", 61, 5], ["dontRewriteSymlinks", 62, 5], ["dontWrapQtApps", 63, 5], ["dontCheckForBrokenSymlinks", 66, 5], ["postPatch", 68, 5], ["installPhase", 72, 5], ["passthru", 88, 5], ["meta", 90, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gtk3: false, jdupes: false, "adwaita-icon-theme": false, "hicolor-icon-theme": false, "numix-icon-theme-circle": false, gitUpdater: false, colorVariants: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 7], ["repo", 41, 7], ["rev", 42, 7], ["hash", 43, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 88, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 91, 7], ["homepage", 92, 7], ["license", 93, 7], ["platforms", 94, 7], ["maintainers", 95, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 36, 13], ["version", 37, 5], ["src", 39, 5], ["nativeBuildInputs", 46, 5], ["propagatedBuildInputs", 51, 5], ["dontDropIconThemeCache", 57, 5], ["dontPatchELF", 61, 5], ["dontRewriteSymlinks", 62, 5], ["dontWrapQtApps", 63, 5], ["dontCheckForBrokenSymlinks", 66, 5], ["postPatch", 68, 5], ["installPhase", 72, 5], ["passthru", 88, 5], ["meta", 90, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
       "red",
       "all",
     ]), colorVariants, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: "0-unstable-2025-11-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yeyushengfan258",
           repo: "reversal-icon-theme",
           rev: "26b97f00640cd9eaeb8f196eda3a8d298158a08f",
@@ -68,11 +65,11 @@ jdupes --quiet --link-soft --recurse $out/share
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Colorful Design Rectangle icon theme",
         homepage: "https://github.com/yeyushengfan258/Reversal-icon-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["changelog", 70, 5], ["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["mainProgram", 74, 5], ["platforms", 75, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["runtimeDependencies", 61, 3], ["postInstall", 65, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, fltk_1_3: false, portaudio: false, lame: false, libvorbis: false, libogg: false, flac: false, libopus: false, libsamplerate: false, fdk_aac: false, dbus: false, openssl: false, curl: false, portmidi: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 70, 5], ["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["mainProgram", 74, 5], ["platforms", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["runtimeDependencies", 61, 3], ["postInstall", 65, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const portmidi = nix.arg($, "portmidi");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "butt",
       version: "1.46.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://danielnoethen.de/butt/release/${nix.sel(finalAttrs, "version")}/butt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-3RIC2H5HMn/e5Bl4XCPxxpv+FET9RgV7MxtcOuscXzs=",
         })))),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       runtimeDependencies: nix.thunk(() => [fdk_aac]),
       postInstall: "cp -r usr/share $out/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://danielnoethen.de/butt/Changelog.html",
         description: "Easy to use, multi OS streaming tool",
         homepage: "https://danielnoethen.de/butt/",

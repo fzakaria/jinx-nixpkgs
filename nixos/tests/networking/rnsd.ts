@@ -2,54 +2,44 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rnsd.nix", [[["maintainers", 10, 8]], [["enable_transport", 17, 11], ["share_instance", 18, 11], ["instance_name", 19, 11], ["discover_interfaces", 20, 11], ["panic_on_interface_error", 21, 11]], [["loglevel", 24, 11]], [["type", 28, 13], ["enabled", 29, 13], ["discoverable", 30, 13], ["listen_ip", 31, 13], ["listen_port", 32, 13], ["discovery_name", 33, 13]], [["test", 27, 11]], [["reticulum", 16, 9], ["logging", 23, 9], ["interfaces", 26, 9]], [["enable", 14, 7], ["settings", 15, 7]], [["rnsd", 13, 14]], [["services", 13, 5]], [["machine", 12, 9]], [["name", 9, 3], ["meta", 10, 3], ["nodes", 12, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/rnsd.nix", [["maintainers", 10, 8]]);
-const pos$2 = nix.positions(here + "/rnsd.nix", [["enable_transport", 17, 11], ["share_instance", 18, 11], ["instance_name", 19, 11], ["discover_interfaces", 20, 11], ["panic_on_interface_error", 21, 11]]);
-const pos$3 = nix.positions(here + "/rnsd.nix", [["loglevel", 24, 11]]);
-const pos$4 = nix.positions(here + "/rnsd.nix", [["type", 28, 13], ["enabled", 29, 13], ["discoverable", 30, 13], ["listen_ip", 31, 13], ["listen_port", 32, 13], ["discovery_name", 33, 13]]);
-const pos$5 = nix.positions(here + "/rnsd.nix", [["test", 27, 11]]);
-const pos$6 = nix.positions(here + "/rnsd.nix", [["reticulum", 16, 9], ["logging", 23, 9], ["interfaces", 26, 9]]);
-const pos$7 = nix.positions(here + "/rnsd.nix", [["enable", 14, 7], ["settings", 15, 7]]);
-const pos$8 = nix.positions(here + "/rnsd.nix", [["rnsd", 13, 14]]);
-const pos$9 = nix.positions(here + "/rnsd.nix", [["services", 13, 5]]);
-const pos$10 = nix.positions(here + "/rnsd.nix", [["machine", 12, 9]]);
-const pos$11 = nix.positions(here + "/rnsd.nix", [["name", 9, 3], ["meta", 10, 3], ["nodes", 12, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const mainPort = 4242n;
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "rnsd",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "drupol"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           rnsd: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               reticulum: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 enable_transport: "Yes",
                 share_instance: "Yes",
                 instance_name: "default",
                 discover_interfaces: "No",
                 panic_on_interface_error: "No",
               })),
-              logging: nix.thunk(() => ({ [nix.POS]: pos$3, loglevel: 5n })),
+              logging: nix.thunk(() => ({ [nix.POS]: $pos[2], loglevel: 5n })),
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 test: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   type: "BackboneInterface",
                   enabled: "yes",
                   discoverable: "yes",

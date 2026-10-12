@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ocamlformat-lib.nix", [[["homepage", 25, 5], ["description", 26, 5], ["maintainers", 27, 5], ["license", 31, 5]], [["pname", 17, 3], ["src", 18, 11], ["version", 18, 15], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, buildDunePackage: false, menhir: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ocamlformat-lib.nix", [["homepage", 25, 5], ["description", 26, 5], ["maintainers", 27, 5], ["license", 31, 5]]);
-const pos$2 = nix.positions(here + "/ocamlformat-lib.nix", [["pname", 17, 3], ["src", 18, 11], ["version", 18, 15], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const library_deps = nix.thunk(() => nix.attr(from, "library_deps"));
   nix.assert_(nix.app(nix.sel(lib, "versionAtLeast"), version, "0.25.1"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/ocaml-modules/ocamlformat/ocamlformat-lib.nix:14:1");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ocamlformat-lib",
       src: src,
       version: version,
       nativeBuildInputs: nix.thunk(() => [menhir]),
       propagatedBuildInputs: library_deps,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/ocaml-ppx/ocamlformat",
         description: "Auto-formatter for OCaml code (library)",
         maintainers: nix.thunk(() => (() => {

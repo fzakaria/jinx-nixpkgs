@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["rev-prefix", 52, 40]], [["updateScript", 52, 12]], [["homepage", 55, 5], ["changelog", 56, 5], ["description", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]], [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 24, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["strictDeps", 43, 3], ["__structuredAttrs", 44, 3], ["enableParallelBuilding", 45, 3], ["postInstall", 47, 3], ["passthru", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, gitUpdater: false, autoreconfHook: false, allegro: false, libsamplerate: false, libx11: false, SDL2: false, SDL2_mixer: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 52, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["changelog", 56, 5], ["description", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 24, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["strictDeps", 43, 3], ["__structuredAttrs", 44, 3], ["enableParallelBuilding", 45, 3], ["postInstall", 47, 3], ["passthru", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "1oom",
       version: "1.11.9",
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git@git.sourcecraft.dev/fork1oom/1oom.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-tU396z/7qpnhDEFqj/S55e/zeXa5jZFUi2VG3O6SJdY=",
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "install -Dm644 -t $doc/share/doc/1oom \\\n  HACKING NEWS PHILOSOPHY README.md doc/*.txt\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://fork1oom.sourcecraft.site/",
         changelog: nix.thunk(() => nix.str`https://sourcecraft.dev/fork1oom/1oom/releases/v${nix.sel(finalAttrs, "version")}`),
         description: "Master of Orion (1993) game engine recreation; a more updated fork",

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 11, 3], ["extraCmakeFlags", 13, 3], ["extraNativeBuildInputs", 14, 3], ["extraBuildInputs", 15, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, "pkg-config": false, libheif: false, libjxl: false, libavif: false, libraw: false, openexr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["extraCmakeFlags", 13, 3], ["extraNativeBuildInputs", 14, 3], ["extraBuildInputs", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const libraw = nix.arg($, "libraw");
   const openexr = nix.arg($, "openexr");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "kimageformats",
       extraCmakeFlags: nix.thunk(() => ["-DKIMAGEFORMATS_HEIF=1"]),
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/assets.nix", [[["name", 16, 9], ["sha256", 17, 9], ["message", 18, 9]], [["description", 49, 9], ["homepage", 50, 9], ["license", 51, 9], ["maintainers", 52, 9], ["hydraPlatforms", 53, 9]], [["pname", 12, 7], ["version", 13, 7], ["src", 15, 7], ["nativeBuildInputs", 30, 7], ["dontBuild", 32, 7], ["dontFixup", 33, 7], ["installPhase", 35, 7], ["meta", 48, 7]], [["descent1-assets", 59, 3], ["descent2-assets", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, requireFile: false, gogUnpackHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/assets.nix", [["name", 16, 9], ["sha256", 17, 9], ["message", 18, 9]]);
-const pos$2 = nix.positions(here + "/assets.nix", [["description", 49, 9], ["homepage", 50, 9], ["license", 51, 9], ["maintainers", 52, 9], ["hydraPlatforms", 53, 9]]);
-const pos$3 = nix.positions(here + "/assets.nix", [["pname", 12, 7], ["version", 13, 7], ["src", 15, 7], ["nativeBuildInputs", 30, 7], ["dontBuild", 32, 7], ["dontFixup", 33, 7], ["installPhase", 35, 7], ["meta", 48, 7]]);
-const pos$4 = nix.positions(here + "/assets.nix", [["descent1-assets", 59, 3], ["descent2-assets", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const requireFile = nix.arg($, "requireFile");
   const gogUnpackHook = nix.arg($, "gogUnpackHook");
   const generic = (ver) => (source) => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`descent${nix.builtins.toString(ver)}-assets`),
       version: "2.0.0.7",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => (() => {
@@ -30,7 +27,7 @@ installation:
 
 nix-prefetch-url file://$PWD/${name}
 `);
-          return { [nix.POS]: pos$1, name, sha256, message };
+          return { [nix.POS]: $pos[0], name, sha256, message };
         })()))),
       nativeBuildInputs: nix.thunk(() => [gogUnpackHook]),
       dontBuild: true,
@@ -47,7 +44,7 @@ popd
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.str`Descent ${nix.builtins.toString(ver)} assets from GOG`),
         homepage: "https://www.dxx-rebirth.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -59,7 +56,7 @@ runHook postInstall
       })),
     }));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "descent1-assets": nix.thunk(() => nix.app(generic, 1n, "descent")),
     "descent2-assets": nix.thunk(() => nix.app(generic, 2n, "descent 2")),
   };

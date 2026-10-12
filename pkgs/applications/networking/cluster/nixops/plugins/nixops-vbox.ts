@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nixops-vbox.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["tagPrefix", 39, 5]], [["updateScript", 38, 12]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["pythonImportsCheck", 36, 3], ["passthru", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, unstableGitUpdater: false, "poetry-core": false, nixops: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nixops-vbox.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/nixops-vbox.nix", [["tagPrefix", 39, 5]]);
-const pos$3 = nix.positions(here + "/nixops-vbox.nix", [["updateScript", 38, 12]]);
-const pos$4 = nix.positions(here + "/nixops-vbox.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$5 = nix.positions(here + "/nixops-vbox.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["pythonImportsCheck", 36, 3], ["passthru", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const nixops = nix.arg($, "nixops");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nixops-vbox",
       version: "1.0.0-unstable-2023-08-10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "nixops-vbox",
           rev: "baa5f09c9ae9aaf639c95192460ab5dcbe83a883",
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nixops]),
       pythonImportsCheck: nix.thunk(() => ["nixopsvbox"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "NixOps plugin for VirtualBox VMs",
         homepage: "https://github.com/nix-community/nixops-vbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

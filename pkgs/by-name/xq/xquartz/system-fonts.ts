@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/system-fonts.nix", [[["name", 9, 3], ["buildInputs", 10, 3], ["buildCommand", 14, 3]]]);
 const formals$1 = { args: { stdenv: false, "font-alias": false, mkfontscale: false, fontDirs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/system-fonts.nix", [["name", 9, 3], ["buildInputs", 10, 3], ["buildCommand", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const mkfontscale = nix.arg($, "mkfontscale");
   const fontDirs = nix.arg($, "fontDirs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "xquartz-system-fonts",
       buildInputs: nix.thunk(() => [mkfontscale, mkfontscale]),
       buildCommand: nix.thunk(() => nix.str`for i in ${nix.builtins.toString(fontDirs)} ; do

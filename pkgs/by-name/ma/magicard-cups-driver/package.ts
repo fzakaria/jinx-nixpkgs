@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["url", 20, 5], ["hash", 21, 5]], [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["src_v1_3_4", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["prePatch", 29, 3], ["patches", 34, 3], ["cmakeFlags", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, cmake: false, cups: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["src_v1_3_4", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["prePatch", 29, 3], ["patches", 34, 3], ["cmakeFlags", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const cups = nix.arg($, "cups");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "magicard-cups-driver",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://f08ddbe93aa02eaf9a6c-f08cd513e3a8c914f4f8f62af1786149.ssl.cf3.rackcdn.com/magicard_ltd-linux_driver-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-1k2Twn1JBizw/tzQ0xF1uJIecblRd6VurB7FAUop5F0=",
         })))),
       src_v1_3_4: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://techs.magicard.com/linux/v1.3.4/magicard_ltd-linux_driver-1.3.4.tar.gz",
           hash: "sha256-6UIL2wyFOjOJeyGjYScfjbpURycN469raye6DnP19jg=",
         })))),
@@ -37,7 +34,7 @@ rm makefile
       patches: nix.thunk(() => [nix.path(here, "./CMakeLists.patch")]),
       cmakeFlags: nix.thunk(() => ["-DCUPS_SERVER_BIN=lib/cups", "-DCUPS_DATA_DIR=share/cups"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CUPS driver for Magicard Printers",
         longDescription: "This driver supports Magicard printers and rebrands sold at least under the following brands:\n\n- Aisino\n- AlphaCard\n- BOOD\n- Brady\n- Cardmaker\n- Centena\n- DTP\n- Digital ID\n- DoH\n- Elliaden\n- Fagoo\n- Goodcard\n- Gudecard\n- IDentilam\n- IDville\n- ilinkcard\n- Intersider\n- Magicard\n- Orphicard\n- PPC ID\n- Polaroid\n- PriceCardPro\n- Pridento\n- ScreenCheck\n- Titan\n- Ying\n",
         homepage: "https://support.magicard.com/solution/linux-driver/",

@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libgcc.nix", [[["path", 11, 3], ["extraPaths", 12, 3], ["outputs", 21, 3], ["noLibc", 26, 3], ["buildInputs", 28, 3], ["preBuild", 33, 3], ["postBuild", 41, 3], ["postInstall", 49, 3], ["alwaysKeepStatic", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false, include: false, libcMinimal: false, csu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libgcc.nix", [["path", 11, 3], ["extraPaths", 12, 3], ["outputs", 21, 3], ["noLibc", 26, 3], ["buildInputs", 28, 3], ["preBuild", 33, 3], ["postBuild", 41, 3], ["postInstall", 49, 3], ["alwaysKeepStatic", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libcMinimal = nix.arg($, "libcMinimal");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "lib/libgcc_eh",
       extraPaths: nix.thunk(() => [
         "lib/libgcc_s",

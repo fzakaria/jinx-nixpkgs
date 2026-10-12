@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5]], [["pname", 14, 54], ["version", 14, 60], ["src", 14, 68]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5], ["sourceProvenance", 33, 5], ["mainProgram", 34, 5]], [["pname", 17, 11], ["version", 17, 17], ["src", 17, 25], ["extraInstallCommands", 19, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 14, 54], ["version", 14, 60], ["src", 14, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5], ["sourceProvenance", 33, 5], ["mainProgram", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 11], ["version", 17, 17], ["src", 17, 25], ["extraInstallCommands", 19, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const pname = "listen1";
   const version = "2.33.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/listen1/listen1_desktop/releases/download/v${version}/listen1_${version}_linux_x86_64.AppImage`),
       hash: "sha256-RMpusz9bNrHpN23HrncjteiIGkLJgsP7FS2t7zD1Ud0=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -33,7 +30,7 @@ install -m 444 -D ${appimageContents}/usr/share/icons/hicolor/512x512/apps/liste
   $out/share/icons/hicolor/512x512/apps/listen1.png
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "One for all free music in China",
         homepage: "http://listen1.github.io/listen1/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

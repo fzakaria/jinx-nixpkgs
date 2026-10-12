@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["url", 24, 7], ["hash", 25, 7]], [["elmPackages", 41, 7], ["elmVersion", 42, 7], ["registryDat", 43, 7]], [["updateScript", 49, 12]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["npmDepsHash", 29, 3], ["nativeBuildInputs", 31, 3], ["npmFlags", 35, 3], ["npmBuildScript", 37, 3], ["postConfigure", 39, 3], ["passthru", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, elmPackages: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["elmPackages", 41, 7], ["elmVersion", 42, 7], ["registryDat", 43, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 49, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["npmDepsHash", 29, 3], ["nativeBuildInputs", 31, 3], ["npmFlags", 35, 3], ["npmBuildScript", 37, 3], ["postConfigure", 39, 3], ["passthru", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const elmPackages = nix.arg($, "elmPackages");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "elm-xref",
       version: "4.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zwilias",
           repo: "elm-xref",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/turboMaCk/elm-xref/commit/55ad630c1afc110197a4785bd2a4cd2388a1d160.patch",
             hash: "sha256-67s8gozhkWN8ci/S3OSwnNABdATY7gpBPy7zaZJPamw=",
           })))),
@@ -40,15 +35,15 @@ export default nix.lambda((args) => (() => {
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       npmBuildScript: "elm",
       postConfigure: nix.thunk(() => nix.add(nix.app(nix.sel(elmPackages, "fetchElmDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           elmPackages: nix.thunk(() => nix.builtins.import(nix.path(here, "./elm-srcs.nix"))),
           elmVersion: nix.thunk(() => nix.sel(elmPackages, "elm", "version")),
           registryDat: nix.path(here, "./registry.dat"),
         }))), nix.str`ln -sf ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(elmPackages, "elm")))} node_modules/.bin/elm
 `)),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cross referencing tool for Elm",
         homepage: "https://github.com/zwilias/elm-xref",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,24 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/games.nix", [[["categories", 16, 7], ["comment", 20, 7], ["desktopName", 21, 7], ["exec", 22, 7], ["genericName", 23, 7], ["icon", 24, 7], ["name", 25, 7]], [["homepage", 92, 11], ["license", 93, 11], ["maintainers", 94, 11], ["description", 95, 19], ["platforms", 96, 34]], [["pname", 64, 17], ["version", 64, 23], ["nativeBuildInputs", 66, 9], ["dontBuild", 68, 9], ["dontFixup", 69, 9], ["installPhase", 71, 9], ["meta", 91, 9]], [["url", 111, 7], ["sha256", 112, 7]], [["plong", 105, 5], ["pshort", 106, 5], ["pcode", 107, 5], ["description", 108, 5], ["version", 109, 5], ["src", 110, 5], ["files", 114, 5]], [["url", 124, 7], ["sha256", 125, 7]], [["plong", 118, 5], ["pshort", 119, 5], ["pcode", 120, 5], ["description", 121, 5], ["version", 122, 5], ["src", 123, 5], ["sourceRoot", 127, 5], ["docs", 128, 5], ["files", 132, 5]], [["url", 143, 7], ["sha256", 144, 7]], [["plong", 136, 5], ["pshort", 137, 5], ["pcode", 138, 5], ["description", 139, 5], ["version", 140, 5], ["src", 142, 5], ["sourceRoot", 151, 5], ["docs", 152, 5], ["files", 156, 5]], [["url", 166, 7], ["sha256", 167, 7]], [["plong", 160, 5], ["pshort", 161, 5], ["pcode", 162, 5], ["description", 163, 5], ["version", 164, 5], ["src", 165, 5], ["sourceRoot", 169, 5], ["docs", 170, 5], ["files", 171, 5]], [["url", 185, 7], ["sha256", 186, 7]], [["plong", 179, 5], ["pshort", 180, 5], ["pcode", 181, 5], ["description", 182, 5], ["version", 183, 5], ["src", 184, 5], ["sourceRoot", 188, 5], ["files", 189, 5]], [["url", 199, 7], ["sha256", 200, 7]], [["plong", 193, 5], ["pshort", 194, 5], ["pcode", 195, 5], ["description", 196, 5], ["version", 197, 5], ["src", 198, 5], ["docs", 202, 5], ["files", 208, 5]], [["beneath-a-steel-sky", 104, 3], ["broken-sword-25", 117, 3], ["drascula-the-vampire-strikes-back", 135, 3], ["dreamweb", 159, 3], ["flight-of-the-amazon-queen", 178, 3], ["lure-of-the-temptress", 192, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, makeDesktopItem: false, unzip: false, writeText: false, scummvm: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/games.nix", [["categories", 16, 7], ["comment", 20, 7], ["desktopName", 21, 7], ["exec", 22, 7], ["genericName", 23, 7], ["icon", 24, 7], ["name", 25, 7]]);
 const formals$2 = { args: { plong: false, pshort: false, pcode: false, description: false, version: false, files: false, docs: true }, ellipsis: true };
-const pos$2 = nix.positions(here + "/games.nix", [["homepage", 92, 11], ["license", 93, 11], ["maintainers", 94, 11], ["description", 95, 19], ["platforms", 96, 34]]);
-const pos$3 = nix.positions(here + "/games.nix", [["pname", 64, 17], ["version", 64, 23], ["nativeBuildInputs", 66, 9], ["dontBuild", 68, 9], ["dontFixup", 69, 9], ["installPhase", 71, 9], ["meta", 91, 9]]);
-const pos$4 = nix.positions(here + "/games.nix", [["url", 111, 7], ["sha256", 112, 7]]);
-const pos$5 = nix.positions(here + "/games.nix", [["plong", 105, 5], ["pshort", 106, 5], ["pcode", 107, 5], ["description", 108, 5], ["version", 109, 5], ["src", 110, 5], ["files", 114, 5]]);
-const pos$6 = nix.positions(here + "/games.nix", [["url", 124, 7], ["sha256", 125, 7]]);
-const pos$7 = nix.positions(here + "/games.nix", [["plong", 118, 5], ["pshort", 119, 5], ["pcode", 120, 5], ["description", 121, 5], ["version", 122, 5], ["src", 123, 5], ["sourceRoot", 127, 5], ["docs", 128, 5], ["files", 132, 5]]);
-const pos$8 = nix.positions(here + "/games.nix", [["url", 143, 7], ["sha256", 144, 7]]);
-const pos$9 = nix.positions(here + "/games.nix", [["plong", 136, 5], ["pshort", 137, 5], ["pcode", 138, 5], ["description", 139, 5], ["version", 140, 5], ["src", 142, 5], ["sourceRoot", 151, 5], ["docs", 152, 5], ["files", 156, 5]]);
-const pos$10 = nix.positions(here + "/games.nix", [["url", 166, 7], ["sha256", 167, 7]]);
-const pos$11 = nix.positions(here + "/games.nix", [["plong", 160, 5], ["pshort", 161, 5], ["pcode", 162, 5], ["description", 163, 5], ["version", 164, 5], ["src", 165, 5], ["sourceRoot", 169, 5], ["docs", 170, 5], ["files", 171, 5]]);
-const pos$12 = nix.positions(here + "/games.nix", [["url", 185, 7], ["sha256", 186, 7]]);
-const pos$13 = nix.positions(here + "/games.nix", [["plong", 179, 5], ["pshort", 180, 5], ["pcode", 181, 5], ["description", 182, 5], ["version", 183, 5], ["src", 184, 5], ["sourceRoot", 188, 5], ["files", 189, 5]]);
-const pos$14 = nix.positions(here + "/games.nix", [["url", 199, 7], ["sha256", 200, 7]]);
-const pos$15 = nix.positions(here + "/games.nix", [["plong", 193, 5], ["pshort", 194, 5], ["pcode", 195, 5], ["description", 196, 5], ["version", 197, 5], ["src", 198, 5], ["docs", 202, 5], ["files", 208, 5]]);
-const pos$16 = nix.positions(here + "/games.nix", [["beneath-a-steel-sky", 104, 3], ["broken-sword-25", 117, 3], ["drascula-the-vampire-strikes-back", 135, 3], ["dreamweb", 159, 3], ["flight-of-the-amazon-queen", 178, 3], ["lure-of-the-temptress", 192, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const scummvm = nix.arg($, "scummvm");
   const runtimeShell = nix.arg($, "runtimeShell");
   const desktopItem = (name) => (short) => (long) => (description) => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       categories: nix.thunk(() => ["Game", "AdventureGame"]),
       comment: description,
       desktopName: long,
@@ -61,7 +46,7 @@ exec ${scummvm}/bin/scummvm \\
     const attrs$ = nix.thunk(() => nix.builtins.removeAttrs(attrs, nix.thunk(() => ["plong", "pshort", "pcode", "description", "docs", "files", "version"])));
     const pname = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => [" ", ":"]), nix.thunk(() => ["-", ""]), nix.thunk(() => nix.app(nix.sel(lib, "toLower"), plong))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: pname,
         version: version,
         nativeBuildInputs: nix.thunk(() => [unzip]),
@@ -86,7 +71,7 @@ runHook postInstall
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(scummvm, "meta"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://www.scummvm.org",
           license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
           maintainers: nix.thunk(() => (() => {
@@ -100,7 +85,7 @@ runHook postInstall
       }, attrs$)));
   })(), formals$2);
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     "beneath-a-steel-sky": nix.thunk(() => nix.app(generic, nix.thunk(() => (() => {
         const plong = "Beneath a Steel Sky";
         const pshort = "bass";
@@ -108,12 +93,12 @@ runHook postInstall
         const description = "2D point-and-click science fiction thriller set in a bleak vision of the future";
         const version = "1.2";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: nix.thunk(() => nix.str`mirror://sourceforge/scummvm/${pshort}-cd-${version}.zip`),
             sha256: "14s5jz67kavm8l15gfm5xb7pbpn8azrv460mlxzzvdpa02a9n82k",
           }))));
         const files = nix.thunk(() => ["sky.*"]);
-        return { [nix.POS]: pos$5, plong, pshort, pcode, description, version, src, files };
+        return { [nix.POS]: $pos[4], plong, pshort, pcode, description, version, src, files };
       })()))),
     "broken-sword-25": nix.thunk(() => nix.app(generic, nix.thunk(() => (() => {
         const plong = "Broken Sword 2.5";
@@ -122,7 +107,7 @@ runHook postInstall
         const description = "Fan game of the Broken Sword series";
         const version = "1.0";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: nix.thunk(() => nix.str`mirror://sourceforge/scummvm/${pshort}-v${version}.zip`),
             sha256: "0ivj1vflfpih5bs5a902mab88s4d77fwm3ya3fk7pammzc8gjqzz",
           }))));
@@ -130,7 +115,7 @@ runHook postInstall
         const docs = nix.thunk(() => ["README", "license-original.txt"]);
         const files = nix.thunk(() => ["data.b25c"]);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           plong,
           pshort,
           pcode,
@@ -149,7 +134,7 @@ runHook postInstall
         const description = "Spanish 2D classic point & click style adventure with tons of humor and an easy interface";
         const version = "1.0";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: nix.thunk(() => nix.str`mirror://sourceforge/scummvm/${pshort}-${version}.zip`),
             sha256: "1pj29rpb754sn6a56f8brfv6f2m1p5qgaqik7d68pfi2bb5zccdp",
           }))));
@@ -157,7 +142,7 @@ runHook postInstall
         const docs = nix.thunk(() => ["readme.txt", "drascula.doc"]);
         const files = nix.thunk(() => ["Packet.001"]);
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           plong,
           pshort,
           pcode,
@@ -176,7 +161,7 @@ runHook postInstall
         const description = "2D point-and-click cyberpunk top-down adventure game";
         const version = "1.1";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             url: nix.thunk(() => nix.str`mirror://sourceforge/scummvm/${pshort}-cd-uk-${version}.zip`),
             sha256: "0hh1p3rd7s0ckvri14lc6wdry9vv0vn4h4744v2n4zg63j8i6vsa",
           }))));
@@ -184,7 +169,7 @@ runHook postInstall
         const docs = nix.thunk(() => ["license.txt"]);
         const files = nix.thunk(() => ["DREAMWEB.*", "SPEECH", "track01.flac"]);
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           plong,
           pshort,
           pcode,
@@ -203,14 +188,14 @@ runHook postInstall
         const description = "2D point-and-click adventure game set in the 1940s";
         const version = "1.1";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             url: nix.thunk(() => nix.str`mirror://sourceforge/scummvm/FOTAQ_Talkie-${version}.zip`),
             sha256: "1a6q71q1dl9vvw2qqsxk5h1sv0gaqy6236zr5905w2is01gdsp52",
           }))));
         const sourceRoot = ".";
         const files = nix.thunk(() => ["*.1c"]);
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           plong,
           pshort,
           pcode,
@@ -228,14 +213,14 @@ runHook postInstall
         const description = "2D point-and-click adventure game with a fantasy theme";
         const version = "1.1";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             url: nix.thunk(() => nix.str`mirror://sourceforge/scummvm/lure-${version}.zip`),
             sha256: "0201i70qcs1m797kvxjx3ygkhg6kcl5yf49sihba2ga8l52q45zk",
           }))));
         const docs = nix.thunk(() => ["README", "*.txt", "*.pdf", "*.PDF"]);
         const files = nix.thunk(() => ["*.vga"]);
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           plong,
           pshort,
           pcode,

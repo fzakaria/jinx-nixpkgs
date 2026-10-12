@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 13, 5], ["rev", 14, 5], ["repo", 15, 5], ["owner", 16, 5]], [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["patches", 20, 3], ["postPatch", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 13, 5], ["rev", 14, 5], ["repo", 15, 5], ["owner", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["patches", 20, 3], ["postPatch", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "uptimed",
       version: "0.4.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sha256: "sha256-gP6Syzu54/co4L+UCPikUhXDpxpfAB4jO/5ZF/9RdN0=",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           repo: "uptimed",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./no-var-spool-install.patch")]),
       postPatch: "substituteInPlace libuptimed/urec.h \\\n  --replace /var/spool /var/lib\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Uptime record daemon",
         longDescription: "An uptime record daemon keeping track of the highest uptimes a computer\nsystem ever had. It uses the system boot time to keep sessions apart from\neach other. Uptimed comes with a console front-end to parse the records,\nwhich can also easily be used to show your records on a web page.\n",
         homepage: "https://github.com/rpodgorny/uptimed/",

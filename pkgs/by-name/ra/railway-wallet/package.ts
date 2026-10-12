@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5]], [["description", 16, 5], ["homepage", 17, 5], ["license", 18, 5], ["maintainers", 19, 5], ["platforms", 20, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 16, 5], ["homepage", 17, 5], ["license", 18, 5], ["maintainers", 19, 5], ["platforms", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
       const pname = "railway-wallet";
       const version = "5.24.21";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Railway-Wallet/Railway-Wallet/releases/download/v${version}/Railway.linux.x86_64.AppImage`),
           hash: "sha256-21Z9ulzYGIjntAHuA3t7Bl5yIqM7y39jALM4tDBa0Qw=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Private DeFi wallet for Linux",
         homepage: "https://www.railway.xyz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

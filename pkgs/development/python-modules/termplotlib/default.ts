@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["gnuplot", 37, 7]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["pyproject", 26, 3], ["nativeCheckInputs", 27, 3], ["pythonImportsCheck", 31, 3], ["propagatedBuildInputs", 33, 3], ["patches", 35, 3], ["disabledTests", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, replaceVars: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, exdown: false, numpy: false, gnuplot: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gnuplot", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["pyproject", 26, 3], ["nativeCheckInputs", 27, 3], ["pythonImportsCheck", 31, 3], ["propagatedBuildInputs", 33, 3], ["patches", 35, 3], ["disabledTests", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "termplotlib";
       const version = "0.3.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nschloe",
           repo: "termplotlib",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,13 +33,13 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [numpy]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gnuplot-subprocess.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             gnuplot: nix.thunk(() => nix.str`${nix.sel(gnuplot, "out")}/bin/gnuplot`),
           })))),
       ]);
       const disabledTests = nix.thunk(() => ["test_plot", "test_nolabel"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Matplotlib for your terminal",
         homepage: "https://github.com/nschloe/termplotlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

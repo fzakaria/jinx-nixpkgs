@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 42, 5], ["description", 43, 5]], [["version", 16, 43], ["src", 16, 51], ["pname", 17, 3], ["pyproject", 18, 3], ["sourceRoot", 20, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 34, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, flask: false, hatchling: false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, "opentelemetry-instrumentation-wsgi": false, "opentelemetry-semantic-conventions": false, "opentelemetry-test-utils": false, "opentelemetry-util-http": false, packaging: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 42, 5], ["description", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 16, 43], ["src", 16, 51], ["pname", 17, 3], ["pyproject", 18, 3], ["sourceRoot", 20, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 34, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const packaging = nix.arg($, "packaging");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-instrumentation-flask",
@@ -39,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [opentelemetry_test_utils, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.instrumentation.flask"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-flask",
         description: "Flask Middleware for OpenTelemetry based on the WSGI middleware",
       })),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 7], ["hash", 29, 7]], [["pname", 24, 5], ["version", 25, 5], ["src", 27, 5], ["prePatch", 32, 5]], [["url", 42, 5], ["hash", 43, 5]], [["description", 114, 5], ["longDescription", 115, 5], ["homepage", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["platforms", 123, 5], ["mainProgram", 124, 5], ["teams", 125, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["preBuild", 66, 3], ["postInstall", 106, 3], ["enableParallelBuilding", 111, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { cxxtest: false, fetchurl: false, fontconfig: false, glm: false, help2man: false, intltool: false, lib: false, libzip: false, "pkg-config": false, SDL2: false, SDL2_gfx: false, SDL2_image: false, SDL2_mixer: false, SDL2_ttf: false, stdenv: false, zip: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 24, 5], ["version", 25, 5], ["src", 27, 5], ["prePatch", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 114, 5], ["longDescription", 115, 5], ["homepage", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["platforms", 123, 5], ["mainProgram", 124, 5], ["teams", 125, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["preBuild", 66, 3], ["postInstall", 106, 3], ["enableParallelBuilding", 111, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,22 +25,22 @@ export default nix.lambda((args) => (() => {
   const zip = nix.arg($, "zip");
   const zlib = nix.arg($, "zlib");
   const freedink_data = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "freedink-data",
       version: "1.08.20190120",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/freedink/freedink-data-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-cV9EdzsFtzqeybYrDhUvPygb4aFRL7qqOGF22pTP+50=",
         })))),
       prePatch: "substituteInPlace Makefile --replace-fail /usr/local $out",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "freedink",
       version: "109.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`mirror://gnu/freedink/freedink-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Xgs1rI9G17uH5lbv1fnHwqwabFGakI/FtYHlJleYEAI=",
         })))),
@@ -67,7 +63,7 @@ ln -s ${freedink_data}/share/dink "$out/share/"
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Free, portable and enhanced version of the Dink Smallwood game engine",
         longDescription: "GNU FreeDink is a new and portable version of the Dink Smallwood\ngame engine, which runs the original game as well as its D-Mods,\nwith close compatibility, under multiple platforms.\n",
         homepage: "https://gnu.org/software/freedink/",

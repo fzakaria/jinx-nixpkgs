@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 50, 5], ["hash", 51, 5]], [["PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR", 126, 5], ["PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR", 127, 5], ["PKG_CONFIG_SYSTEMD_TMPFILESDIR", 128, 5], ["PKG_CONFIG_SYSTEMD_SYSUSERSDIR", 129, 5], ["PKG_CONFIG_BASH_COMPLETION_COMPLETIONSDIR", 130, 5], ["PKG_CONFIG_UDEV_UDEVDIR", 131, 5]], [["installedTests", 136, 7]], [["tests", 135, 5]], [["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["teams", 145, 5], ["platforms", 146, 5]], [["pname", 38, 3], ["version", 39, 3], ["outputs", 41, 3], ["src", 49, 3], ["patches", 54, 3], ["postPatch", 59, 3], ["mesonFlags", 65, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 100, 3], ["doInstallCheck", 119, 3], ["postInstall", 121, 3], ["env", 125, 3], ["passthru", 134, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, nixosTests: false, "bash-completion": false, glib: false, polkit: false, "pkg-config": false, gettext: false, gusb: false, lcms2: false, sqlite: false, udev: false, systemdLibs: false, enableSystemd: true, dbus: false, "gobject-introspection": false, argyllcms: false, meson: false, mesonEmulatorHook: false, ninja: false, vala: false, libgudev: false, wrapGAppsNoGuiHook: false, "shared-mime-info": false, "sane-backends": false, docbook_xsl: false, docbook_xsl_ns: false, docbook_xml_dtd_412: false, "gtk-doc": false, libxslt: false, enableDaemon: true, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR", 126, 5], ["PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR", 127, 5], ["PKG_CONFIG_SYSTEMD_TMPFILESDIR", 128, 5], ["PKG_CONFIG_SYSTEMD_SYSUSERSDIR", 129, 5], ["PKG_CONFIG_BASH_COMPLETION_COMPLETIONSDIR", 130, 5], ["PKG_CONFIG_UDEV_UDEVDIR", 131, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["installedTests", 136, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 135, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["teams", 145, 5], ["platforms", 146, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["outputs", 41, 3], ["src", 49, 3], ["patches", 54, 3], ["postPatch", 59, 3], ["mesonFlags", 65, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 100, 3], ["doInstallCheck", 119, 3], ["postInstall", 121, 3], ["env", 125, 3], ["passthru", 134, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const enableDaemon = nix.argOr($, "enableDaemon", () => true);
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "colord",
       version: "1.4.8",
       outputs: nix.thunk(() => ["out", "dev", "devdoc", "man", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.freedesktop.org/software/colord/releases/colord-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-IVAL1ol1MSp/DzzmAZ2fdfQqrKp1ynEV7HILVEVAaJY=",
         })))),
@@ -99,7 +94,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "glib-compile-schemas $out/share/glib-2.0/schemas\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/system`),
         PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/user`),
         PKG_CONFIG_SYSTEMD_TMPFILESDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/tmpfiles.d`),
@@ -108,14 +103,14 @@ export default nix.lambda((args) => (() => {
         PKG_CONFIG_UDEV_UDEVDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/udev`),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "colord")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "System service to manage, install and generate color profiles to accurately color manage input and output devices",
         homepage: "https://www.freedesktop.org/software/colord/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

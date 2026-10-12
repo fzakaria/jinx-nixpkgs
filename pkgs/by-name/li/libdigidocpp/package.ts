@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["NIX_LDFLAGS", 60, 7]], [["description", 70, 5], ["mainProgram", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5]], [["version", 19, 3], ["pname", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["outputs", 45, 3], ["cmakeFlags", 52, 3], ["env", 60, 3], ["postFixup", 64, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libtool: false, libxml2: false, minizip: false, pcsclite: false, opensc: false, openssl: false, "pkg-config": false, zlib: false, xmlsec: false, xxd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 70, 5], ["mainProgram", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 19, 3], ["pname", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["outputs", 45, 3], ["cmakeFlags", 52, 3], ["env", 60, 3], ["postFixup", 64, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xmlsec = nix.arg($, "xmlsec");
   const xxd = nix.arg($, "xxd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "4.5.1",
       pname: "libdigidocpp",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-eid",
           repo: "libdigidocpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,14 +39,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "PKCS11_MODULE", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), opensc)}/lib/opensc-pkcs11.so`))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.str`-L${nix.sel(libtool, "lib")}/lib`),
       })),
       postFixup: nix.thunk(() => nix.str`sed '/^  INTERFACE_INCLUDE_DIRECTORIES/s|"[^"]*/include"|"${nix.builtins.placeholder("dev")}/include"|' \\
   -i "$dev"/lib/cmake/libdigidocpp/libdigidocpp-config.cmake
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for creating DigiDoc signature files",
         mainProgram: "digidoc-tool",
         homepage: "https://www.id.ee/",

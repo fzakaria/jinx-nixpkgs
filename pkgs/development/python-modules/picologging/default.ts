@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["homepage", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["changelog", 59, 5], ["description", 60, 5], ["license", 61, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 28, 3], ["build-system", 34, 3], ["nativeCheckInputs", 41, 3], ["dontUseCmakeConfigure", 45, 3], ["__darwinAllowLocalNetworking", 46, 3], ["dependencies", 48, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, fetchFromGitHub: false, pytestCheckHook: false, setuptools: false, "scikit-build": false, cmake: false, ninja: false, python: false, flaky: false, hypothesis: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["changelog", 59, 5], ["description", 60, 5], ["license", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 28, 3], ["build-system", 34, 3], ["nativeCheckInputs", 41, 3], ["dontUseCmakeConfigure", 45, 3], ["__darwinAllowLocalNetworking", 46, 3], ["dependencies", 48, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "picologging",
           tag: version,
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [flaky, hypothesis]);
       const pythonImportsCheck = nix.thunk(() => ["picologging"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/microsoft/picologging",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         maintainers: nix.thunk(() => (() => {
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

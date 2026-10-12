@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5], ["fetchSubmodules", 48, 5], ["postFetch", 53, 5]], [["homepage", 145, 5], ["description", 146, 5], ["license", 147, 5], ["maintainers", 148, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["vendorHash", 58, 3], ["patches", 60, 3], ["nativeCheckInputs", 64, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 69, 3], ["doCheck", 75, 3], ["tinygoTests", 76, 11], ["allowGoReference", 78, 3], ["ldflags", 79, 3], ["tags", 83, 3], ["subPackages", 84, 3], ["stripDebugList", 88, 3], ["postPatch", 90, 3], ["preBuild", 101, 3], ["postBuild", 108, 3], ["checkPhase", 118, 3], ["runtimeDeps", 123, 3], ["installPhase", 133, 3], ["meta", 144, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildGo127Module: false, fetchFromGitHub: false, makeWrapper: false, llvmPackages_22: false, go_1_27: false, xar: false, binaryen: false, avrdude: false, gdb: false, openocd: false, runCommand: false, tinygoTests: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5], ["fetchSubmodules", 48, 5], ["postFetch", 53, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 145, 5], ["description", 146, 5], ["license", 147, 5], ["maintainers", 148, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["vendorHash", 58, 3], ["patches", 60, 3], ["nativeCheckInputs", 64, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 69, 3], ["doCheck", 75, 3], ["tinygoTests", 76, 11], ["allowGoReference", 78, 3], ["ldflags", 79, 3], ["tags", 83, 3], ["subPackages", 84, 3], ["stripDebugList", 88, 3], ["postPatch", 90, 3], ["preBuild", 101, 3], ["postBuild", 108, 3], ["checkPhase", 118, 3], ["runtimeDeps", 123, 3], ["installPhase", 133, 3], ["meta", 144, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +32,11 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(clang, "cc")))}/bin/clang $out/clang-${llvmMajor}
 `)));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tinygo",
       version: "0.42.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tinygo-org",
           repo: "tinygo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +86,7 @@ wrapProgram $out/bin/tinygo \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://tinygo.org/",
         description: "Go compiler for small places",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

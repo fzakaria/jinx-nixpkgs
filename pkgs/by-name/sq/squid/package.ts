@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 28, 5]], [["squid", 95, 18]], [["tests", 95, 12]], [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5], ["knownVulnerabilities", 107, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 32, 3], ["enableParallelBuilding", 47, 3], ["configureFlags", 49, 3], ["doCheck", 65, 3], ["nativeCheckInputs", 66, 3], ["preCheck", 67, 3], ["postCheck", 84, 3], ["postInstall", 89, 3], ["passthru", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, openldap: false, pam: false, db: false, cyrus_sasl: false, libcap: false, expat: false, libxml2: false, openssl: false, "pkg-config": false, systemdLibs: false, cppunit: false, ipv6: true, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["squid", 95, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 95, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5], ["knownVulnerabilities", 107, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 32, 3], ["enableParallelBuilding", 47, 3], ["configureFlags", 49, 3], ["doCheck", 65, 3], ["nativeCheckInputs", 66, 3], ["preCheck", 67, 3], ["postCheck", 84, 3], ["postInstall", 89, 3], ["passthru", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const ipv6 = nix.argOr($, "ipv6", () => true);
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "squid",
       version: "7.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/squid-cache/squid/releases/download/SQUID_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/squid-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-hSF4/cN8WweGqTT8mQx9L//IKs8ZsihL4gm5ZDHSWZI=",
         })))),
@@ -57,11 +53,11 @@ export default nix.lambda((args) => (() => {
       postCheck: "cd ..\n",
       postInstall: "rm -r $out/var\nrm $out/share/mib.txt\nmv $out/sbin $out/bin\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, squid: nix.thunk(() => nix.sel(nixosTests, "squid")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], squid: nix.thunk(() => nix.sel(nixosTests, "squid")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Caching proxy for the Web supporting HTTP, HTTPS, FTP, and more",
         homepage: "http://www.squid-cache.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

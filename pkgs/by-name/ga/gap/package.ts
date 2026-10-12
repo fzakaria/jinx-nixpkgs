@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 77, 5], ["hash", 78, 5]], [["description", 151, 5], ["teams", 155, 5], ["platforms", 156, 5], ["hydraPlatforms", 160, 5], ["license", 161, 5], ["homepage", 162, 5]], [["pname", 72, 3], ["version", 74, 3], ["src", 76, 3], ["preConfigure", 82, 3], ["buildInputs", 86, 3], ["nativeBuildInputs", 92, 3], ["propagatedBuildInputs", 96, 3], ["doInstallCheck", 105, 3], ["installCheckTarget", 106, 3], ["preInstallCheck", 108, 3], ["postBuild", 128, 3], ["postInstall", 135, 3], ["preFixup", 145, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, makeWrapper: false, readline: false, gmp: false, pari: false, zlib: false, packageSet: true, keepAllPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 77, 5], ["hash", 78, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 151, 5], ["teams", 155, 5], ["platforms", 156, 5], ["hydraPlatforms", 160, 5], ["license", 161, 5], ["homepage", 162, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 72, 3], ["version", 74, 3], ["src", 76, 3], ["preConfigure", 82, 3], ["buildInputs", 86, 3], ["nativeBuildInputs", 92, 3], ["propagatedBuildInputs", 96, 3], ["doInstallCheck", 105, 3], ["installCheckTarget", 106, 3], ["preInstallCheck", 108, 3], ["postBuild", 128, 3], ["postInstall", 135, 3], ["preFixup", 145, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gap";
       const version = "4.15.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/gap-system/gap/releases/download/v${version}/gap-${version}.tar.gz`),
           hash: "sha256-YEnVPpmxLiXC2EjbIaxKBjgKRv5MQVckPVVv4GkwBCw=",
         }))));
@@ -66,7 +64,7 @@ popd
       const postInstall = "# make install creates an empty pkg dir. since we run \"make check\" on\n# installCheckPhase to make sure the installed GAP finds its libraries, we\n# also install the tst dir. this is probably excessively cautious, see\n# https://github.com/NixOS/nixpkgs/pull/192548#discussion_r992824942\nrm -r \"$out/share/gap/pkg\"\ncp -ar pkg tst \"$out/share/gap\"\ncp -a etc/Makefile.gappkg \"$out/share/gap/etc\"\n";
       const preFixup = "# patchelf won't strip references to the build dir if it still exists\nrm -rf pkg\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Computational discrete algebra system",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -75,7 +73,7 @@ popd
         homepage: "https://www.gap-system.org",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

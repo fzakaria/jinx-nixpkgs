@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 30, 5], ["longDescription", 32, 5], ["license", 48, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["postInstall", 23, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, zlib: false, bzip2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["longDescription", 32, 5], ["license", 48, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["postInstall", 23, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const bzip2 = nix.arg($, "bzip2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tokyocabinet",
       version: "1.4.48",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dbmx.net/tokyocabinet/tokyocabinet-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "140zvr0n8kvsl0fbn2qn3f2kh3yynfwnizn4dgbj47m975yg80x0",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       s|-lbz2|-L${nix.sel(bzip2, "out")}/lib -lbz2|g'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tokyo Cabinet: a modern implementation of DBM",
         longDescription: "Tokyo Cabinet is a library of routines for managing a database. The\ndatabase is a simple data file containing records, each is a pair of\na key and a value.  Every key and value is serial bytes with\nvariable length.  Both binary data and character string can be used\nas a key and a value.  There is neither concept of data tables nor\ndata types.  Records are organized in hash table, B+ tree, or\nfixed-length array.\n\nTokyo Cabinet is developed as the successor of GDBM and QDBM on the\nfollowing purposes.  They are achieved and Tokyo Cabinet replaces\nconventional DBM products: improves space efficiency, improves time\nefficiency, improves parallelism, improves usability, improves\nrobustness, supports 64-bit architecture.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

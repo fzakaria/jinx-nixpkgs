@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sqlite.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 24, 5], ["description", 25, 5], ["platforms", 26, 5], ["maintainers", 27, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildPhase", 16, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sqlite.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/sqlite.nix", [["homepage", 24, 5], ["description", 25, 5], ["platforms", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/sqlite.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildPhase", 16, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sqlite-zandronum",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.sqlite.org/2021/sqlite-autoconf-3360000.tar.gz",
           sha256: "1qxwkfvd185dfcqbakrzikrsw6ffr5jp1gl3dch9dsdyjvmw745x",
         })))),
       buildPhase: "mkdir -p $out\ncp sqlite3.c $out/\ncp sqlite3.h $out/\ncp sqlite3ext.h $out/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.sqlite.org/",
         description: "Single C code file, named sqlite3.c, that contains all C code for the core SQLite library and the FTS3 and RTREE extensions",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

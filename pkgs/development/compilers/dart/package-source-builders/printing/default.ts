@@ -2,10 +2,9 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pdfiumLib", 21, 7], ["pdfiumDev", 22, 7]], [["pname", 11, 3], ["version", 12, 11], ["src", 12, 19], ["passthru", 13, 17], ["prePatch", 15, 3], ["patches", 19, 3], ["postPatch", 26, 3], ["dontBuild", 30, 3], ["installPhase", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pdfium: false, replaceVars: false }, ellipsis: false };
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["pdfiumLib", 21, 7], ["pdfiumDev", 22, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 11], ["src", 12, 19], ["passthru", 13, 17], ["prePatch", 15, 3], ["patches", 19, 3], ["postPatch", 26, 3], ["dontBuild", 30, 3], ["installPhase", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
         const prePatch = "if [ -d printing ]; then pushd printing; fi\n";
         const patches = nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./printing.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               pdfiumLib: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), pdfium)),
               pdfiumDev: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), pdfium)),
             })))),
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
         const dontBuild = true;
         const installPhase = "runHook preInstall\n\ncp -r . $out\n\nrunHook postInstall\n";
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname,
           version: version_1,
           src: src_1,

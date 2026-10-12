@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bin.nix", [[["description", 73, 5], ["homepage", 74, 5], ["downloadPage", 75, 5], ["changelog", 76, 5], ["license", 80, 5], ["sourceProvenance", 81, 5], ["platforms", 82, 5], ["maintainers", 87, 5]], [["pname", 23, 3], ["version", 24, 3], ["format", 25, 3], ["src", 27, 3], ["disabled", 36, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 56, 3], ["dependencies", 61, 3], ["preInstall", 63, 3], ["dontStrip", 68, 3], ["pythonImportsCheck", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, python: false, fetchurl: false, pythonAtLeast: false, cudaPackages: false, ffmpeg_6: false, sox: false, addDriverRunpath: false, autoPatchelfHook: false, "torch-bin": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bin.nix", [["description", 73, 5], ["homepage", 74, 5], ["downloadPage", 75, 5], ["changelog", 76, 5], ["license", 80, 5], ["sourceProvenance", 81, 5], ["platforms", 82, 5], ["maintainers", 87, 5]]);
-const pos$2 = nix.positions(here + "/bin.nix", [["pname", 23, 3], ["version", 24, 3], ["format", 25, 3], ["src", 27, 3], ["disabled", 36, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 56, 3], ["dependencies", 61, 3], ["preInstall", 63, 3], ["dontStrip", 68, 3], ["pythonImportsCheck", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const torch_bin = nix.arg($, "torch-bin");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "torchaudio",
       version: "2.11.0",
       format: "wheel",
@@ -46,7 +45,7 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       pythonImportsCheck: nix.thunk(() => ["torchaudio"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "PyTorch audio library",
         homepage: "https://pytorch.org/audio",
         downloadPage: "https://github.com/pytorch/audio",

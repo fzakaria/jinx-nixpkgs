@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]], [["pname", 29, 5], ["version", 30, 5], ["src", 31, 5], ["vendorHash", 32, 5], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["doCheck", 47, 3], ["preInstall", 49, 3], ["preFixup", 54, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, cairo: false, fetchFromGitHub: false, "gobject-introspection": false, "gtk-layer-shell": false, gtk3: false, "pkg-config": false, wrapGAppsHook3: false, "xdg-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 5], ["version", 30, 5], ["src", 31, 5], ["vendorHash", 32, 5], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["doCheck", 47, 3], ["preInstall", 49, 3], ["preFixup", 54, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const pname = "nwg-drawer";
   const version = "0.7.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "nwg-piotr",
       repo: "nwg-drawer",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const vendorHash = "sha256-8PJnDu00/ef7mBAhHgWy/rkpNV1F9JREDP/VRwfK8ck=";
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: src,
@@ -46,7 +44,7 @@ gappsWrapperArgs+=(
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Application drawer for sway Wayland compositor",
         homepage: "https://github.com/nwg-piotr/nwg-drawer",
         changelog: nix.thunk(() => nix.str`https://github.com/nwg-piotr/nwg-drawer/releases/tag/${nix.sel(src, "rev")}`),

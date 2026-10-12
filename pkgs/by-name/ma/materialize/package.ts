@@ -2,23 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 9], ["hash", 36, 17]], [["src", 43, 13], ["dst", 44, 13]], [["src", 47, 13], ["dst", 48, 13]], [["src", 51, 13], ["dst", 52, 13]], [["src", 55, 13], ["dst", 56, 13]], [["src", 61, 13], ["dst", 62, 13]], [["src", 65, 13], ["dst", 66, 13]], [["src", 71, 13], ["dst", 72, 13]], [["src", 75, 13], ["dst", 76, 13]], [["owner", 97, 5], ["repo", 98, 5], ["tag", 99, 5], ["hash", 100, 5], ["fetchSubmodules", 101, 5]], [["MZ_DEV_BUILD_SHA", 114, 5], ["PROTOC", 116, 5], ["PROTOC_INCLUDE", 117, 5], ["CARGO_FEATURE_DYNAMIC_LINKING", 120, 5], ["OPENSSL_NO_VENDOR", 122, 5]], [["updateScript", 173, 5]], [["homepage", 177, 5], ["description", 178, 5], ["license", 179, 5], ["platforms", 180, 5], ["maintainers", 181, 5], ["mainProgram", 182, 5]], [["pname", 93, 3], ["version", 94, 3], ["src", 96, 3], ["postPatch", 104, 3], ["env", 113, 3], ["cargoHash", 125, 3], ["nativeBuildInputs", 127, 3], ["buildInputs", 136, 3], ["doCheck", 143, 3], ["checkFlags", 146, 3], ["cargoBuildFlags", 157, 3], ["postInstall", 162, 3], ["nativeInstallCheckInputs", 166, 3], ["versionCheckProgram", 169, 3], ["doInstallCheck", 170, 3], ["passthru", 172, 3], ["meta", 176, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, rustPlatform: false, fetchFromGitHub: false, protobuf: false, cmake: false, perl: false, "pkg-config": false, darwin: false, openssl: false, rdkafka: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
 const formals$2 = { args: { name: false, version: false, hash: false, js_prod_file: false, js_dev_file: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 9], ["hash", 36, 17]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 43, 13], ["dst", 44, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 47, 13], ["dst", 48, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 51, 13], ["dst", 52, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["src", 55, 13], ["dst", 56, 13]]);
-const pos$6 = nix.positions(here + "/package.nix", [["src", 61, 13], ["dst", 62, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["src", 65, 13], ["dst", 66, 13]]);
-const pos$8 = nix.positions(here + "/package.nix", [["src", 71, 13], ["dst", 72, 13]]);
-const pos$9 = nix.positions(here + "/package.nix", [["src", 75, 13], ["dst", 76, 13]]);
 const formals$3 = { args: { src: false, dst: false }, ellipsis: false };
-const pos$10 = nix.positions(here + "/package.nix", [["owner", 97, 5], ["repo", 98, 5], ["tag", 99, 5], ["hash", 100, 5], ["fetchSubmodules", 101, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["MZ_DEV_BUILD_SHA", 114, 5], ["PROTOC", 116, 5], ["PROTOC_INCLUDE", 117, 5], ["CARGO_FEATURE_DYNAMIC_LINKING", 120, 5], ["OPENSSL_NO_VENDOR", 122, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["updateScript", 173, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["homepage", 177, 5], ["description", 178, 5], ["license", 179, 5], ["platforms", 180, 5], ["maintainers", 181, 5], ["mainProgram", 182, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 93, 3], ["version", 94, 3], ["src", 96, 3], ["postPatch", 104, 3], ["env", 113, 3], ["cargoHash", 125, 3], ["nativeBuildInputs", 127, 3], ["buildInputs", 136, 3], ["doCheck", 143, 3], ["checkFlags", 146, 3], ["cargoBuildFlags", 157, 3], ["postInstall", 162, 3], ["nativeInstallCheckInputs", 166, 3], ["versionCheckProgram", 169, 3], ["doInstallCheck", 170, 3], ["passthru", 172, 3], ["meta", 176, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,7 +32,7 @@ export default nix.lambda((args) => (() => {
     const js_prod_file = nix.arg($_1, "js_prod_file");
     const js_dev_file = nix.arg($_1, "js_dev_file");
     const package$ = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://registry.npmjs.org/${name}/-/${nix.builtins.baseNameOf(name)}-${version}.tgz`),
         hash: hash,
       }))));
@@ -53,44 +40,44 @@ export default nix.lambda((args) => (() => {
       const w = nix.withScope(args_2, null);
       return nix.concat([
         nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: js_prod_file,
           dst: nix.thunk(() => nix.str`./src/environmentd/src/http/static/js/vendor/${name}.js`),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: js_prod_file,
           dst: nix.thunk(() => nix.str`./src/prof-http/src/http/static/js/vendor/${name}.js`),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           src: js_dev_file,
           dst: nix.thunk(() => nix.str`./src/environmentd/src/http/static-dev/js/vendor/${name}.js`),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           src: js_dev_file,
           dst: nix.thunk(() => nix.str`./src/prof-http/src/http/static-dev/js/vendor/${name}.js`),
         })),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.has(args_2, "css_file")), nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             src: nix.thunk(() => nix.lookup(w, "css_file")),
             dst: nix.thunk(() => nix.str`./src/environmentd/src/http/static/css/vendor/${name}.css`),
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             src: nix.thunk(() => nix.lookup(w, "css_file")),
             dst: nix.thunk(() => nix.str`./src/prof-http/src/http/static/css/vendor/${name}.css`),
           })),
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.has(args_2, "extra_file")), nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             src: nix.thunk(() => nix.sel(nix.lookup(w, "extra_file"), "src")),
             dst: nix.thunk(() => nix.str`./src/environmentd/src/http/static/${nix.sel(nix.lookup(w, "extra_file"), "dst")}`),
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             src: nix.thunk(() => nix.sel(nix.lookup(w, "extra_file"), "src")),
             dst: nix.thunk(() => nix.str`./src/prof-http/src/http/static/${nix.sel(nix.lookup(w, "extra_file"), "dst")}`),
           })),
@@ -110,7 +97,7 @@ cp "${package$}/${src}" "${dst}"
       const pname = "materialize";
       const version = "0.87.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           owner: "MaterializeInc",
           repo: "materialize",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -125,7 +112,7 @@ substituteInPlace ./src/catalog/build.rs \\
   --replace-fail '&[ ' '&["."'
 `);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         MZ_DEV_BUILD_SHA: "000000000000000000000000000000000000000000000000000",
         PROTOC: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), protobuf)),
         PROTOC_INCLUDE: nix.thunk(() => nix.str`${protobuf}/include`),
@@ -157,11 +144,11 @@ substituteInPlace ./src/catalog/build.rs \\
       const versionCheckProgram = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/environmentd`);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         homepage: "https://materialize.com",
         description: "Streaming SQL materialized view engine for real-time applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsl11")),
@@ -173,7 +160,7 @@ substituteInPlace ./src/catalog/build.rs \\
         mainProgram: "environmentd",
       }));
       return {
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         pname,
         version,
         src,

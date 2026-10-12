@@ -2,26 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["names", 68, 7], ["enable", 69, 7], ["pkgs", 70, 7]], [["names", 73, 7], ["enable", 74, 7], ["pkgs", 75, 7]], [["names", 78, 7], ["enable", 79, 7], ["pkgs", 80, 7]], [["names", 83, 7], ["enable", 84, 7], ["pkgs", 85, 7]], [["names", 88, 7], ["enable", 93, 7], ["pkgs", 94, 7]], [["names", 101, 7], ["enable", 102, 7], ["pkgs", 103, 7]], [["names", 106, 7], ["enable", 107, 7], ["pkgs", 108, 7]], [["names", 111, 7], ["enable", 112, 7], ["pkgs", 113, 7]], [["names", 116, 7], ["enable", 117, 7], ["pkgs", 118, 7]], [["names", 121, 7], ["enable", 122, 7], ["pkgs", 123, 7]], [["names", 126, 7], ["enable", 127, 7], ["pkgs", 128, 7]], [["names", 131, 7], ["enable", 132, 7], ["pkgs", 133, 7]], [["names", 136, 7], ["enable", 137, 7], ["pkgs", 138, 7]], [["names", 141, 7], ["enable", 142, 7], ["pkgs", 143, 7]], [["names", 146, 7], ["enable", 150, 7], ["pkgs", 151, 7]], [["names", 157, 7], ["enable", 158, 7], ["pkgs", 159, 7]], [["owner", 169, 5], ["repo", 170, 5], ["rev", 171, 5], ["hash", 172, 5]], [["description", 210, 5], ["mainProgram", 211, 5], ["homepage", 212, 5], ["license", 213, 5], ["maintainers", 214, 5], ["platforms", 217, 5], ["badPlatforms", 218, 5]], [["pname", 165, 3], ["version", 166, 3], ["src", 168, 3], ["patches", 175, 3], ["postPatch", 182, 3], ["buildInputs", 186, 3], ["nativeBuildInputs", 196, 3], ["cmakeFlags", 203, 3], ["qtWrapperArgs", 205, 3], ["meta", 209, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, qt6: false, kdePackages: false, perl: false, withCdda: true, cdparanoia: false, withCddb: true, libcddb: false, withLame: true, lame: false, withMusicbrainz: true, libmusicbrainz: false, withTaglib: true, taglib_1: false, taglib_extras: false, withHttpStream: true, gst_all_1: false, withReplaygain: true, ffmpeg_6: false, speex: false, mpg123: false, withMtp: true, libmtp: false, withOnlineServices: true, withDevices: true, udisks: false, withDynamic: true, withHttpServer: true, withLibVlc: true, libvlc: false, withStreams: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["names", 68, 7], ["enable", 69, 7], ["pkgs", 70, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["names", 73, 7], ["enable", 74, 7], ["pkgs", 75, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["names", 78, 7], ["enable", 79, 7], ["pkgs", 80, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["names", 83, 7], ["enable", 84, 7], ["pkgs", 85, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["names", 88, 7], ["enable", 93, 7], ["pkgs", 94, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["names", 101, 7], ["enable", 102, 7], ["pkgs", 103, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["names", 106, 7], ["enable", 107, 7], ["pkgs", 108, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["names", 111, 7], ["enable", 112, 7], ["pkgs", 113, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["names", 116, 7], ["enable", 117, 7], ["pkgs", 118, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["names", 121, 7], ["enable", 122, 7], ["pkgs", 123, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["names", 126, 7], ["enable", 127, 7], ["pkgs", 128, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["names", 131, 7], ["enable", 132, 7], ["pkgs", 133, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["names", 136, 7], ["enable", 137, 7], ["pkgs", 138, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["names", 141, 7], ["enable", 142, 7], ["pkgs", 143, 7]]);
-const pos$15 = nix.positions(here + "/package.nix", [["names", 146, 7], ["enable", 150, 7], ["pkgs", 151, 7]]);
-const pos$16 = nix.positions(here + "/package.nix", [["names", 157, 7], ["enable", 158, 7], ["pkgs", 159, 7]]);
-const pos$17 = nix.positions(here + "/package.nix", [["owner", 169, 5], ["repo", 170, 5], ["rev", 171, 5], ["hash", 172, 5]]);
-const pos$18 = nix.positions(here + "/package.nix", [["description", 210, 5], ["mainProgram", 211, 5], ["homepage", 212, 5], ["license", 213, 5], ["maintainers", 214, 5], ["platforms", 217, 5], ["badPlatforms", 218, 5]]);
-const pos$19 = nix.positions(here + "/package.nix", [["pname", 165, 3], ["version", 166, 3], ["src", 168, 3], ["patches", 175, 3], ["postPatch", 182, 3], ["buildInputs", 186, 3], ["nativeBuildInputs", 196, 3], ["cmakeFlags", 203, 3], ["qtWrapperArgs", 205, 3], ["meta", 209, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -82,108 +64,108 @@ export default nix.lambda((args) => (() => {
   })());
   const options = nix.thunk(() => [
     nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       names: nix.thunk(() => ["CDDB"]),
       enable: withCddb,
       pkgs: nix.thunk(() => [libcddb]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       names: nix.thunk(() => ["CDPARANOIA"]),
       enable: withCdda,
       pkgs: nix.thunk(() => [cdparanoia]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       names: nix.thunk(() => ["DEVICES_SUPPORT"]),
       enable: withDevices,
       pkgs: [],
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       names: nix.thunk(() => ["DYNAMIC"]),
       enable: withDynamic,
       pkgs: [],
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       names: nix.thunk(() => ["FFMPEG", "MPG123", "SPEEXDSP"]),
       enable: withReplaygain,
       pkgs: nix.thunk(() => [ffmpeg_6, speex, mpg123]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       names: nix.thunk(() => ["HTTPS_SUPPORT"]),
       enable: true,
       pkgs: [],
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       names: nix.thunk(() => ["HTTP_SERVER"]),
       enable: withHttpServer,
       pkgs: [],
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       names: nix.thunk(() => ["HTTP_STREAM_PLAYBACK"]),
       enable: withHttpStream,
       pkgs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtmultimedia"))]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       names: nix.thunk(() => ["LAME"]),
       enable: withLame,
       pkgs: nix.thunk(() => [lame]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       names: nix.thunk(() => ["LIBVLC"]),
       enable: withLibVlc,
       pkgs: nix.thunk(() => [libvlc]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       names: nix.thunk(() => ["MTP"]),
       enable: withMtp,
       pkgs: nix.thunk(() => [libmtp]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       names: nix.thunk(() => ["MUSICBRAINZ"]),
       enable: withMusicbrainz,
       pkgs: nix.thunk(() => [libmusicbrainz]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       names: nix.thunk(() => ["ONLINE_SERVICES"]),
       enable: withOnlineServices,
       pkgs: [],
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       names: nix.thunk(() => ["STREAMS"]),
       enable: withStreams,
       pkgs: [],
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       names: nix.thunk(() => ["TAGLIB", "TAGLIB_EXTRAS"]),
       enable: withTaglib,
       pkgs: nix.thunk(() => [taglib_1, taglib_extras]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       names: nix.thunk(() => ["UDISKS2"]),
       enable: withUdisks,
       pkgs: nix.thunk(() => [udisks]),
     })),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       pname: "cantata",
       version: "3.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           owner: "nullobsi",
           repo: "cantata",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -213,7 +195,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--prefix GST_PLUGIN_PATH : ${nix.app(nix.sel(lib, "makeSearchPathOutput"), "lib", "lib/gstreamer-1.0", gst)}`),
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         description: "Graphical client for MPD",
         mainProgram: "cantata",
         homepage: "https://github.com/nullobsi/cantata",

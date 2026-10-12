@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]], [["vm-with-soundcard", 40, 18]], [["tests", 40, 12]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 16, 11], ["version", 16, 17], ["pyproject", 17, 3], ["src", 19, 3], ["patchPhase", 24, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, cffi: false, fetchPypi: false, lib: false, libpulseaudio: false, numpy: false, setuptools: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["vm-with-soundcard", 40, 18]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 40, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 11], ["version", 16, 17], ["pyproject", 17, 3], ["src", 19, 3], ["patchPhase", 24, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const pname = "soundcard";
   const version = "0.4.6";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-m0bWSib5fNfYi8/Dhcl8Bp+Xxew0BOTnwjdxWYqM9Hs=",
@@ -38,14 +34,14 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [cffi, numpy]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "vm-with-soundcard": nix.thunk(() => nix.app(nix.sel(testers, "runNixOSTest"), nix.path(here, "./test.nix"))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Pure-Python Real-Time Audio Library",
         homepage: "https://github.com/bastibe/SoundCard",
         changelog: nix.thunk(() => nix.str`https://github.com/bastibe/SoundCard/blob/${version}/README.rst#changelog`),

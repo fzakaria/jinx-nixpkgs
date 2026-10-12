@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 9], ["hash", 18, 17]], [["url", 29, 9], ["allowedVersions", 30, 9], ["ignoredVersions", 31, 9], ["rev-prefix", 32, 9]], [["updateScript", 28, 16]], [["changelog", 36, 9], ["description", 37, 9], ["homepage", 38, 9], ["platforms", 39, 9], ["sourceProvenance", 40, 9], ["license", 41, 9], ["maintainers", 45, 9]], [["pname", 12, 7], ["version", 14, 15], ["src", 16, 7], ["dontBuild", 21, 7], ["installPhase", 23, 7], ["passthru", 28, 7], ["meta", 35, 7]], [["version", 55, 5], ["hash", 56, 5]], [["jetty_12", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, gitUpdater: false }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 9], ["hash", 18, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 29, 9], ["allowedVersions", 30, 9], ["ignoredVersions", 31, 9], ["rev-prefix", 32, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 28, 16]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 36, 9], ["description", 37, 9], ["homepage", 38, 9], ["platforms", 39, 9], ["sourceProvenance", 40, 9], ["license", 41, 9], ["maintainers", 45, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 7], ["version", 14, 15], ["src", 16, 7], ["dontBuild", 21, 7], ["installPhase", 23, 7], ["passthru", 28, 7], ["meta", 35, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 55, 5], ["hash", 56, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["jetty_12", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,16 +20,16 @@ export default nix.lambda((args) => (() => {
         const pname = "jetty";
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`mirror://maven/org/eclipse/jetty/jetty-home/${version_1}/jetty-home-${version_1}.tar.gz`),
             hash: hash,
           }))));
         const dontBuild = true;
         const installPhase = "mkdir -p $out\nmv etc lib modules start.jar $out\n";
         const passthru = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://github.com/jetty/jetty.project.git",
               allowedVersions: nix.thunk(() => nix.str`^${nix.app(nix.sel(lib, "versions", "major"), version_1)}\\.`),
               ignoredVersions: "(alpha|beta).*",
@@ -43,7 +37,7 @@ export default nix.lambda((args) => (() => {
             })))),
         }));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           changelog: nix.thunk(() => nix.str`https://github.com/jetty/jetty.project/releases/tag/jetty-${version_1}`),
           description: "Web server and javax.servlet container",
           homepage: "https://jetty.org/",
@@ -68,7 +62,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }));
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname,
           version: version_1,
           src,
@@ -80,9 +74,9 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     jetty_12: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version: "12.1.13",
         hash: "sha256-FBeQSRGNSStrkfUtDw19JvJq90esje/npB/dChu6t3U=",
       })))),

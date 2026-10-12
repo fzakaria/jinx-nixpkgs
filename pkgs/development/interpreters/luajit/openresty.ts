@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/openresty.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["url", 27, 9], ["hash", 28, 9]], [["src", 24, 13], ["patches", 25, 5]], [["badPlatforms", 42, 5]], [["version", 34, 11], ["luaAttr", 37, 3], ["src", 39, 3], ["extraMeta", 41, 3], ["self", 52, 11], ["passthruFun", 52, 16]]]);
 const formals$1 = { args: { self: false, callPackage: false, fetchFromGitHub: false, fetchpatch2: false, applyPatches: false, stdenv: false, passthruFun: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/openresty.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/openresty.nix", [["url", 27, 9], ["hash", 28, 9]]);
-const pos$3 = nix.positions(here + "/openresty.nix", [["src", 24, 13], ["patches", 25, 5]]);
-const pos$4 = nix.positions(here + "/openresty.nix", [["badPlatforms", 42, 5]]);
-const pos$5 = nix.positions(here + "/openresty.nix", [["version", 34, 11], ["luaAttr", 37, 3], ["src", 39, 3], ["extraMeta", 41, 3], ["self", 52, 11], ["passthruFun", 52, 16]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,30 +16,30 @@ export default nix.lambda((args) => (() => {
   const passthruFun = nix.arg($, "passthruFun");
   const version = "2.1-20260824";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "openresty",
       repo: "luajit2",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-IynlDQOyjCr1C3qibLg3OJ9Qd/Rb5jzjy30ETKdKvFM=",
     }))));
   const srcWithRiscv64Port = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: src,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/openresty/luajit2/compare/v2.1-20260824...ce14aff834d8d62220fc730a16042c52451f41cc.diff",
             hash: "sha256-VHDTUr7PWpthmhO3BokCbdL1cricAnX6BjZGTi1wr3Q=",
           })))),
       ]),
     }))));
   return nix.app(callPackage, nix.path(here, "./default.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: version,
       luaAttr: "luajit_openresty",
       src: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")) ? nix.force(srcWithRiscv64Port) : nix.force(src))),
       extraMeta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         badPlatforms: nix.thunk(() => ["loongarch64-linux", "powerpc64-linux"]),
       })),
       self: self,

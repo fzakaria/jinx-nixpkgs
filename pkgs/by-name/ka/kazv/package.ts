@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 24, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["strictDeps", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, boost: false, cmake: false, cmark: false, cryptopp: false, immer: false, kdePackages: false, lager: false, libkazv: false, nlohmann_json: false, "pkg-config": false, qt6: false, zug: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 24, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["strictDeps", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const zug = nix.arg($, "zug");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kazv",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://iron.lily-is.land/diffusion/K/kazv.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-7o6xUt/cryOg71/R33VBGpubskqlm9eYGSTyoGderDA=",
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Convergent matrix client and instant messaging app",
         homepage: "https://kazv.chat/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["mainProgram", 72, 5], ["description", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 41, 3], ["cmakeFlags", 43, 3], ["patches", 48, 3], ["postFixup", 67, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, recode: false, perl: false, rinutils: false, fortune: false, libxslt: false, "docbook-xsl-nons": false, withOffensive: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 72, 5], ["description", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 41, 3], ["cmakeFlags", 43, 3], ["patches", 48, 3], ["postFixup", 67, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const docbook_xsl_nons = nix.arg($, "docbook-xsl-nons");
   const withOffensive = nix.argOr($, "withOffensive", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fortune-mod",
       version: "3.26.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/shlomif/fortune-mod/releases/download/fortune-mod-${nix.sel(finalAttrs, "version")}/fortune-mod-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-rE0UhsrJuZkEkQcTa5QQb+mKSurADsY1sUTEN2S//kw=",
         })))),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(withOffensive)), "rm $out/share/games/fortunes/men-women*\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "fortune",
         description: "Program that displays a pseudorandom message from a database of quotations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),

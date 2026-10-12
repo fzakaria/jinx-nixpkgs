@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 21, 33]], [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["owner", 89, 5], ["repo", 90, 5], ["tag", 91, 5], ["hash", 92, 5]], [["description", 109, 5], ["homepage", 110, 5], ["changelog", 111, 5], ["license", 112, 5], ["platforms", 113, 5], ["maintainers", 114, 5], ["mainProgram", 120, 5]], [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["preConfigure", 55, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 70, 3], ["postInstall", 76, 3], ["nativeCheckInputs", 81, 3], ["mimalloc-src", 88, 3], ["cmakeFlags", 95, 3], ["nativeInstallCheckInputs", 103, 3], ["doInstallCheck", 106, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, cctools: false, fetchFromGitHub: false, fetchpatch: false, gitMinimal: false, gmp: false, cadical: false, leangz: false, makeWrapper: false, openssl: false, "pkg-config": false, libuv: false, enableMimalloc: true, perl: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 21, 33]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 89, 5], ["repo", 90, 5], ["tag", 91, 5], ["hash", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 109, 5], ["homepage", 110, 5], ["changelog", 111, 5], ["license", 112, 5], ["platforms", 113, 5], ["maintainers", 114, 5], ["mainProgram", 120, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["preConfigure", 55, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 70, 3], ["postInstall", 76, 3], ["nativeCheckInputs", 81, 3], ["mimalloc-src", 88, 3], ["cmakeFlags", 95, 3], ["nativeInstallCheckInputs", 103, 3], ["doInstallCheck", 106, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,15 +24,15 @@ export default nix.lambda((args) => (() => {
   const enableMimalloc = nix.argOr($, "enableMimalloc", () => true);
   const perl = nix.arg($, "perl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
-  const cadical$ = nix.thunk(() => nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: "2.1.3" }))));
+  const cadical$ = nix.thunk(() => nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], version: "2.1.3" }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lean4",
       version: "4.34.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "leanprover",
           repo: "lean4",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +56,7 @@ export default nix.lambda((args) => (() => {
 `),
       nativeCheckInputs: nix.thunk(() => [gitMinimal, perl]),
       "mimalloc-src": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "microsoft",
           repo: "mimalloc",
           tag: "v3.4.5",
@@ -76,7 +72,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Automatic and interactive theorem prover",
         homepage: "https://leanprover.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/leanprover/lean4/blob/${nix.sel(finalAttrs, "src", "tag")}/RELEASES.md`),

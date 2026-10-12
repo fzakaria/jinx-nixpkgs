@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 32, 5], ["description", 33, 5], ["platforms", 34, 5], ["license", 35, 5], ["teams", 36, 5]], [["pname", 11, 3], ["namespace", 12, 3], ["version", 13, 3], ["src", 15, 3], ["extraCMakeFlags", 22, 3], ["extraBuildInputs", 26, 3], ["propagatedBuildInputs", 27, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, rel: false, buildKodiBinaryAddon: false, fetchFromGitHub: false, libretro: false, gw: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 32, 5], ["description", 33, 5], ["platforms", 34, 5], ["license", 35, 5], ["teams", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["namespace", 12, 3], ["version", 13, 3], ["src", 15, 3], ["extraCMakeFlags", 22, 3], ["extraBuildInputs", 26, 3], ["propagatedBuildInputs", 27, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "game.libretro.gw";
       const version = "1.6.3.34";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kodi-game",
           repo: "game.libretro.gw",
           rev: nix.thunk(() => nix.str`${version}-${rel}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const extraBuildInputs = nix.thunk(() => [gw]);
       const propagatedBuildInputs = nix.thunk(() => [libretro]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/kodi-game/game.libretro.gw",
         description: "Game and Watch for Kodi",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         namespace,
         version,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["homepage", 53, 5], ["description", 54, 5], ["longDescription", 55, 5], ["platforms", 56, 5], ["license", 57, 5], ["maintainers", 61, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["mesonFlags", 44, 3], ["propagatedBuildOutputs", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, libusb1: false, systemd: false, "libudev0-shim": false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["longDescription", 55, 5], ["platforms", 56, 5], ["license", 57, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["mesonFlags", 44, 3], ["propagatedBuildOutputs", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libtypec";
       const version = "0.6.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libtypec",
           repo: "libtypec",
           rev: nix.thunk(() => nix.str`libtypec-${version}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://github.com/libtypec/libtypec",
           description: "generic diagnostic tool interface for usb-c ports",
           longDescription: "libtypec is aimed to provide a generic interface abstracting all platform complexity for user space to develop tools for efficient USB-C port management. The library can also enable development of diagnostic and debug tools to debug system issues around USB-C/USB PD topology.",
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

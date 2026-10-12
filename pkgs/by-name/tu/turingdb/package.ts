@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5], ["fetchSubmodules", 51, 5], ["leaveDotGit", 53, 5], ["postFetch", 54, 5]], [["description", 133, 5], ["longDescription", 134, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["platforms", 141, 5], ["mainProgram", 145, 5], ["maintainers", 146, 5]], [["pname", 40, 3], ["version", 41, 3], ["__structuredAttrs", 43, 3], ["src", 45, 3], ["postPatch", 61, 3], ["strictDeps", 80, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 95, 3], ["cmakeFlags", 115, 3], ["nativeInstallCheckInputs", 127, 3], ["doCheck", 130, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, python3: false, gitMinimal: false, bison: false, flex: false, inih: false, "minio-cpp": false, "arrow-cpp": false, curl: false, curlpp: false, nlohmann_json: false, openssl: false, openblas: false, pugixml: false, faiss: false, zlib: false, llvmPackages_20: false, versionCheckHook: false, config: false, cudaSupport: true, cudaPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5], ["fetchSubmodules", 51, 5], ["leaveDotGit", 53, 5], ["postFetch", 54, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 133, 5], ["longDescription", 134, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["platforms", 141, 5], ["mainProgram", 145, 5], ["maintainers", 146, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["__structuredAttrs", 43, 3], ["src", 45, 3], ["postPatch", 61, 3], ["strictDeps", 80, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 95, 3], ["cmakeFlags", 115, 3], ["nativeInstallCheckInputs", 127, 3], ["doCheck", 130, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const cudaPackages = nix.arg($, "cudaPackages");
   const turingstdenv = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.sel(llvmPackages_20, "stdenv") : (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv))));
   return nix.app(nix.sel(turingstdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "turingdb",
       version: "1.33",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "turing-db",
           repo: "turingdb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -98,7 +96,7 @@ done
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High performance in-memory column-oriented graph database engine",
         longDescription: "TuringDB is a high-performance in-memory column-oriented graph\ndatabase engine designed for analytical and read-intensive workloads.\n",
         homepage: "https://turingdb.ai",

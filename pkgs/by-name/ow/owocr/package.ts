@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]], [["pname", 7, 3], ["version", 8, 3], ["pyproject", 9, 3], ["__structuredAttrs", 10, 3], ["src", 12, 3], ["postPatch", 22, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["doCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["pyproject", 9, 3], ["__structuredAttrs", 10, 3], ["src", 12, 3], ["postPatch", 22, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["doCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "owocr",
       version: "1.26.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AuroraWright",
           repo: "owocr",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Optical character recognition for Japanese text",
         homepage: "https://github.com/AuroraWright/owocr",
         changelog: nix.thunk(() => nix.str`https://github.com/AuroraWright/owocr/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

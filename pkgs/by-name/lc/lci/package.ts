@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["sha256", 12, 5]], [["description", 16, 5], ["homepage", 17, 5], ["mainProgram", 18, 5], ["maintainers", 19, 5], ["platforms", 20, 5], ["license", 21, 5]], [["version", 8, 3], ["pname", 9, 3], ["src", 10, 3], ["buildInputs", 14, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["sha256", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 16, 5], ["homepage", 17, 5], ["mainProgram", 18, 5], ["maintainers", 19, 5], ["platforms", 20, 5], ["license", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 8, 3], ["pname", 9, 3], ["src", 10, 3], ["buildInputs", 14, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.6",
       pname: "lci",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/lci/lci-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "204f1ca5e2f56247d71ab320246811c220ed511bf08c9cb7f305cf180a93948e",
         })))),
       buildInputs: nix.thunk(() => [readline]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lambda calculus interpreter",
         homepage: "https://www.chatzi.org/lci/",
         mainProgram: "lci",

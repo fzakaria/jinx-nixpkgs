@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["providedSessions", 64, 12]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5], ["mainProgram", 72, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["deps", 27, 3], ["zigBuildFlags", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["doCheck", 49, 3], ["doInstallCheck", 51, 3], ["versionCheckProgramArg", 52, 3], ["versionCheckKeepEnvironment", 53, 3], ["nativeInstallCheckInputs", 54, 3], ["postInstall", 58, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, zig_0_16: false, "pkg-config": false, libx11: false, libxft: false, libxinerama: false, lua5_4: false, freetype: false, fontconfig: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["providedSessions", 64, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5], ["mainProgram", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["deps", 27, 3], ["zigBuildFlags", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["doCheck", 49, 3], ["doInstallCheck", 51, 3], ["versionCheckProgramArg", 52, 3], ["versionCheckKeepEnvironment", 53, 3], ["nativeInstallCheckInputs", 54, 3], ["postInstall", 58, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "oxwm",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tonybanters",
           repo: "oxwm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,9 +41,9 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       nativeInstallCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       postInstall: "install -Dm644 resources/oxwm.desktop -t $out/share/xsessions\ninstall -Dm644 resources/oxwm.1 -t $out/share/man/man1\ninstall -Dm644 templates/oxwm.lua -t $out/share/oxwm\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, providedSessions: nix.thunk(() => ["oxwm"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], providedSessions: nix.thunk(() => ["oxwm"]) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Dynamic window manager written in Zig, inspired by dwm",
         homepage: "https://github.com/tonybanters/oxwm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

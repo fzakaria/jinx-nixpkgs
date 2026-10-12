@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["NIX_CFLAGS_COMPILE", 72, 5]], [["extraArgs", 78, 40]], [["azahar", 79, 23]], [["updateScript", 78, 5], ["tests", 79, 5]], [["description", 83, 5], ["homepage", 84, 5], ["maintainers", 85, 5], ["license", 86, 5], ["platforms", 87, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["checkInputs", 60, 3], ["cmakeFlags", 65, 3], ["env", 70, 3], ["doCheck", 75, 3], ["passthru", 77, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, ninja: false, boost: false, "robin-map": false, catch2_3: false, fmt: false, xbyak: false, zydis: false, "nix-update-script": false, azahar: false, darwin: false, oaknut: false, "mcl-cpp-utility-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 78, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["azahar", 79, 23]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 78, 5], ["tests", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["maintainers", 85, 5], ["license", 86, 5], ["platforms", 87, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["checkInputs", 60, 3], ["cmakeFlags", 65, 3], ["env", 70, 3], ["doCheck", 75, 3], ["passthru", 77, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const oaknut = nix.arg($, "oaknut");
   const mcl_cpp_utility_lib = nix.arg($, "mcl-cpp-utility-lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "dynarmic",
       version: "6.7.0-unstable-2026-05-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "azahar-emu",
           repo: "dynarmic",
           rev: "c5f5b0d7fca772b7d2d4d8ba0975ce8653f4b055",
@@ -52,15 +46,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_SHARED_LIBS", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "DYNARMIC_TESTS", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))),
       ]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=stringop-overread" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=stringop-overread" })))),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, azahar: azahar })),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], azahar: azahar })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Dynamic recompiler for ARM",
         homepage: "https://github.com/azahar-emu/dynarmic",
         maintainers: nix.thunk(() => (() => {

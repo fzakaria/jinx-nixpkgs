@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["cli", 50, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 77, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["pythonRelaxDeps", 40, 3], ["dependencies", 43, 3], ["optional-dependencies", 49, 3], ["pythonImportsCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTests", 64, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "googleapis-common-protos": false, grpcio: false, protobuf: false, click: false, "pytest-asyncio": false, "pytest-dotenv": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cli", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 77, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["pythonRelaxDeps", 40, 3], ["dependencies", 43, 3], ["optional-dependencies", 49, 3], ["pythonImportsCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTests", 64, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytest_dotenv = nix.arg($, "pytest-dotenv");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cwsandbox",
       version: "1.7.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coreweave",
           repo: "cwsandbox-client",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,12 +34,12 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       pythonRelaxDeps: nix.thunk(() => ["protobuf"]),
       dependencies: nix.thunk(() => [googleapis_common_protos, grpcio, protobuf]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [click]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], cli: nix.thunk(() => [click]) })),
       pythonImportsCheck: nix.thunk(() => ["cwsandbox"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_asyncio, pytest_dotenv, pytestCheckHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "cli"))),
       disabledTests: nix.thunk(() => ["test_stop_while_waiting"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python client library for CoreWeave Sandbox",
         homepage: "https://github.com/coreweave/cwsandbox-client",
         changelog: nix.thunk(() => nix.str`https://github.com/coreweave/cwsandbox-client/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

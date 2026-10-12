@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["postFetch", 20, 5]], [["package", 40, 37]], [["name", 42, 7], ["nativeBuildInputs", 43, 7], ["script", 44, 7]], [["version", 40, 5], ["simple-execution", 41, 5]], [["tests", 39, 12]], [["description", 67, 5], ["mainProgram", 68, 5], ["longDescription", 69, 5], ["homepage", 70, 5], ["downloadPage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 27, 3], ["subPackages", 30, 3], ["ldflags", 32, 3], ["passthru", 39, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false, stdenv: false, testers: false, revive: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["postFetch", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 40, 37]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 42, 7], ["nativeBuildInputs", 43, 7], ["script", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 40, 5], ["simple-execution", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 39, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["longDescription", 69, 5], ["homepage", 70, 5], ["downloadPage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 27, 3], ["subPackages", 30, 3], ["ldflags", 32, 3], ["passthru", 39, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const revive = nix.arg($, "revive");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "revive",
       version: "1.17.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mgechev",
           repo: "revive",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,12 +34,12 @@ export default nix.lambda((args) => (() => {
         "-X github.com/mgechev/revive/cli.builtBy=nix",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: revive })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: revive })))),
           "simple-execution": nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "Executes the linter",
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               script: "# Write a simple go program.\ncat > main.go << EOF\n// The main package\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n  fmt.Println(\"Hello World\")\n}\nEOF\n\n# This will return an exit status of 1 if there are errors and the test will fail.\nrevive -set_exit_status main.go\n\n# Test successful.\ntouch $out\n",
@@ -53,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Fast, configurable, extensible, flexible, and beautiful linter for Go",
         mainProgram: "revive",
         longDescription: "Drop-in replacement for golint. Revive provides a framework for development of custom rules, and lets you define a strict preset for enhancing your development & code review processes",

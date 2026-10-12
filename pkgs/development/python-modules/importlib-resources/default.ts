@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 5], ["version", 29, 13], ["hash", 30, 5]], [["sage", 53, 13]], [["tests", 52, 12]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 33, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 50, 3], ["passthru", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, "importlib-metadata": false, sage: false, "jaraco-collections": false, "jaraco-test": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 5], ["version", 29, 13], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sage", 53, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 52, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 33, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 50, 3], ["passthru", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "importlib_resources",
           version: version,
           hash: "sha256-ByLUxiEkicUw8qFFo0wKejtHIbyWoV+tpZMOKgt2Bwg=",
@@ -36,16 +32,19 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [importlib_metadata]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, jaraco_collections, jaraco_test]);
       const pythonImportsCheck = nix.thunk(() => ["importlib_resources"]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) }));
+      const passthru = nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], sage: sage })),
+      }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Read resources from Python packages",
         homepage: "https://importlib-resources.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

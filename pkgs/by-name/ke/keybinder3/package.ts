@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 41, 3], ["preConfigure", 48, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, automake: false, libtool: false, "pkg-config": false, "gnome-common": false, "gtk-doc": false, gtk3: false, "gtk3-x11": false, "gtk3'": true, libx11: false, libxext: false, libxrender: false, "gobject-introspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 41, 3], ["preConfigure", 48, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libxrender = nix.arg($, "libxrender");
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "keybinder3",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kupferlauncher",
           repo: "keybinder",
           rev: nix.thunk(() => nix.str`keybinder-3.0-v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3$, libx11, libxext, libxrender]),
       preConfigure: "# NOCONFIGURE fixes 'If you meant to cross compile, use `--host'.'\nNOCONFIGURE=1 ./autogen.sh --prefix=\"$out\"\nsubstituteInPlace ./configure \\\n  --replace \"dummy pkg-config\" 'dummy ${ac_tool_prefix}pkg-config'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for registering global key bindings",
         homepage: "https://github.com/kupferlauncher/keybinder/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,14 +2,13 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/default.nix", [["swift-argument-parser", 5, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["workspaceStateFile", 3, 3], ["hashes", 4, 3]]);
+const $pos = nix.positions(here + "/default.nix", [[["swift-argument-parser", 5, 5]], [["workspaceStateFile", 3, 3], ["hashes", 4, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
+  [nix.POS]: $pos[1],
   workspaceStateFile: nix.path(here, "./workspace-state.json"),
   hashes: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "swift-argument-parser": "sha256-FSIi4jDX7R35jDHkKzQFJLl4K0Hdx9UWgwxJbHVpsYU=",
   })),
 }));

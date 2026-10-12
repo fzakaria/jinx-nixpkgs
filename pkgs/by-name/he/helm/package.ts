@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["CXXFLAGS", 52, 7]], [["url", 62, 7], ["hash", 63, 7]], [["homepage", 79, 5], ["description", 80, 5], ["longDescription", 81, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 103, 5], ["mainProgram", 104, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 50, 3], ["env", 52, 3], ["enableParallelBuilding", 56, 3], ["makeFlags", 57, 3], ["patches", 59, 3], ["postPatch", 67, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, libxrender: false, libxrandr: false, libxinerama: false, libxext: false, libxcursor: false, libxcomposite: false, libx11: false, freetype: false, "alsa-lib": false, curl: false, libjack2: false, lv2: false, "pkg-config": false, libGLU: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 62, 7], ["hash", 63, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 79, 5], ["description", 80, 5], ["longDescription", 81, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 103, 5], ["mainProgram", 104, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 50, 3], ["env", 52, 3], ["enableParallelBuilding", 56, 3], ["makeFlags", 57, 3], ["patches", 59, 3], ["postPatch", 67, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "helm",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mtytel",
           repo: "helm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,21 +55,21 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DHAVE_LROUND", "-fpermissive"]))),
       })),
       enableParallelBuilding: true,
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`DESTDIR=${nix.builtins.placeholder("out")}`)]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/mtytel/helm/commit/cb611a80bd5a36d31bfc31212ebbf79aa86c6f08.patch",
             hash: "sha256-s0eiE5RziZGdInSUOYWR7duvQnFmqf8HO+E7lnVCQsQ=",
           })))),
       ]),
       postPatch: "substituteInPlace Makefile \\\n  --replace-fail \"usr/\" \"\"\n\nsubstituteInPlace src/common/load_save.cpp \\\n  --replace-fail \"/usr/share/\" \"$out/share/\"\n\nsubstituteInPlace JUCE/modules/juce_audio_formats/codecs/flac/libFLAC/cpu.c \\\n  --replace-fail \"__sigemptyset(&sigill_sse.sa_mask);\" \"sigemptyset(&sigill_sse.sa_mask);\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://tytel.org/helm",
         description: "Free, cross-platform, polyphonic synthesizer",
         longDescription: "A free, cross-platform, polyphonic synthesizer.\nFeatures:\n  32 voice polyphony\n  Interactive visual interface\n  Powerful modulation system with live visual feedback\n  Dual oscillators with cross modulation and up to 15 oscillators each\n  Unison and Harmony mode for oscillators\n  Oscillator feedback and saturation for waveshaping\n  12 different waveforms\n  7 filter types with keytracking\n  2 monophonic and 1 polyphonic LFO\n  Step sequencer\n  Lots of modulation sources including polyphonic aftertouch\n  Simple arpeggiator\n  Effects: Formant filter, stutter, delay\n",

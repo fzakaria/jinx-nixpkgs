@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5], ["leaveDotGit", 19, 5], ["postFetch", 20, 5]], [["RUSTFLAGS", 31, 7]], [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["sourceRoot", 23, 3], ["cargoPatches", 25, 3], ["cargoHash", 27, 3], ["env", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["doCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5], ["leaveDotGit", 19, 5], ["postFetch", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["sourceRoot", 23, 3], ["cargoPatches", 25, 3], ["cargoHash", 27, 3], ["env", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["doCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "prjoxide",
       version: "0.1-unstable-2026-07-19",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gatecat",
           repo: "prjoxide",
           rev: "ea3fe12094dec200afcecdf9ed3306f82e6e3eb2",
@@ -33,14 +30,14 @@ export default nix.lambda((args) => (() => {
       cargoPatches: nix.thunk(() => [nix.path(here, "./fix-cargo-lock.patch")]),
       cargoHash: "sha256-+KCoH1ibHAGdD66r/kbLK1HCkKot1VmxNnbcpR8QRbA=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RUSTFLAGS: nix.thunk(() => nix.str`-l python${nix.sel(python3, "pythonVersion")}`),
       })),
       nativeBuildInputs: nix.thunk(() => [python3]),
       buildInputs: nix.thunk(() => [python3]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Documentation and tools for Lattice 28nm FPGA parts",
         longDescription: "Project Oxide aims at creating a framework to place\nparse and fuzz bitstreams for Lattice 28nm FPGA parts.\n",
         homepage: "https://github.com/gatecat/prjoxide",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["rev-prefix", 74, 7], ["ignoredVersions", 75, 7]], [["skipBulkUpdate", 72, 5], ["updateScript", 73, 5]], [["changelog", 80, 5], ["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["sourceRoot", 38, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 50, 3], ["enabledTestPaths", 56, 3], ["disabledTests", 58, 3], ["pythonImportsCheck", 68, 3], ["passthru", 70, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "langchain-core": false, tokenizers: false, httpx: false, "httpx-sse": false, pydantic: false, "langchain-tests": false, "pytest-asyncio": false, pytestCheckHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 74, 7], ["ignoredVersions", 75, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 72, 5], ["updateScript", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 80, 5], ["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["sourceRoot", 38, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 50, 3], ["enabledTestPaths", 56, 3], ["disabledTests", 58, 3], ["pythonImportsCheck", 68, 3], ["passthru", 70, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "langchain-mistralai",
       version: "1.1.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "langchain-ai",
           repo: "langchain",
           tag: nix.thunk(() => nix.str`langchain-mistralai==${nix.sel(finalAttrs, "version")}`),
@@ -49,16 +45,16 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["langchain_mistralai"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "rev-prefix": "langchain-mistralai==",
             ignoredVersions: "a|b|dev|rc",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langchain/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Build LangChain applications with mistralai",
         homepage: "https://github.com/langchain-ai/langchain/tree/master/libs/partners/mistralai",

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mpi", 33, 15], ["enableMpi", 34, 7]], [["mpi", 37, 15], ["enableMpi", 38, 7]], [["mpi", 41, 15], ["mpiSupport", 41, 19]], [["fftw", 32, 5], ["fftwFloat", 36, 5], ["casacore", 40, 5]], [["url", 50, 5], ["rev", 51, 5], ["hash", 52, 5], ["fetchSubmodules", 53, 5]], [["updateScript", 121, 12]], [["description", 127, 5], ["homepage", 128, 5], ["license", 129, 5], ["platforms", 130, 5], ["maintainers", 131, 5]], [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["sourceRoot", 56, 3], ["patches", 58, 3], ["postPatch", 74, 3], ["strictDeps", 83, 3], ["__structuredAttrs", 84, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 96, 3], ["propagatedBuildInputs", 104, 3], ["cmakeFlags", 115, 3], ["enableParallelBuilding", 119, 3], ["passthru", 121, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, cmake: false, "common-updater-scripts": false, curl: false, gnugrep: false, writeShellScript: false, "pkg-config": false, flex: false, bison: false, gfortran: false, casacore: false, libsakura: false, grpc: false, protobuf: false, gsl: false, libxml2: false, fftw: false, fftwFloat: false, blas: false, lapack: false, libxslt: false, openssl: false, sqlite: false, mpi: false, mpiSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mpi", 33, 15], ["enableMpi", 34, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mpi", 37, 15], ["enableMpi", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mpi", 41, 15], ["mpiSupport", 41, 19]]);
-const pos$4 = nix.positions(here + "/package.nix", [["fftw", 32, 5], ["fftwFloat", 36, 5], ["casacore", 40, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 50, 5], ["rev", 51, 5], ["hash", 52, 5], ["fetchSubmodules", 53, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 121, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 127, 5], ["homepage", 128, 5], ["license", 129, 5], ["platforms", 130, 5], ["maintainers", 131, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["sourceRoot", 56, 3], ["patches", 58, 3], ["postPatch", 74, 3], ["strictDeps", 83, 3], ["__structuredAttrs", 84, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 96, 3], ["propagatedBuildInputs", 104, 3], ["cmakeFlags", 115, 3], ["enableParallelBuilding", 119, 3], ["passthru", 121, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,17 +35,17 @@ export default nix.lambda((args) => (() => {
   const mpi = nix.arg($, "mpi");
   const mpiSupport = nix.argOr($, "mpiSupport", () => false);
   const casacppPackages = nix.thunk(() => ({
-    [nix.POS]: pos$4,
-    fftw: nix.thunk(() => nix.app(nix.sel(fftw, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, mpi: mpi, enableMpi: mpiSupport })))),
-    fftwFloat: nix.thunk(() => nix.app(nix.sel(fftwFloat, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, mpi: mpi, enableMpi: mpiSupport })))),
-    casacore: nix.thunk(() => nix.app(nix.sel(casacore, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, mpi: mpi, mpiSupport: mpiSupport })))),
+    [nix.POS]: $pos[3],
+    fftw: nix.thunk(() => nix.app(nix.sel(fftw, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], mpi: mpi, enableMpi: mpiSupport })))),
+    fftwFloat: nix.thunk(() => nix.app(nix.sel(fftwFloat, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], mpi: mpi, enableMpi: mpiSupport })))),
+    casacore: nix.thunk(() => nix.app(nix.sel(casacore, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], mpi: mpi, mpiSupport: mpiSupport })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "casacpp",
       version: "6.7.5.18",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: "https://open-bitbucket.nrao.edu/scm/casa/casa6.git",
           rev: nix.thunk(() => nix.str`refs/tags/${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-75oIlaNAyu70KWSjz38LoYAvV7RJgzH/X9uBnGpriF4=",
@@ -90,13 +83,13 @@ substituteInPlace CMakeLists.txt \\
         ]))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-casacpp", nix.thunk(() => nix.str`version=$(${nix.app(nix.sel(lib, "getExe"), curl)} -s https://pypi.org/pypi/casatasks/json | ${nix.app(nix.sel(lib, "getExe"), gnugrep)} -oP '"version"\\s*:\\s*"\\K[^"]+' | head -1)
 ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-version")} casacpp "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "C++ core libraries for radio interferometry data reduction",
         homepage: "https://casa.nrao.edu/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

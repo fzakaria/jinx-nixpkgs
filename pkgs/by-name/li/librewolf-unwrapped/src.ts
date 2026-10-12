@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/src.nix", [[["domain", 14, 7], ["owner", 15, 7], ["repo", 16, 7]], [["url", 22, 7]], [["packageVersion", 10, 17], ["source", 11, 3], ["firefox", 19, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchFromForgejo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/src.nix", [["domain", 14, 7], ["owner", 15, 7], ["repo", 16, 7]]);
-const pos$2 = nix.positions(here + "/src.nix", [["url", 22, 7]]);
-const pos$3 = nix.positions(here + "/src.nix", [["packageVersion", 10, 17], ["source", 11, 3], ["firefox", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const fetchFromForgejo = nix.arg($, "fetchFromForgejo");
   const src = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./src.json")));
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     packageVersion: nix.thunk(() => nix.attr(src, "packageVersion")),
     source: nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => nix.update(nix.sel(src, "source"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         domain: "librewolf.dev",
         owner: "librewolf",
         repo: "source",
       })))),
     firefox: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.update(nix.sel(src, "firefox"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`mirror://mozilla/firefox/releases/${nix.sel(src, "firefox", "version")}/source/firefox-${nix.sel(src, "firefox", "version")}.source.tar.xz`),
       })))),
   };

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 29, 26], ["license", 29, 35], ["maintainers", 29, 43], ["description", 30, 5], ["outputsToInstall", 31, 5], ["platforms", 35, 5]], [["pname", 8, 3], ["version", 9, 19], ["src", 9, 27], ["outputs", 11, 3], ["installPhase", 16, 3], ["dontPatchShebangs", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, raspa: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 29, 26], ["license", 29, 35], ["maintainers", 29, 43], ["description", 30, 5], ["outputsToInstall", 31, 5], ["platforms", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 19], ["src", 9, 27], ["outputs", 11, 3], ["installPhase", 16, 3], ["dontPatchShebangs", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const raspa = nix.arg($, "raspa");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "raspa-data",
       version: nix.thunk(() => nix.attr(raspa, "version")),
       src: nix.thunk(() => nix.attr(raspa, "src")),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(raspa, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

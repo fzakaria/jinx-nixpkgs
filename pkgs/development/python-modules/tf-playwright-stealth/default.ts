@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["pythonRelaxDeps", 28, 3], ["pythonRemoveDeps", 33, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 49, 3], ["disabledTestPaths", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "fake-http-header": false, fetchFromGitHub: false, idna: false, mockito: false, playwright: false, "poetry-core": false, pytestCheckHook: false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["pythonRelaxDeps", 28, 3], ["pythonRemoveDeps", 33, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 49, 3], ["disabledTestPaths", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tf-playwright-stealth",
       version: "1.2.2-unstable-2026-06-30",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tinyfish-io",
           repo: "tf-playwright-stealth",
           rev: "01b1b7a436edee4363a5d6f78f626a602550138b",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Module for using playwright stealthy",
           homepage: "https://github.com/tinyfish-io/tf-playwright-stealth",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "mit")),

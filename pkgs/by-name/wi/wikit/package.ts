@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["yarnLock", 23, 5], ["hash", 24, 5]], [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["offlineCache", 22, 3], ["nativeBuildInputs", 27, 3], ["postInstall", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchYarnDeps: false, yarnConfigHook: false, yarnInstallHook: false, nodejs: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["offlineCache", 22, 3], ["nativeBuildInputs", 27, 3], ["postInstall", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wikit",
       version: "4.4-unstable-2022-10-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KorySchneider",
           repo: "wikit",
           rev: "6432c6020606868cc5f240d0317040e38b992292",
           hash: "sha256-WCKLqxNtO+iECfBzQwMn31Pcz/cGWMihTvoHPaQAmak=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-UAqMpb7zM/oVxE6gNkjk6IUoufATc0q2TM10P/A1Rqs=",
         })))),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`installManPage ${nix.sel(finalAttrs, "src")}/data/wikit.1
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command line program for getting Wikipedia summaries",
         homepage: "https://github.com/KorySchneider/wikit",
         changelog: "https://github.com/KorySchneider/wikit/releases",

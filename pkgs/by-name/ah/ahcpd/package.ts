@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["platforms", 25, 5], ["mainProgram", 26, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["preBuild", 16, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["platforms", 25, 5], ["mainProgram", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["preBuild", 16, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ahcpd",
       version: "0.53",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.pps.univ-paris-diderot.fr/~jch/software/files/ahcpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0lhdmky3zdyk51hclv2lrhw3hzymbdc8bw2khs3rnaibgn0jwqm4",
         })))),
       preBuild: "makeFlags=\"PREFIX=$out ETCDIR=$out/etc\"\nsed -i -e s,etc,$out/etc, Makefile\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.pps.univ-paris-diderot.fr/~jch/software/ahcp/",
         description: "Autoconfiguration protocol for IPv6 and dual-stack IPv6/IPv4 networks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

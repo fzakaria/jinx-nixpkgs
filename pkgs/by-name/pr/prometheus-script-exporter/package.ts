@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["script", 31, 64]], [["tests", 31, 12]], [["description", 34, 5], ["mainProgram", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["subPackages", 8, 3], ["postInstall", 9, 3], ["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["vendorHash", 29, 3], ["passthru", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["script", 31, 64]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 31, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 34, 5], ["mainProgram", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["subPackages", 8, 3], ["postInstall", 9, 3], ["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 23, 3], ["vendorHash", 29, 3], ["passthru", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "script_exporter";
       const version = "3.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ricoberger",
           repo: "script_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Patch out failing test assertion in handler_test.go\n# Insert t.Skip at the start of TestHandler to skip it cleanly\nsed -i '/func TestHandler/a\\\\    t.Skip(\"skipped in Nix build\")' prober/handler_test.go\n";
       const vendorHash = "sha256-9skBLU4btdKpboJ1Y/qs2BZ9RPKrKijJWVb+qOy2RlU=";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { [nix.POS]: pos$2, script: nix.thunk(() => nix.attr(from, "script")) };
+          return { [nix.POS]: $pos[1], script: nix.thunk(() => nix.attr(from, "script")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Shell script prometheus exporter",
         mainProgram: "script_exporter",
         homepage: "https://github.com/ricoberger/script_exporter",
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         subPackages,
         postInstall,
         pname,

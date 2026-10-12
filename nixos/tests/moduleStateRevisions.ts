@@ -2,10 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/moduleStateRevisions.nix", [[["stateVersion", 10, 16]], [["system", 10, 9]], [["enable", 17, 56]]]);
 const formals$1 = { args: { lib: false, emptyFile: false, nixos: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/moduleStateRevisions.nix", [["stateVersion", 10, 16]]);
-const pos$2 = nix.positions(here + "/moduleStateRevisions.nix", [["system", 10, 9]]);
-const pos$3 = nix.positions(here + "/moduleStateRevisions.nix", [["enable", 17, 56]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,15 +12,15 @@ export default nix.lambda((args) => (() => {
   const nixos = nix.arg($, "nixos");
   const evalModuleStateRevisions = (cfg) => nix.sel(nix.app(nixos, nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         system: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
         })),
       })),
       cfg,
     ])), "config", "system", "moduleStateRevisions");
-  const testModule = (path) => nix.has(nix.app(evalModuleStateRevisions, nix.thunk(() => nix.app(nix.sel(lib, "setAttrByPath"), path, nix.thunk(() => ({ [nix.POS]: pos$3, enable: true }))))), nix.key(nix.str`${nix.builtins.concatStringsSep(".", path)}.stateRevision`));
+  const testModule = (path) => nix.has(nix.app(evalModuleStateRevisions, nix.thunk(() => nix.app(nix.sel(lib, "setAttrByPath"), path, nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true }))))), nix.key(nix.str`${nix.builtins.concatStringsSep(".", path)}.stateRevision`));
   nix.assert_(nix.eq(nix.app(evalModuleStateRevisions, nix.thunk(() => ({}))), {}), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/moduleStateRevisions.nix:20:1");
   nix.assert_(nix.app(testModule, nix.thunk(() => ["services", "seerr"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/moduleStateRevisions.nix:21:1");
   return nix.force(emptyFile);

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["pname", 40, 9], ["version", 41, 9], ["src", 42, 9], ["sourceRoot", 43, 9], ["pnpm", 45, 7], ["fetcherVersion", 46, 7], ["hash", 47, 7]], [["pname", 27, 5], ["src", 28, 13], ["version", 28, 17], ["nativeBuildInputs", 30, 5], ["sourceRoot", 36, 5], ["pnpmDeps", 38, 5], ["postBuild", 50, 5], ["installPhase", 54, 5]], [["extraArgs", 90, 7]], [["testService", 95, 11]], [["autobrr-web", 88, 13], ["updateScript", 89, 5], ["tests", 95, 5]], [["description", 99, 5], ["license", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["maintainers", 103, 5], ["mainProgram", 104, 5], ["platforms", 105, 5]], [["pname", 61, 5], ["version", 62, 5], ["src", 63, 5], ["vendorHash", 66, 3], ["preBuild", 68, 3], ["ldflags", 72, 3], ["doCheck", 78, 3], ["doInstallCheck", 79, 3], ["nativeInstallCheckInputs", 81, 3], ["versionCheckProgram", 84, 3], ["versionCheckProgramArg", 85, 3], ["passthru", 87, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGo127Module: false, fetchFromGitHub: false, stdenvNoCC: false, "nix-update-script": false, nixosTests: false, nodejs: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 40, 9], ["version", 41, 9], ["src", 42, 9], ["sourceRoot", 43, 9], ["pnpm", 45, 7], ["fetcherVersion", 46, 7], ["hash", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 5], ["src", 28, 13], ["version", 28, 17], ["nativeBuildInputs", 30, 5], ["sourceRoot", 36, 5], ["pnpmDeps", 38, 5], ["postBuild", 50, 5], ["installPhase", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 90, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["testService", 95, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["autobrr-web", 88, 13], ["updateScript", 89, 5], ["tests", 95, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 99, 5], ["license", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["maintainers", 103, 5], ["mainProgram", 104, 5], ["platforms", 105, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 61, 5], ["version", 62, 5], ["src", 63, 5], ["vendorHash", 66, 3], ["preBuild", 68, 3], ["ldflags", 72, 3], ["doCheck", 78, 3], ["doInstallCheck", 79, 3], ["nativeInstallCheckInputs", 81, 3], ["versionCheckProgram", 84, 3], ["versionCheckProgramArg", 85, 3], ["passthru", 87, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,21 +22,21 @@ export default nix.lambda((args) => (() => {
   const pname = "autobrr";
   const version = "1.88.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "autobrr",
       repo: "autobrr",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-ossNvYwx4DSmcBlmyQBa8R9PMwFpy7+ywL6DupNfBVs=",
     }))));
   const autobrr_web = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`${pname}-web`),
       src: src,
       version: version,
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11]),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/web`),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(autobrr_web, "pname")),
           version: nix.thunk(() => nix.attr(autobrr_web, "version")),
           src: nix.thunk(() => nix.attr(autobrr_web, "src")),
@@ -56,7 +49,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "cp -r dist $out\n",
     }))));
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       src: src,
@@ -73,19 +66,19 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/autobrrctl`),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "autobrr-web": autobrr_web,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--subpackage", "autobrr-web"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           testService: nix.thunk(() => nix.sel(nixosTests, "autobrr")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Modern, easy to use download automation for torrents and usenet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://autobrr.com/",

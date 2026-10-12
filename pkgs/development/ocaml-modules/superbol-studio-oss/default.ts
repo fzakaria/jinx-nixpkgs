@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5], ["fetchSubmodules", 54, 5]], [["owner", 155, 7], ["repo", 156, 7], ["rev", 157, 7], ["hash", 158, 7]], [["broken", 180, 7]], [["version", 153, 5], ["src", 154, 5], ["nativeBuildInputs", 161, 5], ["postPatch", 166, 5], ["installFlags", 173, 5], ["dontVersionCheck", 175, 5], ["meta", 179, 5]], [["gnucobol", 152, 12]], [["description", 185, 5], ["homepage", 186, 5], ["license", 187, 5], ["maintainers", 195, 5], ["teams", 196, 5], ["mainProgram", 197, 5]], [["pname", 43, 3], ["version", 44, 3], ["minimalOCamlVersion", 46, 3], ["__structuredAttrs", 47, 3], ["src", 49, 3], ["patches", 57, 3], ["nativeBuildInputs", 61, 3], ["propagatedBuildInputs", 70, 3], ["dunePackages", 97, 3], ["preBuild", 136, 3], ["doCheck", 141, 3], ["checkInputs", 142, 3], ["doInstallCheck", 148, 3], ["nativeInstallCheckInputs", 149, 3], ["versionCheckProgram", 150, 3], ["passthru", 152, 3], ["meta", 184, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildDunePackage: false, fetchFromGitHub: false, gnucobol: false, menhir: false, js_of_ocaml: false, gen_js_api: false, jsonoo: false, promise_jsoo: false, ppx_deriving: false, ppx_expect: false, ppx_import: false, ppx_deriving_encoding: false, menhirSdk: false, menhirLib: false, fmt: false, ocplib_stuff: false, ez_file: false, ez_api: false, ez_cmdliner: false, zarith: false, zarith_stubs_js: false, iso8601: false, lwt: false, ocamlgraph: false, jsonrpc: false, lsp: false, toml: false, "camlp-streams": false, ansiterminal: false, alcotest: false, autofonce: false, "goblint-cil": false, gcc: false, bison: false, buildPackages: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5], ["fetchSubmodules", 54, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 155, 7], ["repo", 156, 7], ["rev", 157, 7], ["hash", 158, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["broken", 180, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 153, 5], ["src", 154, 5], ["nativeBuildInputs", 161, 5], ["postPatch", 166, 5], ["installFlags", 173, 5], ["dontVersionCheck", 175, 5], ["meta", 179, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["gnucobol", 152, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 185, 5], ["homepage", 186, 5], ["license", 187, 5], ["maintainers", 195, 5], ["teams", 196, 5], ["mainProgram", 197, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["minimalOCamlVersion", 46, 3], ["__structuredAttrs", 47, 3], ["src", 49, 3], ["patches", 57, 3], ["nativeBuildInputs", 61, 3], ["propagatedBuildInputs", 70, 3], ["dunePackages", 97, 3], ["preBuild", 136, 3], ["doCheck", 141, 3], ["checkInputs", 142, 3], ["doInstallCheck", 148, 3], ["nativeInstallCheckInputs", 149, 3], ["versionCheckProgram", 150, 3], ["passthru", 152, 3], ["meta", 184, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,13 +46,13 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "superbol-studio-oss",
       version: "1.0.0",
       minimalOCamlVersion: "5.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OCamlPro",
           repo: "superbol-studio-oss",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -134,12 +128,12 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/superbol-free`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         gnucobol: nix.thunk(() => nix.app(nix.sel(gnucobol, "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             version: "3.2-unstable-2025-12-04",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 owner: "OCamlPro",
                 repo: "gnucobol",
                 rev: "4b8c07b3dfd125f4379599cf45756c076f7699c7",
@@ -150,13 +144,13 @@ export default nix.lambda((args) => (() => {
             installFlags: nix.thunk(() => ["localedir=$out/share/locale"]),
             dontVersionCheck: true,
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
             })),
           }))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Open-Source part of SuperBOL Studio, including the Visual Studio Code extension and its LSP server",
         homepage: "https://superbol.eu/",
         license: nix.thunk(() => (() => {

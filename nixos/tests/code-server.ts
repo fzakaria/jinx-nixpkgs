@@ -2,38 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/code-server.nix", [[["enable", 10, 11], ["auth", 11, 11]], [["code-server", 9, 18]], [["services", 9, 9]], [["machine", 6, 5]], [["maintainers", 23, 8]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 16, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/code-server.nix", [["enable", 10, 11], ["auth", 11, 11]]);
-const pos$2 = nix.positions(here + "/code-server.nix", [["code-server", 9, 18]]);
-const pos$3 = nix.positions(here + "/code-server.nix", [["services", 9, 9]]);
-const pos$4 = nix.positions(here + "/code-server.nix", [["machine", 6, 5]]);
-const pos$5 = nix.positions(here + "/code-server.nix", [["maintainers", 23, 8]]);
-const pos$6 = nix.positions(here + "/code-server.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 16, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "code-server",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            "code-server": nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, auth: "none" })),
+            [nix.POS]: $pos[1],
+            "code-server": nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true, auth: "none" })),
           })),
         };
       })(), formals$2),
     })),
     testScript: "start_all()\nmachine.wait_for_unit(\"code-server.service\")\nmachine.wait_for_open_port(4444)\nmachine.succeed(\"curl -k --fail http://localhost:4444\", timeout=10)\n",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$5, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[4], maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=code-server.ts.map

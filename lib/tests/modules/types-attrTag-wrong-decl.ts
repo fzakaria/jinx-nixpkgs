@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/types-attrTag-wrong-decl.nix", [[["int", 9, 9]], [["int", 12, 9]], [["type", 8, 7], ["default", 11, 7]], [["opt", 7, 5]], [["options", 6, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/types-attrTag-wrong-decl.nix", [["int", 9, 9]]);
-const pos$2 = nix.positions(here + "/types-attrTag-wrong-decl.nix", [["int", 12, 9]]);
-const pos$3 = nix.positions(here + "/types-attrTag-wrong-decl.nix", [["type", 8, 7], ["default", 11, 7]]);
-const pos$4 = nix.positions(here + "/types-attrTag-wrong-decl.nix", [["opt", 7, 5]]);
-const pos$5 = nix.positions(here + "/types-attrTag-wrong-decl.nix", [["options", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       opt: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          type: nix.thunk(() => nix.app(nix.sel(types, "attrTag"), nix.thunk(() => ({ [nix.POS]: pos$1, int: nix.thunk(() => nix.sel(types, "int")) })))),
-          default: nix.thunk(() => ({ [nix.POS]: pos$2, int: 1n })),
+          [nix.POS]: $pos[2],
+          type: nix.thunk(() => nix.app(nix.sel(types, "attrTag"), nix.thunk(() => ({ [nix.POS]: $pos[0], int: nix.thunk(() => nix.sel(types, "int")) })))),
+          default: nix.thunk(() => ({ [nix.POS]: $pos[1], int: 1n })),
         })))),
     })),
   };

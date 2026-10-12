@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["url", 32, 7], ["hash", 33, 7]], [["boost_version", 36, 7]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["build-system", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 50, 3], ["doCheck", 57, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, replaceVars: false, "pkg-config": false, python: false, setuptools: false, bluez: false, boost: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["boost_version", 36, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["build-system", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 50, 3], ["doCheck", 57, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.20210616";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oscaracena",
           repo: "pygattlib",
           tag: nix.thunk(() => nix.str`v.${nix.app(nix.sel(lib, "removePrefix"), "0.", version)}`),
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/oscaracena/pygattlib/commit/73a73b71cfc139e1e0a08816fb976ff330c77ea5.patch",
             hash: "sha256-/Y/CZNdN/jcxWroqRfdCH2rPUxZUbug668MIAow0scs=",
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             boost_version: nix.thunk(() => (() => {
               const pythonVersion = nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["gattlib"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python library to use the GATT Protocol for Bluetooth LE devices",
         homepage: "https://github.com/oscaracena/pygattlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

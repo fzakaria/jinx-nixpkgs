@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtquickeffectmaker.nix", [[["mainProgram", 13, 8]], [["pname", 8, 3], ["propagatedBuildInputs", 9, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { qtModule: false, qtbase: false, qtquick3d: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtquickeffectmaker.nix", [["mainProgram", 13, 8]]);
-const pos$2 = nix.positions(here + "/qtquickeffectmaker.nix", [["pname", 8, 3], ["propagatedBuildInputs", 9, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtquick3d = nix.arg($, "qtquick3d");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qtquickeffectmaker",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtquick3d]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "qqem" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "qqem" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=qtquickeffectmaker.ts.map

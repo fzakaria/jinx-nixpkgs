@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["forOCF", 21, 5]], [["forOCF", 24, 5]], [["owner", 32, 7], ["repo", 33, 7], ["tag", 34, 7], ["hash", 35, 7]], [["name", 42, 9], ["url", 43, 9], ["hash", 44, 9]], [["NIX_CFLAGS_COMPILE", 61, 9]], [["homepage", 72, 7], ["description", 73, 7], ["license", 74, 7], ["platforms", 75, 7], ["maintainers", 76, 7]], [["pname", 28, 5], ["version", 29, 5], ["src", 31, 5], ["patches", 38, 5], ["nativeBuildInputs", 48, 5], ["buildInputs", 54, 5], ["strictDeps", 59, 5], ["env", 61, 5], ["meta", 71, 5]], [["resource-agentsForOCF", 96, 15], ["drbdForOCF", 96, 37], ["pacemakerForOCF", 96, 48]], [["inputs", 95, 14]], [["pos", 92, 5], ["passthru", 95, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, runCommand: false, lndir: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, bashNonInteractive: false, "pkg-config": false, python3: false, glib: false, drbd: false, pacemaker: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["forOCF", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["forOCF", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 32, 7], ["repo", 33, 7], ["tag", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 42, 9], ["url", 43, 9], ["hash", 44, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 61, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 72, 7], ["description", 73, 7], ["license", 74, 7], ["platforms", 75, 7], ["maintainers", 76, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 28, 5], ["version", 29, 5], ["src", 31, 5], ["patches", 38, 5], ["nativeBuildInputs", 48, 5], ["buildInputs", 54, 5], ["strictDeps", 59, 5], ["env", 61, 5], ["meta", 71, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["resource-agentsForOCF", 96, 15], ["drbdForOCF", 96, 37], ["pacemakerForOCF", 96, 48]]);
-const pos$9 = nix.positions(here + "/package.nix", [["inputs", 95, 14]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pos", 92, 5], ["passthru", 95, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const drbd = nix.arg($, "drbd");
   const pacemaker = nix.arg($, "pacemaker");
-  const drbdForOCF = nix.thunk(() => nix.app(nix.sel(drbd, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, forOCF: true }))));
-  const pacemakerForOCF = nix.thunk(() => nix.app(nix.sel(pacemaker, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, forOCF: true }))));
+  const drbdForOCF = nix.thunk(() => nix.app(nix.sel(drbd, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], forOCF: true }))));
+  const pacemakerForOCF = nix.thunk(() => nix.app(nix.sel(pacemaker, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], forOCF: true }))));
   const resource_agentsForOCF = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "resource-agents",
       version: "4.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "ClusterLabs",
           repo: "resource-agents",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "autoconf-2.72.patch",
             url: "https://github.com/ClusterLabs/resource-agents/commit/bac658711a61fd704e792e2a0a45a2137213c442.patch",
             hash: "sha256-Xq7W8pMRmFZmkqb2430bY5zdmVTrUrob6GwGiN6/bKY=",
@@ -54,11 +45,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bashNonInteractive, glib]),
       strictDeps: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "12")))), nix.thunk(() => ["-Wno-error=maybe-uninitialized"])), ["-Wno-error=discarded-qualifiers"])))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/ClusterLabs/resource-agents",
         description: "Combined repository of OCF agents from the RHCS and Linux-HA projects",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -73,12 +64,12 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return nix.app(runCommand, "ocf-resource-agents", nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("version", resource_agentsForOCF)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         inputs: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           "resource-agentsForOCF": resource_agentsForOCF,
           drbdForOCF: drbdForOCF,
           pacemakerForOCF: pacemakerForOCF,

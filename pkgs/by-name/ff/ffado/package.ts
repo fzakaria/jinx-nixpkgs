@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 49, 5], ["hash", 50, 5]], [["NIX_LDFLAGS", 114, 5]], [["homepage", 127, 5], ["description", 128, 5], ["license", 129, 5], ["maintainers", 130, 5], ["platforms", 133, 5]], [["pname", 39, 3], ["version", 40, 3], ["outputs", 42, 3], ["src", 48, 3], ["prePatch", 53, 3], ["nativeBuildInputs", 71, 3], ["prefixKey", 83, 3], ["sconsFlags", 84, 3], ["buildInputs", 98, 3], ["env", 113, 3], ["enableParallelBuilding", 117, 3], ["dontWrapQtApps", 118, 3], ["strictDeps", 119, 3], ["doInstallCheck", 120, 3], ["preFixup", 122, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "argp-standalone": false, dbus: false, dbus_cplusplus: false, fetchurl: false, glibmm_2_4: false, libavc1394: false, libconfig: false, libiec61883: false, libraw1394: false, libxmlxx3: false, "pkg-config": false, python3: false, scons: false, which: false, withMixer: true, qt5: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 114, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 127, 5], ["description", 128, 5], ["license", 129, 5], ["maintainers", 130, 5], ["platforms", 133, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["outputs", 42, 3], ["src", 48, 3], ["prePatch", 53, 3], ["nativeBuildInputs", 71, 3], ["prefixKey", 83, 3], ["sconsFlags", 84, 3], ["buildInputs", 98, 3], ["env", 113, 3], ["enableParallelBuilding", 117, 3], ["dontWrapQtApps", 118, 3], ["strictDeps", 119, 3], ["doInstallCheck", 120, 3], ["preFixup", 122, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.9";
       const outputs = nix.thunk(() => ["out", "bin", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.ffado.org/files/libffado-${version}.tgz`),
           hash: "sha256-xELFL60Ryv1VE7tOhGyFHxAchIT4karFRe0ZDo/U0Q8=",
         }))));
@@ -83,14 +80,14 @@ substituteInPlace support/tools/SConscript --replace-fail \\
         libxmlxx3,
         python,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isGnu"))), nix.thunk(() => [argp_standalone]))));
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isGnu"))), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-largp" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isGnu"))), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-largp" }))));
       const enableParallelBuilding = true;
       const dontWrapQtApps = true;
       const strictDeps = true;
       const doInstallCheck = true;
       const preFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withMixer, "wrapQtApp \"$bin/bin/ffado-mixer\"\n"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.ffado.org",
         description: "FireWire audio drivers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -101,7 +98,7 @@ substituteInPlace support/tools/SConscript --replace-fail \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         outputs,

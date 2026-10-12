@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["installedTests", 66, 7]], [["tests", 65, 5]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 27, 3], ["patches", 35, 3], ["nativeBuildInputs", 40, 3], ["propagatedBuildInputs", 49, 3], ["mesonFlags", 53, 3], ["postPatch", 58, 3], ["passthru", 64, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, coreutils: false, "gtk-doc": false, "docbook-xsl-nons": false, docbook_xml_dtd_43: false, glib: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["installedTests", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 27, 3], ["patches", 35, 3], ["nativeBuildInputs", 40, 3], ["propagatedBuildInputs", 49, 3], ["mesonFlags", 53, 3], ["postPatch", 58, 3], ["passthru", 64, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "glib-testing",
       version: "0.2.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "pwithnall",
           repo: "libglib-testing",
@@ -48,14 +44,14 @@ substituteInPlace libglib-testing/dbus-queue.c \\
   --replace-fail 'Exec=/bin/true' 'Exec=${coreutils}/bin/true'
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "glib-testing")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Test library providing test harnesses and mock classes complementing the classes provided by GLib",
         homepage: "https://gitlab.gnome.org/pwithnall/libglib-testing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

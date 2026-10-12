@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fileName", 46, 11], ["artifactId", 47, 11], ["fileType", 48, 11], ["source", 49, 11]], [["name", 54, 7], ["url", 55, 7], ["builder", 58, 7], ["nativeBuildInputs", 83, 7], ["outputHashAlgo", 87, 7], ["outputHash", 88, 7], ["impureEnvVars", 90, 7]], [["version", 98, 7], ["fileName", 99, 7], ["hash", 100, 7]], [["x86_64-linux", 97, 5]], [["url", 110, 7], ["hash", 111, 7]], [["version", 108, 5], ["src", 109, 5]], [["fileName", 122, 33], ["version", 122, 42], ["hash", 122, 50]], [["description", 342, 5], ["homepage", 343, 5], ["sourceProvenance", 344, 5], ["license", 345, 5], ["maintainers", 346, 5], ["platforms", 350, 5], ["mainProgram", 351, 5], ["knownVulnerabilities", 352, 5]], [["pname", 116, 3], ["version", 117, 27], ["src", 119, 3], ["buildInputs", 133, 3], ["nativeBuildInputs", 151, 3], ["postUnpack", 159, 3], ["installPhase", 168, 3], ["preFixup", 241, 3], ["propagatedSandboxProfile", 295, 3], ["doInstallCheck", 302, 3], ["postInstallCheck", 304, 3], ["meta", 341, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, "c-ares": false, cacert: false, curl: false, darwin: false, expat: false, fetchurl: false, glibc: false, icu60: false, jq: false, lib: false, libiconv: false, libredirect: false, "libxcrypt-legacy": false, libxml2: false, makeWrapper: false, openssl: false, stdenv: false, unzip: false, writeShellScript: false, xercesc: false, zlib: false, acceptBroadcomEula: true }, ellipsis: false };
 const formals$2 = { args: { fileName: false, version: false, toolId: true, artifactId: true, fileType: true, source: true, hash: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fileName", 46, 11], ["artifactId", 47, 11], ["fileType", 48, 11], ["source", 49, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 54, 7], ["url", 55, 7], ["builder", 58, 7], ["nativeBuildInputs", 83, 7], ["outputHashAlgo", 87, 7], ["outputHash", 88, 7], ["impureEnvVars", 90, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 98, 7], ["fileName", 99, 7], ["hash", 100, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 97, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 110, 7], ["hash", 111, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 108, 5], ["src", 109, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["fileName", 122, 33], ["version", 122, 42], ["hash", 122, 50]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 342, 5], ["homepage", 343, 5], ["sourceProvenance", 344, 5], ["license", 345, 5], ["maintainers", 346, 5], ["platforms", 350, 5], ["mainProgram", 351, 5], ["knownVulnerabilities", 352, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 116, 3], ["version", 117, 27], ["src", 119, 3], ["buildInputs", 133, 3], ["nativeBuildInputs", 151, 3], ["postUnpack", 159, 3], ["installPhase", 168, 3], ["preFixup", 241, 3], ["propagatedSandboxProfile", 295, 3], ["doInstallCheck", 302, 3], ["postInstallCheck", 304, 3], ["meta", 341, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,14 +43,14 @@ export default nix.lambda((args) => (() => {
     const source = nix.argOr($_1, "source", () => "");
     const hash = nix.argOr($_1, "hash", () => "");
     const requestJson = nix.thunk(() => nix.app(nix.sel(lib, "strings", "toJSON"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         fileName: fileName,
         artifactId: artifactId,
         fileType: fileType,
         source: source,
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: fileName,
         url: nix.thunk(() => nix.add(nix.app(mkBaseUrl, toolId), "?p_p_id=SDK_AND_TOOL_DETAILS_INSTANCE_iwlk&p_p_lifecycle=2&p_p_resource_id=documentDownloadArtifact")),
         builder: nix.thunk(() => nix.app(writeShellScript, "builder.sh", nix.thunk(() => nix.str`curlVersion=$(${curl}/bin/curl -V | head -1 | cut -d' ' -f2)
@@ -92,30 +84,30 @@ fi
       })));
   })(), formals$2);
   const ovftoolSystems = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => (() => {
       const version = "5.1.0-25410048";
       const fileName = nix.thunk(() => nix.str`VMware-ovftool-${version}-lin.x86_64.zip`);
       const hash = "sha256-LIOXCiEswBJirbds47nFKvOW+tg0D/cay3SeM+hsjjM=";
-      return { [nix.POS]: pos$3, version, fileName, hash };
+      return { [nix.POS]: $pos[2], version, fileName, hash };
     })()),
   }));
   const ovftoolSystem = nix.thunk(() => nix.selOr(ovftoolSystems, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))));
   const ovftool_xercesc = nix.thunk(() => nix.app(nix.sel(xercesc, "overrideAttrs"), (prev) => (() => {
       const version = "3.2.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => [nix.thunk(() => nix.sel(prev, "version"))]), nix.thunk(() => [version]), nix.thunk(() => nix.sel(prev, "src", "url")))),
           hash: "sha256-VFz8zmxOdVIHvR8n4xkkHlDjfAwnJQ8RzaEWAY8e8PU=",
         }))));
-      return { [nix.POS]: pos$6, version, src };
+      return { [nix.POS]: $pos[5], version, src };
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "ovftool",
       version: nix.thunk(() => nix.attr(ovftoolSystem, "version")),
       src: nix.thunk(() => (nix.asBool(acceptBroadcomEula) ? nix.app(fetchFromBroadcom, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           fileName: nix.thunk(() => nix.attr(ovftoolSystem, "fileName")),
           version: nix.thunk(() => nix.attr(ovftoolSystem, "version")),
           hash: nix.thunk(() => nix.attr(ovftoolSystem, "hash")),
@@ -220,7 +212,7 @@ $ovftool_with_args --schemaValidate nixos.ovf
 set +x
 `)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "VMware tools for working with OVF, OVA, and VMX images",
         homepage: "https://developer.vmware.com/web/tool/ovf-tool/",
         sourceProvenance: nix.thunk(() => (() => {

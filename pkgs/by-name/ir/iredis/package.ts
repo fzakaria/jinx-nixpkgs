@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 73, 5], ["changelog", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["pythonRelaxDeps", 22, 3], ["build-system", 27, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 42, 3], ["enabledTestPaths", 48, 3], ["disabledTestPaths", 53, 3], ["pythonImportsCheck", 65, 3], ["nativeInstallCheckInputs", 67, 3], ["doInstallCheck", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["changelog", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["pythonRelaxDeps", 22, 3], ["build-system", 27, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 42, 3], ["enabledTestPaths", 48, 3], ["disabledTestPaths", 53, 3], ["pythonImportsCheck", 65, 3], ["nativeInstallCheckInputs", 67, 3], ["doInstallCheck", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "iredis",
       version: "1.16.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "laixintao",
           repo: "iredis",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Terminal Client for Redis with AutoCompletion and Syntax Highlighting",
         changelog: nix.thunk(() => nix.str`https://github.com/laixintao/iredis/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         homepage: "https://iredis.xbin.io/",

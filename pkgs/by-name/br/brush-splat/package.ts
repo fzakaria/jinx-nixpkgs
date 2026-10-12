@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["ZSTD_SYS_USE_PKG_CONFIG", 50, 5]], [["updateScript", 69, 5]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["env", 49, 3], ["postFixup", 53, 3], ["nativeInstallCheckInputs", 63, 3], ["doInstallCheck", 66, 3], ["passthru", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, libxkbcommon: false, "vulkan-loader": false, zstd: false, stdenv: false, wayland: false, "nix-update-script": false, versionCheckHook: false, libx11: false, libxcursor: false, libxi: false, libxrandr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ZSTD_SYS_USE_PKG_CONFIG", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["env", 49, 3], ["postFixup", 53, 3], ["nativeInstallCheckInputs", 63, 3], ["doInstallCheck", 66, 3], ["passthru", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libxrandr = nix.arg($, "libxrandr");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "brush-splat",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ArthurBrussee",
           repo: "brush",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,17 +36,17 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-KBgE0fiaUEsGuAYGhBjqMX7ftj5JnGggH86brxq6280=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([zstd], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libx11, libxcursor, libxi, libxkbcommon, libxrandr, vulkan_loader, wayland])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ZSTD_SYS_USE_PKG_CONFIG: true })),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`patchelf --add-rpath "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader, wayland, libxkbcommon]))}" $out/bin/brush_app
 `))),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "3D Reconstruction for all",
         homepage: "https://github.com/ArthurBrussee/brush",
         changelog: nix.thunk(() => nix.str`https://github.com/ArthurBrussee/brush/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

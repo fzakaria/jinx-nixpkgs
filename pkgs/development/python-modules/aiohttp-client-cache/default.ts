@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 5], ["version", 29, 13], ["hash", 30, 5]], [["all", 43, 5], ["dynamodb", 51, 5], ["filesystem", 55, 5], ["mongodb", 59, 5], ["redis", 60, 5], ["sqlite", 61, 5]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 64, 3], ["pytestFlags", 72, 3], ["pythonImportsCheck", 74, 3], ["disabledTestPaths", 76, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, aioboto3: false, aiobotocore: false, aiofiles: false, aiohttp: false, aiosqlite: false, attrs: false, buildPythonPackage: false, faker: false, fetchPypi: false, itsdangerous: false, motor: false, hatchling: false, "pytest-asyncio": false, "pytest-aiohttp": false, pytestCheckHook: false, redis: false, "url-normalize": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 5], ["version", 29, 13], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 43, 5], ["dynamodb", 51, 5], ["filesystem", 55, 5], ["mongodb", 59, 5], ["redis", 60, 5], ["sqlite", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 64, 3], ["pytestFlags", 72, 3], ["pythonImportsCheck", 74, 3], ["disabledTestPaths", 76, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "aiohttp_client_cache",
           version: version,
           hash: "sha256-Mp9AOMao7QtBACOYC20aLEhK8z5meonOJFyJnWLB+6E=",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [aiohttp, attrs, itsdangerous, url_normalize]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [aioboto3, aiobotocore, aiofiles, aiosqlite, motor, redis]),
         dynamodb: nix.thunk(() => [aioboto3, aiobotocore]),
         filesystem: nix.thunk(() => [aiofiles, aiosqlite]),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["aiohttp_client_cache"]);
       const disabledTestPaths = nix.thunk(() => ["test/integration/*"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Async persistent cache for aiohttp requests",
         homepage: "https://github.com/requests-cache/aiohttp-client-cache",
         changelog: nix.thunk(() => nix.str`https://github.com/requests-cache/aiohttp-client-cache/blob/v${version}/HISTORY.md`),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

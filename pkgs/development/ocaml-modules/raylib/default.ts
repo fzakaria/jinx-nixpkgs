@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 23, 5], ["hash", 24, 5]], [["name", 29, 7], ["url", 30, 7], ["excludes", 31, 7], ["hash", 35, 7]], [["description", 56, 5], ["homepage", 57, 5], ["maintainers", 58, 5], ["license", 59, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 44, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchpatch: false, buildDunePackage: false, "dune-configurator": false, ctypes: false, integers: false, patch: false, libGL: false, libx11: false, libxcursor: false, libxi: false, libxinerama: false, libxrandr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 29, 7], ["url", 30, 7], ["excludes", 31, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["maintainers", 58, 5], ["license", 59, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 44, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const libxinerama = nix.arg($, "libxinerama");
   const libxrandr = nix.arg($, "libxrandr");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "raylib",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/tjammer/raylib-ocaml/releases/download/${nix.sel(finalAttrs, "version")}/raylib-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-/SeKgQOrhsAgMNk6ODAZlopL0mL0lVfCTx1ugmV1P/s=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-build-with-patch-3.0.0.patch",
             url: "https://github.com/tjammer/raylib-ocaml/commit/40e6fef44e3c39d4526806c4b830da77c4fe4bb8.patch",
             excludes: nix.thunk(() => ["dune-project", "raygui.opam"]),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dune_configurator, patch]),
       propagatedBuildInputs: nix.thunk(() => [ctypes, integers, libGL, libx11, libxcursor, libxi, libxinerama, libxrandr]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OCaml bindings for Raylib (5.0.0)",
         homepage: "https://tjammer.github.io/raylib-ocaml",
         maintainers: nix.thunk(() => (() => {

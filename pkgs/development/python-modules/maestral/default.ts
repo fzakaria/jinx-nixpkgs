@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["ignoredVersions", 130, 7], ["rev-prefix", 131, 7]], [["maestral", 133, 11]], [["updateScript", 129, 5], ["tests", 133, 5]], [["description", 137, 5], ["mainProgram", 138, 5], ["homepage", 139, 5], ["changelog", 140, 5], ["license", 141, 5], ["maintainers", 142, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["makeWrapperArgs", 74, 3], ["nativeCheckInputs", 86, 3], ["doCheck", 89, 3], ["preCheck", 91, 3], ["disabledTests", 95, 3], ["pythonImportsCheck", 126, 3], ["passthru", 128, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, makePythonPath: false, python: false, click: false, "dbus-python": false, "desktop-notifier": false, dropbox: false, fasteners: false, "importlib-metadata": false, keyring: false, "keyrings-alt": false, packaging: false, pathspec: false, pyro5: false, requests: false, rich: false, "rubicon-objc": false, setuptools: false, survey: false, "typing-extensions": false, watchdog: false, xattr: false, pytestCheckHook: false, gitUpdater: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ignoredVersions", 130, 7], ["rev-prefix", 131, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["maestral", 133, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 129, 5], ["tests", 133, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 137, 5], ["mainProgram", 138, 5], ["homepage", 139, 5], ["changelog", 140, 5], ["license", 141, 5], ["maintainers", 142, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["makeWrapperArgs", 74, 3], ["nativeCheckInputs", 86, 3], ["doCheck", 89, 3], ["preCheck", 91, 3], ["disabledTests", 95, 3], ["pythonImportsCheck", 126, 3], ["passthru", 128, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "maestral",
       version: "1.9.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SamSchott",
           repo: "maestral",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -110,12 +105,15 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["maestral"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "dev", "rev-prefix": "v" })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, maestral: nix.thunk(() => nix.sel(nixosTests, "maestral")) })),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], ignoredVersions: "dev", "rev-prefix": "v" })))),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          maestral: nix.thunk(() => nix.sel(nixosTests, "maestral")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open-source Dropbox client for macOS and Linux",
         mainProgram: "maestral",
         homepage: "https://maestral.app",

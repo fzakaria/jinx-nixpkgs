@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["package", 54, 7], ["command", 55, 7], ["version", 56, 28]], [["version", 53, 11]], [["tests", 53, 5], ["updateScript", 58, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 71, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["nativeBuildInputs", 27, 3], ["ldflags", 29, 3], ["postInstall", 37, 3], ["nativeCheckInputs", 47, 3], ["passthru", 52, 3], ["__darwinAllowLocalNetworking", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, "jira-cli-go": false, less: false, more: false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 54, 7], ["command", 55, 7], ["version", 56, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 53, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 53, 5], ["updateScript", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["nativeBuildInputs", 27, 3], ["ldflags", 29, 3], ["postInstall", 37, 3], ["nativeCheckInputs", 47, 3], ["passthru", 52, 3], ["__darwinAllowLocalNetworking", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "jira-cli-go",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ankitpokhrel",
           repo: "jira-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,11 +40,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd jira \\\n  --bash <($out/bin/jira completion bash) \\\n  --fish <($out/bin/jira completion fish) \\\n  --zsh <($out/bin/jira completion zsh)\n\n$out/bin/jira man --generate --output man\ninstallManPage man/*\n")),
       nativeCheckInputs: nix.thunk(() => [less, more]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: jira_cli_go,
               command: "jira version",
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Feature-rich interactive Jira command line",
         homepage: "https://github.com/ankitpokhrel/jira-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/ankitpokhrel/jira-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

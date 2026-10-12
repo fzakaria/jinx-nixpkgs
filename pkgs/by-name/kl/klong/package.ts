@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 51, 5], ["homepage", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["license", 56, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["docs", 20, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 32, 3], ["postInstall", 39, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromSourcehut: false, installShellFiles: false, makeBinaryWrapper: false, gv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["license", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["docs", 20, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 32, 3], ["postInstall", 39, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const gv = nix.arg($, "gv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "klong",
       version: "20221212",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://t3x.org/klong/klong${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-XhpIdyKKPGQ6mdv9LXPmC8P6hW4mFawv54yANw5/lrQ=",
         })))),
       docs: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "~nut",
           repo: "klong-docs",
           rev: "350da558709e3728df60ddf45fafe09e3fb89139",
@@ -40,7 +37,7 @@ wrapProgram $out/bin/kplot --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath")
 installManPage $docs/*.1
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple Array programming language",
         homepage: "https://t3x.org/klong",
         mainProgram: "kg",

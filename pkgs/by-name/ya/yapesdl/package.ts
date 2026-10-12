@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["homepage", 46, 5], ["description", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["broken", 53, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["makeFlags", 29, 3], ["outputs", 31, 3], ["strictDeps", 36, 3], ["installPhase", 38, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, fetchFromGitHub: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["description", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["broken", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["makeFlags", 29, 3], ["outputs", 31, 3], ["strictDeps", 36, 3], ["installPhase", 38, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "yapesdl",
       version: "0.81.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "calmopyrin",
           repo: "yapesdl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: "runHook preInstall\ninstall -Dm755 yapesdl -t ${!outputBin}/bin/\ninstall -Dm755 README.SDL -t ${!outputDoc}/share/doc/yapesdl/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://yape.plus4.net/",
         description: "Multiplatform Commodore 64 and 264 family emulator",
         changelog: nix.thunk(() => nix.str`https://github.com/calmopyrin/yapesdl/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

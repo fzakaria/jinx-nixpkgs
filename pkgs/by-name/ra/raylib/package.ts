@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 9], ["repo", 45, 9], ["rev", 46, 9], ["hash", 47, 9]], [["raylib-games", 83, 17]], [["tests", 82, 16]], [["description", 87, 9], ["homepage", 88, 9], ["downloadPage", 89, 9], ["license", 90, 9], ["maintainers", 91, 9], ["teams", 92, 9], ["platforms", 93, 9], ["changelog", 94, 9]], [["__structuredAttrs", 38, 7], ["pname", 40, 7], ["version", 41, 7], ["src", 43, 7], ["nativeBuildInputs", 51, 7], ["buildInputs", 56, 7], ["propagatedBuildInputs", 58, 7], ["cmakeFlags", 65, 7], ["appendRunpaths", 78, 7], ["passthru", 82, 7], ["meta", 86, 7]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, autoPatchelfHook: false, glfw: false, SDL2: false, "alsa-lib": false, libpulseaudio: false, "raylib-games": false, libGLU: false, libx11: false, libxrandr: false, platform: true, pulseSupport: true, alsaSupport: true, sharedLib: true, includeEverything: true, customFrameControlSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 9], ["repo", 45, 9], ["rev", 46, 9], ["hash", 47, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["raylib-games", 83, 17]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 82, 16]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 87, 9], ["homepage", 88, 9], ["downloadPage", 89, 9], ["license", 90, 9], ["maintainers", 91, 9], ["teams", 92, 9], ["platforms", 93, 9], ["changelog", 94, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["__structuredAttrs", 38, 7], ["pname", 40, 7], ["version", 41, 7], ["src", 43, 7], ["nativeBuildInputs", 51, 7], ["buildInputs", 56, 7], ["propagatedBuildInputs", 58, 7], ["cmakeFlags", 65, 7], ["appendRunpaths", 78, 7], ["passthru", 82, 7], ["meta", 86, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const customFrameControlSupport = nix.argOr($, "customFrameControlSupport", () => false);
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   return nix.app(nix.sel(lib, "checkListOfEnum"), "raylib: platform", nix.thunk(() => ["Desktop", "Web", "Android", "Raspberry Pi", "SDL"]), nix.thunk(() => [platform]), nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         __structuredAttrs: true,
         pname: "raylib",
         version: "6.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "raysan5",
             repo: "raylib",
             rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,11 +49,11 @@ export default nix.lambda((args) => (() => {
         ], nix.concat(nix.app(optional, nix.thunk(() => nix.eq(platform, "Desktop")), nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "USE_EXTERNAL_GLFW", "ON"))), nix.concat(nix.app(optional, includeEverything, nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "INCLUDE_EVERYTHING", true))), nix.app(optional, sharedLib, nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_SHARED_LIBS", true))))))),
         appendRunpaths: nix.thunk(() => nix.app(optional, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.concat(nix.app(optional, alsaSupport, alsa_lib), nix.app(optional, pulseSupport, libpulseaudio))))))),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          tests: nix.thunk(() => ({ [nix.POS]: pos$2, "raylib-games": raylib_games })),
+          [nix.POS]: $pos[2],
+          tests: nix.thunk(() => ({ [nix.POS]: $pos[1], "raylib-games": raylib_games })),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Simple and easy-to-use library to enjoy videogames programming",
           homepage: "https://www.raylib.com/",
           downloadPage: "https://github.com/raysan5/raylib",

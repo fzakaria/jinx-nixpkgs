@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["url", 140, 5], ["tagPrefix", 141, 5]], [["updateScript", 139, 12]], [["description", 145, 5], ["mainProgram", 146, 5], ["homepage", 147, 5], ["maintainers", 148, 5], ["platforms", 153, 5], ["license", 154, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["postBuild", 56, 3], ["prePatch", 67, 3], ["patches", 71, 3], ["postPatch", 77, 3], ["pythonInterpreter", 88, 3], ["pythonScriptWrapper", 97, 3], ["installPhase", 104, 3], ["passthru", 139, 3], ["meta", 144, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, python3: false, python3Packages: false, extraPythonPackages: true, unstableGitUpdater: false, makeWrapper: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 140, 5], ["tagPrefix", 141, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 139, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 145, 5], ["mainProgram", 146, 5], ["homepage", 147, 5], ["maintainers", 148, 5], ["platforms", 153, 5], ["license", 154, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["postBuild", 56, 3], ["prePatch", 67, 3], ["patches", 71, 3], ["postPatch", 77, 3], ["pythonInterpreter", 88, 3], ["pythonScriptWrapper", 97, 3], ["installPhase", 104, 3], ["passthru", 139, 3], ["meta", 144, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "klipper";
       const version = "0.13.0-unstable-2026-09-28";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Klipper3d",
           repo: "klipper",
           rev: "7bc4d09465d31cd30fc0822e8d0abe02cc8c547f",
@@ -103,15 +99,15 @@ chmod 755 "$out/bin/klipper-canbus-query"
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.sel(meta, "homepage")),
             tagPrefix: "v",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Klipper 3D printer firmware",
         mainProgram: "klippy",
         homepage: "https://github.com/Klipper3d/klipper",
@@ -127,7 +123,7 @@ runHook postInstall
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

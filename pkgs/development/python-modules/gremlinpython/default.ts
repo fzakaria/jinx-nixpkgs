@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["name", 33, 7], ["url", 34, 7], ["excludes", 35, 7], ["hash", 36, 7]], [["changelog", 91, 5], ["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]], [["__structuredAttrs", 18, 3], ["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 40, 3], ["build-system", 47, 3], ["pythonRemoveDeps", 49, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 60, 3], ["preCheck", 68, 3], ["disabledTestPaths", 73, 3], ["disabledTests", 84, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, aenum: false, aiohttp: false, isodate: false, "nest-asyncio": false, pytestCheckHook: false, pyhamcrest: false, pyyaml: false, "radish-bdd": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 33, 7], ["url", 34, 7], ["excludes", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 91, 5], ["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["__structuredAttrs", 18, 3], ["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 40, 3], ["build-system", 47, 3], ["pythonRemoveDeps", 49, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 60, 3], ["preCheck", 68, 3], ["disabledTestPaths", 73, 3], ["disabledTests", 84, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "tinkerpop",
           tag: version,
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "remove-async_timeout.pach",
             url: "https://github.com/apache/tinkerpop/commit/aa327ace6feaf6ccd3eca411f3b5f6f86f8571f6.patch",
             excludes: nix.thunk(() => ["gremlin-python/src/main/python/setup.py"]),
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
         "TestFunctionalGraphSONIO and test_uuid",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/apache/tinkerpop/blob/${nix.sel(src, "tag")}/CHANGELOG.asciidoc`),
         description: "Gremlin-Python implements Gremlin, the graph traversal language of Apache TinkerPop, within the Python language",
         homepage: "https://tinkerpop.apache.org/",
@@ -77,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         __structuredAttrs,
         pname,
         version,

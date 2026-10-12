@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["dependencies", 9, 5]], [["mainProgram", 16, 5]], [["meta", 15, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, withGUI: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["dependencies", 9, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 16, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const withGUI = nix.argOr($, "withGUI", () => true);
   const mandown$ = nix.thunk(() => nix.app(nix.sel(python3Packages, "mandown", "overridePythonAttrs"), (prev) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       dependencies: nix.thunk(() => nix.concat(nix.sel(prev, "dependencies"), nix.app(nix.sel(lib, "optionals"), withGUI, nix.thunk(() => nix.sel(prev, "optional-dependencies", "gui"))))),
     })));
   const mandownApp = nix.thunk(() => nix.app(nix.sel(python3Packages, "toPythonApplication"), mandown$));
   return nix.update(mandownApp, {
-    [nix.POS]: pos$3,
-    meta: nix.thunk(() => nix.update(nix.sel(mandownApp, "meta"), { [nix.POS]: pos$2, mainProgram: "mandown" })),
+    [nix.POS]: $pos[2],
+    meta: nix.thunk(() => nix.update(nix.sel(mandownApp, "meta"), { [nix.POS]: $pos[1], mainProgram: "mandown" })),
   });
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

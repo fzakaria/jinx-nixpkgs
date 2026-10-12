@@ -2,212 +2,176 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/source.nix", [["version", 6, 9], ["hash", 7, 9]]);
-const pos$2 = nix.positions(here + "/source.nix", [["version", 10, 9], ["hash", 11, 9]]);
-const pos$3 = nix.positions(here + "/source.nix", [["version", 14, 9], ["hash", 15, 9]]);
-const pos$4 = nix.positions(here + "/source.nix", [["version", 18, 9], ["hash", 19, 9]]);
-const pos$5 = nix.positions(here + "/source.nix", [["version", 22, 9], ["hash", 23, 9]]);
-const pos$6 = nix.positions(here + "/source.nix", [["version", 26, 9], ["hash", 27, 9]]);
-const pos$7 = nix.positions(here + "/source.nix", [["version", 30, 9], ["hash", 31, 9]]);
-const pos$8 = nix.positions(here + "/source.nix", [["version", 34, 9], ["hash", 35, 9]]);
-const pos$9 = nix.positions(here + "/source.nix", [["version", 38, 9], ["hash", 39, 9]]);
-const pos$10 = nix.positions(here + "/source.nix", [["version", 42, 9], ["hash", 43, 9]]);
-const pos$11 = nix.positions(here + "/source.nix", [["version", 46, 9], ["hash", 47, 9]]);
-const pos$12 = nix.positions(here + "/source.nix", [["version", 50, 9], ["hash", 51, 9]]);
-const pos$13 = nix.positions(here + "/source.nix", [["nrfutil", 5, 7], ["nrfutil-91", 9, 7], ["nrfutil-ble-sniffer", 13, 7], ["nrfutil-completion", 17, 7], ["nrfutil-device", 21, 7], ["nrfutil-mcu-manager", 25, 7], ["nrfutil-npm", 29, 7], ["nrfutil-nrf5sdk-tools", 33, 7], ["nrfutil-sdk-manager", 37, 7], ["nrfutil-suit", 41, 7], ["nrfutil-toolchain-manager", 45, 7], ["nrfutil-trace", 49, 7]]);
-const pos$14 = nix.positions(here + "/source.nix", [["triplet", 3, 5], ["packages", 4, 5]]);
-const pos$15 = nix.positions(here + "/source.nix", [["version", 59, 9], ["hash", 60, 9]]);
-const pos$16 = nix.positions(here + "/source.nix", [["version", 63, 9], ["hash", 64, 9]]);
-const pos$17 = nix.positions(here + "/source.nix", [["version", 67, 9], ["hash", 68, 9]]);
-const pos$18 = nix.positions(here + "/source.nix", [["version", 71, 9], ["hash", 72, 9]]);
-const pos$19 = nix.positions(here + "/source.nix", [["version", 75, 9], ["hash", 76, 9]]);
-const pos$20 = nix.positions(here + "/source.nix", [["version", 79, 9], ["hash", 80, 9]]);
-const pos$21 = nix.positions(here + "/source.nix", [["nrfutil", 58, 7], ["nrfutil-ble-sniffer", 62, 7], ["nrfutil-device", 66, 7], ["nrfutil-mcu-manager", 70, 7], ["nrfutil-sdk-manager", 74, 7], ["nrfutil-trace", 78, 7]]);
-const pos$22 = nix.positions(here + "/source.nix", [["triplet", 56, 5], ["packages", 57, 5]]);
-const pos$23 = nix.positions(here + "/source.nix", [["version", 88, 9], ["hash", 89, 9]]);
-const pos$24 = nix.positions(here + "/source.nix", [["version", 92, 9], ["hash", 93, 9]]);
-const pos$25 = nix.positions(here + "/source.nix", [["version", 96, 9], ["hash", 97, 9]]);
-const pos$26 = nix.positions(here + "/source.nix", [["version", 100, 9], ["hash", 101, 9]]);
-const pos$27 = nix.positions(here + "/source.nix", [["version", 104, 9], ["hash", 105, 9]]);
-const pos$28 = nix.positions(here + "/source.nix", [["version", 108, 9], ["hash", 109, 9]]);
-const pos$29 = nix.positions(here + "/source.nix", [["version", 112, 9], ["hash", 113, 9]]);
-const pos$30 = nix.positions(here + "/source.nix", [["version", 116, 9], ["hash", 117, 9]]);
-const pos$31 = nix.positions(here + "/source.nix", [["version", 120, 9], ["hash", 121, 9]]);
-const pos$32 = nix.positions(here + "/source.nix", [["version", 124, 9], ["hash", 125, 9]]);
-const pos$33 = nix.positions(here + "/source.nix", [["version", 128, 9], ["hash", 129, 9]]);
-const pos$34 = nix.positions(here + "/source.nix", [["version", 132, 9], ["hash", 133, 9]]);
-const pos$35 = nix.positions(here + "/source.nix", [["nrfutil", 87, 7], ["nrfutil-91", 91, 7], ["nrfutil-ble-sniffer", 95, 7], ["nrfutil-completion", 99, 7], ["nrfutil-device", 103, 7], ["nrfutil-mcu-manager", 107, 7], ["nrfutil-npm", 111, 7], ["nrfutil-nrf5sdk-tools", 115, 7], ["nrfutil-sdk-manager", 119, 7], ["nrfutil-suit", 123, 7], ["nrfutil-toolchain-manager", 127, 7], ["nrfutil-trace", 131, 7]]);
-const pos$36 = nix.positions(here + "/source.nix", [["triplet", 85, 5], ["packages", 86, 5]]);
-const pos$37 = nix.positions(here + "/source.nix", [["aarch64-darwin", 2, 3], ["aarch64-linux", 55, 3], ["x86_64-linux", 84, 3]]);
+const $pos = nix.positions(here + "/source.nix", [[["version", 6, 9], ["hash", 7, 9]], [["version", 10, 9], ["hash", 11, 9]], [["version", 14, 9], ["hash", 15, 9]], [["version", 18, 9], ["hash", 19, 9]], [["version", 22, 9], ["hash", 23, 9]], [["version", 26, 9], ["hash", 27, 9]], [["version", 30, 9], ["hash", 31, 9]], [["version", 34, 9], ["hash", 35, 9]], [["version", 38, 9], ["hash", 39, 9]], [["version", 42, 9], ["hash", 43, 9]], [["version", 46, 9], ["hash", 47, 9]], [["version", 50, 9], ["hash", 51, 9]], [["nrfutil", 5, 7], ["nrfutil-91", 9, 7], ["nrfutil-ble-sniffer", 13, 7], ["nrfutil-completion", 17, 7], ["nrfutil-device", 21, 7], ["nrfutil-mcu-manager", 25, 7], ["nrfutil-npm", 29, 7], ["nrfutil-nrf5sdk-tools", 33, 7], ["nrfutil-sdk-manager", 37, 7], ["nrfutil-suit", 41, 7], ["nrfutil-toolchain-manager", 45, 7], ["nrfutil-trace", 49, 7]], [["triplet", 3, 5], ["packages", 4, 5]], [["version", 59, 9], ["hash", 60, 9]], [["version", 63, 9], ["hash", 64, 9]], [["version", 67, 9], ["hash", 68, 9]], [["version", 71, 9], ["hash", 72, 9]], [["version", 75, 9], ["hash", 76, 9]], [["version", 79, 9], ["hash", 80, 9]], [["nrfutil", 58, 7], ["nrfutil-ble-sniffer", 62, 7], ["nrfutil-device", 66, 7], ["nrfutil-mcu-manager", 70, 7], ["nrfutil-sdk-manager", 74, 7], ["nrfutil-trace", 78, 7]], [["triplet", 56, 5], ["packages", 57, 5]], [["version", 88, 9], ["hash", 89, 9]], [["version", 92, 9], ["hash", 93, 9]], [["version", 96, 9], ["hash", 97, 9]], [["version", 100, 9], ["hash", 101, 9]], [["version", 104, 9], ["hash", 105, 9]], [["version", 108, 9], ["hash", 109, 9]], [["version", 112, 9], ["hash", 113, 9]], [["version", 116, 9], ["hash", 117, 9]], [["version", 120, 9], ["hash", 121, 9]], [["version", 124, 9], ["hash", 125, 9]], [["version", 128, 9], ["hash", 129, 9]], [["version", 132, 9], ["hash", 133, 9]], [["nrfutil", 87, 7], ["nrfutil-91", 91, 7], ["nrfutil-ble-sniffer", 95, 7], ["nrfutil-completion", 99, 7], ["nrfutil-device", 103, 7], ["nrfutil-mcu-manager", 107, 7], ["nrfutil-npm", 111, 7], ["nrfutil-nrf5sdk-tools", 115, 7], ["nrfutil-sdk-manager", 119, 7], ["nrfutil-suit", 123, 7], ["nrfutil-toolchain-manager", 127, 7], ["nrfutil-trace", 131, 7]], [["triplet", 85, 5], ["packages", 86, 5]], [["aarch64-darwin", 2, 3], ["aarch64-linux", 55, 3], ["x86_64-linux", 84, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$37,
+  [nix.POS]: $pos[36],
   "aarch64-darwin": nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     triplet: "aarch64-apple-darwin",
     packages: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       nrfutil: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         version: "8.2.0",
         hash: "sha256-mU00xIFL2dp/0F4CMgqS4ScTf/SF4SyVs4FrETUhgLY=",
       })),
       "nrfutil-91": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version: "0.5.0",
         hash: "sha256-eRYmwolAW/k0nggSDvbQhU3AfOdNlfs7pMDUQBYgWjQ=",
       })),
       "nrfutil-ble-sniffer": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: "0.20.0",
         hash: "sha256-4K8l9Oh0mp6Nee8taM3TsDrcZBxPhgCMf95Mm2FEzjE=",
       })),
       "nrfutil-completion": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: "1.5.0",
         hash: "sha256-8+HJUSgmGIDPztlLM3BPLQROeurgKMxZ4iPtGQJtkUI=",
       })),
       "nrfutil-device": nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version: "2.19.4",
         hash: "sha256-ggU9VayYmZ3phyK70InMWxcquR4w9DCll0o93V7k0oc=",
       })),
       "nrfutil-mcu-manager": nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version: "0.10.2",
         hash: "sha256-FgiIxR4c3qjlw9htX17xSqD/sM71iPE53yG1r9/6YY4=",
       })),
       "nrfutil-npm": nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         version: "0.3.1",
         hash: "sha256-tyUQkzCCho6Y5sulwdKGMEazuWxeS2nQid4aOolHbNE=",
       })),
       "nrfutil-nrf5sdk-tools": nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         version: "1.1.0",
         hash: "sha256-TbGmQ8Nu/n4YmikQ8ND7aWCEjWvD53jZqIFcEknKQFo=",
       })),
       "nrfutil-sdk-manager": nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         version: "1.15.0",
         hash: "sha256-tXh/Z9IEqZt4g8tkdgPbZMGn2Ffzoa6ibD4AjWBY8hU=",
       })),
       "nrfutil-suit": nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         version: "0.9.0",
         hash: "sha256-G7/WhtkxQgr1yzFVz+mlx+zwn8cgEepGRQZcJadAkOY=",
       })),
       "nrfutil-toolchain-manager": nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         version: "0.15.0",
         hash: "sha256-lVdvEj5Z2O5QhtRkbOSnVVP5dzJE9S34tMVE1O32sO0=",
       })),
       "nrfutil-trace": nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         version: "5.2.0",
         hash: "sha256-dvf4YRAnkqBsnIkFFhv/FVp18wrjUkc8hMw4MuALUq8=",
       })),
     })),
   })),
   "aarch64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     triplet: "aarch64-unknown-linux-gnu",
     packages: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       nrfutil: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         version: "8.2.0",
         hash: "sha256-4o+JK6Ditvjbr71k8kERZqRFIDVy8YcFgDZyKA3ToQ0=",
       })),
       "nrfutil-ble-sniffer": nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         version: "0.20.0",
         hash: "sha256-QB6KeJwafNNIeQP42IY9/tIXqdKxtXJ8owEmU6yKxTo=",
       })),
       "nrfutil-device": nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         version: "2.19.4",
         hash: "sha256-yMUroFG0VYrXtzsgUN3y2rh8MJaISmkwEHinaDCZHkI=",
       })),
       "nrfutil-mcu-manager": nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         version: "0.10.2",
         hash: "sha256-65G/RPEbMvK1dZ5OFyab+x+1y2EuM6wx7stIfD3z2vM=",
       })),
       "nrfutil-sdk-manager": nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         version: "1.15.0",
         hash: "sha256-dTFiqFpZLOJ+Mhsx5z9Tzy+wP9tpyGBSCrb3mU7n1Rg=",
       })),
       "nrfutil-trace": nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         version: "5.2.0",
         hash: "sha256-fqZF0ltseGYAfLqY7M9ejk3XrqXB5n3ULD6rg5T95XM=",
       })),
     })),
   })),
   "x86_64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     triplet: "x86_64-unknown-linux-gnu",
     packages: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       nrfutil: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         version: "8.2.0",
         hash: "sha256-+r6EGY7+BFp83MnVEyZpwbwssWj2Hbk/ImGuT9mA5z8=",
       })),
       "nrfutil-91": nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         version: "0.5.0",
         hash: "sha256-ACQ+csYVIoANKV+CyAAD+drXQSb7CVUdvDYe76LELqs=",
       })),
       "nrfutil-ble-sniffer": nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         version: "0.20.0",
         hash: "sha256-TbfUnGA/hychnRqnO+4KpPp+/ez5Vs28OSDO4Mh/Uv0=",
       })),
       "nrfutil-completion": nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         version: "1.5.0",
         hash: "sha256-KA5h9/hJA66nkAAW1Tui+m60E/Iv9wzVPdeQqIQWpxc=",
       })),
       "nrfutil-device": nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         version: "2.19.4",
         hash: "sha256-1tnfQt7qCROqqGgx3yHViOvBKeb0cTxFiN3mg8h1wmE=",
       })),
       "nrfutil-mcu-manager": nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         version: "0.10.2",
         hash: "sha256-g+Jpp98OvKACIBoPk59fKBX0cULda5XzsWqgdPTLnRg=",
       })),
       "nrfutil-npm": nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         version: "0.3.1",
         hash: "sha256-kQ63fVWR8RdGTQLA27Sg7jegYhtlkvXvLJsucifH4I0=",
       })),
       "nrfutil-nrf5sdk-tools": nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         version: "1.1.0",
         hash: "sha256-hLQhTEa5F2lrFxppKmVrD5PnIA3JPcP/M/r9bYizHk8=",
       })),
       "nrfutil-sdk-manager": nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         version: "1.15.0",
         hash: "sha256-qeegaIL1z7QlRyhbS/4szQXyw5587JHarea1gvKXwgY=",
       })),
       "nrfutil-suit": nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         version: "0.9.0",
         hash: "sha256-uwbUgjpJNC27bSINyhfzTrOXIUi7GjFnPebg38apRKc=",
       })),
       "nrfutil-toolchain-manager": nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         version: "0.15.0",
         hash: "sha256-/bQx4yu1ybCO2TBd7MctxCANiYO5c1qCDYSjXm7hLcE=",
       })),
       "nrfutil-trace": nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         version: "5.2.0",
         hash: "sha256-3x7KH8Ou4eI9Vf1J588LtIEN7Xf0JT8Pj8CJDfGu89Q=",
       })),

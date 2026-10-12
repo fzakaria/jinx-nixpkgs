@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["url", 39, 5]], [["updateScript", 38, 12]], [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 24, 3], ["depsBuildBuild", 25, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["passthru", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, "pkg-config": false, ninja: false, "wayland-scanner": false, libdrm: false, wayland: false, "wayland-protocols": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 24, 3], ["depsBuildBuild", 25, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["passthru", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "wayland-utils",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/wayland/wayland-utils/-/releases/${nix.sel(finalAttrs, "version")}/downloads/wayland-utils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-o50OZWF8auGG12jCI/VwYKOkNfb58C0DB0+UUxO/zw0=",
         })))),
@@ -36,14 +32,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, pkg_config, ninja, wayland_scanner]),
       buildInputs: nix.thunk(() => [libdrm, wayland, wayland_protocols]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.freedesktop.org/wayland/wayland-utils.git",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Wayland utilities (wayland-info)",
         longDescription: "A collection of Wayland related utilities:\n- wayland-info: A utility for displaying information about the Wayland\n  protocols supported by a Wayland compositor.\n",
         homepage: "https://gitlab.freedesktop.org/wayland/wayland-utils",

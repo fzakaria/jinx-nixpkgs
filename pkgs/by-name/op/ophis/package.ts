@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 7], ["repo", 16, 7], ["rev", 17, 7], ["hash", 18, 7]], [["updateScript", 24, 7]], [["homepage", 28, 7], ["description", 29, 7], ["longDescription", 30, 7], ["license", 37, 7], ["mainProgram", 38, 7], ["maintainers", 39, 7]], [["pname", 10, 5], ["version", 11, 5], ["pyproject", 12, 5], ["src", 14, 5], ["build-system", 21, 5], ["passthru", 23, 5], ["meta", 27, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 7], ["repo", 16, 7], ["rev", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 28, 7], ["description", 29, 7], ["longDescription", 30, 7], ["license", 37, 7], ["mainProgram", 38, 7], ["maintainers", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 5], ["version", 11, 5], ["pyproject", 12, 5], ["src", 14, 5], ["build-system", 21, 5], ["passthru", 23, 5], ["meta", 27, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const self = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ophis",
       version: "2.2-unstable-2024-07-28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "michaelcmartin",
           repo: "Ophis",
           rev: "6a5e5a586832e828b598e8162457e673a6c38275",
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "setuptools"))]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://michaelcmartin.github.io/Ophis/",
         description: "Cross-assembler for the 6502 series of microprocessors",
         longDescription: "Ophis is an assembler for the 6502 microprocessor - the famous chip used\nin the vast majority of the classic 8-bit computers and consoles. Its\nprimary design goals are code readability and output flexibility - Ophis\nhas successfully been used to create programs for the Nintendo\nEntertainment System, the Atari 2600, and the Commodore 64.\n",

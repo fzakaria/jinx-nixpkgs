@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 107, 5], ["longDescription", 108, 5], ["homepage", 118, 7], ["license", 119, 7], ["mainProgram", 120, 7], ["platforms", 122, 5]], [["pname", 39, 3], ["src", 41, 25], ["version", 41, 29], ["strictDeps", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["mesonFlags", 82, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, "xorg-server": false, "dri-pkgconfig-stub": false, libdrm: false, libGL: false, libx11: false, libxau: false, libxcb: false, libxcvt: false, libxdmcp: false, libxfixes: false, libxfont_2: false, libxkbfile: false, libxshmfence: false, "mesa-gl-headers": false, mesa: false, openssl: false, pixman: false, "libxcb-util": false, "libxcb-image": false, "libxcb-keysyms": false, "libxcb-render-util": false, "libxcb-wm": false, xkbcomp: false, "xkeyboard-config": false, xorgproto: false, xtrans: false, "font-util": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 107, 5], ["longDescription", 108, 5], ["homepage", 118, 7], ["license", 119, 7], ["mainProgram", 120, 7], ["platforms", 122, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["src", 41, 25], ["version", 41, 29], ["strictDeps", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["mesonFlags", 82, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +41,7 @@ export default nix.lambda((args) => (() => {
   const xtrans = nix.arg($, "xtrans");
   const font_util = nix.arg($, "font-util");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "xvfb",
       src: nix.thunk(() => nix.attr(xorg_server, "src")),
       version: nix.thunk(() => nix.attr(xorg_server, "version")),
@@ -88,7 +87,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(xorg_server, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "X virtual framebuffer",
         longDescription: "Xvfb or X virtual framebuffer is a display server implementing the X11 display server\nprotocol. In contrast to other display servers, Xvfb performs all graphical operations in\nvirtual memory without showing any screen output. From the point of view of the X client app,\nit acts exactly like any other X display server, serving requests and sending events and\nerrors as appropriate. However, no output is shown. This virtual server does not require the\ncomputer it is running on to have any kind of graphics adapter, a screen or any input device.\nIs is primarily used for testing.\n",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

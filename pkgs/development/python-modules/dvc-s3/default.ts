@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 5], ["version", 21, 26], ["hash", 22, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["pythonRemoveDeps", 26, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["doCheck", 42, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, botocore: false, buildPythonPackage: false, "dvc-objects": false, fetchPypi: false, "flatten-dict": false, funcy: false, s3fs: false, "setuptools-scm": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 26], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["pythonRemoveDeps", 26, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["doCheck", 42, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dvc-s3",
       version: "3.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "dvc_s3",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-8dcYpE3O5Rkb60bkSt9LsiiCy46czdjyZAB4q8VkV9Q=",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [botocore, dvc_objects, flatten_dict, funcy, s3fs]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "S3 plugin for dvc",
         homepage: "https://pypi.org/project/dvc-s3",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/dvc-s3/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,18 +2,16 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["RUST_LOG", 26, 7]], [["displayName", 8, 5], ["argv", 9, 5], ["language", 16, 5], ["env", 25, 5], ["logo32", 28, 5], ["logo64", 29, 5]], [["definition", 7, 3]]]);
 const formals$1 = { args: { ark: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["RUST_LOG", 26, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["displayName", 8, 5], ["argv", 9, 5], ["language", 16, 5], ["env", 25, 5], ["logo32", 28, 5], ["logo64", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["definition", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const ark = nix.arg($, "ark");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     definition: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       displayName: "Ark R Kernel",
       argv: nix.thunk(() => [
         nix.thunk(() => nix.str`${ark}/bin/ark`),
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
         "notebook",
       ]),
       language: "R",
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, RUST_LOG: "ark=warn,ark::console::console_comm=error" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], RUST_LOG: "ark=warn,ark::console::console_comm=error" })),
       logo32: null,
       logo64: null,
     })),

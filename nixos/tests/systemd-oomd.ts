@@ -2,51 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-oomd.nix", [[["memorySize", 12, 22]], [["DefaultMemoryPressureDurationSec", 13, 32]], [["extraConfig", 13, 20]], [["MemoryAccounting", 18, 11], ["ManagedOOMMemoryPressure", 19, 11], ["ManagedOOMMemoryPressureLimit", 20, 11]], [["description", 16, 9], ["sliceConfig", 17, 9]], [["workload", 15, 22]], [["Slice", 27, 11], ["MemoryHigh", 28, 11], ["ExecStart", 29, 11]], [["description", 25, 9], ["serviceConfig", 26, 9]], [["Slice", 36, 11], ["MemoryHigh", 37, 11], ["ExecStart", 38, 11]], [["description", 34, 9], ["serviceConfig", 35, 9]], [["testbloat", 24, 24], ["testchill", 33, 24]], [["oomd", 13, 15], ["slices", 15, 15], ["services", 24, 15]], [["virtualisation", 12, 7], ["systemd", 13, 7]], [["machine", 8, 9]], [["name", 4, 3], ["nodes", 8, 3], ["testScript", 43, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-oomd.nix", [["memorySize", 12, 22]]);
-const pos$2 = nix.positions(here + "/systemd-oomd.nix", [["DefaultMemoryPressureDurationSec", 13, 32]]);
-const pos$3 = nix.positions(here + "/systemd-oomd.nix", [["extraConfig", 13, 20]]);
-const pos$4 = nix.positions(here + "/systemd-oomd.nix", [["MemoryAccounting", 18, 11], ["ManagedOOMMemoryPressure", 19, 11], ["ManagedOOMMemoryPressureLimit", 20, 11]]);
-const pos$5 = nix.positions(here + "/systemd-oomd.nix", [["description", 16, 9], ["sliceConfig", 17, 9]]);
-const pos$6 = nix.positions(here + "/systemd-oomd.nix", [["workload", 15, 22]]);
-const pos$7 = nix.positions(here + "/systemd-oomd.nix", [["Slice", 27, 11], ["MemoryHigh", 28, 11], ["ExecStart", 29, 11]]);
-const pos$8 = nix.positions(here + "/systemd-oomd.nix", [["description", 25, 9], ["serviceConfig", 26, 9]]);
-const pos$9 = nix.positions(here + "/systemd-oomd.nix", [["Slice", 36, 11], ["MemoryHigh", 37, 11], ["ExecStart", 38, 11]]);
-const pos$10 = nix.positions(here + "/systemd-oomd.nix", [["description", 34, 9], ["serviceConfig", 35, 9]]);
-const pos$11 = nix.positions(here + "/systemd-oomd.nix", [["testbloat", 24, 24], ["testchill", 33, 24]]);
-const pos$12 = nix.positions(here + "/systemd-oomd.nix", [["oomd", 13, 15], ["slices", 15, 15], ["services", 24, 15]]);
-const pos$13 = nix.positions(here + "/systemd-oomd.nix", [["virtualisation", 12, 7], ["systemd", 13, 7]]);
-const pos$14 = nix.positions(here + "/systemd-oomd.nix", [["machine", 8, 9]]);
-const pos$15 = nix.positions(here + "/systemd-oomd.nix", [["name", 4, 3], ["nodes", 8, 3], ["testScript", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "systemd-oomd",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$13,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: 1024n })),
+          [nix.POS]: $pos[12],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], memorySize: 1024n })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             oomd: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              extraConfig: nix.thunk(() => ({ [nix.POS]: pos$2, DefaultMemoryPressureDurationSec: "1s" })),
+              [nix.POS]: $pos[2],
+              extraConfig: nix.thunk(() => ({ [nix.POS]: $pos[1], DefaultMemoryPressureDurationSec: "1s" })),
             })),
             slices: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               workload: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 description: "Test slice for memory pressure kills",
                 sliceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   MemoryAccounting: true,
                   ManagedOOMMemoryPressure: "kill",
                   ManagedOOMMemoryPressureLimit: "10%",
@@ -54,22 +40,22 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               testbloat: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 description: "Create a lot of memory pressure",
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   Slice: "workload.slice",
                   MemoryHigh: "5M",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/tail /dev/zero`),
                 })),
               })),
               testchill: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 description: "No memory pressure",
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   Slice: "workload.slice",
                   MemoryHigh: "3M",
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/sleep infinity`),

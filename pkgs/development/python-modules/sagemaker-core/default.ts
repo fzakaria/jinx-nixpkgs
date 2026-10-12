@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["codegen", 64, 5]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["pythonRelaxDeps", 45, 3], ["dependencies", 52, 3], ["optional-dependencies", 63, 3], ["pythonImportsCheck", 72, 3], ["nativeCheckInputs", 76, 3], ["disabledTestPaths", 81, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, boto3: false, "importlib-metadata": false, jsonschema: false, mock: false, platformdirs: false, pydantic: false, pyyaml: false, rich: false, black: false, pandas: false, pylint: false, pytest: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["codegen", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["pythonRelaxDeps", 45, 3], ["dependencies", 52, 3], ["optional-dependencies", 63, 3], ["pythonImportsCheck", 72, 3], ["nativeCheckInputs", 76, 3], ["disabledTestPaths", 81, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sagemaker-core",
       version: "1.0.78",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aws",
           repo: "sagemaker-core",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,12 +48,15 @@ export default nix.lambda((args) => (() => {
         pyyaml,
         rich,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, codegen: nix.thunk(() => [black, pandas, pylint, pytest]) })),
+      "optional-dependencies": nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        codegen: nix.thunk(() => [black, pandas, pylint, pytest]),
+      })),
       pythonImportsCheck: nix.thunk(() => ["sagemaker_core"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       disabledTestPaths: nix.thunk(() => ["integ/test_codegen.py", "tst/generated/test_logs.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python object-oriented interface for interacting with Amazon SageMaker resources",
         homepage: "https://github.com/aws/sagemaker-core",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/sagemaker-core/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

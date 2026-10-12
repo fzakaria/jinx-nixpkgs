@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 58, 5], ["url", 59, 5], ["hash", 60, 5]], [["description", 156, 5], ["homepage", 157, 5], ["changelog", 158, 5], ["license", 159, 5], ["mainProgram", 160, 5], ["maintainers", 161, 5], ["platforms", 162, 5], ["sourceProvenance", 163, 5]], [["pname", 54, 3], ["version", 55, 3], ["src", 57, 3], ["nativeBuildInputs", 63, 3], ["dontUnpack", 70, 3], ["runtimeDependencies", 73, 3], ["buildInputs", 103, 3], ["autoPatchelfIgnoreMissingDeps", 106, 3], ["installPhase", 114, 3], ["meta", 155, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, cairo: false, dbus: false, requireFile: false, fontconfig: false, freetype: false, glib: false, gtk3: false, lib: false, libdrm: false, libGL: false, libkrb5: false, libsecret: false, libunwind: false, libxkbcommon: false, makeWrapper: false, openssl: false, perl: false, stdenv: false, "libxcb-wm": false, "libxcb-render-util": false, "libxcb-keysyms": false, "libxcb-image": false, "libxcb-cursor": false, libxrender: false, libxi: false, libxext: false, libxau: false, libx11: false, libsm: false, libice: false, libxcb: false, zlib: false, hexPatches: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 58, 5], ["url", 59, 5], ["hash", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 156, 5], ["homepage", 157, 5], ["changelog", 158, 5], ["license", 159, 5], ["mainProgram", 160, 5], ["maintainers", 161, 5], ["platforms", 162, 5], ["sourceProvenance", 163, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 55, 3], ["src", 57, 3], ["nativeBuildInputs", 63, 3], ["dontUnpack", 70, 3], ["runtimeDependencies", 73, 3], ["buildInputs", 103, 3], ["autoPatchelfIgnoreMissingDeps", 106, 3], ["installPhase", 114, 3], ["meta", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,11 +47,11 @@ export default nix.lambda((args) => (() => {
 `;
     })(), hexPatches));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ida-free",
       version: "9.3",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`ida-free-pc_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}_x64linux.run`),
           url: nix.thunk(() => nix.str`https://my.hex-rays.com/dashboard/download-center/installers/release/${nix.sel(finalAttrs, "version")}/ida-free`),
           hash: "sha256-eSX6/nT9joEMs48qFq92qT8Qr25B38xy4FxxaPIOwLw=",
@@ -138,7 +136,7 @@ rm -r $out/.local
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Freeware version of the world's smartest and most feature-full disassembler",
         homepage: "https://hex-rays.com/ida-free/",
         changelog: "https://hex-rays.com/products/ida/news/",

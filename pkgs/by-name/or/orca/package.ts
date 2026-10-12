@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 38, 5], ["hash", 39, 5]], [["url", 45, 7], ["hash", 46, 7]], [["url", 51, 7], ["hash", 52, 7], ["includes", 53, 7]], [["url", 60, 7], ["hash", 61, 7], ["excludes", 62, 7]], [["url", 71, 7], ["hash", 72, 7], ["includes", 73, 7]], [["pgrep", 83, 7], ["xkbcomp", 84, 7]], [["packageName", 169, 7]], [["updateScript", 168, 5]], [["homepage", 174, 5], ["changelog", 175, 5], ["description", 176, 5], ["mainProgram", 177, 5], ["longDescription", 178, 5], ["teams", 188, 5], ["license", 189, 5], ["platforms", 190, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 35, 3], ["src", 37, 3], ["patches", 42, 3], ["depsBuildBuild", 89, 3], ["nativeBuildInputs", 91, 3], ["pythonPath", 107, 3], ["strictDeps", 120, 3], ["buildInputs", 122, 3], ["nativeCheckInputs", 134, 3], ["checkInputs", 138, 3], ["postPatch", 142, 3], ["preConfigure", 151, 3], ["installCheckPhase", 158, 3], ["dontWrapGApps", 160, 3], ["preFixup", 162, 3], ["passthru", 167, 3], ["meta", 173, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, "pkg-config": false, fetchurl: false, fetchpatch: false, meson: false, ninja: false, wrapGAppsHook3: false, "gobject-introspection": false, gettext: false, "yelp-tools": false, itstool: false, python3: false, gtk3: false, gnome: false, replaceVars: false, "at-spi2-atk": false, "at-spi2-core": false, dbus: false, xkbcomp: false, procps: false, "gsettings-desktop-schemas": false, "speechd-minimal": false, brltty: false, liblouis: false, gst_all_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 45, 7], ["hash", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 51, 7], ["hash", 52, 7], ["includes", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 60, 7], ["hash", 61, 7], ["excludes", 62, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 71, 7], ["hash", 72, 7], ["includes", 73, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pgrep", 83, 7], ["xkbcomp", 84, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["packageName", 169, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 168, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 174, 5], ["changelog", 175, 5], ["description", 176, 5], ["mainProgram", 177, 5], ["longDescription", 178, 5], ["teams", 188, 5], ["license", 189, 5], ["platforms", 190, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 35, 3], ["src", 37, 3], ["patches", 42, 3], ["depsBuildBuild", 89, 3], ["nativeBuildInputs", 91, 3], ["pythonPath", 107, 3], ["strictDeps", 120, 3], ["buildInputs", 122, 3], ["nativeCheckInputs", 134, 3], ["checkInputs", 138, 3], ["postPatch", 142, 3], ["preConfigure", 151, 3], ["installCheckPhase", 158, 3], ["dontWrapGApps", 160, 3], ["preFixup", 162, 3], ["passthru", 167, 3], ["meta", 173, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,29 +35,29 @@ export default nix.lambda((args) => (() => {
   const liblouis = nix.arg($, "liblouis");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "orca",
       version: "50.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/orca/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/orca-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-BxRCHN6OxLr0fxjktKErTlxKPP47FhVp4HD+A3cT/QQ=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.gnome.org/GNOME/orca/-/commit/8f47283da2da7a7d34e769d9c129152decf632cb.patch",
             hash: "sha256-ts/ZCgEaTrnmMM1cUFJB2rDW9icMoi4jV34psD0IDCc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.gnome.org/GNOME/orca/-/commit/a7b10302b9ff9145a98cb3626f2488d15c558d3e.patch",
             hash: "sha256-lacy9vIyM3n84s+tbYvAUBKWCT+4nlI9uPVl7UPVS74=",
             includes: nix.thunk(() => ["src/orca/orca_modifier_manager.py"]),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://gitlab.gnome.org/GNOME/orca/-/commit/6c18ba002c6fac3fb80a10791b0daab6ea85f072.patch",
             hash: "sha256-jTwVN0hPkead7PiVo/KEUrP04XU/05LXnXutvVmyecc=",
             excludes: nix.thunk(() => [
@@ -75,14 +66,14 @@ export default nix.lambda((args) => (() => {
             ]),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://gitlab.gnome.org/GNOME/orca/-/commit/0a1271f0d6ed6f6d73d41b227a9f6d84d994c154.patch",
             hash: "sha256-ry8fmzUjtHR8/0UpB/zXuv6RYDS8z6fWRdb9eci6nLY=",
             includes: nix.thunk(() => ["src/orca/sound.py"]),
           })))),
         nix.path(here, "./fix-mock-typing.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pgrep: nix.thunk(() => nix.str`${procps}/bin/pgrep`),
             xkbcomp: nix.thunk(() => nix.str`${xkbcomp}/bin/xkbcomp`),
           })))),
@@ -143,11 +134,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\nsubstituteInPlace $out/lib/systemd/user/orca.service --replace-fail ExecStart=orca ExecStart=$out/bin/orca\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$7, packageName: "orca" })))),
+        [nix.POS]: $pos[7],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[6], packageName: "orca" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://orca.gnome.org/",
         changelog: "https://gitlab.gnome.org/GNOME/orca/-/blob/main/NEWS",
         description: "Screen reader",

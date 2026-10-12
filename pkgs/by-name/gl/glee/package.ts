@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 17, 13], ["url", 18, 5], ["sha256", 19, 5]], [["description", 45, 5], ["homepage", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5], ["license", 49, 5]], [["pname", 12, 3], ["rev", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["postPatch", 30, 3], ["configureScript", 36, 3], ["preInstall", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, cmake: false, libGLU: false, libGL: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 17, 13], ["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5], ["license", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["rev", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["postPatch", 30, 3], ["configureScript", 36, 3], ["preInstall", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const rev = "f727ec7463d514b6279981d12833f2e11d62b33d";
       const version = nix.thunk(() => nix.str`20170205-${nix.app(nix.sel(lib, "strings", "substring"), 0n, 7n, rev)}`);
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: rev,
           url: "https://git.code.sf.net/p/glee/glee",
           sha256: "13mf3s7nvmj26vr2wbcg08l4xxqsc1ha41sx3bfghvq8c5qpk2ph",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const configureScript = "cmake\n";
       const preInstall = "sed -i 's/readme/Readme/' cmake_install.cmake\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GL Easy Extension Library",
         homepage: "https://sourceforge.net/p/glee/glee/",
         maintainers: nix.thunk(() => (() => {
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         rev,
         version,

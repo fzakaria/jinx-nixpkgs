@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["changelog", 33, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["doCheck", 23, 3], ["checkInputs", 24, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, ocaml: false, buildDunePackage: false, ppxlib: false, ounit2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["changelog", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["doCheck", 23, 3], ["checkInputs", 24, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ppx_deriving_variant_string",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ahrefs/ppx_deriving_variant_string/releases/download/${nix.sel(finalAttrs, "version")}/ppx_deriving_variant_string-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-24m53iwGHbRfTzxiAN055CJ3zLzZ4Syl2Wi28UDlTBQ=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.12")),
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ahrefs/ppx_deriving_variant_string",
         description: "OCaml PPX deriver that generates converters between regular or polymorphic variants and strings.",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

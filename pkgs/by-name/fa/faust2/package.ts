@@ -2,20 +2,11 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5], ["fetchSubmodules", 33, 5]], [["homepage", 37, 5], ["downloadPage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]], [["enableStatic", 49, 43]], [["wrap", 78, 28], ["wrapWithBuildEnv", 78, 33], ["faust2ApplBase", 78, 50]], [["description", 144, 9], ["longDescription", 145, 9]], [["pname", 53, 7], ["version", 54, 15], ["src", 56, 15], ["nativeBuildInputs", 58, 7], ["buildInputs", 65, 7], ["passthru", 78, 7], ["preConfigure", 80, 7], ["cmakeFlags", 118, 7], ["postInstall", 123, 7], ["postFixup", 129, 7], ["meta", 143, 7]], [["description", 203, 9]], [["pname", 176, 7], ["src", 178, 15], ["version", 178, 19], ["dontBuild", 180, 7], ["installPhase", 182, 7], ["postInstall", 193, 7], ["meta", 202, 7]], [["nativeBuildInputs", 234, 9], ["propagatedBuildInputs", 239, 9], ["libPath", 241, 9], ["postFixup", 243, 9]], [["nativeBuildInputs", 290, 9], ["postFixup", 292, 9]]]);
 const formals$1 = { args: { lib: false, stdenv: false, coreutils: false, fetchFromGitHub: false, makeWrapper: false, "pkg-config": false, cmake: false, llvm: false, emscripten: false, openssl: false, libsndfile: false, libmicrohttpd: false, gnutls: false, libtasn1: false, libtool: false, libxml2: false, "p11-kit": false, which: false, ncurses: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5], ["fetchSubmodules", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["downloadPage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["enableStatic", 49, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["wrap", 78, 28], ["wrapWithBuildEnv", 78, 33], ["faust2ApplBase", 78, 50]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 144, 9], ["longDescription", 145, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 53, 7], ["version", 54, 15], ["src", 56, 15], ["nativeBuildInputs", 58, 7], ["buildInputs", 65, 7], ["passthru", 78, 7], ["preConfigure", 80, 7], ["cmakeFlags", 118, 7], ["postInstall", 123, 7], ["postFixup", 129, 7], ["meta", 143, 7]]);
 const formals$2 = { args: { baseName: false, dir: true, scripts: true }, ellipsis: true };
-const pos$7 = nix.positions(here + "/package.nix", [["description", 203, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 176, 7], ["src", 178, 15], ["version", 178, 19], ["dontBuild", 180, 7], ["installPhase", 182, 7], ["postInstall", 193, 7], ["meta", 202, 7]]);
 const formals$3 = { args: { baseName: false, propagatedBuildInputs: true }, ellipsis: true };
-const pos$9 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 234, 9], ["propagatedBuildInputs", 239, 9], ["libPath", 241, 9], ["postFixup", 243, 9]]);
 const formals$4 = { args: { baseName: false, runtimeInputs: true }, ellipsis: true };
-const pos$10 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 290, 9], ["postFixup", 292, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const version = "2.85.9";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "grame-cncm",
       repo: "faust",
       tag: version,
@@ -49,7 +40,7 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     homepage: "https://faust.grame.fr/",
     downloadPage: "https://github.com/grame-cncm/faust/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -63,9 +54,9 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const faust = nix.thunk(() => (() => {
-    const ncurses_static = nix.thunk(() => nix.app(nix.sel(ncurses, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, enableStatic: true }))));
+    const ncurses_static = nix.thunk(() => nix.app(nix.sel(ncurses, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], enableStatic: true }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "faust",
         version: version,
         src: src,
@@ -83,7 +74,7 @@ export default nix.lambda((args) => (() => {
           libxml2,
         ]),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           wrap: wrap,
           wrapWithBuildEnv: wrapWithBuildEnv,
           faust2ApplBase: faust2ApplBase,
@@ -127,7 +118,7 @@ for script in "$out"/bin/faust2*; do
 done
 `),
         meta: nix.thunk(() => nix.update(meta, {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           description: "Functional programming language for realtime audio signal processing",
           longDescription: "FAUST (Functional Audio Stream) is a functional programming\nlanguage specifically designed for real-time signal processing\nand synthesis. FAUST targets high-performance signal processing\napplications and audio plug-ins for a variety of platforms and\nstandards.\nThe Faust compiler translates DSP specifications into very\nefficient C++ code. Thanks to the notion of architecture,\nFAUST programs can be easily deployed on a large variety of\naudio platforms and plugin formats (jack, alsa, ladspa, maxmsp,\npuredata, csound, supercollider, pure, vst, coreaudio) without\nany change to the FAUST code.\n\nThis package has just the compiler, libraries, and headers.\nInstall faust2* for specific faust2appl scripts.\n",
         })),
@@ -140,7 +131,7 @@ done
     const dir = nix.argOr($_1, "dir", () => "tools/faust2appls");
     const scripts = nix.argOr($_1, "scripts", () => [baseName]);
     return nix.update(args_2, {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: baseName,
       src: src,
       version: version,
@@ -156,7 +147,7 @@ runHook postInstall
 `),
       postInstall: "# For the faust2appl script, change 'faustpath' and\n# 'faustoptflags' to absolute paths.\nfor script in \"$out\"/bin/*; do\n  substituteInPlace \"$script\" \\\n    --replace-quiet \" error \" \"echo\"\ndone\n",
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: nix.thunk(() => nix.str`The ${baseName} script, part of faust functional programming language for realtime audio signal processing`),
       })),
     });
@@ -167,7 +158,7 @@ runHook postInstall
     const baseName = nix.arg($_1, "baseName");
     const propagatedBuildInputs = nix.argOr($_1, "propagatedBuildInputs", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.app(faust2ApplBase, args_2), {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper]),
         propagatedBuildInputs: nix.thunk(() => nix.concat([faust], propagatedBuildInputs)),
         libPath: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), propagatedBuildInputs)),
@@ -203,7 +194,7 @@ done
     const runtimeInputs = nix.argOr($_1, "runtimeInputs", () => []);
     const runtimePath = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.builtins.map((p) => nix.str`${p}/bin`, nix.thunk(() => nix.concat([faust], runtimeInputs))))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.app(faust2ApplBase, args_2), {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
         postFixup: nix.thunk(() => nix.str`for script in "$out"/bin/*; do
   wrapProgram "$script" --prefix PATH : "${runtimePath}"

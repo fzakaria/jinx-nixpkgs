@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 54, 5], ["sourceProvenance", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["version", 12, 3], ["pname", 13, 3], ["src", 14, 3], ["unpackCmd", 18, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["dontBuild", 21, 3], ["installPhase", 23, 3], ["postFixup", 36, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, file: false, licenseFile: true, optgamsFile: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 54, 5], ["sourceProvenance", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 12, 3], ["pname", 13, 3], ["src", 14, 3], ["unpackCmd", 18, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["dontBuild", 21, 3], ["installPhase", 23, 3], ["postFixup", 36, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "25.0.2";
       const pname = "gams";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://d37drm4t2jghv5.cloudfront.net/distributions/${version}/linux/linux_x64_64_sfx.exe`),
           sha256: "4f95389579f33ff7c2586838a2c19021aa0746279555cbb51aa6e0efd09bd297",
         }))));
@@ -40,7 +38,7 @@ ln -s $out/share/gams/optgams.def $out/bin/optgams.def
       })());
       const postFixup = "for f in $out/share/gams/*; do\n  if [[ -x $f ]] && [[ -f $f ]] && [[ ! $f =~ .*\\.so$ ]]; then\n    if patchelf \\\n      --set-rpath \"$out/share/gams\" \\\n      --set-interpreter $(cat $NIX_CC/nix-support/dynamic-linker) $f; then\n      ln -s $f $out/bin/$(basename $f)\n    fi\n  fi\ndone\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "General Algebraic Modeling System",
         longDescription: "The General Algebraic Modeling System is a high-level modeling system for mathematical optimization.\nGAMS is designed for modeling and solving linear, nonlinear, and mixed-integer optimization problems.\n",
         homepage: "https://www.gams.com/",
@@ -53,7 +51,7 @@ ln -s $out/share/gams/optgams.def $out/bin/optgams.def
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         src,

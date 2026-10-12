@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["updateScript", 79, 12]], [["homepage", 82, 5], ["description", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["teams", 86, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["cmakeFlags", 67, 3], ["postPatch", 69, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, glib: false, kwindowsystem: false, libxscrnsaver: false, libxcursor: false, libxdmcp: false, libkscreen: false, liblxqt: false, "libpthread-stubs": false, libqtxdg: false, libxcb: false, "lxqt-build-tools": false, "lxqt-menu-data": false, "pkg-config": false, qtbase: false, qtsvg: false, qttools: false, qtwayland: false, wrapQtAppsHook: false, "xf86-input-libinput": false, xkeyboard_config: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 79, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 82, 5], ["description", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["teams", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["cmakeFlags", 67, 3], ["postPatch", 69, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const xkeyboard_config = nix.arg($, "xkeyboard_config");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lxqt-config",
       version: "2.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxqt",
           repo: "lxqt-config",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -75,11 +72,11 @@ substituteInPlace lxqt-config-input/keyboardlayoutconfig.h \\
             '${xkeyboard_config}/share/X11/xkb/rules/base.lst'
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/lxqt/lxqt-config",
         description: "Tools to configure LXQt and the underlying operating system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

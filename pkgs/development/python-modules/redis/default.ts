@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["circuit_breaker", 61, 5], ["hiredis", 62, 5], ["jwt", 63, 5], ["ocsp", 64, 5], ["otel", 69, 5], ["xxhash", 74, 5]], [["doInstallCheck", 126, 7]], [["pytest", 125, 5]], [["tests", 124, 12]], [["description", 131, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 135, 5], ["teams", 136, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["build-system", 54, 3], ["dependencies", 56, 3], ["optional-dependencies", 60, 3], ["pythonImportsCheck", 77, 3], ["nativeCheckInputs", 87, 3], ["enabledTestMarks", 96, 3], ["disabledTestMarks", 100, 3], ["disabledTestPaths", 105, 3], ["disabledTests", 114, 3], ["doCheck", 122, 3], ["passthru", 124, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, pythonOlder: false, hatchling: false, "async-timeout": false, pybreaker: false, hiredis: false, pyjwt: false, cryptography: false, pyopenssl: false, requests: false, "opentelemetry-api": false, "opentelemetry-exporter-otlp-proto-http": false, "opentelemetry-sdk": false, xxhash: false, numpy: false, "pytest-asyncio": false, pytestCheckHook: false, redisTestHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["circuit_breaker", 61, 5], ["hiredis", 62, 5], ["jwt", 63, 5], ["ocsp", 64, 5], ["otel", 69, 5], ["xxhash", 74, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doInstallCheck", 126, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pytest", 125, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 124, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 131, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 135, 5], ["teams", 136, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["build-system", 54, 3], ["dependencies", 56, 3], ["optional-dependencies", 60, 3], ["pythonImportsCheck", 77, 3], ["nativeCheckInputs", 87, 3], ["enabledTestMarks", 96, 3], ["disabledTestMarks", 100, 3], ["disabledTestPaths", 105, 3], ["disabledTests", 114, 3], ["doCheck", 122, 3], ["passthru", 124, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const redisTestHook = nix.arg($, "redisTestHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "redis",
       version: "8.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "redis",
           repo: "redis-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +42,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.11")), nix.thunk(() => [async_timeout]))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         circuit_breaker: nix.thunk(() => [pybreaker]),
         hiredis: nix.thunk(() => [hiredis]),
         jwt: nix.thunk(() => [pyjwt]),
@@ -77,14 +71,14 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_readonly_invalid_cluster_state", "test_lolwut"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          pytest: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doInstallCheck: true })))),
+          [nix.POS]: $pos[3],
+          pytest: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], doInstallCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Python client for Redis key-value store",
         homepage: "https://github.com/redis/redis-py",
         changelog: nix.thunk(() => nix.str`https://github.com/redis/redis-py/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

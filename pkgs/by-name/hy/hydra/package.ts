@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["hash", 54, 5]], [["src", 58, 13], ["nix-store", 59, 29]], [["name", 63, 5], ["paths", 64, 5]], [["hydra", 240, 36]], [["nix-perl", 238, 13], ["perlDeps", 238, 22], ["nix", 239, 5], ["tests", 240, 5], ["updateScript", 241, 5]], [["description", 245, 5], ["homepage", 246, 5], ["license", 247, 5], ["platforms", 248, 5], ["maintainers", 249, 5]], [["pname", 146, 3], ["version", 147, 11], ["src", 147, 19], ["sourceRoot", 150, 3], ["outputs", 152, 3], ["strictDeps", 157, 3], ["__structuredAttrs", 158, 3], ["nativeBuildInputs", 160, 3], ["buildInputs", 171, 3], ["hydraPath", 176, 3], ["mesonBuildType", 204, 3], ["postPatch", 206, 3], ["doCheck", 212, 3], ["postBuild", 215, 3], ["postInstall", 219, 3], ["passthru", 237, 3], ["meta", 244, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, callPackage: false, fetchFromGitHub: false, nixVersions: false, "nix-eval-jobs": false, nixosTests: false, perlPackages: false, buildEnv: false, unstableGitUpdater: false, makeWrapper: false, mdbook: false, meson: false, ninja: false, nukeReferences: false, unzip: false, bzip2: false, perl: false, pixz: false, coreutils: false, findutils: false, gnused: false, gnutar: false, gzip: false, openssh: false, xz: false, breezy: false, darcs: false, gitMinimal: false, mercurial: false, subversion: false, "top-git": false, cdrkit: false, dpkg: false, rpm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["hash", 54, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 58, 13], ["nix-store", 59, 29]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 63, 5], ["paths", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["hydra", 240, 36]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nix-perl", 238, 13], ["perlDeps", 238, 22], ["nix", 239, 5], ["tests", 240, 5], ["updateScript", 241, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 245, 5], ["homepage", 246, 5], ["license", 247, 5], ["platforms", 248, 5], ["maintainers", 249, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 146, 3], ["version", 147, 11], ["src", 147, 19], ["sourceRoot", 150, 3], ["outputs", 152, 3], ["strictDeps", 157, 3], ["__structuredAttrs", 158, 3], ["nativeBuildInputs", 160, 3], ["buildInputs", 171, 3], ["hydraPath", 176, 3], ["mesonBuildType", 204, 3], ["postPatch", 206, 3], ["doCheck", 212, 3], ["postBuild", 215, 3], ["postInstall", 219, 3], ["passthru", 237, 3], ["meta", 244, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,19 +45,19 @@ export default nix.lambda((args) => (() => {
   const nixComponents = nix.thunk(() => nix.sel(nixVersions, "nixComponents_2_35"));
   const version = "0-unstable-2026-10-04";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "NixOS",
       repo: "hydra",
       rev: "588f42497842e9c0172067c8156f8d1b1ea691ff",
       hash: "sha256-GifY4tTG00WPp8RZCFqv/quwuG9rxwuGmTyAUbAgEJ0=",
     }))));
   const nix_perl = nix.thunk(() => nix.app(callPackage, nix.path(here, "./nix-perl.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: src,
       "nix-store": nix.thunk(() => nix.attr(nixComponents, "nix-store")),
     }))));
   const perlDeps = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "hydra-perl-deps",
       paths: nix.thunk(() => nix.app(nix.sel(lib, "closePropagation"), nix.thunk(() => nix.concat([gitMinimal, nix_perl], (() => {
           const w = nix.withScope(perlPackages, null);
@@ -143,7 +137,7 @@ export default nix.lambda((args) => (() => {
         })())))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "hydra",
       version: version,
       src: src,
@@ -194,15 +188,15 @@ for i in $out/bin/*; do
 done
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "nix-perl": nix_perl,
         perlDeps: perlDeps,
         nix: nix.thunk(() => nix.sel(nixComponents, "nix-cli")),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, hydra: nix.thunk(() => nix.attr(nixosTests, "hydra")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], hydra: nix.thunk(() => nix.attr(nixosTests, "hydra")) })),
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Nix-based continuous build system",
         homepage: "https://nixos.org/hydra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

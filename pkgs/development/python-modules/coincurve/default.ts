@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["url", 39, 7], ["hash", 40, 7]], [["COINCURVE_IGNORE_SYSTEM_LIB", 56, 7]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 76, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["build-system", 44, 3], ["dontUseCmakeConfigure", 54, 3], ["env", 56, 3], ["buildInputs", 58, 3], ["dependencies", 60, 3], ["nativeCheckInputs", 65, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, hatchling: false, ninja: false, "pkg-config": false, setuptools: false, "scikit-build-core": false, asn1crypto: false, cffi: false, secp256k1: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["COINCURVE_IGNORE_SYSTEM_LIB", 56, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 76, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["build-system", 44, 3], ["dontUseCmakeConfigure", 54, 3], ["env", 56, 3], ["buildInputs", 58, 3], ["dependencies", 60, 3], ["nativeCheckInputs", 65, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "21.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ofek",
           repo: "coincurve",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,20 +34,20 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/ofek/coincurve/commit/19597b0869803acfc669d916e43c669e9ffcced7.patch",
             hash: "sha256-BkUxXjcwk3btcvSVaVZqVTJ+8E8CYtT5cTXLx9lxJ/g=",
           })))),
       ]);
       const build_system = nix.thunk(() => [hatchling, cffi, cmake, ninja, pkg_config, setuptools, scikit_build_core]);
       const dontUseCmakeConfigure = true;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, COINCURVE_IGNORE_SYSTEM_LIB: "OFF" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], COINCURVE_IGNORE_SYSTEM_LIB: "OFF" }));
       const buildInputs = nix.thunk(() => [secp256k1]);
       const dependencies = nix.thunk(() => [asn1crypto, cffi]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["coincurve"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cross-platform bindings for libsecp256k1",
         homepage: "https://github.com/ofek/coincurve",
         license: nix.thunk(() => (() => {
@@ -67,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

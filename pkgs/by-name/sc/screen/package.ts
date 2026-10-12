@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["NIX_CFLAGS_COMPILE", 28, 7]], [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["longDescription", 54, 5], ["platforms", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["configureFlags", 22, 3], ["env", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["outputs", 40, 3], ["nativeInstallCheckInputs", 46, 3], ["doInstallCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, versionCheckHook: false, texinfo: false, ncurses: false, libxcrypt: false, pam: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["longDescription", 54, 5], ["platforms", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["configureFlags", 22, 3], ["env", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["outputs", 40, 3], ["nativeInstallCheckInputs", 46, 3], ["doInstallCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,23 +17,23 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const pam = nix.argOr($, "pam", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "screen",
       version: "5.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/screen/screen-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-yposfiQJGbx6wSEkWTrkUpu0619zSdiFeCm34/CzszI=",
         })))),
       configureFlags: nix.thunk(() => ["--enable-telnet", "--enable-pam"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-D_GNU_SOURCE=1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-D_GNU_SOURCE=1" })),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, texinfo]),
       buildInputs: nix.thunk(() => [ncurses, libxcrypt, pam]),
       outputs: nix.thunk(() => ["out", "info", "man"]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.gnu.org/software/screen/",
         description: "Window manager that multiplexes a physical terminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

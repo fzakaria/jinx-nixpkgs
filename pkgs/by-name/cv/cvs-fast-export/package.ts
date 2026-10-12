@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["NIX_CFLAGS_COMPILE", 47, 5]], [["description", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["homepage", 67, 5], ["platforms", 68, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["postPatch", 34, 3], ["preBuild", 38, 3], ["env", 46, 3], ["postInstall", 50, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, asciidoc: false, docbook_xml_dtd_45: false, docbook_xsl: false, coreutils: false, cvs: false, diffutils: false, findutils: false, git: false, python3: false, rsync: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["homepage", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["postPatch", 34, 3], ["preBuild", 38, 3], ["env", 46, 3], ["postInstall", 50, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const rsync = nix.arg($, "rsync");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cvs-fast-export",
       version: "1.63",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.catb.org/~esr/cvs-fast-export/cvs-fast-export-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-YZF2QebWbvn/N9pLpccudZsFHzocJp/3M0Gx9p7fQ5Y=",
         })))),
@@ -43,12 +40,12 @@ export default nix.lambda((args) => (() => {
   prefix="$out"
 )
 `),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })))),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/cvssync --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [rsync]))}
 wrapProgram $out/bin/cvsconvert --prefix PATH : $out/bin:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, cvs, diffutils, findutils, git]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Export an RCS or CVS history as a fast-import stream",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {

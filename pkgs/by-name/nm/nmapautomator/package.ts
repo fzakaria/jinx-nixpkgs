@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]], [["extraArgs", 96, 47]], [["updateScript", 96, 12]], [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["mainProgram", 103, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["__structuredAttrs", 47, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["runtimeDeps", 52, 3], ["postPatch", 79, 3], ["installPhase", 86, 3], ["passthru", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, makeBinaryWrapper: false, dirb: false, metasploit: false, "nix-update-script": false, withFullDeps: true, nmap: false, coreutils: false, gawk: false, gnugrep: false, gnused: false, findutils: false, "smtp-user-enum": false, dnsrecon: false, bind: false, sslscan: false, nikto: false, ffuf: false, joomscan: false, smbmap: false, enum4linux: false, wpscan: false, samba: false, openldap: false, "net-snmp": false, snmpcheck: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 96, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 96, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["mainProgram", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["__structuredAttrs", 47, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["runtimeDeps", 52, 3], ["postPatch", 79, 3], ["installPhase", 86, 3], ["passthru", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const net_snmp = nix.arg($, "net-snmp");
   const snmpcheck = nix.arg($, "snmpcheck");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nmapautomator",
       version: "0-unstable-2021-04-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "21y4d",
           repo: "nmapAutomator",
           rev: "c5e15de8429c78aa5923010145dfac0996aba9e1",
@@ -84,11 +80,11 @@ wrapProgram $out/bin/nmapAutomator \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch=master"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Nmap script to automate the process of enumeration & recon",
         homepage: "https://github.com/21y4d/nmapAutomator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

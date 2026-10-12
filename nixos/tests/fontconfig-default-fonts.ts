@@ -2,39 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fontconfig-default-fonts.nix", [[["maintainers", 5, 8]], [["serif", 20, 9], ["sansSerif", 21, 9], ["monospace", 22, 9], ["emoji", 23, 9]], [["defaultFonts", 19, 24]], [["enableDefaultPackages", 12, 13], ["packages", 13, 13], ["fontconfig", 19, 13]], [["fonts", 12, 7]], [["machine", 9, 14]], [["name", 3, 3], ["meta", 5, 3], ["containers", 9, 3], ["testScript", 27, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fontconfig-default-fonts.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/fontconfig-default-fonts.nix", [["serif", 20, 9], ["sansSerif", 21, 9], ["monospace", 22, 9], ["emoji", 23, 9]]);
-const pos$3 = nix.positions(here + "/fontconfig-default-fonts.nix", [["defaultFonts", 19, 24]]);
-const pos$4 = nix.positions(here + "/fontconfig-default-fonts.nix", [["enableDefaultPackages", 12, 13], ["packages", 13, 13], ["fontconfig", 19, 13]]);
-const pos$5 = nix.positions(here + "/fontconfig-default-fonts.nix", [["fonts", 12, 7]]);
-const pos$6 = nix.positions(here + "/fontconfig-default-fonts.nix", [["machine", 9, 14]]);
-const pos$7 = nix.positions(here + "/fontconfig-default-fonts.nix", [["name", 3, 3], ["meta", 5, 3], ["containers", 9, 3], ["testScript", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "fontconfig-default-fonts",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jtojnar"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           fonts: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enableDefaultPackages: true,
             packages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
@@ -46,9 +40,9 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             fontconfig: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               defaultFonts: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 serif: nix.thunk(() => ["Gentium"]),
                 sansSerif: nix.thunk(() => ["DejaVu Sans"]),
                 monospace: nix.thunk(() => ["Source Code Pro"]),

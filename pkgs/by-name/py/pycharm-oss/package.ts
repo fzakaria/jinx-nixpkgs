@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 34, 7], ["hash", 35, 7]], [["version", 13, 5], ["buildNumber", 14, 5], ["buildType", 15, 5], ["ideaHash", 16, 5], ["androidHash", 17, 5], ["jpsHash", 18, 5], ["restarterHash", 19, 5], ["mvnDeps", 20, 5], ["repositories", 21, 5], ["kotlin-jps-plugin", 33, 5]], [["homepage", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["maintainers", 75, 5], ["teams", 78, 5], ["license", 79, 5], ["sourceProvenance", 80, 5], ["knownVulnerabilities", 81, 5]], [["src", 41, 11], ["fsnotifier", 41, 15], ["version", 43, 5], ["buildNumber", 44, 5], ["jetbrains-libdbm", 47, 3], ["jdk", 50, 3], ["pname", 52, 3], ["wmClass", 54, 3], ["product", 55, 3], ["productShort", 56, 3], ["nativeBuildInputs", 58, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { fsnotifier: false, jetbrains: false, lib: false, python3: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 34, 7], ["hash", 35, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 13, 5], ["buildNumber", 14, 5], ["buildType", 15, 5], ["ideaHash", 16, 5], ["androidHash", 17, 5], ["jpsHash", 18, 5], ["restarterHash", 19, 5], ["mvnDeps", 20, 5], ["repositories", 21, 5], ["kotlin-jps-plugin", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["maintainers", 75, 5], ["teams", 78, 5], ["license", 79, 5], ["sourceProvenance", 80, 5], ["knownVulnerabilities", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 41, 11], ["fsnotifier", 41, 15], ["version", 43, 5], ["buildNumber", 44, 5], ["jetbrains-libdbm", 47, 3], ["jdk", 50, 3], ["pname", 52, 3], ["wmClass", 54, 3], ["product", 55, 3], ["productShort", 56, 3], ["nativeBuildInputs", 58, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const stdenv = nix.arg($, "stdenv");
   const src = nix.thunk(() => nix.app(nix.sel(jetbrains, "mkJetBrainsSource"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "2025.3.3",
       buildNumber: "253.31033.139",
       buildType: "pycharm",
@@ -38,13 +35,13 @@ export default nix.lambda((args) => (() => {
         "packages.jetbrains.team/maven/p/kt/bootstrap",
       ]),
       "kotlin-jps-plugin": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         version: "2.2.20",
         hash: "sha256-+jGghK2+yq+YFm5zT7ob+WTgTiJnHXAjDtlZjOzSISQ=",
       })),
     }))));
   return nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       src: src,
       fsnotifier: fsnotifier,
       version: nix.thunk(() => nix.attr(src, "version")),
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(python3, "pkgs", "setuptools")),
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.jetbrains.com/pycharm/",
         description: "Free Python IDE from JetBrains (built from source)",
         longDescription: "Python IDE with complete set of tools for productive development with Python programming language.\nIn addition, the IDE provides high-class capabilities for professional Web development with Django framework and Google App Engine.\nIt has powerful coding assistance, navigation, a lot of refactoring features, tight integration with various Version Control Systems, Unit testing and powerful Debugger.\n",

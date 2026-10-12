@@ -2,24 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["listenAddress", 25, 5], ["managementListenAddress", 26, 5], ["certificate", 28, 5], ["privateKey", 29, 5], ["httpPort", 30, 5], ["tlsPort", 31, 5], ["ocspResponderURL", 32, 5], ["strict", 33, 5]], [["pebble", 24, 14]], [["type", 42, 7], ["readOnly", 43, 7], ["default", 44, 7], ["description", 45, 7]], [["type", 51, 7], ["readOnly", 52, 7], ["default", 53, 7], ["description", 54, 7]], [["caDomain", 41, 5], ["caCert", 50, 5]], [["acme", 40, 24]], [["test-support", 40, 11]], [["allowedTCPPorts", 64, 16]], [["configuration", 97, 22]], [["firewall", 64, 7], ["hostName", 73, 7], ["domain", 74, 7], ["hosts", 78, 7]], [["PEBBLE_VA_NOSLEEP", 113, 11], ["PEBBLE_WFE_NONCEREJECT", 114, 11]], [["RuntimeDirectory", 118, 11], ["WorkingDirectory", 119, 11], ["AmbientCapabilities", 122, 11], ["ExecStart", 124, 11]], [["enable", 107, 9], ["description", 108, 9], ["wantedBy", 109, 9], ["environment", 110, 9], ["serviceConfig", 117, 9]], [["pebble", 106, 7]], [["services", 105, 13]], [["networking", 63, 5], ["systemd", 105, 5]], [["options", 40, 3], ["config", 62, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false, lib: false, nodes: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["listenAddress", 25, 5], ["managementListenAddress", 26, 5], ["certificate", 28, 5], ["privateKey", 29, 5], ["httpPort", 30, 5], ["tlsPort", 31, 5], ["ocspResponderURL", 32, 5], ["strict", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pebble", 24, 14]]);
-const pos$3 = nix.positions(here + "/default.nix", [["type", 42, 7], ["readOnly", 43, 7], ["default", 44, 7], ["description", 45, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["type", 51, 7], ["readOnly", 52, 7], ["default", 53, 7], ["description", 54, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["caDomain", 41, 5], ["caCert", 50, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["acme", 40, 24]]);
-const pos$7 = nix.positions(here + "/default.nix", [["test-support", 40, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["allowedTCPPorts", 64, 16]]);
-const pos$9 = nix.positions(here + "/default.nix", [["configuration", 97, 22]]);
-const pos$10 = nix.positions(here + "/default.nix", [["firewall", 64, 7], ["hostName", 73, 7], ["domain", 74, 7], ["hosts", 78, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["PEBBLE_VA_NOSLEEP", 113, 11], ["PEBBLE_WFE_NONCEREJECT", 114, 11]]);
-const pos$12 = nix.positions(here + "/default.nix", [["RuntimeDirectory", 118, 11], ["WorkingDirectory", 119, 11], ["AmbientCapabilities", 122, 11], ["ExecStart", 124, 11]]);
-const pos$13 = nix.positions(here + "/default.nix", [["enable", 107, 9], ["description", 108, 9], ["wantedBy", 109, 9], ["environment", 110, 9], ["serviceConfig", 117, 9]]);
-const pos$14 = nix.positions(here + "/default.nix", [["pebble", 106, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["services", 105, 13]]);
-const pos$16 = nix.positions(here + "/default.nix", [["networking", 63, 5], ["systemd", 105, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["options", 40, 3], ["config", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const testCerts = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-certs.nix")));
   const domain = nix.thunk(() => nix.sel(testCerts, "domain"));
   const pebbleConf = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     pebble: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       listenAddress: "0.0.0.0:443",
       managementListenAddress: "0.0.0.0:15000",
       certificate: nix.thunk(() => nix.sel(testCerts, nix.key(nix.force(domain)), "cert")),
@@ -45,22 +29,22 @@ export default nix.lambda((args) => (() => {
   }));
   const pebbleConfFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "pebble.conf", nix.thunk(() => nix.builtins.toJSON(pebbleConf))));
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       "test-support": nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         acme: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           caDomain: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               readOnly: true,
               default: domain,
               description: "A domain name to use with the `nodes` attribute to\nidentify the CA server.\n",
             })))),
           caCert: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               type: nix.thunk(() => nix.sel(lib, "types", "path")),
               readOnly: true,
               default: nix.thunk(() => nix.sel(testCerts, "ca", "cert")),
@@ -70,11 +54,11 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         firewall: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           allowedTCPPorts: nix.thunk(() => [80n, 443n, 15000n, 4002n]),
         })),
         hostName: "acme",
@@ -84,22 +68,22 @@ export default nix.lambda((args) => (() => {
             const primaryIPAddress = nix.thunk(() => nix.attr(from, "primaryIPAddress"));
             const primaryIPv6Address = nix.thunk(() => nix.attr(from, "primaryIPv6Address"));
             const ips = nix.thunk(() => nix.builtins.filter((ip) => !nix.eq(ip, ""), nix.thunk(() => [primaryIPAddress, primaryIPv6Address])));
-            const names = nix.thunk(() => nix.app(nix.sel(lib, "lists", "unique"), nix.thunk(() => nix.app(nix.sel(lib, "lists", "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "lists", "concatMap"), (cfg) => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), (domain_1) => (cfg_1) => nix.builtins.map(nix.thunk(() => nix.app(nix.builtins.replaceStrings, nix.thunk(() => ["*."]), nix.thunk(() => [""]))), nix.thunk(() => nix.concat([domain_1], nix.sel(cfg_1, "extraDomainNames")))), nix.thunk(() => nix.sel(cfg, "configuration", "security", "acme", "certs"))), nix.thunk(() => nix.concat([nix.thunk(() => ({ [nix.POS]: pos$9, configuration: node }))], nix.builtins.attrValues(nix.thunk(() => nix.sel(node, "specialisation")))))))))));
+            const names = nix.thunk(() => nix.app(nix.sel(lib, "lists", "unique"), nix.thunk(() => nix.app(nix.sel(lib, "lists", "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "lists", "concatMap"), (cfg) => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), (domain_1) => (cfg_1) => nix.builtins.map(nix.thunk(() => nix.app(nix.builtins.replaceStrings, nix.thunk(() => ["*."]), nix.thunk(() => [""]))), nix.thunk(() => nix.concat([domain_1], nix.sel(cfg_1, "extraDomainNames")))), nix.thunk(() => nix.sel(cfg, "configuration", "security", "acme", "certs"))), nix.thunk(() => nix.concat([nix.thunk(() => ({ [nix.POS]: $pos[8], configuration: node }))], nix.builtins.attrValues(nix.thunk(() => nix.sel(node, "specialisation")))))))))));
             return nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((ip) => nix.app(nix.sel(lib, "attrsets", "nameValuePair"), ip, names), ips)));
           })(), nodes)),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           pebble: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             enable: true,
             description: "Pebble ACME server",
             wantedBy: nix.thunk(() => ["network.target"]),
-            environment: nix.thunk(() => ({ [nix.POS]: pos$11, PEBBLE_VA_NOSLEEP: "1", PEBBLE_WFE_NONCEREJECT: "0" })),
+            environment: nix.thunk(() => ({ [nix.POS]: $pos[10], PEBBLE_VA_NOSLEEP: "1", PEBBLE_WFE_NONCEREJECT: "0" })),
             serviceConfig: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               RuntimeDirectory: "pebble",
               WorkingDirectory: "/run/pebble",
               AmbientCapabilities: nix.thunk(() => ["CAP_NET_BIND_SERVICE"]),

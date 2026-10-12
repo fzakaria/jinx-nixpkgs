@@ -2,16 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 24, 7], ["rev", 25, 7], ["sha256", 26, 7]], [["pname", 19, 5], ["version", 20, 5], ["format", 21, 5], ["src", 23, 5], ["postPatch", 29, 5], ["buildInputs", 35, 5], ["doCheck", 38, 5], ["preConfigure", 40, 5]], [["propagatedBuildInputs", 47, 5]], [["repo", 55, 5], ["owner", 56, 5], ["rev", 57, 5], ["sha256", 58, 5]], [["name", 65, 11], ["paths", 66, 11]], [["env", 63, 7]], [["scripts", 75, 12]], [["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["description", 86, 5], ["knownVulnerabilities", 87, 5]], [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["patches", 61, 3], ["passthru", 75, 3], ["installPhase", 77, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, replaceVars: false, buildEnv: false, fetchgit: false, fetchFromGitHub: false, python3Packages: false, gmp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 24, 7], ["rev", 25, 7], ["sha256", 26, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 5], ["format", 21, 5], ["src", 23, 5], ["postPatch", 29, 5], ["buildInputs", 35, 5], ["doCheck", 38, 5], ["preConfigure", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["repo", 55, 5], ["owner", 56, 5], ["rev", 57, 5], ["sha256", 58, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 65, 11], ["paths", 66, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["env", 63, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["scripts", 75, 12]]);
-const pos$8 = nix.positions(here + "/default.nix", [["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["description", 86, 5], ["knownVulnerabilities", 87, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["patches", 61, 3], ["passthru", 75, 3], ["installPhase", 77, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.1-13.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://salsa.debian.org/sramacher/python-crypto.git",
           rev: nix.thunk(() => nix.str`debian/${version}`),
           sha256: "1mahqmlgilgk0rn5hfkhza7kscfm7agdakkb6rqnif9g0qp3s52f",
@@ -38,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const preConfigure = "sed -i 's,/usr/include,/no-such-dir,' configure\nsed -i \"s!,'/usr/include/'!!\" setup.py\n";
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         format,
@@ -49,12 +41,12 @@ export default nix.lambda((args) => (() => {
         preConfigure,
       };
     })())));
-  const potr = nix.thunk(() => nix.app(nix.sel(python3Packages, "potr", "overridePythonAttrs"), (oldAttrs) => ({ [nix.POS]: pos$3, propagatedBuildInputs: nix.thunk(() => [pycrypto]) })));
+  const potr = nix.thunk(() => nix.app(nix.sel(python3Packages, "potr", "overridePythonAttrs"), (oldAttrs) => ({ [nix.POS]: $pos[2], propagatedBuildInputs: nix.thunk(() => [pycrypto]) })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "weechat-otr";
       const version = "1.9.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           repo: "weechat-otr",
           owner: "mmb",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -62,18 +54,18 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libpath.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             env: nix.thunk(() => nix.str`${nix.app(buildEnv, nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 name: "weechat-otr-env",
                 paths: nix.thunk(() => [potr, pycrypto]),
               })))}/${nix.sel(python3Packages, "python", "sitePackages")}`),
           })))),
       ]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$7, scripts: nix.thunk(() => ["weechat_otr.py"]) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[6], scripts: nix.thunk(() => ["weechat_otr.py"]) }));
       const installPhase = "mkdir -p $out/share\ncp weechat_otr.py $out/share/weechat_otr.py\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://github.com/mmb/weechat-otr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         maintainers: [],
@@ -83,7 +75,16 @@ export default nix.lambda((args) => (() => {
           "Utilizes deprecated and vulnerable pycrypto library with Debian patches from 2020-04.",
         ]),
       }));
-      return { [nix.POS]: pos$9, pname, version, src, patches, passthru, installPhase, meta };
+      return {
+        [nix.POS]: $pos[8],
+        pname,
+        version,
+        src,
+        patches,
+        passthru,
+        installPhase,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

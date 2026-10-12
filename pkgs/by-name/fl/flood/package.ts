@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["pname", 28, 7], ["version", 29, 7], ["src", 30, 7], ["pnpm", 32, 5], ["fetcherVersion", 33, 5], ["hash", 34, 5]], [["flood", 39, 28]], [["tests", 38, 5], ["updateScript", 41, 5]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 55, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["npmConfigHook", 23, 3], ["npmDeps", 24, 3], ["dontNpmPrune", 25, 3], ["pnpmDeps", 26, 3], ["passthru", 37, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, nixosTests: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 7], ["version", 29, 7], ["src", 30, 7], ["pnpm", 32, 5], ["fetcherVersion", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["flood", 39, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 38, 5], ["updateScript", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 55, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["npmConfigHook", 23, 3], ["npmDeps", 24, 3], ["dontNpmPrune", 25, 3], ["pnpmDeps", 26, 3], ["passthru", 37, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "flood",
       version: "4.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jesec",
           repo: "flood",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
       npmDeps: nix.thunk(() => nix.sel(finalAttrs, "pnpmDeps")),
       dontNpmPrune: true,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -45,12 +40,12 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-a1PoQ5pXw1SgyGFRa3+7AOr6vpyGyHxkMU7KQEFlZ04=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, flood: nix.thunk(() => nix.attr(nixosTests, "flood")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], flood: nix.thunk(() => nix.attr(nixosTests, "flood")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Modern web UI for various torrent clients with a Node.js backend and React frontend",
         homepage: "https://flood.js.org",
         changelog: nix.thunk(() => nix.str`https://github.com/jesec/flood/releases/${nix.sel(finalAttrs, "src", "tag")}`),

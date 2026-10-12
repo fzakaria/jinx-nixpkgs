@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapped.nix", [[["prelude", 48, 5], ["unwrapped", 49, 5], ["src", 50, 5]], [["description", 57, 7], ["mainProgram", 58, 7], ["homepage", 59, 7], ["changelog", 60, 7], ["license", 61, 7], ["maintainers", 62, 7], ["platforms", 63, 7]], [["version", 30, 30], ["pname", 31, 3], ["paths", 33, 3], ["nativeBuildInputs", 35, 3], ["postBuild", 37, 3], ["passthru", 47, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, makeBinaryWrapper: false, symlinkJoin: false, "idris2-unwrapped": false, prelude: false, linear: false, base: false, network: false, contrib: false, test: false, extraPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapped.nix", [["prelude", 48, 5], ["unwrapped", 49, 5], ["src", 50, 5]]);
-const pos$2 = nix.positions(here + "/wrapped.nix", [["description", 57, 7], ["mainProgram", 58, 7], ["homepage", 59, 7], ["changelog", 60, 7], ["license", 61, 7], ["maintainers", 62, 7], ["platforms", 63, 7]]);
-const pos$3 = nix.positions(here + "/wrapped.nix", [["version", 30, 30], ["pname", 31, 3], ["paths", 33, 3], ["nativeBuildInputs", 35, 3], ["postBuild", 37, 3], ["passthru", 47, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const supportSharePath = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "share", nix.thunk(() => [nix.thunk(() => nix.sel(idris2_unwrapped, "libidris2_support"))])));
   const packagePath = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), nix.thunk(() => nix.str`idris2-${nix.sel(idris2_unwrapped, "version")}`), nix.thunk(() => nix.concat(preludeLibs, extraPackages))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: nix.thunk(() => nix.attr(idris2_unwrapped, "version")),
       pname: "idris2-wrapped",
       paths: nix.thunk(() => [idris2_unwrapped]),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
   --suffix DYLD_LIBRARY_PATH ':' "${supportLibrariesPath}"
 `),
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         prelude: preludeLibs,
         unwrapped: idris2_unwrapped,
         src: nix.thunk(() => nix.sel(idris2_unwrapped, "src")),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(idris2_unwrapped, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.attr(from, "description")),
         mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

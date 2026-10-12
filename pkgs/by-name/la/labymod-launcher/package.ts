@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 12, 5], ["url", 13, 5], ["hash", 14, 5]], [["pname", 17, 54], ["version", 17, 60], ["src", 17, 68]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5], ["platforms", 36, 5]], [["pname", 20, 11], ["version", 20, 17], ["src", 20, 25], ["extraInstallCommands", 22, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 12, 5], ["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 17, 54], ["version", 17, 60], ["src", 17, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5], ["platforms", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 11], ["version", 20, 17], ["src", 20, 25], ["extraInstallCommands", 22, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const pname = "labymod-launcher";
   const version = "3.0.14";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "labymod-launcher",
       url: nix.thunk(() => nix.str`https://releases.r2.labymod.net/launcher/linux/x64/LabyMod%20Launcher-${version}.AppImage`),
       hash: "sha256-+NEO4Z8/g54o11YtCFzvNTWHcOTDZyBAQvEcpNg9/Nw=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -34,7 +31,7 @@ substituteInPlace $out/share/applications/labymod-launcher.desktop \\
   --replace-fail 'Icon=labymodlauncher' 'Icon=labymod-launcher'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Minecraft modification that enhances gameplay with features like in-game TeamSpeak integration, custom animations, and additional settings",
         homepage: "https://www.labymod.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,17 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/osrm-backend.nix", [[["maintainers", 7, 8]], [["url", 29, 17], ["rev", 30, 17], ["sha256", 31, 17]], [["name", 20, 15], ["buildInputs", 22, 15], ["src", 28, 15], ["buildCommand", 34, 15]], [["enable", 14, 9], ["port", 15, 17], ["dataFile", 16, 9]], [["osrm", 13, 16]], [["systemPackages", 47, 19]], [["services", 13, 7], ["environment", 47, 7]], [["machine", 9, 9]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 9, 3], ["testScript", 50, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/osrm-backend.nix", [["maintainers", 7, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/osrm-backend.nix", [["url", 29, 17], ["rev", 30, 17], ["sha256", 31, 17]]);
-const pos$3 = nix.positions(here + "/osrm-backend.nix", [["name", 20, 15], ["buildInputs", 22, 15], ["src", 28, 15], ["buildCommand", 34, 15]]);
-const pos$4 = nix.positions(here + "/osrm-backend.nix", [["enable", 14, 9], ["port", 15, 17], ["dataFile", 16, 9]]);
-const pos$5 = nix.positions(here + "/osrm-backend.nix", [["osrm", 13, 16]]);
-const pos$6 = nix.positions(here + "/osrm-backend.nix", [["systemPackages", 47, 19]]);
-const pos$7 = nix.positions(here + "/osrm-backend.nix", [["services", 13, 7], ["environment", 47, 7]]);
-const pos$8 = nix.positions(here + "/osrm-backend.nix", [["machine", 9, 9]]);
-const pos$9 = nix.positions(here + "/osrm-backend.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 9, 3], ["testScript", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,34 +12,34 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const port = 5000n;
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "osrm-backend",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "erictapen"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             osrm: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               port: port,
               dataFile: nix.thunk(() => (() => {
                 const filename = "monaco";
                 const osrm_data = nix.thunk(() => nix.app(nix.sel(pkgs_1, "stdenv", "mkDerivation"), nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     name: "osrm-data",
                     buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "osrm-backend"))]),
                     src: nix.thunk(() => nix.app(nix.sel(pkgs_1, "fetchgit"), nix.thunk(() => ({
-                        [nix.POS]: pos$2,
+                        [nix.POS]: $pos[1],
                         url: "https://gist.github.com/erictapen/01e39f73a6c856eac53ba809a94cdb83",
                         rev: "9b1ff0f24deb40e5cf7df51f843dbe860637b8ce",
                         sha256: "1scqhmrfnpwsy5i2a9jpggqnvfgj4hv9p4qyvc79321pzkbv59nx",
@@ -65,7 +57,7 @@ cp ${filename}* $out/
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
           })),
         };

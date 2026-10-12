@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["darwin", 27, 7], ["linux", 28, 7]], [["url", 98, 9], ["hash", 99, 9]], [["url", 102, 9], ["hash", 103, 9]], [["url", 106, 9], ["hash", 107, 9]], [["aarch64-darwin", 97, 7], ["aarch64-linux", 101, 7], ["x86_64-linux", 105, 7]], [["package", 111, 7], ["command", 112, 7]], [["version", 110, 11]], [["shellPath", 95, 5], ["sources", 96, 5], ["tests", 110, 5], ["updateScript", 114, 5]], [["description", 138, 5], ["homepage", 139, 5], ["license", 140, 5], ["mainProgram", 141, 5], ["maintainers", 142, 5], ["platforms", 143, 5], ["sourceProvenance", 144, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["sourceRoot", 40, 3], ["unpackPhase", 42, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 59, 3], ["installPhase", 71, 3], ["dontStrip", 92, 3], ["passthru", 94, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, less: false, makeWrapper: false, autoPatchelfHook: false, curl: false, icu: false, libuuid: false, libunwind: false, openssl: false, "lttng-ust": false, pam: false, testers: false, powershell: false, writeShellScript: false, "common-updater-scripts": false, gnused: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["darwin", 27, 7], ["linux", 28, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 98, 9], ["hash", 99, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 102, 9], ["hash", 103, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 106, 9], ["hash", 107, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["aarch64-darwin", 97, 7], ["aarch64-linux", 101, 7], ["x86_64-linux", 105, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["package", 111, 7], ["command", 112, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 110, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["shellPath", 95, 5], ["sources", 96, 5], ["tests", 110, 5], ["updateScript", 114, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 138, 5], ["homepage", 139, 5], ["license", 140, 5], ["mainProgram", 141, 5], ["maintainers", 142, 5], ["platforms", 143, 5], ["sourceProvenance", 144, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["sourceRoot", 40, 3], ["unpackPhase", 42, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 59, 3], ["installPhase", 71, 3], ["dontStrip", 92, 3], ["passthru", 94, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const ext = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
   const platformLdLibraryPath = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     darwin: "DYLD_FALLBACK_LIBRARY_PATH",
     linux: "LD_LIBRARY_PATH",
   }, () => nix.builtins.throw("unsupported platform"), nix.key(nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name"))));
@@ -66,30 +57,30 @@ cp $out/share/powershell/pwsh $out/bin/pwsh
 `))), "runHook postInstall\n"));
       const dontStrip = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         shellPath: "/bin/pwsh",
         sources: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://github.com/PowerShell/PowerShell/releases/download/v${version}/powershell-${version}-osx-arm64.tar.gz`),
               hash: "sha256-bfgz0JTrrBwadDQNezQ39Kr14DzmQEhKHENZ886LPbE=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://github.com/PowerShell/PowerShell/releases/download/v${version}/powershell-${version}-linux-arm64.tar.gz`),
               hash: "sha256-kkgp5UyYNkj28UGaLcf5QzyGGy+1vVdzb/CWwk8TNyk=",
             })))),
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: nix.thunk(() => nix.str`https://github.com/PowerShell/PowerShell/releases/download/v${version}/powershell-${version}-linux-x64.tar.gz`),
               hash: "sha256-3bxKLRE7vUbSg8/ty80RenDK79dnP0HytOAAC63xA7w=",
             })))),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               package: powershell,
               command: "HOME=$(mktemp -d) pwsh --version",
             })))),
@@ -109,7 +100,7 @@ done
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Powerful cross-platform (Windows, Linux, and macOS) shell and scripting language based on .NET",
         homepage: "https://microsoft.com/PowerShell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -128,7 +119,7 @@ done
         })()),
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version,
         src,

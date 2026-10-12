@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["stable", 30, 7], ["unstable", 31, 7]], [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 27], ["hash", 43, 31]], [["nativeBuildInputs", 83, 34]], [["run", 82, 18]], [["updateScript", 81, 12], ["tests", 82, 12]], [["changelog", 91, 5], ["description", 92, 5], ["longDescription", 93, 5], ["homepage", 98, 5], ["license", 99, 5], ["mainProgram", 100, 5], ["maintainers", 101, 5]], [["pname", 37, 3], ["version", 38, 25], ["cargoHash", 38, 33], ["patches", 38, 43], ["src", 40, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 50, 3], ["buildFeatures", 55, 3], ["postFixup", 62, 3], ["nativeInstallCheckInputs", 78, 3], ["doInstallCheck", 79, 3], ["passthru", 81, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { uiua_versionType: true, lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, versionCheckHook: false, libffi: false, audioSupport: true, "alsa-lib": false, webcamSupport: true, libGL: false, libxkbcommon: false, wayland: false, libxrandr: false, libxi: false, libxcursor: false, libx11: false, windowSupport: true, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["stable", 30, 7], ["unstable", 31, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 27], ["hash", 43, 31]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 83, 34]]);
-const pos$4 = nix.positions(here + "/package.nix", [["run", 82, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 81, 12], ["tests", 82, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 91, 5], ["description", 92, 5], ["longDescription", 93, 5], ["homepage", 98, 5], ["license", 99, 5], ["mainProgram", 100, 5], ["maintainers", 101, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 25], ["cargoHash", 38, 33], ["patches", 38, 43], ["src", 40, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 50, 3], ["buildFeatures", 55, 3], ["postFixup", 62, 3], ["nativeInstallCheckInputs", 78, 3], ["doInstallCheck", 79, 3], ["passthru", 81, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,18 +28,18 @@ export default nix.lambda((args) => (() => {
   const windowSupport = nix.argOr($, "windowSupport", () => false);
   const runCommand = nix.arg($, "runCommand");
   const versionInfo = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     stable: nix.thunk(() => nix.builtins.import(nix.path(here, "./stable.nix"))),
     unstable: nix.thunk(() => nix.builtins.import(nix.path(here, "./unstable.nix"))),
   }, nix.key(nix.force(uiua_versionType))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "uiua",
       version: nix.thunk(() => nix.attr(versionInfo, "version")),
       cargoHash: nix.thunk(() => nix.attr(versionInfo, "cargoHash")),
       patches: nix.thunk(() => nix.attr(versionInfo, "patches")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "uiua-lang",
           repo: "uiua",
           tag: nix.thunk(() => nix.attr(versionInfo, "tag")),
@@ -62,18 +56,18 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.sel(versionInfo, "updateScript")),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           run: nix.thunk(() => nix.app(runCommand, "uiua-test-run", nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "echo '&p \"Hello, World!\"' > test.ua\ndiff -U3 --color=auto <(uiua run test.ua) <(echo 'Hello, World!')\ntouch $out\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/uiua-lang/uiua/blob/${nix.sel(finalAttrs, "src", "rev")}/changelog.md`),
         description: "Stack-oriented array programming language with a focus on simplicity, beauty, and tacit code",
         longDescription: "Uiua combines the stack-oriented and array-oriented paradigms in a single\nlanguage. Combining these already terse paradigms results in code with a very\nhigh information density and little syntactic noise.\n",

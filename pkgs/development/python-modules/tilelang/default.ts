@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 44, 47]], [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["fetchSubmodules", 54, 5], ["hash", 55, 5]], [["NO_GIT_VERSION", 102, 5], ["USE_CUDA", 103, 5]], [["vis", 134, 5]], [["requiredSystemFeatures", 176, 5], ["doCheck", 177, 5]], [["tag", 188, 9], ["hash", 189, 9]], [["version", 186, 15], ["src", 187, 7], ["postPatch", 191, 7]], [["gpuCheck", 175, 12], ["apache-tvm-ffi", 180, 12]], [["description", 196, 5], ["homepage", 197, 5], ["downloadPage", 198, 5], ["changelog", 199, 5], ["license", 200, 5], ["maintainers", 205, 5]], [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["__structuredAttrs", 48, 3], ["src", 50, 3], ["postPatch", 58, 3], ["nativeBuildInputs", 84, 3], ["build-system", 94, 3], ["env", 101, 3], ["dontUseCmakeConfigure", 106, 3], ["cmakeFlags", 108, 3], ["buildInputs", 112, 3], ["dependencies", 117, 3], ["optional-dependencies", 133, 3], ["preFixup", 139, 3], ["pythonImportsCheck", 158, 3], ["doCheck", 161, 3], ["nativeCheckInputs", 162, 3], ["disabledTestPaths", 167, 3], ["passthru", 175, 3], ["meta", 195, 3]]]);
 const formals$1 = { args: { lib: false, tilelang: false, cudaSupport: true, buildPythonPackage: false, cudaPackages: false, fetchFromGitHub: false, python: false, pythonOlder: false, stdenv: false, autoPatchelfHook: false, writableTmpDirAsHomeHook: false, cmake: false, cython: false, ninja: false, "scikit-build-core": false, "apache-tvm-ffi": false, cloudpickle: false, "ml-dtypes": false, numpy: false, psutil: false, torch: false, "torch-c-dlpack-ext": false, tqdm: false, "typing-extensions": false, "z3-solver": false, matplotlib: false, einops: false, "flash-linear-attention": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 44, 47]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["fetchSubmodules", 54, 5], ["hash", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NO_GIT_VERSION", 102, 5], ["USE_CUDA", 103, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["vis", 134, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["requiredSystemFeatures", 176, 5], ["doCheck", 177, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tag", 188, 9], ["hash", 189, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 186, 15], ["src", 187, 7], ["postPatch", 191, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["gpuCheck", 175, 12], ["apache-tvm-ffi", 180, 12]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 196, 5], ["homepage", 197, 5], ["downloadPage", 198, 5], ["changelog", 199, 5], ["license", 200, 5], ["maintainers", 205, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["__structuredAttrs", 48, 3], ["src", 50, 3], ["postPatch", 58, 3], ["nativeBuildInputs", 84, 3], ["build-system", 94, 3], ["env", 101, 3], ["dontUseCmakeConfigure", 106, 3], ["cmakeFlags", 108, 3], ["buildInputs", 112, 3], ["dependencies", 117, 3], ["optional-dependencies", 133, 3], ["preFixup", 139, 3], ["pythonImportsCheck", 158, 3], ["doCheck", 161, 3], ["nativeCheckInputs", 162, 3], ["disabledTestPaths", 167, 3], ["passthru", 175, 3], ["meta", 195, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,14 +36,14 @@ export default nix.lambda((args) => (() => {
   const einops = nix.arg($, "einops");
   const flash_linear_attention = nix.arg($, "flash-linear-attention");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: $pos[9],
       pname: "tilelang",
       version: "0.1.13",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "tile-ai",
           repo: "tilelang",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +62,7 @@ export default nix.lambda((args) => (() => {
 `)))),
       nativeBuildInputs: nix.thunk(() => nix.concat([writableTmpDirAsHomeHook], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])), nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc"))]))))),
       "build-system": nix.thunk(() => [cmake, cython, ninja, scikit_build_core]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NO_GIT_VERSION: true, USE_CUDA: cudaSupport })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NO_GIT_VERSION: true, USE_CUDA: cudaSupport })),
       dontUseCmakeConfigure: true,
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "Z3_INCLUDE_DIR", nix.thunk(() => nix.str`${nix.sel(z3_solver, "dev")}/include`))),
@@ -91,7 +82,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
         z3_solver,
       ], nix.concat(nix.sel(z3_solver, "requiredPythonModules"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.14")), nix.thunk(() => [torch_c_dlpack_ext]))))),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$4, vis: nix.thunk(() => [matplotlib]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[3], vis: nix.thunk(() => [matplotlib]) })),
       preFixup: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.add(nix.str`addAutoPatchelfSearchPath "${nix.sel(finalAttrs, "passthru", "apache-tvm-ffi")}/${nix.sel(python, "sitePackages")}/tvm_ffi/lib"
 `, nix.str`addAutoPatchelfSearchPath "${nix.sel(z3_solver, "lib")}/lib"
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`install_name_tool -add_rpath "${nix.sel(z3_solver, "lib")}/lib" \\
@@ -106,19 +97,19 @@ export default nix.lambda((args) => (() => {
         "maint/scripts/test_perf_regression.py",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         gpuCheck: nix.thunk(() => nix.app(nix.sel(tilelang, "overridePythonAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
           })))),
         "apache-tvm-ffi": nix.thunk(() => nix.app(nix.sel(apache_tvm_ffi, "overrideAttrs"), (previousAttrs) => (() => {
             const version = "0.1.12";
             return {
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               version: version,
               src: nix.thunk(() => nix.app(nix.sel(previousAttrs, "src", "override"), nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   tag: nix.thunk(() => nix.str`v${version}`),
                   hash: "sha256-ZFi7MKFiHK2lNoVkQbPhOc7NpIf24PLLP8SqGQiQ9Lw=",
                 })))),
@@ -127,7 +118,7 @@ export default nix.lambda((args) => (() => {
           })())),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Tile level programming language to generate high performance code",
         homepage: "https://tilelang.com/",
         downloadPage: "https://github.com/tile-ai/tilelang/releases",

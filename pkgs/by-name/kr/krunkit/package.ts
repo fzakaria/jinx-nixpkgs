@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["pname", 27, 26], ["version", 27, 32], ["src", 27, 40], ["hash", 28, 5]], [["krunkit", 56, 37]], [["boot", 55, 11]], [["tests", 55, 5], ["updateScript", 58, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoDeps", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["makeFlags", 45, 3], ["postInstall", 47, 3], ["dontStrip", 52, 3], ["passthru", 54, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { callPackage: false, cargo: false, darwin: false, "pkg-config": false, rustc: false, stdenv: false, fetchFromGitHub: false, libepoxy: false, "libkrun-efi": false, rustPlatform: false, lib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 27, 26], ["version", 27, 32], ["src", 27, 40], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["krunkit", 56, 37]]);
-const pos$4 = nix.positions(here + "/package.nix", [["boot", 55, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 55, 5], ["updateScript", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoDeps", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["makeFlags", 45, 3], ["postInstall", 47, 3], ["dontStrip", 52, 3], ["passthru", 54, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "krunkit",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libkrun",
           repo: "krunkit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-aC/p+MoCG05hyADZaz+bbONLXTcR7uJIcMrZOn4Rjbg=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -56,18 +50,18 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm444 edk2/KRUN_EFI.silent.fd $out/share/krunkit/KRUN_EFI.silent.fd\n",
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           boot: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.app(callPackage, nix.path(here, "./boot-test.nix"), nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 krunkit: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Launch configurable virtual machines with libkrun",
         homepage: "https://github.com/libkrun/krunkit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

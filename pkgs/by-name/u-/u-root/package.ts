@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["CGO_ENABLED", 30, 7]], [["url", 52, 9], ["hash", 53, 9]], [["version", 50, 30], ["src", 50, 38], ["configfile", 51, 7], ["allowImportFromDerivation", 55, 7]], [["extraArgs", 60, 7]], [["u-root-cmds", 62, 11]], [["kernel-amd64", 49, 5], ["updateScript", 59, 5], ["tests", 62, 5]], [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 74, 5], ["downloadPage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["subPackages", 28, 3], ["env", 30, 3], ["ldflags", 32, 3], ["allowGoReference", 34, 3], ["preCheck", 39, 3], ["passthru", 46, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, coreutils: false, bash: false, "nix-update-script": false, "u-root-cmds": false, linuxManualConfig: false, fetchurl: false, linux_latest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 52, 9], ["hash", 53, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 50, 30], ["src", 50, 38], ["configfile", 51, 7], ["allowImportFromDerivation", 55, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 60, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["u-root-cmds", 62, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["kernel-amd64", 49, 5], ["updateScript", 59, 5], ["tests", 62, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 74, 5], ["downloadPage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["subPackages", 28, 3], ["env", 30, 3], ["ldflags", 32, 3], ["allowGoReference", 34, 3], ["preCheck", 39, 3], ["passthru", 46, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const linux_latest = nix.arg($, "linux_latest");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "u-root",
       version: "0.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "u-root",
           repo: "u-root",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: null,
       subPackages: nix.thunk(() => ["."]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: "0" })),
       ldflags: nix.thunk(() => ["-s"]),
       allowGoReference: true,
       preCheck: nix.thunk(() => nix.str`substituteInPlace ./uroot_test.go \\
@@ -47,26 +39,26 @@ export default nix.lambda((args) => (() => {
   --replace-fail '-files=/bin/bash' '-files=${bash}/bin/bash'
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         "kernel-amd64": nix.thunk(() => nix.app(linuxManualConfig, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             version: nix.thunk(() => nix.attr(linux_latest, "version")),
             src: nix.thunk(() => nix.attr(linux_latest, "src")),
             configfile: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 url: "https://raw.githubusercontent.com/hugelgupf/vmtest/5d9f3d34a58dc7b13bca786e8ac32d3e2ce4e95d/images/kernel-amd64/config_linux.txt",
                 hash: "sha256-CjhWWK6YwSOXP10mpnJjG5nwLWs2cDtebvlDBLzN5fI=",
               })))),
             allowImportFromDerivation: true,
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex=^v(0\\.\\d+\\.\\d+)$"]),
           })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$6, "u-root-cmds": u_root_cmds })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[5], "u-root-cmds": u_root_cmds })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Fully Go userland with Linux bootloaders",
         longDescription: "u-root can create a one-binary root file system (initramfs) containing a busybox-like set of tools written in Go.\n\nThe package exposes `u-root.kernel-amd64` passthru for a minimal and pre-configured kernel to be used locally with QEMU.\n\nThe u-root commands are available as `u-root-cmds`.\n",
         homepage: "https://u-root.org/",

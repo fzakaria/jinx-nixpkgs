@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["broken", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5], ["longDescription", 58, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["hardeningDisable", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["strictDeps", 44, 3], ["doCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, libtool: false, gettext: false, zlib: false, readline: false, gsasl: false, guile: false, python3: false, pcre2: false, libffi: false, groff: false, libxcrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5], ["longDescription", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["hardeningDisable", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["strictDeps", 44, 3], ["doCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const groff = nix.arg($, "groff");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dico",
       version: "2.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/dico/dico-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-couJxQ4JC/+Dno97MEO1xwI/hhqSEckwSLQqtFWGavc=",
         })))),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Flexible dictionary server and client implementing RFC 2229",
         homepage: "https://www.gnu.org/software/dico/",

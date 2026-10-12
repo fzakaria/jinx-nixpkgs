@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 60, 5], ["owner", 61, 5], ["tag", 62, 5], ["hash", 63, 5]], [["extraArgs", 143, 5]], [["updateScript", 141, 12]], [["homepage", 147, 5], ["description", 148, 5], ["license", 149, 5], ["mainProgram", 150, 5], ["maintainers", 151, 5], ["platforms", 154, 5]], [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 81, 3], ["postPatch", 107, 3], ["enableParallelBuilding", 112, 3], ["configureFlags", 114, 3], ["strictDeps", 139, 3], ["passthru", 141, 3], ["meta", 146, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, openssl: false, avahi: false, "alsa-lib": false, libplist: false, glib: false, libdaemon: false, libsodium: false, libgcrypt: false, ffmpeg: false, libuuid: false, unixtools: false, popt: false, libconfig: false, libpulseaudio: false, libjack2: false, libsndfile: false, libao: false, libsoundio: false, mosquitto: false, "nix-update-script": false, pipewire: false, soxr: false, sndio: false, enableAvahi: true, enableAirplay2: true, enableStdout: true, enableAlsa: true, enableSndio: true, enablePulse: true, enablePipe: true, enablePipewire: true, enableAo: true, enableJack: true, enableSoundio: true, enableMetadata: true, enableMpris: true, enableMqttClient: true, enableDbus: true, enableSoxr: true, enableConvolution: true, enableLibdaemon: true, enableTinySVCmDNS: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 60, 5], ["owner", 61, 5], ["tag", 62, 5], ["hash", 63, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 143, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 141, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 147, 5], ["description", 148, 5], ["license", 149, 5], ["mainProgram", 150, 5], ["maintainers", 151, 5], ["platforms", 154, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 81, 3], ["postPatch", 107, 3], ["enableParallelBuilding", 112, 3], ["configureFlags", 114, 3], ["strictDeps", 139, 3], ["passthru", 141, 3], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,11 +57,11 @@ export default nix.lambda((args) => (() => {
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "shairport-sync",
       version: "5.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "shairport-sync",
           owner: "mikebrady",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -85,14 +81,14 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["--without-configfiles", "--sysconfdir=/etc", "--with-ssl=openssl"], nix.concat(nix.app(optional, enableAvahi, "--with-avahi"), nix.concat(nix.app(optional, enablePulse, "--with-pulseaudio"), nix.concat(nix.app(optional, enablePipewire, "--with-pipewire"), nix.concat(nix.app(optional, enableAlsa, "--with-alsa"), nix.concat(nix.app(optional, enableSndio, "--with-sndio"), nix.concat(nix.app(optional, enableAo, "--with-ao"), nix.concat(nix.app(optional, enableJack, "--with-jack"), nix.concat(nix.app(optional, enableSoundio, "--with-soundio"), nix.concat(nix.app(optional, enableStdout, "--with-stdout"), nix.concat(nix.app(optional, enablePipe, "--with-pipe"), nix.concat(nix.app(optional, enableSoxr, "--with-soxr"), nix.concat(nix.app(optional, enableConvolution, "--with-convolution"), nix.concat(nix.app(optional, enableDbus, "--with-dbus-interface"), nix.concat(nix.app(optional, enableMetadata, "--with-metadata"), nix.concat(nix.app(optional, enableMpris, "--with-mpris-interface"), nix.concat(nix.app(optional, enableMqttClient, "--with-mqtt-client"), nix.concat(nix.app(optional, enableTinySVCmDNS, "--with-tinysvcmdns"), nix.concat(nix.app(optional, enableLibdaemon, "--with-libdaemon"), nix.app(optional, enableAirplay2, "--with-airplay-2"))))))))))))))))))))),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=^([0-9\\.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/mikebrady/shairport-sync",
         description: "Airtunes server and emulator with multi-room capabilities",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

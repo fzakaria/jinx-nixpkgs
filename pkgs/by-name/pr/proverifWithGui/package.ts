@@ -2,12 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enable_interact", 1, 35]]]);
 const formals$1 = { args: { proverif: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enable_interact", 1, 35]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const proverif = nix.arg($, "proverif");
-  return nix.app(nix.sel(proverif, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enable_interact: true })));
+  return nix.app(nix.sel(proverif, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enable_interact: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

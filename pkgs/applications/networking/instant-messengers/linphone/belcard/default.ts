@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["package", 24, 7], ["moduleNames", 25, 7]], [["cmake-config", 23, 5]], [["tests", 22, 12]], [["description", 32, 5], ["license", 33, 5]], [["pname", 11, 3], ["propagatedBuildInputs", 13, 3], ["cmakeFlags", 18, 3], ["passthru", 22, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { bctoolbox: false, belr: false, lib: false, mkLinphoneDerivation: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["package", 24, 7], ["moduleNames", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cmake-config", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 22, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 32, 5], ["license", 33, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["propagatedBuildInputs", 13, 3], ["cmakeFlags", 18, 3], ["passthru", 22, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,23 +13,23 @@ export default nix.lambda((args) => (() => {
   const mkLinphoneDerivation = nix.arg($, "mkLinphoneDerivation");
   const testers = nix.arg($, "testers");
   return nix.app(mkLinphoneDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "belcard",
       propagatedBuildInputs: nix.thunk(() => [bctoolbox, belr]),
       cmakeFlags: nix.thunk(() => ["-DENABLE_UNIT_TESTS=NO"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["BelCard"]),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C++ library to manipulate VCard standard format. Part of the Linphone project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       })),

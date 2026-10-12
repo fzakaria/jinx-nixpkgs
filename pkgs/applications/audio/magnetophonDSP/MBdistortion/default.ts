@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["url", 22, 7], ["sha256", 23, 7]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["buildInputs", 27, 3], ["dontWrapQtApps", 32, 3], ["buildPhase", 34, 3], ["installPhase", 39, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, faust2jaqt: false, faust2lv2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 22, 7], ["sha256", 23, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["buildInputs", 27, 3], ["dontWrapQtApps", 32, 3], ["buildPhase", 34, 3], ["installPhase", 39, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const faust2jaqt = nix.arg($, "faust2jaqt");
   const faust2lv2 = nix.arg($, "faust2lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "MBdistortion",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "magnetophon",
           repo: "MBdistortion",
           rev: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/magnetophon/MBdistortion/commit/10e35084b88c559f1b63760cf40fd5ef5a6745a5.patch",
             sha256: "0hwjl3rzvn3id0sr0qs8f37jdmr915mdan8miaf78ra0ir3wnk76",
           })))),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "faust2jaqt -time -vec -t 99999 MBdistortion.dsp\nfaust2lv2 -time -vec -gui -t 99999 MBdistortion.dsp\n",
       installPhase: "mkdir -p $out/bin\nfor f in $(find . -executable -type f); do\n  cp $f $out/bin/\ndone\nmkdir -p $out/lib/lv2\ncp -r MBdistortion.lv2/ $out/lib/lv2\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Mid-side multiband distortion for jack and lv2",
         homepage: "https://github.com/magnetophon/MBdistortion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

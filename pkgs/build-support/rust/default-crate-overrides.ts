@@ -2,72 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default-crate-overrides.nix", [[["nativeBuildInputs", 54, 5], ["buildInputs", 55, 5]], [["AWS_LC_SYS_CMAKE_BUILDER", 61, 9]], [["nativeBuildInputs", 60, 5], ["env", 61, 5]], [["buildInputs", 65, 5]], [["nativeBuildInputs", 69, 5], ["buildInputs", 70, 5], ["extraLinkFlags", 71, 5]], [["nativeBuildInputs", 75, 5]], [["buildInputs", 79, 5]], [["nativeBuildInputs", 87, 5], ["buildInputs", 88, 5], ["extraLinkFlags", 89, 5]], [["nativeBuildInputs", 93, 5], ["buildInputs", 94, 5], ["propagatedBuildInputs", 98, 5], ["extraLinkFlags", 102, 5]], [["nativeBuildInputs", 106, 5], ["buildInputs", 107, 5]], [["nativeBuildInputs", 111, 5], ["buildInputs", 120, 5], ["prePatch", 123, 5]], [["nativeBuildInputs", 129, 5]], [["buildInputs", 133, 5]], [["buildInputs", 143, 5]], [["nativeBuildInputs", 147, 5], ["buildInputs", 148, 5]], [["nativeBuildInputs", 152, 5], ["buildInputs", 153, 5]], [["nativeBuildInputs", 157, 5], ["buildInputs", 158, 5], ["extraLinkFlags", 159, 5]], [["nativeBuildInputs", 163, 5], ["buildInputs", 164, 5]], [["nativeBuildInputs", 168, 5], ["buildInputs", 169, 5]], [["buildInputs", 173, 5]], [["nativeBuildInputs", 180, 5], ["buildInputs", 181, 5]], [["nativeBuildInputs", 185, 5], ["buildInputs", 186, 5]], [["nativeBuildInputs", 190, 5], ["buildInputs", 191, 5]], [["buildInputs", 195, 5], ["nativeBuildInputs", 196, 5]], [["buildInputs", 200, 5], ["nativeBuildInputs", 201, 5]], [["buildInputs", 205, 5], ["nativeBuildInputs", 206, 5]], [["buildInputs", 210, 5], ["nativeBuildInputs", 211, 5]], [["LIBGIT2_SYS_USE_PKG_CONFIG", 215, 5], ["nativeBuildInputs", 216, 5], ["buildInputs", 217, 5]], [["nativeBuildInputs", 225, 5], ["buildInputs", 226, 5]], [["nativeBuildInputs", 230, 5], ["buildInputs", 231, 5]], [["nativeBuildInputs", 235, 5], ["buildInputs", 236, 5]], [["nativeBuildInputs", 244, 5], ["buildInputs", 245, 5]], [["nativeBuildInputs", 249, 5], ["buildInputs", 250, 5]], [["nativeBuildInputs", 254, 5], ["buildInputs", 258, 5]], [["nativeBuildInputs", 262, 5], ["buildInputs", 263, 5]], [["nativeBuildInputs", 267, 5], ["buildInputs", 268, 5], ["LIBCLANG_PATH", 272, 5]], [["buildInputs", 276, 5]], [["nativeBuildInputs", 280, 5], ["buildInputs", 281, 5]], [["nativeBuildInputs", 285, 5]], [["buildInputs", 289, 5]], [["nativeBuildInputs", 293, 5], ["buildInputs", 294, 5]], [["nativeBuildInputs", 298, 5], ["buildInputs", 299, 5]], [["nativeBuildInputs", 303, 5]], [["nativeBuildInputs", 307, 5]], [["nativeBuildInputs", 311, 5], ["buildInputs", 312, 5]], [["name", 319, 9], ["path", 320, 9]], [["buildInputs", 316, 5], ["crateBin", 317, 5]], [["buildInputs", 326, 5]], [["buildInputs", 330, 5]], [["buildInputs", 334, 5]], [["buildInputs", 338, 5]], [["nativeBuildInputs", 342, 5], ["buildInputs", 343, 5]], [["nativeBuildInputs", 347, 5], ["buildInputs", 348, 5]], [["buildInputs", 355, 5]], [["nativeBuildInputs", 362, 5], ["buildInputs", 363, 5]], [["nativeBuildInputs", 370, 5], ["buildInputs", 371, 5]], [["nativeBuildInputs", 378, 5], ["buildInputs", 379, 5], ["extraLinkFlags", 380, 5]], [["nativeBuildInputs", 384, 5], ["buildInputs", 385, 5]], [["nativeBuildInputs", 389, 5]], [["nativeBuildInputs", 393, 5], ["buildInputs", 394, 5], ["extraLinkFlags", 395, 5]], [["buildInputs", 399, 5]], [["ZSTD_SYS_USE_PKG_CONFIG", 403, 5], ["nativeBuildInputs", 404, 5], ["buildInputs", 405, 5]], [["nativeBuildInputs", 409, 5], ["buildInputs", 410, 5]], [["postPatch", 418, 7]], [["alsa-sys", 53, 3], ["aws-lc-sys", 59, 3], ["cairo-rs", 64, 3], ["cairo-sys-rs", 68, 3], ["capnp-rpc", 74, 3], ["cargo", 78, 3], ["libz-sys", 86, 3], ["curl-sys", 92, 3], ["dbus", 105, 3], ["evdev-sys", 110, 3], ["expat-sys", 128, 3], ["foundationdb-sys", 132, 3], ["foundationdb", 142, 3], ["freetype-sys", 146, 3], ["fuser", 151, 3], ["glib-sys", 156, 3], ["gobject-sys", 162, 3], ["gio-sys", 167, 3], ["gdk-pixbuf", 172, 3], ["gdk-pixbuf-sys", 179, 3], ["gdk-sys", 184, 3], ["gdkx11-sys", 189, 3], ["gtk-sys", 194, 3], ["gtk4-sys", 199, 3], ["gdk4-sys", 204, 3], ["gsk4-sys", 209, 3], ["libgit2-sys", 214, 3], ["libseat-sys", 224, 3], ["libsqlite3-sys", 229, 3], ["libssh2-sys", 234, 3], ["libdbus-sys", 243, 3], ["libudev-sys", 248, 3], ["graphene-sys", 253, 3], ["javascriptcore-rs-sys", 261, 3], ["nettle-sys", 266, 3], ["openssl", 275, 3], ["openssl-sys", 279, 3], ["opentelemetry-proto", 284, 3], ["pam-sys", 288, 3], ["pango-sys", 292, 3], ["pq-sys", 297, 3], ["prost-build", 302, 3], ["prost-wkt-types", 306, 3], ["rdkafka-sys", 310, 3], ["rink", 315, 3], ["sequoia-openpgp", 325, 3], ["sequoia-openpgp-ffi", 329, 3], ["sequoia-ipc", 333, 3], ["sequoia-guide", 337, 3], ["pangocairo-sys", 341, 3], ["sequoia-store", 346, 3], ["sequoia-sq", 354, 3], ["sequoia-tool", 361, 3], ["servo-fontconfig-sys", 369, 3], ["soup3-sys", 377, 3], ["thrussh-libsodium", 383, 3], ["tonic-reflection", 388, 3], ["webkit2gtk-sys", 392, 3], ["xcb", 398, 3], ["zstd-sys", 402, 3], ["atk-sys", 408, 3], ["proc-macro-crate", 415, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "alsa-lib": false, atk: false, autoconf: false, automake: false, cairo: false, capnproto: false, clang: false, cmake: false, curl: false, dbus: false, "dbus-glib": false, fontconfig: false, foundationdb: false, freetype: false, fuse3: false, "gdk-pixbuf": false, glib: false, gmp: false, "gobject-introspection": false, graphene: false, gtk3: false, gtk4: false, libevdev: false, libgit2: false, libsodium: false, libsoup_3: false, libssh2: false, libtool: false, "linux-pam": false, llvmPackages: false, nettle: false, openssl: false, pango: false, "pkg-config": false, libpq: false, protobuf: false, python3: false, rdkafka: false, seatd: false, sqlite: false, udev: false, webkitgtk_4_1: false, zlib: false, zstd: false, buildPackages: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 54, 5], ["buildInputs", 55, 5]]);
-const pos$2 = nix.positions(here + "/default-crate-overrides.nix", [["AWS_LC_SYS_CMAKE_BUILDER", 61, 9]]);
-const pos$3 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 60, 5], ["env", 61, 5]]);
-const pos$4 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 65, 5]]);
-const pos$5 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 69, 5], ["buildInputs", 70, 5], ["extraLinkFlags", 71, 5]]);
-const pos$6 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 75, 5]]);
-const pos$7 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 79, 5]]);
-const pos$8 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 87, 5], ["buildInputs", 88, 5], ["extraLinkFlags", 89, 5]]);
-const pos$9 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 93, 5], ["buildInputs", 94, 5], ["propagatedBuildInputs", 98, 5], ["extraLinkFlags", 102, 5]]);
-const pos$10 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 106, 5], ["buildInputs", 107, 5]]);
-const pos$11 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 111, 5], ["buildInputs", 120, 5], ["prePatch", 123, 5]]);
-const pos$12 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 129, 5]]);
-const pos$13 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 133, 5]]);
-const pos$14 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 143, 5]]);
-const pos$15 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 147, 5], ["buildInputs", 148, 5]]);
-const pos$16 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 152, 5], ["buildInputs", 153, 5]]);
-const pos$17 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 157, 5], ["buildInputs", 158, 5], ["extraLinkFlags", 159, 5]]);
-const pos$18 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 163, 5], ["buildInputs", 164, 5]]);
-const pos$19 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 168, 5], ["buildInputs", 169, 5]]);
-const pos$20 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 173, 5]]);
-const pos$21 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 180, 5], ["buildInputs", 181, 5]]);
-const pos$22 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 185, 5], ["buildInputs", 186, 5]]);
-const pos$23 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 190, 5], ["buildInputs", 191, 5]]);
-const pos$24 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 195, 5], ["nativeBuildInputs", 196, 5]]);
-const pos$25 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 200, 5], ["nativeBuildInputs", 201, 5]]);
-const pos$26 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 205, 5], ["nativeBuildInputs", 206, 5]]);
-const pos$27 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 210, 5], ["nativeBuildInputs", 211, 5]]);
-const pos$28 = nix.positions(here + "/default-crate-overrides.nix", [["LIBGIT2_SYS_USE_PKG_CONFIG", 215, 5], ["nativeBuildInputs", 216, 5], ["buildInputs", 217, 5]]);
-const pos$29 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 225, 5], ["buildInputs", 226, 5]]);
-const pos$30 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 230, 5], ["buildInputs", 231, 5]]);
-const pos$31 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 235, 5], ["buildInputs", 236, 5]]);
-const pos$32 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 244, 5], ["buildInputs", 245, 5]]);
-const pos$33 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 249, 5], ["buildInputs", 250, 5]]);
-const pos$34 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 254, 5], ["buildInputs", 258, 5]]);
-const pos$35 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 262, 5], ["buildInputs", 263, 5]]);
-const pos$36 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 267, 5], ["buildInputs", 268, 5], ["LIBCLANG_PATH", 272, 5]]);
-const pos$37 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 276, 5]]);
-const pos$38 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 280, 5], ["buildInputs", 281, 5]]);
-const pos$39 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 285, 5]]);
-const pos$40 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 289, 5]]);
-const pos$41 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 293, 5], ["buildInputs", 294, 5]]);
-const pos$42 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 298, 5], ["buildInputs", 299, 5]]);
-const pos$43 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 303, 5]]);
-const pos$44 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 307, 5]]);
-const pos$45 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 311, 5], ["buildInputs", 312, 5]]);
-const pos$46 = nix.positions(here + "/default-crate-overrides.nix", [["name", 319, 9], ["path", 320, 9]]);
-const pos$47 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 316, 5], ["crateBin", 317, 5]]);
-const pos$48 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 326, 5]]);
-const pos$49 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 330, 5]]);
-const pos$50 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 334, 5]]);
-const pos$51 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 338, 5]]);
-const pos$52 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 342, 5], ["buildInputs", 343, 5]]);
-const pos$53 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 347, 5], ["buildInputs", 348, 5]]);
-const pos$54 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 355, 5]]);
-const pos$55 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 362, 5], ["buildInputs", 363, 5]]);
-const pos$56 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 370, 5], ["buildInputs", 371, 5]]);
-const pos$57 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 378, 5], ["buildInputs", 379, 5], ["extraLinkFlags", 380, 5]]);
-const pos$58 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 384, 5], ["buildInputs", 385, 5]]);
-const pos$59 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 389, 5]]);
-const pos$60 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 393, 5], ["buildInputs", 394, 5], ["extraLinkFlags", 395, 5]]);
-const pos$61 = nix.positions(here + "/default-crate-overrides.nix", [["buildInputs", 399, 5]]);
-const pos$62 = nix.positions(here + "/default-crate-overrides.nix", [["ZSTD_SYS_USE_PKG_CONFIG", 403, 5], ["nativeBuildInputs", 404, 5], ["buildInputs", 405, 5]]);
-const pos$63 = nix.positions(here + "/default-crate-overrides.nix", [["nativeBuildInputs", 409, 5], ["buildInputs", 410, 5]]);
-const pos$64 = nix.positions(here + "/default-crate-overrides.nix", [["postPatch", 418, 7]]);
-const pos$65 = nix.positions(here + "/default-crate-overrides.nix", [["alsa-sys", 53, 3], ["aws-lc-sys", 59, 3], ["cairo-rs", 64, 3], ["cairo-sys-rs", 68, 3], ["capnp-rpc", 74, 3], ["cargo", 78, 3], ["libz-sys", 86, 3], ["curl-sys", 92, 3], ["dbus", 105, 3], ["evdev-sys", 110, 3], ["expat-sys", 128, 3], ["foundationdb-sys", 132, 3], ["foundationdb", 142, 3], ["freetype-sys", 146, 3], ["fuser", 151, 3], ["glib-sys", 156, 3], ["gobject-sys", 162, 3], ["gio-sys", 167, 3], ["gdk-pixbuf", 172, 3], ["gdk-pixbuf-sys", 179, 3], ["gdk-sys", 184, 3], ["gdkx11-sys", 189, 3], ["gtk-sys", 194, 3], ["gtk4-sys", 199, 3], ["gdk4-sys", 204, 3], ["gsk4-sys", 209, 3], ["libgit2-sys", 214, 3], ["libseat-sys", 224, 3], ["libsqlite3-sys", 229, 3], ["libssh2-sys", 234, 3], ["libdbus-sys", 243, 3], ["libudev-sys", 248, 3], ["graphene-sys", 253, 3], ["javascriptcore-rs-sys", 261, 3], ["nettle-sys", 266, 3], ["openssl", 275, 3], ["openssl-sys", 279, 3], ["opentelemetry-proto", 284, 3], ["pam-sys", 288, 3], ["pango-sys", 292, 3], ["pq-sys", 297, 3], ["prost-build", 302, 3], ["prost-wkt-types", 306, 3], ["rdkafka-sys", 310, 3], ["rink", 315, 3], ["sequoia-openpgp", 325, 3], ["sequoia-openpgp-ffi", 329, 3], ["sequoia-ipc", 333, 3], ["sequoia-guide", 337, 3], ["pangocairo-sys", 341, 3], ["sequoia-store", 346, 3], ["sequoia-sq", 354, 3], ["sequoia-tool", 361, 3], ["servo-fontconfig-sys", 369, 3], ["soup3-sys", 377, 3], ["thrussh-libsodium", 383, 3], ["tonic-reflection", 388, 3], ["webkit2gtk-sys", 392, 3], ["xcb", 398, 3], ["zstd-sys", 402, 3], ["atk-sys", 408, 3], ["proc-macro-crate", 415, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -119,251 +55,251 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const buildPackages = nix.arg($, "buildPackages");
   return {
-    [nix.POS]: pos$65,
+    [nix.POS]: $pos[64],
     "alsa-sys": (attrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [alsa_lib]),
     }),
     "aws-lc-sys": (prev) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       nativeBuildInputs: nix.thunk(() => [cmake]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, AWS_LC_SYS_CMAKE_BUILDER: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], AWS_LC_SYS_CMAKE_BUILDER: 1n })),
     }),
-    "cairo-rs": (attrs) => ({ [nix.POS]: pos$4, buildInputs: nix.thunk(() => [cairo]) }),
+    "cairo-rs": (attrs) => ({ [nix.POS]: $pos[3], buildInputs: nix.thunk(() => [cairo]) }),
     "cairo-sys-rs": (attrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [cairo]),
       extraLinkFlags: nix.thunk(() => [nix.thunk(() => nix.str`-L${nix.sel(zlib, "out")}/lib`)]),
     }),
-    "capnp-rpc": (attrs) => ({ [nix.POS]: pos$6, nativeBuildInputs: nix.thunk(() => [capnproto]) }),
-    cargo: (attrs) => ({ [nix.POS]: pos$7, buildInputs: nix.thunk(() => [openssl, zlib, curl]) }),
+    "capnp-rpc": (attrs) => ({ [nix.POS]: $pos[5], nativeBuildInputs: nix.thunk(() => [capnproto]) }),
+    cargo: (attrs) => ({ [nix.POS]: $pos[6], buildInputs: nix.thunk(() => [openssl, zlib, curl]) }),
     "libz-sys": (attrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [zlib]),
       extraLinkFlags: nix.thunk(() => [nix.thunk(() => nix.str`-L${nix.sel(zlib, "out")}/lib`)]),
     }),
     "curl-sys": (attrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [zlib, curl]),
       propagatedBuildInputs: nix.thunk(() => [curl, zlib]),
       extraLinkFlags: nix.thunk(() => [nix.thunk(() => nix.str`-L${nix.sel(zlib, "out")}/lib`)]),
     }),
     dbus: (attrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [dbus]),
     }),
     "evdev-sys": (attrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform", "config"), nix.sel(stdenv, "hostPlatform", "config"))), nix.thunk(() => [python3, autoconf, automake, libtool])))),
       buildInputs: nix.thunk(() => [libevdev]),
       prePatch: "touch libevdev/.git\n",
     }),
-    "expat-sys": (attrs) => ({ [nix.POS]: pos$12, nativeBuildInputs: nix.thunk(() => [cmake]) }),
-    "foundationdb-sys": (attrs) => ({ [nix.POS]: pos$13, buildInputs: nix.thunk(() => [foundationdb]) }),
-    foundationdb: (attrs) => ({ [nix.POS]: pos$14, buildInputs: nix.thunk(() => [foundationdb]) }),
+    "expat-sys": (attrs) => ({ [nix.POS]: $pos[11], nativeBuildInputs: nix.thunk(() => [cmake]) }),
+    "foundationdb-sys": (attrs) => ({ [nix.POS]: $pos[12], buildInputs: nix.thunk(() => [foundationdb]) }),
+    foundationdb: (attrs) => ({ [nix.POS]: $pos[13], buildInputs: nix.thunk(() => [foundationdb]) }),
     "freetype-sys": (attrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [freetype]),
     }),
     fuser: (attrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [fuse3]),
     }),
     "glib-sys": (attrs) => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [glib]),
       extraLinkFlags: nix.thunk(() => [nix.thunk(() => nix.str`-L${nix.sel(zlib, "out")}/lib`)]),
     }),
     "gobject-sys": (attrs) => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [dbus_glib]),
     }),
     "gio-sys": (attrs) => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [dbus_glib]),
     }),
-    "gdk-pixbuf": (attrs) => ({ [nix.POS]: pos$20, buildInputs: nix.thunk(() => [dbus_glib, gdk_pixbuf]) }),
+    "gdk-pixbuf": (attrs) => ({ [nix.POS]: $pos[19], buildInputs: nix.thunk(() => [dbus_glib, gdk_pixbuf]) }),
     "gdk-pixbuf-sys": (attrs) => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [gdk_pixbuf]),
     }),
     "gdk-sys": (attrs) => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [gtk3]),
     }),
     "gdkx11-sys": (attrs) => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [gtk3]),
     }),
     "gtk-sys": (attrs) => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       buildInputs: nix.thunk(() => [gtk3]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
     }),
     "gtk4-sys": (attrs) => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       buildInputs: nix.thunk(() => [gtk4]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
     }),
     "gdk4-sys": (attrs) => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       buildInputs: nix.thunk(() => [gtk4]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
     }),
     "gsk4-sys": (attrs) => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       buildInputs: nix.thunk(() => [gtk4]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
     }),
     "libgit2-sys": (attrs) => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       LIBGIT2_SYS_USE_PKG_CONFIG: true,
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl, zlib, libgit2]),
     }),
     "libseat-sys": (attrs) => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [seatd]),
     }),
     "libsqlite3-sys": (attrs) => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [sqlite]),
     }),
     "libssh2-sys": (attrs) => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl, zlib, libssh2]),
     }),
     "libdbus-sys": (attrs) => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [dbus]),
     }),
     "libudev-sys": (attrs) => ({
-      [nix.POS]: pos$33,
+      [nix.POS]: $pos[32],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [udev]),
     }),
     "graphene-sys": (attrs) => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       nativeBuildInputs: nix.thunk(() => [pkg_config, gobject_introspection]),
       buildInputs: nix.thunk(() => [graphene]),
     }),
     "javascriptcore-rs-sys": (attrs) => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [webkitgtk_4_1]),
     }),
     "nettle-sys": (attrs) => ({
-      [nix.POS]: pos$36,
+      [nix.POS]: $pos[35],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [nettle, clang]),
       LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))}/lib`),
     }),
-    openssl: (attrs) => ({ [nix.POS]: pos$37, buildInputs: nix.thunk(() => [openssl]) }),
+    openssl: (attrs) => ({ [nix.POS]: $pos[36], buildInputs: nix.thunk(() => [openssl]) }),
     "openssl-sys": (attrs) => ({
-      [nix.POS]: pos$38,
+      [nix.POS]: $pos[37],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
     }),
-    "opentelemetry-proto": (attrs) => ({ [nix.POS]: pos$39, nativeBuildInputs: nix.thunk(() => [protobuf]) }),
-    "pam-sys": (attr) => ({ [nix.POS]: pos$40, buildInputs: nix.thunk(() => [linux_pam]) }),
+    "opentelemetry-proto": (attrs) => ({ [nix.POS]: $pos[38], nativeBuildInputs: nix.thunk(() => [protobuf]) }),
+    "pam-sys": (attr) => ({ [nix.POS]: $pos[39], buildInputs: nix.thunk(() => [linux_pam]) }),
     "pango-sys": (attr) => ({
-      [nix.POS]: pos$41,
+      [nix.POS]: $pos[40],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [pango]),
     }),
     "pq-sys": (attr) => ({
-      [nix.POS]: pos$42,
+      [nix.POS]: $pos[41],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libpq]),
     }),
-    "prost-build": (attr) => ({ [nix.POS]: pos$43, nativeBuildInputs: nix.thunk(() => [protobuf]) }),
-    "prost-wkt-types": (attr) => ({ [nix.POS]: pos$44, nativeBuildInputs: nix.thunk(() => [protobuf]) }),
+    "prost-build": (attr) => ({ [nix.POS]: $pos[42], nativeBuildInputs: nix.thunk(() => [protobuf]) }),
+    "prost-wkt-types": (attr) => ({ [nix.POS]: $pos[43], nativeBuildInputs: nix.thunk(() => [protobuf]) }),
     "rdkafka-sys": (attr) => ({
-      [nix.POS]: pos$45,
+      [nix.POS]: $pos[44],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [rdkafka]),
     }),
     rink: (attrs) => ({
-      [nix.POS]: pos$47,
+      [nix.POS]: $pos[46],
       buildInputs: nix.thunk(() => [gmp]),
       crateBin: nix.thunk(() => [
-        nix.thunk(() => ({ [nix.POS]: pos$46, name: "rink", path: "src/bin/rink.rs" })),
+        nix.thunk(() => ({ [nix.POS]: $pos[45], name: "rink", path: "src/bin/rink.rs" })),
       ]),
     }),
-    "sequoia-openpgp": (attrs) => ({ [nix.POS]: pos$48, buildInputs: nix.thunk(() => [gmp]) }),
-    "sequoia-openpgp-ffi": (attrs) => ({ [nix.POS]: pos$49, buildInputs: nix.thunk(() => [gmp]) }),
-    "sequoia-ipc": (attrs) => ({ [nix.POS]: pos$50, buildInputs: nix.thunk(() => [gmp]) }),
-    "sequoia-guide": (attrs) => ({ [nix.POS]: pos$51, buildInputs: nix.thunk(() => [gmp]) }),
+    "sequoia-openpgp": (attrs) => ({ [nix.POS]: $pos[47], buildInputs: nix.thunk(() => [gmp]) }),
+    "sequoia-openpgp-ffi": (attrs) => ({ [nix.POS]: $pos[48], buildInputs: nix.thunk(() => [gmp]) }),
+    "sequoia-ipc": (attrs) => ({ [nix.POS]: $pos[49], buildInputs: nix.thunk(() => [gmp]) }),
+    "sequoia-guide": (attrs) => ({ [nix.POS]: $pos[50], buildInputs: nix.thunk(() => [gmp]) }),
     "pangocairo-sys": (attr) => ({
-      [nix.POS]: pos$52,
+      [nix.POS]: $pos[51],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [pango]),
     }),
     "sequoia-store": (attrs) => ({
-      [nix.POS]: pos$53,
+      [nix.POS]: $pos[52],
       nativeBuildInputs: nix.thunk(() => [capnproto]),
       buildInputs: nix.thunk(() => [sqlite, gmp]),
     }),
-    "sequoia-sq": (attrs) => ({ [nix.POS]: pos$54, buildInputs: nix.thunk(() => [sqlite, gmp]) }),
+    "sequoia-sq": (attrs) => ({ [nix.POS]: $pos[53], buildInputs: nix.thunk(() => [sqlite, gmp]) }),
     "sequoia-tool": (attrs) => ({
-      [nix.POS]: pos$55,
+      [nix.POS]: $pos[54],
       nativeBuildInputs: nix.thunk(() => [capnproto]),
       buildInputs: nix.thunk(() => [sqlite, gmp]),
     }),
     "servo-fontconfig-sys": (attrs) => ({
-      [nix.POS]: pos$56,
+      [nix.POS]: $pos[55],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [freetype, fontconfig]),
     }),
     "soup3-sys": (attrs) => ({
-      [nix.POS]: pos$57,
+      [nix.POS]: $pos[56],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libsoup_3]),
       extraLinkFlags: nix.thunk(() => [nix.thunk(() => nix.str`-L${nix.sel(zlib, "out")}/lib`)]),
     }),
     "thrussh-libsodium": (attrs) => ({
-      [nix.POS]: pos$58,
+      [nix.POS]: $pos[57],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libsodium]),
     }),
-    "tonic-reflection": (attrs) => ({ [nix.POS]: pos$59, nativeBuildInputs: nix.thunk(() => [protobuf]) }),
+    "tonic-reflection": (attrs) => ({ [nix.POS]: $pos[58], nativeBuildInputs: nix.thunk(() => [protobuf]) }),
     "webkit2gtk-sys": (attrs) => ({
-      [nix.POS]: pos$60,
+      [nix.POS]: $pos[59],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [webkitgtk_4_1]),
       extraLinkFlags: nix.thunk(() => [nix.thunk(() => nix.str`-L${nix.sel(zlib, "out")}/lib`)]),
     }),
-    xcb: (attrs) => ({ [nix.POS]: pos$61, buildInputs: nix.thunk(() => [python3]) }),
+    xcb: (attrs) => ({ [nix.POS]: $pos[60], buildInputs: nix.thunk(() => [python3]) }),
     "zstd-sys": (attrs) => ({
-      [nix.POS]: pos$62,
+      [nix.POS]: $pos[61],
       ZSTD_SYS_USE_PKG_CONFIG: true,
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [zstd]),
     }),
     "atk-sys": (attrs) => ({
-      [nix.POS]: pos$63,
+      [nix.POS]: $pos[62],
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [atk]),
     }),
     "proc-macro-crate": (attrs) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(attrs, "version")), "2.0")), nix.thunk(() => ({
-        [nix.POS]: pos$64,
+        [nix.POS]: $pos[63],
         postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace \\
   src/lib.rs \\
   --replace-fail \\

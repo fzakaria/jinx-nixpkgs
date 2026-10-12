@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 49, 5], ["mainProgram", 50, 5], ["license", 51, 5], ["homepage", 52, 5], ["maintainers", 53, 5], ["platforms", 57, 5]], [["pname", 12, 3], ["version", 14, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 24, 3], ["postPatch", 26, 3], ["vendorHash", 30, 3], ["doCheck", 32, 3], ["subPackages", 34, 3], ["ldflags", 36, 3], ["postInstall", 42, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, buildGoModule: false, libnotify: false, pcsclite: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["mainProgram", 50, 5], ["license", 51, 5], ["homepage", 52, 5], ["maintainers", 53, 5], ["platforms", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 14, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 24, 3], ["postPatch", 26, 3], ["vendorHash", 30, 3], ["doCheck", 32, 3], ["subPackages", 34, 3], ["ldflags", 36, 3], ["postInstall", 42, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pcsclite = nix.arg($, "pcsclite");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "yubikey-agent",
       version: "0.1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FiloSottile",
           repo: "yubikey-agent",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mkdir -p $out/lib/systemd/user\nsubstitute contrib/systemd/user/yubikey-agent.service $out/lib/systemd/user/yubikey-agent.service \\\n  --replace 'ExecStart=yubikey-agent' \"ExecStart=$out/bin/yubikey-agent\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Seamless ssh-agent for YubiKeys",
         mainProgram: "yubikey-agent",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

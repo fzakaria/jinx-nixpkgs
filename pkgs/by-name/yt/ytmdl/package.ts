@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 13], ["version", 16, 5], ["hash", 17, 5]], [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["postPatch", 20, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["makeWrapperArgs", 47, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, ffmpeg: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 13], ["version", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["postPatch", 20, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["makeWrapperArgs", 47, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "2023.11.26";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => [".0"]), nix.thunk(() => ["."]), version)),
           hash: "sha256-Im3rQAs/TYookv6FeGpU6tJxUGBMb6/UW1ZMDg9FW4s=",
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [writableTmpDirAsHomeHook]);
       const pythonImportsCheck = nix.thunk(() => ["ytmdl"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/deepjyoti30/ytmdl",
         description: "YouTube Music Downloader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -70,7 +68,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ytmdl",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

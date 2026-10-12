@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["sha256", 18, 5], ["extension", 19, 5]], [["homepage", 23, 5], ["description", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["disabled", 14, 3], ["src", 16, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, lib: false, pythonAtLeast: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["sha256", 18, 5], ["extension", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 23, 5], ["description", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["disabled", 14, 3], ["src", 16, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.12"));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "1hcn6h38qplfcmq392cs58r01k16k202bqyap4br02376pr4ik7a",
           extension: "zip",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/moshez/rfc7464",
         description: "RFC 7464 is a proposed standard for streaming JSON documents",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "shlevy"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, format, disabled, src, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, disabled, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

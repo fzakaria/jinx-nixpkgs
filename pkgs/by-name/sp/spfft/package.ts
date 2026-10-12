@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["package", 86, 48]], [["moduleNames", 88, 7], ["package", 89, 7]], [["pkg-config", 86, 5], ["cmake-config", 87, 5]], [["tests", 85, 12]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["pkgConfigModules", 99, 5], ["platforms", 100, 5]], [["pname", 31, 3], ["version", 32, 3], ["strictDeps", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 66, 3], ["cmakeFlags", 68, 3], ["passthru", 85, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fftw: false, cmake: false, mpi: false, gfortran: false, llvmPackages: false, cudaPackages: false, rocmPackages: false, testers: false, config: false, gpuBackend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 86, 48]]);
-const pos$3 = nix.positions(here + "/package.nix", [["moduleNames", 88, 7], ["package", 89, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 86, 5], ["cmake-config", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 85, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["pkgConfigModules", 99, 5], ["platforms", 100, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["strictDeps", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 66, 3], ["cmakeFlags", 68, 3], ["passthru", 85, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const gpuBackend = nix.argOr($, "gpuBackend", () => (nix.asBool(nix.sel(config, "cudaSupport")) ? "cuda" : (nix.asBool(nix.sel(config, "rocmSupport")) ? "rocm" : "none")));
   nix.assert_(nix.builtins.elem(gpuBackend, nix.thunk(() => ["none", "cuda", "rocm"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sp/spfft/package.nix:24:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "SpFFT",
       version: "1.1.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eth-cscs",
           repo: "SpFFT",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,22 +58,22 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "HIP_ROOT_DIR", nix.thunk(() => nix.sel(rocmPackages, "clr", "outPath")))),
         ]))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               moduleNames: nix.thunk(() => ["SpFFT"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Sparse 3D FFT library with MPI, OpenMP, CUDA and ROCm support",
         homepage: "https://github.com/eth-cscs/SpFFT",
         changelog: nix.thunk(() => nix.str`https://github.com/eth-cscs/SpFFT/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

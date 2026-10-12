@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["OPENSSL_NO_VENDOR", 55, 7]], [["nixseparatedebuginfod2", 57, 43]], [["tests", 57, 12]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 39, 3], ["doCheck", 41, 3], ["nativeCheckInputs", 42, 3], ["cargoBuildFlags", 51, 3], ["env", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, rustPlatform: false, libarchive: false, openssl: false, "pkg-config": false, bubblewrap: false, elfutils: false, nix: false, nixosTests: false, systemdLibs: false, "util-linux": false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nixseparatedebuginfod2", 57, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 57, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 39, 3], ["doCheck", 41, 3], ["nativeCheckInputs", 42, 3], ["cargoBuildFlags", 51, 3], ["env", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const cacert = nix.arg($, "cacert");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nixseparatedebuginfod2",
       version: "2.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "symphorien",
           repo: "nixseparatedebuginfod2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,16 +38,16 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       nativeCheckInputs: nix.thunk(() => [bubblewrap, elfutils, nix$, util_linux, cacert]),
       cargoBuildFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), nix.thunk(() => ["--no-default-features"]))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: "1" })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           nixseparatedebuginfod2: nix.thunk(() => nix.attr(nixosTests, "nixseparatedebuginfod2")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Downloads and provides debug symbols and source code for nix derivations to gdb and other debuginfod-capable debuggers as needed",
         homepage: "https://github.com/symphorien/nixseparatedebuginfod2",
         changelog: nix.thunk(() => nix.str`https://https://github.com/symphorien/nixseparatedebuginfod2/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md/`),

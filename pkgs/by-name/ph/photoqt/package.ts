@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["MAGICK_LOCATION", 64, 7]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["badPlatforms", 80, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["cmakeFlags", 56, 3], ["env", 64, 3], ["postInstall", 66, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, kdePackages: false, exiv2: false, graphicsmagick: false, libarchive: false, libraw: false, mpv: false, pugixml: false, qt6: false, qt6Packages: false, "zxing-cpp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["MAGICK_LOCATION", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["badPlatforms", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["cmakeFlags", 56, 3], ["env", 64, 3], ["postInstall", 66, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const qt6Packages = nix.arg($, "qt6Packages");
   const zxing_cpp = nix.arg($, "zxing-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "photoqt",
       version: "5.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://photoqt.org/downloads/source/photoqt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-vCihM84yDfDbz77qigIFQH/LIarH6IHKS3QdFPLZ8Lc=",
         })))),
@@ -64,12 +61,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "VIDEO_MPV", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         MAGICK_LOCATION: nix.thunk(() => nix.str`${graphicsmagick}/include/GraphicsMagick`),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv $out/bin/photoqt.app $out/Applications\nmakeWrapper $out/{Applications/photoqt.app/Contents/MacOS,bin}/photoqt\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple, yet powerful and good looking image viewer",
         homepage: "https://photoqt.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

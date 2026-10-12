@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["updateScript", 46, 12]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["sourceRoot", 21, 3], ["ldflags", 23, 3], ["tags", 29, 3], ["postPatch", 35, 3], ["postInstall", 40, 3], ["passthru", 46, 3], ["nativeInstallCheckInputs", 48, 3], ["doInstallCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 46, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["sourceRoot", 21, 3], ["ldflags", 23, 3], ["tags", 29, 3], ["postPatch", 35, 3], ["postInstall", 40, 3], ["passthru", 46, 3], ["nativeInstallCheckInputs", 48, 3], ["doInstallCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "oh-my-posh",
       version: "30.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jandedobbeleer",
           repo: "oh-my-posh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,13 +34,13 @@ export default nix.lambda((args) => (() => {
       postPatch: "# these tests requires internet access\nrm config/migrate_glyphs_test.go cli/upgrade/notice_test.go segments/upgrade_test.go\n",
       postInstall: "mv $out/bin/{src,oh-my-posh}\nmkdir -p $out/share/oh-my-posh\ncp -r $src/themes $out/share/oh-my-posh/\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Prompt theme engine for any shell",
         mainProgram: "oh-my-posh",
         homepage: "https://ohmyposh.dev",

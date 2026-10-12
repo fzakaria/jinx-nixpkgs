@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rpm", 21, 15], ["cpio", 21, 19], ["shell", 22, 24]], [["src", 18, 5], ["isExecutable", 19, 5], ["replacements", 20, 5]], [["description", 27, 5], ["platforms", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["mainProgram", 31, 5]], [["pname", 10, 3], ["version", 11, 17], ["buildCommand", 13, 3], ["script", 17, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rpm: false, cpio: false, replaceVarsWith: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rpm", 21, 15], ["cpio", 21, 19], ["shell", 22, 24]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 18, 5], ["isExecutable", 19, 5], ["replacements", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 27, 5], ["platforms", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["mainProgram", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 17], ["buildCommand", 13, 3], ["script", 17, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,23 +13,23 @@ export default nix.lambda((args) => (() => {
   const cpio = nix.arg($, "cpio");
   const replaceVarsWith = nix.arg($, "replaceVarsWith");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rpmextract",
       version: nix.thunk(() => nix.attr(rpm, "version")),
       buildCommand: "install -Dm755 $script $out/bin/rpmextract\n",
       script: nix.thunk(() => nix.app(replaceVarsWith, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.path(here, "./rpmextract.sh"),
           isExecutable: true,
           replacements: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             rpm: rpm,
             cpio: cpio,
             shell: nix.thunk(() => nix.attr(stdenv, "shell")),
           })),
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Script to extract RPM archives",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

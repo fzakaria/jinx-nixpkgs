@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 32, 5], ["downloadPage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["installPhase", 19, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 32, 5], ["downloadPage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["installPhase", 19, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "scriptaculous",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://script.aculo.us/dist/scriptaculous-js-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "1xpnk3cq8n07lxd69k5jxh48s21zh41ihq10z4a6lcnk238rp8qz",
         })))),
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "mkdir $out\ncp src/*.js $out\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Set of JavaScript libraries to enhance the user interface of web sites",
         longDescription: "script.aculo.us provides you with\neasy-to-use, cross-browser user\ninterface JavaScript libraries to make\nyour web sites and web applications fly.\n",
         homepage: "https://script.aculo.us/",

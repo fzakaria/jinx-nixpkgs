@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["helloMold", 70, 67]], [["passthru", 70, 46]], [["package", 95, 41]], [["version", 95, 9]], [["stdenv", 100, 13]], [["stdenv", 105, 13]], [["nativeBuildInputs", 110, 13], ["NIX_CFLAGS_LINK", 111, 13]], [["adapter-gcc", 98, 9], ["adapter-llvm", 103, 9], ["wrapped", 108, 9]], [["updateScript", 61, 5], ["tests", 62, 5]], [["description", 118, 5], ["longDescription", 119, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["platforms", 128, 5], ["mainProgram", 129, 5], ["maintainers", 130, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["cmakeFlags", 52, 3], ["doInstallCheck", 57, 3], ["nativeInstallCheckInputs", 58, 3], ["passthru", 60, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, mimalloc: false, ninja: false, onetbb: false, zlib: false, zstd: false, buildPackages: false, clangStdenv: false, gccStdenv: false, hello: false, mold: false, "mold-unwrapped": false, runCommandCC: false, testers: false, useMoldLinker: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["helloMold", 70, 67]]);
-const pos$3 = nix.positions(here + "/package.nix", [["passthru", 70, 46]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 95, 41]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 95, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["stdenv", 100, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["stdenv", 105, 13]]);
-const pos$8 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 110, 13], ["NIX_CFLAGS_LINK", 111, 13]]);
-const pos$9 = nix.positions(here + "/package.nix", [["adapter-gcc", 98, 9], ["adapter-llvm", 103, 9], ["wrapped", 108, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["updateScript", 61, 5], ["tests", 62, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 118, 5], ["longDescription", 119, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["platforms", 128, 5], ["mainProgram", 129, 5], ["maintainers", 130, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["cmakeFlags", 52, 3], ["doInstallCheck", 57, 3], ["nativeInstallCheckInputs", 58, 3], ["passthru", 60, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const useMoldLinker = nix.arg($, "useMoldLinker");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "mold-unwrapped",
       version: "2.42.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rui314",
           repo: "mold",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,15 +44,15 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => (() => {
           const helloTest = (name) => (helloMold) => (() => {
             const command = nix.thunk(() => nix.str`$READELF -p .comment ${nix.app(nix.sel(lib, "getExe"), helloMold)}`);
             const emulator = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages));
             return nix.app(runCommandCC, nix.thunk(() => nix.str`mold-${name}-test`), nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                passthru: nix.thunk(() => ({ [nix.POS]: pos$2, helloMold: helloMold })),
+                [nix.POS]: $pos[2],
+                passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], helloMold: helloMold })),
               })), nix.thunk(() => nix.str`echo "Testing running the 'hello' binary which should be linked with 'mold'" >&2
 ${emulator} ${nix.app(nix.sel(lib, "getExe"), helloMold)}
 
@@ -88,17 +77,20 @@ fi
 `));
           })();
           return nix.update({
-            [nix.POS]: pos$5,
-            version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: mold_unwrapped })))),
+            [nix.POS]: $pos[4],
+            version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[3], package: mold_unwrapped })))),
           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-              [nix.POS]: pos$9,
-              "adapter-gcc": nix.thunk(() => nix.app(helloTest, "adapter-gcc", nix.thunk(() => nix.app(nix.sel(hello, "override"), (old) => ({ [nix.POS]: pos$6, stdenv: nix.thunk(() => nix.app(useMoldLinker, gccStdenv)) }))))),
+              [nix.POS]: $pos[8],
+              "adapter-gcc": nix.thunk(() => nix.app(helloTest, "adapter-gcc", nix.thunk(() => nix.app(nix.sel(hello, "override"), (old) => ({
+                    [nix.POS]: $pos[5],
+                    stdenv: nix.thunk(() => nix.app(useMoldLinker, gccStdenv)),
+                  }))))),
               "adapter-llvm": nix.thunk(() => nix.app(helloTest, "adapter-llvm", nix.thunk(() => nix.app(nix.sel(hello, "override"), (old) => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     stdenv: nix.thunk(() => nix.app(useMoldLinker, clangStdenv)),
                   }))))),
               wrapped: nix.thunk(() => nix.app(helloTest, "wrapped", nix.thunk(() => nix.app(nix.sel(hello, "overrideAttrs"), (previousAttrs) => ({
-                    [nix.POS]: pos$8,
+                    [nix.POS]: $pos[7],
                     nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "nativeBuildInputs"), [mold])),
                     NIX_CFLAGS_LINK: nix.thunk(() => nix.add(nix.builtins.toString(nix.thunk(() => nix.selOr(previousAttrs, () => "", "NIX_CFLAGS_LINK"))), " -fuse-ld=mold")),
                   }))))),
@@ -106,7 +98,7 @@ fi
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Faster drop-in replacement for existing Unix linkers (unwrapped)",
         longDescription: "mold is a faster drop-in replacement for existing Unix linkers. It is\nseveral times faster than the LLVM lld linker. mold is designed to\nincrease developer productivity by reducing build time, especially in\nrapid debug-edit-rebuild cycles.\n",
         homepage: "https://github.com/rui314/mold",

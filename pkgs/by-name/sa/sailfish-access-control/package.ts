@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["package", 58, 9], ["versionCheck", 59, 9]], [["pkg-config", 57, 7], ["qt5", 61, 7], ["qt6", 62, 7]], [["updateScript", 55, 5], ["tests", 56, 5]], [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["teams", 77, 5], ["platforms", 78, 5], ["pkgConfigModules", 79, 5]], [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 22, 3], ["preConfigure", 30, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["makeFlags", 44, 3], ["installFlags", 48, 3], ["passthru", 54, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gitUpdater: false, testers: false, glib: false, libsForQt5: false, "pkg-config": false, qt6Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 58, 9], ["versionCheck", 59, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 57, 7], ["qt5", 61, 7], ["qt6", 62, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 55, 5], ["tests", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["teams", 77, 5], ["platforms", 78, 5], ["pkgConfigModules", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 22, 3], ["preConfigure", 30, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["makeFlags", 44, 3], ["installFlags", 48, 3], ["passthru", 54, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const qt6Packages = nix.arg($, "qt6Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sailfish-access-control",
       version: "0.0.12",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sailfishos",
           repo: "sailfish-access-control",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,12 +39,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`INCDIR=${nix.builtins.placeholder("dev")}/include/sailfishaccesscontrol`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -58,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Thin wrapper on top of pwd.h and grp.h of glibc",
         longDescription: "This package provides a thin wrapper library on top of the getuid, getpwuid, getgrouplist, and friends.\nChecking whether a user belongs to a group should be done via this Sailfish Access Control library.\n\nThis will make it easier to fix for instance rerentrancy issues.\n",
         homepage: "https://github.com/sailfishos/sailfish-access-control",

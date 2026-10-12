@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["NIX_CFLAGS_COMPILE", 54, 7]], [["changelog", 61, 5], ["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["sourceRoot", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["makeFlags", 49, 3], ["hardeningDisable", 52, 3], ["env", 54, 3], ["postInstall", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, "pkg-config": false, which: false, bison: false, gnuplot: false, libxls: false, libxlsxwriter: false, libxml2: false, libzip: false, ncurses: false, xlsSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 61, 5], ["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["sourceRoot", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["makeFlags", 49, 3], ["hardeningDisable", 52, 3], ["env", 54, 3], ["postInstall", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const xlsSupport = nix.argOr($, "xlsSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sc-im",
       version: "0.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "andmarti1424",
           repo: "sc-im",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,13 +38,13 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`)]),
       hardeningDisable: nix.thunk(() => ["fortify"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=implicit-function-declaration")),
       })),
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/sc-im" --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnuplot]))}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/andmarti1424/sc-im/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGES`),
         homepage: "https://github.com/andmarti1424/sc-im",
         description: "Ncurses spreadsheet program for terminal",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5], ["fetchSubmodules", 53, 5]], [["name", 151, 7], ["icon", 152, 7], ["exec", 153, 7], ["desktopName", 154, 7], ["comment", 155, 7], ["categories", 156, 7]], [["name", 163, 7], ["icon", 164, 7], ["exec", 165, 7], ["desktopName", 166, 7], ["comment", 167, 7], ["categories", 168, 7]], [["name", 175, 7], ["icon", 176, 7], ["exec", 177, 7], ["desktopName", 178, 7], ["comment", 179, 7], ["categories", 180, 7]], [["updateScript", 186, 12]], [["homepage", 189, 5], ["description", 190, 5], ["changelog", 191, 5], ["license", 192, 5], ["platforms", 193, 5], ["maintainers", 194, 5], ["mainProgram", 195, 5]], [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 67, 3], ["cmakeFlags", 99, 3], ["installPhase", 104, 3], ["preFixup", 143, 3], ["desktopItems", 149, 3], ["passthru", 186, 3], ["meta", 188, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, copyDesktopItems: false, python3: false, makeDesktopItem: false, makeWrapper: false, "pkg-config": false, wrapGAppsHook3: false, SDL2: false, SDL2_mixer: false, SDL2_net: false, "alsa-lib": false, cpptrace: false, curl: false, expat: false, fltk_1_4: false, libdwarf: false, libselinux: false, libsepol: false, "libsysprof-capture": false, libuuid: false, libxdmcp: false, libxkbcommon: false, pcre2: false, portmidi: false, "wayland-scanner": false, waylandpp: false, wxwidgets_3_2: false, libx11: false, xorgproto: false, zstd: false, "nix-update-script": false, withX11: true, withWayland: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5], ["fetchSubmodules", 53, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 151, 7], ["icon", 152, 7], ["exec", 153, 7], ["desktopName", 154, 7], ["comment", 155, 7], ["categories", 156, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 163, 7], ["icon", 164, 7], ["exec", 165, 7], ["desktopName", 166, 7], ["comment", 167, 7], ["categories", 168, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 175, 7], ["icon", 176, 7], ["exec", 177, 7], ["desktopName", 178, 7], ["comment", 179, 7], ["categories", 180, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 186, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 189, 5], ["description", 190, 5], ["changelog", 191, 5], ["license", 192, 5], ["platforms", 193, 5], ["maintainers", 194, 5], ["mainProgram", 195, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 67, 3], ["cmakeFlags", 99, 3], ["installPhase", 104, 3], ["preFixup", 143, 3], ["desktopItems", 149, 3], ["passthru", 186, 3], ["meta", 188, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const withX11 = nix.argOr($, "withX11", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const withWayland = nix.argOr($, "withWayland", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "odamex",
       version: "12.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "odamex",
           repo: "odamex",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -106,7 +100,7 @@ runHook postInstall
 `))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "odamex",
             icon: "odamex",
             exec: "odamex",
@@ -115,7 +109,7 @@ runHook postInstall
             categories: nix.thunk(() => ["ActionGame", "Game", "Shooter"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "odalaunch",
             icon: "odalaunch",
             exec: "odalaunch",
@@ -124,7 +118,7 @@ runHook postInstall
             categories: nix.thunk(() => ["ActionGame", "Game", "Shooter"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "odasrv",
             icon: "odasrv",
             exec: "odasrv",
@@ -134,11 +128,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://odamex.net",
         description: "Client/server port for playing old-school Doom online",
         changelog: nix.thunk(() => nix.str`https://github.com/odamex/odamex/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

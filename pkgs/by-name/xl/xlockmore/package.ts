@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5], ["curlOpts", 21, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 33, 3], ["configureFlags", 37, 3], ["postPatch", 43, 3], ["hardeningDisable", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, pam: true, libx11: false, libxext: false, libxinerama: false, libxdmcp: false, libxt: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5], ["curlOpts", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 33, 3], ["configureFlags", 37, 3], ["postPatch", 43, 3], ["hardeningDisable", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xlockmore";
       const version = "5.89";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://sillycycle.com/xlock/xlockmore-${version}.tar.xz`),
           sha256: "sha256-UlWXrKCgZIZ5i+kltvBBRrtZVkMkhpD0WAe2+joN7V0=",
           curlOpts: "--user-agent 'Mozilla/5.0'",
@@ -50,7 +48,7 @@ sed -i 's,/usr/,/no-such-dir/,g' configure.ac
       })());
       const hardeningDisable = nix.thunk(() => ["format"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Screen locker for the X Window System",
         homepage: "http://sillycycle.com/xlockmore.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -62,7 +60,7 @@ sed -i 's,/usr/,/no-such-dir/,g' configure.ac
         mainProgram: "xlock",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

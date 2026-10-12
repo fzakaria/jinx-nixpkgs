@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["root", 11, 5], ["fileset", 12, 5]], [["timeout", 26, 8]], [["name", 9, 3], ["src", 10, 3], ["nativeBuildInputs", 17, 3], ["buildInputs", 18, 3], ["doInstallCheck", 19, 3], ["installCheckPhase", 20, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { stdenv: false, cmake: false, inja: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["root", 11, 5], ["fileset", 12, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["timeout", 26, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 9, 3], ["src", 10, 3], ["nativeBuildInputs", 17, 3], ["buildInputs", 18, 3], ["doInstallCheck", 19, 3], ["installCheckPhase", 20, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const inja = nix.arg($, "inja");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "inja-simple-cmake-test",
       src: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "toSource"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           root: nix.path(here, "./."),
           fileset: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "unions"), nix.thunk(() => [nix.path(here, "./main.cpp"), nix.path(here, "./CMakeLists.txt")]))),
         })))),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [inja]),
       doInstallCheck: true,
       installCheckPhase: "if [[ `$out/bin/simple-cmake-test` != \"Hello world!\" ]]; then\n  echo \"ERROR: $out/bin/simple-cmake-test does not output 'Hello world!'\"\n  exit 1\nfi\n",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, timeout: 30n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[1], timeout: 30n })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

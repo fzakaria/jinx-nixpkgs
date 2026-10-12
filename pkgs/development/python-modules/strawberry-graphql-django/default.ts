@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["debug-toolbar", 67, 5], ["enum", 68, 5]], [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 52, 3], ["build-system", 56, 3], ["dependencies", 60, 3], ["optional-dependencies", 66, 3], ["nativeCheckInputs", 71, 3], ["pythonImportsCheck", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pyprojectVersionPatchHook: false, hatchling: false, asgiref: false, django: false, "strawberry-graphql": false, "django-debug-toolbar": false, "django-choices-field": false, pytestCheckHook: false, "django-guardian": false, "django-model-utils": false, "django-polymorphic": false, "django-tree-queries": false, "factory-boy": false, pillow: false, psycopg2: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-django": false, "pytest-mock": false, "pytest-snapshot": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["debug-toolbar", 67, 5], ["enum", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 52, 3], ["build-system", 56, 3], ["dependencies", 60, 3], ["optional-dependencies", 66, 3], ["nativeCheckInputs", 71, 3], ["pythonImportsCheck", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.86.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "strawberry-graphql",
           repo: "strawberry-django",
           tag: version,
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [django, asgiref, strawberry_graphql]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "debug-toolbar": nix.thunk(() => [django_debug_toolbar]),
         enum: nix.thunk(() => [django_choices_field]),
       }));
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.sel(optional_dependencies, "debug-toolbar"), nix.sel(optional_dependencies, "enum"))));
       const pythonImportsCheck = nix.thunk(() => ["strawberry_django"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Strawberry GraphQL Django extension",
         homepage: "https://github.com/strawberry-graphql/strawberry-django",
         changelog: nix.thunk(() => nix.str`https://github.com/strawberry-graphql/strawberry-django/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -81,7 +78,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,28 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 7], ["repo", 40, 7], ["rev", 41, 7], ["hash", 42, 7]], [["pname", 35, 5], ["version", 36, 5], ["src", 38, 5], ["configureFlags", 45, 5], ["buildFlags", 50, 5]], [["stdenv", 58, 7], ["enableZ3", 59, 7]], [["owner", 66, 11], ["repo", 67, 11], ["tag", 68, 11], ["hash", 69, 11]], [["pname", 62, 9], ["version", 63, 9], ["src", 65, 9], ["patches", 72, 9], ["postInstall", 74, 9], ["cmakeFlags", 78, 9]], [["url", 88, 7], ["rev", 89, 7], ["hash", 90, 7]], [["pname", 84, 5], ["version", 85, 5], ["src", 87, 5], ["buildPhase", 93, 5], ["installPhase", 100, 5]], [["version", 109, 9], ["__intentionallyOverridingVersion", 110, 9]], [["version", 113, 9], ["__intentionallyOverridingVersion", 114, 9]], [["libpoly", 108, 7], ["symfpu", 112, 7]], [["owner", 120, 11], ["repo", 121, 11], ["tag", 122, 11], ["hash", 123, 11]], [["version", 118, 9], ["src", 119, 9]], [["url", 137, 9], ["hash", 138, 9]], [["url", 142, 9], ["hash", 143, 9]], [["url", 147, 9], ["hash", 148, 9]], [["name", 323, 5], ["exec", 324, 5], ["icon", 325, 5], ["desktopName", 326, 5], ["comment", 327, 5], ["categories", 328, 5]], [["description", 336, 5], ["longDescription", 337, 5], ["homepage", 342, 5], ["sourceProvenance", 343, 5], ["license", 347, 5], ["maintainers", 348, 5], ["broken", 354, 5], ["platforms", 355, 5]], [["isabelle", 376, 63]], [["name", 375, 9], ["paths", 376, 9], ["postBuild", 378, 9]], [["vampire", 363, 5], ["polyml", 364, 5], ["cvc5", 365, 5], ["sha1", 366, 5], ["withComponents", 367, 5]], [["pname", 129, 3], ["version", 130, 3], ["dirname", 132, 3], ["src", 134, 3], ["nativeBuildInputs", 151, 3], ["buildInputs", 153, 3], ["patches", 163, 3], ["propagatedBuildInputs", 169, 3], ["sourceRoot", 171, 3], ["doCheck", 173, 3], ["checkPhase", 174, 3], ["postUnpack", 176, 3], ["postPatch", 181, 3], ["buildPhase", 277, 3], ["installPhase", 307, 3], ["desktopItem", 322, 3], ["meta", 335, 3], ["passthru", 362, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, gcc14Stdenv: false, coreutils: false, "net-tools": false, openjdk21: false, scala_3: false, polyml: false, verit: false, vampire: false, "eprover-ho": false, cvc5: false, libpoly: false, symfpu: false, csdp: false, rlwrap: false, perl: false, procps: false, makeDesktopItem: false, "isabelle-components": false, symlinkJoin: false, fetchhg: false, electron: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 7], ["repo", 40, 7], ["rev", 41, 7], ["hash", 42, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 5], ["version", 36, 5], ["src", 38, 5], ["configureFlags", 45, 5], ["buildFlags", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["stdenv", 58, 7], ["enableZ3", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 66, 11], ["repo", 67, 11], ["tag", 68, 11], ["hash", 69, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 62, 9], ["version", 63, 9], ["src", 65, 9], ["patches", 72, 9], ["postInstall", 74, 9], ["cmakeFlags", 78, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 88, 7], ["rev", 89, 7], ["hash", 90, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 84, 5], ["version", 85, 5], ["src", 87, 5], ["buildPhase", 93, 5], ["installPhase", 100, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["version", 109, 9], ["__intentionallyOverridingVersion", 110, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["version", 113, 9], ["__intentionallyOverridingVersion", 114, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["libpoly", 108, 7], ["symfpu", 112, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["owner", 120, 11], ["repo", 121, 11], ["tag", 122, 11], ["hash", 123, 11]]);
-const pos$12 = nix.positions(here + "/package.nix", [["version", 118, 9], ["src", 119, 9]]);
-const pos$13 = nix.positions(here + "/package.nix", [["url", 137, 9], ["hash", 138, 9]]);
-const pos$14 = nix.positions(here + "/package.nix", [["url", 142, 9], ["hash", 143, 9]]);
-const pos$15 = nix.positions(here + "/package.nix", [["url", 147, 9], ["hash", 148, 9]]);
-const pos$16 = nix.positions(here + "/package.nix", [["name", 323, 5], ["exec", 324, 5], ["icon", 325, 5], ["desktopName", 326, 5], ["comment", 327, 5], ["categories", 328, 5]]);
-const pos$17 = nix.positions(here + "/package.nix", [["description", 336, 5], ["longDescription", 337, 5], ["homepage", 342, 5], ["sourceProvenance", 343, 5], ["license", 347, 5], ["maintainers", 348, 5], ["broken", 354, 5], ["platforms", 355, 5]]);
-const pos$18 = nix.positions(here + "/package.nix", [["isabelle", 376, 63]]);
-const pos$19 = nix.positions(here + "/package.nix", [["name", 375, 9], ["paths", 376, 9], ["postBuild", 378, 9]]);
-const pos$20 = nix.positions(here + "/package.nix", [["vampire", 363, 5], ["polyml", 364, 5], ["cvc5", 365, 5], ["sha1", 366, 5], ["withComponents", 367, 5]]);
-const pos$21 = nix.positions(here + "/package.nix", [["pname", 129, 3], ["version", 130, 3], ["dirname", 132, 3], ["src", 134, 3], ["nativeBuildInputs", 151, 3], ["buildInputs", 153, 3], ["patches", 163, 3], ["propagatedBuildInputs", 169, 3], ["sourceRoot", 171, 3], ["doCheck", 173, 3], ["checkPhase", 174, 3], ["postUnpack", 176, 3], ["postPatch", 181, 3], ["buildPhase", 277, 3], ["installPhase", 307, 3], ["desktopItem", 322, 3], ["meta", 335, 3], ["passthru", 362, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const electron = nix.arg($, "electron");
   const java = openjdk21;
   const polyml$ = nix.thunk(() => nix.app(nix.sel(polyml, "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "polyml-for-isabelle",
       version: "2025-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "polyml",
           repo: "polyml",
           rev: "ccd3e3717f7238b9b5d295fea4b5426182dfc0b6",
@@ -68,12 +48,12 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["compiler"]),
     }))));
   const vampireStdenv = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.force(gcc14Stdenv) : nix.force(stdenv)));
-  const vampire$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(vampire, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, stdenv: vampireStdenv, enableZ3: false }))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$5,
+  const vampire$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(vampire, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], stdenv: vampireStdenv, enableZ3: false }))), "overrideAttrs"), (old) => ({
+      [nix.POS]: $pos[4],
       pname: "vampire-for-isabelle",
       version: "4.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "vprover",
           repo: "vampire",
           tag: "v4.8HO4Sledgahammer",
@@ -86,11 +66,11 @@ export default nix.lambda((args) => (() => {
       ])),
     })));
   const sha1 = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "isabelle-sha1",
       version: "2024",
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: "https://isabelle.sketis.net/repos/sha1",
           rev: "0ce12663fe76",
           hash: "sha256-DB/ETVZhbT82IMZA97TmHG6gJcGpFavxDKDTwPzIF80=",
@@ -99,18 +79,18 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/lib\ncp libsha1.so $out/lib/\n",
     }))));
   const cvc5$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(cvc5, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
-      libpoly: nix.thunk(() => nix.app(nix.sel(libpoly, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$8, version: "0.2.0", __intentionallyOverridingVersion: true })))),
+      [nix.POS]: $pos[9],
+      libpoly: nix.thunk(() => nix.app(nix.sel(libpoly, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[7], version: "0.2.0", __intentionallyOverridingVersion: true })))),
       symfpu: nix.thunk(() => nix.app(nix.sel(symfpu, "overrideAttrs"), nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           version: "0-unstable-2019-05-17",
           __intentionallyOverridingVersion: true,
         })))),
     }))), "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           owner: "cvc5",
           repo: "cvc5",
           tag: "cvc5-1.2.0",
@@ -118,20 +98,20 @@ export default nix.lambda((args) => (() => {
         })))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       pname: "isabelle",
       version: "2025-2",
       dirname: nix.thunk(() => nix.str`Isabelle${nix.sel(finalAttrs, "version")}`),
       src: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           url: nix.thunk(() => nix.str`https://isabelle.in.tum.de/website-${nix.sel(finalAttrs, "dirname")}/dist/${nix.sel(finalAttrs, "dirname")}_macos.tar.gz`),
           hash: "sha256-jxh0luKV8WmVLpRHRa+eSuAMnBzS7UytvPfYmOREkT4=",
         }))) : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           url: nix.thunk(() => nix.str`https://isabelle.in.tum.de/website-${nix.sel(finalAttrs, "dirname")}/dist/${nix.sel(finalAttrs, "dirname")}_linux.tar.gz`),
           hash: "sha256-ogpQe8fBJw2L6WqfP77AY0U4d4nS3CxNPfYmDUe/szw=",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           url: nix.thunk(() => nix.str`https://isabelle.in.tum.de/website-${nix.sel(finalAttrs, "dirname")}/dist/${nix.sel(finalAttrs, "dirname")}_linux_arm.tar.gz`),
           hash: "sha256-ZQqWabSgh2da+zQpTYLe0vBwTUfVgN2e1FzdyfF2S90=",
         })))))),
@@ -269,7 +249,7 @@ mkdir -p "$out/share"
 cp -r "${nix.sel(finalAttrs, "desktopItem")}/share/applications" "$out/share/applications"
 `),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           name: "isabelle",
           exec: "isabelle jedit",
           icon: "isabelle",
@@ -278,7 +258,7 @@ cp -r "${nix.sel(finalAttrs, "desktopItem")}/share/applications" "$out/share/app
           categories: nix.thunk(() => ["Education", "Science", "Math"]),
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         description: "Generic proof assistant",
         longDescription: "Isabelle is a generic proof assistant.  It allows mathematical formulas\nto be expressed in a formal language and provides tools for proving those\nformulas in a logical calculus.\n",
         homepage: "https://isabelle.in.tum.de/",
@@ -298,7 +278,7 @@ cp -r "${nix.sel(finalAttrs, "desktopItem")}/share/applications" "$out/share/app
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         vampire: vampire$,
         polyml: polyml$,
         cvc5: cvc5$,
@@ -308,9 +288,9 @@ cp -r "${nix.sel(finalAttrs, "desktopItem")}/share/applications" "$out/share/app
           const base = nix.thunk(() => nix.str`$out/${nix.sel(isabelle, "dirname")}`);
           const components = nix.thunk(() => nix.app(f, isabelle_components));
           return nix.app(symlinkJoin, nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               name: nix.thunk(() => nix.str`isabelle-with-components-${nix.sel(isabelle, "version")}`),
-              paths: nix.thunk(() => nix.concat([isabelle], nix.builtins.map((c) => nix.app(nix.sel(c, "override"), nix.thunk(() => ({ [nix.POS]: pos$18, isabelle: isabelle }))), components))),
+              paths: nix.thunk(() => nix.concat([isabelle], nix.builtins.map((c) => nix.app(nix.sel(c, "override"), nix.thunk(() => ({ [nix.POS]: $pos[17], isabelle: isabelle }))), components))),
               postBuild: nix.thunk(() => nix.add(nix.str`rm $out/bin/*
 
 cd ${base}

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["extraArgs", 63, 7]], [["updateScript", 62, 5]], [["description", 139, 5], ["homepage", 140, 5], ["license", 141, 5], ["mainProgram", 142, 5], ["maintainers", 143, 5], ["platforms", 146, 5]], [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["passthru", 61, 3], ["__structuredAttrs", 67, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 81, 3], ["postPatch", 101, 3], ["configureFlags", 110, 3], ["buildPhase", 124, 3], ["installPhase", 126, 3], ["doCheck", 128, 3], ["checkPhase", 130, 3], ["dontWrapQtApps", 132, 3], ["postFixup", 134, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, "pkg-config": false, autoreconfHook: false, rake: false, boost: false, cmark: false, docbook_xsl: false, flac: false, fmt: false, gettext: false, gmp: false, gtest: false, libdvdread: false, libebml: false, libiconv: false, libmatroska: false, libogg: false, libvorbis: false, libxslt: false, nlohmann_json: false, pugixml: false, qt6: false, utf8cpp: false, zlib: false, "nix-update-script": false, withGUI: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 139, 5], ["homepage", 140, 5], ["license", 141, 5], ["mainProgram", 142, 5], ["maintainers", 143, 5], ["platforms", 146, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["passthru", 61, 3], ["__structuredAttrs", 67, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 81, 3], ["postPatch", 101, 3], ["configureFlags", 110, 3], ["buildPhase", 124, 3], ["installPhase", 126, 3], ["doCheck", 128, 3], ["checkPhase", 130, 3], ["dontWrapQtApps", 132, 3], ["postFixup", 134, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,20 +47,20 @@ rake ${args_1}
 runHook post${name}
 `;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mkvtoolnix",
       version: "102.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mbunkus",
           repo: "mkvtoolnix",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-YsenzSOMwh+jDOgdYHQhiicdHEHIGzd3UqPyecdgJaI=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=release-(.*)"]),
           })))),
       })),
@@ -108,7 +104,7 @@ runHook post${name}
       dontWrapQtApps: true,
       postFixup: nix.thunk(() => nix.app(optionalString, withGUI, "wrapQtApp $out/bin/mkvtoolnix-gui\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cross-platform tools for Matroska",
         homepage: "https://mkvtoolnix.download/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

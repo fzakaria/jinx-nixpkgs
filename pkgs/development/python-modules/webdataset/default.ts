@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 32, 5], ["hash", 33, 5]], [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 36, 3], ["build-system", 43, 3], ["dependencies", 47, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 62, 3], ["disabledTests", 64, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, curl: false, setuptools: false, braceexpand: false, numpy: false, pyyaml: false, imageio: false, lmdb: false, msgpack: false, pytestCheckHook: false, torch: false, torchvision: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 36, 3], ["build-system", 43, 3], ["dependencies", 47, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 62, 3], ["disabledTests", 64, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const torchvision = nix.arg($, "torchvision");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "webdataset",
       version: "1.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "webdataset",
           repo: "webdataset",
           rev: "0773837ecd298587fc89c4f944ef346ef1a6b619",
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
         "test_unbatched",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High-performance Python-based I/O system for large (and small) deep learning problems, with strong support for PyTorch",
         mainProgram: "widsindex",
         homepage: "https://github.com/webdataset/webdataset",

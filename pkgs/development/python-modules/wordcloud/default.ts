@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]], [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 19, 3], ["build-system", 21, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 39, 3], ["preCheck", 44, 3], ["pythonImportsCheck", 48, 3], ["disabledTests", 50, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cython: false, fetchPypi: false, matplotlib: false, numpy: false, pillow: false, pytestCheckHook: false, "pytest-cov-stub": false, setuptools: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 19, 3], ["build-system", 21, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 39, 3], ["preCheck", 44, 3], ["pythonImportsCheck", 48, 3], ["disabledTests", 50, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-3xfEaP+QO9CrpPh8ZUB0XROkkxIg3Uk3yzY62FpHcbk=",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         "test_coloring_black_works",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Word cloud generator in Python",
         mainProgram: "wordcloud_cli",
         homepage: "https://github.com/amueller/word_cloud",
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["sha256", 33, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["teams", 72, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 47, 3], ["mesonFlags", 60, 3], ["postPatch", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "appstream-glib": false, "desktop-file-utils": false, meson: false, ninja: false, pantheon: false, "pkg-config": false, python3: false, vala: false, wrapGAppsHook3: false, cairo: false, glib: false, goocanvas_3: false, gtk3: false, gtksourceview3: false, "json-glib": false, libarchive: false, libgee: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["teams", 72, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 47, 3], ["mesonFlags", 60, 3], ["postPatch", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const libgee = nix.arg($, "libgee");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "akira",
       version: "0.0.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "akiraux",
           repo: "Akira",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Dprofile=default"]),
       postPatch: "chmod +x build-aux/meson/post_install.py\npatchShebangs build-aux/meson/post_install.py\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Native Linux Design application built in Vala and GTK",
         homepage: "https://github.com/akiraux/Akira",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

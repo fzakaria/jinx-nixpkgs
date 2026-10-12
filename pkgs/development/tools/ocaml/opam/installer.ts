@@ -2,16 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/installer.nix", [[["description", 18, 5], ["mainProgram", 19, 5]], [["pname", 4, 3], ["version", 6, 18], ["src", 6, 26], ["configureFlags", 8, 3], ["buildInputs", 12, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { opam: false, ocamlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/installer.nix", [["description", 18, 5], ["mainProgram", 19, 5]]);
-const pos$2 = nix.positions(here + "/installer.nix", [["pname", 4, 3], ["version", 6, 18], ["src", 6, 26], ["configureFlags", 8, 3], ["buildInputs", 12, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const opam = nix.arg($, "opam");
   const ocamlPackages = nix.arg($, "ocamlPackages");
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "opam-installer",
       version: nix.thunk(() => nix.attr(opam, "version")),
       src: nix.thunk(() => nix.attr(opam, "src")),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => nix.update(nix.sel(opam, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Handle (un)installation from opam install files",
         mainProgram: "opam-installer",
       })),

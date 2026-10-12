@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]], [["url", 41, 7], ["hash", 42, 7]], [["url", 47, 7], ["hash", 48, 7]], [["homepage", 90, 5], ["description", 91, 5], ["longDescription", 92, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 63, 3], ["hardeningDisable", 77, 3], ["preConfigure", 79, 3], ["mesonFlags", 83, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, SDL2: false, agg: false, "alsa-lib": false, "desktop-file-utils": false, wrapGAppsHook3: false, gtk3: false, intltool: false, libGLU: false, libxmu: false, libpcap: false, libtool: false, lua: false, meson: false, ninja: false, openal: false, "pkg-config": false, soundtouch: false, tinyxml: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 47, 7], ["hash", 48, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 90, 5], ["description", 91, 5], ["longDescription", 92, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 63, 3], ["hardeningDisable", 77, 3], ["preConfigure", 79, 3], ["mesonFlags", 83, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const tinyxml = nix.arg($, "tinyxml");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "desmume",
       version: "0.9.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TASEmulators",
           repo: "desmume",
           rev: nix.thunk(() => nix.str`release_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -47,12 +43,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/TASEmulators/desmume/commit/24eb5ed95c6cbdaba8b3c63a99e95e899e8a5061.patch",
             hash: "sha256-J3ZRU1tPTl+4/jg0DBo6ro6DTUZkpQCey+QGF2EugCQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/TASEmulators/desmume/commit/738298a9e887bf7220fed026cb872a544fd60431.patch?full_index=1",
             hash: "sha256-JNq++g6olaKsNa1XIs9Zz1YQxAsN3vAuFkykdlrfzaQ=",
           })))),
@@ -84,7 +80,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cd desmume/src/frontend/posix\n",
       mesonFlags: nix.thunk(() => ["-Db_pie=true", "-Dopenal=true", "-Dwifi=true"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.github.com/TASEmulators/desmume/",
         description: "Open-source Nintendo DS emulator",
         longDescription: "DeSmuME is a freeware emulator for the NDS roms & Nintendo DS Lite games\ncreated by YopYop156 and now maintained by the TASvideos team. It supports\nmany homebrew nds rom demoes as well as a handful of Wireless Multiboot\ndemo nds roms. DeSmuME is also able to emulate nearly all of the\ncommercial nds rom titles which other DS Emulators aren't.\n",

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 13], ["repo", 25, 13], ["tag", 26, 13], ["hash", 27, 13]], [["version", 22, 11], ["src", 23, 11]], [["pyparsing", 21, 9]], [["packageOverrides", 33, 15], ["self", 34, 7]], [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]], [["rev-prefix", 77, 40]], [["updateScript", 77, 12]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["teams", 84, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 55, 3], ["postPatch", 70, 3], ["doCheck", 75, 3], ["passthru", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchFromGitLab: false, python3: false, cmake: false, doxygen: false, gitUpdater: false, graphviz: false, quickmem: false, arpa2common: false, arpa2cm: false, ensureNewerSourcesForZipFilesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 13], ["repo", 25, 13], ["tag", 26, 13], ["hash", 27, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 22, 11], ["src", 23, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pyparsing", 21, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageOverrides", 33, 15], ["self", 34, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["rev-prefix", 77, 40]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 77, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["teams", 84, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 55, 3], ["postPatch", 70, 3], ["doCheck", 75, 3], ["passthru", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,26 +22,26 @@ export default nix.lambda((args) => (() => {
   const ensureNewerSourcesForZipFilesHook = nix.arg($, "ensureNewerSourcesForZipFilesHook");
   const python = nix.thunk(() => (() => {
     const packageOverrides = (self) => (super$) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pyparsing: nix.thunk(() => nix.app(nix.sel(super$, "pyparsing", "overridePythonAttrs"), (old) => (() => {
           const version = "3.1.2";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "pyparsing",
               repo: "pyparsing",
               tag: version,
               hash: "sha256-0B8DjO4kLgvt4sYsk8CZI+5icdKy73XE2tWeqVLqO5A=",
             }))));
-          return { [nix.POS]: pos$2, version, src };
+          return { [nix.POS]: $pos[1], version, src };
         })())),
     });
-    return nix.app(nix.sel(python3, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, packageOverrides: packageOverrides, self: python })));
+    return nix.app(nix.sel(python3, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], packageOverrides: packageOverrides, self: python })));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "quickder";
       const version = "1.7.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "arpa2",
           repo: "quick-der",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -74,11 +66,11 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace setup.py --replace-fail 'pyparsing==' 'pyparsing>='\nrm python/__init__.py\n";
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$6, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[6],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[5], "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Quick (and Easy) DER, a Library for parsing ASN.1",
         homepage: "https://gitlab.com/arpa2/quick-der/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -89,7 +81,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["pname", 15, 54], ["src", 15, 60], ["version", 15, 64]], [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5], ["sourceProvenance", 39, 5], ["platforms", 40, 5]], [["pname", 18, 11], ["src", 18, 17], ["version", 18, 21], ["nativeBuildInputs", 20, 3], ["extraInstallCommands", 22, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 15, 54], ["src", 15, 60], ["version", 15, 64]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5], ["sourceProvenance", 39, 5], ["platforms", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 11], ["src", 18, 17], ["version", 18, 21], ["nativeBuildInputs", 20, 3], ["extraInstallCommands", 22, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const pname = "muffon";
   const version = "2.4.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/staniel359/muffon/releases/download/v${version}/muffon-${version}-linux-x86_64.AppImage`),
       hash: "sha256-BrPlvHnwhMoPVm8AFa6bF8A/jCDwKUynkmxBlwPmsic=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, src: src, version: version }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, src: src, version: version }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       src: src,
       version: version,
@@ -37,7 +34,7 @@ install -m 444 -D ${appimageContents}/muffon.png \\
   $out/share/icons/hicolor/512x512/apps/muffon.png
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Advanced multi-source music streaming client",
         homepage: "https://muffon.netlify.app/",
         changelog: nix.thunk(() => nix.str`https://github.com/staniel359/muffon/releases/tag/v${version}`),

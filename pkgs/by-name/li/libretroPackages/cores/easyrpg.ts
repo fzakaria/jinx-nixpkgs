@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/easyrpg.nix", [[["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]], [["updateScript", 81, 12]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5]], [["core", 32, 3], ["version", 34, 3], ["src", 36, 3], ["extraNativeBuildInputs", 44, 3], ["extraBuildInputs", 50, 3], ["cmakeFlags", 72, 3], ["makefile", 77, 3], ["passthru", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, mkLibretroCore: false, "nix-update-script": false, asciidoctor: false, cmake: false, doxygen: false, "pkg-config": false, flac: false, fluidsynth: false, fmt: false, freetype: false, glib: false, harfbuzz: false, lhasa: false, liblcf: false, libpng: false, libsndfile: false, "libsysprof-capture": false, libvorbis: false, libxmp: false, mpg123: false, nlohmann_json: false, opusfile: false, pcre2: false, pixman: false, speexdsp: false, wildmidi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/easyrpg.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]]);
-const pos$2 = nix.positions(here + "/easyrpg.nix", [["updateScript", 81, 12]]);
-const pos$3 = nix.positions(here + "/easyrpg.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5]]);
-const pos$4 = nix.positions(here + "/easyrpg.nix", [["core", 32, 3], ["version", 34, 3], ["src", 36, 3], ["extraNativeBuildInputs", 44, 3], ["extraBuildInputs", 50, 3], ["cmakeFlags", 72, 3], ["makefile", 77, 3], ["passthru", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const core = "easyrpg";
       const version = "0.8.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "EasyRPG",
           repo: "Player",
           rev: version,
@@ -79,17 +76,17 @@ export default nix.lambda((args) => (() => {
       ]);
       const makefile = "Makefile";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "EasyRPG Player libretro port",
         homepage: "https://github.com/EasyRPG/Player",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         core,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 26], ["version", 15, 32], ["sha256", 16, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["prePatch", 19, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 39, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false, git: false, mercurial: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 26], ["version", 15, 32], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["prePatch", 19, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 39, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const mercurial = nix.arg($, "mercurial");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bumpver",
       version: "2026.1132",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "sha256-gLIjwj/Km8ndVpt6RGgJSdNL7iOnOIYNmps28avjsOA=",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       })()),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pytestCheckHook")), git, mercurial]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bump version numbers in project files",
         homepage: "https://pypi.org/project/bumpver/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

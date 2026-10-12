@@ -2,13 +2,9 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["_0_2_2", 19, 9], ["_0_3_0", 20, 9], ["_0_4_1", 21, 9], ["_0_5_0", 22, 9], ["_0_7_1", 23, 9]], [["libraryPath", 31, 14]], [["pname", 12, 5], ["version", 13, 13], ["src", 13, 21], ["sourceRoot", 15, 5], ["cargoHash", 17, 5], ["passthru", 31, 5]], [["cargoDeps", 58, 23]], [["pname", 54, 3], ["version", 55, 11], ["src", 55, 19], ["passthru", 56, 3], ["installPhase", 61, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, writeText: false, stdenv: false }, ellipsis: false };
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["_0_2_2", 19, 9], ["_0_3_0", 20, 9], ["_0_4_1", 21, 9], ["_0_5_0", 22, 9], ["_0_7_1", 23, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libraryPath", 31, 14]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 5], ["version", 13, 13], ["src", 13, 21], ["sourceRoot", 15, 5], ["cargoHash", 17, 5], ["passthru", 31, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["cargoDeps", 58, 23]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 54, 3], ["version", 55, 11], ["src", 55, 19], ["passthru", 56, 3], ["installPhase", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +17,13 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
     const rustDep = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "flutter_vodozemac-rs",
         version: version,
         src: src,
         sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/rust`),
         cargoHash: nix.thunk(() => nix.selOr({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           _0_2_2: "sha256-Iw0AkHVjR1YmPe+C0YYBTDu5FsRk/ZpaRyBilcvqm6M=",
           _0_3_0: "sha256-eKKrcroV2yl/FV2WmgZWFPO5MPAGz0xCvpr0fgIuGZ4=",
           _0_4_1: "sha256-eKKrcroV2yl/FV2WmgZWFPO5MPAGz0xCvpr0fgIuGZ4=",
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
 Please add cargoHash here. If the cargoHash
 is the same with existing versions, add an alias here.
 `)), nix.key(nix.add("_", nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version))))),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$2, libraryPath: "lib/libvodozemac_bindings_dart.so" })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], libraryPath: "lib/libvodozemac_bindings_dart.so" })),
       }))));
     const fakeCargokitCmake = nix.thunk(() => nix.app(writeText, "FakeCargokit.cmake", nix.thunk(() => nix.str`function(apply_cargokit target manifest_dir lib_name any_symbol_name)
   set("\${target}_cargokit_lib" ${rustDep}/${nix.sel(rustDep, "passthru", "libraryPath")} PARENT_SCOPE)
@@ -45,11 +41,14 @@ endfunction()
 `)));
     const getLibraryPath = "String _getLibraryPath() {\n  if (kIsWeb) {\n    return './';\n  }\n  try {\n    return Platform.resolvedExecutable + '/../lib/libvodozemac_bindings_dart.so';\n  } catch (_) {\n    return './';\n  }\n}\n";
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "flutter_vodozemac",
         version: version,
         src: src,
-        passthru: nix.thunk(() => nix.update(nix.sel(src, "passthru"), { [nix.POS]: pos$4, cargoDeps: nix.thunk(() => nix.attr(rustDep, "cargoDeps")) })),
+        passthru: nix.thunk(() => nix.update(nix.sel(src, "passthru"), {
+          [nix.POS]: $pos[3],
+          cargoDeps: nix.thunk(() => nix.attr(rustDep, "cargoDeps")),
+        })),
         installPhase: nix.thunk(() => nix.str`runHook preInstall
 
 cp -r "$src" "$out"

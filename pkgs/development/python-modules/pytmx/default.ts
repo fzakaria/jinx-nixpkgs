@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 29, 5], ["hash", 30, 5]], [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["pythonImportsCheck", 43, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 52, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "setuptools-scm": false, pygame: false, pyglet: false, pysdl2: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["build-system", 33, 3], ["dependencies", 37, 3], ["pythonImportsCheck", 43, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 52, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pysdl2 = nix.arg($, "pysdl2");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pytmx",
       version: "3.32",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bitcraft",
           repo: "PyTMX",
           rev: "7af805bc916e666fdf7165d5d6ba4c0eddfcde18",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_contains_reserved_property_name"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/bitcraft/PyTMX",
         description: "Python library to read Tiled Map Editor's TMX maps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

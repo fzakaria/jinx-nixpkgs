@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 36, 3], ["makeFlags", 41, 3], ["preFixup", 43, 3], ["patches", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, file: false, openssl: false, atool: false, bat: false, chafa: false, coreutils: false, delta: false, ffmpeg: false, ffmpegthumbnailer: false, fontforge: false, glow: false, imagemagick: false, jq: false, "poppler-utils": false, ueberzugpp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 36, 3], ["makeFlags", 41, 3], ["preFixup", 43, 3], ["patches", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const poppler_utils = nix.arg($, "poppler-utils");
   const ueberzugpp = nix.arg($, "ueberzugpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ctpv",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NikitaIvanovV",
           repo: "ctpv",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
 `),
       patches: nix.thunk(() => [nix.path(here, "./use-polite-flag.patch")]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "File previewer for a terminal",
         homepage: "https://github.com/NikitaIvanovV/ctpv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

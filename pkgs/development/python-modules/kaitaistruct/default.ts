@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["pname", 25, 13], ["version", 25, 19], ["hash", 26, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 29, 3], ["preBuild", 31, 3], ["build-system", 35, 3], ["propagatedBuildInputs", 37, 3], ["doCheck", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchFromGitHub: false, brotli: false, lz4: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 25, 13], ["version", 25, 19], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 29, 3], ["preBuild", 31, 3], ["build-system", 35, 3], ["propagatedBuildInputs", 37, 3], ["doCheck", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const lz4 = nix.arg($, "lz4");
   const setuptools = nix.arg($, "setuptools");
   const kaitai_compress = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "kaitai-io",
       repo: "kaitai_compress",
       rev: "12f4cffb45d95b17033ee4f6679987656c6719cc",
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           hash: "sha256-BT7nZCiOeLjlOs90jpczJorL1Xm42CpCexgFRTYl10s=",
@@ -42,14 +39,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["kaitaistruct", "kaitai.compress"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Kaitai Struct: runtime library for Python",
         homepage: "https://github.com/kaitai-io/kaitai_struct_python_runtime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

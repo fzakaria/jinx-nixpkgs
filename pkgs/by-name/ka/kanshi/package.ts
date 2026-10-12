@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5], ["platforms", 67, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 28, 3], ["depsBuildBuild", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, scdoc: false, wayland: false, "wayland-scanner": false, vali: false, libscfg: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5], ["platforms", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 28, 3], ["depsBuildBuild", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libscfg = nix.arg($, "libscfg");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kanshi",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "emersion",
           repo: "kanshi",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, scdoc, wayland_scanner]),
       buildInputs: nix.thunk(() => [wayland, libscfg, vali]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Dynamic display configuration tool",
         longDescription: "kanshi allows you to define output profiles that are automatically enabled\nand disabled on hotplug. For instance, this can be used to turn a laptop's\ninternal screen off when docked.\n\nkanshi can be used on Wayland compositors supporting the\nwlr-output-management protocol.\n",
         homepage: "https://gitlab.freedesktop.org/emersion/kanshi",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["name", 26, 7], ["url", 27, 7], ["sha256", 28, 7]], [["name", 31, 7], ["url", 32, 7], ["sha256", 33, 7]], [["homepage", 48, 5], ["description", 49, 5], ["platforms", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false, libexif: false, popt: false, libintl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["sha256", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 31, 7], ["url", 32, 7], ["sha256", 33, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["platforms", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const popt = nix.arg($, "popt");
   const libintl = nix.arg($, "libintl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "exif",
       version: "0.6.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libexif",
           repo: "exif",
           rev: nix.thunk(() => nix.str`exif-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}-release`),
@@ -33,13 +29,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2021-27815.part-1.patch",
             url: "https://github.com/libexif/exif/commit/f6334d9d32437ef13dc902f0a88a2be0063d9d1c.patch",
             sha256: "0mfx7l8w3w1c2mn5h5d6s7gdfyd91wnml8v0f19v5sdn70hx5aa4",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2021-27815.part-2.patch",
             url: "https://github.com/libexif/exif/commit/eb84b0e3c5f2a86013b6fcfb800d187896a648fa.patch",
             sha256: "11lyvy20maisiyhxgxvm85v5l5ba7p0bpd4m0g4ryli32mrwwy0l",
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [libexif, popt, libintl]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://libexif.github.io",
         description: "Utility to read and manipulate EXIF data in digital photographs",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

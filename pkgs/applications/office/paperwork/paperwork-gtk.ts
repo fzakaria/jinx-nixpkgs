@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/paperwork-gtk.nix", [[["name", 45, 5], ["src", 46, 5]], [["updateScript", 143, 12]], [["description", 153, 5], ["homepage", 154, 5], ["license", 155, 5], ["maintainers", 156, 5], ["platforms", 160, 5]], [["src", 39, 11], ["version", 39, 15], ["pname", 40, 3], ["pyproject", 41, 3], ["sample_docs", 43, 3], ["sourceRoot", 49, 3], ["postPatch", 51, 3], ["preBuild", 58, 3], ["postInstall", 62, 3], ["nativeCheckInputs", 86, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 98, 3], ["dontWrapGApps", 106, 3], ["preFixup", 108, 3], ["checkPhase", 112, 3], ["propagatedBuildInputs", 131, 3], ["disallowedRequisites", 141, 3], ["passthru", 143, 3], ["meta", 152, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, python3Packages: false, gtk3: false, cairo: false, "adwaita-icon-theme": false, librsvg: false, "xvfb-run": false, dbus: false, libnotify: false, wrapGAppsHook3: false, which: false, gettext: false, "gobject-introspection": false, "gdk-pixbuf": false, texliveSmall: false, imagemagick: false, perlPackages: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/paperwork-gtk.nix", [["name", 45, 5], ["src", 46, 5]]);
-const pos$2 = nix.positions(here + "/paperwork-gtk.nix", [["updateScript", 143, 12]]);
-const pos$3 = nix.positions(here + "/paperwork-gtk.nix", [["description", 153, 5], ["homepage", 154, 5], ["license", 155, 5], ["maintainers", 156, 5], ["platforms", 160, 5]]);
-const pos$4 = nix.positions(here + "/paperwork-gtk.nix", [["src", 39, 11], ["version", 39, 15], ["pname", 40, 3], ["pyproject", 41, 3], ["sample_docs", 43, 3], ["sourceRoot", 49, 3], ["postPatch", 51, 3], ["preBuild", 58, 3], ["postInstall", 62, 3], ["nativeCheckInputs", 86, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 98, 3], ["dontWrapGApps", 106, 3], ["preFixup", 108, 3], ["checkPhase", 112, 3], ["propagatedBuildInputs", 131, 3], ["disallowedRequisites", 141, 3], ["passthru", 143, 3], ["meta", 152, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const pname = "paperwork";
       const pyproject = true;
-      const sample_docs = nix.thunk(() => nix.update(sample_documents, { [nix.POS]: pos$1, name: "sample_documents", src: sample_documents }));
+      const sample_docs = nix.thunk(() => nix.update(sample_documents, { [nix.POS]: $pos[0], name: "sample_documents", src: sample_documents }));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src_1, "name")}/paperwork-gtk`);
       const postPatch = "chmod a+w -R ..\npatchShebangs ../tools\n\nexport HOME=$(mktemp -d)\n";
       const preBuild = "make l10n_compile\n";
@@ -119,11 +116,11 @@ runHook postCheck
       })());
       const disallowedRequisites = documentation_deps;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl common-updater-scripts\nversion=$(list-git-tags | sed 's/^v//' | sort -V | tail -n1)\nupdate-source-version paperwork \"$version\" --file=pkgs/applications/office/paperwork/src.nix\ndocs_version=\"$(curl https://gitlab.gnome.org/World/OpenPaperwork/paperwork/-/raw/$version/paperwork-gtk/src/paperwork_gtk/model/help/screenshot.sh | grep TEST_DOCS_TAG= | cut -d'\"' -f2)\"\nupdate-source-version paperwork.sample_docs \"$docs_version\" --file=pkgs/applications/office/paperwork/src.nix --version-key=rev\n")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Personal document manager for scanned documents",
         homepage: "https://openpaper.work/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -137,7 +134,7 @@ runHook postCheck
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         src: src_1,
         version: version_1,
         pname,

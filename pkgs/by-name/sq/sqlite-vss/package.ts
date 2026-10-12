@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["SQLITE_VSS_CMAKE_VERSION", 36, 7]], [["broken", 53, 5], ["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["platforms", 58, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["env", 36, 3], ["installPhase", 38, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, faiss: false, fetchFromGitHub: false, gomp: false, llvmPackages: false, nlohmann_json: false, sqlite: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SQLITE_VSS_CMAKE_VERSION", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 53, 5], ["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["platforms", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["env", 36, 3], ["installPhase", 38, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sqlite-vss",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "asg017",
           repo: "sqlite-vss",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => nix.concat([nlohmann_json, faiss, sqlite], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), gomp), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.sel(llvmPackages, "openmp")))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SQLITE_VSS_CMAKE_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -48,7 +45,7 @@ install -Dm444 -t "$out/lib" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(faiss, "version")), "1.8.0")),
         description: "SQLite extension for efficient vector search based on Faiss",
         homepage: "https://github.com/asg017/sqlite-vss",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["license", 58, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["preConfigure", 42, 3], ["nativeInstallCheckInputs", 49, 3], ["doInstallCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, redland: false, "pkg-config": false, gmp: false, zlib: false, librdf_raptor2: false, librdf_rasqal: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["license", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["preConfigure", 42, 3], ["nativeInstallCheckInputs", 49, 3], ["doInstallCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const librdf_rasqal = nix.arg($, "librdf_rasqal");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "redstore",
       version: "0.5.4",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.aelius.com/njh/redstore/redstore-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-WL1l/aOIq0Aeatw2ctepxRHkOdlHdPzFoe9tt5x0gUE=",
         })))),
@@ -41,7 +39,7 @@ configureFlagsArray+=(
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "HTTP interface to Redland RDF store",
         mainProgram: "redstore",
         homepage: "https://www.aelius.com/njh/redstore/",

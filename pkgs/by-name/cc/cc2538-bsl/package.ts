@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["SETUPTOOLS_SCM_PRETEND_VERSION", 36, 7]], [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["pname", 23, 3], ["version", 24, 11], ["src", 24, 19], ["pyproject", 25, 3], ["patches", 29, 3], ["postPatch", 31, 3], ["env", 36, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 48, 3], ["disabledTests", 55, 3], ["postInstallCheck", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SETUPTOOLS_SCM_PRETEND_VERSION", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 11], ["src", 24, 19], ["pyproject", 25, 3], ["patches", 29, 3], ["postPatch", 31, 3], ["env", 36, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 48, 3], ["disabledTests", 55, 3], ["postInstallCheck", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pypkgs = python3Packages;
   const version = "2.1-unstable-2025-03-28";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "JelmerT",
       repo: "cc2538-bsl",
       rev: "250e8616e6cb00f1b23cb251154de984ce506f7b",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = nix.thunk(() => nix.str`substituteInPlace cc2538_bsl/cc2538_bsl.py  \\
   --replace-fail '__version__ = "2.1"' '__version__ = "${version$}"'
 `);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: version$ }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], SETUPTOOLS_SCM_PRETEND_VERSION: version$ }));
       const build_system = nix.thunk(() => (() => {
         const w = nix.withScope(pypkgs, null);
         return [nix.thunk(() => nix.lookup(w, "setuptools-scm"))];
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const postInstallCheck = nix.thunk(() => nix.str`$out/bin/${nix.sel(meta, "mainProgram")} --help
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/JelmerT/cc2538-bsl",
         description: "Flash TI SimpleLink chips (CC2538, CC13xx, CC26xx) over serial",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cc2538-bsl",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version: version_1,
         src: src_1,

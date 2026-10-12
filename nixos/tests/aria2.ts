@@ -2,20 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/aria2.nix", [[["jsonrpc", 6, 5], ["id", 7, 5], ["method", 8, 5], ["params", 9, 5]], [["text", 16, 32]], [["aria2Rpc", 16, 21]], [["etc", 16, 17]], [["from", 27, 13], ["to", 28, 13]], [["from", 31, 13], ["to", 32, 13]], [["rpc-listen-port", 21, 17], ["allow-overwrite", 22, 9], ["check-integrity", 23, 9], ["console-log-level", 24, 9], ["listen-port", 25, 9], ["max-concurrent-downloads", 35, 9], ["seed-ratio", 36, 9], ["summary-interval", 37, 9]], [["enable", 18, 7], ["rpcSecretFile", 19, 7], ["settings", 20, 7]], [["aria2", 17, 14]], [["environment", 16, 5], ["services", 17, 5]], [["machine", 15, 9]], [["maintainers", 51, 8]], [["name", 13, 3], ["nodes", 15, 3], ["testScript", 42, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/aria2.nix", [["jsonrpc", 6, 5], ["id", 7, 5], ["method", 8, 5], ["params", 9, 5]]);
-const pos$2 = nix.positions(here + "/aria2.nix", [["text", 16, 32]]);
-const pos$3 = nix.positions(here + "/aria2.nix", [["aria2Rpc", 16, 21]]);
-const pos$4 = nix.positions(here + "/aria2.nix", [["etc", 16, 17]]);
-const pos$5 = nix.positions(here + "/aria2.nix", [["from", 27, 13], ["to", 28, 13]]);
-const pos$6 = nix.positions(here + "/aria2.nix", [["from", 31, 13], ["to", 32, 13]]);
-const pos$7 = nix.positions(here + "/aria2.nix", [["rpc-listen-port", 21, 17], ["allow-overwrite", 22, 9], ["check-integrity", 23, 9], ["console-log-level", 24, 9], ["listen-port", 25, 9], ["max-concurrent-downloads", 35, 9], ["seed-ratio", 36, 9], ["summary-interval", 37, 9]]);
-const pos$8 = nix.positions(here + "/aria2.nix", [["enable", 18, 7], ["rpcSecretFile", 19, 7], ["settings", 20, 7]]);
-const pos$9 = nix.positions(here + "/aria2.nix", [["aria2", 17, 14]]);
-const pos$10 = nix.positions(here + "/aria2.nix", [["environment", 16, 5], ["services", 17, 5]]);
-const pos$11 = nix.positions(here + "/aria2.nix", [["machine", 15, 9]]);
-const pos$12 = nix.positions(here + "/aria2.nix", [["maintainers", 51, 8]]);
-const pos$13 = nix.positions(here + "/aria2.nix", [["name", 13, 3], ["nodes", 15, 3], ["testScript", 42, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,41 +11,41 @@ export default nix.lambda((args) => (() => {
   const rpcSecret = "supersecret";
   const rpc_listen_port = 6800n;
   const curlBody = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     jsonrpc: 2.0,
     id: 1n,
     method: "aria2.getVersion",
     params: nix.thunk(() => [nix.thunk(() => nix.str`token:${rpcSecret}`)]),
   }));
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "aria2",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            aria2Rpc: nix.thunk(() => ({ [nix.POS]: pos$2, text: rpcSecret })),
+            [nix.POS]: $pos[2],
+            aria2Rpc: nix.thunk(() => ({ [nix.POS]: $pos[1], text: rpcSecret })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           aria2: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             enable: true,
             rpcSecretFile: "/etc/aria2Rpc",
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               "rpc-listen-port": rpc_listen_port,
               "allow-overwrite": false,
               "check-integrity": true,
               "console-log-level": "warn",
               "listen-port": nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$5, from: 20000n, to: 20010n })),
-                nix.thunk(() => ({ [nix.POS]: pos$6, from: 22222n, to: 22222n })),
+                nix.thunk(() => ({ [nix.POS]: $pos[4], from: 20000n, to: 20010n })),
+                nix.thunk(() => ({ [nix.POS]: $pos[5], from: 22222n, to: 22222n })),
               ]),
               "max-concurrent-downloads": 50n,
               "seed-ratio": 1.2,
@@ -75,7 +63,7 @@ print(machine.wait_until_succeeds(curl_cmd, timeout=10))
 machine.shutdown()
 `),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "timhae"))]),
     })),
   };

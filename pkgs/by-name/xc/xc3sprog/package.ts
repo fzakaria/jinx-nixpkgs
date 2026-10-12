@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5], ["rev", 21, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]], [["version", 15, 3], ["pname", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["cmakeFlags", 33, 3], ["postPatch", 40, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchsvn: false, cmake: false, "pkg-config": false, "libusb-compat-0_1": false, libftdi1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5], ["rev", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 15, 3], ["pname", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["cmakeFlags", 33, 3], ["postPatch", 40, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   const libftdi1 = nix.arg($, "libftdi1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "795",
       pname: "xc3sprog",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://svn.code.sf.net/p/xc3sprog/code/trunk",
           sha256: "sha256-E0MGwC3gIfl60gjGaSeSPTR5jJm9r8m7Et3402lek/w=",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DCMAKE_SKIP_BUILD_RPATH=ON", "-DCMAKE_CXX_STANDARD=14"]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace javr/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-line tools for programming FPGAs, microcontrollers and PROMs via JTAG",
         homepage: "https://xc3sprog.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 30, 5], ["hash", 31, 5]], [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 34, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["pythonImportsCheck", 50, 3], ["nativeCheckInputs", 52, 3], ["disabledTests", 57, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch2: false, setuptools: false, numpy: false, torch: false, "typing-extensions": false, pytestCheckHook: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 34, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["pythonImportsCheck", 50, 3], ["nativeCheckInputs", 52, 3], ["disabledTests", 57, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "asteroid-filterbanks",
       version: "0.4.0-unstable-2024-12-02",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "asteroid-team",
           repo: "asteroid-filterbanks",
           rev: "74a13c69ba9858d57bd4936f18f3c3bd4b2d580c",
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "numpy2-compat.patch",
             url: "https://github.com/asteroid-team/asteroid-filterbanks/commit/2c22e97c782f0e57e49d2beb56054c71ad5ccb08.patch",
             hash: "sha256-wBwQJzG/ET+XbV39l3UvctwhR/5TG+WgdxrPa/nyhRU=",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
           "test_stateful_pcen_jit",
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["test_fb_def_and_forward_lowdim"]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "PyTorch-based audio source separation toolkit for researchers",
         homepage: "https://github.com/asteroid-team/asteroid-filterbanks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

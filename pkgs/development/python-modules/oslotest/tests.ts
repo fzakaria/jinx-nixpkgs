@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["pname", 9, 3], ["version", 10, 22], ["src", 10, 30], ["pyproject", 11, 3], ["postPatch", 13, 3], ["dontBuild", 19, 3], ["dontInstall", 20, 3], ["nativeCheckInputs", 22, 3], ["checkPhase", 28, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "oslo-config": false, oslotest: false, stestr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["pname", 9, 3], ["version", 10, 22], ["src", 10, 30], ["pyproject", 11, 3], ["postPatch", 13, 3], ["dontBuild", 19, 3], ["dontInstall", 20, 3], ["nativeCheckInputs", 22, 3], ["checkPhase", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const oslotest = nix.arg($, "oslotest");
   const stestr = nix.arg($, "stestr");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "oslotest-tests",
       version: nix.thunk(() => nix.attr(oslotest, "version")),
       src: nix.thunk(() => nix.attr(oslotest, "src")),

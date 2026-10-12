@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 37, 5], ["mainProgram", 38, 5], ["downloadPage", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["longDescription", 44, 5]], [["version", 12, 3], ["pname", 13, 3], ["pyproject", 14, 3], ["disabled", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["doCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, isPyPy: false, setuptools: false, filetype: false, deprecation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 37, 5], ["mainProgram", 38, 5], ["downloadPage", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["longDescription", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 12, 3], ["pname", 13, 3], ["pyproject", 14, 3], ["disabled", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["doCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nicfit",
           repo: "eyeD3",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [deprecation, filetype]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python module and command line program for processing ID3 tags",
         mainProgram: "eyeD3",
         downloadPage: "https://github.com/nicfit/eyeD3",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "eyeD3 is a Python module and command line program for processing ID3\ntags. Information about mp3 files (i.e bit rate, sample frequency, play\ntime, etc.) is also provided. The formats supported are ID3 v1.0/v1.1\nand v2.3/v2.4.\n",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         pyproject,

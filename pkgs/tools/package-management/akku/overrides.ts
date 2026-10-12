@@ -2,26 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/overrides.nix", [[["propagatedBuildInputs", 15, 5]], [["broken", 17, 31]], [["doCheck", 18, 27]], [["preCheck", 20, 26]], [["doCheck", 21, 26]], [["broken", 22, 43]], [["broken", 24, 5]], [["broken", 26, 39]], [["preCheck", 31, 7]], [["preBuild", 45, 5]], [["src", 59, 7]], [["unpackPhase", 63, 7]], [["postPatch", 69, 5]], [["preInstall", 79, 7]], [["mainProgram", 87, 23]], [["meta", 87, 18]], [["postPatch", 92, 7]], [["nativeCheckInputs", 98, 7]], [["chez-srfi", 29, 3], ["akku-r7rs", 44, 3], ["akku", 51, 3], ["machine-code", 67, 3], ["wak-foof-loop", 75, 3], ["scheme-langserver", 77, 3], ["xyz-modem", 90, 3], ["xitomatl", 103, 3], ["ufo-threaded-function", 104, 3], ["ufo-timer", 105, 3], ["ufo-try", 106, 3], ["loko-srfi", 109, 3], ["ac-d-bus", 110, 3], ["ufo-thread-pool", 116, 3], ["wak-htmlprag", 118, 3], ["chibi-math-linalg", 121, 3], ["chibi-mecab", 122, 3], ["chibi-ssl", 123, 3], ["chibi-voting", 124, 3], ["chibi-xgboost", 125, 3], ["dockerfile", 126, 3], ["in-progress-hash-bimaps", 127, 3], ["in-progress-hash-tables", 128, 3], ["rapid-analyze-library", 129, 3], ["rapid-args-fold", 130, 3], ["rapid-eliminate-mutable-variables", 131, 3], ["rapid-fix-letrec", 132, 3], ["rapid-graph", 133, 3], ["rapid-library-definition", 134, 3], ["rapid-mapping", 135, 3], ["rapid-read", 136, 3], ["rapid-set", 137, 3], ["rapid-syntax", 138, 3], ["read-char-if", 139, 3], ["shell-quote", 140, 3], ["srfi-19", 141, 3], ["srfi-64", 142, 3], ["srfi-179", 143, 3], ["string-inflection", 144, 3], ["tex-parser", 145, 3], ["trivial-tar-writer", 146, 3], ["unpack-assoc", 147, 3], ["agave", 148, 3], ["box2d-lite", 149, 3], ["chez-soop", 150, 3], ["chez-stats", 151, 3], ["dataframe", 152, 3], ["dharmalab", 153, 3], ["dorodango", 154, 3], ["fectors", 155, 3], ["fs-fatfs", 156, 3], ["fs-partitions", 157, 3], ["gnuplot-pipe", 158, 3], ["http-pixiu", 159, 3], ["influx-client", 160, 3], ["linenoise", 161, 3], ["mpl", 162, 3], ["mummel", 163, 3], ["ocelotl", 164, 3], ["r6lint", 165, 3], ["r6rs-clos", 166, 3], ["r6rs-coap", 167, 3], ["r6rs-msgpack", 168, 3], ["scheme-bytestructures", 169, 3], ["surfage", 170, 3], ["swish", 171, 3], ["text-mode", 172, 3], ["thunderchez", 173, 3], ["wak-ssax", 174, 3], ["wak-sxml-tools", 175, 3], ["yxskaft", 176, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, akku: false, curl: false, git: false, lrzsz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/overrides.nix", [["propagatedBuildInputs", 15, 5]]);
-const pos$2 = nix.positions(here + "/overrides.nix", [["broken", 17, 31]]);
-const pos$3 = nix.positions(here + "/overrides.nix", [["doCheck", 18, 27]]);
-const pos$4 = nix.positions(here + "/overrides.nix", [["preCheck", 20, 26]]);
-const pos$5 = nix.positions(here + "/overrides.nix", [["doCheck", 21, 26]]);
-const pos$6 = nix.positions(here + "/overrides.nix", [["broken", 22, 43]]);
-const pos$7 = nix.positions(here + "/overrides.nix", [["broken", 24, 5]]);
-const pos$8 = nix.positions(here + "/overrides.nix", [["broken", 26, 39]]);
-const pos$9 = nix.positions(here + "/overrides.nix", [["preCheck", 31, 7]]);
-const pos$10 = nix.positions(here + "/overrides.nix", [["preBuild", 45, 5]]);
-const pos$11 = nix.positions(here + "/overrides.nix", [["src", 59, 7]]);
-const pos$12 = nix.positions(here + "/overrides.nix", [["unpackPhase", 63, 7]]);
-const pos$13 = nix.positions(here + "/overrides.nix", [["postPatch", 69, 5]]);
-const pos$14 = nix.positions(here + "/overrides.nix", [["preInstall", 79, 7]]);
-const pos$15 = nix.positions(here + "/overrides.nix", [["mainProgram", 87, 23]]);
-const pos$16 = nix.positions(here + "/overrides.nix", [["meta", 87, 18]]);
-const pos$17 = nix.positions(here + "/overrides.nix", [["postPatch", 92, 7]]);
-const pos$18 = nix.positions(here + "/overrides.nix", [["nativeCheckInputs", 98, 7]]);
-const pos$19 = nix.positions(here + "/overrides.nix", [["chez-srfi", 29, 3], ["akku-r7rs", 44, 3], ["akku", 51, 3], ["machine-code", 67, 3], ["wak-foof-loop", 75, 3], ["scheme-langserver", 77, 3], ["xyz-modem", 90, 3], ["xitomatl", 103, 3], ["ufo-threaded-function", 104, 3], ["ufo-timer", 105, 3], ["ufo-try", 106, 3], ["loko-srfi", 109, 3], ["ac-d-bus", 110, 3], ["ufo-thread-pool", 116, 3], ["wak-htmlprag", 118, 3], ["chibi-math-linalg", 121, 3], ["chibi-mecab", 122, 3], ["chibi-ssl", 123, 3], ["chibi-voting", 124, 3], ["chibi-xgboost", 125, 3], ["dockerfile", 126, 3], ["in-progress-hash-bimaps", 127, 3], ["in-progress-hash-tables", 128, 3], ["rapid-analyze-library", 129, 3], ["rapid-args-fold", 130, 3], ["rapid-eliminate-mutable-variables", 131, 3], ["rapid-fix-letrec", 132, 3], ["rapid-graph", 133, 3], ["rapid-library-definition", 134, 3], ["rapid-mapping", 135, 3], ["rapid-read", 136, 3], ["rapid-set", 137, 3], ["rapid-syntax", 138, 3], ["read-char-if", 139, 3], ["shell-quote", 140, 3], ["srfi-19", 141, 3], ["srfi-64", 142, 3], ["srfi-179", 143, 3], ["string-inflection", 144, 3], ["tex-parser", 145, 3], ["trivial-tar-writer", 146, 3], ["unpack-assoc", 147, 3], ["agave", 148, 3], ["box2d-lite", 149, 3], ["chez-soop", 150, 3], ["chez-stats", 151, 3], ["dataframe", 152, 3], ["dharmalab", 153, 3], ["dorodango", 154, 3], ["fectors", 155, 3], ["fs-fatfs", 156, 3], ["fs-partitions", 157, 3], ["gnuplot-pipe", 158, 3], ["http-pixiu", 159, 3], ["influx-client", 160, 3], ["linenoise", 161, 3], ["mpl", 162, 3], ["mummel", 163, 3], ["ocelotl", 164, 3], ["r6lint", 165, 3], ["r6rs-clos", 166, 3], ["r6rs-coap", 167, 3], ["r6rs-msgpack", 168, 3], ["scheme-bytestructures", 169, 3], ["surfage", 170, 3], ["swish", 171, 3], ["text-mode", 172, 3], ["thunderchez", 173, 3], ["wak-ssax", 174, 3], ["wak-sxml-tools", 175, 3], ["yxskaft", 176, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,61 +15,61 @@ export default nix.lambda((args) => (() => {
   const lrzsz = nix.arg($, "lrzsz");
   const joinOverrides = (overrides) => (pkg) => (old) => nix.app(nix.sel(lib, "attrsets", "mergeAttrsList"), nix.thunk(() => nix.builtins.map((o) => nix.app(o, pkg, old), overrides)));
   const addToBuildInputs = (extras) => (pkg) => (old) => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "propagatedBuildInputs"), extras)),
   });
-  const broken = nix.thunk(() => nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, broken: true }))));
-  const skipTests = (pkg) => (old) => ({ [nix.POS]: pos$3, doCheck: false });
-  const showLibs = (pkg) => (old) => ({ [nix.POS]: pos$4, preCheck: "echo $CHEZSCHEMELIBDIRS" });
-  const runTests = (pkg) => (old) => ({ [nix.POS]: pos$5, doCheck: true });
+  const broken = nix.thunk(() => nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], broken: true }))));
+  const skipTests = (pkg) => (old) => ({ [nix.POS]: $pos[2], doCheck: false });
+  const showLibs = (pkg) => (old) => ({ [nix.POS]: $pos[3], preCheck: "echo $CHEZSCHEMELIBDIRS" });
+  const runTests = (pkg) => (old) => ({ [nix.POS]: $pos[4], doCheck: true });
   const brokenOnAarch64 = (_) => nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")),
     })));
   const brokenOnx86_64Darwin = nix.thunk(() => nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))),
     }))));
   const brokenOnDarwin = nix.thunk(() => nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
     }))));
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     "chez-srfi": nix.thunk(() => nix.app(joinOverrides, nix.thunk(() => [
         (pkg) => (old) => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           preCheck: "SKIP='\nmulti-dimensional-arrays.sps\ntime.sps\ntables-test.ikarus.sps\nlazy.sps\npipeline-operators.sps\nos-environment-variables.sps\n'\n",
         }),
       ]))),
     "akku-r7rs": (pkg) => (old) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       preBuild: "# tests aren't exported modules\nrm -rf tests\n",
     }),
     akku: nix.thunk(() => nix.app(joinOverrides, nix.thunk(() => [
         nix.thunk(() => nix.app(addToBuildInputs, nix.thunk(() => [curl, git]))),
-        (pkg) => (old) => ({ [nix.POS]: pos$11, src: nix.thunk(() => nix.sel(akku, "src")) }),
-        (pkg) => (old) => ({ [nix.POS]: pos$12, unpackPhase: null }),
+        (pkg) => (old) => ({ [nix.POS]: $pos[10], src: nix.thunk(() => nix.sel(akku, "src")) }),
+        (pkg) => (old) => ({ [nix.POS]: $pos[11], unpackPhase: null }),
       ]))),
-    "machine-code": (pkg) => (old) => ({ [nix.POS]: pos$13, postPatch: "rm tests/all-a64.sps\n" }),
+    "machine-code": (pkg) => (old) => ({ [nix.POS]: $pos[12], postPatch: "rm tests/all-a64.sps\n" }),
     "wak-foof-loop": skipTests,
     "scheme-langserver": nix.thunk(() => nix.app(joinOverrides, nix.thunk(() => [
         (pkg) => (old) => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           preInstall: "# add the lsp executable to be installed\necho \"#!/usr/bin/env scheme-script\" > .akku/bin/scheme-langserver\ncat run.ss >> .akku/bin/scheme-langserver\nchmod +x .akku/bin/scheme-langserver\n",
         }),
         skipTests,
         (pkg) => (old) => ({
-          [nix.POS]: pos$16,
-          meta: nix.thunk(() => ({ [nix.POS]: pos$15, mainProgram: "scheme-langserver" })),
+          [nix.POS]: $pos[15],
+          meta: nix.thunk(() => ({ [nix.POS]: $pos[14], mainProgram: "scheme-langserver" })),
         }),
       ]))),
     "xyz-modem": nix.thunk(() => nix.app(joinOverrides, nix.thunk(() => [
         (pkg) => (old) => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           postPatch: "substituteInPlace tests/test-xmodem.sps \\\n  --replace-fail \"which\" \"command -v\"\n",
         }),
-        (pkg) => (old) => ({ [nix.POS]: pos$18, nativeCheckInputs: nix.thunk(() => [lrzsz]) }),
+        (pkg) => (old) => ({ [nix.POS]: $pos[17], nativeCheckInputs: nix.thunk(() => [lrzsz]) }),
       ]))),
     xitomatl: skipTests,
     "ufo-threaded-function": skipTests,

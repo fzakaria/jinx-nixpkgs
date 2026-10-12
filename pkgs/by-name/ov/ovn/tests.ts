@@ -2,26 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["doCheck", 5, 5], ["outputs", 6, 5], ["installPhase", 7, 5], ["postInstall", 8, 5], ["dontFixup", 9, 5]], [["enable", 24, 20]], [["firewall", 24, 11], ["useDHCP", 25, 11]], [["systemPackages", 28, 21]], [["networking", 23, 9], ["environment", 28, 9]], [["machine", 21, 13]], [["name", 19, 7], ["nodes", 21, 7], ["testScript", 50, 7]], [["mode", 71, 5], ["makeTarget", 72, 5], ["testSuite", 73, 5]], [["mode", 76, 5], ["makeTarget", 77, 5], ["testSuite", 78, 5]], [["system-userspace", 70, 3], ["system-kernel", 75, 3]]]);
 const formals$1 = { args: { ovn: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["doCheck", 5, 5], ["outputs", 6, 5], ["installPhase", 7, 5], ["postInstall", 8, 5], ["dontFixup", 9, 5]]);
 const formals$2 = { args: { mode: false, makeTarget: false, testSuite: false }, ellipsis: false };
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/tests.nix", [["enable", 24, 20]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["firewall", 24, 11], ["useDHCP", 25, 11]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["systemPackages", 28, 21]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["networking", 23, 9], ["environment", 28, 9]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["machine", 21, 13]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["name", 19, 7], ["nodes", 21, 7], ["testScript", 50, 7]]);
-const pos$8 = nix.positions(here + "/tests.nix", [["mode", 71, 5], ["makeTarget", 72, 5], ["testSuite", 73, 5]]);
-const pos$9 = nix.positions(here + "/tests.nix", [["mode", 76, 5], ["makeTarget", 77, 5], ["testSuite", 78, 5]]);
-const pos$10 = nix.positions(here + "/tests.nix", [["system-userspace", 70, 3], ["system-kernel", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const ovn = nix.arg($, "ovn");
   const testers = nix.arg($, "testers");
   const systemTestData = nix.thunk(() => nix.app(nix.sel(ovn, "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       doCheck: false,
       outputs: nix.thunk(() => ["out"]),
       installPhase: "cp -a . $out",
@@ -34,22 +25,22 @@ export default nix.lambda((args) => (() => {
     const makeTarget = nix.arg($_1, "makeTarget");
     const testSuite = nix.arg($_1, "testSuite");
     return nix.app(nix.sel(testers, "runNixOSTest"), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: nix.thunk(() => nix.str`ovn-system-tests-${mode}`),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const pkgs = nix.arg($_2, "pkgs");
             return {
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+                [nix.POS]: $pos[2],
+                firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
                 useDHCP: false,
               })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 systemPackages: nix.thunk(() => (() => {
                   const w = nix.withScope(pkgs, null);
                   return [
@@ -96,15 +87,15 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     "system-userspace": nix.thunk(() => nix.app(mkSystemTest, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         mode: "userspace",
         makeTarget: "check-system-userspace",
         testSuite: "system-userspace-testsuite",
       })))),
     "system-kernel": nix.thunk(() => nix.app(mkSystemTest, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         mode: "kernel",
         makeTarget: "check-kernel",
         testSuite: "system-kmod-testsuite",

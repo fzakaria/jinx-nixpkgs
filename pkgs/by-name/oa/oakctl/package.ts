@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 7], ["hash", 19, 7]], [["url", 22, 7], ["hash", 23, 7]], [["url", 26, 7], ["hash", 27, 7]], [["x86_64-linux", 17, 5], ["aarch64-linux", 21, 5], ["aarch64-darwin", 25, 5]], [["command", 44, 5], ["package", 45, 5]], [["version", 43, 18]], [["tests", 43, 12]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["sourceProvenance", 76, 5]], [["pname", 36, 3], ["version", 37, 11], ["src", 37, 19], ["dontUnpack", 39, 3], ["dontConfigure", 40, 3], ["dontBuild", 41, 3], ["passthru", 43, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 50, 3], ["installPhase", 55, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libgcc: false, autoPatchelfHook: false, testers: false, oakctl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 17, 5], ["aarch64-linux", 21, 5], ["aarch64-darwin", 25, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["command", 44, 5], ["package", 45, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 43, 18]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 43, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["sourceProvenance", 76, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 11], ["src", 37, 19], ["dontUnpack", 39, 3], ["dontConfigure", 40, 3], ["dontBuild", 41, 3], ["passthru", 43, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 50, 3], ["installPhase", 55, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,26 +16,26 @@ export default nix.lambda((args) => (() => {
   const oakctl = nix.arg($, "oakctl");
   const version = "0.16.5";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://oakctl-releases.luxonis.com/data/${version}/linux_x86_64/oakctl`),
         hash: "sha256-bTa/0jwYuRNLNYjqHlAjIbbIAdY7Qyq3m0I6GFnEW0s=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://oakctl-releases.luxonis.com/data/${version}/linux_aarch64/oakctl`),
         hash: "sha256-RiZXHOxYJZHhIdIGGwO5BTDaoj4NYl0nZZbK3ULUhLI=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://oakctl-releases.luxonis.com/data/${version}/darwin_arm64/oakctl`),
         hash: "sha256-tJl9OKhaY9dIxkN+tsbQ3isyAfFPSDOqkgLgDDaRaSg=",
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "oakctl",
       version: version,
       src: src,
@@ -51,17 +43,17 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       dontBuild: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$5, command: "HOME=$TMPDIR oakctl version", package: oakctl })))),
+          [nix.POS]: $pos[5],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[4], command: "HOME=$TMPDIR oakctl version", package: oakctl })))),
         })),
       })),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libgcc, nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib"))]))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ninstall -D -m 0755 $src $out/bin/oakctl\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Tool to interact with Luxonis OAK4 cameras",
         homepage: "https://docs.luxonis.com/software-v3/oak-apps/oakctl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

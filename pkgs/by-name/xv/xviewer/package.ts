@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["extraLoaders", 78, 9]], [["description", 96, 5], ["mainProgram", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["platforms", 100, 5], ["maintainers", 101, 5], ["teams", 102, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 59, 3], ["postInstall", 74, 3], ["preFixup", 89, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, docbook_xsl: false, exempi: false, "gdk-pixbuf": false, glib: false, "gobject-introspection": false, gtk3: false, "gtk-doc": false, itstool: false, lcms2: false, libexif: false, libjpeg: false, libpeas: false, librsvg: false, libxml2: false, meson: false, ninja: false, "pkg-config": false, python3: false, wrapGAppsHook3: false, "cinnamon-desktop": false, "yelp-tools": false, xapp: false, "xapp-symbolic-icons": false, gnome: false, libavif: false, libheif: false, libjxl: false, "webp-pixbuf-loader": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraLoaders", 78, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 96, 5], ["mainProgram", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["platforms", 100, 5], ["maintainers", 101, 5], ["teams", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 59, 3], ["postInstall", 74, 3], ["preFixup", 89, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const libjxl = nix.arg($, "libjxl");
   const webp_pixbuf_loader = nix.arg($, "webp-pixbuf-loader");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xviewer",
       version: "3.4.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "xviewer",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -80,7 +77,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.str`# In postInstall to run before gappsWrapperArgsHook.
 export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           extraLoaders: nix.thunk(() => [
             libavif,
             nix.thunk(() => nix.sel(libheif, "lib")),
@@ -95,7 +92,7 @@ export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Generic image viewer from Linux Mint",
         mainProgram: "xviewer",
         homepage: "https://github.com/linuxmint/xviewer",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["postFetch", 41, 5], ["hash", 45, 5]], [["gdb", 68, 15]], [["lldb", 74, 15]], [["x86_64-linux", 86, 11], ["i686-linux", 87, 11], ["aarch64-linux", 88, 11], ["riscv64-linux", 89, 11], ["aarch64-darwin", 90, 11]], [["description", 149, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["platforms", 154, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["patches", 48, 3], ["preBuild", 80, 3], ["build-system", 97, 3], ["doCheck", 100, 3], ["nativeCheckInputs", 102, 3], ["preCheck", 123, 3], ["postCheck", 128, 3], ["disabledTests", 132, 3], ["disabledTestPaths", 137, 3], ["__darwinAllowLocalNetworking", 144, 3], ["pythonImportsCheck", 146, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, pythonAtLeast: false, fetchFromGitHub: false, replaceVars: false, gdb: false, lldb: false, setuptools: false, pytestCheckHook: false, "pytest-xdist": false, "pytest-timeout": false, "pytest-retry": false, "importlib-metadata": false, psutil: false, untangle: false, django: false, flask: false, gevent: false, numpy: false, requests: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["postFetch", 41, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gdb", 68, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["lldb", 74, 15]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 86, 11], ["i686-linux", 87, 11], ["aarch64-linux", 88, 11], ["riscv64-linux", 89, 11], ["aarch64-darwin", 90, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 149, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["platforms", 154, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["patches", 48, 3], ["preBuild", 80, 3], ["build-system", 97, 3], ["doCheck", 100, 3], ["nativeCheckInputs", 102, 3], ["preCheck", 123, 3], ["postCheck", 128, 3], ["disabledTests", 132, 3], ["disabledTestPaths", 137, 3], ["__darwinAllowLocalNetworking", 144, 3], ["pythonImportsCheck", 146, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.22";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "debugpy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,15 +46,15 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-test-pythonpath.patch"),
         nix.path(here, "./skip-attach-pid-tests.patch"),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-gdb.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, gdb: gdb })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-gdb.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], gdb: gdb })))),
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-lldb.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, lldb: lldb })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-lldb.patch"), nix.thunk(() => ({ [nix.POS]: $pos[2], lldb: lldb })))),
         ])))));
       const preBuild = nix.thunk(() => nix.str`(
   set -x
   cd src/debugpy/_vendored/pydevd/pydevd_attach_to_process
   $CXX linux_and_mac/attach.cpp -Ilinux_and_mac -std=c++11 -fPIC -nostartfiles ${nix.selOr({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "x86_64-linux": "-shared -o attach_linux_amd64.so",
         "i686-linux": "-shared -o attach_linux_x86.so",
         "aarch64-linux": "-shared -o attach_linux_arm64.so",
@@ -95,7 +90,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["debugpy"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Implementation of the Debug Adapter Protocol for Python",
         homepage: "https://github.com/microsoft/debugpy",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/debugpy/releases/tag/${nix.sel(src, "tag")}`),
@@ -113,7 +108,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

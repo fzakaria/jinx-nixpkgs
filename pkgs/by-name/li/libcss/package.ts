@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["NIX_CFLAGS_COMPILE", 48, 7]], [["homepage", 56, 5], ["description", 57, 5], ["longDescription", 58, 5], ["license", 64, 5], ["maintainers", 65, 40], ["platforms", 65, 52]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 33, 3], ["propagatedBuildInputs", 38, 3], ["makeFlags", 43, 3], ["env", 48, 3], ["enableParallelBuilding", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, perl: false, "pkg-config": false, "netsurf-buildsystem": false, libparserutils: false, libwapcaplet: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["longDescription", 58, 5], ["license", 64, 5], ["maintainers", 65, 40], ["platforms", 65, 52]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 33, 3], ["propagatedBuildInputs", 38, 3], ["makeFlags", 43, 3], ["env", 48, 3], ["enableParallelBuilding", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libparserutils = nix.arg($, "libparserutils");
   const libwapcaplet = nix.arg($, "libwapcaplet");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libcss",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.netsurf-browser.org/libs/releases/libcss-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-LfIVu+w01R1gwaBLAbLfTV0Y9RDx86evS4DN21ZxFU4=",
         })))),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`NSSHARED=${netsurf_buildsystem}/share/netsurf-buildsystem`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=implicit-fallthrough",
             nix.thunk(() => nix.str`-Wno-error=${(nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? "maybe-uninitialized" : "uninitialized")}`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(netsurf_buildsystem, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.netsurf-browser.org/projects/libcss/",
         description: "Cascading Style Sheets library for netsurf browser",
         longDescription: "LibCSS is a CSS parser and selection engine. It aims to parse the forward\ncompatible CSS grammar. It was developed as part of the NetSurf project\nand is available for use by other software, under a more permissive\nlicense.\n",

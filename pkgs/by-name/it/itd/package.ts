@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 12, 3], ["vendorHash", 20, 3], ["preBuild", 22, 3], ["subPackages", 26, 3], ["postInstall", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitea: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 12, 3], ["vendorHash", 20, 3], ["preBuild", 22, 3], ["subPackages", 26, 3], ["postInstall", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitea = nix.arg($, "fetchFromGitea");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "itd",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitea.elara.ws",
           owner: "Elara6331",
           repo: "itd",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => [".", "cmd/itctl"]),
       postInstall: "install -Dm644 itd.toml $out/etc/itd.toml\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Daemon to interact with the PineTime running InfiniTime",
         homepage: "https://gitea.elara.ws/Elara6331/itd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

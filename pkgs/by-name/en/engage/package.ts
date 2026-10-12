@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ENGAGE_BOOK_PATH", 14, 5]], [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 58, 5]], [["pname", 10, 3], ["version", 11, 3], ["env", 13, 3], ["src", 17, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildAndTestSubdir", 31, 3], ["postInstall", 33, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, installShellFiles: false, rustPlatform: false, fetchFromGitLab: false, mdbook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ENGAGE_BOOK_PATH", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["env", 13, 3], ["src", 17, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildAndTestSubdir", 31, 3], ["postInstall", 33, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,15 +13,15 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const mdbook = nix.arg($, "mdbook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "engage",
       version: "0.3.0",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         ENGAGE_BOOK_PATH: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/doc/${nix.sel(finalAttrs, "pname")}`),
       })),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           domain: "gitlab.computer.surgery",
           owner: "charles",
           repo: "engage",
@@ -41,7 +38,7 @@ mkdir -p $out/share/doc
 mv public $out/share/doc/${nix.sel(finalAttrs, "pname")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Process composer with ordering and parallelism based on directed acyclic graphs",
         mainProgram: "engage",
         homepage: "https://engage.computer.surgery",

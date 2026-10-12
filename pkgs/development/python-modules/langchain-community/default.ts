@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["rev-prefix", 125, 5], ["ignoredVersions", 126, 5]], [["updateScript", 124, 12]], [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5]], [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["src", 46, 3], ["sourceRoot", 53, 3], ["build-system", 55, 3], ["pythonRelaxDeps", 58, 3], ["dependencies", 62, 3], ["pythonImportsCheck", 76, 3], ["nativeCheckInputs", 78, 3], ["enabledTestPaths", 93, 3], ["__darwinAllowLocalNetworking", 97, 3], ["disabledTests", 99, 3], ["disabledTestPaths", 115, 3], ["passthru", 124, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, hatchling: false, aiohttp: false, "httpx-sse": false, "langchain-classic": false, "langchain-core": false, langsmith: false, numpy: false, "pydantic-settings": false, pyyaml: false, requests: false, sqlalchemy: false, tenacity: false, blockbuster: false, "langchain-tests": false, lark: false, "mypy-extensions": false, pandas: false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, "requests-mock": false, responses: false, syrupy: false, toml: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 125, 5], ["ignoredVersions", 126, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 124, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["src", 46, 3], ["sourceRoot", 53, 3], ["build-system", 55, 3], ["pythonRelaxDeps", 58, 3], ["dependencies", 62, 3], ["pythonImportsCheck", 76, 3], ["nativeCheckInputs", 78, 3], ["enabledTestPaths", 93, 3], ["__darwinAllowLocalNetworking", 97, 3], ["disabledTests", 99, 3], ["disabledTestPaths", 115, 3], ["passthru", 124, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "langchain-ai",
           repo: "langchain-community",
           tag: nix.thunk(() => nix.str`libs/community/v${version}`),
@@ -97,15 +93,15 @@ export default nix.lambda((args) => (() => {
         "tests/unit_tests/indexes/test_sql_record_manager.py",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "rev-prefix": "libs/community/v",
             ignoredVersions: "a|b|dev|rc",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Community contributed LangChain integrations",
         homepage: "https://github.com/langchain-ai/langchain-community",
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langchain-community/releases/tag/${nix.sel(src, "tag")}`),
@@ -119,7 +115,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["dependencies", 18, 14]], [["description", 22, 5], ["mainProgram", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]], [["owner", 7, 3], ["repo", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["hash", 11, 3], ["vendorHash", 12, 3], ["cmdGen", 13, 3], ["cmdRes", 14, 3], ["extraLdflags", 15, 3], ["pythonArgs", 18, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, mkPulumiPackage: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["dependencies", 18, 14]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 22, 5], ["mainProgram", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 7, 3], ["repo", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["hash", 11, 3], ["vendorHash", 12, 3], ["cmdGen", 13, 3], ["cmdRes", 14, 3], ["extraLdflags", 15, 3], ["pythonArgs", 18, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +23,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X=github.com/pulumi/${repo}/provider/pkg/version.Version=${version}`),
       ]);
       const pythonArgs = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         dependencies: nix.thunk(() => (() => {
           const w = nix.withScope(python3Packages, null);
           return [nix.thunk(() => nix.lookup(w, "requests"))];
         })()),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Kubernetes resource package, for the Pulumi infrastructure-as-code toolchain",
         mainProgram: "pulumi-resource-kubernetes",
         homepage: "https://www.pulumi.com/docs/reference/clouds/kubernetes/",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner,
         repo,
         version,

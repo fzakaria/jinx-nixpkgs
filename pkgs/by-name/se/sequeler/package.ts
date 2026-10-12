@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mysqlSupport", 26, 5], ["postgresSupport", 27, 5]], [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["ignoredVersions", 67, 7], ["rev-prefix", 68, 7]], [["updateScript", 65, 5]], [["description", 73, 5], ["longDescription", 74, 5], ["homepage", 80, 5], ["license", 81, 5], ["teams", 82, 5], ["platforms", 83, 5], ["mainProgram", 84, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["passthru", 64, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, vala: false, meson: false, ninja: false, "pkg-config": false, pantheon: false, gettext: false, wrapGAppsHook3: false, "desktop-file-utils": false, gtk3: false, glib: false, libgee: false, libgda5: false, gtksourceview4: false, libxml2: false, libsecret: false, libssh2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mysqlSupport", 26, 5], ["postgresSupport", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ignoredVersions", 67, 7], ["rev-prefix", 68, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 73, 5], ["longDescription", 74, 5], ["homepage", 80, 5], ["license", 81, 5], ["teams", 82, 5], ["platforms", 83, 5], ["mainProgram", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["passthru", 64, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const libsecret = nix.arg($, "libsecret");
   const libssh2 = nix.arg($, "libssh2");
-  const sqlGda = nix.thunk(() => nix.app(nix.sel(libgda5, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, mysqlSupport: true, postgresSupport: true }))));
+  const sqlGda = nix.thunk(() => nix.app(nix.sel(libgda5, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], mysqlSupport: true, postgresSupport: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sequeler",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ellie-commons",
           repo: "sequeler",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,11 +52,11 @@ export default nix.lambda((args) => (() => {
         libssh2,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, ignoredVersions: "-", "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], ignoredVersions: "-", "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Friendly SQL Client",
         longDescription: "Sequeler is a native Linux SQL client built in Vala and Gtk. It allows you\nto connect to your local and remote databases, write SQL in a handy text\neditor with language recognition, and visualize SELECT results in a\nGtk.Grid Widget.\n",
         homepage: "https://github.com/ellie-commons/sequeler",

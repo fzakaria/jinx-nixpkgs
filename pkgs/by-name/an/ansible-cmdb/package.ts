@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["version", 35, 15]], [["package", 48, 5], ["version", 49, 5]], [["version", 47, 18]], [["tests", 47, 12]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]], [["pname", 22, 11], ["version", 22, 17], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["passthru", 47, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, replaceVars: false, python3Packages: false, testers: false, "ansible-cmdb": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 35, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 48, 5], ["version", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 47, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 47, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 22, 11], ["version", 22, 17], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["passthru", 47, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,35 +21,35 @@ export default nix.lambda((args) => (() => {
   const pname = "ansible-cmdb";
   const version = "1.31";
   return nix.app(buildPythonApplication, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fboender",
           repo: "ansible-cmdb",
           tag: version,
           hash: "sha256-HOFLX8fiid+xJOVYNyVbz5FunrhteAUPlvS3ctclVHo=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: version })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], version: version })))),
       ]),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [mako, pyyaml, jsonxs]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: ansible_cmdb,
               version: nix.thunk(() => nix.str`v${version}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Generate host overview from ansible fact gathering output",
         homepage: "https://github.com/fboender/ansible-cmdb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

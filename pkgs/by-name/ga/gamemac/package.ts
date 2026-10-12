@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 14, 5], ["url", 15, 5], ["hash", 16, 5]], [["updateScript", 39, 12]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5], ["platforms", 47, 5], ["sourceProvenance", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["nativeBuildInputs", 22, 3], ["sourceRoot", 27, 3], ["installPhase", 29, 3], ["passthru", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, undmg: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 14, 5], ["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 39, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5], ["platforms", 47, 5], ["sourceProvenance", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["strictDeps", 19, 3], ["__structuredAttrs", 20, 3], ["nativeBuildInputs", 22, 3], ["sourceRoot", 27, 3], ["installPhase", 29, 3], ["passthru", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gamemac",
       version: "0.8.328",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`GameHub_en_${nix.sel(finalAttrs, "version")}.dmg`),
           url: "https://gamehub-cdn.masnet.cn/uploads/upgrade/20260618/b616a96780c249a789d95f7b897333cb.dmg",
           hash: "sha256-uo/kr9PAFREfbkXX9hpJJNT6OZDv3jnOuZgc2fwtSyM=",
@@ -30,9 +27,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [undmg, makeWrapper]),
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\" \"$out/bin\"\nmv GameHub.app \"$out/Applications/\"\nmakeWrapper \"$out/Applications/GameHub.app/Contents/MacOS/GameHub\" \"$out/bin/GameHub\"\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Play mobile games natively on macOS",
         homepage: "https://www.gamemac.com/en/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

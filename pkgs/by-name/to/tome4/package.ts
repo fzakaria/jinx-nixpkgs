@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 36, 5], ["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["url", 52, 7], ["hash", 53, 7]], [["NIX_CFLAGS_COMPILE", 86, 5], ["NIX_CFLAGS_LINK", 91, 5]], [["desktopName", 98, 7], ["name", 99, 7], ["exec", 100, 7], ["icon", 101, 7], ["comment", 102, 7], ["type", 103, 7], ["categories", 104, 7], ["genericName", 108, 7]], [["extraArgs", 133, 5]], [["updateScript", 132, 12]], [["description", 140, 5], ["mainProgram", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["platforms", 145, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 35, 3], ["prePatch", 43, 3], ["patches", 49, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 72, 3], ["enableParallelBuilding", 83, 3], ["env", 85, 3], ["makeFlags", 94, 3], ["desktopItems", 96, 3], ["installPhase", 115, 3], ["passthru", 132, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch2: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, premake4: false, openal: false, libpng: false, libvorbis: false, libGLU: false, SDL2: false, SDL2_image: false, SDL2_ttf: false, libx11: false, xorgproto: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 36, 5], ["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 52, 7], ["hash", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 86, 5], ["NIX_CFLAGS_LINK", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["desktopName", 98, 7], ["name", 99, 7], ["exec", 100, 7], ["icon", 101, 7], ["comment", 102, 7], ["type", 103, 7], ["categories", 104, 7], ["genericName", 108, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 133, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 132, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 140, 5], ["mainProgram", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["platforms", 145, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 35, 3], ["prePatch", 43, 3], ["patches", 49, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 72, 3], ["enableParallelBuilding", 83, 3], ["env", 85, 3], ["makeFlags", 94, 3], ["desktopItems", 96, 3], ["installPhase", 115, 3], ["passthru", 132, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const sdlInputs = nix.thunk(() => [SDL2, SDL2_ttf, SDL2_image]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "tome4",
       version: "1.7.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.net-core.org",
           owner: "tome",
           repo: "t-engine4",
@@ -48,7 +41,7 @@ export default nix.lambda((args) => (() => {
       prePatch: "# http://forums.te4.org/viewtopic.php?f=42&t=49478&view=next#p234354\nsubstituteInPlace src/tgl.h \\\n  --replace-fail \"#include <GL/glext.h>\" \"\"\n",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gist.githubusercontent.com/hasufell/cb3b10f834e891d90f83/raw/cb4adda13868f6b94585575db4f8df70877ae45a/tome4-1.1.3-fix-implicit-declaration.patch",
             hash: "sha256-g47N/bi2/DDKqaEkfTaGp9ItS57QVnObzMDWXqrCjWE=",
           })))),
@@ -61,14 +54,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libGLU, openal, libpng, libvorbis, libx11, xorgproto], sdlInputs)),
       enableParallelBuilding: false,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (i) => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), i)}/include/SDL2`, sdlInputs), " "), nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (i) => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), i)}`, nix.thunk(() => nix.sel(finalAttrs, "buildInputs"))))),
         NIX_CFLAGS_LINK: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (i) => nix.str`-L${nix.app(nix.sel(lib, "getLib"), i)}/lib`, nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))),
       })),
       makeFlags: nix.thunk(() => ["config=release"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             desktopName: "Tales of Maj'Eyal",
             name: "tome4",
             exec: "tome4",
@@ -81,14 +74,14 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ndir=$out/share/tome4\n\ninstall -Dm755 t-engine $dir/t-engine\ncp -r bootstrap game $dir\nmakeWrapper $dir/t-engine $out/bin/tome4 \\\n  --chdir \"$dir\"\n\ninstall -Dm644 game/engines/default/data/gfx/te4-icon.png -t $out/share/icons/hicolor/64x64\n\ninstall -Dm644 -t $out/share/doc/tome4 CONTRIBUTING COPYING COPYING-MEDIA CREDITS\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex", "tome-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Tales of Maj'eyal (rogue-like game)",
         mainProgram: "tome4",
         homepage: "https://te4.org/",

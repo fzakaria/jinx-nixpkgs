@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]], [["NIX_CFLAGS_COMPILE", 34, 7]], [["description", 42, 5], ["downloadPage", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["propagatedBuildInputs", 30, 3], ["env", 34, 3], ["patches", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, libGLU: false, libGL: false, libx11: false, numpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 42, 5], ["downloadPage", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["propagatedBuildInputs", 30, 3], ["env", 34, 3], ["patches", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-BCh5240QGsdZDe5HX8at7VCLhf4Sc/27/eHYi9IA4U8=",
@@ -32,12 +29,12 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libGLU, libGL, libx11]);
       const propagatedBuildInputs = nix.thunk(() => [numpy]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       }));
       const patches = nix.thunk(() => [nix.path(here, "./static-libs.patch")]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open-source software for robot simulation, integrated with OpenAI Gym",
         downloadPage: "https://github.com/bulletphysics/bullet3",
         homepage: "https://pybullet.org/",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

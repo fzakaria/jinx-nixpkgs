@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 101, 5], ["repo", 102, 5], ["tag", 103, 5], ["hash", 104, 5]], [["ja", 122, 5], ["sklearn", 131, 5], ["torch", 132, 5], ["accelerate", 136, 5], ["retrieval", 137, 5], ["sagemaker", 141, 5], ["deepspeed", 142, 5], ["optuna", 146, 5], ["ray", 147, 5], ["kernels", 148, 5], ["codecarbon", 149, 5], ["integrations", 152, 5], ["serving", 153, 5], ["audio", 162, 5], ["vision", 168, 5], ["timm", 172, 5], ["video", 173, 5], ["num2words", 174, 5], ["sentencepiece", 175, 5], ["tiktoken", 179, 5], ["mistral-common", 183, 5], ["chat-template", 184, 5], ["quality", 187, 5], ["docs", 196, 5], ["benchmark", 199, 5], ["open-telemetry", 202, 5]], [["homepage", 215, 5], ["description", 216, 5], ["mainProgram", 217, 5], ["changelog", 218, 5], ["license", 219, 5], ["platforms", 220, 5], ["maintainers", 221, 5]], [["pname", 95, 3], ["version", 96, 3], ["pyproject", 97, 3], ["__structuredAttrs", 98, 3], ["src", 100, 3], ["build-system", 107, 3], ["dependencies", 109, 3], ["optional-dependencies", 121, 3], ["doCheck", 210, 3], ["pythonImportsCheck", 212, 3], ["meta", 214, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "huggingface-hub": false, numpy: false, packaging: false, pyyaml: false, regex: false, safetensors: false, tokenizers: false, tqdm: false, typer: false, "scikit-learn": false, torch: false, accelerate: false, faiss: false, datasets: false, fugashi: false, ipadic: false, sudachipy: false, unidic: false, sagemaker: false, optuna: false, ray: false, kernels: false, openai: false, pydantic: false, uvicorn: false, fastapi: false, starlette: false, rich: false, librosa: false, phonemizer: false, torchaudio: false, pillow: false, timm: false, torchvision: false, av: false, num2words: false, sentencepiece: false, protobuf: false, tiktoken: false, blobfile: false, "mistral-common": false, jinja2: false, ruff: false, gitpython: false, urllib3: false, libcst: false, tomli: false, "opentelemetry-api": false, "opentelemetry-exporter-otlp": false, "opentelemetry-sdk": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 101, 5], ["repo", 102, 5], ["tag", 103, 5], ["hash", 104, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ja", 122, 5], ["sklearn", 131, 5], ["torch", 132, 5], ["accelerate", 136, 5], ["retrieval", 137, 5], ["sagemaker", 141, 5], ["deepspeed", 142, 5], ["optuna", 146, 5], ["ray", 147, 5], ["kernels", 148, 5], ["codecarbon", 149, 5], ["integrations", 152, 5], ["serving", 153, 5], ["audio", 162, 5], ["vision", 168, 5], ["timm", 172, 5], ["video", 173, 5], ["num2words", 174, 5], ["sentencepiece", 175, 5], ["tiktoken", 179, 5], ["mistral-common", 183, 5], ["chat-template", 184, 5], ["quality", 187, 5], ["docs", 196, 5], ["benchmark", 199, 5], ["open-telemetry", 202, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 215, 5], ["description", 216, 5], ["mainProgram", 217, 5], ["changelog", 218, 5], ["license", 219, 5], ["platforms", 220, 5], ["maintainers", 221, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 95, 3], ["version", 96, 3], ["pyproject", 97, 3], ["__structuredAttrs", 98, 3], ["src", 100, 3], ["build-system", 107, 3], ["dependencies", 109, 3], ["optional-dependencies", 121, 3], ["doCheck", 210, 3], ["pythonImportsCheck", 212, 3], ["meta", 214, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,13 +62,13 @@ export default nix.lambda((args) => (() => {
   const opentelemetry_exporter_otlp = nix.arg($, "opentelemetry-exporter-otlp");
   const opentelemetry_sdk = nix.arg($, "opentelemetry-sdk");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "transformers",
       version: "5.17.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "huggingface",
           repo: "transformers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,7 +87,7 @@ export default nix.lambda((args) => (() => {
         typer,
       ]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           ja: nix.thunk(() => [fugashi, ipadic, unidic, sudachipy]),
           sklearn: nix.thunk(() => [scikit_learn]),
           torch: nix.thunk(() => [torch, accelerate]),
@@ -121,7 +118,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["transformers"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/huggingface/transformers",
         description: "Natural Language Processing for TensorFlow 2.0 and PyTorch",
         mainProgram: "transformers-cli",

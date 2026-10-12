@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["src", 48, 26], ["hash", 49, 5]], [["pname", 59, 5], ["version", 60, 26], ["src", 60, 34], ["nativeBuildInputs", 62, 5], ["dontConfigure", 67, 5], ["buildPhase", 69, 5], ["installPhase", 82, 5], ["dontFixup", 92, 5], ["outputHash", 94, 5], ["outputHashMode", 95, 5]], [["RUSTC_BOOTSTRAP", 123, 5]], [["BUN_NO_CODESIGN_MACHO_BINARY", 125, 55]], [["extraArgs", 218, 5]], [["updateScript", 217, 12]], [["description", 225, 5], ["homepage", 226, 5], ["changelog", 227, 5], ["license", 228, 5], ["mainProgram", 229, 5], ["maintainers", 230, 5], ["platforms", 235, 5]], [["pname", 34, 3], ["version", 35, 3], ["strictDeps", 37, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["cargoDeps", 47, 3], ["postPatch", 52, 3], ["node_modules", 58, 3], ["nativeBuildInputs", 98, 3], ["buildInputs", 114, 3], ["dontStrip", 120, 3], ["env", 122, 3], ["configurePhase", 127, 3], ["buildPhase", 135, 3], ["installPhase", 163, 3], ["postInstall", 202, 3], ["doInstallCheck", 211, 3], ["nativeInstallCheckInputs", 212, 3], ["passthru", 217, 3], ["meta", 224, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bun: false, cargo: false, rustc: false, cmake: false, ninja: false, "pkg-config": false, rustPlatform: false, autoPatchelfHook: false, installShellFiles: false, makeWrapper: false, libopus: false, "alsa-lib": false, libpulseaudio: false, pipewire: false, darwin: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, "nix-update-script": false, pipewireSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 48, 26], ["hash", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 59, 5], ["version", 60, 26], ["src", 60, 34], ["nativeBuildInputs", 62, 5], ["dontConfigure", 67, 5], ["buildPhase", 69, 5], ["installPhase", 82, 5], ["dontFixup", 92, 5], ["outputHash", 94, 5], ["outputHashMode", 95, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["RUSTC_BOOTSTRAP", 123, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["BUN_NO_CODESIGN_MACHO_BINARY", 125, 55]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 218, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 217, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 225, 5], ["homepage", 226, 5], ["changelog", 227, 5], ["license", 228, 5], ["mainProgram", 229, 5], ["maintainers", 230, 5], ["platforms", 235, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["strictDeps", 37, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["cargoDeps", 47, 3], ["postPatch", 52, 3], ["node_modules", 58, 3], ["nativeBuildInputs", 98, 3], ["buildInputs", 114, 3], ["dontStrip", 120, 3], ["env", 122, 3], ["configurePhase", 127, 3], ["buildPhase", 135, 3], ["installPhase", 163, 3], ["postInstall", 202, 3], ["doInstallCheck", 211, 3], ["nativeInstallCheckInputs", 212, 3], ["passthru", 217, 3], ["meta", 224, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,26 +37,26 @@ export default nix.lambda((args) => (() => {
     return nix.str`pi_natives.${nix.sel(node, "platform")}-${arch}.node`;
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "omp",
       version: "18.8.7",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "can1357",
           repo: "oh-my-pi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-nWuBvVNeJW9rgrSMhx5JP4CjFFJnfuMzjOlaGDCPVUU=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-wfGvns/9Supk3QUuVfchUy7talfwhJswbLd8LWoZMXU=",
         })))),
       postPatch: "substituteInPlace packages/coding-agent/src/cli.ts \\\n  --replace-fail 'if (Bun.semver.order(Bun.version, MIN_BUN_VERSION) < 0)' 'if (false)'\n",
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -91,7 +83,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook"))]))))),
       buildInputs: nix.thunk(() => nix.concat([libopus], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib"))])), nix.app(nix.sel(lib, "optionals"), pipewireSupport, nix.thunk(() => [pipewire]))))),
       dontStrip: true,
-      env: nix.thunk(() => nix.update({ [nix.POS]: pos$4, RUSTC_BOOTSTRAP: "1" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$5, BUN_NO_CODESIGN_MACHO_BINARY: "1" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: $pos[3], RUSTC_BOOTSTRAP: "1" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[4], BUN_NO_CODESIGN_MACHO_BINARY: "1" }))))),
       configurePhase: nix.thunk(() => nix.str`runHook preConfigure
 
 cp -R ${nix.sel(finalAttrs, "node_modules")}/* .
@@ -137,14 +129,14 @@ runHook postInstall
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook, versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             extraArgs: nix.thunk(() => ["--subpackage", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Terminal-based coding agent with multi-model support",
         homepage: "https://omp.sh",
         changelog: nix.thunk(() => nix.str`https://github.com/can1357/oh-my-pi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

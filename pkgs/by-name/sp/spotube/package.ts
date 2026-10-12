@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 82, 11], ["url", 83, 11], ["hash", 84, 19]], [["suffix", 89, 9], ["hash", 90, 9]], [["suffix", 93, 9], ["hash", 94, 9]], [["suffix", 97, 9], ["hash", 98, 9]], [["aarch64-linux", 88, 7], ["x86_64-linux", 92, 7], ["aarch64-darwin", 96, 7]], [["sources", 77, 12]], [["description", 103, 5], ["longDescription", 104, 5], ["downloadPage", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["mainProgram", 112, 5], ["maintainers", 113, 5], ["platforms", 114, 5], ["sourceProvenance", 115, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["sourceRoot", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 43, 3], ["dontWrapGApps", 52, 3], ["installPhase", 54, 3], ["postFixup", 70, 3], ["passthru", 77, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, dpkg: false, makeBinaryWrapper: false, makeWrapper: false, undmg: false, wrapGAppsHook3: false, "glib-networking": false, gtk3: false, libappindicator: false, libnotify: false, libsoup_3: false, "mpv-unwrapped": false, "xdg-user-dirs": false, webkitgtk_4_1: false }, ellipsis: false };
 const formals$2 = { args: { suffix: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 82, 11], ["url", 83, 11], ["hash", 84, 19]]);
-const pos$2 = nix.positions(here + "/package.nix", [["suffix", 89, 9], ["hash", 90, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["suffix", 93, 9], ["hash", 94, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["suffix", 97, 9], ["hash", 98, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["aarch64-linux", 88, 7], ["x86_64-linux", 92, 7], ["aarch64-darwin", 96, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["sources", 77, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 103, 5], ["longDescription", 104, 5], ["downloadPage", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["mainProgram", 112, 5], ["maintainers", 113, 5], ["platforms", 114, 5], ["sourceProvenance", 115, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["sourceRoot", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 43, 3], ["dontWrapGApps", 52, 3], ["installPhase", 54, 3], ["postFixup", 70, 3], ["passthru", 77, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const xdg_user_dirs = nix.arg($, "xdg-user-dirs");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "spotube",
       version: "5.1.2",
       src: nix.thunk(() => nix.sel(finalAttrs, "passthru", "sources", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -48,33 +41,33 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdg_user_dirs]))}
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         sources: nix.thunk(() => (() => {
           const fetchArtifact = nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const suffix = nix.arg($_1, "suffix");
             const hash = nix.arg($_1, "hash");
             return nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 name: nix.thunk(() => nix.str`Spotube-${nix.sel(finalAttrs, "version")}-${suffix}`),
                 url: nix.thunk(() => nix.str`https://github.com/KRTirtho/spotube/releases/download/v${nix.sel(finalAttrs, "version")}/Spotube-${suffix}`),
                 hash: hash,
               })));
           })(), formals$2);
           return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "aarch64-linux": nix.thunk(() => nix.app(fetchArtifact, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 suffix: "linux-aarch64.deb",
                 hash: "sha256-cb9qPNJ1wB3zURvBCLEJIr+L4BGYwtgjAezSRm4QQDE=",
               })))),
             "x86_64-linux": nix.thunk(() => nix.app(fetchArtifact, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 suffix: "linux-x86_64.deb",
                 hash: "sha256-FEb5mPmGOAMw4nnFJ0kC+ymg4zBdUXWjvIO0sGOS6M0=",
               })))),
             "aarch64-darwin": nix.thunk(() => nix.app(fetchArtifact, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 suffix: "macos-universal.dmg",
                 hash: "sha256-J2J9/UQZAECvGmumqGzcRFA5kpakOmFpQKlK5oesCRM=",
               })))),
@@ -82,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Open source, cross-platform Spotify client compatible across multiple platforms",
         longDescription: "Spotube is an open source, cross-platform Spotify client compatible across\nmultiple platforms utilizing Spotify's data API and YouTube (or Piped.video or JioSaavn)\nas an audio source, eliminating the need for Spotify Premium\n",
         downloadPage: "https://github.com/KRTirtho/spotube/releases",

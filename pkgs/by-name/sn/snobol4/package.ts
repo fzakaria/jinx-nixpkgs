@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 23, 5], ["hash", 28, 5]], [["description", 71, 5], ["longDescription", 72, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["configureFlags", 55, 3], ["enableParallelBuilding", 58, 3], ["patches", 60, 3], ["preConfigurePhases", 64, 3], ["prePreConfigurePhase", 65, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenv: false, bzip2: false, gdbm: false, gnum4: false, gzip: false, libffi: false, openssl: false, readline: false, sqlite: false, tcl: false, xz: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 23, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 71, 5], ["longDescription", 72, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["configureFlags", 55, 3], ["enableParallelBuilding", 58, 3], ["patches", 60, 3], ["preConfigurePhases", 64, 3], ["prePreConfigurePhase", 65, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "snobol4",
       version: "2.3.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://ftp.regressive.org/snobol4/snobol4-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://ftp.regressive.org/snobol4/old/snobol4-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       preConfigurePhases: nix.thunk(() => ["prePreConfigurePhase"]),
       prePreConfigurePhase: "preConfigureHooks=\"${preConfigureHooks//_multioutConfig/}\"\nprependToVar configureFlags --mandir=\"$man\"/share/man\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Macro Implementation of SNOBOL4 in C",
         longDescription: "An open source port of Macro SNOBOL4 (The original Bell Telephone Labs implementation, written in SIL macros) by Phil Budne.\nSupports full SNOBOL4 language plus SPITBOL, [Blocks](https://www.regressive.org/snobol4/blocks/) and other extensions.\n",
         homepage: "https://www.regressive.org/snobol4/csnobol4/",

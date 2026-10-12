@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5], ["leaveDotGit", 43, 5], ["postFetch", 44, 5]], [["name", 89, 7], ["url", 90, 7], ["hash", 91, 7]], [["DOTNET_SYSTEM_GLOBALIZATION_INVARIANT", 105, 5]], [["LOCALE_ARCHIVE", 108, 5]], [["smoke-test", 358, 11]], [["tests", 358, 5], ["updateScript", 359, 5]], [["changelog", 363, 5], ["description", 364, 5], ["homepage", 365, 5], ["license", 366, 5], ["maintainers", 367, 5], ["platforms", 374, 5], ["sourceProvenance", 379, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["unpackPhase", 52, 3], ["patches", 78, 3], ["postPatch", 97, 3], ["env", 104, 3], ["postConfigure", 111, 3], ["nativeBuildInputs", 125, 3], ["buildInputs", 135, 3], ["dotnet-sdk", 140, 3], ["dotnet-runtime", 141, 3], ["dotnetFlags", 143, 3], ["projectFile", 148, 3], ["nugetDeps", 157, 3], ["doCheck", 159, 3], ["__darwinAllowLocalNetworking", 162, 3], ["__noChroot", 163, 3], ["disabledTests", 166, 3], ["testProjectFile", 247, 3], ["preCheck", 249, 3], ["postInstall", 258, 3], ["executables", 324, 3], ["doInstallCheck", 333, 3], ["installCheckPhase", 334, 3], ["passthru", 357, 3], ["meta", 362, 3]]]);
 const formals$1 = { args: { bash: false, buildDotnetModule: false, coreutils: false, darwin: false, dotnetCorePackages: false, fetchFromGitHub: false, fetchpatch: false, gitMinimal: false, glibc: false, glibcLocales: false, lib: false, nixosTests: false, stdenv: false, which: false, buildPackages: false, runtimeShell: false, nodeRuntimes: true, nodejs_24: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5], ["leaveDotGit", 43, 5], ["postFetch", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 89, 7], ["url", 90, 7], ["hash", 91, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["DOTNET_SYSTEM_GLOBALIZATION_INVARIANT", 105, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["LOCALE_ARCHIVE", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["smoke-test", 358, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 358, 5], ["updateScript", 359, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 363, 5], ["description", 364, 5], ["homepage", 365, 5], ["license", 366, 5], ["maintainers", 367, 5], ["platforms", 374, 5], ["sourceProvenance", 379, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["unpackPhase", 52, 3], ["patches", 78, 3], ["postPatch", 97, 3], ["env", 104, 3], ["postConfigure", 111, 3], ["nativeBuildInputs", 125, 3], ["buildInputs", 135, 3], ["dotnet-sdk", 140, 3], ["dotnet-runtime", 141, 3], ["dotnetFlags", 143, 3], ["projectFile", 148, 3], ["nugetDeps", 157, 3], ["doCheck", 159, 3], ["__darwinAllowLocalNetworking", 162, 3], ["__noChroot", 163, 3], ["disabledTests", 166, 3], ["testProjectFile", 247, 3], ["preCheck", 249, 3], ["postInstall", 258, 3], ["executables", 324, 3], ["doInstallCheck", 333, 3], ["installCheckPhase", 334, 3], ["passthru", 357, 3], ["meta", 362, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nodejs_24 = nix.arg($, "nodejs_24");
   nix.assert_(nix.builtins.all((x) => nix.builtins.elem(x, nix.thunk(() => ["node24"])), nodeRuntimes), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/gi/github-runner/package.nix:26:1");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "github-runner",
       version: "2.337.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "actions",
           repo: "runner",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +69,7 @@ export PATH=$TMPDIR/bin:$PATH
         nix.path(here, "./patches/dont-install-service.patch"),
         nix.path(here, "./patches/env-sh-use-runner-root.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ln-fhs.patch",
             url: "https://github.com/actions/runner/commit/5ff0ce1.patch",
             hash: "sha256-2Vg3cKZK3cE/OcPDZkdN2Ro2WgvduYTTwvNGxwCfXas=",
@@ -85,10 +78,10 @@ export PATH=$TMPDIR/bin:$PATH
       ]),
       postPatch: "# Ignore changes to src/Runner.Sdk/BuildConstants.cs\nsubstituteInPlace src/dir.proj \\\n  --replace-fail 'git update-index --assume-unchanged ./Runner.Sdk/BuildConstants.cs' \\\n                 'true'\n",
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         DOTNET_SYSTEM_GLOBALIZATION_INVARIANT: nix.thunk(() => nix.builtins.isNull(glibcLocales)),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.builtins.isNull(glibcLocales))), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           LOCALE_ARCHIVE: nix.thunk(() => nix.str`${glibcLocales}/lib/locale/locale-archive`),
         }))))),
       postConfigure: nix.thunk(() => nix.str`# Avoid deriving assembly metadata from the nondeterministic temporary Git commit.
@@ -230,15 +223,15 @@ fi
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "github-runner")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://github.com/actions/runner/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Self-hosted runner for GitHub Actions",
         homepage: "https://github.com/actions/runner",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pname", 43, 26], ["version", 43, 32], ["src", 43, 40], ["pnpm", 44, 13], ["fetcherVersion", 45, 5], ["hash", 46, 5]], [["extraArgs", 78, 5]], [["updateScript", 77, 12]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 89, 5], ["platforms", 90, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["dontInstallAgentSkills", 40, 3], ["pnpmDeps", 42, 3], ["buildPhase", 49, 3], ["installPhase", 57, 3], ["nativeInstallCheckInputs", 74, 3], ["doInstallCheck", 75, 3], ["passthru", 77, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, installAgentSkills: false, makeWrapper: false, "nix-update-script": false, versionCheckHook: false, nodejs: false, pnpm_10: false, pnpmConfigHook: false, fetchPnpmDeps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 43, 26], ["version", 43, 32], ["src", 43, 40], ["pnpm", 44, 13], ["fetcherVersion", 45, 5], ["hash", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 77, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 89, 5], ["platforms", 90, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["dontInstallAgentSkills", 40, 3], ["pnpmDeps", 42, 3], ["buildPhase", 49, 3], ["installPhase", 57, 3], ["nativeInstallCheckInputs", 74, 3], ["doInstallCheck", 75, 3], ["passthru", 77, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const tag_prefix = "@upstash/context7-mcp";
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "context7-mcp",
       version: "4.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "upstash",
           repo: "context7",
           tag: nix.thunk(() => nix.str`${tag_prefix}@${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpm, pnpmConfigHook, makeWrapper, installAgentSkills]),
       dontInstallAgentSkills: true,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -71,14 +66,14 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", nix.thunk(() => nix.str`${tag_prefix}@(.*)`)]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "MCP Server for up-to-date code documentation for LLMs and AI code editors",
         homepage: "https://context7.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

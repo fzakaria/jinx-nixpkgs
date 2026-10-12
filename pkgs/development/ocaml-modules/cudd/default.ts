@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 10, 5], ["hash", 11, 5]], [["domain", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postUnpack", 27, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitLab: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["domain", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postUnpack", 27, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const fetchurl = nix.arg($, "fetchurl");
   const cuddTarball = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/ivmai/cudd/archive/refs/tags/cudd-3.0.0.tar.gz",
       hash: "sha256-X+FFBBxZRonm589M1iPV8rfDYmFwi+jJpyrtcs9nrM4=",
     }))));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cudd",
       version: "0.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           domain: "git.frama-c.com",
           owner: "pub/codex",
           repo: "cudd.ml",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postUnpack: nix.thunk(() => nix.str`cp ${cuddTarball} $sourceRoot/cudd/cudd.tar.gz
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Minimal cudd bindings",
         homepage: "https://git.frama-c.com/pub/codex/cudd.ml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),

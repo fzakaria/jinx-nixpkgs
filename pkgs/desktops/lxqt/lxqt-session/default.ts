@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["updateScript", 59, 12]], [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["teams", 66, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, kwindowsystem: false, "layer-shell-qt": false, libxdmcp: false, liblxqt: false, "libpthread-stubs": false, libqtxdg: false, "lxqt-build-tools": false, "pkg-config": false, procps: false, qtbase: false, qtsvg: false, qttools: false, qtwayland: false, "qtxdg-tools": false, wrapQtAppsHook: false, "xdg-user-dirs": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 59, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["teams", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lxqt-session";
       const version = "2.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxqt",
           repo: "lxqt-session",
           rev: version,
@@ -57,11 +54,11 @@ export default nix.lambda((args) => (() => {
         xdg_user_dirs,
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/lxqt/lxqt-session",
         description: "Alternative session manager ported from the original razor-session",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

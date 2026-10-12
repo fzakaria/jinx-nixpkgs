@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 10, 3], ["version", 11, 3], ["duneVersion", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, ssl: false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["duneVersion", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const ssl = nix.arg($, "ssl");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lwt_ssl",
       version: "1.2.0",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ocsigen/lwt_ssl/releases/download/${nix.sel(finalAttrs, "version")}/lwt_ssl-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-swIK0nrs83fhw/J0Cgizbcu6mR+EMGZRE1dBBUiImnc=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [ssl, lwt]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/aantron/lwt_ssl",
         description: "OpenSSL binding with concurrent I/O",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

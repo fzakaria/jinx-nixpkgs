@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["mainProgram", 78, 5], ["maintainers", 79, 5], ["platforms", 83, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["dontUseCmakeConfigure", 40, 3], ["buildInputs", 42, 3], ["doInstallCheck", 54, 3], ["postPatch", 57, 3], ["mesonFlags", 67, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, meson: false, ninja: false, "pkg-config": false, cairomm_1_0: false, cli11: false, eigen: false, hidrd: false, inih: false, "microsoft-gsl": false, "sdl2-compat": false, spdlog: false, systemd: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["mainProgram", 78, 5], ["maintainers", 79, 5], ["platforms", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["dontUseCmakeConfigure", 40, 3], ["buildInputs", 42, 3], ["doInstallCheck", 54, 3], ["postPatch", 57, 3], ["mesonFlags", 67, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "iptsd",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linux-surface",
           repo: "iptsd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +59,7 @@ substituteInPlace etc/udev/50-iptsd.rules.in \\
 `),
       mesonFlags: nix.thunk(() => ["-Dservice_manager=systemd", "-Dsample_config=false", "-Db_lto=false"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/linux-surface/iptsd/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Userspace daemon for Intel Precise Touch & Stylus",
         homepage: "https://github.com/linux-surface/iptsd",

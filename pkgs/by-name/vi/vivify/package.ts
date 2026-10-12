@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["yarnLock", 26, 5], ["hash", 27, 5]], [["updateScript", 72, 12]], [["description", 75, 5], ["longDescription", 76, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["yarnOfflineCache", 25, 3], ["installPhase", 30, 3], ["nativeBuildInputs", 59, 3], ["dontStrip", 70, 3], ["passthru", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "nix-update-script": false, fetchYarnDeps: false, fetchFromGitHub: false, yarnConfigHook: false, npmHooks: false, nodejs: false, zip: false, file: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 72, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 75, 5], ["longDescription", 76, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["yarnOfflineCache", 25, 3], ["installPhase", 30, 3], ["nativeBuildInputs", 59, 3], ["dontStrip", 70, 3], ["passthru", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const zip = nix.arg($, "zip");
   const file = nix.arg($, "file");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vivify",
       version: "0.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jannis-baum",
           repo: "Vivify",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ZrSqwj40fOctN6folsN2/2z+o/PyAABjGgAgp4jcDOM=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-evi/sKbQXF90HdcVKzfSnu5PYD3UaQ7xuMsnh2TAE+U=",
         })))),
@@ -68,11 +64,11 @@ wrapProgram $out/bin/viv \\
       ]),
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Live Markdown viewer",
         longDescription: "Vivify brings your files to life in the browser!\nVivify is primarily made to render Markdown and Jupyter Notebooks, but will also\nserve as a directory browser and let you view code files with syntax highlighting.\n",
         homepage: "https://github.com/jannis-baum/Vivify",

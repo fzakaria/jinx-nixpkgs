@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["libsodium_include_dir", 29, 7]], [["SODIUM_USE_PKG_CONFIG", 46, 7], ["NIX_CFLAGS_COMPILE", 47, 7]], [["basic", 72, 18]], [["tests", 72, 12]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["platforms", 79, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["cargoHash", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 44, 3], ["env", 46, 3], ["cargoTestFlags", 59, 3], ["checkFlags", 66, 3], ["passthru", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, rustPlatform: false, nodejs: false, which: false, "util-linux": false, nixosTests: false, libsodium: false, "pkg-config": false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["libsodium_include_dir", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["SODIUM_USE_PKG_CONFIG", 46, 7], ["NIX_CFLAGS_COMPILE", 47, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["basic", 72, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 72, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["platforms", 79, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["cargoHash", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 44, 3], ["env", 46, 3], ["cargoTestFlags", 59, 3], ["checkFlags", 66, 3], ["passthru", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cjdns",
       version: "22.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cjdelisle",
           repo: "cjdns",
           tag: nix.thunk(() => nix.str`cjdns-v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./system-libsodium.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             libsodium_include_dir: nix.thunk(() => nix.str`${nix.sel(libsodium, "dev")}/include`),
           })))),
       ]),
@@ -46,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([which, nodejs, pkg_config], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), util_linux))),
       buildInputs: nix.thunk(() => [libsodium]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         SODIUM_USE_PKG_CONFIG: 1n,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             "-O2",
@@ -61,11 +55,11 @@ export default nix.lambda((args) => (() => {
         "--skip=crypto::crypto_auth::tests::test_wireguard_iface_encrypt_decrypt_with_auth",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, basic: nix.thunk(() => nix.sel(nixosTests, "cjdns")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], basic: nix.thunk(() => nix.sel(nixosTests, "cjdns")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Encrypted networking for regular people",
         homepage: "https://github.com/cjdelisle/cjdns",
         changelog: nix.thunk(() => nix.str`https://github.com/cjdelisle/cjdns/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["udisks", 77, 5], ["webdav", 78, 5], ["cdio_paranoia", 83, 5], ["curl", 87, 5], ["io_uring", 88, 5], ["mms", 89, 5], ["nfs", 90, 5], ["smbclient", 91, 5], ["bzip2", 93, 5], ["zzip", 94, 5], ["audiofile", 96, 5], ["faad", 97, 5], ["ffmpeg", 98, 5], ["flac", 99, 5], ["fluidsynth", 100, 5], ["gme", 101, 5], ["mad", 102, 5], ["mikmod", 103, 5], ["mpg123", 104, 5], ["opus", 108, 5], ["vorbis", 109, 5], ["vorbisenc", 111, 5], ["lame", 112, 5], ["libsamplerate", 114, 5], ["soxr", 115, 5], ["alsa", 117, 5], ["ao", 118, 5], ["jack", 119, 5], ["pipewire", 120, 5], ["pulse", 121, 5], ["shout", 122, 5], ["qobuz", 124, 5], ["libmpdclient", 130, 5], ["id3tag", 132, 5], ["dbus", 137, 5], ["expat", 138, 5], ["icu", 139, 5], ["pcre", 140, 5], ["sqlite", 141, 5], ["syslog", 142, 5], ["systemd", 143, 5], ["zeroconf", 144, 5]], [["documentation", 151, 5]], [["owner", 203, 5], ["repo", 204, 5], ["rev", 205, 5], ["sha256", 206, 5]], [["CXXFLAGS", 261, 5]], [["nixos", 281, 18]], [["tests", 281, 12]], [["description", 284, 5], ["homepage", 285, 5], ["license", 286, 5], ["maintainers", 287, 5], ["platforms", 291, 5], ["mainProgram", 292, 5], ["longDescription", 294, 5]], [["pname", 199, 3], ["version", 200, 3], ["src", 202, 3], ["buildInputs", 209, 3], ["nativeBuildInputs", 221, 3], ["depsBuildBuild", 228, 3], ["postPatch", 230, 3], ["nativeCheckInputs", 248, 3], ["doCheck", 250, 3], ["mesonAutoFeatures", 252, 3], ["outputs", 254, 3], ["env", 260, 3], ["mesonFlags", 266, 3], ["passthru", 281, 3], ["meta", 283, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, glib: false, systemdLibs: false, fmt: false, buildPackages: false, curl: false, libcdio: false, "libcdio-paranoia": false, libmms: false, libnfs: false, liburing: false, samba: false, bzip2: false, zziplib: false, audiofile: false, faad2: false, ffmpeg: false, flac: false, fluidsynth: false, "game-music-emu": false, libmad: false, libmikmod: false, mpg123: false, libopus: false, libvorbis: false, lame: false, libsamplerate: false, soxr: false, "alsa-lib": false, libao: false, libjack2: false, libpulseaudio: false, libshout: false, pipewire: false, icu: false, sqlite: false, avahi: false, dbus: false, pcre2: false, libgcrypt: false, expat: false, nlohmann_json: false, zlib: false, libupnp: false, libmpdclient: false, libid3tag: false, nixosTests: false, doxygen: false, python3Packages: false, gtest: false, zip: false, features: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["udisks", 77, 5], ["webdav", 78, 5], ["cdio_paranoia", 83, 5], ["curl", 87, 5], ["io_uring", 88, 5], ["mms", 89, 5], ["nfs", 90, 5], ["smbclient", 91, 5], ["bzip2", 93, 5], ["zzip", 94, 5], ["audiofile", 96, 5], ["faad", 97, 5], ["ffmpeg", 98, 5], ["flac", 99, 5], ["fluidsynth", 100, 5], ["gme", 101, 5], ["mad", 102, 5], ["mikmod", 103, 5], ["mpg123", 104, 5], ["opus", 108, 5], ["vorbis", 109, 5], ["vorbisenc", 111, 5], ["lame", 112, 5], ["libsamplerate", 114, 5], ["soxr", 115, 5], ["alsa", 117, 5], ["ao", 118, 5], ["jack", 119, 5], ["pipewire", 120, 5], ["pulse", 121, 5], ["shout", 122, 5], ["qobuz", 124, 5], ["libmpdclient", 130, 5], ["id3tag", 132, 5], ["dbus", 137, 5], ["expat", 138, 5], ["icu", 139, 5], ["pcre", 140, 5], ["sqlite", 141, 5], ["syslog", 142, 5], ["systemd", 143, 5], ["zeroconf", 144, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["documentation", 151, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 203, 5], ["repo", 204, 5], ["rev", 205, 5], ["sha256", 206, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CXXFLAGS", 261, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nixos", 281, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 281, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 284, 5], ["homepage", 285, 5], ["license", 286, 5], ["maintainers", 287, 5], ["platforms", 291, 5], ["mainProgram", 292, 5], ["longDescription", 294, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 199, 3], ["version", 200, 3], ["src", 202, 3], ["buildInputs", 209, 3], ["nativeBuildInputs", 221, 3], ["depsBuildBuild", 228, 3], ["postPatch", 230, 3], ["nativeCheckInputs", 248, 3], ["doCheck", 250, 3], ["mesonAutoFeatures", 252, 3], ["outputs", 254, 3], ["env", 260, 3], ["mesonFlags", 266, 3], ["passthru", 281, 3], ["meta", 283, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -73,7 +66,7 @@ export default nix.lambda((args) => (() => {
   const features = nix.argOr($, "features", () => null);
   const concatAttrVals = (nameList) => (set) => nix.app(nix.sel(lib, "concatMap"), (x) => nix.selOr(set, () => [], nix.key(nix.force(x))), nameList);
   const featureDependencies = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     udisks: nix.thunk(() => [dbus]),
     webdav: nix.thunk(() => [curl, expat]),
     cdio_paranoia: nix.thunk(() => [libcdio, libcdio_paranoia]),
@@ -118,7 +111,7 @@ export default nix.lambda((args) => (() => {
     zeroconf: nix.thunk(() => [avahi, dbus]),
   }));
   const nativeFeatureDependencies = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     documentation: nix.thunk(() => [doxygen, nix.thunk(() => nix.sel(python3Packages, "sphinx"))]),
   }));
   const platformMask = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["mad", "pulse", "jack", "smbclient"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), nix.thunk(() => ["alsa", "pipewire", "io_uring", "systemd", "syslog"]))));
@@ -132,11 +125,11 @@ export default nix.lambda((args) => (() => {
     })());
   })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "mpd",
       version: "0.24.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "MusicPlayerDaemon",
           repo: "MPD",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -151,7 +144,7 @@ export default nix.lambda((args) => (() => {
       mesonAutoFeatures: "disabled",
       outputs: nix.thunk(() => nix.concat(["out", "doc"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.builtins.elem("documentation", features_)), "man"))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=0"]))),
         })))),
       mesonFlags: nix.thunk(() => nix.concat([
@@ -160,11 +153,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "html_manual", true)),
       ], nix.concat(nix.builtins.map((x) => nix.app(nix.sel(lib, "mesonEnable"), x, true), features_), nix.concat(nix.builtins.map((x) => nix.app(nix.sel(lib, "mesonEnable"), x, false), nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), features_, knownFeatures))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.builtins.elem("zeroconf", features_)), nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "zeroconf", nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "bonjour" : "avahi"))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.builtins.elem("systemd", features_)), nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "systemd_system_unit_dir", "etc/systemd/system"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.builtins.elem("qobuz", features_)), nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "nlohmann_json", true))))))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, nixos: nix.thunk(() => nix.sel(nixosTests, "mpd")) })),
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[4], nixos: nix.thunk(() => nix.sel(nixosTests, "mpd")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Flexible, powerful daemon for playing music",
         homepage: "https://www.musicpd.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

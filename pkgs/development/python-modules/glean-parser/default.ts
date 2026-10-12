@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 5], ["version", 23, 13], ["hash", 24, 5]], [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 41, 3], ["preCheck", 43, 3], ["disabledTests", 47, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, click: false, diskcache: false, fetchPypi: false, hatchling: false, "hatch-vcs": false, jinja2: false, jsonschema: false, platformdirs: false, pytestCheckHook: false, pyyaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 5], ["version", 23, 13], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 41, 3], ["preCheck", 43, 3], ["disabledTests", 47, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "20.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "glean_parser",
           version: version,
           hash: "sha256-e6d4QMqOR8/7F/Tstk7cH/aj1s4AZyI+BS5AnewePKk=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_validate_ping", "test_logging", "test_yaml_lint"]);
       const pythonImportsCheck = nix.thunk(() => ["glean_parser"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tools for parsing the metadata for Mozilla's glean telemetry SDK",
         mainProgram: "glean_parser",
         homepage: "https://github.com/mozilla/glean_parser",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

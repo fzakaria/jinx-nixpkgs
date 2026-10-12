@@ -2,42 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kmscon.nix", [[["autologinUser", 15, 22]], [["font-name", 28, 11], ["hwaccel", 29, 11], ["term", 30, 11]], [["enable", 25, 9], ["package", 26, 9], ["config", 27, 9]], [["getty", 15, 16], ["kmscon", 24, 16]], [["enable", 17, 25]], [["graphics", 17, 16]], [["enable", 20, 20]], [["fontconfig", 20, 9], ["packages", 21, 9]], [["imports", 11, 7], ["services", 15, 7], ["hardware", 17, 7], ["fonts", 19, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["enableOCR", 35, 3], ["testScript", 37, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/kmscon.nix", [["autologinUser", 15, 22]]);
-const pos$2 = nix.positions(here + "/kmscon.nix", [["font-name", 28, 11], ["hwaccel", 29, 11], ["term", 30, 11]]);
-const pos$3 = nix.positions(here + "/kmscon.nix", [["enable", 25, 9], ["package", 26, 9], ["config", 27, 9]]);
-const pos$4 = nix.positions(here + "/kmscon.nix", [["getty", 15, 16], ["kmscon", 24, 16]]);
-const pos$5 = nix.positions(here + "/kmscon.nix", [["enable", 17, 25]]);
-const pos$6 = nix.positions(here + "/kmscon.nix", [["graphics", 17, 16]]);
-const pos$7 = nix.positions(here + "/kmscon.nix", [["enable", 20, 20]]);
-const pos$8 = nix.positions(here + "/kmscon.nix", [["fontconfig", 20, 9], ["packages", 21, 9]]);
-const pos$9 = nix.positions(here + "/kmscon.nix", [["imports", 11, 7], ["services", 15, 7], ["hardware", 17, 7], ["fonts", 19, 7]]);
-const pos$10 = nix.positions(here + "/kmscon.nix", [["machine", 5, 9]]);
-const pos$11 = nix.positions(here + "/kmscon.nix", [["name", 3, 3], ["nodes", 5, 3], ["enableOCR", 35, 3], ["testScript", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "kmscon",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            getty: nix.thunk(() => ({ [nix.POS]: pos$1, autologinUser: "alice" })),
+            [nix.POS]: $pos[3],
+            getty: nix.thunk(() => ({ [nix.POS]: $pos[0], autologinUser: "alice" })),
             kmscon: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "kmscon")),
               config: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 "font-name": "JetBrainsMono Nerd Font",
                 hwaccel: true,
                 term: "kmscon",
@@ -45,12 +35,12 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           hardware: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            graphics: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+            [nix.POS]: $pos[5],
+            graphics: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
           })),
           fonts: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            fontconfig: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            [nix.POS]: $pos[7],
+            fontconfig: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
             packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nerd-fonts", "jetbrains-mono"))]),
           })),
         };

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 11, 12]], [["remotes", 17, 9], ["sha256", 18, 9], ["type", 19, 9]], [["source", 16, 16]], [["anystyle", 16, 7]], [["name", 10, 5], ["source", 11, 5], ["version", 12, 5], ["ruby", 13, 13], ["gemdir", 14, 5], ["gemset", 15, 5]], [["sha256", 29, 10]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 44, 5], ["platforms", 45, 5]], [["ruby", 25, 11], ["gemName", 26, 3], ["pname", 27, 3], ["version", 28, 3], ["source", 29, 3], ["propagatedBuildInputs", 31, 3], ["preFixup", 33, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildRubyGem: false, bundlerEnv: false, ruby: false, "poppler-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 11, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["remotes", 17, 9], ["sha256", 18, 9], ["type", 19, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["source", 16, 16]]);
-const pos$4 = nix.positions(here + "/package.nix", [["anystyle", 16, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 10, 5], ["source", 11, 5], ["version", 12, 5], ["ruby", 13, 13], ["gemdir", 14, 5], ["gemset", 15, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["sha256", 29, 10]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 44, 5], ["platforms", 45, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["ruby", 25, 11], ["gemName", 26, 3], ["pname", 27, 3], ["version", 28, 3], ["source", 29, 3], ["propagatedBuildInputs", 31, 3], ["preFixup", 33, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,35 +14,35 @@ export default nix.lambda((args) => (() => {
   const poppler_utils = nix.arg($, "poppler-utils");
   const deps = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => (() => {
       const name = nix.thunk(() => nix.str`anystyle-cli-${version}`);
-      const source = nix.thunk(() => ({ [nix.POS]: pos$1, sha256: nix.thunk(() => nix.sel(lib, "fakeSha256")) }));
+      const source = nix.thunk(() => ({ [nix.POS]: $pos[0], sha256: nix.thunk(() => nix.sel(lib, "fakeSha256")) }));
       const version = "1.5.0";
       const ruby_1 = ruby;
       const gemdir = nix.path(here, "./.");
       const gemset = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.builtins.import(nix.path(here, "./gemset.nix"))), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           anystyle: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             source: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               remotes: nix.thunk(() => ["https://rubygems.org"]),
               sha256: "C/OrU7guHzHdY80upEXRfhWmUYDxpI54NIvIjKv0znw=",
               type: "gem",
             })),
           })),
         }))));
-      return { [nix.POS]: pos$5, name, source, version, ruby: ruby_1, gemdir, gemset };
+      return { [nix.POS]: $pos[4], name, source, version, ruby: ruby_1, gemdir, gemset };
     })())));
   return nix.app(buildRubyGem, nix.thunk(() => (() => {
       const ruby_1 = ruby;
       const gemName = "anystyle-cli";
       const pname = gemName;
       const version = "1.5.0";
-      const source = nix.thunk(() => ({ [nix.POS]: pos$6, sha256: "Bkk00PBk/6noCXgAbr1XUcdBq5vpdeL0ES02eeNA594=" }));
+      const source = nix.thunk(() => ({ [nix.POS]: $pos[5], sha256: "Bkk00PBk/6noCXgAbr1XUcdBq5vpdeL0ES02eeNA594=" }));
       const propagatedBuildInputs = nix.thunk(() => [deps]);
       const preFixup = nix.thunk(() => nix.str`wrapProgram $out/bin/anystyle --prefix PATH : ${poppler_utils}/bin
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Command line interface to the AnyStyle Parser and Finder",
         homepage: "https://anystyle.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -61,7 +54,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         ruby: ruby_1,
         gemName,
         pname,

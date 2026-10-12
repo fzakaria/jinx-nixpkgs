@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["url", 41, 5]], [["nixosTest", 44, 18]], [["updateScript", 40, 12], ["tests", 44, 12]], [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["makeFlags", 38, 3], ["passthru", 40, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, unstableGitUpdater: false, xxd: false, "pkg-config": false, imagemagick: false, wrapGAppsHook3: false, gtk3: false, jansson: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nixosTest", 44, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 40, 12], ["tests", 44, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["makeFlags", 38, 3], ["passthru", 40, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const jansson = nix.arg($, "jansson");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "urn-timer",
       version: "0-unstable-2026-01-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "paoloose",
           repo: "urn",
           rev: "e1c96fff0ee9763d35b0370deb4cbbbf805acdba",
@@ -38,15 +33,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, jansson]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://github.com/paoloose/urn.git" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], url: "https://github.com/paoloose/urn.git" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           nixosTest: nix.thunk(() => nix.sel(nixosTests, "urn-timer")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/paoloose/urn",
         description: "Split tracker / timer for speedrunning with GTK+ frontend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

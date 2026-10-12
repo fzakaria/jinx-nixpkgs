@@ -2,76 +2,59 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dolibarr.nix", [[["maintainers", 4, 8]], [["forceSSL", 14, 13], ["enableACME", 15, 13]], [["type", 17, 20]], [["enable", 11, 11], ["domain", 12, 11], ["nginx", 13, 11], ["database", 17, 11]], [["dolibarr", 10, 18]], [["allowedTCPPorts", 20, 29]], [["firewall", 20, 20]], [["services", 10, 9], ["networking", 20, 9]], [["enable", 29, 18]], [["acme", 29, 13]], [["type", 31, 20]], [["enable", 26, 11], ["domain", 27, 11], ["h2o", 28, 11], ["database", 31, 11]], [["dolibarr", 25, 18]], [["allowedTCPPorts", 34, 29]], [["firewall", 34, 20]], [["services", 25, 9], ["networking", 34, 9]], [["nginx_mysql", 7, 5], ["h2o_postgresql", 22, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 38, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/dolibarr.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/dolibarr.nix", [["forceSSL", 14, 13], ["enableACME", 15, 13]]);
-const pos$3 = nix.positions(here + "/dolibarr.nix", [["type", 17, 20]]);
-const pos$4 = nix.positions(here + "/dolibarr.nix", [["enable", 11, 11], ["domain", 12, 11], ["nginx", 13, 11], ["database", 17, 11]]);
-const pos$5 = nix.positions(here + "/dolibarr.nix", [["dolibarr", 10, 18]]);
-const pos$6 = nix.positions(here + "/dolibarr.nix", [["allowedTCPPorts", 20, 29]]);
-const pos$7 = nix.positions(here + "/dolibarr.nix", [["firewall", 20, 20]]);
-const pos$8 = nix.positions(here + "/dolibarr.nix", [["services", 10, 9], ["networking", 20, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$9 = nix.positions(here + "/dolibarr.nix", [["enable", 29, 18]]);
-const pos$10 = nix.positions(here + "/dolibarr.nix", [["acme", 29, 13]]);
-const pos$11 = nix.positions(here + "/dolibarr.nix", [["type", 31, 20]]);
-const pos$12 = nix.positions(here + "/dolibarr.nix", [["enable", 26, 11], ["domain", 27, 11], ["h2o", 28, 11], ["database", 31, 11]]);
-const pos$13 = nix.positions(here + "/dolibarr.nix", [["dolibarr", 25, 18]]);
-const pos$14 = nix.positions(here + "/dolibarr.nix", [["allowedTCPPorts", 34, 29]]);
-const pos$15 = nix.positions(here + "/dolibarr.nix", [["firewall", 34, 20]]);
-const pos$16 = nix.positions(here + "/dolibarr.nix", [["services", 25, 9], ["networking", 34, 9]]);
-const pos$17 = nix.positions(here + "/dolibarr.nix", [["nginx_mysql", 7, 5], ["h2o_postgresql", 22, 5]]);
-const pos$18 = nix.positions(here + "/dolibarr.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "dolibarr",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       nginx_mysql: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             dolibarr: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               domain: "localhost",
-              nginx: nix.thunk(() => ({ [nix.POS]: pos$2, forceSSL: false, enableACME: false })),
-              database: nix.thunk(() => ({ [nix.POS]: pos$3, type: "mysql" })),
+              nginx: nix.thunk(() => ({ [nix.POS]: $pos[1], forceSSL: false, enableACME: false })),
+              database: nix.thunk(() => ({ [nix.POS]: $pos[2], type: "mysql" })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: $pos[6],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[5], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
         };
       })(), formals$2),
       h2o_postgresql: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             dolibarr: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               enable: true,
               domain: "localhost",
               h2o: nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                acme: nix.thunk(() => ({ [nix.POS]: pos$9, enable: false })),
+                [nix.POS]: $pos[9],
+                acme: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: false })),
               })),
-              database: nix.thunk(() => ({ [nix.POS]: pos$11, type: "postgresql" })),
+              database: nix.thunk(() => ({ [nix.POS]: $pos[10], type: "postgresql" })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$15,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: $pos[14],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[13], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
         };
       })(), formals$3),

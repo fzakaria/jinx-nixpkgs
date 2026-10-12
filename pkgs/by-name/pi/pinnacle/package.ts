@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["sha256", 40, 5]], [["pinnacle-src", 42, 65]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["mainProgram", 48, 5], ["platforms", 49, 5], ["badPlatforms", 50, 5], ["maintainers", 54, 5]], [["meta", 58, 13], ["version", 58, 18], ["pname", 59, 5], ["src", 60, 5], ["sourceRoot", 61, 5], ["knownRockspec", 62, 5], ["postConfigure", 64, 5], ["propagatedBuildInputs", 70, 5], ["postInstall", 78, 5]], [["luaEnv", 179, 5], ["buildRustConfig", 187, 13], ["providedSessions", 188, 5], ["lua-client-api", 189, 5]], [["meta", 91, 11], ["version", 91, 16], ["pname", 93, 3], ["src", 94, 3], ["cargoHash", 95, 3], ["buildInputs", 97, 3], ["nativeBuildInputs", 118, 3], ["checkFeatures", 132, 3], ["checkNoDefaultFeatures", 133, 3], ["cargoTestFlags", 134, 3], ["preCheck", 143, 3], ["postInstall", 148, 3], ["runtimeDependencies", 172, 3], ["passthru", 178, 3], ["__structuredAttrs", 191, 3]]]);
 const formals$1 = { args: { rustPlatform: false, stdenv: false, lib: false, "pkg-config": false, wayland: false, lua54Packages: false, lua5_4: false, extraLuaPackages: true, protobuf: false, seatd: false, systemdLibs: false, libxkbcommon: false, mesa: false, xwayland: false, libinput: false, "libdisplay-info_0_3": false, git: false, libgbm: false, rustc: false, cargo: false, makeWrapper: false, callPackage: false, libglvnd: false, autoPatchelfHook: false, installShellFiles: false, libxcursor: false, libxi: false, libxrandr: false, libx11: false, fetchFromGitHub: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["sha256", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pinnacle-src", 42, 65]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["mainProgram", 48, 5], ["platforms", 49, 5], ["badPlatforms", 50, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["meta", 58, 13], ["version", 58, 18], ["pname", 59, 5], ["src", 60, 5], ["sourceRoot", 61, 5], ["knownRockspec", 62, 5], ["postConfigure", 64, 5], ["propagatedBuildInputs", 70, 5], ["postInstall", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["luaEnv", 179, 5], ["buildRustConfig", 187, 13], ["providedSessions", 188, 5], ["lua-client-api", 189, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["meta", 91, 11], ["version", 91, 16], ["pname", 93, 3], ["src", 94, 3], ["cargoHash", 95, 3], ["buildInputs", 97, 3], ["nativeBuildInputs", 118, 3], ["checkFeatures", 132, 3], ["checkNoDefaultFeatures", 133, 3], ["cargoTestFlags", 134, 3], ["preCheck", 143, 3], ["postInstall", 148, 3], ["runtimeDependencies", 172, 3], ["passthru", 178, 3], ["__structuredAttrs", 191, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,15 +40,15 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const version = "0.2.4";
   const pinnacle_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "pinnacle-comp",
       repo: "pinnacle",
       tag: nix.thunk(() => nix.str`v${version}`),
       sha256: "sha256-T8wZjgOTzYKfYUV1ShLBIi2xoCdVn9I7sux/pDH+8ic=",
     }))));
-  const buildRustConfig = nix.thunk(() => nix.app(callPackage, nix.path(here, "./pinnacle-config.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, "pinnacle-src": pinnacle_src }))));
+  const buildRustConfig = nix.thunk(() => nix.app(callPackage, nix.path(here, "./pinnacle-config.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], "pinnacle-src": pinnacle_src }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     description: "A WIP Smithay-based Wayland compositor, inspired by AwesomeWM and configured in Lua or Rust",
     homepage: "https://pinnacle-comp.github.io/pinnacle/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -85,7 +80,7 @@ export default nix.lambda((args) => (() => {
       })());
       const postInstall = "mkdir -p $out/share/pinnacle/protobuf/pinnacle\ncp -rL --no-preserve ownership,mode ../../api/protobuf/pinnacle $out/share/pinnacle/protobuf\nmkdir -p $out/share/pinnacle/snowcap/protobuf/snowcap\ncp -rL --no-preserve ownership,mode ../../snowcap/api/protobuf/snowcap $out/share/pinnacle/snowcap/protobuf\nmkdir -p $out/share/pinnacle/protobuf/google\ncp -rL --no-preserve ownership,mode ../../api/protobuf/google $out/share/pinnacle/protobuf\nmkdir -p $out/share/pinnacle/snowcap/protobuf/google\ncp -rL --no-preserve ownership,mode ../../snowcap/api/protobuf/google $out/share/pinnacle/snowcap/protobuf\n";
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         meta: meta_1,
         version: version_1,
         pname,
@@ -98,7 +93,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       meta: meta,
       version: version,
       pname: "pinnacle-server",
@@ -155,7 +150,7 @@ install -m644 ./resources/pinnacle-portals.conf $out/share/xdg-desktop-portal/pi
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")))), "installShellCompletion --cmd pinnacle \\\n  --bash <($out/bin/pinnacle gen-completions --shell bash) \\\n  --fish <($out/bin/pinnacle gen-completions --shell fish) \\\n  --zsh <($out/bin/pinnacle gen-completions --shell zsh)\n"))),
       runtimeDependencies: nix.thunk(() => [wayland, mesa, libglvnd]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         luaEnv: nix.thunk(() => nix.app(nix.sel(lua5_4, "withPackages"), (ps) => nix.concat([
             nix.thunk(() => nix.sel(finalAttrs, "passthru", "lua-client-api")),
             nix.thunk(() => nix.sel(ps, "cjson")),

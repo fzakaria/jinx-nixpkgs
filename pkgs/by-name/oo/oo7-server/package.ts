@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 41, 7], ["changelog", 42, 7], ["license", 43, 7], ["maintainers", 44, 7], ["platforms", 45, 7], ["description", 47, 5]], [["pname", 15, 3], ["version", 16, 17], ["src", 16, 25], ["cargoDeps", 16, 29], ["sourceRoot", 18, 3], ["cargoRoot", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 30, 3], ["postFixup", 34, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, cargo: false, meson: false, ninja: false, oo7: false, "pkg-config": false, rustPlatform: false, rustc: false, stdenv: false, systemdLibs: false, useWrappedDaemon: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 41, 7], ["changelog", 42, 7], ["license", 43, 7], ["maintainers", 44, 7], ["platforms", 45, 7], ["description", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 17], ["src", 16, 25], ["cargoDeps", 16, 29], ["sourceRoot", 18, 3], ["cargoRoot", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 30, 3], ["postFixup", 34, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const useWrappedDaemon = nix.argOr($, "useWrappedDaemon", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "oo7-server",
       version: nix.thunk(() => nix.attr(oo7, "version")),
       src: nix.thunk(() => nix.attr(oo7, "src")),
@@ -40,7 +39,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(oo7, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         license: nix.thunk(() => nix.attr(from, "license")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["leaveDotGit", 23, 5], ["postFetch", 24, 5]], [["url", 100, 7], ["hash", 101, 7]], [["updateScript", 97, 5], ["webVersion", 98, 5], ["web", 99, 5]], [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["knownVulnerabilities", 114, 5], ["maintainers", 118, 5], ["sourceProvenance", 119, 5], ["mainProgram", 124, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 35, 3], ["proxyVendor", 40, 3], ["vendorHash", 41, 3], ["buildInputs", 43, 3], ["tags", 45, 3], ["ldflags", 47, 3], ["preConfigure", 55, 3], ["preBuild", 60, 3], ["__darwinAllowLocalNetworking", 65, 3], ["checkFlags", 67, 3], ["nativeBuildInputs", 79, 3], ["postInstall", 81, 3], ["doInstallCheck", 88, 3], ["versionCheckProgramArg", 90, 3], ["nativeInstallCheckInputs", 92, 3], ["passthru", 96, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchzip: false, fuse: false, stdenv: false, installShellFiles: false, versionCheckHook: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["leaveDotGit", 23, 5], ["postFetch", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 100, 7], ["hash", 101, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 97, 5], ["webVersion", 98, 5], ["web", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["knownVulnerabilities", 114, 5], ["maintainers", 118, 5], ["sourceProvenance", 119, 5], ["mainProgram", 124, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 35, 3], ["proxyVendor", 40, 3], ["vendorHash", 41, 3], ["buildInputs", 43, 3], ["tags", 45, 3], ["ldflags", 47, 3], ["preConfigure", 55, 3], ["preBuild", 60, 3], ["__darwinAllowLocalNetworking", 65, 3], ["checkFlags", 67, 3], ["nativeBuildInputs", 79, 3], ["postInstall", 81, 3], ["doInstallCheck", 88, 3], ["versionCheckProgramArg", 90, 3], ["nativeInstallCheckInputs", 92, 3], ["passthru", 96, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "alist",
       version: "3.63.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AlistGo",
           repo: "alist",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,17 +63,17 @@ cp -r ${nix.sel(finalAttrs, "passthru", "web")} public/dist
       versionCheckProgramArg: "version",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
         webVersion: "3.63.0",
         web: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://github.com/AlistGo/alist-web/releases/download/${nix.sel(finalAttrs, "passthru", "webVersion")}/dist.tar.gz`),
             hash: "sha256-uWktKQU9EYPXj88Wj8LbRbuIPqW2u3EBQ5MM82wawtM=",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "File list/WebDAV program that supports multiple storages",
         homepage: "https://github.com/AlistGo/alist",
         changelog: nix.thunk(() => nix.str`https://github.com/AlistGo/alist/releases/tag/v${nix.sel(finalAttrs, "version")}`),

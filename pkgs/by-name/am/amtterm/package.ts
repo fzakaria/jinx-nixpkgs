@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["platforms", 54, 5]], [["pname", 16, 3], ["version", 17, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 30, 3], ["src", 35, 3], ["makeFlags", 42, 3], ["postInstall", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, makeWrapper: false, gtk3: false, openssl: false, perl: false, perlPackages: false, "pkg-config": false, vte: false, withGamt: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["platforms", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 30, 3], ["src", 35, 3], ["makeFlags", 42, 3], ["postInstall", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const vte = nix.arg($, "vte");
   const withGamt = nix.argOr($, "withGamt", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "amtterm",
       version: "1.7-1-unstable-2023-10-27",
       buildInputs: nix.thunk(() => nix.concat((() => {
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       })(), nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), withGamt, nix.thunk(() => [gtk3, vte]))))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kraxel",
           repo: "amtterm",
           rev: "ed5da502cbb150982ad982211ad9475414b8689a",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["prefix=$(out)", "STRIP=", "USE_OPENSSL=1"]),
       postInstall: "wrapProgram $out/bin/amttool --prefix PERL5LIB : $PERL5LIB",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Intel AMT® SoL client + tools",
         homepage: "https://github.com/kraxel/amtterm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["name", 25, 7], ["exec", 26, 7], ["icon", 27, 7], ["desktopName", 28, 7], ["genericName", 29, 7], ["categories", 30, 7]], [["updateScript", 89, 12]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["mainProgram", 97, 5], ["platforms", 98, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["desktopItems", 23, 3], ["dependencies", 34, 3], ["nativeBuildInputs", 56, 3], ["buildPhase", 62, 3], ["installPhase", 78, 3], ["passthru", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, wrapGAppsHook3: false, python3Packages: false, makeDesktopItem: false, copyDesktopItems: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["exec", 26, 7], ["icon", 27, 7], ["desktopName", 28, 7], ["genericName", 29, 7], ["categories", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 89, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["mainProgram", 97, 5], ["platforms", 98, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["desktopItems", 23, 3], ["dependencies", 34, 3], ["nativeBuildInputs", 56, 3], ["buildPhase", 62, 3], ["installPhase", 78, 3], ["passthru", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pixelflasher",
       version: "9.2.1.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "badabing2005",
           repo: "PixelFlasher",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "PixelFlasher",
             exec: "pixelflasher",
             icon: "pixelflasher",
@@ -82,11 +78,11 @@ runHook postBuild
       })()),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/share/icons/hicolor/64x64/apps\ncp dist/PixelFlasher $out/bin/pixelflasher\ncp images/icon-64.png $out/share/icons/hicolor/64x64/apps/pixelflasher.png\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Pixel™ phone flashing GUI utility with features",
         homepage: "https://github.com/badabing2005/PixelFlasher",
         changelog: nix.thunk(() => nix.str`https://github.com/badabing2005/PixelFlasher/releases/tag/v${nix.sel(finalAttrs, "version")}`),

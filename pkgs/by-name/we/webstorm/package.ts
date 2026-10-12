@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 7], ["hash", 18, 7]], [["url", 21, 7], ["hash", 22, 7]], [["url", 25, 7], ["hash", 26, 7]], [["x86_64-linux", 16, 5], ["aarch64-linux", 20, 5], ["aarch64-darwin", 24, 5]], [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["maintainers", 62, 5], ["teams", 66, 5], ["license", 67, 5], ["sourceProvenance", 68, 5]], [["jetbrains-libdbm", 32, 11], ["fsnotifier", 32, 28], ["pname", 34, 3], ["wmClass", 36, 3], ["product", 37, 3], ["version", 40, 3], ["buildNumber", 41, 3], ["src", 44, 3], ["jdk", 47, 3], ["buildInputs", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { fetchurl: false, fsnotifier: false, jetbrains: false, "jetbrains-libdbm": false, lib: false, musl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 16, 5], ["aarch64-linux", 20, 5], ["aarch64-darwin", 24, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["maintainers", 62, 5], ["teams", 66, 5], ["license", 67, 5], ["sourceProvenance", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["jetbrains-libdbm", 32, 11], ["fsnotifier", 32, 28], ["pname", 34, 3], ["wmClass", 36, 3], ["product", 37, 3], ["version", 40, 3], ["buildNumber", 41, 3], ["src", 44, 3], ["jdk", 47, 3], ["buildInputs", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const urls = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://download.jetbrains.com/webstorm/WebStorm-2026.2.0.1.tar.gz",
       hash: "sha256-FEe4EDYWJwGt5hEdbf0A6g2+ZyIrX4ztzQYmZe5GZPg=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://download.jetbrains.com/webstorm/WebStorm-2026.2.0.1-aarch64.tar.gz",
       hash: "sha256-pt1MwGNXHT1QlePbVdtkwtYpenKlf53DGDG24+PM9tc=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://download.jetbrains.com/webstorm/WebStorm-2026.2.0.1-aarch64.dmg",
       hash: "sha256-WtvL7DLrchsKlMPrsYeluxoPo/sXBaUw0WO1mlxtHkc=",
     })),
   }));
   return nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       "jetbrains-libdbm": jetbrains_libdbm,
       fsnotifier: fsnotifier,
       pname: "webstorm",
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
       jdk: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), nix.thunk(() => nix.sel(jetbrains, "jdk-no-jcef")))) ? nix.sel(jetbrains, "jdk-no-jcef") : null)),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [musl]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.jetbrains.com/webstorm/",
         description: "Web IDE from JetBrains",
         longDescription: "WebStorm provides an editor for HTML, JavaScript (incl. Node.js), and CSS with on-the-fly code analysis, error prevention and automated refactorings for JavaScript code.",

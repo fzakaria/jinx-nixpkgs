@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 74, 5], ["repo", 75, 5], ["tag", 76, 5], ["hash", 77, 5]], [["pname", 89, 7], ["version", 90, 7], ["src", 91, 7], ["cargoRoot", 92, 7], ["hash", 94, 5]], [["proxy", 120, 5], ["extra_proxy", 150, 5], ["proxy-runtime", 162, 5]], [["litellm", 200, 36]], [["extraArgs", 202, 7]], [["tests", 200, 5], ["updateScript", 201, 5]], [["description", 210, 5], ["mainProgram", 211, 5], ["homepage", 212, 5], ["changelog", 213, 5], ["license", 214, 5], ["maintainers", 215, 5]], [["pname", 69, 3], ["version", 70, 3], ["pyproject", 71, 3], ["src", 73, 3], ["nativeBuildInputs", 80, 3], ["cargoRoot", 85, 3], ["cargoDeps", 87, 3], ["postPatch", 97, 3], ["dependencies", 102, 3], ["optional-dependencies", 119, 3], ["pythonImportsCheck", 183, 3], ["pythonRelaxDeps", 185, 3], ["doCheck", 197, 3], ["passthru", 199, 3], ["meta", 209, 3]]]);
 const formals$1 = { args: { lib: false, "a2a-sdk": false, aiohttp: false, anthropic: false, apscheduler: false, "azure-identity": false, "azure-keyvault-secrets": false, "azure-storage-blob": false, "azure-storage-file-datalake": false, backoff: false, boto3: false, buildPythonPackage: false, click: false, cryptography: false, expression: false, fastapi: false, "fastapi-sso": false, fastuuid: false, fetchFromGitHub: false, "google-cloud-iam": false, "google-cloud-kms": false, "google-genai": false, grpcio: false, gunicorn: false, httpx: false, "importlib-metadata": false, inquirerpy: false, jinja2: false, jsonschema: false, langfuse: false, maturin: false, mcp: false, openai: false, "opentelemetry-api": false, "opentelemetry-exporter-otlp": false, "opentelemetry-sdk": false, orjson: false, polars: false, prisma: false, "prometheus-client": false, psycopg: false, pydantic: false, "pydantic-settings": false, pyjwt: false, pynacl: false, pypdf: false, "python-dotenv": false, "python-multipart": false, pyyaml: false, resend: false, restrictedpython: false, rich: false, rq: false, rustPlatform: false, "sentry-sdk": false, soundfile: false, tiktoken: false, tokenizers: false, tomlkit: false, uvicorn: false, uvloop: false, websockets: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 74, 5], ["repo", 75, 5], ["tag", 76, 5], ["hash", 77, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 89, 7], ["version", 90, 7], ["src", 91, 7], ["cargoRoot", 92, 7], ["hash", 94, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["proxy", 120, 5], ["extra_proxy", 150, 5], ["proxy-runtime", 162, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["litellm", 200, 36]]);
-const pos$5 = nix.positions(here + "/default.nix", [["extraArgs", 202, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 200, 5], ["updateScript", 201, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 210, 5], ["mainProgram", 211, 5], ["homepage", 212, 5], ["changelog", 213, 5], ["license", 214, 5], ["maintainers", 215, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 69, 3], ["version", 70, 3], ["pyproject", 71, 3], ["src", 73, 3], ["nativeBuildInputs", 80, 3], ["cargoRoot", 85, 3], ["cargoDeps", 87, 3], ["postPatch", 97, 3], ["dependencies", 102, 3], ["optional-dependencies", 119, 3], ["pythonImportsCheck", 183, 3], ["pythonRelaxDeps", 185, 3], ["doCheck", 197, 3], ["passthru", 199, 3], ["meta", 209, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -83,7 +76,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.102.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BerriAI",
           repo: "litellm",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -98,7 +91,7 @@ export default nix.lambda((args) => (() => {
       })());
       const cargoRoot = "litellm-rust";
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -125,7 +118,7 @@ export default nix.lambda((args) => (() => {
         tokenizers,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         proxy: nix.thunk(() => [
           apscheduler,
           azure_identity,
@@ -190,15 +183,18 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, litellm: nix.thunk(() => nix.attr(nixosTests, "litellm")) })),
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[3],
+          litellm: nix.thunk(() => nix.attr(nixosTests, "litellm")),
+        })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex", "v([0-9]+\\.[0-9]+\\.[0-9]+)$"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Use any LLM as a drop in replacement for gpt-3.5-turbo. Use Azure, OpenAI, Cohere, Anthropic, Ollama, VLLM, Sagemaker, HuggingFace, Replicate (100+ LLMs)",
         mainProgram: "litellm",
         homepage: "https://github.com/BerriAI/litellm",
@@ -210,7 +206,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         pyproject,

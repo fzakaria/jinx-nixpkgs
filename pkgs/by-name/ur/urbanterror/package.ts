@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 22, 5], ["url", 23, 5], ["hash", 26, 5]], [["name", 30, 5], ["url", 31, 5], ["hash", 32, 5]], [["name", 94, 7], ["exec", 95, 7], ["icon", 96, 7], ["comment", 97, 7], ["desktopName", 98, 7], ["categories", 99, 7]], [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["longDescription", 110, 5], ["mainProgram", 117, 5], ["maintainers", 118, 5], ["platforms", 119, 5]], [["pname", 36, 3], ["version", 37, 11], ["srcs", 39, 3], ["sourceRoot", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["preConfigure", 62, 3], ["installTargets", 66, 3], ["installFlags", 67, 3], ["preInstall", 69, 3], ["postInstall", 73, 3], ["hardeningDisable", 90, 3], ["desktopItems", 92, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, stdenv: false, copyDesktopItems: false, imagemagick: false, libicns: false, makeBinaryWrapper: false, curl: false, libGL: false, libGLU: false, openal: false, libxxf86vm: false, SDL: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 22, 5], ["url", 23, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 5], ["url", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 94, 7], ["exec", 95, 7], ["icon", 96, 7], ["comment", 97, 7], ["desktopName", 98, 7], ["categories", 99, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["longDescription", 110, 5], ["mainProgram", 117, 5], ["maintainers", 118, 5], ["platforms", 119, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 11], ["srcs", 39, 3], ["sourceRoot", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["preConfigure", 62, 3], ["installTargets", 66, 3], ["installFlags", 67, 3], ["preInstall", 69, 3], ["postInstall", 73, 3], ["hardeningDisable", 90, 3], ["desktopItems", 92, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const version = "4.3.4";
   const urbanterror_maps = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "urbanterror-maps",
       url: nix.thunk(() => nix.str`http://cdn.urbanterror.info/urt/43/releases/zips/UrbanTerror${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}_full.zip`),
       hash: "sha256-C6Gb5PPECAOjQhmkrzkV6dpY/zHVtUj9oq3507o2PUI=",
     }))));
   const urbanterror_source = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "urbanterror-source",
       url: nix.thunk(() => nix.str`https://github.com/FrozenSand/ioq3-for-UrbanTerror-4/archive/release-${version}.zip`),
       hash: "sha256-zF6Tkaj5WYkFU66VwpBFr1P18OJGrGgxnc/jvcvt8hA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "urbanterror",
       version: version,
       srcs: nix.thunk(() => [urbanterror_maps, urbanterror_source]),
@@ -69,7 +65,7 @@ ln -s ${urbanterror_maps}/q3ut4 $out/share/urbanterror/
       hardeningDisable: nix.thunk(() => ["format"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "urbanterror",
             exec: "urbanterror",
             icon: "urbanterror",
@@ -79,7 +75,7 @@ ln -s ${urbanterror_maps}/q3ut4 $out/share/urbanterror/
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Multiplayer tactical FPS on top of Quake 3 engine",
         homepage: "https://www.urbanterror.info",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),

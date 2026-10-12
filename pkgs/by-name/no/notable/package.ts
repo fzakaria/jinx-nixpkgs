@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 13]], [["pname", 19, 13], ["version", 19, 19], ["src", 19, 27]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]], [["pname", 24, 11], ["version", 24, 17], ["src", 24, 25], ["profile", 26, 3], ["nativeBuildInputs", 30, 3], ["extraPkgs", 32, 3], ["extraInstallCommands", 37, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { appimageTools: false, makeWrapper: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 19, 13], ["version", 19, 19], ["src", 19, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 11], ["version", 24, 17], ["src", 24, 25], ["profile", 26, 3], ["nativeBuildInputs", 30, 3], ["extraPkgs", 32, 3], ["extraInstallCommands", 37, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const version = "1.8.4";
   const sha256 = "0rvz8zwsi62kiq89pv8n2wh9h5yb030kvdr1vf65xwqkhqcrzrby";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/notable/notable/releases/download/v${version}/Notable-${version}.AppImage`),
       sha256: sha256,
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -47,7 +44,7 @@ wrapProgram "$out/bin/notable" \\
   --add-flags "--disable-seccomp-filter-sandbox"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Markdown-based note-taking app that doesn't suck",
         homepage: "https://github.com/notable/notable",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,31 +2,24 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/npm_deps.nix", [["src", 15, 7], ["dst", 16, 7]]);
-const pos$2 = nix.positions(here + "/npm_deps.nix", [["name", 9, 5], ["version", 10, 5], ["hash", 11, 5], ["js_prod_file", 12, 5], ["js_dev_file", 13, 5], ["extra_file", 14, 5]]);
-const pos$3 = nix.positions(here + "/npm_deps.nix", [["name", 20, 5], ["version", 21, 5], ["hash", 22, 5], ["js_prod_file", 23, 5], ["js_dev_file", 24, 5]]);
-const pos$4 = nix.positions(here + "/npm_deps.nix", [["name", 27, 5], ["version", 28, 5], ["hash", 29, 5], ["js_prod_file", 30, 5], ["js_dev_file", 31, 5]]);
-const pos$5 = nix.positions(here + "/npm_deps.nix", [["name", 34, 5], ["version", 35, 5], ["hash", 36, 5], ["css_file", 37, 5], ["js_prod_file", 38, 5], ["js_dev_file", 39, 5]]);
-const pos$6 = nix.positions(here + "/npm_deps.nix", [["name", 42, 5], ["version", 43, 5], ["hash", 44, 5], ["js_prod_file", 45, 5], ["js_dev_file", 46, 5]]);
-const pos$7 = nix.positions(here + "/npm_deps.nix", [["name", 49, 5], ["version", 50, 5], ["hash", 51, 5], ["js_prod_file", 52, 5], ["js_dev_file", 53, 5]]);
-const pos$8 = nix.positions(here + "/npm_deps.nix", [["name", 56, 5], ["version", 57, 5], ["hash", 58, 5], ["js_prod_file", 59, 5], ["js_dev_file", 60, 5]]);
+const $pos = nix.positions(here + "/npm_deps.nix", [[["src", 15, 7], ["dst", 16, 7]], [["name", 9, 5], ["version", 10, 5], ["hash", 11, 5], ["js_prod_file", 12, 5], ["js_dev_file", 13, 5], ["extra_file", 14, 5]], [["name", 20, 5], ["version", 21, 5], ["hash", 22, 5], ["js_prod_file", 23, 5], ["js_dev_file", 24, 5]], [["name", 27, 5], ["version", 28, 5], ["hash", 29, 5], ["js_prod_file", 30, 5], ["js_dev_file", 31, 5]], [["name", 34, 5], ["version", 35, 5], ["hash", 36, 5], ["css_file", 37, 5], ["js_prod_file", 38, 5], ["js_dev_file", 39, 5]], [["name", 42, 5], ["version", 43, 5], ["hash", 44, 5], ["js_prod_file", 45, 5], ["js_dev_file", 46, 5]], [["name", 49, 5], ["version", 50, 5], ["hash", 51, 5], ["js_prod_file", 52, 5], ["js_dev_file", 53, 5]], [["name", 56, 5], ["version", 57, 5], ["hash", 58, 5], ["js_prod_file", 59, 5], ["js_dev_file", 60, 5]]]);
 
 export default nix.thunk(() => [
   nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     name: "@hpcc-js/wasm",
     version: "0.3.14",
     hash: "sha256-EsbuFk9qtlm9yWpG29RnqVAHrP0rk3xyibQLy8qgRT4=",
     js_prod_file: "dist/index.min.js",
     js_dev_file: "dist/index.js",
     extra_file: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       src: "dist/graphvizlib.wasm",
       dst: "js/vendor/@hpcc-js/graphvizlib.wasm",
     })),
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     name: "@babel/standalone",
     version: "7.23.3",
     hash: "sha256-yxhB4OVOdV8hYNPqcap+5/JXYeaVrNGOSOG8lKpiG9E=",
@@ -34,7 +27,7 @@ export default nix.thunk(() => [
     js_dev_file: "babel.js",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     name: "d3",
     version: "5.16.0",
     hash: "sha256-aQQRhnJxV5/9C+cQslctP3v/AePGfbSw8L3chObJzK4=",
@@ -42,7 +35,7 @@ export default nix.thunk(() => [
     js_dev_file: "dist/d3.js",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     name: "d3-flame-graph",
     version: "3.1.1",
     hash: "sha256-Ls3MqALr6+/A+n8jqFw7frIB++6d1W3lAXKU0qFZ2ok=",
@@ -51,7 +44,7 @@ export default nix.thunk(() => [
     js_dev_file: "dist/d3-flamegraph.js",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "pako",
     version: "1.0.11",
     hash: "sha256-St7nKpcYlJQl8qMmPkEHwmTufOHAeZK4lBZHo8VRXLA=",
@@ -59,7 +52,7 @@ export default nix.thunk(() => [
     js_dev_file: "dist/pako.js",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "react",
     version: "16.14.0",
     hash: "sha256-X/8Bc4XvC8IqQWbW/PCRJQpmOBI/0AZT/hSFBf/uJU8=",
@@ -67,7 +60,7 @@ export default nix.thunk(() => [
     js_dev_file: "umd/react.development.js",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "react-dom",
     version: "16.14.0",
     hash: "sha256-2mYm9dwBFrWws6CB5bL6ghROTzX84RLM31hdnEbhG10=",

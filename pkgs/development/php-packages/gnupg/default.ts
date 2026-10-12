@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["fetchSubmodules", 23, 5], ["hash", 24, 5]], [["name", 54, 7], ["url", 55, 7], ["hash", 56, 7]], [["name", 59, 7], ["url", 60, 7], ["hash", 61, 7]], [["changelog", 68, 5], ["broken", 69, 5], ["description", 70, 5], ["license", 71, 5], ["homepage", 72, 5], ["maintainers", 73, 5], ["teams", 74, 5]], [["version", 16, 11], ["pname", 17, 3], ["src", 19, 3], ["buildInputs", 27, 3], ["nativeCheckInputs", 28, 3], ["postPhpize", 30, 3], ["postConfigure", 36, 3], ["patches", 51, 3], ["doCheck", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false, gpgme: false, file: false, gnupg: false, php: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["fetchSubmodules", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 54, 7], ["url", 55, 7], ["hash", 56, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 59, 7], ["url", 60, 7], ["hash", 61, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 68, 5], ["broken", 69, 5], ["description", 70, 5], ["license", 71, 5], ["homepage", 72, 5], ["maintainers", 73, 5], ["teams", 74, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 16, 11], ["pname", 17, 3], ["src", 19, 3], ["buildInputs", 27, 3], ["nativeCheckInputs", 28, 3], ["postPhpize", 30, 3], ["postConfigure", 36, 3], ["patches", 51, 3], ["doCheck", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const version = "1.5.4";
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: version,
       pname: "gnupg",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "php-gnupg",
           repo: "php-gnupg",
           rev: nix.thunk(() => nix.str`gnupg-${version}`),
@@ -53,13 +49,13 @@ substituteInPlace tests/gnupgt.inc \\
 `),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-test-typos.patch",
             url: "https://github.com/php-gnupg/php-gnupg/commit/4b9160b94df1d831d7bcc4f980cb8969d9ab5c11.patch",
             hash: "sha256-fJ/H1tbwMuLUpdWe0+oPyzhBFAsjG2QzmZSiuIsMekY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix-clearsign-newline-test.patch",
             url: "https://github.com/php-gnupg/php-gnupg/commit/6eda368b55044343349a8e76f6beda3ad54660dc.patch",
             hash: "sha256-/c+cxfAj3Cg7m2+sFiHWQr4R9atPypQuAUVyAOI8ZeM=",
@@ -67,7 +63,7 @@ substituteInPlace tests/gnupgt.inc \\
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/php-gnupg/php-gnupg/releases/tag/gnupg-${version}`),
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(php, "version")), "8.1")),
         description: "PHP wrapper for GpgME library that provides access to GnuPG",

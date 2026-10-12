@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["url", 24, 5], ["hash", 25, 5]], [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["version", 12, 3], ["pname", 13, 3], ["minimalOCamlVersion", 15, 3], ["src", 17, 3], ["patches", 23, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 30, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, fetchpatch: false, cppo: false, uutf: false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 12, 3], ["pname", 13, 3], ["minimalOCamlVersion", 15, 3], ["src", 17, 3], ["patches", 23, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 30, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const uutf = nix.arg($, "uutf");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "0.2.3",
       pname: "notty",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/pqwy/notty/releases/download/v${nix.sel(finalAttrs, "version")}/notty-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-dGWfsUBz20Q4mJiRqyTyS++Bqkl9rBbZpn+aHJwgCCQ=",
         })))),
       patches: nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/pqwy/notty/commit/a4d62f467e257196a5192da2184bd021dfd948b7.patch",
           hash: "sha256-p1eUuCvQKLj8uBeGyT2+i9WOYy4rk84pf9L3QioJDNY=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cppo]),
       propagatedBuildInputs: nix.thunk(() => [lwt, uutf]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/pqwy/notty",
         description: "Declarative terminal graphics for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

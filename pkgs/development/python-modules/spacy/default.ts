@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]], [["transformers", 97, 5], ["lookups", 98, 5]], [["annotation", 163, 11]], [["updateScript", 147, 5], ["tests", 163, 5]], [["description", 169, 5], ["homepage", 170, 5], ["changelog", 171, 5], ["license", 172, 5], ["maintainers", 173, 5], ["mainProgram", 174, 5]], [["pname", 51, 3], ["version", 52, 3], ["pyproject", 53, 3], ["__structuredAttrs", 54, 3], ["src", 56, 3], ["build-system", 63, 3], ["pythonRelaxDeps", 72, 3], ["dependencies", 74, 3], ["optional-dependencies", 96, 3], ["nativeCheckInputs", 101, 3], ["preCheck", 109, 3], ["disabledTestMarks", 113, 3], ["disabledTests", 115, 3], ["pythonImportsCheck", 144, 3], ["passthru", 146, 3], ["__darwinAllowLocalNetworking", 166, 3], ["meta", 168, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, cymem: false, cython: false, murmurhash: false, numpy: false, preshed: false, thinc: false, catalogue: false, jinja2: false, langcodes: false, packaging: false, pydantic: false, requests: false, setuptools: false, "spacy-legacy": false, "spacy-loggers": false, srsly: false, tqdm: false, typer: false, wasabi: false, weasel: false, "spacy-transformers": false, "spacy-lookups-data": false, "pytest-xdist": false, pytestCheckHook: false, hypothesis: false, mock: false, writeScript: false, git: false, nix: false, "nix-update": false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["transformers", 97, 5], ["lookups", 98, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["annotation", 163, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 147, 5], ["tests", 163, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 169, 5], ["homepage", 170, 5], ["changelog", 171, 5], ["license", 172, 5], ["maintainers", 173, 5], ["mainProgram", 174, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 51, 3], ["version", 52, 3], ["pyproject", 53, 3], ["__structuredAttrs", 54, 3], ["src", 56, 3], ["build-system", 63, 3], ["pythonRelaxDeps", 72, 3], ["dependencies", 74, 3], ["optional-dependencies", 96, 3], ["nativeCheckInputs", 101, 3], ["preCheck", 109, 3], ["disabledTestMarks", 113, 3], ["disabledTests", 115, 3], ["pythonImportsCheck", 144, 3], ["passthru", 146, 3], ["__darwinAllowLocalNetworking", 166, 3], ["meta", 168, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,13 +44,13 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "spacy",
       version: "3.8.16",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "explosion",
           repo: "spaCy",
           tag: nix.thunk(() => nix.str`release-v${nix.sel(finalAttrs, "version")}`),
@@ -85,7 +80,7 @@ export default nix.lambda((args) => (() => {
         weasel,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         transformers: nix.thunk(() => [spacy_transformers]),
         lookups: nix.thunk(() => [spacy_lookups_data]),
       })),
@@ -103,7 +98,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_overfitting_IO_with_ner"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_tok2vec_frozen_overfitting"]))))),
       pythonImportsCheck: nix.thunk(() => ["spacy"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-spacy", nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
 set -eou pipefail
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git, nix$, nix_update]))}
@@ -114,13 +109,13 @@ nix-update python3Packages.spacy --version-regex 'release-v([0-9.]+)'
 echo | nix-shell maintainers/scripts/update.nix --argstr package python3Packages.spacy-models.en_core_web_sm
 `))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           annotation: nix.thunk(() => nix.app(callPackage, nix.path(here, "./annotation-test"), nix.thunk(() => ({})))),
         })),
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Industrial-strength Natural Language Processing (NLP)",
         homepage: "https://github.com/explosion/spaCy",
         changelog: nix.thunk(() => nix.str`https://github.com/explosion/spaCy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

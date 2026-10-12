@@ -2,25 +2,23 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/packages.nix", [[["buildVersion", 8, 5], ["x64sha256", 9, 5], ["aarch64sha256", 10, 5]], [["buildVersion", 14, 5], ["dev", 15, 5], ["x64sha256", 16, 5], ["aarch64sha256", 17, 5]], [["sublime4", 7, 3], ["sublime4-dev", 13, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/packages.nix", [["buildVersion", 8, 5], ["x64sha256", 9, 5], ["aarch64sha256", 10, 5]]);
-const pos$2 = nix.positions(here + "/packages.nix", [["buildVersion", 14, 5], ["dev", 15, 5], ["x64sha256", 16, 5], ["aarch64sha256", 17, 5]]);
-const pos$3 = nix.positions(here + "/packages.nix", [["sublime4", 7, 3], ["sublime4-dev", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const common = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), opts)));
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     sublime4: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         buildVersion: "4215",
         x64sha256: "wVP0GNOrJrkOzOjAKoLk6WECXtemX34lBgpUV9Q+iNk=",
         aarch64sha256: "0xRmWkJy8zVRUDQyNyo0UW27WpoS3OKkcELBlC9m7nk=",
       })), nix.thunk(() => ({})))),
     "sublime4-dev": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         buildVersion: "4212",
         dev: true,
         x64sha256: "AA6ZsWNXs6J4JXI0tbJPDoAhoN8Jj58jhD0hLnTEFNI=",

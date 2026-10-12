@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["path", 95, 7], ["name", 96, 7]], [["xgreeters", 93, 12]], [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 108, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 45, 3], ["pythonPath", 55, 3], ["postPatch", 59, 3], ["mesonFlags", 76, 3], ["postInstall", 80, 3], ["preFixup", 85, 3], ["passthru", 93, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, python3: false, vala: false, wrapGAppsHook3: false, lightdm: false, gtk3: false, pixman: false, libcanberra: false, libgnomekbd: false, libx11: false, libxext: false, linkFarm: false, "lightdm-slick-greeter": false, numlockx: false, "xapp-symbolic-icons": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["path", 95, 7], ["name", 96, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["xgreeters", 93, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 45, 3], ["pythonPath", 55, 3], ["postPatch", 59, 3], ["mesonFlags", 76, 3], ["postInstall", 80, 3], ["preFixup", 85, 3], ["passthru", 93, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const numlockx = nix.arg($, "numlockx");
   const xapp_symbolic_icons = nix.arg($, "xapp-symbolic-icons");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lightdm-slick-greeter",
       version: "2.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "slick-greeter",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -77,17 +73,17 @@ gappsWrapperArgs+=(
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         xgreeters: nix.thunk(() => nix.app(linkFarm, "lightdm-slick-greeter-xgreeters", nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               path: nix.thunk(() => nix.str`${lightdm_slick_greeter}/share/xgreeters/slick-greeter.desktop`),
               name: "lightdm-slick-greeter.desktop",
             })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Slick-looking LightDM greeter",
         homepage: "https://github.com/linuxmint/slick-greeter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

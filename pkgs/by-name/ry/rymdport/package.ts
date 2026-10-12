@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["postInstall", 44, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "pkg-config": false, libGL: false, libxxf86vm: false, libxrandr: false, libxi: false, libxinerama: false, libxext: false, libxcursor: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["mainProgram", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["postInstall", 44, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const libx11 = nix.arg($, "libx11");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rymdport",
       version: "3.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Jacalz",
           repo: "rymdport",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "for res in $(ls internal/assets/icons | sed -e 's/icon-//g' -e 's/.png//g'); do\n  install -Dm444 internal/assets/icons/icon-$res.png \\\n    $out/share/icons/hicolor/${res}x${res}/apps/io.github.jacalz.rymdport.png\ndone\ninstall -Dm444 internal/assets/svg/icon.svg $out/share/icons/hicolor/scalable/apps/io.github.jacalz.rymdport.svg\ninstall -Dm444 internal/assets/unix/io.github.jacalz.rymdport.desktop -t $out/share/applications\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Easy encrypted file, folder, and text sharing between devices",
         homepage: "https://github.com/Jacalz/rymdport",
         changelog: nix.thunk(() => nix.str`https://github.com/Jacalz/rymdport/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

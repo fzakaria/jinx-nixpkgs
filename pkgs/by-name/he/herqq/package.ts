@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["homepage", 40, 5], ["description", 41, 5], ["platforms", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["version", 9, 3], ["pname", 10, 3], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 21, 3], ["outputs", 26, 3], ["sourceRoot", 31, 3], ["src", 32, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["platforms", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 9, 3], ["pname", 10, 3], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 21, 3], ["outputs", 26, 3], ["sourceRoot", 31, 3], ["src", 32, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "2.1.0-unstable-2020-06-26",
       pname: "herqq",
       strictDeps: true,
@@ -31,14 +29,14 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/herqq`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ThomArmax",
           repo: "HUPnP",
           rev: "c8385a8846b52def7058ae3794249d6b566a41fc",
           hash: "sha256-FxN/QlLB3sZ6Vn/9VIKNUntX/B4+crQZ7t760pwFqY8=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ThomArmax/HUPnP",
         description: "Software library for building UPnP devices and control points",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

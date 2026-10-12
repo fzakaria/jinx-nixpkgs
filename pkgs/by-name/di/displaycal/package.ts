@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 22, 5], ["version", 23, 26], ["hash", 24, 5]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["maintainers", 92, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["build-system", 32, 3], ["postPatch", 34, 3], ["dependencies", 43, 3], ["buildInputs", 60, 3], ["setupPyGlobalFlags", 71, 3], ["doCheck", 73, 3], ["pythonImportsCheck", 75, 3], ["dontWrapGApps", 77, 3], ["preFixup", 79, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false, wrapGAppsHook3: false, gtk3: false, librsvg: false, libxxf86vm: false, libxrandr: false, libxinerama: false, libxext: false, libx11: false, argyllcms: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 22, 5], ["version", 23, 26], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["maintainers", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["build-system", 32, 3], ["postPatch", 34, 3], ["dependencies", 43, 3], ["buildInputs", 60, 3], ["setupPyGlobalFlags", 71, 3], ["doCheck", 73, 3], ["pythonImportsCheck", 75, 3], ["dontWrapGApps", 77, 3], ["preFixup", 79, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const argyllcms = nix.arg($, "argyllcms");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "displaycal",
       version: "3.9.19",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "displaycal",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-GHx+2VwuxwdMQh6fxY6V/EQJE4CPxer39Aj/QlMWbrw=",
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Display calibration and characterization powered by Argyll CMS (Migrated to Python 3)",
         homepage: "https://github.com/eoyilmaz/displaycal-py3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

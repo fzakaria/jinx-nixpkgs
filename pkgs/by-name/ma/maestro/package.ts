@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["updateScript", 37, 12]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["sourceProvenance", 52, 5], ["changelog", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["dontUnpack", 20, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 26, 3], ["postFixup", 33, 3], ["passthru", 37, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, makeWrapper: false, jre_headless: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["sourceProvenance", 52, 5], ["changelog", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["dontUnpack", 20, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 26, 3], ["postFixup", 33, 3], ["passthru", 37, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre_headless = nix.arg($, "jre_headless");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "maestro",
       version: "2.11.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mobile-dev-inc/maestro/releases/download/cli-${nix.sel(finalAttrs, "version")}/maestro.zip`),
           hash: "sha256-U4RZPLTnoQZInnWoIdFX3UP05Djfa8MIty6CxoXhKDo=",
         })))),
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/maestro --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jre_headless]))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-maestro", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl jq common-updater-scripts\nset -o errexit -o nounset -o pipefail\n\nNEW_VERSION=$(curl --silent https://api.github.com/repos/mobile-dev-inc/maestro/releases | jq 'first(.[].tag_name | ltrimstr(\"cli-\") | select(contains(\"dev.\") | not))' --raw-output)\n\nupdate-source-version \"maestro\" \"$NEW_VERSION\" --print-changes\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Mobile UI Automation tool",
         homepage: "https://maestro.mobile.dev/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

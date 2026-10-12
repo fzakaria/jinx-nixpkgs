@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["fetchSubmodules", 49, 5], ["hash", 50, 5]], [["desktopName", 108, 7], ["name", 109, 7], ["exec", 110, 7], ["icon", 111, 7], ["comment", 112, 7], ["categories", 113, 7]], [["homepage", 170, 5], ["description", 171, 5], ["longDescription", 175, 5], ["license", 185, 5], ["maintainers", 186, 5], ["mainProgram", 187, 5], ["platforms", 188, 5]], [["pname", 38, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 53, 3], ["postPatch", 57, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 71, 3], ["dontWrapQtApps", 94, 3], ["cmakeFlags", 96, 3], ["desktopItems", 106, 3], ["installPhase", 120, 3], ["postFixup", 148, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, cmake: false, copyDesktopItems: false, fetchFromGitHub: false, ffmpeg_6: false, glew: false, libffi: false, libsForQt5: false, libzip: false, libx11: false, makeDesktopItem: false, makeWrapper: false, "pkg-config": false, python3: false, snappy: false, stdenv: false, "vulkan-loader": false, wayland: false, zlib: false, enableQt: true, enableVulkan: true, forceWayland: true, useSystemFfmpeg: true, useSystemSnappy: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["fetchSubmodules", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["desktopName", 108, 7], ["name", 109, 7], ["exec", 110, 7], ["icon", 111, 7], ["comment", 112, 7], ["categories", 113, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 170, 5], ["description", 171, 5], ["longDescription", 175, 5], ["license", 185, 5], ["maintainers", 186, 5], ["mainProgram", 187, 5], ["platforms", 188, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 53, 3], ["postPatch", 57, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 71, 3], ["dontWrapQtApps", 94, 3], ["cmakeFlags", 96, 3], ["desktopItems", 106, 3], ["installPhase", 120, 3], ["postFixup", 148, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.thunk(() => nix.attr(libsForQt5, "wrapQtAppsHook"));
   nix.assert_((!nix.asBool(forceWayland) || nix.asBool(!nix.asBool(enableQt))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pp/ppsspp/package.nix:36:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.add(nix.add(nix.add("ppsspp", nix.app(nix.sel(lib, "optionalString"), enableQt, "-qt")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enableQt)), "-sdl")), nix.app(nix.sel(lib, "optionalString"), forceWayland, "-wayland"))),
       version: "1.20.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hrydgard",
           repo: "ppsspp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +67,7 @@ substituteInPlace UI/NativeApp.cpp --replace /usr/share $out/share
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             desktopName: "PPSSPP",
             name: "ppsspp",
             exec: "ppsspp",
@@ -94,7 +91,7 @@ substituteInPlace UI/NativeApp.cpp --replace /usr/share $out/share
         return nix.str`makeWrapper $out/share/ppsspp/bin/${binToBeWrapped} $out/bin/ppsspp ${wrapperArgs}`;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.ppsspp.org/",
         description: nix.thunk(() => nix.add(nix.add("HLE Playstation Portable emulator, written in C++ (", (nix.asBool(enableQt) ? "Qt" : "SDL + headless")), ")")),
         longDescription: "PPSSPP is a PSP emulator, which means that it can run games and other\nsoftware that was originally made for the Sony PSP.\n\nThe PSP had multiple types of software. The two most common are native PSP\ngames on UMD discs and downloadable games (that were stored in the\ndirectory PSP/GAME on the \"memory stick\"). But there were also UMD Video\ndiscs, and PS1 games that could run in a proprietary emulator. PPSSPP does\nnot run those.\n",

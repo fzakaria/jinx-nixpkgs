@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["broken", 57, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 33, 3], ["makeFlags", 35, 3], ["enableParallelBuilding", 40, 3], ["preInstall", 42, 3], ["installTargets", 46, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "ivsc-driver": false, kernel: false, kernelModuleMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["broken", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 33, 3], ["makeFlags", 35, 3], ["enableParallelBuilding", 40, 3], ["preInstall", 42, 3], ["installTargets", 46, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ipu6-drivers";
       const version = "unstable-2025-11-12";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "ipu6-drivers",
           tag: "20251104_0740_359",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const preInstall = "sed -i -e \"s,INSTALL_MOD_DIR=,INSTALL_MOD_PATH=$out INSTALL_MOD_DIR=,\" Makefile\n";
       const installTargets = nix.thunk(() => ["modules_install"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/intel/ipu6-drivers",
         description: "IPU6 kernel driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelOlder"), "6.10")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

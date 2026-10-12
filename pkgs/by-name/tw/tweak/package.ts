@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["platforms", 28, 5], ["mainProgram", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["preBuild", 18, 3], ["makeFlags", 19, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["platforms", 28, 5], ["mainProgram", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["preBuild", 18, 3], ["makeFlags", 19, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tweak",
       version: "3.02",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.chiark.greenend.org.uk/~sgtatham/tweak/tweak-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "06js54pr5hwpwyxj77zs5s40n5aqvaw48dkj7rid2d47pyqijk2v",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "substituteInPlace Makefile --replace '$(DESTDIR)/usr/local' $out",
       makeFlags: nix.thunk(() => ["CC:=$(CC)", "LINK:=$(CC)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Efficient hex editor",
         homepage: "http://www.chiark.greenend.org.uk/~sgtatham/tweak",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

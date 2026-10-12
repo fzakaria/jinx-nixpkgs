@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["knownVulnerabilities", 12, 9]], [["meta", 11, 7]], [["rSrc", 24, 24], ["version", 24, 29], ["resholve-utils", 25, 15], ["resholve", 27, 7]], [["resholve", 35, 5]], [["resholve", 22, 3], ["resholve-utils", 32, 3]]]);
 const formals$1 = { args: { lib: false, pkgsBuildHost: false, resholve: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["knownVulnerabilities", 12, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["meta", 11, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rSrc", 24, 24], ["version", 24, 29], ["resholve-utils", 25, 15], ["resholve", 27, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["resholve", 35, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["resholve", 22, 3], ["resholve-utils", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,22 +11,22 @@ export default nix.lambda((args) => (() => {
   const pkgsBuildHost = nix.arg($, "pkgsBuildHost");
   const resholve = nix.arg($, "resholve");
   const removeKnownVulnerabilities = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
-      meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { [nix.POS]: pos$1, knownVulnerabilities: [] })),
+      [nix.POS]: $pos[1],
+      meta: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "meta"), { [nix.POS]: $pos[0], knownVulnerabilities: [] })),
     }));
   const callPackage = nix.thunk(() => nix.app(nix.sel(lib, "callPackageWith"), pkgsBuildHost));
   const source = nix.thunk(() => nix.app(callPackage, nix.path(here, "./source.nix"), nix.thunk(() => ({}))));
   const resholveBuildTimeOnly = nix.thunk(() => nix.app(removeKnownVulnerabilities, resholve));
   return (() => {
     const resholve_1 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./resholve.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         rSrc: nix.thunk(() => nix.attr(source, "rSrc")),
         version: nix.thunk(() => nix.attr(source, "version")),
         "resholve-utils": resholve_utils,
         resholve: resholveBuildTimeOnly,
       }))));
-    const resholve_utils = nix.thunk(() => nix.app(callPackage, nix.path(here, "./resholve-utils.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, resholve: resholveBuildTimeOnly }))));
-    return { [nix.POS]: pos$5, resholve: resholve_1, "resholve-utils": resholve_utils };
+    const resholve_utils = nix.thunk(() => nix.app(callPackage, nix.path(here, "./resholve-utils.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], resholve: resholveBuildTimeOnly }))));
+    return { [nix.POS]: $pos[4], resholve: resholve_1, "resholve-utils": resholve_utils };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

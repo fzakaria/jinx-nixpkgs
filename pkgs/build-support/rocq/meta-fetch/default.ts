@@ -2,42 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["lib", 10, 20]], [["ext", 56, 17], ["fmt", 57, 17], ["fetchfun", 58, 17]], [["cond", 54, 15], ["out", 55, 15]], [["ext", 64, 17], ["fmt", 65, 17], ["fetchfun", 66, 17]], [["cond", 62, 15], ["out", 63, 15]], [["ext", 71, 13], ["fmt", 72, 13], ["fetchfun", 73, 13]], [["cond", 81, 11], ["out", 82, 11]], [["cond", 85, 11], ["out", 86, 11]], [["cond", 89, 11], ["out", 90, 11]], [["cond", 93, 11], ["out", 94, 11]], [["cond", 97, 11], ["out", 98, 11]], [["hash", 105, 29]], [["sha256", 107, 29]], [["url", 112, 21]], [["version", 137, 7], ["src", 138, 7], ["broken", 139, 7]], [["case", 135, 5], ["out", 136, 5]], [["version", 145, 7], ["src", 146, 7]], [["case", 143, 5], ["out", 144, 5]], [["hash", 162, 19]], [["sha256", 164, 29]], [["hash", 166, 88]], [["rev", 175, 15], ["artifact", 176, 15]], [["version", 170, 9], ["src", 171, 9]], [["case", 150, 5], ["out", 151, 5]], [["rev", 194, 33]], [["owner", 194, 70]], [["version", 192, 17], ["src", 193, 9]], [["case", 183, 5], ["out", 184, 5]], [["version", 201, 7], ["src", 202, 7]], [["case", 199, 5], ["out", 200, 5]], [["path", 210, 9], ["name", 211, 9]], [["version", 208, 7], ["src", 209, 7]], [["case", 206, 5], ["out", 207, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["lib", 10, 20]]);
 const formals$2 = { args: { domain: true, owner: true, repo: false, rev: false, name: true, hash: true, sha256: true, artifact: true }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["ext", 56, 17], ["fmt", 57, 17], ["fetchfun", 58, 17]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cond", 54, 15], ["out", 55, 15]]);
-const pos$4 = nix.positions(here + "/default.nix", [["ext", 64, 17], ["fmt", 65, 17], ["fetchfun", 66, 17]]);
-const pos$5 = nix.positions(here + "/default.nix", [["cond", 62, 15], ["out", 63, 15]]);
-const pos$6 = nix.positions(here + "/default.nix", [["ext", 71, 13], ["fmt", 72, 13], ["fetchfun", 73, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["cond", 81, 11], ["out", 82, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["cond", 85, 11], ["out", 86, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["cond", 89, 11], ["out", 90, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["cond", 93, 11], ["out", 94, 11]]);
-const pos$11 = nix.positions(here + "/default.nix", [["cond", 97, 11], ["out", 98, 11]]);
-const pos$12 = nix.positions(here + "/default.nix", [["hash", 105, 29]]);
-const pos$13 = nix.positions(here + "/default.nix", [["sha256", 107, 29]]);
-const pos$14 = nix.positions(here + "/default.nix", [["url", 112, 21]]);
 const formals$3 = { args: { fetcher: true, location: false, release: true, releaseRev: true, releaseArtifact: true }, ellipsis: false };
-const pos$15 = nix.positions(here + "/default.nix", [["version", 137, 7], ["src", 138, 7], ["broken", 139, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["case", 135, 5], ["out", 136, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["version", 145, 7], ["src", 146, 7]]);
-const pos$18 = nix.positions(here + "/default.nix", [["case", 143, 5], ["out", 144, 5]]);
-const pos$19 = nix.positions(here + "/default.nix", [["hash", 162, 19]]);
-const pos$20 = nix.positions(here + "/default.nix", [["sha256", 164, 29]]);
-const pos$21 = nix.positions(here + "/default.nix", [["hash", 166, 88]]);
-const pos$22 = nix.positions(here + "/default.nix", [["rev", 175, 15], ["artifact", 176, 15]]);
-const pos$23 = nix.positions(here + "/default.nix", [["version", 170, 9], ["src", 171, 9]]);
-const pos$24 = nix.positions(here + "/default.nix", [["case", 150, 5], ["out", 151, 5]]);
-const pos$25 = nix.positions(here + "/default.nix", [["rev", 194, 33]]);
-const pos$26 = nix.positions(here + "/default.nix", [["owner", 194, 70]]);
-const pos$27 = nix.positions(here + "/default.nix", [["version", 192, 17], ["src", 193, 9]]);
-const pos$28 = nix.positions(here + "/default.nix", [["case", 183, 5], ["out", 184, 5]]);
-const pos$29 = nix.positions(here + "/default.nix", [["version", 201, 7], ["src", 202, 7]]);
-const pos$30 = nix.positions(here + "/default.nix", [["case", 199, 5], ["out", 200, 5]]);
-const pos$31 = nix.positions(here + "/default.nix", [["path", 210, 9], ["name", 211, 9]]);
-const pos$32 = nix.positions(here + "/default.nix", [["version", 208, 7], ["src", 209, 7]]);
-const pos$33 = nix.positions(here + "/default.nix", [["case", 206, 5], ["out", 207, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   const fetchzip = nix.arg($, "fetchzip");
-  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../extra-lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: nix.thunk(() => nix.attr(args_1, "lib")) }))));
+  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../extra-lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(args_1, "lib")) }))));
   const attrNames = nix.thunk(() => nix.attr(lib_1, "attrNames"));
   const fakeHash = nix.thunk(() => nix.attr(lib_1, "fakeHash"));
   const filter = nix.thunk(() => nix.attr(lib_1, "filter"));
@@ -82,17 +50,17 @@ export default nix.lambda((args) => (() => {
     const artifact = nix.argOr($_1, "artifact", () => null);
     const kind = nix.thunk(() => nix.app(switch_if, nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           cond: nix.thunk(() => !nix.eq(artifact, null)),
-          out: nix.thunk(() => ({ [nix.POS]: pos$2, ext: "tbz", fmt: "tbz", fetchfun: fetchurl })),
+          out: nix.thunk(() => ({ [nix.POS]: $pos[1], ext: "tbz", fmt: "tbz", fetchfun: fetchurl })),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           cond: nix.thunk(() => (nix.asBool(nix.has(args_3, "hash")) || nix.asBool(nix.has(args_3, "sha256")))),
-          out: nix.thunk(() => ({ [nix.POS]: pos$4, ext: "zip", fmt: "zip", fetchfun: fetchzip })),
+          out: nix.thunk(() => ({ [nix.POS]: $pos[3], ext: "zip", fmt: "zip", fetchfun: fetchzip })),
         })),
       ]), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         ext: "tar.gz",
         fmt: "tarball",
         fetchfun: nix.builtins.fetchTarball,
@@ -101,33 +69,33 @@ export default nix.lambda((args) => (() => {
     const pr = nix.thunk(() => nix.app(match, "^#(.*)$", rev));
     const url = nix.thunk(() => nix.app(switch_if, nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           cond: nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(pr, null)) && nix.asBool(!nix.eq(nix.app(match, "^github.*", domain), null)))) && nix.asBool(!nix.eq(artifact, null)))),
           out: nix.thunk(() => nix.str`https://github.com/${owner}/${repo}/releases/download/${rev}/${artifact}`),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           cond: nix.thunk(() => (nix.asBool(nix.eq(pr, null)) && nix.asBool(!nix.eq(nix.app(match, "^github.*", domain), null)))),
           out: nix.thunk(() => nix.str`https://${domain}/${owner}/${repo}/archive/${rev}.${nix.lookup(w, "ext")}`),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           cond: nix.thunk(() => (nix.asBool(!nix.eq(pr, null)) && nix.asBool(!nix.eq(nix.app(match, "^github.*", domain), null)))),
           out: nix.thunk(() => nix.str`https://api.${domain}/repos/${owner}/${repo}/${nix.lookup(w, "fmt")}/pull/${nix.app(head, pr)}/head`),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           cond: nix.thunk(() => (nix.asBool(nix.eq(pr, null)) && nix.asBool(!nix.eq(nix.app(match, "^gitlab.*", domain), null)))),
           out: nix.thunk(() => nix.str`https://${domain}/${owner}/${repo}/-/archive/${rev}/${repo}-${rev}.${nix.lookup(w, "ext")}`),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           cond: nix.thunk(() => !nix.eq(nix.app(match, "(www.)?mpi-sws.org", domain), null)),
           out: nix.thunk(() => nix.str`https://www.mpi-sws.org/~${owner}/${repo}/download/${repo}-${rev}.${nix.lookup(w, "ext")}`),
         })),
       ]), nix.thunk(() => nix.app(nix.builtins.throw, nix.thunk(() => nix.str`meta-fetch: no fetcher found for domain ${domain} on ${rev}`)))));
-    const fetch = (x) => nix.app(nix.lookup(w, "fetchfun"), nix.thunk(() => (nix.asBool(nix.has(args_3, "hash")) ? nix.update(x, { [nix.POS]: pos$12, hash: hash }) : (nix.asBool(nix.has(args_3, "sha256")) ? nix.update(x, { [nix.POS]: pos$13, sha256: sha256 }) : nix.force(x)))));
-    return nix.app(fetch, nix.thunk(() => ({ [nix.POS]: pos$14, url: url })));
+    const fetch = (x) => nix.app(nix.lookup(w, "fetchfun"), nix.thunk(() => (nix.asBool(nix.has(args_3, "hash")) ? nix.update(x, { [nix.POS]: $pos[11], hash: hash }) : (nix.asBool(nix.has(args_3, "sha256")) ? nix.update(x, { [nix.POS]: $pos[12], sha256: sha256 }) : nix.force(x)))));
+    return nix.app(fetch, nix.thunk(() => ({ [nix.POS]: $pos[13], url: url })));
   })(), formals$2);
   return nix.lambda((args_2) => (() => {
     const $_1 = nix.formals(args_2, formals$3);
@@ -142,30 +110,30 @@ export default nix.lambda((args) => (() => {
     const isPathString = (x) => (nix.asBool((nix.asBool(nix.app(isString, x)) && nix.asBool(!nix.eq(nix.app(match, "^/.*", x), null)))) && nix.asBool(nix.app(pathExists, x)));
     return (arg) => nix.app(switch$, arg, nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           case: nix.builtins.isNull,
-          out: nix.thunk(() => ({ [nix.POS]: pos$15, version: "broken", src: "", broken: true })),
+          out: nix.thunk(() => ({ [nix.POS]: $pos[14], version: "broken", src: "", broken: true })),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           case: isPathString,
-          out: nix.thunk(() => ({ [nix.POS]: pos$17, version: "dev", src: arg })),
+          out: nix.thunk(() => ({ [nix.POS]: $pos[16], version: "dev", src: arg })),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           case: nix.thunk(() => nix.app(nix.sel(pred, "union"), isVersion, isShortVersion)),
           out: nix.thunk(() => (() => {
             const v = nix.thunk(() => (nix.asBool(nix.app(isVersion, arg)) ? nix.force(arg) : nix.app(shortVersion, arg)));
             const r = nix.thunk(() => nix.sel(release, nix.key(nix.force(v))));
             const rv = nix.thunk(() => nix.update(r, (nix.asBool(nix.has(r, "hash")) ? (nix.asBool(nix.has(r, "sha256")) ? nix.builtins.throw("only one of `hash` (preferred) or `sha256` can be set") : {
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               hash: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(r, "hash"), "")) ? nix.force(fakeHash) : nix.sel(r, "hash"))),
-            }) : (nix.asBool(!nix.eq(nix.selOr(r, () => "", "sha256"), "")) ? { [nix.POS]: pos$20, sha256: nix.thunk(() => nix.attr(r, "sha256")) } : nix.app(warn, "Release `hash` not explicitly set, defaulting to `lib.fakeHash`", nix.thunk(() => ({ [nix.POS]: pos$21, hash: fakeHash })))))));
+            }) : (nix.asBool(!nix.eq(nix.selOr(r, () => "", "sha256"), "")) ? { [nix.POS]: $pos[19], sha256: nix.thunk(() => nix.attr(r, "sha256")) } : nix.app(warn, "Release `hash` not explicitly set, defaulting to `lib.fakeHash`", nix.thunk(() => ({ [nix.POS]: $pos[20], hash: fakeHash })))))));
             return {
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               version: nix.thunk(() => nix.selOr(rv, () => nix.force(v), "version")),
               src: nix.thunk(() => nix.selOr(rv, () => nix.app(fetcher, nix.thunk(() => nix.update(location, nix.update({
-                    [nix.POS]: pos$22,
+                    [nix.POS]: $pos[21],
                     rev: nix.thunk(() => nix.app(releaseRev, v)),
                     artifact: nix.thunk(() => nix.app(releaseArtifact, v)),
                   }, rv)))), "src")),
@@ -173,7 +141,7 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           case: isString,
           out: nix.thunk(() => (() => {
             const splitted = nix.thunk(() => nix.app(filter, isString, nix.thunk(() => nix.app(split, ":", arg))));
@@ -181,29 +149,29 @@ export default nix.lambda((args) => (() => {
             const has_owner = nix.thunk(() => nix.gt(nix.app(length, splitted), 1n));
             const version = "dev";
             return {
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               version: version,
-              src: nix.thunk(() => nix.app(fetcher, nix.thunk(() => nix.update(location, nix.update({ [nix.POS]: pos$25, rev: rev }, nix.app(optionalAttrs, has_owner, nix.thunk(() => ({ [nix.POS]: pos$26, owner: nix.thunk(() => nix.app(head, splitted)) })))))))),
+              src: nix.thunk(() => nix.app(fetcher, nix.thunk(() => nix.update(location, nix.update({ [nix.POS]: $pos[24], rev: rev }, nix.app(optionalAttrs, has_owner, nix.thunk(() => ({ [nix.POS]: $pos[25], owner: nix.thunk(() => nix.app(head, splitted)) })))))))),
             };
           })()),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           case: isAttrs,
           out: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             version: nix.thunk(() => nix.selOr(arg, () => "dev", "version")),
             src: nix.thunk(() => nix.app(nix.selOr(arg, () => nix.force(fetcher), "fetcher"), nix.thunk(() => nix.update(location, nix.selOr(arg, () => ({}), "location"))))),
           })),
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           case: isPath,
           out: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             version: "dev",
             src: nix.thunk(() => nix.builtins.path(nix.thunk(() => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 path: arg,
                 name: nix.thunk(() => nix.selOr(location, () => "source", "name")),
               })))),

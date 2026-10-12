@@ -2,15 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nginx-compression.nix", [[["root", 41, 30]], [["default", 41, 22]], [["enable", 39, 9], ["recommendedGzipSettings", 40, 9], ["virtualHosts", 41, 9]], [["nginx", 38, 16]], [["services", 38, 7]], [["machine", 35, 14]], [["name", 33, 3], ["containers", 35, 3], ["testScript", 51, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nginx-compression.nix", [["root", 41, 30]]);
-const pos$2 = nix.positions(here + "/nginx-compression.nix", [["default", 41, 22]]);
-const pos$3 = nix.positions(here + "/nginx-compression.nix", [["enable", 39, 9], ["recommendedGzipSettings", 40, 9], ["virtualHosts", 41, 9]]);
-const pos$4 = nix.positions(here + "/nginx-compression.nix", [["nginx", 38, 16]]);
-const pos$5 = nix.positions(here + "/nginx-compression.nix", [["services", 38, 7]]);
-const pos$6 = nix.positions(here + "/nginx-compression.nix", [["machine", 35, 14]]);
-const pos$7 = nix.positions(here + "/nginx-compression.nix", [["name", 33, 3], ["containers", 35, 3], ["testScript", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,25 +27,25 @@ export default nix.lambda((args) => (() => {
   ]);
   const incompressible = nix.thunk(() => ["jpg", "png", "zip"]);
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "nginx-compression",
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               recommendedGzipSettings: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 default: nix.thunk(() => ({
-                  [nix.POS]: pos$1,
+                  [nix.POS]: $pos[0],
                   root: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), "nginx-compression-testdir", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir "$out"
 for ext in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(compressible, incompressible)))}; do
   # Well past gzip_min_length, and trivially compressible.

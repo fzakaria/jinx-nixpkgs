@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 11, 3], ["version", 12, 31], ["meta", 12, 39], ["src", 14, 3], ["dontConfigure", 16, 3], ["dontBuild", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 25, 3], ["installPhase", 27, 3], ["preFixup", 41, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, "clapper-unwrapped": false, wrapGAppsHook4: false, "gobject-introspection": false, lndir: false, "clapper-enhancers": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 31], ["meta", 12, 39], ["src", 14, 3], ["dontConfigure", 16, 3], ["dontBuild", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 25, 3], ["installPhase", 27, 3], ["preFixup", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const lndir = nix.arg($, "lndir");
   const clapper_enhancers = nix.arg($, "clapper-enhancers");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "clapper",
       version: nix.thunk(() => nix.attr(clapper_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(clapper_unwrapped, "meta")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["build-system", 47, 3], ["nativeCheckInputs", 51, 3], ["disabledTestPaths", 58, 3], ["preCheck", 63, 3], ["dependencies", 67, 3], ["runtimeDeps", 76, 3], ["dontWrapGApps", 84, 3], ["preFixup", 86, 3], ["postInstall", 90, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, wrapGAppsHook3: false, "gobject-introspection": false, imagemagick: false, gtksourceview3: false, libappindicator: false, libnotify: false, xautomation: false, xwd: false, zenity: false, wmctrl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["build-system", 47, 3], ["nativeCheckInputs", 51, 3], ["disabledTestPaths", 58, 3], ["preCheck", 63, 3], ["dependencies", 67, 3], ["runtimeDeps", 76, 3], ["dontWrapGApps", 84, 3], ["preFixup", 86, 3], ["postInstall", 90, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const zenity = nix.arg($, "zenity");
   const wmctrl = nix.arg($, "wmctrl");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "autokey",
       version: "0.96.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "autokey",
           repo: "autokey",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "# remove Qt version which we currently do not support\nrm $out/bin/autokey-qt $out/share/applications/autokey-qt.desktop\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Desktop automation utility for Linux and X11",
         homepage: "https://github.com/autokey/autokey",
         changelog: nix.thunk(() => nix.str`https://github.com/autokey/autokey/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

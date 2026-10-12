@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["license", 66, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["cmakeFlags", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, glfw3: false, libGLU: false, libx11: false, libxcursor: false, libxi: false, libxinerama: false, libxrandr: false, libglut: false, xorgproto: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["license", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["cmakeFlags", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const cmakeBool = nix.thunk(() => nix.attr(lib, "cmakeBool"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "box2d",
       version: "2.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "erincatto",
           repo: "box2d",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(cmakeBool, "BOX2D_BUILD_UNIT_TESTS", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "2D physics engine",
         homepage: "https://box2d.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/erincatto/box2d/releases/tag/v${nix.sel(finalAttrs, "version")}`),

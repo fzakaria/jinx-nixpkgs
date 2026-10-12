@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["build-system", 24, 3], ["pythonRemoveDeps", 26, 3], ["dependencies", 28, 3], ["makeWrapperArgs", 39, 3], ["nativeBuildInputs", 46, 3], ["postInstall", 48, 3], ["nativeCheckInputs", 65, 3], ["doCheck", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, installShellFiles: false, addBinToPathHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["build-system", 24, 3], ["pythonRemoveDeps", 26, 3], ["dependencies", 28, 3], ["makeWrapperArgs", 39, 3], ["nativeBuildInputs", 46, 3], ["postInstall", 48, 3], ["nativeCheckInputs", 65, 3], ["doCheck", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const addBinToPathHook = nix.arg($, "addBinToPathHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "git-sim",
       version: "0.3.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "initialcommit-com",
           repo: "git-sim",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
       })())),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Visually simulate Git operations in your own repos with a single terminal command",
         homepage: "https://initialcommit.com/tools/git-sim",
         changelog: nix.thunk(() => nix.str`https://github.com/initialcommit-com/git-sim/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

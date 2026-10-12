@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 18, 5], ["exec", 19, 5], ["icon", 20, 5], ["desktopName", 21, 5], ["genericName", 22, 5], ["categories", 23, 5], ["terminal", 24, 5], ["startupWMClass", 25, 5]], [["url", 34, 5], ["hash", 35, 5]], [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["platforms", 79, 5], ["sourceProvenance", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 30, 3], ["version", 31, 3], ["versiondate", 32, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["dontStrip", 49, 3], ["installPhase", 51, 3], ["postFixup", 66, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchzip: false, lib: false, makeWrapper: false, autoPatchelfHook: false, openjdk21: false, pam: false, makeDesktopItem: false, icoutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 18, 5], ["exec", 19, 5], ["icon", 20, 5], ["desktopName", 21, 5], ["genericName", 22, 5], ["categories", 23, 5], ["terminal", 24, 5], ["startupWMClass", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["platforms", 79, 5], ["sourceProvenance", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["versiondate", 32, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["dontStrip", 49, 3], ["installPhase", 51, 3], ["postFixup", 66, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const icoutils = nix.arg($, "icoutils");
   const pkg_path = "$out/lib/ghidra";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "ghidra",
       exec: "ghidra",
       icon: "ghidra",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "12.1.2";
       const versiondate = "20260605";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_${version}_build/ghidra_${version}_PUBLIC_${versiondate}.zip`),
           hash: "sha256-ulIBecjWAnrM8iJmqQZAZRerUCKpIBcXyv6KIB7I/ZA=",
         }))));
@@ -67,7 +64,7 @@ wrapProgram "${pkg_path}/support/launch.sh" \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openjdk21]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Software reverse engineering (SRE) suite of tools developed by NSA's Research Directorate in support of the Cybersecurity mission",
         mainProgram: "ghidra",
         homepage: "https://github.com/NationalSecurityAgency/ghidra",
@@ -88,7 +85,7 @@ wrapProgram "${pkg_path}/support/launch.sh" \\
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         versiondate,

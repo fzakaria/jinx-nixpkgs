@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["zope.testbrowser", 37, 5], ["django", 42, 5], ["flask", 47, 5], ["selenium", 52, 5]], [["changelog", 88, 5], ["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 55, 3], ["disabledTests", 60, 3], ["disabledTestPaths", 67, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, urllib3: false, selenium: false, cssselect: false, django: false, flask: false, lxml: false, pytestCheckHook: false, "zope-testbrowser": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["zope.testbrowser", 37, 5], ["django", 42, 5], ["flask", 47, 5], ["selenium", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 88, 5], ["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 55, 3], ["disabledTests", 60, 3], ["disabledTestPaths", 67, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.21.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cobrateam",
           repo: "splinter",
           tag: version,
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [urllib3]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "zope.testbrowser": nix.thunk(() => [zope_testbrowser, lxml, cssselect]),
         django: nix.thunk(() => [django, lxml, cssselect]),
         flask: nix.thunk(() => [flask, lxml, cssselect]),
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["splinter"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: "https://splinter.readthedocs.io/en/latest/news.html",
         description: "Browser abstraction for web acceptance testing",
         homepage: "https://github.com/cobrateam/splinter",
@@ -78,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

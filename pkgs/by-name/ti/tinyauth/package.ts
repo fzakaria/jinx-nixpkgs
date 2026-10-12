@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["CGO_ENABLED", 30, 7]], [["pname", 54, 28], ["version", 54, 34], ["src", 54, 42], ["sourceRoot", 55, 7], ["pnpm", 56, 7], ["fetcherVersion", 57, 7], ["hash", 58, 7]], [["pname", 43, 5], ["version", 44, 26], ["src", 44, 34], ["nativeBuildInputs", 46, 5], ["pnpmDeps", 53, 5], ["pnpmRoot", 61, 5], ["installPhase", 63, 5]], [["tinyauth", 75, 28]], [["extraArgs", 78, 7]], [["tests", 74, 5], ["updateScript", 77, 5]], [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5], ["platforms", 94, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["subPackages", 28, 3], ["env", 30, 3], ["ldflags", 31, 3], ["preBuild", 38, 3], ["frontend", 42, 3], ["passthru", 73, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, stdenvNoCC: false, "nodejs-slim": false, pnpmConfigHook: false, pnpmBuildHook: false, pnpm_11: false, fetchPnpmDeps: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 54, 28], ["version", 54, 34], ["src", 54, 42], ["sourceRoot", 55, 7], ["pnpm", 56, 7], ["fetcherVersion", 57, 7], ["hash", 58, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 43, 5], ["version", 44, 26], ["src", 44, 34], ["nativeBuildInputs", 46, 5], ["pnpmDeps", 53, 5], ["pnpmRoot", 61, 5], ["installPhase", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tinyauth", 75, 28]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 78, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 74, 5], ["updateScript", 77, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5], ["platforms", 94, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["subPackages", 28, 3], ["env", 30, 3], ["ldflags", 31, 3], ["preBuild", 38, 3], ["frontend", 42, 3], ["passthru", 73, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "tinyauth",
       version: "5.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tinyauthapp",
           repo: "tinyauth",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-gkFKt/IoN29lw9laqxHmDK77E9hCkdEv7oIEg83sfgY=",
       subPackages: nix.thunk(() => ["cmd/tinyauth"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -49,13 +41,13 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`cp -r ${nix.sel(finalAttrs, "frontend")}/dist internal/assets/dist
 `),
       frontend: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: "tinyauth-frontend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => [nodejs_slim, pnpmConfigHook, pnpmBuildHook, pnpm_11]),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -68,15 +60,15 @@ export default nix.lambda((args) => (() => {
           installPhase: "runHook preInstall\n\nmkdir -p $out/dist\ncp -r frontend/dist $out\n\nrunHook postInstall\n",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           tinyauth: nix.thunk(() => nix.attr(nixosTests, "tinyauth")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[5], extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Simple authentication middleware for web apps",
         homepage: "https://tinyauth.app",
         changelog: nix.thunk(() => nix.str`https://github.com/tinyauthapp/tinyauth/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["libsOnly", 44, 57]], [["url", 78, 5], ["sha256", 79, 5]], [["url", 82, 5], ["sha256", 83, 5]], [["url", 86, 5], ["hash", 87, 5]], [["url", 96, 5], ["sha256", 97, 5]], [["CFLAGS", 169, 7]], [["description", 182, 5], ["homepage", 183, 5], ["license", 184, 5], ["maintainers", 185, 5], ["platforms", 186, 5]], [["pname", 92, 3], ["version", 93, 3], ["src", 95, 3], ["patches", 100, 3], ["nvidiaDeviceOptions", 109, 3], ["nouveauDeviceOptions", 117, 3], ["postPatch", 121, 3], ["preConfigure", 126, 3], ["buildInputs", 137, 3], ["nativeBuildInputs", 143, 3], ["configureFlags", 157, 3], ["env", 169, 3], ["postInstall", 173, 3], ["meta", 181, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, "pkg-config": false, help2man: false, makeWrapper: false, glib: false, libbsd: false, libx11: false, "xorg-server": false, kmod: false, "xf86-video-nouveau": false, nvidia_x11: true, linuxPackages: false, pkgsi686Linux: false, virtualgl: false, libglvnd: false, autoreconfHook: false, nvidia_x11_i686: true, libglvnd_i686: true, useDisplayDevice: true, extraNvidiaDeviceOptions: true, extraNouveauDeviceOptions: true, useNvidia: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["libsOnly", 44, 57]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 78, 5], ["sha256", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 82, 5], ["sha256", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 86, 5], ["hash", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 96, 5], ["sha256", 97, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["CFLAGS", 169, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 182, 5], ["homepage", 183, 5], ["license", 184, 5], ["maintainers", 185, 5], ["platforms", 186, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 92, 3], ["version", 93, 3], ["src", 95, 3], ["patches", 100, 3], ["nvidiaDeviceOptions", 109, 3], ["nouveauDeviceOptions", 117, 3], ["postPatch", 121, 3], ["preConfigure", 126, 3], ["buildInputs", 137, 3], ["nativeBuildInputs", 143, 3], ["configureFlags", 157, 3], ["env", 169, 3], ["postInstall", 173, 3], ["meta", 181, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const virtualgl = nix.arg($, "virtualgl");
   const libglvnd = nix.arg($, "libglvnd");
   const autoreconfHook = nix.arg($, "autoreconfHook");
-  const nvidia_x11_i686 = nix.argOr($, "nvidia_x11_i686", () => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(nix.sel(pkgsi686Linux, "linuxPackages", "nvidia_x11", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, libsOnly: true }))) : null));
+  const nvidia_x11_i686 = nix.argOr($, "nvidia_x11_i686", () => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(nix.sel(pkgsi686Linux, "linuxPackages", "nvidia_x11", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], libsOnly: true }))) : null));
   const libglvnd_i686 = nix.argOr($, "libglvnd_i686", () => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.sel(pkgsi686Linux, "libglvnd") : null));
   const useDisplayDevice = nix.argOr($, "useDisplayDevice", () => false);
   const extraNvidiaDeviceOptions = nix.argOr($, "extraNvidiaDeviceOptions", () => "");
@@ -44,17 +37,17 @@ export default nix.lambda((args) => (() => {
   const bbdPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [kmod, xorg_server])));
   const xmodules = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.builtins.map((x) => nix.str`${nix.selOr(x, () => nix.force(x), "out")}/lib/xorg/modules`, nix.thunk(() => nix.concat([xorg_server], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(useNvidia)), xf86_video_nouveau)))))));
   const modprobePatch = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://github.com/Bumblebee-Project/Bumblebee/commit/1ada79fe5916961fc4e4917f8c63bb184908d986.patch",
       sha256: "02vq3vba6nx7gglpjdfchws9vjhs1x02a543yvqrxqpvvdfim2x2",
     }))));
   const libkmodPatch = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://github.com/Bumblebee-Project/Bumblebee/commit/deceb14cdf2c90ff64ebd1010a674305464587da.patch",
       sha256: "00c05i5lxz7vdbv445ncxac490vbl5g9w3vy3gd71qw1f0si8vwh",
     }))));
   const gcc10Patch = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: "https://github.com/Bumblebee-Project/Bumblebee/commit/f94a118a88cd76e2dbea33d735bd53cf54b486a1.patch",
       hash: "sha256-3b5tLoMrGYSdg9Hz5bh0c44VIrbSZrY56JpWEyU/Pik=",
     }))));
@@ -62,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bumblebee";
       const version = "3.2.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`https://www.bumblebee-project.org/${pname}-${version}.tar.gz`),
           sha256: "03p3gvx99lwlavznrpg9l7jnl1yfg2adcj8jcjj0gxp20wxp060h",
         }))));
@@ -78,7 +71,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`CONF_MODPATH_NVIDIA=${nix.sel(nvidia_x11, "bin")}/lib/xorg/modules`),
         ]))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-DX_MODULE_APPENDS=\\"${xmodules}\\"`)]))),
       }));
       const postInstall = nix.thunk(() => nix.str`wrapProgram "$out/sbin/bumblebeed" \\
@@ -88,7 +81,7 @@ wrapProgram "$out/bin/optirun" \\
   --prefix PATH : "${virtualgl}/bin"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Daemon for managing Optimus videocards (power-on/off, spawns xservers)",
         homepage: "https://github.com/Bumblebee-Project/Bumblebee",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -96,7 +89,7 @@ wrapProgram "$out/bin/optirun" \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

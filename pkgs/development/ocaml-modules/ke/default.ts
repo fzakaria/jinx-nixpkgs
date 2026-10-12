@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["checkInputs", 21, 3], ["doCheck", 25, 3], ["minimalOCamlVersion", 27, 3], ["duneVersion", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, fmt: false, alcotest: false, bigstringaf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["checkInputs", 21, 3], ["doCheck", 25, 3], ["minimalOCamlVersion", 27, 3], ["duneVersion", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const bigstringaf = nix.arg($, "bigstringaf");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ke",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/ke/releases/download/v${nix.sel(finalAttrs, "version")}/ke-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-YSFyB+IgCwSxd1lzZhD/kggmmmR/hUy1rnLNrA1nIwU=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       minimalOCamlVersion: "4.08",
       duneVersion: "3",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast implementation of queue in OCaml",
         homepage: "https://github.com/mirage/ke",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

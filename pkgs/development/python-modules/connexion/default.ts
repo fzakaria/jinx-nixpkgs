@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["flask", 64, 5], ["swagger-ui", 68, 5], ["uvicorn", 69, 5]], [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["mainProgram", 98, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["dependencies", 49, 3], ["optional-dependencies", 63, 3], ["nativeCheckInputs", 72, 3], ["pythonImportsCheck", 79, 3], ["disabledTests", 81, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPythonPackage: false, "poetry-core": false, asgiref: false, httpx: false, inflection: false, jsonschema: false, jinja2: false, "python-multipart": false, pyyaml: false, requests: false, starlette: false, "typing-extensions": false, werkzeug: false, a2wsgi: false, flask: false, "swagger-ui-bundle": false, uvicorn: false, "pytest-aiohttp": false, pytestCheckHook: false, testfixtures: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["flask", 64, 5], ["swagger-ui", 68, 5], ["uvicorn", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["mainProgram", 98, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["dependencies", 49, 3], ["optional-dependencies", 63, 3], ["nativeCheckInputs", 72, 3], ["pythonImportsCheck", 79, 3], ["disabledTests", 81, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "spec-first",
           repo: "connexion",
           tag: version,
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         werkzeug,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         flask: nix.thunk(() => [a2wsgi, flask]),
         "swagger-ui": nix.thunk(() => [swagger_ui_bundle]),
         uvicorn: nix.thunk(() => [uvicorn]),
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["connexion"]);
       const disabledTests = nix.thunk(() => nix.concat(["test_build_example", "test_mock_resolver_no_example", "test_remote_api"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_lifespan"]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Swagger/OpenAPI First framework on top of Flask",
         homepage: "https://github.com/spec-first/connexion",
         changelog: nix.thunk(() => nix.str`https://github.com/spec-first/connexion/releases/tag/${version}`),
@@ -80,7 +77,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "connexion",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

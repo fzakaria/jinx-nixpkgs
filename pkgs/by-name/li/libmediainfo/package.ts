@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["propagatedBuildInputs", 29, 3], ["sourceRoot", 31, 3], ["postPatch", 33, 3], ["configureFlags", 38, 3], ["enableParallelBuilding", 45, 3], ["postInstall", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, "pkg-config": false, libzen: false, zlib: false, curlSupport: true, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["propagatedBuildInputs", 29, 3], ["sourceRoot", 31, 3], ["postPatch", 33, 3], ["configureFlags", 38, 3], ["enableParallelBuilding", 45, 3], ["postInstall", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const curlSupport = nix.argOr($, "curlSupport", () => true);
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libmediainfo",
       version: "26.05",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mediaarea.net/download/source/libmediainfo/${nix.sel(finalAttrs, "version")}/libmediainfo_${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-wIsth7L7XttFJsKooxfrHyz/RIB+RjGgN8qfmh1FUFQ=",
         })))),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "install -vD -m 644 libmediainfo.pc \"$out/lib/pkgconfig/libmediainfo.pc\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Shared library for mediainfo",
         homepage: "https://mediaarea.net/",
         changelog: "https://mediaarea.net/MediaInfo/ChangeLog",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["minimalOCamlVersion", 26, 3], ["nativeBuildInputs", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, ocaml: false, cppo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["minimalOCamlVersion", 26, 3], ["nativeBuildInputs", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const cppo = nix.arg($, "cppo");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.2",
       pname: "ocplib-endian",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OCamlPro",
           repo: "ocplib-endian",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       minimalOCamlVersion: "4.03",
       nativeBuildInputs: nix.thunk(() => [cppo]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Optimised functions to read and write int16/32/64",
         homepage: "https://github.com/OCamlPro/ocplib-endian",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

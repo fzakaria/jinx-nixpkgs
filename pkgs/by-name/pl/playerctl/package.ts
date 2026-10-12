@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["mainProgram", 64, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 47, 3], ["mesonFlags", 49, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, docbook_xsl: false, fetchFromGitHub: false, glib: false, "gobject-introspection": false, "gtk-doc": false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, withDocs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["mainProgram", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 47, 3], ["mesonFlags", 49, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const withDocs = nix.argOr($, "withDocs", () => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "playerctl",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "altdesktop",
           repo: "playerctl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "gtk-doc", withDocs)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-line utility and library for controlling media players that implement MPRIS",
         homepage: "https://github.com/altdesktop/playerctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

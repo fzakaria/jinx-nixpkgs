@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 13], ["version", 14, 19], ["hash", 15, 5]], [["pve", 33, 47]], [["tests", 32, 12]], [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 28, 3], ["pythonImportsCheck", 30, 3], ["passthru", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 13], ["version", 14, 19], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pve", 33, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 32, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 28, 3], ["pythonImportsCheck", 30, 3], ["passthru", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.8.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-dVawZB5oewu7sNj0lZ4koVia6gorjtxpSu66Lvl6XuE=",
@@ -40,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pve_exporter"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { [nix.POS]: pos$2, pve: nix.thunk(() => nix.attr(from, "pve")) };
+          return { [nix.POS]: $pos[1], pve: nix.thunk(() => nix.attr(from, "pve")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Exposes information gathered from Proxmox VE cluster for use by the Prometheus monitoring system",
         mainProgram: "pve_exporter",
         homepage: "https://github.com/prometheus-pve/prometheus-pve-exporter",
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         format,

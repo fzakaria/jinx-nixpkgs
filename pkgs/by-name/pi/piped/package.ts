@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["pname", 36, 7], ["version", 37, 7], ["src", 38, 7], ["pnpm", 39, 7], ["fetcherVersion", 41, 5], ["hash", 42, 5]], [["extraArgs", 46, 5]], [["updateScript", 45, 12]], [["homepage", 50, 5], ["description", 51, 5], ["maintainers", 52, 5], ["license", 53, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["npmConfigHook", 25, 3], ["installPhase", 27, 3], ["npmDeps", 33, 3], ["pnpmDeps", 34, 3], ["passthru", 45, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 36, 7], ["version", 37, 7], ["src", 38, 7], ["pnpm", 39, 7], ["fetcherVersion", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 45, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["maintainers", 52, 5], ["license", 53, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["npmConfigHook", 25, 3], ["installPhase", 27, 3], ["npmDeps", 33, 3], ["pnpmDeps", 34, 3], ["passthru", 45, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "piped";
       const version = "0-unstable-2026-09-11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TeamPiped",
           repo: "piped",
           rev: "70453d1b5795d4acee90a33a2596a315ef72d961",
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const npmConfigHook = pnpmConfigHook;
       const installPhase = "runHook preInstall\ncp dist $out -r\nrunHook postInstall\n";
       const pnpmDeps = nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -44,18 +39,18 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDeps = pnpmDeps;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/TeamPiped/Piped",
         description: "Efficient and privacy-friendly YouTube frontend",
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

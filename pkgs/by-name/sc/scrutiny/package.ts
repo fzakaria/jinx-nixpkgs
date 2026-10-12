@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 13, 28], ["pname", 14, 7], ["src", 15, 7], ["npmDepsHash", 17, 7], ["buildPhase", 19, 7], ["installPhase", 26, 7]], [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["CGO_ENABLED", 49, 7]], [["scrutiny", 62, 11]], [["extraArgs", 63, 40]], [["frontend", 61, 5], ["tests", 62, 5], ["updateScript", 63, 5]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 75, 5], ["platforms", 76, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["subPackages", 45, 3], ["vendorHash", 47, 3], ["env", 49, 3], ["ldflags", 51, 3], ["tags", 53, 3], ["postInstall", 55, 3], ["passthru", 60, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false, lib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 13, 28], ["pname", 14, 7], ["src", 15, 7], ["npmDepsHash", 17, 7], ["buildPhase", 19, 7], ["installPhase", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 49, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["scrutiny", 62, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 63, 40]]);
-const pos$6 = nix.positions(here + "/package.nix", [["frontend", 61, 5], ["tests", 62, 5], ["updateScript", 63, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 75, 5], ["platforms", 76, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["subPackages", 45, 3], ["vendorHash", 47, 3], ["env", 49, 3], ["ldflags", 51, 3], ["tags", 53, 3], ["postInstall", 55, 3], ["passthru", 60, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nix_update_script = nix.arg($, "nix-update-script");
   const frontend = (finalAttrs) => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: nix.thunk(() => nix.attr(finalAttrs, "version")),
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-webapp`),
       src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/webapp/frontend`),
@@ -30,11 +23,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir $out\ncp -r dist/* $out\nrunHook postInstall\n",
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "scrutiny",
       version: "0.9.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "AnalogJ",
           repo: "scrutiny",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,20 +35,23 @@ export default nix.lambda((args) => (() => {
         })))),
       subPackages: "webapp/backend/cmd/scrutiny",
       vendorHash: "sha256-UdQ9O/l32XgRZNR/vQeBJhhAGQ6vNvle/+DY1fi6XaY=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => ["-extldflags=-static"]),
       tags: nix.thunk(() => ["static"]),
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/share/scrutiny
 cp -r ${nix.app(frontend, finalAttrs)}/* $out/share/scrutiny
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         frontend: nix.thunk(() => nix.app(frontend, finalAttrs)),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, scrutiny: nix.thunk(() => nix.sel(nixosTests, "scrutiny")) })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--subpackage=frontend"]) })))),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[3],
+          scrutiny: nix.thunk(() => nix.sel(nixosTests, "scrutiny")),
+        })),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[4], extraArgs: nix.thunk(() => ["--subpackage=frontend"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Hard Drive S.M.A.R.T Monitoring, Historical Trends & Real World Failure Thresholds",
         homepage: "https://github.com/AnalogJ/scrutiny",
         changelog: nix.thunk(() => nix.str`https://github.com/AnalogJ/scrutiny/releases/tag/v${nix.sel(finalAttrs, "version")}`),

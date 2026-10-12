@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["postPatch", 27, 3], ["strictDeps", 35, 3], ["__structuredAttrs", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 40, 3], ["makeFlags", 42, 3], ["dontStrip", 50, 3], ["installPhase", 52, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "ocaml-ng": false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["postPatch", 27, 3], ["strictDeps", 35, 3], ["__structuredAttrs", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 40, 3], ["makeFlags", 42, 3], ["dontStrip", 50, 3], ["installPhase", 52, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_4_14"));
   const ocaml = nix.thunk(() => nix.attr(from, "ocaml"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "megam",
       version: "0.92",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://hal3.name/megam/megam_src.tgz",
           hash: "sha256-3A6fWf+FE0Sf471AsmAUH4nIik7fbdyLijlMdY5Jck4=",
         })))),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       installPhase: "runHook preInstall\n\ninstall -Dm755 megam $out/bin/megam\ninstall -Dm755 megam.opt $out/bin/megam.opt\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MEGA Model Optimization Package",
         longDescription: "The software here is an implementation of maximum likelihood and maximum a\nposterior optimization of the parameters of these models. The algorithms\nused are much more efficient than the iterative scaling techniques used in\nalmost every other maxent package out there.\n",
         homepage: "http://www.umiacs.umd.edu/~hal/megam",

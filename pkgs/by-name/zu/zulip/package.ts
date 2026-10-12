@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pname", 35, 26], ["version", 35, 32], ["src", 35, 40], ["pnpm", 36, 13], ["fetcherVersion", 37, 5], ["hash", 38, 5]], [["name", 79, 7], ["exec", 80, 7], ["icon", 81, 7], ["desktopName", 82, 7], ["comment", 83, 7], ["categories", 84, 7], ["startupWMClass", 89, 7], ["terminal", 90, 7]], [["description", 95, 5], ["homepage", 96, 5], ["donationPage", 97, 5], ["downloadPage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["pnpmDeps", 34, 3], ["nativeBuildInputs", 41, 3], ["buildPhase", 50, 3], ["installPhase", 62, 3], ["desktopItems", 77, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchPnpmDeps: false, nodejs: false, pnpm_12: false, pnpmConfigHook: false, python3: false, electron_44: false, makeDesktopItem: false, makeBinaryWrapper: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 26], ["version", 35, 32], ["src", 35, 40], ["pnpm", 36, 13], ["fetcherVersion", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 79, 7], ["exec", 80, 7], ["icon", 81, 7], ["desktopName", 82, 7], ["comment", 83, 7], ["categories", 84, 7], ["startupWMClass", 89, 7], ["terminal", 90, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["donationPage", 97, 5], ["downloadPage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["pnpmDeps", 34, 3], ["nativeBuildInputs", 41, 3], ["buildPhase", 50, 3], ["installPhase", 62, 3], ["desktopItems", 77, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const electron = electron_44;
   const pnpm = pnpm_12;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "zulip",
       version: "5.13.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zulip",
           repo: "zulip-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -73,7 +69,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "zulip",
             exec: "zulip %U",
             icon: "zulip",
@@ -85,7 +81,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Desktop client for Zulip Chat",
         homepage: "https://zulip.com",
         donationPage: "https://zulip.com/help/support-zulip-project",

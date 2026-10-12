@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 11, 5], ["publisher", 12, 5], ["version", 13, 24], ["hash", 14, 5]], [["changelog", 33, 5], ["description", 34, 5], ["downloadPage", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["mktplcRef", 10, 3], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["postInstall", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { jq: false, lib: false, moreutils: false, tinymist: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 11, 5], ["publisher", 12, 5], ["version", 13, 24], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 33, 5], ["description", 34, 5], ["downloadPage", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 10, 3], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["postInstall", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const tinymist = nix.arg($, "tinymist");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "tinymist",
         publisher: "myriad-dreamin",
         version: nix.thunk(() => nix.attr(tinymist, "version")),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
 jq '.contributes.configuration.properties."tinymist.serverPath".default = "${nix.app(nix.sel(lib, "getExe"), tinymist)}"' package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://marketplace.visualstudio.com/items/myriad-dreamin.tinymist/changelog",
         description: "VSCode extension for providing an integration solution for Typst",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=myriad-dreamin.tinymist",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["propagatedBuildInputs", 31, 3], ["makeFlags", 37, 3], ["doCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, guile: false, "guile-fibers": false, "guile-gcrypt": false, "guile-gnutls": false, "guile-websocket": false, texinfo: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["propagatedBuildInputs", 31, 3], ["makeFlags", 37, 3], ["doCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "guile-goblins",
       version: "0.18.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://spritely.institute/files/releases/guile-goblins/guile-goblins-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-KrgWQOV9PpfoSi0KcxDrZdzxR1AD9PODpSfhylEART4=",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["GUILE_AUTO_COMPILE=0"]),
       doCheck: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Spritely Goblins for Guile",
         homepage: "https://spritely.institute/goblins/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

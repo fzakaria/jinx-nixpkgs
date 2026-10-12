@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["GL_LD_LIBRARY_PATH", 27, 7]], [["runtimeLibs", 53, 12]], [["homepage", 62, 5], ["description", 63, 5], ["longDescription", 64, 5], ["license", 67, 5], ["platforms", 68, 25]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["build-system", 31, 3], ["doCheck", 35, 3], ["pythonImportsCheck", 39, 3], ["passthru", 53, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, mesa: false, pkgs: false, replaceVars: false, setuptools: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["GL_LD_LIBRARY_PATH", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["runtimeLibs", 53, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 62, 5], ["description", 63, 5], ["longDescription", 64, 5], ["license", 67, 5], ["platforms", 68, 25]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["build-system", 31, 3], ["doCheck", 35, 3], ["pythonImportsCheck", 39, 3], ["passthru", 53, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pyopengl",
       version: "3.1.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mcfletch",
           repo: "pyopengl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(finalAttrs, "passthru", "runtimeLibs"), [])), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ld-preload-gl.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               GL_LD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "runtimeLibs")))),
             })))),
         ]))),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => nix.concat(["OpenGL", "OpenGL.GL", "OpenGL.GLE", "OpenGL.GLU"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ["OpenGL.EGL", "OpenGL.GLES1", "OpenGL.GLES2", "OpenGL.GLES3", "OpenGL.GLX"])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         runtimeLibs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [
             "/run/opengl-driver/lib",
             nix.thunk(() => nix.sel(pkgs, "libglvnd")),
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://mcfletch.github.io/pyopengl/",
         description: "PyOpenGL, the Python OpenGL bindings",
         longDescription: "PyOpenGL is the cross platform Python binding to OpenGL and related APIs.\n",

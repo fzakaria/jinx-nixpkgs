@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["name", 33, 7], ["url", 34, 7], ["includes", 35, 7], ["hash", 36, 7]], [["name", 39, 7], ["url", 40, 7], ["includes", 41, 7], ["hash", 42, 7]], [["mainProgram", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 13, 3], ["version", 14, 3], ["__darwinAllowLocalNetworking", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["vendorHash", 28, 3], ["patches", 31, 3], ["nativeBuildInputs", 46, 3], ["checkFlags", 51, 3], ["postInstall", 67, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildGoModule: false, fetchFromGitHub: false, fetchpatch: false, installShellFiles: false, makeBinaryWrapper: false, fuse3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 7], ["url", 34, 7], ["includes", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 39, 7], ["url", 40, 7], ["includes", 41, 7], ["hash", 42, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["__darwinAllowLocalNetworking", 17, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["vendorHash", 28, 3], ["patches", 31, 3], ["nativeBuildInputs", 46, 3], ["checkFlags", 51, 3], ["postInstall", 67, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const fuse3 = nix.arg($, "fuse3");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "plakar",
       version: "1.1.7",
       __darwinAllowLocalNetworking: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PlakarKorp",
           repo: "plakar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +31,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-RQ1HhWL33Zi5n8G6RerLLgE2YJk/7HD4k1yiK+sQTBU=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "backup-allow-multiple-ignore-files.patch",
             url: "https://github.com/PlakarKorp/plakar/commit/049603ba4db8086ceb9aadf6197751083821e699.patch",
             includes: nix.thunk(() => ["subcommands/backup/backup.go"]),
             hash: "sha256-9uxkXpuWs758xlu3afANB14hqhVut7agvIeOlcm+98k=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "api-add-test-helpers.patch",
             url: "https://github.com/PlakarKorp/plakar/commit/e4153a448174e9d9df9f446560e303d89c48dd10.patch",
             includes: nix.thunk(() => ["api/helpers_test.go"]),
@@ -60,7 +56,7 @@ export default nix.lambda((args) => (() => {
   --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [fuse3]))}
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mainProgram: "plakar",
         description: "Encrypted, queryable backups for engineers based on an immutable data store and portable archives",
         homepage: "https://www.plakar.io",

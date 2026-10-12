@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["buildInputs", 26, 3], ["patches", 28, 3], ["configureFlags", 30, 3], ["installTargets", 44, 3], ["installFlags", 47, 3], ["preConfigure", 57, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, buildPackages: false, busybox: false, vim: false, sendmailProgram: true, editorProgram: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["buildInputs", 26, 3], ["patches", 28, 3], ["configureFlags", 30, 3], ["installTargets", 44, 3], ["installFlags", 47, 3], ["preConfigure", 57, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const sendmailProgram = nix.argOr($, "sendmailProgram", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), busybox)) ? nix.str`${busybox}/sbin/sendmail` : null));
   const editorProgram = nix.argOr($, "editorProgram", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), vim)) ? nix.str`${vim}/bin/vi` : null));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fcron",
       version: "3.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://fcron.free.fr/archives/fcron-${nix.sel(finalAttrs, "version")}.src.tar.gz`),
           sha256: "sha256-dXF+ORbLzvvN5Y57/VFRUNdfdjI4Wy22vdL7wkKJ7NU=",
         })))),
@@ -60,7 +58,7 @@ sed -i '2s@.*@exit 0@' script/boot-install
 find -type f | xargs sed -i -e 's@^\\(\\s\\)*chown@\\1:@' -e 's@^\\(\\s\\)*chgrp@\\1:@'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command scheduler with extended capabilities over cron and anacron",
         homepage: "http://fcron.free.fr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

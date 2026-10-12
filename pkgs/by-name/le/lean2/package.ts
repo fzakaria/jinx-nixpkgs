@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["name", 29, 7], ["url", 30, 7], ["sha256", 31, 7]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["broken", 79, 5], ["mainProgram", 80, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 53, 3], ["preConfigure", 60, 3], ["cmakeFlags", 65, 3], ["postInstall", 67, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchFromGitHub: false, cmake: false, gmp: false, mpfr: false, python3: false, jemalloc: false, ninja: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["sha256", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["broken", 79, 5], ["mainProgram", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 53, 3], ["preConfigure", 60, 3], ["cmakeFlags", 65, 3], ["postInstall", 67, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lean2",
       version: "2018-10-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "leanprover",
           repo: "lean2",
           rev: "8072fdf9a0b31abb9d43ab894d7a858639e20ed7",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "lean2-fix-compilation-error.patch",
             url: "https://github.com/collares/lean2/commit/09b316ce75fd330b3b140d138bcdae2b0e909234.patch",
             sha256: "060mvqn9y8lsn4l20q9rhamkymzsgh0r1vzkjw78gnj8kjw67jl5",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/linja --prefix PATH : $out/bin:${ninja}/bin
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Automatic and interactive theorem prover (version with HoTT support)",
         homepage: "http://leanprover.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

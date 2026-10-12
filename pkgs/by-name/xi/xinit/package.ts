@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 24, 5], ["group", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["extraArgs", 75, 40]], [["updateScript", 75, 5]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["strictDeps", 32, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 45, 3], ["propagatedBuildInputs", 50, 3], ["configureFlags", 58, 3], ["postFixup", 68, 3], ["passthru", 74, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, buildPackages: false, autoreconfHook: false, "pkg-config": false, "util-macros": false, darwin: false, libx11: false, xorgproto: false, xauth: false, "xorg-server": false, "nix-update-script": false, xserverPath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 24, 5], ["group", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 75, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["strictDeps", 32, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 45, 3], ["propagatedBuildInputs", 50, 3], ["configureFlags", 58, 3], ["postFixup", 68, 3], ["passthru", 74, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const xserverPath = nix.argOr($, "xserverPath", () => nix.str`${nix.sel(xorg_server, "out")}/bin/X`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xinit",
       version: "1.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           group: "xorg",
           owner: "app",
@@ -51,11 +47,14 @@ export default nix.lambda((args) => (() => {
         ])))),
       postFixup: "substituteInPlace $out/bin/startx \\\n  --replace-fail '\"${prefix}/etc/X11/xinit/xinitrc\"' '/etc/X11/xinit/xinitrc' \\\n  --replace-fail '\"$xinitdir/xserverrc\"' '/etc/X11/xinit/xserverrc'\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version-regex=xinit-(.*)"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            extraArgs: nix.thunk(() => ["--version-regex=xinit-(.*)"]),
+          })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "X server & client startup utilities (includes startx)",
         homepage: "https://gitlab.freedesktop.org/xorg/app/xinit",
         license: nix.thunk(() => (() => {

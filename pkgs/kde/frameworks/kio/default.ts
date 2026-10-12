@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 10, 3], ["patches", 12, 3], ["extraBuildInputs", 17, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qt5compat: false, qttools: false, kauth: false, acl: false, attr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["patches", 12, 3], ["extraBuildInputs", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const acl = nix.arg($, "acl");
   const attr = nix.arg($, "attr");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "kio",
       patches: nix.thunk(() => [nix.path(here, "./allow-admin-from-store.patch")]),
       extraBuildInputs: nix.thunk(() => [qt5compat, qttools, kauth, acl, attr]),

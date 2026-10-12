@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 87, 5], ["downloadPage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 95, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 61, 3], ["pythonImportsCheck", 69, 3], ["pythonRelaxDeps", 71, 3], ["disabledTests", 76, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "uv-dynamic-versioning": false, click: false, distro: false, gevent: false, jinja2: false, packaging: false, paramiko: false, pydantic: false, "python-dateutil": false, typeguard: false, "types-paramiko": false, freezegun: false, "pyinfra-testgen": false, "pytest-testinfra": false, pytestCheckHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 87, 5], ["downloadPage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 95, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 61, 3], ["pythonImportsCheck", 69, 3], ["pythonRelaxDeps", 71, 3], ["disabledTests", 76, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pyinfra",
       version: "3.9.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyinfra-dev",
           repo: "pyinfra",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["paramiko", "types-paramiko"]),
       disabledTests: nix.thunk(() => ["test_load_ssh_config"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python-based infrastructure automation",
         longDescription: "pyinfra automates/provisions/manages/deploys infrastructure. It can be used for\nad-hoc command execution, service deployment, configuration management and more.\n",
         homepage: "https://pyinfra.com",

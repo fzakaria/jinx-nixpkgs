@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 28, 17], ["sha256", 28, 21], ["hash", 28, 28], ["name", 29, 9]], [["src", 27, 7], ["sourceRoot", 32, 7], ["nativeBuildInputs", 34, 7], ["dontBuild", 36, 7], ["preInstall", 38, 7]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDotnetPackage: false, unzip: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, url: true, sha256: true, hash: true, md5: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 28, 17], ["sha256", 28, 21], ["hash", 28, 28], ["name", 29, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 27, 7], ["sourceRoot", 32, 7], ["nativeBuildInputs", 34, 7], ["dontBuild", 36, 7], ["preInstall", 38, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,9 +22,9 @@ export default nix.lambda((args) => (() => {
     const hash = nix.argOr($_1, "hash", () => "");
     const md5 = nix.argOr($_1, "md5", () => "");
     return (nix.asBool(!nix.eq(md5, "")) ? nix.builtins.throw(nix.thunk(() => nix.str`fetchnuget does not support md5 anymore, please use 'hash' attribute with SRI hash: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), attrs)}`)) : (nix.asBool((nix.asBool(!nix.eq(sha256, "")) && nix.asBool(!nix.eq(hash, "")))) ? nix.builtins.throw(nix.thunk(() => nix.str`multiple hashes passed to fetchNuGet: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), url)}`)) : nix.app(buildDotnetPackage, nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: url,
             sha256: sha256,
             hash: hash,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 50, 7], ["repo", 51, 7], ["tag", 52, 7], ["hash", 53, 7]], [["updateScript", 94, 14]], [["description", 97, 7], ["homepage", 98, 7], ["license", 99, 7], ["platforms", 100, 7], ["maintainers", 101, 7]], [["pname", 46, 13], ["version", 47, 5], ["src", 49, 5], ["nativeBuildInputs", 56, 5], ["propagatedBuildInputs", 61, 5], ["dontDropIconThemeCache", 65, 5], ["dontPatchELF", 69, 5], ["dontRewriteSymlinks", 70, 5], ["postPatch", 72, 5], ["installPhase", 76, 5], ["postFixup", 90, 5], ["passthru", 94, 5], ["meta", 96, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gitUpdater: false, gtk3: false, "hicolor-icon-theme": false, jdupes: false, schemeVariants: true, colorVariants: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 50, 7], ["repo", 51, 7], ["tag", 52, 7], ["hash", 53, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 94, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 97, 7], ["homepage", 98, 7], ["license", 99, 7], ["platforms", 100, 7], ["maintainers", 101, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 46, 13], ["version", 47, 5], ["src", 49, 5], ["nativeBuildInputs", 56, 5], ["propagatedBuildInputs", 61, 5], ["dontDropIconThemeCache", 65, 5], ["dontPatchELF", 69, 5], ["dontRewriteSymlinks", 70, 5], ["postPatch", 72, 5], ["installPhase", 76, 5], ["postFixup", 90, 5], ["passthru", 94, 5], ["meta", 96, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "2026-08-10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vinceliuice",
           repo: "colloid-icon-theme",
           tag: version,
@@ -60,11 +57,11 @@ runHook postInstall
 `);
       const postFixup = "find $out/share/icons -xtype l -delete\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Colloid icon theme",
         homepage: "https://github.com/vinceliuice/colloid-icon-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -75,7 +72,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname_1,
         version,
         src,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pthreads.nix", [[["threadModel", 24, 12]], [["pname", 11, 3], ["version", 12, 31], ["src", 12, 39], ["meta", 12, 43], ["configureFlags", 14, 3], ["preConfigure", 16, 3], ["passthru", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mingw_w64_headers: false, withStatic: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pthreads.nix", [["threadModel", 24, 12]]);
-const pos$2 = nix.positions(here + "/pthreads.nix", [["pname", 11, 3], ["version", 12, 31], ["src", 12, 39], ["meta", 12, 43], ["configureFlags", 14, 3], ["preConfigure", 16, 3], ["passthru", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const mingw_w64_headers = nix.arg($, "mingw_w64_headers");
   const withStatic = nix.argOr($, "withStatic", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mingw_w64-pthreads",
       version: nix.thunk(() => nix.attr(mingw_w64_headers, "version")),
       src: nix.thunk(() => nix.attr(mingw_w64_headers, "src")),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), withStatic, "static")),
       ]),
       preConfigure: "cd mingw-w64-libraries/winpthreads\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, threadModel: "posix" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], threadModel: "posix" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=pthreads.ts.map

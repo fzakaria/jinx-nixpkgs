@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 7], ["hash", 22, 7]], [["x86_64-linux", 31, 11], ["aarch64-linux", 32, 11]], [["package", 52, 7], ["command", 53, 7], ["version", 54, 7]], [["tests", 51, 14]], [["homepage", 61, 7], ["description", 62, 7], ["sourceProvenance", 63, 7], ["license", 64, 7], ["maintainers", 65, 7], ["mainProgram", 66, 7], ["platforms", 67, 7]], [["pname", 17, 5], ["version", 18, 5], ["src", 20, 5], ["nativeBuildInputs", 25, 5], ["unpackPhase", 27, 5], ["dontPatch", 40, 5], ["dontConfigure", 41, 5], ["dontBuild", 42, 5], ["installPhase", 44, 5], ["dontFixup", 49, 5], ["passthru", 51, 5], ["meta", 57, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, rpmextract: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 31, 11], ["aarch64-linux", 32, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 52, 7], ["command", 53, 7], ["version", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 51, 14]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 61, 7], ["description", 62, 7], ["sourceProvenance", 63, 7], ["license", 64, 7], ["maintainers", 65, 7], ["mainProgram", 66, 7], ["platforms", 67, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 5], ["version", 18, 5], ["src", 20, 5], ["nativeBuildInputs", 25, 5], ["unpackPhase", 27, 5], ["dontPatch", 40, 5], ["dontConfigure", 41, 5], ["dontBuild", 42, 5], ["installPhase", 44, 5], ["dontFixup", 49, 5], ["passthru", 51, 5], ["meta", 57, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
       const relPhs = "14";
       const verCode = nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add("00", majVer), ".00"), minVer), ".0000.00"), relPhs));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "storcli",
         version: nix.thunk(() => nix.add(nix.add(majVer, "."), minVer)),
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://docs.broadcom.com/docs-and-downloads/host-bus-adapters/host-bus-adapters-common-files/sas_sata_nvme_24g_p${nix.sel(finalAttrs, "version")}/StorCLI_Avenger_${nix.sel(finalAttrs, "version")}-${verCode}.zip`),
             hash: "sha256-vztV+Jp+p6nU4q7q8QQIkuL30QsoGj2tyIZp87luhH8=",
           })))),
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
         unpackPhase: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
           const system = nix.thunk(() => nix.attr(from, "system"));
-          const platforms = nix.thunk(() => ({ [nix.POS]: pos$2, "x86_64-linux": "Linux", "aarch64-linux": "ARM/Linux" }));
+          const platforms = nix.thunk(() => ({ [nix.POS]: $pos[1], "x86_64-linux": "Linux", "aarch64-linux": "ARM/Linux" }));
           const platform = nix.thunk(() => nix.selOr(platforms, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system: ${system}`)), nix.key(nix.force(system))));
           return nix.str`rpmextract $src/Avenger_StorCLI/${platform}/storcli2-${verCode}-1.*.rpm
 `;
@@ -46,16 +41,16 @@ export default nix.lambda((args) => (() => {
         installPhase: "install -D ./opt/MegaRAID/storcli2/storcli2 $out/bin/storcli2\n",
         dontFixup: false,
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "meta", "mainProgram")} v`),
               version: verCode,
             })))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           homepage: "https://www.broadcom.com/support/download-search?pg=&pf=Host+Bus+Adapters&pn=&pa=&po=&dk=storcli2&pl=&l=false",
           description: "Storage Command Line Tool",
           sourceProvenance: nix.thunk(() => (() => {

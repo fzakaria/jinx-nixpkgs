@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["name", 50, 7], ["url", 51, 7], ["hash", 52, 7]], [["name", 57, 7], ["url", 58, 7], ["hash", 59, 7]], [["pkg-config", 130, 11]], [["tests", 130, 5], ["updateScript", 131, 5]], [["description", 135, 5], ["longDescription", 136, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["teams", 144, 5], ["mainProgram", 145, 5], ["platforms", 146, 5], ["pkgConfigModules", 147, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["outputs", 42, 3], ["patches", 47, 3], ["postPatch", 63, 3], ["strictDeps", 86, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 95, 3], ["checkInputs", 110, 3], ["dontWrapQtApps", 114, 3], ["cmakeFlags", 116, 3], ["preBuild", 122, 3], ["doCheck", 127, 3], ["passthru", 129, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchpatch: false, gitUpdater: false, testers: false, boost: false, cmake: false, "cmake-extras": false, dbus: false, "dbus-cpp": false, gtest: false, libapparmor: false, libelf: false, nlohmann_json: false, "pkg-config": false, "process-cpp": false, "properties-cpp": false, qtbase: false, qtdeclarative: false, sqlite: false, validatePkgConfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 50, 7], ["url", 51, 7], ["hash", 52, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 57, 7], ["url", 58, 7], ["hash", 59, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pkg-config", 130, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 130, 5], ["updateScript", 131, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 135, 5], ["longDescription", 136, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["teams", 144, 5], ["mainProgram", 145, 5], ["platforms", 146, 5], ["pkgConfigModules", 147, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["outputs", 42, 3], ["patches", 47, 3], ["postPatch", 63, 3], ["strictDeps", 86, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 95, 3], ["checkInputs", 110, 3], ["dontWrapQtApps", 114, 3], ["cmakeFlags", 116, 3], ["preBuild", 122, 3], ["doCheck", 127, 3], ["passthru", 129, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const listToQtVar = (suffix) => nix.app(nix.sel(lib, "makeSearchPathOutput"), "bin", suffix);
   const qtQmlPaths = nix.thunk(() => nix.app(listToQtVar, nix.thunk(() => nix.sel(qtbase, "qtQmlPrefix")), nix.thunk(() => [qtdeclarative])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "biometryd",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/biometryd",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,13 +46,13 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-biometryd-Fix-compatibility-with-Boost-1.87.patch",
             url: "https://gitlab.com/ubports/development/core/biometryd/-/commit/8def6dfb18ee56971f0f64e3622af2a5a39ab0f6.patch",
             hash: "sha256-PddZRML4Gc+s4aNeOyZwJJjmPSixMGFVFNcrO9dNDSI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "0002-biometryd-Fix-compatibility-with-gtest-1.18.patch",
             url: "https://gitlab.com/ubports/development/core/biometryd/-/commit/1445ea904b192fbdd9f2aa20c8ee1eeb61f2ad1d.patch",
             hash: "sha256-yKcbvJ9BTudOuN+R4eWmltH/fnjRV+4H2deIiNlVS8A=",
@@ -110,15 +104,15 @@ export QT_PLUGIN_PATH=${nix.app(listToQtVar, nix.thunk(() => nix.sel(qtbase, "qt
 `),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Mediates/multiplexes access to biometric devices",
         longDescription: "biometryd mediates and multiplexes access to biometric devices present\non the system, enabling applications and system components to leverage\nthem for identification and verification of users.\n",
         homepage: "https://gitlab.com/ubports/development/core/biometryd",

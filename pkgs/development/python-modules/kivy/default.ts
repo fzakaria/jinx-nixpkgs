@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["KIVY_NO_CONFIG", 94, 5], ["KIVY_NO_ARGS", 95, 5], ["KIVY_NO_FILELOG", 96, 5], ["USE_OSX_FRAMEWORKS", 99, 5], ["NIX_CFLAGS_COMPILE", 102, 5]], [["KIVY_ANGLE_INCLUDE_DIR", 114, 5], ["KIVY_ANGLE_LIB_DIR", 115, 5]], [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["maintainers", 129, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["postPatch", 39, 3], ["build-system", 51, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 60, 3], ["dependencies", 85, 3], ["env", 93, 3], ["doCheck", 122, 3], ["pythonImportsCheck", 123, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "pkg-config": false, cython: false, docutils: false, setuptools: false, "kivy-garden": false, libGL: false, libx11: false, mtdev: false, python3: false, SDL2: false, SDL2_image: false, SDL2_ttf: false, SDL2_mixer: false, angle: false, withGstreamer: true, gst_all_1: false, pygments: false, requests: false, filetype: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["KIVY_NO_CONFIG", 94, 5], ["KIVY_NO_ARGS", 95, 5], ["KIVY_NO_FILELOG", 96, 5], ["USE_OSX_FRAMEWORKS", 99, 5], ["NIX_CFLAGS_COMPILE", 102, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["KIVY_ANGLE_INCLUDE_DIR", 114, 5], ["KIVY_ANGLE_LIB_DIR", 115, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["maintainers", 129, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["postPatch", 39, 3], ["build-system", 51, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 60, 3], ["dependencies", 85, 3], ["env", 93, 3], ["doCheck", 122, 3], ["pythonImportsCheck", 123, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const filetype = nix.arg($, "filetype");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kivy",
       version: "2.3.1-unstable-2026-07-11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kivy",
           repo: "kivy",
           rev: "d8e642fec15894ce338b0c9773c3f58b41b75f09",
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })())))))),
       dependencies: nix.thunk(() => [kivy_garden, docutils, pygments, requests, filetype]),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         KIVY_NO_CONFIG: 1n,
         KIVY_NO_ARGS: 1n,
         KIVY_NO_FILELOG: 1n,
@@ -72,14 +68,14 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(stdenv, "cc", "libcxx")))}/include/c++/v1`),
             ])))))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           KIVY_ANGLE_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), angle)}/include`),
           KIVY_ANGLE_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), angle)}/lib`),
         }))))),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["kivy"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library for rapid development of hardware-accelerated multitouch applications",
         homepage: "https://github.com/kivy/kivy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

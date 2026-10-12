@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 7], ["repo", 13, 7], ["rev", 14, 7], ["hash", 15, 7]], [["version", 10, 5], ["src", 11, 5]], [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5], ["fetchSubmodules", 33, 5]], [["cmakeBuildType", 65, 7]], [["debug-build-with-tests", 64, 11]], [["updateScript", 62, 5], ["z3", 63, 5], ["tests", 64, 5]], [["homepage", 70, 5], ["description", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["cmakeBuildType", 40, 3], ["buildFlags", 41, 3], ["cmakeFlags", 46, 3], ["prePatch", 53, 3], ["doCheck", 59, 3], ["passthru", 61, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, z3: false, "z3'": true, enableZ3: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 7], ["repo", 13, 7], ["rev", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 10, 5], ["src", 11, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5], ["fetchSubmodules", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cmakeBuildType", 65, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["debug-build-with-tests", 64, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 62, 5], ["z3", 63, 5], ["tests", 64, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["description", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["cmakeBuildType", 40, 3], ["buildFlags", 41, 3], ["cmakeFlags", 46, 3], ["prePatch", 53, 3], ["doCheck", 59, 3], ["passthru", 61, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const z3$ = nix.argOr($, "z3'", () => nix.app(nix.sel(z3, "overrideAttrs"), nix.thunk(() => (() => {
       const version = "4.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Z3Prover",
           repo: "z3",
           rev: nix.thunk(() => nix.str`z3-${version}`),
           hash: "sha256-Bv7+0J7ilJNFM5feYJqDpYsOjj7h7t1Bx/4OIar43EI=",
         }))));
-      return { [nix.POS]: pos$2, version, src };
+      return { [nix.POS]: $pos[1], version, src };
     })())));
   const enableZ3 = nix.argOr($, "enableZ3", () => !nix.eq(z3$, null));
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "vampire",
       version: "5.1.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "vprover",
           repo: "vampire",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,16 +51,16 @@ export default nix.lambda((args) => (() => {
       prePatch: "rm -rf z3\n",
       doCheck: nix.thunk(() => nix.eq(nix.sel(finalAttrs, "cmakeBuildType"), "Debug")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         z3: z3$,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          "debug-build-with-tests": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$4, cmakeBuildType: "Debug" })))),
+          [nix.POS]: $pos[4],
+          "debug-build-with-tests": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[3], cmakeBuildType: "Debug" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://vprover.github.io/",
         description: "Vampire Theorem Prover",
         mainProgram: "vampire",

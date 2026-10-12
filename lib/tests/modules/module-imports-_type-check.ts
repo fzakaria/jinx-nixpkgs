@@ -2,11 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/module-imports-_type-check.nix", [["_type", 2, 17]]);
-const pos$2 = nix.positions(here + "/module-imports-_type-check.nix", [["imports", 2, 3]]);
+const $pos = nix.positions(here + "/module-imports-_type-check.nix", [[["_type", 2, 17]], [["imports", 2, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
-  imports: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, _type: "flake" }))]),
+  [nix.POS]: $pos[1],
+  imports: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[0], _type: "flake" }))]),
 }));
 //# sourceMappingURL=module-imports-_type-check.ts.map

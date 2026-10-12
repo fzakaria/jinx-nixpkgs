@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pname", 25, 5], ["version", 26, 13], ["src", 27, 5], ["hash", 28, 5]], [["nixos", 96, 5]], [["tests", 95, 12]], [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5]], [["pname", 32, 3], ["version", 33, 11], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["npmFlags", 49, 3], ["npmDepsHash", 51, 3], ["dontNpmBuild", 53, 3], ["postPatch", 55, 3], ["buildPhase", 69, 3], ["installPhase", 81, 3], ["passthru", 95, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, fetchNpmDeps: false, nodejs: false, python3: false, autoPatchelfHook: false, makeWrapper: false, stdenv: false, sqlite: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 25, 5], ["version", 26, 13], ["src", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nixos", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 95, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 11], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["npmFlags", 49, 3], ["npmDepsHash", 51, 3], ["dontNpmBuild", 53, 3], ["postPatch", 55, 3], ["buildPhase", 69, 3], ["installPhase", 81, 3], ["passthru", 95, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,21 +20,21 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const version = "2.4.0";
   const flameSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "pawelmalak",
       repo: "flame",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-Slnft/tDtogjuTnQXus0Mp7y6AlOYjCV1riQ2M9cIc8=",
     }))));
   const clientDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "flame-client-deps",
       version: version,
       src: nix.thunk(() => nix.add(flameSrc, "/client")),
       hash: "sha256-IitL0qxu6/3y9x8XkW0dZLjsHTkNeQMHYsaq/LOwvrg=",
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "flame",
       version: version,
       __structuredAttrs: true,
@@ -73,11 +68,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe'"), nodejs, "node")} $out/bin/flame \
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "flame")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], nixos: nix.thunk(() => nix.sel(nixosTests, "flame")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Self-hosted startpage for your server",
         homepage: "https://github.com/pawelmalak/flame",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

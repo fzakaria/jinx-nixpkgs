@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtshadertools.nix", [[["mainProgram", 15, 8]], [["pname", 10, 3], ["propagatedBuildInputs", 11, 3], ["cmakeFlags", 12, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { qtModule: false, qtbase: false, stdenv: false, lib: false, pkgsBuildBuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtshadertools.nix", [["mainProgram", 15, 8]]);
-const pos$2 = nix.positions(here + "/qtshadertools.nix", [["pname", 10, 3], ["propagatedBuildInputs", 11, 3], ["cmakeFlags", 12, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgsBuildBuild = nix.arg($, "pkgsBuildBuild");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qtshadertools",
       propagatedBuildInputs: nix.thunk(() => [qtbase]),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => [
           nix.thunk(() => nix.str`-DQt6ShaderToolsTools_DIR=${nix.sel(pkgsBuildBuild, "qt6", "qtshadertools")}/lib/cmake/Qt6ShaderToolsTools`),
         ]))),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "qsb" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "qsb" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=qtshadertools.ts.map

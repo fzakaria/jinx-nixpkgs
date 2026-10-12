@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["name", 36, 7], ["url", 37, 7], ["sha256", 38, 7]], [["external", 71, 9]], [["$GIT_PAGER", 75, 9], ["$hook", 76, 9]], [["scripts", 53, 7], ["interpreter", 54, 7], ["inputs", 55, 7], ["fake", 66, 7], ["keep", 73, 7], ["execer", 78, 7]], [["git-ftp", 52, 5]], [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5], ["mainProgram", 102, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 23, 3], ["dontBuild", 30, 3], ["patches", 34, 3], ["installPhase", 42, 3], ["nativeBuildInputs", 46, 3], ["solutions", 51, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, resholve: false, fetchFromGitHub: false, fetchpatch: false, bash: false, coreutils: false, git: false, gnugrep: false, gawk: false, curl: false, hostname: false, gnused: false, findutils: false, lftp: false, pandoc: false, man: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 36, 7], ["url", 37, 7], ["sha256", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["external", 71, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["$GIT_PAGER", 75, 9], ["$hook", 76, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["scripts", 53, 7], ["interpreter", 54, 7], ["inputs", 55, 7], ["fake", 66, 7], ["keep", 73, 7], ["execer", 78, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["git-ftp", 52, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5], ["mainProgram", 102, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 23, 3], ["dontBuild", 30, 3], ["patches", 34, 3], ["installPhase", 42, 3], ["nativeBuildInputs", 46, 3], ["solutions", 51, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pandoc = nix.arg($, "pandoc");
   const man = nix.arg($, "man");
   return nix.app(nix.sel(resholve, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "git-ftp",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "git-ftp",
           repo: "git-ftp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-function-invocation-typo.patch",
             url: "https://github.com/git-ftp/git-ftp/commit/cddf7cbba80e710758f6aac0ec0d77552ea8cd75.patch",
             sha256: "sha256-2B0QaMJi78Bg3bA1jp41aiyql1/LCryoaDs7+xmS1HY=",
@@ -53,14 +46,14 @@ export default nix.lambda((args) => (() => {
       installPhase: "make install-all prefix=$out\n",
       nativeBuildInputs: nix.thunk(() => [pandoc, man]),
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "git-ftp": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           scripts: nix.thunk(() => ["bin/git-ftp"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [coreutils, git, gnugrep, gawk, curl, hostname, gnused, findutils, lftp]),
-          fake: nix.thunk(() => ({ [nix.POS]: pos$3, external: nix.thunk(() => ["security"]) })),
-          keep: nix.thunk(() => ({ [nix.POS]: pos$4, $GIT_PAGER: true, $hook: true })),
+          fake: nix.thunk(() => ({ [nix.POS]: $pos[2], external: nix.thunk(() => ["security"]) })),
+          keep: nix.thunk(() => ({ [nix.POS]: $pos[3], $GIT_PAGER: true, $hook: true })),
           execer: nix.thunk(() => [
             nix.thunk(() => nix.str`cannot:${git}/bin/git`),
             nix.thunk(() => nix.str`cannot:${lftp}/bin/lftp`),
@@ -68,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Git powered FTP client written as shell script",
         homepage: "https://git-ftp.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

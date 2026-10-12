@@ -2,42 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/incus-tests.nix", [[["maintainers", 36, 5]], [["ipv4.address", 61, 17], ["ipv4.nat", 62, 17]], [["name", 58, 15], ["type", 59, 15], ["config", 60, 15]], [["bridge.driver", 71, 17], ["ipv4.address", 72, 17], ["ipv4.nat", 73, 17]], [["name", 68, 15], ["type", 69, 15], ["config", 70, 15]], [["name", 82, 19], ["network", 83, 19], ["type", 84, 19]], [["path", 87, 19], ["pool", 88, 19], ["size", 89, 19], ["type", 90, 19]], [["eth0", 81, 17], ["root", 86, 17]], [["name", 79, 15], ["devices", 80, 15]], [["name", 97, 15], ["driver", 98, 15]], [["networks", 56, 11], ["profiles", 77, 11], ["storage_pools", 95, 11]], [["enable", 52, 9], ["package", 53, 9], ["preseed", 55, 9]], [["enable", 104, 15]], [["cores", 41, 7], ["memorySize", 42, 7], ["diskSize", 43, 7], ["emptyDiskImages", 44, 7], ["incus", 51, 7], ["vswitch", 104, 7]], [["zfs", 107, 57]], [["forceImportRoot", 108, 14]], [["supportedFilesystems", 107, 10], ["zfs", 108, 10]], [["systemPackages", 110, 17]], [["trustedInterfaces", 113, 25]], [["enable", 114, 25]], [["hostId", 112, 16], ["firewall", 113, 16], ["nftables", 114, 16]], [["enable", 116, 23]], [["apparmor", 116, 14]], [["apparmor", 117, 19]], [["enable", 120, 17]], [["thin", 120, 12]], [["enable", 121, 16]], [["boot", 120, 7], ["dmeventd", 121, 7]], [["dbus", 117, 14], ["lvm", 119, 14]], [["isNormalUser", 125, 7], ["shell", 126, 7], ["group", 127, 7], ["uid", 128, 7]], [["testuser", 124, 17]], [["users", 124, 11]], [["virtualisation", 40, 5], ["boot", 107, 5], ["environment", 110, 5], ["networking", 112, 5], ["security", 116, 5], ["services", 117, 5], ["users", 124, 5]], [["server", 39, 9]], [["name", 33, 3], ["meta", 35, 3], ["nodes", 39, 3], ["testScript", 132, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/incus-tests.nix", [["maintainers", 36, 5]]);
-const pos$2 = nix.positions(here + "/incus-tests.nix", [["ipv4.address", 61, 17], ["ipv4.nat", 62, 17]]);
-const pos$3 = nix.positions(here + "/incus-tests.nix", [["name", 58, 15], ["type", 59, 15], ["config", 60, 15]]);
-const pos$4 = nix.positions(here + "/incus-tests.nix", [["bridge.driver", 71, 17], ["ipv4.address", 72, 17], ["ipv4.nat", 73, 17]]);
-const pos$5 = nix.positions(here + "/incus-tests.nix", [["name", 68, 15], ["type", 69, 15], ["config", 70, 15]]);
-const pos$6 = nix.positions(here + "/incus-tests.nix", [["name", 82, 19], ["network", 83, 19], ["type", 84, 19]]);
-const pos$7 = nix.positions(here + "/incus-tests.nix", [["path", 87, 19], ["pool", 88, 19], ["size", 89, 19], ["type", 90, 19]]);
-const pos$8 = nix.positions(here + "/incus-tests.nix", [["eth0", 81, 17], ["root", 86, 17]]);
-const pos$9 = nix.positions(here + "/incus-tests.nix", [["name", 79, 15], ["devices", 80, 15]]);
-const pos$10 = nix.positions(here + "/incus-tests.nix", [["name", 97, 15], ["driver", 98, 15]]);
-const pos$11 = nix.positions(here + "/incus-tests.nix", [["networks", 56, 11], ["profiles", 77, 11], ["storage_pools", 95, 11]]);
-const pos$12 = nix.positions(here + "/incus-tests.nix", [["enable", 52, 9], ["package", 53, 9], ["preseed", 55, 9]]);
-const pos$13 = nix.positions(here + "/incus-tests.nix", [["enable", 104, 15]]);
-const pos$14 = nix.positions(here + "/incus-tests.nix", [["cores", 41, 7], ["memorySize", 42, 7], ["diskSize", 43, 7], ["emptyDiskImages", 44, 7], ["incus", 51, 7], ["vswitch", 104, 7]]);
-const pos$15 = nix.positions(here + "/incus-tests.nix", [["zfs", 107, 57]]);
-const pos$16 = nix.positions(here + "/incus-tests.nix", [["forceImportRoot", 108, 14]]);
-const pos$17 = nix.positions(here + "/incus-tests.nix", [["supportedFilesystems", 107, 10], ["zfs", 108, 10]]);
-const pos$18 = nix.positions(here + "/incus-tests.nix", [["systemPackages", 110, 17]]);
-const pos$19 = nix.positions(here + "/incus-tests.nix", [["trustedInterfaces", 113, 25]]);
-const pos$20 = nix.positions(here + "/incus-tests.nix", [["enable", 114, 25]]);
-const pos$21 = nix.positions(here + "/incus-tests.nix", [["hostId", 112, 16], ["firewall", 113, 16], ["nftables", 114, 16]]);
-const pos$22 = nix.positions(here + "/incus-tests.nix", [["enable", 116, 23]]);
-const pos$23 = nix.positions(here + "/incus-tests.nix", [["apparmor", 116, 14]]);
-const pos$24 = nix.positions(here + "/incus-tests.nix", [["apparmor", 117, 19]]);
-const pos$25 = nix.positions(here + "/incus-tests.nix", [["enable", 120, 17]]);
-const pos$26 = nix.positions(here + "/incus-tests.nix", [["thin", 120, 12]]);
-const pos$27 = nix.positions(here + "/incus-tests.nix", [["enable", 121, 16]]);
-const pos$28 = nix.positions(here + "/incus-tests.nix", [["boot", 120, 7], ["dmeventd", 121, 7]]);
-const pos$29 = nix.positions(here + "/incus-tests.nix", [["dbus", 117, 14], ["lvm", 119, 14]]);
-const pos$30 = nix.positions(here + "/incus-tests.nix", [["isNormalUser", 125, 7], ["shell", 126, 7], ["group", 127, 7], ["uid", 128, 7]]);
-const pos$31 = nix.positions(here + "/incus-tests.nix", [["testuser", 124, 17]]);
-const pos$32 = nix.positions(here + "/incus-tests.nix", [["users", 124, 11]]);
-const pos$33 = nix.positions(here + "/incus-tests.nix", [["virtualisation", 40, 5], ["boot", 107, 5], ["environment", 110, 5], ["networking", 112, 5], ["security", 116, 5], ["services", 117, 5], ["users", 124, 5]]);
-const pos$34 = nix.positions(here + "/incus-tests.nix", [["server", 39, 9]]);
-const pos$35 = nix.positions(here + "/incus-tests.nix", [["name", 33, 3], ["meta", 35, 3], ["nodes", 39, 3], ["testScript", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,42 +21,42 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "foldlAttrs"), (acc) => (name) => (instance) => nix.add(acc, nix.sel(instance, "testScript")), "")),
     ])));
   return {
-    [nix.POS]: pos$35,
+    [nix.POS]: $pos[34],
     name: nix.thunk(() => nix.str`${nix.sel(cfg, "package", "name")}-${nix.sel(cfg, "name")}`),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "lxc", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           cores: 2n,
           memorySize: 4096n,
           diskSize: nix.thunk(() => nix.mul(20n, 1024n)),
           emptyDiskImages: nix.thunk(() => [2048n, 2048n]),
           incus: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             enable: true,
             package: nix.thunk(() => nix.sel(cfg, "package")),
             preseed: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               networks: nix.thunk(() => nix.concat([
                 nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   name: "incusbr0",
                   type: "bridge",
-                  config: nix.thunk(() => ({ [nix.POS]: pos$2, "ipv4.address": "10.0.10.1/24", "ipv4.nat": "true" })),
+                  config: nix.thunk(() => ({ [nix.POS]: $pos[1], "ipv4.address": "10.0.10.1/24", "ipv4.nat": "true" })),
                 })),
               ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "network", "ovs")), nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     name: "ovsbr0",
                     type: "bridge",
                     config: nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       "bridge.driver": "openvswitch",
                       "ipv4.address": "10.0.20.1/24",
                       "ipv4.nat": "true",
@@ -99,63 +65,63 @@ export default nix.lambda((args) => (() => {
                 ])))),
               profiles: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   name: "default",
                   devices: nix.thunk(() => ({
-                    [nix.POS]: pos$8,
-                    eth0: nix.thunk(() => ({ [nix.POS]: pos$6, name: "eth0", network: "incusbr0", type: "nic" })),
-                    root: nix.thunk(() => ({ [nix.POS]: pos$7, path: "/", pool: "default", size: "35GiB", type: "disk" })),
+                    [nix.POS]: $pos[7],
+                    eth0: nix.thunk(() => ({ [nix.POS]: $pos[5], name: "eth0", network: "incusbr0", type: "nic" })),
+                    root: nix.thunk(() => ({ [nix.POS]: $pos[6], path: "/", pool: "default", size: "35GiB", type: "disk" })),
                   })),
                 })),
               ]),
-              storage_pools: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$10, name: "default", driver: "dir" }))]),
+              storage_pools: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[9], name: "default", driver: "dir" }))]),
             })),
           })),
-          vswitch: nix.thunk(() => ({ [nix.POS]: pos$13, enable: nix.thunk(() => nix.sel(cfg, "network", "ovs")) })),
+          vswitch: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: nix.thunk(() => nix.sel(cfg, "network", "ovs")) })),
         })),
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           supportedFilesystems: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(cfg, "storage"));
-            return { [nix.POS]: pos$15, zfs: nix.thunk(() => nix.attr(from, "zfs")) };
+            return { [nix.POS]: $pos[14], zfs: nix.thunk(() => nix.attr(from, "zfs")) };
           })()),
-          zfs: nix.thunk(() => ({ [nix.POS]: pos$16, forceImportRoot: false })),
+          zfs: nix.thunk(() => ({ [nix.POS]: $pos[15], forceImportRoot: false })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "parted"))]),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           hostId: "01234567",
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$19, trustedInterfaces: nix.thunk(() => ["incusbr0"]) })),
-          nftables: nix.thunk(() => ({ [nix.POS]: pos$20, enable: true })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[18], trustedInterfaces: nix.thunk(() => ["incusbr0"]) })),
+          nftables: nix.thunk(() => ({ [nix.POS]: $pos[19], enable: true })),
         })),
         security: nix.thunk(() => ({
-          [nix.POS]: pos$23,
-          apparmor: nix.thunk(() => ({ [nix.POS]: pos$22, enable: nix.thunk(() => nix.sel(cfg, "appArmor")) })),
+          [nix.POS]: $pos[22],
+          apparmor: nix.thunk(() => ({ [nix.POS]: $pos[21], enable: nix.thunk(() => nix.sel(cfg, "appArmor")) })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           dbus: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             apparmor: nix.thunk(() => (nix.asBool(nix.sel(cfg, "appArmor")) ? "enabled" : "disabled")),
           })),
           lvm: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             boot: nix.thunk(() => ({
-              [nix.POS]: pos$26,
-              thin: nix.thunk(() => ({ [nix.POS]: pos$25, enable: nix.thunk(() => nix.sel(cfg, "storage", "lvm")) })),
+              [nix.POS]: $pos[25],
+              thin: nix.thunk(() => ({ [nix.POS]: $pos[24], enable: nix.thunk(() => nix.sel(cfg, "storage", "lvm")) })),
             })),
-            dmeventd: nix.thunk(() => ({ [nix.POS]: pos$27, enable: nix.thunk(() => nix.sel(cfg, "storage", "lvm")) })),
+            dmeventd: nix.thunk(() => ({ [nix.POS]: $pos[26], enable: nix.thunk(() => nix.sel(cfg, "storage", "lvm")) })),
           })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$31,
+            [nix.POS]: $pos[30],
             testuser: nix.thunk(() => ({
-              [nix.POS]: pos$30,
+              [nix.POS]: $pos[29],
               isNormalUser: true,
               shell: nix.thunk(() => nix.sel(pkgs, "bashInteractive")),
               group: "incus",

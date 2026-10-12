@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 9, 5], ["rev", 10, 5], ["hash", 11, 5]], [["url", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["strictDeps", 29, 3], ["enableParallelBuilding", 31, 3], ["buildInputs", 33, 3], ["configureFlags", 35, 3], ["postUnpack", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 9, 5], ["rev", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["strictDeps", 29, 3], ["enableParallelBuilding", 31, 3], ["buildInputs", 33, 3], ["configureFlags", 35, 3], ["postUnpack", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const zlib = nix.arg($, "zlib");
   const lss = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://chromium.googlesource.com/linux-syscall-support",
       rev: "v2022.10.12",
       hash: "sha256-rF10v5oH4u9i9vnmFCVVl2Ew3h+QTiOsW64HeB0nRQU=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "breakpad",
       version: "2024.02.16",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://chromium.googlesource.com/breakpad/breakpad",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-yk+TSzjmAr9QMTYduKVe/Aizph/NNmSS385pvGJckiQ=",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postUnpack: nix.thunk(() => nix.str`ln -s ${lss} $sourceRoot/src/third_party/lss
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open-source multi-platform crash reporting system",
         homepage: "https://chromium.googlesource.com/breakpad",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

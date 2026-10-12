@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["fontDirectories", 43, 55]], [["broken", 47, 5], ["homepage", 48, 5], ["description", 49, 5], ["longDescription", 50, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["patches", 20, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["buildPhase", 26, 3], ["installPhase", 31, 3], ["postFixup", 40, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, openssl: false, libiconv: false, makeWrapper: false, imagemagick: false, makeFontsConf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fontDirectories", 43, 55]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 47, 5], ["homepage", 48, 5], ["description", 49, 5], ["longDescription", 50, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["patches", 20, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["buildPhase", 26, 3], ["installPhase", 31, 3], ["postFixup", 40, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const makeFontsConf = nix.arg($, "makeFontsConf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sgfutils",
       version: "0.25-unstable-2017-11-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yangboz",
           repo: "sgfutils",
           rev: "11ab171c46cc16cc71ac6fc901d38ea88d6532a4",
@@ -36,10 +33,10 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp sgf sgfsplit sgfvarsplit sgfstrip sgfinfo sgfmerge sgftf \\\n  sgfcheck sgfdb sgfdbinfo sgfcharset sgfcmp sgfx \\\n  ngf2sgf nip2sgf nk2sgf gib2sgf sgftopng ugi2sgf \\\n  $out/bin\nrunHook postInstall\n",
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/sgftopng \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [imagemagick]))} \\
-  --set-default FONTCONFIG_FILE ${nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))}
+  --set-default FONTCONFIG_FILE ${nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[1], fontDirectories: [] })))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://homepages.cwi.nl/~aeb/go/sgfutils/html/sgfutils.html",
         description: "Command line utilities that help working with SGF files",

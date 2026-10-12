@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bzip2: false, cmake: false, doxygen: false, fetchurl: false, fuse3: false, libevent: false, xz: false, openssl: false, "pkg-config": false, systemdLibs: false, tcp_wrappers: false, zlib: false, "c-ares": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const c_ares = nix.arg($, "c-ares");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "apt-cacher-ng",
       version: "3.7.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/a/apt-cacher-ng/apt-cacher-ng_${nix.sel(finalAttrs, "version")}.orig.tar.xz`),
           hash: "sha256-LkiH1ocDljNJkqzNMx4Sy6ht/vhXUy9hC7BjWo4ykA0=",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, doxygen, pkg_config]),
       buildInputs: nix.thunk(() => [bzip2, fuse3, libevent, xz, openssl, systemdLibs, tcp_wrappers, zlib, c_ares]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Caching proxy specialized for Linux distribution files",
         mainProgram: "apt-cacher-ng",
         homepage: "https://www.unix-ag.uni-kl.de/~bloch/acng/",

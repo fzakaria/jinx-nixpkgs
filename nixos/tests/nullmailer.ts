@@ -2,93 +2,65 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nullmailer.nix", [[["maintainers", 6, 5]], [["vlans", 15, 24]], [["allowedTCPPorts", 20, 20]], [["10.0.0.2", 22, 17]], [["useNetworkd", 18, 11], ["useDHCP", 19, 11], ["firewall", 20, 11], ["domain", 21, 11], ["hosts", 22, 11]], [["Address", 27, 25]], [["name", 26, 11], ["networkConfig", 27, 11]], [["01-eth1", 25, 34]], [["networks", 25, 25]], [["network", 25, 17]], [["myhostname", 37, 15], ["mydomain", 38, 15], ["mynetworks", 39, 15], ["mydestination", 40, 15], ["smtpd_recipient_restrictions", 42, 15]], [["main", 36, 13]], [["enable", 31, 11], ["localRecipients", 33, 11], ["settings", 35, 11]], [["postfix", 30, 18]], [["imports", 13, 9], ["virtualisation", 15, 9], ["networking", 17, 9], ["systemd", 25, 9], ["services", 30, 9]], [["vlans", 51, 24]], [["10.0.0.1", 57, 17]], [["useNetworkd", 54, 11], ["useDHCP", 55, 11], ["domain", 56, 11], ["hosts", 57, 11]], [["Address", 62, 25]], [["name", 61, 11], ["networkConfig", 62, 11]], [["01-eth1", 60, 34]], [["networks", 60, 25]], [["network", 60, 17]], [["me", 68, 13], ["remotes", 69, 13]], [["enable", 66, 11], ["config", 67, 11]], [["nullmailer", 65, 18]], [["virtualisation", 51, 9], ["networking", 53, 9], ["systemd", 60, 9], ["services", 65, 9]], [["mail", 10, 5], ["machine", 48, 5]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 75, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nullmailer.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/nullmailer.nix", [["vlans", 15, 24]]);
-const pos$3 = nix.positions(here + "/nullmailer.nix", [["allowedTCPPorts", 20, 20]]);
-const pos$4 = nix.positions(here + "/nullmailer.nix", [["10.0.0.2", 22, 17]]);
-const pos$5 = nix.positions(here + "/nullmailer.nix", [["useNetworkd", 18, 11], ["useDHCP", 19, 11], ["firewall", 20, 11], ["domain", 21, 11], ["hosts", 22, 11]]);
-const pos$6 = nix.positions(here + "/nullmailer.nix", [["Address", 27, 25]]);
-const pos$7 = nix.positions(here + "/nullmailer.nix", [["name", 26, 11], ["networkConfig", 27, 11]]);
-const pos$8 = nix.positions(here + "/nullmailer.nix", [["01-eth1", 25, 34]]);
-const pos$9 = nix.positions(here + "/nullmailer.nix", [["networks", 25, 25]]);
-const pos$10 = nix.positions(here + "/nullmailer.nix", [["network", 25, 17]]);
-const pos$11 = nix.positions(here + "/nullmailer.nix", [["myhostname", 37, 15], ["mydomain", 38, 15], ["mynetworks", 39, 15], ["mydestination", 40, 15], ["smtpd_recipient_restrictions", 42, 15]]);
-const pos$12 = nix.positions(here + "/nullmailer.nix", [["main", 36, 13]]);
-const pos$13 = nix.positions(here + "/nullmailer.nix", [["enable", 31, 11], ["localRecipients", 33, 11], ["settings", 35, 11]]);
-const pos$14 = nix.positions(here + "/nullmailer.nix", [["postfix", 30, 18]]);
-const pos$15 = nix.positions(here + "/nullmailer.nix", [["imports", 13, 9], ["virtualisation", 15, 9], ["networking", 17, 9], ["systemd", 25, 9], ["services", 30, 9]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/nullmailer.nix", [["vlans", 51, 24]]);
-const pos$17 = nix.positions(here + "/nullmailer.nix", [["10.0.0.1", 57, 17]]);
-const pos$18 = nix.positions(here + "/nullmailer.nix", [["useNetworkd", 54, 11], ["useDHCP", 55, 11], ["domain", 56, 11], ["hosts", 57, 11]]);
-const pos$19 = nix.positions(here + "/nullmailer.nix", [["Address", 62, 25]]);
-const pos$20 = nix.positions(here + "/nullmailer.nix", [["name", 61, 11], ["networkConfig", 62, 11]]);
-const pos$21 = nix.positions(here + "/nullmailer.nix", [["01-eth1", 60, 34]]);
-const pos$22 = nix.positions(here + "/nullmailer.nix", [["networks", 60, 25]]);
-const pos$23 = nix.positions(here + "/nullmailer.nix", [["network", 60, 17]]);
-const pos$24 = nix.positions(here + "/nullmailer.nix", [["me", 68, 13], ["remotes", 69, 13]]);
-const pos$25 = nix.positions(here + "/nullmailer.nix", [["enable", 66, 11], ["config", 67, 11]]);
-const pos$26 = nix.positions(here + "/nullmailer.nix", [["nullmailer", 65, 18]]);
-const pos$27 = nix.positions(here + "/nullmailer.nix", [["virtualisation", 51, 9], ["networking", 53, 9], ["systemd", 60, 9], ["services", 65, 9]]);
-const pos$28 = nix.positions(here + "/nullmailer.nix", [["mail", 10, 5], ["machine", 48, 5]]);
-const pos$29 = nix.positions(here + "/nullmailer.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$29,
+    [nix.POS]: $pos[28],
     name: "nullmailer",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "h7x4"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       mail: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             useNetworkd: true,
             useDHCP: false,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedTCPPorts: nix.thunk(() => [25n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[2], allowedTCPPorts: nix.thunk(() => [25n]) })),
             domain: "example.com",
-            hosts: nix.thunk(() => ({ [nix.POS]: pos$4, "10.0.0.2": nix.thunk(() => ["machine.example.com"]) })),
+            hosts: nix.thunk(() => ({ [nix.POS]: $pos[3], "10.0.0.2": nix.thunk(() => ["machine.example.com"]) })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             network: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               networks: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 "01-eth1": nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   name: "eth1",
-                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$6, Address: "10.0.0.1/24" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[5], Address: "10.0.0.1/24" })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             postfix: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               enable: true,
               localRecipients: nix.thunk(() => ["alice"]),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 main: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   myhostname: nix.thunk(() => nix.sel(config, "networking", "hostName")),
                   mydomain: nix.thunk(() => nix.sel(config, "networking", "domain")),
                   mynetworks: nix.thunk(() => ["0.0.0.0/0"]),
@@ -104,36 +76,36 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$27,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$16, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[26],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[15], vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             useNetworkd: true,
             useDHCP: false,
             domain: "example.com",
-            hosts: nix.thunk(() => ({ [nix.POS]: pos$17, "10.0.0.1": nix.thunk(() => ["mail.example.com"]) })),
+            hosts: nix.thunk(() => ({ [nix.POS]: $pos[16], "10.0.0.1": nix.thunk(() => ["mail.example.com"]) })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             network: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               networks: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 "01-eth1": nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   name: "eth1",
-                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$19, Address: "10.0.0.2/24" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[18], Address: "10.0.0.2/24" })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             nullmailer: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               enable: true,
               config: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 me: nix.thunk(() => nix.str`${nix.sel(config, "networking", "fqdn")}`),
                 remotes: "mail.example.com smtp --port=25",
               })),

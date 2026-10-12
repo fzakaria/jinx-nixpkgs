@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/engine.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5], ["fetchSubmodules", 29, 5]], [["CXXFLAGS", 51, 7]], [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["env", 51, 3], ["enableParallelBuilding", 53, 3], ["installPhase", 55, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, which: false, boost: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, SDL2_ttf: false, glew: false, zlib: false, icu: false, "pkg-config": false, cairo: false, libvpx: false, glm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/engine.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5], ["fetchSubmodules", 29, 5]]);
-const pos$2 = nix.positions(here + "/engine.nix", [["CXXFLAGS", 51, 7]]);
-const pos$3 = nix.positions(here + "/engine.nix", [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/engine.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["env", 51, 3], ["enableParallelBuilding", 53, 3], ["installPhase", 55, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libvpx = nix.arg($, "libvpx");
   const glm = nix.arg($, "glm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "anura-engine",
       version: "0-unstable-2023-02-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "anura-engine",
           repo: "anura",
           rev: "65d85b6646099db1d5cd25d31321bb434a3f94f1",
@@ -53,13 +50,13 @@ export default nix.lambda((args) => (() => {
         glm,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: "-DGLM_ENABLE_EXPERIMENTAL -Wno-error=deprecated-declarations",
       })),
       enableParallelBuilding: true,
       installPhase: "mkdir -p $out/bin $out/share/frogatto\ncp -ar data images modules $out/share/frogatto/\ncp -a anura $out/bin/frogatto\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/anura-engine/anura",
         description: "Game engine used by Frogatto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

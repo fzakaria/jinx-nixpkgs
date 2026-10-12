@@ -2,21 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pam-oath-login.nix", [[["enable", 28, 9]], [["oath", 27, 20]], [["pam", 27, 16]], [["isNormalUser", 32, 9], ["name", 33, 9], ["uid", 34, 9], ["hashedPassword", 35, 9], ["extraGroups", 36, 9], ["createHome", 37, 9], ["home", 38, 9]], [["alice", 31, 19]], [["users", 31, 13]], [["type", 45, 11], ["RemainAfterExit", 46, 11]], [["wantedBy", 42, 9], ["before", 43, 9], ["unitConfig", 44, 9], ["script", 48, 9]], [["setupOathSnakeoilFile", 41, 24]], [["services", 41, 15]], [["security", 27, 7], ["users", 31, 7], ["systemd", 41, 7]], [["machine", 24, 9]], [["name", 22, 3], ["nodes", 24, 3], ["testScript", 57, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pam-oath-login.nix", [["enable", 28, 9]]);
-const pos$2 = nix.positions(here + "/pam-oath-login.nix", [["oath", 27, 20]]);
-const pos$3 = nix.positions(here + "/pam-oath-login.nix", [["pam", 27, 16]]);
-const pos$4 = nix.positions(here + "/pam-oath-login.nix", [["isNormalUser", 32, 9], ["name", 33, 9], ["uid", 34, 9], ["hashedPassword", 35, 9], ["extraGroups", 36, 9], ["createHome", 37, 9], ["home", 38, 9]]);
-const pos$5 = nix.positions(here + "/pam-oath-login.nix", [["alice", 31, 19]]);
-const pos$6 = nix.positions(here + "/pam-oath-login.nix", [["users", 31, 13]]);
-const pos$7 = nix.positions(here + "/pam-oath-login.nix", [["type", 45, 11], ["RemainAfterExit", 46, 11]]);
-const pos$8 = nix.positions(here + "/pam-oath-login.nix", [["wantedBy", 42, 9], ["before", 43, 9], ["unitConfig", 44, 9], ["script", 48, 9]]);
-const pos$9 = nix.positions(here + "/pam-oath-login.nix", [["setupOathSnakeoilFile", 41, 24]]);
-const pos$10 = nix.positions(here + "/pam-oath-login.nix", [["services", 41, 15]]);
-const pos$11 = nix.positions(here + "/pam-oath-login.nix", [["security", 27, 7], ["users", 31, 7], ["systemd", 41, 7]]);
-const pos$12 = nix.positions(here + "/pam-oath-login.nix", [["machine", 24, 9]]);
-const pos$13 = nix.positions(here + "/pam-oath-login.nix", [["name", 22, 3], ["nodes", 24, 3], ["testScript", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,27 +14,27 @@ export default nix.lambda((args) => (() => {
   const alicePassword = "foobar";
   const hashedAlicePassword = "$6$MsMrE1q.1HrCgTS$Vq2e/uILzYjSN836TobAyN9xh9oi7EmCmucnZID25qgPoibkw8qTCugiAPnn4eCGvn1A.7oEBFJaaGUaJsQQY.";
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "pam-oath-login",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           security: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pam: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              oath: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+              [nix.POS]: $pos[1],
+              oath: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               alice: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 isNormalUser: true,
                 name: "alice",
                 uid: 1000n,
@@ -58,14 +46,14 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               setupOathSnakeoilFile: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 wantedBy: nix.thunk(() => ["default.target"]),
                 before: nix.thunk(() => ["default.target"]),
-                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$7, type: "oneshot", RemainAfterExit: true })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[6], type: "oneshot", RemainAfterExit: true })),
                 script: nix.thunk(() => nix.str`touch /etc/users.oath
 chmod 600 /etc/users.oath
 chown root /etc/users.oath

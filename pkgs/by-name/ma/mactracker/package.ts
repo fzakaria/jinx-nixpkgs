@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["name", 44, 5], ["runtimeInputs", 45, 5], ["text", 52, 5]], [["updateScript", 43, 12]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["sourceProvenance", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["dontPatch", 26, 3], ["dontConfigure", 27, 3], ["dontBuild", 28, 3], ["dontFixup", 29, 3], ["dontUnpack", 30, 3], ["nativeBuildInputs", 32, 3], ["sourceRoot", 34, 3], ["installPhase", 36, 3], ["passthru", 43, 3], ["nativeInstallCheckInputs", 59, 3], ["versionCheckProgram", 60, 3], ["versionCheckProgramArg", 63, 3], ["doInstallCheck", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, unzip: false, writeShellApplication: false, curl: false, cacert: false, libxml2: false, xmlstarlet: false, "common-updater-scripts": false, versionCheckHook: false, writeShellScript: false, "re-plistbuddy": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 44, 5], ["runtimeInputs", 45, 5], ["text", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["sourceProvenance", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["dontPatch", 26, 3], ["dontConfigure", 27, 3], ["dontBuild", 28, 3], ["dontFixup", 29, 3], ["dontUnpack", 30, 3], ["nativeBuildInputs", 32, 3], ["sourceRoot", 34, 3], ["installPhase", 36, 3], ["passthru", 43, 3], ["nativeInstallCheckInputs", 59, 3], ["versionCheckProgram", 60, 3], ["versionCheckProgramArg", 63, 3], ["doInstallCheck", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const re_plistbuddy = nix.arg($, "re-plistbuddy");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mactracker",
       version: "8.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mactracker.ca/downloads/Mactracker_${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-c78Bj63nJ+/qejUiD7hBEJlxubmIc+wElazwHGRRyfI=",
         })))),
@@ -42,9 +38,9 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "Mactracker.app",
       installPhase: "runHook preInstall\nmkdir -p $out/Applications\nunzip -d $out/Applications $src -x '__MACOSX/*'\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "mactracker-update-script",
               runtimeInputs: nix.thunk(() => [curl, cacert, libxml2, xmlstarlet, common_updater_scripts]),
               text: "url=\"https://mactracker.ca/releasenotes-mac.html\"\nversion=$(curl -s \"$url\" | xmllint -html -xmlout - | xmlstarlet sel -t -v \"//faq/h5[1]\")\nupdate-source-version mactracker \"$version\"\n",
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Provides detailed information on every Apple Macintosh, iPod, iPhone, iPad, and Apple Watch ever made",
         homepage: "https://mactracker.ca",
         changelog: "https://mactracker.ca/releasenotes-mac.html",

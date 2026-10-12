@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["build-system", 27, 3], ["pythonRelaxDeps", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 46, 3], ["enabledTestPaths", 51, 3], ["disabledTests", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, bgpq4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["build-system", 27, 3], ["pythonRelaxDeps", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 46, 3], ["enabledTestPaths", 51, 3], ["disabledTests", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.23.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pierky",
           repo: "arouteserver",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +55,7 @@ substituteInPlace pierky/arouteserver/builder.py pierky/arouteserver/config/prog
       const enabledTestPaths = nix.thunk(() => ["tests/static"]);
       const disabledTests = nix.thunk(() => ["current_year"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Automatically build (and test) feature-rich configurations for BGP route servers",
         mainProgram: "arouteserver",
         homepage: "https://github.com/pierky/arouteserver",
@@ -72,7 +70,7 @@ substituteInPlace pierky/arouteserver/builder.py pierky/arouteserver/config/prog
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 14, 26], ["pname", 15, 5], ["hash", 16, 5]], [["enableQt", 34, 28]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["dontWrapQtApps", 21, 3], ["preFixup", 23, 3], ["build-system", 27, 3], ["dependencies", 31, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 14, 26], ["pname", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enableQt", 34, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["dontWrapQtApps", 21, 3], ["preFixup", 23, 3], ["build-system", 27, 3], ["dependencies", 31, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "graph-cli",
       version: "0.1.19",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "graph_cli",
           hash: "sha256-AOfUgeVgcTtuf5IuLYy1zFTBCjWZxu0OiZzUVXDIaSc=",
@@ -37,13 +34,13 @@ export default nix.lambda((args) => (() => {
         return [
           nix.thunk(() => nix.lookup(w_1, "numpy")),
           nix.thunk(() => nix.lookup(w_1, "pandas")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "matplotlib"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableQt: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "matplotlib"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], enableQt: true })))),
         ];
       })()),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["graph_cli"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI to create graphs from CSV files",
         homepage: "https://github.com/mcastorina/graph-cli/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

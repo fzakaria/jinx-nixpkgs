@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["fetchSubmodules", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]], [["pname", 14, 3], ["version", 18, 3], ["src", 20, 3], ["mvnHash", 28, 3], ["nativeBuildInputs", 30, 3], ["installPhase", 32, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, maven: false, fetchFromGitHub: false, jre: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["fetchSubmodules", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 18, 3], ["src", 20, 3], ["mvnHash", 28, 3], ["nativeBuildInputs", 30, 3], ["installPhase", 32, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const lastVersion = "2.5.2";
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mmj2",
       version: nix.thunk(() => nix.str`${lastVersion}-unstable-2023-06-27`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "digama0",
           repo: "mmj2",
           fetchSubmodules: true,
@@ -42,7 +40,7 @@ wrapProgram $bin \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GUI Proof Assistant for the Metamath project",
         longDescription: "mmj2 is a proof assistant for the Metamath language. Metamath is a\nlanguage that lets you express mathematical axioms and theorems. The proof\nassistant includes a GUI for creating proofs, proof verification tools,\nand grammatical/syntax analysis.\n",
         homepage: "https://github.com/digama0/mmj2",

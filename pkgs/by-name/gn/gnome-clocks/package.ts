@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["hash", 35, 5]], [["packageName", 73, 41]], [["updateScript", 73, 5]], [["homepage", 77, 5], ["description", 78, 5], ["longDescription", 79, 5], ["mainProgram", 88, 5], ["teams", 89, 5], ["license", 90, 5], ["platforms", 91, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 51, 3], ["doCheck", 70, 3], ["passthru", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, gettext: false, "pkg-config": false, wrapGAppsHook4: false, itstool: false, "desktop-file-utils": false, vala: false, libxml2: false, gtk4: false, glib: false, "gsettings-desktop-schemas": false, "gnome-desktop": false, "geocode-glib_2": false, gnome: false, "gdk-pixbuf": false, geoclue2: false, gst_all_1: false, icu: false, libgweather: false, libadwaita: false, "vorbis-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 73, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["longDescription", 79, 5], ["mainProgram", 88, 5], ["teams", 89, 5], ["license", 90, 5], ["platforms", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 51, 3], ["doCheck", 70, 3], ["passthru", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const vorbis_tools = nix.arg($, "vorbis-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-clocks",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-clocks/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-clocks-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-vxZ/f0T08vtCTUcWZSybofKeFuSQceJqG7gz+NznlMY=",
         })))),
@@ -78,11 +74,11 @@ export default nix.lambda((args) => (() => {
       })())),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-clocks" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-clocks" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://apps.gnome.org/Clocks/",
         description: "Simple and elegant clock application for GNOME",
         longDescription: "A simple and elegant clock application. It includes world clocks, alarms,\na stopwatch, and timers.\n\n- Show the time in different cities around the world\n- Set alarms to wake you up\n- Measure elapsed time with an accurate stopwatch\n- Set timers to properly cook your food\n",

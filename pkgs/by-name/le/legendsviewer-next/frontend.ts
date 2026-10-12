@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 42, 5]], [["pname", 12, 3], ["version", 14, 11], ["src", 14, 19], ["patches", 14, 23], ["nodejs", 16, 3], ["npmDepsHash", 17, 3], ["postPatch", 19, 3], ["installPhase", 23, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { version: false, src: false, patches: false, lib: false, nodejs_22: false, buildNpmPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 42, 5]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["pname", 12, 3], ["version", 14, 11], ["src", 14, 19], ["patches", 14, 23], ["nodejs", 16, 3], ["npmDepsHash", 17, 3], ["postPatch", 19, 3], ["installPhase", 23, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const nodejs_22 = nix.arg($, "nodejs_22");
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "legends-viewer-frontend",
       version: version,
       src: src,
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "cd \"./LegendsViewer.Frontend/legends-viewer-frontend\"\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r ./dist $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Recreates Dwarf Fortress' Legends Mode from exported files",
         homepage: "https://github.com/Kromtec/LegendsViewer-Next",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 88, 5], ["sha256", 89, 5]], [["test", 107, 18]], [["tests", 107, 12]], [["description", 111, 5], ["homepage", 112, 5], ["maintainers", 113, 5], ["sourceProvenance", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["mainProgram", 119, 5], ["broken", 120, 5]], [["pname", 84, 3], ["version", 85, 3], ["src", 87, 3], ["nativeBuildInputs", 92, 3], ["installPhase", 94, 3], ["passthru", 107, 3], ["dontPatchELF", 109, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, dpkg: false, atk: false, glib: false, pango: false, "gdk-pixbuf": false, gtk3: false, cairo: false, freetype: false, fontconfig: false, dbus: false, libxi: false, libxcursor: false, libxdamage: false, libxrandr: false, libxcomposite: false, libxext: false, libxfixes: false, libxrender: false, libx11: false, libxtst: false, libxscrnsaver: false, libxcb: false, nss: false, nspr: false, "alsa-lib": false, cups: false, expat: false, udev: false, libpulseaudio: false, "at-spi2-atk": false, "at-spi2-core": false, libxshmfence: false, libdrm: false, libxkbcommon: false, libgbm: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 88, 5], ["sha256", 89, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["test", 107, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 107, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 111, 5], ["homepage", 112, 5], ["maintainers", 113, 5], ["sourceProvenance", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["mainProgram", 119, 5], ["broken", 120, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 84, 3], ["version", 85, 3], ["src", 87, 3], ["nativeBuildInputs", 92, 3], ["installPhase", 94, 3], ["passthru", 107, 3], ["dontPatchELF", 109, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -91,7 +87,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hyper";
       const version = "3.4.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/vercel/hyper/releases/download/v${version}/hyper_${version}_amd64.deb`),
           sha256: "sha256-jEzZ6MWFaNXBS8CAzfn/ufMPpWcua9HhBFzetWMlH1Y=",
         }))));
@@ -108,15 +104,15 @@ substituteInPlace $out/share/applications/hyper.desktop \\
   --replace "/opt/Hyper/hyper" "hyper"
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "hyper")),
         })),
       }));
       const dontPatchELF = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Terminal built on web technologies",
         homepage: "https://hyper.is/",
         maintainers: nix.thunk(() => (() => {
@@ -133,7 +129,7 @@ substituteInPlace $out/share/applications/hyper.desktop \\
         broken: true,
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["PUPPETEER_SKIP_DOWNLOAD", 21, 5]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["mainProgram", 30, 5], ["maintainers", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["env", 20, 3], ["dontNpmBuild", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PUPPETEER_SKIP_DOWNLOAD", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["mainProgram", 30, 5], ["maintainers", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["env", 20, 3], ["dontNpmBuild", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
       const pname = "coffeescript";
       const version = "2.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jashkenas",
           repo: "coffeescript",
           tag: version,
           hash: "sha256-vr46LKICX61rFPCkZ3G+8gJykg+MO43YRJnZGM3RoY0=",
         }))));
       const npmDepsHash = "sha256-mCm31OwI3wjq8taKRQuEj4+IWVZO9Z5KuIDBf39lYoQ=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_DOWNLOAD: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PUPPETEER_SKIP_DOWNLOAD: true }));
       const dontNpmBuild = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Little language that compiles into JavaScript",
         homepage: "https://github.com/jashkenas/coffeescript",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +34,16 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "cdmistman"))];
         })()),
       }));
-      return { [nix.POS]: pos$4, pname, version, src, npmDepsHash, env, dontNpmBuild, meta };
+      return {
+        [nix.POS]: $pos[3],
+        pname,
+        version,
+        src,
+        npmDepsHash,
+        env,
+        dontNpmBuild,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

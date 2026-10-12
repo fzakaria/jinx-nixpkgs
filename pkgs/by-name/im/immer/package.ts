@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pname", 38, 7], ["doCheck", 39, 7], ["checkInputs", 40, 7], ["checkPhase", 46, 7]], [["test", 37, 11]], [["tests", 37, 5], ["updateScript", 50, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]], [["pname", 13, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["cmakeFlags", 26, 3], ["dontBuild", 29, 3], ["dontUseCmakeBuildDir", 30, 3], ["doCheck", 32, 3], ["strictDeps", 34, 3], ["passthru", 36, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, catch2_3: false, fetchFromGitHub: false, cmake: false, boehmgc: false, boost: false, fmt: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 38, 7], ["doCheck", 39, 7], ["checkInputs", 40, 7], ["checkPhase", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["test", 37, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 37, 5], ["updateScript", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["cmakeFlags", 26, 3], ["dontBuild", 29, 3], ["dontUseCmakeBuildDir", 30, 3], ["doCheck", 32, 3], ["strictDeps", 34, 3], ["passthru", 36, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "immer",
       version: "0.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arximboldi",
           repo: "immer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           test: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (attrs) => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname: nix.thunk(() => nix.str`${nix.sel(attrs, "pname")}-test`),
               doCheck: true,
               checkInputs: nix.thunk(() => [catch2_3, boehmgc, boost, fmt]),
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Postmodern immutable and persistent data structures for C++ — value semantics at scale",
         homepage: "https://sinusoid.es/immer",
         changelog: nix.thunk(() => nix.str`https://github.com/arximboldi/immer/releases/tag/v${nix.sel(finalAttrs, "version")}`),

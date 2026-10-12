@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["DJANGO_SETTINGS_MODULE", 42, 7]], [["openapi", 46, 25]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 35, 3], ["env", 42, 3], ["pythonImportsCheck", 44, 3], ["optional-dependencies", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, django: false, djangorestframework: false, "drf-spectacular": false, inflection: false, pytestCheckHook: false, "pytest-django": false, "django-filter": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["DJANGO_SETTINGS_MODULE", 42, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["openapi", 46, 25]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 35, 3], ["env", 42, 3], ["pythonImportsCheck", 44, 3], ["optional-dependencies", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytest_django = nix.arg($, "pytest-django");
   const django_filter = nix.arg($, "django-filter");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "drf-standardized-errors",
       version: "0.16.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ghazi-git",
           repo: "drf-standardized-errors",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => [django, djangorestframework]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_django, django_filter, drf_spectacular]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "tests.settings" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], DJANGO_SETTINGS_MODULE: "tests.settings" })),
       pythonImportsCheck: nix.thunk(() => ["drf_standardized_errors"]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, openapi: nix.thunk(() => [drf_spectacular, inflection]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[2], openapi: nix.thunk(() => [drf_spectacular, inflection]) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Standardize your DRF API error responses",
         homepage: "https://github.com/ghazi-git/drf-standardized-errors",
         changelog: nix.thunk(() => nix.str`https://github.com/ghazi-git/drf-standardized-errors/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

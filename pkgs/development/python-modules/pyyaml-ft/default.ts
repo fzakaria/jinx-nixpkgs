@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["changelog", 38, 5], ["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["disabled", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["buildInputs", 31, 3], ["pythonImportsCheck", 33, 3], ["nativeCheckInputs", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, cython: false, fetchFromGitHub: false, lib: false, libyaml: false, pytestCheckHook: false, pythonOlder: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 38, 5], ["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["disabled", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["buildInputs", 31, 3], ["pythonImportsCheck", 33, 3], ["nativeCheckInputs", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.13"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Quansight-Labs",
           repo: "pyyaml-ft",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["yaml_ft"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/Quansight-Labs/pyyaml-ft/blob/${nix.sel(src, "tag")}/CHANGES`),
         description: "YAML parser and emitter for Python with support for free-threading",
         homepage: "https://github.com/Quansight-Labs/pyyaml-ft",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

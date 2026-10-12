@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["unwrapped", 31, 5]], [["outputsToInstall", 35, 5], ["hydraPlatforms", 37, 5], ["priority", 39, 5]], [["pname", 10, 3], ["version", 11, 21], ["nativeBuildInputs", 13, 3], ["paths", 15, 3], ["postBuild", 20, 3], ["preferLocalBuild", 28, 3], ["passthru", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { symlinkJoin: false, lib: false, makeWrapper: false, wayfire: false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["unwrapped", 31, 5]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["outputsToInstall", 35, 5], ["hydraPlatforms", 37, 5], ["priority", 39, 5]]);
-const pos$3 = nix.positions(here + "/wrapper.nix", [["pname", 10, 3], ["version", 11, 21], ["nativeBuildInputs", 13, 3], ["paths", 15, 3], ["postBuild", 20, 3], ["preferLocalBuild", 28, 3], ["passthru", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const wayfire = nix.arg($, "wayfire");
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wayfire-wrapped",
       version: nix.thunk(() => nix.attr(wayfire, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       paths: nix.thunk(() => nix.concat([wayfire], plugins)),
       postBuild: "for binary in $out/bin/*; do\n  wrapProgram $binary \\\n    --prefix WAYFIRE_PLUGIN_PATH : $out/lib/wayfire \\\n    --prefix WAYFIRE_PLUGIN_XML_PATH : $out/share/wayfire/metadata\ndone\n",
       preferLocalBuild: true,
-      passthru: nix.thunk(() => nix.update(nix.sel(wayfire, "passthru"), { [nix.POS]: pos$1, unwrapped: wayfire })),
+      passthru: nix.thunk(() => nix.update(nix.sel(wayfire, "passthru"), { [nix.POS]: $pos[0], unwrapped: wayfire })),
       meta: nix.thunk(() => nix.update(nix.sel(wayfire, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         outputsToInstall: nix.thunk(() => ["out"]),
         hydraPlatforms: [],
         priority: nix.thunk(() => nix.sub(nix.selOr(wayfire, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),

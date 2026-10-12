@@ -2,37 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/borgmatic.nix", [[["label", 13, 15], ["path", 14, 15]], [["source_directories", 10, 11], ["repositories", 11, 11], ["keep_daily", 17, 11]], [["enable", 8, 9], ["settings", 9, 9]], [["borgmatic", 7, 16]], [["services", 7, 7]], [["machine", 4, 9]], [["name", 3, 3], ["nodes", 4, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/borgmatic.nix", [["label", 13, 15], ["path", 14, 15]]);
-const pos$2 = nix.positions(here + "/borgmatic.nix", [["source_directories", 10, 11], ["repositories", 11, 11], ["keep_daily", 17, 11]]);
-const pos$3 = nix.positions(here + "/borgmatic.nix", [["enable", 8, 9], ["settings", 9, 9]]);
-const pos$4 = nix.positions(here + "/borgmatic.nix", [["borgmatic", 7, 16]]);
-const pos$5 = nix.positions(here + "/borgmatic.nix", [["services", 7, 7]]);
-const pos$6 = nix.positions(here + "/borgmatic.nix", [["machine", 4, 9]]);
-const pos$7 = nix.positions(here + "/borgmatic.nix", [["name", 3, 3], ["nodes", 4, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "borgmatic",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             borgmatic: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 source_directories: nix.thunk(() => ["/home"]),
-                repositories: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, label: "local", path: "/var/backup" }))]),
+                repositories: nix.thunk(() => [
+                  nix.thunk(() => ({ [nix.POS]: $pos[0], label: "local", path: "/var/backup" })),
+                ]),
                 keep_daily: 7n,
               })),
             })),

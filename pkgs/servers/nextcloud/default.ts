@@ -2,16 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 28, 9], ["hash", 29, 17]], [["tests", 40, 9], ["packages", 43, 17]], [["changelog", 47, 9], ["description", 48, 9], ["homepage", 49, 9], ["teams", 50, 9], ["license", 51, 9], ["platforms", 52, 9], ["knownVulnerabilities", 53, 9]], [["pname", 21, 7], ["version", 22, 15], ["__structuredAttrs", 24, 7], ["strictDeps", 25, 7], ["src", 27, 7], ["installPhase", 32, 7], ["passthru", 39, 7], ["meta", 46, 7]], [["version", 60, 5], ["hash", 61, 5], ["packages", 62, 5]], [["version", 66, 5], ["hash", 67, 5], ["packages", 68, 5]], [["version", 72, 5], ["hash", 73, 5], ["packages", 74, 5]], [["nextcloud33", 59, 3], ["nextcloud34", 65, 3], ["nextcloud35", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, nixosTests: false, nextcloud33Packages: false, nextcloud34Packages: false, nextcloud35Packages: false }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false, eol: true, extraVulnerabilities: true, packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 28, 9], ["hash", 29, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 40, 9], ["packages", 43, 17]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 47, 9], ["description", 48, 9], ["homepage", 49, 9], ["teams", 50, 9], ["license", 51, 9], ["platforms", 52, 9], ["knownVulnerabilities", 53, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 7], ["version", 22, 15], ["__structuredAttrs", 24, 7], ["strictDeps", 25, 7], ["src", 27, 7], ["installPhase", 32, 7], ["passthru", 39, 7], ["meta", 46, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 60, 5], ["hash", 61, 5], ["packages", 62, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 66, 5], ["hash", 67, 5], ["packages", 68, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 72, 5], ["hash", 73, 5], ["packages", 74, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["nextcloud33", 59, 3], ["nextcloud34", 65, 3], ["nextcloud35", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,18 +28,18 @@ export default nix.lambda((args) => (() => {
         const __structuredAttrs = true;
         const strictDeps = true;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://download.nextcloud.com/server/releases/nextcloud-${version_1}.tar.bz2`),
             hash: hash,
           }))));
         const installPhase = "runHook preInstall\nmkdir -p $out/\ncp -R . $out/\nrunHook postInstall\n";
         const passthru = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           tests: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (key) => (_) => nix.app(nix.sel(lib, "hasSuffix"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version_1)), key), nix.thunk(() => nix.sel(nixosTests, "nextcloud")))),
           packages: packages,
         }));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           changelog: nix.thunk(() => nix.str`https://nextcloud.com/changelog/#${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version_1)}`),
           description: "Sharing solution for files, calendars, contacts and more",
           homepage: "https://nextcloud.com",
@@ -56,7 +49,7 @@ export default nix.lambda((args) => (() => {
           knownVulnerabilities: nix.thunk(() => nix.concat(extraVulnerabilities, nix.app(nix.sel(lib, "optional"), eol, nix.thunk(() => nix.str`Nextcloud version ${version_1} is EOL`)))),
         }));
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname,
           version: version_1,
           __structuredAttrs,
@@ -69,21 +62,21 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     nextcloud33: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version: "33.0.9",
         hash: "sha256-8zHBBB0CfmWIUm0qAM5CvHCpYi6rWHHAvpF3JSz3dCM=",
         packages: nextcloud33Packages,
       })))),
     nextcloud34: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version: "34.0.4",
         hash: "sha256-APIm5jZPluCRirBhVxWPZmAbjO3CWvd39e5aMFb0K4M=",
         packages: nextcloud34Packages,
       })))),
     nextcloud35: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         version: "35.0.1",
         hash: "sha256-ftMF6IAZLYBLqDF5oZ3SIldnlgjWMWGmEc4/ipGNKqY=",
         packages: nextcloud35Packages,

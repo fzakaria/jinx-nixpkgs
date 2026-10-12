@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["igraph", 39, 5], ["networkx", 40, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["pythonRelaxDeps", 36, 3], ["optional-dependencies", 38, 3], ["postPatch", 43, 3], ["disabledTests", 48, 3], ["nativeCheckInputs", 60, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, igraph: false, matplotlib: false, networkx: false, numpy: false, pandas: false, pylint: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["igraph", 39, 5], ["networkx", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["pythonRelaxDeps", 36, 3], ["optional-dependencies", 38, 3], ["postPatch", 43, 3], ["disabledTests", 48, 3], ["nativeCheckInputs", 60, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pylint = nix.arg($, "pylint");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "iplotx",
       version: "1.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fabilab",
           repo: "iplotx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [matplotlib, numpy, pandas, pylint]),
       pythonRelaxDeps: nix.thunk(() => ["pylint"]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         igraph: nix.thunk(() => [igraph]),
         networkx: nix.thunk(() => [networkx]),
       })),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pythonImportsCheck: nix.thunk(() => ["iplotx"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Plot networkx from igraph and networkx",
         homepage: "https://iplotx.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

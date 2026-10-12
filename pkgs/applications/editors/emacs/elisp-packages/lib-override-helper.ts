@@ -2,61 +2,51 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/lib-override-helper.nix", [["packageRequires", 17, 9]]);
-const pos$2 = nix.positions(here + "/lib-override-helper.nix", [["nativeBuildInputs", 28, 7]]);
-const pos$3 = nix.positions(here + "/lib-override-helper.nix", [["dontConfigure", 31, 44]]);
-const pos$4 = nix.positions(here + "/lib-override-helper.nix", [["src", 36, 22], ["version", 36, 26]]);
-const pos$5 = nix.positions(here + "/lib-override-helper.nix", [["propagatedUserEnvPkgs", 43, 9]]);
-const pos$6 = nix.positions(here + "/lib-override-helper.nix", [["postPatch", 50, 7]]);
-const pos$7 = nix.positions(here + "/lib-override-helper.nix", [["ignoreCompilationError", 71, 9]]);
-const pos$8 = nix.positions(here + "/lib-override-helper.nix", [["broken", 79, 9]]);
-const pos$9 = nix.positions(here + "/lib-override-helper.nix", [["meta", 78, 7]]);
-const pos$10 = nix.positions(here + "/lib-override-helper.nix", [["nativeBuildInputs", 93, 9]]);
-const pos$11 = nix.positions(here + "/lib-override-helper.nix", [["addPackageRequires", 4, 3], ["addPackageRequiresIfOlder", 7, 3], ["addPackageRequiresWhen", 13, 3], ["buildWithGit", 25, 3], ["dontConfigure", 31, 3], ["externalSrc", 33, 3], ["fix-rtags", 39, 3], ["fixRequireHelmCore", 47, 3], ["ignoreCompilationError", 59, 3], ["ignoreCompilationErrorIfOlder", 61, 3], ["ignoreCompilationErrorWhen", 67, 3], ["markBroken", 75, 3], ["mkHome", 83, 3], ["mkHomeIfOlder", 85, 3], ["mkHomeWhen", 89, 3]]);
+const $pos = nix.positions(here + "/lib-override-helper.nix", [[["packageRequires", 17, 9]], [["nativeBuildInputs", 28, 7]], [["dontConfigure", 31, 44]], [["src", 36, 22], ["version", 36, 26]], [["propagatedUserEnvPkgs", 43, 9]], [["postPatch", 50, 7]], [["ignoreCompilationError", 71, 9]], [["broken", 79, 9]], [["meta", 78, 7]], [["nativeBuildInputs", 93, 9]], [["addPackageRequires", 4, 3], ["addPackageRequiresIfOlder", 7, 3], ["addPackageRequiresWhen", 13, 3], ["buildWithGit", 25, 3], ["dontConfigure", 31, 3], ["externalSrc", 33, 3], ["fix-rtags", 39, 3], ["fixRequireHelmCore", 47, 3], ["ignoreCompilationError", 59, 3], ["ignoreCompilationErrorIfOlder", 61, 3], ["ignoreCompilationErrorWhen", 67, 3], ["markBroken", 75, 3], ["mkHome", 83, 3], ["mkHomeIfOlder", 85, 3], ["mkHomeWhen", 89, 3]]]);
 
 export default (pkgs) => (lib) => (() => {
   const addPackageRequires = (pkg) => (packageRequires) => nix.app(addPackageRequiresWhen, pkg, packageRequires, (finalAttrs) => (previousAttrs) => true);
   const addPackageRequiresIfOlder = (pkg) => (packageRequires) => (version) => nix.app(addPackageRequiresWhen, pkg, packageRequires, (finalAttrs) => (previousAttrs) => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), version));
   const addPackageRequiresWhen = (pkg) => (packageRequires) => (predicate) => nix.app(nix.sel(pkg, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       packageRequires: nix.thunk(() => (nix.asBool(nix.app(predicate, finalAttrs, previousAttrs)) ? nix.concat(nix.selOr(previousAttrs, () => [], "packageRequires"), packageRequires) : nix.selOr(previousAttrs, () => [], "packageRequires"))),
     }));
   const buildWithGit = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (previousAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "git"))])),
     }));
-  const dontConfigure = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, dontConfigure: true })));
+  const dontConfigure = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], dontConfigure: true })));
   const externalSrc = (pkg) => (epkg) => nix.app(nix.sel(pkg, "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       src: nix.thunk(() => nix.attr(epkg, "src")),
       version: nix.thunk(() => nix.attr(epkg, "version")),
     })));
   const fix_rtags = (pkg) => nix.app(dontConfigure, nix.thunk(() => nix.app(nix.sel(nix.app(externalSrc, pkg, nix.thunk(() => nix.sel(pkgs, "rtags"))), "overrideAttrs"), (previousAttrs) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         propagatedUserEnvPkgs: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "propagatedUserEnvPkgs"), [nix.thunk(() => nix.sel(pkgs, "rtags"))])),
       }))));
   const fixRequireHelmCore = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (previousAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       postPatch: nix.thunk(() => nix.add(nix.add(nix.selOr(previousAttrs, () => "", "postPatch"), "\n"), "substituteInPlace $ename.el \\\n  --replace-fail \"(require 'helm)\" \"(require 'helm-core)\"\n")),
     }));
   const ignoreCompilationError = (pkg) => nix.app(ignoreCompilationErrorWhen, pkg, (finalAttrs) => (previousAttrs) => true);
   const ignoreCompilationErrorIfOlder = (pkg) => (version) => nix.app(ignoreCompilationErrorWhen, pkg, (finalAttrs) => (previousAttrs) => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), version));
   const ignoreCompilationErrorWhen = (pkg) => (predicate) => nix.app(nix.sel(pkg, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       ignoreCompilationError: nix.thunk(() => nix.app(predicate, finalAttrs, previousAttrs)),
     }));
   const markBroken = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), (previousAttrs) => ({
-      [nix.POS]: pos$9,
-      meta: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "meta"), { [nix.POS]: pos$8, broken: true })),
+      [nix.POS]: $pos[8],
+      meta: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "meta"), { [nix.POS]: $pos[7], broken: true })),
     }));
   const mkHome = (pkg) => nix.app(mkHomeWhen, pkg, (finalAttrs) => (previousAttrs) => true);
   const mkHomeIfOlder = (pkg) => (version) => nix.app(mkHomeWhen, pkg, (finalAttrs) => (previousAttrs) => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), version));
   const mkHomeWhen = (pkg) => (predicate) => nix.app(nix.sel(pkg, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       nativeBuildInputs: nix.thunk(() => (nix.asBool(nix.app(predicate, finalAttrs, previousAttrs)) ? nix.concat(nix.selOr(previousAttrs, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "writableTmpDirAsHomeHook"))]) : nix.selOr(previousAttrs, () => [], "nativeBuildInputs"))),
     }));
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     addPackageRequires,
     addPackageRequiresIfOlder,
     addPackageRequiresWhen,

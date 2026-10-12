@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 88, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["pythonImportsCheck", 48, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 58, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, "hatch-vcs": false, hatchling: false, pydantic: false, "pydantic-zarr": false, zarr: false, aiohttp: false, fsspec: false, "pytest-cov-stub": false, "pytest-vcr": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["downloadPage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["pythonImportsCheck", 48, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 58, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pytest_vcr = nix.arg($, "pytest-vcr");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ome-zarr-models",
       version: "1.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ome-zarr-models",
           repo: "ome-zarr-models-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
           "test_load_ome_zarr_group",
         ])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Minimal Python package for reading, writing and validating OME-Zarr (meta)data",
         homepage: "https://ome-zarr-models-py.readthedocs.io/en/stable",
         downloadPage: "https://github.com/ome-zarr-models/ome-zarr-models-py",

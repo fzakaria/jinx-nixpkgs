@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nodejs", 18, 36]], [["yarn", 18, 5]], [["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["yarnLock", 40, 5], ["hash", 41, 5]], [["nodejs", 56, 13], ["updateScript", 57, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 35, 3], ["offlineCache", 39, 3], ["nativeBuildInputs", 44, 3], ["postInstall", 50, 3], ["passthru", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchYarnDeps: false, yarn: false, yarnConfigHook: false, yarnInstallHook: false, nodejs_22: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["nodejs", 18, 36]]);
-const pos$2 = nix.positions(here + "/default.nix", [["yarn", 18, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["yarnLock", 40, 5], ["hash", 41, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["nodejs", 56, 13], ["updateScript", 57, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 35, 3], ["offlineCache", 39, 3], ["nativeBuildInputs", 44, 3], ["postInstall", 50, 3], ["passthru", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,15 +18,15 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nodejs = nodejs_22;
   const yarnConfigHook$ = nix.thunk(() => nix.app(nix.sel(yarnConfigHook, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      yarn: nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs })))),
+      [nix.POS]: $pos[1],
+      yarn: nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], nodejs: nodejs })))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gancio-plugin-telegram-bridge",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           domain: "framagit.org",
           owner: "bcn.convocala",
           repo: "gancio-plugin-telegram-bridge",
@@ -42,19 +36,19 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`cp --no-preserve=all ${nix.path(here, "./yarn.lock")} ./yarn.lock
 `),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           yarnLock: nix.path(here, "./yarn.lock"),
           hash: "sha256-3842mgKcsa0FIAFdClVorYFKWODiQJm7ytw2bkJ1WG4=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook$, yarnInstallHook, nodejs]),
       postInstall: "ln -s \"$out/lib/node_modules/gancio-plugin-telegram/index.js\" \"$out/index.js\"\nln -s \"$out/lib/node_modules/gancio-plugin-telegram/node_modules\" \"$out/node_modules\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         nodejs: nodejs,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Telegram bridge for Gancio, republishes content to Telegram channels or groups",
         homepage: "https://framagit.org/bcn.convocala/gancio-plugin-telegram-bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

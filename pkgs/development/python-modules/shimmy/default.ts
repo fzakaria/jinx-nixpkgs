@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["changelog", 87, 5], ["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["disabledTestPaths", 56, 3], ["disabledTests", 64, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, gymnasium: false, numpy: false, "ale-py": false, bsuite: false, "dm-control": false, gym: false, imageio: false, pettingzoo: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 87, 5], ["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["disabledTestPaths", 56, 3], ["disabledTests", 64, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pettingzoo = nix.arg($, "pettingzoo");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "shimmy",
       version: "2.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Farama-Foundation",
           repo: "Shimmy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
         "test_render_height_widths",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/Farama-Foundation/Shimmy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "API conversion tool for popular external reinforcement learning environments",
         homepage: "https://github.com/Farama-Foundation/Shimmy",

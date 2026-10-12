@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["fetchSubmodules", 28, 5], ["hash", 29, 5]], [["fontDirectories", 86, 5]], [["FONTCONFIG_FILE", 85, 7]], [["pkg-config", 90, 11]], [["rev-prefix", 92, 7], ["ignoredVersions", 93, 7]], [["tests", 90, 5], ["updateScript", 91, 5]], [["description", 98, 5], ["longDescription", 99, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 111, 5], ["pkgConfigModules", 112, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 32, 3], ["strictDeps", 38, 3], ["__structuredAttrs", 39, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 56, 3], ["configureFlags", 62, 3], ["enableParallelBuilding", 68, 3], ["preBuild", 70, 3], ["buildFlags", 75, 3], ["doCheck", 77, 3], ["postInstall", 79, 3], ["env", 85, 3], ["passthru", 89, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeFontsConf: false, gitUpdater: false, testers: false, autoreconfHook: false, docSupport: true, doxygen: false, graphviz: false, libexsid: false, libresidfp: false, libusb1: false, perl: false, "pkg-config": false, xa: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["fetchSubmodules", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fontDirectories", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["FONTCONFIG_FILE", 85, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 90, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["rev-prefix", 92, 7], ["ignoredVersions", 93, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 90, 5], ["updateScript", 91, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 98, 5], ["longDescription", 99, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 111, 5], ["pkgConfigModules", 112, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 32, 3], ["strictDeps", 38, 3], ["__structuredAttrs", 39, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 56, 3], ["configureFlags", 62, 3], ["enableParallelBuilding", 68, 3], ["preBuild", 70, 3], ["buildFlags", 75, 3], ["doCheck", 77, 3], ["postInstall", 79, 3], ["env", 85, 3], ["passthru", 89, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const xa = nix.arg($, "xa");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "libsidplayfp",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libsidplayfp",
           repo: "libsidplayfp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,19 +52,19 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), docSupport, "mkdir -p $doc/share/doc/libsidplayfp\nmv docs/html $doc/share/doc/libsidplayfp/\n")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), docSupport, nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))))),
+        [nix.POS]: $pos[2],
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), docSupport, nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[1], fontDirectories: [] })))))),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v", ignoredVersions: "[a-zA-Z]" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], "rev-prefix": "v", ignoredVersions: "[a-zA-Z]" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Library to play Commodore 64 music derived from libsidplay2",
         longDescription: "libsidplayfp is a C64 music player library which integrates\nthe reSID SID chip emulation into a cycle-based emulator\nenvironment, constantly aiming to improve emulation of the\nC64 system and the SID chips.\n",
         homepage: "https://github.com/libsidplayfp/libsidplayfp",

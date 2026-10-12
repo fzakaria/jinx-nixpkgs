@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["hash", 20, 5]], [["homepage", 32, 5], ["license", 33, 5], ["description", 34, 5], ["maintainers", 35, 5]], [["pname", 12, 3], ["version", 13, 3], ["minimalOCamlVersion", 15, 3], ["duneVersion", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 24, 3], ["checkInputs", 28, 3], ["doCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, "pkg-config": false, cstruct: false, "bigarray-compat": false, ounit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 32, 5], ["license", 33, 5], ["description", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["minimalOCamlVersion", 15, 3], ["duneVersion", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 24, 3], ["checkInputs", 28, 3], ["doCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const bigarray_compat = nix.arg($, "bigarray-compat");
   const ounit = nix.arg($, "ounit");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "io-page",
       version: "3.0.0",
       minimalOCamlVersion: "4.08",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/io-page/releases/download/v${nix.sel(finalAttrs, "version")}/io-page-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-DjbKdNkFa6YQgJDLmLsuvyrweb4/TNvqAiggcj/3hu4=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ounit]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mirage/io-page",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         description: "IO memory page library for Mirage backends",

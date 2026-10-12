@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["python", 10, 13], ["pythonPackages", 11, 5], ["mopidy", 13, 5], ["mopidy-bandcamp", 15, 5], ["mopidy-listenbrainz", 17, 5], ["mopidy-iris", 19, 5], ["mopidy-jellyfin", 21, 5], ["mopidy-local", 23, 5], ["mopidy-moped", 25, 5], ["mopidy-mopify", 27, 5], ["mopidy-mpd", 29, 5], ["mopidy-mpris", 31, 5], ["mopidy-muse", 33, 5], ["mopidy-musicbox-webclient", 35, 5], ["mopidy-notify", 37, 5], ["mopidy-podcast", 39, 5], ["mopidy-scrobbler", 41, 5], ["mopidy-somafm", 43, 5], ["mopidy-soundcloud", 45, 5], ["mopidy-spotify", 47, 5], ["mopidy-tidal", 49, 5], ["mopidy-tunein", 51, 5], ["mopidy-youtube", 53, 5], ["mopidy-ytmusic", 55, 5], ["mopidy-subidy", 57, 5]]]);
 const formals$1 = { args: { lib: false, newScope: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["python", 10, 13], ["pythonPackages", 11, 5], ["mopidy", 13, 5], ["mopidy-bandcamp", 15, 5], ["mopidy-listenbrainz", 17, 5], ["mopidy-iris", 19, 5], ["mopidy-jellyfin", 21, 5], ["mopidy-local", 23, 5], ["mopidy-moped", 25, 5], ["mopidy-mopify", 27, 5], ["mopidy-mpd", 29, 5], ["mopidy-mpris", 31, 5], ["mopidy-muse", 33, 5], ["mopidy-musicbox-webclient", 35, 5], ["mopidy-notify", 37, 5], ["mopidy-podcast", 39, 5], ["mopidy-scrobbler", 41, 5], ["mopidy-somafm", 43, 5], ["mopidy-soundcloud", 45, 5], ["mopidy-spotify", 47, 5], ["mopidy-tidal", 49, 5], ["mopidy-tunein", 51, 5], ["mopidy-youtube", 53, 5], ["mopidy-ytmusic", 55, 5], ["mopidy-subidy", 57, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const w = nix.withScope(self, null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         python: python,
         pythonPackages: nix.thunk(() => nix.sel(python, "pkgs")),
         mopidy: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./mopidy.nix"), nix.thunk(() => ({})))),

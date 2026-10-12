@@ -2,82 +2,65 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/openresty-lua.nix", [[["maintainers", 5, 5]], [["extraHosts", 13, 11]], [["enable", 23, 13], ["extraPackages", 24, 13]], [["extraConfig", 30, 15]], [["/", 29, 23]], [["default", 28, 13], ["locations", 29, 13]], [["extraConfig", 42, 15]], [["root", 51, 15]], [["extraConfig", 54, 15]], [["root", 63, 15]], [["/test1-write", 41, 23], ["/test1-read", 50, 23], ["/test2-write", 53, 23], ["/test2-read", 62, 23]], [["locations", 41, 13]], [["default.test", 27, 24], ["sandbox.test", 40, 24]], [["enable", 19, 11], ["package", 20, 11], ["lua", 22, 11], ["virtualHosts", 27, 11]], [["nginx", 18, 18]], [["networking", 12, 9], ["services", 18, 9]], [["webserver", 9, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 70, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/openresty-lua.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/openresty-lua.nix", [["extraHosts", 13, 11]]);
-const pos$3 = nix.positions(here + "/openresty-lua.nix", [["enable", 23, 13], ["extraPackages", 24, 13]]);
-const pos$4 = nix.positions(here + "/openresty-lua.nix", [["extraConfig", 30, 15]]);
-const pos$5 = nix.positions(here + "/openresty-lua.nix", [["/", 29, 23]]);
-const pos$6 = nix.positions(here + "/openresty-lua.nix", [["default", 28, 13], ["locations", 29, 13]]);
-const pos$7 = nix.positions(here + "/openresty-lua.nix", [["extraConfig", 42, 15]]);
-const pos$8 = nix.positions(here + "/openresty-lua.nix", [["root", 51, 15]]);
-const pos$9 = nix.positions(here + "/openresty-lua.nix", [["extraConfig", 54, 15]]);
-const pos$10 = nix.positions(here + "/openresty-lua.nix", [["root", 63, 15]]);
-const pos$11 = nix.positions(here + "/openresty-lua.nix", [["/test1-write", 41, 23], ["/test1-read", 50, 23], ["/test2-write", 53, 23], ["/test2-read", 62, 23]]);
-const pos$12 = nix.positions(here + "/openresty-lua.nix", [["locations", 41, 13]]);
-const pos$13 = nix.positions(here + "/openresty-lua.nix", [["default.test", 27, 24], ["sandbox.test", 40, 24]]);
-const pos$14 = nix.positions(here + "/openresty-lua.nix", [["enable", 19, 11], ["package", 20, 11], ["lua", 22, 11], ["virtualHosts", 27, 11]]);
-const pos$15 = nix.positions(here + "/openresty-lua.nix", [["nginx", 18, 18]]);
-const pos$16 = nix.positions(here + "/openresty-lua.nix", [["networking", 12, 9], ["services", 18, 9]]);
-const pos$17 = nix.positions(here + "/openresty-lua.nix", [["webserver", 9, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$18 = nix.positions(here + "/openresty-lua.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "openresty-lua",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "bbigras"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       webserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraHosts: "127.0.0.1 default.test\n127.0.0.1 sandbox.test\n",
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs_1, "openresty")),
               lua: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 enable: true,
                 extraPackages: (p) => [nix.thunk(() => nix.sel(p, "markdown"))],
               })),
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 "default.test": nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   default: true,
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     "/": nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       extraConfig: "default_type text/html;\naccess_by_lua '\n  local markdown = require \"markdown\"\n  markdown(\"source\")\n';\n",
                     })),
                   })),
                 })),
                 "sandbox.test": nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     "/test1-write": nix.thunk(() => ({
-                      [nix.POS]: pos$7,
+                      [nix.POS]: $pos[6],
                       extraConfig: nix.thunk(() => nix.str`content_by_lua_block {
   local create = os.execute('${nix.sel(pkgs_1, "coreutils")}/bin/mkdir /tmp/test1-read')
   local create = os.execute('${nix.sel(pkgs_1, "coreutils")}/bin/touch /tmp/test1-read/foo.txt')
@@ -85,9 +68,9 @@ export default nix.lambda((args) => (() => {
 }
 `),
                     })),
-                    "/test1-read": nix.thunk(() => ({ [nix.POS]: pos$8, root: "/tmp" })),
+                    "/test1-read": nix.thunk(() => ({ [nix.POS]: $pos[7], root: "/tmp" })),
                     "/test2-write": nix.thunk(() => ({
-                      [nix.POS]: pos$9,
+                      [nix.POS]: $pos[8],
                       extraConfig: nix.thunk(() => nix.str`content_by_lua_block {
   local create = os.execute('${nix.sel(pkgs_1, "coreutils")}/bin/mkdir /var/web/test2-read')
   local create = os.execute('${nix.sel(pkgs_1, "coreutils")}/bin/touch /var/web/test2-read/bar.txt')
@@ -95,7 +78,7 @@ export default nix.lambda((args) => (() => {
 }
 `),
                     })),
-                    "/test2-read": nix.thunk(() => ({ [nix.POS]: pos$10, root: "/var/web" })),
+                    "/test2-read": nix.thunk(() => ({ [nix.POS]: $pos[9], root: "/var/web" })),
                   })),
                 })),
               })),

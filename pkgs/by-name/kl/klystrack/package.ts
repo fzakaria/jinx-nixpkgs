@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["fetchSubmodules", 19, 5], ["hash", 20, 5]], [["url", 50, 7], ["hash", 51, 7]], [["NIX_CFLAGS_COMPILE", 59, 7]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["mainProgram", 89, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 26, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["patches", 48, 3], ["env", 59, 3], ["buildFlags", 61, 3], ["installPhase", 66, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, SDL2: false, SDL2_image: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["fetchSubmodules", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 50, 7], ["hash", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["mainProgram", 89, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 26, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["patches", 48, 3], ["env", 59, 3], ["buildFlags", 61, 3], ["installPhase", 66, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_image = nix.arg($, "SDL2_image");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "klystrack",
       version: "1.7.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kometbomb",
           repo: "klystrack",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,19 +32,19 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, SDL2_image]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/kometbomb/klystrack/commit/bb537595d02140176831c4a1b8e9121978b32d22.patch",
             hash: "sha256-sb7ZYf27qfmWp8RiZFIIOpUJenp0hNXvTAM8LgFO9Bk=",
           })))),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-fcommon" })),
       buildFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`),
         "CFG=release",
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 bin.release/klystrack $out/bin/klystrack\n\nmkdir -p $out/lib/klystrack\ncp -R res $out/lib/klystrack\ncp -R key $out/lib/klystrack\n\ninstall -DT icon/256x256.png $out/share/icons/hicolor/256x256/apps/klystrack.png\nmkdir -p $out/share/applications\nsubstitute linux/klystrack.desktop $out/share/applications/klystrack.desktop \\\n  --replace \"klystrack %f\" \"$out/bin/klystrack %f\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Chiptune tracker",
         homepage: "https://kometbomb.github.io/klystrack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

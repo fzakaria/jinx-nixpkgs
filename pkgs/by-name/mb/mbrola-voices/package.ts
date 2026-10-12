@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5], ["pname", 15, 13], ["version", 15, 19], ["meta", 15, 27]], [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5]], [["src", 31, 13], ["postPatch", 33, 5], ["installPhase", 40, 5], ["pname", 49, 13], ["version", 49, 19], ["meta", 49, 27]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, mbrola: false, languages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5], ["pname", 15, 13], ["version", 15, 19], ["meta", 15, 27]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 31, 13], ["postPatch", 33, 5], ["installPhase", 40, 5], ["pname", 49, 13], ["version", 49, 19], ["meta", 49, 27]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const mbrola = nix.arg($, "mbrola");
   const languages = nix.argOr($, "languages", () => []);
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "numediart",
       repo: "MBROLA-voices",
       rev: "fe05a0ccef6a941207fd6aaad0b31294a1f93a51",
@@ -27,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pname = "mbrola-voices";
   const version = "0-unstable-2020-03-30";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "Speech synthesizer based on the concatenation of diphones (voice files)",
     homepage: "https://github.com/numediart/MBROLA-voices",
     license: nix.thunk(() => nix.sel(mbrola, "meta", "license")),
   }));
   return (nix.asBool(nix.eq(languages, [])) ? nix.force(src) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: src,
       postPatch: nix.thunk(() => nix.str`shopt -s extglob
 pushd data

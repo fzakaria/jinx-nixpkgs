@@ -2,67 +2,38 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nvme-rs.nix", [[["maintainers", 6, 5]], [["emptyDiskImages", 14, 11]], [["systemPackages", 20, 21]], [["temp_warning", 32, 15], ["temp_critical", 33, 15], ["wear_warning", 34, 15], ["wear_critical", 35, 15], ["spare_warning", 36, 15], ["error_threshold", 37, 15]], [["smtp_server", 41, 15], ["smtp_port", 42, 15], ["smtp_username", 43, 15], ["smtp_password_file", 44, 15], ["from", 45, 15], ["to", 46, 15], ["use_tls", 47, 15]], [["check_interval_secs", 29, 13], ["thresholds", 31, 13], ["email", 40, 13]], [["enable", 26, 11], ["package", 27, 11], ["settings", 28, 11]], [["nvme-rs", 25, 18]], [["rules", 52, 26]], [["tmpfiles", 52, 17]], [["enable", 56, 29]], [["firewall", 56, 20]], [["virtualisation", 13, 9], ["environment", 20, 9], ["services", 25, 9], ["systemd", 52, 9], ["networking", 56, 9]], [["inet_interfaces", 73, 15], ["inet_protocols", 74, 15], ["smtpd_recipient_restrictions", 75, 15], ["smtpd_relay_restrictions", 76, 15]], [["main", 72, 13]], [["enable", 63, 11], ["hostname", 64, 11], ["domain", 65, 11], ["networks", 67, 11], ["relayDomains", 68, 11], ["localRecipients", 69, 11], ["settings", 71, 11]], [["postfix", 62, 18]], [["isNormalUser", 82, 11], ["home", 83, 11]], [["admin", 81, 21]], [["users", 81, 15]], [["allowedTCPPorts", 87, 11]], [["firewall", 86, 20]], [["services", 62, 9], ["users", 81, 9], ["networking", 86, 9]], [["emptyDiskImages", 95, 11]], [["text", 103, 47]], [["nvme-rs/config.toml", 103, 25]], [["systemPackages", 98, 21], ["etc", 103, 21]], [["virtualisation", 94, 9], ["environment", 98, 9]], [["monitor", 10, 5], ["mail", 59, 5], ["client", 91, 5]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 117, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nvme-rs.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/nvme-rs.nix", [["emptyDiskImages", 14, 11]]);
-const pos$3 = nix.positions(here + "/nvme-rs.nix", [["systemPackages", 20, 21]]);
-const pos$4 = nix.positions(here + "/nvme-rs.nix", [["temp_warning", 32, 15], ["temp_critical", 33, 15], ["wear_warning", 34, 15], ["wear_critical", 35, 15], ["spare_warning", 36, 15], ["error_threshold", 37, 15]]);
-const pos$5 = nix.positions(here + "/nvme-rs.nix", [["smtp_server", 41, 15], ["smtp_port", 42, 15], ["smtp_username", 43, 15], ["smtp_password_file", 44, 15], ["from", 45, 15], ["to", 46, 15], ["use_tls", 47, 15]]);
-const pos$6 = nix.positions(here + "/nvme-rs.nix", [["check_interval_secs", 29, 13], ["thresholds", 31, 13], ["email", 40, 13]]);
-const pos$7 = nix.positions(here + "/nvme-rs.nix", [["enable", 26, 11], ["package", 27, 11], ["settings", 28, 11]]);
-const pos$8 = nix.positions(here + "/nvme-rs.nix", [["nvme-rs", 25, 18]]);
-const pos$9 = nix.positions(here + "/nvme-rs.nix", [["rules", 52, 26]]);
-const pos$10 = nix.positions(here + "/nvme-rs.nix", [["tmpfiles", 52, 17]]);
-const pos$11 = nix.positions(here + "/nvme-rs.nix", [["enable", 56, 29]]);
-const pos$12 = nix.positions(here + "/nvme-rs.nix", [["firewall", 56, 20]]);
-const pos$13 = nix.positions(here + "/nvme-rs.nix", [["virtualisation", 13, 9], ["environment", 20, 9], ["services", 25, 9], ["systemd", 52, 9], ["networking", 56, 9]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/nvme-rs.nix", [["inet_interfaces", 73, 15], ["inet_protocols", 74, 15], ["smtpd_recipient_restrictions", 75, 15], ["smtpd_relay_restrictions", 76, 15]]);
-const pos$15 = nix.positions(here + "/nvme-rs.nix", [["main", 72, 13]]);
-const pos$16 = nix.positions(here + "/nvme-rs.nix", [["enable", 63, 11], ["hostname", 64, 11], ["domain", 65, 11], ["networks", 67, 11], ["relayDomains", 68, 11], ["localRecipients", 69, 11], ["settings", 71, 11]]);
-const pos$17 = nix.positions(here + "/nvme-rs.nix", [["postfix", 62, 18]]);
-const pos$18 = nix.positions(here + "/nvme-rs.nix", [["isNormalUser", 82, 11], ["home", 83, 11]]);
-const pos$19 = nix.positions(here + "/nvme-rs.nix", [["admin", 81, 21]]);
-const pos$20 = nix.positions(here + "/nvme-rs.nix", [["users", 81, 15]]);
-const pos$21 = nix.positions(here + "/nvme-rs.nix", [["allowedTCPPorts", 87, 11]]);
-const pos$22 = nix.positions(here + "/nvme-rs.nix", [["firewall", 86, 20]]);
-const pos$23 = nix.positions(here + "/nvme-rs.nix", [["services", 62, 9], ["users", 81, 9], ["networking", 86, 9]]);
 const formals$4 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$24 = nix.positions(here + "/nvme-rs.nix", [["emptyDiskImages", 95, 11]]);
-const pos$25 = nix.positions(here + "/nvme-rs.nix", [["text", 103, 47]]);
-const pos$26 = nix.positions(here + "/nvme-rs.nix", [["nvme-rs/config.toml", 103, 25]]);
-const pos$27 = nix.positions(here + "/nvme-rs.nix", [["systemPackages", 98, 21], ["etc", 103, 21]]);
-const pos$28 = nix.positions(here + "/nvme-rs.nix", [["virtualisation", 94, 9], ["environment", 98, 9]]);
-const pos$29 = nix.positions(here + "/nvme-rs.nix", [["monitor", 10, 5], ["mail", 59, 5], ["client", 91, 5]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$30 = nix.positions(here + "/nvme-rs.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$30,
+    [nix.POS]: $pos[29],
     name: "nvme-rs",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "liberodark"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       monitor: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$13,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, emptyDiskImages: nix.thunk(() => [512n, 512n]) })),
+          [nix.POS]: $pos[12],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], emptyDiskImages: nix.thunk(() => [512n, 512n]) })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -72,16 +43,16 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             "nvme-rs": nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs_1, "nvme-rs")),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 check_interval_secs: 60n,
                 thresholds: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   temp_warning: 50n,
                   temp_critical: 60n,
                   wear_warning: 15n,
@@ -90,7 +61,7 @@ export default nix.lambda((args) => (() => {
                   error_threshold: 100n,
                 })),
                 email: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   smtp_server: "mail",
                   smtp_port: 25n,
                   smtp_username: "nvme-monitor@example.com",
@@ -103,15 +74,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               rules: nix.thunk(() => ["f /run/secrets/smtp-password 0600 root root - testpassword"]),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$12,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
+            [nix.POS]: $pos[11],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: false })),
           })),
         };
       })(), formals$2),
@@ -120,11 +91,11 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             postfix: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               enable: true,
               hostname: "mail",
               domain: "example.com",
@@ -132,9 +103,9 @@ export default nix.lambda((args) => (() => {
               relayDomains: nix.thunk(() => ["example.com"]),
               localRecipients: nix.thunk(() => ["admin"]),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 main: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   inet_interfaces: "all",
                   inet_protocols: "ipv4",
                   smtpd_recipient_restrictions: "permit_mynetworks",
@@ -144,15 +115,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$19,
-              admin: nix.thunk(() => ({ [nix.POS]: pos$18, isNormalUser: true, home: "/home/admin" })),
+              [nix.POS]: $pos[18],
+              admin: nix.thunk(() => ({ [nix.POS]: $pos[17], isNormalUser: true, home: "/home/admin" })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$22,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$21, allowedTCPPorts: nix.thunk(() => [25n]) })),
+            [nix.POS]: $pos[21],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[20], allowedTCPPorts: nix.thunk(() => [25n]) })),
           })),
         };
       })(), formals$3),
@@ -161,10 +132,10 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$28,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$24, emptyDiskImages: nix.thunk(() => [256n]) })),
+          [nix.POS]: $pos[27],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[23], emptyDiskImages: nix.thunk(() => [256n]) })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -173,9 +144,9 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               "nvme-rs/config.toml": nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 text: "check_interval_secs = 3600\n\n[thresholds]\ntemp_warning = 55\ntemp_critical = 65\nwear_warning = 20\nwear_critical = 50\nspare_warning = 50\nerror_threshold = 5000\n",
               })),
             })),

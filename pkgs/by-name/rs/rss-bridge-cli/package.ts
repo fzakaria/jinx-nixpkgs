@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 35, 7], ["homepage", 36, 7], ["license", 37, 7], ["maintainers", 38, 7], ["mainProgram", 39, 7]], [["pname", 30, 5], ["version", 32, 5], ["meta", 34, 5]]]);
 const formals$1 = { args: { lib: false, writeShellScriptBin: false, "rss-bridge": false, php: false }, ellipsis: false };
 const formals$2 = { args: { all: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 35, 7], ["homepage", 36, 7], ["license", 37, 7], ["maintainers", 38, 7], ["mainProgram", 39, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 30, 5], ["version", 32, 5], ["meta", 34, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const phpBin = nix.thunk(() => nix.str`${phpWithExts}/bin/php`);
   return nix.app(nix.sel(nix.app(writeShellScriptBin, "rss-bridge-cli", nix.thunk(() => nix.str`${phpBin} ${rss_bridge}/index.php "$@"
 `)), "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "rss-bridge-cli",
       version: nix.thunk(() => nix.sel(rss_bridge, "version")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Command-line interface for RSS-Bridge",
         homepage: "https://github.com/RSS-Bridge/rss-bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

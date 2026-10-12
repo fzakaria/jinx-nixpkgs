@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/raw.nix", [[["url", 17, 5], ["hash", 18, 5], ["stripRoot", 19, 5]], [["platforms", 76, 26], ["description", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["hardeningDisable", 23, 3], ["postPatch", 25, 3], ["buildPhase", 29, 3], ["preInstall", 38, 3], ["installPhase", 43, 3], ["dontUseCmakeConfigure", 51, 3], ["dontAddPrefix", 52, 3], ["dontAddStaticConfigureFlags", 53, 3], ["createFindlibDestdir", 54, 3], ["nativeBuildInputs", 56, 3], ["propagatedBuildInputs", 63, 3], ["checkInputs", 67, 3], ["strictDeps", 71, 3], ["doCheck", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, which: false, stdenv: false, fetchzip: false, cmake: false, ocaml: false, findlib: false, ctypes: false, cppo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/raw.nix", [["url", 17, 5], ["hash", 18, 5], ["stripRoot", 19, 5]]);
-const pos$2 = nix.positions(here + "/raw.nix", [["platforms", 76, 26], ["description", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$3 = nix.positions(here + "/raw.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["hardeningDisable", 23, 3], ["postPatch", 25, 3], ["buildPhase", 29, 3], ["preInstall", 38, 3], ["installPhase", 43, 3], ["dontUseCmakeConfigure", 51, 3], ["dontAddPrefix", 52, 3], ["dontAddStaticConfigureFlags", 53, 3], ["createFindlibDestdir", 54, 3], ["nativeBuildInputs", 56, 3], ["propagatedBuildInputs", 63, 3], ["checkInputs", 67, 3], ["strictDeps", 71, 3], ["doCheck", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-hacl-star-raw`);
       const version = "0.7.2";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/cryspen/hacl-packages/releases/download/ocaml-v${version}/hacl-star.${version}.tar.gz`),
           hash: "sha256-6WPbdkT9IsX0Q8mF2vLBJMktEES8tU45JztOPepAL0o=",
           stripRoot: false,
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Auto-generated low-level OCaml bindings for EverCrypt/HACL*",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

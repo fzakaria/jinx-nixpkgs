@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/4.nix", [[["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]], [["agents", 100, 7], ["ja", 109, 7], ["sklearn", 118, 7], ["tf", 119, 7], ["torch", 126, 7], ["retrieval", 130, 7], ["flax", 134, 7], ["hf_xet", 140, 7], ["tokenizers", 143, 7], ["ftfy", 144, 7], ["onnxruntime", 145, 7], ["onnx", 149, 7], ["modelcreation", 155, 7], ["sagemaker", 156, 7], ["deepspeed", 157, 7], ["fairscale", 161, 7], ["optuna", 162, 7], ["ray", 163, 7], ["serving", 166, 7], ["audio", 172, 7], ["speech", 173, 7], ["torch-speech", 174, 7], ["tf-speech", 175, 7], ["flax-speech", 176, 7], ["timm", 177, 7], ["torch-vision", 178, 7], ["video", 181, 7], ["sentencepiece", 184, 7]], [["broken", 196, 5], ["homepage", 197, 5], ["description", 198, 5], ["mainProgram", 199, 5], ["changelog", 200, 5], ["license", 201, 5], ["platforms", 202, 5], ["maintainers", 203, 5]], [["pname", 61, 3], ["version", 62, 3], ["pyproject", 63, 3], ["src", 65, 3], ["build-system", 72, 3], ["dependencies", 74, 3], ["pythonRelaxDeps", 87, 3], ["optional-dependencies", 89, 3], ["doCheck", 191, 3], ["pythonImportsCheck", 193, 3], ["meta", 195, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, filelock: false, "huggingface-hub": false, numpy: false, protobuf: false, packaging: false, pyyaml: false, regex: false, requests: false, tokenizers: false, safetensors: false, tqdm: false, diffusers: false, "scikit-learn": false, tensorflow: false, "onnxconverter-common": false, opencv4: false, tf2onnx: false, torch: false, accelerate: false, faiss: false, datasets: false, jax: false, jaxlib: false, flax: false, optax: false, ftfy: false, onnxruntime: false, "onnxruntime-tools": false, cookiecutter: false, sagemaker: false, fairscale: false, optuna: false, ray: false, pydantic: false, uvicorn: false, fastapi: false, starlette: false, librosa: false, phonemizer: false, torchaudio: false, pillow: false, timm: false, torchvision: false, av: false, sentencepiece: false, "hf-xet": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/4.nix", [["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]]);
-const pos$2 = nix.positions(here + "/4.nix", [["agents", 100, 7], ["ja", 109, 7], ["sklearn", 118, 7], ["tf", 119, 7], ["torch", 126, 7], ["retrieval", 130, 7], ["flax", 134, 7], ["hf_xet", 140, 7], ["tokenizers", 143, 7], ["ftfy", 144, 7], ["onnxruntime", 145, 7], ["onnx", 149, 7], ["modelcreation", 155, 7], ["sagemaker", 156, 7], ["deepspeed", 157, 7], ["fairscale", 161, 7], ["optuna", 162, 7], ["ray", 163, 7], ["serving", 166, 7], ["audio", 172, 7], ["speech", 173, 7], ["torch-speech", 174, 7], ["tf-speech", 175, 7], ["flax-speech", 176, 7], ["timm", 177, 7], ["torch-vision", 178, 7], ["video", 181, 7], ["sentencepiece", 184, 7]]);
-const pos$3 = nix.positions(here + "/4.nix", [["broken", 196, 5], ["homepage", 197, 5], ["description", 198, 5], ["mainProgram", 199, 5], ["changelog", 200, 5], ["license", 201, 5], ["platforms", 202, 5], ["maintainers", 203, 5]]);
-const pos$4 = nix.positions(here + "/4.nix", [["pname", 61, 3], ["version", 62, 3], ["pyproject", 63, 3], ["src", 65, 3], ["build-system", 72, 3], ["dependencies", 74, 3], ["pythonRelaxDeps", 87, 3], ["optional-dependencies", 89, 3], ["doCheck", 191, 3], ["pythonImportsCheck", 193, 3], ["meta", 195, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,12 +58,12 @@ export default nix.lambda((args) => (() => {
   const sentencepiece = nix.arg($, "sentencepiece");
   const hf_xet = nix.arg($, "hf-xet");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "transformers",
       version: "4.57.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "huggingface",
           repo: "transformers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,7 +87,7 @@ export default nix.lambda((args) => (() => {
         const audio = nix.thunk(() => [librosa, phonemizer]);
         const vision = nix.thunk(() => [pillow]);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           agents: nix.thunk(() => [diffusers, accelerate, datasets, torch, sentencepiece, opencv4, pillow]),
           ja: [],
           sklearn: nix.thunk(() => [scikit_learn]),
@@ -124,7 +121,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["transformers"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(huggingface_hub, "version")), "1.0")),
         homepage: "https://github.com/huggingface/transformers",
         description: "Natural Language Processing for TensorFlow 2.0 and PyTorch",

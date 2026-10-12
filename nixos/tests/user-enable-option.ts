@@ -2,15 +2,7 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/user-enable-option.nix", [["test-group", 13, 14]]);
-const pos$2 = nix.positions(here + "/user-enable-option.nix", [["enable", 17, 11], ["isNormalUser", 18, 11], ["initialPassword", 19, 11]]);
-const pos$3 = nix.positions(here + "/user-enable-option.nix", [["enable", 24, 11], ["isNormalUser", 25, 11], ["initialPassword", 26, 11]]);
-const pos$4 = nix.positions(here + "/user-enable-option.nix", [["enable", 31, 11], ["isSystemUser", 32, 11], ["initialPassword", 33, 11], ["group", 34, 11]]);
-const pos$5 = nix.positions(here + "/user-enable-option.nix", [["enable", 39, 11], ["isSystemUser", 40, 11], ["initialPassword", 41, 11], ["group", 42, 11]]);
-const pos$6 = nix.positions(here + "/user-enable-option.nix", [["groups", 13, 7], ["users", 14, 7]]);
-const pos$7 = nix.positions(here + "/user-enable-option.nix", [["users", 12, 5]]);
-const pos$8 = nix.positions(here + "/user-enable-option.nix", [["machine", 11, 9]]);
-const pos$9 = nix.positions(here + "/user-enable-option.nix", [["name", 9, 3], ["nodes", 11, 3], ["testScript", 48, 3]]);
+const $pos = nix.positions(here + "/user-enable-option.nix", [[["test-group", 13, 14]], [["enable", 17, 11], ["isNormalUser", 18, 11], ["initialPassword", 19, 11]], [["enable", 24, 11], ["isNormalUser", 25, 11], ["initialPassword", 26, 11]], [["enable", 31, 11], ["isSystemUser", 32, 11], ["initialPassword", 33, 11], ["group", 34, 11]], [["enable", 39, 11], ["isSystemUser", 40, 11], ["initialPassword", 41, 11], ["group", 42, 11]], [["groups", 13, 7], ["users", 14, 7]], [["users", 12, 5]], [["machine", 11, 9]], [["name", 9, 3], ["nodes", 11, 3], ["testScript", 48, 3]]]);
 
 export default nix.thunk(() => (() => {
   const normal_enabled = "username-normal-enabled";
@@ -19,27 +11,37 @@ export default nix.thunk(() => (() => {
   const system_disabled = "username-system-disabled";
   const passwd = "enableOptionPasswd";
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "user-enable-option",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         users: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          groups: nix.thunk(() => ({ [nix.POS]: pos$1, "test-group": nix.thunk(() => ({})) })),
+          [nix.POS]: $pos[5],
+          groups: nix.thunk(() => ({ [nix.POS]: $pos[0], "test-group": nix.thunk(() => ({})) })),
           users: nix.thunk(() => nix.attrsDyn({}, [
-            [normal_enabled, nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, isNormalUser: true, initialPassword: passwd }))],
-            [normal_disabled, nix.thunk(() => ({ [nix.POS]: pos$3, enable: false, isNormalUser: true, initialPassword: passwd }))],
+            [normal_enabled, nix.thunk(() => ({
+              [nix.POS]: $pos[1],
+              enable: true,
+              isNormalUser: true,
+              initialPassword: passwd,
+            }))],
+            [normal_disabled, nix.thunk(() => ({
+              [nix.POS]: $pos[2],
+              enable: false,
+              isNormalUser: true,
+              initialPassword: passwd,
+            }))],
             [system_enabled, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               isSystemUser: true,
               initialPassword: passwd,
               group: "test-group",
             }))],
             [system_disabled, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: false,
               isSystemUser: true,
               initialPassword: passwd,

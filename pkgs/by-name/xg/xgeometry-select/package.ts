@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontUnpack", 17, 3], ["buildInputs", 19, 3], ["buildPhase", 21, 3], ["installPhase", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontUnpack", 17, 3], ["buildInputs", 19, 3], ["buildPhase", 21, 3], ["installPhase", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xgeometry-select",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gist.githubusercontent.com/obadz/7e008b1f803c4cdcfaf7321c78bcbe92/raw/7e7361e71ff0f74655ee92bd6d2c042f8586f2ae/xgeometry-select.c",
           sha256: "0s7kirgh5iz91m3qy8xiq0j4gljy8zrcnylf4szl5h0lrsaqj7ya",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "mkdir -p $out/bin\nmv -v xgeometry-select $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Select a region with mouse and prints geometry information (x/y/w/h)",
         homepage: "https://bbs.archlinux.org/viewtopic.php?pid=660837",
         maintainers: nix.thunk(() => (() => {

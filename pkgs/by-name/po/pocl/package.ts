@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nativeBuildInputs", 29, 33]], [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["STATIC_LLVM", 62, 7], ["ENABLE_POCL_BUILDING", 63, 7], ["POCL_ICD_ABSOLUTE_PATH", 64, 7], ["ENABLE_ICD", 65, 7], ["ENABLE_REMOTE_CLIENT", 66, 7], ["ENABLE_REMOTE_SERVER", 67, 7]], [["CLANG", 70, 7], ["CLANGXX", 71, 7]], [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["platforms", 129, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["postPatch", 53, 3], ["cmakeFlags", 59, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 88, 3], ["nativeInstallCheckInputs", 102, 3], ["doInstallCheck", 106, 3], ["installCheckPhase", 108, 3], ["setupHook", 117, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, hwloc: false, llvmPackages: false, libxml2: false, "spirv-llvm-translator": false, "spirv-tools": false, "lttng-ust": false, "opencl-headers": false, "ocl-icd": false, python3: false, runCommand: false, makeWrapper: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 29, 33]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["STATIC_LLVM", 62, 7], ["ENABLE_POCL_BUILDING", 63, 7], ["POCL_ICD_ABSOLUTE_PATH", 64, 7], ["ENABLE_ICD", 65, 7], ["ENABLE_REMOTE_CLIENT", 66, 7], ["ENABLE_REMOTE_SERVER", 67, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CLANG", 70, 7], ["CLANGXX", 71, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["platforms", 129, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["postPatch", 53, 3], ["cmakeFlags", 59, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 88, 3], ["nativeInstallCheckInputs", 102, 3], ["doInstallCheck", 106, 3], ["installCheckPhase", 108, 3], ["setupHook", 117, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const clang = nix.thunk(() => nix.sel(llvmPackages, "clangUseLLVM"));
-  const clangWrapped = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(clang) : nix.app(runCommand, "clang-pocl", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
+  const clangWrapped = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(clang) : nix.app(runCommand, "clang-pocl", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
 cp -r ${clang}/bin/* $out/bin/
 LIBGCC_DIR=$(dirname $(find ${nix.sel(stdenv, "cc", "cc")}/lib/ -name libgcc.a))
 for F in ${clang}/bin/ld*; do
@@ -42,11 +37,11 @@ for F in ${clang}/bin/ld*; do
 done
 `))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pocl",
       version: "7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "pocl",
           repo: "pocl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +49,7 @@ done
         })))),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace pocld/shared_cl_context.cc --replace-fail \\\n  \"Dev.getInfo<CL_DEVICE_GLOBAL_MEM_SIZE>()\" \\\n  \"static_cast<size_t>(Dev.getInfo<CL_DEVICE_GLOBAL_MEM_SIZE>())\"\n")),
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "cmakeBool")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           STATIC_LLVM: true,
           ENABLE_POCL_BUILDING: false,
           POCL_ICD_ABSOLUTE_PATH: true,
@@ -62,7 +57,7 @@ done
           ENABLE_REMOTE_CLIENT: true,
           ENABLE_REMOTE_SERVER: true,
         }))), nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "cmakeFeature")), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           CLANG: nix.thunk(() => nix.str`${clangWrapped}/bin/clang`),
           CLANGXX: nix.thunk(() => nix.str`${clangWrapped}/bin/clang++`),
         }))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => [
@@ -86,7 +81,7 @@ done
       installCheckPhase: "runHook preInstallCheck\n\nexport OCL_ICD_VENDORS=$out/etc/OpenCL/vendors\n$out/bin/poclcc -o poclcc.cl.pocl $src/examples/poclcc/poclcc.cl\n\nrunHook postInstallCheck\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Portable open source (MIT-licensed) implementation of the OpenCL standard",
         homepage: "https://portablecl.org",
         changelog: nix.thunk(() => nix.str`https://github.com/pocl/pocl/releases/tag/v${nix.sel(finalAttrs, "version")}`),

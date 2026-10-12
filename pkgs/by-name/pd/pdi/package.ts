@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["package", 86, 7], ["command", 87, 7]], [["version", 85, 11]], [["updateScript", 84, 5], ["tests", 85, 5]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5], ["badPlatforms", 98, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 70, 3], ["cmakeFlags", 78, 3], ["passthru", 83, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, cmake: false, gfortran: false, "pkg-config": false, "hdf5-mpi": false, zpp: false, gbenchmark: false, libyaml: false, mpi: false, spdlog: false, "nix-update-script": false, testers: false, pdi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 86, 7], ["command", 87, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 85, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 84, 5], ["tests", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5], ["badPlatforms", 98, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 70, 3], ["cmakeFlags", 78, 3], ["passthru", 83, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +31,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pdi",
       version: "1.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pdidev",
           repo: "pdi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,15 +48,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "USE_benchmark", "SYSTEM")),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: pdi, command: "pdirun" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: pdi, command: "pdirun" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Library that aims todecouple high-performance simulation codes from I/O concerns",
         homepage: "https://pdi.dev/master/",
         changelog: nix.thunk(() => nix.str`https://github.com/pdidev/pdi/releases/tag/${nix.sel(finalAttrs, "version")}`),

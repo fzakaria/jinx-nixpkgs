@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["updateScript", 66, 12]], [["homepage", 69, 5], ["description", 70, 5], ["longDescription", 71, 5], ["license", 77, 5], ["mainProgram", 78, 5], ["maintainers", 79, 5], ["platforms", 82, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["enableParallelBuilding", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["strictDeps", 59, 3], ["postFixup", 62, 3], ["passthru", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, autoreconfHook: false, fetchFromGitHub: false, freetype: false, gettext: false, glib: false, libGL: false, libGLU: false, libmpeg2: false, libx11: false, libxi: false, lua: false, openal: false, "pkg-config": false, "strip-nondeterminism": false, stdenv: false, zip: false, zlib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 66, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["description", 70, 5], ["longDescription", 71, 5], ["license", 77, 5], ["mainProgram", 78, 5], ["maintainers", 79, 5], ["platforms", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["enableParallelBuilding", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["strictDeps", 59, 3], ["postFixup", 62, 3], ["passthru", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fsuae",
       version: "3.2.35",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FrodeSolheim",
           repo: "fs-uae",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,11 +57,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       postFixup: "strip-nondeterminism --type zip $out/share/fs-uae/fs-uae.dat\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://fs-uae.net",
         description: "Accurate, customizable Amiga Emulator",
         longDescription: "FS-UAE integrates the most accurate Amiga emulation code available from\nWinUAE. FS-UAE emulates A500, A500+, A600, A1200, A1000, A3000 and A4000\nmodels, but you can tweak the hardware configuration and create customized\nAmigas.\n",

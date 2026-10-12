@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["license", 49, 5], ["platforms", 50, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 29, 3], ["dontWrapQtApps", 34, 3], ["preConfigure", 37, 3], ["cmakeFlags", 39, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, openssl: false, "pkg-config": false, qtbase: false, qt5compat: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["license", 49, 5], ["platforms", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 29, 3], ["dontWrapQtApps", 34, 3], ["preConfigure", 37, 3], ["cmakeFlags", 39, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qca";
       const version = "2.3.10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kde/stable/qca/${version}/qca-${version}.tar.xz`),
           sha256: "sha256-HFtyLak9VZNlcZImuxIccm7DwNxMZ96jTx5Q5ODRSgI=",
         }))));
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         "-Dqca_CERTSTORE=/etc/ssl/certs/ca-certificates.crt",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt Cryptographic Architecture",
         homepage: "https://invent.kde.org/libraries/qca",
         maintainers: [],
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

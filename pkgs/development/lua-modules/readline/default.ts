@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 7], ["sha256", 17, 7]], [["url", 22, 5], ["sha256", 23, 5]], [["READLINE_INCDIR", 27, 5], ["HISTORY_INCDIR", 28, 5]], [["variables", 26, 18]], [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["broken", 44, 5]], [["pname", 12, 3], ["version", 13, 3], ["knownRockspec", 14, 3], ["src", 19, 3], ["luarocksConfig", 26, 3], ["unpackCmd", 30, 3], ["propagatedBuildInputs", 35, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { buildLuarocksPackage: false, fetchurl: false, lib: false, luaAtLeast: false, luaOlder: false, luaposix: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 7], ["sha256", 17, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["READLINE_INCDIR", 27, 5], ["HISTORY_INCDIR", 28, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["variables", 26, 18]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["broken", 44, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["knownRockspec", 14, 3], ["src", 19, 3], ["luarocksConfig", 26, 3], ["unpackCmd", 30, 3], ["propagatedBuildInputs", 35, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,31 +15,31 @@ export default nix.lambda((args) => (() => {
   const luaposix = nix.arg($, "luaposix");
   const readline = nix.arg($, "readline");
   return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "readline",
       version: "3.2-0",
       knownRockspec: nix.thunk(() => nix.sel(nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "mirror://luarocks/readline-3.2-0.rockspec",
           sha256: "1r0sgisxm4xd1r6i053iibxh30j7j3rcj4wwkd8rzkj8nln20z24",
         }))), "outPath")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "http://pjb.com.au/comp/lua/readline-3.2.tar.gz",
           sha256: "1mk9algpsvyqwhnq7jlw4cgmfzj30l7n2r6ak4qxgdxgc39f48k4",
         })))),
       luarocksConfig: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         variables: nix.thunk(() => (() => {
           const READLINE_INCDIR = nix.thunk(() => nix.str`${nix.sel(readline, "dev")}/include`);
           const HISTORY_INCDIR = READLINE_INCDIR;
-          return { [nix.POS]: pos$3, READLINE_INCDIR, HISTORY_INCDIR };
+          return { [nix.POS]: $pos[2], READLINE_INCDIR, HISTORY_INCDIR };
         })()),
       })),
       unpackCmd: "unzip \"$curSrc\"\ntar xf *.tar.gz\n",
       propagatedBuildInputs: nix.thunk(() => [luaposix, nix.thunk(() => nix.sel(readline, "out"))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://pjb.com.au/comp/lua/readline.html",
         description: "Interface to the readline library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,61 +2,33 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/basic.nix", [[["EMAIL_BACKEND", 31, 11], ["SMTP_HOST", 32, 11], ["SMTP_PORT", 33, 11], ["SMTP_USER", 34, 11], ["SMTP_PASSWORD", 35, 11], ["SMTP_USE_TLS", 36, 11], ["SMTP_USE_SSL", 37, 11]], [["enable", 16, 11], ["secretKeyFile", 17, 11], ["extraEnvironment", 30, 26]], [["default", 41, 36]], [["instances", 41, 26]], [["pdfding", 15, 18], ["mailpit", 41, 18]], [["TimeoutStartSec", 22, 48]], [["wantedBy", 21, 34], ["serviceConfig", 22, 34]], [["pdfding", 21, 26]], [["DefaultDeviceTimeoutSec", 44, 34]], [["Manager", 44, 26]], [["services", 21, 17], ["settings", 44, 17]], [["systemPackages", 25, 21]], [["kernelModules", 45, 21]], [["initrd", 45, 14]], [["services", 15, 9], ["systemd", 21, 9], ["environment", 25, 9], ["boot", 45, 9]], [["machine", 10, 5]], [["enable", 153, 27]], [["port", 168, 14]], [["port", 169, 15]], [["from", 167, 9], ["host", 168, 9], ["guest", 169, 9]], [["memorySize", 161, 22], ["forwardPorts", 166, 22]], [["systemPackages", 162, 19]], [["allowedTCPPorts", 173, 27]], [["firewall", 173, 18]], [["virtualisation", 161, 7], ["environment", 162, 7], ["networking", 173, 7]], [["machine", 154, 21]], [["sshBackdoor", 153, 15], ["nodes", 154, 15]], [["maintainers", 176, 8]], [["name", 7, 3], ["nodes", 9, 3], ["testScript", 51, 3], ["interactive", 153, 3], ["meta", 176, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/basic.nix", [["EMAIL_BACKEND", 31, 11], ["SMTP_HOST", 32, 11], ["SMTP_PORT", 33, 11], ["SMTP_USER", 34, 11], ["SMTP_PASSWORD", 35, 11], ["SMTP_USE_TLS", 36, 11], ["SMTP_USE_SSL", 37, 11]]);
-const pos$2 = nix.positions(here + "/basic.nix", [["enable", 16, 11], ["secretKeyFile", 17, 11], ["extraEnvironment", 30, 26]]);
-const pos$3 = nix.positions(here + "/basic.nix", [["default", 41, 36]]);
-const pos$4 = nix.positions(here + "/basic.nix", [["instances", 41, 26]]);
-const pos$5 = nix.positions(here + "/basic.nix", [["pdfding", 15, 18], ["mailpit", 41, 18]]);
-const pos$6 = nix.positions(here + "/basic.nix", [["TimeoutStartSec", 22, 48]]);
-const pos$7 = nix.positions(here + "/basic.nix", [["wantedBy", 21, 34], ["serviceConfig", 22, 34]]);
-const pos$8 = nix.positions(here + "/basic.nix", [["pdfding", 21, 26]]);
-const pos$9 = nix.positions(here + "/basic.nix", [["DefaultDeviceTimeoutSec", 44, 34]]);
-const pos$10 = nix.positions(here + "/basic.nix", [["Manager", 44, 26]]);
-const pos$11 = nix.positions(here + "/basic.nix", [["services", 21, 17], ["settings", 44, 17]]);
-const pos$12 = nix.positions(here + "/basic.nix", [["systemPackages", 25, 21]]);
-const pos$13 = nix.positions(here + "/basic.nix", [["kernelModules", 45, 21]]);
-const pos$14 = nix.positions(here + "/basic.nix", [["initrd", 45, 14]]);
-const pos$15 = nix.positions(here + "/basic.nix", [["services", 15, 9], ["systemd", 21, 9], ["environment", 25, 9], ["boot", 45, 9]]);
-const pos$16 = nix.positions(here + "/basic.nix", [["machine", 10, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$17 = nix.positions(here + "/basic.nix", [["enable", 153, 27]]);
 const formals$4 = { args: { config: false }, ellipsis: true };
-const pos$18 = nix.positions(here + "/basic.nix", [["port", 168, 14]]);
-const pos$19 = nix.positions(here + "/basic.nix", [["port", 169, 15]]);
-const pos$20 = nix.positions(here + "/basic.nix", [["from", 167, 9], ["host", 168, 9], ["guest", 169, 9]]);
-const pos$21 = nix.positions(here + "/basic.nix", [["memorySize", 161, 22], ["forwardPorts", 166, 22]]);
-const pos$22 = nix.positions(here + "/basic.nix", [["systemPackages", 162, 19]]);
-const pos$23 = nix.positions(here + "/basic.nix", [["allowedTCPPorts", 173, 27]]);
-const pos$24 = nix.positions(here + "/basic.nix", [["firewall", 173, 18]]);
-const pos$25 = nix.positions(here + "/basic.nix", [["virtualisation", 161, 7], ["environment", 162, 7], ["networking", 173, 7]]);
-const pos$26 = nix.positions(here + "/basic.nix", [["machine", 154, 21]]);
-const pos$27 = nix.positions(here + "/basic.nix", [["sshBackdoor", 153, 15], ["nodes", 154, 15]]);
-const pos$28 = nix.positions(here + "/basic.nix", [["maintainers", 176, 8]]);
-const pos$29 = nix.positions(here + "/basic.nix", [["name", 7, 3], ["nodes", 9, 3], ["testScript", 51, 3], ["interactive", 153, 3], ["meta", 176, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$29,
+    [nix.POS]: $pos[28],
     name: "PdfDing sqlite",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             pdfding: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               secretKeyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secretKeyFile", "test123")),
               extraEnvironment: nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 EMAIL_BACKEND: "SMTP",
                 SMTP_HOST: "localhost",
                 SMTP_PORT: "1025",
@@ -67,41 +39,41 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             mailpit: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              instances: nix.thunk(() => ({ [nix.POS]: pos$3, default: nix.thunk(() => ({})) })),
+              [nix.POS]: $pos[3],
+              instances: nix.thunk(() => ({ [nix.POS]: $pos[2], default: nix.thunk(() => ({})) })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               pdfding: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")), nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])))),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   TimeoutStartSec: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")), "900")),
                 })),
               })),
             })),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               Manager: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 DefaultDeviceTimeoutSec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 1800n)),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "sqlite"))];
             })()),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$14,
-            initrd: nix.thunk(() => ({ [nix.POS]: pos$13, kernelModules: nix.thunk(() => ["virtio_console"]) })),
+            [nix.POS]: $pos[13],
+            initrd: nix.thunk(() => ({ [nix.POS]: $pos[12], kernelModules: nix.thunk(() => ["virtio_console"]) })),
           })),
         };
       })(), formals$2),
@@ -204,43 +176,43 @@ with subtest("email validation"):
 `;
     })(), formals$3),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$27,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
+      [nix.POS]: $pos[26],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[16], enable: true })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           const config = nix.arg($_1, "config");
           const port = nix.thunk(() => nix.sel(config, "services", "pdfding", "port"));
           return {
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               memorySize: 4096n,
               forwardPorts: nix.thunk(() => nix.builtins.map((port_1) => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   from: "host",
-                  host: nix.thunk(() => ({ [nix.POS]: pos$18, port: port_1 })),
-                  guest: nix.thunk(() => ({ [nix.POS]: pos$19, port: port_1 })),
+                  host: nix.thunk(() => ({ [nix.POS]: $pos[17], port: port_1 })),
+                  guest: nix.thunk(() => ({ [nix.POS]: $pos[18], port: port_1 })),
                 }), nix.thunk(() => [port]))),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               systemPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [nix.thunk(() => nix.lookup(w, "htop"))];
               })()),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$24,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$23, allowedTCPPorts: nix.thunk(() => [port]) })),
+              [nix.POS]: $pos[23],
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[22], allowedTCPPorts: nix.thunk(() => [port]) })),
             })),
           };
         })(), formals$4),
       })),
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
   };

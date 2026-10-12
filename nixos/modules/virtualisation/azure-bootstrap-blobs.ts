@@ -2,10 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/azure-bootstrap-blobs.nix", [["16.03", 2, 3]]);
+const $pos = nix.positions(here + "/azure-bootstrap-blobs.nix", [[["16.03", 2, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$1,
+  [nix.POS]: $pos[0],
   "16.03": "https://nixos.blob.core.windows.net/images/nixos-image-16.03.847.8688c17-x86_64-linux.vhd",
 }));
 //# sourceMappingURL=azure-bootstrap-blobs.ts.map

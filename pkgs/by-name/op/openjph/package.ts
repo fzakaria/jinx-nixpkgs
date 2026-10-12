@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["package", 39, 54]], [["pkg-config", 39, 11]], [["tests", 39, 5], ["updateScript", 40, 5]], [["description", 44, 5], ["homepage", 45, 5], ["maintainers", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["pkgConfigModules", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["outputs", 27, 3], ["cmakeFlags", 32, 3], ["strictDeps", 36, 3], ["passthru", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, validatePkgConfig: false, testers: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 39, 54]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 39, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 39, 5], ["updateScript", 40, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["maintainers", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["pkgConfigModules", 49, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["outputs", 27, 3], ["cmakeFlags", 32, 3], ["strictDeps", 36, 3], ["passthru", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "openjph",
       version: "0.31.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aous72",
           repo: "openjph",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,18 +32,18 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open-source implementation of JPEG2000 Part-15 (or JPH or HTJ2K)",
         homepage: "https://openjph.org/",
         maintainers: nix.thunk(() => (() => {

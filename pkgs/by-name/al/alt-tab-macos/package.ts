@@ -2,25 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["escape", 14, 38]], [["moduleMap", 35, 9], ["headerGlob", 36, 9], ["sourceGlob", 37, 9], ["includes", 38, 9], ["sysFrameworks", 42, 9]], [["CFBundleIdentifier", 51, 9], ["CFBundleVersion", 52, 9], ["CFBundleShortVersionString", 53, 9]], [["name", 33, 7], ["objc", 34, 7], ["plistOverrides", 50, 7], ["localizations", 55, 7], ["xcassets", 56, 7]], [["name", 62, 7], ["stubSrc", 63, 7]], [["name", 66, 7], ["stubSrc", 67, 7]], [["name", 70, 7], ["stubSrc", 71, 7], ["stubExtraFlags", 72, 7]], [["API_DOMAIN", 111, 5], ["APPCENTER_SECRET", 112, 5], ["CURRENT_PROJECT_VERSION", 113, 5], ["DOMAIN", 114, 5], ["EXECUTABLE_NAME", 115, 5], ["MACOSX_DEPLOYMENT_TARGET", 116, 5], ["PRODUCT_BUNDLE_IDENTIFIER", 117, 5], ["PRODUCT_NAME", 118, 5]], [["CFBundleExecutable", 133, 9], ["CFBundleIdentifier", 134, 9], ["CFBundleInfoDictionaryVersion", 135, 9], ["CFBundleName", 136, 9], ["CFBundlePackageType", 137, 9], ["CFBundleVersion", 138, 9]], [["name", 166, 20], ["sourcesExpr", 167, 7], ["extraFlags", 168, 7]], [["destDir", 256, 7], ["catalog", 257, 7]], [["owner", 266, 5], ["repo", 267, 5], ["tag", 268, 5], ["hash", 269, 5]], [["commonSwiftFlags", 300, 33]], [["updateScript", 374, 12]], [["description", 377, 5], ["homepage", 378, 5], ["license", 379, 5], ["mainProgram", 383, 5], ["maintainers", 384, 5], ["platforms", 389, 5], ["sourceProvenance", 390, 5]], [["pname", 262, 3], ["version", 263, 3], ["src", 265, 3], ["nativeBuildInputs", 272, 3], ["patches", 280, 3], ["postPatch", 287, 3], ["dontConfigure", 292, 3], ["buildPhase", 294, 3], ["installPhase", 339, 3], ["postFixup", 367, 3], ["passthru", 374, 3], ["meta", 376, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, actool: false, lld: false, stdenv: false, swift: false, makeWrapper: false, "nix-update-script": false, rcodesign: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["escape", 14, 38]]);
-const pos$2 = nix.positions(here + "/package.nix", [["moduleMap", 35, 9], ["headerGlob", 36, 9], ["sourceGlob", 37, 9], ["includes", 38, 9], ["sysFrameworks", 42, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CFBundleIdentifier", 51, 9], ["CFBundleVersion", 52, 9], ["CFBundleShortVersionString", 53, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 33, 7], ["objc", 34, 7], ["plistOverrides", 50, 7], ["localizations", 55, 7], ["xcassets", 56, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 62, 7], ["stubSrc", 63, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 66, 7], ["stubSrc", 67, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 70, 7], ["stubSrc", 71, 7], ["stubExtraFlags", 72, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["API_DOMAIN", 111, 5], ["APPCENTER_SECRET", 112, 5], ["CURRENT_PROJECT_VERSION", 113, 5], ["DOMAIN", 114, 5], ["EXECUTABLE_NAME", 115, 5], ["MACOSX_DEPLOYMENT_TARGET", 116, 5], ["PRODUCT_BUNDLE_IDENTIFIER", 117, 5], ["PRODUCT_NAME", 118, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["CFBundleExecutable", 133, 9], ["CFBundleIdentifier", 134, 9], ["CFBundleInfoDictionaryVersion", 135, 9], ["CFBundleName", 136, 9], ["CFBundlePackageType", 137, 9], ["CFBundleVersion", 138, 9]]);
 const formals$2 = { args: { name: false, sourcesExpr: false, extraFlags: true }, ellipsis: false };
-const pos$10 = nix.positions(here + "/package.nix", [["name", 166, 20], ["sourcesExpr", 167, 7], ["extraFlags", 168, 7]]);
 const formals$3 = { args: { destDir: false, catalog: false }, ellipsis: false };
-const pos$11 = nix.positions(here + "/package.nix", [["destDir", 256, 7], ["catalog", 257, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["owner", 266, 5], ["repo", 267, 5], ["tag", 268, 5], ["hash", 269, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["commonSwiftFlags", 300, 33]]);
-const pos$14 = nix.positions(here + "/package.nix", [["updateScript", 374, 12]]);
-const pos$15 = nix.positions(here + "/package.nix", [["description", 377, 5], ["homepage", 378, 5], ["license", 379, 5], ["mainProgram", 383, 5], ["maintainers", 384, 5], ["platforms", 389, 5], ["sourceProvenance", 390, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 262, 3], ["version", 263, 3], ["src", 265, 3], ["nativeBuildInputs", 272, 3], ["patches", 280, 3], ["postPatch", 287, 3], ["dontConfigure", 292, 3], ["buildPhase", 294, 3], ["installPhase", 339, 3], ["postFixup", 367, 3], ["passthru", 374, 3], ["meta", 376, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,16 +18,16 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   const rcodesign = nix.arg($, "rcodesign");
-  const toPlist = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$1, escape: true }))));
+  const toPlist = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: $pos[0], escape: true }))));
   const deploymentTarget = "14.0";
   const sdkVersion = "26.0";
   const shortcutRecorderDir = "vendor/ShortcutRecorder/Sources/ShortcutRecorder";
   const frameworks = nix.thunk(() => [
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "ShortcutRecorder",
       objc: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         moduleMap: nix.path(here, "./stubs/ShortcutRecorder.modulemap"),
         headerGlob: nix.thunk(() => nix.str`"${shortcutRecorderDir}"/include/ShortcutRecorder/*.h`),
         sourceGlob: nix.thunk(() => nix.str`"${shortcutRecorderDir}"/*.m`),
@@ -53,7 +38,7 @@ export default nix.lambda((args) => (() => {
         sysFrameworks: nix.thunk(() => ["Carbon", "AppKit", "Foundation", "CoreData"]),
       })),
       plistOverrides: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CFBundleIdentifier: "com.kulakov.ShortcutRecorder",
         CFBundleVersion: "3.1",
         CFBundleShortVersionString: "3.1",
@@ -62,17 +47,17 @@ export default nix.lambda((args) => (() => {
       xcassets: nix.thunk(() => nix.str`${shortcutRecorderDir}/Images.xcassets`),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "Sparkle",
       stubSrc: nix.path(here, "./stubs/SparkleStub.swift"),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "AppCenter",
       stubSrc: nix.path(here, "./stubs/AppCenterStub.swift"),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "AppCenterCrashes",
       stubSrc: nix.path(here, "./stubs/AppCenterCrashesStub.swift"),
       stubExtraFlags: nix.thunk(() => ["-I", "$buildDir", "-L", "$buildDir", "-lAppCenter"]),
@@ -103,7 +88,7 @@ export default nix.lambda((args) => (() => {
     "docs/acknowledgments.md",
   ]);
   const infoPlistSubstitutions = (version) => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     API_DOMAIN: "alt-tab.app/api",
     APPCENTER_SECRET: "",
     CURRENT_PROJECT_VERSION: version,
@@ -115,7 +100,7 @@ export default nix.lambda((args) => (() => {
   });
   const substitutePlistVariables = (substitutions) => nix.app(nix.sel(lib, "concatStringsSep"), " \\\n        ", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`--replace-fail ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`$(${name})`))} ${nix.app(nix.sel(lib, "escapeShellArg"), value)}`, substitutions)));
   const frameworkPlist = (name) => (extra) => nix.app(toPlist, nix.thunk(() => nix.update({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       CFBundleExecutable: name,
       CFBundleIdentifier: nix.thunk(() => nix.str`com.lwouis.alt-tab-macos.${name}`),
       CFBundleInfoDictionaryVersion: "6.0",
@@ -139,7 +124,7 @@ export default nix.lambda((args) => (() => {
   })(), formals$2);
   const buildSwiftStubFramework = (fw) => nix.str`nixLog "Building ${nix.sel(fw, "name")} (stub)"
 ${nix.app(swiftFrameworkLink, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       name: nix.thunk(() => nix.attr(fw, "name")),
       sourcesExpr: nix.thunk(() => nix.str`${nix.sel(fw, "stubSrc")}`),
       extraFlags: nix.thunk(() => nix.selOr(fw, () => [], "stubExtraFlags")),
@@ -195,17 +180,17 @@ printf '%s' ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(fr
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(fw, "localizations")), nix.thunk(() => nix.str`cp -R "${nix.sel(fw, "localizations")}"/*.lproj "$fwDir/Resources/"
 `))}
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(fw, "xcassets")), nix.thunk(() => nix.app(compileAssetCatalog, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         destDir: "$fwDir/Resources",
         catalog: nix.thunk(() => nix.sel(fw, "xcassets")),
       })))))}
 `;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "alt-tab-macos",
       version: "11.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           owner: "lwouis",
           repo: "alt-tab-macos",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -225,7 +210,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(fw, "xcassets"
 buildDir="$PWD/build"
 mkdir -p "$buildDir"
 
-${nix.app(nix.sel(lib, "toShellVars"), nix.thunk(() => ({ [nix.POS]: pos$13, commonSwiftFlags: commonSwiftFlags })))}
+${nix.app(nix.sel(lib, "toShellVars"), nix.thunk(() => ({ [nix.POS]: $pos[12], commonSwiftFlags: commonSwiftFlags })))}
 
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", buildFramework, frameworks)}
 
@@ -290,11 +275,11 @@ runHook postInstall
   "$out/Applications/AltTab.app"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "Windows alt-tab on macOS",
         homepage: "https://alt-tab.app",
         license: nix.thunk(() => (() => {

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["pname", 16, 54], ["version", 16, 60], ["src", 16, 68]], [["description", 32, 5], ["homepage", 33, 5], ["downloadPage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5]], [["pname", 19, 11], ["version", 19, 17], ["src", 19, 25], ["extraBwrapArgs", 21, 3], ["extraInstallCommands", 23, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { fetchurl: false, appimageTools: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 16, 54], ["version", 16, 60], ["src", 16, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["downloadPage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 11], ["version", 19, 17], ["src", 19, 25], ["extraBwrapArgs", 21, 3], ["extraInstallCommands", 23, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pname = "trucky";
   const version = "3.8.2";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://web.archive.org/web/20260328182310/https://client-download.truckyapp.com/linux/latest/Trucky.AppImage",
       hash: "sha256-8F6tIyooqzjgH2+qHsaoFwJkFzzW07fjqK9znDW/AyA=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => (() => {
       const pname_1 = pname;
       const version_1 = version;
@@ -33,7 +30,7 @@ substituteInPlace $out/share/applications/trucky-electron.desktop \\
 install -Dm444 ${appimageContents}/trucky-electron.png $out/share/icons/hicolor/48x48/apps/trucky-electron.png
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "The Virtual Trucker Companion",
         homepage: "https://truckyapp.com/",
         downloadPage: "https://truckyapp.com/client-download-linux",
@@ -42,7 +39,7 @@ install -Dm444 ${appimageContents}/trucky-electron.png $out/share/icons/hicolor/
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname_1,
         version: version_1,
         src: src_1,

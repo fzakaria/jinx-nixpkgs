@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5], ["fetchSubmodules", 60, 5]], [["ghidra", 91, 5], ["scripts", 92, 5]], [["description", 125, 5], ["homepage", 126, 5], ["changelog", 127, 5], ["license", 128, 5], ["maintainers", 129, 5], ["mainProgram", 130, 5], ["broken", 133, 5]], [["pname", 49, 3], ["version", 50, 3], ["pyproject", 51, 3], ["__structuredAttrs", 53, 3], ["src", 55, 3], ["build-system", 63, 3], ["dependencies", 68, 3], ["optional-dependencies", 90, 3], ["nativeCheckInputs", 101, 3], ["pythonImportsCheck", 114, 3], ["disabledTests", 116, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, colorama: false, deptry: false, dncil: false, dnfile: false, fetchFromGitHub: false, humanize: false, "ida-netnode": false, "ida-settings": false, "jschema-to-python": false, msgspec: false, "mypy-protobuf": false, mypy: false, networkx: false, pefile: false, protobuf: false, psutil: false, pydantic: false, pyelftools: false, pyghidra: false, pygithub: false, "pytest-instafail": false, "pytest-sugar": false, pytestCheckHook: false, "python-flirt": false, pyyaml: false, requests: false, rich: false, "ruamel-yaml": false, "sarif-om": false, "setuptools-scm": false, setuptools: false, stix2: false, "types-colorama": false, "types-protobuf": false, "types-psutil": false, "types-pyyaml": false, "types-requests": false, "viv-utils": false, vivisect: false, writableTmpDirAsHomeHook: false, xmltodict: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5], ["fetchSubmodules", 60, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ghidra", 91, 5], ["scripts", 92, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 125, 5], ["homepage", 126, 5], ["changelog", 127, 5], ["license", 128, 5], ["maintainers", 129, 5], ["mainProgram", 130, 5], ["broken", 133, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 49, 3], ["version", 50, 3], ["pyproject", 51, 3], ["__structuredAttrs", 53, 3], ["src", 55, 3], ["build-system", 63, 3], ["dependencies", 68, 3], ["optional-dependencies", 90, 3], ["nativeCheckInputs", 101, 3], ["pythonImportsCheck", 114, 3], ["disabledTests", 116, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,13 +52,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xmltodict = nix.arg($, "xmltodict");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "flare-capa",
       version: "9.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mandiant",
           repo: "capa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,7 +88,7 @@ export default nix.lambda((args) => (() => {
         xmltodict,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ghidra: nix.thunk(() => [pyghidra]),
         scripts: nix.thunk(() => [jschema_to_python, psutil, requests, sarif_om, stix2]),
       })),
@@ -115,7 +112,7 @@ export default nix.lambda((args) => (() => {
         "test_binexport_scripts",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to identify capabilities in executable files",
         homepage: "https://github.com/mandiant/capa",
         changelog: nix.thunk(() => nix.str`https://github.com/mandiant/capa/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

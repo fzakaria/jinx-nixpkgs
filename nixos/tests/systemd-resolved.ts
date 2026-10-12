@@ -2,82 +2,26 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-resolved.nix", [[["maintainers", 4, 8]], [["enable", 16, 27]], [["address", 21, 11], ["prefixLength", 22, 11]], [["addresses", 19, 39]], [["ipv6", 19, 34]], [["eth1", 19, 29]], [["firewall", 16, 18], ["useDHCP", 17, 18], ["interfaces", 19, 18]], [["listen", 29, 18]], [["storage", 33, 28]], [["default", 33, 20]], [["file", 34, 30]], [["example.com", 34, 16]], [["server", 29, 11], ["template", 33, 11], ["zone", 34, 11]], [["enable", 27, 9], ["settings", 28, 9]], [["knot", 26, 16]], [["networking", 16, 7], ["services", 26, 7]], [["enable", 49, 27]], [["address", 54, 11], ["prefixLength", 55, 11]], [["addresses", 52, 39]], [["ipv6", 52, 34]], [["eth1", 52, 29]], [["firewall", 49, 18], ["useDHCP", 50, 18], ["interfaces", 52, 18]], [["listen", 62, 18]], [["storage", 66, 28]], [["default", 66, 20]], [["file", 67, 40]], [["delegated.example.org", 67, 16]], [["server", 62, 11], ["template", 66, 11], ["zone", 67, 11]], [["enable", 60, 9], ["settings", 61, 9]], [["knot", 59, 16]], [["networking", 49, 7], ["services", 59, 7]], [["address", 83, 11], ["prefixLength", 84, 11]], [["addresses", 81, 39]], [["ipv6", 81, 34]], [["eth1", 81, 29]], [["nameservers", 80, 18], ["interfaces", 81, 18], ["useNetworkd", 95, 18], ["useDHCP", 96, 18]], [["FallbackDNS", 88, 42]], [["Resolve", 88, 34]], [["DNS", 91, 11], ["Domains", 92, 11]], [["Delegate", 90, 9]], [["example-org", 89, 38]], [["enable", 87, 25], ["settings", 88, 25], ["dnsDelegates", 89, 25]], [["resolved", 87, 16]], [["enable", 97, 42]], [["40-eth0", 97, 32]], [["networks", 97, 23]], [["network", 97, 15]], [["initrdBackdoor", 99, 15]], [["enable", 101, 17], ["initrdBin", 102, 17]], [["enable", 103, 17]], [["enable", 104, 27]], [["resolved", 104, 18]], [["systemd", 101, 9], ["network", 103, 9], ["services", 104, 9]], [["initrd", 100, 12]], [["networking", 80, 7], ["services", 87, 7], ["systemd", 97, 7], ["testing", 99, 7], ["boot", 100, 7]], [["server", 6, 9], ["delegate_server", 39, 9], ["client", 72, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 108, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-resolved.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { lib: false, config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/systemd-resolved.nix", [["enable", 16, 27]]);
-const pos$3 = nix.positions(here + "/systemd-resolved.nix", [["address", 21, 11], ["prefixLength", 22, 11]]);
-const pos$4 = nix.positions(here + "/systemd-resolved.nix", [["addresses", 19, 39]]);
-const pos$5 = nix.positions(here + "/systemd-resolved.nix", [["ipv6", 19, 34]]);
-const pos$6 = nix.positions(here + "/systemd-resolved.nix", [["eth1", 19, 29]]);
-const pos$7 = nix.positions(here + "/systemd-resolved.nix", [["firewall", 16, 18], ["useDHCP", 17, 18], ["interfaces", 19, 18]]);
-const pos$8 = nix.positions(here + "/systemd-resolved.nix", [["listen", 29, 18]]);
-const pos$9 = nix.positions(here + "/systemd-resolved.nix", [["storage", 33, 28]]);
-const pos$10 = nix.positions(here + "/systemd-resolved.nix", [["default", 33, 20]]);
-const pos$11 = nix.positions(here + "/systemd-resolved.nix", [["file", 34, 30]]);
-const pos$12 = nix.positions(here + "/systemd-resolved.nix", [["example.com", 34, 16]]);
-const pos$13 = nix.positions(here + "/systemd-resolved.nix", [["server", 29, 11], ["template", 33, 11], ["zone", 34, 11]]);
-const pos$14 = nix.positions(here + "/systemd-resolved.nix", [["enable", 27, 9], ["settings", 28, 9]]);
-const pos$15 = nix.positions(here + "/systemd-resolved.nix", [["knot", 26, 16]]);
-const pos$16 = nix.positions(here + "/systemd-resolved.nix", [["networking", 16, 7], ["services", 26, 7]]);
 const formals$3 = { args: { lib: false, config: false }, ellipsis: true };
-const pos$17 = nix.positions(here + "/systemd-resolved.nix", [["enable", 49, 27]]);
-const pos$18 = nix.positions(here + "/systemd-resolved.nix", [["address", 54, 11], ["prefixLength", 55, 11]]);
-const pos$19 = nix.positions(here + "/systemd-resolved.nix", [["addresses", 52, 39]]);
-const pos$20 = nix.positions(here + "/systemd-resolved.nix", [["ipv6", 52, 34]]);
-const pos$21 = nix.positions(here + "/systemd-resolved.nix", [["eth1", 52, 29]]);
-const pos$22 = nix.positions(here + "/systemd-resolved.nix", [["firewall", 49, 18], ["useDHCP", 50, 18], ["interfaces", 52, 18]]);
-const pos$23 = nix.positions(here + "/systemd-resolved.nix", [["listen", 62, 18]]);
-const pos$24 = nix.positions(here + "/systemd-resolved.nix", [["storage", 66, 28]]);
-const pos$25 = nix.positions(here + "/systemd-resolved.nix", [["default", 66, 20]]);
-const pos$26 = nix.positions(here + "/systemd-resolved.nix", [["file", 67, 40]]);
-const pos$27 = nix.positions(here + "/systemd-resolved.nix", [["delegated.example.org", 67, 16]]);
-const pos$28 = nix.positions(here + "/systemd-resolved.nix", [["server", 62, 11], ["template", 66, 11], ["zone", 67, 11]]);
-const pos$29 = nix.positions(here + "/systemd-resolved.nix", [["enable", 60, 9], ["settings", 61, 9]]);
-const pos$30 = nix.positions(here + "/systemd-resolved.nix", [["knot", 59, 16]]);
-const pos$31 = nix.positions(here + "/systemd-resolved.nix", [["networking", 49, 7], ["services", 59, 7]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$32 = nix.positions(here + "/systemd-resolved.nix", [["address", 83, 11], ["prefixLength", 84, 11]]);
-const pos$33 = nix.positions(here + "/systemd-resolved.nix", [["addresses", 81, 39]]);
-const pos$34 = nix.positions(here + "/systemd-resolved.nix", [["ipv6", 81, 34]]);
-const pos$35 = nix.positions(here + "/systemd-resolved.nix", [["eth1", 81, 29]]);
-const pos$36 = nix.positions(here + "/systemd-resolved.nix", [["nameservers", 80, 18], ["interfaces", 81, 18], ["useNetworkd", 95, 18], ["useDHCP", 96, 18]]);
-const pos$37 = nix.positions(here + "/systemd-resolved.nix", [["FallbackDNS", 88, 42]]);
-const pos$38 = nix.positions(here + "/systemd-resolved.nix", [["Resolve", 88, 34]]);
-const pos$39 = nix.positions(here + "/systemd-resolved.nix", [["DNS", 91, 11], ["Domains", 92, 11]]);
-const pos$40 = nix.positions(here + "/systemd-resolved.nix", [["Delegate", 90, 9]]);
-const pos$41 = nix.positions(here + "/systemd-resolved.nix", [["example-org", 89, 38]]);
-const pos$42 = nix.positions(here + "/systemd-resolved.nix", [["enable", 87, 25], ["settings", 88, 25], ["dnsDelegates", 89, 25]]);
-const pos$43 = nix.positions(here + "/systemd-resolved.nix", [["resolved", 87, 16]]);
-const pos$44 = nix.positions(here + "/systemd-resolved.nix", [["enable", 97, 42]]);
-const pos$45 = nix.positions(here + "/systemd-resolved.nix", [["40-eth0", 97, 32]]);
-const pos$46 = nix.positions(here + "/systemd-resolved.nix", [["networks", 97, 23]]);
-const pos$47 = nix.positions(here + "/systemd-resolved.nix", [["network", 97, 15]]);
-const pos$48 = nix.positions(here + "/systemd-resolved.nix", [["initrdBackdoor", 99, 15]]);
-const pos$49 = nix.positions(here + "/systemd-resolved.nix", [["enable", 101, 17], ["initrdBin", 102, 17]]);
-const pos$50 = nix.positions(here + "/systemd-resolved.nix", [["enable", 103, 17]]);
-const pos$51 = nix.positions(here + "/systemd-resolved.nix", [["enable", 104, 27]]);
-const pos$52 = nix.positions(here + "/systemd-resolved.nix", [["resolved", 104, 18]]);
-const pos$53 = nix.positions(here + "/systemd-resolved.nix", [["systemd", 101, 9], ["network", 103, 9], ["services", 104, 9]]);
-const pos$54 = nix.positions(here + "/systemd-resolved.nix", [["initrd", 100, 12]]);
-const pos$55 = nix.positions(here + "/systemd-resolved.nix", [["networking", 80, 7], ["services", 87, 7], ["systemd", 97, 7], ["testing", 99, 7], ["boot", 100, 7]]);
-const pos$56 = nix.positions(here + "/systemd-resolved.nix", [["server", 6, 9], ["delegate_server", 39, 9], ["client", 72, 9]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$57 = nix.positions(here + "/systemd-resolved.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$57,
+    [nix.POS]: $pos[56],
     name: "systemd-resolved",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "elvishjerricco"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$56,
+      [nix.POS]: $pos[55],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
@@ -87,39 +31,39 @@ export default nix.lambda((args) => (() => {
 @       AAAA    ${nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(config, "networking", "interfaces", "eth1", "ipv6", "addresses"))), "address")}
 `)));
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+            [nix.POS]: $pos[6],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$3, address: "fd00::1", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[2], address: "fd00::1", prefixLength: 64n })),
                     ]))),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             knot: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$13,
-                server: nix.thunk(() => ({ [nix.POS]: pos$8, listen: nix.thunk(() => ["0.0.0.0@53", "::@53"]) })),
+                [nix.POS]: $pos[12],
+                server: nix.thunk(() => ({ [nix.POS]: $pos[7], listen: nix.thunk(() => ["0.0.0.0@53", "::@53"]) })),
                 template: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
-                  default: nix.thunk(() => ({ [nix.POS]: pos$9, storage: exampleZone })),
+                  [nix.POS]: $pos[9],
+                  default: nix.thunk(() => ({ [nix.POS]: $pos[8], storage: exampleZone })),
                 })),
                 zone: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
-                  "example.com": nix.thunk(() => ({ [nix.POS]: pos$11, file: "example.com.zone" })),
+                  [nix.POS]: $pos[11],
+                  "example.com": nix.thunk(() => ({ [nix.POS]: $pos[10], file: "example.com.zone" })),
                 })),
               })),
             })),
@@ -135,39 +79,39 @@ test A ${nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(config,
 test AAAA ${nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(config, "networking", "interfaces", "eth1", "ipv6", "addresses"))), "address")}
 `)));
         return {
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$22,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$17, enable: false })),
+            [nix.POS]: $pos[21],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[16], enable: false })),
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$18, address: "fd00::3", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[17], address: "fd00::3", prefixLength: 64n })),
                     ]))),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             knot: nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$28,
-                server: nix.thunk(() => ({ [nix.POS]: pos$23, listen: nix.thunk(() => ["0.0.0.0@53", "::@53"]) })),
+                [nix.POS]: $pos[27],
+                server: nix.thunk(() => ({ [nix.POS]: $pos[22], listen: nix.thunk(() => ["0.0.0.0@53", "::@53"]) })),
                 template: nix.thunk(() => ({
-                  [nix.POS]: pos$25,
-                  default: nix.thunk(() => ({ [nix.POS]: pos$24, storage: delegateZone })),
+                  [nix.POS]: $pos[24],
+                  default: nix.thunk(() => ({ [nix.POS]: $pos[23], storage: delegateZone })),
                 })),
                 zone: nix.thunk(() => ({
-                  [nix.POS]: pos$27,
-                  "delegated.example.org": nix.thunk(() => ({ [nix.POS]: pos$26, file: "delegated.example.org.zone" })),
+                  [nix.POS]: $pos[26],
+                  "delegated.example.org": nix.thunk(() => ({ [nix.POS]: $pos[25], file: "delegated.example.org.zone" })),
                 })),
               })),
             })),
@@ -180,18 +124,18 @@ test AAAA ${nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(conf
         const serverAddress = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.sel(nodes, "server", "networking", "interfaces", "eth1", "ipv4", "addresses"))), "address"));
         const delegateAddress = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.sel(nodes, "delegate_server", "networking", "interfaces", "eth1", "ipv4", "addresses"))), "address"));
         return {
-          [nix.POS]: pos$55,
+          [nix.POS]: $pos[54],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             nameservers: nix.thunk(() => [serverAddress]),
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$33,
+                  [nix.POS]: $pos[32],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$32, address: "fd00::2", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[31], address: "fd00::2", prefixLength: 64n })),
                     ]))),
                 })),
               })),
@@ -200,20 +144,20 @@ test AAAA ${nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(conf
             useDHCP: false,
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$43,
+            [nix.POS]: $pos[42],
             resolved: nix.thunk(() => ({
-              [nix.POS]: pos$42,
+              [nix.POS]: $pos[41],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$38,
-                Resolve: nix.thunk(() => ({ [nix.POS]: pos$37, FallbackDNS: [] })),
+                [nix.POS]: $pos[37],
+                Resolve: nix.thunk(() => ({ [nix.POS]: $pos[36], FallbackDNS: [] })),
               })),
               dnsDelegates: nix.thunk(() => ({
-                [nix.POS]: pos$41,
+                [nix.POS]: $pos[40],
                 "example-org": nix.thunk(() => ({
-                  [nix.POS]: pos$40,
+                  [nix.POS]: $pos[39],
                   Delegate: nix.thunk(() => ({
-                    [nix.POS]: pos$39,
+                    [nix.POS]: $pos[38],
                     DNS: delegateAddress,
                     Domains: nix.thunk(() => ["delegated.example.org"]),
                   })),
@@ -222,29 +166,29 @@ test AAAA ${nix.sel(nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.sel(conf
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$47,
+            [nix.POS]: $pos[46],
             network: nix.thunk(() => ({
-              [nix.POS]: pos$46,
+              [nix.POS]: $pos[45],
               networks: nix.thunk(() => ({
-                [nix.POS]: pos$45,
-                "40-eth0": nix.thunk(() => ({ [nix.POS]: pos$44, enable: false })),
+                [nix.POS]: $pos[44],
+                "40-eth0": nix.thunk(() => ({ [nix.POS]: $pos[43], enable: false })),
               })),
             })),
           })),
-          testing: nix.thunk(() => ({ [nix.POS]: pos$48, initrdBackdoor: true })),
+          testing: nix.thunk(() => ({ [nix.POS]: $pos[47], initrdBackdoor: true })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$54,
+            [nix.POS]: $pos[53],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$53,
+              [nix.POS]: $pos[52],
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$49,
+                [nix.POS]: $pos[48],
                 enable: true,
                 initrdBin: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iputils"))]),
               })),
-              network: nix.thunk(() => ({ [nix.POS]: pos$50, enable: true })),
+              network: nix.thunk(() => ({ [nix.POS]: $pos[49], enable: true })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$52,
-                resolved: nix.thunk(() => ({ [nix.POS]: pos$51, enable: true })),
+                [nix.POS]: $pos[51],
+                resolved: nix.thunk(() => ({ [nix.POS]: $pos[50], enable: true })),
               })),
             })),
           })),

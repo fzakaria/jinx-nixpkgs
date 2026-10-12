@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 25, 13], ["pname", 26, 5], ["hash", 27, 5]], [["celery", 45, 7], ["flask-pymongo", 46, 7], ["kombu", 47, 7], ["mongoengine", 48, 7], ["motor", 49, 7], ["pymongo-inmemory", 50, 7]], [["tests", 43, 12]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 30, 3], ["dependencies", 36, 3], ["doCheck", 39, 3], ["pythonImportsCheck", 41, 3], ["passthru", 43, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, "hatch-requirements-txt": false, setuptools: false, dnspython: false, celery: false, "flask-pymongo": false, kombu: false, mongoengine: false, motor: false, "pymongo-inmemory": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 25, 13], ["pname", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["celery", 45, 7], ["flask-pymongo", 46, 7], ["kombu", 47, 7], ["mongoengine", 48, 7], ["motor", 49, 7], ["pymongo-inmemory", 50, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 43, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 30, 3], ["dependencies", 36, 3], ["doCheck", 39, 3], ["pythonImportsCheck", 41, 3], ["passthru", 43, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.17.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "pymongo",
           hash: "sha256-cP+gi6ZBRozAaM9GwGs08BqM40ifZBEwn8tc6r5rL8A=",
@@ -39,9 +35,9 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pymongo"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           celery: celery,
           "flask-pymongo": flask_pymongo,
           kombu: kombu,
@@ -51,14 +47,14 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python driver for MongoDB",
         homepage: "https://github.com/mongodb/mongo-python-driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

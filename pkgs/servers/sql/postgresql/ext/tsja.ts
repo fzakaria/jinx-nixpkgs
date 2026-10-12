@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tsja.nix", [[["url", 15, 5], ["hash", 16, 5]], [["query", 48, 9], ["expected", 49, 9], ["description", 50, 9]], [["finalPackage", 42, 26], ["sql", 43, 5], ["asserts", 46, 5]], [["extension", 41, 18]], [["tests", 41, 12]], [["description", 56, 5], ["homepage", 57, 5], ["maintainers", 58, 5], ["platforms", 60, 5], ["license", 61, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 19, 3], ["strictDeps", 27, 3], ["__structuredAttrs", 28, 3], ["buildInputs", 30, 3], ["installPhase", 35, 3], ["passthru", 41, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { fetchzip: false, lib: false, mecab: false, postgresql: false, postgresqlTestExtension: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tsja.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/tsja.nix", [["query", 48, 9], ["expected", 49, 9], ["description", 50, 9]]);
-const pos$3 = nix.positions(here + "/tsja.nix", [["finalPackage", 42, 26], ["sql", 43, 5], ["asserts", 46, 5]]);
-const pos$4 = nix.positions(here + "/tsja.nix", [["extension", 41, 18]]);
-const pos$5 = nix.positions(here + "/tsja.nix", [["tests", 41, 12]]);
-const pos$6 = nix.positions(here + "/tsja.nix", [["description", 56, 5], ["homepage", 57, 5], ["maintainers", 58, 5], ["platforms", 60, 5], ["license", 61, 5]]);
-const pos$7 = nix.positions(here + "/tsja.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 19, 3], ["strictDeps", 27, 3], ["__structuredAttrs", 28, 3], ["buildInputs", 30, 3], ["installPhase", 35, 3], ["passthru", 41, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tsja",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.amris.jp/tsja/tsja-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-h59UhUG/7biN8NaDiGK6kXDqfhR9uMzt8CpwbJ+PpEM=",
         })))),
@@ -39,17 +33,17 @@ substituteInPlace tsja.c --replace-fail /usr/local/lib/mecab ${mecab}/lib/mecab
       buildInputs: nix.thunk(() => [mecab, postgresql]),
       installPhase: "mkdir -p $out/lib $out/share/postgresql/extension\nmv libtsja.so $out/lib\nmv dbinit_libtsja.txt $out/share/postgresql/extension/libtsja_dbinit.sql\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: nix.thunk(() => nix.str`\\i ${nix.sel(finalAttrs, "finalPackage")}/share/postgresql/extension/libtsja_dbinit.sql
 `),
               asserts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   query: "EXISTS (SELECT 1 FROM ts_debug('japanese', 'PostgreSQLで日本語のテキスト検索ができます。') WHERE lexemes = '{日本語}')",
                   expected: "true",
                   description: "make sure '日本語' is parsed as a separate lexeme",
@@ -59,7 +53,7 @@ substituteInPlace tsja.c --replace-fail /usr/local/lib/mecab ${mecab}/lib/mecab
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "PostgreSQL extension implementing Japanese text search",
         homepage: "https://www.amris.jp/tsja/index.html",
         maintainers: nix.thunk(() => (() => {

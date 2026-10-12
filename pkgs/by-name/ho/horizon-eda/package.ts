@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["base", 25, 13]], [["pname", 16, 5], ["version", 17, 5], ["src", 18, 5], ["meta", 19, 5], ["env", 20, 5], ["passthru", 24, 3], ["buildInputs", 28, 3], ["nativeBuildInputs", 32, 3], ["installFlags", 38, 3], ["enableParallelBuilding", 44, 3]]]);
 const formals$1 = { args: { stdenv: false, boost: false, callPackage: false, coreutils: false, libspnav: false, python3: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["base", 25, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 16, 5], ["version", 17, 5], ["src", 18, 5], ["meta", 19, 5], ["env", 20, 5], ["passthru", 24, 3], ["buildInputs", 28, 3], ["nativeBuildInputs", 32, 3], ["installFlags", 38, 3], ["enableParallelBuilding", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const base = nix.thunk(() => nix.app(callPackage, nix.path(here, "./base.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(base, "pname")),
       version: nix.thunk(() => nix.attr(base, "version")),
       src: nix.thunk(() => nix.attr(base, "src")),
       meta: nix.thunk(() => nix.attr(base, "meta")),
       env: nix.thunk(() => nix.attr(base, "env")),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, base: base })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], base: base })),
       buildInputs: nix.thunk(() => nix.concat(nix.sel(base, "buildInputs"), [libspnav])),
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(base, "nativeBuildInputs"), [nix.thunk(() => nix.sel(boost, "dev")), wrapGAppsHook3, python3])),
       installFlags: nix.thunk(() => [

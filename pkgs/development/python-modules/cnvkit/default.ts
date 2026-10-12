@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["url", 41, 7], ["hash", 42, 7]], [["homepage", 134, 5], ["description", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["pythonRelaxDeps", 46, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 57, 3], ["postPatch", 61, 3], ["dependencies", 81, 3], ["postInstall", 97, 3], ["installCheckPhase", 103, 3], ["doInstallCheck", 124, 3], ["pythonImportsCheck", 126, 3], ["nativeCheckInputs", 128, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, python: false, makeWrapper: false, biopython: false, matplotlib: false, numpy: false, pandas: false, pomegranate: false, pyfaidx: false, pyparsing: false, pysam: false, reportlab: false, rPackages: false, "scikit-learn": false, scipy: false, R: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 134, 5], ["description", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["pythonRelaxDeps", 46, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 57, 3], ["postPatch", 61, 3], ["dependencies", 81, 3], ["postInstall", 97, 3], ["installCheckPhase", 103, 3], ["doInstallCheck", 124, 3], ["pythonImportsCheck", 126, 3], ["nativeCheckInputs", 128, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const R = nix.arg($, "R");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cnvkit",
       version: "0.9.13",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "etal",
           repo: "cnvkit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/etal/cnvkit/commit/c5c7c06b7fb873ed7ae44593c11a91d45f433e54.patch",
             hash: "sha256-H9Nr4JL7bc9CQ/BmXkOAwjbr/ykvbnjyyWrVSrVH9kg=",
           })))),
@@ -109,7 +106,7 @@ runHook postInstallCheck
       pythonImportsCheck: nix.thunk(() => ["cnvlib"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, R]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://cnvkit.readthedocs.io",
         description: "Python library and command-line software toolkit to infer and visualize copy number from high-throughput DNA sequencing data",
         changelog: nix.thunk(() => nix.str`https://github.com/etal/cnvkit/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,22 +2,21 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-local-relay.nix", [[["timeout", 30, 5], ["broken", 31, 5]], [["name", 4, 3], ["nativeBuildInputs", 6, 3], ["buildCommand", 8, 3], ["__darwinAllowLocalNetworking", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { stdenv: false, croc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-local-relay.nix", [["timeout", 30, 5], ["broken", 31, 5]]);
-const pos$2 = nix.positions(here + "/test-local-relay.nix", [["name", 4, 3], ["nativeBuildInputs", 6, 3], ["buildCommand", 8, 3], ["__darwinAllowLocalNetworking", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenv = nix.arg($, "stdenv");
   const croc = nix.arg($, "croc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "croc-test-local-relay",
       nativeBuildInputs: nix.thunk(() => [croc]),
       buildCommand: "HOME=\"$(mktemp -d)\"\n# start a local relay\ncroc relay --ports 11111,11112 &\n\nexport CROC_SECRET=\"sN3nx4hGLeihmn8G\"\n\n# start sender in background\nMSG=\"See you later, alligator!\"\ncroc --relay localhost:11111 send --code correct-horse-battery-staple --text \"$MSG\" &\n\n# wait for things to settle\nsleep 1\nMSG2=$(croc --relay localhost:11111 --yes correct-horse-battery-staple)\n\n# compare\n[ \"$MSG\" = \"$MSG2\" ] && touch $out\n",
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         timeout: 300n,
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       })),

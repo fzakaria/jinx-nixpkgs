@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 130, 5], ["platforms", 131, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["preConfigure", 63, 3], ["prePatch", 79, 3], ["configureFlags", 101, 3], ["enableParallelBuilding", 117, 3], ["hardeningDisable", 119, 3], ["dontDisableStatic", 121, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "rdma-core": false, openssl: false, zlib: false, xz: false, expat: false, bashNonInteractive: false, boost: false, curl: false, "pkg-config": false, libxml2: false, pciutils: false, busybox: false, python3: false, automake: false, autoconf: false, libtool: false, git: false, onlyFirmwareUpdater: true, enableDPA: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 130, 5], ["platforms", 131, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["preConfigure", 63, 3], ["prePatch", 79, 3], ["configureFlags", 101, 3], ["enableParallelBuilding", 117, 3], ["hardeningDisable", 119, 3], ["dontDisableStatic", 121, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const onlyFirmwareUpdater = nix.argOr($, "onlyFirmwareUpdater", () => false);
   const enableDPA = nix.argOr($, "enableDPA", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mstflint",
       version: "4.37.0-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Mellanox",
           repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +66,7 @@ export INSTALL_BASEDIR=$out
       hardeningDisable: nix.thunk(() => ["format"]),
       dontDisableStatic: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open source version of Mellanox Firmware Tools (MFT)",
         homepage: "https://github.com/Mellanox/mstflint",
         license: nix.thunk(() => (() => {

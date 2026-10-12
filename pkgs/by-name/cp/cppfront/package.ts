@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["maintainers", 85, 35], ["platforms", 85, 47], ["mainProgram", 86, 9]], [["pname", 60, 7], ["version", 61, 28], ["src", 61, 36], ["sourceRoot", 63, 7], ["nativeBuildInputs", 65, 7], ["postBuild", 70, 7], ["postInstall", 75, 7], ["doInstallCheck", 79, 7], ["postInstallCheck", 80, 7], ["meta", 84, 7]], [["hello-world", 59, 11]], [["updateScript", 57, 5], ["tests", 59, 5]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["mainProgram", 95, 5], ["license", 96, 5], ["maintainers", 100, 5], ["platforms", 103, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["postPatch", 26, 3], ["dontConfigure", 31, 3], ["buildPhase", 33, 3], ["installPhase", 41, 3], ["nativeInstallCheckInputs", 50, 3], ["versionCheckProgramArg", 53, 3], ["doInstallCheck", 54, 3], ["passthru", 56, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, installShellFiles: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["maintainers", 85, 35], ["platforms", 85, 47], ["mainProgram", 86, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 60, 7], ["version", 61, 28], ["src", 61, 36], ["sourceRoot", 63, 7], ["nativeBuildInputs", 65, 7], ["postBuild", 70, 7], ["postInstall", 75, 7], ["doInstallCheck", 79, 7], ["postInstallCheck", 80, 7], ["meta", 84, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["hello-world", 59, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 57, 5], ["tests", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["mainProgram", 95, 5], ["license", 96, 5], ["maintainers", 100, 5], ["platforms", 103, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["postPatch", 26, 3], ["dontConfigure", 31, 3], ["buildPhase", 33, 3], ["installPhase", 41, 3], ["nativeInstallCheckInputs", 50, 3], ["versionCheckProgramArg", 53, 3], ["doInstallCheck", 54, 3], ["passthru", 56, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cppfront",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hsutter",
           repo: "cppfront",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,12 +33,12 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "hello-world": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs$) => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-hello-world-test`),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -57,7 +51,7 @@ export default nix.lambda((args) => (() => {
               meta: nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
                 return {
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
                 platforms: nix.thunk(() => nix.attr(from, "platforms")),
                 mainProgram: "pure2-hello",
@@ -67,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Experimental compiler from a potential C++ 'syntax 2' (Cpp2) to today's 'syntax 1' (Cpp1)",
         homepage: "https://hsutter.github.io/cppfront/",
         changelog: nix.thunk(() => nix.str`https://github.com/hsutter/cppfront/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

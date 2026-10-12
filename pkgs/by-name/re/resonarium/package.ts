@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["fetchSubmodules", 36, 5], ["hash", 37, 5]], [["NIX_LDFLAGS", 91, 5], ["NIX_CFLAGS_COMPILE", 100, 5], ["FONTCONFIG_FILE", 112, 5]], [["name", 155, 7], ["desktopName", 156, 7], ["genericName", 157, 7], ["comment", 158, 7], ["exec", 159, 7], ["icon", 160, 7], ["categories", 161, 7], ["keywords", 166, 7]], [["name", 175, 7], ["desktopName", 176, 7], ["genericName", 177, 7], ["comment", 178, 7], ["exec", 179, 7], ["icon", 180, 7], ["categories", 181, 7], ["keywords", 185, 7]], [["updateScript", 194, 12]], [["description", 197, 5], ["longDescription", 198, 5], ["homepage", 209, 5], ["changelog", 210, 5], ["license", 211, 5], ["mainProgram", 212, 5], ["maintainers", 213, 5], ["platforms", 214, 5]], [["pname", 28, 3], ["version", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 56, 3], ["postPatch", 71, 3], ["enableParallelBuilding", 87, 3], ["env", 89, 3], ["ninjaFlags", 117, 3], ["dontUseCmakeInstall", 124, 3], ["installPhase", 126, 3], ["desktopItems", 153, 3], ["passthru", 194, 3], ["meta", 196, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, python3: false, writableTmpDirAsHomeHook: false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false, "alsa-lib": false, curl: false, fontconfig: false, freetype: false, libGL: false, libjack2: false, libx11: false, libxcursor: false, libxext: false, libxi: false, libxinerama: false, libxrandr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["fetchSubmodules", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 91, 5], ["NIX_CFLAGS_COMPILE", 100, 5], ["FONTCONFIG_FILE", 112, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 155, 7], ["desktopName", 156, 7], ["genericName", 157, 7], ["comment", 158, 7], ["exec", 159, 7], ["icon", 160, 7], ["categories", 161, 7], ["keywords", 166, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 175, 7], ["desktopName", 176, 7], ["genericName", 177, 7], ["comment", 178, 7], ["exec", 179, 7], ["icon", 180, 7], ["categories", 181, 7], ["keywords", 185, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 194, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 197, 5], ["longDescription", 198, 5], ["homepage", 209, 5], ["changelog", 210, 5], ["license", 211, 5], ["mainProgram", 212, 5], ["maintainers", 213, 5], ["platforms", 214, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 56, 3], ["postPatch", 71, 3], ["enableParallelBuilding", 87, 3], ["env", 89, 3], ["ninjaFlags", 117, 3], ["dontUseCmakeInstall", 124, 3], ["installPhase", 126, 3], ["desktopItems", 153, 3], ["passthru", 194, 3], ["meta", 196, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const libxinerama = nix.arg($, "libxinerama");
   const libxrandr = nix.arg($, "libxrandr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "resonarium",
       version: "0.1.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gabrielsoule",
           repo: "resonarium",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +69,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# melatonin_perfetto's CMakeLists fetches CPM.cmake and the Perfetto SDK\n# from the network at configure time, which the Nix sandbox blocks. The\n# PERFETTO compile-time switch is OFF here, so melatonin_perfetto.h\n# compiles every tracing macro to a no-op and never includes <perfetto.h>.\n# Replace the module's CMakeLists with a stub that just registers the\n# JUCE module and exposes the expected target/alias names.\ncat > modules/melatonin_perfetto/CMakeLists.txt <<'EOF'\njuce_add_module(\"${CMAKE_CURRENT_LIST_DIR}/melatonin_perfetto\")\nadd_library(perfetto INTERFACE)\nadd_library(perfetto::perfetto ALIAS perfetto)\ntarget_link_libraries(melatonin_perfetto INTERFACE perfetto::perfetto)\nadd_library(Melatonin::Perfetto ALIAS melatonin_perfetto)\nEOF\n",
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXext", "-lXcursor", "-lXinerama", "-lXrandr", "-ljack"]))),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))),
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
@@ -85,7 +79,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstArt=\"Resonarium_Instrument_artefacts/Release\"\nfxArt=\"Resonarium_Effect_artefacts/Release\"\n\n# VST3 bundles\ninstall -dm755 \"$out/lib/vst3\"\ncp -r \"$instArt/VST3/Resonarium.vst3\"           \"$out/lib/vst3/\"\ncp -r \"$fxArt/VST3/Resonarium Effect.vst3\"      \"$out/lib/vst3/\"\n\n# LV2 bundles\ninstall -dm755 \"$out/lib/lv2\"\ncp -r \"$instArt/LV2/Resonarium.lv2\"             \"$out/lib/lv2/\"\ncp -r \"$fxArt/LV2/Resonarium Effect.lv2\"        \"$out/lib/lv2/\"\n\n# Standalone executables (drop the space in the Effect binary name)\ninstall -Dm755 \"$instArt/Standalone/Resonarium\"        \"$out/bin/Resonarium\"\ninstall -Dm755 \"$fxArt/Standalone/Resonarium Effect\"   \"$out/bin/Resonarium-Effect\"\n\n# Icon for the .desktop entries\ninstall -Dm644 \"$src/plugin/Resources/resonarium_logo.png\" \\\n  \"$out/share/icons/hicolor/512x512/apps/resonarium.png\"\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "resonarium",
             desktopName: "Resonarium",
             genericName: "Physical Modelling Synthesizer",
@@ -96,7 +90,7 @@ export default nix.lambda((args) => (() => {
             keywords: nix.thunk(() => ["synth", "synthesizer", "audio", "MPE", "waveguide"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "resonarium-effect",
             desktopName: "Resonarium Effect",
             genericName: "Physical Modelling Audio Effect",
@@ -108,11 +102,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "MPE-compatible physical modelling synthesizer based on coupled string waveguides",
         longDescription: "Resonarium is a physical-modelling synthesizer plugin and standalone\napplication designed for abstract sound design, exploration and\nopen-ended play. Its voice is a network of coupled waveguide\nresonators driven by configurable exciters, and it is intended to be\nplayed with MPE-capable controllers such as the Ableton Push 3, the\nExpressive E Osmose or the ROLI Seaboard.\n\nThis package builds the Instrument (synth) and Effect variants and\ninstalls VST3 and LV2 bundles as well as the standalone applications.\n",
         homepage: "https://github.com/gabrielsoule/resonarium",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["NIX_LDFLAGS", 47, 7]], [["updateScript", 64, 12]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["postPatch", 29, 3], ["buildInputs", 33, 3], ["env", 47, 3], ["cargoBuildFlags", 62, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, libglvnd: false, libxkbcommon: false, "nix-update-script": false, rustPlatform: false, "vulkan-loader": false, wayland: false, libxrandr: false, libxi: false, libxcursor: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 64, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["postPatch", 29, 3], ["buildInputs", 33, 3], ["env", 47, 3], ["cargoBuildFlags", 62, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mslicer",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "connorslade",
           repo: "mslicer",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
         libx11,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "--push-state",
             "--no-as-needed",
@@ -64,11 +60,11 @@ export default nix.lambda((args) => (() => {
       })),
       cargoBuildFlags: nix.thunk(() => ["--workspace"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Experimental open source slicer for masked stereolithography (resin) printers",
         homepage: "https://connorcode.com/projects/mslicer",
         changelog: nix.thunk(() => nix.str`https://github.com/connorslade/mslicer/releases/tag/${nix.sel(finalAttrs, "version")}`),

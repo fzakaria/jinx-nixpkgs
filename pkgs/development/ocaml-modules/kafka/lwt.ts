@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt.nix", [[["description", 23, 5], ["broken", 24, 5]], [["pname", 11, 3], ["version", 13, 19], ["src", 13, 27], ["buildInputs", 15, 3], ["propagatedBuildInputs", 17, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, ocaml: false, lib: false, kafka: false, lwt: false, cmdliner: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt.nix", [["description", 23, 5], ["broken", 24, 5]]);
-const pos$2 = nix.positions(here + "/lwt.nix", [["pname", 11, 3], ["version", 13, 19], ["src", 13, 27], ["buildInputs", 15, 3], ["propagatedBuildInputs", 17, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const cmdliner = nix.arg($, "cmdliner");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kafka_lwt",
       version: nix.thunk(() => nix.attr(kafka, "version")),
       src: nix.thunk(() => nix.attr(kafka, "src")),
       buildInputs: nix.thunk(() => [cmdliner]),
       propagatedBuildInputs: nix.thunk(() => [kafka, lwt]),
       meta: nix.thunk(() => nix.update(nix.sel(kafka, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "OCaml bindings for Kafka, Lwt bindings",
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")),
       })),

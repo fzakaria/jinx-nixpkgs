@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["src", 43, 24], ["patches", 44, 5]], [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["fetchSubmodules", 56, 5], ["hash", 57, 5]], [["resourceDir", 83, 9], ["libclang", 84, 9], ["libc-cflags", 85, 9], ["libcxx-cflags", 86, 9]], [["EDGETX_VERSION_SUFFIX", 120, 5]], [["description", 170, 5], ["longDescription", 171, 5], ["mainProgram", 176, 5], ["homepage", 177, 5], ["changelog", 178, 5], ["license", 179, 5], ["platforms", 180, 5], ["maintainers", 185, 5]], [["pname", 49, 3], ["version", 50, 3], ["src", 52, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 69, 3], ["patches", 77, 3], ["postPatch", 91, 3], ["doInstallCheck", 97, 3], ["cmakeFlags", 99, 3], ["env", 119, 3], ["dontUseCmakeConfigure", 123, 3], ["targetsToBuild", 124, 11], ["__structuredAttrs", 125, 3], ["configurePhase", 127, 3], ["buildPhase", 133, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, cmake: false, ninja: false, libsForQt5: false, SDL2: false, fox_1_6: false, replaceVars: false, llvmPackages: false, "dfu-util": false, gtest: false, miniz: false, "yaml-cpp": false, udevCheckHook: false, applyPatches: false, targetsToBuild: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 43, 24], ["patches", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["fetchSubmodules", 56, 5], ["hash", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["resourceDir", 83, 9], ["libclang", 84, 9], ["libc-cflags", 85, 9], ["libcxx-cflags", 86, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["EDGETX_VERSION_SUFFIX", 120, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 170, 5], ["longDescription", 171, 5], ["mainProgram", 176, 5], ["homepage", 177, 5], ["changelog", 178, 5], ["license", 179, 5], ["platforms", 180, 5], ["maintainers", 185, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 49, 3], ["version", 50, 3], ["src", 52, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 69, 3], ["patches", 77, 3], ["postPatch", 91, 3], ["doInstallCheck", 97, 3], ["cmakeFlags", 99, 3], ["env", 119, 3], ["dontUseCmakeConfigure", 123, 3], ["targetsToBuild", 124, 11], ["__structuredAttrs", 125, 3], ["configurePhase", 127, 3], ["buildPhase", 133, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const applyPatches = nix.arg($, "applyPatches");
   const targetsToBuild = nix.argOr($, "targetsToBuild", () => nix.builtins.import(nix.path(here, "./targets.nix")));
   const maxlibqt = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "edgetx",
       repo: "maxLibQt",
       rev: "ac1988ffd005cd15a8449b92150ce6c08574a4f1",
@@ -48,16 +42,16 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   const yaml_cppSrc = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.attr(yaml_cpp, "src")),
       patches: nix.thunk(() => nix.selOr(yaml_cpp, () => [], "patches")),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "edgetx",
       version: "2.11.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "EdgeTX",
           repo: "edgetx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -83,7 +77,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-libclang-paths.patch"), nix.thunk(() => (() => {
             const llvmMajor = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(llvmPackages, "llvm", "version"))));
             return {
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               resourceDir: nix.thunk(() => nix.str`${nix.sel(llvmPackages, "clang", "cc", "lib")}/lib/clang/${llvmMajor}`),
               libclang: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))}/lib/libclang.so`),
               "libc-cflags": nix.thunk(() => nix.str`${nix.sel(llvmPackages, "clang")}/nix-support/libc-cflags`),
@@ -109,14 +103,14 @@ patchShebangs companion/util radio/util
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "NATIVE_BUILD", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CMAKE_SKIP_BUILD_RPATH", true)),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, EDGETX_VERSION_SUFFIX: "nixpkgs" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], EDGETX_VERSION_SUFFIX: "nixpkgs" })),
       dontUseCmakeConfigure: true,
       targetsToBuild: targetsToBuild,
       __structuredAttrs: true,
       configurePhase: "runHook preConfigure\nprependToVar cmakeFlags \"-GNinja\"\nrunHook postConfigure\n",
       buildPhase: "runHook preBuild\n\ncmakeCommonFlags=\"${cmakeFlags[@]}\"\n# This is the most sensible way to convert target name -> cmake options\n# aside from manually extracting bash variables from upstream's CI scripts\n# and converting that to nix expressions. Let's hope upstream doesn't break\n# this file too often.\nsource $src/tools/build-common.sh\n\n# Yes, this is really how upstream expects packaging to look like ¯\\_(ツ)_/¯.\n# https://github.com/EdgeTX/edgetx/wiki/Build-Instructions-under-Ubuntu-20.04#building-companion-simulator-and-radio-simulator-libraries\nfor plugin in \"${targetsToBuild[@]}\"\ndo\n  # Variable modified by `get_target_build_options` from build-common.sh.\n  local BUILD_OPTIONS=\"\"\n  get_target_build_options \"$plugin\"\n  # With each invocation of `cmakeConfigurePhase` `cmakeFlags` gets\n  # prepended to, so it has to be reset.\n  cmakeFlags=()\n  appendToVar cmakeFlags $cmakeCommonFlags $BUILD_OPTIONS\n  pushd .\n  cmakeConfigurePhase\n  ninjaFlags=(\"libsimulator\")\n  ninjaBuildPhase\n  rm CMakeCache.txt\n  popd\ndone\n\ncmakeConfigurePhase\nninjaFlags=()\nninjaBuildPhase\n\nrunHook postBuild\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "EdgeTX Companion transmitter support software",
         longDescription: "EdgeTX Companion is used for many different tasks like loading EdgeTX\nfirmware to the radio, backing up model settings, editing settings and\nrunning radio simulators.\n",
         mainProgram: nix.thunk(() => nix.add("companion", nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "take"), 2n, nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version"))))))))),

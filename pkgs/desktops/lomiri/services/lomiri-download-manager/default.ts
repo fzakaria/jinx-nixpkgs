@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["pkg-config", 118, 11]], [["tests", 118, 5], ["updateScript", 119, 5]], [["description", 123, 5], ["homepage", 124, 5], ["changelog", 125, 5], ["license", 128, 5], ["teams", 129, 5], ["platforms", 130, 5], ["pkgConfigModules", 131, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["outputs", 45, 3], ["postPatch", 51, 3], ["strictDeps", 62, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 79, 3], ["nativeCheckInputs", 90, 3], ["checkInputs", 97, 3], ["cmakeFlags", 99, 3], ["makeTargets", 105, 3], ["doCheck", 107, 3], ["enableParallelChecking", 110, 3], ["preCheck", 112, 3], ["passthru", 117, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, testers: false, boost: false, cmake: false, "cmake-extras": false, dbus: false, "dbus-test-runner": false, withDocumentation: true, doxygen: false, glog: false, graphviz: false, gtest: false, libapparmor: false, libcap: false, "lomiri-api": false, "pkg-config": false, python3: false, qtbase: false, qtdeclarative: false, qtscxml: false, qttools: false, validatePkgConfig: false, wrapQtAppsHook: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg-config", 118, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 118, 5], ["updateScript", 119, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 123, 5], ["homepage", 124, 5], ["changelog", 125, 5], ["license", 128, 5], ["teams", 129, 5], ["platforms", 130, 5], ["pkgConfigModules", 131, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["outputs", 45, 3], ["postPatch", 51, 3], ["strictDeps", 62, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 79, 3], ["nativeCheckInputs", 90, 3], ["checkInputs", 97, 3], ["cmakeFlags", 99, 3], ["makeTargets", 105, 3], ["doCheck", 107, 3], ["enableParallelChecking", 110, 3], ["preCheck", 112, 3], ["passthru", 117, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const withQt6 = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lomiri-download-manager",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-download-manager",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -86,15 +82,15 @@ substituteInPlace tests/common/CMakeLists.txt \\
 export QT_PLUGIN_PATH=${nix.app(nix.sel(lib, "getBin"), qtbase)}/${nix.sel(qtbase, "qtPluginPrefix")} # xcb platform & sqlite driver
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Performs uploads and downloads from a centralized location",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-download-manager",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-download-manager/-/blob/${(nix.asBool(!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(finalAttrs, "src", "tag"))))) ? nix.sel(finalAttrs, "src", "tag") : nix.sel(finalAttrs, "src", "rev"))}/ChangeLog`),

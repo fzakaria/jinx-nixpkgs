@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-addons.nix", [[["name", 19, 3], ["paths", 21, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 36, 3], ["postBuild", 38, 3], ["meta", 63, 20]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, makeBinaryWrapper: false, fcitx5: false, withConfigtool: true, "fcitx5-configtool": false, libsForQt5: false, qt6Packages: false, "fcitx5-gtk": false, librsvg: false, addons: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/with-addons.nix", [["name", 19, 3], ["paths", 21, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 36, 3], ["postBuild", 38, 3], ["meta", 63, 20]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const addons = nix.argOr($, "addons", () => []);
   const extraLdLibraries = nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.map((x) => nix.selOr(x, () => [], "extraLdLibraries"), addons))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`fcitx5-with-addons-${nix.sel(fcitx5, "version")}`),
       paths: nix.thunk(() => nix.concat([
         fcitx5,

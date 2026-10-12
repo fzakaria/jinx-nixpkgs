@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 13], ["hash", 37, 17]], [["pname", 41, 5], ["src", 42, 13], ["version", 42, 17], ["npmDepsHash", 42, 25], ["buildPhase", 44, 5], ["installPhase", 49, 5]], [["postPatch", 179, 7]], [["nativeBuildInputs", 190, 11]], [["extraArgs", 208, 7]], [["npmDeps", 185, 24], ["data-compressed", 187, 5], ["tests", 205, 5], ["updateScript", 207, 5]], [["description", 216, 5], ["homepage", 217, 5], ["changelog", 218, 5], ["license", 219, 5], ["teams", 220, 5], ["broken", 221, 5], ["mainProgram", 222, 5]], [["pname", 56, 3], ["version", 59, 5], ["src", 60, 5], ["vendorHash", 61, 5], ["subPackages", 64, 3], ["outputs", 69, 3], ["nativeBuildInputs", 74, 3], ["nativeCheckInputs", 78, 3], ["patches", 84, 3], ["postPatch", 87, 3], ["tags", 91, 3], ["ldflags", 96, 3], ["preConfigure", 103, 3], ["preCheck", 111, 3], ["checkFlags", 138, 3], ["preInstall", 156, 3], ["postInstall", 160, 3], ["overrideModAttrs", 177, 3], ["passthru", 183, 3], ["meta", 215, 3]]]);
 const formals$1 = { args: { lts: true, version: false, rev: true, hash: false, npmDepsHash: false, vendorHash: false, nixUpdateExtraArgs: true }, ellipsis: false };
 const formals$2 = { args: { bash: false, brotli: false, buildGoModule: false, coreutils: false, forgejo: false, git: false, gzip: false, lib: false, makeWrapper: false, "nix-update-script": false, nixosTests: false, openssh: false, sqliteSupport: true, lndir: false, runCommand: false, stdenv: false, fetchFromCodeberg: false, buildNpmPackage: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 13], ["hash", 37, 17]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["pname", 41, 5], ["src", 42, 13], ["version", 42, 17], ["npmDepsHash", 42, 25], ["buildPhase", 44, 5], ["installPhase", 49, 5]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["postPatch", 179, 7]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["nativeBuildInputs", 190, 11]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["extraArgs", 208, 7]]);
-const pos$6 = nix.positions(here + "/generic.nix", [["npmDeps", 185, 24], ["data-compressed", 187, 5], ["tests", 205, 5], ["updateScript", 207, 5]]);
-const pos$7 = nix.positions(here + "/generic.nix", [["description", 216, 5], ["homepage", 217, 5], ["changelog", 218, 5], ["license", 219, 5], ["teams", 220, 5], ["broken", 221, 5], ["mainProgram", 222, 5]]);
-const pos$8 = nix.positions(here + "/generic.nix", [["pname", 56, 3], ["version", 59, 5], ["src", 60, 5], ["vendorHash", 61, 5], ["subPackages", 64, 3], ["outputs", 69, 3], ["nativeBuildInputs", 74, 3], ["nativeCheckInputs", 78, 3], ["patches", 84, 3], ["postPatch", 87, 3], ["tags", 91, 3], ["ldflags", 96, 3], ["preConfigure", 103, 3], ["preCheck", 111, 3], ["checkFlags", 138, 3], ["preInstall", 156, 3], ["postInstall", 160, 3], ["overrideModAttrs", 177, 3], ["passthru", 183, 3], ["meta", 215, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,9 +36,9 @@ export default nix.lambda((args) => (() => {
     const fetchFromCodeberg = nix.arg($_1, "fetchFromCodeberg");
     const buildNpmPackage = nix.arg($_1, "buildNpmPackage");
     const writableTmpDirAsHomeHook = nix.arg($_1, "writableTmpDirAsHomeHook");
-    const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({ [nix.POS]: pos$1, owner: "forgejo", repo: "forgejo", rev: rev, hash: hash }))));
+    const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({ [nix.POS]: $pos[0], owner: "forgejo", repo: "forgejo", rev: rev, hash: hash }))));
     const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "forgejo-frontend",
         src: src,
         version: version,
@@ -94,11 +87,11 @@ cp -R ./options/locale $out/locale
 wrapProgram $out/bin/forgejo \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash, git, gzip, openssh]))}
 `);
-        const overrideModAttrs = (_) => ({ [nix.POS]: pos$3, postPatch: null });
+        const overrideModAttrs = (_) => ({ [nix.POS]: $pos[2], postPatch: null });
         const passthru = nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           npmDeps: nix.thunk(() => nix.attr(frontend, "npmDeps")),
-          "data-compressed": nix.thunk(() => nix.app(runCommand, "forgejo-data-compressed", nix.thunk(() => ({ [nix.POS]: pos$4, nativeBuildInputs: nix.thunk(() => [brotli, lndir]) })), nix.thunk(() => nix.str`mkdir $out
+          "data-compressed": nix.thunk(() => nix.app(runCommand, "forgejo-data-compressed", nix.thunk(() => ({ [nix.POS]: $pos[3], nativeBuildInputs: nix.thunk(() => [brotli, lndir]) })), nix.thunk(() => nix.str`mkdir $out
 lndir ${nix.sel(forgejo, "data")}/ $out/
 
 # Create static gzip and brotli files
@@ -108,7 +101,7 @@ find -L $out -type f -regextype posix-extended -iregex '.*\\.(css|html|js|svg|tt
 `))),
           tests: nix.thunk(() => (nix.asBool(lts) ? nix.sel(nixosTests, "forgejo-lts") : nix.sel(nixosTests, "forgejo"))),
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               extraArgs: nix.thunk(() => nix.concat(nixUpdateExtraArgs, [
                 "--version-regex",
                 nix.thunk(() => nix.str`v(${nix.app(nix.sel(lib, "versions", "major"), version_1)}\\.[0-9.]+)`),
@@ -116,7 +109,7 @@ find -L $out -type f -regextype posix-extended -iregex '.*\\.(css|html|js|svg|tt
             })))),
         }));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           description: "Self-hosted lightweight software forge",
           homepage: "https://forgejo.org",
           changelog: nix.thunk(() => nix.str`https://codeberg.org/forgejo/forgejo/releases/tag/v${version_1}`),
@@ -126,7 +119,7 @@ find -L $out -type f -regextype posix-extended -iregex '.*\\.(css|html|js|svg|tt
           mainProgram: "forgejo",
         }));
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           pname,
           version: version_1,
           src: src_1,

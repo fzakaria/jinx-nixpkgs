@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pg_search.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["url", 49, 11], ["hash", 50, 19]], [["filename", 47, 17], ["language", 47, 26], ["source", 48, 9]], [["lindera-ko-dic", 55, 9], ["lindera-cc-cedict", 58, 9], ["lindera-ipadic", 61, 9]], [["updateScript", 95, 12]], [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["broken", 105, 5], ["platforms", 106, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["postgresql", 27, 11], ["preConfigure", 29, 3], ["cargo-pgrx", 79, 3], ["cargoPgrxFlags", 81, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 90, 3], ["doCheck", 93, 3], ["passthru", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { buildPgrxExtension: false, "cargo-pgrx_0_19_0": false, fetchFromGitHub: false, fetchurl: false, lib: false, "nix-update-script": false, openblas: false, "pkg-config": false, postgresql: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pg_search.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/pg_search.nix", [["url", 49, 11], ["hash", 50, 19]]);
-const pos$3 = nix.positions(here + "/pg_search.nix", [["filename", 47, 17], ["language", 47, 26], ["source", 48, 9]]);
-const pos$4 = nix.positions(here + "/pg_search.nix", [["lindera-ko-dic", 55, 9], ["lindera-cc-cedict", 58, 9], ["lindera-ipadic", 61, 9]]);
-const pos$5 = nix.positions(here + "/pg_search.nix", [["updateScript", 95, 12]]);
-const pos$6 = nix.positions(here + "/pg_search.nix", [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["broken", 105, 5], ["platforms", 106, 5]]);
-const pos$7 = nix.positions(here + "/pg_search.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["postgresql", 27, 11], ["preConfigure", 29, 3], ["cargo-pgrx", 79, 3], ["cargoPgrxFlags", 81, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 90, 3], ["doCheck", 93, 3], ["passthru", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPgrxExtension, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pg_search",
       version: "0.25.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "paradedb",
           repo: "paradedb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,17 +33,17 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => (() => {
         const linderaVersion = "1.5.1";
         const dict = (language) => (filename) => (hash) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           filename: filename,
           language: language,
           source: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://lindera.dev/${filename}`),
               hash: hash,
             })))),
         });
         const dictionaries = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "lindera-ko-dic": nix.thunk(() => nix.app(dict, "Korean", "mecab-ko-dic-2.1.1-20180720.tar.gz", "sha256-cCztIcYWfp2a68Z0q17lSvWNREOXXylA030FZ8AgWRo=")),
           "lindera-cc-cedict": nix.thunk(() => nix.app(dict, "Chinese", "CC-CEDICT-MeCab-0.1.0-20200409.tar.gz", "sha256-7Tz54+yKgGR/DseD3Ana1DuMytLplPXqtv8TpB0JFsg=")),
           "lindera-ipadic": nix.thunk(() => nix.app(dict, "Japanese", "mecab-ipadic-2.7.0-20250920.tar.gz", "sha256-p7qfZF/+cJTlauHEqB0QDfj7seKLvheSYi6XKOFi2z0=")),
@@ -68,11 +62,11 @@ echo "Lindera cache prepared at $LINDERA_CACHE"
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [openblas]))),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Transactional Elasticsearch alternative as a PostgreSQL extension",
         homepage: "https://paradedb.com",
         changelog: nix.thunk(() => nix.str`https://github.com/paradedb/paradedb/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

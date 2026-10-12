@@ -2,18 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/builtins.nix", [[["license", 22, 40], ["homepage", 23, 11]], [["src", 15, 33], ["version", 15, 37], ["pname", 16, 9], ["dontUnpack", 18, 9], ["scriptPath", 19, 9], ["meta", 21, 9]], [["description", 31, 7], ["maintainers", 32, 7]], [["meta", 30, 17]], [["description", 35, 19]], [["meta", 35, 14]], [["description", 37, 20]], [["meta", 37, 15]], [["description", 40, 7], ["maintainers", 41, 7]], [["meta", 39, 14]], [["acompressor", 30, 5], ["autocrop", 35, 5], ["autodeint", 37, 5], ["autoload", 39, 5]]]);
 const formals$1 = { args: { lib: false, buildLua: false, "mpv-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/builtins.nix", [["license", 22, 40], ["homepage", 23, 11]]);
-const pos$2 = nix.positions(here + "/builtins.nix", [["src", 15, 33], ["version", 15, 37], ["pname", 16, 9], ["dontUnpack", 18, 9], ["scriptPath", 19, 9], ["meta", 21, 9]]);
-const pos$3 = nix.positions(here + "/builtins.nix", [["description", 31, 7], ["maintainers", 32, 7]]);
-const pos$4 = nix.positions(here + "/builtins.nix", [["meta", 30, 17]]);
-const pos$5 = nix.positions(here + "/builtins.nix", [["description", 35, 19]]);
-const pos$6 = nix.positions(here + "/builtins.nix", [["meta", 35, 14]]);
-const pos$7 = nix.positions(here + "/builtins.nix", [["description", 37, 20]]);
-const pos$8 = nix.positions(here + "/builtins.nix", [["meta", 37, 15]]);
-const pos$9 = nix.positions(here + "/builtins.nix", [["description", 40, 7], ["maintainers", 41, 7]]);
-const pos$10 = nix.positions(here + "/builtins.nix", [["meta", 39, 14]]);
-const pos$11 = nix.positions(here + "/builtins.nix", [["acompressor", 30, 5], ["autocrop", 35, 5], ["autodeint", 37, 5], ["autoload", 39, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,20 +21,20 @@ export default nix.lambda((args) => (() => {
           const meta = nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(mpv_unwrapped, "meta"));
             return {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             license: nix.thunk(() => nix.attr(from, "license")),
             homepage: nix.thunk(() => nix.str`https://github.com/mpv-player/mpv/blob/v${version}/${srcPath}`),
           };
           })());
-          return { [nix.POS]: pos$2, src, version, pname, dontUnpack, scriptPath, meta };
+          return { [nix.POS]: $pos[1], src, version, pname, dontUnpack, scriptPath, meta };
         })()), args_1)));
   })();
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.app(mkBuiltin, name))), nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         acompressor: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             description: "Script to toggle and control ffmpeg's dynamic range compression filter",
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -53,23 +43,23 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         autocrop: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             description: "This script uses the lavfi cropdetect filter to automatically insert a crop filter with appropriate parameters for the currently playing video",
           })),
         })),
         autodeint: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             description: "This script uses the lavfi idet filter to automatically insert the appropriate deinterlacing filter based on a short section of the currently playing video",
           })),
         })),
         autoload: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             description: "This script automatically loads playlist entries before and after the currently played file",
             maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dawidsowa"))]),
           })),

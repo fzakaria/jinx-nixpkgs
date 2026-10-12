@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["hash", 29, 5], ["sourceRoot", 30, 5]], [["description", 127, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["maintainers", 131, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["makeCacheWritable", 24, 3], ["npmRoot", 25, 3], ["npmDeps", 27, 3], ["nativeBuildInputs", 33, 3], ["preBuild", 38, 3], ["build-system", 44, 3], ["pythonRelaxDeps", 48, 3], ["dependencies", 50, 3], ["pythonImportsCheck", 95, 3], ["nativeCheckInputs", 97, 3], ["enabledTestPaths", 105, 3], ["disabledTests", 109, 3], ["postgresqlTestSetupPost", 114, 3], ["doCheck", 119, 3], ["preCheck", 121, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { fetchFromCodeberg: false, fetchNpmDeps: false, lib: false, stdenv: false, nodejs_24: false, npmHooks: false, postgresql: false, postgresqlTestHook: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["hash", 29, 5], ["sourceRoot", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 127, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["maintainers", 131, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["makeCacheWritable", 24, 3], ["npmRoot", 25, 3], ["npmDeps", 27, 3], ["nativeBuildInputs", 33, 3], ["preBuild", 38, 3], ["build-system", 44, 3], ["pythonRelaxDeps", 48, 3], ["dependencies", 50, 3], ["pythonImportsCheck", 95, 3], ["nativeCheckInputs", 97, 3], ["enabledTestPaths", 105, 3], ["disabledTests", 109, 3], ["postgresqlTestSetupPost", 114, 3], ["doCheck", 119, 3], ["preCheck", 121, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestHook = nix.arg($, "postgresqlTestHook");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fittrackee",
       version: "1.3.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FitTrackee",
           repo: "FitTrackee",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       makeCacheWritable: true,
       npmRoot: "fittrackee_client",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -106,7 +103,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       preCheck: "export TMP=$TMPDIR\nexport UI_URL=http://0.0.0.0:5000\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Self-hosted outdoor activity tracker",
         homepage: "https://docs.fittrackee.org/",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/FitTrackee/FitTrackee/src/tag/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

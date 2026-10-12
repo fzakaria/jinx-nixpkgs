@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["homepage", 29, 5], ["description", 30, 5], ["longDescription", 32, 5], ["license", 42, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 22, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, tmux: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["longDescription", 32, 5], ["license", 42, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 22, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const tmux = nix.arg($, "tmux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tmux-cssh",
       version: "unstable-2015-10-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zinic",
           repo: "tmux-cssh",
           rev: "21750733c5b6fa2fe23b9e50ce69d8564f2f742a",
@@ -31,7 +29,7 @@ cp tmux-cssh $out/bin/tmux-cssh
 wrapProgram $out/bin/tmux-cssh --suffix PATH : ${tmux}/bin
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/dennishafemann/tmux-cssh",
         description: "SSH to multiple hosts at the same time using tmux",
         longDescription: "tmux is a terminal multiplexer, like e.g. screen, which gives you a\npossibility to use multiple virtual terminal session within one real\nterminal session. tmux-cssh (tmux-cluster-ssh) sets a comfortable and\neasy to use functionality, clustering and synchronizing virtual\ntmux-sessions, on top of tmux. No need for a x-server or x-forwarding.\ntmux-cssh works just with tmux and in an low-level terminal-environment,\nlike most server do.\n",

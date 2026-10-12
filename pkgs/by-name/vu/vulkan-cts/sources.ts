@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sources.nix", [[["owner", 5, 5], ["repo", 6, 5], ["rev", 7, 5], ["hash", 8, 5]], [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]], [["owner", 54, 5], ["repo", 55, 5], ["rev", 56, 5], ["hash", 57, 5]], [["owner", 61, 5], ["repo", 62, 5], ["rev", 63, 5], ["hash", 64, 5]], [["amber", 4, 3], ["glslang", 11, 3], ["jsoncpp", 18, 3], ["spirv-headers", 25, 3], ["spirv-tools", 32, 3], ["video_generator", 39, 3], ["vulkan-docs", 46, 3], ["vulkan-validationlayers", 53, 3], ["vulkan-video-samples", 60, 3], ["prePatch", 67, 3]]]);
 const formals$1 = { args: { fetchurl: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sources.nix", [["owner", 5, 5], ["repo", 6, 5], ["rev", 7, 5], ["hash", 8, 5]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$4 = nix.positions(here + "/sources.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$5 = nix.positions(here + "/sources.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$6 = nix.positions(here + "/sources.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$7 = nix.positions(here + "/sources.nix", [["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5]]);
-const pos$8 = nix.positions(here + "/sources.nix", [["owner", 54, 5], ["repo", 55, 5], ["rev", 56, 5], ["hash", 57, 5]]);
-const pos$9 = nix.positions(here + "/sources.nix", [["owner", 61, 5], ["repo", 62, 5], ["rev", 63, 5], ["hash", 64, 5]]);
-const pos$10 = nix.positions(here + "/sources.nix", [["amber", 4, 3], ["glslang", 11, 3], ["jsoncpp", 18, 3], ["spirv-headers", 25, 3], ["spirv-tools", 32, 3], ["video_generator", 39, 3], ["vulkan-docs", 46, 3], ["vulkan-validationlayers", 53, 3], ["vulkan-video-samples", 60, 3], ["prePatch", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,63 +11,63 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return (() => {
     const amber = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "google",
         repo: "amber",
         rev: "53a4c8934bf7335d27c694e9fdac9ae1b180c0d2",
         hash: "sha256-oHfCBWW11tEs/mM2oX0+yNX1AS3Ch5TLR6e/39nxYmQ=",
       }))));
     const glslang = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         owner: "KhronosGroup",
         repo: "glslang",
         rev: "715c8500e7cd67f2eba9e60e98852a1ed49d2f15",
         hash: "sha256-vSbMdTjlRVvYLi5ZvTVmfe76oAQ4AhqyD+ohvkvIYIs=",
       }))));
     const jsoncpp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner: "open-source-parsers",
         repo: "jsoncpp",
         rev: "9059f5cad030ba11d37818847443a53918c327b1",
         hash: "sha256-m0tz8w8HbtDitx3Qkn3Rxj/XhASiJVkThdeBxIwv3WI=",
       }))));
     const spirv_headers = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         owner: "KhronosGroup",
         repo: "SPIRV-Headers",
         rev: "6dd7ba990830f7c15ac1345ff3b43ef6ffdad216",
         hash: "sha256-UKBVs2s05hP+paPq1dZFaUEQQ9Kx9acHxYUyJVx22eY=",
       }))));
     const spirv_tools = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         owner: "KhronosGroup",
         repo: "SPIRV-Tools",
         rev: "2d14d2e76aa7de72404b17078eda15c20a6a0389",
         hash: "sha256-8Xtzq8WOdFEw+uEJqMW39LLHt2m165K9OJsIFZuifoM=",
       }))));
     const video_generator = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         owner: "Igalia",
         repo: "video_generator",
         rev: "426300e12a5cc5d4676807039a1be237a2b68187",
         hash: "sha256-zdYYpX3hed7i5onY7c60LnM/e6PLa3VdrhXTV9oSlvg=",
       }))));
     const vulkan_docs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         owner: "KhronosGroup",
         repo: "Vulkan-Docs",
         rev: "6019efe93eca7bfa7a692316d91a9465eb457d60",
         hash: "sha256-zZOxL3XOCzlTsCuAm/+5SrDk6jPJpTY+nAL6H9knyPU=",
       }))));
     const vulkan_validationlayers = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         owner: "KhronosGroup",
         repo: "Vulkan-ValidationLayers",
         rev: "eb51484e6039752b56e8f70b5c33f04874224bfb",
         hash: "sha256-fwFG0UdhgDUsCpp/n6iwjxTPlgxfnI8X2ZmAHbG+ZZ8=",
       }))));
     const vulkan_video_samples = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         owner: "KhronosGroup",
         repo: "Vulkan-Video-Samples",
         rev: "v0.3.9",
@@ -95,7 +86,7 @@ cp -r ${vulkan_validationlayers} external/vulkan-validationlayers/src
 cp -r ${vulkan_video_samples} external/vulkan-video-samples/src
 `);
     return {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       amber,
       glslang,
       jsoncpp,

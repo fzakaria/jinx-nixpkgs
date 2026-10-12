@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 56, 12]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5], ["platforms", 65, 5]], [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 11, 3], ["strictDeps", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["dontConfigure", 36, 3], ["makeFlags", 38, 3], ["makeTargets", 43, 3], ["installPhase", 48, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 56, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5], ["platforms", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 11, 3], ["strictDeps", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["dontConfigure", 36, 3], ["makeFlags", 38, 3], ["makeTargets", 43, 3], ["installPhase", 48, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "socket-vmnet",
       version: "1.2.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lima-vm",
           repo: "socket_vmnet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +45,11 @@ substituteInPlace launchd/io.github.lima-vm.socket_vmnet{,.bridged.en0}.plist \\
       makeTargets: nix.thunk(() => ["socket_vmnet", "socket_vmnet_client"]),
       installPhase: "runHook preInstall\n\nmake PREFIX=$out $makeFlags install.{bin,doc}\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Vmnet.framework support for unmodified rootless QEMU",
         homepage: "https://github.com/lima-vm/socket_vmnet",
         changelog: nix.thunk(() => nix.str`https://github.com/lima-vm/socket_vmnet/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/janePackage_0_16.nix", [[["owner", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["sha256", 30, 7]], [["license", 36, 7], ["homepage", 37, 7]], [["duneVersion", 21, 5], ["version", 22, 13], ["buildInputs", 22, 21], ["minimalOCamlVersion", 24, 13], ["src", 26, 5], ["doCheck", 33, 13], ["meta", 35, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDunePackage: false, defaultVersion: true }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: true, hash: false, minimalOCamlVersion: true, doCheck: true, buildInputs: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/janePackage_0_16.nix", [["owner", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["sha256", 30, 7]]);
-const pos$2 = nix.positions(here + "/janePackage_0_16.nix", [["license", 36, 7], ["homepage", 37, 7]]);
-const pos$3 = nix.positions(here + "/janePackage_0_16.nix", [["duneVersion", 21, 5], ["version", 22, 13], ["buildInputs", 22, 21], ["minimalOCamlVersion", 24, 13], ["src", 26, 5], ["doCheck", 33, 13], ["meta", 35, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
     const doCheck = nix.argOr($_1, "doCheck", () => true);
     const buildInputs = nix.argOr($_1, "buildInputs", () => []);
     return nix.app(buildDunePackage, nix.thunk(() => nix.update(args_2, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         duneVersion: "3",
         version: version,
         buildInputs: buildInputs,
         minimalOCamlVersion: minimalOCamlVersion,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "janestreet",
             repo: pname,
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
           })))),
         doCheck: doCheck,
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           homepage: nix.thunk(() => nix.str`https://github.com/janestreet/${pname}`),
         }, nix.sel(args_2, "meta"))),

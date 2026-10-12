@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["NIX_CFLAGS_COMPILE", 76, 7]], [["description", 83, 5], ["license", 84, 5]], [["pname", 18, 3], ["version", 19, 3], ["se_url", 20, 22], ["src", 22, 3], ["outputs", 27, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 46, 3], ["makeFlags", 54, 3], ["env", 76, 3], ["installTargets", 78, 3], ["enableParallelBuilding", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, bison: false, flex: false, libsepol: false, libselinux: false, bzip2: false, audit: false, enablePython: true, swig: true, python3: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 76, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 83, 5], ["license", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["se_url", 20, 22], ["src", 22, 3], ["outputs", 27, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 46, 3], ["makeFlags", 54, 3], ["env", 76, 3], ["installTargets", 78, 3], ["enableParallelBuilding", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const swig = nix.argOr($, "swig", () => null);
   const python3 = nix.argOr($, "python3", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libsemanage",
       version: "3.11",
       se_url: nix.thunk(() => nix.attr(libsepol, "se_url")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "se_url")}/${nix.sel(finalAttrs, "version")}/libsemanage-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-52FgKGu/sIIWAsbAwyIOvPNmrTJG07nQoPvvzTXoYEM=",
         })))),
@@ -48,13 +45,13 @@ export default nix.lambda((args) => (() => {
         "DEFAULT_SEMANAGE_CONF_LOCATION=$(out)/etc/selinux/semanage.conf",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ["DISABLE_SHARED=y"])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=clobbered"]))),
       })),
       installTargets: nix.thunk(() => nix.concat(["install"], nix.app(nix.sel(lib, "optionals"), enablePython, nix.thunk(() => ["install-pywrap"])))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(libsepol, "meta")), nix.thunk(() => ["outputsToInstall"])), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Policy management tools for SELinux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
       })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 12, 3], ["version", 13, 11], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, logs: false, "syslog-message": false, ptime: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 11], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const ptime = nix.arg($, "ptime");
   const version = nix.argOr($, "version", () => "0.5.0");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "logs-syslog",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/hannesm/logs-syslog/releases/download/v${version}/logs-syslog-${version}.tbz`),
           hash: "sha256-rx7mksA8y1BCEisNTQwSsJaet42eR7tZ3gYzvCqrYNQ=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [logs, syslog_message, ptime]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Logs reporter to syslog (UDP/TCP/TLS)",
         homepage: "https://github.com/hannesm/logs-syslog",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

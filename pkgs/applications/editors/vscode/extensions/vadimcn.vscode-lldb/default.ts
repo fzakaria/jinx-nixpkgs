@@ -2,19 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["stdenv", 43, 17], ["cargo", 43, 24], ["rustc", 43, 30]], [["rustPlatform", 42, 7], ["pname", 47, 9], ["src", 48, 9], ["version", 49, 9], ["stdenv", 50, 9], ["cargoHash", 51, 9], ["codelldb-launch", 52, 9]], [["pname", 60, 9], ["src", 61, 9], ["version", 62, 9]], [["stdenv", 70, 17], ["cargo", 70, 24], ["rustc", 70, 30]], [["rustPlatform", 69, 7], ["pname", 74, 9], ["src", 75, 9], ["version", 76, 9], ["cargoHash", 77, 9]], [["stdenv", 85, 17], ["cargo", 85, 24], ["rustc", 85, 30]], [["rustPlatform", 84, 7], ["pname", 89, 9], ["src", 90, 9], ["version", 91, 9], ["cargoHash", 92, 9]], [["standalone", 176, 34]], [["lldb", 175, 13], ["adapter", 176, 5], ["updateScript", 177, 5]], [["description", 181, 5], ["homepage", 182, 5], ["license", 183, 5], ["maintainers", 184, 5], ["platforms", 185, 5]], [["pname", 99, 3], ["src", 101, 5], ["version", 102, 5], ["vscodeExtUniqueId", 103, 5], ["vscodeExtPublisher", 104, 5], ["vscodeExtName", 105, 5], ["installPrefix", 108, 3], ["nativeBuildInputs", 110, 3], ["patches", 119, 3], ["preConfigure", 122, 3], ["postConfigure", 126, 3], ["cmakeFlags", 134, 3], ["makeFlags", 138, 3], ["preBuild", 140, 3], ["installPhase", 144, 3], ["postFixup", 168, 3], ["passthru", 174, 3], ["meta", 180, 3]]]);
 const formals$1 = { args: { callPackage: false, cargo: false, cmake: false, fetchFromGitHub: false, lib: false, llvmPackages_19: false, makeRustPlatform: false, makeWrapper: false, nodejs: false, python3: false, rustc: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["stdenv", 43, 17], ["cargo", 43, 24], ["rustc", 43, 30]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rustPlatform", 42, 7], ["pname", 47, 9], ["src", 48, 9], ["version", 49, 9], ["stdenv", 50, 9], ["cargoHash", 51, 9], ["codelldb-launch", 52, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 60, 9], ["src", 61, 9], ["version", 62, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["stdenv", 70, 17], ["cargo", 70, 24], ["rustc", 70, 30]]);
-const pos$6 = nix.positions(here + "/default.nix", [["rustPlatform", 69, 7], ["pname", 74, 9], ["src", 75, 9], ["version", 76, 9], ["cargoHash", 77, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["stdenv", 85, 17], ["cargo", 85, 24], ["rustc", 85, 30]]);
-const pos$8 = nix.positions(here + "/default.nix", [["rustPlatform", 84, 7], ["pname", 89, 9], ["src", 90, 9], ["version", 91, 9], ["cargoHash", 92, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["standalone", 176, 34]]);
-const pos$10 = nix.positions(here + "/default.nix", [["lldb", 175, 13], ["adapter", 176, 5], ["updateScript", 177, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["description", 181, 5], ["homepage", 182, 5], ["license", 183, 5], ["maintainers", 184, 5], ["platforms", 185, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["pname", 99, 3], ["src", 101, 5], ["version", 102, 5], ["vscodeExtUniqueId", 103, 5], ["vscodeExtPublisher", 104, 5], ["vscodeExtName", 105, 5], ["installPrefix", 108, 3], ["nativeBuildInputs", 110, 3], ["patches", 119, 3], ["preConfigure", 122, 3], ["postConfigure", 126, 3], ["cmakeFlags", 134, 3], ["makeFlags", 138, 3], ["preBuild", 140, 3], ["installPhase", 144, 3], ["postFixup", 168, 3], ["passthru", 174, 3], ["meta", 180, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const vscodeExtPublisher = publisher;
   const vscodeExtName = pname;
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "vadimcn",
       repo: "codelldb",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -48,8 +37,8 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.thunk(() => nix.sel(llvmPackages_19, "libcxxStdenv"));
   const cargoHash = "sha256-fuUTLdavMiYfpyxctXes2GJCsNZd5g1d4B/v+W/Rnu8=";
   const adapter = nix.thunk(() => nix.app(callPackage, nix.path(here, "./adapter.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
-      rustPlatform: nix.thunk(() => nix.app(makeRustPlatform, nix.thunk(() => ({ [nix.POS]: pos$2, stdenv: stdenv, cargo: cargo, rustc: rustc })))),
+      [nix.POS]: $pos[2],
+      rustPlatform: nix.thunk(() => nix.app(makeRustPlatform, nix.thunk(() => ({ [nix.POS]: $pos[1], stdenv: stdenv, cargo: cargo, rustc: rustc })))),
       pname: pname,
       src: src,
       version: version,
@@ -57,25 +46,25 @@ export default nix.lambda((args) => (() => {
       cargoHash: cargoHash,
       "codelldb-launch": codelldb_launch,
     }))));
-  const nodeDeps = nix.thunk(() => nix.app(callPackage, nix.path(here, "./node_deps.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname, src: src, version: version }))));
+  const nodeDeps = nix.thunk(() => nix.app(callPackage, nix.path(here, "./node_deps.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], pname: pname, src: src, version: version }))));
   const codelldb_types = nix.thunk(() => nix.app(callPackage, nix.path(here, "./codelldb-types.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
-      rustPlatform: nix.thunk(() => nix.app(makeRustPlatform, nix.thunk(() => ({ [nix.POS]: pos$5, stdenv: stdenv, cargo: cargo, rustc: rustc })))),
+      [nix.POS]: $pos[5],
+      rustPlatform: nix.thunk(() => nix.app(makeRustPlatform, nix.thunk(() => ({ [nix.POS]: $pos[4], stdenv: stdenv, cargo: cargo, rustc: rustc })))),
       pname: pname,
       src: src,
       version: version,
       cargoHash: cargoHash,
     }))));
   const codelldb_launch = nix.thunk(() => nix.app(callPackage, nix.path(here, "./codelldb-launch.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
-      rustPlatform: nix.thunk(() => nix.app(makeRustPlatform, nix.thunk(() => ({ [nix.POS]: pos$7, stdenv: stdenv, cargo: cargo, rustc: rustc })))),
+      [nix.POS]: $pos[7],
+      rustPlatform: nix.thunk(() => nix.app(makeRustPlatform, nix.thunk(() => ({ [nix.POS]: $pos[6], stdenv: stdenv, cargo: cargo, rustc: rustc })))),
       pname: pname,
       src: src,
       version: version,
       cargoHash: cargoHash,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: nix.thunk(() => nix.str`vscode-extension-${publisher}-${pname}`),
       src: src,
       version: version,
@@ -118,13 +107,13 @@ runHook postInstall
   --prefix LD_LIBRARY_PATH : "${python3}/lib"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         lldb: lldb,
-        adapter: nix.thunk(() => nix.app(nix.sel(adapter, "override"), nix.thunk(() => ({ [nix.POS]: pos$9, standalone: true })))),
+        adapter: nix.thunk(() => nix.app(nix.sel(adapter, "override"), nix.thunk(() => ({ [nix.POS]: $pos[8], standalone: true })))),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Native debugger extension for VSCode based on LLDB",
         homepage: "https://github.com/vadimcn/vscode-lldb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["url", 38, 13], ["hash", 39, 13]], [["url", 44, 13], ["hash", 45, 13]], [["src", 82, 32], ["nativeBuildInputs", 83, 11]], [["supportedFeatures", 93, 11]], [["command", 97, 9], ["supportedFeatures", 104, 9]], [["pubspecSource", 79, 5], ["updateScript", 88, 5]], [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["mainProgram", 113, 5], ["platforms", 114, 5], ["maintainers", 115, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pubspecLock", 28, 3], ["gitHashes", 30, 3], ["patches", 32, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 55, 3], ["preBuild", 62, 3], ["postInstall", 66, 3], ["extraWrapProgramArgs", 74, 3], ["passthru", 78, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, flutter341: false, fetchFromGitHub: false, fetchurl: false, imagemagick: false, "alsa-lib": false, libass: false, "mpv-unwrapped": false, runCommand: false, "yq-go": false, "_experimental-update-script-combinators": false, "nix-update-script": false, dart: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 38, 13], ["hash", 39, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 44, 13], ["hash", 45, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 82, 32], ["nativeBuildInputs", 83, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["supportedFeatures", 93, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["command", 97, 9], ["supportedFeatures", 104, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pubspecSource", 79, 5], ["updateScript", 88, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["mainProgram", 113, 5], ["platforms", 114, 5], ["maintainers", 115, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pubspecLock", 28, 3], ["gitHashes", 30, 3], ["patches", 32, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 55, 3], ["preBuild", 62, 3], ["postInstall", 66, 3], ["extraWrapProgramArgs", 74, 3], ["passthru", 78, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const dart = nix.arg($, "dart");
   return nix.app(nix.sel(flutter341, "buildFlutterApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "interstellar",
       version: "0.11.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "interstellar-app",
           repo: "interstellar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,12 +36,12 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./emoji_builder.patch")]),
       postPatch: nix.thunk(() => nix.str`substituteInPlace lib/src/widgets/emoji_picker/emoji_builder.dart \\
     --replace-fail "@compact.raw.json@" "${nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://raw.githubusercontent.com/milesj/emojibase/a5fc630a91ca42cddf3f4a66492965600fd3bce8/packages/data/en/compact.raw.json",
           hash: "sha256-OivCYjiBEooRx3zni9jAr3lR0rzpoa3HX2l/a0UwDpE=",
         })))}" \\
     --replace-fail "@messages.raw.json@" "${nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://raw.githubusercontent.com/milesj/emojibase/a5fc630a91ca42cddf3f4a66492965600fd3bce8/packages/data/en/messages.raw.json",
           hash: "sha256-ZQWXZJ5jXxDNQHaOAsxApAt6oanvaEwZ6VXbDA0YeMs=",
         })))}"
@@ -64,17 +56,17 @@ substituteInPlace lib/src/controller/database/database.dart \\
       extraWrapProgramArgs: nix.thunk(() => nix.str`--prefix LD_LIBRARY_PATH : $out/app/${nix.sel(finalAttrs, "pname")}/lib
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             nativeBuildInputs: nix.thunk(() => [yq_go]),
           })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "interstellar.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$5, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "interstellar.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: $pos[4], supportedFeatures: [] })),
             nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               command: nix.thunk(() => [
                 nix.thunk(() => nix.sel(dart, "fetchGitHashesScript")),
                 "--input",
@@ -87,7 +79,7 @@ substituteInPlace lib/src/controller/database/database.dart \\
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "App for Mbin/Lemmy/PieFed, connecting you to the fediverse",
         homepage: "https://interstellar.jwr.one",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

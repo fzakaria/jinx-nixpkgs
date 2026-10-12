@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["libcanberra", 65, 7], ["libpulseaudio", 66, 15]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["patches", 62, 3], ["doCheck", 71, 3], ["pythonImportsCheck", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, replaceVars: false, python3Packages: false, gst_all_1: false, wrapGAppsHook3: false, "gobject-introspection": false, gtk3: false, libwnck: false, keybinder3: false, intltool: false, "libcanberra-gtk3": false, libappindicator: false, libpulseaudio: false, libgudev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["libcanberra", 65, 7], ["libpulseaudio", 66, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["patches", 62, 3], ["doCheck", 71, 3], ["pythonImportsCheck", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const libgudev = nix.arg($, "libgudev");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kazam",
       version: "1.5.5-unstable-2025-01-02",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "niknah",
           repo: "kazam",
           rev: "b6c1bddc9ac93aad50476f2c87fec9f0cf204f2a",
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
       })()),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             libcanberra: libcanberra_gtk3,
             libpulseaudio: libpulseaudio,
           })))),
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["kazam"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Screencasting program created with design in mind",
         homepage: "https://github.com/niknah/kazam",
         changelog: nix.thunk(() => nix.str`https://github.com/niknah/kazam/raw/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["trezord", 38, 43]], [["tests", 38, 12]], [["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5], ["homepage", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["udevRules", 13, 3], ["nativeBuildInputs", 19, 3], ["doInstallCheck", 23, 3], ["dontUnpack", 25, 3], ["installPhase", 27, 3], ["passthru", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, nixosTests: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["trezord", 38, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5], ["homepage", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["udevRules", 13, 3], ["nativeBuildInputs", 19, 3], ["doInstallCheck", 23, 3], ["dontUnpack", 25, 3], ["installPhase", 27, 3], ["passthru", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "trezor-udev-rules";
       const version = "unstable-2019-07-17";
       const udevRules = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://raw.githubusercontent.com/trezor/trezor-firmware/68a3094b0a8e36b588b1bcb58c34a2c9eafc0dca/common/udev/51-trezor.rules",
           sha256: "0vlxif89nsqpbnbz1vwfgpl1zayzmq87gw1snskn0qns6x2rpczk",
         }))));
@@ -37,11 +33,14 @@ substituteInPlace 51-trezor.rules \\
 cp 51-trezor.rules $out/lib/udev/rules.d/51-trezor.rules
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, trezord: nix.thunk(() => nix.attr(nixosTests, "trezord")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          trezord: nix.thunk(() => nix.attr(nixosTests, "trezord")),
+        })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Udev rules for Trezor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         maintainers: nix.thunk(() => (() => {
@@ -52,7 +51,7 @@ cp 51-trezor.rules $out/lib/udev/rules.d/51-trezor.rules
         homepage: "https://github.com/trezor/trezor-firmware/tree/master/common/udev",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         udevRules,

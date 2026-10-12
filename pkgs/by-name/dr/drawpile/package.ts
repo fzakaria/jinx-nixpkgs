@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 73, 5], ["repo", 74, 5], ["rev", 75, 5], ["sha256", 76, 5]], [["pname", 80, 26], ["version", 80, 32], ["src", 80, 40], ["hash", 81, 5]], [["name", 88, 7], ["url", 89, 7], ["hash", 90, 7]], [["description", 120, 5], ["homepage", 121, 5], ["downloadPage", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["platforms", 128, 5], ["broken", 129, 5]], [["mainProgram", 132, 5]], [["mainProgram", 135, 5]], [["pname", 69, 3], ["version", 70, 3], ["src", 72, 3], ["cargoDeps", 79, 3], ["patches", 84, 3], ["nativeBuildInputs", 94, 3], ["buildInputs", 104, 3], ["cmakeFlags", 111, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cargo: false, "pkg-config": false, cmake: false, kdePackages: false, rustc: false, rustPlatform: false, fetchpatch: false, libzip: false, qt6Packages: false, ffmpeg: false, libsecret: false, libwebp: false, giflib: false, libvpx: false, miniupnpc: false, libmicrohttpd: false, libsodium: false, withSystemd: true, systemd: true, buildClient: true, buildServer: true, buildServerGui: true, buildExtraTools: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 73, 5], ["repo", 74, 5], ["rev", 75, 5], ["sha256", 76, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 80, 26], ["version", 80, 32], ["src", 80, 40], ["hash", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 88, 7], ["url", 89, 7], ["hash", 90, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 120, 5], ["homepage", 121, 5], ["downloadPage", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["platforms", 128, 5], ["broken", 129, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 132, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mainProgram", 135, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 69, 3], ["version", 70, 3], ["src", 72, 3], ["cargoDeps", 79, 3], ["patches", 84, 3], ["nativeBuildInputs", 94, 3], ["buildInputs", 104, 3], ["cmakeFlags", 111, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,18 +52,18 @@ export default nix.lambda((args) => (() => {
   })());
   const serverDeps = nix.thunk(() => nix.concat([libmicrohttpd, libsodium], nix.app(nix.sel(lib, "optional"), withSystemd, systemd)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "drawpile",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "drawpile",
           repo: "drawpile",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-0paLKxAEvlbExq426xTekBt+Dkphx7Wg/AtpYN3f/4w=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -77,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "qt-6.10.1.patch",
             url: "https://github.com/drawpile/Drawpile/commit/c4f69f79b1cb0d25e68b49e807ce6773ddb9dd3c.patch",
             hash: "sha256-Z8mcPux8tvK5y1GirfKq1X9+kxHDIrnSLTd2MCSIxTg=",
@@ -101,7 +95,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "TOOLS", buildExtraTools)),
       ]),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Collaborative drawing program that allows multiple users to sketch on the same canvas simultaneously",
         homepage: "https://drawpile.net/",
         downloadPage: "https://drawpile.net/download/",
@@ -115,7 +109,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), buildServer, nix.thunk(() => ({ [nix.POS]: pos$5, mainProgram: "drawpile-srv" }))), nix.app(nix.sel(lib, "optionalAttrs"), buildClient, nix.thunk(() => ({ [nix.POS]: pos$6, mainProgram: "drawpile" })))))),
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), buildServer, nix.thunk(() => ({ [nix.POS]: $pos[4], mainProgram: "drawpile-srv" }))), nix.app(nix.sel(lib, "optionalAttrs"), buildClient, nix.thunk(() => ({ [nix.POS]: $pos[5], mainProgram: "drawpile" })))))),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

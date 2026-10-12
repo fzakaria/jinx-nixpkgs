@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["gnutlsSupport", 9, 5], ["opensslSupport", 10, 5], ["ngtcp2", 11, 5]]]);
 const formals$1 = { args: { curl: false, "ngtcp2-gnutls": false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["gnutlsSupport", 9, 5], ["opensslSupport", 10, 5], ["ngtcp2", 11, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const ngtcp2_gnutls = nix.arg($, "ngtcp2-gnutls");
   return nix.app(nix.sel(curl, "override"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       gnutlsSupport: true,
       opensslSupport: false,
       ngtcp2: ngtcp2_gnutls,

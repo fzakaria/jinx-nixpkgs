@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["tests", 10, 12]], [["description", 12, 5], ["license", 13, 5]], [["name", 8, 3], ["propagatedBuildInputs", 9, 3], ["passthru", 10, 3], ["meta", 11, 3]]]);
 const formals$1 = { args: { lib: false, callPackages: false, isDeclaredArray: false, makeSetupHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["tests", 10, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 12, 5], ["license", 13, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 8, 3], ["propagatedBuildInputs", 9, 3], ["passthru", 10, 3], ["meta", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,15 +12,15 @@ export default nix.lambda((args) => (() => {
   const isDeclaredArray = nix.arg($, "isDeclaredArray");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "sortArray",
       propagatedBuildInputs: nix.thunk(() => [isDeclaredArray]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         tests: nix.thunk(() => nix.app(callPackages, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sorts an array",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

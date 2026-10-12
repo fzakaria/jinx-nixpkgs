@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["cle", 56, 5], ["eventlet", 57, 5], ["gevent", 58, 5], ["graph", 59, 5], ["metrics", 60, 5], ["twisted", 61, 5]], [["CASS_DRIVER_ALLOWED_CYTHON_VERSION", 73, 7]], [["description", 131, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 135, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["pythonRelaxDeps", 39, 3], ["build-system", 41, 3], ["buildInputs", 48, 3], ["dependencies", 50, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 64, 3], ["env", 73, 3], ["preBuild", 75, 3], ["__darwinAllowLocalNetworking", 79, 3], ["preCheck", 83, 3], ["pythonImportsCheck", 101, 3], ["postCheck", 103, 3], ["enabledTestPaths", 107, 3], ["disabledTestPaths", 109, 3], ["disabledTests", 116, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, cryptography: false, cython: false, deprecated: false, eventlet: false, fetchFromGitHub: false, geomet: false, gevent: false, gremlinpython: false, "iana-etc": false, libev: false, libredirect: false, pytestCheckHook: false, pytz: false, pyyaml: false, scales: false, sure: false, tomli: false, twisted: false, setuptools: false, distutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cle", 56, 5], ["eventlet", 57, 5], ["gevent", 58, 5], ["graph", 59, 5], ["metrics", 60, 5], ["twisted", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["CASS_DRIVER_ALLOWED_CYTHON_VERSION", 73, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 131, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 135, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["pythonRelaxDeps", 39, 3], ["build-system", 41, 3], ["buildInputs", 48, 3], ["dependencies", 50, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 64, 3], ["env", 73, 3], ["preBuild", 75, 3], ["__darwinAllowLocalNetworking", 79, 3], ["preCheck", 83, 3], ["pythonImportsCheck", 101, 3], ["postCheck", 103, 3], ["enabledTestPaths", 107, 3], ["disabledTestPaths", 109, 3], ["disabledTests", 116, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const distutils = nix.arg($, "distutils");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cassandra-driver",
       version: "3.30.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "cassandra-python-driver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libev]),
       dependencies: nix.thunk(() => [deprecated, geomet]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cle: nix.thunk(() => [cryptography]),
         eventlet: nix.thunk(() => [eventlet]),
         gevent: nix.thunk(() => [gevent]),
@@ -61,7 +57,7 @@ export default nix.lambda((args) => (() => {
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, pytz, pyyaml, sure], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CASS_DRIVER_ALLOWED_CYTHON_VERSION: nix.thunk(() => nix.sel(cython, "version")),
       })),
       preBuild: "export CASS_DRIVER_BUILD_CONCURRENCY=$NIX_BUILD_CORES\n",
@@ -81,7 +77,7 @@ export LD_PRELOAD=${libredirect}/lib/libredirect.so
         "test_empty_connections",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_timer_cancellation"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python client driver for Apache Cassandra",
         homepage: "https://github.com/apache/cassandra-python-driver",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/cassandra-python-driver/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

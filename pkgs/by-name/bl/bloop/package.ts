@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 7], ["hash", 32, 15]], [["command", 82, 7], ["supportedFeatures", 83, 7]], [["nativeBuildInputs", 86, 47]], [["nativeBuildInputs", 103, 11]], [["help", 86, 11], ["completions", 100, 11]], [["updateScript", 81, 5], ["tests", 86, 5]], [["homepage", 120, 5], ["changelog", 121, 5], ["sourceProvenance", 122, 5], ["license", 123, 5], ["description", 124, 5], ["mainProgram", 125, 5], ["platforms", 126, 13], ["maintainers", 127, 5]], [["pname", 43, 11], ["version", 43, 17], ["dontUnpack", 45, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["installPhase", 57, 3], ["passthru", 80, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, autoPatchelfHook: false, installShellFiles: false, makeWrapper: false, jre: false, lib: false, zlib: false, callPackage: false, runCommand: false, zsh: false, fish: false }, ellipsis: false };
 const formals$2 = { args: { asset: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 15]]);
-const pos$2 = nix.positions(here + "/package.nix", [["command", 82, 7], ["supportedFeatures", 83, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 86, 47]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 103, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["help", 86, 11], ["completions", 100, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 81, 5], ["tests", 86, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 120, 5], ["changelog", 121, 5], ["sourceProvenance", 122, 5], ["license", 123, 5], ["description", 124, 5], ["mainProgram", 125, 5], ["platforms", 126, 13], ["maintainers", 127, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 43, 11], ["version", 43, 17], ["dontUnpack", 45, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["installPhase", 57, 3], ["passthru", 80, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +32,7 @@ export default nix.lambda((args) => (() => {
     const asset = nix.arg($_1, "asset");
     const hash = nix.arg($_1, "hash");
     return nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/${repo}/releases/download/v${version}/${asset}`),
         hash: hash,
       })));
@@ -49,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const bloop_fish = nix.thunk(() => nix.app(fetchAsset, nix.thunk(() => nix.sel(completions, "fish"))));
   const bloop_zsh = nix.thunk(() => nix.app(fetchAsset, nix.thunk(() => nix.sel(completions, "zsh"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       dontUnpack: true,
@@ -80,19 +73,19 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           help: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-help`), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "export HOME=\"$TMPDIR\"\n\n# Anything that reaches the build server, `bloop --version` and\n# `bloop about` included, downloads it from Maven Central first and so\n# cannot run in the sandbox. --help is answered by the native client\n# alone, and still exercises the patched binary and its wrapper.\nbloop --help > help.txt\ngrep -q 'Interact with Bloop' help.txt\ngrep -q -- '--java-home' help.txt\n\ntouch $out\n")),
-          completions: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-completions`), nix.thunk(() => ({ [nix.POS]: pos$4, nativeBuildInputs: nix.thunk(() => [zsh, fish]) })), nix.thunk(() => nix.str`share=${nix.sel(finalAttrs, "finalPackage")}/share
+          completions: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-completions`), nix.thunk(() => ({ [nix.POS]: $pos[3], nativeBuildInputs: nix.thunk(() => [zsh, fish]) })), nix.thunk(() => nix.str`share=${nix.sel(finalAttrs, "finalPackage")}/share
 
 bash -n "$share/bash-completion/completions/bloop"
 zsh -n "$share/zsh/site-functions/_bloop"
@@ -103,7 +96,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://scalacenter.github.io/bloop/",
         changelog: nix.thunk(() => nix.str`https://github.com/${repo}/releases/tag/v${version}`),
         sourceProvenance: nix.thunk(() => (() => {

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["url", 20, 5], ["hash", 21, 5]], [["NIX_CFLAGS_COMPILE", 43, 5]], [["description", 57, 5], ["longDescription", 58, 5], ["license", 63, 5], ["platforms", 64, 5]], [["pname", 10, 3], ["version", 11, 3], ["debianrev", 12, 3], ["src", 14, 3], ["versionPatch", 19, 3], ["nativeBuildInputs", 24, 3], ["postPatch", 26, 3], ["env", 42, 3], ["preAutoreconf", 48, 3], ["postConfigure", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { gccStdenv: false, lib: false, fetchurl: false, fetchzip: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 57, 5], ["longDescription", 58, 5], ["license", 63, 5], ["platforms", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["debianrev", 12, 3], ["src", 14, 3], ["versionPatch", 19, 3], ["nativeBuildInputs", 24, 3], ["postPatch", 26, 3], ["env", 42, 3], ["preAutoreconf", 48, 3], ["postConfigure", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "arj",
       version: "3.10.22",
       debianrev: "28",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://deb.debian.org/debian/pool/main/a/arj/arj_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           hash: "sha256-WJ5Mm8zIZp57bY1vzWTgH2osIf4QqtVqgzBOzDuWp9s=",
         })))),
       versionPatch: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`http://deb.debian.org/debian/pool/main/a/arj/arj_${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "debianrev")}.debian.tar.xz`),
           hash: "sha256-rmu5RSZ6OHGT093PShzkvC3ktm/U6smta6pmn9D7Jfw=",
         })))),
@@ -42,13 +38,13 @@ for fname in debian/patches/*.patch
   done
 `)),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))),
       })),
       preAutoreconf: "cd gnu\n",
       postConfigure: "cd ..\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open-source implementation of the world-famous ARJ archiver",
         longDescription: "This version of ARJ has been created with an intent to preserve maximum\ncompatibility and retain the feature set of the original ARJ archiver as\nprovided by ARJ Software, Inc.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

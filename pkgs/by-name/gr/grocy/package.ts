@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["yarnLock", 29, 5], ["hash", 30, 5]], [["grocy", 64, 36]], [["phpPackage", 63, 5], ["tests", 64, 5]], [["license", 68, 5], ["maintainers", 69, 5], ["description", 70, 5], ["homepage", 71, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["composerStrictValidation", 25, 3], ["vendorHash", 26, 3], ["offlineCache", 28, 3], ["nativeBuildInputs", 33, 3], ["patches", 40, 3], ["configurePhase", 45, 3], ["postInstall", 56, 3], ["passthru", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchYarnDeps: false, php85: false, yarn: false, "fixup-yarn-lock": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["grocy", 64, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["phpPackage", 63, 5], ["tests", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["license", 68, 5], ["maintainers", 69, 5], ["description", 70, 5], ["homepage", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["composerStrictValidation", 25, 3], ["vendorHash", 26, 3], ["offlineCache", 28, 3], ["nativeBuildInputs", 33, 3], ["patches", 40, 3], ["configurePhase", 45, 3], ["postInstall", 56, 3], ["passthru", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const php = php85;
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "grocy",
       version: "4.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grocy",
           repo: "grocy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
       composerStrictValidation: false,
       vendorHash: "sha256-mxZcRga2mUyZPyvy77H5INF8tDr/UEj4hw+DhIL9o6M=",
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-NnAhw53Ojh0VGWOkwlOoN8mm7/BOUutgV87/Z14dfxg=",
         })))),
@@ -46,12 +41,12 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\nexport HOME=$(mktemp -d)\nyarn config --offline set yarn-offline-mirror $offlineCache\nfixup-yarn-lock yarn.lock\nyarn install --offline --frozen-lockfile --no-progress --non-interactive\n\nrunHook postConfigure\n",
       postInstall: "chmod -R u+w $out/share\nmv $out/share/php/grocy/* $out\nrm -r $out/share\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         phpPackage: php,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, grocy: nix.thunk(() => nix.attr(nixosTests, "grocy")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], grocy: nix.thunk(() => nix.attr(nixosTests, "grocy")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

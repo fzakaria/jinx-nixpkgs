@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["EXAMPLES", 47, 9]], [["description", 53, 5], ["longDescription", 54, 5], ["license", 59, 5], ["platforms", 60, 5], ["homepage", 61, 5], ["maintainers", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["cmakeFlags", 43, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchpatch: false, lib: false, stdenv: false, cmake: false, zlib: false, libuv: false, openssl: false, "pkg-config": false, examples: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["EXAMPLES", 47, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 53, 5], ["longDescription", 54, 5], ["license", 59, 5], ["platforms", 60, 5], ["homepage", 61, 5], ["maintainers", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["cmakeFlags", 43, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const examples = nix.argOr($, "examples", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cassandra-cpp-driver",
       version: "2.17.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "cassandra-cpp-driver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-cmake-version.patch",
             url: "https://github.com/apache/cassandra-cpp-driver/commit/a4061051bcdfa0a67117b546897552c38493d545.patch?full_index=1",
             hash: "sha256-hQhm2SYLd8uPC85/iOH3sEM2KvoIGwV+9NGIJFnZJhc=",
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => [zlib, libuv, nix.thunk(() => nix.sel(openssl, "dev"))]),
-      cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), (name) => (value) => nix.str`-DCASS_BUILD_${name}:BOOL=${(nix.asBool(value) ? "ON" : "OFF")}`, nix.thunk(() => ({ [nix.POS]: pos$3, EXAMPLES: examples }))), [
+      cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), (name) => (value) => nix.str`-DCASS_BUILD_${name}:BOOL=${(nix.asBool(value) ? "ON" : "OFF")}`, nix.thunk(() => ({ [nix.POS]: $pos[2], EXAMPLES: examples }))), [
         nix.thunk(() => nix.str`-DLIBUV_INCLUDE_DIR=${nix.app(nix.sel(lib, "getDev"), libuv)}/include`),
       ])),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "DataStax CPP cassandra driver",
         longDescription: "A modern, feature-rich and highly tunable C/C++ client\nlibrary for Apache Cassandra 2.1+ using exclusively Cassandra’s\nbinary protocol and Cassandra Query Language v3.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

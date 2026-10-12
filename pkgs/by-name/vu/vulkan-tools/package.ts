@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["PKG_CONFIG_PATH", 70, 7]], [["description", 88, 5], ["longDescription", 89, 5], ["homepage", 94, 5], ["platforms", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["libraryPath", 66, 3], ["dontPatchELF", 68, 3], ["env", 70, 3], ["cmakeFlags", 72, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPackages: false, cmake: false, "pkg-config": false, python3: false, glslang: false, libffi: false, libx11: false, libxau: false, libxcb: false, libxdmcp: false, libxrandr: false, "vulkan-headers": false, "vulkan-loader": false, "vulkan-volk": false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, moltenvk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_PATH", 70, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 88, 5], ["longDescription", 89, 5], ["homepage", 94, 5], ["platforms", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["libraryPath", 66, 3], ["dontPatchELF", 68, 3], ["env", 70, 3], ["cmakeFlags", 72, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vulkan-tools";
       const version = "1.4.357.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KhronosGroup",
           repo: "Vulkan-Tools",
           rev: nix.thunk(() => nix.str`vulkan-sdk-${version}`),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const libraryPath = nix.thunk(() => nix.app(nix.sel(lib, "strings", "makeLibraryPath"), nix.thunk(() => [vulkan_loader])));
       const dontPatchELF = true;
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(buildPackages, "wayland-scanner")))}/lib/pkgconfig`),
       }));
       const cmakeFlags = nix.thunk(() => nix.concat([
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
           "-DBUILD_CUBE=OFF",
         ]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Khronos official Vulkan Tools and Utilities",
         longDescription: "This project provides Vulkan tools and utilities that can assist\ndevelopment by enabling developers to verify their applications correct\nuse of the Vulkan API.\n",
         homepage: "https://github.com/KhronosGroup/Vulkan-Tools",
@@ -78,7 +75,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ralith"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

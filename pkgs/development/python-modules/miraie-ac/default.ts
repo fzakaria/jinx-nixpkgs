@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 21, 13], ["pname", 22, 5], ["hash", 23, 5]], [["homepage", 39, 5], ["changelog", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["pythonRemoveDeps", 34, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "poetry-core": false, aiomqtt: false, aiohttp: false, certifi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 21, 13], ["pname", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 39, 5], ["changelog", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["pythonRemoveDeps", 34, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "miraie_ac",
           hash: "sha256-q4CXdJrNr9nhkY74eHllmRchrQx770vQJMqRtggxxlw=",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pythonRemoveDeps = nix.thunk(() => ["asyncio"]);
       const pythonImportsCheck = nix.thunk(() => ["miraie_ac"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/rkzofficial/miraie-ac",
         changelog: "https://github.com/rkzofficial/miraie-ac/releases",
         description: "Python library for controlling Panasonic Miraie ACs",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["fastembed", 58, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["pythonRelaxDeps", 32, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["doCheck", 55, 3], ["optional-dependencies", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fastembed: false, fetchFromGitHub: false, grpcio: false, "grpcio-tools": false, httpx: false, numpy: false, "poetry-core": false, portalocker: false, pydantic: false, "pytest-asyncio": false, pytestCheckHook: false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fastembed", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["pythonRelaxDeps", 32, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["doCheck", 55, 3], ["optional-dependencies", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.19.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qdrant",
           repo: "qdrant-client",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,9 +38,9 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["qdrant_client"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_asyncio]);
       const doCheck = false;
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, fastembed: nix.thunk(() => [fastembed]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], fastembed: nix.thunk(() => [fastembed]) }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python client for Qdrant vector search engine",
         homepage: "https://github.com/qdrant/qdrant-client",
         changelog: nix.thunk(() => nix.str`https://github.com/qdrant/qdrant-client/releases/tag/${nix.sel(src, "tag")}`),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

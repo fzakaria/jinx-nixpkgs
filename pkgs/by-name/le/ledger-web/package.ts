@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 22, 12]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 31, 5], ["mainProgram", 32, 5]], [["pname", 13, 3], ["gemdir", 14, 3], ["exes", 15, 3], ["ruby", 18, 3], ["buildInputs", 20, 3], ["passthru", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false, bundlerUpdateScript: false, ruby_3_4: false, withPostgresql: true, libpq: false, withSqlite: true, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 22, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 31, 5], ["mainProgram", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["gemdir", 14, 3], ["exes", 15, 3], ["ruby", 18, 3], ["buildInputs", 20, 3], ["passthru", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const withSqlite = nix.argOr($, "withSqlite", () => false);
   const sqlite = nix.arg($, "sqlite");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ledger_web",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["ledger_web"]),
       ruby: ruby_3_4,
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withPostgresql, libpq), nix.app(nix.sel(lib, "optional"), withSqlite, sqlite))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "ledger-web")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Web frontend to the Ledger CLI tool",
         homepage: "https://github.com/peterkeen/ledger-web",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

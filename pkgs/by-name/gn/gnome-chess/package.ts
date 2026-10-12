@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["packageName", 54, 41]], [["updateScript", 54, 5]], [["homepage", 58, 5], ["description", 59, 5], ["mainProgram", 60, 5], ["teams", 61, 5], ["license", 62, 5], ["platforms", 63, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 45, 3], ["passthru", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, vala: false, "pkg-config": false, "desktop-file-utils": false, wrapGAppsHook4: false, "gobject-introspection": false, gettext: false, itstool: false, libxml2: false, gnome: false, glib: false, gtk4: false, libadwaita: false, librsvg: false, pango: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 54, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["description", 59, 5], ["mainProgram", 60, 5], ["teams", 61, 5], ["license", 62, 5], ["platforms", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 45, 3], ["passthru", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const pango = nix.arg($, "pango");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-chess",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-chess/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-chess-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-otvnxhO0ZykUF0fii7DLhhTlfeFW07ndpqzosBRqW/w=",
         })))),
@@ -53,11 +49,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [glib, gtk4, libadwaita, librsvg, pango]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-chess" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-chess" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-chess",
         description: "Play the classic two-player boardgame of chess",
         mainProgram: "gnome-chess",

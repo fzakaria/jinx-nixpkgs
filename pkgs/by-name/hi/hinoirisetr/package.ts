@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["postFixup", 37, 3], ["postBuild", 41, 3], ["postInstall", 45, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { fetchFromForgejo: false, installShellFiles: false, lib: false, libnotify: false, pandoc: false, patchelf: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["postFixup", 37, 3], ["postBuild", 41, 3], ["postInstall", 45, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const patchelf = nix.arg($, "patchelf");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hinoirisetr",
       version: "1.6.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.vavakado.xyz",
           owner: "me",
           repo: "hinoirisetr",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "pandoc manpages/hinoirisetr.1.md -s -t man -o hinoirisetr.1\n",
       postInstall: "installManPage hinoirisetr.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "a lightweight daemon that automatically adjusts your screen's color temperature and gamma",
         homepage: "https://git.vavakado.xyz/me/hinoirisetr",
         changelog: nix.thunk(() => nix.str`https://git.vavakado.xyz/me/hinoirisetr/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,33 +2,28 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fluentd.nix", [[["enable", 9, 9], ["config", 10, 9]], [["fluentd", 8, 16]], [["services", 8, 7]], [["machine", 5, 9]], [["testMessage", 38, 19]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 32, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fluentd.nix", [["enable", 9, 9], ["config", 10, 9]]);
-const pos$2 = nix.positions(here + "/fluentd.nix", [["fluentd", 8, 16]]);
-const pos$3 = nix.positions(here + "/fluentd.nix", [["services", 8, 7]]);
-const pos$4 = nix.positions(here + "/fluentd.nix", [["machine", 5, 9]]);
-const pos$5 = nix.positions(here + "/fluentd.nix", [["testMessage", 38, 19]]);
-const pos$6 = nix.positions(here + "/fluentd.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "fluentd",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             fluentd: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               enable: true,
               config: "<source>\n  @type http\n  port 9880\n</source>\n\n<match **>\n  type copy\n  <store>\n    @type file\n    format json\n    path /tmp/fluentd\n    symlink_path /tmp/current-log\n  </store>\n  <store>\n    @type stdout\n  </store>\n</match>\n",
             })),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: nix.thunk(() => (() => {
       const testMessage = "an example log message";
-      const payload = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "test-message.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$5, testMessage: testMessage }))))));
+      const payload = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "test-message.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[4], testMessage: testMessage }))))));
       return nix.str`machine.start()
 machine.wait_for_unit("fluentd.service")
 machine.wait_for_open_port(9880)

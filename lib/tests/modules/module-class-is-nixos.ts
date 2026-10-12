@@ -2,7 +2,7 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/module-class-is-nixos.nix", [["_class", 2, 3], ["config", 3, 3]]);
+const $pos = nix.positions(here + "/module-class-is-nixos.nix", [[["_class", 2, 3], ["config", 3, 3]]]);
 
-export default nix.thunk(() => ({ [nix.POS]: pos$1, _class: "nixos", config: nix.thunk(() => ({})) }));
+export default nix.thunk(() => ({ [nix.POS]: $pos[0], _class: "nixos", config: nix.thunk(() => ({})) }));
 //# sourceMappingURL=module-class-is-nixos.ts.map

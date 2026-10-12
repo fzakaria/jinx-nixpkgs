@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["nativeBuildInputs", 42, 62]], [["isql-query", 42, 11]], [["fancyName", 39, 5], ["driver", 40, 5], ["updateScript", 41, 5], ["tests", 42, 5]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]], [["__structuredAttrs", 12, 3], ["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["strictDeps", 28, 3], ["installPhase", 31, 3], ["passthru", 38, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, lib: false, "nix-update-script": false, runCommand: false, stdenv: false, unixodbc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 42, 62]]);
-const pos$3 = nix.positions(here + "/package.nix", [["isql-query", 42, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["fancyName", 39, 5], ["driver", 40, 5], ["updateScript", 41, 5], ["tests", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["__structuredAttrs", 12, 3], ["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["strictDeps", 28, 3], ["installPhase", 31, 3], ["passthru", 38, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const unixodbc = nix.arg($, "unixodbc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       __structuredAttrs: true,
       pname: "duckdb-odbc",
       version: "1.5.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "duckdb",
           repo: "duckdb-odbc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,13 +35,13 @@ install -Dm755 libduckdb_odbc${nix.sel(stdenv, "hostPlatform", "extensions", "sh
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         fancyName: "DuckDB",
         driver: nix.thunk(() => nix.str`lib/libduckdb_odbc${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          "isql-query": nix.thunk(() => nix.app(runCommand, "duckdb-odbc-isql-query", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [unixodbc]) })), nix.thunk(() => nix.str`export ODBCSYSINI=$PWD
+          [nix.POS]: $pos[2],
+          "isql-query": nix.thunk(() => nix.app(runCommand, "duckdb-odbc-isql-query", nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [unixodbc]) })), nix.thunk(() => nix.str`export ODBCSYSINI=$PWD
 printf '[DuckDB]\\nDriver = %s/${nix.sel(finalAttrs, "passthru", "driver")}\\n' \\
   ${nix.sel(finalAttrs, "finalPackage")} > odbcinst.ini
 echo "select 41+1 as answer;" \\
@@ -57,7 +52,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://duckdb.org/docs/current/clients/odbc/overview",
         description: "ODBC driver for DuckDB",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

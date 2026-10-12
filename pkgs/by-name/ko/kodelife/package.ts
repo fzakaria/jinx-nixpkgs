@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-linux", 52, 7], ["armv7l-linux", 53, 7], ["x86_64-linux", 54, 7]], [["aarch64-linux", 62, 9], ["armv7l-linux", 63, 9], ["x86_64-linux", 64, 9]], [["url", 59, 5], ["hash", 60, 5]], [["updateScript", 100, 12]], [["homepage", 103, 5], ["description", 104, 5], ["sourceProvenance", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5], ["mainProgram", 113, 5]], [["pname", 47, 3], ["version", 48, 3], ["suffix", 50, 3], ["src", 58, 3], ["strictDeps", 69, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 77, 3], ["installPhase", 84, 3], ["passthru", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, autoPatchelfHook: false, dpkg: false, "alsa-lib": false, curl: false, avahi: false, gst_all_1: false, libxcb: false, libx11: false, libxcursor: false, libxext: false, libxi: false, libxinerama: false, libxrandr: false, libxrender: false, libxxf86vm: false, libglvnd: false, zenity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-linux", 52, 7], ["armv7l-linux", 53, 7], ["x86_64-linux", 54, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-linux", 62, 9], ["armv7l-linux", 63, 9], ["x86_64-linux", 64, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 59, 5], ["hash", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 100, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 103, 5], ["description", 104, 5], ["sourceProvenance", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5], ["mainProgram", 113, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["suffix", 50, 3], ["src", 58, 3], ["strictDeps", 69, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 77, 3], ["installPhase", 84, 3], ["passthru", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,16 +47,16 @@ export default nix.lambda((args) => (() => {
       const pname = "kodelife";
       const version = "1.1.0.173";
       const suffix = nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "aarch64-linux": "linux-arm64",
         "armv7l-linux": "linux-armhf",
         "x86_64-linux": "linux-x64",
       }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://hexler.net/pub/${pname}/${pname}-${version}-${suffix}.deb`),
           hash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "aarch64-linux": "sha256-WPUWvgVZR+2Dg4zpk+iUemMBGlGBDtaGkUGrWuF5LBs=",
             "armv7l-linux": "sha256-tOPqP40e0JrXg92OluMZrurWHXZavGwTkJiNN1IFVEE=",
             "x86_64-linux": "sha256-ZA8BlUtKaiSnXGncYwb2BbhBlULuGz7SWuXL0RAgQLI=",
@@ -89,9 +84,9 @@ wrapProgram $out/bin/KodeLife \\
 
 runHook postInstall
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://hexler.net/kodelife",
         description: "Real-time GPU shader editor",
         sourceProvenance: nix.thunk(() => (() => {
@@ -107,7 +102,7 @@ runHook postInstall
         mainProgram: "KodeLife",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         suffix,

@@ -2,24 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["module", 32, 7], ["binaryName", 33, 7], ["license", 34, 7], ["versionCheckProgramArg", 35, 7], ["hasCompletion", 36, 7]], [["module", 39, 7], ["binaryName", 40, 7], ["license", 41, 7]], [["module", 44, 7], ["binaryName", 45, 7], ["license", 46, 7]], [["module", 49, 7], ["binaryName", 50, 7], ["license", 51, 7], ["versionCheckProgramArg", 52, 7], ["hasCompletion", 53, 7]], [["module", 56, 7], ["binaryName", 57, 7], ["license", 58, 7], ["hasCompletion", 59, 7]], [["module", 62, 7], ["binaryName", 63, 7], ["license", 64, 7]], [["module", 67, 7], ["binaryName", 68, 7], ["license", 69, 7]], [["module", 72, 7], ["binaryName", 73, 7], ["license", 74, 7]], [["client", 31, 5], ["ui", 38, 5], ["upload", 43, 5], ["management", 48, 5], ["signal", 55, 5], ["relay", 61, 5], ["proxy", 66, 5], ["combined", 71, 5]], [["owner", 86, 5], ["repo", 87, 5], ["tag", 88, 5], ["hash", 89, 5]], [["name", 95, 5], ["dontPnpmConfigure", 98, 5], ["preBuild", 99, 5]], [["pname", 120, 5], ["version", 122, 7], ["src", 123, 7], ["sourceRoot", 126, 5], ["pnpm", 128, 5], ["fetcherVersion", 129, 5], ["hash", 130, 5]], [["nixos", 201, 9], ["netbird-management", 204, 11], ["netbird-relay", 205, 11], ["netbird-signal", 206, 11], ["netbird-ui", 207, 11], ["netbird-upload", 208, 11], ["netbird-proxy", 209, 11]], [["nixos", 213, 9]], [["tests", 199, 5], ["updateScript", 215, 5]], [["homepage", 219, 5], ["changelog", 220, 5], ["description", 221, 5], ["license", 222, 5], ["maintainers", 223, 5], ["mainProgram", 228, 5]], [["pname", 80, 3], ["version", 81, 3], ["__structuredAttrs", 83, 3], ["src", 85, 3], ["overrideModAttrs", 92, 3], ["proxyVendor", 102, 3], ["vendorHash", 103, 3], ["nativeBuildInputs", 105, 3], ["pnpmRoot", 117, 3], ["pnpmDeps", 119, 3], ["preBuild", 133, 3], ["subPackages", 140, 3], ["tags", 142, 3], ["ldflags", 144, 3], ["doCheck", 152, 3], ["postPatch", 154, 3], ["postInstall", 162, 3], ["nativeInstallCheckInputs", 192, 3], ["versionCheckProgram", 195, 3], ["versionCheckProgramArg", 196, 3], ["passthru", 198, 3], ["meta", 218, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, nixosTests: false, "nix-update-script": false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, wails3: false, imagemagick: false, fetchPnpmDeps: false, nodejs: false, pnpmConfigHook: false, pnpm_11: false, versionCheckHook: false, "netbird-management": false, "netbird-proxy": false, "netbird-relay": false, "netbird-signal": false, "netbird-ui": false, "netbird-upload": false, componentName: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["module", 32, 7], ["binaryName", 33, 7], ["license", 34, 7], ["versionCheckProgramArg", 35, 7], ["hasCompletion", 36, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["module", 39, 7], ["binaryName", 40, 7], ["license", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["module", 44, 7], ["binaryName", 45, 7], ["license", 46, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["module", 49, 7], ["binaryName", 50, 7], ["license", 51, 7], ["versionCheckProgramArg", 52, 7], ["hasCompletion", 53, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["module", 56, 7], ["binaryName", 57, 7], ["license", 58, 7], ["hasCompletion", 59, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["module", 62, 7], ["binaryName", 63, 7], ["license", 64, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["module", 67, 7], ["binaryName", 68, 7], ["license", 69, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["module", 72, 7], ["binaryName", 73, 7], ["license", 74, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["client", 31, 5], ["ui", 38, 5], ["upload", 43, 5], ["management", 48, 5], ["signal", 55, 5], ["relay", 61, 5], ["proxy", 66, 5], ["combined", 71, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["owner", 86, 5], ["repo", 87, 5], ["tag", 88, 5], ["hash", 89, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 95, 5], ["dontPnpmConfigure", 98, 5], ["preBuild", 99, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 120, 5], ["version", 122, 7], ["src", 123, 7], ["sourceRoot", 126, 5], ["pnpm", 128, 5], ["fetcherVersion", 129, 5], ["hash", 130, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["nixos", 201, 9], ["netbird-management", 204, 11], ["netbird-relay", 205, 11], ["netbird-signal", 206, 11], ["netbird-ui", 207, 11], ["netbird-upload", 208, 11], ["netbird-proxy", 209, 11]]);
-const pos$14 = nix.positions(here + "/package.nix", [["nixos", 213, 9]]);
-const pos$15 = nix.positions(here + "/package.nix", [["tests", 199, 5], ["updateScript", 215, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["homepage", 219, 5], ["changelog", 220, 5], ["description", 221, 5], ["license", 222, 5], ["maintainers", 223, 5], ["mainProgram", 228, 5]]);
-const pos$17 = nix.positions(here + "/package.nix", [["pname", 80, 3], ["version", 81, 3], ["__structuredAttrs", 83, 3], ["src", 85, 3], ["overrideModAttrs", 92, 3], ["proxyVendor", 102, 3], ["vendorHash", 103, 3], ["nativeBuildInputs", 105, 3], ["pnpmRoot", 117, 3], ["pnpmDeps", 119, 3], ["preBuild", 133, 3], ["subPackages", 140, 3], ["tags", 142, 3], ["ldflags", 144, 3], ["doCheck", 152, 3], ["postPatch", 154, 3], ["postInstall", 162, 3], ["nativeInstallCheckInputs", 192, 3], ["versionCheckProgram", 195, 3], ["versionCheckProgramArg", 196, 3], ["passthru", 198, 3], ["meta", 218, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,9 +29,9 @@ export default nix.lambda((args) => (() => {
   const netbird_upload = nix.arg($, "netbird-upload");
   const componentName = nix.argOr($, "componentName", () => "client");
   const availableComponents = nix.thunk(() => ({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     client: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       module: "client",
       binaryName: "netbird",
       license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -55,19 +39,19 @@ export default nix.lambda((args) => (() => {
       hasCompletion: true,
     })),
     ui: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       module: "client/ui",
       binaryName: "netbird-ui",
       license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
     })),
     upload: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       module: "upload-server",
       binaryName: "netbird-upload",
       license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
     })),
     management: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       module: "management",
       binaryName: "netbird-mgmt",
       license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -75,26 +59,26 @@ export default nix.lambda((args) => (() => {
       hasCompletion: true,
     })),
     signal: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       module: "signal",
       binaryName: "netbird-signal",
       license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
       hasCompletion: true,
     })),
     relay: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       module: "relay",
       binaryName: "netbird-relay",
       license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
     })),
     proxy: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       module: "proxy/cmd/proxy",
       binaryName: "netbird-proxy",
       license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
     })),
     combined: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       module: "combined",
       binaryName: "netbird-server",
       license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -102,19 +86,19 @@ export default nix.lambda((args) => (() => {
   }));
   const component = nix.thunk(() => nix.sel(availableComponents, nix.key(nix.force(componentName))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       pname: nix.thunk(() => nix.str`netbird-${componentName}`),
       version: "0.80.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           owner: "netbirdio",
           repo: "netbird",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-oZgDYmNzf8UESUEbwn0Br0CaPTNLaEpuiKR2wW5zeGw=",
         })))),
       overrideModAttrs: (final) => (prev) => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         name: nix.thunk(() => nix.str`netbird-${nix.sel(finalAttrs, "version")}-go-modules`),
         dontPnpmConfigure: true,
         preBuild: null,
@@ -124,7 +108,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(componentName, "ui")), nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11, wails3, imagemagick])))),
       pnpmRoot: "client/ui/frontend",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           pname: "netbird",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -167,9 +151,9 @@ substituteInPlace $out/share/applications/netbird.desktop \\
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(component, "binaryName")}`),
       versionCheckProgramArg: nix.thunk(() => nix.selOr(component, () => "version", "versionCheckProgramArg")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         tests: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), nix.thunk(() => nix.eq(componentName, "client")), nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             nixos: nix.thunk(() => nix.sel(nixosTests, "netbird")),
             "netbird-management": netbird_management,
             "netbird-relay": netbird_relay,
@@ -178,13 +162,13 @@ substituteInPlace $out/share/applications/netbird.desktop \\
             "netbird-upload": netbird_upload,
             "netbird-proxy": netbird_proxy,
           }))), nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), nix.thunk(() => nix.eq(componentName, "relay")), nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             nixos: nix.thunk(() => nix.sel(nixosTests, "netbird-relay")),
           }))))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         homepage: "https://netbird.io",
         changelog: nix.thunk(() => nix.str`https://github.com/netbirdio/netbird/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Connect your devices into a single secure private WireGuard®-based mesh network with SSO/MFA and simple access controls",

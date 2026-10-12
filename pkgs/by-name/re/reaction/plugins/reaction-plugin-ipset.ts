@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/reaction-plugin-ipset.nix", [[["buildInputs", 9, 3], ["nativeBuildInputs", 10, 3]]]);
 const formals$1 = { args: { ipset: false, "pkg-config": false, rustPlatform: false, reaction: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/reaction-plugin-ipset.nix", [["buildInputs", 9, 3], ["nativeBuildInputs", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const reaction = nix.arg($, "reaction");
   return nix.app(nix.sel(reaction, "mkReactionPlugin"), "reaction-plugin-ipset", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => [ipset]),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook")), pkg_config]),
     })));

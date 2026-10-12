@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["nativeBuildInputs", 29, 13]], [["functionality", 26, 7]], [["tests", 25, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["libName", 13, 3], ["installTargets", 15, 3], ["src", 17, 3], ["passthru", 24, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildOpenSCADPackage: false, fetchFromGitHub: false, stdenv: false, runCommand: false, openscad: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 29, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["functionality", 26, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 25, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["libName", 13, 3], ["installTargets", 15, 3], ["src", 17, 3], ["passthru", 24, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,24 +14,24 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const openscad = nix.arg($, "openscad");
   return nix.app(buildOpenSCADPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "bosl2",
       version: "2.0.755",
       libName: "BOSL2",
       installTargets: nix.thunk(() => ["*.scad"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BelfrySCAD",
           repo: "BOSL2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4LlMyXBXtSoy1FTAE9j7gmApDHYgtZZh/XnkzGUG2DE=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             functionality: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`test-functionality-${nix.sel(finalAttrs, "name")}`), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 nativeBuildInputs: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(openscad, "withPackages"), (ps) => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))])),
                 ]),
@@ -44,7 +39,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Belfry OpenScad Library, v2.0 (beta) -- an OpenSCAD library of shapes, masks, and manipulators",
         homepage: "https://github.com/BelfrySCAD/BOSL2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

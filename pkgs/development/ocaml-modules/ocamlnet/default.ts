@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["platforms", 74, 26], ["broken", 75, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["strictDeps", 39, 3], ["createFindlibDestdir", 41, 3], ["dontAddPrefix", 43, 3], ["dontAddStaticConfigureFlags", 44, 3], ["configurePlatforms", 45, 3], ["preConfigure", 47, 3], ["buildPhase", 59, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, which: false, ncurses: false, ocaml: false, findlib: false, ocaml_pcre: false, camlzip: false, gnutls: false, nettle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["platforms", 74, 26], ["broken", 75, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["strictDeps", 39, 3], ["createFindlibDestdir", 41, 3], ["dontAddPrefix", 43, 3], ["dontAddStaticConfigureFlags", 44, 3], ["configurePlatforms", 45, 3], ["preConfigure", 47, 3], ["buildPhase", 59, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-ocamlnet`);
       const version = "4.1.9";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://download.camlcity.org/download/ocamlnet-${version}.tar.gz`),
           sha256: "1vlwxjxr946gdl61a1d7yk859cijq45f60dhn54ik3w4g6cx33pr",
         }))));
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://projects.camlcity.org/projects/ocamlnet.html",
         description: "Library implementing Internet protocols (http, cgi, email, etc.) for OCaml",
         license: nix.thunk(() => (() => {
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

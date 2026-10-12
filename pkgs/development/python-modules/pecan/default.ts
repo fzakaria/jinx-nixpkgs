@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 26], ["version", 23, 32], ["hash", 24, 5]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 35, 3], ["pytestFlags", 45, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, genshi: false, gunicorn: false, jinja2: false, mako: false, pytestCheckHook: false, setuptools: false, sqlalchemy: false, virtualenv: false, webob: false, webtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 26], ["version", 23, 32], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 35, 3], ["pytestFlags", 45, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const webob = nix.arg($, "webob");
   const webtest = nix.arg($, "webtest");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pecan",
       version: "1.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-L5+86obo2/Gi0olUIlVHY0oonbcgHndkUWpdzobBFt4=",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--pyargs", "pecan"]),
       pythonImportsCheck: nix.thunk(() => ["pecan"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "WSGI object-dispatching web framework",
         homepage: "https://www.pecanpy.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/pecan/pecan/releases/tag/${nix.sel(finalAttrs, "version")}`),

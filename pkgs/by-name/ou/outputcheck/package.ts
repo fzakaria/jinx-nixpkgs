@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["postPatch", 24, 3], ["nativeCheckInputs", 34, 3], ["build-system", 36, 3], ["checkPhase", 38, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, lit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["postPatch", 24, 3], ["nativeCheckInputs", 34, 3], ["build-system", 36, 3], ["checkPhase", 38, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lit = nix.arg($, "lit");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "outputcheck",
       version: "0.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stp",
           repo: "OutputCheck",
           rev: "eab62a5dd5129f6a4ebfbe4bbe41d35611f7c48d",
@@ -41,7 +39,7 @@ echo ${nix.sel(finalAttrs, "version")} > RELEASE-VERSION
       checkPhase: "runHook preCheck\n\nlit -v tests/\n\nrunHook postCheck\n",
       pythonImportsCheck: nix.thunk(() => ["OutputCheck"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for checking tool output inspired by LLVM's FileCheck",
         homepage: "https://github.com/stp/OutputCheck",
         changelog: nix.thunk(() => nix.str`https://github.com/stp/OutputCheck/releases/tag/${nix.sel(finalAttrs, "version")}`),

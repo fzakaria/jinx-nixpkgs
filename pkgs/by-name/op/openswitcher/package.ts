@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 77, 5], ["downloadPage", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["outputs", 29, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 38, 3], ["dontWrapGApps", 50, 3], ["buildInputs", 52, 3], ["propagatedBuildInputs", 57, 3], ["postInstall", 68, 3], ["preFixup", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromSourcehut: false, "desktop-file-utils": false, "gobject-introspection": false, gtk3: false, libhandy: false, meson: false, ninja: false, "pkg-config": false, scdoc: false, wrapGAppsHook3: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 77, 5], ["downloadPage", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["outputs", 29, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 38, 3], ["dontWrapGApps", 50, 3], ["buildInputs", 52, 3], ["propagatedBuildInputs", 57, 3], ["postInstall", 68, 3], ["preFixup", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openswitcher",
       version: "0.13.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~martijnbraam",
           repo: "pyatem",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 -t $out/lib/udev/rules.d/ $src/100-blackmagicdesign.rules\n",
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Blackmagic Design mixer control application",
         downloadPage: "https://git.sr.ht/~martijnbraam/pyatem",
         homepage: "https://openswitcher.org/",

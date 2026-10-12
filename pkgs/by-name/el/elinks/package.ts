@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]], [["C_INCLUDE_PATH", 91, 7], ["LIBRARY_PATH", 92, 7]], [["LDFLAGS", 95, 7]], [["extraArgs", 134, 47]], [["updateScript", 134, 12]], [["description", 137, 5], ["mainProgram", 138, 5], ["homepage", 139, 5], ["license", 140, 5], ["platforms", 141, 5], ["maintainers", 142, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["outputs", 52, 3], ["buildInputs", 58, 3], ["nativeBuildInputs", 79, 3], ["env", 89, 3], ["strictDeps", 98, 3], ["__structuredAttrs", 99, 3], ["mesonFlags", 101, 3], ["postPatch", 124, 3], ["preConfigure", 130, 3], ["passthru", 134, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ncurses: false, bzip2: false, zlib: false, brotli: false, zstd: false, xz: false, openssl: false, meson: false, ninja: false, gettext: false, python3: false, "pkg-config": false, xmlto: false, docbook_xml_dtd_42: false, gpm: false, libidn2: false, tre: false, expat: false, lua: false, curl: false, libcss: false, libdom: false, "nix-update-script": false, enableGuile: true, guile: true, enablePython: true, python: true, enablePerl: true, perl: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["C_INCLUDE_PATH", 91, 7], ["LIBRARY_PATH", 92, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LDFLAGS", 95, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 134, 47]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 134, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 137, 5], ["mainProgram", 138, 5], ["homepage", 139, 5], ["license", 140, 5], ["platforms", 141, 5], ["maintainers", 142, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["outputs", 52, 3], ["buildInputs", 58, 3], ["nativeBuildInputs", 79, 3], ["env", 89, 3], ["strictDeps", 98, 3], ["__structuredAttrs", 99, 3], ["mesonFlags", 101, 3], ["postPatch", 124, 3], ["preConfigure", 130, 3], ["passthru", 134, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,11 +42,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(enableGuile) || nix.asBool(!nix.eq(guile, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/el/elinks/package.nix:38:1");
   nix.assert_((!nix.asBool(enablePython) || nix.asBool(!nix.eq(python, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/el/elinks/package.nix:39:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "elinks",
       version: "0.20.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rkd77",
           repo: "elinks",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,10 +71,10 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), gettext), nix.concat(nix.app(nix.sel(lib, "optional"), enableGuile, guile), nix.concat(nix.app(nix.sel(lib, "optional"), enablePython, python), nix.app(nix.sel(lib, "optional"), enablePerl, perl)))))),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, gettext, perl, python3, pkg_config, xmlto]),
       env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           C_INCLUDE_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), gpm)}/include`),
           LIBRARY_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), gpm)}/lib`),
-        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, LDFLAGS: "-liconv" }))))),
+        }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[2], LDFLAGS: "-liconv" }))))),
       strictDeps: true,
       __structuredAttrs: true,
       mesonFlags: nix.thunk(() => nix.concat(nix.builtins.map((f) => nix.app(nix.sel(lib, "mesonBool"), f, true), nix.thunk(() => [
@@ -109,11 +103,11 @@ substituteInPlace doc/tools/asciidoc/docbook.conf \\
 `),
       preConfigure: "mesonFlags+=(\"-Dsource-date-epoch=$SOURCE_DATE_EPOCH\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Full-featured text-mode web browser",
         mainProgram: "elinks",
         homepage: "https://github.com/rkd77/elinks",

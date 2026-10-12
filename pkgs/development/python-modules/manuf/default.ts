@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["testMacAddress", 44, 5]], [["tests", 43, 12]], [["homepage", 51, 5], ["description", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5], ["license", 55, 5], ["maintainers", 59, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["patches", 25, 3], ["postPatch", 32, 3], ["nativeCheckInputs", 37, 3], ["disabledTests", 39, 3], ["pythonImportsCheck", 41, 3], ["passthru", 43, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, runCommand: false, "wireshark-cli": false, pytestCheckHook: false, manuf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["testMacAddress", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 43, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 51, 5], ["description", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5], ["license", 55, 5], ["maintainers", 59, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["patches", 25, 3], ["postPatch", 32, 3], ["nativeCheckInputs", 37, 3], ["disabledTests", 39, 3], ["pythonImportsCheck", 41, 3], ["passthru", 43, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coolbho3k",
           repo: "manuf",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -41,16 +37,16 @@ cat ${wireshark_cli}/share/wireshark/wka >> manuf/manuf
       const disabledTests = nix.thunk(() => ["test_update_update"]);
       const pythonImportsCheck = nix.thunk(() => ["manuf"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           testMacAddress: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), manuf)} BC:EE:7B:00:00:00 > $out
 [ "$(cat $out | tr -d '\\n')" = "Vendor(manuf='ASUSTekC', manuf_long='ASUSTek COMPUTER INC.', comment=None)" ]
 `))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/coolbho3k/manuf",
         description: "Parser library for Wireshark's OUI database",
         mainProgram: "manuf",
@@ -68,7 +64,7 @@ cat ${wireshark_cli}/share/wireshark/wka >> manuf/manuf
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         format,

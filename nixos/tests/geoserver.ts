@@ -2,19 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/geoserver.nix", [[["maintainers", 22, 5]], [["diskSize", 29, 24]], [["systemPackages", 34, 21]], [["enable", 40, 11], ["jettyOpts", 41, 11], ["package", 42, 11]], [["geoserver", 39, 18]], [["wantedBy", 44, 36]], [["geoserver", 44, 26]], [["services", 44, 17]], [["virtualisation", 29, 9], ["environment", 34, 9], ["services", 39, 9], ["systemd", 44, 9]], [["machine", 26, 5]], [["name", 20, 3], ["meta", 21, 3], ["nodes", 25, 3], ["testScript", 48, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/geoserver.nix", [["maintainers", 22, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/geoserver.nix", [["diskSize", 29, 24]]);
-const pos$3 = nix.positions(here + "/geoserver.nix", [["systemPackages", 34, 21]]);
-const pos$4 = nix.positions(here + "/geoserver.nix", [["enable", 40, 11], ["jettyOpts", 41, 11], ["package", 42, 11]]);
-const pos$5 = nix.positions(here + "/geoserver.nix", [["geoserver", 39, 18]]);
-const pos$6 = nix.positions(here + "/geoserver.nix", [["wantedBy", 44, 36]]);
-const pos$7 = nix.positions(here + "/geoserver.nix", [["geoserver", 44, 26]]);
-const pos$8 = nix.positions(here + "/geoserver.nix", [["services", 44, 17]]);
-const pos$9 = nix.positions(here + "/geoserver.nix", [["virtualisation", 29, 9], ["environment", 34, 9], ["services", 39, 9], ["systemd", 44, 9]]);
-const pos$10 = nix.positions(here + "/geoserver.nix", [["machine", 26, 5]]);
-const pos$11 = nix.positions(here + "/geoserver.nix", [["name", 20, 3], ["meta", 21, 3], ["nodes", 25, 3], ["testScript", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,39 +20,39 @@ export default nix.lambda((args) => (() => {
   const getNonBlackistedExtensionsAsList = (ps) => nix.builtins.filter((x) => !nix.eq(x, null), nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "mapAttrsToList"), blacklistedToNull, ps)));
   const geoserverWithAllExtensions = nix.thunk(() => nix.app(nix.sel(pkgs, "geoserver", "withExtensions"), (ps) => nix.app(getNonBlackistedExtensionsAsList, ps)));
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "geoserver",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "geospatial", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
+          [nix.POS]: $pos[8],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             systemPackages: nix.thunk(() => [geoserver, geoserverWithAllExtensions]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             geoserver: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               jettyOpts: "jetty.http.port=8090",
               package: geoserverWithImporterExtension,
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               geoserver: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
             })),

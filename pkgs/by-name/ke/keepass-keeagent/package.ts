@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 7], ["sha256", 17, 7], ["stripRoot", 18, 7]], [["description", 22, 7], ["homepage", 23, 7], ["platforms", 24, 7], ["license", 25, 7], ["maintainers", 26, 7]], [["pname", 12, 5], ["version", 13, 13], ["src", 15, 5], ["meta", 21, 5], ["pluginFilename", 29, 5], ["installPhase", 31, 5]], [["pname", 39, 17], ["version", 39, 23], ["paths", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildEnv: false, fetchzip: false, mono: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 7], ["sha256", 17, 7], ["stripRoot", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 22, 7], ["homepage", 23, 7], ["platforms", 24, 7], ["license", 25, 7], ["maintainers", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 5], ["version", 13, 13], ["src", 15, 5], ["meta", 21, 5], ["pluginFilename", 29, 5], ["installPhase", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 39, 17], ["version", 39, 23], ["paths", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const mono = nix.arg($, "mono");
   const version = "0.12.0";
   const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "keeagent",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://lechnology.com/wp-content/uploads/2020/05/KeeAgent_v0.12.0.zip",
           sha256: "0fcfbj3yikiv3dmp69236h9r3c416amdq849kn131w1129gb68xd",
           stripRoot: false,
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "KeePass plugin to allow other programs to access SSH keys stored in a KeePass database for authentication",
         homepage: "http://lechnology.com/software/keeagent",
         platforms: nix.thunk(() => (() => {
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/lib/dotnet/keepass/\ncp $pluginFilename $out/lib/dotnet/keepass/$pluginFilename\n",
     }))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.attr(drv, "pname")),
       version: nix.thunk(() => nix.attr(drv, "version")),
       paths: nix.thunk(() => [mono, drv]),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["name", 38, 5], ["src", 39, 13], ["hash", 40, 5]], [["npmDeps", 37, 7]], [["changelog", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["owner", 17, 3], ["domain", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["env", 37, 3], ["nativeBuildInputs", 43, 3], ["dependencies", 48, 3], ["postBuild", 54, 3], ["nativeCheckInputs", 58, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, fetchNpmDeps: false, aiofiles: false, jinja2: false, joserfc: false, nodejs: false, npmHooks: false, pytestCheckHook: false, "pytest-homeassistant-custom-component": false, "pytest-cov-stub": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 5], ["src", 39, 13], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["npmDeps", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 17, 3], ["domain", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["env", 37, 3], ["nativeBuildInputs", 43, 3], ["dependencies", 48, 3], ["postBuild", 54, 3], ["nativeCheckInputs", 58, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const domain = "auth_oidc";
       const version = "1.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "christiaangoossens",
           repo: "hass-oidc-auth",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,9 +32,9 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "# Tests import directly from auth_oidc, but the component is installed\n# under custom_components.auth_oidc\nfor f in tests/test_hass_webserver.py tests/test_state_store.py; do\n  substituteInPlace \"$f\" \\\n    --replace-fail \"from auth_oidc\" \"from custom_components.auth_oidc\"\ndone\n";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: nix.thunk(() => nix.str`${domain}-npm-deps`),
             src: src,
             hash: "sha256-yAm08NVz2Ln6ob9LoPfxuz6U1oBS4AEydIQHhv0WpOg=",
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const postBuild = "npm run css\n";
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_homeassistant_custom_component, pytest_cov_stub]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/christiaangoossens/hass-oidc-auth/releases/tag/v${version}`),
         description: "OpenID Connect authentication provider for Home Assistant",
         homepage: "https://github.com/christiaangoossens/hass-oidc-auth",
@@ -60,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         owner,
         domain,
         version,

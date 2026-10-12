@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["PySPX", 51, 5], ["awskms", 52, 5], ["azurekms", 57, 5], ["crypto", 62, 5], ["gcpkms", 63, 5], ["hsm", 67, 5], ["pynacl", 72, 5]], [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 48, 3], ["optional-dependencies", 50, 3], ["nativeCheckInputs", 79, 3], ["pythonImportsCheck", 85, 3], ["disabledTestPaths", 87, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, pyspx: false, boto3: false, botocore: false, cryptography: false, "azure-identity": false, "azure-keyvault-keys": false, asn1crypto: false, "google-cloud-kms": false, pynacl: false, ed25519: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PySPX", 51, 5], ["awskms", 52, 5], ["azurekms", 57, 5], ["crypto", 62, 5], ["gcpkms", 63, 5], ["hsm", 67, 5], ["pynacl", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 48, 3], ["optional-dependencies", 50, 3], ["nativeCheckInputs", 79, 3], ["pythonImportsCheck", 85, 3], ["disabledTestPaths", 87, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const ed25519 = nix.arg($, "ed25519");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "securesystemslib",
       version: "1.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "secure-systems-lab",
           repo: "securesystemslib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail '\"hatchling==1.29.0\"' '\"hatchling\"'\n",
       "build-system": nix.thunk(() => [hatchling]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PySPX: nix.thunk(() => [pyspx]),
         awskms: nix.thunk(() => [boto3, botocore, cryptography]),
         azurekms: nix.thunk(() => [azure_identity, azure_keyvault_keys, cryptography]),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["securesystemslib"]),
       disabledTestPaths: nix.thunk(() => ["tests/test_hsm_signer.py", "securesystemslib/_vendor/"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cryptographic and general-purpose routines",
         homepage: "https://github.com/secure-systems-lab/securesystemslib",
         changelog: nix.thunk(() => nix.str`https://github.com/secure-systems-lab/securesystemslib/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

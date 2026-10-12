@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["modules", 15, 5], ["jdk", 19, 5]], [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["pname", 36, 13], ["data", 37, 5]], [["description", 60, 5], ["homepage", 61, 5], ["sourceProvenance", 62, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["mitmCache", 35, 3], ["__darwinAllowLocalNetworking", 40, 3], ["gradleFlags", 42, 3], ["gradleBuildTask", 44, 3], ["installPhase", 46, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, gradle_8: false, jre_headless: false, jre_minimal: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["modules", 15, 5], ["jdk", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 36, 13], ["data", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["sourceProvenance", 62, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["mitmCache", 35, 3], ["__darwinAllowLocalNetworking", 40, 3], ["gradleFlags", 42, 3], ["gradleBuildTask", 44, 3], ["installPhase", 46, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const gradle = gradle_8;
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => ["java.base", "java.desktop"]),
       jdk: jre_headless,
     }))));
@@ -28,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const pname = "pdftk";
       const version = "3.3.3";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "pdftk-java",
           repo: "pdftk",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-ciKotTHSEcITfQYKFZ6sY2LZnXGChBJy0+eno8B3YHY=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [gradle]);
-      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, data: nix.path(here, "./deps.json") }))));
+      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, data: nix.path(here, "./deps.json") }))));
       const __darwinAllowLocalNetworking = true;
       const gradleFlags = nix.thunk(() => ["-Dfile.encoding=utf-8"]);
       const gradleBuildTask = "shadowJar";
@@ -51,7 +47,7 @@ chmod a+x "$out/bin/pdftk"
 cp ${src}/pdftk.1 $out/share/man/man1
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command-line tool for working with PDFs",
         homepage: "https://gitlab.com/pdftk-java/pdftk",
         sourceProvenance: nix.thunk(() => (() => {
@@ -70,7 +66,7 @@ cp ${src}/pdftk.1 $out/share/man/man1
         mainProgram: "pdftk",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 16, 7], ["aarch64-linux", 17, 7], ["x86_64-linux", 18, 7]], [["aarch64-darwin", 24, 7], ["aarch64-linux", 25, 7], ["x86_64-linux", 26, 7]], [["url", 35, 5], ["hash", 37, 13]], [["updateScript", 64, 12]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["sourceProvenance", 70, 5], ["maintainers", 71, 5], ["mainProgram", 74, 5], ["platforms", 75, 5]], [["version", 31, 11], ["pname", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 41, 3], ["dontUnpack", 43, 3], ["dontBuild", 44, 3], ["dontStrip", 45, 3], ["installPhase", 47, 3], ["postFixup", 53, 3], ["nativeInstallCheckInputs", 59, 3], ["doInstallCheck", 60, 3], ["versionCheckProgram", 61, 3], ["versionCheckProgramArg", 62, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, versionCheckHook: false, autoPatchelfHook: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 16, 7], ["aarch64-linux", 17, 7], ["x86_64-linux", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-darwin", 24, 7], ["aarch64-linux", 25, 7], ["x86_64-linux", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 35, 5], ["hash", 37, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 64, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["sourceProvenance", 70, 5], ["maintainers", 71, 5], ["mainProgram", 74, 5], ["platforms", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 31, 11], ["pname", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 41, 3], ["dontUnpack", 43, 3], ["dontBuild", 44, 3], ["dontStrip", 45, 3], ["installPhase", 47, 3], ["postFixup", 53, 3], ["nativeInstallCheckInputs", 59, 3], ["doInstallCheck", 60, 3], ["versionCheckProgram", 61, 3], ["versionCheckProgramArg", 62, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`tailwindcss has not been packaged for ${system} yet.`)));
   const plat = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-darwin": "macos-arm64",
     "aarch64-linux": "linux-arm64",
     "x86_64-linux": "linux-x64",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const hash = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "aarch64-darwin": "sha256-zfZGcCmHp0NGTf9NnGD9RIDRwec92Bmppn8QeIFdzp0=",
     "aarch64-linux": "sha256-Vf0LJBIU7/PeHo7k8ieWZi8tLnpJvPynR3z9C6w5gZU=",
     "x86_64-linux": "sha256-3GGzrGuMnKh0wMxMV7JAl5GmTFVAQEyl9TZzYLq8MTo=",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: version,
       pname: "tailwindcss_4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.add(nix.str`https://github.com/tailwindlabs/tailwindcss/releases/download/v${version}/tailwindcss-`, plat)),
           hash: hash,
         })))),
@@ -55,9 +50,9 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/tailwindcss`),
       versionCheckProgramArg: "--help",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Command-line tool for the CSS framework with composable CSS classes, standalone v4 CLI",
         homepage: "https://tailwindcss.com/blog/tailwindcss-v4",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

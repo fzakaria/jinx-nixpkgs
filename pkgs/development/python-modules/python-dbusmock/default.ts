@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["changelog", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["doCheck", 51, 11], ["nativeCheckInputs", 53, 3], ["disabledTests", 63, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, runCommand: false, setuptools: false, "setuptools-scm": false, "dbus-python": false, doCheck: true, dbus: false, "gobject-introspection": false, pygobject3: false, bluez: false, networkmanager: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["doCheck", 51, 11], ["nativeCheckInputs", 53, 3], ["disabledTests", 63, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ ln -s "${nix.sel(bluez, "test")}/test/pbap-client" "$out/bin/pbap-client"
       const version = "0.37.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "martinpitt",
           repo: "python-dbusmock",
           tag: version,
@@ -55,7 +53,7 @@ ln -s "${nix.sel(bluez, "test")}/test/pbap-client" "$out/bin/pbap-client"
         "test_session_service_activation",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/martinpitt/python-dbusmock/releases/tag/${nix.sel(src, "tag")}`),
         description: "Mock D-Bus objects for tests",
         homepage: "https://github.com/martinpitt/python-dbusmock",
@@ -64,7 +62,7 @@ ln -s "${nix.sel(bluez, "test")}/test/pbap-client" "$out/bin/pbap-client"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

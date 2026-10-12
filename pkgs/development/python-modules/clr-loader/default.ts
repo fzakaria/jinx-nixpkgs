@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 5], ["version", 20, 13], ["hash", 21, 5]], [["pname", 42, 7], ["version", 43, 7], ["src", 44, 7], ["postPatch", 45, 7], ["projectFile", 47, 5], ["nugetDeps", 51, 5], ["dotnet-sdk", 52, 5]], [["fetch-deps", 99, 12]], [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5]], [["pname", 57, 5], ["version", 58, 5], ["src", 59, 5], ["postPatch", 60, 5], ["disabled", 63, 3], ["pyproject", 65, 3], ["buildInputs", 67, 3], ["nativeBuildInputs", 69, 3], ["propagatedBuildInputs", 76, 3], ["nativeCheckInputs", 78, 3], ["disabledTests", 80, 3], ["preConfigure", 89, 3], ["passthru", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, pythonAtLeast: false, pytestCheckHook: false, dotnetCorePackages: false, setuptools: false, "setuptools-scm": false, wheel: false, buildDotnetModule: false, cffi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 13], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 42, 7], ["version", 43, 7], ["src", 44, 7], ["postPatch", 45, 7], ["projectFile", 47, 5], ["nugetDeps", 51, 5], ["dotnet-sdk", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["fetch-deps", 99, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 57, 5], ["version", 58, 5], ["src", 59, 5], ["postPatch", 60, 5], ["disabled", 63, 3], ["pyproject", 65, 3], ["buildInputs", 67, 3], ["nativeBuildInputs", 69, 3], ["propagatedBuildInputs", 76, 3], ["nativeCheckInputs", 78, 3], ["disabledTests", 80, 3], ["preConfigure", 89, 3], ["passthru", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const pname = "clr-loader";
   const version = "0.2.10";
   const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "clr_loader",
       version: version,
       hash: "sha256-gfEUr7xQBbr8Xv5a8TQdQA4iE34nWwQqiXnz/rn8lEY=",
     }))));
   const postPatch = "echo '<Project><PropertyGroup><Version/></PropertyGroup></Project>' > \\\n  Directory.Build.props\n\nsubstituteInPlace example/example.csproj \\\n  --replace-fail 'net8.0;netstandard2.0' 'net10.0;netstandard2.0'\n\nsubstituteInPlace tests/test_common.py \\\n  --replace-fail 'return build_example(tmp_path_factory, \"net8.0\")' \\\n    'return build_example(tmp_path_factory, \"net10.0\")' \\\n  --replace-fail 'def test_coreclr_properties(example_netcore: Path):' \\\n    'def test_coreclr_properties(example_netcore: Path, example_netstandard: Path):'\n";
   const dotnet_build = nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: src,
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
       "dotnet-sdk": nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0")),
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -66,11 +62,11 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "dotnet restore \"netfx_loader/ClrLoader.csproj\" \\\n  -p:ContinuousIntegrationBuild=true \\\n  -p:Deterministic=true\n\ndotnet restore \"example/example.csproj\" \\\n  -p:ContinuousIntegrationBuild=true \\\n  -p:Deterministic=true\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "fetch-deps": nix.thunk(() => nix.sel(dotnet_build, "fetch-deps")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Generic pure Python loader for .NET runtimes",
         homepage: "https://pythonnet.github.io/clr-loader/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

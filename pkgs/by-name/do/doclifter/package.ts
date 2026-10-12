@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["changelog", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["platforms", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["strictDeps", 34, 3], ["makeFlags", 36, 3], ["preInstall", 38, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, libxml2: false, makeWrapper: false, python3: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["platforms", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["strictDeps", 34, 3], ["makeFlags", 36, 3], ["preInstall", 38, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "doclifter",
       version: "2.21",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.catb.org/~esr/doclifter/doclifter-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-3zb+H/rRmU87LWh0+kQtiRMZ4JwJ3tVrt8vQ/EeKx8Q=",
         })))),
@@ -37,7 +35,7 @@ wrapProgram "$out/bin/manlifter" \\
 gzip < manlifter.1 > $out/share/man/man1/manlifter.1.gz
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://gitlab.com/esr/doclifter/-/blob/2.21/NEWS",
         description: "Lift documents in nroff markups to XML-DocBook",
         homepage: "http://www.catb.org/esr/doclifter",

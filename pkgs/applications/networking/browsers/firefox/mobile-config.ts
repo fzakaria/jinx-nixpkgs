@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mobile-config.nix", [[["domain", 10, 5], ["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["extraPrefsFiles", 35, 3], ["extraPoliciesFiles", 40, 3]]]);
 const formals$1 = { args: { runCommand: false, fetchFromGitLab: false, wrapFirefox: false, "firefox-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mobile-config.nix", [["domain", 10, 5], ["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/mobile-config.nix", [["extraPrefsFiles", 35, 3], ["extraPoliciesFiles", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const wrapFirefox = nix.arg($, "wrapFirefox");
   const firefox_unwrapped = nix.arg($, "firefox-unwrapped");
   const pkg = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       domain: "gitlab.postmarketos.org",
       owner: "postmarketOS",
       repo: "mobile-config-firefox",
@@ -33,7 +32,7 @@ grep -v "general.config.obscure_value" | \\
 grep -v "general.config.sandbox_enabled" > $out
 `)));
   return nix.app(wrapFirefox, firefox_unwrapped, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       extraPrefsFiles: nix.thunk(() => [mobileConfigAutoconfig, mobileConfigPrefs]),
       extraPoliciesFiles: nix.thunk(() => [nix.thunk(() => nix.str`${pkg}/src/policies.json`)]),
     })));

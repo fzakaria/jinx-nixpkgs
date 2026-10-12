@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["NIX_CFLAGS_COMPILE", 91, 5]], [["updateScript", 101, 12]], [["changelog", 104, 5], ["description", 105, 5], ["mainProgram", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5]], [["version", 23, 3], ["pname", 24, 3], ["src", 26, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["cmakeFlags", 68, 3], ["cmakeBuildType", 87, 3], ["env", 90, 3], ["postFixup", 95, 3], ["passthru", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, boost: false, cmake: false, fetchFromGitHub: false, graphviz: false, igraph_0: false, llvmPackages: false, ninja: false, nlohmann_json: false, "pkg-config": false, python3Packages: false, libsForQt5: false, rapidjson: false, spdlog: false, verilator: false, z3: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 91, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 101, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 104, 5], ["description", 105, 5], ["mainProgram", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 23, 3], ["pname", 24, 3], ["src", 26, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["cmakeFlags", 68, 3], ["cmakeBuildType", 87, 3], ["env", 90, 3], ["postFixup", 95, 3], ["passthru", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const z3 = nix.arg($, "z3");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "4.5.0",
       pname: "hal-hardware-analyzer",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emsec",
           repo: "hal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,14 +83,14 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       cmakeBuildType: "MinSizeRel",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-flax-vector-conversions" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-flax-vector-conversions" })))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "find $out/lib/hal_plugins -name '*.so*' | while read -r f ; do\n  patchelf --set-rpath \"$(patchelf --print-rpath \"$f\"):$out/lib/hal_plugins\" \"$f\"\ndone\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/emsec/hal/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Comprehensive reverse engineering and manipulation framework for gate-level netlists",
         mainProgram: "hal",

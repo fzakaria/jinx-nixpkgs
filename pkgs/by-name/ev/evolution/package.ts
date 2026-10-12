@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 60, 5], ["hash", 61, 5]], [["packageName", 142, 7], ["versionPolicy", 143, 7]], [["updateScript", 141, 5]], [["PKG_CONFIG_CAMEL_1_2_CAMEL_PROVIDERDIR", 148, 5], ["PKG_CONFIG_LIBEDATASERVERUI_1_2_UIMODULEDIR", 149, 5]], [["homepage", 153, 5], ["description", 154, 5], ["mainProgram", 155, 5], ["teams", 156, 5], ["license", 157, 5], ["platforms", 158, 5]], [["pname", 51, 3], ["version", 52, 3], ["outputs", 54, 3], ["src", 59, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 74, 3], ["propagatedUserEnvPkgs", 109, 3], ["cmakeFlags", 113, 3], ["preFixup", 122, 3], ["requiredSystemFeatures", 134, 3], ["doCheck", 138, 3], ["passthru", 140, 3], ["env", 147, 3], ["meta", 152, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, ninja: false, intltool: false, fetchurl: false, libxml2: false, webkitgtk_4_1: false, highlight: false, "pkg-config": false, gtk3: false, glib: false, libnotify: false, libpst: false, gspell: false, "evolution-data-server": false, libgweather: false, "glib-networking": false, "gsettings-desktop-schemas": false, wrapGAppsHook3: false, itstool: false, "shared-mime-info": false, libical: false, db: false, sqlite: false, "adwaita-icon-theme": false, gnome: false, "gnome-desktop": false, librsvg: false, "gdk-pixbuf": false, libsecret: false, nss: false, nspr: false, icu: false, "libcanberra-gtk3": false, "geocode-glib_2": false, cmark: false, bogofilter: false, gst_all_1: false, procps: false, "p11-kit": false, openldap: false, spamassassin: false, gnutar: false, gzip: false, xz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 60, 5], ["hash", 61, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 142, 7], ["versionPolicy", 143, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 141, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["PKG_CONFIG_CAMEL_1_2_CAMEL_PROVIDERDIR", 148, 5], ["PKG_CONFIG_LIBEDATASERVERUI_1_2_UIMODULEDIR", 149, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 153, 5], ["description", 154, 5], ["mainProgram", 155, 5], ["teams", 156, 5], ["license", 157, 5], ["platforms", 158, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["outputs", 54, 3], ["src", 59, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 74, 3], ["propagatedUserEnvPkgs", 109, 3], ["cmakeFlags", 113, 3], ["preFixup", 122, 3], ["requiredSystemFeatures", 134, 3], ["doCheck", 138, 3], ["passthru", 140, 3], ["env", 147, 3], ["meta", 152, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,12 +54,12 @@ export default nix.lambda((args) => (() => {
   const gzip = nix.arg($, "gzip");
   const xz = nix.arg($, "xz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "evolution",
       version: "3.60.2",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/evolution/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/evolution-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-IYpJ+lBoFV29vTWjDRCi8jfHJGX7HQ4Kp4iJ8DnC7Y8=",
         })))),
@@ -119,16 +114,16 @@ export default nix.lambda((args) => (() => {
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "evolution", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "evolution", versionPolicy: "odd-unstable" })))),
       })),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         PKG_CONFIG_CAMEL_1_2_CAMEL_PROVIDERDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/evolution-data-server/camel-providers`),
         PKG_CONFIG_LIBEDATASERVERUI_1_2_UIMODULEDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/evolution-data-server/ui-modules`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.gnome.org/GNOME/evolution",
         description: "Personal information management application that provides integrated mail, calendaring and address book functionality",
         mainProgram: "evolution",

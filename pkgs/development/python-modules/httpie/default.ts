@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 126, 5], ["homepage", 127, 5], ["changelog", 128, 5], ["license", 129, 5], ["maintainers", 130, 5], ["mainProgram", 134, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["pythonRelaxDeps", 38, 3], ["build-system", 43, 3], ["nativeBuildInputs", 45, 3], ["dependencies", 50, 3], ["__darwinAllowLocalNetworking", 62, 3], ["nativeCheckInputs", 64, 3], ["postInstall", 74, 3], ["enabledTestPaths", 85, 3], ["pythonImportsCheck", 90, 3], ["disabledTestPaths", 92, 3], ["disabledTests", 97, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, "charset-normalizer": false, defusedxml: false, fetchFromGitHub: false, installShellFiles: false, multidict: false, pandoc: false, pip: false, pygments: false, "pytest-httpbin": false, "pytest-lazy-fixture": false, "pytest-mock": false, pytestCheckHook: false, pythonAtLeast: false, "requests-toolbelt": false, requests: false, responses: false, rich: false, setuptools: false, werkzeug: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 126, 5], ["homepage", 127, 5], ["changelog", 128, 5], ["license", 129, 5], ["maintainers", 130, 5], ["mainProgram", 134, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["pythonRelaxDeps", 38, 3], ["build-system", 43, 3], ["nativeBuildInputs", 45, 3], ["dependencies", 50, 3], ["__darwinAllowLocalNetworking", 62, 3], ["nativeCheckInputs", 64, 3], ["postInstall", 74, 3], ["enabledTestPaths", 85, 3], ["pythonImportsCheck", 90, 3], ["disabledTestPaths", 92, 3], ["disabledTests", 97, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "httpie",
           repo: "cli",
           tag: version,
@@ -85,7 +83,7 @@ export default nix.lambda((args) => (() => {
           "test_saved_session_cookie_pool",
         ])))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line HTTP client whose goal is to make CLI human-friendly",
         homepage: "https://httpie.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/httpie/cli/blob/${version}/CHANGELOG.md`),
@@ -100,7 +98,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "http",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

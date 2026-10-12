@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["broken", 70, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["pythonRelaxDeps", 33, 3], ["build-system", 39, 3], ["nativeBuildInputs", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, click: false, colorama: false, cryptography: false, exrex: false, fetchFromGitHub: false, "poetry-core": false, pyopenssl: false, pyperclip: false, pyprojectVersionPatchHook: false, "pytest-mock": false, pytestCheckHook: false, questionary: false, "requests-mock": false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["broken", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["pythonRelaxDeps", 33, 3], ["build-system", 39, 3], ["nativeBuildInputs", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const requests_mock = nix.arg($, "requests-mock");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "myjwt",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tyki6",
           repo: "MyJWT",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_mock, pytestCheckHook, requests_mock]),
       pythonImportsCheck: nix.thunk(() => ["myjwt"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI tool for testing vulnerabilities of JSON Web Tokens (JWT)",
         homepage: "https://github.com/tyki6/MyJWT",
         changelog: nix.thunk(() => nix.str`https://github.com/tyki6/MyJWT/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

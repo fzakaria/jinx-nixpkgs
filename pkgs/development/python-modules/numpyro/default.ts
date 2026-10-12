@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["description", 128, 5], ["homepage", 129, 5], ["changelog", 130, 5], ["license", 131, 5], ["maintainers", 132, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 68, 3], ["pytestFlags", 70, 3], ["disabledTests", 84, 3], ["disabledTestPaths", 122, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, jax: false, jaxlib: false, multipledispatch: false, numpy: false, tqdm: false, "dm-haiku": false, equinox: false, flax: false, funsor: false, graphviz: false, optax: false, "pyro-api": false, "pytest-xdist": false, pytestCheckHook: false, "scikit-learn": false, "tensorflow-probability": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 128, 5], ["homepage", 129, 5], ["changelog", 130, 5], ["license", 131, 5], ["maintainers", 132, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 68, 3], ["pytestFlags", 70, 3], ["disabledTests", 84, 3], ["disabledTestPaths", 122, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const scikit_learn = nix.arg($, "scikit-learn");
   const tensorflow_probability = nix.arg($, "tensorflow-probability");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "numpyro",
       version: "0.22.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyro-ppl",
           repo: "numpyro",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -77,7 +75,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_functional_map"])))),
       disabledTestPaths: nix.thunk(() => ["test/test_example_utils.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for probabilistic programming with NumPy",
         homepage: "https://num.pyro.ai/",
         changelog: nix.thunk(() => nix.str`https://github.com/pyro-ppl/numpyro/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

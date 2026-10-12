@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["tests", 75, 12]], [["license", 93, 8]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["build-system", 41, 3], ["dependencies", 45, 3], ["propagatedBuildInputs", 56, 3], ["passthru", 75, 3], ["doCheck", 77, 3], ["nativeCheckInputs", 79, 3], ["checkPhase", 84, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonApplication: false, colorama: false, coreutils: false, imagemagick_light: false, ipython: false, "junit-xml": false, ptpython: false, pydantic: false, python: false, ovmfvartool: false, "remote-pdb": false, ruff: false, ty: false, netpbm: false, "vhost-device-vsock": false, nixosTests: false, setuptools: false, socat: false, systemd: false, tesseract4: false, "util-linux": false, vde2: false, enableNspawn: true, enableOCR: true, extraPythonPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["tests", 75, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 93, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["build-system", 41, 3], ["dependencies", 45, 3], ["propagatedBuildInputs", 56, 3], ["passthru", 75, 3], ["doCheck", 77, 3], ["nativeCheckInputs", 79, 3], ["checkPhase", 84, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const enableOCR = nix.argOr($, "enableOCR", () => false);
   const extraPythonPackages = nix.argOr($, "extraPythonPackages", () => (_) => []);
   return nix.app(buildPythonApplication, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nixos-test-driver",
       version: "1.1",
       pyproject: true,
@@ -46,13 +44,16 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => nix.concat([colorama, ipython, junit_xml, ptpython, pydantic, ovmfvartool, remote_pdb], nix.app(extraPythonPackages, nix.thunk(() => nix.sel(python, "pkgs"))))),
       propagatedBuildInputs: nix.thunk(() => nix.concat([coreutils, netpbm, socat, util_linux, vde2], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [vhost_device_vsock])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableNspawn, nix.thunk(() => [systemd])), nix.app(nix.sel(lib, "optionals"), enableOCR, nix.thunk(() => [imagemagick_light, tesseract4])))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         tests: nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(nixosTests, "nixos-test-driver")), nix.thunk(() => ["containers"]))),
       })),
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [ruff, ty]),
       checkPhase: "echo -e \"\\x1b[32m## run ty\\x1b[0m\"\nty check --error-on-warning test_driver extract-docstrings.py\necho -e \"\\x1b[32m## run ruff check\\x1b[0m\"\nruff check .\necho -e \"\\x1b[32m## run ruff format\\x1b[0m\"\nruff format --check --diff .\n",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

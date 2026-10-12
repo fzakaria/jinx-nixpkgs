@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ltr.nix", [[["withGrass", 18, 13], ["withServer", 18, 23]], [["qgis-ltr", 52, 11]], [["unwrapped", 51, 5], ["tests", 52, 5], ["updateScript", 53, 5]], [["version", 23, 32], ["outputs", 23, 40], ["pname", 24, 3], ["paths", 26, 3], ["nativeBuildInputs", 28, 3], ["pythonInputs", 34, 3], ["postBuild", 37, 3], ["passthru", 50, 3], ["meta", 59, 32]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, nixosTests: false, symlinkJoin: false, extraPythonPackages: true, libsForQt5: false, withGrass: true, withServer: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ltr.nix", [["withGrass", 18, 13], ["withServer", 18, 23]]);
-const pos$2 = nix.positions(here + "/ltr.nix", [["qgis-ltr", 52, 11]]);
-const pos$3 = nix.positions(here + "/ltr.nix", [["unwrapped", 51, 5], ["tests", 52, 5], ["updateScript", 53, 5]]);
-const pos$4 = nix.positions(here + "/ltr.nix", [["version", 23, 32], ["outputs", 23, 40], ["pname", 24, 3], ["paths", 26, 3], ["nativeBuildInputs", 28, 3], ["pythonInputs", 34, 3], ["postBuild", 37, 3], ["passthru", 50, 3], ["meta", 59, 32]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,9 +16,9 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const withGrass = nix.argOr($, "withGrass", () => false);
   const withServer = nix.argOr($, "withServer", () => false);
-  const qgis_ltr_unwrapped = nix.thunk(() => nix.app(nix.sel(libsForQt5, "callPackage"), nix.path(here, "./unwrapped-ltr.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, withGrass: withGrass, withServer: withServer }))));
+  const qgis_ltr_unwrapped = nix.thunk(() => nix.app(nix.sel(libsForQt5, "callPackage"), nix.path(here, "./unwrapped-ltr.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], withGrass: withGrass, withServer: withServer }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: nix.thunk(() => nix.attr(qgis_ltr_unwrapped, "version")),
       outputs: nix.thunk(() => nix.attr(qgis_ltr_unwrapped, "outputs")),
       pname: "qgis-ltr",
@@ -34,10 +31,10 @@ export default nix.lambda((args) => (() => {
       postBuild: nix.thunk(() => nix.add("buildPythonPath \"$pythonInputs\"\n\nfor program in $out/bin/*; do\n  wrapProgram $program \\\n    --prefix PATH : $program_PATH \\\n    --set PYTHONPATH $program_PYTHONPATH\ndone\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.str`ln -s ${nix.sel(qgis_ltr_unwrapped, "man")} $man
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         unwrapped: qgis_ltr_unwrapped,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "qgis-ltr": nix.thunk(() => nix.sel(nixosTests, "qgis-ltr")),
         })),
         updateScript: nix.thunk(() => [nix.path(here, "./update.sh"), "qgis-ltr"]),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update.nix", [[["maintainers", 34, 5], ["description", 35, 5], ["platforms", 36, 5]], [["name", 14, 3], ["installPhase", 15, 3], ["dontUnpack", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, makeWrapper: false, bundix: false, "common-updater-scripts": false, xidel: false, jq: false, "nix-prefetch-github": false, yarn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update.nix", [["maintainers", 34, 5], ["description", 35, 5], ["platforms", 36, 5]]);
-const pos$2 = nix.positions(here + "/update.nix", [["name", 14, 3], ["installPhase", 15, 3], ["dontUnpack", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +27,13 @@ wrapProgram $out/bin/update.sh --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPa
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const buildInputs = nix.thunk(() => [bundix, common_updater_scripts, xidel, jq, nix_prefetch_github, yarn]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: [],
         description: "Utility to generate Nix expressions for Zammad's dependencies",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name,
         installPhase,
         dontUnpack,

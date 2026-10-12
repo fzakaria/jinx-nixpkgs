@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["hardened", 28, 12]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 16, 3], ["installPhase", 20, 3], ["passthru", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hardened", 28, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 16, 3], ["installPhase", 20, 3], ["passthru", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,22 +12,22 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ynetd",
       version: "2024.02.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://yx7.cc/code/ynetd/ynetd-2024.02.17.tar.xz",
           hash: "sha256-7gioQ0r0LlUftIWKRwTqeZQl0GtskcRKaEE5z6A0S24=",
         })))),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace Makefile --replace-fail \"-Wl,-z,relro,-z,now\" \"\"\n")),
       installPhase: "runHook preInstall\ninstall -Dm755 ynetd $out/bin/ynetd\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         hardened: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hardened.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Small server for binding programs to TCP ports",
         homepage: "https://yx7.cc/code/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

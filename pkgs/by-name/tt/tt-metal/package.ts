@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["fetchSubmodules", 25, 5], ["hash", 26, 5]], [["url", 30, 5], ["hash", 31, 5]], [["fetchFromGitHub", 69, 19], ["applyPatches", 69, 35], ["ttMetalSrc", 70, 11]], [["sfpi", 106, 12]], [["description", 109, 5], ["homepage", 110, 5], ["maintainers", 111, 5], ["license", 112, 5], ["platforms", 113, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cpm", 29, 3], ["sfpi", 34, 3], ["patches", 36, 3], ["postUnpack", 41, 3], ["postPatch", 46, 3], ["cmakeFlags", 55, 3], ["preConfigure", 63, 3], ["preInstall", 82, 3], ["enableParallelBuilding", 87, 3], ["nativeBuildInputs", 89, 3], ["buildInputs", 96, 3], ["noAuditTmpdir", 104, 3], ["passthru", 106, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, applyPatches: false, callPackage: false, "pkg-config": false, cmake: false, ninja: false, boost: false, numactl: false, mpi: false, hwloc: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["fetchSubmodules", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["fetchFromGitHub", 69, 19], ["applyPatches", 69, 35], ["ttMetalSrc", 70, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["sfpi", 106, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 109, 5], ["homepage", 110, 5], ["maintainers", 111, 5], ["license", 112, 5], ["platforms", 113, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cpm", 29, 3], ["sfpi", 34, 3], ["patches", 36, 3], ["postUnpack", 41, 3], ["postPatch", 46, 3], ["cmakeFlags", 55, 3], ["preConfigure", 63, 3], ["preInstall", 82, 3], ["enableParallelBuilding", 87, 3], ["nativeBuildInputs", 89, 3], ["buildInputs", 96, 3], ["noAuditTmpdir", 104, 3], ["passthru", 106, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const hwloc = nix.arg($, "hwloc");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tt-metal",
       version: "0.79.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tenstorrent",
           repo: "tt-metal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-sA9ryiVDBF9yJUfQ2cQDvphEC0nVQx6X2F91s2BA8Qo=",
         })))),
       cpm: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.40.2/CPM.cmake",
           hash: "sha256-yM3DLAOBZTjOInge1ylk3IZLKjSjENO3EEgSpcotg10=",
         })))),
@@ -56,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: nix.thunk(() => nix.str`mkdir -p build/_deps
 ${nix.app(nix.sel(lib, "concatMapAttrsStringSep"), "\n", (name) => (src) => nix.str`cp -r --no-preserve=ownership,mode ${src} build/_deps/${name}-src`, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./deps.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             fetchFromGitHub: fetchFromGitHub,
             applyPatches: applyPatches,
             ttMetalSrc: nix.thunk(() => nix.sel(finalAttrs, "src")),
@@ -72,9 +67,9 @@ appendToVar cmakeFlags "-DCPM_ELFIO_SOURCE=$PWD/build/_deps/elfio-src"
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, pkg_config, python3]),
       buildInputs: nix.thunk(() => [numactl, boost, mpi, hwloc]),
       noAuditTmpdir: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, sfpi: nix.thunk(() => nix.sel(finalAttrs, "sfpi")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], sfpi: nix.thunk(() => nix.sel(finalAttrs, "sfpi")) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "TT-NN operator library, and TT-Metalium low level kernel programming model",
         homepage: "https://github.com/tenstorrent/tt-metal",
         maintainers: nix.thunk(() => (() => {

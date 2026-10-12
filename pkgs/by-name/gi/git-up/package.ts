@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 5], ["version", 16, 26], ["hash", 17, 5]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["pythonRelaxDeps", 20, 3], ["build-system", 24, 3], ["propagatedBuildInputs", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 37, 3], ["preCheck", 44, 3], ["postInstall", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, python3Packages: false, writableTmpDirAsHomeHook: false, gitMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 5], ["version", 16, 26], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["pythonRelaxDeps", 20, 3], ["build-system", 24, 3], ["propagatedBuildInputs", 29, 3], ["dependencies", 31, 3], ["nativeCheckInputs", 37, 3], ["preCheck", 44, 3], ["postInstall", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "git-up",
       version: "2.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "git_up",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-SncbnK6LxsleKRa/sSCm/8dsgPw/XJGvYfkcIeWYDy4=",
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`rm -r $out/${nix.sel(python3Packages, "python", "sitePackages")}/PyGitUp/tests
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/msiemens/PyGitUp",
         description: "Git pull replacement that rebases all local branches when pulling",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 53, 7], ["repo", 54, 7], ["rev", 55, 7], ["hash", 56, 7]], [["pname", 49, 5], ["version", 50, 5], ["src", 52, 5]], [["owner", 70, 5], ["repo", 71, 5], ["hash", 72, 5], ["rev", 73, 5]], [["NLOPT", 172, 5]], [["NIX_LDFLAGS", 176, 5]], [["extraArgs", 250, 5]], [["updateScript", 249, 12]], [["description", 257, 5], ["homepage", 258, 5], ["changelog", 259, 5], ["license", 260, 5], ["maintainers", 261, 5], ["platforms", 266, 5]], [["mainProgram", 269, 5]], [["pname", 64, 3], ["version", 65, 3], ["src", 69, 3], ["patches", 77, 3], ["postPatch", 89, 3], ["nativeBuildInputs", 116, 3], ["buildInputs", 124, 3], ["strictDeps", 161, 3], ["separateDebugInfo", 163, 3], ["doInstallCheck", 165, 3], ["env", 167, 3], ["prePatch", 179, 3], ["cmakeFlags", 207, 3], ["postInstall", 217, 3], ["preFixup", 235, 3], ["doCheck", 241, 3], ["nativeCheckInputs", 242, 3], ["checkFlags", 243, 3], ["passthru", 249, 3], ["meta", 256, 3]]]);
 const formals$1 = { args: { clangStdenv: false, lib: false, binutils: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, wrapGAppsHook3: false, boost186: false, cereal: false, cgal_5: false, curl: false, dbus: false, eigen: false, expat: false, glew: false, glib: false, "glib-networking": false, gmp: false, gtk3: false, "hicolor-icon-theme": false, hidapi: false, libpng: false, mpfr: false, nanosvg: false, nlopt: false, nlohmann_json: false, "opencascade-occt_7_6_1": false, openvdb: false, qhull: false, onetbb: false, wxwidgets_3_2: false, libx11: false, libbgcode: false, heatshrink: false, catch2_3: false, webkitgtk_4_1: false, ctestCheckHook: false, withSystemd: true, systemdLibs: false, udevCheckHook: false, z3: false, "nix-update-script": false, "wxGTK-override": true, "opencascade-override": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 53, 7], ["repo", 54, 7], ["rev", 55, 7], ["hash", 56, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 49, 5], ["version", 50, 5], ["src", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 70, 5], ["repo", 71, 5], ["hash", 72, 5], ["rev", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NLOPT", 172, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 176, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 250, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 249, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 257, 5], ["homepage", 258, 5], ["changelog", 259, 5], ["license", 260, 5], ["maintainers", 261, 5], ["platforms", 266, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["mainProgram", 269, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 64, 3], ["version", 65, 3], ["src", 69, 3], ["patches", 77, 3], ["postPatch", 89, 3], ["nativeBuildInputs", 116, 3], ["buildInputs", 124, 3], ["strictDeps", 161, 3], ["separateDebugInfo", 163, 3], ["doInstallCheck", 165, 3], ["env", 167, 3], ["prePatch", 179, 3], ["cmakeFlags", 207, 3], ["postInstall", 217, 3], ["preFixup", 235, 3], ["doCheck", 241, 3], ["nativeCheckInputs", 242, 3], ["checkFlags", 243, 3], ["passthru", 249, 3], ["meta", 256, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,11 +52,11 @@ export default nix.lambda((args) => (() => {
   const wxGTK_override = nix.argOr($, "wxGTK-override", () => null);
   const opencascade_override = nix.argOr($, "opencascade-override", () => null);
   const nanosvg_fltk = nix.thunk(() => nix.app(nix.sel(nanosvg, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "nanosvg-fltk",
       version: "unstable-2022-12-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fltk",
           repo: "nanosvg",
           rev: "abcd277ea45e9098bed752cf9c6875b533c0892f",
@@ -75,11 +66,11 @@ export default nix.lambda((args) => (() => {
   const wxGTK_override$ = nix.thunk(() => (nix.asBool(nix.eq(wxGTK_override, null)) ? nix.force(wxwidgets_3_2) : nix.force(wxGTK_override)));
   const opencascade_override$ = nix.thunk(() => (nix.asBool(nix.eq(opencascade_override, null)) ? nix.force(opencascade_occt_7_6_1) : nix.force(opencascade_override)));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "prusa-slicer",
       version: "2.9.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "prusa3d",
           repo: "PrusaSlicer",
           hash: "sha256-SXNIyAncnPU6Zac8/plM32sPBgj9Uj9eVDL3NBu+IL4=",
@@ -128,7 +119,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       separateDebugInfo: true,
       doInstallCheck: true,
-      env: nix.thunk(() => nix.update({ [nix.POS]: pos$4, NLOPT: nlopt }, nix.app(nix.sel(lib, "optionalAttrs"), withSystemd, nix.thunk(() => ({ [nix.POS]: pos$5, NIX_LDFLAGS: "-ludev" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: $pos[3], NLOPT: nlopt }, nix.app(nix.sel(lib, "optionalAttrs"), withSystemd, nix.thunk(() => ({ [nix.POS]: $pos[4], NIX_LDFLAGS: "-ludev" }))))),
       prePatch: nix.thunk(() => nix.str`# Since version 2.5.0 of nlopt we need to link to libnlopt, as libnlopt_cxx
 # now seems to be integrated into the main lib.
 sed -i 's|nlopt_cxx|nlopt|g' cmake/modules/FindNLopt.cmake
@@ -166,14 +157,14 @@ substituteInPlace src/${(nix.asBool(nix.eq(nix.sel(finalAttrs, "pname"), "prusa-
       nativeCheckInputs: nix.thunk(() => [ctestCheckHook]),
       checkFlags: nix.thunk(() => ["--force-new-ctest-process", "-E", "libslic3r_tests|sla_print_tests"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             extraArgs: nix.thunk(() => ["--version-regex", "^version_(.+)$"]),
           })))),
       })),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "G-code generator for 3D printer",
         homepage: "https://github.com/prusa3d/PrusaSlicer",
         changelog: nix.thunk(() => nix.str`https://github.com/prusa3d/PrusaSlicer/releases/tag/version_${nix.sel(finalAttrs, "version")}`),
@@ -187,7 +178,7 @@ substituteInPlace src/${(nix.asBool(nix.eq(nix.sel(finalAttrs, "pname"), "prusa-
           ];
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$9, mainProgram: "PrusaSlicer" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[8], mainProgram: "PrusaSlicer" }))))),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

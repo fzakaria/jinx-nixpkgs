@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["name", 53, 7], ["desktopName", 54, 7], ["genericName", 55, 7], ["exec", 56, 7], ["icon", 57, 7], ["startupWMClass", 58, 7], ["comment", 59, 7], ["categories", 60, 7]], [["nativeBuildInputs", 73, 11], ["src", 74, 28]], [["extraArgs", 80, 28]], [["supportedFeatures", 84, 11]], [["command", 88, 9], ["supportedFeatures", 95, 9]], [["pubspecSource", 70, 5], ["updateScript", 79, 5]], [["broken", 102, 5], ["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["mainProgram", 107, 5], ["platforms", 108, 5]], [["version", 21, 11], ["pname", 22, 3], ["src", 23, 3], ["pubspecLock", 30, 3], ["gitHashes", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["postFixup", 40, 3], ["postInstall", 46, 3], ["desktopItems", 51, 3], ["passthru", 69, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, flutter347: false, "mpv-unwrapped": false, patchelf: false, fetchFromGitHub: false, copyDesktopItems: false, makeDesktopItem: false, runCommand: false, yq: false, finamp: false, "_experimental-update-script-combinators": false, "nix-update-script": false, dart: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 53, 7], ["desktopName", 54, 7], ["genericName", 55, 7], ["exec", 56, 7], ["icon", 57, 7], ["startupWMClass", 58, 7], ["comment", 59, 7], ["categories", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 73, 11], ["src", 74, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 80, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["supportedFeatures", 84, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["command", 88, 9], ["supportedFeatures", 95, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pubspecSource", 70, 5], ["updateScript", 79, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["broken", 102, 5], ["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["mainProgram", 107, 5], ["platforms", 108, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["version", 21, 11], ["pname", 22, 3], ["src", 23, 3], ["pubspecLock", 30, 3], ["gitHashes", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["postFixup", 40, 3], ["postInstall", 46, 3], ["desktopItems", 51, 3], ["passthru", 69, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const dart = nix.arg($, "dart");
   const version = "1.0.1-beta";
   return nix.app(nix.sel(flutter347, "buildFlutterApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       version: version,
       pname: "finamp",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "finamp-app",
           repo: "finamp",
           rev: version,
@@ -50,7 +42,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm444 assets/icon/icon_foreground.svg $out/share/icons/hicolor/scalable/apps/finamp.svg\ninstall -Dm444 assets/com.unicornsonlsd.finamp.metainfo.xml -t $out/share/metainfo\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "com.unicornsonlsd.finamp",
             desktopName: "Finamp",
             genericName: "Music Player",
@@ -62,17 +54,17 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             nativeBuildInputs: nix.thunk(() => [yq]),
             src: nix.thunk(() => nix.attr(finamp, "src")),
           })), "cat $src/pubspec.lock | yq > $out\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "finamp.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$5, supportedFeatures: [] })),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "finamp.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: $pos[4], supportedFeatures: [] })),
             nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               command: nix.thunk(() => [
                 nix.thunk(() => nix.sel(dart, "fetchGitHashesScript")),
                 "--input",
@@ -85,7 +77,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64"))))),
         description: "Open source Jellyfin music player",
         homepage: "https://github.com/finamp-app/finamp",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["description", 36, 5], ["homepage", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["license", 40, 5], ["broken", 43, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["cmakeFlags", 25, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["license", 40, 5], ["broken", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["cmakeFlags", 25, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const isStatic = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic"));
   const isMusl = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libptytty",
       version: "2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dist.schmorp.de/libptytty/libptytty-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1xrikmrsdkxhdy9ggc0ci6kg5b1hn3bz44ag1mk5k1zjmlxfscw0",
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), isStatic, "-DBUILD_SHARED_LIBS=OFF"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(isCross) || nix.asBool(isStatic))), "-DTTY_GID_SUPPORT=OFF"), nix.app(nix.sel(lib, "optionals"), isMusl, nix.thunk(() => ["-DUTMP_SUPPORT=OFF", "-DWTMP_SUPPORT=OFF", "-DLASTLOG_SUPPORT=OFF"]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OS independent and secure pty/tty and utmp/wtmp/lastlog",
         homepage: "http://dist.schmorp.de/libptytty",
         maintainers: nix.thunk(() => (() => {

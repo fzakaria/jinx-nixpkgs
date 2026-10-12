@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 48, 5], ["homepage", 49, 5], ["longDescription", 50, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["subPackages", 35, 3], ["ldflags", 37, 3], ["doInstallCheck", 43, 3], ["nativeInstallCheckInputs", 44, 3], ["versionCheckProgramArg", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, versionCheckHook: false, buildGoModule: false, fetchFromGitHub: false, "pkg-config": false, zlib: false, geoip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["longDescription", 50, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["subPackages", 35, 3], ["ldflags", 37, 3], ["doInstallCheck", 43, 3], ["nativeInstallCheckInputs", 44, 3], ["versionCheckProgramArg", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const geoip = nix.arg($, "geoip");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mirrorbits",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "videolabs",
           repo: "mirrorbits",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Geographical download redirector for distributing files efficiently across a set of mirrors",
         homepage: "https://github.com/videolabs/mirrorbits",
         longDescription: "Mirrorbits is a geographical download redirector written in Go for\ndistributing files efficiently across a set of mirrors. It offers\na simple and economic way to create a Content Delivery Network\nlayer using a pure software stack. It is primarily designed for\nthe distribution of large-scale Open-Source projects with a lot\nof traffic.\n",

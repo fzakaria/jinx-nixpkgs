@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["url", 26, 7], ["hash", 27, 7], ["includes", 28, 7]], [["basic", 45, 18]], [["tests", 45, 12]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5], ["platforms", 55, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 32, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 40, 3], ["passthru", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, cmake: false, scdoc: false, "util-linux": false, xinput: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7], ["includes", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["basic", 45, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 45, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5], ["platforms", 55, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 32, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 40, 3], ["passthru", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const xinput = nix.arg($, "xinput");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ydotool",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ReimuNotMoe",
           repo: "ydotool",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/ReimuNotMoe/ydotool/commit/58fde33d9a8b393fd59348f71e80c56177b62706.patch?full_index=1",
             hash: "sha256-Ga9DPCzpJwtYVHWwKKl3kzn2BPEZBZ7uzbEY/eFXGs4=",
             includes: nix.thunk(() => ["CMakeLists.txt"]),
@@ -48,11 +43,11 @@ substituteInPlace Daemon/ydotool.service.in \\
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [cmake, scdoc]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, basic: nix.thunk(() => nix.sel(nixosTests, "ydotool")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], basic: nix.thunk(() => nix.sel(nixosTests, "ydotool")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Generic Linux command-line automation tool",
         homepage: "https://github.com/ReimuNotMoe/ydotool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

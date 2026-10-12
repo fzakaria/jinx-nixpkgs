@@ -2,8 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/python.nix", [[["pname", 23, 5], ["version", 24, 5], ["src", 25, 5], ["postPatch", 26, 5], ["patches", 27, 5], ["meta", 28, 5], ["nativeBuildInputs", 31, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 53, 3], ["pyproject", 60, 3], ["pythonImportsCheck", 61, 3], ["mesonFlags", 65, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, meson: false, ninja: false, "pkg-config": false, tblite: false, numpy: false, "simple-dftd3": false, cffi: false, gfortran: false, blas: false, lapack: false, "mctc-lib": false, mstore: false, "toml-f": false, multicharge: false, dftd4: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/python.nix", [["pname", 23, 5], ["version", 24, 5], ["src", 25, 5], ["postPatch", 26, 5], ["patches", 27, 5], ["meta", 28, 5], ["nativeBuildInputs", 31, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 53, 3], ["pyproject", 60, 3], ["pythonImportsCheck", 61, 3], ["mesonFlags", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const dftd4 = nix.arg($, "dftd4");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.attr(tblite, "pname")),
       version: nix.thunk(() => nix.attr(tblite, "version")),
       src: nix.thunk(() => nix.attr(tblite, "src")),

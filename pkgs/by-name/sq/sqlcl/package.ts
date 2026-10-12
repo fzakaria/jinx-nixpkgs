@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["unpackCmd", 24, 3], ["installPhase", 26, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, fetchurl: false, unzip: false, jdk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["unpackCmd", 24, 3], ["installPhase", 26, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const jdk = nix.arg($, "jdk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sqlcl",
       version: "26.2.1.222.1617",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-/4EJVJk5J4NrMEnrfGQE09py61ObKj9yVQT3KXNnL6M=",
         })))),
@@ -34,7 +32,7 @@ makeWrapper $out/libexec/bin/sql $out/bin/sqlcl \\
   --chdir "$out/libexec/bin"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Oracle's Oracle DB CLI client",
         longDescription: "Oracle SQL Developer Command Line (SQLcl) is a free command line\ninterface for Oracle Database. It allows you to interactively or batch\nexecute SQL and PL/SQL. SQLcl provides in-line editing, statement\ncompletion, and command recall for a feature-rich experience, all while\nalso supporting your previously written SQL*Plus scripts.\n",
         homepage: "https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/",

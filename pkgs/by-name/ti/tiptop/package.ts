@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["name", 23, 7], ["url", 24, 7], ["sha256", 25, 7]], [["name", 30, 7], ["url", 31, 7], ["sha256", 32, 7]], [["NIX_CFLAGS_COMPILE", 49, 7]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["env", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, libxml2: false, ncurses: false, bison: false, flex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 23, 7], ["url", 24, 7], ["sha256", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 30, 7], ["url", 31, 7], ["sha256", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 49, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["env", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tiptop",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://tiptop.gforge.inria.fr/releases/tiptop-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "10j1138y3cj3hsmfz4w0bmk90523b0prqwi9nhb4z8xvjnf49i2i",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "reproducibility.patch",
             url: "https://salsa.debian.org/debian/tiptop/raw/debian/2.3.1-1/debian/patches/0001-fix-reproducibility-of-build-process.patch",
             sha256: "116l7n3nl9lj691i7j8x0d0za1i6zpqgghw5d70qfpb17c04cblp",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "ncurses-6.3.patch",
             url: "https://gitlab.inria.fr/rohou/tiptop/-/commit/a78234c27fdd62fed09430d998950e49e11a1832.patch",
             sha256: "1k55agdri7iw3gwm4snj3ps62qzmxlqr6s0868l8qamjw38z9g00",
@@ -47,11 +42,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [flex, bison]),
       buildInputs: nix.thunk(() => [libxml2, ncurses]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(libxml2, "dev")}/include/libxml2`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Performance monitoring tool for Linux",
         homepage: "http://tiptop.gforge.inria.fr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

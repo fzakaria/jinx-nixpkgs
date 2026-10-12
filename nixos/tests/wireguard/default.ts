@@ -2,16 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["args", 19, 31]], [["imports", 18, 11], ["_module", 19, 11]], [["nftables", 27, 51]], [["nftables", 28, 60]], [["nftables", 29, 65]], [["useNetworkd", 31, 65]], [["useNetworkd", 32, 74]], [["basic", 23, 7], ["amneziawg", 24, 7], ["namespaces", 25, 7], ["networkd", 26, 7], ["wg-quick", 27, 7], ["wg-quick-nftables", 28, 7], ["amneziawg-quick", 29, 7], ["generated", 30, 7], ["dynamic-refresh", 31, 7], ["dynamic-refresh-networkd", 32, 7]], [["kernelPackages", 45, 9]]]);
 const formals$1 = { args: { runTest: false, lib: false, pkgs: false, kernelVersionsToTest: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["args", 19, 31]]);
-const pos$2 = nix.positions(here + "/default.nix", [["imports", 18, 11], ["_module", 19, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["nftables", 27, 51]]);
-const pos$4 = nix.positions(here + "/default.nix", [["nftables", 28, 60]]);
-const pos$5 = nix.positions(here + "/default.nix", [["nftables", 29, 65]]);
-const pos$6 = nix.positions(here + "/default.nix", [["useNetworkd", 31, 65]]);
-const pos$7 = nix.positions(here + "/default.nix", [["useNetworkd", 32, 74]]);
-const pos$8 = nix.positions(here + "/default.nix", [["basic", 23, 7], ["amneziawg", 24, 7], ["namespaces", 25, 7], ["networkd", 26, 7], ["wg-quick", 27, 7], ["wg-quick-nftables", 28, 7], ["amneziawg-quick", 29, 7], ["generated", 30, 7], ["dynamic-refresh", 31, 7], ["dynamic-refresh-networkd", 32, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["kernelPackages", 45, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,28 +16,28 @@ export default nix.lambda((args) => (() => {
   ]);
   const tests = nix.thunk(() => (() => {
     const callTest = (p) => (args_1) => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         imports: nix.thunk(() => [p]),
-        _module: nix.thunk(() => ({ [nix.POS]: pos$1, args: args_1 })),
+        _module: nix.thunk(() => ({ [nix.POS]: $pos[0], args: args_1 })),
       })));
     return {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       basic: nix.thunk(() => nix.app(callTest, nix.path(here, "./basic.nix"))),
       amneziawg: nix.thunk(() => nix.app(callTest, nix.path(here, "./amneziawg.nix"))),
       namespaces: nix.thunk(() => nix.app(callTest, nix.path(here, "./namespaces.nix"))),
       networkd: nix.thunk(() => nix.app(callTest, nix.path(here, "./networkd.nix"))),
-      "wg-quick": (args_1) => nix.app(callTest, nix.path(here, "./wg-quick.nix"), nix.thunk(() => nix.update({ [nix.POS]: pos$3, nftables: false }, args_1))),
-      "wg-quick-nftables": (args_1) => nix.app(callTest, nix.path(here, "./wg-quick.nix"), nix.thunk(() => nix.update({ [nix.POS]: pos$4, nftables: true }, args_1))),
-      "amneziawg-quick": (args_1) => nix.app(callTest, nix.path(here, "./amneziawg-quick.nix"), nix.thunk(() => nix.update({ [nix.POS]: pos$5, nftables: false }, args_1))),
+      "wg-quick": (args_1) => nix.app(callTest, nix.path(here, "./wg-quick.nix"), nix.thunk(() => nix.update({ [nix.POS]: $pos[2], nftables: false }, args_1))),
+      "wg-quick-nftables": (args_1) => nix.app(callTest, nix.path(here, "./wg-quick.nix"), nix.thunk(() => nix.update({ [nix.POS]: $pos[3], nftables: true }, args_1))),
+      "amneziawg-quick": (args_1) => nix.app(callTest, nix.path(here, "./amneziawg-quick.nix"), nix.thunk(() => nix.update({ [nix.POS]: $pos[4], nftables: false }, args_1))),
       generated: nix.thunk(() => nix.app(callTest, nix.path(here, "./generated.nix"))),
-      "dynamic-refresh": (args_1) => nix.app(callTest, nix.path(here, "./dynamic-refresh.nix"), nix.thunk(() => nix.update({ [nix.POS]: pos$6, useNetworkd: false }, args_1))),
-      "dynamic-refresh-networkd": (args_1) => nix.app(callTest, nix.path(here, "./dynamic-refresh.nix"), nix.thunk(() => nix.update({ [nix.POS]: pos$7, useNetworkd: true }, args_1))),
+      "dynamic-refresh": (args_1) => nix.app(callTest, nix.path(here, "./dynamic-refresh.nix"), nix.thunk(() => nix.update({ [nix.POS]: $pos[5], useNetworkd: false }, args_1))),
+      "dynamic-refresh-networkd": (args_1) => nix.app(callTest, nix.path(here, "./dynamic-refresh.nix"), nix.thunk(() => nix.update({ [nix.POS]: $pos[6], useNetworkd: true }, args_1))),
     };
   })());
   return nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "concatMap")), kernelVersionsToTest, (version) => (() => {
         const v$ = nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), ".", "_", version));
         return nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrsToList")), tests, (name) => (test) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`wireguard-${name}-linux-${v$}`), nix.thunk(() => nix.app(test, nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 kernelPackages: (pkgs_1) => (nix.asBool(nix.eq(v$, "latest")) ? nix.sel(pkgs_1, "linuxPackages_latest") : nix.sel(pkgs_1, "linuxKernel", "packages", nix.key(nix.str`linux_${v$}`))),
               }))))));
       })())));

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5], ["fetchSubmodules", 46, 5]], [["owner", 58, 5], ["repo", 59, 5], ["rev", 60, 5], ["hash", 61, 5], ["fetchSubmodules", 62, 5]], [["type", 67, 7], ["name", 68, 7], ["desktopName", 69, 7], ["comment", 70, 7], ["exec", 71, 7], ["categories", 72, 7]], [["NIX_LDFLAGS", 178, 7]], [["description", 189, 5], ["homepage", 190, 5], ["platforms", 191, 5], ["license", 192, 5], ["mainProgram", 200, 5], ["maintainers", 201, 5]], [["pname", 54, 11], ["version", 55, 11], ["src", 57, 3], ["desktopItems", 65, 3], ["strictDeps", 79, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 91, 3], ["cmakeFlags", 122, 3], ["cmakeBuildType", 131, 3], ["patches", 133, 3], ["prePatch", 137, 3], ["preConfigure", 142, 3], ["buildPhase", 144, 3], ["installPhase", 150, 3], ["env", 178, 3], ["meta", 188, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, makeDesktopItem: false, copyDesktopItems: false, srcOnly: false, cmake: false, "pkg-config": false, "alsa-lib": false, libxrender: false, libxrandr: false, libxinerama: false, libxext: false, libxcursor: false, libxcomposite: false, libx11: false, fontconfig: false, freetype: false, libjack2: false, juce: false, libsoup_3: false, libdeflate: false, xz: false, libwebp: false, glib: false, "vcv-rack": false, jansson: false, glew: false, glfw: false, libarchive: false, speexdsp: false, libpulseaudio: false, libsamplerate: false, rtmidi: false, zstd: false, jq: false, enableVCVRack: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5], ["fetchSubmodules", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 58, 5], ["repo", 59, 5], ["rev", 60, 5], ["hash", 61, 5], ["fetchSubmodules", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["type", 67, 7], ["name", 68, 7], ["desktopName", 69, 7], ["comment", 70, 7], ["exec", 71, 7], ["categories", 72, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 178, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 189, 5], ["homepage", 190, 5], ["platforms", 191, 5], ["license", 192, 5], ["mainProgram", 200, 5], ["maintainers", 201, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 54, 11], ["version", 55, 11], ["src", 57, 3], ["desktopItems", 65, 3], ["strictDeps", 79, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 91, 3], ["cmakeFlags", 122, 3], ["cmakeBuildType", 131, 3], ["patches", 133, 3], ["prePatch", 137, 3], ["preConfigure", 142, 3], ["buildPhase", 144, 3], ["installPhase", 150, 3], ["env", 178, 3], ["meta", 188, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const enableVCVRack = nix.argOr($, "enableVCVRack", () => false);
   const clapJuceExtensions = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "free-audio",
       repo: "clap-juce-extensions",
       rev: "645ed2fd0949d36639e3d63333f26136df6df769",
@@ -61,11 +56,11 @@ export default nix.lambda((args) => (() => {
   const pname = "airwin2rack";
   const version = "2.13.0-unstable-2026-01-19";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "baconpaul",
           repo: "airwin2rack",
           rev: "ed3700c223be0fd5eddf6d57b66216fff8389c2c",
@@ -74,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             type: "Application",
             name: "Airwin2rack",
             desktopName: "Airwindows Consolidated",
@@ -157,7 +152,7 @@ install -Dm755 "${pname}-${version}-lin-x64.vcvplugin" $out/usr/lib/vcvrack/plug
 runHook postInstall
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lX11",
             "-lXext",
@@ -169,7 +164,7 @@ runHook postInstall
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "JUCE Plugin Version of Airwindows Consolidated",
         homepage: "https://github.com/baconpaul/airwin2rack",
         platforms: nix.thunk(() => ["x86_64-linux"]),

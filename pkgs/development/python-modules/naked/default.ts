@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 108, 5], ["homepage", 109, 5], ["downloadPage", 110, 5], ["license", 111, 5], ["maintainers", 112, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 40, 3], ["nativeCheckInputs", 45, 3], ["preCheck", 51, 3], ["disabledTestPaths", 57, 3], ["disabledTests", 59, 3], ["pythonImportsCheck", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, python: false, fetchFromGitHub: false, lib: false, requests: false, pyyaml: false, setuptools: false, wheel: false, nodejs: false, ruby: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 108, 5], ["homepage", 109, 5], ["downloadPage", 110, 5], ["license", 111, 5], ["maintainers", 112, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 40, 3], ["nativeCheckInputs", 45, 3], ["preCheck", 51, 3], ["disabledTestPaths", 57, 3], ["disabledTests", 59, 3], ["pythonImportsCheck", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.32";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chrissimpkins",
           repo: "naked",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -85,7 +83,7 @@ substituteInPlace lib/Naked/toolshed/c/*.c \\
       ]);
       const pythonImportsCheck = nix.thunk(() => ["Naked"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python command line application framework",
         homepage: "https://github.com/chrissimpkins/naked",
         downloadPage: "https://github.com/chrissimpkins/naked/tags",
@@ -93,7 +91,7 @@ substituteInPlace lib/Naked/toolshed/c/*.c \\
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

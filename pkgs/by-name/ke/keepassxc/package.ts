@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["NIX_CFLAGS_COMPILE", 51, 7]], [["NIX_LDFLAGS", 58, 7]], [["keepassxc", 188, 28]], [["tests", 187, 5], ["updateScript", 190, 5]], [["description", 194, 5], ["longDescription", 195, 5], ["homepage", 202, 5], ["donationPage", 203, 5], ["changelog", 204, 5], ["license", 205, 5], ["mainProgram", 206, 5], ["maintainers", 207, 5], ["platforms", 211, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["env", 49, 3], ["patches", 64, 3], ["postPatch", 69, 3], ["cmakeFlags", 74, 3], ["doCheck", 88, 3], ["checkPhase", 89, 3], ["nativeBuildInputs", 121, 3], ["dontWrapGApps", 130, 3], ["preFixup", 131, 3], ["postInstall", 138, 3], ["buildInputs", 157, 3], ["passthru", 186, 3], ["meta", 193, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libsForQt5: false, "apple-sdk_15": false, asciidoctor: false, botan3: false, curl: false, darwinMinVersionHook: false, libxi: false, libxtst: false, libargon2: false, libusb1: false, minizip: false, "nix-update-script": false, pcsclite: false, "pkg-config": false, qrencode: false, readline: false, wrapGAppsHook3: false, zlib: false, withKeePassBrowser: true, withKeePassBrowserPasskeys: true, withKeePassFDOSecrets: true, withKeePassKeeShare: true, withKeePassNetworking: true, withKeePassSSHAgent: true, withKeePassX11: true, withKeePassYubiKey: true, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 58, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["keepassxc", 188, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 187, 5], ["updateScript", 190, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 194, 5], ["longDescription", 195, 5], ["homepage", 202, 5], ["donationPage", 203, 5], ["changelog", 204, 5], ["license", 205, 5], ["mainProgram", 206, 5], ["maintainers", 207, 5], ["platforms", 211, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["env", 49, 3], ["patches", 64, 3], ["postPatch", 69, 3], ["cmakeFlags", 74, 3], ["doCheck", 88, 3], ["checkPhase", 89, 3], ["nativeBuildInputs", 121, 3], ["dontWrapGApps", 130, 3], ["preFixup", 131, 3], ["postInstall", 138, 3], ["buildInputs", 157, 3], ["passthru", 186, 3], ["meta", 193, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,25 +39,25 @@ export default nix.lambda((args) => (() => {
   const withKeePassYubiKey = nix.argOr($, "withKeePassYubiKey", () => true);
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "keepassxc",
       version: "2.7.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "keepassxreboot",
           repo: "keepassxc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-eg8jRaSJdRBpEOHQ8E3jXcdwRzsnyq6r4RLyltdpIB8=",
         })))),
       env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               "-Wno-old-style-cast",
               "-Wno-error",
               nix.thunk(() => nix.str`-D__BIG_ENDIAN__=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isBigEndian")) ? "1" : "0")}`),
             ]))),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-rpath", nix.thunk(() => nix.str`${libargon2}/lib`)]))),
         }))))),
       patches: nix.thunk(() => [nix.path(here, "./darwin-remove-macdeployqt.patch")]),
@@ -132,15 +126,15 @@ substituteAll "${nix.path(here, "./chromium-native-messaging-host.json")}" "$out
           nix.thunk(() => nix.app(darwinMinVersionHook, "12.3")),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libusb1])), nix.app(nix.sel(lib, "optionals"), withKeePassX11, nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtx11extras"))])))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           keepassxc: nix.thunk(() => nix.attr(nixosTests, "keepassxc")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Offline password manager with many features",
         longDescription: "A community fork of KeePassX, which is itself a port of KeePass Password Safe.\nThe goal is to extend and improve KeePassX with new features and bugfixes,\nto provide a feature-rich, fully cross-platform and modern open-source password manager.\nAccessible via native cross-platform GUI, CLI, has browser integration\nusing the KeePassXC Browser Extension (https://github.com/keepassxreboot/keepassxc-browser)\n",
         homepage: "https://keepassxc.org/",

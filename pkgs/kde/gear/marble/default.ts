@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 3], ["outputs", 26, 3], ["extraNativeBuildInputs", 28, 3], ["extraBuildInputs", 34, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, perl: false, "pkg-config": false, "shared-mime-info": false, qtpositioning: false, qtsvg: false, qttools: false, qtwebengine: false, krunner: false, libplasma: false, phonon: false, gpsd: false, protobuf: false, shapelib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["outputs", 26, 3], ["extraNativeBuildInputs", 28, 3], ["extraBuildInputs", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const shapelib = nix.arg($, "shapelib");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "marble",
       outputs: nix.thunk(() => ["out"]),
       extraNativeBuildInputs: nix.thunk(() => [perl, pkg_config, shared_mime_info]),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["DB_BACKEND", 45, 5], ["DB_NAME", 46, 5], ["DJANGO_SETTINGS_MODULE", 47, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["env", 44, 3], ["nativeCheckInputs", 50, 3], ["checkPhase", 57, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, hatchling: false, django: false, sqlparse: false, "django-csp": false, html5lib: false, jinja2: false, pygments: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["DB_BACKEND", 45, 5], ["DB_NAME", 46, 5], ["DJANGO_SETTINGS_MODULE", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["env", 44, 3], ["nativeCheckInputs", 50, 3], ["checkPhase", 57, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jazzband",
           repo: "django-debug-toolbar",
           tag: version,
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [django, sqlparse]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         DB_BACKEND: "sqlite3",
         DB_NAME: ":memory:",
         DJANGO_SETTINGS_MODULE: "tests.settings",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\npython -m django test tests\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["debug_toolbar"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Configurable set of panels that display debug information about the current request/response",
         homepage: "https://github.com/jazzband/django-debug-toolbar",
         changelog: "https://django-debug-toolbar.readthedocs.io/en/latest/changes.html",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

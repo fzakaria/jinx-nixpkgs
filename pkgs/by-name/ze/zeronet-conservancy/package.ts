@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["nixos-test", 60, 5]], [["tests", 59, 12]], [["description", 64, 5], ["mainProgram", 65, 5], ["longDescription", 66, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 20, 3], ["buildPhase", 40, 3], ["installPhase", 46, 3], ["postFixup", 53, 3], ["passthru", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nixos-test", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 59, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["mainProgram", 65, 5], ["longDescription", 66, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["propagatedBuildInputs", 20, 3], ["buildPhase", 40, 3], ["installPhase", 46, 3], ["postFixup", 53, 3], ["passthru", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "zeronet-conservancy",
       version: "0.7.10",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zeronet-conservancy",
           repo: "zeronet-conservancy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,14 +55,14 @@ runHook postBuild
   --set PATH ${nix.sel(python3Packages, "python")}/bin
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "nixos-test": nix.thunk(() => nix.sel(nixosTests, "zeronet-conservancy")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fork/continuation of the ZeroNet project",
         mainProgram: "zeronet",
         longDescription: "zeronet-conservancy is a fork/continuation of ZeroNet project (that has\nbeen abandoned by its creator) that is dedicated to sustaining existing\np2p network and developing its values of decentralization and freedom,\nwhile gradually switching to a better designed network.\n",

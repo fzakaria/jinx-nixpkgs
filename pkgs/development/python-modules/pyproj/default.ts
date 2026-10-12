@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["proj", 33, 7], ["projdev", 34, 7]], [["description", 98, 5], ["mainProgram", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["teams", 106, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 31, 3], ["build-system", 38, 3], ["buildInputs", 43, 3], ["dependencies", 45, 3], ["nativeCheckInputs", 47, 3], ["preCheck", 55, 3], ["disabledTestPaths", 60, 3], ["disabledTests", 64, 3], ["pythonImportsCheck", 81, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, replaceVars: false, certifi: false, cython: false, numpy: false, pandas: false, proj: false, setuptools: false, shapely: false, xarray: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["proj", 33, 7], ["projdev", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 98, 5], ["mainProgram", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["teams", 106, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 31, 3], ["build-system", 38, 3], ["buildInputs", 43, 3], ["dependencies", 45, 3], ["nativeCheckInputs", 47, 3], ["preCheck", 55, 3], ["disabledTestPaths", 60, 3], ["disabledTests", 64, 3], ["pythonImportsCheck", 81, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +25,18 @@ export default nix.lambda((args) => (() => {
       const version = "3.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyproj4",
           repo: "pyproj",
           tag: version,
           hash: "sha256-+2wUMbswg2yltNMLPc9U8MbEFx2xKVWxGjP/TBfCjto=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./001.proj.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, proj: proj, projdev: nix.thunk(() => nix.sel(proj, "dev")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./001.proj.patch"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            proj: proj,
+            projdev: nix.thunk(() => nix.sel(proj, "dev")),
+          })))),
       ]);
       const build_system = nix.thunk(() => [cython, setuptools]);
       const buildInputs = nix.thunk(() => [proj]);
@@ -73,7 +74,7 @@ export default nix.lambda((args) => (() => {
         "pyproj.exceptions",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python interface to PROJ library",
         mainProgram: "pyproj",
         homepage: "https://github.com/pyproj4/pyproj",
@@ -86,7 +87,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

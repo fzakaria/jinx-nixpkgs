@@ -2,37 +2,27 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rebuilderd.nix", [[["enable", 11, 11]], [["rebuilderd", 10, 18]], [["services", 10, 9]], [["bind_addr", 21, 18]], [["http", 21, 13]], [["enable", 19, 11], ["settings", 20, 11]], [["rebuilderd", 18, 18]], [["services", 18, 9]], [["machine", 7, 5], ["machine_custom_config", 15, 5]], [["maintainers", 37, 8]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 27, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/rebuilderd.nix", [["enable", 11, 11]]);
-const pos$2 = nix.positions(here + "/rebuilderd.nix", [["rebuilderd", 10, 18]]);
-const pos$3 = nix.positions(here + "/rebuilderd.nix", [["services", 10, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/rebuilderd.nix", [["bind_addr", 21, 18]]);
-const pos$5 = nix.positions(here + "/rebuilderd.nix", [["http", 21, 13]]);
-const pos$6 = nix.positions(here + "/rebuilderd.nix", [["enable", 19, 11], ["settings", 20, 11]]);
-const pos$7 = nix.positions(here + "/rebuilderd.nix", [["rebuilderd", 18, 18]]);
-const pos$8 = nix.positions(here + "/rebuilderd.nix", [["services", 18, 9]]);
-const pos$9 = nix.positions(here + "/rebuilderd.nix", [["machine", 7, 5], ["machine_custom_config", 15, 5]]);
-const pos$10 = nix.positions(here + "/rebuilderd.nix", [["maintainers", 37, 8]]);
-const pos$11 = nix.positions(here + "/rebuilderd.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 27, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "rebuilderd",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            rebuilderd: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+            [nix.POS]: $pos[1],
+            rebuilderd: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
           })),
         };
       })(), formals$2),
@@ -40,15 +30,15 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             rebuilderd: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                http: nix.thunk(() => ({ [nix.POS]: pos$4, bind_addr: "0.0.0.0:1234" })),
+                [nix.POS]: $pos[4],
+                http: nix.thunk(() => ({ [nix.POS]: $pos[3], bind_addr: "0.0.0.0:1234" })),
               })),
             })),
           })),
@@ -56,7 +46,7 @@ export default nix.lambda((args) => (() => {
       })(), formals$3),
     })),
     testScript: "machine.start()\nmachine.wait_for_unit(\"rebuilderd.service\")\nmachine.wait_for_open_port(8484)\n\nmachine_custom_config.start()\nmachine_custom_config.wait_for_unit(\"rebuilderd.service\")\nmachine_custom_config.wait_for_open_port(1234)\n",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$10, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[9], maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=rebuilderd.ts.map

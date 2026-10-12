@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["NIX_CFLAGS_COMPILE", 32, 7]], [["name", 40, 9], ["url", 41, 9], ["sha256", 42, 9]], [["name", 45, 9], ["url", 46, 9], ["sha256", 47, 9]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5]], [["pname", 12, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["env", 32, 3], ["patches", 34, 3], ["postPatch", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false, pcsclite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 40, 9], ["url", 41, 9], ["sha256", 42, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 45, 9], ["url", 46, 9], ["sha256", 47, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["env", 32, 3], ["patches", 34, 3], ["postPatch", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const pcsclite = nix.arg($, "pcsclite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "aribb25",
       version: "0.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "code.videolan.org",
           owner: "videolan",
           repo: "aribb25",
@@ -34,20 +29,20 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [pcsclite]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-deprecated-non-prototype")),
       })),
       patches: nix.thunk(() => (() => {
         const url = (commit) => nix.str`https://code.videolan.org/videolan/aribb25/-/commit/${commit}.diff`;
         return [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "make-cli-pipes-work-1.patch",
               url: nix.thunk(() => nix.app(url, "0425184dbf3fdaf59854af5f530da88b2196a57b")),
               sha256: "0ysm2jivpnqxz71vw1102616qxww2gx005i0c5lhi6jbajqsa1cd",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "make-cli-pipes-work-2.patch",
               url: nix.thunk(() => nix.app(url, "cebabeab2bda065dca1c9f033b42d391be866d86")),
               sha256: "1283kqv1r4rbaba0sv2hphkhcxgjkmh8ndlcd24fhx43nn63hd28",
@@ -56,7 +51,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postPatch: "substituteInPlace src/td.c \\\n  --replace-fail 'static void show_usage();' 'static void show_usage(int exit_code);'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Sample implementation of the ARIB STD-B25 standard",
         homepage: "https://code.videolan.org/videolan/aribb25",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

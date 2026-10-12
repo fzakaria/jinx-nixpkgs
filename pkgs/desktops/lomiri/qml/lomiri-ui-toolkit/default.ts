@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 80, 5], ["repo", 81, 5], ["rev", 82, 5], ["hash", 83, 5]], [["qtVersion", 98, 7]], [["pkg-config", 312, 11]], [["tests", 312, 5], ["updateScript", 313, 5]], [["description", 317, 5], ["longDescription", 318, 5], ["homepage", 332, 5], ["changelog", 333, 5], ["license", 334, 5], ["teams", 338, 5], ["platforms", 339, 5], ["pkgConfigModules", 340, 5]], [["pname", 76, 3], ["version", 77, 3], ["src", 79, 3], ["outputs", 86, 3], ["patches", 94, 3], ["postPatch", 102, 3], ["strictDeps", 177, 3], ["nativeBuildInputs", 179, 3], ["buildInputs", 195, 3], ["propagatedBuildInputs", 215, 3], ["nativeCheckInputs", 233, 3], ["qmakeFlags", 241, 3], ["doCheck", 247, 3], ["enableParallelChecking", 250, 3], ["checkPhase", 252, 3], ["preInstall", 276, 3], ["postInstall", 289, 3], ["postFixup", 303, 3], ["passthru", 311, 3], ["meta", 316, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, replaceVars: false, testers: false, bluez: false, cmake: false, "dbus-test-runner": false, dpkg: false, gdb: false, glib: false, kdePackages: false, ktactilefeedback: true, libevdev: false, "lttng-ust": false, mesa: false, perl: false, "pkg-config": false, python3: false, qmake: false, qtbase: false, qtdeclarative: false, qtfeedback: true, qtgraphicaleffects: true, qtpim: true, qtquickcontrols2: true, qtsvg: false, qtsystems: true, qttools: false, qt5compat: true, "spirv-tools": false, "suru-icon-theme": false, validatePkgConfig: false, wrapQtAppsHook: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 80, 5], ["repo", 81, 5], ["rev", 82, 5], ["hash", 83, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["qtVersion", 98, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pkg-config", 312, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 312, 5], ["updateScript", 313, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 317, 5], ["longDescription", 318, 5], ["homepage", 332, 5], ["changelog", 333, 5], ["license", 334, 5], ["teams", 338, 5], ["platforms", 339, 5], ["pkgConfigModules", 340, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 76, 3], ["version", 77, 3], ["src", 79, 3], ["outputs", 86, 3], ["patches", 94, 3], ["postPatch", 102, 3], ["strictDeps", 177, 3], ["nativeBuildInputs", 179, 3], ["buildInputs", 195, 3], ["propagatedBuildInputs", 215, 3], ["nativeCheckInputs", 233, 3], ["qmakeFlags", 241, 3], ["doCheck", 247, 3], ["enableParallelChecking", 250, 3], ["checkPhase", 252, 3], ["preInstall", 276, 3], ["postInstall", 289, 3], ["postFixup", 303, 3], ["passthru", 311, 3], ["meta", 316, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,11 +48,11 @@ export default nix.lambda((args) => (() => {
   const qtPluginPaths = nix.thunk(() => nix.app(listToQtVar, nix.thunk(() => nix.sel(qtbase, "qtPluginPrefix")), nix.thunk(() => nix.concat([qtbase, qtsvg], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withQt6)), nix.thunk(() => [qtpim]))))));
   const qtQmlPaths = nix.thunk(() => nix.app(listToQtVar, nix.thunk(() => nix.sel(qtbase, "qtQmlPrefix")), nix.thunk(() => nix.concat([qtdeclarative], nix.concat(nix.app(nix.sel(lib, "optionals"), withQt6, nix.thunk(() => [qt5compat, ktactilefeedback])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withQt6)), nix.thunk(() => [qtgraphicaleffects, qtfeedback])))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lomiri-ui-toolkit",
       version: "1.3.5908",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-ui-toolkit",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,7 +62,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./2001-Mark-problematic-tests.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./2002-Nixpkgs-versioned-QML-path.patch.in"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             qtVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version")))),
           })))),
       ]),
@@ -154,15 +149,15 @@ done
 done
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "QML components to ease the creation of beautiful applications in QML",
         longDescription: "This project consists of a set of QML components to ease the creation of beautiful applications in QML for Lomiri.\n\nQML alone lacks built-in components for basic widgets like Button, Slider, Scrollbar, etc, meaning a developer has\nto build them from scratch.\nThis toolkit aims to stop this duplication of work, supplying beautiful components ready-made and with a clear and\nconsistent API.\n\nThese components are fully themeable so the look and feel can be easily customized. Resolution independence\ntechnology is built in so UIs are scaled to best suit the display.\n\nOther features:\n  - localisation through gettext\n",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-ui-toolkit",

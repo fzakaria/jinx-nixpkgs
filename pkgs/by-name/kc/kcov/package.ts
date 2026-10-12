@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 7], ["repo", 24, 7], ["rev", 25, 7], ["sha256", 26, 7]], [["nativeBuildInputs", 59, 54]], [["works-on-c", 47, 7], ["works-on-rust", 59, 7]], [["tests", 46, 14]], [["description", 74, 7], ["longDescription", 76, 7], ["homepage", 84, 7], ["license", 85, 7], ["changelog", 86, 7], ["maintainers", 88, 7], ["platforms", 91, 7]], [["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["preConfigure", 29, 5], ["nativeBuildInputs", 30, 5], ["buildInputs", 36, 5], ["strictDeps", 44, 5], ["passthru", 46, 5], ["meta", 73, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, zlib: false, curl: false, elfutils: false, python3: false, libiberty: false, libopcodes: false, runCommandCC: false, rustc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 7], ["repo", 24, 7], ["rev", 25, 7], ["sha256", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 59, 54]]);
-const pos$3 = nix.positions(here + "/package.nix", [["works-on-c", 47, 7], ["works-on-rust", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 46, 14]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 74, 7], ["longDescription", 76, 7], ["homepage", 84, 7], ["license", 85, 7], ["changelog", 86, 7], ["maintainers", 88, 7], ["platforms", 91, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["preConfigure", 29, 5], ["nativeBuildInputs", 30, 5], ["buildInputs", 36, 5], ["strictDeps", 44, 5], ["passthru", 46, 5], ["meta", 73, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kcov";
       const version = "43";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SimonKagstrom",
           repo: "kcov",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,9 +35,9 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [curl, zlib, elfutils, libiberty, libopcodes]);
       const strictDeps = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "works-on-c": nix.thunk(() => nix.app(runCommandCC, "works-on-c", nix.thunk(() => ({})), nix.thunk(() => nix.str`set -ex
 cat - > a.c <<EOF
 int main() {}
@@ -53,7 +48,7 @@ test -e /tmp/kcov/index.html
 touch $out
 set +x
 `))),
-          "works-on-rust": nix.thunk(() => nix.app(runCommandCC, "works-on-rust", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [rustc]) })), nix.thunk(() => nix.str`set -ex
+          "works-on-rust": nix.thunk(() => nix.app(runCommandCC, "works-on-rust", nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [rustc]) })), nix.thunk(() => nix.str`set -ex
 cat - > a.rs <<EOF
 fn main() {}
 EOF
@@ -67,7 +62,7 @@ set +x
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Code coverage tester for compiled programs, Python scripts and shell scripts",
         longDescription: "Kcov is a code coverage tester for compiled programs, Python\nscripts and shell scripts. It allows collecting code coverage\ninformation from executables without special command-line\narguments, and continuously produces output from long-running\napplications.\n",
         homepage: "http://simonkagstrom.github.io/kcov/index.html",
@@ -80,7 +75,7 @@ set +x
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

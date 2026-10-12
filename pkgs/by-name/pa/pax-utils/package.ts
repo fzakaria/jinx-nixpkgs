@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["url", 53, 5], ["rev-prefix", 54, 5]], [["updateScript", 52, 12]], [["description", 58, 5], ["longDescription", 59, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 31, 3], ["mesonFlags", 33, 3], ["depsBuildBuild", 39, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["propagatedBuildInputs", 50, 3], ["passthru", 52, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, buildPackages: false, docbook_xml_dtd_44: false, docbook_xsl: false, withFuzzing: true, withLibcap: true, withSeccomp: true, libcap: false, "pkg-config": false, meson: false, ninja: false, xmlto: false, python3: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 53, 5], ["rev-prefix", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["longDescription", 59, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 31, 3], ["mesonFlags", 33, 3], ["depsBuildBuild", 39, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["propagatedBuildInputs", 50, 3], ["passthru", 52, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pax-utils",
       version: "1.3.11",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://anongit.gentoo.org/git/proj/pax-utils.git",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-eeWu8XKBAq6U5K5a93BZYGFGfz2R8ysW/VaCyjN0Um8=",
@@ -53,15 +49,15 @@ export default nix.lambda((args) => (() => {
           })())),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://anongit.gentoo.org/git/proj/pax-utils.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "ELF utils that can check files for security relevant properties",
         longDescription: "A suite of ELF tools to aid auditing systems. Contains\nvarious ELF related utils for ELF32, ELF64 binaries useful\nfor displaying PaX and security info on a large groups of\nbinary files.\n",
         homepage: "https://wiki.gentoo.org/wiki/Hardened/PaX_Utilities",

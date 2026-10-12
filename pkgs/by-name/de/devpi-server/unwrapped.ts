@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unwrapped.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["package", 129, 7]], [["devpi-server", 127, 5], ["version", 128, 5]], [["rev-prefix", 135, 5]], [["tests", 126, 12], ["updateScript", 134, 12]], [["homepage", 139, 5], ["description", 140, 5], ["changelog", 141, 5], ["license", 142, 5], ["maintainers", 143, 5], ["mainProgram", 147, 5]], [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["src", 48, 3], ["postPatch", 55, 3], ["sourceRoot", 60, 3], ["build-system", 62, 3], ["dependencies", 66, 3], ["nativeInstallCheckInputs", 88, 3], ["nativeCheckInputs", 90, 3], ["preCheck", 101, 3], ["pytestFlags", 105, 3], ["enabledTestPaths", 108, 3], ["disabledTestPaths", 111, 3], ["disabledTests", 116, 3], ["__darwinAllowLocalNetworking", 120, 3], ["pythonImportsCheck", 122, 3], ["passthru", 126, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, versionCheckHook: false, setuptools_80: false, aiohttp: false, appdirs: false, defusedxml: false, "devpi-common": false, execnet: false, httpx: false, itsdangerous: false, packaging: false, "packaging-legacy": false, passlib: false, platformdirs: false, pluggy: false, py: false, pyramid: false, "repoze-lru": false, strictyaml: false, waitress: false, beautifulsoup4: false, nginx: false, "pytest-asyncio": false, pytestCheckHook: false, webtest: false, "devpi-server": false, gitUpdater: false, nixosTests: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unwrapped.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/unwrapped.nix", [["package", 129, 7]]);
-const pos$3 = nix.positions(here + "/unwrapped.nix", [["devpi-server", 127, 5], ["version", 128, 5]]);
-const pos$4 = nix.positions(here + "/unwrapped.nix", [["rev-prefix", 135, 5]]);
-const pos$5 = nix.positions(here + "/unwrapped.nix", [["tests", 126, 12], ["updateScript", 134, 12]]);
-const pos$6 = nix.positions(here + "/unwrapped.nix", [["homepage", 139, 5], ["description", 140, 5], ["changelog", 141, 5], ["license", 142, 5], ["maintainers", 143, 5], ["mainProgram", 147, 5]]);
-const pos$7 = nix.positions(here + "/unwrapped.nix", [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["src", 48, 3], ["postPatch", 55, 3], ["sourceRoot", 60, 3], ["build-system", 62, 3], ["dependencies", 66, 3], ["nativeInstallCheckInputs", 88, 3], ["nativeCheckInputs", 90, 3], ["preCheck", 101, 3], ["pytestFlags", 105, 3], ["enabledTestPaths", 108, 3], ["disabledTestPaths", 111, 3], ["disabledTests", 116, 3], ["__darwinAllowLocalNetworking", 120, 3], ["pythonImportsCheck", 122, 3], ["passthru", 126, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const testers = nix.arg($, "testers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "devpi-server",
       version: "6.20.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "devpi",
           repo: "devpi",
           tag: nix.thunk(() => nix.str`server-${nix.sel(finalAttrs, "version")}`),
@@ -93,16 +87,16 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["devpi_server"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "devpi-server": nix.thunk(() => nix.sel(nixosTests, "devpi-server")),
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: devpi_server })))),
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: devpi_server })))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "server-" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "server-" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "http://doc.devpi.net",
         description: "Github-style pypi index server and packaging meta tool",
         changelog: nix.thunk(() => nix.str`https://github.com/devpi/devpi/blob/${nix.sel(finalAttrs, "src", "tag")}/server/CHANGELOG`),

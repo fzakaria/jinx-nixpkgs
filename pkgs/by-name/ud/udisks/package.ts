@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["false", 63, 7], ["mdadm", 64, 7], ["sed", 65, 7], ["sh", 66, 7], ["sleep", 67, 7], ["true", 68, 7]], [["path", 71, 7]], [["vm", 154, 11]], [["libblockdev", 153, 13], ["tests", 154, 5]], [["description", 158, 5], ["homepage", 159, 5], ["license", 160, 5], ["maintainers", 164, 5], ["teams", 165, 5], ["platforms", 166, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["outputs", 54, 3], ["patches", 61, 3], ["strictDeps", 87, 3], ["depsBuildBuild", 89, 3], ["nativeBuildInputs", 90, 3], ["postPatch", 103, 3], ["buildInputs", 109, 3], ["preConfigure", 123, 3], ["configureFlags", 125, 3], ["makeFlags", 138, 3], ["installFlags", 143, 3], ["enableParallelBuilding", 147, 3], ["doCheck", 149, 3], ["doInstallCheck", 150, 3], ["passthru", 152, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, "pkg-config": false, gnused: false, autoreconfHook: false, "gtk-doc": false, acl: false, systemdLibs: false, glib: false, libatasmart: false, polkit: false, coreutils: false, bash: false, which: false, expat: false, libxslt: false, docbook_xsl: false, "util-linux": false, mdadm: false, libgudev: false, libblockdev: false, parted: false, "gobject-introspection": false, docbook_xml_dtd_412: false, docbook_xml_dtd_43: false, xfsprogs: false, "f2fs-tools": false, dosfstools: false, e2fsprogs: false, "btrfs-progs": false, exfat: false, "nilfs-utils": false, ntfs3g: false, nixosTests: false, udevCheckHook: false, libiscsi: false, libconfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["false", 63, 7], ["mdadm", 64, 7], ["sed", 65, 7], ["sh", 66, 7], ["sleep", 67, 7], ["true", 68, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["path", 71, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["vm", 154, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["libblockdev", 153, 13], ["tests", 154, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 158, 5], ["homepage", 159, 5], ["license", 160, 5], ["maintainers", 164, 5], ["teams", 165, 5], ["platforms", 166, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["outputs", 54, 3], ["patches", 61, 3], ["strictDeps", 87, 3], ["depsBuildBuild", 89, 3], ["nativeBuildInputs", 90, 3], ["postPatch", 103, 3], ["buildInputs", 109, 3], ["preConfigure", 123, 3], ["configureFlags", 125, 3], ["makeFlags", 138, 3], ["installFlags", 143, 3], ["enableParallelBuilding", 147, 3], ["doCheck", 149, 3], ["doInstallCheck", 150, 3], ["passthru", 152, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,11 +47,11 @@ export default nix.lambda((args) => (() => {
   const libiscsi = nix.arg($, "libiscsi");
   const libconfig = nix.arg($, "libconfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "udisks",
       version: "2.11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "storaged-project",
           repo: "udisks",
           tag: nix.thunk(() => nix.str`udisks-${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +60,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => nix.concat(["out", "man", "dev"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "devdoc"))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             false: nix.thunk(() => nix.str`${coreutils}/bin/false`),
             mdadm: nix.thunk(() => nix.str`${mdadm}/bin/mdadm`),
             sed: nix.thunk(() => nix.str`${gnused}/bin/sed`),
@@ -75,7 +69,7 @@ export default nix.lambda((args) => (() => {
             true: nix.thunk(() => nix.str`${coreutils}/bin/true`),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./force-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             path: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
                 btrfs_progs,
                 coreutils,
@@ -141,12 +135,12 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         libblockdev: libblockdev,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, vm: nix.thunk(() => nix.sel(nixosTests, "udisks2")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], vm: nix.thunk(() => nix.sel(nixosTests, "udisks2")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Daemon, tools and libraries to access and manipulate disks, storage devices and technologies",
         homepage: "https://www.freedesktop.org/wiki/Software/udisks/",
         license: nix.thunk(() => (() => {

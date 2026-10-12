@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["snapshotPath", 48, 5]], [["components", 51, 73]], [["gke-gcloud-auth-plugin", 216, 11]], [["components", 215, 13], ["withExtraComponents", 215, 24], ["tests", 216, 5], ["updateScript", 219, 5]], [["description", 223, 5], ["longDescription", 224, 5], ["sourceProvenance", 225, 5], ["license", 230, 5], ["homepage", 231, 5], ["changelog", 232, 5], ["maintainers", 233, 5], ["platforms", 242, 5], ["mainProgram", 243, 5]], [["pname", 55, 3], ["version", 56, 18], ["src", 58, 3], ["buildInputs", 60, 3], ["nativeBuildInputs", 62, 3], ["patches", 68, 3], ["installPhase", 78, 3], ["postInstall", 156, 3], ["doInstallCheck", 187, 3], ["installCheckPhase", 188, 3], ["postFixup", 207, 3], ["passthru", 214, 3], ["meta", 222, 3]]]);
 const formals$1 = { args: { cacert: false, stdenv: false, lib: false, fetchurl: false, makeWrapper: false, python314: false, openssl: false, jq: false, callPackage: false, installShellFiles: false, "with-gce": true, "with-numpy": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["snapshotPath", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["components", 51, 73]]);
-const pos$3 = nix.positions(here + "/package.nix", [["gke-gcloud-auth-plugin", 216, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["components", 215, 13], ["withExtraComponents", 215, 24], ["tests", 216, 5], ["updateScript", 219, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 223, 5], ["longDescription", 224, 5], ["sourceProvenance", 225, 5], ["license", 230, 5], ["homepage", 231, 5], ["changelog", 232, 5], ["maintainers", 233, 5], ["platforms", 242, 5], ["mainProgram", 243, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 18], ["src", 58, 3], ["buildInputs", 60, 3], ["nativeBuildInputs", 62, 3], ["patches", 68, 3], ["installPhase", 78, 3], ["postInstall", 156, 3], ["doInstallCheck", 187, 3], ["installCheckPhase", 188, 3], ["postFixup", 207, 3], ["passthru", 214, 3], ["meta", 222, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,8 +32,8 @@ export default nix.lambda((args) => (() => {
     })()));
   const data = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./data.nix")), nix.thunk(() => ({}))));
   const sources = (system) => nix.selOr(data, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), "googleCloudSdkPkgs", nix.key(nix.force(system)));
-  const components = nix.thunk(() => nix.app(callPackage, nix.path(here, "./components.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, snapshotPath: nix.path(here, "./components.json") }))));
-  const withExtraComponents = nix.thunk(() => nix.app(callPackage, nix.path(here, "./withExtraComponents.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, components: components }))));
+  const components = nix.thunk(() => nix.app(callPackage, nix.path(here, "./components.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], snapshotPath: nix.path(here, "./components.json") }))));
+  const withExtraComponents = nix.thunk(() => nix.app(callPackage, nix.path(here, "./withExtraComponents.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], components: components }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "google-cloud-sdk";
       const version = nix.thunk(() => nix.attr(data, "version"));
@@ -176,17 +171,17 @@ ${pythonEnv}/bin/python -S -B -c 'import importlib.util, os, sys; sys.exit(not o
 done < <(find "$out" '(' -name cacert.pem -o -name cacerts.txt ')' -print0)
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         components: components,
         withExtraComponents: withExtraComponents,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "gke-gcloud-auth-plugin": nix.thunk(() => nix.app(withExtraComponents, nix.thunk(() => [nix.thunk(() => nix.sel(components, "gke-gcloud-auth-plugin"))]))),
         })),
         updateScript: nix.path(here, "./update.sh"),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tools for the google cloud platform",
         longDescription: "The Google Cloud SDK for GCE hosts. Used by `google-cloud-sdk` only on GCE guests.",
         sourceProvenance: nix.thunk(() => (() => {
@@ -215,7 +210,7 @@ done < <(find "$out" '(' -name cacert.pem -o -name cacerts.txt ')' -print0)
         mainProgram: "gcloud",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

@@ -2,17 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-idris.nix", [[["IDRIS2_PACKAGE_PATH", 77, 13]], [["propagatedIdrisLibraries", 86, 19]], [["pname", 68, 9], ["src", 69, 17], ["version", 69, 21], ["nativeBuildInputs", 70, 9], ["buildInputs", 75, 9], ["env", 77, 9], ["buildPhase", 79, 9], ["passthru", 85, 9], ["shellHook", 90, 9]], [["withSource", 129, 9]], [["installPhase", 102, 7], ["passthru", 128, 7]], [["withSource", 156, 9]], [["installPhase", 140, 7], ["passthru", 155, 7]], [["executable", 162, 3], ["library", 164, 3], ["library'", 172, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, idris2: false, makeBinaryWrapper: false }, ellipsis: false };
 const formals$2 = { args: { src: false, ipkgName: false, version: true, idrisLibraries: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-idris.nix", [["IDRIS2_PACKAGE_PATH", 77, 13]]);
-const pos$2 = nix.positions(here + "/build-idris.nix", [["propagatedIdrisLibraries", 86, 19]]);
-const pos$3 = nix.positions(here + "/build-idris.nix", [["pname", 68, 9], ["src", 69, 17], ["version", 69, 21], ["nativeBuildInputs", 70, 9], ["buildInputs", 75, 9], ["env", 77, 9], ["buildPhase", 79, 9], ["passthru", 85, 9], ["shellHook", 90, 9]]);
-const pos$4 = nix.positions(here + "/build-idris.nix", [["withSource", 129, 9]]);
-const pos$5 = nix.positions(here + "/build-idris.nix", [["installPhase", 102, 7], ["passthru", 128, 7]]);
-const pos$6 = nix.positions(here + "/build-idris.nix", [["withSource", 156, 9]]);
-const pos$7 = nix.positions(here + "/build-idris.nix", [["installPhase", 140, 7], ["passthru", 155, 7]]);
 const formals$3 = { args: { withSource: true }, ellipsis: false };
-const pos$8 = nix.positions(here + "/build-idris.nix", [["executable", 162, 3], ["library", 164, 3], ["library'", 172, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,21 +32,21 @@ export default nix.lambda((args) => (() => {
       const applyWithSource = (lib_1) => (nix.asBool(withSource) ? nix.sel(lib_1, "withSource") : nix.force(lib_1));
       const propagatedIdrisLibraries = nix.thunk(() => nix.builtins.map(applyWithSource, nix.thunk(() => nix.app(propagate, idrisLibraryLibs))));
       return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(drvAttrs, {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: ipkgName,
           src: src,
           version: version,
           nativeBuildInputs: nix.thunk(() => nix.concat([idris2, makeBinaryWrapper], nix.selOr(attrs, () => [], "nativeBuildInputs"))),
           buildInputs: nix.thunk(() => nix.concat(propagatedIdrisLibraries, nix.selOr(attrs, () => [], "buildInputs"))),
           env: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             IDRIS2_PACKAGE_PATH: nix.thunk(() => nix.app(libDirs, propagatedIdrisLibraries)),
           })),
           buildPhase: nix.thunk(() => nix.str`runHook preBuild
 idris2 --build ${ipkgFileName}
 runHook postBuild
 `),
-          passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$2, propagatedIdrisLibraries: propagatedIdrisLibraries }, nix.selOr(attrs, () => ({}), "passthru"))),
+          passthru: nix.thunk(() => nix.update({ [nix.POS]: $pos[1], propagatedIdrisLibraries: propagatedIdrisLibraries }, nix.selOr(attrs, () => ({}), "passthru"))),
           shellHook: nix.thunk(() => nix.str`export IDRIS2_PACKAGE_PATH="${nix.sel(finalAttrs, "env", "IDRIS2_PACKAGE_PATH")}"
 `),
         }));
@@ -61,7 +54,7 @@ runHook postBuild
     const mkExecutable = (withSource) => (() => {
       const derivation = nix.thunk(() => nix.app(mkDerivation, withSource));
       return nix.app(nix.sel(derivation, "overrideAttrs"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           installPhase: nix.thunk(() => nix.str`runHook preInstall
 mkdir -p $out/bin
 scheme_app="$(find ./build/exec -name '*_app')"
@@ -84,25 +77,25 @@ else
 fi
 runHook postInstall
 `),
-          passthru: nix.thunk(() => nix.update(nix.sel(derivation, "passthru"), { [nix.POS]: pos$4, withSource: nix.thunk(() => nix.app(mkExecutable, true)) })),
+          passthru: nix.thunk(() => nix.update(nix.sel(derivation, "passthru"), { [nix.POS]: $pos[3], withSource: nix.thunk(() => nix.app(mkExecutable, true)) })),
         })));
     })();
     const mkLibrary = (withSource) => (() => {
       const installCmd = nix.thunk(() => (nix.asBool(withSource) ? "--install-with-src" : "--install"));
       const derivation = nix.thunk(() => nix.app(mkDerivation, withSource));
       return nix.app(nix.sel(derivation, "overrideAttrs"), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           installPhase: nix.thunk(() => nix.str`runHook preInstall
 mkdir -p $out/${libSuffix}
 export IDRIS2_PREFIX=$out/lib
 idris2 ${installCmd} ${ipkgFileName}
 runHook postInstall
 `),
-          passthru: nix.thunk(() => nix.update(nix.sel(derivation, "passthru"), { [nix.POS]: pos$6, withSource: nix.thunk(() => nix.app(mkLibrary, true)) })),
+          passthru: nix.thunk(() => nix.update(nix.sel(derivation, "passthru"), { [nix.POS]: $pos[5], withSource: nix.thunk(() => nix.app(mkLibrary, true)) })),
         })));
     })();
     return {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       executable: nix.thunk(() => nix.app(mkExecutable, false)),
       library: nix.lambda((args_2) => (() => {
         const $_2 = nix.formals(args_2, formals$3);

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lsp.nix", [[["version", 48, 13]], [["yojson", 54, 38]], [["version", 158, 24]], [["version", 167, 24]], [["description", 182, 5]], [["pname", 57, 3], ["version", 58, 23], ["src", 58, 31], ["minimalOCamlVersion", 59, 3], ["preBuild", 65, 3], ["buildInputs", 69, 3], ["nativeBuildInputs", 130, 3], ["propagatedBuildInputs", 132, 3], ["meta", 181, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, lib: false, cppo: false, "stdlib-shims": false, ppx_yojson_conv_lib: false, yojson_2: false, "ocaml-syntax-shims": false, jsonrpc: false, omd: false, octavius: false, "dune-build-info": false, "dune-rpc": false, uutf: false, dyn: false, re: false, stdune: false, "chrome-trace": false, csexp: false, result: false, pp: false, cmdliner: false, cmdliner_1: false, ordering: false, "ocamlformat-rpc-lib": false, ocaml: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lsp.nix", [["version", 48, 13]]);
-const pos$2 = nix.positions(here + "/lsp.nix", [["yojson", 54, 38]]);
-const pos$3 = nix.positions(here + "/lsp.nix", [["version", 158, 24]]);
-const pos$4 = nix.positions(here + "/lsp.nix", [["version", 167, 24]]);
-const pos$5 = nix.positions(here + "/lsp.nix", [["description", 182, 5]]);
-const pos$6 = nix.positions(here + "/lsp.nix", [["pname", 57, 3], ["version", 58, 23], ["src", 58, 31], ["minimalOCamlVersion", 59, 3], ["preBuild", 65, 3], ["buildInputs", 69, 3], ["nativeBuildInputs", 130, 3], ["propagatedBuildInputs", 132, 3], ["meta", 181, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,10 +33,10 @@ export default nix.lambda((args) => (() => {
   const ocamlformat_rpc_lib = nix.arg($, "ocamlformat-rpc-lib");
   const ocaml = nix.arg($, "ocaml");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.5")) ? "1.27.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.4")) ? "1.26.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.3")) ? "1.23.1" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.2")) ? "1.21.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")) ? "1.18.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.13")) ? "1.10.5" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.12")) ? "1.9.0" : "1.4.1"))))))));
-  const jsonrpc_v = nix.thunk(() => nix.app(nix.sel(jsonrpc, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: version }))));
-  const ppx_yojson_conv_lib_v = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.17.0")) ? nix.force(ppx_yojson_conv_lib) : nix.app(nix.sel(ppx_yojson_conv_lib, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, yojson: yojson_2 })))));
+  const jsonrpc_v = nix.thunk(() => nix.app(nix.sel(jsonrpc, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], version: version }))));
+  const ppx_yojson_conv_lib_v = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.17.0")) ? nix.force(ppx_yojson_conv_lib) : nix.app(nix.sel(ppx_yojson_conv_lib, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], yojson: yojson_2 })))));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lsp",
       version: nix.thunk(() => nix.attr(jsonrpc_v, "version")),
       src: nix.thunk(() => nix.attr(jsonrpc_v, "src")),
@@ -94,19 +89,19 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.23.1")) ? [jsonrpc, ppx_yojson_conv_lib, uutf] : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.14.0")) ? [jsonrpc, ppx_yojson_conv_lib_v, uutf] : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.10.0")) ? [dyn, jsonrpc, ordering, ppx_yojson_conv_lib_v, stdune, uutf] : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.9.0")) ? [
         csexp,
         jsonrpc,
-        nix.thunk(() => nix.app(nix.sel(pp, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, version: "1.2.0" })))),
+        nix.thunk(() => nix.app(nix.sel(pp, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], version: "1.2.0" })))),
         ppx_yojson_conv_lib_v,
         result,
         uutf,
       ] : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "1.7.0")) ? [
         csexp,
         jsonrpc,
-        nix.thunk(() => nix.app(nix.sel(pp, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, version: "1.2.0" })))),
+        nix.thunk(() => nix.app(nix.sel(pp, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], version: "1.2.0" })))),
         ppx_yojson_conv_lib,
         result,
         uutf,
       ] : [csexp, jsonrpc, ppx_yojson_conv_lib, stdlib_shims, uutf])))))),
-      meta: nix.thunk(() => nix.update(nix.sel(jsonrpc, "meta"), { [nix.POS]: pos$5, description: "LSP protocol implementation in OCaml" })),
+      meta: nix.thunk(() => nix.update(nix.sel(jsonrpc, "meta"), { [nix.POS]: $pos[4], description: "LSP protocol implementation in OCaml" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lsp.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5], ["fetchSubmodules", 22, 5]], [["name", 27, 7], ["url", 28, 7], ["sha256", 29, 7]], [["homepage", 55, 5], ["description", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["configurePhase", 41, 3], ["installPhase", 49, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, ninja: false, libevdev: false, libev: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5], ["fetchSubmodules", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["sha256", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["configurePhase", 41, 3], ["installPhase", 49, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libev = nix.arg($, "libev");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "illum",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "codyps",
           repo: "illum",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "prevent-unplug-segfault",
             url: "https://github.com/codyps/illum/commit/47b7cd60ee892379e5d854f79db343a54ae5a3cc.patch",
             sha256: "sha256-hIBBCIJXAt8wnZuyKye1RiEfOCelP3+4kcGrM43vFOE=",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\nbash ./configure\n\nrunHook postConfigure\n",
       installPhase: "mkdir -p $out/bin\nmv illum-d $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/codyps/illum",
         description: "Daemon that wires button presses to screen backlight level",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/basic.nix", [[["replication_factor", 16, 13], ["consistency_mode", 17, 13]], [["replication_mode", 21, 13]], [["extraSettings", 13, 7]], [["single_node", 12, 5]], [["name", 9, 3], ["nodes", 11, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { lib: false, mkNode: false, package: false, testScriptSetup: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/basic.nix", [["replication_factor", 16, 13], ["consistency_mode", 17, 13]]);
-const pos$2 = nix.positions(here + "/basic.nix", [["replication_mode", 21, 13]]);
-const pos$3 = nix.positions(here + "/basic.nix", [["extraSettings", 13, 7]]);
-const pos$4 = nix.positions(here + "/basic.nix", [["single_node", 12, 5]]);
-const pos$5 = nix.positions(here + "/basic.nix", [["name", 9, 3], ["nodes", 11, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const package$ = nix.arg($, "package");
   const testScriptSetup = nix.arg($, "testScriptSetup");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     name: nix.thunk(() => nix.str`garage-${nix.sel(package$, "version")}-basic`),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       single_node: nix.thunk(() => nix.app(mkNode, nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          extraSettings: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(package$, "version")), "2")) ? { [nix.POS]: pos$1, replication_factor: 1n, consistency_mode: "consistent" } : { [nix.POS]: pos$2, replication_mode: "none" })),
+          [nix.POS]: $pos[2],
+          extraSettings: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(package$, "version")), "2")) ? { [nix.POS]: $pos[0], replication_factor: 1n, consistency_mode: "consistent" } : { [nix.POS]: $pos[1], replication_mode: "none" })),
         })))),
     })),
     testScript: nix.thunk(() => nix.str`${testScriptSetup}

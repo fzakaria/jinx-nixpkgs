@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["sso", 32, 5]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["optional-dependencies", 31, 3], ["doCheck", 39, 3], ["pythonImportsCheck", 41, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, lxml: false, requests: false, six: false, pyopenssl: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sso", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["optional-dependencies", 31, 3], ["doCheck", 39, 3], ["pythonImportsCheck", 41, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.1.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vmware",
           repo: "pyvmomi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [requests, six]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, sso: nix.thunk(() => [lxml, pyopenssl]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], sso: nix.thunk(() => [lxml, pyopenssl]) }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pyVim", "pyVmomi"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python SDK for the VMware vSphere API that allows you to manage ESX, ESXi, and vCenter",
         homepage: "https://github.com/vmware/pyvmomi",
         changelog: nix.thunk(() => nix.str`https://github.com/vmware/pyvmomi/releases/tag/${nix.sel(src, "tag")}`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

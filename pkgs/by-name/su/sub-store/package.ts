@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pname", 38, 7], ["version", 39, 7], ["src", 40, 7], ["sourceRoot", 41, 7], ["pnpm", 43, 13], ["fetcherVersion", 44, 5], ["hash", 45, 5]], [["updateScript", 62, 12]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5], ["platforms", 71, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 28, 3], ["nativeBuildInputs", 30, 3], ["npmDeps", 35, 3], ["pnpmDeps", 36, 3], ["npmConfigHook", 48, 3], ["npmBuildScript", 49, 3], ["installPhase", 51, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, makeBinaryWrapper: false, "nix-update-script": false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 38, 7], ["version", 39, 7], ["src", 40, 7], ["sourceRoot", 41, 7], ["pnpm", 43, 13], ["fetcherVersion", 44, 5], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5], ["platforms", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 28, 3], ["nativeBuildInputs", 30, 3], ["npmDeps", 35, 3], ["pnpmDeps", 36, 3], ["npmConfigHook", 48, 3], ["npmBuildScript", 49, 3], ["installPhase", 51, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const pnpm = pnpm_10;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sub-store",
       version: "2.22.26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sub-store-org",
           repo: "Sub-Store",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, pnpm]),
       npmDeps: null,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -57,11 +53,11 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/sub-store \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Advanced Subscription Manager for QX, Loon, Surge, Stash, Egern and Shadowrocket",
         homepage: "https://github.com/sub-store-org/Sub-Store",
         changelog: nix.thunk(() => nix.str`https://github.com/sub-store-org/Sub-Store/releases/tag/${nix.sel(finalAttrs, "version")}`),

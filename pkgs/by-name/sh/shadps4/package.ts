@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 65, 5], ["repo", 66, 5], ["tag", 67, 5], ["hash", 68, 5]], [["owner", 76, 5], ["repo", 77, 5], ["tag", 78, 5], ["hash", 79, 5], ["postCheckout", 81, 5]], [["NIX_LDFLAGS", 117, 7]], [["openorbis-example", 204, 11]], [["extraArgs", 206, 7]], [["tests", 204, 5], ["updateScript", 205, 5]], [["description", 214, 5], ["homepage", 215, 5], ["downloadPage", 216, 5], ["donationPage", 217, 5], ["license", 218, 5], ["maintainers", 219, 5], ["mainProgram", 223, 5], ["platforms", 224, 5]], [["pname", 72, 3], ["version", 73, 3], ["src", 75, 3], ["strictDeps", 104, 3], ["__structuredAttrs", 105, 3], ["postPatch", 107, 3], ["env", 117, 3], ["nativeBuildInputs", 119, 3], ["buildInputs", 125, 3], ["cmakeFlags", 176, 3], ["cmakeBuildType", 185, 3], ["dontStrip", 186, 3], ["postInstall", 188, 3], ["runtimeDependencies", 198, 3], ["passthru", 203, 3], ["meta", 213, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchFromGitHub: false, makeBinaryWrapper: false, nixosTests: false, "alsa-lib": false, boost: false, cli11: false, cmake: false, cryptopp: false, ffmpeg: false, fmt: false, freetype: false, half: false, httplib: false, jack2: false, libdecor: false, libpng: false, libpulseaudio: false, libunwind: false, libusb1: false, "magic-enum": false, minimp3: false, miniupnpc: false, miniz: false, nlohmann_json: false, libgbm: false, libx11: false, libxcb: false, libxcursor: false, libxext: false, libxi: false, libxrandr: false, libxscrnsaver: false, libxtst: false, pipewire: false, "pkg-config": false, pugixml: false, rapidjson: false, renderdoc: false, "robin-map": false, sdl3: false, "sdl3-mixer": false, sndio: false, stb: false, toml11: false, "util-linux": false, "vulkan-headers": false, "vulkan-loader": false, "vulkan-memory-allocator": false, xbyak: false, xxhash: false, zarchive: false, zstd: false, zlib: false, "nix-update-script": false, withRpc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 65, 5], ["repo", 66, 5], ["tag", 67, 5], ["hash", 68, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 76, 5], ["repo", 77, 5], ["tag", 78, 5], ["hash", 79, 5], ["postCheckout", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 117, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["openorbis-example", 204, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 206, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 204, 5], ["updateScript", 205, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 214, 5], ["homepage", 215, 5], ["downloadPage", 216, 5], ["donationPage", 217, 5], ["license", 218, 5], ["maintainers", 219, 5], ["mainProgram", 223, 5], ["platforms", 224, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 72, 3], ["version", 73, 3], ["src", 75, 3], ["strictDeps", 104, 3], ["__structuredAttrs", 105, 3], ["postPatch", 107, 3], ["env", 117, 3], ["nativeBuildInputs", 119, 3], ["buildInputs", 125, 3], ["cmakeFlags", 176, 3], ["cmakeBuildType", 185, 3], ["dontStrip", 186, 3], ["postInstall", 188, 3], ["runtimeDependencies", 198, 3], ["passthru", 203, 3], ["meta", 213, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -72,18 +65,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const withRpc = nix.argOr($, "withRpc", () => true);
   const abseilCppSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "abseil",
       repo: "abseil-cpp",
       tag: "20250512.1",
       hash: "sha256-eB7OqTO9Vwts9nYQ/Mdq0Ds4T1KgmmpYdzU09VPWOhk=",
     }))));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "shadps4",
       version: "0.18.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "shadps4-emu",
           repo: "shadPS4",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -99,7 +92,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail @GIT_DESC@ nixpkgs \\
   --replace-fail @BUILD_DATE@ $(cat SOURCE_DATE_EPOCH)
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-lzstd" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_LDFLAGS: "-lzstd" })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, makeBinaryWrapper]),
       buildInputs: nix.thunk(() => [
         alsa_lib,
@@ -165,18 +158,18 @@ export default nix.lambda((args) => (() => {
 `),
       runtimeDependencies: nix.thunk(() => [vulkan_loader, libxi]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "openorbis-example": nix.thunk(() => nix.sel(nixosTests, "shadps4")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex", "v\\.(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Early in development PS4 emulator",
         homepage: "https://shadps4.net",
         downloadPage: "https://shadps4.net/downloads",

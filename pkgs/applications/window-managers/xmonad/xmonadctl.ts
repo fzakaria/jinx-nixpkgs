@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/xmonadctl.nix", [[["platforms", 29, 5], ["description", 30, 5], ["mainProgram", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 16, 3], ["src", 18, 44], ["version", 18, 48], ["installPhase", 20, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, ghcWithPackages: false, haskellPackages: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/xmonadctl.nix", [["platforms", 29, 5], ["description", 30, 5], ["mainProgram", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$2 = nix.positions(here + "/xmonadctl.nix", [["pname", 16, 3], ["src", 18, 44], ["version", 18, 48], ["installPhase", 20, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(haskellPackages, "xmonad-contrib"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "xmonadctl",
       src: nix.thunk(() => nix.attr(from, "src")),
       version: nix.thunk(() => nix.attr(from, "version")),
@@ -30,7 +29,7 @@ ${xmonadctlEnv}/bin/ghc -o $out/bin/xmonadctl \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         description: "Send commands to a running instance of xmonad",
         mainProgram: "xmonadctl",

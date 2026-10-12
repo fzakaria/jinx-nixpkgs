@@ -2,10 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/default.nix", [["buildBatExtrasPkg", 2, 3], ["core", 4, 3], ["batdiff", 5, 3], ["batgrep", 6, 3], ["batman", 7, 3], ["batpipe", 8, 3], ["batwatch", 9, 3], ["prettybat", 10, 3]]);
+const $pos = nix.positions(here + "/default.nix", [[["buildBatExtrasPkg", 2, 3], ["core", 4, 3], ["batdiff", 5, 3], ["batgrep", 6, 3], ["batman", 7, 3], ["batpipe", 8, 3], ["batwatch", 9, 3], ["prettybat", 10, 3]]]);
 
 export default (self) => ({
-  [nix.POS]: pos$1,
+  [nix.POS]: $pos[0],
   buildBatExtrasPkg: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./buildBatExtrasPkg.nix"), nix.thunk(() => ({})))),
   core: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./modules/core.nix"), nix.thunk(() => ({})))),
   batdiff: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./modules/batdiff.nix"), nix.thunk(() => ({})))),

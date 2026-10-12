@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]], [["homepage", 103, 5], ["description", 104, 5], ["longDescription", 105, 5], ["license", 110, 5], ["platforms", 111, 5], ["mainProgram", 112, 5], ["maintainers", 113, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["strictDeps", 47, 3], ["mesonFlags", 48, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 63, 3], ["postInstall", 83, 3], ["preFixup", 92, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, python3: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, docutils: false, desktopToDarwinBundle: false, "gtk-vnc": false, vte: false, dconf: false, "gobject-introspection": false, "libvirt-glib": false, "gsettings-desktop-schemas": false, libosinfo: false, "adwaita-icon-theme": false, gtksourceview4: false, "libayatana-appindicator": false, xorriso: false, spiceSupport: true, "spice-gtk": true, gst_all_1: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 103, 5], ["description", 104, 5], ["longDescription", 105, 5], ["license", 110, 5], ["platforms", 111, 5], ["mainProgram", 112, 5], ["maintainers", 113, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["strictDeps", 47, 3], ["mesonFlags", 48, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 63, 3], ["postInstall", 83, 3], ["preFixup", 92, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +41,11 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "virt-manager",
       version: "5.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "virt-manager",
           repo: "virt-manager",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -84,7 +82,7 @@ gappsWrapperArgs+=(--prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.t
 patchShebangs $out/bin
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://virt-manager.org",
         description: "Desktop user interface for managing virtual machines",
         longDescription: "The virt-manager application is a desktop user interface for managing\nvirtual machines through libvirt. It primarily targets KVM VMs, but also\nmanages Xen and LXC (linux containers).\n",

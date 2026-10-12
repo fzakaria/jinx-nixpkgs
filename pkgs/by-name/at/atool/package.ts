@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["name", 26, 7], ["desktopName", 27, 7], ["exec", 28, 7], ["terminal", 29, 7], ["noDisplay", 30, 7], ["mimeTypes", 31, 7]], [["homepage", 49, 5], ["description", 50, 5], ["platforms", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 21, 3], ["configureScript", 22, 3], ["desktopItems", 24, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, bash: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["desktopName", 27, 7], ["exec", 28, 7], ["terminal", 29, 7], ["noDisplay", 30, 7], ["mimeTypes", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["platforms", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 21, 3], ["configureScript", 22, 3], ["desktopItems", 24, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "atool",
       version: "0.39.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/atool/atool-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "aaf60095884abb872e25f8e919a8a63d0dabaeca46faeba87d12812d6efc703b",
         })))),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       configureScript: nix.thunk(() => nix.str`${bash}/bin/bash configure`),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "aunpack",
             desktopName: "Aunpack",
             exec: "atool -x %f",
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.nongnu.org/atool",
         description: "Archive command line helper",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["updateScript", 128, 12]], [["description", 137, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["mainProgram", 142, 5], ["platforms", 143, 5]], [["pname", 40, 3], ["version", 41, 3], ["__structuredAttrs", 43, 3], ["src", 45, 3], ["cargoHash", 52, 3], ["postPatch", 55, 3], ["preCheck", 69, 3], ["nativeBuildInputs", 73, 3], ["nativeCheckInputs", 85, 3], ["buildInputs", 87, 3], ["postFixup", 96, 3], ["postInstall", 107, 3], ["passthru", 128, 3], ["__darwinAllowLocalNetworking", 130, 3], ["__impureHostDeps", 132, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, cacert: false, makeWrapper: false, icnsify: false, "nix-update-script": false, dbus: false, rcodesign: false, "re-plistbuddy": false, "alsa-lib": false, libpulseaudio: false, libGL: false, libx11: false, libxkbcommon: false, wayland: false, libxcursor: false, libxi: false, libxrandr: false, "apple-sdk_15": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 128, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 137, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["mainProgram", 142, 5], ["platforms", 143, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["__structuredAttrs", 43, 3], ["src", 45, 3], ["cargoHash", 52, 3], ["postPatch", 55, 3], ["preCheck", 69, 3], ["nativeBuildInputs", 73, 3], ["nativeCheckInputs", 85, 3], ["buildInputs", 87, 3], ["postFixup", 96, 3], ["postInstall", 107, 3], ["passthru", 128, 3], ["__darwinAllowLocalNetworking", 130, 3], ["__impureHostDeps", 132, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.1";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crmne",
           repo: "spotifast",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -74,13 +71,13 @@ substitute packaging/macos/Info.plist "$app/Info.plist" \\
   --replace-fail __IDENTIFIER__ "$identifier"
 `))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const __darwinAllowLocalNetworking = true;
       const __impureHostDeps = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["/System/Library/Fonts"])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast native Spotify client with local playback and Spotify Connect",
         homepage: "https://spotifast.rocks",
         changelog: nix.thunk(() => nix.str`https://github.com/crmne/spotifast/releases/tag/v${version}`),
@@ -93,7 +90,7 @@ substitute packaging/macos/Info.plist "$app/Info.plist" \\
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         __structuredAttrs,

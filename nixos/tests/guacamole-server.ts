@@ -2,38 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/guacamole-server.nix", [[["enable", 10, 11], ["host", 11, 11]], [["guacamole-server", 9, 18]], [["services", 9, 9]], [["machine", 6, 5]], [["maintainers", 22, 8]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 16, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/guacamole-server.nix", [["enable", 10, 11], ["host", 11, 11]]);
-const pos$2 = nix.positions(here + "/guacamole-server.nix", [["guacamole-server", 9, 18]]);
-const pos$3 = nix.positions(here + "/guacamole-server.nix", [["services", 9, 9]]);
-const pos$4 = nix.positions(here + "/guacamole-server.nix", [["machine", 6, 5]]);
-const pos$5 = nix.positions(here + "/guacamole-server.nix", [["maintainers", 22, 8]]);
-const pos$6 = nix.positions(here + "/guacamole-server.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 16, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "guacamole-server",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            "guacamole-server": nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, host: "0.0.0.0" })),
+            [nix.POS]: $pos[1],
+            "guacamole-server": nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true, host: "0.0.0.0" })),
           })),
         };
       })(), formals$2),
     })),
     testScript: "start_all()\nmachine.wait_for_unit(\"guacamole-server.service\")\nmachine.wait_for_open_port(4822)\n",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$5, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[4], maintainers: [] })),
   };
 })(), formals$1);
 //# sourceMappingURL=guacamole-server.ts.map

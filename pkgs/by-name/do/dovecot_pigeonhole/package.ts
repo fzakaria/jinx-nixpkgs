@@ -2,12 +2,11 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 7], ["hash", 14, 7]], [["version", 2, 3], ["url", 3, 3], ["hash", 9, 3], ["patches", 10, 3]]]);
 const formals$1 = { args: { version: false, dovecotMajorMinor: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 2, 3], ["url", 3, 3], ["hash", 9, 3], ["patches", 10, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "2.4.5",
     url: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./gen
     hash: "sha256-pDvpoE9SRoOB0Nh3cczsILc4N7fnPzpFvfr2+cKZR4M=",
     patches: (fetchpatch) => [
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/dovecot/pigeonhole/commit/517d74aa1d98b853b72608ce722bc58009c0f4a9.patch",
           hash: "sha256-BLBz9ZhOGEIIitnXG0uM6bZBRNnQBy4K2IJlh1+Un50=",
         })))),

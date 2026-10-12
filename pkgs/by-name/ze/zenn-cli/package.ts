@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 38, 7], ["version", 39, 7], ["src", 40, 7], ["pnpmWorkspaces", 41, 7], ["pnpm", 43, 5], ["fetcherVersion", 44, 5], ["hash", 45, 5]], [["package", 77, 7]], [["version", 76, 11]], [["tests", 76, 5], ["updateScript", 79, 5]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["pnpmWorkspaces", 34, 3], ["pnpmDeps", 36, 3], ["preBuild", 48, 3], ["buildPhase", 52, 3], ["installPhase", 60, 3], ["passthru", 75, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, nodejs: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, testers: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 38, 7], ["version", 39, 7], ["src", 40, 7], ["pnpmWorkspaces", 41, 7], ["pnpm", 43, 5], ["fetcherVersion", 44, 5], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 77, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 76, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 76, 5], ["updateScript", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["pnpmWorkspaces", 34, 3], ["pnpmDeps", 36, 3], ["preBuild", 48, 3], ["buildPhase", 52, 3], ["installPhase", 60, 3], ["passthru", 75, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "zenn-cli",
       version: "0.5.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zenn-dev",
           repo: "zenn-editor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_10, makeWrapper]),
       pnpmWorkspaces: nix.thunk(() => ["zenn-cli..."]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -63,18 +57,18 @@ makeWrapper "${nix.app(nix.sel(lib, "getExe"), nodejs)}" "$out/bin/zenn" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Preview Zenn content locally",
         homepage: "https://github.com/zenn-dev/zenn-editor",
         changelog: nix.thunk(() => nix.str`https://github.com/zenn-dev/zenn-editor/releases/tag/${nix.sel(finalAttrs, "version")}`),

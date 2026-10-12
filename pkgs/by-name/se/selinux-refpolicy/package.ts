@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 56, 5], ["homepage", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 35], ["license", 60, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["configurePhase", 31, 3], ["makeFlags", 37, 3], ["installTargets", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gnum4: false, python3: false, getopt: false, checkpolicy: false, policycoreutils: false, "semodule-utils": false, policyVersion: true, moduleVersion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 35], ["license", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["configurePhase", 31, 3], ["makeFlags", 37, 3], ["installTargets", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const policyVersion = nix.argOr($, "policyVersion", () => null);
   const moduleVersion = nix.argOr($, "moduleVersion", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "selinux-refpolicy",
       version: "2.20250923",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SELinuxProject",
           repo: "refpolicy",
           tag: nix.thunk(() => nix.str`RELEASE_${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}_${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(semodule_utils, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SELinux Reference Policy v2",
         homepage: "http://userspace.selinuxproject.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

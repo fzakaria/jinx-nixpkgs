@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 44, 5], ["rev", 45, 5], ["hash", 46, 5]], [["description", 87, 5], ["homepage", 88, 5], ["maintainers", 89, 5], ["license", 90, 5], ["platforms", 91, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["outputs", 49, 3], ["nativeBuildInputs", 56, 3], ["patches", 62, 3], ["buildInputs", 64, 3], ["enableParallelBuilding", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, fetchgit: false, autoreconfHook: false, "autoconf-archive": false, "pkg-config": false, enableAlsa: true, "alsa-lib": false, enableLibao: true, libao: false, enableLame: true, lame: false, enableLibmad: true, libmad: false, enableLibogg: true, libogg: false, libvorbis: false, enableOpusfile: true, opusfile: false, enableFLAC: true, flac: false, enablePNG: true, libpng: false, enableLibsndfile: true, libsndfile: false, enableWavpack: true, wavpack: false, enableAMR: true, amrnb: false, amrwb: false, enableLibpulseaudio: true, libpulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 44, 5], ["rev", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["maintainers", 89, 5], ["license", 90, 5], ["platforms", 91, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["outputs", 49, 3], ["nativeBuildInputs", 56, 3], ["patches", 62, 3], ["buildInputs", 64, 3], ["enableParallelBuilding", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const enableLibpulseaudio = nix.argOr($, "enableLibpulseaudio", () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), libpulseaudio))));
   const libpulseaudio = nix.arg($, "libpulseaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sox",
       version: "14.4.2-unstable-2021-05-09",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.code.sf.net/p/sox/code",
           rev: "42b3557e13e0fe01a83465b672d89faddbe65f49",
           hash: "sha256-9cpOwio69GvzVeDq79BSmJgds9WU5kA/KUlAkHcpN5c=",
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(enableAlsa) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), alsa_lib), nix.concat(nix.app(nix.sel(lib, "optional"), enableLibao, libao), nix.concat(nix.app(nix.sel(lib, "optional"), enableLame, lame), nix.concat(nix.app(nix.sel(lib, "optional"), enableLibmad, libmad), nix.concat(nix.app(nix.sel(lib, "optionals"), enableLibogg, nix.thunk(() => [libogg, libvorbis])), nix.concat(nix.app(nix.sel(lib, "optional"), enableOpusfile, opusfile), nix.concat(nix.app(nix.sel(lib, "optional"), enableFLAC, flac), nix.concat(nix.app(nix.sel(lib, "optional"), enablePNG, libpng), nix.concat(nix.app(nix.sel(lib, "optional"), enableLibsndfile, libsndfile), nix.concat(nix.app(nix.sel(lib, "optional"), enableWavpack, wavpack), nix.concat(nix.app(nix.sel(lib, "optionals"), enableAMR, nix.thunk(() => [amrnb, amrwb])), nix.app(nix.sel(lib, "optional"), enableLibpulseaudio, libpulseaudio))))))))))))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sample Rate Converter for audio",
         homepage: "https://sox.sourceforge.net/",
         maintainers: [],

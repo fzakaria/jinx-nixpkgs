@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["extraArgs", 21, 5]], [["updateScript", 20, 12]], [["description", 25, 5], ["homepage", 26, 5], ["downloadPage", 27, 5], ["license", 28, 5], ["mainProgram", 29, 5], ["maintainers", 30, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["passthru", 20, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromSourcehut: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 20, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["downloadPage", 27, 5], ["license", 28, 5], ["mainProgram", 29, 5], ["maintainers", 30, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["passthru", 20, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "addr-book-combine",
       version: "0-unstable-2022-12-14",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~jcc",
           repo: "addr-book-combine",
           rev: "11696f4726b981c774ad1d4858f1a935ac71e9ac",
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: null,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Combine multiple aerc-style address books into a single address book",
         homepage: "https://jasoncarloscox.com/creations/addr-book-combine/",
         downloadPage: "https://git.sr.ht/~jcc/addr-book-combine",

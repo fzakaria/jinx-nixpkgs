@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 35, 13], ["version", 35, 19], ["hash", 36, 5]], [["default", 42, 5], ["extra", 48, 5]], [["sage", 57, 13]], [["tests", 56, 12]], [["changelog", 71, 5], ["homepage", 72, 5], ["downloadPage", 73, 5], ["description", 74, 5], ["license", 75, 5]], [["pname", 29, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["optional-dependencies", 41, 3], ["passthru", 56, 3], ["nativeCheckInputs", 60, 3], ["disabledTests", 65, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch: false, setuptools: false, lxml: false, matplotlib: false, numpy: false, pandas: false, pydot: false, pygraphviz: false, scipy: false, sympy: false, "pytest-xdist": false, pytestCheckHook: false, sage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 35, 13], ["version", 35, 19], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["default", 42, 5], ["extra", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["sage", 57, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 56, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 71, 5], ["homepage", 72, 5], ["downloadPage", 73, 5], ["description", 74, 5], ["license", 75, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["optional-dependencies", 41, 3], ["passthru", 56, 3], ["nativeCheckInputs", 60, 3], ["disabledTests", 65, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,22 +28,25 @@ export default nix.lambda((args) => (() => {
       const version = "3.6.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-JrfDV6zMDIzeVYrUhig3KLZbapXYXuHNZrr6tMgWhQk=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         default: nix.thunk(() => [numpy, scipy, matplotlib, pandas]),
         extra: nix.thunk(() => [lxml, pygraphviz, pydot, sympy]),
       }));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, tests: nix.thunk(() => ({ [nix.POS]: pos$3, sage: sage })) }));
+      const passthru = nix.thunk(() => ({
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], sage: sage })),
+      }));
       const nativeCheckInputs = nix.thunk(() => [pytest_xdist, pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["test_connected_raise"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/networkx/networkx/blob/networkx-${version}/doc/release/release_${version}.rst`),
         homepage: "https://networkx.github.io/",
         downloadPage: "https://github.com/networkx/networkx",
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

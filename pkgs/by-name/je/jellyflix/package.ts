@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["pname", 50, 9], ["version", 51, 17], ["src", 51, 25], ["passthru", 52, 23], ["postPatch", 54, 9], ["installPhase", 60, 9]], [["volume_controller", 47, 5]], [["filter_list", 76, 7], ["tentacle", 77, 7], ["media_kit", 78, 7], ["media_kit_video", 79, 7], ["media_kit_libs_video", 80, 7], ["media_kit_libs_android_video", 81, 7], ["media_kit_libs_ios_video", 82, 7], ["media_kit_libs_macos_video", 83, 7], ["media_kit_libs_windows_video", 84, 7]], [["name", 89, 7], ["desktopName", 90, 7], ["genericName", 91, 7], ["exec", 92, 7], ["icon", 93, 7]], [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5], ["platforms", 103, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["pubspecLock", 21, 3], ["postPatch", 23, 3], ["postInstall", 33, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 41, 3], ["customSourceBuilders", 46, 3], ["gitHashes", 71, 3], ["desktopItems", 87, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, flutter332: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, "alsa-lib": false, "mpv-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 50, 9], ["version", 51, 17], ["src", 51, 25], ["passthru", 52, 23], ["postPatch", 54, 9], ["installPhase", 60, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["volume_controller", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["filter_list", 76, 7], ["tentacle", 77, 7], ["media_kit", 78, 7], ["media_kit_video", 79, 7], ["media_kit_libs_video", 80, 7], ["media_kit_libs_android_video", 81, 7], ["media_kit_libs_ios_video", 82, 7], ["media_kit_libs_macos_video", 83, 7], ["media_kit_libs_windows_video", 84, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 89, 7], ["desktopName", 90, 7], ["genericName", 91, 7], ["exec", 92, 7], ["icon", 93, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5], ["platforms", 103, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["pubspecLock", 21, 3], ["postPatch", 23, 3], ["postInstall", 33, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 41, 3], ["customSourceBuilders", 46, 3], ["gitHashes", 71, 3], ["desktopItems", 87, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jellyflix";
       const version = "1.4.886";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jellyflix-app",
           repo: "jellyflix",
           tag: version,
@@ -38,13 +32,13 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems]);
       const buildInputs = nix.thunk(() => [alsa_lib, mpv_unwrapped]);
       const customSourceBuilders = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         volume_controller: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const version_1 = nix.arg($_1, "version");
           const src_1 = nix.arg($_1, "src");
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname: "volume_controller",
               version: version_1,
               src: src_1,
@@ -57,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const gitHashes = nix.thunk(() => (() => {
         const media_kit_hash = "sha256-8dIiEeeBQOGST9kGHSp15Cdg377AQeBynbvWPAnGbJc=";
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           filter_list: "sha256-cYnsujNMC6n9hZNHcbOevXWh54+jPeuHEUbdt1mDgP8=",
           tentacle: "sha256-30a4Vn8wL0TdboSYPm1W+hRqXSsuID0gNOVnNe3KmPE=",
           media_kit: media_kit_hash,
@@ -71,7 +65,7 @@ export default nix.lambda((args) => (() => {
       })());
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "jellyflix",
             desktopName: "Jellyflix",
             genericName: "Media Player",
@@ -80,7 +74,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Easy-to-use Jellyfin client for movies and shows",
         homepage: "https://github.com/jellyflix-app/jellyflix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -92,7 +86,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

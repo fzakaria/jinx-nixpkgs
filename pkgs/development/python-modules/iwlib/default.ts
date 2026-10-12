@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["sha256", 16, 5]], [["homepage", 30, 5], ["description", 31, 5], ["changelog", 32, 5], ["maintainers", 33, 5], ["license", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["nativeBuildInputs", 23, 3], ["pythonImportsCheck", 24, 3], ["checkInputs", 26, 3], ["checkPhase", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, wirelesstools: false, cffi: false, pytest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 30, 5], ["description", 31, 5], ["changelog", 32, 5], ["maintainers", 33, 5], ["license", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["nativeBuildInputs", 23, 3], ["pythonImportsCheck", 24, 3], ["checkInputs", 26, 3], ["checkPhase", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "a805f6597a70ee3001aba8f039fb7b2dcb75dc15c4e7852f5594fd6379196da1",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [pytest]);
       const checkPhase = "python iwlib/_iwlib_build.py; pytest -v";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/nhoad/python-iwlib",
         description: "Python interface for the Wireless Tools utility collection",
         changelog: "https://github.com/nhoad/python-iwlib#change-history",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["requiredSystemFeatures", 70, 5], ["doCheck", 71, 5]], [["gpuCheck", 69, 12]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5], ["mainProgram", 86, 5], ["broken", 88, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 45, 3], ["nativeCheckInputs", 55, 3], ["doCheck", 62, 3], ["disabledTests", 64, 3], ["passthru", 69, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, config: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, "poetry-core": false, fire: false, "mistral-common": false, pillow: false, safetensors: false, "simple-parsing": false, xformers: false, "mamba-ssm": false, pycountry: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false, "mistral-inference": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["requiredSystemFeatures", 70, 5], ["doCheck", 71, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["gpuCheck", 69, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5], ["mainProgram", 86, 5], ["broken", 88, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 45, 3], ["nativeCheckInputs", 55, 3], ["doCheck", 62, 3], ["disabledTests", 64, 3], ["passthru", 69, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const mistral_inference = nix.arg($, "mistral-inference");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mistral-inference",
       version: "1.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mistralai",
           repo: "mistral-inference",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,16 +50,16 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_generation_mamba"]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         gpuCheck: nix.thunk(() => nix.app(nix.sel(mistral_inference, "overridePythonAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
           })))),
       })),
       pythonImportsCheck: nix.thunk(() => ["mistral_inference"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "High-performance library for running Mistral AI models on local hardware",
         homepage: "https://github.com/mistralai/mistral-inference",
         changelog: nix.thunk(() => nix.str`https://github.com/mistralai/mistral-inference/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

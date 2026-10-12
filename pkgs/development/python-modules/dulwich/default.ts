@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["pname", 40, 26], ["version", 40, 32], ["src", 40, 40], ["hash", 41, 5]], [["colordiff", 60, 5], ["fastimport", 61, 5], ["https", 62, 5], ["merge", 63, 5], ["pgp", 64, 5], ["paramiko", 68, 5]], [["extraArgs", 102, 5]], [["updateScript", 101, 12]], [["description", 109, 5], ["longDescription", 110, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 120, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["cargoDeps", 39, 3], ["nativeBuildInputs", 44, 3], ["build-system", 50, 3], ["dependencies", 55, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 71, 3], ["enabledTestPaths", 81, 3], ["disabledTests", 83, 3], ["preCheck", 88, 3], ["disabledTestPaths", 92, 3], ["__darwinAllowLocalNetworking", 97, 3], ["pythonImportsCheck", 99, 3], ["passthru", 101, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cargo: false, fastimport: false, fetchFromGitHub: false, gevent: false, geventhttpclient: false, git: false, glibcLocales: false, gnupg: false, gpg: false, merge3: false, "nix-update-script": false, openssh: false, paramiko: false, pytestCheckHook: false, rich: false, rustPlatform: false, rustc: false, setuptools: false, "setuptools-rust": false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 40, 26], ["version", 40, 32], ["src", 40, 40], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["colordiff", 60, 5], ["fastimport", 61, 5], ["https", 62, 5], ["merge", 63, 5], ["pgp", 64, 5], ["paramiko", 68, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["extraArgs", 102, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 101, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 109, 5], ["longDescription", 110, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 120, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["cargoDeps", 39, 3], ["nativeBuildInputs", 44, 3], ["build-system", 50, 3], ["dependencies", 55, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 71, 3], ["enabledTestPaths", 81, 3], ["disabledTests", 83, 3], ["preCheck", 88, 3], ["disabledTestPaths", 92, 3], ["__darwinAllowLocalNetworking", 97, 3], ["pythonImportsCheck", 99, 3], ["passthru", 101, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,20 +30,20 @@ export default nix.lambda((args) => (() => {
   const setuptools_rust = nix.arg($, "setuptools-rust");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "dulwich",
       version: "1.2.15",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jelmer",
           repo: "dulwich",
           tag: nix.thunk(() => nix.str`dulwich-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ZLTgVeY9seeElnRc0G7M+0bFx8b/9i5dMj4/61A/maY=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -59,7 +53,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_rust]),
       dependencies: nix.thunk(() => [urllib3]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         colordiff: nix.thunk(() => [rich]),
         fastimport: nix.thunk(() => [fastimport]),
         https: nix.thunk(() => [urllib3]),
@@ -77,14 +71,14 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["dulwich"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex", "^dulwich-([1-9][0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Implementation of the Git file formats and protocols",
         longDescription: "Dulwich is a Python implementation of the Git file formats and protocols, which\ndoes not depend on Git itself. All functionality is available in pure Python.\n",
         homepage: "https://www.dulwich.io/",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["license", 26, 7], ["homepage", 27, 7], ["changelog", 28, 7], ["platforms", 29, 7], ["description", 31, 5]], [["format", 9, 3], ["version", 10, 21], ["src", 10, 29], ["pname", 11, 3], ["sourceRoot", 13, 3], ["build-system", 15, 3], ["dependencies", 17, 3], ["pythonImportsCheck", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, doxygen: false, lxml: false, setuptools: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["license", 26, 7], ["homepage", 27, 7], ["changelog", 28, 7], ["platforms", 29, 7], ["description", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["format", 9, 3], ["version", 10, 21], ["src", 10, 29], ["pname", 11, 3], ["sourceRoot", 13, 3], ["build-system", 15, 3], ["dependencies", 17, 3], ["pythonImportsCheck", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(doxygen, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.attr(from, "license")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         format,
         version,
         src,

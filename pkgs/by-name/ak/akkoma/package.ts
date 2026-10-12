@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["plugins", 16, 9]], [["elixir", 14, 7], ["rebar3", 15, 7]], [["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5], ["forceFetchGit", 33, 5]], [["pname", 40, 5], ["src", 41, 26], ["version", 41, 30], ["hash", 42, 5], ["postInstall", 44, 5]], [["akkoma", 78, 15], ["akkoma-confined", 78, 22]], [["tests", 77, 5], ["mixFodDeps", 81, 26], ["elixirPackage", 85, 5], ["updateScript", 87, 5]], [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["mixFodDeps", 39, 3], ["postPatch", 62, 3], ["dontUseCmakeConfigure", 68, 3], ["postBuild", 70, 3], ["passthru", 76, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, beam_minimal: false, fetchFromGitea: false, cmake: false, file: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["plugins", 16, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["elixir", 14, 7], ["rebar3", 15, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5], ["forceFetchGit", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 40, 5], ["src", 41, 26], ["version", 41, 30], ["hash", 42, 5], ["postInstall", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["akkoma", 78, 15], ["akkoma-confined", 78, 22]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 77, 5], ["mixFodDeps", 81, 26], ["elixirPackage", 85, 5], ["updateScript", 87, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["mixFodDeps", 39, 3], ["postPatch", 62, 3], ["dontUseCmakeConfigure", 68, 3], ["postBuild", 70, 3], ["passthru", 76, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   const beamPackages = nix.thunk(() => nix.app(nix.sel(beam_minimal, "packages", "erlang_27", "overrideScope"), (final) => (prev) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       elixir: nix.thunk(() => nix.sel(final, "elixir_1_17")),
       rebar3: nix.thunk(() => nix.app(nix.sel(final, "rebar3WithPlugins"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           plugins: nix.thunk(() => (() => {
             const w = nix.withScope(final, null);
             return [nix.thunk(() => nix.lookup(w, "pc"))];
@@ -33,11 +26,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })));
   return nix.app(nix.sel(beamPackages, "mixRelease"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "akkoma",
       version: "3.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           domain: "akkoma.dev",
           owner: "AkkomaGang",
           repo: "akkoma",
@@ -48,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [file]),
       mixFodDeps: nix.thunk(() => nix.app(nix.sel(beamPackages, "fetchMixDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: "mix-deps-akkoma",
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -73,11 +66,11 @@ done
       dontUseCmakeConfigure: true,
       postBuild: "# Digest and compress static files\nrm -f priv/static/READ_THIS_BEFORE_TOUCHING_FILES_HERE\nmix do deps.loadpaths --no-deps-check, phx.digest --no-compile\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => (() => {
           const w = nix.withScope(nixosTests, null);
           return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             akkoma: nix.thunk(() => nix.lookup(w, "akkoma")),
             "akkoma-confined": nix.thunk(() => nix.lookup(w, "akkoma-confined")),
           };
@@ -87,7 +80,7 @@ done
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "ActivityPub microblogging server",
         homepage: "https://akkoma.social",
         changelog: nix.thunk(() => nix.str`https://akkoma.dev/AkkomaGang/akkoma/releases/tag/v${nix.sel(finalAttrs, "version")}`),

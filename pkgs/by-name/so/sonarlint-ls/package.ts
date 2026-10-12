@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["name", 72, 7], ["runtimeInputs", 73, 7], ["text", 79, 7]], [["updateScript", 67, 12]], [["description", 104, 5], ["mainProgram", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["mvnJdk", 27, 3], ["mvnHash", 28, 3], ["mvnParameters", 31, 3], ["preBuild", 42, 3], ["installPhase", 46, 3], ["nativeBuildInputs", 60, 3], ["nativeInstallCheckInputs", 62, 3], ["doInstallCheck", 63, 3], ["preVersionCheck", 64, 3], ["versionCheckProgramArg", 65, 3], ["passthru", 67, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, jre_headless: false, maven: false, jdk17: false, makeWrapper: false, writeShellApplication: false, curl: false, "common-updater-scripts": false, jq: false, gnused: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 72, 7], ["runtimeInputs", 73, 7], ["text", 79, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 67, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 104, 5], ["mainProgram", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["mvnJdk", 27, 3], ["mvnHash", 28, 3], ["mvnParameters", 31, 3], ["preBuild", 42, 3], ["installPhase", 46, 3], ["nativeBuildInputs", 60, 3], ["nativeInstallCheckInputs", 62, 3], ["doInstallCheck", 63, 3], ["preVersionCheck", 64, 3], ["versionCheckProgramArg", 65, 3], ["passthru", 67, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sonarlint-ls";
       const version = "4.15.0.78211";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SonarSource",
           repo: "sonarlint-language-server",
           rev: version,
@@ -60,11 +56,11 @@ runHook postInstall
       const preVersionCheck = nix.thunk(() => nix.str`export version=${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}`);
       const versionCheckProgramArg = "-V";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => (() => {
           const pkgFile = nix.thunk(() => nix.builtins.toString(nix.path(here, "./package.nix")));
           return nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 name: nix.thunk(() => nix.str`update-${pname}`),
                 runtimeInputs: nix.thunk(() => [curl, common_updater_scripts, jq, gnused]),
                 text: nix.thunk(() => nix.str`if [ -z "\${GITHUB_TOKEN:-}" ]; then
@@ -92,7 +88,7 @@ sed -i "0,/mvnHash *= *\\"[^\\"]*\\"/{s#mvnHash = \\"[^\\"]*\\"#mvnHash = \\"$NE
         })()),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Sonarlint language server",
         mainProgram: "sonarlint-ls",
         homepage: "https://github.com/SonarSource/sonarlint-language-server",
@@ -106,7 +102,7 @@ sed -i "0,/mvnHash *= *\\"[^\\"]*\\"/{s#mvnHash = \\"[^\\"]*\\"#mvnHash = \\"$NE
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

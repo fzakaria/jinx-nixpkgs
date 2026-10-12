@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5], ["fetchSubmodules", 34, 5]], [["updateScript", 88, 12]], [["description", 91, 5], ["longDescription", 92, 5], ["maintainers", 97, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["platforms", 104, 5], ["broken", 105, 5], ["mainProgram", 106, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 53, 3], ["cmakeFlags", 59, 3], ["installPhase", 70, 3], ["nativeInstallCheckInputs", 83, 3], ["doInstallCheck", 86, 3], ["passthru", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, cmake: false, python3: false, openssl: false, "pkg-config": false, mosquitto: false, lua5_3: false, sqlite: false, jsoncpp: false, zlib: false, boost: false, curl: false, git: false, "libusb-compat-0_1": false, cereal: false, minizip: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5], ["fetchSubmodules", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 88, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 91, 5], ["longDescription", 92, 5], ["maintainers", 97, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["platforms", 104, 5], ["broken", 105, 5], ["mainProgram", 106, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 53, 3], ["cmakeFlags", 59, 3], ["installPhase", 70, 3], ["nativeInstallCheckInputs", 83, 3], ["doInstallCheck", 86, 3], ["passthru", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "domoticz",
       version: "2026.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "domoticz",
           repo: "domoticz",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -83,11 +80,11 @@ wrapProgram $out/bin/domoticz --set LD_LIBRARY_PATH ${python3}/lib;
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Home automation system",
         longDescription: "Domoticz is a home automation system that lets you monitor and configure\nvarious devices like: lights, switches, various sensors/meters like\ntemperature, rain, wind, UV, electra, gas, water and much more\n",
         maintainers: nix.thunk(() => (() => {

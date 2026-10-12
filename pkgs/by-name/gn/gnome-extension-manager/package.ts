@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 50, 3], ["mesonFlags", 60, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, appstream: false, "appstream-glib": false, "desktop-file-utils": false, gettext: false, glib: false, "gobject-introspection": false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, "blueprint-compiler": false, gtk4: false, "json-glib": false, libadwaita: false, libbacktrace: false, libsoup_3: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 50, 3], ["mesonFlags", 60, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const libsoup_3 = nix.arg($, "libsoup_3");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gnome-extension-manager",
       version: "0.6.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mjakeman",
           repo: "extension-manager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "distributor", "nixpkgs")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Desktop app for managing GNOME shell extensions",
         homepage: "https://github.com/mjakeman/extension-manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

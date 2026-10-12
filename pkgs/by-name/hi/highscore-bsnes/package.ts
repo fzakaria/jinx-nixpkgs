@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["url", 46, 5]], [["updateScript", 45, 12]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 56, 33], ["platforms", 56, 45]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["makeFlags", 31, 3], ["installFlags", 39, 3], ["enableParallelBuilding", 43, 3], ["passthru", 45, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, libhighscore: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 45, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 56, 33], ["platforms", 56, 45]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["makeFlags", 31, 3], ["installFlags", 39, 3], ["enableParallelBuilding", 43, 3], ["passthru", 45, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libhighscore = nix.arg($, "libhighscore");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "highscore-bsnes",
       version: "0-unstable-2026-05-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "highscore-emu",
           repo: "bsnes",
           rev: "d4ced9599ac8ffcd006104783c5e7e7e6a1d5a29",
@@ -41,16 +37,16 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`libdir=${nix.builtins.placeholder("out")}/lib`)]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.sel(finalAttrs, "src", "gitRepoUrl")),
           })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libhighscore, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Port of bsnes to Highscore",
         homepage: "https://github.com/highscore-emu/bsnes",
         license: nix.thunk(() => (() => {

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["timeout", 24, 10]], [["buildInputs", 20, 5], ["meta", 24, 5]]]);
 const formals$1 = { args: { runCommand: false, gcc: false, sparse: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["timeout", 24, 10]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["buildInputs", 20, 5], ["meta", 24, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const src = nix.thunk(() => nix.app(writeText, "CODE.c", "#include <stdio.h>\n#include <stddef.h>\n#include <stdlib.h>\n\nint main(int argc, char *argv[]) {\n  return EXIT_SUCCESS;\n}\n"));
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(sparse, "pname")}-tests`), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       buildInputs: nix.thunk(() => [gcc, sparse]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 3n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 3n })),
     })), nix.thunk(() => nix.str`set -eu
 ${sparse}/bin/cgcc ${src} > output 2>&1 || ret=$?
 if [[ -z $(<output) ]]; then

@@ -2,19 +2,13 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-nim-package.nix", [[["maintainers", 40, 33], ["platforms", 40, 45]], [["strictDeps", 14, 5], ["enableParallelBuilding", 15, 5], ["__structuredAttrs", 16, 5], ["doCheck", 17, 5], ["configurePhase", 19, 5], ["buildPhase", 25, 5], ["checkPhase", 30, 5], ["installPhase", 35, 5], ["meta", 40, 5]], [["name", 49, 13], ["url", 50, 21], ["sha256", 50, 25]], [["fetchSubmodules", 63, 15], ["leaveDotGit", 64, 15], ["rev", 65, 15], ["sha256", 66, 15], ["url", 67, 15]], [["fetchzip", 46, 9], ["git", 52, 9]], [["overrideNimAttrs", 141, 13]], [["nativeBuildInputs", 133, 11], ["depsBuildBuild", 134, 11], ["nimFlags", 135, 11], ["passthru", 136, 11]]]);
 const formals$1 = { args: { lib: false, buildPackages: false, callPackage: false, stdenv: false, nim: false, nim_builder: false, nimOverrides: false, buildNimPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-nim-package.nix", [["maintainers", 40, 33], ["platforms", 40, 45]]);
-const pos$2 = nix.positions(here + "/build-nim-package.nix", [["strictDeps", 14, 5], ["enableParallelBuilding", 15, 5], ["__structuredAttrs", 16, 5], ["doCheck", 17, 5], ["configurePhase", 19, 5], ["buildPhase", 25, 5], ["checkPhase", 30, 5], ["installPhase", 35, 5], ["meta", 40, 5]]);
 const formals$2 = { args: { url: false, sha256: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/build-nim-package.nix", [["name", 49, 13], ["url", 50, 21], ["sha256", 50, 25]]);
 const formals$3 = { args: { fetchSubmodules: false, leaveDotGit: false, rev: false, sha256: false, url: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/build-nim-package.nix", [["fetchSubmodules", 63, 15], ["leaveDotGit", 64, 15], ["rev", 65, 15], ["sha256", 66, 15], ["url", 67, 15]]);
-const pos$5 = nix.positions(here + "/build-nim-package.nix", [["fetchzip", 46, 9], ["git", 52, 9]]);
 const formals$4 = { args: { method: false }, ellipsis: true };
 const formals$5 = { args: { packages: false }, ellipsis: true };
 const formals$6 = { args: { nimFlags: true, passthru: true, nativeBuildInputs: true, depsBuildBuild: true }, ellipsis: true };
-const pos$6 = nix.positions(here + "/build-nim-package.nix", [["overrideNimAttrs", 141, 13]]);
-const pos$7 = nix.positions(here + "/build-nim-package.nix", [["nativeBuildInputs", 133, 11], ["depsBuildBuild", 134, 11], ["nimFlags", 135, 11], ["passthru", 136, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const nimOverrides = nix.arg($, "nimOverrides");
   const buildNimPackage = nix.arg($, "buildNimPackage");
   const baseAttrs = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     strictDeps: true,
     enableParallelBuilding: true,
     __structuredAttrs: true,
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(nim, "meta"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
       platforms: nix.thunk(() => nix.attr(from, "platforms")),
     };
@@ -47,12 +41,12 @@ export default nix.lambda((args) => (() => {
   }));
   const fodFromLockEntry = nix.thunk(() => (() => {
     const methods = nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       fetchzip: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const url = nix.arg($_1, "url");
         const sha256 = nix.arg($_1, "sha256");
-        return nix.app(nix.sel(buildPackages, "fetchzip"), nix.thunk(() => ({ [nix.POS]: pos$3, name: "source", url: url, sha256: sha256 })));
+        return nix.app(nix.sel(buildPackages, "fetchzip"), nix.thunk(() => ({ [nix.POS]: $pos[2], name: "source", url: url, sha256: sha256 })));
       })(), formals$2),
       git: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
@@ -62,7 +56,7 @@ export default nix.lambda((args) => (() => {
         const sha256 = nix.arg($_1, "sha256");
         const url = nix.arg($_1, "url");
         return nix.app(nix.sel(buildPackages, "fetchgit"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             fetchSubmodules: fetchSubmodules,
             leaveDotGit: leaveDotGit,
             rev: rev,
@@ -102,12 +96,12 @@ export default nix.lambda((args) => (() => {
         return nix.update((nix.asBool(nix.has(args_2, "requiredNimVersion")) ? (nix.asBool(nix.eq(nix.sel(args_2, "requiredNimVersion"), 2n)) ? nix.app(nix.sel(lib, "warn"), "`requiredNimVersion' is deprecated and will be removed in nixpkgs 26.11.\nPlease update your package to remove this.\n") : nix.builtins.throw(nix.thunk(() => nix.str`\`requiredNimVersion' ${nix.builtins.toString(nix.thunk(() => nix.sel(args_2, "requiredNimVersion")))} is not supported.
 Ensure your package supports nim 2, and remove \`requiredNimVersion'.
 `))) : {}), {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           nativeBuildInputs: nix.thunk(() => nix.concat([nim], nativeBuildInputs)),
           depsBuildBuild: nix.thunk(() => nix.concat([nim_builder], depsBuildBuild)),
           nimFlags: nix.thunk(() => nix.concat(lockFileNimFlags, nimFlags)),
           passthru: nix.thunk(() => nix.update(passthru, {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             overrideNimAttrs: (f0) => (() => {
               const f = (self) => (super$) => (() => {
                 const x = nix.thunk(() => nix.app(f0, super$));

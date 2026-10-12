@@ -2,33 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nbd.nix", [[["Type", 16, 9]], [["script", 11, 7], ["serviceConfig", 15, 7], ["wantedBy", 18, 7], ["before", 19, 7]], [["path", 31, 71]], [["path", 35, 11], ["loop", 36, 11]], [["path", 41, 71]], [["create-pub-file", 31, 26], ["create-priv-file", 34, 26], ["create-aaa-file", 41, 26]], [["services", 31, 17]], [["systemPackages", 44, 21]], [["allowedTCPPorts", 47, 29]], [["firewall", 47, 20]], [["path", 54, 15]], [["path", 57, 15]], [["path", 60, 15], ["allowAddresses", 61, 15]], [["aaa", 53, 13], ["vault-pub", 56, 13], ["vault-priv", 59, 13]], [["enable", 51, 11], ["exports", 52, 11], ["listenAddress", 67, 11], ["listenPort", 68, 11]], [["server", 50, 22]], [["nbd", 50, 18]], [["systemd", 31, 9], ["environment", 44, 9], ["networking", 47, 9], ["services", 50, 9]], [["enable", 75, 22]], [["nbd", 75, 18]], [["programs", 75, 9]], [["server", 26, 5], ["client", 72, 5]], [["name", 23, 3], ["nodes", 25, 3], ["testScript", 79, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { path: false, loop: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nbd.nix", [["Type", 16, 9]]);
-const pos$2 = nix.positions(here + "/nbd.nix", [["script", 11, 7], ["serviceConfig", 15, 7], ["wantedBy", 18, 7], ["before", 19, 7]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/nbd.nix", [["path", 31, 71]]);
-const pos$4 = nix.positions(here + "/nbd.nix", [["path", 35, 11], ["loop", 36, 11]]);
-const pos$5 = nix.positions(here + "/nbd.nix", [["path", 41, 71]]);
-const pos$6 = nix.positions(here + "/nbd.nix", [["create-pub-file", 31, 26], ["create-priv-file", 34, 26], ["create-aaa-file", 41, 26]]);
-const pos$7 = nix.positions(here + "/nbd.nix", [["services", 31, 17]]);
-const pos$8 = nix.positions(here + "/nbd.nix", [["systemPackages", 44, 21]]);
-const pos$9 = nix.positions(here + "/nbd.nix", [["allowedTCPPorts", 47, 29]]);
-const pos$10 = nix.positions(here + "/nbd.nix", [["firewall", 47, 20]]);
-const pos$11 = nix.positions(here + "/nbd.nix", [["path", 54, 15]]);
-const pos$12 = nix.positions(here + "/nbd.nix", [["path", 57, 15]]);
-const pos$13 = nix.positions(here + "/nbd.nix", [["path", 60, 15], ["allowAddresses", 61, 15]]);
-const pos$14 = nix.positions(here + "/nbd.nix", [["aaa", 53, 13], ["vault-pub", 56, 13], ["vault-priv", 59, 13]]);
-const pos$15 = nix.positions(here + "/nbd.nix", [["enable", 51, 11], ["exports", 52, 11], ["listenAddress", 67, 11], ["listenPort", 68, 11]]);
-const pos$16 = nix.positions(here + "/nbd.nix", [["server", 50, 22]]);
-const pos$17 = nix.positions(here + "/nbd.nix", [["nbd", 50, 18]]);
-const pos$18 = nix.positions(here + "/nbd.nix", [["systemd", 31, 9], ["environment", 44, 9], ["networking", 47, 9], ["services", 50, 9]]);
 const formals$4 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/nbd.nix", [["enable", 75, 22]]);
-const pos$20 = nix.positions(here + "/nbd.nix", [["nbd", 75, 18]]);
-const pos$21 = nix.positions(here + "/nbd.nix", [["programs", 75, 9]]);
-const pos$22 = nix.positions(here + "/nbd.nix", [["server", 26, 5], ["client", 72, 5]]);
-const pos$23 = nix.positions(here + "/nbd.nix", [["name", 23, 3], ["nodes", 25, 3], ["testScript", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,56 +18,56 @@ export default nix.lambda((args) => (() => {
     const path = nix.arg($_1, "path");
     const loop = nix.argOr($_1, "loop", () => false);
     return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       script: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/dd if=/dev/zero of=${path} bs=1K count=100
 ${nix.app(nix.sel(pkgs, "lib", "optionalString"), loop, nix.thunk(() => nix.str`${nix.sel(pkgs, "util-linux")}/bin/losetup --find ${path}`))}
 `),
-      serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$1, Type: "oneshot" })),
+      serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[0], Type: "oneshot" })),
       wantedBy: nix.thunk(() => ["multi-user.target"]),
       before: nix.thunk(() => ["nbd-server.service"]),
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "nbd",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              "create-pub-file": nix.thunk(() => nix.app(mkCreateSmallFileService, nix.thunk(() => ({ [nix.POS]: pos$3, path: "/vault-pub.disk" })))),
-              "create-priv-file": nix.thunk(() => nix.app(mkCreateSmallFileService, nix.thunk(() => ({ [nix.POS]: pos$4, path: "/vault-priv.disk", loop: true })))),
-              "create-aaa-file": nix.thunk(() => nix.app(mkCreateSmallFileService, nix.thunk(() => ({ [nix.POS]: pos$5, path: "/aaa.disk" })))),
+              [nix.POS]: $pos[5],
+              "create-pub-file": nix.thunk(() => nix.app(mkCreateSmallFileService, nix.thunk(() => ({ [nix.POS]: $pos[2], path: "/vault-pub.disk" })))),
+              "create-priv-file": nix.thunk(() => nix.app(mkCreateSmallFileService, nix.thunk(() => ({ [nix.POS]: $pos[3], path: "/vault-priv.disk", loop: true })))),
+              "create-aaa-file": nix.thunk(() => nix.app(mkCreateSmallFileService, nix.thunk(() => ({ [nix.POS]: $pos[4], path: "/aaa.disk" })))),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "nbd"))]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$10,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$9, allowedTCPPorts: nix.thunk(() => [listenPort]) })),
+            [nix.POS]: $pos[9],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[8], allowedTCPPorts: nix.thunk(() => [listenPort]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             nbd: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               server: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 enable: true,
                 exports: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
-                  aaa: nix.thunk(() => ({ [nix.POS]: pos$11, path: "/aaa.disk" })),
-                  "vault-pub": nix.thunk(() => ({ [nix.POS]: pos$12, path: "/vault-pub.disk" })),
+                  [nix.POS]: $pos[13],
+                  aaa: nix.thunk(() => ({ [nix.POS]: $pos[10], path: "/aaa.disk" })),
+                  "vault-pub": nix.thunk(() => ({ [nix.POS]: $pos[11], path: "/vault-pub.disk" })),
                   "vault-priv": nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     path: "/dev/loop0",
                     allowAddresses: nix.thunk(() => ["127.0.0.1", "::1"]),
                   })),
@@ -106,10 +84,10 @@ ${nix.app(nix.sel(pkgs, "lib", "optionalString"), loop, nix.thunk(() => nix.str`
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$20,
-            nbd: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true })),
+            [nix.POS]: $pos[19],
+            nbd: nix.thunk(() => ({ [nix.POS]: $pos[18], enable: true })),
           })),
         };
       })(), formals$4),

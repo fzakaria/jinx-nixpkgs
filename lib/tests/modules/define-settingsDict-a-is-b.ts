@@ -2,16 +2,15 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/define-settingsDict-a-is-b.nix", [[["a", 3, 16]], [["settingsDict", 3, 3]]]);
 const formals$1 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/define-settingsDict-a-is-b.nix", [["a", 3, 16]]);
-const pos$2 = nix.positions(here + "/define-settingsDict-a-is-b.nix", [["settingsDict", 3, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   return {
-    [nix.POS]: pos$2,
-    settingsDict: nix.thunk(() => ({ [nix.POS]: pos$1, a: nix.thunk(() => nix.sel(config, "settingsDict", "b")) })),
+    [nix.POS]: $pos[1],
+    settingsDict: nix.thunk(() => ({ [nix.POS]: $pos[0], a: nix.thunk(() => nix.sel(config, "settingsDict", "b")) })),
   };
 })(), formals$1);
 //# sourceMappingURL=define-settingsDict-a-is-b.ts.map

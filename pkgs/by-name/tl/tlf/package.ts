@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 70, 5], ["longDescription", 71, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 41, 3], ["configureFlags", 51, 3], ["nativeCheckInputs", 58, 3], ["doCheck", 62, 3], ["postInstall", 64, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, autoconf: false, automake: false, "pkg-config": false, glib: false, perl: false, python3Packages: false, ncurses5: false, hamlib: false, xmlrpc_c: false, pythonPluginSupport: true, python3: false, cmocka: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["longDescription", 71, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 41, 3], ["configureFlags", 51, 3], ["nativeCheckInputs", 58, 3], ["doCheck", 62, 3], ["postInstall", 64, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const cmocka = nix.arg($, "cmocka");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tlf",
       version: "1.4.1-unstable-2026-03-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Tlf",
           repo: "tlf",
           rev: "e6385f88ad793043d874b89d56d29bea5dac4e26",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.sel(ncurses5, "out")}/lib/libtinfo.so.5 $out/lib/libtinfo.so.5
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Advanced ham radio logging and contest program",
         longDescription: "TLF is a curses based console mode general logging and contest program for\namateur radio.\n\nIt supports the CQWW, the WPX, the ARRL-DX, the ARRL-FD, the PACC and the\nEU SPRINT shortwave contests (single operator) as well as a LOT MORE basic\ncontests, general QSO and DXpedition mode.\n",
         homepage: "https://tlf.github.io/",

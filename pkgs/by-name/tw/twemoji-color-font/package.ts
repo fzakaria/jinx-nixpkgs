@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["updateScript", 26, 12]], [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 41, 5], ["downloadPage", 42, 5], ["license", 43, 5], ["maintainers", 47, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 14, 3], ["installPhase", 19, 3], ["passthru", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 26, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 41, 5], ["downloadPage", 42, 5], ["license", 43, 5], ["maintainers", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 14, 3], ["installPhase", 19, 3], ["passthru", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,21 +12,21 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "twemoji-color-font",
       version: "15.1.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/13rac1/twemoji-color-font/releases/download/v${nix.sel(finalAttrs, "version")}/TwitterColorEmoji-SVGinOT-Linux-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Xy6Lkm340ldm9ssQWn/eRFIJ5kyhYaXPNy/Y/9vUt40=",
         })))),
       installPhase: "runHook preInstall\ninstall -Dm755 TwitterColorEmoji-SVGinOT.ttf $out/share/fonts/truetype/TwitterColorEmoji-SVGinOT.ttf\ninstall -Dm644 fontconfig/46-twemoji-color.conf $out/etc/fonts/conf.d/46-twemoji-color.conf\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Color emoji SVGinOT font using Twitter Unicode 15 emoji with diversity and country flags",
         longDescription: "A color and B&W emoji SVGinOT font built from the Twitter Emoji for\nEveryone artwork with support for ZWJ, skin tone diversity and country\nflags.\n\nThe font works in all operating systems, but will currently only show\ncolor emoji in Firefox, Thunderbird, Photoshop CC 2017, and Windows Edge\nV38.14393+. This is not a limitation of the font, but of the operating\nsystems and applications. Regular B&W outline emoji are included for\nbackwards/fallback compatibility.\n",
         homepage: "https://github.com/13rac1/twemoji-color-font",

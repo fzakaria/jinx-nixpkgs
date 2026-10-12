@@ -2,22 +2,21 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 13, 5], ["homepage", 14, 5], ["license", 15, 5]], [["pname", 6, 3], ["version", 7, 3], ["url", 9, 3], ["hash", 10, 3], ["meta", 12, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 13, 5], ["homepage", 14, 5], ["license", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 6, 3], ["version", 7, 3], ["url", 9, 3], ["hash", 10, 3], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(fetchzip, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "twitter-bootstrap",
       version: "5.3.8",
       url: nix.thunk(() => nix.str`https://github.com/twbs/bootstrap/releases/download/v${nix.sel(finalAttrs, "version")}/bootstrap-${nix.sel(finalAttrs, "version")}-dist.zip`),
       hash: "sha256-StRhHJIRGzguLlo0BGOAMy0PCCmMovzgU/5xZJgVrqQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Front-end framework for faster and easier web development",
         homepage: "https://getbootstrap.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

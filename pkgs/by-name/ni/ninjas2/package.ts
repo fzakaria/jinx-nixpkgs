@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5], ["fetchSubmodules", 22, 5]], [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patchPhase", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["installPhase", 38, 3], ["makeFlags", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libjack2: false, libGL: false, "pkg-config": false, libx11: false, libsndfile: false, libsamplerate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5], ["fetchSubmodules", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patchPhase", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["installPhase", 38, 3], ["makeFlags", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const libsamplerate = nix.arg($, "libsamplerate");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ninjas2",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "clearly-broken-software",
           repo: "ninjas2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "install -dD bin/ninjas2.lv2 $out/lib/lv2/ninjas2.lv2\ninstall -D bin/ninjas2-vst.so  $out/lib/vst/ninjas2-vst.so\ninstall -D bin/ninjas2 $out/bin/ninjas2\n",
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/clearly-broken-software/ninjas2",
         description: "Sample slicer plugin for LV2, VST, and jack standalone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

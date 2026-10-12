@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["command", 14, 5], ["supportedFeatures", 50, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5], ["sourceProvenance", 62, 5]], [["pname", 66, 38], ["updateScript", 66, 44], ["meta", 66, 57]], [["pname", 68, 37], ["updateScript", 68, 43], ["meta", 68, 56]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, writeShellScript: false, curl: false, jq: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["command", 14, 5], ["supportedFeatures", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5], ["sourceProvenance", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 66, 38], ["updateScript", 66, 44], ["meta", 66, 57]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 68, 37], ["updateScript", 68, 43], ["meta", 68, 56]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const pname = "proxyman";
   const updateScript = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     command: nix.thunk(() => nix.app(writeShellScript, "proxyman-update-script", nix.thunk(() => nix.str`set -euo pipefail
 
 updateArtifact() {
@@ -58,7 +55,7 @@ ${nix.app(nix.sel(lib, "getExe"), jq)} -n "$linuxChanges + $darwinChanges"
     supportedFeatures: nix.thunk(() => ["commit"]),
   }));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "Capture, inspect, and manipulate HTTP(s) requests/responses with ease",
     homepage: "https://proxyman.com",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -75,6 +72,6 @@ ${nix.app(nix.sel(lib, "getExe"), jq)} -n "$linuxChanges + $darwinChanges"
       return [nix.thunk(() => nix.lookup(w_1, "binaryNativeCode"))];
     })()),
   }));
-  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, updateScript: updateScript, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname, updateScript: updateScript, meta: meta }))));
+  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, updateScript: updateScript, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], pname: pname, updateScript: updateScript, meta: meta }))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

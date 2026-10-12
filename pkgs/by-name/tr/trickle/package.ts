@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["NIX_LDFLAGS", 48, 5], ["NIX_CFLAGS_COMPILE", 52, 5]], [["description", 63, 5], ["license", 64, 5], ["homepage", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["preAutoreconf", 36, 3], ["preBuild", 42, 3], ["env", 47, 3], ["configureFlags", 58, 3], ["hardeningDisable", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, libevent: false, libtirpc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 48, 5], ["NIX_CFLAGS_COMPILE", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["license", 64, 5], ["homepage", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["preAutoreconf", 36, 3], ["preBuild", 42, 3], ["env", 47, 3], ["configureFlags", 58, 3], ["hardeningDisable", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libevent = nix.arg($, "libevent");
   const libtirpc = nix.arg($, "libtirpc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "trickle",
       version: "1.07-unstable-2019-10-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mariusae",
           repo: "trickle",
           rev: "09a1d955c6554eb7e625c99bf96b2d99ec7db3dc",
@@ -40,7 +37,7 @@ sed -i 's|libevent.a|libevent.so|' configure.in
 `),
       preBuild: "sed -i '/#define in_addr_t/ s:^://:' config.h\nsed -i 's|^_select(int|select(int|' trickle-overload.c\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-levent", "-ltirpc"]))),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.sel(libtirpc, "dev")}/include/tirpc`),
@@ -50,7 +47,7 @@ sed -i 's|libevent.a|libevent.so|' configure.in
       configureFlags: nix.thunk(() => ["--with-libevent"]),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight userspace bandwidth shaper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://monkey.org/~marius/pages/?page=trickle",

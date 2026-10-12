@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["description", 27, 9], ["longDescription", 28, 9], ["homepage", 29, 9], ["changelog", 30, 9], ["license", 31, 9], ["maintainers", 32, 9], ["mainProgram", 33, 9], ["platforms", 34, 9]], [["name", 12, 53], ["version", 12, 58], ["paths", 14, 5], ["pathsToLink", 16, 5], ["nativeBuildInputs", 18, 5], ["postBuild", 20, 5], ["meta", 25, 5]]]);
 const formals$1 = { args: { lib: false, buildEnv: false, nuspell: false, hunspellDicts: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["description", 27, 9], ["longDescription", 28, 9], ["homepage", 29, 9], ["changelog", 30, 9], ["license", 31, 9], ["maintainers", 32, 9], ["mainProgram", 33, 9], ["platforms", 34, 9]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["name", 12, 53], ["version", 12, 58], ["paths", 14, 5], ["pathsToLink", 16, 5], ["nativeBuildInputs", 18, 5], ["postBuild", 20, 5], ["meta", 25, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeOverridable"), (dicts) => (f) => nix.app(buildEnv, nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.app(nix.sel(lib, "appendToName"), "with-dicts", nuspell));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.attr(from, "name")),
         version: nix.thunk(() => nix.attr(from, "version")),
         paths: nix.thunk(() => nix.app(f, dicts)),
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
         meta: nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(nuspell, "meta"));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           description: nix.thunk(() => nix.attr(from_1, "description")),
           longDescription: nix.thunk(() => nix.attr(from_1, "longDescription")),
           homepage: nix.thunk(() => nix.attr(from_1, "homepage")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["url", 26, 11], ["hash", 27, 19]], [["bc07902f8995b62c70f01a282b23f40f30630540", 32, 9], ["6da46a48dd76a48ad9ff563e6c807b8271fc83cd", 34, 9]], [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["nativeBuildInputs", 38, 3], ["buildPhase", 44, 3], ["installPhase", 57, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, gzip: false, python3: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 11], ["hash", 27, 19]]);
-const pos$3 = nix.positions(here + "/package.nix", [["bc07902f8995b62c70f01a282b23f40f30630540", 32, 9], ["6da46a48dd76a48ad9ff563e6c807b8271fc83cd", 34, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["nativeBuildInputs", 38, 3], ["buildPhase", 44, 3], ["installPhase", 57, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "open-english-wordnet",
       version: "2022",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "globalwordnet",
           repo: "english-wordnet",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-edition`),
           hash: "sha256-a1fWIp39uuJZL1aFX/r+ttLB1+kwh/XPHwphgENTQ5M=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (rev) => (hash) => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://github.com/globalwordnet/english-wordnet/commit/${rev}.patch`),
             hash: hash,
           }))), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           bc07902f8995b62c70f01a282b23f40f30630540: "sha256-1e4MG/k86g3OFUhiShCCbNXnvDKrYFr1KlGVsGl++KI=",
           "6da46a48dd76a48ad9ff563e6c807b8271fc83cd": "sha256-QkkJH7NVGy/IbeSWkotU80IGF4esz0b8mIL9soHdQtQ=",
         })))),
@@ -60,7 +56,7 @@ install -Dt $out/share/wordnet 'oewn:${nix.sel(finalAttrs, "version")}.xml.gz'
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lexical network of the English language",
         longDescription: "Open English WordNet is a lexical network of the English language grouping\nwords into synsets and linking them according to relationships such as\nhypernymy, antonymy and meronymy. It is intended to be used in natural\nlanguage processing applications and provides deep lexical information\nabout the English language as a graph.\n\nOpen English WordNet is a fork of the Princeton Wordnet developed under an\nopen source methodology.\n",
         homepage: "https://en-word.net/",

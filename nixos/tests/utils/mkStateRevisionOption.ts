@@ -2,19 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mkStateRevisionOption.nix", [[["27.05", 13, 13]], [["descriptionName", 11, 11], ["migrations", 12, 11]], [["26.11", 19, 13]], [["descriptionName", 17, 11], ["migrations", 18, 11]], [["24.05", 25, 13], ["27.05", 26, 13]], [["descriptionName", 23, 11], ["migrations", 24, 11]], [["stateRevision1", 10, 9], ["stateRevision2", 16, 9], ["stateRevision3", 22, 9]], [["stateVersion", 30, 21]], [["system", 30, 14]], [["options", 9, 7], ["config", 30, 7]], [["27.05", 38, 47]]]);
 const formals$1 = { args: { emptyFile: false, nixos: false }, ellipsis: false };
 const formals$2 = { args: { utils: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mkStateRevisionOption.nix", [["27.05", 13, 13]]);
-const pos$2 = nix.positions(here + "/mkStateRevisionOption.nix", [["descriptionName", 11, 11], ["migrations", 12, 11]]);
-const pos$3 = nix.positions(here + "/mkStateRevisionOption.nix", [["26.11", 19, 13]]);
-const pos$4 = nix.positions(here + "/mkStateRevisionOption.nix", [["descriptionName", 17, 11], ["migrations", 18, 11]]);
-const pos$5 = nix.positions(here + "/mkStateRevisionOption.nix", [["24.05", 25, 13], ["27.05", 26, 13]]);
-const pos$6 = nix.positions(here + "/mkStateRevisionOption.nix", [["descriptionName", 23, 11], ["migrations", 24, 11]]);
-const pos$7 = nix.positions(here + "/mkStateRevisionOption.nix", [["stateRevision1", 10, 9], ["stateRevision2", 16, 9], ["stateRevision3", 22, 9]]);
-const pos$8 = nix.positions(here + "/mkStateRevisionOption.nix", [["stateVersion", 30, 21]]);
-const pos$9 = nix.positions(here + "/mkStateRevisionOption.nix", [["system", 30, 14]]);
-const pos$10 = nix.positions(here + "/mkStateRevisionOption.nix", [["options", 9, 7], ["config", 30, 7]]);
-const pos$11 = nix.positions(here + "/mkStateRevisionOption.nix", [["27.05", 38, 47]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,28 +14,28 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const utils = nix.arg($_1, "utils");
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           stateRevision1: nix.thunk(() => nix.app(nix.sel(utils, "mkStateRevisionOption"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               descriptionName: "...",
-              migrations: nix.thunk(() => ({ [nix.POS]: pos$1, "27.05": "..." })),
+              migrations: nix.thunk(() => ({ [nix.POS]: $pos[0], "27.05": "..." })),
             })))),
           stateRevision2: nix.thunk(() => nix.app(nix.sel(utils, "mkStateRevisionOption"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               descriptionName: "...",
-              migrations: nix.thunk(() => ({ [nix.POS]: pos$3, "26.11": "..." })),
+              migrations: nix.thunk(() => ({ [nix.POS]: $pos[2], "26.11": "..." })),
             })))),
           stateRevision3: nix.thunk(() => nix.app(nix.sel(utils, "mkStateRevisionOption"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               descriptionName: "...",
-              migrations: nix.thunk(() => ({ [nix.POS]: pos$5, "24.05": "...", "27.05": "..." })),
+              migrations: nix.thunk(() => ({ [nix.POS]: $pos[4], "24.05": "...", "27.05": "..." })),
             })))),
         })),
         config: nix.thunk(() => ({
-          [nix.POS]: pos$9,
-          system: nix.thunk(() => ({ [nix.POS]: pos$8, stateVersion: "26.11" })),
+          [nix.POS]: $pos[8],
+          system: nix.thunk(() => ({ [nix.POS]: $pos[7], stateVersion: "26.11" })),
         })),
       };
     })(), formals$2)));
@@ -54,7 +44,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.eq(nix.sel(config, "stateRevision1"), 0n), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/utils/mkStateRevisionOption.nix:35:1");
   nix.assert_(nix.eq(nix.sel(config, "stateRevision2"), 1n), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/utils/mkStateRevisionOption.nix:36:1");
   nix.assert_(nix.eq(nix.sel(config, "stateRevision3"), 1n), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/utils/mkStateRevisionOption.nix:37:1");
-  nix.assert_(nix.eq(nix.sel(options, "stateRevision1", "migrations"), { [nix.POS]: pos$11, "27.05": "..." }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/utils/mkStateRevisionOption.nix:38:1");
+  nix.assert_(nix.eq(nix.sel(options, "stateRevision1", "migrations"), { [nix.POS]: $pos[10], "27.05": "..." }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/utils/mkStateRevisionOption.nix:38:1");
   return nix.force(emptyFile);
 })(), formals$1);
 //# sourceMappingURL=mkStateRevisionOption.ts.map

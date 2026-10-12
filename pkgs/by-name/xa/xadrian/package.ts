@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 9], ["hash", 25, 9]], [["url", 29, 9], ["hash", 30, 9]], [["name", 53, 7], ["desktopName", 54, 7], ["exec", 55, 7], ["icon", 56, 7], ["comment", 57, 7], ["categories", 58, 7], ["startupWMClass", 59, 7]], [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["sourceProvenance", 106, 5], ["maintainers", 107, 5], ["mainProgram", 108, 5], ["platforms", 109, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 21, 3], ["sourceRoot", 33, 3], ["__structuredAttrs", 35, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 40, 3], ["desktopItems", 51, 3], ["installPhase", 63, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, jdk8: false, makeWrapper: false, makeBinaryWrapper: false, makeDesktopItem: false, copyDesktopItems: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 9], ["hash", 25, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 9], ["hash", 30, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 53, 7], ["desktopName", 54, 7], ["exec", 55, 7], ["icon", 56, 7], ["comment", 57, 7], ["categories", 58, 7], ["startupWMClass", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["sourceProvenance", 106, 5], ["maintainers", 107, 5], ["mainProgram", 108, 5], ["platforms", 109, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 21, 3], ["sourceRoot", 33, 3], ["__structuredAttrs", 35, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 40, 3], ["desktopItems", 51, 3], ["installPhase", 63, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,15 +17,15 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xadrian",
       version: "1.5.1",
       src: nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/kayahr/xadrian/releases/download/xadrian-${nix.sel(finalAttrs, "version")}/xadrian-${nix.sel(finalAttrs, "version")}-macosx.zip`),
           hash: "sha256-nCkhlC/nrTxCMd2jO+avkFlXD98a+rFvD6uoCfcZ3PU=",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/kayahr/xadrian/releases/download/xadrian-${nix.sel(finalAttrs, "version")}/xadrian-${nix.sel(finalAttrs, "version")}-unix.tar.bz2`),
           hash: "sha256-MVWvYbI9V9s0CbmM6DXmWZEu0kdn9ZIpNcnJZhkDsjU=",
         }))))),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([unzip], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), nix.thunk(() => [makeBinaryWrapper])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin"))), nix.thunk(() => [makeWrapper, copyDesktopItems]))))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin"))), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "xadrian",
               desktopName: "Xadrian",
               exec: "xadrian",
@@ -75,7 +71,7 @@ makeWrapper ${jdk8}/bin/java $out/bin/xadrian \\
   --add-flags "-jar $out/share/xadrian/xadrian.jar"
 `)), "runHook postInstall\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Factory complex calculator for X3: Terran Conflict and X3: Albion Prelude",
         homepage: "https://github.com/kayahr/xadrian",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

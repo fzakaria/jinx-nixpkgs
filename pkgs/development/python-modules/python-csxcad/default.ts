@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["sourceRoot", 18, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 22, 3], ["setupPyBuildFlags", 29, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cython: false, openems: false, csxcad: false, numpy: false, matplotlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["sourceRoot", 18, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 22, 3], ["setupPyBuildFlags", 29, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-R${openems}/lib`),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python interface to CSXCAD",
         homepage: "http://openems.de/index.php/Main_Page.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -40,7 +39,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         format,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["teams", 71, 5], ["platforms", 72, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["dontUnpack", 31, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 38, 3], ["fixupPhase", 51, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openjdk: false, libnotify: false, makeWrapper: false, tor: false, p7zip: false, bash: false, writeScript: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["teams", 71, 5], ["platforms", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["dontUnpack", 31, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 38, 3], ["fixupPhase", 51, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
 exec ${tor}/bin/tor "$@"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "briar-desktop",
       version: "0.6.5-beta",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://desktop.briarproject.org/jars/linux/${nix.sel(finalAttrs, "version")}/briar-desktop-linux-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-YDFvM6EicHe6s7SDTiKRySCTO9IUwDrEtO373bavfmw=",
         })))),
@@ -49,7 +47,7 @@ for arch in {aarch64,armhf,x86_64}; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Decentralized and secure messenger",
         mainProgram: "briar-desktop",
         homepage: "https://code.briarproject.org/briar/briar-desktop",

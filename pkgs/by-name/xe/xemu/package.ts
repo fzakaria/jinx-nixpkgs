@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5], ["nativeBuildInputs", 47, 5], ["postFetch", 52, 5]], [["homepage", 182, 5], ["description", 183, 5], ["longDescription", 184, 5], ["changelog", 189, 5], ["license", 190, 5], ["mainProgram", 191, 5], ["maintainers", 192, 5], ["platforms", 196, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["__structuredAttrs", 62, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 82, 3], ["configureFlags", 105, 3], ["buildFlags", 118, 3], ["separateDebugInfo", 120, 3], ["dontUseMesonConfigure", 122, 3], ["dontUseCmakeConfigure", 123, 3], ["setOutputFlags", 125, 3], ["strictDeps", 127, 3], ["postPatch", 129, 3], ["preConfigure", 139, 3], ["preBuild", 151, 3], ["postBuild", 156, 3], ["installPhase", 165, 3], ["meta", 181, 3]]]);
 const formals$1 = { args: { lib: false, sdl3: false, "sdl3-image": false, fetchFromGitHub: false, gettext: false, git: false, glib: false, gtk3: false, cmake: false, curl: false, libdrm: false, libepoxy: false, libpcap: false, libsamplerate: false, libslirp: false, libgbm: false, "vulkan-headers": false, "vulkan-loader": false, meson: false, ninja: false, openssl: false, perl: false, "pkg-config": false, python3Packages: false, stdenv: false, vte: false, which: false, wrapGAppsHook3: false, cacert: false, darwin: false, desktopToDarwinBundle: false, xxhash: false, tomlplusplus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5], ["nativeBuildInputs", 47, 5], ["postFetch", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 182, 5], ["description", 183, 5], ["longDescription", 184, 5], ["changelog", 189, 5], ["license", 190, 5], ["mainProgram", 191, 5], ["maintainers", 192, 5], ["platforms", 196, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["__structuredAttrs", 62, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 82, 3], ["configureFlags", 105, 3], ["buildFlags", 118, 3], ["separateDebugInfo", 120, 3], ["dontUseMesonConfigure", 122, 3], ["dontUseCmakeConfigure", 123, 3], ["setOutputFlags", 125, 3], ["strictDeps", 127, 3], ["postPatch", 129, 3], ["preConfigure", 139, 3], ["preBuild", 151, 3], ["postBuild", 156, 3], ["installPhase", 165, 3], ["meta", 181, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const xxhash = nix.arg($, "xxhash");
   const tomlplusplus = nix.arg($, "tomlplusplus");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xemu",
       version: "0.8.136",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xemu-project",
           repo: "xemu",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -111,7 +109,7 @@ echo '${nix.sel(finalAttrs, "version")}' > XEMU_VERSION
       postBuild: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), "# Needed for HVF acceleration\ncodesign --entitlements $src/accel/hvf/entitlements.plist -f -s - qemu-system-i386-unsigned\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mv qemu-system-i386-unsigned qemu-system-i386\n"))),
       installPhase: "runHook preInstall\n\ninstall -Dm755 -T qemu-system-i386 $out/bin/xemu\n\nfor resolution in 16x16 24x24 32x32 48x48 128x128 256x256 512x512\ndo\n  install -Dm644 -T ../ui/icons/xemu_$resolution.png \\\n    $out/share/icons/hicolor/$resolution/apps/xemu.png\ndone\n\ninstall -Dm644 -T ../ui/xemu.desktop $out/share/applications/xemu.desktop\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://xemu.app/",
         description: "Original Xbox emulator",
         longDescription: "A free and open-source application that emulates the original Microsoft\nXbox game console, enabling people to play their original Xbox games on\nWindows, macOS, and Linux systems.\n",

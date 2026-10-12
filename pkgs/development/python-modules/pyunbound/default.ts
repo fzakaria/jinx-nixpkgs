@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 85, 5], ["license", 86, 5], ["homepage", 87, 5], ["platforms", 88, 5]], [["pname", 16, 3], ["version", 17, 21], ["src", 17, 29], ["pyproject", 18, 3], ["patches", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["postPatch", 35, 3], ["preConfigure", 41, 3], ["configureFlags", 43, 3], ["preInstall", 57, 3], ["installFlags", 64, 3], ["postInstall", 71, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, unbound: false, openssl: false, expat: false, libevent: false, bison: false, flex: false, swig: false, python: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 85, 5], ["license", 86, 5], ["homepage", 87, 5], ["platforms", 88, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 21], ["src", 17, 29], ["pyproject", 18, 3], ["patches", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["postPatch", 35, 3], ["preConfigure", 41, 3], ["configureFlags", 43, 3], ["preInstall", 57, 3], ["installFlags", 64, 3], ["postInstall", 71, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,14 +59,14 @@ rm -r $out/bin $out/share $out/include $out/etc/unbound
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`patchelf --replace-needed libunbound.so.8 $out/${nix.sel(python, "sitePackages")}/libunbound.so.8 $out/${nix.sel(python, "sitePackages")}/_unbound.so
 `))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python library for Unbound, the validating, recursive, and caching DNS resolver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://www.unbound.net",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

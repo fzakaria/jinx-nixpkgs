@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["PYORC_SKIP_ORC_BUILD", 38, 5]], [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["build-system", 32, 3], ["env", 37, 3], ["buildInputs", 41, 3], ["preCheck", 50, 3], ["pythonImportsCheck", 64, 3], ["nativeCheckInputs", 68, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pybind11: false, setuptools: false, pytestCheckHook: false, tzdata: false, python: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PYORC_SKIP_ORC_BUILD", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["build-system", 32, 3], ["env", 37, 3], ["buildInputs", 41, 3], ["preCheck", 50, 3], ["pythonImportsCheck", 64, 3], ["nativeCheckInputs", 68, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "noirello",
           repo: "pyorc",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "substituteInPlace pyproject.toml \\\n  --replace-fail \\\n    '\"pybind11>2.6.0,<3.0\"' \\\n    '\"pybind11>2.6.0\"'\n";
       const build_system = nix.thunk(() => [pybind11, setuptools]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PYORC_SKIP_ORC_BUILD: "true" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PYORC_SKIP_ORC_BUILD: "true" }));
       const buildInputs = nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "lz4")),
         nix.thunk(() => nix.sel(pkgs, "protobuf")),
@@ -56,7 +53,7 @@ ln -s "${nix.sel(pkgs, "apache-orc", "src")}/examples" "deps/"
       const pythonImportsCheck = nix.thunk(() => ["pyorc"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, nix.thunk(() => nix.sel(pkgs, "apache-orc"))]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/noirello/pyorc/blob/v${version}/CHANGELOG.rst`),
         description: "Python module for Apache ORC file format",
         homepage: "https://github.com/noirello/pyorc",
@@ -64,7 +61,7 @@ ln -s "${nix.sel(pkgs, "apache-orc", "src")}/examples" "deps/"
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["RUSTFLAGS", 29, 58]], [["updateScript", 42, 12]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 54, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["env", 29, 3], ["checkFlags", 32, 3], ["postInstall", 34, 3], ["nativeInstallCheckInputs", 38, 3], ["versionCheckProgram", 39, 3], ["doInstallCheck", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, stdenv: false, versionCheckHook: false, "nix-update-script": false, "rust-jemalloc-sys": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 29, 58]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 42, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["env", 29, 3], ["checkFlags", 32, 3], ["postInstall", 34, 3], ["nativeInstallCheckInputs", 38, 3], ["versionCheckProgram", 39, 3], ["doInstallCheck", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const rust_jemalloc_sys = nix.arg($, "rust-jemalloc-sys");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "difftastic",
       version: "0.71.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wilfred",
           repo: "difftastic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,18 +29,18 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-HEX8njuArbgMQI8yDr66siRB8t+4P2Q7rxHuCeaD9Uw=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       buildInputs: nix.thunk(() => [rust_jemalloc_sys]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "-C relocation-model=static" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTFLAGS: "-C relocation-model=static" })))),
       checkFlags: nix.thunk(() => ["--skip=options::tests::test_detect_display_width"]),
       postInstall: "installManPage difft.1\n",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/difft`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Syntax-aware diff",
         homepage: "https://github.com/Wilfred/difftastic",
         changelog: nix.thunk(() => nix.str`https://github.com/Wilfred/difftastic/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

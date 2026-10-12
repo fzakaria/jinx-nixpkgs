@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["name", 59, 5], ["desktopName", 60, 5], ["exec", 61, 5], ["icon", 62, 5], ["categories", 63, 5]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["platforms", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["sourceProvenance", 78, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 34, 3], ["dontWrapGApps", 48, 3], ["preFixup", 50, 3], ["desktopItems", 58, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, autoPatchelfHook: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, wrapGAppsHook3: false, "gobject-introspection": false, "gdk-pixbuf": false, jre: false, "android-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 59, 5], ["desktopName", 60, 5], ["exec", 61, 5], ["icon", 62, 5], ["categories", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["platforms", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["sourceProvenance", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 34, 3], ["dontWrapGApps", 48, 3], ["preFixup", 50, 3], ["desktopItems", 58, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const android_tools = nix.arg($, "android-tools");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "agi",
       version: "3.3.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/google/agi/releases/download/${nix.sel(finalAttrs, "version")}/agi-${nix.sel(finalAttrs, "version")}-linux.zip`),
           hash: "sha256-Yawl6InBYSWNw3clHyGAeC2PVfXEzWmbd6vcYrqAPO0=",
         })))),
@@ -59,7 +56,7 @@ runHook postInstall
   "\${gappsWrapperArgs[@]-}"
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "toList"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "agi",
             desktopName: "Android GPU Inspector",
             exec: "agi",
@@ -67,7 +64,7 @@ runHook postInstall
             categories: nix.thunk(() => ["Development", "Debugger", "Graphics", "3DGraphics"]),
           })))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Android GPU Inspector",
         homepage: "https://gpuinspector.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/google/agi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

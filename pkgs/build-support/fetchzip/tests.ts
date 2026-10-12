@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["url", 13, 13], ["sha256", 14, 5]], [["url", 18, 13], ["sha256", 19, 5], ["postFetch", 20, 5]], [["url", 24, 5], ["sha256", 30, 5]], [["simple", 12, 3], ["postFetch", 17, 3], ["hiddenDir", 23, 3]]]);
 const formals$1 = { args: { testers: false, fetchzip: false, runCommand: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tests.nix", [["url", 13, 13], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["url", 18, 13], ["sha256", 19, 5], ["postFetch", 20, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["url", 24, 5], ["sha256", 30, 5]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["simple", 12, 3], ["postFetch", 17, 3], ["hiddenDir", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,20 +12,20 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const url = "https://gist.github.com/glandium/01d54cefdb70561b5f6675e08f2990f2/archive/2f430f0c136a69b0886281d0c76708997d8878af.zip";
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     simple: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: url,
         sha256: "sha256-0ecwgL8qUavSj1+WkaxpmRBmu7cvj53V5eXQV71fddU=",
       })))),
     postFetch: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: url,
         sha256: "sha256-7sAOzKa+9vYx5XyndHxeY2ffWAjOsgCkXC9anK6cuV0=",
         postFetch: "touch $out/filee",
       })))),
     hiddenDir: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`file://${nix.app(runCommand, "hiddendir.tar", nix.thunk(() => ({})), "mkdir .foo\ntar -cf $out .foo\n")}`),
         sha256: "sha256-pQpattmS9VmO3ZIQUFn66az8GSmB4IvYhTTCFn6SUmo=",
       })))),

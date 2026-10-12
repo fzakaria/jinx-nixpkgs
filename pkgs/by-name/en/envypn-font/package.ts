@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 48, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["unpackPhase", 27, 3], ["buildPhase", 31, 3], ["postInstall", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libfaketime: false, mkfontscale: false, fonttosfnt: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["unpackPhase", 27, 3], ["buildPhase", 31, 3], ["postInstall", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fonttosfnt = nix.arg($, "fonttosfnt");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "envypn-font",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ywstd.fr/files/p/envypn-font/envypn-font-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "bda67b6bc6d5d871a4d46565d4126729dfb8a0de9611dae6c68132a7b7db1270",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n# convert pcf fonts to otb\nfor i in *e.pcf.gz; do\n  faketime -f \"1970-01-01 00:00:01\" \\\n  fonttosfnt -v -o \"$(basename \"$i\" .pcf.gz)\".otb \"$i\"\ndone\n\nrunHook postBuild\n",
       postInstall: "mkfontdir \"$out/share/fonts/misc\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Readable bitmap font inspired by Envy Code R\n",
         homepage: "http://ywstd.fr/p/pj/#envypn",
         license: nix.thunk(() => nix.sel(lib, "licenses", "miros")),

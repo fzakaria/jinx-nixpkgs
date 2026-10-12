@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["NIX_CFLAGS_COMPILE", 46, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["build-system", 37, 3], ["env", 45, 3], ["dependencies", 52, 3], ["doCheck", 61, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, numpy: false, scipy: false, setuptools: false, "setuptools-scm": false, packaging: false, pandas: false, patsy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["build-system", 37, 3], ["env", 45, 3], ["dependencies", 52, 3], ["doCheck", 61, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pandas = nix.arg($, "pandas");
   const patsy = nix.arg($, "patsy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "statsmodels",
       version: "0.14.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "statsmodels",
           repo: "statsmodels",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,14 +34,14 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail 'setuptools_scm[toml]>=8,<9' 'setuptools_scm[toml]'\n",
       "build-system": nix.thunk(() => [cython, numpy, scipy, setuptools, setuptools_scm]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-function-declaration", "-Wno-error=int-conversion"]))),
         })))),
       dependencies: nix.thunk(() => [numpy, packaging, pandas, patsy, scipy]),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["statsmodels"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Statistical computations and models for use with SciPy",
         homepage: "https://www.github.com/statsmodels/statsmodels",
         changelog: nix.thunk(() => nix.str`https://github.com/statsmodels/statsmodels/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

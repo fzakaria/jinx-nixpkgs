@@ -2,27 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ergochat.nix", [[["allowedTCPPorts", 18, 27]], [["firewall", 18, 18]], [["motd", 21, 25]], [["server", 21, 18]], [["enable", 20, 9], ["settings", 21, 9]], [["ergochat", 19, 16]], [["listeners", 28, 43]], [["server", 28, 36]], [["settings", 28, 27]], [["ergochat", 28, 18]], [["services", 28, 9]], [["configuration", 27, 26]], [["new", 27, 22]], [["networking", 18, 7], ["services", 19, 7], ["specialisation", 27, 7]], [["Type", 45, 13], ["ExecPreStartPre", 46, 13], ["ExecStart", 47, 13], ["User", 50, 13]], [["requires", 41, 11], ["wantedBy", 42, 11], ["serviceConfig", 44, 11]], [["ii", 40, 26]], [["services", 40, 17]], [["imports", 36, 9], ["systemd", 40, 9]], [["name", 15, 3], ["nodes", 16, 3], ["testScript", 57, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ergochat.nix", [["allowedTCPPorts", 18, 27]]);
-const pos$2 = nix.positions(here + "/ergochat.nix", [["firewall", 18, 18]]);
-const pos$3 = nix.positions(here + "/ergochat.nix", [["motd", 21, 25]]);
-const pos$4 = nix.positions(here + "/ergochat.nix", [["server", 21, 18]]);
-const pos$5 = nix.positions(here + "/ergochat.nix", [["enable", 20, 9], ["settings", 21, 9]]);
-const pos$6 = nix.positions(here + "/ergochat.nix", [["ergochat", 19, 16]]);
-const pos$7 = nix.positions(here + "/ergochat.nix", [["listeners", 28, 43]]);
-const pos$8 = nix.positions(here + "/ergochat.nix", [["server", 28, 36]]);
-const pos$9 = nix.positions(here + "/ergochat.nix", [["settings", 28, 27]]);
-const pos$10 = nix.positions(here + "/ergochat.nix", [["ergochat", 28, 18]]);
-const pos$11 = nix.positions(here + "/ergochat.nix", [["services", 28, 9]]);
-const pos$12 = nix.positions(here + "/ergochat.nix", [["configuration", 27, 26]]);
-const pos$13 = nix.positions(here + "/ergochat.nix", [["new", 27, 22]]);
-const pos$14 = nix.positions(here + "/ergochat.nix", [["networking", 18, 7], ["services", 19, 7], ["specialisation", 27, 7]]);
-const pos$15 = nix.positions(here + "/ergochat.nix", [["Type", 45, 13], ["ExecPreStartPre", 46, 13], ["ExecStart", 47, 13], ["User", 50, 13]]);
-const pos$16 = nix.positions(here + "/ergochat.nix", [["requires", 41, 11], ["wantedBy", 42, 11], ["serviceConfig", 44, 11]]);
-const pos$17 = nix.positions(here + "/ergochat.nix", [["ii", 40, 26]]);
-const pos$18 = nix.positions(here + "/ergochat.nix", [["services", 40, 17]]);
-const pos$19 = nix.positions(here + "/ergochat.nix", [["imports", 36, 9], ["systemd", 40, 9]]);
-const pos$20 = nix.positions(here + "/ergochat.nix", [["name", 15, 3], ["nodes", 16, 3], ["testScript", 57, 3]]);
 
 export default nix.thunk(() => (() => {
   const clients = nix.thunk(() => ["ircclient1", "ircclient2"]);
@@ -36,43 +17,43 @@ export default nix.thunk(() => (() => {
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       name: "ergochat",
       nodes: nix.thunk(() => nix.update(nix.attrsDyn({}, [
         [nix.str`${server}`, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$1, allowedTCPPorts: nix.thunk(() => [ircPort]) })),
+            [nix.POS]: $pos[1],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[0], allowedTCPPorts: nix.thunk(() => [ircPort]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             ergochat: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 server: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   motd: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "ergo.motd", "The default MOTD doesn't contain the word \"nixos\" in it.\nThis one does.\n")),
                 })),
               })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             new: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   ergochat: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     settings: nix.thunk(() => ({
-                      [nix.POS]: pos$8,
+                      [nix.POS]: $pos[7],
                       server: nix.thunk(() => ({
-                        [nix.POS]: pos$7,
+                        [nix.POS]: $pos[6],
                         listeners: nix.thunk(() => nix.attrsDyn({}, [[nix.str`:${nix.builtins.toString(altIrcPort)}`, null]])),
                       })),
                     })),
@@ -83,18 +64,18 @@ export default nix.thunk(() => (() => {
           })),
         }))],
       ]), nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((client) => nix.app(nix.sel(lib, "nameValuePair"), client, nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   ii: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     requires: nix.thunk(() => ["network.target"]),
                     wantedBy: nix.thunk(() => ["default.target"]),
                     serviceConfig: nix.thunk(() => ({
-                      [nix.POS]: pos$15,
+                      [nix.POS]: $pos[14],
                       Type: "simple",
                       ExecPreStartPre: nix.thunk(() => nix.str`mkdir -p ${iiDir}`),
                       ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "ii")))}/bin/ii -n ${client} -s ${server} -i ${iiDir}

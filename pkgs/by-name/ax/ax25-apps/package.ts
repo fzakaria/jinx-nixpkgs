@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["strictDeps", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 18, 3], ["src", 25, 3], ["patches", 32, 3], ["configureFlags", 37, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, libax25: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["strictDeps", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 18, 3], ["src", 25, 3], ["patches", 32, 3], ["configureFlags", 37, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const libax25 = nix.arg($, "libax25");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ax25-apps",
       version: "0.0.8-rc5-unstable-2021-05-13",
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [libax25, ncurses]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "radiocatalog",
           repo: "ax25-apps",
           rev: "afc4a5faa01a24c4da1d152b901066405f36adb6",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         "--program-transform-name=s@^call$@ax&@;s@^listen$@ax&@",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "AX.25 ham radio applications",
         homepage: "https://linux-ax25.in-berlin.de/wiki/Main_Page",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

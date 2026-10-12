@@ -2,44 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-config.nix", [[["nix-path", 8, 9], ["extra-nix-path", 9, 9]], [["settings", 7, 11], ["enable", 12, 11]], [["text", 11, 35]], [["value.nix", 11, 23]], [["etc", 11, 19]], [["nix", 7, 7], ["environment", 11, 7]], [["machine", 4, 9]], [["name", 3, 3], ["nodes", 4, 3], ["testScript", 14, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nix-config.nix", [["nix-path", 8, 9], ["extra-nix-path", 9, 9]]);
-const pos$2 = nix.positions(here + "/nix-config.nix", [["settings", 7, 11], ["enable", 12, 11]]);
-const pos$3 = nix.positions(here + "/nix-config.nix", [["text", 11, 35]]);
-const pos$4 = nix.positions(here + "/nix-config.nix", [["value.nix", 11, 23]]);
-const pos$5 = nix.positions(here + "/nix-config.nix", [["etc", 11, 19]]);
-const pos$6 = nix.positions(here + "/nix-config.nix", [["nix", 7, 7], ["environment", 11, 7]]);
-const pos$7 = nix.positions(here + "/nix-config.nix", [["machine", 4, 9]]);
-const pos$8 = nix.positions(here + "/nix-config.nix", [["name", 3, 3], ["nodes", 4, 3], ["testScript", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "nix-config",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               "nix-path": nix.thunk(() => ["nonextra=/etc/value.nix"]),
               "extra-nix-path": nix.thunk(() => ["extra=/etc/value.nix"]),
             })),
             enable: true,
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              "value.nix": nix.thunk(() => ({ [nix.POS]: pos$3, text: "42" })),
+              [nix.POS]: $pos[3],
+              "value.nix": nix.thunk(() => ({ [nix.POS]: $pos[2], text: "42" })),
             })),
           })),
         };

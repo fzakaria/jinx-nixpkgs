@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["filter", 13, 5], ["driver", 14, 5]], [["urls", 23, 5], ["sha256", 27, 5]], [["description", 83, 5], ["longDescription", 84, 5], ["downloadPage", 118, 5], ["license", 119, 5], ["maintainers", 123, 5], ["platforms", 124, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["unpackPhase", 40, 3], ["patches", 47, 3], ["preConfigure", 52, 3], ["installPhase", 56, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, cups: false, libjpeg: false, rpmextract: false, fetchurl: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["filter", 13, 5], ["driver", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["urls", 23, 5], ["sha256", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 83, 5], ["longDescription", 84, 5], ["downloadPage", 118, 5], ["license", 119, 5], ["maintainers", 123, 5], ["platforms", 124, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["unpackPhase", 40, 3], ["patches", 47, 3], ["preConfigure", 52, 3], ["installPhase", 56, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const srcdirs = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     filter: "epson-inkjet-printer-filter-1.0.0",
     driver: "epson-inkjet-printer-workforce-635-nx625-series-1.0.1",
   }));
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "epson-inkjet-printer-workforce-635-nx625-series";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.ebz.epson.net/dsc/op/stable/SRPMS/${pname}-${version}-1lsb3.2.src.rpm`),
             nix.thunk(() => nix.str`https://web.archive.org/web/https://download.ebz.epson.net/dsc/op/stable/SRPMS/${pname}-${version}-1lsb3.2.src.rpm`),
@@ -64,7 +61,7 @@ cp -r resource watermark ${libdir} "$out"
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Proprietary CUPS drivers for Epson inkjet printers",
         longDescription: nix.thunk(() => nix.str`This software is a filter program used with Common UNIX Printing
 System (CUPS) from the Linux. This can supply the high quality print
@@ -111,7 +108,7 @@ To use the driver adjust your configuration.nix file:
         platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

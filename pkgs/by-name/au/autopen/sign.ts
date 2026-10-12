@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sign.nix", [[["signingKey", 60, 15], ["output", 61, 7]], [["message", 72, 13]], [["name", 53, 3], ["signingKey", 55, 11], ["message", 55, 22], ["autopenArgs", 57, 3], ["allowedRequisites", 67, 3], ["passthru", 69, 3], ["pos", 75, 11], ["meta", 75, 15]]]);
 const formals$1 = { args: { lib: false, autopen: false }, ellipsis: false };
 const formals$2 = { args: { signingKey: false, message: false, pos: true, meta: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sign.nix", [["signingKey", 60, 15], ["output", 61, 7]]);
-const pos$2 = nix.positions(here + "/sign.nix", [["message", 72, 13]]);
-const pos$3 = nix.positions(here + "/sign.nix", [["name", 53, 3], ["signingKey", 55, 11], ["message", 55, 22], ["autopenArgs", 57, 3], ["allowedRequisites", 67, 3], ["passthru", 69, 3], ["pos", 75, 11], ["meta", 75, 15]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,21 +22,21 @@ export default nix.lambda((args) => (() => {
     const pos = nix.argOr($_1, "pos", () => nix.app(unsafeGetAttrPos, "message", args_2));
     const meta = nix.argOr($_1, "meta", () => ({}));
     return nix.app(hideDerivation, nix.thunk(() => nix.app(mkAutopenDerivation, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.str`${nix.sel(message, "name")}.sig`),
           signingKey: signingKey,
           message: message,
           autopenArgs: nix.thunk(() => [
             "sign",
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               signingKey: signingKey,
               output: nix.thunk(() => nix.builtins.placeholder("out")),
             })),
             message,
           ]),
           allowedRequisites: nix.thunk(() => ["out"]),
-          passthru: nix.thunk(() => ({ [nix.POS]: pos$2, message: message })),
+          passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], message: message })),
           pos: pos,
           meta: meta,
         })))));

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/builder.nix", [[["url", 40, 5], ["sha256", 41, 5]], [["NIX_CFLAGS_COMPILE", 44, 7]], [["pname", 34, 3], ["version", 35, 3], ["virtualboxVersion", 37, 11], ["virtualboxSubVersion", 37, 29], ["src", 39, 3], ["env", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 59, 3], ["prePatch", 69, 3], ["postPatch", 80, 3], ["configurePhase", 95, 3], ["enableParallelBuilding", 151, 3], ["buildPhase", 153, 3], ["installPhase", 163, 3]]]);
 const formals$1 = { args: { dbus: false, fetchurl: false, glib: false, lib: false, libxcrypt: false, libxcursor: false, libxext: false, libxmu: false, libxrandr: false, libxslt: false, linuxHeaders: false, makeself: false, openssl: false, pam: false, patchelf: false, "pkg-config": false, stdenv: false, which: false, "xorg-server": false, xrandr: false, xz: false, yasm: false, virtualboxVersion: false, virtualboxSubVersion: false, virtualboxSha256: false, platform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/builder.nix", [["url", 40, 5], ["sha256", 41, 5]]);
-const pos$2 = nix.positions(here + "/builder.nix", [["NIX_CFLAGS_COMPILE", 44, 7]]);
-const pos$3 = nix.positions(here + "/builder.nix", [["pname", 34, 3], ["version", 35, 3], ["virtualboxVersion", 37, 11], ["virtualboxSubVersion", 37, 29], ["src", 39, 3], ["env", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 59, 3], ["prePatch", 69, 3], ["postPatch", 80, 3], ["configurePhase", 95, 3], ["enableParallelBuilding", 151, 3], ["buildPhase", 153, 3], ["installPhase", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,18 +35,18 @@ export default nix.lambda((args) => (() => {
   const platform = nix.arg($, "platform");
   const buildType = "release";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "VirtualBox-GuestAdditions-builder",
       version: nix.thunk(() => nix.str`${virtualboxVersion}${virtualboxSubVersion}`),
       virtualboxVersion: virtualboxVersion,
       virtualboxSubVersion: virtualboxSubVersion,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.virtualbox.org/virtualbox/${nix.sel(finalAttrs, "virtualboxVersion")}/VirtualBox-${nix.sel(finalAttrs, "virtualboxVersion")}${nix.sel(finalAttrs, "virtualboxSubVersion")}.tar.bz2`),
           sha256: virtualboxSha256,
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types -Wno-error=implicit-function-declaration",
       })),
       nativeBuildInputs: nix.thunk(() => [

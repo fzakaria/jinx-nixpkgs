@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bin.nix", [[["cudaSupport", 117, 13]], [["cmake", 116, 18]], [["tests", 116, 12]], [["description", 121, 5], ["homepage", 122, 5], ["sourceProvenance", 123, 5], ["license", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5]], [["version", 31, 11], ["pname", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 36, 3], ["dontBuild", 46, 3], ["dontConfigure", 47, 3], ["dontStrip", 48, 3], ["installPhase", 50, 3], ["postFixup", 70, 3], ["outputs", 111, 3], ["passthru", 116, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { callPackage: false, stdenv: false, fetchzip: false, lib: false, llvmPackages: false, config: false, autoAddDriverRunpath: false, autoPatchelfHook: false, patchelf: false, fixDarwinDylibNames: false, cudaSupport: true, cudaPackages_13: false, libz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bin.nix", [["cudaSupport", 117, 13]]);
-const pos$2 = nix.positions(here + "/bin.nix", [["cmake", 116, 18]]);
-const pos$3 = nix.positions(here + "/bin.nix", [["tests", 116, 12]]);
-const pos$4 = nix.positions(here + "/bin.nix", [["description", 121, 5], ["homepage", 122, 5], ["sourceProvenance", 123, 5], ["license", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5]]);
-const pos$5 = nix.positions(here + "/bin.nix", [["version", 31, 11], ["pname", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 36, 3], ["dontBuild", 46, 3], ["dontConfigure", 47, 3], ["dontStrip", 48, 3], ["installPhase", 50, 3], ["postFixup", 70, 3], ["outputs", 111, 3], ["passthru", 116, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary-hashes.nix")), version));
   const unavailable = nix.thunk(() => nix.builtins.throw("libtorch is not available for this platform"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: version,
       pname: "libtorch",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => nix.selOr(srcs, () => nix.force(unavailable), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}-${device}`))))),
@@ -88,14 +84,14 @@ done
       })()),
       outputs: nix.thunk(() => ["out", "dev"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          cmake: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({ [nix.POS]: pos$1, cudaSupport: cudaSupport })))),
+          [nix.POS]: $pos[1],
+          cmake: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test"), nix.thunk(() => ({ [nix.POS]: $pos[0], cudaSupport: cudaSupport })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C++ API of the PyTorch machine learning framework",
         homepage: "https://pytorch.org/",
         sourceProvenance: nix.thunk(() => (() => {

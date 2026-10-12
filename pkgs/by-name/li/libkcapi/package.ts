@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["homepage", 60, 5], ["description", 61, 5], ["license", 62, 5], ["platforms", 66, 5], ["maintainers", 67, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["outputs", 27, 3], ["nativeBuildInputs", 34, 3], ["depsBuildBuild", 39, 3], ["strictDeps", 43, 3], ["enableParallelBuilding", 44, 3], ["configureFlags", 46, 3], ["postInstall", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, buildPackages: false, "kcapi-test": true, "kcapi-speed": true, "kcapi-hasher": true, "kcapi-rngapp": true, "kcapi-encapp": true, "kcapi-dgstapp": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["license", 62, 5], ["platforms", 66, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["outputs", 27, 3], ["nativeBuildInputs", 34, 3], ["depsBuildBuild", 39, 3], ["strictDeps", 43, 3], ["enableParallelBuilding", 44, 3], ["configureFlags", 46, 3], ["postInstall", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const kcapi_encapp = nix.argOr($, "kcapi-encapp", () => true);
   const kcapi_dgstapp = nix.argOr($, "kcapi-dgstapp", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libkcapi",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "smuellerDD",
           repo: "libkcapi",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), kcapi_test, "--enable-kcapi-test"), nix.concat(nix.app(nix.sel(lib, "optional"), kcapi_speed, "--enable-kcapi-speed"), nix.concat(nix.app(nix.sel(lib, "optional"), kcapi_hasher, "--enable-kcapi-hasher"), nix.concat(nix.app(nix.sel(lib, "optional"), kcapi_rngapp, "--enable-kcapi-rngapp"), nix.concat(nix.app(nix.sel(lib, "optional"), kcapi_encapp, "--enable-kcapi-encapp"), nix.app(nix.sel(lib, "optional"), kcapi_dgstapp, "--enable-kcapi-dgstapp"))))))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), kcapi_test, "mkdir -p $selftests/bin\nfind $out -iname '*.sh' -exec mv {} $selftests/bin/ \\;\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.chronox.de/libkcapi.html",
         description: "Linux Kernel Crypto API User Space Interface Library",
         license: nix.thunk(() => (() => {

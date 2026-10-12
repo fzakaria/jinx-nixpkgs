@@ -2,20 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["src", 35, 13], ["version", 35, 17], ["pname", 36, 5], ["cargoRoot", 37, 5], ["hash", 38, 5]], [["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 48, 5]], [["CARGO_TARGET_DIR", 85, 9]], [["geoarrow-rust-tests", 88, 34]], [["tests", 88, 16]], [["description", 91, 17]], [["pname", 61, 9], ["version", 62, 9], ["src", 63, 9], ["cargoDeps", 64, 9], ["dependencies", 65, 9], ["pythonImportsCheck", 66, 9], ["pyproject", 68, 7], ["sourceRoot", 70, 7], ["cargoRoot", 71, 7], ["__structuredAttrs", 72, 7], ["nativeBuildInputs", 74, 7], ["postPatch", 79, 7], ["env", 84, 7], ["passthru", 88, 7], ["meta", 90, 7]], [["pname", 96, 5], ["subdir", 97, 5], ["description", 98, 5], ["pythonImportsCheck", 99, 5], ["dependencies", 100, 5]], [["pname", 107, 5], ["subdir", 108, 5], ["description", 109, 5], ["pythonImportsCheck", 110, 5], ["dependencies", 111, 5]], [["pname", 119, 5], ["src", 120, 13], ["version", 120, 17], ["pyproject", 122, 5], ["dontBuild", 123, 5], ["dontInstall", 124, 5], ["nativeCheckInputs", 126, 5], ["pytestFlags", 145, 5], ["disabledTests", 147, 5], ["postPatch", 157, 5]], [["geoarrow-rust-core", 164, 11], ["geoarrow-rust-io", 164, 30]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, pytestCheckHook: false, "arro3-core": false, obstore: false, "arro3-compute": false, "arro3-io": false, "geoarrow-types": false, geodatasets: false, geopandas: false, numpy: false, pandas: false, pyarrow: false, pyogrio: false, pyproj: false, "pytest-asyncio": false, shapely: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 35, 13], ["version", 35, 17], ["pname", 36, 5], ["cargoRoot", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 48, 5]]);
 const formals$2 = { args: { pname: false, subdir: false, description: false, pythonImportsCheck: false, dependencies: true }, ellipsis: false };
-const pos$4 = nix.positions(here + "/default.nix", [["CARGO_TARGET_DIR", 85, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["geoarrow-rust-tests", 88, 34]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 88, 16]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 91, 17]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 61, 9], ["version", 62, 9], ["src", 63, 9], ["cargoDeps", 64, 9], ["dependencies", 65, 9], ["pythonImportsCheck", 66, 9], ["pyproject", 68, 7], ["sourceRoot", 70, 7], ["cargoRoot", 71, 7], ["__structuredAttrs", 72, 7], ["nativeBuildInputs", 74, 7], ["postPatch", 79, 7], ["env", 84, 7], ["passthru", 88, 7], ["meta", 90, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 96, 5], ["subdir", 97, 5], ["description", 98, 5], ["pythonImportsCheck", 99, 5], ["dependencies", 100, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 107, 5], ["subdir", 108, 5], ["description", 109, 5], ["pythonImportsCheck", 110, 5], ["dependencies", 111, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 119, 5], ["src", 120, 13], ["version", 120, 17], ["pyproject", 122, 5], ["dontBuild", 123, 5], ["dontInstall", 124, 5], ["nativeCheckInputs", 126, 5], ["pytestFlags", 145, 5], ["disabledTests", 147, 5], ["postPatch", 157, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["geoarrow-rust-core", 164, 11], ["geoarrow-rust-io", 164, 30]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,14 +29,14 @@ export default nix.lambda((args) => (() => {
   const shapely = nix.arg($, "shapely");
   const version = "0.6.3";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "geoarrow",
       repo: "geoarrow-rs",
       tag: nix.thunk(() => nix.str`py-v${version}`),
       hash: "sha256-5RWhOw31yRzkBE27LeES7z3G7OgRHQZP3aYacBuPUDM=",
     }))));
   const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: src,
       version: version,
       pname: "geoarrow-rust-vendor",
@@ -55,7 +44,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-HbtNzcFkqDS8RpxW6MBfOhhzy5MsaKguKkhDN5xGckY=",
     }))));
   const commonMeta = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     homepage: "https://github.com/geoarrow/geoarrow-rs",
     changelog: nix.thunk(() => nix.str`https://github.com/geoarrow/geoarrow-rs/releases/tag/py-v${version}`),
     license: nix.thunk(() => (() => {
@@ -78,7 +67,7 @@ export default nix.lambda((args) => (() => {
     const pythonImportsCheck = nix.arg($_1, "pythonImportsCheck");
     const dependencies = nix.argOr($_1, "dependencies", () => []);
     return nix.app(buildPythonPackage, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: pname,
         version: version,
         src: src,
@@ -97,16 +86,16 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
         postPatch: "chmod -R +w ../..\n",
-        env: nix.thunk(() => ({ [nix.POS]: pos$4, CARGO_TARGET_DIR: "./target" })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[3], CARGO_TARGET_DIR: "./target" })),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          tests: nix.thunk(() => ({ [nix.POS]: pos$5, "geoarrow-rust-tests": geoarrow_rust_tests })),
+          [nix.POS]: $pos[5],
+          tests: nix.thunk(() => ({ [nix.POS]: $pos[4], "geoarrow-rust-tests": geoarrow_rust_tests })),
         })),
-        meta: nix.thunk(() => nix.update(commonMeta, { [nix.POS]: pos$7, description: description })),
+        meta: nix.thunk(() => nix.update(commonMeta, { [nix.POS]: $pos[6], description: description })),
       })));
   })(), formals$2);
   const geoarrow_rust_core = nix.thunk(() => nix.app(buildGeoArrowPackage, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "geoarrow-rust-core",
       subdir: "geoarrow-core",
       description: "Core library for representing GeoArrow data in Python",
@@ -114,7 +103,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [arro3_core, pyproj]),
     }))));
   const geoarrow_rust_io = nix.thunk(() => nix.app(buildGeoArrowPackage, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "geoarrow-rust-io",
       subdir: "geoarrow-io",
       description: "Rust-based readers and writers for GeoArrow in Python",
@@ -122,7 +111,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [arro3_core, obstore, pyproj]),
     }))));
   const geoarrow_rust_tests = nix.thunk(() => nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "geoarrow-rust-tests",
       src: src,
       version: version,
@@ -157,7 +146,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace python/tests/utils.py \\\n  --replace-fail 'while current_dir.stem != \"geoarrow-rs\":' 'while current_dir.stem != \"source\":'\n",
     }))));
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     "geoarrow-rust-core": geoarrow_rust_core,
     "geoarrow-rust-io": geoarrow_rust_io,
   };

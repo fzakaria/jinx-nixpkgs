@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["homepage", 76, 5], ["downloadPage", 77, 5], ["description", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["dontUseCmakeConfigure", 33, 3], ["build-system", 35, 3], ["nativeBuildInputs", 40, 3], ["dependencies", 46, 3], ["buildInputs", 50, 3], ["cmakeFlags", 55, 3], ["pythonImportsCheck", 62, 3], ["nativeCheckInputs", 66, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "scikit-build-core": false, nanobind: false, cmake: false, ninja: false, "pkg-config": false, blas: false, lapack: false, numpy: false, sympy: false, scipy: false, matplotlib: false, "fenics-ufl": false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 76, 5], ["downloadPage", 77, 5], ["description", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["dontUseCmakeConfigure", 33, 3], ["build-system", 35, 3], ["nativeBuildInputs", 40, 3], ["dependencies", 46, 3], ["buildInputs", 50, 3], ["cmakeFlags", 55, 3], ["pythonImportsCheck", 62, 3], ["nativeCheckInputs", 66, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fenics-basix",
       version: "0.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fenics",
           repo: "basix",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["basix"]),
       nativeCheckInputs: nix.thunk(() => [sympy, scipy, matplotlib, fenics_ufl, pytest_xdist, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://fenicsproject.org",
         downloadPage: "https://github.com/fenics/basix",
         description: "Finite element definition and tabulation runtime library",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["changelog", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 72, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["disabled", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["pytestFlags", 44, 3], ["disabledTests", 50, 3], ["nativeCheckInputs", 57, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, greenlet: false, trio: false, outcome: false, sniffio: false, "pytest-trio": false, pytestCheckHook: false, pythonAtLeast: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["disabled", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["pytestFlags", 44, 3], ["disabledTests", 50, 3], ["nativeCheckInputs", 57, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.14"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-trio",
           repo: "trio-asyncio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_trio, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["trio_asyncio"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/python-trio/trio-asyncio/blob/v${version}/docs/source/history.rst`),
         description: "Re-implementation of the asyncio mainloop on top of Trio",
         homepage: "https://github.com/python-trio/trio-asyncio",
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

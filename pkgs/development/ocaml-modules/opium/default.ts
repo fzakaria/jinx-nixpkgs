@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["broken", 60, 5]], [["pname", 25, 3], ["minimalOCamlVersion", 26, 3], ["src", 28, 18], ["version", 28, 22], ["propagatedBuildInputs", 30, 3], ["doCheck", 50, 3], ["checkInputs", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, lib: false, astring: false, base64: false, cmdliner: false, fmt: false, httpaf: false, "httpaf-lwt-unix": false, logs: false, "magic-mime": false, "mirage-crypto": false, mtime: false, "multipart-form-data": false, ptime: false, re: false, rock: false, tyxml: false, uri: false, yojson: false, "alcotest-lwt": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["broken", 60, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["minimalOCamlVersion", 26, 3], ["src", 28, 18], ["version", 28, 22], ["propagatedBuildInputs", 30, 3], ["doCheck", 50, 3], ["checkInputs", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const alcotest_lwt = nix.arg($, "alcotest-lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "opium",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.attr(rock, "src")),
@@ -56,7 +55,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest_lwt]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "OCaml web framework",
         homepage: "https://github.com/rgrinberg/opium",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

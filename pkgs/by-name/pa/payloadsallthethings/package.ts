@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["homepage", 57, 5], ["description", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 64, 5], ["sourceProvenance", 65, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 24, 3], ["outputs", 32, 3], ["buildPhase", 37, 3], ["installPhase", 45, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false, python3Packages: false, yq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["description", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 64, 5], ["sourceProvenance", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 24, 3], ["outputs", 32, 3], ["buildPhase", 37, 3], ["installPhase", 45, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const mkdocs_material = nix.thunk(() => nix.attr(python3Packages, "mkdocs-material"));
   const pymdown_extensions = nix.thunk(() => nix.attr(python3Packages, "pymdown-extensions"));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "payloadsallthethings",
       version: "2025.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "swisskyrepo",
           repo: "PayloadsAllTheThings",
           tag: "4.2",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "yq -yi '.docs_dir = \"source\"' mkdocs.yml\nmkdir overrides\nmv mkdocs.yml ..\ncd ..\nmkdocs build --theme material\n",
       installPhase: "runHook preInstall\nmkdir -p $doc/share/payloadsallthethings\ncp -r site/* $doc/share/payloadsallthethings\n\nmkdir -p $out/share/payloadsallthethings\nrm source/CONTRIBUTING.md source/custom.css\ncp -r source/* $out/share/payloadsallthethings\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/swisskyrepo/PayloadsAllTheThings",
         description: "List of useful payloads and bypass for Web Application Security and Pentest/CTF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,21 +2,20 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 14, 5], ["license", 15, 5], ["homepage", 16, 5], ["maintainers", 17, 5]], [["pname", 7, 3], ["gemdir", 9, 3], ["exes", 11, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 14, 5], ["license", 15, 5], ["homepage", 16, 5], ["maintainers", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["gemdir", 9, 3], ["exes", 11, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const bundlerApp = nix.arg($, "bundlerApp");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "3llo",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["3llo"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Trello interactive CLI on terminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/qcam/3llo",

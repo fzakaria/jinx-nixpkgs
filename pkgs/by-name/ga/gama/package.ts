@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["CXXFLAGS", 27, 7]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 22, 3], ["env", 27, 3], ["nativeCheckInputs", 29, 3], ["doCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, expat: false, octave: false, libxml2: false, texinfo: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["nativeBuildInputs", 22, 3], ["env", 27, 3], ["nativeCheckInputs", 29, 3], ["doCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const zip = nix.arg($, "zip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gama",
       version: "2.28",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/gama/gama-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-Xcc/4JB7hyM+KHeO32+JlQWUBfH8RXuOL3Z2P0imaxo=",
         })))),
       buildInputs: nix.thunk(() => [expat]),
       nativeBuildInputs: nix.thunk(() => [texinfo, zip]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-include sstream")),
       })),
       nativeCheckInputs: nix.thunk(() => [octave, libxml2]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tools for adjustment of geodetic networks",
         homepage: "https://www.gnu.org/software/gama/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-configurations.nix", [[["allowBroken", 57, 5], ["allowAliases", 59, 5]], [["config", 66, 39]], [["common", 116, 7], ["nix", 117, 7], ["arm", 118, 7], ["darwin", 119, 7]], [["haskellLib", 136, 11], ["pkgs", 137, 19]]]);
 const formals$1 = { args: { files: true, nixpkgsPath: true, config: true, skipEvalErrors: true, skipBinaryGHCs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-configurations.nix", [["allowBroken", 57, 5], ["allowAliases", 59, 5]]);
-const pos$2 = nix.positions(here + "/test-configurations.nix", [["config", 66, 39]]);
-const pos$3 = nix.positions(here + "/test-configurations.nix", [["common", 116, 7], ["nix", 117, 7], ["arm", 118, 7], ["darwin", 119, 7]]);
-const pos$4 = nix.positions(here + "/test-configurations.nix", [["haskellLib", 136, 11], ["pkgs", 137, 19]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,10 +13,10 @@ export default nix.lambda((args) => (() => {
     "configuration-ghc-9.8.x.nix",
   ]);
   const nixpkgsPath = nix.argOr($, "nixpkgsPath", () => nix.path(here, "../../.."));
-  const config = nix.argOr($, "config", () => ({ [nix.POS]: pos$1, allowBroken: true, allowAliases: false }));
+  const config = nix.argOr($, "config", () => ({ [nix.POS]: $pos[0], allowBroken: true, allowAliases: false }));
   const skipEvalErrors = nix.argOr($, "skipEvalErrors", () => true);
   const skipBinaryGHCs = nix.argOr($, "skipBinaryGHCs", () => true);
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgsPath), nix.thunk(() => ({ [nix.POS]: pos$2, config: config }))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgsPath), nix.thunk(() => ({ [nix.POS]: $pos[1], config: config }))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const files$ = nix.thunk(() => nix.builtins.map(nix.builtins.baseNameOf, nix.thunk(() => (nix.asBool(!nix.asBool(nix.builtins.isList(files))) ? [files] : nix.force(files)))));
   const packageSetsWithVersionedHead = nix.thunk(() => nix.update(nix.sel(pkgs, "haskell", "packages"), (() => {
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
     const setsForVersion = nix.thunk(() => nix.builtins.map((name) => nix.sel(packageSetsWithVersionedHead, nix.key(nix.force(name))), nix.thunk(() => nix.builtins.filter((setName) => (nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), nix.thunk(() => nix.str`ghc${configVersion}`), setName)) && nix.asBool((!nix.asBool(skipBinaryGHCs) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "hasInfix"), "Binary", setName)))))), nix.thunk(() => nix.builtins.attrNames(packageSetsWithVersionedHead))))));
     const defaultSets = nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "haskellPackages"))]);
     return nix.selOr({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       common: defaultSets,
       nix: defaultSets,
       arm: defaultSets,
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
   })();
   const availableHaskellPackages = nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((attr) => nix.app(nix.sel(lib, "nameValuePair"), attr, null), nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(pkgs, "haskellPackages"))))))));
   const overriddenAttrs = (fileName) => nix.builtins.attrNames(nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => nix.app(nix.builtins.import(nix.thunk(() => nix.add(nixpkgsPath, nix.str`/pkgs/development/haskell-modules/${fileName}`))), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           haskellLib: nix.thunk(() => nix.sel(pkgs, "haskell", "lib", "compose")),
           pkgs: pkgs,
         })), self, availableHaskellPackages))));

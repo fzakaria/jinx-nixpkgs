@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["daphne", 44, 5], ["examples", 45, 5], ["granian", 53, 5], ["uvicorn", 54, 5]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 43, 3], ["nativeCheckInputs", 57, 3], ["pythonImportsCheck", 71, 3], ["disabledTests", 73, 3], ["__darwinAllowLocalNetworking", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, aiosqlite: false, anyio: false, "asgi-lifespan": false, "async-timeout": false, buildPythonPackage: false, daphne: false, fastapi: false, fetchFromGitHub: false, granian: false, httpx: false, portend: false, psutil: false, "pytest-asyncio": false, pytestCheckHook: false, setuptools: false, sqlalchemy: false, starlette: false, tenacity: false, testcontainers: false, uvicorn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["daphne", 44, 5], ["examples", 45, 5], ["granian", 53, 5], ["uvicorn", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 43, 3], ["nativeCheckInputs", 57, 3], ["pythonImportsCheck", 71, 3], ["disabledTests", 73, 3], ["__darwinAllowLocalNetworking", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sysid",
           repo: "sse-starlette",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [anyio]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         daphne: nix.thunk(() => [daphne]),
         examples: nix.thunk(() => nix.concat([aiosqlite, fastapi, sqlalchemy, starlette, uvicorn], nix.sel(sqlalchemy, "optional-dependencies", "asyncio"))),
         granian: nix.thunk(() => [granian]),
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_stop_server_with_many_consumers", "test_sse_server_termination"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Server Sent Events for Starlette and FastAPI",
         homepage: "https://github.com/sysid/sse-starlette",
         changelog: nix.thunk(() => nix.str`https://github.com/sysid/sse-starlette/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -79,7 +76,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

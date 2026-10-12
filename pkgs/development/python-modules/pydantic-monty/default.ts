@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 31, 26], ["src", 31, 32], ["version", 31, 36], ["hash", 32, 5]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["cargoDeps", 30, 3], ["dependencies", 35, 3], ["nativeBuildInputs", 37, 3], ["maturinBuildFlags", 42, 3], ["pytestFlags", 47, 3], ["disabledTests", 53, 3], ["nativeCheckInputs", 60, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, rustPlatform: false, anyio: false, "dirty-equals": false, "inline-snapshot": false, "pytest-examples": false, "pytest-pretty": false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 31, 26], ["src", 31, 32], ["version", 31, 36], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["cargoDeps", 30, 3], ["dependencies", 35, 3], ["nativeBuildInputs", 37, 3], ["maturinBuildFlags", 42, 3], ["pytestFlags", 47, 3], ["disabledTests", 53, 3], ["nativeCheckInputs", 60, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const pytest_pretty = nix.arg($, "pytest-pretty");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pydantic-monty",
       version: "0.0.17",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pydantic",
           repo: "monty",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-f+WcznnOMSc0ahgfvgVec4U0nH9j022NLnWQLdISv3M=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["pydantic_monty"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Minimal, secure Python interpreter written in Rust for use by AI",
         homepage: "https://github.com/pydantic/monty",
         changelog: nix.thunk(() => nix.str`https://github.com/pydantic/monty/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

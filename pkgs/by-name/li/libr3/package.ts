@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["pname", 44, 5], ["version", 45, 26], ["src", 45, 34], ["sourceRoot", 46, 5], ["buildInputs", 48, 5], ["nativeBuildInputs", 49, 5], ["doCheck", 51, 5], ["buildPhase", 53, 5], ["checkPhase", 54, 5], ["installPhase", 55, 5]], [["pkg-config", 42, 18], ["consumer", 43, 18]], [["tests", 42, 12]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["pkgConfigModules", 62, 5]], [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 35, 3], ["passthru", 42, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pcre2: false, "pkg-config": false, check: false, autoreconfHook: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 44, 5], ["version", 45, 26], ["src", 45, 34], ["sourceRoot", 46, 5], ["buildInputs", 48, 5], ["nativeBuildInputs", 49, 5], ["doCheck", 51, 5], ["buildPhase", 53, 5], ["checkPhase", 54, 5], ["installPhase", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 42, 18], ["consumer", 43, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 42, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["pkgConfigModules", 62, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 35, 3], ["passthru", 42, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libr3",
       version: "2.0.0-unstable-2025-11-24",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "c9s",
           repo: "r3",
           rev: "b07a1d4dfe02766f104307ec8f00bb74c549bdd4",
@@ -37,12 +32,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [check]),
       propagatedBuildInputs: nix.thunk(() => [pcre2]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           consumer: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (consumerAttrs) => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname: "libr3-test",
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "High-performance path dispatching library",
         homepage: "https://github.com/c9s/r3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

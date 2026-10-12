@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]], [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["patches", 40, 3], ["postPatch", 44, 3], ["cmakeBuildType", 51, 3], ["cmakeFlags", 53, 3], ["installTargets", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, ncurses: false, which: false, cmake: false, qt6: false, "yaml-cpp": false, libirc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["patches", 40, 3], ["postPatch", 44, 3], ["cmakeBuildType", 51, 3], ["cmakeFlags", 53, 3], ["installTargets", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "huggle";
       const version = "3.4.14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "huggle",
           repo: "huggle3-qt-lx",
           rev: version,
@@ -60,7 +58,7 @@ substituteInPlace src/CMakeLists.txt --replace '@libirc_includes@' '${nix.sel(li
       ]);
       const installTargets = nix.thunk(() => ["install"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Anti-vandalism tool for use on MediaWiki-based projects",
         mainProgram: "huggle",
         homepage: "https://github.com/huggle/huggle3-qt-lx",
@@ -69,7 +67,7 @@ substituteInPlace src/CMakeLists.txt --replace '@libirc_includes@' '${nix.sel(li
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "x86_64")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

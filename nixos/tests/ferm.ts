@@ -2,72 +2,49 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ferm.nix", [[["maintainers", 5, 5]], [["enable", 14, 18]], [["address", 17, 15], ["prefixLength", 18, 15]], [["addresses", 15, 32]], [["address", 23, 15], ["prefixLength", 24, 15]], [["addresses", 21, 32]], [["ipv6", 15, 27], ["ipv4", 21, 27]], [["eth1", 15, 22]], [["dhcpcd", 14, 11], ["interfaces", 15, 11]], [["networking", 13, 9]], [["enable", 34, 18]], [["address", 39, 15], ["prefixLength", 40, 15]], [["addresses", 37, 32]], [["address", 45, 15], ["prefixLength", 46, 15]], [["addresses", 43, 32]], [["ipv6", 37, 27], ["ipv4", 43, 27]], [["eth1", 37, 22]], [["dhcpcd", 34, 11], ["useNetworkd", 35, 11], ["useDHCP", 36, 11], ["interfaces", 37, 11]], [["enable", 52, 16], ["config", 53, 16]], [["enable", 59, 17], ["httpConfig", 60, 17]], [["ferm", 52, 11], ["nginx", 59, 11]], [["networking", 33, 9], ["services", 51, 9]], [["client", 9, 5], ["server", 29, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 74, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ferm.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/ferm.nix", [["enable", 14, 18]]);
-const pos$3 = nix.positions(here + "/ferm.nix", [["address", 17, 15], ["prefixLength", 18, 15]]);
-const pos$4 = nix.positions(here + "/ferm.nix", [["addresses", 15, 32]]);
-const pos$5 = nix.positions(here + "/ferm.nix", [["address", 23, 15], ["prefixLength", 24, 15]]);
-const pos$6 = nix.positions(here + "/ferm.nix", [["addresses", 21, 32]]);
-const pos$7 = nix.positions(here + "/ferm.nix", [["ipv6", 15, 27], ["ipv4", 21, 27]]);
-const pos$8 = nix.positions(here + "/ferm.nix", [["eth1", 15, 22]]);
-const pos$9 = nix.positions(here + "/ferm.nix", [["dhcpcd", 14, 11], ["interfaces", 15, 11]]);
-const pos$10 = nix.positions(here + "/ferm.nix", [["networking", 13, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/ferm.nix", [["enable", 34, 18]]);
-const pos$12 = nix.positions(here + "/ferm.nix", [["address", 39, 15], ["prefixLength", 40, 15]]);
-const pos$13 = nix.positions(here + "/ferm.nix", [["addresses", 37, 32]]);
-const pos$14 = nix.positions(here + "/ferm.nix", [["address", 45, 15], ["prefixLength", 46, 15]]);
-const pos$15 = nix.positions(here + "/ferm.nix", [["addresses", 43, 32]]);
-const pos$16 = nix.positions(here + "/ferm.nix", [["ipv6", 37, 27], ["ipv4", 43, 27]]);
-const pos$17 = nix.positions(here + "/ferm.nix", [["eth1", 37, 22]]);
-const pos$18 = nix.positions(here + "/ferm.nix", [["dhcpcd", 34, 11], ["useNetworkd", 35, 11], ["useDHCP", 36, 11], ["interfaces", 37, 11]]);
-const pos$19 = nix.positions(here + "/ferm.nix", [["enable", 52, 16], ["config", 53, 16]]);
-const pos$20 = nix.positions(here + "/ferm.nix", [["enable", 59, 17], ["httpConfig", 60, 17]]);
-const pos$21 = nix.positions(here + "/ferm.nix", [["ferm", 52, 11], ["nginx", 59, 11]]);
-const pos$22 = nix.positions(here + "/ferm.nix", [["networking", 33, 9], ["services", 51, 9]]);
-const pos$23 = nix.positions(here + "/ferm.nix", [["client", 9, 5], ["server", 29, 5]]);
-const pos$24 = nix.positions(here + "/ferm.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$24,
+    [nix.POS]: $pos[23],
     name: "ferm",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "mic92"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "lib")), null);
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+            [nix.POS]: $pos[8],
+            dhcpcd: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   addresses: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$3, address: "fd00::2", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[2], address: "fd00::2", prefixLength: 64n })),
                     ]))),
                 })),
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   addresses: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$5, address: "192.168.1.2", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[4], address: "192.168.1.2", prefixLength: 24n })),
                     ]))),
                 })),
               })),
@@ -80,40 +57,40 @@ export default nix.lambda((args) => (() => {
         const pkgs_1 = nix.arg($_1, "pkgs");
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "lib")), null);
         return {
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$18,
-            dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
+            [nix.POS]: $pos[17],
+            dhcpcd: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: false })),
             useNetworkd: true,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   addresses: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$12, address: "fd00::1", prefixLength: 64n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[11], address: "fd00::1", prefixLength: 64n })),
                     ]))),
                 })),
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   addresses: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$14, address: "192.168.1.1", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[13], address: "192.168.1.1", prefixLength: 24n })),
                     ]))),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             ferm: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               enable: true,
               config: "domain (ip ip6) table filter chain INPUT {\n  interface lo ACCEPT;\n  proto tcp dport 8080 REJECT reject-with tcp-reset;\n}\n",
             })),
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               enable: true,
               httpConfig: "server {\n  listen 80;\n  listen [::]:80;\n  listen 8080;\n  listen [::]:8080;\n\n  location /status { stub_status on; }\n}\n",
             })),

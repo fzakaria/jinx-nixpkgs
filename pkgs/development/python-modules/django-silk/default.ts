@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 29, 3], ["version", 30, 3], ["format", 31, 3], ["src", 33, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 52, 3], ["propagatedBuildInputs", 54, 3], ["nativeCheckInputs", 68, 3], ["pythonImportsCheck", 78, 3], ["preCheck", 80, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, autopep8: false, buildPythonPackage: false, django: false, "factory-boy": false, fetchFromGitHub: false, freezegun: false, gprof2dot: false, jinja2: false, mock: false, networkx: false, pillow: false, pydot: false, pygments: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-django": false, python: false, "python-dateutil": false, pytz: false, requests: false, "setuptools-scm": false, simplejson: false, sqlparse: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["format", 31, 3], ["src", 33, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 52, 3], ["propagatedBuildInputs", 54, 3], ["nativeCheckInputs", 68, 3], ["pythonImportsCheck", 78, 3], ["preCheck", 80, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.6.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jazzband",
           repo: "django-silk",
           tag: version,
@@ -76,7 +74,7 @@ substituteInPlace setup.py \\
       const pythonImportsCheck = nix.thunk(() => ["silk"]);
       const preCheck = "export DB_ENGINE=sqlite3 DB_NAME=':memory:'\n\ncd project\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Silky smooth profiling for the Django Framework",
         homepage: "https://github.com/jazzband/django-silk",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-silk/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -87,7 +85,7 @@ substituteInPlace setup.py \\
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

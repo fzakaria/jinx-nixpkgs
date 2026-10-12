@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["docs", 41, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["outputs", 33, 3], ["build-system", 38, 3], ["optional-dependencies", 40, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, furo: false, "myst-parser": false, sphinx: false, sphinxHook: false, "pytest-asyncio_0": false, "pytest-cov-stub": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["docs", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["outputs", 33, 3], ["build-system", 38, 3], ["optional-dependencies", 40, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bdraco",
           repo: "aiohappyeyeballs",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,13 +32,13 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "doc"]);
       const build_system = nix.thunk(() => nix.concat([poetry_core], nix.sel(optional_dependencies, "docs")));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         docs: nix.thunk(() => [furo, myst_parser, sphinx, sphinxHook]),
       }));
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio_0, pytest_cov_stub, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["aiohappyeyeballs"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Happy Eyeballs for pre-resolved hosts",
         homepage: "https://github.com/bdraco/aiohappyeyeballs",
         changelog: nix.thunk(() => nix.str`https://github.com/bdraco/aiohappyeyeballs/blob/v${version}/CHANGELOG.md`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

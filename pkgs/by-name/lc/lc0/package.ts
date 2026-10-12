@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]], [["homepage", 72, 5], ["description", 73, 5], ["longDescription", 74, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["license", 79, 5], ["broken", 80, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 27, 3], ["patchPhase", 34, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["mesonFlags", 58, 3], ["enableParallelBuilding", 67, 3], ["doCheck", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, python3: false, zlib: false, gtest: false, eigen: false, "abseil-cpp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["longDescription", 74, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["license", 79, 5], ["broken", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 27, 3], ["patchPhase", 34, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["mesonFlags", 58, 3], ["enableParallelBuilding", 67, 3], ["doCheck", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const abseil_cpp = nix.arg($, "abseil-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lc0",
       version: "0.32.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LeelaChessZero",
           repo: "lc0",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://lczero.org/",
         description: "Open source neural network based chess engine",
         longDescription: "Lc0 is a UCI-compliant chess engine designed to play chess via neural network, specifically those of the LeelaChessZero project.\n",

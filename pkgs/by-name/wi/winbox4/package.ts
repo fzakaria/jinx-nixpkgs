@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 11, 5], ["homepage", 12, 5], ["downloadPage", 13, 5], ["sourceProvenance", 14, 5], ["license", 15, 5], ["mainProgram", 16, 5], ["maintainers", 17, 5]], [["pname", 24, 13], ["version", 24, 19], ["metaCommon", 24, 27], ["hash", 26, 5]], [["pname", 30, 13], ["version", 30, 19], ["metaCommon", 30, 27], ["hash", 32, 5]], [["platforms", 37, 5], ["mainProgram", 38, 5], ["changelog", 39, 5]], [["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 11, 5], ["homepage", 12, 5], ["downloadPage", 13, 5], ["sourceProvenance", 14, 5], ["license", 15, 5], ["mainProgram", 16, 5], ["maintainers", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 24, 13], ["version", 24, 19], ["metaCommon", 24, 27], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 13], ["version", 30, 19], ["metaCommon", 30, 27], ["hash", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["platforms", 37, 5], ["mainProgram", 38, 5], ["changelog", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pname = "winbox";
   const version = "4.4";
   const metaCommon = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Graphical configuration utility for RouterOS-based devices",
     homepage: "https://mikrotik.com",
     downloadPage: "https://mikrotik.com/download",
@@ -37,23 +33,23 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const x86_64_zip = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-from-zip.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       metaCommon: metaCommon,
       hash: "sha256-SbH6q6tVgExJGqKUfvut6WeBXVPfdpjMeHagwdY2zcE=",
     }))));
   const x86_64_dmg = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-from-dmg.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       metaCommon: metaCommon,
       hash: "sha256-v/Bw+0EBkdVRyZiNR3lv99JF0napgbFKkMpvhpi+Shg=",
     }))));
   return nix.app(nix.sel((nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.force(x86_64_dmg) : nix.force(x86_64_zip)), "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         platforms: nix.thunk(() => nix.concat(nix.sel(x86_64_zip, "meta", "platforms"), nix.sel(x86_64_dmg, "meta", "platforms"))),
         mainProgram: "WinBox",
         changelog: nix.thunk(() => nix.str`https://download.mikrotik.com/routeros/winbox/${nix.sel(oldAttrs, "version")}/CHANGELOG`),

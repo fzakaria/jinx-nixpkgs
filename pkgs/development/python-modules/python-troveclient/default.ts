@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["PBR_VERSION", 37, 7]], [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["teams", 87, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["env", 37, 3], ["nativeBuildInputs", 39, 3], ["sphinxBuilders", 45, 3], ["build-system", 47, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 65, 3], ["checkPhase", 71, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, httplib2: false, keystoneauth1: false, openstackdocstheme: false, "osc-lib": false, "oslo-i18n": false, "oslo-utils": false, pbr: false, prettytable: false, "python-mistralclient": false, "python-openstackclient": false, "python-swiftclient": false, "requests-mock": false, requests: false, setuptools: false, "sphinxcontrib-apidoc": false, sphinxHook: false, stestr: false, stevedore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PBR_VERSION", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["teams", 87, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["env", 37, 3], ["nativeBuildInputs", 39, 3], ["sphinxBuilders", 45, 3], ["build-system", 47, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 65, 3], ["checkPhase", 71, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,13 +33,13 @@ export default nix.lambda((args) => (() => {
       const version = "8.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openstack",
           repo: "python-troveclient",
           tag: version,
           hash: "sha256-ayNRhT337eG6NJM2ugAqiH6st+2s4gySIeNQ4jJb8nU=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PBR_VERSION: version }));
       const nativeBuildInputs = nix.thunk(() => [openstackdocstheme, sphinxHook, sphinxcontrib_apidoc]);
       const sphinxBuilders = nix.thunk(() => ["man"]);
       const build_system = nix.thunk(() => [pbr, setuptools]);
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\nstestr run -e <(echo \"\ntroveclient.tests.test_shell.ShellTest.test_help\ntroveclient.tests.test_shell.ShellTestKeystoneV3.test_help\n\")\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["troveclient"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/openstack/python-troveclient",
         description: "Client library for OpenStack Trove API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

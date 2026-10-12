@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 45, 7], ["arch", 46, 7]], [["hash", 49, 7], ["arch", 50, 7]], [["hash", 53, 7], ["arch", 54, 7]], [["x86_64-linux", 44, 5], ["aarch64-linux", 48, 5], ["aarch64-darwin", 52, 5]], [["name", 64, 5], ["publisher", 65, 5], ["version", 66, 5]], [["description", 130, 5], ["homepage", 131, 5], ["license", 132, 5], ["maintainers", 133, 5], ["platforms", 137, 5], ["sourceProvenance", 142, 5]], [["mktplcRef", 63, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 75, 3], ["dontAutoPatchelf", 82, 3], ["postPatch", 84, 3], ["postFixup", 117, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, jq: false, "clang-tools": false, gdbUseFixed: true, gdb: false, autoPatchelfHook: false, makeWrapper: false, stdenv: false, "lttng-ust": false, libkrb5: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 45, 7], ["arch", 46, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 49, 7], ["arch", 50, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 53, 7], ["arch", 54, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 44, 5], ["aarch64-linux", 48, 5], ["aarch64-darwin", 52, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 64, 5], ["publisher", 65, 5], ["version", 66, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 130, 5], ["homepage", 131, 5], ["license", 132, 5], ["maintainers", 133, 5], ["platforms", 137, 5], ["sourceProvenance", 142, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["mktplcRef", 63, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 75, 3], ["dontAutoPatchelf", 82, 3], ["postPatch", 84, 3], ["postFixup", 117, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,28 +23,28 @@ export default nix.lambda((args) => (() => {
   const isx86Linux = nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux"));
   const isDarwin = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin"));
   const supported = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       hash: "sha256-og4lqDIo14VKViPEnwDDNzd4K/3eh0/v9Bf+LZtSwAI=",
       arch: "linux-x64",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       hash: "sha256-m2ni6PnptPvNpPrzQvdWKkuUce9hBvAPlxbYCKgRdVg=",
       arch: "linux-arm64",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       hash: "sha256-yiNgrk6+qnSqATx94D14OFlStIgHnF3NXiwL/AY9Yuo=",
       arch: "darwin-arm64",
     })),
   }));
   const base = nix.thunk(() => nix.selOr(supported, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported platform ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       mktplcRef: nix.thunk(() => nix.update(base, {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "cpptools",
         publisher: "ms-vscode",
         version: "1.34.4",
@@ -85,7 +79,7 @@ chmod +x bin/cpptools bin/cpptools-srv bin/cpptools-wordexp debugAdapters/bin/Op
       postFixup: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), isx86Linux, "autoPatchelf $out/share/vscode/extensions/ms-vscode.cpptools/debugAdapters\n# cpptools* are distributed by the extension and need to be run through the distributed musl interpretter\npatchelf --set-interpreter $out/share/vscode/extensions/ms-vscode.cpptools/bin/libc.so $out/share/vscode/extensions/ms-vscode.cpptools/bin/cpptools\npatchelf --set-interpreter $out/share/vscode/extensions/ms-vscode.cpptools/bin/libc.so $out/share/vscode/extensions/ms-vscode.cpptools/bin/cpptools-srv\npatchelf --set-interpreter $out/share/vscode/extensions/ms-vscode.cpptools/bin/libc.so $out/share/vscode/extensions/ms-vscode.cpptools/bin/cpptools-wordexp\n"), nix.app(nix.sel(lib, "optionalString"), gdbUseFixed, nix.thunk(() => nix.str`wrapProgram $out/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7 --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gdb]))}
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "C/C++ extension adds language support for C/C++ to Visual Studio Code, including features such as IntelliSense and debugging",
         homepage: "https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

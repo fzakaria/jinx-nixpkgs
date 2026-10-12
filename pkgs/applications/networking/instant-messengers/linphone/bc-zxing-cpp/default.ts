@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 14, 5], ["group", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 9, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["cmakeFlags", 30, 3], ["postPatch", 40, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitLab: false, stdenv: false, libzint: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 14, 5], ["group", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["cmakeFlags", 30, 3], ["postPatch", 40, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const libzint = nix.arg($, "libzint");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zxing-cpp",
       version: "1.4.0-unstable-2026-08-08",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.linphone.org",
           group: "BC",
           owner: "public/external",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail '# PC file generation.' 'include (GNUInstallDirs)'\nsubstituteInPlace zxing.pc.in \\\n  --replace-fail 'libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@' 'libdir=@CMAKE_INSTALL_FULL_LIBDIR@' \\\n  --replace-fail 'includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@' 'includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.linphone.org/BC/public/external/zxing-cpp",
         description: "BelledonneCommunications' fork of zxing-cpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["NIX_CFLAGS_COMPILE", 20, 7]], [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["makefile", 18, 3], ["env", 20, 3], ["installPhase", 32, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["makefile", 18, 3], ["env", 20, 3], ["installPhase", 32, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "alan2",
       version: "2.8.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alan-if",
           repo: "alan",
           rev: "71f23ec79f7f5d66aa5ae9fd3f9b8dae41a89f15",
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       makefile: "Makefile.unix",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-fcommon",
             "-Wno-error=incompatible-pointer-types",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/alan2\ncp compiler/alan $out/bin/alan2\ncp interpreter/arun $out/bin/arun2\ncp alan.readme ChangeLog $out/share/alan2\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.alanif.se/",
         description: "Alan interactive fiction language (legacy version)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),

@@ -2,17 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/drbd.nix", [[["emptyDiskImages", 8, 22]], [["allowedTCPPorts", 9, 27]], [["firewall", 9, 18]], [["enable", 12, 9], ["config", 13, 9]], [["drbd", 11, 16]], [["virtualisation", 8, 7], ["networking", 9, 7], ["services", 11, 7]], [["maintainers", 47, 5]], [["drbd1", 54, 9], ["drbd2", 55, 9]], [["name", 45, 3], ["meta", 46, 3], ["nodes", 54, 3], ["testScript", 57, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/drbd.nix", [["emptyDiskImages", 8, 22]]);
-const pos$2 = nix.positions(here + "/drbd.nix", [["allowedTCPPorts", 9, 27]]);
-const pos$3 = nix.positions(here + "/drbd.nix", [["firewall", 9, 18]]);
-const pos$4 = nix.positions(here + "/drbd.nix", [["enable", 12, 9], ["config", 13, 9]]);
-const pos$5 = nix.positions(here + "/drbd.nix", [["drbd", 11, 16]]);
-const pos$6 = nix.positions(here + "/drbd.nix", [["virtualisation", 8, 7], ["networking", 9, 7], ["services", 11, 7]]);
-const pos$7 = nix.positions(here + "/drbd.nix", [["maintainers", 47, 5]]);
-const pos$8 = nix.positions(here + "/drbd.nix", [["drbd1", 54, 9], ["drbd2", 55, 9]]);
-const pos$9 = nix.positions(here + "/drbd.nix", [["name", 45, 3], ["meta", 46, 3], ["nodes", 54, 3], ["testScript", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,16 +15,16 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const nodes = nix.arg($_1, "nodes");
     return {
-      [nix.POS]: pos$6,
-      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, emptyDiskImages: nix.thunk(() => [1n]) })),
+      [nix.POS]: $pos[5],
+      virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], emptyDiskImages: nix.thunk(() => [1n]) })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [drbdPort]) })),
+        [nix.POS]: $pos[2],
+        firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], allowedTCPPorts: nix.thunk(() => [drbdPort]) })),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         drbd: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           enable: true,
           config: nix.thunk(() => nix.str`global {
   usage-count yes;
@@ -66,12 +58,12 @@ resource r0 {
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "drbd",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "ryantm")),
           nix.thunk(() => nix.lookup(w, "astro")),
@@ -79,7 +71,7 @@ resource r0 {
         ]),
       };
     })()),
-    nodes: nix.thunk(() => ({ [nix.POS]: pos$8, drbd1: drbdConfig, drbd2: drbdConfig })),
+    nodes: nix.thunk(() => ({ [nix.POS]: $pos[7], drbd1: drbdConfig, drbd2: drbdConfig })),
     testScript: "drbd1.start()\ndrbd2.start()\n\ndrbd1.wait_for_unit(\"network.target\")\ndrbd2.wait_for_unit(\"network.target\")\n\ndrbd1.succeed(\n    \"drbdadm create-md r0\",\n    \"drbdadm up r0\",\n    \"drbdadm primary r0 --force\",\n)\n\ndrbd2.succeed(\"drbdadm create-md r0\", \"drbdadm up r0\")\n\ndrbd1.succeed(\n    \"mkfs.ext4 /dev/drbd0\",\n    \"mkdir -p /mnt/drbd\",\n    \"mount /dev/drbd0 /mnt/drbd\",\n    \"touch /mnt/drbd/hello\",\n    \"umount /mnt/drbd\",\n    \"drbdadm secondary r0\",\n)\ndrbd1.sleep(1)\n\ndrbd2.succeed(\n    \"drbdadm primary r0\",\n    \"mkdir -p /mnt/drbd\",\n    \"mount /dev/drbd0 /mnt/drbd\",\n    \"ls /mnt/drbd/hello\",\n)\n",
   };
 })(), formals$1);

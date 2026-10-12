@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["sha256", 47, 5]], [["name", 53, 7], ["url", 54, 7], ["hash", 55, 7]], [["name", 58, 7], ["url", 59, 7], ["hash", 60, 7]], [["NIX_CFLAGS_COMPILE", 124, 7]], [["description", 169, 5], ["longDescription", 170, 5], ["maintainers", 177, 5], ["platforms", 178, 5], ["license", 179, 5], ["homepage", 180, 5], ["mainProgram", 181, 5]], [["pname", 32, 3], ["version", 33, 3], ["outputs", 35, 3], ["src", 43, 3], ["patches", 50, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 81, 3], ["nativeCheckInputs", 102, 3], ["checkInputs", 107, 3], ["preConfigure", 112, 3], ["postConfigure", 119, 3], ["env", 124, 3], ["configureFlags", 126, 3], ["doCheck", 152, 3], ["preCheck", 154, 3], ["dontWrapQtApps", 158, 3], ["dontWrapGApps", 159, 3], ["postFixup", 161, 3], ["enableParallelBuilding", 166, 3], ["meta", 168, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, imagemagickBig: false, "pkg-config": false, withXorg: true, libx11: false, libv4l: false, libsForQt5: false, wrapGAppsHook3: false, gtk3: false, xmlto: false, docbook_xsl: false, autoreconfHook: false, dbus: false, enableVideo: true, enableDbus: true, libintl: false, libiconv: false, bash: false, python3: false, "argp-standalone": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["sha256", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 53, 7], ["url", 54, 7], ["hash", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 58, 7], ["url", 59, 7], ["hash", 60, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 124, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 169, 5], ["longDescription", 170, 5], ["maintainers", 177, 5], ["platforms", 178, 5], ["license", 179, 5], ["homepage", 180, 5], ["mainProgram", 181, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["outputs", 35, 3], ["src", 43, 3], ["patches", 50, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 81, 3], ["nativeCheckInputs", 102, 3], ["checkInputs", 107, 3], ["preConfigure", 112, 3], ["postConfigure", 119, 3], ["env", 124, 3], ["configureFlags", 126, 3], ["doCheck", 152, 3], ["preCheck", 154, 3], ["dontWrapQtApps", 158, 3], ["dontWrapGApps", 159, 3], ["postFixup", 161, 3], ["enableParallelBuilding", 166, 3], ["meta", 168, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.23.93";
       const outputs = nix.thunk(() => ["out", "lib", "dev", "doc", "man"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mchehab",
           repo: "zbar",
           rev: version,
@@ -48,13 +43,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "variable-pkg-config-path.patch",
             url: "https://github.com/mchehab/zbar/commit/368571ffa1a0f6cc41f708dd0d27f9b6e9409df8.patch",
             hash: "sha256-4VEuGAyR7rcIijPLlh4pzL82ESm99Wb35PV/FbY9H6Y=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "qt5-detection-fix.patch",
             url: "https://github.com/mchehab/zbar/commit/a549566ea11eb03622bd4458a1728ffe3f589163.patch",
             hash: "sha256-NY3bAElwNvGP9IR6JxUf62vbjx3hONrqu9pMSqaZcLY=",
@@ -77,7 +72,7 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [argp_standalone])));
       const preConfigure = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "export LDFLAGS=\"-liconv\"\n"));
       const postConfigure = "patchShebangs test\n";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-DQT_NO_DEBUG" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-DQT_NO_DEBUG" }));
       const configureFlags = nix.thunk(() => nix.concat(["--without-python"], nix.concat((nix.asBool(enableDbus) ? [
         nix.thunk(() => nix.str`--with-dbusconfdir=${nix.builtins.placeholder("out")}/share`),
       ] : ["--without-dbus"]), (nix.asBool(enableVideo) ? ["--with-gtk=gtk3"] : ["--disable-video", "--without-gtk", "--without-qt"]))));
@@ -88,7 +83,7 @@ export default nix.lambda((args) => (() => {
       const postFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableVideo, "wrapGApp \"$out/bin/zbarcam-gtk\"\nwrapQtApp \"$out/bin/zbarcam-qt\"\n"));
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Bar code reader",
         longDescription: "ZBar is an open source software suite for reading bar codes from various\nsources, such as video streams, image files and raw intensity sensors. It\nsupports many popular symbologies (types of bar codes) including\nEAN-13/UPC-A, UPC-E, EAN-8, Code 128, Code 39, Interleaved 2 of 5 and QR\nCode.\n",
         maintainers: nix.thunk(() => (() => {
@@ -101,7 +96,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "zbarimg",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         outputs,

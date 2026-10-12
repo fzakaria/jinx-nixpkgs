@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]], [["LIBGIT2_NO_VENDOR", 18, 7]], [["updateScript", 26, 12]], [["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["maintainers", 32, 5], ["license", 35, 5], ["mainProgram", 36, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["env", 18, 3], ["cargoHash", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["passthru", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, fetchCrate: false, rustPlatform: false, "pkg-config": false, libgit2: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBGIT2_NO_VENDOR", 18, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 26, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["maintainers", 32, 5], ["license", 35, 5], ["mainProgram", 36, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["env", 18, 3], ["cargoHash", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["passthru", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,25 +14,25 @@ export default nix.lambda((args) => (() => {
   const libgit2 = nix.arg($, "libgit2");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "starship-jj",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-oisz3V3UDHvmvbA7+t5j7waN9NykMUWGOpEB5EkmYew=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBGIT2_NO_VENDOR: 1n })),
       cargoHash: "sha256-NNeovW27YSK/fO2DjAsJqBvebd43usCw7ni47cgTth8=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libgit2]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Starship plugin for jj",
         homepage: "https://gitlab.com/lanastara_foss/starship-jj",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/lanastara_foss/starship-jj/-/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

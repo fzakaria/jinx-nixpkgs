@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]], [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]], [["stats", 60, 5]], [["MPLBACKEND", 91, 7]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 66, 3], ["disabledTests", 72, 3], ["env", 91, 3], ["pythonImportsCheck", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch2: false, "flit-core": false, matplotlib: false, "pytest-xdist": false, pytest8_3CheckHook: false, numpy: false, pandas: false, scipy: false, statsmodels: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["stats", 60, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["MPLBACKEND", 91, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 66, 3], ["disabledTests", 72, 3], ["env", 91, 3], ["pythonImportsCheck", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const statsmodels = nix.arg($, "statsmodels");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "seaborn",
       version: "0.13.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mwaskom",
           repo: "seaborn",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,19 +36,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "numpy_2-compatibility.patch",
             url: "https://github.com/mwaskom/seaborn/commit/58f170fe799ef496adae19925d7d4f0f14f8da95.patch",
             hash: "sha256-/a3G+kNIRv8Oa4a0jPGnL2Wvx/9umMoiq1BXcXpehAg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "matplotlib_3_10-compatibility.patch",
             url: "https://github.com/mwaskom/seaborn/commit/385e54676ca16d0132434bc9df6bc41ea8b2a0d4.patch",
             hash: "sha256-nwGwTkP7W9QzgbbAVdb2rASgsMxqFnylMk8GnTE445w=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "numpy-2.4-compat.patch",
             url: "https://github.com/mwaskom/seaborn/commit/5023f2ee885a45200f5b63156a158ddf7272c29e.patch",
             hash: "sha256-T3OfjEEsPRRv1J6gdq9XmwcWEpPMDzul+LmK8UtV7nk=",
@@ -63,13 +56,13 @@ export default nix.lambda((args) => (() => {
       ]),
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => [matplotlib, numpy, pandas]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$5, stats: nix.thunk(() => [scipy, statsmodels]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[4], stats: nix.thunk(() => [scipy, statsmodels]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_xdist, pytest8_3CheckHook, writableTmpDirAsHomeHook]),
       disabledTests: nix.thunk(() => nix.concat(["test_load_dataset_string_error", "test_theme_validation", "test_log_scale"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))), nix.thunk(() => ["TestDendrogram"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_ticklabels_overlap"]))))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$6, MPLBACKEND: "Agg" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[5], MPLBACKEND: "Agg" })),
       pythonImportsCheck: nix.thunk(() => ["seaborn"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Statistical data visualization",
         homepage: "https://seaborn.pydata.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/mwaskom/seaborn/blob/${nix.sel(finalAttrs, "src", "tag")}/doc/whatsnew/${nix.sel(finalAttrs, "src", "tag")}.rst`),

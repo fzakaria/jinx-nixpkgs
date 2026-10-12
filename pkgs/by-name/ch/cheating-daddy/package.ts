@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["ONNXRUNTIME_NODE_INSTALL", 40, 5], ["ONNXRUNTIME_NODE_INSTALL_CUDA", 41, 5], ["ELECTRON_SKIP_BINARY_DOWNLOAD", 42, 5], ["CI", 44, 5]], [["name", 69, 7], ["desktopName", 70, 7], ["genericName", 71, 7], ["comment", 72, 7], ["exec", 73, 7], ["terminal", 74, 7], ["icon", 75, 7], ["categories", 76, 7]], [["updateScript", 97, 12]], [["changelog", 100, 5], ["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["mainProgram", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["npmDepsHash", 30, 3], ["nativeBuildInputs", 32, 3], ["env", 39, 3], ["makeCacheWritable", 47, 3], ["preBuild", 49, 3], ["buildPhase", 59, 3], ["desktopItems", 67, 3], ["installPhase", 83, 3], ["passthru", 97, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, copyDesktopItems: false, makeWrapper: false, python3: false, zip: false, electron: false, makeDesktopItem: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ONNXRUNTIME_NODE_INSTALL", 40, 5], ["ONNXRUNTIME_NODE_INSTALL_CUDA", 41, 5], ["ELECTRON_SKIP_BINARY_DOWNLOAD", 42, 5], ["CI", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 69, 7], ["desktopName", 70, 7], ["genericName", 71, 7], ["comment", 72, 7], ["exec", 73, 7], ["terminal", 74, 7], ["icon", 75, 7], ["categories", 76, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 97, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 100, 5], ["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["mainProgram", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["npmDepsHash", 30, 3], ["nativeBuildInputs", 32, 3], ["env", 39, 3], ["makeCacheWritable", 47, 3], ["preBuild", 49, 3], ["buildPhase", 59, 3], ["desktopItems", 67, 3], ["installPhase", 83, 3], ["passthru", 97, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cheating-daddy",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sohzm",
           repo: "cheating-daddy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
         zip,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ONNXRUNTIME_NODE_INSTALL: "skip",
         ONNXRUNTIME_NODE_INSTALL_CUDA: "skip",
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
@@ -63,7 +58,7 @@ substituteInPlace node_modules/@electron/packager/dist/packager.js \\
       buildPhase: "runHook preBuild\n\nnpm run package\n\nrunHook postBuild\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "cheating-daddy",
             desktopName: "Cheating Daddy",
             genericName: "AI Assistant",
@@ -87,11 +82,11 @@ install -D --mode=0644 src/assets/logo.png $out/share/icons/hicolor/512x512/apps
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/sohzm/cheating-daddy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Real-time AI assistant that provides contextual help during video calls, interviews, presentations, and meetings using screen capture and audio analysis",
         homepage: "https://github.com/sohzm/cheating-daddy",

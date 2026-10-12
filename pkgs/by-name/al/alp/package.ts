@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["test-version", 43, 5]], [["tests", 42, 12]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 19, 3], ["sourceRoot", 21, 3], ["checkPhase", 26, 3], ["buildPhase", 34, 3], ["passthru", 42, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, runCommand: false, alp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["test-version", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 42, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 19, 3], ["sourceRoot", 21, 3], ["checkPhase", 26, 3], ["buildPhase", 34, 3], ["passthru", 42, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const alp = nix.arg($, "alp");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "alp",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gernotfeichter",
           repo: "alp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,16 +28,16 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\ngo test -run Test_main_init\n\nrunHook postCheck\n",
       buildPhase: "runHook preBuild\n\ngo build -o $GOPATH/bin/alp main.go\n\nrunHook postBuild\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "test-version": nix.thunk(() => nix.app(runCommand, "alp-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${alp}/bin/alp version > $out
 cat $out | grep '${nix.sel(finalAttrs, "version")}'
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Convenient authentication method that lets you use your android device as a key for your Linux machine",
         homepage: "https://github.com/gernotfeichter/alp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

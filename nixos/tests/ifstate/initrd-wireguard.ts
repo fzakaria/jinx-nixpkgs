@@ -2,48 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/initrd-wireguard.nix", [[["state", 16, 13], ["kind", 17, 13]], [["addresses", 14, 11], ["link", 15, 11]], [["eth1", 13, 39]], [["interfaces", 13, 28]], [["outside", 13, 20]], [["state", 24, 15], ["kind", 25, 15], ["bind_netns", 26, 15]], [["endpoint", 32, 17], ["allowedips", 33, 17]], [["private_key", 29, 15], ["listen_port", 30, 15], ["peers", 31, 15]], [["addresses", 22, 13], ["link", 23, 13], ["wireguard", 28, 13]], [["wg0", 21, 11]], [["to", 40, 13], ["dev", 41, 13]], [["routes", 38, 17]], [["namespaces", 13, 9], ["interfaces", 20, 9], ["routing", 38, 9]], [["enable", 11, 7], ["settings", 12, 7]], [["vlan", 56, 40]], [["eth1", 56, 35]], [["interfaces", 56, 24]], [["interfaces", 61, 20]], [["enable", 60, 11], ["settings", 61, 11]], [["ifstate", 59, 20]], [["pkgs", 72, 25], ["id", 73, 17], ["wgPriv", 74, 17], ["wgPeerPubKey", 75, 17], ["wgPeerId", 76, 17]], [["allowIfstateToDrasticlyIncreaseInitrdSize", 79, 17]], [["enable", 69, 13], ["ifstate", 70, 13]], [["enable", 85, 21]], [["Type", 90, 29]], [["before", 87, 15], ["wantedBy", 88, 15], ["script", 89, 15], ["serviceConfig", 90, 15]], [["boot-blocker", 86, 22]], [["enable", 84, 13], ["network", 85, 13], ["services", 86, 13]], [["kernelModules", 66, 11], ["network", 68, 11], ["systemd", 83, 11]], [["initrd", 64, 14]], [["imports", 54, 9], ["virtualisation", 56, 9], ["networking", 59, 9], ["boot", 64, 9]], [["vlan", 101, 40]], [["eth1", 101, 35]], [["interfaces", 101, 24]], [["pkgs", 105, 21], ["id", 106, 13], ["wgPriv", 107, 13], ["wgPeerPubKey", 108, 13], ["wgPeerId", 109, 13]], [["ifstate", 104, 11]], [["imports", 99, 9], ["virtualisation", 101, 9], ["networking", 103, 9]], [["foo", 51, 5], ["bar", 96, 5]], [["name", 48, 3], ["nodes", 50, 3], ["testScript", 114, 3]]]);
 const formals$1 = { args: { pkgs: false, id: false, wgPriv: false, wgPeerPubKey: false, wgPeerId: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/initrd-wireguard.nix", [["state", 16, 13], ["kind", 17, 13]]);
-const pos$2 = nix.positions(here + "/initrd-wireguard.nix", [["addresses", 14, 11], ["link", 15, 11]]);
-const pos$3 = nix.positions(here + "/initrd-wireguard.nix", [["eth1", 13, 39]]);
-const pos$4 = nix.positions(here + "/initrd-wireguard.nix", [["interfaces", 13, 28]]);
-const pos$5 = nix.positions(here + "/initrd-wireguard.nix", [["outside", 13, 20]]);
-const pos$6 = nix.positions(here + "/initrd-wireguard.nix", [["state", 24, 15], ["kind", 25, 15], ["bind_netns", 26, 15]]);
-const pos$7 = nix.positions(here + "/initrd-wireguard.nix", [["endpoint", 32, 17], ["allowedips", 33, 17]]);
-const pos$8 = nix.positions(here + "/initrd-wireguard.nix", [["private_key", 29, 15], ["listen_port", 30, 15], ["peers", 31, 15]]);
-const pos$9 = nix.positions(here + "/initrd-wireguard.nix", [["addresses", 22, 13], ["link", 23, 13], ["wireguard", 28, 13]]);
-const pos$10 = nix.positions(here + "/initrd-wireguard.nix", [["wg0", 21, 11]]);
-const pos$11 = nix.positions(here + "/initrd-wireguard.nix", [["to", 40, 13], ["dev", 41, 13]]);
-const pos$12 = nix.positions(here + "/initrd-wireguard.nix", [["routes", 38, 17]]);
-const pos$13 = nix.positions(here + "/initrd-wireguard.nix", [["namespaces", 13, 9], ["interfaces", 20, 9], ["routing", 38, 9]]);
-const pos$14 = nix.positions(here + "/initrd-wireguard.nix", [["enable", 11, 7], ["settings", 12, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/initrd-wireguard.nix", [["vlan", 56, 40]]);
-const pos$16 = nix.positions(here + "/initrd-wireguard.nix", [["eth1", 56, 35]]);
-const pos$17 = nix.positions(here + "/initrd-wireguard.nix", [["interfaces", 56, 24]]);
-const pos$18 = nix.positions(here + "/initrd-wireguard.nix", [["interfaces", 61, 20]]);
-const pos$19 = nix.positions(here + "/initrd-wireguard.nix", [["enable", 60, 11], ["settings", 61, 11]]);
-const pos$20 = nix.positions(here + "/initrd-wireguard.nix", [["ifstate", 59, 20]]);
-const pos$21 = nix.positions(here + "/initrd-wireguard.nix", [["pkgs", 72, 25], ["id", 73, 17], ["wgPriv", 74, 17], ["wgPeerPubKey", 75, 17], ["wgPeerId", 76, 17]]);
-const pos$22 = nix.positions(here + "/initrd-wireguard.nix", [["allowIfstateToDrasticlyIncreaseInitrdSize", 79, 17]]);
-const pos$23 = nix.positions(here + "/initrd-wireguard.nix", [["enable", 69, 13], ["ifstate", 70, 13]]);
-const pos$24 = nix.positions(here + "/initrd-wireguard.nix", [["enable", 85, 21]]);
-const pos$25 = nix.positions(here + "/initrd-wireguard.nix", [["Type", 90, 29]]);
-const pos$26 = nix.positions(here + "/initrd-wireguard.nix", [["before", 87, 15], ["wantedBy", 88, 15], ["script", 89, 15], ["serviceConfig", 90, 15]]);
-const pos$27 = nix.positions(here + "/initrd-wireguard.nix", [["boot-blocker", 86, 22]]);
-const pos$28 = nix.positions(here + "/initrd-wireguard.nix", [["enable", 84, 13], ["network", 85, 13], ["services", 86, 13]]);
-const pos$29 = nix.positions(here + "/initrd-wireguard.nix", [["kernelModules", 66, 11], ["network", 68, 11], ["systemd", 83, 11]]);
-const pos$30 = nix.positions(here + "/initrd-wireguard.nix", [["initrd", 64, 14]]);
-const pos$31 = nix.positions(here + "/initrd-wireguard.nix", [["imports", 54, 9], ["virtualisation", 56, 9], ["networking", 59, 9], ["boot", 64, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$32 = nix.positions(here + "/initrd-wireguard.nix", [["vlan", 101, 40]]);
-const pos$33 = nix.positions(here + "/initrd-wireguard.nix", [["eth1", 101, 35]]);
-const pos$34 = nix.positions(here + "/initrd-wireguard.nix", [["interfaces", 101, 24]]);
-const pos$35 = nix.positions(here + "/initrd-wireguard.nix", [["pkgs", 105, 21], ["id", 106, 13], ["wgPriv", 107, 13], ["wgPeerPubKey", 108, 13], ["wgPeerId", 109, 13]]);
-const pos$36 = nix.positions(here + "/initrd-wireguard.nix", [["ifstate", 104, 11]]);
-const pos$37 = nix.positions(here + "/initrd-wireguard.nix", [["imports", 99, 9], ["virtualisation", 101, 9], ["networking", 103, 9]]);
-const pos$38 = nix.positions(here + "/initrd-wireguard.nix", [["foo", 51, 5], ["bar", 96, 5]]);
-const pos$39 = nix.positions(here + "/initrd-wireguard.nix", [["name", 48, 3], ["nodes", 50, 3], ["testScript", 114, 3]]);
 
 export default nix.thunk(() => (() => {
   const mkNodeIfStateConfig = nix.lambda((args) => (() => {
@@ -54,37 +16,37 @@ export default nix.thunk(() => (() => {
     const wgPeerPubKey = nix.arg($, "wgPeerPubKey");
     const wgPeerId = nix.arg($, "wgPeerId");
     return {
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       enable: true,
       settings: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         namespaces: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           outside: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 addresses: nix.thunk(() => [nix.thunk(() => nix.str`2001:0db8:a::${nix.builtins.toString(id)}/64`)]),
-                link: nix.thunk(() => ({ [nix.POS]: pos$1, state: "up", kind: "physical" })),
+                link: nix.thunk(() => ({ [nix.POS]: $pos[0], state: "up", kind: "physical" })),
               })),
             })),
           })),
         })),
         interfaces: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           wg0: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             addresses: nix.thunk(() => [nix.thunk(() => nix.str`2001:0db8:b::${nix.builtins.toString(id)}/64`)]),
-            link: nix.thunk(() => ({ [nix.POS]: pos$6, state: "up", kind: "wireguard", bind_netns: "outside" })),
+            link: nix.thunk(() => ({ [nix.POS]: $pos[5], state: "up", kind: "wireguard", bind_netns: "outside" })),
             wireguard: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               private_key: nix.thunk(() => nix.str`!include ${nix.app(nix.sel(pkgs, "writeText"), "wg_priv.key", wgPriv)}`),
               listen_port: 51820n,
               peers: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${wgPeerPubKey}`, nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   endpoint: nix.thunk(() => nix.str`[2001:0db8:a::${nix.builtins.toString(wgPeerId)}]:51820`),
                   allowedips: nix.thunk(() => ["::/0"]),
                 }))],
@@ -93,64 +55,69 @@ export default nix.thunk(() => (() => {
           })),
         })),
         routing: nix.thunk(() => ({
-          [nix.POS]: pos$12,
-          routes: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$11, to: "2001:0db8:b::/64", dev: "wg0" }))]),
+          [nix.POS]: $pos[11],
+          routes: nix.thunk(() => [
+            nix.thunk(() => ({ [nix.POS]: $pos[10], to: "2001:0db8:b::/64", dev: "wg0" })),
+          ]),
         })),
       })),
     };
   })(), formals$1);
   return {
-    [nix.POS]: pos$39,
+    [nix.POS]: $pos[38],
     name: "ifstate-initrd-wireguard",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$38,
+      [nix.POS]: $pos[37],
       foo: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$2);
         const pkgs = nix.arg($, "pkgs");
         return {
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           imports: nix.thunk(() => [nix.path(here, "../../modules/profiles/minimal.nix")]),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$17,
-            interfaces: nix.thunk(() => ({ [nix.POS]: pos$16, eth1: nix.thunk(() => ({ [nix.POS]: pos$15, vlan: 1n })) })),
+            [nix.POS]: $pos[16],
+            interfaces: nix.thunk(() => ({
+              [nix.POS]: $pos[15],
+              eth1: nix.thunk(() => ({ [nix.POS]: $pos[14], vlan: 1n })),
+            })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             ifstate: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$18, interfaces: nix.thunk(() => ({})) })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[17], interfaces: nix.thunk(() => ({})) })),
             })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               kernelModules: nix.thunk(() => ["virtio_net"]),
               network: nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 enable: true,
                 ifstate: nix.thunk(() => nix.update(nix.app(mkNodeIfStateConfig, nix.thunk(() => ({
-                    [nix.POS]: pos$21,
+                    [nix.POS]: $pos[20],
                     pkgs: pkgs,
                     id: 1n,
                     wgPriv: "6KmLyTyrN9OZIOCkdpiAwoVoeSiwvyI+mtn1wooKSEU=",
                     wgPeerPubKey: "olFuE7u5pVwSeWLFtrXSvD8+aCDBiKNKCLjLb/dgXiA=",
                     wgPeerId: 2n,
-                  }))), { [nix.POS]: pos$22, allowIfstateToDrasticlyIncreaseInitrdSize: true })),
+                  }))), { [nix.POS]: $pos[21], allowIfstateToDrasticlyIncreaseInitrdSize: true })),
               })),
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 enable: true,
-                network: nix.thunk(() => ({ [nix.POS]: pos$24, enable: false })),
+                network: nix.thunk(() => ({ [nix.POS]: $pos[23], enable: false })),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   "boot-blocker": nix.thunk(() => ({
-                    [nix.POS]: pos$26,
+                    [nix.POS]: $pos[25],
                     before: nix.thunk(() => ["initrd.target"]),
                     wantedBy: nix.thunk(() => ["initrd.target"]),
                     script: "sleep infinity",
-                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$25, Type: "oneshot" })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[24], Type: "oneshot" })),
                   })),
                 })),
               })),
@@ -162,16 +129,19 @@ export default nix.thunk(() => (() => {
         const $ = nix.formals(args, formals$3);
         const pkgs = nix.arg($, "pkgs");
         return {
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           imports: nix.thunk(() => [nix.path(here, "../../modules/profiles/minimal.nix")]),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$34,
-            interfaces: nix.thunk(() => ({ [nix.POS]: pos$33, eth1: nix.thunk(() => ({ [nix.POS]: pos$32, vlan: 1n })) })),
+            [nix.POS]: $pos[33],
+            interfaces: nix.thunk(() => ({
+              [nix.POS]: $pos[32],
+              eth1: nix.thunk(() => ({ [nix.POS]: $pos[31], vlan: 1n })),
+            })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             ifstate: nix.thunk(() => nix.app(mkNodeIfStateConfig, nix.thunk(() => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 pkgs: pkgs,
                 id: 2n,
                 wgPriv: "QN89cvFD0C8z1MSpUaJa1YBXt2MaIQegVkEYROi71Fg=",

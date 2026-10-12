@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/xf86-video-scfb.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["postPatch", 17, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 22, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, "xorg-server": false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/xf86-video-scfb.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/xf86-video-scfb.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["postPatch", 17, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xf86-video-scfb";
       const version = "0.0.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rayddteam",
           repo: pname,
           rev: version,
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [xorg_server]);
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

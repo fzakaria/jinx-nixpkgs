@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["NIX_CFLAGS_COMPILE", 53, 7]], [["homepage", 69, 5], ["description", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["patches", 32, 3], ["postPatch", 42, 3], ["env", 53, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, boost183: false, cmake: false, libuuid: false, python3: false, ruby: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["description", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["patches", 32, 3], ["postPatch", 42, 3], ["env", 53, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const ruby = nix.arg($, "ruby");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "qpid-cpp",
       version: "1.39.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/qpid/cpp/${nix.sel(finalAttrs, "version")}/qpid-cpp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-eYDQ6iHVV1WUFFdyHGnbqGIjE9CrhHzh0jP7amjoDSE=",
         })))),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost183, libuuid, ruby]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "python3-managementgen",
             url: "https://github.com/apache/qpid-cpp/commit/0e558866e90ef3d5becbd2f6d5630a6a6dc43a5d.patch",
             hash: "sha256-pV6xx8Nrys/ZxIO0Z/fARH0ELqcSdTXLPsVXYUd3f70=",
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "sed -i '/managementgen/d' CMakeLists.txt\nsed -i '/ENV/d' src/CMakeLists.txt\nsed -i '/management/d' CMakeLists.txt\n\nsubstituteInPlace {./,examples/}CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8.7 FATAL_ERROR)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_policy(SET CMP0022 OLD)\" \"\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             "-Wno-error=maybe-uninitialized",
             "-Wno-template-body",
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
           ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=deprecated-copy"])))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://qpid.apache.org",
         description: "AMQP message broker and a C++ messaging API",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

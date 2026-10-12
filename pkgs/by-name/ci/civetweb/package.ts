@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["outputs", 35, 3], ["strictDeps", 40, 3], ["__structuredAttrs", 41, 3], ["doInstallCheck", 43, 3], ["nativeInstallCheckInputs", 44, 3], ["versionCheckProgramArg", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 51, 3], ["preConfigure", 55, 3], ["cmakeFlags", 59, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, zlib: false, versionCheckHook: false, withZlib: true, withUnixSockets: true, withWebSockets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["outputs", 35, 3], ["strictDeps", 40, 3], ["__structuredAttrs", 41, 3], ["doInstallCheck", 43, 3], ["nativeInstallCheckInputs", 44, 3], ["versionCheckProgramArg", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 51, 3], ["preConfigure", 55, 3], ["cmakeFlags", 59, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const withUnixSockets = nix.argOr($, "withUnixSockets", () => false);
   const withWebSockets = nix.argOr($, "withWebSockets", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "civetweb",
       version: "1.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "civetweb",
           repo: "civetweb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./fix-pkg-config-files.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2025-55763.patch",
             url: "https://github.com/civetweb/civetweb/commit/76e222bcb77ba8452e5da4e82ae6cecd499c25e0.patch",
             hash: "sha256-gv2FR53SxmRCCTRjj17RhIjoHkgOz5ENs9oHmcfFmw8=",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CIVETWEB_ENABLE_ZLIB", withZlib)),
       ], nix.app(nix.sel(lib, "optional"), withUnixSockets, "-DCMAKE_C_FLAGS=-DUSE_X_DOM_SOCKET"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Embedded C/C++ web server",
         mainProgram: "civetweb",
         homepage: "https://github.com/civetweb/civetweb",

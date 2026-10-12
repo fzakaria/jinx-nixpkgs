@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["url", 93, 44], ["hash", 93, 48]], [["libcxx", 99, 9], ["systemdLibs", 100, 9], ["libpulseaudio", 101, 9], ["libdrm", 102, 9], ["libgbm", 103, 9], ["alsa-lib", 104, 9], ["atk", 105, 9], ["at-spi2-atk", 106, 9], ["at-spi2-core", 107, 9], ["cairo", 108, 9], ["cups", 109, 9], ["dbus", 110, 9], ["expat", 111, 9], ["fontconfig", 112, 9], ["freetype", 113, 9], ["gdk-pixbuf", 114, 9], ["glib", 115, 9], ["gtk3", 116, 9], ["libglvnd", 117, 9], ["libnotify", 118, 9], ["libx11", 119, 9], ["libxcomposite", 120, 9], ["libunity", 121, 9], ["libuuid", 122, 9], ["libva", 123, 9], ["libxcursor", 124, 9], ["libxdamage", 125, 9], ["libxext", 126, 9], ["libxfixes", 127, 9], ["libxi", 128, 9], ["libxrandr", 129, 9], ["libxrender", 130, 9], ["libxtst", 131, 9], ["nspr", 132, 9], ["libxcb", 133, 9], ["libxkbcommon", 134, 9], ["pango", 135, 9], ["pciutils", 136, 9], ["pipewire", 137, 9], ["libxscrnsaver", 138, 9], ["libappindicator", 139, 9], ["libdbusmenu", 140, 9], ["wayland", 141, 9], ["cc", 144, 32]], [["name", 286, 5], ["exec", 287, 5], ["icon", 288, 5], ["desktopName", 289, 13], ["comment", 290, 5], ["genericName", 291, 5], ["categories", 292, 5], ["mimeTypes", 296, 5], ["startupWMClass", 297, 5]], [["targetPkgs", 301, 13]], [["version", 154, 5], ["src", 155, 5], ["meta", 156, 5], ["disableBreakingUpdates", 157, 5], ["stageModules", 158, 5], ["pname", 161, 3], ["libPath", 163, 3], ["nativeBuildInputs", 165, 3], ["buildInputs", 183, 3], ["strictDeps", 195, 3], ["dontUnpack", 197, 3], ["dontPatchELF", 199, 3], ["dontStrip", 200, 3], ["autoPatchelfIgnoreMissingDeps", 202, 3], ["installPhase", 207, 3], ["postInstall", 262, 3], ["desktopItem", 285, 3], ["passthru", 300, 3]]]);
 const formals$1 = { args: { pname: false, source: false, meta: false, binaryName: false, desktopName: false, passthru: false, moduleSrcs: false, disableBreakingUpdates: false, stageModules: false, withOpenASAR: true, withVencord: true, withEquicord: true, withMoonlight: true, disableUpdates: true, withTTS: true, enableAutoscroll: true, commandLineArgs: true, useFHSEnv: true, lib: false, stdenv: false, makeShellWrapper: false, gtk3: false, brotli: false, addDriverRunpath: false, fetchurl: false, makeDesktopItem: false, autoPatchelfHook: false, cups: false, libdrm: false, libuuid: false, libxdamage: false, libx11: false, libxscrnsaver: false, libxtst: false, libxcb: false, libxshmfence: false, wrapGAppsHook3: false, "alsa-lib": false, libgbm: false, nspr: false, nss: false, libpulseaudio: false, libcxx: false, systemdLibs: false, atk: false, "at-spi2-atk": false, "at-spi2-core": false, cairo: false, dbus: false, expat: false, fontconfig: false, freetype: false, "gdk-pixbuf": false, glib: false, libglvnd: false, libnotify: false, libxcomposite: false, libunity: false, libva: false, libxcursor: false, libxext: false, libxfixes: false, libxi: false, libxrandr: false, libxrender: false, libxkbcommon: false, pango: false, pciutils: false, pipewire: false, libappindicator: false, libdbusmenu: false, wayland: false, "speechd-minimal": false, openasar: false, vencord: false, equicord: false, moonlight: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["url", 93, 44], ["hash", 93, 48]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["libcxx", 99, 9], ["systemdLibs", 100, 9], ["libpulseaudio", 101, 9], ["libdrm", 102, 9], ["libgbm", 103, 9], ["alsa-lib", 104, 9], ["atk", 105, 9], ["at-spi2-atk", 106, 9], ["at-spi2-core", 107, 9], ["cairo", 108, 9], ["cups", 109, 9], ["dbus", 110, 9], ["expat", 111, 9], ["fontconfig", 112, 9], ["freetype", 113, 9], ["gdk-pixbuf", 114, 9], ["glib", 115, 9], ["gtk3", 116, 9], ["libglvnd", 117, 9], ["libnotify", 118, 9], ["libx11", 119, 9], ["libxcomposite", 120, 9], ["libunity", 121, 9], ["libuuid", 122, 9], ["libva", 123, 9], ["libxcursor", 124, 9], ["libxdamage", 125, 9], ["libxext", 126, 9], ["libxfixes", 127, 9], ["libxi", 128, 9], ["libxrandr", 129, 9], ["libxrender", 130, 9], ["libxtst", 131, 9], ["nspr", 132, 9], ["libxcb", 133, 9], ["libxkbcommon", 134, 9], ["pango", 135, 9], ["pciutils", 136, 9], ["pipewire", 137, 9], ["libxscrnsaver", 138, 9], ["libappindicator", 139, 9], ["libdbusmenu", 140, 9], ["wayland", 141, 9], ["cc", 144, 32]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["name", 286, 5], ["exec", 287, 5], ["icon", 288, 5], ["desktopName", 289, 13], ["comment", 290, 5], ["genericName", 291, 5], ["categories", 292, 5], ["mimeTypes", 296, 5], ["startupWMClass", 297, 5]]);
-const pos$4 = nix.positions(here + "/linux.nix", [["targetPkgs", 301, 13]]);
-const pos$5 = nix.positions(here + "/linux.nix", [["version", 154, 5], ["src", 155, 5], ["meta", 156, 5], ["disableBreakingUpdates", 157, 5], ["stageModules", 158, 5], ["pname", 161, 3], ["libPath", 163, 3], ["nativeBuildInputs", 165, 3], ["buildInputs", 183, 3], ["strictDeps", 195, 3], ["dontUnpack", 197, 3], ["dontPatchELF", 199, 3], ["dontStrip", 200, 3], ["autoPatchelfIgnoreMissingDeps", 202, 3], ["installPhase", 207, 3], ["postInstall", 262, 3], ["desktopItem", 285, 3], ["passthru", 300, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -93,7 +89,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(source, "distro"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.attr(from, "url")),
       hash: nix.thunk(() => nix.attr(from, "hash")),
     };
@@ -101,7 +97,7 @@ export default nix.lambda((args) => (() => {
   const targetPkgs = (pkgs) => nix.concat(nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "stdenv", "cc"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       libcxx: nix.thunk(() => nix.attr(pkgs, "libcxx")),
       systemdLibs: nix.thunk(() => nix.attr(pkgs, "systemdLibs")),
       libpulseaudio: nix.thunk(() => nix.attr(pkgs, "libpulseaudio")),
@@ -149,7 +145,7 @@ export default nix.lambda((args) => (() => {
     };
     })())), nix.concat(nix.app(nix.sel(lib, "optionals"), withTTS, nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "speechd-minimal"))])), nix.app(nix.sel(lib, "optionals"), useFHSEnv, nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nss"))]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: version,
       src: src,
       meta: meta,
@@ -238,7 +234,7 @@ echo '{"name":"discord","main":"injector.js","private": true}' > $out/opt/${bina
 echo 'require("${moonlight}/injector.js").inject(require("path").join(__dirname, "../_app.asar"));' > $out/opt/${binaryName}/resources/app/injector.js
 `)))),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: pname,
           exec: binaryName,
           icon: pname,
@@ -249,7 +245,7 @@ echo 'require("${moonlight}/injector.js").inject(require("path").join(__dirname,
           mimeTypes: nix.thunk(() => ["x-scheme-handler/discord"]),
           startupWMClass: "discord",
         })))),
-      passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$4, targetPkgs: targetPkgs })),
+      passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: $pos[3], targetPkgs: targetPkgs })),
     }));
 })(), formals$1);
 //# sourceMappingURL=linux.ts.map

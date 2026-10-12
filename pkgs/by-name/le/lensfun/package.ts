@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 11], ["repo", 32, 11], ["rev", 33, 11], ["sha256", 34, 11], ["leaveDotGit", 36, 11], ["postFetch", 38, 11]], [["name", 28, 9], ["src", 30, 9], ["nativeBuildInputs", 45, 9], ["buildPhase", 54, 9]], [["owner", 67, 5], ["repo", 68, 5], ["rev", 69, 5], ["sha256", 70, 5]], [["platforms", 107, 5], ["maintainers", 108, 5], ["license", 112, 5], ["description", 113, 5], ["homepage", 114, 5]], [["pname", 64, 11], ["version", 64, 17], ["src", 66, 3], ["prePatch", 76, 3], ["nativeBuildInputs", 93, 3], ["buildInputs", 98, 3], ["cmakeFlags", 104, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, fetchFromGitHub: false, "pkg-config": false, glib: false, zlib: false, libpng: false, cmake: false, python3: false, python3Packages: false, lensfunDatabases: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 11], ["repo", 32, 11], ["rev", 33, 11], ["sha256", 34, 11], ["leaveDotGit", 36, 11], ["postFetch", 38, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 28, 9], ["src", 30, 9], ["nativeBuildInputs", 45, 9], ["buildPhase", 54, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 67, 5], ["repo", 68, 5], ["rev", 69, 5], ["sha256", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["platforms", 107, 5], ["maintainers", 108, 5], ["license", 112, 5], ["description", 113, 5], ["homepage", 114, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 64, 11], ["version", 64, 17], ["src", 66, 3], ["prePatch", 76, 3], ["nativeBuildInputs", 93, 3], ["buildInputs", 98, 3], ["cmakeFlags", 104, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,10 +22,10 @@ export default nix.lambda((args) => (() => {
   const version = "0.3.4";
   const pname = "lensfun";
   const lensData = nix.thunk(() => (nix.asBool(!nix.eq(lensfunDatabases, null)) ? nix.force(lensfunDatabases) : nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "lensfun-databases",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lensfun",
           repo: "lensfun",
           rev: "201da1a7433626a2a1ecd67e1f21a42fb17aa4a5",
@@ -45,11 +41,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "substituteInPlace tools/update_database/generate_db.py \\\n  --replace-fail '\"git\", \"log\", \"-1\", \"--format=%ad\", \"--date=raw\", \"--\", \"*.xml\"' '\"cat\", \"timestamp.txt\"'\npython3 tools/update_database/generate_db.py --input data/db --output $out\ncp timestamp.txt $out/timestamp.txt\n",
     })))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "lensfun",
           repo: "lensfun",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -64,7 +60,7 @@ cp ${lensData}/timestamp.txt data/db/timestamp.txt
       buildInputs: nix.thunk(() => [glib, zlib, libpng]),
       cmakeFlags: nix.thunk(() => ["-DINSTALL_HELPER_SCRIPTS=OFF"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

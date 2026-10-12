@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 47, 26], ["version", 47, 32], ["hash", 48, 5]], [["matplotlib", 68, 5]], [["sage", 99, 13]], [["tests", 98, 12]], [["description", 103, 5], ["downloadPage", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["teams", 109, 5]], [["pname", 38, 3], ["version", 39, 3], ["outputs", 40, 3], ["pyproject", 44, 3], ["src", 46, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["optional-dependencies", 67, 3], ["pythonImportsCheck", 71, 3], ["preCheck", 73, 3], ["nativeCheckInputs", 81, 3], ["disabledTests", 88, 3], ["passthru", 98, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, pythonOlder: false, setuptools: false, decorator: false, "ipython-pygments-lexers": false, jedi: false, "matplotlib-inline": false, pexpect: false, "prompt-toolkit": false, psutil: false, pygments: false, "stack-data": false, traitlets: false, "typing-extensions": false, matplotlib: false, sage: false, pickleshare: false, "pytest-asyncio": false, pytestCheckHook: false, testpath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 47, 26], ["version", 47, 32], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["matplotlib", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["sage", 99, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 98, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 103, 5], ["downloadPage", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["teams", 109, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["outputs", 40, 3], ["pyproject", 44, 3], ["src", 46, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["optional-dependencies", 67, 3], ["pythonImportsCheck", 71, 3], ["preCheck", 73, 3], ["nativeCheckInputs", 81, 3], ["disabledTests", 88, 3], ["passthru", 98, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const testpath = nix.arg($, "testpath");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ipython",
       version: "9.14.0",
       outputs: nix.thunk(() => ["out", "man"]),
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-byf/Dx2eoFDgVR9xVovEs02KuleejxEcW0F19ErGtKo=",
@@ -60,14 +55,17 @@ export default nix.lambda((args) => (() => {
         stack_data,
         traitlets,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.12")), nix.thunk(() => [typing_extensions])))),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, matplotlib: nix.thunk(() => [matplotlib]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], matplotlib: nix.thunk(() => [matplotlib]) })),
       pythonImportsCheck: nix.thunk(() => ["IPython"]),
       preCheck: "export HOME=$TMPDIR\n\n# doctests try to fetch an image from the internet\nsubstituteInPlace pyproject.toml \\\n  --replace-fail '\"--ipdoctest-modules\",' '\"--ipdoctest-modules\", \"--ignore=IPython/core/display.py\",'\n",
       nativeCheckInputs: nix.thunk(() => [pickleshare, pytest_asyncio, pytestCheckHook, testpath]),
       disabledTests: nix.thunk(() => nix.concat(["test_debug_magic_passes_through_generators", "test_nest_embed"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_clipboard_get"])))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, tests: nix.thunk(() => ({ [nix.POS]: pos$3, sage: sage })) })),
+      passthru: nix.thunk(() => ({
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], sage: sage })),
+      })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "IPython: Productive Interactive Computing",
         downloadPage: "https://github.com/ipython/ipython/",
         homepage: "https://ipython.readthedocs.io/en/stable/",

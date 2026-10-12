@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 30, 15], ["version", 30, 21], ["hash", 31, 7]], [["doCheck", 61, 9]], [["check", 60, 7]], [["tests", 58, 14]], [["homepage", 68, 7], ["description", 69, 7], ["mainProgram", 70, 7], ["license", 71, 7], ["longDescription", 72, 7], ["maintainers", 79, 7]], [["pname", 23, 5], ["version", 24, 5], ["pyproject", 25, 5], ["disabled", 27, 5], ["src", 29, 5], ["propagatedBuildInputs", 34, 5], ["build-system", 42, 5], ["nativeCheckInputs", 46, 5], ["doCheck", 56, 5], ["passthru", 58, 5], ["pythonImportsCheck", 65, 5], ["meta", 67, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchPypi: false, buildPythonPackage: false, "importlib-metadata": false, isPy3k: false, mock: false, pytestCheckHook: false, cloudpickle: false, pyinotify: false, macfsevents: false, toml: false, "doit-py": false, pyflakes: false, configclass: false, mergedict: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 30, 15], ["version", 30, 21], ["hash", 31, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 61, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["check", 60, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 58, 14]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 68, 7], ["description", 69, 7], ["mainProgram", 70, 7], ["license", 71, 7], ["longDescription", 72, 7], ["maintainers", 79, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 23, 5], ["version", 24, 5], ["pyproject", 25, 5], ["disabled", 27, 5], ["src", 29, 5], ["propagatedBuildInputs", 34, 5], ["build-system", 42, 5], ["nativeCheckInputs", 46, 5], ["doCheck", 56, 5], ["passthru", 58, 5], ["pythonImportsCheck", 65, 5], ["meta", 67, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-08cuDkao+h3avqj4MHYkAt7gkMrzPDDCKVrHAQ248Jw=",
@@ -45,18 +40,18 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [configclass, doit_py, mergedict, mock, pyflakes, pytestCheckHook]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           check: nix.thunk(() => nix.app(nix.sel(doit, "overridePythonAttrs"), (_) => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
             }))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["doit"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://pydoit.org/",
         description: "Task management & automation tool",
         mainProgram: "doit",
@@ -68,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

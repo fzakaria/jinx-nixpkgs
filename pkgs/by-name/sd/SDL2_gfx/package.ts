@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["NIX_LDFLAGS", 38, 7]], [["package", 51, 7]], [["pkg-config", 50, 11]], [["tests", 50, 5]], [["homepage", 56, 5], ["description", 57, 5], ["longDescription", 58, 5], ["license", 75, 5], ["teams", 76, 5], ["pkgConfigModules", 77, 5], ["platforms", 78, 25]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["outputs", 31, 3], ["env", 38, 3], ["configureFlags", 40, 3], ["strictDeps", 45, 3], ["enableParallelBuilding", 47, 3], ["passthru", 49, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, fetchurl: false, "pkg-config": false, stdenv: false, testers: false, enableMmx: true, enableSdltest: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 51, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 50, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["longDescription", 58, 5], ["license", 75, 5], ["teams", 76, 5], ["pkgConfigModules", 77, 5], ["platforms", 78, 25]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["outputs", 31, 3], ["env", 38, 3], ["configureFlags", 40, 3], ["strictDeps", 45, 3], ["enableParallelBuilding", 47, 3], ["passthru", 49, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const enableMmx = nix.argOr($, "enableMmx", () => nix.sel(stdenv, "hostPlatform", "isx86"));
   const enableSdltest = nix.argOr($, "enableSdltest", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "SDL2_gfx",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.ferzkopp.net/Software/SDL2_gfx/SDL2_gfx-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Y+DgGt3tyd8vhbk6JI8G6KBK/6AUqDXC6jS/405XYmI=",
         })))),
       nativeBuildInputs: nix.thunk(() => [SDL2, pkg_config]),
       buildInputs: nix.thunk(() => [SDL2]),
       outputs: nix.thunk(() => ["out", "dev"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lm" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-lm" })),
       configureFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), enableMmx, "mmx")),
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), enableSdltest, "sdltest")),
@@ -41,11 +35,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
@@ -53,7 +47,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL2, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "http://www.ferzkopp.net/wordpress/2016/01/02/sdl_gfx-sdl2_gfx/",
         description: "SDL graphics drawing primitives and support functions",
         longDescription: "The SDL_gfx library evolved out of the SDL_gfxPrimitives code which\nprovided basic drawing routines such as lines, circles or polygons and\nSDL_rotozoom which implemented a interpolating rotozoomer for SDL\nsurfaces.\n\nThe current components of the SDL_gfx library are:\n\n- Graphic Primitives (SDL_gfxPrimitives.h)\n- Rotozoomer (SDL_rotozoom.h)\n- Framerate control (SDL_framerate.h)\n- MMX image filters (SDL_imageFilter.h)\n- Custom Blit functions (SDL_gfxBlitFunc.h)\n\nThe library is backwards compatible to the above mentioned code. Its is\nwritten in plain C and can be used in C++ code.\n",

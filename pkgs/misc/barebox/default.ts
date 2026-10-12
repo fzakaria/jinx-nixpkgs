@@ -2,14 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["homepage", 95, 11], ["description", 96, 11], ["license", 97, 11], ["maintainers", 98, 11]], [["pname", 34, 7], ["strictDeps", 35, 7], ["version", 37, 7], ["src", 38, 7], ["postPatch", 40, 7], ["nativeBuildInputs", 44, 7], ["buildInputs", 54, 7], ["depsBuildBuild", 60, 7], ["hardeningDisable", 62, 7], ["makeFlags", 64, 7], ["configurePhase", 69, 7], ["installPhase", 77, 7], ["enableParallelBuilding", 86, 7], ["__structuredAttrs", 88, 7], ["dontStrip", 90, 7], ["meta", 92, 7]], [["platforms", 111, 15]], [["defconfig", 109, 5], ["installDir", 110, 5], ["extraMeta", 111, 5], ["filesToInstall", 112, 5]], [["buildBarebox", 106, 11], ["bareboxTools", 108, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, bison: false, dtc: false, flex: false, libusb1: false, lzop: false, openssl: false, "pkg-config": false, buildPackages: false, lz4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["sha256", 20, 5]]);
 const formals$2 = { args: { version: true, src: true, filesToInstall: false, installDir: true, defconfig: false, extraMeta: true }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 95, 11], ["description", 96, 11], ["license", 97, 11], ["maintainers", 98, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 34, 7], ["strictDeps", 35, 7], ["version", 37, 7], ["src", 38, 7], ["postPatch", 40, 7], ["nativeBuildInputs", 44, 7], ["buildInputs", 54, 7], ["depsBuildBuild", 60, 7], ["hardeningDisable", 62, 7], ["makeFlags", 64, 7], ["configurePhase", 69, 7], ["installPhase", 77, 7], ["enableParallelBuilding", 86, 7], ["__structuredAttrs", 88, 7], ["dontStrip", 90, 7], ["meta", 92, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["platforms", 111, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["defconfig", 109, 5], ["installDir", 110, 5], ["extraMeta", 111, 5], ["filesToInstall", 112, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["buildBarebox", 106, 11], ["bareboxTools", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const lz4 = nix.arg($, "lz4");
   const defaultVersion = "2026.06.1";
   const defaultSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://www.barebox.org/download/barebox-${defaultVersion}.tar.bz2`),
       sha256: "sha256-h1KzdSgZ7EqvhIodBt8FJCpklUUl+xW2zwezw91+vX8=",
     }))));
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const defconfig = nix.arg($_1, "defconfig");
       const extraMeta = nix.argOr($_1, "extraMeta", () => ({}));
       return nix.update(nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.str`barebox-${defconfig}`),
           strictDeps: true,
           version: nix.thunk(() => (nix.asBool(nix.eq(version, null)) ? defaultVersion : nix.force(version))),
@@ -74,7 +69,7 @@ runHook postInstall
           meta: nix.thunk(() => (() => {
             const w = nix.withScope(lib, null);
             return nix.update({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               homepage: "https://www.barebox.org",
               description: "Swiss Army Knife for bare metal",
               license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "gpl2Only")),
@@ -87,14 +82,14 @@ runHook postInstall
         })), nix.builtins.removeAttrs(args_2, nix.thunk(() => ["extraMeta"])));
     })(), formals$2)));
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     buildBarebox: buildBarebox,
     bareboxTools: nix.thunk(() => nix.app(buildBarebox, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         defconfig: "hosttools_defconfig",
         installDir: "$out/bin",
         extraMeta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         })),
         filesToInstall: nix.thunk(() => [

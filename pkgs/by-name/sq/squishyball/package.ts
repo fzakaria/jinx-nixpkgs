@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["name", 47, 7], ["url", 48, 7], ["sha256", 49, 7]], [["pname", 53, 7], ["version", 54, 7], ["debianRevision", 55, 7], ["patch", 56, 7], ["hash", 57, 7]], [["pname", 61, 7], ["version", 62, 7], ["debianRevision", 63, 7], ["patch", 64, 7], ["hash", 65, 7]], [["description", 76, 5], ["longDescription", 77, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["patches", 41, 3], ["postInstall", 69, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, fetchFromGitLab: false, fetchDebianPatch: false, fetchpatch: false, flac: false, libao: false, libvorbis: false, ncurses: false, opusfile: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 47, 7], ["url", 48, 7], ["sha256", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 53, 7], ["version", 54, 7], ["debianRevision", 55, 7], ["patch", 56, 7], ["hash", 57, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 61, 7], ["version", 62, 7], ["debianRevision", 63, 7], ["patch", 64, 7], ["hash", 65, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 76, 5], ["longDescription", 77, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["patches", 41, 3], ["postInstall", 69, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const opusfile = nix.arg($, "opusfile");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "squishyball",
       version: "unstable-2021-01-05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.xiph.org",
           owner: "xiph",
           repo: "squishyball",
@@ -41,13 +36,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./gnu-screen.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ncurses-6.3.patch",
             url: "https://gitlab.xiph.org/xiph/squishyball/uploads/5609ceaf85ebb6dc297c0efe61b9a1b7/0001-mincurses.c-use-ncurses-API-to-enter-raw-mode-ncurse.patch",
             sha256: "06llp7cd77f4vvhz8qdld551dnlpjxf98j7rmp3i1x1kng4f0iy3",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: "squishyball",
             version: "0.1~svn19085",
             debianRevision: "8",
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-7zXPsJxIpQI2Ro+GNIZEASxHFrRqSUiXjQl9/KeHSAk=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname: "squishyball",
             version: "0.1~svn19085",
             debianRevision: "8",
@@ -65,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# Why doesn’t this happen automagically?\nmkdir -p $out/share/man/man1\ncp squishyball.1 $out/share/man/man1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tool to perform sample comparison testing on the command line",
         longDescription: "squishyball is a simple command-line utility for performing\ndouble-blind A/B, A/B/X or X/X/Y testing on the command line.\nThe user specifies two input files to be compared and uses the\nkeyboard during playback to flip between the randomized samples\nto perform on-the-fly compar‐ isons.  After a predetermined\nnumber of trials, squishyball prints the trial results to\nstdout and exits.  Results (stdout) may be redirected to a file\nwithout affecting interactive use of the terminal.\n\nsquishyball can also be used to perform casual, non-randomized\ncomparisons of groups of up to ten samples; this is the default\nmode of operation.\n",
         homepage: "https://gitlab.xiph.org/xiph/squishyball",

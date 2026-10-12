@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["pname", 25, 3], ["version", 26, 25], ["src", 28, 3], ["paths", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["dontUnpack", 43, 3], ["dontConfigure", 44, 3], ["dontBuild", 45, 3], ["preferLocalBuild", 47, 3], ["allowSubstitutes", 48, 3], ["strictDeps", 49, 3], ["installPhase", 51, 3], ["preFixup", 63, 3], ["__structuredAttrs", 69, 3], ["meta", 71, 25]]]);
 const formals$1 = { args: { wrapGAppsHook4: false, glib: false, lib: false, stdenv: false, lndir: false, switchboard: false, switchboardPlugs: false, plugs: false, useDefaultPlugs: true, testName: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["pname", 25, 3], ["version", 26, 25], ["src", 28, 3], ["paths", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["dontUnpack", 43, 3], ["dontConfigure", 44, 3], ["dontBuild", 45, 3], ["preferLocalBuild", 47, 3], ["allowSubstitutes", 48, 3], ["strictDeps", 49, 3], ["installPhase", 51, 3], ["preFixup", 63, 3], ["__structuredAttrs", 69, 3], ["meta", 71, 25]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const selectedPlugs = nix.thunk(() => (nix.asBool(nix.eq(plugs, null)) ? nix.force(switchboardPlugs) : nix.concat(plugs, nix.app(nix.sel(lib, "optionals"), useDefaultPlugs, switchboardPlugs))));
   const testingName = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(testName, null)), nix.thunk(() => nix.str`${testName}-`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.str`${testingName}${nix.sel(switchboard, "pname")}-with-plugs`),
       version: nix.thunk(() => nix.attr(switchboard, "version")),
       src: null,

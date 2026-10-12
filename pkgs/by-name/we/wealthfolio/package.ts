@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["src", 32, 26], ["pname", 32, 30], ["version", 32, 36], ["pnpm", 33, 5], ["fetcherVersion", 34, 5], ["hash", 35, 5]], [["pname", 43, 7], ["version", 44, 7], ["src", 45, 7], ["cargoRoot", 46, 7], ["hash", 48, 5]], [["updateScript", 77, 12]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["mainProgram", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["pnpmDeps", 31, 3], ["cargoRoot", 38, 3], ["buildAndTestSubdir", 39, 3], ["cargoDeps", 41, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 63, 3], ["postPatch", 69, 3], ["passthru", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "cargo-tauri": false, jq: false, libsoup_3: false, moreutils: false, nodejs: false, openssl: false, "pkg-config": false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, rustPlatform: false, webkitgtk_4_1: false, wrapGAppsHook3: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 32, 26], ["pname", 32, 30], ["version", 32, 36], ["pnpm", 33, 5], ["fetcherVersion", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 43, 7], ["version", 44, 7], ["src", 45, 7], ["cargoRoot", 46, 7], ["hash", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 77, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["mainProgram", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["pnpmDeps", 31, 3], ["cargoRoot", 38, 3], ["buildAndTestSubdir", 39, 3], ["cargoDeps", 41, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 63, 3], ["postPatch", 69, 3], ["passthru", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "wealthfolio",
       version: "3.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wealthfolio",
           repo: "wealthfolio",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-5CqLHnwBzqA+yf/sQM2ie3xuO+5aM5EDA0bhZ6r1VIM=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -52,7 +47,7 @@ export default nix.lambda((args) => (() => {
       cargoRoot: ".",
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -73,11 +68,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libsoup_3, openssl, webkitgtk_4_1]),
       postPatch: "jq \\\n  '.plugins.updater.endpoints = [ ]\n  | .bundle.createUpdaterArtifacts = false' \\\n  apps/tauri/tauri.conf.json \\\n  | sponge apps/tauri/tauri.conf.json\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Beautiful Private and Secure Desktop Investment Tracking Application",
         homepage: "https://wealthfolio.app/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

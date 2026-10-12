@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["url", 13, 5], ["hash", 14, 5]], [["pname", 18, 13], ["version", 18, 19], ["src", 18, 27], ["postExtract", 19, 5]], [["updateScript", 49, 13], ["src", 50, 13]], [["changelog", 54, 5], ["platforms", 55, 5]], [["pname", 38, 11], ["version", 38, 17], ["src", 39, 3], ["extraInstallCommands", 41, 3], ["passthru", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { appimageTools: false, fetchurl: false, asar: false, pname: false, updateScript: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["pname", 18, 13], ["version", 18, 19], ["src", 18, 27], ["postExtract", 19, 5]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["updateScript", 49, 13], ["src", 50, 13]]);
-const pos$4 = nix.positions(here + "/linux.nix", [["changelog", 54, 5], ["platforms", 55, 5]]);
-const pos$5 = nix.positions(here + "/linux.nix", [["pname", 38, 11], ["version", 38, 17], ["src", 39, 3], ["extraInstallCommands", 41, 3], ["passthru", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const meta = nix.arg($, "meta");
   const version = "3.16.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/ProxymanApp/proxyman-windows-linux/releases/download/${version}/Proxyman-${version}.AppImage`),
       hash: "sha256-rykOZVrh3MATFDzwLS7gEj5sMD9udsWAi+68Quqzk0c=",
     }))));
   const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: src,
@@ -44,7 +40,7 @@ ${asar}/bin/asar pack app $out/resources/app.asar
 `),
     }))));
   return nix.app(nix.sel(appimageTools, "wrapAppImage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: appimageContents,
@@ -53,9 +49,9 @@ install -Dm444 ${appimageContents}/proxyman.png -t $out/share/icons/hicolor/256x
 substituteInPlace $out/share/applications/proxyman.desktop \\
   --replace-fail "Exec=AppRun" "Exec=proxyman --"
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: updateScript, src: src })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: updateScript, src: src })),
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: "https://proxyman.com/changelog-windows",
         platforms: nix.thunk(() => ["x86_64-linux"]),
       })),

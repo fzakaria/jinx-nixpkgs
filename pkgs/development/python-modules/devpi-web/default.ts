@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["rev-prefix", 87, 7]], [["skipBulkUpdate", 84, 5], ["updateScript", 85, 5]], [["homepage", 92, 5], ["description", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["sourceRoot", 42, 3], ["postPatch", 44, 3], ["build-system", 49, 3], ["dependencies", 51, 3], ["nativeCheckInputs", 67, 3], ["disabledTests", 74, 3], ["pythonImportsCheck", 79, 3], ["passthru", 82, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, gitUpdater: false, attrs: false, beautifulsoup4: false, defusedxml: false, "devpi-common": false, "devpi-server": false, docutils: false, pygments: false, pyramid: false, "pyramid-chameleon": false, "readme-renderer": false, setuptools: false, tomli: false, whoosh: false, pytestCheckHook: false, "pytest-cov-stub": false, "packaging-legacy": false, webtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 87, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 84, 5], ["updateScript", 85, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 92, 5], ["description", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["sourceRoot", 42, 3], ["postPatch", 44, 3], ["build-system", 49, 3], ["dependencies", 51, 3], ["nativeCheckInputs", 67, 3], ["disabledTests", 74, 3], ["pythonImportsCheck", 79, 3], ["passthru", 82, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const packaging_legacy = nix.arg($, "packaging-legacy");
   const webtest = nix.arg($, "webtest");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "devpi-web",
       version: "5.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "devpi",
           repo: "devpi",
           tag: nix.thunk(() => nix.str`web-${nix.sel(finalAttrs, "version")}`),
@@ -66,12 +62,12 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_dont_index_deleted_mirror"]))),
       pythonImportsCheck: nix.thunk(() => ["devpi_web"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdate: true,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "web-" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "web-" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/devpi/devpi",
         description: "Web view for devpi-server",
         changelog: nix.thunk(() => nix.str`https://github.com/devpi/devpi/blob/${nix.sel(finalAttrs, "src", "tag")}/common/CHANGELOG`),

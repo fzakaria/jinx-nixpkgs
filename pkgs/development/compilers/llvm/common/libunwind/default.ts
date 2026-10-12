@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["passthru", 28, 33], ["strictDeps", 29, 11], ["__structuredAttrs", 30, 11]], [["homepage", 89, 5], ["description", 90, 5], ["longDescription", 91, 5]], [["pname", 20, 3], ["version", 22, 11], ["src", 24, 3], ["sourceRoot", 47, 3], ["outputs", 49, 3], ["nativeBuildInputs", 54, 3], ["strictDeps", 60, 3], ["cmakeFlags", 62, 3], ["postInstall", 68, 3], ["__structuredAttrs", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, release_version: false, src: true, llvm_meta: false, version: false, monorepoSrc: true, runCommand: false, cmake: false, ninja: false, python3: false, libcxx: false, enableShared: true, doFakeLibgcc: true, devExtraCmakeFlags: true, getVersionFile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["passthru", 28, 33], ["strictDeps", 29, 11], ["__structuredAttrs", 30, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 89, 5], ["description", 90, 5], ["longDescription", 91, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 22, 11], ["src", 24, 3], ["sourceRoot", 47, 3], ["outputs", 49, 3], ["nativeBuildInputs", 54, 3], ["strictDeps", 60, 3], ["cmakeFlags", 62, 3], ["postInstall", 68, 3], ["__structuredAttrs", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const devExtraCmakeFlags = nix.argOr($, "devExtraCmakeFlags", () => []);
   const getVersionFile = nix.arg($, "getVersionFile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libunwind",
       version: version,
       src: nix.thunk(() => (nix.asBool(!nix.eq(monorepoSrc, null)) ? nix.app(runCommand, nix.thunk(() => nix.str`libunwind-src-${version}`), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -56,7 +54,7 @@ cp -r ${monorepoSrc}/runtimes "$out"
       postInstall: nix.thunk(() => nix.add(nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBool(enableShared) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))))), "# libcxxabi wants to link to libunwind_shared.so (?).\nln -s $out/lib/libunwind.so $out/lib/libunwind_shared.so\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(enableShared) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")))), "ln -s $out/lib/libunwind.dll.a $out/lib/libunwind_shared.dll.a\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(doFakeLibgcc) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))))), "ln -s $out/lib/libunwind.so $out/lib/libgcc_s.so\nln -s $out/lib/libunwind.so $out/lib/libgcc_s.so.1\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(doFakeLibgcc) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")))), "ln -s $out/lib/libunwind.dll.a $out/lib/libgcc_s.dll.a\n"))),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://clang.llvm.org/docs/Toolchain.html#unwind-library",
         description: "LLVM's unwinder library",
         longDescription: "The unwind library provides a family of _Unwind_* functions implementing\nthe language-neutral stack unwinding portion of the Itanium C++ ABI (Level\nI). It is a dependency of the C++ ABI library, and sometimes is a\ndependency of other runtimes.\n",

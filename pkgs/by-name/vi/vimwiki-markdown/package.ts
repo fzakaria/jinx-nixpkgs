@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 13, 13], ["pname", 13, 21], ["hash", 14, 5]], [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["mainProgram", 27, 5]], [["version", 8, 3], ["format", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["propagatedBuildInputs", 17, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 13, 13], ["pname", 13, 21], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["mainProgram", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 8, 3], ["format", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["propagatedBuildInputs", 17, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "vimwiki-markdown";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: pname,
           hash: "sha256-hJl0OTE6kHucVGOxgOZBG0noYRfxma3yZSrUWEssLN4=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Vimwiki markdown plugin",
         homepage: "https://github.com/WnP/vimwiki_markdown",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "vimwiki_markdown",
       }));
-      return { [nix.POS]: pos$3, version, format, pname, src, propagatedBuildInputs, meta };
+      return { [nix.POS]: $pos[2], version, format, pname, src, propagatedBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

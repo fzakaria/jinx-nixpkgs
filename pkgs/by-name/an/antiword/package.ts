@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["platforms", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["prePatch", 16, 3], ["patches", 21, 3], ["makeFlags", 23, 3], ["installTargets", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["platforms", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["prePatch", 16, 3], ["patches", 21, 3], ["makeFlags", 23, 3], ["installTargets", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "antiword",
       version: "0.37",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.winfield.demon.nl/linux/antiword-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1b7mi1l20jhj09kyh0bq14qzz8vdhhyf35gzwsq43mn6rc7h0b4f",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installTargets: nix.thunk(() => ["global_install"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.winfield.demon.nl/",
         description: "Convert MS Word documents to plain text or PostScript",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

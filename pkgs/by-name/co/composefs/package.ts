@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["url", 47, 7], ["hash", 48, 7]], [["activation-etc-overlay-immutable", 101, 28], ["activation-etc-overlay-mutable", 101, 61], ["pkg-config", 102, 7]], [["updateScript", 98, 5], ["tests", 99, 5]], [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5], ["pkgConfigModules", 116, 5], ["platforms", 117, 5], ["badPlatforms", 118, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["strictDeps", 37, 3], ["outputs", 38, 3], ["patches", 44, 3], ["postPatch", 52, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 71, 3], ["doCheck", 79, 3], ["nativeCheckInputs", 80, 3], ["mesonCheckFlags", 91, 3], ["preCheck", 93, 3], ["passthru", 97, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, meson: false, ninja: false, "go-md2man": false, "pkg-config": false, openssl: false, fuse3: false, libcap: false, python3: false, which: false, valgrind: false, "erofs-utils": false, "fsverity-utils": false, "nix-update-script": false, testers: false, nixosTests: false, fuseSupport: true, enableValgrindCheck: true, installExperimentalTools: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 47, 7], ["hash", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["activation-etc-overlay-immutable", 101, 28], ["activation-etc-overlay-mutable", 101, 61], ["pkg-config", 102, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 98, 5], ["tests", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5], ["pkgConfigModules", 116, 5], ["platforms", 117, 5], ["badPlatforms", 118, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["strictDeps", 37, 3], ["outputs", 38, 3], ["patches", 44, 3], ["postPatch", 52, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 71, 3], ["doCheck", 79, 3], ["nativeCheckInputs", 80, 3], ["mesonCheckFlags", 91, 3], ["preCheck", 93, 3], ["passthru", 97, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const enableValgrindCheck = nix.argOr($, "enableValgrindCheck", () => false);
   const installExperimentalTools = nix.argOr($, "installExperimentalTools", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "composefs",
       version: "1.0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "composefs",
           repo: "composefs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/composefs/composefs/commit/b3cb176a771386081c993e29ae42e77dabe5a577.patch",
             hash: "sha256-nzUENLM24G6NezhPywVsRzRgWmL1VZdMfZTsXNorJl8=",
           })))),
@@ -62,17 +57,17 @@ export default nix.lambda((args) => (() => {
       mesonCheckFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), enableValgrindCheck, nix.thunk(() => ["--setup=valgrind"]))),
       preCheck: "patchShebangs --build ../tests/*dir ../tests/*.sh\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "activation-etc-overlay-immutable": nix.thunk(() => nix.attr(nixosTests, "activation-etc-overlay-immutable")),
           "activation-etc-overlay-mutable": nix.thunk(() => nix.attr(nixosTests, "activation-etc-overlay-mutable")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "File system for mounting container images",
         homepage: "https://github.com/composefs/composefs",
         changelog: nix.thunk(() => nix.str`https://github.com/composefs/composefs/releases/tag/v${nix.sel(finalAttrs, "version")}`),

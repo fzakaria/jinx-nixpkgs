@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["x86_64-linux", 41, 5], ["aarch64-darwin", 42, 5]], [["url", 62, 22], ["sha256", 62, 26]], [["changelog", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["donationPage", 69, 5], ["mainProgram", 70, 5], ["sourceProvenance", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["hydraPlatforms", 75, 5]], [["pname", 80, 7], ["writeScript", 81, 7], ["xidel", 82, 7], ["coreutils", 83, 7], ["gnused", 84, 7], ["gnugrep", 85, 7], ["curl", 86, 7], ["gnupg", 87, 7], ["runtimeShell", 88, 7], ["versionSuffix", 89, 7], ["baseName", 91, 5], ["basePath", 92, 5], ["baseUrl", 93, 5]], [["applicationName", 102, 7], ["updateScript", 103, 7], ["gtk3", 104, 7], ["binaryName", 106, 5], ["withGSSAPI", 107, 5]], [["pname", 114, 7], ["version", 115, 7], ["src", 116, 7], ["nativeBuildInputs", 117, 7], ["passthru", 118, 7], ["meta", 119, 7], ["stdenv", 120, 7], ["undmg", 121, 7]], [["pname", 127, 7], ["version", 128, 7], ["src", 129, 7], ["nativeBuildInputs", 130, 7], ["passthru", 131, 7], ["meta", 132, 7], ["stdenv", 133, 7], ["config", 134, 7], ["writeText", 135, 7], ["autoPatchelfHook", 136, 7], ["patchelfUnstable", 137, 7], ["alsa-lib", 138, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, config: false, wrapGAppsHook3: false, curl: false, gtk3: false, writeScript: false, xidel: false, coreutils: false, gnused: false, gnugrep: false, gnupg: false, runtimeShell: false, systemLocale: true, generated: false, versionSuffix: true, applicationName: true, writeText: false, autoPatchelfHook: false, patchelfUnstable: false, "alsa-lib": false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["x86_64-linux", 41, 5], ["aarch64-darwin", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 62, 22], ["sha256", 62, 26]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["donationPage", 69, 5], ["mainProgram", 70, 5], ["sourceProvenance", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["hydraPlatforms", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 80, 7], ["writeScript", 81, 7], ["xidel", 82, 7], ["coreutils", 83, 7], ["gnused", 84, 7], ["gnugrep", 85, 7], ["curl", 86, 7], ["gnupg", 87, 7], ["runtimeShell", 88, 7], ["versionSuffix", 89, 7], ["baseName", 91, 5], ["basePath", 92, 5], ["baseUrl", 93, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["applicationName", 102, 7], ["updateScript", 103, 7], ["gtk3", 104, 7], ["binaryName", 106, 5], ["withGSSAPI", 107, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 114, 7], ["version", 115, 7], ["src", 116, 7], ["nativeBuildInputs", 117, 7], ["passthru", 118, 7], ["meta", 119, 7], ["stdenv", 120, 7], ["undmg", 121, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 127, 7], ["version", 128, 7], ["src", 129, 7], ["nativeBuildInputs", 130, 7], ["passthru", 131, 7], ["meta", 132, 7], ["stdenv", 133, 7], ["config", 134, 7], ["writeText", 135, 7], ["autoPatchelfHook", 136, 7], ["patchelfUnstable", 137, 7], ["alsa-lib", 138, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.attr(generated, "version"));
   const sources = nix.thunk(() => nix.attr(generated, "sources"));
   const pname = "thunderbird-bin";
-  const mozillaPlatforms = nix.thunk(() => ({ [nix.POS]: pos$1, "x86_64-linux": "linux-x86_64", "aarch64-darwin": "mac" }));
+  const mozillaPlatforms = nix.thunk(() => ({ [nix.POS]: $pos[0], "x86_64-linux": "linux-x86_64", "aarch64-darwin": "mac" }));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const arch = nix.thunk(() => nix.selOr(mozillaPlatforms, () => nix.force(throwSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const sourceMatches = (locale) => (source_1) => (nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), nix.thunk(() => nix.sel(source_1, "locale")), locale)) && nix.asBool(nix.eq(nix.sel(source_1, "arch"), arch)));
@@ -47,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const mozLocale = nix.thunk(() => (nix.asBool(nix.eq(systemLocale, "ca_ES@valencia")) ? "ca-valencia" : nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["_"]), nix.thunk(() => ["-"]), systemLocale)));
   const source = nix.thunk(() => nix.app(nix.sel(lib, "findFirst"), nix.thunk(() => nix.app(sourceMatches, mozLocale)), defaultSource, sources));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.attr(source, "url")),
       sha256: nix.thunk(() => nix.attr(source, "sha256")),
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     changelog: nix.thunk(() => nix.str`https://www.thunderbird.net/en-US/thunderbird/${version}/releasenotes/`),
     description: "Mozilla Thunderbird, a full-featured email client (binary package)",
     homepage: "https://www.thunderbird.net/",
@@ -71,7 +65,7 @@ export default nix.lambda((args) => (() => {
     hydraPlatforms: [],
   }));
   const updateScript = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../../browsers/firefox-bin/update.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       writeScript: writeScript,
       xidel: xidel,
@@ -88,7 +82,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const nativeBuildInputs = nix.thunk(() => [wrapGAppsHook3]);
   const passthru = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     applicationName: applicationName,
     updateScript: updateScript,
     gtk3: gtk3,
@@ -96,7 +90,7 @@ export default nix.lambda((args) => (() => {
     withGSSAPI: true,
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.builtins.import(nix.path(here, "./darwin.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -106,7 +100,7 @@ export default nix.lambda((args) => (() => {
       stdenv: stdenv,
       undmg: undmg,
     }))) : nix.app(nix.builtins.import(nix.path(here, "./linux.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: src,

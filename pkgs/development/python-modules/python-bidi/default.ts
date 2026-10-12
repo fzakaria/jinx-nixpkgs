@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["pname", 23, 13], ["version", 23, 19], ["src", 23, 27], ["hash", 24, 5]], [["homepage", 41, 5], ["description", 42, 5], ["mainProgram", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["license", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["cargoDeps", 22, 3], ["buildInputs", 27, 3], ["build-system", 29, 3], ["preCheck", 34, 3], ["nativeCheckInputs", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, libiconv: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 23, 13], ["version", 23, 19], ["src", 23, 27], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 41, 5], ["description", 42, 5], ["mainProgram", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["license", 46, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["cargoDeps", 22, 3], ["buildInputs", 27, 3], ["build-system", 29, 3], ["preCheck", 34, 3], ["nativeCheckInputs", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MeirKriheli",
           repo: "python-bidi",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-sDr/i7MC3aNAzl/+cDbstS5QBdQqVtaLlG09qsl7krU=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm -rf bidi\n";
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/MeirKriheli/python-bidi",
         description: "Pure python implementation of the BiDi layout algorithm",
         mainProgram: "pybidi",
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

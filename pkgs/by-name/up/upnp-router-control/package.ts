@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["homepage", 42, 5], ["description", 43, 5], ["longDescription", 44, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 34, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, "desktop-file-utils": false, intltool: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, gssdp_1_6: false, gtk3: false, gupnp_1_6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["longDescription", 44, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 34, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gupnp_1_6 = nix.arg($, "gupnp_1_6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "upnp-router-control",
       version: "0.3.6",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://launchpad.net/upnp-router-control/trunk/${nix.sel(finalAttrs, "version")}/+download/upnp-router-control-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-2vm6Rnn+V3V54W2xYDlMh7iFKNWfxxnDexlZdwS+8RA=",
         })))),
       nativeBuildInputs: nix.thunk(() => [desktop_file_utils, intltool, meson, ninja, pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [gssdp_1_6, gtk3, gupnp_1_6]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://launchpad.net/upnp-router-control",
         description: "Access some parameters of the router and manage port forwarding",
         longDescription: "A GTK application to access some parameters of the router like:\nthe network speed, the external IP and the model name.\nIt can manage port forwarding through a simple GUI interface.\n",

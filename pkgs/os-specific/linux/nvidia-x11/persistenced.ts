@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/persistenced.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 13]], [["NIX_CFLAGS_COMPILE", 26, 5], ["NIX_LDFLAGS", 27, 5]], [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["env", 25, 3], ["depsBuildBuild", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["makeFlags", 42, 3], ["installFlags", 49, 3], ["postFixup", 51, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, buildPackages: false, m4: false, "pkg-config": false, addDriverRunpath: false, libtirpc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/persistenced.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 13]]);
-const pos$2 = nix.positions(here + "/persistenced.nix", [["NIX_CFLAGS_COMPILE", 26, 5], ["NIX_LDFLAGS", 27, 5]]);
-const pos$3 = nix.positions(here + "/persistenced.nix", [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]]);
-const pos$4 = nix.positions(here + "/persistenced.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["env", 25, 3], ["depsBuildBuild", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["makeFlags", 42, 3], ["installFlags", 49, 3], ["postFixup", 51, 3], ["meta", 60, 3]]);
 
 export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +16,18 @@ export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
   const addDriverRunpath = nix.arg($, "addDriverRunpath");
   const libtirpc = nix.arg($, "libtirpc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nvidia-persistenced",
       version: nix.thunk(() => nix.sel(nvidia_x11, "persistencedVersion")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NVIDIA",
           repo: "nvidia-persistenced",
           rev: nix.thunk(() => nix.sel(nvidia_x11, "persistencedVersion")),
           sha256: sha256,
         })))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(nvidia_x11, "persistencedVersion")), "450.51")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-I${nix.sel(libtirpc, "dev")}/include/tirpc`)]))),
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ltirpc"]))),
         })))),
@@ -46,7 +43,7 @@ export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       postFixup: "# Save a copy of persistenced for mounting in containers\nmkdir $out/origBin\ncp $out/{bin,origBin}/nvidia-persistenced\npatchelf --set-interpreter /lib64/ld-linux-x86-64.so.2 $out/origBin/nvidia-persistenced\n\naddDriverRunpath $out/bin/nvidia-persistenced\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/NVIDIA/nvidia-persistenced",
         description: "NVIDIA driver persistence daemon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["pname", 14, 11], ["version", 15, 3], ["nativeBuildInputs", 17, 3], ["buildInputs", 18, 3], ["src", 20, 3], ["patchPhase", 27, 3], ["buildPhase", 34, 3], ["installPhase", 38, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "swi-prolog": false, makeWrapper: false, fetchFromGitHub: false, lexiconPath: true, pname: true, description: true, license: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 11], ["version", 15, 3], ["nativeBuildInputs", 17, 3], ["buildInputs", 18, 3], ["src", 20, 3], ["patchPhase", 27, 3], ["buildPhase", 34, 3], ["installPhase", 38, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const description = nix.argOr($, "description", () => "Parser for Attempto Controlled English (ACE)");
   const license = nix.argOr($, "license", () => nix.sel(lib, "licenses", "lgpl3"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: "2019-08-10",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => [swi_prolog]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Attempto",
           repo: "APE",
           rev: "113b81621262d7a395779465cb09397183e6f74c",
@@ -40,7 +38,7 @@ cp new_lexicon.pl prolog/lexicon/clex_lexicon.pl
 `),
       installPhase: "mkdir -p $out/bin\ncp ape.exe $out\nmakeWrapper $out/ape.exe $out/bin/ape --add-flags ace\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: description,
         homepage: "https://github.com/Attempto/APE",
         license: license,

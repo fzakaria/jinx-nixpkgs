@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 13], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 25, 5], ["homepage", 26, 5], ["maintainers", 27, 5], ["license", 31, 5]], [["owner", 9, 3], ["domain", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dependencies", 20, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildHomeAssistantComponent: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 13], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["maintainers", 27, 5], ["license", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 9, 3], ["domain", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dependencies", 20, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const domain = "ntfy";
       const version = "1.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: owner,
           repo: "homeassistant_integration_ntfy",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [requests]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Send notifications with ntfy.sh and selfhosted ntfy-servers",
         homepage: "https://github.com/hbrennhaeuser/homeassistant_integration_ntfy",
         maintainers: nix.thunk(() => (() => {
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
       }));
-      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, meta };
+      return { [nix.POS]: $pos[2], owner, domain, version, src, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

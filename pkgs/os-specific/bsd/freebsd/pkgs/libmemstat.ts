@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libmemstat.nix", [[["path", 11, 3], ["outputs", 13, 3], ["noLibc", 19, 3], ["buildInputs", 21, 3], ["preBuild", 28, 3]]]);
 const formals$1 = { args: { mkDerivation: false, include: false, libcMinimal: false, libgcc: false, libkvm: false, csu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libmemstat.nix", [["path", 11, 3], ["outputs", 13, 3], ["noLibc", 19, 3], ["buildInputs", 21, 3], ["preBuild", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libkvm = nix.arg($, "libkvm");
   const csu = nix.arg($, "csu");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "lib/libmemstat",
       outputs: nix.thunk(() => ["out", "man", "debug"]),
       noLibc: true,

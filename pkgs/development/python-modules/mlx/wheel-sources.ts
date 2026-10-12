@@ -2,48 +2,41 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/wheel-sources.nix", [["platform", 8, 7], ["dist", 9, 7], ["hash", 10, 7]]);
-const pos$2 = nix.positions(here + "/wheel-sources.nix", [["platform", 13, 7], ["dist", 14, 7], ["hash", 15, 7]]);
-const pos$3 = nix.positions(here + "/wheel-sources.nix", [["3.13-aarch64-darwin", 7, 5], ["3.14-aarch64-darwin", 12, 5]]);
-const pos$4 = nix.positions(here + "/wheel-sources.nix", [["platform", 21, 7], ["hash", 22, 7]]);
-const pos$5 = nix.positions(here + "/wheel-sources.nix", [["platform", 25, 7], ["hash", 26, 7]]);
-const pos$6 = nix.positions(here + "/wheel-sources.nix", [["platform", 30, 7], ["hash", 31, 7]]);
-const pos$7 = nix.positions(here + "/wheel-sources.nix", [["14", 20, 5], ["15", 24, 5], ["26", 29, 5]]);
-const pos$8 = nix.positions(here + "/wheel-sources.nix", [["version", 2, 3], ["testSourceHash", 4, 3], ["mlx", 6, 3], ["mlx-metal", 19, 3]]);
+const $pos = nix.positions(here + "/wheel-sources.nix", [[["platform", 8, 7], ["dist", 9, 7], ["hash", 10, 7]], [["platform", 13, 7], ["dist", 14, 7], ["hash", 15, 7]], [["3.13-aarch64-darwin", 7, 5], ["3.14-aarch64-darwin", 12, 5]], [["platform", 21, 7], ["hash", 22, 7]], [["platform", 25, 7], ["hash", 26, 7]], [["platform", 30, 7], ["hash", 31, 7]], [["14", 20, 5], ["15", 24, 5], ["26", 29, 5]], [["version", 2, 3], ["testSourceHash", 4, 3], ["mlx", 6, 3], ["mlx-metal", 19, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$8,
+  [nix.POS]: $pos[7],
   version: "0.32.0",
   testSourceHash: "sha256-yHpTyRf9FOPbdyDWSM7b6VC72STnUpgCMLbDxLbdaqs=",
   mlx: nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "3.13-aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       platform: "macosx_14_0_arm64",
       dist: "cp313",
       hash: "sha256-q7eG7h6WOHWb6CWDIi/H0JxWUO+QrSt8XafRkxqGdtw=",
     })),
     "3.14-aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       platform: "macosx_14_0_arm64",
       dist: "cp314",
       hash: "sha256-LuebH4wsKjKa/JXs59zgvnmNQ/PedxpjcNK5+XArvZo=",
     })),
   })),
   "mlx-metal": nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     "14": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       platform: "macosx_14_0_arm64",
       hash: "sha256-W2SyCsJLDEAfSJ3gHoIJ7cTTchJSAfGTFObznjhTIqo=",
     })),
     "15": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       platform: "macosx_15_0_arm64",
       hash: "sha256-G9lKHOWwOgyJh3Gj51nwEkMAxqtRVRJ5BqHVCx8/zxk=",
     })),
     "26": nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       platform: "macosx_26_0_arm64",
       hash: "sha256-OvdqSY2EgE9mEZgASZ+dFD19/7CHig3Q18KEblhWX9c=",
     })),

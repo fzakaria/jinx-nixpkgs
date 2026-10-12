@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["homepage", 29, 5], ["description", 30, 5], ["longDescription", 31, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["postPatch", 19, 3], ["preInstall", 24, 3], ["installFlags", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["longDescription", 31, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["postPatch", 19, 3], ["preInstall", 24, 3], ["installFlags", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dterm",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.knossos.net.nz/downloads/dterm-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-lFM7558e7JZeWYhtXwCjXLZ1xdsdiUGfJTu3LxQKvds=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin",
       installFlags: nix.thunk(() => ["BIN=$(out)/bin/"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.knossos.net.nz/resources/free-software/dterm/",
         description: "Simple terminal program",
         longDescription: "dterm is a simple terminal emulator, which doesn’t actually emulate any\nparticular terminal. Mainly, it is designed for use with xterm and\nfriends, which already do a perfectly good emulation, and therefore don’t\nneed any special help; dterm simply provides a means by which keystrokes\nare forwarded to the serial line, and data forwarded from the serial line\nappears on the terminal.\n",

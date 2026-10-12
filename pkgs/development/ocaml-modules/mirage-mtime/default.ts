@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["homepage", 27, 5]], [["pname", 10, 3], ["version", 12, 11], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, mtime: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["homepage", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 12, 11], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const mtime = nix.arg($, "mtime");
   const version = nix.argOr($, "version", () => "5.2.0");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mirage-mtime",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-mtime/releases/download/v${version}/mirage-mtime-${version}.tbz`),
           hash: "sha256-kaBDUqQF1SFecku85iRnX9ji18TjbTIlz4BlRuRAib8=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [mtime]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Monotonic time for MirageOS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

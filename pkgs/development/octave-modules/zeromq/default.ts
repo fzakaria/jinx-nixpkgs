@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]], [["extraArgs", 40, 5]], [["updateScript", 39, 12]], [["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["description", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["preAutoreconf", 22, 3], ["postAutoreconf", 26, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 35, 3], ["passthru", 39, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { buildOctavePackage: false, lib: false, fetchFromGitHub: false, zeromq: false, "pkg-config": false, autoreconfHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 39, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["description", 50, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["preAutoreconf", 22, 3], ["postAutoreconf", 26, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 35, 3], ["passthru", 39, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zeromq";
       const version = "1.5.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gnu-octave",
           repo: "octave-zeromq",
           tag: nix.thunk(() => nix.str`release-${version}`),
@@ -33,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config, autoreconfHook]);
       const propagatedBuildInputs = nix.thunk(() => [zeromq]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "release-(.*)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gnu-octave.github.io/packages/zeromq/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
         description: "ZeroMQ bindings for GNU Octave",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

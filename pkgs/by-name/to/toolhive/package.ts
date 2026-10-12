@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["package", 35, 9], ["command", 36, 9], ["version", 37, 9]], [["version", 34, 7]], [["updateScript", 32, 5], ["tests", 33, 5]], [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["subPackages", 24, 3], ["doCheck", 29, 3], ["passthru", 31, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, testers: false, toolhive: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 35, 9], ["command", 36, 9], ["version", 37, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 32, 5], ["tests", 33, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["subPackages", 24, 3], ["doCheck", 29, 3], ["passthru", 31, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const toolhive = nix.arg($, "toolhive");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "toolhive",
       version: "0.43.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stacklok",
           repo: "toolhive",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,12 +28,12 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/thv", "cmd/thv-operator"]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: toolhive,
               command: "thv version",
               version: "ToolHive build-unknown",
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Run any MCP server — securely, instantly, anywhere",
         longDescription: "ToolHive is an open-source tool for deploying Model Context Protocol (MCP)\nservers with a focus on security and ease of use. It provides a CLI to\ndiscover and deploy MCP servers, run servers in isolated containers,\nmanage server configurations, and auto-configure clients like GitHub Copilot.\n",
         homepage: "https://github.com/stacklok/toolhive",

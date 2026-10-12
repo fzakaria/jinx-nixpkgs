@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["fetchSubmodules", 34, 5], ["hash", 35, 5]], [["name", 85, 7], ["exec", 86, 7], ["comment", 87, 7], ["desktopName", 88, 7], ["categories", 89, 7]], [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5], ["mainProgram", 109, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["cmakeFlags", 62, 3], ["wrapperScript", 68, 3], ["desktopItems", 83, 3], ["installPhase", 93, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { stdenv: false, cmake: false, fetchFromGitHub: false, freetype: false, "pkg-config": false, SDL2: false, libpng: false, libjpeg: false, zlib: false, libogg: false, libvorbis: false, libarchive: false, iconv: false, openssl: false, curl: false, libcpr: false, rapidjson: false, libx11: false, libGL: false, writeShellScriptBin: false, makeDesktopItem: false, lib: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["fetchSubmodules", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 85, 7], ["exec", 86, 7], ["comment", 87, 7], ["desktopName", 88, 7], ["categories", 89, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5], ["mainProgram", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["cmakeFlags", 62, 3], ["wrapperScript", 68, 3], ["desktopItems", 83, 3], ["installPhase", 93, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "unnamed-sdvx-clone",
       version: "0.6.0-unstable-2025-07-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Drewol",
           repo: "unnamed-sdvx-clone",
           rev: "2472fcc5c8b6b8bc7323dc61ea80b3b1899dd45f",
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
       wrapperScript: nix.thunk(() => nix.app(writeShellScriptBin, "usc-game-wrapped", "DATA_PATH=\"${XDG_CONFIG_HOME:-$HOME/.local/share}/usc\"\nmkdir -p $DATA_PATH\n\ncp -r @out@/bin/audio $DATA_PATH\ncp -r @out@/bin/fonts $DATA_PATH\ncp -r @out@/bin/skins $DATA_PATH\ncp -r @out@/bin/LightPlugins $DATA_PATH\n\nfind $DATA_PATH -type d -exec chmod 755 {} +\nfind $DATA_PATH -type f -exec chmod 644 {} +\n\n@out@/bin/usc-game -gamedir=\"$DATA_PATH\"\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Unnamed SDVX Clone",
             exec: "usc-game-wrapped",
             comment: "Unnamed SDVX Clone",
@@ -77,7 +74,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\nsubstituteAll $wrapperScript/bin/usc-game-wrapped $out/bin/usc-game-wrapped\nchmod +x $out/bin/usc-game-wrapped\nmkdir $out/share\ncp -r /build/source/bin $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Game based on K-Shoot MANIA and Sound Voltex",
         homepage: "https://github.com/Drewol/unnamed-sdvx-clone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

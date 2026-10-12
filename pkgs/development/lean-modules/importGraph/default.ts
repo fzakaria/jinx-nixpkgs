@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["pname", 9, 3], ["version", 11, 3], ["src", 13, 3], ["leanPackageName", 20, 3], ["leanDeps", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, buildLakePackage: false, fetchFromGitHub: false, Cli: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 11, 3], ["src", 13, 3], ["leanPackageName", 20, 3], ["leanDeps", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const Cli = nix.arg($, "Cli");
   return nix.app(buildLakePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lean4-importGraph",
       version: "4.34.0-unstable-2026-09-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "leanprover-community",
           repo: "import-graph",
           rev: "e928b72544873815af278d38681b31c0293588e3",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       leanPackageName: "importGraph",
       leanDeps: nix.thunk(() => [Cli]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tools to analyse and visualise Lean 4 import structures",
         homepage: "https://github.com/leanprover-community/import-graph",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["teams", 58, 5], ["platforms", 59, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["cmakeFlags", 35, 3], ["postInstall", 45, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, clr: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["teams", 58, 5], ["platforms", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["cmakeFlags", 35, 3], ["postInstall", 45, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const clr = nix.arg($, "clr");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hiprt",
       version: "3.0.3.a1525e7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GPUOpen-LibrariesAndSDKs",
           repo: "HIPRT",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +39,7 @@ substituteInPlace hiprt/hiprt_libpath.h --replace-fail '"/opt/rocm/hip/lib/' '"$
       ]),
       postInstall: "mv $out/bin $out/lib\nln -sr $out/lib/libhiprt*64.so $out/lib/libhiprt64.so\ninstall -v -Dm644 ../scripts/bitcodes/hiprt*_amd_lib_linux.bc $out/lib/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gpuopen.com/hiprt",
         description: "Ray tracing library for HIP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

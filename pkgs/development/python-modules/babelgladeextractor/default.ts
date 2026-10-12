@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 5], ["version", 21, 26], ["extension", 22, 5], ["hash", 23, 5]], [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 15, 3], ["disabled", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["doCheck", 31, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, isPy3k: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, babel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 26], ["extension", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 15, 3], ["disabled", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["doCheck", 31, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const babel = nix.arg($, "babel");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "babelgladeextractor",
       version: "0.7.0",
       pyproject: true,
       __structuredAttrs: true,
       disabled: nix.thunk(() => !nix.asBool(isPy3k)),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "BabelGladeExtractor",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           extension: "tar.bz2",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: isPy3k,
       pythonImportsCheck: nix.thunk(() => ["babelglade"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/gnome-keysign/babel-glade",
         description: "Babel Glade XML files translatable strings extractor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

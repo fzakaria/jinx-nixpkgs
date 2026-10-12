@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["CGO_ENABLED", 51, 5]], [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["mainProgram", 78, 5], ["maintainers", 79, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["__structuredAttrs", 36, 3], ["vendorHash", 38, 3], ["tags", 40, 3], ["env", 50, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 58, 3], ["proxyVendor", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, stdenv: false, enableWayland: true, enableX11: true, libpng: false, libx11: false, libxi: false, libxkbcommon: false, libxtst: false, "pkg-config": false, xclip: false, xinput: false, xkbcomp: false, xkbutils: false, xsel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["mainProgram", 78, 5], ["maintainers", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["__structuredAttrs", 36, 3], ["vendorHash", 38, 3], ["tags", 40, 3], ["env", 50, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 58, 3], ["proxyVendor", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const xsel = nix.arg($, "xsel");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) || nix.asBool(nix.app(nix.sel(lib, "xor"), enableX11, enableWayland)))), "Exactly one of enableWayland, enableX11 must be true"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/cl/clipse/package.nix:21:1");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`clipse${nix.app(nix.sel(lib, "optionalString"), enableX11, "-x11")}`),
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "savedra1",
           repo: "clipse",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-LxwST4Zjxq6Fwc47VeOdv19J3g/DHZ7Fywp2ZvVR06I=",
       tags: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? ["darwin"] : (nix.asBool(enableWayland) ? ["wayland"] : (nix.asBool(enableX11) ? ["linux"] : [])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CGO_ENABLED: nix.thunk(() => (nix.asBool((nix.asBool(enableX11) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))) ? "1" : "0")),
       })),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), enableX11, nix.thunk(() => [pkg_config]))),
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         ]))),
       proxyVendor: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: "https://github.com/savedra1/clipse/blob/main/CHANGELOG.md",
         description: "Useful clipboard manager TUI for Unix",
         homepage: "https://github.com/savedra1/clipse",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 18, 5], ["url", 19, 5]], [["description", 53, 5], ["longDescription", 54, 5], ["homepage", 71, 5], ["downloadPage", 72, 5], ["license", 73, 5], ["platforms", 74, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["configureFlags", 31, 3], ["enableParallelBuilding", 43, 3], ["installFlags", 45, 3], ["doCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, dbus: false, libconfuse: false, libjpeg: false, "sane-backends": false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 18, 5], ["url", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["longDescription", 54, 5], ["homepage", 71, 5], ["downloadPage", 72, 5], ["license", 73, 5], ["platforms", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["configureFlags", 31, 3], ["enableParallelBuilding", 43, 3], ["installFlags", 45, 3], ["doCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const sane_backends = nix.arg($, "sane-backends");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "scanbd",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sha256: "0pvy4qirfjdfm8aj6x5rkbgl7hk3jfa2s21qkk8ic5dqfjjab75n",
           url: nix.thunk(() => nix.str`mirror://sourceforge/scanbd/scanbd-${nix.sel(finalAttrs, "version")}.tgz`),
         })))),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Scanner button daemon",
         longDescription: "scanbd polls a scanner's buttons, looking for button presses, function\nknob changes, or other scanner events such as paper inserts and removals,\nwhile at the same time allowing scan-applications to access the scanner.\n\nVarious actions can be submitted (scan, copy, email, ...) via action\nscripts. The function knob values are passed to the action scripts as\nwell. Scan actions are also signaled via dbus. This can be useful for\nforeign applications. Scans can also be triggered via dbus from foreign\napplications.\n\nOn platforms which support signaling of dynamic device insertion/removal\n(libudev, dbus, hal), scanbd supports this as well.\n\nscanbd can use all sane-backends or some special backends from the (old)\nscanbuttond project.\n",
         homepage: "http://scanbd.sourceforge.net/",

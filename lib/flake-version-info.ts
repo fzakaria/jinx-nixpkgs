@@ -2,13 +2,12 @@
 import * as nix from "../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/flake-version-info.nix", [["versionSuffix", 16, 5], ["revisionWithDefault", 19, 5]]);
-const pos$2 = nix.positions(here + "/flake-version-info.nix", [["trivial", 15, 3]]);
+const $pos = nix.positions(here + "/flake-version-info.nix", [[["versionSuffix", 16, 5], ["revisionWithDefault", 19, 5]], [["trivial", 15, 3]]]);
 
 export default (self) => (finalLib) => (prevLib) => ({
-  [nix.POS]: pos$2,
+  [nix.POS]: $pos[1],
   trivial: nix.thunk(() => nix.update(nix.sel(prevLib, "trivial"), {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     versionSuffix: nix.thunk(() => nix.str`.${nix.app(nix.sel(finalLib, "substring"), 0n, 8n, nix.thunk(() => nix.selOr(self, () => "19700101", "lastModifiedDate")))}.${nix.selOr(self, () => "dirty", "shortRev")}`),
     revisionWithDefault: (default$) => nix.selOr(self, () => nix.force(default$), "rev"),
   })),

@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["c-aresSupport", 8, 5], ["ldapSupport", 9, 5], ["gsaslSupport", 10, 5], ["websocketSupport", 11, 5]]]);
 const formals$1 = { args: { curl: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["c-aresSupport", 8, 5], ["ldapSupport", 9, 5], ["gsaslSupport", 10, 5], ["websocketSupport", 11, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(curl, "override"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "c-aresSupport": true,
       ldapSupport: true,
       gsaslSupport: true,

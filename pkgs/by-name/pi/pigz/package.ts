@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]], [["updateScript", 57, 5]], [["homepage", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5], ["license", 67, 5], ["platforms", 68, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["enableParallelBuilding", 24, 3], ["outputs", 26, 3], ["makeFlags", 32, 3], ["buildInputs", 33, 3], ["doCheck", 37, 3], ["checkTarget", 38, 3], ["nativeCheckInputs", 39, 3], ["installPhase", 44, 3], ["passthru", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, zlib: false, ncompress: false, which: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5], ["license", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["enableParallelBuilding", 24, 3], ["outputs", 26, 3], ["makeFlags", 32, 3], ["buildInputs", 33, 3], ["doCheck", 37, 3], ["checkTarget", 38, 3], ["nativeCheckInputs", 39, 3], ["installPhase", 44, 3], ["passthru", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pigz",
       version: "2.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "madler",
           repo: "pigz",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +38,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [which, ncompress]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 pigz \"$out/bin/pigz\"\nln -s pigz \"$out/bin/unpigz\"\ninstall -Dm755 pigz.1 \"$man/share/man/man1/pigz.1\"\nln -s pigz.1 \"$man/share/man/man1/unpigz.1\"\ninstall -Dm755 pigz.pdf \"$doc/share/doc/pigz/pigz.pdf\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.zlib.net/pigz/",
         description: "Parallel implementation of gzip for multi-core machines",
         mainProgram: "pigz",

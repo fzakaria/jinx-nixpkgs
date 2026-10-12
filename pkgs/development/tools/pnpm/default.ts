@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 13, 7], ["hash", 14, 7], ["knownVulnerabilities", 15, 7]], [["version", 33, 7], ["hash", 34, 7], ["knownVulnerabilities", 35, 7]], [["version", 48, 7], ["hash", 49, 7]], [["version", 52, 7], ["hash", 53, 7]], [["version", 56, 7], ["srcHash", 57, 7], ["cargoHash", 58, 7]], [["10_29_2", 12, 5], ["10_34_0", 32, 5], ["10", 47, 5], ["11", 51, 5], ["12", 55, 5]], [["nodejs", 68, 9]]]);
 const formals$1 = { args: { lib: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 13, 7], ["hash", 14, 7], ["knownVulnerabilities", 15, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 33, 7], ["hash", 34, 7], ["knownVulnerabilities", 35, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 48, 7], ["hash", 49, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 52, 7], ["hash", 53, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 56, 7], ["srcHash", 57, 7], ["cargoHash", 58, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["10_29_2", 12, 5], ["10_34_0", 32, 5], ["10", 47, 5], ["11", 51, 5], ["12", 55, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["nodejs", 68, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const mapAttrs$ = nix.thunk(() => nix.attr(lib, "mapAttrs'"));
   const nameValuePair = nix.thunk(() => nix.attr(lib, "nameValuePair"));
   const variants = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     "10_29_2": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "10.29.2",
       hash: "sha256-hAL2daH0zJ1PJ7v6s1wtSi4dfrATHfA9rQlhnoZnTQw=",
       knownVulnerabilities: nix.thunk(() => [
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     "10_34_0": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "10.34.0",
       hash: "sha256-WOFDJYhx31FYm2UcBiBdq+xIdmpdu6PCWZm2m1C+WY4=",
       knownVulnerabilities: nix.thunk(() => [
@@ -55,23 +49,23 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     "10": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "10.34.5",
       hash: "sha256-zLXEecqxsAYhMlv+fUyaioAx56Ul1ySeJ17L7IGwjbI=",
     })),
     "11": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "11.27.0",
       hash: "sha256-QKMlFaJVB/jyJt+74lOA4vBTlEwuzGTAwcuYtBy7ke8=",
     })),
     "12": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "12.9.0",
       srcHash: "sha256-lcs9nh9GIKfy5QYabUCj/pIpePAjLeeKBlu4UKm8zgM=",
       cargoHash: "sha256-NGefDu4dGMC2RGrTPeYBuRrG+Gb8jnx9+SbyK8WPd9E=",
     })),
   }));
-  const callPnpmNode = (variant) => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(variant, { [nix.POS]: pos$7, nodejs: null })));
+  const callPnpmNode = (variant) => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(variant, { [nix.POS]: $pos[6], nodejs: null })));
   const callPnpmRust = nix.thunk(() => nix.app(callPackage, nix.path(here, "./generic-rust.nix")));
   const callPnpm = (variant) => (nix.asBool(nix.has(variant, "cargoHash")) ? nix.app(callPnpmRust, variant) : nix.app(callPnpmNode, variant));
   const mkPnpm = (versionSuffix) => (variant) => nix.app(nameValuePair, nix.thunk(() => nix.str`pnpm_${versionSuffix}`), nix.thunk(() => nix.app(callPnpm, variant)));

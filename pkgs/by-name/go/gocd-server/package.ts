@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["sourceProvenance", 24, 5], ["maintainers", 28, 5]], [["gocd-server", 36, 26]], [["tests", 35, 12]], [["pname", 10, 3], ["version", 11, 3], ["rev", 12, 3], ["src", 14, 3], ["meta", 19, 3], ["nativeBuildInputs", 33, 3], ["passthru", 35, 3], ["buildCommand", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["sourceProvenance", 24, 5], ["maintainers", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["gocd-server", 36, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 35, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["rev", 12, 3], ["src", 14, 3], ["meta", 19, 3], ["nativeBuildInputs", 33, 3], ["passthru", 35, 3], ["buildCommand", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
       const version = "23.1.0";
       const rev = "16079";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.go.cd/binaries/${version}-${rev}/generic/go-server-${version}-${rev}.zip`),
           sha256: "sha256-//d6izGm1odE25H/PI5pn51FfUL4/6GbLwKUKAqZ3Kw=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Continuous delivery server specializing in advanced workflow modeling and visualization",
         homepage: "http://www.go.cd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -45,9 +41,9 @@ export default nix.lambda((args) => (() => {
       }));
       const nativeBuildInputs = nix.thunk(() => [unzip]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "gocd-server": nix.thunk(() => nix.attr(nixosTests, "gocd-server")),
         })),
       }));
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
     mkdir -p $out/go-server/conf
   `);
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         rev,

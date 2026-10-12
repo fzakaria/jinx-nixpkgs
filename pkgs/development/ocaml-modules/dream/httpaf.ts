@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/httpaf.nix", [[["description", 20, 5]], [["pname", 9, 3], ["version", 11, 24], ["src", 11, 32], ["buildInputs", 13, 3], ["propagatedBuildInputs", 14, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "dream-pure": false, lwt_ppx: false, "httpun-ws": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/httpaf.nix", [["description", 20, 5]]);
-const pos$2 = nix.positions(here + "/httpaf.nix", [["pname", 9, 3], ["version", 11, 24], ["src", 11, 32], ["buildInputs", 13, 3], ["propagatedBuildInputs", 14, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const lwt_ppx = nix.arg($, "lwt_ppx");
   const httpun_ws = nix.arg($, "httpun-ws");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dream-httpaf",
       version: nix.thunk(() => nix.attr(dream_pure, "version")),
       src: nix.thunk(() => nix.attr(dream_pure, "src")),
       buildInputs: nix.thunk(() => [lwt_ppx]),
       propagatedBuildInputs: nix.thunk(() => [dream_pure, httpun_ws]),
       meta: nix.thunk(() => nix.update(nix.sel(dream_pure, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Shared http/af stack for Dream (server) and Hyper (client)",
       })),
     })));

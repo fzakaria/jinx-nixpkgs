@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 25, 5]], [["name", 76, 5], ["exec", 77, 5], ["comment", 78, 5], ["icon", 79, 5], ["desktopName", 80, 5], ["categories", 81, 5], ["startupNotify", 82, 5], ["startupWMClass", 83, 5], ["keywords", 84, 5]], [["description", 91, 5], ["longDescription", 92, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["mainProgram", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["preFixup", 36, 3], ["installPhase", 55, 3], ["desktopItem", 75, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeDesktopItem: false, openjdk21: false, gtk3: false, glib: false, "adwaita-icon-theme": false, wrapGAppsHook3: false, libxtst: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 76, 5], ["exec", 77, 5], ["comment", 78, 5], ["icon", 79, 5], ["desktopName", 80, 5], ["categories", 81, 5], ["startupNotify", 82, 5], ["startupWMClass", 83, 5], ["keywords", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 91, 5], ["longDescription", 92, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["mainProgram", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["preFixup", 36, 3], ["installPhase", 55, 3], ["desktopItem", 75, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const jre = openjdk21;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "smartsynchronize",
       version: "4.6.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.syntevo.com/downloads/smartsynchronize/smartsynchronize-linux-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.tar.gz`),
           hash: "sha256-F+Yrr029nPnnCvFEhIxgeXloyt2JRKSw8uOmVySWKzo=",
         })))),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\n\nmkdir -pv $out/{bin,share/applications,share/icons/hicolor/scalable/apps/}\ncp -av ./lib $out/\ncp -av bin/smartsynchronize.sh $out/bin/smartsynchronize\n\ncp -av $desktopItem/share/applications/* $out/share/applications/\nfor icon_size in 32 48 64 128 256; do\n    path=$icon_size'x'$icon_size\n    icon=bin/smartsynchronize-$icon_size.png\n    mkdir -p $out/share/icons/hicolor/$path/apps\n    cp $icon $out/share/icons/hicolor/$path/apps/smartsynchronize.png\ndone\n\ncp -av bin/smartsynchronize.svg $out/share/icons/hicolor/scalable/apps/\n\nrunHook postInstall\n",
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "smartsynchronize",
           exec: "smartsynchronize",
           comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
           keywords: nix.thunk(() => ["compare", "file manager"]),
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "File Manager, File/Directory Compare",
         longDescription: "SmartSynchronize is a dual-pane, keyboard-centric, multi-platform file manager.\nIt also is known for its file compare, directory compare and file merge.\nSmartSynchronize is free to use for active Open Source developers and users from academic institutions.\n",
         homepage: "https://www.syntevo.com/smartsynchronize/",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["meta", 30, 7]], [["pname", 36, 7], ["version", 37, 7], ["src", 38, 7], ["pnpm-hash", 39, 7], ["vendor-hash", 40, 7], ["meta", 41, 7], ["libsoup_3", 42, 7]], [["description", 47, 5], ["homepage", 48, 5], ["longDescription", 49, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5], ["platforms", 58, 5]], [["unwrapped", 90, 24], ["service", 90, 34]], [["pname", 63, 5], ["src", 64, 5], ["version", 65, 5], ["meta", 66, 5], ["nativeBuildInputs", 69, 3], ["installPhase", 73, 3], ["passthru", 90, 3]]]);
 const formals$1 = { args: { lib: false, mihomo: false, callPackage: false, fetchFromGitHub: false, "dbip-country-lite": false, stdenv: false, wrapGAppsHook3: false, "v2ray-geoip": false, "v2ray-domain-list-community": false, libsoup_3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["meta", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 36, 7], ["version", 37, 7], ["src", 38, 7], ["pnpm-hash", 39, 7], ["vendor-hash", 40, 7], ["meta", 41, 7], ["libsoup_3", 42, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["longDescription", 49, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5], ["platforms", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["unwrapped", 90, 24], ["service", 90, 34]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 63, 5], ["src", 64, 5], ["version", 65, 5], ["meta", 66, 5], ["nativeBuildInputs", 69, 3], ["installPhase", 73, 3], ["passthru", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const pname = "clash-verge-rev";
   const version = "2.5.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "clash-verge-rev",
       repo: "clash-verge-rev",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,9 +28,9 @@ export default nix.lambda((args) => (() => {
     }))));
   const pnpm_hash = "sha256-AS07hD3QqPJDLLUvNgArtXpH54ek14PmEjevP1WxTHs=";
   const vendor_hash = "sha256-GPqgzOLFPAb8SNgE3vI5Ypx+zJvk+5TgkttRVktxttU=";
-  const service = nix.thunk(() => nix.app(callPackage, nix.path(here, "./service.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, meta: meta }))));
+  const service = nix.thunk(() => nix.app(callPackage, nix.path(here, "./service.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], meta: meta }))));
   const unwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: src,
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
       libsoup_3: libsoup_3,
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     description: "Clash GUI based on tauri",
     homepage: "https://github.com/clash-verge-rev/clash-verge-rev",
     longDescription: "Clash GUI based on tauri\nSetting NixOS option `programs.clash-verge.enable = true` is recommended.\n",
@@ -58,7 +53,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       src: src,
       version: version,
@@ -79,7 +74,7 @@ ln -s ${nix.sel(dbip_country_lite, "mmdb")} $out/lib/Clash\\ Verge/resources/Cou
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, unwrapped: unwrapped, service: service })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], unwrapped: unwrapped, service: service })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

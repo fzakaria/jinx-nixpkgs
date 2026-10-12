@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]], [["updateScript", 86, 12]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["ldflags", 27, 3], ["subPackages", 37, 3], ["postInstall", 41, 3], ["nativeInstallCheckInputs", 83, 3], ["doInstallCheck", 84, 3], ["passthru", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, versionCheckHook: false, lib: false, makeWrapper: false, "xdg-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 86, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["ldflags", 27, 3], ["subPackages", 37, 3], ["postInstall", 41, 3], ["nativeInstallCheckInputs", 83, 3], ["doInstallCheck", 84, 3], ["passthru", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "granted",
       version: "0.39.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fwdcloudsec",
           repo: "granted",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,11 +75,11 @@ substituteInPlace $out/share/assume.fish \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Easiest way to access your cloud",
         homepage: "https://github.com/fwdcloudsec/granted",
         changelog: nix.thunk(() => nix.str`https://github.com/fwdcloudsec/granted/releases/tag/v${nix.sel(finalAttrs, "version")}`),

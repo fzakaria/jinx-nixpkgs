@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["teams", 61, 5], ["platforms", 62, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["preFixup", 50, 3], ["cmakeBuildType", 54, 3], ["separateDebugInfo", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, gcc16Stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, hyprutils: false, "hyprland-qt-support": false, pciutils: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["teams", 61, 5], ["platforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["preFixup", 50, 3], ["cmakeBuildType", 54, 3], ["separateDebugInfo", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "strings"));
   const makeBinPath = nix.thunk(() => nix.attr(from, "makeBinPath"));
   return nix.app(nix.sel(gcc16Stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hyprland-qtutils",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hyprwm",
           repo: "hyprland-qtutils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Fix build with Qt 6.10",
             url: "https://github.com/hyprwm/hyprland-qtutils/commit/5ffdfc13ed03df1dae5084468d935f0a3f2c9a4c.patch",
             hash: "sha256-5nVj4AFJpmazX9o9tQD6mzBW9KtRYov4yRbGpUwFcgc=",
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       cmakeBuildType: "RelWithDebInfo",
       separateDebugInfo: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Hyprland QT/qml utility apps",
         homepage: "https://github.com/hyprwm/hyprland-qtutils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

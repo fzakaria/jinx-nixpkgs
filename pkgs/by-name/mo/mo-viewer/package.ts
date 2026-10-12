@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 34, 36], ["version", 34, 42], ["src", 34, 50], ["sourceRoot", 35, 7], ["pnpm", 36, 7], ["fetcherVersion", 37, 7], ["hash", 38, 7]], [["pname", 28, 5], ["version", 29, 26], ["src", 29, 34], ["pnpmRoot", 31, 5], ["pnpmDeps", 33, 5], ["nativeBuildInputs", 41, 5], ["postPatch", 48, 5], ["buildPhase", 53, 5], ["installPhase", 59, 5]], [["CGO_ENABLED", 72, 7]], [["extraArgs", 98, 5]], [["updateScript", 97, 12]], [["homepage", 105, 5], ["description", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["mainProgram", 109, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["frontend", 27, 3], ["vendorHash", 66, 3], ["preBuild", 68, 3], ["env", 72, 3], ["ldflags", 74, 3], ["nativeBuildInputs", 80, 3], ["postInstall", 82, 3], ["doCheck", 89, 3], ["nativeInstallCheckInputs", 91, 3], ["doInstallCheck", 92, 3], ["versionCheckProgramArg", 93, 3], ["__structuredAttrs", 95, 3], ["passthru", 97, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, buildGoModule: false, fetchFromGitHub: false, fetchPnpmDeps: false, nodejs: false, pnpm_10: false, jq: false, pnpmConfigHook: false, installShellFiles: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 34, 36], ["version", 34, 42], ["src", 34, 50], ["sourceRoot", 35, 7], ["pnpm", 36, 7], ["fetcherVersion", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 5], ["version", 29, 26], ["src", 29, 34], ["pnpmRoot", 31, 5], ["pnpmDeps", 33, 5], ["nativeBuildInputs", 41, 5], ["postPatch", 48, 5], ["buildPhase", 53, 5], ["installPhase", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 72, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 98, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 97, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 105, 5], ["description", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["mainProgram", 109, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["frontend", 27, 3], ["vendorHash", 66, 3], ["preBuild", 68, 3], ["env", 72, 3], ["ldflags", 74, 3], ["nativeBuildInputs", 80, 3], ["postInstall", 82, 3], ["doCheck", 89, 3], ["nativeInstallCheckInputs", 91, 3], ["doInstallCheck", 92, 3], ["versionCheckProgramArg", 93, 3], ["__structuredAttrs", 95, 3], ["passthru", 97, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,24 +20,24 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "mo-viewer",
       version: "1.6.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "k1LoW",
           repo: "mo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-BXGMjybhKZzw+yae478EP2j3cKw/ZbJMrW342W8ZCmY=",
         })))),
       frontend: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalFrontendAttrs) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-frontend`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pnpmRoot: "internal/frontend",
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname: nix.thunk(() => nix.attr(finalFrontendAttrs, "pname")),
               version: nix.thunk(() => nix.attr(finalFrontendAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalFrontendAttrs, "src")),
@@ -61,7 +54,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-v1EfsHryyLfv9/ZzVazSMFySio62upqsB33eLV6LZZU=",
       preBuild: nix.thunk(() => nix.str`cp -r ${nix.sel(finalAttrs, "frontend")} internal/static/dist
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -75,11 +68,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[4], extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/k1LoW/mo",
         description: "Markdown viewer that opens .md files in a browser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

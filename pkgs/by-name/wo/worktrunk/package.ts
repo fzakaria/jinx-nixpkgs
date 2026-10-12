@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["VERGEN_IDEMPOTENT", 31, 7]], [["updateScript", 74, 12]], [["description", 77, 5], ["longDescription", 78, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["platforms", 88, 5], ["mainProgram", 89, 5], ["maintainers", 90, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["cargoBuildFlags", 27, 3], ["env", 31, 3], ["nativeBuildInputs", 33, 3], ["dontInstallAgentSkills", 40, 3], ["postInstall", 42, 3], ["nativeCheckInputs", 54, 3], ["checkFlags", 56, 3], ["doInstallCheck", 71, 3], ["nativeInstallCheckInputs", 72, 3], ["passthru", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, gitMinimal: false, installShellFiles: false, installAgentSkills: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["VERGEN_IDEMPOTENT", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 74, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 77, 5], ["longDescription", 78, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["platforms", 88, 5], ["mainProgram", 89, 5], ["maintainers", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["cargoBuildFlags", 27, 3], ["env", 31, 3], ["nativeBuildInputs", 33, 3], ["dontInstallAgentSkills", 40, 3], ["postInstall", 42, 3], ["nativeCheckInputs", 54, 3], ["checkFlags", 56, 3], ["doInstallCheck", 71, 3], ["nativeInstallCheckInputs", 72, 3], ["passthru", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "worktrunk",
       version: "0.74.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "max-sixty",
           repo: "worktrunk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Py/zcsUHT9IGjRDbTntwTaQ9G60auZKVD9G/16bRFuI=",
       cargoBuildFlags: nix.thunk(() => ["--package=worktrunk"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, VERGEN_IDEMPOTENT: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], VERGEN_IDEMPOTENT: "1" })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, installAgentSkills, writableTmpDirAsHomeHook]),
       dontInstallAgentSkills: true,
       postInstall: nix.thunk(() => nix.add("installSkill skills/worktrunk worktrunk\ninstallSkill skills/wt-switch-create worktrunk\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd wt \\\n  --bash <($out/bin/wt config shell completions bash) \\\n  --fish <($out/bin/wt config shell completions fish) \\\n  --nushell <($out/bin/wt config shell completions nu) \\\n  --zsh <($out/bin/wt config shell completions zsh)\n"))),
@@ -49,11 +45,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Git worktree manager for parallel AI agent workflows",
         longDescription: "worktrunk wraps git worktree with a simpler interface and integrates with\nAI coding tools like Claude Code, Cursor, and Aider.\n",
         homepage: "https://worktrunk.dev/",

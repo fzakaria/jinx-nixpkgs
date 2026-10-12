@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["providedSessions", 95, 5]], [["homepage", 99, 5], ["description", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 28]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["outputs", 49, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 64, 3], ["nativeInstallCheckInputs", 83, 3], ["mesonFlags", 85, 3], ["strictDeps", 90, 3], ["doInstallCheck", 92, 3], ["passthru", 94, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, cairo: false, fetchFromGitHub: false, gettext: false, glib: false, libdrm: false, libinput: false, libpng: false, librsvg: false, libsfdo: false, libxcb: false, libxkbcommon: false, libxml2: false, meson: false, ninja: false, pango: false, "pkg-config": false, scdoc: false, stdenv: false, versionCheckHook: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, wlroots_0_20: false, "libxcb-wm": false, xwayland: false, enableSystemd: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["providedSessions", 95, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 99, 5], ["description", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["outputs", 49, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 64, 3], ["nativeInstallCheckInputs", 83, 3], ["mesonFlags", 85, 3], ["strictDeps", 90, 3], ["doInstallCheck", 92, 3], ["passthru", 94, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const xwayland = nix.arg($, "xwayland");
   const enableSystemd = nix.argOr($, "enableSystemd", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "labwc",
       version: "0.20.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "labwc",
           repo: "labwc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,11 +73,11 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, providedSessions: nix.thunk(() => ["labwc"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], providedSessions: nix.thunk(() => ["labwc"]) })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/labwc/labwc",
         description: "Wayland stacking compositor, inspired by Openbox",
         changelog: "https://github.com/labwc/labwc/blob/master/NEWS.md",

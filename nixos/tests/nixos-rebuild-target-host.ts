@@ -2,68 +2,26 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nixos-rebuild-target-host.nix", [[["pkgsReadOnly", 7, 8]], [["enable", 9, 9]], [["nix", 9, 5]], [["substituters", 21, 11], ["hashed-mirrors", 22, 11], ["connect-timeout", 23, 11]], [["settings", 20, 13]], [["privateKey", 35, 22], ["publicKey", 36, 22]], [["enable", 37, 23]], [["includeBuildDependencies", 26, 16], ["extraDependencies", 28, 16], ["build", 35, 16], ["switch", 37, 16]], [["cores", 31, 11], ["memorySize", 32, 11]], [["autologinUser", 39, 24]], [["getty", 39, 18]], [["imports", 18, 9], ["nix", 20, 9], ["system", 26, 9], ["virtualisation", 30, 9], ["services", 39, 9]], [["enable", 46, 25]], [["enable", 47, 28]], [["openssh", 47, 20]], [["keys", 49, 51]], [["authorizedKeys", 49, 36]], [["openssh", 49, 28]], [["keys", 50, 52]], [["authorizedKeys", 50, 37]], [["openssh", 50, 29], ["extraGroups", 53, 29]], [["keys", 51, 50]], [["authorizedKeys", 51, 35]], [["openssh", 51, 27], ["extraGroups", 54, 27]], [["root", 49, 23], ["alice", 50, 23], ["bob", 51, 23]], [["users", 49, 17]], [["enableRun0Elevation", 59, 38]], [["nixos-rebuild", 59, 24]], [["tools", 59, 18]], [["command", 65, 30]], [["groups", 64, 15], ["commands", 65, 15]], [["command", 71, 19], ["options", 72, 19]], [["users", 68, 15], ["commands", 69, 15]], [["extraRules", 62, 25]], [["sudo", 62, 20]], [["trusted-users", 78, 24]], [["settings", 78, 15]], [["documentation", 46, 11], ["services", 47, 11], ["users", 49, 11], ["system", 59, 11], ["security", 62, 11], ["nix", 78, 11]], [["targetConfig", 88, 23]], [["enable", 90, 27]], [["build", 87, 20], ["switch", 90, 20]], [["hostName", 92, 24]], [["system", 87, 13], ["networking", 92, 13]], [["imports", 82, 9], ["config", 84, 9]], [["deployer", 12, 5], ["target", 42, 5]], [["name", 3, 3], ["node", 7, 3], ["defaults", 8, 3], ["nodes", 11, 3], ["testScript", 98, 3]]]);
 const formals$1 = { args: { hostPkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["pkgsReadOnly", 7, 8]]);
-const pos$2 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["enable", 9, 9]]);
-const pos$3 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["nix", 9, 5]]);
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["substituters", 21, 11], ["hashed-mirrors", 22, 11], ["connect-timeout", 23, 11]]);
-const pos$5 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["settings", 20, 13]]);
-const pos$6 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["privateKey", 35, 22], ["publicKey", 36, 22]]);
-const pos$7 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["enable", 37, 23]]);
-const pos$8 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["includeBuildDependencies", 26, 16], ["extraDependencies", 28, 16], ["build", 35, 16], ["switch", 37, 16]]);
-const pos$9 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["cores", 31, 11], ["memorySize", 32, 11]]);
-const pos$10 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["autologinUser", 39, 24]]);
-const pos$11 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["getty", 39, 18]]);
-const pos$12 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["imports", 18, 9], ["nix", 20, 9], ["system", 26, 9], ["virtualisation", 30, 9], ["services", 39, 9]]);
 const formals$3 = { args: { nodes: false, lib: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["enable", 46, 25]]);
-const pos$14 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["enable", 47, 28]]);
-const pos$15 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["openssh", 47, 20]]);
-const pos$16 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["keys", 49, 51]]);
-const pos$17 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["authorizedKeys", 49, 36]]);
-const pos$18 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["openssh", 49, 28]]);
-const pos$19 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["keys", 50, 52]]);
-const pos$20 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["authorizedKeys", 50, 37]]);
-const pos$21 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["openssh", 50, 29], ["extraGroups", 53, 29]]);
-const pos$22 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["keys", 51, 50]]);
-const pos$23 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["authorizedKeys", 51, 35]]);
-const pos$24 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["openssh", 51, 27], ["extraGroups", 54, 27]]);
-const pos$25 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["root", 49, 23], ["alice", 50, 23], ["bob", 51, 23]]);
-const pos$26 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["users", 49, 17]]);
-const pos$27 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["enableRun0Elevation", 59, 38]]);
-const pos$28 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["nixos-rebuild", 59, 24]]);
-const pos$29 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["tools", 59, 18]]);
-const pos$30 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["command", 65, 30]]);
-const pos$31 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["groups", 64, 15], ["commands", 65, 15]]);
-const pos$32 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["command", 71, 19], ["options", 72, 19]]);
-const pos$33 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["users", 68, 15], ["commands", 69, 15]]);
-const pos$34 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["extraRules", 62, 25]]);
-const pos$35 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["sudo", 62, 20]]);
-const pos$36 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["trusted-users", 78, 24]]);
-const pos$37 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["settings", 78, 15]]);
-const pos$38 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["documentation", 46, 11], ["services", 47, 11], ["users", 49, 11], ["system", 59, 11], ["security", 62, 11], ["nix", 78, 11]]);
-const pos$39 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["targetConfig", 88, 23]]);
-const pos$40 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["enable", 90, 27]]);
-const pos$41 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["build", 87, 20], ["switch", 90, 20]]);
-const pos$42 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["hostName", 92, 24]]);
-const pos$43 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["system", 87, 13], ["networking", 92, 13]]);
-const pos$44 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["imports", 82, 9], ["config", 84, 9]]);
-const pos$45 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["deployer", 12, 5], ["target", 42, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$46 = nix.positions(here + "/nixos-rebuild-target-host.nix", [["name", 3, 3], ["node", 7, 3], ["defaults", 8, 3], ["nodes", 11, 3], ["testScript", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const hostPkgs = nix.arg($, "hostPkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$46,
+    [nix.POS]: $pos[45],
     name: "nixos-rebuild-target-host",
-    node: nix.thunk(() => ({ [nix.POS]: pos$1, pkgsReadOnly: false })),
-    defaults: nix.thunk(() => ({ [nix.POS]: pos$3, nix: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })) })),
+    node: nix.thunk(() => ({ [nix.POS]: $pos[0], pkgsReadOnly: false })),
+    defaults: nix.thunk(() => ({
+      [nix.POS]: $pos[2],
+      nix: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+    })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$45,
+      [nix.POS]: $pos[44],
       deployer: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
@@ -72,33 +30,33 @@ export default nix.lambda((args) => (() => {
         const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
         const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/installation-device.nix")]),
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               substituters: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), [])),
               "hashed-mirrors": null,
               "connect-timeout": 1n,
             })),
           })),
           system: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             includeBuildDependencies: true,
             extraDependencies: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "polkit-stdin-agent"))]),
             build: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               privateKey: snakeOilPrivateKey,
               publicKey: snakeOilPublicKey,
             })),
-            switch: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            switch: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$9, cores: 2n, memorySize: 3072n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[8], cores: 2n, memorySize: 3072n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             getty: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               autologinUser: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "root")),
             })),
           })),
@@ -109,43 +67,43 @@ export default nix.lambda((args) => (() => {
         const nodes = nix.arg($_1, "nodes");
         const lib_1 = nix.arg($_1, "lib");
         const targetConfig = nix.thunk(() => ({
-          [nix.POS]: pos$38,
-          documentation: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
+          [nix.POS]: $pos[37],
+          documentation: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: false })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$15,
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
+            [nix.POS]: $pos[14],
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: true })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               root: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   authorizedKeys: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     keys: nix.thunk(() => [nix.thunk(() => nix.sel(nodes, "deployer", "system", "build", "publicKey"))]),
                   })),
                 })),
               })),
               alice: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   authorizedKeys: nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     keys: nix.thunk(() => [nix.thunk(() => nix.sel(nodes, "deployer", "system", "build", "publicKey"))]),
                   })),
                 })),
                 extraGroups: nix.thunk(() => ["wheel"]),
               })),
               bob: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   authorizedKeys: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
+                    [nix.POS]: $pos[21],
                     keys: nix.thunk(() => [nix.thunk(() => nix.sel(nodes, "deployer", "system", "build", "publicKey"))]),
                   })),
                 })),
@@ -154,50 +112,50 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           system: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             tools: nix.thunk(() => ({
-              [nix.POS]: pos$28,
-              "nixos-rebuild": nix.thunk(() => ({ [nix.POS]: pos$27, enableRun0Elevation: true })),
+              [nix.POS]: $pos[27],
+              "nixos-rebuild": nix.thunk(() => ({ [nix.POS]: $pos[26], enableRun0Elevation: true })),
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             sudo: nix.thunk(() => ({
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               extraRules: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$31,
+                    [nix.POS]: $pos[30],
                     groups: nix.thunk(() => ["wheel"]),
-                    commands: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$30, command: "ALL" }))]),
+                    commands: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[29], command: "ALL" }))]),
                   })),
                   nix.thunk(() => ({
-                    [nix.POS]: pos$33,
+                    [nix.POS]: $pos[32],
                     users: nix.thunk(() => ["alice"]),
                     commands: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$32, command: "ALL", options: nix.thunk(() => ["NOPASSWD"]) })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[31], command: "ALL", options: nix.thunk(() => ["NOPASSWD"]) })),
                     ]),
                   })),
                 ]))),
             })),
           })),
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$37,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$36, "trusted-users": nix.thunk(() => ["@wheel"]) })),
+            [nix.POS]: $pos[36],
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[35], "trusted-users": nix.thunk(() => ["@wheel"]) })),
           })),
         }));
         return {
-          [nix.POS]: pos$44,
+          [nix.POS]: $pos[43],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           config: nix.thunk(() => nix.app(nix.sel(lib_1, "mkMerge"), nix.thunk(() => [
               targetConfig,
               nix.thunk(() => ({
-                [nix.POS]: pos$43,
+                [nix.POS]: $pos[42],
                 system: nix.thunk(() => ({
-                  [nix.POS]: pos$41,
-                  build: nix.thunk(() => ({ [nix.POS]: pos$39, targetConfig: targetConfig })),
-                  switch: nix.thunk(() => ({ [nix.POS]: pos$40, enable: true })),
+                  [nix.POS]: $pos[40],
+                  build: nix.thunk(() => ({ [nix.POS]: $pos[38], targetConfig: targetConfig })),
+                  switch: nix.thunk(() => ({ [nix.POS]: $pos[39], enable: true })),
                 })),
-                networking: nix.thunk(() => ({ [nix.POS]: pos$42, hostName: "target" })),
+                networking: nix.thunk(() => ({ [nix.POS]: $pos[41], hostName: "target" })),
               })),
             ]))),
         };

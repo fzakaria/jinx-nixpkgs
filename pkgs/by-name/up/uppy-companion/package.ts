@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 26, 11], ["substitutions", 27, 11]], [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["postFetch", 22, 5]], [["src", 50, 26], ["missingHashes", 50, 30], ["hash", 51, 5]], [["broken", 89, 5], ["changelog", 90, 5], ["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["mainProgram", 94, 5], ["maintainers", 95, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["missingHashes", 47, 3], ["offlineCache", 49, 3], ["buildPhase", 54, 3], ["installPhase", 63, 3], ["updateScript", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, nodejs: false, fetchFromGitHub: false, substitute: false, "yarn-berry_4": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 26, 11], ["substitutions", 27, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["postFetch", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 50, 26], ["missingHashes", 50, 30], ["hash", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 89, 5], ["changelog", 90, 5], ["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["mainProgram", 94, 5], ["maintainers", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["missingHashes", 47, 3], ["offlineCache", 49, 3], ["buildPhase", 54, 3], ["installPhase", 63, 3], ["updateScript", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const substitute = nix.arg($, "substitute");
   const yarn_berry_4 = nix.arg($, "yarn-berry_4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "uppy-companion",
       version: "6.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "transloadit",
           repo: "uppy",
           tag: nix.thunk(() => nix.str`@uppy/companion@${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4Xbw4d0SaLPk4mmvG9QWkUuVX/SM1SmGtuaK85rLihU=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -47,7 +43,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       buildInputs: nix.thunk(() => [nodejs]),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-MQTaNbeJuvWDtRajJQYRtuxiMrLGKtlasyB6sKeOIgs=",
@@ -56,7 +52,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       installPhase: "runHook preInstall\n\nexport yarnTmpDir=$(mktemp -d)\nexport yarnPack=$yarnTmpDir/yarn-pack.tgz\n\nmkdir -p $out/lib/node_modules/@uppy/companion $out/bin\n\npushd packages/@uppy/companion\n\nyarn pack -o $yarnPack\ntar xvf $yarnPack -C $out/lib/node_modules/@uppy/companion --strip-components 1 package/\n\nrm -rf node_modules\nyarn workspaces focus --production\nfind node_modules -maxdepth 1 -type d -empty -delete\ncp -r node_modules $out/lib/node_modules/@uppy/companion/node_modules\npopd\n\nln -s $out/lib/node_modules/@uppy/companion/bin/companion $out/bin/companion\nrunHook postInstall\n",
       updateScript: nix.path(here, "./update.sh"),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         changelog: nix.thunk(() => nix.str`https://github.com/transloadit/uppy/releases/tag/%40uppy%2Fcompanion%40${nix.sel(finalAttrs, "version")}`),
         description: "Server integration for Uppy file uploader",

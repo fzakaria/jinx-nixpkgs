@@ -2,79 +2,60 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/endlessh-go.nix", [[["maintainers", 4, 8]], [["enable", 12, 22]], [["enable", 11, 11], ["prometheus", 12, 11], ["openFirewall", 13, 11]], [["endlessh-go", 10, 18]], [["port", 20, 26]], [["port", 19, 15], ["prometheus", 20, 15]], [["endlessh-go", 18, 22]], [["services", 18, 13]], [["configuration", 17, 24]], [["port", 27, 26]], [["port", 26, 15], ["prometheus", 27, 15]], [["endlessh-go", 25, 22]], [["services", 25, 13]], [["configuration", 24, 22]], [["unprivileged", 17, 11], ["privileged", 24, 11]], [["services", 10, 9], ["specialisation", 16, 9]], [["systemPackages", 36, 21]], [["environment", 36, 9]], [["server", 7, 5], ["client", 33, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 43, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/endlessh-go.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/endlessh-go.nix", [["enable", 12, 22]]);
-const pos$3 = nix.positions(here + "/endlessh-go.nix", [["enable", 11, 11], ["prometheus", 12, 11], ["openFirewall", 13, 11]]);
-const pos$4 = nix.positions(here + "/endlessh-go.nix", [["endlessh-go", 10, 18]]);
-const pos$5 = nix.positions(here + "/endlessh-go.nix", [["port", 20, 26]]);
-const pos$6 = nix.positions(here + "/endlessh-go.nix", [["port", 19, 15], ["prometheus", 20, 15]]);
-const pos$7 = nix.positions(here + "/endlessh-go.nix", [["endlessh-go", 18, 22]]);
-const pos$8 = nix.positions(here + "/endlessh-go.nix", [["services", 18, 13]]);
-const pos$9 = nix.positions(here + "/endlessh-go.nix", [["configuration", 17, 24]]);
-const pos$10 = nix.positions(here + "/endlessh-go.nix", [["port", 27, 26]]);
-const pos$11 = nix.positions(here + "/endlessh-go.nix", [["port", 26, 15], ["prometheus", 27, 15]]);
-const pos$12 = nix.positions(here + "/endlessh-go.nix", [["endlessh-go", 25, 22]]);
-const pos$13 = nix.positions(here + "/endlessh-go.nix", [["services", 25, 13]]);
-const pos$14 = nix.positions(here + "/endlessh-go.nix", [["configuration", 24, 22]]);
-const pos$15 = nix.positions(here + "/endlessh-go.nix", [["unprivileged", 17, 11], ["privileged", 24, 11]]);
-const pos$16 = nix.positions(here + "/endlessh-go.nix", [["services", 10, 9], ["specialisation", 16, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$17 = nix.positions(here + "/endlessh-go.nix", [["systemPackages", 36, 21]]);
-const pos$18 = nix.positions(here + "/endlessh-go.nix", [["environment", 36, 9]]);
-const pos$19 = nix.positions(here + "/endlessh-go.nix", [["server", 7, 5], ["client", 33, 5]]);
-const pos$20 = nix.positions(here + "/endlessh-go.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "endlessh-go",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "endlessh-go": nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
-              prometheus: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+              prometheus: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
               openFirewall: true,
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             unprivileged: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   "endlessh-go": nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     port: 2222n,
-                    prometheus: nix.thunk(() => ({ [nix.POS]: pos$5, port: 9229n })),
+                    prometheus: nix.thunk(() => ({ [nix.POS]: $pos[4], port: 9229n })),
                   })),
                 })),
               })),
             })),
             privileged: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   "endlessh-go": nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     port: 22n,
-                    prometheus: nix.thunk(() => ({ [nix.POS]: pos$10, port: 92n })),
+                    prometheus: nix.thunk(() => ({ [nix.POS]: $pos[9], port: 92n })),
                   })),
                 })),
               })),
@@ -86,9 +67,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [

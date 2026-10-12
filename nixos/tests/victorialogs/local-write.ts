@@ -2,57 +2,47 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/local-write.nix", [[["maintainers", 4, 8]], [["enable", 9, 29]], [["URL", 14, 18]], [["Upload", 14, 11]], [["enable", 12, 9], ["settings", 13, 9]], [["upload", 11, 25]], [["victorialogs", 9, 16], ["journald", 11, 16]], [["systemPackages", 17, 19]], [["services", 9, 7], ["environment", 17, 7]], [["machine", 6, 14]], [["name", 3, 3], ["meta", 4, 3], ["containers", 6, 3], ["testScript", 20, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/local-write.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/local-write.nix", [["enable", 9, 29]]);
-const pos$3 = nix.positions(here + "/local-write.nix", [["URL", 14, 18]]);
-const pos$4 = nix.positions(here + "/local-write.nix", [["Upload", 14, 11]]);
-const pos$5 = nix.positions(here + "/local-write.nix", [["enable", 12, 9], ["settings", 13, 9]]);
-const pos$6 = nix.positions(here + "/local-write.nix", [["upload", 11, 25]]);
-const pos$7 = nix.positions(here + "/local-write.nix", [["victorialogs", 9, 16], ["journald", 11, 16]]);
-const pos$8 = nix.positions(here + "/local-write.nix", [["systemPackages", 17, 19]]);
-const pos$9 = nix.positions(here + "/local-write.nix", [["services", 9, 7], ["environment", 17, 7]]);
-const pos$10 = nix.positions(here + "/local-write.nix", [["machine", 6, 14]]);
-const pos$11 = nix.positions(here + "/local-write.nix", [["name", 3, 3], ["meta", 4, 3], ["containers", 6, 3], ["testScript", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "victorialogs-local-write",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "marie"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            victorialogs: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[6],
+            victorialogs: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             journald: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               upload: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 enable: true,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
-                  Upload: nix.thunk(() => ({ [nix.POS]: pos$3, URL: "http://localhost:9428/insert/journald" })),
+                  [nix.POS]: $pos[3],
+                  Upload: nix.thunk(() => ({ [nix.POS]: $pos[2], URL: "http://localhost:9428/insert/journald" })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),
         };

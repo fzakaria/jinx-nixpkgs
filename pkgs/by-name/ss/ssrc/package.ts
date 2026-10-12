@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 24, 5], ["longDescription", 25, 5], ["version", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["platforms", 42, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["longDescription", 25, 5], ["version", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["platforms", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ssrc",
       version: "1.33",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "shibatch",
           repo: "SSRC",
           rev: "4adf75116dfc0ef709fef74a0e2f3360bd15007f",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir -p $out/bin\ncp ssrc ssrc_hp $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High quality audio sampling rate converter",
         longDescription: "This program converts sampling rates of PCM wav files. This\nprogram also has a function to apply dither to its output and\nextend perceived dynamic range.\n\nSampling rates of 44.1kHz and 48kHz are popularly used, but the\nratio between these two frequencies is 147:160, which are not\nsmall numbers. As a result, sampling rate conversion without\ndegradation of sound quality requires filter with very large\norder, and it is difficult to have both quality and speed. This\nprogram quickly converts between these sampling frequencies\nwithout audible degradation.\n",
         version: nix.thunk(() => nix.sel(finalAttrs, "version")),

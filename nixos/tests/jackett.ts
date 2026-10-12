@@ -2,33 +2,28 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jackett.nix", [[["maintainers", 8, 8]], [["enable", 13, 24], ["port", 14, 24]], [["jackett", 13, 16]], [["services", 13, 7]], [["machine", 10, 9]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 17, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/jackett.nix", [["maintainers", 8, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/jackett.nix", [["enable", 13, 24], ["port", 14, 24]]);
-const pos$3 = nix.positions(here + "/jackett.nix", [["jackett", 13, 16]]);
-const pos$4 = nix.positions(here + "/jackett.nix", [["services", 13, 7]]);
-const pos$5 = nix.positions(here + "/jackett.nix", [["machine", 10, 9]]);
-const pos$6 = nix.positions(here + "/jackett.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const jackettPort = 9117n;
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "jackett",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            jackett: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, port: jackettPort })),
+            [nix.POS]: $pos[2],
+            jackett: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, port: jackettPort })),
           })),
         };
       })(), formals$2),

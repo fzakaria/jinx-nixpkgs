@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["homepage", 76, 5], ["description", 77, 5], ["longDescription", 78, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["cmakeFlags", 57, 3], ["runtimeInputs", 63, 3], ["qtWrapperArgs", 71, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { botan3: false, fetchFromGitLab: false, cmake: false, "pkg-config": false, hwdata: false, lib: false, libdrm: false, kdePackages: false, "mesa-demos": false, polkit: false, procps: false, pugixml: false, spdlog: false, stdenv: false, "util-linux": false, "vulkan-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["description", 77, 5], ["longDescription", 78, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["cmakeFlags", 57, 3], ["runtimeInputs", 63, 3], ["qtWrapperArgs", 71, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const vulkan_tools = nix.arg($, "vulkan-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "corectrl",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "corectrl",
           repo: "corectrl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +68,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "runtimeInputs")))}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.com/corectrl/corectrl/",
         description: "Control your computer hardware via application profiles",
         longDescription: "CoreCtrl is a Free and Open Source GNU/Linux application that allows you\nto control with ease your computer hardware using application profiles. It\naims to be flexible, comfortable and accessible to regular users.\n",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["LEX", 39, 7]], [["description", 80, 5], ["longDescription", 81, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 95, 5], ["maintainers", 96, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 29, 3], ["configureFlags", 35, 3], ["env", 39, 3], ["postInstall", 41, 3], ["doInstallCheck", 52, 3], ["installCheckPhase", 54, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 69, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, makeWrapper: false, fetchFromGitLab: false, perl: false, flex: false, gnused: false, coreutils: false, which: false, opensp: false, groff: false, texliveMedium: false, texinfo: false, withLatex: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LEX", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 80, 5], ["longDescription", 81, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 95, 5], ["maintainers", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 29, 3], ["configureFlags", 35, 3], ["env", 39, 3], ["postInstall", 41, 3], ["doInstallCheck", 52, 3], ["installCheckPhase", 54, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 69, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const withLatex = nix.argOr($, "withLatex", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "linuxdoc-tools",
       version: "0.9.86",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "agmartin",
           repo: "linuxdoc-tools",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [
         nix.thunk(() => nix.add("--enable-docs=txt info lyx html rtf", nix.app(nix.sel(lib, "optionalString"), withLatex, " pdf"))),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LEX: "flex" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LEX: "flex" })),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/linuxdoc \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [groff, opensp]))}:$out/bin" \\
   --prefix PERL5LIB : "$out/share/linuxdoc-tools/"
@@ -55,7 +52,7 @@ popd
       nativeBuildInputs: nix.thunk(() => [flex, which, makeWrapper]),
       buildInputs: nix.thunk(() => nix.concat([opensp, groff, texinfo, perl, gnused, coreutils], nix.app(nix.sel(lib, "optionals"), withLatex, nix.thunk(() => [texliveMedium])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Toolset for processing LinuxDoc DTD SGML files",
         longDescription: "A collection of text formatters which understands a LinuxDoc DTD SGML\nsource file. Each formatter (or \"back-end\") renders the source file into\na variety of output formats, including HTML, TeX, DVI, PostScript, plain\ntext, and groff source in manual-page format. The linuxdoc suite is\nprovided for backward compatibility, because there are still many useful\ndocuments written in LinuxDoc DTD sgml source.\n",
         homepage: "https://gitlab.com/agmartin/linuxdoc-tools",

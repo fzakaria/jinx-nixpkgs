@@ -2,18 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/gemset.nix", [["remotes", 4, 7], ["sha256", 5, 7], ["type", 6, 7]]);
-const pos$2 = nix.positions(here + "/gemset.nix", [["source", 3, 5], ["version", 8, 5]]);
-const pos$3 = nix.positions(here + "/gemset.nix", [["remotes", 12, 7], ["sha256", 13, 7], ["type", 14, 7]]);
-const pos$4 = nix.positions(here + "/gemset.nix", [["source", 11, 5], ["version", 16, 5]]);
-const pos$5 = nix.positions(here + "/gemset.nix", [["json", 2, 3], ["watson-ruby", 10, 3]]);
+const $pos = nix.positions(here + "/gemset.nix", [[["remotes", 4, 7], ["sha256", 5, 7], ["type", 6, 7]], [["source", 3, 5], ["version", 8, 5]], [["remotes", 12, 7], ["sha256", 13, 7], ["type", 14, 7]], [["source", 11, 5], ["version", 16, 5]], [["json", 2, 3], ["watson-ruby", 10, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$5,
+  [nix.POS]: $pos[4],
   json: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "01v6jjpvh3gnq6sgllpfqahlgxzj50ailwhj9b3cd20hi2dx0vxp",
       type: "gem",
@@ -21,9 +17,9 @@ export default nix.thunk(() => ({
     version: "2.1.0",
   })),
   "watson-ruby": nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1d5m29nr0i030q8ygmbapwri5ndcg2q6lf8a15bk79lfcp9xyj9w",
       type: "gem",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 5], ["version", 23, 26], ["hash", 24, 5]], [["pandas", 39, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["pythonRelaxDeps", 36, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 50, 3], ["pythonImportsCheck", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "google-api-core": false, "google-cloud-testutils": false, mock: false, pandas: false, "proto-plus": false, protobuf: false, "pytest-asyncio": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 5], ["version", 23, 26], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pandas", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["pythonRelaxDeps", 36, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 50, 3], ["pythonImportsCheck", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "google-cloud-monitoring",
       version: "2.31.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "google_cloud_monitoring",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-tMnTUoyGQ9TrS51ojLs8WRS8X2mzFP98XhtHvcBzqa4=",
@@ -36,12 +33,12 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => nix.concat([google_api_core, proto_plus, protobuf], nix.sel(google_api_core, "optional-dependencies", "grpc"))),
       pythonRelaxDeps: nix.thunk(() => ["protobuf"]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, pandas: nix.thunk(() => [pandas]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], pandas: nix.thunk(() => [pandas]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([google_cloud_testutils, mock, pytestCheckHook, pytest_asyncio], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       disabledTests: nix.thunk(() => ["test_list_monitored_resource_descriptors", "test_list_alert_policies"]),
       pythonImportsCheck: nix.thunk(() => ["google.cloud.monitoring", "google.cloud.monitoring_v3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Stackdriver Monitoring API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-monitoring",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/tree/google-cloud-monitoring-v${nix.sel(finalAttrs, "version")}/packages/google-cloud-monitoring`),

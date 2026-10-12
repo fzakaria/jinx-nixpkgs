@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["NIX_CFLAGS_COMPILE", 32, 7]], [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["maintainers", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["mainProgram", 45, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 26, 3], ["doInstallCheck", 30, 3], ["env", 32, 3], ["postInstall", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libcap: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["maintainers", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["mainProgram", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 26, 3], ["doInstallCheck", 30, 3], ["env", 32, 3], ["postInstall", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libcap = nix.arg($, "libcap");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cpu-energy-meter",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sosy-lab",
           repo: "cpu-energy-meter",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,10 +27,10 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libcap]),
       nativeBuildInputs: nix.thunk(() => [udevCheckHook]),
       doInstallCheck: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fcommon" })),
       postInstall: "install -Dm444 -t $out/etc/udev/rules.d $src/debian/additional_files/59-msr.rules\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool for measuring energy consumption of Intel CPUs",
         homepage: "https://github.com/sosy-lab/cpu-energy-meter",
         changelog: "https://github.com/sosy-lab/cpu-energy-meter/blob/main/CHANGELOG.md",

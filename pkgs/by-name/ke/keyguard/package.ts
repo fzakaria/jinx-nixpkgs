@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["pname", 47, 26], ["data", 48, 5], ["silent", 49, 5], ["useBwrap", 50, 5]], [["JAVA_HOME", 53, 7]], [["name", 81, 7], ["exec", 82, 7], ["icon", 83, 7], ["desktopName", 84, 7]], [["updateScript", 97, 12]], [["description", 100, 5], ["homepage", 101, 5], ["mainProgram", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["sourceProvenance", 105, 5], ["platforms", 109, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["gradleBuildTask", 40, 3], ["gradleUpdateTask", 42, 3], ["gradleInitScript", 44, 3], ["mitmCache", 46, 3], ["env", 53, 3], ["gradleFlags", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 64, 3], ["doCheck", 77, 3], ["desktopItems", 79, 3], ["installPhase", 88, 3], ["passthru", 97, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gradle_9: false, jdk21: false, fontconfig: false, libxinerama: false, libxrandr: false, file: false, gtk3: false, glib: false, cups: false, lcms2: false, "alsa-lib": false, makeDesktopItem: false, copyDesktopItems: false, libglvnd: false, autoPatchelfHook: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 47, 26], ["data", 48, 5], ["silent", 49, 5], ["useBwrap", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["JAVA_HOME", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 81, 7], ["exec", 82, 7], ["icon", 83, 7], ["desktopName", 84, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 97, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["mainProgram", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["sourceProvenance", 105, 5], ["platforms", 109, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["gradleBuildTask", 40, 3], ["gradleUpdateTask", 42, 3], ["gradleInitScript", 44, 3], ["mitmCache", 46, 3], ["env", 53, 3], ["gradleFlags", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 64, 3], ["doCheck", 77, 3], ["desktopItems", 79, 3], ["installPhase", 88, 3], ["passthru", 97, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const writeText = nix.arg($, "writeText");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "keyguard",
       version: "2.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AChep",
           repo: "keyguard-app",
           tag: "r20260201",
@@ -48,13 +42,13 @@ export default nix.lambda((args) => (() => {
       gradleUpdateTask: nix.thunk(() => nix.sel(finalAttrs, "gradleBuildTask")),
       gradleInitScript: nix.thunk(() => nix.app(writeText, "empty-init-script.gradle", "")),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle_9, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
           silent: false,
           useBwrap: false,
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, JAVA_HOME: jdk21 })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], JAVA_HOME: jdk21 })),
       gradleFlags: nix.thunk(() => [nix.thunk(() => nix.str`-Dorg.gradle.java.home=${jdk21}`)]),
       nativeBuildInputs: nix.thunk(() => [gradle_9, jdk21, copyDesktopItems, autoPatchelfHook]),
       buildInputs: nix.thunk(() => [
@@ -72,7 +66,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "keyguard",
             exec: "Keyguard",
             icon: "keyguard",
@@ -80,9 +74,9 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       installPhase: "runHook preInstall\n\ncp --recursive desktopApp/build/compose/binaries/main-release/app/Keyguard $out\ninstall -D --mode=0644 $out/lib/Keyguard.png $out/share/icons/hicolor/512x512/apps/keyguard.png\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Alternative client for the Bitwarden platform, created to provide the best user experience possible",
         homepage: "https://github.com/AChep/keyguard-app",
         mainProgram: "Keyguard",

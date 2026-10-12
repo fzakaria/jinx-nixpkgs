@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["url", 35, 7], ["hash", 36, 7]], [["url", 39, 7], ["hash", 40, 7]], [["url", 44, 7], ["hash", 45, 7]], [["homepage", 64, 5], ["description", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["build-system", 49, 3], ["dependencies", 51, 3], ["pythonImportsCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, black: false, fetchpatch: false, setuptools: false, "python-lsp-server": false, pytestCheckHook: false, setuptools_80: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 64, 5], ["description", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["build-system", 49, 3], ["dependencies", 51, 3], ["pythonImportsCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-lsp",
           repo: "python-lsp-black",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,17 +29,17 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/python-lsp/python-lsp-black/commit/d43b41431379f9c9bb05fab158c4d97e6d515f8f.patch",
             hash: "sha256-38bYU27+xtA8Kq3appXTkNnkG5/XgrUJ2nQ5+yuSU2U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/python-lsp/python-lsp-black/commit/9298585a9d14d25920c33b188d79e820dc98d4a9.patch",
             hash: "sha256-4u0VIS7eidVEiKRW2wc8lJVkJwhzJD/M+uuqmTtiZ7E=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/python-lsp/python-lsp-black/commit/35b5bc6f944bddac0c896127dc44a9404e95f482.patch",
             hash: "sha256-FRxM8leFVkPjRiR3wNjy5g5BazHc6ZvtnoI8Qgz4co4=",
           })))),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pylsp_black"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, setuptools_80]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/python-lsp/python-lsp-black",
         description: "Black plugin for the Python LSP Server",
         changelog: nix.thunk(() => nix.str`https://github.com/python-lsp/python-lsp-black/releases/tag/v${version}`),
@@ -65,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

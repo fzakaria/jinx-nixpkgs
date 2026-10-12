@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["mainProgram", 20, 5], ["maintainers", 21, 5]], [["pname", 8, 3], ["version", 9, 3], ["dotnet-sdk", 11, 3], ["dotnet-runtime", 12, 3], ["nugetHash", 14, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetGlobalTool: false, dotnetCorePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["mainProgram", 20, 5], ["maintainers", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["dotnet-sdk", 11, 3], ["dotnet-runtime", 12, 3], ["nugetHash", 14, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const buildDotnetGlobalTool = nix.arg($, "buildDotnetGlobalTool");
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   return nix.app(buildDotnetGlobalTool, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "docfx",
       version: "2.81.0",
       "dotnet-sdk": nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0")),
       "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_8_0")),
       nugetHash: "sha256-9AQN5UUVVgchNLx8wqXB0GKZGi3sqf0hEaXISGCtPD4=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Build your technical documentation site with docfx, with landing pages, markdown, API reference docs for .NET, REST API and more",
         homepage: "https://github.com/dotnet/docfx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

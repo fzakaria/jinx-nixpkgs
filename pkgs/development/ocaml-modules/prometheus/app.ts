@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/app.nix", [[["description", 45, 5]], [["pname", 18, 3], ["version", 20, 5], ["src", 21, 5], ["propagatedBuildInputs", 24, 3], ["doCheck", 37, 3], ["checkInputs", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, prometheus: false, asetmap: false, astring: false, "cohttp-lwt": false, "cohttp-lwt-unix": false, cmdliner: false, fmt: false, logs: false, lwt: false, re: false, alcotest: false, "alcotest-lwt": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/app.nix", [["description", 45, 5]]);
-const pos$2 = nix.positions(here + "/app.nix", [["pname", 18, 3], ["version", 20, 5], ["src", 21, 5], ["propagatedBuildInputs", 24, 3], ["doCheck", 37, 3], ["checkInputs", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const alcotest_lwt = nix.arg($, "alcotest-lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "prometheus-app",
       version: nix.thunk(() => nix.attr(prometheus, "version")),
       src: nix.thunk(() => nix.attr(prometheus, "src")),
@@ -40,7 +39,10 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, alcotest_lwt]),
-      meta: nix.thunk(() => nix.update(nix.sel(prometheus, "meta"), { [nix.POS]: pos$1, description: "A web-server reporting prometheus metrics." })),
+      meta: nix.thunk(() => nix.update(nix.sel(prometheus, "meta"), {
+        [nix.POS]: $pos[0],
+        description: "A web-server reporting prometheus metrics.",
+      })),
     })));
 })(), formals$1);
 //# sourceMappingURL=app.ts.map

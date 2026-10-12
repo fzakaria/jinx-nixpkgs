@@ -2,16 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 251, 7], ["hash", 252, 7]], [["url", 257, 7], ["hash", 258, 7]], [["NIX_CFLAGS_COMPILE", 330, 7]], [["fix_qt_builtin_paths", 371, 13], ["fix_qt_module_paths", 372, 13], ["qtPluginPrefix", 373, 13], ["qtQmlPrefix", 374, 13]], [["license", 377, 14]], [["name", 368, 9], ["substitutions", 369, 9], ["meta", 377, 9]], [["qtPluginPrefix", 383, 13], ["qtQmlPrefix", 383, 28]], [["homepage", 387, 5], ["description", 388, 5], ["license", 389, 5], ["maintainers", 395, 5], ["platforms", 399, 5]], [["pname", 102, 3], ["src", 104, 11], ["version", 104, 15], ["propagatedBuildInputs", 106, 3], ["buildInputs", 179, 3], ["nativeBuildInputs", 189, 3], ["propagatedNativeBuildInputs", 202, 3], ["strictDeps", 216, 3], ["enableParallelBuilding", 218, 3], ["patches", 220, 3], ["postPatch", 262, 3], ["preHook", 290, 3], ["cmakeFlags", 295, 3], ["env", 330, 3], ["outputs", 332, 3], ["separateDebugInfo", 336, 3], ["moveToDev", 338, 3], ["postFixup", 340, 3], ["dontWrapQtApps", 363, 3], ["setupHook", 365, 3], ["passthru", 382, 3], ["meta", 386, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, src: false, version: false, bison: false, flex: false, gperf: false, lndir: false, perl: false, "pkg-config": false, copyPathToStore: false, makeSetupHook: false, which: false, cmake: false, ninja: false, libproxy: false, "libxcb-cursor": false, libxtst: false, libxdmcp: false, zstd: false, "double-conversion": false, "util-linux": false, systemd: false, systemdSupport: true, libb2: false, md4c: false, mtdev: false, "lksctp-tools": false, libselinux: false, libsepol: false, "vulkan-headers": false, "vulkan-loader": false, libthai: false, libdrm: false, libgbm: false, libdatrie: false, "lttng-ust": false, libepoxy: false, dbus: false, fontconfig: false, freetype: false, glib: false, harfbuzz: false, icu: false, libx11: false, libxcomposite: false, libxext: false, libxi: false, libxrender: false, libjpeg: false, libpng: false, libxcb: false, libxkbcommon: false, libxml2: false, libxslt: false, openssl: false, pcre2: false, sqlite: false, udev: false, "libxcb-util": false, "libxcb-image": false, "libxcb-keysyms": false, "libxcb-render-util": false, "libxcb-wm": false, zlib: false, "at-spi2-core": false, unixodbc: false, unixodbcDrivers: false, libGL: false, moltenvk: false, moveBuildTree: false, darwinVersionInputs: false, xcbuild: false, pkgsBuildBuild: false, cups: false, libmysqlclient: false, libpq: false, withGtk3: true, gtk3: false, withLibinput: true, libinput: false, withWayland: true, wayland: false, "wayland-scanner": false, qttranslations: true, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 251, 7], ["hash", 252, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 257, 7], ["hash", 258, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 330, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["fix_qt_builtin_paths", 371, 13], ["fix_qt_module_paths", 372, 13], ["qtPluginPrefix", 373, 13], ["qtQmlPrefix", 374, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["license", 377, 14]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 368, 9], ["substitutions", 369, 9], ["meta", 377, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["qtPluginPrefix", 383, 13], ["qtQmlPrefix", 383, 28]]);
-const pos$8 = nix.positions(here + "/default.nix", [["homepage", 387, 5], ["description", 388, 5], ["license", 389, 5], ["maintainers", 395, 5], ["platforms", 399, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 102, 3], ["src", 104, 11], ["version", 104, 15], ["propagatedBuildInputs", 106, 3], ["buildInputs", 179, 3], ["nativeBuildInputs", 189, 3], ["propagatedNativeBuildInputs", 202, 3], ["strictDeps", 216, 3], ["enableParallelBuilding", 218, 3], ["patches", 220, 3], ["postPatch", 262, 3], ["preHook", 290, 3], ["cmakeFlags", 295, 3], ["env", 330, 3], ["outputs", 332, 3], ["separateDebugInfo", 336, 3], ["moveToDev", 338, 3], ["postFixup", 340, 3], ["dontWrapQtApps", 363, 3], ["setupHook", 365, 3], ["passthru", 382, 3], ["meta", 386, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -107,7 +99,7 @@ export default nix.lambda((args) => (() => {
   const qtPluginPrefix = "lib/qt-6/plugins";
   const qtQmlPrefix = "lib/qt-6/qml";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "qtbase",
       src: src,
       version: version,
@@ -185,12 +177,12 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./qmlimportscanner-import-path.patch"),
         nix.path(here, "./skip-missing-qml-directory.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/qt/qtbase/commit/515cbbacfba9f4259c9c3b0714a31222c2b4c879.diff",
             hash: "sha256-93tzp4O7dZxRZv7ilN/gbQSVmaeOGmxpYgM7aomN0n8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/qt/qtbase/commit/85420d5d4f78a6ba4cf70ed8ee092e0ef4fb9a54.diff",
             hash: "sha256-BFL1mtwzEH0uUYbeUZDC2Fcp9pjBhtSYOaSxxVILe30=",
           })))),
@@ -246,7 +238,7 @@ substituteInPlace mkspecs/common/macx.conf \\
           nix.thunk(() => nix.str`-DQt6HostInfo_DIR=${nix.sel(pkgsBuildBuild, "qt6", "qtbase")}/lib/cmake/Qt6HostInfo`),
         ])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(!nix.eq(qttranslations, null)) && nix.asBool(!nix.asBool(isCrossBuild)))), nix.thunk(() => nix.str`-DINSTALL_TRANSLATIONSDIR=${qttranslations}/translations`))))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-DNIXPKGS_QT_PLUGIN_PREFIX="${qtPluginPrefix}"`),
       })),
       outputs: nix.thunk(() => ["out", "dev"]),
@@ -274,22 +266,25 @@ patchelf --add-rpath "${vulkan_loader}/lib" --add-needed "libvulkan.so" $out/lib
       dontWrapQtApps: true,
       setupHook: nix.thunk(() => (() => {
         const hook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "qtbase6-setup-hook",
             substitutions: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               fix_qt_builtin_paths: fix_qt_builtin_paths,
               fix_qt_module_paths: fix_qt_module_paths,
               qtPluginPrefix: qtPluginPrefix,
               qtQmlPrefix: qtQmlPrefix,
             })),
-            meta: nix.thunk(() => ({ [nix.POS]: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({
+              [nix.POS]: $pos[4],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           })), nix.path(here, "../../hooks/qtbase-setup-hook.sh")));
         return nix.str`${hook}/nix-support/setup-hook`;
       })()),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, qtPluginPrefix: qtPluginPrefix, qtQmlPrefix: qtQmlPrefix })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[6], qtPluginPrefix: qtPluginPrefix, qtQmlPrefix: qtQmlPrefix })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://www.qt.io/",
         description: "Cross-platform application framework for C++",
         license: nix.thunk(() => (() => {

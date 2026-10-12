@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["package", 60, 5], ["command", 61, 5]], [["version", 59, 18]], [["tests", 59, 12]], [["description", 67, 7], ["homepage", 68, 7], ["license", 69, 7], ["maintainers", 70, 7]], [["mainProgram", 73, 7]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["ldflags", 29, 3], ["buildPhase", 35, 3], ["installPhase", 55, 3], ["passthru", 59, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, "pkg-config": false, libsecret: false, testers: false, "docker-credential-helpers": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 60, 5], ["command", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 59, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 59, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 67, 7], ["homepage", 68, 7], ["license", 69, 7], ["maintainers", 70, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mainProgram", 73, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["ldflags", 29, 3], ["buildPhase", 35, 3], ["installPhase", 55, 3], ["passthru", 59, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "docker-credential-helpers";
       const version = "0.9.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "docker",
           repo: "docker-credential-helpers",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,25 +42,25 @@ done
       })());
       const installPhase = "install -Dm755 -t $out/bin bin/docker-credential-*\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: docker_credential_helpers,
               command: "docker-credential-pass version",
             })))),
         })),
       }));
       const meta = nix.thunk(() => nix.update({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Suite of programs to use native stores to keep Docker credentials safe",
         homepage: "https://github.com/docker/docker-credential-helpers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$6, mainProgram: "docker-credential-osxkeychain" })))));
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[5], mainProgram: "docker-credential-osxkeychain" })))));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

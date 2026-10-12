@@ -2,61 +2,50 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hound.nix", [[["url", 15, 15]], [["nix", 14, 13]], [["max-concurrent-indexers", 11, 11], ["dbpath", 12, 11], ["repos", 13, 11]], [["enable", 9, 9], ["settings", 10, 9]], [["hound", 8, 16]], [["User", 27, 11], ["Group", 28, 11], ["WorkingDirectory", 29, 11]], [["description", 22, 9], ["requiredBy", 23, 9], ["before", 24, 9], ["serviceConfig", 26, 9], ["path", 31, 9], ["script", 32, 9]], [["houndseed", 21, 24]], [["services", 21, 15]], [["services", 8, 7], ["systemd", 21, 7]], [["machine", 5, 9]], [["name", 4, 3], ["nodes", 5, 3], ["testScript", 47, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/hound.nix", [["url", 15, 15]]);
-const pos$2 = nix.positions(here + "/hound.nix", [["nix", 14, 13]]);
-const pos$3 = nix.positions(here + "/hound.nix", [["max-concurrent-indexers", 11, 11], ["dbpath", 12, 11], ["repos", 13, 11]]);
-const pos$4 = nix.positions(here + "/hound.nix", [["enable", 9, 9], ["settings", 10, 9]]);
-const pos$5 = nix.positions(here + "/hound.nix", [["hound", 8, 16]]);
-const pos$6 = nix.positions(here + "/hound.nix", [["User", 27, 11], ["Group", 28, 11], ["WorkingDirectory", 29, 11]]);
-const pos$7 = nix.positions(here + "/hound.nix", [["description", 22, 9], ["requiredBy", 23, 9], ["before", 24, 9], ["serviceConfig", 26, 9], ["path", 31, 9], ["script", 32, 9]]);
-const pos$8 = nix.positions(here + "/hound.nix", [["houndseed", 21, 24]]);
-const pos$9 = nix.positions(here + "/hound.nix", [["services", 21, 15]]);
-const pos$10 = nix.positions(here + "/hound.nix", [["services", 8, 7], ["systemd", 21, 7]]);
-const pos$11 = nix.positions(here + "/hound.nix", [["machine", 5, 9]]);
-const pos$12 = nix.positions(here + "/hound.nix", [["name", 4, 3], ["nodes", 5, 3], ["testScript", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "hound",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             hound: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 "max-concurrent-indexers": 1n,
                 dbpath: "/var/lib/hound/data",
                 repos: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
-                  nix: nix.thunk(() => ({ [nix.POS]: pos$1, url: "file:///var/lib/hound/my-git" })),
+                  [nix.POS]: $pos[1],
+                  nix: nix.thunk(() => ({ [nix.POS]: $pos[0], url: "file:///var/lib/hound/my-git" })),
                 })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               houndseed: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 description: "seed hound with a git repo",
                 requiredBy: nix.thunk(() => ["hound.service"]),
                 before: nix.thunk(() => ["hound.service"]),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   User: "hound",
                   Group: "hound",
                   WorkingDirectory: "/var/lib/hound",

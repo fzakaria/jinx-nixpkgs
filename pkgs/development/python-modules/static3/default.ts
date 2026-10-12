@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["KidMagic", 33, 5], ["Genshimagic", 36, 5]], [["changelog", 49, 5], ["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["optional-dependencies", 32, 3], ["pythonImportsCheck", 39, 3], ["nativeCheckInputs", 41, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, genshi: false, pytestCheckHook: false, "pytest-cov-stub": false, webtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["KidMagic", 33, 5], ["Genshimagic", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 49, 5], ["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["optional-dependencies", 32, 3], ["pythonImportsCheck", 39, 3], ["nativeCheckInputs", 41, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,24 +16,24 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const webtest = nix.arg($, "webtest");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "static3",
       version: "0.7.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rmohr",
           repo: "static3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-uFgv+57/UZs4KoOdkFxbvTEDQrJbb0iYJ5JoWWN4yFY=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, KidMagic: [], Genshimagic: nix.thunk(() => [genshi]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], KidMagic: [], Genshimagic: nix.thunk(() => [genshi]) })),
       pythonImportsCheck: nix.thunk(() => ["static"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, pytest_cov_stub, webtest], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/rmohr/static3/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Really simple WSGI way to serve static (or mixed) content",
         mainProgram: "static",

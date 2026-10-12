@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["kernelModule", 33, 5], ["updateScript", 34, 5]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 45, 5], ["platforms", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["separateDebugInfo", 20, 3], ["nativeBuildInputs", 22, 3], ["configureFlags", 27, 3], ["passthru", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, lib: false, "pkg-config": false, stdenv: false, fetchFromGitLab: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["kernelModule", 33, 5], ["updateScript", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 45, 5], ["platforms", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["separateDebugInfo", 20, 3], ["nativeBuildInputs", 22, 3], ["configureFlags", 27, 3], ["passthru", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ethercat",
       version: "1.6.13",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "etherlab.org",
           repo: "ethercat",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,12 +28,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       configureFlags: nix.thunk(() => ["--enable-userlib=yes", "--enable-kernel=no"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         kernelModule: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./kernel-module.nix")), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "IgH EtherCAT Master for Linux",
         homepage: "https://etherlab.org/ethercat",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/etherlab.org/ethercat/-/blob/${nix.sel(finalAttrs, "version")}/NEWS`),

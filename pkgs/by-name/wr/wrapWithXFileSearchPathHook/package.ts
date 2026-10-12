@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["license", 13, 10]], [["name", 11, 5], ["propagatedBuildInputs", 12, 5], ["meta", 13, 5]]]);
 const formals$1 = { args: { lib: false, makeBinaryWrapper: false, makeSetupHook: false, writeScript: false, xbitmaps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["license", 13, 10]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 11, 5], ["propagatedBuildInputs", 12, 5], ["meta", 13, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,10 +13,13 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const xbitmaps = nix.arg($, "xbitmaps");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "wrapWithXFileSearchPathHook",
       propagatedBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[0],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })), nix.thunk(() => nix.app(writeScript, "wrapWithXFileSearchPathHook.sh", nix.thunk(() => nix.str`wrapWithXFileSearchPath() {
   paths=(
     "$out/share/X11/%T/%N"

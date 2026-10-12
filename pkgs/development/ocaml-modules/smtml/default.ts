@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["description", 95, 5], ["homepage", 96, 5], ["downloadPage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["teams", 100, 5], ["maintainers", 101, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["minimalOCamlVersion", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 52, 3], ["propagatedBuildInputs", 57, 3], ["checkInputs", 76, 3], ["nativeCheckInputs", 81, 3], ["doCheck", 85, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildDunePackage: false, ocaml: false, fetchFromGitHub: false, menhir: false, darwin: false, "bitwuzla-cxx": false, bos: false, cmdliner: false, dolmen_model: false, dolmen_type: false, "dune-build-info": false, "dune-site": false, fpath: false, hc: false, menhirLib: false, mtime: false, ocaml_intrinsics: true, prelude: false, ppx_enumerate: false, scfg: false, yojson: false, z3: false, zarith: false, mdx: false, ounit2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 95, 5], ["homepage", 96, 5], ["downloadPage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["teams", 100, 5], ["maintainers", 101, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["minimalOCamlVersion", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 52, 3], ["propagatedBuildInputs", 57, 3], ["checkInputs", 76, 3], ["nativeCheckInputs", 81, 3], ["doCheck", 85, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const mdx = nix.arg($, "mdx");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "smtml",
       version: "0.28.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "formalsec",
           repo: "smtml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,7 +70,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       doCheck: nix.thunk(() => (nix.asBool(false) && nix.asBool(!nix.asBool((nix.asBool((nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.4")))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SMT solver frontend for OCaml",
         homepage: "https://formalsec.github.io/smtml/smtml/",
         downloadPage: "https://github.com/formalsec/smtml",

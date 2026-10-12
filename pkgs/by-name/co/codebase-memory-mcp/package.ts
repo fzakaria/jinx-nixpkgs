@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["src", 34, 26], ["sourceRoot", 35, 5], ["hash", 36, 5]], [["homepage", 72, 5], ["description", 73, 5], ["mainProgram", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 26, 3], ["npmDeps", 33, 3], ["npmRoot", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["strictDeps", 51, 3], ["__structuredAttrs", 52, 3], ["enableParallelBuilding", 54, 3], ["makefile", 56, 3], ["makeFlags", 60, 3], ["installPhase", 65, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, bash: false, fetchFromGitHub: false, fetchNpmDeps: false, nodejs: false, npmHooks: false, stdenv: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 34, 26], ["sourceRoot", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["mainProgram", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 26, 3], ["npmDeps", 33, 3], ["npmRoot", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["strictDeps", 51, 3], ["__structuredAttrs", 52, 3], ["enableParallelBuilding", 54, 3], ["makefile", 56, 3], ["makeFlags", 60, 3], ["installPhase", 65, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "codebase-memory-mcp",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DeusData",
           repo: "codebase-memory-mcp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./remove-install-update.diff")]),
       postPatch: "substituteInPlace Makefile.cbm \\\n  --replace-fail \"npm ci &&\" \"\"\n\npatchShebangs scripts/embed-frontend.sh\n",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/${nix.sel(finalAttrs, "npmRoot")}`),
           hash: "sha256-W3cajM1XXy19EgGSJyXsd00KncAm7v4afnnnHXIqlhc=",
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\ninstall -Dm755 build/c/codebase-memory-mcp $out/bin/codebase-memory-mcp\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/DeusData/codebase-memory-mcp",
         description: "High-performance C11 MCP server that indexes codebases into a persistent knowledge graph",
         mainProgram: "codebase-memory-mcp",

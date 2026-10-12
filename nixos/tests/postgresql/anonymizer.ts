@@ -2,21 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/anonymizer.nix", [[["maintainers", 14, 14]], [["isSystemUser", 23, 15], ["group", 24, 15]], [["anon_dumper", 22, 25]], [["anon_dumper", 26, 26]], [["users", 22, 19], ["groups", 26, 19]], [["shared_preload_libraries", 31, 24]], [["package", 28, 23], ["enable", 29, 15], ["extensions", 30, 15], ["settings", 31, 15]], [["postgresql", 27, 22]], [["users", 22, 13], ["services", 27, 13]], [["machine", 19, 15]], [["name", 13, 9], ["meta", 14, 9], ["nodes", 19, 9], ["testScript", 35, 9]], [["makeTestFor", 125, 11], ["filter", 126, 3]]]);
 const formals$1 = { args: { runTest: false, genTests: false }, ellipsis: true };
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/anonymizer.nix", [["maintainers", 14, 14]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/anonymizer.nix", [["isSystemUser", 23, 15], ["group", 24, 15]]);
-const pos$3 = nix.positions(here + "/anonymizer.nix", [["anon_dumper", 22, 25]]);
-const pos$4 = nix.positions(here + "/anonymizer.nix", [["anon_dumper", 26, 26]]);
-const pos$5 = nix.positions(here + "/anonymizer.nix", [["users", 22, 19], ["groups", 26, 19]]);
-const pos$6 = nix.positions(here + "/anonymizer.nix", [["shared_preload_libraries", 31, 24]]);
-const pos$7 = nix.positions(here + "/anonymizer.nix", [["package", 28, 23], ["enable", 29, 15], ["extensions", 30, 15], ["settings", 31, 15]]);
-const pos$8 = nix.positions(here + "/anonymizer.nix", [["postgresql", 27, 22]]);
-const pos$9 = nix.positions(here + "/anonymizer.nix", [["users", 22, 13], ["services", 27, 13]]);
-const pos$10 = nix.positions(here + "/anonymizer.nix", [["machine", 19, 15]]);
-const pos$11 = nix.positions(here + "/anonymizer.nix", [["name", 13, 9], ["meta", 14, 9], ["nodes", 19, 9], ["testScript", 35, 9]]);
-const pos$12 = nix.positions(here + "/anonymizer.nix", [["makeTestFor", 125, 11], ["filter", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,38 +16,38 @@ export default nix.lambda((args) => (() => {
       const lib = nix.arg($_1, "lib");
       const pkgs = nix.arg($_1, "pkgs");
       return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         name: nix.thunk(() => nix.str`postgresql_anonymizer-${nix.sel(package$, "name")}`),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => [
             nix.thunk(() => nix.sel(lib, "maintainers", "leona")),
             nix.thunk(() => nix.sel(lib, "maintainers", "osnyx")),
           ]),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
-                  anon_dumper: nix.thunk(() => ({ [nix.POS]: pos$2, isSystemUser: true, group: "anon_dumper" })),
+                  [nix.POS]: $pos[2],
+                  anon_dumper: nix.thunk(() => ({ [nix.POS]: $pos[1], isSystemUser: true, group: "anon_dumper" })),
                 })),
-                groups: nix.thunk(() => ({ [nix.POS]: pos$4, anon_dumper: nix.thunk(() => ({})) })),
+                groups: nix.thunk(() => ({ [nix.POS]: $pos[3], anon_dumper: nix.thunk(() => ({})) })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 postgresql: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   package: package$,
                   enable: true,
                   extensions: (ps) => [nix.thunk(() => nix.sel(ps, "anonymizer"))],
-                  settings: nix.thunk(() => ({ [nix.POS]: pos$6, shared_preload_libraries: nix.thunk(() => ["anon"]) })),
+                  settings: nix.thunk(() => ({ [nix.POS]: $pos[5], shared_preload_libraries: nix.thunk(() => ["anon"]) })),
                 })),
               })),
             };
@@ -137,7 +126,7 @@ with subtest("Anonymize"):
       };
     })(), formals$2));
   return nix.app(genTests, nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       makeTestFor: makeTestFor,
       filter: (_) => (p) => !nix.asBool(nix.sel(p, "pkgs", "anonymizer", "meta", "broken")),
     })));

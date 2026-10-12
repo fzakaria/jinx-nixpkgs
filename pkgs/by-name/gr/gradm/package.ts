@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["broken", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 26, 3], ["enableParallelBuilding", 28, 3], ["makeFlags", 30, 3], ["preBuild", 37, 3], ["doInstallCheck", 52, 3], ["postInstall", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bison: false, flex: false, pam: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 26, 3], ["enableParallelBuilding", 28, 3], ["makeFlags", 30, 3], ["preBuild", 37, 3], ["doInstallCheck", 52, 3], ["postInstall", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gradm",
       version: "3.1-202111052217",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://grsecurity.net/stable/gradm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-JFkpDzZ6R8ihzk6i7Ag1l5nqM9wV7UQ2Q5WWzogoT7k=",
         })))),
@@ -50,7 +48,7 @@ mkdir -p "$out/etc/udev/rules.d"
       doInstallCheck: true,
       postInstall: "rmdir $out/dev",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "grsecurity RBAC administration and policy analysis utility",
         homepage: "https://grsecurity.net",

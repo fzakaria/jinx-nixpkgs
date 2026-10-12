@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/aspell-with-dicts.nix", [[["name", 23, 3], ["nativeBuildInputs", 24, 3], ["paths", 25, 3], ["postBuild", 26, 3]]]);
 const formals$1 = { args: { aspell: false, aspellDicts: false, makeWrapper: false, buildEnv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/aspell-with-dicts.nix", [["name", 23, 3], ["nativeBuildInputs", 24, 3], ["paths", 25, 3], ["postBuild", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return (f) => (() => {
     const dicts = nix.thunk(() => nix.app(f, aspellDicts));
     return nix.app(buildEnv, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "aspell-env",
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
         paths: nix.thunk(() => nix.concat([aspell], dicts)),

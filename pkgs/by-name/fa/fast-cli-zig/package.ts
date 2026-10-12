@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["src", 20, 26], ["pname", 20, 30], ["version", 20, 36], ["hash", 21, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5], ["platforms", 40, 29]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["zigDeps", 19, 3], ["nativeBuildInputs", 24, 3], ["postConfigure", 26, 3], ["doCheck", 30, 3], ["__darwinAllowLocalNetworking", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, zig_0_15: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 20, 26], ["pname", 20, 30], ["version", 20, 36], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5], ["platforms", 40, 29]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["zigDeps", 19, 3], ["nativeBuildInputs", 24, 3], ["postConfigure", 26, 3], ["doCheck", 30, 3], ["__darwinAllowLocalNetworking", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const zig_0_15 = nix.arg($, "zig_0_15");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fast-cli-zig",
       version: "0.3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mikkelam",
           repo: "fast-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-KKjxKQHiSYMaGCfX1+h6DQ809xHh9Yfv8B4PXvr3CwQ=",
         })))),
       zigDeps: nix.thunk(() => nix.app(nix.sel(zig_0_15, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(zig_0_15, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command line version of fast.com in ~1.2 MB",
         homepage: "https://github.com/mikkelam/fast-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

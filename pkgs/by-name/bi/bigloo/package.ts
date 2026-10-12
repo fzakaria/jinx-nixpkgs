@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5], ["broken", 74, 5], ["longDescription", 76, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["propagatedBuildInputs", 31, 3], ["preConfigure", 33, 3], ["patchPhase", 43, 3], ["checkTarget", 57, 3], ["preFixup", 60, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, autoconf: false, automake: false, libtool: false, gmp: false, libunistring: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5], ["broken", 74, 5], ["longDescription", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["propagatedBuildInputs", 31, 3], ["preConfigure", 33, 3], ["patchPhase", 43, 3], ["checkTarget", 57, 3], ["preFixup", 60, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const libunistring = nix.arg($, "libunistring");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bigloo",
       version: "4.7a",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www-sop.inria.fr/mimosa/fp/Bigloo/download/bigloo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-RCXDf0meLfGnvjM0roUg/XYhRzPZ2f6XsvunHRxM9js=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "test",
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "for f in \"$out\"/bin/*; do\n  if isELF \"$f\"; then\n    patchelf --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\" \"$f\"\n  fi\ndone\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Efficient Scheme compiler",
         homepage: "http://www-sop.inria.fr/indes/fp/Bigloo/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 27, 9], ["url", 28, 9], ["message", 29, 9], ["hash", 61, 9]], [["name", 65, 5], ["url", 66, 5], ["hash", 67, 5]], [["name", 88, 7], ["desktopName", 89, 7], ["exec", 90, 7], ["keywords", 91, 7], ["categories", 92, 7], ["icon", 93, 7]], [["description", 163, 5], ["longDescription", 164, 5], ["license", 168, 5], ["homepage", 169, 5], ["maintainers", 170, 5], ["platforms", 174, 5], ["mainProgram", 175, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["srcIcon", 64, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 76, 3], ["dontUnpack", 84, 3], ["desktopItems", 86, 3], ["buildPhase", 97, 3], ["installPhase", 144, 3], ["meta", 162, 3]]]);
 const formals$1 = { args: { fetchurl: false, stdenv: false, lib: false, love: false, "lovely-injector": false, curl: false, p7zip: false, copyDesktopItems: false, makeWrapper: false, makeDesktopItem: false, requireFile: false, overriddenSrc: true, withMods: true, withBridgePatch: true, withLinuxPatch: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 27, 9], ["url", 28, 9], ["message", 29, 9], ["hash", 61, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 65, 5], ["url", 66, 5], ["hash", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 88, 7], ["desktopName", 89, 7], ["exec", 90, 7], ["keywords", 91, 7], ["categories", 92, 7], ["icon", 93, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 163, 5], ["longDescription", 164, 5], ["license", 168, 5], ["homepage", 169, 5], ["maintainers", 170, 5], ["platforms", 174, 5], ["mainProgram", 175, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["srcIcon", 64, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 76, 3], ["dontUnpack", 84, 3], ["desktopItems", 86, 3], ["buildPhase", 97, 3], ["installPhase", 144, 3], ["meta", 162, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const withBridgePatch = nix.argOr($, "withBridgePatch", () => true);
   const withLinuxPatch = nix.argOr($, "withLinuxPatch", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "balatro",
       version: "1.0.1o",
       src: nix.thunk(() => (nix.asBool(!nix.eq(overriddenSrc, null)) ? nix.force(overriddenSrc) : nix.app(requireFile, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "Balatro.exe",
           url: "https://store.steampowered.com/app/2379780/Balatro/",
           message: "You must own Balatro in order to install it with Nix.  The Steam,\nGoogle Play, and Xbox PC versions are supported.\n\n- If you have the Steam version, you can use Balatro.exe.  Find it in\n\n  ~/.local/share/Steam/steamapps/common/Balatro/\n\n  and run\n\n  nix-store --add-fixed sha256 Balatro.exe\n\n- If you have the Google Play version, you'll need to pull base.apk from\n  your device:\n\n  adb shell pm path com.playstack.balatro.android\n  adb pull ( path from above )/base.apk ~/Downloads/com.playstack.balatro.android.apk\n\n  and add it to /nix/store:\n\n  nix-prefetch-url file:///home/deck/Downloads/com.playstack.balatro.android.apk\n\n- If you have the Xbox PC version, you can do the same with Assets.zip.\n\nIf you've used nix-prefetch-url to add it to your store, you'll need to\npass the resulting path to override:\n\n  balatro.override {\n    overriddenSrc = /nix/store/g44bp7ymc7qlkfv5f03b55cgs1wdmkzl-com.playstack.balatro.android.apk;\n  }\n",
           hash: "sha256-DXX+FkrM8zEnNNSzesmHiN0V8Ljk+buLf5DE5Z3pP0c=",
         }))))),
       srcIcon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "balatro.png",
           url: "https://play-lh.googleusercontent.com/RSPv_SMlA3Lun8VHaJD7xCBQg29eCJR9sNJtZNJGlybVs8byYVLz4WnohrbLScC9srg",
           hash: "sha256-GoStvXBYI8x5b8T0wwH5D5C3Kahu0ssCyOM8MoLxy8Q=",
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "balatro",
             desktopName: "Balatro",
             exec: "balatro",
@@ -114,7 +110,7 @@ makeWrapper $out/share/Balatro $out/bin/balatro ${nix.app(nix.sel(lib, "optional
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Poker roguelike",
         longDescription: "Balatro is a hypnotically satisfying deckbuilder where you play illegal poker hands,\ndiscover game-changing jokers, and trigger adrenaline-pumping, outrageous combos.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

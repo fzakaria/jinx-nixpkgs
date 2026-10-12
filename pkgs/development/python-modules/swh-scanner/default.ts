@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 40, 5], ["group", 41, 5], ["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["changelog", 100, 5], ["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 64, 3], ["nativeCheckInputs", 66, 3], ["disabledTests", 78, 3], ["disabledTestPaths", 92, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitLab: false, pythonAtLeast: false, setuptools: false, "setuptools-scm": false, flask: false, "importlib-metadata": false, ndjson: false, requests: false, "swh-auth": false, "swh-core": false, "swh-model": false, "swh-web-client": false, beautifulsoup4: false, "pytest-flask": false, "pytest-mock": false, pytestCheckHook: false, "types-beautifulsoup4": false, "types-pyyaml": false, "types-requests": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 40, 5], ["group", 41, 5], ["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 100, 5], ["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 64, 3], ["nativeCheckInputs", 66, 3], ["disabledTests", 78, 3], ["disabledTestPaths", 92, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const types_pyyaml = nix.arg($, "types-pyyaml");
   const types_requests = nix.arg($, "types-requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swh-scanner",
       version: "0.8.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -80,7 +78,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       disabledTestPaths: nix.thunk(() => ["swh/scanner/tests/test_policy.py", "swh/scanner/tests/test_cli.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://gitlab.softwareheritage.org/swh/devel/swh-scanner/-/tags/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Source code scanner to analyze code bases and compare them with source code artifacts archived by Software Heritage",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-scanner",

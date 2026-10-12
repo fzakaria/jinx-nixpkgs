@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["hash", 33, 5]], [["PKGDIR", 41, 7]], [["updateScript", 60, 12]], [["changelog", 63, 5], ["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoDeps", 31, 3], ["patches", 36, 3], ["env", 41, 3], ["strictDeps", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, cargo: false, just: false, rofi: false, "pkg-config": false, glib: false, cairo: false, pango: false, sqlite: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PKGDIR", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 63, 5], ["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoDeps", 31, 3], ["patches", 36, 3], ["env", 41, 3], ["strictDeps", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,25 +21,25 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rofi-games",
       version: "1.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Rolv-Apneseth",
           repo: "rofi-games",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+2I4WR5SOLYSWnPUrJFlRwhnebu4RNy3Dd4/gKW8xXU=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-dPm9+rxEtx32HVaXLrbxZiVyUrYwFPvuk/gRQR4Fo+s=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./fix-justfile.patch")]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, PKGDIR: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], PKGDIR: nix.thunk(() => nix.builtins.placeholder("out")) })),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")),
@@ -55,11 +50,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [glib, cairo, pango, sqlite]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/Rolv-Apneseth/rofi-games/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Rofi plugin which adds a mode that will list available games for launch along with their box art",
         homepage: "https://github.com/Rolv-Apneseth/rofi-games",

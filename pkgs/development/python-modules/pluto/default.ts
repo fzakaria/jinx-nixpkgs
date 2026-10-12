@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["SETUPTOOLS_SCM_PRETEND_VERSION", 36, 7]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["buildInputs", 29, 3], ["env", 36, 3], ["nativeBuildInputs", 41, 3], ["dontWrapQtApps", 48, 3], ["preFixup", 49, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchgit: false, setuptools: false, "setuptools-scm": false, pyqt5: false, qt5: false, zapf: false, pytango: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["SETUPTOOLS_SCM_PRETEND_VERSION", 36, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["buildInputs", 29, 3], ["env", 36, 3], ["nativeBuildInputs", 41, 3], ["dontWrapQtApps", 48, 3], ["preFixup", 49, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const zapf = nix.arg($, "zapf");
   const pytango = nix.arg($, "pytango");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pluto",
       version: "3.4.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://forge.frm2.tum.de/review/mlz/pils/pluto",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+H9ubjLpepCVF/rgSTuZfm1pjWjHUvYBc9mKHgL3I1Y=",
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "qtwayland"))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SETUPTOOLS_SCM_PRETEND_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pytango, zapf, pyqt5]),
       pythonImportsCheck: nix.thunk(() => ["pluto"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "PLC debug tool",
         homepage: "https://forge.frm2.tum.de/review/plugins/gitiles/mlz/pils/pluto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

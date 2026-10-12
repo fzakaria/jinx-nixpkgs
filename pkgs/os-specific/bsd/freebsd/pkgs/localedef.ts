@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/localedef.nix", [[["platforms", 38, 8]], [["path", 13, 3], ["extraPaths", 15, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 29, 3], ["preBuild", 31, 3], ["MK_TESTS", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false, stdenv: false, compat: false, bsdSetupHook: false, byacc: false, freebsdSetupHook: false, makeMinimal: false, install: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/localedef.nix", [["platforms", 38, 8]]);
-const pos$2 = nix.positions(here + "/localedef.nix", [["path", 13, 3], ["extraPaths", 15, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 29, 3], ["preBuild", 31, 3], ["MK_TESTS", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const makeMinimal = nix.arg($, "makeMinimal");
   const install = nix.arg($, "install");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.bin/localedef",
       extraPaths: nix.thunk(() => nix.concat(["lib/libc/locale", "lib/libc/stdtime"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD"))), nix.thunk(() => ["."])))),
       nativeBuildInputs: nix.thunk(() => [bsdSetupHook, byacc, freebsdSetupHook, makeMinimal, install]),
@@ -28,7 +27,7 @@ export NIX_LDFLAGS="$NIX_LDFLAGS -L${compat}/lib"
 `))),
       MK_TESTS: "no",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

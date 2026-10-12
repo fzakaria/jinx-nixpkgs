@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]], [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 108, 5], ["mainProgram", 109, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["patches", 51, 3], ["postPatch", 56, 3], ["cmakeFlags", 64, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 74, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, qt6Packages: false, libGL: false, fontconfig: false, openssl: false, poppler: false, ffmpeg: false, libva: false, "alsa-lib": false, SDL: false, x264: false, libvpx: false, libvorbis: false, libtheora: false, libogg: false, libopus: false, lame: false, fdk_aac: false, libass: false, libxext: false, libxfixes: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 108, 5], ["mainProgram", 109, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["patches", 51, 3], ["postPatch", 56, 3], ["cmakeFlags", 64, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 74, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.thunk(() => nix.attr(qt6Packages, "wrapQtAppsHook"));
   const quazip = nix.thunk(() => nix.attr(qt6Packages, "quazip"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openboard",
       version: "1.7.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenBoard-org",
           repo: "OpenBoard",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +84,7 @@ export default nix.lambda((args) => (() => {
         libxfixes,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Interactive whiteboard application",
         homepage: "https://openboard.ch/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

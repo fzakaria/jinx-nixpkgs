@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["name", 53, 7], ["icon", 54, 7], ["desktopName", 55, 7], ["categories", 56, 7], ["type", 60, 7], ["exec", 61, 7]], [["pname", 18, 5], ["version", 19, 5], ["src", 20, 5], ["meta", 21, 5], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["sourceRoot", 36, 3], ["installPhase", 38, 3], ["preFixup", 47, 3], ["desktopItems", 51, 3]]]);
 const formals$1 = { args: { stdenv: false, copyDesktopItems: false, autoPatchelfHook: false, wrapGAppsHook4: false, makeDesktopItem: false, libusb1: false, webkitgtk_4_1: false, libsoup_3: false, pname: false, version: false, src: false, meta: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/linux.nix", [["name", 53, 7], ["icon", 54, 7], ["desktopName", 55, 7], ["categories", 56, 7], ["type", 60, 7], ["exec", 61, 7]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["pname", 18, 5], ["version", 19, 5], ["src", 20, 5], ["meta", 21, 5], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["sourceRoot", 36, 3], ["installPhase", 38, 3], ["preFixup", 47, 3], ["desktopItems", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: src,
@@ -33,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "gappsWrapperArgs+=(--set-default '__NV_PRIME_RENDER_OFFLOAD' 1)\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "keymapp",
             icon: "keymapp",
             desktopName: "Keymapp",

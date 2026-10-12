@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["broken", 76, 5], ["mainProgram", 77, 5]], [["pname", 12, 3], ["version", 13, 3], ["nodejs", 15, 3], ["src", 17, 3], ["sourceRoot", 24, 3], ["patches", 26, 3], ["npmDepsHash", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["postPatch", 37, 3], ["dontNpmInstall", 42, 3], ["installPhase", 43, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "avahi-compat": false, nodejs_22: false, python3: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["broken", 76, 5], ["mainProgram", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["nodejs", 15, 3], ["src", 17, 3], ["sourceRoot", 24, 3], ["patches", 26, 3], ["npmDepsHash", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["postPatch", 37, 3], ["dontNpmInstall", 42, 3], ["installPhase", 43, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.1";
       const nodejs = nodejs_22;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hensm",
           repo: "fx_cast",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +55,7 @@ chmod +x $out/bin/fx_cast_bridge
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implementation of the Chrome Sender API (Chromecast) within Firefox",
         homepage: "https://hensm.github.io/fx_cast/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -70,7 +68,7 @@ runHook postInstall
         mainProgram: "fx_cast_bridge",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         nodejs,

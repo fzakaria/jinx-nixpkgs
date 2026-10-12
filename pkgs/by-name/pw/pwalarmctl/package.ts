@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 38, 5], ["mainProgram", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["badPlatforms", 42, 5], ["maintainers", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["nativeBuildInputs", 13, 3], ["buildInputs", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["preBuild", 25, 3], ["buildAndTestSubdir", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 38, 5], ["mainProgram", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["badPlatforms", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["nativeBuildInputs", 13, 3], ["buildInputs", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["preBuild", 25, 3], ["buildAndTestSubdir", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pwalarmctl",
       version: "0.1.0",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [alsa_lib]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "amyipdev",
           repo: "pwalarmd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "cargo check\n",
       buildAndTestSubdir: "pwalarmctl",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Controller for pwalarmd",
         longDescription: "pwalarmctl is a command-line controller for pwalarmd which allows\nfor live configuration changes and access to the active state\nof pwalarmd.\n",
         homepage: "https://github.com/amyipdev/pwalarmd",

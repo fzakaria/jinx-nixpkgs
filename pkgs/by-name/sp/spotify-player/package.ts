@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["updateScript", 128, 5]], [["description", 132, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["mainProgram", 135, 5], ["license", 136, 5], ["maintainers", 137, 5]], [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["cargoHash", 61, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 75, 3], ["buildNoDefaultFeatures", 98, 3], ["buildFeatures", 100, 3], ["postInstall", 111, 3], ["passthru", 127, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, openssl: false, cmake: false, installShellFiles: false, writableTmpDirAsHomeHook: false, "alsa-lib": false, libpulseaudio: false, portaudio: false, libjack2: false, SDL2: false, gst_all_1: false, dbus: false, fontconfig: false, libsixel: false, withStreaming: true, withDaemon: true, withAudioBackend: true, withMediaControl: true, withImage: true, withNotify: true, withSixel: true, withFuzzy: true, stdenv: false, makeBinaryWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 128, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 132, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["mainProgram", 135, 5], ["license", 136, 5], ["maintainers", 137, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["cargoHash", 61, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 75, 3], ["buildNoDefaultFeatures", 98, 3], ["buildFeatures", 100, 3], ["postInstall", 111, 3], ["passthru", 127, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,11 +47,11 @@ export default nix.lambda((args) => (() => {
       "gstreamer",
     ])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/sp/spotify-player/package.nix:38:1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "spotify-player",
       version: "0.25.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aome510",
           repo: "spotify-player",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -84,11 +81,11 @@ export default nix.lambda((args) => (() => {
 `)), nix.app(optionalString, nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd spotify_player \\\n  --bash <($out/bin/spotify_player generate bash) \\\n  --fish <($out/bin/spotify_player generate fish) \\\n   --zsh <($out/bin/spotify_player generate zsh)\n"));
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Terminal spotify player that has feature parity with the official client",
         homepage: "https://github.com/aome510/spotify-player",
         changelog: nix.thunk(() => nix.str`https://github.com/aome510/spotify-player/releases/tag/v${nix.sel(finalAttrs, "version")}`),

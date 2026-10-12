@@ -2,25 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["description", 24, 5], ["longDescription", 25, 5], ["license", 30, 5], ["homepage", 31, 5]], [["meta", 23, 10]], [["url", 35, 8]], [["url", 36, 10]], [["postFetch", 46, 13]], [["postFetch", 52, 15]], [["hydraPlatforms", 72, 14]], [["hash", 67, 9], ["meta", 72, 9]], [["url", 80, 20], ["postFetch", 81, 25]], [["url", 84, 20], ["backend", 85, 5], ["postFetch", 86, 25]], [["url", 89, 22], ["postFetch", 90, 25]], [["url", 93, 22], ["backend", 94, 5], ["postFetch", 95, 25]], [["url", 114, 20], ["backend", 115, 5], ["flatten", 116, 5], ["postFetch", 117, 25]], [["url", 120, 22], ["backend", 121, 5], ["flatten", 122, 5], ["postFetch", 123, 25]], [["http-link", 79, 3], ["http-link-transmission", 83, 3], ["magnet-link", 88, 3], ["magnet-link-transmission", 92, 3], ["http-link-rqbit-flattened", 113, 3], ["magnet-link-rqbit-flattened", 119, 3]], [["hydraPlatforms", 154, 7], ["license", 155, 7], ["description", 156, 7]], [["hash", 149, 5], ["backend", 150, 5], ["flatten", 151, 5], ["url", 152, 5], ["meta", 153, 5]], [["single-file", 148, 3]]]);
 const formals$1 = { args: { lib: false, testers: false, fetchtorrent: false, emptyDirectory: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tests.nix", [["description", 24, 5], ["longDescription", 25, 5], ["license", 30, 5], ["homepage", 31, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["meta", 23, 10]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["url", 35, 8]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["url", 36, 10]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["postFetch", 46, 13]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["postFetch", 52, 15]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["hydraPlatforms", 72, 14]]);
-const pos$8 = nix.positions(here + "/tests.nix", [["hash", 67, 9], ["meta", 72, 9]]);
-const pos$9 = nix.positions(here + "/tests.nix", [["url", 80, 20], ["postFetch", 81, 25]]);
-const pos$10 = nix.positions(here + "/tests.nix", [["url", 84, 20], ["backend", 85, 5], ["postFetch", 86, 25]]);
-const pos$11 = nix.positions(here + "/tests.nix", [["url", 89, 22], ["postFetch", 90, 25]]);
-const pos$12 = nix.positions(here + "/tests.nix", [["url", 93, 22], ["backend", 94, 5], ["postFetch", 95, 25]]);
-const pos$13 = nix.positions(here + "/tests.nix", [["url", 114, 20], ["backend", 115, 5], ["flatten", 116, 5], ["postFetch", 117, 25]]);
-const pos$14 = nix.positions(here + "/tests.nix", [["url", 120, 22], ["backend", 121, 5], ["flatten", 122, 5], ["postFetch", 123, 25]]);
-const pos$15 = nix.positions(here + "/tests.nix", [["http-link", 79, 3], ["http-link-transmission", 83, 3], ["magnet-link", 88, 3], ["magnet-link-transmission", 92, 3], ["http-link-rqbit-flattened", 113, 3], ["magnet-link-rqbit-flattened", 119, 3]]);
-const pos$16 = nix.positions(here + "/tests.nix", [["hydraPlatforms", 154, 7], ["license", 155, 7], ["description", 156, 7]]);
-const pos$17 = nix.positions(here + "/tests.nix", [["hash", 149, 5], ["backend", 150, 5], ["flatten", 151, 5], ["url", 152, 5], ["meta", 153, 5]]);
-const pos$18 = nix.positions(here + "/tests.nix", [["single-file", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const fetchtorrent = nix.arg($, "fetchtorrent");
   const emptyDirectory = nix.arg($, "emptyDirectory");
   const sintel = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       description: "An open source short film to show off open source technologies.",
       longDescription: "An independently produced short film, initiated by the Blender Foundation\nas a means to further improve and validate the free/open source 3D\ncreation suite Blender.\n",
       license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-30")),
@@ -39,15 +22,15 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const http = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     url: nix.thunk(() => nix.str`${nix.path(here, "./test-sintel.torrent")}`),
   }));
   const magnet = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     url: "magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent",
   }));
   const flattened = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     postFetch: nix.thunk(() => nix.str`pushd "$out" &&
 sha512sum --check --strict ${nix.path(here, "./test-hashes.sha512sum")} &&
 sed 's/.*  //' ${nix.path(here, "./test-hashes.sha512sum")} | xargs rm --verbose &&
@@ -55,7 +38,7 @@ popd || exit 1
 `),
   }));
   const unflattened = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     postFetch: nix.thunk(() => nix.str`pushd "$out" &&
 pushd Sintel &&
 sha512sum --check --strict ${nix.path(here, "./test-hashes.sha512sum")} &&
@@ -66,58 +49,58 @@ popd || exit 1
 `),
   }));
   const fetchtorrentWithHash = (args_1) => nix.app(fetchtorrent, nix.thunk(() => nix.update({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       hash: "sha256-pQpattmS9VmO3ZIQUFn66az8GSmB4IvYhTTCFn6SUmo=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$7, hydraPlatforms: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[6], hydraPlatforms: [] })),
     }, args_1)));
   return nix.update(nix.builtins.mapAttrs((n) => (v) => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchtorrentWithHash, v), nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       "http-link": nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         url: nix.thunk(() => nix.attr(http, "url")),
         postFetch: nix.thunk(() => nix.attr(flattened, "postFetch")),
       })),
       "http-link-transmission": nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         url: nix.thunk(() => nix.attr(http, "url")),
         backend: "transmission",
         postFetch: nix.thunk(() => nix.attr(flattened, "postFetch")),
       })),
       "magnet-link": nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         url: nix.thunk(() => nix.attr(magnet, "url")),
         postFetch: nix.thunk(() => nix.attr(flattened, "postFetch")),
       })),
       "magnet-link-transmission": nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         url: nix.thunk(() => nix.attr(magnet, "url")),
         backend: "transmission",
         postFetch: nix.thunk(() => nix.attr(flattened, "postFetch")),
       })),
       "http-link-rqbit-flattened": nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         url: nix.thunk(() => nix.attr(http, "url")),
         backend: "rqbit",
         flatten: true,
         postFetch: nix.thunk(() => nix.attr(flattened, "postFetch")),
       })),
       "magnet-link-rqbit-flattened": nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         url: nix.thunk(() => nix.attr(magnet, "url")),
         backend: "rqbit",
         flatten: true,
         postFetch: nix.thunk(() => nix.attr(flattened, "postFetch")),
       })),
     }))), {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     "single-file": nix.thunk(() => nix.app(fetchtorrent, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         hash: "sha256-u5c/ZN5V79Jg1aN6spbui4OdhExsXjofk1JpvUdW7Ro=",
         backend: "transmission",
         flatten: true,
         url: nix.thunk(() => nix.str`${nix.path(here, "./test-single-file.torrent")}`),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           hydraPlatforms: [],
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           description: "The license file for the Nixpkgs repository as of 7 March 2026",

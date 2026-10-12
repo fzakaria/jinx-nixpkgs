@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ocamlmerlin-mlx.nix", [[["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["mainProgram", 34, 5]], [["pname", 12, 3], ["version", 14, 17], ["src", 14, 25], ["minimalOCamlVersion", 16, 3], ["buildInputs", 18, 3], ["nativeBuildInputs", 25, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, mlx: false, buildDunePackage: false, ppxlib: false, "merlin-lib": false, cppo: false, csexp: false, menhir: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ocamlmerlin-mlx.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["mainProgram", 34, 5]]);
-const pos$2 = nix.positions(here + "/ocamlmerlin-mlx.nix", [["pname", 12, 3], ["version", 14, 17], ["src", 14, 25], ["minimalOCamlVersion", 16, 3], ["buildInputs", 18, 3], ["nativeBuildInputs", 25, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const csexp = nix.arg($, "csexp");
   const menhir = nix.arg($, "menhir");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ocamlmerlin-mlx",
       version: nix.thunk(() => nix.attr(mlx, "version")),
       src: nix.thunk(() => nix.attr(mlx, "src")),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ppxlib, merlin_lib, csexp, menhir]),
       nativeBuildInputs: nix.thunk(() => [cppo]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Merlin support for MLX OCaml dialect",
         homepage: "https://github.com/ocaml-mlx/mlx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

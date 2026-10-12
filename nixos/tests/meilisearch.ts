@@ -2,16 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/meilisearch.nix", [[["uid", 7, 70]], [["url", 9, 5], ["sha256", 10, 5]], [["systemPackages", 19, 19]], [["enable", 24, 9], ["listenAddress", 25, 17], ["listenPort", 25, 31]], [["meilisearch", 23, 16]], [["environment", 19, 7], ["services", 23, 7]], [["machine", 16, 9]], [["name", 14, 3], ["nodes", 16, 3], ["testScript", 29, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/meilisearch.nix", [["uid", 7, 70]]);
-const pos$2 = nix.positions(here + "/meilisearch.nix", [["url", 9, 5], ["sha256", 10, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$3 = nix.positions(here + "/meilisearch.nix", [["systemPackages", 19, 19]]);
-const pos$4 = nix.positions(here + "/meilisearch.nix", [["enable", 24, 9], ["listenAddress", 25, 17], ["listenPort", 25, 31]]);
-const pos$5 = nix.positions(here + "/meilisearch.nix", [["meilisearch", 23, 16]]);
-const pos$6 = nix.positions(here + "/meilisearch.nix", [["environment", 19, 7], ["services", 23, 7]]);
-const pos$7 = nix.positions(here + "/meilisearch.nix", [["machine", 16, 9]]);
-const pos$8 = nix.positions(here + "/meilisearch.nix", [["name", 14, 3], ["nodes", 16, 3], ["testScript", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,32 +14,32 @@ export default nix.lambda((args) => (() => {
   const listenPort = 7700n;
   const apiUrl = nix.thunk(() => nix.str`http://${listenAddress}:${nix.builtins.toString(listenPort)}`);
   const uid = "movies";
-  const indexJSON = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "index.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$1, uid: uid }))))));
+  const indexJSON = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "index.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[0], uid: uid }))))));
   const moviesJSON = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://github.com/meilisearch/meilisearch/raw/v0.23.1/datasets/movies/movies.json",
       sha256: "1r3srld63dpmg9yrmysm6xl175661j5cspi93mk5q2wf8xwn50c5",
     }))));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "meilisearch",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "curl")), nix.thunk(() => nix.lookup(w, "jq"))];
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             meilisearch: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               listenAddress: listenAddress,
               listenPort: listenPort,

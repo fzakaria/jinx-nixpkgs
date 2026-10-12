@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fortran", 94, 7], ["cppSupport", 95, 7]], [["mpi", 78, 7], ["python3Packages", 79, 7], ["mpiSupport", 81, 7], ["fortranSupport", 82, 7], ["pythonSupport", 83, 7], ["precision", 84, 7], ["withPtScotch", 85, 7], ["enableMpi", 87, 5], ["petscPackages", 89, 5], ["blas", 91, 5], ["lapack", 92, 5], ["hdf5", 93, 5], ["metis", 97, 5], ["parmetis", 98, 5], ["scotch", 99, 5], ["scalapack", 100, 5], ["mumps", 101, 5], ["p4est", 102, 5], ["hypre", 103, 5], ["fftw", 104, 5], ["superlu", 105, 5], ["superlu_dist", 106, 5], ["suitesparse", 107, 5]], [["url", 115, 5], ["hash", 116, 5]], [["petsc", 269, 9]], [["mpiSupport", 274, 9]], [["serial", 273, 7]], [["withFullDeps", 279, 9], ["withParmetis", 280, 9]], [["mpi", 283, 9]], [["fullDeps", 278, 7], ["mpich", 282, 7]], [["mpiSupport", 263, 7], ["pythonSupport", 264, 7], ["fortranSupport", 265, 7], ["petscPackages", 267, 5], ["tests", 272, 5]], [["description", 291, 5], ["homepage", 292, 5], ["license", 293, 5], ["platforms", 294, 5], ["maintainers", 295, 5]], [["pname", 111, 3], ["version", 112, 3], ["src", 114, 3], ["postPatch", 119, 3], ["strictDeps", 132, 3], ["nativeBuildInputs", 134, 3], ["buildInputs", 146, 3], ["propagatedBuildInputs", 164, 3], ["configureFlags", 166, 3], ["installTargets", 200, 3], ["enableParallelBuilding", 202, 3], ["postInstall", 207, 3], ["__darwinAllowLocalNetworking", 226, 3], ["doInstallCheck", 232, 3], ["installCheckTarget", 233, 3], ["installCheckFlags", 238, 3], ["nativeInstallCheckInputs", 245, 3], ["unittestFlagsArray", 253, 3], ["pythonImportsCheck", 259, 3], ["passthru", 261, 3], ["setupHook", 288, 3], ["meta", 290, 3]]]);
 const formals$1 = { args: { lib: false, newScope: false, stdenv: false, fetchzip: false, bash: false, "pkg-config": false, gfortran: false, bison: false, mpi: false, mpiCheckPhaseHook: false, python3Packages: false, debug: true, scalarType: true, precision: true, mpiSupport: true, fortranSupport: true, pythonSupport: true, withExamples: true, withFullDeps: true, withCommonDeps: true, withHdf5: true, withMetis: true, withZlib: true, withScalapack: true, withParmetis: true, withPtScotch: true, withMumps: true, withP4est: true, withHypre: true, withFftw: true, withSuperLu: true, withSuperLuDist: true, withSuitesparse: true, blas: false, lapack: false, hdf5: false, metis: false, parmetis: false, scotch: false, scalapack: false, mumps: false, p4est: false, zlib: false, hypre: false, fftw: false, superlu: false, superlu_dist: false, suitesparse: false, petsc: false, mpich: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fortran", 94, 7], ["cppSupport", 95, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mpi", 78, 7], ["python3Packages", 79, 7], ["mpiSupport", 81, 7], ["fortranSupport", 82, 7], ["pythonSupport", 83, 7], ["precision", 84, 7], ["withPtScotch", 85, 7], ["enableMpi", 87, 5], ["petscPackages", 89, 5], ["blas", 91, 5], ["lapack", 92, 5], ["hdf5", 93, 5], ["metis", 97, 5], ["parmetis", 98, 5], ["scotch", 99, 5], ["scalapack", 100, 5], ["mumps", 101, 5], ["p4est", 102, 5], ["hypre", 103, 5], ["fftw", 104, 5], ["superlu", 105, 5], ["superlu_dist", 106, 5], ["suitesparse", 107, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 115, 5], ["hash", 116, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["petsc", 269, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mpiSupport", 274, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["serial", 273, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["withFullDeps", 279, 9], ["withParmetis", 280, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["mpi", 283, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["fullDeps", 278, 7], ["mpich", 282, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["mpiSupport", 263, 7], ["pythonSupport", 264, 7], ["fortranSupport", 265, 7], ["petscPackages", 267, 5], ["tests", 272, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 291, 5], ["homepage", 292, 5], ["license", 293, 5], ["platforms", 294, 5], ["maintainers", 295, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 111, 3], ["version", 112, 3], ["src", 114, 3], ["postPatch", 119, 3], ["strictDeps", 132, 3], ["nativeBuildInputs", 134, 3], ["buildInputs", 146, 3], ["propagatedBuildInputs", 164, 3], ["configureFlags", 166, 3], ["installTargets", 200, 3], ["enableParallelBuilding", 202, 3], ["postInstall", 207, 3], ["__darwinAllowLocalNetworking", 226, 3], ["doInstallCheck", 232, 3], ["installCheckTarget", 233, 3], ["installCheckFlags", 238, 3], ["nativeInstallCheckInputs", 245, 3], ["unittestFlagsArray", 253, 3], ["pythonImportsCheck", 259, 3], ["passthru", 261, 3], ["setupHook", 288, 3], ["meta", 290, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -77,7 +66,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(withHypre) || nix.asBool(mpiSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pe/petsc/package.nix:72:1");
   nix.assert_((!nix.asBool(withSuperLuDist) || nix.asBool(mpiSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pe/petsc/package.nix:73:1");
   const petscPackages = nix.thunk(() => nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       mpi: mpi,
       python3Packages: python3Packages,
       mpiSupport: mpiSupport,
@@ -90,7 +79,7 @@ export default nix.lambda((args) => (() => {
       blas: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.sel(blas, "override")), nix.thunk(() => ({})))),
       lapack: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.sel(lapack, "override")), nix.thunk(() => ({})))),
       hdf5: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.sel(hdf5, "override")), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           fortran: gfortran,
           cppSupport: nix.thunk(() => !nix.asBool(mpiSupport)),
         })))),
@@ -107,11 +96,11 @@ export default nix.lambda((args) => (() => {
       suitesparse: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.sel(suitesparse, "override")), nix.thunk(() => ({})))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "petsc",
       version: "3.25.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-atNPjeL59fJqPMJ4LVS2goh1riyA3ewwMynUA+YPVd4=",
         })))),
@@ -181,26 +170,26 @@ substituteInPlace config/BuildSystem/config/packages/petsc4py.py \\
       unittestFlagsArray: nix.thunk(() => ["-s", "src/binding/petsc4py/test", "-v"]),
       pythonImportsCheck: nix.thunk(() => ["petsc4py"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         mpiSupport: mpiSupport,
         pythonSupport: pythonSupport,
         fortranSupport: fortranSupport,
         petscPackages: nix.thunk(() => nix.app(nix.sel(petscPackages, "overrideScope"), (final) => (prev) => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             petsc: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           }))),
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$6,
-          serial: nix.thunk(() => nix.app(nix.sel(petsc, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, mpiSupport: false })))),
+          [nix.POS]: $pos[5],
+          serial: nix.thunk(() => nix.app(nix.sel(petsc, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], mpiSupport: false })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            fullDeps: nix.thunk(() => nix.app(nix.sel(petsc, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, withFullDeps: true, withParmetis: false })))),
-            mpich: nix.thunk(() => nix.app(nix.sel(petsc, "override"), nix.thunk(() => ({ [nix.POS]: pos$8, mpi: mpich })))),
+            [nix.POS]: $pos[8],
+            fullDeps: nix.thunk(() => nix.app(nix.sel(petsc, "override"), nix.thunk(() => ({ [nix.POS]: $pos[6], withFullDeps: true, withParmetis: false })))),
+            mpich: nix.thunk(() => nix.app(nix.sel(petsc, "override"), nix.thunk(() => ({ [nix.POS]: $pos[7], mpi: mpich })))),
           }))))),
       })),
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Portable Extensible Toolkit for Scientific computation",
         homepage: "https://petsc.org/release/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

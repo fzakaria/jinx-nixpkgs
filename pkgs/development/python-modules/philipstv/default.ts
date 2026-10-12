@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["updateScript", 60, 12]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["nativeBuildInputs", 35, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 46, 3], ["postInstall", 51, 3], ["pythonImportsCheck", 58, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, hatchling: false, "hatch-vcs": false, installShellFiles: false, pytestCheckHook: false, "requests-mock": false, requests: false, pydantic: false, click: false, appdirs: false, stdenv: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 60, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["nativeBuildInputs", 35, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 46, 3], ["postInstall", 51, 3], ["pythonImportsCheck", 58, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bcyran",
           repo: "philipstv",
           tag: version,
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd philipstv \\\n  --bash <(_PHILIPSTV_COMPLETE=bash_source $out/bin/philipstv) \\\n  --zsh <(_PHILIPSTV_COMPLETE=zsh_source $out/bin/philipstv) \\\n  --fish <(_PHILIPSTV_COMPLETE=fish_source $out/bin/philipstv)\n"));
       const pythonImportsCheck = nix.thunk(() => ["philipstv"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI and library to control Philips Android-powered TVs",
         homepage: "https://github.com/bcyran/philipstv",
         changelog: nix.thunk(() => nix.str`https://github.com/bcyran/philipstv/releases/tag/${nix.sel(src, "tag")}`),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

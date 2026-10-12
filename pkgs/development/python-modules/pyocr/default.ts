@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 26, 5], ["group", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["tesseract", 38, 17], ["tesseractLibraryLocation", 39, 9]], [["cuneiform", 44, 17]], [["homepage", 58, 24], ["changelog", 59, 5], ["description", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 19, 3], ["version", 20, 3], ["disabled", 21, 3], ["pyproject", 22, 3], ["src", 25, 3], ["patches", 34, 3], ["propagatedBuildInputs", 48, 3], ["nativeBuildInputs", 50, 3], ["nativeCheckInputs", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, buildPythonPackage: false, pillow: false, tesseract: false, cuneiform: false, isPy3k: false, replaceVars: false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, withTesseractSupport: true, withCuneiformSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 26, 5], ["group", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tesseract", 38, 17], ["tesseractLibraryLocation", 39, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cuneiform", 44, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 58, 24], ["changelog", 59, 5], ["description", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["disabled", 21, 3], ["pyproject", 22, 3], ["src", 25, 3], ["patches", 34, 3], ["propagatedBuildInputs", 48, 3], ["nativeBuildInputs", 50, 3], ["nativeCheckInputs", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "OpenPaperwork",
@@ -40,17 +36,17 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-gE0+qbHCwpDdxXFY+4rjVU2FbUSfSVrvrVMcWUk+9FU=",
         }))));
       const patches = nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optional"), withTesseractSupport, nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths-tesseract.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             tesseract: tesseract,
             tesseractLibraryLocation: nix.thunk(() => nix.str`${tesseract}/lib/libtesseract${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
-          }))))), nix.app(nix.sel(lib, "optional"), withCuneiformSupport, nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths-cuneiform.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, cuneiform: cuneiform }))))))));
+          }))))), nix.app(nix.sel(lib, "optional"), withCuneiformSupport, nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths-cuneiform.patch"), nix.thunk(() => ({ [nix.POS]: $pos[2], cuneiform: cuneiform }))))))));
       const propagatedBuildInputs = nix.thunk(() => [pillow]);
       const nativeBuildInputs = nix.thunk(() => [setuptools, setuptools_scm]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/OpenPaperwork/pyocr/-/blob/${version}/ChangeLog`),
         description: "Python wrapper for Tesseract and Cuneiform",
@@ -65,7 +61,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         disabled,

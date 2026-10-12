@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 11, 3], ["format", 12, 3], ["version", 13, 24], ["src", 13, 32], ["meta", 13, 36], ["outputs", 15, 3], ["propagatedBuildInputs", 20, 3], ["postPatch", 22, 3], ["postInstall", 32, 3], ["checkPhase", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, python: false, numpy: false, libndtypes: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["format", 12, 3], ["version", 13, 24], ["src", 13, 32], ["meta", 13, 36], ["outputs", 15, 3], ["propagatedBuildInputs", 20, 3], ["postPatch", 22, 3], ["postInstall", 32, 3], ["checkPhase", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const libndtypes = nix.arg($, "libndtypes");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "ndtypes",
       format: "setuptools",
       version: nix.thunk(() => nix.attr(libndtypes, "version")),

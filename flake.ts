@@ -2,42 +2,13 @@
 import * as nix from "./.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/flake.nix", [[["nixpkgs", 17, 11], ["system", 18, 19]], [["lib", 40, 40]], [["source", 89, 44]], [["flake", 89, 38]], [["nixpkgs", 89, 30]], [["config", 89, 23]], [["lib", 68, 17], ["system", 72, 17], ["modules", 74, 17]], [["nixos", 40, 11], ["nixosSystem", 64, 11]], [["tarball", 109, 15]], [["ifThisFunctionIsMissingTheTestFails", 135, 23]], [["hostPlatform", 144, 33]], [["enable", 145, 42]], [["grub", 145, 37]], [["loader", 145, 30]], [["device", 146, 41], ["fsType", 147, 41]], [["/", 146, 37]], [["stateVersion", 149, 32]], [["nixpkgs", 144, 25], ["boot", 145, 25], ["fileSystems", 146, 25], ["system", 149, 25]], [["pkgs", 132, 19], ["lib", 133, 19], ["modules", 138, 19]], [["nixosSystemAcceptsLib", 130, 15]], [["nixpkgs", 161, 13]], [["nixpkgsManual", 158, 9], ["nixosManual", 159, 9]], [["system", 186, 54]], [["default", 186, 15]], [["system", 203, 63]], [["lib", 238, 17]], [["system", 235, 21], ["overlays", 236, 13]], [["notDetected", 262, 9], ["readOnlyPkgs", 275, 9]], [["lib", 33, 7], ["checks", 99, 7], ["htmlDocs", 157, 7], ["devShells", 165, 7], ["formatter", 190, 7], ["legacyPackages", 224, 7], ["nixosModules", 261, 7]], [["description", 4, 3], ["outputs", 6, 3]]]);
 const formals$1 = { args: { self: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/flake.nix", [["nixpkgs", 17, 11], ["system", 18, 19]]);
-const pos$2 = nix.positions(here + "/flake.nix", [["lib", 40, 40]]);
 const formals$2 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/flake.nix", [["source", 89, 44]]);
-const pos$4 = nix.positions(here + "/flake.nix", [["flake", 89, 38]]);
-const pos$5 = nix.positions(here + "/flake.nix", [["nixpkgs", 89, 30]]);
-const pos$6 = nix.positions(here + "/flake.nix", [["config", 89, 23]]);
-const pos$7 = nix.positions(here + "/flake.nix", [["lib", 68, 17], ["system", 72, 17], ["modules", 74, 17]]);
-const pos$8 = nix.positions(here + "/flake.nix", [["nixos", 40, 11], ["nixosSystem", 64, 11]]);
-const pos$9 = nix.positions(here + "/flake.nix", [["tarball", 109, 15]]);
-const pos$10 = nix.positions(here + "/flake.nix", [["ifThisFunctionIsMissingTheTestFails", 135, 23]]);
 const formals$3 = { args: { lib: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/flake.nix", [["hostPlatform", 144, 33]]);
-const pos$12 = nix.positions(here + "/flake.nix", [["enable", 145, 42]]);
-const pos$13 = nix.positions(here + "/flake.nix", [["grub", 145, 37]]);
-const pos$14 = nix.positions(here + "/flake.nix", [["loader", 145, 30]]);
-const pos$15 = nix.positions(here + "/flake.nix", [["device", 146, 41], ["fsType", 147, 41]]);
-const pos$16 = nix.positions(here + "/flake.nix", [["/", 146, 37]]);
-const pos$17 = nix.positions(here + "/flake.nix", [["stateVersion", 149, 32]]);
-const pos$18 = nix.positions(here + "/flake.nix", [["nixpkgs", 144, 25], ["boot", 145, 25], ["fileSystems", 146, 25], ["system", 149, 25]]);
-const pos$19 = nix.positions(here + "/flake.nix", [["pkgs", 132, 19], ["lib", 133, 19], ["modules", 138, 19]]);
-const pos$20 = nix.positions(here + "/flake.nix", [["nixosSystemAcceptsLib", 130, 15]]);
-const pos$21 = nix.positions(here + "/flake.nix", [["nixpkgs", 161, 13]]);
-const pos$22 = nix.positions(here + "/flake.nix", [["nixpkgsManual", 158, 9], ["nixosManual", 159, 9]]);
-const pos$23 = nix.positions(here + "/flake.nix", [["system", 186, 54]]);
-const pos$24 = nix.positions(here + "/flake.nix", [["default", 186, 15]]);
-const pos$25 = nix.positions(here + "/flake.nix", [["system", 203, 63]]);
-const pos$26 = nix.positions(here + "/flake.nix", [["lib", 238, 17]]);
-const pos$27 = nix.positions(here + "/flake.nix", [["system", 235, 21], ["overlays", 236, 13]]);
-const pos$28 = nix.positions(here + "/flake.nix", [["notDetected", 262, 9], ["readOnlyPkgs", 275, 9]]);
-const pos$29 = nix.positions(here + "/flake.nix", [["lib", 33, 7], ["checks", 99, 7], ["htmlDocs", 157, 7], ["devShells", 165, 7], ["formatter", 190, 7], ["legacyPackages", 224, 7], ["nixosModules", 261, 7]]);
-const pos$30 = nix.positions(here + "/flake.nix", [["description", 4, 3], ["outputs", 6, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$30,
+  [nix.POS]: $pos[29],
   description: "A collection of packages for the Nix package manager",
   outputs: nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
@@ -45,14 +16,14 @@ export default nix.thunk(() => ({
     const libVersionInfoOverlay = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib/flake-version-info.nix")), self));
     const lib = nix.thunk(() => nix.app(nix.sel(nix.builtins.import(nix.path(here, "./lib")), "extend"), libVersionInfoOverlay));
     const forAllSystems = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.sel(lib, "systems", "flakeExposed"))));
-    const jobs = nix.thunk(() => nix.app(forAllSystems, (system) => nix.app(nix.builtins.import(nix.path(here, "./pkgs/top-level/release.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, nixpkgs: self, system: system })))));
+    const jobs = nix.thunk(() => nix.app(forAllSystems, (system) => nix.app(nix.builtins.import(nix.path(here, "./pkgs/top-level/release.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], nixpkgs: self, system: system })))));
     return {
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       lib: nix.thunk(() => nix.app(nix.sel(lib, "extend"), (final) => (prev) => ({
-          [nix.POS]: pos$8,
-          nixos: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nixos/lib")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: final })))),
+          [nix.POS]: $pos[7],
+          nixos: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nixos/lib")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: final })))),
           nixosSystem: (args_1) => nix.app(nix.builtins.import(nix.path(here, "./nixos/lib/eval-config.nix")), nix.thunk(() => nix.update({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               lib: final,
               system: null,
               modules: nix.thunk(() => nix.concat(nix.sel(args_1, "modules"), [
@@ -62,12 +33,12 @@ export default nix.thunk(() => ({
                   const pkgs = nix.arg($_1, "pkgs");
                   const lib_1 = nix.arg($_1, "lib");
                   return {
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     config: nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       nixpkgs: nix.thunk(() => ({
-                        [nix.POS]: pos$4,
-                        flake: nix.thunk(() => ({ [nix.POS]: pos$3, source: nix.thunk(() => nix.sel(self, "outPath")) })),
+                        [nix.POS]: $pos[3],
+                        flake: nix.thunk(() => ({ [nix.POS]: $pos[2], source: nix.thunk(() => nix.sel(self, "outPath")) })),
                       })),
                     })),
                   };
@@ -76,15 +47,15 @@ export default nix.thunk(() => ({
             }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["modules"]))))),
         }))),
       checks: nix.thunk(() => nix.app(forAllSystems, (system) => nix.update({}, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(system, "x86_64-freebsd")), nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             tarball: nix.thunk(() => nix.sel(jobs, nix.key(nix.force(system)), "tarball")),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(self, "legacyPackages", nix.key(nix.force(system)), "stdenv", "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(nix.sel(self, "legacyPackages", nix.key(nix.force(system)), "stdenv", "targetPlatform", "isPower64"))))) && nix.asBool(!nix.eq(system, "armv6l-linux")))) && nix.asBool(!nix.eq(system, "armv7l-linux")))) && nix.asBool(!nix.eq(system, "powerpc64le-linux")))) && nix.asBool(!nix.eq(system, "riscv64-linux")))), nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             nixosSystemAcceptsLib: nix.thunk(() => nix.sel(nix.app(nix.sel(self, "lib", "nixosSystem"), nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 pkgs: nix.thunk(() => nix.sel(self, "legacyPackages", nix.key(nix.force(system)))),
                 lib: nix.thunk(() => nix.app(nix.sel(self, "lib", "extend"), (final) => (prev) => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     ifThisFunctionIsMissingTheTestFails: nix.thunk(() => nix.sel(final, "id")),
                   }))),
                 modules: nix.thunk(() => [
@@ -93,21 +64,21 @@ export default nix.thunk(() => ({
                     const $_1 = nix.formals(args_1, formals$3);
                     const lib_1 = nix.arg($_1, "lib");
                     return nix.app(nix.sel(lib_1, "ifThisFunctionIsMissingTheTestFails"), nix.thunk(() => ({
-                        [nix.POS]: pos$18,
-                        nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$11, hostPlatform: "x86_64-linux" })),
+                        [nix.POS]: $pos[17],
+                        nixpkgs: nix.thunk(() => ({ [nix.POS]: $pos[10], hostPlatform: "x86_64-linux" })),
                         boot: nix.thunk(() => ({
-                          [nix.POS]: pos$14,
+                          [nix.POS]: $pos[13],
                           loader: nix.thunk(() => ({
-                            [nix.POS]: pos$13,
-                            grub: nix.thunk(() => ({ [nix.POS]: pos$12, enable: false })),
+                            [nix.POS]: $pos[12],
+                            grub: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: false })),
                           })),
                         })),
                         fileSystems: nix.thunk(() => ({
-                          [nix.POS]: pos$16,
-                          "/": nix.thunk(() => ({ [nix.POS]: pos$15, device: "nodev", fsType: "none" })),
+                          [nix.POS]: $pos[15],
+                          "/": nix.thunk(() => ({ [nix.POS]: $pos[14], device: "nodev", fsType: "none" })),
                         })),
                         system: nix.thunk(() => ({
-                          [nix.POS]: pos$17,
+                          [nix.POS]: $pos[16],
                           stateVersion: nix.thunk(() => nix.sel(lib_1, "trivial", "release")),
                         })),
                       })));
@@ -116,30 +87,30 @@ export default nix.thunk(() => ({
               }))), "config", "system", "build", "toplevel")),
           }))))))),
       htmlDocs: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         nixpkgsManual: nix.thunk(() => nix.builtins.mapAttrs((_) => (jobSet) => nix.sel(jobSet, "manual"), jobs)),
-        nixosManual: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./nixos/release-small.nix")), nix.thunk(() => ({ [nix.POS]: pos$21, nixpkgs: self }))), "nixos", "manual")),
+        nixosManual: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./nixos/release-small.nix")), nix.thunk(() => ({ [nix.POS]: $pos[20], nixpkgs: self }))), "nixos", "manual")),
       })),
       devShells: nix.thunk(() => nix.app(forAllSystems, (system) => nix.update({}, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.eq(system, "armv6l-linux")) && nix.asBool(!nix.eq(system, "armv7l-linux")))) && nix.asBool(!nix.eq(system, "powerpc64le-linux")))) && nix.asBool(!nix.eq(system, "riscv64-linux")))) && nix.asBool(!nix.eq(system, "x86_64-freebsd")))), nix.thunk(() => ({
-            [nix.POS]: pos$24,
-            default: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./shell.nix")), nix.thunk(() => ({ [nix.POS]: pos$23, system: system })))),
+            [nix.POS]: $pos[23],
+            default: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./shell.nix")), nix.thunk(() => ({ [nix.POS]: $pos[22], system: system })))),
           })))))),
-      formatter: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (system) => (_) => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.eq(system, "armv6l-linux")) && nix.asBool(!nix.eq(system, "armv7l-linux")))) && nix.asBool(!nix.eq(system, "powerpc64le-linux")))) && nix.asBool(!nix.eq(system, "riscv64-linux")))) && nix.asBool(!nix.eq(system, "x86_64-freebsd"))), nix.thunk(() => nix.app(forAllSystems, (system) => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./shell.nix")), nix.thunk(() => ({ [nix.POS]: pos$25, system: system }))), "formatter"))))),
+      formatter: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (system) => (_) => (nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.eq(system, "armv6l-linux")) && nix.asBool(!nix.eq(system, "armv7l-linux")))) && nix.asBool(!nix.eq(system, "powerpc64le-linux")))) && nix.asBool(!nix.eq(system, "riscv64-linux")))) && nix.asBool(!nix.eq(system, "x86_64-freebsd"))), nix.thunk(() => nix.app(forAllSystems, (system) => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./shell.nix")), nix.thunk(() => ({ [nix.POS]: $pos[24], system: system }))), "formatter"))))),
       legacyPackages: nix.thunk(() => (() => {
         const forAllSystems$ = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.concat(nix.sel(lib, "systems", "flakeExposed"), ["x86_64-darwin"]))));
         return nix.app(forAllSystems$, (system) => nix.app(nix.builtins.import(nix.path(here, "./.")), nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               system: system,
               overlays: nix.thunk(() => nix.concat(nix.builtins.import(nix.path(here, "./pkgs/top-level/impure-overlays.nix")), [
                 (final) => (prev) => ({
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   lib: nix.thunk(() => nix.app(nix.sel(prev, "lib", "extend"), libVersionInfoOverlay)),
                 }),
               ])),
             }))));
       })()),
       nixosModules: nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         notDetected: nix.path(here, "./nixos/modules/installer/scan/not-detected.nix"),
         readOnlyPkgs: nix.path(here, "./nixos/modules/misc/nixpkgs/read-only.nix"),
       })),

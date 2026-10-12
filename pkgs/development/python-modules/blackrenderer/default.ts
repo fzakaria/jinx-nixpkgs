@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["cairo", 37, 5]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 31, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 40, 3], ["disabledTestPaths", 45, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, fonttools: false, uharfbuzz: false, pycairo: false, pillow: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cairo", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 31, 3], ["optional-dependencies", 36, 3], ["nativeCheckInputs", 40, 3], ["disabledTestPaths", 45, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BlackFoundryCom",
           repo: "black-renderer",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [fonttools, uharfbuzz]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, cairo: nix.thunk(() => [pycairo]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], cairo: nix.thunk(() => [pycairo]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pillow]);
       const disabledTestPaths = nix.thunk(() => [
         "Tests/test_mainprog.py",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["blackrenderer"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Renderer for OpenType COLR fonts, with multiple backends",
         homepage: "https://github.com/BlackFoundryCom/black-renderer",
         changelog: nix.thunk(() => nix.str`https://github.com/BlackFoundryCom/black-renderer/releases/tag/v${version}`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

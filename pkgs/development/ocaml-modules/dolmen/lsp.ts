@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lsp.nix", [[["description", 30, 5], ["mainProgram", 31, 5], ["maintainers", 32, 5]], [["pname", 14, 3], ["src", 15, 20], ["version", 15, 24], ["patches", 17, 3], ["buildInputs", 19, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, dolmen: false, dolmen_loop: false, dolmen_type: false, linol: false, "linol-lwt": false, logs: false, lsp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lsp.nix", [["description", 30, 5], ["mainProgram", 31, 5], ["maintainers", 32, 5]]);
-const pos$2 = nix.positions(here + "/lsp.nix", [["pname", 14, 3], ["src", 15, 20], ["version", 15, 24], ["patches", 17, 3], ["buildInputs", 19, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const lsp = nix.arg($, "lsp");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dolmen_lsp",
       src: nix.thunk(() => nix.attr(dolmen, "src")),
       version: nix.thunk(() => nix.attr(dolmen, "version")),
       patches: nix.thunk(() => [nix.path(here, "./linol-common-migration.patch")]),
       buildInputs: nix.thunk(() => [dolmen, dolmen_loop, dolmen_type, linol, linol_lwt, logs, lsp]),
       meta: nix.thunk(() => nix.update(nix.sel(dolmen, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "LSP server for automated deduction languages",
         mainProgram: "dolmenls",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "stepbrobd"))]),

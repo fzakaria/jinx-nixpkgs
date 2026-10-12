@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 50, 7], ["exec", 51, 7], ["icon", 52, 7], ["desktopName", 53, 7], ["comment", 54, 7], ["categories", 55, 7]], [["homepage", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 14, 3], ["version", 15, 11], ["src", 17, 17], ["release", 18, 3], ["defaultVersion", 20, 3], ["preConfigure", 22, 3], ["prefixKey", 25, 3], ["useDune", 27, 3], ["buildInputs", 29, 3], ["buildPhase", 37, 3], ["installPhase", 42, 3], ["desktopItems", 48, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, makeDesktopItem: false, copyDesktopItems: false, wrapGAppsHook3: false, glib: false, "adwaita-icon-theme": false, mkCoqDerivation: false, coq: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 50, 7], ["exec", 51, 7], ["icon", 52, 7], ["desktopName", 53, 7], ["comment", 54, 7], ["categories", 55, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 11], ["src", 17, 17], ["release", 18, 3], ["defaultVersion", 20, 3], ["preConfigure", 22, 3], ["prefixKey", 25, 3], ["useDune", 27, 3], ["buildInputs", 29, 3], ["buildPhase", 37, 3], ["installPhase", 42, 3], ["desktopItems", 48, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +42,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "coqide",
             exec: "coqide",
             icon: "coq",
@@ -54,7 +52,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://coq.inria.fr",
         description: "CoqIDE user interface for the Coq proof assistant",
         mainProgram: "coqide",
@@ -62,7 +60,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "Zimmi48"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version: version_1,
         src,

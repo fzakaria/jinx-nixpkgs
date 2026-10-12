@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 15, 26], ["pname", 16, 5], ["hash", 17, 5]], [["description", 32, 5], ["homepage", 33, 5], ["changelog", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 22, 3], ["makeWrapperArgs", 27, 3], ["pythonImportsCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, "ffmpeg-headless": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 15, 26], ["pname", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["changelog", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 22, 3], ["makeWrapperArgs", 27, 3], ["pythonImportsCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchPypi = nix.arg($, "fetchPypi");
   const ffmpeg_headless = nix.arg($, "ffmpeg-headless");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "twspace-dl",
       version: "2024.7.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "twspace_dl",
           hash: "sha256-GLs+UGEOsdGcp/mEh+12Vs+XlY1goEql7UOAvVVi1pg=",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["twspace_dl"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python module to download twitter spaces",
         homepage: "https://github.com/HoloArchivists/twspace-dl",
         changelog: nix.thunk(() => nix.str`https://github.com/HoloArchivists/twspace-dl/releases/tag/${nix.sel(finalAttrs, "version")}`),

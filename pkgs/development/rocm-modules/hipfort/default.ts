@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["finalAttrs", 59, 54]], [["updateScript", 59, 12]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["teams", 67, 5], ["platforms", 68, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["cmakeFlags", 34, 3], ["postPatch", 45, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, "rocm-cmake": false, gfortran: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["finalAttrs", 59, 54]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 59, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["teams", 67, 5], ["platforms", 68, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["cmakeFlags", 34, 3], ["postPatch", 45, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rocm_cmake = nix.arg($, "rocm-cmake");
   const gfortran = nix.arg($, "gfortran");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hipfort",
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "hipfort",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -43,11 +39,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "patchShebangs bin\n\nsubstituteInPlace bin/hipfc bin/mymcpu \\\n  --replace-fail \"/bin/cat\" \"cat\"\n\nsubstituteInPlace bin/CMakeLists.txt \\\n  --replace-fail \"/bin/mkdir\" \"mkdir\" \\\n  --replace-fail \"/bin/cp\" \"cp\" \\\n  --replace-fail \"/bin/sed\" \"sed\" \\\n  --replace-fail \"/bin/chmod\" \"chmod\" \\\n  --replace-fail \"/bin/ln\" \"ln\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fortran interfaces for ROCm libraries",
         homepage: "https://github.com/ROCm/hipfort",
         changelog: nix.thunk(() => nix.str`https://github.com/ROCm/hipfort/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

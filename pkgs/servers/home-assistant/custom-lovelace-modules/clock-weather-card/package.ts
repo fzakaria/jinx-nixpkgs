@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["yarnLock", 22, 5], ["hash", 23, 5]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["offlineCache", 21, 3], ["nativeBuildInputs", 26, 3], ["installPhase", 32, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false, fetchYarnDeps: false, nodejs: false, yarnConfigHook: false, yarnBuildHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["offlineCache", 21, 3], ["nativeBuildInputs", 26, 3], ["installPhase", 32, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,21 +18,21 @@ export default nix.lambda((args) => (() => {
       const pname = "clock-weather-card";
       const version = "2.9.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pkissling",
           repo: "clock-weather-card",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-aNX2vbLVvL9TO8PWERyy7z0SWY4JJ5khCrNPqa01DWA=",
         }))));
       const offlineCache = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.add(src, "/yarn.lock")),
           hash: "sha256-1ZmsuAKYa0iSjI+vYbonWZglx8/QNnRTJv4K+LmVfq4=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [nodejs, yarnConfigHook, yarnBuildHook]);
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp ./dist/clock-weather-card.js $out/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Home Assistant Card indicating today's date/time, along with an iOS inspired weather forecast for the next days with animated icons",
         homepage: "https://github.com/pkissling/clock-weather-card",
         changelog: nix.thunk(() => nix.str`https://github.com/pkissling/clock-weather-card/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

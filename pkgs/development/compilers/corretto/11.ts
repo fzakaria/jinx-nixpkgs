@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/11.nix", [[["owner", 25, 7], ["repo", 26, 7], ["rev", 27, 7], ["hash", 28, 7]], [["lib", 15, 7], ["stdenv", 16, 7], ["rsync", 17, 7], ["runCommand", 18, 7], ["testers", 19, 7], ["jdk", 21, 5], ["gradle", 22, 5], ["version", 23, 5], ["src", 24, 5]], [["patches", 33, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, gradle_8: false, jdk11: false, lib: false, stdenv: false, rsync: false, runCommand: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/11.nix", [["owner", 25, 7], ["repo", 26, 7], ["rev", 27, 7], ["hash", 28, 7]]);
-const pos$2 = nix.positions(here + "/11.nix", [["lib", 15, 7], ["stdenv", 16, 7], ["rsync", 17, 7], ["runCommand", 18, 7], ["testers", 19, 7], ["jdk", 21, 5], ["gradle", 22, 5], ["version", 23, 5], ["src", 24, 5]]);
-const pos$3 = nix.positions(here + "/11.nix", [["patches", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const gradle = gradle_8;
       const version = "11.0.30.7.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "corretto",
           repo: "corretto-11",
           rev: version,
           hash: "sha256-SUdJlTYE+RRAZa8DhFW0EYW1kHmuNDG+hk+/3MXtx1w=",
         }))));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         lib: lib_1,
         stdenv: stdenv_1,
         rsync: rsync_1,
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(corretto, "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       patches: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "patches"), [nix.path(here, "./corretto11-gradle8.patch")])),
     }));
 })(), formals$1);

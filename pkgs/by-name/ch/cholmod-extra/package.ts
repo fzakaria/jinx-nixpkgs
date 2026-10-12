@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 15, 5], ["owner", 16, 5], ["tag", 17, 5], ["sha256", 18, 5]], [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["makeFlags", 40, 3], ["installFlags", 44, 3], ["doCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gfortran: false, suitesparse: false, blas: false, lapack: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 15, 5], ["owner", 16, 5], ["tag", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["makeFlags", 40, 3], ["installFlags", 44, 3], ["doCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const blas = nix.arg($, "blas");
   const lapack = nix.arg($, "lapack");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cholmod-extra",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "cholmod-extra",
           owner: "jluttine",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["INSTALL_LIB=$(out)/lib", "INSTALL_INCLUDE=$(out)/include"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jluttine/cholmod-extra",
         description: "Set of additional routines for SuiteSparse CHOLMOD Module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,25 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/disk-image.nix", [[["description", 18, 7], ["type", 19, 7], ["default", 23, 7]], [["description", 26, 7], ["type", 27, 7], ["default", 28, 7]], [["format", 17, 5], ["efiSupport", 25, 5]], [["image", 16, 11]], [["enable", 34, 7], ["devices", 35, 7]], [["enable", 37, 30]], [["grub", 33, 17], ["systemd-boot", 37, 17]], [["loader", 33, 10], ["growPartition", 38, 10]], [["device", 42, 9], ["autoResize", 43, 9], ["fsType", 44, 9]], [["device", 47, 9], ["fsType", 48, 9]], [["/", 41, 7], ["/boot", 46, 7]], [["tags", 52, 18]], [["lib", 55, 15], ["config", 55, 19], ["pkgs", 55, 26], ["diskSize", 56, 39], ["baseName", 57, 21], ["format", 57, 30], ["partitionTableType", 58, 7]], [["image", 54, 18]], [["nixos", 52, 12], ["build", 54, 12]], [["extension", 53, 11]], [["boot", 33, 5], ["fileSystems", 40, 5], ["system", 52, 5], ["image", 53, 5]], [["imports", 11, 3], ["options", 16, 3], ["config", 32, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/disk-image.nix", [["description", 18, 7], ["type", 19, 7], ["default", 23, 7]]);
-const pos$2 = nix.positions(here + "/disk-image.nix", [["description", 26, 7], ["type", 27, 7], ["default", 28, 7]]);
-const pos$3 = nix.positions(here + "/disk-image.nix", [["format", 17, 5], ["efiSupport", 25, 5]]);
-const pos$4 = nix.positions(here + "/disk-image.nix", [["image", 16, 11]]);
-const pos$5 = nix.positions(here + "/disk-image.nix", [["enable", 34, 7], ["devices", 35, 7]]);
-const pos$6 = nix.positions(here + "/disk-image.nix", [["enable", 37, 30]]);
-const pos$7 = nix.positions(here + "/disk-image.nix", [["grub", 33, 17], ["systemd-boot", 37, 17]]);
-const pos$8 = nix.positions(here + "/disk-image.nix", [["loader", 33, 10], ["growPartition", 38, 10]]);
-const pos$9 = nix.positions(here + "/disk-image.nix", [["device", 42, 9], ["autoResize", 43, 9], ["fsType", 44, 9]]);
-const pos$10 = nix.positions(here + "/disk-image.nix", [["device", 47, 9], ["fsType", 48, 9]]);
-const pos$11 = nix.positions(here + "/disk-image.nix", [["/", 41, 7], ["/boot", 46, 7]]);
-const pos$12 = nix.positions(here + "/disk-image.nix", [["tags", 52, 18]]);
-const pos$13 = nix.positions(here + "/disk-image.nix", [["lib", 55, 15], ["config", 55, 19], ["pkgs", 55, 26], ["diskSize", 56, 39], ["baseName", 57, 21], ["format", 57, 30], ["partitionTableType", 58, 7]]);
-const pos$14 = nix.positions(here + "/disk-image.nix", [["image", 54, 18]]);
-const pos$15 = nix.positions(here + "/disk-image.nix", [["nixos", 52, 12], ["build", 54, 12]]);
-const pos$16 = nix.positions(here + "/disk-image.nix", [["extension", 53, 11]]);
-const pos$17 = nix.positions(here + "/disk-image.nix", [["boot", 33, 5], ["fileSystems", 40, 5], ["system", 52, 5], ["image", 53, 5]]);
-const pos$18 = nix.positions(here + "/disk-image.nix", [["imports", 11, 3], ["options", 16, 3], ["config", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,23 +12,23 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "image"));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     imports: nix.thunk(() => [
       nix.path(here, "./disk-size-option.nix"),
       nix.path(here, "../image/file-options.nix"),
     ]),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       image: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         format: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             description: "Format of the disk image to generate: raw or qcow2",
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["raw", "qcow2"]))),
             default: "qcow2",
           })))),
         efiSupport: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             description: "Whether the disk image should support EFI boot or legacy boot",
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: true,
@@ -53,45 +36,45 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           grub: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(cfg, "efiSupport"))), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), true)),
               devices: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => ["/dev/vda"]))),
             })))),
           "systemd-boot": nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(cfg, "efiSupport")))),
           })),
         })),
         growPartition: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
       })),
       fileSystems: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         "/": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           device: "/dev/disk/by-label/nixos",
           autoResize: true,
           fsType: "ext4",
         })),
-        "/boot": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "efiSupport")), nix.thunk(() => ({ [nix.POS]: pos$10, device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
+        "/boot": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "efiSupport")), nix.thunk(() => ({ [nix.POS]: $pos[9], device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
       })),
       system: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         nixos: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           tags: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(cfg, "format"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(cfg, "efiSupport")), nix.thunk(() => ["efi"])))),
         })),
         build: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           image: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "virtualisation"));
               return {
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               lib: lib,
               config: config,
               pkgs: pkgs,
@@ -104,7 +87,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       image: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         extension: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(cfg, "format"), "raw")) ? "img" : nix.sel(cfg, "format"))),
       })),
     })),

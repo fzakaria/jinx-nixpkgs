@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 26], ["version", 16, 32], ["sha256", 17, 5]], [["pydantic", 25, 5]], [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 20, 3], ["dependencies", 22, 3], ["optional-dependencies", 24, 3], ["pythonImportsCheck", 28, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "typing-extensions": false, "poetry-core": false, pydantic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 26], ["version", 16, 32], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pydantic", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 20, 3], ["dependencies", 22, 3], ["optional-dependencies", 24, 3], ["pythonImportsCheck", 28, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const pydantic = nix.arg($, "pydantic");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "expression",
       version: "5.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sha256: "sha256-RU9v4Tg0cZSkPH+HjZWO/puEucx3DkYgEMelLhgFgGU=",
         })))),
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, pydantic: nix.thunk(() => [pydantic]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], pydantic: nix.thunk(() => [pydantic]) })),
       pythonImportsCheck: nix.thunk(() => ["expression"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Functional programming for Python",
         homepage: "https://github.com/dbrattli/Expression",
         changelog: nix.thunk(() => nix.str`https://github.com/dbrattli/Expression/releases/tag/v${nix.sel(finalAttrs, "version")}`),

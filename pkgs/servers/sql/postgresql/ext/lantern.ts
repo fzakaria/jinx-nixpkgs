@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lantern.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]], [["finalPackage", 44, 26], ["sql", 45, 5]], [["extension", 43, 18]], [["tests", 43, 12]], [["broken", 59, 5], ["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["cmakeFlags", 38, 3], ["passthru", 43, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, lib: false, openssl: false, postgresql: false, postgresqlBuildExtension: false, postgresqlTestExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lantern.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]]);
-const pos$2 = nix.positions(here + "/lantern.nix", [["finalPackage", 44, 26], ["sql", 45, 5]]);
-const pos$3 = nix.positions(here + "/lantern.nix", [["extension", 43, 18]]);
-const pos$4 = nix.positions(here + "/lantern.nix", [["tests", 43, 12]]);
-const pos$5 = nix.positions(here + "/lantern.nix", [["broken", 59, 5], ["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$6 = nix.positions(here + "/lantern.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["cmakeFlags", 38, 3], ["passthru", 43, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "postgresql-lantern",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lanterndata",
           repo: "lantern",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,18 +31,18 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       cmakeFlags: nix.thunk(() => ["-DBUILD_FOR_DISTRIBUTING=ON", "-S ../lantern_hnsw"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: "CREATE EXTENSION lantern;\n\nCREATE TABLE small_world (id integer, vector real[3]);\nINSERT INTO small_world (id, vector) VALUES (0, '{0,0,0}'), (1, '{0,0,1}');\n\nCREATE INDEX ON small_world USING lantern_hnsw (vector dist_l2sq_ops)\nWITH (M=2, ef_construction=10, ef=4, dim=3);\n",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => !nix.eq(nix.sel(finalAttrs, "version"), "0.5.0")), "Is postgresql18Packages.lantern still broken?", nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(postgresql, "version")), "18")))),
         description: "PostgreSQL vector database extension for building AI applications",
         homepage: "https://lantern.dev/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["encodings", 30, 25]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 25, 3], ["optional-dependencies", 30, 3], ["nativeCheckInputs", 34, 3], ["disabledTestPaths", 38, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitLab: false, setuptools: false, "setuptools-scm": false, "charset-normalizer": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["encodings", 30, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 25, 3], ["optional-dependencies", 30, 3], ["nativeCheckInputs", 34, 3], ["disabledTestPaths", 38, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const charset_normalizer = nix.arg($, "charset-normalizer");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "python-debian",
       version: "1.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "python-debian-team",
           repo: "python-debian",
@@ -32,12 +29,12 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-K5i0zDZXeAgoAdblqp+f5QX9FIZYVpJ4wWk29hwVjfM=",
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, encodings: nix.thunk(() => [charset_normalizer]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], encodings: nix.thunk(() => [charset_normalizer]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_debfile.py"]))),
       pythonImportsCheck: nix.thunk(() => ["debian"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Debian package related modules",
         homepage: "https://salsa.debian.org/python-debian-team/python-debian",
         changelog: "https://salsa.debian.org/python-debian-team/python-debian/-/blob/master/debian/changelog",

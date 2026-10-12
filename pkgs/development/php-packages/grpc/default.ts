@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["teams", 29, 5]], [["pname", 10, 3], ["version", 11, 18], ["src", 11, 26], ["sourceRoot", 13, 3], ["patches", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["doCheck", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { buildPecl: false, "pkg-config": false, lib: false, grpc: false, php: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["teams", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 18], ["src", 11, 26], ["sourceRoot", 13, 3], ["patches", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["doCheck", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const grpc = nix.arg($, "grpc");
   const php = nix.arg($, "php");
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "grpc",
       version: nix.thunk(() => nix.attr(grpc, "version")),
       src: nix.thunk(() => nix.attr(grpc, "src")),
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [grpc]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "High performance, open source, general RPC framework that puts mobile and HTTP/2 first",
         homepage: "https://github.com/grpc/grpc/tree/master/src/php/ext/grpc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

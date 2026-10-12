@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["PAM_DEFAULT_SERVICE", 26, 7]], [["rev-prefix", 48, 5], ["allowedVersions", 49, 5]], [["updateScript", 47, 12]], [["homepage", 53, 5], ["description", 54, 5], ["mainProgram", 55, 5], ["longDescription", 56, 5], ["platforms", 65, 5], ["maintainers", 66, 5], ["license", 69, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["env", 26, 3], ["configureFlags", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["passthru", 47, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, "pkg-config": false, autoreconfHook: false, libx11: false, pam: false, libgcrypt: false, libxrender: false, imlib2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PAM_DEFAULT_SERVICE", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 48, 5], ["allowedVersions", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 47, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["mainProgram", 55, 5], ["longDescription", 56, 5], ["platforms", 65, 5], ["maintainers", 66, 5], ["license", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["env", 26, 3], ["configureFlags", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["passthru", 47, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,26 +19,26 @@ export default nix.lambda((args) => (() => {
   const libxrender = nix.arg($, "libxrender");
   const imlib2 = nix.arg($, "imlib2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "alock",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Arkq",
           repo: "alock",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-xfPhsXZrTlEqea75SvacDfjM9o21MTudrqfNN9xtdcg=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PAM_DEFAULT_SERVICE: "login" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PAM_DEFAULT_SERVICE: "login" })),
       configureFlags: nix.thunk(() => ["--enable-pam", "--enable-hash", "--enable-xrender", "--enable-imlib2"]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => [libx11, pam, libgcrypt, libxrender, imlib2]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v", allowedVersions: "\\." })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v", allowedVersions: "\\." })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/Arkq/alock",
         description: "Simple screen lock application for X server",
         mainProgram: "alock",

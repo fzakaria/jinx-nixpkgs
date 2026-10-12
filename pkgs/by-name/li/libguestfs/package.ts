@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 51, 5], ["hash", 52, 5]], [["description", 185, 5], ["license", 186, 5], ["homepage", 190, 5], ["changelog", 191, 5], ["maintainers", 192, 5], ["platforms", 195, 5], ["hydraPlatforms", 197, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 80, 3], ["prePatch", 112, 3], ["configureFlags", 115, 3], ["patches", 128, 3], ["createFindlibDestdir", 134, 3], ["installFlags", 136, 3], ["enableParallelBuilding", 137, 3], ["outputs", 139, 3], ["postInstall", 144, 3], ["postFixup", 158, 3], ["doInstallCheck", 164, 3], ["installCheckPhase", 165, 3], ["meta", 184, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, autoreconfHook: false, makeWrapper: false, removeReferencesTo: false, libxcrypt: false, ncurses: false, cpio: false, gperf: false, cdrkit: false, qemu: false, pcre2: false, augeas: false, libxml2: false, acl: false, libcap: false, libcap_ng: false, libconfig: false, systemdLibs: false, fuse: false, yajl: false, libvirt: false, hivex: false, db: false, gmp: false, readline: false, numactl: false, libapparmor: false, json_c: false, getopt: false, perlPackages: false, python3: false, ocamlPackages: false, libtirpc: false, appliance: true, javaSupport: true, jdk: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 185, 5], ["license", 186, 5], ["homepage", 190, 5], ["changelog", 191, 5], ["maintainers", 192, 5], ["platforms", 195, 5], ["hydraPlatforms", 197, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 80, 3], ["prePatch", 112, 3], ["configureFlags", 115, 3], ["patches", 128, 3], ["createFindlibDestdir", 134, 3], ["installFlags", 136, 3], ["enableParallelBuilding", 137, 3], ["outputs", 139, 3], ["postInstall", 144, 3], ["postFixup", 158, 3], ["doInstallCheck", 164, 3], ["installCheckPhase", 165, 3], ["meta", 184, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,11 +49,11 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   nix.assert_((nix.asBool(nix.eq(appliance, null)) || nix.asBool(nix.app(nix.sel(lib, "isDerivation"), appliance))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libguestfs/package.nix:44:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libguestfs",
       version: "1.56.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://libguestfs.org/download/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}-stable/libguestfs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-u0SJGnleC3khPO4sSRSVpt1ksh9ydEVZFzDX94kBaJo=",
         })))),
@@ -173,7 +171,7 @@ EOF
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tools for accessing and modifying virtual machine disk images",
         license: nix.thunk(() => (() => {
           const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

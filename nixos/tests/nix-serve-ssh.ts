@@ -2,17 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-serve-ssh.nix", [[["maintainers", 14, 8]], [["enable", 16, 9]], [["nix", 16, 5]], [["enable", 20, 7], ["keys", 21, 7], ["protocol", 22, 7]], [["sshServe", 19, 16], ["package", 24, 16]], [["nix", 19, 12]], [["package", 25, 16]], [["nix", 25, 12]], [["server", 19, 5], ["client", 25, 5]], [["name", 13, 3], ["meta", 14, 3], ["defaults", 15, 3], ["nodes", 18, 3], ["testScript", 27, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nix-serve-ssh.nix", [["maintainers", 14, 8]]);
-const pos$2 = nix.positions(here + "/nix-serve-ssh.nix", [["enable", 16, 9]]);
-const pos$3 = nix.positions(here + "/nix-serve-ssh.nix", [["nix", 16, 5]]);
-const pos$4 = nix.positions(here + "/nix-serve-ssh.nix", [["enable", 20, 7], ["keys", 21, 7], ["protocol", 22, 7]]);
-const pos$5 = nix.positions(here + "/nix-serve-ssh.nix", [["sshServe", 19, 16], ["package", 24, 16]]);
-const pos$6 = nix.positions(here + "/nix-serve-ssh.nix", [["nix", 19, 12]]);
-const pos$7 = nix.positions(here + "/nix-serve-ssh.nix", [["package", 25, 16]]);
-const pos$8 = nix.positions(here + "/nix-serve-ssh.nix", [["nix", 25, 12]]);
-const pos$9 = nix.positions(here + "/nix-serve-ssh.nix", [["server", 19, 5], ["client", 25, 5]]);
-const pos$10 = nix.positions(here + "/nix-serve-ssh.nix", [["name", 13, 3], ["meta", 14, 3], ["defaults", 15, 3], ["nodes", 18, 3], ["testScript", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,21 +14,24 @@ export default nix.lambda((args) => (() => {
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   const ssh_config = nix.thunk(() => nix.builtins.toFile("ssh.conf", "UserKnownHostsFile=/dev/null\nStrictHostKeyChecking=no\n"));
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "nix-ssh-serve",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "shlevy"))]),
     })),
-    defaults: nix.thunk(() => ({ [nix.POS]: pos$3, nix: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })) })),
+    defaults: nix.thunk(() => ({
+      [nix.POS]: $pos[2],
+      nix: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+    })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         nix: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           sshServe: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
             keys: nix.thunk(() => [snakeOilPublicKey]),
             protocol: "ssh-ng",
@@ -46,8 +40,8 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       client: nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        nix: nix.thunk(() => ({ [nix.POS]: pos$7, package: nix.thunk(() => nix.sel(pkgs, "nix")) })),
+        [nix.POS]: $pos[7],
+        nix: nix.thunk(() => ({ [nix.POS]: $pos[6], package: nix.thunk(() => nix.sel(pkgs, "nix")) })),
       })),
     })),
     testScript: nix.thunk(() => nix.str`start_all()

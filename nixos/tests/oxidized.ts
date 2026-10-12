@@ -2,65 +2,47 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/oxidized.nix", [[["system", 4, 13], ["config", 5, 5]], [["system", 10, 55], ["pkgs", 10, 62]], [["allowNullPassword", 18, 34]], [["sshd", 18, 29]], [["services", 18, 20]], [["pam", 18, 16]], [["enable", 20, 14]], [["PermitRootLogin", 22, 20], ["PermitEmptyPasswords", 23, 20]], [["settings", 22, 11]], [["enable", 26, 11], ["package", 27, 11], ["routerDB", 28, 11], ["configFile", 31, 11]], [["sshd", 20, 9], ["openssh", 21, 9], ["oxidized", 25, 9]], [["HOME", 75, 21], ["APP_ENV", 76, 21]], [["StateDirectory", 78, 11], ["MemoryDenyWriteExecute", 79, 11], ["PrivateNetwork", 81, 11], ["SystemCallFilter", 82, 11]], [["stopIfChanged", 74, 9], ["environment", 75, 9], ["serviceConfig", 77, 9], ["path", 85, 9]], [["oxidized", 73, 24]], [["services", 73, 15]], [["security", 18, 7], ["services", 19, 7], ["systemd", 73, 7]], [["server", 15, 9]], [["name", 13, 3], ["nodes", 15, 3], ["testScript", 90, 3]]]);
 const formals$1 = { args: { system: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/oxidized.nix", [["system", 4, 13], ["config", 5, 5]]);
-const pos$2 = nix.positions(here + "/oxidized.nix", [["system", 10, 55], ["pkgs", 10, 62]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/oxidized.nix", [["allowNullPassword", 18, 34]]);
-const pos$4 = nix.positions(here + "/oxidized.nix", [["sshd", 18, 29]]);
-const pos$5 = nix.positions(here + "/oxidized.nix", [["services", 18, 20]]);
-const pos$6 = nix.positions(here + "/oxidized.nix", [["pam", 18, 16]]);
-const pos$7 = nix.positions(here + "/oxidized.nix", [["enable", 20, 14]]);
-const pos$8 = nix.positions(here + "/oxidized.nix", [["PermitRootLogin", 22, 20], ["PermitEmptyPasswords", 23, 20]]);
-const pos$9 = nix.positions(here + "/oxidized.nix", [["settings", 22, 11]]);
-const pos$10 = nix.positions(here + "/oxidized.nix", [["enable", 26, 11], ["package", 27, 11], ["routerDB", 28, 11], ["configFile", 31, 11]]);
-const pos$11 = nix.positions(here + "/oxidized.nix", [["sshd", 20, 9], ["openssh", 21, 9], ["oxidized", 25, 9]]);
-const pos$12 = nix.positions(here + "/oxidized.nix", [["HOME", 75, 21], ["APP_ENV", 76, 21]]);
-const pos$13 = nix.positions(here + "/oxidized.nix", [["StateDirectory", 78, 11], ["MemoryDenyWriteExecute", 79, 11], ["PrivateNetwork", 81, 11], ["SystemCallFilter", 82, 11]]);
-const pos$14 = nix.positions(here + "/oxidized.nix", [["stopIfChanged", 74, 9], ["environment", 75, 9], ["serviceConfig", 77, 9], ["path", 85, 9]]);
-const pos$15 = nix.positions(here + "/oxidized.nix", [["oxidized", 73, 24]]);
-const pos$16 = nix.positions(here + "/oxidized.nix", [["services", 73, 15]]);
-const pos$17 = nix.positions(here + "/oxidized.nix", [["security", 18, 7], ["services", 19, 7], ["systemd", 73, 7]]);
-const pos$18 = nix.positions(here + "/oxidized.nix", [["server", 15, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/oxidized.nix", [["name", 13, 3], ["nodes", 15, 3], ["testScript", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: nix.thunk(() => ({})) }))));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: nix.thunk(() => ({})) }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs }))));
   const makeTest = nix.thunk(() => nix.attr(from, "makeTest"));
   return nix.app(makeTest, nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       name: "oxidized",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             security: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               pam: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
-                  sshd: nix.thunk(() => ({ [nix.POS]: pos$3, allowNullPassword: true })),
+                  [nix.POS]: $pos[3],
+                  sshd: nix.thunk(() => ({ [nix.POS]: $pos[2], allowNullPassword: true })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$11,
-              sshd: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+              [nix.POS]: $pos[10],
+              sshd: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
               openssh: nix.thunk(() => ({
-                [nix.POS]: pos$9,
-                settings: nix.thunk(() => ({ [nix.POS]: pos$8, PermitRootLogin: "yes", PermitEmptyPasswords: "yes" })),
+                [nix.POS]: $pos[8],
+                settings: nix.thunk(() => ({ [nix.POS]: $pos[7], PermitRootLogin: "yes", PermitEmptyPasswords: "yes" })),
               })),
               oxidized: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 enable: true,
                 package: nix.thunk(() => nix.sel(pkgs_1, "oxidized")),
                 routerDB: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "oxidized-router.db", "localhost:linuxgeneric:root\n")),
@@ -68,15 +50,15 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 oxidized: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   stopIfChanged: false,
-                  environment: nix.thunk(() => ({ [nix.POS]: pos$12, HOME: "/var/lib/oxidized", APP_ENV: "production" })),
+                  environment: nix.thunk(() => ({ [nix.POS]: $pos[11], HOME: "/var/lib/oxidized", APP_ENV: "production" })),
                   serviceConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     StateDirectory: "oxidized",
                     MemoryDenyWriteExecute: false,
                     PrivateNetwork: false,

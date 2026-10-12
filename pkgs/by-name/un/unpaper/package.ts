@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["paperless", 65, 26]], [["tests", 64, 12]], [["homepage", 69, 5], ["changelog", 70, 5], ["description", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 45, 3], ["nativeCheckInputs", 49, 3], ["doCheck", 55, 3], ["preCheck", 60, 3], ["passthru", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, sphinx: false, buildPackages: false, "ffmpeg-headless": false, nixosTests: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["paperless", 65, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 64, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["changelog", 70, 5], ["description", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["outputs", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 45, 3], ["nativeCheckInputs", 49, 3], ["doCheck", 55, 3], ["preCheck", 60, 3], ["passthru", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "unpaper",
       version: "7.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.flameeyes.eu/files/unpaper-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-JXX7vybCJxnRy4grWWAsmQDH90cRisEwiD9jQZvkaoA=",
         })))),
@@ -51,14 +47,14 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       preCheck: "mesonCheckFlagsArray+=(--test-args \"--numprocesses=auto --maxprocesses=6\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           paperless: nix.thunk(() => nix.attr(nixosTests, "paperless")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.flameeyes.eu/projects/unpaper",
         changelog: nix.thunk(() => nix.str`https://github.com/unpaper/unpaper/blob/unpaper-${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "Post-processing tool for scanned sheets of paper",

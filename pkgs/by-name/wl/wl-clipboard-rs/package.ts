@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["updateScript", 75, 5]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["platforms", 82, 5], ["license", 83, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["cargoBuildFlags", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["preCheck", 46, 3], ["checkFlags", 51, 3], ["postInstall", 59, 3], ["passthru", 74, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, "pkg-config": false, wayland: false, withNativeLibs: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["platforms", 82, 5], ["license", 83, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["cargoBuildFlags", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["preCheck", 46, 3], ["checkFlags", 51, 3], ["postInstall", 59, 3], ["passthru", 74, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const withNativeLibs = nix.argOr($, "withNativeLibs", () => false);
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wl-clipboard-rs",
       version: "0.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "YaLTeR",
           repo: "wl-clipboard-rs",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,11 +40,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "installManPage target/man/wl-copy.1\ninstallManPage target/man/wl-paste.1\n\ninstallShellCompletion --cmd wl-copy \\\n  --bash target/completions/wl-copy.bash \\\n  --fish target/completions/wl-copy.fish \\\n  --zsh target/completions/_wl-copy\n\ninstallShellCompletion --cmd wl-paste \\\n  --bash target/completions/wl-paste.bash \\\n  --fish target/completions/wl-paste.fish \\\n  --zsh target/completions/_wl-paste\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-line copy/paste utilities for Wayland, written in Rust",
         homepage: "https://github.com/YaLTeR/wl-clipboard-rs",
         changelog: nix.thunk(() => nix.str`https://github.com/YaLTeR/wl-clipboard-rs/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

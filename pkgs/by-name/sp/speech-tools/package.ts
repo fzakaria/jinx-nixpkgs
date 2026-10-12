@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["url", 23, 7], ["hash", 24, 7]], [["NIX_CFLAGS_COMPILE", 50, 7]], [["description", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5], ["license", 84, 5]], [["downloadPage", 89, 7]], [["updateInfo", 88, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["buildInputs", 34, 3], ["makeFlags", 42, 3], ["env", 50, 3], ["preConfigure", 52, 3], ["installPhase", 66, 3], ["doCheck", 76, 3], ["checkTarget", 78, 3], ["meta", 80, 3], ["passthru", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, ncurses: false, "alsa-lib": false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5], ["license", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["downloadPage", 89, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateInfo", 88, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["buildInputs", 34, 3], ["makeFlags", 42, 3], ["env", 50, 3], ["preConfigure", 52, 3], ["installPhase", 66, 3], ["doCheck", 76, 3], ["checkTarget", 78, 3], ["meta", 80, 3], ["passthru", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "speech_tools",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.festvox.org/packed/festival/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/speech_tools-${nix.sel(finalAttrs, "version")}-release.tar.gz`),
           sha256: "1k2xh13miyv48gh06rgsq2vj25xwj7z6vwq9ilsn8i7ig3nrgzg4",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/festvox/speech_tools/commit/06141f69d21bf507a9becb5405265dc362edb0df.patch",
             hash: "sha256-tRestCBuRhak+2ccsB6mvDxGm/TIYX4eZ3oppCOEP9s=",
           })))),
@@ -44,13 +38,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
         nix.thunk(() => nix.str`CXX=${nix.sel(stdenv, "cc", "targetPrefix")}c++`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-fcommon" })),
       preConfigure: "sed -e s@/usr/bin/@@g -i $( grep -rl '/usr/bin/' . )\nsed -re 's@/bin/(rm|printf|uname)@\\1@g' -i $( grep -rl '/bin/' . )\n\n# c99 makes isnan valid for float and double\nsubstituteInPlace include/EST_math.h \\\n  --replace '__isnanf(X)' 'isnan(X)'\n\n# fix script referenced paths\nsubstituteInPlace config/rules/script_process.awk \\\n  --replace-fail \"topdir\" \"\\\"$out\\\"\" \\\n  --replace-fail \"est\" \"\\\"$out\\\"\"\n",
       installPhase: "mkdir -p \"$out\"/{bin,include,lib}\nfor d in bin include lib; do\n  for i in ./$d/*; do\n    test \"$(basename \"$i\")\" = \"Makefile\" ||\n      cp -r \"$(readlink -f $i)\" \"$out/$d\"\n  done\ndone\n",
       doCheck: true,
       checkTarget: "test",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Text-to-speech engine",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -60,8 +54,8 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateInfo: nix.thunk(() => ({ [nix.POS]: pos$5, downloadPage: "http://www.festvox.org/packed/festival/" })),
+        [nix.POS]: $pos[5],
+        updateInfo: nix.thunk(() => ({ [nix.POS]: $pos[4], downloadPage: "http://www.festvox.org/packed/festival/" })),
       })),
     }));
 })(), formals$1);

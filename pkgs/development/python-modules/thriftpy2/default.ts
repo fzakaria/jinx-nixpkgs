@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["aiohttp", 34, 5]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["nativeBuildInputs", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 33, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, cython: false, fetchFromGitHub: false, ijson: false, ply: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aiohttp", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["nativeBuildInputs", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 33, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const ply = nix.arg($, "ply");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "thriftpy2",
       version: "0.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Thriftpy",
           repo: "thriftpy2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       nativeBuildInputs: nix.thunk(() => [cython]),
       dependencies: nix.thunk(() => [ply, ijson]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, aiohttp: nix.thunk(() => [aiohttp]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], aiohttp: nix.thunk(() => [aiohttp]) })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["thriftpy2"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python module for Apache Thrift",
         homepage: "https://github.com/Thriftpy/thriftpy2",
         changelog: nix.thunk(() => nix.str`https://github.com/Thriftpy/thriftpy2/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

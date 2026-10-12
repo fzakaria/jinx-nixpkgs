@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["EXTISM_ENGINE_PATH", 36, 7], ["ZSTD_SYS_USE_PKG_CONFIG", 37, 7]], [["name", 51, 7], ["nativeBuildInputs", 52, 7], ["script", 59, 7]], [["simple-js", 49, 11]], [["tests", 49, 5]], [["changelog", 89, 5], ["description", 90, 5], ["mainProgram", 91, 5], ["platforms", 92, 5], ["homepage", 93, 35], ["license", 93, 44], ["maintainers", 93, 52]], [["pname", 18, 3], ["version", 21, 5], ["src", 22, 5], ["cargoDeps", 23, 5], ["postPatch", 24, 5], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["env", 36, 3], ["cargoBuildFlags", 39, 3], ["cargoTestFlags", 40, 3], ["doInstallCheck", 42, 3], ["nativeInstallCheckInputs", 44, 3], ["passthru", 48, 3], ["__structuredAttrs", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { binaryen: false, "extism-cli": false, lib: false, "pkg-config": false, pkgsCross: false, rustPlatform: false, testers: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["EXTISM_ENGINE_PATH", 36, 7], ["ZSTD_SYS_USE_PKG_CONFIG", 37, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 51, 7], ["nativeBuildInputs", 52, 7], ["script", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["simple-js", 49, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 89, 5], ["description", 90, 5], ["mainProgram", 91, 5], ["platforms", 92, 5], ["homepage", 93, 35], ["license", 93, 44], ["maintainers", 93, 52]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 21, 5], ["src", 22, 5], ["cargoDeps", 23, 5], ["postPatch", 24, 5], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["env", 36, 3], ["cargoBuildFlags", 39, 3], ["cargoTestFlags", 40, 3], ["doInstallCheck", 42, 3], ["nativeInstallCheckInputs", 44, 3], ["passthru", 48, 3], ["__structuredAttrs", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(pkgsCross, "wasm32-wasip1"));
   const extism_js_core = nix.thunk(() => nix.attr(from, "extism-js-core"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "extism-js",
       version: nix.thunk(() => nix.attr(extism_js_core, "version")),
       src: nix.thunk(() => nix.attr(extism_js_core, "src")),
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [zstd]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         EXTISM_ENGINE_PATH: nix.thunk(() => nix.str`${nix.sel(pkgsCross, "wasm32-wasip1", "extism-js-core")}/bin/js_pdk_core.wasm`),
         ZSTD_SYS_USE_PKG_CONFIG: true,
       })),
@@ -43,11 +38,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "simple-js": nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-simple-js-test`),
               nativeBuildInputs: nix.thunk(() => [
                 nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
@@ -63,7 +58,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(extism_js_core, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/extism/js-pdk/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Write Extism plugins in JavaScript & TypeScript (CLI)",
         mainProgram: "extism-js",

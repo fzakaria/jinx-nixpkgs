@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5], ["leaveDotGit", 29, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["maintainers", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 34, 3], ["makeFlags", 50, 3], ["postPatch", 56, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, git: false, withWayland: true, cairo: false, libxkbcommon: false, wayland: false, withX: true, libxi: false, libxinerama: false, libxft: false, libxfixes: false, libxtst: false, libx11: false, libxext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5], ["leaveDotGit", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["maintainers", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 34, 3], ["makeFlags", 50, 3], ["postPatch", 56, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "warpd",
       version: "1.3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rvaiya",
           repo: "warpd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat(["PREFIX=$(out)"], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withWayland)), "DISABLE_WAYLAND=y"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withX)), "DISABLE_X=y")))),
       postPatch: "substituteInPlace mk/linux.mk \\\n  --replace '-m644' '-Dm644' \\\n  --replace '-m755' '-Dm755' \\\n  --replace 'warpd.1.gz $(DESTDIR)' 'warpd.1.gz -t $(DESTDIR)' \\\n  --replace 'bin/warpd $(DESTDIR)' 'bin/warpd -t $(DESTDIR)'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modal keyboard driven interface for mouse manipulation",
         homepage: "https://github.com/rvaiya/warpd",
         changelog: nix.thunk(() => nix.str`https://github.com/rvaiya/warpd/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

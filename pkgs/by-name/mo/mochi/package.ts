@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 7], ["hash", 22, 7]], [["pname", 25, 56], ["version", 25, 62], ["src", 25, 70]], [["updateScript", 37, 14]], [["pname", 18, 13], ["version", 18, 19], ["meta", 18, 27], ["src", 20, 5], ["appimageContents", 25, 5], ["extraPkgs", 27, 5], ["extraInstallCommands", 29, 5], ["passthru", 37, 5]], [["url", 44, 7], ["hash", 45, 7]], [["pname", 41, 13], ["version", 41, 19], ["meta", 41, 27], ["src", 43, 5], ["sourceRoot", 48, 5], ["nativeBuildInputs", 50, 5], ["installPhase", 55, 5]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["sourceProvenance", 72, 5], ["maintainers", 73, 5], ["platforms", 77, 5]]]);
 const formals$1 = { args: { appimageTools: false, fetchurl: false, imagemagick: false, lib: false, makeWrapper: false, stdenv: false, stdenvNoCC: false, libxshmfence: false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 25, 56], ["version", 25, 62], ["src", 25, 70]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 37, 14]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 13], ["version", 18, 19], ["meta", 18, 27], ["src", 20, 5], ["appimageContents", 25, 5], ["extraPkgs", 27, 5], ["extraInstallCommands", 29, 5], ["passthru", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 41, 13], ["version", 41, 19], ["meta", 41, 27], ["src", 43, 5], ["sourceRoot", 48, 5], ["nativeBuildInputs", 50, 5], ["installPhase", 55, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["sourceProvenance", 72, 5], ["maintainers", 73, 5], ["platforms", 77, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +23,11 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const meta_1 = meta;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.mochi.cards/releases/Mochi-${version_1}.AppImage`),
           hash: "sha256-uhsmIhuub3cKiOozfdVbD3yuHfEx+bWypt66kMIROCg=",
         }))));
-      const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname_1, version: version_1, src: src }))));
+      const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname_1, version: version_1, src: src }))));
       const extraPkgs = (pkgs) => [libxshmfence];
       const extraInstallCommands = nix.thunk(() => nix.str`install -Dm444 ${appimageContents}/${pname_1}.desktop -t $out/share/applications/
 ${nix.app(nix.sel(lib, "getExe"), imagemagick)} ${appimageContents}/${pname_1}.png -resize 512x512 ${pname_1}_512.png
@@ -41,9 +35,9 @@ install -Dm444 ${pname_1}_512.png $out/share/icons/hicolor/512x512/apps/${pname_
 substituteInPlace $out/share/applications/${pname_1}.desktop \\
   --replace-fail 'Exec=AppRun --no-sandbox' 'Exec=${pname_1}'
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname_1,
         version: version_1,
         meta: meta_1,
@@ -55,12 +49,12 @@ substituteInPlace $out/share/applications/${pname_1}.desktop \\
       };
     })())));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`https://download.mochi.cards/releases/Mochi-${version}-arm64.dmg`),
           hash: "sha256-DqniDFVgGlKQn8sdddzT2fzR7TN87gBL97ZcU0pRrHw=",
         })))),
@@ -76,7 +70,7 @@ runHook postInstall
 `),
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     description: "Simple markdown-powered SRS app",
     homepage: "https://mochi.cards/",
     changelog: "https://mochi.cards/changelog.html",

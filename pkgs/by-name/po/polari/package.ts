@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 37, 5], ["hash", 38, 5]], [["packageName", 107, 41]], [["updateScript", 107, 5]], [["homepage", 111, 5], ["description", 112, 5], ["mainProgram", 113, 5], ["teams", 114, 5], ["license", 118, 5], ["platforms", 119, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 41, 3], ["postPatch", 68, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 86, 3], ["postFixup", 102, 3], ["passthru", 106, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, itstool: false, fetchurl: false, "gdk-pixbuf": false, "telepathy-glib": false, "telepathy-idle": false, "telepathy-mission-control": false, gjs: false, meson: false, ninja: false, gettext: false, libxml2: false, "desktop-file-utils": false, "pkg-config": false, gtk4: false, tinysparql: false, libadwaita: false, glib: false, "glib-networking": false, libsecret: false, libsoup_3: false, webkitgtk_6_0: false, "gobject-introspection": false, gnome: false, wrapGAppsHook4: false, gspell: false, "gsettings-desktop-schemas": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 107, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 107, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 111, 5], ["description", 112, 5], ["mainProgram", 113, 5], ["teams", 114, 5], ["license", 118, 5], ["platforms", 119, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 41, 3], ["postPatch", 68, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 86, 3], ["postFixup", 102, 3], ["passthru", 106, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const gspell = nix.arg($, "gspell");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "polari",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/polari/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/polari-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-pSiWuSZHJf19WtCOYp10r6ZKNOT2PnP2ELl87TblZ9s=",
         })))),
@@ -88,11 +84,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "wrapGApp \"$out/share/polari/thumbnailer.js\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "polari" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "polari" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://apps.gnome.org/Polari/",
         description: "IRC chat client designed to integrate with the GNOME desktop",
         mainProgram: "polari",

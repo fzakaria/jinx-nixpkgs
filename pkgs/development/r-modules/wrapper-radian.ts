@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper-radian.nix", [[["recommendedPackages", 26, 26]], [["hydraPlatforms", 30, 7], ["priority", 32, 7]], [["preferLocalBuild", 14, 5], ["allowSubstitutes", 15, 5], ["buildInputs", 17, 5], ["nativeBuildInputs", 24, 5], ["passthru", 26, 5], ["meta", 28, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, R: false, radian: false, makeBinaryWrapper: false, recommendedPackages: false, packages: false, wrapR: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper-radian.nix", [["recommendedPackages", 26, 26]]);
-const pos$2 = nix.positions(here + "/wrapper-radian.nix", [["hydraPlatforms", 30, 7], ["priority", 32, 7]]);
-const pos$3 = nix.positions(here + "/wrapper-radian.nix", [["preferLocalBuild", 14, 5], ["allowSubstitutes", 15, 5], ["buildInputs", 17, 5], ["nativeBuildInputs", 24, 5], ["passthru", 26, 5], ["meta", 28, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const packages = nix.arg($, "packages");
   const wrapR = nix.argOr($, "wrapR", () => false);
   return nix.app(runCommand, nix.thunk(() => nix.add(nix.sel(radian, "name"), "-wrapper")), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       preferLocalBuild: true,
       allowSubstitutes: false,
       buildInputs: nix.thunk(() => nix.concat([R, radian], nix.concat(recommendedPackages, packages))),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, recommendedPackages: recommendedPackages })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], recommendedPackages: recommendedPackages })),
       meta: nix.thunk(() => nix.update(nix.sel(radian, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         hydraPlatforms: [],
         priority: nix.thunk(() => nix.sub(nix.selOr(radian, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
       })),

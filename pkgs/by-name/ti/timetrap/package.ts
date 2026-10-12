@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ruby", 14, 41]], [["updateScript", 22, 14]], [["pname", 15, 13], ["gemdir", 16, 5], ["exes", 17, 5], ["passthru", 22, 5]], [["ruby", 25, 34]], [["pname", 26, 13], ["gemdir", 27, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 63, 5]], [["updateScript", 67, 5]], [["pname", 33, 11], ["version", 34, 26], ["dontUnpack", 36, 3], ["nativeBuildInputs", 38, 3], ["installPhase", 40, 3], ["meta", 55, 3], ["passthru", 66, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, ruby_3_4: false, bundlerEnv: false, bundlerApp: false, bundlerUpdateScript: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ruby", 14, 41]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 22, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 13], ["gemdir", 16, 5], ["exes", 17, 5], ["passthru", 22, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ruby", 25, 34]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 13], ["gemdir", 27, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 63, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 67, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 33, 11], ["version", 34, 26], ["dontUnpack", 36, 3], ["nativeBuildInputs", 38, 3], ["installPhase", 40, 3], ["meta", 55, 3], ["passthru", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const installShellFiles = nix.arg($, "installShellFiles");
   const pname = "timetrap";
-  const ttBundlerApp = nix.thunk(() => nix.app(nix.sel(bundlerApp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, ruby: ruby_3_4 })), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+  const ttBundlerApp = nix.thunk(() => nix.app(nix.sel(bundlerApp, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], ruby: ruby_3_4 })), nix.thunk(() => ({
+      [nix.POS]: $pos[2],
       pname: pname,
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["t", "timetrap"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "timetrap")),
       })),
     }))));
-  const ttGem = nix.thunk(() => nix.app(nix.sel(bundlerEnv, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, ruby: ruby_3_4 })), nix.thunk(() => ({ [nix.POS]: pos$5, pname: pname, gemdir: nix.path(here, "./.") }))));
+  const ttGem = nix.thunk(() => nix.app(nix.sel(bundlerEnv, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], ruby: ruby_3_4 })), nix.thunk(() => ({ [nix.POS]: $pos[4], pname: pname, gemdir: nix.path(here, "./.") }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: nix.thunk(() => nix.attr(ttBundlerApp, "version")),
       dontUnpack: true,
@@ -53,7 +46,7 @@ for c in t timetrap; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Simple command line time tracker written in ruby",
         homepage: "https://github.com/samg/timetrap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -67,7 +60,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.sel(ttBundlerApp, "passthru", "updateScript")),
       })),
     })));

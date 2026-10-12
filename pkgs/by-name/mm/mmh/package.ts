@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["name", 21, 5], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 38, 7]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["broken", 47, 5], ["maintainers", 48, 5]], [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["postPatch", 25, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 31, 3], ["env", 38, 3], ["enableParallelBuilding", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false, autoreconfHook: false, flex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["name", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["broken", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["postPatch", 25, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 31, 3], ["env", 38, 3], ["enableParallelBuilding", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const rev = "7e93dee44df1a7e8f551a2e408a600b2e90a0974";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mmh",
       version: "0.4-unstable-2023-09-24",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://git.marmaro.de/?p=mmh;a=snapshot;h=${rev};sf=tgz`),
           name: nix.thunk(() => nix.str`mmh-${rev}.tgz`),
           hash: "sha256-t2Qnwtkli+/MDk6uaikS2SIP9LucK64os8kGcn2ytRU=",
@@ -35,12 +32,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, flex]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types"]))),
       })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Set of electronic mail handling programs",
         homepage: "http://marmaro.de/prog/mmh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

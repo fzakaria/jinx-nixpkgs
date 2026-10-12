@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libprocstat.nix", [[["path", 14, 3], ["extraPaths", 15, 3], ["outputs", 25, 3], ["noLibc", 31, 3], ["buildInputs", 33, 3], ["preBuild", 42, 3]]]);
 const formals$1 = { args: { mkDerivation: false, include: false, libcMinimal: false, libgcc: false, libkvm: false, libutil: false, libelf: false, csu: false, extraSrc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libprocstat.nix", [["path", 14, 3], ["extraPaths", 15, 3], ["outputs", 25, 3], ["noLibc", 31, 3], ["buildInputs", 33, 3], ["preBuild", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const csu = nix.arg($, "csu");
   const extraSrc = nix.argOr($, "extraSrc", () => []);
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "lib/libprocstat",
       extraPaths: nix.thunk(() => nix.concat([
         "lib/libc/Versions.def",

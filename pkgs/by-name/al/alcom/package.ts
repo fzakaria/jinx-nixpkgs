@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["name", 63, 5], ["src", 64, 26], ["sourceRoot", 65, 5], ["hash", 66, 5]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["broken", 78, 5], ["mainProgram", 79, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 41, 3], ["cargoHash", 51, 3], ["buildFeatures", 52, 3], ["buildAndTestSubdir", 53, 3], ["postInstall", 55, 3], ["npmDeps", 62, 3], ["npmRoot", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { "cargo-about": false, "cargo-tauri": false, fetchFromGitHub: false, fetchNpmDeps: false, "glib-networking": false, lib: false, libsoup_3: false, makeBinaryWrapper: false, nodejs: false, npmHooks: false, openssl: false, "pkg-config": false, rustPlatform: false, stdenv: false, wrapGAppsHook4: false, webkitgtk_4_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 63, 5], ["src", 64, 26], ["sourceRoot", 65, 5], ["hash", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["broken", 78, 5], ["mainProgram", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 41, 3], ["cargoHash", 51, 3], ["buildFeatures", 52, 3], ["buildAndTestSubdir", 53, 3], ["postInstall", 55, 3], ["npmDeps", 62, 3], ["npmRoot", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const subdir = "vrc-get-gui";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "alcom",
       version: "1.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vrc-get",
           repo: "vrc-get",
           tag: nix.thunk(() => nix.str`gui-v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +53,7 @@ for size in 32x32 64x64 128x128 128x128@2x; do
 done
 `),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/${subdir}`),
@@ -64,7 +61,7 @@ done
         })))),
       npmRoot: subdir,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Experimental GUI application to manage VRChat Unity Projects",
         homepage: "https://github.com/vrc-get/vrc-get",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

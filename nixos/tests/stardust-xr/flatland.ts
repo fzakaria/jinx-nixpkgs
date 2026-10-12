@@ -2,57 +2,48 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/flatland.nix", [[["RUST_BACKTRACE", 24, 21]], [["wantedBy", 20, 9], ["requires", 21, 9], ["after", 22, 9], ["script", 23, 9], ["environment", 24, 9]], [["DISPLAY", 33, 11], ["WAYLAND_DISPLAY", 34, 11]], [["wantedBy", 28, 9], ["requires", 29, 9], ["after", 30, 9], ["script", 31, 9], ["environment", 32, 9]], [["stardust-xr-flatland", 19, 29], ["test-wayland-app", 27, 29]], [["services", 19, 20]], [["user", 19, 15]], [["imports", 17, 7], ["systemd", 19, 7]], [["machine", 8, 9]], [["name", 3, 3], ["skipTypeCheck", 6, 3], ["nodes", 8, 3], ["testScript", 39, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { lib: false, pkgs: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/flatland.nix", [["RUST_BACKTRACE", 24, 21]]);
-const pos$2 = nix.positions(here + "/flatland.nix", [["wantedBy", 20, 9], ["requires", 21, 9], ["after", 22, 9], ["script", 23, 9], ["environment", 24, 9]]);
-const pos$3 = nix.positions(here + "/flatland.nix", [["DISPLAY", 33, 11], ["WAYLAND_DISPLAY", 34, 11]]);
-const pos$4 = nix.positions(here + "/flatland.nix", [["wantedBy", 28, 9], ["requires", 29, 9], ["after", 30, 9], ["script", 31, 9], ["environment", 32, 9]]);
-const pos$5 = nix.positions(here + "/flatland.nix", [["stardust-xr-flatland", 19, 29], ["test-wayland-app", 27, 29]]);
-const pos$6 = nix.positions(here + "/flatland.nix", [["services", 19, 20]]);
-const pos$7 = nix.positions(here + "/flatland.nix", [["user", 19, 15]]);
-const pos$8 = nix.positions(here + "/flatland.nix", [["imports", 17, 7], ["systemd", 19, 7]]);
-const pos$9 = nix.positions(here + "/flatland.nix", [["machine", 8, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/flatland.nix", [["name", 3, 3], ["skipTypeCheck", 6, 3], ["nodes", 8, 3], ["testScript", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "stardust-xr-flatland",
     skipTypeCheck: true,
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           imports: nix.thunk(() => [nix.path(here, "./common.nix")]),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             user: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 "stardust-xr-flatland": nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   wantedBy: nix.thunk(() => ["xdg-desktop-autostart.target"]),
                   requires: nix.thunk(() => ["stardust-xr-server.service"]),
                   after: nix.thunk(() => ["stardust-xr-server.service"]),
                   script: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "stardust-xr-flatland")))),
-                  environment: nix.thunk(() => ({ [nix.POS]: pos$1, RUST_BACKTRACE: "full" })),
+                  environment: nix.thunk(() => ({ [nix.POS]: $pos[0], RUST_BACKTRACE: "full" })),
                 })),
                 "test-wayland-app": nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   wantedBy: nix.thunk(() => ["xdg-desktop-autostart.target"]),
                   requires: nix.thunk(() => ["stardust-xr-flatland.service"]),
                   after: nix.thunk(() => ["stardust-xr-flatland.service"]),
                   script: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "wayland-colorbar")))),
-                  environment: nix.thunk(() => ({ [nix.POS]: pos$3, DISPLAY: "", WAYLAND_DISPLAY: "wayland-0" })),
+                  environment: nix.thunk(() => ({ [nix.POS]: $pos[2], DISPLAY: "", WAYLAND_DISPLAY: "wayland-0" })),
                 })),
               })),
             })),

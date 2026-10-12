@@ -2,30 +2,20 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hashed-password.nix", [[["maintainers", 6, 5]], [["nativeBuildInputs", 18, 53]], [["useBootLoader", 24, 22]], [["hashedPasswordFile", 29, 19]], [["bob", 29, 15]], [["enable", 28, 9], ["users", 29, 9], ["extraConfig", 34, 9]], [["timeout", 26, 19], ["grub", 27, 19]], [["loader", 26, 12]], [["virtualisation", 24, 7], ["boot", 26, 7]], [["machine", 12, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 12, 3], ["testScript", 38, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/hashed-password.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/hashed-password.nix", [["nativeBuildInputs", 18, 53]]);
-const pos$3 = nix.positions(here + "/hashed-password.nix", [["useBootLoader", 24, 22]]);
-const pos$4 = nix.positions(here + "/hashed-password.nix", [["hashedPasswordFile", 29, 19]]);
-const pos$5 = nix.positions(here + "/hashed-password.nix", [["bob", 29, 15]]);
-const pos$6 = nix.positions(here + "/hashed-password.nix", [["enable", 28, 9], ["users", 29, 9], ["extraConfig", 34, 9]]);
-const pos$7 = nix.positions(here + "/hashed-password.nix", [["timeout", 26, 19], ["grub", 27, 19]]);
-const pos$8 = nix.positions(here + "/hashed-password.nix", [["loader", 26, 12]]);
-const pos$9 = nix.positions(here + "/hashed-password.nix", [["virtualisation", 24, 7], ["boot", 26, 7]]);
-const pos$10 = nix.positions(here + "/hashed-password.nix", [["machine", 12, 9]]);
-const pos$11 = nix.positions(here + "/hashed-password.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 12, 3], ["testScript", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "grub-hashed-password",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "tomfitzhenry")),
           nix.thunk(() => nix.lookup(w, "rnhmjoj")),
@@ -33,30 +23,30 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const mkGrubPbkdf2HashFile = (password) => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandLocal"), "grub-pbkdf2-hash", nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "grub2"))]),
             })), nix.thunk(() => nix.str`printf "%s\\n%s\\n" "${password}" "${password}" | grub-mkpasswd-pbkdf2 | grep -o 'grub\\.pbkdf2\\.[^[:space:]]*' > $out
 `))));
         return {
-          [nix.POS]: pos$9,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, useBootLoader: true })),
+          [nix.POS]: $pos[8],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[2], useBootLoader: true })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               timeout: null,
               grub: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 enable: true,
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   bob: nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     hashedPasswordFile: nix.thunk(() => nix.app(mkGrubPbkdf2HashFile, "bobsecret")),
                   })),
                 })),

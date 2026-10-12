@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/1.00.37.nix", [[["sha256", 20, 5], ["url", 21, 5]], [["description", 98, 5], ["homepage", 99, 5], ["downloadPage", 100, 5], ["sourceProvenance", 101, 5], ["license", 102, 5], ["platforms", 106, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["installPhase", 30, 3], ["preFixup", 79, 3], ["dontStrip", 92, 3], ["dontPatchELF", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cups: false, "libusb-compat-0_1": false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/1.00.37.nix", [["sha256", 20, 5], ["url", 21, 5]]);
-const pos$2 = nix.positions(here + "/1.00.37.nix", [["description", 98, 5], ["homepage", 99, 5], ["downloadPage", 100, 5], ["sourceProvenance", 101, 5], ["license", 102, 5], ["platforms", 106, 5]]);
-const pos$3 = nix.positions(here + "/1.00.37.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["installPhase", 30, 3], ["preFixup", 79, 3], ["dontStrip", 92, 3], ["dontPatchELF", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const arch = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? "x86_64" : "i386"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "samsung-unified-linux-driver",
       version: "1.00.37",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sha256: "0r66l9zp0p1qgakh4j08hynwsr4lsgq5yrpxyr0x4ldvl0z2b1bb",
           url: nix.thunk(() => nix.str`https://www.bchemnet.com/suldr/driver/UnifiedLinuxDriver-${nix.sel(finalAttrs, "version")}.tar.gz`),
         })))),
@@ -86,7 +84,7 @@ ln -s ${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "c
       dontStrip: true,
       dontPatchELF: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unified Linux Driver for Samsung printers and scanners",
         homepage: "http://www.bchemnet.com/suldr",
         downloadPage: "http://www.bchemnet.com/suldr/driver/",

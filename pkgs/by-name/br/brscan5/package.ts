@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 9], ["hash", 30, 9]], [["url", 33, 9], ["hash", 34, 9]], [["i686-linux", 28, 7], ["x86_64-linux", 32, 7]], [["brscan5", 134, 43]], [["tests", 134, 12]], [["description", 137, 5], ["homepage", 138, 5], ["platforms", 139, 5], ["sourceProvenance", 143, 5], ["license", 144, 5], ["maintainers", 145, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 26, 3], ["unpackPhase", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["dontBuild", 55, 3], ["postPatch", 57, 3], ["installPhase", 89, 3], ["doInstallCheck", 130, 3], ["dontPatchELF", 132, 3], ["passthru", 134, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, patchelf: false, makeWrapper: false, libusb1: false, "avahi-compat": false, glib: false, libredirect: false, nixosTests: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 9], ["hash", 30, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 9], ["hash", 34, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["i686-linux", 28, 7], ["x86_64-linux", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["brscan5", 134, 43]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 134, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 137, 5], ["homepage", 138, 5], ["platforms", 139, 5], ["sourceProvenance", 143, 5], ["license", 144, 5], ["maintainers", 145, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 26, 3], ["unpackPhase", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["dontBuild", 55, 3], ["postPatch", 57, 3], ["installPhase", 89, 3], ["doInstallCheck", 130, 3], ["dontPatchELF", 132, 3], ["passthru", 134, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const pname = "brscan5";
       const version = "1.3.1-0";
       const src = nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "i686-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf104034/${pname}-${version}.i386.deb`),
             hash: "sha256-BgS64vwsKESJBDz9H2MDwcGiresROSNFP1b+7+zlE5c=",
           })))),
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf104033/${pname}-${version}.amd64.deb`),
             hash: "sha256-0UMbXMBlyiZI90WG5FWEP2mIZEBsxXd11dtgtyuSDnY=",
           })))),
@@ -110,11 +104,14 @@ runHook postInstall
       const doInstallCheck = true;
       const dontPatchELF = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, brscan5: nix.thunk(() => nix.attr(nixosTests, "brscan5")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[3],
+          brscan5: nix.thunk(() => nix.attr(nixosTests, "brscan5")),
+        })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Brother brscan5 sane backend driver",
         homepage: "https://www.brother.com",
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
@@ -129,7 +126,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

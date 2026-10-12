@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["rev", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]], [["url", 32, 5], ["rev", 33, 5], ["hash", 34, 5], ["fetchSubmodules", 35, 5]], [["SOURCE_LEVEL", 93, 5], ["TARGET_LEVEL", 94, 5], ["TARGET_RT_JAR", 95, 5], ["NIX_CFLAGS_COMPILE", 97, 5]], [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["platforms", 128, 5]], [["pname", 39, 3], ["version", 40, 11], ["srcs", 42, 3], ["sourceRoot", 46, 3], ["unpackCmd", 48, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 80, 3], ["env", 92, 3], ["buildPhase", 100, 3], ["installPhase", 112, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, ant: false, jdk11: false, git: false, xmlstarlet: false, stripJavaArchivesHook: false, udev: false, libxxf86vm: false, libxt: false, libxrender: false, libxrandr: false, libxi: false, libxcursor: false, libx11: false, libgbm: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["rev", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 5], ["rev", 33, 5], ["hash", 34, 5], ["fetchSubmodules", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["SOURCE_LEVEL", 93, 5], ["TARGET_LEVEL", 94, 5], ["TARGET_RT_JAR", 95, 5], ["NIX_CFLAGS_COMPILE", 97, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["platforms", 128, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 11], ["srcs", 42, 3], ["sourceRoot", 46, 3], ["unpackCmd", 48, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 80, 3], ["env", 92, 3], ["buildPhase", 100, 3], ["installPhase", 112, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,21 +27,21 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const version = "2.4.0";
   const gluegen_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "git://jogamp.org/srv/scm/gluegen.git",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-qQzq7v2vMFeia6gXaNHS3AbOp9HhDRgISp7P++CKErA=",
       fetchSubmodules: true,
     }))));
   const jogl_src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "git://jogamp.org/srv/scm/jogl.git",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-PHDq7uFEQfJ2P0eXPUi0DGFR1ob/n5a68otgzpFnfzQ=",
       fetchSubmodules: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jogl",
       version: version,
       srcs: nix.thunk(() => [gluegen_src, jogl_src]),
@@ -67,7 +63,7 @@ export default nix.lambda((args) => (() => {
           libgbm,
         ]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         SOURCE_LEVEL: "1.8",
         TARGET_LEVEL: "1.8",
         TARGET_RT_JAR: "null.jar",
@@ -76,7 +72,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nfor f in gluegen jogl; do\n  pushd $f/make\n  ant\n  popd\ndone\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/java\ncp -v $NIX_BUILD_TOP/gluegen/build/gluegen-rt{,-natives-linux-*}.jar $out/share/java/\ncp -v $NIX_BUILD_TOP/jogl/build/jar/jogl-all{,-natives-linux-*}.jar  $out/share/java/\ncp -v $NIX_BUILD_TOP/jogl/build/nativewindow/nativewindow{,-awt,-natives-linux-*,-os-drm,-os-x11}.jar  $out/share/java/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Java libraries for 3D Graphics, Multimedia and Processing",
         homepage: "https://jogamp.org/",
         changelog: "https://jogamp.org/deployment/jogamp-current/archive/ChangeLogs/",

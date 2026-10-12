@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 93, 7], ["hash", 94, 7]], [["pname", 86, 5], ["version", 89, 5], ["src", 92, 5], ["unpackPhase", 97, 5], ["nativeBuildInputs", 104, 5], ["buildInputs", 113, 5], ["dontWrapQtApps", 156, 5], ["dontStrip", 158, 5], ["autoPatchelfIgnoreMissingDeps", 160, 5], ["installPhase", 170, 5], ["preFixup", 187, 5]], [["description", 224, 5], ["homepage", 225, 5], ["downloadPage", 226, 5], ["changelog", 227, 5], ["platforms", 228, 5], ["sourceProvenance", 229, 5], ["license", 230, 5], ["maintainers", 231, 5], ["mainProgram", 232, 5]], [["pname", 204, 24], ["version", 204, 30], ["targetPkgs", 206, 3], ["runScript", 213, 3], ["extraInstallCommands", 215, 3], ["meta", 223, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, buildFHSEnv: false, unzip: false, patchelfUnstable: false, "alsa-lib": false, "at-spi2-atk": false, atk: false, autoPatchelfHook: false, cairo: false, curl: false, dbus: false, dconf: false, dpkg: false, firebird: false, fontconfig: false, "gcc-unwrapped": false, "gdk-pixbuf": false, glib: false, glibc: false, "gsettings-desktop-schemas": false, gst_all_1: false, gtk2: false, gtk3: false, libGL: false, libdrm: false, libgbm: false, libmysqlclient: false, libnotify: false, libpulseaudio: false, "libudev0-shim": false, libx11: false, libxcb: false, "libxcb-cursor": false, libxcomposite: false, libxcursor: false, libxdamage: false, libxext: false, libxfixes: false, libxi: false, libxrandr: false, libxrender: false, libxscrnsaver: false, libxtst: false, makeWrapper: false, "noto-fonts-cjk-sans": false, nspr: false, nss: false, pulseaudio: false, qt6: false, wrapGAppsHook3: false, xkeyboard_config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 93, 7], ["hash", 94, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 86, 5], ["version", 89, 5], ["src", 92, 5], ["unpackPhase", 97, 5], ["nativeBuildInputs", 104, 5], ["buildInputs", 113, 5], ["dontWrapQtApps", 156, 5], ["dontStrip", 158, 5], ["autoPatchelfIgnoreMissingDeps", 160, 5], ["installPhase", 170, 5], ["preFixup", 187, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 224, 5], ["homepage", 225, 5], ["downloadPage", 226, 5], ["changelog", 227, 5], ["platforms", 228, 5], ["sourceProvenance", 229, 5], ["license", 230, 5], ["maintainers", 231, 5], ["mainProgram", 232, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 204, 24], ["version", 204, 30], ["targetPkgs", 206, 3], ["runScript", 213, 3], ["extraInstallCommands", 215, 3], ["meta", 223, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -71,11 +68,11 @@ export default nix.lambda((args) => (() => {
       pulseaudio,
     ])));
   const derivation = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "euro-office-desktopeditors",
       version: "9.3.1-dev.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://archive.org/download/euro-office-desktopeditors-9.3.1-dev.1-linux-amd64/linux-packages-amd64.zip",
           hash: "sha256-OV3abn9nYq/FeBkpft+27iGt34Rqi2VkJkAZwBHu1lM=",
         })))),
@@ -137,7 +134,7 @@ export default nix.lambda((args) => (() => {
 `),
     })));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.attr(derivation, "pname")),
       version: nix.thunk(() => nix.attr(derivation, "version")),
       targetPkgs: (pkgs$) => [curl, derivation, noto_fonts_cjk_sans, libGL],
@@ -149,7 +146,7 @@ substituteInPlace $out/share/applications/euro-office-desktopeditors.desktop \\
     --replace-fail "/usr/bin/euro-office-desktopeditors" "$out/bin/euro-office-desktopeditors"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit local documents",
         homepage: "https://github.com/Euro-Office/DesktopEditors",
         downloadPage: "https://github.com/Euro-Office/DesktopEditors/releases",

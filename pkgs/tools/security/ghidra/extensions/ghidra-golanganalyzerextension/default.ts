@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["description", 20, 5], ["homepage", 21, 5], ["downloadPage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["sourceRoot", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGhidraExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 20, 5], ["homepage", 21, 5], ["downloadPage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["sourceRoot", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGhidraExtension = nix.arg($, "buildGhidraExtension");
   return nix.app(buildGhidraExtension, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "Ghidra-GolangAnalyzerExtension",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mooncat-greenpy",
           repo: "Ghidra_GolangAnalyzerExtension",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/GolangAnalyzerExtension`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Facilitates the analysis of Golang binaries using Ghidra",
         homepage: "https://github.com/mooncat-greenpy/Ghidra_GolangAnalyzerExtension",
         downloadPage: nix.thunk(() => nix.str`https://github.com/mooncat-greenpy/Ghidra_GolangAnalyzerExtension/releases/tag/${nix.sel(finalAttrs, "version")}`),

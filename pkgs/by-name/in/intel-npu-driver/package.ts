@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]], [["NIX_CFLAGS_COMPILE", 38, 7]], [["homepage", 77, 5], ["description", 78, 5], ["platforms", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 33, 3], ["env", 38, 3], ["outputs", 40, 3], ["postPatch", 46, 3], ["installPhase", 70, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, udev: false, openssl: false, boost: false, cmake: false, git: false, "level-zero": false, "pkg-config": false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["platforms", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 33, 3], ["env", 38, 3], ["outputs", 40, 3], ["postPatch", 46, 3], ["installPhase", 70, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "intel-npu-driver";
       const version = "1.38.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "linux-npu-driver",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [udev, openssl, boost, level_zero]);
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=missing-field-initializers",
       }));
       const outputs = nix.thunk(() => ["out", "validation", "firmware"]);
       const postPatch = "rm third_party/cmake/level-zero.cmake\n\nsubstituteInPlace third_party/yaml-cpp/CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required\" \\\n  \"# cmake_minimum_required\"\n\nsubstituteInPlace third_party/CMakeLists.txt --replace-fail \\\n  \"include(cmake/level-zero.cmake)\" \\\n  \"include(cmake/FindLevelZero.cmake)\"\n\nsubstituteInPlace third_party/level-zero-npu-extensions/ze_graph_ext.h --replace-fail \\\n\"#include \\\"ze_api.h\\\"\" \\\n\"#include <level_zero/ze_api.h>\"\n\nsubstituteInPlace validation/{kmd-test,umd-test}/CMakeLists.txt --replace-fail \\\n  \"COMPONENT validation-npu\" \\\n  \"DESTINATION $validation/bin COMPONENT validation-npu\"\n\nsubstituteInPlace firmware/CMakeLists.txt --replace-fail \\\n  \"DESTINATION /lib/firmware/updates/intel/vpu/\" \\\n  \"DESTINATION $firmware/lib/firmware/intel/vpu/\"\n";
       const installPhase = "cmake --install . --component level-zero-npu\ncmake --install . --component validation-npu\ncmake --install . --component fw-npu\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/intel/linux-npu-driver",
         description: "Intel NPU (Neural Processing Unit) Standalone Driver",
         platforms: nix.thunk(() => ["x86_64-linux"]),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

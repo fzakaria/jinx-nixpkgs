@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["ignoredVersions", 66, 7]], [["updateScript", 65, 5]], [["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["pythonPath", 50, 3], ["preFixup", 55, 3], ["passthru", 64, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "gobject-introspection": false, meson: false, ninja: false, python3: false, wrapGAppsHook3: false, xapp: false, glib: false, gspell: false, gtk3: false, "xapp-symbolic-icons": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ignoredVersions", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["pythonPath", 50, 3], ["preFixup", 55, 3], ["passthru", 64, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xapp_symbolic_icons = nix.arg($, "xapp-symbolic-icons");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sticky",
       version: "1.32",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "sticky",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,11 +56,11 @@ gappsWrapperArgs+=(
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "master.*" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], ignoredVersions: "master.*" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Sticky notes app for the Linux desktop",
         mainProgram: "sticky",
         homepage: "https://github.com/linuxmint/sticky",

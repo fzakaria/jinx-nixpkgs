@@ -2,10 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["meta", 17, 21], ["name", 18, 5], ["paths", 20, 5], ["pathsToLink", 22, 5], ["nativeBuildInputs", 24, 5], ["postBuild", 26, 5]]]);
 const formals$1 = { args: { lib: false, buildEnv: false, typstPackages: false, makeBinaryWrapper: false, typst: false }, ellipsis: false };
 const formals$2 = { args: {  }, ellipsis: true };
 const formals$3 = { args: { packages: true, fonts: true, extraWrapperArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["meta", 17, 21], ["name", 18, 5], ["paths", 20, 5], ["pathsToLink", 22, 5], ["nativeBuildInputs", 24, 5], ["postBuild", 26, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
         const fonts = nix.argOr($_2, "fonts", () => []);
         const extraWrapperArgs = nix.argOr($_2, "extraWrapperArgs", () => []);
         return nix.app(buildEnv, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             meta: nix.thunk(() => nix.attr(typst, "meta")),
             name: nix.thunk(() => nix.str`${nix.sel(typst, "name")}-env`),
             paths: nix.thunk(() => nix.app(nix.sel(lib, "closePropagation"), nix.thunk(() => nix.app(packages, typstPkgs)))),

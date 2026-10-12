@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["hash", 35, 5]], [["drbd", 123, 18]], [["tests", 123, 12]], [["homepage", 126, 5], ["description", 127, 5], ["license", 128, 5], ["platforms", 129, 5], ["maintainers", 130, 5], ["longDescription", 135, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 50, 3], ["strictDeps", 54, 3], ["configureFlags", 56, 3], ["makeFlags", 64, 3], ["installFlags", 70, 3], ["postPatch", 84, 3], ["preConfigure", 112, 3], ["enableParallelBuilding", 116, 3], ["doInstallCheck", 118, 3], ["nativeInstallCheckInputs", 119, 3], ["versionCheckProgram", 120, 3], ["versionCheckProgramArg", 121, 3], ["passthru", 123, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, docbook_xml_dtd_44: false, docbook_xml_dtd_45: false, docbook_xsl: false, asciidoctor: false, fetchurl: false, flex: false, kmod: false, libxslt: false, nixosTests: false, perl: false, perlPackages: false, systemd: false, keyutils: false, udevCheckHook: false, gettext: false, versionCheckHook: false, forOCF: true, "ocf-resource-agents": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["drbd", 123, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 123, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 126, 5], ["description", 127, 5], ["license", 128, 5], ["platforms", 129, 5], ["maintainers", 130, 5], ["longDescription", 135, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 50, 3], ["strictDeps", 54, 3], ["configureFlags", 56, 3], ["makeFlags", 64, 3], ["installFlags", 70, 3], ["postPatch", 84, 3], ["preConfigure", 112, 3], ["enableParallelBuilding", 116, 3], ["doInstallCheck", 118, 3], ["nativeInstallCheckInputs", 119, 3], ["versionCheckProgram", 120, 3], ["versionCheckProgramArg", 121, 3], ["passthru", 123, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const forOCF = nix.argOr($, "forOCF", () => false);
   const ocf_resource_agents = nix.arg($, "ocf-resource-agents");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "drbd",
       version: "9.34.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pkg.linbit.com/downloads/drbd/utils/drbd-utils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-cGPmRRBWtsUbGrKeGjMyETEobRGu6jy59JFFizymPas=",
         })))),
@@ -108,11 +104,11 @@ substituteInPlace user/v9/drbdtool_common.c \\
       versionCheckProgram: nix.thunk(() => [nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/drbdadm`)]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, drbd: nix.thunk(() => nix.sel(nixosTests, "drbd")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], drbd: nix.thunk(() => nix.sel(nixosTests, "drbd")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://linbit.com/drbd/",
         description: "Distributed Replicated Block Device, a distributed storage system for Linux (userspace utilities)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

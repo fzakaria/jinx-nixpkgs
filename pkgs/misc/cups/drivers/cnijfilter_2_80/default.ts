@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 37, 5], ["sha256", 38, 5]], [["NIX_CFLAGS_COMPILE", 54, 7]], [["description", 135, 5], ["homepage", 136, 5], ["sourceProvenance", 137, 5], ["license", 141, 5], ["platforms", 142, 5], ["maintainers", 143, 5]], [["pname", 21, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 45, 3], ["env", 54, 3], ["patches", 56, 3], ["postPatch", 61, 3], ["configurePhase", 68, 3], ["preInstall", 83, 3], ["postInstall", 87, 3], ["dontPatchELF", 128, 3], ["hardeningDisable", 132, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, autoconf: false, automake: false, libtool: false, cups: false, popt: false, libtiff: false, libpng: false, ghostscript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 37, 5], ["sha256", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 54, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 135, 5], ["homepage", 136, 5], ["sourceProvenance", 137, 5], ["license", 141, 5], ["platforms", 142, 5], ["maintainers", 143, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 45, 3], ["env", 54, 3], ["patches", 56, 3], ["postPatch", 61, 3], ["configurePhase", 68, 3], ["preInstall", 83, 3], ["postInstall", 87, 3], ["dontPatchELF", 128, 3], ["hardeningDisable", 132, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const ghostscript = nix.arg($, "ghostscript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cnijfilter",
       version: "2.80",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gdlp01.c-wss.com/gds/1/0100000841/01/cnijfilter-common-2.80-1.tar.gz",
           sha256: "06s9nl155yxmx56056y22kz1p5b2sb5fhr3gf4ddlczjkd1xch53",
         })))),
       nativeBuildInputs: nix.thunk(() => [autoconf, automake]),
       buildInputs: nix.thunk(() => [libtool, cups, popt, libtiff, libpng, ghostscript]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: " -std=gnu90" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: " -std=gnu90" })),
       patches: nix.thunk(() => [
         nix.path(here, "./patches/missing-include.patch"),
         nix.path(here, "./patches/libpng15.patch"),
@@ -48,7 +45,7 @@ sed -i "s|/usr/local|$out|" libs/bjexec/bjexec.c;
       dontPatchELF: true,
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Canon InkJet printer drivers for the iP5400, MP520, MP210, MP140, iP3500, and MP610 series.  (MP520 drivers also work for MX700.)",
         homepage: "http://support-asia.canon-asia.com/content/EN/0100084101.html",
         sourceProvenance: nix.thunk(() => (() => {

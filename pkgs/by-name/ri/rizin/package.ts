@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 7], ["hash", 37, 7]], [["rizin", 130, 19], ["openssl", 130, 25]], [["rizin", 133, 19], ["openssl", 133, 25], ["enableCutterPlugin", 134, 11]], [["jsdec", 129, 9], ["rz-ghidra", 132, 9], ["sigdb", 138, 9]], [["rizin", 143, 19], ["plugins", 144, 11]], [["plugins", 128, 7], ["withPlugins", 140, 7]], [["description", 149, 7], ["homepage", 150, 7], ["license", 151, 7], ["mainProgram", 152, 7], ["maintainers", 153, 7], ["platforms", 158, 7]], [["pname", 32, 5], ["version", 33, 5], ["src", 35, 5], ["mesonFlags", 40, 5], ["patches", 57, 5], ["nativeBuildInputs", 66, 5], ["preConfigure", 80, 5], ["buildInputs", 94, 5], ["postPatch", 114, 5], ["passthru", 127, 5], ["meta", 148, 5]]]);
 const formals$1 = { args: { lib: false, pkgs: false, stdenv: false, fetchurl: false, "pkg-config": false, "libusb-compat-0_1": false, readline: false, libewf: false, perl: false, pcre2: false, zlib: false, openssl: false, file: false, libmspack: false, libzip: false, lz4: false, xxhash: false, xz: false, meson: false, python3: false, cmake: false, ninja: false, capstone: false, "tree-sitter": false, zstd: false, binutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rizin", 130, 19], ["openssl", 130, 25]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rizin", 133, 19], ["openssl", 133, 25], ["enableCutterPlugin", 134, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["jsdec", 129, 9], ["rz-ghidra", 132, 9], ["sigdb", 138, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["rizin", 143, 19], ["plugins", 144, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["plugins", 128, 7], ["withPlugins", 140, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 149, 7], ["homepage", 150, 7], ["license", 151, 7], ["mainProgram", 152, 7], ["maintainers", 153, 7], ["platforms", 158, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 32, 5], ["version", 33, 5], ["src", 35, 5], ["mesonFlags", 40, 5], ["patches", 57, 5], ["nativeBuildInputs", 66, 5], ["preConfigure", 80, 5], ["buildInputs", 94, 5], ["postPatch", 114, 5], ["passthru", 127, 5], ["meta", 148, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rizin";
       const version = "0.9.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/rizinorg/rizin/releases/download/v${version}/rizin-src-v${version}.tar.xz`),
           hash: "sha256-esHNfaynr92nQuFUeLH3R/wfgT5Jb+5xg50eEJ5UPco=",
         }))));
@@ -114,20 +107,25 @@ substituteInPlace \\
 `);
       const passthru = nix.thunk(() => (() => {
         const plugins = nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          jsdec: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./jsdec.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, rizin: rizin, openssl: openssl })))),
-          "rz-ghidra": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./rz-ghidra.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, rizin: rizin, openssl: openssl, enableCutterPlugin: false })))),
+          [nix.POS]: $pos[3],
+          jsdec: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./jsdec.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], rizin: rizin, openssl: openssl })))),
+          "rz-ghidra": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./rz-ghidra.nix"), nix.thunk(() => ({
+              [nix.POS]: $pos[2],
+              rizin: rizin,
+              openssl: openssl,
+              enableCutterPlugin: false,
+            })))),
           sigdb: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./sigdb.nix"), nix.thunk(() => ({})))),
         }));
         const withPlugins = (filter) => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             rizin: rizin,
             plugins: nix.thunk(() => nix.app(filter, plugins)),
           })));
-        return { [nix.POS]: pos$6, plugins, withPlugins };
+        return { [nix.POS]: $pos[5], plugins, withPlugins };
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "UNIX-like reverse engineering framework and command-line toolset",
         homepage: "https://rizin.re/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -146,7 +144,7 @@ substituteInPlace \\
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

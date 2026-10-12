@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]], [["name", 70, 11], ["nativeBuildInputs", 71, 11], ["src", 80, 11], ["sourceRoot", 81, 11], ["buildPhase", 82, 11], ["installPhase", 94, 11]], [["audio_sdcard_streamer", 105, 7], ["bram_interface", 106, 7], ["blinky", 107, 7], ["pipeline_sort", 108, 7]], [["tests", 64, 12], ["updateScript", 111, 12]], [["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["mainProgram", 117, 5], ["maintainers", 118, 5], ["platforms", 122, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 41, 3], ["postPatch", 48, 3], ["installPhase", 54, 3], ["passthru", 64, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, cmake: false, "pkg-config": false, openjdk: false, libuuid: false, python3: false, glfw: false, yosys: false, nextpnr: false, verilator: false, "dfu-util": false, icestorm: false, trellis: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5], ["fetchSubmodules", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 70, 11], ["nativeBuildInputs", 71, 11], ["src", 80, 11], ["sourceRoot", 81, 11], ["buildPhase", 82, 11], ["installPhase", 94, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["audio_sdcard_streamer", 105, 7], ["bram_interface", 106, 7], ["blinky", 107, 7], ["pipeline_sort", 108, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 64, 12], ["updateScript", 111, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["mainProgram", 117, 5], ["maintainers", 118, 5], ["platforms", 122, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 41, 3], ["postPatch", 48, 3], ["installPhase", 54, 3], ["passthru", 64, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const trellis = nix.arg($, "trellis");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "silice",
       version: "0-unstable-2026-06-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sylefeb",
           repo: "silice",
           rev: "620487d6b83035dd98299734c8c8fccf8f636005",
@@ -51,11 +46,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs antlr/antlr.sh\n# use nixpkgs version\nrm -r python/pybind11\n",
       installPhase: "runHook preInstall\n\nmake install\nmkdir -p $out\ncp -ar ../{bin,frameworks,lib} $out/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => (() => {
           const silice = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
           const testProject = (project) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: nix.thunk(() => nix.str`${nix.sel(silice, "name")}-test-${project}`),
               nativeBuildInputs: nix.thunk(() => [silice, yosys, nextpnr, verilator, dfu_util, icestorm, trellis]),
               src: nix.thunk(() => nix.str`${nix.sel(silice, "src")}/projects`),
@@ -64,7 +59,7 @@ export default nix.lambda((args) => (() => {
               installPhase: "mkdir $out\nfor target in \"${targets[@]}\" ; do\n  [[ $target != Makefile* ]] || continue\ndone\n",
             })));
           return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             audio_sdcard_streamer: nix.thunk(() => nix.app(testProject, "audio_sdcard_streamer")),
             bram_interface: nix.thunk(() => nix.app(testProject, "bram_interface")),
             blinky: nix.thunk(() => nix.app(testProject, "blinky")),
@@ -74,7 +69,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open source language that simplifies prototyping and writing algorithms on FPGA architectures",
         homepage: "https://github.com/sylefeb/Silice",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

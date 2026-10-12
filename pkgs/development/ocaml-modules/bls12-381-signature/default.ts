@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 34, 5], ["license", 35, 5], ["homepage", 36, 5], ["maintainers", 37, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["duneVersion", 19, 3], ["minimalOCamlVersion", 21, 3], ["propagatedBuildInputs", 23, 3], ["checkInputs", 25, 3], ["doCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, buildDunePackage: false, "bls12-381": false, alcotest: false, bisect_ppx: false, integers_stubs_js: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 34, 5], ["license", 35, 5], ["homepage", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["duneVersion", 19, 3], ["minimalOCamlVersion", 21, 3], ["propagatedBuildInputs", 23, 3], ["checkInputs", 25, 3], ["doCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const bisect_ppx = nix.arg($, "bisect_ppx");
   const integers_stubs_js = nix.arg($, "integers_stubs_js");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bls12-381-signature",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gitlab.com/nomadic-labs/cryptography/ocaml-bls12-381-signature/-/archive/${nix.sel(finalAttrs, "version")}/ocaml-bls12-381-signature-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-KaUpAT+BWxmUP5obi4loR9vVUeQmz3p3zG3CBolUuL4=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, bisect_ppx, integers_stubs_js]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implementation of BLS signatures for the pairing-friendly curve BLS12-381",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://gitlab.com/nomadic-labs/cryptography/ocaml-bls12-381-signature",

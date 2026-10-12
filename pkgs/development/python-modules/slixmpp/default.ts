@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["gnupg", 37, 15]], [["lockFile", 58, 5]], [["xep-0363", 68, 5], ["xep-0444-compliance", 69, 5], ["xep-0454", 70, 5], ["safer-xml-parsing", 71, 5]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["postPatch", 41, 3], ["build-system", 45, 3], ["nativeBuildInputs", 51, 3], ["cargoDeps", 57, 3], ["dependencies", 61, 3], ["optional-dependencies", 67, 3], ["nativeCheckInputs", 74, 3], ["disabledTestPaths", 79, 3], ["pythonImportsCheck", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, aiodns: false, aiohttp: false, cargo: false, cryptography: false, defusedxml: false, emoji: false, fetchFromCodeberg: false, gnupg: false, pyasn1: false, "pyasn1-modules": false, pytestCheckHook: false, replaceVars: false, rustc: false, rustPlatform: false, setuptools: false, "setuptools-rust": false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gnupg", 37, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["lockFile", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["xep-0363", 68, 5], ["xep-0444-compliance", 69, 5], ["xep-0454", 70, 5], ["safer-xml-parsing", 71, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["postPatch", 41, 3], ["build-system", 45, 3], ["nativeBuildInputs", 51, 3], ["cargoDeps", 57, 3], ["dependencies", 61, 3], ["optional-dependencies", 67, 3], ["nativeCheckInputs", 74, 3], ["disabledTestPaths", 79, 3], ["pythonImportsCheck", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,28 +27,28 @@ export default nix.lambda((args) => (() => {
   const setuptools_rust = nix.arg($, "setuptools-rust");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "slixmpp",
       version: "1.17.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "poezio",
           repo: "slixmpp",
           tag: nix.thunk(() => nix.str`slix-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-1jCKaUwWuIxTQGA0WkQMpB3xWW8XEAfAlyrqoTFIhVY=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-gnupg-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, gnupg: gnupg })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-gnupg-path.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], gnupg: gnupg })))),
       ]),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       "build-system": nix.thunk(() => [setuptools, setuptools_rust, setuptools_scm]),
       nativeBuildInputs: nix.thunk(() => [cargo, rustc, nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook"))]),
-      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$3, lockFile: nix.path(here, "./Cargo.lock") })))),
+      cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: $pos[2], lockFile: nix.path(here, "./Cargo.lock") })))),
       dependencies: nix.thunk(() => [aiodns, pyasn1, pyasn1_modules]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "xep-0363": nix.thunk(() => [aiohttp]),
         "xep-0444-compliance": nix.thunk(() => [emoji]),
         "xep-0454": nix.thunk(() => [cryptography]),
@@ -63,7 +58,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["itests/", "tests/live_test.py"]),
       pythonImportsCheck: nix.thunk(() => ["slixmpp"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python library for XMPP",
         homepage: "https://slixmpp.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/poezio/slixmpp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

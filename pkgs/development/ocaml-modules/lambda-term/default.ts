@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 23, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDunePackage: false, zed: false, lwt_react: false, mew_vi: false, uucp: false, logs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 23, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const uucp = nix.arg($, "uucp");
   const logs = nix.arg($, "logs");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lambda-term",
       version: "3.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ocaml-community",
           repo: "lambda-term",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       propagatedBuildInputs: nix.thunk(() => [zed, lwt_react, mew_vi, uucp, logs]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Terminal manipulation library for OCaml",
         longDescription: "Lambda-term is a cross-platform library for\nmanipulating the terminal. It provides an abstraction for keys,\nmouse events, colors, as well as a set of widgets to write\ncurses-like applications.\n\nThe main objective of lambda-term is to provide a higher level\nfunctional interface to terminal manipulation than, for example,\nncurses, by providing a native OCaml interface instead of bindings to\na C library.\n\nLambda-term integrates with zed to provide text edition facilities in\nconsole applications.\n",
         homepage: "https://github.com/ocaml-community/lambda-term",

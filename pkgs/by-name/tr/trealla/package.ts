@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["LC_ALL", 54, 7]], [["package", 81, 9], ["version", 82, 9]], [["version", 80, 7]], [["updateScript", 77, 5], ["tests", 79, 5]], [["homepage", 88, 5], ["description", 89, 5], ["longDescription", 90, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["mainProgram", 106, 5], ["platforms", 107, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 45, 3], ["nativeCheckInputs", 50, 3], ["strictDeps", 52, 3], ["env", 54, 3], ["makeFlags", 56, 3], ["enableParallelBuilding", 65, 3], ["postInstall", 67, 3], ["doCheck", 72, 3], ["checkFlags", 74, 3], ["passthru", 76, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, libffi: false, "nix-update-script": false, openssl: false, readline: false, stdenv: false, testers: false, valgrind: false, xxd: false, checkLeaks: true, enableFFI: true, enableSSL: true, enableThreads: true, lineEditingLibrary: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LC_ALL", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 81, 9], ["version", 82, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 80, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 77, 5], ["tests", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 88, 5], ["description", 89, 5], ["longDescription", 90, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["mainProgram", 106, 5], ["platforms", 107, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 45, 3], ["nativeCheckInputs", 50, 3], ["strictDeps", 52, 3], ["env", 54, 3], ["makeFlags", 56, 3], ["enableParallelBuilding", 65, 3], ["postInstall", 67, 3], ["doCheck", 72, 3], ["checkFlags", 74, 3], ["passthru", 76, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const lineEditingLibrary = nix.argOr($, "lineEditingLibrary", () => "isocline");
   nix.assert_(nix.app(nix.sel(lib, "elem"), lineEditingLibrary, nix.thunk(() => ["isocline", "readline"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/tr/trealla/package.nix:21:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "trealla",
       version: "3.12.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trealla-prolog",
           repo: "trealla",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), nix.thunk(() => [valgrind]))),
       strictDeps: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LC_ALL: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "en_US.UTF-8" : "C.UTF-8")),
       })),
       makeFlags: nix.thunk(() => nix.concat([
@@ -58,19 +52,19 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(valgrind, "meta", "broken"))),
       checkFlags: nix.thunk(() => nix.concat(["test"], nix.app(nix.sel(lib, "optionals"), checkLeaks, nix.thunk(() => ["leaks"])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://trealla-prolog.github.io/trealla/",
         description: "Compact, efficient Prolog interpreter written in ANSI C",
         longDescription: "Trealla is a compact, efficient Prolog interpreter with ISO Prolog\naspirations.\nTrealla is not WAM-based. It uses tree-walking, structure-sharing and\ndeep-binding. Source is byte-code compiled to an AST that is interpreted\nat runtime. The intent and continued aim of Trealla is to be a small,\neasily ported, Prolog core.\nThe name Trealla comes from the Liaden Universe books by Lee & Miller\n(where it doesn't seem to mean anything) and also a reference to the\nTrealla region of Western Australia.\n",

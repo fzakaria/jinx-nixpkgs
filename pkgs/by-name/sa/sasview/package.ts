@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5]], [["pname", 24, 3], ["version", 25, 11], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 57, 3], ["dependencies", 59, 3], ["pythonRemoveDeps", 92, 3], ["postBuild", 94, 3], ["dontWrapQtApps", 98, 3], ["makeWrapperArgs", 100, 3], ["nativeCheckInputs", 104, 3], ["enabledTestPaths", 115, 3], ["disabledTestPaths", 119, 3], ["preCheck", 121, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3: false, fetchFromGitHub: false, writeShellScriptBin: false, qt6: false, writableTmpDirAsHomeHook: false, ausaxs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 11], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["postPatch", 43, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 57, 3], ["dependencies", 59, 3], ["pythonRemoveDeps", 92, 3], ["postBuild", 94, 3], ["dontWrapQtApps", 98, 3], ["makeWrapperArgs", 100, 3], ["nativeCheckInputs", 104, 3], ["enabledTestPaths", 115, 3], ["disabledTestPaths", 119, 3], ["preCheck", 121, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pyside_tools_rcc = nix.thunk(() => nix.app(writeShellScriptBin, "pyside6-rcc", nix.thunk(() => nix.str`exec ${nix.sel(qt6, "qtbase")}/libexec/rcc -g python "$@"
 `)));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sasview",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SasView",
           repo: "sasview",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -109,7 +107,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fitting and data analysis for small angle scattering data",
         homepage: "https://www.sasview.org",
         changelog: nix.thunk(() => nix.str`https://github.com/SasView/sasview/releases/tag/v${version}`),

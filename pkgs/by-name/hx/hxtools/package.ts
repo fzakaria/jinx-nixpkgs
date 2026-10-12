@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["tag", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["hash", 22, 5]], [["updateScript", 40, 12]], [["homepage", 43, 5], ["description", 44, 5], ["license", 46, 5], ["maintainers", 52, 5], ["platforms", 56, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["strictDeps", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, "pkg-config": false, autoreconfHook: false, bash: false, perl: false, perlPackages: false, libhx: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["tag", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["license", 46, 5], ["maintainers", 52, 5], ["platforms", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["strictDeps", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libhx = nix.arg($, "libhx");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hxtools",
       version: "20251011",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           tag: nix.thunk(() => nix.str`rel-${nix.sel(finalAttrs, "version")}`),
           owner: "jengelh",
           repo: "hxtools",
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       })())),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://inai.de/projects/hxtools/",
         description: "Collection of small tools over the years by j.eng",
         license: nix.thunk(() => (() => {

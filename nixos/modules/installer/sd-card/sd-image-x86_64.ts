@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sd-image-x86_64.nix", [[["enable", 19, 10]], [["enable", 20, 33]], [["grub", 19, 5], ["generic-extlinux-compatible", 20, 5]], [["loader", 18, 8], ["consoleLogLevel", 23, 8]], [["populateFirmwareCommands", 26, 5], ["populateRootCommands", 27, 5]], [["imports", 13, 3], ["boot", 18, 3], ["sdImage", 25, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sd-image-x86_64.nix", [["enable", 19, 10]]);
-const pos$2 = nix.positions(here + "/sd-image-x86_64.nix", [["enable", 20, 33]]);
-const pos$3 = nix.positions(here + "/sd-image-x86_64.nix", [["grub", 19, 5], ["generic-extlinux-compatible", 20, 5]]);
-const pos$4 = nix.positions(here + "/sd-image-x86_64.nix", [["loader", 18, 8], ["consoleLogLevel", 23, 8]]);
-const pos$5 = nix.positions(here + "/sd-image-x86_64.nix", [["populateFirmwareCommands", 26, 5], ["populateRootCommands", 27, 5]]);
-const pos$6 = nix.positions(here + "/sd-image-x86_64.nix", [["imports", 13, 3], ["boot", 18, 3], ["sdImage", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +11,19 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     imports: nix.thunk(() => [nix.path(here, "../../profiles/base.nix"), nix.path(here, "./sd-image.nix")]),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       loader: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        grub: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
-        "generic-extlinux-compatible": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+        [nix.POS]: $pos[2],
+        grub: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: false })),
+        "generic-extlinux-compatible": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
       })),
       consoleLogLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 7n)),
     })),
     sdImage: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       populateFirmwareCommands: "",
       populateRootCommands: nix.thunk(() => nix.str`mkdir -p ./files/boot
 ${nix.sel(config, "boot", "loader", "generic-extlinux-compatible", "populateCmd")} -c ${nix.sel(config, "system", "build", "toplevel")} -d ./files/boot

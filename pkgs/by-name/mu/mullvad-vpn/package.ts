@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 29, 28], ["electron-dist", 30, 7]], [["ELECTRON_OVERRIDE_DIST_PATH", 45, 7]], [["name", 105, 5], ["categories", 106, 5], ["comment", 107, 5], ["desktopName", 108, 5], ["exec", 109, 5], ["icon", 110, 5], ["startupWMClass", 111, 5], ["terminal", 112, 5]], [["hasMullvadGUI", 115, 12]], [["homepage", 118, 5], ["description", 119, 5], ["longDescription", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["platforms", 123, 29], ["maintainers", 124, 5], ["mainProgram", 129, 5], ["badPlatforms", 132, 5]], [["pname", 17, 3], ["src", 18, 21], ["version", 18, 25], ["nodejs", 20, 3], ["npmDepsHash", 21, 3], ["__structuredAttrs", 23, 3], ["strictDeps", 24, 3], ["enableParallelBuilding", 25, 3], ["patches", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["env", 45, 3], ["postPatch", 49, 3], ["postConfigure", 55, 3], ["preBuild", 60, 3], ["npmWorkspace", 65, 3], ["npmBuildScript", 66, 3], ["installPhase", 68, 3], ["doCheck", 90, 3], ["checkPhase", 92, 3], ["doInstallCheck", 100, 3], ["nativeInstallCheckInputs", 102, 3], ["desktopItems", 104, 3], ["passthru", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, mullvad: false, nodejs_22: false, replaceVars: false, electron: false, copyDesktopItems: false, "grpc-tools": false, librsvg: false, makeBinaryWrapper: false, versionCheckHook: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 29, 28], ["electron-dist", 30, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_OVERRIDE_DIST_PATH", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 105, 5], ["categories", 106, 5], ["comment", 107, 5], ["desktopName", 108, 5], ["exec", 109, 5], ["icon", 110, 5], ["startupWMClass", 111, 5], ["terminal", 112, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["hasMullvadGUI", 115, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 118, 5], ["description", 119, 5], ["longDescription", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["platforms", 123, 29], ["maintainers", 124, 5], ["mainProgram", 129, 5], ["badPlatforms", 132, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["src", 18, 21], ["version", 18, 25], ["nodejs", 20, 3], ["npmDepsHash", 21, 3], ["__structuredAttrs", 23, 3], ["strictDeps", 24, 3], ["enableParallelBuilding", 25, 3], ["patches", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["env", 45, 3], ["postPatch", 49, 3], ["postConfigure", 55, 3], ["preBuild", 60, 3], ["npmWorkspace", 65, 3], ["npmBuildScript", 66, 3], ["installPhase", 68, 3], ["doCheck", 90, 3], ["checkPhase", 92, 3], ["doInstallCheck", 100, 3], ["nativeInstallCheckInputs", 102, 3], ["desktopItems", 104, 3], ["passthru", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mullvad-vpn",
       src: nix.thunk(() => nix.attr(mullvad, "src")),
       version: nix.thunk(() => nix.attr(mullvad, "version")),
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-distribution-configuration.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             "electron-dist": nix.thunk(() => nix.sel(electron, "dist")),
           })))),
@@ -44,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, grpc_tools, librsvg, makeBinaryWrapper]),
       buildInputs: nix.thunk(() => [electron]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ELECTRON_OVERRIDE_DIST_PATH: nix.thunk(() => nix.sel(electron, "dist")),
       })),
       postPatch: "cd desktop/\n",
@@ -77,7 +72,7 @@ runHook postInstall
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "mullvad-vpn",
             categories: nix.thunk(() => ["Network"]),
             comment: "Mullvad VPN client",
@@ -87,11 +82,11 @@ runHook postInstall
             startupWMClass: "Mullvad VPN",
             terminal: false,
           })))))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, hasMullvadGUI: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], hasMullvadGUI: true })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://mullvad.net/",
         description: "Graphical user interface for Mullvad VPN",
         longDescription: "**NOTE:** This package does not contain the Mullvad VPN Daemon. The actual VPN service is available on `pkgs.mullvad`, and it must be used in conjunction with this package.",

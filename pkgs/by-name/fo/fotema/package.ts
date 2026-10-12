@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["src", 52, 28], ["patches", 52, 32]], [["pname", 50, 26], ["version", 50, 32], ["src", 51, 5], ["hash", 54, 5]], [["OPENSSL_NO_VENDOR", 88, 5], ["ORT_LIB_LOCATION", 90, 5], ["ORT_STRATEGY", 91, 5]], [["updateScript", 100, 12]], [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["maintainers", 107, 5], ["mainProgram", 108, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["cargoDeps", 49, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 73, 3], ["strictDeps", 85, 3], ["env", 87, 3], ["preFixup", 94, 3], ["passthru", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, applyPatches: false, clangStdenv: false, fetchFromGitHub: false, rustPlatform: false, meson: false, ninja: false, "pkg-config": false, cargo: false, rustc: false, appstream: false, "desktop-file-utils": false, glib: false, gtk4: false, libglycin: false, wrapGAppsHook4: false, libadwaita: false, openssl: false, ffmpeg_8: false, onnxruntime: false, libshumate: false, opencv: false, libseccomp: false, "glycin-loaders": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 52, 28], ["patches", 52, 32]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 50, 26], ["version", 50, 32], ["src", 51, 5], ["hash", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 88, 5], ["ORT_LIB_LOCATION", 90, 5], ["ORT_STRATEGY", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 100, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["maintainers", 107, 5], ["mainProgram", 108, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["cargoDeps", 49, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 73, 3], ["strictDeps", 85, 3], ["env", 87, 3], ["preFixup", 94, 3], ["passthru", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const glycin_loaders = nix.arg($, "glycin-loaders");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "fotema",
       version: "2.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "blissd",
           repo: "fotema",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,11 +45,11 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./cargo-lock-bump-ffmpeg-next.patch")]),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
             })))),
@@ -89,7 +83,7 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         OPENSSL_NO_VENDOR: true,
         ORT_LIB_LOCATION: nix.thunk(() => nix.str`${onnxruntime}/lib`),
         ORT_STRATEGY: "system",
@@ -99,11 +93,11 @@ export default nix.lambda((args) => (() => {
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Photo gallery for Linux",
         homepage: "https://github.com/blissd/fotema",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

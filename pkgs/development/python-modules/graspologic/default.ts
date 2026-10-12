@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["description", 117, 5], ["homepage", 118, 5], ["changelog", 119, 5], ["license", 120, 5], ["maintainers", 121, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["postPatch", 48, 3], ["build-system", 57, 3], ["pythonRelaxDeps", 62, 3], ["dependencies", 69, 3], ["preInstallCheck", 89, 3], ["nativeCheckInputs", 93, 3], ["enabledTestPaths", 98, 3], ["disabledTests", 102, 3], ["disabledTestPaths", 104, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, "poetry-dynamic-versioning": false, anytree: false, beartype: false, future: false, gensim: false, "graspologic-native": false, hyppo: false, joblib: false, matplotlib: false, networkx: false, numpy: false, pot: false, "scikit-learn": false, scipy: false, seaborn: false, statsmodels: false, "typing-extensions": false, "umap-learn": false, pytestCheckHook: false, testfixtures: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 117, 5], ["homepage", 118, 5], ["changelog", 119, 5], ["license", 120, 5], ["maintainers", 121, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["postPatch", 48, 3], ["build-system", 57, 3], ["pythonRelaxDeps", 62, 3], ["dependencies", 69, 3], ["preInstallCheck", 89, 3], ["nativeCheckInputs", 93, 3], ["enabledTestPaths", 98, 3], ["disabledTests", 102, 3], ["disabledTestPaths", 104, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "graspologic-org",
           repo: "graspologic",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -73,7 +71,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["gridplot_outputs"]);
       const disabledTestPaths = nix.thunk(() => nix.concat(["docs"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_plot.py", "tests/test_plot_matrix.py", "tests/pipeline/embed/"]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Package for graph statistical algorithms",
         homepage: "https://graspologic-org.github.io/graspologic",
         changelog: nix.thunk(() => nix.str`https://github.com/graspologic-org/graspologic/releases/tag/${nix.sel(src, "tag")}`),
@@ -84,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

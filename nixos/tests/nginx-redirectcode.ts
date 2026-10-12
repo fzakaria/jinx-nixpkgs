@@ -2,46 +2,39 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nginx-redirectcode.nix", [[["maintainers", 4, 8]], [["globalRedirect", 13, 13], ["redirectCode", 15, 13]], [["localhost", 12, 24]], [["enable", 11, 11], ["virtualHosts", 12, 11]], [["nginx", 10, 18]], [["services", 10, 9]], [["webserver", 7, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 21, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nginx-redirectcode.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/nginx-redirectcode.nix", [["globalRedirect", 13, 13], ["redirectCode", 15, 13]]);
-const pos$3 = nix.positions(here + "/nginx-redirectcode.nix", [["localhost", 12, 24]]);
-const pos$4 = nix.positions(here + "/nginx-redirectcode.nix", [["enable", 11, 11], ["virtualHosts", 12, 11]]);
-const pos$5 = nix.positions(here + "/nginx-redirectcode.nix", [["nginx", 10, 18]]);
-const pos$6 = nix.positions(here + "/nginx-redirectcode.nix", [["services", 10, 9]]);
-const pos$7 = nix.positions(here + "/nginx-redirectcode.nix", [["webserver", 7, 5]]);
-const pos$8 = nix.positions(here + "/nginx-redirectcode.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "nginx-redirectcode",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "misterio77"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       webserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                localhost: nix.thunk(() => ({ [nix.POS]: pos$2, globalRedirect: "example.com/foo", redirectCode: 308n })),
+                [nix.POS]: $pos[2],
+                localhost: nix.thunk(() => ({ [nix.POS]: $pos[1], globalRedirect: "example.com/foo", redirectCode: 308n })),
               })),
             })),
           })),

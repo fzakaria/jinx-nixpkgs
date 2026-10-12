@@ -2,18 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kodi-packages.nix", [[["kodiAddonFor", 59, 11], ["requiredKodiAddons", 60, 11]], [["passthru", 58, 9]], [["twenty-fortyeight", 99, 15]], [["fuse", 102, 91]], [["genesis-plus-gx", 105, 15]], [["gw", 108, 87]], [["mgba", 110, 91]], [["nestopia", 113, 15]], [["snes9x", 116, 95]], [["addonDir", 42, 5], ["rel", 44, 5], ["callPackage", 47, 7], ["kodi", 48, 7], ["hasKodiAddon", 49, 7], ["requiredKodiAddons", 50, 7], ["toKodiAddon", 54, 5], ["addonUpdateScript", 66, 5], ["buildKodiAddon", 70, 5], ["buildKodiBinaryAddon", 72, 5], ["kodi-platform", 76, 5], ["a4ksubtitles", 80, 5], ["arteplussept", 82, 5], ["bluetooth-manager", 84, 5], ["controller-topology-project", 86, 5], ["formula1", 90, 5], ["iagl", 92, 5], ["invidious", 94, 5], ["libretro", 96, 5], ["libretro-2048", 98, 5], ["libretro-fuse", 102, 5], ["libretro-genplus", 104, 5], ["libretro-gw", 108, 5], ["libretro-mgba", 110, 5], ["libretro-nestopia", 112, 5], ["libretro-snes9x", 116, 5], ["jellycon", 118, 5], ["jellyfin", 120, 5], ["joystick", 122, 5], ["keymap", 124, 5], ["mediacccde", 126, 5], ["mediathekview", 128, 5], ["netflix", 130, 5], ["plex-for-kodi", 132, 5], ["orftvthek", 134, 5], ["radioparadise", 136, 5], ["raiplay", 138, 5], ["robotocjksc", 140, 5], ["screensaver-asteroids", 142, 5], ["skyvideoitalia", 144, 5], ["steam-controller", 146, 5], ["steam-launcher", 148, 5], ["steam-library", 150, 5], ["somafm", 152, 5], ["pdfreader", 154, 5], ["pvr-hts", 156, 5], ["pvr-hdhomerun", 158, 5], ["pvr-iptvsimple", 160, 5], ["pvr-vdr-vnsi", 162, 5], ["osmc-skin", 164, 5], ["texturemaker", 166, 5], ["upnext", 168, 5], ["vfs-libarchive", 170, 5], ["vfs-rar", 172, 5], ["vfs-sftp", 174, 5], ["visualization-fishbmc", 176, 5], ["visualization-goom", 178, 5], ["visualization-matrix", 180, 5], ["visualization-pictureit", 182, 5], ["visualization-projectm", 184, 5], ["visualization-shadertoy", 186, 5], ["visualization-spectrum", 188, 5], ["visualization-starburst", 190, 5], ["visualization-waveform", 192, 5], ["youtube", 194, 5], ["archive_tool", 198, 5], ["certifi", 200, 5], ["chardet", 202, 5], ["dateutil", 204, 5], ["defusedxml", 206, 5], ["future", 208, 5], ["idna", 210, 5], ["infotagger", 212, 5], ["inputstream-adaptive", 214, 5], ["inputstream-ffmpegdirect", 216, 5], ["inputstream-rtmp", 220, 5], ["inputstreamhelper", 222, 5], ["jurialmunkey", 224, 5], ["kodi-six", 226, 5], ["myconnpy", 228, 5], ["plugin-cache", 230, 5], ["requests", 232, 5], ["requests-cache", 234, 5], ["routing", 236, 5], ["sendtokodi", 238, 5], ["signals", 240, 5], ["simplecache", 242, 5], ["simplejson", 244, 5], ["six", 246, 5], ["sponsorblock", 248, 5], ["urllib3", 250, 5], ["websocket", 252, 5], ["xbmcswift2", 254, 5], ["typing_extensions", 256, 5], ["arrow", 258, 5], ["trakt-module", 260, 5], ["trakt", 262, 5]], [["controllers", 269, 3], ["svtplay", 274, 3]]]);
 const formals$1 = { args: { config: false, lib: false, newScope: false, kodi: false, libretro: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kodi-packages.nix", [["kodiAddonFor", 59, 11], ["requiredKodiAddons", 60, 11]]);
-const pos$2 = nix.positions(here + "/kodi-packages.nix", [["passthru", 58, 9]]);
-const pos$3 = nix.positions(here + "/kodi-packages.nix", [["twenty-fortyeight", 99, 15]]);
-const pos$4 = nix.positions(here + "/kodi-packages.nix", [["fuse", 102, 91]]);
-const pos$5 = nix.positions(here + "/kodi-packages.nix", [["genesis-plus-gx", 105, 15]]);
-const pos$6 = nix.positions(here + "/kodi-packages.nix", [["gw", 108, 87]]);
-const pos$7 = nix.positions(here + "/kodi-packages.nix", [["mgba", 110, 91]]);
-const pos$8 = nix.positions(here + "/kodi-packages.nix", [["nestopia", 113, 15]]);
-const pos$9 = nix.positions(here + "/kodi-packages.nix", [["snes9x", 116, 95]]);
-const pos$10 = nix.positions(here + "/kodi-packages.nix", [["addonDir", 42, 5], ["rel", 44, 5], ["callPackage", 47, 7], ["kodi", 48, 7], ["hasKodiAddon", 49, 7], ["requiredKodiAddons", 50, 7], ["toKodiAddon", 54, 5], ["addonUpdateScript", 66, 5], ["buildKodiAddon", 70, 5], ["buildKodiBinaryAddon", 72, 5], ["kodi-platform", 76, 5], ["a4ksubtitles", 80, 5], ["arteplussept", 82, 5], ["bluetooth-manager", 84, 5], ["controller-topology-project", 86, 5], ["formula1", 90, 5], ["iagl", 92, 5], ["invidious", 94, 5], ["libretro", 96, 5], ["libretro-2048", 98, 5], ["libretro-fuse", 102, 5], ["libretro-genplus", 104, 5], ["libretro-gw", 108, 5], ["libretro-mgba", 110, 5], ["libretro-nestopia", 112, 5], ["libretro-snes9x", 116, 5], ["jellycon", 118, 5], ["jellyfin", 120, 5], ["joystick", 122, 5], ["keymap", 124, 5], ["mediacccde", 126, 5], ["mediathekview", 128, 5], ["netflix", 130, 5], ["plex-for-kodi", 132, 5], ["orftvthek", 134, 5], ["radioparadise", 136, 5], ["raiplay", 138, 5], ["robotocjksc", 140, 5], ["screensaver-asteroids", 142, 5], ["skyvideoitalia", 144, 5], ["steam-controller", 146, 5], ["steam-launcher", 148, 5], ["steam-library", 150, 5], ["somafm", 152, 5], ["pdfreader", 154, 5], ["pvr-hts", 156, 5], ["pvr-hdhomerun", 158, 5], ["pvr-iptvsimple", 160, 5], ["pvr-vdr-vnsi", 162, 5], ["osmc-skin", 164, 5], ["texturemaker", 166, 5], ["upnext", 168, 5], ["vfs-libarchive", 170, 5], ["vfs-rar", 172, 5], ["vfs-sftp", 174, 5], ["visualization-fishbmc", 176, 5], ["visualization-goom", 178, 5], ["visualization-matrix", 180, 5], ["visualization-pictureit", 182, 5], ["visualization-projectm", 184, 5], ["visualization-shadertoy", 186, 5], ["visualization-spectrum", 188, 5], ["visualization-starburst", 190, 5], ["visualization-waveform", 192, 5], ["youtube", 194, 5], ["archive_tool", 198, 5], ["certifi", 200, 5], ["chardet", 202, 5], ["dateutil", 204, 5], ["defusedxml", 206, 5], ["future", 208, 5], ["idna", 210, 5], ["infotagger", 212, 5], ["inputstream-adaptive", 214, 5], ["inputstream-ffmpegdirect", 216, 5], ["inputstream-rtmp", 220, 5], ["inputstreamhelper", 222, 5], ["jurialmunkey", 224, 5], ["kodi-six", 226, 5], ["myconnpy", 228, 5], ["plugin-cache", 230, 5], ["requests", 232, 5], ["requests-cache", 234, 5], ["routing", 236, 5], ["sendtokodi", 238, 5], ["signals", 240, 5], ["simplecache", 242, 5], ["simplejson", 244, 5], ["six", 246, 5], ["sponsorblock", 248, 5], ["urllib3", 250, 5], ["websocket", 252, 5], ["xbmcswift2", 254, 5], ["typing_extensions", 256, 5], ["arrow", 258, 5], ["trakt-module", 260, 5], ["trakt", 262, 5]]);
-const pos$11 = nix.positions(here + "/kodi-packages.nix", [["controllers", 269, 3], ["svtplay", 274, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +31,7 @@ export default nix.lambda((args) => (() => {
     return nix.app(unique, nix.thunk(() => nix.concat(modules, nix.app(concatLists, nix.thunk(() => nix.app(catAttrs, "requiredKodiAddons", modules))))));
   })();
   const self = nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     addonDir: "/share/kodi/addons",
     rel: nix.thunk(() => nix.sel(kodi, "kodiReleaseName")),
     callPackage: callPackage,
@@ -49,9 +39,9 @@ export default nix.lambda((args) => (() => {
     hasKodiAddon: hasKodiAddon,
     requiredKodiAddons: requiredKodiAddons,
     toKodiAddon: (drv) => nix.app(nix.sel(drv, "overrideAttrs"), (oldAttrs) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           kodiAddonFor: kodi,
           requiredKodiAddons: nix.thunk(() => nix.app(requiredKodiAddons, nix.thunk(() => nix.sel(drv, "propagatedBuildInputs")))),
         })),
@@ -68,13 +58,13 @@ export default nix.lambda((args) => (() => {
     iagl: nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/iagl"), nix.thunk(() => ({})))),
     invidious: nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/invidious"), nix.thunk(() => ({})))),
     libretro: nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/libretro"), nix.thunk(() => ({})))),
-    "libretro-2048": nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/libretro-2048"), nix.thunk(() => ({ [nix.POS]: pos$3, "twenty-fortyeight": twenty_fortyeight })))),
-    "libretro-fuse": nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/libretro-fuse"), nix.thunk(() => ({ [nix.POS]: pos$4, fuse: fuse })))),
-    "libretro-genplus": nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/libretro-genplus"), nix.thunk(() => ({ [nix.POS]: pos$5, "genesis-plus-gx": genesis_plus_gx })))),
-    "libretro-gw": nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/libretro-gw"), nix.thunk(() => ({ [nix.POS]: pos$6, gw: gw })))),
-    "libretro-mgba": nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/libretro-mgba"), nix.thunk(() => ({ [nix.POS]: pos$7, mgba: mgba })))),
-    "libretro-nestopia": nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/libretro-nestopia"), nix.thunk(() => ({ [nix.POS]: pos$8, nestopia: nestopia })))),
-    "libretro-snes9x": nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/libretro-snes9x"), nix.thunk(() => ({ [nix.POS]: pos$9, snes9x: snes9x })))),
+    "libretro-2048": nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/libretro-2048"), nix.thunk(() => ({ [nix.POS]: $pos[2], "twenty-fortyeight": twenty_fortyeight })))),
+    "libretro-fuse": nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/libretro-fuse"), nix.thunk(() => ({ [nix.POS]: $pos[3], fuse: fuse })))),
+    "libretro-genplus": nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/libretro-genplus"), nix.thunk(() => ({ [nix.POS]: $pos[4], "genesis-plus-gx": genesis_plus_gx })))),
+    "libretro-gw": nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/libretro-gw"), nix.thunk(() => ({ [nix.POS]: $pos[5], gw: gw })))),
+    "libretro-mgba": nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/libretro-mgba"), nix.thunk(() => ({ [nix.POS]: $pos[6], mgba: mgba })))),
+    "libretro-nestopia": nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/libretro-nestopia"), nix.thunk(() => ({ [nix.POS]: $pos[7], nestopia: nestopia })))),
+    "libretro-snes9x": nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/libretro-snes9x"), nix.thunk(() => ({ [nix.POS]: $pos[8], snes9x: snes9x })))),
     jellycon: nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/jellycon"), nix.thunk(() => ({})))),
     jellyfin: nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/jellyfin"), nix.thunk(() => ({})))),
     joystick: nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/joystick"), nix.thunk(() => ({})))),
@@ -148,7 +138,7 @@ export default nix.lambda((args) => (() => {
     trakt: nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/video/kodi/addons/trakt"), nix.thunk(() => ({})))),
   }));
   return nix.update(self, nix.app(optionalAttrs, nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       controllers: nix.thunk(() => nix.app(nix.builtins.throw("kodi.packages.controllers has been replaced with kodi.packages.controller-topology-project - a package which contains a large number of controller profiles."), nix.thunk(() => ({})))),
       svtplay: nix.thunk(() => nix.builtins.throw("kodiPackages.svtplay has been removed because it has been marked as broken since at least November 2024.")),
     }))));

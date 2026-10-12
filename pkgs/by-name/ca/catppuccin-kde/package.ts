@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 59, 7], ["repo", 60, 7], ["rev", 61, 7], ["hash", 62, 7]], [["url", 67, 9], ["hash", 68, 9]], [["description", 89, 7], ["homepage", 90, 7], ["license", 91, 7], ["maintainers", 92, 7]], [["pname", 55, 5], ["version", 56, 5], ["src", 58, 5], ["patches", 65, 5], ["installPhase", 72, 5], ["meta", 88, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, fetchpatch: false, flavour: true, accents: true, winDecStyles: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 59, 7], ["repo", 60, 7], ["rev", 61, 7], ["hash", 62, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 67, 9], ["hash", 68, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 89, 7], ["homepage", 90, 7], ["license", 91, 7], ["maintainers", 92, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 55, 5], ["version", 56, 5], ["src", 58, 5], ["patches", 65, 5], ["installPhase", 72, 5], ["meta", 88, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kde";
       const version = "0.2.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "catppuccin",
           repo: "kde",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/GiggleSquid/catppuccin-kde/commit/f0291c17d2e4711b0d0aac00e3dbb94ee89b4a82.patch",
             hash: "sha256-iD+mEX2LRFmrCwLr3VAs6kzcTuZ231TKDn+U188iOss=",
           })))),
@@ -68,7 +65,7 @@ done;
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Soothing pastel theme for KDE",
         homepage: "https://github.com/catppuccin/kde",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -80,7 +77,7 @@ runHook postInstall
           ];
         })()),
       }));
-      return { [nix.POS]: pos$4, pname, version, src, patches, installPhase, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, patches, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

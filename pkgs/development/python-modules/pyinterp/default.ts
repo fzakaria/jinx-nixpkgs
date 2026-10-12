@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 39, 3], ["dontUseCmakeConfigure", 57, 3], ["buildInputs", 59, 3], ["build-system", 67, 3], ["dependencies", 72, 3], ["pythonImportsCheck", 78, 3], ["disabledTests", 83, 3], ["nativeCheckInputs", 95, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, boost: false, blas: false, eigen: false, gtest: false, pybind11: false, cmake: false, setuptools: false, dask: false, numpy: false, xarray: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 39, 3], ["dontUseCmakeConfigure", 57, 3], ["buildInputs", 59, 3], ["build-system", 67, 3], ["dependencies", 72, 3], ["pythonImportsCheck", 78, 3], ["disabledTests", 83, 3], ["nativeCheckInputs", 95, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2025.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CNES",
           repo: "pangeo-pyinterp",
           tag: version,
@@ -59,7 +57,7 @@ substituteInPlace src/pyinterp/__init__.py \\
       const disabledTests = nix.thunk(() => nix.concat(["test_bounding_box", "test_geohash", "test_encoding", "test_neighbors"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["test_quadrivariate"]))));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for optimized geo-referenced interpolation",
         homepage: "https://github.com/CNES/pangeo-pyinterp",
         changelog: nix.thunk(() => nix.str`https://github.com/CNES/pangeo-pyinterp/releases/tag/${nix.sel(src, "tag")}`),
@@ -70,7 +68,7 @@ substituteInPlace src/pyinterp/__init__.py \\
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

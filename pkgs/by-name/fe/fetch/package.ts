@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 45, 5], ["platforms", 46, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 17, 3], ["makeFlags", 24, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 26, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, fastfetch: false, pciutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 17, 3], ["makeFlags", 24, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 26, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const fastfetch = nix.arg($, "fastfetch");
   const pciutils = nix.arg($, "pciutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fetch",
       version: "2.3.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "areofyl",
           repo: "fetch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
 --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [fastfetch, pciutils]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Animated 3D fetch tool that renders your distro logo as a spinning bas-relief",
         homepage: "https://github.com/areofyl/fetch",
         changelog: nix.thunk(() => nix.str`https://github.com/areofyl/fetch/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

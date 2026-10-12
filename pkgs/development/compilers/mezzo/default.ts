@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]], [["homepage", 74, 5], ["description", 75, 5], ["license", 76, 5], ["broken", 77, 5], ["platforms", 78, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["prePatch", 56, 3], ["createFindlibDestdir", 66, 3], ["postInstall", 68, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ocaml: false, findlib: false, ocamlbuild: false, camlp4: false, menhir: false, menhirLib: false, yojson: false, ulex: false, pprint: false, fix: false, functory: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 74, 5], ["description", 75, 5], ["license", 76, 5], ["broken", 77, 5], ["platforms", 78, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["prePatch", 56, 3], ["createFindlibDestdir", 66, 3], ["postInstall", 68, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const check_ocaml_version = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), ocaml))));
   nix.assert_(nix.app(check_ocaml_version, "4"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/mezzo/default.nix:22:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mezzo",
       version: "0.0.m8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "protz",
           repo: "mezzo",
           rev: "m8",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       createFindlibDestdir: true,
       postInstall: "mkdir $out/bin\ncp mezzo $out/bin/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://protz.github.io/mezzo/",
         description: "Programming language in the ML tradition, which places strong emphasis on the control of aliasing and access to mutable memory",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

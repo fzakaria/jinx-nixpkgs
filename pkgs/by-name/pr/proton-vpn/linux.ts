@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["updateScript", 92, 12]], [["platforms", 95, 5], ["mainProgram", 96, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["build-system", 43, 3], ["dependencies", 47, 3], ["dontWrapGApps", 58, 3], ["preFixup", 60, 3], ["postInstall", 64, 3], ["preCheck", 73, 3], ["nativeCheckInputs", 77, 3], ["disabledTestPaths", 85, 3], ["passthru", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, meta: false, python3Packages: false, fetchFromGitHub: false, "gobject-introspection": false, libappindicator: false, "libayatana-appindicator": false, libnotify: false, wrapGAppsHook4: false, writableTmpDirAsHomeHook: false, "nix-update-script": false, withIndicator: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["updateScript", 92, 12]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["platforms", 95, 5], ["mainProgram", 96, 5]]);
-const pos$4 = nix.positions(here + "/linux.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["build-system", 43, 3], ["dependencies", 47, 3], ["dontWrapGApps", 58, 3], ["preFixup", 60, 3], ["postInstall", 64, 3], ["preCheck", 73, 3], ["nativeCheckInputs", 77, 3], ["disabledTestPaths", 85, 3], ["passthru", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const withIndicator = nix.argOr($, "withIndicator", () => true);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "proton-vpn",
       version: "4.16.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ProtonVPN",
           repo: "proton-vpn-gtk-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,11 +69,11 @@ install -Dm444 ${nix.sel(finalAttrs, "src")}/rpmbuild/SOURCES/proton-vpn-logo.sv
       })())),
       disabledTestPaths: nix.thunk(() => ["tests/unit/widgets", "tests/unit/utils/test_safe_signal_connect.py"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         mainProgram: "protonvpn-app",
       })),

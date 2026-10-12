@@ -2,21 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/components.nix", [[["x86", 14, 5], ["x86_64", 15, 5], ["arm", 16, 5]], [["LINUX", 21, 5], ["MACOSX", 22, 5], ["WINDOWS", 23, 5], ["CYGWIN", 24, 5]], [["components", 55, 7], ["revision", 56, 15], ["schema_version", 56, 24], ["version", 56, 39]], [["component", 75, 15], ["revision", 76, 15], ["schema_version", 77, 15], ["version", 78, 15]], [["name", 72, 11], ["value", 73, 11]], [["pname", 110, 7], ["version", 111, 7], ["src", 112, 7], ["sha256", 116, 7], ["dependencies", 117, 7], ["platforms", 118, 7], ["snapshot", 123, 7]], [["url", 150, 9], ["sha256", 151, 17]], [["dependencies", 182, 9]], [["description", 186, 17], ["platforms", 186, 29]], [["pname", 148, 15], ["version", 148, 21], ["snapshot", 148, 29], ["src", 149, 7], ["dontUnpack", 153, 7], ["installPhase", 154, 7], ["nativeBuildInputs", 171, 7], ["buildInputs", 178, 7], ["passthru", 181, 7], ["__structuredAttrs", 184, 7], ["meta", 185, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, snapshotPath: false, autoPatchelfHook: false, python3: false, "libxcrypt-legacy": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/components.nix", [["x86", 14, 5], ["x86_64", 15, 5], ["arm", 16, 5]]);
-const pos$2 = nix.positions(here + "/components.nix", [["LINUX", 21, 5], ["MACOSX", 22, 5], ["WINDOWS", 23, 5], ["CYGWIN", 24, 5]]);
 const formals$2 = { args: { component: false, revision: false, schema_version: false, version: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/components.nix", [["components", 55, 7], ["revision", 56, 15], ["schema_version", 56, 24], ["version", 56, 39]]);
 const formals$3 = { args: { components: false, revision: false, schema_version: false, version: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/components.nix", [["component", 75, 15], ["revision", 76, 15], ["schema_version", 77, 15], ["version", 78, 15]]);
-const pos$5 = nix.positions(here + "/components.nix", [["name", 72, 11], ["value", 73, 11]]);
 const formals$4 = { args: { component: false, revision: false, schema_version: false, version: false }, ellipsis: false };
-const pos$6 = nix.positions(here + "/components.nix", [["pname", 110, 7], ["version", 111, 7], ["src", 112, 7], ["sha256", 116, 7], ["dependencies", 117, 7], ["platforms", 118, 7], ["snapshot", 123, 7]]);
 const formals$5 = { args: { pname: false, version: false, src: true, sha256: true, dependencies: true, description: true, platforms: true, snapshot: false }, ellipsis: false };
-const pos$7 = nix.positions(here + "/components.nix", [["url", 150, 9], ["sha256", 151, 17]]);
-const pos$8 = nix.positions(here + "/components.nix", [["dependencies", 182, 9]]);
-const pos$9 = nix.positions(here + "/components.nix", [["description", 186, 17], ["platforms", 186, 29]]);
-const pos$10 = nix.positions(here + "/components.nix", [["pname", 148, 15], ["version", 148, 21], ["snapshot", 148, 29], ["src", 149, 7], ["dontUnpack", 153, 7], ["installPhase", 154, 7], ["nativeBuildInputs", 171, 7], ["buildInputs", 178, 7], ["passthru", 181, 7], ["__structuredAttrs", 184, 7], ["meta", 185, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,9 +18,9 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const python3 = nix.arg($, "python3");
   const libxcrypt_legacy = nix.arg($, "libxcrypt-legacy");
-  const arches = nix.thunk(() => ({ [nix.POS]: pos$1, x86: "i686", x86_64: "x86_64", arm: "aarch64" }));
+  const arches = nix.thunk(() => ({ [nix.POS]: $pos[0], x86: "i686", x86_64: "x86_64", arm: "aarch64" }));
   const oses = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     LINUX: "linux",
     MACOSX: "darwin",
     WINDOWS: "windows",
@@ -49,7 +40,7 @@ export default nix.lambda((args) => (() => {
     const schema_version = nix.arg($_1, "schema_version");
     const version = nix.arg($_1, "version");
     return nix.builtins.toJSON(nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         components: nix.thunk(() => [component]),
         revision: revision,
         schema_version: schema_version,
@@ -63,10 +54,10 @@ export default nix.lambda((args) => (() => {
     const schema_version = nix.arg($_1, "schema_version");
     const version = nix.arg($_1, "version");
     return nix.app(nix.sel(lib, "fix"), (self) => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((component) => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: nix.thunk(() => nix.sel(component, "id")),
             value: nix.thunk(() => nix.app(componentFromSnapshot, self, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 component: component,
                 revision: revision,
                 schema_version: schema_version,
@@ -85,7 +76,7 @@ export default nix.lambda((args) => (() => {
     const architectures = nix.thunk(() => nix.builtins.filter((arch) => nix.builtins.elem(arch, nix.thunk(() => nix.builtins.attrNames(arches))), nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => ["platform", "architectures"]), allArches, component))));
     const operating_systems = nix.thunk(() => nix.builtins.filter((os) => nix.builtins.elem(os, nix.thunk(() => nix.builtins.attrNames(oses))), nix.thunk(() => nix.sel(component, "platform", "operating_systems"))));
     return nix.app(mkComponent, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: nix.thunk(() => nix.sel(component, "id")),
         version: nix.thunk(() => nix.sel(component, "version", "version_string")),
         src: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "hasAttrByPath"), nix.thunk(() => ["data", "source"]), component)), nix.thunk(() => nix.str`${baseUrl}/${nix.sel(component, "data", "source")}`))),
@@ -107,11 +98,11 @@ export default nix.lambda((args) => (() => {
     const platforms = nix.argOr($_1, "platforms", () => nix.sel(lib, "platforms", "all"));
     const snapshot_1 = nix.arg($_1, "snapshot");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname: pname,
         version: version,
         snapshot: snapshot_1,
-        src: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(src, "")), nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$7, url: src, sha256: sha256 })))))),
+        src: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(src, "")), nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[6], url: src, sha256: sha256 })))))),
         dontUnpack: true,
         installPhase: nix.thunk(() => nix.str`mkdir -p $out/google-cloud-sdk/.install
 
@@ -132,11 +123,11 @@ printf "%s" "$snapshot" > $out/google-cloud-sdk/.install/${pname}.snapshot.json
         nativeBuildInputs: nix.thunk(() => nix.concat([python3, nix.thunk(() => nix.sel(stdenv, "cc", "cc"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])))),
         buildInputs: nix.thunk(() => [libxcrypt_legacy]),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           dependencies: nix.thunk(() => nix.app(filterForSystem, dependencies)),
         })),
         __structuredAttrs: true,
-        meta: nix.thunk(() => ({ [nix.POS]: pos$9, description: description, platforms: platforms })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[8], description: description, platforms: platforms })),
       })));
   })(), formals$5);
   return nix.app(componentsFromSnapshot, snapshot);

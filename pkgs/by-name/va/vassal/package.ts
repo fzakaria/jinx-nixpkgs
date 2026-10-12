@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["name", 53, 7], ["exec", 54, 7], ["icon", 55, 7], ["desktopName", 56, 7], ["comment", 57, 7], ["categories", 58, 7], ["startupWMClass", 59, 7]], [["description", 76, 5], ["homepage", 77, 5], ["sourceProvenance", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5], ["mainProgram", 82, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 33, 3], ["desktopItems", 51, 3], ["forceShare", 64, 3], ["nativeInstallCheckInputs", 69, 3], ["doInstallCheck", 72, 3], ["versionCheckProgram", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, glib: false, jre: false, makeWrapper: false, wrapGAppsHook3: false, makeDesktopItem: false, copyDesktopItems: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 53, 7], ["exec", 54, 7], ["icon", 55, 7], ["desktopName", 56, 7], ["comment", 57, 7], ["categories", 58, 7], ["startupWMClass", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["sourceProvenance", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5], ["mainProgram", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 33, 3], ["desktopItems", 51, 3], ["forceShare", 64, 3], ["nativeInstallCheckInputs", 69, 3], ["doInstallCheck", 72, 3], ["versionCheckProgram", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "VASSAL";
       const version = "3.7.28";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/vassalengine/vassal/releases/download/${version}/${pname}-${version}-linux.tar.bz2`),
           sha256: "sha256-K2gsrmbLoRXrm1QqJNFim3sbqJ5YIS6qeohW+g7eZfc=",
         }))));
@@ -48,7 +45,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "VASSAL",
             exec: "vassal",
             icon: "VASSAL",
@@ -63,7 +60,7 @@ runHook postInstall
       const doInstallCheck = true;
       const versionCheckProgram = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/vassal`);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free, open-source boardgame engine",
         homepage: "https://vassalengine.org/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -82,7 +79,7 @@ runHook postInstall
         mainProgram: "vassal",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,28 +2,23 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cloudlog.nix", [[["package", 6, 22]], [["enable", 7, 25]], [["mysql", 6, 16], ["cloudlog", 7, 16]], [["services", 6, 7]], [["machine", 5, 5]], [["name", 3, 3], ["containers", 4, 3], ["testScript", 10, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cloudlog.nix", [["package", 6, 22]]);
-const pos$2 = nix.positions(here + "/cloudlog.nix", [["enable", 7, 25]]);
-const pos$3 = nix.positions(here + "/cloudlog.nix", [["mysql", 6, 16], ["cloudlog", 7, 16]]);
-const pos$4 = nix.positions(here + "/cloudlog.nix", [["services", 6, 7]]);
-const pos$5 = nix.positions(here + "/cloudlog.nix", [["machine", 5, 5]]);
-const pos$6 = nix.positions(here + "/cloudlog.nix", [["name", 3, 3], ["containers", 4, 3], ["testScript", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "cloudlog",
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          mysql: nix.thunk(() => ({ [nix.POS]: pos$1, package: nix.thunk(() => nix.sel(pkgs, "mariadb")) })),
-          cloudlog: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          mysql: nix.thunk(() => ({ [nix.POS]: $pos[0], package: nix.thunk(() => nix.sel(pkgs, "mariadb")) })),
+          cloudlog: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
       })),
     })),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["dask-image", 55, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["pythonRelaxDeps", 32, 3], ["build-system", 38, 3], ["dependencies", 43, 3], ["optional-dependencies", 54, 3], ["nativeBuildInputs", 61, 3], ["doCheck", 63, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "dask-image": false, dask: false, fetchFromGitHub: false, fsspec: false, "hatch-vcs": false, hatchling: false, "ngff-zarr": false, numpy: false, "python-dateutil": false, "spatial-image": false, writableTmpDirAsHomeHook: false, "xarray-dataclass": false, xarray: false, zarr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dask-image", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["pythonRelaxDeps", 32, 3], ["build-system", 38, 3], ["dependencies", 43, 3], ["optional-dependencies", 54, 3], ["nativeBuildInputs", 61, 3], ["doCheck", 63, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const xarray = nix.arg($, "xarray");
   const zarr = nix.arg($, "zarr");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "multiscale-spatial-image",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "spatial-image",
           repo: "multiscale-spatial-image",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,12 +47,12 @@ export default nix.lambda((args) => (() => {
         xarray_dataclass,
         zarr,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, "dask-image": nix.thunk(() => [dask_image]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], "dask-image": nix.thunk(() => [dask_image]) })),
       nativeBuildInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["multiscale_spatial_image"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Generate a multiscale, chunked, multi-dimensional spatial image data structure that can serialized to OME-NGFF",
         homepage: "https://github.com/spatial-image/multiscale-spatial-image",
         changelog: nix.thunk(() => nix.str`https://github.com/spatial-image/multiscale-spatial-image/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

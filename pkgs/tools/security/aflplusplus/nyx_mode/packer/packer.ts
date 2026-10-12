@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/packer.nix", [[["homepage", 150, 5], ["description", 151, 5], ["license", 152, 5], ["platforms", 153, 5], ["maintainers", 154, 5]], [["version", 27, 3], ["pname", 28, 3], ["src", 30, 3], ["postUnpack", 31, 3], ["patches", 35, 3], ["strictDeps", 43, 3], ["hardeningDisable", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 54, 3], ["dontConfigure", 60, 3], ["postPatch", 62, 3], ["buildPhase", 102, 3], ["installPhase", 118, 3], ["postFixup", 143, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, callPackage: false, fetchFromGitHub: false, cpio: false, gzip: false, glibc: false, pkgsi686Linux: false, "pax-utils": false, makeWrapper: false, python3: false, aflplusplus: false, "qemu-nyx": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/packer.nix", [["homepage", 150, 5], ["description", 151, 5], ["license", 152, 5], ["platforms", 153, 5], ["maintainers", 154, 5]]);
-const pos$2 = nix.positions(here + "/packer.nix", [["version", 27, 3], ["pname", 28, 3], ["src", 30, 3], ["postUnpack", 31, 3], ["patches", 35, 3], ["strictDeps", 43, 3], ["hardeningDisable", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 54, 3], ["dontConfigure", 60, 3], ["postPatch", 62, 3], ["buildPhase", 102, 3], ["installPhase", 118, 3], ["postFixup", 143, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(ps, "jinja2")),
     ]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.add(nix.sel(aflplusplus, "src"), "/nyx_mode/PACKER_VERSION")))),
       pname: "nyx-packer",
       src: nix.thunk(() => nix.sel(aflplusplus, "src")),
@@ -96,7 +95,7 @@ runHook postInstall
 `),
       postFixup: "# packer binaries are meant to run inside the vm\nfind \"$out/packer/linux_x86_64-userspace/bin64\" -type f \\\n  -exec patchelf --set-interpreter /lib64/ld-linux-x86-64.so.2 {} \\;\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/nyx-fuzz/packer",
         description: "image packer for Nyx VMs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

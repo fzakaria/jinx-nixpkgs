@@ -2,23 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 47, 17], ["hash", 47, 21], ["owner", 48, 9], ["repo", 49, 9]], [["url", 54, 9], ["hash", 55, 17]], [["subdir", 92, 7], ["rev", 93, 7], ["hash", 94, 7]], [["subdir", 97, 7], ["rev", 98, 7], ["hash", 99, 7]], [["subdir", 102, 7], ["rev", 103, 7], ["hash", 104, 7]], [["subdir", 107, 7], ["rev", 108, 7], ["hash", 109, 7]], [["subdir", 112, 7], ["rev", 113, 7], ["hash", 114, 7]], [["subdir", 117, 7], ["version", 118, 7], ["hash", 119, 7]], [["subdir", 122, 7], ["version", 123, 7], ["hash", 124, 7]], [["url", 130, 5], ["hash", 131, 5]], [["owner", 146, 5], ["repo", 147, 5], ["tag", 148, 5], ["hash", 149, 5], ["postFetch", 151, 5]], [["cryptpad", 229, 18]], [["tests", 229, 12]], [["description", 232, 5], ["homepage", 233, 5], ["license", 234, 5], ["mainProgram", 235, 5], ["maintainers", 236, 5]], [["version", 142, 11], ["pname", 143, 3], ["src", 145, 3], ["npmDepsHash", 156, 3], ["nativeBuildInputs", 158, 3], ["patches", 165, 3], ["makeCacheWritable", 175, 3], ["dontNpmBuild", 182, 3], ["postInstall", 184, 3], ["passthru", 229, 3], ["meta", 231, 3]]]);
 const formals$1 = { args: { bash: false, buildNpmPackage: false, coreutils: false, fetchFromGitHub: false, fetchpatch: false, fetchurl: false, lib: false, makeBinaryWrapper: false, nixosTests: false, nodejs: false, rdfind: false, unzip: false, oldest_needed_version: true }, ellipsis: false };
 const formals$2 = { args: { rev: true, version: true, hash: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 47, 17], ["hash", 47, 21], ["owner", 48, 9], ["repo", 49, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 54, 9], ["hash", 55, 17]]);
-const pos$3 = nix.positions(here + "/package.nix", [["subdir", 92, 7], ["rev", 93, 7], ["hash", 94, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["subdir", 97, 7], ["rev", 98, 7], ["hash", 99, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["subdir", 102, 7], ["rev", 103, 7], ["hash", 104, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["subdir", 107, 7], ["rev", 108, 7], ["hash", 109, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["subdir", 112, 7], ["rev", 113, 7], ["hash", 114, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["subdir", 117, 7], ["version", 118, 7], ["hash", 119, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["subdir", 122, 7], ["version", 123, 7], ["hash", 124, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["url", 130, 5], ["hash", 131, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["owner", 146, 5], ["repo", 147, 5], ["tag", 148, 5], ["hash", 149, 5], ["postFetch", 151, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["cryptpad", 229, 18]]);
-const pos$13 = nix.positions(here + "/package.nix", [["tests", 229, 12]]);
-const pos$14 = nix.positions(here + "/package.nix", [["description", 232, 5], ["homepage", 233, 5], ["license", 234, 5], ["mainProgram", 235, 5], ["maintainers", 236, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["version", 142, 11], ["pname", 143, 3], ["src", 145, 3], ["npmDepsHash", 156, 3], ["nativeBuildInputs", 158, 3], ["patches", 165, 3], ["makeCacheWritable", 175, 3], ["dontNpmBuild", 182, 3], ["postInstall", 184, 3], ["passthru", 229, 3], ["meta", 231, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,13 +29,13 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.app(nix.sel(lib, "xor"), nix.thunk(() => nix.eq(rev, null)), nix.thunk(() => nix.eq(version_1, null)))), "onlyoffice_fetch requires one of either `rev` or `version` to be provided (not both)."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/cr/cryptpad/package.nix:40:5");
     return (nix.asBool(!nix.eq(rev, null)) ? nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         rev: rev,
         hash: hash,
         owner: "cryptpad",
         repo: "onlyoffice-builds",
       }))) : nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/cryptpad/onlyoffice-editor/releases/download/${version_1}/onlyoffice-editor.zip`),
         hash: hash,
       }))));
@@ -74,43 +60,43 @@ rm -rf "$oo_dir"/web-apps/apps/*/main/resources/help
 `;
   const onlyoffice_versions = nix.thunk(() => [
     nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       subdir: "v1",
       rev: "4f370beb",
       hash: "sha256-TE/99qOx4wT2s0op9wi+SHwqTPYq/H+a9Uus9Zj4iSY=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       subdir: "v2b",
       rev: "d9da72fd",
       hash: "sha256-SiRDRc2vnLwCVnvtk+C8PKw7IeuSzHBaJmZHogRe3hQ=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       subdir: "v4",
       rev: "6ebc6938",
       hash: "sha256-eto1+8Tk/s3kbUCpbUh8qCS8EOq700FYG1/KiHyynaA=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       subdir: "v5",
       rev: "88a356f0",
       hash: "sha256-8j1rlAyHlKx6oAs2pIhjPKcGhJFj6ZzahOcgenyeOCc=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       subdir: "v6",
       rev: "abd8a309",
       hash: "sha256-BZdExj2q/bqUD3k9uluOot2dlrWKA+vpad49EdgXKww=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       subdir: "v7",
       version: "v7.3.3.60+11",
       hash: "sha256-He8RwsaJPBhaxFklA7vSxxNUpmcM41lW859gQUUJWbQ=",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       subdir: "v8",
       version: "v8.3.3.23+5",
       hash: "sha256-+53jzvmGltD1yjXAimLl8zL1V4YDc1qF1PUFSeyiUm8=",
@@ -118,7 +104,7 @@ rm -rf "$oo_dir"/web-apps/apps/*/main/resources/help
   ]);
   const x2t_version = "v7.3+1";
   const x2t = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       url: nix.thunk(() => nix.str`https://github.com/cryptpad/onlyoffice-x2t-wasm/releases/download/${x2t_version}/x2t.zip`),
       hash: "sha256-hrbxrI8RC1pBatGZ76TAiVfUbZid7+eRuXk6lmz7OgQ=",
     }))));
@@ -128,11 +114,11 @@ unzip -q ${x2t} -d "$X2T_DIR"
 echo "${x2t_version}" > "$X2T_DIR"/.version
 `);
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       version: version,
       pname: "cryptpad",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           owner: "cryptpad",
           repo: "cryptpad",
           tag: version,
@@ -191,14 +177,14 @@ makeWrapper "${nix.app(nix.sel(lib, "getExe"), nodejs)}" "$out/bin/cryptpad" \\
   --run "if ! [ -d customize ]; then \\"${nix.app(nix.sel(lib, "getExe"), nodejs)}\\" \\"$out_cryptpad/scripts/build.js\\"; fi"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           cryptpad: nix.thunk(() => nix.sel(nixosTests, "cryptpad")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "Collaborative office suite, end-to-end encrypted and open-source",
         homepage: "https://cryptpad.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

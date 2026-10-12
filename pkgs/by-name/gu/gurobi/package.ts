@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-linux", 12, 7], ["x86_64-linux", 13, 7]], [["aarch64-linux", 25, 9], ["x86_64-linux", 26, 9]], [["url", 22, 5], ["hash", 23, 5]], [["libSuffix", 70, 12]], [["description", 73, 5], ["homepage", 74, 5], ["sourceProvenance", 75, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 84, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["strictDeps", 43, 3], ["makeFlags", 45, 3], ["installPhase", 47, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, autoPatchelfHook: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-linux", 12, 7], ["x86_64-linux", 13, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-linux", 25, 9], ["x86_64-linux", 26, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["libSuffix", 70, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["sourceProvenance", 75, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["sourceRoot", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["strictDeps", 43, 3], ["makeFlags", 45, 3], ["installPhase", 47, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,15 +12,15 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const python3 = nix.arg($, "python3");
-  const platform = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "aarch64-linux": "armlinux64", "x86_64-linux": "linux64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const platform = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "aarch64-linux": "armlinux64", "x86_64-linux": "linux64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "gurobi";
       const version = "13.0.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://packages.gurobi.com/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gurobi${version}_${platform}.tar.gz`),
           hash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "aarch64-linux": "sha256-8Hlw047emSVkhHXat1K3qBwvIYVHknc0QLgfIZ0aMiQ=",
             "x86_64-linux": "sha256-LhaQNTWi22fBvhTwdd+lMs8dTVlh10LR+YlBVtj0xvE=",
           }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -39,11 +34,11 @@ export default nix.lambda((args) => (() => {
       const makeFlags = nix.thunk(() => ["--directory=src/build"]);
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ncp bin/* $out/bin/\n\nmkdir -p $out/include\ncp include/gurobi*.h $out/include/\n\nmkdir -p $out/lib\ncp lib/*.jar $out/lib/\ncp lib/libGurobiJni*.so $out/lib/\ncp lib/libgurobi*.so* $out/lib/\ncp lib/libgurobi*.a $out/lib/\ncp src/build/*.a $out/lib/\n\nmkdir -p $out/share/java\nln -s $out/lib/gurobi.jar $out/share/java/\nln -s $out/lib/gurobi-javadoc.jar $out/share/java/\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         libSuffix: nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version)))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Optimization solver for mathematical programming",
         homepage: "https://www.gurobi.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -61,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

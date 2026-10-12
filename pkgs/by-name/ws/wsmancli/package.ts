@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 36, 5], ["longDescription", 37, 5], ["downloadPage", 44, 5], ["homepage", 46, 7], ["license", 47, 7], ["maintainers", 48, 7], ["platforms", 49, 7]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["postPatch", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, openssl: false, openwsman: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["longDescription", 37, 5], ["downloadPage", 44, 5], ["homepage", 46, 7], ["license", 47, 7], ["maintainers", 48, 7], ["platforms", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["postPatch", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const openwsman = nix.arg($, "openwsman");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wsmancli",
       version: "2.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Openwsman",
           repo: "wsmancli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(openwsman, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Openwsman command-line client",
         longDescription: "Openwsman provides a command-line tool, wsman, to perform basic\noperations on the command-line. These operations include Get, Put,\nInvoke, Identify, Delete, Create, and Enumerate. The command-line tool\nalso has several switches to allow for optional features of the\nWS-Management specification and Testing.\n",
         downloadPage: "https://github.com/Openwsman/wsmancli/releases",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["license", 60, 5], ["platforms", 61, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["postPatch", 28, 3], ["buildInputs", 33, 3], ["makeFlags", 38, 3], ["installPhase", 44, 3], ["enableParallelBuilding", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, mercury: false, pandoc: false, ncurses: false, gpgme: false, coreutils: false, file: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["license", 60, 5], ["platforms", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["postPatch", 28, 3], ["buildInputs", 33, 3], ["makeFlags", 38, 3], ["installPhase", 44, 3], ["enableParallelBuilding", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const file = nix.arg($, "file");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "notmuch-bower",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wangp",
           repo: "bower",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +36,7 @@ substituteInPlace src/detect_mime_type.m --replace 'shell_quoted("file' 'shell_q
       installPhase: "runHook preInstall\nmkdir -p $out/bin\nmv bower $out/bin/\nmkdir -p $out/share/man/man1\nmv bower.1 $out/share/man/man1/\nrunHook postInstall\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/wangp/bower",
         description: "Curses terminal client for the Notmuch email system",
         mainProgram: "bower",

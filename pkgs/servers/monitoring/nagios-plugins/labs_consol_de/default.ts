@@ -2,17 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 53, 9], ["license", 54, 9], ["maintainers", 55, 9], ["description", 56, 17]], [["pname", 23, 15], ["version", 23, 21], ["src", 23, 29], ["buildInputs", 25, 7], ["nativeBuildInputs", 27, 7], ["postPatch", 32, 7], ["postInstall", 40, 7], ["postFixup", 46, 7], ["meta", 52, 7]], [["owner", 67, 7], ["repo", 68, 7], ["tag", 69, 7], ["hash", 70, 7], ["fetchSubmodules", 71, 7]], [["pname", 63, 5], ["version", 64, 5], ["src", 66, 5], ["description", 74, 5], ["buildInputs", 75, 5]], [["owner", 83, 7], ["repo", 84, 7], ["tag", 85, 7], ["hash", 86, 7], ["fetchSubmodules", 87, 7]], [["pname", 79, 5], ["version", 80, 5], ["src", 82, 5], ["description", 90, 5], ["buildInputs", 91, 5]], [["owner", 99, 7], ["repo", 100, 7], ["tag", 101, 7], ["hash", 102, 7], ["fetchSubmodules", 103, 7]], [["pname", 95, 5], ["version", 96, 5], ["src", 98, 5], ["description", 106, 5], ["buildInputs", 107, 5]], [["check_mssql_health", 62, 3], ["check_nwc_health", 78, 3], ["check_ups_health", 94, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, coreutils: false, fetchFromGitHub: false, gnugrep: false, gnused: false, lib: false, makeWrapper: false, perlPackages: false, stdenv: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, src: false, description: false, buildInputs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 53, 9], ["license", 54, 9], ["maintainers", 55, 9], ["description", 56, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 23, 15], ["version", 23, 21], ["src", 23, 29], ["buildInputs", 25, 7], ["nativeBuildInputs", 27, 7], ["postPatch", 32, 7], ["postInstall", 40, 7], ["postFixup", 46, 7], ["meta", 52, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 67, 7], ["repo", 68, 7], ["tag", 69, 7], ["hash", 70, 7], ["fetchSubmodules", 71, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 63, 5], ["version", 64, 5], ["src", 66, 5], ["description", 74, 5], ["buildInputs", 75, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["owner", 83, 7], ["repo", 84, 7], ["tag", 85, 7], ["hash", 86, 7], ["fetchSubmodules", 87, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 79, 5], ["version", 80, 5], ["src", 82, 5], ["description", 90, 5], ["buildInputs", 91, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["owner", 99, 7], ["repo", 100, 7], ["tag", 101, 7], ["hash", 102, 7], ["fetchSubmodules", 103, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 95, 5], ["version", 96, 5], ["src", 98, 5], ["description", 106, 5], ["buildInputs", 107, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["check_mssql_health", 62, 3], ["check_nwc_health", 78, 3], ["check_ups_health", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +25,7 @@ export default nix.lambda((args) => (() => {
     const description = nix.arg($_1, "description");
     const buildInputs = nix.arg($_1, "buildInputs");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: pname,
         version: version,
         src: src,
@@ -48,7 +40,7 @@ export default nix.lambda((args) => (() => {
         postInstall: "if [[ -d $out/libexec ]]; then\n  ln -sr $out/libexec $out/bin\nfi\n",
         postFixup: "for f in $out/bin/* ; do\n  wrapProgram $f --prefix PERL5LIB : $PERL5LIB\ndone\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           homepage: "https://labs.consol.de/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
           maintainers: nix.thunk(() => (() => {
@@ -60,12 +52,12 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     check_mssql_health: nix.thunk(() => nix.app(generic, nix.thunk(() => (() => {
         const pname = "check-mssql-health";
         const version = "2.7.7";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "lausser",
             repo: "check_mssql_health",
             tag: version,
@@ -74,13 +66,13 @@ export default nix.lambda((args) => (() => {
           }))));
         const description = "Check plugin for Microsoft SQL Server";
         const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "DBDsybase"))]);
-        return { [nix.POS]: pos$4, pname, version, src, description, buildInputs };
+        return { [nix.POS]: $pos[3], pname, version, src, description, buildInputs };
       })()))),
     check_nwc_health: nix.thunk(() => nix.app(generic, nix.thunk(() => (() => {
         const pname = "check-nwc-health";
         const version = "11.7";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             owner: "lausser",
             repo: "check_nwc_health",
             tag: version,
@@ -89,13 +81,13 @@ export default nix.lambda((args) => (() => {
           }))));
         const description = "Check plugin for network equipment";
         const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "NetSNMP"))]);
-        return { [nix.POS]: pos$6, pname, version, src, description, buildInputs };
+        return { [nix.POS]: $pos[5], pname, version, src, description, buildInputs };
       })()))),
     check_ups_health: nix.thunk(() => nix.app(generic, nix.thunk(() => (() => {
         const pname = "check-ups-health";
         const version = "4.3.1.1";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             owner: "lausser",
             repo: "check_ups_health",
             tag: version,
@@ -104,7 +96,7 @@ export default nix.lambda((args) => (() => {
           }))));
         const description = "Check plugin for UPSs";
         const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "NetSNMP"))]);
-        return { [nix.POS]: pos$8, pname, version, src, description, buildInputs };
+        return { [nix.POS]: $pos[7], pname, version, src, description, buildInputs };
       })()))),
   };
 })(), formals$1);

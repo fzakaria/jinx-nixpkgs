@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["mainProgram", 89, 5]], [["pname", 23, 3], ["version", 24, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 45, 3], ["doCheck", 54, 3], ["nativeCheckInputs", 56, 3], ["checkPhase", 62, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, meson: false, ninja: false, "pkg-config": false, "wayland-scanner": false, glib: false, wrapGAppsHook4: false, "xvfb-run": false, dbus: false, fontconfig: false, gtk4: false, "gtk4-layer-shell": false, guile: false, wayland: false, "wayland-protocols": false, "wlr-protocols": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["mainProgram", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 45, 3], ["doCheck", 54, 3], ["nativeCheckInputs", 56, 3], ["checkPhase", 62, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wlr_protocols = nix.arg($, "wlr-protocols");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lambdock",
       version: "0.6.7",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jjba23",
           repo: "lambdock",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +65,7 @@ runHook postCheck
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Wayland desktop dock customizable with GNU Guile Scheme",
           homepage: "https://codeberg.org/jjba23/lambdock",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "gpl3Plus")),

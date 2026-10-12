@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 35, 5], ["mainProgram", 36, 5], ["license", 37, 5], ["homepage", 38, 5], ["maintainers", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["propagatedBuildInputs", 25, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, cmake: false, kdePackages: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["mainProgram", 36, 5], ["license", 37, 5], ["homepage", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["propagatedBuildInputs", 25, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rsibreak";
       const version = "0.13.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kde/stable/rsibreak/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/rsibreak-${version}.tar.xz`),
           hash: "sha256-arLOCcV9D+UXgwjqlfh9675VrpjPs3QkkireJZO60SA=",
         }))));
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(kdePackages, "kcrash")),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Takes care of your health and regularly breaks your work to avoid repetitive strain injury (RSI)",
         mainProgram: "rsibreak",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

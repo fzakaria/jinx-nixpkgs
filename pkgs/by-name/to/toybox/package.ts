@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 88, 7]], [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["platforms", 96, 5], ["maintainers", 97, 5], ["priority", 98, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["depsBuildBuild", 29, 3], ["buildInputs", 32, 3], ["postPatch", 43, 3], ["extraConfig", 45, 11], ["configurePhase", 47, 3], ["hardeningDisable", 66, 3], ["makeFlags", 71, 3], ["installTargets", 79, 3], ["nativeCheckInputs", 85, 3], ["checkTarget", 86, 3], ["env", 88, 3], ["__structuredAttrs", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, which: false, buildPackages: false, libxcrypt: false, libiconv: false, enableStatic: true, enableMinimal: true, extraConfig: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 88, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["platforms", 96, 5], ["maintainers", 97, 5], ["priority", 98, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["depsBuildBuild", 29, 3], ["buildInputs", 32, 3], ["postPatch", 43, 3], ["extraConfig", 45, 11], ["configurePhase", 47, 3], ["hardeningDisable", 66, 3], ["makeFlags", 71, 3], ["installTargets", 79, 3], ["nativeCheckInputs", 85, 3], ["checkTarget", 86, 3], ["env", 88, 3], ["__structuredAttrs", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const extraConfig = nix.argOr($, "extraConfig", () => "");
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "toybox",
       version: "0.8.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "landley",
           repo: "toybox",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,10 +52,10 @@ make oldconfig
       installTargets: nix.thunk(() => ["install_flat"]),
       nativeCheckInputs: nix.thunk(() => [which]),
       checkTarget: "tests",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error" })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight implementation of some Unix command line utilities",
         homepage: "https://landley.net/toybox/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

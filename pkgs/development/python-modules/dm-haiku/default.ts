@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["jax", 68, 5], ["flax", 72, 5]], [["pname", 137, 5], ["doInstallCheck", 138, 5], ["dontCheckPythonMetadata", 141, 5]], [["pytest", 136, 18]], [["tests", 136, 12]], [["description", 145, 5], ["homepage", 146, 5], ["changelog", 147, 5], ["license", 148, 5], ["maintainers", 149, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__srtructuredAttrs", 40, 3], ["src", 42, 3], ["postPatch", 50, 3], ["build-system", 57, 3], ["dependencies", 59, 3], ["optional-dependencies", 67, 3], ["pythonImportsCheck", 75, 3], ["nativeCheckInputs", 77, 3], ["disabledTests", 93, 3], ["disabledTestPaths", 126, 3], ["doCheck", 133, 3], ["passthru", 136, 3], ["meta", 144, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pythonAtLeast: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, "absl-py": false, jaxlib: false, jmp: false, numpy: false, tabulate: false, jax: false, flax: false, "pytest-xdist": false, pytestCheckHook: false, bsuite: false, chex: false, cloudpickle: false, dill: false, "dm-env": false, "dm-tree": false, optax: false, rlax: false, tensorflow: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["jax", 68, 5], ["flax", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 137, 5], ["doInstallCheck", 138, 5], ["dontCheckPythonMetadata", 141, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pytest", 136, 18]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 136, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 145, 5], ["homepage", 146, 5], ["changelog", 147, 5], ["license", 148, 5], ["maintainers", 149, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__srtructuredAttrs", 40, 3], ["src", 42, 3], ["postPatch", 50, 3], ["build-system", 57, 3], ["dependencies", 59, 3], ["optional-dependencies", 67, 3], ["pythonImportsCheck", 75, 3], ["nativeCheckInputs", 77, 3], ["disabledTests", 93, 3], ["disabledTestPaths", 126, 3], ["doCheck", 133, 3], ["passthru", 136, 3], ["meta", 144, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const rlax = nix.arg($, "rlax");
   const tensorflow = nix.arg($, "tensorflow");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "dm-haiku",
       version: "0.0.17",
       pyproject: true,
       __srtructuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "deepmind",
           repo: "dm-haiku",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +48,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [absl_py, jaxlib, jmp, numpy, tabulate]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         jax: nix.thunk(() => [jax, jaxlib]),
         flax: nix.thunk(() => [flax]),
       })),
@@ -93,11 +87,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pytest: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-tests`),
               doInstallCheck: true,
               dontCheckPythonMetadata: true,
@@ -105,7 +99,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Haiku is a simple neural network library for JAX developed by some of the authors of Sonnet",
         homepage: "https://github.com/deepmind/dm-haiku",
         changelog: nix.thunk(() => nix.str`https://github.com/google-deepmind/dm-haiku/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

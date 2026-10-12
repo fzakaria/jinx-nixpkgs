@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["mympd", 65, 43]], [["tests", 65, 12]], [["homepage", 68, 5], ["description", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["preConfigure", 38, 3], ["buildInputs", 41, 3], ["cmakeFlags", 50, 3], ["hardeningDisable", 56, 3], ["doCheck", 61, 3], ["strictDeps", 63, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libmpdclient: false, openssl: false, lua5_4: false, libid3tag: false, flac: false, pcre2: false, gzip: false, perl: false, jq: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mympd", 65, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 65, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["preConfigure", 38, 3], ["buildInputs", 41, 3], ["cmakeFlags", 50, 3], ["hardeningDisable", 56, 3], ["doCheck", 61, 3], ["strictDeps", 63, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mympd",
       version: "26.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jcorporation",
           repo: "myMPD",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,11 +44,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, mympd: nix.thunk(() => nix.attr(nixosTests, "mympd")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], mympd: nix.thunk(() => nix.attr(nixosTests, "mympd")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://jcorporation.github.io/myMPD",
         description: "Standalone and mobile friendly web mpd client with a tiny footprint and advanced features",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "doronbehar"))]),

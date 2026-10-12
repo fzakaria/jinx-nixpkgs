@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["fetchSubmodules", 48, 5], ["hash", 49, 5]], [["package", 101, 7], ["command", 102, 7], ["version", 103, 7]], [["version", 96, 18]], [["tests", 96, 12]], [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 115, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 61, 3], ["nativeCheckInputs", 71, 3], ["doCheck", 73, 3], ["prePatch", 75, 3], ["postPatch", 87, 3], ["outputs", 91, 3], ["passthru", 96, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, boxfort: false, meson: false, "pkg-config": false, gettext: false, cmake: false, ninja: false, protobuf: false, gitMinimal: false, libffi: false, libgit2: false, dyncall: false, nanomsg: false, nanopbMalloc: false, python3Packages: false, testers: false, criterion: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["fetchSubmodules", 48, 5], ["hash", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 101, 7], ["command", 102, 7], ["version", 103, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 96, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 96, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 115, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 61, 3], ["nativeCheckInputs", 71, 3], ["doCheck", 73, 3], ["prePatch", 75, 3], ["postPatch", 87, 3], ["outputs", 91, 3], ["passthru", 96, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,25 +28,25 @@ export default nix.lambda((args) => (() => {
   const criterion = nix.arg($, "criterion");
   const callPackage = nix.arg($, "callPackage");
   const debugbreak = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "MrAnno",
       repo: "debugbreak",
       rev: "83bf7e933311b88613cbaadeced9c2e2c811054a",
       hash: "sha256-OPrPGBUZN73Nl5NMEf/nME843yTolt913yjut3rAos0=",
     }))));
   const klib = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "attractivechaos",
       repo: "klib",
       rev: "cdb7e9236dc47abf8da7ebd702cc6f7f21f0c502",
       hash: "sha256-+GaI5nXz4jYI0rO17xDhNtFpLlGL2WzeSVLMfB6Cl6E=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "criterion",
       version: "2.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "Snaipe",
           repo: "Criterion",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,13 +81,13 @@ done
       postPatch: "patchShebangs ci/isdir.py src/protocol/gen-pb.py\n",
       outputs: nix.thunk(() => ["out", "dev"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => (() => {
             const tester = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/001-version.nix"), nix.thunk(() => ({}))));
             return nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 package: criterion,
                 command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), tester)} --version`),
                 version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -103,7 +96,7 @@ done
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Cross-platform C and C++ unit testing framework for the 21th century",
         homepage: "https://github.com/Snaipe/Criterion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

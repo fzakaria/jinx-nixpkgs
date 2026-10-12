@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["sourceProvenance", 47, 5], ["platforms", 48, 5]], [["pname", 16, 3], ["version", 17, 3], ["format", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 27, 3], ["pythonImportsCheck", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, funcy: false, ipython: false, jinja2: false, joblib: false, numpy: false, pandas: false, "scikit-learn": false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["sourceProvenance", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["format", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 27, 3], ["pythonImportsCheck", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bmabey",
           repo: "pyLDAvis",
           rev: version,
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [funcy, jinja2, joblib, ipython, numpy, pandas, scikit_learn, scipy]);
       const pythonImportsCheck = nix.thunk(() => ["pyLDAvis", "pyLDAvis.gensim_models"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/bmabey/pyLDAvis",
         description: "Python library for interactive topic model visualization",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["package", 36, 50]], [["version", 36, 18]], [["tests", 36, 12]], [["description", 39, 5], ["homepage", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5]], [["pname", 12, 3], ["version", 13, 26], ["nativeBuildInputs", 15, 3], ["buildCommand", 17, 3], ["passthru", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, chromedriver: false, python3: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["package", 36, 50]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 36, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 36, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 26], ["nativeBuildInputs", 15, 3], ["buildCommand", 17, 3], ["passthru", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "undetected-chromedriver",
       version: nix.thunk(() => nix.attr(chromedriver, "version")),
       nativeBuildInputs: nix.thunk(() => [
@@ -41,17 +37,17 @@ EOF
 install -D -m 0555 chromedriver $out/bin/undetected-chromedriver
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(chromedriver, "meta"), {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Custom Selenium ChromeDriver that passes all bot mitigation systems",
         homepage: "https://github.com/ultrafunkamsterdam/undetected-chromedriver",
         mainProgram: "undetected-chromedriver",

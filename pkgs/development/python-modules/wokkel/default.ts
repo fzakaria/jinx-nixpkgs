@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]], [["description", 69, 5], ["longDescription", 70, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["teams", 79, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 38, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["nativeCheckInputs", 51, 3], ["checkPhase", 53, 3], ["pythonImportsCheck", 61, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch2: false, setuptools: false, incremental: false, "python-dateutil": false, twisted: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 69, 5], ["longDescription", 70, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["teams", 79, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 38, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["nativeCheckInputs", 51, 3], ["checkPhase", 53, 3], ["pythonImportsCheck", 61, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "18.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ralphm",
           repo: "wokkel",
           tag: version,
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./0001-Remove-py2-compat.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-test-for-twisted-26.patch",
             url: "https://salsa.debian.org/python-team/packages/wokkel/-/raw/f9425d127449a47a7578a01a1b802b7b26b0677f/debian/patches/fix-test-for-twisted-26.patch",
             hash: "sha256-gyVKKqDCFFXyA5LG0q2p8SWIh9DJCUkdK6slOaYsAw0=",
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\n\ntrial wokkel\n\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["twisted.plugins.server", "wokkel.disco", "wokkel.muc", "wokkel.pubsub"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Twisted Jabber support library",
         longDescription: "Wokkel is collection of enhancements on top of the Twisted networking framework, written in Python. It mostly\nprovides a testing ground for enhancements to the Jabber/XMPP protocol implementation as found in\nTwisted Words, that are meant to eventually move there.\n",
         homepage: "https://github.com/ralphm/wokkel",
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

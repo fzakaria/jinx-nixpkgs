@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 26], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["changelog", 33, 5], ["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["owner", 10, 3], ["domain", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeCheckInputs", 21, 3], ["disabledTestPaths", 26, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { buildHomeAssistantComponent: false, fetchFromGitHub: false, lib: false, "pytest-homeassistant-custom-component": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 26], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 33, 5], ["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 10, 3], ["domain", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeCheckInputs", 21, 3], ["disabledTestPaths", 26, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const pytest_homeassistant_custom_component = nix.arg($, "pytest-homeassistant-custom-component");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "Sese-Schneider",
       domain: "cover_time_based",
       version: "4.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: nix.thunk(() => nix.attr(finalAttrs, "owner")),
           repo: "ha-cover-time-based",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_homeassistant_custom_component, pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["tests/test_bump_dev_script.py", "tests/test_release_script.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/Sese-Schneider/ha-cover-time-based/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Integration which allows cover control based on time",
         homepage: "https://github.com/Sese-Schneider/ha-cover-time-based",

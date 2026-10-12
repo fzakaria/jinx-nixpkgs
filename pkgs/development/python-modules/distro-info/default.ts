@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 17, 3], ["postPatch", 22, 3], ["build-system", 27, 3], ["pypaBuildFlags", 28, 3], ["nativeCheckInputs", 29, 3], ["preCheck", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "distro-info-data": false, fetchurl: false, lib: false, setuptools: false, unittestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 17, 3], ["postPatch", 22, 3], ["build-system", 27, 3], ["pypaBuildFlags", 28, 3], ["nativeCheckInputs", 29, 3], ["preCheck", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://salsa.debian.org/debian/distro-info/-/archive/debian/${version}/distro-info-debian-${version}.tar.gz`),
           hash: "sha256-nRLTlDPnll1jvwfg9FSxs9TmImvQkn9DVqSRSOKTAGI=",
         }))));
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [unittestCheckHook]);
       const preCheck = "cd python\nrm distro_info_test/test_flake8.py distro_info_test/test_pylint.py\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Information about Debian and Ubuntu releases",
         homepage: "https://salsa.debian.org/debian/distro-info",
         changelog: nix.thunk(() => nix.str`https://salsa.debian.org/debian/distro-info/-/blob/debian/${version}/debian/changelog`),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

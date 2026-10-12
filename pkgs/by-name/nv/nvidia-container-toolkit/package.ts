@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["homepage", 88, 5], ["description", 89, 5], ["mainProgram", 90, 5], ["license", 91, 5], ["platforms", 92, 5], ["maintainers", 93, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 24, 3], ["vendorHash", 29, 3], ["patches", 31, 3], ["postPatch", 41, 3], ["subPackages", 50, 3], ["ldflags", 61, 3], ["nativeBuildInputs", 68, 3], ["checkFlags", 72, 3], ["postInstall", 82, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, glibc: false, fetchFromGitHub: false, buildGoModule: false, autoAddDriverRunpath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 88, 5], ["description", 89, 5], ["mainProgram", 90, 5], ["license", 91, 5], ["platforms", 92, 5], ["maintainers", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 24, 3], ["vendorHash", 29, 3], ["patches", 31, 3], ["postPatch", 41, 3], ["subPackages", 50, 3], ["ldflags", 61, 3], ["nativeBuildInputs", 68, 3], ["checkFlags", 72, 3], ["postInstall", 82, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const autoAddDriverRunpath = nix.arg($, "autoAddDriverRunpath");
   const cliVersionPackage = "github.com/NVIDIA/nvidia-container-toolkit/internal/info";
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nvidia-container-toolkit",
       version: "1.20.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NVIDIA",
           repo: "nvidia-container-toolkit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +57,7 @@ substituteInPlace cmd/nvidia-cdi-hook/update-ldcache/update-ldcache.go \\
       })()),
       postInstall: "mkdir -p $tools/bin\nmv $out/bin/{nvidia-cdi-hook,nvidia-container-runtime,nvidia-container-runtime.cdi,nvidia-container-runtime-hook,nvidia-container-runtime.legacy} $tools/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/NVIDIA/nvidia-container-toolkit",
         description: "NVIDIA Container Toolkit",
         mainProgram: "nvidia-ctk",

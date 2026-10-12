@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["i686-linux", 11, 5], ["x86_64-linux", 12, 5], ["aarch64-linux", 13, 5]], [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["updateScript", 74, 12]], [["homepage", 77, 5], ["description", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["preConfigure", 40, 3], ["buildPhase", 49, 3], ["installPhase", 61, 3], ["passthru", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, godot_4_5: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["i686-linux", 11, 5], ["x86_64-linux", 12, 5], ["aarch64-linux", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 74, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["preConfigure", 40, 3], ["buildPhase", 49, 3], ["installPhase", 61, 3], ["passthru", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const godot_4_5 = nix.arg($, "godot_4_5");
   const nix_update_script = nix.arg($, "nix-update-script");
   const presets = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "i686-linux": "Linux 32-bit",
     "x86_64-linux": "Linux 64-bit",
     "aarch64-linux": "Linux ARM64",
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const preset = nix.thunk(() => nix.selOr(presets, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const godot = godot_4_5;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pixelorama",
       version: "1.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Orama-Interactive",
           repo: "Pixelorama",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,11 +52,11 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\ninstall -D -m 755 -t $out/libexec ./build/pixelorama\ninstall -D -m 644 -t $out/libexec ./build/pixelorama.pck\ninstall -D -m 644 -t $out/share/applications ./Misc/Linux/com.orama_interactive.Pixelorama.desktop\ninstall -D -m 644 -T ./assets/graphics/icons/icon.png $out/share/icons/hicolor/256x256/apps/pixelorama.png\ninstall -d -m 755 $out/bin\nln -s $out/libexec/pixelorama $out/bin/pixelorama\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://orama-interactive.itch.io/pixelorama",
         description: "Free & open-source 2D sprite editor, made with the Godot Engine",
         changelog: nix.thunk(() => nix.str`https://github.com/Orama-Interactive/Pixelorama/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["url", 28, 7], ["hash", 29, 7]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["maintainers", 60, 5], ["license", 61, 5], ["platforms", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 25, 3], ["strictDeps", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["mesonBuildType", 52, 3], ["__structuredAttrs", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, glslang: false, meson: false, ninja: false, windows: false, enableMoltenVKCompat: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["maintainers", 60, 5], ["license", 61, 5], ["platforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 25, 3], ["strictDeps", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["mesonBuildType", 52, 3], ["__structuredAttrs", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const windows = nix.arg($, "windows");
   const enableMoltenVKCompat = nix.argOr($, "enableMoltenVKCompat", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dxvk",
       version: "1.10.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "doitsujin",
           repo: "dxvk",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/doitsujin/dxvk/commit/1a5afc77b1859e6c7e31b55e11ece899e3b5295a.patch",
             hash: "sha256-tTAsQOMAazgH/6laLNTuG2lki257VUR9EBivnD4vCuY=",
           })))),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       mesonBuildType: "release",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Vulkan-based translation layer for Direct3D 9/10/11",
         homepage: "https://github.com/doitsujin/dxvk",
         changelog: "https://github.com/doitsujin/dxvk/releases",

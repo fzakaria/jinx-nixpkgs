@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 7], ["hash", 17, 7]], [["pname", 13, 13], ["version", 13, 19], ["src", 14, 5]], [["description", 37, 5], ["longDescription", 38, 5], ["license", 42, 5], ["homepage", 43, 5], ["downloadPage", 44, 5], ["changelog", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 12, 3], ["extraPkgs", 22, 3], ["extraInstallCommands", 25, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 13], ["version", 13, 19], ["src", 14, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["longDescription", 38, 5], ["license", 42, 5], ["homepage", 43, 5], ["downloadPage", 44, 5], ["changelog", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 12, 3], ["extraPkgs", 22, 3], ["extraInstallCommands", 25, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
       const pname = "lbry-desktop";
       const version = "0.53.9";
       const src = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://github.com/lbryio/lbry-desktop/releases/download/v${version}/LBRY_${version}.AppImage`),
               hash: "sha256-FkqIazE4eIEobYRBstXfPWh6MTCaNcCLk14yDGC4rRk=",
             })))),
@@ -37,7 +34,7 @@ substituteInPlace $out/share/applications/lbry.desktop \\
 cp -r ${src}/usr/share/icons $out/share
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Browser and wallet for LBRY, the decentralized, user-controlled content marketplace",
         longDescription: "The LBRY app is a graphical browser for the decentralized content marketplace provided by the LBRY protocol.\nIt is essentially the lbry daemon bundled with a UI using Electron.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -51,7 +48,15 @@ cp -r ${src}/usr/share/icons $out/share
         platforms: nix.thunk(() => ["x86_64-linux"]),
         mainProgram: "lbry",
       }));
-      return { [nix.POS]: pos$4, pname, version, src, extraPkgs, extraInstallCommands, meta };
+      return {
+        [nix.POS]: $pos[3],
+        pname,
+        version,
+        src,
+        extraPkgs,
+        extraInstallCommands,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

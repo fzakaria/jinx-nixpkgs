@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 67, 8]], [["pname", 25, 3], ["extraNativeBuildInputs", 27, 3], ["extraBuildInputs", 33, 3], ["qtWrapperArgs", 44, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, "pkg-config": false, qtwebengine: false, "shared-mime-info": false, libdvdread: false, flac: false, libmad: false, libsndfile: false, lame: false, libvorbis: false, libsamplerate: false, cdrdao: false, cdrtools: false, cdparanoia: false, dvdplusrwtools: false, libburn: false, libdvdcss: false, normalize: false, sox: false, vcdimager: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 67, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["extraNativeBuildInputs", 27, 3], ["extraBuildInputs", 33, 3], ["qtWrapperArgs", 44, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const sox = nix.arg($, "sox");
   const vcdimager = nix.arg($, "vcdimager");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "k3b",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config, shared_mime_info]),
       extraBuildInputs: nix.thunk(() => [
@@ -47,7 +46,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : /run/wrappers/bin:${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cdrdao, cdrtools, dvdplusrwtools, libburn, normalize, sox, vcdimager, flac]))}`),
         nix.thunk(() => nix.str`--prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [cdparanoia, libdvdcss]))}`),
       ]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "k3b" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "k3b" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

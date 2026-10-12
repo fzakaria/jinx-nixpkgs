@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["CARGO_BUILD_TARGET", 92, 7]], [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["teams", 105, 5], ["platforms", 106, 5], ["pkgConfigModules", 107, 5]], [["pname", 27, 3], ["outputs", 29, 3], ["version", 35, 23], ["src", 35, 31], ["cargoDeps", 35, 35], ["nativeBuildInputs", 37, 3], ["buildInputs", 52, 3], ["propagatedBuildInputs", 60, 3], ["mesonFlags", 69, 3], ["postPatch", 79, 3], ["postFixup", 87, 3], ["env", 92, 3], ["strictDeps", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cargo: false, fontconfig: false, "gi-docgen": false, glib: false, "gobject-introspection": false, gtk4: false, lcms2: false, libglycin: false, libseccomp: false, meson: false, ninja: false, "pkg-config": false, python3: false, rustPlatform: false, rustc: false, vala: false, buildPackages: false, withIntrospection: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["CARGO_BUILD_TARGET", 92, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["teams", 105, 5], ["platforms", 106, 5], ["pkgConfigModules", 107, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["outputs", 29, 3], ["version", 35, 23], ["src", 35, 31], ["cargoDeps", 35, 35], ["nativeBuildInputs", 37, 3], ["buildInputs", 52, 3], ["propagatedBuildInputs", 60, 3], ["mesonFlags", 69, 3], ["postPatch", 79, 3], ["postFixup", 87, 3], ["env", 92, 3], ["strictDeps", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const withIntrospection = nix.argOr($, "withIntrospection", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gobject_introspection)) && nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libglycin-gtk4",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       version: nix.thunk(() => nix.attr(libglycin, "version")),
@@ -64,12 +62,12 @@ substituteInPlace libglycin/meson.build --replace-fail \\
 `),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       })),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C-Bindings to convert glycin frames to GDK Textures",
         homepage: "https://gitlab.gnome.org/GNOME/glycin",
         license: nix.thunk(() => (() => {

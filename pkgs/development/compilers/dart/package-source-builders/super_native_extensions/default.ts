@@ -2,12 +2,9 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["_0_9_1", 37, 9], ["_0_9_0-dev_6", 38, 9], ["_0_9_0-dev_5", 39, 9], ["_0_9_0-dev_3", 40, 9], ["_0_8_22", 41, 9], ["_0_8_24", 42, 9], ["_0_8_21", 43, 9], ["_0_8_20", 44, 9], ["_0_8_19", 45, 9], ["_0_8_18", 46, 9], ["_0_8_17", 47, 9]], [["libraryPath", 64, 14]], [["pname", 17, 5], ["version", 18, 13], ["src", 18, 21], ["unpackPhase", 20, 5], ["sourceRoot", 33, 5], ["cargoHash", 35, 5], ["nativeBuildInputs", 55, 5], ["buildInputs", 57, 5], ["passthru", 64, 5]], [["pname", 76, 3], ["version", 77, 11], ["src", 77, 19], ["passthru", 78, 17], ["installPhase", 80, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, "pkg-config": false, "at-spi2-atk": false, "gdk-pixbuf": false, cairo: false, gtk3: false, writeText: false, stdenv: false }, ellipsis: false };
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["_0_9_1", 37, 9], ["_0_9_0-dev_6", 38, 9], ["_0_9_0-dev_5", 39, 9], ["_0_9_0-dev_3", 40, 9], ["_0_8_22", 41, 9], ["_0_8_24", 42, 9], ["_0_8_21", 43, 9], ["_0_8_20", 44, 9], ["_0_8_19", 45, 9], ["_0_8_18", 46, 9], ["_0_8_17", 47, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libraryPath", 64, 14]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 13], ["src", 18, 21], ["unpackPhase", 20, 5], ["sourceRoot", 33, 5], ["cargoHash", 35, 5], ["nativeBuildInputs", 55, 5], ["buildInputs", 57, 5], ["passthru", 64, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 76, 3], ["version", 77, 11], ["src", 77, 19], ["passthru", 78, 17], ["installPhase", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
     const rustDep = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "super_native_extensions-rs",
         version: version,
         src: src,
@@ -54,7 +51,7 @@ runHook postUnpack
           const _0_8_18 = _0_8_22;
           const _0_8_17 = _0_8_22;
           return {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             _0_9_1,
             "_0_9_0-dev_6": _0_9_0_dev_6,
             "_0_9_0-dev_5": _0_9_0_dev_5,
@@ -73,7 +70,7 @@ is the same with existing versions, add an alias here.
 `)), nix.key(nix.add("_", nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version))))),
         nativeBuildInputs: nix.thunk(() => [pkg_config]),
         buildInputs: nix.thunk(() => [at_spi2_atk, gdk_pixbuf, cairo, gtk3]),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$2, libraryPath: "lib/libsuper_native_extensions.so" })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], libraryPath: "lib/libsuper_native_extensions.so" })),
       }))));
     const fakeCargokitCmake = nix.thunk(() => nix.app(writeText, "FakeCargokit.cmake", nix.thunk(() => nix.str`function(apply_cargokit target manifest_dir lib_name any_symbol_name)
   target_link_libraries("\${target}" PRIVATE ${rustDep}/${nix.sel(rustDep, "passthru", "libraryPath")})
@@ -81,7 +78,7 @@ is the same with existing versions, add an alias here.
 endfunction()
 `)));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "super_native_extensions",
         version: version,
         src: src,

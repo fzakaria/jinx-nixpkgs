@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["leaveDotGit", 21, 5], ["postFetch", 22, 5]], [["CGO_ENABLED", 33, 7]], [["updateScript", 50, 12]], [["description", 53, 5], ["longDescription", 54, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 31, 3], ["env", 33, 3], ["ldflags", 35, 3], ["preBuild", 40, 3], ["nativeInstallCheckInputs", 46, 3], ["versionCheckProgramArg", 47, 3], ["doInstallCheck", 48, 3], ["passthru", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["leaveDotGit", 21, 5], ["postFetch", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 50, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 53, 5], ["longDescription", 54, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 31, 3], ["env", 33, 3], ["ldflags", 35, 3], ["preBuild", 40, 3], ["nativeInstallCheckInputs", 46, 3], ["versionCheckProgramArg", 47, 3], ["doInstallCheck", 48, 3], ["passthru", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "betteralign",
       version: "0.14.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dkorunic",
           repo: "betteralign",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
           postFetch: "cd \"$out\"\ngit rev-parse HEAD > $out/COMMIT\ngit log -1 --pretty=%cd --date=format:'%Y-%m-%dT%H:%M:%SZ' > $out/SOURCE_DATE\ngit log -1 --pretty=%cd --date=format:'%s' > $out/SOURCE_TIMESTAMP\nfind \"$out\" -name .git -print0 | xargs -0 rm -rf\n",
         })))),
       vendorHash: "sha256-GHOHbNFV1ta/VaXsvbrwogfdjXIhSH3kdHLHLSDNkq4=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s -w",
         nix.thunk(() => nix.str`-X main.Version=${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-V",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Make your Go programs use less memory (maybe)",
         longDescription: "betteralign is a tool to detect structs that would use less\nmemory if their fields were sorted and optionally sort such fields.\n",
         homepage: "https://github.com/dkorunic/betteralign",

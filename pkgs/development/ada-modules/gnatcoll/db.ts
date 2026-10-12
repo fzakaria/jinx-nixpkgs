@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/db.nix", [[["gnatcoll_db2ada", 23, 5], ["gnatinspect", 26, 5], ["postgres", 31, 5], ["sqlite", 35, 5], ["xref", 39, 5]], [["owner", 62, 5], ["repo", 63, 5], ["rev", 64, 5], ["sha256", 65, 5]], [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5]], [["version", 53, 3], ["pname", 55, 3], ["src", 61, 3], ["postPatch", 70, 3], ["nativeBuildInputs", 76, 3], ["makeFlags", 91, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gnat: false, gprbuild: false, which: false, "gnatcoll-core": false, component: false, "gnatcoll-sql": false, "gnatcoll-sqlite": false, "gnatcoll-xref": false, "gnatcoll-iconv": false, "gnatcoll-readline": false, sqlite: false, libpq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/db.nix", [["gnatcoll_db2ada", 23, 5], ["gnatinspect", 26, 5], ["postgres", 31, 5], ["sqlite", 35, 5], ["xref", 39, 5]]);
-const pos$2 = nix.positions(here + "/db.nix", [["owner", 62, 5], ["repo", 63, 5], ["rev", 64, 5], ["sha256", 65, 5]]);
-const pos$3 = nix.positions(here + "/db.nix", [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5]]);
-const pos$4 = nix.positions(here + "/db.nix", [["version", 53, 3], ["pname", 55, 3], ["src", 61, 3], ["postPatch", 70, 3], ["nativeBuildInputs", 76, 3], ["makeFlags", 91, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const libpq = nix.arg($, "libpq");
   const libsFor = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     gnatcoll_db2ada: nix.thunk(() => [gnatcoll_sql]),
     gnatinspect: nix.thunk(() => [gnatcoll_sqlite, gnatcoll_readline, gnatcoll_xref]),
     postgres: nix.thunk(() => [gnatcoll_sql, libpq]),
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
   }));
   const onlyExecutable = nix.thunk(() => nix.builtins.elem(component, nix.thunk(() => ["gnatcoll_db2ada", "gnatinspect"])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.attrsDyn({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "25.0.0",
       pname: nix.thunk(() => (nix.asBool(onlyExecutable) ? nix.builtins.replaceStrings(nix.thunk(() => ["_"]), nix.thunk(() => ["-"]), component) : nix.str`gnatcoll-${component}`)),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "AdaCore",
           repo: "gnatcoll-db",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(component, "sqlite")), nix.thunk(() => ["GNATCOLL_SQLITE=external"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GNAT Components Collection - Database packages",
         homepage: "https://github.com/AdaCore/gnatcoll-db",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

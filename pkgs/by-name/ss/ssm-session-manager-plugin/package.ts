@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["homepage", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["patches", 17, 3], ["postPatch", 40, 3], ["proxyVendor", 44, 3], ["vendorHash", 45, 3], ["subPackages", 47, 3], ["preBuild", 49, 3], ["doCheck", 54, 3], ["checkFlags", 55, 3], ["postBuild", 59, 3], ["preCheck", 63, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["patches", 17, 3], ["postPatch", 40, 3], ["proxyVendor", 44, 3], ["vendorHash", 45, 3], ["subPackages", 47, 3], ["preBuild", 49, 3], ["doCheck", 54, 3], ["checkFlags", 55, 3], ["postBuild", 59, 3], ["preCheck", 63, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ssm-session-manager-plugin",
       version: "1.2.792.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aws",
           repo: "session-manager-plugin",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +39,7 @@ go run src/version/versiongenerator/version-gen.go
 fi
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html",
         description: "Amazon SSM Session Manager Plugin",
         mainProgram: "session-manager-plugin",

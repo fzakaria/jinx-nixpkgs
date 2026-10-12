@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["pname", 42, 26], ["version", 42, 32], ["src", 42, 40], ["pnpm", 43, 13], ["fetcherVersion", 44, 5], ["hash", 45, 5]], [["updateScript", 82, 5]], [["description", 86, 5], ["longDescription", 87, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["mainProgram", 93, 5], ["license", 94, 5], ["platforms", 95, 5], ["maintainers", 96, 5], ["teams", 97, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["__structuredAttrs", 38, 3], ["strictDeps", 39, 3], ["pnpmDeps", 41, 3], ["nativeBuildInputs", 48, 3], ["pnpmBuildFlags", 56, 3], ["installPhase", 61, 3], ["postFixup", 70, 3], ["passthru", 81, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, "nix-update-script": false, makeBinaryWrapper: false, nodejs: false, pnpmBuildHook: false, pnpmConfigHook: false, pnpm_10: false, chromium: false, defaultBrowser: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 42, 26], ["version", 42, 32], ["src", 42, 40], ["pnpm", 43, 13], ["fetcherVersion", 44, 5], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 86, 5], ["longDescription", 87, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["mainProgram", 93, 5], ["license", 94, 5], ["platforms", 95, 5], ["maintainers", 96, 5], ["teams", 97, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["__structuredAttrs", 38, 3], ["strictDeps", 39, 3], ["pnpmDeps", 41, 3], ["nativeBuildInputs", 48, 3], ["pnpmBuildFlags", 56, 3], ["installPhase", 61, 3], ["postFixup", 70, 3], ["passthru", 81, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const defaultBrowser = nix.argOr($, "defaultBrowser", () => nix.force(chromium));
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vivliostyle",
       version: "11.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vivliostyle",
           repo: "vivliostyle-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -60,11 +56,11 @@ makeWrapper $out/lib/dist/cli.js $out/bin/vivliostyle \\
 ln -s $out/bin/vivliostyle $out/bin/vs
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CLI tool for typesetting HTML and Markdown documents",
         longDescription: "Vivliostyle is a CSS typesetting ecosystem for creating beautifully\nformatted documents using web technologies.\n",
         homepage: "https://github.com/vivliostyle/vivliostyle-cli",

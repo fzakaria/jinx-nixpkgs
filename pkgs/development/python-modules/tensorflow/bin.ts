@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bin.nix", [[["description", 241, 5], ["homepage", 242, 5], ["sourceProvenance", 243, 5], ["license", 244, 5], ["maintainers", 245, 5], ["broken", 247, 5]], [["pname", 60, 3], ["version", 61, 3], ["format", 62, 3], ["src", 64, 3], ["buildInputs", 66, 3], ["build-system", 68, 3], ["nativeBuildInputs", 72, 3], ["pythonRemoveDeps", 80, 3], ["pythonRelaxDeps", 84, 3], ["dependencies", 87, 3], ["postInstall", 112, 3], ["preConfigure", 116, 3], ["postFixup", 132, 3], ["pythonImportsCheck", 234, 3], ["meta", 240, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchurl: false, llvmPackages: false, distutils: false, "ml-dtypes": false, "absl-py": false, astunparse: false, flatbuffers: false, gast: false, "google-pasta": false, grpcio: false, h5py: false, clang: false, numpy: false, "opt-einsum": false, packaging: false, protobuf: false, requests: false, six: false, tensorboard: false, termcolor: false, "typing-extensions": false, wrapt: false, isPy3k: false, mock: false, config: false, cudaSupport: true, cudaPackages: false, zlib: false, python: false, addDriverRunpath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bin.nix", [["description", 241, 5], ["homepage", 242, 5], ["sourceProvenance", 243, 5], ["license", 244, 5], ["maintainers", 245, 5], ["broken", 247, 5]]);
-const pos$2 = nix.positions(here + "/bin.nix", [["pname", 60, 3], ["version", 61, 3], ["format", 62, 3], ["src", 64, 3], ["buildInputs", 66, 3], ["build-system", 68, 3], ["nativeBuildInputs", 72, 3], ["pythonRemoveDeps", 80, 3], ["pythonRelaxDeps", 84, 3], ["dependencies", 87, 3], ["postInstall", 112, 3], ["preConfigure", 116, 3], ["postFixup", 132, 3], ["pythonImportsCheck", 234, 3], ["meta", 240, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const cuda = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), cudaSupport, nix.thunk(() => (nix.asBool(isCudaJetson) ? "_jetson" : "_gpu"))));
   const key = nix.thunk(() => nix.str`${nix.sel(stdenv, "system")}_${pyVerNoDot}${cuda}`);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.add("tensorflow", nix.app(nix.sel(lib, "optionalString"), cudaSupport, "-gpu"))),
       version: nix.thunk(() => nix.sel(packages, nix.key(nix.str`${nix.add("version", nix.app(nix.sel(lib, "optionalString"), isCudaJetson, "_jetson"))}`))),
       format: "wheel",
@@ -164,7 +163,7 @@ done
 `)))),
       pythonImportsCheck: nix.thunk(() => ["tensorflow", "tensorflow.python", "tensorflow.python.framework"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Computation using data flow graphs for scalable machine learning",
         homepage: "http://tensorflow.org",
         sourceProvenance: nix.thunk(() => (() => {

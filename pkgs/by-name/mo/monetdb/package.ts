@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["monetdb", 51, 43]], [["tests", 51, 12]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["postPatch", 34, 3], ["postInstall", 40, 3], ["passthru", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, python3: false, bison: false, openssl: false, readline: false, bzip2: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["monetdb", 51, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 51, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["postPatch", 34, 3], ["postInstall", 40, 3], ["passthru", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "monetdb",
       version: "11.55.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dev.monetdb.org/downloads/sources/archive/MonetDB-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-UzBCkjtqGdUaTtWjH+Pn2ci8FWuh+I+aX+kwUFnKzf0=",
         })))),
@@ -35,11 +31,14 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace cmake/monetdb-packages.cmake --replace \\\n  'get_os_release_info(LINUX_DISTRO LINUX_DISTRO_VERSION)' \\\n  'set(LINUX_DISTRO \"nixos\")'\n",
       postInstall: "rm $out/bin/monetdb_mtest.sh \\\n  $out/bin/mktest.py \\\n  $out/bin/sqlsample.php \\\n  $out/bin/sqllogictest.py \\\n  $out/bin/Mz.py \\\n  $out/bin/Mtest.py \\\n  $out/bin/sqlsample.pl \\\n  $out/bin/malsample.pl\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, monetdb: nix.thunk(() => nix.attr(nixosTests, "monetdb")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          monetdb: nix.thunk(() => nix.attr(nixosTests, "monetdb")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open source database system",
         homepage: "https://www.monetdb.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

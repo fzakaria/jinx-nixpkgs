@@ -2,10 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["SVN_SSH", 31, 7]], [["name", 20, 5], ["builder", 21, 5], ["nativeBuildInputs", 22, 5], ["strictDeps", 27, 5], ["__structuredAttrs", 28, 5], ["env", 30, 5], ["outputHash", 34, 13], ["outputHashAlgo", 34, 24], ["outputHashMode", 35, 5], ["sshSubversion", 37, 5], ["username", 40, 7], ["password", 41, 7], ["url", 42, 7], ["rev", 43, 7]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, subversion: false, sshSupport: true, openssh: true, expect: false }, ellipsis: false };
 const formals$2 = { args: { username: false, password: false, url: false, rev: true, outputHash: true, outputHashAlgo: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["SVN_SSH", 31, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 20, 5], ["builder", 21, 5], ["nativeBuildInputs", 22, 5], ["strictDeps", 27, 5], ["__structuredAttrs", 28, 5], ["env", 30, 5], ["outputHash", 34, 13], ["outputHashAlgo", 34, 24], ["outputHashMode", 35, 5], ["sshSubversion", 37, 5], ["username", 40, 7], ["password", 41, 7], ["url", 42, 7], ["rev", 43, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +23,14 @@ export default nix.lambda((args) => (() => {
     const outputHash = nix.argOr($_1, "outputHash", () => nix.sel(lib, "fakeHash"));
     const outputHashAlgo = nix.argOr($_1, "outputHashAlgo", () => null);
     return nix.app(nix.sel(lib, "fetchers", "withNormalizedHash"), nix.thunk(() => ({})), nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "svn-export-ssh",
           builder: nix.path(here, "./builder.sh"),
           nativeBuildInputs: nix.thunk(() => [subversion, expect]),
           strictDeps: true,
           __structuredAttrs: true,
           env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), sshSupport, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               SVN_SSH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), openssh)),
             })))),
           outputHash: outputHash,

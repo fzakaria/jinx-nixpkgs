@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["hash", 20, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 13, 3], ["version", 14, 3], ["minimalOCamlVersion", 15, 3], ["duneVersion", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 23, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, bigstringaf: false, hmap: false, httpaf: false, lwt: false, sexplib0: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["minimalOCamlVersion", 15, 3], ["duneVersion", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 23, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const sexplib0 = nix.arg($, "sexplib0");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rock",
       version: "0.20.0",
       minimalOCamlVersion: "4.08",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/rgrinberg/opium/releases/download/${nix.sel(finalAttrs, "version")}/opium-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-MmuRhm3pC69TX4t9Sy/yPjnZUuVzwEs8E/EFS1n/L7Y=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [bigstringaf, hmap, httpaf, lwt, sexplib0]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Minimalist framework to build extensible HTTP servers and clients",
         homepage: "https://github.com/rgrinberg/opium",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

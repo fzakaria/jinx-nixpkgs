@@ -2,18 +2,17 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/define-value-string-properties.nix", [[["value", 6, 7]], [["imports", 4, 3], ["value", 10, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/define-value-string-properties.nix", [["value", 6, 7]]);
-const pos$2 = nix.positions(here + "/define-value-string-properties.nix", [["imports", 4, 3], ["value", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         value: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "def")),
       })),
     ]),

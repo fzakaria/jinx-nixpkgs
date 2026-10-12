@@ -2,25 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/centrifugo.nix", [[["maintainers", 13, 8]], [["name", 28, 25]], [["port", 30, 27]], [["insecure", 31, 24]], [["disabled", 32, 27]], [["address", 35, 28]], [["type", 34, 22], ["redis", 35, 22]], [["node", 27, 15], ["http_server", 30, 15], ["http_api", 31, 15], ["usage_stats", 32, 15], ["engine", 34, 15]], [["enable", 25, 13], ["settings", 26, 13], ["extraGroups", 45, 13]], [["protected-mode", 54, 22]], [["enable", 50, 13], ["bind", 51, 13], ["port", 52, 13], ["openFirewall", 53, 13], ["settings", 54, 13]], [["centrifugo", 49, 34]], [["servers", 49, 26]], [["centrifugo", 24, 20], ["redis", 49, 20]], [["services", 24, 11]], [["name", 20, 15], ["value", 21, 7]], [["name", 12, 3], ["meta", 13, 3], ["nodes", 18, 3], ["testScript", 60, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/centrifugo.nix", [["maintainers", 13, 8]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/centrifugo.nix", [["name", 28, 25]]);
-const pos$3 = nix.positions(here + "/centrifugo.nix", [["port", 30, 27]]);
-const pos$4 = nix.positions(here + "/centrifugo.nix", [["insecure", 31, 24]]);
-const pos$5 = nix.positions(here + "/centrifugo.nix", [["disabled", 32, 27]]);
-const pos$6 = nix.positions(here + "/centrifugo.nix", [["address", 35, 28]]);
-const pos$7 = nix.positions(here + "/centrifugo.nix", [["type", 34, 22], ["redis", 35, 22]]);
-const pos$8 = nix.positions(here + "/centrifugo.nix", [["node", 27, 15], ["http_server", 30, 15], ["http_api", 31, 15], ["usage_stats", 32, 15], ["engine", 34, 15]]);
-const pos$9 = nix.positions(here + "/centrifugo.nix", [["enable", 25, 13], ["settings", 26, 13], ["extraGroups", 45, 13]]);
-const pos$10 = nix.positions(here + "/centrifugo.nix", [["protected-mode", 54, 22]]);
-const pos$11 = nix.positions(here + "/centrifugo.nix", [["enable", 50, 13], ["bind", 51, 13], ["port", 52, 13], ["openFirewall", 53, 13], ["settings", 54, 13]]);
-const pos$12 = nix.positions(here + "/centrifugo.nix", [["centrifugo", 49, 34]]);
-const pos$13 = nix.positions(here + "/centrifugo.nix", [["servers", 49, 26]]);
-const pos$14 = nix.positions(here + "/centrifugo.nix", [["centrifugo", 24, 20], ["redis", 49, 20]]);
-const pos$15 = nix.positions(here + "/centrifugo.nix", [["services", 24, 11]]);
-const pos$16 = nix.positions(here + "/centrifugo.nix", [["name", 20, 15], ["value", 21, 7]]);
-const pos$17 = nix.positions(here + "/centrifugo.nix", [["name", 12, 3], ["meta", 13, 3], ["nodes", 18, 3], ["testScript", 60, 3]]);
 
 export default nix.thunk(() => (() => {
   const redisPort = 6379n;
@@ -30,39 +14,39 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       name: "centrifugo",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "maintainers", "tie")),
           nix.thunk(() => nix.sel(lib, "maintainers", "valodim")),
         ]),
       })),
       nodes: nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (index) => (name) => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             name: name,
             value: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
               const config = nix.arg($_1, "config");
               return {
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   centrifugo: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     enable: true,
                     settings: nix.thunk(() => ({
-                      [nix.POS]: pos$8,
-                      node: nix.thunk(() => ({ [nix.POS]: pos$2, name: name })),
-                      http_server: nix.thunk(() => ({ [nix.POS]: pos$3, port: centrifugoPort })),
-                      http_api: nix.thunk(() => ({ [nix.POS]: pos$4, insecure: true })),
-                      usage_stats: nix.thunk(() => ({ [nix.POS]: pos$5, disabled: true })),
+                      [nix.POS]: $pos[7],
+                      node: nix.thunk(() => ({ [nix.POS]: $pos[1], name: name })),
+                      http_server: nix.thunk(() => ({ [nix.POS]: $pos[2], port: centrifugoPort })),
+                      http_api: nix.thunk(() => ({ [nix.POS]: $pos[3], insecure: true })),
+                      usage_stats: nix.thunk(() => ({ [nix.POS]: $pos[4], disabled: true })),
                       engine: nix.thunk(() => ({
-                        [nix.POS]: pos$7,
+                        [nix.POS]: $pos[6],
                         type: "redis",
                         redis: nix.thunk(() => ({
-                          [nix.POS]: pos$6,
+                          [nix.POS]: $pos[5],
                           address: nix.thunk(() => (() => {
                             const toRedisAddresses = nix.thunk(() => nix.app(nix.builtins.map, (name_1) => nix.str`${name_1}:${nix.builtins.toString(redisPort)}`));
                             return nix.concat(nix.app(toRedisAddresses, nix.thunk(() => nix.app(nix.sel(lib, "take"), index, nodes))), nix.concat([
@@ -77,16 +61,16 @@ export default nix.thunk(() => (() => {
                     ]),
                   })),
                   redis: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     servers: nix.thunk(() => ({
-                      [nix.POS]: pos$12,
+                      [nix.POS]: $pos[11],
                       centrifugo: nix.thunk(() => ({
-                        [nix.POS]: pos$11,
+                        [nix.POS]: $pos[10],
                         enable: true,
                         bind: null,
                         port: redisPort,
                         openFirewall: true,
-                        settings: nix.thunk(() => ({ [nix.POS]: pos$10, "protected-mode": false })),
+                        settings: nix.thunk(() => ({ [nix.POS]: $pos[9], "protected-mode": false })),
                       })),
                     })),
                   })),

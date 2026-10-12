@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 71, 5]], [["pname", 22, 11], ["version", 22, 17], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 38, 3], ["propagatedBuildInputs", 43, 3], ["nativeCheckInputs", 48, 3], ["doCheck", 57, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, torch: false, numpy: false, ninja: false, pytestCheckHook: false, parameterized: false, "pytest-cov-stub": false, "pytest-timeout": false, "remote-pdb": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 11], ["version", 22, 17], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 38, 3], ["propagatedBuildInputs", 43, 3], ["nativeCheckInputs", 48, 3], ["doCheck", 57, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pname = "fairscale";
   const version = "0.4.13";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebookresearch",
           repo: "fairscale",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["fairscale"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PyTorch extensions for high performance and large scale training",
         mainProgram: "wgit",
         homepage: "https://github.com/facebookresearch/fairscale",

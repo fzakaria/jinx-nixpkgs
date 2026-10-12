@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["homepage", 37, 7], ["license", 38, 7], ["maintainers", 39, 7], ["platforms", 40, 7], ["description", 42, 5], ["longDescription", 43, 5]], [["pname", 12, 3], ["version", 13, 19], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["cmakeFlags", 30, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, llvmPackages: false, fetchFromGitHub: false, cmake: false, ninja: false, help2man: false, irods: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 37, 7], ["license", 38, 7], ["maintainers", 39, 7], ["platforms", 40, 7], ["description", 42, 5], ["longDescription", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 19], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["cmakeFlags", 30, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const help2man = nix.arg($, "help2man");
   const irods = nix.arg($, "irods");
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "irods-icommands",
       version: nix.thunk(() => nix.attr(irods, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "irods",
           repo: "irods_client_icommands",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(irods, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

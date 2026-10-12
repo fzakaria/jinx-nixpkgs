@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]], [["test-basic-x86_64", 36, 7]], [["updateScript", 34, 5], ["tests", 35, 5]], [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 48, 5], ["mainProgram", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 20, 3], ["nativeBuildInputs", 22, 3], ["postInstall", 26, 3], ["passthru", 33, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, installShellFiles: false, stdenv: false, "nix-update-script": false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 16, 26], ["version", 16, 32], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["test-basic-x86_64", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 34, 5], ["tests", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 48, 5], ["mainProgram", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 20, 3], ["nativeBuildInputs", 22, 3], ["postInstall", 26, 3], ["passthru", 33, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cargo-show-asm",
       version: "0.2.63",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-kKzgzov6IgTVGjIe15IDrcdea2PpCDrEeV1q9HlUnQ4=",
@@ -32,15 +28,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd cargo-asm \\\n  --bash <($out/bin/cargo-asm --bpaf-complete-style-bash) \\\n  --fish <($out/bin/cargo-asm --bpaf-complete-style-fish) \\\n  --zsh  <($out/bin/cargo-asm --bpaf-complete-style-zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "test-basic-x86_64": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-basic-x86_64.nix"), nix.thunk(() => ({})))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cargo subcommand showing the assembly, LLVM-IR and MIR generated for Rust code",
         homepage: "https://github.com/pacak/cargo-show-asm",
         changelog: nix.thunk(() => nix.str`https://github.com/pacak/cargo-show-asm/blob/${nix.sel(finalAttrs, "version")}/Changelog.md`),

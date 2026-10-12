@@ -2,44 +2,36 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/xinetd.nix", [[["maintainers", 4, 8]], [["systemPackages", 7, 17]], [["name", 13, 11], ["protocol", 14, 11], ["port", 15, 11], ["unlisted", 16, 11], ["server", 17, 11]], [["name", 29, 11], ["protocol", 30, 11], ["port", 31, 11], ["unlisted", 32, 11], ["server", 33, 11]], [["enable", 10, 7], ["services", 11, 7]], [["xinetd", 9, 14]], [["environment", 7, 5], ["services", 9, 5]], [["machine", 6, 14]], [["name", 3, 3], ["meta", 4, 3], ["containers", 6, 3], ["testScript", 51, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/xinetd.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/xinetd.nix", [["systemPackages", 7, 17]]);
-const pos$3 = nix.positions(here + "/xinetd.nix", [["name", 13, 11], ["protocol", 14, 11], ["port", 15, 11], ["unlisted", 16, 11], ["server", 17, 11]]);
-const pos$4 = nix.positions(here + "/xinetd.nix", [["name", 29, 11], ["protocol", 30, 11], ["port", 31, 11], ["unlisted", 32, 11], ["server", 33, 11]]);
-const pos$5 = nix.positions(here + "/xinetd.nix", [["enable", 10, 7], ["services", 11, 7]]);
-const pos$6 = nix.positions(here + "/xinetd.nix", [["xinetd", 9, 14]]);
-const pos$7 = nix.positions(here + "/xinetd.nix", [["environment", 7, 5], ["services", 9, 5]]);
-const pos$8 = nix.positions(here + "/xinetd.nix", [["machine", 6, 14]]);
-const pos$9 = nix.positions(here + "/xinetd.nix", [["name", 3, 3], ["meta", 4, 3], ["containers", 6, 3], ["testScript", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "xinetd",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "h7x4"))]),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "netcat"))]),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           xinetd: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             services: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 name: "ping-pong-tcp",
                 protocol: "tcp",
                 port: 8765n,
@@ -50,7 +42,7 @@ export default nix.lambda((args) => (() => {
                 })()),
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 name: "ping-pong-udp",
                 protocol: "udp",
                 port: 8766n,

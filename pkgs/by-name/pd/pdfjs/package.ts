@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5], ["stripRoot", 17, 5]], [["description", 30, 5], ["homepage", 31, 5], ["sourceProvenance", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5]], [["pname", 8, 3], ["version", 9, 3], ["strictDeps", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["dontBuild", 20, 3], ["installPhase", 22, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5], ["stripRoot", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["sourceProvenance", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["strictDeps", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["dontBuild", 20, 3], ["installPhase", 22, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pdfjs",
       version: "6.4.299",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mozilla/pdf.js/releases/download/v${nix.sel(finalAttrs, "version")}/pdfjs-${nix.sel(finalAttrs, "version")}-dist.zip`),
           hash: "sha256-UHMYW6fHRL7by4sP7NXE5NuTKtmUPfInK6KunbnP88w=",
           stripRoot: false,
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\nmkdir -p $out/share/pdf.js\ncp -r build web LICENSE $out/share/pdf.js/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "JavaScript PDF reader and viewer",
         homepage: "https://mozilla.github.io/pdf.js/",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),

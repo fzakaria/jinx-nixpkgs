@@ -2,1006 +2,840 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/srcs.nix", [[["url", 9, 7], ["sha256", 10, 7], ["name", 11, 7]], [["version", 7, 5], ["src", 8, 5]], [["url", 17, 7], ["sha256", 18, 7], ["name", 19, 7]], [["version", 15, 5], ["src", 16, 5]], [["url", 25, 7], ["sha256", 26, 7], ["name", 27, 7]], [["version", 23, 5], ["src", 24, 5]], [["url", 33, 7], ["sha256", 34, 7], ["name", 35, 7]], [["version", 31, 5], ["src", 32, 5]], [["url", 41, 7], ["sha256", 42, 7], ["name", 43, 7]], [["version", 39, 5], ["src", 40, 5]], [["url", 49, 7], ["sha256", 50, 7], ["name", 51, 7]], [["version", 47, 5], ["src", 48, 5]], [["url", 57, 7], ["sha256", 58, 7], ["name", 59, 7]], [["version", 55, 5], ["src", 56, 5]], [["url", 65, 7], ["sha256", 66, 7], ["name", 67, 7]], [["version", 63, 5], ["src", 64, 5]], [["url", 73, 7], ["sha256", 74, 7], ["name", 75, 7]], [["version", 71, 5], ["src", 72, 5]], [["url", 81, 7], ["sha256", 82, 7], ["name", 83, 7]], [["version", 79, 5], ["src", 80, 5]], [["url", 89, 7], ["sha256", 90, 7], ["name", 91, 7]], [["version", 87, 5], ["src", 88, 5]], [["url", 97, 7], ["sha256", 98, 7], ["name", 99, 7]], [["version", 95, 5], ["src", 96, 5]], [["url", 105, 7], ["sha256", 106, 7], ["name", 107, 7]], [["version", 103, 5], ["src", 104, 5]], [["url", 113, 7], ["sha256", 114, 7], ["name", 115, 7]], [["version", 111, 5], ["src", 112, 5]], [["url", 121, 7], ["sha256", 122, 7], ["name", 123, 7]], [["version", 119, 5], ["src", 120, 5]], [["url", 129, 7], ["sha256", 130, 7], ["name", 131, 7]], [["version", 127, 5], ["src", 128, 5]], [["url", 137, 7], ["sha256", 138, 7], ["name", 139, 7]], [["version", 135, 5], ["src", 136, 5]], [["url", 145, 7], ["sha256", 146, 7], ["name", 147, 7]], [["version", 143, 5], ["src", 144, 5]], [["url", 153, 7], ["sha256", 154, 7], ["name", 155, 7]], [["version", 151, 5], ["src", 152, 5]], [["url", 161, 7], ["sha256", 162, 7], ["name", 163, 7]], [["version", 159, 5], ["src", 160, 5]], [["url", 169, 7], ["sha256", 170, 7], ["name", 171, 7]], [["version", 167, 5], ["src", 168, 5]], [["url", 177, 7], ["sha256", 178, 7], ["name", 179, 7]], [["version", 175, 5], ["src", 176, 5]], [["url", 185, 7], ["sha256", 186, 7], ["name", 187, 7]], [["version", 183, 5], ["src", 184, 5]], [["url", 193, 7], ["sha256", 194, 7], ["name", 195, 7]], [["version", 191, 5], ["src", 192, 5]], [["url", 201, 7], ["sha256", 202, 7], ["name", 203, 7]], [["version", 199, 5], ["src", 200, 5]], [["url", 209, 7], ["sha256", 210, 7], ["name", 211, 7]], [["version", 207, 5], ["src", 208, 5]], [["url", 217, 7], ["sha256", 218, 7], ["name", 219, 7]], [["version", 215, 5], ["src", 216, 5]], [["url", 225, 7], ["sha256", 226, 7], ["name", 227, 7]], [["version", 223, 5], ["src", 224, 5]], [["url", 233, 7], ["sha256", 234, 7], ["name", 235, 7]], [["version", 231, 5], ["src", 232, 5]], [["url", 241, 7], ["sha256", 242, 7], ["name", 243, 7]], [["version", 239, 5], ["src", 240, 5]], [["url", 249, 7], ["sha256", 250, 7], ["name", 251, 7]], [["version", 247, 5], ["src", 248, 5]], [["url", 257, 7], ["sha256", 258, 7], ["name", 259, 7]], [["version", 255, 5], ["src", 256, 5]], [["url", 265, 7], ["sha256", 266, 7], ["name", 267, 7]], [["version", 263, 5], ["src", 264, 5]], [["url", 273, 7], ["sha256", 274, 7], ["name", 275, 7]], [["version", 271, 5], ["src", 272, 5]], [["url", 281, 7], ["sha256", 282, 7], ["name", 283, 7]], [["version", 279, 5], ["src", 280, 5]], [["url", 289, 7], ["sha256", 290, 7], ["name", 291, 7]], [["version", 287, 5], ["src", 288, 5]], [["url", 297, 7], ["sha256", 298, 7], ["name", 299, 7]], [["version", 295, 5], ["src", 296, 5]], [["url", 305, 7], ["sha256", 306, 7], ["name", 307, 7]], [["version", 303, 5], ["src", 304, 5]], [["url", 313, 7], ["sha256", 314, 7], ["name", 315, 7]], [["version", 311, 5], ["src", 312, 5]], [["url", 321, 7], ["sha256", 322, 7], ["name", 323, 7]], [["version", 319, 5], ["src", 320, 5]], [["url", 329, 7], ["sha256", 330, 7], ["name", 331, 7]], [["version", 327, 5], ["src", 328, 5]], [["url", 337, 7], ["sha256", 338, 7], ["name", 339, 7]], [["version", 335, 5], ["src", 336, 5]], [["url", 345, 7], ["sha256", 346, 7], ["name", 347, 7]], [["version", 343, 5], ["src", 344, 5]], [["url", 353, 7], ["sha256", 354, 7], ["name", 355, 7]], [["version", 351, 5], ["src", 352, 5]], [["url", 361, 7], ["sha256", 362, 7], ["name", 363, 7]], [["version", 359, 5], ["src", 360, 5]], [["url", 369, 7], ["sha256", 370, 7], ["name", 371, 7]], [["version", 367, 5], ["src", 368, 5]], [["url", 377, 7], ["sha256", 378, 7], ["name", 379, 7]], [["version", 375, 5], ["src", 376, 5]], [["url", 385, 7], ["sha256", 386, 7], ["name", 387, 7]], [["version", 383, 5], ["src", 384, 5]], [["url", 393, 7], ["sha256", 394, 7], ["name", 395, 7]], [["version", 391, 5], ["src", 392, 5]], [["url", 401, 7], ["sha256", 402, 7], ["name", 403, 7]], [["version", 399, 5], ["src", 400, 5]], [["url", 409, 7], ["sha256", 410, 7], ["name", 411, 7]], [["version", 407, 5], ["src", 408, 5]], [["url", 417, 7], ["sha256", 418, 7], ["name", 419, 7]], [["version", 415, 5], ["src", 416, 5]], [["url", 425, 7], ["sha256", 426, 7], ["name", 427, 7]], [["version", 423, 5], ["src", 424, 5]], [["url", 433, 7], ["sha256", 434, 7], ["name", 435, 7]], [["version", 431, 5], ["src", 432, 5]], [["url", 441, 7], ["sha256", 442, 7], ["name", 443, 7]], [["version", 439, 5], ["src", 440, 5]], [["url", 449, 7], ["sha256", 450, 7], ["name", 451, 7]], [["version", 447, 5], ["src", 448, 5]], [["url", 457, 7], ["sha256", 458, 7], ["name", 459, 7]], [["version", 455, 5], ["src", 456, 5]], [["url", 465, 7], ["sha256", 466, 7], ["name", 467, 7]], [["version", 463, 5], ["src", 464, 5]], [["url", 473, 7], ["sha256", 474, 7], ["name", 475, 7]], [["version", 471, 5], ["src", 472, 5]], [["url", 481, 7], ["sha256", 482, 7], ["name", 483, 7]], [["version", 479, 5], ["src", 480, 5]], [["url", 489, 7], ["sha256", 490, 7], ["name", 491, 7]], [["version", 487, 5], ["src", 488, 5]], [["url", 497, 7], ["sha256", 498, 7], ["name", 499, 7]], [["version", 495, 5], ["src", 496, 5]], [["url", 505, 7], ["sha256", 506, 7], ["name", 507, 7]], [["version", 503, 5], ["src", 504, 5]], [["url", 513, 7], ["sha256", 514, 7], ["name", 515, 7]], [["version", 511, 5], ["src", 512, 5]], [["url", 521, 7], ["sha256", 522, 7], ["name", 523, 7]], [["version", 519, 5], ["src", 520, 5]], [["url", 529, 7], ["sha256", 530, 7], ["name", 531, 7]], [["version", 527, 5], ["src", 528, 5]], [["url", 537, 7], ["sha256", 538, 7], ["name", 539, 7]], [["version", 535, 5], ["src", 536, 5]], [["url", 545, 7], ["sha256", 546, 7], ["name", 547, 7]], [["version", 543, 5], ["src", 544, 5]], [["url", 553, 7], ["sha256", 554, 7], ["name", 555, 7]], [["version", 551, 5], ["src", 552, 5]], [["url", 561, 7], ["sha256", 562, 7], ["name", 563, 7]], [["version", 559, 5], ["src", 560, 5]], [["url", 569, 7], ["sha256", 570, 7], ["name", 571, 7]], [["version", 567, 5], ["src", 568, 5]], [["url", 577, 7], ["sha256", 578, 7], ["name", 579, 7]], [["version", 575, 5], ["src", 576, 5]], [["url", 585, 7], ["sha256", 586, 7], ["name", 587, 7]], [["version", 583, 5], ["src", 584, 5]], [["url", 593, 7], ["sha256", 594, 7], ["name", 595, 7]], [["version", 591, 5], ["src", 592, 5]], [["url", 601, 7], ["sha256", 602, 7], ["name", 603, 7]], [["version", 599, 5], ["src", 600, 5]], [["url", 609, 7], ["sha256", 610, 7], ["name", 611, 7]], [["version", 607, 5], ["src", 608, 5]], [["url", 617, 7], ["sha256", 618, 7], ["name", 619, 7]], [["version", 615, 5], ["src", 616, 5]], [["url", 625, 7], ["sha256", 626, 7], ["name", 627, 7]], [["version", 623, 5], ["src", 624, 5]], [["url", 633, 7], ["sha256", 634, 7], ["name", 635, 7]], [["version", 631, 5], ["src", 632, 5]], [["url", 641, 7], ["sha256", 642, 7], ["name", 643, 7]], [["version", 639, 5], ["src", 640, 5]], [["url", 649, 7], ["sha256", 650, 7], ["name", 651, 7]], [["version", 647, 5], ["src", 648, 5]], [["url", 657, 7], ["sha256", 658, 7], ["name", 659, 7]], [["version", 655, 5], ["src", 656, 5]], [["url", 665, 7], ["sha256", 666, 7], ["name", 667, 7]], [["version", 663, 5], ["src", 664, 5]], [["attica", 6, 3], ["baloo", 14, 3], ["bluez-qt", 22, 3], ["breeze-icons", 30, 3], ["extra-cmake-modules", 38, 3], ["frameworkintegration", 46, 3], ["kactivities", 54, 3], ["kactivities-stats", 62, 3], ["kapidox", 70, 3], ["karchive", 78, 3], ["kauth", 86, 3], ["kbookmarks", 94, 3], ["kcalendarcore", 102, 3], ["kcmutils", 110, 3], ["kcodecs", 118, 3], ["kcompletion", 126, 3], ["kconfig", 134, 3], ["kconfigwidgets", 142, 3], ["kcontacts", 150, 3], ["kcoreaddons", 158, 3], ["kcrash", 166, 3], ["kdav", 174, 3], ["kdbusaddons", 182, 3], ["kdeclarative", 190, 3], ["kded", 198, 3], ["kdelibs4support", 206, 3], ["kdesignerplugin", 214, 3], ["kdesu", 222, 3], ["kdewebkit", 230, 3], ["kdnssd", 238, 3], ["kdoctools", 246, 3], ["kemoticons", 254, 3], ["kfilemetadata", 262, 3], ["kglobalaccel", 270, 3], ["kguiaddons", 278, 3], ["kholidays", 286, 3], ["khtml", 294, 3], ["ki18n", 302, 3], ["kiconthemes", 310, 3], ["kidletime", 318, 3], ["kimageformats", 326, 3], ["kinit", 334, 3], ["kio", 342, 3], ["kirigami2", 350, 3], ["kitemmodels", 358, 3], ["kitemviews", 366, 3], ["kjobwidgets", 374, 3], ["kjs", 382, 3], ["kjsembed", 390, 3], ["kmediaplayer", 398, 3], ["knewstuff", 406, 3], ["knotifications", 414, 3], ["knotifyconfig", 422, 3], ["kpackage", 430, 3], ["kparts", 438, 3], ["kpeople", 446, 3], ["kplotting", 454, 3], ["kpty", 462, 3], ["kquickcharts", 470, 3], ["kross", 478, 3], ["krunner", 486, 3], ["kservice", 494, 3], ["ktexteditor", 502, 3], ["ktextwidgets", 510, 3], ["kunitconversion", 518, 3], ["kwallet", 526, 3], ["kwayland", 534, 3], ["kwidgetsaddons", 542, 3], ["kwindowsystem", 550, 3], ["kxmlgui", 558, 3], ["kxmlrpcclient", 566, 3], ["modemmanager-qt", 574, 3], ["networkmanager-qt", 582, 3], ["oxygen-icons", 590, 3], ["plasma-framework", 598, 3], ["prison", 606, 3], ["purpose", 614, 3], ["qqc2-desktop-style", 622, 3], ["solid", 630, 3], ["sonnet", 638, 3], ["syndication", 646, 3], ["syntax-highlighting", 654, 3], ["threadweaver", 662, 3]]]);
 const formals$1 = { args: { fetchurl: false, mirror: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/srcs.nix", [["url", 9, 7], ["sha256", 10, 7], ["name", 11, 7]]);
-const pos$2 = nix.positions(here + "/srcs.nix", [["version", 7, 5], ["src", 8, 5]]);
-const pos$3 = nix.positions(here + "/srcs.nix", [["url", 17, 7], ["sha256", 18, 7], ["name", 19, 7]]);
-const pos$4 = nix.positions(here + "/srcs.nix", [["version", 15, 5], ["src", 16, 5]]);
-const pos$5 = nix.positions(here + "/srcs.nix", [["url", 25, 7], ["sha256", 26, 7], ["name", 27, 7]]);
-const pos$6 = nix.positions(here + "/srcs.nix", [["version", 23, 5], ["src", 24, 5]]);
-const pos$7 = nix.positions(here + "/srcs.nix", [["url", 33, 7], ["sha256", 34, 7], ["name", 35, 7]]);
-const pos$8 = nix.positions(here + "/srcs.nix", [["version", 31, 5], ["src", 32, 5]]);
-const pos$9 = nix.positions(here + "/srcs.nix", [["url", 41, 7], ["sha256", 42, 7], ["name", 43, 7]]);
-const pos$10 = nix.positions(here + "/srcs.nix", [["version", 39, 5], ["src", 40, 5]]);
-const pos$11 = nix.positions(here + "/srcs.nix", [["url", 49, 7], ["sha256", 50, 7], ["name", 51, 7]]);
-const pos$12 = nix.positions(here + "/srcs.nix", [["version", 47, 5], ["src", 48, 5]]);
-const pos$13 = nix.positions(here + "/srcs.nix", [["url", 57, 7], ["sha256", 58, 7], ["name", 59, 7]]);
-const pos$14 = nix.positions(here + "/srcs.nix", [["version", 55, 5], ["src", 56, 5]]);
-const pos$15 = nix.positions(here + "/srcs.nix", [["url", 65, 7], ["sha256", 66, 7], ["name", 67, 7]]);
-const pos$16 = nix.positions(here + "/srcs.nix", [["version", 63, 5], ["src", 64, 5]]);
-const pos$17 = nix.positions(here + "/srcs.nix", [["url", 73, 7], ["sha256", 74, 7], ["name", 75, 7]]);
-const pos$18 = nix.positions(here + "/srcs.nix", [["version", 71, 5], ["src", 72, 5]]);
-const pos$19 = nix.positions(here + "/srcs.nix", [["url", 81, 7], ["sha256", 82, 7], ["name", 83, 7]]);
-const pos$20 = nix.positions(here + "/srcs.nix", [["version", 79, 5], ["src", 80, 5]]);
-const pos$21 = nix.positions(here + "/srcs.nix", [["url", 89, 7], ["sha256", 90, 7], ["name", 91, 7]]);
-const pos$22 = nix.positions(here + "/srcs.nix", [["version", 87, 5], ["src", 88, 5]]);
-const pos$23 = nix.positions(here + "/srcs.nix", [["url", 97, 7], ["sha256", 98, 7], ["name", 99, 7]]);
-const pos$24 = nix.positions(here + "/srcs.nix", [["version", 95, 5], ["src", 96, 5]]);
-const pos$25 = nix.positions(here + "/srcs.nix", [["url", 105, 7], ["sha256", 106, 7], ["name", 107, 7]]);
-const pos$26 = nix.positions(here + "/srcs.nix", [["version", 103, 5], ["src", 104, 5]]);
-const pos$27 = nix.positions(here + "/srcs.nix", [["url", 113, 7], ["sha256", 114, 7], ["name", 115, 7]]);
-const pos$28 = nix.positions(here + "/srcs.nix", [["version", 111, 5], ["src", 112, 5]]);
-const pos$29 = nix.positions(here + "/srcs.nix", [["url", 121, 7], ["sha256", 122, 7], ["name", 123, 7]]);
-const pos$30 = nix.positions(here + "/srcs.nix", [["version", 119, 5], ["src", 120, 5]]);
-const pos$31 = nix.positions(here + "/srcs.nix", [["url", 129, 7], ["sha256", 130, 7], ["name", 131, 7]]);
-const pos$32 = nix.positions(here + "/srcs.nix", [["version", 127, 5], ["src", 128, 5]]);
-const pos$33 = nix.positions(here + "/srcs.nix", [["url", 137, 7], ["sha256", 138, 7], ["name", 139, 7]]);
-const pos$34 = nix.positions(here + "/srcs.nix", [["version", 135, 5], ["src", 136, 5]]);
-const pos$35 = nix.positions(here + "/srcs.nix", [["url", 145, 7], ["sha256", 146, 7], ["name", 147, 7]]);
-const pos$36 = nix.positions(here + "/srcs.nix", [["version", 143, 5], ["src", 144, 5]]);
-const pos$37 = nix.positions(here + "/srcs.nix", [["url", 153, 7], ["sha256", 154, 7], ["name", 155, 7]]);
-const pos$38 = nix.positions(here + "/srcs.nix", [["version", 151, 5], ["src", 152, 5]]);
-const pos$39 = nix.positions(here + "/srcs.nix", [["url", 161, 7], ["sha256", 162, 7], ["name", 163, 7]]);
-const pos$40 = nix.positions(here + "/srcs.nix", [["version", 159, 5], ["src", 160, 5]]);
-const pos$41 = nix.positions(here + "/srcs.nix", [["url", 169, 7], ["sha256", 170, 7], ["name", 171, 7]]);
-const pos$42 = nix.positions(here + "/srcs.nix", [["version", 167, 5], ["src", 168, 5]]);
-const pos$43 = nix.positions(here + "/srcs.nix", [["url", 177, 7], ["sha256", 178, 7], ["name", 179, 7]]);
-const pos$44 = nix.positions(here + "/srcs.nix", [["version", 175, 5], ["src", 176, 5]]);
-const pos$45 = nix.positions(here + "/srcs.nix", [["url", 185, 7], ["sha256", 186, 7], ["name", 187, 7]]);
-const pos$46 = nix.positions(here + "/srcs.nix", [["version", 183, 5], ["src", 184, 5]]);
-const pos$47 = nix.positions(here + "/srcs.nix", [["url", 193, 7], ["sha256", 194, 7], ["name", 195, 7]]);
-const pos$48 = nix.positions(here + "/srcs.nix", [["version", 191, 5], ["src", 192, 5]]);
-const pos$49 = nix.positions(here + "/srcs.nix", [["url", 201, 7], ["sha256", 202, 7], ["name", 203, 7]]);
-const pos$50 = nix.positions(here + "/srcs.nix", [["version", 199, 5], ["src", 200, 5]]);
-const pos$51 = nix.positions(here + "/srcs.nix", [["url", 209, 7], ["sha256", 210, 7], ["name", 211, 7]]);
-const pos$52 = nix.positions(here + "/srcs.nix", [["version", 207, 5], ["src", 208, 5]]);
-const pos$53 = nix.positions(here + "/srcs.nix", [["url", 217, 7], ["sha256", 218, 7], ["name", 219, 7]]);
-const pos$54 = nix.positions(here + "/srcs.nix", [["version", 215, 5], ["src", 216, 5]]);
-const pos$55 = nix.positions(here + "/srcs.nix", [["url", 225, 7], ["sha256", 226, 7], ["name", 227, 7]]);
-const pos$56 = nix.positions(here + "/srcs.nix", [["version", 223, 5], ["src", 224, 5]]);
-const pos$57 = nix.positions(here + "/srcs.nix", [["url", 233, 7], ["sha256", 234, 7], ["name", 235, 7]]);
-const pos$58 = nix.positions(here + "/srcs.nix", [["version", 231, 5], ["src", 232, 5]]);
-const pos$59 = nix.positions(here + "/srcs.nix", [["url", 241, 7], ["sha256", 242, 7], ["name", 243, 7]]);
-const pos$60 = nix.positions(here + "/srcs.nix", [["version", 239, 5], ["src", 240, 5]]);
-const pos$61 = nix.positions(here + "/srcs.nix", [["url", 249, 7], ["sha256", 250, 7], ["name", 251, 7]]);
-const pos$62 = nix.positions(here + "/srcs.nix", [["version", 247, 5], ["src", 248, 5]]);
-const pos$63 = nix.positions(here + "/srcs.nix", [["url", 257, 7], ["sha256", 258, 7], ["name", 259, 7]]);
-const pos$64 = nix.positions(here + "/srcs.nix", [["version", 255, 5], ["src", 256, 5]]);
-const pos$65 = nix.positions(here + "/srcs.nix", [["url", 265, 7], ["sha256", 266, 7], ["name", 267, 7]]);
-const pos$66 = nix.positions(here + "/srcs.nix", [["version", 263, 5], ["src", 264, 5]]);
-const pos$67 = nix.positions(here + "/srcs.nix", [["url", 273, 7], ["sha256", 274, 7], ["name", 275, 7]]);
-const pos$68 = nix.positions(here + "/srcs.nix", [["version", 271, 5], ["src", 272, 5]]);
-const pos$69 = nix.positions(here + "/srcs.nix", [["url", 281, 7], ["sha256", 282, 7], ["name", 283, 7]]);
-const pos$70 = nix.positions(here + "/srcs.nix", [["version", 279, 5], ["src", 280, 5]]);
-const pos$71 = nix.positions(here + "/srcs.nix", [["url", 289, 7], ["sha256", 290, 7], ["name", 291, 7]]);
-const pos$72 = nix.positions(here + "/srcs.nix", [["version", 287, 5], ["src", 288, 5]]);
-const pos$73 = nix.positions(here + "/srcs.nix", [["url", 297, 7], ["sha256", 298, 7], ["name", 299, 7]]);
-const pos$74 = nix.positions(here + "/srcs.nix", [["version", 295, 5], ["src", 296, 5]]);
-const pos$75 = nix.positions(here + "/srcs.nix", [["url", 305, 7], ["sha256", 306, 7], ["name", 307, 7]]);
-const pos$76 = nix.positions(here + "/srcs.nix", [["version", 303, 5], ["src", 304, 5]]);
-const pos$77 = nix.positions(here + "/srcs.nix", [["url", 313, 7], ["sha256", 314, 7], ["name", 315, 7]]);
-const pos$78 = nix.positions(here + "/srcs.nix", [["version", 311, 5], ["src", 312, 5]]);
-const pos$79 = nix.positions(here + "/srcs.nix", [["url", 321, 7], ["sha256", 322, 7], ["name", 323, 7]]);
-const pos$80 = nix.positions(here + "/srcs.nix", [["version", 319, 5], ["src", 320, 5]]);
-const pos$81 = nix.positions(here + "/srcs.nix", [["url", 329, 7], ["sha256", 330, 7], ["name", 331, 7]]);
-const pos$82 = nix.positions(here + "/srcs.nix", [["version", 327, 5], ["src", 328, 5]]);
-const pos$83 = nix.positions(here + "/srcs.nix", [["url", 337, 7], ["sha256", 338, 7], ["name", 339, 7]]);
-const pos$84 = nix.positions(here + "/srcs.nix", [["version", 335, 5], ["src", 336, 5]]);
-const pos$85 = nix.positions(here + "/srcs.nix", [["url", 345, 7], ["sha256", 346, 7], ["name", 347, 7]]);
-const pos$86 = nix.positions(here + "/srcs.nix", [["version", 343, 5], ["src", 344, 5]]);
-const pos$87 = nix.positions(here + "/srcs.nix", [["url", 353, 7], ["sha256", 354, 7], ["name", 355, 7]]);
-const pos$88 = nix.positions(here + "/srcs.nix", [["version", 351, 5], ["src", 352, 5]]);
-const pos$89 = nix.positions(here + "/srcs.nix", [["url", 361, 7], ["sha256", 362, 7], ["name", 363, 7]]);
-const pos$90 = nix.positions(here + "/srcs.nix", [["version", 359, 5], ["src", 360, 5]]);
-const pos$91 = nix.positions(here + "/srcs.nix", [["url", 369, 7], ["sha256", 370, 7], ["name", 371, 7]]);
-const pos$92 = nix.positions(here + "/srcs.nix", [["version", 367, 5], ["src", 368, 5]]);
-const pos$93 = nix.positions(here + "/srcs.nix", [["url", 377, 7], ["sha256", 378, 7], ["name", 379, 7]]);
-const pos$94 = nix.positions(here + "/srcs.nix", [["version", 375, 5], ["src", 376, 5]]);
-const pos$95 = nix.positions(here + "/srcs.nix", [["url", 385, 7], ["sha256", 386, 7], ["name", 387, 7]]);
-const pos$96 = nix.positions(here + "/srcs.nix", [["version", 383, 5], ["src", 384, 5]]);
-const pos$97 = nix.positions(here + "/srcs.nix", [["url", 393, 7], ["sha256", 394, 7], ["name", 395, 7]]);
-const pos$98 = nix.positions(here + "/srcs.nix", [["version", 391, 5], ["src", 392, 5]]);
-const pos$99 = nix.positions(here + "/srcs.nix", [["url", 401, 7], ["sha256", 402, 7], ["name", 403, 7]]);
-const pos$100 = nix.positions(here + "/srcs.nix", [["version", 399, 5], ["src", 400, 5]]);
-const pos$101 = nix.positions(here + "/srcs.nix", [["url", 409, 7], ["sha256", 410, 7], ["name", 411, 7]]);
-const pos$102 = nix.positions(here + "/srcs.nix", [["version", 407, 5], ["src", 408, 5]]);
-const pos$103 = nix.positions(here + "/srcs.nix", [["url", 417, 7], ["sha256", 418, 7], ["name", 419, 7]]);
-const pos$104 = nix.positions(here + "/srcs.nix", [["version", 415, 5], ["src", 416, 5]]);
-const pos$105 = nix.positions(here + "/srcs.nix", [["url", 425, 7], ["sha256", 426, 7], ["name", 427, 7]]);
-const pos$106 = nix.positions(here + "/srcs.nix", [["version", 423, 5], ["src", 424, 5]]);
-const pos$107 = nix.positions(here + "/srcs.nix", [["url", 433, 7], ["sha256", 434, 7], ["name", 435, 7]]);
-const pos$108 = nix.positions(here + "/srcs.nix", [["version", 431, 5], ["src", 432, 5]]);
-const pos$109 = nix.positions(here + "/srcs.nix", [["url", 441, 7], ["sha256", 442, 7], ["name", 443, 7]]);
-const pos$110 = nix.positions(here + "/srcs.nix", [["version", 439, 5], ["src", 440, 5]]);
-const pos$111 = nix.positions(here + "/srcs.nix", [["url", 449, 7], ["sha256", 450, 7], ["name", 451, 7]]);
-const pos$112 = nix.positions(here + "/srcs.nix", [["version", 447, 5], ["src", 448, 5]]);
-const pos$113 = nix.positions(here + "/srcs.nix", [["url", 457, 7], ["sha256", 458, 7], ["name", 459, 7]]);
-const pos$114 = nix.positions(here + "/srcs.nix", [["version", 455, 5], ["src", 456, 5]]);
-const pos$115 = nix.positions(here + "/srcs.nix", [["url", 465, 7], ["sha256", 466, 7], ["name", 467, 7]]);
-const pos$116 = nix.positions(here + "/srcs.nix", [["version", 463, 5], ["src", 464, 5]]);
-const pos$117 = nix.positions(here + "/srcs.nix", [["url", 473, 7], ["sha256", 474, 7], ["name", 475, 7]]);
-const pos$118 = nix.positions(here + "/srcs.nix", [["version", 471, 5], ["src", 472, 5]]);
-const pos$119 = nix.positions(here + "/srcs.nix", [["url", 481, 7], ["sha256", 482, 7], ["name", 483, 7]]);
-const pos$120 = nix.positions(here + "/srcs.nix", [["version", 479, 5], ["src", 480, 5]]);
-const pos$121 = nix.positions(here + "/srcs.nix", [["url", 489, 7], ["sha256", 490, 7], ["name", 491, 7]]);
-const pos$122 = nix.positions(here + "/srcs.nix", [["version", 487, 5], ["src", 488, 5]]);
-const pos$123 = nix.positions(here + "/srcs.nix", [["url", 497, 7], ["sha256", 498, 7], ["name", 499, 7]]);
-const pos$124 = nix.positions(here + "/srcs.nix", [["version", 495, 5], ["src", 496, 5]]);
-const pos$125 = nix.positions(here + "/srcs.nix", [["url", 505, 7], ["sha256", 506, 7], ["name", 507, 7]]);
-const pos$126 = nix.positions(here + "/srcs.nix", [["version", 503, 5], ["src", 504, 5]]);
-const pos$127 = nix.positions(here + "/srcs.nix", [["url", 513, 7], ["sha256", 514, 7], ["name", 515, 7]]);
-const pos$128 = nix.positions(here + "/srcs.nix", [["version", 511, 5], ["src", 512, 5]]);
-const pos$129 = nix.positions(here + "/srcs.nix", [["url", 521, 7], ["sha256", 522, 7], ["name", 523, 7]]);
-const pos$130 = nix.positions(here + "/srcs.nix", [["version", 519, 5], ["src", 520, 5]]);
-const pos$131 = nix.positions(here + "/srcs.nix", [["url", 529, 7], ["sha256", 530, 7], ["name", 531, 7]]);
-const pos$132 = nix.positions(here + "/srcs.nix", [["version", 527, 5], ["src", 528, 5]]);
-const pos$133 = nix.positions(here + "/srcs.nix", [["url", 537, 7], ["sha256", 538, 7], ["name", 539, 7]]);
-const pos$134 = nix.positions(here + "/srcs.nix", [["version", 535, 5], ["src", 536, 5]]);
-const pos$135 = nix.positions(here + "/srcs.nix", [["url", 545, 7], ["sha256", 546, 7], ["name", 547, 7]]);
-const pos$136 = nix.positions(here + "/srcs.nix", [["version", 543, 5], ["src", 544, 5]]);
-const pos$137 = nix.positions(here + "/srcs.nix", [["url", 553, 7], ["sha256", 554, 7], ["name", 555, 7]]);
-const pos$138 = nix.positions(here + "/srcs.nix", [["version", 551, 5], ["src", 552, 5]]);
-const pos$139 = nix.positions(here + "/srcs.nix", [["url", 561, 7], ["sha256", 562, 7], ["name", 563, 7]]);
-const pos$140 = nix.positions(here + "/srcs.nix", [["version", 559, 5], ["src", 560, 5]]);
-const pos$141 = nix.positions(here + "/srcs.nix", [["url", 569, 7], ["sha256", 570, 7], ["name", 571, 7]]);
-const pos$142 = nix.positions(here + "/srcs.nix", [["version", 567, 5], ["src", 568, 5]]);
-const pos$143 = nix.positions(here + "/srcs.nix", [["url", 577, 7], ["sha256", 578, 7], ["name", 579, 7]]);
-const pos$144 = nix.positions(here + "/srcs.nix", [["version", 575, 5], ["src", 576, 5]]);
-const pos$145 = nix.positions(here + "/srcs.nix", [["url", 585, 7], ["sha256", 586, 7], ["name", 587, 7]]);
-const pos$146 = nix.positions(here + "/srcs.nix", [["version", 583, 5], ["src", 584, 5]]);
-const pos$147 = nix.positions(here + "/srcs.nix", [["url", 593, 7], ["sha256", 594, 7], ["name", 595, 7]]);
-const pos$148 = nix.positions(here + "/srcs.nix", [["version", 591, 5], ["src", 592, 5]]);
-const pos$149 = nix.positions(here + "/srcs.nix", [["url", 601, 7], ["sha256", 602, 7], ["name", 603, 7]]);
-const pos$150 = nix.positions(here + "/srcs.nix", [["version", 599, 5], ["src", 600, 5]]);
-const pos$151 = nix.positions(here + "/srcs.nix", [["url", 609, 7], ["sha256", 610, 7], ["name", 611, 7]]);
-const pos$152 = nix.positions(here + "/srcs.nix", [["version", 607, 5], ["src", 608, 5]]);
-const pos$153 = nix.positions(here + "/srcs.nix", [["url", 617, 7], ["sha256", 618, 7], ["name", 619, 7]]);
-const pos$154 = nix.positions(here + "/srcs.nix", [["version", 615, 5], ["src", 616, 5]]);
-const pos$155 = nix.positions(here + "/srcs.nix", [["url", 625, 7], ["sha256", 626, 7], ["name", 627, 7]]);
-const pos$156 = nix.positions(here + "/srcs.nix", [["version", 623, 5], ["src", 624, 5]]);
-const pos$157 = nix.positions(here + "/srcs.nix", [["url", 633, 7], ["sha256", 634, 7], ["name", 635, 7]]);
-const pos$158 = nix.positions(here + "/srcs.nix", [["version", 631, 5], ["src", 632, 5]]);
-const pos$159 = nix.positions(here + "/srcs.nix", [["url", 641, 7], ["sha256", 642, 7], ["name", 643, 7]]);
-const pos$160 = nix.positions(here + "/srcs.nix", [["version", 639, 5], ["src", 640, 5]]);
-const pos$161 = nix.positions(here + "/srcs.nix", [["url", 649, 7], ["sha256", 650, 7], ["name", 651, 7]]);
-const pos$162 = nix.positions(here + "/srcs.nix", [["version", 647, 5], ["src", 648, 5]]);
-const pos$163 = nix.positions(here + "/srcs.nix", [["url", 657, 7], ["sha256", 658, 7], ["name", 659, 7]]);
-const pos$164 = nix.positions(here + "/srcs.nix", [["version", 655, 5], ["src", 656, 5]]);
-const pos$165 = nix.positions(here + "/srcs.nix", [["url", 665, 7], ["sha256", 666, 7], ["name", 667, 7]]);
-const pos$166 = nix.positions(here + "/srcs.nix", [["version", 663, 5], ["src", 664, 5]]);
-const pos$167 = nix.positions(here + "/srcs.nix", [["attica", 6, 3], ["baloo", 14, 3], ["bluez-qt", 22, 3], ["breeze-icons", 30, 3], ["extra-cmake-modules", 38, 3], ["frameworkintegration", 46, 3], ["kactivities", 54, 3], ["kactivities-stats", 62, 3], ["kapidox", 70, 3], ["karchive", 78, 3], ["kauth", 86, 3], ["kbookmarks", 94, 3], ["kcalendarcore", 102, 3], ["kcmutils", 110, 3], ["kcodecs", 118, 3], ["kcompletion", 126, 3], ["kconfig", 134, 3], ["kconfigwidgets", 142, 3], ["kcontacts", 150, 3], ["kcoreaddons", 158, 3], ["kcrash", 166, 3], ["kdav", 174, 3], ["kdbusaddons", 182, 3], ["kdeclarative", 190, 3], ["kded", 198, 3], ["kdelibs4support", 206, 3], ["kdesignerplugin", 214, 3], ["kdesu", 222, 3], ["kdewebkit", 230, 3], ["kdnssd", 238, 3], ["kdoctools", 246, 3], ["kemoticons", 254, 3], ["kfilemetadata", 262, 3], ["kglobalaccel", 270, 3], ["kguiaddons", 278, 3], ["kholidays", 286, 3], ["khtml", 294, 3], ["ki18n", 302, 3], ["kiconthemes", 310, 3], ["kidletime", 318, 3], ["kimageformats", 326, 3], ["kinit", 334, 3], ["kio", 342, 3], ["kirigami2", 350, 3], ["kitemmodels", 358, 3], ["kitemviews", 366, 3], ["kjobwidgets", 374, 3], ["kjs", 382, 3], ["kjsembed", 390, 3], ["kmediaplayer", 398, 3], ["knewstuff", 406, 3], ["knotifications", 414, 3], ["knotifyconfig", 422, 3], ["kpackage", 430, 3], ["kparts", 438, 3], ["kpeople", 446, 3], ["kplotting", 454, 3], ["kpty", 462, 3], ["kquickcharts", 470, 3], ["kross", 478, 3], ["krunner", 486, 3], ["kservice", 494, 3], ["ktexteditor", 502, 3], ["ktextwidgets", 510, 3], ["kunitconversion", 518, 3], ["kwallet", 526, 3], ["kwayland", 534, 3], ["kwidgetsaddons", 542, 3], ["kwindowsystem", 550, 3], ["kxmlgui", 558, 3], ["kxmlrpcclient", 566, 3], ["modemmanager-qt", 574, 3], ["networkmanager-qt", 582, 3], ["oxygen-icons", 590, 3], ["plasma-framework", 598, 3], ["prison", 606, 3], ["purpose", 614, 3], ["qqc2-desktop-style", 622, 3], ["solid", 630, 3], ["sonnet", 638, 3], ["syndication", 646, 3], ["syntax-highlighting", 654, 3], ["threadweaver", 662, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchurl = nix.arg($, "fetchurl");
   const mirror = nix.arg($, "mirror");
   return {
-    [nix.POS]: pos$167,
+    [nix.POS]: $pos[166],
     attica: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/attica-5.116.0.tar.xz`),
           sha256: "1shzs985fimd15w2d9cxpcbq7by33v05hb00rp79k6cqvp20f4b8",
           name: "attica-5.116.0.tar.xz",
         })))),
     })),
     baloo: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/baloo-5.116.0.tar.xz`),
           sha256: "0g33rjvri7xj336zs8mwvrj8ldfpbhjjnmz4a5q2m2hwww0rmxbf",
           name: "baloo-5.116.0.tar.xz",
         })))),
     })),
     "bluez-qt": nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/bluez-qt-5.116.0.tar.xz`),
           sha256: "09wn0dp3f1a3zw8zfnvwi181zz8izdpwsm3ka7ncpx44d46r1aqv",
           name: "bluez-qt-5.116.0.tar.xz",
         })))),
     })),
     "breeze-icons": nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/breeze-icons-5.116.0.tar.xz`),
           sha256: "1lpkbfvpyxqbdv6l9ywck6gri9xhikwam5d3005cw1jn2g8glhdx",
           name: "breeze-icons-5.116.0.tar.xz",
         })))),
     })),
     "extra-cmake-modules": nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/extra-cmake-modules-5.116.0.tar.xz`),
           sha256: "026d4c5vmv1cjj8qgbjbzpvyhmjwmlinadsxhhgify7ldqdd3xp8",
           name: "extra-cmake-modules-5.116.0.tar.xz",
         })))),
     })),
     frameworkintegration: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/frameworkintegration-5.116.0.tar.xz`),
           sha256: "1hz2bpshk1ccjzins7d0g674dzbf1gz0zzm58yk4a1np6i5yww1g",
           name: "frameworkintegration-5.116.0.tar.xz",
         })))),
     })),
     kactivities: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kactivities-5.116.0.tar.xz`),
           sha256: "0zbjs4sysfaf6zsdnfmkbpxsc2bg5ncnhkzfn1dyhrsqk68lwz3s",
           name: "kactivities-5.116.0.tar.xz",
         })))),
     })),
     "kactivities-stats": nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kactivities-stats-5.116.0.tar.xz`),
           sha256: "1sswyynpkmbnr0w3as5yk3hpzafl3wrcxyhfga3gkxjw8q1f2jr4",
           name: "kactivities-stats-5.116.0.tar.xz",
         })))),
     })),
     kapidox: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kapidox-5.116.0.tar.xz`),
           sha256: "0ypp7g8zbyvjb8mihg9pqis9ljqx693z4j6bwr467j7h654q9qyq",
           name: "kapidox-5.116.0.tar.xz",
         })))),
     })),
     karchive: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/karchive-5.116.0.tar.xz`),
           sha256: "02m3vvw58qsgmaps184xwy97bg4pgjl4i1gjwzn66h5qf34y6qqn",
           name: "karchive-5.116.0.tar.xz",
         })))),
     })),
     kauth: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kauth-5.116.0.tar.xz`),
           sha256: "1x0zd6lqv855jkihxpzhxs732qiva31kzjah9hf2j6xaq0dfxqdc",
           name: "kauth-5.116.0.tar.xz",
         })))),
     })),
     kbookmarks: nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kbookmarks-5.116.0.tar.xz`),
           sha256: "01cg6qsfjr59ncrxwmiid36cpzynjwxgfydgk23j29bk9gjml2jl",
           name: "kbookmarks-5.116.0.tar.xz",
         })))),
     })),
     kcalendarcore: nix.thunk(() => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kcalendarcore-5.116.0.tar.xz`),
           sha256: "0g5576snwfxf8ap447b26q3kiy9siq63aj29xbkiq2vj7acylmrg",
           name: "kcalendarcore-5.116.0.tar.xz",
         })))),
     })),
     kcmutils: nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kcmutils-5.116.0.tar.xz`),
           sha256: "06aw308wv3fyl1g60n1i2hxx74f0isdsfwwzidsjk79danyqsa4i",
           name: "kcmutils-5.116.0.tar.xz",
         })))),
     })),
     kcodecs: nix.thunk(() => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kcodecs-5.116.0.tar.xz`),
           sha256: "03k8scmswxhx7bng5fh3niq84gqzksb19sf6ah4bdz6aj4pd52d4",
           name: "kcodecs-5.116.0.tar.xz",
         })))),
     })),
     kcompletion: nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kcompletion-5.116.0.tar.xz`),
           sha256: "1sh9gpbi65mbs8bszrxh7a9ifgcr7z5jrhsac3670905a6mdmfjj",
           name: "kcompletion-5.116.0.tar.xz",
         })))),
     })),
     kconfig: nix.thunk(() => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kconfig-5.116.0.tar.xz`),
           sha256: "03j7cw0c05rpxrnblrc5ziq7vy1v193l5gj9bix1dakkj9hf6p9c",
           name: "kconfig-5.116.0.tar.xz",
         })))),
     })),
     kconfigwidgets: nix.thunk(() => ({
-      [nix.POS]: pos$36,
+      [nix.POS]: $pos[35],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kconfigwidgets-5.116.0.tar.xz`),
           sha256: "1f65ayyyadiajf7xgf7369rly2yzigh6gqlb0nkgg8cp2bq9fmp4",
           name: "kconfigwidgets-5.116.0.tar.xz",
         })))),
     })),
     kcontacts: nix.thunk(() => ({
-      [nix.POS]: pos$38,
+      [nix.POS]: $pos[37],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kcontacts-5.116.0.tar.xz`),
           sha256: "1jxlar0n0jjwd287ly8d3fcb3f73ay79b70mk4j3dxsjizngs1zi",
           name: "kcontacts-5.116.0.tar.xz",
         })))),
     })),
     kcoreaddons: nix.thunk(() => ({
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kcoreaddons-5.116.0.tar.xz`),
           sha256: "0x1inzglgpz2z2w25bp46hzjv74gp3vyd3i911xczz7wd30b9yyy",
           name: "kcoreaddons-5.116.0.tar.xz",
         })))),
     })),
     kcrash: nix.thunk(() => ({
-      [nix.POS]: pos$42,
+      [nix.POS]: $pos[41],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kcrash-5.116.0.tar.xz`),
           sha256: "0rg8g50y44gq3hjl5fc36siyyq3czd2zrf4c70fspk33svwldlw1",
           name: "kcrash-5.116.0.tar.xz",
         })))),
     })),
     kdav: nix.thunk(() => ({
-      [nix.POS]: pos$44,
+      [nix.POS]: $pos[43],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kdav-5.116.0.tar.xz`),
           sha256: "1lqvllgni9f5j68149cbx2g2ydzlm06cx1rdzs59sh0phjzfshn6",
           name: "kdav-5.116.0.tar.xz",
         })))),
     })),
     kdbusaddons: nix.thunk(() => ({
-      [nix.POS]: pos$46,
+      [nix.POS]: $pos[45],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$45,
+          [nix.POS]: $pos[44],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kdbusaddons-5.116.0.tar.xz`),
           sha256: "0mlfphk8knbvpyns3ixd8da9zjvsms29mv5z2xgif9y20i5kmdq3",
           name: "kdbusaddons-5.116.0.tar.xz",
         })))),
     })),
     kdeclarative: nix.thunk(() => ({
-      [nix.POS]: pos$48,
+      [nix.POS]: $pos[47],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$47,
+          [nix.POS]: $pos[46],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kdeclarative-5.116.0.tar.xz`),
           sha256: "0py5x9ia8p7ngk1q3nqwqi1b9zv6jdxc23qam8xyqbfjqcm9qzwy",
           name: "kdeclarative-5.116.0.tar.xz",
         })))),
     })),
     kded: nix.thunk(() => ({
-      [nix.POS]: pos$50,
+      [nix.POS]: $pos[49],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$49,
+          [nix.POS]: $pos[48],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kded-5.116.0.tar.xz`),
           sha256: "0gd0dy748zw12xksk7xmv1xkra2g9s3av4d0i1d7dbb6z1ap5djw",
           name: "kded-5.116.0.tar.xz",
         })))),
     })),
     kdelibs4support: nix.thunk(() => ({
-      [nix.POS]: pos$52,
+      [nix.POS]: $pos[51],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$51,
+          [nix.POS]: $pos[50],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/portingAids/kdelibs4support-5.116.0.tar.xz`),
           sha256: "1r6120fd4i0nvl0d8i2xb7wsr3gp0i6r0qns2ql2c47b8v8mv4gd",
           name: "kdelibs4support-5.116.0.tar.xz",
         })))),
     })),
     kdesignerplugin: nix.thunk(() => ({
-      [nix.POS]: pos$54,
+      [nix.POS]: $pos[53],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$53,
+          [nix.POS]: $pos[52],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/portingAids/kdesignerplugin-5.116.0.tar.xz`),
           sha256: "0pkkpa2rxqx4rlvg70v70yddhc9ivhhdpk3pp64h87g5ia24zkz3",
           name: "kdesignerplugin-5.116.0.tar.xz",
         })))),
     })),
     kdesu: nix.thunk(() => ({
-      [nix.POS]: pos$56,
+      [nix.POS]: $pos[55],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$55,
+          [nix.POS]: $pos[54],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kdesu-5.116.0.tar.xz`),
           sha256: "1jyqw384h8259zma86bz0pjmqzd0mm2p9nlmpk53zqljzy2cij81",
           name: "kdesu-5.116.0.tar.xz",
         })))),
     })),
     kdewebkit: nix.thunk(() => ({
-      [nix.POS]: pos$58,
+      [nix.POS]: $pos[57],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$57,
+          [nix.POS]: $pos[56],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/portingAids/kdewebkit-5.116.0.tar.xz`),
           sha256: "0s7399kbndcz80hyckh02diinh1gbp7nndllwz05vwarq4jvm1cx",
           name: "kdewebkit-5.116.0.tar.xz",
         })))),
     })),
     kdnssd: nix.thunk(() => ({
-      [nix.POS]: pos$60,
+      [nix.POS]: $pos[59],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$59,
+          [nix.POS]: $pos[58],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kdnssd-5.116.0.tar.xz`),
           sha256: "1z2xyir6xvyyq3j48wmra3zka6hlpjr2rnfc4gbijl0aazv6srrm",
           name: "kdnssd-5.116.0.tar.xz",
         })))),
     })),
     kdoctools: nix.thunk(() => ({
-      [nix.POS]: pos$62,
+      [nix.POS]: $pos[61],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$61,
+          [nix.POS]: $pos[60],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kdoctools-5.116.0.tar.xz`),
           sha256: "1cvb39ggc79fpfa84rshm6vl10h0avn2rf6qxaxb41r9887ad81n",
           name: "kdoctools-5.116.0.tar.xz",
         })))),
     })),
     kemoticons: nix.thunk(() => ({
-      [nix.POS]: pos$64,
+      [nix.POS]: $pos[63],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$63,
+          [nix.POS]: $pos[62],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kemoticons-5.116.0.tar.xz`),
           sha256: "0lv8cb7h7v4fbf8vyrsf9kygnhjxznf5sj92nv5is5gy0wdk8qxc",
           name: "kemoticons-5.116.0.tar.xz",
         })))),
     })),
     kfilemetadata: nix.thunk(() => ({
-      [nix.POS]: pos$66,
+      [nix.POS]: $pos[65],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$65,
+          [nix.POS]: $pos[64],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kfilemetadata-5.116.0.tar.xz`),
           sha256: "13yfcy02rmhrhf8lxv7smk1n9rg1ywsh60hwzm94b8hq9a62qp0r",
           name: "kfilemetadata-5.116.0.tar.xz",
         })))),
     })),
     kglobalaccel: nix.thunk(() => ({
-      [nix.POS]: pos$68,
+      [nix.POS]: $pos[67],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$67,
+          [nix.POS]: $pos[66],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kglobalaccel-5.116.0.tar.xz`),
           sha256: "0rlqclaq4szzqa2kz7c9ad81rm0b2byr806l5v0xz968h8jampzn",
           name: "kglobalaccel-5.116.0.tar.xz",
         })))),
     })),
     kguiaddons: nix.thunk(() => ({
-      [nix.POS]: pos$70,
+      [nix.POS]: $pos[69],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$69,
+          [nix.POS]: $pos[68],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kguiaddons-5.116.0.tar.xz`),
           sha256: "1rpw6glgchf7qs4rh7jxy9sas73708yllba1q880gdicn1nda42w",
           name: "kguiaddons-5.116.0.tar.xz",
         })))),
     })),
     kholidays: nix.thunk(() => ({
-      [nix.POS]: pos$72,
+      [nix.POS]: $pos[71],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$71,
+          [nix.POS]: $pos[70],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kholidays-5.116.0.tar.xz`),
           sha256: "1h7x2ldi94zbclas4kyga4bvnp1gk0k84fv9015rl25x9nga33w9",
           name: "kholidays-5.116.0.tar.xz",
         })))),
     })),
     khtml: nix.thunk(() => ({
-      [nix.POS]: pos$74,
+      [nix.POS]: $pos[73],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$73,
+          [nix.POS]: $pos[72],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/portingAids/khtml-5.116.0.tar.xz`),
           sha256: "13nc5dcj536xyd87prla30mpbzsyjnylb34a979qn7qvpr0zn8c9",
           name: "khtml-5.116.0.tar.xz",
         })))),
     })),
     ki18n: nix.thunk(() => ({
-      [nix.POS]: pos$76,
+      [nix.POS]: $pos[75],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$75,
+          [nix.POS]: $pos[74],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/ki18n-5.116.0.tar.xz`),
           sha256: "1kbb3rq85hbw1h5bd1w9cmdgz8bdg47w9b133ha41qlhh1i50clk",
           name: "ki18n-5.116.0.tar.xz",
         })))),
     })),
     kiconthemes: nix.thunk(() => ({
-      [nix.POS]: pos$78,
+      [nix.POS]: $pos[77],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$77,
+          [nix.POS]: $pos[76],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kiconthemes-5.116.0.tar.xz`),
           sha256: "0q859zbjys7lajwpgl78ji4dif7cxdxirqb8b6f7k7bk53ignvly",
           name: "kiconthemes-5.116.0.tar.xz",
         })))),
     })),
     kidletime: nix.thunk(() => ({
-      [nix.POS]: pos$80,
+      [nix.POS]: $pos[79],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$79,
+          [nix.POS]: $pos[78],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kidletime-5.116.0.tar.xz`),
           sha256: "15s9nxpkqy3i182xk82bpl92iaqcilsckja7301854fw6ppl8vvh",
           name: "kidletime-5.116.0.tar.xz",
         })))),
     })),
     kimageformats: nix.thunk(() => ({
-      [nix.POS]: pos$82,
+      [nix.POS]: $pos[81],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$81,
+          [nix.POS]: $pos[80],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kimageformats-5.116.0.tar.xz`),
           sha256: "174g32s3m7irzv2h3lk7bmp3yfc7zrmp7lmp02n3m5ppbv6rn4bw",
           name: "kimageformats-5.116.0.tar.xz",
         })))),
     })),
     kinit: nix.thunk(() => ({
-      [nix.POS]: pos$84,
+      [nix.POS]: $pos[83],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$83,
+          [nix.POS]: $pos[82],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kinit-5.116.0.tar.xz`),
           sha256: "0b5w7pk7wbyzix2jvn3yk89f9r620wrx55v3cgvj4p83c73ar974",
           name: "kinit-5.116.0.tar.xz",
         })))),
     })),
     kio: nix.thunk(() => ({
-      [nix.POS]: pos$86,
+      [nix.POS]: $pos[85],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$85,
+          [nix.POS]: $pos[84],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kio-5.116.0.tar.xz`),
           sha256: "0nhins85cqlr3xz4xi0g54rshagphin3pjjx2qxs0fcwcpb1kdzg",
           name: "kio-5.116.0.tar.xz",
         })))),
     })),
     kirigami2: nix.thunk(() => ({
-      [nix.POS]: pos$88,
+      [nix.POS]: $pos[87],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$87,
+          [nix.POS]: $pos[86],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kirigami2-5.116.0.tar.xz`),
           sha256: "1q69b1qd2qs9hpwgw0y0ig93ag41l50dghribsnqhi0c9aklsn4b",
           name: "kirigami2-5.116.0.tar.xz",
         })))),
     })),
     kitemmodels: nix.thunk(() => ({
-      [nix.POS]: pos$90,
+      [nix.POS]: $pos[89],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$89,
+          [nix.POS]: $pos[88],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kitemmodels-5.116.0.tar.xz`),
           sha256: "1wcznkj24553spkl202zwifk6hgrvdd60j3y47jp2m6zpadywz2k",
           name: "kitemmodels-5.116.0.tar.xz",
         })))),
     })),
     kitemviews: nix.thunk(() => ({
-      [nix.POS]: pos$92,
+      [nix.POS]: $pos[91],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$91,
+          [nix.POS]: $pos[90],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kitemviews-5.116.0.tar.xz`),
           sha256: "1sq1kvqb9g0gzlyfyix9xsjq6wl2i1s3mfqkpdc0rdns13sgn3kc",
           name: "kitemviews-5.116.0.tar.xz",
         })))),
     })),
     kjobwidgets: nix.thunk(() => ({
-      [nix.POS]: pos$94,
+      [nix.POS]: $pos[93],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$93,
+          [nix.POS]: $pos[92],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kjobwidgets-5.116.0.tar.xz`),
           sha256: "11xy7n2sz340wili21ia92ihfq76irh8c7db8x1qsgqq09ypzhza",
           name: "kjobwidgets-5.116.0.tar.xz",
         })))),
     })),
     kjs: nix.thunk(() => ({
-      [nix.POS]: pos$96,
+      [nix.POS]: $pos[95],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$95,
+          [nix.POS]: $pos[94],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/portingAids/kjs-5.116.0.tar.xz`),
           sha256: "1dz1v5gizjywp452q98r4ka6iafa3b3c24ck8jv1xcym64zg7d4z",
           name: "kjs-5.116.0.tar.xz",
         })))),
     })),
     kjsembed: nix.thunk(() => ({
-      [nix.POS]: pos$98,
+      [nix.POS]: $pos[97],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$97,
+          [nix.POS]: $pos[96],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/portingAids/kjsembed-5.116.0.tar.xz`),
           sha256: "0zlc10q8kj6daajhhb07d40jpkwpjd9v5f4ifynahvix85lbl92k",
           name: "kjsembed-5.116.0.tar.xz",
         })))),
     })),
     kmediaplayer: nix.thunk(() => ({
-      [nix.POS]: pos$100,
+      [nix.POS]: $pos[99],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$99,
+          [nix.POS]: $pos[98],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/portingAids/kmediaplayer-5.116.0.tar.xz`),
           sha256: "04zb2dvc8l7l2h093yydndphkjv98yffqyimj5vn97dd2r75346d",
           name: "kmediaplayer-5.116.0.tar.xz",
         })))),
     })),
     knewstuff: nix.thunk(() => ({
-      [nix.POS]: pos$102,
+      [nix.POS]: $pos[101],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$101,
+          [nix.POS]: $pos[100],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/knewstuff-5.116.0.tar.xz`),
           sha256: "02n7429ldkyyzbk9rbr9h4ss80zhc3vnir29q2yksyhcyqkkjc42",
           name: "knewstuff-5.116.0.tar.xz",
         })))),
     })),
     knotifications: nix.thunk(() => ({
-      [nix.POS]: pos$104,
+      [nix.POS]: $pos[103],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$103,
+          [nix.POS]: $pos[102],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/knotifications-5.116.0.tar.xz`),
           sha256: "0jxld7f82psa48r0n9qv1cks6w1vd6krjnyb4mw68vgm38030na8",
           name: "knotifications-5.116.0.tar.xz",
         })))),
     })),
     knotifyconfig: nix.thunk(() => ({
-      [nix.POS]: pos$106,
+      [nix.POS]: $pos[105],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$105,
+          [nix.POS]: $pos[104],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/knotifyconfig-5.116.0.tar.xz`),
           sha256: "0zwrcdl565nlzf6q2zljq6xn8929frrhqr8jlmb6kcv5i93yals0",
           name: "knotifyconfig-5.116.0.tar.xz",
         })))),
     })),
     kpackage: nix.thunk(() => ({
-      [nix.POS]: pos$108,
+      [nix.POS]: $pos[107],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$107,
+          [nix.POS]: $pos[106],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kpackage-5.116.0.tar.xz`),
           sha256: "1gpixfkyaflmzk8lkxnknydm4x6w5339yrgs2n9g229bqy2v21ap",
           name: "kpackage-5.116.0.tar.xz",
         })))),
     })),
     kparts: nix.thunk(() => ({
-      [nix.POS]: pos$110,
+      [nix.POS]: $pos[109],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$109,
+          [nix.POS]: $pos[108],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kparts-5.116.0.tar.xz`),
           sha256: "0czrlqh5cxnj1mlbz839c7hifhnpzl476d92lv4hxji50wnjlfqr",
           name: "kparts-5.116.0.tar.xz",
         })))),
     })),
     kpeople: nix.thunk(() => ({
-      [nix.POS]: pos$112,
+      [nix.POS]: $pos[111],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$111,
+          [nix.POS]: $pos[110],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kpeople-5.116.0.tar.xz`),
           sha256: "1w369xwvwhqizbyd2hhpqfy3i6zfnsmwvhvk6ib5xckf44gi8zbl",
           name: "kpeople-5.116.0.tar.xz",
         })))),
     })),
     kplotting: nix.thunk(() => ({
-      [nix.POS]: pos$114,
+      [nix.POS]: $pos[113],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$113,
+          [nix.POS]: $pos[112],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kplotting-5.116.0.tar.xz`),
           sha256: "0yg55dvhh41xq14gwpdyxhm75ci1dmm4gac1x2jxdnfmrkr06dxw",
           name: "kplotting-5.116.0.tar.xz",
         })))),
     })),
     kpty: nix.thunk(() => ({
-      [nix.POS]: pos$116,
+      [nix.POS]: $pos[115],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$115,
+          [nix.POS]: $pos[114],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kpty-5.116.0.tar.xz`),
           sha256: "0c26y3c4kkkyk5vlg6vkwb90yddcxbzqcg80034wfragahi66kxd",
           name: "kpty-5.116.0.tar.xz",
         })))),
     })),
     kquickcharts: nix.thunk(() => ({
-      [nix.POS]: pos$118,
+      [nix.POS]: $pos[117],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$117,
+          [nix.POS]: $pos[116],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kquickcharts-5.116.0.tar.xz`),
           sha256: "1bd20kpypji6053fwn5a1b41rjf7r1b3wk85swb0xlmm2kji236j",
           name: "kquickcharts-5.116.0.tar.xz",
         })))),
     })),
     kross: nix.thunk(() => ({
-      [nix.POS]: pos$120,
+      [nix.POS]: $pos[119],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$119,
+          [nix.POS]: $pos[118],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/portingAids/kross-5.116.0.tar.xz`),
           sha256: "0kxyck1996vs36jx7fd18gmgsxrqh81hfyckd8hxvvsjf61qbjcn",
           name: "kross-5.116.0.tar.xz",
         })))),
     })),
     krunner: nix.thunk(() => ({
-      [nix.POS]: pos$122,
+      [nix.POS]: $pos[121],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$121,
+          [nix.POS]: $pos[120],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/krunner-5.116.0.tar.xz`),
           sha256: "0h889a4bj7vqhvy9hkqxd9v437zly73phyav10gv5b2l8fgb4zxq",
           name: "krunner-5.116.0.tar.xz",
         })))),
     })),
     kservice: nix.thunk(() => ({
-      [nix.POS]: pos$124,
+      [nix.POS]: $pos[123],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$123,
+          [nix.POS]: $pos[122],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kservice-5.116.0.tar.xz`),
           sha256: "0sd8yj9a1ja97c515g9shjqyzdz0jd7rn3r06g5659nh2z1w5dsj",
           name: "kservice-5.116.0.tar.xz",
         })))),
     })),
     ktexteditor: nix.thunk(() => ({
-      [nix.POS]: pos$126,
+      [nix.POS]: $pos[125],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$125,
+          [nix.POS]: $pos[124],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/ktexteditor-5.116.0.tar.xz`),
           sha256: "0rph5nwp7d02xicjxrqpbz3kjb9kqqa40pp1w81fnq8jgln3hhh5",
           name: "ktexteditor-5.116.0.tar.xz",
         })))),
     })),
     ktextwidgets: nix.thunk(() => ({
-      [nix.POS]: pos$128,
+      [nix.POS]: $pos[127],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$127,
+          [nix.POS]: $pos[126],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/ktextwidgets-5.116.0.tar.xz`),
           sha256: "0lkm27g1dc6vmyjz7jaiqh2z1cfgvzlnk58wcs2bkny05i87x01l",
           name: "ktextwidgets-5.116.0.tar.xz",
         })))),
     })),
     kunitconversion: nix.thunk(() => ({
-      [nix.POS]: pos$130,
+      [nix.POS]: $pos[129],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$129,
+          [nix.POS]: $pos[128],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kunitconversion-5.116.0.tar.xz`),
           sha256: "150w7b2dpgd0kl3nxygni1kvlai5n3xxc1qinkjvcmvyl8lrns7g",
           name: "kunitconversion-5.116.0.tar.xz",
         })))),
     })),
     kwallet: nix.thunk(() => ({
-      [nix.POS]: pos$132,
+      [nix.POS]: $pos[131],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$131,
+          [nix.POS]: $pos[130],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kwallet-5.116.0.tar.xz`),
           sha256: "12s4rnybadpcjmw3dvdn68vm369h1yk7yp7mv736mj1brdg8pkhy",
           name: "kwallet-5.116.0.tar.xz",
         })))),
     })),
     kwayland: nix.thunk(() => ({
-      [nix.POS]: pos$134,
+      [nix.POS]: $pos[133],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$133,
+          [nix.POS]: $pos[132],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kwayland-5.116.0.tar.xz`),
           sha256: "1n5fq0gppx6rzgzkkskd077jygzj7cindb7zwr35yvbg5l69gdc8",
           name: "kwayland-5.116.0.tar.xz",
         })))),
     })),
     kwidgetsaddons: nix.thunk(() => ({
-      [nix.POS]: pos$136,
+      [nix.POS]: $pos[135],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$135,
+          [nix.POS]: $pos[134],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kwidgetsaddons-5.116.0.tar.xz`),
           sha256: "0rcm27wra9s7kzlk67y0f57l0rnh5vb9c2w39h6yjq37y5af1qd8",
           name: "kwidgetsaddons-5.116.0.tar.xz",
         })))),
     })),
     kwindowsystem: nix.thunk(() => ({
-      [nix.POS]: pos$138,
+      [nix.POS]: $pos[137],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$137,
+          [nix.POS]: $pos[136],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kwindowsystem-5.116.0.tar.xz`),
           sha256: "0d2kxcpcvpzv07ldd1kb5gjclhmn6gcn5ms0bd8f5g9gflrpdjby",
           name: "kwindowsystem-5.116.0.tar.xz",
         })))),
     })),
     kxmlgui: nix.thunk(() => ({
-      [nix.POS]: pos$140,
+      [nix.POS]: $pos[139],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$139,
+          [nix.POS]: $pos[138],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/kxmlgui-5.116.0.tar.xz`),
           sha256: "0h3s3jcmn4pzcfxs4hywrgk92dd5hfx9hzyy14f03c0dafi6crb3",
           name: "kxmlgui-5.116.0.tar.xz",
         })))),
     })),
     kxmlrpcclient: nix.thunk(() => ({
-      [nix.POS]: pos$142,
+      [nix.POS]: $pos[141],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$141,
+          [nix.POS]: $pos[140],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/portingAids/kxmlrpcclient-5.116.0.tar.xz`),
           sha256: "01svkfj8dgbpf673siamczyznp8gfi2b7s5z48z80s7x884wj11p",
           name: "kxmlrpcclient-5.116.0.tar.xz",
         })))),
     })),
     "modemmanager-qt": nix.thunk(() => ({
-      [nix.POS]: pos$144,
+      [nix.POS]: $pos[143],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$143,
+          [nix.POS]: $pos[142],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/modemmanager-qt-5.116.0.tar.xz`),
           sha256: "103g27fjp8p8fks7gixr75ll0jmvmbyv6j0gyrfpby56yd8m6186",
           name: "modemmanager-qt-5.116.0.tar.xz",
         })))),
     })),
     "networkmanager-qt": nix.thunk(() => ({
-      [nix.POS]: pos$146,
+      [nix.POS]: $pos[145],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$145,
+          [nix.POS]: $pos[144],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/networkmanager-qt-5.116.0.tar.xz`),
           sha256: "0s8vc3qqx76f70vql77hb3nxkn6b3hvzdm6bgcpnnxqhw6j80khb",
           name: "networkmanager-qt-5.116.0.tar.xz",
         })))),
     })),
     "oxygen-icons": nix.thunk(() => ({
-      [nix.POS]: pos$148,
+      [nix.POS]: $pos[147],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$147,
+          [nix.POS]: $pos[146],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/oxygen-icons-5.116.0.tar.xz`),
           sha256: "1dcxny00aa0fwc1zbidrfr85apsm3smxb6xrs4n0fm3vav4wm0zw",
           name: "oxygen-icons-5.116.0.tar.xz",
         })))),
     })),
     "plasma-framework": nix.thunk(() => ({
-      [nix.POS]: pos$150,
+      [nix.POS]: $pos[149],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$149,
+          [nix.POS]: $pos[148],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/plasma-framework-5.116.0.tar.xz`),
           sha256: "0kwza2n9vbzf9p9dq7j448ynlfgg65918fvxw1n209zmlm6jr4vy",
           name: "plasma-framework-5.116.0.tar.xz",
         })))),
     })),
     prison: nix.thunk(() => ({
-      [nix.POS]: pos$152,
+      [nix.POS]: $pos[151],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$151,
+          [nix.POS]: $pos[150],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/prison-5.116.0.tar.xz`),
           sha256: "0wpla7daz0whiprg0cgjava1gg3yhx923lp990hq6qmyl4bkd7ys",
           name: "prison-5.116.0.tar.xz",
         })))),
     })),
     purpose: nix.thunk(() => ({
-      [nix.POS]: pos$154,
+      [nix.POS]: $pos[153],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$153,
+          [nix.POS]: $pos[152],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/purpose-5.116.0.tar.xz`),
           sha256: "1g0xip1khclinx3vb835krdsj66jllgbx1fka8d9f55n68d6rmk2",
           name: "purpose-5.116.0.tar.xz",
         })))),
     })),
     "qqc2-desktop-style": nix.thunk(() => ({
-      [nix.POS]: pos$156,
+      [nix.POS]: $pos[155],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$155,
+          [nix.POS]: $pos[154],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/qqc2-desktop-style-5.116.0.tar.xz`),
           sha256: "06rd7xzwxfbglz89cma2dy4czfks6ibymmhzq2s8rhs5mx8n6yyg",
           name: "qqc2-desktop-style-5.116.0.tar.xz",
         })))),
     })),
     solid: nix.thunk(() => ({
-      [nix.POS]: pos$158,
+      [nix.POS]: $pos[157],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$157,
+          [nix.POS]: $pos[156],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/solid-5.116.0.tar.xz`),
           sha256: "04359x7rhhl68xcrspxywxywb900dvlkna5fb442npwiqaxdxhy6",
           name: "solid-5.116.0.tar.xz",
         })))),
     })),
     sonnet: nix.thunk(() => ({
-      [nix.POS]: pos$160,
+      [nix.POS]: $pos[159],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$159,
+          [nix.POS]: $pos[158],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/sonnet-5.116.0.tar.xz`),
           sha256: "0jja3wxk4h62ik5pkf0i5v9012d0qjaljyaab2a9g0j2wy070hcq",
           name: "sonnet-5.116.0.tar.xz",
         })))),
     })),
     syndication: nix.thunk(() => ({
-      [nix.POS]: pos$162,
+      [nix.POS]: $pos[161],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$161,
+          [nix.POS]: $pos[160],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/syndication-5.116.0.tar.xz`),
           sha256: "03aw9l5n5c11iqn069r21pvs4vx0nvqpcl0rzqhr5j0asj9qbmvl",
           name: "syndication-5.116.0.tar.xz",
         })))),
     })),
     "syntax-highlighting": nix.thunk(() => ({
-      [nix.POS]: pos$164,
+      [nix.POS]: $pos[163],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$163,
+          [nix.POS]: $pos[162],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/syntax-highlighting-5.116.0.tar.xz`),
           sha256: "19zs3n6cn83rjs0bpyrn6f5r75qcflavf8rb1c2wxj8dpp7cm33g",
           name: "syntax-highlighting-5.116.0.tar.xz",
         })))),
     })),
     threadweaver: nix.thunk(() => ({
-      [nix.POS]: pos$166,
+      [nix.POS]: $pos[165],
       version: "5.116.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$165,
+          [nix.POS]: $pos[164],
           url: nix.thunk(() => nix.str`${mirror}/stable/frameworks/5.116/threadweaver-5.116.0.tar.xz`),
           sha256: "1q7ax3dhsayz35j0l9pdmarkwfyyy1dsy2crdf5xz8pr5mjxq8wp",
           name: "threadweaver-5.116.0.tar.xz",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["pname", 42, 5], ["version", 43, 13], ["src", 43, 21], ["sourceRoot", 45, 5], ["__structuredAttrs", 47, 5], ["strictDeps", 48, 5], ["nativeBuildInputs", 50, 5]], [["pname", 57, 5], ["version", 58, 13], ["src", 58, 21], ["sourceRoot", 60, 5], ["__structuredAttrs", 62, 5], ["strictDeps", 63, 5], ["configureFlags", 65, 5], ["enableParallelBuilding", 71, 5], ["nativeBuildInputs", 73, 5], ["buildInputs", 80, 5]], [["rev-prefix", 154, 33]], [["ETL", 152, 13], ["synfig", 152, 17], ["updateScript", 154, 5]], [["description", 158, 5], ["homepage", 159, 5], ["changelog", 160, 5], ["license", 161, 5], ["mainProgram", 162, 5], ["maintainers", 163, 5], ["platforms", 164, 5]], [["pname", 99, 3], ["version", 100, 11], ["src", 100, 19], ["sourceRoot", 102, 3], ["__structuredAttrs", 104, 3], ["strictDeps", 105, 3], ["postPatch", 107, 3], ["preConfigure", 111, 3], ["configureFlags", 115, 3], ["nativeBuildInputs", 121, 3], ["buildInputs", 129, 3], ["enableParallelBuilding", 148, 3], ["passthru", 150, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, autoreconfHook: false, wrapGAppsHook3: false, gitUpdater: false, cairo: false, ffmpeg: false, gettext: false, glibmm_2_4: false, libmng: false, gtk3: false, gtkmm3: false, libjack2: false, libsigcxx_2_0: false, libxmlxx: false, mlt: false, imagemagick: false, intltool: false, "adwaita-icon-theme": false, harfbuzz: false, freetype: false, fontconfig: false, fribidi: false, openexr: false, fftw: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 42, 5], ["version", 43, 13], ["src", 43, 21], ["sourceRoot", 45, 5], ["__structuredAttrs", 47, 5], ["strictDeps", 48, 5], ["nativeBuildInputs", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 57, 5], ["version", 58, 13], ["src", 58, 21], ["sourceRoot", 60, 5], ["__structuredAttrs", 62, 5], ["strictDeps", 63, 5], ["configureFlags", 65, 5], ["enableParallelBuilding", 71, 5], ["nativeBuildInputs", 73, 5], ["buildInputs", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["rev-prefix", 154, 33]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ETL", 152, 13], ["synfig", 152, 17], ["updateScript", 154, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 158, 5], ["homepage", 159, 5], ["changelog", 160, 5], ["license", 161, 5], ["mainProgram", 162, 5], ["maintainers", 163, 5], ["platforms", 164, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 99, 3], ["version", 100, 11], ["src", 100, 19], ["sourceRoot", 102, 3], ["__structuredAttrs", 104, 3], ["strictDeps", 105, 3], ["postPatch", 107, 3], ["preConfigure", 111, 3], ["configureFlags", 115, 3], ["nativeBuildInputs", 121, 3], ["buildInputs", 129, 3], ["enableParallelBuilding", 148, 3], ["passthru", 150, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,14 +36,14 @@ export default nix.lambda((args) => (() => {
   const fftw = nix.arg($, "fftw");
   const version = "1.5.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "synfig",
       repo: "synfig",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-5jVd+YqHVHKkePXBb3zjXEVlgdlU6Yb6LC4CurvsBtE=",
     }))));
   const ETL = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ETL",
       version: version,
       src: src,
@@ -59,7 +53,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
     })));
   const synfig = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "synfig",
       version: version,
       src: src,
@@ -87,7 +81,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "synfigstudio",
       version: version,
       src: src,
@@ -118,13 +112,13 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         ETL: ETL,
         synfig: synfig,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "2D animation program",
         homepage: "https://www.synfig.org",
         changelog: nix.thunk(() => nix.str`https://github.com/synfig/synfig/releases/tag/v${nix.sel(finalAttrs, "version")}`),

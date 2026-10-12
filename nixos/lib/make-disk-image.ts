@@ -2,12 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-disk-image.nix", [[["qcow2", 261, 7], ["vdi", 262, 7], ["vpc", 263, 7], ["raw", 264, 7]], [["legacy", 271, 7], ["legacy+boot", 272, 7], ["legacy+gpt", 273, 7], ["efi", 274, 7], ["efixbootldr", 275, 7], ["hybrid", 276, 7]], [["legacy", 283, 7], ["legacy+boot", 289, 7], ["legacy+gpt", 297, 7], ["efi", 314, 7], ["efixbootldr", 331, 7], ["hybrid", 352, 7], ["none", 372, 7]], [["rootPaths", 423, 5]], [["preVM", 663, 9], ["buildInputs", 664, 9], ["postVM", 669, 9], ["QEMU_OPTS", 670, 9], ["memSize", 682, 17]]]);
 const formals$1 = { args: { pkgs: false, lib: false, config: false, diskSize: true, additionalSpace: true, bootSize: true, contents: true, partitionTableType: true, installBootLoader: true, touchEFIVars: true, OVMF: true, efiFirmware: true, efiVariables: true, fsType: true, label: true, configFile: true, postVM: true, memSize: true, onlyNixStore: true, name: true, format: true, baseName: true, deterministic: true, rootGPUID: true, rootFSUID: true, copyChannel: true, additionalPaths: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-disk-image.nix", [["qcow2", 261, 7], ["vdi", 262, 7], ["vpc", 263, 7], ["raw", 264, 7]]);
-const pos$2 = nix.positions(here + "/make-disk-image.nix", [["legacy", 271, 7], ["legacy+boot", 272, 7], ["legacy+gpt", 273, 7], ["efi", 274, 7], ["efixbootldr", 275, 7], ["hybrid", 276, 7]]);
-const pos$3 = nix.positions(here + "/make-disk-image.nix", [["legacy", 283, 7], ["legacy+boot", 289, 7], ["legacy+gpt", 297, 7], ["efi", 314, 7], ["efixbootldr", 331, 7], ["hybrid", 352, 7], ["none", 372, 7]]);
-const pos$4 = nix.positions(here + "/make-disk-image.nix", [["rootPaths", 423, 5]]);
-const pos$5 = nix.positions(here + "/make-disk-image.nix", [["preVM", 663, 9], ["buildInputs", 664, 9], ["postVM", 669, 9], ["QEMU_OPTS", 670, 9], ["memSize", 682, 17]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,9 +51,9 @@ export default nix.lambda((args) => (() => {
   const format$ = format;
   const format_1 = nix.thunk(() => (nix.asBool(nix.eq(format$, "qcow2-compressed")) ? "qcow2" : nix.force(format$)));
   const compress = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(format$, "qcow2-compressed")), "-c"));
-  const filename = nix.thunk(() => nix.add(nix.str`${baseName}.`, nix.selOr({ [nix.POS]: pos$1, qcow2: "qcow2", vdi: "vdi", vpc: "vhd", raw: "img" }, () => nix.force(format_1), nix.key(nix.force(format_1)))));
+  const filename = nix.thunk(() => nix.add(nix.str`${baseName}.`, nix.selOr({ [nix.POS]: $pos[0], qcow2: "qcow2", vdi: "vdi", vpc: "vhd", raw: "img" }, () => nix.force(format_1), nix.key(nix.force(format_1)))));
   const rootPartition = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     legacy: "1",
     "legacy+boot": "2",
     "legacy+gpt": "2",
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
     hybrid: "3",
   }, nix.key(nix.force(partitionTableType))));
   const partitionDiskScript = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     legacy: "parted --script $diskImage -- \\\n  mklabel msdos \\\n  mkpart primary ext4 1MiB 100% \\\n  print\n",
     "legacy+boot": "parted --script $diskImage -- \\\n  mklabel msdos \\\n  mkpart primary fat32 1MiB $bootSizeMiB \\\n  set 1 boot on \\\n  mkpart primary ext4 $bootSizeMiB 100% \\\n  print\n",
     "legacy+gpt": nix.thunk(() => nix.str`parted --script $diskImage -- \\
@@ -171,7 +167,7 @@ echo -n ${nix.sel(config, "system", "nixos", "versionSuffix")} > $out/nixos/.ver
   const basePaths = nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(config, "system", "build", "toplevel"))], nix.app(nix.sel(lib, "optional"), copyChannel, channelSources)));
   const additionalPaths$ = nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), basePaths, additionalPaths));
   const closureInfo = nix.thunk(() => nix.app(nix.sel(pkgs, "closureInfo"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       rootPaths: nix.thunk(() => nix.concat(basePaths, additionalPaths$)),
     }))));
   const blockSize = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.mul(4n, 1024n))));
@@ -343,7 +339,7 @@ chmod 0644 $efiVars
 echo "file ${format_1}-image $out/${filename}" >> $out/nix-support/hydra-build-products
 `);
   const buildImage = nix.thunk(() => nix.app(nix.sel(pkgs, "vmTools", "runInLinuxVM"), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         preVM: nix.thunk(() => nix.add(prepareImage, nix.app(nix.sel(lib, "optionalString"), touchEFIVars, createEFIVars))),
         buildInputs: nix.thunk(() => (() => {
           const w_1 = nix.withScope(pkgs, null);

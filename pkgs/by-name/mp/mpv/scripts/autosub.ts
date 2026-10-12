@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/autosub.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["updateScript", 26, 12]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["scriptPath", 11, 3], ["src", 13, 3], ["preInstall", 20, 3], ["passthru", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildLua: false, fetchFromGitHub: false, unstableGitUpdater: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/autosub.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/autosub.nix", [["updateScript", 26, 12]]);
-const pos$3 = nix.positions(here + "/autosub.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$4 = nix.positions(here + "/autosub.nix", [["pname", 9, 3], ["version", 10, 3], ["scriptPath", 11, 3], ["src", 13, 3], ["preInstall", 20, 3], ["passthru", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(buildLua, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mpv-autosub",
       version: "0-unstable-2021-06-29",
       scriptPath: "autosub.lua",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "davidde",
           repo: "mpv-autosub",
           rev: "35115355bd339681f97d067538356c29e5b14afa",
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
   "local subliminal = '${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(python3Packages, "subliminal")), "subliminal")}'"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fully automatic subtitle downloading for the MPV media player",
         homepage: "https://github.com/davidde/mpv-autosub",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

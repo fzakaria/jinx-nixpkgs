@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 38, 5], ["hash", 39, 5]], [["packageName", 101, 7]], [["updateScript", 100, 5], ["providedSessions", 103, 5]], [["description", 109, 5], ["homepage", 110, 5], ["changelog", 111, 5], ["license", 112, 5], ["teams", 113, 5], ["platforms", 114, 5]], [["pname", 28, 3], ["version", 30, 3], ["outputs", 32, 3], ["src", 37, 3], ["patches", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 61, 3], ["postPatch", 69, 3], ["postInstall", 82, 3], ["preFixup", 90, 3], ["separateDebugInfo", 97, 3], ["passthru", 99, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, replaceVars: false, meson: false, ninja: false, "pkg-config": false, gnome: false, "gobject-introspection": false, glib: false, "gsettings-desktop-schemas": false, "gnome-desktop": false, "gnome-settings-daemon": false, "gnome-shell": false, dbus: false, xmlto: false, docbook_xsl: false, docbook_xml_dtd_45: false, libxslt: false, gettext: false, systemd: false, "gnome-session-ctl": false, wrapGAppsNoGuiHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 101, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 100, 5], ["providedSessions", 103, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 109, 5], ["homepage", 110, 5], ["changelog", 111, 5], ["license", 112, 5], ["teams", 113, 5], ["platforms", 114, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 30, 3], ["outputs", 32, 3], ["src", 37, 3], ["patches", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 61, 3], ["postPatch", 69, 3], ["postInstall", 82, 3], ["preFixup", 90, 3], ["separateDebugInfo", 97, 3], ["passthru", 99, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const gnome_session_ctl = nix.arg($, "gnome-session-ctl");
   const wrapGAppsNoGuiHook = nix.arg($, "wrapGAppsNoGuiHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-session",
       version: "50.1",
       outputs: nix.thunk(() => ["out", "sessions"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-session/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-session-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Yom2r6RNPkyZnOV2H/iywQujCfVflCXysT+YIIyB9vs=",
         })))),
@@ -81,12 +77,12 @@ find data/ -type f -name "*.service.in" -exec sed -i \\
 `),
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-session" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-session" })))),
         providedSessions: nix.thunk(() => ["gnome"]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GNOME session manager",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-session",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-session/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

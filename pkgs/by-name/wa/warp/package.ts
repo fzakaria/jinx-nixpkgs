@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 30, 5], ["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["pname", 42, 13], ["version", 42, 19], ["src", 42, 27], ["hash", 43, 5]], [["updateScript", 83, 5]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["teams", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5], ["broken", 96, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["cargoDeps", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 60, 3], ["preFixup", 75, 3], ["passthru", 82, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "appstream-glib": false, cargo: false, "desktop-file-utils": false, itstool: false, meson: false, ninja: false, "pkg-config": false, python3: false, rustPlatform: false, rustc: false, wrapGAppsHook4: false, glib: false, gtk4: false, libadwaita: false, libcamera: false, pipewire: false, gst_all_1: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 30, 5], ["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 42, 13], ["version", 42, 19], ["src", 42, 27], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["teams", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5], ["broken", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["cargoDeps", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 60, 3], ["preFixup", 75, 3], ["passthru", 82, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "warp";
       const version = "1.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "warp",
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "patchShebangs build-aux\n";
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -80,11 +76,11 @@ export default nix.lambda((args) => (() => {
 )
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast and secure file transfer",
         homepage: "https://apps.gnome.org/Warp/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -98,7 +94,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

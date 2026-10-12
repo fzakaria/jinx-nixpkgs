@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["url", 38, 7], ["hash", 39, 7]], [["NIX_LDFLAGS", 44, 5], ["NIX_CFLAGS_COMPILE", 47, 5]], [["packageName", 75, 7], ["versionPolicy", 76, 7]], [["updateScript", 74, 5]], [["description", 81, 5], ["mainProgram", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 34, 3], ["env", 43, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 57, 3], ["doCheck", 71, 3], ["passthru", 73, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, intltool: false, gtk3: false, glib: false, libid3tag: false, id3lib: false, taglib_1: false, libvorbis: false, libogg: false, opusfile: false, flac: false, itstool: false, libxml2: false, "gsettings-desktop-schemas": false, gnome: false, "adwaita-icon-theme": false, wrapGAppsHook3: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 44, 5], ["NIX_CFLAGS_COMPILE", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageName", 75, 7], ["versionPolicy", 76, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 81, 5], ["mainProgram", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 34, 3], ["env", 43, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 57, 3], ["doCheck", 71, 3], ["passthru", 73, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,19 +32,19 @@ export default nix.lambda((args) => (() => {
       const pname = "easytag";
       const version = "2.4.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/easytag/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/easytag-${version}.tar.xz`),
           hash: "sha256-/FHukqcF48WXnf8WVfdJbv+2i5jxraBUfoy7wDO2fdU=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/media-sound/easytag/files/easytag-2.4.3-ogg-corruption.patch?id=b175a159c1138702bdfb009ff4d6565019ed3c4a",
             hash: "sha256-z75dYTEVp1raSFROjpakLeBjF96sgWBxxRB6ut9wYXw=",
           })))),
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_LDFLAGS: "-lid3tag -lz",
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-std=c17 -Wno-implicit-function-declaration")),
       }));
@@ -70,11 +64,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[3], packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "View and edit tags for various audio files",
         mainProgram: "easytag",
         homepage: "https://gitlab.gnome.org/GNOME/easytag",
@@ -86,7 +80,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

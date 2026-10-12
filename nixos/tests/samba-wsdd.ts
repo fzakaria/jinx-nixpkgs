@@ -2,43 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/samba-wsdd.nix", [[["maintainers", 5, 8]], [["enable", 12, 11], ["openFirewall", 13, 11], ["interface", 14, 11], ["workgroup", 15, 11], ["hostname", 16, 11], ["discovery", 17, 11], ["extraOptions", 18, 11]], [["samba-wsdd", 11, 18]], [["services", 11, 9]], [["enable", 26, 11], ["openFirewall", 27, 11], ["interface", 28, 11], ["workgroup", 29, 11], ["hostname", 30, 11]], [["samba-wsdd", 25, 18]], [["services", 25, 9]], [["client_wsdd", 8, 5], ["server_wsdd", 22, 5]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 35, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/samba-wsdd.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/samba-wsdd.nix", [["enable", 12, 11], ["openFirewall", 13, 11], ["interface", 14, 11], ["workgroup", 15, 11], ["hostname", 16, 11], ["discovery", 17, 11], ["extraOptions", 18, 11]]);
-const pos$3 = nix.positions(here + "/samba-wsdd.nix", [["samba-wsdd", 11, 18]]);
-const pos$4 = nix.positions(here + "/samba-wsdd.nix", [["services", 11, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$5 = nix.positions(here + "/samba-wsdd.nix", [["enable", 26, 11], ["openFirewall", 27, 11], ["interface", 28, 11], ["workgroup", 29, 11], ["hostname", 30, 11]]);
-const pos$6 = nix.positions(here + "/samba-wsdd.nix", [["samba-wsdd", 25, 18]]);
-const pos$7 = nix.positions(here + "/samba-wsdd.nix", [["services", 25, 9]]);
-const pos$8 = nix.positions(here + "/samba-wsdd.nix", [["client_wsdd", 8, 5], ["server_wsdd", 22, 5]]);
-const pos$9 = nix.positions(here + "/samba-wsdd.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "samba-wsdd",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "izorkin"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       client_wsdd: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "samba-wsdd": nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               openFirewall: true,
               interface: "eth1",
@@ -53,11 +45,11 @@ export default nix.lambda((args) => (() => {
       server_wsdd: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "samba-wsdd": nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               openFirewall: true,
               interface: "eth1",

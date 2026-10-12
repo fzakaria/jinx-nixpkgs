@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/webadmin.nix", [[["url", 26, 9], ["relative", 27, 9], ["hash", 28, 9]], [["postPatch", 32, 7]], [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["name", 49, 5], ["hash", 50, 5]], [["NODE_PATH", 73, 7]], [["updateScript", 86, 5]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 34]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["npmDeps", 48, 3], ["__structuredAttrs", 52, 3], ["cargoHash", 53, 3], ["postPatch", 55, 3], ["nativeBuildInputs", 60, 3], ["env", 73, 3], ["buildPhase", 75, 3], ["installPhase", 79, 3], ["passthru", 85, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, stalwart_0_15: false, fetchFromGitHub: false, fetchpatch: false, trunk: false, tailwindcss_3: false, fetchNpmDeps: false, "nix-update-script": false, nodejs: false, npmHooks: false, llvmPackages: false, "wasm-bindgen-cli_0_2_93": false, binaryen: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/webadmin.nix", [["url", 26, 9], ["relative", 27, 9], ["hash", 28, 9]]);
-const pos$2 = nix.positions(here + "/webadmin.nix", [["postPatch", 32, 7]]);
-const pos$3 = nix.positions(here + "/webadmin.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$4 = nix.positions(here + "/webadmin.nix", [["name", 49, 5], ["hash", 50, 5]]);
-const pos$5 = nix.positions(here + "/webadmin.nix", [["NODE_PATH", 73, 7]]);
-const pos$6 = nix.positions(here + "/webadmin.nix", [["updateScript", 86, 5]]);
-const pos$7 = nix.positions(here + "/webadmin.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 34]]);
-const pos$8 = nix.positions(here + "/webadmin.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["npmDeps", 48, 3], ["__structuredAttrs", 52, 3], ["cargoHash", 53, 3], ["postPatch", 55, 3], ["nativeBuildInputs", 60, 3], ["env", 73, 3], ["buildPhase", 75, 3], ["installPhase", 79, 3], ["passthru", 85, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,30 +24,30 @@ export default nix.lambda((args) => (() => {
   const zip = nix.arg($, "zip");
   const wasmBindgenCliPatched = nix.thunk(() => (() => {
     const wasmBindgenCliDedupExportsPatch = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "https://github.com/wasm-bindgen/wasm-bindgen/commit/b375e974cf30a203f1ea7f6320ad32759c5cb9e6.patch",
         relative: "crates/cli-support",
         hash: "sha256-pejDKqNbtlpLLqNcdpwgxDSxsGxyv5V8/QeK+OCY3qw=",
       }))));
     return nix.app(nix.sel(wasm_bindgen_cli_0_2_93, "overrideAttrs"), (old) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         postPatch: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postPatch"), nix.str`patch -p1 -d "$cargoDepsCopy"/*/wasm-bindgen-cli-support-* < ${wasmBindgenCliDedupExportsPatch}
 `)),
       }));
   })());
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "webadmin",
       version: "0.1.37",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "stalwartlabs",
           repo: "webadmin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-82QvuLkp6j6nJs7jX4NRcnxZ+KNv9RREpM+x8dicfGo=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
           hash: "sha256-na1HEueX8w7kuDp8LEtJ0nD1Yv39cyk6sEMpS1zix2s=",
         })))),
@@ -71,17 +64,17 @@ export default nix.lambda((args) => (() => {
         wasmBindgenCliPatched,
         zip,
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, NODE_PATH: "$npmDeps" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], NODE_PATH: "$npmDeps" })),
       buildPhase: "trunk build --offline --frozen --release\n",
       installPhase: "cd dist\nmkdir -p $out\nzip -r $out/webadmin.zip *\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(stalwart_0_15, "meta"));
         return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Web administration module for the Stalwart server",
         homepage: "https://github.com/stalwartlabs/webadmin",
         changelog: nix.thunk(() => nix.str`https://github.com/stalwartlabs/webadmin/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

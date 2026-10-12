@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["pkg-config", 31, 18]], [["tests", 31, 12]], [["description", 34, 5], ["mainProgram", 35, 5], ["longDescription", 37, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 47, 5], ["pkgConfigModules", 48, 5], ["platforms", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["configureFlags", 24, 3], ["preCheck", 26, 3], ["doCheck", 29, 3], ["passthru", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, libidn: false, libkrb5: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 31, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 31, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 34, 5], ["mainProgram", 35, 5], ["longDescription", 37, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 47, 5], ["pkgConfigModules", 48, 5], ["platforms", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["configureFlags", 24, 3], ["preCheck", 26, 3], ["doCheck", 29, 3], ["passthru", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libkrb5 = nix.arg($, "libkrb5");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gsasl",
       version: "2.2.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/gsasl/gsasl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-/uNsZqwS0y078pp7Na2PREt5lv42m52l02/WrmScaOs=",
         })))),
@@ -31,14 +27,14 @@ export default nix.lambda((args) => (() => {
       preCheck: "export LOCALDOMAIN=\"dummydomain\"\n",
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GNU SASL, Simple Authentication and Security Layer library",
         mainProgram: "gsasl",
         longDescription: "GNU SASL is a library that implements the IETF Simple\nAuthentication and Security Layer (SASL) framework and\nsome SASL mechanisms. SASL is used in network servers\n(e.g. IMAP, SMTP, etc.) to authenticate peers.\n",

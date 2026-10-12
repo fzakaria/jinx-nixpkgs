@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["ldap", 81, 5]], [["description", 87, 5], ["longDescription", 88, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 98, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["sourceRoot", 46, 3], ["pythonRelaxDeps", 48, 3], ["postPatch", 50, 3], ["build-system", 55, 3], ["dependencies", 60, 3], ["optional-dependencies", 80, 3], ["doCheck", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, docutils: false, zipp: false, "importlib-metadata": false, flask: false, "flask-compress": false, "flask-xml-rpc-re": false, "flask-restx": false, requests: false, ipy: false, parsedatetime: false, psutil: false, psycopg2: false, pyparsing: false, "python-dateutil": false, pytz: false, pyjwt: false, tornado: false, "python-ldap": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ldap", 81, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 87, 5], ["longDescription", 88, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 98, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["sourceRoot", 46, 3], ["pythonRelaxDeps", 48, 3], ["postPatch", 50, 3], ["build-system", 55, 3], ["dependencies", 60, 3], ["optional-dependencies", 80, 3], ["doCheck", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.32.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SpriteLink",
           repo: "NIPAP",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -65,10 +62,10 @@ export default nix.lambda((args) => (() => {
         pyjwt,
         tornado,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, ldap: nix.thunk(() => [python_ldap]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], ldap: nix.thunk(() => [python_ldap]) }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Neat IP Address Planner",
         longDescription: "NIPAP is the best open source IPAM in the known universe,\nchallenging classical IP address management (IPAM) systems in many areas.\n",
         homepage: "https://github.com/SpriteLink/NIPAP",
@@ -81,7 +78,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

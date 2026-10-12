@@ -2,37 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/incus-virtual-machine.nix", [[["teams", 15, 5]], [["pkgs", 27, 15], ["lib", 27, 20], ["config", 27, 24], ["partitionTableType", 29, 7], ["format", 30, 7], ["copyChannel", 31, 7]], [["nativeBuildInputs", 35, 7], ["postBuild", 37, 7], ["postInstall", 43, 7]], [["qemuImage", 26, 18], ["repartImage", 34, 18]], [["build", 26, 12]], [["enable", 54, 19]], [["ext4", 55, 19]], [["source", 62, 56]], [["source", 64, 63]], [["Type", 69, 13], ["Format", 70, 13], ["Label", 71, 13], ["SizeMinBytes", 73, 13]], [["contents", 61, 11], ["repartConfig", 68, 11]], [["Type", 79, 13], ["Format", 80, 13], ["Label", 81, 13], ["Minimize", 82, 13], ["PaddingMinBytes", 83, 13]], [["storePaths", 77, 11], ["repartConfig", 78, 11]], [["esp", 60, 9], ["root", 76, 9]], [["enable", 50, 7], ["name", 51, 7], ["version", 52, 7], ["sectorSize", 53, 7], ["compression", 54, 7], ["mkfsOptions", 55, 7], ["partitions", 59, 7]], [["repart", 49, 11]], [["device", 91, 9], ["autoResize", 92, 9], ["fsType", 93, 9]], [["device", 96, 9], ["fsType", 97, 9]], [["/", 90, 7], ["/boot", 95, 7]], [["enable", 102, 30]], [["device", 105, 22]], [["systemd-boot", 102, 17], ["grub", 105, 17]], [["growPartition", 101, 10], ["loader", 102, 10], ["kernelParams", 107, 10]], [["extraRules", 113, 19]], [["udev", 113, 14]], [["enable", 117, 32]], [["agent", 117, 26]], [["incus", 117, 20]], [["system", 26, 5], ["image", 49, 5], ["fileSystems", 89, 5], ["boot", 101, 5], ["services", 113, 5], ["virtualisation", 117, 5]], [["meta", 14, 3], ["imports", 18, 3], ["config", 25, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/incus-virtual-machine.nix", [["teams", 15, 5]]);
-const pos$2 = nix.positions(here + "/incus-virtual-machine.nix", [["pkgs", 27, 15], ["lib", 27, 20], ["config", 27, 24], ["partitionTableType", 29, 7], ["format", 30, 7], ["copyChannel", 31, 7]]);
-const pos$3 = nix.positions(here + "/incus-virtual-machine.nix", [["nativeBuildInputs", 35, 7], ["postBuild", 37, 7], ["postInstall", 43, 7]]);
-const pos$4 = nix.positions(here + "/incus-virtual-machine.nix", [["qemuImage", 26, 18], ["repartImage", 34, 18]]);
-const pos$5 = nix.positions(here + "/incus-virtual-machine.nix", [["build", 26, 12]]);
-const pos$6 = nix.positions(here + "/incus-virtual-machine.nix", [["enable", 54, 19]]);
-const pos$7 = nix.positions(here + "/incus-virtual-machine.nix", [["ext4", 55, 19]]);
-const pos$8 = nix.positions(here + "/incus-virtual-machine.nix", [["source", 62, 56]]);
-const pos$9 = nix.positions(here + "/incus-virtual-machine.nix", [["source", 64, 63]]);
-const pos$10 = nix.positions(here + "/incus-virtual-machine.nix", [["Type", 69, 13], ["Format", 70, 13], ["Label", 71, 13], ["SizeMinBytes", 73, 13]]);
-const pos$11 = nix.positions(here + "/incus-virtual-machine.nix", [["contents", 61, 11], ["repartConfig", 68, 11]]);
-const pos$12 = nix.positions(here + "/incus-virtual-machine.nix", [["Type", 79, 13], ["Format", 80, 13], ["Label", 81, 13], ["Minimize", 82, 13], ["PaddingMinBytes", 83, 13]]);
-const pos$13 = nix.positions(here + "/incus-virtual-machine.nix", [["storePaths", 77, 11], ["repartConfig", 78, 11]]);
-const pos$14 = nix.positions(here + "/incus-virtual-machine.nix", [["esp", 60, 9], ["root", 76, 9]]);
-const pos$15 = nix.positions(here + "/incus-virtual-machine.nix", [["enable", 50, 7], ["name", 51, 7], ["version", 52, 7], ["sectorSize", 53, 7], ["compression", 54, 7], ["mkfsOptions", 55, 7], ["partitions", 59, 7]]);
-const pos$16 = nix.positions(here + "/incus-virtual-machine.nix", [["repart", 49, 11]]);
-const pos$17 = nix.positions(here + "/incus-virtual-machine.nix", [["device", 91, 9], ["autoResize", 92, 9], ["fsType", 93, 9]]);
-const pos$18 = nix.positions(here + "/incus-virtual-machine.nix", [["device", 96, 9], ["fsType", 97, 9]]);
-const pos$19 = nix.positions(here + "/incus-virtual-machine.nix", [["/", 90, 7], ["/boot", 95, 7]]);
-const pos$20 = nix.positions(here + "/incus-virtual-machine.nix", [["enable", 102, 30]]);
-const pos$21 = nix.positions(here + "/incus-virtual-machine.nix", [["device", 105, 22]]);
-const pos$22 = nix.positions(here + "/incus-virtual-machine.nix", [["systemd-boot", 102, 17], ["grub", 105, 17]]);
-const pos$23 = nix.positions(here + "/incus-virtual-machine.nix", [["growPartition", 101, 10], ["loader", 102, 10], ["kernelParams", 107, 10]]);
-const pos$24 = nix.positions(here + "/incus-virtual-machine.nix", [["extraRules", 113, 19]]);
-const pos$25 = nix.positions(here + "/incus-virtual-machine.nix", [["udev", 113, 14]]);
-const pos$26 = nix.positions(here + "/incus-virtual-machine.nix", [["enable", 117, 32]]);
-const pos$27 = nix.positions(here + "/incus-virtual-machine.nix", [["agent", 117, 26]]);
-const pos$28 = nix.positions(here + "/incus-virtual-machine.nix", [["incus", 117, 20]]);
-const pos$29 = nix.positions(here + "/incus-virtual-machine.nix", [["system", 26, 5], ["image", 49, 5], ["fileSystems", 89, 5], ["boot", 101, 5], ["services", 113, 5], ["virtualisation", 117, 5]]);
-const pos$30 = nix.positions(here + "/incus-virtual-machine.nix", [["meta", 14, 3], ["imports", 18, 3], ["config", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const serialDevice = nix.thunk(() => (nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isx86")) ? "ttyS0" : "ttyAMA0"));
   const efiArch = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "efiArch"));
   return {
-    [nix.POS]: pos$30,
+    [nix.POS]: $pos[29],
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxc"))]),
     })),
     imports: nix.thunk(() => [
@@ -53,13 +24,13 @@ export default nix.lambda((args) => (() => {
       nix.path(here, "../profiles/qemu-guest.nix"),
     ]),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       system: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         build: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           qemuImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pkgs: pkgs,
               lib: lib,
               config: config,
@@ -68,7 +39,7 @@ export default nix.lambda((args) => (() => {
               copyChannel: nix.thunk(() => nix.sel(config, "system", "installer", "channel", "enable")),
             })))),
           repartImage: nix.thunk(() => nix.app(nix.sel(config, "image", "repart", "image", "overrideAttrs"), (previousAttrs) => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(previousAttrs, "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "qemu-utils"))])),
               postBuild: nix.thunk(() => nix.str`qemu-img convert -f raw -O qcow2 -c ${nix.sel(config, "image", "baseName")}.raw ${nix.sel(config, "image", "baseName")}.qcow2
 rm ${nix.sel(config, "image", "baseName")}.raw
@@ -80,31 +51,31 @@ echo "file qcow2-image $out/${nix.sel(config, "image", "baseName")}.qcow2" > $ou
         })),
       })),
       image: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         repart: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           enable: true,
           name: "nixos",
           version: null,
           sectorSize: 512n,
-          compression: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
-          mkfsOptions: nix.thunk(() => ({ [nix.POS]: pos$7, ext4: nix.thunk(() => ["-i", "8192"]) })),
+          compression: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: false })),
+          mkfsOptions: nix.thunk(() => ({ [nix.POS]: $pos[6], ext4: nix.thunk(() => ["-i", "8192"]) })),
           partitions: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             esp: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               contents: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`/EFI/BOOT/BOOT${nix.app(nix.sel(lib, "toUpper"), efiArch)}.EFI`, nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   source: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/lib/systemd/boot/efi/systemd-boot${efiArch}.efi`),
                 }))],
                 [nix.str`/EFI/Linux/${nix.sel(config, "system", "boot", "loader", "ukiFile")}`, nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   source: nix.thunk(() => nix.str`${nix.sel(config, "system", "build", "uki")}/${nix.sel(config, "system", "boot", "loader", "ukiFile")}`),
                 }))],
               ])),
               repartConfig: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 Type: "esp",
                 Format: "vfat",
                 Label: "ESP",
@@ -112,10 +83,10 @@ echo "file qcow2-image $out/${nix.sel(config, "image", "baseName")}.qcow2" > $ou
               })),
             })),
             root: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               storePaths: nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "build", "toplevel"))]),
               repartConfig: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 Type: "root",
                 Format: "ext4",
                 Label: "nixos",
@@ -127,38 +98,38 @@ echo "file qcow2-image $out/${nix.sel(config, "image", "baseName")}.qcow2" > $ou
         })),
       })),
       fileSystems: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         "/": nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           device: "/dev/disk/by-label/nixos",
           autoResize: true,
           fsType: "ext4",
         })),
-        "/boot": nix.thunk(() => ({ [nix.POS]: pos$18, device: "/dev/disk/by-label/ESP", fsType: "vfat" })),
+        "/boot": nix.thunk(() => ({ [nix.POS]: $pos[17], device: "/dev/disk/by-label/ESP", fsType: "vfat" })),
       })),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         growPartition: true,
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$22,
-          "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$20, enable: true })),
-          grub: nix.thunk(() => ({ [nix.POS]: pos$21, device: "/dev/vda" })),
+          [nix.POS]: $pos[21],
+          "systemd-boot": nix.thunk(() => ({ [nix.POS]: $pos[19], enable: true })),
+          grub: nix.thunk(() => ({ [nix.POS]: $pos[20], device: "/dev/vda" })),
         })),
         kernelParams: nix.thunk(() => ["console=tty1", nix.thunk(() => nix.str`console=${serialDevice}`)]),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         udev: nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           extraRules: "SUBSYSTEM==\"cpu\", CONST{arch}==\"x86-64\", TEST==\"online\", ATTR{online}==\"0\", ATTR{online}=\"1\"\n",
         })),
       })),
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         incus: nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           agent: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),

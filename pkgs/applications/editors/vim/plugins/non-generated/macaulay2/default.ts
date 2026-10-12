@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 14, 29], ["owner", 14, 34], ["tag", 14, 40], ["rootDir", 15, 5], ["hash", 16, 5]], [["maintainers", 37, 30], ["platforms", 37, 42], ["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5]], [["pname", 9, 3], ["version", 10, 23], ["src", 13, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 24, 3], ["buildPhase", 28, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, vimUtils: false, writableTmpDirAsHomeHook: false, macaulay2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 14, 29], ["owner", 14, 34], ["tag", 14, 40], ["rootDir", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["maintainers", 37, 30], ["platforms", 37, 42], ["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 23], ["src", 13, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 24, 3], ["buildPhase", 28, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const macaulay2 = nix.arg($, "macaulay2");
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "macaulay2",
       version: nix.thunk(() => nix.attr(macaulay2, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(macaulay2, "src"));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: nix.thunk(() => nix.attr(from, "repo")),
           owner: nix.thunk(() => nix.attr(from, "owner")),
           tag: nix.thunk(() => nix.attr(from, "tag")),
@@ -42,7 +40,7 @@ EOF
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(macaulay2, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Syntax highlighting and key mappings to send code to a running Macaulay2 session.",

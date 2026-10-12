@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 5], ["version", 24, 13], ["hash", 25, 5]], [["requests", 36, 5], ["aiohttp", 37, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["optional-dependencies", 35, 3], ["nativeCheckInputs", 40, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, brotli: false, buildPythonPackage: false, fetchPypi: false, "google-auth": false, "google-cloud-testutils": false, "google-crc32c": false, mock: false, "pytest-asyncio": false, pytestCheckHook: false, requests: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 5], ["version", 24, 13], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["requests", 36, 5], ["aiohttp", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["optional-dependencies", 35, 3], ["nativeCheckInputs", 40, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "google_resumable_media",
           version: version,
           hash: "sha256-8RV+2LRplNYKG8QyVE22I1IEMRNoTU4DDuAud+vpoa4=",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [google_auth, google_crc32c]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         requests: nix.thunk(() => [requests]),
         aiohttp: nix.thunk(() => [aiohttp]),
       }));
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# prevent shadowing imports\nrm -r google\n# fixture 'authorized_transport' not found\nrm tests/system/requests/test_upload.py\n# requires network\nrm tests/system/requests/test_download.py\n";
       const pythonImportsCheck = nix.thunk(() => ["google._async_resumable_media", "google.resumable_media"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utilities for Google Media Downloads and Resumable Uploads",
         homepage: "https://github.com/GoogleCloudPlatform/google-resumable-media-python",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-resumable-media-python/blob/v${version}/CHANGELOG.md`),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

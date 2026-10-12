@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["url", 25, 7], ["hash", 26, 7]], [["description", 74, 5], ["license", 75, 5], ["homepage", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 33, 3], ["configureFlags", 41, 3], ["buildPhase", 51, 3], ["installPhase", 56, 3], ["preCheck", 65, 3], ["enableParallelBuilding", 69, 3], ["doCheck", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, zlib: false, bzip2: false, xz: false, curl: false, libdeflate: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["license", 75, 5], ["homepage", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 33, 3], ["configureFlags", 41, 3], ["buildPhase", 51, 3], ["installPhase", 56, 3], ["preCheck", 65, 3], ["enableParallelBuilding", 69, 3], ["doCheck", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const libdeflate = nix.arg($, "libdeflate");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "htslib",
       version: "1.22",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/samtools/htslib/releases/download/${nix.sel(finalAttrs, "version")}/htslib-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-YlDB3yl9tHdRbmCsjfRe11plLR8lsPN/EvWxcmnq/ek=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/samtools/htslib/commit/31006e1c8edd02eb6321ed9be76b84fca5d20cb6.patch",
             hash: "sha256-sbnkVmXIbs/Cn/msUUrJpJZCI2DHX5kpGSka2cccZIQ=",
           })))),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C library for reading/writing high-throughput sequencing data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "http://www.htslib.org/",

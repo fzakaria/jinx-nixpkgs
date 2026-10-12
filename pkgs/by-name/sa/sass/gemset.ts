@@ -2,26 +2,16 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/gemset.nix", [["remotes", 6, 7], ["sha256", 7, 7], ["type", 8, 7]]);
-const pos$2 = nix.positions(here + "/gemset.nix", [["groups", 3, 5], ["platforms", 4, 5], ["source", 5, 5], ["version", 10, 5]]);
-const pos$3 = nix.positions(here + "/gemset.nix", [["remotes", 16, 7], ["sha256", 17, 7], ["type", 18, 7]]);
-const pos$4 = nix.positions(here + "/gemset.nix", [["groups", 13, 5], ["platforms", 14, 5], ["source", 15, 5], ["version", 20, 5]]);
-const pos$5 = nix.positions(here + "/gemset.nix", [["remotes", 27, 7], ["sha256", 28, 7], ["type", 29, 7]]);
-const pos$6 = nix.positions(here + "/gemset.nix", [["dependencies", 23, 5], ["groups", 24, 5], ["platforms", 25, 5], ["source", 26, 5], ["version", 31, 5]]);
-const pos$7 = nix.positions(here + "/gemset.nix", [["remotes", 38, 7], ["sha256", 39, 7], ["type", 40, 7]]);
-const pos$8 = nix.positions(here + "/gemset.nix", [["dependencies", 34, 5], ["groups", 35, 5], ["platforms", 36, 5], ["source", 37, 5], ["version", 42, 5]]);
-const pos$9 = nix.positions(here + "/gemset.nix", [["remotes", 52, 7], ["sha256", 53, 7], ["type", 54, 7]]);
-const pos$10 = nix.positions(here + "/gemset.nix", [["dependencies", 45, 5], ["groups", 49, 5], ["platforms", 50, 5], ["source", 51, 5], ["version", 56, 5]]);
-const pos$11 = nix.positions(here + "/gemset.nix", [["ffi", 2, 3], ["rb-fsevent", 12, 3], ["rb-inotify", 22, 3], ["sass", 33, 3], ["sass-listen", 44, 3]]);
+const $pos = nix.positions(here + "/gemset.nix", [[["remotes", 6, 7], ["sha256", 7, 7], ["type", 8, 7]], [["groups", 3, 5], ["platforms", 4, 5], ["source", 5, 5], ["version", 10, 5]], [["remotes", 16, 7], ["sha256", 17, 7], ["type", 18, 7]], [["groups", 13, 5], ["platforms", 14, 5], ["source", 15, 5], ["version", 20, 5]], [["remotes", 27, 7], ["sha256", 28, 7], ["type", 29, 7]], [["dependencies", 23, 5], ["groups", 24, 5], ["platforms", 25, 5], ["source", 26, 5], ["version", 31, 5]], [["remotes", 38, 7], ["sha256", 39, 7], ["type", 40, 7]], [["dependencies", 34, 5], ["groups", 35, 5], ["platforms", 36, 5], ["source", 37, 5], ["version", 42, 5]], [["remotes", 52, 7], ["sha256", 53, 7], ["type", 54, 7]], [["dependencies", 45, 5], ["groups", 49, 5], ["platforms", 50, 5], ["source", 51, 5], ["version", 56, 5]], [["ffi", 2, 3], ["rb-fsevent", 12, 3], ["rb-inotify", 22, 3], ["sass", 33, 3], ["sass-listen", 44, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$11,
+  [nix.POS]: $pos[10],
   ffi: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0fgwn1grxf4zxmyqmb9i4z2hr111585n9jnk17y6y7hhs7dv1xi6",
       type: "gem",
@@ -29,11 +19,11 @@ export default nix.thunk(() => ({
     version: "1.17.1",
   })),
   "rb-fsevent": nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1zmf31rnpm8553lqwibvv3kkx0v7majm1f341xbxc0bk5sbhp423",
       type: "gem",
@@ -41,12 +31,12 @@ export default nix.thunk(() => ({
     version: "0.11.2",
   })),
   "rb-inotify": nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     dependencies: nix.thunk(() => ["ffi"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0vmy8xgahixcz6hzwy4zdcyn2y6d6ri8dqv5xccgzc1r292019x0",
       type: "gem",
@@ -54,12 +44,12 @@ export default nix.thunk(() => ({
     version: "0.11.1",
   })),
   sass: nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     dependencies: nix.thunk(() => ["sass-listen"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0p95lhs0jza5l7hqci1isflxakz83xkj97lkvxl919is0lwhv2w0",
       type: "gem",
@@ -67,12 +57,12 @@ export default nix.thunk(() => ({
     version: "3.7.4",
   })),
   "sass-listen": nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     dependencies: nix.thunk(() => ["rb-fsevent", "rb-inotify"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0xw3q46cmahkgyldid5hwyiwacp590zj2vmswlll68ryvmvcp7df",
       type: "gem",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["nativeInstallCheckInputs", 22, 3], ["versionCheckProgramArg", 26, 3], ["doInstallCheck", 28, 3], ["nativeBuildInputs", 30, 3], ["makeFlags", 34, 3], ["ldflags", 36, 3], ["postBuild", 41, 3], ["preInstall", 45, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromSourcehut: false, scdoc: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["nativeInstallCheckInputs", 22, 3], ["versionCheckProgramArg", 26, 3], ["doInstallCheck", 28, 3], ["nativeBuildInputs", 30, 3], ["makeFlags", 34, 3], ["ldflags", 36, 3], ["postBuild", 41, 3], ["preInstall", 45, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hut",
       version: "0.8.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~xenrox",
           repo: "hut",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "make $makeFlags completions doc/hut.1\n",
       preInstall: "make $makeFlags install\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://sr.ht/~xenrox/hut/",
         description: "CLI tool for Sourcehut / sr.ht",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

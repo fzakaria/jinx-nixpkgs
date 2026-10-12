@@ -2,54 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/flaresolverr.nix", [[["maintainers", 4, 8]], [["enable", 10, 9], ["port", 11, 9]], [["return", 18, 13], ["extraConfig", 19, 13]], [["/", 17, 21]], [["locations", 17, 11]], [["localhost", 16, 22]], [["enable", 15, 9], ["virtualHosts", 16, 9]], [["flaresolverr", 9, 16], ["nginx", 14, 16]], [["services", 9, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 27, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/flaresolverr.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/flaresolverr.nix", [["enable", 10, 9], ["port", 11, 9]]);
-const pos$3 = nix.positions(here + "/flaresolverr.nix", [["return", 18, 13], ["extraConfig", 19, 13]]);
-const pos$4 = nix.positions(here + "/flaresolverr.nix", [["/", 17, 21]]);
-const pos$5 = nix.positions(here + "/flaresolverr.nix", [["locations", 17, 11]]);
-const pos$6 = nix.positions(here + "/flaresolverr.nix", [["localhost", 16, 22]]);
-const pos$7 = nix.positions(here + "/flaresolverr.nix", [["enable", 15, 9], ["virtualHosts", 16, 9]]);
-const pos$8 = nix.positions(here + "/flaresolverr.nix", [["flaresolverr", 9, 16], ["nginx", 14, 16]]);
-const pos$9 = nix.positions(here + "/flaresolverr.nix", [["services", 9, 7]]);
-const pos$10 = nix.positions(here + "/flaresolverr.nix", [["machine", 6, 9]]);
-const pos$11 = nix.positions(here + "/flaresolverr.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "flaresolverr",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "diogotcorreia"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            flaresolverr: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, port: 8888n })),
+            [nix.POS]: $pos[7],
+            flaresolverr: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, port: 8888n })),
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 localhost: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     "/": nix.thunk(() => ({
-                      [nix.POS]: pos$3,
+                      [nix.POS]: $pos[2],
                       return: "200 'hello world'",
                       extraConfig: "default_type text/plain;\n",
                     })),

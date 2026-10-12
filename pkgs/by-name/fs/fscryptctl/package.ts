@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 26, 5], ["mainProgram", 27, 5], ["longDescription", 28, 5], ["homepage", 42, 35], ["changelog", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["strictDeps", 21, 3], ["makeFlags", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pandoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["mainProgram", 27, 5], ["longDescription", 28, 5], ["homepage", 42, 35], ["changelog", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["strictDeps", 21, 3], ["makeFlags", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pandoc = nix.arg($, "pandoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fscryptctl",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "fscryptctl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small C tool for Linux filesystem encryption",
         mainProgram: "fscryptctl",
         longDescription: "fscryptctl is a low-level tool written in C that handles raw keys and\nmanages policies for Linux filesystem encryption, specifically the\n\"fscrypt\" kernel interface which is supported by the ext4, f2fs, and\nUBIFS filesystems.\nfscryptctl is mainly intended for embedded systems which can't use the\nfull-featured fscrypt tool, or for testing or experimenting with the\nkernel interface to Linux filesystem encryption. fscryptctl does not\nhandle key generation, key stretching, key wrapping, or PAM integration.\nMost users should use the fscrypt tool instead, which supports these\nfeatures and generally is much easier to use.\nAs fscryptctl is intended for advanced users, you should read the kernel\ndocumentation for filesystem encryption before using fscryptctl.\n",

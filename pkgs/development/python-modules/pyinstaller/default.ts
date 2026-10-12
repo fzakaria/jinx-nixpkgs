@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 31, 26], ["version", 31, 32], ["hash", 32, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["downloadPage", 64, 5], ["license", 65, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 35, 3], ["buildInputs", 37, 3], ["dependencies", 39, 3], ["makeWrapperArgs", 46, 3], ["pythonImportsCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, zlib: false, altgraph: false, macholib: false, packaging: false, "pyinstaller-hooks-contrib": false, binutils: false, glibc: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 31, 26], ["version", 31, 32], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["downloadPage", 64, 5], ["license", 65, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 35, 3], ["buildInputs", 37, 3], ["dependencies", 39, 3], ["makeWrapperArgs", 46, 3], ["pythonImportsCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const glibc = nix.arg($, "glibc");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pyinstaller",
       version: "6.22.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-BesvVhVQPnKTmnIk1otK/1csawQ47koX0KS0gfOZNi0=",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["PyInstaller"]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to bundle a python application with dependencies into a single package",
         homepage: "https://pyinstaller.org/",
         changelog: nix.thunk(() => nix.str`https://pyinstaller.org/en/v${nix.sel(finalAttrs, "version")}/CHANGES.html`),

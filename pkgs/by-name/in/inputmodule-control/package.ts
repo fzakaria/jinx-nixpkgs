@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["package", 41, 5]], [["version", 40, 18]], [["tests", 40, 12]], [["description", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["downloadPage", 50, 5], ["changelog", 51, 5], ["maintainers", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["buildAndTestSubdir", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["doInstallCheck", 34, 3], ["postInstall", 36, 3], ["passthru", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, testers: false, rustPlatform: false, fetchFromGitHub: false, "inputmodule-control": false, "pkg-config": false, "libudev-zero": false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 40, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 40, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["downloadPage", 50, 5], ["changelog", 51, 5], ["maintainers", 52, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["buildAndTestSubdir", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["doInstallCheck", 34, 3], ["postInstall", 36, 3], ["passthru", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "inputmodule-control";
       const version = "0.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FrameworkComputer",
           repo: "inputmodule-rs",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const postInstall = "install -Dm644 release/50-framework-inputmodule.rules $out/etc/udev/rules.d/50-framework-inputmodule.rules\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: inputmodule_control })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: inputmodule_control })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CLI tool to control Framework input modules like the LED matrix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

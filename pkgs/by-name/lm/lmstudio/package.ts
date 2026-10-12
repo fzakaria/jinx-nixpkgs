@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["mainProgram", 21, 5], ["maintainers", 22, 5], ["platforms", 23, 5], ["sourceProvenance", 28, 5]], [["updateScript", 34, 14]], [["pname", 33, 13], ["meta", 33, 19], ["passthru", 34, 5], ["version", 35, 5], ["url", 36, 5], ["hash", 39, 5]], [["updateScript", 44, 14]], [["pname", 43, 13], ["meta", 43, 19], ["passthru", 44, 5], ["version", 45, 5], ["url", 46, 5], ["hash", 49, 5]], [["updateScript", 54, 14]], [["pname", 53, 13], ["meta", 53, 19], ["passthru", 54, 5], ["version", 55, 5], ["url", 56, 5], ["hash", 59, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["mainProgram", 21, 5], ["maintainers", 22, 5], ["platforms", 23, 5], ["sourceProvenance", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 34, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 13], ["meta", 33, 19], ["passthru", 34, 5], ["version", 35, 5], ["url", 36, 5], ["hash", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 44, 14]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 43, 13], ["meta", 43, 19], ["passthru", 44, 5], ["version", 45, 5], ["url", 46, 5], ["hash", 49, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 54, 14]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 53, 13], ["meta", 53, 19], ["passthru", 54, 5], ["version", 55, 5], ["url", 56, 5], ["hash", 59, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const version_x86_64_linux = "0.4.26-4";
   const hash_x86_64_linux = "sha256-LGKjipOtA8pdqu8ogEiAvhZ1Zng/+vwXPOLhyxC3VS4=";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "LM Studio is an easy to use desktop app for experimenting with local and open-source Large Language Models (LLMs)",
     homepage: "https://lmstudio.ai/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -41,26 +35,26 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   return (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-darwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       meta: meta,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       version: version_aarch64_darwin,
       url: nix.thunk(() => nix.selOr(args_1, () => nix.str`https://installers.lmstudio.ai/darwin/arm64/${version_aarch64_darwin}/LM-Studio-${version_aarch64_darwin}-arm64.dmg`, "url")),
       hash: nix.thunk(() => nix.selOr(args_1, () => hash_aarch64_darwin, "hash")),
     }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       meta: meta,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       version: version_aarch64_linux,
       url: nix.thunk(() => nix.selOr(args_1, () => nix.str`https://installers.lmstudio.ai/linux/arm64/${version_aarch64_linux}/LM-Studio-${version_aarch64_linux}-arm64.AppImage`, "url")),
       hash: nix.thunk(() => nix.selOr(args_1, () => hash_aarch64_linux, "hash")),
     }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       meta: meta,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], updateScript: nix.path(here, "./update.sh") })),
       version: version_x86_64_linux,
       url: nix.thunk(() => nix.selOr(args_1, () => nix.str`https://installers.lmstudio.ai/linux/x64/${version_x86_64_linux}/LM-Studio-${version_x86_64_linux}-x64.AppImage`, "url")),
       hash: nix.thunk(() => nix.selOr(args_1, () => hash_x86_64_linux, "hash")),

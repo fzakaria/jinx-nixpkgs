@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/init.nix", [[["broken", 12, 5], ["mainProgram", 13, 5]], [["path", 7, 3], ["extraPaths", 8, 3], ["MK_TESTS", 9, 3], ["meta", 11, 3]]]);
 const formals$1 = { args: { mkDerivation: false, stdenv: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/init.nix", [["broken", 12, 5], ["mainProgram", 13, 5]]);
-const pos$2 = nix.positions(here + "/init.nix", [["path", 7, 3], ["extraPaths", 8, 3], ["MK_TESTS", 9, 3], ["meta", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const lib = nix.arg($, "lib");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "sbin/init",
       extraPaths: nix.thunk(() => ["sbin/mount"]),
       MK_TESTS: "no",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         broken: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))),
         mainProgram: "init",
       })),

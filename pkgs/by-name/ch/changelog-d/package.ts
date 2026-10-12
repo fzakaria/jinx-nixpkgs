@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["changelog-d", 22, 47]], [["basic", 22, 7]], [["tests", 21, 14]], [["homepage", 26, 7], ["maintainers", 27, 7]], [["passthru", 21, 5], ["meta", 25, 5]]]);
 const formals$1 = { args: { callPackage: false, lib: false, haskell: false, haskellPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["changelog-d", 22, 47]]);
-const pos$2 = nix.positions(here + "/package.nix", [["basic", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 21, 14]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 26, 7], ["maintainers", 27, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["passthru", 21, 5], ["meta", 25, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,19 +18,19 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(haskell, "lib", "justStaticExecutables")),
     ])));
   const mkDerivationOverrides = (finalAttrs) => (oldAttrs) => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     passthru: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       tests: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         basic: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/basic.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "changelog-d": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
       })),
     })),
     meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       homepage: "https://codeberg.org/fgaz/changelog-d",
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "roberth"))]),
     })),

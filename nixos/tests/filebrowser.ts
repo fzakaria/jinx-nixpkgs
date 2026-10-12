@@ -2,27 +2,22 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/filebrowser.nix", [["address", 8, 9], ["port", 9, 9], ["database", 10, 9]]);
-const pos$2 = nix.positions(here + "/filebrowser.nix", [["enable", 6, 7], ["settings", 7, 7]]);
-const pos$3 = nix.positions(here + "/filebrowser.nix", [["filebrowser", 5, 14]]);
-const pos$4 = nix.positions(here + "/filebrowser.nix", [["services", 5, 5]]);
-const pos$5 = nix.positions(here + "/filebrowser.nix", [["machine", 4, 9]]);
-const pos$6 = nix.positions(here + "/filebrowser.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 15, 3]]);
+const $pos = nix.positions(here + "/filebrowser.nix", [[["address", 8, 9], ["port", 9, 9], ["database", 10, 9]], [["enable", 6, 7], ["settings", 7, 7]], [["filebrowser", 5, 14]], [["services", 5, 5]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 15, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$6,
+  [nix.POS]: $pos[5],
   name: "filebrowser",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     machine: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         filebrowser: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           enable: true,
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             address: "localhost",
             port: 8080n,
             database: "/var/lib/filebrowser/filebrowser.db",

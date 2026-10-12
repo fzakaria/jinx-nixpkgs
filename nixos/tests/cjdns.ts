@@ -2,53 +2,12 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cjdns.nix", [[["enable", 9, 22]], [["cjdns", 9, 16]], [["useDHCP", 13, 18]], [["StandardOutput", 16, 44]], [["serviceConfig", 16, 30]], [["cjdns", 16, 24]], [["services", 16, 15]], [["services", 9, 7], ["networking", 13, 7], ["systemd", 16, 7]], [["bind", 32, 37]], [["ETHInterface", 32, 24]], [["enable", 34, 24], ["adminAddr", 35, 24]], [["cjdns", 32, 18], ["httpd", 34, 18]], [["allowedTCPPorts", 36, 29]], [["firewall", 36, 20]], [["imports", 30, 9], ["services", 32, 9], ["networking", 36, 9]], [["address", 48, 13], ["prefixLength", 49, 13]], [["addresses", 46, 41]], [["ipv4", 46, 36]], [["eth1", 46, 31]], [["interfaces", 46, 20]], [["password", 57, 15], ["publicKey", 58, 15]], [["192.168.0.1:1024", 56, 23]], [["bind", 55, 13], ["connectTo", 56, 13]], [["UDPInterface", 54, 11]], [["cjdns", 53, 18]], [["imports", 44, 9], ["networking", 46, 9], ["services", 53, 9]], [["text", 71, 38]], [["cjdns.keys", 71, 25]], [["etc", 71, 21]], [["address", 78, 13], ["prefixLength", 79, 13]], [["addresses", 76, 41]], [["ipv4", 76, 36]], [["eth1", 76, 31]], [["allowedUDPPorts", 88, 29]], [["interfaces", 76, 20], ["firewall", 88, 20]], [["bind", 85, 24]], [["bind", 86, 24]], [["authorizedPasswords", 84, 11], ["ETHInterface", 85, 11], ["UDPInterface", 86, 11]], [["cjdns", 83, 18]], [["imports", 69, 9], ["environment", 71, 9], ["networking", 76, 9], ["services", 83, 9]], [["alice", 27, 5], ["bob", 40, 5], ["carol", 66, 5]], [["name", 23, 3], ["nodes", 25, 3], ["testScript", 93, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cjdns.nix", [["enable", 9, 22]]);
-const pos$2 = nix.positions(here + "/cjdns.nix", [["cjdns", 9, 16]]);
-const pos$3 = nix.positions(here + "/cjdns.nix", [["useDHCP", 13, 18]]);
-const pos$4 = nix.positions(here + "/cjdns.nix", [["StandardOutput", 16, 44]]);
-const pos$5 = nix.positions(here + "/cjdns.nix", [["serviceConfig", 16, 30]]);
-const pos$6 = nix.positions(here + "/cjdns.nix", [["cjdns", 16, 24]]);
-const pos$7 = nix.positions(here + "/cjdns.nix", [["services", 16, 15]]);
-const pos$8 = nix.positions(here + "/cjdns.nix", [["services", 9, 7], ["networking", 13, 7], ["systemd", 16, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$9 = nix.positions(here + "/cjdns.nix", [["bind", 32, 37]]);
-const pos$10 = nix.positions(here + "/cjdns.nix", [["ETHInterface", 32, 24]]);
-const pos$11 = nix.positions(here + "/cjdns.nix", [["enable", 34, 24], ["adminAddr", 35, 24]]);
-const pos$12 = nix.positions(here + "/cjdns.nix", [["cjdns", 32, 18], ["httpd", 34, 18]]);
-const pos$13 = nix.positions(here + "/cjdns.nix", [["allowedTCPPorts", 36, 29]]);
-const pos$14 = nix.positions(here + "/cjdns.nix", [["firewall", 36, 20]]);
-const pos$15 = nix.positions(here + "/cjdns.nix", [["imports", 30, 9], ["services", 32, 9], ["networking", 36, 9]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$16 = nix.positions(here + "/cjdns.nix", [["address", 48, 13], ["prefixLength", 49, 13]]);
-const pos$17 = nix.positions(here + "/cjdns.nix", [["addresses", 46, 41]]);
-const pos$18 = nix.positions(here + "/cjdns.nix", [["ipv4", 46, 36]]);
-const pos$19 = nix.positions(here + "/cjdns.nix", [["eth1", 46, 31]]);
-const pos$20 = nix.positions(here + "/cjdns.nix", [["interfaces", 46, 20]]);
-const pos$21 = nix.positions(here + "/cjdns.nix", [["password", 57, 15], ["publicKey", 58, 15]]);
-const pos$22 = nix.positions(here + "/cjdns.nix", [["192.168.0.1:1024", 56, 23]]);
-const pos$23 = nix.positions(here + "/cjdns.nix", [["bind", 55, 13], ["connectTo", 56, 13]]);
-const pos$24 = nix.positions(here + "/cjdns.nix", [["UDPInterface", 54, 11]]);
-const pos$25 = nix.positions(here + "/cjdns.nix", [["cjdns", 53, 18]]);
-const pos$26 = nix.positions(here + "/cjdns.nix", [["imports", 44, 9], ["networking", 46, 9], ["services", 53, 9]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$27 = nix.positions(here + "/cjdns.nix", [["text", 71, 38]]);
-const pos$28 = nix.positions(here + "/cjdns.nix", [["cjdns.keys", 71, 25]]);
-const pos$29 = nix.positions(here + "/cjdns.nix", [["etc", 71, 21]]);
-const pos$30 = nix.positions(here + "/cjdns.nix", [["address", 78, 13], ["prefixLength", 79, 13]]);
-const pos$31 = nix.positions(here + "/cjdns.nix", [["addresses", 76, 41]]);
-const pos$32 = nix.positions(here + "/cjdns.nix", [["ipv4", 76, 36]]);
-const pos$33 = nix.positions(here + "/cjdns.nix", [["eth1", 76, 31]]);
-const pos$34 = nix.positions(here + "/cjdns.nix", [["allowedUDPPorts", 88, 29]]);
-const pos$35 = nix.positions(here + "/cjdns.nix", [["interfaces", 76, 20], ["firewall", 88, 20]]);
-const pos$36 = nix.positions(here + "/cjdns.nix", [["bind", 85, 24]]);
-const pos$37 = nix.positions(here + "/cjdns.nix", [["bind", 86, 24]]);
-const pos$38 = nix.positions(here + "/cjdns.nix", [["authorizedPasswords", 84, 11], ["ETHInterface", 85, 11], ["UDPInterface", 86, 11]]);
-const pos$39 = nix.positions(here + "/cjdns.nix", [["cjdns", 83, 18]]);
-const pos$40 = nix.positions(here + "/cjdns.nix", [["imports", 69, 9], ["environment", 71, 9], ["networking", 76, 9], ["services", 83, 9]]);
-const pos$41 = nix.positions(here + "/cjdns.nix", [["alice", 27, 5], ["bob", 40, 5], ["carol", 66, 5]]);
-const pos$42 = nix.positions(here + "/cjdns.nix", [["name", 23, 3], ["nodes", 25, 3], ["testScript", 93, 3]]);
 
 export default nix.thunk(() => (() => {
   const carolKey = "2d2a338b46f8e4a8c462f0c385b481292a05f678e19a2b82755258cf0f0af7e2";
@@ -57,19 +16,19 @@ export default nix.thunk(() => (() => {
   const basicConfig = nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     return {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        cjdns: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+        [nix.POS]: $pos[1],
+        cjdns: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
       })),
-      networking: nix.thunk(() => ({ [nix.POS]: pos$3, useDHCP: false })),
+      networking: nix.thunk(() => ({ [nix.POS]: $pos[2], useDHCP: false })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           cjdns: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$4, StandardOutput: "null" })),
+            [nix.POS]: $pos[4],
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[3], StandardOutput: "null" })),
           })),
         })),
       })),
@@ -79,59 +38,59 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$2);
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$42,
+      [nix.POS]: $pos[41],
       name: "cjdns",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$41,
+        [nix.POS]: $pos[40],
         alice: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return {
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             imports: nix.thunk(() => [basicConfig]),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               cjdns: nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                ETHInterface: nix.thunk(() => ({ [nix.POS]: pos$9, bind: "eth1" })),
+                [nix.POS]: $pos[9],
+                ETHInterface: nix.thunk(() => ({ [nix.POS]: $pos[8], bind: "eth1" })),
               })),
-              httpd: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true, adminAddr: "foo@example.org" })),
+              httpd: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true, adminAddr: "foo@example.org" })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$14,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$13, allowedTCPPorts: nix.thunk(() => [80n]) })),
+              [nix.POS]: $pos[13],
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[12], allowedTCPPorts: nix.thunk(() => [80n]) })),
             })),
           };
         })(), formals$3),
         bob: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           return {
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             imports: nix.thunk(() => [basicConfig]),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$17,
+                    [nix.POS]: $pos[16],
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$16, address: "192.168.0.2", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[15], address: "192.168.0.2", prefixLength: 24n })),
                     ]),
                   })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               cjdns: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 UDPInterface: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   bind: "0.0.0.0:1024",
                   connectTo: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
-                    "192.168.0.1:1024": nix.thunk(() => ({ [nix.POS]: pos$21, password: carolPassword, publicKey: carolPubKey })),
+                    [nix.POS]: $pos[21],
+                    "192.168.0.1:1024": nix.thunk(() => ({ [nix.POS]: $pos[20], password: carolPassword, publicKey: carolPubKey })),
                   })),
                 })),
               })),
@@ -141,14 +100,14 @@ export default nix.thunk(() => (() => {
         carol: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$5);
           return {
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             imports: nix.thunk(() => [basicConfig]),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               etc: nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 "cjdns.keys": nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   text: nix.thunk(() => nix.str`CJDNS_PRIVATE_KEY=${carolKey}
 CJDNS_ADMIN_PASSWORD=FOOBAR
 `),
@@ -156,28 +115,28 @@ CJDNS_ADMIN_PASSWORD=FOOBAR
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$32,
+                  [nix.POS]: $pos[31],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$31,
+                    [nix.POS]: $pos[30],
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$30, address: "192.168.0.1", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[29], address: "192.168.0.1", prefixLength: 24n })),
                     ]),
                   })),
                 })),
               })),
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$34, allowedUDPPorts: nix.thunk(() => [1024n]) })),
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[33], allowedUDPPorts: nix.thunk(() => [1024n]) })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$39,
+              [nix.POS]: $pos[38],
               cjdns: nix.thunk(() => ({
-                [nix.POS]: pos$38,
+                [nix.POS]: $pos[37],
                 authorizedPasswords: nix.thunk(() => [carolPassword]),
-                ETHInterface: nix.thunk(() => ({ [nix.POS]: pos$36, bind: "eth1" })),
-                UDPInterface: nix.thunk(() => ({ [nix.POS]: pos$37, bind: "192.168.0.1:1024" })),
+                ETHInterface: nix.thunk(() => ({ [nix.POS]: $pos[35], bind: "eth1" })),
+                UDPInterface: nix.thunk(() => ({ [nix.POS]: $pos[36], bind: "192.168.0.1:1024" })),
               })),
             })),
           };

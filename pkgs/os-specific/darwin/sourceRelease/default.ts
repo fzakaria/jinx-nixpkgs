@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 3], ["repo", 19, 3], ["rev", 20, 3], ["hash", 21, 22]], [["version", 24, 22]]]);
 const formals$1 = { args: { fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 3], ["repo", 19, 3], ["rev", 20, 3], ["hash", 21, 22]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 24, 22]]);
 
 export default nix.thunk(() => (() => {
   const lockfile = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./versions.json")))));
@@ -14,12 +13,12 @@ export default nix.thunk(() => (() => {
     return (name) => (() => {
       const lockinfo = nix.thunk(() => nix.sel(lockfile, nix.key(nix.force(name))));
       return nix.update(nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apple-oss-distributions",
           repo: name,
           rev: nix.thunk(() => nix.selOr(lockinfo, () => nix.str`${name}-${nix.sel(lockinfo, "version")}`, "rev")),
           hash: nix.thunk(() => nix.attr(lockinfo, "hash")),
-        }))), { [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(lockinfo, "version")) });
+        }))), { [nix.POS]: $pos[1], version: nix.thunk(() => nix.attr(lockinfo, "version")) });
     })();
   })(), formals$1);
 })());

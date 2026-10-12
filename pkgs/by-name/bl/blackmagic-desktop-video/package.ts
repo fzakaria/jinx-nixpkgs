@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["country", 55, 11], ["downloadOnly", 56, 11], ["platform", 57, 11], ["policy", 58, 11]], [["outputHashMode", 31, 9], ["outputHashAlgo", 32, 9], ["outputHash", 33, 9], ["impureEnvVars", 35, 9], ["nativeBuildInputs", 37, 9], ["SSL_CERT_FILE", 43, 9], ["DOWNLOADSURL", 45, 9], ["USERAGENT", 47, 9], ["REQJSON", 54, 9], ["PRODUCT", 61, 9], ["VERSION", 62, 9]], [["name", 95, 5], ["runtimeInputs", 96, 5], ["text", 101, 5]], [["updateScript", 93, 12]], [["homepage", 135, 5], ["maintainers", 136, 5], ["license", 137, 5], ["description", 138, 5], ["platforms", 139, 5]], [["pname", 16, 3], ["version", 17, 3], ["buildInputs", 19, 3], ["src", 28, 3], ["passthru", 93, 3], ["postUnpack", 110, 3], ["installPhase", 119, 3], ["appendRunpaths", 132, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, cacert: false, "common-updater-scripts": false, curl: false, gcc: false, jq: false, lib: false, libGL: false, libcxx: false, runCommandLocal: false, stdenv: false, writeShellApplication: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["country", 55, 11], ["downloadOnly", 56, 11], ["platform", 57, 11], ["policy", 58, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["outputHashMode", 31, 9], ["outputHashAlgo", 32, 9], ["outputHash", 33, 9], ["impureEnvVars", 35, 9], ["nativeBuildInputs", 37, 9], ["SSL_CERT_FILE", 43, 9], ["DOWNLOADSURL", 45, 9], ["USERAGENT", 47, 9], ["REQJSON", 54, 9], ["PRODUCT", 61, 9], ["VERSION", 62, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 95, 5], ["runtimeInputs", 96, 5], ["text", 101, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 93, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 135, 5], ["maintainers", 136, 5], ["license", 137, 5], ["description", 138, 5], ["platforms", 139, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["buildInputs", 19, 3], ["src", 28, 3], ["passthru", 93, 3], ["postUnpack", 110, 3], ["installPhase", 119, 3], ["appendRunpaths", 132, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const writeShellApplication = nix.arg($, "writeShellApplication");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "blackmagic-desktop-video",
       version: "16.3",
       buildInputs: nix.thunk(() => [autoPatchelfHook, libcxx, libGL, nix.thunk(() => nix.sel(gcc, "cc", "lib"))]),
       src: nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}-src.tar.gz`), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           outputHashMode: "recursive",
           outputHashAlgo: "sha256",
           outputHash: "sha256-GKIDNLJq5SOwfTT/wjmW2h42bzk6f0eB4AgqSnpmH74=",
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
               "Safari/537.36",
             ]))),
           REQJSON: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               country: "nl",
               downloadOnly: true,
               platform: "Linux",
@@ -55,9 +50,9 @@ export default nix.lambda((args) => (() => {
           VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         })), "DOWNLOADID=$(\n  curl --silent --compressed \"$DOWNLOADSURL\" \\\n    | jq --raw-output '.downloads[] | .urls.Linux?[]? | select(.downloadTitle | test(\"^'\"$PRODUCT $VERSION\"'( Update)?$\")) | .downloadId'\n)\nREFERID=$(\n  curl --silent --compressed \"$DOWNLOADSURL\" \\\n    | jq --raw-output '.downloads[] | .urls.Linux?[]? | select(.downloadTitle | test(\"^'\"$PRODUCT $VERSION\"'( Update)?$\")) | .releaseId'\n)\necho \"Download ID is $DOWNLOADID\"\necho \"Refer ID is $REFERID\"\ntest -n \"$REFERID\"\ntest -n \"$DOWNLOADID\"\nSITEURL=\"https://www.blackmagicdesign.com/api/register/us/download/$DOWNLOADID\";\nRESOLVEURL=$(curl \\\n  -s \\\n  -H \"$USERAGENT\" \\\n  -H 'Content-Type: application/json;charset=UTF-8' \\\n  -H \"Referer: https://www.blackmagicdesign.com/support/download/$REFERID/Linux\" \\\n  --data-ascii \"$REQJSON\" \\\n  --compressed \\\n  \"$SITEURL\")\ncurl \\\n  --retry 3 --retry-delay 3 \\\n  --compressed \\\n  \"$RESOLVEURL\" \\\n  > $out\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "update-blackmagic-desktop-video",
               runtimeInputs: nix.thunk(() => [common_updater_scripts, curl, jq]),
               text: "set -o errexit\ndownloadsJSON=\"$(curl --fail --silent https://www.blackmagicdesign.com/api/support/us/downloads.json)\"\nlatestLinuxVersion=\"$(echo \"$downloadsJSON\" | jq '[.downloads[] | select(.urls.Linux) | .urls.Linux[] | select(.downloadTitle | test(\"Desktop Video\")) | .downloadTitle]' | grep -oP 'Desktop Video \\K\\d\\d\\.\\d+(\\.\\d+)?' | sort | tail -n 1)\"\n\nupdate-source-version blackmagic-desktop-video \"$latestLinuxVersion\"\n",
@@ -72,7 +67,7 @@ unpacked=$NIX_BUILD_TOP/desktopvideo-${nix.sel(finalAttrs, "version")}*-${nix.se
       installPhase: "runHook preInstall\nmkdir -p $out/{bin,share/doc,lib/systemd/system}\ncp -r $unpacked/usr/share/doc/desktopvideo $out/share/doc\ncp $unpacked/usr/lib/*.so $out/lib\ncp $unpacked/usr/lib/systemd/system/DesktopVideoHelper.service $out/lib/systemd/system\ncp $unpacked/usr/lib/blackmagic/DesktopVideo/DesktopVideoHelper $out/bin/\nsubstituteInPlace $out/lib/systemd/system/DesktopVideoHelper.service \\\n  --replace-fail \"/usr/lib/blackmagic/DesktopVideo/DesktopVideoHelper\" \"$out/bin/DesktopVideoHelper\"\nrunHook postInstall\n",
       appendRunpaths: nix.thunk(() => [nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.blackmagicdesign.com/support/family/capture-and-playback",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "naxdy"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

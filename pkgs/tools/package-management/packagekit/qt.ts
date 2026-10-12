@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qt.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 32, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 23, 3], ["dontWrapQtApps", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, qttools: false, packagekit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qt.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/qt.nix", [["description", 32, 5]]);
-const pos$3 = nix.positions(here + "/qt.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 23, 3], ["dontWrapQtApps", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "packagekit-qt";
       const version = "1.1.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hughsie",
           repo: "PackageKit-Qt",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config, qttools]);
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => nix.update(nix.sel(packagekit, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "System to facilitate installing and updating packages - Qt",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 87, 5], ["repo", 88, 5], ["tag", 89, 5], ["hash", 90, 5]], [["mainProgram", 116, 7]], [["pname", 94, 5], ["version", 95, 5], ["src", 96, 13], ["sourceRoot", 98, 5], ["cargoHash", 100, 5], ["checkFlags", 102, 5], ["nativeInstallCheckInputs", 110, 5], ["doInstallCheck", 113, 5], ["meta", 115, 5]], [["pname", 124, 5], ["version", 125, 5], ["src", 126, 13], ["sourceRoot", 128, 5], ["cargoHash", 130, 5], ["nativeCheckInputs", 132, 5], ["postInstall", 141, 5], ["__darwinAllowLocalNetworking", 145, 5]], [["mainProgram", 196, 10]], [["pname", 149, 5], ["src", 150, 13], ["version", 150, 17], ["sourceRoot", 152, 5], ["postPatch", 154, 5], ["vendorHash", 170, 5], ["nativeBuildInputs", 172, 5], ["nativeInstallCheckInputs", 177, 5], ["doInstallCheck", 180, 5], ["checkFlags", 182, 5], ["__darwinAllowLocalNetworking", 194, 5], ["meta", 196, 5]], [["WANDB_BUILD_SKIP_WANDB_XPU", 232, 5], ["WANDB_BUILD_SKIP_ORJSON", 233, 5], ["WANDB_BUILD_UNIVERSAL", 234, 5]], [["wandb-core", 451, 7], ["wandb-xpu", 452, 7], ["parquet-rust-wrapper", 453, 7]], [["description", 458, 5], ["homepage", 459, 5], ["changelog", 460, 5], ["license", 461, 5], ["maintainers", 462, 5], ["mainProgram", 463, 5], ["broken", 464, 5]], [["pname", 201, 3], ["pyproject", 202, 3], ["src", 204, 11], ["version", 204, 15], ["postPatch", 206, 3], ["env", 228, 3], ["build-system", 237, 3], ["dependencies", 241, 3], ["__darwinAllowLocalNetworking", 257, 3], ["nativeCheckInputs", 259, 3], ["pytestFlags", 307, 3], ["disabledTestPaths", 311, 3], ["disabledTests", 329, 3], ["passthru", 449, 3], ["meta", 457, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pythonAtLeast: false, buildGo127Module: false, gitMinimal: false, writableTmpDirAsHomeHook: false, versionCheckHook: false, rustPlatform: false, cacert: false, buildPythonPackage: false, hatchling: false, click: false, "opentelemetry-api": false, "opentelemetry-exporter-otlp-proto-http": false, "opentelemetry-sdk": false, packaging: false, platformdirs: false, protobuf: false, pydantic: false, pyyaml: false, requests: false, setproctitle: false, "typing-extensions": false, xxhash: false, "azure-containerregistry": false, "azure-core": false, "azure-identity": false, "azure-storage-blob": false, bokeh: false, boto3: false, cloudpickle: false, cwsandbox: false, flask: false, "google-cloud-artifact-registry": false, "google-cloud-compute": false, "google-cloud-storage": false, hypothesis: false, jsonschema: false, kubernetes: false, "kubernetes-asyncio": false, looptime: false, matplotlib: false, moto: false, moviepy: false, pandas: false, parameterized: false, pillow: false, plotly: false, pyfakefs: false, pyte: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-mock": false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, rdkit: false, responses: false, "scikit-learn": false, soundfile: false, sweeps: false, tenacity: false, torch: false, torchvision: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 87, 5], ["repo", 88, 5], ["tag", 89, 5], ["hash", 90, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mainProgram", 116, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 94, 5], ["version", 95, 5], ["src", 96, 13], ["sourceRoot", 98, 5], ["cargoHash", 100, 5], ["checkFlags", 102, 5], ["nativeInstallCheckInputs", 110, 5], ["doInstallCheck", 113, 5], ["meta", 115, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 124, 5], ["version", 125, 5], ["src", 126, 13], ["sourceRoot", 128, 5], ["cargoHash", 130, 5], ["nativeCheckInputs", 132, 5], ["postInstall", 141, 5], ["__darwinAllowLocalNetworking", 145, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["mainProgram", 196, 10]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 149, 5], ["src", 150, 13], ["version", 150, 17], ["sourceRoot", 152, 5], ["postPatch", 154, 5], ["vendorHash", 170, 5], ["nativeBuildInputs", 172, 5], ["nativeInstallCheckInputs", 177, 5], ["doInstallCheck", 180, 5], ["checkFlags", 182, 5], ["__darwinAllowLocalNetworking", 194, 5], ["meta", 196, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["WANDB_BUILD_SKIP_WANDB_XPU", 232, 5], ["WANDB_BUILD_SKIP_ORJSON", 233, 5], ["WANDB_BUILD_UNIVERSAL", 234, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["wandb-core", 451, 7], ["wandb-xpu", 452, 7], ["parquet-rust-wrapper", 453, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 458, 5], ["homepage", 459, 5], ["changelog", 460, 5], ["license", 461, 5], ["maintainers", 462, 5], ["mainProgram", 463, 5], ["broken", 464, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 201, 3], ["pyproject", 202, 3], ["src", 204, 11], ["version", 204, 15], ["postPatch", 206, 3], ["env", 228, 3], ["build-system", 237, 3], ["dependencies", 241, 3], ["__darwinAllowLocalNetworking", 257, 3], ["nativeCheckInputs", 259, 3], ["pytestFlags", 307, 3], ["disabledTestPaths", 311, 3], ["disabledTests", 329, 3], ["passthru", 449, 3], ["meta", 457, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -84,14 +75,14 @@ export default nix.lambda((args) => (() => {
   const tqdm = nix.arg($, "tqdm");
   const version = "0.30.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "wandb",
       repo: "wandb",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-4ccIM8bXbz8IkZeMBdr5zqoG7IxwwW8lb/VKIOOJWeE=",
     }))));
   const wandb_xpu = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wandb-xpu",
       version: "0.7.1",
       src: src,
@@ -103,13 +94,13 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "wandb-xpu" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[1], mainProgram: "wandb-xpu" })),
     }))));
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions"));
   const sharedLibrary = nix.thunk(() => nix.attr(from, "sharedLibrary"));
   const libRustParquet = nix.thunk(() => nix.str`librust_parquet_ffi${sharedLibrary}`);
   const parquet_rust_wrapper = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "arrow-rs-wrapper",
       version: "0.1.1",
       src: src,
@@ -121,7 +112,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
     }))));
   const wandb_core = nix.thunk(() => nix.app(buildGo127Module, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "wandb-core",
       src: src,
       version: version,
@@ -151,10 +142,10 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       __darwinAllowLocalNetworking: true,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$5, mainProgram: "wandb-core" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[4], mainProgram: "wandb-core" })),
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "wandb",
       pyproject: true,
       src: src,
@@ -169,7 +160,7 @@ export default nix.lambda((args) => (() => {
     '["${nix.app(nix.sel(lib, "getExe"), gitMinimal)}", "apply",' \\
 `)),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         WANDB_BUILD_SKIP_WANDB_XPU: true,
         WANDB_BUILD_SKIP_ORJSON: true,
         WANDB_BUILD_UNIVERSAL: true,
@@ -310,13 +301,13 @@ export default nix.lambda((args) => (() => {
           "test_setup_offline",
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_watch_graph_torch_jit", "test_watch_parameters_torch_jit"]))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         "wandb-core": wandb_core,
         "wandb-xpu": wandb_xpu,
         "parquet-rust-wrapper": parquet_rust_wrapper,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "CLI and library for interacting with the Weights and Biases API",
         homepage: "https://github.com/wandb/wandb",
         changelog: nix.thunk(() => nix.str`https://github.com/wandb/wandb/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

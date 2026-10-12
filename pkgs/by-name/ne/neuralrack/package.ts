@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["fetchSubmodules", 25, 5]], [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["mainProgram", 77, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["makeFlags", 46, 3], ["postPatch", 59, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, cairo: false, fetchFromGitHub: false, lib: false, libjack2: false, libsndfile: false, libx11: false, lv2: false, "pkg-config": false, stdenv: false, xorgproto: false, xxd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["fetchSubmodules", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["mainProgram", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["makeFlags", 46, 3], ["postPatch", 59, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const xxd = nix.arg($, "xxd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "neuralrack",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "brummer10",
           repo: "NeuralRack",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace NeuralRack/makefile \\\n  --replace-fail \"-flto=auto\" \"\" \\\n  --replace-fail \"pkg-config\" '$(PKG_CONFIG)'\n\nsubstituteInPlace libxputty/Build/Makefile \\\n  --replace-fail \"pkg-config\" '$(PKG_CONFIG)'\n\nsubstituteInPlace libxputty/Build/Makefile.base \\\n  --replace-fail \"pkg-config\" '$(PKG_CONFIG)'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/brummer10/NeuralRack",
         description: "Neural Model and Impulse Response (IR) File loader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

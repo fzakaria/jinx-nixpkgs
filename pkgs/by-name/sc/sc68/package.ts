@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["CFLAGS", 53, 7]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 26, 3], ["preConfigure", 31, 3], ["enableParallelBuilding", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["env", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchsvn: false, "pkg-config": false, which: false, autoconf: false, automake: false, libtool: false, hexdump: false, libao: false, zlib: false, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 26, 3], ["preConfigure", 31, 3], ["enableParallelBuilding", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["env", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const curl = nix.arg($, "curl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sc68",
       version: "2.2.1-unstable-2024-09-09",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "svn://svn.code.sf.net/p/sc68/code/",
           rev: "713",
           sha256: "sha256-kiOHUixsf/2mFMzi6P7oC7ujyydLO7K3w7Vwr/GMOvY=",
@@ -37,9 +34,9 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       nativeBuildInputs: nix.thunk(() => [autoconf, automake, hexdump, libtool, pkg_config, which]),
       buildInputs: nix.thunk(() => [curl, libao, zlib]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-std=c99" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CFLAGS: "-std=c99" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Atari ST and Amiga music player",
         homepage: "http://sc68.atari.org/project.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["homepage", 48, 5], ["description", 49, 5], ["mainProgram", 50, 5], ["platforms", 51, 5], ["license", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 22, 3], ["strictDeps", 28, 3], ["doCheck", 30, 3], ["installPhase", 32, 3], ["preFixup", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3Packages: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["mainProgram", 50, 5], ["platforms", 51, 5], ["license", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 22, 3], ["strictDeps", 28, 3], ["doCheck", 30, 3], ["installPhase", 32, 3], ["preFixup", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "carddav",
       version: "0.1-2014-02-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ljanyst",
           repo: "carddav-util",
           rev: "53b181faff5f154bcd180467dd04c0ce69405564",
@@ -45,7 +43,7 @@ cp $src/carddav.py "$pythondir"
 `),
       preFixup: "wrapProgram \"$out/bin/carddav-util.py\" \\\n  --prefix PYTHONPATH : \"$PYTHONPATH:$(toPythonPath $out)\" \\\n  --prefix PATH : \"$prefix/bin:$PATH\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ljanyst/carddav-util",
         description: "CardDAV import/export utility",
         mainProgram: "carddav-util.py",

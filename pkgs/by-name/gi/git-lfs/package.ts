@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["updateScript", 101, 5]], [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 115, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["proxyVendor", 24, 3], ["vendorHash", 25, 3], ["nativeBuildInputs", 27, 3], ["ldflags", 32, 3], ["subPackages", 38, 3], ["preBuild", 40, 3], ["postBuild", 44, 3], ["nativeCheckInputs", 48, 3], ["preCheck", 50, 3], ["checkFlags", 54, 3], ["postInstall", 85, 3], ["nativeInstallCheckInputs", 95, 3], ["doInstallCheck", 98, 3], ["passthru", 100, 3], ["__darwinAllowLocalNetworking", 104, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, asciidoctor: false, installShellFiles: false, git: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 101, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 115, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["proxyVendor", 24, 3], ["vendorHash", 25, 3], ["nativeBuildInputs", 27, 3], ["ldflags", 32, 3], ["subPackages", 38, 3], ["preBuild", 40, 3], ["postBuild", 44, 3], ["nativeCheckInputs", 48, 3], ["preCheck", 50, 3], ["checkFlags", 54, 3], ["postInstall", 85, 3], ["nativeInstallCheckInputs", 95, 3], ["doInstallCheck", 98, 3], ["passthru", 100, 3], ["__darwinAllowLocalNetworking", 104, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "git-lfs",
       version: "3.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "git-lfs",
           repo: "git-lfs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,12 +72,12 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Git extension for versioning large files",
         homepage: "https://git-lfs.github.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/git-lfs/git-lfs/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

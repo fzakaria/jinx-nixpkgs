@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["version", 26, 28]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["postPatch", 30, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 47, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, replaceVars: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 26, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["postPatch", 30, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 47, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +13,22 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vim-vint",
       version: "0.3.21",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Vimjas",
           repo: "vint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-A0yXDkB/b9kEEXSoLeqVdmdm4p2PYL2QHqbF4FgAn30=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./remove-pkg-resources.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./remove-pkg-resources.patch"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            version: nix.thunk(() => nix.attr(finalAttrs, "version")),
+          })))),
       ]),
       postPatch: "substituteInPlace \\\n  test/acceptance/test_cli.py \\\n  test/acceptance/test_cli_vital.py \\\n  --replace-fail \\\n    \"cmd = ['bin/vint'\" \\\n    \"cmd = ['$out/bin/vint'\"\n",
       "build-system": nix.thunk(() => (() => {
@@ -51,7 +51,7 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast and Highly Extensible Vim script Language Lint implemented by Python",
         homepage: "https://github.com/Kuniwak/vint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

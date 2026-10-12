@@ -2,26 +2,11 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mruby.nix", [[["maintainers", 12, 5]], [["withMruby", 21, 41]], [["mruby.handler", 28, 21]], [["mruby.handler-file", 36, 21]], [["/hello_world", 27, 19], ["/file_handler", 35, 19]], [["paths", 26, 17]], [["listen", 23, 13], ["hosts", 24, 13]], [["enable", 20, 11], ["package", 21, 11], ["settings", 22, 11]], [["h2o", 19, 18]], [["allowedTCPPorts", 44, 29]], [["firewall", 44, 20]], [["services", 19, 9], ["networking", 44, 9]], [["systemPackages", 52, 21]], [["environment", 52, 9]], [["server", 16, 5], ["client", 49, 5]], [["name", 9, 3], ["meta", 11, 3], ["nodes", 15, 3], ["testScript", 58, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mruby.nix", [["maintainers", 12, 5]]);
 const formals$2 = { args: { pkgs: false, config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/mruby.nix", [["withMruby", 21, 41]]);
-const pos$3 = nix.positions(here + "/mruby.nix", [["mruby.handler", 28, 21]]);
-const pos$4 = nix.positions(here + "/mruby.nix", [["mruby.handler-file", 36, 21]]);
-const pos$5 = nix.positions(here + "/mruby.nix", [["/hello_world", 27, 19], ["/file_handler", 35, 19]]);
-const pos$6 = nix.positions(here + "/mruby.nix", [["paths", 26, 17]]);
-const pos$7 = nix.positions(here + "/mruby.nix", [["listen", 23, 13], ["hosts", 24, 13]]);
-const pos$8 = nix.positions(here + "/mruby.nix", [["enable", 20, 11], ["package", 21, 11], ["settings", 22, 11]]);
-const pos$9 = nix.positions(here + "/mruby.nix", [["h2o", 19, 18]]);
-const pos$10 = nix.positions(here + "/mruby.nix", [["allowedTCPPorts", 44, 29]]);
-const pos$11 = nix.positions(here + "/mruby.nix", [["firewall", 44, 20]]);
-const pos$12 = nix.positions(here + "/mruby.nix", [["services", 19, 9], ["networking", 44, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/mruby.nix", [["systemPackages", 52, 21]]);
-const pos$14 = nix.positions(here + "/mruby.nix", [["environment", 52, 9]]);
-const pos$15 = nix.positions(here + "/mruby.nix", [["server", 16, 5], ["client", 49, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/mruby.nix", [["name", 9, 3], ["meta", 11, 3], ["nodes", 15, 3], ["testScript", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,45 +14,48 @@ export default nix.lambda((args) => (() => {
   const domain = "h2o.local";
   const sawatdi_chao_lok = "สวัสดีชาวโลก";
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "h2o-mruby",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "toastal"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             h2o: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
-              package: nix.thunk(() => nix.app(nix.sel(pkgs, "h2o", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withMruby: true })))),
+              package: nix.thunk(() => nix.app(nix.sel(pkgs, "h2o", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], withMruby: true })))),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 listen: 8080n,
                 hosts: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`${domain}`, nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     paths: nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       "/hello_world": nix.thunk(() => ({
-                        [nix.POS]: pos$3,
+                        [nix.POS]: $pos[2],
                         "mruby.handler": nix.thunk(() => nix.str`Proc.new do |env|
   [200, {'content-type' => 'text/plain'}, ["${sawatdi_chao_lok}"]]
 end
 `),
                       })),
-                      "/file_handler": nix.thunk(() => ({ [nix.POS]: pos$4, "mruby.handler-file": nix.path(here, "./file_handler.rb") })),
+                      "/file_handler": nix.thunk(() => ({
+                        [nix.POS]: $pos[3],
+                        "mruby.handler-file": nix.path(here, "./file_handler.rb"),
+                      })),
                     })),
                   }))],
                 ])),
@@ -75,9 +63,9 @@ end
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "h2o", "settings", "listen"))]),
             })),
           })),
@@ -87,9 +75,9 @@ end
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),
         };

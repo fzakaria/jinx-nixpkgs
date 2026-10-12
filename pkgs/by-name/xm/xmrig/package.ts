@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]], [["description", 118, 5], ["homepage", 119, 5], ["license", 120, 5], ["mainProgram", 121, 5], ["platforms", 122, 5], ["maintainers", 123, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 52, 3], ["postPatch", 56, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 72, 3], ["cmakeFlags", 79, 3], ["donateLevel", 104, 11], ["installPhase", 106, 3], ["hardeningDisable", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, libuv: false, libmicrohttpd: false, openssl: false, hwloc: false, kmod: false, donateLevel: true, enableCnLite: true, enableCnHeavy: true, enableCnPico: true, enableCnFemto: true, enableRandomx: true, enableArgon2: true, enableKawpow: true, enableGhostrider: true, withHwloc: true, withHttp: true, withTls: true, enableAsm: true, enableMsr: true, enableProfiling: true, enableSse4_1: true, enableBenchmark: true, enableDmi: true, enableDebugLog: true, enableHwlocDebug: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 118, 5], ["homepage", 119, 5], ["license", 120, 5], ["mainProgram", 121, 5], ["platforms", 122, 5], ["maintainers", 123, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 52, 3], ["postPatch", 56, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 72, 3], ["cmakeFlags", 79, 3], ["donateLevel", 104, 11], ["installPhase", 106, 3], ["hardeningDisable", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const enableDebugLog = nix.argOr($, "enableDebugLog", () => false);
   const enableHwlocDebug = nix.argOr($, "enableHwlocDebug", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xmrig",
       version: "6.26.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xmrig",
           repo: "xmrig",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -85,7 +83,7 @@ runHook postInstall
 `),
       hardeningDisable: nix.thunk(() => ["fortify"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Monero (XMR) CPU miner",
         homepage: "https://github.com/xmrig/xmrig",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

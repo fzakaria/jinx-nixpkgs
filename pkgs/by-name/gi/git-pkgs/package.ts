@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["mainProgram", 47, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["subPackages", 21, 3], ["ldflags", 23, 3], ["nativeBuildInputs", 27, 3], ["postBuild", 29, 3], ["postInstall", 34, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildGoModule: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["mainProgram", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["subPackages", 21, 3], ["ldflags", 23, 3], ["nativeBuildInputs", 27, 3], ["postBuild", 29, 3], ["postInstall", 34, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "git-pkgs";
       const version = "0.21.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "git-pkgs",
           repo: "git-pkgs",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const postBuild = "go run scripts/generate-man/main.go\ninstallManPage man/*.1\n";
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd git-pkgs \\\n  --bash <($out/bin/git-pkgs completion bash) \\\n  --fish <($out/bin/git-pkgs completion fish) \\\n  --zsh <($out/bin/git-pkgs completion zsh)\n"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/git-pkgs/git-pkgs",
         description: "Git subcommand for analyzing package/dependency usage in git repositories over time",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "git-pkgs",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 5], ["version", 22, 13], ["hash", 23, 5]], [["shaper", 31, 25]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 17, 3], ["build-system", 18, 3], ["src", 20, 3], ["dependencies", 26, 3], ["optional-dependencies", 31, 3], ["nativeCheckInputs", 36, 3], ["disabledTestPaths", 37, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, babelfont: false, buildPythonPackage: false, fetchPypi: false, fonttools: false, lxml: false, pytestCheckHook: false, youseedee: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 5], ["version", 22, 13], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["shaper", 31, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 17, 3], ["build-system", 18, 3], ["src", 20, 3], ["dependencies", 26, 3], ["optional-dependencies", 31, 3], ["nativeCheckInputs", 36, 3], ["disabledTestPaths", 37, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,17 +22,17 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools_scm]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "fontfeatures",
           version: version,
           hash: "sha256-3PpUgaTXyFcthJrFaQqeUOvDYYFosJeXuRFnFrwp0R8=",
         }))));
       const dependencies = nix.thunk(() => [fonttools, lxml]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, shaper: nix.thunk(() => [babelfont, youseedee]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], shaper: nix.thunk(() => [babelfont, youseedee]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_shaping_generic.py", "tests/test_shaping_harfbuzz.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library for compiling OpenType font features",
         homepage: "https://github.com/simoncozens/fontFeatures",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

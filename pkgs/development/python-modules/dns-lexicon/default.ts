@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["route53", 54, 5], ["localzone", 55, 5], ["softlayer", 56, 5], ["ddns", 57, 5], ["duckdns", 58, 5], ["oci", 59, 5], ["full", 60, 5]], [["description", 98, 5], ["mainProgram", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 42, 3], ["propagatedBuildInputs", 44, 3], ["optional-dependencies", 53, 3], ["nativeCheckInputs", 70, 3], ["enabledTestPaths", 76, 3], ["disabledTestPaths", 78, 3], ["disabledTests", 85, 3], ["pythonImportsCheck", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, beautifulsoup4: false, boto3: false, buildPythonPackage: false, cryptography: false, dnspython: false, fetchFromGitHub: false, localzone: false, oci: false, "poetry-core": false, pyotp: false, "pytest-vcr": false, pytestCheckHook: false, pyyaml: false, requests: false, softlayer: false, tldextract: false, zeep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["route53", 54, 5], ["localzone", 55, 5], ["softlayer", 56, 5], ["ddns", 57, 5], ["duckdns", 58, 5], ["oci", 59, 5], ["full", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 98, 5], ["mainProgram", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 42, 3], ["propagatedBuildInputs", 44, 3], ["optional-dependencies", 53, 3], ["nativeCheckInputs", 70, 3], ["enabledTestPaths", 76, 3], ["disabledTestPaths", 78, 3], ["disabledTests", 85, 3], ["pythonImportsCheck", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.16.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Analogj",
           repo: "lexicon",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [poetry_core]);
       const propagatedBuildInputs = nix.thunk(() => [beautifulsoup4, cryptography, pyotp, pyyaml, requests, tldextract]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         route53: nix.thunk(() => [boto3]),
         localzone: nix.thunk(() => [localzone]),
         softlayer: nix.thunk(() => [softlayer]),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["lexicon"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Manipulate DNS records on various DNS providers in a standardized way",
         mainProgram: "lexicon",
         homepage: "https://github.com/AnalogJ/lexicon",
@@ -77,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

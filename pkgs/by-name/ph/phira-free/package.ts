@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 12, 5], ["version", 13, 5], ["nativeBuildInputs", 15, 5], ["dontUnpack", 17, 5], ["installPhase", 19, 5]], [["overrideAssets", 11, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, phira: false, "phira-unwrapped": false, imagemagick: false, "ubuntu-classic": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 12, 5], ["version", 13, 5], ["nativeBuildInputs", 15, 5], ["dontUnpack", 17, 5], ["installPhase", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["overrideAssets", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const ubuntu_classic = nix.arg($, "ubuntu-classic");
   return nix.app(nix.sel(phira, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       overrideAssets: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "phira-assets",
           version: nix.thunk(() => nix.sel(phira, "version")),
           nativeBuildInputs: nix.thunk(() => [imagemagick]),

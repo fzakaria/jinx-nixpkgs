@@ -2,71 +2,58 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vault-postgresql.nix", [[["maintainers", 13, 5]], [["VAULT_ADDR", 21, 29]], [["systemPackages", 20, 19], ["variables", 21, 19]], [["enable", 22, 22], ["extraSettingsPaths", 23, 22]], [["enable", 35, 27], ["initialScript", 36, 27]], [["vault", 22, 16], ["postgresql", 35, 16]], [["RestartSec", 30, 23]], [["StartLimitBurst", 31, 20]], [["after", 26, 9], ["serviceConfig", 30, 9], ["unitConfig", 31, 9]], [["vault", 25, 24]], [["services", 25, 15]], [["environment", 20, 7], ["services", 22, 7], ["systemd", 25, 7]], [["machine", 17, 9]], [["name", 11, 3], ["meta", 12, 3], ["nodes", 17, 3], ["testScript", 54, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/vault-postgresql.nix", [["maintainers", 13, 5]]);
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/vault-postgresql.nix", [["VAULT_ADDR", 21, 29]]);
-const pos$3 = nix.positions(here + "/vault-postgresql.nix", [["systemPackages", 20, 19], ["variables", 21, 19]]);
-const pos$4 = nix.positions(here + "/vault-postgresql.nix", [["enable", 22, 22], ["extraSettingsPaths", 23, 22]]);
-const pos$5 = nix.positions(here + "/vault-postgresql.nix", [["enable", 35, 27], ["initialScript", 36, 27]]);
-const pos$6 = nix.positions(here + "/vault-postgresql.nix", [["vault", 22, 16], ["postgresql", 35, 16]]);
-const pos$7 = nix.positions(here + "/vault-postgresql.nix", [["RestartSec", 30, 23]]);
-const pos$8 = nix.positions(here + "/vault-postgresql.nix", [["StartLimitBurst", 31, 20]]);
-const pos$9 = nix.positions(here + "/vault-postgresql.nix", [["after", 26, 9], ["serviceConfig", 30, 9], ["unitConfig", 31, 9]]);
-const pos$10 = nix.positions(here + "/vault-postgresql.nix", [["vault", 25, 24]]);
-const pos$11 = nix.positions(here + "/vault-postgresql.nix", [["services", 25, 15]]);
-const pos$12 = nix.positions(here + "/vault-postgresql.nix", [["environment", 20, 7], ["services", 22, 7], ["systemd", 25, 7]]);
-const pos$13 = nix.positions(here + "/vault-postgresql.nix", [["machine", 17, 9]]);
-const pos$14 = nix.positions(here + "/vault-postgresql.nix", [["name", 11, 3], ["meta", 12, 3], ["nodes", 17, 3], ["testScript", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "vault-postgresql",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "roberth"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "vault"))]),
-            variables: nix.thunk(() => ({ [nix.POS]: pos$2, VAULT_ADDR: "http://127.0.0.1:8200" })),
+            variables: nix.thunk(() => ({ [nix.POS]: $pos[1], VAULT_ADDR: "http://127.0.0.1:8200" })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             vault: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               extraSettingsPaths: nix.thunk(() => ["/run/vault.hcl"]),
             })),
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "init.psql", "CREATE USER vaultuser WITH ENCRYPTED PASSWORD 'thisisthepass';\nGRANT CONNECT ON DATABASE postgres TO vaultuser;\n\n-- https://www.vaultproject.io/docs/configuration/storage/postgresql\nCREATE TABLE vault_kv_store (\n  parent_path TEXT COLLATE \"C\" NOT NULL,\n  path        TEXT COLLATE \"C\",\n  key         TEXT COLLATE \"C\",\n  value       BYTEA,\n  CONSTRAINT pkey PRIMARY KEY (path, key)\n);\nCREATE INDEX parent_path_idx ON vault_kv_store (parent_path);\n\nGRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO vaultuser;\n")),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               vault: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 after: nix.thunk(() => ["postgresql.target"]),
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$7, RestartSec: 1n })),
-                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$8, StartLimitBurst: 600n })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[6], RestartSec: 1n })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[7], StartLimitBurst: 600n })),
               })),
             })),
           })),

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["lib", 43, 5], ["stdenv", 44, 5], ["fetchFromGitHub", 45, 5], ["fetchFromGitLab", 46, 5], ["fetchpatch", 47, 5], ["fetchurl", 48, 5], ["callPackage", 49, 5], ["coreutils", 51, 5], ["cmake", 52, 5], ["ninja", 53, 5], ["pkg-config", 54, 5], ["wayland-scanner", 55, 5], ["capstone", 57, 5], ["dbus", 58, 5], ["freetype", 59, 5], ["glfw", 60, 5], ["onetbb", 61, 5], ["withGtkFileSelector", 63, 5], ["gtk3", 64, 5], ["withWayland", 66, 5], ["libglvnd", 67, 5], ["libxkbcommon", 68, 5], ["wayland", 69, 5], ["wayland-protocols", 70, 5], ["libffi", 71, 5], ["md4c", 73, 5], ["pugixml", 74, 5], ["curl", 75, 5], ["zstd", 76, 5], ["nlohmann_json", 77, 5], ["nativefiledialog-extended", 78, 5], ["html-tidy", 79, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchFromGitLab: false, fetchpatch: false, fetchurl: false, callPackage: false, coreutils: false, cmake: false, ninja: false, "pkg-config": false, "wayland-scanner": false, capstone: false, dbus: false, freetype: false, glfw: false, onetbb: false, withGtkFileSelector: true, gtk3: false, withWayland: true, libglvnd: false, libxkbcommon: false, wayland: false, "wayland-protocols": false, libffi: false, md4c: false, pugixml: false, curl: false, zstd: false, nlohmann_json: false, "nativefiledialog-extended": false, "html-tidy": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["lib", 43, 5], ["stdenv", 44, 5], ["fetchFromGitHub", 45, 5], ["fetchFromGitLab", 46, 5], ["fetchpatch", 47, 5], ["fetchurl", 48, 5], ["callPackage", 49, 5], ["coreutils", 51, 5], ["cmake", 52, 5], ["ninja", 53, 5], ["pkg-config", 54, 5], ["wayland-scanner", 55, 5], ["capstone", 57, 5], ["dbus", 58, 5], ["freetype", 59, 5], ["glfw", 60, 5], ["onetbb", 61, 5], ["withGtkFileSelector", 63, 5], ["gtk3", 64, 5], ["withWayland", 66, 5], ["libglvnd", 67, 5], ["libxkbcommon", 68, 5], ["wayland", 69, 5], ["wayland-protocols", 70, 5], ["libffi", 71, 5], ["md4c", 73, 5], ["pugixml", 74, 5], ["curl", 75, 5], ["zstd", 76, 5], ["nlohmann_json", 77, 5], ["nativefiledialog-extended", 78, 5], ["html-tidy", 79, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const nativefiledialog_extended = nix.arg($, "nativefiledialog-extended");
   const html_tidy = nix.arg($, "html-tidy");
   return nix.sel(nix.app(nix.builtins.import(nix.path(here, "./package-versions.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       lib: lib,
       stdenv: stdenv,
       fetchFromGitHub: fetchFromGitHub,

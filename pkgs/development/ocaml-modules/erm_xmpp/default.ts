@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 26]], [["version", 18, 3], ["pname", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 35, 3], ["strictDeps", 44, 3], ["configurePhase", 46, 3], ["buildPhase", 51, 3], ["installPhase", 56, 3], ["createFindlibDestdir", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, ocaml: false, findlib: false, camlp4: false, cstruct: false, ocamlbuild: false, erm_xml: false, "mirage-crypto": false, "mirage-crypto-rng": false, base64: false, digestif: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 26]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 18, 3], ["pname", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["propagatedBuildInputs", 35, 3], ["strictDeps", 44, 3], ["configurePhase", 46, 3], ["buildPhase", 51, 3], ["installPhase", 56, 3], ["createFindlibDestdir", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const base64 = nix.arg($, "base64");
   const digestif = nix.arg($, "digestif");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.3+20241009",
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-erm_xmpp`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hannesm",
           repo: "xmpp",
           rev: "54418f77abf47b175e9c1b68a4f745a12b640d6a",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/hannesm/xmpp",
         description: "OCaml based XMPP implementation (fork)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

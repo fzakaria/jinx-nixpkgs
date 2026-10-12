@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["CARGO_LAMBDA_BUILD_INFO", 54, 7]], [["updateScript", 67, 12]], [["description", 70, 5], ["mainProgram", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeCheckInputs", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["postPatch", 45, 3], ["postInstall", 50, 3], ["env", 54, 3], ["cargoBuildFlags", 56, 3], ["cargoCheckFlags", 57, 3], ["checkFlags", 59, 3], ["passthru", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, cacert: false, curl: false, rustPlatform: false, fetchFromGitHub: false, makeWrapper: false, "pkg-config": false, openssl: false, stdenv: false, zig: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CARGO_LAMBDA_BUILD_INFO", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 67, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 70, 5], ["mainProgram", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeCheckInputs", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["postPatch", 45, 3], ["postInstall", 50, 3], ["env", 54, 3], ["cargoBuildFlags", 56, 3], ["cargoCheckFlags", 57, 3], ["checkFlags", 59, 3], ["passthru", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const zig = nix.arg($, "zig");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cargo-lambda",
       version: "1.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cargo-lambda",
           repo: "cargo-lambda",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "rm crates/cargo-lambda-cli/build.rs\nrm crates/cargo-lambda-cli/tests/cargo_lambda.rs\n",
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/cargo-lambda --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [zig]))}
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CARGO_LAMBDA_BUILD_INFO: "(nixpkgs)" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CARGO_LAMBDA_BUILD_INFO: "(nixpkgs)" })),
       cargoBuildFlags: nix.thunk(() => ["--features=skip-build-banner"]),
       cargoCheckFlags: nix.thunk(() => ["--features=skip-build-banner"]),
       checkFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
@@ -48,11 +44,11 @@ export default nix.lambda((args) => (() => {
           "--skip=test::test_download_example_with_cache",
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cargo subcommand to help you work with AWS Lambda",
         mainProgram: "cargo-lambda",
         homepage: "https://cargo-lambda.info",

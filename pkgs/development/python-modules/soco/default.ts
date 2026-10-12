@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["events_asyncio", 41, 25]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, appdirs: false, buildPythonPackage: false, fetchFromGitHub: false, graphviz: false, ifaddr: false, lxml: false, mock: false, "pytest-asyncio": false, pytestCheckHook: false, requests: false, "requests-mock": false, setuptools: false, xmltodict: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["events_asyncio", 41, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const xmltodict = nix.arg($, "xmltodict");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "soco",
       version: "0.31.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SoCo",
           repo: "SoCo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [appdirs, ifaddr, lxml, requests, xmltodict]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, events_asyncio: nix.thunk(() => [aiohttp]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], events_asyncio: nix.thunk(() => [aiohttp]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([graphviz, mock, pytest_asyncio, pytestCheckHook, requests_mock], nix.sel(finalAttrs, "passthru", "optional-dependencies", "events_asyncio"))),
       pythonImportsCheck: nix.thunk(() => ["soco"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI and library to control Sonos speakers",
         homepage: "http://python-soco.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/SoCo/SoCo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

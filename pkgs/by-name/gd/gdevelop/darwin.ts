@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin.nix", [[["url", 20, 5], ["hash", 21, 5]], [["pname", 13, 5], ["version", 14, 5], ["meta", 15, 5], ["passthru", 16, 5], ["src", 19, 3], ["sourceRoot", 24, 3], ["nativeBuildInputs", 25, 3], ["dontPatch", 27, 3], ["dontConfigure", 28, 3], ["dontBuild", 29, 3], ["dontFixup", 30, 3], ["installPhase", 32, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchurl: false, unzip: false, pname: false, version: false, meta: false, passthru: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/darwin.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/darwin.nix", [["pname", 13, 5], ["version", 14, 5], ["meta", 15, 5], ["passthru", 16, 5], ["src", 19, 3], ["sourceRoot", 24, 3], ["nativeBuildInputs", 25, 3], ["dontPatch", 27, 3], ["dontConfigure", 28, 3], ["dontBuild", 29, 3], ["dontFixup", 30, 3], ["installPhase", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const meta = nix.arg($, "meta");
   const passthru = nix.arg($, "passthru");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       meta: meta,
       passthru: passthru,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/4ian/GDevelop/releases/download/v${version}/GDevelop-5-${version}-universal-mac.zip`),
           hash: "sha256-P7DLp6ofmDw9OULfT6qFFOjN2Bv/75Z/52ElKaIYi+I=",
         })))),

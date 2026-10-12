@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mpv-subtitle-lines.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["updateScript", 19, 12]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, buildLua: false, lib: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mpv-subtitle-lines.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/mpv-subtitle-lines.nix", [["updateScript", 19, 12]]);
-const pos$3 = nix.positions(here + "/mpv-subtitle-lines.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]]);
-const pos$4 = nix.positions(here + "/mpv-subtitle-lines.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,22 +12,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildLua, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mpv-subtitle-lines",
       version: "0-unstable-2024-05-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "christoph-heinrich",
           repo: "mpv-subtitle-lines",
           rev: "f0a85c7ba3370b490c46a77dcb2e212c0b149a50",
           hash: "sha256-m9LHIz/hAOEq0DzHY3Jd1LM1cfxZng6Iaqrug1PfnAE=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "List and search subtitle lines of the selected subtitle track",
         homepage: "https://github.com/christoph-heinrich/mpv-subtitle-lines",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

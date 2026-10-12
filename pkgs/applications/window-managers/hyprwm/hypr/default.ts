@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["NIX_CFLAGS_COMPILE", 60, 7]], [["homepage", 80, 35], ["description", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 27], ["mainProgram", 85, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["env", 60, 3], ["installPhase", 62, 3], ["postPatch", 70, 3], ["postFixup", 75, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cairo: false, cmake: false, glib: false, gtkmm3: false, harfbuzz: false, libx11: false, libxdmcp: false, libxcb: false, makeWrapper: false, pcre2: false, "pkg-config": false, "libxcb-cursor": false, "libxcb-keysyms": false, "libxcb-wm": false, "libxcb-util": false, xmodmap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 60, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 80, 35], ["description", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 27], ["mainProgram", 85, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["env", 60, 3], ["installPhase", 62, 3], ["postPatch", 70, 3], ["postFixup", 75, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libxcb_util = nix.arg($, "libxcb-util");
   const xmodmap = nix.arg($, "xmodmap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hypr",
       version: "1.1.3-unstable-2023-01-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hyprwm",
           repo: "Hypr",
           rev: "af4641847b578b233a6f06806f575b3f320d74da",
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
         libxcb_util,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-c++11-narrowing")),
       })),
       installPhase: "runHook preInstall\n\ninstall -Dm755 Hypr -t $out/bin\n\nrunHook postInstall\n",
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         const from_1 = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Tiling X11 window manager written in modern C++",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

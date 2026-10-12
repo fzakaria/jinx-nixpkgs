@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 27, 3], ["makeFlags", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["postInstall", 48, 3], ["pythonPath", 55, 3], ["preFixup", 59, 3], ["postFixup", 62, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchzip: false, SDL2: false, SDL2_mixer: false, SDL2_net: false, gtk3: false, "gobject-introspection": false, python3Packages: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 27, 3], ["makeFlags", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["postInstall", 48, 3], ["pythonPath", 55, 3], ["preFixup", 59, 3], ["postFixup", 62, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const data = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://mirandir.pagesperso-orange.fr/files/additional-levels.tar.xz",
       sha256: "167hisscsbldrwrs54gq6446shl8h26qdqigmfg0lq3daynqycg2",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jumpnbump",
       version: "1.70-dev",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "LibreGames",
           repo: "jumpnbump",
           rev: "5744738211ca691444f779aafee3537fb3562516",
@@ -59,7 +56,7 @@ sed -i -e 's+Exec=jumpnbump+Exec=jumpnbump-menu+' $out/share/applications/jumpnb
       preFixup: "buildPythonPath \"$out ${pythonPath[*]}\"\n",
       postFixup: "wrapPythonPrograms\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cute, true multiplayer platform game with bunnies",
         homepage: "https://libregames.gitlab.io/jumpnbump/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

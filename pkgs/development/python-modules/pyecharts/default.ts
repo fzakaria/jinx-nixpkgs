@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["images", 42, 5]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 53, 3], ["disabledTests", 55, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, jinja2: false, numpy: false, pandas: false, pillow: false, prettytable: false, pytestCheckHook: false, pythonAtLeast: false, requests: false, "setuptools-scm": false, setuptools: false, simplejson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["images", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 53, 3], ["disabledTests", 55, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const simplejson = nix.arg($, "simplejson");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyecharts",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyecharts",
           repo: "pyecharts",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,12 +35,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [jinja2, prettytable, simplejson]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, images: nix.thunk(() => [pillow]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], images: nix.thunk(() => [pillow]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([numpy, pandas, pytestCheckHook, requests], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["pyecharts"]),
       disabledTests: nix.thunk(() => nix.concat(["test_render_embed_js", "test_display_javascript_v2", "test_lines3d_base"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_wordcloud_encode_image_to_base64_os_error"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python Echarts Plotting Library",
         homepage: "https://github.com/pyecharts/pyecharts",
         changelog: nix.thunk(() => nix.str`https://github.com/pyecharts/pyecharts/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

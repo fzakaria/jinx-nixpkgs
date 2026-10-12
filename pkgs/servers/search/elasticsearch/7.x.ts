@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/7.x.nix", [[["x86_64-linux", 20, 5], ["aarch64-linux", 21, 5], ["aarch64-darwin", 22, 5]], [["url", 30, 5], ["hash", 31, 5]], [["enableUnfree", 82, 5]], [["description", 86, 5], ["sourceProvenance", 87, 5], ["license", 91, 5], ["platforms", 92, 5], ["maintainers", 93, 5], ["knownVulnerabilities", 96, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 34, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["runtimeDependencies", 57, 3], ["installPhase", 59, 3], ["passthru", 81, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { elk7Version: false, lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jre_headless: false, "util-linux": false, gnugrep: false, coreutils: false, autoPatchelfHook: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/7.x.nix", [["x86_64-linux", 20, 5], ["aarch64-linux", 21, 5], ["aarch64-darwin", 22, 5]]);
-const pos$2 = nix.positions(here + "/7.x.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/7.x.nix", [["enableUnfree", 82, 5]]);
-const pos$4 = nix.positions(here + "/7.x.nix", [["description", 86, 5], ["sourceProvenance", 87, 5], ["license", 91, 5], ["platforms", 92, 5], ["maintainers", 93, 5], ["knownVulnerabilities", 96, 5]]);
-const pos$5 = nix.positions(here + "/7.x.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 34, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["runtimeDependencies", 57, 3], ["installPhase", 59, 3], ["passthru", 81, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const arch = nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), info, 0n));
   const plat = nix.thunk(() => nix.app(nix.sel(lib, "elemAt"), info, 1n));
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "sha512-xlbdx/fFQxilECdDiN80U+s+huBowo9Qf5tDIYwZ1z9gUCriNL0rMNDkvzUDL73BEI3WMFMqHdbi3cn7b5l9gA==",
     "aarch64-linux": "sha512-MPrDfBMcwNCgWW8dpOeAtlz9Odfk/0z8i+Rn08hTp35kU849KdPQLTmexlvnf/jVwqfwzN2xWJtNF0sQO26pUA==",
     "aarch64-darwin": "sha512-uq5VVwvbOX4Rv32iLFw+RalFPBxQqA+1hBjFw3svzOaD1caOOrGHD4lJVHFxsFw0xl//AZuSG7S3r7Eh9AmWvQ==",
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elasticsearch";
       const version = elk7Version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://artifacts.elastic.co/downloads/elasticsearch/${pname}-${version}-${plat}-${arch}.tar.gz`),
           hash: nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw("Unknown architecture"), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
         }))));
@@ -58,9 +54,9 @@ wrapProgram $out/bin/elasticsearch \\
 
 wrapProgram $out/bin/elasticsearch-plugin --set JAVA_HOME "${jre_headless}"
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, enableUnfree: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], enableUnfree: true }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open Source, Distributed, RESTful Search Engine",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -86,7 +82,7 @@ wrapProgram $out/bin/elasticsearch-plugin --set JAVA_HOME "${jre_headless}"
         ]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

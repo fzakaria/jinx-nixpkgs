@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["Images", 51, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["pythonRelaxDeps", 37, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["optional-dependencies", 50, 3], ["nativeCheckInputs", 57, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, "ascii-magic": false, buildPythonPackage: false, fetchFromGitHub: false, oauthlib: false, pillow: false, pyjwt: false, "pytest-cov-stub": false, pytestCheckHook: false, requests: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["Images", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["pythonRelaxDeps", 37, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["optional-dependencies", 50, 3], ["nativeCheckInputs", 57, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "weconnect",
       version: "0.60.11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tillsteinbach",
           repo: "WeConnect-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,11 +41,11 @@ substituteInPlace pytest.ini \\
       pythonRelaxDeps: nix.thunk(() => ["oauthlib", "requests"]),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [oauthlib, pyjwt, requests]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, Images: nix.thunk(() => [ascii_magic, pillow]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], Images: nix.thunk(() => [ascii_magic, pillow]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_cov_stub, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["weconnect"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python client for the Volkswagen WeConnect Services",
         homepage: "https://github.com/tillsteinbach/WeConnect-python",
         changelog: nix.thunk(() => nix.str`https://github.com/tillsteinbach/WeConnect-python/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

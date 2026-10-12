@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["src", 29, 13], ["hash", 30, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["cargoDeps", 28, 3], ["nativeBuildInputs", 33, 3], ["propagatedNativeBuildInputs", 37, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 41, 3], ["nativeCheckInputs", 45, 3], ["preCheck", 54, 3], ["disabledTests", 58, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, cffi: false, libiconv: false, buildPythonPackage: false, appdirs: false, pyyaml: false, hypothesis: false, jinja2: false, pytestCheckHook: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 29, 13], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["cargoDeps", 28, 3], ["nativeBuildInputs", 33, 3], ["propagatedNativeBuildInputs", 37, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 41, 3], ["nativeCheckInputs", 45, 3], ["preCheck", 54, 3], ["disabledTests", 58, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyocd",
           repo: "cmsis-pack-manager",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-kb0VSg89qglL6Q5kx1nEN1OW1GYoccBTITtPw2/dXTY=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           hash: "sha256-yRNSFlEwFhfkSNjbFHipVZvJZ40pKbI9HhLtciws7nc=",
         }))));
@@ -54,14 +51,14 @@ export default nix.lambda((args) => (() => {
         "test_dump_parts_cli",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Rust and Python module for handling CMSIS Pack files",
         homepage: "https://github.com/pyocd/cmsis-pack-manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

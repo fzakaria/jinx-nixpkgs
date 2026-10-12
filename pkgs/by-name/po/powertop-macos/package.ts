@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["extraArgs", 49, 47]], [["updateScript", 49, 12]], [["changelog", 52, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5], ["sourceProvenance", 59, 5]], [["pname", 12, 3], ["version", 13, 3], ["strictDeps", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["dontConfigure", 29, 3], ["dontBuild", 30, 3], ["sourceRoot", 31, 3], ["installPhase", 33, 3], ["postFixup", 45, 3], ["passthru", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, makeWrapper: false, "nix-update-script": false, rcodesign: false, stdenvNoCC: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 49, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 49, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 52, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5], ["sourceProvenance", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["strictDeps", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["dontConfigure", 29, 3], ["dontBuild", 30, 3], ["sourceRoot", 31, 3], ["installPhase", 33, 3], ["postFixup", 45, 3], ["passthru", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "powertop-macos",
       version: "1.3.7",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/kDolphin/PowerTop/releases/download/v${nix.sel(finalAttrs, "version")}/PowerTop.zip`),
           hash: "sha256-rwzwCIwyXI9RKSFC4OaNGJZS16zeaw1WpY8ntctDssQ=",
         })))),
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), rcodesign)} sign "$out/Applications/PowerTop.app"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/kDolphin/PowerTop/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Menu bar app for monitoring MacBook power usage",
         homepage: "https://github.com/kDolphin/PowerTop",

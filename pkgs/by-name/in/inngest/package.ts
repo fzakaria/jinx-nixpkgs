@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["pname", 41, 28], ["version", 41, 34], ["src", 41, 42], ["pnpm", 42, 7], ["sourceRoot", 43, 7], ["fetcherVersion", 44, 7], ["hash", 45, 7]], [["version", 31, 13], ["src", 31, 21], ["pname", 32, 5], ["nativeBuildInputs", 34, 5], ["pnpmDeps", 40, 5], ["pnpmRoot", 47, 5], ["buildPhase", 49, 5], ["installPhase", 55, 5]], [["CGO_ENABLED", 86, 7]], [["package", 92, 43]], [["version", 92, 11]], [["ui", 91, 13], ["website", 91, 16], ["websiteRev", 91, 24], ["tests", 92, 5], ["updateScript", 93, 5]], [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["sourceProvenance", 101, 5], ["maintainers", 102, 5], ["mainProgram", 106, 5], ["platforms", 107, 5]], [["version", 64, 11], ["src", 64, 19], ["pname", 65, 3], ["__structuredAttrs", 67, 3], ["vendorHash", 69, 3], ["preBuild", 71, 3], ["postInstall", 76, 3], ["ldflags", 80, 3], ["env", 86, 3], ["subPackages", 88, 3], ["passthru", 90, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpm_10: false, pnpmConfigHook: false, nodejs: false, stdenv: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 41, 28], ["version", 41, 34], ["src", 41, 42], ["pnpm", 42, 7], ["sourceRoot", 43, 7], ["fetcherVersion", 44, 7], ["hash", 45, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 31, 13], ["src", 31, 21], ["pname", 32, 5], ["nativeBuildInputs", 34, 5], ["pnpmDeps", 40, 5], ["pnpmRoot", 47, 5], ["buildPhase", 49, 5], ["installPhase", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 86, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["package", 92, 43]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 92, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["ui", 91, 13], ["website", 91, 16], ["websiteRev", 91, 24], ["tests", 92, 5], ["updateScript", 93, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["sourceProvenance", 101, 5], ["maintainers", 102, 5], ["mainProgram", 106, 5], ["platforms", 107, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["version", 64, 11], ["src", 64, 19], ["pname", 65, 3], ["__structuredAttrs", 67, 3], ["vendorHash", 69, 3], ["preBuild", 71, 3], ["postInstall", 76, 3], ["ldflags", 80, 3], ["env", 86, 3], ["subPackages", 88, 3], ["passthru", 90, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,27 +19,27 @@ export default nix.lambda((args) => (() => {
   const version = "1.45.1";
   const websiteRev = "159c0ac611e85ec85ffe0a8c8bf2c4a0330bdb38";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "inngest",
       repo: "inngest",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-HdQHZb1JSPBe4zRbRSj4C2EtH91RUqZZxFHZpk5GRno=",
     }))));
   const website = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "inngest",
       repo: "website",
       rev: websiteRev,
       hash: "sha256-EkTIv8jgcqzurz2M7PC6Kfh6x2Zxu7UmIhpTjlj8o88=",
     }))));
   const ui = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: version,
       src: src,
       pname: "inngest-ui",
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpm_10, pnpmConfigHook]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -62,7 +53,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out/dist\ncp -r ui/apps/dev-server-ui/dist/. $out/dist/\nrunHook postInstall\n",
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       version: version,
       src: src,
       pname: "inngest",
@@ -77,24 +68,24 @@ cp -r ${website}/. ./internal/embeddocs/website/
         "-w",
         nix.thunk(() => nix.str`-X github.com/inngest/inngest/pkg/inngest/version.Version=${version}`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cmd"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         ui: ui,
         website: website,
         websiteRev: websiteRev,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "CLI and dev server for Inngest durable workflows",
         homepage: "https://github.com/inngest/inngest",
         changelog: nix.thunk(() => nix.str`https://github.com/inngest/inngest/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

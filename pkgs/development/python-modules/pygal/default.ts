@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5]], [["lxml", 42, 5], ["png", 43, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["downloadPage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 46, 3], ["preCheck", 52, 3], ["__impureHostDeps", 59, 3], ["postCheck", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, stdenv: false, setuptools: false, "importlib-metadata": false, lxml: false, cairosvg: false, pyquery: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lxml", 42, 5], ["png", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["downloadPage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 46, 3], ["preCheck", 52, 3], ["__impureHostDeps", 59, 3], ["postCheck", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-3RGcFM3rVr64UoLj4mh+zjBWEiXUEKgi5rtoaZqm57E=",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [importlib_metadata]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         lxml: nix.thunk(() => [lxml]),
         png: nix.thunk(() => [cairosvg]),
       }));
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const postCheck = nix.thunk(() => nix.str`export LANG=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "en_US.UTF-8" : "C.UTF-8")}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Module for dynamic SVG charting",
         homepage: "http://www.pygal.org",
         changelog: nix.thunk(() => nix.str`https://github.com/Kozea/pygal/blob/${version}/docs/changelog.rst`),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pygal_gen.py",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

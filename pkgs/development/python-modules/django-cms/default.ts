@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["doCheck", 70, 7]], [["runTests", 69, 5]], [["tests", 68, 12]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 44, 3], ["checkInputs", 46, 3], ["preCheck", 52, 3], ["checkPhase", 57, 3], ["doCheck", 66, 3], ["passthru", 68, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, django: false, setuptools: false, "django-classy-tags": false, "django-formtools": false, "django-treebeard": false, "django-sekizai": false, "djangocms-admin-style": false, python: false, "dj-database-url": false, "djangocms-text-ckeditor": false, fetchpatch: false, "django-cms": false, gettext: false, iptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 70, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["runTests", 69, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 68, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 44, 3], ["checkInputs", 46, 3], ["preCheck", 52, 3], ["checkPhase", 57, 3], ["doCheck", 66, 3], ["passthru", 68, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.0.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "django-cms",
           repo: "django-cms",
           tag: version,
@@ -58,15 +53,15 @@ runHook postCheck
 `);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          runTests: nix.thunk(() => nix.app(nix.sel(django_cms, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
+          [nix.POS]: $pos[2],
+          runTests: nix.thunk(() => nix.app(nix.sel(django_cms, "overridePythonAttrs"), (_) => ({ [nix.POS]: $pos[1], doCheck: true }))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["cms"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Lean enterprise content management powered by Django",
         homepage: "https://django-cms.org",
         changelog: nix.thunk(() => nix.str`https://github.com/django-cms/django-cms/releases/tag/${nix.sel(src, "tag")}`),
@@ -74,7 +69,7 @@ runHook postCheck
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["primecount", 34, 15]], [["rev-prefix", 36, 33]], [["tests", 33, 5], ["updateScript", 36, 5]], [["homepage", 40, 5], ["description", 41, 5], ["longDescription", 42, 5], ["changelog", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["teams", 53, 5], ["platforms", 54, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 21, 3], ["nativeBuildInputs", 28, 3], ["strictDeps", 30, 3], ["passthru", 32, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, gitUpdater: false, stdenv: false, primecount: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["primecount", 34, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 36, 33]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 33, 5], ["updateScript", 36, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["longDescription", 42, 5], ["changelog", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["teams", 53, 5], ["platforms", 54, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 21, 3], ["nativeBuildInputs", 28, 3], ["strictDeps", 30, 3], ["passthru", 32, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const primecount = nix.arg($, "primecount");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "primesieve",
       version: "12.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kimwalisch",
           repo: "primesieve",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,12 +28,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, primecount: primecount })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], primecount: primecount })),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://primesieve.org/",
         description: "Fast C/C++ prime number generator",
         longDescription: "primesieve is a command-line program and C/C++ library for quickly\ngenerating prime numbers. It is very cache efficient, it detects your\nCPU's L1 & L2 cache sizes and allocates its main data structures\naccordingly. It is also multi-threaded by default, it uses all available\nCPU cores whenever possible i.e. if sequential ordering is not\nrequired. primesieve can generate primes and prime k-tuplets up to 264.\n",

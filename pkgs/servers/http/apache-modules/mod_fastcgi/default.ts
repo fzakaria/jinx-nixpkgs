@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 27, 5], ["description", 28, 5], ["longDescription", 30, 5], ["platforms", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["preBuild", 21, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, apacheHttpd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 27, 5], ["description", 28, 5], ["longDescription", 30, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["preBuild", 21, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mod_fastcgi";
       const version = "2.4.7.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FastCGI-Archives",
           repo: "mod_fastcgi",
           rev: version,
@@ -28,13 +26,13 @@ export default nix.lambda((args) => (() => {
 makeFlags="top_dir=${nix.sel(apacheHttpd, "dev")}/share prefix=$out"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/FastCGI-Archives/mod_fastcgi",
         description: "Provide support for the FastCGI protocol",
         longDescription: "mod_fastcgi is a module for the Apache web server that enables\nFastCGI - a standards based protocol for communicating with\napplications that generate dynamic content for web pages. FastCGI\nprovides a superset of CGI functionality, but a subset of the\nfunctionality of programming for a particular web server API.\nNonetheless, the feature set is rich enough for programming\nvirtually any type of web application, but the result is generally\nmore scalable.\n",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildInputs, preBuild, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, buildInputs, preBuild, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

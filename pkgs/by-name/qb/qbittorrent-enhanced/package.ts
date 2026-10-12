@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["guiSupport", 8, 33]], [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 20, 5], ["homepage", 21, 5], ["changelog", 22, 5], ["maintainers", 23, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, qbittorrent: false, guiSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["guiSupport", 8, 33]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 20, 5], ["homepage", 21, 5], ["changelog", 22, 5], ["maintainers", 23, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const qbittorrent = nix.arg($, "qbittorrent");
   const guiSupport = nix.argOr($, "guiSupport", () => true);
-  return nix.app(nix.sel(nix.app(nix.sel(qbittorrent, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, guiSupport: guiSupport }))), "overrideAttrs"), (old) => (() => {
+  return nix.app(nix.sel(nix.app(nix.sel(qbittorrent, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], guiSupport: guiSupport }))), "overrideAttrs"), (old) => (() => {
       const pname = nix.thunk(() => nix.add("qbittorrent-enhanced", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(guiSupport)), "-nox")));
       const version = "5.2.3.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "c0re100",
           repo: "qBittorrent-Enhanced-Edition",
           rev: nix.thunk(() => nix.str`release-${version}`),
           hash: "sha256-frAmiYQekEzIgWeSqHVAlTY5u6j7eH8Nx8MaqHjZU9E=",
         }))));
       const meta = nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Unofficial enhanced version of qBittorrent, a BitTorrent client",
         homepage: "https://github.com/c0re100/qBittorrent-Enhanced-Edition",
         changelog: nix.thunk(() => nix.str`https://github.com/c0re100/qBittorrent-Enhanced-Edition/blob/release-${version}/Changelog`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "ByteSudoer"))];
         })()),
       }));
-      return { [nix.POS]: pos$4, pname, version, src, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, meta };
     })());
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]], [["ghdl", 83, 13], ["iverilog", 83, 18]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 21, 3], ["build-system", 26, 3], ["nativeCheckInputs", 30, 3], ["enabledTestPaths", 36, 3], ["disabledTestPaths", 40, 3], ["disabledTests", 65, 3], ["passthru", 80, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, ghdl: false, iverilog: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ghdl", 83, 13], ["iverilog", 83, 18]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 21, 3], ["build-system", 26, 3], ["nativeCheckInputs", 30, 3], ["enabledTestPaths", 36, 3], ["disabledTestPaths", 40, 3], ["disabledTests", 65, 3], ["passthru", 80, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.52";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-gUz3hyyBan+4q+ltmLJDuBXanomAVt/bvbaAY9ruZJY=",
@@ -48,9 +45,9 @@ export default nix.lambda((args) => (() => {
         "myhdl/test/conversion/toVerilog/test_rom.py",
       ]);
       const disabledTests = nix.thunk(() => ["TestInc", "TestInfer", "testAugmOps", "testBinaryOps", "testUnaryOps"]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, ghdl: ghdl, iverilog: iverilog }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], ghdl: ghdl, iverilog: iverilog }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free, open-source package for using Python as a hardware description and verification language",
         homepage: "https://www.myhdl.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

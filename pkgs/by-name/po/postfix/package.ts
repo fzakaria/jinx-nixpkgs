@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableMySQL", 35, 39]], [["url", 84, 5], ["hash", 85, 5]], [["url", 117, 7], ["sha256", 118, 7]], [["NIX_LDFLAGS", 156, 5]], [["postfix", 194, 36], ["postfix-raise-smtpd-tls-security-level", 194, 44]], [["tests", 194, 5], ["updateScript", 196, 5]], [["homepage", 200, 5], ["changelog", 201, 5], ["description", 202, 5], ["license", 203, 5], ["platforms", 207, 5], ["maintainers", 208, 5]], [["pname", 80, 3], ["version", 81, 3], ["src", 83, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 92, 3], ["hardeningDisable", 107, 3], ["patches", 109, 3], ["postPatch", 122, 3], ["postConfigure", 134, 3], ["enableParallelBuilding", 153, 3], ["env", 155, 3], ["installTargets", 159, 3], ["installFlags", 161, 3], ["postInstall", 163, 3], ["passthru", 193, 3], ["meta", 199, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, makeWrapper: false, gnused: false, db: false, openssl: false, cyrus_sasl: false, libnsl: false, lmdb: false, coreutils: false, findutils: false, gnugrep: false, gawk: false, icu: false, pcre2: false, m4: false, fetchpatch: false, buildPackages: false, nixosTests: false, withLDAP: true, openldap: false, withPgSQL: true, libpq: false, withMySQL: true, libmysqlclient: false, withSQLite: true, sqlite: false, withTLSRPT: true, libtlsrpt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableMySQL", 35, 39]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 84, 5], ["hash", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 117, 7], ["sha256", 118, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 156, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["postfix", 194, 36], ["postfix-raise-smtpd-tls-security-level", 194, 44]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 194, 5], ["updateScript", 196, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 200, 5], ["changelog", 201, 5], ["description", 202, 5], ["license", 203, 5], ["platforms", 207, 5], ["maintainers", 208, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 80, 3], ["version", 81, 3], ["src", 83, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 92, 3], ["hardeningDisable", 107, 3], ["patches", 109, 3], ["postPatch", 122, 3], ["postConfigure", 134, 3], ["enableParallelBuilding", 153, 3], ["env", 155, 3], ["installTargets", 159, 3], ["installFlags", 161, 3], ["postInstall", 163, 3], ["passthru", 193, 3], ["meta", 199, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const withTLSRPT = nix.argOr($, "withTLSRPT", () => true);
   const libtlsrpt = nix.arg($, "libtlsrpt");
-  const cyrus_sasl$ = nix.thunk(() => nix.app(nix.sel(cyrus_sasl, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableMySQL: true }))));
+  const cyrus_sasl$ = nix.thunk(() => nix.app(nix.sel(cyrus_sasl, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableMySQL: true }))));
   const ccargs = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([
       "-DUSE_TLS",
       "-DUSE_SASL_AUTH",
@@ -60,11 +53,11 @@ export default nix.lambda((args) => (() => {
       ])), nix.concat(nix.app(nix.sel(lib, "optional"), withSQLite, "-DHAS_SQLITE"), nix.concat(nix.app(nix.sel(lib, "optionals"), withLDAP, nix.thunk(() => ["-DHAS_LDAP", "-DUSE_LDAP_SASL"])), nix.app(nix.sel(lib, "optional"), withTLSRPT, "-DUSE_TLSRPT")))))))));
   const auxlibs = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(["-lcrypto", "-ldb", "-llmdb", "-lnsl", "-lresolv", "-lsasl2", "-lssl"], nix.concat(nix.app(nix.sel(lib, "optional"), withPgSQL, "-lpq"), nix.concat(nix.app(nix.sel(lib, "optional"), withMySQL, "-lmysqlclient"), nix.concat(nix.app(nix.sel(lib, "optional"), withSQLite, "-lsqlite3"), nix.concat(nix.app(nix.sel(lib, "optional"), withLDAP, "-lldap"), nix.app(nix.sel(lib, "optional"), withTLSRPT, "-ltlsrpt")))))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "postfix",
       version: "3.11.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`http://ftp.porcupine.org/mirrors/postfix-release/official/postfix-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ovMkI0V1NEgHIXf66DwyKkA8kmNpaZZAYgEUXauOhiU=",
         })))),
@@ -77,7 +70,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./postfix-3.0-no-warnings.patch"),
         nix.path(here, "./relative-symlinks.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://src.fedoraproject.org/rpms/postfix/raw/2f9d42453e67ebc43f786d98262a249037f80a77/f/postfix-3.6.2-glibc-234-build-fix.patch",
             sha256: "sha256-xRUL5gaoIt6HagGlhsGwvwrAfYvzMgydsltYMWvl9BI=",
           })))),
@@ -102,7 +95,7 @@ makeFlagsArray+=(AR=$AR _AR=$AR RANLIB=$RANLIB _RANLIB=$RANLIB)
 make makefiles CCARGS='${ccargs}' AUXLIBS='${auxlibs}'
 `),
       enableParallelBuilding: true,
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withLDAP, nix.thunk(() => ({ [nix.POS]: pos$4, NIX_LDFLAGS: "-llber" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withLDAP, nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_LDFLAGS: "-llber" })))),
       installTargets: nix.thunk(() => ["non-interactive-package"]),
       installFlags: nix.thunk(() => ["install_root=installdir"]),
       postInstall: nix.thunk(() => nix.str`mkdir -p $out
@@ -120,16 +113,16 @@ wrapProgram $out/libexec/postfix/postfix-script \\
 sed -e "s|$NIX_STORE/[a-z0-9]\\{32\\}-|$NIX_STORE/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee-|g" -i $out/etc/postfix/makedefs.out
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           postfix: nix.thunk(() => nix.attr(nixosTests, "postfix")),
           "postfix-raise-smtpd-tls-security-level": nix.thunk(() => nix.attr(nixosTests, "postfix-raise-smtpd-tls-security-level")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "http://www.postfix.org/",
         changelog: nix.thunk(() => nix.str`https://www.postfix.org/announcements/postfix-${nix.sel(finalAttrs, "version")}.html`),
         description: "Fast, easy to administer, and secure mail server",

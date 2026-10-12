@@ -2,13 +2,12 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/simple-vm.nix", [["machine", 4, 9]]);
-const pos$2 = nix.positions(here + "/simple-vm.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 6, 3]]);
+const $pos = nix.positions(here + "/simple-vm.nix", [[["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 6, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
+  [nix.POS]: $pos[1],
   name: "simple-vm",
-  nodes: nix.thunk(() => ({ [nix.POS]: pos$1, machine: nix.thunk(() => ({})) })),
+  nodes: nix.thunk(() => ({ [nix.POS]: $pos[0], machine: nix.thunk(() => ({})) })),
   testScript: "start_all()\nmachine.wait_for_unit(\"multi-user.target\")\nmachine.shutdown()\n",
 }));
 //# sourceMappingURL=simple-vm.ts.map

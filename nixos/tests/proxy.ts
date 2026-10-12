@@ -2,27 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/proxy.nix", [[["documentRoot", 10, 32]], [["localhost", 10, 22]], [["enable", 8, 9], ["adminAddr", 9, 9], ["virtualHosts", 10, 9]], [["httpd", 7, 16]], [["allowedTCPPorts", 12, 27]], [["firewall", 12, 18]], [["services", 7, 7], ["networking", 12, 7]], [["maintainers", 18, 5]], [["extraConfig", 36, 13]], [["localhost", 35, 24]], [["enable", 26, 11], ["adminAddr", 27, 11], ["extraModules", 28, 11], ["extraConfig", 32, 11], ["virtualHosts", 35, 11]], [["httpd", 25, 18]], [["allowedTCPPorts", 58, 29]], [["firewall", 58, 20]], [["services", 25, 9], ["networking", 58, 9]], [["proxy", 22, 5], ["backend1", 61, 5], ["backend2", 62, 5], ["client", 64, 5]], [["name", 16, 3], ["meta", 17, 3], ["nodes", 21, 3], ["testScript", 67, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/proxy.nix", [["documentRoot", 10, 32]]);
-const pos$2 = nix.positions(here + "/proxy.nix", [["localhost", 10, 22]]);
-const pos$3 = nix.positions(here + "/proxy.nix", [["enable", 8, 9], ["adminAddr", 9, 9], ["virtualHosts", 10, 9]]);
-const pos$4 = nix.positions(here + "/proxy.nix", [["httpd", 7, 16]]);
-const pos$5 = nix.positions(here + "/proxy.nix", [["allowedTCPPorts", 12, 27]]);
-const pos$6 = nix.positions(here + "/proxy.nix", [["firewall", 12, 18]]);
-const pos$7 = nix.positions(here + "/proxy.nix", [["services", 7, 7], ["networking", 12, 7]]);
-const pos$8 = nix.positions(here + "/proxy.nix", [["maintainers", 18, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/proxy.nix", [["extraConfig", 36, 13]]);
-const pos$10 = nix.positions(here + "/proxy.nix", [["localhost", 35, 24]]);
-const pos$11 = nix.positions(here + "/proxy.nix", [["enable", 26, 11], ["adminAddr", 27, 11], ["extraModules", 28, 11], ["extraConfig", 32, 11], ["virtualHosts", 35, 11]]);
-const pos$12 = nix.positions(here + "/proxy.nix", [["httpd", 25, 18]]);
-const pos$13 = nix.positions(here + "/proxy.nix", [["allowedTCPPorts", 58, 29]]);
-const pos$14 = nix.positions(here + "/proxy.nix", [["firewall", 58, 20]]);
-const pos$15 = nix.positions(here + "/proxy.nix", [["services", 25, 9], ["networking", 58, 9]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$16 = nix.positions(here + "/proxy.nix", [["proxy", 22, 5], ["backend1", 61, 5], ["backend2", 62, 5], ["client", 64, 5]]);
-const pos$17 = nix.positions(here + "/proxy.nix", [["name", 16, 3], ["meta", 17, 3], ["nodes", 21, 3], ["testScript", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,51 +15,51 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         httpd: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           enable: true,
           adminAddr: "foo@example.org",
           virtualHosts: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             localhost: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               documentRoot: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "valgrind", "doc")}/share/doc/valgrind/html`),
             })),
           })),
         })),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [80n]) })),
+        [nix.POS]: $pos[5],
+        firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], allowedTCPPorts: nix.thunk(() => [80n]) })),
       })),
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "proxy",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$8, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[7], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       proxy: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             httpd: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               adminAddr: "bar@example.org",
               extraModules: nix.thunk(() => ["proxy_balancer", "lbmethod_byrequests"]),
               extraConfig: "ExtendedStatus on\n",
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 localhost: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   extraConfig: nix.thunk(() => nix.str`<Location /server-status>
   Require all granted
   SetHandler server-status
@@ -100,8 +84,8 @@ ProxyTimeout      5
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$14,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$13, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: $pos[13],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[12], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
         };
       })(), formals$3),

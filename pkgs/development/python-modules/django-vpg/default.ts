@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["pname", 30, 26], ["version", 30, 32], ["src", 30, 40], ["hash", 31, 5]], [["async", 45, 5]], [["VPG_TEST_DSN", 51, 5]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["cargoDeps", 29, 3], ["nativeBuildInputs", 34, 3], ["dependencies", 39, 3], ["optional-dependencies", 44, 3], ["pythonImportsCheck", 48, 3], ["env", 50, 3], ["preCheck", 54, 3], ["postgresqlEnableTCP", 58, 3], ["nativeCheckInputs", 60, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, django: false, "django-async-backend": false, fetchFromGitLab: false, postgresql: false, postgresqlTestHook: false, psycopg: false, "pytest-asyncio": false, "pytest-postgresql": false, pytestCheckHook: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 30, 26], ["version", 30, 32], ["src", 30, 40], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["async", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["VPG_TEST_DSN", 51, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["cargoDeps", 29, 3], ["nativeBuildInputs", 34, 3], ["dependencies", 39, 3], ["optional-dependencies", 44, 3], ["pythonImportsCheck", 48, 3], ["env", 50, 3], ["preCheck", 54, 3], ["postgresqlEnableTCP", 58, 3], ["nativeCheckInputs", 60, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "django-vpg",
       version: "0.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "glitchtip",
           repo: "django-vpg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-OTmiTuEITDXvjfwfMsDsFGB+/RitpixPZkaQsgTccw8=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,10 +44,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
       ]),
       dependencies: nix.thunk(() => [django, psycopg]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, async: nix.thunk(() => [django_async_backend]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[2], async: nix.thunk(() => [django_async_backend]) })),
       pythonImportsCheck: nix.thunk(() => ["django_vpg"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         VPG_TEST_DSN: "postgres://postgres@127.0.0.1:5432/postgres",
       })),
       preCheck: "rm -r django_vpg\n",
@@ -65,7 +60,7 @@ export default nix.lambda((args) => (() => {
         pytestCheckHook,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(django, "version"))), "6")), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "async"))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Rust-powered PostgreSQL driver and Django database backend",
         homepage: "https://gitlab.com/glitchtip/django-vpg/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/glitchtip/django-vpg/-/releases/${nix.sel(finalAttrs, "src", "tag")}`),

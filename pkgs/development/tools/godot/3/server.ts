@@ -2,14 +2,14 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/server.nix", [[["pname", 5, 5], ["godotBuildDescription", 6, 5], ["godotBuildTarget", 7, 5]]]);
 const formals$1 = { args: { "godot3-debug-server": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/server.nix", [["pname", 5, 5], ["godotBuildDescription", 6, 5], ["godotBuildTarget", 7, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const godot3_debug_server = nix.arg($, "godot3-debug-server");
   return nix.app(nix.sel(godot3_debug_server, "overrideAttrs"), (self) => (base) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "godot3-server",
       godotBuildDescription: "server",
       godotBuildTarget: "release",

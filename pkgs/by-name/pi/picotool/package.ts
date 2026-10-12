@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["updateScript", 56, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["mainProgram", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 69, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 37, 3], ["cmakeFlags", 41, 3], ["postInstall", 45, 3], ["nativeInstallCheckInputs", 49, 3], ["versionCheckProgramArg", 52, 3], ["doInstallCheck", 53, 3], ["passthru", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libusb1: false, "pico-sdk": false, mbedtls: false, versionCheckHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["mainProgram", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 37, 3], ["cmakeFlags", 41, 3], ["postInstall", 45, 3], ["nativeInstallCheckInputs", 49, 3], ["versionCheckProgramArg", 52, 3], ["doInstallCheck", 53, 3], ["passthru", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "picotool",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "raspberrypi",
           repo: "picotool",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,11 +42,11 @@ substituteInPlace lib/CMakeLists.txt \\
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool for interacting with RP2040/RP2350 device(s) in BOOTSEL mode, or with an RP2040/RP2350 binary",
         homepage: "https://github.com/raspberrypi/picotool",
         changelog: nix.thunk(() => nix.str`https://github.com/raspberrypi/picotool/releases/tag/${nix.sel(finalAttrs, "version")}`),

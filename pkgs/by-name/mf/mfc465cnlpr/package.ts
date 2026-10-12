@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["unpackPhase", 24, 3], ["nativeBuildInputs", 28, 3], ["dontBuild", 33, 3], ["installPhase", 35, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, dpkg: false, makeWrapper: false, coreutils: false, file: false, gawk: false, ghostscript: false, gnused: false, pkgsi686Linux: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["unpackPhase", 24, 3], ["nativeBuildInputs", 28, 3], ["dontBuild", 33, 3], ["installPhase", 35, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfc465cnlpr";
       const version = "1.0.1-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf006132/${pname}-${version}.i386.deb`),
           sha256: "cfe0289510bf36bee6014286ea78b1ebc6bbb948dbfd3aee02f0664a7743f99b",
         }))));
@@ -46,7 +44,7 @@ wrapProgram $dir/lpd/psconvertij2 \\
 chmod -R a+w $dir/inf/
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Brother MFC-465CN LPR printer driver",
         homepage: "http://www.brother.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -57,7 +55,7 @@ chmod -R a+w $dir/inf/
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 9, 5], ["publisher", 10, 5], ["version", 11, 5], ["hash", 12, 5]], [["changelog", 18, 5], ["description", 19, 5], ["downloadPage", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]], [["mktplcRef", 8, 3], ["buildInputs", 15, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, pyright: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 9, 5], ["publisher", 10, 5], ["version", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 18, 5], ["description", 19, 5], ["downloadPage", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 8, 3], ["buildInputs", 15, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const pyright = nix.arg($, "pyright");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "vscode-pylance",
         publisher: "MS-python",
         version: "2026.3.1",
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       })),
       buildInputs: nix.thunk(() => [pyright]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://marketplace.visualstudio.com/items/ms-python.vscode-pylance/changelog",
         description: "Performant, feature-rich language server for Python in VS Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance",

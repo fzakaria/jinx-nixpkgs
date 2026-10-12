@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 72, 5], ["maintainers", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["enableParallelBuilding", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["postPatch", 35, 3], ["makeFlags", 41, 3], ["installPhase", 51, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, "ocl-icd": false, "opencl-headers": false, stdenv: false, makeBinaryWrapper: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 72, 5], ["maintainers", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["enableParallelBuilding", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["postPatch", 35, 3], ["makeFlags", 41, 3], ["installPhase", 51, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mfakto",
       version: "0.16.0-beta.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "primesearch",
           repo: "mfakto",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 mfakto $out/bin/mfakto\ninstall -Dm644 mfakto.ini -t $out/share/mfakto\n\ninstall -Dm444 *.cl $out/share/mfakto\ninstall -Dm444 *.h $out/share/mfakto\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Trial Factoring program using OpenCL for GIMPS",
         longDescription: "mfakto is an OpenCL port of mfaktc that aims to have the same features and\nfunctions. mfaktc is a program that trial factors Mersenne numbers. It stands\nfor \"Mersenne faktorisation* with CUDA\" and was written for Nvidia GPUs. Both\nprograms are used primarily in the Great Internet Mersenne Prime Search. mfakto\ncan also run on CPUs, although this is not done in practice.\n",
         homepage: "https://github.com/primesearch/mfakto",

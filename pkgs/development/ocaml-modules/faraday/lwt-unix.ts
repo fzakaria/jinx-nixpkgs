@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt-unix.nix", [[["description", 19, 5]], [["pname", 9, 3], ["version", 10, 21], ["src", 10, 29], ["duneVersion", 11, 3], ["propagatedBuildInputs", 13, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, faraday: false, "faraday-lwt": false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt-unix.nix", [["description", 19, 5]]);
-const pos$2 = nix.positions(here + "/lwt-unix.nix", [["pname", 9, 3], ["version", 10, 21], ["src", 10, 29], ["duneVersion", 11, 3], ["propagatedBuildInputs", 13, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const faraday_lwt = nix.arg($, "faraday-lwt");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "faraday-lwt-unix",
       version: nix.thunk(() => nix.attr(faraday, "version")),
       src: nix.thunk(() => nix.attr(faraday, "src")),
       duneVersion: "3",
       propagatedBuildInputs: nix.thunk(() => [lwt, faraday_lwt]),
-      meta: nix.thunk(() => nix.update(nix.sel(faraday, "meta"), { [nix.POS]: pos$1, description: "Lwt + Unix support for Faraday" })),
+      meta: nix.thunk(() => nix.update(nix.sel(faraday, "meta"), { [nix.POS]: $pos[0], description: "Lwt + Unix support for Faraday" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lwt-unix.ts.map

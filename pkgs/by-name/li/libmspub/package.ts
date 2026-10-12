@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["CXXFLAGS", 35, 5]], [["url", 40, 7], ["hash", 41, 7]], [["url", 44, 7], ["hash", 45, 7]], [["changelog", 50, 5], ["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["broken", 56, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["configureFlags", 32, 3], ["env", 34, 3], ["patches", 38, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchpatch: false, "pkg-config": false, boost: false, doxygen: false, icu: false, librevenge: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 40, 7], ["hash", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 50, 5], ["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["broken", 56, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["configureFlags", 32, 3], ["env", 34, 3], ["patches", 38, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,32 +18,32 @@ export default nix.lambda((args) => (() => {
   const librevenge = nix.arg($, "librevenge");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libmspub",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dev-www.libreoffice.org/src/libmspub/libmspub-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-1At2aFAdPeoDKcsrv1hpZ1Eig0//tc3jaRpg1qn14xI=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [boost, doxygen, icu, librevenge, zlib]),
       configureFlags: nix.thunk(() => ["--with-docs"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=gnu++17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-std=gnu++17" })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/libmspub/-/raw/8721a52e09e14f905311abd3d5f2ad9bb3fe78a2/buildfix.diff",
             hash: "sha256-evxEoQ0a6YHoymR+SEJwqfr7rkWp3JnsWOD1tfYfZOw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/libmspub/-/raw/9d565015753364fa458da19e5dd4ce8224cf9246/includes.patch",
             hash: "sha256-oHXEWSOSod9VnOrFtdMQcHYm7EdKkG+S7Q9rfM0DaTg=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://git.libreoffice.org/libmspub/+/refs/tags/libmspub-${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "Microsoft Publisher import library",
         homepage: "https://wiki.documentfoundation.org/DLP/Libraries/libmspub",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 35, 13], ["version", 35, 19], ["hash", 36, 5]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["propagatedBuildInputs", 47, 3], ["prePatch", 59, 3], ["dontWrapGApps", 72, 3], ["preFixup", 74, 3], ["doCheck", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, acpi: false, "alsa-utils": false, coreutils: false, "dbus-python": false, fetchPypi: false, file: false, hatchling: false, i3: false, i3ipc: false, libnotify: false, lm_sensors: false, procps: false, pygobject3: false, pyserial: false, pytz: false, requests: false, setuptools: false, tzlocal: false, wrapGAppsHook3: false, xset: false, setxkbmap: false, glib: false, "gobject-introspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 35, 13], ["version", 35, 19], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["propagatedBuildInputs", 47, 3], ["prePatch", 59, 3], ["dontWrapGApps", 72, 3], ["preFixup", 74, 3], ["doCheck", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.64";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-7hafyW7jq/8Xk4POAohX6sNViJ+Azuqs5/0i1JqCqr0=",
@@ -72,7 +70,7 @@ sed -i -e "s|'xset|'${xset}/bin/xset|" py3status/modules/keyboard_layout.py
       const preFixup = "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extensible i3status wrapper",
         homepage: "https://github.com/ultrabug/py3status",
         changelog: nix.thunk(() => nix.str`https://github.com/ultrabug/py3status/blob/${version}/CHANGELOG`),
@@ -80,7 +78,7 @@ sed -i -e "s|'xset|'${xset}/bin/xset|" py3status/modules/keyboard_layout.py
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

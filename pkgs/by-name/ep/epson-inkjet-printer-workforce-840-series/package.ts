@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["filter", 13, 5], ["driver", 14, 5]], [["urls", 30, 5], ["hash", 34, 5]], [["description", 102, 5], ["longDescription", 103, 5], ["downloadPage", 123, 5], ["license", 124, 5], ["maintainers", 128, 5], ["platforms", 129, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 28, 3], ["sourceRoot", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 42, 3], ["unpackPhase", 47, 3], ["patches", 66, 3], ["installPhase", 71, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, cups: false, libjpeg: false, rpmextract: false, fetchurl: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["filter", 13, 5], ["driver", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["urls", 30, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 102, 5], ["longDescription", 103, 5], ["downloadPage", 123, 5], ["license", 124, 5], ["maintainers", 128, 5], ["platforms", 129, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 28, 3], ["sourceRoot", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 42, 3], ["unpackPhase", 47, 3], ["patches", 66, 3], ["installPhase", 71, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const srcdirs = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     filter: "epson-inkjet-printer-filter-1.0.0",
     driver: "epson-inkjet-printer-workforce-840-series-1.0.0",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "epson-inkjet-printer-workforce-840-series",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.ebz.epson.net/dsc/op/stable/SRPMS/epson-inkjet-printer-workforce-840-series-${nix.sel(finalAttrs, "version")}-1lsb3.2.src.rpm`),
             nix.thunk(() => nix.str`https://web.archive.org/web/https://download.ebz.epson.net/dsc/op/stable/SRPMS/epson-inkjet-printer-workforce-840-series-${nix.sel(finalAttrs, "version")}-1lsb3.2.src.rpm`),
@@ -74,7 +71,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Proprietary CUPS drivers for Epson inkjet printers",
         longDescription: "This software is a filter program used with the Common UNIX Printing\nSystem (CUPS) under Linux. It supplies high quality printing with\nSeiko Epson Color Ink Jet Printers.\n\nThis printer driver is supporting the following printers.\n\nEpson Stylus Office BX925\nEpson WorkForce 840\n\nTo use the driver adjust your configuration.nix file:\n```nix\n{\n  services.printing = {\n    enable = true;\n    drivers = [ pkgs.epson-inkjet-printer-workforce-840-series ];\n  };\n}\n```\n",
         downloadPage: "http://download.ebz.epson.net/dsc/du/02/DriverDownloadInfo.do?LG2=EN&CN2=&DSCMI=16839&DSCCHK=3d7bc6bdfca08006abfb859fb1967183156a7252",

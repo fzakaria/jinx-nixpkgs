@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["name", 46, 7], ["url", 47, 7], ["hash", 48, 7]], [["name", 54, 7], ["url", 55, 7], ["hash", 56, 7]], [["rev-prefix", 102, 5]], [["updateScript", 101, 12]], [["description", 106, 5], ["mainProgram", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["postPatch", 62, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 76, 3], ["cmakeFlags", 93, 3], ["passthru", 101, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, gitUpdater: false, cmake: false, "pkg-config": false, ffmpeg_8: false, libGLU: false, "alsa-lib": false, libx11: false, libxrandr: false, sndio: false, libsForQt5: false, qt6Packages: false, withQt6: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 46, 7], ["url", 47, 7], ["hash", 48, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 54, 7], ["url", 55, 7], ["hash", 56, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["rev-prefix", 102, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 101, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 106, 5], ["mainProgram", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["postPatch", 62, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 76, 3], ["cmakeFlags", 93, 3], ["passthru", 101, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const withQt6 = nix.argOr($, "withQt6", () => false);
   const qtPackages = nix.thunk(() => (nix.asBool(withQt6) ? nix.force(qt6Packages) : nix.force(libsForQt5)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "punes",
       version: "0.111",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "punesemu",
           repo: "puNES",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,19 +37,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-punes-Fix-compatibility-with-Qt-6.7.1.patch",
             url: "https://github.com/punesemu/puNES/commit/6e51b1a6107ad3de97edd40ae4ec2d41b32d804f.patch",
             hash: "sha256-xRalKIOb1qWgqJsFLcm7uUOblEfHDYbkukmcr4/+4Qc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "0002-punes-Updated-code-for-Qt-6.9.0-compatibility.patch",
             url: "https://github.com/punesemu/puNES/commit/ff906e0a79eeac9a2d16783e0accf65748bb275e.patch",
             hash: "sha256-+s7AdaUBgCseQs6Mxat/cDmQ77s6K6J0fUfyihP82jM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "0003-punes-Dont-use-deprecated-avcodec_close.patch",
             url: "https://github.com/punesemu/puNES/commit/49f86fcf0fab37d4761b713b0a9e7dc342b8f594.patch",
             hash: "sha256-l71n+c7W2vJKOJKLgfMfDJtof+UBzcVUgXMTn6ap1XI=",
@@ -85,11 +78,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "strings", "cmakeBool"), "ENABLE_QT6_LIBS", withQt6)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Qt-based Nintendo Entertainment System emulator and NSF/NSFe Music Player",
         mainProgram: "punes",
         homepage: "https://github.com/punesemu/puNES",

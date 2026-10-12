@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5], ["mainProgram", 74, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["buildFeatures", 41, 3], ["postBuild", 45, 3], ["postInstall", 49, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, libxkbcommon: false, wayland: false, libGL: false, dav1d: false, installShellFiles: false, scdoc: false, "rust-jemalloc-sys": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5], ["mainProgram", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["buildFeatures", 41, 3], ["postBuild", 45, 3], ["postInstall", 49, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const rust_jemalloc_sys = nix.arg($, "rust-jemalloc-sys");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wpaperd",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "danyspin97",
           repo: "wpaperd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +42,7 @@ installManPage ${targetDir}/man/*.1 man/*.5
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Minimal wallpaper daemon for Wayland",
         longDescription: "It allows the user to choose a different image for each output (aka for each monitor)\njust as swaybg. Moreover, a directory can be chosen and wpaperd will randomly choose\nan image from it. Optionally, the user can set a duration, after which the image\ndisplayed will be changed with another random one.\n",
         homepage: "https://github.com/danyspin97/wpaperd",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 85, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 48, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { "ansible-lint": false, bats: false, "cmake-lint": false, cmake: false, fetchFromGitHub: false, lib: false, libxml2: false, libxslt: false, linkchecker: false, openscap: false, python3Packages: false, stdenv: false, shellcheck: false, yamllint: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 48, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const shellcheck = nix.arg($, "shellcheck");
   const yamllint = nix.arg($, "yamllint");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "scap-security-guide",
       version: "0.1.82",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ComplianceAsCode",
           repo: "content",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +74,7 @@ export default nix.lambda((args) => (() => {
         ]);
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Security automation content in SCAP, Bash, Ansible, and other formats",
         homepage: "https://github.com/ComplianceAsCode/content",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

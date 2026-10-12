@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin.nix", [[["url", 41, 44], ["hash", 41, 48]], [["pname", 63, 5], ["version", 64, 5], ["src", 65, 5], ["meta", 66, 5], ["passthru", 67, 5], ["disableBreakingUpdates", 68, 5], ["stageModules", 69, 5], ["nativeBuildInputs", 72, 3], ["sourceRoot", 77, 3], ["dontUnpack", 79, 3], ["dontStrip", 80, 3], ["installPhase", 82, 3], ["postInstall", 120, 3]]]);
 const formals$1 = { args: { pname: false, source: false, meta: false, binaryName: false, desktopName: false, passthru: false, moduleSrcs: false, disableBreakingUpdates: false, stageModules: false, withOpenASAR: true, withVencord: true, withEquicord: true, withMoonlight: true, disableUpdates: true, commandLineArgs: true, lib: false, stdenv: false, makeWrapper: false, brotli: false, python3: false, writeScript: false, fetchurl: false, openasar: false, vencord: false, equicord: false, moonlight: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/darwin.nix", [["url", 41, 44], ["hash", 41, 48]]);
-const pos$2 = nix.positions(here + "/darwin.nix", [["pname", 63, 5], ["version", 64, 5], ["src", 65, 5], ["meta", 66, 5], ["passthru", 67, 5], ["disableBreakingUpdates", 68, 5], ["stageModules", 69, 5], ["nativeBuildInputs", 72, 3], ["sourceRoot", 77, 3], ["dontUnpack", 79, 3], ["dontStrip", 80, 3], ["installPhase", 82, 3], ["postInstall", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(source, "distro"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.attr(from, "url")),
       hash: nix.thunk(() => nix.attr(from, "hash")),
     };
@@ -60,7 +59,7 @@ with tarfile.open(sys.argv[1]) as tar:
         path.symlink_to(member.linkname)
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 21, 11], ["x86_64-darwin", 22, 11], ["x86_64-linux", 23, 11]], [["mac64_m1", 31, 11], ["mac64", 32, 11], ["linux64", 33, 11]], [["url", 28, 7], ["hash", 29, 7], ["stripRoot", 36, 7]], [["homepage", 59, 5], ["description", 60, 5], ["sourceProvenance", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["mainProgram", 67, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 46, 3], ["installPhase", 50, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, fetchzip: false, glib: false, lib: false, libxcb: false, "microsoft-edge": false, nspr: false, nss: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 21, 11], ["x86_64-darwin", 22, 11], ["x86_64-linux", 23, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mac64_m1", 31, 11], ["mac64", 32, 11], ["linux64", 33, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7], ["stripRoot", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["sourceProvenance", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["mainProgram", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 46, 3], ["installPhase", 50, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const nss = nix.arg($, "nss");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "msedgedriver",
       version: "154.0.4258.62",
       src: nix.thunk(() => (() => {
         const driverArch = nix.thunk(() => nix.sel({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           "aarch64-darwin": "mac64_m1",
           "x86_64-darwin": "mac64",
           "x86_64-linux": "linux64",
         }, nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
         return nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://msedgedriver.microsoft.com/${nix.sel(finalAttrs, "version")}/edgedriver_${driverArch}.zip`),
             hash: nix.thunk(() => nix.sel({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               mac64_m1: "sha256-eFA5A+Nz1unvOl6GRpjUImNL/+cokrnXac4W0l9qNJo=",
               mac64: "sha256-iTkNzBakkPcznw/QcGtIfyEaWwpjzXZWH2Va9CkkDgc=",
               linux64: "sha256-nWM5lYGYiCzwyAJ0gjBMXsTrxihPHSEBdQ71gFacFLk=",
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       installPhase: "runHook preInstall\n\ninstall -D msedgedriver $out/bin/msedgedriver\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver",
         description: "WebDriver implementation that controls an Edge browser running on the local machine",
         sourceProvenance: nix.thunk(() => (() => {

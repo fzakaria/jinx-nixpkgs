@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["pname", 45, 7], ["version", 46, 7], ["src", 47, 7], ["pnpm", 49, 13], ["fetcherVersion", 50, 5], ["hash", 51, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 67, 7]], [["epic-integration", 135, 13], ["updateScript", 136, 5]], [["description", 140, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["platforms", 152, 5], ["mainProgram", 156, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["pnpmDeps", 43, 3], ["nativeBuildInputs", 54, 3], ["patches", 62, 3], ["env", 67, 3], ["buildPhase", 69, 3], ["installPhase", 86, 3], ["passthru", 134, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, nodejs: false, python3: false, makeWrapper: false, electron_43: false, "vulkan-helper": false, gogdl: false, "legendary-gl": false, nile: false, "comet-gog_heroic": false, "umu-launcher": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 45, 7], ["version", 46, 7], ["src", 47, 7], ["pnpm", 49, 13], ["fetcherVersion", 50, 5], ["hash", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 67, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["epic-integration", 135, 13], ["updateScript", 136, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 140, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["platforms", 152, 5], ["mainProgram", 156, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["pnpmDeps", 43, 3], ["nativeBuildInputs", 54, 3], ["patches", 62, 3], ["env", 67, 3], ["buildPhase", 69, 3], ["installPhase", 86, 3], ["passthru", 134, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const epic_integration = nix.thunk(() => nix.app(callPackage, nix.path(here, "./epic-integration.nix"), nix.thunk(() => ({}))));
   const comet_gog = comet_gog_heroic;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "heroic-unwrapped",
       version: "2.22.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Heroic-Games-Launcher",
           repo: "HeroicGamesLauncher",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-gXG0ojLIT28aAYXhpMmR9Oksmdfidr4m6M7PDJWwa1c=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -56,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm, python3, makeWrapper]),
       patches: nix.thunk(() => [nix.path(here, "./fix-non-steam-shortcuts.patch")]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 # set nodedir to prevent node-gyp from downloading headers
@@ -111,12 +106,12 @@ substituteInPlace "$out/share/applications/com.heroicgameslauncher.hgl.desktop" 
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "epic-integration": epic_integration,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Native GOG, Epic, and Amazon Games Launcher for Linux, Windows and Mac",
         homepage: "https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher",
         changelog: nix.thunk(() => nix.str`https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/tag/v${nix.sel(finalAttrs, "version")}`),

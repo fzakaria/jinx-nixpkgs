@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 30, 9], ["hash", 31, 9]], [["url", 34, 9], ["hash", 35, 9]], [["url", 38, 9], ["hash", 39, 9]], [["x86_64-linux", 29, 7], ["aarch64-linux", 33, 7], ["aarch64-darwin", 37, 7]], [["kaleido", 88, 5]], [["tests", 87, 12]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["platforms", 95, 5], ["sourceProvenance", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]], [["pname", 22, 3], ["version", 23, 3], ["format", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 48, 3], ["pythonImportsCheck", 60, 3], ["postInstall", 62, 3], ["passthru", 87, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python: false, buildPythonPackage: false, callPackage: false, fetchurl: false, autoPatchelfHook: false, bash: false, dejavu_fonts: false, expat: false, fontconfig: false, lato: false, libGL: false, makeWrapper: false, nspr: false, nss: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 30, 9], ["hash", 31, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 34, 9], ["hash", 35, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 38, 9], ["hash", 39, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 29, 7], ["aarch64-linux", 33, 7], ["aarch64-darwin", 37, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["kaleido", 88, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 87, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["platforms", 95, 5], ["sourceProvenance", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["format", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 48, 3], ["pythonImportsCheck", 60, 3], ["postInstall", 62, 3], ["passthru", 87, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,19 +29,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.1";
       const format = "wheel";
       const src = nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://files.pythonhosted.org/packages/py2.py3/k/kaleido/kaleido-${version}-py2.py3-none-manylinux1_x86_64.whl`),
             hash: "sha256-qiHPG/HHj4+lCp99ReEAPDh709b+CnZ8+780S5W9w6g=",
           })))),
         "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://files.pythonhosted.org/packages/py2.py3/k/kaleido/kaleido-${version}-py2.py3-none-manylinux2014_aarch64.whl`),
             hash: "sha256-hFgZhEyAgslGnZwX5CYh+/hcKyN++KhuyKhSf5i2USo=",
           })))),
         "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://files.pythonhosted.org/packages/py2.py3/k/kaleido/kaleido-${version}-py2.py3-none-macosx_11_0_arm64.whl`),
             hash: "sha256-u5pdH3EDV9XUMu4kDvZlim0STD5hCTWBe0tC2px4fAU=",
           })))),
@@ -78,14 +71,14 @@ rm -rf $out/${nix.sel(python, "sitePackages")}/kaleido/executable/bin/swiftshade
 ln -s ${libGL}/lib $out/${nix.sel(python, "sitePackages")}/kaleido/executable/bin/swiftshader
 `))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             kaleido: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Fast static image export for web-based visualization libraries with zero dependencies",
         homepage: "https://github.com/plotly/Kaleido",
         changelog: "https://github.com/plotly/Kaleido/releases",
@@ -101,7 +94,7 @@ ln -s ${libGL}/lib $out/${nix.sel(python, "sitePackages")}/kaleido/executable/bi
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         format,

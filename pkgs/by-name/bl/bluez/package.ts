@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["url", 184, 5]], [["updateScript", 183, 12]], [["mainProgram", 188, 5], ["changelog", 190, 7], ["description", 191, 7], ["homepage", 192, 7], ["license", 193, 7], ["maintainers", 194, 7], ["platforms", 195, 7]], [["pname", 31, 3], ["version", 32, 27], ["src", 32, 35], ["patches", 34, 3], ["buildInputs", 44, 3], ["nativeBuildInputs", 56, 3], ["outputs", 65, 3], ["postPatch", 71, 3], ["configureFlags", 97, 3], ["makeFlags", 124, 3], ["installFlags", 129, 3], ["doCheck", 133, 3], ["doInstallCheck", 134, 3], ["postInstall", 136, 3], ["enableParallelBuilding", 181, 3], ["passthru", 183, 3], ["meta", 187, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "alsa-lib": false, autoreconfHook: false, "bluez-headers": false, dbus: false, docutils: false, ell: false, enableExperimental: true, fetchpatch2: false, glib: false, json_c: false, libical: false, "pkg-config": false, python3Packages: false, readline: false, udev: false, "gobject-introspection": false, buildPackages: false, installTests: true, gitUpdater: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 184, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 183, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 188, 5], ["changelog", 190, 7], ["description", 191, 7], ["homepage", 192, 7], ["license", 193, 7], ["maintainers", 194, 7], ["platforms", 195, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 27], ["src", 32, 35], ["patches", 34, 3], ["buildInputs", 44, 3], ["nativeBuildInputs", 56, 3], ["outputs", 65, 3], ["postPatch", 71, 3], ["configureFlags", 97, 3], ["makeFlags", 124, 3], ["installFlags", 129, 3], ["doCheck", 133, 3], ["doInstallCheck", 134, 3], ["postInstall", 136, 3], ["enableParallelBuilding", 181, 3], ["passthru", 183, 3], ["meta", 187, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bluez",
       version: nix.thunk(() => nix.attr(bluez_headers, "version")),
       src: nix.thunk(() => nix.attr(bluez_headers, "src")),
       patches: nix.thunk(() => [
         nix.path(here, "./lreadline.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "fix-uuid-discovery-segfault",
             url: "https://git.kernel.org/pub/scm/bluetooth/bluez.git/patch/?id=82af2beafc39510e2c4a439bf44faea711d6503f",
             hash: "sha256-Zf5J4USdfwKe7DVfivyj2q15LPy2GkUqVUq2tE1bG6M=",
@@ -127,13 +123,16 @@ wrapPythonProgramsIn $test/test "$test/test ${nix.builtins.toString(pythonPath)}
       })()),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://git.kernel.org/pub/scm/bluetooth/bluez.git" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            url: "https://git.kernel.org/pub/scm/bluetooth/bluez.git",
+          })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(bluez_headers, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mainProgram: "btinfo",
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),

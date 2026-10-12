@@ -2,50 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qgis.nix", [[["withServer", 9, 38]], [["name", 11, 7], ["text", 12, 7]], [["maintainers", 18, 7]], [["diskSize", 30, 26]], [["systemPackages", 33, 23]], [["Accept", 40, 15], ["SocketUser", 41, 15], ["SocketMode", 42, 15]], [["listenStreams", 38, 13], ["socketConfig", 39, 13], ["wantedBy", 44, 13], ["before", 48, 13]], [["qgis-server", 37, 27]], [["User", 54, 15], ["StandardOutput", 55, 15], ["StandardError", 56, 15], ["StandardInput", 57, 15], ["Environment", 58, 15], ["ExecStart", 63, 15]], [["description", 52, 13], ["serviceConfig", 53, 13], ["after", 65, 13], ["wantedBy", 66, 13]], [["qgis-server", 51, 28]], [["sockets", 37, 19], ["services", 51, 19]], [["extraConfig", 72, 29]], [["~", 72, 25]], [["locations", 72, 15]], [["qgis", 71, 26]], [["enable", 70, 13], ["virtualHosts", 71, 13]], [["nginx", 69, 20]], [["virtualisation", 30, 11], ["imports", 32, 11], ["environment", 33, 11], ["systemd", 37, 11], ["services", 69, 11]], [["machine", 22, 7]], [["name", 16, 5], ["meta", 17, 5], ["nodes", 21, 5], ["testScript", 83, 5]]]);
 const formals$1 = { args: { pkgs: false, lib: false, package: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/qgis.nix", [["withServer", 9, 38]]);
-const pos$2 = nix.positions(here + "/qgis.nix", [["name", 11, 7], ["text", 12, 7]]);
-const pos$3 = nix.positions(here + "/qgis.nix", [["maintainers", 18, 7]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/qgis.nix", [["diskSize", 30, 26]]);
-const pos$5 = nix.positions(here + "/qgis.nix", [["systemPackages", 33, 23]]);
-const pos$6 = nix.positions(here + "/qgis.nix", [["Accept", 40, 15], ["SocketUser", 41, 15], ["SocketMode", 42, 15]]);
-const pos$7 = nix.positions(here + "/qgis.nix", [["listenStreams", 38, 13], ["socketConfig", 39, 13], ["wantedBy", 44, 13], ["before", 48, 13]]);
-const pos$8 = nix.positions(here + "/qgis.nix", [["qgis-server", 37, 27]]);
-const pos$9 = nix.positions(here + "/qgis.nix", [["User", 54, 15], ["StandardOutput", 55, 15], ["StandardError", 56, 15], ["StandardInput", 57, 15], ["Environment", 58, 15], ["ExecStart", 63, 15]]);
-const pos$10 = nix.positions(here + "/qgis.nix", [["description", 52, 13], ["serviceConfig", 53, 13], ["after", 65, 13], ["wantedBy", 66, 13]]);
-const pos$11 = nix.positions(here + "/qgis.nix", [["qgis-server", 51, 28]]);
-const pos$12 = nix.positions(here + "/qgis.nix", [["sockets", 37, 19], ["services", 51, 19]]);
-const pos$13 = nix.positions(here + "/qgis.nix", [["extraConfig", 72, 29]]);
-const pos$14 = nix.positions(here + "/qgis.nix", [["~", 72, 25]]);
-const pos$15 = nix.positions(here + "/qgis.nix", [["locations", 72, 15]]);
-const pos$16 = nix.positions(here + "/qgis.nix", [["qgis", 71, 26]]);
-const pos$17 = nix.positions(here + "/qgis.nix", [["enable", 70, 13], ["virtualHosts", 71, 13]]);
-const pos$18 = nix.positions(here + "/qgis.nix", [["nginx", 69, 20]]);
-const pos$19 = nix.positions(here + "/qgis.nix", [["virtualisation", 30, 11], ["imports", 32, 11], ["environment", 33, 11], ["systemd", 37, 11], ["services", 69, 11]]);
-const pos$20 = nix.positions(here + "/qgis.nix", [["machine", 22, 7]]);
-const pos$21 = nix.positions(here + "/qgis.nix", [["name", 16, 5], ["meta", 17, 5], ["nodes", 21, 5], ["testScript", 83, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     const package$ = nix.arg($, "package");
-    const qgisPackage = nix.thunk(() => nix.app(nix.sel(package$, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withServer: true }))));
+    const qgisPackage = nix.thunk(() => nix.app(nix.sel(package$, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withServer: true }))));
     const testScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "qgis-test.py",
         text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "../../pkgs/applications/gis/qgis/test.py"))),
       }))));
     return {
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       name: nix.thunk(() => nix.str`qgis-${nix.sel(package$, "version")}`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         maintainers: nix.thunk(() => nix.sel(lib, "teams", "geospatial", "members")),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
@@ -53,19 +33,19 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
           const qgisServerUser = nix.thunk(() => nix.sel(config, "services", "nginx", "user"));
           const qgisServerSocket = "/run/qgis_mapserv.socket";
           return {
-            [nix.POS]: pos$19,
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
+            [nix.POS]: $pos[18],
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[3], diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
             imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
-            environment: nix.thunk(() => ({ [nix.POS]: pos$5, systemPackages: nix.thunk(() => [qgisPackage]) })),
+            environment: nix.thunk(() => ({ [nix.POS]: $pos[4], systemPackages: nix.thunk(() => [qgisPackage]) })),
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               sockets: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 "qgis-server": nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   listenStreams: nix.thunk(() => [qgisServerSocket]),
                   socketConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     Accept: false,
                     SocketUser: qgisServerUser,
                     SocketMode: 600n,
@@ -75,12 +55,12 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
                 })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 "qgis-server": nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   description: "QGIS server",
                   serviceConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     User: qgisServerUser,
                     StandardOutput: "null",
                     StandardError: "journal",
@@ -98,18 +78,18 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               nginx: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 enable: true,
                 virtualHosts: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   qgis: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     locations: nix.thunk(() => ({
-                      [nix.POS]: pos$14,
+                      [nix.POS]: $pos[13],
                       "~": nix.thunk(() => ({
-                        [nix.POS]: pos$13,
+                        [nix.POS]: $pos[12],
                         extraConfig: nix.thunk(() => nix.str`gzip off;
 include ${nix.sel(pkgs_1, "nginx")}/conf/fastcgi_params;
 include ${nix.sel(pkgs_1, "nginx")}/conf/fastcgi.conf;

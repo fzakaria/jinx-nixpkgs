@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["NIX_CFLAGS_COMPILE", 25, 7]], [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 36, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["env", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libogg: false, libvorbis: false, libdvdread: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["env", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const libvorbis = nix.arg($, "libvorbis");
   const libdvdread = nix.arg($, "libdvdread");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ogmtools",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.bunkus.org/videotools/ogmtools/ogmtools-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1spx81p5wf59ksl3r3gvf78d77sh7gj8a6lw773iv67bphfivmn8",
         })))),
       buildInputs: nix.thunk(() => [libogg, libvorbis, libdvdread]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=c++14"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tools for modifying and inspecting OGG media streams",
         longDescription: "These tools allow information about (ogminfo) or extraction from\n(ogmdemux) or creation of (ogmmerge) OGG media streams. Includes dvdxchap\ntool for extracting chapter information from DVD.\n",
         homepage: "https://www.bunkus.org/videotools/ogmtools/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/redland.nix", [[["url", 28, 5], ["sha256", 29, 5]], [["NIX_CFLAGS_LINK", 63, 7]], [["description", 68, 5], ["homepage", 69, 5], ["platforms", 70, 5], ["license", 71, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 50, 3], ["postInstall", 52, 3], ["configureFlags", 54, 3], ["env", 63, 3], ["doCheck", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, openssl: false, libxslt: false, perl: false, curl: false, libxml2: false, librdf_rasqal: false, gmp: false, libmysqlclient: false, withMysql: true, libpq: false, withPostgresql: true, sqlite: false, withSqlite: true, db: false, withBdb: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/redland.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/redland.nix", [["NIX_CFLAGS_LINK", 63, 7]]);
-const pos$3 = nix.positions(here + "/redland.nix", [["description", 68, 5], ["homepage", 69, 5], ["platforms", 70, 5], ["license", 71, 5]]);
-const pos$4 = nix.positions(here + "/redland.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 50, 3], ["postInstall", 52, 3], ["configureFlags", 54, 3], ["env", 63, 3], ["doCheck", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "redland";
       const version = "1.0.17";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.librdf.org/source/redland-${version}.tar.gz`),
           sha256: "de1847f7b59021c16bdc72abb4d8e2d9187cd6124d69156f3326dd34ee043681",
         }))));
@@ -45,17 +42,17 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--with-bdb-include=${nix.sel(db, "dev")}/include`),
           nix.thunk(() => nix.str`--with-bdb-lib=${nix.sel(db, "out")}/lib`),
         ]))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_LINK: "-lraptor2" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_LINK: "-lraptor2" }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C libraries that provide support for the Resource Description Framework (RDF)",
         homepage: "https://librdf.org/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]], [["name", 31, 7], ["url", 32, 7], ["stripLen", 33, 7], ["extraPrefix", 34, 7], ["hash", 35, 7]], [["name", 72, 7], ["exec", 73, 7], ["icon", 74, 7], ["desktopName", 75, 7], ["comment", 76, 7], ["categories", 77, 7]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5], ["mainProgram", 90, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 29, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["sourceRoot", 52, 3], ["cmakeFlags", 54, 3], ["postPatch", 56, 3], ["installPhase", 64, 3], ["desktopItems", 70, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, bluez: false, dbus: false, glew: false, glfw: false, imgui: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 31, 7], ["url", 32, 7], ["stripLen", 33, 7], ["extraPrefix", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 72, 7], ["exec", 73, 7], ["icon", 74, 7], ["desktopName", 75, 7], ["comment", 76, 7], ["categories", 77, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5], ["mainProgram", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 29, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["sourceRoot", 52, 3], ["cmakeFlags", 54, 3], ["postPatch", 56, 3], ["installPhase", 64, 3], ["desktopItems", 70, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "SonyHeadphonesClient",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Plutoberth",
           repo: "SonyHeadphonesClient",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "include-cstdint-to-fix-gcc-compiling.patch",
             url: "https://github.com/Plutoberth/SonyHeadphonesClient/commit/4da8a12b22f8a45e79aa53d4cae88ca99b51d41f.patch",
             stripLen: 2n,
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -Dm755 -t $out/bin SonyHeadphonesClient\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "SonyHeadphonesClient",
             exec: "SonyHeadphonesClient",
             icon: "SonyHeadphonesClient",
@@ -64,7 +60,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Client recreating the functionality of the Sony Headphones app",
         homepage: "https://github.com/Plutoberth/SonyHeadphonesClient",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

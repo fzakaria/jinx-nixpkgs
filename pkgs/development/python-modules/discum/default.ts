@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 24, 13], ["version", 24, 19], ["hash", 25, 5]], [["ra", 41, 5]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["optional-dependencies", 40, 3], ["pythonImportsCheck", 48, 3], ["pythonRelaxDeps", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, brotli: false, colorama: false, filetype: false, requests: false, "requests-toolbelt": false, "ua-parser": false, "websocket-client": false, pycryptodome: false, pypng: false, pyqrcode: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 24, 13], ["version", 24, 19], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ra", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["optional-dependencies", 40, 3], ["pythonImportsCheck", 48, 3], ["pythonRelaxDeps", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-/8TaAmfSPv/7kuymockSvC2uxXgHfuP+FXN8vuA9WHY=",
@@ -44,11 +41,11 @@ export default nix.lambda((args) => (() => {
         ua_parser,
         websocket_client,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, ra: nix.thunk(() => [pycryptodome, pypng, pyqrcode]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], ra: nix.thunk(() => [pycryptodome, pypng, pyqrcode]) }));
       const pythonImportsCheck = nix.thunk(() => ["discum"]);
       const pythonRelaxDeps = nix.thunk(() => ["websocket-client"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Discord API Wrapper for Userbots/Selfbots written in Python",
         homepage: "https://pypi.org/project/discum/",
         changelog: nix.thunk(() => nix.str`https://github.com/Merubokkusu/Discord-S.C.U.M/blob/v${version}/changelog.md`),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["YTDL_SUB_FFMPEG_PATH", 53, 5], ["YTDL_SUB_FFPROBE_PATH", 54, 5]], [["updateScript", 72, 12]], [["homepage", 75, 5], ["description", 76, 5], ["longDescription", 77, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 86, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["pythonRelaxDeps", 26, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["makeWrapperArgs", 41, 3], ["nativeCheckInputs", 46, 3], ["env", 52, 3], ["disabledTests", 57, 3], ["disabledTestPaths", 66, 3], ["passthru", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { python3Packages: false, fetchFromGitHub: false, ffmpeg_7: false, lib: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["YTDL_SUB_FFMPEG_PATH", 53, 5], ["YTDL_SUB_FFPROBE_PATH", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 72, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 75, 5], ["description", 76, 5], ["longDescription", 77, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["pythonRelaxDeps", 26, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["makeWrapperArgs", 41, 3], ["nativeCheckInputs", 46, 3], ["env", 52, 3], ["disabledTests", 57, 3], ["disabledTestPaths", 66, 3], ["passthru", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ytdl-sub",
       version: "2026.08.26.post1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jmbannon",
           repo: "ytdl-sub",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         writableTmpDirAsHomeHook,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         YTDL_SUB_FFMPEG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), ffmpeg_7, "ffmpeg")}`),
         YTDL_SUB_FFPROBE_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), ffmpeg_7, "ffprobe")}`),
       })),
@@ -71,9 +67,9 @@ export default nix.lambda((args) => (() => {
         "test_directory_exists",
       ]),
       disabledTestPaths: nix.thunk(() => ["tests/e2e"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/jmbannon/ytdl-sub",
         description: "Lightweight tool to automate downloading and metadata generation with yt-dlp",
         longDescription: "ytdl-sub is a command-line tool that downloads media via yt-dlp and prepares it for your favorite media player, including Kodi, Jellyfin, Plex, Emby, and modern music players. No additional plugins or external scrapers are needed.\n",

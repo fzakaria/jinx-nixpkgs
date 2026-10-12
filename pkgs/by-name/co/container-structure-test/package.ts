@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["package", 36, 5], ["version", 37, 5], ["command", 38, 5]], [["version", 35, 18]], [["tests", 35, 12]], [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["mainProgram", 47, 5], ["sourceProvenance", 48, 5]], [["version", 11, 3], ["pname", 12, 3], ["src", 13, 3], ["vendorHash", 19, 3], ["subPackages", 21, 3], ["ldflags", 22, 3], ["nativeBuildInputs", 27, 3], ["postInstall", 28, 3], ["passthru", 35, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, testers: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, "container-structure-test": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 36, 5], ["version", 37, 5], ["command", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 35, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 35, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["mainProgram", 47, 5], ["sourceProvenance", 48, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 11, 3], ["pname", 12, 3], ["src", 13, 3], ["vendorHash", 19, 3], ["subPackages", 21, 3], ["ldflags", 22, 3], ["nativeBuildInputs", 27, 3], ["postInstall", 28, 3], ["passthru", 35, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const container_structure_test = nix.arg($, "container-structure-test");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "1.22.1",
       pname: "container-structure-test",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GoogleContainerTools",
           repo: "container-structure-test",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +34,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for shell in bash fish zsh; do\n  $out/bin/container-structure-test completion $shell > executor.$shell\n  installShellCompletion executor.$shell\ndone\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: container_structure_test,
               version: nix.thunk(() => nix.sel(finalAttrs, "version")),
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), container_structure_test)} version`),
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/GoogleContainerTools/container-structure-test",
         description: "Framework to validate the structure of a container image",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

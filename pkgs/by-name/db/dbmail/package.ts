@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["updateScript", 50, 12]], [["description", 53, 5], ["homepage", 54, 5], ["downloadPage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["strictDeps", 41, 3], ["__structuredAttrs", 42, 3], ["enableParallelBuilding", 43, 3], ["configureFlags", 45, 3], ["nativeInstallCheckInputs", 47, 3], ["doInstallCheck", 48, 3], ["passthru", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, versionCheckHook: false, "pkg-config": false, curlMinimal: false, glib: false, gmime3: false, libevent: false, libmhash: false, libxcrypt: false, libzdb: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 50, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["downloadPage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["strictDeps", 41, 3], ["__structuredAttrs", 42, 3], ["enableParallelBuilding", 43, 3], ["configureFlags", 45, 3], ["nativeInstallCheckInputs", 47, 3], ["doInstallCheck", 48, 3], ["passthru", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libzdb = nix.arg($, "libzdb");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dbmail",
       version: "3.5.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dbmail",
           repo: "dbmail",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,11 +41,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Highly available Message Delivery Agent using SQL storage",
         homepage: "https://dbmail.org",
         downloadPage: "https://github.com/dbmail/dbmail",

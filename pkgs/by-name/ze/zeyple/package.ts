@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 36, 5], ["homepage", 37, 5], ["maintainers", 38, 5], ["license", 39, 5], ["mainProgram", 40, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 11, 3], ["src", 13, 3], ["postPatch", 21, 3], ["propagatedBuildInputs", 26, 3], ["installPhase", 27, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["maintainers", 38, 5], ["license", 39, 5], ["mainProgram", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 11, 3], ["src", 13, 3], ["postPatch", 21, 3], ["propagatedBuildInputs", 26, 3], ["installPhase", 27, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zeyple",
       version: "unstable-2021-04-10",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "infertux",
           repo: "zeyple",
           rev: "cc125b7b44432542b227887fd7e2701f77fd8ca2",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "gpg"))]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 zeyple/zeyple.py $out/bin/zeyple\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utility program to automatically encrypt outgoing emails with GPG",
         homepage: "https://infertux.com/labs/zeyple/",
         maintainers: nix.thunk(() => (() => {

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 24, 13], ["version", 24, 19], ["hash", 25, 5]], [["sage", 65, 13]], [["tests", 64, 12]], [["description", 69, 5], ["homepage", 70, 5], ["teams", 71, 5], ["license", 72, 5]], [["pname", 19, 3], ["version", 20, 3], ["format", 21, 3], ["src", 23, 3], ["buildInputs", 28, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 39, 3], ["outputs", 45, 3], ["postBuild", 50, 3], ["postInstall", 59, 3], ["passthru", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, gmp: false, mpfr: false, libmpc: false, ppl: false, cython: false, cysignals: false, gmpy2: false, sphinx: false, sage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 24, 13], ["version", 24, 19], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sage", 65, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 64, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["teams", 71, 5], ["license", 72, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["format", 21, 3], ["src", 23, 3], ["buildInputs", 28, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 39, 3], ["outputs", 45, 3], ["postBuild", 50, 3], ["postInstall", 59, 3], ["passthru", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.10";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-1CohbIKRTc9NfAAN68mLsza4+D4Ca6XZUszNn4B07/0=",
@@ -39,16 +35,19 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "doc"]);
       const postBuild = "# Find the build result in order to put it into PYTHONPATH. The doc\n# build needs to import pplpy.\nbuild_result=\"$PWD/$( find build/ -type d -name 'lib.*' | head -n1 )\"\n\necho \"Building documentation\"\nPYTHONPATH=\"$build_result:$PYTHONPATH\" make -C docs html\n";
       const postInstall = "mkdir -p \"$doc/share/doc\"\nmv docs/build/html \"$doc/share/doc/pplpy\"\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) }));
+      const passthru = nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], sage: sage })),
+      }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python wrapper for ppl",
         homepage: "https://gitlab.com/videlec/pplpy",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         format,

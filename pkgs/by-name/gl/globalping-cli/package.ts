@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["CGO_ENABLED", 25, 7]], [["updateScript", 62, 12]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["nativeBuildInputs", 23, 3], ["env", 25, 3], ["subPackages", 26, 3], ["ldflags", 27, 3], ["preCheck", 33, 3], ["checkFlags", 37, 3], ["postInstall", 52, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, stdenv: false, installShellFiles: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["nativeBuildInputs", 23, 3], ["env", 25, 3], ["subPackages", 26, 3], ["ldflags", 27, 3], ["preCheck", 33, 3], ["checkFlags", 37, 3], ["postInstall", 52, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "globalping-cli",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jsdelivr",
           repo: "globalping-cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-HFgWH6kcCv3voyiWkcaNiK3NvnQlgop9DLC1o0xeSN0=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["."]),
       ldflags: nix.thunk(() => [
         "-s",
@@ -54,11 +50,11 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: nix.thunk(() => nix.add("mv $out/bin/globalping-cli $out/bin/globalping\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd globalping \\\n  --bash <($out/bin/globalping completion bash) \\\n  --fish <($out/bin/globalping completion fish) \\\n  --zsh <($out/bin/globalping completion zsh)\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple CLI tool to run networking commands remotely from hundreds of globally distributed servers",
         homepage: "https://www.jsdelivr.com/globalping/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

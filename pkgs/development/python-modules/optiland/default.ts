@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["gui", 75, 7], ["torch", 79, 7]], [["optional-dependencies", 74, 5]], [["description", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["postPatch", 47, 3], ["build-system", 54, 3], ["dependencies", 59, 3], ["passthru", 73, 3], ["nativeCheckInputs", 85, 3], ["disabledTestPaths", 94, 3], ["pythonImportsCheck", 107, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, versioningit: false, matplotlib: false, numba: false, numpy: false, pandas: false, pyyaml: false, requests: false, scipy: false, seaborn: false, tabulate: false, "typing-extensions": false, vtk: false, pytestCheckHook: false, "pytest-xdist": false, writableTmpDirAsHomeHook: false, pyside6: false, qtconsole: false, torch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gui", 75, 7], ["torch", 79, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["optional-dependencies", 74, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["postPatch", 47, 3], ["build-system", 54, 3], ["dependencies", 59, 3], ["passthru", 73, 3], ["nativeCheckInputs", 85, 3], ["disabledTestPaths", 94, 3], ["pythonImportsCheck", 107, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const qtconsole = nix.arg($, "qtconsole");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "optiland",
       version: "0.6.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "HarrisonKramer",
           repo: "optiland",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,9 +62,9 @@ export default nix.lambda((args) => (() => {
         vtk,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "optional-dependencies": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           gui: nix.thunk(() => [pyside6, qtconsole]),
           torch: nix.thunk(() => [torch]),
         })),
@@ -84,7 +80,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["optiland"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Comprehensive optical design, optimization, and analysis in Python, including GPU-accelerated and differentiable ray tracing via PyTorch",
         homepage: "https://github.com/HarrisonKramer/optiland",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

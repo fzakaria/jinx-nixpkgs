@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 21, 3], ["build-system", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["dependencies", 39, 3], ["buildInputs", 48, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, lib: false, future: false, gcc: false, llvmlite: false, parameterized: false, pycparser: false, pyparsing: false, "z3-solver": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 21, 3], ["build-system", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["dependencies", 39, 3], ["buildInputs", 48, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const commit = "cbc722eed8dc807955bd46f84886ae74d161dd0c";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "miasm",
       version: "0.1.5-unstable-2024-08-20",
       pyproject: true,
       "build-system": nix.thunk(() => [setuptools]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cea-sec",
           repo: "miasm",
           rev: commit,
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gcc]),
       pythonImportsCheck: nix.thunk(() => ["miasm"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Reverse engineering framework in Python",
         homepage: "https://github.com/cea-sec/miasm",
         changelog: nix.thunk(() => nix.str`https://github.com/cea-sec/miasm/blob/${commit}/CHANGELOG.md`),

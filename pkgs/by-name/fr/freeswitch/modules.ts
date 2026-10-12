@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/modules.nix", [[["path", 20, 32], ["inputs", 20, 37]], [["abstraction", 27, 5], ["av", 28, 5], ["avmd", 29, 5], ["bert", 30, 5], ["blacklist", 31, 5], ["callcenter", 32, 5], ["cidlookup", 33, 5], ["cluechoo", 34, 5], ["commands", 35, 5], ["conference", 36, 5], ["curl", 37, 5], ["cv", 38, 5], ["db", 39, 5], ["directory", 40, 5], ["distributor", 41, 5], ["dptools", 42, 5], ["easyroute", 43, 5], ["enum", 44, 5], ["esf", 45, 5], ["esl", 46, 5], ["expr", 47, 5], ["fifo", 48, 5], ["fsk", 49, 5], ["fsv", 50, 5], ["hash", 51, 5], ["hiredis", 52, 5], ["httapi", 53, 5], ["http_cache", 54, 5], ["ladspa", 55, 5], ["lcr", 56, 5], ["memcache", 57, 5], ["mongo", 58, 5], ["mp4", 59, 5], ["mp4v2", 60, 5], ["nibblebill", 61, 5], ["oreka", 62, 5], ["osp", 63, 5], ["prefix", 64, 5], ["rad_auth", 65, 5], ["redis", 66, 5], ["rss", 67, 5], ["signalwire", 68, 5], ["sms", 69, 5], ["sms_flowroute", 70, 5], ["snapshot", 71, 5], ["snom", 72, 5], ["sonar", 73, 5], ["soundtouch", 74, 5], ["spandsp", 75, 5], ["spy", 76, 5], ["stress", 77, 5], ["translate", 78, 5], ["valet_parking", 79, 5], ["video_filter", 80, 5], ["vmd", 81, 5], ["voicemail", 82, 5], ["voicemail_ivr", 83, 5]], [["cepstral", 87, 5], ["flite", 88, 5], ["pocketsphinx", 89, 5], ["tts_commandline", 90, 5], ["unimrcp", 91, 5]], [["amr", 95, 5], ["amrwb", 96, 5], ["b64", 97, 5], ["bv", 98, 5], ["clearmode", 99, 5], ["codec2", 100, 5], ["com_g729", 101, 5], ["dahdi_codec", 102, 5], ["g723_1", 103, 5], ["g729", 104, 5], ["h26x", 105, 5], ["ilbc", 106, 5], ["isac", 107, 5], ["mp4v", 108, 5], ["opus", 109, 5], ["sangoma_codec", 110, 5], ["silk", 111, 5], ["siren", 112, 5], ["theora", 113, 5]], [["mariadb", 117, 5], ["pgsql", 118, 5]], [["asterisk", 122, 5], ["directory", 123, 5], ["xml", 124, 5]], [["ldap", 128, 5]], [["alsa", 132, 5], ["dingaling", 133, 5], ["gsmopen", 134, 5], ["h323", 138, 5], ["khomp", 139, 5], ["loopback", 140, 5], ["opal", 141, 5], ["portaudio", 142, 5], ["rtc", 143, 5], ["rtmp", 144, 5], ["skinny", 145, 5], ["sofia", 146, 5], ["verto", 147, 5]], [["amqp", 151, 5], ["cdr_csv", 152, 5], ["cdr_mongodb", 153, 5], ["cdr_pg_csv", 154, 5], ["cdr_sqlite", 155, 5], ["erlang_event", 156, 5], ["event_multicast", 157, 5], ["event_socket", 158, 5], ["fail2ban", 159, 5], ["format_cdr", 160, 5], ["json_cdr", 161, 5], ["radius_cdr", 162, 5], ["odbc_cdr", 163, 5], ["kazoo", 164, 5], ["rayo", 165, 5], ["smpp", 166, 5], ["snmp", 167, 5], ["event_zmq", 168, 5]], [["imagick", 172, 5], ["local_stream", 173, 5], ["native_file", 174, 5], ["opusfile", 175, 5], ["png", 181, 5], ["portaudio_stream", 182, 5], ["shell_stream", 183, 5], ["shout", 184, 5], ["sndfile", 185, 5], ["ssml", 186, 5], ["tone_stream", 187, 5], ["vlc", 188, 5], ["webm", 189, 5]], [["basic", 193, 5], ["java", 194, 5], ["lua", 195, 5], ["managed", 196, 5], ["perl", 197, 5], ["python", 198, 5], ["v8", 199, 5], ["yaml", 200, 5]], [["console", 204, 5], ["graylog2", 205, 5], ["logfile", 206, 5], ["syslog", 207, 5], ["raven", 208, 5]], [["de", 212, 5], ["en", 213, 5], ["es", 214, 5], ["es_ar", 215, 5], ["fa", 216, 5], ["fr", 217, 5], ["he", 218, 5], ["hr", 219, 5], ["hu", 220, 5], ["it", 221, 5], ["ja", 222, 5], ["nl", 223, 5], ["pl", 224, 5], ["pt", 225, 5], ["ru", 226, 5], ["sv", 227, 5], ["th", 228, 5], ["zh", 229, 5]], [["posix_timer", 233, 5], ["timerfd", 234, 5]], [["cdr", 238, 5], ["curl", 239, 5], ["ldap", 240, 5], ["radius", 241, 5], ["rpc", 242, 5], ["scgi", 243, 5], ["odbc", 246, 5]], [["applications", 26, 3], ["ast_tts", 86, 3], ["codecs", 94, 3], ["databases", 116, 3], ["dialplans", 121, 3], ["directories", 127, 3], ["endpoints", 131, 3], ["event_handlers", 150, 3], ["formats", 171, 3], ["languages", 192, 3], ["loggers", 203, 3], ["say", 211, 3], ["timers", 232, 3], ["xml_int", 237, 3], ["freetdm", 249, 3]]]);
 const formals$1 = { args: { libopus: false, opusfile: false, libopusenc: false, libogg: false, libctb: false, gsmlib: false, lua: false, curl: false, ffmpeg: false, libmysqlclient: false, libpq: false, spandsp3: false, sofia_sip: false, libks: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/modules.nix", [["path", 20, 32], ["inputs", 20, 37]]);
-const pos$2 = nix.positions(here + "/modules.nix", [["abstraction", 27, 5], ["av", 28, 5], ["avmd", 29, 5], ["bert", 30, 5], ["blacklist", 31, 5], ["callcenter", 32, 5], ["cidlookup", 33, 5], ["cluechoo", 34, 5], ["commands", 35, 5], ["conference", 36, 5], ["curl", 37, 5], ["cv", 38, 5], ["db", 39, 5], ["directory", 40, 5], ["distributor", 41, 5], ["dptools", 42, 5], ["easyroute", 43, 5], ["enum", 44, 5], ["esf", 45, 5], ["esl", 46, 5], ["expr", 47, 5], ["fifo", 48, 5], ["fsk", 49, 5], ["fsv", 50, 5], ["hash", 51, 5], ["hiredis", 52, 5], ["httapi", 53, 5], ["http_cache", 54, 5], ["ladspa", 55, 5], ["lcr", 56, 5], ["memcache", 57, 5], ["mongo", 58, 5], ["mp4", 59, 5], ["mp4v2", 60, 5], ["nibblebill", 61, 5], ["oreka", 62, 5], ["osp", 63, 5], ["prefix", 64, 5], ["rad_auth", 65, 5], ["redis", 66, 5], ["rss", 67, 5], ["signalwire", 68, 5], ["sms", 69, 5], ["sms_flowroute", 70, 5], ["snapshot", 71, 5], ["snom", 72, 5], ["sonar", 73, 5], ["soundtouch", 74, 5], ["spandsp", 75, 5], ["spy", 76, 5], ["stress", 77, 5], ["translate", 78, 5], ["valet_parking", 79, 5], ["video_filter", 80, 5], ["vmd", 81, 5], ["voicemail", 82, 5], ["voicemail_ivr", 83, 5]]);
-const pos$3 = nix.positions(here + "/modules.nix", [["cepstral", 87, 5], ["flite", 88, 5], ["pocketsphinx", 89, 5], ["tts_commandline", 90, 5], ["unimrcp", 91, 5]]);
-const pos$4 = nix.positions(here + "/modules.nix", [["amr", 95, 5], ["amrwb", 96, 5], ["b64", 97, 5], ["bv", 98, 5], ["clearmode", 99, 5], ["codec2", 100, 5], ["com_g729", 101, 5], ["dahdi_codec", 102, 5], ["g723_1", 103, 5], ["g729", 104, 5], ["h26x", 105, 5], ["ilbc", 106, 5], ["isac", 107, 5], ["mp4v", 108, 5], ["opus", 109, 5], ["sangoma_codec", 110, 5], ["silk", 111, 5], ["siren", 112, 5], ["theora", 113, 5]]);
-const pos$5 = nix.positions(here + "/modules.nix", [["mariadb", 117, 5], ["pgsql", 118, 5]]);
-const pos$6 = nix.positions(here + "/modules.nix", [["asterisk", 122, 5], ["directory", 123, 5], ["xml", 124, 5]]);
-const pos$7 = nix.positions(here + "/modules.nix", [["ldap", 128, 5]]);
-const pos$8 = nix.positions(here + "/modules.nix", [["alsa", 132, 5], ["dingaling", 133, 5], ["gsmopen", 134, 5], ["h323", 138, 5], ["khomp", 139, 5], ["loopback", 140, 5], ["opal", 141, 5], ["portaudio", 142, 5], ["rtc", 143, 5], ["rtmp", 144, 5], ["skinny", 145, 5], ["sofia", 146, 5], ["verto", 147, 5]]);
-const pos$9 = nix.positions(here + "/modules.nix", [["amqp", 151, 5], ["cdr_csv", 152, 5], ["cdr_mongodb", 153, 5], ["cdr_pg_csv", 154, 5], ["cdr_sqlite", 155, 5], ["erlang_event", 156, 5], ["event_multicast", 157, 5], ["event_socket", 158, 5], ["fail2ban", 159, 5], ["format_cdr", 160, 5], ["json_cdr", 161, 5], ["radius_cdr", 162, 5], ["odbc_cdr", 163, 5], ["kazoo", 164, 5], ["rayo", 165, 5], ["smpp", 166, 5], ["snmp", 167, 5], ["event_zmq", 168, 5]]);
-const pos$10 = nix.positions(here + "/modules.nix", [["imagick", 172, 5], ["local_stream", 173, 5], ["native_file", 174, 5], ["opusfile", 175, 5], ["png", 181, 5], ["portaudio_stream", 182, 5], ["shell_stream", 183, 5], ["shout", 184, 5], ["sndfile", 185, 5], ["ssml", 186, 5], ["tone_stream", 187, 5], ["vlc", 188, 5], ["webm", 189, 5]]);
-const pos$11 = nix.positions(here + "/modules.nix", [["basic", 193, 5], ["java", 194, 5], ["lua", 195, 5], ["managed", 196, 5], ["perl", 197, 5], ["python", 198, 5], ["v8", 199, 5], ["yaml", 200, 5]]);
-const pos$12 = nix.positions(here + "/modules.nix", [["console", 204, 5], ["graylog2", 205, 5], ["logfile", 206, 5], ["syslog", 207, 5], ["raven", 208, 5]]);
-const pos$13 = nix.positions(here + "/modules.nix", [["de", 212, 5], ["en", 213, 5], ["es", 214, 5], ["es_ar", 215, 5], ["fa", 216, 5], ["fr", 217, 5], ["he", 218, 5], ["hr", 219, 5], ["hu", 220, 5], ["it", 221, 5], ["ja", 222, 5], ["nl", 223, 5], ["pl", 224, 5], ["pt", 225, 5], ["ru", 226, 5], ["sv", 227, 5], ["th", 228, 5], ["zh", 229, 5]]);
-const pos$14 = nix.positions(here + "/modules.nix", [["posix_timer", 233, 5], ["timerfd", 234, 5]]);
-const pos$15 = nix.positions(here + "/modules.nix", [["cdr", 238, 5], ["curl", 239, 5], ["ldap", 240, 5], ["radius", 241, 5], ["rpc", 242, 5], ["scgi", 243, 5], ["odbc", 246, 5]]);
-const pos$16 = nix.positions(here + "/modules.nix", [["applications", 26, 3], ["ast_tts", 86, 3], ["codecs", 94, 3], ["databases", 116, 3], ["dialplans", 121, 3], ["directories", 127, 3], ["endpoints", 131, 3], ["event_handlers", 150, 3], ["formats", 171, 3], ["languages", 192, 3], ["loggers", 203, 3], ["say", 211, 3], ["timers", 232, 3], ["xml_int", 237, 3], ["freetdm", 249, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const spandsp3 = nix.arg($, "spandsp3");
   const sofia_sip = nix.arg($, "sofia_sip");
   const libks = nix.arg($, "libks");
-  const mk = (path) => (inputs) => ({ [nix.POS]: pos$1, path: path, inputs: inputs });
+  const mk = (path) => (inputs) => ({ [nix.POS]: $pos[0], path: path, inputs: inputs });
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     applications: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       abstraction: nix.thunk(() => nix.app(mk, "applications/mod_abstraction", [])),
       av: nix.thunk(() => nix.app(mk, "applications/mod_av", nix.thunk(() => [ffmpeg]))),
       avmd: nix.thunk(() => nix.app(mk, "applications/mod_avmd", [])),
@@ -100,7 +85,7 @@ export default nix.lambda((args) => (() => {
       voicemail_ivr: nix.thunk(() => nix.app(mk, "applications/mod_voicemail_ivr", [])),
     })),
     ast_tts: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       cepstral: nix.thunk(() => nix.app(mk, "ast_tts/mod_cepstral", [])),
       flite: nix.thunk(() => nix.app(mk, "ast_tts/mod_flite", [])),
       pocketsphinx: nix.thunk(() => nix.app(mk, "ast_tts/mod_pocketsphinx", [])),
@@ -108,7 +93,7 @@ export default nix.lambda((args) => (() => {
       unimrcp: nix.thunk(() => nix.app(mk, "ast_tts/mod_unimrcp", [])),
     })),
     codecs: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       amr: nix.thunk(() => nix.app(mk, "codecs/mod_amr", [])),
       amrwb: nix.thunk(() => nix.app(mk, "codecs/mod_amrwb", [])),
       b64: nix.thunk(() => nix.app(mk, "codecs/mod_b64", [])),
@@ -130,22 +115,22 @@ export default nix.lambda((args) => (() => {
       theora: nix.thunk(() => nix.app(mk, "codecs/mod_theora", [])),
     })),
     databases: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       mariadb: nix.thunk(() => nix.app(mk, "databases/mod_mariadb", nix.thunk(() => [libmysqlclient]))),
       pgsql: nix.thunk(() => nix.app(mk, "databases/mod_pgsql", nix.thunk(() => [libpq]))),
     })),
     dialplans: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       asterisk: nix.thunk(() => nix.app(mk, "dialplans/mod_dialplan_asterisk", [])),
       directory: nix.thunk(() => nix.app(mk, "dialplans/mod_dialplan_directory", [])),
       xml: nix.thunk(() => nix.app(mk, "dialplans/mod_dialplan_xml", [])),
     })),
     directories: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       ldap: nix.thunk(() => nix.app(mk, "directories/mod_ldap", [])),
     })),
     endpoints: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       alsa: nix.thunk(() => nix.app(mk, "endpoints/mod_alsa", [])),
       dingaling: nix.thunk(() => nix.app(mk, "endpoints/mod_dingaling", [])),
       gsmopen: nix.thunk(() => nix.app(mk, "endpoints/mod_gsmopen", nix.thunk(() => [gsmlib, libctb]))),
@@ -161,7 +146,7 @@ export default nix.lambda((args) => (() => {
       verto: nix.thunk(() => nix.app(mk, "endpoints/mod_verto", nix.thunk(() => [libks]))),
     })),
     event_handlers: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       amqp: nix.thunk(() => nix.app(mk, "event_handlers/mod_amqp", [])),
       cdr_csv: nix.thunk(() => nix.app(mk, "event_handlers/mod_cdr_csv", [])),
       cdr_mongodb: nix.thunk(() => nix.app(mk, "event_handlers/mod_cdr_mongodb", [])),
@@ -182,7 +167,7 @@ export default nix.lambda((args) => (() => {
       event_zmq: nix.thunk(() => nix.app(mk, "event_handlers/mod_event_zmq", [])),
     })),
     formats: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       imagick: nix.thunk(() => nix.app(mk, "formats/mod_imagick", [])),
       local_stream: nix.thunk(() => nix.app(mk, "formats/mod_local_stream", [])),
       native_file: nix.thunk(() => nix.app(mk, "formats/mod_native_file", [])),
@@ -198,7 +183,7 @@ export default nix.lambda((args) => (() => {
       webm: nix.thunk(() => nix.app(mk, "formats/mod_webm", [])),
     })),
     languages: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       basic: nix.thunk(() => nix.app(mk, "languages/mod_basic", [])),
       java: nix.thunk(() => nix.app(mk, "languages/mod_java", [])),
       lua: nix.thunk(() => nix.app(mk, "languages/mod_lua", nix.thunk(() => [lua]))),
@@ -209,7 +194,7 @@ export default nix.lambda((args) => (() => {
       yaml: nix.thunk(() => nix.app(mk, "languages/mod_yaml", [])),
     })),
     loggers: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       console: nix.thunk(() => nix.app(mk, "loggers/mod_console", [])),
       graylog2: nix.thunk(() => nix.app(mk, "loggers/mod_graylog2", [])),
       logfile: nix.thunk(() => nix.app(mk, "loggers/mod_logfile", [])),
@@ -217,7 +202,7 @@ export default nix.lambda((args) => (() => {
       raven: nix.thunk(() => nix.app(mk, "loggers/mod_raven", [])),
     })),
     say: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       de: nix.thunk(() => nix.app(mk, "say/mod_say_de", [])),
       en: nix.thunk(() => nix.app(mk, "say/mod_say_en", [])),
       es: nix.thunk(() => nix.app(mk, "say/mod_say_es", [])),
@@ -238,12 +223,12 @@ export default nix.lambda((args) => (() => {
       zh: nix.thunk(() => nix.app(mk, "say/mod_say_zh", [])),
     })),
     timers: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       posix_timer: nix.thunk(() => nix.app(mk, "timers/mod_posix_timer", [])),
       timerfd: nix.thunk(() => nix.app(mk, "timers/mod_timerfd", [])),
     })),
     xml_int: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       cdr: nix.thunk(() => nix.app(mk, "xml_int/mod_xml_cdr", [])),
       curl: nix.thunk(() => nix.app(mk, "xml_int/mod_xml_curl", nix.thunk(() => [curl]))),
       ldap: nix.thunk(() => nix.app(mk, "xml_int/mod_xml_ldap", [])),

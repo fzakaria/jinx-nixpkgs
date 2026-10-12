@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["sha256", 26, 5]], [["NIX_CFLAGS_COMPILE", 68, 7]], [["description", 80, 5], ["homepage", 81, 5], ["platforms", 82, 5], ["license", 83, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["cmakeFlags", 61, 3], ["env", 68, 3], ["doInstallCheck", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, "pkg-config": false, gettext: false, dbus: false, "dbus-glib": false, libgaminggear: false, libgudev: false, lua: false, harfbuzz: false, runtimeShell: false, coreutils: false, kmod: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 68, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["platforms", 82, 5], ["license", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["cmakeFlags", 61, 3], ["env", 68, 3], ["doInstallCheck", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "roccat-tools";
       const version = "5.9.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/roccat/${pname}-${version}.tar.bz2`),
           sha256: "sha256-6bgyr5l7FF1HzPjT5aJSL7xickHJ9jZ73Ulrx3+tQ1o=",
         }))));
@@ -59,7 +56,7 @@ substituteInPlace CMakeLists.txt \\
         "-DLIBDIR=lib",
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.sel(harfbuzz, "dev")}/include/harfbuzz`),
             "-fcommon",
@@ -67,14 +64,14 @@ substituteInPlace CMakeLists.txt \\
       }));
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tools to configure ROCCAT devices",
         homepage: "https://roccat.sourceforge.net/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

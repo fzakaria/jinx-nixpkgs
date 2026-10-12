@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["libcst", 56, 5]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["pyproject", 37, 3], ["build-system", 39, 3], ["pythonRelaxDeps", 41, 3], ["dependencies", 45, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 59, 3], ["checkPhase", 65, 3], ["disabledTests", 70, 3], ["pythonImportsCheck", 72, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "google-api-core": false, "google-cloud-core": false, "google-crc32c": false, "grpc-google-iam-v1": false, "proto-plus": false, protobuf: false, libcst: false, grpcio: false, mock: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libcst", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["pyproject", 37, 3], ["build-system", 39, 3], ["pythonRelaxDeps", 41, 3], ["dependencies", 45, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 59, 3], ["checkPhase", 65, 3], ["disabledTests", 70, 3], ["pythonImportsCheck", 72, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "google-cloud-bigtable";
       const version = "2.35.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "python-bigtable",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         proto_plus,
         protobuf,
       ], nix.sel(google_api_core, "optional-dependencies", "grpc")));
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, libcst: nix.thunk(() => [libcst]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], libcst: nix.thunk(() => [libcst]) }));
       const nativeCheckInputs = nix.thunk(() => [grpcio, mock, pytestCheckHook]);
       const checkPhase = "# Prevent google directory from shadowing google imports\nrm -r google\n";
       const disabledTests = nix.thunk(() => ["policy"]);
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         "google.cloud.bigtable",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Google Cloud Bigtable API client library",
         homepage: "https://github.com/googleapis/python-bigtable",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-bigtable/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sarahec"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

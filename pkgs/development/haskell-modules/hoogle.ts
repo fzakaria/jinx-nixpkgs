@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hoogle.nix", [[["haddockDir", 88, 13], ["name", 89, 13]], [["can-search-database", 134, 11], ["nixos", 141, 18]], [["isHaskellLibrary", 127, 5], ["docPackages", 129, 13], ["database", 132, 5], ["tests", 134, 5]], [["description", 144, 5], ["platforms", 145, 5], ["hydraPlatforms", 146, 5], ["maintainers", 147, 5]], [["name", 41, 3], ["buildInputs", 42, 3], ["preferLocalBuild", 49, 3], ["allowSubstitutes", 55, 3], ["buildCommand", 57, 3], ["__structuredAttrs", 124, 3], ["passthru", 126, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, haskellPackages: false, writeText: false, runCommand: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hoogle.nix", [["haddockDir", 88, 13], ["name", 89, 13]]);
-const pos$2 = nix.positions(here + "/hoogle.nix", [["can-search-database", 134, 11], ["nixos", 141, 18]]);
-const pos$3 = nix.positions(here + "/hoogle.nix", [["isHaskellLibrary", 127, 5], ["docPackages", 129, 13], ["database", 132, 5], ["tests", 134, 5]]);
-const pos$4 = nix.positions(here + "/hoogle.nix", [["description", 144, 5], ["platforms", 145, 5], ["hydraPlatforms", 146, 5], ["maintainers", 147, 5]]);
-const pos$5 = nix.positions(here + "/hoogle.nix", [["name", 41, 3], ["buildInputs", 42, 3], ["preferLocalBuild", 49, 3], ["allowSubstitutes", 55, 3], ["buildCommand", 57, 3], ["__structuredAttrs", 124, 3], ["passthru", 126, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
     const docPackages = nix.thunk(() => nix.app(nix.sel(lib, "closePropagation"), nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "doc")), packages))));
     const databasePath = "share/doc/hoogle/default.hoo";
     return nix.app(nix.sel(buildPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "hoogle-with-packages",
         buildInputs: nix.thunk(() => [ghc, hoogle]),
         preferLocalBuild: true,
@@ -51,7 +47,7 @@ done
 echo importing other packages
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (el) => nix.str`ln -sfn ${nix.sel(el, "haddockDir")} "$out/share/doc/hoogle/${nix.sel(el, "name")}"
 `, nix.thunk(() => nix.app(nix.sel(lib, "filter"), (el) => !nix.eq(nix.sel(el, "haddockDir"), null), nix.thunk(() => nix.builtins.map((p) => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 haddockDir: nix.thunk(() => (nix.asBool(nix.has(p, "haddockDir")) ? nix.app(nix.sel(p, "haddockDir"), p) : null)),
                 name: nix.thunk(() => nix.sel(p, "pname")),
               }), docPackages)))))}
@@ -86,12 +82,12 @@ chmod +x $out/bin/hoogle
 `),
         __structuredAttrs: true,
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           isHaskellLibrary: false,
           docPackages: docPackages,
           database: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/${databasePath}`),
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "can-search-database": nix.thunk(() => nix.app(runCommand, "can-search-database", nix.thunk(() => ({})), nix.thunk(() => nix.str`# This succeeds even if no results are found, but \`Prelude.map\` should
 # always be available.
 ${nix.sel(finalAttrs, "finalPackage")}/bin/hoogle search Prelude.map > $out
@@ -100,7 +96,7 @@ ${nix.sel(finalAttrs, "finalPackage")}/bin/hoogle search Prelude.map > $out
           })),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Local Hoogle database",
           platforms: nix.thunk(() => nix.sel(ghc, "meta", "platforms")),
           hydraPlatforms: nix.thunk(() => (() => {

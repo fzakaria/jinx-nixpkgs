@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["GEN_ARTIFACTS", 26, 5]], [["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["nativeBuildInputs", 21, 3], ["env", 25, 3], ["postInstall", 29, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GEN_ARTIFACTS", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["nativeBuildInputs", 21, 3], ["env", 25, 3], ["postInstall", 29, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nix-melt",
       version: "0.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "nix-melt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,10 +24,10 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-OTKK0d4yCTiK5GTw+LKagutRbok/zKqLkeOtInJ2L64=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GEN_ARTIFACTS: "artifacts" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GEN_ARTIFACTS: "artifacts" })),
       postInstall: "installManPage artifacts/nix-melt.1\ninstallShellCompletion artifacts/nix-melt.{bash,fish} --zsh artifacts/_nix-melt\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Ranger-like flake.lock viewer",
         mainProgram: "nix-melt",
         homepage: "https://github.com/nix-community/nix-melt",

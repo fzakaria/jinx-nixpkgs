@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["cli", 50, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 58, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aioresponses: false, awesomeversion: false, buildPythonPackage: false, fetchFromGitHub: false, mashumaro: false, orjson: false, "poetry-core": false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, rich: false, syrupy_6: false, textual: false, "textual-plotext": false, typer: false, yarl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cli", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 58, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const typer = nix.arg($, "typer");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fumis",
       version: "0.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "frenck",
           repo: "python-fumis",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,13 +43,13 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [aiohttp, awesomeversion, mashumaro, orjson, yarl]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cli: nix.thunk(() => [rich, textual, textual_plotext, typer]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([aioresponses, pytest_asyncio, pytest_cov_stub, pytestCheckHook, syrupy_6], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pythonImportsCheck: nix.thunk(() => ["fumis"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Asynchronous Python client for the Fumis WiRCU API",
         homepage: "https://github.com/frenck/python-fumis",
         changelog: nix.thunk(() => nix.str`https://github.com/frenck/python-fumis/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

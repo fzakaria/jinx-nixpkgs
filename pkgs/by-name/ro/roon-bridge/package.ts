@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["updateScript", 96, 12]], [["description", 99, 5], ["changelog", 100, 5], ["homepage", 101, 5], ["sourceProvenance", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 108, 5], ["mainProgram", 112, 5]], [["pname", 36, 3], ["src", 37, 11], ["version", 37, 15], ["dontConfigure", 39, 3], ["dontBuild", 40, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 48, 3], ["installPhase", 53, 3], ["passthru", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, "alsa-utils": false, autoPatchelfHook: false, fetchurl: false, ffmpeg: false, lib: false, makeWrapper: false, openssl: false, stdenv: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 96, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 99, 5], ["changelog", 100, 5], ["homepage", 101, 5], ["sourceProvenance", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 108, 5], ["mainProgram", 112, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["src", 37, 11], ["version", 37, 15], ["dontConfigure", 39, 3], ["dontBuild", 40, 3], ["buildInputs", 42, 3], ["nativeBuildInputs", 48, 3], ["installPhase", 53, 3], ["passthru", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const host = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const system = nix.thunk(() => (nix.asBool(nix.eq(host, "x86_64-linux")) ? "linuxx64" : (nix.asBool(nix.eq(host, "aarch64-linux")) ? "linuxarmv8" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform ${host}`)))));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://download.roonlabs.com/updates/production/RoonBridge_${system}_${urlVersion}.tar.bz2`),
       hash: nix.thunk(() => (nix.asBool(nix.eq(system, "linuxx64")) ? "sha256-7flBDwWeHU0VPDsgV7ut+nwRv3PoJ4KxbFOXcAXE1No=" : (nix.asBool(nix.eq(system, "linuxarmv8")) ? "sha256-UbwvTQ8ted/PaUpE6deEaaSLaPl45HSslOWzXQloWKk=" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform ${host}`))))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "roon-bridge",
       src: src,
       version: version,
@@ -70,9 +67,9 @@ makeWrapper "$out/Bridge/RoonBridge" "$out/bin/RoonBridge" --chdir "$out"
 runHook postInstall
 `;
       })()),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Music player for music lovers",
         changelog: "https://community.roonlabs.com/c/roon/software-release-notes/18",
         homepage: "https://roonlabs.com",

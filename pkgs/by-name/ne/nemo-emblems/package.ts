@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 34, 5], ["description", 35, 5], ["longDescription", 36, 5], ["license", 40, 5], ["platforms", 41, 5], ["teams", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["postPatch", 23, 3], ["build-system", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { python3: false, lib: false, fetchFromGitHub: false, "cinnamon-translations": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["longDescription", 36, 5], ["license", 40, 5], ["platforms", 41, 5], ["teams", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["postPatch", 23, 3], ["build-system", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cinnamon_translations = nix.arg($, "cinnamon-translations");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nemo-emblems",
       version: "6.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "nemo-extensions",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +35,7 @@ substituteInPlace nemo-extension/nemo-emblems.py \\
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/linuxmint/nemo-extensions/tree/master/nemo-emblems",
         description: "Change a folder or file emblem in Nemo",
         longDescription: "Nemo extension that allows you to change folder or file emblems.\nWhen adding this to nemo-with-extensions you also need to add nemo-python.\n",

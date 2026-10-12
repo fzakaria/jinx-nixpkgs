@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 32, 5], ["sha256", 33, 5]], [["url", 39, 7], ["hash", 40, 7]], [["url", 83, 7], ["rev-prefix", 84, 7], ["ignoredVersions", 85, 7]], [["plugins", 93, 13]], [["QT_QPA_PLATFORM", 98, 13]], [["sclang-sc3-plugins", 90, 7]], [["updateScript", 82, 5], ["tests", 88, 5]], [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["maintainers", 119, 5], ["license", 122, 5], ["platforms", 123, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["patches", 36, 3], ["postPatch", 44, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 58, 3], ["hardeningDisable", 73, 3], ["cmakeFlags", 75, 3], ["passthru", 81, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, cmake: false, runtimeShell: false, "pkg-config": false, "alsa-lib": false, libjack2: false, libsndfile: false, fftw: false, curl: false, gcc: false, qt6: false, libxt: false, readline: false, useSCEL: true, useQtWebEngine: true, emacs: false, gitUpdater: false, "supercollider-with-plugins": false, supercolliderPlugins: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 83, 7], ["rev-prefix", 84, 7], ["ignoredVersions", 85, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["plugins", 93, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["QT_QPA_PLATFORM", 98, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["sclang-sc3-plugins", 90, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["updateScript", 82, 5], ["tests", 88, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["maintainers", 119, 5], ["license", 122, 5], ["platforms", 123, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["patches", 36, 3], ["postPatch", 44, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 58, 3], ["hardeningDisable", 73, 3], ["cmakeFlags", 75, 3], ["passthru", 81, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,13 +34,13 @@ export default nix.lambda((args) => (() => {
       const pname = "supercollider";
       const version = "3.14.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/supercollider/supercollider/releases/download/Version-${version}/SuperCollider-${version}-Source.tar.bz2`),
           sha256: "sha256-7mQMaHd65pdoIGbOXEqLflbFsiPnbHnBO1vlOH7lW7I=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/supercollider/supercollider/commit/e997e47890a9cee137756dede664811a58dbf85a.patch",
             hash: "sha256-Koh5CwkedDEXwvSFyZSrdKyVIKpX7nPrIcsr2FXaejo=",
           })))),
@@ -82,24 +74,24 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SC_USE_QTWEBENGINE", useQtWebEngine)),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/supercollider/supercollider.git",
             "rev-prefix": "Version-",
             ignoredVersions: "rc|beta",
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "sclang-sc3-plugins": nix.thunk(() => (() => {
             const supercollider_with_test_plugins = nix.thunk(() => nix.app(nix.sel(supercollider_with_plugins, "override"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 plugins: nix.thunk(() => (() => {
                   const w = nix.withScope(supercolliderPlugins, null);
                   return [nix.thunk(() => nix.lookup(w, "sc3-plugins"))];
                 })()),
               }))));
-            return nix.app(runCommand, "sclang-sc3-plugins-test", nix.thunk(() => ({ [nix.POS]: pos$5, QT_QPA_PLATFORM: "offscreen" })), nix.thunk(() => nix.str`export XDG_CONFIG_HOME="$TMPDIR/config"
+            return nix.app(runCommand, "sclang-sc3-plugins-test", nix.thunk(() => ({ [nix.POS]: $pos[4], QT_QPA_PLATFORM: "offscreen" })), nix.thunk(() => nix.str`export XDG_CONFIG_HOME="$TMPDIR/config"
 export XDG_DATA_HOME="$TMPDIR/data"
 export XDG_CACHE_HOME="$TMPDIR/cache"
 mkdir -p "$out"
@@ -114,7 +106,7 @@ fi
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Programming language for real time audio synthesis",
         homepage: "https://supercollider.github.io",
         changelog: nix.thunk(() => nix.str`https://github.com/supercollider/supercollider/blob/Version-${version}/CHANGELOG.md`),
@@ -126,7 +118,7 @@ fi
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         src,

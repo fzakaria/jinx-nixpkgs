@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]], [["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["platforms", 103, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 43, 3], ["cmakeFlags", 52, 3], ["dontWrapQtApps", 58, 3], ["postFixup", 60, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libx11: false, procps: false, python3: false, libdwarf: false, libglvnd: false, gtest: false, brotli: false, enableGui: true, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["platforms", 103, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 43, 3], ["cmakeFlags", 52, 3], ["dontWrapQtApps", 58, 3], ["postFixup", 60, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const enableGui = nix.argOr($, "enableGui", () => true);
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "apitrace",
       version: "14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apitrace",
           repo: "apitrace",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -74,7 +72,7 @@ done
 
 `, nix.app(nix.sel(lib, "optionalString"), enableGui, "wrapQtApp $out/bin/qapitrace\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://apitrace.github.io",
         description: "Tools to trace OpenGL, OpenGL ES, Direct3D, and DirectDraw APIs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

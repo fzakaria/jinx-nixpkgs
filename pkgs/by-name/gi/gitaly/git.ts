@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/git.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 20], ["hash", 25, 24], ["fetchSubmodules", 26, 5]], [["homepage", 85, 5], ["description", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["teams", 89, 5]], [["version", 19, 18], ["pname", 20, 3], ["src", 22, 3], ["unpackPhase", 30, 3], ["patches", 37, 3], ["sourceRoot", 41, 3], ["buildFlags", 43, 3], ["GIT_REPO_PATH", 44, 3], ["HOME", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 54, 3], ["dontUseMesonConfigure", 62, 3], ["dontUseNinjaBuild", 63, 3], ["NIX_LDFLAGS", 66, 3], ["GIT_PREFIX", 71, 3], ["dontInstall", 72, 3], ["doInstallCheck", 74, 3], ["installCheckPhase", 75, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, gitaly: false, fetchFromGitLab: false, curl: false, pcre2: false, zlib: false, git: false, meson: false, ninja: false, "pkg-config": false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/git.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 20], ["hash", 25, 24], ["fetchSubmodules", 26, 5]]);
-const pos$2 = nix.positions(here + "/git.nix", [["homepage", 85, 5], ["description", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["teams", 89, 5]]);
-const pos$3 = nix.positions(here + "/git.nix", [["version", 19, 18], ["pname", 20, 3], ["src", 22, 3], ["unpackPhase", 30, 3], ["patches", 37, 3], ["sourceRoot", 41, 3], ["buildFlags", 43, 3], ["GIT_REPO_PATH", 44, 3], ["HOME", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 54, 3], ["dontUseMesonConfigure", 62, 3], ["dontUseNinjaBuild", 63, 3], ["NIX_LDFLAGS", 66, 3], ["GIT_PREFIX", 71, 3], ["dontInstall", 72, 3], ["doInstallCheck", 74, 3], ["installCheckPhase", 75, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const data = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./git-data.json")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: nix.thunk(() => nix.attr(data, "version")),
       pname: "gitaly-git",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gitlab-org",
           repo: "git",
           rev: nix.thunk(() => nix.attr(data, "rev")),
@@ -53,7 +51,7 @@ git config --global --add safe.directory '*'
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\nHOME=/build PAGER=cat $out/bin/git config -l\nfile $out/bin/git | grep -qv 'too large section header'\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git-scm.com/",
         description: "Distributed version control system - with Gitaly patches",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

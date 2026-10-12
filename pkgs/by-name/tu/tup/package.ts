@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 96, 5], ["mainProgram", 97, 5], ["longDescription", 98, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["broken", 109, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 19, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["patches", 42, 3], ["configurePhase", 48, 3], ["buildPhase", 77, 3], ["installPhase", 86, 3], ["setupHook", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fuse3: false, "macfuse-stubs": false, "pkg-config": false, sqlite: false, pcre2: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 96, 5], ["mainProgram", 97, 5], ["longDescription", 98, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["broken", 109, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 19, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["patches", 42, 3], ["configurePhase", 48, 3], ["buildPhase", 77, 3], ["installPhase", 86, 3], ["setupHook", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const fuse = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(macfuse_stubs) : nix.force(fuse3)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tup",
       version: "0.8",
       outputs: nix.thunk(() => ["bin", "man", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gittup",
           repo: "tup",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +63,7 @@ runHook postConfigure
       installPhase: "runHook preInstall\ninstallBin tup\ninstallManPage tup.1\nrunHook postInstall\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast, file-based build system",
         mainProgram: "tup",
         longDescription: "Tup is a file-based build system for Linux, OSX, and Windows. It inputs a list\nof file changes and a directed acyclic graph (DAG), then processes the DAG to\nexecute the appropriate commands required to update dependent files. Updates are\nperformed with very little overhead since tup implements powerful build\nalgorithms to avoid doing unnecessary work. This means you can stay focused on\nyour project rather than on your build system.\n",

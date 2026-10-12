@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 10, 5], ["sha256", 11, 5]], [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["platforms", 24, 5], ["maintainers", 25, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["patches", 13, 3], ["sourceRoot", 16, 3], ["makeFlags", 17, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 10, 5], ["sha256", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["platforms", 24, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["patches", 13, 3], ["sourceRoot", 16, 3], ["makeFlags", 17, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libctb";
       const version = "0.16";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://iftools.com/download/files/legacy/${pname}-${version}.tar.gz`),
           sha256: "027wh89d0qyly3d9m6rg4x7x1gqz3y3cnxlgk0k8xgygcrm05c0w",
         }))));
@@ -24,14 +22,23 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = nix.thunk(() => nix.str`${pname}-${version}/build`);
       const makeFlags = nix.thunk(() => ["prefix=$(out)"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Communications toolbox",
         homepage: "https://iftools.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "misuzu"))]),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, patches, sourceRoot, makeFlags, meta };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        src,
+        patches,
+        sourceRoot,
+        makeFlags,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

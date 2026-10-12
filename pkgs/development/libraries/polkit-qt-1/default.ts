@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, fetchurl: false, cmake: false, "pkg-config": false, polkit: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,19 +18,27 @@ export default nix.lambda((args) => (() => {
       const pname = "polkit-qt-1";
       const version = "0.114.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kde/stable/polkit-qt-1/polkit-qt-1-${version}.tar.xz`),
           sha256: "sha256-LrDyJEWIgpX/or+8DDaThHoPlzu2sMPkzOAhi+fjkH4=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config]);
       const buildInputs = nix.thunk(() => [glib, polkit]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt wrapper around PolKit",
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, buildInputs, meta };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        src,
+        nativeBuildInputs,
+        buildInputs,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 5], ["hash", 37, 5]], [["NIX_CFLAGS_COMPILE", 67, 7], ["GAG_CPP", 72, 7]], [["description", 97, 5], ["longDescription", 98, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5]], [["version", 29, 3], ["pname", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 50, 3], ["patches", 57, 3], ["env", 67, 3], ["postPatch", 74, 3], ["configurePhase", 78, 3], ["postInstall", 83, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "gtk2-x11": false, "pkg-config": false, python3: false, gfortran: false, cfitsio: false, getopt: false, perl: false, groff: false, which: false, darwin: false, ncurses: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 67, 7], ["GAG_CPP", 72, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 97, 5], ["longDescription", 98, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 29, 3], ["pname", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 50, 3], ["patches", 57, 3], ["env", 67, 3], ["postPatch", 74, 3], ["configurePhase", 78, 3], ["postInstall", 83, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "4.5-01",
       pname: "imager",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://cloud.univ-grenoble-alpes.fr/s/J6yEqA6yZ8tX9da/download?path=%2F&files=imager-may25.tar.gz",
           hash: "sha256-E3JjdVGEQ0I/ogYj0G1OZxfQ3hA+sRgA4LAfHK52Sec=",
         })))),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./numpy-header.patch"),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-std=gnu17"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-unused-command-line-argument"])))))),
         GAG_CPP: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`${nix.sel(gfortran, "outPath")}/bin/cpp` : "cpp")),
       })),
@@ -68,7 +65,7 @@ makeWrapper $out/libexec/bin/imager $out/bin/imager \\
    --set LD_LIBRARY_PATH $out/libexec/lib/
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Interferometric imaging package",
         longDescription: "IMAGER is an interferometric imaging package in the GILDAS software,\ntailored for usage simplicity and efficiency for multi-spectral data sets.\n\nIMAGER was developed and optimized to handle large data files.\nTherefore, IMAGER works mostly on internal buffers and avoids as much as possible\nsaving data to intermediate files.\nFile saving is done ultimately once the data analysis process is complete,\nwhich offers an optimum use of the disk bandwidth.\n",
         homepage: "https://imager.oasu.u-bordeaux.fr",

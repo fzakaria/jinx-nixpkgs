@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["command", 67, 5], ["supportedFeatures", 68, 5]], [["package", 71, 50]], [["version", 71, 18]], [["name", 74, 5], ["buildCommand", 75, 5], ["outputHashMode", 81, 5], ["outputHashAlgo", 82, 5], ["outputHash", 83, 5]], [["updateScript", 66, 12], ["tests", 71, 12], ["deps", 73, 12]], [["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["sourceProvenance", 90, 5], ["description", 91, 5], ["mainProgram", 92, 5], ["platforms", 94, 5], ["maintainers", 95, 5]], [["pname", 15, 3], ["version", 16, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 23, 3], ["dontUnpack", 25, 3], ["installPhase", 29, 3], ["doInstallCheck", 56, 3], ["installCheckPhase", 57, 3], ["passthru", 66, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, coursier: false, jre: false, makeWrapper: false, setJavaClassPath: false, callPackage: false, testers: false, unzip: false, extraJavaOpts: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["command", 67, 5], ["supportedFeatures", 68, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 71, 50]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 71, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 74, 5], ["buildCommand", 75, 5], ["outputHashMode", 81, 5], ["outputHashAlgo", 82, 5], ["outputHash", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 66, 12], ["tests", 71, 12], ["deps", 73, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["sourceProvenance", 90, 5], ["description", 91, 5], ["mainProgram", 92, 5], ["platforms", 94, 5], ["maintainers", 95, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 23, 3], ["dontUnpack", 25, 3], ["installPhase", 29, 3], ["doInstallCheck", 56, 3], ["installCheckPhase", 57, 3], ["passthru", 66, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const extraJavaOpts = nix.argOr($, "extraJavaOpts", () => "-XX:+UseG1GC -XX:+UseStringDeduplication -Xss4m -Xms100m");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "metals",
       version: "1.6.9",
       nativeBuildInputs: nix.thunk(() => [makeWrapper, setJavaClassPath, unzip]),
@@ -61,21 +55,21 @@ $out/bin/metals-mcp --version | grep -q "${nix.sel(finalAttrs, "version")}"
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         deps: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: nix.thunk(() => nix.str`metals-deps-${nix.sel(finalAttrs, "version")}`),
             buildCommand: nix.thunk(() => nix.str`export COURSIER_CACHE=$(pwd)
 ${coursier}/bin/cs fetch org.scalameta:metals_2.13:${nix.sel(finalAttrs, "version")} org.scalameta:metals-mcp_2.13:${nix.sel(finalAttrs, "version")} > deps
@@ -88,7 +82,7 @@ cp $(< deps) $out/share/java/
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://scalameta.org/metals/",
         changelog: nix.thunk(() => nix.str`https://github.com/scalameta/metals/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

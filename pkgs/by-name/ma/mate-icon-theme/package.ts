@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["url", 48, 5], ["odd-unstable", 49, 5], ["rev-prefix", 50, 5]], [["updateScript", 47, 12]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["teams", 58, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 33, 3], ["dontDropIconThemeCache", 37, 3], ["postInstall", 39, 3], ["enableParallelBuilding", 45, 3], ["passthru", 47, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gettext: false, iconnamingutils: false, librsvg: false, gtk3: false, "hicolor-icon-theme": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 48, 5], ["odd-unstable", 49, 5], ["rev-prefix", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 47, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["teams", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 33, 3], ["dontDropIconThemeCache", 37, 3], ["postInstall", 39, 3], ["enableParallelBuilding", 45, 3], ["passthru", 47, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mate-icon-theme",
       version: "1.28.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-icon-theme-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "lNYHkGDKXfdFQpId5O6ji30C0HVhyRk1bZXeh2+abTo=",
         })))),
@@ -40,16 +36,16 @@ done
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.mate-desktop.org/mate-icon-theme",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Icon themes from MATE",
         homepage: "https://mate-desktop.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

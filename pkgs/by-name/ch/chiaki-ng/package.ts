@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]], [["NIX_CFLAGS_COMPILE", 84, 7]], [["homepage", 108, 5], ["description", 109, 5], ["license", 114, 5], ["maintainers", 115, 5], ["platforms", 116, 5], ["mainProgram", 117, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 55, 3], ["env", 84, 3], ["cmakeFlags", 86, 3], ["qtWrapperArgs", 91, 3], ["pythonPath", 95, 3], ["postInstall", 99, 3], ["postFixup", 103, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, cmake: false, "pkg-config": false, protobuf: false, python3: false, ffmpeg_8: false, libopus: false, SDL2: false, libevdev: false, udev: false, curlFull: false, hidapi: false, json_c: false, fftw: false, miniupnpc: false, nanopb: false, speexdsp: false, libplacebo: false, "vulkan-loader": false, "vulkan-headers": false, libunwind: false, shaderc: false, lcms2: false, libdovi: false, xxhash: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 84, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 108, 5], ["description", 109, 5], ["license", 114, 5], ["maintainers", 115, 5], ["platforms", 116, 5], ["mainProgram", 117, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 55, 3], ["env", 84, 3], ["cmakeFlags", 86, 3], ["qtWrapperArgs", 91, 3], ["pythonPath", 95, 3], ["postInstall", 99, 3], ["postFixup", 103, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const xxhash = nix.arg($, "xxhash");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "chiaki-ng",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "streetpea",
           repo: "chiaki-ng",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +85,7 @@ export default nix.lambda((args) => (() => {
         libdovi,
         xxhash,
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       cmakeFlags: nix.thunk(() => [
         "-Wno-dev",
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CHIAKI_USE_SYSTEM_CURL", "true")),
@@ -98,7 +95,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm755 $src/scripts/psn-account-id.py $out/bin/psn-account-id\n",
       postFixup: "wrapPythonPrograms\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://streetpea.github.io/chiaki-ng/",
         description: "Next-Generation of Chiaki (the open-source remote play client for PlayStation)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

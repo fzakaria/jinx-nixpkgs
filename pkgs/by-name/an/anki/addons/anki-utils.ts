@@ -2,16 +2,10 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/anki-utils.nix", [[["config", 72, 81]], [["pname", 75, 15], ["version", 76, 36], ["meta", 76, 44], ["paths", 78, 15], ["postBuild", 82, 15]], [["updateScript", 59, 11], ["withConfig", 60, 11]], [["platforms", 104, 11]], [["configurePhase", 38, 11], ["buildPhase", 39, 11], ["strictDeps", 40, 11], ["dontPatchELF", 41, 11], ["dontStrip", 42, 11], ["pname", 45, 9], ["installPrefix", 47, 9], ["installPhase", 49, 9], ["passthru", 58, 9], ["meta", 103, 9]], [["constructDrv", 12, 5], ["extendDrvArgs", 13, 5]], [["buildAnkiAddon", 11, 3], ["buildAnkiAddonsDir", 110, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, symlinkJoin: false, lndir: false, formats: false, runCommand: false, "nix-update-script": false }, ellipsis: false };
 const formals$2 = { args: { pname: false, configurePhase: true, buildPhase: true, strictDeps: true, dontPatchELF: true, dontStrip: true, passthru: true, meta: true, processUserFiles: true }, ellipsis: true };
 const formals$3 = { args: { config: true, userFiles: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/anki-utils.nix", [["config", 72, 81]]);
-const pos$2 = nix.positions(here + "/anki-utils.nix", [["pname", 75, 15], ["version", 76, 36], ["meta", 76, 44], ["paths", 78, 15], ["postBuild", 82, 15]]);
-const pos$3 = nix.positions(here + "/anki-utils.nix", [["updateScript", 59, 11], ["withConfig", 60, 11]]);
-const pos$4 = nix.positions(here + "/anki-utils.nix", [["platforms", 104, 11]]);
-const pos$5 = nix.positions(here + "/anki-utils.nix", [["configurePhase", 38, 11], ["buildPhase", 39, 11], ["strictDeps", 40, 11], ["dontPatchELF", 41, 11], ["dontStrip", 42, 11], ["pname", 45, 9], ["installPrefix", 47, 9], ["installPhase", 49, 9], ["passthru", 58, 9], ["meta", 103, 9]]);
-const pos$6 = nix.positions(here + "/anki-utils.nix", [["constructDrv", 12, 5], ["extendDrvArgs", 13, 5]]);
-const pos$7 = nix.positions(here + "/anki-utils.nix", [["buildAnkiAddon", 11, 3], ["buildAnkiAddonsDir", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,9 +17,9 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const nix_update_script = nix.arg($, "nix-update-script");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     buildAnkiAddon: nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
           const meta = nix.argOr($_1, "meta", () => ({}));
           const processUserFiles = nix.argOr($_1, "processUserFiles", () => "");
           return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             configurePhase: configurePhase,
             buildPhase: buildPhase,
             strictDeps: strictDeps,
@@ -49,16 +43,16 @@ export default nix.lambda((args) => (() => {
             installPrefix: nix.thunk(() => nix.str`share/anki/addons/${pname}`),
             installPhase: "runHook preInstall\n\nmkdir -p \"$out/$installPrefix/user_files\"\nfind . -mindepth 1 -maxdepth 1 | xargs -d'\\n' mv -t \"$out/$installPrefix/\"\n\nrunHook postInstall\n",
             passthru: nix.thunk(() => nix.update({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
               withConfig: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$3);
                 const config = nix.argOr($_2, "config", () => ({}));
                 const userFiles = nix.argOr($_2, "userFiles", () => null);
                 const metaConfigFormat = nix.thunk(() => nix.app(nix.sel(formats, "json"), nix.thunk(() => ({}))));
-                const addonMetaConfig = nix.thunk(() => nix.app(nix.sel(metaConfigFormat, "generate"), "meta.json", nix.thunk(() => ({ [nix.POS]: pos$1, config: config }))));
+                const addonMetaConfig = nix.thunk(() => nix.app(nix.sel(metaConfigFormat, "generate"), "meta.json", nix.thunk(() => ({ [nix.POS]: $pos[0], config: config }))));
                 return nix.app(symlinkJoin, nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-with-config`),
                     version: nix.thunk(() => nix.attr(finalAttrs, "version")),
                     meta: nix.thunk(() => nix.attr(finalAttrs, "meta")),
@@ -77,7 +71,7 @@ ${processUserFiles}
               })(), formals$3),
             }, passthru)),
             meta: nix.thunk(() => nix.update({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
             }, meta)),
           };

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["QRCode", 41, 25]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 53, 3], ["disabledTests", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, base36: false, buildPythonPackage: false, "chacha20poly1305-reuseable": false, cryptography: false, fetchFromGitHub: false, h11: false, orjson: false, pyqrcode: false, "pytest-asyncio": false, "pytest-timeout": false, pytestCheckHook: false, pythonAtLeast: false, setuptools: false, zeroconf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["QRCode", 41, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 53, 3], ["disabledTests", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const zeroconf = nix.arg($, "zeroconf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hap-python",
       version: "5.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ikalchev",
           repo: "HAP-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,12 +36,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [chacha20poly1305_reuseable, cryptography, h11, orjson, zeroconf]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, QRCode: nix.thunk(() => [base36, pyqrcode]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], QRCode: nix.thunk(() => [base36, pyqrcode]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_asyncio, pytest_timeout, pytestCheckHook], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["pyhap"]),
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_start_from_sync"]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "HomeKit Accessory Protocol implementation",
         homepage: "https://github.com/ikalchev/HAP-python",
         changelog: nix.thunk(() => nix.str`https://github.com/ikalchev/HAP-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

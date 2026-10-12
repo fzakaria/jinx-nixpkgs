@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 29, 27], ["license", 29, 36], ["description", 30, 5], ["longDescription", 31, 5], ["downloadPage", 35, 5], ["sourceProvenance", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontUnpack", 13, 3], ["dontBuild", 16, 3], ["buildInputs", 17, 3], ["installPhase", 19, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildGhidraExtension: false, ghidra: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 29, 27], ["license", 29, 36], ["description", 30, 5], ["longDescription", 31, 5], ["downloadPage", 35, 5], ["sourceProvenance", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontUnpack", 13, 3], ["dontBuild", 16, 3], ["buildInputs", 17, 3], ["installPhase", 19, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const ghidra = nix.arg($, "ghidra");
   const python3 = nix.arg($, "python3");
   return nix.app(buildGhidraExtension, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "sleighdevtools",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), ghidra)),
       src: nix.thunk(() => nix.str`${ghidra}/lib/ghidra/Extensions/Ghidra/${nix.sel(ghidra, "distroPrefix")}_SleighDevTools.zip`),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ghidra, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Sleigh language development tools including external disassembler capabilities",

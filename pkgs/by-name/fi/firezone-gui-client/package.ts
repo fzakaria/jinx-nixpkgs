@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["pname", 43, 15], ["version", 43, 21], ["pnpm", 44, 7], ["src", 45, 7], ["fetcherVersion", 46, 7], ["hash", 47, 7]], [["GITHUB_SHA", 51, 9]], [["pname", 39, 5], ["version", 40, 13], ["src", 40, 21], ["pnpmDeps", 42, 5], ["pnpmRoot", 49, 5], ["env", 51, 5], ["nativeBuildInputs", 53, 5], ["buildPhase", 59, 5], ["installPhase", 69, 5]], [["RUSTFLAGS", 85, 7]], [["name", 123, 7], ["exec", 124, 7], ["icon", 125, 7], ["comment", 126, 7], ["desktopName", 127, 7], ["categories", 128, 7], ["noDisplay", 129, 7], ["mimeTypes", 130, 7]], [["extraArgs", 156, 7]], [["frontend", 153, 13], ["updateScript", 155, 5]], [["description", 164, 5], ["homepage", 165, 5], ["license", 166, 5], ["maintainers", 167, 5], ["mainProgram", 171, 5], ["platforms", 172, 5]], [["pname", 79, 3], ["version", 80, 11], ["src", 80, 19], ["cargoHash", 82, 3], ["sourceRoot", 83, 3], ["buildAndTestSubdir", 84, 3], ["env", 85, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 94, 3], ["postPatch", 108, 3], ["doCheck", 118, 3], ["desktopItems", 120, 3], ["preFixup", 136, 3], ["passthru", 152, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { lib: false, rust: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, stdenvNoCC: false, "pkg-config": false, openssl: false, dbus: false, zenity: false, "cargo-tauri": false, "gdk-pixbuf": false, glib: false, "gobject-introspection": false, gtk3: false, kdePackages: false, libsoup_3: false, "libayatana-appindicator": false, webkitgtk_4_1: false, wrapGAppsHook3: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, nodejs: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 43, 15], ["version", 43, 21], ["pnpm", 44, 7], ["src", 45, 7], ["fetcherVersion", 46, 7], ["hash", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GITHUB_SHA", 51, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 39, 5], ["version", 40, 13], ["src", 40, 21], ["pnpmDeps", 42, 5], ["pnpmRoot", 49, 5], ["env", 51, 5], ["nativeBuildInputs", 53, 5], ["buildPhase", 59, 5], ["installPhase", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 85, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 123, 7], ["exec", 124, 7], ["icon", 125, 7], ["comment", 126, 7], ["desktopName", 127, 7], ["categories", 128, 7], ["noDisplay", 129, 7], ["mimeTypes", 130, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 156, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["frontend", 153, 13], ["updateScript", 155, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 164, 5], ["homepage", 165, 5], ["license", 166, 5], ["maintainers", 167, 5], ["mainProgram", 171, 5], ["platforms", 172, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 79, 3], ["version", 80, 11], ["src", 80, 19], ["cargoHash", 82, 3], ["sourceRoot", 83, 3], ["buildAndTestSubdir", 84, 3], ["env", 85, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 94, 3], ["postPatch", 108, 3], ["doCheck", 118, 3], ["desktopItems", 120, 3], ["preFixup", 136, 3], ["passthru", 152, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const version = "1.5.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "firezone",
       repo: "firezone",
       tag: nix.thunk(() => nix.str`gui-client-${version}`),
@@ -55,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const src_1 = src;
       const pnpmDeps = nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version_1,
           pnpm: pnpm_10,
@@ -64,12 +55,12 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-770+06rpf/P9hOFLgEWc0/BKjIxHyCWB2E3tqdEskAA=",
         }))));
       const pnpmRoot = "rust/gui-client";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, GITHUB_SHA: version_1 }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], GITHUB_SHA: version_1 }));
       const nativeBuildInputs = nix.thunk(() => [pnpmConfigHook, pnpm_10, nodejs]);
       const buildPhase = "runHook preBuild\n\ncd $pnpmRoot\nnode ./node_modules/flowbite-react/dist/cli/bin.js patch\nnode --max_old_space_size=1024000 ./node_modules/vite/bin/vite.js build\n\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\n\ncp -r dist $out\n\nrunHook postInstall\n";
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version: version_1,
         src: src_1,
@@ -88,7 +79,7 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-LHHaklGIMuDuZwikXiQzLPbmkUbPyYR04UBQTBxq2ps=";
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src_1, "name")}/rust`);
       const buildAndTestSubdir = "gui-client";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$5, RUSTFLAGS: "--cfg system_certs" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[4], RUSTFLAGS: "--cfg system_certs" }));
       const nativeBuildInputs = nix.thunk(() => [
         nix.thunk(() => nix.sel(cargo_tauri, "hook")),
         pkg_config,
@@ -115,7 +106,7 @@ substituteInPlace gui-client/src-tauri/tauri.conf.json \\
       const doCheck = false;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "firezone-client-gui-deep-link",
             exec: "firezone-client-gui open-deep-link %U",
             icon: "firezone-client-gui",
@@ -132,15 +123,15 @@ substituteInPlace gui-client/src-tauri/tauri.conf.json \\
 )
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         frontend: frontend,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             extraArgs: nix.thunk(() => ["--version-regex", "gui-client-(.*)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "GUI client for the Firezone zero-trust access platform",
         homepage: "https://github.com/firezone/firezone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -155,7 +146,7 @@ substituteInPlace gui-client/src-tauri/tauri.conf.json \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version: version_1,
         src: src_1,

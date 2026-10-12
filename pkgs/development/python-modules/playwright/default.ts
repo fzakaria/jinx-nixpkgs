@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["driver", 51, 7], ["nodejs", 52, 7]], [["driver", 99, 15], ["browsers", 100, 7]], [["playwright-python", 103, 28]], [["driver", 97, 13], ["tests", 98, 5], ["skipBulkUpdate", 107, 5]], [["description", 111, 5], ["mainProgram", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]], [["pname", 32, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["postPatch", 56, 3], ["build-system", 68, 3], ["nativeBuildInputs", 73, 3], ["pythonRelaxDeps", 78, 3], ["dependencies", 82, 3], ["postInstall", 87, 3], ["doCheck", 92, 3], ["pythonImportsCheck", 94, 3], ["passthru", 96, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, nodejs: false, "playwright-driver": false, setuptools: false, "setuptools-scm": false, gitMinimal: false, writableTmpDirAsHomeHook: false, greenlet: false, pyee: false, python: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["driver", 51, 7], ["nodejs", 52, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["driver", 99, 15], ["browsers", 100, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["playwright-python", 103, 28]]);
-const pos$5 = nix.positions(here + "/default.nix", [["driver", 97, 13], ["tests", 98, 5], ["skipBulkUpdate", 107, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 111, 5], ["mainProgram", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["postPatch", 56, 3], ["build-system", 68, 3], ["nativeBuildInputs", 73, 3], ["pythonRelaxDeps", 78, 3], ["dependencies", 82, 3], ["postInstall", 87, 3], ["doCheck", 92, 3], ["pythonImportsCheck", 94, 3], ["passthru", 96, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const driver = playwright_driver;
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "playwright",
       version: "1.63.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "playwright-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./driver-location.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             driver: nix.thunk(() => nix.str`${driver}/cli.js`),
             nodejs: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nodejs)),
           })))),
@@ -58,20 +52,20 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["playwright"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         driver: driver,
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           driver: driver,
           browsers: nix.thunk(() => nix.sel(playwright_driver, "browsers")),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "playwright-python": nix.thunk(() => nix.attr(nixosTests, "playwright-python")),
           }))))),
         skipBulkUpdate: true,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Python version of the Playwright testing and automation library",
         mainProgram: "playwright",
         homepage: "https://github.com/microsoft/playwright-python",

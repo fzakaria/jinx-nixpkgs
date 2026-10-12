@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["dontDisableStatic", 15, 5]], [["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]], [["changelog", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["disabled", 24, 3], ["src", 26, 3], ["postPatch", 31, 3], ["build-system", 42, 3], ["buildInputs", 44, 3], ["dependencies", 46, 3], ["checkPhase", 51, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "charset-normalizer": false, fetchPypi: false, freetype: false, pillow: false, setuptools: false, python: false, isPyPy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["dontDisableStatic", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["disabled", 24, 3], ["src", 26, 3], ["postPatch", 31, 3], ["build-system", 42, 3], ["buildInputs", 44, 3], ["dependencies", 46, 3], ["checkPhase", 51, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const python = nix.arg($, "python");
   const isPyPy = nix.arg($, "isPyPy");
-  const ft = nix.thunk(() => nix.app(nix.sel(freetype, "overrideAttrs"), (oldArgs) => ({ [nix.POS]: pos$1, dontDisableStatic: true })));
+  const ft = nix.thunk(() => nix.app(nix.sel(freetype, "overrideAttrs"), (oldArgs) => ({ [nix.POS]: $pos[0], dontDisableStatic: true })));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname = "reportlab";
       const version = "5.0.1";
       const pyproject = true;
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           hash: "sha256-69ExVL4chRXmZd5wvS0wOundw+9H5Er9URZEHKAoOiY=",
@@ -42,7 +39,7 @@ popd
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: "https://hg.reportlab.com/hg-public/reportlab/file/tip/CHANGES.md",
         description: "Open Source Python library for generating PDFs and graphics",
         homepage: "https://www.reportlab.com/",
@@ -50,7 +47,7 @@ runHook postCheck
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

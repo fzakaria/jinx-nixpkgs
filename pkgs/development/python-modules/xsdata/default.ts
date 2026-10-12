@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["ruff", 31, 7]], [["cli", 45, 5], ["lxml", 50, 5], ["soap", 51, 5]], [["description", 77, 5], ["mainProgram", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 35, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 44, 3], ["nativeCheckInputs", 54, 3], ["disabledTestPaths", 59, 3], ["pythonImportsCheck", 61, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, ruff: false, click: false, jinja2: false, toposort: false, "typing-extensions": false, lxml: false, requests: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ruff", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cli", 45, 5], ["lxml", 50, 5], ["soap", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 77, 5], ["mainProgram", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 35, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 44, 3], ["nativeCheckInputs", 54, 3], ["disabledTestPaths", 59, 3], ["pythonImportsCheck", 61, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tefra",
           repo: "xsdata",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             ruff: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ruff)),
           })))),
       ]);
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         cli: nix.thunk(() => [click, jinja2, toposort]),
         lxml: nix.thunk(() => [lxml]),
         soap: nix.thunk(() => [requests]),
@@ -67,7 +63,7 @@ export default nix.lambda((args) => (() => {
         "xsdata.utils.text",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Naive XML & JSON bindings for Python",
         mainProgram: "xsdata",
         homepage: "https://github.com/tefra/xsdata",
@@ -79,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

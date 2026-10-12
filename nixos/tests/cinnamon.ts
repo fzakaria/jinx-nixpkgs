@@ -2,71 +2,58 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cinnamon.nix", [[["maintainers", 5, 8]], [["enable", 12, 48], ["sessionPath", 19, 48]], [["cinnamon", 12, 39]], [["extraConfig", 22, 62]], [["slick", 22, 56]], [["greeters", 22, 47]], [["lightdm", 22, 39]], [["enable", 11, 24], ["desktopManager", 12, 24], ["displayManager", 22, 24]], [["xserver", 11, 16]], [["excludePackages", 16, 28]], [["cinnamon", 16, 19]], [["imports", 10, 7], ["services", 11, 7], ["environment", 16, 7]], [["machine", 7, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["enableOCR", 27, 3], ["testScript", 29, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cinnamon.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/cinnamon.nix", [["enable", 12, 48], ["sessionPath", 19, 48]]);
-const pos$3 = nix.positions(here + "/cinnamon.nix", [["cinnamon", 12, 39]]);
-const pos$4 = nix.positions(here + "/cinnamon.nix", [["extraConfig", 22, 62]]);
-const pos$5 = nix.positions(here + "/cinnamon.nix", [["slick", 22, 56]]);
-const pos$6 = nix.positions(here + "/cinnamon.nix", [["greeters", 22, 47]]);
-const pos$7 = nix.positions(here + "/cinnamon.nix", [["lightdm", 22, 39]]);
-const pos$8 = nix.positions(here + "/cinnamon.nix", [["enable", 11, 24], ["desktopManager", 12, 24], ["displayManager", 22, 24]]);
-const pos$9 = nix.positions(here + "/cinnamon.nix", [["xserver", 11, 16]]);
-const pos$10 = nix.positions(here + "/cinnamon.nix", [["excludePackages", 16, 28]]);
-const pos$11 = nix.positions(here + "/cinnamon.nix", [["cinnamon", 16, 19]]);
-const pos$12 = nix.positions(here + "/cinnamon.nix", [["imports", 10, 7], ["services", 11, 7], ["environment", 16, 7]]);
-const pos$13 = nix.positions(here + "/cinnamon.nix", [["machine", 7, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/cinnamon.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["enableOCR", 27, 3], ["testScript", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "cinnamon",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "cinnamon", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               desktopManager: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 cinnamon: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   enable: true,
                   sessionPath: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gpaste"))]),
                 })),
               })),
               displayManager: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 lightdm: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   greeters: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
-                    slick: nix.thunk(() => ({ [nix.POS]: pos$4, extraConfig: "enable-hidpi = on\n" })),
+                    [nix.POS]: $pos[4],
+                    slick: nix.thunk(() => ({ [nix.POS]: $pos[3], extraConfig: "enable-hidpi = on\n" })),
                   })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             cinnamon: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               excludePackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-text-editor"))]),
             })),
           })),

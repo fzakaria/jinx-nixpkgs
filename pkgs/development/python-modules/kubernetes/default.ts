@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["adal", 52, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 38, 3], ["optional-dependencies", 51, 3], ["pythonImportsCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTests", 63, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, adal: false, buildPythonPackage: false, certifi: false, durationpy: false, fetchFromGitHub: false, "google-auth": false, mock: false, pytestCheckHook: false, "python-dateutil": false, pyyaml: false, requests: false, "requests-oauthlib": false, setuptools: false, six: false, urllib3: false, "websocket-client": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["adal", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 38, 3], ["optional-dependencies", 51, 3], ["pythonImportsCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTests", 63, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "35.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kubernetes-client",
           repo: "python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,19 +49,19 @@ export default nix.lambda((args) => (() => {
         urllib3,
         websocket_client,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, adal: nix.thunk(() => [adal]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], adal: nix.thunk(() => [adal]) }));
       const pythonImportsCheck = nix.thunk(() => ["kubernetes"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([mock, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_rest_proxycare"])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Kubernetes Python client",
         homepage: "https://github.com/kubernetes-client/python",
         changelog: nix.thunk(() => nix.str`https://github.com/kubernetes-client/python/releases/tag/${nix.sel(src, "tag")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

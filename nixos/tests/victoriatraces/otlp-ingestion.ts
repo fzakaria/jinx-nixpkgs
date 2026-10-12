@@ -2,15 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/otlp-ingestion.nix", [[["maintainers", 55, 8]], [["enable", 61, 9], ["retentionPeriod", 62, 9], ["extraOptions", 63, 9]], [["victoriatraces", 60, 16]], [["systemPackages", 68, 19]], [["services", 60, 7], ["environment", 68, 7]], [["machine", 57, 9]], [["name", 54, 3], ["meta", 55, 3], ["nodes", 57, 3], ["testScript", 75, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/otlp-ingestion.nix", [["maintainers", 55, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/otlp-ingestion.nix", [["enable", 61, 9], ["retentionPeriod", 62, 9], ["extraOptions", 63, 9]]);
-const pos$3 = nix.positions(here + "/otlp-ingestion.nix", [["victoriatraces", 60, 16]]);
-const pos$4 = nix.positions(here + "/otlp-ingestion.nix", [["systemPackages", 68, 19]]);
-const pos$5 = nix.positions(here + "/otlp-ingestion.nix", [["services", 60, 7], ["environment", 68, 7]]);
-const pos$6 = nix.positions(here + "/otlp-ingestion.nix", [["machine", 57, 9]]);
-const pos$7 = nix.positions(here + "/otlp-ingestion.nix", [["name", 54, 3], ["meta", 55, 3], ["nodes", 57, 3], ["testScript", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -63,33 +57,33 @@ provider.force_flush()
 print("Test trace sent")
 `)));
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "victoriatraces-otlp-ingestion",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "cmacrae"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             victoriatraces: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               retentionPeriod: "1d",
               extraOptions: nix.thunk(() => ["-search.latencyOffset=0s"]),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [

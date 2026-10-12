@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["debug", 38, 25]], [["nativeBuildInputs", 69, 11]], [["tests", 66, 5]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["changelog", 95, 5], ["maintainers", 96, 5], ["teams", 97, 5], ["mainProgram", 98, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 28, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 40, 3], ["enabledTestPaths", 45, 3], ["disabledTestPaths", 49, 3], ["pythonImportsCheck", 61, 3], ["passthru", 65, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromCodeberg: false, runCommand: false, lctime: false, ngspice: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["debug", 38, 25]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 69, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["changelog", 95, 5], ["maintainers", 96, 5], ["teams", 97, 5], ["mainProgram", 98, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 28, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 40, 3], ["enabledTestPaths", 45, 3], ["disabledTestPaths", 49, 3], ["pythonImportsCheck", 61, 3], ["passthru", 65, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const ngspice = nix.arg($, "ngspice");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lctime",
       version: "0.0.28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "librecell",
           repo: "lctime",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         debug: nix.thunk(() => (() => {
           const w_2 = nix.withScope(python3Packages, null);
           return [nix.thunk(() => nix.lookup(w_2, "matplotlib"))];
@@ -69,9 +64,9 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["lctime"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.app(runCommand, "lctime-tests", nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             nativeBuildInputs: nix.thunk(() => [lctime, ngspice, writableTmpDirAsHomeHook]),
           })), nix.thunk(() => nix.str`cd "$HOME"
 
@@ -83,7 +78,7 @@ mkdir -p $out
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Characterization tool for CMOS digital standard-cells",
         homepage: "https://codeberg.org/librecell/lctime",
         license: nix.thunk(() => (() => {

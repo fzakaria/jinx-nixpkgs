@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["name", 20, 7], ["url", 21, 7], ["hash", 22, 7]], [["description", 39, 5], ["mainProgram", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["configureFlags", 26, 3], ["enableParallelBuilding", 32, 3], ["buildInputs", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, xercesc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 20, 7], ["url", 21, 7], ["hash", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["configureFlags", 26, 3], ["enableParallelBuilding", 32, 3], ["buildInputs", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const xercesc = nix.arg($, "xercesc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xqilla",
       version: "2.3.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/xqilla/XQilla-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-KSYxeRYx/i5+uXJzdzNQY6SPEmEdZB0Clml+DAdZAus=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "xqilla-gcc11.patch",
             url: "https://git.pld-linux.org/gitweb.cgi?p=packages/xqilla.git;a=blob_plain;f=xqilla-gcc11.patch;h=c9e28be64097040348f710cb27be5f7dad001112;hb=4efe07397c6fb426a65b2eec6999d3c7e683848a",
             hash: "sha256-enMEF3U+PsbwOQ5SwlRVWc/FpyLS3aK6JgUgOp3ZbiA=",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       buildInputs: nix.thunk(() => [xercesc]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "XQuery and XPath 2 library and command line utility written in C++, implemented on top of the Xerces-C library",
         mainProgram: "xqilla",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

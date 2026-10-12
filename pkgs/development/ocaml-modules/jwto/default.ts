@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 16, 3], ["version", 17, 3], ["duneVersion", 19, 3], ["minimalOCamlVersion", 21, 3], ["src", 23, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["checkInputs", 41, 3], ["doCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, alcotest: false, digestif: false, fmt: false, yojson: false, ppxlib: false, base64: false, re: false, ppx_deriving: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["duneVersion", 19, 3], ["minimalOCamlVersion", 21, 3], ["src", 23, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["checkInputs", 41, 3], ["doCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const ppx_deriving = nix.arg($, "ppx_deriving");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jwto",
       version: "0.4.0",
       duneVersion: "3",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sporto",
           repo: "jwto",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/sporto/jwto",
         description: "JSON Web Tokens (JWT) for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

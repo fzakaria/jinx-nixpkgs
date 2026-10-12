@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["pname", 31, 26], ["version", 31, 32], ["src", 31, 40], ["hash", 32, 5]], [["packageName", 65, 7]], [["updateScript", 64, 5]], [["homepage", 70, 5], ["changelog", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["teams", 74, 5], ["license", 75, 5], ["platforms", 76, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoDeps", 30, 3], ["strictDeps", 35, 3], ["__structuredArgs", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 51, 3], ["nativeCheckInputs", 56, 3], ["doCheck", 61, 3], ["passthru", 63, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchurl: false, wrapGAppsHook4: false, meson: false, vala: false, "pkg-config": false, ninja: false, itstool: false, gnome: false, gtk4: false, libadwaita: false, stdenv: false, rustc: false, cargo: false, "desktop-file-utils": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 31, 26], ["version", 31, 32], ["src", 31, 40], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 65, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["changelog", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["teams", 74, 5], ["license", 75, 5], ["platforms", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoDeps", 30, 3], ["strictDeps", 35, 3], ["__structuredArgs", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 51, 3], ["nativeCheckInputs", 56, 3], ["doCheck", 61, 3], ["passthru", 63, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,16 +25,16 @@ export default nix.lambda((args) => (() => {
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gnome-2048",
       version: "50.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-2048/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-2048-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-bRXfaKYSjPDJnlmJCK+MZntzPcQAPvTSHUtMSkK9Lak=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -66,11 +61,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gnome-2048" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "gnome-2048" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-2048",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-2048/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Obtain the 2048 tile",

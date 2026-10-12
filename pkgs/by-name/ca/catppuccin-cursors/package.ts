@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["palette", 15, 5], ["color", 21, 5]], [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]], [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["platforms", 107, 5], ["maintainers", 108, 5]], [["pname", 45, 3], ["version", 46, 11], ["src", 48, 3], ["nativeBuildInputs", 55, 3], ["outputs", 65, 3], ["outputsToInstall", 67, 3], ["buildPhase", 69, 3], ["installPhase", 79, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, inkscape: false, just: false, xcursorgen: false, "catppuccin-whiskers": false, python3: false, python3Packages: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["palette", 15, 5], ["color", 21, 5]]);
 const formals$2 = { args: { palette: false, color: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["platforms", 107, 5], ["maintainers", 108, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 11], ["src", 48, 3], ["nativeBuildInputs", 55, 3], ["outputs", 65, 3], ["outputsToInstall", 67, 3], ["buildPhase", 69, 3], ["installPhase", 79, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const zip = nix.arg($, "zip");
   const dimensions = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     palette: nix.thunk(() => ["frappe", "latte", "macchiato", "mocha"]),
     color: nix.thunk(() => [
       "Blue",
@@ -52,11 +49,11 @@ export default nix.lambda((args) => (() => {
   const variants = nix.thunk(() => nix.app(nix.sel(lib, "mapCartesianProduct"), variantName, dimensions));
   const version = "2.0.0";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "catppuccin-cursors",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "catppuccin",
           repo: "cursors",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npatchShebangs .\n\njust all\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nfor output in $(getAllOutputNames); do\n  if [ \"$output\" != \"out\" ]; then\n    local outputDir=\"${!output}\"\n    local iconsDir=\"$outputDir\"/share/icons\n\n    mkdir -p \"$iconsDir\"\n\n    # Convert to kebab case with the first letter of each word capitalized\n    local variant=$(sed 's/\\([A-Z]\\)/-\\1/g' <<< \"$output\")\n    local variant=${variant,,}\n\n    mv \"dist/catppuccin-$variant-cursors\" \"$iconsDir\"\n  fi\ndone\n\n# Needed to prevent breakage\nmkdir -p \"$out\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Catppuccin cursor theme based on Volantes",
         homepage: "https://github.com/catppuccin/cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

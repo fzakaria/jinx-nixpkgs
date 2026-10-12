@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 36, 3], ["patches", 39, 3], ["extraNativeBuildInputs", 41, 3], ["extraBuildInputs", 49, 3], ["extraCmakeFlags", 51, 3], ["postPatch", 59, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, "pkg-config": false, plymouth: false, imagemagick: false, netpbm: false, perl: false, logoName: true, logoFile: true, osName: true, osVersion: true, topColor: true, bottomColor: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["patches", 39, 3], ["extraNativeBuildInputs", 41, 3], ["extraBuildInputs", 49, 3], ["extraCmakeFlags", 51, 3], ["postPatch", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +34,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertOneOf"), "topColor", topColor, validColors), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/kde/plasma/breeze-plymouth/default.nix:33:1");
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertOneOf"), "bottomColor", bottomColor, validColors), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/kde/plasma/breeze-plymouth/default.nix:34:1");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "breeze-plymouth",
       patches: nix.thunk(() => [nix.path(here, "./install-paths.patch")]),
       extraNativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(logoFile, null)), nix.thunk(() => [imagemagick, netpbm, perl])))),

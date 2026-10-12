@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["url", 32, 5], ["hash", 33, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 74, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["license", 31, 3], ["preBuild", 36, 3], ["postBuild", 37, 3], ["buildFlags", 39, 3], ["enableParallelBuilding", 44, 3], ["installPhase", 46, 3], ["preFixup", 57, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, gnuplot: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["license", 31, 3], ["preBuild", 36, 3], ["postBuild", 37, 3], ["buildFlags", 39, 3], ["enableParallelBuilding", 44, 3], ["installPhase", 46, 3], ["preFixup", 57, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
       const pname = "iozone";
       const version = "3.507";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.iozone.org/src/current/iozone${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.tar`),
           hash: "sha256-HoCHraBW9dgBjuC8dmhtQW/CJR7QMDgFXb0K940eXOM=",
         }))));
       const license = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://www.iozone.org/docs/Iozone_License.txt",
           hash: "sha256-O/8yztxKBI/UKs6vwv9mq16Rn3cf/UHpSxdVnAPVCYw=",
         }))));
@@ -48,7 +45,7 @@ substituteInPlace $out/libexec/Generate_Graphs \\
   --replace gnu3d.dem $out/libexec/gnu3d.dem
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Filesystem benchmark tool",
         homepage: "http://www.iozone.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
@@ -62,7 +59,7 @@ substituteInPlace $out/libexec/Generate_Graphs \\
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

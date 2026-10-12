@@ -2,10 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/aliases.nix", [[["path", 16, 5], ["package", 17, 5]], [["cuda_cccl", 15, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
 const formals$2 = { args: { path: false, package: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/aliases.nix", [["path", 16, 5], ["package", 17, 5]]);
-const pos$2 = nix.positions(here + "/aliases.nix", [["cuda_cccl", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,9 +16,9 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.str`cudaPackages.${oldName} is deprecated, use ${path} instead`), package$);
   })(), formals$2);
   return (final) => (_) => nix.builtins.mapAttrs(mkRenamed, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       cuda_cccl: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         path: "cccl",
         package: nix.thunk(() => nix.sel(final, "cccl")),
       })),

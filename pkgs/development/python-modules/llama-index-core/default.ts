@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["description", 165, 5], ["homepage", 166, 5], ["changelog", 167, 5], ["license", 168, 5], ["maintainers", 169, 5]], [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["src", 44, 3], ["sourceRoot", 51, 3], ["postPatch", 59, 3], ["pythonRelaxDeps", 67, 3], ["build-system", 72, 3], ["dependencies", 74, 3], ["nativeCheckInputs", 103, 3], ["pythonImportsCheck", 110, 3], ["disabledTestPaths", 112, 3], ["disabledTests", 142, 3], ["meta", 164, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aiosqlite: false, banks: false, buildPythonPackage: false, "dataclasses-json": false, deprecated: false, dirtyjson: false, fetchFromGitHub: false, filetype: false, fsspec: false, hatchling: false, "jsonpath-ng": false, "llama-index-workflows": false, "nest-asyncio": false, networkx: false, "nltk-data": false, nltk: false, numpy: false, openai: false, pandas: false, pillow: false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, pyvis: false, pyyaml: false, requests: false, spacy: false, sqlalchemy: false, tenacity: false, tinytag: false, tiktoken: false, "tree-sitter": false, "typing-inspect": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 165, 5], ["homepage", 166, 5], ["changelog", 167, 5], ["license", 168, 5], ["maintainers", 169, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["src", 44, 3], ["sourceRoot", 51, 3], ["postPatch", 59, 3], ["pythonRelaxDeps", 67, 3], ["build-system", 72, 3], ["dependencies", 74, 3], ["nativeCheckInputs", 103, 3], ["pythonImportsCheck", 110, 3], ["disabledTestPaths", 112, 3], ["disabledTests", 142, 3], ["meta", 164, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,12 +43,12 @@ export default nix.lambda((args) => (() => {
   const tree_sitter = nix.arg($, "tree-sitter");
   const typing_inspect = nix.arg($, "typing-inspect");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "llama-index-core",
       version: "0.14.25",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "run-llama",
           repo: "llama_index",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -142,7 +140,7 @@ cp -r ${nix.sel(nltk_data, "punkt")}/tokenizers/punkt/* llama_index/core/_static
         "test_str",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Data framework for your LLM applications",
         homepage: "https://github.com/run-llama/llama_index/",
         changelog: nix.thunk(() => nix.str`https://github.com/run-llama/llama_index/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

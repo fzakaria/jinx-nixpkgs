@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 13], ["version", 28, 19], ["nativeBuildInputs", 30, 5], ["configurePhase", 38, 5], ["buildPhase", 48, 5], ["dontStrip", 71, 5], ["installPhase", 73, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, makeWrapper: false, "pkg-config": false, mono: false, dotnetbuildhelpers: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, nativeBuildInputs: true, xBuildFiles: true, xBuildFlags: true, outputFiles: true, dllFiles: true, exeFiles: true, makeWrapperArgs: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 13], ["version", 28, 19], ["nativeBuildInputs", 30, 5], ["configurePhase", 38, 5], ["buildPhase", 48, 5], ["dontStrip", 71, 5], ["installPhase", 73, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
     const makeWrapperArgs = nix.argOr($_1, "makeWrapperArgs", () => []);
     const arrayToShell = (a) => nix.builtins.toString(nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(nix.sel(lib, "escape"), nix.thunk(() => nix.app(nix.sel(lib, "stringToCharacters"), "\\ ';$`()|<>\t")))), a)));
     const attrs = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, makeWrapper, dotnetbuildhelpers, mono], nativeBuildInputs)),

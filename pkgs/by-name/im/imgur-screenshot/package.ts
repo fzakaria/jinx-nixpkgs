@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]], [["description", 45, 5], ["homepage", 46, 5], ["platforms", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["version", 27, 3], ["pname", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["installPhase", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, curl: false, jq: false, gnugrep: false, libnotify: false, scrot: false, which: false, xclip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["platforms", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 27, 3], ["pname", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["installPhase", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const xclip = nix.arg($, "xclip");
   const deps = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, jq, gnugrep, libnotify, scrot, which, xclip])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "2.0.0",
       pname: "imgur-screenshot",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jomo",
           repo: "imgur-screenshot",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/imgur-screenshot --prefix PATH ':' ${deps}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for easy screencapping and uploading to imgur",
         homepage: "https://github.com/jomo/imgur-screenshot/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

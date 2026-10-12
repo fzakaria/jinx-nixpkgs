@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetchgfal2.nix", [[["__structuredAttrs", 35, 7], ["allowSubstitutes", 36, 15], ["nativeBuildInputs", 37, 7], ["outputHashAlgo", 38, 7], ["outputHashMode", 39, 7], ["outputHash", 40, 7], ["url", 41, 15], ["urls", 42, 7], ["gfalCopyFlags", 43, 7], ["recursive", 44, 15], ["intermediateDestUrls", 44, 25]], [["pname", 49, 19], ["version", 49, 25], ["name", 50, 11]], [["name", 53, 11]]]);
 const formals$1 = { args: { lib: false, runCommandLocal: false, "gfal2-util": false }, ellipsis: false };
 const formals$2 = { args: { name: true, pname: true, version: true, urls: true, url: true, hash: true, recursive: true, intermediateDestUrls: true, extraGfalCopyFlags: true, allowSubstitutes: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fetchgfal2.nix", [["__structuredAttrs", 35, 7], ["allowSubstitutes", 36, 15], ["nativeBuildInputs", 37, 7], ["outputHashAlgo", 38, 7], ["outputHashMode", 39, 7], ["outputHash", 40, 7], ["url", 41, 15], ["urls", 42, 7], ["gfalCopyFlags", 43, 7], ["recursive", 44, 15], ["intermediateDestUrls", 44, 25]]);
-const pos$2 = nix.positions(here + "/fetchgfal2.nix", [["pname", 49, 19], ["version", 49, 25], ["name", 50, 11]]);
-const pos$3 = nix.positions(here + "/fetchgfal2.nix", [["name", 53, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
     const extraGfalCopyFlags = nix.argOr($_1, "extraGfalCopyFlags", () => []);
     const allowSubstitutes = nix.argOr($_1, "allowSubstitutes", () => true);
     return nix.app(nix.sel(nix.app(runCommandLocal, name, nix.thunk(() => ({})), "for u in \"${urls[@]}\"; do\n  gfal-copy \"${gfalCopyFlags[@]}\" \"$u\" \"${intermediateDestUrls[@]}\" \"$out\"\n  ret=\"$?\"\n  (( ret )) && break\ndone\nif (( ret )); then\n  echo \"gfal-copy failed trying to download from any of the urls\" >&2\n  exit \"$ret\"\nfi\n"), "overrideAttrs"), (finalAttrs) => (previousAttrs) => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         __structuredAttrs: true,
         allowSubstitutes: allowSubstitutes,
         nativeBuildInputs: nix.thunk(() => [gfal2_util]),
@@ -39,12 +37,12 @@ export default nix.lambda((args) => (() => {
         recursive: recursive,
         intermediateDestUrls: intermediateDestUrls,
       }, (nix.asBool((nix.asBool(!nix.eq(pname, "")) && nix.asBool(!nix.eq(version, "")))) ? {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: pname,
         version: version,
         name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       } : {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: nix.thunk(() => (nix.asBool(!nix.eq(name, "")) ? nix.force(name) : nix.builtins.baseNameOf(url))),
       })));
   })(), formals$2);

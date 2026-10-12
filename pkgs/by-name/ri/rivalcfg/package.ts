@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["sha256", 16, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["nativeCheckInputs", 25, 3], ["doCheck", 30, 3], ["postInstall", 32, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["nativeCheckInputs", 25, 3], ["doCheck", 30, 3], ["postInstall", 32, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.17.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flozz",
           repo: "rivalcfg",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "mkdir -p $out/lib/udev/rules.d\ntmpl_udev=\"$out/lib/udev/rules.d/99-rivalcfg.rules\"\ntmpudev=\"${tmpl_udev}.in\"\nfinaludev=\"$tmpl_udev\"\n\"$out/bin/rivalcfg\" --print-udev > \"$tmpudev\"\nsubstitute \"$tmpudev\" \"$out/lib/udev/rules.d/99-rivalcfg.rules\" \\\n  --replace-fail MODE=\\\"0666\\\" \"MODE=\\\"0664\\\", GROUP=\\\"input\\\"\"\nrm \"$tmpudev\"\n";
       const pythonImportsCheck = nix.thunk(() => ["rivalcfg"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utility program that allows you to configure SteelSeries Rival gaming mice",
         homepage: "https://github.com/flozz/rivalcfg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "rivalcfg",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

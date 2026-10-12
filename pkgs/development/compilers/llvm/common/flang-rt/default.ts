@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["passthru", 33, 31], ["strictDeps", 34, 9], ["__structuredAttrs", 35, 9]], [["MACOSX_DEPLOYMENT_TARGET", 68, 5], ["NIX_CFLAGS_COMPILE", 69, 5]], [["homepage", 87, 5], ["description", 88, 5]], [["pname", 27, 3], ["version", 28, 11], ["src", 30, 3], ["sourceRoot", 51, 3], ["outputs", 53, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 61, 3], ["strictDeps", 65, 3], ["env", 67, 3], ["cmakeFlags", 72, 3], ["__structuredAttrs", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, llvm_meta: false, monorepoSrc: false, runCommand: false, cmake: false, libllvm: false, ninja: false, python3: false, buildFlang: false, version: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["passthru", 33, 31], ["strictDeps", 34, 9], ["__structuredAttrs", 35, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["MACOSX_DEPLOYMENT_TARGET", 68, 5], ["NIX_CFLAGS_COMPILE", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 87, 5], ["description", 88, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 11], ["src", 30, 3], ["sourceRoot", 51, 3], ["outputs", 53, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 61, 3], ["strictDeps", 65, 3], ["env", 67, 3], ["cmakeFlags", 72, 3], ["__structuredAttrs", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const minDarwinVersion = "10.12";
   const effectiveDarwinVersion = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinMinVersion")), minDarwinVersion)))) ? minDarwinVersion : nix.sel(stdenv, "hostPlatform", "darwinMinVersion")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "flang-rt",
       version: version,
       src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-src-${version}`), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -50,7 +47,7 @@ cp -r ${monorepoSrc}/runtimes "$out"
       buildInputs: nix.thunk(() => [libllvm]),
       strictDeps: true,
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           MACOSX_DEPLOYMENT_TARGET: effectiveDarwinVersion,
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-mmacosx-version-min=${effectiveDarwinVersion}`),
         })))),
@@ -66,7 +63,7 @@ cp -r ${monorepoSrc}/runtimes "$out"
         ])))),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://flang.llvm.org",
         description: "LLVM Fortran Runtime",
       })),

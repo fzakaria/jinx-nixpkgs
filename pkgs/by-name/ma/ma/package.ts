@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 43, 5], ["homepage", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["license", 49, 5], ["platforms", 50, 35]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 17, 3], ["buildInputs", 21, 3], ["buildPhase", 25, 3], ["installPhase", 35, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, tclPackages: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["license", 49, 5], ["platforms", 50, 35]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 17, 3], ["buildInputs", 21, 3], ["buildPhase", 25, 3], ["installPhase", 35, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const tclPackages = nix.arg($, "tclPackages");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ma",
       version: "13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20250829110226/http://call-with-current-continuation.org/ma/ma.tar.gz",
           hash: "sha256-QNt4ctcu4/xJY2eud+kp5paPUnLsRhK7D2nJ0LBIvIo=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(tclPackages, "tk", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Minimalistic variant of the Acme editor",
         homepage: "http://call-with-current-continuation.org/ma/ma.html",
         mainProgram: "ma",

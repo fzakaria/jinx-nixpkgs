@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 19, 5], ["hash", 23, 5]], [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]], [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]], [["name", 57, 7], ["url", 58, 7], ["hash", 59, 7]], [["homepage", 64, 5], ["license", 65, 5], ["description", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["configureFlags", 26, 3], ["preBuild", 28, 3], ["installFlags", 30, 3], ["outputs", 32, 3], ["patches", 37, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchzip: false, writeText: false, conf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 19, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 57, 7], ["url", 58, 7], ["hash", 59, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["license", 65, 5], ["description", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["configureFlags", 26, 3], ["preBuild", 28, 3], ["installFlags", 30, 3], ["outputs", 32, 3], ["patches", 37, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const rev = "8c32909a159aaa9484c82b71f05b7a73321eb491";
   const defaultUserConfig = nix.thunk(() => nix.app(writeText, "config.def.h", conf));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "abduco",
       version: "0.6.0-unstable-2020-04-30",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://github.com/martanne/abduco/archive/${rev}.tar.gz`),
             nix.thunk(() => nix.str`https://git.sr.ht/~martanne/abduco/archive/${rev}.tar.gz`),
@@ -38,26 +33,26 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "use-XDG-directory-scheme-by-default",
             url: "https://github.com/martanne/abduco/commit/0e9a00312ac9777edcb169122144762e3611287b.patch",
             hash: "sha256-4NkIflbRkUpS5XTM/fxBaELpvlZ4S5lecRa8jk0XC9g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "exit-code-when-attaching-to-dead-session",
             url: "https://github.com/martanne/abduco/commit/972ca8ab949ee342569dbd66b47cc4a17b28247b.patch",
             hash: "sha256-8hios0iKYDOmt6Bi5NNM9elTflGudnG2xgPF1pSkHI0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "report-pixel-sizes-to-child-processes",
             url: "https://github.com/martanne/abduco/commit/a1e222308119b3251f00b42e1ddff74a385d4249.patch",
             hash: "sha256-eiF0A4IqJrrvXxjBYtltuVNpxQDv/iQPO+K7Y8hWBGg=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "http://brain-dump.org/projects/abduco",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         description: "Allows programs to be run independently from its controlling terminal",

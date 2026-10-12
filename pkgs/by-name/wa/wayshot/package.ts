@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["updateScript", 69, 12]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 79, 5], ["mainProgram", 80, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["cargoHash", 42, 3], ["buildNoDefaultFeatures", 44, 3], ["buildFeatures", 45, 3], ["postInstall", 59, 3], ["passthru", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, pango: false, scdoc: false, "pkg-config": false, installShellFiles: false, rustPlatform: false, wayland: false, jpegSupport: true, pnmSupport: true, qoiSupport: true, webpSupport: true, avifSupport: true, jxlSupport: true, clipboardSupport: true, colorPickerSupport: true, completionsSupport: true, loggerSupport: true, notificationsSupport: true, selectorSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 69, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 79, 5], ["mainProgram", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["cargoHash", 42, 3], ["buildNoDefaultFeatures", 44, 3], ["buildFeatures", 45, 3], ["postInstall", 59, 3], ["passthru", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const notificationsSupport = nix.argOr($, "notificationsSupport", () => true);
   const selectorSupport = nix.argOr($, "selectorSupport", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wayshot",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "waycrate",
           repo: "wayshot",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +47,11 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), jpegSupport, "jpeg"), nix.concat(nix.app(nix.sel(lib, "optional"), pnmSupport, "pnm"), nix.concat(nix.app(nix.sel(lib, "optional"), qoiSupport, "qoi"), nix.concat(nix.app(nix.sel(lib, "optional"), webpSupport, "webp"), nix.concat(nix.app(nix.sel(lib, "optional"), avifSupport, "avif"), nix.concat(nix.app(nix.sel(lib, "optional"), jxlSupport, "jxl"), nix.concat(nix.app(nix.sel(lib, "optional"), clipboardSupport, "clipboard"), nix.concat(nix.app(nix.sel(lib, "optional"), colorPickerSupport, "color_picker"), nix.concat(nix.app(nix.sel(lib, "optional"), completionsSupport, "completions"), nix.concat(nix.app(nix.sel(lib, "optional"), loggerSupport, "logger"), nix.concat(nix.app(nix.sel(lib, "optional"), notificationsSupport, "notifications"), nix.app(nix.sel(lib, "optional"), selectorSupport, "selector"))))))))))))),
       postInstall: nix.thunk(() => nix.add("installManPage docs/wayshot.1.gz docs/wayshot.5.gz docs/wayshot.7.gz\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd wayshot \\\n  --bash <($out/bin/wayshot --completions bash) \\\n  --fish <($out/bin/wayshot --completions fish) \\\n  --zsh <($out/bin/wayshot --completions zsh)\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Screenshot crate for wlroots based compositors implementing the zwlr_screencopy_v1 protocol.",
         homepage: "https://crates.io/crates/wayshot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

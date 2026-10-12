@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libmagic.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["teams", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["propagatedBuildInputs", 23, 3], ["preBuild", 25, 3], ["doCheck", 37, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, plugincode: false, file: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libmagic.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/libmagic.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["teams", 47, 5]]);
-const pos$3 = nix.positions(here + "/libmagic.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["propagatedBuildInputs", 23, 3], ["preBuild", 25, 3], ["doCheck", 37, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const file = nix.arg($, "file");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "typecode-libmagic",
       version: "21.5.31",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aboutcode-org",
           repo: "scancode-plugins",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ popd
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["typecode_libmagic"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ScanCode Toolkit plugin to provide pre-built binary libraries and utilities and their locations",
         homepage: "https://github.com/aboutcode-org/scancode-plugins/tree/main/builtins/typecode_libmagic-linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

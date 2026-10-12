@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["sourceProvenance", 41, 5], ["license", 42, 5], ["platforms", 44, 5], ["maintainers", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["versionSuffix", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["dontUnpack", 22, 3], ["installPhase", 24, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["sourceProvenance", 41, 5], ["license", 42, 5], ["platforms", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["versionSuffix", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["dontUnpack", 22, 3], ["installPhase", 24, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jnetmap",
       version: "0.5.5",
       versionSuffix: "-703",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/jnetmap/jNetMap%20${nix.sel(finalAttrs, "version")}/jNetMap-${nix.sel(finalAttrs, "version")}${nix.sel(finalAttrs, "versionSuffix")}.jar`),
           sha256: "sha256-e4Ssm2Sq/v1YZ7ZudAqgQ7Cz2ffwWbSmLFoKhaZvTPg=",
         })))),
@@ -39,7 +37,7 @@ makeWrapper "${jre}/bin/java" "$out/bin/jnetmap" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graphical network monitoring and documentation tool",
         mainProgram: "jnetmap",
         homepage: "http://www.rakudave.ch/jnetmap/",

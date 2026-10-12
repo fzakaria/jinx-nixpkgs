@@ -2,26 +2,24 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["projectDscPath", 4, 3], ["fwPrefix", 5, 3], ["metaPlatforms", 6, 3]], [["description", 14, 7], ["teams", 15, 7]], [["__structuredAttrs", 9, 5], ["pname", 11, 5], ["meta", 13, 5]]]);
 const formals$1 = { args: { lib: false, OVMF: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["projectDscPath", 4, 3], ["fwPrefix", 5, 3], ["metaPlatforms", 6, 3]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 14, 7], ["teams", 15, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["__structuredAttrs", 9, 5], ["pname", 11, 5], ["meta", 13, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const OVMF = nix.arg($, "OVMF");
   return nix.app(nix.sel(nix.app(nix.sel(OVMF, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       projectDscPath: "OvmfPkg/OvmfXen.dsc",
       fwPrefix: "OVMF",
       metaPlatforms: nix.thunk(() => nix.builtins.filter(nix.thunk(() => nix.app(nix.sel(lib, "hasPrefix"), "x86_64-")), nix.thunk(() => nix.sel(OVMF, "meta", "platforms")))),
     }))), "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       __structuredAttrs: true,
       pname: "OVMF-xen",
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sample UEFI firmware for Xen guests",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "xen"))]),
       })),

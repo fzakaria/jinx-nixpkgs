@@ -2,34 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lasuite-meet.nix", [[["maintainers", 9, 8]], [["127.0.0.1", 14, 24]], [["hosts", 14, 18]], [["mode", 95, 9], ["user", 96, 9], ["text", 97, 9]], [["dex/lasuite-meet", 94, 23]], [["systemPackages", 16, 19], ["etc", 94, 19]], [["enable", 22, 11], ["keyFile", 23, 11]], [["createLocally", 27, 15]], [["createLocally", 28, 20]], [["DJANGO_SECRET_KEY_FILE", 33, 11], ["OIDC_OP_JWKS_ENDPOINT", 37, 11], ["OIDC_OP_AUTHORIZATION_ENDPOINT", 38, 11], ["OIDC_OP_TOKEN_ENDPOINT", 39, 11], ["OIDC_OP_USER_ENDPOINT", 40, 11], ["OIDC_RP_CLIENT_ID", 41, 11], ["OIDC_RP_SIGN_ALGO", 42, 11], ["OIDC_RP_SCOPES", 43, 11], ["OIDC_RP_CLIENT_SECRET", 44, 11], ["LOGIN_REDIRECT_URL", 46, 11], ["LOGIN_REDIRECT_URL_FAILURE", 47, 11], ["LOGOUT_REDIRECT_URL", 48, 11], ["LIVEKIT_API_KEY", 50, 11], ["LIVEKIT_API_SECRET", 51, 11], ["DJANGO_SECURE_PROXY_SSL_HEADER", 54, 11], ["DJANGO_SECURE_SSL_REDIRECT", 55, 11], ["DJANGO_CSRF_COOKIE_SECURE", 56, 11], ["DJANGO_SESSION_COOKIE_SECURE", 57, 11], ["DJANGO_CSRF_TRUSTED_ORIGINS", 58, 11]], [["enable", 19, 9], ["enableNginx", 20, 9], ["livekit", 21, 9], ["redis", 27, 9], ["postgresql", 28, 9], ["domain", 30, 17], ["settings", 32, 9]], [["host", 68, 20]], [["type", 67, 13], ["config", 68, 13]], [["http", 70, 15]], [["skipApprovalScreen", 71, 18]], [["id", 74, 15], ["name", 75, 15], ["redirectURIs", 76, 15], ["secretFile", 77, 15]], [["username", 86, 17], ["password", 87, 17]], [["type", 82, 15], ["id", 83, 15], ["name", 84, 15], ["config", 85, 15]], [["issuer", 65, 11], ["storage", 66, 11], ["web", 70, 11], ["oauth2", 71, 11], ["staticClients", 72, 11], ["connectors", 80, 11]], [["enable", 63, 9], ["settings", 64, 9]], [["name", 105, 13], ["ensureDBOwnership", 106, 13]], [["enable", 101, 9], ["ensureDatabases", 102, 9], ["ensureUsers", 103, 9]], [["lasuite-meet", 18, 16], ["dex", 62, 16], ["postgresql", 100, 16]], [["networking", 14, 7], ["environment", 16, 7], ["services", 18, 7]], [["machine", 11, 14]], [["name", 8, 3], ["meta", 9, 3], ["containers", 11, 3], ["testScript", 112, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lasuite-meet.nix", [["maintainers", 9, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/lasuite-meet.nix", [["127.0.0.1", 14, 24]]);
-const pos$3 = nix.positions(here + "/lasuite-meet.nix", [["hosts", 14, 18]]);
-const pos$4 = nix.positions(here + "/lasuite-meet.nix", [["mode", 95, 9], ["user", 96, 9], ["text", 97, 9]]);
-const pos$5 = nix.positions(here + "/lasuite-meet.nix", [["dex/lasuite-meet", 94, 23]]);
-const pos$6 = nix.positions(here + "/lasuite-meet.nix", [["systemPackages", 16, 19], ["etc", 94, 19]]);
-const pos$7 = nix.positions(here + "/lasuite-meet.nix", [["enable", 22, 11], ["keyFile", 23, 11]]);
-const pos$8 = nix.positions(here + "/lasuite-meet.nix", [["createLocally", 27, 15]]);
-const pos$9 = nix.positions(here + "/lasuite-meet.nix", [["createLocally", 28, 20]]);
-const pos$10 = nix.positions(here + "/lasuite-meet.nix", [["DJANGO_SECRET_KEY_FILE", 33, 11], ["OIDC_OP_JWKS_ENDPOINT", 37, 11], ["OIDC_OP_AUTHORIZATION_ENDPOINT", 38, 11], ["OIDC_OP_TOKEN_ENDPOINT", 39, 11], ["OIDC_OP_USER_ENDPOINT", 40, 11], ["OIDC_RP_CLIENT_ID", 41, 11], ["OIDC_RP_SIGN_ALGO", 42, 11], ["OIDC_RP_SCOPES", 43, 11], ["OIDC_RP_CLIENT_SECRET", 44, 11], ["LOGIN_REDIRECT_URL", 46, 11], ["LOGIN_REDIRECT_URL_FAILURE", 47, 11], ["LOGOUT_REDIRECT_URL", 48, 11], ["LIVEKIT_API_KEY", 50, 11], ["LIVEKIT_API_SECRET", 51, 11], ["DJANGO_SECURE_PROXY_SSL_HEADER", 54, 11], ["DJANGO_SECURE_SSL_REDIRECT", 55, 11], ["DJANGO_CSRF_COOKIE_SECURE", 56, 11], ["DJANGO_SESSION_COOKIE_SECURE", 57, 11], ["DJANGO_CSRF_TRUSTED_ORIGINS", 58, 11]]);
-const pos$11 = nix.positions(here + "/lasuite-meet.nix", [["enable", 19, 9], ["enableNginx", 20, 9], ["livekit", 21, 9], ["redis", 27, 9], ["postgresql", 28, 9], ["domain", 30, 17], ["settings", 32, 9]]);
-const pos$12 = nix.positions(here + "/lasuite-meet.nix", [["host", 68, 20]]);
-const pos$13 = nix.positions(here + "/lasuite-meet.nix", [["type", 67, 13], ["config", 68, 13]]);
-const pos$14 = nix.positions(here + "/lasuite-meet.nix", [["http", 70, 15]]);
-const pos$15 = nix.positions(here + "/lasuite-meet.nix", [["skipApprovalScreen", 71, 18]]);
-const pos$16 = nix.positions(here + "/lasuite-meet.nix", [["id", 74, 15], ["name", 75, 15], ["redirectURIs", 76, 15], ["secretFile", 77, 15]]);
-const pos$17 = nix.positions(here + "/lasuite-meet.nix", [["username", 86, 17], ["password", 87, 17]]);
-const pos$18 = nix.positions(here + "/lasuite-meet.nix", [["type", 82, 15], ["id", 83, 15], ["name", 84, 15], ["config", 85, 15]]);
-const pos$19 = nix.positions(here + "/lasuite-meet.nix", [["issuer", 65, 11], ["storage", 66, 11], ["web", 70, 11], ["oauth2", 71, 11], ["staticClients", 72, 11], ["connectors", 80, 11]]);
-const pos$20 = nix.positions(here + "/lasuite-meet.nix", [["enable", 63, 9], ["settings", 64, 9]]);
-const pos$21 = nix.positions(here + "/lasuite-meet.nix", [["name", 105, 13], ["ensureDBOwnership", 106, 13]]);
-const pos$22 = nix.positions(here + "/lasuite-meet.nix", [["enable", 101, 9], ["ensureDatabases", 102, 9], ["ensureUsers", 103, 9]]);
-const pos$23 = nix.positions(here + "/lasuite-meet.nix", [["lasuite-meet", 18, 16], ["dex", 62, 16], ["postgresql", 100, 16]]);
-const pos$24 = nix.positions(here + "/lasuite-meet.nix", [["networking", 14, 7], ["environment", 16, 7], ["services", 18, 7]]);
-const pos$25 = nix.positions(here + "/lasuite-meet.nix", [["machine", 11, 14]]);
-const pos$26 = nix.positions(here + "/lasuite-meet.nix", [["name", 8, 3], ["meta", 9, 3], ["containers", 11, 3], ["testScript", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,53 +12,58 @@ export default nix.lambda((args) => (() => {
   const domain = "meet.local";
   const oidcDomain = "127.0.0.1:8080";
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     name: "lasuite-meet",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "soyouzpanda"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            hosts: nix.thunk(() => ({ [nix.POS]: pos$2, "127.0.0.1": nix.thunk(() => [domain]) })),
+            [nix.POS]: $pos[2],
+            hosts: nix.thunk(() => ({ [nix.POS]: $pos[1], "127.0.0.1": nix.thunk(() => [domain]) })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "jq"))];
             })()),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              "dex/lasuite-meet": nix.thunk(() => ({ [nix.POS]: pos$4, mode: "0400", user: "dex", text: "lasuitemeetclientsecret" })),
+              [nix.POS]: $pos[4],
+              "dex/lasuite-meet": nix.thunk(() => ({
+                [nix.POS]: $pos[3],
+                mode: "0400",
+                user: "dex",
+                text: "lasuitemeetclientsecret",
+              })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             "lasuite-meet": nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               enableNginx: true,
               livekit: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 enable: true,
                 keyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "lasuite-meet-livekit-keys", "lasuite-meet: ca50qKzxEXVIu61wHshAyJNzlWw8vlIwUuzxQbUK1rG\n")),
               })),
-              redis: nix.thunk(() => ({ [nix.POS]: pos$8, createLocally: true })),
-              postgresql: nix.thunk(() => ({ [nix.POS]: pos$9, createLocally: true })),
+              redis: nix.thunk(() => ({ [nix.POS]: $pos[7], createLocally: true })),
+              postgresql: nix.thunk(() => ({ [nix.POS]: $pos[8], createLocally: true })),
               domain: domain,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 DJANGO_SECRET_KEY_FILE: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "django-secret-file", "8540db59c03943d48c3ed1a0f96ce3b560e0f45274f120f7ee4dace3cc366a6b\n")),
                 OIDC_OP_JWKS_ENDPOINT: nix.thunk(() => nix.str`http://${oidcDomain}/dex/keys`),
                 OIDC_OP_AUTHORIZATION_ENDPOINT: nix.thunk(() => nix.str`http://${oidcDomain}/dex/auth/mock`),
@@ -106,21 +86,21 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             dex: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 issuer: nix.thunk(() => nix.str`http://${oidcDomain}/dex`),
                 storage: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   type: "postgres",
-                  config: nix.thunk(() => ({ [nix.POS]: pos$12, host: "/var/run/postgresql" })),
+                  config: nix.thunk(() => ({ [nix.POS]: $pos[11], host: "/var/run/postgresql" })),
                 })),
-                web: nix.thunk(() => ({ [nix.POS]: pos$14, http: "127.0.0.1:8080" })),
-                oauth2: nix.thunk(() => ({ [nix.POS]: pos$15, skipApprovalScreen: true })),
+                web: nix.thunk(() => ({ [nix.POS]: $pos[13], http: "127.0.0.1:8080" })),
+                oauth2: nix.thunk(() => ({ [nix.POS]: $pos[14], skipApprovalScreen: true })),
                 staticClients: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     id: "lasuite-meet",
                     name: "Meet",
                     redirectURIs: nix.thunk(() => [nix.thunk(() => nix.str`http://${domain}/api/v1.0/callback/`)]),
@@ -129,21 +109,21 @@ export default nix.lambda((args) => (() => {
                 ]),
                 connectors: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$18,
+                    [nix.POS]: $pos[17],
                     type: "mockPassword",
                     id: "mock",
                     name: "Example",
-                    config: nix.thunk(() => ({ [nix.POS]: pos$17, username: "admin", password: "password" })),
+                    config: nix.thunk(() => ({ [nix.POS]: $pos[16], username: "admin", password: "password" })),
                   })),
                 ]),
               })),
             })),
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               enable: true,
               ensureDatabases: nix.thunk(() => ["dex"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$21, name: "dex", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: $pos[20], name: "dex", ensureDBOwnership: true })),
               ]),
             })),
           })),

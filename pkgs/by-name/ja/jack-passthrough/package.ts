@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["extraArgs", 36, 47]], [["updateScript", 36, 12]], [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 46, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["passthru", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, libjack2: false, meson: false, ninja: false, fmt_9: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 36, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 36, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 46, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["passthru", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fmt_9 = nix.arg($, "fmt_9");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jack-passthrough",
       version: "0-unstable-2021-09-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "guysherman",
           repo: "jack-passthrough",
           rev: "aad03b7c5ccc4a4dcb8fa38c49aa64cb9d628660",
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       buildInputs: nix.thunk(() => [fmt_9, libjack2]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple app to help with JACK apps that behave strangely",
         longDescription: "Creates a JACK passthrough client with an arbitrary name and number of\nports. Common uses include tricking stubborn applications into creating\nmore ports than they normally would or to prevent them from\nauto-connecting to certain things.\n",
         homepage: "https://github.com/guysherman/jack-passthrough",

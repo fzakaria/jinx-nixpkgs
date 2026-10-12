@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin.nix", [[["url", 17, 13], ["hash", 17, 17]], [["meta", 14, 11], ["pname", 14, 16], ["version", 14, 22], ["src", 16, 3], ["nativeBuildInputs", 20, 3], ["sourceRoot", 25, 3], ["installPhase", 27, 3], ["dontFixup", 52, 3], ["passthru", 54, 11]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, darwin: false, meta: false, pname: false, version: false, url: false, hash: false, passthru: false, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/darwin.nix", [["url", 17, 13], ["hash", 17, 17]]);
-const pos$2 = nix.positions(here + "/darwin.nix", [["meta", 14, 11], ["pname", 14, 16], ["version", 14, 22], ["src", 16, 3], ["nativeBuildInputs", 20, 3], ["sourceRoot", 25, 3], ["installPhase", 27, 3], ["dontFixup", 52, 3], ["passthru", 54, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const passthru = nix.arg($, "passthru");
   const _7zz = nix.arg($, "_7zz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       meta: meta,
       pname: pname,
       version: version,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, hash: hash })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, hash: hash })))),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "sigtool")), _7zz]),
       sourceRoot: ".",
       installPhase: "runHook preInstall\nmkdir -p $out/Applications\n# The DMG mounts as a single volume directory named after the version\n# (e.g. \"LM Studio 0.4.23+1-arm64/\"), with the app bundle inside it.\ncp -r */*.app $out/Applications\n\n# Bypass the /Applications path check in the main index.js\n# LM Studio verifies the app is running from /Applications and shows an\n# error dialog + refuses to auto-update if not. Replace the '/Applications'\n# string literal with '/' so that any absolute path (e.g. /nix/store/...)\n# passes the startsWith check. This works across obfuscated versions because\n# the literal string '/Applications' is stable even when variable names change.\nlocal indexJs=\"$out/Applications/LM Studio.app/Contents/Resources/app/.webpack/main/index.js\"\nsubstituteInPlace \"$indexJs\" --replace-quiet \"'/Applications'\" \"'/'\"\n\n# Re-sign the main executable, otherwise macOS reports the app as damaged\nappBundle=\"$out/Applications/LM Studio.app\"\nmainExe=\"$appBundle/Contents/MacOS/LM Studio\"\ncodesign --force --sign - \"$mainExe\"\n\nrunHook postInstall\n",

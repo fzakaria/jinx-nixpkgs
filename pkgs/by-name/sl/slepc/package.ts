@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["useMpi", 18, 52]], [["pythonSupport", 16, 15], ["mpiSupport", 17, 7], ["arpack", 18, 7]], [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["platforms", 104, 5], ["maintainers", 105, 5], ["broken", 107, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 42, 3], ["configureFlags", 50, 3], ["buildInputs", 58, 3], ["propagatedBuildInputs", 65, 3], ["enableParallelBuilding", 69, 3], ["installTargets", 71, 3], ["__darwinAllowLocalNetworking", 73, 3], ["nativeInstallCheckInputs", 75, 3], ["doInstallCheck", 83, 3], ["installCheckTarget", 85, 3], ["unittestFlagsArray", 87, 3], ["pythonImportsCheck", 93, 3], ["setupHook", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, python3Packages: false, arpack: false, petsc: false, mpiCheckPhaseHook: false, pythonSupport: true, withExamples: true, withArpack: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["useMpi", 18, 52]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pythonSupport", 16, 15], ["mpiSupport", 17, 7], ["arpack", 18, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["platforms", 104, 5], ["maintainers", 105, 5], ["broken", 107, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 42, 3], ["configureFlags", 50, 3], ["buildInputs", 58, 3], ["propagatedBuildInputs", 65, 3], ["enableParallelBuilding", 69, 3], ["installTargets", 71, 3], ["__darwinAllowLocalNetworking", 73, 3], ["nativeInstallCheckInputs", 75, 3], ["doInstallCheck", 83, 3], ["installCheckTarget", 85, 3], ["unittestFlagsArray", 87, 3], ["pythonImportsCheck", 93, 3], ["setupHook", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const withExamples = nix.argOr($, "withExamples", () => false);
   const withArpack = nix.argOr($, "withArpack", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const slepcPackages = nix.thunk(() => nix.app(nix.sel(petsc, "petscPackages", "overrideScope"), (final) => (prev) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pythonSupport: pythonSupport,
       mpiSupport: true,
-      arpack: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(arpack, "override")), nix.thunk(() => ({ [nix.POS]: pos$1, useMpi: true })))),
+      arpack: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.thunk(() => nix.sel(arpack, "override")), nix.thunk(() => ({ [nix.POS]: $pos[0], useMpi: true })))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "slepc",
       version: "3.25.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "slepc",
           repo: "slepc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +61,7 @@ patchShebangs lib/slepc/bin
       pythonImportsCheck: nix.thunk(() => ["slepc4py"]),
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Scalable Library for Eigenvalue Problem Computations",
         homepage: "https://slepc.upv.es",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/slepc/slepc/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

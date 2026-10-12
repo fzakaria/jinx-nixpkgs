@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["pname", 41, 26], ["version", 41, 32], ["src", 41, 40], ["pnpm", 42, 13], ["fetcherVersion", 43, 5], ["hash", 44, 5]], [["updateScript", 75, 12]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5], ["platforms", 84, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoHash", 38, 3], ["pnpmDeps", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 56, 3], ["cargoRoot", 72, 3], ["buildAndTestSubdir", 73, 3], ["passthru", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpmConfigHook: false, rustPlatform: false, wrapGAppsHook3: false, "alsa-lib": false, "cargo-tauri": false, dbus: false, "glib-networking": false, gst_all_1: false, gtk3: false, librsvg: false, libsecret: false, "nix-update-script": false, nodejs: false, openssl: false, "pkg-config": false, pnpm_11: false, webkitgtk_4_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 41, 26], ["version", 41, 32], ["src", 41, 40], ["pnpm", 42, 13], ["fetcherVersion", 43, 5], ["hash", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 75, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5], ["platforms", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoHash", 38, 3], ["pnpmDeps", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 56, 3], ["cargoRoot", 72, 3], ["buildAndTestSubdir", 73, 3], ["passthru", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sone",
       version: "0.22.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lullabyX",
           repo: "sone",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Qeyg22j8JKFzzBxdvOeCFFn970DlANSOt9MAWlen4+I=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -79,11 +75,11 @@ export default nix.lambda((args) => (() => {
       cargoRoot: "src-tauri",
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Native Linux desktop client for TIDAL",
         homepage: "https://github.com/lullabyX/sone",
         changelog: nix.thunk(() => nix.str`https://github.com/lullabyX/sone/releases/tag/v${nix.sel(finalAttrs, "version")}`),

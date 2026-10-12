@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["url", 26, 7], ["hash", 27, 7]], [["NIX_CFLAGS_COMPILE", 57, 7]], [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["outputs", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["strictDeps", 51, 3], ["configureFlags", 53, 3], ["env", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bash: false, bison: false, flex: false, gperf: false, ncurses: false, "pkg-config": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 57, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["outputs", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["strictDeps", 51, 3], ["configureFlags", 53, 3], ["env", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kconfig-frontends",
       version: "4.11.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://bitbucket.org/nuttx/tools/downloads/kconfig-frontends-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-yxg4z+Lwl7oJyt4n1HUncg1bKeK3FcCpbDPQtqELqxM=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://bitbucket.org/nuttx/tools/downloads/gperf3.1_kconfig_id_lookup.patch",
             hash: "sha256-cqAWjRnMA/fJ8wnEfUxoPEW0hIJY/mprE6/TQMY6NPI=",
           })))),
@@ -43,11 +39,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       configureFlags: nix.thunk(() => ["--enable-frontends=conf,mconf,nconf"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=format-security")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Out of Linux tree packaging of the kconfig infrastructure",
         longDescription: "Configuration language and system for the Linux kernel and other\nprojects. Features simple syntax and grammar, limited yet adequate option\ntypes, simple organization of options, and direct and reverse\ndependencies.\n",
         homepage: "https://bitbucket.org/nuttx/tools/",

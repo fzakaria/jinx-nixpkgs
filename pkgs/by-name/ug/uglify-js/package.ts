@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["package", 33, 39]], [["nativeBuildInputs", 43, 15], ["base", 44, 15]], [["assertion", 36, 9], ["expected", 37, 9], ["actual", 40, 9]], [["version", 33, 7], ["simple", 35, 7]], [["updateScript", 31, 5], ["tests", 32, 5]], [["homepage", 56, 5], ["changelog", 57, 5], ["description", 58, 5], ["mainProgram", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["npmDepsHash", 22, 3], ["postPatch", 24, 3], ["dontNpmBuild", 28, 3], ["passthru", 30, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, testers: false, runCommand: false, writeText: false, "uglify-js": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 33, 39]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 43, 15], ["base", 44, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["assertion", 36, 9], ["expected", 37, 9], ["actual", 40, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 33, 7], ["simple", 35, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 31, 5], ["tests", 32, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["changelog", 57, 5], ["description", 58, 5], ["mainProgram", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["npmDepsHash", 22, 3], ["postPatch", 24, 3], ["dontNpmBuild", 28, 3], ["passthru", 30, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "uglify-js";
       const version = "3.19.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mishoo",
           repo: "UglifyJS",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,17 +29,17 @@ export default nix.lambda((args) => (() => {
 `);
       const dontNpmBuild = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: uglify_js })))),
+          [nix.POS]: $pos[4],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: uglify_js })))),
           simple: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               assertion: "uglify-js minifies a basic js file",
               expected: nix.thunk(() => nix.app(writeText, "expected", "console.log(1);\n")),
               actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   nativeBuildInputs: nix.thunk(() => [uglify_js]),
                   base: nix.thunk(() => nix.app(writeText, "base", "console . log  ( ( 1 ) ) ;\n")),
                 })), "uglifyjs $base > $out\n")),
@@ -54,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/mishoo/UglifyJS",
         changelog: nix.thunk(() => nix.add("https://github.com/mishoo/UglifyJS/releases/tag/v", version)),
         description: "JavaScript parser / mangler / compressor / beautifier toolkit",
@@ -66,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

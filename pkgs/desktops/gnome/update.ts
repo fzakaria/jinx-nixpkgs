@@ -2,9 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update.nix", [[["name", 100, 3], ["command", 101, 3], ["supportedFeatures", 109, 3], ["attrPath", 112, 11]]]);
 const formals$1 = { args: { stdenv: false, pkgs: false, lib: false, writeScript: false, python3: false, "common-updater-scripts": false }, ellipsis: false };
 const formals$2 = { args: { packageName: false, attrPath: true, versionPolicy: true, freeze: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update.nix", [["name", 100, 3], ["command", 101, 3], ["supportedFeatures", 109, 3], ["attrPath", 112, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -92,7 +92,7 @@ report = [
 print(json.dumps(report))
 `)));
     return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "gnome-update-script",
       command: nix.thunk(() => nix.concat([updateScript, attrPath, packageName, packageVersion, versionPolicy], upperBound)),
       supportedFeatures: nix.thunk(() => ["commit"]),

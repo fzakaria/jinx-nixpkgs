@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["SCALIB_PORTABLE", 35, 5]], [["pname", 45, 7], ["version", 46, 7], ["src", 47, 7], ["cargoRoot", 48, 7], ["hash", 50, 5]], [["updateScript", 79, 12]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 27, 3], ["env", 34, 3], ["postPatch", 38, 3], ["cargoDeps", 43, 3], ["cargoRoot", 53, 3], ["build-system", 55, 3], ["nativeBuildInputs", 60, 3], ["dependencies", 67, 3], ["nativeCheckInputs", 71, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, setuptools: false, "setuptools-scm": false, cargo: false, rustc: false, "setuptools-rust": false, numpy: false, pytestCheckHook: false, "pytest-cov-stub": false, "scikit-learn": false, scipy: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["SCALIB_PORTABLE", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 45, 7], ["version", 46, 7], ["src", 47, 7], ["cargoRoot", 48, 7], ["hash", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 79, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 27, 3], ["env", 34, 3], ["postPatch", 38, 3], ["cargoDeps", 43, 3], ["cargoRoot", 53, 3], ["build-system", 55, 3], ["nativeBuildInputs", 60, 3], ["dependencies", 67, 3], ["nativeCheckInputs", 71, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,21 +23,21 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "scalib",
       version: "0.6.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "simple-crypto",
           repo: "SCALib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-DVXb93W0TmOcyGyMN5GmIJNAdbLeeFnNm+3QfTw2j5s=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, SCALIB_PORTABLE: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], SCALIB_PORTABLE: "1" })),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail '\"setuptools-scm-git-archive\",' \"\"\n",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -60,11 +55,11 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [numpy]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_cov_stub, scikit_learn, scipy, numpy]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Side-Channel Analysis Library",
         homepage: "https://github.com/simple-crypto/scalib",
         changelog: nix.thunk(() => nix.str`https://github.com/simple-crypto/SCALib/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["isExecutable", 21, 3], ["buildTools", 23, 3], ["executableHaskellDepends", 27, 3], ["prePatch", 46, 3], ["doCheck", 47, 3], ["postInstall", 49, 3], ["homepage", 54, 3], ["description", 55, 3], ["maintainers", 56, 3], ["license", 57, 3], ["mainProgram", 58, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, haskellPackages: false, makeWrapper: false, eprover: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["isExecutable", 21, 3], ["buildTools", 23, 3], ["executableHaskellDepends", 27, 3], ["prePatch", 46, 3], ["doCheck", 47, 3], ["postInstall", 49, 3], ["homepage", 54, 3], ["description", 55, 3], ["maintainers", 56, 3], ["license", 57, 3], ["mainProgram", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const eprover = nix.arg($, "eprover");
   const w = nix.withScope(haskellPackages, null);
   return nix.app(nix.lookup(w, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "Naproche-SAD",
       version: "unstable-2024-05-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "naproche",
           repo: "naproche",
           rev: "ccb35e6eeb31c82bdd8857d5f84deda296ed53ec",

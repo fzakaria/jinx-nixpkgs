@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["changelog", 78, 5], ["homepage", 79, 5], ["description", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 23, 3], ["dontConfigure", 30, 3], ["nativeCheckInputs", 32, 3], ["build-system", 37, 3], ["buildInputs", 52, 3], ["dependencies", 54, 3], ["prePatch", 60, 3], ["pythonImportsCheck", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, buildPythonPackage: false, cmake: false, cython: false, fetchFromGitHub: false, h3: false, lib: false, ninja: false, numpy: false, pytestCheckHook: false, "pytest-cov-stub": false, "scikit-build-core": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 78, 5], ["homepage", 79, 5], ["description", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 23, 3], ["dontConfigure", 30, 3], ["nativeCheckInputs", 32, 3], ["build-system", 37, 3], ["buildInputs", 52, 3], ["dependencies", 54, 3], ["prePatch", 60, 3], ["pythonImportsCheck", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const scikit_build_core = nix.arg($, "scikit-build-core");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "h3",
       version: "4.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "uber",
           repo: "h3-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +49,7 @@ substituteInPlace CMakeLists.txt \\
       })()),
       pythonImportsCheck: nix.thunk(() => ["h3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/uber/h3-py/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         homepage: "https://github.com/uber/h3-py",
         description: "Hierarchical hexagonal geospatial indexing system",

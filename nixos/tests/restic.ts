@@ -2,38 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/restic.nix", [[["name", 27, 5], ["unpackPhase", 28, 5], ["installPhase", 29, 5]], [["maintainers", 59, 5]], [["enable", 71, 11], ["extraConfig", 72, 11]], [["openssh", 70, 18]], [["sftponly", 80, 11]], [["keys", 88, 36]], [["authorizedKeys", 88, 21]], [["isNormalUser", 84, 13], ["createHome", 85, 13], ["group", 86, 13], ["shell", 87, 13], ["openssh", 88, 13]], [["alice", 83, 11]], [["groups", 79, 15], ["users", 82, 15]], [["services", 70, 9], ["users", 79, 9]], [["passwordFile", 99, 15], ["paths", 100, 15], ["exclude", 101, 15], ["pruneOpts", 102, 15], ["backupPrepareCommand", 103, 15], ["backupCleanupCommand", 104, 15], ["repository", 106, 13], ["initialize", 107, 13], ["timerConfig", 108, 13]], [["passwordFile", 112, 15], ["paths", 113, 15], ["exclude", 114, 15], ["pruneOpts", 115, 15], ["repository", 117, 13], ["initialize", 118, 13], ["timerConfig", 119, 13], ["extraOptions", 120, 13]], [["passwordFile", 125, 21], ["pruneOpts", 125, 34], ["initialize", 126, 13], ["repositoryFile", 127, 13], ["paths", 128, 13], ["dynamicFilesFrom", 132, 13]], [["passwordFile", 139, 15], ["pruneOpts", 140, 15], ["command", 141, 15], ["initialize", 143, 13], ["repository", 144, 13]], [["passwordFile", 148, 15], ["paths", 149, 15], ["exclude", 150, 15], ["pruneOpts", 151, 15], ["repository", 153, 13], ["initialize", 154, 13], ["inhibitsSleep", 155, 13]], [["passwordFile", 159, 15], ["exclude", 160, 15], ["pruneOpts", 161, 15], ["paths", 162, 15], ["initialize", 164, 13], ["repository", 165, 13]], [["type", 177, 15], ["one_file_system", 178, 15]], [["passwordFile", 169, 15], ["paths", 170, 15], ["exclude", 171, 15], ["pruneOpts", 172, 15], ["initialize", 174, 13], ["repository", 175, 13], ["rcloneConfig", 176, 13], ["rcloneConfigFile", 182, 13]], [["passwordFile", 188, 21], ["repository", 189, 13], ["pruneOpts", 190, 13]], [["passwordFile", 193, 21], ["paths", 193, 34], ["repository", 194, 13], ["package", 195, 13], ["pruneOpts", 199, 13], ["checkOpts", 200, 13]], [["remotebackup", 97, 11], ["remote-sftp", 110, 11], ["remote-from-file-backup", 124, 11], ["remote-from-command-backup", 137, 11], ["inhibit-test", 146, 11], ["remote-noinit-backup", 157, 11], ["rclonebackup", 167, 11], ["remoteprune", 187, 11], ["custompackage", 192, 11]], [["backups", 96, 25]], [["restic", 96, 18]], [["RCLONE_CONFIG_LOCAL_TYPE", 204, 38]], [["sessionVariables", 204, 21]], [["services", 96, 9], ["environment", 204, 9]], [["sftp", 66, 5], ["restic", 93, 5]], [["name", 56, 3], ["meta", 58, 3], ["nodes", 65, 3], ["testScript", 208, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/restic.nix", [["name", 27, 5], ["unpackPhase", 28, 5], ["installPhase", 29, 5]]);
-const pos$2 = nix.positions(here + "/restic.nix", [["maintainers", 59, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/restic.nix", [["enable", 71, 11], ["extraConfig", 72, 11]]);
-const pos$4 = nix.positions(here + "/restic.nix", [["openssh", 70, 18]]);
-const pos$5 = nix.positions(here + "/restic.nix", [["sftponly", 80, 11]]);
-const pos$6 = nix.positions(here + "/restic.nix", [["keys", 88, 36]]);
-const pos$7 = nix.positions(here + "/restic.nix", [["authorizedKeys", 88, 21]]);
-const pos$8 = nix.positions(here + "/restic.nix", [["isNormalUser", 84, 13], ["createHome", 85, 13], ["group", 86, 13], ["shell", 87, 13], ["openssh", 88, 13]]);
-const pos$9 = nix.positions(here + "/restic.nix", [["alice", 83, 11]]);
-const pos$10 = nix.positions(here + "/restic.nix", [["groups", 79, 15], ["users", 82, 15]]);
-const pos$11 = nix.positions(here + "/restic.nix", [["services", 70, 9], ["users", 79, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$12 = nix.positions(here + "/restic.nix", [["passwordFile", 99, 15], ["paths", 100, 15], ["exclude", 101, 15], ["pruneOpts", 102, 15], ["backupPrepareCommand", 103, 15], ["backupCleanupCommand", 104, 15], ["repository", 106, 13], ["initialize", 107, 13], ["timerConfig", 108, 13]]);
-const pos$13 = nix.positions(here + "/restic.nix", [["passwordFile", 112, 15], ["paths", 113, 15], ["exclude", 114, 15], ["pruneOpts", 115, 15], ["repository", 117, 13], ["initialize", 118, 13], ["timerConfig", 119, 13], ["extraOptions", 120, 13]]);
-const pos$14 = nix.positions(here + "/restic.nix", [["passwordFile", 125, 21], ["pruneOpts", 125, 34], ["initialize", 126, 13], ["repositoryFile", 127, 13], ["paths", 128, 13], ["dynamicFilesFrom", 132, 13]]);
-const pos$15 = nix.positions(here + "/restic.nix", [["passwordFile", 139, 15], ["pruneOpts", 140, 15], ["command", 141, 15], ["initialize", 143, 13], ["repository", 144, 13]]);
-const pos$16 = nix.positions(here + "/restic.nix", [["passwordFile", 148, 15], ["paths", 149, 15], ["exclude", 150, 15], ["pruneOpts", 151, 15], ["repository", 153, 13], ["initialize", 154, 13], ["inhibitsSleep", 155, 13]]);
-const pos$17 = nix.positions(here + "/restic.nix", [["passwordFile", 159, 15], ["exclude", 160, 15], ["pruneOpts", 161, 15], ["paths", 162, 15], ["initialize", 164, 13], ["repository", 165, 13]]);
-const pos$18 = nix.positions(here + "/restic.nix", [["type", 177, 15], ["one_file_system", 178, 15]]);
-const pos$19 = nix.positions(here + "/restic.nix", [["passwordFile", 169, 15], ["paths", 170, 15], ["exclude", 171, 15], ["pruneOpts", 172, 15], ["initialize", 174, 13], ["repository", 175, 13], ["rcloneConfig", 176, 13], ["rcloneConfigFile", 182, 13]]);
-const pos$20 = nix.positions(here + "/restic.nix", [["passwordFile", 188, 21], ["repository", 189, 13], ["pruneOpts", 190, 13]]);
-const pos$21 = nix.positions(here + "/restic.nix", [["passwordFile", 193, 21], ["paths", 193, 34], ["repository", 194, 13], ["package", 195, 13], ["pruneOpts", 199, 13], ["checkOpts", 200, 13]]);
-const pos$22 = nix.positions(here + "/restic.nix", [["remotebackup", 97, 11], ["remote-sftp", 110, 11], ["remote-from-file-backup", 124, 11], ["remote-from-command-backup", 137, 11], ["inhibit-test", 146, 11], ["remote-noinit-backup", 157, 11], ["rclonebackup", 167, 11], ["remoteprune", 187, 11], ["custompackage", 192, 11]]);
-const pos$23 = nix.positions(here + "/restic.nix", [["backups", 96, 25]]);
-const pos$24 = nix.positions(here + "/restic.nix", [["restic", 96, 18]]);
-const pos$25 = nix.positions(here + "/restic.nix", [["RCLONE_CONFIG_LOCAL_TYPE", 204, 38]]);
-const pos$26 = nix.positions(here + "/restic.nix", [["sessionVariables", 204, 21]]);
-const pos$27 = nix.positions(here + "/restic.nix", [["services", 96, 9], ["environment", 204, 9]]);
-const pos$28 = nix.positions(here + "/restic.nix", [["sftp", 66, 5], ["restic", 93, 5]]);
-const pos$29 = nix.positions(here + "/restic.nix", [["name", 56, 3], ["meta", 58, 3], ["nodes", 65, 3], ["testScript", 208, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const backupPrepareCommand = "touch /root/backupPrepareCommand\ntest ! -e /root/backupCleanupCommand\n";
   const backupCleanupCommand = "rm /root/backupPrepareCommand\ntouch /root/backupCleanupCommand\n";
   const testDir = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "test-files-to-backup",
       unpackPhase: "true",
       installPhase: "mkdir $out\necho some_file > $out/some_file\necho some_other_file > $out/some_other_file\nmkdir $out/a_dir\necho a_file > $out/a_dir/a_file\necho a_file_2 > $out/a_dir/a_file_2\n",
@@ -63,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const commandString = "testing";
   const command = nix.thunk(() => ["echo", "-n", commandString]);
   return {
-    [nix.POS]: pos$29,
+    [nix.POS]: $pos[28],
     name: "restic",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "bbigras")),
           nix.thunk(() => nix.lookup(w, "i077")),
@@ -76,34 +48,34 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       sftp: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               extraConfig: "Match Group sftponly\n  ChrootDirectory /srv/sftp\n  ForceCommand internal-sftp\n",
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$10,
-            groups: nix.thunk(() => ({ [nix.POS]: pos$5, sftponly: nix.thunk(() => ({})) })),
+            [nix.POS]: $pos[9],
+            groups: nix.thunk(() => ({ [nix.POS]: $pos[4], sftponly: nix.thunk(() => ({})) })),
             users: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               alice: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 isNormalUser: true,
                 createHome: false,
                 group: "sftponly",
                 shell: "/run/current-system/sw/bin/nologin",
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$6, keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
+                  [nix.POS]: $pos[6],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[5], keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
                 })),
               })),
             })),
@@ -114,15 +86,15 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             restic: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               backups: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 remotebackup: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   passwordFile: passwordFile,
                   paths: paths,
                   exclude: exclude,
@@ -134,7 +106,7 @@ export default nix.lambda((args) => (() => {
                   timerConfig: null,
                 })),
                 "remote-sftp": nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   passwordFile: passwordFile,
                   paths: paths,
                   exclude: exclude,
@@ -147,7 +119,7 @@ export default nix.lambda((args) => (() => {
                   ]),
                 })),
                 "remote-from-file-backup": nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   passwordFile: passwordFile,
                   pruneOpts: pruneOpts,
                   initialize: true,
@@ -156,7 +128,7 @@ export default nix.lambda((args) => (() => {
                   dynamicFilesFrom: "# all files in /opt except for a_dir and excluded_file_*\nfind /opt -mindepth 1 -maxdepth 1 ! -name a_dir ! -name excluded_file_*\n",
                 })),
                 "remote-from-command-backup": nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   passwordFile: passwordFile,
                   pruneOpts: pruneOpts,
                   command: command,
@@ -164,7 +136,7 @@ export default nix.lambda((args) => (() => {
                   repository: remoteFromCommandRepository,
                 })),
                 "inhibit-test": nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   passwordFile: passwordFile,
                   paths: paths,
                   exclude: exclude,
@@ -174,7 +146,7 @@ export default nix.lambda((args) => (() => {
                   inhibitsSleep: true,
                 })),
                 "remote-noinit-backup": nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   passwordFile: passwordFile,
                   exclude: exclude,
                   pruneOpts: pruneOpts,
@@ -183,24 +155,24 @@ export default nix.lambda((args) => (() => {
                   repository: remoteNoInitRepository,
                 })),
                 rclonebackup: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   passwordFile: passwordFile,
                   paths: paths,
                   exclude: exclude,
                   pruneOpts: pruneOpts,
                   initialize: true,
                   repository: rcloneRepository,
-                  rcloneConfig: nix.thunk(() => ({ [nix.POS]: pos$18, type: "local", one_file_system: true })),
+                  rcloneConfig: nix.thunk(() => ({ [nix.POS]: $pos[17], type: "local", one_file_system: true })),
                   rcloneConfigFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "rclone.conf", "[local]\ntype=ftp\n")),
                 })),
                 remoteprune: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   passwordFile: passwordFile,
                   repository: remoteRepository,
                   pruneOpts: nix.thunk(() => ["--keep-last 1"]),
                 })),
                 custompackage: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   passwordFile: passwordFile,
                   paths: paths,
                   repository: "some-fake-repository",
@@ -212,8 +184,8 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$26,
-            sessionVariables: nix.thunk(() => ({ [nix.POS]: pos$25, RCLONE_CONFIG_LOCAL_TYPE: "local" })),
+            [nix.POS]: $pos[25],
+            sessionVariables: nix.thunk(() => ({ [nix.POS]: $pos[24], RCLONE_CONFIG_LOCAL_TYPE: "local" })),
           })),
         };
       })(), formals$3),

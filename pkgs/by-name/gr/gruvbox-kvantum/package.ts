@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["sha256", 30, 7]], [["description", 41, 7], ["homepage", 42, 7], ["license", 43, 7], ["platforms", 44, 7], ["maintainers", 45, 7]], [["pname", 23, 13], ["version", 24, 5], ["src", 26, 5], ["installPhase", 33, 5], ["meta", 40, 5]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchFromGitHub: false, lib: false, variant: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["sha256", 30, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 7], ["homepage", 42, 7], ["license", 43, 7], ["platforms", 44, 7], ["maintainers", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 13], ["version", 24, 5], ["src", 26, 5], ["installPhase", 33, 5], ["meta", 40, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
       "Gruvbox_Light_Brown",
       "Gruvbox_Light_Green",
     ]), nix.thunk(() => [variant]), nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sachnr",
           repo: "gruvbox-kvantum-themes",
           rev: "f47670be407c1f07c64890ad53884ee9977a7db1",
@@ -38,7 +36,7 @@ cp -a "${variant}" $out/share/Kvantum
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Gruvbox themes for kvantum",
         homepage: "https://github.com/sachnr/gruvbox-kvantum-themes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

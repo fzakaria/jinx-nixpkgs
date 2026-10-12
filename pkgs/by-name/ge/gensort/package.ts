@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["NIX_CFLAGS_COMPILE", 21, 7]], [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["env", 21, 3], ["installPhase", 23, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, zlib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["env", 21, 3], ["installPhase", 23, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gensort",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.ordinal.com/try.cgi/gensort-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-f3VzeD2CmM7z3Uqh24IlyRTeGgz+0oOWXqILaYOKZ60=",
         })))),
       buildInputs: nix.thunk(() => [zlib]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })),
       installPhase: "runHook preInstall\ninstall -Dm755 gensort $out/bin/gensort\ninstall -Dm755 valsort $out/bin/valsort\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Generate and validate records for the sorting benchmark",
         longDescription: "The gensort program can be used to generate input records for the sort\nbenchmarks presented on www.sortbenchmark.org.\n\nThe valsort program can be used to validate the sort output file is\ncorrect.\n",
         homepage: "https://www.ordinal.com/gensort.html",

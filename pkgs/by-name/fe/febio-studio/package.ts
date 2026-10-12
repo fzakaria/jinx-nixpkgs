@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["url", 41, 7], ["hash", 42, 7]], [["description", 78, 5], ["mainProgram", 79, 5], ["license", 80, 5], ["homepage", 81, 5], ["platforms", 82, 5], ["maintainers", 83, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["cmakeFlags", 46, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 62, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, zlib: false, libGLU: false, qt6Packages: false, febio: false, glew: false, fetchpatch: false, sshSupport: true, openssl: false, libssh: false, tetgenSupport: true, tetgen: false, ffmpegSupport: true, ffmpeg: false, dicomSupport: true, dcmtk: false, withModelRepo: true, withCadFeatures: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 78, 5], ["mainProgram", 79, 5], ["license", 80, 5], ["homepage", 81, 5], ["platforms", 82, 5], ["maintainers", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["cmakeFlags", 46, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 62, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const withModelRepo = nix.argOr($, "withModelRepo", () => true);
   const withCadFeatures = nix.argOr($, "withCadFeatures", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "febio-studio",
       version: "2.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "febiosoftware",
           repo: "FEBioStudio",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./cmake-install.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/febiosoftware/FEBioStudio/commit/15524d958a6f5ef81ccee58b4efa1ea25de91543.patch",
             hash: "sha256-LRToK1/RQC+bLXgroDTQOV6H8pI+IZ38Y0nsl/Fz1WE=",
           })))),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, nix.thunk(() => nix.sel(qt6Packages, "wrapQtAppsHook"))]),
       buildInputs: nix.thunk(() => nix.concat([zlib, libGLU, glew, nix.thunk(() => nix.sel(qt6Packages, "qtbase")), febio], nix.concat(nix.app(nix.sel(lib, "optionals"), sshSupport, nix.thunk(() => [openssl, libssh])), nix.concat(nix.app(nix.sel(lib, "optional"), tetgenSupport, tetgen), nix.concat(nix.app(nix.sel(lib, "optional"), ffmpegSupport, ffmpeg), nix.app(nix.sel(lib, "optional"), dicomSupport, dcmtk)))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "FEBio Suite Solver",
         mainProgram: "FEBioStudio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

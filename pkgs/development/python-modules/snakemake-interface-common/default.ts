@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]], [["doCheck", 67, 5]], [["pytest", 66, 18]], [["tests", 66, 12]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["build-system", 45, 3], ["dependencies", 49, 3], ["pythonImportsCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["enabledTestPaths", 62, 3], ["doCheck", 65, 3], ["passthru", 66, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, "argparse-dataclass": false, configargparse: false, packaging: false, pytestCheckHook: false, snakemake: false, "snakemake-interface-common": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doCheck", 67, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pytest", 66, 18]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 66, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["build-system", 45, 3], ["dependencies", 49, 3], ["pythonImportsCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["enabledTestPaths", 62, 3], ["doCheck", 65, 3], ["passthru", 66, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const snakemake = nix.arg($, "snakemake");
   const snakemake_interface_common = nix.arg($, "snakemake-interface-common");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "snakemake-interface-common",
       version: "1.23.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "snakemake",
           repo: "snakemake-interface-common",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "relax-packaging-dependency.patch",
             url: "https://github.com/snakemake/snakemake-interface-common/commit/d585b5c0c7c0ec0df60a1a26d5d413f3ee88e63f.patch",
             hash: "sha256-mZ03mx7W5XpdNzr1aNVyQm7/hPdD7yuYqk7DCR9y7Fw=",
@@ -52,14 +46,14 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/tests.py"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          pytest: nix.thunk(() => nix.app(nix.sel(snakemake_interface_common, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
+          [nix.POS]: $pos[3],
+          pytest: nix.thunk(() => nix.app(nix.sel(snakemake_interface_common, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Common functions and classes for Snakemake and its plugins",
         homepage: "https://github.com/snakemake/snakemake-interface-common",
         changelog: nix.thunk(() => nix.str`https://github.com/snakemake/snakemake-interface-common/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

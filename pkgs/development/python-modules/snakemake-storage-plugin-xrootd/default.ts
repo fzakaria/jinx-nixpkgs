@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["build-system", 51, 3], ["dependencies", 56, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 69, 3], ["enabledTestPaths", 74, 3], ["doCheck", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pkgs: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, reretry: false, "snakemake-interface-common": false, "snakemake-interface-storage-plugins": false, xrootd: false, pytestCheckHook: false, snakemake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["build-system", 51, 3], ["dependencies", 56, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 69, 3], ["enabledTestPaths", 74, 3], ["doCheck", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const snakemake = nix.arg($, "snakemake");
   const serverConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeText"), "xrootd-test-server.cfg", "all.export /\n"));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "snakemake-storage-plugin-xrootd",
       version: "1.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "snakemake",
           repo: "snakemake-storage-plugin-xrootd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/tests.py"]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Snakemake storage plugin for handling input and output via XRootD",
         homepage: "https://github.com/snakemake/snakemake-storage-plugin-xrootd",
         changelog: nix.thunk(() => nix.str`https://github.com/snakemake/snakemake-storage-plugin-xrootd/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

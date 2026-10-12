@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 39, 7], ["version", 40, 7], ["src", 41, 7], ["hash", 43, 5]], [["homepage", 66, 5], ["description", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["cargoDeps", 37, 3], ["maturinBuildFlags", 46, 3], ["dontUseCmakeConfigure", 51, 3], ["nativeCheckInputs", 53, 3], ["disabledTests", 60, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, rustPlatform: false, cmake: false, nasm: false, numpy: false, "pytest-xdist": false, pytestCheckHook: false, torch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 39, 7], ["version", 40, 7], ["src", 41, 7], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 66, 5], ["description", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["cargoDeps", 37, 3], ["maturinBuildFlags", 46, 3], ["dontUseCmakeConfigure", 51, 3], ["nativeCheckInputs", 53, 3], ["disabledTests", 60, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kornia",
           repo: "kornia-rs",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         nasm,
       ]);
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [numpy, pytest_xdist, pytestCheckHook, torch]);
       const disabledTests = nix.thunk(() => ["test_apriltag_decoder"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/kornia/kornia-rs",
         description: "Python bindings to Low-level Computer Vision library in Rust",
         changelog: nix.thunk(() => nix.str`https://github.com/kornia/kornia-rs/releases/tag/v${version}`),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["updateScript", 28, 12]], [["mainProgram", 30, 5], ["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["projectFile", 19, 3], ["nugetDeps", 21, 3], ["dotnet-sdk", 23, 3], ["dotnet-runtime", 24, 3], ["runtimeDeps", 26, 3], ["passthru", 28, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false, libsecret: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 28, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 30, 5], ["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["projectFile", 19, 3], ["nugetDeps", 21, 3], ["dotnet-sdk", 23, 3], ["dotnet-runtime", 24, 3], ["runtimeDeps", 26, 3], ["passthru", 28, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "msgraph-cli";
       const version = "1.9.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoftgraph",
           repo: "msgraph-cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,9 +27,9 @@ export default nix.lambda((args) => (() => {
       const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_8_0"));
       const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_8_0"));
       const runtimeDeps = nix.thunk(() => [libsecret]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "mgc",
         description: "Microsoft Graph CLI",
         homepage: "https://github.com/microsoftgraph/msgraph-cli",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["aarch64-darwin", "x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cudaCapabilities", 74, 31], ["cudaMajorMinorVersion", 75, 15], ["system", 76, 37]], [["nvccHostCCMatchesStdenvCC", 64, 5], ["hostNixSystem", 70, 5], ["hostRedistSystem", 73, 5], ["cudaForwardCompat", 82, 5], ["supportedCudaCapabilities", 85, 5], ["defaultCudaCapabilities", 92, 5], ["cudaCapabilities", 98, 5], ["requestedArchitectureSpecificCudaCapabilities", 105, 5], ["hasArchitectureSpecificCudaCapability", 108, 5], ["requestedFamilySpecificCudaCapabilities", 112, 5], ["hasFamilySpecificCudaCapability", 115, 5], ["requestedJetsonCudaCapabilities", 118, 5], ["hasJetsonCudaCapability", 121, 5]], [["message", 153, 9], ["assertion", 154, 9]], [["message", 157, 9], ["assertion", 158, 9]], [["message", 161, 9], ["assertion", 162, 9]], [["message", 165, 9], ["assertion", 168, 9]], [["message", 171, 9], ["assertion", 174, 9]], [["message", 180, 9], ["assertion", 183, 9]], [["message", 187, 9], ["assertion", 190, 9]], [["message", 197, 9], ["assertion", 200, 9]], [["extraAttrs", 285, 3]]]);
 const formals$1 = { args: { _cuda: false, config: false, cudaMajorMinorVersion: false, lib: false, pkgs: false, stdenv: false, stdenvAdapters: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cudaCapabilities", 74, 31], ["cudaMajorMinorVersion", 75, 15], ["system", 76, 37]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nvccHostCCMatchesStdenvCC", 64, 5], ["hostNixSystem", 70, 5], ["hostRedistSystem", 73, 5], ["cudaForwardCompat", 82, 5], ["supportedCudaCapabilities", 85, 5], ["defaultCudaCapabilities", 92, 5], ["cudaCapabilities", 98, 5], ["requestedArchitectureSpecificCudaCapabilities", 105, 5], ["hasArchitectureSpecificCudaCapability", 108, 5], ["requestedFamilySpecificCudaCapabilities", 112, 5], ["hasFamilySpecificCudaCapability", 115, 5], ["requestedJetsonCudaCapabilities", 118, 5], ["hasJetsonCudaCapability", 121, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["message", 153, 9], ["assertion", 154, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["message", 157, 9], ["assertion", 158, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["message", 161, 9], ["assertion", 162, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["message", 165, 9], ["assertion", 168, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["message", 171, 9], ["assertion", 174, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["message", 180, 9], ["assertion", 183, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["message", 187, 9], ["assertion", 190, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["message", 197, 9], ["assertion", 200, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["extraAttrs", 285, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,13 +47,13 @@ export default nix.lambda((args) => (() => {
   const familySpecificCudaCapabilities = nix.thunk(() => nix.app(filter, (cudaCapability) => nix.sel(cudaCapabilityToInfo, nix.key(nix.force(cudaCapability)), "isFamilySpecific"), allSortedCudaCapabilities));
   const jetsonCudaCapabilities = nix.thunk(() => nix.app(filter, (cudaCapability) => nix.sel(cudaCapabilityToInfo, nix.key(nix.force(cudaCapability)), "isJetson"), allSortedCudaCapabilities));
   const passthruExtra = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     nvccHostCCMatchesStdenvCC: nix.thunk(() => nix.eq(nix.sel(backendStdenv, "cc"), nix.sel(stdenv, "cc"))),
     hostNixSystem: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")),
     hostRedistSystem: nix.thunk(() => nix.app(getRedistSystem, nix.thunk(() => (() => {
         const from_3 = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         cudaCapabilities: nix.thunk(() => nix.attr(passthruExtra, "cudaCapabilities")),
         cudaMajorMinorVersion: cudaMajorMinorVersion,
         system: nix.thunk(() => nix.attr(from_3, "system")),
@@ -92,42 +82,42 @@ export default nix.lambda((args) => (() => {
     const tooNewCudaCapabilities = nix.thunk(() => nix.app(filter, (cap) => nix.app(nix.sel(lib, "versionOlder"), cudaMajorMinorVersion, nix.thunk(() => nix.sel(cudaCapabilityToInfo, nix.key(nix.force(cap)), "minCudaMajorMinorVersion"))), nix.thunk(() => nix.sel(passthruExtra, "cudaCapabilities"))));
     return [
       nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         message: nix.thunk(() => nix.str`Requested unrecognized CUDA capabilities: ${nix.app(toJSON, unrecognizedCudaCapabilities)}`),
         assertion: nix.thunk(() => nix.eq(unrecognizedCudaCapabilities, [])),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         message: nix.thunk(() => nix.str`Requested CUDA capabilities which are too old for CUDA ${cudaMajorMinorVersion}: ${nix.app(toJSON, tooOldCudaCapabilities)}`),
         assertion: nix.thunk(() => nix.eq(tooOldCudaCapabilities, [])),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         message: nix.thunk(() => nix.str`Requested CUDA capabilities which are too new for CUDA ${cudaMajorMinorVersion}: ${nix.app(toJSON, tooNewCudaCapabilities)}`),
         assertion: nix.thunk(() => nix.eq(tooNewCudaCapabilities, [])),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         message: nix.thunk(() => nix.add(nix.str`Requested Jetson CUDA capabilities (${nix.app(toJSON, nix.thunk(() => nix.sel(passthruExtra, "requestedJetsonCudaCapabilities")))}) require `, nix.str`hostPlatform (${nix.sel(passthruExtra, "hostNixSystem")}) to be aarch64-linux`)),
         assertion: nix.thunk(() => (!nix.asBool(nix.sel(passthruExtra, "hasJetsonCudaCapability")) || nix.asBool(nix.eq(nix.sel(passthruExtra, "hostNixSystem"), "aarch64-linux")))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         message: nix.thunk(() => nix.add(nix.str`Requested pre-SBSA (${sbsaJetsonCapability}) Jetson CUDA capabilities (${nix.app(toJSON, preSbsaJetsonCudaCapabilities)}) cannot be `, nix.str`specified with other capabilities (${nix.app(toJSON, nix.thunk(() => nix.app(subtractLists, preSbsaJetsonCudaCapabilities, nix.thunk(() => nix.sel(passthruExtra, "cudaCapabilities")))))})`)),
         assertion: nix.thunk(() => (!nix.asBool(!nix.eq(preSbsaJetsonCudaCapabilities, [])) || nix.asBool(nix.eq(preSbsaJetsonCudaCapabilities, nix.sel(passthruExtra, "cudaCapabilities"))))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         message: nix.thunk(() => nix.add(nix.str`Requested pre-SBSA (${sbsaJetsonCapability}) Jetson CUDA capabilities (${nix.app(toJSON, preSbsaJetsonCudaCapabilities)}) require `, nix.str`computed NVIDIA hostRedistSystem (${nix.sel(passthruExtra, "hostRedistSystem")}) to be linux-aarch64`)),
         assertion: nix.thunk(() => (!nix.asBool(!nix.eq(preSbsaJetsonCudaCapabilities, [])) || nix.asBool(nix.eq(nix.sel(passthruExtra, "hostRedistSystem"), "linux-aarch64")))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         message: nix.thunk(() => nix.add(nix.str`Requested post-SBSA (${sbsaJetsonCapability}) Jetson CUDA capabilities (${nix.app(toJSON, postSbsaJetsonCudaCapabilities)}) require `, nix.str`computed NVIDIA hostRedistSystem (${nix.sel(passthruExtra, "hostRedistSystem")}) to be linux-sbsa`)),
         assertion: nix.thunk(() => (!nix.asBool(!nix.eq(postSbsaJetsonCudaCapabilities, [])) || nix.asBool(nix.eq(nix.sel(passthruExtra, "hostRedistSystem"), "linux-sbsa")))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         message: nix.thunk(() => nix.add(nix.str`Requested Jetson Orin (8.7) CUDA capabilities (${nix.app(toJSON, preSbsaJetsonCudaCapabilities)}) are not supported `, nix.str`by CUDA ${cudaMajorMinorVersion}; use CUDA 12 or CUDA 13.2 and later`)),
         assertion: nix.thunk(() => (!nix.asBool((nix.asBool(nix.app(versionAtLeast, cudaMajorMinorVersion, "13.0")) && nix.asBool(nix.app(versionOlder, cudaMajorMinorVersion, "13.2")))) || nix.asBool(!nix.asBool(nix.app(elem, "8.7", preSbsaJetsonCudaCapabilities))))),
       })),
@@ -152,7 +142,7 @@ export default nix.lambda((args) => (() => {
   })());
   nix.assert_(nix.app(assertMsg, nix.thunk(() => nix.eq(failedAssertionsString, "")), nix.thunk(() => nix.str`${nix.app(mkVersionedName, "cudaPackages", cudaMajorMinorVersion)}.backendStdenv has failed assertions:${failedAssertionsString}`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/cuda-modules/backendStdenv/default.nix:282:1");
   return nix.app(nix.sel(backendStdenv, "override"), (prevArgs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       extraAttrs: nix.thunk(() => nix.update(nix.selOr(prevArgs, () => ({}), "extraAttrs"), passthruExtra)),
     }));
 })(), formals$1);

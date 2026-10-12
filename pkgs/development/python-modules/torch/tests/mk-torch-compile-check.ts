@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mk-torch-compile-check.nix", [[["nativeBuildInputs", 18, 18]], [["name", 15, 13], ["feature", 15, 18], ["libraries", 15, 26], ["gpuCheckArgs", 18, 5], ["makeWrapperArgs", 22, 5]]]);
 const formals$1 = { args: { cudaPackages: false, feature: true, lib: false, libraries: false, name: true, stdenv: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mk-torch-compile-check.nix", [["nativeBuildInputs", 18, 18]]);
-const pos$2 = nix.positions(here + "/mk-torch-compile-check.nix", [["name", 15, 13], ["feature", 15, 18], ["libraries", 15, 26], ["gpuCheckArgs", 18, 5], ["makeWrapperArgs", 22, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const deviceStr = nix.thunk(() => (nix.asBool(nix.eq(feature, null)) ? "" : ", device=\"cuda\""));
   return nix.app(nix.sel(cudaPackages, "writeGpuTestPython"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: name,
       feature: feature,
       libraries: libraries,
       gpuCheckArgs: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         nativeBuildInputs: nix.thunk(() => [writableTmpDirAsHomeHook]),
       })),
       makeWrapperArgs: nix.thunk(() => nix.concat([

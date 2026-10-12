@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["updateScript", 47, 12]], [["broken", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["license", 55, 5], ["homepage", 56, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["preConfigure", 42, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, libedit: false, gmpxx: false, bison: false, flex: false, enableReadline: true, readline: false, gtest: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 47, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["license", 55, 5], ["homepage", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["preConfigure", 42, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "opensmt",
       version: "2.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "usi-verification-and-security",
           repo: "opensmt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libedit, gmpxx, gtest], nix.app(nix.sel(lib, "optional"), enableReadline, readline))),
       preConfigure: "substituteInPlace test/CMakeLists.txt --replace-fail \\\n  'FetchContent_MakeAvailable' '#FetchContent_MakeAvailable'\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(stdenv, "hostPlatform")), null);
           return (nix.asBool(nix.lookup(w, "isLinux")) && nix.asBool(nix.lookup(w, "isAarch64")));

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 21, 7], ["version", 22, 28], ["src", 22, 36], ["__structuredAttrs", 24, 7], ["strictDeps", 25, 7], ["nativeBuildInputs", 27, 7], ["dontConfigure", 32, 7], ["impureEnvVars", 34, 7], ["buildPhase", 39, 7], ["installPhase", 60, 7], ["dontFixup", 71, 7], ["outputHash", 73, 7], ["outputHashAlgo", 74, 7], ["outputHashMode", 75, 7]], [["owner", 92, 5], ["repo", 93, 5], ["tag", 94, 5], ["hash", 95, 5]], [["extraArgs", 178, 5]], [["updateScript", 177, 12]], [["description", 189, 5], ["longDescription", 190, 5], ["homepage", 196, 5], ["changelog", 197, 5], ["license", 198, 5], ["mainProgram", 199, 5], ["maintainers", 200, 5], ["platforms", 201, 24]], [["pname", 85, 3], ["version", 86, 3], ["__structuredAttrs", 88, 3], ["strictDeps", 89, 3], ["src", 91, 3], ["node_modules", 98, 3], ["nativeBuildInputs", 100, 3], ["configurePhase", 107, 3], ["buildPhase", 122, 3], ["installPhase", 133, 3], ["dontStrip", 163, 3], ["__darwinAllowLocalNetworking", 166, 3], ["doInstallCheck", 168, 3], ["nativeInstallCheckInputs", 169, 3], ["versionCheckProgramArg", 174, 3], ["versionCheckKeepEnvironment", 175, 3], ["passthru", 177, 3], ["meta", 188, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, bun: false, fetchFromGitHub: false, inetutils: false, makeBinaryWrapper: false, nodejs: false, "nix-update-script": false, ripgrep: false, gitMinimal: false, "xdg-utils": false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 21, 7], ["version", 22, 28], ["src", 22, 36], ["__structuredAttrs", 24, 7], ["strictDeps", 25, 7], ["nativeBuildInputs", 27, 7], ["dontConfigure", 32, 7], ["impureEnvVars", 34, 7], ["buildPhase", 39, 7], ["installPhase", 60, 7], ["dontFixup", 71, 7], ["outputHash", 73, 7], ["outputHashAlgo", 74, 7], ["outputHashMode", 75, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 92, 5], ["repo", 93, 5], ["tag", 94, 5], ["hash", 95, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 178, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 177, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 189, 5], ["longDescription", 190, 5], ["homepage", 196, 5], ["changelog", 197, 5], ["license", 198, 5], ["mainProgram", 199, 5], ["maintainers", 200, 5], ["platforms", 201, 24]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 85, 3], ["version", 86, 3], ["__structuredAttrs", 88, 3], ["strictDeps", 89, 3], ["src", 91, 3], ["node_modules", 98, 3], ["nativeBuildInputs", 100, 3], ["configurePhase", 107, 3], ["buildPhase", 122, 3], ["installPhase", 133, 3], ["dontStrip", 163, 3], ["__darwinAllowLocalNetworking", 166, 3], ["doInstallCheck", 168, 3], ["nativeInstallCheckInputs", 169, 3], ["versionCheckProgramArg", 174, 3], ["versionCheckKeepEnvironment", 175, 3], ["passthru", 177, 3], ["meta", 188, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nodeModules = (finalAttrs) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
       version: nix.thunk(() => nix.attr(finalAttrs, "version")),
       src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -44,13 +39,13 @@ export default nix.lambda((args) => (() => {
     })));
   const targetDirName = nix.thunk(() => nix.add((nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? "cli-darwin-" : "cli-linux-"), (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isx86_64")) ? "x64" : "arm64")));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cline",
       version: "3.0.68",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "cline",
           repo: "cline",
           tag: nix.thunk(() => nix.str`cli-v${nix.sel(finalAttrs, "version")}`),
@@ -92,16 +87,16 @@ runHook postInstall
       versionCheckProgramArg: "--version",
       versionCheckKeepEnvironment: "HOME PATH",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "^cli-v(.*)", "--subpackage", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(bun, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Autonomous coding agent CLI for the terminal",
         longDescription: "Cline is an open-source autonomous AI coding agent that runs inside\nyour editor or terminal. It reads files, writes code, runs terminal\ncommands, and fixes errors while keeping you in control through structured\nplan-and-act steps.\n",
         homepage: "https://cline.bot",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["license", 42, 31], ["homepage", 42, 39], ["maintainers", 42, 48], ["platforms", 43, 5], ["description", 47, 5]], [["name", 8, 3], ["pname", 9, 3], ["version", 10, 3], ["src", 12, 24], ["sourceRoot", 13, 3], ["patches", 15, 3], ["patchFlags", 18, 3], ["hardeningDisable", 20, 3], ["nativeBuildInputs", 22, 3], ["makeFlags", 24, 3], ["preBuild", 26, 3], ["enableParallelBuilding", 30, 3], ["buildFlags", 32, 3], ["installPhase", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { stdenv: false, kernel: false, kernelModuleMakeFlags: false, libajantv2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["license", 42, 31], ["homepage", 42, 39], ["maintainers", 42, 48], ["platforms", 43, 5], ["description", 47, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 8, 3], ["pname", 9, 3], ["version", 10, 3], ["src", 12, 24], ["sourceRoot", 13, 3], ["patches", 15, 3], ["patchFlags", 18, 3], ["hardeningDisable", 20, 3], ["nativeBuildInputs", 22, 3], ["makeFlags", 24, 3], ["preBuild", 26, 3], ["enableParallelBuilding", 30, 3], ["buildFlags", 32, 3], ["installPhase", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const libajantv2 = nix.arg($, "libajantv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),
       pname: "ajantv2-module",
       version: nix.thunk(() => nix.sel(libajantv2, "version")),
@@ -35,7 +34,7 @@ install -D ajardma.ko $out/lib/modules/${nix.sel(kernel, "modDirVersion")}/misc/
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libajantv2, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.attr(from, "license")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

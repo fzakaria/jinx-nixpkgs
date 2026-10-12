@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 83, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["dependencies", 48, 3], ["postInstall", 55, 3], ["dontWrapGApps", 60, 3], ["preFixup", 61, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, "gobject-introspection": false, keybinder3: false, xdotool: false, "wl-clipboard": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["dependencies", 48, 3], ["postInstall", 55, 3], ["dontWrapGApps", 60, 3], ["preFixup", 61, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const xdotool = nix.arg($, "xdotool");
   const wl_clipboard = nix.arg($, "wl-clipboard");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "emote",
       version: "4.1.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tom-james-watson",
           repo: "Emote",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modern emoji picker for Linux",
         mainProgram: "emote",
         homepage: "https://github.com/tom-james-watson/emote",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["mvnHash", 20, 3], ["mvnParameters", 22, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 26, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, maven: false, makeWrapper: false, jre: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["mvnHash", 20, 3], ["mvnParameters", 22, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 26, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "joularjx";
       const version = "3.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "joular",
           repo: "joularjx",
           rev: version,
@@ -35,7 +33,7 @@ makeWrapper ${jre}/bin/java $out/bin/joularjx \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Java-based agent for software power monitoring at the source code level",
         homepage: "https://github.com/joular/joularjx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -46,7 +44,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

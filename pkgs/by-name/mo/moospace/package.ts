@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["patchPhase", 24, 3], ["dontWrapQtApps", 26, 3], ["buildPhase", 28, 3], ["installPhase", 33, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, faust2jaqt: false, faust2lv2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["patchPhase", 24, 3], ["dontWrapQtApps", 26, 3], ["buildPhase", 28, 3], ["installPhase", 33, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const faust2jaqt = nix.arg($, "faust2jaqt");
   const faust2lv2 = nix.arg($, "faust2lv2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "moospace",
       version: "0-unstable-2020-06-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "modularev",
           repo: "mooSpace",
           rev: "e5440407ea6ef9f7fcca838383b2b9a388c22874",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "faust2jaqt -time -vec -t 0 mooSpace.dsp\nfaust2lv2  -time -vec -t 0 -gui mooSpace.dsp\n",
       installPhase: "mkdir -p $out/bin\nfor f in $(find . -executable -type f); do\n  cp $f $out/bin/\ndone\nmkdir -p $out/lib/lv2\ncp -r mooSpace.lv2 $out/lib/lv2\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Variable reverb audio effect, jack and lv2",
         homepage: "https://github.com/modularev/mooSpace",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

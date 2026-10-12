@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["name", 33, 5], ["src", 34, 26], ["sourceRoot", 35, 5], ["hash", 36, 5]], [["RUSTC_BOOTSTRAP", 56, 5], ["RUSTFLAGS", 59, 5]], [["extraArgs", 74, 5]], [["updateScript", 73, 12]], [["description", 81, 5], ["homepage", 82, 5], ["mainProgram", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["cargoHash", 30, 3], ["npmDeps", 32, 3], ["npmRoot", 39, 3], ["nativeBuildInputs", 41, 3], ["nativeInstallCheckInputs", 49, 3], ["env", 54, 3], ["buildFeatures", 62, 3], ["doCheck", 64, 3], ["postInstall", 66, 3], ["doInstallCheck", 71, 3], ["passthru", 73, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, protobuf: false, versionCheckHook: false, cmake: false, "pkg-config": false, nodejs: false, fetchNpmDeps: false, npmHooks: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 5], ["src", 34, 26], ["sourceRoot", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["RUSTC_BOOTSTRAP", 56, 5], ["RUSTFLAGS", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 73, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["mainProgram", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["cargoHash", 30, 3], ["npmDeps", 32, 3], ["npmRoot", 39, 3], ["nativeBuildInputs", 41, 3], ["nativeInstallCheckInputs", 49, 3], ["env", 54, 3], ["buildFeatures", 62, 3], ["doCheck", 64, 3], ["postInstall", 66, 3], ["doInstallCheck", 71, 3], ["passthru", 73, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const npmHooks = nix.arg($, "npmHooks");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "clash-rs",
       version: "0.10.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Watfaq",
           repo: "clash-rs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./skip-npm-ci.patch")]),
       cargoHash: "sha256-lJh/m6Ibgny1qFeeo3SDFJWXbZ/BX12/LX/m6g6RJZE=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/clash-dashboard`),
@@ -53,20 +47,20 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")),
       ]),
       nativeInstallCheckInputs: nix.thunk(() => [protobuf, versionCheckHook]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, RUSTC_BOOTSTRAP: 1n, RUSTFLAGS: "-A stable-features" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], RUSTC_BOOTSTRAP: 1n, RUSTFLAGS: "-A stable-features" })),
       buildFeatures: nix.thunk(() => ["plus"]),
       doCheck: false,
       postInstall: "# Align with upstream\nln -s \"$out/bin/clash-rs\" \"$out/bin/clash\"\n",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Custom protocol, rule based network proxy software",
         homepage: "https://github.com/Watfaq/clash-rs",
         mainProgram: "clash",

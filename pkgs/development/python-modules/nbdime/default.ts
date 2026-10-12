@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 34, 13], ["version", 34, 19], ["hash", 35, 5]], [["homepage", 89, 5], ["changelog", 90, 5], ["description", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 38, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 55, 3], ["disabledTests", 61, 3], ["preCheck", 79, 3], ["__darwinAllowLocalNetworking", 84, 3], ["pythonImportsCheck", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, "hatch-jupyter-builder": false, hatchling: false, jupyterlab: false, colorama: false, gitpython: false, jinja2: false, "jupyter-server": false, nbformat: false, pygments: false, requests: false, tornado: false, gitMinimal: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 34, 13], ["version", 34, 19], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 89, 5], ["changelog", 90, 5], ["description", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 38, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 55, 3], ["disabledTests", 61, 3], ["preCheck", 79, 3], ["__darwinAllowLocalNetworking", 84, 3], ["pythonImportsCheck", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-jNJez+61EF1WMjfX9k60dIBY+6m7qas4kqH/YeF3zhY=",
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["nbdime"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jupyter/nbdime",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter/nbdime/blob/v${version}/CHANGELOG.md`),
         description: "Tools for diffing and merging of Jupyter notebooks",
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

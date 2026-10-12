@@ -2,57 +2,45 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mutable-users.nix", [[["maintainers", 7, 5]], [["mutableUsers", 13, 15]], [["users", 13, 9]], [["configuration", 12, 32]], [["isNormalUser", 18, 30]], [["dry-test", 18, 21]], [["mutableUsers", 17, 15], ["users", 18, 15]], [["users", 17, 9]], [["configuration", 16, 30]], [["immutable", 12, 22], ["mutable", 16, 22]], [["specialisation", 12, 7]], [["machine", 11, 5]], [["name", 5, 3], ["meta", 6, 3], ["nodes", 10, 3], ["testScript", 23, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mutable-users.nix", [["maintainers", 7, 5]]);
-const pos$2 = nix.positions(here + "/mutable-users.nix", [["mutableUsers", 13, 15]]);
-const pos$3 = nix.positions(here + "/mutable-users.nix", [["users", 13, 9]]);
-const pos$4 = nix.positions(here + "/mutable-users.nix", [["configuration", 12, 32]]);
-const pos$5 = nix.positions(here + "/mutable-users.nix", [["isNormalUser", 18, 30]]);
-const pos$6 = nix.positions(here + "/mutable-users.nix", [["dry-test", 18, 21]]);
-const pos$7 = nix.positions(here + "/mutable-users.nix", [["mutableUsers", 17, 15], ["users", 18, 15]]);
-const pos$8 = nix.positions(here + "/mutable-users.nix", [["users", 17, 9]]);
-const pos$9 = nix.positions(here + "/mutable-users.nix", [["configuration", 16, 30]]);
-const pos$10 = nix.positions(here + "/mutable-users.nix", [["immutable", 12, 22], ["mutable", 16, 22]]);
-const pos$11 = nix.positions(here + "/mutable-users.nix", [["specialisation", 12, 7]]);
-const pos$12 = nix.positions(here + "/mutable-users.nix", [["machine", 11, 5]]);
-const pos$13 = nix.positions(here + "/mutable-users.nix", [["name", 5, 3], ["meta", 6, 3], ["nodes", 10, 3], ["testScript", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "mutable-users",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "gleber"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           immutable: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              users: nix.thunk(() => ({ [nix.POS]: pos$2, mutableUsers: false })),
+              [nix.POS]: $pos[2],
+              users: nix.thunk(() => ({ [nix.POS]: $pos[1], mutableUsers: false })),
             })),
           })),
           mutable: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 mutableUsers: true,
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
-                  "dry-test": nix.thunk(() => ({ [nix.POS]: pos$5, isNormalUser: true })),
+                  [nix.POS]: $pos[5],
+                  "dry-test": nix.thunk(() => ({ [nix.POS]: $pos[4], isNormalUser: true })),
                 })),
               })),
             })),

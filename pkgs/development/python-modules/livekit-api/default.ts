@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["rev-prefix", 47, 40]], [["updateScript", 47, 12]], [["changelog", 50, 5], ["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["pypaBuildFlags", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["pythonRemoveDeps", 37, 3], ["nativeCheckInputs", 39, 3], ["enabledTestPaths", 43, 3], ["pythonImportsCheck", 45, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pyjwt: false, aiohttp: false, protobuf: false, "livekit-protocol": false, pytestCheckHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 47, 40]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 47, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 50, 5], ["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["pypaBuildFlags", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["pythonRemoveDeps", 37, 3], ["nativeCheckInputs", 39, 3], ["enabledTestPaths", 43, 3], ["pythonImportsCheck", 45, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "livekit",
           repo: "python-sdks",
           tag: nix.thunk(() => nix.str`api-v${version}`),
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["livekit-api/tests"]);
       const pythonImportsCheck = nix.thunk(() => ["livekit"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "api-v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "api-v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/livekit/python-sdks/releases/tag/${nix.sel(src, "tag")}`),
         description: "LiveKit real-time and server SDKs for Python",
         homepage: "https://github.com/livekit/python-sdks/",
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

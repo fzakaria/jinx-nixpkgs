@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["OPENSSL_NO_VENDOR", 31, 7]], [["krill", 40, 43]], [["tests", 40, 12]], [["mainProgram", 43, 5], ["description", 44, 5], ["longDescription", 45, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["teams", 55, 5]], [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 28, 3], ["env", 31, 3], ["doCheck", 34, 3], ["doInstallCheck", 36, 3], ["nativeInstallCheckInputs", 37, 3], ["versionCheckProgramArg", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, nixosTests: false, openssl: false, "pkg-config": false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["krill", 40, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 40, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 43, 5], ["description", 44, 5], ["longDescription", 45, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["teams", 55, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 28, 3], ["env", 31, 3], ["doCheck", 34, 3], ["doInstallCheck", 36, 3], ["nativeInstallCheckInputs", 37, 3], ["versionCheckProgramArg", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "krill",
       version: "0.16.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NLnetLabs",
           repo: "krill",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,17 +30,17 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-Cgj2Ooo4W0GeNrLuFcFiDn7dxKpYRyFgGK0Bvs7PDnM=",
       buildInputs: nix.thunk(() => [openssl]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: 1n })),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, krill: nix.thunk(() => nix.attr(nixosTests, "krill")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], krill: nix.thunk(() => nix.attr(nixosTests, "krill")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mainProgram: "krillc",
         description: "RPKI Certificate Authority and Publication Server written in Rust",
         longDescription: "Krill is a free, open source RPKI Certificate Authority that lets you run\ndelegated RPKI under one or multiple Regional Internet Registries (RIRs).\nThrough its built-in publication server, Krill can publish Route Origin\nAuthorisations (ROAs) on your own servers or with a third party.\n",

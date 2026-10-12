@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["name", 40, 7], ["url", 41, 7], ["includes", 42, 7], ["hash", 43, 7]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 34, 3], ["patches", 38, 3], ["build-system", 47, 3], ["dependencies", 49, 3], ["nativeCheckInputs", 60, 3], ["enabledTestPaths", 62, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, pytestCheckHook: false, docopt: false, fire: false, numpy: false, "python-crfsuite": false, pyyaml: false, six: false, ssg: false, torch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 40, 7], ["url", 41, 7], ["includes", 42, 7], ["hash", 43, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 34, 3], ["patches", 38, 3], ["build-system", 47, 3], ["dependencies", 49, 3], ["nativeCheckInputs", 60, 3], ["enabledTestPaths", 62, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0-dev";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PyThaiNLP",
           repo: "attacut",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "sed -i \"/nptyping>=/d\" setup.py\n";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-nptyping-deprecated-array.patch",
             url: "https://github.com/PyThaiNLP/attacut/commit/a707297b3f08a015d32d8ac241aa8cb11128cbd4.patch",
             includes: nix.thunk(() => ["attacut/evaluation.py"]),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/*"]);
       const pythonImportsCheck = nix.thunk(() => ["attacut"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast and Accurate Neural Thai Word Segmenter",
         homepage: "https://github.com/PyThaiNLP/attacut",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "attacut-cli",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

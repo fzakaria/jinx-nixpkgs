@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["sha256", 33, 5]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["pacemaker", 102, 26]], [["tests", 101, 12]], [["homepage", 106, 5], ["description", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["patches", 36, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["configureFlags", 61, 3], ["installFlags", 75, 3], ["enableParallelBuilding", 83, 3], ["preConfigure", 85, 3], ["postInstall", 96, 3], ["passthru", 101, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch2: false, makeWrapper: false, "pkg-config": false, kronosnet: false, nss: false, nspr: false, libqb: false, systemdLibs: false, dbus: false, "rdma-core": false, libstatgrab: false, "net-snmp": false, enableDbus: true, enableInfiniBandRdma: true, enableMonitoring: true, enableSnmp: true, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pacemaker", 102, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 101, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 106, 5], ["description", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["maintainers", 110, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["patches", 36, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["configureFlags", 61, 3], ["installFlags", 75, 3], ["enableParallelBuilding", 83, 3], ["preConfigure", 85, 3], ["postInstall", 96, 3], ["passthru", 101, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,17 +29,17 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "corosync",
       version: "3.1.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://build.clusterlabs.org/corosync/releases/corosync-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-IDNUu93uGpezxQoHbq6JxjX0Bt1nTMrvyUu5CSrNlTU=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2025-30472.patch",
             url: "https://github.com/corosync/corosync/commit/7839990f9cdf34e55435ed90109e82709032466a.patch??full_index=1",
             hash: "sha256-EgGTfOM9chjLnb1QWNGp6IQQKQGdetNkztdddXlN/uo=",
@@ -73,14 +68,14 @@ export default nix.lambda((args) => (() => {
   --prefix PATH ":" "$out/sbin:${libqb}/sbin"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pacemaker: nix.thunk(() => nix.attr(nixosTests, "pacemaker")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://corosync.org/",
         description: "Group Communication System with features for implementing high availability within applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

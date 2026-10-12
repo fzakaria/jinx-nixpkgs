@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 52, 5], ["repo", 53, 5], ["rev", 54, 5], ["hash", 55, 5]], [["description", 98, 5], ["license", 99, 5], ["platforms", 100, 5], ["homepage", 101, 5], ["maintainers", 102, 5], ["mainProgram", 103, 5]], [["pname", 43, 3], ["version", 44, 3], ["outputs", 46, 3], ["src", 51, 3], ["buildFlags", 58, 3], ["makeFlags", 59, 3], ["pythonPath", 61, 3], ["nativeBuildInputs", 62, 3], ["propagatedBuildInputs", 68, 3], ["installTargets", 73, 3], ["preInstall", 78, 3], ["postFixup", 87, 3], ["doCheck", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, runCommand: false, which: false, python3: false, help2man: false, makeWrapper: false, ethtool: false, inetutils: false, iperf: false, iproute2: false, "net-tools": false, socat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["rev", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 98, 5], ["license", 99, 5], ["platforms", 100, 5], ["homepage", 101, 5], ["maintainers", 102, 5], ["mainProgram", 103, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["outputs", 46, 3], ["src", 51, 3], ["buildFlags", 58, 3], ["makeFlags", 59, 3], ["pythonPath", 61, 3], ["nativeBuildInputs", 62, 3], ["propagatedBuildInputs", 68, 3], ["installTargets", 73, 3], ["preInstall", 78, 3], ["postFixup", 87, 3], ["doCheck", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +31,12 @@ ln -s "${inetutils}"/bin/telnet "$out/bin"
 `)));
   const generatedPath = nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "bin", nix.thunk(() => [iperf, ethtool, iproute2, socat, net_tools, telnet])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mininet",
       version: "2.3.1b4",
       outputs: nix.thunk(() => ["out", "py"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mininet",
           repo: "mininet",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +67,7 @@ wrapProgram "$out/bin/mn" \\
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Emulator for rapid prototyping of Software Defined Networks",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

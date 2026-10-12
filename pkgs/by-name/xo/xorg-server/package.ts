@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 71, 5], ["hash", 72, 5]], [["pkg-config", 194, 11]], [["version", 185, 26], ["updateScript", 186, 5], ["tests", 194, 5]], [["description", 198, 5], ["longDescription", 199, 5], ["homepage", 209, 5], ["license", 210, 5], ["mainProgram", 245, 5], ["maintainers", 246, 5], ["pkgConfigModules", 249, 5], ["platforms", 250, 5]], [["pname", 59, 3], ["version", 63, 3], ["outputs", 65, 3], ["src", 70, 3], ["patches", 75, 3], ["strictDeps", 81, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 93, 3], ["propagatedBuildInputs", 125, 3], ["mesonFlags", 143, 3], ["postPatch", 174, 3], ["postInstall", 180, 3], ["passthru", 184, 3], ["meta", 197, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, dbus: false, "dri-pkgconfig-stub": false, "font-util": false, libdrm: false, libepoxy: false, libgbm: false, libGL: false, libGLU: false, libpciaccess: false, libtirpc: false, libunwind: false, libx11: false, libxau: false, libxcb: false, "libxcb-image": false, "libxcb-keysyms": false, "libxcb-render-util": false, "libxcb-util": false, "libxcb-wm": false, libxcvt: false, libxdmcp: false, libxext: false, libxfixes: false, libxfont_1: false, libxfont_2: false, libxkbfile: false, libxshmfence: false, mesa: false, "mesa-gl-headers": false, openssl: false, pixman: false, udev: false, xkbcomp: false, "xkeyboard-config": false, xorgproto: false, xtrans: false, zlib: false, darwin: false, "util-macros": false, libapplewm: false, writeScript: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 71, 5], ["hash", 72, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 194, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 185, 26], ["updateScript", 186, 5], ["tests", 194, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 198, 5], ["longDescription", 199, 5], ["homepage", 209, 5], ["license", 210, 5], ["mainProgram", 245, 5], ["maintainers", 246, 5], ["pkgConfigModules", 249, 5], ["platforms", 250, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 59, 3], ["version", 63, 3], ["outputs", 65, 3], ["src", 70, 3], ["patches", 75, 3], ["strictDeps", 81, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 93, 3], ["propagatedBuildInputs", 125, 3], ["mesonFlags", 143, 3], ["postPatch", 174, 3], ["postInstall", 180, 3], ["passthru", 184, 3], ["meta", 197, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,12 +56,12 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xorg-server",
       version: "21.1.24",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/xserver/xorg-server-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Gk6zbKZcw7G5NlZtZ3qXhuE8Ec1YBulRrFXz9c45hK8=",
         })))),
@@ -133,7 +129,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace hw/xquartz/mach-startup/stub.c \\\n  --subst-var-by XQUARTZ_APP \"$out/Applications/XQuartz.app\"\n")),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -sf $out/bin/Xquartz $out/bin/X\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: nix.thunk(() => nix.attr(finalAttrs, "version")),
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
@@ -143,12 +139,12 @@ version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
 update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "X server implementation by X.org",
         longDescription: "The X server accepts requests from client applications to create windows, which are (normally\nrectangular) \"virtual screens\" that the client program can draw into.\nWindows are then composed on the actual screen by the X server (or by a separate composite\nmanager) as directed by the window manager, which usually communicates with the user via\ngraphical controls such as buttons and draggable titlebars and borders.\n\nFor a comprehensive overview of X Server and X Window System, consult the following article:\nhttps://en.wikipedia.org/wiki/X_server\n",
         homepage: "https://x.org/wiki",

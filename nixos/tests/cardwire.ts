@@ -2,45 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cardwire.nix", [[["enable", 9, 26]], [["enable", 10, 21]], [["cardwired", 9, 16], ["dbus", 10, 16]], [["kernelParams", 12, 12]], [["options", 17, 27]], [["qemu", 17, 22]], [["services", 9, 7], ["boot", 12, 7], ["virtualisation", 17, 7]], [["machine", 6, 9]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cardwire.nix", [["enable", 9, 26]]);
-const pos$2 = nix.positions(here + "/cardwire.nix", [["enable", 10, 21]]);
-const pos$3 = nix.positions(here + "/cardwire.nix", [["cardwired", 9, 16], ["dbus", 10, 16]]);
-const pos$4 = nix.positions(here + "/cardwire.nix", [["kernelParams", 12, 12]]);
-const pos$5 = nix.positions(here + "/cardwire.nix", [["options", 17, 27]]);
-const pos$6 = nix.positions(here + "/cardwire.nix", [["qemu", 17, 22]]);
-const pos$7 = nix.positions(here + "/cardwire.nix", [["services", 9, 7], ["boot", 12, 7], ["virtualisation", 17, 7]]);
-const pos$8 = nix.positions(here + "/cardwire.nix", [["machine", 6, 9]]);
-const pos$9 = nix.positions(here + "/cardwire.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "cardwire",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            cardwired: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
-            dbus: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            cardwired: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
+            dbus: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             kernelParams: nix.thunk(() => ["intel_iommu=on", "iommu=pt"]),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             qemu: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               options: nix.thunk(() => [
                 "-machine q35,accel=kvm,kernel-irqchip=split",
                 "-device intel-iommu,intremap=on,device-iotlb=on",

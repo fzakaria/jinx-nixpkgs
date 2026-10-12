@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 30, 7], ["owner", 31, 7], ["repo", 32, 7], ["rev", 33, 7], ["hash", 34, 7]], [["license", 46, 7], ["homepage", 47, 7]], [["pname", 26, 5], ["version", 27, 5], ["src", 29, 5], ["nativeBuildInputs", 37, 5], ["buildInputs", 43, 5], ["meta", 45, 5]], [["domain", 56, 5], ["owner", 57, 5], ["repo", 58, 5], ["rev", 59, 5], ["hash", 60, 5]], [["description", 113, 5], ["mainProgram", 114, 5], ["homepage", 115, 5], ["maintainers", 116, 5], ["license", 117, 5], ["platforms", 118, 5]], [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["patches", 63, 3], ["postPatch", 68, 3], ["strictDeps", 74, 3], ["dontUseCmakeConfigure", 76, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 93, 3], ["postInstall", 106, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, appstream: false, dblatex: false, "desktop-file-utils": false, "docbook-xsl-nons": false, docbook_xml_dtd_45: false, fetchFromGitLab: false, "gdk-pixbuf": false, graphene: false, "gtk-mac-integration-gtk3": false, gtk3: false, libxml2: false, libxslt: false, meson: false, ninja: false, "pkg-config": false, poppler: false, python3: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 30, 7], ["owner", 31, 7], ["repo", 32, 7], ["rev", 33, 7], ["hash", 34, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 46, 7], ["homepage", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 5], ["version", 27, 5], ["src", 29, 5], ["nativeBuildInputs", 37, 5], ["buildInputs", 43, 5], ["meta", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["domain", 56, 5], ["owner", 57, 5], ["repo", 58, 5], ["rev", 59, 5], ["hash", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 113, 5], ["mainProgram", 114, 5], ["homepage", 115, 5], ["maintainers", 116, 5], ["license", 117, 5], ["platforms", 118, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["patches", 63, 3], ["postPatch", 68, 3], ["strictDeps", 74, 3], ["dontUseCmakeConfigure", 76, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 93, 3], ["postInstall", 106, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const xpm_pixbuf = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xpm-pixbuf",
       version: "0-unstable-2024-05-24",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "ZanderBrown",
           repo: "xpm-pixbuf",
@@ -47,17 +42,17 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [gdk_pixbuf]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         homepage: "https://gitlab.gnome.org/ZanderBrown/xpm-pixbuf",
       })),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dia",
       version: "0.97.2-unstable-2026-07-24",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "dia",
@@ -85,7 +80,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([graphene, gtk3, libxml2, libxslt, python3, poppler, xpm_pixbuf], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [gtk_mac_integration_gtk3])))),
       postInstall: "substituteInPlace $out/share/thumbnailers/org.gnome.Dia.thumbnailer \\\n  --replace-fail \"TryExec=dia\" \"TryExec=$out/bin/dia\" \\\n  --replace-fail \"Exec=dia\" \"Exec=$out/bin/dia\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Gnome Diagram drawing software",
         mainProgram: "dia",
         homepage: "https://wiki.gnome.org/Apps/Dia",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["sha256", 29, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["dontConfigure", 32, 3], ["dontBuild", 33, 3], ["postPatch", 37, 3], ["buildInputs", 49, 3], ["installPhase", 56, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchFromGitHub: false, lib: false, python3: false, xclip: false, libnotify: false, dmenu: false, rofi: false, "emojipick-use-rofi": true, "emojipick-copy-to-clipboard": true, "emojipick-show-notifications": true, "emojipick-print-emoji": true, "emojipick-font-family": true, "emojipick-font-size": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["dontConfigure", 32, 3], ["dontBuild", 33, 3], ["postPatch", 37, 3], ["buildInputs", 49, 3], ["installPhase", 56, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const emojipick_font_size = nix.argOr($, "emojipick-font-size", () => "18");
   const boolToInt = (b) => (nix.asBool(b) ? "1" : "0");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "emojipick",
       version: "2021-01-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "thingsiplay",
           repo: "emojipick",
           tag: "20210127",
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([python3, xclip, libnotify], (nix.asBool(emojipick_use_rofi) ? [rofi] : [dmenu]))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp ./emojipick $out/bin\ncp ./emojiget.py $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Get a selection of emojis with dmenu or rofi",
         homepage: "https://github.com/thingsiplay/emojipick",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

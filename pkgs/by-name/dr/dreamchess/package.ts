@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["homepage", 81, 5], ["description", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 27, 3], ["patches", 34, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 53, 3], ["cmakeFlags", 60, 3], ["postFixup", 68, 3], ["doInstallCheck", 73, 3], ["postInstallCheck", 75, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, bison: false, flex: false, gettext: false, makeWrapper: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, expat: false, glew: false, freetype: false, libsm: false, libxext: false, libGL: false, libGLU: false, libx11: false, libxcb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 81, 5], ["description", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 27, 3], ["patches", 34, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 53, 3], ["cmakeFlags", 60, 3], ["postFixup", 68, 3], ["doInstallCheck", 73, 3], ["postInstallCheck", 75, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxcb = nix.arg($, "libxcb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dreamchess",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dreamchess",
           repo: "dreamchess",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
 stat "\${!outputBin}/bin/dreamer"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/dreamchess/dreamchess",
         description: "OpenGL Chess Game",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

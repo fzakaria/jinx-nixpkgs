@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5]], [["updateScript", 104, 12]], [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5], ["mainProgram", 112, 5]], [["pname", 33, 11], ["version", 33, 17], ["src", 35, 3], ["patches", 46, 3], ["shardsFile", 48, 3], ["copyShardDeps", 49, 3], ["preBuild", 51, 3], ["postBuild", 59, 3], ["preInstall", 63, 3], ["postInstall", 67, 3], ["buildInputs", 74, 3], ["nativeBuildInputs", 83, 3], ["nativeCheckInputs", 87, 3], ["buildTargets", 93, 3], ["checkTarget", 94, 3], ["doCheck", 99, 3], ["doInstallCheck", 101, 3], ["nativeInstallCheckInputs", 102, 3], ["passthru", 104, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, crystal_1_19: false, copyDesktopItems: false, gtk3: false, libxkbcommon: false, libxinerama: false, libxtst: false, libxext: false, libxi: false, libnotify: false, "gobject-introspection": false, openbox: false, "xvfb-run": false, xdotool: false, "nix-update-script": false, versionCheckHook: false, buildDevTarget: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 104, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5], ["mainProgram", 112, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 11], ["version", 33, 17], ["src", 35, 3], ["patches", 46, 3], ["shardsFile", 48, 3], ["copyShardDeps", 49, 3], ["preBuild", 51, 3], ["postBuild", 59, 3], ["preInstall", 63, 3], ["postInstall", 67, 3], ["buildInputs", 74, 3], ["nativeBuildInputs", 83, 3], ["nativeCheckInputs", 87, 3], ["buildTargets", 93, 3], ["checkTarget", 94, 3], ["doCheck", 99, 3], ["doInstallCheck", 101, 3], ["nativeInstallCheckInputs", 102, 3], ["passthru", 104, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const version = "1.0.7";
   const crystal = crystal_1_19;
   return nix.app(nix.sel(crystal, "buildCrystalPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "phil294",
           repo: "AHK_X11",
           tag: version,
@@ -59,11 +56,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "AutoHotkey for X11",
         homepage: "https://phil294.github.io/AHK_X11",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

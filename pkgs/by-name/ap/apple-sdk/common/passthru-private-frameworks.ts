@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/passthru-private-frameworks.nix", [[["license", 11, 12]], [["name", 10, 7], ["meta", 11, 7]], [["privateFrameworksHook", 9, 5]], [["passthru", 8, 3]]]);
 const formals$1 = { args: { lib: false, makeSetupHook: false, sdkVersion: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/passthru-private-frameworks.nix", [["license", 11, 12]]);
-const pos$2 = nix.positions(here + "/passthru-private-frameworks.nix", [["name", 10, 7], ["meta", 11, 7]]);
-const pos$3 = nix.positions(here + "/passthru-private-frameworks.nix", [["privateFrameworksHook", 9, 5]]);
-const pos$4 = nix.positions(here + "/passthru-private-frameworks.nix", [["passthru", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +11,16 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const sdkVersion = nix.arg($, "sdkVersion");
   return (self) => (super$) => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     passthru: nix.thunk(() => nix.update(nix.selOr(super$, () => ({}), "passthru"), {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       privateFrameworksHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "apple-sdk-private-frameworks-hook",
-          meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+          meta: nix.thunk(() => ({
+            [nix.POS]: $pos[0],
+            license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+          })),
         })), nix.path(here, "../setup-hooks/add-private-frameworks.sh"))),
     })),
   });

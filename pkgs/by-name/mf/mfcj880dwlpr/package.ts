@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 43, 5], ["hash", 44, 5]], [["description", 121, 5], ["downloadPage", 122, 5], ["homepage", 123, 5], ["sourceProvenance", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["platforms", 127, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 48, 3], ["dontUnpack", 55, 3], ["brprintconf_mfcj880dw_script", 57, 3], ["installPhase", 66, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, pkgsi686Linux: false, dpkg: false, makeWrapper: false, coreutils: false, gnused: false, gawk: false, file: false, cups: false, "util-linux": false, xxd: false, runtimeShell: false, ghostscript: false, a2ps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 121, 5], ["downloadPage", 122, 5], ["homepage", 123, 5], ["sourceProvenance", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["platforms", 127, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 48, 3], ["dontUnpack", 55, 3], ["brprintconf_mfcj880dw_script", 57, 3], ["installPhase", 66, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcj880dwlpr";
       const version = "1.0.0-0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf102038/mfcj880dwlpr-${version}.i386.deb`),
           hash: "sha256-FoCzAfZgpAf+C2n13lnHRz0tZtxHKhWJsM2fUXNr/qc=",
         }))));
@@ -82,7 +80,7 @@ wrapProgram $out/opt/brother/Printers/mfcj880dw/lpd/filtermfcj880dw \\
   --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, gnused, file, ghostscript, a2ps]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Brother MFC-J880DW LPR driver",
         downloadPage: "https://support.brother.com/g/b/downloadlist.aspx?c=us&lang=en&prod=mfcj880dw_us_eu_as&os=128",
         homepage: "http://www.brother.com/",
@@ -104,7 +102,7 @@ wrapProgram $out/opt/brother/Printers/mfcj880dw/lpd/filtermfcj880dw \\
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

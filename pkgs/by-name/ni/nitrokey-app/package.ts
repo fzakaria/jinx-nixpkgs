@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 52, 5], ["mainProgram", 53, 5], ["longDescription", 54, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["cmakeFlags", 30, 3], ["buildInputs", 35, 3], ["postPatch", 42, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchFromGitHub: false, "pkg-config": false, libsForQt5: false, libnitrokey: false, cppcodec: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["longDescription", 54, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["cmakeFlags", 30, 3], ["buildInputs", 35, 3], ["postPatch", 42, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nitrokey-app";
       const version = "1.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Nitrokey",
           repo: "nitrokey-app",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libnitrokey, cppcodec]);
       const postPatch = "substituteInPlace CMakeLists.txt --replace-fail \\\n  \"CMAKE_MINIMUM_REQUIRED(VERSION 3.1.0 FATAL_ERROR)\" \\\n  \"cmake_minimum_required(VERSION 3.10  FATAL_ERROR)\" \\\n--replace-fail \\\n  \"cmake_policy(SET CMP0043 OLD)\" \\\n  \"cmake_policy(SET CMP0043 NEW)\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Provides extra functionality for the Nitrokey Pro and Storage",
         mainProgram: "nitrokey-app",
         longDescription: "The nitrokey-app provides a QT system tray widget with which you can\naccess the extra functionality of a Nitrokey Storage or Nitrokey Pro.\nSee https://www.nitrokey.com/ for more information.\n",
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/re.nix", [[["description", 17, 5]], [["pname", 8, 3], ["src", 9, 21], ["version", 9, 25], ["propagatedBuildInputs", 11, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, mparser: false, re: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/re.nix", [["description", 17, 5]]);
-const pos$2 = nix.positions(here + "/re.nix", [["pname", 8, 3], ["src", 9, 21], ["version", 9, 25], ["propagatedBuildInputs", 11, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const mparser = nix.arg($, "mparser");
   const re = nix.arg($, "re");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mparser-re",
       src: nix.thunk(() => nix.attr(mparser, "src")),
       version: nix.thunk(() => nix.attr(mparser, "version")),
       propagatedBuildInputs: nix.thunk(() => [mparser, re]),
       meta: nix.thunk(() => nix.update(nix.sel(mparser, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "MParser plugin: RE-based regular expressions",
       })),
     })));

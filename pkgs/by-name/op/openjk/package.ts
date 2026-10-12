@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 19, 5], ["exec", 20, 5], ["icon", 21, 5], ["comment", 22, 5], ["desktopName", 23, 5], ["genericName", 24, 5], ["categories", 25, 5]], [["name", 28, 5], ["exec", 29, 5], ["icon", 30, 5], ["comment", 31, 5], ["desktopName", 32, 5], ["genericName", 33, 5], ["categories", 34, 5]], [["name", 37, 5], ["exec", 38, 5], ["icon", 39, 5], ["comment", 40, 5], ["desktopName", 41, 5], ["genericName", 42, 5], ["categories", 43, 5]], [["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["hash", 54, 5]], [["updateScript", 155, 12]], [["description", 158, 5], ["homepage", 159, 5], ["license", 160, 5], ["platforms", 161, 5], ["maintainers", 162, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["dontAddPrefix", 57, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 63, 3], ["outputs", 72, 3], ["preConfigure", 81, 3], ["cmakeFlags", 84, 3], ["postInstall", 95, 3], ["postFixup", 143, 3], ["passthru", 155, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeDesktopItem: false, makeWrapper: false, cmake: false, libjpeg: false, zlib: false, libpng: false, libGL: false, libx11: false, SDL2: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 19, 5], ["exec", 20, 5], ["icon", 21, 5], ["comment", 22, 5], ["desktopName", 23, 5], ["genericName", 24, 5], ["categories", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 28, 5], ["exec", 29, 5], ["icon", 30, 5], ["comment", 31, 5], ["desktopName", 32, 5], ["genericName", 33, 5], ["categories", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 37, 5], ["exec", 38, 5], ["icon", 39, 5], ["comment", 40, 5], ["desktopName", 41, 5], ["genericName", 42, 5], ["categories", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["hash", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 155, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 158, 5], ["homepage", 159, 5], ["license", 160, 5], ["platforms", 161, 5], ["maintainers", 162, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["dontAddPrefix", 57, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 63, 3], ["outputs", 72, 3], ["preConfigure", 81, 3], ["cmakeFlags", 84, 3], ["postInstall", 95, 3], ["postFixup", 143, 3], ["passthru", 155, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const genericName = "Jedi Academy";
       const categories = nix.thunk(() => ["Game"]);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name,
         exec,
         icon,
@@ -54,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const genericName = "Jedi Academy";
       const categories = nix.thunk(() => ["Game"]);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name,
         exec,
         icon,
@@ -73,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const genericName = "Jedi Outcast";
       const categories = nix.thunk(() => ["Game"]);
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name,
         exec,
         icon,
@@ -84,11 +78,11 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "openjk",
       version: "0-unstable-2025-10-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "JACoders",
           repo: "OpenJK",
           rev: "d1cb662f07dfa4c1999edfb5c1a86fd1c6285372",
@@ -138,11 +132,11 @@ rm -rf $out/opt
 done
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Open-source engine for Star Wars Jedi Academy game",
         homepage: "https://github.com/JACoders/OpenJK",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

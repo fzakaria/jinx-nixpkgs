@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["leaveDotGit", 23, 5], ["postFetch", 24, 5]], [["TERRACOTTA_ET_PATH", 36, 7], ["TERRACOTTA_ET_EXE", 37, 7], ["TERRACOTTA_ET_CLI", 38, 7]], [["lockFile", 65, 13]], [["RUSTC_BOOTSTRAP", 69, 5], ["TERRACOTTA_ET_VERSION", 70, 5], ["TERRACOTTA_VERSION", 71, 5]], [["escape", 92, 34]], [["Label", 93, 9], ["ProgramArguments", 94, 9], ["KeepAlive", 98, 9]], [["updateScript", 105, 12]], [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["mainProgram", 113, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 31, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 54, 3], ["cargoBuildFlags", 56, 3], ["cargoTestFlags", 60, 3], ["cargoLock", 65, 3], ["env", 67, 3], ["postInstall", 74, 3], ["passthru", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, callPackage: false, easytier: false, replaceVars: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["leaveDotGit", 23, 5], ["postFetch", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["TERRACOTTA_ET_PATH", 36, 7], ["TERRACOTTA_ET_EXE", 37, 7], ["TERRACOTTA_ET_CLI", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["lockFile", 65, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["RUSTC_BOOTSTRAP", 69, 5], ["TERRACOTTA_ET_VERSION", 70, 5], ["TERRACOTTA_VERSION", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["escape", 92, 34]]);
-const pos$6 = nix.positions(here + "/package.nix", [["Label", 93, 9], ["ProgramArguments", 94, 9], ["KeepAlive", 98, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 105, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["mainProgram", 113, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 31, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 54, 3], ["cargoBuildFlags", 56, 3], ["cargoTestFlags", 60, 3], ["cargoLock", 65, 3], ["env", 67, 3], ["postInstall", 74, 3], ["passthru", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "terracotta",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "burningtnt",
           repo: "Terracotta",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +31,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./0001-nix-read-timestamp-from-SOURCE_DATE_EPOCH.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-nix-use-easytier-from-nix-input.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             TERRACOTTA_ET_PATH: easytier,
             TERRACOTTA_ET_EXE: nix.thunk(() => nix.str`${easytier}/bin/easytier-core`),
             TERRACOTTA_ET_CLI: nix.thunk(() => nix.str`${easytier}/bin/easytier-cli`),
@@ -53,9 +45,9 @@ ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
       nativeBuildInputs: nix.thunk(() => [imagemagick]),
       cargoBuildFlags: nix.thunk(() => ["--bin", "terracotta"]),
       cargoTestFlags: nix.thunk(() => ["--bin", "terracotta"]),
-      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$3, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[2], lockFile: nix.path(here, "./Cargo.lock") })),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         RUSTC_BOOTSTRAP: 1n,
         TERRACOTTA_ET_VERSION: nix.thunk(() => nix.str`v${nix.sel(easytier, "version")}`),
         TERRACOTTA_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,8 +58,8 @@ cp -r build/macos/terracotta.app $out/Applications/
 ln -sr $out/bin/terracotta $out/Applications/terracotta.app/Contents/MacOS/terracotta
 
 cat > "$daemon_plist" <<EOF
-${nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$5, escape: true })), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+${nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: $pos[4], escape: true })), nix.thunk(() => ({
+            [nix.POS]: $pos[5],
             Label: "org.nixos.terracotta.daemon",
             ProgramArguments: nix.thunk(() => ["@TERRACOTTA_BIN@", "--daemon"]),
             KeepAlive: true,
@@ -77,11 +69,11 @@ substituteInPlace "$daemon_plist" \\
   --replace-fail '@TERRACOTTA_BIN@' "$out/bin/terracotta"
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Terracotta provides out-of-the-box multiplayer support for Minecraft",
         homepage: "https://github.com/burningtnt/Terracotta",
         changelog: nix.thunk(() => nix.str`https://github.com/burningtnt/Terracotta/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

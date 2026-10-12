@@ -2,9 +2,7 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/eval-release.nix", [["name", 20, 29], ["drvPath", 20, 34]]);
-const pos$2 = nix.positions(here + "/eval-release.nix", [["failed", 22, 13]]);
-const pos$3 = nix.positions(here + "/eval-release.nix", [["recurseForDerivations", 27, 11]]);
+const $pos = nix.positions(here + "/eval-release.nix", [[["name", 20, 29], ["drvPath", 20, 34]], [["failed", 22, 13]], [["recurseForDerivations", 27, 11]]]);
 
 export default nix.thunk(() => (() => {
   const from = nix.thunk(() => nix.builtins.import(nix.path(here, "../../lib")));
@@ -13,10 +11,10 @@ export default nix.thunk(() => (() => {
   const trace = nix.thunk(() => (nix.asBool(nix.eq(nix.builtins.getEnv("VERBOSE"), "1")) ? nix.builtins.trace : (x) => (y) => nix.force(y)));
   const rel = nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../pkgs/top-level/release.nix")), nix.thunk(() => ({})))), nix.thunk(() => ["tarball", "unstable"])));
   const recurse = (path) => (attrs) => (nix.asBool(nix.sel(nix.builtins.tryEval(attrs), "success")) ? (nix.asBool(nix.app(isDerivation, attrs)) ? (nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.sel(attrs, "drvPath"))), "success")) ? {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     name: nix.thunk(() => nix.attr(attrs, "name")),
     drvPath: nix.thunk(() => nix.attr(attrs, "drvPath")),
-  } : { [nix.POS]: pos$2, failed: true }) : (nix.asBool(nix.eq(attrs, null)) ? {} : nix.update({ [nix.POS]: pos$3, recurseForDerivations: true }, nix.app(mapAttrs, (n) => (v) => (() => {
+  } : { [nix.POS]: $pos[1], failed: true }) : (nix.asBool(nix.eq(attrs, null)) ? {} : nix.update({ [nix.POS]: $pos[2], recurseForDerivations: true }, nix.app(mapAttrs, (n) => (v) => (() => {
       const path$ = nix.thunk(() => nix.concat(path, [n]));
       return nix.app(trace, path$, nix.thunk(() => nix.app(recurse, path$, v)));
     })(), attrs)))) : {});

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["url", 48, 5], ["hash", 49, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["configureFlags", 38, 3], ["outputs", 39, 3], ["p1", 47, 3], ["postPatch", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, git: false, autoreconfHook: false, "pkg-config": false, gtk3: false, libwnck: false, libxklavier: false, appindicatorSupport: true, "libayatana-appindicator": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 48, 5], ["hash", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["configureFlags", 38, 3], ["outputs", 39, 3], ["p1", 47, 3], ["postPatch", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gxkb";
       const version = "0.9.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zen-tools",
           repo: "gxkb",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,14 +34,14 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => nix.app(nix.sel(lib, "optional"), appindicatorSupport, "--enable-appindicator=yes"));
       const outputs = nix.thunk(() => ["out", "man"]);
       const p1 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/omgbebebe/gxkb/commit/727ec8b595a91dbb540e6087750f43b85d0dfbc0.patch",
           hash: "sha256-x7x3MHHrOnPivvlzOFqgFAA5BDB2LOXMlalPYbwM/1Q=",
         }))));
       const postPatch = nix.thunk(() => nix.str`${git}/bin/git apply ${p1}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "X11 keyboard indicator and switcher",
         homepage: "https://zen-tools.github.io/gxkb/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gxkb",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

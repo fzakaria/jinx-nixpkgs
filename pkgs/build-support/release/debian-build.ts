@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/debian-build.nix", [[["doCheck", 24, 7], ["prefix", 26, 7], ["prePhases", 28, 7]], [["description", 105, 11]], [["name", 41, 9], ["postHook", 44, 9], ["installExtraDebsPhase", 50, 9], ["sysInfoPhase", 56, 9], ["installPhase", 64, 9], ["meta", 104, 9]]]);
 const formals$1 = { args: { name: true, diskImage: false, src: false, lib: false, stdenv: false, vmTools: false, checkinstall: false, fsTranslation: true, debProvides: true, debRequires: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/debian-build.nix", [["doCheck", 24, 7], ["prefix", 26, 7], ["prePhases", 28, 7]]);
-const pos$2 = nix.positions(here + "/debian-build.nix", [["description", 105, 11]]);
-const pos$3 = nix.positions(here + "/debian-build.nix", [["name", 41, 9], ["postHook", 44, 9], ["installExtraDebsPhase", 50, 9], ["sysInfoPhase", 56, 9], ["installPhase", 64, 9], ["meta", 104, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const debProvides = nix.argOr($, "debProvides", () => []);
   const debRequires = nix.argOr($, "debRequires", () => []);
   return nix.app(nix.sel(vmTools, "runInLinuxImage"), nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         doCheck: true,
         prefix: "/usr",
         prePhases: nix.thunk(() => ["installExtraDebsPhase", "sysInfoPhase"]),
       }, nix.update(nix.builtins.removeAttrs(args_1, nix.thunk(() => ["vmTools", "lib"])), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: nix.thunk(() => nix.add(nix.add(nix.add(name, "-"), nix.sel(diskImage, "name")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(src, "version")), nix.thunk(() => nix.str`-${nix.sel(src, "version")}`)))),
         postHook: nix.thunk(() => nix.str`. ${nix.path(here, "./functions.sh")}
 propagateImageName
@@ -71,7 +69,7 @@ done
 eval "$postInstall"
 `),
         meta: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_1, "meta")), nix.thunk(() => nix.sel(args_1, "meta"))), {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: nix.thunk(() => nix.str`Deb package for ${nix.sel(diskImage, "fullName")}`),
         })),
       }))))));

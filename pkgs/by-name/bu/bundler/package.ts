@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 17, 10]], [["updateScript", 31, 5]], [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 43, 5]], [["ruby", 13, 11], ["name", 14, 3], ["gemName", 15, 3], ["version", 16, 3], ["source", 17, 3], ["dontPatchShebangs", 18, 3], ["postFixup", 20, 3], ["nativeInstallCheckInputs", 24, 3], ["versionCheckProgram", 27, 3], ["doInstallCheck", 28, 3], ["passthru", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildRubyGem: false, ruby: false, writeScript: false, testers: false, bundler: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 17, 10]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ruby", 13, 11], ["name", 14, 3], ["gemName", 15, 3], ["version", 16, 3], ["source", 17, 3], ["dontPatchShebangs", 18, 3], ["postFixup", 20, 3], ["nativeInstallCheckInputs", 24, 3], ["versionCheckProgram", 27, 3], ["doInstallCheck", 28, 3], ["passthru", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const gemName = "bundler";
       const version = "2.7.2";
       const source = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         sha256: "sha256-Heyvni4ay5G2WGopJcjz9tojNKgnMaYv8t7RuDwoOHE=",
       }));
       const dontPatchShebangs = true;
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgram = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/bundler`);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Manage your Ruby application's gem dependencies",
         homepage: "https://bundler.io",
         changelog: nix.thunk(() => nix.str`https://github.com/ruby/rubygems/blob/bundler-v${version}/bundler/CHANGELOG.md`),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "bundler",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         ruby: ruby_1,
         name,
         gemName,

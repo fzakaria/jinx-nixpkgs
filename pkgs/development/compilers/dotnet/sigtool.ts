@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sigtool.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["src", 11, 3], ["nativeBuildInputs", 18, 3], ["postInstall", 22, 3]]]);
 const formals$1 = { args: { cctools: false, darwin: false, fetchFromGitHub: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sigtool.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/sigtool.nix", [["src", 11, 3], ["nativeBuildInputs", 18, 3], ["postInstall", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(darwin, "sigtool", "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "corngood",
           repo: "sigtool",
           rev: "new-commands",

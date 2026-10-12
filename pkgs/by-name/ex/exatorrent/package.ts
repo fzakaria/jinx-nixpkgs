@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["name", 33, 9], ["src", 34, 30], ["sourceRoot", 35, 9], ["hash", 36, 9]], [["nativeBuildInputs", 49, 5], ["preBuild", 50, 5]], [["NIX_CFLAGS_COMPILE", 69, 7]], [["changelog", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["npmRoot", 28, 3], ["npmDeps", 30, 3], ["preBuild", 41, 3], ["overrideModAttrs", 48, 3], ["vendorHash", 53, 3], ["tags", 55, 3], ["ldflags", 57, 3], ["env", 69, 3], ["buildInputs", 71, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, fetchNpmDeps: false, npmHooks: false, nodejs: false, withUI: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 9], ["src", 34, 30], ["sourceRoot", 35, 9], ["hash", 36, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 49, 5], ["preBuild", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 69, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["npmRoot", 28, 3], ["npmDeps", 30, 3], ["preBuild", 41, 3], ["overrideModAttrs", 48, 3], ["vendorHash", 53, 3], ["tags", 55, 3], ["ldflags", 57, 3], ["env", 69, 3], ["buildInputs", 71, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const withUI = nix.argOr($, "withUI", () => true);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "exatorrent",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "varbhat",
           repo: "exatorrent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withUI, nix.thunk(() => [nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), nodejs]))),
       npmRoot: "internal/web",
       npmDeps: nix.thunk(() => (nix.asBool(withUI) ? nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/${nix.sel(finalAttrs, "npmRoot")}`),
@@ -42,17 +37,17 @@ export default nix.lambda((args) => (() => {
         }))) : null)),
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withUI, "pushd \"$npmRoot\"\nnpm run build\npopd\n")),
       overrideModAttrs: (prev) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (e) => !nix.eq(e, nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(prev, "nativeBuildInputs")))),
         preBuild: "",
       }),
       vendorHash: "sha256-fE+GVQ2HAfElO1UDmDMeu2ca7t5yNs83CXhqgT0t1Js=",
       tags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withUI)), nix.thunk(() => ["noui"]))),
       ldflags: nix.thunk(() => nix.concat(["-s", "-w"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isGnu")), nix.thunk(() => ["-extldflags '-static'"])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isGnu")), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "libc", "static"))]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/varbhat/exatorrent/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Self-hostable, easy-to-use, lightweight, and feature-rich torrent client written in Go",
         homepage: "https://github.com/varbhat/exatorrent/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5], ["platforms", 63, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["cmakeFlags", 38, 3], ["installPhase", 46, 3], ["strictDeps", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, boost: false, cmake: false, cxxopts: false, digestpp: false, fetchFromGitHub: false, fmt: false, jsoncons: false, pugixml: false, sqlite_orm: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["cmakeFlags", 38, 3], ["installPhase", 46, 3], ["strictDeps", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const sqlite_orm = nix.arg($, "sqlite_orm");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bt-migrate",
       version: "0-unstable-2025-05-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mikedld",
           repo: "bt-migrate",
           rev: "eb5b0ba5e0176844efde3a319595f52ffe900c2c",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp BtMigrate $out/bin\n\nrunHook postInstall\n",
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Torrent state migration tool",
         homepage: "https://github.com/mikedld/bt-migrate?tab=readme-ov-file",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

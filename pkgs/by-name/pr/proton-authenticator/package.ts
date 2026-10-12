@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs", 21, 48]], [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["src", 74, 26], ["missingHashes", 74, 30], ["yarnLock", 74, 44], ["hash", 76, 5]], [["description", 88, 5], ["longDescription", 89, 5], ["homepage", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 101, 5], ["mainProgram", 102, 5]], [["__structuredAttrs", 32, 3], ["pname", 34, 11], ["version", 34, 17], ["src", 34, 25], ["sourceRoot", 36, 3], ["cargoHash", 38, 3], ["cargoRoot", 39, 3], ["buildAndTestSubdir", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["patches", 58, 3], ["yarnLock", 71, 3], ["missingHashes", 72, 3], ["offlineCache", 73, 3], ["postUnpack", 79, 3], ["tauriBuildFlags", 83, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, "cargo-tauri": false, nodejs_24: false, "yarn-berry_4": false, "pkg-config": false, wrapGAppsHook4: false, "glib-networking": false, libsoup_3: false, webkitgtk_4_1: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs", 21, 48]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 74, 26], ["missingHashes", 74, 30], ["yarnLock", 74, 44], ["hash", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 88, 5], ["longDescription", 89, 5], ["homepage", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 101, 5], ["mainProgram", 102, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["__structuredAttrs", 32, 3], ["pname", 34, 11], ["version", 34, 17], ["src", 34, 25], ["sourceRoot", 36, 3], ["cargoHash", 38, 3], ["cargoRoot", 39, 3], ["buildAndTestSubdir", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["patches", 58, 3], ["yarnLock", 71, 3], ["missingHashes", 72, 3], ["offlineCache", 73, 3], ["postUnpack", 79, 3], ["tauriBuildFlags", 83, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,16 +23,16 @@ export default nix.lambda((args) => (() => {
   const pname = "proton-authenticator";
   const version = "1.1.6";
   const nodejs = nodejs_24;
-  const yarn_berry = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs }))));
+  const yarn_berry = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], nodejs: nodejs }))));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "ProtonMail",
       repo: "WebClients",
       rev: nix.thunk(() => nix.str`proton-authenticator@${version}`),
       hash: "sha256-Zd3cSkzRBDnLNY2sM7EXWCX6F6+ePOpslnEroludzag=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       __structuredAttrs: true,
       pname: pname,
       version: version,
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
       yarnLock: nix.path(here, "./yarn.lock"),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           yarnLock: nix.thunk(() => nix.attr(finalAttrs, "yarnLock")),
@@ -72,7 +68,7 @@ export default nix.lambda((args) => (() => {
 `),
       tauriBuildFlags: nix.thunk(() => ["--no-sign"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Two-factor authentication manager with optional sync (built from source)",
         longDescription: "This package builds proton-authenticator from source.\n\nChanged: proton-authenticator is now source-compiled by default.\nFor the pre-built binary version, use proton-authenticator-bin instead.\n",
         homepage: "https://proton.me/authenticator",

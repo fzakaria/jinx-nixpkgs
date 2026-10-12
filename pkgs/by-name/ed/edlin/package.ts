@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 7], ["hash", 17, 7]], [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5], ["mainProgram", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postInstall", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5], ["mainProgram", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postInstall", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "edlin",
       version: "2.24",
       src: nix.thunk(() => (() => {
         const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`mirror://sourceforge/freedos-edlin/freedos-edlin/${version}/edlin-${version}.tar.bz2`),
             hash: "sha256-zj5kCDdEkjzDiun/5xL8yX2SVsnZc3hrzIAYUo4Vj+c=",
           })));
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
 cp AUTHORS ChangeLog README TODO edlin.html $out/share/doc/edlin-${nix.sel(finalAttrs, "version")}/
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://sourceforge.net/projects/freedos-edlin/",
         description: "FreeDOS line editor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["name", 27, 7], ["url", 28, 7], ["sha256", 29, 7]], [["name", 35, 7], ["url", 36, 7], ["sha256", 37, 7]], [["name", 43, 7], ["url", 44, 7], ["sha256", 45, 7]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 53, 3], ["configureFlags", 60, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, autoreconfHook: false, fetchFromGitHub: false, fetchpatch: false, gettext: false, ncurses: false, readline: false, stdenv: false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["sha256", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 35, 7], ["url", 36, 7], ["sha256", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 43, 7], ["url", 44, 7], ["sha256", 45, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 53, 3], ["configureFlags", 60, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pinfo",
       version: "0.6.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "baszoetekouw",
           repo: "pinfo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,19 +29,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fno-common.patch",
             url: "https://github.com/baszoetekouw/pinfo/commit/16dba5978146b6d3a540ac7c8f415eda49280847.patch",
             sha256: "148fm32chvq8x9ayq9cnhgszh10g5v0cv0xph67fa7sp341p09wy",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "ncurses-6.3.patch",
             url: "https://github.com/baszoetekouw/pinfo/commit/fc67ceacd81f0c74fcab85447c23a532ae482827.patch",
             sha256: "08phmng8vgfqjjazys05acpd5gh110malhw3sx29dg86nsrg2khs",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "gcc-11.patch",
             url: "https://github.com/baszoetekouw/pinfo/commit/ab604fdb67296dad27f3a25f3c9aabdd2fb8c3fa.patch",
             sha256: "09g8msgan2x48hxcbm7l6j3av6n8i0bsd4g0vf5xd8bxwzynb13m",
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-readline=${nix.sel(readline, "dev")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Viewer for info files",
         homepage: "https://github.com/baszoetekouw/pinfo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["NIX_CFLAGS_COMPILE", 60, 7]], [["description", 63, 5], ["longDescription", 64, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 22, 3], ["patches", 27, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 45, 3], ["env", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, "alsa-lib": false, "spice-protocol": false, glib: false, libpciaccess: false, libxcb: false, libxrandr: false, libxinerama: false, libxfixes: false, dbus: false, libdrm: false, systemdLibs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 60, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 63, 5], ["longDescription", 64, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 22, 3], ["patches", 27, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 45, 3], ["env", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,17 +24,17 @@ export default nix.lambda((args) => (() => {
   const libdrm = nix.arg($, "libdrm");
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "spice-vdagent",
       version: "0.23.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.spice-space.org/download/releases/spice-vdagent-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Y+D5vVWXxGOKz9bxDXojVPWZvZ31sx5EMnDKzwfhakA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc16-unused-variable-device-info.patch",
             url: "https://gitlab.freedesktop.org/spice/linux/vd_agent/-/commit/e3c74bd3e75a3804692da7d526016a823f6273e0.patch",
             hash: "sha256-Bf1fwvsQuAVzkN6SNXk7YZxRuhhVInAFxnlrRlavgy0=",
@@ -59,9 +55,9 @@ export default nix.lambda((args) => (() => {
         dbus,
         systemdLibs,
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Enhanced SPICE integration for linux QEMU guest",
         longDescription: "Spice agent for linux guests offering\n* Client mouse mode\n* Copy and paste\n* Automatic adjustment of the X-session resolution\n  to the client resolution\n* Multiple displays\n",
         homepage: "https://www.spice-space.org/",

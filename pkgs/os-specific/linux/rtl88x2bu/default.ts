@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["extraArgs", 42, 47]], [["updateScript", 42, 12]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5], ["broken", 54, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["hardeningDisable", 23, 3], ["nativeBuildInputs", 25, 3], ["makeFlags", 26, 3], ["prePatch", 30, 3], ["preInstall", 36, 3], ["enableParallelBuilding", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false, bc: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 42, 47]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 42, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5], ["broken", 54, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["hardeningDisable", 23, 3], ["nativeBuildInputs", 25, 3], ["makeFlags", 26, 3], ["prePatch", 30, 3], ["preInstall", 36, 3], ["enableParallelBuilding", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const bc = nix.arg($, "bc");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rtl88x2bu",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-unstable-2026-08-18`),
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RinCat",
           repo: "RTL88x2BU-Linux-Driver",
           rev: "ad889cc324baf2f13724e3d7b6e880804d3adae7",
@@ -43,11 +39,11 @@ export default nix.lambda((args) => (() => {
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Realtek rtl88x2bu driver",
         homepage: "https://github.com/RinCat/RTL88x2BU-Linux-Driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

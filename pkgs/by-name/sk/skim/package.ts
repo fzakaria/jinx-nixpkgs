@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["updateScript", 80, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 93, 5]], [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 15, 3], ["outputs", 17, 3], ["src", 23, 3], ["postPatch", 30, 3], ["cargoHash", 35, 3], ["nativeBuildInputs", 37, 3], ["nativeCheckInputs", 38, 3], ["postBuild", 43, 3], ["postInstall", 52, 3], ["useNextest", 66, 3], ["checkPhase", 68, 3], ["nativeInstallCheckInputs", 72, 3], ["doInstallCheck", 75, 3], ["__darwinAllowLocalNetworking", 77, 3], ["passthru", 79, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, tmux: false, hexdump: false, fetchFromGitHub: false, installShellFiles: false, "nix-update-script": false, runtimeShell: false, rustPlatform: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 15, 3], ["outputs", 17, 3], ["src", 23, 3], ["postPatch", 30, 3], ["cargoHash", 35, 3], ["nativeBuildInputs", 37, 3], ["nativeCheckInputs", 38, 3], ["postBuild", 43, 3], ["postInstall", 52, 3], ["useNextest", 66, 3], ["checkPhase", 68, 3], ["nativeInstallCheckInputs", 72, 3], ["doInstallCheck", 75, 3], ["__darwinAllowLocalNetworking", 77, 3], ["passthru", 79, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "skim",
       version: "5.4.0",
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "man", "vim"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "skim-rs",
           repo: "skim",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +47,11 @@ SCRIPT
       doInstallCheck: true,
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-line fuzzy finder written in Rust",
         homepage: "https://github.com/skim-rs/skim",
         changelog: nix.thunk(() => nix.str`https://github.com/skim-rs/skim/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

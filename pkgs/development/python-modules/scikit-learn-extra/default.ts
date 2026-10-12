@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["sha256", 22, 5]], [["broken", 69, 5], ["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 29, 3], ["nativeCheckInputs", 34, 3], ["preCheck", 39, 3], ["pytestFlags", 45, 3], ["disabledTestPaths", 49, 3], ["disabledTests", 54, 3], ["pythonImportsCheck", 60, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, numpy: false, cython: false, scipy: false, "scikit-learn": false, matplotlib: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["broken", 69, 5], ["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 29, 3], ["nativeCheckInputs", 34, 3], ["preCheck", 39, 3], ["pytestFlags", 45, 3], ["disabledTestPaths", 49, 3], ["disabledTests", 54, 3], ["pythonImportsCheck", 60, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scikit-learn-contrib",
           repo: "scikit-learn-extra",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         "sklearn_extra.utils",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: true,
         description: "Set of tools for scikit-learn",
         homepage: "https://github.com/scikit-learn-contrib/scikit-learn-extra",
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

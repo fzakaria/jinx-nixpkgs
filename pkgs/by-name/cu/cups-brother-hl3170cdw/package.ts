@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["url", 34, 5], ["hash", 35, 5]], [["homepage", 150, 5], ["description", 151, 5], ["sourceProvenance", 152, 5], ["license", 156, 5], ["platforms", 160, 5], ["downloadPage", 164, 5], ["maintainers", 165, 5]], [["pname", 20, 3], ["version", 21, 3], ["lprVersion", 22, 3], ["model", 24, 3], ["cupsFileNo", 25, 3], ["lprFileNo", 26, 3], ["src", 28, 3], ["lprdeb", 33, 3], ["nativeBuildInputs", 38, 3], ["preUnpack", 43, 3], ["prePatch", 47, 3], ["makeFlags", 55, 3], ["installPhase", 57, 3], ["preFixup", 81, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, makeWrapper: false, gnused: false, coreutils: false, psutils: false, gnugrep: false, ghostscript: false, file: false, a2ps: false, gawk: false, which: false, pkgsi686Linux: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 150, 5], ["description", 151, 5], ["sourceProvenance", 152, 5], ["license", 156, 5], ["platforms", 160, 5], ["downloadPage", 164, 5], ["maintainers", 165, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["lprVersion", 22, 3], ["model", 24, 3], ["cupsFileNo", 25, 3], ["lprFileNo", 26, 3], ["src", 28, 3], ["lprdeb", 33, 3], ["nativeBuildInputs", 38, 3], ["preUnpack", 43, 3], ["prePatch", 47, 3], ["makeFlags", 55, 3], ["installPhase", 57, 3], ["preFixup", 81, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +30,12 @@ export default nix.lambda((args) => (() => {
       const cupsFileNo = "006743";
       const lprFileNo = "007056";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf${cupsFileNo}/${model}_cupswrapper_GPL_source_${version}.tar.gz`),
           hash: "sha256-E3GSwiMRkuiCIJYkDozoYUPfOqvopPqPPQt1uaMDEAU=",
         }))));
       const lprdeb = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf${lprFileNo}/${model}lpr-${lprVersion}.i386.deb`),
           hash: "sha256-N1GjQHth5k4qhbfWLInzub9DcNsee4gKc3EW2WIfrko=",
         }))));
@@ -108,7 +105,7 @@ wrapProgram $out/lib/cups/filter/brother_lpdwrapper_${model} \\
   --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, psutils, gnused, gnugrep]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.brother.com/",
         description: nix.thunk(() => nix.str`Brother ${model} printer driver`),
         sourceProvenance: nix.thunk(() => (() => {
@@ -133,7 +130,7 @@ wrapProgram $out/lib/cups/filter/brother_lpdwrapper_${model} \\
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         lprVersion,

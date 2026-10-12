@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 23, 9], ["gemdir", 25, 9]], [["package", 38, 7], ["version", 39, 7]], [["version", 37, 11]], [["tests", 37, 5], ["updateScript", 41, 5]], [["description", 45, 5], ["mainProgram", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["changelog", 50, 5]], [["pname", 13, 3], ["version", 14, 3], ["dontUnpack", 16, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 20, 3], ["passthru", 36, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, bundlerEnv: false, bundlerUpdateScript: false, makeWrapper: false, file: false, testers: false, reckon: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 23, 9], ["gemdir", 25, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 38, 7], ["version", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 37, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 37, 5], ["updateScript", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 45, 5], ["mainProgram", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["changelog", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["dontUnpack", 16, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 20, 3], ["passthru", 36, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const installPhase = nix.thunk(() => (() => {
         const env = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: nix.thunk(() => nix.str`${pname}-${version}-gems`),
             gemdir: nix.path(here, "./."),
           }))));
@@ -39,11 +34,11 @@ runHook postInstall
 `;
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: reckon,
               version: nix.thunk(() => nix.str`${version}`),
             })))),
@@ -51,7 +46,7 @@ runHook postInstall
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "reckon")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Flexibly import bank account CSV files into Ledger for command line accounting",
         mainProgram: "reckon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -63,7 +58,7 @@ runHook postInstall
         changelog: nix.thunk(() => nix.str`https://github.com/cantino/reckon/blob/v${version}/CHANGELOG.md`),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         dontUnpack,

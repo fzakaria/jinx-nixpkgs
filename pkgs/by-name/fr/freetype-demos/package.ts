@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 61, 5], ["platforms", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5]], [["pname", 18, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["__structuredAttrs", 52, 3], ["strictDeps", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, freetype: false, zlib: false, bzip2: false, brotli: false, libpng: false, librsvg: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 61, 5], ["platforms", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["__structuredAttrs", 52, 3], ["strictDeps", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "freetype-demos",
       version: "2.14.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/freetype/ft2demos-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-GslqBmw5EI8rDMiqgFEG7Sw4FGyJE9wjltwkLpHjVoY=",
         })))),
@@ -39,7 +37,7 @@ tar -xf ${nix.sel(freetype, "src")} -C subprojects/freetype2 --strip-components=
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Demo and diagnostic programs for FreeType (ftview, ftgrid, ftdump, ...)",
         homepage: "https://www.freetype.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/freetype/freetype-demos/-/raw/VER-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/ChangeLog`),

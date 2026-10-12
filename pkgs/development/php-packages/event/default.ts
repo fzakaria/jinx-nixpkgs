@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 36, 5], ["license", 37, 5], ["homepage", 38, 5], ["teams", 39, 5]], [["pname", 10, 3], ["version", 12, 3], ["sha256", 13, 3], ["configureFlags", 15, 3], ["postPhpize", 22, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["internalDeps", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false, php: false, "pkg-config": false, openssl: false, libevent: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 36, 5], ["license", 37, 5], ["homepage", 38, 5], ["teams", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 12, 3], ["sha256", 13, 3], ["configureFlags", 15, 3], ["postPhpize", 22, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["internalDeps", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const libevent = nix.arg($, "libevent");
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "event",
       version: "3.1.6",
       sha256: "sha256-W3RVTGNwqujChMgRD+J+Bx0/ZjlTw+t2L/xCmwo8g6I=",
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, libevent]),
       internalDeps: nix.thunk(() => [nix.thunk(() => nix.sel(php, "extensions", "sockets"))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Efficiently schedule I/O, time and signal based events using the best I/O notification mechanism available",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),
         homepage: "https://bitbucket.org/osmanov/pecl-event/",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["http", 47, 5], ["js", 52, 5], ["oxigraph", 53, 5]], [["updateScript", 75, 12]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 56, 3], ["disabledTests", 62, 3], ["pythonImportsCheck", 73, 3], ["passthru", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "importlib-metadata": false, "nix-update-script": false, owlrl: false, packaging: false, "poetry-core": false, prettytable: false, pyduktape2: false, pyoxigraph: false, "pytest-cov-stub": false, pytestCheckHook: false, rdflib: false, "sanic-cors": false, "sanic-ext": false, sanic: false, "types-setuptools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["http", 47, 5], ["js", 52, 5], ["oxigraph", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 75, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 56, 3], ["disabledTests", 62, 3], ["pythonImportsCheck", 73, 3], ["passthru", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const sanic = nix.arg($, "sanic");
   const types_setuptools = nix.arg($, "types-setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pyshacl",
       version: "0.40.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rdflib",
           repo: "pyshacl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [importlib_metadata, owlrl, packaging, prettytable, rdflib]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         http: nix.thunk(() => [sanic, sanic_cors, sanic_ext]),
         js: nix.thunk(() => [pyduktape2]),
         oxigraph: nix.thunk(() => [pyoxigraph]),
@@ -62,11 +58,11 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["pyshacl"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python validator for SHACL",
         homepage: "https://github.com/rdflib/pyshacl",
         changelog: nix.thunk(() => nix.str`https://github.com/rdflib/pyshacl/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

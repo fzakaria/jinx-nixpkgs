@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 11], ["hash", 17, 11]], [["url", 20, 11], ["hash", 21, 11]], [["aarch64-darwin", 15, 9], ["x86_64-linux", 19, 9]], [["pname", 27, 13], ["version", 27, 19], ["src", 27, 27]], [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5], ["mainProgram", 39, 5], ["sourceProvenance", 40, 5]], [["pname", 46, 7], ["version", 47, 7], ["src", 48, 7], ["meta", 49, 7], ["passthru", 50, 7], ["sourceRoot", 53, 5], ["nativeBuildInputs", 55, 5], ["installPhase", 57, 5]], [["pname", 69, 7], ["version", 70, 7], ["src", 71, 7], ["meta", 72, 7], ["passthru", 73, 7], ["extraPkgs", 76, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, appimageTools: false, undmg: false, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 11], ["hash", 17, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 11], ["hash", 21, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-darwin", 15, 9], ["x86_64-linux", 19, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 13], ["version", 27, 19], ["src", 27, 27]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5], ["mainProgram", 39, 5], ["sourceProvenance", 40, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 46, 7], ["version", 47, 7], ["src", 48, 7], ["meta", 49, 7], ["passthru", 50, 7], ["sourceRoot", 53, 5], ["nativeBuildInputs", 55, 5], ["installPhase", 57, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 69, 7], ["version", 70, 7], ["src", 71, 7], ["meta", 72, 7], ["passthru", 73, 7], ["extraPkgs", 76, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const pname = "paperlib";
   const version = "3.1.10";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "aarch64-darwin": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/Future-Scholars/paperlib/releases/download/release-electron-${version}/Paperlib_${version}_arm.dmg`),
         hash: "sha256-KNMPUeCNtODHzMJhCwI4SJPRfa87RmAe6CRRazgRZCQ=",
       })),
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/Future-Scholars/paperlib/releases/download/release-electron-${version}/Paperlib_${version}.AppImage`),
         hash: "sha256-uBYhiUL4YWwnLLPvXMoXjlQqlqFep/OpwwnmPx7s5dY=",
       })),
     }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))));
-  const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname, version: version, src: src }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], pname: pname, version: version, src: src }));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     homepage: "https://github.com/Future-Scholars/paperlib",
     description: "Open-source academic paper management tool",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -52,7 +46,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -62,7 +56,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? [_7zz] : [undmg])),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\nmv Paperlib.app $out/Applications/\n\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: src,

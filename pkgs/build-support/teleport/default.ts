@@ -2,17 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 13]], [["OPENSSL_NO_VENDOR", 61, 9]], [["pname", 48, 5], ["cargoHash", 49, 13], ["version", 50, 13], ["src", 50, 21], ["buildAndTestSubdir", 52, 5], ["buildInputs", 54, 5], ["nativeBuildInputs", 55, 5], ["nativeCheckInputs", 59, 5], ["env", 61, 5], ["postInstall", 63, 5]], [["src", 74, 15], ["hash", 75, 7]], [["src", 80, 9], ["pname", 81, 9], ["version", 82, 9], ["pnpm", 84, 7], ["fetcherVersion", 85, 7], ["hash", 86, 7]], [["pname", 70, 5], ["src", 71, 13], ["version", 71, 17], ["cargoDeps", 73, 5], ["pnpmDeps", 78, 5], ["nativeBuildInputs", 89, 5], ["patches", 102, 5], ["configurePhase", 106, 5], ["buildPhase", 114, 5], ["installPhase", 128, 5]], [["tests", 209, 12]], [["description", 212, 5], ["homepage", 213, 5], ["license", 214, 5], ["maintainers", 215, 5], ["platforms", 223, 5], ["broken", 226, 5]], [["pname", 135, 11], ["src", 135, 17], ["version", 135, 21], ["vendorHash", 136, 11], ["proxyVendor", 137, 3], ["subPackages", 139, 3], ["tags", 145, 3], ["buildInputs", 151, 3], ["nativeBuildInputs", 155, 3], ["patches", 160, 3], ["outputs", 173, 3], ["preBuild", 178, 3], ["doCheck", 188, 3], ["postInstall", 190, 3], ["doInstallCheck", 198, 3], ["installCheckPhase", 200, 3], ["passthru", 209, 3], ["meta", 211, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, fetchpatch: false, makeWrapper: false, binaryen: false, cargo: false, libfido2: false, nodejs: false, openssl: false, "pkg-config": false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, rustc: false, stdenv: false, "xdg-utils": false, "wasm-pack": false, nixosTests: false }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false, cargoHash: false, pnpmHash: false, vendorHash: false, "wasm-bindgen-cli": false, buildGoModule: false, withRdpClient: true, extPatches: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["OPENSSL_NO_VENDOR", 61, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 48, 5], ["cargoHash", 49, 13], ["version", 50, 13], ["src", 50, 21], ["buildAndTestSubdir", 52, 5], ["buildInputs", 54, 5], ["nativeBuildInputs", 55, 5], ["nativeCheckInputs", 59, 5], ["env", 61, 5], ["postInstall", 63, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["src", 74, 15], ["hash", 75, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["src", 80, 9], ["pname", 81, 9], ["version", 82, 9], ["pnpm", 84, 7], ["fetcherVersion", 85, 7], ["hash", 86, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 70, 5], ["src", 71, 13], ["version", 71, 17], ["cargoDeps", 73, 5], ["pnpmDeps", 78, 5], ["nativeBuildInputs", 89, 5], ["patches", 102, 5], ["configurePhase", 106, 5], ["buildPhase", 114, 5], ["installPhase", 128, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["tests", 209, 12]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 212, 5], ["homepage", 213, 5], ["license", 214, 5], ["maintainers", 215, 5], ["platforms", 223, 5], ["broken", 226, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 135, 11], ["src", 135, 17], ["version", 135, 21], ["vendorHash", 136, 11], ["proxyVendor", 137, 3], ["subPackages", 139, 3], ["tags", 145, 3], ["buildInputs", 151, 3], ["nativeBuildInputs", 155, 3], ["patches", 160, 3], ["outputs", 173, 3], ["preBuild", 178, 3], ["doCheck", 188, 3], ["postInstall", 190, 3], ["doInstallCheck", 198, 3], ["installCheckPhase", 200, 3], ["passthru", 209, 3], ["meta", 211, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,7 +39,7 @@ export default nix.lambda((args) => (() => {
     const withRdpClient = nix.argOr($_1, "withRdpClient", () => true);
     const extPatches = nix.argOr($_1, "extPatches", () => []);
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "gravitational",
         repo: "teleport",
         tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -56,7 +48,7 @@ export default nix.lambda((args) => (() => {
     const pname = "teleport";
     const version_1 = version;
     const rdpClient = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "teleport-rdpclient",
         cargoHash: cargoHash,
         version: version_1,
@@ -65,19 +57,19 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [openssl]),
         nativeBuildInputs: nix.thunk(() => [pkg_config]),
         nativeCheckInputs: nix.thunk(() => nix.sel(finalAttrs, "buildInputs")),
-        env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: "1" })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: "1" })),
         postInstall: nix.thunk(() => nix.str`mkdir -p $out/include
 cp ${nix.sel(finalAttrs, "buildAndTestSubdir")}/librdpclient.h $out/include/
 `),
       })));
     const webassets = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "teleport-webassets",
         src: src,
         version: version_1,
-        cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({ [nix.POS]: pos$4, src: src, hash: cargoHash })))),
+        cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({ [nix.POS]: $pos[3], src: src, hash: cargoHash })))),
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             src: src,
             pname: pname,
             version: version_1,
@@ -103,7 +95,7 @@ cp ${nix.sel(finalAttrs, "buildAndTestSubdir")}/librdpclient.h $out/include/
         installPhase: "mkdir -p $out\ncp -R webassets/. $out\n",
       }))));
     return nix.app(buildGoModule, (finalAttrs) => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: pname,
         src: src,
         version: version_1,
@@ -134,9 +126,9 @@ $out/bin/tbot version | grep ${version_1} > /dev/null
 $out/bin/tctl version | grep ${version_1} > /dev/null
 $out/bin/teleport version | grep ${version_1} > /dev/null
 `),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$7, tests: nix.thunk(() => nix.sel(nixosTests, "teleport")) })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[6], tests: nix.thunk(() => nix.sel(nixosTests, "teleport")) })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           description: "Certificate authority and access plane for SSH, Kubernetes, web applications, and databases",
           homepage: "https://goteleport.com/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

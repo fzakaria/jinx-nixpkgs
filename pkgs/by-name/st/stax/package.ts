@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["LIBGIT2_NO_VENDOR", 25, 7]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["env", 25, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["cargoHash", 45, 3], ["doInstallCheck", 47, 3], ["doCheck", 48, 3], ["nativeInstallCheckInputs", 49, 3], ["versionCheckProgramArg", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, versionCheckHook: false, perl: false, "pkg-config": false, libgit2: false, openssl: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBGIT2_NO_VENDOR", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["env", 25, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["cargoHash", 45, 3], ["doInstallCheck", 47, 3], ["doCheck", 48, 3], ["nativeInstallCheckInputs", 49, 3], ["versionCheckProgramArg", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "stax",
       version: "0.102.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cesarferreira",
           repo: "stax",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ItRt0J2nR94nmg9L6Pion/OB7wW7mmMFE5CHZmr2Yvs=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBGIT2_NO_VENDOR: 1n })),
       postPatch: "# Remove darwin linker override that breaks nix builds\nrm -f .cargo/config.toml\n",
       nativeBuildInputs: nix.thunk(() => [perl, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([libgit2, openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Stacked-branch workflow for Git with an interactive TUI, smart PRs, and safe undo",
         homepage: "https://github.com/cesarferreira/stax",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

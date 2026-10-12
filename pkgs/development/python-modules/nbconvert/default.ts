@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 31, 13], ["version", 31, 19], ["hash", 32, 5]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["teams", 94, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["postPatch", 39, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["preCheck", 62, 3], ["nativeCheckInputs", 66, 3], ["pytestFlags", 73, 3], ["disabledTests", 77, 3], ["__darwinAllowLocalNetworking", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, beautifulsoup4: false, bleach: false, defusedxml: false, jinja2: false, "jupyter-core": false, "jupyterlab-pygments": false, markupsafe: false, mistune: false, nbclient: false, packaging: false, pandocfilters: false, pygments: false, traitlets: false, flaky: false, ipykernel: false, ipywidgets: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 31, 13], ["version", 31, 19], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["teams", 94, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["postPatch", 39, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["preCheck", 62, 3], ["nativeCheckInputs", 66, 3], ["pytestFlags", 73, 3], ["disabledTests", 77, 3], ["__darwinAllowLocalNetworking", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.17.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-NNDQp+c848urbFquj09Gh5coCwH9i9LKdG2oVp7d19I=",
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Converting Jupyter Notebooks",
         homepage: "https://github.com/jupyter/nbconvert",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter/nbconvert/blob/v${version}/CHANGELOG.md`),
@@ -77,7 +75,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "jupyter"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

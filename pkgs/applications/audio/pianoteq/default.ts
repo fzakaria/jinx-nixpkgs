@@ -2,32 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 78, 11], ["exec", 79, 11], ["desktopName", 80, 11], ["icon", 81, 11], ["comment", 82, 11], ["categories", 83, 11], ["startupNotify", 88, 11], ["startupWMClass", 89, 19]], [["homepage", 112, 9], ["description", 113, 9], ["license", 114, 9], ["mainProgram", 115, 17], ["platforms", 116, 9], ["maintainers", 120, 9], ["sourceProvenance", 124, 9]], [["src", 46, 15], ["version", 46, 19], ["pname", 48, 7], ["unpackPhase", 50, 7], ["nativeBuildInputs", 62, 7], ["buildInputs", 69, 7], ["desktopItems", 76, 7], ["installPhase", 93, 7], ["meta", 111, 7]], [["name", 136, 15], ["builder", 137, 7], ["nativeBuildInputs", 159, 7], ["outputHashAlgo", 160, 7], ["outputHash", 161, 7], ["impureEnvVars", 163, 7]], [["name", 175, 15], ["hash", 175, 20], ["script", 176, 7]], [["name", 209, 15], ["hash", 209, 20], ["impureEnvVars", 211, 7], ["script", 216, 7]], [["name", 265, 9], ["hash", 266, 17]], [["name", 260, 7], ["mainProgram", 261, 7], ["startupWMClass", 262, 7], ["version", 263, 15], ["src", 264, 7]], [["name", 277, 9], ["hash", 278, 17]], [["name", 272, 7], ["mainProgram", 273, 7], ["startupWMClass", 274, 7], ["version", 275, 15], ["src", 276, 7]], [["name", 289, 9], ["hash", 290, 17]], [["name", 284, 7], ["mainProgram", 285, 7], ["startupWMClass", 286, 7], ["version", 287, 15], ["src", 288, 7]], [["name", 301, 9], ["hash", 302, 17]], [["name", 296, 7], ["mainProgram", 297, 7], ["startupWMClass", 298, 7], ["version", 299, 15], ["src", 300, 7]], [["name", 313, 9], ["hash", 314, 17]], [["name", 308, 7], ["version", 309, 7], ["mainProgram", 310, 7], ["startupWMClass", 311, 7], ["src", 312, 7]], [["name", 325, 9], ["hash", 326, 17]], [["name", 320, 7], ["version", 321, 7], ["mainProgram", 322, 7], ["startupWMClass", 323, 7], ["src", 324, 7]], [["name", 337, 9], ["hash", 338, 17]], [["name", 332, 7], ["mainProgram", 333, 7], ["startupWMClass", 334, 7], ["version", 335, 7], ["src", 336, 7]], [["standard_9", 343, 3], ["trial_9", 344, 3], ["stage_9", 345, 3], ["standard_8", 347, 3], ["stage_8", 348, 3], ["standard-trial_8", 349, 3], ["stage-trial_8", 350, 3], ["standard_7", 352, 3], ["stage_7", 353, 3], ["standard-trial_7", 354, 3], ["stage-trial_7", 355, 3], ["standard_6", 357, 3], ["stage_6", 358, 3], ["standard-trial_6", 359, 3], ["stage-trial_6", 360, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "alsa-lib": false, autoPatchelfHook: false, copyDesktopItems: false, curl: false, freetype: false, htmlq: false, jq: false, libglvnd: false, librsvg: false, makeDesktopItem: false, makeWrapper: false, p7zip: false, gnutar: false, writeShellScript: false }, ellipsis: false };
 const formals$2 = { args: { name: false, mainProgram: false, startupWMClass: false, src: false, version: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 78, 11], ["exec", 79, 11], ["desktopName", 80, 11], ["icon", 81, 11], ["comment", 82, 11], ["categories", 83, 11], ["startupNotify", 88, 11], ["startupWMClass", 89, 19]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 112, 9], ["description", 113, 9], ["license", 114, 9], ["mainProgram", 115, 17], ["platforms", 116, 9], ["maintainers", 120, 9], ["sourceProvenance", 124, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["src", 46, 15], ["version", 46, 19], ["pname", 48, 7], ["unpackPhase", 50, 7], ["nativeBuildInputs", 62, 7], ["buildInputs", 69, 7], ["desktopItems", 76, 7], ["installPhase", 93, 7], ["meta", 111, 7]]);
 const formals$3 = { args: { name: false, hash: false, script: false, impureEnvVars: true }, ellipsis: false };
-const pos$4 = nix.positions(here + "/default.nix", [["name", 136, 15], ["builder", 137, 7], ["nativeBuildInputs", 159, 7], ["outputHashAlgo", 160, 7], ["outputHash", 161, 7], ["impureEnvVars", 163, 7]]);
 const formals$4 = { args: { name: false, hash: false }, ellipsis: false };
-const pos$5 = nix.positions(here + "/default.nix", [["name", 175, 15], ["hash", 175, 20], ["script", 176, 7]]);
 const formals$5 = { args: { name: false, hash: false }, ellipsis: false };
-const pos$6 = nix.positions(here + "/default.nix", [["name", 209, 15], ["hash", 209, 20], ["impureEnvVars", 211, 7], ["script", 216, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 265, 9], ["hash", 266, 17]]);
-const pos$8 = nix.positions(here + "/default.nix", [["name", 260, 7], ["mainProgram", 261, 7], ["startupWMClass", 262, 7], ["version", 263, 15], ["src", 264, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["name", 277, 9], ["hash", 278, 17]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 272, 7], ["mainProgram", 273, 7], ["startupWMClass", 274, 7], ["version", 275, 15], ["src", 276, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["name", 289, 9], ["hash", 290, 17]]);
-const pos$12 = nix.positions(here + "/default.nix", [["name", 284, 7], ["mainProgram", 285, 7], ["startupWMClass", 286, 7], ["version", 287, 15], ["src", 288, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["name", 301, 9], ["hash", 302, 17]]);
-const pos$14 = nix.positions(here + "/default.nix", [["name", 296, 7], ["mainProgram", 297, 7], ["startupWMClass", 298, 7], ["version", 299, 15], ["src", 300, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["name", 313, 9], ["hash", 314, 17]]);
-const pos$16 = nix.positions(here + "/default.nix", [["name", 308, 7], ["version", 309, 7], ["mainProgram", 310, 7], ["startupWMClass", 311, 7], ["src", 312, 7]]);
-const pos$17 = nix.positions(here + "/default.nix", [["name", 325, 9], ["hash", 326, 17]]);
-const pos$18 = nix.positions(here + "/default.nix", [["name", 320, 7], ["version", 321, 7], ["mainProgram", 322, 7], ["startupWMClass", 323, 7], ["src", 324, 7]]);
-const pos$19 = nix.positions(here + "/default.nix", [["name", 337, 9], ["hash", 338, 17]]);
-const pos$20 = nix.positions(here + "/default.nix", [["name", 332, 7], ["mainProgram", 333, 7], ["startupWMClass", 334, 7], ["version", 335, 7], ["src", 336, 7]]);
-const pos$21 = nix.positions(here + "/default.nix", [["standard_9", 343, 3], ["trial_9", 344, 3], ["stage_9", 345, 3], ["standard_8", 347, 3], ["stage_8", 348, 3], ["standard-trial_8", 349, 3], ["stage-trial_8", 350, 3], ["standard_7", 352, 3], ["stage_7", 353, 3], ["standard-trial_7", 354, 3], ["stage-trial_7", 355, 3], ["standard_6", 357, 3], ["stage_6", 358, 3], ["standard-trial_6", 359, 3], ["stage-trial_6", 360, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,7 +37,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const version = nix.arg($_1, "version");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         src: src,
         version: version,
         pname: nix.thunk(() => nix.str`pianoteq-${name}`),
@@ -73,7 +53,7 @@ export default nix.lambda((args) => (() => {
         ]),
         desktopItems: nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
               exec: nix.thunk(() => nix.str`"${mainProgram}"`),
               desktopName: mainProgram,
@@ -101,7 +81,7 @@ done
 runHook postInstall
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://www.modartt.com/pianoteq",
           description: "Software synthesizer that features real-time MIDI-control of digital physically modeled pianos and related instruments",
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -125,7 +105,7 @@ runHook postInstall
     const script = nix.arg($_1, "script");
     const impureEnvVars = nix.argOr($_1, "impureEnvVars", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: name,
         builder: nix.thunk(() => nix.app(writeShellScript, "builder.sh", nix.thunk(() => nix.str`curlVersion=$(${curl}/bin/curl -V | head -1 | cut -d' ' -f2)
 
@@ -159,7 +139,7 @@ ${script}
     const name = nix.arg($_1, "name");
     const hash = nix.arg($_1, "hash");
     return nix.app(fetchWithCurlScript, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: name,
         hash: hash,
         script: nix.thunk(() => nix.str`html=$(
@@ -196,7 +176,7 @@ fi
     const name = nix.arg($_1, "name");
     const hash = nix.arg($_1, "hash");
     return nix.app(fetchWithCurlScript, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: name,
         hash: hash,
         impureEnvVars: nix.thunk(() => ["NIX_MODARTT_USERNAME", "NIX_MODARTT_PASSWORD"]),
@@ -240,91 +220,91 @@ url=$(echo $json | ${jq}/bin/jq -r .url)
   const version8 = "8.4.3";
   const version9 = "9.2.1";
   const mkStandard = (version) => (hash) => nix.app(mkPianoteq, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "standard",
       mainProgram: nix.thunk(() => nix.str`Pianoteq ${nix.app(nix.sel(lib, "versions", "major"), version)}`),
       startupWMClass: "Pianoteq",
       version: version,
       src: nix.thunk(() => nix.app(fetchPianoteqWithLogin, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           name: nix.thunk(() => nix.str`pianoteq_linux_v${nix.app(versionForFile, version)}.7z`),
           hash: hash,
         })))),
     })));
   const mkStage = (version) => (hash) => nix.app(mkPianoteq, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       name: "stage",
       mainProgram: nix.thunk(() => nix.str`Pianoteq ${nix.app(nix.sel(lib, "versions", "major"), version)} STAGE`),
       startupWMClass: "Pianoteq STAGE",
       version: version,
       src: nix.thunk(() => nix.app(fetchPianoteqWithLogin, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           name: nix.thunk(() => nix.str`pianoteq_stage_linux_v${nix.app(versionForFile, version)}.7z`),
           hash: hash,
         })))),
     })));
   const mkStandardTrial = (version) => (hash) => nix.app(mkPianoteq, nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       name: "standard-trial",
       mainProgram: nix.thunk(() => nix.str`Pianoteq ${nix.app(nix.sel(lib, "versions", "major"), version)}`),
       startupWMClass: "Pianoteq Trial",
       version: version,
       src: nix.thunk(() => nix.app(fetchPianoteqTrial, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           name: nix.thunk(() => nix.str`pianoteq_linux_trial_v${nix.app(versionForFile, version)}.7z`),
           hash: hash,
         })))),
     })));
   const mkStageTrial = (version) => (hash) => nix.app(mkPianoteq, nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       name: "stage-trial",
       mainProgram: nix.thunk(() => nix.str`Pianoteq ${nix.app(nix.sel(lib, "versions", "major"), version)} STAGE`),
       startupWMClass: "Pianoteq STAGE Trial",
       version: version,
       src: nix.thunk(() => nix.app(fetchPianoteqTrial, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           name: nix.thunk(() => nix.str`pianoteq_stage_linux_trial_v${nix.app(versionForFile, version)}.7z`),
           hash: hash,
         })))),
     })));
   const mkTrial9 = (hash) => nix.app(mkPianoteq, nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       name: "trial",
       version: version9,
       mainProgram: "Pianoteq 9",
       startupWMClass: "Pianoteq Trial",
       src: nix.thunk(() => nix.app(fetchPianoteqTrial, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           name: nix.thunk(() => nix.str`pianoteq_trial_v${nix.app(versionForFile, version9)}.tar.xz`),
           hash: hash,
         })))),
     })));
   const mkStage9 = (hash) => nix.app(mkPianoteq, nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       name: "stage",
       version: version9,
       mainProgram: "Pianoteq 9 STAGE",
       startupWMClass: "Pianoteq STAGE",
       src: nix.thunk(() => nix.app(fetchPianoteqWithLogin, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           name: nix.thunk(() => nix.str`pianoteq_setup_v${nix.app(versionForFile, version9)}.tar.xz`),
           hash: hash,
         })))),
     })));
   const mkStandard9 = (hash) => nix.app(mkPianoteq, nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       name: "standard",
       mainProgram: "Pianoteq 9",
       startupWMClass: "Pianoteq",
       version: version9,
       src: nix.thunk(() => nix.app(fetchPianoteqWithLogin, nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           name: nix.thunk(() => nix.str`pianoteq_setup_v${nix.app(versionForFile, version9)}.tar.xz`),
           hash: hash,
         })))),
     })));
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     standard_9: nix.thunk(() => nix.app(mkStandard9, "sha256-iIKYmXy7d5mGkONUqR91Qjo7IIGJE9eBN4pCr0+D7no=")),
     trial_9: nix.thunk(() => nix.app(mkTrial9, "sha256-QQMLYvn7KW7u4JYeNCqxE+7Yn36bR+bTA2bP2IcQGZg=")),
     stage_9: nix.thunk(() => nix.app(mkStage9, "sha256-iIKYmXy7d5mGkONUqR91Qjo7IIGJE9eBN4pCr0+D7no=")),

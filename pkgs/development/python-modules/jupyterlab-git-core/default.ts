@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["src", 59, 26], ["hash", 60, 5]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["build-system", 46, 3], ["nativeBuildInputs", 53, 3], ["offlineCache", 58, 3], ["preBuild", 63, 3], ["dependencies", 67, 3], ["propagatedBuildInputs", 75, 3], ["nativeCheckInputs", 77, 3], ["preCheck", 84, 3], ["pytestFlags", 97, 3], ["pythonImportsCheck", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-jupyter-builder": false, "hatch-nodejs-version": false, hatchling: false, jupyterlab: false, nodejs: false, "yarn-berry_3": false, anyio: false, nbformat: false, packaging: false, pexpect: false, traitlets: false, git: false, nbdime: false, "pytest-asyncio": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 59, 26], ["hash", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["build-system", 46, 3], ["nativeBuildInputs", 53, 3], ["offlineCache", 58, 3], ["preBuild", 63, 3], ["dependencies", 67, 3], ["propagatedBuildInputs", 75, 3], ["nativeCheckInputs", 77, 3], ["preCheck", 84, 3], ["pytestFlags", 97, 3], ["pythonImportsCheck", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jupyterlab-git-core",
       version: "0.54.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jupyterlab",
           repo: "jupyterlab-git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatch_jupyter_builder, hatch_nodejs_version, hatchling, jupyterlab]),
       nativeBuildInputs: nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(yarn_berry_3, "yarnBerryConfigHook"))]),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_3, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-+Dz3qQcSYDiuFsOKbmRmdFE4LCGXVL4jkusH+IfU28E=",
         })))),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--confcutdir=."]),
       pythonImportsCheck: nix.thunk(() => ["jupyterlab_git_core"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Core package for the JupyterLab Git extension",
         homepage: "https://github.com/jupyterlab/jupyterlab-git",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyterlab/jupyterlab-git/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

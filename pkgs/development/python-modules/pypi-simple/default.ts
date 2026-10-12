@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 5], ["version", 21, 26], ["hash", 22, 5]], [["tqdm", 38, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["optional-dependencies", 37, 3], ["pythonImportsCheck", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, beautifulsoup4: false, mailbits: false, packaging: false, pydantic: false, requests: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 26], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tqdm", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["optional-dependencies", 37, 3], ["pythonImportsCheck", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pypi-simple",
       version: "1.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pypi_simple",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Rm8vzQ1yOCKq46DM/aIuaP+M1/UKrmiRGUarHdHVh+E=",
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [beautifulsoup4, mailbits, packaging, pydantic, requests]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, tqdm: nix.thunk(() => [tqdm]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], tqdm: nix.thunk(() => [tqdm]) })),
       pythonImportsCheck: nix.thunk(() => ["pypi_simple"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "PyPI Simple Repository API client library",
         homepage: "https://pypi.org/project/pypi-simple",
         changelog: "https://github.com/jwodder/pypi-simple/blob/master/CHANGELOG.md",

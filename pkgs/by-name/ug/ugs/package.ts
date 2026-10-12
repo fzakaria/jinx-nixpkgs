@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 12, 5], ["exec", 13, 5], ["comment", 14, 5], ["desktopName", 15, 5], ["categories", 16, 5]], [["url", 25, 5], ["hash", 26, 5]], [["description", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["sourceProvenance", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["dontUnpack", 29, 3], ["nativeBuildInputs", 31, 3], ["installPhase", 36, 3], ["desktopItems", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, jre: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 12, 5], ["exec", 13, 5], ["comment", 14, 5], ["desktopName", 15, 5], ["categories", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["sourceProvenance", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["dontUnpack", 29, 3], ["nativeBuildInputs", 31, 3], ["installPhase", 36, 3], ["desktopItems", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const fetchzip = nix.arg($, "fetchzip");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "ugs",
       exec: "ugs",
       comment: "A cross-platform G-Code sender for GRBL, Smoothieware, TinyG and G2core.",
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Game"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ugs",
       version: "2.1.24",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/winder/Universal-G-Code-Sender/releases/download/v${nix.sel(finalAttrs, "version")}/UniversalGcodeSender.zip`),
           hash: "sha256-YDoH2romuozMWDBhZu5vW+XHHzqLJi3qYedQX2gzsGM=",
         })))),
@@ -46,7 +43,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [desktopItem]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross-platform G-Code sender for GRBL, Smoothieware, TinyG and G2core",
         homepage: "https://github.com/winder/Universal-G-Code-Sender",
         maintainers: nix.thunk(() => (() => {

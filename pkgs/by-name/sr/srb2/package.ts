@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["url", 53, 7], ["rev", 54, 7], ["hash", 55, 7], ["fetchLFS", 56, 7]], [["pname", 49, 5], ["version", 50, 5], ["src", 52, 5], ["installPhase", 59, 5]], [["NIX_CFLAGS_COMPILE", 72, 7]], [["name", 88, 7], ["exec", 89, 7], ["icon", 90, 7], ["comment", 91, 7], ["desktopName", 92, 7], ["genericName", 93, 7], ["categories", 94, 7], ["startupWMClass", 95, 7]], [["description", 114, 5], ["homepage", 115, 5], ["platforms", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 122, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["assets", 48, 3], ["env", 72, 3], ["cmakeFlags", 74, 3], ["patches", 82, 3], ["desktopItems", 86, 3], ["installPhase", 99, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, fetchFromGitHub: false, cmake: false, curl: false, libopenmpt: false, miniupnpc: false, "game-music-emu": false, libpng: false, SDL2: false, SDL2_mixer: false, zlib: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 53, 7], ["rev", 54, 7], ["hash", 55, 7], ["fetchLFS", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 49, 5], ["version", 50, 5], ["src", 52, 5], ["installPhase", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 72, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 88, 7], ["exec", 89, 7], ["icon", 90, 7], ["comment", 91, 7], ["desktopName", 92, 7], ["genericName", 93, 7], ["categories", 94, 7], ["startupWMClass", 95, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 114, 5], ["homepage", 115, 5], ["platforms", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 122, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["assets", 48, 3], ["env", 72, 3], ["cmakeFlags", 74, 3], ["patches", 82, 3], ["desktopItems", 86, 3], ["installPhase", 99, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "srb2",
       version: "2.2.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "STJr",
           repo: "SRB2",
           rev: nix.thunk(() => nix.str`SRB2_release_${nix.sel(finalAttrs, "version")}`),
@@ -43,11 +37,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, makeWrapper, copyDesktopItems]),
       buildInputs: nix.thunk(() => [curl, game_music_emu, libpng, libopenmpt, miniupnpc, SDL2, SDL2_mixer, zlib]),
       assets: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "srb2-data",
           version: nix.thunk(() => nix.sel(finalAttrs, "version")),
           src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://git.do.srb2.org/STJr/srb2assets-public",
               rev: nix.thunk(() => nix.str`SRB2_release_${nix.sel(finalAttrs, "version")}`),
               hash: "sha256-1kwhWHzL2TbSx1rhFExbMhXqn0HMBRhR6LZiuoRx+iI=",
@@ -55,7 +49,7 @@ export default nix.lambda((args) => (() => {
             })))),
           installPhase: "runHook preInstall\n\nmkdir -p $out/share/srb2\ncp -r * $out/share/srb2\n\nrunHook postInstall\n",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`-DSRB2_ASSET_DIRECTORY=${nix.sel(finalAttrs, "assets")}/share/srb2`),
         nix.thunk(() => nix.str`-DGME_INCLUDE_DIR=${game_music_emu}/include`),
@@ -75,7 +69,7 @@ export default nix.lambda((args) => (() => {
             const categories = nix.thunk(() => ["Game"]);
             const startupWMClass = ".srb2-wrapped";
             return {
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name,
               exec,
               icon,
@@ -100,7 +94,7 @@ wrapProgram $out/bin/srb2 --set SRB2WADDIR "${nix.sel(finalAttrs, "assets")}/sha
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Sonic Robo Blast 2 is a 3D Sonic the Hedgehog fangame based on a modified version of Doom Legacy",
         homepage: "https://www.srb2.org/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

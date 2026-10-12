@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["rev-prefix", 98, 7], ["allowedVersions", 99, 7]], [["nativeBuildInputs", 101, 51]], [["hello", 101, 11]], [["updateScript", 97, 5], ["tests", 101, 5]], [["homepage", 107, 5], ["description", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 115, 5], ["platforms", 116, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 43, 3], ["cmakeFlags", 48, 3], ["installPhase", 72, 3], ["doCheck", 80, 3], ["doInstallCheck", 82, 3], ["installCheckPhase", 84, 3], ["passthru", 96, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, cmake: false, python3: false, withDynarec: true, runCommand: false, "hello-x86_64": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 98, 7], ["allowedVersions", 99, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 101, 51]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hello", 101, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 97, 5], ["tests", 101, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 107, 5], ["description", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 115, 5], ["platforms", 116, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 43, 3], ["cmakeFlags", 48, 3], ["installPhase", 72, 3], ["doCheck", 80, 3], ["doInstallCheck", 82, 3], ["installCheckPhase", 84, 3], ["passthru", 96, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const hello_x86_64 = nix.arg($, "hello-x86_64");
   nix.assert_((!nix.asBool(withDynarec) || nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLoongArch64")))) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isPower64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLittleEndian"))))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/emulators/box64/default.nix:16:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "box64",
       version: "0.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ptitSeb",
           repo: "box64",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,19 +59,19 @@ $out/bin/box64 -v 2>&1 | grep ${nix.app(nix.sel(lib, "optionalString"), nix.thun
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v", allowedVersions: "\\.[02468]$" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v", allowedVersions: "\\.[02468]$" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hello: nix.thunk(() => nix.app(runCommand, "box64-test-hello", nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`BOX64_LOG=1 box64 ${nix.app(nix.sel(lib, "getExe"), hello_x86_64)} --version 2>&1 | tee $out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://box86.org/",
         description: "Lets you run x86_64 Linux programs on non-x86_64 Linux systems",
         changelog: nix.thunk(() => nix.str`https://github.com/ptitSeb/box64/releases/tag/v${nix.sel(finalAttrs, "version")}`),

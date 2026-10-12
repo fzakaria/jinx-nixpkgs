@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["CGO_ENABLED", 32, 7]], [["description", 92, 5], ["longDescription", 93, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["mainProgram", 103, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["proxyVendor", 22, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["subPackages", 30, 3], ["env", 32, 3], ["ldflags", 34, 3], ["tags", 44, 3], ["nativeCheckInputs", 60, 3], ["preCheck", 61, 3], ["doInstallCheck", 79, 3], ["nativeInstallCheckInputs", 80, 3], ["versionCheckProgramArg", 81, 3], ["postInstall", 83, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { "btrfs-progs": false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, lib: false, stdenv: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 92, 5], ["longDescription", 93, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["mainProgram", 103, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["proxyVendor", 22, 3], ["vendorHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["subPackages", 30, 3], ["env", 32, 3], ["ldflags", 34, 3], ["tags", 44, 3], ["nativeCheckInputs", 60, 3], ["preCheck", 61, 3], ["doInstallCheck", 79, 3], ["nativeInstallCheckInputs", 80, 3], ["versionCheckProgramArg", 81, 3], ["postInstall", 83, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "werf",
       version: "2.73.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "werf",
           repo: "werf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [btrfs_progs])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isGnu")), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "libc", "static"))])))),
       subPackages: nix.thunk(() => ["cmd/werf"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CGO_ENABLED: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? 1n : 0n)),
       })),
       ldflags: nix.thunk(() => nix.concat([
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for shell in bash fish zsh; do\n  installShellCompletion \\\n    --cmd werf \\\n    --$shell <($out/bin/werf completion --shell=$shell)\ndone\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GitOps delivery tool",
         longDescription: "werf is a CNCF Sandbox CLI tool to implement full-cycle CI/CD to\nKubernetes easily. werf integrates into your CI system and leverages\nfamiliar and reliable technologies, such as Git, Dockerfile, Helm, and\nBuildah.\n",
         homepage: "https://werf.io",

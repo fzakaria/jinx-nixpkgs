@@ -2,48 +2,40 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/loops-server.nix", [[["maintainers", 10, 5], ["teams", 11, 5]], [["memorySize", 17, 22]], [["systemPackages", 19, 19]], [["FORCE_HTTPS_URLS", 34, 11], ["FORCE_HTTPS", 35, 11], ["AWS_DRIVER", 36, 11], ["APP_URL", 37, 11]], [["enable", 22, 9], ["domain", 23, 9], ["nginx", 25, 9], ["secretFile", 26, 9], ["settings", 33, 9]], [["loops-server", 21, 16]], [["virtualisation", 17, 7], ["environment", 19, 7], ["services", 21, 7]], [["server", 15, 5]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 14, 3], ["testScript", 43, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/loops-server.nix", [["maintainers", 10, 5], ["teams", 11, 5]]);
-const pos$2 = nix.positions(here + "/loops-server.nix", [["memorySize", 17, 22]]);
-const pos$3 = nix.positions(here + "/loops-server.nix", [["systemPackages", 19, 19]]);
-const pos$4 = nix.positions(here + "/loops-server.nix", [["FORCE_HTTPS_URLS", 34, 11], ["FORCE_HTTPS", 35, 11], ["AWS_DRIVER", 36, 11], ["APP_URL", 37, 11]]);
-const pos$5 = nix.positions(here + "/loops-server.nix", [["enable", 22, 9], ["domain", 23, 9], ["nginx", 25, 9], ["secretFile", 26, 9], ["settings", 33, 9]]);
-const pos$6 = nix.positions(here + "/loops-server.nix", [["loops-server", 21, 16]]);
-const pos$7 = nix.positions(here + "/loops-server.nix", [["virtualisation", 17, 7], ["environment", 19, 7], ["services", 21, 7]]);
-const pos$8 = nix.positions(here + "/loops-server.nix", [["server", 15, 5]]);
-const pos$9 = nix.positions(here + "/loops-server.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 14, 3], ["testScript", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "loops-server",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "onny"))]),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 4096n })),
+        [nix.POS]: $pos[6],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 4096n })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "loops-server": nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             domain: "localhost",
             nginx: nix.thunk(() => ({})),
             secretFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secrets.env", "# Snakeoil secret, can be any random 32-chars secret via CSPRNG.\nAPP_KEY=adKK9EcY8Hcj3PLU7rzG9rJ6KKTOtYfA\n")),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               FORCE_HTTPS_URLS: false,
               FORCE_HTTPS: false,
               AWS_DRIVER: "local",

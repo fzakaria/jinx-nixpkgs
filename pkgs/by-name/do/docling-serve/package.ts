@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withUI", 12, 7], ["withTesserocr", 13, 7], ["withRapidocr", 14, 7]], [["docling-serve", 20, 5]], [["tests", 19, 12]], [["passthru", 19, 3]]]);
 const formals$1 = { args: { python3Packages: false, nixosTests: false, withUI: true, withTesserocr: true, withRapidocr: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withUI", 12, 7], ["withTesserocr", 13, 7], ["withRapidocr", 14, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["docling-serve", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 19, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["passthru", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const withTesserocr = nix.argOr($, "withTesserocr", () => false);
   const withRapidocr = nix.argOr($, "withRapidocr", () => false);
   return nix.update(nix.app(nix.sel(python3Packages, "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(python3Packages, "docling-serve", "override"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         withUI: withUI,
         withTesserocr: withTesserocr,
         withRapidocr: withRapidocr,
       }))))), {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     passthru: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       tests: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "docling-serve": nix.thunk(() => nix.sel(nixosTests, "docling-serve")),
       })),
     })),

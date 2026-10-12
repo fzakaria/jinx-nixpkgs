@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["hash", 14, 5]], [["url", 17, 5], ["hash", 18, 5]], [["version", 29, 26], ["pname", 30, 5], ["hash", 31, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 76, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["build-system", 26, 3], ["src", 28, 3], ["prePatch", 36, 3], ["preBuild", 41, 3], ["propagatedBuildInputs", 45, 3], ["pythonImportsCheck", 50, 3], ["nativeCheckInputs", 56, 3], ["preCheck", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, lib: false, setuptools: false, six: false, pypblib: false, pytestCheckHook: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 29, 26], ["pname", 30, 5], ["hash", 31, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 76, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["build-system", 26, 3], ["src", 28, 3], ["prePatch", 36, 3], ["preBuild", 41, 3], ["propagatedBuildInputs", 45, 3], ["pythonImportsCheck", 50, 3], ["nativeCheckInputs", 56, 3], ["preCheck", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const fetchurl = nix.arg($, "fetchurl");
   const kissat404src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/arminbiere/kissat/archive/refs/tags/rel-4.0.4.tar.gz",
       hash: "sha256-v+k+qmMjtIAR5LH890s/LiD53lRHZ+coAJ5bIBgpYZM=",
     }))));
   const minisatepsrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://github.com/hchenqide/minisat/archive/90305f7b9ab9c9c9c560238f16b47c26506d0750.zip",
       hash: "sha256-eS5+wPrcZ00DRZMaJp4yZOZ1uz72Auin6FK6G2SId64=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "python-sat",
       version: "1.9.dev15",
       pyproject: true,
       "build-system": nix.thunk(() => [setuptools]),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "python_sat",
           hash: "sha256-WipYAiJIziz5OVtWBoUYXkdzxFKinrCuhmLWdhEzbNM=",
@@ -50,7 +46,7 @@ ln -s ${minisatepsrc} solvers/minisatep.zip
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       preCheck: "rm -r pysat\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Toolkit for SAT-based prototyping in Python (without optional dependencies)",
         homepage: "https://github.com/pysathq/pysat",
         changelog: "https://pysathq.github.io/updates/",

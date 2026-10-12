@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 20, 7], ["rev", 21, 7], ["hash", 22, 7]], [["version", 25, 7], ["rev", 26, 7], ["hash", 27, 7]], [["version", 30, 7], ["rev", 31, 7], ["hash", 32, 7]], [["version", 35, 7], ["rev", 36, 7], ["hash", 37, 7]], [["version", 40, 7], ["rev", 41, 7], ["hash", 42, 7]], [["22", 19, 5], ["21", 24, 5], ["20", 29, 5], ["19", 34, 5], ["18", 39, 5]], [["version", 48, 7], ["rev", 49, 7], ["hash", 50, 7]], [["owner", 58, 5], ["repo", 59, 5], ["rev", 60, 22], ["hash", 60, 26]], [["llvm", 110, 52]], [["tests", 109, 12]], [["homepage", 114, 5], ["description", 115, 5], ["mainProgram", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["maintainers", 119, 5], ["broken", 120, 5]], [["pname", 54, 3], ["version", 55, 20], ["src", 57, 3], ["patches", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 72, 3], ["nativeCheckInputs", 78, 3], ["cmakeFlags", 80, 3], ["doCheck", 94, 3], ["makeFlags", 96, 3], ["postInstall", 101, 3], ["passthru", 109, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, srcOnly: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, lit: false, llvm: false, "spirv-headers": false, "spirv-tools": false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 20, 7], ["rev", 21, 7], ["hash", 22, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 25, 7], ["rev", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 30, 7], ["rev", 31, 7], ["hash", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 35, 7], ["rev", 36, 7], ["hash", 37, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 40, 7], ["rev", 41, 7], ["hash", 42, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["22", 19, 5], ["21", 24, 5], ["20", 29, 5], ["19", 34, 5], ["18", 39, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 48, 7], ["rev", 49, 7], ["hash", 50, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 58, 5], ["repo", 59, 5], ["rev", 60, 22], ["hash", 60, 26]]);
-const pos$9 = nix.positions(here + "/package.nix", [["llvm", 110, 52]]);
-const pos$10 = nix.positions(here + "/package.nix", [["tests", 109, 12]]);
-const pos$11 = nix.positions(here + "/package.nix", [["homepage", 114, 5], ["description", 115, 5], ["mainProgram", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["maintainers", 119, 5], ["broken", 120, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 55, 20], ["src", 57, 3], ["patches", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 72, 3], ["nativeCheckInputs", 78, 3], ["cmakeFlags", 80, 3], ["doCheck", 94, 3], ["makeFlags", 96, 3], ["postInstall", 101, 3], ["passthru", 109, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,50 +20,50 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const llvmMajor = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(llvm, "version"))));
   const versions = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     "22": nix.thunk(() => (() => {
       const version = "22.1.3";
       const rev = nix.thunk(() => nix.str`v${version}`);
       const hash = "sha256-u/OytBH9LgAyGF9PX+5lmAbGPQ7iVv52w8mwQ+6fi/s=";
-      return { [nix.POS]: pos$1, version, rev, hash };
+      return { [nix.POS]: $pos[0], version, rev, hash };
     })()),
     "21": nix.thunk(() => (() => {
       const version = "21.1.0";
       const rev = nix.thunk(() => nix.str`v${version}`);
       const hash = "sha256-kk8BbPl/UBW1gaO/cuOQ9OsiNTEk0TkvRDLKUAh6exk=";
-      return { [nix.POS]: pos$2, version, rev, hash };
+      return { [nix.POS]: $pos[1], version, rev, hash };
     })()),
     "20": nix.thunk(() => (() => {
       const version = "20.1.5";
       const rev = nix.thunk(() => nix.str`v${version}`);
       const hash = "sha256-GdlC/Vl61nTNdua2s+CW2YOvkSKK6MNOvBc/393iths=";
-      return { [nix.POS]: pos$3, version, rev, hash };
+      return { [nix.POS]: $pos[2], version, rev, hash };
     })()),
     "19": nix.thunk(() => (() => {
       const version = "19.1.10";
       const rev = nix.thunk(() => nix.str`v${version}`);
       const hash = "sha256-VgA47AGMnOKYNeW95nxJZzmKnYK8D/9okgssPnPqXXI=";
-      return { [nix.POS]: pos$4, version, rev, hash };
+      return { [nix.POS]: $pos[3], version, rev, hash };
     })()),
     "18": nix.thunk(() => (() => {
       const version = "18.1.15";
       const rev = nix.thunk(() => nix.str`v${version}`);
       const hash = "sha256-rt3RTZut41uDEh0YmpOzH3sOezeEVWtAIGMKCHLSJBw=";
-      return { [nix.POS]: pos$5, version, rev, hash };
+      return { [nix.POS]: $pos[4], version, rev, hash };
     })()),
   }));
   const branch = nix.thunk(() => nix.selOr(versions, () => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: nix.thunk(() => nix.str`${llvmMajor}.x.x`),
       rev: "",
       hash: "",
     }), nix.key(nix.str`${llvmMajor}`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "SPIRV-LLVM-Translator",
       version: nix.thunk(() => nix.attr(branch, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           owner: "KhronosGroup",
           repo: "SPIRV-LLVM-Translator",
           rev: nix.thunk(() => nix.attr(branch, "rev")),
@@ -96,14 +85,14 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["all", "llvm-spirv"]),
       postInstall: nix.thunk(() => nix.add("install -D tools/llvm-spirv/llvm-spirv $out/bin/llvm-spirv\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool $out/bin/llvm-spirv \\\n  -change @rpath/libLLVMSPIRVLib.dylib $out/lib/libLLVMSPIRVLib.dylib\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), versions)), (version) => nix.app(nix.sel(pkgs, "spirv-llvm-translator", "override"), nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               llvm: nix.thunk(() => nix.sel(pkgs, nix.key(nix.str`llvm_${version}`))),
             }))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         homepage: "https://github.com/KhronosGroup/SPIRV-LLVM-Translator",
         description: "Tool and a library for bi-directional translation between SPIR-V and LLVM IR",
         mainProgram: "llvm-spirv",

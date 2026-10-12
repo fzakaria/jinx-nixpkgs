@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["updateScript", 53, 12]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["teams", 59, 5], ["platforms", 60, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["__structuredAttrs", 33, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["nativeCheckInputs", 49, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, cmake: false, libGL: false, libinput: false, libxkbcommon: false, "pkg-config": false, udev: false, wayland: false, libx11: false, libxcursor: false, libxrandr: false, libxi: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["teams", 59, 5], ["platforms", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["__structuredAttrs", 33, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["nativeCheckInputs", 49, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "stardust-xr-non-spatial-input",
       version: "0.51.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stardustxr",
           repo: "non-spatial-input",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,11 +50,11 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utilities that allow using non-spatial (e.g. keyboard and mouse) inputs in Stardust",
         homepage: "https://stardustxr.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

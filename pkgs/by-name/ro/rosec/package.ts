@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7]], [["pname", 29, 7], ["version", 30, 15], ["src", 30, 23], ["sourceRoot", 31, 7], ["buildInputs", 33, 7], ["makeFlags", 35, 7], ["installPhase", 40, 7]], [["pname", 48, 7], ["version", 49, 15], ["src", 49, 23], ["cargoHash", 51, 7], ["nativeBuildInputs", 53, 7], ["runtimeDependencies", 58, 7], ["buildInputs", 63, 7], ["preCheck", 67, 7], ["postInstall", 73, 7]], [["rosec", 102, 38]], [["extraArgs", 105, 9]], [["tests", 102, 7], ["rosecCore", 103, 15], ["src", 103, 25], ["version", 103, 29], ["updateScript", 104, 7]], [["description", 113, 7], ["homepage", 114, 7], ["license", 115, 7], ["maintainers", 116, 7], ["platforms", 117, 7], ["mainProgram", 118, 7]], [["pname", 89, 5], ["version", 90, 5], ["paths", 92, 5], ["__structuredAttrs", 98, 5], ["strictDeps", 99, 5], ["passthru", 101, 5], ["meta", 112, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, stdenv: false, autoPatchelfHook: false, symlinkJoin: false, pam: false, dbus: false, wayland: false, libxkbcommon: false, nixosTests: false, "nix-update-script": false, provider: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 7], ["repo", 23, 7], ["tag", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 7], ["version", 30, 15], ["src", 30, 23], ["sourceRoot", 31, 7], ["buildInputs", 33, 7], ["makeFlags", 35, 7], ["installPhase", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 48, 7], ["version", 49, 15], ["src", 49, 23], ["cargoHash", 51, 7], ["nativeBuildInputs", 53, 7], ["runtimeDependencies", 58, 7], ["buildInputs", 63, 7], ["preCheck", 67, 7], ["postInstall", 73, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["rosec", 102, 38]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 105, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 102, 7], ["rosecCore", 103, 15], ["src", 103, 25], ["version", 103, 29], ["updateScript", 104, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 113, 7], ["homepage", 114, 7], ["license", 115, 7], ["maintainers", 116, 7], ["platforms", 117, 7], ["mainProgram", 118, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 89, 5], ["version", 90, 5], ["paths", 92, 5], ["__structuredAttrs", 98, 5], ["strictDeps", 99, 5], ["passthru", 101, 5], ["meta", 112, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +23,14 @@ export default nix.lambda((args) => (() => {
   return nix.app(symlinkJoin, (finalAttrs) => (() => {
       const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jmylchreest",
           repo: "rosec",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-dlHOzUW/kH9SS/mPl+VvEetCzOY/L2qEpoYLJTCWR90=",
         }))));
       const rosecPam = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "pam_rosec",
           version: version,
           src: src,
@@ -50,7 +43,7 @@ export default nix.lambda((args) => (() => {
           installPhase: "runHook preInstall\ninstall -Dm755 pam_rosec.so \"$out/lib/security/pam_rosec.so\"\nrunHook postInstall\n",
         }))));
       const rosecCore = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "rosec-unwrapped",
           version: version,
           src: src,
@@ -65,22 +58,25 @@ export XDG_DATA_HOME=$TMPDIR/xdg-data
           postInstall: "mkdir -p $out/libexec/rosec\nmkdir -p $out/lib/rosec/providers\nmkdir -p $out/share/dbus-1/system.d\nmkdir -p $out/share/systemd/user\n\nmv $out/bin/rosec-pam-unlock $out/libexec/rosec/\n\n# `rosec enable` writes the D-Bus, systemd user unit and xdg portal\n# registrations to $XDG_CONFIG_HOME and $XDG_DATA_HOME, which are\n# redirected into the output here.\nXDG_CONFIG_HOME=$out/lib XDG_DATA_HOME=$out/share $out/bin/rosec enable\n",
         }))));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: "rosec",
         version: "0.0.34",
         paths: nix.thunk(() => nix.concat([rosecCore, rosecPam], provider)),
         __structuredAttrs: true,
         strictDeps: true,
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          tests: nix.thunk(() => ({ [nix.POS]: pos$4, rosec: nix.thunk(() => nix.attr(nixosTests, "rosec")) })),
+          [nix.POS]: $pos[5],
+          tests: nix.thunk(() => ({ [nix.POS]: $pos[3], rosec: nix.thunk(() => nix.attr(nixosTests, "rosec")) })),
           rosecCore: rosecCore,
           src: src,
           version: version,
-          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--subpackage", "rosecCore"]) })))),
+          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
+              [nix.POS]: $pos[4],
+              extraArgs: nix.thunk(() => ["--subpackage", "rosecCore"]),
+            })))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           description: "Secrets daemon implementing the freedesktop.org Secret Service API with modular backend providers",
           homepage: "https://github.com/jmylchreest/rosec",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

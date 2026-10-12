@@ -2,44 +2,38 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sources.nix", [[["url", 8, 7], ["hash", 9, 7]], [["version", 6, 5], ["src", 7, 5]], [["url", 15, 7], ["hash", 16, 7]], [["version", 13, 5], ["src", 14, 5]], [["url", 22, 7], ["hash", 23, 7]], [["version", 20, 5], ["src", 21, 5]], [["aarch64-darwin", 5, 3], ["aarch64-linux", 12, 3], ["x86_64-linux", 19, 3]]]);
 const formals$1 = { args: { fetchurl: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sources.nix", [["url", 8, 7], ["hash", 9, 7]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["version", 6, 5], ["src", 7, 5]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["url", 15, 7], ["hash", 16, 7]]);
-const pos$4 = nix.positions(here + "/sources.nix", [["version", 13, 5], ["src", 14, 5]]);
-const pos$5 = nix.positions(here + "/sources.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$6 = nix.positions(here + "/sources.nix", [["version", 20, 5], ["src", 21, 5]]);
-const pos$7 = nix.positions(here + "/sources.nix", [["aarch64-darwin", 5, 3], ["aarch64-linux", 12, 3], ["x86_64-linux", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchurl = nix.arg($, "fetchurl");
   const fetchzip = nix.arg($, "fetchzip");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "3.3.8",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://d32ifkf9k9ezcg.cloudfront.net/production/sparkle/tuple-3.3.8-2026-10-02-ea022a88e2.zip",
           hash: "sha256-rvdxEBUhtMmSav9jxI1SXXxq4VcNHimY0aVbm67um1w=",
         })))),
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "0-unstable-2026-09-16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://tuple-client-releases.s3.amazonaws.com/linux/v2026_09_16.1/arm64/tuple",
           hash: "sha256-ddQF1Ba+UEskxm4PK4AdRRFAjKMlSib56YSHRxcIUAg=",
         })))),
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "0-unstable-2026-09-16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: "https://tuple-client-releases.s3.amazonaws.com/linux/v2026_09_16.1/x86_64/tuple",
           hash: "sha256-pvPaOV6qD0NDEioEjeywrkfxyjb1fEaEd6cRtnPd5PM=",
         })))),

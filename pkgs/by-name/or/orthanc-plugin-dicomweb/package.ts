@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["url", 24, 5], ["hash", 25, 5]], [["url", 28, 5], ["hash", 29, 5]], [["url", 32, 5], ["hash", 33, 5]], [["url", 36, 5], ["hash", 37, 5]], [["url", 45, 5], ["rev", 46, 5], ["hash", 47, 5]], [["NIX_LDFLAGS", 81, 7]], [["description", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 98, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 68, 3], ["strictDeps", 79, 3], ["env", 81, 3], ["cmakeFlags", 86, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchhg: false, fetchurl: false, orthanc: false, cmake: false, python3: false, unzip: false, gtest: false, jsoncpp: false, boost: false, pugixml: false, libuuid: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 45, 5], ["rev", 46, 5], ["hash", 47, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 81, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 98, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 68, 3], ["strictDeps", 79, 3], ["env", 81, 3], ["cmakeFlags", 86, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,36 +22,36 @@ export default nix.lambda((args) => (() => {
   const libuuid = nix.arg($, "libuuid");
   const zlib = nix.arg($, "zlib");
   const bootstrap = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://orthanc.uclouvain.be/downloads/third-party-downloads/bootstrap-5.3.3.zip",
       hash: "sha256-VdfxznlQQK+4MR3wnSnQ00ZIQAweqrstCi7SIWs9sF0=",
     }))));
   const vuejs = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://orthanc.uclouvain.be/downloads/third-party-downloads/dicom-web/vuejs-2.6.10.tar.gz",
       hash: "sha256-49kAzZJmtb7Zu21XX8mrZ4fnnnrSHAHuEne/9UUxIfI=",
     }))));
   const axios = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://orthanc.uclouvain.be/downloads/third-party-downloads/dicom-web/axios-0.19.0.tar.gz",
       hash: "sha256-KVd8YIWwkLTkqZOS/N1YL7a7y0myqvLMe3+jh0Ups4A=",
     }))));
   const font_awesome = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: "https://orthanc.uclouvain.be/downloads/third-party-downloads/dicom-web/Font-Awesome-4.7.0.tar.gz",
       hash: "sha256-3lEroOHerTgrv843LN50s/GJcdh2//tjXukzPw2wXUM=",
     }))));
   const babel_polyfill = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       url: "https://orthanc.uclouvain.be/downloads/third-party-downloads/dicom-web/babel-polyfill-6.26.0.min.js.gz",
       hash: "sha256-CH09LWISr7QY9QSRhY9/BVy1Te+2NR1sXQCPZioqlcI=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "orthanc-plugin-dicomweb",
       version: "1.20",
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: "https://orthanc.uclouvain.be/hg/orthanc-dicomweb/",
           rev: nix.thunk(() => nix.str`OrthancDicomWeb-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-p1n4YAFC3W2B2YYsFm/1cJ/zqLsrycJgkMrcXFf/3Xk=",
@@ -87,7 +79,7 @@ substituteInPlace CMakeLists.txt \\
       ]),
       strictDeps: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), gtest)}`),
             "-lgtest",
@@ -99,7 +91,7 @@ substituteInPlace CMakeLists.txt \\
         nix.thunk(() => nix.str`-DORTHANC_FRAMEWORK_ROOT=${nix.sel(orthanc, "framework")}/include/orthanc-framework`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Plugin that extends Orthanc with support for the DICOMweb protocols",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {

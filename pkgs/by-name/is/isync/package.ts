@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 31, 7]], [["homepage", 65, 5], ["changelog", 66, 5], ["description", 67, 5], ["longDescription", 68, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5], ["mainProgram", 78, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["env", 31, 3], ["autoreconfPhase", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["doCheck", 52, 3], ["postInstall", 54, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, "pkg-config": false, perl: false, openssl: false, db: false, cyrus_sasl: false, zlib: false, autoreconfHook: false, withCyrusSaslXoauth2: true, "cyrus-sasl-xoauth2": false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["changelog", 66, 5], ["description", 67, 5], ["longDescription", 68, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5], ["mainProgram", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["env", 31, 3], ["autoreconfPhase", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["doCheck", 52, 3], ["postInstall", 54, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const cyrus_sasl_xoauth2 = nix.arg($, "cyrus-sasl-xoauth2");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "isync",
       version: "1.5.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.code.sf.net/p/isync/isync",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-l0jL4CzAdFtQGekbywic1Kuihy3ZQi4ozhSEcbJI0t0=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-DQPRINTF_BUFF=4000" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-DQPRINTF_BUFF=4000" })),
       autoreconfPhase: nix.thunk(() => nix.str`echo "${nix.sel(finalAttrs, "version")}" > VERSION
 ./autogen.sh
 `),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
     --prefix SASL_PATH : "${nix.app(nix.sel(lib, "makeSearchPath"), "lib/sasl2", nix.thunk(() => [cyrus_sasl_xoauth2, nix.thunk(() => nix.sel(cyrus_sasl, "out"))]))}"
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://isync.sourceforge.io",
         changelog: nix.thunk(() => nix.str`https://sourceforge.net/p/isync/isync/ci/v${nix.sel(finalAttrs, "version")}/tree/NEWS`),
         description: "Free IMAP and MailDir mailbox synchronizer",

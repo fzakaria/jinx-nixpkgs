@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["build", 58, 5], ["dev", 61, 5]], [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["pythonRemoveDeps", 29, 3], ["build-system", 34, 3], ["dependencies", 38, 3], ["optional-dependencies", 57, 3], ["pythonImportsCheck", 77, 3], ["postInstall", 81, 3], ["nativeInstallCheckInputs", 86, 3], ["doInstallCheck", 90, 3], ["postInstallCheck", 92, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["build", 58, 5], ["dev", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["pythonRemoveDeps", 29, 3], ["build-system", 34, 3], ["dependencies", 38, 3], ["optional-dependencies", 57, 3], ["pythonImportsCheck", 77, 3], ["postInstall", 81, 3], ["nativeInstallCheckInputs", 86, 3], ["doInstallCheck", 90, 3], ["postInstallCheck", 92, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "apm-cli",
       version: "0.33.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "apm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +58,7 @@ substituteInPlace src/apm_cli/runtime/manager.py \\
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           build: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "pyinstaller"))]),
           dev: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "hypothesis")),
@@ -95,7 +92,7 @@ for runtime_info in manager.supported_runtimes.values():
 PY
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Agent Package Manager",
         homepage: "https://github.com/microsoft/apm",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/apm/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

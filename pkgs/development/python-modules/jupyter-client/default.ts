@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 5], ["version", 22, 26], ["hash", 23, 5]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["teams", 47, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["pythonImportsCheck", 37, 3], ["doCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "jupyter-core": false, hatchling: false, "python-dateutil": false, pyzmq: false, tornado: false, traitlets: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 5], ["version", 22, 26], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["teams", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["pythonImportsCheck", 37, 3], ["doCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const traitlets = nix.arg($, "traitlets");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jupyter-client",
       version: "8.9.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "jupyter_client",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-pY9zDdnnKLoWuh1i68z3/+Hrvbzk6Vz66UG3Mhrh9Po=",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["jupyter_client"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Jupyter protocol implementation and client libraries",
         homepage: "https://github.com/jupyter/jupyter_client",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyter/jupyter_client/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

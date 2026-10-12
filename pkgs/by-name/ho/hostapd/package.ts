@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["url", 32, 7], ["sha256", 33, 7]], [["wpa_supplicant", 125, 26]], [["tests", 124, 12]], [["homepage", 131, 5], ["description", 132, 5], ["license", 133, 5], ["mainProgram", 134, 5], ["maintainers", 135, 5], ["platforms", 136, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["patches", 28, 3], ["outputs", 37, 3], ["strictDeps", 42, 3], ["enableParallelBuilding", 43, 3], ["extraConfig", 46, 3], ["configurePhase", 109, 3], ["preInstall", 118, 3], ["postInstall", 119, 3], ["passthru", 124, 3], ["__structuredAttrs", 128, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libnl: false, openssl: false, nixosTests: false, sqlite: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["sha256", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["wpa_supplicant", 125, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 124, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 131, 5], ["description", 132, 5], ["license", 133, 5], ["mainProgram", 134, 5], ["maintainers", 135, 5], ["platforms", 136, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["patches", 28, 3], ["outputs", 37, 3], ["strictDeps", 42, 3], ["enableParallelBuilding", 43, 3], ["extraConfig", 46, 3], ["configurePhase", 109, 3], ["preInstall", 118, 3], ["postInstall", 119, 3], ["passthru", 124, 3], ["__structuredAttrs", 128, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const sqlite = nix.argOr($, "sqlite", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "hostapd",
       version: "2.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://w1.fi/releases/hostapd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-9DUCVhwoukerd+GOGpc9BzYcaMyLFBeOYZvVeWtw6r0=",
         })))),
@@ -33,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libnl, openssl, sqlite]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://raw.githubusercontent.com/openwrt/openwrt/eefed841b05c3cd4c65a78b50ce0934d879e6acf/package/network/services/hostapd/patches/300-noscan.patch",
             sha256: "08p5frxhpq1rp2nczkscapwwl8g9nc4fazhjpxic5bcbssc3sb00",
           })))),
@@ -46,15 +41,15 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin",
       postInstall: "install -vD hostapd.8 -t $man/share/man/man8\ninstall -vD hostapd_cli.1 -t $man/share/man/man1\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           wpa_supplicant: nix.thunk(() => nix.attr(nixosTests, "wpa_supplicant")),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://w1.fi/hostapd/",
         description: "User space daemon for access point and authentication servers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

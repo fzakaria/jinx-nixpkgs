@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 51, 5], ["homepage", 52, 32], ["license", 52, 41], ["maintainers", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]], [["pname", 13, 3], ["version", 14, 25], ["src", 14, 33], ["patches", 16, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 20, 3], ["strictDeps", 22, 3], ["buildPhase", 24, 3], ["installPhase", 33, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, bash: false, "bluesky-pds": false, makeBinaryWrapper: false, jq: false, curl: false, openssl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 32], ["license", 52, 41], ["maintainers", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 25], ["src", 14, 33], ["patches", 16, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 20, 3], ["strictDeps", 22, 3], ["buildPhase", 24, 3], ["installPhase", 33, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "pdsadmin",
       version: nix.thunk(() => nix.attr(bluesky_pds, "version")),
       src: nix.thunk(() => nix.attr(bluesky_pds, "src")),
@@ -38,7 +37,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(bluesky_pds, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Admin scripts for Bluesky Personal Data Server (PDS)",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

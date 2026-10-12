@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["all", 52, 5], ["parquet", 56, 5], ["remote", 59, 5]], [["description", 96, 5], ["mainProgram", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["build-system", 30, 3], ["dependencies", 34, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 64, 3], ["pythonRelaxDeps", 70, 3], ["pythonImportsCheck", 83, 3], ["disabledTests", 87, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, fetchpatch: false, extras: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["all", 52, 5], ["parquet", 56, 5], ["remote", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 96, 5], ["mainProgram", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["build-system", 30, 3], ["dependencies", 34, 3], ["optional-dependencies", 51, 3], ["nativeCheckInputs", 64, 3], ["pythonRelaxDeps", 70, 3], ["pythonImportsCheck", 83, 3], ["disabledTests", 87, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const extras = nix.argOr($, "extras", () => ["all"]);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "browsr",
       version: "1.22.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "juftin",
           repo: "browsr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "textual-6-compat.patch",
             url: "https://github.com/juftin/browsr/commit/ab958ac982e14e836a0e44080a53c920ad50b256.patch",
             hash: "sha256-vAJ+M6Eg7N2NV7Cb2DWPYqLJIeq/DY1COECEQOnkpXE=",
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           all: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "pyarrow")),
             nix.thunk(() => nix.sel(nix.lookup(w_2, "textual-universal-directorytree"), "optional-dependencies", "remote")),
@@ -98,7 +94,7 @@ export default nix.lambda((args) => (() => {
         "test_mkdocs_screenshot",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "File explorer in your terminal",
         mainProgram: "browsr",
         homepage: "https://juftin.com/browsr",

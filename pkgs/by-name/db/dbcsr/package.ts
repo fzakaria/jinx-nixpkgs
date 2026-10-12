@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]], [["description", 109, 5], ["license", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["maintainers", 113, 5]], [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 48, 3], ["outputs", 69, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 83, 3], ["propagatedBuildInputs", 89, 3], ["cmakeFlags", 91, 3], ["nativeCheckInputs", 102, 3], ["doCheck", 106, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, fypp: false, gfortran: false, mpi: false, "pkg-config": false, python3: false, blas: false, lapack: false, libxsmm: false, mpiCheckPhaseHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 109, 5], ["license", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["maintainers", 113, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 48, 3], ["outputs", 69, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 83, 3], ["propagatedBuildInputs", 89, 3], ["cmakeFlags", 91, 3], ["nativeCheckInputs", 102, 3], ["doCheck", 106, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const libxsmm = nix.arg($, "libxsmm");
   const mpiCheckPhaseHook = nix.arg($, "mpiCheckPhaseHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dbcsr",
       version: "2.10.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cp2k",
           repo: "dbcsr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "expose-c-api-procedures.patch",
             url: "https://github.com/cp2k/dbcsr/commit/a5d9bcfcd487e3181b981687334da1b89bc61dce.patch",
             hash: "sha256-a4glOtMx1EUzYdoQb66bZaRnCgatVFWTqvcQlvU3oIc=",
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [mpiCheckPhaseHook]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Distributed Block Compressed Sparse Row matrix library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         homepage: "https://github.com/cp2k/dbcsr",

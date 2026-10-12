@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 22, 5], ["description", 23, 5], ["longDescription", 25, 5], ["license", 35, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["doCheck", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, enableSigbusFix: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 22, 5], ["description", 23, 5], ["longDescription", 25, 5], ["license", 35, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["doCheck", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const enableSigbusFix = nix.argOr($, "enableSigbusFix", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libsigsegv",
       version: "2.15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/libsigsegv/libsigsegv-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-A2hVZgIlyzgXoZD8AOZ2TOeDYFG6y0jTXiZES4wXKdk=",
         })))),
       patches: nix.thunk(() => (nix.asBool(enableSigbusFix) ? [nix.path(here, "./sigbus_fix.patch")] : null)),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.gnu.org/software/libsigsegv/",
         description: "Library to handle page faults in user mode",
         longDescription: "GNU libsigsegv is a library for handling page faults in user mode. A\npage fault occurs when a program tries to access to a region of memory\nthat is currently not available. Catching and handling a page fault is\na useful technique for implementing pageable virtual memory,\nmemory-mapped access to persistent databases, generational garbage\ncollectors, stack overflow handlers, distributed shared memory, and\nmore.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["homepage", 53, 5], ["description", 54, 5], ["mainProgram", 55, 5], ["maintainers", 56, 5], ["license", 60, 5]], [["pname", 15, 3], ["version", 16, 3], ["format", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["nativeCheckInputs", 27, 3], ["propagatedBuildInputs", 31, 3], ["postInstall", 38, 3], ["preCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { bashInteractive: false, buildPythonPackage: false, cryptography: false, diffstat: false, fetchFromGitHub: false, lib: false, rpm: false, urllib3: false, keyring: false, "ruamel-yaml": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 53, 5], ["description", 54, 5], ["mainProgram", 55, 5], ["maintainers", 56, 5], ["license", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["format", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["nativeCheckInputs", 27, 3], ["propagatedBuildInputs", 31, 3], ["postInstall", 38, 3], ["preCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.27.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openSUSE",
           repo: "osc",
           rev: version,
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "install -D -m444 contrib/osc.fish $out/etc/fish/completions/osc.fish\ninstall -D -m555 contrib/osc.complete $out/share/bash-completion/helpers/osc-helper\nmkdir -p $out/share/bash-completion/completions\ncat >>$out/share/bash-completion/completions/osc <<EOF\ntest -z \"\\$BASH_VERSION\" && return\ncomplete -o default _nullcommand >/dev/null 2>&1 || return\ncomplete -r _nullcommand >/dev/null 2>&1         || return\ncomplete -o default -C $out/share/bash-completion/helpers/osc-helper osc\nEOF\n";
       const preCheck = "HOME=$TOP/tmp";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/openSUSE/osc",
         description: "Opensuse-commander with svn like handling",
         mainProgram: "osc",
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

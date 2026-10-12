@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-opencl-cts.nix", [[["teams", 26, 5]], [["name", 9, 3], ["testedPackage", 10, 3], ["sandboxPaths", 12, 3], ["nativeBuildInputs", 18, 3], ["OCL_ICD_VENDORS", 19, 3], ["testScript", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, makeImpureTest: false, "opencl-cts": false, clr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-opencl-cts.nix", [["teams", 26, 5]]);
-const pos$2 = nix.positions(here + "/test-opencl-cts.nix", [["name", 9, 3], ["testedPackage", 10, 3], ["sandboxPaths", 12, 3], ["nativeBuildInputs", 18, 3], ["OCL_ICD_VENDORS", 19, 3], ["testScript", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const opencl_cts = nix.arg($, "opencl-cts");
   const clr = nix.arg($, "clr");
   return nix.app(makeImpureTest, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "opencl-cts",
       testedPackage: "rocmPackages.clr",
       sandboxPaths: nix.thunk(() => ["/sys", "/dev/dri", "/dev/kfd"]),
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       OCL_ICD_VENDORS: nix.thunk(() => nix.str`${nix.sel(clr, "icd")}/etc/OpenCL/vendors`),
       testScript: "test_basic arraycopy arrayreadwrite astype barrier vector_swizzle work_item_functions\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "rocm"))]),
       })),
     })));

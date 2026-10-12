@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 75, 5]], [["pyproject", 9, 3], ["pname", 10, 3], ["src", 12, 24], ["version", 12, 28], ["sourceRoot", 13, 3], ["postPatch", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 24, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["preBuild", 44, 3], ["preCheck", 50, 3], ["postInstall", 54, 3], ["dontWrapQtApps", 58, 3], ["makeWrapperArgs", 59, 3], ["doCheck", 62, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { python3Packages: false, qt6: false, lib: false, opensnitch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 75, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pyproject", 9, 3], ["pname", 10, 3], ["src", 12, 24], ["version", 12, 28], ["sourceRoot", 13, 3], ["postPatch", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 24, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["preBuild", 44, 3], ["preCheck", 50, 3], ["postInstall", 54, 3], ["dontWrapQtApps", 58, 3], ["makeWrapperArgs", 59, 3], ["doCheck", 62, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const opensnitch = nix.arg($, "opensnitch");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pyproject: true,
       pname: "opensnitch-ui",
       src: nix.thunk(() => nix.attr(opensnitch, "src")),
@@ -51,7 +50,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["opensnitch"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Application firewall",
         mainProgram: "opensnitch-ui",
         homepage: "https://github.com/evilsocket/opensnitch/wiki",

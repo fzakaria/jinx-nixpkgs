@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["deps", 28, 3], ["nativeBuildInputs", 40, 3], ["installPhase", 45, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeWrapper: false, installShellFiles: false, coreutils: false, gnused: false, gnugrep: false, sqlite: false, wget: false, w3m: false, socat: false, gawk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["deps", 28, 3], ["nativeBuildInputs", 40, 3], ["installPhase", 45, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dasht";
       const version = "2.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sunaku",
           repo: "dasht",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +58,7 @@ done;
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Search API docs offline, in terminal or browser",
         homepage: "https://sunaku.github.io/dasht/man",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -71,7 +69,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

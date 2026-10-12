@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["updateScript", 101, 12]], [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["mainProgram", 109, 5], ["platforms", 110, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["src", 21, 3], ["nodejs", 28, 3], ["npmDepsHash", 30, 3], ["npmRebuildFlags", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["dontNpmBuild", 47, 3], ["buildPhase", 49, 3], ["installPhase", 61, 3], ["passthru", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, buildNpmPackage: false, fetchFromGitHub: false, lib: false, libuv: false, makeWrapper: false, "nix-update-script": false, nodejs_22: false, python3: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 101, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["mainProgram", 109, 5], ["platforms", 110, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["strictDeps", 19, 3], ["src", 21, 3], ["nodejs", 28, 3], ["npmDepsHash", 30, 3], ["npmRebuildFlags", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["dontNpmBuild", 47, 3], ["buildPhase", 49, 3], ["installPhase", 61, 3], ["passthru", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "paseo",
       version: "0.11.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "getpaseo",
           repo: "paseo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,11 +85,11 @@ makeWrapper ${nix.sel(finalAttrs, "nodejs")}/bin/node $out/bin/paseo \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Orchestrate multiple coding agents from desktop and mobile",
         homepage: "https://github.com/getpaseo/paseo",
         changelog: nix.thunk(() => nix.str`https://github.com/getpaseo/paseo/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

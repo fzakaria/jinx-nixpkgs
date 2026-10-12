@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["cpeParts", 56, 17]], [["homepage", 51, 5], ["description", 52, 5], ["platforms", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["identifiers", 56, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["buildInputs", 28, 3], ["nativeBuildInputs", 40, 3], ["configureFlags", 46, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, flex: false, bison: false, "pkg-config": false, libmnl: false, libnfnetlink: false, libnetfilter_conntrack: false, libnetfilter_queue: false, libnetfilter_cttimeout: false, libnetfilter_cthelper: false, libtirpc: false, systemdSupport: true, systemdLibs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cpeParts", 56, 17]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["platforms", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["identifiers", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["buildInputs", 28, 3], ["nativeBuildInputs", 40, 3], ["configureFlags", 46, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const systemdSupport = nix.argOr($, "systemdSupport", () => true);
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "conntrack-tools",
       version: "1.4.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.netfilter.org/projects/conntrack-tools/files/conntrack-tools-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-wVr+SIqNQIydbWHpfb0Z88WRlC9iwT32RTqWHKQjHK4=",
         })))),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), systemdSupport, "systemd")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://conntrack-tools.netfilter.org/",
         description: "Connection tracking userspace tools",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fpletz"))];
         })()),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "netfilter", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

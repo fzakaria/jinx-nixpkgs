@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["version", 27, 26], ["package", 28, 5], ["command", 29, 5]], [["version", 26, 18]], [["tests", 26, 12]], [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["extraNativeImageBuildArgs", 17, 3], ["passthru", 26, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildGraalvmNativeImage: false, fetchurl: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 27, 26], ["package", 28, 5], ["command", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 26, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 26, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["extraNativeImageBuildArgs", 17, 3], ["passthru", 26, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const testers = nix.arg($, "testers");
   return nix.app(buildGraalvmNativeImage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "zprint",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/kkinnear/zprint/releases/download/${nix.sel(finalAttrs, "version")}/zprint-filter-${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-0ogZkC8j+ja0aWvFgNhygof4GZ78aqQA75lRxYfu6do=",
         })))),
@@ -34,11 +29,11 @@ export default nix.lambda((args) => (() => {
         "--no-fallback",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "zprint --version",
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Clojure/EDN source code formatter and pretty printer",
         longDescription: "Library and command line tool providing a variety of pretty printing capabilities\nfor both Clojure code and Clojure/EDN structures. It can meet almost anyone's needs.\nAs such, it supports a number of major source code formatting approaches\n",
         homepage: "https://github.com/kkinnear/zprint",

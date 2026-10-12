@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 30, 5], ["hash", 31, 5]], [["updateScript", 147, 12]], [["description", 150, 5], ["longDescription", 151, 5], ["homepage", 157, 5], ["downloadPage", 158, 5], ["changelog", 159, 5], ["license", 160, 5], ["platforms", 161, 5], ["maintainers", 162, 5], ["mainProgram", 167, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["dependencies", 44, 3], ["pythonRelaxDeps", 83, 3], ["pythonRemoveDeps", 88, 3], ["checkInputs", 92, 3], ["disabledTestPaths", 95, 3], ["postPatch", 99, 3], ["postInstall", 110, 3], ["postFixup", 116, 3], ["preFixup", 120, 3], ["nativeCheckInputs", 127, 3], ["enabledTestPaths", 137, 3], ["preCheck", 139, 3], ["postCheck", 143, 3], ["passthru", 147, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, python3: false, zbar: false, enableQt: true, qt5: false, enablePythonEcdsa: true, callPackage: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 147, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 150, 5], ["longDescription", 151, 5], ["homepage", 157, 5], ["downloadPage", 158, 5], ["changelog", 159, 5], ["license", 160, 5], ["platforms", 161, 5], ["maintainers", 162, 5], ["mainProgram", 167, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["dependencies", 44, 3], ["pythonRelaxDeps", 83, 3], ["pythonRemoveDeps", 88, 3], ["checkInputs", 92, 3], ["disabledTestPaths", 95, 3], ["postPatch", 99, 3], ["postInstall", 110, 3], ["postFixup", 116, 3], ["preFixup", 120, 3], ["nativeCheckInputs", 127, 3], ["enabledTestPaths", 137, 3], ["preCheck", 139, 3], ["postCheck", 143, 3], ["passthru", 147, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const libzbar_name = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "libzbar.so.0" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "libzbar.0.dylib" : nix.str`libzbar${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`)));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "electrum",
       version: "4.8.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.electrum.org/${nix.sel(finalAttrs, "version")}/Electrum-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-84zuMzyGaYbN+zBEKPp0h6/8Qpw4U/yA6YIr1CC7wik=",
         })))),
@@ -95,11 +92,11 @@ export default nix.lambda((args) => (() => {
 `),
       postCheck: "$out/bin/electrum help >/dev/null\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight Bitcoin wallet",
         longDescription: "An easy-to-use Bitcoin client featuring wallets generated from\nmnemonic seeds (in addition to other, more advanced, wallet options)\nand the ability to perform transactions without downloading a copy\nof the blockchain.\n",
         homepage: "https://electrum.org/",

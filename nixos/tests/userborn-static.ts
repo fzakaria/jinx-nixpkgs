@@ -2,57 +2,41 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/userborn-static.nix", [[["enable", 8, 7], ["static", 9, 7]], [["userborn", 7, 14]], [["enable", 11, 25]], [["systemd", 11, 17]], [["initrd", 11, 10]], [["useNetworkd", 12, 16]], [["enable", 14, 7], ["mutable", 15, 7]], [["overlay", 13, 16]], [["etc", 13, 12]], [["services", 7, 5], ["boot", 11, 5], ["networking", 12, 5], ["system", 13, 5]], [["maintainers", 24, 8]], [["uid", 35, 9], ["isSystemUser", 36, 9], ["group", 37, 9], ["home", 38, 9], ["initialHashedPassword", 39, 9]], [["sysuser", 34, 19]], [["users", 34, 13]], [["imports", 32, 7], ["users", 34, 7]], [["machine", 29, 9]], [["name", 22, 3], ["meta", 24, 3], ["nodes", 29, 3], ["testScript", 43, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/userborn-static.nix", [["enable", 8, 7], ["static", 9, 7]]);
-const pos$2 = nix.positions(here + "/userborn-static.nix", [["userborn", 7, 14]]);
-const pos$3 = nix.positions(here + "/userborn-static.nix", [["enable", 11, 25]]);
-const pos$4 = nix.positions(here + "/userborn-static.nix", [["systemd", 11, 17]]);
-const pos$5 = nix.positions(here + "/userborn-static.nix", [["initrd", 11, 10]]);
-const pos$6 = nix.positions(here + "/userborn-static.nix", [["useNetworkd", 12, 16]]);
-const pos$7 = nix.positions(here + "/userborn-static.nix", [["enable", 14, 7], ["mutable", 15, 7]]);
-const pos$8 = nix.positions(here + "/userborn-static.nix", [["overlay", 13, 16]]);
-const pos$9 = nix.positions(here + "/userborn-static.nix", [["etc", 13, 12]]);
-const pos$10 = nix.positions(here + "/userborn-static.nix", [["services", 7, 5], ["boot", 11, 5], ["networking", 12, 5], ["system", 13, 5]]);
-const pos$11 = nix.positions(here + "/userborn-static.nix", [["maintainers", 24, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$12 = nix.positions(here + "/userborn-static.nix", [["uid", 35, 9], ["isSystemUser", 36, 9], ["group", 37, 9], ["home", 38, 9], ["initialHashedPassword", 39, 9]]);
-const pos$13 = nix.positions(here + "/userborn-static.nix", [["sysuser", 34, 19]]);
-const pos$14 = nix.positions(here + "/userborn-static.nix", [["users", 34, 13]]);
-const pos$15 = nix.positions(here + "/userborn-static.nix", [["imports", 32, 7], ["users", 34, 7]]);
-const pos$16 = nix.positions(here + "/userborn-static.nix", [["machine", 29, 9]]);
-const pos$17 = nix.positions(here + "/userborn-static.nix", [["name", 22, 3], ["meta", 24, 3], ["nodes", 29, 3], ["testScript", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const sysuserPassword = "$y$j9T$3aiOV/8CADAK22OK2QT3/0$67OKd50Z4qTaZ8c/eRWHLIM.o3ujtC1.n9ysmJfv639";
   const common = nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      userborn: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, static: true })),
+      [nix.POS]: $pos[1],
+      userborn: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true, static: true })),
     })),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       initrd: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        systemd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+        [nix.POS]: $pos[3],
+        systemd: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
       })),
     })),
-    networking: nix.thunk(() => ({ [nix.POS]: pos$6, useNetworkd: true })),
+    networking: nix.thunk(() => ({ [nix.POS]: $pos[5], useNetworkd: true })),
     system: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       etc: nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        overlay: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true, mutable: false })),
+        [nix.POS]: $pos[7],
+        overlay: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true, mutable: false })),
       })),
     })),
   }));
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "userborn-static",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -62,18 +46,18 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           imports: nix.thunk(() => [common]),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               sysuser: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 uid: 1337n,
                 isSystemUser: true,
                 group: "wheel",

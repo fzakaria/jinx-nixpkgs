@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["PKG_CONFIG_ZATHURA_PLUGINDIR", 45, 7]], [["updateScript", 47, 12]], [["homepage", 50, 5], ["description", 51, 5], ["longDescription", 52, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 39, 3], ["env", 45, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, zathura_core: false, girara: false, gettext: false, libarchive: false, "desktop-file-utils": false, appstream: false, "appstream-glib": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PKG_CONFIG_ZATHURA_PLUGINDIR", 45, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 47, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 50, 5], ["description", 51, 5], ["longDescription", 52, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 39, 3], ["env", 45, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const appstream_glib = nix.arg($, "appstream-glib");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "zathura-cb",
       version: "2026.05.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pwmt",
           repo: "zathura-cb",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,13 +42,13 @@ export default nix.lambda((args) => (() => {
         appstream_glib,
       ]),
       buildInputs: nix.thunk(() => [libarchive, zathura_core, girara]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PKG_CONFIG_ZATHURA_PLUGINDIR: "lib/zathura" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PKG_CONFIG_ZATHURA_PLUGINDIR: "lib/zathura" })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://pwmt.org/projects/zathura-cb/",
         description: "Zathura CB plugin",
         longDescription: "The zathura-cb plugin adds comic book support to zathura.\n",

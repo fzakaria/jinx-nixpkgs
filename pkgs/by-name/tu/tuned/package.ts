@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["nixos", 145, 7]], [["tests", 144, 5], ["updateScript", 147, 5]], [["description", 151, 5], ["homepage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5], ["mainProgram", 156, 5], ["platforms", 157, 5]], [["pname", 27, 3], ["version", 28, 3], ["outputs", 30, 3], ["src", 36, 3], ["patches", 43, 3], ["postPatch", 48, 3], ["strictDeps", 71, 3], ["nativeBuildInputs", 73, 3], ["propagatedBuildInputs", 82, 3], ["makeFlags", 90, 3], ["installTargets", 100, 3], ["dontWrapGApps", 105, 3], ["makeWrapperArgs", 106, 3], ["doCheck", 124, 3], ["checkTarget", 125, 3], ["doInstallCheck", 127, 3], ["nativeInstallCheckInputs", 128, 3], ["pythonImportsCheck", 133, 3], ["postInstall", 135, 3], ["postFixup", 139, 3], ["passthru", 143, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, asciidoctor: false, "desktop-file-utils": false, dmidecode: false, ethtool: false, fetchFromGitHub: false, gawk: false, "gobject-introspection": false, hdparm: false, iproute2: false, kmod: false, "nix-update-script": false, nixosTests: false, "pkg-config": false, powertop: false, python3Packages: false, "util-linux": false, versionCheckHook: false, "virt-what": false, wirelesstools: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nixos", 145, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 144, 5], ["updateScript", 147, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 151, 5], ["homepage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5], ["mainProgram", 156, 5], ["platforms", 157, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["outputs", 30, 3], ["src", 36, 3], ["patches", 43, 3], ["postPatch", 48, 3], ["strictDeps", 71, 3], ["nativeBuildInputs", 73, 3], ["propagatedBuildInputs", 82, 3], ["makeFlags", 90, 3], ["installTargets", 100, 3], ["dontWrapGApps", 105, 3], ["makeWrapperArgs", 106, 3], ["doCheck", 124, 3], ["checkTarget", 125, 3], ["doInstallCheck", 127, 3], ["nativeInstallCheckInputs", 128, 3], ["pythonImportsCheck", 133, 3], ["postInstall", 135, 3], ["postFixup", 139, 3], ["passthru", 143, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const wirelesstools = nix.arg($, "wirelesstools");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tuned",
       version: "2.28.0",
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "redhat-performance",
           repo: "tuned",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -124,12 +120,12 @@ substituteInPlace tests/unit/test_functions.py \\
       postInstall: "rm -rf $out/{run,var}\n",
       postFixup: "wrapPythonPrograms\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "tuned")) })))),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: $pos[1], nixos: nix.thunk(() => nix.sel(nixosTests, "tuned")) })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tuning Profile Delivery Mechanism for Linux",
         homepage: "https://tuned-project.org",
         changelog: nix.thunk(() => nix.str`https://github.com/redhat-performance/tuned/releases/tag/v${nix.sel(finalAttrs, "version")}`),

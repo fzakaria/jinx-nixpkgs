@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["package", 120, 7], ["command", 121, 7]], [["version", 119, 11]], [["tests", 119, 5], ["updateScript", 123, 5]], [["description", 127, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["mainProgram", 131, 5], ["maintainers", 132, 5], ["platforms", 136, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["configureFlags", 39, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 53, 3], ["preFixup", 64, 3], ["postInstall", 68, 3], ["passthru", 118, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "autoconf-archive": false, autoreconfHook: false, "gobject-introspection": false, makeWrapper: false, "pkg-config": false, wrapGAppsHook3: false, systemdSupport: true, systemd: false, dbusSupport: true, dbus: false, pcsclite: false, wget: false, coreutils: false, perlPackages: false, testers: false, "nix-update-script": false, withGui: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 120, 7], ["command", 121, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 119, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 119, 5], ["updateScript", 123, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 127, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["mainProgram", 131, 5], ["maintainers", 132, 5], ["platforms", 136, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["configureFlags", 39, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 53, 3], ["preFixup", 64, 3], ["postInstall", 68, 3], ["passthru", 118, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const withGui = nix.argOr($, "withGui", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   nix.assert_((!nix.asBool(systemdSupport) || nix.asBool(dbusSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pc/pcsc-tools/package.nix:26:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pcsc-tools",
       version: "1.7.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LudovicRousseau",
           repo: "pcsc-tools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -90,11 +85,11 @@ wrapProgram $out/bin/pcsc_scan \\
 install -Dm444 -t $out/share/pcsc smartcard_list.txt
 `)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "pcsc_scan -V",
             })))),
@@ -102,7 +97,7 @@ install -Dm444 -t $out/share/pcsc smartcard_list.txt
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tools used to test a PC/SC driver, card or reader",
         homepage: "https://pcsc-tools.apdu.fr/",
         changelog: nix.thunk(() => nix.str`https://github.com/LudovicRousseau/pcsc-tools/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["LC_ALL", 18, 7]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["env", 18, 3], ["buildInputs", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchurl: false, glibcLocales: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["LC_ALL", 18, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["env", 18, 3], ["buildInputs", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,19 +16,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.7.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://releases.pagure.org/${pname}/${pname}-${version}.tar.xz`),
           sha256: "19vnlzma8b0aghdiixk0q3wc10y6306hsnic0qvswaaiki94fss1",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.utf-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], LC_ALL: "en_US.utf-8" }));
       const buildInputs = nix.thunk(() => [glibcLocales]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight way of building RPMs, and sabotaging them",
         homepage: "https://pagure.io/rpmfluff",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
-      return { [nix.POS]: pos$4, pname, version, format, src, env, buildInputs, meta };
+      return { [nix.POS]: $pos[3], pname, version, format, src, env, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

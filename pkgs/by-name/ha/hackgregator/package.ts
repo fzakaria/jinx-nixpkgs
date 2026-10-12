@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["doCheck", 41, 3], ["postInstall", 43, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitLab: false, "pkg-config": false, wrapGAppsHook4: false, libadwaita: false, openssl: false, webkitgtk_6_0: false, sqlite: false, "glib-networking": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["doCheck", 41, 3], ["postInstall", 43, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const glib_networking = nix.arg($, "glib-networking");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hackgregator",
       version: "0.5.0-unstable-2023-12-05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gunibert",
           repo: "hackgregator",
           rev: "594bdcdc3919c7216d611ddbbc77ab4d0c1f4f2b",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "rm $out/bin/xtask\nmkdir -p $out/share\npushd hackgregator/data\n  cp -r icons $out/share/icons\n  install -Dm644 de.gunibert.Hackgregator.desktop -t $out/share/applications\n  install -Dm644 de.gunibert.Hackgregator.appdata.xml -t $out/share/appdata\npopd\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Comfortable GTK reader application for news.ycombinator.com",
         homepage: "https://gitlab.com/gunibert/hackgregator",
         license: nix.thunk(() => (() => {

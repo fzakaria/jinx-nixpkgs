@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["updateScript", 30, 12]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["maintainers", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["extraInstallCommands", 20, 3], ["passthru", 30, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false, makeWrapper: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 30, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["maintainers", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["extraInstallCommands", 20, 3], ["passthru", 30, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(appimageTools, "wrapType2"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "remnote",
       version: "1.28.37",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download2.remnote.io/remnote-desktop2/RemNote-${nix.sel(finalAttrs, "version")}.AppImage`),
           hash: "sha256-K972+NFq5qmgeu8+kF5v1TOrP+wg+zHjgnmlveiJyyk=",
         })))),
@@ -34,11 +31,11 @@ wrapProgram $out/bin/remnote \\
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform=wayland --enable-wayland-ime=true --wayland-text-input-version=3}}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl coreutils gnused common-updater-scripts\nset -eu -o pipefail\nurl=\"$(curl -ILs -w %{url_effective} -o /dev/null https://backend.remnote.com/desktop/linux)\"\nversion=\"$(echo $url | sed -n 's/.*RemNote-\\([0-9]\\+\\.[0-9]\\+\\.[0-9]\\+\\).*/\\1/p')\"\ncurrentVersion=$(nix-instantiate --eval -E \"with import ./. {}; remnote.version or (lib.getVersion remnote)\" | tr -d '\"')\nif [[ \"$version\" != \"$currentVersion\" ]]; then\n  hash=$(nix-hash --to-sri --type sha256 \"$(nix-prefetch-url \"$url\")\")\n  update-source-version remnote \"$version\" \"$hash\" --print-changes\nfi\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Note-taking application focused on learning and productivity",
         homepage: "https://remnote.com/",
         changelog: "https://feedback.remnote.com/changelog",

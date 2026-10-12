@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hash", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5]], [["fetchgit", 35, 26], ["fetchurl", 35, 35], ["fetchFromGitHub", 35, 44]], [["src", 48, 21]], [["src", 44, 17], ["overrideSrc", 45, 9]], [["fetch", 30, 5], ["updateScript", 52, 5]], [["homepage", 73, 5], ["description", 74, 5], ["maintainers", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 24, 3], ["passthru", 26, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, fetchFromGitHub: false, python3Packages: false, "nix-prefetch-scripts": false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hash", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fetchgit", 35, 26], ["fetchurl", 35, 35], ["fetchFromGitHub", 35, 44]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 48, 21]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 44, 17], ["overrideSrc", 45, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["fetch", 30, 5], ["updateScript", 52, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 73, 5], ["description", 74, 5], ["maintainers", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 24, 3], ["passthru", 26, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256-+49Yb+rZ3CzFnwEpwj5xrcMUVBiYOJtCk9YeZ15IM/U=",
           owner: "timbertson",
           repo: "nix-update-source",
@@ -33,10 +27,10 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [nix_prefetch_scripts]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         fetch: (path) => (() => {
           const fetchers = nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             fetchgit: nix.thunk(() => nix.attr(pkgs, "fetchgit")),
             fetchurl: nix.thunk(() => nix.attr(pkgs, "fetchurl")),
             fetchFromGitHub: nix.thunk(() => nix.attr(pkgs, "fetchFromGitHub")),
@@ -45,9 +39,9 @@ export default nix.lambda((args) => (() => {
           const fetchFn = nix.thunk(() => nix.builtins.getAttr(nix.thunk(() => nix.sel(json, "fetch", "fn")), fetchers));
           const src_1 = nix.thunk(() => nix.app(fetchFn, nix.thunk(() => nix.sel(json, "fetch", "args"))));
           return nix.update(json, nix.update(nix.sel(json, "fetch"), {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             src: src_1,
-            overrideSrc: (drv) => nix.app(nix.sel(lib, "overrideDerivation"), drv, (orig) => ({ [nix.POS]: pos$3, src: src_1 })),
+            overrideSrc: (drv) => nix.app(nix.sel(lib, "overrideDerivation"), drv, (orig) => ({ [nix.POS]: $pos[2], src: src_1 })),
           }));
         })(),
         updateScript: nix.thunk(() => [
@@ -69,7 +63,7 @@ ${nix.sel(pkgs, "nix-update-source")}/bin/nix-update-source \\
         ]),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/timbertson/nix-update-source",
         description: "Utility to automate updating of nix derivation sources",
         maintainers: nix.thunk(() => (() => {
@@ -80,7 +74,7 @@ ${nix.sel(pkgs, "nix-update-source")}/bin/nix-update-source \\
         mainProgram: "nix-update-source",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         format,

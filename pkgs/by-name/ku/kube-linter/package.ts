@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["package", 44, 5], ["command", 45, 5]], [["version", 43, 18]], [["tests", 43, 12]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 58, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["excludedPackages", 24, 3], ["ldflags", 26, 3], ["nativeBuildInputs", 32, 3], ["checkFlags", 34, 3], ["postInstall", 36, 3], ["passthru", 43, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, testers: false, "kube-linter": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 44, 5], ["command", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 43, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 43, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["excludedPackages", 24, 3], ["ldflags", 26, 3], ["nativeBuildInputs", 32, 3], ["checkFlags", 34, 3], ["postInstall", 36, 3], ["passthru", 43, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const kube_linter = nix.arg($, "kube-linter");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kube-linter",
       version: "0.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stackrox",
           repo: "kube-linter",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,14 +36,14 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["-skip=TestCreateContextsWithIgnorePaths"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd kube-linter \\\n  --bash <($out/bin/kube-linter completion bash) \\\n  --fish <($out/bin/kube-linter completion fish) \\\n  --zsh <($out/bin/kube-linter completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: kube_linter, command: "kube-linter version" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: kube_linter, command: "kube-linter version" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Static analysis tool that checks Kubernetes YAML files and Helm charts",
         homepage: "https://kubelinter.io",
         changelog: nix.thunk(() => nix.str`https://github.com/stackrox/kube-linter/releases/tag/v${nix.sel(finalAttrs, "version")}`),

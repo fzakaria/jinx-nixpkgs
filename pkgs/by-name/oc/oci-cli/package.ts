@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 19, 13], ["version", 20, 21], ["sha256", 21, 13]], [["tag", 24, 13]], [["version", 16, 9], ["src", 17, 9], ["doCheck", 26, 9]], [["jmespath", 15, 7]], [["self", 13, 5], ["packageOverrides", 14, 5]], [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["updateScript", 113, 12]], [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["mainProgram", 123, 5], ["maintainers", 124, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["build-system", 46, 3], ["dependencies", 50, 3], ["pythonRelaxDeps", 68, 3], ["postFixup", 83, 3], ["postInstall", 87, 3], ["doCheck", 105, 3], ["pythonImportsCheck", 107, 3], ["nativeInstallCheckInputs", 111, 3], ["passthru", 113, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchPypi: false, python3: false, installShellFiles: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 19, 13], ["version", 20, 21], ["sha256", 21, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tag", 24, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 16, 9], ["src", 17, 9], ["doCheck", 26, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["jmespath", 15, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["self", 13, 5], ["packageOverrides", 14, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 113, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["mainProgram", 123, 5], ["maintainers", 124, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["build-system", 46, 3], ["dependencies", 50, 3], ["pythonRelaxDeps", 68, 3], ["postFixup", 83, 3], ["postInstall", 87, 3], ["doCheck", 105, 3], ["pythonImportsCheck", 107, 3], ["nativeInstallCheckInputs", 111, 3], ["passthru", 113, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,30 +15,30 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       self: py,
       packageOverrides: (self) => (super$) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         jmespath: nix.thunk(() => nix.app(nix.sel(super$, "jmespath", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "0.10.0";
             const src = nix.thunk(() => nix.update(nix.app(fetchPypi, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 pname: "jmespath",
                 version: version,
                 sha256: "b85d0567b8666149a93172712e68920734333c0ce7e89b78b3e987f71e5ed4f9",
-              }))), { [nix.POS]: pos$2, tag: version }));
+              }))), { [nix.POS]: $pos[1], tag: version }));
             const doCheck = false;
-            return { [nix.POS]: pos$3, version, src, doCheck };
+            return { [nix.POS]: $pos[2], version, src, doCheck };
           })())),
       }),
     }))));
   return nix.app(nix.sel(py, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "oci-cli",
       version: "3.94.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           owner: "oracle",
           repo: "oci-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,11 +87,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["oci_cli"]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Command Line Interface for Oracle Cloud Infrastructure",
         homepage: "https://docs.cloud.oracle.com/iaas/Content/API/Concepts/cliconcepts.htm",
         changelog: nix.thunk(() => nix.str`https://github.com/oracle/oci-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

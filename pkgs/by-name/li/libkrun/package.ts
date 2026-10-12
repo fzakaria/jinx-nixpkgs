@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["variant", 34, 46]], [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["src", 53, 26], ["hash", 54, 5]], [["RUSTFLAGS", 58, 7], ["OPENSSL_NO_VENDOR", 113, 7]], [["attrPath", 116, 5]], [["updateScript", 115, 12]], [["description", 120, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["platforms", 128, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["outputs", 47, 3], ["cargoDeps", 52, 3], ["env", 58, 3], ["nativeBuildInputs", 66, 3], ["patches", 74, 3], ["buildInputs", 81, 3], ["makeFlags", 95, 3], ["postInstall", 107, 3], ["passthru", 115, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, cargo: false, "pkg-config": false, glibc: false, openssl: false, libcap_ng: false, libepoxy: false, libdrm: false, pipewire: false, virglrenderer: false, libkrunfw: false, "nix-update-script": false, rustc: false, withBlk: true, withNet: true, withGpu: true, withSound: true, withInput: true, withTimesync: true, variant: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["variant", 34, 46]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 53, 26], ["hash", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 58, 7], ["OPENSSL_NO_VENDOR", 113, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["attrPath", 116, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 115, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 120, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["platforms", 128, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["outputs", 47, 3], ["cargoDeps", 52, 3], ["env", 58, 3], ["nativeBuildInputs", 66, 3], ["patches", 74, 3], ["buildInputs", 81, 3], ["makeFlags", 95, 3], ["postInstall", 107, 3], ["passthru", 115, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const withTimesync = nix.argOr($, "withTimesync", () => false);
   const variant = nix.argOr($, "variant", () => null);
   nix.assert_(nix.app(nix.sel(lib, "elem"), variant, nix.thunk(() => [null, "sev", "tdx"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libkrun/package.nix:27:1");
-  const libkrunfw$ = nix.thunk(() => nix.app(nix.sel(libkrunfw, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, variant: variant }))));
+  const libkrunfw$ = nix.thunk(() => nix.app(nix.sel(libkrunfw, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], variant: variant }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: nix.thunk(() => nix.add("libkrun", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(variant, null)), nix.thunk(() => nix.str`-${variant}`)))),
       version: "1.19.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "libkrun",
           repo: "libkrun",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,12 +45,12 @@ export default nix.lambda((args) => (() => {
         })))),
       outputs: nix.thunk(() => ["out", "dev"]),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-lLdeTZbDQEp+e2urEmsVOzQG0KTNicv/31DFhYeFxFo=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         RUSTFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.builtins.map((flag) => nix.add("-C link-arg=", flag), nix.thunk(() => [
               "-Wl,--push-state,--no-as-needed",
               nix.thunk(() => nix.add("-lkrunfw", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(variant, null)), nix.thunk(() => nix.str`-${variant}`)))),
@@ -77,11 +70,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)], nix.concat(nix.app(nix.sel(lib, "optional"), withBlk, "BLK=1"), nix.concat(nix.app(nix.sel(lib, "optional"), withNet, "NET=1"), nix.concat(nix.app(nix.sel(lib, "optional"), withGpu, "GPU=1"), nix.concat(nix.app(nix.sel(lib, "optional"), withSound, "SND=1"), nix.concat(nix.app(nix.sel(lib, "optional"), withInput, "INPUT=1"), nix.concat(nix.app(nix.sel(lib, "optional"), withTimesync, "TIMESYNC=1"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(variant, "sev")), "SEV=1"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(variant, "tdx")), "TDX=1")))))))))),
       postInstall: "mkdir -p $dev/lib/pkgconfig\nmv $out/lib64/pkgconfig $dev/lib/\nmv $out/include $dev/\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, attrPath: "libkrun" })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[4], attrPath: "libkrun" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Dynamic library providing Virtualization-based process isolation capabilities",
         homepage: "https://github.com/libkrun/libkrun",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

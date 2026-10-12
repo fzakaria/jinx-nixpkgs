@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 42, 5], ["version", 43, 5], ["url", 44, 5], ["hash", 45, 5], ["stripRoot", 46, 5], ["extension", 47, 5]], [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["description", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["maintainers", 131, 5], ["platforms", 132, 5], ["changelog", 143, 5]], [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["postPatch", 61, 3], ["configureFlags", 71, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 82, 3], ["nativeCheckInputs", 97, 3], ["postFixup", 102, 3], ["installCheckTarget", 115, 3], ["nativeInstallCheckInputs", 116, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchzip: false, makeWrapper: false, autoreconfHook: false, "pkg-config": false, openssl: false, libgcrypt: false, cmocka: false, expect: false, sqlite: false, pcre2: false, libpcap: false, zlib: false, wirelesstools: false, iw: false, ethtool: false, pciutils: false, libnl: false, usbutils: false, tcpdump: false, hostapd: false, wpa_supplicant: false, screen: false, libiconv: false, enableExperimental: true, useGcrypt: true, enableAirolib: true, enableRegex: true, useAirpcap: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 42, 5], ["version", 43, 5], ["url", 44, 5], ["hash", 45, 5], ["stripRoot", 46, 5], ["extension", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["maintainers", 131, 5], ["platforms", 132, 5], ["changelog", 143, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["postPatch", 61, 3], ["configureFlags", 71, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 82, 3], ["nativeCheckInputs", 97, 3], ["postFixup", 102, 3], ["installCheckTarget", 115, 3], ["nativeInstallCheckInputs", 116, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const enableRegex = nix.argOr($, "enableRegex", () => true);
   const useAirpcap = nix.argOr($, "useAirpcap", () => nix.sel(stdenv, "hostPlatform", "isCygwin"));
   const airpcap_sdk = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "airpcap-sdk",
       version: "4.1.1",
       url: "https://support.riverbed.com/bin/support/download?sid=l3vk3eu649usgu3rj60uncjqqu",
@@ -51,11 +48,11 @@ export default nix.lambda((args) => (() => {
       extension: "zip",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "aircrack-ng",
       version: "1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "aircrack-ng",
           repo: "aircrack-ng",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
       installCheckTarget: "integration",
       nativeInstallCheckInputs: nix.thunk(() => nix.concat([cmocka, expect], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [tcpdump, hostapd, wpa_supplicant, screen])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "WiFi security auditing tools suite",
         homepage: "https://www.aircrack-ng.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,23 +2,17 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unifi.nix", [[["maintainers", 6, 8]], [["pkgsReadOnly", 11, 8]], [["enable", 14, 20]], [["unifi", 14, 14]], [["services", 14, 5]], [["machine", 13, 9]], [["name", 4, 3], ["meta", 6, 3], ["node", 11, 3], ["nodes", 13, 3], ["testScript", 17, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/unifi.nix", [["maintainers", 6, 8]]);
-const pos$2 = nix.positions(here + "/unifi.nix", [["pkgsReadOnly", 11, 8]]);
-const pos$3 = nix.positions(here + "/unifi.nix", [["enable", 14, 20]]);
-const pos$4 = nix.positions(here + "/unifi.nix", [["unifi", 14, 14]]);
-const pos$5 = nix.positions(here + "/unifi.nix", [["services", 14, 5]]);
-const pos$6 = nix.positions(here + "/unifi.nix", [["machine", 13, 9]]);
-const pos$7 = nix.positions(here + "/unifi.nix", [["name", 4, 3], ["meta", 6, 3], ["node", 11, 3], ["nodes", 13, 3], ["testScript", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "unifi",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -27,14 +21,14 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
     })),
-    node: nix.thunk(() => ({ [nix.POS]: pos$2, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: $pos[1], pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          unifi: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+          [nix.POS]: $pos[3],
+          unifi: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
         })),
       })),
     })),

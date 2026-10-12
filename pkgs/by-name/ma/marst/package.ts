@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["homepage", 31, 5], ["description", 32, 5], ["longDescription", 33, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["postBuild", 21, 3], ["postInstall", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["longDescription", 33, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["postBuild", 21, 3], ["postInstall", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "marst";
       const version = "2.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/${pname}/${pname}-${version}.tar.gz`),
           hash: "sha256-139HA7C0S1C+V5CPnVVu5sO+3ZfWOMQpSdauyE+AcLo=",
         }))));
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
 install -m644 doc/marst.pdf -Dt $out/share/doc/${pname}/
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.gnu.org/software/marst/",
         description: "Algol-60-to-C translator",
         longDescription: "MARST is an Algol-to-C translator. It automatically translates programs\nwritten on the algorithmic language Algol 60 to the C programming\nlanguage.\n\nThe MARST package includes three main components:\n\n- the translator, MARST, that translates Algol 60 programs to the C\n  programming language.\n\n- the library, ALGLIB, that contains precompiled standard Algol 60\n  procedures and other necessary library routines. This library is to be\n  used at linking stage. (In the distribution the name libalgol.a is used\n  for this library.)\n\n- the converter, MACVT, that allows to convert existing Algol 60 programs\n  from some other representations to MARST representation.\n",
@@ -36,7 +34,7 @@ install -m644 doc/marst.pdf -Dt $out/share/doc/${pname}/
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

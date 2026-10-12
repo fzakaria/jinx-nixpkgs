@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["preferLocalBuild", 35, 53]]]);
 const formals$1 = { args: { lib: false, runCommand: false, mutter: false, "elementary-default-settings": false, glib: false, gala: false, "gnome-settings-daemon": false, gtk3: false, "elementary-dock": false, "evolution-data-server": false, "gsettings-desktop-schemas": false, extraGSettingsOverrides: true, extraGSettingsOverridePackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["preferLocalBuild", 35, 53]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +30,7 @@ export default nix.lambda((args) => (() => {
     gtk3,
     mutter,
   ], extraGSettingsOverridePackages));
-  return nix.app(runCommand, "elementary-gsettings-desktop-schemas", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`data_dir="$out/share/gsettings-schemas/nixos-gsettings-overrides"
+  return nix.app(runCommand, "elementary-gsettings-desktop-schemas", nix.thunk(() => ({ [nix.POS]: $pos[0], preferLocalBuild: true })), nix.thunk(() => nix.str`data_dir="$out/share/gsettings-schemas/nixos-gsettings-overrides"
 schema_dir="$data_dir/glib-2.0/schemas"
 
 mkdir -p "$schema_dir"

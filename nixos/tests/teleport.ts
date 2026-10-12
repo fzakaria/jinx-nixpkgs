@@ -2,111 +2,69 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/teleport.nix", [[["system", 4, 33], ["config", 4, 40]], [["system", 8, 49], ["pkgs", 8, 56]], [["17", 12, 5], ["18", 13, 5]], [["enable", 18, 7], ["package", 19, 15]], [["teleport", 17, 14]], [["services", 17, 5]], [["severity", 33, 15]], [["nodename", 29, 11], ["advertise_ip", 30, 11], ["auth_token", 31, 11], ["auth_servers", 32, 11], ["log", 33, 11]], [["role", 38, 13]], [["enabled", 36, 11], ["labels", 37, 11]], [["enabled", 41, 23]], [["enabled", 42, 22]], [["teleport", 28, 9], ["ssh_service", 35, 9], ["proxy_service", 41, 9], ["auth_service", 42, 9]], [["enable", 25, 7], ["package", 26, 15], ["settings", 27, 7]], [["teleport", 24, 14]], [["address", 47, 9], ["prefixLength", 48, 9]], [["addresses", 45, 37]], [["ipv4", 45, 32]], [["eth1", 45, 27]], [["interfaces", 45, 16]], [["services", 24, 5], ["networking", 45, 5]], [["nodename", 59, 11], ["advertise_ip", 60, 11]], [["enabled", 62, 21]], [["enabled", 63, 23]], [["enabled", 65, 11], ["tokens", 66, 11]], [["teleport", 58, 9], ["ssh_service", 62, 9], ["proxy_service", 63, 9], ["auth_service", 64, 9]], [["enable", 69, 12]], [["enable", 70, 16]], [["enable", 55, 7], ["package", 56, 15], ["settings", 57, 7], ["diag", 69, 7], ["insecure", 70, 7]], [["teleport", 54, 14]], [["allowedTCPPorts", 73, 16]], [["address", 76, 11], ["prefixLength", 77, 11]], [["addresses", 74, 28]], [["ipv4", 74, 23]], [["eth1", 74, 18]], [["firewall", 73, 7], ["interfaces", 74, 7]], [["services", 54, 5], ["networking", 72, 5]], [["maintainers", 87, 10]], [["minimal", 88, 11]], [["name", 86, 5], ["meta", 87, 5], ["nodes", 88, 5], ["testScript", 90, 5]], [["maintainers", 100, 10]], [["server", 102, 7], ["client", 103, 7]], [["name", 99, 5], ["meta", 100, 5], ["nodes", 101, 5], ["testScript", 106, 5]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true, lib: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/teleport.nix", [["system", 4, 33], ["config", 4, 40]]);
-const pos$2 = nix.positions(here + "/teleport.nix", [["system", 8, 49], ["pkgs", 8, 56]]);
-const pos$3 = nix.positions(here + "/teleport.nix", [["17", 12, 5], ["18", 13, 5]]);
-const pos$4 = nix.positions(here + "/teleport.nix", [["enable", 18, 7], ["package", 19, 15]]);
-const pos$5 = nix.positions(here + "/teleport.nix", [["teleport", 17, 14]]);
-const pos$6 = nix.positions(here + "/teleport.nix", [["services", 17, 5]]);
-const pos$7 = nix.positions(here + "/teleport.nix", [["severity", 33, 15]]);
-const pos$8 = nix.positions(here + "/teleport.nix", [["nodename", 29, 11], ["advertise_ip", 30, 11], ["auth_token", 31, 11], ["auth_servers", 32, 11], ["log", 33, 11]]);
-const pos$9 = nix.positions(here + "/teleport.nix", [["role", 38, 13]]);
-const pos$10 = nix.positions(here + "/teleport.nix", [["enabled", 36, 11], ["labels", 37, 11]]);
-const pos$11 = nix.positions(here + "/teleport.nix", [["enabled", 41, 23]]);
-const pos$12 = nix.positions(here + "/teleport.nix", [["enabled", 42, 22]]);
-const pos$13 = nix.positions(here + "/teleport.nix", [["teleport", 28, 9], ["ssh_service", 35, 9], ["proxy_service", 41, 9], ["auth_service", 42, 9]]);
-const pos$14 = nix.positions(here + "/teleport.nix", [["enable", 25, 7], ["package", 26, 15], ["settings", 27, 7]]);
-const pos$15 = nix.positions(here + "/teleport.nix", [["teleport", 24, 14]]);
-const pos$16 = nix.positions(here + "/teleport.nix", [["address", 47, 9], ["prefixLength", 48, 9]]);
-const pos$17 = nix.positions(here + "/teleport.nix", [["addresses", 45, 37]]);
-const pos$18 = nix.positions(here + "/teleport.nix", [["ipv4", 45, 32]]);
-const pos$19 = nix.positions(here + "/teleport.nix", [["eth1", 45, 27]]);
-const pos$20 = nix.positions(here + "/teleport.nix", [["interfaces", 45, 16]]);
-const pos$21 = nix.positions(here + "/teleport.nix", [["services", 24, 5], ["networking", 45, 5]]);
-const pos$22 = nix.positions(here + "/teleport.nix", [["nodename", 59, 11], ["advertise_ip", 60, 11]]);
-const pos$23 = nix.positions(here + "/teleport.nix", [["enabled", 62, 21]]);
-const pos$24 = nix.positions(here + "/teleport.nix", [["enabled", 63, 23]]);
-const pos$25 = nix.positions(here + "/teleport.nix", [["enabled", 65, 11], ["tokens", 66, 11]]);
-const pos$26 = nix.positions(here + "/teleport.nix", [["teleport", 58, 9], ["ssh_service", 62, 9], ["proxy_service", 63, 9], ["auth_service", 64, 9]]);
-const pos$27 = nix.positions(here + "/teleport.nix", [["enable", 69, 12]]);
-const pos$28 = nix.positions(here + "/teleport.nix", [["enable", 70, 16]]);
-const pos$29 = nix.positions(here + "/teleport.nix", [["enable", 55, 7], ["package", 56, 15], ["settings", 57, 7], ["diag", 69, 7], ["insecure", 70, 7]]);
-const pos$30 = nix.positions(here + "/teleport.nix", [["teleport", 54, 14]]);
-const pos$31 = nix.positions(here + "/teleport.nix", [["allowedTCPPorts", 73, 16]]);
-const pos$32 = nix.positions(here + "/teleport.nix", [["address", 76, 11], ["prefixLength", 77, 11]]);
-const pos$33 = nix.positions(here + "/teleport.nix", [["addresses", 74, 28]]);
-const pos$34 = nix.positions(here + "/teleport.nix", [["ipv4", 74, 23]]);
-const pos$35 = nix.positions(here + "/teleport.nix", [["eth1", 74, 18]]);
-const pos$36 = nix.positions(here + "/teleport.nix", [["firewall", 73, 7], ["interfaces", 74, 7]]);
-const pos$37 = nix.positions(here + "/teleport.nix", [["services", 54, 5], ["networking", 72, 5]]);
-const pos$38 = nix.positions(here + "/teleport.nix", [["maintainers", 87, 10]]);
-const pos$39 = nix.positions(here + "/teleport.nix", [["minimal", 88, 11]]);
-const pos$40 = nix.positions(here + "/teleport.nix", [["name", 86, 5], ["meta", 87, 5], ["nodes", 88, 5], ["testScript", 90, 5]]);
-const pos$41 = nix.positions(here + "/teleport.nix", [["maintainers", 100, 10]]);
-const pos$42 = nix.positions(here + "/teleport.nix", [["server", 102, 7], ["client", 103, 7]]);
-const pos$43 = nix.positions(here + "/teleport.nix", [["name", 99, 5], ["meta", 100, 5], ["nodes", 101, 5], ["testScript", 106, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
   const lib = nix.argOr($, "lib", () => nix.sel(pkgs, "lib"));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const packages = nix.thunk(() => (() => {
     const w_1 = nix.withScope(pkgs, w);
     return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "17": nix.thunk(() => nix.lookup(w_1, "teleport_17")),
       "18": nix.thunk(() => nix.lookup(w_1, "teleport_18")),
     };
   })());
   const minimal = (package$) => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$5,
-      teleport: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, package: package$ })),
+      [nix.POS]: $pos[4],
+      teleport: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, package: package$ })),
     })),
   });
   const client = (package$) => ({
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       teleport: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         enable: true,
         package: package$,
         settings: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           teleport: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             nodename: "client",
             advertise_ip: "192.168.1.20",
             auth_token: "8d1957b2-2ded-40e6-8297-d48156a898a9",
             auth_servers: nix.thunk(() => ["192.168.1.10:3025"]),
-            log: nix.thunk(() => ({ [nix.POS]: pos$7, severity: "DEBUG" })),
+            log: nix.thunk(() => ({ [nix.POS]: $pos[6], severity: "DEBUG" })),
           })),
           ssh_service: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             enabled: true,
-            labels: nix.thunk(() => ({ [nix.POS]: pos$9, role: "client" })),
+            labels: nix.thunk(() => ({ [nix.POS]: $pos[8], role: "client" })),
           })),
-          proxy_service: nix.thunk(() => ({ [nix.POS]: pos$11, enabled: false })),
-          auth_service: nix.thunk(() => ({ [nix.POS]: pos$12, enabled: false })),
+          proxy_service: nix.thunk(() => ({ [nix.POS]: $pos[10], enabled: false })),
+          auth_service: nix.thunk(() => ({ [nix.POS]: $pos[11], enabled: false })),
         })),
       })),
     })),
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       interfaces: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         eth1: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           ipv4: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             addresses: nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$16, address: "192.168.1.20", prefixLength: 24n })),
+              nix.thunk(() => ({ [nix.POS]: $pos[15], address: "192.168.1.20", prefixLength: 24n })),
             ]),
           })),
         })),
@@ -114,39 +72,39 @@ export default nix.lambda((args) => (() => {
     })),
   });
   const server = (package$) => ({
-    [nix.POS]: pos$37,
+    [nix.POS]: $pos[36],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       teleport: nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         enable: true,
         package: package$,
         settings: nix.thunk(() => ({
-          [nix.POS]: pos$26,
-          teleport: nix.thunk(() => ({ [nix.POS]: pos$22, nodename: "server", advertise_ip: "192.168.1.10" })),
-          ssh_service: nix.thunk(() => ({ [nix.POS]: pos$23, enabled: true })),
-          proxy_service: nix.thunk(() => ({ [nix.POS]: pos$24, enabled: true })),
+          [nix.POS]: $pos[25],
+          teleport: nix.thunk(() => ({ [nix.POS]: $pos[21], nodename: "server", advertise_ip: "192.168.1.10" })),
+          ssh_service: nix.thunk(() => ({ [nix.POS]: $pos[22], enabled: true })),
+          proxy_service: nix.thunk(() => ({ [nix.POS]: $pos[23], enabled: true })),
           auth_service: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             enabled: true,
             tokens: nix.thunk(() => ["node:8d1957b2-2ded-40e6-8297-d48156a898a9"]),
           })),
         })),
-        diag: nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
-        insecure: nix.thunk(() => ({ [nix.POS]: pos$28, enable: true })),
+        diag: nix.thunk(() => ({ [nix.POS]: $pos[26], enable: true })),
+        insecure: nix.thunk(() => ({ [nix.POS]: $pos[27], enable: true })),
       })),
     })),
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$36,
-      firewall: nix.thunk(() => ({ [nix.POS]: pos$31, allowedTCPPorts: nix.thunk(() => [3025n]) })),
+      [nix.POS]: $pos[35],
+      firewall: nix.thunk(() => ({ [nix.POS]: $pos[30], allowedTCPPorts: nix.thunk(() => [3025n]) })),
       interfaces: nix.thunk(() => ({
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         eth1: nix.thunk(() => ({
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           ipv4: nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             addresses: nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$32, address: "192.168.1.10", prefixLength: 24n })),
+              nix.thunk(() => ({ [nix.POS]: $pos[31], address: "192.168.1.10", prefixLength: 24n })),
             ]),
           })),
         })),
@@ -155,30 +113,30 @@ export default nix.lambda((args) => (() => {
   });
   return nix.app(nix.sel(lib, "concatMapAttrs"), (name) => (package$) => nix.attrsDyn({}, [
       [nix.str`minimal_${name}`, nix.thunk(() => nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-          [nix.POS]: pos$40,
+          [nix.POS]: $pos[39],
           name: "teleport-minimal-setup",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             maintainers: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w);
               return [nix.thunk(() => nix.lookup(w_2, "justinas"))];
             })()),
           })),
-          nodes: nix.thunk(() => ({ [nix.POS]: pos$39, minimal: nix.thunk(() => nix.app(minimal, package$)) })),
+          nodes: nix.thunk(() => ({ [nix.POS]: $pos[38], minimal: nix.thunk(() => nix.app(minimal, package$)) })),
           testScript: "minimal.wait_for_open_port(3025)\nminimal.wait_for_open_port(3080)\nminimal.wait_for_open_port(3022)\n",
         }))))],
       [nix.str`basic_${name}`, nix.thunk(() => nix.app(nix.lookup(w, "makeTest"), nix.thunk(() => ({
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           name: "teleport-server-client",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$41,
+            [nix.POS]: $pos[40],
             maintainers: nix.thunk(() => (() => {
               const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w);
               return [nix.thunk(() => nix.lookup(w_2, "justinas"))];
             })()),
           })),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             server: nix.thunk(() => nix.app(server, package$)),
             client: nix.thunk(() => nix.app(client, package$)),
           })),

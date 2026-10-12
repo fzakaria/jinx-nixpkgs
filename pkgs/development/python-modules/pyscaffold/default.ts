@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 39, 13], ["version", 39, 19], ["hash", 40, 5]], [["all", 65, 5], ["ds", 75, 5], ["md", 76, 5], ["testing", 77, 5]], [["description", 99, 5], ["mainProgram", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["postPatch", 49, 3], ["propagatedBuildInputs", 53, 3], ["optional-dependencies", 64, 3], ["pythonImportsCheck", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, wheel: false, colorama: false, configupdater: false, "importlib-metadata": false, packaging: false, platformdirs: false, tomlkit: false, "pre-commit": false, "pyscaffoldext-cookiecutter": false, "pyscaffoldext-custom-extension": false, "pyscaffoldext-django": false, "pyscaffoldext-dsproject": false, "pyscaffoldext-markdown": false, "pyscaffoldext-travis": false, virtualenv: false, build: false, certifi: false, flake8: false, pytest: false, "pytest-cov": false, "pytest-randomly": false, "pytest-xdist": false, sphinx: false, tox: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 39, 13], ["version", 39, 19], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 65, 5], ["ds", 75, 5], ["md", 76, 5], ["testing", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 99, 5], ["mainProgram", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["postPatch", 49, 3], ["propagatedBuildInputs", 53, 3], ["optional-dependencies", 64, 3], ["pythonImportsCheck", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-QIW43pIAufMZ32+Op5lyiPFZqOSyhLBi2bKk1qnBI0w=",
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         tomlkit,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [
           pre_commit,
           pyscaffoldext_cookiecutter,
@@ -95,7 +92,7 @@ export default nix.lambda((args) => (() => {
       }));
       const pythonImportsCheck = nix.thunk(() => ["pyscaffold"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Template tool for putting up the scaffold of a Python project",
         mainProgram: "putup",
         homepage: "https://pypi.org/project/PyScaffold/",
@@ -106,7 +103,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

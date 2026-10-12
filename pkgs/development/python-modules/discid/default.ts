@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 13], ["version", 25, 19], ["sha256", 26, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["outputs", 19, 3], ["src", 24, 3], ["build-system", 29, 3], ["patchPhase", 33, 3], ["nativeBuildInputs", 43, 3], ["nativeCheckInputs", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, libdiscid: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, sphinxHook: false, "sphinx-autodoc-typehints": false, "sphinx-rtd-theme": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 13], ["version", 25, 19], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["outputs", 19, 3], ["src", 24, 3], ["build-system", 29, 3], ["patchPhase", 33, 3], ["nativeBuildInputs", 43, 3], ["nativeCheckInputs", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const outputs = nix.thunk(() => ["out", "doc"]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "sha256-DLtLlpScaMvGPJ/EWF75t+wrnTniO84LTbXWHG97geY=",
@@ -41,13 +39,13 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [sphinxHook, sphinx_autodoc_typehints, sphinx_rtd_theme]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python binding of libdiscid",
         homepage: "https://python-discid.readthedocs.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["group", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["url", 24, 7], ["sha256", 25, 7]], [["NIX_CFLAGS_COMPILE", 33, 7]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 21, 3], ["installFlags", 31, 3], ["env", 33, 3], ["buildInputs", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, bluez: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["group", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["sha256", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 33, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 21, 3], ["installFlags", 31, 3], ["env", 33, 3], ["buildInputs", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const bluez = nix.arg($, "bluez");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "redfang",
       version: "2.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           group: "kalilinux",
           owner: "packages",
           repo: "redfang",
@@ -30,17 +26,17 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/kalilinux/packages/redfang/-/merge_requests/1.diff",
             sha256: "sha256-oxIrUAucxsBL4+u9zNNe2XXoAd088AEAHcRB/AN7B1M=",
           })))),
         nix.path(here, "./include-pthread.patch"),
       ]),
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-format-security" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-format-security" })),
       buildInputs: nix.thunk(() => [bluez]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Small proof-of-concept application to find non discoverable bluetooth devices",
         homepage: "https://gitlab.com/kalilinux/packages/redfang",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

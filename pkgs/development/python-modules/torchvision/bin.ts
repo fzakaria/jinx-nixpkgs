@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bin.nix", [[["description", 66, 5], ["homepage", 67, 5], ["downloadPage", 68, 5], ["changelog", 69, 5], ["license", 73, 5], ["sourceProvenance", 74, 5], ["platforms", 75, 5], ["maintainers", 80, 5]], [["pname", 28, 3], ["version", 29, 11], ["format", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["disabled", 35, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 46, 3], ["dependencies", 51, 3], ["dontStrip", 57, 3], ["pythonImportsCheck", 59, 3], ["preInstall", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python: false, buildPythonPackage: false, fetchurl: false, pythonAtLeast: false, cudaPackages: false, addDriverRunpath: false, autoPatchelfHook: false, pillow: false, "torch-bin": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bin.nix", [["description", 66, 5], ["homepage", 67, 5], ["downloadPage", 68, 5], ["changelog", 69, 5], ["license", 73, 5], ["sourceProvenance", 74, 5], ["platforms", 75, 5], ["maintainers", 80, 5]]);
-const pos$2 = nix.positions(here + "/bin.nix", [["pname", 28, 3], ["version", 29, 11], ["format", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["disabled", 35, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 46, 3], ["dependencies", 51, 3], ["dontStrip", 57, 3], ["pythonImportsCheck", 59, 3], ["preInstall", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const unsupported = nix.thunk(() => nix.builtins.throw("Unsupported system"));
   const version = "0.28.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "torchvision",
       version: version,
       format: "wheel",
@@ -42,7 +41,7 @@ export default nix.lambda((args) => (() => {
       preInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`addAutoPatchelfSearchPath "${torch_bin}/${nix.sel(python, "sitePackages")}/torch"
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "PyTorch vision library",
         homepage: "https://pytorch.org/vision",
         downloadPage: "https://github.com/pytorch/vision",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["NIX_CFLAGS_COMPILE", 15, 7]], [["url", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["homepage", 51, 5], ["description", 52, 5], ["mainProgram", 53, 5], ["longDescription", 54, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]], [["pname", 12, 3], ["version", 13, 3], ["env", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["configurePhase", 32, 3], ["installPhase", 41, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchhg: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["mainProgram", 53, 5], ["longDescription", 54, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["env", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["configurePhase", 32, 3], ["installPhase", 41, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const qtmultimedia = nix.thunk(() => nix.attr(qt5, "qtmultimedia"));
   const wrapQtAppsHook = nix.thunk(() => nix.attr(qt5, "wrapQtAppsHook"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rpcemu",
       version: "0.9.5",
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "http://www.home.marutan.net/hg/rpcemu",
           rev: nix.thunk(() => nix.str`release_${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-raZ+u8CnX33CsOSI20utegwPVVk8bcZqDNJ/5UcMP9w=",
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\ncd src/qt5\nqmake\n\nrunHook postConfigure\n",
       installPhase: "runHook preInstall\n\ncd ../..\ninstall -Dm755 rpcemu-interpreter -t $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.marutan.net/rpcemu/index.php",
         description: "Risc PC Emulator",
         mainProgram: "rpcemu-interpreter",

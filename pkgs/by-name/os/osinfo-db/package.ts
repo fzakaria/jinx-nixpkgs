@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 25, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "osinfo-db-tools": false, gettext: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 25, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "osinfo-db",
       version: "20260812",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gitlab.com/api/v4/projects/libosinfo%2Fosinfo-db/packages/generic/release-assets/v${nix.sel(finalAttrs, "version")}/osinfo-db-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-8T7W4eSAtSZtOcrX8AEP698CZd/EVXneL7NFQ7xrNd4=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`osinfo-db-import --dir "$out/share/osinfo" "${nix.sel(finalAttrs, "src")}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Osinfo database of information about operating systems for virtualization provisioning tools",
         homepage: "https://gitlab.com/libosinfo/osinfo-db/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/libosinfo/osinfo-db/-/commits/v${nix.sel(finalAttrs, "version")}`),

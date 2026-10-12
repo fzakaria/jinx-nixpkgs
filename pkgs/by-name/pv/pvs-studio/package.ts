@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 27, 9], ["x86_64-linux", 28, 9]], [["aarch64-darwin", 31, 9], ["x86_64-linux", 32, 9]], [["url", 26, 7], ["hash", 30, 7]], [["package", 65, 43]], [["version", 65, 11]], [["tests", 65, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["sourceProvenance", 76, 5], ["maintainers", 77, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 36, 3], ["nativeRuntimeInputs", 41, 3], ["installPhase", 50, 3], ["postFixup", 59, 3], ["passthru", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, installShellFiles: false, makeWrapper: false, perl: false, strace: false, testers: false, "pvs-studio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 27, 9], ["x86_64-linux", 28, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-darwin", 31, 9], ["x86_64-linux", 32, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 65, 43]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 65, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 65, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["sourceProvenance", 76, 5], ["maintainers", 77, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 36, 3], ["nativeRuntimeInputs", 41, 3], ["installPhase", 50, 3], ["postFixup", 59, 3], ["passthru", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +23,14 @@ export default nix.lambda((args) => (() => {
         const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
         const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system)));
         return nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 "aarch64-darwin": nix.thunk(() => nix.str`https://web.archive.org/web/20260131193428/https://files.pvs-studio.com/pvs-studio-${version}-macos-arm64.zip`),
                 "x86_64-linux": nix.thunk(() => nix.str`https://web.archive.org/web/20260131192910/https://files.pvs-studio.com/pvs-studio-${version}-x86_64.tgz`),
               })))),
             hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 "aarch64-darwin": "sha256-ExJldpqwD9dqGtY/QQ2i3qiNXSyR6exhYKIrwgdQrtQ=",
                 "x86_64-linux": "sha256-c7+Zvo+cHtGtdaHi+3w7Vjluo7uQ2CfptCO8RkVm7wU=",
               })))),
@@ -50,14 +43,14 @@ export default nix.lambda((args) => (() => {
   --prefix PATH ":" ${nativeRuntimeInputs}
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: pvs_studio })))),
+          [nix.POS]: $pos[4],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[3], package: pvs_studio })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Static analyzer for C and C++",
         homepage: "https://pvs-studio.com/en/pvs-studio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
@@ -72,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["stripRoot", 15, 5], ["hash", 16, 5]], [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 19, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 26, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, makeWrapper: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["stripRoot", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 19, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 26, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jacoco",
       version: "0.8.15",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://search.maven.org/remotecontent?filepath=org/jacoco/jacoco/${nix.sel(finalAttrs, "version")}/jacoco-${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-9B+IkVEWs1hfcI6CSfTIm1EvsuRKiXpHjQfAPGkkqxE=",
@@ -39,7 +37,7 @@ makeWrapper ${jre}/bin/java $out/bin/jacoco \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free code coverage library for Java",
         mainProgram: "jacoco",
         homepage: "https://www.jacoco.org/jacoco",

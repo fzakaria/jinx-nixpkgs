@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs", 20, 57]], [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["pname", 34, 5], ["version", 35, 13], ["src", 35, 21], ["sourceRoot", 36, 5], ["npmDepsHash", 38, 5], ["dontBuild", 40, 5], ["installPhase", 42, 5]], [["owner", 54, 7], ["repo", 55, 7], ["tag", 56, 7], ["hash", 57, 7]], [["NIX_CFLAGS_COMPILE", 79, 9], ["CXXFLAGS", 80, 9]], [["pname", 50, 5], ["version", 51, 5], ["src", 53, 5], ["npmFlags", 60, 5], ["makeCacheWritable", 62, 5], ["npmDepsHash", 64, 5], ["nativeBuildInputs", 66, 5], ["buildInputs", 71, 5], ["dontUseCmakeConfigure", 77, 5], ["env", 79, 5], ["preBuild", 82, 5], ["installPhase", 96, 5]], [["nodeDatachannel", 170, 13]], [["description", 174, 5], ["homepage", 175, 5], ["license", 176, 5], ["mainProgram", 177, 5], ["maintainers", 178, 5], ["platforms", 179, 5]], [["pname", 104, 3], ["version", 105, 11], ["src", 105, 19], ["patches", 107, 3], ["npmDepsHash", 109, 3], ["npmFlags", 111, 3], ["makeCacheWritable", 113, 3], ["nativeBuildInputs", 115, 3], ["postConfigure", 121, 3], ["preBuild", 138, 3], ["npmBuildScript", 142, 3], ["installPhase", 144, 3], ["passthru", 169, 3], ["meta", 173, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, writeShellScriptBin: false, cmake: false, nodejs_24: false, nss: false, "pkg-config": false, libdatachannel: false, openssl: false, plog: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs", 20, 57]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 34, 5], ["version", 35, 13], ["src", 35, 21], ["sourceRoot", 36, 5], ["npmDepsHash", 38, 5], ["dontBuild", 40, 5], ["installPhase", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 54, 7], ["repo", 55, 7], ["tag", 56, 7], ["hash", 57, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 79, 9], ["CXXFLAGS", 80, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 50, 5], ["version", 51, 5], ["src", 53, 5], ["npmFlags", 60, 5], ["makeCacheWritable", 62, 5], ["npmDepsHash", 64, 5], ["nativeBuildInputs", 66, 5], ["buildInputs", 71, 5], ["dontUseCmakeConfigure", 77, 5], ["env", 79, 5], ["preBuild", 82, 5], ["installPhase", 96, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["nodeDatachannel", 170, 13]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 174, 5], ["homepage", 175, 5], ["license", 176, 5], ["mainProgram", 177, 5], ["maintainers", 178, 5], ["platforms", 179, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 104, 3], ["version", 105, 11], ["src", 105, 19], ["patches", 107, 3], ["npmDepsHash", 109, 3], ["npmFlags", 111, 3], ["makeCacheWritable", 113, 3], ["nativeBuildInputs", 115, 3], ["postConfigure", 121, 3], ["preBuild", 138, 3], ["npmBuildScript", 142, 3], ["installPhase", 144, 3], ["passthru", 169, 3], ["meta", 173, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const plog = nix.arg($, "plog");
   const nodejs = nodejs_24;
-  const buildNpmPackage$ = nix.thunk(() => nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs }))));
+  const buildNpmPackage$ = nix.thunk(() => nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], nodejs: nodejs }))));
   const version = "1.27.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "httptoolkit",
       repo: "httptoolkit-server",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-t7Rxh8BuzfhdBfMGMNWUV/xMtbhgw0yU9t97LbdKB9o=",
     }))));
   const overridesNodeModules = nix.thunk(() => nix.app(buildNpmPackage$, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "httptoolkit-server-overrides-node-modules",
       version: version,
       src: src,
@@ -47,11 +39,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out\ncp -r node_modules $out/node_modules\n",
     }))));
   const nodeDatachannel = nix.thunk(() => nix.app(buildNpmPackage$, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "node-datachannel",
       version: "0.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "murat-dogan",
           repo: "node-datachannel",
           tag: nix.thunk(() => nix.str`v${nix.sel(nodeDatachannel, "version")}`),
@@ -64,7 +56,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libdatachannel, openssl, plog]),
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nodejs}/include/node`),
         CXXFLAGS: "-include stdexcept",
       })),
@@ -72,7 +64,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstall -Dm755 build/Release/*.node -t $out/build/Release\nrunHook postInstall\n",
     }))));
   return nix.app(buildNpmPackage$, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "httptoolkit-server",
       version: version,
       src: src,
@@ -121,9 +113,9 @@ makeWrapper $out/share/httptoolkit-server/bin/run $out/bin/httptoolkit-server \\
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, nodeDatachannel: nodeDatachannel })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[6], nodeDatachannel: nodeDatachannel })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Backend for HTTP Toolkit",
         homepage: "https://httptoolkit.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

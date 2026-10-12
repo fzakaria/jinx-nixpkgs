@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 7], ["hash", 29, 7]], [["pname", 21, 5], ["version", 22, 5], ["strictDeps", 24, 5], ["__structuredAttrs", 25, 5], ["src", 27, 5], ["configureFlags", 32, 5], ["nativeBuildInputs", 50, 5], ["enableParallelBuilding", 52, 5], ["outputs", 54, 5]], [["owner", 72, 5], ["repo", 73, 5], ["tag", 74, 5], ["fetchSubmodules", 75, 5], ["hash", 76, 5]], [["NIX_LDFLAGS", 124, 5]], [["broken", 150, 5], ["homepage", 151, 5], ["description", 152, 5], ["platforms", 153, 5], ["maintainers", 154, 5], ["license", 158, 5], ["mainProgram", 159, 5]], [["pname", 65, 3], ["version", 66, 3], ["strictDeps", 68, 3], ["__structuredAttrs", 69, 3], ["src", 71, 3], ["postPatch", 79, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 107, 3], ["env", 123, 3], ["cmakeFlags", 127, 3], ["installPhase", 136, 3], ["doInstallCheck", 142, 3], ["nativeInstallCheckInputs", 143, 3], ["postFixup", 145, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchzip: false, addDriverRunpath: false, cmake: false, glibc_multi: false, glibc: false, git: false, "pkg-config": false, installShellFiles: false, config: false, cudaPackages: false, versionCheckHook: false, withCuda: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 21, 5], ["version", 22, 5], ["strictDeps", 24, 5], ["__structuredAttrs", 25, 5], ["src", 27, 5], ["configureFlags", 32, 5], ["nativeBuildInputs", 50, 5], ["enableParallelBuilding", 52, 5], ["outputs", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 72, 5], ["repo", 73, 5], ["tag", 74, 5], ["fetchSubmodules", 75, 5], ["hash", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 124, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["broken", 150, 5], ["homepage", 151, 5], ["description", 152, 5], ["platforms", 153, 5], ["maintainers", 154, 5], ["license", 158, 5], ["mainProgram", 159, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 65, 3], ["version", 66, 3], ["strictDeps", 68, 3], ["__structuredAttrs", 69, 3], ["src", 71, 3], ["postPatch", 79, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 107, 3], ["env", 123, 3], ["cmakeFlags", 127, 3], ["installPhase", 136, 3], ["doInstallCheck", 142, 3], ["nativeInstallCheckInputs", 143, 3], ["postFixup", 145, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const withCuda = nix.argOr($, "withCuda", () => nix.sel(config, "cudaSupport"));
   const hwloc = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "hwloc",
       version: "2.2.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.open-mpi.org/release/hwloc/v${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/hwloc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ZgHkj1kJR9Fk1UD8Vv0syKZk7kba81nr+OjdmyAJfMU=",
         })))),
@@ -60,13 +55,13 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "lib", "dev", "doc", "man"]),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "firestarter",
       version: "2.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "tud-zih-energy",
           repo: "FIRESTARTER",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -97,7 +92,7 @@ substituteInPlace lib/json/CMakeLists.txt \\
         nix.thunk(() => nix.sel(cudaPackages, "libcurand")),
       ] : [nix.thunk(() => nix.sel(glibc, "static"))]))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withCuda, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           NIX_LDFLAGS: nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib/stubs`),
         })))),
       cmakeFlags: nix.thunk(() => nix.concat([
@@ -115,7 +110,7 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withCuda, "addDriverRunpath $out/bin/FIRESTARTER_CUDA\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         homepage: "https://tu-dresden.de/zih/forschung/projekte/firestarter",
         description: "Processor Stress Test Utility",

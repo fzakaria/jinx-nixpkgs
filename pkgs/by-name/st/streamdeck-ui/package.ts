@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 20, 5], ["owner", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["name", 98, 9], ["desktopName", 99, 9], ["icon", 100, 9], ["exec", 101, 9], ["comment", 102, 9], ["categories", 103, 9]], [["name", 111, 11], ["exec", 112, 11], ["noDisplay", 113, 11]], [["changelog", 126, 5], ["description", 127, 5], ["downloadPage", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["mainProgram", 131, 5], ["maintainers", 132, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["pythonRelaxDeps", 26, 3], ["build-system", 31, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 42, 3], ["nativeCheckInputs", 58, 3], ["checkPhase", 67, 3], ["postInstall", 77, 3], ["desktopItems", 95, 3], ["dontWrapQtApps", 118, 3], ["dontWrapGApps", 119, 3], ["makeWrapperArgs", 120, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { copyDesktopItems: false, fetchFromGitHub: false, lib: false, makeDesktopItem: false, python3Packages: false, qt6: false, wrapGAppsHook3: false, writeText: false, "xvfb-run": false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 20, 5], ["owner", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 98, 9], ["desktopName", 99, 9], ["icon", 100, 9], ["exec", 101, 9], ["comment", 102, 9], ["categories", 103, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 111, 11], ["exec", 112, 11], ["noDisplay", 113, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 126, 5], ["description", 127, 5], ["downloadPage", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["mainProgram", 131, 5], ["maintainers", 132, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["pythonRelaxDeps", 26, 3], ["build-system", 31, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 42, 3], ["nativeCheckInputs", 58, 3], ["checkPhase", 67, 3], ["postInstall", 77, 3], ["desktopItems", 95, 3], ["dontWrapQtApps", 118, 3], ["dontWrapGApps", 119, 3], ["makeWrapperArgs", 120, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "streamdeck-ui",
       version: "4.1.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "streamdeck-linux-gui",
           owner: "streamdeck-linux-gui",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +76,7 @@ cp streamdeck_ui/logo.png $out/share/pixmaps/streamdeck-ui.png
       })()),
       desktopItems: nix.thunk(() => (() => {
         const common = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "streamdeck-ui",
           desktopName: "Stream Deck UI",
           icon: "streamdeck-ui",
@@ -91,7 +87,7 @@ cp streamdeck_ui/logo.png $out/share/pixmaps/streamdeck-ui.png
         return nix.builtins.map(makeDesktopItem, nix.thunk(() => [
             common,
             nix.thunk(() => nix.update(common, {
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: nix.thunk(() => nix.str`${nix.sel(common, "name")}-noui`),
               exec: nix.thunk(() => nix.str`${nix.sel(common, "exec")} --no-ui`),
               noDisplay: true,
@@ -102,7 +98,7 @@ cp streamdeck_ui/logo.png $out/share/pixmaps/streamdeck-ui.png
       dontWrapGApps: true,
       makeWrapperArgs: nix.thunk(() => ["${qtWrapperArgs[@]}", "${gappsWrapperArgs[@]}"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/streamdeck-linux-gui/streamdeck-linux-gui/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Linux compatible UI for the Elgato Stream Deck",
         downloadPage: "https://github.com/streamdeck-linux-gui/streamdeck-linux-gui/",

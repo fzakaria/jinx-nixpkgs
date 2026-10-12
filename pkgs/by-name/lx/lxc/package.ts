@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["incus-lts", 93, 7], ["lxc", 94, 7]], [["tests", 92, 5], ["updateScript", 97, 5]], [["homepage", 101, 5], ["changelog", 102, 5], ["description", 103, 5], ["license", 104, 5], ["longDescription", 106, 5], ["platforms", 112, 5], ["teams", 113, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["patches", 53, 3], ["mesonFlags", 62, 3], ["postInstall", 74, 3], ["enableParallelBuilding", 87, 3], ["doCheck", 89, 3], ["passthru", 91, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bashInteractive: false, dbus: false, docbook2x: false, libapparmor: false, libcap: false, libseccomp: false, libselinux: false, meson: false, ninja: false, nixosTests: false, openssl: false, "pkg-config": false, systemd: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["incus-lts", 93, 7], ["lxc", 94, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 92, 5], ["updateScript", 97, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 101, 5], ["changelog", 102, 5], ["description", 103, 5], ["license", 104, 5], ["longDescription", 106, 5], ["platforms", 112, 5], ["teams", 113, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["patches", 53, 3], ["mesonFlags", 62, 3], ["postInstall", 74, 3], ["enableParallelBuilding", 87, 3], ["doCheck", 89, 3], ["passthru", 91, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lxc",
       version: "7.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxc",
           repo: "lxc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,16 +61,16 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "incus-lts": nix.thunk(() => nix.sel(nixosTests, "incus-lts", "container")),
           lxc: nix.thunk(() => nix.sel(nixosTests, "lxc")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://linuxcontainers.org/lxc/",
         changelog: nix.thunk(() => nix.str`https://github.com/lxc/lxc/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Userspace tools for Linux Containers, a lightweight virtualization system",

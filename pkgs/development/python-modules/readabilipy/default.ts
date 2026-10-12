@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["pname", 36, 5], ["version", 37, 13], ["src", 39, 5], ["sourceRoot", 40, 5], ["npmDepsHash", 41, 5], ["postPatch", 43, 5], ["dontNpmBuild", 47, 5]], [["package", 95, 7], ["command", 96, 7], ["version", 97, 7]], [["version", 94, 11]], [["tests", 94, 5]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["mainProgram", 107, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["javascript", 35, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["postPatch", 59, 3], ["postInstall", 64, 3], ["nativeCheckInputs", 69, 3], ["pythonImportsCheck", 74, 3], ["disabledTestPaths", 76, 3], ["disabledTests", 81, 3], ["passthru", 93, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, beautifulsoup4: false, buildPythonPackage: false, buildNpmPackage: false, fetchFromGitHub: false, html5lib: false, lxml: false, nodejs: false, pytestCheckHook: false, regex: false, setuptools: false, testers: false, readabilipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 36, 5], ["version", 37, 13], ["src", 39, 5], ["sourceRoot", 40, 5], ["npmDepsHash", 41, 5], ["postPatch", 43, 5], ["dontNpmBuild", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["package", 95, 7], ["command", 96, 7], ["version", 97, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 94, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 94, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["mainProgram", 107, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["javascript", 35, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["postPatch", 59, 3], ["postInstall", 64, 3], ["nativeCheckInputs", 69, 3], ["pythonImportsCheck", 74, 3], ["disabledTestPaths", 76, 3], ["disabledTests", 81, 3], ["passthru", 93, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alan-turing-institute",
           repo: "ReadabiliPy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./python3.13.6-compatibility.patch")]);
       const javascript = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "readabilipy-javascript",
           version: version,
           src: src,
@@ -69,11 +63,11 @@ export default nix.lambda((args) => (() => {
         "test_iframe_with_source",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: readabilipy,
               command: "readabilipy --version",
               version: nix.thunk(() => nix.str`${version} (Readability.js supported: yes)`),
@@ -81,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "HTML content extractor",
         homepage: "https://github.com/alan-turing-institute/ReadabiliPy",
         changelog: nix.thunk(() => nix.str`https://github.com/alan-turing-institute/ReadabiliPy/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -93,7 +87,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "readabilipy",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]], [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]], [["NIX_CFLAGS_COMPILE", 87, 7]], [["homepage", 90, 5], ["description", 91, 5], ["mainProgram", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["postPatch", 54, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 68, 3], ["qmakeFlags", 82, 3], ["env", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, qt5: false, fetchFromGitHub: false, fetchpatch: false, SDL: false, SDL_mixer: false, boost181: false, curl: false, gsasl: false, libgcrypt: false, libircclient: false, protobuf_21: false, sqlite: false, tinyxml: false, target: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 87, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 90, 5], ["description", 91, 5], ["mainProgram", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["postPatch", 54, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 68, 3], ["qmakeFlags", 82, 3], ["env", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const boost = boost181;
   const protobuf = protobuf_21;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: nix.thunk(() => nix.str`pokerth-${target}`),
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pokerth",
           repo: "pokerth",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,19 +38,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "pokerth-1.1.2.patch",
             url: "https://aur.archlinux.org/cgit/aur.git/plain/pokerth-1.1.2.patch?h=pokerth&id=7734029cf9c6ef58f42ed873e1b9c3c19eb1df3b",
             hash: "sha256-we2UOCFF5J/Wlji/rJeCHDu/dNsUU+R+bTw83AmvDxs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "pokerth-1.1.2.patch.2019",
             url: "https://aur.archlinux.org/cgit/aur.git/plain/pokerth-1.1.2.patch.2019?h=pokerth&id=7734029cf9c6ef58f42ed873e1b9c3c19eb1df3b",
             hash: "sha256-m6uFPmPC3T9kV7EI1p33vQSi0d/w+YCH0dKjviAphMY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "pokerth-1.1.2.patch.2020",
             url: "https://aur.archlinux.org/cgit/aur.git/plain/pokerth-1.1.2.patch.2020?h=pokerth&id=7734029cf9c6ef58f42ed873e1b9c3c19eb1df3b",
             hash: "sha256-I2qrgLGSMvFDHyUZFWGPGnuecZ914NBf2uGK02X/wOg=",
@@ -88,11 +82,11 @@ done
       ]),
       qmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CONFIG+=${target}`), "pokerth.pro"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL)}/include/SDL`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://www.pokerth.net",
         description: nix.thunk(() => nix.str`Poker game ${target}`),
         mainProgram: "pokerth",

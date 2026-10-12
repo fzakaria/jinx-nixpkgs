@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/loop.nix", [[["NIX_CFLAGS_COMPILE", 24, 9]], [["description", 39, 5]], [["pname", 13, 3], ["src", 14, 20], ["version", 14, 24], ["env", 16, 3], ["propagatedBuildInputs", 27, 3], ["doCheck", 34, 3], ["nativeCheckInputs", 35, 3], ["checkInputs", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, ocaml: false, buildDunePackage: false, dolmen: false, dolmen_type: false, gen: false, pp_loc: false, mdx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/loop.nix", [["NIX_CFLAGS_COMPILE", 24, 9]]);
-const pos$2 = nix.positions(here + "/loop.nix", [["description", 39, 5]]);
-const pos$3 = nix.positions(here + "/loop.nix", [["pname", 13, 3], ["src", 14, 20], ["version", 14, 24], ["env", 16, 3], ["propagatedBuildInputs", 27, 3], ["doCheck", 34, 3], ["nativeCheckInputs", 35, 3], ["checkInputs", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,16 +16,19 @@ export default nix.lambda((args) => (() => {
   const pp_loc = nix.arg($, "pp_loc");
   const mdx = nix.arg($, "mdx");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dolmen_loop",
       src: nix.thunk(() => nix.attr(dolmen, "src")),
       version: nix.thunk(() => nix.attr(dolmen, "version")),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.10")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")))) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")))), nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.10")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")))) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")))), nix.thunk(() => ({ [nix.POS]: $pos[0], NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
       propagatedBuildInputs: nix.thunk(() => [dolmen, dolmen_type, gen, pp_loc]),
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       checkInputs: nix.thunk(() => [mdx]),
-      meta: nix.thunk(() => nix.update(nix.sel(dolmen, "meta"), { [nix.POS]: pos$2, description: "Tool library for automated deduction tools" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dolmen, "meta"), {
+        [nix.POS]: $pos[1],
+        description: "Tool library for automated deduction tools",
+      })),
     })));
 })(), formals$1);
 //# sourceMappingURL=loop.ts.map

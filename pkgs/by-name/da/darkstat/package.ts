@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["url", 26, 7], ["sha256", 27, 7]], [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["enableParallelBuilding", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, fetchFromGitHub: false, fetchpatch: false, libpcap: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["sha256", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["enableParallelBuilding", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "darkstat",
       version: "3.0.722",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emikulic",
           repo: "darkstat",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/emikulic/darkstat/commit/d2fd232e1167dee6e7a2d88b9ab7acf2a129f697.diff",
             sha256: "0z5mpyc0q65qb6cn4xcrxl0vx21d8ibzaam5kjyrcw4icd8yg4jb",
           })))),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libpcap, zlib]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Network statistics web interface",
         longDescription: "Captures network traffic, calculates statistics about usage, and serves\nreports over HTTP. Features:\n- Traffic graphs, reports per host, shows ports for each host.\n- Embedded web-server with deflate compression.\n- Asynchronous reverse DNS resolution using a child process.\n- Small. Portable. Single-threaded. Efficient.\n- Supports IPv6.\n",
         homepage: "http://unix4lyfe.org/darkstat",

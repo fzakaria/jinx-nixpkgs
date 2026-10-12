@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["updateScript", 57, 5]], [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["teams", 68, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["propagatedBuildInputs", 34, 3], ["dontDropIconThemeCache", 39, 3], ["mesonFlags", 41, 3], ["postPatch", 46, 3], ["postFixup", 54, 3], ["passthru", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, "adwaita-icon-theme": false, "hicolor-icon-theme": false, gtk3: false, xcursorgen: false, librsvg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["teams", 68, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["propagatedBuildInputs", 34, 3], ["dontDropIconThemeCache", 39, 3], ["mesonFlags", 41, 3], ["postPatch", 46, 3], ["postFixup", 54, 3], ["passthru", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elementary-icon-theme";
       const version = "9.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "icons",
           tag: version,
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Upstream removed the non-fd.o office-calendar icons but left these\n# alias symlinks dangling (elementary/icons#1435).\nrm -f apps/16/calendar.svg \\\n  mimes/symbolic/text-calendar-symbolic.svg \\\n  mimes/symbolic/vcalendar-symbolic.svg\n";
       const postFixup = "gtk-update-icon-cache $out/share/icons/elementary";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Named, vector icons for elementary OS",
         longDescription: "An original set of vector icons designed specifically for elementary OS and its desktop environment: Pantheon.\n",
         homepage: "https://github.com/elementary/icons",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["url", 51, 5], ["rev-prefix", 52, 5]], [["updateScript", 50, 12]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["teams", 60, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["passthru", 50, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, gettext: false, meson: false, ninja: false, "pkg-config": false, python3: false, glib: false, gtk3: false, libwnck: false, libxfce4ui: false, libxfce4util: false, "xfce4-panel": false, xfconf: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 51, 5], ["rev-prefix", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 50, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["teams", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["strictDeps", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["passthru", 50, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const xfconf = nix.arg($, "xfconf");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xfce4-windowck-plugin",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xfce/src/panel-plugins/xfce4-windowck-plugin/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/xfce4-windowck-plugin-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Ay4wXXTxe9ZbKL0mDPGS/PiqDfM9EWCH5IX9E2i3zzk=",
         })))),
@@ -40,15 +36,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gettext, glib, meson, ninja, pkg_config, python3]),
       buildInputs: nix.thunk(() => [glib, gtk3, libwnck, libxfce4ui, libxfce4util, xfce4_panel, xfconf]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.xfce.org/panel-plugins/xfce4-windowck-plugin",
             "rev-prefix": "xfce4-windowck-plugin-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Xfce panel plugin for displaying window title and buttons",
         homepage: "https://gitlab.xfce.org/panel-plugins/xfce4-windowck-plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

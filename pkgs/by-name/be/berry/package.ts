@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["NIX_CFLAGS_COMPILE", 58, 7]], [["name", 62, 7], ["exec", 63, 7], ["comment", 64, 7], ["desktopName", 65, 7], ["genericName", 66, 7], ["categories", 67, 7]], [["homepage", 72, 5], ["description", 73, 5], ["longDescription", 74, 5], ["license", 87, 5], ["mainProgram", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 27]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["outputs", 43, 3], ["strictDeps", 48, 3], ["postPatch", 50, 3], ["preConfigure", 54, 3], ["env", 58, 3], ["desktopItems", 60, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, copyDesktopItems: false, fontconfig: false, freetype: false, libx11: false, libxext: false, libxft: false, libxinerama: false, makeDesktopItem: false, "pkg-config": false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 62, 7], ["exec", 63, 7], ["comment", 64, 7], ["desktopName", 65, 7], ["genericName", 66, 7], ["categories", 67, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["longDescription", 74, 5], ["license", 87, 5], ["mainProgram", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 27]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["outputs", 43, 3], ["strictDeps", 48, 3], ["postPatch", 50, 3], ["preConfigure", 54, 3], ["env", 58, 3], ["desktopItems", 60, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "berry",
       version: "0.1.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JLErvin",
           repo: "berry",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,12 +39,12 @@ export default nix.lambda((args) => (() => {
 `),
       preConfigure: "patchShebangs configure\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-D_C99_SOURCE")),
       })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "berry",
             exec: "berry",
             comment: "A healthy, bite-sized window manager",
@@ -60,7 +56,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libx11, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://berrywm.org/",
         description: "Healthy, bite-sized window manager",
         longDescription: "berry is a healthy, bite-sized window manager written in C for unix\nsystems. Its main features include:\n\n- Controlled via a powerful command-line client, allowing users to control\n  windows via a hotkey daemon such as sxhkd or expand functionality via\n  shell scripts.\n- Small, hackable source code.\n- Extensible theming options with double borders, title bars, and window\n  text.\n- Intuitively place new windows in unoccupied spaces.\n- Virtual desktops.\n",

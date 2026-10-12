@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["rev-prefix", 81, 7], ["ignoredVersions", 82, 7]], [["skipBulkUpdate", 79, 5], ["updateScript", 80, 5]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["sourceRoot", 43, 3], ["build-system", 45, 3], ["pythonRelaxDeps", 47, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 59, 3], ["enabledTestPaths", 73, 3], ["pythonImportsCheck", 75, 3], ["passthru", 77, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, "azure-identity": false, "langchain-core": false, "langchain-openai": false, freezegun: false, lark: false, pandas: false, "pytest-asyncio": false, "pytest-mock": false, "pytest-socket": false, pytestCheckHook: false, "requests-mock": false, responses: false, syrupy: false, toml: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 81, 7], ["ignoredVersions", 82, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 79, 5], ["updateScript", 80, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["sourceRoot", 43, 3], ["build-system", 45, 3], ["pythonRelaxDeps", 47, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 59, 3], ["enabledTestPaths", 73, 3], ["pythonImportsCheck", 75, 3], ["passthru", 77, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "langchain-ai",
           repo: "langchain",
           tag: nix.thunk(() => nix.str`langchain-azure-dynamic-sessions==${version}`),
@@ -61,16 +57,16 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/unit_tests"]);
       const pythonImportsCheck = nix.thunk(() => ["langchain_azure_dynamic_sessions"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "rev-prefix": "langchain-azure-dynamic-sessions==",
             ignoredVersions: "a|b|dev|rc",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Integration package connecting Azure Container Apps dynamic sessions and LangChain",
         homepage: "https://github.com/langchain-ai/langchain/tree/master/libs/partners/azure-dynamic-sessions",
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langchain/releases/tag/${nix.sel(src, "tag")}`),
@@ -84,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["updateScript", 115, 12]], [["description", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["mainProgram", 123, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["build-system", 51, 3], ["pythonRelaxDeps", 53, 3], ["dependencies", 59, 3], ["nativeCheckInputs", 80, 3], ["pythonImportsCheck", 86, 3], ["disabledTestPaths", 88, 3], ["disabledTests", 97, 3], ["passthru", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, appdirs: false, cryptography: false, id: false, "importlib-resources": false, platformdirs: false, pyasn1: false, pydantic: false, pyjwt: false, pyopenssl: false, requests: false, "rfc3161-client": false, rfc8785: false, rich: false, securesystemslib: false, "sigstore-models": false, "sigstore-protobuf-specs": false, "sigstore-rekor-types": false, tuf: false, pretend: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 115, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["mainProgram", 123, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["build-system", 51, 3], ["pythonRelaxDeps", 53, 3], ["dependencies", 59, 3], ["nativeCheckInputs", 80, 3], ["pythonImportsCheck", 86, 3], ["disabledTestPaths", 88, 3], ["disabledTests", 97, 3], ["passthru", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,13 +34,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sigstore",
       version: "4.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sigstore",
           repo: "sigstore-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,11 +88,11 @@ export default nix.lambda((args) => (() => {
         "test_regression_verify_legacy_bundle",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Codesigning tool for Python packages",
         homepage: "https://github.com/sigstore/sigstore-python",
         changelog: nix.thunk(() => nix.str`https://github.com/sigstore/sigstore-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,40 +2,32 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lib-extend.nix", [[["sorry_dave", 8, 11]], [["lib", 6, 7]], [["text", 21, 45]], [["got-lib-overlay", 21, 27]], [["etc", 21, 23]], [["environment", 21, 11]], [["machine", 18, 7]], [["name", 15, 5], ["nodes", 17, 5], ["testScript", 28, 5]], [["nixosTest", 36, 3], ["runNixOSTest", 37, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lib-extend.nix", [["sorry_dave", 8, 11]]);
-const pos$2 = nix.positions(here + "/lib-extend.nix", [["lib", 6, 7]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/lib-extend.nix", [["text", 21, 45]]);
-const pos$4 = nix.positions(here + "/lib-extend.nix", [["got-lib-overlay", 21, 27]]);
-const pos$5 = nix.positions(here + "/lib-extend.nix", [["etc", 21, 23]]);
-const pos$6 = nix.positions(here + "/lib-extend.nix", [["environment", 21, 11]]);
-const pos$7 = nix.positions(here + "/lib-extend.nix", [["machine", 18, 7]]);
-const pos$8 = nix.positions(here + "/lib-extend.nix", [["name", 15, 5], ["nodes", 17, 5], ["testScript", 28, 5]]);
-const pos$9 = nix.positions(here + "/lib-extend.nix", [["nixosTest", 36, 3], ["runNixOSTest", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const patchedPkgs = nix.thunk(() => nix.app(nix.sel(pkgs, "extend"), (new$) => (old) => ({
-      [nix.POS]: pos$2,
-      lib: nix.thunk(() => nix.app(nix.sel(old, "lib", "extend"), (self) => (super$) => ({ [nix.POS]: pos$1, sorry_dave: "sorry dave" }))),
+      [nix.POS]: $pos[1],
+      lib: nix.thunk(() => nix.app(nix.sel(old, "lib", "extend"), (self) => (super$) => ({ [nix.POS]: $pos[0], sorry_dave: "sorry dave" }))),
     })));
   const testBody = nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "demo lib overlay",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              "got-lib-overlay": nix.thunk(() => ({ [nix.POS]: pos$3, text: nix.thunk(() => nix.sel(lib, "sorry_dave")) })),
+              [nix.POS]: $pos[3],
+              "got-lib-overlay": nix.thunk(() => ({ [nix.POS]: $pos[2], text: nix.thunk(() => nix.sel(lib, "sorry_dave")) })),
             })),
           })),
         };
@@ -49,7 +41,7 @@ export default nix.lambda((args) => (() => {
   const evaluationNixosTest = nix.thunk(() => nix.app(nixosTest, testBody));
   const evaluationRunNixOSTest = nix.thunk(() => nix.app(runNixOSTest, testBody));
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     nixosTest: nix.thunk(() => nix.sel(evaluationNixosTest, "driver", "nodes", "machine", "system", "build", "toplevel")),
     runNixOSTest: nix.thunk(() => nix.sel(evaluationRunNixOSTest, "driver", "nodes", "machine", "system", "build", "toplevel")),
   };

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["src", 23, 26], ["version", 23, 30], ["pname", 24, 5], ["postPatch", 25, 5], ["npmDepsHash", 28, 5], ["npmBuildScript", 29, 5], ["postBuild", 30, 5]], [["package", 51, 7]], [["adguardhome", 49, 11], ["version", 50, 11]], [["updateScript", 47, 5], ["schema_version", 48, 5], ["tests", 49, 5]], [["homepage", 56, 5], ["description", 57, 5], ["maintainers", 58, 5], ["license", 64, 5], ["mainProgram", 65, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["dashboard", 22, 3], ["preBuild", 36, 3], ["ldflags", 40, 3], ["passthru", 46, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, buildNpmPackage: false, nixosTests: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 23, 26], ["version", 23, 30], ["pname", 24, 5], ["postPatch", 25, 5], ["npmDepsHash", 28, 5], ["npmBuildScript", 29, 5], ["postBuild", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 51, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["adguardhome", 49, 11], ["version", 50, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 47, 5], ["schema_version", 48, 5], ["tests", 49, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["maintainers", 58, 5], ["license", 64, 5], ["mainProgram", 65, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["dashboard", 22, 3], ["preBuild", 36, 3], ["ldflags", 40, 3], ["passthru", 46, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "adguardhome",
       version: "0.107.79",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AdguardTeam",
           repo: "AdGuardHome",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-I0Zqo3s6s8UJ3IJJng32/27WUo/6zPy+jxj98Vh/ja8=",
       dashboard: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "adguardhome-dashboard",
@@ -49,20 +43,20 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/AdguardTeam/AdGuardHome/internal/version.version=${nix.sel(finalAttrs, "version")}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.path(here, "./update.sh"),
         schema_version: 34n,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           adguardhome: nix.thunk(() => nix.sel(nixosTests, "adguardhome")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/AdguardTeam/AdGuardHome",
         description: "Network-wide ads & trackers blocking DNS server",
         maintainers: nix.thunk(() => (() => {

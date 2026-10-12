@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pname", 25, 13], ["version", 25, 19], ["src", 25, 27], ["hash", 26, 5]], [["PROTOC", 34, 7]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["cargoDeps", 24, 3], ["nativeBuildInputs", 29, 3], ["env", 34, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, buildPackages: false, fetchFromGitHub: false, httpx: false, msgspec: false, orjson: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 25, 13], ["version", 25, 19], ["src", 25, 27], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["PROTOC", 34, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["cargoDeps", 24, 3], ["nativeBuildInputs", 29, 3], ["env", 34, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +20,14 @@ export default nix.lambda((args) => (() => {
       const version = "9.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pinecone-io",
           repo: "pinecone-python-client",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-yWGW9qx4zb4FnDLXvtXREYXRO7e5Jk/KJoaQlpKMwpg=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -45,13 +41,13 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         PROTOC: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(buildPackages, "protobuf")))}`),
       }));
       const dependencies = nix.thunk(() => [httpx, msgspec, orjson]);
       const pythonImportsCheck = nix.thunk(() => ["pinecone"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Pinecone Python SDK",
         homepage: "https://www.pinecone.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/pinecone-io/python-sdk/releases/tag/${nix.sel(src, "tag")}`),
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

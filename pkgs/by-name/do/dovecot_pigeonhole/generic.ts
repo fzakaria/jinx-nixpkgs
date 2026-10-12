@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["version", 32, 28], ["dovecotMajorMinor", 33, 15]], [["url", 31, 5], ["hash", 35, 13]], [["homepage", 86, 5], ["description", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 95, 5]], [["pname", 27, 3], ["version", 28, 11], ["src", 30, 3], ["patches", 38, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 46, 3], ["preConfigure", 57, 3], ["configureFlags", 66, 3], ["preBuild", 73, 3], ["makeFlags", 78, 3], ["enableParallelBuilding", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { version: false, url: false, hash: false, patches: true }, ellipsis: false };
 const formals$2 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchzip: false, dovecot: false, openssl: false, "pkg-config": false, libstemmer: false, perl: false, python3: false, withLDAP: true, cyrus_sasl: false, openldap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["version", 32, 28], ["dovecotMajorMinor", 33, 15]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["url", 31, 5], ["hash", 35, 13]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["homepage", 86, 5], ["description", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 95, 5]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["pname", 27, 3], ["version", 28, 11], ["src", 30, 3], ["patches", 38, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 46, 3], ["preConfigure", 57, 3], ["configureFlags", 66, 3], ["preBuild", 73, 3], ["makeFlags", 78, 3], ["enableParallelBuilding", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +30,13 @@ export default nix.lambda((args) => (() => {
     const dovecotMajorMinor = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(dovecot, "version"))));
     const isCurrent = nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionAtLeast"), version, "2.4"));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "dovecot-pigeonhole",
         version: version,
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.app(url, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 version: nix.thunk(() => nix.attr(finalAttrs, "version")),
                 dovecotMajorMinor: dovecotMajorMinor,
               })))),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
           ]))),
         enableParallelBuilding: true,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           homepage: "https://pigeonhole.dovecot.org/",
           description: "Sieve plugin for the Dovecot IMAP server",
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

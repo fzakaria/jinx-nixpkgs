@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["NIX_LDFLAGS", 47, 5]], [["pname", 11, 3], ["version", 17, 5], ["src", 18, 5], ["setupHooks", 19, 5], ["meta", 20, 5], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 29, 3], ["makeFlags", 33, 3], ["env", 44, 3], ["patches", 50, 3], ["buildFlags", 58, 3], ["installFlags", 63, 3], ["preInstall", 70, 3], ["postInstall", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "gprbuild-boot": false, which: false, gnat: false, xmlada: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["NIX_LDFLAGS", 47, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 17, 5], ["src", 18, 5], ["setupHooks", 19, 5], ["meta", 20, 5], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 29, 3], ["makeFlags", 33, 3], ["env", 44, 3], ["patches", 50, 3], ["buildFlags", 58, 3], ["installFlags", 63, 3], ["preInstall", 70, 3], ["postInstall", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const gnat = nix.arg($, "gnat");
   const xmlada = nix.arg($, "xmlada");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "gprbuild",
       version: nix.thunk(() => nix.attr(gprbuild_boot, "version")),
       src: nix.thunk(() => nix.attr(gprbuild_boot, "src")),
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`TARGET=${nix.sel(stdenv, "hostPlatform", "config")}`),
         nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))), nix.thunk(() => ["LIBRARY_TYPE=relocatable"])))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$1, NIX_LDFLAGS: "-headerpad_max_install_names" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[0], NIX_LDFLAGS: "-headerpad_max_install_names" })))),
       patches: nix.thunk(() => nix.concat(nix.sel(gprbuild_boot, "patches"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))), nix.thunk(() => [nix.path(here, "./gprbuild-relocatable-build.patch")])))),
       buildFlags: nix.thunk(() => ["all", "libgpr.build"]),
       installFlags: nix.thunk(() => ["all", "libgpr.install"]),

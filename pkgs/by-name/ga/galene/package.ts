@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["vm", 39, 11]], [["extraArgs", 41, 7]], [["tests", 39, 5], ["updateScript", 40, 5]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["teams", 51, 5], ["maintainers", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["preCheck", 26, 3], ["outputs", 28, 3], ["postInstall", 33, 3], ["passthru", 38, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["vm", 39, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 39, 5], ["updateScript", 40, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["teams", 51, 5], ["maintainers", 52, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["ldflags", 22, 3], ["preCheck", 26, 3], ["outputs", 28, 3], ["postInstall", 33, 3], ["passthru", 38, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "galene",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jech",
           repo: "galene",
           tag: nix.thunk(() => nix.str`galene-${nix.sel(finalAttrs, "version")}`),
@@ -34,18 +29,18 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "static"]),
       postInstall: "mkdir $static\ncp -r ./static $static\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           vm: nix.thunk(() => nix.sel(nixosTests, "galene", "basic")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex=galene-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Videoconferencing server that is easy to deploy, written in Go",
         homepage: "https://github.com/jech/galene",
         changelog: nix.thunk(() => nix.str`https://github.com/jech/galene/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES`),

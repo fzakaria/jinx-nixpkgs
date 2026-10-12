@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["homepage", 55, 5], ["changelog", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["outputs", 45, 3], ["enableParallelBuilding", 50, 3], ["strictDeps", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, libpng: false, libsamplerate: false, "pkg-config": false, python3: false, SDL2: false, SDL2_mixer: false, SDL2_net: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["changelog", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["outputs", 45, 3], ["enableParallelBuilding", 50, 3], ["strictDeps", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_mixer = nix.arg($, "SDL2_mixer");
   const SDL2_net = nix.arg($, "SDL2_net");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "chocolate-doom",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chocolate-doom",
           repo: "chocolate-doom",
           tag: nix.thunk(() => nix.str`chocolate-doom-${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.chocolate-doom.org",
         changelog: nix.thunk(() => nix.str`https://github.com/chocolate-doom/chocolate-doom/releases/tag/chocolate-doom-${nix.sel(finalAttrs, "version")}`),
         description: "Doom source port that accurately reproduces the experience of Doom as it was played in the 1990s",

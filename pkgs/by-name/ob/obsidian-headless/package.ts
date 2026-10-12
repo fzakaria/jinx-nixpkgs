@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["pname", 37, 7], ["version", 38, 7], ["src", 39, 7], ["pnpm", 41, 13], ["fetcherVersion", 42, 5], ["hash", 43, 5]], [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["platforms", 99, 5], ["maintainers", 100, 5], ["mainProgram", 103, 5]], [["pname", 22, 3], ["version", 23, 3], ["strictDeps", 25, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["pnpmDeps", 35, 3], ["nativeBuildInputs", 46, 3], ["buildPhase", 58, 3], ["installPhase", 75, 3], ["nativeInstallCheckInputs", 88, 3], ["doInstallCheck", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nodejs: false, srcOnly: false, "node-gyp": false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, makeWrapper: false, python3: false, cctools: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 37, 7], ["version", 38, 7], ["src", 39, 7], ["pnpm", 41, 13], ["fetcherVersion", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["platforms", 99, 5], ["maintainers", 100, 5], ["mainProgram", 103, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["strictDeps", 25, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["pnpmDeps", 35, 3], ["nativeBuildInputs", 46, 3], ["buildPhase", 58, 3], ["installPhase", 75, 3], ["nativeInstallCheckInputs", 88, 3], ["doInstallCheck", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,20 +23,20 @@ export default nix.lambda((args) => (() => {
   const nodeSources = nix.thunk(() => nix.app(srcOnly, nodejs));
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "obsidian-headless",
       version: "0.0.14",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "obsidianmd",
           repo: "obsidian-headless",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-ue2M9maFyvabGH9qTDOpAJS4OPwCikpAMYm/M/XRGKo=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -77,7 +74,7 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Headless client for Obsidian Sync and Obsidian Publish",
         homepage: "https://github.com/obsidianmd/obsidian-headless",
         changelog: nix.thunk(() => nix.str`https://github.com/obsidianmd/obsidian-headless/releases/tag/${nix.sel(finalAttrs, "version")}`),

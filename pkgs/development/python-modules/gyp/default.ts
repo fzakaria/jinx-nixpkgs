@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 22, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["pythonImportsCheck", 31, 3], ["preFixup", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitiles: false, setuptools: false, six: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 43, 5], ["mainProgram", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 22, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["pythonImportsCheck", 31, 3], ["preFixup", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const six = nix.arg($, "six");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gyp",
       version: "unstable-2024-02-07",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitiles, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://chromium.googlesource.com/external/gyp",
           rev: "1615ec326858f8c2bd8f30b3a86ea71830409ce4",
           hash: "sha256-E+JF4uJBRka6vtjxyoMGE4IT5kSrl7Vs6WNkMQ+vNgs=",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`chmod +x "$out/${nix.sel(python, "sitePackages")}/gyp/mac_tool.py"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to generate native build files",
         mainProgram: "gyp",
         homepage: "https://gyp.gsrc.io",

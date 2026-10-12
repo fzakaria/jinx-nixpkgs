@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["aarch64-darwin", 60, 9], ["aarch64-linux", 61, 9], ["x86_64-linux", 62, 9]], [["pname", 22, 5], ["version", 23, 13], ["src", 23, 21], ["nativeBuildInputs", 25, 5], ["dontConfigure", 30, 5], ["buildPhase", 32, 5], ["installPhase", 47, 5], ["dontFixup", 56, 5], ["outputHash", 58, 5], ["outputHashAlgo", 67, 5], ["outputHashMode", 68, 5]], [["description", 136, 5], ["homepage", 137, 5], ["changelog", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["mainProgram", 141, 5], ["platforms", 142, 5]], [["pname", 72, 11], ["version", 72, 17], ["src", 72, 25], ["nativeBuildInputs", 74, 3], ["configurePhase", 79, 3], ["buildPhase", 87, 3], ["installPhase", 102, 3], ["dontStrip", 115, 3], ["nativeInstallCheckInputs", 117, 3], ["versionCheckKeepEnvironment", 122, 3], ["preVersionCheck", 124, 3], ["doInstallCheck", 133, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bun: false, fetchFromGitHub: false, versionCheckHook: false, makeWrapper: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-darwin", 60, 9], ["aarch64-linux", 61, 9], ["x86_64-linux", 62, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 5], ["version", 23, 13], ["src", 23, 21], ["nativeBuildInputs", 25, 5], ["dontConfigure", 30, 5], ["buildPhase", 32, 5], ["installPhase", 47, 5], ["dontFixup", 56, 5], ["outputHash", 58, 5], ["outputHashAlgo", 67, 5], ["outputHashMode", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 136, 5], ["homepage", 137, 5], ["changelog", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["mainProgram", 141, 5], ["platforms", 142, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 72, 11], ["version", 72, 17], ["src", 72, 25], ["nativeBuildInputs", 74, 3], ["configurePhase", 79, 3], ["buildPhase", 87, 3], ["installPhase", 102, 3], ["dontStrip", 115, 3], ["nativeInstallCheckInputs", 117, 3], ["versionCheckKeepEnvironment", 122, 3], ["preVersionCheck", 124, 3], ["doInstallCheck", 133, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const pname = "filen-cli";
   const version = "0.0.36";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "FilenCloudDienste",
       repo: "filen-cli",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-2FN9KygSGir/vtHdKXX0zUeug2O6tgAc1PBhzD9HPqY=",
     }))));
   const node_modules = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`${pname}-node_modules`),
       version: version,
       src: src,
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/node_modules\ncp -R ./node_modules $out\n\nrunHook postInstall\n",
       dontFixup: true,
       outputHash: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "aarch64-darwin": "sha256-+nTCiCEXsEz7YqRZkHlP3CWL7e7OPdds33BTwfqTL5c=",
         "aarch64-linux": "sha256-uvL498mHFXwoZpeCwsup4Iyh4l5buVnqLRBMyGVRIlA=",
         "x86_64-linux": "sha256-Ky+ewpdd5nKvRzXwEAUgT7P/OW3v6fdb2r6SGxZ/JEc=",
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -87,7 +83,7 @@ runHook postInstall
       preVersionCheck: "cat > filen-version << EOF\n#!/bin/sh\nexec $out/bin/filen --skip-update \"\\$@\"\nEOF\nchmod +x filen-version\nversionCheckProgram=\"$(pwd)/filen-version\"\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CLI tool for interacting with the Filen cloud",
         homepage: "https://github.com/FilenCloudDienste/filen-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/FilenCloudDienste/filen-cli/releases/tag/v${version}`),

@@ -2,106 +2,68 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zrepl.nix", [[["emptyDiskImages", 10, 26]], [["supportedFilesystems", 14, 16]], [["systemPackages", 15, 23]], [["allowedTCPPorts", 19, 31]], [["firewall", 19, 22], ["hostId", 20, 22]], [["type", 27, 19], ["listen", 28, 19]], [["monitoring", 25, 22]], [["tank/data", 37, 31]], [["type", 39, 21], ["prefix", 40, 21], ["interval", 41, 21]], [["type", 46, 23], ["count", 47, 23]], [["keep", 44, 27]], [["name", 34, 19], ["type", 35, 19], ["filesystems", 37, 19], ["snapshotting", 38, 19], ["pruning", 44, 19]], [["type", 56, 21], ["listen", 57, 21], ["clients", 59, 21]], [["tank/data", 64, 31]], [["type", 67, 21]], [["name", 52, 19], ["type", 53, 19], ["serve", 55, 19], ["filesystems", 64, 19], ["snapshotting", 66, 19]], [["global", 25, 15], ["jobs", 32, 15]], [["enable", 22, 13], ["settings", 23, 13]], [["zrepl", 21, 20]], [["virtualisation", 10, 11], ["boot", 14, 11], ["environment", 15, 11], ["networking", 19, 11], ["services", 21, 11]], [["config", 8, 9]], [["emptyDiskImages", 81, 26]], [["supportedFilesystems", 85, 16]], [["systemPackages", 86, 23]], [["hostId", 90, 22]], [["type", 97, 19], ["listen", 98, 19]], [["monitoring", 95, 22]], [["type", 107, 21], ["address", 108, 21]], [["encryption", 114, 23]], [["placeholder", 113, 21]], [["type", 120, 25], ["regex", 121, 25]], [["type", 126, 25], ["grid", 127, 25], ["regex", 128, 25]], [["keep_sender", 118, 21], ["keep_receiver", 124, 21]], [["name", 103, 19], ["type", 104, 19], ["connect", 106, 19], ["root_fs", 110, 19], ["interval", 111, 19], ["recv", 112, 19], ["pruning", 117, 19]], [["global", 95, 15], ["jobs", 101, 15]], [["enable", 92, 13], ["settings", 93, 13]], [["zrepl", 91, 20]], [["virtualisation", 81, 11], ["boot", 85, 11], ["environment", 86, 11], ["networking", 90, 11], ["services", 91, 11]], [["config", 79, 9]], [["source", 5, 5], ["target", 76, 5]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 140, 3]]]);
 const formals$1 = { args: { nodes: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/zrepl.nix", [["emptyDiskImages", 10, 26]]);
-const pos$2 = nix.positions(here + "/zrepl.nix", [["supportedFilesystems", 14, 16]]);
-const pos$3 = nix.positions(here + "/zrepl.nix", [["systemPackages", 15, 23]]);
-const pos$4 = nix.positions(here + "/zrepl.nix", [["allowedTCPPorts", 19, 31]]);
-const pos$5 = nix.positions(here + "/zrepl.nix", [["firewall", 19, 22], ["hostId", 20, 22]]);
-const pos$6 = nix.positions(here + "/zrepl.nix", [["type", 27, 19], ["listen", 28, 19]]);
-const pos$7 = nix.positions(here + "/zrepl.nix", [["monitoring", 25, 22]]);
-const pos$8 = nix.positions(here + "/zrepl.nix", [["tank/data", 37, 31]]);
-const pos$9 = nix.positions(here + "/zrepl.nix", [["type", 39, 21], ["prefix", 40, 21], ["interval", 41, 21]]);
-const pos$10 = nix.positions(here + "/zrepl.nix", [["type", 46, 23], ["count", 47, 23]]);
-const pos$11 = nix.positions(here + "/zrepl.nix", [["keep", 44, 27]]);
-const pos$12 = nix.positions(here + "/zrepl.nix", [["name", 34, 19], ["type", 35, 19], ["filesystems", 37, 19], ["snapshotting", 38, 19], ["pruning", 44, 19]]);
-const pos$13 = nix.positions(here + "/zrepl.nix", [["type", 56, 21], ["listen", 57, 21], ["clients", 59, 21]]);
-const pos$14 = nix.positions(here + "/zrepl.nix", [["tank/data", 64, 31]]);
-const pos$15 = nix.positions(here + "/zrepl.nix", [["type", 67, 21]]);
-const pos$16 = nix.positions(here + "/zrepl.nix", [["name", 52, 19], ["type", 53, 19], ["serve", 55, 19], ["filesystems", 64, 19], ["snapshotting", 66, 19]]);
-const pos$17 = nix.positions(here + "/zrepl.nix", [["global", 25, 15], ["jobs", 32, 15]]);
-const pos$18 = nix.positions(here + "/zrepl.nix", [["enable", 22, 13], ["settings", 23, 13]]);
-const pos$19 = nix.positions(here + "/zrepl.nix", [["zrepl", 21, 20]]);
-const pos$20 = nix.positions(here + "/zrepl.nix", [["virtualisation", 10, 11], ["boot", 14, 11], ["environment", 15, 11], ["networking", 19, 11], ["services", 21, 11]]);
-const pos$21 = nix.positions(here + "/zrepl.nix", [["config", 8, 9]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$22 = nix.positions(here + "/zrepl.nix", [["emptyDiskImages", 81, 26]]);
-const pos$23 = nix.positions(here + "/zrepl.nix", [["supportedFilesystems", 85, 16]]);
-const pos$24 = nix.positions(here + "/zrepl.nix", [["systemPackages", 86, 23]]);
-const pos$25 = nix.positions(here + "/zrepl.nix", [["hostId", 90, 22]]);
-const pos$26 = nix.positions(here + "/zrepl.nix", [["type", 97, 19], ["listen", 98, 19]]);
-const pos$27 = nix.positions(here + "/zrepl.nix", [["monitoring", 95, 22]]);
-const pos$28 = nix.positions(here + "/zrepl.nix", [["type", 107, 21], ["address", 108, 21]]);
-const pos$29 = nix.positions(here + "/zrepl.nix", [["encryption", 114, 23]]);
-const pos$30 = nix.positions(here + "/zrepl.nix", [["placeholder", 113, 21]]);
-const pos$31 = nix.positions(here + "/zrepl.nix", [["type", 120, 25], ["regex", 121, 25]]);
-const pos$32 = nix.positions(here + "/zrepl.nix", [["type", 126, 25], ["grid", 127, 25], ["regex", 128, 25]]);
-const pos$33 = nix.positions(here + "/zrepl.nix", [["keep_sender", 118, 21], ["keep_receiver", 124, 21]]);
-const pos$34 = nix.positions(here + "/zrepl.nix", [["name", 103, 19], ["type", 104, 19], ["connect", 106, 19], ["root_fs", 110, 19], ["interval", 111, 19], ["recv", 112, 19], ["pruning", 117, 19]]);
-const pos$35 = nix.positions(here + "/zrepl.nix", [["global", 95, 15], ["jobs", 101, 15]]);
-const pos$36 = nix.positions(here + "/zrepl.nix", [["enable", 92, 13], ["settings", 93, 13]]);
-const pos$37 = nix.positions(here + "/zrepl.nix", [["zrepl", 91, 20]]);
-const pos$38 = nix.positions(here + "/zrepl.nix", [["virtualisation", 81, 11], ["boot", 85, 11], ["environment", 86, 11], ["networking", 90, 11], ["services", 91, 11]]);
-const pos$39 = nix.positions(here + "/zrepl.nix", [["config", 79, 9]]);
-const pos$40 = nix.positions(here + "/zrepl.nix", [["source", 5, 5], ["target", 76, 5]]);
-const pos$41 = nix.positions(here + "/zrepl.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 140, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$41,
+  [nix.POS]: $pos[40],
   name: "zrepl",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$40,
+    [nix.POS]: $pos[39],
     source: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const nodes = nix.arg($, "nodes");
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         config: nix.thunk(() => ({
-          [nix.POS]: pos$20,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, emptyDiskImages: nix.thunk(() => [2048n]) })),
-          boot: nix.thunk(() => ({ [nix.POS]: pos$2, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+          [nix.POS]: $pos[19],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], emptyDiskImages: nix.thunk(() => [2048n]) })),
+          boot: nix.thunk(() => ({ [nix.POS]: $pos[1], supportedFilesystems: nix.thunk(() => ["zfs"]) })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "parted")),
               nix.thunk(() => nix.sel(pkgs, "zrepl")),
             ]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [8888n]) })),
+            [nix.POS]: $pos[4],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], allowedTCPPorts: nix.thunk(() => [8888n]) })),
             hostId: "deadbeef",
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             zrepl: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 global: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
-                  monitoring: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$6, type: "prometheus", listen: ":9811" }))]),
+                  [nix.POS]: $pos[6],
+                  monitoring: nix.thunk(() => [
+                    nix.thunk(() => ({ [nix.POS]: $pos[5], type: "prometheus", listen: ":9811" })),
+                  ]),
                 })),
                 jobs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     name: "snapshots",
                     type: "snap",
-                    filesystems: nix.thunk(() => ({ [nix.POS]: pos$8, "tank/data": true })),
-                    snapshotting: nix.thunk(() => ({ [nix.POS]: pos$9, type: "periodic", prefix: "zrepl_", interval: "10s" })),
+                    filesystems: nix.thunk(() => ({ [nix.POS]: $pos[7], "tank/data": true })),
+                    snapshotting: nix.thunk(() => ({ [nix.POS]: $pos[8], type: "periodic", prefix: "zrepl_", interval: "10s" })),
                     pruning: nix.thunk(() => ({
-                      [nix.POS]: pos$11,
-                      keep: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$10, type: "last_n", count: 8n }))]),
+                      [nix.POS]: $pos[10],
+                      keep: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[9], type: "last_n", count: 8n }))]),
                     })),
                   })),
                   nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     name: "backup-target",
                     type: "source",
                     serve: nix.thunk(() => ({
-                      [nix.POS]: pos$13,
+                      [nix.POS]: $pos[12],
                       type: "tcp",
                       listen: ":8888",
                       clients: nix.thunk(() => nix.attrsDyn({}, [
@@ -109,8 +71,8 @@ export default nix.thunk(() => ({
                         [nix.str`${nix.sel(nodes, "target", "networking", "primaryIPv6Address")}`, nix.thunk(() => nix.str`${nix.sel(nodes, "target", "networking", "hostName")}`)],
                       ])),
                     })),
-                    filesystems: nix.thunk(() => ({ [nix.POS]: pos$14, "tank/data": true })),
-                    snapshotting: nix.thunk(() => ({ [nix.POS]: pos$15, type: "manual" })),
+                    filesystems: nix.thunk(() => ({ [nix.POS]: $pos[13], "tank/data": true })),
+                    snapshotting: nix.thunk(() => ({ [nix.POS]: $pos[14], type: "manual" })),
                   })),
                 ]),
               })),
@@ -123,50 +85,50 @@ export default nix.thunk(() => ({
       const $ = nix.formals(args, formals$2);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         config: nix.thunk(() => ({
-          [nix.POS]: pos$38,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$22, emptyDiskImages: nix.thunk(() => [2048n]) })),
-          boot: nix.thunk(() => ({ [nix.POS]: pos$23, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+          [nix.POS]: $pos[37],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[21], emptyDiskImages: nix.thunk(() => [2048n]) })),
+          boot: nix.thunk(() => ({ [nix.POS]: $pos[22], supportedFilesystems: nix.thunk(() => ["zfs"]) })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "parted")),
               nix.thunk(() => nix.sel(pkgs, "zrepl")),
             ]),
           })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$25, hostId: "deadd0d0" })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[24], hostId: "deadd0d0" })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             zrepl: nix.thunk(() => ({
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 global: nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   monitoring: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$26, type: "prometheus", listen: ":9811" })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[25], type: "prometheus", listen: ":9811" })),
                   ]),
                 })),
                 jobs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$34,
+                    [nix.POS]: $pos[33],
                     name: "source-pull",
                     type: "pull",
-                    connect: nix.thunk(() => ({ [nix.POS]: pos$28, type: "tcp", address: "source:8888" })),
+                    connect: nix.thunk(() => ({ [nix.POS]: $pos[27], type: "tcp", address: "source:8888" })),
                     root_fs: "tank/zrepl/source",
                     interval: "15s",
                     recv: nix.thunk(() => ({
-                      [nix.POS]: pos$30,
-                      placeholder: nix.thunk(() => ({ [nix.POS]: pos$29, encryption: "off" })),
+                      [nix.POS]: $pos[29],
+                      placeholder: nix.thunk(() => ({ [nix.POS]: $pos[28], encryption: "off" })),
                     })),
                     pruning: nix.thunk(() => ({
-                      [nix.POS]: pos$33,
-                      keep_sender: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$31, type: "regex", regex: ".*" }))]),
+                      [nix.POS]: $pos[32],
+                      keep_sender: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[30], type: "regex", regex: ".*" }))]),
                       keep_receiver: nix.thunk(() => [
                         nix.thunk(() => ({
-                          [nix.POS]: pos$32,
+                          [nix.POS]: $pos[31],
                           type: "grid",
                           grid: "1x1h(keep=all) | 24x1h",
                           regex: "^zrepl_",

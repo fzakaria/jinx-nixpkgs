@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["hash", 29, 5]], [["NIX_CFLAGS_COMPILE", 41, 7]], [["changelog", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["cargoDeps", 27, 3], ["nativeBuildInputs", 32, 3], ["dontUseCmakeConfigure", 39, 3], ["env", 41, 3], ["pythonImportsCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["__darwinAllowLocalNetworking", 57, 3], ["preCheck", 59, 3], ["disabledTests", 64, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, cmake: false, cryptography: false, dnspython: false, fetchFromGitHub: false, lib: false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, rustPlatform: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 41, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["cargoDeps", 27, 3], ["nativeBuildInputs", 32, 3], ["dontUseCmakeConfigure", 39, 3], ["env", 41, 3], ["pythonImportsCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["__darwinAllowLocalNetworking", 57, 3], ["preCheck", 59, 3], ["disabledTests", 64, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "qh3",
       version: "2.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jawah",
           repo: "qh3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-jVDRoYMHJXus/MJ071aDjs4dyjDEeP5VpjY4ckMqqVA=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=stringop-overflow"]))))),
       })),
       pythonImportsCheck: nix.thunk(() => ["qh3"]),
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
           "test_grease_ech_no_rejection",
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/jawah/qh3/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),
         description: "Lightweight QUIC and HTTP/3 implementation in Python",
         homepage: "https://github.com/jawah/qh3",

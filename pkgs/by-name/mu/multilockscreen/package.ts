@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["sha256", 47, 5]], [["description", 59, 5], ["mainProgram", 60, 5], ["longDescription", 61, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["nativeBuildInputs", 50, 3], ["installPhase", 52, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, fetchFromGitHub: false, writeShellScriptBin: false, imagemagick: false, "i3lock-color": false, xdpyinfo: false, xrandr: false, bc: false, feh: false, procps: false, xrdb: false, xset: false, gnused: false, gnugrep: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["sha256", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["longDescription", 61, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["nativeBuildInputs", 50, 3], ["installPhase", 52, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +41,11 @@ export default nix.lambda((args) => (() => {
       coreutils,
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "multilockscreen",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jeffmhubbard",
           repo: "multilockscreen",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +57,7 @@ cp multilockscreen $out/bin/multilockscreen
 wrapProgram "$out/bin/multilockscreen" --prefix PATH : "${binPath}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Wrapper script for i3lock-color",
         mainProgram: "multilockscreen",
         longDescription: "multilockscreen is a wrapper script for i3lock-color.\nIt allows you to cache background images for i3lock-color with a variety of different effects and adds a stylish indicator.\n",

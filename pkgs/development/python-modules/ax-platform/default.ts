@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["ALLOW_BOTORCH_LATEST", 47, 7]], [["description", 143, 5], ["homepage", 144, 5], ["changelog", 145, 5], ["license", 146, 5], ["maintainers", 147, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["env", 47, 3], ["build-system", 49, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 69, 3], ["disabledTestPaths", 79, 3], ["disabledTests", 94, 3], ["pythonImportsCheck", 140, 3], ["meta", 142, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, botorch: false, graphviz: false, ipywidgets: false, jinja2: false, markdown: false, pandas: false, plotly: false, "pyre-extensions": false, "scikit-learn": false, scipy: false, sympy: false, jax: false, numpyro: false, pyfakefs: false, pytestCheckHook: false, sqlalchemy: false, tabulate: false, tensorboard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ALLOW_BOTORCH_LATEST", 47, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 143, 5], ["homepage", 144, 5], ["changelog", 145, 5], ["license", 146, 5], ["maintainers", 147, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["env", 47, 3], ["build-system", 49, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 69, 3], ["disabledTestPaths", 79, 3], ["disabledTests", 94, 3], ["pythonImportsCheck", 140, 3], ["meta", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,19 +32,19 @@ export default nix.lambda((args) => (() => {
   const tabulate = nix.arg($, "tabulate");
   const tensorboard = nix.arg($, "tensorboard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ax-platform",
       version: "1.3.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebook",
           repo: "ax",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-8Q/p74rzMAciNUjaTJtf6duslc3TXT7MIjcHt2sffqI=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ALLOW_BOTORCH_LATEST: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ALLOW_BOTORCH_LATEST: "1" })),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => nix.concat([
         botorch,
@@ -101,7 +98,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ["test_gen_with_expanded_parameter_space"])))),
       pythonImportsCheck: nix.thunk(() => ["ax"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Platform for understanding, managing, deploying, and automating adaptive experiments",
         homepage: "https://ax.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/facebook/Ax/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

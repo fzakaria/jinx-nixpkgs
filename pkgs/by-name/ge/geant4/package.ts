@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enablePython", 35, 5], ["python", 36, 5]], [["url", 45, 5], ["hash", 46, 5]], [["data", 128, 5], ["tests", 130, 5], ["enableQt", 132, 13]], [["description", 141, 5], ["longDescription", 142, 5], ["homepage", 147, 5], ["license", 148, 5], ["maintainers", 149, 5], ["platforms", 153, 5]], [["version", 41, 3], ["pname", 42, 3], ["src", 44, 3], ["postPatch", 50, 3], ["cmakeFlags", 55, 3], ["nativeBuildInputs", 82, 3], ["propagatedNativeBuildInputs", 84, 3], ["dontWrapQtApps", 85, 3], ["buildInputs", 87, 3], ["propagatedBuildInputs", 104, 3], ["postFixup", 117, 3], ["setupHook", 125, 3], ["passthru", 127, 3], ["shellHook", 136, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, callPackage: false, boost: false, clhep: false, cmake: false, coin3d: false, expat: false, libGL: false, libGLU: false, libGLX: false, libx11: false, libxext: false, libxmu: false, libxpm: false, motif: false, python3: false, qt6: false, soxt: false, xercesc: false, zlib: false, enableMultiThreading: true, enableInventor: true, enableQt: true, enableXM: true, enableOpenGLX11: true, enablePython: true, enableRaytracerX11: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enablePython", 35, 5], ["python", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 45, 5], ["hash", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["data", 128, 5], ["tests", 130, 5], ["enableQt", 132, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 141, 5], ["longDescription", 142, 5], ["homepage", 147, 5], ["license", 148, 5], ["maintainers", 149, 5], ["platforms", 153, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 41, 3], ["pname", 42, 3], ["src", 44, 3], ["postPatch", 50, 3], ["cmakeFlags", 55, 3], ["nativeBuildInputs", 82, 3], ["propagatedNativeBuildInputs", 84, 3], ["dontWrapQtApps", 85, 3], ["buildInputs", 87, 3], ["propagatedBuildInputs", 104, 3], ["postFixup", 117, 3], ["setupHook", 125, 3], ["passthru", 127, 3], ["shellHook", 136, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const enableOpenGLX11 = nix.argOr($, "enableOpenGLX11", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   const enablePython = nix.argOr($, "enablePython", () => false);
   const enableRaytracerX11 = nix.argOr($, "enableRaytracerX11", () => false);
-  const boost_python = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enablePython: true, python: python3 }))));
+  const boost_python = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enablePython: true, python: python3 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "11.4.2",
       pname: "geant4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://cern.ch/geant4-data/releases/geant4-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-VyDyu6aSECfiBq1PCgb5vMNIras2JA6LJ3EPIM4+lxo=",
         })))),
@@ -82,14 +78,14 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.add("substituteInPlace \"$out\"/bin/geant4.sh \\\n  --replace-fail \"export GEANT4_DATA_DIR\" \"# export GEANT4_DATA_DIR\"\n", nix.app(nix.sel(lib, "optionalString"), enableQt, "wrapQtAppsHook\n"))),
       setupHook: nix.path(here, "./geant4-hook.sh"),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         data: nix.thunk(() => nix.app(callPackage, nix.path(here, "./datasets.nix"), nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         enableQt: enableQt,
       })),
       shellHook: "source $out/nix-support/setup-hook\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Toolkit for the simulation of the passage of particles through matter",
         longDescription: "Geant4 is a toolkit for the simulation of the passage of particles through matter.\nIts areas of application include high energy, nuclear and accelerator physics, as well as studies in medical and space science.\nThe two main reference papers for Geant4 are published in Nuclear Instruments and Methods in Physics Research A 506 (2003) 250-303, and IEEE Transactions on Nuclear Science 53 No. 1 (2006) 270-278.\n",
         homepage: "https://www.geant4.org",

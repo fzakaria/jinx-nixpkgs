@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["name", 21, 7], ["exec", 22, 7], ["icon", 23, 7], ["desktopName", 24, 7], ["categories", 25, 7]], [["homepage", 68, 5], ["description", 69, 5], ["maintainers", 70, 5], ["platforms", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["desktopItems", 19, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 35, 3], ["version_tag", 38, 3], ["installPhase", 42, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, makeDesktopItem: false, copyDesktopItems: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 21, 7], ["exec", 22, 7], ["icon", 23, 7], ["desktopName", 24, 7], ["categories", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["maintainers", 70, 5], ["platforms", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["desktopItems", 19, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 35, 3], ["version_tag", 38, 3], ["installPhase", 42, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zap",
       version: "2.17.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/zaproxy/zaproxy/releases/download/v${nix.sel(finalAttrs, "version")}/ZAP_${nix.sel(finalAttrs, "version")}_Linux.tar.gz`),
           hash: "sha256-7+eZqqNifbaDtD8AycIQrqC3XADMjwoPBDTRK7Pd3lo=",
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "zap",
             exec: "zap",
             icon: "zap",
@@ -63,7 +60,7 @@ chmod u+x  "$out/bin/zap"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.zaproxy.org/",
         description: "Java application for web penetration testing",
         maintainers: nix.thunk(() => (() => {

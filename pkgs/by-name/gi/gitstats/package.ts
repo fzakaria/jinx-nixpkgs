@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]], [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["strictDeps", 43, 3], ["postPatch", 45, 3], ["makeFlags", 52, 3], ["buildFlags", 57, 3], ["postInstall", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, installShellFiles: false, perl: false, python3: false, gnuplot: false, coreutils: false, gnugrep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["strictDeps", 43, 3], ["postPatch", 45, 3], ["makeFlags", 52, 3], ["buildFlags", 57, 3], ["postInstall", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const gnugrep = nix.arg($, "gnugrep");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gitstats",
       version: "2016-01-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hoxu",
           repo: "gitstats",
           rev: "55c5c285558c410bb35ebf421245d320ab9ee9fa",
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "convert-gitstats-to-use-python3.patch",
             url: "https://github.com/hoxu/gitstats/commit/ca415668ce6b739ca9fefba6acd29c63b89f4211.patch",
             hash: "sha256-sgjoj8eQ5CxQBffmhqymsmXb8peuaSbfFoWciLK3LOo=",
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["man"]),
       postInstall: "installManPage doc/gitstats.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gitstats.sourceforge.net/",
         description: "Git history statistics generator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

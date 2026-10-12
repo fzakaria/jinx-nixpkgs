@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["src", 35, 25]], [["lucky", 35, 19]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5], ["broken", 53, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 21, 3], ["preConfigure", 25, 3], ["format", 30, 3], ["lockFile", 32, 3], ["shardsFile", 33, 3], ["crystalBinaries", 35, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 39, 3], ["postInstall", 41, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, crystal: false, makeWrapper: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 35, 25]]);
-const pos$3 = nix.positions(here + "/package.nix", [["lucky", 35, 19]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5], ["broken", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 21, 3], ["preConfigure", 25, 3], ["format", 30, 3], ["lockFile", 32, 3], ["shardsFile", 33, 3], ["crystalBinaries", 35, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 39, 3], ["postInstall", 41, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lucky-cli";
       const version = "1.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "luckyframework",
           repo: "lucky_cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,8 +30,8 @@ export default nix.lambda((args) => (() => {
       const lockFile = nix.path(here, "./shard.lock");
       const shardsFile = nix.path(here, "./shards.nix");
       const crystalBinaries = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        lucky: nix.thunk(() => ({ [nix.POS]: pos$2, src: "src/lucky.cr" })),
+        [nix.POS]: $pos[2],
+        lucky: nix.thunk(() => ({ [nix.POS]: $pos[1], src: "src/lucky.cr" })),
       }));
       const buildInputs = nix.thunk(() => [openssl]);
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [crystal]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Crystal library for creating and running tasks. Also generates Lucky projects",
         homepage: "https://luckyframework.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(crystal, "version")), "1.6.0")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

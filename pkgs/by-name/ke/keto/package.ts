@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 82, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["__structuredAttrs", 22, 3], ["tags", 24, 3], ["subPackages", 30, 3], ["ldflags", 33, 3], ["nativeBuildInputs", 39, 3], ["__darwinAllowLocalNetworking", 41, 3], ["preCheck", 43, 3], ["checkFlags", 46, 3], ["doInstallCheck", 50, 3], ["nativeInstallCheckInputs", 51, 3], ["versionCheckProgramArg", 52, 3], ["postInstall", 54, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildGoModule: false, versionCheckHook: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["__structuredAttrs", 22, 3], ["tags", 24, 3], ["subPackages", 30, 3], ["ldflags", 33, 3], ["nativeBuildInputs", 39, 3], ["__darwinAllowLocalNetworking", 41, 3], ["preCheck", 43, 3], ["checkFlags", 46, 3], ["doInstallCheck", 50, 3], ["nativeInstallCheckInputs", 51, 3], ["versionCheckProgramArg", 52, 3], ["postInstall", 54, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "keto",
       version: "26.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ory",
           repo: "keto",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: nix.thunk(() => ["version"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd keto \\\n  --bash <($out/bin/keto completion bash) \\\n  --fish <($out/bin/keto completion fish) \\\n  --zsh <($out/bin/keto completion zsh)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Scalable and customizable permission server ",
         longDescription: "Open source implementation of \"Zanzibar: Google's Consistent, Global Authorization System\". It follows\n[cloud architecture best practices](https://www.ory.com/docs/ecosystem/software-architecture-philosophy)\nand focuses on:\n\n- Scalable permission checks based on the Zanzibar model\n- The Ory Permission Language for defining access control policies\n- Relationship-based access control (ReBAC)\n- Low latency permission checks (sub-10ms)\n- Horizontal scaling to billions of relationships\n- Consistency and high availability\n",
         homepage: "https://github.com/ory/keto",

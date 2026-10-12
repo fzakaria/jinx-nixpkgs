@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["url", 27, 7], ["hash", 28, 7]], [["description", 80, 5], ["license", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["platforms", 84, 5], ["mainProgram", 85, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 24, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["preConfigure", 55, 3], ["configureFlags", 62, 3], ["doCheck", 70, 3], ["postInstall", 75, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, bison: false, flex: false, pam: false, perl: false, sendmailPath: true, atWrapperPath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 80, 5], ["license", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["platforms", 84, 5], ["mainProgram", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 24, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["preConfigure", 55, 3], ["configureFlags", 62, 3], ["doCheck", 70, 3], ["postInstall", 75, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const sendmailPath = nix.argOr($, "sendmailPath", () => "/run/wrappers/bin/sendmail");
   const atWrapperPath = nix.argOr($, "atWrapperPath", () => "/run/wrappers/bin/at");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "at",
       version: "3.2.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/a/at/at_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           hash: "sha256-uwZrOJ18m7nYSjVzgDK4XDDLp9lJ91gZKtxyyUd/07g=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://raw.githubusercontent.com/riscv/riscv-poky/master/meta/recipes-extended/at/at/0001-remove-glibc-assumption.patch",
             hash: "sha256-1UobqEZWoaq0S8DUDPuI80kTx0Gut2/VxDIwcKeGZOY=",
           })))),
@@ -55,7 +52,7 @@ substituteInPlace ./configure --replace-fail "test -d /var/run" "true"
       postInstall: nix.thunk(() => nix.str`sed -i "6i test -x ${atWrapperPath} && exec ${atWrapperPath} -qb now  # exec doesn't return" "$out/bin/batch"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Classical Unix `at' job scheduling command",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://tracker.debian.org/pkg/at",

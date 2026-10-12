@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]], [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["cargoHash", 22, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { dbus: false, fetchFromGitHub: false, lib: false, "pkg-config": false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["cargoHash", 22, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const version = "0.1.1";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gnome-randr",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "maxwellainatchi",
           repo: "gnome-randr-rust",
           rev: nix.thunk(() => nix.add("v", version)),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dbus]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Xrandr-like CLI for configuring displays on GNOME/Wayland, on distros that don't support `wlr-randr`",
         homepage: "https://github.com/maxwellainatchi/gnome-randr-rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

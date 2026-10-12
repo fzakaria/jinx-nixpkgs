@@ -2,33 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/openafs.nix", [[["ip", 13, 11], ["dnsname", 14, 11]], [["vlans", 20, 24]], [["enable", 23, 29]], [["useDHCP", 21, 20], ["domain", 22, 20], ["firewall", 23, 20]], [["default_realm", 27, 32]], [["admin_server", 46, 11], ["kdc", 47, 11]], [["libdefaults", 27, 20], ["realms", 45, 32]], [["enable", 26, 11], ["settings", 27, 11]], [["krb5", 25, 18]], [["ip", 35, 17], ["dnsname", 36, 17]], [["grand.central.org", 33, 13]], [["enable", 30, 11], ["cellName", 31, 19], ["cellServDB", 32, 11]], [["enable", 42, 11], ["cellName", 43, 19], ["cellServDB", 43, 28]], [["openafsClient", 29, 18], ["openafsServer", 41, 18]], [["virtualisation", 20, 9], ["networking", 21, 9], ["security", 25, 9], ["services", 29, 9]], [["config", 19, 7]], [["principal", 56, 11], ["access", 57, 11]], [["acl", 54, 34]], [["CELL.COM", 54, 23]], [["realms", 54, 16]], [["enable", 53, 7], ["settings", 54, 7]], [["kerberos_server", 52, 14]], [["services", 52, 5]], [["a", 51, 9], ["b", 65, 9]], [["name", 7, 3], ["defaults", 8, 3], ["nodes", 51, 3], ["testScript", 67, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { config: false, nodes: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/openafs.nix", [["ip", 13, 11], ["dnsname", 14, 11]]);
-const pos$2 = nix.positions(here + "/openafs.nix", [["vlans", 20, 24]]);
-const pos$3 = nix.positions(here + "/openafs.nix", [["enable", 23, 29]]);
-const pos$4 = nix.positions(here + "/openafs.nix", [["useDHCP", 21, 20], ["domain", 22, 20], ["firewall", 23, 20]]);
-const pos$5 = nix.positions(here + "/openafs.nix", [["default_realm", 27, 32]]);
-const pos$6 = nix.positions(here + "/openafs.nix", [["admin_server", 46, 11], ["kdc", 47, 11]]);
-const pos$7 = nix.positions(here + "/openafs.nix", [["libdefaults", 27, 20], ["realms", 45, 32]]);
-const pos$8 = nix.positions(here + "/openafs.nix", [["enable", 26, 11], ["settings", 27, 11]]);
-const pos$9 = nix.positions(here + "/openafs.nix", [["krb5", 25, 18]]);
-const pos$10 = nix.positions(here + "/openafs.nix", [["ip", 35, 17], ["dnsname", 36, 17]]);
-const pos$11 = nix.positions(here + "/openafs.nix", [["grand.central.org", 33, 13]]);
-const pos$12 = nix.positions(here + "/openafs.nix", [["enable", 30, 11], ["cellName", 31, 19], ["cellServDB", 32, 11]]);
-const pos$13 = nix.positions(here + "/openafs.nix", [["enable", 42, 11], ["cellName", 43, 19], ["cellServDB", 43, 28]]);
-const pos$14 = nix.positions(here + "/openafs.nix", [["openafsClient", 29, 18], ["openafsServer", 41, 18]]);
-const pos$15 = nix.positions(here + "/openafs.nix", [["virtualisation", 20, 9], ["networking", 21, 9], ["security", 25, 9], ["services", 29, 9]]);
-const pos$16 = nix.positions(here + "/openafs.nix", [["config", 19, 7]]);
-const pos$17 = nix.positions(here + "/openafs.nix", [["principal", 56, 11], ["access", 57, 11]]);
-const pos$18 = nix.positions(here + "/openafs.nix", [["acl", 54, 34]]);
-const pos$19 = nix.positions(here + "/openafs.nix", [["CELL.COM", 54, 23]]);
-const pos$20 = nix.positions(here + "/openafs.nix", [["realms", 54, 16]]);
-const pos$21 = nix.positions(here + "/openafs.nix", [["enable", 53, 7], ["settings", 54, 7]]);
-const pos$22 = nix.positions(here + "/openafs.nix", [["kerberos_server", 52, 14]]);
-const pos$23 = nix.positions(here + "/openafs.nix", [["services", 52, 5]]);
-const pos$24 = nix.positions(here + "/openafs.nix", [["a", 51, 9], ["b", 65, 9]]);
-const pos$25 = nix.positions(here + "/openafs.nix", [["name", 7, 3], ["defaults", 8, 3], ["nodes", 51, 3], ["testScript", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const cellName = "cell.com";
   const realmName = nix.thunk(() => nix.app(nix.sel(lib, "toUpper"), cellName));
   return {
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     name: "openafs",
     defaults: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
@@ -44,33 +20,33 @@ export default nix.lambda((args) => (() => {
       const nodes = nix.arg($_1, "nodes");
       const cellServDB = nix.thunk(() => nix.attrsDyn({}, [
         [cellName, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (config_1) => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             ip: nix.thunk(() => nix.sel(config_1, "networking", "primaryIPAddress")),
             dnsname: nix.thunk(() => nix.str`${nix.sel(config_1, "networking", "hostName")}.${nix.sel(config_1, "networking", "domain")}`),
           }), nodes))],
       ]));
       return {
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         config: nix.thunk(() => ({
-          [nix.POS]: pos$15,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[14],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             useDHCP: false,
             domain: cellName,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             krb5: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                libdefaults: nix.thunk(() => ({ [nix.POS]: pos$5, default_realm: realmName })),
+                [nix.POS]: $pos[6],
+                libdefaults: nix.thunk(() => ({ [nix.POS]: $pos[4], default_realm: realmName })),
                 realms: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.force(realmName), nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     admin_server: nix.thunk(() => nix.sel(nodes, "a", "networking", "primaryIPAddress")),
                     kdc: nix.thunk(() => [nix.thunk(() => nix.sel(nodes, "a", "networking", "primaryIPAddress"))]),
                   }))],
@@ -79,41 +55,46 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             openafsClient: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               enable: true,
               cellName: cellName,
               cellServDB: nix.thunk(() => nix.update(cellServDB, {
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 "grand.central.org": nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$10, ip: "1.1.1.1", dnsname: "one.grand.central.org" })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[9], ip: "1.1.1.1", dnsname: "one.grand.central.org" })),
                 ]),
               })),
             })),
-            openafsServer: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true, cellName: cellName, cellServDB: cellServDB })),
+            openafsServer: nix.thunk(() => ({
+              [nix.POS]: $pos[12],
+              enable: true,
+              cellName: cellName,
+              cellServDB: cellServDB,
+            })),
           })),
         })),
       };
     })(), formals$2),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       a: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           kerberos_server: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               realms: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 "CELL.COM": nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   acl: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$17,
+                      [nix.POS]: $pos[16],
                       principal: "admin",
                       access: nix.thunk(() => ["add", "cpw"]),
                     })),

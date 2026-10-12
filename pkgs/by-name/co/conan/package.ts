@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 132, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["mainProgram", 137, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["pythonRelaxDeps", 25, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 58, 3], ["dontUseCmakeConfigure", 73, 3], ["__darwinAllowLocalNetworking", 75, 3], ["pythonImportsCheck", 77, 3], ["disabledTests", 79, 3], ["disabledTestPaths", 106, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchFromGitHub: false, git: false, "pkg-config": false, python3Packages: false, xcbuild: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 132, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["mainProgram", 137, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["pythonRelaxDeps", 25, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 58, 3], ["dontUseCmakeConfigure", 73, 3], ["__darwinAllowLocalNetworking", 75, 3], ["pythonImportsCheck", 77, 3], ["disabledTests", 79, 3], ["disabledTestPaths", 106, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const xcbuild = nix.arg($, "xcbuild");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "conan",
       version: "2.32.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "conan-io",
           repo: "conan",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -110,7 +108,7 @@ export default nix.lambda((args) => (() => {
         "test/unittests/tools/env/test_env_files.py",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Decentralized and portable C/C++ package manager",
         homepage: "https://conan.io",
         changelog: nix.thunk(() => nix.str`https://github.com/conan-io/conan/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

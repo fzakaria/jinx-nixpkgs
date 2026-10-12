@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["NIX_CFLAGS_COMPILE", 46, 7]], [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["env", 46, 3], ["cmakeFlags", 48, 3], ["hardeningDisable", 53, 3], ["doCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, perl: false, gfortran: false, python3: false, boost: false, eigen: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["env", 46, 3], ["cmakeFlags", 48, 3], ["hardeningDisable", 53, 3], ["doCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pcmsolver",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PCMSolver",
           repo: "pcmsolver",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,12 +31,12 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace external/Catch/catch.hpp \\\n  --replace SIGSTKSZ _SC_SIGSTKSZ\n",
       nativeBuildInputs: nix.thunk(() => [cmake, gfortran, perl, python3]),
       buildInputs: nix.thunk(() => [boost, eigen, zlib]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=c++14 -Wno-template-body" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=c++14 -Wno-template-body" })),
       cmakeFlags: nix.thunk(() => ["-DENABLE_OPENMP=ON", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]),
       hardeningDisable: nix.thunk(() => ["format"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "API for the Polarizable Continuum Model",
         mainProgram: "run_pcm",
         homepage: "https://pcmsolver.readthedocs.io/en/stable/",

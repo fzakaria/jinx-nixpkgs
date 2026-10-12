@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["mygui", 112, 13]], [["description", 116, 5], ["homepage", 117, 5], ["mainProgram", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["platforms", 121, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["tracks", 36, 3], ["patches", 43, 3], ["postPatch", 48, 3], ["strictDeps", 61, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 69, 3], ["installPhase", 83, 3], ["passthru", 111, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, callPackage: false, cmake: false, boost: false, SDL2: false, libvorbis: false, "pkg-config": false, makeWrapper: false, enet: false, bullet: false, openal: false, "tinyxml-2": false, rapidjson: false, "ogre-next": false, ninja: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mygui", 112, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 116, 5], ["homepage", 117, 5], ["mainProgram", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["platforms", 121, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["tracks", 36, 3], ["patches", 43, 3], ["postPatch", 48, 3], ["strictDeps", 61, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 69, 3], ["installPhase", 83, 3], ["passthru", 111, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const mygui = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mygui.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "stuntrally",
       version: "3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stuntrally",
           repo: "stuntrally3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-BJMMsJ/ONZTpvXetaaHlgm6rih9oZmtJNBXv0IM855Y=",
         })))),
       tracks: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "stuntrally",
           repo: "tracks3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -104,9 +100,9 @@ popd
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, mygui: mygui })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], mygui: mygui })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "3D racing game with Sci-Fi elements and own Track Editor",
         homepage: "https://cryham.org/stuntrally/",
         mainProgram: "stuntrally3",

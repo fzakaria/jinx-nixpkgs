@@ -2,16 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 23, 5], ["hash", 24, 5]], [["url", 28, 5], ["hash", 29, 5], ["stripRoot", 30, 5]], [["name", 34, 5], ["nativeBuildInputs", 35, 5], ["dontUnpack", 40, 5], ["dontFixup", 41, 5], ["installPhase", 42, 5], ["outputHashMode", 55, 5], ["outputHash", 56, 5]], [["HERMES_FONT_PATH", 71, 5], ["HERMES_ICONS_DIR", 72, 5]], [["nativeBuildInputs", 95, 11]], [["basic", 92, 11]], [["vimPlugin", 89, 5], ["agentSvgs", 90, 13], ["dejavuFont", 90, 23], ["tests", 92, 5], ["updateScript", 105, 5]], [["description", 162, 5], ["homepage", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["platforms", 166, 5]], [["pname", 60, 3], ["version", 61, 11], ["src", 61, 19], ["__structuredAttrs", 62, 3], ["cargoHash", 64, 3], ["cargoBuildFeatures", 66, 3], ["nativeBuildInputs", 68, 3], ["env", 70, 3], ["doCheck", 75, 3], ["forceShare", 77, 3], ["postInstall", 82, 3], ["passthru", 88, 3], ["meta", 161, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, rustPlatform: false, runCommand: false, writeShellScript: false, stdenv: false, curl: false, cacert: false, jq: false, nix: false, gnugrep: false, gnused: false, "common-updater-scripts": false, "nix-prefetch-scripts": false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 28, 5], ["hash", 29, 5], ["stripRoot", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 34, 5], ["nativeBuildInputs", 35, 5], ["dontUnpack", 40, 5], ["dontFixup", 41, 5], ["installPhase", 42, 5], ["outputHashMode", 55, 5], ["outputHash", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["HERMES_FONT_PATH", 71, 5], ["HERMES_ICONS_DIR", 72, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 95, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["basic", 92, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["vimPlugin", 89, 5], ["agentSvgs", 90, 13], ["dejavuFont", 90, 23], ["tests", 92, 5], ["updateScript", 105, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 162, 5], ["homepage", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["platforms", 166, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 60, 3], ["version", 61, 11], ["src", 61, 19], ["__structuredAttrs", 62, 3], ["cargoHash", 64, 3], ["cargoBuildFeatures", 66, 3], ["nativeBuildInputs", 68, 3], ["env", 70, 3], ["doCheck", 75, 3], ["forceShare", 77, 3], ["postInstall", 82, 3], ["passthru", 88, 3], ["meta", 161, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const version = "0.14.0";
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/Ruddickmg/hermes.nvim/archive/refs/tags/v${version}.tar.gz`),
       hash: "sha256-YUe+Mg1StwcxpcIcWr9T/32nkH921UranMM0bE+7lu8=",
     }))));
   const dejavuFont = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://github.com/dejavu-fonts/dejavu-fonts/releases/download/version_2_37/dejavu-fonts-ttf-2.37.zip",
       hash: "sha256-JM75TClUBnQ7qKMHXbOD96ZoTxOhBFnsN5xH0QSafjc=",
       stripRoot: false,
     }))));
   const agentSvgs = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "hermes-agent-svgs",
       nativeBuildInputs: nix.thunk(() => [curl, cacert, jq]),
       dontUnpack: true,
@@ -64,7 +56,7 @@ runHook postInstall
       outputHash: "sha256-N8eyv3wcohj0l/giOmwzwy3drduhHhA/klFYqffmHQ0=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "hermes-nvim",
       version: version,
       src: src,
@@ -73,7 +65,7 @@ runHook postInstall
       cargoBuildFeatures: nix.thunk(() => ["with-icons"]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         HERMES_FONT_PATH: nix.thunk(() => nix.str`${dejavuFont}/dejavu-fonts-ttf-2.37/ttf/DejaVuSansMono.ttf`),
         HERMES_ICONS_DIR: agentSvgs,
       })),
@@ -81,14 +73,14 @@ runHook postInstall
       forceShare: nix.thunk(() => ["man", "info"]),
       postInstall: "cp -r lua $out/\ncp -r plugin $out/\ncp -r doc $out/ 2>/dev/null || true\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         vimPlugin: true,
         agentSvgs: agentSvgs,
         dejavuFont: dejavuFont,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           basic: nix.thunk(() => nix.app(runCommand, "hermes-nvim-test-basic", nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`test -f "${nix.sel(finalAttrs, "finalPackage")}/lua/hermes/init.lua"
 test -f "${nix.sel(finalAttrs, "finalPackage")}/plugin/hermes.lua"
@@ -150,7 +142,7 @@ fi
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "ACP (Agent Client Protocol) client for Neovim",
         homepage: "https://github.com/Ruddickmg/hermes.nvim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

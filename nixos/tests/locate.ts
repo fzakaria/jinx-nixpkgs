@@ -2,25 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/locate.nix", [[["maintainers", 7, 8]], [["systemPackages", 11, 19]], [["device", 14, 11], ["fsType", 15, 11], ["options", 16, 11]], [["/ssh", 13, 9]], [["fileSystems", 12, 22]], [["enable", 26, 9], ["interval", 27, 9]], [["locate", 25, 16]], [["environment", 11, 7], ["virtualisation", 12, 7], ["services", 25, 7]], [["enable", 31, 24]], [["openssh", 31, 16]], [["keys", 34, 32]], [["authorizedKeys", 34, 17]], [["isNormalUser", 33, 9], ["openssh", 34, 9]], [["alice", 32, 19]], [["users", 32, 13]], [["services", 31, 7], ["users", 32, 7]], [["a", 10, 5], ["b", 30, 5]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 9, 3], ["testScript", 39, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/locate.nix", [["maintainers", 7, 8]]);
-const pos$2 = nix.positions(here + "/locate.nix", [["systemPackages", 11, 19]]);
-const pos$3 = nix.positions(here + "/locate.nix", [["device", 14, 11], ["fsType", 15, 11], ["options", 16, 11]]);
-const pos$4 = nix.positions(here + "/locate.nix", [["/ssh", 13, 9]]);
-const pos$5 = nix.positions(here + "/locate.nix", [["fileSystems", 12, 22]]);
-const pos$6 = nix.positions(here + "/locate.nix", [["enable", 26, 9], ["interval", 27, 9]]);
-const pos$7 = nix.positions(here + "/locate.nix", [["locate", 25, 16]]);
-const pos$8 = nix.positions(here + "/locate.nix", [["environment", 11, 7], ["virtualisation", 12, 7], ["services", 25, 7]]);
-const pos$9 = nix.positions(here + "/locate.nix", [["enable", 31, 24]]);
-const pos$10 = nix.positions(here + "/locate.nix", [["openssh", 31, 16]]);
-const pos$11 = nix.positions(here + "/locate.nix", [["keys", 34, 32]]);
-const pos$12 = nix.positions(here + "/locate.nix", [["authorizedKeys", 34, 17]]);
-const pos$13 = nix.positions(here + "/locate.nix", [["isNormalUser", 33, 9], ["openssh", 34, 9]]);
-const pos$14 = nix.positions(here + "/locate.nix", [["alice", 32, 19]]);
-const pos$15 = nix.positions(here + "/locate.nix", [["users", 32, 13]]);
-const pos$16 = nix.positions(here + "/locate.nix", [["services", 31, 7], ["users", 32, 7]]);
-const pos$17 = nix.positions(here + "/locate.nix", [["a", 10, 5], ["b", 30, 5]]);
-const pos$18 = nix.positions(here + "/locate.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 9, 3], ["testScript", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,32 +13,32 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKey = nix.thunk(() => nix.attr(from, "snakeOilPrivateKey"));
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "locate",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "chkno"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       a: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "sshfs"))];
           })()),
         })),
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           fileSystems: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "/ssh": nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               device: "alice@b:/",
               fsType: "fuse.sshfs",
               options: nix.thunk(() => [
@@ -69,26 +52,26 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          locate: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true, interval: "*:*:0/5" })),
+          [nix.POS]: $pos[6],
+          locate: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true, interval: "*:*:0/5" })),
         })),
       })),
       b: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$10,
-          openssh: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+          [nix.POS]: $pos[9],
+          openssh: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             alice: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               isNormalUser: true,
               openssh: nix.thunk(() => ({
-                [nix.POS]: pos$12,
-                authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$11, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                [nix.POS]: $pos[11],
+                authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[10], keys: nix.thunk(() => [snakeOilPublicKey]) })),
               })),
             })),
           })),

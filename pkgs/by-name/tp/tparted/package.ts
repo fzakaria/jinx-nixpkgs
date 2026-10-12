@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["updateScript", 81, 5]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["sourceProvenance", 90, 5], ["mainProgram", 91, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["postFixup", 34, 3], ["runtimeDependencies", 52, 3], ["unpackPhase", 65, 3], ["installPhase", 71, 3], ["passthru", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, makeWrapper: false, parted: false, "util-linux": false, dosfstools: false, exfatprogs: false, e2fsprogs: false, ntfs3g: false, "btrfs-progs": false, xfsprogs: false, jfsutils: false, "f2fs-tools": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["sourceProvenance", 90, 5], ["mainProgram", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["postFixup", 34, 3], ["runtimeDependencies", 52, 3], ["unpackPhase", 65, 3], ["installPhase", 71, 3], ["passthru", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const f2fs_tools = nix.arg($, "f2fs-tools");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tparted",
       version: "2025-11-02",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Kagamma/tparted/releases/download/${nix.sel(finalAttrs, "version")}/linux_x86-64_tparted_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-dVVNr8VL8SP2gCdysbE28QgKWGOzfGoIdVIzJRxRp9M=",
         })))),
@@ -65,11 +62,11 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "runHook preUnpack\ntar xf $src\nrunHook postUnpack\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp tparted $out/bin/\nmkdir -p $out/opt/tparted\ncp -r locale $out/opt/tparted/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Text-based user interface (TUI) frontend for parted",
         homepage: "https://github.com/Kagamma/tparted",
         changelog: nix.thunk(() => nix.str`https://github.com/Kagamma/tparted/releases/tag/${nix.sel(finalAttrs, "version")}`),

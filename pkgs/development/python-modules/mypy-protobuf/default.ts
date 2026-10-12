@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["package", 43, 5], ["command", 44, 5]], [["version", 42, 18]], [["tests", 42, 12]], [["changelog", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["pythonRelaxDeps", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["doCheck", 36, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 40, 3], ["passthru", 42, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, "grpcio-tools": false, lib: false, "mypy-protobuf": false, protobuf: false, pytestCheckHook: false, setuptools: false, testers: false, "types-protobuf": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["package", 43, 5], ["command", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 42, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 42, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["pythonRelaxDeps", 26, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["doCheck", 36, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 40, 3], ["passthru", 42, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const types_protobuf = nix.arg($, "types-protobuf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mypy-protobuf",
       version: "5.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nipunn1313",
           repo: "mypy-protobuf",
           rev: "47fa102ae5d2bd2a1fdde2adf94cf006a3e939a4",
@@ -41,18 +36,18 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["mypy_protobuf"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: mypy_protobuf,
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), mypy_protobuf)} --version`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/nipunn1313/mypy-protobuf/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Generate mypy stub files from protobuf specs",
         homepage: "https://github.com/nipunn1313/mypy-protobuf",

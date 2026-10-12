@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["providedSessions", 41, 12]], [["pname", 13, 3], ["postPatch", 15, 3], ["extraCmakeFlags", 23, 3], ["extraNativeBuildInputs", 27, 3], ["extraBuildInputs", 31, 3], ["dontQmlLint", 39, 3], ["passthru", 41, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, "plasma-workspace": false, "pkg-config": false, qtwebengine: false, libcec: false, libcec_platform: false, sdl3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["providedSessions", 41, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["postPatch", 15, 3], ["extraCmakeFlags", 23, 3], ["extraNativeBuildInputs", 27, 3], ["extraBuildInputs", 31, 3], ["dontQmlLint", 39, 3], ["passthru", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libcec_platform = nix.arg($, "libcec_platform");
   const sdl3 = nix.arg($, "sdl3");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "plasma-bigscreen",
       postPatch: nix.thunk(() => nix.str`substituteInPlace bin/plasma-bigscreen-wayland.in \\
   --replace-fail @KDE_INSTALL_FULL_LIBEXECDIR@ "${plasma_workspace}/libexec"
@@ -32,7 +31,7 @@ substituteInPlace bin/plasma-bigscreen-wayland.desktop.cmake \\
       extraBuildInputs: nix.thunk(() => [qtwebengine, libcec, libcec_platform, sdl3]),
       dontQmlLint: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         providedSessions: nix.thunk(() => ["plasma-bigscreen-wayland"]),
       })),
     })));

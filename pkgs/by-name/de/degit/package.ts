@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["pname", 74, 7], ["version", 75, 28], ["src", 75, 36], ["__structuredAttrs", 77, 7], ["strictDeps", 78, 7], ["impureEnvVars", 80, 7], ["nativeBuildInputs", 85, 7], ["dontConfigure", 90, 7], ["buildPhase", 92, 7], ["installPhase", 110, 7], ["dontFixup", 119, 7], ["outputHash", 121, 7], ["outputHashAlgo", 122, 7], ["outputHashMode", 123, 7]], [["node_modules", 73, 5]], [["changelog", 128, 5], ["description", 129, 5], ["homepage", 130, 5], ["license", 131, 5], ["maintainers", 132, 5], ["mainProgram", 136, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["configurePhase", 31, 3], ["buildPhase", 40, 3], ["installPhase", 48, 3], ["passthru", 71, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bun: false, makeWrapper: false, nodejs: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 74, 7], ["version", 75, 28], ["src", 75, 36], ["__structuredAttrs", 77, 7], ["strictDeps", 78, 7], ["impureEnvVars", 80, 7], ["nativeBuildInputs", 85, 7], ["dontConfigure", 90, 7], ["buildPhase", 92, 7], ["installPhase", 110, 7], ["dontFixup", 119, 7], ["outputHash", 121, 7], ["outputHashAlgo", 122, 7], ["outputHashMode", 123, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["node_modules", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 128, 5], ["description", 129, 5], ["homepage", 130, 5], ["license", 131, 5], ["maintainers", 132, 5], ["mainProgram", 136, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["configurePhase", 31, 3], ["buildPhase", 40, 3], ["installPhase", 48, 3], ["passthru", 71, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "degit",
       version: "3.10.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Rich-Harris",
           repo: "degit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,9 +58,9 @@ makeWrapper ${nodejs}/bin/node $out/bin/degit \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         node_modules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -82,7 +78,7 @@ runHook postInstall
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/Rich-Harris/degit/blob/${nix.sel(finalAttrs, "src", "rev")}/docs/CHANGELOG.md`),
         description: "Make copies of git repositories",
         homepage: "https://github.com/Rich-Harris/degit",

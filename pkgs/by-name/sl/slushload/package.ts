@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5], ["stripRoot", 15, 5]], [["description", 40, 5], ["homepage", 41, 5], ["sourceProvenance", 42, 5], ["license", 43, 5], ["mainProgram", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontUnpack", 18, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 24, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, makeWrapper: false, wineWow64Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5], ["stripRoot", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["sourceProvenance", 42, 5], ["license", 43, 5], ["mainProgram", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontUnpack", 18, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 24, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const wineWow64Packages = nix.arg($, "wineWow64Packages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "slushload",
       version: "3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://csdb.dk/getinternalfile.php/222989/slushload_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-xXcLaEsM+4IrAi96JyPRCdIhQ8jhf44/4E3Ba18mddE=",
           stripRoot: false,
@@ -40,7 +38,7 @@ cp $src/readme.txt $out/share
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Make turbo tape images from .prg files",
         homepage: "https://csdb.dk/release/?id=212586",
         sourceProvenance: nix.thunk(() => (() => {

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["ws", 39, 5]], [["extraArgs", 58, 5]], [["updateScript", 57, 12]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 32, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 42, 3], ["__darwinAllowLocalNetworking", 48, 3], ["preCheck", 50, 3], ["pythonImportsCheck", 55, 3], ["passthru", 57, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, attrs: false, cattrs: false, lsprotocol: false, websockets: false, "pytest-asyncio": false, pytestCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ws", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraArgs", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 57, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 32, 3], ["optional-dependencies", 38, 3], ["nativeCheckInputs", 42, 3], ["__darwinAllowLocalNetworking", 48, 3], ["preCheck", 50, 3], ["pythonImportsCheck", 55, 3], ["passthru", 57, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pygls",
       version: "2.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openlawlibrary",
           repo: "pygls",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,20 +33,20 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [poetry_core]),
       propagatedBuildInputs: nix.thunk(() => [attrs, cattrs, lsprotocol]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, ws: nix.thunk(() => [websockets]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], ws: nix.thunk(() => [websockets]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       __darwinAllowLocalNetworking: true,
       preCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# Darwin issue: OSError: [Errno 24] Too many open files\nulimit -n 1024\n")),
       pythonImportsCheck: nix.thunk(() => ["pygls"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Pythonic generic implementation of the Language Server Protocol",
         homepage: "https://github.com/openlawlibrary/pygls",
         changelog: nix.thunk(() => nix.str`https://github.com/openlawlibrary/pygls/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

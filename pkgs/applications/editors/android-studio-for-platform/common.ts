@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["url", 63, 7], ["sha256", 64, 7]], [["pname", 59, 5], ["version", 60, 13], ["src", 62, 5], ["nativeBuildInputs", 67, 5], ["installPhase", 72, 5]], [["name", 136, 5], ["exec", 137, 5], ["icon", 138, 5], ["desktopName", 139, 5], ["comment", 140, 5], ["categories", 141, 5], ["startupNotify", 145, 5], ["startupWMClass", 146, 5]], [["pname", 153, 5], ["version", 154, 13], ["multiPkgs", 155, 5], ["profile", 160, 5]], [["unwrapped", 176, 7]], [["description", 179, 7], ["longDescription", 180, 7], ["homepage", 184, 7], ["license", 185, 7], ["platforms", 196, 7], ["maintainers", 197, 7], ["teams", 198, 7], ["mainProgram", 199, 7]], [["pname", 168, 13], ["version", 168, 19], ["startScript", 169, 5], ["preferLocalBuild", 173, 5], ["allowSubstitutes", 174, 5], ["passthru", 175, 5], ["meta", 178, 5]]]);
 const formals$1 = { args: { channel: false, pname: false, version: false, versionPrefix: false, sha256Hash: false }, ellipsis: false };
 const formals$2 = { args: { "android-tools": false, bash: false, buildFHSEnv: false, coreutils: false, dpkg: false, e2fsprogs: false, fetchurl: false, findutils: false, git: false, gnugrep: false, gnused: false, gnutar: false, gtk3: false, glib: false, gzip: false, fontsConf: false, fontconfig: false, freetype: false, libGL: false, libsecret: false, libx11: false, libxext: false, libxi: false, libxrandr: false, libxrender: false, libxtst: false, makeFontsConf: false, makeWrapper: false, ncurses5: false, openssl: false, ps: false, python3: false, lib: false, stdenv: false, unzip: false, usbutils: false, which: false, runCommand: false, xkeyboard_config: false, zip: false, zlib: false, makeDesktopItem: false, tiling_wm: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["url", 63, 7], ["sha256", 64, 7]]);
-const pos$2 = nix.positions(here + "/common.nix", [["pname", 59, 5], ["version", 60, 13], ["src", 62, 5], ["nativeBuildInputs", 67, 5], ["installPhase", 72, 5]]);
-const pos$3 = nix.positions(here + "/common.nix", [["name", 136, 5], ["exec", 137, 5], ["icon", 138, 5], ["desktopName", 139, 5], ["comment", 140, 5], ["categories", 141, 5], ["startupNotify", 145, 5], ["startupWMClass", 146, 5]]);
-const pos$4 = nix.positions(here + "/common.nix", [["pname", 153, 5], ["version", 154, 13], ["multiPkgs", 155, 5], ["profile", 160, 5]]);
-const pos$5 = nix.positions(here + "/common.nix", [["unwrapped", 176, 7]]);
-const pos$6 = nix.positions(here + "/common.nix", [["description", 179, 7], ["longDescription", 180, 7], ["homepage", 184, 7], ["license", 185, 7], ["platforms", 196, 7], ["maintainers", 197, 7], ["teams", 198, 7], ["mainProgram", 199, 7]]);
-const pos$7 = nix.positions(here + "/common.nix", [["pname", 168, 13], ["version", 168, 19], ["startScript", 169, 5], ["preferLocalBuild", 173, 5], ["allowSubstitutes", 174, 5], ["passthru", 175, 5], ["meta", 178, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -66,11 +60,11 @@ export default nix.lambda((args) => (() => {
     const tiling_wm = nix.argOr($_1, "tiling_wm", () => false);
     const filename = nix.thunk(() => nix.str`asfp-${versionPrefix}-${version}-linux.deb`);
     const androidStudioForPlatform = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: nix.thunk(() => nix.str`${pname}-unwrapped`),
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://dl.google.com/android/asfp/${filename}`),
             sha256: sha256Hash,
           })))),
@@ -117,7 +111,7 @@ wrapProgram $out/bin/studio.sh \\
 `),
       }))));
     const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: pname,
         exec: pname,
         icon: pname,
@@ -128,14 +122,14 @@ wrapProgram $out/bin/studio.sh \\
         startupWMClass: "jetbrains-studio",
       }))));
     const fhsEnv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: nix.thunk(() => nix.str`${pname}-fhs-env`),
         version: version,
         multiPkgs: (pkgs) => [zlib, ncurses5, nix.thunk(() => nix.sel(ncurses5, "dev"))],
         profile: "export ALLOW_NINJA_ENV=true\nexport LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib:/usr/lib32\n",
       }))));
     return nix.app(runCommand, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: pname,
         version: version,
         startScript: nix.thunk(() => nix.str`#!${bash}/bin/bash
@@ -143,9 +137,9 @@ ${nix.app(nix.sel(lib, "getExe"), fhsEnv)} ${androidStudioForPlatform}/bin/studi
 `),
         preferLocalBuild: true,
         allowSubstitutes: false,
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$5, unwrapped: androidStudioForPlatform })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], unwrapped: androidStudioForPlatform })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: "Official IDE for Android platform development",
           longDescription: "Android Studio for Platform (ASfP) is the version of the Android Studio IDE\nfor Android Open Source Project (AOSP) platform developers who build with the Soong build system.\n",
           homepage: "https://developer.android.com/studio/platform.html",

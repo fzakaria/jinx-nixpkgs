@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 19, 5], ["paths", 20, 5], ["postBuild", 22, 5]], [["description", 51, 5], ["longDescription", 52, 5], ["maintainers", 74, 5]], [["pname", 41, 3], ["version", 42, 3], ["paths", 44, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, nmap: false, rockyou: false, seclists: false, wfuzz: false, lists: true, writeShellScriptBin: false, tree: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 19, 5], ["paths", 20, 5], ["postBuild", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["longDescription", 52, 5], ["maintainers", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["paths", 44, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   const tree = nix.arg($, "tree");
   const wordlistsCollection = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "wordlists-collection",
       paths: lists,
       postBuild: "shopt -s extglob\nrm -rf $out/!(share)\nrm -rf $out/share/!(wordlists)\nshopt -u extglob\n",
@@ -29,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const wordlistsPathBin = nix.thunk(() => nix.app(writeShellScriptBin, "wordlists_path", nix.thunk(() => nix.str`printf "${wordlistsCollection}/share/wordlists\\n"
 `)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wordlists",
       version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       paths: nix.thunk(() => [wordlistsCollection, wordlistsBin, wordlistsPathBin]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of wordlists useful for security testing",
         longDescription: "The `wordlists` package provides two scripts. One is called {command}`wordlists`,\nand it will list a tree of all the wordlists installed. The other one is\ncalled {command}`wordlists_path` which will print the path to the nix store\nlocation of the lists. You can for example do\n{command}`$(wordlists_path)/rockyou.txt` to get the location of the\n[rockyou](https://en.wikipedia.org/wiki/RockYou#Data_breach)\nwordlist. If you want to modify the available wordlists you can override\nthe `lists` attribute`. In your nixos configuration this would look\nsimilar to this:\n\n```nix\nenvironment.systemPackages = [\n  (pkgs.wordlists.override { lists = with pkgs; [ rockyou ] })\n]\n```\n\nyou can use this with nix-shell by doing:\n{command}`nix-shell -p 'wordlists.override { lists = with (import <nixpkgs> {}); [ nmap ]; }'\nIf you want to add a new package that provides wordlist/s the convention\nis to copy it to {file}`$out/share/wordlists/myNewWordlist`.\n",
         maintainers: nix.thunk(() => (() => {

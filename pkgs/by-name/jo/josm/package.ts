@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 7], ["hash", 18, 7]], [["url", 21, 7], ["hash", 22, 7]], [["url", 25, 7], ["rev", 26, 7], ["hash", 27, 7]], [["jar", 16, 5], ["macosx", 20, 5], ["pkg", 24, 5]], [["srcs", 66, 13], ["updateScript", 67, 5]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["sourceProvenance", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 81, 5], ["mainProgram", 82, 5]], [["pname", 39, 11], ["version", 39, 17], ["dontUnpack", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 44, 3], ["installPhase", 46, 3], ["passthru", 65, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchsvn: false, makeWrapper: false, unzip: false, jre: false, libxxf86vm: false, extraJavaOpts: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 25, 7], ["rev", 26, 7], ["hash", 27, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["jar", 16, 5], ["macosx", 20, 5], ["pkg", 24, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["srcs", 66, 13], ["updateScript", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["sourceProvenance", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 81, 5], ["mainProgram", 82, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 39, 11], ["version", 39, 17], ["dontUnpack", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 44, 3], ["installPhase", 46, 3], ["passthru", 65, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const pname = "josm";
   const version = "19613";
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     jar: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://josm.openstreetmap.de/download/josm-snapshot-${version}.jar`),
         hash: "sha256-e7qbXV61fbOQZy3c5XGmfenVzwsOj+YQxNveFfvlkHc=",
       })))),
     macosx: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://josm.openstreetmap.de/download/macosx/josm-macos-${version}-java21.zip`),
         hash: "sha256-9qSb8gGNuWhIIV/ZOtLTVnUAGME1HfGuA9zeatWLKmY=",
       })))),
     pkg: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: "https://josm.openstreetmap.de/svn/trunk/native/linux/tested",
         rev: version,
         hash: "sha256-sAG9GI0SQpmdDqIXbSH/FN1io/QcsAJFv6/YT483aMA=",
@@ -49,7 +43,7 @@ export default nix.lambda((args) => (() => {
       "--add-exports=java.desktop/com.sun.imageio.spi=ALL-UNNAMED",
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       dontUnpack: true,
@@ -67,9 +61,9 @@ makeWrapper ${jre}/bin/java $out/bin/josm \\
   --prefix _JAVA_AWT_WM_NONREPARENTING : 1 \\
   --prefix _JAVA_OPTIONS " " "-Dawt.useSystemAAFontSettings=gasp"
 `)),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, srcs: srcs, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], srcs: srcs, updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Extensible editor for OpenStreetMap",
         homepage: "https://josm.openstreetmap.de/",
         changelog: "https://josm.openstreetmap.de/wiki/Changelog",

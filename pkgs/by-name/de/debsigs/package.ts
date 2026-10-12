@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 27, 5], ["mainProgram", 28, 5], ["homepage", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 19, 3], ["postPatch", 21, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { binutils: false, lib: false, perlPackages: false, fetchFromGitLab: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["mainProgram", 28, 5], ["homepage", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 19, 3], ["postPatch", 21, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "debsigs";
       const version = "0.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "debsigs",
           repo: "debsigs",
           tag: nix.thunk(() => nix.str`release/${version}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail /usr/bin/ar ${nix.sel(binutils, "bintools")}/bin/ar
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Manipulate the cryptographic signatures stored inside a .deb file",
         mainProgram: "debsigs",
         homepage: "https://gitlab.com/debsigs/debsigs",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "usertam"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, sourceRoot, postPatch, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, sourceRoot, postPatch, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

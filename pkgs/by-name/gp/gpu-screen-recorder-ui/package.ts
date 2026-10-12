@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["wrapperDir", 90, 17]], [["updateScript", 106, 12]], [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["mainProgram", 112, 5], ["maintainers", 113, 5], ["platforms", 117, 5], ["sourceProvenance", 118, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 45, 3], ["depsBuildBuild", 54, 3], ["buildInputs", 56, 3], ["__structuredAttrs", 77, 3], ["strictDeps", 78, 3], ["mesonBuildType", 80, 3], ["mesonFlags", 82, 3], ["postInstall", 87, 3], ["passthru", 106, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { dbus: false, "desktop-file-utils": false, fetchgit: false, gitUpdater: false, "gpu-screen-recorder": false, "gpu-screen-recorder-notification": false, "gsettings-desktop-schemas": false, lib: false, libcap: false, libdrm: false, libglvnd: false, libpulseaudio: false, libx11: false, libxcomposite: false, libxcursor: false, libxext: false, libxfixes: false, libxi: false, libxkbcommon: false, libxrandr: false, libxrender: false, linuxHeaders: false, makeWrapper: false, meson: false, ninja: false, pango: false, "pkg-config": false, stdenv: false, "wayland-scanner": false, wayland: false, wrapperDir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["wrapperDir", 90, 17]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 106, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["mainProgram", 112, 5], ["maintainers", 113, 5], ["platforms", 117, 5], ["sourceProvenance", 118, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 45, 3], ["depsBuildBuild", 54, 3], ["buildInputs", 56, 3], ["__structuredAttrs", 77, 3], ["strictDeps", 78, 3], ["mesonBuildType", 80, 3], ["mesonFlags", 82, 3], ["postInstall", 87, 3], ["passthru", 106, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wrapperDir = nix.argOr($, "wrapperDir", () => "/run/wrappers/bin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gpu-screen-recorder-ui",
       version: "1.13.10",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://repo.dec05eba.com/gpu-screen-recorder-ui",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-mH/xSdsDHwokemGq2h/qaf/ImN3xlrZupcK+5ptXOns=",
@@ -79,7 +75,7 @@ export default nix.lambda((args) => (() => {
       mesonBuildType: "release",
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "capabilities", false))]),
       postInstall: nix.thunk(() => (() => {
-        const gpu_screen_recorder_wrapped = nix.thunk(() => nix.app(nix.sel(gpu_screen_recorder, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, wrapperDir: wrapperDir }))));
+        const gpu_screen_recorder_wrapped = nix.thunk(() => nix.app(nix.sel(gpu_screen_recorder, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], wrapperDir: wrapperDir }))));
         return nix.str`wrapProgram "$out/bin/gsr-ui" \\
   --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libglvnd]))}" \\
   --prefix XDG_DATA_DIRS : "${gsettings_desktop_schemas}/share/gsettings-schemas/${nix.sel(gsettings_desktop_schemas, "name")}" \\
@@ -88,11 +84,11 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fullscreen overlay UI for GPU Screen Recorder in the style of ShadowPlay",
         homepage: "https://git.dec05eba.com/gpu-screen-recorder-ui/about",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

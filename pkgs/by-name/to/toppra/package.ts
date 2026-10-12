@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["sourceRoot", 32, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["checkInputs", 57, 3], ["cmakeFlags", 61, 3], ["doCheck", 73, 3], ["strictDeps", 75, 3], ["__structuredAttrs", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, python3Packages: false, eigen: false, glpk: false, "msgpack-cxx": false, pinocchio: false, qpoases: false, gtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["sourceRoot", 32, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["checkInputs", 57, 3], ["cmakeFlags", 61, 3], ["doCheck", 73, 3], ["strictDeps", 75, 3], ["__structuredAttrs", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const qpoases = nix.arg($, "qpoases");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "toppra",
       version: "0.6.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hungpham2511",
           repo: "toppra",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Robotic motion planning library",
         homepage: "https://github.com/hungpham2511/toppra",
         changelog: nix.thunk(() => nix.str`https://github.com/hungpham2511/toppra/blob/${nix.sel(finalAttrs, "src", "tag")}/HISTORY.md`),

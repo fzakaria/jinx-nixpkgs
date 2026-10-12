@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]], [["NIX_CFLAGS_COMPILE", 92, 5]], [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 114, 5]], [["pname", 34, 3], ["version", 35, 11], ["outputs", 37, 3], ["src", 42, 3], ["patches", 50, 3], ["prePatch", 51, 3], ["propagatedBuildInputs", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 64, 3], ["postPatch", 77, 3], ["cmakeFlags", 86, 3], ["env", 91, 3], ["strictDeps", 103, 3], ["__structuredAttrs", 104, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libGL: false, "vulkan-loader": false, libxrandr: false, libxinerama: false, libxcursor: false, libx11: false, libxi: false, libxext: false, libxxf86vm: false, fixDarwinDylibNames: false, wayland: false, "wayland-scanner": false, "wayland-protocols": false, libxkbcommon: false, libdecor: false, withMinecraftPatch: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 114, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 11], ["outputs", 37, 3], ["src", 42, 3], ["patches", 50, 3], ["prePatch", 51, 3], ["propagatedBuildInputs", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 64, 3], ["postPatch", 77, 3], ["cmakeFlags", 86, 3], ["env", 91, 3], ["strictDeps", 103, 3], ["__structuredAttrs", 104, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,19 +30,19 @@ export default nix.lambda((args) => (() => {
   const withMinecraftPatch = nix.argOr($, "withMinecraftPatch", () => false);
   const version = "3.4";
   const minecraftPatches = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "BoyOrigin",
       repo: "glfw-wayland",
       rev: "f62b4ae8f93149fd754cadecd51d8b1a07d20522",
       hash: "sha256-kvWP34rOD4HSTvnKb33nvVquTGZoqP8/l+8XQ0h3b7Y=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`glfw${nix.app(nix.sel(lib, "optionalString"), withMinecraftPatch, "-minecraft")}`),
       version: version,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "glfw",
           repo: "GLFW",
           rev: version,
@@ -80,7 +76,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_SHARED_LIBS", true)),
       ]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))))), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               nix.thunk(() => nix.str`-D_GLFW_GLX_LIBRARY="${nix.app(nix.sel(lib, "getLib"), libGL)}/lib/libGLX.so.0"`),
               nix.thunk(() => nix.str`-D_GLFW_EGL_LIBRARY="${nix.app(nix.sel(lib, "getLib"), libGL)}/lib/libEGL.so.1"`),
@@ -93,7 +89,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Multi-platform library for creating OpenGL contexts and managing input, including keyboard, mouse, joystick and time",
         homepage: "https://www.glfw.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

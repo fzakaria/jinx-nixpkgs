@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["brotli", 56, 5], ["cli", 57, 5], ["http2", 62, 5], ["socks", 63, 5], ["zstd", 64, 5]], [["changelog", 119, 5], ["description", 120, 5], ["mainProgram", 121, 5], ["homepage", 122, 5], ["license", 123, 5], ["maintainers", 124, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 48, 3], ["optional-dependencies", 55, 3], ["doCheck", 68, 3], ["nativeCheckInputs", 70, 3], ["preCheck", 82, 3], ["pytestFlags", 86, 3], ["disabledTests", 91, 3], ["disabledTestPaths", 108, 3], ["pythonImportsCheck", 110, 3], ["__darwinAllowLocalNetworking", 112, 3], ["setupHook", 116, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, anyio: false, brotli: false, brotlicffi: false, buildPythonPackage: false, certifi: false, chardet: false, click: false, fetchFromGitHub: false, h2: false, "hatch-fancy-pypi-readme": false, hatchling: false, httpcore: false, idna: false, isPyPy: false, multipart: false, pygments: false, python: false, rich: false, socksio: false, pytestCheckHook: false, "pytest-asyncio": false, "pytest-trio": false, trustme: false, uvicorn: false, zstandard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["brotli", 56, 5], ["cli", 57, 5], ["http2", 62, 5], ["socks", 63, 5], ["zstd", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 119, 5], ["description", 120, 5], ["mainProgram", 121, 5], ["homepage", 122, 5], ["license", 123, 5], ["maintainers", 124, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 48, 3], ["optional-dependencies", 55, 3], ["doCheck", 68, 3], ["nativeCheckInputs", 70, 3], ["preCheck", 82, 3], ["pytestFlags", 86, 3], ["disabledTests", 91, 3], ["disabledTestPaths", 108, 3], ["pythonImportsCheck", 110, 3], ["__darwinAllowLocalNetworking", 112, 3], ["setupHook", 116, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.28.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "encode",
           repo: "httpx",
           tag: version,
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatch_fancy_pypi_readme, hatchling]);
       const dependencies = nix.thunk(() => [anyio, certifi, httpcore, idna]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         brotli: nix.thunk(() => (nix.asBool(isPyPy) ? [brotlicffi] : [brotli])),
         cli: nix.thunk(() => [click, rich, pygments]),
         http2: nix.thunk(() => [h2]),
@@ -87,7 +84,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const setupHook = nix.path(here, "./setup-hook.sh");
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/encode/httpx/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Next generation HTTP client",
         mainProgram: "httpx",
@@ -99,7 +96,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

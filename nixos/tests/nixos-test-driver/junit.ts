@@ -2,28 +2,22 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/junit.nix", [["useNetworkd", 9, 16]]);
-const pos$2 = nix.positions(here + "/junit.nix", [["text", 11, 33]]);
-const pos$3 = nix.positions(here + "/junit.nix", [["something", 11, 21]]);
-const pos$4 = nix.positions(here + "/junit.nix", [["etc", 11, 17]]);
-const pos$5 = nix.positions(here + "/junit.nix", [["networking", 9, 5], ["environment", 11, 5]]);
-const pos$6 = nix.positions(here + "/junit.nix", [["machine", 7, 9]]);
-const pos$7 = nix.positions(here + "/junit.nix", [["name", 3, 3], ["extraDriverArgs", 5, 3], ["nodes", 7, 3], ["testScript", 14, 3]]);
+const $pos = nix.positions(here + "/junit.nix", [[["useNetworkd", 9, 16]], [["text", 11, 33]], [["something", 11, 21]], [["etc", 11, 17]], [["networking", 9, 5], ["environment", 11, 5]], [["machine", 7, 9]], [["name", 3, 3], ["extraDriverArgs", 5, 3], ["nodes", 7, 3], ["testScript", 14, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$7,
+  [nix.POS]: $pos[6],
   name: "junit",
   extraDriverArgs: nix.thunk(() => ["--junit=junit.xml"]),
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     machine: nix.thunk(() => ({
-      [nix.POS]: pos$5,
-      networking: nix.thunk(() => ({ [nix.POS]: pos$1, useNetworkd: true })),
+      [nix.POS]: $pos[4],
+      networking: nix.thunk(() => ({ [nix.POS]: $pos[0], useNetworkd: true })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         etc: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          something: nix.thunk(() => ({ [nix.POS]: pos$2, text: "nothing" })),
+          [nix.POS]: $pos[2],
+          something: nix.thunk(() => ({ [nix.POS]: $pos[1], text: "nothing" })),
         })),
       })),
     })),

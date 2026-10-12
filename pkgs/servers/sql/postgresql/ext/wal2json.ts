@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wal2json.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["extraArgs", 24, 5]], [["updateScript", 23, 12], ["tests", 26, 12]], [["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["license", 34, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["makeFlags", 21, 3], ["passthru", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, "nix-update-script": false, nixosTests: false, postgresql: false, postgresqlBuildExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wal2json.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/wal2json.nix", [["extraArgs", 24, 5]]);
-const pos$3 = nix.positions(here + "/wal2json.nix", [["updateScript", 23, 12], ["tests", 26, 12]]);
-const pos$4 = nix.positions(here + "/wal2json.nix", [["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["license", 34, 5]]);
-const pos$5 = nix.positions(here + "/wal2json.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["makeFlags", 21, 3], ["passthru", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "wal2json",
       version: "2.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eulerto",
           repo: "wal2json",
           tag: nix.thunk(() => nix.str`wal2json_${nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -30,15 +26,15 @@ export default nix.lambda((args) => (() => {
         })))),
       makeFlags: nix.thunk(() => ["USE_PGXS=1"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=^wal2json_(\\d+)_(\\d+)$"]),
           })))),
         tests: nix.thunk(() => nix.app(nix.sel(nixosTests, "postgresql", "wal2json", "passthru", "override"), postgresql)),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "PostgreSQL JSON output plugin for changeset extraction",
         homepage: "https://github.com/eulerto/wal2json",
         changelog: nix.thunk(() => nix.str`https://github.com/eulerto/wal2json/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

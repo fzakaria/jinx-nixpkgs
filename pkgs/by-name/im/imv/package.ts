@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["all", 53, 5], ["x11", 54, 5], ["wayland", 58, 5]], [["libtiff", 67, 7], ["libpng", 68, 7], ["librsvg", 69, 7], ["libheif", 70, 7], ["libjxl", 71, 7], ["libnsgif", 72, 7], ["libnsbmp", 73, 7], ["libwebp", 74, 7], ["qoi", 75, 7], ["farbfeld", 77, 5], ["libjpeg", 78, 5]], [["owner", 100, 5], ["repo", 101, 5], ["tag", 102, 5], ["hash", 103, 5]], [["description", 148, 5], ["homepage", 149, 5], ["license", 150, 5], ["maintainers", 151, 5], ["platforms", 155, 5], ["badPlatforms", 156, 5], ["mainProgram", 157, 5]], [["pname", 92, 3], ["version", 93, 3], ["outputs", 94, 3], ["src", 99, 3], ["mesonFlags", 106, 3], ["strictDeps", 113, 3], ["nativeBuildInputs", 115, 3], ["buildInputs", 124, 3], ["doCheck", 135, 3], ["nativeCheckInputs", 136, 3], ["checkInputs", 139, 3], ["doInstallCheck", 143, 3], ["nativeInstallCheckInputs", 144, 3], ["versionCheckProgramArg", 145, 3], ["meta", 147, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromSourcehut: false, asciidoc: false, cmocka: false, docbook_xsl: false, libxslt: false, meson: false, ninja: false, "pkg-config": false, tinyxxd: false, icu: false, pango: false, inih: false, withWindowSystem: true, libx11: false, libxcb: false, libxkbcommon: false, libGL: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, versionCheckHook: false, withBackends: true, libtiff: false, libjpeg_turbo: false, libjxl: false, libpng: false, librsvg: false, libnsgif: false, libheif: false, libnsbmp: false, libwebp: false, qoi: false, bashNonInteractive: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["all", 53, 5], ["x11", 54, 5], ["wayland", 58, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["libtiff", 67, 7], ["libpng", 68, 7], ["librsvg", 69, 7], ["libheif", 70, 7], ["libjxl", 71, 7], ["libnsgif", 72, 7], ["libnsbmp", 73, 7], ["libwebp", 74, 7], ["qoi", 75, 7], ["farbfeld", 77, 5], ["libjpeg", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 100, 5], ["repo", 101, 5], ["tag", 102, 5], ["hash", 103, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 148, 5], ["homepage", 149, 5], ["license", 150, 5], ["maintainers", 151, 5], ["platforms", 155, 5], ["badPlatforms", 156, 5], ["mainProgram", 157, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 92, 3], ["version", 93, 3], ["outputs", 94, 3], ["src", 99, 3], ["mesonFlags", 106, 3], ["strictDeps", 113, 3], ["nativeBuildInputs", 115, 3], ["buildInputs", 124, 3], ["doCheck", 135, 3], ["nativeCheckInputs", 136, 3], ["checkInputs", 139, 3], ["doInstallCheck", 143, 3], ["nativeInstallCheckInputs", 144, 3], ["versionCheckProgramArg", 145, 3], ["meta", 147, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,13 +55,13 @@ export default nix.lambda((args) => (() => {
   const qoi = nix.arg($, "qoi");
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   const windowSystems = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     all: nix.thunk(() => nix.concat(nix.sel(windowSystems, "x11"), nix.sel(windowSystems, "wayland"))),
     x11: nix.thunk(() => [libxcb, libx11]),
     wayland: nix.thunk(() => [wayland, wayland_scanner, wayland_protocols]),
   }));
   const backends = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     libtiff: libtiff,
     libpng: libpng,
     librsvg: librsvg,
@@ -82,12 +78,12 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "withWindowSystem", withWindowSystem, nix.thunk(() => nix.builtins.attrNames(windowSystems))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/im/imv/package.nix:85:1");
   nix.assert_(nix.builtins.all((b) => nix.app(nix.sel(lib, "assertOneOf"), "each backend", b, nix.thunk(() => nix.builtins.attrNames(backends))), withBackends), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/im/imv/package.nix:87:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "imv",
       version: "5.0.1",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "~exec64",
           repo: "imv",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -108,7 +104,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-v",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command line image viewer for tiling window managers",
         homepage: "https://sr.ht/~exec64/imv/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

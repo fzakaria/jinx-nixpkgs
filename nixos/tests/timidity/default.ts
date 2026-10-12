@@ -2,10 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/default.nix", [["basic", 2, 3], ["with-vorbis", 3, 3]]);
+const $pos = nix.positions(here + "/default.nix", [[["basic", 2, 3], ["with-vorbis", 3, 3]]]);
 
 export default (inputs) => ({
-  [nix.POS]: pos$1,
+  [nix.POS]: $pos[0],
   basic: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./basic.nix")), inputs)),
   "with-vorbis": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./with-vorbis.nix")), inputs)),
 });

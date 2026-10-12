@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5]], [["pname", 16, 3], ["version", 17, 3], ["duneVersion", 18, 3], ["src", 19, 3], ["minimalOCamlVersion", 24, 3], ["buildInputs", 26, 3], ["propagatedBuildInputs", 30, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, "angstrom-lwt-unix": false, lwt: false, logs: false, lwt_ppx: false, ppx_deriving_yojson: false, ppx_expect: false, ppx_here: false, react: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["duneVersion", 18, 3], ["src", 19, 3], ["minimalOCamlVersion", 24, 3], ["buildInputs", 26, 3], ["propagatedBuildInputs", 30, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const ppx_here = nix.arg($, "ppx_here");
   const react = nix.arg($, "react");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dap",
       version: "1.0.6",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/hackwaly/ocaml-dap/releases/download/${nix.sel(finalAttrs, "version")}/dap-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "1zq0f8429m38a4x3h9n3rv7n1vsfjbs72pfi5902a89qwyilkcp0",
         })))),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         react,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Debug adapter protocol",
         homepage: "https://github.com/hackwaly/ocaml-dap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

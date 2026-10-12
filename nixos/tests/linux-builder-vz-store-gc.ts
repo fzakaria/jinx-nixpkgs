@@ -2,40 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux-builder-vz-store-gc.nix", [[["maintainers", 8, 8]], [["enable", 11, 9]], [["lib", 23, 17], ["diskImage", 24, 9], ["sharedDirectories", 25, 9], ["writableStoreUseTmpfs", 26, 9]], [["diskImage", 16, 7], ["useNixStoreImage", 17, 7], ["writableStore", 18, 7], ["writableStoreUseTmpfs", 19, 7], ["emptyDiskImages", 20, 7], ["fileSystems", 22, 7]], [["nix", 11, 5], ["virtualisation", 13, 5]], [["machine", 10, 9]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 31, 3]]]);
 const formals$1 = { args: { hostPkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/linux-builder-vz-store-gc.nix", [["maintainers", 8, 8]]);
-const pos$2 = nix.positions(here + "/linux-builder-vz-store-gc.nix", [["enable", 11, 9]]);
-const pos$3 = nix.positions(here + "/linux-builder-vz-store-gc.nix", [["lib", 23, 17], ["diskImage", 24, 9], ["sharedDirectories", 25, 9], ["writableStoreUseTmpfs", 26, 9]]);
-const pos$4 = nix.positions(here + "/linux-builder-vz-store-gc.nix", [["diskImage", 16, 7], ["useNixStoreImage", 17, 7], ["writableStore", 18, 7], ["writableStoreUseTmpfs", 19, 7], ["emptyDiskImages", 20, 7], ["fileSystems", 22, 7]]);
-const pos$5 = nix.positions(here + "/linux-builder-vz-store-gc.nix", [["nix", 11, 5], ["virtualisation", 13, 5]]);
-const pos$6 = nix.positions(here + "/linux-builder-vz-store-gc.nix", [["machine", 10, 9]]);
-const pos$7 = nix.positions(here + "/linux-builder-vz-store-gc.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const hostPkgs = nix.arg($, "hostPkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "linux-builder-vz-store-gc",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(hostPkgs, "darwin", "linux-builder-vz", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        nix: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+        [nix.POS]: $pos[4],
+        nix: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           diskImage: null,
           useNixStoreImage: true,
           writableStore: true,
           writableStoreUseTmpfs: false,
           emptyDiskImages: nix.thunk(() => [1024n]),
           fileSystems: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../modules/virtualisation/vz-vm-file-systems.nix")), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               lib: lib,
               diskImage: "./nixos.qcow2",
               sharedDirectories: nix.thunk(() => ({})),

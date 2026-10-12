@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["platforms", 32, 26], ["license", 33, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["buildPhase", 29, 19], ["installPhase", 29, 30], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, topkg: false, findlib: false, ocamlbuild: false, ocaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["platforms", 32, 26], ["license", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["buildPhase", 29, 19], ["installPhase", 29, 30], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ocamlbuild = nix.arg($, "ocamlbuild");
   const ocaml = nix.arg($, "ocaml");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "asetmap",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/dbuenzli/asetmap/archive/refs/tags/v${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "051ky0k62xp4inwi6isif56hx5ggazv4jrl7s5lpvn9cj8329frj",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
       };

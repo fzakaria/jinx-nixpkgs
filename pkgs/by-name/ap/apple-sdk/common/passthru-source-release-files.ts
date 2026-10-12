@@ -2,18 +2,17 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/passthru-source-release-files.nix", [[["sourceRelease", 5, 5]], [["passthru", 4, 3]]]);
 const formals$1 = { args: { lib: false, darwin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/passthru-source-release-files.nix", [["sourceRelease", 5, 5]]);
-const pos$2 = nix.positions(here + "/passthru-source-release-files.nix", [["passthru", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const darwin = nix.arg($, "darwin");
   return (self) => (super$) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     passthru: nix.thunk(() => nix.update(nix.selOr(super$, () => ({}), "passthru"), {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       sourceRelease: (name) => nix.app(nix.sel(lib, "warn"), "`apple-sdk.sourceRelease` is deprecated and is now an alias for `darwin.sourceRelease`. Please use `darwin.sourceRelease` directly.", nix.thunk(() => nix.sel(darwin, "sourceRelease")), name),
     })),
   });

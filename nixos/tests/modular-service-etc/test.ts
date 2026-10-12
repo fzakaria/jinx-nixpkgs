@@ -2,87 +2,55 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["package", 20, 30]], [["imports", 19, 11], ["python-http-server", 20, 11]], [["port", 29, 13]], [["source", 34, 15]], [["webroot", 33, 13]], [["port", 54, 15]], [["source", 58, 17]], [["webroot", 57, 15]], [["imports", 52, 13], ["python-http-server", 53, 13], ["configData", 56, 13]], [["api", 51, 20]], [["imports", 27, 11], ["python-http-server", 28, 11], ["configData", 32, 11], ["services", 51, 11]], [["webserver", 24, 25]], [["services", 24, 16]], [["allowedTCPPorts", 79, 29]], [["firewall", 79, 20]], [["source", 88, 17]], [["webroot", 87, 15]], [["source", 109, 19]], [["webroot", 108, 17]], [["configData", 107, 15]], [["api", 106, 22]], [["configData", 86, 13], ["services", 106, 13]], [["webserver", 85, 27]], [["services", 85, 18]], [["system", 85, 11]], [["configuration", 84, 32]], [["updated", 84, 24]], [["system", 24, 9], ["networking", 79, 9], ["specialisation", 84, 9]], [["systemPackages", 137, 21]], [["environment", 137, 9]], [["server", 13, 5], ["client", 134, 5]], [["maintainers", 207, 8]], [["_class", 9, 3], ["name", 10, 3], ["nodes", 12, 3], ["testScript", 141, 3], ["meta", 207, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/test.nix", [["package", 20, 30]]);
-const pos$2 = nix.positions(here + "/test.nix", [["imports", 19, 11], ["python-http-server", 20, 11]]);
-const pos$3 = nix.positions(here + "/test.nix", [["port", 29, 13]]);
-const pos$4 = nix.positions(here + "/test.nix", [["source", 34, 15]]);
-const pos$5 = nix.positions(here + "/test.nix", [["webroot", 33, 13]]);
-const pos$6 = nix.positions(here + "/test.nix", [["port", 54, 15]]);
-const pos$7 = nix.positions(here + "/test.nix", [["source", 58, 17]]);
-const pos$8 = nix.positions(here + "/test.nix", [["webroot", 57, 15]]);
-const pos$9 = nix.positions(here + "/test.nix", [["imports", 52, 13], ["python-http-server", 53, 13], ["configData", 56, 13]]);
-const pos$10 = nix.positions(here + "/test.nix", [["api", 51, 20]]);
-const pos$11 = nix.positions(here + "/test.nix", [["imports", 27, 11], ["python-http-server", 28, 11], ["configData", 32, 11], ["services", 51, 11]]);
-const pos$12 = nix.positions(here + "/test.nix", [["webserver", 24, 25]]);
-const pos$13 = nix.positions(here + "/test.nix", [["services", 24, 16]]);
-const pos$14 = nix.positions(here + "/test.nix", [["allowedTCPPorts", 79, 29]]);
-const pos$15 = nix.positions(here + "/test.nix", [["firewall", 79, 20]]);
-const pos$16 = nix.positions(here + "/test.nix", [["source", 88, 17]]);
-const pos$17 = nix.positions(here + "/test.nix", [["webroot", 87, 15]]);
-const pos$18 = nix.positions(here + "/test.nix", [["source", 109, 19]]);
-const pos$19 = nix.positions(here + "/test.nix", [["webroot", 108, 17]]);
-const pos$20 = nix.positions(here + "/test.nix", [["configData", 107, 15]]);
-const pos$21 = nix.positions(here + "/test.nix", [["api", 106, 22]]);
-const pos$22 = nix.positions(here + "/test.nix", [["configData", 86, 13], ["services", 106, 13]]);
-const pos$23 = nix.positions(here + "/test.nix", [["webserver", 85, 27]]);
-const pos$24 = nix.positions(here + "/test.nix", [["services", 85, 18]]);
-const pos$25 = nix.positions(here + "/test.nix", [["system", 85, 11]]);
-const pos$26 = nix.positions(here + "/test.nix", [["configuration", 84, 32]]);
-const pos$27 = nix.positions(here + "/test.nix", [["updated", 84, 24]]);
-const pos$28 = nix.positions(here + "/test.nix", [["system", 24, 9], ["networking", 79, 9], ["specialisation", 84, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$29 = nix.positions(here + "/test.nix", [["systemPackages", 137, 21]]);
-const pos$30 = nix.positions(here + "/test.nix", [["environment", 137, 9]]);
-const pos$31 = nix.positions(here + "/test.nix", [["server", 13, 5], ["client", 134, 5]]);
-const pos$32 = nix.positions(here + "/test.nix", [["maintainers", 207, 8]]);
-const pos$33 = nix.positions(here + "/test.nix", [["_class", 9, 3], ["name", 10, 3], ["nodes", 12, 3], ["testScript", 141, 3], ["meta", 207, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$33,
+    [nix.POS]: $pos[32],
     _class: "nixosTest",
     name: "modular-service-etc",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const python_http_server = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           imports: nix.thunk(() => [nix.path(here, "./python-http-server.nix")]),
-          "python-http-server": nix.thunk(() => ({ [nix.POS]: pos$1, package: nix.thunk(() => nix.sel(pkgs, "python3")) })),
+          "python-http-server": nix.thunk(() => ({ [nix.POS]: $pos[0], package: nix.thunk(() => nix.sel(pkgs, "python3")) })),
         }));
         return {
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           system: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               webserver: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 imports: nix.thunk(() => [python_http_server]),
-                "python-http-server": nix.thunk(() => ({ [nix.POS]: pos$3, port: 8080n })),
+                "python-http-server": nix.thunk(() => ({ [nix.POS]: $pos[2], port: 8080n })),
                 configData: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   webroot: nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "webroot", nix.thunk(() => ({})), "mkdir -p $out\ncat > $out/index.html << 'EOF'\n<!DOCTYPE html>\n<html>\n<head><title>Python Web Server</title></head>\n<body>\n  <h1>Welcome to the Python Web Server</h1>\n  <p>Serving from port 8080</p>\n</body>\n</html>\nEOF\n")),
                   })),
                 })),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   api: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     imports: nix.thunk(() => [python_http_server]),
-                    "python-http-server": nix.thunk(() => ({ [nix.POS]: pos$6, port: 8081n })),
+                    "python-http-server": nix.thunk(() => ({ [nix.POS]: $pos[5], port: 8081n })),
                     configData: nix.thunk(() => ({
-                      [nix.POS]: pos$8,
+                      [nix.POS]: $pos[7],
                       webroot: nix.thunk(() => ({
-                        [nix.POS]: pos$7,
+                        [nix.POS]: $pos[6],
                         source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "api-webroot", nix.thunk(() => ({})), "mkdir -p $out\ncat > $out/index.html << 'EOF'\n<!DOCTYPE html>\n<html>\n<head><title>API Sub-service</title></head>\n<body>\n  <h1>API Sub-service</h1>\n  <p>This is a sub-service running on port 8081</p>\n</body>\n</html>\nEOF\ncat > $out/status.json << 'EOF'\n{\"status\": \"ok\", \"service\": \"api\", \"port\": 8081}\nEOF\n")),
                       })),
                     })),
@@ -92,36 +60,36 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$15,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [8080n, 8081n]) })),
+            [nix.POS]: $pos[14],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[13], allowedTCPPorts: nix.thunk(() => [8080n, 8081n]) })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             updated: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 system: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     webserver: nix.thunk(() => ({
-                      [nix.POS]: pos$22,
+                      [nix.POS]: $pos[21],
                       configData: nix.thunk(() => ({
-                        [nix.POS]: pos$17,
+                        [nix.POS]: $pos[16],
                         webroot: nix.thunk(() => ({
-                          [nix.POS]: pos$16,
+                          [nix.POS]: $pos[15],
                           source: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "webroot-updated", nix.thunk(() => ({})), "mkdir -p $out\ncat > $out/index.html << 'EOF'\n<!DOCTYPE html>\n<html>\n<head><title>Updated Python Web Server</title></head>\n<body>\n  <h1>Updated content via specialisation</h1>\n  <p>This content was changed without restarting the service</p>\n</body>\n</html>\nEOF\n")))),
                         })),
                       })),
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$21,
+                        [nix.POS]: $pos[20],
                         api: nix.thunk(() => ({
-                          [nix.POS]: pos$20,
+                          [nix.POS]: $pos[19],
                           configData: nix.thunk(() => ({
-                            [nix.POS]: pos$19,
+                            [nix.POS]: $pos[18],
                             webroot: nix.thunk(() => ({
-                              [nix.POS]: pos$18,
+                              [nix.POS]: $pos[17],
                               source: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "api-webroot-updated", nix.thunk(() => ({})), "mkdir -p $out\ncat > $out/index.html << 'EOF'\n<!DOCTYPE html>\n<html>\n<head><title>Updated API Sub-service</title></head>\n<body>\n  <h1>Updated API Sub-service</h1>\n  <p>This sub-service content was also updated</p>\n</body>\n</html>\nEOF\ncat > $out/status.json << 'EOF'\n{\"status\": \"updated\", \"service\": \"api\", \"port\": 8081, \"version\": \"2.0\"}\nEOF\n")))),
                             })),
                           })),
@@ -139,9 +107,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),
         };
@@ -149,7 +117,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "start_all()\n\nserver.wait_for_unit(\"multi-user.target\")\nclient.wait_for_unit(\"multi-user.target\")\n\n# Wait for the web servers to start\nserver.wait_for_unit(\"webserver.service\")\nserver.wait_for_open_port(8080)\nserver.wait_for_unit(\"webserver-api.service\")\nserver.wait_for_open_port(8081)\n\n# Check that the configData directories were created with unique paths\nserver.succeed(\"test -d /etc/system-services/webserver/webroot\")\nserver.succeed(\"test -f /etc/system-services/webserver/webroot/index.html\")\nserver.succeed(\"test -d /etc/system-services/webserver-api/webroot\")\nserver.succeed(\"test -f /etc/system-services/webserver-api/webroot/index.html\")\nserver.succeed(\"test -f /etc/system-services/webserver-api/webroot/status.json\")\n\n# Check that the main web server is serving the configData content\nclient.succeed(\"curl -f http://server:8080/index.html | grep 'Welcome to the Python Web Server'\")\nclient.succeed(\"curl -f http://server:8080/index.html | grep 'Serving from port 8080'\")\n\n# Check that the sub-service is serving its own configData content\nclient.succeed(\"curl -f http://server:8081/index.html | grep 'API Sub-service'\")\nclient.succeed(\"curl -f http://server:8081/index.html | grep 'This is a sub-service running on port 8081'\")\nclient.succeed(\"curl -f http://server:8081/status.json | grep '\\\"service\\\": \\\"api\\\"'\")\n\n# Record PIDs before switching to verify services aren't restarted\nwebserver_pid = server.succeed(\"systemctl show webserver.service --property=MainPID --value\").strip()\napi_pid = server.succeed(\"systemctl show webserver-api.service --property=MainPID --value\").strip()\n\nprint(f\"Before switch - webserver PID: {webserver_pid}, api PID: {api_pid}\")\n\n# Switch to the specialisation with updated content\n# Capture both stdout and stderr, and show stderr in real-time for debugging\nswitch_output = server.succeed(\"/run/current-system/specialisation/updated/bin/switch-to-configuration test 2>&1 | tee /dev/stderr\")\nprint(f\"Switch output (stdout+stderr): {switch_output}\")\n\n# Verify services are not mentioned in the switch output (indicating they weren't touched)\nassert \"webserver.service\" not in switch_output, f\"webserver.service was mentioned in switch output: {switch_output}\"\nassert \"webserver-api.service\" not in switch_output, f\"webserver-api.service was mentioned in switch output: {switch_output}\"\n\n# Verify the content was updated without restarting the services\nserver.succeed(\"systemctl is-active webserver.service\")\nserver.succeed(\"systemctl is-active webserver-api.service\")\n\n# Verify PIDs are the same (services weren't restarted)\nwebserver_pid_after = server.succeed(\"systemctl show webserver.service --property=MainPID --value\").strip()\napi_pid_after = server.succeed(\"systemctl show webserver-api.service --property=MainPID --value\").strip()\n\nprint(f\"After switch - webserver PID: {webserver_pid_after}, api PID: {api_pid_after}\")\n\nassert webserver_pid == webserver_pid_after, f\"webserver.service was restarted: PID changed from {webserver_pid} to {webserver_pid_after}\"\nassert api_pid == api_pid_after, f\"webserver-api.service was restarted: PID changed from {api_pid} to {api_pid_after}\"\n\n# Check main service updated content\nclient.succeed(\"curl -f http://server:8080/index.html | grep 'Updated content via specialisation'\")\nclient.succeed(\"curl -f http://server:8080/index.html | grep 'This content was changed without restarting the service'\")\n\n# Check sub-service updated content\nclient.succeed(\"curl -f http://server:8081/index.html | grep 'Updated API Sub-service'\")\nclient.succeed(\"curl -f http://server:8081/index.html | grep 'This sub-service content was also updated'\")\nclient.succeed(\"curl -f http://server:8081/status.json | grep '\\\"version\\\": \\\"2.0\\\"'\")\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "roberth"))];

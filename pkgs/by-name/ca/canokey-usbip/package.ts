@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]], [["NIX_CFLAGS_COMPILE", 38, 5]], [["hardcodeZeroVersion", 49, 5]], [["updateScript", 48, 12]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 32, 3], ["env", 37, 3], ["postInstall", 44, 3], ["passthru", 48, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, lib: false, python3: false, stdenv: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 32, 3], ["env", 37, 3], ["postInstall", 44, 3], ["passthru", 48, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "canokey-usbip",
       version: "0-unstable-2024-03-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "canokeys",
           repo: "canokey-usbip",
           rev: "cc7087277096f185401b05143f9a028711d43557",
@@ -40,7 +35,7 @@ substituteInPlace canokey-core/canokey-crypto/mbedtls/CMakeLists.txt --replace-f
 `),
       nativeBuildInputs: nix.thunk(() => [cmake, python3]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=incompatible-pointer-types",
             nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=documentation")),
@@ -48,11 +43,11 @@ substituteInPlace canokey-core/canokey-crypto/mbedtls/CMakeLists.txt --replace-f
       })),
       postInstall: "install -D --target-directory=$out/bin canokey-usbip\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CanoKey USB/IP Virt Card",
         homepage: "https://github.com/canokeys/canokey-usbip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

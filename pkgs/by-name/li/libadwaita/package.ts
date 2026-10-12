@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 36, 5], ["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["packageName", 123, 7]], [["package", 126, 7]], [["pkg-config", 125, 11]], [["updateScript", 122, 5], ["tests", 125, 5]], [["changelog", 131, 5], ["description", 132, 5], ["mainProgram", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["teams", 137, 5], ["platforms", 138, 5], ["pkgConfigModules", 139, 5]], [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["outputBin", 33, 3], ["src", 35, 3], ["depsBuildBuild", 43, 3], ["nativeBuildInputs", 47, 3], ["mesonFlags", 58, 3], ["buildInputs", 65, 3], ["propagatedBuildInputs", 70, 3], ["nativeCheckInputs", 74, 3], ["doCheck", 85, 3], ["separateDebugInfo", 86, 3], ["checkPhase", 88, 3], ["postFixup", 111, 3], ["passthru", 121, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "gi-docgen": false, meson: false, ninja: false, "pkg-config": false, sassc: false, vala: false, "gobject-introspection": false, appstream: false, fribidi: false, glib: false, gtk4: false, gnome: false, "adwaita-icon-theme": false, "gsettings-desktop-schemas": false, "desktop-file-utils": false, "xvfb-run": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 36, 5], ["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 123, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 126, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 125, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 122, 5], ["tests", 125, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 131, 5], ["description", 132, 5], ["mainProgram", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["teams", 137, 5], ["platforms", 138, 5], ["pkgConfigModules", 139, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["outputBin", 33, 3], ["src", 35, 3], ["depsBuildBuild", 43, 3], ["nativeBuildInputs", 47, 3], ["mesonFlags", 58, 3], ["buildInputs", 65, 3], ["propagatedBuildInputs", 70, 3], ["nativeCheckInputs", 74, 3], ["doCheck", 85, 3], ["separateDebugInfo", 86, 3], ["checkPhase", 88, 3], ["postFixup", 111, 3], ["passthru", 121, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "libadwaita",
       version: "1.9.3",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       outputBin: "devdoc",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "libadwaita",
@@ -87,18 +81,21 @@ runHook postCheck
 `),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n\n# Put all resources related to demo app into devdoc output.\nfor d in applications icons metainfo; do\n  moveToOutput \"share/$d\" \"$devdoc\"\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: nix.thunk(() => nix.sel(finalAttrs, "pname")) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            packageName: nix.thunk(() => nix.sel(finalAttrs, "pname")),
+          })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/libadwaita/-/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "Library to help with developing UI for mobile devices using GTK/GNOME",
         mainProgram: "adwaita-1-demo",

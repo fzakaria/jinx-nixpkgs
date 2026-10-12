@@ -2,40 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nginx-lua.nix", [[["maintainers", 5, 8]], [["enable", 11, 9], ["extraPackages", 12, 9]], [["extraConfig", 18, 9]], [["/", 17, 42]], [["locations", 17, 32]], [["localhost", 17, 20]], [["enable", 9, 7], ["lua", 10, 7], ["virtualHosts", 17, 7]], [["nginx", 8, 14]], [["services", 8, 5]], [["machine", 7, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 30, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nginx-lua.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/nginx-lua.nix", [["enable", 11, 9], ["extraPackages", 12, 9]]);
-const pos$3 = nix.positions(here + "/nginx-lua.nix", [["extraConfig", 18, 9]]);
-const pos$4 = nix.positions(here + "/nginx-lua.nix", [["/", 17, 42]]);
-const pos$5 = nix.positions(here + "/nginx-lua.nix", [["locations", 17, 32]]);
-const pos$6 = nix.positions(here + "/nginx-lua.nix", [["localhost", 17, 20]]);
-const pos$7 = nix.positions(here + "/nginx-lua.nix", [["enable", 9, 7], ["lua", 10, 7], ["virtualHosts", 17, 7]]);
-const pos$8 = nix.positions(here + "/nginx-lua.nix", [["nginx", 8, 14]]);
-const pos$9 = nix.positions(here + "/nginx-lua.nix", [["services", 8, 5]]);
-const pos$10 = nix.positions(here + "/nginx-lua.nix", [["machine", 7, 9]]);
-const pos$11 = nix.positions(here + "/nginx-lua.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "nginx-lua",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kranzes"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           nginx: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             enable: true,
             lua: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               extraPackages: (p) => [
                 nix.thunk(() => nix.sel(p, "lua-resty-lrucache")),
@@ -43,13 +33,13 @@ export default nix.lambda((args) => (() => {
               ],
             })),
             virtualHosts: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               localhost: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 locations: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   "/": nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     extraConfig: "default_type text/plain;\ncontent_by_lua_block {\n  local cache = require(\"resty.lrucache\").new(8)\n  cache:set(\"greeting\", require(\"cjson\").decode('\"Hello world!\"'))\n  ngx.say((cache:get(\"greeting\")))\n}\n",
                   })),
                 })),

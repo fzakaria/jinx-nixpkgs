@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 41, 7]], [["description", 55, 5], ["longDescription", 56, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["dependencies", 33, 3], ["buildInputs", 34, 3], ["preBuild", 36, 3], ["env", 41, 3], ["nativeCheckInputs", 42, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, jinja2: false, setuptools: false, "setuptools-scm": false, liberfa: false, packaging: false, numpy: false, pytestCheckHook: false, "pytest-doctestplus": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 41, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 55, 5], ["longDescription", 56, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["dependencies", 33, 3], ["buildInputs", 34, 3], ["preBuild", 36, 3], ["env", 41, 3], ["nativeCheckInputs", 42, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-F9ayT+SEbGXV59jDYtywgZncY7MKI2rt1zh1zIPh9sA=",
@@ -35,12 +32,12 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy]);
       const buildInputs = nix.thunk(() => [liberfa]);
       const preBuild = "export PYERFA_USE_SYSTEM_LIBERFA=1\n";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-O2" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-O2" }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_doctestplus]);
       const preCheck = "cd $out\n";
       const pythonImportsCheck = nix.thunk(() => ["erfa"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python bindings for ERFA routines",
         longDescription: "PyERFA is the Python wrapper for the ERFA library (Essential Routines\nfor Fundamental Astronomy), a C library containing key algorithms for\nastronomy, which is based on the SOFA library published by the\nInternational Astronomical Union (IAU). All C routines are wrapped as\nNumpy universal functions, so that they can be called with scalar or\narray inputs.\n",
         homepage: "https://github.com/liberfa/pyerfa",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rmcgibbo"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["hash", 29, 5]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["maintainers", 58, 5], ["license", 61, 5], ["platforms", 62, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoDeps", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 42, 3], ["makeFlags", 47, 3], ["doInstallCheck", 51, 3], ["nativeInstallCheckInputs", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, cargo: false, glib: false, "pkg-config": false, rustc: false, wrapGAppsHook3: false, "gdk-pixbuf": false, gtk3: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["maintainers", 58, 5], ["license", 61, 5], ["platforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoDeps", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 42, 3], ["makeFlags", 47, 3], ["doInstallCheck", 51, 3], ["nativeInstallCheckInputs", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "popsicle",
       version: "1.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pop-os",
           repo: "popsicle",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-sWQNav7odvX+peDglLHd7Jrmvhm5ddFBLBla0WK7wcE=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Multiple USB File Flasher",
         homepage: "https://github.com/pop-os/popsicle",
         changelog: nix.thunk(() => nix.str`https://github.com/pop-os/popsicle/releases/tag/${nix.sel(finalAttrs, "version")}`),

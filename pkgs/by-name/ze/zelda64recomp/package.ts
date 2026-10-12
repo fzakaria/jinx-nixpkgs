@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 32, 9], ["message", 33, 9], ["hash", 40, 9]], [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5], ["fetchSubmodules", 54, 5]], [["name", 62, 7], ["url", 63, 7], ["stripLen", 64, 7], ["extraPrefix", 65, 7], ["hash", 66, 7]], [["name", 89, 7], ["icon", 90, 7], ["exec", 91, 7], ["comment", 92, 7], ["genericName", 93, 7], ["desktopName", 94, 7], ["categories", 95, 7]], [["description", 158, 5], ["homepage", 159, 5], ["license", 160, 5], ["maintainers", 170, 5], ["mainProgram", 171, 5], ["platforms", 172, 5]], [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["strictDeps", 57, 3], ["patches", 59, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 81, 3], ["desktopItems", 87, 3], ["preConfigure", 99, 3], ["hardeningDisable", 119, 3], ["installPhase", 126, 3], ["preFixup", 143, 3], ["postFixup", 152, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, mm64baserom: true, requireFile: false, fetchFromGitHub: false, llvmPackages_19: false, cmake: false, copyDesktopItems: false, installShellFiles: false, makeWrapper: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, SDL2: false, gtk3: false, "vulkan-loader": false, makeDesktopItem: false, z64decompress: false, n64recomp: false, "directx-shader-compiler": false, forceX11: true, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 32, 9], ["message", 33, 9], ["hash", 40, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5], ["fetchSubmodules", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 62, 7], ["url", 63, 7], ["stripLen", 64, 7], ["extraPrefix", 65, 7], ["hash", 66, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 89, 7], ["icon", 90, 7], ["exec", 91, 7], ["comment", 92, 7], ["genericName", 93, 7], ["desktopName", 94, 7], ["categories", 95, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 158, 5], ["homepage", 159, 5], ["license", 160, 5], ["maintainers", 170, 5], ["mainProgram", 171, 5], ["platforms", 172, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["strictDeps", 57, 3], ["patches", 59, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 81, 3], ["desktopItems", 87, 3], ["preConfigure", 99, 3], ["hardeningDisable", 119, 3], ["installPhase", 126, 3], ["preFixup", 143, 3], ["postFixup", 152, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,17 +29,17 @@ export default nix.lambda((args) => (() => {
   const forceX11 = nix.argOr($, "forceX11", () => false);
   const fetchpatch = nix.arg($, "fetchpatch");
   const baseRom = nix.thunk(() => (nix.asBool(!nix.eq(mm64baserom, null)) ? nix.force(mm64baserom) : nix.app(requireFile, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "mm.us.rev1.rom.z64",
       message: "zelda64recomp currently only supports the US version of Majora's Mask.\nPlease dump your copy and rename it to mm.us.rev1.rom.z64\nand add it to the nix store using\nnix-store --add-fixed sha256 mm.us.rev1.rom.z64\nSee https://dumping.guide/carts/nintendo/n64 for more details.\n",
       hash: "sha256-77E2WzrjYmBFFMD5oaLRH13IaIulvmYKN96/XjvkPys=",
     })))));
   return nix.app(nix.sel(llvmPackages_19, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "zelda64recomp",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Zelda64Recomp",
           repo: "Zelda64Recomp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "rmlui-cstdint.patch",
             url: "https://github.com/mikke89/RmlUi/commit/8c27b0a5cb601a3c57ecddc6ce8769ca93a97cb8.patch",
             stripLen: 1n,
@@ -75,7 +70,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, gtk3, vulkan_loader]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "Zelda64Recompiled",
             icon: "zelda64recomp",
             exec: "Zelda64Recompiled",
@@ -112,7 +107,7 @@ substituteInPlace CMakeLists.txt \\
     ${nix.app(nix.sel(lib, "optionalString"), forceX11, "--set SDL_VIDEODRIVER x11")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Static recompilation of Majora's Mask (and soon Ocarina of Time) for PC (Windows/Linux)",
         homepage: "https://github.com/Zelda64Recomp/Zelda64Recomp",
         license: nix.thunk(() => (() => {

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "terminus-font-ttf",
       version: "4.49.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://files.ax86.net/terminus-ttf/files/${nix.sel(finalAttrs, "version")}/terminus-ttf-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-dK7MH4I1RhsIGzcnRA+7f3P5oi9B63RA+uASVDNtxNI=",
         })))),
       installPhase: "runHook preInstall\n\nfor i in *.ttf; do\n  local destname=\"$(echo \"$i\" | sed -E 's|-[[:digit:].]+\\.ttf$|.ttf|')\"\n  install -Dm 644 \"$i\" \"$out/share/fonts/truetype/$destname\"\ndone\n\ninstall -Dm 644 COPYING \"$out/share/doc/terminus-font-ttf/COPYING\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Clean fixed width TTF font",
         longDescription: "Monospaced bitmap font designed for long work with computers\n(TTF version, mainly for Java applications)\n",
         homepage: "https://files.ax86.net/terminus-ttf",

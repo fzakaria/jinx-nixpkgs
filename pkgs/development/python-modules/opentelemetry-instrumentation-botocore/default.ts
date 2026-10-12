@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["instruments", 45, 5]], [["homepage", 55, 5], ["description", 56, 5]], [["version", 18, 43], ["src", 18, 51], ["pname", 19, 3], ["pyproject", 20, 3], ["sourceRoot", 22, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 33, 3], ["checkInputs", 39, 3], ["optional-dependencies", 44, 3], ["pythonImportsCheck", 48, 3], ["disabledTests", 50, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, hatchling: false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, "opentelemetry-semantic-conventions": false, botocore: false, moto: false, "opentelemetry-test-utils": false, "opentelemetry-propagator-aws-xray": false, "pytest-vcr": false, pytestCheckHook: false, "aws-xray-sdk": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["instruments", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 55, 5], ["description", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 18, 43], ["src", 18, 51], ["pname", 19, 3], ["pyproject", 20, 3], ["sourceRoot", 22, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 33, 3], ["checkInputs", 39, 3], ["optional-dependencies", 44, 3], ["pythonImportsCheck", 48, 3], ["disabledTests", 50, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const aws_xray_sdk = nix.arg($, "aws-xray-sdk");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-instrumentation-botocore",
@@ -38,11 +36,11 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeCheckInputs: nix.thunk(() => [opentelemetry_test_utils, pytest_vcr, pytestCheckHook]),
       checkInputs: nix.thunk(() => [aws_xray_sdk, moto]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$1, instruments: nix.thunk(() => [botocore]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[0], instruments: nix.thunk(() => [botocore]) })),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.instrumentation.botocore"]),
       disabledTests: nix.thunk(() => ["test_scan"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-botocore",
         description: "Botocore instrumentation for OpenTelemetry",
       })),

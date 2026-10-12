@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 102, 5], ["repo", 103, 5], ["tag", 104, 5], ["hash", 105, 5]], [["aws", 197, 5], ["azure", 200, 5], ["bitbucket", 203, 5], ["buildx", 206, 5], ["bundles", 209, 5], ["dask", 212, 5], ["databricks", 215, 5], ["dbt", 218, 5], ["docker", 221, 5], ["email", 224, 5], ["gcp", 227, 5], ["github", 230, 5], ["gitlab", 233, 5], ["kubernetes", 236, 5], ["otel", 239, 5], ["ray", 247, 5], ["redis", 250, 5], ["shell", 253, 5], ["slack", 256, 5], ["snowflake", 259, 5], ["sqlalchemy", 262, 5]], [["prefect", 269, 28]], [["extraArgs", 275, 7]], [["tests", 268, 5], ["updateScript", 274, 5]], [["description", 306, 5], ["homepage", 307, 5], ["changelog", 308, 5], ["license", 309, 5], ["maintainers", 310, 5], ["mainProgram", 314, 5]], [["pname", 94, 3], ["version", 95, 3], ["pyproject", 96, 3], ["__structuredAttrs", 99, 3], ["src", 101, 3], ["postPatch", 108, 3], ["nativeBuildInputs", 121, 3], ["build-system", 128, 3], ["dependencies", 133, 3], ["optional-dependencies", 196, 3], ["passthru", 267, 3], ["doCheck", 284, 3], ["nativeCheckInputs", 285, 3], ["meta", 305, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, nixosTests: false, "nix-update-script": false, pytestCheckHook: false, pythonAtLeast: false, pythonOlder: false, writableTmpDirAsHomeHook: false, writeShellScriptBin: false, aiosqlite: false, alembic: false, "amplitude-analytics": false, anyio: false, apprise: false, "asgi-lifespan": false, asyncpg: false, boto3: false, cachetools: false, click: false, cloudpickle: false, coolname: false, cryptography: false, cyclopts: false, dateparser: false, docker: false, exceptiongroup: false, fastapi: false, fsspec: false, graphviz: false, griffe: false, hatchling: false, httpcore: false, httpx: false, humanize: false, "jinja2-humanize-extension": false, jinja2: false, jsonpatch: false, jsonschema: false, moto: false, numpy: false, "opentelemetry-api": false, "opentelemetry-distro": false, "opentelemetry-exporter-otlp": false, "opentelemetry-instrumentation": false, "opentelemetry-instrumentation-logging": false, "opentelemetry-instrumentation-system-metrics": false, "opentelemetry-sdk": false, "opentelemetry-test-utils": false, orjson: false, packaging: false, pathspec: false, pendulum: false, pluggy: false, "prometheus-client": false, "pydantic-core": false, "pydantic-extra-types": false, "pydantic-settings": false, pydantic: false, pydocket: false, "pytest-asyncio": false, "pytest-env": false, "pytest-timeout": false, "pytest-xdist": false, "python-dateutil": false, "python-on-whales": false, "python-slugify": false, pytz: false, pyyaml: false, readchar: false, respx: false, "rfc3339-validator": false, rich: false, "ruamel-yaml-clib": false, "ruamel-yaml": false, semver: false, sniffio: false, sqlalchemy: false, starlette: false, toml: false, "typing-extensions": false, uv: false, uvicorn: false, versioningit: false, watchfiles: false, websockets: false, whenever: false, yamllint: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 102, 5], ["repo", 103, 5], ["tag", 104, 5], ["hash", 105, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aws", 197, 5], ["azure", 200, 5], ["bitbucket", 203, 5], ["buildx", 206, 5], ["bundles", 209, 5], ["dask", 212, 5], ["databricks", 215, 5], ["dbt", 218, 5], ["docker", 221, 5], ["email", 224, 5], ["gcp", 227, 5], ["github", 230, 5], ["gitlab", 233, 5], ["kubernetes", 236, 5], ["otel", 239, 5], ["ray", 247, 5], ["redis", 250, 5], ["shell", 253, 5], ["slack", 256, 5], ["snowflake", 259, 5], ["sqlalchemy", 262, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["prefect", 269, 28]]);
-const pos$4 = nix.positions(here + "/default.nix", [["extraArgs", 275, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 268, 5], ["updateScript", 274, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 306, 5], ["homepage", 307, 5], ["changelog", 308, 5], ["license", 309, 5], ["maintainers", 310, 5], ["mainProgram", 314, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 94, 3], ["version", 95, 3], ["pyproject", 96, 3], ["__structuredAttrs", 99, 3], ["src", 101, 3], ["postPatch", 108, 3], ["nativeBuildInputs", 121, 3], ["build-system", 128, 3], ["dependencies", 133, 3], ["optional-dependencies", 196, 3], ["passthru", 267, 3], ["doCheck", 284, 3], ["nativeCheckInputs", 285, 3], ["meta", 305, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -102,13 +96,13 @@ export default nix.lambda((args) => (() => {
   const whenever = nix.arg($, "whenever");
   const yamllint = nix.arg($, "yamllint");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "prefect",
       version: "3.8.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PrefectHQ",
           repo: "prefect",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -186,7 +180,7 @@ export default nix.lambda((args) => (() => {
         websockets,
       ], nix.concat(nix.sel(sqlalchemy, "optional-dependencies", "asyncio"), nix.concat(nix.sel(httpx, "optional-dependencies", "http2"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(pythonOlder, "3.13")), pendulum), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), whenever)))))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aws: [],
         azure: [],
         bitbucket: [],
@@ -217,10 +211,13 @@ export default nix.lambda((args) => (() => {
         sqlalchemy: [],
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, prefect: nix.thunk(() => nix.attr(nixosTests, "prefect")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          prefect: nix.thunk(() => nix.attr(nixosTests, "prefect")),
+        })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex", "^(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
@@ -244,7 +241,7 @@ export default nix.lambda((args) => (() => {
         yamllint,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Workflow orchestration framework for building resilient data pipelines in Python",
         homepage: "https://github.com/PrefectHQ/prefect",
         changelog: nix.thunk(() => nix.str`https://github.com/PrefectHQ/prefect/releases/tag/${nix.sel(finalAttrs, "version")}`),

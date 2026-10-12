@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["snapper", 95, 18]], [["tests", 95, 12]], [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["postPatch", 66, 3], ["configureFlags", 75, 3], ["enableParallelBuilding", 81, 3], ["postInstall", 83, 3], ["passthru", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, docbook_xsl: false, libxslt: false, docbook_xml_dtd_45: false, acl: false, attr: false, boost: false, "btrfs-progs": false, coreutils: false, dbus: false, diffutils: false, e2fsprogs: false, libxml2: false, lvm2: false, pam: false, "util-linux": false, json_c: false, nixosTests: false, ncurses: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["snapper", 95, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 95, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["postPatch", 66, 3], ["configureFlags", 75, 3], ["enableParallelBuilding", 81, 3], ["postInstall", 83, 3], ["passthru", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "snapper",
       version: "0.13.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openSUSE",
           repo: "snapper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -73,11 +69,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "rm -r $out/etc/cron.*\npatchShebangs $out/lib/zypp/plugins/commit/*\nfor file in \\\n  $out/lib/pam_snapper/* \\\n  $out/lib/systemd/system/* \\\n  $out/share/dbus-1/system-services/* \\\n; do\n  substituteInPlace $file --replace-warn \"/usr\" \"$out\"\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, snapper: nix.thunk(() => nix.sel(nixosTests, "snapper")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], snapper: nix.thunk(() => nix.sel(nixosTests, "snapper")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool for Linux filesystem snapshot management",
         homepage: "http://snapper.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

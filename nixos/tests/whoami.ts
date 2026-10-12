@@ -2,64 +2,50 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/whoami.nix", [[["maintainers", 5, 8]], [["enable", 8, 21]], [["whoami", 8, 14]], [["services", 8, 5]], [["machine", 7, 9]], [["allowedTCPPorts", 12, 25]], [["firewall", 12, 16]], [["port", 16, 14]], [["port", 17, 15]], [["from", 15, 9], ["host", 16, 9], ["guest", 17, 9]], [["forwardPorts", 13, 20]], [["networking", 12, 5], ["virtualisation", 13, 5]], [["machine", 11, 21]], [["nodes", 11, 15]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["interactive", 11, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/whoami.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/whoami.nix", [["enable", 8, 21]]);
-const pos$3 = nix.positions(here + "/whoami.nix", [["whoami", 8, 14]]);
-const pos$4 = nix.positions(here + "/whoami.nix", [["services", 8, 5]]);
-const pos$5 = nix.positions(here + "/whoami.nix", [["machine", 7, 9]]);
-const pos$6 = nix.positions(here + "/whoami.nix", [["allowedTCPPorts", 12, 25]]);
-const pos$7 = nix.positions(here + "/whoami.nix", [["firewall", 12, 16]]);
-const pos$8 = nix.positions(here + "/whoami.nix", [["port", 16, 14]]);
-const pos$9 = nix.positions(here + "/whoami.nix", [["port", 17, 15]]);
-const pos$10 = nix.positions(here + "/whoami.nix", [["from", 15, 9], ["host", 16, 9], ["guest", 17, 9]]);
-const pos$11 = nix.positions(here + "/whoami.nix", [["forwardPorts", 13, 20]]);
-const pos$12 = nix.positions(here + "/whoami.nix", [["networking", 12, 5], ["virtualisation", 13, 5]]);
-const pos$13 = nix.positions(here + "/whoami.nix", [["machine", 11, 21]]);
-const pos$14 = nix.positions(here + "/whoami.nix", [["nodes", 11, 15]]);
-const pos$15 = nix.positions(here + "/whoami.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["interactive", 11, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "echoip",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          whoami: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          whoami: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
       })),
     })),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [8000n]) })),
+            [nix.POS]: $pos[6],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[5], allowedTCPPorts: nix.thunk(() => [8000n]) })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 from: "host",
-                host: nix.thunk(() => ({ [nix.POS]: pos$8, port: 8000n })),
-                guest: nix.thunk(() => ({ [nix.POS]: pos$9, port: 8000n })),
+                host: nix.thunk(() => ({ [nix.POS]: $pos[7], port: 8000n })),
+                guest: nix.thunk(() => ({ [nix.POS]: $pos[8], port: 8000n })),
               })),
             ]),
           })),

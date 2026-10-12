@@ -2,46 +2,12 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/iscsi-root.nix", [[["maintainers", 8, 8]], [["dev", 28, 17], ["name", 29, 17], ["plugin", 30, 17], ["write_back", 31, 17], ["wwn", 32, 17]], [["authentication", 42, 23], ["generate_node_acls", 43, 23]], [["alias", 47, 25], ["alua_tg_pt_gp_name", 48, 25], ["index", 49, 25], ["storage_object", 50, 25]], [["alias", 57, 29], ["index", 58, 29], ["tpg_lun", 59, 29], ["write_protect", 60, 29]], [["mapped_luns", 55, 25], ["node_wwn", 63, 25]], [["ip_address", 68, 25], ["iser", 69, 25], ["offload", 70, 25], ["port", 71, 25]], [["enable", 40, 21], ["attributes", 41, 21], ["luns", 45, 21], ["node_acls", 53, 21], ["portals", 66, 21], ["tag", 74, 21]], [["fabric", 37, 17], ["tpgs", 38, 17], ["wwn", 77, 17]], [["fabric_modules", 25, 13], ["storage_objects", 26, 13], ["targets", 35, 13]], [["enable", 23, 11], ["config", 24, 11]], [["target", 22, 18]], [["allowedTCPPorts", 83, 29], ["allowedUDPPorts", 84, 29]], [["firewall", 83, 20]], [["memorySize", 86, 24], ["emptyDiskImages", 87, 24]], [["services", 22, 9], ["networking", 83, 9], ["virtualisation", 86, 9]], [["enable", 99, 11], ["enableAutoLoginOut", 100, 11], ["discoverPortal", 101, 11], ["name", 102, 11]], [["openiscsi", 98, 18]], [["systemPackages", 105, 21]], [["extraDependencies", 109, 16]], [["substituters", 114, 11], ["hashed-mirrors", 115, 11], ["connect-timeout", 116, 11]], [["enable", 111, 13], ["settings", 113, 13]], [["services", 98, 9], ["environment", 105, 9], ["system", 109, 9], ["nix", 111, 9]], [["enable", 129, 26]], [["grub", 129, 21]], [["enable", 148, 29]], [["systemd", 148, 21]], [["discoverPortal", 150, 11], ["name", 151, 11], ["target", 152, 11]], [["loader", 129, 14], ["kernelParams", 130, 14], ["initrd", 148, 14], ["iscsi-initiator", 149, 14]], [["writableStore", 137, 24]], [["fsType", 141, 13], ["device", 142, 13], ["options", 143, 13]], [["/", 140, 11]], [["boot", 129, 9], ["virtualisation", 137, 9], ["fileSystems", 139, 9]], [["target", 14, 5], ["initiatorAuto", 90, 5], ["initiatorRootDisk", 120, 5]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 13, 3], ["testScript", 157, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/iscsi-root.nix", [["maintainers", 8, 8]]);
 const formals$2 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/iscsi-root.nix", [["dev", 28, 17], ["name", 29, 17], ["plugin", 30, 17], ["write_back", 31, 17], ["wwn", 32, 17]]);
-const pos$3 = nix.positions(here + "/iscsi-root.nix", [["authentication", 42, 23], ["generate_node_acls", 43, 23]]);
-const pos$4 = nix.positions(here + "/iscsi-root.nix", [["alias", 47, 25], ["alua_tg_pt_gp_name", 48, 25], ["index", 49, 25], ["storage_object", 50, 25]]);
-const pos$5 = nix.positions(here + "/iscsi-root.nix", [["alias", 57, 29], ["index", 58, 29], ["tpg_lun", 59, 29], ["write_protect", 60, 29]]);
-const pos$6 = nix.positions(here + "/iscsi-root.nix", [["mapped_luns", 55, 25], ["node_wwn", 63, 25]]);
-const pos$7 = nix.positions(here + "/iscsi-root.nix", [["ip_address", 68, 25], ["iser", 69, 25], ["offload", 70, 25], ["port", 71, 25]]);
-const pos$8 = nix.positions(here + "/iscsi-root.nix", [["enable", 40, 21], ["attributes", 41, 21], ["luns", 45, 21], ["node_acls", 53, 21], ["portals", 66, 21], ["tag", 74, 21]]);
-const pos$9 = nix.positions(here + "/iscsi-root.nix", [["fabric", 37, 17], ["tpgs", 38, 17], ["wwn", 77, 17]]);
-const pos$10 = nix.positions(here + "/iscsi-root.nix", [["fabric_modules", 25, 13], ["storage_objects", 26, 13], ["targets", 35, 13]]);
-const pos$11 = nix.positions(here + "/iscsi-root.nix", [["enable", 23, 11], ["config", 24, 11]]);
-const pos$12 = nix.positions(here + "/iscsi-root.nix", [["target", 22, 18]]);
-const pos$13 = nix.positions(here + "/iscsi-root.nix", [["allowedTCPPorts", 83, 29], ["allowedUDPPorts", 84, 29]]);
-const pos$14 = nix.positions(here + "/iscsi-root.nix", [["firewall", 83, 20]]);
-const pos$15 = nix.positions(here + "/iscsi-root.nix", [["memorySize", 86, 24], ["emptyDiskImages", 87, 24]]);
-const pos$16 = nix.positions(here + "/iscsi-root.nix", [["services", 22, 9], ["networking", 83, 9], ["virtualisation", 86, 9]]);
 const formals$3 = { args: { nodes: false, config: false, pkgs: false }, ellipsis: true };
-const pos$17 = nix.positions(here + "/iscsi-root.nix", [["enable", 99, 11], ["enableAutoLoginOut", 100, 11], ["discoverPortal", 101, 11], ["name", 102, 11]]);
-const pos$18 = nix.positions(here + "/iscsi-root.nix", [["openiscsi", 98, 18]]);
-const pos$19 = nix.positions(here + "/iscsi-root.nix", [["systemPackages", 105, 21]]);
-const pos$20 = nix.positions(here + "/iscsi-root.nix", [["extraDependencies", 109, 16]]);
-const pos$21 = nix.positions(here + "/iscsi-root.nix", [["substituters", 114, 11], ["hashed-mirrors", 115, 11], ["connect-timeout", 116, 11]]);
-const pos$22 = nix.positions(here + "/iscsi-root.nix", [["enable", 111, 13], ["settings", 113, 13]]);
-const pos$23 = nix.positions(here + "/iscsi-root.nix", [["services", 98, 9], ["environment", 105, 9], ["system", 109, 9], ["nix", 111, 9]]);
 const formals$4 = { args: { config: false, pkgs: false, modulesPath: false, lib: false }, ellipsis: true };
-const pos$24 = nix.positions(here + "/iscsi-root.nix", [["enable", 129, 26]]);
-const pos$25 = nix.positions(here + "/iscsi-root.nix", [["grub", 129, 21]]);
-const pos$26 = nix.positions(here + "/iscsi-root.nix", [["enable", 148, 29]]);
-const pos$27 = nix.positions(here + "/iscsi-root.nix", [["systemd", 148, 21]]);
-const pos$28 = nix.positions(here + "/iscsi-root.nix", [["discoverPortal", 150, 11], ["name", 151, 11], ["target", 152, 11]]);
-const pos$29 = nix.positions(here + "/iscsi-root.nix", [["loader", 129, 14], ["kernelParams", 130, 14], ["initrd", 148, 14], ["iscsi-initiator", 149, 14]]);
-const pos$30 = nix.positions(here + "/iscsi-root.nix", [["writableStore", 137, 24]]);
-const pos$31 = nix.positions(here + "/iscsi-root.nix", [["fsType", 141, 13], ["device", 142, 13], ["options", 143, 13]]);
-const pos$32 = nix.positions(here + "/iscsi-root.nix", [["/", 140, 11]]);
-const pos$33 = nix.positions(here + "/iscsi-root.nix", [["boot", 129, 9], ["virtualisation", 137, 9], ["fileSystems", 139, 9]]);
-const pos$34 = nix.positions(here + "/iscsi-root.nix", [["target", 14, 5], ["initiatorAuto", 90, 5], ["initiatorRootDisk", 120, 5]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$35 = nix.positions(here + "/iscsi-root.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 13, 3], ["testScript", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const initiatorName = "iqn.2020-08.org.linux-iscsi.initiatorhost:example";
   const targetName = "iqn.2003-01.org.linux-iscsi.target.x8664:sn.acf8fd9c23af";
   return {
-    [nix.POS]: pos$35,
+    [nix.POS]: $pos[34],
     name: "iscsi",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -63,25 +29,25 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       target: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             target: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               config: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 fabric_modules: [],
                 storage_objects: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     dev: "/dev/vdb",
                     name: "test",
                     plugin: "block",
@@ -91,16 +57,16 @@ export default nix.lambda((args) => (() => {
                 ]),
                 targets: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     fabric: "iscsi",
                     tpgs: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$8,
+                        [nix.POS]: $pos[7],
                         enable: true,
-                        attributes: nix.thunk(() => ({ [nix.POS]: pos$3, authentication: 0n, generate_node_acls: 1n })),
+                        attributes: nix.thunk(() => ({ [nix.POS]: $pos[2], authentication: 0n, generate_node_acls: 1n })),
                         luns: nix.thunk(() => [
                           nix.thunk(() => ({
-                            [nix.POS]: pos$4,
+                            [nix.POS]: $pos[3],
                             alias: "94dfe06967",
                             alua_tg_pt_gp_name: "default_tg_pt_gp",
                             index: 0n,
@@ -109,10 +75,10 @@ export default nix.lambda((args) => (() => {
                         ]),
                         node_acls: nix.thunk(() => [
                           nix.thunk(() => ({
-                            [nix.POS]: pos$6,
+                            [nix.POS]: $pos[5],
                             mapped_luns: nix.thunk(() => [
                               nix.thunk(() => ({
-                                [nix.POS]: pos$5,
+                                [nix.POS]: $pos[4],
                                 alias: "d42f5bdf8a",
                                 index: 0n,
                                 tpg_lun: 0n,
@@ -124,7 +90,7 @@ export default nix.lambda((args) => (() => {
                         ]),
                         portals: nix.thunk(() => [
                           nix.thunk(() => ({
-                            [nix.POS]: pos$7,
+                            [nix.POS]: $pos[6],
                             ip_address: "[::]",
                             iser: false,
                             offload: false,
@@ -141,15 +107,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               allowedTCPPorts: nix.thunk(() => [3260n]),
               allowedUDPPorts: nix.thunk(() => [3260n]),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             memorySize: 2048n,
             emptyDiskImages: nix.thunk(() => [2048n]),
           })),
@@ -161,11 +127,11 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             openiscsi: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               enable: true,
               enableAutoLoginOut: true,
               discoverPortal: "target",
@@ -173,23 +139,23 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "xfsprogs"))];
             })()),
           })),
           system: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             extraDependencies: nix.thunk(() => [
               nix.thunk(() => nix.sel(nodes, "initiatorRootDisk", "system", "build", "toplevel")),
             ]),
           })),
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               substituters: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               "hashed-mirrors": null,
               "connect-timeout": 1n,
@@ -204,12 +170,12 @@ export default nix.lambda((args) => (() => {
         const modulesPath = nix.arg($_1, "modulesPath");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$25,
-              grub: nix.thunk(() => ({ [nix.POS]: pos$24, enable: false })),
+              [nix.POS]: $pos[24],
+              grub: nix.thunk(() => ({ [nix.POS]: $pos[23], enable: false })),
             })),
             kernelParams: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOverride"), 5n, nix.thunk(() => [
                 "boot.shell_on_fail",
@@ -217,21 +183,21 @@ export default nix.lambda((args) => (() => {
                 nix.thunk(() => nix.str`ip=${nix.sel(config, "networking", "primaryIPAddress")}:::255.255.255.0::eth1:none`),
               ]))),
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$27,
-              systemd: nix.thunk(() => ({ [nix.POS]: pos$26, enable: false })),
+              [nix.POS]: $pos[26],
+              systemd: nix.thunk(() => ({ [nix.POS]: $pos[25], enable: false })),
             })),
             "iscsi-initiator": nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               discoverPortal: "target",
               name: initiatorName,
               target: targetName,
             })),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$30, writableStore: false })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[29], writableStore: false })),
           fileSystems: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOverride"), 5n, nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               "/": nix.thunk(() => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 fsType: "xfs",
                 device: "/dev/sda",
                 options: nix.thunk(() => ["_netdev"]),

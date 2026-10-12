@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 44, 5], ["hash", 45, 5]], [["GNC_DBD_DIR", 64, 5], ["GUILE_AUTO_COMPILE", 68, 5], ["NIX_CFLAGS_COMPILE", 70, 5]], [["owner", 134, 9], ["repo", 135, 9], ["tag", 136, 9], ["hash", 137, 9]], [["pname", 130, 7], ["version", 131, 28], ["src", 133, 7], ["nativeBuildInputs", 140, 7], ["buildInputs", 141, 7]], [["docs", 129, 5], ["updateScript", 147, 5]], [["homepage", 190, 5], ["description", 191, 5], ["longDescription", 192, 5], ["license", 212, 5], ["maintainers", 213, 5], ["platforms", 217, 5], ["mainProgram", 218, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 43, 3], ["nativeBuildInputs", 48, 3], ["cmakeFlags", 57, 3], ["env", 62, 3], ["buildInputs", 78, 3], ["patches", 103, 3], ["postPatch", 116, 3], ["doCheck", 124, 3], ["enableParallelChecking", 125, 3], ["checkTarget", 126, 3], ["passthru", 128, 3], ["preFixup", 150, 3], ["dontWrapGApps", 163, 3], ["postFixup", 168, 3], ["meta", 189, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, aqbanking: false, boost: false, cmake: false, gettext: false, glib: false, glibcLocales: false, "gobject-introspection": false, gtest: false, guile: false, gwenhywfar: false, icu: false, libdbi: false, "libdbi-drivers": false, libofx: false, libsecret: false, libxml2: false, libxslt: false, makeWrapper: false, perlPackages: false, "pkg-config": false, swig: false, webkitgtk_4_1: false, wrapGAppsHook3: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GNC_DBD_DIR", 64, 5], ["GUILE_AUTO_COMPILE", 68, 5], ["NIX_CFLAGS_COMPILE", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 134, 9], ["repo", 135, 9], ["tag", 136, 9], ["hash", 137, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 130, 7], ["version", 131, 28], ["src", 133, 7], ["nativeBuildInputs", 140, 7], ["buildInputs", 141, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["docs", 129, 5], ["updateScript", 147, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 190, 5], ["description", 191, 5], ["longDescription", 192, 5], ["license", 212, 5], ["maintainers", 213, 5], ["platforms", 217, 5], ["mainProgram", 218, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 43, 3], ["nativeBuildInputs", 48, 3], ["cmakeFlags", 57, 3], ["env", 62, 3], ["buildInputs", 78, 3], ["patches", 103, 3], ["postPatch", 116, 3], ["doCheck", 124, 3], ["enableParallelChecking", 125, 3], ["checkTarget", 126, 3], ["passthru", 128, 3], ["preFixup", 150, 3], ["dontWrapGApps", 163, 3], ["postFixup", 168, 3], ["meta", 189, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +40,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.sel(nix.lookup(w, "pygobject3"), "out"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gnucash",
       version: "5.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Gnucash/gnucash/releases/download/${nix.sel(finalAttrs, "version")}/gnucash-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-PRioj1uCMPAeBMLS1zv5Xn3NO/jYzub/pUuyTe5YuF8=",
         })))),
@@ -67,7 +61,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "PYTHON_SYSCONFIG_BUILD", "$out")),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         GNC_DBD_DIR: nix.thunk(() => nix.str`${libdbi_drivers}/lib/dbd`),
         GUILE_AUTO_COMPILE: "0",
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "12")))), nix.thunk(() => ["-Wno-error=use-after-free"]))))),
@@ -115,13 +109,13 @@ substituteInPlace bindings/python/__init__.py \\
       enableParallelChecking: true,
       checkTarget: "check",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         docs: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname: "gnucash-docs",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 owner: "Gnucash",
                 repo: "gnucash-docs",
                 tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -162,7 +156,7 @@ chmod +x $out/share/gnucash/python/pycons/*.py
 patchShebangs $out/share/gnucash/python/pycons/*.py
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://www.gnucash.org/",
         description: "Free software for double entry accounting",
         longDescription: "GnuCash is personal and small-business financial-accounting software,\nfreely licensed under the GNU GPL and available for GNU/Linux, BSD,\nSolaris, Mac OS X and Microsoft Windows.\n\nDesigned to be easy to use, yet powerful and flexible, GnuCash allows you\nto track bank accounts, stocks, income and expenses. As quick and\nintuitive to use as a checkbook register, it is based on professional\naccounting principles to ensure balanced books and accurate reports.\n\nSome interesting features:\n\n- Double-Entry Accounting\n- Stock/Bond/Mutual Fund Accounts\n- Small-Business Accounting\n- Reports, Graphs\n- QIF/OFX/HBCI Import, Transaction Matching\n- Scheduled Transactions\n- Financial Calculations\n",

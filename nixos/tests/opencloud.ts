@@ -2,21 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/opencloud.nix", [[["libraries", 16, 9], ["flakeIgnore", 17, 9]], [["maintainers", 54, 8]], [["memorySize", 60, 20]], [["systemPackages", 61, 17]], [["127.0.0.1", 67, 22]], [["hosts", 67, 16]], [["certificateFiles", 68, 18]], [["pki", 68, 14]], [["ADMIN_PASSWORD", 74, 9], ["IDM_CREATE_DEMO_USERS", 75, 9], ["IDM_LDAPS_ADDR", 76, 9], ["IDM_LDAPS_CERT", 77, 9], ["IDM_LDAPS_KEY", 78, 9], ["OC_INSECURE", 79, 9], ["OC_LDAP_URI", 80, 9], ["OC_LDAP_CACERT", 81, 9], ["OC_HTTP_TLS_ENABLED", 82, 9], ["OC_HTTP_TLS_CERTIFICATE", 83, 9], ["OC_HTTP_TLS_KEY", 84, 9], ["PROXY_TLS", 85, 9], ["PROXY_TRANSPORT_TLS_CERT", 86, 9], ["PROXY_TRANSPORT_TLS_KEY", 87, 9], ["PROXY_INSECURE_BACKENDS", 88, 9]], [["enable", 71, 7], ["url", 72, 7], ["environment", 73, 7]], [["opencloud", 70, 14]], [["virtualisation", 60, 5], ["environment", 61, 5], ["networking", 67, 5], ["security", 68, 5], ["services", 70, 5]], [["machine", 59, 9]], [["name", 52, 3], ["meta", 54, 3], ["nodes", 59, 3], ["testScript", 93, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/opencloud.nix", [["libraries", 16, 9], ["flakeIgnore", 17, 9]]);
-const pos$2 = nix.positions(here + "/opencloud.nix", [["maintainers", 54, 8]]);
-const pos$3 = nix.positions(here + "/opencloud.nix", [["memorySize", 60, 20]]);
-const pos$4 = nix.positions(here + "/opencloud.nix", [["systemPackages", 61, 17]]);
-const pos$5 = nix.positions(here + "/opencloud.nix", [["127.0.0.1", 67, 22]]);
-const pos$6 = nix.positions(here + "/opencloud.nix", [["hosts", 67, 16]]);
-const pos$7 = nix.positions(here + "/opencloud.nix", [["certificateFiles", 68, 18]]);
-const pos$8 = nix.positions(here + "/opencloud.nix", [["pki", 68, 14]]);
-const pos$9 = nix.positions(here + "/opencloud.nix", [["ADMIN_PASSWORD", 74, 9], ["IDM_CREATE_DEMO_USERS", 75, 9], ["IDM_LDAPS_ADDR", 76, 9], ["IDM_LDAPS_CERT", 77, 9], ["IDM_LDAPS_KEY", 78, 9], ["OC_INSECURE", 79, 9], ["OC_LDAP_URI", 80, 9], ["OC_LDAP_CACERT", 81, 9], ["OC_HTTP_TLS_ENABLED", 82, 9], ["OC_HTTP_TLS_CERTIFICATE", 83, 9], ["OC_HTTP_TLS_KEY", 84, 9], ["PROXY_TLS", 85, 9], ["PROXY_TRANSPORT_TLS_CERT", 86, 9], ["PROXY_TRANSPORT_TLS_KEY", 87, 9], ["PROXY_INSECURE_BACKENDS", 88, 9]]);
-const pos$10 = nix.positions(here + "/opencloud.nix", [["enable", 71, 7], ["url", 72, 7], ["environment", 73, 7]]);
-const pos$11 = nix.positions(here + "/opencloud.nix", [["opencloud", 70, 14]]);
-const pos$12 = nix.positions(here + "/opencloud.nix", [["virtualisation", 60, 5], ["environment", 61, 5], ["networking", 67, 5], ["security", 68, 5], ["services", 70, 5]]);
-const pos$13 = nix.positions(here + "/opencloud.nix", [["machine", 59, 9]]);
-const pos$14 = nix.positions(here + "/opencloud.nix", [["name", 52, 3], ["meta", 54, 3], ["nodes", 59, 3], ["testScript", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const adminUser = "admin";
   const adminPassword = "hunter2";
   const testRunner = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "test-runner", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "selenium"))]),
       flakeIgnore: nix.thunk(() => ["E501"]),
     })), nix.thunk(() => nix.str`import sys
@@ -62,10 +49,10 @@ wait.until(EC.visibility_of_element_located((By.ID, 'app-floating-action-button-
 wait.until(EC.title_contains("Personal"))
 `)));
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "opencloud",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -75,12 +62,12 @@ wait.until(EC.title_contains("Personal"))
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$12,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, memorySize: 2048n })),
+        [nix.POS]: $pos[11],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[2], memorySize: 2048n })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "firefox-unwrapped")),
             nix.thunk(() => nix.sel(pkgs, "geckodriver")),
@@ -88,24 +75,24 @@ wait.until(EC.title_contains("Personal"))
           ]),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          hosts: nix.thunk(() => ({ [nix.POS]: pos$5, "127.0.0.1": nix.thunk(() => [domain]) })),
+          [nix.POS]: $pos[5],
+          hosts: nix.thunk(() => ({ [nix.POS]: $pos[4], "127.0.0.1": nix.thunk(() => [domain]) })),
         })),
         security: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           pki: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           opencloud: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             enable: true,
             url: nix.thunk(() => nix.str`https://${domain}:9200`),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               ADMIN_PASSWORD: adminPassword,
               IDM_CREATE_DEMO_USERS: "true",
               IDM_LDAPS_ADDR: "127.0.0.1:9235",

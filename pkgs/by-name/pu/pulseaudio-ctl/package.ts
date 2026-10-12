@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]], [["pname", 27, 11], ["version", 27, 17], ["src", 29, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 44, 3], ["postFixup", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, bc: false, dbus: false, gawk: false, gnused: false, libnotify: false, pulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 11], ["version", 27, 17], ["src", 29, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 44, 3], ["postFixup", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pname = "pulseaudio-ctl";
   const version = "1.70";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "graysky2",
           repo: "pulseaudio-ctl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +42,7 @@ substituteInPlace common/${pname}.in \\
   --prefix PATH : ${path}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Control pulseaudio volume from the shell or mapped to keyboard shortcuts. No need for alsa-utils",
         mainProgram: "pulseaudio-ctl",
         homepage: "https://bbs.archlinux.org/viewtopic.php?id=124513",

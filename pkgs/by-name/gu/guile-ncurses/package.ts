@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["NIX_CFLAGS_COMPILE", 34, 5]], [["homepage", 47, 5], ["description", 48, 5], ["mainProgram", 49, 5], ["longDescription", 50, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 23, 3], ["configureFlags", 29, 3], ["env", 33, 3], ["postFixup", 37, 3], ["doCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, guile: false, libffi: false, ncurses5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["description", 48, 5], ["mainProgram", 49, 5], ["longDescription", 50, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 23, 3], ["configureFlags", 29, 3], ["env", 33, 3], ["postFixup", 37, 3], ["doCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libffi = nix.arg($, "libffi");
   const ncurses5 = nix.arg($, "ncurses5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "guile-ncurses",
       version: "3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/${nix.sel(finalAttrs, "pname")}/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-7onozq/Kud0O8/wazJsQ9NIbpLJW0ynYQtYYPmP41zM=",
         })))),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [guile, libffi, ncurses5]),
       configureFlags: nix.thunk(() => ["--with-gnu-filesystem-hierarchy"]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       postFixup: nix.thunk(() => nix.str`for f in $out/${nix.sel(guile, "siteDir")}/ncurses/**.scm; do \\
@@ -40,7 +37,7 @@ done
 `),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.gnu.org/software/guile-ncurses/",
         description: "Scheme interface to the NCurses libraries",
         mainProgram: "guile-ncurses-shell",

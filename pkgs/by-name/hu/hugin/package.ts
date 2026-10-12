@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 43, 5], ["hash", 44, 5]], [["homepage", 103, 5], ["description", 104, 5], ["license", 105, 5], ["platforms", 106, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["buildInputs", 47, 3], ["nativeBuildInputs", 73, 3], ["strictDeps", 81, 3], ["cmakeFlags", 84, 3], ["postFixup", 87, 3], ["postInstall", 93, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchurl: false, gnumake: false, makeWrapper: false, "pkg-config": false, boost: false, cairo: false, "enblend-enfuse": false, exiv2: false, fftw: false, flann: false, gettext: false, glew: false, lcms2: false, lensfun: false, libjpeg: false, libpng: false, libtiff: false, libx11: false, libxi: false, libxmu: false, libGLU: false, libGL: false, openexr: false, panotools: false, perlPackages: false, sqlite: false, vigra: false, wrapGAppsHook3: false, wxwidgets_3_2: false, "wxGTK'": true, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 103, 5], ["description", 104, 5], ["license", 105, 5], ["platforms", 106, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["buildInputs", 47, 3], ["nativeBuildInputs", 73, 3], ["strictDeps", 81, 3], ["cmakeFlags", 84, 3], ["postFixup", 87, 3], ["postInstall", 93, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const wxGTK$ = nix.argOr($, "wxGTK'", () => nix.force(wxwidgets_3_2));
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hugin",
       version: "2025.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/hugin/hugin-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-fPjrM6aohIzH+Bb69LyIOJIoiD1VExNtzLXLJDkSq3k=",
         })))),
@@ -89,7 +87,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://hugin.sourceforge.io/",
         description: "Toolkit for stitching photographs and assembling panoramas, together with an easy to use graphical front end",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

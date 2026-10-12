@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["fontDirectories", 53, 41]], [["FONTCONFIG_FILE", 53, 7]], [["extraArgs", 77, 47]], [["updateScript", 77, 12]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 34, 3], ["postPatch", 43, 3], ["preBuild", 47, 3], ["env", 53, 3], ["mesonFlags", 55, 3], ["passthru", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, glib: false, inkscape: false, meson: false, ninja: false, python3: false, sassc: false, makeFontsConf: false, cinnamon: false, "gnome-shell": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fontDirectories", 53, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["FONTCONFIG_FILE", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 77, 47]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 77, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 34, 3], ["postPatch", 43, 3], ["preBuild", 47, 3], ["env", 53, 3], ["mesonFlags", 55, 3], ["passthru", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gnome_shell = nix.arg($, "gnome-shell");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "arc-theme",
       version: "20221218-unstable-2025-10-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jnsh",
           repo: "arc-theme",
           rev: "94ac8c7d67d68de0cc688bbd4c3105b9815b446e",
@@ -42,8 +36,8 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs meson/install-file.py\n",
       preBuild: "# Shut up inkscape's warnings about creating profile directory\nexport HOME=\"$TMPDIR\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))),
+        [nix.POS]: $pos[2],
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[1], fontDirectories: [] })))),
       })),
       mesonFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "themes", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => [
@@ -61,11 +55,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "gnome_shell_gresource", true)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Flat theme with transparent elements for GTK 3, GTK 2 and Gnome Shell",
         homepage: "https://github.com/jnsh/arc-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

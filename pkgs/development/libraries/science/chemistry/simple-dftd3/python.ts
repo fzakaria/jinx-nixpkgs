@@ -2,8 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/python.nix", [[["version", 20, 5], ["src", 21, 5], ["meta", 22, 5], ["pname", 25, 3], ["pyproject", 26, 3], ["build-system", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["dependencies", 40, 3], ["checkInputs", 46, 3], ["preConfigure", 53, 3], ["preCheck", 58, 3], ["pythonImportsCheck", 62, 3], ["doCheck", 63, 3], ["postInstall", 68, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, python: false, "simple-dftd3": false, cffi: false, numpy: false, toml: false, qcengine: false, pyscf: false, ase: false, pytestCheckHook: false, "meson-python": false, meson: false, setuptools: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/python.nix", [["version", 20, 5], ["src", 21, 5], ["meta", 22, 5], ["pname", 25, 3], ["pyproject", 26, 3], ["build-system", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["dependencies", 40, 3], ["checkInputs", 46, 3], ["preConfigure", 53, 3], ["preCheck", 58, 3], ["pythonImportsCheck", 62, 3], ["doCheck", 63, 3], ["postInstall", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: nix.thunk(() => nix.attr(simple_dftd3, "version")),
       src: nix.thunk(() => nix.attr(simple_dftd3, "src")),
       meta: nix.thunk(() => nix.attr(simple_dftd3, "meta")),

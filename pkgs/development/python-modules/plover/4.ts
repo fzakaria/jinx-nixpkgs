@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/4.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["gui-qt", 63, 5]], [["description", 94, 5], ["homepage", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5], ["license", 103, 5], ["platforms", 104, 5], ["broken", 105, 5]], [["__structuredAttrs", 26, 3], ["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["postPatch", 39, 3], ["build-system", 43, 3], ["dependencies", 50, 3], ["optional-dependencies", 62, 3], ["nativeBuildInputs", 67, 3], ["nativeCheckInputs", 71, 3], ["disabledTestPaths", 79, 3], ["postInstall", 81, 3], ["preFixup", 85, 3], ["dontWrapQtApps", 89, 3], ["pythonImportsCheck", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, versionCheckHook: false, appdirs: false, babel: false, evdev: false, mock: false, pyqt5: false, pyserial: false, pytestCheckHook: false, "pytest-qt": false, "plover-stroke": false, "rtf-tokenize": false, setuptools: false, "standard-pkg-resources": false, wcwidth: false, wheel: false, "python-xlib": false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/4.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/4.nix", [["gui-qt", 63, 5]]);
-const pos$3 = nix.positions(here + "/4.nix", [["description", 94, 5], ["homepage", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5], ["license", 103, 5], ["platforms", 104, 5], ["broken", 105, 5]]);
-const pos$4 = nix.positions(here + "/4.nix", [["__structuredAttrs", 26, 3], ["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["postPatch", 39, 3], ["build-system", 43, 3], ["dependencies", 50, 3], ["optional-dependencies", 62, 3], ["nativeBuildInputs", 67, 3], ["nativeCheckInputs", 71, 3], ["disabledTestPaths", 79, 3], ["postInstall", 81, 3], ["preFixup", 85, 3], ["dontWrapQtApps", 89, 3], ["pythonImportsCheck", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const python_xlib = nix.arg($, "python-xlib");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       __structuredAttrs: true,
       pname: "plover",
       version: "4.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "opensteno",
           repo: "plover",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         wcwidth,
         python_xlib,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, "gui-qt": nix.thunk(() => [pyqt5]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], "gui-qt": nix.thunk(() => [pyqt5]) })),
       nativeBuildInputs: nix.thunk(() => [wrapQtAppsHook]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, versionCheckHook, pytest_qt, mock]),
       disabledTestPaths: nix.thunk(() => ["test/gui_qt/test_dictionaries_widget.py"]),
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       pythonImportsCheck: nix.thunk(() => ["plover"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OpenSteno Plover stenography software",
         homepage: "https://www.openstenoproject.org/plover/",
         mainProgram: "plover",

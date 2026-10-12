@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 49, 7], ["homepage", 50, 7], ["license", 51, 7], ["platforms", 52, 7], ["mainProgram", 54, 5]], [["pname", 24, 3], ["version", 25, 3], ["nativeBuildInputs", 27, 3], ["src", 29, 3], ["dontBuild", 30, 3], ["installPhase", 32, 3], ["dontStrip", 42, 3], ["postFixup", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, perlPackages: false, makeWrapper: false, mysqlSupport: true, postgresqlSupport: true, sqliteSupport: true, templateToolkitSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 49, 7], ["homepage", 50, 7], ["license", 51, 7], ["platforms", 52, 7], ["mainProgram", 54, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["nativeBuildInputs", 27, 3], ["src", 29, 3], ["dontBuild", 30, 3], ["installPhase", 32, 3], ["dontStrip", 42, 3], ["postFixup", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
     return nix.concat([nix.thunk(() => nix.lookup(w, "AlgorithmBackoff"))], nix.concat(nix.app(nix.sel(lib, "optional"), mysqlSupport, nix.thunk(() => nix.lookup(w, "DBDmysql"))), nix.concat(nix.app(nix.sel(lib, "optional"), postgresqlSupport, nix.thunk(() => nix.lookup(w, "DBDPg"))), nix.concat(nix.app(nix.sel(lib, "optional"), sqliteSupport, nix.thunk(() => nix.lookup(w, "DBDSQLite"))), nix.app(nix.sel(lib, "optional"), templateToolkitSupport, nix.thunk(() => nix.lookup(w, "TemplateToolkit")))))));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "sqitch",
       version: nix.thunk(() => nix.sel(sqitch, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -43,7 +42,7 @@ done
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(sqitch, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

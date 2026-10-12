@@ -2,43 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tranquil-pds.nix", [[["createLocally", 10, 18]], [["hostname", 14, 13], ["port", 15, 13]], [["allow_insecure", 19, 13], ["jwt_secret", 20, 13], ["dpop_secret", 21, 13], ["master_key", 22, 13]], [["server", 13, 11], ["secrets", 18, 11]], [["enable", 9, 9], ["database", 10, 9], ["settings", 12, 9]], [["tranquil-pds", 8, 16]], [["services", 8, 7]], [["machine", 5, 9]], [["maintainers", 34, 8]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 28, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tranquil-pds.nix", [["createLocally", 10, 18]]);
-const pos$2 = nix.positions(here + "/tranquil-pds.nix", [["hostname", 14, 13], ["port", 15, 13]]);
-const pos$3 = nix.positions(here + "/tranquil-pds.nix", [["allow_insecure", 19, 13], ["jwt_secret", 20, 13], ["dpop_secret", 21, 13], ["master_key", 22, 13]]);
-const pos$4 = nix.positions(here + "/tranquil-pds.nix", [["server", 13, 11], ["secrets", 18, 11]]);
-const pos$5 = nix.positions(here + "/tranquil-pds.nix", [["enable", 9, 9], ["database", 10, 9], ["settings", 12, 9]]);
-const pos$6 = nix.positions(here + "/tranquil-pds.nix", [["tranquil-pds", 8, 16]]);
-const pos$7 = nix.positions(here + "/tranquil-pds.nix", [["services", 8, 7]]);
-const pos$8 = nix.positions(here + "/tranquil-pds.nix", [["machine", 5, 9]]);
-const pos$9 = nix.positions(here + "/tranquil-pds.nix", [["maintainers", 34, 8]]);
-const pos$10 = nix.positions(here + "/tranquil-pds.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 28, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "tranquil-pds",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "tranquil-pds": nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
-              database: nix.thunk(() => ({ [nix.POS]: pos$1, createLocally: true })),
+              database: nix.thunk(() => ({ [nix.POS]: $pos[0], createLocally: true })),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$4,
-                server: nix.thunk(() => ({ [nix.POS]: pos$2, hostname: "pds", port: 8080n })),
+                [nix.POS]: $pos[3],
+                server: nix.thunk(() => ({ [nix.POS]: $pos[1], hostname: "pds", port: 8080n })),
                 secrets: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   allow_insecure: true,
                   jwt_secret: "test-jwt-secret-must-be-32-chars-long",
                   dpop_secret: "test-dpop-secret-must-be-32-chars-long",
@@ -52,7 +43,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "machine.wait_for_unit(\"tranquil-pds.service\")\nmachine.wait_for_open_port(8080)\nmachine.succeed(\"curl --fail http://localhost:8080\")\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nelind"))];

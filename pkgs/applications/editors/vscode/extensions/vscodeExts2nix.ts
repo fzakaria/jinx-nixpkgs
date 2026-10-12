@@ -2,9 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vscodeExts2nix.nix", [[["publisher", 41, 13], ["name", 42, 13], ["version", 43, 13]]]);
 const formals$1 = { args: { lib: false, vscodeDefault: false, writeShellScriptBin: false }, ellipsis: false };
 const formals$2 = { args: { vscode: true, extensionsToIgnore: true, extensions: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/vscodeExts2nix.nix", [["publisher", 41, 13], ["name", 42, 13], ["version", 43, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +35,7 @@ for line in $(${vscode}/bin/code --list-extensions --show-versions \\
   else
     sha256=$(
       nix-prefetch-url "${nix.sel(nix.app(mktplcExtRefToFetchArgs, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           publisher: "\"$publisher\"",
           name: "\"$name\"",
           version: "\"$version\"",

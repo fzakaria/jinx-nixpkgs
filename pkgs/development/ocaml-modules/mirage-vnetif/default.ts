@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 15, 3], ["version", 16, 3], ["minimalOCamlVersion", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 25, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, lwt: false, "mirage-net": false, cstruct: false, ipaddr: false, macaddr: false, duration: false, logs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["minimalOCamlVersion", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 25, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const duration = nix.arg($, "duration");
   const logs = nix.arg($, "logs");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mirage-vnetif",
       version: "0.6.2",
       minimalOCamlVersion: "4.06",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-vnetif/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-vnetif-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-SorcrPRhhCYhHasLQGHvTtLo229/3xVB6f7/XOlFRSI=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [lwt, mirage_net, cstruct, ipaddr, macaddr, duration, logs]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Virtual network interface and software switch for Mirage",
         homepage: "https://github.com/mirage/mirage-vnetif",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

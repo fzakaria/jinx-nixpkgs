@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["pkg-config", 78, 18]], [["tests", 78, 12]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5], ["pkgConfigModules", 86, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["outputs", 28, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["preConfigure", 46, 3], ["postInstall", 51, 3], ["postFixup", 55, 3], ["cmakeFlags", 68, 3], ["passthru", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, testers: false, stdenv: false, buildPackages: false, fetchFromGitHub: false, cmake: false, freedvSupport: true, lpcnet: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 78, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 78, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5], ["pkgConfigModules", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["outputs", 28, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["preConfigure", 46, 3], ["postInstall", 51, 3], ["postFixup", 55, 3], ["cmakeFlags", 68, 3], ["passthru", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const freedvSupport = nix.argOr($, "freedvSupport", () => false);
   const lpcnet = nix.arg($, "lpcnet");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "codec2",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "drowe67",
           repo: "codec2",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,14 +39,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DCMAKE_CXX_COMPILER=${nix.sel(stdenv, "cc", "targetPrefix")}c++`),
       ], nix.app(nix.sel(lib, "optionals"), freedvSupport, nix.thunk(() => ["-DLPCNET=ON"])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Speech codec designed for communications quality speech at low data rates",
         homepage: "https://www.rowetel.com/codec2.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

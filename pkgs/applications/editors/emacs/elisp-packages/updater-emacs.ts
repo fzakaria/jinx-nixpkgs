@@ -2,21 +2,17 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/updater-emacs.nix", [["owner", 13, 11], ["repo", 14, 11], ["rev", 15, 11], ["hash", 16, 11]]);
-const pos$2 = nix.positions(here + "/updater-emacs.nix", [["pname", 9, 9], ["version", 10, 9], ["src", 12, 9], ["packageRequires", 19, 9]]);
-const pos$3 = nix.positions(here + "/updater-emacs.nix", [["owner", 27, 11], ["repo", 28, 11], ["rev", 29, 11], ["hash", 30, 11]]);
-const pos$4 = nix.positions(here + "/updater-emacs.nix", [["pname", 23, 9], ["version", 24, 9], ["src", 26, 9], ["packageRequires", 33, 9]]);
-const pos$5 = nix.positions(here + "/updater-emacs.nix", [["packages", 45, 3]]);
+const $pos = nix.positions(here + "/updater-emacs.nix", [[["owner", 13, 11], ["repo", 14, 11], ["rev", 15, 11], ["hash", 16, 11]], [["pname", 9, 9], ["version", 10, 9], ["src", 12, 9], ["packageRequires", 19, 9]], [["owner", 27, 11], ["repo", 28, 11], ["rev", 29, 11], ["hash", 30, 11]], [["pname", 23, 9], ["version", 24, 9], ["src", 26, 9], ["packageRequires", 33, 9]], [["packages", 45, 3]]]);
 
 export default nix.thunk(() => (() => {
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../..")), nix.thunk(() => ({}))));
   const emacsEnv = nix.thunk(() => nix.app(nix.sel(pkgs, "emacs", "pkgs", "withPackages"), (epkgs) => (() => {
       const promise = nix.thunk(() => nix.app(nix.sel(epkgs, "melpaBuild"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "promise",
           version: "0-unstable-2019-06-07",
           src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "bendlas",
               repo: "emacs-promise",
               rev: "4da97087c5babbd8429b5ce62a8323b9b03c6022",
@@ -25,11 +21,11 @@ export default nix.thunk(() => (() => {
           packageRequires: nix.thunk(() => [nix.thunk(() => nix.sel(epkgs, "async"))]),
         }))));
       const semaphore = nix.thunk(() => nix.app(nix.sel(epkgs, "melpaBuild"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: "semaphore",
           version: "0-unstable-2019-06-07",
           src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               owner: "webnf",
               repo: "semaphore.el",
               rev: "93802cb093073bc6a6ccd797328dafffcef248e0",
@@ -40,7 +36,7 @@ export default nix.thunk(() => (() => {
       return [promise, semaphore];
     })()));
   return nix.app(nix.sel(pkgs, "mkShell"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       packages: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "git")),
         nix.thunk(() => nix.sel(pkgs, "bash")),

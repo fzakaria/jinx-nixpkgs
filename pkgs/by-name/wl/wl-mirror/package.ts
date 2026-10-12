@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["mainProgram", 87, 5], ["homepage", 88, 5], ["description", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["strictDeps", 41, 3], ["depsBuildBuild", 42, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["postPatch", 60, 3], ["cmakeFlags", 67, 3], ["postInstall", 73, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, "wlr-protocols": false, libGL: false, libgbm: false, bash: false, installExampleScripts: true, makeWrapper: false, installShellFiles: false, pipectl: false, slurp: false, scdoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 87, 5], ["homepage", 88, 5], ["description", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["strictDeps", 41, 3], ["depsBuildBuild", 42, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["postPatch", 60, 3], ["cmakeFlags", 67, 3], ["postInstall", 73, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const wl_present_binpath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [pipectl, slurp, nix.thunk(() => nix.builtins.placeholder("out"))])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wl-mirror",
       version: "0.18.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Ferdi265",
           repo: "wl-mirror",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +54,7 @@ substituteInPlace CMakeLists.txt \\
       postInstall: nix.thunk(() => nix.add("installShellCompletion --cmd wl-mirror \\\n  --bash ../scripts/completions/bash-completions/_wl-mirror \\\n  --zsh ../scripts/completions/zsh-completions/_wl-mirror\n\ninstallShellCompletion --cmd wl-present \\\n  --bash ../scripts/completions/bash-completions/_wl-present \\\n  --zsh ../scripts/completions/zsh-completions/_wl-present\n", nix.app(nix.sel(lib, "optionalString"), installExampleScripts, nix.thunk(() => nix.str`wrapProgram $out/bin/wl-present --prefix PATH ":" ${wl_present_binpath}
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "wl-mirror",
         homepage: "https://github.com/Ferdi265/wl-mirror",
         description: "Simple Wayland output mirror client",

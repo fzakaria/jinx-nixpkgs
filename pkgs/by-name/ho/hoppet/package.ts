@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 30, 5], ["mainProgram", 31, 5], ["license", 32, 5], ["homepage", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["enableParallelBuilding", 23, 3], ["preConfigure", 25, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gfortran: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["mainProgram", 31, 5], ["license", 32, 5], ["homepage", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["enableParallelBuilding", 23, 3], ["preConfigure", 25, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const gfortran = nix.arg($, "gfortran");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hoppet",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://hoppet.hepforge.org/downloads/hoppet-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "0j7437rh4xxbfzmkjr22ry34xm266gijzj6mvrq193fcsfzipzdz",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       preConfigure: "patchShebangs .\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Higher Order Perturbative Parton Evolution Toolkit",
         mainProgram: "hoppet-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

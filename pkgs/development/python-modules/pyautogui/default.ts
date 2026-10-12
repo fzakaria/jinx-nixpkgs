@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["build-system", 34, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 49, 3], ["checkPhase", 54, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, mouseinfo: false, pygetwindow: false, pymsgbox: false, pyperclip: false, pyscreeze: false, pytweening: false, tkinter: false, "python-xlib": false, "xvfb-run": false, scrot: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["build-system", 34, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 49, 3], ["checkPhase", 54, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const scrot = nix.arg($, "scrot");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pyautogui",
       version: "0.9.53",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "asweigart",
           repo: "pyautogui",
           rev: "5e4acb870f2e7ce0ea1927cc5188bc2f5ab7bbbc",
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [xvfb_run, scrot]),
       checkPhase: "xvfb-run python -c 'import pyautogui'\n# The tests depend on some specific things that xvfb cant provide, like keyboard and mouse\n# xvfb-run python -m unittest tests.test_pyautogui\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PyAutoGUI lets Python control the mouse and keyboard, and other GUI automation tasks",
         homepage: "https://github.com/asweigart/pyautogui",
         changelog: nix.thunk(() => nix.str`https://github.com/asweigart/pyautogui/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGES.txt`),

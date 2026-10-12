@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["cc", 19, 28]], [["zig", 17, 13], ["isArocc", 18, 5], ["wrapped", 19, 5], ["stdenv", 20, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 30, 5], ["mainProgram", 31, 5]], [["pname", 11, 3], ["version", 12, 11], ["src", 12, 19], ["nativeBuildInputs", 14, 3], ["passthru", 16, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, wrapCCWith: false, overrideCC: false, zig: false, version: false, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["cc", 19, 28]]);
-const pos$2 = nix.positions(here + "/package.nix", [["zig", 17, 13], ["isArocc", 18, 5], ["wrapped", 19, 5], ["stdenv", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 30, 5], ["mainProgram", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 11], ["src", 12, 19], ["nativeBuildInputs", 14, 3], ["passthru", 16, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const src = nix.arg($, "src");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "arocc",
       version: version,
       src: src,
       nativeBuildInputs: nix.thunk(() => [zig]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         zig: zig,
         isArocc: true,
-        wrapped: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({ [nix.POS]: pos$1, cc: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+        wrapped: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({ [nix.POS]: $pos[0], cc: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
         stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(finalAttrs, "passthru", "wrapped")))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C compiler written in Zig",
         homepage: "http://aro.vexu.eu/",
         license: nix.thunk(() => (() => {

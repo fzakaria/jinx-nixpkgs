@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["updateScript", 62, 5]], [["description", 73, 5], ["longDescription", 74, 5], ["homepage", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["installFlags", 47, 3], ["postInstall", 49, 3], ["passthru", 61, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, wrapWithXFileSearchPathHook: false, xorgproto: false, libice: false, libsm: false, libx11: false, libxaw: false, libxt: false, makeBinaryWrapper: false, writeScript: false, iceauth: false, smproxy: false, "tab-window-manager": false, xterm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 73, 5], ["longDescription", 74, 5], ["homepage", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["installFlags", 47, 3], ["postInstall", 49, 3], ["passthru", 61, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const tab_window_manager = nix.arg($, "tab-window-manager");
   const xterm = nix.arg($, "xterm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xsm",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/app/xsm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-t0zHdMYGDDdZL2ipDb0xsPKmL7FOVidpQ095vihKY84=",
         })))),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [iceauth, smproxy, tab_window_manager, xterm]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname ${nix.sel(finalAttrs, "pname")} \\
@@ -54,7 +51,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "X Session Manager",
         longDescription: "A session is a group of X applications, each of which has a particular state. xsm allows you\nto create arbitrary sessions - for example, you might have a \"light\" session, a \"development\"\nsession, or an \"xterminal\" session. Each session can have its own set of applications. Within\na session, you can perform a \"checkpoint\" to save application state, or a \"shutdown\" to save\nstate and exit the session. When you log back in to the system, you can load a specific\nsession, and you can delete sessions you no longer want to keep.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/app/xsm",

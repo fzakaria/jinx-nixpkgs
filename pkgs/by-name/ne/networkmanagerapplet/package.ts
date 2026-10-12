@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["sha256", 34, 5]], [["packageName", 84, 7], ["attrPath", 85, 7], ["versionPolicy", 86, 7]], [["updateScript", 83, 5]], [["homepage", 91, 5], ["description", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5], ["platforms", 96, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["mesonFlags", 37, 3], ["outputs", 42, 3], ["buildInputs", 47, 3], ["nativeBuildInputs", 63, 3], ["postPatch", 73, 3], ["passthru", 82, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, gettext: false, "pkg-config": false, networkmanager: false, gnome: false, "adwaita-icon-theme": false, libsecret: false, polkit: false, modemmanager: false, libnma: false, "glib-networking": false, "gsettings-desktop-schemas": false, libgudev: false, jansson: false, wrapGAppsHook3: false, "gobject-introspection": false, python3: false, gtk3: false, "libayatana-appindicator": false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 84, 7], ["attrPath", 85, 7], ["versionPolicy", 86, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 91, 5], ["description", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5], ["platforms", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["mesonFlags", 37, 3], ["outputs", 42, 3], ["buildInputs", 47, 3], ["nativeBuildInputs", 63, 3], ["postPatch", 73, 3], ["passthru", 82, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "network-manager-applet";
       const version = "1.36.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/network-manager-applet/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/network-manager-applet-${version}.tar.xz`),
           sha256: "sha256-qEcESH6jr+FIXEf7KrWYuPd59UCuDcvwocX4XmSn4lM=",
         }))));
@@ -71,16 +67,16 @@ export default nix.lambda((args) => (() => {
       ]);
       const postPatch = "chmod +x meson_post_install.py # patchShebangs requires executable file\npatchShebangs meson_post_install.py\n\n# Prevent applet from autostarting in COSMIC, which has its own built-in network applet\nsubstituteInPlace nm-applet.desktop.in \\\n  --replace-fail \"NotShowIn=KDE;GNOME;\" \"NotShowIn=KDE;GNOME;COSMIC;\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packageName: pname,
             attrPath: "networkmanagerapplet",
             versionPolicy: "odd-unstable",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/network-manager-applet/",
         description: "NetworkManager control applet for GNOME",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -89,7 +85,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

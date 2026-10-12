@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 9], ["src", 18, 30], ["pnpmWorkspaces", 18, 34], ["pnpm", 19, 17], ["fetcherVersion", 20, 9], ["hash", 21, 9]], [["name", 12, 7], ["src", 14, 7], ["pnpmDeps", 16, 7], ["pnpmWorkspaces", 24, 7], ["__structuredAttrs", 29, 7], ["nativeBuildInputs", 31, 7], ["buildPhase", 36, 7]], [["structuredAttrs", 55, 21]], [["structuredAttrs", 56, 25]], [["legacy", 55, 3], ["structured", 56, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchPnpmDeps: false, pnpm: false, pnpmConfigHook: false, testers: false }, ellipsis: false };
 const formals$2 = { args: { structuredAttrs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 9], ["src", 18, 30], ["pnpmWorkspaces", 18, 34], ["pnpm", 19, 17], ["fetcherVersion", 20, 9], ["hash", 21, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 12, 7], ["src", 14, 7], ["pnpmDeps", 16, 7], ["pnpmWorkspaces", 24, 7], ["__structuredAttrs", 29, 7], ["nativeBuildInputs", 31, 7], ["buildPhase", 36, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["structuredAttrs", 55, 21]]);
-const pos$4 = nix.positions(here + "/default.nix", [["structuredAttrs", 56, 25]]);
-const pos$5 = nix.positions(here + "/default.nix", [["legacy", 55, 3], ["structured", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const structuredAttrs = nix.arg($_1, "structuredAttrs");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.str`pnpm-workspaces-${(nix.asBool(structuredAttrs) ? "structured" : "legacy")}`),
         src: nix.path(here, "./src"),
         pnpmDeps: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchPnpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             pname: "pnpm-workspaces",
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             pnpmWorkspaces: nix.thunk(() => nix.attr(finalAttrs, "pnpmWorkspaces")),
@@ -40,9 +36,9 @@ export default nix.lambda((args) => (() => {
       }));
   })(), formals$2);
   return {
-    [nix.POS]: pos$5,
-    legacy: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({ [nix.POS]: pos$3, structuredAttrs: false })))),
-    structured: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({ [nix.POS]: pos$4, structuredAttrs: true })))),
+    [nix.POS]: $pos[4],
+    legacy: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({ [nix.POS]: $pos[2], structuredAttrs: false })))),
+    structured: nix.thunk(() => nix.app(mkTest, nix.thunk(() => ({ [nix.POS]: $pos[3], structuredAttrs: true })))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

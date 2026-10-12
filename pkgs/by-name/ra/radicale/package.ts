@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["radicale", 49, 26]], [["tests", 48, 12]], [["homepage", 53, 5], ["changelog", 54, 5], ["description", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["dependencies", 24, 3], ["__darwinAllowLocalNetworking", 38, 3], ["nativeCheckInputs", 40, 3], ["disabledTests", 46, 3], ["passthru", 48, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, nixosTests: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["radicale", 49, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 48, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["changelog", 54, 5], ["description", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["dependencies", 24, 3], ["__darwinAllowLocalNetworking", 38, 3], ["nativeCheckInputs", 40, 3], ["disabledTests", 46, 3], ["passthru", 48, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "radicale",
       version: "3.8.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kozea",
           repo: "Radicale",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,14 +49,14 @@ export default nix.lambda((args) => (() => {
       })()),
       disabledTests: nix.thunk(() => ["delay"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           radicale: nix.thunk(() => nix.attr(nixosTests, "radicale")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://radicale.org/v3.html",
         changelog: nix.thunk(() => nix.str`https://github.com/Kozea/Radicale/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "CalDAV and CardDAV server",

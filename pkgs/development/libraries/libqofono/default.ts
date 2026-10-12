@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["mobileBroadbandProviderInfo", 26, 7]], [["updateScript", 51, 12]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 46, 3], ["passthru", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, replaceVars: false, mkDerivation: false, fetchFromGitHub: false, gitUpdater: false, "mobile-broadband-provider-info": false, qmake: false, qtbase: false, qtdeclarative: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mobileBroadbandProviderInfo", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 51, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 46, 3], ["passthru", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libqofono";
       const version = "0.124";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sailfishos",
           repo: "libqofono",
           rev: version,
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-NixOS-provide-mobile-broadband-provider-info-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             mobileBroadbandProviderInfo: mobile_broadband_provider_info,
           })))),
         nix.path(here, "./0001-NixOS-Skip-tests-they-re-shock-full-of-hardcoded-FHS.patch"),
@@ -48,11 +44,11 @@ substituteInPlace plugin/plugin.pro \\
       const nativeBuildInputs = nix.thunk(() => [qmake]);
       const buildInputs = nix.thunk(() => [qtbase, qtdeclarative]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library for accessing the ofono daemon, and declarative plugin for it",
         homepage: "https://git.sailfishos.org/mer-core/libqofono/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -60,7 +56,7 @@ substituteInPlace plugin/plugin.pro \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

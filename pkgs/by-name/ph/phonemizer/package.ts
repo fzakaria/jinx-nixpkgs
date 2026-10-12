@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["bibtexparser", 8, 7]]]);
 const formals$1 = { args: { python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["bibtexparser", 8, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const python3Packages = nix.arg($, "python3Packages");
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       bibtexparser: nix.thunk(() => nix.sel(self, "bibtexparser_2")),
     })));
   const w = nix.withScope(pythonPackages, null);

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["pname", 21, 5], ["version", 22, 5], ["src", 23, 5], ["sourceRoot", 24, 5], ["nativeBuildInputs", 25, 5], ["configureFlags", 26, 5], ["installTargets", 32, 5]], [["broken", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["mesonFlags", 51, 3], ["postPatch", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, lv2: false, meson: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 21, 5], ["version", 22, 5], ["src", 23, 5], ["sourceRoot", 24, 5], ["nativeBuildInputs", 25, 5], ["configureFlags", 26, 5], ["installTargets", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["mesonFlags", 51, 3], ["postPatch", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   const speech_denoiser_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "lucianodato",
       repo: "speech-denoiser",
       rev: "04cfba929630404f8d4f4ca5bac8d9b09a99152f",
       sha256: "189l6lz8sz5vr6bjyzgcsrvksl1w6crqsg0q65r94b5yjsmjnpr4",
     }))));
   const rnnoise_nu = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "rnnoise-nu",
       version: "0-unstable-2018-10-08",
       src: speech_denoiser_src,
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["install-rnnoise-nu"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "speech-denoiser",
       version: "0-unstable-2018-10-08",
       src: speech_denoiser_src,
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace meson.build \\\n  --replace \"cc.find_library('rnnoise-nu',dirs: meson.current_source_dir() + '/rnnoise/.libs/',required : true)\" \"cc.find_library('rnnoise-nu', required : true)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "Speech denoise lv2 plugin based on RNNoise library",
         homepage: "https://github.com/lucianodato/speech-denoiser",

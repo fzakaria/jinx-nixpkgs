@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["fast", 31, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["optional-dependencies", 30, 3], ["nativeCheckInputs", 34, 3], ["enabledTestPaths", 36, 3], ["disabledTests", 38, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cryptography: false, fetchFromGitHub: false, pytestCheckHook: false, "python-dateutil": false, pytz: false, ujson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fast", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["optional-dependencies", 30, 3], ["nativeCheckInputs", 34, 3], ["enabledTestPaths", 36, 3], ["disabledTests", 38, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,27 +20,27 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RIPE-NCC",
           repo: "ripe-atlas-sagan",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-xIBIKsQvDmVBa/C8/7Wr3WKeepHaGhoXlgatXSUtWLA=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [cryptography, python_dateutil, pytz]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, fast: nix.thunk(() => [ujson]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], fast: nix.thunk(() => [ujson]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const enabledTestPaths = nix.thunk(() => ["tests/*.py"]);
       const disabledTests = nix.thunk(() => ["test_invalid_country_code"]);
       const pythonImportsCheck = nix.thunk(() => ["ripe.atlas.sagan"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Parsing library for RIPE Atlas measurements results",
         homepage: "https://github.com/RIPE-NCC/ripe-atlas-sagan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

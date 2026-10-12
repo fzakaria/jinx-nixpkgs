@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 5], ["version", 22, 13], ["hash", 23, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 70, 5], ["maintainers", 74, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 26, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 37, 3], ["disabledTests", 43, 3], ["pythonImportsCheck", 60, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "changelog-chug": false, docutils: false, lockfile: false, packaging: false, pytestCheckHook: false, testscenarios: false, testtools: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 5], ["version", 22, 13], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 70, 5], ["maintainers", 74, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 26, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 37, 3], ["disabledTests", 43, 3], ["pythonImportsCheck", 60, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "python_daemon",
           version: version,
           hash: "sha256-97BDNa3Ec96Hf1EX4m1fEUL0yffNdlQI8Id3V75a+/Q=",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["daemon", "daemon.daemon", "daemon.pidfile"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to implement a well-behaved Unix daemon process",
         homepage: "https://pagure.io/python-daemon/",
         license: nix.thunk(() => (() => {
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

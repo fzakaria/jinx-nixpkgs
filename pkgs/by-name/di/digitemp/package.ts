@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["url", 21, 7], ["hash", 22, 7]], [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["enableParallelBuilding", 26, 3], ["makeFlags", 28, 3], ["installPhase", 34, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchpatch: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["enableParallelBuilding", 26, 3], ["makeFlags", 28, 3], ["installPhase", 34, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "digitemp",
       version: "3.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bcl",
           repo: "digitemp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/bcl/digitemp/commit/fa56b0f78d12f97ac44e0a367d413a9e88611d1c.patch?full_index=1",
             hash: "sha256-1xyVcZKVPtQDPw48i+4Jv9fQCOq46IQZA2wCa5ukr00=",
           })))),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["LOCK=no", "ds9097", "ds9097u"]),
       installPhase: "runHook preInstall\ninstall -D -m555 -t $out/bin digitemp_*\ninstall -D -m444 -t $out/share/doc/digitemp FAQ README\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Temperature logging and reporting using Maxim's iButtons and 1-Wire protocol",
         longDescription: "DigiTemp is a command line application used for reading 1-wire sensors like\nthe DS18S20 temperature sensor, or DS2438 battery monitor. DigiTemp supports\nthe following devices:\n\n  DS18S20 (and older DS1820) Temperature Sensor\n  DS18B20 Temperature Sensor\n  DS1822 Temperature Sensor\n  DS2438 Battery monitor\n  DS2409 1-wire coupler (used in 1-wire hubs)\n  DS2422 Counter\n  DS2423 Counter\n\nThe output format can be customized and all settings are stored in a\nconfiguration file (.digitemprc) in the current directory. DigiTemp can\nrepeatedly read the sensors and output to stdout and/or to a logfile.\n",
         homepage: "https://www.digitemp.com",

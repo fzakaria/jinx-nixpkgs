@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5], ["name", 16, 5]], [["pname", 20, 13], ["version", 20, 19], ["src", 20, 27]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]], [["pname", 25, 11], ["version", 25, 17], ["src", 25, 25], ["extraPkgs", 27, 3], ["extraInstallCommands", 32, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false, "segger-jlink-headless": false, libxshmfence: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5], ["name", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 20, 13], ["version", 20, 19], ["src", 20, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 11], ["version", 25, 17], ["src", 25, 25], ["extraPkgs", 27, 3], ["extraInstallCommands", 32, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const pname = "nrfconnect-bluetooth-low-energy";
   const version = "4.0.4";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/NordicPlayground/pc-nrfconnect-ble-standalone/releases/download/v${version}/nrfconnect-bluetooth-low-energy-${version}-x86_64.AppImage`),
       hash: "sha256-mL8ky/cYjNgfUJgE7W5LFK/w7Ky9Xx6E84UT668HRAk=",
       name: nix.thunk(() => nix.str`${pname}-${version}.AppImage`),
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -37,7 +34,7 @@ substituteInPlace $out/share/applications/nrfconnect-bluetooth-low-energy.deskto
   --replace-fail 'Exec=AppRun' 'Exec=nrfconnect-bluetooth-low-energy'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Nordic Semiconductor Bluetooth low energy app for nRF Connect for Desktop",
         homepage: "https://docs.nordicsemi.com/bundle/nrf-connect-ble/page/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

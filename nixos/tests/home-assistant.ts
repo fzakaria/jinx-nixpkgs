@@ -2,87 +2,45 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/home-assistant.nix", [[["maintainers", 11, 8]], [["name", 24, 13], ["ensureDBOwnership", 25, 13]], [["enable", 20, 9], ["ensureDatabases", 21, 9], ["ensureUsers", 22, 9]], [["extraPackages", 40, 13], ["extraComponents", 44, 13]], [["name", 81, 13], ["time_zone", 82, 13], ["latitude", 83, 13], ["longitude", 84, 13], ["elevation", 85, 13]], [["db_url", 89, 20]], [["platform", 125, 15], ["mac", 126, 15], ["host", 127, 15]], [["host_ip", 134, 13], ["listen_port", 135, 13]], [["default", 140, 13]], [["homeassistant", 80, 11], ["recorder", 89, 11], ["bluetooth", 93, 11], ["cloud", 94, 11], ["conversation", 95, 11], ["dhcp", 96, 11], ["energy", 97, 11], ["file", 98, 11], ["history", 101, 11], ["logbook", 104, 11], ["media_source", 105, 11], ["mobile_app", 106, 11], ["my", 107, 11], ["ssdp", 108, 11], ["stream", 109, 11], ["sun", 110, 11], ["usage_prediction", 111, 11], ["usb", 112, 11], ["webhook", 113, 11], ["zeroconf", 114, 11], ["knx", 117, 11], ["zha", 118, 11], ["switch", 123, 11], ["emulated_hue", 133, 11], ["logger", 139, 11]], [["type", 152, 19], ["title", 153, 19], ["content", 154, 19]], [["title", 149, 15], ["cards", 150, 15]], [["title", 146, 11], ["views", 147, 11]], [["enable", 34, 9], ["configDir", 35, 17], ["package", 38, 9], ["extraComponents", 52, 9], ["extraPackages", 57, 9], ["customComponents", 63, 9], ["customLovelaceModules", 70, 9], ["themes", 75, 9], ["config", 79, 9], ["lovelaceConfig", 145, 9], ["lovelaceConfigWritable", 160, 9]], [["postgresql", 19, 16], ["home-assistant", 33, 16]], [["enable", 31, 26]], [["bluetooth", 31, 16]], [["url", 169, 15], ["hash", 170, 15]], [["automation", 167, 22], ["template", 173, 22]], [["blueprints", 167, 11]], [["home-assistant", 166, 32]], [["services", 166, 23]], [["inheritParentConfig", 165, 9], ["configuration", 166, 9]], [["name", 182, 68]], [["homeassistant", 182, 54]], [["config", 182, 47]], [["home-assistant", 182, 32]], [["services", 182, 23]], [["inheritParentConfig", 181, 9], ["configuration", 182, 9]], [["prometheus", 188, 54]], [["config", 188, 47]], [["home-assistant", 188, 32]], [["services", 188, 23]], [["inheritParentConfig", 187, 9], ["configuration", 188, 9]], [["automation", 196, 22], ["template", 197, 22]], [["customComponents", 194, 11], ["customLovelaceModules", 195, 11], ["blueprints", 196, 11]], [["home-assistant", 193, 32]], [["services", 193, 23]], [["inheritParentConfig", 192, 9], ["configuration", 193, 9]], [["addBlueprints", 164, 22], ["differentName", 180, 22], ["newFeature", 186, 22], ["removeCustomThings", 191, 22]], [["services", 19, 7], ["hardware", 31, 7], ["specialisation", 164, 7]], [["hass", 13, 9]], [["name", 10, 3], ["meta", 11, 3], ["nodes", 13, 3], ["testScript", 202, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/home-assistant.nix", [["maintainers", 11, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/home-assistant.nix", [["name", 24, 13], ["ensureDBOwnership", 25, 13]]);
-const pos$3 = nix.positions(here + "/home-assistant.nix", [["enable", 20, 9], ["ensureDatabases", 21, 9], ["ensureUsers", 22, 9]]);
-const pos$4 = nix.positions(here + "/home-assistant.nix", [["extraPackages", 40, 13], ["extraComponents", 44, 13]]);
-const pos$5 = nix.positions(here + "/home-assistant.nix", [["name", 81, 13], ["time_zone", 82, 13], ["latitude", 83, 13], ["longitude", 84, 13], ["elevation", 85, 13]]);
-const pos$6 = nix.positions(here + "/home-assistant.nix", [["db_url", 89, 20]]);
-const pos$7 = nix.positions(here + "/home-assistant.nix", [["platform", 125, 15], ["mac", 126, 15], ["host", 127, 15]]);
-const pos$8 = nix.positions(here + "/home-assistant.nix", [["host_ip", 134, 13], ["listen_port", 135, 13]]);
-const pos$9 = nix.positions(here + "/home-assistant.nix", [["default", 140, 13]]);
-const pos$10 = nix.positions(here + "/home-assistant.nix", [["homeassistant", 80, 11], ["recorder", 89, 11], ["bluetooth", 93, 11], ["cloud", 94, 11], ["conversation", 95, 11], ["dhcp", 96, 11], ["energy", 97, 11], ["file", 98, 11], ["history", 101, 11], ["logbook", 104, 11], ["media_source", 105, 11], ["mobile_app", 106, 11], ["my", 107, 11], ["ssdp", 108, 11], ["stream", 109, 11], ["sun", 110, 11], ["usage_prediction", 111, 11], ["usb", 112, 11], ["webhook", 113, 11], ["zeroconf", 114, 11], ["knx", 117, 11], ["zha", 118, 11], ["switch", 123, 11], ["emulated_hue", 133, 11], ["logger", 139, 11]]);
-const pos$11 = nix.positions(here + "/home-assistant.nix", [["type", 152, 19], ["title", 153, 19], ["content", 154, 19]]);
-const pos$12 = nix.positions(here + "/home-assistant.nix", [["title", 149, 15], ["cards", 150, 15]]);
-const pos$13 = nix.positions(here + "/home-assistant.nix", [["title", 146, 11], ["views", 147, 11]]);
-const pos$14 = nix.positions(here + "/home-assistant.nix", [["enable", 34, 9], ["configDir", 35, 17], ["package", 38, 9], ["extraComponents", 52, 9], ["extraPackages", 57, 9], ["customComponents", 63, 9], ["customLovelaceModules", 70, 9], ["themes", 75, 9], ["config", 79, 9], ["lovelaceConfig", 145, 9], ["lovelaceConfigWritable", 160, 9]]);
-const pos$15 = nix.positions(here + "/home-assistant.nix", [["postgresql", 19, 16], ["home-assistant", 33, 16]]);
-const pos$16 = nix.positions(here + "/home-assistant.nix", [["enable", 31, 26]]);
-const pos$17 = nix.positions(here + "/home-assistant.nix", [["bluetooth", 31, 16]]);
-const pos$18 = nix.positions(here + "/home-assistant.nix", [["url", 169, 15], ["hash", 170, 15]]);
-const pos$19 = nix.positions(here + "/home-assistant.nix", [["automation", 167, 22], ["template", 173, 22]]);
-const pos$20 = nix.positions(here + "/home-assistant.nix", [["blueprints", 167, 11]]);
-const pos$21 = nix.positions(here + "/home-assistant.nix", [["home-assistant", 166, 32]]);
-const pos$22 = nix.positions(here + "/home-assistant.nix", [["services", 166, 23]]);
-const pos$23 = nix.positions(here + "/home-assistant.nix", [["inheritParentConfig", 165, 9], ["configuration", 166, 9]]);
-const pos$24 = nix.positions(here + "/home-assistant.nix", [["name", 182, 68]]);
-const pos$25 = nix.positions(here + "/home-assistant.nix", [["homeassistant", 182, 54]]);
-const pos$26 = nix.positions(here + "/home-assistant.nix", [["config", 182, 47]]);
-const pos$27 = nix.positions(here + "/home-assistant.nix", [["home-assistant", 182, 32]]);
-const pos$28 = nix.positions(here + "/home-assistant.nix", [["services", 182, 23]]);
-const pos$29 = nix.positions(here + "/home-assistant.nix", [["inheritParentConfig", 181, 9], ["configuration", 182, 9]]);
-const pos$30 = nix.positions(here + "/home-assistant.nix", [["prometheus", 188, 54]]);
-const pos$31 = nix.positions(here + "/home-assistant.nix", [["config", 188, 47]]);
-const pos$32 = nix.positions(here + "/home-assistant.nix", [["home-assistant", 188, 32]]);
-const pos$33 = nix.positions(here + "/home-assistant.nix", [["services", 188, 23]]);
-const pos$34 = nix.positions(here + "/home-assistant.nix", [["inheritParentConfig", 187, 9], ["configuration", 188, 9]]);
-const pos$35 = nix.positions(here + "/home-assistant.nix", [["automation", 196, 22], ["template", 197, 22]]);
-const pos$36 = nix.positions(here + "/home-assistant.nix", [["customComponents", 194, 11], ["customLovelaceModules", 195, 11], ["blueprints", 196, 11]]);
-const pos$37 = nix.positions(here + "/home-assistant.nix", [["home-assistant", 193, 32]]);
-const pos$38 = nix.positions(here + "/home-assistant.nix", [["services", 193, 23]]);
-const pos$39 = nix.positions(here + "/home-assistant.nix", [["inheritParentConfig", 192, 9], ["configuration", 193, 9]]);
-const pos$40 = nix.positions(here + "/home-assistant.nix", [["addBlueprints", 164, 22], ["differentName", 180, 22], ["newFeature", 186, 22], ["removeCustomThings", 191, 22]]);
-const pos$41 = nix.positions(here + "/home-assistant.nix", [["services", 19, 7], ["hardware", 31, 7], ["specialisation", 164, 7]]);
-const pos$42 = nix.positions(here + "/home-assistant.nix", [["hass", 13, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$43 = nix.positions(here + "/home-assistant.nix", [["name", 10, 3], ["meta", 11, 3], ["nodes", 13, 3], ["testScript", 202, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const configDir = "/var/lib/foobar";
   return {
-    [nix.POS]: pos$43,
+    [nix.POS]: $pos[42],
     name: "home-assistant",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "home-assistant", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$42,
+      [nix.POS]: $pos[41],
       hass: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               ensureDatabases: nix.thunk(() => ["hass"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$2, name: "hass", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: $pos[1], name: "hass", ensureDBOwnership: true })),
               ]),
             })),
             "home-assistant": nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               enable: true,
               configDir: configDir,
               package: nix.thunk(() => nix.app(nix.sel(pkgs, "home-assistant", "override"), nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   extraPackages: (ps) => (() => {
                     const w = nix.withScope(ps, null);
                     return [nix.thunk(() => nix.lookup(w, "colorama"))];
@@ -110,16 +68,16 @@ export default nix.lambda((args) => (() => {
                 return [nix.thunk(() => nix.lookup(w_2, "material-you-theme"))];
               })()),
               config: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 homeassistant: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   name: "Home",
                   time_zone: "UTC",
                   latitude: "0.0",
                   longitude: "0.0",
                   elevation: 0n,
                 })),
-                recorder: nix.thunk(() => ({ [nix.POS]: pos$6, db_url: "postgresql://@/hass" })),
+                recorder: nix.thunk(() => ({ [nix.POS]: $pos[5], db_url: "postgresql://@/hass" })),
                 bluetooth: nix.thunk(() => ({})),
                 cloud: nix.thunk(() => ({})),
                 conversation: nix.thunk(() => ({})),
@@ -142,25 +100,25 @@ export default nix.lambda((args) => (() => {
                 zha: nix.thunk(() => ({})),
                 switch: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     platform: "wake_on_lan",
                     mac: "00:11:22:33:44:55",
                     host: "127.0.0.1",
                   })),
                 ]),
-                emulated_hue: nix.thunk(() => ({ [nix.POS]: pos$8, host_ip: "127.0.0.1", listen_port: 80n })),
-                logger: nix.thunk(() => ({ [nix.POS]: pos$9, default: "debug" })),
+                emulated_hue: nix.thunk(() => ({ [nix.POS]: $pos[7], host_ip: "127.0.0.1", listen_port: 80n })),
+                logger: nix.thunk(() => ({ [nix.POS]: $pos[8], default: "debug" })),
               })),
               lovelaceConfig: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 title: "My Awesome Home",
                 views: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     title: "Example",
                     cards: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$11,
+                        [nix.POS]: $pos[10],
                         type: "markdown",
                         title: "Lovelace",
                         content: "Welcome to your **Lovelace UI**.",
@@ -173,25 +131,25 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           hardware: nix.thunk(() => ({
-            [nix.POS]: pos$17,
-            bluetooth: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true })),
+            [nix.POS]: $pos[16],
+            bluetooth: nix.thunk(() => ({ [nix.POS]: $pos[15], enable: true })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             addBlueprints: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               inheritParentConfig: true,
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   "home-assistant": nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     blueprints: nix.thunk(() => ({
-                      [nix.POS]: pos$19,
+                      [nix.POS]: $pos[18],
                       automation: nix.thunk(() => [
                         nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-                            [nix.POS]: pos$18,
+                            [nix.POS]: $pos[17],
                             url: "https://github.com/home-assistant/core/raw/2025.1.4/homeassistant/components/automation/blueprints/motion_light.yaml",
                             hash: "sha256-4HrDX65ycBMfEY2nZ7A25/d3ZnIHdpHZ+80Cblp+P5w=",
                           })))),
@@ -205,18 +163,18 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             differentName: nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               inheritParentConfig: true,
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   "home-assistant": nix.thunk(() => ({
-                    [nix.POS]: pos$26,
+                    [nix.POS]: $pos[25],
                     config: nix.thunk(() => ({
-                      [nix.POS]: pos$25,
+                      [nix.POS]: $pos[24],
                       homeassistant: nix.thunk(() => ({
-                        [nix.POS]: pos$24,
+                        [nix.POS]: $pos[23],
                         name: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "Test Home")),
                       })),
                     })),
@@ -225,32 +183,32 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             newFeature: nix.thunk(() => ({
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               inheritParentConfig: true,
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$32,
+                  [nix.POS]: $pos[31],
                   "home-assistant": nix.thunk(() => ({
-                    [nix.POS]: pos$31,
-                    config: nix.thunk(() => ({ [nix.POS]: pos$30, prometheus: nix.thunk(() => ({})) })),
+                    [nix.POS]: $pos[30],
+                    config: nix.thunk(() => ({ [nix.POS]: $pos[29], prometheus: nix.thunk(() => ({})) })),
                   })),
                 })),
               })),
             })),
             removeCustomThings: nix.thunk(() => ({
-              [nix.POS]: pos$39,
+              [nix.POS]: $pos[38],
               inheritParentConfig: true,
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$38,
+                [nix.POS]: $pos[37],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$37,
+                  [nix.POS]: $pos[36],
                   "home-assistant": nix.thunk(() => ({
-                    [nix.POS]: pos$36,
+                    [nix.POS]: $pos[35],
                     customComponents: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
                     customLovelaceModules: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
                     blueprints: nix.thunk(() => ({
-                      [nix.POS]: pos$35,
+                      [nix.POS]: $pos[34],
                       automation: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
                       template: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
                     })),

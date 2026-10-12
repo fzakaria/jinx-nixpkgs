@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["all", 55, 5], ["aiofiles", 64, 5], ["aiohttp", 65, 5], ["httpx", 66, 5], ["requests", 67, 5], ["websockets", 71, 5], ["botocore", 72, 5]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["mainProgram", 93, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 45, 3], ["optional-dependencies", 54, 3], ["preCheck", 75, 3], ["disabledTestMarks", 79, 3], ["pythonImportsCheck", 83, 3], ["__darwinAllowLocalNetworking", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, aiofiles: false, aiohttp: false, anyio: false, backoff: false, botocore: false, buildPythonPackage: false, fetchFromGitHub: false, "graphql-core": false, httpx: false, parse: false, "pytest-asyncio_0": false, "pytest-console-scripts": false, pytestCheckHook: false, requests: false, "requests-toolbelt": false, setuptools: false, vcrpy: false, websockets: false, yarl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 55, 5], ["aiofiles", 64, 5], ["aiohttp", 65, 5], ["httpx", 66, 5], ["requests", 67, 5], ["websockets", 71, 5], ["botocore", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["mainProgram", 93, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 45, 3], ["optional-dependencies", 54, 3], ["preCheck", 75, 3], ["disabledTestMarks", 79, 3], ["pythonImportsCheck", 83, 3], ["__darwinAllowLocalNetworking", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "graphql-python",
           repo: "gql",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [anyio, backoff, graphql_core, yarl]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([parse, pytest_asyncio_0, pytest_console_scripts, pytestCheckHook, vcrpy], nix.sel(optional_dependencies, "all")));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [aiofiles, aiohttp, botocore, httpx, requests, requests_toolbelt, websockets]),
         aiofiles: nix.thunk(() => [aiofiles]),
         aiohttp: nix.thunk(() => [aiohttp]),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["gql"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GraphQL client in Python",
         homepage: "https://github.com/graphql-python/gql",
         changelog: nix.thunk(() => nix.str`https://github.com/graphql-python/gql/releases/tag/${nix.sel(src, "tag")}`),
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gql-cli",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 16, 7], ["url", 17, 7], ["hash", 18, 7]], [["pname", 11, 5], ["version", 12, 5], ["format", 13, 5], ["src", 15, 5], ["doCheck", 22, 5]], [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]], [["pname", 26, 3], ["version", 27, 3], ["format", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 44, 3], ["propagatedBuildInputs", 49, 3], ["doCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, fetchurl: false, "youtube-dl": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 16, 7], ["url", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 11, 5], ["version", 12, 5], ["format", 13, 5], ["src", 15, 5], ["doCheck", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["format", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 44, 3], ["propagatedBuildInputs", 49, 3], ["doCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,21 +17,21 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.2-1-g2673e8d";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`Thann-install_freedesktop-${version}.tar.gz`),
           url: "https://github.com/thann/install_freedesktop/tarball/2673e8da4a67bee0ffc52a0ea381a541b4becdd4",
           hash: "sha256-O08G0iMGsF1DSyliXOHTIsOxDdJPBabNLXRhz5osDUk=",
         }))));
       const doCheck = false;
-      return { [nix.POS]: pos$2, pname, version, format, src, doCheck };
+      return { [nix.POS]: $pos[1], pname, version, format, src, doCheck };
     })())));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "play-with-mpv",
       version: "unstable-2021-04-02",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "thann",
           repo: "play-with-mpv",
           rev: "07a9c1dd57d9e16538991b13fd3e2ed54d6e3a2d",
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [youtube_dl]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Chrome extension and python server that allows you to play videos in webpages with MPV instead",
         homepage: "https://github.com/Thann/play-with-mpv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

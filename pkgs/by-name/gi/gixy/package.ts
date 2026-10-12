@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 11], ["repo", 17, 11], ["rev", 18, 11], ["sha256", 19, 11]], [["version", 14, 9], ["src", 15, 9], ["nativeBuildInputs", 21, 9]], [["pyparsing", 13, 7]], [["self", 11, 5], ["packageOverrides", 12, 5]], [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["sha256", 36, 5]], [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]], [["tests", 65, 30]], [["description", 69, 5], ["mainProgram", 70, 5], ["longDescription", 71, 5], ["homepage", 75, 5], ["sourceProvenance", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 32, 3], ["patches", 39, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 60, 3], ["pythonRemoveDeps", 62, 3], ["passthru", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch2: false, python3: false, nginx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 11], ["repo", 17, 11], ["rev", 18, 11], ["sha256", 19, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 14, 9], ["src", 15, 9], ["nativeBuildInputs", 21, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pyparsing", 13, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["self", 11, 5], ["packageOverrides", 12, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["sha256", 36, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 65, 30]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 69, 5], ["mainProgram", 70, 5], ["longDescription", 71, 5], ["homepage", 75, 5], ["sourceProvenance", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 32, 3], ["patches", 39, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 60, 3], ["pythonRemoveDeps", 62, 3], ["passthru", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,21 +13,21 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const nginx = nix.arg($, "nginx");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       self: python,
       packageOverrides: (self) => (super$) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pyparsing: nix.thunk(() => nix.app(nix.sel(super$, "pyparsing", "overridePythonAttrs"), nix.thunk(() => (() => {
             const version = "2.4.7";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: "pyparsing",
                 repo: "pyparsing",
                 rev: nix.thunk(() => nix.str`pyparsing_${version}`),
                 sha256: "14pfy80q2flgzjcx8jkracvnxxnr59kjzp3kdm5nh232gk1v6g6h",
               }))));
             const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(super$, "setuptools"))]);
-            return { [nix.POS]: pos$2, version, src, nativeBuildInputs };
+            return { [nix.POS]: $pos[1], version, src, nativeBuildInputs };
           })()))),
       }),
     }))));
@@ -44,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.21";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "yandex",
           repo: "gixy",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +44,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "migrate-tests-to-pytest.patch",
             url: "https://github.com/yandex/gixy/compare/6f68624a7540ee51316651bda656894dc14c9a3e...b1c6899b3733b619c244368f0121a01be028e8c2.diff?full_index=1",
             hash: "sha256-qIKKTC65ewZqiKiNLcaglKEdFh0SBZMJgIvY41/7WUc=",
@@ -74,10 +66,10 @@ export default nix.lambda((args) => (() => {
       const pythonRemoveDeps = nix.thunk(() => ["argparse"]);
       const passthru = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nginx, "passthru"));
-        return { [nix.POS]: pos$7, tests: nix.thunk(() => nix.attr(from, "tests")) };
+        return { [nix.POS]: $pos[6], tests: nix.thunk(() => nix.attr(from, "tests")) };
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Nginx configuration static analyzer",
         mainProgram: "gixy",
         longDescription: "Gixy is a tool to analyze Nginx configuration.\nThe main goal of Gixy is to prevent security misconfiguration and automate flaw detection.\n",
@@ -88,7 +80,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         pyproject,

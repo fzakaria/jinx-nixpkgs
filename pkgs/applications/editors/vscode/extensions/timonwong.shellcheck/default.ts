@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 11, 5], ["publisher", 12, 5], ["version", 13, 5], ["sha256", 14, 5]], [["description", 25, 5], ["downloadPage", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["mktplcRef", 10, 3], ["nativeBuildInputs", 16, 3], ["postInstall", 20, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { jq: false, lib: false, moreutils: false, shellcheck: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 11, 5], ["publisher", 12, 5], ["version", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 25, 5], ["downloadPage", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 10, 3], ["nativeBuildInputs", 16, 3], ["postInstall", 20, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const shellcheck = nix.arg($, "shellcheck");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "shellcheck",
         publisher: "timonwong",
         version: "0.40.1",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
 jq '.contributes.configuration.properties."shellcheck.executablePath".default = "${shellcheck}/bin/shellcheck"' package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Integrates ShellCheck into VS Code, a linter for Shell scripts",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=timonwong.shellcheck",
         homepage: "https://github.com/vscode-shellcheck/vscode-shellcheck",

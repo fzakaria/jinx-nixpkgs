@@ -2,78 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugins.nix", [[["propagatedBuildInputs", 12, 10]], [["propagatedBuildInputs", 15, 10]], [["propagatedBuildInputs", 29, 13]], [["propagatedBuildInputs", 34, 14]], [["propagatedBuildInputs", 40, 10]], [["propagatedBuildInputs", 42, 14]], [["propagatedBuildInputs", 43, 12]], [["propagatedBuildInputs", 49, 8]], [["propagatedBuildInputs", 50, 7]], [["propagatedBuildInputs", 54, 8]], [["propagatedBuildInputs", 58, 8]], [["propagatedBuildInputs", 62, 12]], [["propagatedBuildInputs", 65, 14]], [["propagatedBuildInputs", 70, 12]], [["propagatedBuildInputs", 72, 10]], [["propagatedBuildInputs", 76, 13]], [["propagatedBuildInputs", 77, 9]], [["propagatedBuildInputs", 78, 12]], [["propagatedBuildInputs", 82, 13]], [["propagatedBuildInputs", 87, 13]], [["propagatedBuildInputs", 88, 7]], [["propagatedBuildInputs", 92, 10]], [["propagatedBuildInputs", 93, 10]], [["propagatedBuildInputs", 99, 13]], [["buildInputs", 104, 5]], [["buildInputs", 109, 5]], [["propagatedBuildInputs", 112, 20]], [["buildInputs", 116, 5]], [["propagatedBuildInputs", 120, 20]], [["propagatedBuildInputs", 121, 14]], [["propagatedBuildInputs", 122, 8]], [["propagatedBuildInputs", 123, 10]], [["propagatedBuildInputs", 125, 8]], [["propagatedBuildInputs", 126, 7]], [["propagatedBuildInputs", 127, 11]], [["propagatedBuildInputs", 131, 19]], [["propagatedBuildInputs", 132, 7]], [["propagatedBuildInputs", 136, 17]], [["propagatedBuildInputs", 139, 13]], [["propagatedBuildInputs", 142, 10]], [["propagatedBuildInputs", 146, 11]], [["propagatedBuildInputs", 147, 16]], [["propagatedBuildInputs", 149, 8]], [["buildInputs", 150, 12]], [["propagatedBuildInputs", 151, 13]], [["propagatedBuildInputs", 157, 12]], [["propagatedBuildInputs", 158, 12]], [["propagatedBuildInputs", 161, 12]], [["propagatedBuildInputs", 162, 12]], [["propagatedBuildInputs", 165, 12]], [["propagatedBuildInputs", 167, 11]], [["propagatedBuildInputs", 168, 12]], [["propagatedBuildInputs", 171, 15]], [["propagatedBuildInputs", 172, 10]], [["propagatedBuildInputs", 173, 12]], [["propagatedBuildInputs", 175, 13]], [["propagatedBuildInputs", 176, 11]], [["propagatedBuildInputs", 180, 10]], [["propagatedBuildInputs", 181, 15]], [["propagatedBuildInputs", 186, 9]], [["propagatedBuildInputs", 189, 11]], [["propagatedBuildInputs", 192, 8]], [["propagatedBuildInputs", 194, 9]], [["propagatedBuildInputs", 198, 9]], [["propagatedBuildInputs", 199, 7]], [["propagatedBuildInputs", 203, 12]], [["propagatedBuildInputs", 204, 10]], [["propagatedBuildInputs", 205, 11]], [["propagatedBuildInputs", 208, 10]], [["propagatedBuildInputs", 209, 11]], [["amixer", 12, 3], ["arandr", 15, 3], ["battery", 26, 3], ["battery-upower", 27, 3], ["battery_upower", 28, 3], ["bluetooth", 29, 3], ["bluetooth2", 34, 3], ["blugon", 40, 3], ["brightness", 42, 3], ["caffeine", 43, 3], ["cmus", 49, 3], ["cpu", 50, 3], ["cpu2", 54, 3], ["cpu3", 58, 3], ["currency", 62, 3], ["date", 63, 3], ["datetime", 64, 3], ["datetimetz", 65, 3], ["datetz", 69, 3], ["deadbeef", 70, 3], ["debug", 71, 3], ["deezer", 72, 3], ["disk", 73, 3], ["docker_ps", 76, 3], ["dunst", 77, 3], ["dunstctl", 78, 3], ["error", 81, 3], ["gcalendar", 82, 3], ["getcrypto", 87, 3], ["git", 88, 3], ["github", 92, 3], ["gitlab", 93, 3], ["hddtemp", 96, 3], ["hostname", 97, 3], ["http_status", 98, 3], ["indicator", 99, 3], ["kernel", 100, 3], ["keys", 101, 3], ["layout", 103, 3], ["layout-xkb", 108, 3], ["layout-xkbswitch", 112, 3], ["layout_xkb", 115, 3], ["layout_xkbswitch", 120, 3], ["libvirtvms", 121, 3], ["load", 122, 3], ["memory", 123, 3], ["messagereceiver", 124, 3], ["mocp", 125, 3], ["mpd", 126, 3], ["network", 127, 3], ["network_traffic", 131, 3], ["nic", 132, 3], ["notmuch_count", 136, 3], ["octoprint", 139, 3], ["pacman", 142, 3], ["pamixer", 146, 3], ["persian_date", 147, 3], ["pihole", 148, 3], ["ping", 149, 3], ["pipewire", 150, 3], ["playerctl", 151, 3], ["pomodoro", 152, 3], ["progress", 157, 3], ["publicip", 158, 3], ["pulsectl", 161, 3], ["redshift", 162, 3], ["rotation", 165, 3], ["rss", 166, 3], ["sensors", 167, 3], ["sensors2", 168, 3], ["shell", 169, 3], ["shortcut", 170, 3], ["smartstatus", 171, 3], ["solaar", 172, 3], ["spaceapi", 173, 3], ["spacer", 174, 3], ["speedtest", 175, 3], ["spotify", 176, 3], ["stock", 177, 3], ["system", 180, 3], ["taskwarrior", 181, 3], ["test", 182, 3], ["thunderbird", 183, 3], ["time", 184, 3], ["timetz", 185, 3], ["title", 186, 3], ["todo", 187, 3], ["todo_org", 188, 3], ["todoist", 189, 3], ["traffic", 190, 3], ["twmn", 192, 3], ["uptime", 193, 3], ["usage", 194, 3], ["vault", 198, 3], ["vpn", 199, 3], ["wakatime", 203, 3], ["watson", 204, 3], ["weather", 205, 3], ["xkcd", 206, 3], ["xrandr", 208, 3], ["yubikey", 209, 3], ["zpool", 210, 3]]]);
 const formals$1 = { args: { pkgs: false, python3: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 12, 10]]);
-const pos$2 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 15, 10]]);
-const pos$3 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 29, 13]]);
-const pos$4 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 34, 14]]);
-const pos$5 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 40, 10]]);
-const pos$6 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 42, 14]]);
-const pos$7 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 43, 12]]);
-const pos$8 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 49, 8]]);
-const pos$9 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 50, 7]]);
-const pos$10 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 54, 8]]);
-const pos$11 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 58, 8]]);
-const pos$12 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 62, 12]]);
-const pos$13 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 65, 14]]);
-const pos$14 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 70, 12]]);
-const pos$15 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 72, 10]]);
-const pos$16 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 76, 13]]);
-const pos$17 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 77, 9]]);
-const pos$18 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 78, 12]]);
-const pos$19 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 82, 13]]);
-const pos$20 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 87, 13]]);
-const pos$21 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 88, 7]]);
-const pos$22 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 92, 10]]);
-const pos$23 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 93, 10]]);
-const pos$24 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 99, 13]]);
-const pos$25 = nix.positions(here + "/plugins.nix", [["buildInputs", 104, 5]]);
-const pos$26 = nix.positions(here + "/plugins.nix", [["buildInputs", 109, 5]]);
-const pos$27 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 112, 20]]);
-const pos$28 = nix.positions(here + "/plugins.nix", [["buildInputs", 116, 5]]);
-const pos$29 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 120, 20]]);
-const pos$30 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 121, 14]]);
-const pos$31 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 122, 8]]);
-const pos$32 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 123, 10]]);
-const pos$33 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 125, 8]]);
-const pos$34 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 126, 7]]);
-const pos$35 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 127, 11]]);
-const pos$36 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 131, 19]]);
-const pos$37 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 132, 7]]);
-const pos$38 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 136, 17]]);
-const pos$39 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 139, 13]]);
-const pos$40 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 142, 10]]);
-const pos$41 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 146, 11]]);
-const pos$42 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 147, 16]]);
-const pos$43 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 149, 8]]);
-const pos$44 = nix.positions(here + "/plugins.nix", [["buildInputs", 150, 12]]);
-const pos$45 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 151, 13]]);
-const pos$46 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 157, 12]]);
-const pos$47 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 158, 12]]);
-const pos$48 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 161, 12]]);
-const pos$49 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 162, 12]]);
-const pos$50 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 165, 12]]);
-const pos$51 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 167, 11]]);
-const pos$52 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 168, 12]]);
-const pos$53 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 171, 15]]);
-const pos$54 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 172, 10]]);
-const pos$55 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 173, 12]]);
-const pos$56 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 175, 13]]);
-const pos$57 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 176, 11]]);
-const pos$58 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 180, 10]]);
-const pos$59 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 181, 15]]);
-const pos$60 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 186, 9]]);
-const pos$61 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 189, 11]]);
-const pos$62 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 192, 8]]);
-const pos$63 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 194, 9]]);
-const pos$64 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 198, 9]]);
-const pos$65 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 199, 7]]);
-const pos$66 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 203, 12]]);
-const pos$67 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 204, 10]]);
-const pos$68 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 205, 11]]);
-const pos$69 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 208, 10]]);
-const pos$70 = nix.positions(here + "/plugins.nix", [["propagatedBuildInputs", 209, 11]]);
-const pos$71 = nix.positions(here + "/plugins.nix", [["amixer", 12, 3], ["arandr", 15, 3], ["battery", 26, 3], ["battery-upower", 27, 3], ["battery_upower", 28, 3], ["bluetooth", 29, 3], ["bluetooth2", 34, 3], ["blugon", 40, 3], ["brightness", 42, 3], ["caffeine", 43, 3], ["cmus", 49, 3], ["cpu", 50, 3], ["cpu2", 54, 3], ["cpu3", 58, 3], ["currency", 62, 3], ["date", 63, 3], ["datetime", 64, 3], ["datetimetz", 65, 3], ["datetz", 69, 3], ["deadbeef", 70, 3], ["debug", 71, 3], ["deezer", 72, 3], ["disk", 73, 3], ["docker_ps", 76, 3], ["dunst", 77, 3], ["dunstctl", 78, 3], ["error", 81, 3], ["gcalendar", 82, 3], ["getcrypto", 87, 3], ["git", 88, 3], ["github", 92, 3], ["gitlab", 93, 3], ["hddtemp", 96, 3], ["hostname", 97, 3], ["http_status", 98, 3], ["indicator", 99, 3], ["kernel", 100, 3], ["keys", 101, 3], ["layout", 103, 3], ["layout-xkb", 108, 3], ["layout-xkbswitch", 112, 3], ["layout_xkb", 115, 3], ["layout_xkbswitch", 120, 3], ["libvirtvms", 121, 3], ["load", 122, 3], ["memory", 123, 3], ["messagereceiver", 124, 3], ["mocp", 125, 3], ["mpd", 126, 3], ["network", 127, 3], ["network_traffic", 131, 3], ["nic", 132, 3], ["notmuch_count", 136, 3], ["octoprint", 139, 3], ["pacman", 142, 3], ["pamixer", 146, 3], ["persian_date", 147, 3], ["pihole", 148, 3], ["ping", 149, 3], ["pipewire", 150, 3], ["playerctl", 151, 3], ["pomodoro", 152, 3], ["progress", 157, 3], ["publicip", 158, 3], ["pulsectl", 161, 3], ["redshift", 162, 3], ["rotation", 165, 3], ["rss", 166, 3], ["sensors", 167, 3], ["sensors2", 168, 3], ["shell", 169, 3], ["shortcut", 170, 3], ["smartstatus", 171, 3], ["solaar", 172, 3], ["spaceapi", 173, 3], ["spacer", 174, 3], ["speedtest", 175, 3], ["spotify", 176, 3], ["stock", 177, 3], ["system", 180, 3], ["taskwarrior", 181, 3], ["test", 182, 3], ["thunderbird", 183, 3], ["time", 184, 3], ["timetz", 185, 3], ["title", 186, 3], ["todo", 187, 3], ["todo_org", 188, 3], ["todoist", 189, 3], ["traffic", 190, 3], ["twmn", 192, 3], ["uptime", 193, 3], ["usage", 194, 3], ["vault", 198, 3], ["vpn", 199, 3], ["wakatime", 203, 3], ["watson", 204, 3], ["weather", 205, 3], ["xkcd", 206, 3], ["xrandr", 208, 3], ["yubikey", 209, 3], ["zpool", 210, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -81,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const py = nix.thunk(() => nix.sel(python3, "pkgs"));
   return {
-    [nix.POS]: pos$71,
+    [nix.POS]: $pos[70],
     amixer: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "alsa-utils"))]),
     })),
     arandr: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "tkinter")),
         nix.thunk(() => nix.sel(pkgs, "arandr")),
@@ -98,7 +28,7 @@ export default nix.lambda((args) => (() => {
     "battery-upower": nix.thunk(() => ({})),
     battery_upower: nix.thunk(() => ({})),
     bluetooth: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "bluez")),
         nix.thunk(() => nix.sel(pkgs, "blueman")),
@@ -106,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     bluetooth2: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "bluez")),
         nix.thunk(() => nix.sel(pkgs, "blueman")),
@@ -115,12 +45,12 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     blugon: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "blugon"))]),
     })),
-    brightness: nix.thunk(() => ({ [nix.POS]: pos$6, propagatedBuildInputs: [] })),
+    brightness: nix.thunk(() => ({ [nix.POS]: $pos[5], propagatedBuildInputs: [] })),
     caffeine: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "xdg-utils")),
         nix.thunk(() => nix.sel(pkgs, "xdotool")),
@@ -129,38 +59,38 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     cmus: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cmus"))]),
     })),
     cpu: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "psutil")),
         nix.thunk(() => nix.sel(pkgs, "gnome-system-monitor")),
       ]),
     })),
     cpu2: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "psutil")),
         nix.thunk(() => nix.sel(pkgs, "lm_sensors")),
       ]),
     })),
     cpu3: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "psutil")),
         nix.thunk(() => nix.sel(pkgs, "lm_sensors")),
       ]),
     })),
     currency: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "requests"))]),
     })),
     date: nix.thunk(() => ({})),
     datetime: nix.thunk(() => ({})),
     datetimetz: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "tzlocal")),
         nix.thunk(() => nix.sel(py, "pytz")),
@@ -168,30 +98,30 @@ export default nix.lambda((args) => (() => {
     })),
     datetz: nix.thunk(() => ({})),
     deadbeef: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "deadbeef"))]),
     })),
     debug: nix.thunk(() => ({})),
     deezer: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "dbus-python"))]),
     })),
     disk: nix.thunk(() => ({})),
     docker_ps: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "docker"))]),
     })),
     dunst: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dunst"))]),
     })),
     dunstctl: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dunst"))]),
     })),
     error: nix.thunk(() => ({})),
     gcalendar: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "google-api-python-client")),
         nix.thunk(() => nix.sel(py, "google-auth-httplib2")),
@@ -199,188 +129,188 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     getcrypto: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "requests"))]),
     })),
     git: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "xcwd")),
         nix.thunk(() => nix.sel(pkgs, "pygit2")),
       ]),
     })),
     github: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "requests"))]),
     })),
     gitlab: nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "requests"))]),
     })),
     hddtemp: nix.thunk(() => ({})),
     hostname: nix.thunk(() => ({})),
     http_status: nix.thunk(() => ({})),
     indicator: nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xset"))]),
     })),
     kernel: nix.thunk(() => ({})),
     keys: nix.thunk(() => ({})),
     layout: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libx11"))]),
     })),
     "layout-xkb": nix.thunk(() => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libx11"))]),
     })),
     "layout-xkbswitch": nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xkb-switch"))]),
     })),
     layout_xkb: nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libx11"))]),
     })),
     layout_xkbswitch: nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xkb-switch"))]),
     })),
     libvirtvms: nix.thunk(() => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "libvirt-python"))]),
     })),
     load: nix.thunk(() => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-system-monitor"))]),
     })),
     memory: nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-system-monitor"))]),
     })),
     messagereceiver: nix.thunk(() => ({})),
     mocp: nix.thunk(() => ({
-      [nix.POS]: pos$33,
+      [nix.POS]: $pos[32],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "moc"))]),
     })),
     mpd: nix.thunk(() => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mpc"))]),
     })),
     network: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "netifaces")),
         nix.thunk(() => nix.sel(pkgs, "iw")),
       ]),
     })),
     network_traffic: nix.thunk(() => ({
-      [nix.POS]: pos$36,
+      [nix.POS]: $pos[35],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "netifaces"))]),
     })),
     nic: nix.thunk(() => ({
-      [nix.POS]: pos$37,
+      [nix.POS]: $pos[36],
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "netifaces")),
         nix.thunk(() => nix.sel(pkgs, "iw")),
       ]),
     })),
     notmuch_count: nix.thunk(() => ({
-      [nix.POS]: pos$38,
+      [nix.POS]: $pos[37],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "notmuch"))]),
     })),
     octoprint: nix.thunk(() => ({
-      [nix.POS]: pos$39,
+      [nix.POS]: $pos[38],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "tkinter"))]),
     })),
     pacman: nix.thunk(() => ({
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "fakeroot")),
         nix.thunk(() => nix.sel(pkgs, "pacman")),
       ]),
     })),
     pamixer: nix.thunk(() => ({
-      [nix.POS]: pos$41,
+      [nix.POS]: $pos[40],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pamixer"))]),
     })),
     persian_date: nix.thunk(() => ({
-      [nix.POS]: pos$42,
+      [nix.POS]: $pos[41],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "jdatetime"))]),
     })),
     pihole: nix.thunk(() => ({})),
     ping: nix.thunk(() => ({
-      [nix.POS]: pos$43,
+      [nix.POS]: $pos[42],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iputils"))]),
     })),
     pipewire: nix.thunk(() => ({
-      [nix.POS]: pos$44,
+      [nix.POS]: $pos[43],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "wireplumber"))]),
     })),
     playerctl: nix.thunk(() => ({
-      [nix.POS]: pos$45,
+      [nix.POS]: $pos[44],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "playerctl"))]),
     })),
     pomodoro: nix.thunk(() => ({})),
     progress: nix.thunk(() => ({
-      [nix.POS]: pos$46,
+      [nix.POS]: $pos[45],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "progress"))]),
     })),
     publicip: nix.thunk(() => ({
-      [nix.POS]: pos$47,
+      [nix.POS]: $pos[46],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "netifaces"))]),
     })),
     pulsectl: nix.thunk(() => ({
-      [nix.POS]: pos$48,
+      [nix.POS]: $pos[47],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pulsectl"))]),
     })),
     redshift: nix.thunk(() => ({
-      [nix.POS]: pos$49,
+      [nix.POS]: $pos[48],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "redshift"))]),
     })),
     rotation: nix.thunk(() => ({
-      [nix.POS]: pos$50,
+      [nix.POS]: $pos[49],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xrandr"))]),
     })),
     rss: nix.thunk(() => ({})),
     sensors: nix.thunk(() => ({
-      [nix.POS]: pos$51,
+      [nix.POS]: $pos[50],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lm_sensors"))]),
     })),
     sensors2: nix.thunk(() => ({
-      [nix.POS]: pos$52,
+      [nix.POS]: $pos[51],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lm_sensors"))]),
     })),
     shell: nix.thunk(() => ({})),
     shortcut: nix.thunk(() => ({})),
     smartstatus: nix.thunk(() => ({
-      [nix.POS]: pos$53,
+      [nix.POS]: $pos[52],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "smartmontools"))]),
     })),
     solaar: nix.thunk(() => ({
-      [nix.POS]: pos$54,
+      [nix.POS]: $pos[53],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "solaar"))]),
     })),
     spaceapi: nix.thunk(() => ({
-      [nix.POS]: pos$55,
+      [nix.POS]: $pos[54],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "requests"))]),
     })),
     spacer: nix.thunk(() => ({})),
     speedtest: nix.thunk(() => ({
-      [nix.POS]: pos$56,
+      [nix.POS]: $pos[55],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "speedtest-cli"))]),
     })),
     spotify: nix.thunk(() => ({
-      [nix.POS]: pos$57,
+      [nix.POS]: $pos[56],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "dbus-python"))]),
     })),
     stock: nix.thunk(() => ({})),
     system: nix.thunk(() => ({
-      [nix.POS]: pos$58,
+      [nix.POS]: $pos[57],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "tkinter"))]),
     })),
     taskwarrior: nix.thunk(() => ({
-      [nix.POS]: pos$59,
+      [nix.POS]: $pos[58],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "taskw"))]),
     })),
     test: nix.thunk(() => ({})),
@@ -388,55 +318,55 @@ export default nix.lambda((args) => (() => {
     time: nix.thunk(() => ({})),
     timetz: nix.thunk(() => ({})),
     title: nix.thunk(() => ({
-      [nix.POS]: pos$60,
+      [nix.POS]: $pos[59],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "i3ipc"))]),
     })),
     todo: nix.thunk(() => ({})),
     todo_org: nix.thunk(() => ({})),
     todoist: nix.thunk(() => ({
-      [nix.POS]: pos$61,
+      [nix.POS]: $pos[60],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "requests"))]),
     })),
     traffic: nix.thunk(() => ({})),
-    twmn: nix.thunk(() => ({ [nix.POS]: pos$62, propagatedBuildInputs: [] })),
+    twmn: nix.thunk(() => ({ [nix.POS]: $pos[61], propagatedBuildInputs: [] })),
     uptime: nix.thunk(() => ({})),
     usage: nix.thunk(() => ({
-      [nix.POS]: pos$63,
+      [nix.POS]: $pos[62],
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "sqlite")),
         nix.thunk(() => nix.sel(pkgs, "activitywatch")),
       ]),
     })),
     vault: nix.thunk(() => ({
-      [nix.POS]: pos$64,
+      [nix.POS]: $pos[63],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pass"))]),
     })),
     vpn: nix.thunk(() => ({
-      [nix.POS]: pos$65,
+      [nix.POS]: $pos[64],
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(py, "tkinter")),
         nix.thunk(() => nix.sel(pkgs, "networkmanager")),
       ]),
     })),
     wakatime: nix.thunk(() => ({
-      [nix.POS]: pos$66,
+      [nix.POS]: $pos[65],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "requests"))]),
     })),
     watson: nix.thunk(() => ({
-      [nix.POS]: pos$67,
+      [nix.POS]: $pos[66],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "watson"))]),
     })),
     weather: nix.thunk(() => ({
-      [nix.POS]: pos$68,
+      [nix.POS]: $pos[67],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(py, "requests"))]),
     })),
     xkcd: nix.thunk(() => ({})),
     xrandr: nix.thunk(() => ({
-      [nix.POS]: pos$69,
+      [nix.POS]: $pos[68],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "xrandr"))]),
     })),
     yubikey: nix.thunk(() => ({
-      [nix.POS]: pos$70,
+      [nix.POS]: $pos[69],
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "yubico"))]),
     })),
     zpool: nix.thunk(() => ({})),

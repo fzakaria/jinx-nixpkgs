@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["shallowClone", 57, 41]], [["simple", 59, 7], ["path", 66, 7]], [["shellPath", 56, 5], ["updateScript", 57, 5], ["tests", 58, 5]], [["description", 74, 5], ["longDescription", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 28, 3], ["enableParallelBuilding", 32, 3], ["postPatch", 39, 3], ["makeFlags", 42, 3], ["installPhase", 44, 3], ["passthru", 55, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFrom9Front: false, unstableGitUpdater: false, byacc: false, installShellFiles: false, coreutils: false, "rc-9front": false, runCommand: false, nawk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["shallowClone", 57, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["simple", 59, 7], ["path", 66, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["shellPath", 56, 5], ["updateScript", 57, 5], ["tests", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 74, 5], ["longDescription", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 28, 3], ["enableParallelBuilding", 32, 3], ["postPatch", 39, 3], ["makeFlags", 42, 3], ["installPhase", 44, 3], ["passthru", 55, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const nawk = nix.arg($, "nawk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rc-9front",
       version: "0-unstable-2026-06-20",
       src: nix.thunk(() => nix.app(fetchFrom9Front, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "shithub.us",
           owner: "cinap_lenrek",
           repo: "rc",
@@ -42,11 +37,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 -t $out/bin/ rc\ninstallManPage rc.1\nmkdir -p $out/lib\ninstall -m644 rcmain.unix $out/lib/rcmain\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         shellPath: "/bin/rc",
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, shallowClone: false })))),
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], shallowClone: false })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           simple: nix.thunk(() => nix.app(runCommand, "rc-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), rc_9front)} -c 'nl=\`{echo} && \\
   res=\`$nl{for(i in \`{seq 1 10}) echo $i} && \\
   echo -n $res' >$out
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "9front shell",
         longDescription: "unix port of 9front rc",
         homepage: "http://shithub.us/cinap_lenrek/rc/HEAD/info.html",

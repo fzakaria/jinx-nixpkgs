@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["OTD_CONFIGURATIONS", 70, 7]], [["desktopName", 115, 7], ["name", 116, 7], ["exec", 117, 7], ["icon", 118, 7], ["comment", 119, 7], ["categories", 120, 7]], [["otd-runs", 133, 7]], [["updateScript", 131, 5], ["tests", 132, 5]], [["changelog", 138, 5], ["description", 139, 5], ["homepage", 140, 5], ["license", 141, 5], ["mainProgram", 142, 5], ["maintainers", 143, 5], ["platforms", 147, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["dotnet-sdk", 35, 3], ["projectFile", 37, 3], ["nugetDeps", 42, 3], ["executables", 44, 3], ["nativeBuildInputs", 50, 3], ["runtimeDeps", 58, 3], ["buildInputs", 68, 3], ["env", 70, 3], ["doCheck", 72, 3], ["testProjectFile", 73, 3], ["disabledTests", 75, 3], ["preBuild", 88, 3], ["dontWrapGApps", 94, 3], ["postFixup", 96, 3], ["desktopItems", 113, 3], ["doInstallCheck", 124, 3], ["nativeInstallCheckInputs", 125, 3], ["versionCheckProgram", 128, 3], ["passthru", 130, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, copyDesktopItems: false, coreutils: false, dotnetCorePackages: false, fetchFromGitHub: false, gtk3: false, jq: false, libappindicator: false, libevdev: false, libnotify: false, libx11: false, libxrandr: false, makeDesktopItem: false, nixosTests: false, udev: false, wrapGAppsHook3: false, versionCheckHook: false, "nix-update-script": false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OTD_CONFIGURATIONS", 70, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["desktopName", 115, 7], ["name", 116, 7], ["exec", 117, 7], ["icon", 118, 7], ["comment", 119, 7], ["categories", 120, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["otd-runs", 133, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 131, 5], ["tests", 132, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 138, 5], ["description", 139, 5], ["homepage", 140, 5], ["license", 141, 5], ["mainProgram", 142, 5], ["maintainers", 143, 5], ["platforms", 147, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["dotnet-sdk", 35, 3], ["projectFile", 37, 3], ["nugetDeps", 42, 3], ["executables", 44, 3], ["nativeBuildInputs", 50, 3], ["runtimeDeps", 58, 3], ["buildInputs", 68, 3], ["env", 70, 3], ["doCheck", 72, 3], ["testProjectFile", 73, 3], ["disabledTests", 75, 3], ["preBuild", 88, 3], ["dontWrapGApps", 94, 3], ["postFixup", 96, 3], ["desktopItems", 113, 3], ["doInstallCheck", 124, 3], ["nativeInstallCheckInputs", 125, 3], ["versionCheckProgram", 128, 3], ["passthru", 130, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "OpenTabletDriver",
       version: "0.6.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenTabletDriver",
           repo: "OpenTabletDriver",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +54,7 @@ export default nix.lambda((args) => (() => {
       runtimeDeps: nix.thunk(() => [gtk3, libappindicator, libevdev, libnotify, libx11, libxrandr, udev]),
       buildInputs: nix.thunk(() => nix.sel(finalAttrs, "runtimeDeps")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OTD_CONFIGURATIONS: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/OpenTabletDriver.Configurations/Configurations`),
       })),
       doCheck: true,
@@ -83,7 +77,7 @@ substituteInPlace generate-rules.sh \\
       postFixup: "# Give a more \"*nix\" name to the binaries\nmv $out/bin/OpenTabletDriver.Console $out/bin/otd\nmv $out/bin/OpenTabletDriver.Daemon $out/bin/otd-daemon\nmv $out/bin/OpenTabletDriver.UX.Gtk $out/bin/otd-gui\n\ninstall -Dm644 $src/OpenTabletDriver.UX/Assets/otd.png -t $out/share/icons\n\n# Generate udev rules from source\nmkdir -p $out/lib/udev/rules.d\n./generate-rules.sh > $out/lib/udev/rules.d/70-opentabletdriver.rules\n\nwrapProgram $out/bin/otd-gui \\\n  \"${gappsWrapperArgs[@]}\" \\\n  --add-flags --skipupdate\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             desktopName: "OpenTabletDriver",
             name: "OpenTabletDriver",
             exec: "otd-gui",
@@ -96,15 +90,15 @@ substituteInPlace generate-rules.sh \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/otd-daemon`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "otd-runs": nix.thunk(() => nix.sel(nixosTests, "opentabletdriver")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/OpenTabletDriver/OpenTabletDriver/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Open source, cross-platform, user-mode tablet driver",
         homepage: "https://github.com/OpenTabletDriver/OpenTabletDriver",

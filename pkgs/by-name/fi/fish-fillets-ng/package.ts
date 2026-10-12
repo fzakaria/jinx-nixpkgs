@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["url", 25, 5], ["sha256", 26, 5]], [["SDL_CONFIG", 44, 7]], [["name", 52, 7], ["exec", 53, 7], ["icon", 54, 7], ["desktopName", 55, 7], ["comment", 56, 7], ["categories", 57, 7]], [["description", 72, 5], ["mainProgram", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["homepage", 77, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["data", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["env", 44, 3], ["makeFlags", 46, 3], ["desktopItems", 50, 3], ["postInstall", 64, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeDesktopItem: false, copyDesktopItems: false, SDL: false, lua5_1: false, "pkg-config": false, SDL_mixer: false, SDL_image: false, SDL_ttf: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["SDL_CONFIG", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 52, 7], ["exec", 53, 7], ["icon", 54, 7], ["desktopName", 55, 7], ["comment", 56, 7], ["categories", 57, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 72, 5], ["mainProgram", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["homepage", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["data", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["env", 44, 3], ["makeFlags", 46, 3], ["desktopItems", 50, 3], ["postInstall", 64, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,25 +23,25 @@ export default nix.lambda((args) => (() => {
       const pname = "fish-fillets-ng";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/fillets/fillets-ng-${version}.tar.gz`),
           sha256: "1nljp75aqqb35qq3x7abhs2kp69vjcj0h1vxcpdyn2yn2nalv6ij",
         }))));
       const data = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://sourceforge/fillets/fillets-ng-data-${version}.tar.gz`),
           sha256: "169p0yqh2gxvhdilvjc2ld8aap7lv2nhkhkg4i1hlmgc6pxpkjgh",
         }))));
       const nativeBuildInputs = nix.thunk(() => [pkg_config, copyDesktopItems, imagemagick]);
       const buildInputs = nix.thunk(() => [SDL, lua5_1, SDL_mixer, SDL_image, SDL_ttf]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         SDL_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), SDL)), "sdl-config")),
       }));
       const makeFlags = nix.thunk(() => [nix.thunk(() => nix.str`AR=${nix.sel(stdenv, "cc", "targetPrefix")}ar`)]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "fish-fillets-ng",
             exec: "fillets",
             icon: "fish-fillets-ng",
@@ -61,7 +56,7 @@ mkdir -p $out/share/icons/hicolor/32x32/apps
 magick ${nix.path(here, "./icon.xpm")} $out/share/icons/hicolor/32x32/apps/fish-fillets-ng.png
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Puzzle game",
         mainProgram: "fillets",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -73,7 +68,7 @@ magick ${nix.path(here, "./icon.xpm")} $out/share/icons/hicolor/32x32/apps/fish-
         homepage: "https://fillets.sourceforge.net/",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

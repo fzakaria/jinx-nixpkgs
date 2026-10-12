@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 44, 5], ["description", 45, 5]], [["version", 17, 31], ["src", 17, 39], ["pname", 18, 3], ["pyproject", 19, 3], ["sourceRoot", 21, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, deprecated: false, "googleapis-common-protos": false, hatchling: false, "opentelemetry-api": false, "opentelemetry-exporter-otlp-proto-common": false, "opentelemetry-proto": false, "opentelemetry-sdk": false, "opentelemetry-test-utils": false, requests: false, responses: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 44, 5], ["description", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 17, 31], ["src", 17, 39], ["pname", 18, 3], ["pyproject", 19, 3], ["sourceRoot", 21, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const responses = nix.arg($, "responses");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(opentelemetry_api, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_api, "src")),
       pname: "opentelemetry-exporter-otlp-proto-http",
@@ -40,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [opentelemetry_test_utils, pytestCheckHook, responses]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.exporter.otlp.proto.http"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_api, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python/tree/main/exporter/opentelemetry-exporter-otlp-proto-http",
         description: "OpenTelemetry Collector Protobuf over HTTP Exporter",
       })),

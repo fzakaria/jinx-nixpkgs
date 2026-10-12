@@ -2,82 +2,13 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/firezone.nix", [[["maintainers", 8, 8]], [["certificateFiles", 22, 22]], [["pki", 22, 18]], [["allowedTCPPorts", 44, 29]], [["extraHosts", 39, 20], ["firewall", 44, 20]], [["sslCertificate", 52, 13], ["sslCertificateKey", 53, 13]], [["enable", 50, 11], ["virtualHosts", 51, 11]], [["enable", 74, 17]], [["from", 79, 13], ["host", 80, 13], ["port", 81, 13], ["implicitTls", 82, 13], ["username", 83, 13], ["passwordFile", 84, 13]], [["externalUrl", 87, 15]], [["externalUrl", 88, 15]], [["enable", 72, 11], ["enableLocalDB", 73, 11], ["nginx", 74, 11], ["smtp", 78, 11], ["api", 87, 11], ["web", 88, 11]], [["server", 71, 27]], [["nginx", 49, 18], ["firezone", 71, 18]], [["security", 22, 9], ["networking", 39, 9], ["services", 49, 9]], [["certificateFiles", 99, 22]], [["pki", 99, 18]], [["extraHosts", 100, 20]], [["enable", 106, 11], ["logLevel", 107, 11], ["name", 108, 11], ["apiUrl", 109, 11], ["tokenFile", 110, 11], ["publicIpv4", 111, 11], ["publicIpv6", 112, 11], ["openFirewall", 113, 11]], [["relay", 105, 27]], [["firezone", 105, 18]], [["security", 99, 9], ["networking", 100, 9], ["services", 105, 9]], [["vlans", 120, 22]], [["address", 127, 11], ["prefixLength", 128, 11]], [["addresses", 125, 39]], [["ipv4", 125, 34]], [["address", 134, 11], ["prefixLength", 135, 11]], [["addresses", 132, 39]], [["ipv4", 132, 34]], [["eth1", 125, 29], ["eth2", 132, 29]], [["allowedTCPPorts", 139, 27]], [["interfaces", 125, 18], ["firewall", 139, 18]], [["extraConfig", 148, 27]], [["/", 148, 23]], [["default", 147, 13], ["locations", 148, 13]], [["localhost", 146, 11]], [["enable", 144, 9], ["virtualHosts", 145, 9]], [["nginx", 143, 16]], [["virtualisation", 120, 7], ["networking", 125, 7], ["services", 143, 7]], [["vlans", 164, 24]], [["address", 172, 15], ["prefixLength", 173, 15]], [["addresses", 170, 32]], [["ipv4", 170, 27]], [["address", 179, 15], ["prefixLength", 180, 15]], [["addresses", 177, 32]], [["ipv4", 177, 27]], [["eth1", 170, 22], ["eth2", 177, 22]], [["enable", 184, 20]], [["family", 186, 36], ["content", 187, 36]], [["filter", 186, 27]], [["enable", 185, 20], ["tables", 186, 20]], [["interfaces", 170, 11], ["firewall", 184, 11], ["nftables", 185, 11], ["extraHosts", 215, 20]], [["net.ipv4.ip_forward", 209, 28], ["net.ipv6.conf.default.forwarding", 211, 28], ["net.ipv6.conf.all.forwarding", 212, 28]], [["sysctl", 209, 21]], [["kernel", 209, 14]], [["certificateFiles", 214, 22]], [["pki", 214, 18]], [["enable", 222, 11], ["logLevel", 223, 11], ["name", 224, 11], ["apiUrl", 225, 11], ["tokenFile", 226, 11]], [["gateway", 221, 27]], [["firezone", 221, 18]], [["virtualisation", 164, 9], ["networking", 169, 9], ["boot", 209, 9], ["security", 214, 9], ["services", 221, 9]], [["certificateFiles", 237, 22]], [["pki", 237, 18]], [["useNetworkd", 238, 20], ["extraHosts", 239, 20]], [["enable", 245, 11], ["logLevel", 246, 11], ["name", 247, 11], ["apiUrl", 248, 11], ["tokenFile", 249, 11]], [["headless-client", 244, 27]], [["firezone", 244, 18]], [["security", 237, 9], ["networking", 238, 9], ["services", 244, 9]], [["server", 14, 5], ["relay", 92, 5], ["resource", 119, 5], ["gateway", 157, 5], ["client", 230, 5]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 13, 3], ["testScript", 254, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/firezone.nix", [["maintainers", 8, 8]]);
 const formals$2 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/firezone.nix", [["certificateFiles", 22, 22]]);
-const pos$3 = nix.positions(here + "/firezone.nix", [["pki", 22, 18]]);
-const pos$4 = nix.positions(here + "/firezone.nix", [["allowedTCPPorts", 44, 29]]);
-const pos$5 = nix.positions(here + "/firezone.nix", [["extraHosts", 39, 20], ["firewall", 44, 20]]);
-const pos$6 = nix.positions(here + "/firezone.nix", [["sslCertificate", 52, 13], ["sslCertificateKey", 53, 13]]);
-const pos$7 = nix.positions(here + "/firezone.nix", [["enable", 50, 11], ["virtualHosts", 51, 11]]);
-const pos$8 = nix.positions(here + "/firezone.nix", [["enable", 74, 17]]);
-const pos$9 = nix.positions(here + "/firezone.nix", [["from", 79, 13], ["host", 80, 13], ["port", 81, 13], ["implicitTls", 82, 13], ["username", 83, 13], ["passwordFile", 84, 13]]);
-const pos$10 = nix.positions(here + "/firezone.nix", [["externalUrl", 87, 15]]);
-const pos$11 = nix.positions(here + "/firezone.nix", [["externalUrl", 88, 15]]);
-const pos$12 = nix.positions(here + "/firezone.nix", [["enable", 72, 11], ["enableLocalDB", 73, 11], ["nginx", 74, 11], ["smtp", 78, 11], ["api", 87, 11], ["web", 88, 11]]);
-const pos$13 = nix.positions(here + "/firezone.nix", [["server", 71, 27]]);
-const pos$14 = nix.positions(here + "/firezone.nix", [["nginx", 49, 18], ["firezone", 71, 18]]);
-const pos$15 = nix.positions(here + "/firezone.nix", [["security", 22, 9], ["networking", 39, 9], ["services", 49, 9]]);
 const formals$3 = { args: { nodes: false, config: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/firezone.nix", [["certificateFiles", 99, 22]]);
-const pos$17 = nix.positions(here + "/firezone.nix", [["pki", 99, 18]]);
-const pos$18 = nix.positions(here + "/firezone.nix", [["extraHosts", 100, 20]]);
-const pos$19 = nix.positions(here + "/firezone.nix", [["enable", 106, 11], ["logLevel", 107, 11], ["name", 108, 11], ["apiUrl", 109, 11], ["tokenFile", 110, 11], ["publicIpv4", 111, 11], ["publicIpv6", 112, 11], ["openFirewall", 113, 11]]);
-const pos$20 = nix.positions(here + "/firezone.nix", [["relay", 105, 27]]);
-const pos$21 = nix.positions(here + "/firezone.nix", [["firezone", 105, 18]]);
-const pos$22 = nix.positions(here + "/firezone.nix", [["security", 99, 9], ["networking", 100, 9], ["services", 105, 9]]);
-const pos$23 = nix.positions(here + "/firezone.nix", [["vlans", 120, 22]]);
-const pos$24 = nix.positions(here + "/firezone.nix", [["address", 127, 11], ["prefixLength", 128, 11]]);
-const pos$25 = nix.positions(here + "/firezone.nix", [["addresses", 125, 39]]);
-const pos$26 = nix.positions(here + "/firezone.nix", [["ipv4", 125, 34]]);
-const pos$27 = nix.positions(here + "/firezone.nix", [["address", 134, 11], ["prefixLength", 135, 11]]);
-const pos$28 = nix.positions(here + "/firezone.nix", [["addresses", 132, 39]]);
-const pos$29 = nix.positions(here + "/firezone.nix", [["ipv4", 132, 34]]);
-const pos$30 = nix.positions(here + "/firezone.nix", [["eth1", 125, 29], ["eth2", 132, 29]]);
-const pos$31 = nix.positions(here + "/firezone.nix", [["allowedTCPPorts", 139, 27]]);
-const pos$32 = nix.positions(here + "/firezone.nix", [["interfaces", 125, 18], ["firewall", 139, 18]]);
-const pos$33 = nix.positions(here + "/firezone.nix", [["extraConfig", 148, 27]]);
-const pos$34 = nix.positions(here + "/firezone.nix", [["/", 148, 23]]);
-const pos$35 = nix.positions(here + "/firezone.nix", [["default", 147, 13], ["locations", 148, 13]]);
-const pos$36 = nix.positions(here + "/firezone.nix", [["localhost", 146, 11]]);
-const pos$37 = nix.positions(here + "/firezone.nix", [["enable", 144, 9], ["virtualHosts", 145, 9]]);
-const pos$38 = nix.positions(here + "/firezone.nix", [["nginx", 143, 16]]);
-const pos$39 = nix.positions(here + "/firezone.nix", [["virtualisation", 120, 7], ["networking", 125, 7], ["services", 143, 7]]);
 const formals$4 = { args: { nodes: false, lib: false }, ellipsis: true };
-const pos$40 = nix.positions(here + "/firezone.nix", [["vlans", 164, 24]]);
-const pos$41 = nix.positions(here + "/firezone.nix", [["address", 172, 15], ["prefixLength", 173, 15]]);
-const pos$42 = nix.positions(here + "/firezone.nix", [["addresses", 170, 32]]);
-const pos$43 = nix.positions(here + "/firezone.nix", [["ipv4", 170, 27]]);
-const pos$44 = nix.positions(here + "/firezone.nix", [["address", 179, 15], ["prefixLength", 180, 15]]);
-const pos$45 = nix.positions(here + "/firezone.nix", [["addresses", 177, 32]]);
-const pos$46 = nix.positions(here + "/firezone.nix", [["ipv4", 177, 27]]);
-const pos$47 = nix.positions(here + "/firezone.nix", [["eth1", 170, 22], ["eth2", 177, 22]]);
-const pos$48 = nix.positions(here + "/firezone.nix", [["enable", 184, 20]]);
-const pos$49 = nix.positions(here + "/firezone.nix", [["family", 186, 36], ["content", 187, 36]]);
-const pos$50 = nix.positions(here + "/firezone.nix", [["filter", 186, 27]]);
-const pos$51 = nix.positions(here + "/firezone.nix", [["enable", 185, 20], ["tables", 186, 20]]);
-const pos$52 = nix.positions(here + "/firezone.nix", [["interfaces", 170, 11], ["firewall", 184, 11], ["nftables", 185, 11], ["extraHosts", 215, 20]]);
-const pos$53 = nix.positions(here + "/firezone.nix", [["net.ipv4.ip_forward", 209, 28], ["net.ipv6.conf.default.forwarding", 211, 28], ["net.ipv6.conf.all.forwarding", 212, 28]]);
-const pos$54 = nix.positions(here + "/firezone.nix", [["sysctl", 209, 21]]);
-const pos$55 = nix.positions(here + "/firezone.nix", [["kernel", 209, 14]]);
-const pos$56 = nix.positions(here + "/firezone.nix", [["certificateFiles", 214, 22]]);
-const pos$57 = nix.positions(here + "/firezone.nix", [["pki", 214, 18]]);
-const pos$58 = nix.positions(here + "/firezone.nix", [["enable", 222, 11], ["logLevel", 223, 11], ["name", 224, 11], ["apiUrl", 225, 11], ["tokenFile", 226, 11]]);
-const pos$59 = nix.positions(here + "/firezone.nix", [["gateway", 221, 27]]);
-const pos$60 = nix.positions(here + "/firezone.nix", [["firezone", 221, 18]]);
-const pos$61 = nix.positions(here + "/firezone.nix", [["virtualisation", 164, 9], ["networking", 169, 9], ["boot", 209, 9], ["security", 214, 9], ["services", 221, 9]]);
 const formals$5 = { args: { nodes: false, lib: false }, ellipsis: true };
-const pos$62 = nix.positions(here + "/firezone.nix", [["certificateFiles", 237, 22]]);
-const pos$63 = nix.positions(here + "/firezone.nix", [["pki", 237, 18]]);
-const pos$64 = nix.positions(here + "/firezone.nix", [["useNetworkd", 238, 20], ["extraHosts", 239, 20]]);
-const pos$65 = nix.positions(here + "/firezone.nix", [["enable", 245, 11], ["logLevel", 246, 11], ["name", 247, 11], ["apiUrl", 248, 11], ["tokenFile", 249, 11]]);
-const pos$66 = nix.positions(here + "/firezone.nix", [["headless-client", 244, 27]]);
-const pos$67 = nix.positions(here + "/firezone.nix", [["firezone", 244, 18]]);
-const pos$68 = nix.positions(here + "/firezone.nix", [["security", 237, 9], ["networking", 238, 9], ["services", 244, 9]]);
-const pos$69 = nix.positions(here + "/firezone.nix", [["server", 14, 5], ["relay", 92, 5], ["resource", 119, 5], ["gateway", 157, 5], ["client", 230, 5]]);
 const formals$6 = { args: {  }, ellipsis: true };
-const pos$70 = nix.positions(here + "/firezone.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 13, 3], ["testScript", 254, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -85,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")));
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
-    [nix.POS]: pos$70,
+    [nix.POS]: $pos[69],
     name: "firezone",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -98,50 +29,50 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$69,
+      [nix.POS]: $pos[68],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           security: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraHosts: nix.thunk(() => nix.str`${nix.sel(config, "networking", "primaryIPAddress")} ${domain}
 ${nix.sel(config, "networking", "primaryIPv6Address")} ${domain}
 `),
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.force(domain), nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   sslCertificate: nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "cert")),
                   sslCertificateKey: nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "key")),
                 }))],
               ])),
             })),
             firezone: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               server: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 enable: true,
                 enableLocalDB: true,
-                nginx: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
+                nginx: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true })),
                 smtp: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   from: "firezone@localhost.localdomain",
                   host: "localhost",
                   port: 25n,
@@ -150,10 +81,13 @@ ${nix.sel(config, "networking", "primaryIPv6Address")} ${domain}
                   passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "tmpmailpasswd", "verysecurepassword")),
                 })),
                 api: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   externalUrl: nix.thunk(() => nix.str`https://${domain}/api/`),
                 })),
-                web: nix.thunk(() => ({ [nix.POS]: pos$11, externalUrl: nix.thunk(() => nix.str`https://${domain}/`) })),
+                web: nix.thunk(() => ({
+                  [nix.POS]: $pos[10],
+                  externalUrl: nix.thunk(() => nix.str`https://${domain}/`),
+                })),
               })),
             })),
           })),
@@ -164,26 +98,26 @@ ${nix.sel(config, "networking", "primaryIPv6Address")} ${domain}
         const nodes = nix.arg($_1, "nodes");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           security: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")} ${domain}
 ${nix.sel(nodes, "server", "networking", "primaryIPv6Address")} ${domain}
 `),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             firezone: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               relay: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 enable: true,
                 logLevel: "debug",
                 name: "test-relay",
@@ -198,47 +132,47 @@ ${nix.sel(nodes, "server", "networking", "primaryIPv6Address")} ${domain}
         };
       })(), formals$3),
       resource: nix.thunk(() => ({
-        [nix.POS]: pos$39,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$23, vlans: nix.thunk(() => [1n, 2n]) })),
+        [nix.POS]: $pos[38],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[22], vlans: nix.thunk(() => [1n, 2n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$24, address: "172.20.1.1", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[23], address: "172.20.1.1", prefixLength: 24n })),
                 ]),
               })),
             })),
             eth2: nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$27, address: "172.20.2.1", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[26], address: "172.20.2.1", prefixLength: 24n })),
                 ]),
               })),
             })),
           })),
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$31, allowedTCPPorts: nix.thunk(() => [80n]) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[30], allowedTCPPorts: nix.thunk(() => [80n]) })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           nginx: nix.thunk(() => ({
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             enable: true,
             virtualHosts: nix.thunk(() => ({
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               localhost: nix.thunk(() => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 default: true,
                 locations: nix.thunk(() => ({
-                  [nix.POS]: pos$34,
+                  [nix.POS]: $pos[33],
                   "/": nix.thunk(() => ({
-                    [nix.POS]: pos$33,
+                    [nix.POS]: $pos[32],
                     extraConfig: "return 200 'greetings from the resource';\nadd_header Content-Type text/plain;\n",
                   })),
                 })),
@@ -252,39 +186,39 @@ ${nix.sel(nodes, "server", "networking", "primaryIPv6Address")} ${domain}
         const nodes = nix.arg($_1, "nodes");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$61,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$40, vlans: nix.thunk(() => [1n, 2n]) })),
+          [nix.POS]: $pos[60],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[39], vlans: nix.thunk(() => [1n, 2n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$47,
+              [nix.POS]: $pos[46],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$43,
+                [nix.POS]: $pos[42],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$42,
+                  [nix.POS]: $pos[41],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$41, address: "172.20.1.2", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[40], address: "172.20.1.2", prefixLength: 24n })),
                   ]),
                 })),
               })),
               eth2: nix.thunk(() => ({
-                [nix.POS]: pos$46,
+                [nix.POS]: $pos[45],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$45,
+                  [nix.POS]: $pos[44],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$44, address: "172.20.2.2", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[43], address: "172.20.2.2", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$48, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[47], enable: false })),
             nftables: nix.thunk(() => ({
-              [nix.POS]: pos$51,
+              [nix.POS]: $pos[50],
               enable: true,
               tables: nix.thunk(() => ({
-                [nix.POS]: pos$50,
+                [nix.POS]: $pos[49],
                 filter: nix.thunk(() => ({
-                  [nix.POS]: pos$49,
+                  [nix.POS]: $pos[48],
                   family: "inet",
                   content: "chain incoming {\n  type filter hook input priority 0; policy accept;\n}\n\nchain postrouting {\n  type nat hook postrouting priority srcnat; policy accept;\n  meta protocol ip iifname \"tun-firezone\" oifname { \"eth1\", \"eth2\" } masquerade random\n}\n\nchain forward {\n  type filter hook forward priority 0; policy drop;\n  iifname \"tun-firezone\" accept\n  oifname \"tun-firezone\" accept\n}\n\nchain output {\n  type filter hook output priority 0; policy accept;\n}\n",
                 })),
@@ -296,11 +230,11 @@ ${nix.sel(nodes, "server", "networking", "primaryIPv6Address")} ${domain}
 `),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$55,
+            [nix.POS]: $pos[54],
             kernel: nix.thunk(() => ({
-              [nix.POS]: pos$54,
+              [nix.POS]: $pos[53],
               sysctl: nix.thunk(() => ({
-                [nix.POS]: pos$53,
+                [nix.POS]: $pos[52],
                 "net.ipv4.ip_forward": "1",
                 "net.ipv6.conf.default.forwarding": "1",
                 "net.ipv6.conf.all.forwarding": "1",
@@ -308,18 +242,18 @@ ${nix.sel(nodes, "server", "networking", "primaryIPv6Address")} ${domain}
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$57,
+            [nix.POS]: $pos[56],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$56,
+              [nix.POS]: $pos[55],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$60,
+            [nix.POS]: $pos[59],
             firezone: nix.thunk(() => ({
-              [nix.POS]: pos$59,
+              [nix.POS]: $pos[58],
               gateway: nix.thunk(() => ({
-                [nix.POS]: pos$58,
+                [nix.POS]: $pos[57],
                 enable: true,
                 logLevel: "debug",
                 name: "test-gateway",
@@ -335,27 +269,27 @@ ${nix.sel(nodes, "server", "networking", "primaryIPv6Address")} ${domain}
         const nodes = nix.arg($_1, "nodes");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$68,
+          [nix.POS]: $pos[67],
           security: nix.thunk(() => ({
-            [nix.POS]: pos$63,
+            [nix.POS]: $pos[62],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$62,
+              [nix.POS]: $pos[61],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$64,
+            [nix.POS]: $pos[63],
             useNetworkd: true,
             extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")} ${domain}
 ${nix.sel(nodes, "server", "networking", "primaryIPv6Address")} ${domain}
 `),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$67,
+            [nix.POS]: $pos[66],
             firezone: nix.thunk(() => ({
-              [nix.POS]: pos$66,
+              [nix.POS]: $pos[65],
               "headless-client": nix.thunk(() => ({
-                [nix.POS]: pos$65,
+                [nix.POS]: $pos[64],
                 enable: true,
                 logLevel: "debug",
                 name: "test-client-somebody",

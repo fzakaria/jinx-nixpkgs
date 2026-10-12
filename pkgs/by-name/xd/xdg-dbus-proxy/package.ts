@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 33, 3], ["nativeCheckInputs", 37, 3], ["doCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { dbus: false, "docbook-xsl-nons": false, docbook_xml_dtd_43: false, fetchurl: false, glib: false, lib: false, libxslt: false, meson: false, ninja: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 33, 3], ["nativeCheckInputs", 37, 3], ["doCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xdg-dbus-proxy",
       version: "0.1.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/flatpak/xdg-dbus-proxy/releases/download/${nix.sel(finalAttrs, "version")}/xdg-dbus-proxy-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-tmML0k+BYbDiVG0qy7AUo7Mkn1wNdfKoY63omLkDTT0=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [dbus]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "DBus proxy for Flatpak and others",
         homepage: "https://github.com/flatpak/xdg-dbus-proxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

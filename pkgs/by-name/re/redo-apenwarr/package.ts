@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["description", 86, 5], ["homepage", 87, 5], ["maintainers", 88, 5], ["license", 91, 5], ["platforms", 92, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["doCheck", 58, 11], ["checkTarget", 60, 3], ["outputs", 62, 3], ["installFlags", 67, 3], ["nativeBuildInputs", 72, 3], ["postInstall", 81, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, python3: false, fetchFromGitHub: false, which: false, coreutils: false, perl: false, installShellFiles: false, gnumake42: false, doCheck: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["maintainers", 88, 5], ["license", 91, 5], ["platforms", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["doCheck", 58, 11], ["checkTarget", 60, 3], ["outputs", 62, 3], ["installFlags", 67, 3], ["nativeBuildInputs", 72, 3], ["postInstall", 81, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const gnumake42 = nix.arg($, "gnumake42");
   const doCheck = nix.argOr($, "doCheck", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "redo-apenwarr",
       version: "0.42d",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
           const repo = "redo";
           const rev = nix.thunk(() => nix.str`${repo}-${nix.sel(finalAttrs, "version")}`);
           const sha256 = "/QIMXpVhVLAIJa3LiOlRKzbUztIWZygkWZUKN4Nrh+M=";
-          return { [nix.POS]: pos$1, owner, repo, rev, sha256 };
+          return { [nix.POS]: $pos[0], owner, repo, rev, sha256 };
         })()))),
       postPatch: nix.thunk(() => nix.add("\npatchShebangs minimal/do\n\n", nix.app(nix.sel(lib, "optionalString"), doCheck, nix.thunk(() => nix.str`unset CC CXX
 
@@ -70,7 +68,7 @@ substituteInPlace t/105-sympath/all.do \\
       ]),
       postInstall: "installShellCompletion --bash contrib/bash_completion.d/redo\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Smaller, easier, more powerful, and more reliable than make. An implementation of djb's redo",
         homepage: "https://github.com/apenwarr/redo",
         maintainers: nix.thunk(() => (() => {

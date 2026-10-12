@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 21, 5], ["paths", 22, 5]], [["name", 28, 5], ["paths", 29, 5]], [["url", 40, 5], ["sha256", 41, 5]], [["NIX_CFLAGS_COMPILE", 73, 7]], [["description", 97, 5], ["longDescription", 98, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["patches", 44, 3], ["buildInputs", 50, 3], ["nativeBuildInputs", 59, 3], ["buildFlags", 65, 3], ["env", 73, 3], ["preConfigure", 75, 3], ["postInstall", 83, 3], ["doInstallCheck", 89, 3], ["installCheckPhase", 90, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, symlinkJoin: false, makeWrapper: false, tcl: false, fontconfig: false, tk: false, ncurses: false, libxt: false, libxext: false, libxaw: false, libx11: false, file: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 21, 5], ["paths", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 28, 5], ["paths", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 40, 5], ["sha256", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 73, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 97, 5], ["longDescription", 98, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["patches", 44, 3], ["buildInputs", 50, 3], ["nativeBuildInputs", 59, 3], ["buildFlags", 65, 3], ["env", 73, 3], ["preConfigure", 75, 3], ["postInstall", 83, 3], ["doInstallCheck", 89, 3], ["installCheckPhase", 90, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,21 +22,21 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const file = nix.arg($, "file");
   const tk_combined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "tk_combined",
       paths: nix.thunk(() => [tk, nix.thunk(() => nix.sel(tk, "dev"))]),
     }))));
   const curses_combined = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "curses_combined",
       paths: nix.thunk(() => [ncurses, nix.thunk(() => nix.sel(ncurses, "dev"))]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "eli",
       version: "4.8.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/eli-project/Eli/Eli%20${nix.sel(finalAttrs, "version")}/eli-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1vran8583hbwrr5dciji4zkhz3f88w4mn8n9sdpr6zw0plpf1whj",
         })))),
@@ -56,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [file, makeWrapper]),
       buildFlags: nix.thunk(() => ["nobrowsers"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-fcommon --std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-fcommon --std=gnu17" })),
       preConfigure: nix.thunk(() => nix.str`configureFlagsArray=(
   --with-tcltk="${tcl} ${tk_combined}"
   --with-curses="${curses_combined}"
@@ -67,7 +62,7 @@ export ODIN_LOCALIPC=1
       doInstallCheck: true,
       installCheckPhase: "export HOME=\"$TMP/home\"\nmkdir -p \"$HOME\"\n$out/bin/eli \"!ls\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Translator Construction Made Easy",
         longDescription: "Eli is a programming environment that supports all phases of translator\nconstruction with extensive libraries implementing common tasks, yet handling\narbitrary special cases. Output is the C subset of C++.\n",
         homepage: "https://eli-project.sourceforge.net/",

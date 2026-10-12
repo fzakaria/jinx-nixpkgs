@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ginac-example-test.nix", [[["nativeBuildInputs", 9, 5]]]);
 const formals$1 = { args: { runCommand: false, gccStdenv: false, cln: false, ginac: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ginac-example-test.nix", [["nativeBuildInputs", 9, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const cln = nix.arg($, "cln");
   const ginac = nix.arg($, "ginac");
   return nix.app(runCommand, "ginac-example-test", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(gccStdenv, "cc")), ginac, cln]),
     })), "echo \"\n  #include <iostream>\n  #include <ginac/ginac.h>\n  using namespace std;\n  using namespace GiNaC;\n\n  int main() {\n    symbol x(\\\"x\\\"), y(\\\"y\\\");\n    ex poly;\n\n    for (int i=0; i<3; ++i) {\n      poly += factorial(i+16)*pow(x,i)*pow(y,2-i);\n    }\n\n    cout << poly << endl;\n    return 0;\n  }\" > hello.cc\nc++ -lginac -lcln hello.cc -o hello\n./hello\nmkdir $out\n");
 })(), formals$1);

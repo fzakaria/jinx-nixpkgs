@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["stdenvNoLibc", 11, 3]], [["SKIPDIR", 72, 9], ["NIX_CFLAGS_COMPILE", 73, 9]], [["path", 14, 5], ["pname", 15, 5], ["extraPaths", 16, 5], ["noLibc", 17, 5], ["patches", 19, 5], ["extraNativeBuildInputs", 21, 5], ["postPatch", 25, 5], ["postConfigure", 44, 5], ["preBuild", 54, 5], ["env", 72, 5]]]);
 const formals$1 = { args: { buildPackages: false, stdenvNoLibc: false, overrideCC: false, mkDerivation: false, "boot-config": false, pkgsBuildTarget: false, baseConfig: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["stdenvNoLibc", 11, 3]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SKIPDIR", 72, 9], ["NIX_CFLAGS_COMPILE", 73, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["path", 14, 5], ["pname", 15, 5], ["extraPaths", 16, 5], ["noLibc", 17, 5], ["patches", 19, 5], ["extraNativeBuildInputs", 21, 5], ["postPatch", 25, 5], ["postConfigure", 44, 5], ["preBuild", 54, 5], ["env", 72, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const pkgsBuildTarget = nix.arg($, "pkgsBuildTarget");
   const baseConfig = nix.argOr($, "baseConfig", () => "GENERIC");
   return nix.app(nix.sel(mkDerivation, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       stdenvNoLibc: nix.thunk(() => nix.app(overrideCC, stdenvNoLibc, nix.thunk(() => nix.sel(buildPackages, "llvmPackages_20", "clangNoLibc")))),
     })), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       path: "sys/arch/amd64",
       pname: "sys",
       extraPaths: nix.thunk(() => ["sys"]),
@@ -44,7 +42,7 @@ ln -s ${nix.sel(pkgsBuildTarget, "binutils")}/bin/${nix.sel(pkgsBuildTarget, "bi
 echo 'includes:' >>Makefile
 `)),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SKIPDIR: "stand",
         NIX_CFLAGS_COMPILE: "-Wno-unused-command-line-argument -Wno-visibility",
       })),

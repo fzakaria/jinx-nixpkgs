@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["pname", 35, 26], ["version", 35, 32], ["src", 35, 40], ["hash", 36, 5]], [["pyarrow", 47, 5], ["pandas", 50, 5], ["polars", 54, 5]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["cargoDeps", 34, 3], ["nativeBuildInputs", 39, 3], ["optional-dependencies", 46, 3], ["pythonImportsCheck", 59, 3], ["preCheck", 64, 3], ["nativeCheckInputs", 68, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, cargo: false, rustc: false, pandas: false, polars: false, pyarrow: false, "pytest-mock": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 35, 26], ["version", 35, 32], ["src", 35, 40], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pyarrow", 47, 5], ["pandas", 50, 5], ["polars", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["cargoDeps", 34, 3], ["nativeBuildInputs", 39, 3], ["optional-dependencies", 46, 3], ["pythonImportsCheck", 59, 3], ["preCheck", 64, 3], ["nativeCheckInputs", 68, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fastexcel",
       version: "0.21.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ToucanToco",
           repo: "fastexcel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-//zEMGJvFlujnIReA/f2YLk1xfinq9EymsfP7GdkPb8=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
         rustc,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pyarrow: nix.thunk(() => [pyarrow]),
         pandas: nix.thunk(() => [pandas, pyarrow]),
         polars: nix.thunk(() => [polars]),
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -rf python/fastexcel\n",
       nativeCheckInputs: nix.thunk(() => [pandas, polars, pyarrow, pytest_mock, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast excel file reader for Python, written in Rust",
         homepage: "https://github.com/ToucanToco/fastexcel/",
         changelog: nix.thunk(() => nix.str`https://github.com/ToucanToco/fastexcel/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

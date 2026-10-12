@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["updateScript", 86, 5]], [["homepage", 90, 5], ["description", 91, 5], ["mainProgram", 92, 5], ["maintainers", 93, 5], ["teams", 94, 5], ["license", 95, 5], ["platforms", 99, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 31, 3], ["nativeBuildInputs", 39, 3], ["pythonPath", 49, 3], ["buildInputs", 54, 3], ["dontWrapGApps", 69, 3], ["postPatch", 71, 3], ["preFixup", 75, 3], ["postFixup", 80, 3], ["passthru", 85, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, python3: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, "desktop-file-utils": false, "shared-mime-info": false, wrapGAppsHook4: false, glib: false, gtk3: false, gtk4: false, gtksourceview5: false, libadwaita: false, libhandy: false, libxml2: false, webkitgtk_4_1: false, webkitgtk_6_0: false, "nix-update-script": false, casilda: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 90, 5], ["description", 91, 5], ["mainProgram", 92, 5], ["maintainers", 93, 5], ["teams", 94, 5], ["license", 95, 5], ["platforms", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 31, 3], ["nativeBuildInputs", 39, 3], ["pythonPath", 49, 3], ["buildInputs", 54, 3], ["dontWrapGApps", 69, 3], ["postPatch", 71, 3], ["preFixup", 75, 3], ["postFixup", 80, 3], ["passthru", 85, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const casilda = nix.arg($, "casilda");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cambalache",
       version: "1.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "jpu",
           repo: "cambalache",
@@ -79,11 +76,11 @@ export default nix.lambda((args) => (() => {
 wrapPythonProgramsIn "$out/${nix.sel(python3, "sitePackages")}/cambalache/priv/merengue" "$out \${pythonPath[*]}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gitlab.gnome.org/jpu/cambalache",
         description: "RAD tool for GTK 4 and 3 with data model first philosophy",
         mainProgram: "cambalache",

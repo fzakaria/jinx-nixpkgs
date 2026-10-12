@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["pkg-config", 65, 11]], [["tests", 65, 5], ["abiVersion", 67, 5], ["searchPath", 68, 5]], [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["mainProgram", 79, 5], ["pkgConfigModules", 80, 5], ["platforms", 81, 5]], [["pname", 19, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["propagatedBuildInputs", 44, 3], ["cmakeFlags", 46, 3], ["postFixup", 48, 3], ["passthru", 64, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, makeWrapper: false, "libusb-compat-0_1": false, ncurses: false, usePython: true, python: true, swig: false, extraPackages: true, buildPackages: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 65, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 65, 5], ["abiVersion", 67, 5], ["searchPath", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["mainProgram", 79, 5], ["pkgConfigModules", 80, 5], ["platforms", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["propagatedBuildInputs", 44, 3], ["cmakeFlags", 46, 3], ["postFixup", 48, 3], ["passthru", 64, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "soapysdr",
       version: "0.8.1-unstable-2026-01-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pothosware",
           repo: "SoapySDR",
           rev: "1551ea0d39ce546b32a15808b9b1241018a89fc8",
@@ -50,16 +46,16 @@ for file in $out/bin/*; do
 done
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         abiVersion: "0.8-3",
         searchPath: nix.thunk(() => nix.str`lib/SoapySDR/modules${nix.sel(finalAttrs, "passthru", "abiVersion")}`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/pothosware/SoapySDR",
         description: "Vendor and platform neutral SDR support library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

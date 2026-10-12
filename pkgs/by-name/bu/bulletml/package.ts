@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 16, 7], ["url", 17, 7], ["sha256", 18, 7]], [["url", 22, 5], ["sha256", 23, 5]], [["url", 27, 5], ["sha256", 28, 5]], [["description", 80, 5], ["longDescription", 81, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 90, 5]], [["pname", 33, 3], ["version", 34, 11], ["srcs", 36, 3], ["postUnpack", 41, 3], ["sourceRoot", 42, 3], ["patches", 44, 3], ["makeFlags", 53, 3], ["nativeBuildInputs", 56, 3], ["hardeningDisable", 60, 3], ["installPhase", 62, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, bison: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 16, 7], ["url", 17, 7], ["sha256", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 27, 5], ["sha256", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 80, 5], ["longDescription", 81, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 11], ["srcs", 36, 3], ["postUnpack", 41, 3], ["sourceRoot", 42, 3], ["patches", 44, 3], ["makeFlags", 53, 3], ["nativeBuildInputs", 56, 3], ["hardeningDisable", 60, 3], ["installPhase", 62, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const version = "0.0.6";
   const debianRevision = "7";
   const debianPatch = (patchname) => (hash) => nix.app(fetchpatch, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`${patchname}.patch`),
       url: nix.thunk(() => nix.str`https://sources.debian.org/data/main/b/bulletml/${version}-${debianRevision}/debian/patches/${patchname}.patch`),
       sha256: hash,
     })));
   const lib_src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`http://shinh.skr.jp/libbulletml/libbulletml-${version}.tar.bz2`),
       sha256: "0yda0zgj2ydgkmby5676f5iiawabxadzh5p7bmy42998sp9g6dvw",
     }))));
   const cpp_src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "http://shinh.skr.jp/d/d_cpp.tar.bz2",
       sha256: "1ly9qmbb8q9nyadmdap1gmxs3vkniqgchlv2hw7riansz4gg1agh",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bulletml",
       version: version,
       srcs: nix.thunk(() => [lib_src, cpp_src]),
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       installPhase: "install -D -m 644 src/bulletml.d \"$out\"/include/d/bulletml.d\ninstall -d \"$out\"/include/bulletml/tinyxml\ninstall -m 644 src/*.h \"$out\"/include/bulletml\ninstall -m 644 src/tinyxml/tinyxml.h \"$out\"/include/bulletml/tinyxml\ncp -r src/boost $out/include/boost\n\ninstall -d \"$out\"/lib\ninstall -m 644 src/libbulletml.{a,so}* \"$out\"/lib\n\ninstall -D -m 644 README \"$out\"/share/doc/libbulletml/README.jp\ninstall -m 644 README.en \"$out\"/share/doc/libbulletml\ninstall -m 644 README.bulletml \"$out\"/share/doc/libbulletml\ninstall -D -m 644 README \"$out\"/share/licenses/libbulletml/README.jp\ninstall -m 644 README.en \"$out\"/share/licenses/libbulletml\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C++ library to handle BulletML easily",
         longDescription: "BulletML is the Bullet Markup Language. BulletML can describe the barrage\nof bullets in shooting games.\n",
         homepage: "http://www.asahi-net.or.jp/~cs8k-cyu/bulletml/index_e.html",

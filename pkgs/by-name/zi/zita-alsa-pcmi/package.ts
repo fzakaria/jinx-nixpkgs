@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 62, 5], ["version", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["buildInputs", 16, 3], ["buildPhase", 18, 3], ["installPhase", 32, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["version", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["buildInputs", 16, 3], ["buildPhase", 18, 3], ["installPhase", 32, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zita-alsa-pcmi",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://kokkinizita.linuxaudio.org/linuxaudio/downloads/zita-alsa-pcmi-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-iil6zj16R0Ex7T+jIQacExM3eFtWojfW8WjIXueW1Ww=",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "cd source\nmake PREFIX=\"$out\"\n\n# create lib link for building apps\nln -s libzita-alsa-pcmi.so.$version libzita-alsa-pcmi.so\n\n# apps\ncd ../apps\nCXXFLAGS+=\" -I../source\" \\\nLDFLAGS+=\" -L../source\" \\\nmake PREFIX=\"$out\"\n",
       installPhase: "mkdir \"$out\"\nmkdir \"$out/lib\"\nmkdir \"$out/include\"\nmkdir \"$out/bin\"\n\ncd ../source\n\n# source\ninstall -Dm755 libzita-alsa-pcmi.so.$version \\\n  \"$out/lib/libzita-alsa-pcmi.so.$version\"\n\n# link\nln -s libzita-alsa-pcmi.so.$version \\\n  \"$out/lib/libzita-alsa-pcmi.so\"\nln -s libzita-alsa-pcmi.so.$version \\\n  \"$out/lib/libzita-alsa-pcmi.so.0\"\n\n# header\ninstall -Dm644 zita-alsa-pcmi.h \\\n  \"$out/include/zita-alsa-pcmi.h\"\n\n# apps\ninstall -Dm755 ../apps/alsa_delay \\\n  \"$out/bin/alsa_delay\"\ninstall -Dm755 ../apps/alsa_loopback \\\n  \"$out/bin/alsa_loopback\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Successor of clalsadrv, provides easy access to ALSA PCM devices",
         version: nix.thunk(() => nix.sel(finalAttrs, "version")),
         homepage: "http://kokkinizita.linuxaudio.org/linuxaudio/downloads/index.html",

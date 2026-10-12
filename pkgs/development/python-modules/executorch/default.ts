@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 62, 5], ["repo", 63, 5], ["rev", 64, 5], ["hash", 65, 5]], [["stdenv", 68, 47]], [["owner", 75, 5], ["repo", 76, 5], ["tag", 77, 5], ["name", 81, 5], ["fetchSubmodules", 83, 5], ["hash", 84, 5]], [["BUILD_VERSION", 122, 5], ["CMAKE_ARGS", 128, 5]], [["TORCH_CUDA_ARCH_LIST", 139, 5]], [["description", 287, 5], ["homepage", 288, 5], ["changelog", 289, 5], ["license", 290, 5], ["maintainers", 291, 5], ["badPlatforms", 292, 5]], [["pname", 69, 3], ["version", 70, 3], ["pyproject", 71, 3], ["__structuredAttrs", 72, 3], ["src", 74, 3], ["postPatch", 87, 3], ["env", 121, 3], ["build-system", 142, 3], ["dontUseCmakeConfigure", 150, 3], ["nativeBuildInputs", 152, 3], ["buildInputs", 160, 3], ["pythonRemoveDeps", 166, 3], ["pythonRelaxDeps", 176, 3], ["dependencies", 183, 3], ["pythonImportsCheck", 208, 3], ["nativeCheckInputs", 210, 3], ["disabledTestPaths", 223, 3], ["disabledTests", 242, 3], ["meta", 286, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pkgs: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, gitMinimal: false, autoPatchelfHook: false, certifi: false, cmake: false, packaging: false, pyyaml: false, setuptools: false, zstd: false, expecttest: false, flatbuffers: false, "hydra-core": false, hypothesis: false, kgb: false, mpmath: false, numpy: false, omegaconf: false, pandas: false, parameterized: false, "py-cpuinfo": false, "pytorch-tokenizers": false, "ruamel-yaml": false, "scikit-learn": false, sympy: false, tabulate: false, torch: false, torchao: false, "typing-extensions": false, perl: false, pillow: false, "pytest-json-report": false, "pytest-rerunfailures": false, pytestCheckHook: false, torchaudio: false, transformers: false, writableTmpDirAsHomeHook: false, yaspin: false, cudaSupport: true, cudaPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 62, 5], ["repo", 63, 5], ["rev", 64, 5], ["hash", 65, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["stdenv", 68, 47]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 75, 5], ["repo", 76, 5], ["tag", 77, 5], ["name", 81, 5], ["fetchSubmodules", 83, 5], ["hash", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["BUILD_VERSION", 122, 5], ["CMAKE_ARGS", 128, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["TORCH_CUDA_ARCH_LIST", 139, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 287, 5], ["homepage", 288, 5], ["changelog", 289, 5], ["license", 290, 5], ["maintainers", 291, 5], ["badPlatforms", 292, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 69, 3], ["version", 70, 3], ["pyproject", 71, 3], ["__structuredAttrs", 72, 3], ["src", 74, 3], ["postPatch", 87, 3], ["env", 121, 3], ["build-system", 142, 3], ["dontUseCmakeConfigure", 150, 3], ["nativeBuildInputs", 152, 3], ["buildInputs", 160, 3], ["pythonRemoveDeps", 166, 3], ["pythonRelaxDeps", 176, 3], ["dependencies", 183, 3], ["pythonImportsCheck", 208, 3], ["nativeCheckInputs", 210, 3], ["disabledTestPaths", 223, 3], ["disabledTests", 242, 3], ["meta", 286, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,20 +52,20 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(torch, "cudaSupport"));
   const cudaPackages = nix.arg($, "cudaPackages");
   const cmsis_nn_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "ARM-software",
       repo: "CMSIS-NN",
       rev: "dbf45dbfcc515421dd6099037d3e2637b90748c8",
       hash: "sha256-FOr7DevJxroGAOmnqKK9/suXjOeaZYQFlFIrYmU19WQ=",
     }))));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: $pos[6],
       pname: "executorch",
       version: "1.5.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "pytorch",
           repo: "executorch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -85,7 +79,7 @@ export default nix.lambda((args) => (() => {
     '_flatc_cached_path = os.getenv("FLATC_EXECUTABLE", "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "flatbuffers")))}")'
 `, "substituteInPlace pyproject.toml \\\n  --replace-fail '\"pip>=23\",' \"\" \\\n  --replace-fail \"cmake>=3.26,<4.0.0\" \"cmake\" \\\n  --replace-fail \"\\\"patchelf; sys_platform == 'linux'\\\",\" \"\"\n"), "substituteInPlace backends/xnnpack/third-party/pthreadpool/CMakeLists.txt \\\n  --replace-fail \\\n    \"CMAKE_MINIMUM_REQUIRED(VERSION 3.5 FATAL_ERROR)\" \\\n    \"CMAKE_MINIMUM_REQUIRED(VERSION 3.10 FATAL_ERROR)\"\n"), "substituteInPlace third-party/flatcc/include/flatcc/portable/grisu3_print.h \\\n  --replace-fail \\\n    'static char hexdigits[16] = \"0123456789ABCDEF\";' \\\n    'static char hexdigits[17] = \"0123456789ABCDEF\";'\n\nsed -i \"1i #include <cstdint>\" backends/apple/coreml/runtime/inmemoryfs/memory_buffer.hpp\nsed -i \"1i #include <cstdint>\" extension/llm/tokenizers/third-party/sentencepiece/src/sentencepiece_processor.h\n")),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         BUILD_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         CMAKE_ARGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CMAKE_SKIP_BUILD_RPATH", true)),
@@ -93,7 +87,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMSIS_NN_LOCAL_PATH", nix.thunk(() => nix.sel(cmsis_nn_src, "outPath")))),
           ]))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => nix.sel(torch, "cudaCapabilities")))),
         }))))),
       "build-system": nix.thunk(() => [certifi, cmake, packaging, pyyaml, setuptools, zstd]),
@@ -187,7 +181,7 @@ export default nix.lambda((args) => (() => {
           "test_tile_positional_embedding_aoti",
         ]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "On-device AI across mobile, embedded and edge for PyTorch",
         homepage: "https://github.com/pytorch/executorch",
         changelog: nix.thunk(() => nix.str`https://github.com/pytorch/executorch/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

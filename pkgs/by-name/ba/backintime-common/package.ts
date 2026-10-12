@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["homepage", 108, 5], ["description", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5], ["mainProgram", 113, 5], ["longDescription", 114, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["__structuredAttrs", 51, 3], ["strictDeps", 52, 3], ["enableParallelBuilding", 53, 3], ["outputs", 54, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 67, 3], ["installFlags", 72, 3], ["configureFlags", 74, 3], ["preConfigure", 76, 3], ["dontAddPrefix", 100, 3], ["preFixup", 102, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeWrapper: false, gettext: false, python3: false, rsync: false, cron: false, openssh: false, "sshfs-fuse": false, fuse3: false, gocryptfs: false, which: false, ps: false, gnugrep: false, man: false, asciidoctor: false, bashNonInteractive: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 108, 5], ["description", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5], ["mainProgram", 113, 5], ["longDescription", 114, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["__structuredAttrs", 51, 3], ["strictDeps", 52, 3], ["enableParallelBuilding", 53, 3], ["outputs", 54, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 67, 3], ["installFlags", 72, 3], ["configureFlags", 74, 3], ["preConfigure", 76, 3], ["dontAddPrefix", 100, 3], ["preFixup", 102, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
     })()));
   const apps = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssh, python$, cron, rsync, sshfs_fuse, gocryptfs])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "backintime-common",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bit-team",
           repo: "backintime",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -84,7 +82,7 @@ substituteInPlace "bitlicense.py" \\
   --prefix PATH : ${apps}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/bit-team/backintime",
         description: "Simple backup tool for Linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

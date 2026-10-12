@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 57, 5], ["repo", 58, 5], ["rev", 59, 5], ["hash", 60, 5]], [["homepage", 147, 5], ["description", 148, 5], ["mainProgram", 149, 5], ["changelog", 150, 5], ["license", 151, 5], ["maintainers", 152, 5], ["platforms", 156, 5]], [["pname", 53, 3], ["version", 54, 3], ["src", 56, 3], ["postPatch", 64, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 75, 3], ["qtWrapperArgs", 125, 3], ["cmakeFlags", 130, 3], ["postInstall", 136, 3], ["meta", 146, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, chromaprint: false, cmake: false, faad2: false, ffmpeg: false, fftw: false, flac: false, gbenchmark: false, glibcLocales: false, gtest: false, hidapi: false, lame: false, libebur128: false, libdjinterop: false, libGLU: false, libid3tag: false, libkeyfinder: false, libmad: false, libmodplug: false, libopus: false, libsecret: false, libshout: false, libsndfile: false, libusb1: false, libvorbis: false, libxcb: false, lilv: false, lv2: false, "microsoft-gsl": false, mp4v2: false, opusfile: false, "pkg-config": false, portaudio: false, portmidi: false, protobuf: false, rubberband: false, serd: false, sord: false, soundtouch: false, sratom: false, sqlite: false, taglib: false, upower: false, "vamp-plugin-sdk": false, wavpack: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 57, 5], ["repo", 58, 5], ["rev", 59, 5], ["hash", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 147, 5], ["description", 148, 5], ["mainProgram", 149, 5], ["changelog", 150, 5], ["license", 151, 5], ["maintainers", 152, 5], ["platforms", 156, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 53, 3], ["version", 54, 3], ["src", 56, 3], ["postPatch", 64, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 75, 3], ["qtWrapperArgs", 125, 3], ["cmakeFlags", 130, 3], ["postInstall", 136, 3], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,11 +56,11 @@ export default nix.lambda((args) => (() => {
   const wavpack = nix.arg($, "wavpack");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mixxx",
       version: "2.5.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mixxxdj",
           repo: "mixxx",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -127,7 +125,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DINSTALL_USER_UDEV_RULES=OFF", "-DBUILD_BENCH=OFF"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "rules=\"$src/res/linux/mixxx-usb-uaccess.rules\"\nif [ ! -f \"$rules\" ]; then\n    echo \"$rules is missing, must update the Nix file.\"\n    exit 1\nfi\nmkdir -p \"$out/lib/udev/rules.d\"\ncp \"$rules\" \"$out/lib/udev/rules.d/69-mixxx-usb-uaccess.rules\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://mixxx.org",
         description: "Digital DJ mixing software",
         mainProgram: "mixxx",

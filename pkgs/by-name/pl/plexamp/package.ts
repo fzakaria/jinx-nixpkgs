@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["name", 14, 5], ["hash", 15, 5]], [["pname", 19, 13], ["version", 19, 19], ["src", 19, 27]], [["updateScript", 36, 12]], [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 47, 5]], [["pname", 23, 11], ["version", 23, 17], ["src", 23, 25], ["extraInstallCommands", 25, 3], ["passthru", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["name", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 19, 13], ["version", 19, 19], ["src", 19, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 36, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 11], ["version", 23, 17], ["src", 23, 25], ["extraInstallCommands", 25, 3], ["passthru", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const pname = "plexamp";
   const version = "4.13.2";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://plexamp.plex.tv/plexamp.plex.tv/desktop/Plexamp-${version}.AppImage`),
       name: nix.thunk(() => nix.str`${pname}-${version}.AppImage`),
       hash: "sha512-Ww/QfMgmeghthfuGfc4Plv7vUKLikLf4R+SImG6TuYg0pDJ5psuHtXQezV0BurVRm6eQ+Ori+YGK2A52tCkcfw==",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -38,9 +34,9 @@ source "${makeWrapper}/nix-support/setup-hook"
 wrapProgram "$out/bin/plexamp" \\
   --add-flags "\\\${NIXOS_OZONE_WL:+\\\${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update-plexamp.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update-plexamp.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Beautiful Plex music player for audiophiles, curators, and hipsters",
         homepage: "https://plexamp.com/",
         changelog: "https://forums.plex.tv/t/plexamp-release-notes/221280/84",

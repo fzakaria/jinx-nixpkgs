@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["doCheck", 37, 3], ["pythonImportsCheck", 39, 3], ["postPatch", 41, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, looseversion: false, requests: false, selenium: false, websockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["doCheck", 37, 3], ["pythonImportsCheck", 39, 3], ["postPatch", 41, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const selenium = nix.arg($, "selenium");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "undetected-chromedriver",
       version: "3.5.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ultrafunkamsterdam",
           repo: "undetected-chromedriver",
           rev: "0aa5fbe252370b4cb2b95526add445392cad27ba",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["undetected_chromedriver"]),
       postPatch: "substituteInPlace undetected_chromedriver/patcher.py \\\n  --replace-fail \\\n    \"from distutils.version import LooseVersion\" \\\n    \"from looseversion import LooseVersion\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for the custom Selenium ChromeDriver that passes all bot mitigation systems",
         homepage: "https://github.com/ultrafunkamsterdam/undetected-chromedriver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["url", 32, 7], ["hash", 33, 7]], [["description", 50, 5], ["homepage", 51, 5], ["sourceProvenance", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]], [["pname", 16, 3], ["version", 17, 11], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["doCheck", 45, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch2: false, setuptools: false, fissix: false, pytest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["sourceProvenance", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 11], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["doCheck", 45, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const version = "1.0.12";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nose2pytest",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pytest-dev",
           repo: "nose2pytest",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/pytest-dev/nose2pytest/commit/75ff506aaf11b5e20672441730657ee7540387e1.patch?full_index=1",
             hash: "sha256-BpazrsB4b1oMBx9OemdVxhj/Jqbc8RKv2GC6gqkdGK8=",
           })))),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["nose2pytest.assert_tools"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Scripts to convert Python Nose tests to PyTest",
         homepage: "https://github.com/pytest-dev/nose2pytest",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "fromSource"))]),

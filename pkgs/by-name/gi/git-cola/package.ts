@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["updateScript", 80, 12]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["buildInputs", 31, 3], ["dependencies", 37, 3], ["nativeBuildInputs", 44, 3], ["nativeCheckInputs", 51, 3], ["disabledTestPaths", 57, 3], ["preFixup", 63, 3], ["desktopItems", 67, 3], ["postInstall", 73, 3], ["passthru", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, python3Packages: false, gettext: false, git: false, qt6: false, versionCheckHook: false, copyDesktopItems: false, imagemagick: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 80, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["buildInputs", 31, 3], ["dependencies", 37, 3], ["nativeBuildInputs", 44, 3], ["nativeCheckInputs", 51, 3], ["disabledTestPaths", 57, 3], ["preFixup", 63, 3], ["desktopItems", 67, 3], ["postInstall", 73, 3], ["passthru", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.18.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "git-cola",
           repo: "git-cola",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -65,11 +62,11 @@ export default nix.lambda((args) => (() => {
 done
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sleek and powerful Git GUI",
         homepage: "https://git-cola.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/git-cola/git-cola/blob/v${version}/CHANGES.rst`),
@@ -81,7 +78,7 @@ done
         mainProgram: "git-cola",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

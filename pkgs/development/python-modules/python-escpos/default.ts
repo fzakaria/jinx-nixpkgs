@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]], [["usb", 61, 5], ["serial", 62, 5], ["cups", 63, 5], ["all", 64, 5]], [["changelog", 93, 5], ["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["optional-dependencies", 60, 3], ["preCheck", 71, 3], ["nativeCheckInputs", 79, 3], ["pythonImportsCheck", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, pillow: false, qrcode: false, "python-barcode": false, six: false, appdirs: false, pyyaml: false, argcomplete: false, "importlib-resources": false, pyusb: false, pyserial: false, pycups: false, jaconv: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-mock": false, scripttest: false, mock: false, hypothesis: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["usb", 61, 5], ["serial", 62, 5], ["cups", 63, 5], ["all", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 93, 5], ["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["optional-dependencies", 60, 3], ["preCheck", 71, 3], ["nativeCheckInputs", 79, 3], ["pythonImportsCheck", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const mock = nix.arg($, "mock");
   const hypothesis = nix.arg($, "hypothesis");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "python-escpos",
       version: "3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-escpos",
           repo: "python-escpos",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         importlib_resources,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         usb: nix.thunk(() => [pyusb]),
         serial: nix.thunk(() => [pyserial]),
         cups: nix.thunk(() => [pycups]),
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(finalAttrs, "passthru", "optional-dependencies", "all"))),
       pythonImportsCheck: nix.thunk(() => ["escpos"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/python-escpos/python-escpos/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.rst`),
         description: "Python library to manipulate ESC/POS printers",
         homepage: "https://python-escpos.readthedocs.io/",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["package", 32, 5], ["command", 33, 5], ["version", 34, 5]], [["version", 31, 18]], [["tests", 31, 12]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 45, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["subPackages", 21, 3], ["ldflags", 23, 3], ["passthru", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildGo127Module: false, fetchFromGitHub: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 32, 5], ["command", 33, 5], ["version", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 31, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 31, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 45, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["subPackages", 21, 3], ["ldflags", 23, 3], ["passthru", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const testers = nix.arg($, "testers");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gogcli",
       version: "0.43.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openclaw",
           repo: "gogcli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +32,11 @@ export default nix.lambda((args) => (() => {
         "-X github.com/openclaw/gogcli/internal/cmd.date=1970-01-01T00:00:00Z",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "gog --version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")} (${nix.sel(finalAttrs, "src", "rev")} 1970-01-01T00:00:00Z)`),
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CLI tool for interacting with Google APIs (Gmail, Calendar, Drive, and more)",
         homepage: "https://github.com/openclaw/gogcli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

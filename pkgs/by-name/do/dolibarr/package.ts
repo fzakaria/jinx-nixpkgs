@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["dolibarr", 40, 26]], [["tests", 39, 12]], [["description", 44, 5], ["changelog", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontBuild", 20, 3], ["postPatch", 22, 3], ["installPhase", 34, 3], ["passthru", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nixosTests: false, stateDir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["dolibarr", 40, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 39, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 44, 5], ["changelog", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontBuild", 20, 3], ["postPatch", 22, 3], ["installPhase", 34, 3], ["passthru", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const stateDir = nix.argOr($, "stateDir", () => "/var/lib/dolibarr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dolibarr",
       version: "24.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Dolibarr",
           repo: "dolibarr",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,14 +36,14 @@ substituteInPlace htdocs/install/inc.php \\
 `),
       installPhase: "mkdir -p \"$out\"\ncp -r * $out\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             dolibarr: nix.thunk(() => nix.attr(nixosTests, "dolibarr")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Enterprise resource planning (ERP) and customer relationship manager (CRM) server",
         changelog: nix.thunk(() => nix.str`https://github.com/Dolibarr/dolibarr/releases/tag/${nix.sel(finalAttrs, "version")}`),
         homepage: "https://dolibarr.org/",

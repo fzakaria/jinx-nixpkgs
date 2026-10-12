@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["buildPhase", 24, 3], ["checkPhase", 32, 3], ["installPhase", 40, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, stdenv: false, shadow: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["buildPhase", 24, 3], ["checkPhase", 32, 3], ["installPhase", 40, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lilipod";
       const version = "0.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "89luca89",
           repo: "lilipod",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +34,7 @@ runHook postBuild
       const checkPhase = "runHook preCheck\n\nmake coverage\n\nrunHook postCheck\n";
       const installPhase = "runHook preInstall\n\ninstall -Dm755 lilipod $out/bin/lilipod\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Very simple (as in few features) container and image manager",
         longDescription: "Lilipod is a very simple container manager with minimal features to:\n\n- Download and manager images\n- Create and run containers\n\nIt tries to keep a somewhat compatible CLI interface with Podman/Docker/Nerdctl.\n",
         homepage: "https://github.com/89luca89/lilipod",
@@ -49,7 +47,7 @@ runHook postBuild
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

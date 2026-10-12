@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 22, 3], ["postInstall", 28, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { coreutils: false, fetchurl: false, gnugrep: false, lib: false, makeWrapper: false, moreutils: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 22, 3], ["postInstall", 28, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zstxtns-utils";
       const version = "0.0.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ytrizja.de/distfiles/zstxtns-utils-${version}.tar.gz`),
           sha256: "I/Gm7vHUr29NClYWQ1kwu8HrNZpdLXfE/nutTNoqcdU=",
         }))));
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/zstxtns-unmerge --set PATH "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, gnugrep]))}"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utilities to deal with text based name service databases",
         homepage: "https://ytrizja.de/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -38,7 +36,7 @@ wrapProgram $out/bin/zstxtns-unmerge --set PATH "${nix.app(nix.sel(lib, "makeBin
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 7], ["hash", 23, 7]], [["url", 26, 7], ["hash", 27, 7]], [["url", 30, 7], ["hash", 31, 7]], [["x86_64-linux", 21, 5], ["aarch64-linux", 25, 5], ["aarch64-darwin", 29, 5]], [["description", 67, 26], ["homepage", 67, 38], ["license", 67, 47], ["platforms", 68, 5], ["sourceProvenance", 73, 5], ["maintainers", 74, 5]], [["pname", 37, 11], ["version", 37, 17], ["src", 37, 25], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["installPhase", 53, 3], ["preFixup", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, python3: false, perl: false, blast: false, autoPatchelfHook: false, zlib: false, bzip2: false, glib: false, libxml2: false, coreutils: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 21, 5], ["aarch64-linux", 25, 5], ["aarch64-darwin", 29, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 67, 26], ["homepage", 67, 38], ["license", 67, 47], ["platforms", 68, 5], ["sourceProvenance", 73, 5], ["maintainers", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 37, 11], ["version", 37, 17], ["src", 37, 25], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["installPhase", 53, 3], ["preFixup", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,26 +23,26 @@ export default nix.lambda((args) => (() => {
   const pname = "blast-bin";
   const version = "2.16.0";
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/${version}/ncbi-blast-${version}+-x64-linux.tar.gz`),
         hash: "sha256-sLEwmMkB0jsyStFwDnRxu3QIp/f1F9dNX6rXEb526PQ=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/${version}/ncbi-blast-${version}+-aarch64-linux.tar.gz`),
         hash: "sha256-1EeiMu08R9Glq8qRky4OTT5lQPLJcM7iaqUrmUOS4MI=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/${version}/ncbi-blast-${version}+-aarch64-macosx.tar.gz`),
         hash: "sha256-6NpPNLBCHaBRscLZ5fjh5Dv3bjjPk2Gh2+L7xEtiJNs=",
       })))),
   }));
   const src = nix.thunk(() => nix.sel(srcs, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -60,7 +55,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(blast, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

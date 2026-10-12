@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]], [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 36, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["doCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 36, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["doCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pyinstaller_hooks_contrib",
           version: version,
           hash: "sha256-TYJXhq16m328xS1hJ0ijRWL+JzRhvP2I9NVJxZS7+Pk=",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Community maintained hooks for PyInstaller",
         longDescription: "A \"hook\" file extends PyInstaller to adapt it to the special needs and methods used by a Python package.\nThe word \"hook\" is used for two kinds of files. A runtime hook helps the bootloader to launch an app,\nsetting up the environment. A package hook (there are several types of those) tells PyInstaller\nwhat to include in the final app - such as the data files and (hidden) imports mentioned above.\nThis repository is a collection of hooks for many packages, and allows PyInstaller to work with these packages seamlessly.\n",
         homepage: "https://github.com/pyinstaller/pyinstaller-hooks-contrib",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

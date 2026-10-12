@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5], ["stripRoot", 24, 5]], [["homepage", 30, 5], ["description", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5], ["license", 36, 5]], [["pname", 13, 3], ["version", 14, 3], ["outputs", 16, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5], ["stripRoot", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 30, 5], ["description", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5], ["license", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["outputs", 16, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const majorVersion = "1";
   const minorVersion = "10";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "route159",
       version: nix.thunk(() => nix.str`${majorVersion}.${minorVersion}`),
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dotcolon.net/files/fonts/route159_${majorVersion}${minorVersion}.zip`),
           hash: "sha256-1InyBW1LGbp/IU/ql9mvT14W3MTxJdWThFwRH6VHpTU=",
           stripRoot: false,
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://dotcolon.net/font/route159/",
         description: "Weighted sans serif font",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

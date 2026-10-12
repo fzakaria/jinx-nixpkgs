@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["owner", 14, 3], ["domain", 15, 3], ["version", 16, 3], ["src", 18, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 30, 3], ["disabledTests", 37, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, pymodbus: false, pyyaml: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-homeassistant-custom-component": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 14, 3], ["domain", 15, 3], ["version", 16, 3], ["src", 18, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 30, 3], ["disabledTests", 37, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytest_homeassistant_custom_component = nix.arg($, "pytest-homeassistant-custom-component");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildHomeAssistantComponent, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "anker-charging",
       domain: "anker_solix_official",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "anker-charging",
           repo: "ha-anker-solix-official",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         "test_creates_client_lazily_when_none",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Official Home Assistant integration for Anker Solix devices via local Modbus TCP",
         homepage: "https://github.com/anker-charging/ha-anker-solix-official",
         changelog: nix.thunk(() => nix.str`https://github.com/anker-charging/ha-anker-solix-official/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

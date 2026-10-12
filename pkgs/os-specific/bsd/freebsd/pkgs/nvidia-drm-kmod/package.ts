@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 9], ["extraPrefix", 26, 9], ["hash", 27, 9]], [["url", 32, 9], ["extraPrefix", 33, 9], ["hash", 34, 9]], [["NIX_CFLAGS_COMPILE", 51, 7], ["CONFTEST_BSD_KMODPATHS", 52, 7]], [["platforms", 79, 8], ["license", 80, 8]], [["path", 13, 3], ["pname", 14, 3], ["version", 15, 27], ["src", 15, 35], ["outputs", 17, 3], ["patches", 22, 3], ["postPatch", 38, 3], ["env", 51, 3], ["extraNativeBuildInputs", 54, 3], ["preConfigure", 58, 3], ["makeFlags", 62, 3], ["KMODDIR", 70, 3], ["KERN_DEBUGDIR", 71, 3], ["KERN_DEBUGDIR_KODIR", 72, 3], ["KERN_DEBUGDIR_KMODDIR", 73, 3], ["hardeningDisable", 75, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false, fetchurl: false, fetchpatch: false, sys: false, "drm-kmod": false, "xargs-j": false, "nvidia-driver": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 9], ["extraPrefix", 26, 9], ["hash", 27, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 9], ["extraPrefix", 33, 9], ["hash", 34, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 51, 7], ["CONFTEST_BSD_KMODPATHS", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["platforms", 79, 8], ["license", 80, 8]]);
-const pos$5 = nix.positions(here + "/package.nix", [["path", 13, 3], ["pname", 14, 3], ["version", 15, 27], ["src", 15, 35], ["outputs", 17, 3], ["patches", 22, 3], ["postPatch", 38, 3], ["env", 51, 3], ["extraNativeBuildInputs", 54, 3], ["preConfigure", 58, 3], ["makeFlags", 62, 3], ["KMODDIR", 70, 3], ["KERN_DEBUGDIR", 71, 3], ["KERN_DEBUGDIR_KODIR", 72, 3], ["KERN_DEBUGDIR_KMODDIR", 73, 3], ["hardeningDisable", 75, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "debug"]);
       const patches = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "565")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/d07cdab9108a8cf6ab66aa1ff834339f8695f457/graphics/nvidia-drm-61-kmod/files/extra-patch-nvidia-drm-conftest.h",
               extraPrefix: "a/src/nvidia-drm",
               hash: "sha256-EgzEx1VxQyoNpnY0MnNVa08A0ENSyU/rdRM2hOwUE2g=",
             })))),
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "555")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/d07cdab9108a8cf6ab66aa1ff834339f8695f457/graphics/nvidia-drm-61-kmod/files/extra-patch-nvidia-drm-freebsd-lkpi.c",
               extraPrefix: "a/src/nvidia-drm",
               hash: "sha256-aFOs811J5e9Nu8Kwd6dImiSefEOlKlnRp3kg7DTIccg=",
@@ -48,7 +44,7 @@ ln -s ${nix.sel(stdenv, "cc")}/bin/${nix.sel(stdenv, "cc", "targetPrefix")}nm $T
 export PATH=$PATH:$TMP/bin
 `));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         CONFTEST_BSD_KMODPATHS: nix.thunk(() => nix.str`${sys}/kernel ${drm_kmod}/kernel`),
       }));
@@ -67,12 +63,12 @@ export PATH=$PATH:$TMP/bin
       const KERN_DEBUGDIR_KMODDIR = nix.thunk(() => nix.str`${KERN_DEBUGDIR}/kernel`);
       const hardeningDisable = nix.thunk(() => ["pic"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         platforms: nix.thunk(() => ["x86_64-freebsd"]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         path,
         pname,
         version,

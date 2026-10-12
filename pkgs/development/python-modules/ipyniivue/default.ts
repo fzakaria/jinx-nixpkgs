@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["name", 31, 5], ["src", 32, 13], ["hash", 33, 5], ["postPatch", 34, 5]], [["HATCH_BUILD_NO_HOOKS", 44, 7]], [["extraArgs", 72, 40]], [["updateScript", 72, 5]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["npmDeps", 30, 3], ["postPatch", 38, 3], ["env", 44, 3], ["nativeBuildInputs", 46, 3], ["preBuild", 51, 3], ["build-system", 55, 3], ["dependencies", 61, 3], ["nativeCheckInputs", 67, 3], ["pythonImportsCheck", 68, 3], ["passthru", 70, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchNpmDeps: false, nodejs: false, npmHooks: false, hatchling: false, "hatch-vcs": false, "hatch-jupyter-builder": false, anywidget: false, numpy: false, requests: false, pytestCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 31, 5], ["src", 32, 13], ["hash", 33, 5], ["postPatch", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["HATCH_BUILD_NO_HOOKS", 44, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["extraArgs", 72, 40]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 72, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["npmDeps", 30, 3], ["postPatch", 38, 3], ["env", 44, 3], ["nativeBuildInputs", 46, 3], ["preBuild", 51, 3], ["build-system", 55, 3], ["dependencies", 61, 3], ["nativeCheckInputs", 67, 3], ["pythonImportsCheck", 68, 3], ["passthru", 70, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "niivue",
           repo: "ipyniivue",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-Jk8Os8g2W5IRqLQSLQeH59ffGgWK/gjuUZgUl+HflVA=",
         }))));
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${pname}-${version}-npm-deps`),
           src: src,
           hash: "sha256-6TbwAC175mkyR8EThMalWn7qEyaIFDxtKmC/RIuy1dk=",
@@ -48,7 +42,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = nix.thunk(() => nix.str`cp ${nix.path(here, "./package-lock.json")} ./package-lock.json
 `);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, HATCH_BUILD_NO_HOOKS: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], HATCH_BUILD_NO_HOOKS: true }));
       const nativeBuildInputs = nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))]);
       const preBuild = "npm run build\n";
       const build_system = nix.thunk(() => [hatchling, hatch_vcs, hatch_jupyter_builder]);
@@ -56,11 +50,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["ipyniivue"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Show a nifti image in a webgl 2.0 canvas within a jupyter notebook cell",
         homepage: "https://github.com/niivue/ipyniivue",
         changelog: nix.thunk(() => nix.str`https://github.com/niivue/ipyniivue/releases/tag/${nix.sel(src, "tag")}`),
@@ -71,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["url", 39, 5], ["hash", 40, 5], ["stripRoot", 41, 5]], [["pint", 60, 5]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["matroska_test_zip", 38, 3], ["postPatch", 44, 3], ["build-system", 49, 3], ["dependencies", 51, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 65, 3], ["pythonImportsCheck", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchzip: false, "poetry-core": false, babelfish: false, enzyme: false, pymediainfo: false, pyyaml: false, trakit: false, pint: false, pytestCheckHook: false, ffmpeg: false, mediainfo: false, mkvtoolnix: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 39, 5], ["hash", 40, 5], ["stripRoot", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pint", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["matroska_test_zip", 38, 3], ["postPatch", 44, 3], ["build-system", 49, 3], ["dependencies", 51, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 65, 3], ["pythonImportsCheck", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const mkvtoolnix = nix.arg($, "mkvtoolnix");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "knowit",
       version: "0.6.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ratoaq2",
           repo: "knowit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-krrAeroM1eQZXi2onV4FdrKIQdPLkZS+/ypyY0Kc+Pw=",
         })))),
       matroska_test_zip: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "http://downloads.sourceforge.net/project/matroska/test_files/matroska_test_w1_1.zip",
           hash: "sha256-X8gIfDj2iP043kjO3yqxuIgn8mZMX7XaqzhQ7CTLUhc=",
           stripRoot: false,
@@ -50,11 +46,11 @@ cp ${nix.sel(finalAttrs, "matroska_test_zip")}/*.mkv tests/data/videos/
 `),
       "build-system": nix.thunk(() => [poetry_core]),
       dependencies: nix.thunk(() => [babelfish, enzyme, pymediainfo, pyyaml, trakit]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, pint: nix.thunk(() => [pint]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[2], pint: nix.thunk(() => [pint]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, ffmpeg, mediainfo, mkvtoolnix, requests]),
       pythonImportsCheck: nix.thunk(() => ["knowit"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Extract metadata from media files",
         homepage: "https://github.com/ratoaq2/knowit",
         changelog: nix.thunk(() => nix.str`https://github.com/ratoaq2/knowit/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

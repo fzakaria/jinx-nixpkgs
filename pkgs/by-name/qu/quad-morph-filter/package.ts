@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["NIX_LDFLAGS", 88, 7]], [["extraArgs", 109, 5]], [["updateScript", 108, 12]], [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 121, 5], ["maintainers", 122, 5], ["platforms", 123, 5], ["mainProgram", 124, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["__structuredAttrs", 34, 3], ["strictDeps", 35, 3], ["patches", 43, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 65, 3], ["cmakeFlags", 77, 3], ["cmakeBuildType", 83, 3], ["env", 88, 3], ["installPhase", 97, 3], ["passthru", 108, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, "alsa-lib": false, freetype: false, juce: false, xsimd: false, libx11: false, libxcursor: false, libxext: false, libxinerama: false, libxrandr: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 88, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 108, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 121, 5], ["maintainers", 122, 5], ["platforms", 123, 5], ["mainProgram", 124, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["__structuredAttrs", 34, 3], ["strictDeps", 35, 3], ["patches", 43, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 65, 3], ["cmakeFlags", 77, 3], ["cmakeBuildType", 83, 3], ["env", 88, 3], ["installPhase", 97, 3], ["passthru", 108, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "quad-morph-filter",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OTODESK4193",
           repo: "QuadMorphFilter",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -59,16 +54,16 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeBuildType: "RelWithDebInfo",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXext", "-lXcursor", "-lXinerama", "-lXrandr"]))),
       })),
       installPhase: "runHook preInstall\n\ninstall -Dm755 \"QuadMorphFilter_artefacts/$cmakeBuildType/Standalone/Quad-Morph Filter\" \\\n  \"$out/bin/quad-morph-filter\"\nmkdir -p \"$out/lib/vst3\"\ncp -r \"QuadMorphFilter_artefacts/$cmakeBuildType/VST3/Quad-Morph Filter.vst3\" \"$out/lib/vst3/\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version-regex", "V(.*)"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version-regex", "V(.*)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Morphing multi-filter audio plugin with 28 filter models controlled from an XY pad",
         homepage: "https://github.com/OTODESK4193/QuadMorphFilter",
         changelog: nix.thunk(() => nix.str`https://github.com/OTODESK4193/QuadMorphFilter/releases/tag/V${nix.sel(finalAttrs, "version")}`),

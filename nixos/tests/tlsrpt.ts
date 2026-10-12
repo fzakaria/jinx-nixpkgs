@@ -2,50 +2,42 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tlsrpt.nix", [[["maintainers", 10, 41]], [["organization_name", 17, 9], ["contact_info", 18, 9], ["sender_address", 19, 9]], [["settings", 16, 15]], [["enable", 15, 7], ["reportd", 16, 7]], [["enable", 24, 22]], [["tlsrpt", 14, 14], ["postfix", 24, 14]], [["services", 14, 5]], [["machine", 13, 9]], [["name", 7, 3], ["meta", 9, 3], ["nodes", 13, 3], ["testScript", 27, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tlsrpt.nix", [["maintainers", 10, 41]]);
-const pos$2 = nix.positions(here + "/tlsrpt.nix", [["organization_name", 17, 9], ["contact_info", 18, 9], ["sender_address", 19, 9]]);
-const pos$3 = nix.positions(here + "/tlsrpt.nix", [["settings", 16, 15]]);
-const pos$4 = nix.positions(here + "/tlsrpt.nix", [["enable", 15, 7], ["reportd", 16, 7]]);
-const pos$5 = nix.positions(here + "/tlsrpt.nix", [["enable", 24, 22]]);
-const pos$6 = nix.positions(here + "/tlsrpt.nix", [["tlsrpt", 14, 14], ["postfix", 24, 14]]);
-const pos$7 = nix.positions(here + "/tlsrpt.nix", [["services", 14, 5]]);
-const pos$8 = nix.positions(here + "/tlsrpt.nix", [["machine", 13, 9]]);
-const pos$9 = nix.positions(here + "/tlsrpt.nix", [["name", 7, 3], ["meta", 9, 3], ["nodes", 13, 3], ["testScript", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "tlsrpt",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "tlsrpt-reporter", "meta"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           tlsrpt: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
             reportd: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 organization_name: "NixOS Testers United",
                 contact_info: "smtp-tls-report@localhost",
                 sender_address: "noreply@localhost",
               })),
             })),
           })),
-          postfix: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+          postfix: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
         })),
       })),
     })),

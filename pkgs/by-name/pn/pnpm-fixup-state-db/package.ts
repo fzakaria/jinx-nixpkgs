@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pnpm", 25, 21]], [["tests", 24, 12]], [["license", 31, 5], ["mainProgram", 32, 5], ["maintainers", 33, 25]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nodejs", 14, 3], ["nativeBuildInputs", 15, 3], ["npmDepsHash", 17, 3], ["postInstall", 19, 3], ["passthru", 24, 3], ["__structuredAttrs", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, lib: false, "nodejs-slim": false, pnpm: false, tests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pnpm", 25, 21]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 24, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["license", 31, 5], ["mainProgram", 32, 5], ["maintainers", 33, 25]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nodejs", 14, 3], ["nativeBuildInputs", 15, 3], ["npmDepsHash", 17, 3], ["postInstall", 19, 3], ["passthru", 24, 3], ["__structuredAttrs", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pnpm = nix.arg($, "pnpm");
   const tests = nix.arg($, "tests");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pnpm-fixup-state-db",
       version: "1.0.0",
       src: nix.path(here, "./src"),
@@ -27,14 +24,14 @@ export default nix.lambda((args) => (() => {
   --add-flags "$out/lib/node_modules/pnpm-fixup-state-db"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$1, pnpm: nix.thunk(() => nix.attr(tests, "pnpm")) })),
+        [nix.POS]: $pos[1],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[0], pnpm: nix.thunk(() => nix.attr(tests, "pnpm")) })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pnpm, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         mainProgram: "pnpm-fixup-state-db",
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

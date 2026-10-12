@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["Version", 37, 11], ["BuildMeta", 38, 11], ["ProjectName", 39, 11], ["ProjectURL", 40, 11]], [["github.com/pomerium/cli/version", 36, 9]], [["homepage", 65, 5], ["description", 66, 5], ["mainProgram", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["subPackages", 28, 3], ["ldflags", 32, 3], ["installPhase", 56, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["Version", 37, 11], ["BuildMeta", 38, 11], ["ProjectName", 39, 11], ["ProjectURL", 40, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["github.com/pomerium/cli/version", 36, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["mainProgram", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["subPackages", 28, 3], ["ldflags", 32, 3], ["installPhase", 56, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const id = nix.thunk(() => nix.attr(lib, "id"));
   const mapAttrsToList = nix.thunk(() => nix.attr(lib, "mapAttrsToList"));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pomerium-cli",
       version: "0.33.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pomerium",
           repo: "cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,9 +29,9 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/pomerium-cli"]),
       ldflags: nix.thunk(() => (() => {
         const setVars = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "github.com/pomerium/cli/version": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             Version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             BuildMeta: "nixpkgs",
             ProjectName: "pomerium-cli",
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
       })()),
       installPhase: "runHook preInstall\n\ninstall -Dm0755 $GOPATH/bin/pomerium-cli $out/bin/pomerium-cli\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://pomerium.io",
         description: "Client-side helper for Pomerium authenticating reverse proxy",
         mainProgram: "pomerium-cli",

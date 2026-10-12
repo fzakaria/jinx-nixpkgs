@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["pname", 45, 5], ["version", 47, 7], ["src", 48, 7], ["pnpm", 50, 13], ["fetcherVersion", 51, 5], ["hash", 52, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 55, 7]], [["name", 168, 7], ["exec", 169, 7], ["icon", 170, 7], ["desktopName", 171, 7], ["genericName", 172, 7], ["comment", 173, 7], ["categories", 174, 7], ["startupWMClass", 179, 7], ["mimeTypes", 180, 7]], [["description", 192, 5], ["homepage", 193, 5], ["changelog", 194, 5], ["license", 195, 5], ["teams", 196, 5], ["platforms", 197, 29], ["mainProgram", 198, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["pnpmDeps", 44, 3], ["env", 55, 3], ["nativeBuildInputs", 57, 3], ["seshat", 75, 11], ["postPatch", 77, 3], ["buildPhase", 96, 3], ["installPhase", 128, 3], ["desktopItems", 166, 3], ["stripDebugList", 187, 3], ["meta", 191, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, makeDesktopItem: false, nodejs: false, electron_42: false, "element-web": false, callPackage: false, typescript_7: false, "node-gyp": false, python3: false, tsx: false, sqlcipher: false, commandLineArgs: true, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_11: false, faketty: false, asar: false, copyDesktopItems: false, darwin: false, actool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 45, 5], ["version", 47, 7], ["src", 48, 7], ["pnpm", 50, 13], ["fetcherVersion", 51, 5], ["hash", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 55, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 168, 7], ["exec", 169, 7], ["icon", 170, 7], ["desktopName", 171, 7], ["genericName", 172, 7], ["comment", 173, 7], ["categories", 174, 7], ["startupWMClass", 179, 7], ["mimeTypes", 180, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 192, 5], ["homepage", 193, 5], ["changelog", 194, 5], ["license", 195, 5], ["teams", 196, 5], ["platforms", 197, 29], ["mainProgram", 198, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["pnpmDeps", 44, 3], ["env", 55, 3], ["nativeBuildInputs", 57, 3], ["seshat", 75, 11], ["postPatch", 77, 3], ["buildPhase", 96, 3], ["installPhase", 128, 3], ["desktopItems", 166, 3], ["stripDebugList", 187, 3], ["meta", 191, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,18 +34,18 @@ export default nix.lambda((args) => (() => {
   const electron = electron_42;
   const seshat = nix.thunk(() => nix.app(callPackage, nix.path(here, "./seshat"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "element-desktop",
       version: "1.12.30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "element-hq",
           repo: "element-web",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4MdfIEfpWtYHmBGMX7d1S/PgUpHLTLIkVT28/LpeSm0=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "element",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -58,7 +53,7 @@ export default nix.lambda((args) => (() => {
           fetcherVersion: 4n,
           hash: "sha256-6Kyv9Hp6p04JVmDfAyMkb0AAbRqswthNvku0S42QzDA=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       nativeBuildInputs: nix.thunk(() => nix.concat([
         asar,
         copyDesktopItems,
@@ -146,7 +141,7 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/element-des
 `))), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "element-desktop",
             exec: "element-desktop %u",
             icon: "element",
@@ -162,7 +157,7 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/element-des
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Matrix client for desktop",
         homepage: "https://element.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/element-hq/element-web/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

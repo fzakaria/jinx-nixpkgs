@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]], [["broken", 49, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["license", 54, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["pythonRelaxDeps", 23, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["nativeCheckInputs", 33, 3], ["disabledTestPaths", 38, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, mock: false, "pathlib-abc": false, pytestCheckHook: false, setuptools: false, "smart-open": false, typer: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["broken", 49, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["license", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["pythonRelaxDeps", 23, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["nativeCheckInputs", 33, 3], ["disabledTestPaths", 38, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-uz0OawuL92709jxxkeluCvLtZcj9tfoXSI+ch55jcG0=",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["pathy"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: true,
         description: "Path interface for local and cloud bucket storage",
         mainProgram: "pathy",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

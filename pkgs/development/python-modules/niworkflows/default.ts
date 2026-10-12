@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["SETUPTOOLS_SCM_PRETEND_VERSION", 57, 7]], [["description", 124, 5], ["mainProgram", 125, 5], ["homepage", 126, 5], ["changelog", 127, 5], ["license", 128, 5], ["maintainers", 129, 5]], [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["__structuredAttrs", 47, 3], ["src", 49, 3], ["env", 57, 3], ["build-system", 59, 3], ["pythonRelaxDeps", 64, 3], ["dependencies", 67, 3], ["nativeCheckInputs", 92, 3], ["enabledTestPaths", 103, 3], ["disabledTests", 105, 3], ["disabledTestPaths", 117, 3], ["pythonImportsCheck", 121, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, acres: false, attrs: false, "importlib-resources": false, jinja2: false, looseversion: false, matplotlib: false, nibabel: false, nilearn: false, nipype: false, nitransforms: false, numpy: false, packaging: false, pandas: false, pybids: false, pyyaml: false, "scikit-image": false, scipy: false, seaborn: false, svgutils: false, sysctl: false, templateflow: false, traits: false, transforms3d: false, "pytest-cov-stub": false, "pytest-env": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["SETUPTOOLS_SCM_PRETEND_VERSION", 57, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 124, 5], ["mainProgram", 125, 5], ["homepage", 126, 5], ["changelog", 127, 5], ["license", 128, 5], ["maintainers", 129, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["__structuredAttrs", 47, 3], ["src", 49, 3], ["env", 57, 3], ["build-system", 59, 3], ["pythonRelaxDeps", 64, 3], ["dependencies", 67, 3], ["nativeCheckInputs", 92, 3], ["enabledTestPaths", 103, 3], ["disabledTests", 105, 3], ["disabledTestPaths", 117, 3], ["pythonImportsCheck", 121, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,20 +41,20 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "niworkflows",
       version: "1.14.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nipreps",
           repo: "niworkflows",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-AMUOiIL33kcJtlKT+L5QwcUh8mBBkf80uzOQZFKDauo=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SETUPTOOLS_SCM_PRETEND_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
@@ -101,7 +98,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["niworkflows/tests/test_registration.py"]),
       pythonImportsCheck: nix.thunk(() => ["niworkflows"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Common workflows for MRI (anatomical, functional, diffusion, etc.)",
         mainProgram: "niworkflows-boldref",
         homepage: "https://github.com/nipreps/niworkflows",

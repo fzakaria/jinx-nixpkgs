@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["NIX_CFLAGS_COMPILE", 54, 7]], [["package", 89, 7], ["versionCheck", 90, 7]], [["pkg-config", 88, 11]], [["tests", 88, 5], ["updateScript", 92, 5]], [["description", 96, 5], ["homepage", 97, 5], ["downloadPage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["mainProgram", 101, 5], ["pkgConfigModules", 102, 5], ["maintainers", 107, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 26, 3], ["patches", 33, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 43, 3], ["cmakeFlags", 48, 3], ["env", 54, 3], ["nativeCheckInputs", 56, 3], ["doCheck", 59, 3], ["checkPhase", 60, 3], ["postInstall", 71, 3], ["nativeInstallCheckInputs", 76, 3], ["doInstallCheck", 80, 3], ["postInstallCheck", 81, 3], ["passthru", 87, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, python3: false, validatePkgConfig: false, versionCheckHook: false, testers: false, "nix-update-script": false, enableCmdline: true, enableMath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 89, 7], ["versionCheck", 90, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 88, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 88, 5], ["updateScript", 92, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["downloadPage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["mainProgram", 101, 5], ["pkgConfigModules", 102, 5], ["maintainers", 107, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 26, 3], ["patches", 33, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 43, 3], ["cmakeFlags", 48, 3], ["env", 54, 3], ["nativeCheckInputs", 56, 3], ["doCheck", 59, 3], ["checkPhase", 60, 3], ["postInstall", 71, 3], ["nativeInstallCheckInputs", 76, 3], ["doInstallCheck", 80, 3], ["postInstallCheck", 81, 3], ["passthru", 87, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const enableCmdline = nix.argOr($, "enableCmdline", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isNone")));
   const enableMath = nix.argOr($, "enableMath", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "jerryscript",
       version: "3.0.0",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jerryscript-project",
           repo: "jerryscript",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_SHARED_LIBS", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-literal-range")),
       })),
       nativeCheckInputs: nix.thunk(() => [python3]),
@@ -57,11 +51,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstallCheck: "echo 'print(\"Hello\" + \" \" + \"World!\")' | \\\n\"$out/bin/jerry\" - | \\\ncmp - <(echo \"Hello World!\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -69,7 +63,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Lightweight JavaScript engine for resource-constrained devices",
         homepage: "https://jerryscript.net/",
         downloadPage: "https://github.com/jerryscript-project/jerryscript/",

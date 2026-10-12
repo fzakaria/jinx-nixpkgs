@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["url", 31, 7], ["hash", 32, 7]], [["homepage", 54, 5], ["description", 55, 5], ["mainProgram", 56, 5], ["changelog", 57, 5], ["platforms", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["hardeningDisable", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, libxml2: false, meson: false, ninja: false, vala: false, "pkg-config": false, "adwaita-icon-theme": false, libchamplain_libsoup3: false, gdl: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["mainProgram", 56, 5], ["changelog", 57, 5], ["platforms", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["hardeningDisable", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gpx-viewer";
       const version = "0.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DaveDavenport",
           repo: "gpx-viewer",
           rev: version,
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/DaveDavenport/gpx-viewer/commit/12ed6003bdad840586351bdb4e00c18719873c0e.patch",
             hash: "sha256-2/r0M3Yxj+vWgny1Pd5G7NYMb0uC/ByZ7y3tqLVccOc=",
           })))),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gdl, libchamplain_libsoup3, adwaita_icon_theme, libxml2]);
       const hardeningDisable = nix.thunk(() => ["format"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://blog.sarine.nl/tag/gpxviewer/",
         description: "Simple tool to visualize tracks and waypoints stored in a gpx file",
         mainProgram: "gpx-viewer",
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

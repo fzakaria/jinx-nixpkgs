@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["url", 45, 7], ["hash", 46, 7]], [["url", 51, 7], ["hash", 52, 7]], [["tshark", 55, 7]], [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["patchFlags", 40, 3], ["patches", 42, 3], ["sourceRoot", 61, 3], ["build-system", 63, 3], ["dependencies", 65, 3], ["nativeCheckInputs", 72, 3], ["disabledTests", 77, 3], ["pythonImportsCheck", 95, 3], ["enabledTestPaths", 97, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, pythonAtLeast: false, fetchFromGitHub: false, fetchpatch: false, replaceVars: false, "wireshark-cli": false, setuptools: false, appdirs: false, lxml: false, packaging: false, termcolor: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 45, 7], ["hash", 46, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 51, 7], ["hash", 52, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tshark", 55, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["patchFlags", 40, 3], ["patches", 42, 3], ["sourceRoot", 61, 3], ["build-system", 63, 3], ["dependencies", 65, 3], ["nativeCheckInputs", 72, 3], ["disabledTests", 77, 3], ["pythonImportsCheck", 95, 3], ["enabledTestPaths", 97, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pyshark",
       version: "0.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KimiNewt",
           repo: "pyshark",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,17 +37,17 @@ export default nix.lambda((args) => (() => {
       patchFlags: nix.thunk(() => ["-p2"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/KimiNewt/pyshark/commit/7142c5bf88abcd4c65c81052a00226d6155dda42.patch",
             hash: "sha256-Ti7cwRyYSbF4a4pEEV9FntNevkV/JVXNqACQWzoma7g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/KimiNewt/pyshark/commit/0e1d8d0e06108f2887c3147c93049de63b475f8a.patch",
             hash: "sha256-fpgiBHcfS/TGYIB65ioZJrWUuDIrLxxXqGVJ9y18b2w=",
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-tshark-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             tshark: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), wireshark_cli, "tshark")),
           })))),
         nix.path(here, "./py314-compat.patch"),
@@ -65,7 +60,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pyshark"]),
       enabledTestPaths: nix.thunk(() => ["../tests/"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python wrapper for tshark, allowing Python packet parsing using Wireshark dissectors",
         homepage: "https://github.com/KimiNewt/pyshark/",
         changelog: nix.thunk(() => nix.str`https://github.com/KimiNewt/pyshark/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

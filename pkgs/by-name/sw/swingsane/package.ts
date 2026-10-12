@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 16, 5], ["url", 17, 5]], [["name", 33, 9], ["exec", 34, 9], ["icon", 35, 9], ["desktopName", 36, 9], ["genericName", 37, 9], ["comment", 38, 9], ["categories", 39, 9]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 67, 5], ["sourceProvenance", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["dontConfigure", 22, 3], ["installPhase", 24, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeDesktopItem: false, unzip: false, jre: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 16, 5], ["url", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 9], ["exec", 34, 9], ["icon", 35, 9], ["desktopName", 36, 9], ["genericName", 37, 9], ["comment", 38, 9], ["categories", 39, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 67, 5], ["sourceProvenance", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["dontConfigure", 22, 3], ["installPhase", 24, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "swingsane",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sha256: "15pgqgyw46yd2i367ax9940pfyvinyw2m8apmwhrn0ix5nywa7ni",
           url: nix.thunk(() => nix.str`mirror://sourceforge/swingsane/swingsane-${nix.sel(finalAttrs, "version")}-bin.zip`),
         })))),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
 exec ${jre}/bin/java -jar $out/share/java/swingsane/swingsane-${nix.sel(finalAttrs, "version")}.jar "$@"
 `);
         const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "swingsane",
             exec: "swingsane",
             icon: "swingsane",
@@ -55,7 +52,7 @@ cp -v -r ${desktopItem}/share/applications $out/share
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Java GUI for SANE scanner servers (saned)",
         longDescription: "SwingSane is a powerful, cross platform, open source Java front-end for\nusing both local and remote Scanner Access Now Easy (SANE) servers.\nThe most powerful feature is its ability to query back-ends for scanner\nspecific options which can be set by the user as a scanner profile.\nIt also has support for authentication, multicast DNS discovery,\nsimultaneous scan jobs, image transformation jobs (deskew, binarize,\ncrop, etc), PDF and PNG output.\n",
         homepage: "http://swingsane.com/",

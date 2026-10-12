@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 48, 7], ["owner", 49, 7], ["repo", 50, 7], ["rev", 51, 7], ["hash", 52, 7]], [["homepage", 94, 7], ["description", 95, 7], ["longDescription", 96, 7], ["license", 101, 7], ["mainProgram", 102, 7], ["maintainers", 103, 7]], [["pname", 44, 5], ["version", 45, 5], ["src", 47, 5], ["nativeBuildInputs", 55, 5], ["patches", 57, 5], ["packageRequires", 64, 5], ["postPatch", 77, 5], ["postInstall", 89, 5], ["meta", 93, 5]]]);
 const formals$1 = { args: { lib: false, ansi: false, "cl-generic": false, "cl-lib": false, commander: false, epl: false, f: false, fetchFromGitHub: false, installShellFiles: false, git: false, melpaBuild: false, "package-build": false, replaceVars: false, s: false, "shut-up": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 48, 7], ["owner", 49, 7], ["repo", 50, 7], ["rev", 51, 7], ["hash", 52, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 94, 7], ["description", 95, 7], ["longDescription", 96, 7], ["license", 101, 7], ["mainProgram", 102, 7], ["maintainers", 103, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 44, 5], ["version", 45, 5], ["src", 47, 5], ["nativeBuildInputs", 55, 5], ["patches", 57, 5], ["packageRequires", 64, 5], ["postPatch", 77, 5], ["postInstall", 89, 5], ["meta", 93, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const emacsBuiltinDeps = nix.thunk(() => ["cl-lib", "eieio"]);
       const depsMod = nix.thunk(() => nix.builtins.concatStringsSep(" ", nix.thunk(() => nix.concat(nix.builtins.map((x) => nix.sel(x, "ename"), nixpkgDependencies), emacsBuiltinDeps))));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "cask",
         version: "0.9.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: nix.thunk(() => nix.str`cask-source-${nix.sel(finalAttrs, "version")}`),
             owner: "cask",
             repo: "cask",
@@ -67,7 +65,7 @@ substituteInPlace cask-bootstrap.el \\
 `),
         postInstall: "installBin bin/cask\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://github.com/cask/cask",
           description: "Project management for Emacs",
           longDescription: "Cask is a project management tool for Emacs that helps automate the\npackage development cycle; development, dependencies, testing, building,\npackaging and more.\n",

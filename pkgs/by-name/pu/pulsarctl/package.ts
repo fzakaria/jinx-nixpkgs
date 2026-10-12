@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["ReleaseVersion", 31, 9], ["BuildTS", 32, 9], ["GitHash", 33, 9], ["GitBranch", 34, 9], ["GoVersion", 35, 9]], [["package", 64, 7], ["command", 65, 7], ["version", 66, 7]], [["version", 63, 11]], [["updateScript", 62, 5], ["tests", 63, 5]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5], ["mainProgram", 76, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["nativeBuildInputs", 26, 3], ["ldflags", 28, 3], ["excludedPackages", 42, 3], ["doCheck", 52, 3], ["postInstall", 54, 3], ["passthru", 61, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, "nix-update-script": false, go: false, testers: false, pulsarctl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ReleaseVersion", 31, 9], ["BuildTS", 32, 9], ["GitHash", 33, 9], ["GitBranch", 34, 9], ["GoVersion", 35, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 64, 7], ["command", 65, 7], ["version", 66, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 63, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 62, 5], ["tests", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5], ["mainProgram", 76, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["nativeBuildInputs", 26, 3], ["ldflags", 28, 3], ["excludedPackages", 42, 3], ["doCheck", 52, 3], ["postInstall", 54, 3], ["passthru", 61, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pulsarctl";
       const version = "4.0.4.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "streamnative",
           repo: "pulsarctl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const ldflags = nix.thunk(() => (() => {
         const buildVars = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           ReleaseVersion: version,
           BuildTS: "None",
           GitHash: nix.thunk(() => nix.sel(src, "rev")),
@@ -57,12 +51,12 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd pulsarctl \\\n  --bash <($out/bin/pulsarctl completion bash) \\\n  --fish <($out/bin/pulsarctl completion fish) \\\n  --zsh <($out/bin/pulsarctl completion zsh)\n"));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: pulsarctl,
               command: "pulsarctl --version",
               version: nix.thunk(() => nix.str`v${version}`),
@@ -70,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "CLI for Apache Pulsar written in Go",
         homepage: "https://github.com/streamnative/pulsarctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -79,7 +73,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pulsarctl",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

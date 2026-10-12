@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["longDescription", 55, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["preConfigure", 37, 3], ["makeFlags", 41, 3], ["outputs", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["longDescription", 55, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["preConfigure", 37, 3], ["makeFlags", 41, 3], ["outputs", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const systemFlags = nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "CFLAGS=\"-O2 -Wall -fomit-frame-pointer -no-cpp-precomp\"\nLDFLAGS=\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), "CFLAGS=\"-O2 -Wall -fomit-frame-pointer\"\nLDFLAGS=-s\nTREE_DEST=tree.exe\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isOpenBSD")))), "CFLAGS=\"-O2 -Wall -fomit-frame-pointer\"\nLDFLAGS=-s\n")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tree",
       version: "2.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OldManProgrammer",
           repo: "unix-tree",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       ]),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://oldmanprogrammer.net/source.php?dir=projects/tree",
         description: "Command to produce a depth indented directory listing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["package", 32, 5], ["command", 33, 5], ["version", 34, 5]], [["version", 31, 18]], [["tests", 31, 12], ["updateScript", 37, 12]], [["homepage", 40, 5], ["changelog", 41, 5], ["description", 42, 5], ["mainProgram", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["subPackages", 29, 3], ["passthru", 31, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, testers: false, "crossplane-cli": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 32, 5], ["command", 33, 5], ["version", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 31, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 31, 12], ["updateScript", 37, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["changelog", 41, 5], ["description", 42, 5], ["mainProgram", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["subPackages", 29, 3], ["passthru", 31, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const crossplane_cli = nix.arg($, "crossplane-cli");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "crossplane-cli",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crossplane",
           repo: "cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +32,11 @@ export default nix.lambda((args) => (() => {
       ]),
       subPackages: nix.thunk(() => ["cmd/crossplane"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: crossplane_cli,
               command: "crossplane version --client",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.crossplane.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/crossplane/cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Utility to make using Crossplane easier",

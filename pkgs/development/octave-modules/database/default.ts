@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["description", 38, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 17, 3], ["propagatedBuildInputs", 22, 3], ["nativeBuildInputs", 26, 3], ["requiredOctavePackages", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { buildOctavePackage: false, lib: false, fetchurl: false, struct: false, libpq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["description", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 17, 3], ["propagatedBuildInputs", 22, 3], ["nativeBuildInputs", 26, 3], ["requiredOctavePackages", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "database";
       const version = "2.4.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "1c0n76adi0jw6bx62s04vjyda6kb6ca8lzz2vam43vdy10prcq9p",
         }))));
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(libpq, "pg_config"))]);
       const requiredOctavePackages = nix.thunk(() => [struct]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gnu-octave.github.io/packages/database/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         description: "Interface to SQL databases, currently only postgresql using libpq",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

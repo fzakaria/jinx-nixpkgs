@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["sha256", 37, 5]], [["name", 48, 5], ["paths", 49, 5], ["buildInputs", 55, 5], ["postBuild", 56, 5]], [["enablePstlTests", 108, 78]], [["runner-omp", 124, 17], ["runner-sscp", 124, 28], ["sycl-omp", 125, 9], ["sycl-sscp", 126, 9], ["pstl-sscp", 127, 9]], [["runner-rocm", 136, 19], ["runner-rocm-integrated-multipass", 136, 31], ["runner-rocm-explicit-multipass", 136, 64], ["sycl-rocm", 137, 11], ["sycl-rocm-imp", 138, 11], ["sycl-rocm-emp", 139, 11], ["sycl-rocm-sscp", 140, 11], ["pstl-rocm-sscp", 141, 11]], [["runner-cuda", 151, 19], ["runner-cuda-integrated-multipass", 151, 31], ["runner-cuda-explicit-multipass", 151, 64], ["sycl-cuda", 152, 11], ["sycl-cuda-imp", 153, 11], ["sycl-cuda-emp", 154, 11], ["sycl-cuda-sscp", 155, 11], ["pstl-cuda-imp", 156, 11], ["pstl-cuda-sscp", 157, 11]], [["tests", 104, 5], ["updateScript", 161, 5]], [["homepage", 165, 5], ["description", 166, 5], ["mainProgram", 167, 5], ["maintainers", 168, 5], ["license", 169, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 41, 3], ["rocmMerged", 47, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 71, 3], ["cmakeFlags", 87, 3], ["hardeningDisable", 101, 3], ["passthru", 103, 3], ["meta", 164, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, llvmPackages_20: false, python3: false, cmake: false, boost: false, libxml2: false, libffi: false, numactl: false, makeWrapper: false, config: false, cudaPackages: false, rocmPackages: false, ompSupport: true, openclSupport: true, rocmSupport: true, cudaSupport: true, autoAddDriverRunpath: false, runCommand: false, callPackage: false, symlinkJoin: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["sha256", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 48, 5], ["paths", 49, 5], ["buildInputs", 55, 5], ["postBuild", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["enablePstlTests", 108, 78]]);
-const pos$4 = nix.positions(here + "/package.nix", [["runner-omp", 124, 17], ["runner-sscp", 124, 28], ["sycl-omp", 125, 9], ["sycl-sscp", 126, 9], ["pstl-sscp", 127, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["runner-rocm", 136, 19], ["runner-rocm-integrated-multipass", 136, 31], ["runner-rocm-explicit-multipass", 136, 64], ["sycl-rocm", 137, 11], ["sycl-rocm-imp", 138, 11], ["sycl-rocm-emp", 139, 11], ["sycl-rocm-sscp", 140, 11], ["pstl-rocm-sscp", 141, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["runner-cuda", 151, 19], ["runner-cuda-integrated-multipass", 151, 31], ["runner-cuda-explicit-multipass", 151, 64], ["sycl-cuda", 152, 11], ["sycl-cuda-imp", 153, 11], ["sycl-cuda-emp", 154, 11], ["sycl-cuda-sscp", 155, 11], ["pstl-cuda-imp", 156, 11], ["pstl-cuda-sscp", 157, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 104, 5], ["updateScript", 161, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 165, 5], ["description", 166, 5], ["mainProgram", 167, 5], ["maintainers", 168, 5], ["license", 169, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 41, 3], ["rocmMerged", 47, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 71, 3], ["cmakeFlags", 87, 3], ["hardeningDisable", 101, 3], ["passthru", 103, 3], ["meta", 164, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.thunk(() => nix.attr(llvmPackages, "stdenv"));
   const llvmPackages = llvmPackages_20;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "adaptivecpp",
       version: "25.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AdaptiveCpp",
           repo: "AdaptiveCpp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "rm cmake/FindCUDA.cmake\n",
       rocmMerged: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "rocm-merged",
           paths: nix.thunk(() => (() => {
             const w = nix.withScope(rocmPackages, null);
@@ -93,9 +85,9 @@ export default nix.lambda((args) => (() => {
         ])))),
       hardeningDisable: nix.thunk(() => ["zerocallusedregs"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => (() => {
-          const runner = (targets) => (enablePstlTests) => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, enablePstlTests: enablePstlTests })));
+          const runner = (targets) => (enablePstlTests) => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], enablePstlTests: enablePstlTests })));
           const run = (runner_1) => (cmd) => (mask) => nix.app(runCommand, cmd, nix.thunk(() => ({})), nix.thunk(() => nix.str`# the test runner wants to write to $HOME/.acpp, so we need to have it point to a real directory
 mkdir home
 export HOME=\`pwd\`/home
@@ -107,7 +99,7 @@ ACPP_VISIBILITY_MASK="${mask}" ${runner_1}/bin/${cmd} && touch $out
           const runner_omp = nix.thunk(() => nix.app(runner, "omp", false));
           const runner_sscp = nix.thunk(() => nix.app(runner, "generic", true));
           return nix.update({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "runner-omp": runner_omp,
             "runner-sscp": runner_sscp,
             "sycl-omp": nix.thunk(() => nix.app(runSycl, runner_omp, "omp")),
@@ -118,7 +110,7 @@ ACPP_VISIBILITY_MASK="${mask}" ${runner_1}/bin/${cmd} && touch $out
               const runner_rocm_integrated_multipass = nix.thunk(() => nix.app(runner, "omp;hip:gfx906", false));
               const runner_rocm_explicit_multipass = nix.thunk(() => nix.app(runner, "omp;hip.explicit-multipass:gfx906;cuda:sm_61", false));
               return {
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 "runner-rocm": runner_rocm,
                 "runner-rocm-integrated-multipass": runner_rocm_integrated_multipass,
                 "runner-rocm-explicit-multipass": runner_rocm_explicit_multipass,
@@ -133,7 +125,7 @@ ACPP_VISIBILITY_MASK="${mask}" ${runner_1}/bin/${cmd} && touch $out
               const runner_cuda_integrated_multipass = nix.thunk(() => nix.app(runner, "omp;cuda_61", true));
               const runner_cuda_explicit_multipass = nix.thunk(() => nix.app(runner, "omp;cuda.explicit-multipass:sm_61;hip:gfx906", false));
               return {
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 "runner-cuda": runner_cuda,
                 "runner-cuda-integrated-multipass": runner_cuda_integrated_multipass,
                 "runner-cuda-explicit-multipass": runner_cuda_explicit_multipass,
@@ -149,7 +141,7 @@ ACPP_VISIBILITY_MASK="${mask}" ${runner_1}/bin/${cmd} && touch $out
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://github.com/AdaptiveCpp/AdaptiveCpp",
         description: "Multi-backend implementation of SYCL for CPUs and GPUs",
         mainProgram: "acpp",

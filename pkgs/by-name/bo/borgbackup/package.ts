@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["borgbackup", 142, 26]], [["extraArgs", 153, 5]], [["tests", 141, 12], ["updateScript", 151, 12]], [["changelog", 160, 5], ["description", 161, 5], ["homepage", 162, 5], ["license", 163, 5], ["platforms", 164, 5], ["mainProgram", 165, 5], ["maintainers", 166, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["build-system", 41, 3], ["nativeBuildInputs", 47, 3], ["sphinxBuilders", 57, 3], ["buildInputs", 62, 3], ["dependencies", 73, 3], ["makeWrapperArgs", 83, 3], ["preInstallSphinx", 87, 3], ["postInstall", 94, 3], ["nativeCheckInputs", 101, 3], ["pytestFlags", 110, 3], ["disabledTests", 116, 3], ["preCheck", 137, 3], ["passthru", 141, 3], ["outputs", 145, 3], ["meta", 159, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, acl: false, e2fsprogs: false, fetchFromGitHub: false, libb2: false, lz4: false, openssh: false, openssl: false, python3: false, xxhash: false, zstd: false, installShellFiles: false, nixosTests: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["borgbackup", 142, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 153, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 141, 12], ["updateScript", 151, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 160, 5], ["description", 161, 5], ["homepage", 162, 5], ["license", 163, 5], ["platforms", 164, 5], ["mainProgram", 165, 5], ["maintainers", 166, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["build-system", 41, 3], ["nativeBuildInputs", 47, 3], ["sphinxBuilders", 57, 3], ["buildInputs", 62, 3], ["dependencies", 73, 3], ["makeWrapperArgs", 83, 3], ["preInstallSphinx", 87, 3], ["postInstall", 94, 3], ["nativeCheckInputs", 101, 3], ["pytestFlags", 110, 3], ["disabledTests", 116, 3], ["preCheck", 137, 3], ["passthru", 141, 3], ["outputs", 145, 3], ["meta", 159, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const python = python3;
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "borgbackup",
       version: "1.4.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "borgbackup",
           repo: "borg",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -98,19 +93,19 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_extract_restores_append_flag", "test_file_status_excluded"])))),
       preCheck: "export HOME=$TEMP\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           borgbackup: nix.thunk(() => nix.attr(nixosTests, "borgbackup")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "^([0-9]+\\.[0-9]+\\.[0-9]+)$"]),
           })))),
       })),
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/borgbackup/borg/blob/${nix.sel(finalAttrs, "src", "rev")}/docs/changes.rst`),
         description: "Deduplicating archiver with compression and encryption",
         homepage: "https://www.borgbackup.org",

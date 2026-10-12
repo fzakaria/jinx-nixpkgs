@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["isLibrary", 23, 3], ["isExecutable", 24, 3], ["libraryHaskellDepends", 25, 3], ["executableHaskellDepends", 44, 3], ["testHaskellDepends", 55, 3], ["doCheck", 65, 3], ["homepage", 67, 3], ["description", 68, 3], ["maintainers", 69, 3], ["license", 70, 3], ["mainProgram", 71, 3]]]);
 const formals$1 = { args: { lib: false, haskell: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["isLibrary", 23, 3], ["isExecutable", 24, 3], ["libraryHaskellDepends", 25, 3], ["executableHaskellDepends", 44, 3], ["testHaskellDepends", 55, 3], ["doCheck", 65, 3], ["homepage", 67, 3], ["description", 68, 3], ["maintainers", 69, 3], ["license", 70, 3], ["mainProgram", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const haskellPackages = nix.thunk(() => nix.sel(haskell, "packages", "ghc912"));
   return nix.app(nix.sel(haskellPackages, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "hooky",
       version: "1.0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "brandonchinn178",
           repo: "hooky",
           rev: "24359d44a05b9c0f3615f40b13456157112de33c",

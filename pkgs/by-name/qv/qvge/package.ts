@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["graphviz", 25, 15]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["patches", 23, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["postInstall", 42, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, libsForQt5: false, graphviz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["graphviz", 25, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["patches", 23, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["postInstall", 42, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const graphviz = nix.arg($, "graphviz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qvge",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ArsMasiuk",
           repo: "qvge",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-011gJobDqNnXFTr/XSXcONxvPlzU7UEwS7CHkz1YMtY=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src`),
-      patches: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./set-graphviz-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, graphviz: graphviz })))),
+      patches: nix.thunk(() => nix.app(replaceVars, nix.path(here, "./set-graphviz-path.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], graphviz: graphviz })))),
       postPatch: "substituteInPlace qvge/linux/qvge.desktop \\\n  --replace-warn \"Exec=qvgeapp\" \"Exec=qvge\"\n",
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook")),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? [nix.thunk(() => nix.sel(libsForQt5, "qtsvg"))] : [nix.thunk(() => nix.sel(libsForQt5, "qtx11extras"))])),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv $out/bin/qvge.app $out/Applications\nln -s $out/Applications/qvge.app/Contents/MacOS/qvge $out/bin/qvge\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Qt Visual Graph Editor",
         homepage: "https://github.com/ArsMasiuk/qvge",
         changelog: nix.thunk(() => nix.str`https://github.com/ArsMasiuk/qvge/blob/v${nix.sel(finalAttrs, "version")}/CHANGES`),

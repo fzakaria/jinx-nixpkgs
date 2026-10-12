@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["NIX_CFLAGS_COMPILE", 30, 7]], [["rev-prefix", 61, 7], ["ignoredVersions", 62, 7]], [["pkg-config", 64, 11]], [["updateScript", 60, 5], ["tests", 64, 5]], [["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["pkgConfigModules", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 21, 3], ["patches", 28, 3], ["env", 30, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 39, 3], ["cmakeFlags", 41, 3], ["postPatch", 47, 3], ["doCheck", 57, 3], ["passthru", 59, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, gitUpdater: false, testers: false, cmake: false, nlohmann_json: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 61, 7], ["ignoredVersions", 62, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 64, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 60, 5], ["tests", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["pkgConfigModules", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 21, 3], ["patches", 28, 3], ["env", 30, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 39, 3], ["cmakeFlags", 41, 3], ["postPatch", 47, 3], ["doCheck", 57, 3], ["passthru", 59, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const nlohmann_json = nix.arg($, "nlohmann_json");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "vvenc",
       version: "1.14.0",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fraunhoferhhi",
           repo: "vvenc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./unset-darwin-cmake-flags.patch")]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-maybe-uninitialized", "-Wno-uninitialized"]))))),
       })),
       buildInputs: nix.thunk(() => [nlohmann_json]),
@@ -47,15 +41,15 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace pkgconfig/libvvenc.pc.in \\\n  --replace-fail \\\n    'libdir=@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_LIBDIR@' \\\n    'libdir=@CMAKE_INSTALL_FULL_LIBDIR@' \\\n  --replace-fail \\\n    'includedir=@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_INCLUDEDIR@' \\\n    'includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@'\n",
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v", ignoredVersions: "rc" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v", ignoredVersions: "rc" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/fraunhoferhhi/vvenc",
         description: "Fraunhofer Versatile Video Encoder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3Clear")),

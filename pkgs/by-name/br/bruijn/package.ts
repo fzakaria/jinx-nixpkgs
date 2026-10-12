@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 13, 14]], [["passthru", 13, 5], ["description", 15, 5], ["homepage", 16, 5]]]);
 const formals$1 = { args: { haskell: false, haskellPackages: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 13, 14]]);
-const pos$2 = nix.positions(here + "/package.nix", [["passthru", 13, 5], ["description", 15, 5], ["homepage", 16, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,8 +15,8 @@ export default nix.lambda((args) => (() => {
   const overrideCabal = nix.thunk(() => nix.attr(from, "overrideCabal"));
   const generated = nix.thunk(() => nix.app(nix.sel(haskellPackages, "callPackage"), nix.path(here, "./generated.nix"), nix.thunk(() => ({}))));
   const overrides = nix.thunk(() => ({
-    [nix.POS]: pos$2,
-    passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
+    [nix.POS]: $pos[1],
+    passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], updateScript: nix.path(here, "./update.sh") })),
     description: "Purely functional programming language based on lambda calculus and de Bruijn indices",
     homepage: "https://bruijn.marvinborner.de/",
   }));

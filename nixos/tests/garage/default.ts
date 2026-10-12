@@ -2,30 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["address", 15, 11], ["prefixLength", 16, 11]], [["addresses", 13, 39]], [["ipv6", 13, 34]], [["eth1", 13, 29]], [["allowedTCPPorts", 20, 27]], [["interfaces", 13, 18], ["firewall", 20, 18]], [["s3_region", 34, 13], ["api_bind_addr", 35, 13], ["root_domain", 36, 13]], [["bind_addr", 40, 13], ["root_domain", 41, 13], ["index", 42, 13]], [["rpc_bind_addr", 29, 11], ["rpc_public_addr", 30, 11], ["rpc_secret", 31, 11], ["s3_api", 33, 11], ["s3_web", 39, 11]], [["enable", 26, 9], ["package", 27, 17], ["settings", 28, 9]], [["garage", 25, 16]], [["systemPackages", 47, 19]], [["diskSize", 50, 22]], [["networking", 13, 7], ["services", 25, 7], ["environment", 47, 7], ["virtualisation", 50, 7]], [["mkNode", 60, 15], ["package", 60, 22]], [["args", 59, 13]], [["imports", 55, 5], ["_module", 59, 5]], [["mkNode", 70, 15], ["package", 70, 22]], [["args", 69, 13]], [["imports", 65, 5], ["_module", 69, 5]], [["basic", 54, 3], ["with-3node-replication", 64, 3]]]);
 const formals$1 = { args: { runTest: false, package: false }, ellipsis: false };
 const formals$2 = { args: { publicV6Address: true, extraSettings: true }, ellipsis: false };
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["address", 15, 11], ["prefixLength", 16, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["addresses", 13, 39]]);
-const pos$3 = nix.positions(here + "/default.nix", [["ipv6", 13, 34]]);
-const pos$4 = nix.positions(here + "/default.nix", [["eth1", 13, 29]]);
-const pos$5 = nix.positions(here + "/default.nix", [["allowedTCPPorts", 20, 27]]);
-const pos$6 = nix.positions(here + "/default.nix", [["interfaces", 13, 18], ["firewall", 20, 18]]);
-const pos$7 = nix.positions(here + "/default.nix", [["s3_region", 34, 13], ["api_bind_addr", 35, 13], ["root_domain", 36, 13]]);
-const pos$8 = nix.positions(here + "/default.nix", [["bind_addr", 40, 13], ["root_domain", 41, 13], ["index", 42, 13]]);
-const pos$9 = nix.positions(here + "/default.nix", [["rpc_bind_addr", 29, 11], ["rpc_public_addr", 30, 11], ["rpc_secret", 31, 11], ["s3_api", 33, 11], ["s3_web", 39, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["enable", 26, 9], ["package", 27, 17], ["settings", 28, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["garage", 25, 16]]);
-const pos$12 = nix.positions(here + "/default.nix", [["systemPackages", 47, 19]]);
-const pos$13 = nix.positions(here + "/default.nix", [["diskSize", 50, 22]]);
-const pos$14 = nix.positions(here + "/default.nix", [["networking", 13, 7], ["services", 25, 7], ["environment", 47, 7], ["virtualisation", 50, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["mkNode", 60, 15], ["package", 60, 22]]);
-const pos$16 = nix.positions(here + "/default.nix", [["args", 59, 13]]);
-const pos$17 = nix.positions(here + "/default.nix", [["imports", 55, 5], ["_module", 59, 5]]);
-const pos$18 = nix.positions(here + "/default.nix", [["mkNode", 70, 15], ["package", 70, 22]]);
-const pos$19 = nix.positions(here + "/default.nix", [["args", 69, 13]]);
-const pos$20 = nix.positions(here + "/default.nix", [["imports", 65, 5], ["_module", 69, 5]]);
-const pos$21 = nix.positions(here + "/default.nix", [["basic", 54, 3], ["with-3node-replication", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,42 +19,42 @@ export default nix.lambda((args) => (() => {
       const $_2 = nix.formals(args_2, formals$3);
       const pkgs = nix.arg($_2, "pkgs");
       return {
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               ipv6: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$1, address: publicV6Address, prefixLength: 64n })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[0], address: publicV6Address, prefixLength: 64n })),
                 ]),
               })),
             })),
           })),
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [3901n, 3902n]) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], allowedTCPPorts: nix.thunk(() => [3901n, 3902n]) })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           garage: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             enable: true,
             package: package$,
             settings: nix.thunk(() => nix.update({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               rpc_bind_addr: "[::]:3901",
               rpc_public_addr: nix.thunk(() => nix.str`[${publicV6Address}]:3901`),
               rpc_secret: "5c1915fa04d0b6739675c61bf5907eb0fe3d9c69850c83820f51b4d25d13868c",
               s3_api: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 s3_region: "garage",
                 api_bind_addr: "[::]:3900",
                 root_domain: ".s3.garage",
               })),
               s3_web: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 bind_addr: "[::]:3902",
                 root_domain: ".web.garage",
                 index: "index.html",
@@ -83,32 +63,32 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "minio-client"))]),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$13, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[12], diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
       };
     })(), formals$3);
   })(), formals$2);
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     basic: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         imports: nix.thunk(() => [nix.path(here, "./common.nix"), nix.path(here, "./basic.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$16,
-          args: nix.thunk(() => ({ [nix.POS]: pos$15, mkNode: mkNode, package: package$ })),
+          [nix.POS]: $pos[15],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[14], mkNode: mkNode, package: package$ })),
         })),
       })))),
     "with-3node-replication": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         imports: nix.thunk(() => [
           nix.path(here, "./common.nix"),
           nix.path(here, "./with-3node-replication.nix"),
         ]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$19,
-          args: nix.thunk(() => ({ [nix.POS]: pos$18, mkNode: mkNode, package: package$ })),
+          [nix.POS]: $pos[18],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[17], mkNode: mkNode, package: package$ })),
         })),
       })))),
   };

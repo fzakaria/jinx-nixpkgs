@@ -2,23 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["regex", 29, 5], ["version", 30, 5], ["srcHash", 31, 5], ["vendorHash", 32, 5], ["npmDepsHash", 33, 5], ["lockfileOverlay", 34, 5]], [["server", 62, 19], ["pname", 66, 13], ["version", 67, 13], ["src", 68, 13], ["goModules", 69, 13], ["npmDeps", 70, 13], ["webapp", 71, 13], ["meta", 72, 13], ["dontUnpack", 75, 11], ["installPhase", 78, 11], ["passthru", 87, 11]], [["passthru", 91, 60]], [["mattermost", 92, 58]], [["mattermostWithTests", 97, 17]], [["withoutTests", 95, 11], ["withTests", 96, 11], ["tests", 97, 11]], [["owner", 118, 5], ["repo", 119, 5], ["tag", 120, 5], ["hash", 121, 5], ["postFetch", 122, 5]], [["buildPhase", 158, 5]], [["src", 169, 13], ["sourceRoot", 170, 5], ["hash", 171, 5], ["makeCacheWritable", 172, 5], ["forceGitDeps", 173, 5]], [["extraArgs", 233, 7]], [["mattermost", 243, 11]], [["pname", 250, 7], ["version", 251, 15], ["src", 251, 23], ["sourceRoot", 253, 7], ["patches", 255, 7], ["postPatch", 261, 7], ["nodejs", 266, 15], ["npmDepsHash", 267, 7], ["makeCacheWritable", 268, 7], ["forceGitDeps", 269, 7], ["npmRebuildFlags", 271, 7], ["buildPhase", 273, 7], ["installPhase", 285, 7]], [["updateScript", 232, 5], ["tests", 243, 5], ["buildPlugin", 246, 5], ["webapp", 249, 5]], [["description", 297, 5], ["homepage", 298, 5], ["license", 299, 5], ["maintainers", 303, 5], ["platforms", 308, 5], ["mainProgram", 309, 5]], [["pname", 114, 3], ["version", 115, 26], ["src", 117, 3], ["patches", 149, 3], ["overrideModAttrs", 157, 3], ["npmDeps", 168, 3], ["vendorHash", 176, 26], ["modRoot", 178, 3], ["preBuild", 179, 3], ["subPackages", 183, 3], ["tags", 188, 3], ["ldflags", 190, 3], ["postInstall", 201, 3], ["doInstallCheck", 219, 3], ["installCheckPhase", 220, 3], ["passthru", 231, 3], ["meta", 296, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, stdenvNoCC: false, buildGoModule: false, fetchFromGitHub: false, buildNpmPackage: false, nodejs: false, "nix-update-script": false, "npm-lockfile-fix": false, fetchNpmDeps: false, jq: false, nixosTests: false, latestVersionInfo: true, removeUserLimit: true, removeFreeBadge: true, versionInfo: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["regex", 29, 5], ["version", 30, 5], ["srcHash", 31, 5], ["vendorHash", 32, 5], ["npmDepsHash", 33, 5], ["lockfileOverlay", 34, 5]]);
 const formals$2 = { args: { passthru: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/package.nix", [["server", 62, 19], ["pname", 66, 13], ["version", 67, 13], ["src", 68, 13], ["goModules", 69, 13], ["npmDeps", 70, 13], ["webapp", 71, 13], ["meta", 72, 13], ["dontUnpack", 75, 11], ["installPhase", 78, 11], ["passthru", 87, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["passthru", 91, 60]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mattermost", 92, 58]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mattermostWithTests", 97, 17]]);
-const pos$6 = nix.positions(here + "/package.nix", [["withoutTests", 95, 11], ["withTests", 96, 11], ["tests", 97, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 118, 5], ["repo", 119, 5], ["tag", 120, 5], ["hash", 121, 5], ["postFetch", 122, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["buildPhase", 158, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["src", 169, 13], ["sourceRoot", 170, 5], ["hash", 171, 5], ["makeCacheWritable", 172, 5], ["forceGitDeps", 173, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["extraArgs", 233, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["mattermost", 243, 11]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 250, 7], ["version", 251, 15], ["src", 251, 23], ["sourceRoot", 253, 7], ["patches", 255, 7], ["postPatch", 261, 7], ["nodejs", 266, 15], ["npmDepsHash", 267, 7], ["makeCacheWritable", 268, 7], ["forceGitDeps", 269, 7], ["npmRebuildFlags", 271, 7], ["buildPhase", 273, 7], ["installPhase", 285, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["updateScript", 232, 5], ["tests", 243, 5], ["buildPlugin", 246, 5], ["webapp", 249, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["description", 297, 5], ["homepage", 298, 5], ["license", 299, 5], ["maintainers", 303, 5], ["platforms", 308, 5], ["mainProgram", 309, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 114, 3], ["version", 115, 26], ["src", 117, 3], ["patches", 149, 3], ["overrideModAttrs", 157, 3], ["npmDeps", 168, 3], ["vendorHash", 176, 26], ["modRoot", 178, 3], ["preBuild", 179, 3], ["subPackages", 183, 3], ["tags", 188, 3], ["ldflags", 190, 3], ["postInstall", 201, 3], ["doInstallCheck", 219, 3], ["installCheckPhase", 220, 3], ["passthru", 231, 3], ["meta", 296, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const removeUserLimit = nix.argOr($, "removeUserLimit", () => false);
   const removeFreeBadge = nix.argOr($, "removeFreeBadge", () => false);
   const versionInfo = nix.argOr($, "versionInfo", () => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     regex: "^v(11\\.7\\.[0-9]+)$",
     version: "11.7.12",
     srcHash: "sha256-j8ZpLnQ74mDW8mqwO3yhaxkmMEhMPYEHCbKNuPPup3E=",
@@ -54,7 +40,7 @@ export default nix.lambda((args) => (() => {
     const args_2 = args_1;
     const passthru = nix.arg($_1, "passthru");
     const wrapMattermost = (server) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         server: server,
         pname: nix.thunk(() => nix.attr(server, "pname")),
         version: nix.thunk(() => nix.attr(server, "version")),
@@ -68,13 +54,13 @@ export default nix.lambda((args) => (() => {
         passthru: finalPassthru,
       })));
     const finalPassthru = nix.thunk(() => (() => {
-      const withoutTestsUnwrapped = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$3, passthru: finalPassthru }))));
-      const withTestsUnwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, mattermost: withoutTestsUnwrapped }))));
+      const withoutTestsUnwrapped = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => nix.update(args_2, { [nix.POS]: $pos[2], passthru: finalPassthru }))));
+      const withTestsUnwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], mattermost: withoutTestsUnwrapped }))));
       return nix.app(nix.sel(lib, "recursiveUpdate"), passthru, nix.thunk(() => (() => {
           const withoutTests = nix.thunk(() => nix.app(wrapMattermost, withoutTestsUnwrapped));
           const withTests = nix.thunk(() => nix.app(wrapMattermost, withTestsUnwrapped));
-          const tests = nix.thunk(() => ({ [nix.POS]: pos$5, mattermostWithTests: withTests }));
-          return { [nix.POS]: pos$6, withoutTests, withTests, tests };
+          const tests = nix.thunk(() => ({ [nix.POS]: $pos[4], mattermostWithTests: withTests }));
+          return { [nix.POS]: $pos[5], withoutTests, withTests, tests };
         })()));
     })());
     return nix.sel(finalPassthru, "withoutTests");
@@ -87,7 +73,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mattermost";
       const version = nix.thunk(() => nix.attr(versionInfo$, "version"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "mattermost",
           repo: "mattermost",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -117,11 +103,11 @@ mv package-lock.fixed.json package-lock.json
         }))));
       const patches = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), removeUserLimit, nix.thunk(() => [nix.path(here, "./mattermost-remove-user-limit.patch")])));
       const overrideModAttrs = (_) => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         buildPhase: "runHook preBuild\n\nmake setup-go-work\ngo work vendor -e -v\n\nrunHook postBuild\n",
       });
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           src: src,
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/webapp`),
           hash: nix.thunk(() => nix.sel(versionInfo$, "npmDepsHash")),
@@ -147,9 +133,9 @@ mv package-lock.fixed.json package-lock.json
       const doInstallCheck = true;
       const installCheckPhase = "runHook preInstallCheck\n\nfor subPackage in $subPackages; do\n  echo \"Checking version for: $subPackage\" >&2\n  \"$out/bin/$(basename -- \"$subPackage\")\" version | grep \"$version\"\ndone\n\nrunHook postInstallCheck\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             extraArgs: nix.thunk(() => nix.concat([
               "--use-github-releases",
               "--version-regex",
@@ -157,7 +143,7 @@ mv package-lock.fixed.json package-lock.json
             ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.selOr(versionInfo$, () => null, "autoUpdate"), null)), nix.thunk(() => ["--override-filename", nix.thunk(() => nix.sel(versionInfo$, "autoUpdate"))])))),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           mattermost: nix.thunk(() => nix.sel(nixosTests, "mattermost")),
         })),
         buildPlugin: nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-plugin.nix"), nix.thunk(() => ({})))),
@@ -176,7 +162,7 @@ mv package-lock.fixed.json package-lock.json
             const buildPhase = "runHook preBuild\n\nfor ws in platform/{types,client,shared,components} channels; do\n  if [ -d \"$ws\" ]; then\n    npm run build --workspace=\"$ws\"\n  fi\ndone\n\nrunHook postBuild\n";
             const installPhase = "runHook preInstall\n\nmkdir -p $out/client\ncp -a channels/dist/* $out/client\n\nrunHook postInstall\n";
             return {
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               pname: pname_1,
               version: version_1,
               src: src_1,
@@ -194,7 +180,7 @@ mv package-lock.fixed.json package-lock.json
           })()))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "Open source platform for secure collaboration across the entire software development lifecycle",
         homepage: "https://www.mattermost.org",
         license: nix.thunk(() => (() => {
@@ -216,7 +202,7 @@ mv package-lock.fixed.json package-lock.json
         mainProgram: "mattermost",
       }));
       return {
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         pname,
         version,
         src,

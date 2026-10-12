@@ -2,53 +2,39 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/davis.nix", [[["maintainers", 9, 8]], [["memorySize", 15, 9]], [["driver", 22, 11]], [["dsnFile", 25, 11], ["inviteFromAddress", 26, 11]], [["enable", 19, 9], ["hostname", 20, 9], ["database", 21, 9], ["mail", 24, 9], ["adminLogin", 28, 9], ["appSecretFile", 29, 9], ["adminPasswordFile", 30, 9]], [["davis", 18, 16]], [["virtualisation", 14, 7], ["services", 18, 7]], [["memorySize", 37, 9]], [["systemPackages", 39, 19]], [["driver", 46, 11]], [["enable", 43, 9], ["hostname", 44, 9], ["database", 45, 9], ["adminLogin", 48, 9], ["appSecretFile", 49, 9], ["adminPasswordFile", 50, 9], ["nginx", 51, 9]], [["davis", 42, 16]], [["virtualisation", 36, 7], ["environment", 39, 7], ["services", 42, 7]], [["machine1", 11, 9], ["machine2", 33, 9]], [["name", 7, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 55, 3]]]);
 const formals$1 = { args: { pkgs: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/davis.nix", [["maintainers", 9, 8]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/davis.nix", [["memorySize", 15, 9]]);
-const pos$3 = nix.positions(here + "/davis.nix", [["driver", 22, 11]]);
-const pos$4 = nix.positions(here + "/davis.nix", [["dsnFile", 25, 11], ["inviteFromAddress", 26, 11]]);
-const pos$5 = nix.positions(here + "/davis.nix", [["enable", 19, 9], ["hostname", 20, 9], ["database", 21, 9], ["mail", 24, 9], ["adminLogin", 28, 9], ["appSecretFile", 29, 9], ["adminPasswordFile", 30, 9]]);
-const pos$6 = nix.positions(here + "/davis.nix", [["davis", 18, 16]]);
-const pos$7 = nix.positions(here + "/davis.nix", [["virtualisation", 14, 7], ["services", 18, 7]]);
 const formals$3 = { args: { nodes: false, config: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/davis.nix", [["memorySize", 37, 9]]);
-const pos$9 = nix.positions(here + "/davis.nix", [["systemPackages", 39, 19]]);
-const pos$10 = nix.positions(here + "/davis.nix", [["driver", 46, 11]]);
-const pos$11 = nix.positions(here + "/davis.nix", [["enable", 43, 9], ["hostname", 44, 9], ["database", 45, 9], ["adminLogin", 48, 9], ["appSecretFile", 49, 9], ["adminPasswordFile", 50, 9], ["nginx", 51, 9]]);
-const pos$12 = nix.positions(here + "/davis.nix", [["davis", 42, 16]]);
-const pos$13 = nix.positions(here + "/davis.nix", [["virtualisation", 36, 7], ["environment", 39, 7], ["services", 42, 7]]);
-const pos$14 = nix.positions(here + "/davis.nix", [["machine1", 11, 9], ["machine2", 33, 9]]);
-const pos$15 = nix.positions(here + "/davis.nix", [["name", 7, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const config = nix.arg($, "config");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "davis",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(pkgs, "davis", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine1: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config_1 = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$7,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 512n })),
+          [nix.POS]: $pos[6],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 512n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             davis: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               hostname: "davis.example.com",
-              database: nix.thunk(() => ({ [nix.POS]: pos$3, driver: "postgresql" })),
+              database: nix.thunk(() => ({ [nix.POS]: $pos[2], driver: "postgresql" })),
               mail: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 dsnFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "davisMailDns", "smtp://username:password@example.com:25")}`),
                 inviteFromAddress: "dav@example.com",
               })),
@@ -64,19 +50,19 @@ export default nix.lambda((args) => (() => {
         const nodes = nix.arg($_1, "nodes");
         const config_1 = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$13,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, memorySize: 512n })),
+          [nix.POS]: $pos[12],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[7], memorySize: 512n })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "fcgi"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             davis: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               hostname: "davis.example.com",
-              database: nix.thunk(() => ({ [nix.POS]: pos$10, driver: "postgresql" })),
+              database: nix.thunk(() => ({ [nix.POS]: $pos[9], driver: "postgresql" })),
               adminLogin: "admin",
               appSecretFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "davisAppSecret", "52882ef142066e09ab99ce816ba72522e789505caba224")}`),
               adminPasswordFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "davisAdminPass", "nixos")}`),

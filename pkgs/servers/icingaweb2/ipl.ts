@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ipl.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["icingaweb2", 24, 43]], [["tests", 24, 12]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["maintainers", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 19, 3], ["passthru", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ipl.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/ipl.nix", [["icingaweb2", 24, 43]]);
-const pos$3 = nix.positions(here + "/ipl.nix", [["tests", 24, 12]]);
-const pos$4 = nix.positions(here + "/ipl.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["maintainers", 31, 5]]);
-const pos$5 = nix.positions(here + "/ipl.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 19, 3], ["passthru", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "icingaweb2-ipl";
       const version = "0.17.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Icinga",
           repo: "icinga-php-library",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,14 +23,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "mkdir -p \"$out\"\ncp -r * \"$out\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           icingaweb2: nix.thunk(() => nix.attr(nixosTests, "icingaweb2")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "PHP library package for Icingaweb 2",
         homepage: "https://github.com/Icinga/icinga-php-library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "helsinki-Jo"))];
         })()),
       }));
-      return { [nix.POS]: pos$5, pname, version, src, installPhase, passthru, meta };
+      return { [nix.POS]: $pos[4], pname, version, src, installPhase, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=ipl.ts.map

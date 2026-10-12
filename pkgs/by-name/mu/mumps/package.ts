@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withPtScotch", 23, 39]], [["url", 60, 5], ["hash", 61, 5]], [["withParmetis", 146, 13], ["withPtScotch", 146, 26], ["mpiSupport", 146, 39]], [["description", 150, 5], ["homepage", 151, 5], ["changelog", 152, 5], ["license", 153, 5], ["maintainers", 154, 5], ["platforms", 158, 5]], [["pname", 51, 3], ["version", 52, 3], ["__structuredAttrs", 55, 3], ["strictDeps", 57, 3], ["src", 59, 3], ["postPatch", 64, 3], ["configurePhase", 70, 3], ["enableParallelBuilding", 74, 3], ["makeFlags", 76, 3], ["installPhase", 93, 3], ["nativeBuildInputs", 105, 3], ["buildInputs", 111, 3], ["doInstallCheck", 120, 3], ["nativeInstallCheckInputs", 122, 3], ["installCheckPhase", 124, 3], ["passthru", 145, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, mpi: false, gfortran: false, fixDarwinDylibNames: false, blas: false, lapack: false, scalapack: false, scotch: false, metis: false, parmetis: false, mpiCheckPhaseHook: false, static: true, mpiSupport: true, withParmetis: true, withPtScotch: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withPtScotch", 23, 39]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 60, 5], ["hash", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withParmetis", 146, 13], ["withPtScotch", 146, 26], ["mpiSupport", 146, 39]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 150, 5], ["homepage", 151, 5], ["changelog", 152, 5], ["license", 153, 5], ["maintainers", 154, 5], ["platforms", 158, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["__structuredAttrs", 55, 3], ["strictDeps", 57, 3], ["src", 59, 3], ["postPatch", 64, 3], ["configurePhase", 70, 3], ["enableParallelBuilding", 74, 3], ["makeFlags", 76, 3], ["installPhase", 93, 3], ["nativeBuildInputs", 105, 3], ["buildInputs", 111, 3], ["doInstallCheck", 120, 3], ["nativeInstallCheckInputs", 122, 3], ["installCheckPhase", 124, 3], ["passthru", 145, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,19 +26,19 @@ export default nix.lambda((args) => (() => {
   const withPtScotch = nix.argOr($, "withPtScotch", () => nix.force(mpiSupport));
   nix.assert_((!nix.asBool(withParmetis) || nix.asBool(mpiSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mu/mumps/package.nix:20:1");
   nix.assert_((!nix.asBool(withPtScotch) || nix.asBool(mpiSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mu/mumps/package.nix:21:1");
-  const scotch$ = nix.thunk(() => nix.app(nix.sel(scotch, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withPtScotch: withPtScotch }))));
+  const scotch$ = nix.thunk(() => nix.app(nix.sel(scotch, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withPtScotch: withPtScotch }))));
   const profile = nix.thunk(() => (nix.asBool(mpiSupport) ? "debian.PAR" : "debian.SEQ"));
   const LMETIS = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-lmetis"], nix.app(nix.sel(lib, "optional"), withParmetis, "-lparmetis")))));
   const LSCOTCH = nix.thunk(() => nix.builtins.toString(nix.thunk(() => (nix.asBool(withPtScotch) ? ["-lptscotch", "-lptesmumps", "-lptscotcherr"] : ["-lesmumps", "-lscotch", "-lscotcherr"]))));
   const ORDERINGSF = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Dmetis", "-Dpord", "-Dscotch"], nix.concat(nix.app(nix.sel(lib, "optional"), withParmetis, "-Dparmetis"), nix.app(nix.sel(lib, "optional"), withPtScotch, "-Dptscotch"))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mumps",
       version: "5.9.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://mumps-solver.org/MUMPS_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-DHuOlExYaksyW9UU23ddz8Jbit7nIkMRaHsBmBE+Py8=",
         })))),
@@ -86,13 +82,13 @@ $MPIRUN ./c_example_save_restore
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         withParmetis: withParmetis,
         withPtScotch: withPtScotch,
         mpiSupport: mpiSupport,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "MUltifrontal Massively Parallel sparse direct Solver",
         homepage: "https://mumps-solver.org/",
         changelog: "https://mumps-solver.org/index.php?page=dwnld#cl",

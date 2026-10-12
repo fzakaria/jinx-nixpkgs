@@ -2,41 +2,33 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ibus.nix", [[["enable", 9, 7], ["type", 10, 7]], [["supportedLocales", 7, 10], ["inputMethod", 8, 10]], [["ExecStart", 13, 21]], [["serviceConfig", 13, 7], ["wantedBy", 14, 7], ["partOf", 15, 7]], [["ibus-daemon", 12, 27]], [["services", 12, 18]], [["user", 12, 13]], [["i18n", 7, 5], ["systemd", 12, 5]], [["tested", 4, 3], ["testConfig", 6, 3], ["withX11", 19, 3]]]);
 const formals$1 = { args: { pkgs: false, makeInstalledTest: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ibus.nix", [["enable", 9, 7], ["type", 10, 7]]);
-const pos$2 = nix.positions(here + "/ibus.nix", [["supportedLocales", 7, 10], ["inputMethod", 8, 10]]);
-const pos$3 = nix.positions(here + "/ibus.nix", [["ExecStart", 13, 21]]);
-const pos$4 = nix.positions(here + "/ibus.nix", [["serviceConfig", 13, 7], ["wantedBy", 14, 7], ["partOf", 15, 7]]);
-const pos$5 = nix.positions(here + "/ibus.nix", [["ibus-daemon", 12, 27]]);
-const pos$6 = nix.positions(here + "/ibus.nix", [["services", 12, 18]]);
-const pos$7 = nix.positions(here + "/ibus.nix", [["user", 12, 13]]);
-const pos$8 = nix.positions(here + "/ibus.nix", [["i18n", 7, 5], ["systemd", 12, 5]]);
-const pos$9 = nix.positions(here + "/ibus.nix", [["tested", 4, 3], ["testConfig", 6, 3], ["withX11", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
   return nix.app(makeInstalledTest, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       tested: nix.thunk(() => nix.sel(pkgs, "ibus")),
       testConfig: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         i18n: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           supportedLocales: nix.thunk(() => ["all"]),
-          inputMethod: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, type: "ibus" })),
+          inputMethod: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true, type: "ibus" })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           user: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               "ibus-daemon": nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "ibus")}/bin/ibus-daemon --xim --verbose`),
                 })),
                 wantedBy: nix.thunk(() => ["graphical-session.target"]),

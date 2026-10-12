@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 33, 5], ["homepage", 34, 5], ["mainProgram", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["version", 9, 3], ["pname", 10, 3], ["buildInputs", 12, 3], ["src", 16, 3], ["preBuild", 23, 3], ["installPhase", 25, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, linuxHeaders: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["mainProgram", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 9, 3], ["pname", 10, 3], ["buildInputs", 12, 3], ["src", 16, 3], ["preBuild", 23, 3], ["installPhase", 25, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const linuxHeaders = nix.arg($, "linuxHeaders");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.4",
       pname: "gfxtablet-uinput-driver",
       buildInputs: nix.thunk(() => [linuxHeaders]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rfc2822",
           repo: "GfxTablet",
           rev: nix.thunk(() => nix.str`android-app-${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "cd driver-uinput",
       installPhase: "mkdir -p \"$out/bin\"\ncp networktablet \"$out/bin\"\nmkdir -p \"$out/share/doc/gfxtablet/\"\ncp ../*.md \"$out/share/doc/gfxtablet/\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Uinput driver for Android GfxTablet tablet-as-input-device app",
         homepage: "https://github.com/rfc2822/GfxTablet",
         mainProgram: "networktablet",

@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 4, 3], ["srcHash", 5, 3], ["cargoHash", 6, 3], ["updateScript", 7, 3]]]);
 const formals$1 = { args: { "radicle-node": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 4, 3], ["srcHash", 5, 3], ["cargoHash", 6, 3], ["updateScript", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const radicle_node = nix.arg($, "radicle-node");
   return nix.app(nix.sel(radicle_node, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "1.10.3",
       srcHash: "sha256-xbVu+s4TQMc6fA8iUNq01y5lDxfC76Pwe6Z2rqA6C5Q=",
       cargoHash: "sha256-zQ6XnDJt3pek0WzC0J8PY111LGuzZeSCZ1QxwYAhPWw=",

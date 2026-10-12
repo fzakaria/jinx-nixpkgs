@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["CXXFLAGS", 30, 5]], [["levenshtein", 46, 33]], [["tests", 42, 5]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["cmakeFlags", 25, 3], ["env", 29, 3], ["nativeCheckInputs", 37, 3], ["passthru", 41, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, catch2_3: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["levenshtein", 46, 33]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["cmakeFlags", 25, 3], ["env", 29, 3], ["nativeCheckInputs", 37, 3], ["passthru", 41, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const catch2_3 = nix.arg($, "catch2_3");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rapidfuzz-cpp",
       version: "3.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rapidfuzz",
           repo: "rapidfuzz-cpp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,19 +27,19 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), nix.thunk(() => ["-DRAPIDFUZZ_BUILD_TESTING=ON"]))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-include", "algorithm"]))),
         })))),
       nativeCheckInputs: nix.thunk(() => [catch2_3]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           levenshtein: nix.thunk(() => nix.attr(python3Packages, "levenshtein")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Rapid fuzzy string matching in C++ using the Levenshtein Distance",
         homepage: "https://github.com/rapidfuzz/rapidfuzz-cpp",
         changelog: nix.thunk(() => nix.str`https://github.com/rapidfuzz/rapidfuzz-cpp/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

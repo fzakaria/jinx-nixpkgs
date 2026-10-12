@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]], [["providedSessions", 104, 12]], [["description", 107, 5], ["longDescription", 108, 5], ["homepage", 113, 5], ["license", 114, 5], ["platforms", 115, 5], ["teams", 116, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["dontDropIconThemeCache", 58, 3], ["patches", 60, 3], ["prePatch", 64, 3], ["postPatch", 70, 3], ["postInstall", 92, 3], ["qmakeFlags", 98, 3], ["passthru", 104, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, fetchFromGitHub: false, fluxbox: false, "hicolor-icon-theme": false, libarchive: false, numlockx: false, qmake: false, qtbase: false, qtmultimedia: false, qtsvg: false, qttools: false, qtx11extras: false, "libxcb-wm": false, "libxcb-image": false, libxdamage: false, libxcursor: false, libxcb: false, xscreensaver: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["providedSessions", 104, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 107, 5], ["longDescription", 108, 5], ["homepage", 113, 5], ["license", 114, 5], ["platforms", 115, 5], ["teams", 116, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["dontDropIconThemeCache", 58, 3], ["patches", 60, 3], ["prePatch", 64, 3], ["postPatch", 70, 3], ["postInstall", 92, 3], ["qmakeFlags", 98, 3], ["passthru", 104, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lumina";
       const version = "1.6.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lumina-desktop",
           repo: "lumina",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -86,9 +83,9 @@ substituteInPlace src-qt5/desktop-utils/lumina-sudo/lumina-sudo.pro \\
         "CONFIG+=WITH_I18N",
         nix.thunk(() => nix.str`LRELEASE=${nix.app(nix.sel(lib, "getDev"), qttools)}/bin/lrelease`),
       ]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, providedSessions: nix.thunk(() => ["Lumina-DE"]) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], providedSessions: nix.thunk(() => ["Lumina-DE"]) }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight, portable desktop environment",
         longDescription: "The Lumina Desktop Environment is a lightweight system interface\nthat is designed for use on any Unix-like operating system. It\nis based on QT5.\n",
         homepage: "https://lumina-desktop.org",
@@ -97,7 +94,7 @@ substituteInPlace src-qt5/desktop-utils/lumina-sudo/lumina-sudo.pro \\
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lumina"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

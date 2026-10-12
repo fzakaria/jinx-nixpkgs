@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["homepage", 42, 5], ["changelog", 43, 5], ["description", 44, 5], ["maintainers", 45, 5], ["license", 46, 5], ["platforms", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 20, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["cmakeFlags", 34, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, eigen: false, fftw: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["changelog", 43, 5], ["description", 44, 5], ["maintainers", 45, 5], ["license", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 20, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["cmakeFlags", 34, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const eigen = nix.arg($, "eigen");
   const fftw = nix.arg($, "fftw");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libsakura",
       version: "5.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tnakazato",
           repo: "sakura",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_TEST", false)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://tnakazato.github.io/sakura/",
         changelog: nix.thunk(() => nix.str`https://github.com/tnakazato/sakura/releases/tag/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
         description: "Thread-safe library for signal processing in radio astronomy",

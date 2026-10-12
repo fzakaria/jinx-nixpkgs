@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/4.nix", [[["name", 19, 7], ["url", 20, 7], ["hash", 21, 7], ["stripLen", 22, 7]], [["homepage", 48, 5], ["license", 49, 5], ["description", 50, 5], ["maintainers", 51, 5]], [["format", 11, 3], ["pname", 12, 3], ["version", 13, 24], ["src", 13, 32], ["sourceRoot", 15, 3], ["patches", 16, 3], ["postPatch", 26, 3], ["setupPyBuildFlags", 34, 3], ["propagatedBuildInputs", 39, 3], ["checkPhase", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, capstone_4: false, stdenv: false, setuptools: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/4.nix", [["name", 19, 7], ["url", 20, 7], ["hash", 21, 7], ["stripLen", 22, 7]]);
-const pos$2 = nix.positions(here + "/4.nix", [["homepage", 48, 5], ["license", 49, 5], ["description", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/4.nix", [["format", 11, 3], ["pname", 12, 3], ["version", 13, 24], ["src", 13, 32], ["sourceRoot", 15, 3], ["patches", 16, 3], ["postPatch", 26, 3], ["setupPyBuildFlags", 34, 3], ["propagatedBuildInputs", 39, 3], ["checkPhase", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       format: "setuptools",
       pname: "capstone",
       version: nix.thunk(() => nix.attr(capstone_4, "version")),
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(capstone_4, "src", "name")}/bindings/python`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "drop-distutils-in-python-binding.patch",
             url: "https://github.com/capstone-engine/capstone/commit/d63211e3acb64fceb8b1c4a0d804b4b027f4ef71.patch",
             hash: "sha256-zUGeFmm3xH5dzfPJE8nnHwqwFBrsZ7w8LBJAy20/3RI=",
@@ -39,7 +37,7 @@ substituteInPlace setup.py --replace manylinux1 manylinux2014
       propagatedBuildInputs: nix.thunk(() => [setuptools]),
       checkPhase: "mv capstone capstone.hidden\npatchShebangs test_*\nmake check\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.capstone-engine.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),
         description: "Python bindings for Capstone disassembly engine",

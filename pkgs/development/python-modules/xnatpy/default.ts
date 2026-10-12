@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 24, 5], ["version", 25, 13], ["hash", 26, 5]], [["homepage", 58, 5], ["description", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["pythonRelaxDeps", 46, 3], ["doCheck", 53, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, versioningit: false, click: false, "click-option-group": false, "importlib-metadata": false, isodate: false, progressbar2: false, pydicom: false, "python-dateutil": false, pyyaml: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 24, 5], ["version", 25, 13], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 58, 5], ["description", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["pythonRelaxDeps", 46, 3], ["doCheck", 53, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "xnat",
           version: version,
           hash: "sha256-2hU+fUu058G+z/ecncQJd1D1b3e+9KpbnCxEb+VPWa0=",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["xnat"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://xnat.readthedocs.io",
         description: "New XNAT client (distinct from pyxnat) that exposes XNAT objects/functions as Python objects/functions",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/radiology/infrastructure/xnatpy/-/blob/${version}/CHANGELOG?ref_type=tags`),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "xnat",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

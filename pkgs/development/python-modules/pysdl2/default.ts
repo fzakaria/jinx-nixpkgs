@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["SDL2_ttf", 41, 13], ["SDL2_image", 42, 13], ["SDL2_gfx", 43, 13], ["SDL2_mixer", 44, 13]], [["SDL2", 52, 9]], [["SDL_VIDEODRIVER", 68, 5], ["SDL_AUDIODRIVER", 69, 5], ["SDL_RENDER_DRIVER", 70, 5], ["PYTHONFAULTHANDLER", 71, 5]], [["changelog", 95, 5], ["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["build-system", 57, 3], ["buildInputs", 59, 3], ["env", 67, 3], ["pythonImportsCheck", 74, 3], ["nativeCheckInputs", 76, 3], ["disabledTests", 82, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, replaceVars: false, fetchFromGitHub: false, buildPythonPackage: false, setuptools: false, SDL2: false, SDL2_ttf: false, SDL2_image: false, SDL2_gfx: false, SDL2_mixer: false, numpy: false, pillow: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["SDL2_ttf", 41, 13], ["SDL2_image", 42, 13], ["SDL2_gfx", 43, 13], ["SDL2_mixer", 44, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["SDL2", 52, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["SDL_VIDEODRIVER", 68, 5], ["SDL_AUDIODRIVER", 69, 5], ["SDL_RENDER_DRIVER", 70, 5], ["PYTHONFAULTHANDLER", 71, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 95, 5], ["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["build-system", 57, 3], ["buildInputs", 59, 3], ["env", 67, 3], ["pythonImportsCheck", 74, 3], ["nativeCheckInputs", 76, 3], ["disabledTests", 82, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pillow = nix.arg($, "pillow");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pysdl2",
       version: "0.9.17-unstable-2025-11-18",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "py-sdl",
           repo: "py-sdl2",
           rev: "3d0672135fab3ca58e2f00c0a76b7b25cb818784",
@@ -41,20 +36,20 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./PySDL2-dll.patch"), nix.thunk(() => nix.update(nix.builtins.mapAttrs((_) => (pkg) => nix.str`${pkg}/lib/lib${nix.sel(pkg, "pname")}${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               SDL2_ttf: SDL2_ttf,
               SDL2_image: SDL2_image,
               SDL2_gfx: SDL2_gfx,
               SDL2_mixer: SDL2_mixer,
             }))), {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             SDL2: nix.thunk(() => nix.app((pkg) => nix.str`${pkg}/lib/libSDL2${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`, SDL2)),
           })))),
       ]),
       "build-system": nix.thunk(() => [setuptools]),
       buildInputs: nix.thunk(() => [SDL2, SDL2_ttf, SDL2_image, SDL2_gfx, SDL2_mixer]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         SDL_VIDEODRIVER: "dummy",
         SDL_AUDIODRIVER: "dummy",
         SDL_RENDER_DRIVER: "software",
@@ -68,7 +63,7 @@ export default nix.lambda((args) => (() => {
         "test_SDL_GetSetWindowMouseRect",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/py-sdl/py-sdl2/compare/0.9.17..${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Wrapper around the SDL2 library and as such similar to the discontinued PySDL project",
         homepage: "https://github.com/py-sdl/py-sdl2",

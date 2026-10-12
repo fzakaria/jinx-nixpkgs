@@ -2,28 +2,22 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zram-generator.nix", [[["emptyDiskImages", 9, 11]], [["enable", 12, 11], ["priority", 13, 11], ["algorithm", 14, 11], ["swapDevices", 15, 11], ["memoryPercent", 16, 11], ["memoryMax", 17, 11], ["writebackDevice", 18, 11]], [["virtualisation", 8, 9], ["zramSwap", 11, 9]], [["enable", 25, 11], ["priority", 26, 11], ["algorithm", 27, 11], ["swapDevices", 28, 11], ["memoryPercent", 29, 11], ["memoryMax", 30, 11]], [["zramSwap", 24, 9]], [["single", 5, 5], ["machine", 21, 5]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 35, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/zram-generator.nix", [["emptyDiskImages", 9, 11]]);
-const pos$2 = nix.positions(here + "/zram-generator.nix", [["enable", 12, 11], ["priority", 13, 11], ["algorithm", 14, 11], ["swapDevices", 15, 11], ["memoryPercent", 16, 11], ["memoryMax", 17, 11], ["writebackDevice", 18, 11]]);
-const pos$3 = nix.positions(here + "/zram-generator.nix", [["virtualisation", 8, 9], ["zramSwap", 11, 9]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$4 = nix.positions(here + "/zram-generator.nix", [["enable", 25, 11], ["priority", 26, 11], ["algorithm", 27, 11], ["swapDevices", 28, 11], ["memoryPercent", 29, 11], ["memoryMax", 30, 11]]);
-const pos$5 = nix.positions(here + "/zram-generator.nix", [["zramSwap", 24, 9]]);
-const pos$6 = nix.positions(here + "/zram-generator.nix", [["single", 5, 5], ["machine", 21, 5]]);
-const pos$7 = nix.positions(here + "/zram-generator.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 35, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$7,
+  [nix.POS]: $pos[6],
   name: "zram-generator",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     single: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       return {
-        [nix.POS]: pos$3,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, emptyDiskImages: nix.thunk(() => [512n]) })),
+        [nix.POS]: $pos[2],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], emptyDiskImages: nix.thunk(() => [512n]) })),
         zramSwap: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           enable: true,
           priority: 10n,
           algorithm: "lz4",
@@ -37,9 +31,9 @@ export default nix.thunk(() => ({
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$2);
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         zramSwap: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           enable: true,
           priority: 10n,
           algorithm: "lz4",

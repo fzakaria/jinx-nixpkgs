@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["url", 30, 7], ["hash", 31, 7]], [["extraArgs", 73, 47]], [["updateScript", 73, 12]], [["homepage", 83, 5], ["license", 84, 5], ["description", 85, 5], ["mainProgram", 86, 5], ["platforms", 87, 5], ["maintainers", 88, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["build-system", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 48, 3], ["postPatch", 55, 3], ["postInstall", 62, 3], ["passthru", 73, 3], ["doCheck", 76, 3], ["pythonImportsCheck", 78, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, "gobject-introspection": false, gtk3: false, libappindicator: false, libpulseaudio: false, librsvg: false, wrapGAppsHook3: false, "nix-update-script": false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 73, 47]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 73, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["license", 84, 5], ["description", 85, 5], ["mainProgram", 86, 5], ["platforms", 87, 5], ["maintainers", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["build-system", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 48, 3], ["postPatch", 55, 3], ["postInstall", 62, 3], ["passthru", 73, 3], ["doCheck", 76, 3], ["pythonImportsCheck", 78, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "hushboard",
       version: "0-unstable-2024-04-28",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stuartlangridge",
           repo: "hushboard",
           rev: "13f5e62add99355f90798006742f62397be8be0c",
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/stuartlangridge/hushboard/commit/b17b58cd00eb9af8184f8dcb010bbae7f9bc470c.patch",
             hash: "sha256-C03hq2ttXY8DJzrarQvFIzo29d+owZVIHZRA28fq7Z8=",
           })))),
@@ -72,13 +67,13 @@ cp hushboard/icons/hushboard.svg $out/share/icons/hicolor/scalable/apps
 cp hushboard-512.png $out/share/icons/hicolor/512x512/apps/hushboard.png
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["hushboard"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://kryogenix.org/code/hushboard/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Mute your microphone while typing",

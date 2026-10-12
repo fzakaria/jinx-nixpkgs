@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["url", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["name", 49, 7], ["desktopName", 50, 7], ["exec", 51, 7], ["comment", 52, 7], ["icon", 53, 7], ["categories", 54, 7]], [["description", 69, 5], ["mainProgram", 70, 5], ["longDescription", 71, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["cmakeFlags", 43, 3], ["desktopItems", 47, 3], ["postInstall", 58, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchgit: false, cmake: false, SDL: false, makeDesktopItem: false, copyDesktopItems: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 49, 7], ["desktopName", 50, 7], ["exec", 51, 7], ["comment", 52, 7], ["icon", 53, 7], ["categories", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["mainProgram", 70, 5], ["longDescription", 71, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["cmakeFlags", 43, 3], ["desktopItems", 47, 3], ["postInstall", 58, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const imagemagick = nix.arg($, "imagemagick");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://baller.tuxfamily.org/king.png",
       hash: "sha256-HoL02xd4XkiegF/CueBDV4ppbR+6iUPllRwRow+CAvc=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ballerburg",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://framagit.org/baller/ballerburg.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4rO7ixLE+EV6zd0EryHU6QZeVoa6N4fvxwoJWa0aO70=",
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-DCMAKE_FIND_FRAMEWORK=LAST"]))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "Ballerburg",
             desktopName: "Ballerburg SDL",
             exec: "_NET_WM_ICON=ballerburg ballerburg",
@@ -58,7 +54,7 @@ for size in 16 32 48 64 72 96 128 192 512 1024; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Classic cannon combat game",
         mainProgram: "ballerburg",
         longDescription: "Two castles, separated by a mountain, try to defeat each other with their cannonballs,\neither by killing the opponent's king or by weakening the opponent enough so that the king capitulates.",

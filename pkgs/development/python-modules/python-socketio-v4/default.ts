@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]], [["client", 32, 5], ["asyncio_client", 36, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["longDescription", 51, 5], ["maintainers", 52, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["optional-dependencies", 31, 3], ["pythonImportsCheck", 42, 3], ["doCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { aiohttp: false, buildPythonPackage: false, fetchPypi: false, lib: false, "python-engineio-v3": false, requests: false, setuptools: false, six: false, "websocket-client": false, websockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["client", 32, 5], ["asyncio_client", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["longDescription", 51, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["optional-dependencies", 31, 3], ["pythonImportsCheck", 42, 3], ["doCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.6.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-3VzLPYT4p4Uh2U4DMpxu6kq1NPZXlOqWOljLOe0bM40=",
@@ -33,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [python_engineio_v3, six]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         client: nix.thunk(() => [requests, websocket_client]),
         asyncio_client: nix.thunk(() => [aiohttp, websockets]),
       }));
       const pythonImportsCheck = nix.thunk(() => ["socketio_v4"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Socket.IO server",
         homepage: "https://github.com/bdraco/python-socketio-v4",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

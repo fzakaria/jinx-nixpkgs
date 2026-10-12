@@ -2,29 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["excludeBrokenTreeSitterJson", 14, 9]], [["excludeBrokenTreeSitterJson", 17, 9]], [["dontPatch", 20, 9]], [["excludeBrokenTreeSitterJson", 23, 9]], [["excludeBrokenTreeSitterJson", 26, 9]], [["dontCheckForBrokenSymlinks", 29, 9]], [["generate", 32, 9]], [["excludeBrokenTreeSitterJson", 35, 9]], [["excludeBrokenTreeSitterJson", 38, 9]], [["excludeBrokenTreeSitterJson", 41, 9]], [["excludeBrokenTreeSitterJson", 44, 9]], [["excludeBrokenTreeSitterJson", 47, 9]], [["tree-sitter-agda", 13, 7], ["tree-sitter-beancount", 16, 7], ["tree-sitter-git-rebase", 19, 7], ["tree-sitter-glimmer", 22, 7], ["tree-sitter-janet-simple", 25, 7], ["tree-sitter-qmljs", 28, 7], ["tree-sitter-sql", 31, 7], ["tree-sitter-strace", 34, 7], ["tree-sitter-tact", 37, 7], ["tree-sitter-vue", 40, 7], ["tree-sitter-wit", 43, 7], ["tree-sitter-yuck", 46, 7]], [["location", 61, 9]], [["version", 64, 11], ["src", 65, 11]], [["NIX_CFLAGS_COMPILE", 76, 9]], [["env", 75, 7]], [["postPatch", 83, 7]], [["tree-sitter-haskell", 70, 5], ["tree-sitter-perl", 79, 5]], [["updateSh", 140, 5], ["updateScript", 141, 5], ["runtime", 145, 5], ["tree-sitter-grammars", 146, 5]], [["description", 151, 7], ["homepage", 152, 7], ["changelog", 153, 7], ["license", 154, 7], ["mainProgram", 155, 7], ["maintainers", 156, 7]], [["pname", 129, 3], ["version", 130, 29], ["paths", 132, 3], ["nativeBuildInputs", 133, 3], ["postBuild", 135, 3], ["passthru", 139, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, runCommand: false, makeBinaryWrapper: false, "helix-unwrapped": false, removeReferencesTo: false, pkgs: false, "tree-sitter-grammars": false, lockedGrammars: true, grammarsOverlay: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["excludeBrokenTreeSitterJson", 14, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["excludeBrokenTreeSitterJson", 17, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["dontPatch", 20, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["excludeBrokenTreeSitterJson", 23, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["excludeBrokenTreeSitterJson", 26, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["dontCheckForBrokenSymlinks", 29, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["generate", 32, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["excludeBrokenTreeSitterJson", 35, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["excludeBrokenTreeSitterJson", 38, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["excludeBrokenTreeSitterJson", 41, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["excludeBrokenTreeSitterJson", 44, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["excludeBrokenTreeSitterJson", 47, 9]]);
-const pos$13 = nix.positions(here + "/package.nix", [["tree-sitter-agda", 13, 7], ["tree-sitter-beancount", 16, 7], ["tree-sitter-git-rebase", 19, 7], ["tree-sitter-glimmer", 22, 7], ["tree-sitter-janet-simple", 25, 7], ["tree-sitter-qmljs", 28, 7], ["tree-sitter-sql", 31, 7], ["tree-sitter-strace", 34, 7], ["tree-sitter-tact", 37, 7], ["tree-sitter-vue", 40, 7], ["tree-sitter-wit", 43, 7], ["tree-sitter-yuck", 46, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["location", 61, 9]]);
-const pos$15 = nix.positions(here + "/package.nix", [["version", 64, 11], ["src", 65, 11]]);
-const pos$16 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 76, 9]]);
-const pos$17 = nix.positions(here + "/package.nix", [["env", 75, 7]]);
-const pos$18 = nix.positions(here + "/package.nix", [["postPatch", 83, 7]]);
-const pos$19 = nix.positions(here + "/package.nix", [["tree-sitter-haskell", 70, 5], ["tree-sitter-perl", 79, 5]]);
-const pos$20 = nix.positions(here + "/package.nix", [["updateSh", 140, 5], ["updateScript", 141, 5], ["runtime", 145, 5], ["tree-sitter-grammars", 146, 5]]);
-const pos$21 = nix.positions(here + "/package.nix", [["description", 151, 7], ["homepage", 152, 7], ["changelog", 153, 7], ["license", 154, 7], ["mainProgram", 155, 7], ["maintainers", 156, 7]]);
-const pos$22 = nix.positions(here + "/package.nix", [["pname", 129, 3], ["version", 130, 29], ["paths", 132, 3], ["nativeBuildInputs", 133, 3], ["postBuild", 135, 3], ["passthru", 139, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,42 +17,42 @@ export default nix.lambda((args) => (() => {
   const tree_sitter_grammars = nix.arg($, "tree-sitter-grammars");
   const lockedGrammars = nix.argOr($, "lockedGrammars", () => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./grammars.json")));
   const grammarsOverlay = nix.argOr($, "grammarsOverlay", () => (final) => (prev) => ({
-    [nix.POS]: pos$13,
-    "tree-sitter-agda": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-agda", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-beancount": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-beancount", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-git-rebase": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-git-rebase", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, dontPatch: true })))),
-    "tree-sitter-glimmer": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-glimmer", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-janet-simple": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-janet-simple", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-qmljs": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-qmljs", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$6, dontCheckForBrokenSymlinks: true })))),
-    "tree-sitter-sql": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-sql", "override"), nix.thunk(() => ({ [nix.POS]: pos$7, generate: false })))),
-    "tree-sitter-strace": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-strace", "override"), nix.thunk(() => ({ [nix.POS]: pos$8, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-tact": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-tact", "override"), nix.thunk(() => ({ [nix.POS]: pos$9, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-vue": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-vue", "override"), nix.thunk(() => ({ [nix.POS]: pos$10, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-wit": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-wit", "override"), nix.thunk(() => ({ [nix.POS]: pos$11, excludeBrokenTreeSitterJson: false })))),
-    "tree-sitter-yuck": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-yuck", "override"), nix.thunk(() => ({ [nix.POS]: pos$12, excludeBrokenTreeSitterJson: false })))),
+    [nix.POS]: $pos[12],
+    "tree-sitter-agda": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-agda", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-beancount": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-beancount", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-git-rebase": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-git-rebase", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], dontPatch: true })))),
+    "tree-sitter-glimmer": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-glimmer", "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-janet-simple": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-janet-simple", "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-qmljs": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-qmljs", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[5], dontCheckForBrokenSymlinks: true })))),
+    "tree-sitter-sql": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-sql", "override"), nix.thunk(() => ({ [nix.POS]: $pos[6], generate: false })))),
+    "tree-sitter-strace": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-strace", "override"), nix.thunk(() => ({ [nix.POS]: $pos[7], excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-tact": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-tact", "override"), nix.thunk(() => ({ [nix.POS]: $pos[8], excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-vue": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-vue", "override"), nix.thunk(() => ({ [nix.POS]: $pos[9], excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-wit": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-wit", "override"), nix.thunk(() => ({ [nix.POS]: $pos[10], excludeBrokenTreeSitterJson: false })))),
+    "tree-sitter-yuck": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-yuck", "override"), nix.thunk(() => ({ [nix.POS]: $pos[11], excludeBrokenTreeSitterJson: false })))),
   }));
   const lockedVersionsOverlay = (final) => (prev) => nix.app(nix.sel(lib, "mapAttrs"), (drvName) => (grammar) => (() => {
       const lockedGrammar = nix.thunk(() => nix.sel(lockedGrammars, nix.key(nix.app(nix.sel(lib, "removePrefix"), "tree-sitter-", drvName))));
       return nix.app(nix.sel(nix.app(nix.sel(prev, nix.key(nix.force(drvName)), "override"), nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           location: nix.thunk(() => nix.sel(lockedGrammar, "subpath")),
         }))), "overrideAttrs"), nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           version: nix.thunk(() => nix.app(nix.sel(lib, "sources", "shortRev"), nix.thunk(() => nix.sel(lockedGrammar, "nurl", "args", "rev")))),
           src: nix.thunk(() => nix.app(nix.sel(pkgs, nix.key(nix.sel(lockedGrammar, "nurl", "fetcher"))), nix.thunk(() => nix.sel(lockedGrammar, "nurl", "args")))),
         })));
     })(), prev);
   const grammarFixesOverlay = (final) => (prev) => ({
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     "tree-sitter-haskell": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-haskell", "overrideAttrs"), (oldAttrs) => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         env: nix.thunk(() => nix.update(nix.sel(oldAttrs, "env"), {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(oldAttrs, () => "", "env", "NIX_CFLAGS_COMPILE"), " -fno-strict-aliasing")),
         })),
       }))),
     "tree-sitter-perl": nix.thunk(() => nix.app(nix.sel(prev, "tree-sitter-perl", "overrideAttrs"), nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         postPatch: "rm src/bsearch.c\nsubstituteInPlace src/tsp_unicode.h \\\n  --replace-fail '#include \"bsearch.c\"' \"\"\n",
       })))),
   });
@@ -92,7 +71,7 @@ if [ "$count" -ne ${nix.builtins.toString(lockedGrammarsCount)} ]; then
 fi
 `)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       pname: "helix",
       version: nix.thunk(() => nix.attr(helix_unwrapped, "version")),
       paths: nix.thunk(() => [helix_unwrapped]),
@@ -100,7 +79,7 @@ fi
       postBuild: nix.thunk(() => nix.str`wrapProgram $out/bin/hx --set HELIX_RUNTIME "${runtimeDir}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         updateSh: nix.path(here, "./update.sh"),
         updateScript: nix.thunk(() => [nix.path(here, "./update.sh"), "helix"]),
         runtime: runtimeDir,
@@ -109,7 +88,7 @@ fi
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(helix_unwrapped, "meta"));
         return {
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

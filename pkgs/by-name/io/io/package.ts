@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]], [["name", 50, 7], ["url", 51, 7], ["sha256", 52, 7]], [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["platforms", 121, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["patches", 48, 3], ["postPatch", 56, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 65, 3], ["preConfigure", 94, 3], ["doInstallCheck", 107, 3], ["installCheckPhase", 109, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, zlib: false, sqlite: false, gmp: false, libffi: false, cairo: false, ncurses: false, freetype: false, libGLU: false, libGL: false, libpng: false, libtiff: false, libjpeg: false, readline: false, libsndfile: false, libxml2: false, libglut: false, libsamplerate: false, libevent: false, libedit: false, yajl: false, python3: false, openssl: false, glfw: false, "pkg-config": false, "libpthread-stubs": false, libxdmcp: false, libmemcached: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 50, 7], ["url", 51, 7], ["sha256", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["platforms", 121, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["patches", 48, 3], ["postPatch", 56, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 65, 3], ["preConfigure", 94, 3], ["doInstallCheck", 107, 3], ["installCheckPhase", 109, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const libxdmcp = nix.arg($, "libxdmcp");
   const libmemcached = nix.arg($, "libmemcached");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "io",
       version: "2019.05.22-alpha",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "IoLanguage",
           repo: "io",
           tag: "2019.05.22-alpha",
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "check-for-sysctl-h.patch",
             url: "https://github.com/IoLanguage/io/pull/446/commits/9f3e4d87b6d4c1bf583134d55d1cf92d3464c49f.patch",
             sha256: "9f06073ac17f26c2ef6298143bdd1babe7783c228f9667622aa6c91bb7ec7fa0",
@@ -96,7 +93,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "$out/bin/io\n$out/bin/io_static\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Io programming language",
         homepage: "https://iolanguage.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

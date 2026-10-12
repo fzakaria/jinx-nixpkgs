@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["updateScript", 21, 12]], [["description", 24, 5], ["homepage", 25, 5], ["mainProgram", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["passthru", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromCodeberg: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 21, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["mainProgram", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["passthru", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "convoyeur";
       const version = "0.1.1";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "classabbyamp",
           repo: "convoyeur",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const cargoHash = "sha256-rMRKTaKleO5QNeLM0jAOJ2kCKGfJxQWACWTqU8A8wt8=";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "IRCv3 FILEHOST extension adapter to external file upload services",
         homepage: "https://codeberg.org/classabbyamp/convoyeur",
         mainProgram: "convoyeur",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "lenny"))];
         })()),
       }));
-      return { [nix.POS]: pos$4, pname, version, src, cargoHash, passthru, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, cargoHash, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

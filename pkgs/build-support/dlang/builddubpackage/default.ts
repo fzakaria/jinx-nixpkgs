@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 33, 30], ["version", 33, 36], ["lock", 34, 9]], [["dub", 42, 42]], [["dub", 56, 42]], [["platforms", 70, 9]], [["dubDeps", 32, 7], ["strictDeps", 37, 7], ["__structuredAttrs", 38, 7], ["nativeBuildInputs", 40, 7], ["configurePhase", 47, 7], ["doCheck", 53, 7], ["nativeCheckInputs", 55, 7], ["preFixup", 59, 7], ["disallowedReferences", 67, 7], ["meta", 69, 7]], [["constructDrv", 14, 3], ["excludeDrvArgNames", 16, 3], ["extendDrvArgs", 21, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, dub: false, importDubLock: false, dubSetupHook: false, dubBuildHook: false, dubCheckHook: false, ldc: false, removeReferencesTo: false }, ellipsis: false };
 const formals$2 = { args: { dubLock: false, compiler: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 33, 30], ["version", 33, 36], ["lock", 34, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dub", 42, 42]]);
-const pos$3 = nix.positions(here + "/default.nix", [["dub", 56, 42]]);
-const pos$4 = nix.positions(here + "/default.nix", [["platforms", 70, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["dubDeps", 32, 7], ["strictDeps", 37, 7], ["__structuredAttrs", 38, 7], ["nativeBuildInputs", 40, 7], ["configurePhase", 47, 7], ["doCheck", 53, 7], ["nativeCheckInputs", 55, 7], ["preFixup", 59, 7], ["disallowedReferences", 67, 7], ["meta", 69, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["constructDrv", 14, 3], ["excludeDrvArgNames", 16, 3], ["extendDrvArgs", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const ldc = nix.arg($, "ldc");
   const removeReferencesTo = nix.arg($, "removeReferencesTo");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["dubLock", "compiler"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -32,9 +27,9 @@ export default nix.lambda((args) => (() => {
         const dubLock = nix.arg($_1, "dubLock");
         const compiler = nix.argOr($_1, "compiler", () => nix.force(ldc));
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           dubDeps: nix.thunk(() => nix.app(importDubLock, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               lock: dubLock,
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
           __structuredAttrs: nix.thunk(() => nix.selOr(args_2, () => true, "__structuredAttrs")),
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "nativeBuildInputs"), [
             dubSetupHook,
-            nix.thunk(() => nix.app(nix.sel(dubBuildHook, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, dub: dub })))),
+            nix.thunk(() => nix.app(nix.sel(dubBuildHook, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], dub: dub })))),
             compiler,
             removeReferencesTo,
           ])),
@@ -53,7 +48,7 @@ runHook postConfigure
 `),
           doCheck: nix.thunk(() => nix.selOr(args_2, () => false, "doCheck")),
           nativeCheckInputs: nix.thunk(() => [
-            nix.thunk(() => nix.app(nix.sel(dubCheckHook, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, dub: dub })))),
+            nix.thunk(() => nix.app(nix.sel(dubCheckHook, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], dub: dub })))),
           ]),
           preFixup: nix.thunk(() => nix.str`${nix.selOr(args_2, () => "", "preFixup")}
 
@@ -61,7 +56,7 @@ find "$out" -type f -exec remove-references-to ${nix.app(nix.sel(lib, "concatMap
 `),
           disallowedReferences: nix.thunk(() => nix.selOr(args_2, () => nix.sel(compiler, "all"), "disallowedReferences")),
           meta: nix.thunk(() => nix.update({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             platforms: nix.thunk(() => nix.sel(dub, "meta", "platforms")),
           }, nix.selOr(args_2, () => ({}), "meta"))),
         };

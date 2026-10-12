@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/4.nix", [[["version", 8, 3], ["hash", 9, 3], ["patches", 11, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/4.nix", [["version", 8, 3], ["hash", 9, 3], ["patches", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "4.2.0",
       hash: "sha256-Xz5W5zYPNlASPyc1/Sz2O1LONdxpUkg1hgzKdax/3ag=",
       patches: nix.thunk(() => nix.concat([nix.path(here, "./0001-fix-gcc14-build.patch")], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is32bit")), nix.thunk(() => [nix.path(here, "./fix-gcc153-32bit-v4.patch")])))),

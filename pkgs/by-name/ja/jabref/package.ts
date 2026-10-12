@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["modules", 26, 5]], [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5], ["fetchSubmodules", 62, 5]], [["comment", 67, 7], ["name", 68, 7], ["desktopName", 69, 7], ["genericName", 70, 7], ["categories", 71, 7], ["icon", 72, 7], ["exec", 73, 7], ["startupWMClass", 74, 7], ["mimeTypes", 75, 7]], [["pname", 80, 13], ["data", 81, 5]], [["jdk", 113, 31]], [["description", 227, 5], ["homepage", 228, 5], ["sourceProvenance", 229, 5], ["license", 234, 5], ["platforms", 235, 5], ["maintainers", 239, 5]], [["version", 54, 3], ["pname", 55, 3], ["src", 57, 3], ["desktopItems", 65, 3], ["mitmCache", 79, 3], ["postPatch", 84, 3], ["nativeBuildInputs", 110, 3], ["buildInputs", 121, 3], ["gradleFlags", 126, 3], ["preBuild", 131, 3], ["dontWrapGApps", 135, 3], ["installPhase", 137, 3], ["gradleUpdateScript", 218, 3], ["meta", 226, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, wrapGAppsHook3: false, makeDesktopItem: false, copyDesktopItems: false, makeShellWrapper: false, unzip: false, zip: false, "xdg-utils": false, gtk3: false, jdk25: false, openjfx25: false, jre25_minimal: false, gradle_9: false, python3: false, postgresql: false, jbang: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["modules", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5], ["fetchSubmodules", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["comment", 67, 7], ["name", 68, 7], ["desktopName", 69, 7], ["genericName", 70, 7], ["categories", 71, 7], ["icon", 72, 7], ["exec", 73, 7], ["startupWMClass", 74, 7], ["mimeTypes", 75, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 80, 13], ["data", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["jdk", 113, 31]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 227, 5], ["homepage", 228, 5], ["sourceProvenance", 229, 5], ["license", 234, 5], ["platforms", 235, 5], ["maintainers", 239, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 54, 3], ["pname", 55, 3], ["src", 57, 3], ["desktopItems", 65, 3], ["mitmCache", 79, 3], ["postPatch", 84, 3], ["nativeBuildInputs", 110, 3], ["buildInputs", 121, 3], ["gradleFlags", 126, 3], ["preBuild", 131, 3], ["dontWrapGApps", 135, 3], ["installPhase", 137, 3], ["gradleUpdateScript", 218, 3], ["meta", 226, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const jdk = jdk25;
   const openjfx = openjfx25;
   const jre = nix.thunk(() => nix.app(nix.sel(jre25_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => [
         "java.base",
         "java.compiler",
@@ -65,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.0-alpha.6";
       const pname = "jabref";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "JabRef",
           repo: "jabref",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -74,7 +68,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             comment: nix.thunk(() => nix.sel(meta, "description")),
             name: "JabRef",
             desktopName: "JabRef",
@@ -86,7 +80,7 @@ export default nix.lambda((args) => (() => {
             mimeTypes: nix.thunk(() => ["text/x-bibtex"]),
           })))),
       ]);
-      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname, data: nix.path(here, "./deps.json") }))));
+      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: $pos[3], pname: pname, data: nix.path(here, "./deps.json") }))));
       const postPatch = nix.thunk(() => nix.str`sed -i -e '/vendor/d' build-logic/src/main/kotlin/org.jabref.gradle.feature.compile.gradle.kts
 sed -i -e '/javafx-base/s/26.0.1/25/' build-support/src/main/java/*.java
 sed -i -e 's/javafx = .*/javafx = "25"/' versions/build.gradle.kts
@@ -114,7 +108,7 @@ popd
       const nativeBuildInputs = nix.thunk(() => [
         jdk,
         gradle,
-        nix.thunk(() => nix.app(nix.sel(jbang, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, jdk: jdk })))),
+        nix.thunk(() => nix.app(nix.sel(jbang, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], jdk: jdk })))),
         wrapGAppsHook3,
         copyDesktopItems,
         unzip,
@@ -205,7 +199,7 @@ runHook postInstall
 `);
       const gradleUpdateScript = "# Add jbang deps to gradle\nsed -n 's|//DEPS \\(.*\\)|    implementation(\"\\1\")|p' build-support/src/main/java/*.java | sort -u | sed -i '/dependencies {/r /dev/stdin' build-logic/build.gradle.kts\n\ngradle assemble -Dos.arch=amd64\ngradle assemble -Dos.arch=aarch64\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Open source bibliography reference manager",
         homepage: "https://www.jabref.org",
         sourceProvenance: nix.thunk(() => (() => {
@@ -224,7 +218,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         version,
         pname,
         src,

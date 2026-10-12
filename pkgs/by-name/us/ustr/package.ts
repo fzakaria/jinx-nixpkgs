@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["NIX_CFLAGS_COMPILE", 21, 7]], [["homepage", 45, 5], ["description", 46, 5], ["mainProgram", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 18, 3], ["env", 21, 3], ["postPatch", 24, 3], ["makeFlags", 33, 3], ["postInstall", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["mainProgram", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 18, 3], ["env", 21, 3], ["postPatch", 24, 3], ["makeFlags", 33, 3], ["postInstall", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ustr",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://www.and.org/ustr/ustr.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-pQrQy+S9fVFl8Mop4QmwEAXGiBSheQE4HgAZ4srFz64=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./va_args.patch")]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu89" })),
       postPatch: "substituteInPlace Makefile \\\n  --replace-fail \"have_stdint_h=0\" \"have_stdint_h=1\"\n\ncat ustr-import.in | grep USTR_CONF\nsubstituteInPlace ustr-import.in \\\n  --replace-fail \"USTR_CONF_HAVE_STDINT_H 0\" \"USTR_CONF_HAVE_STDINT_H 1\"\n",
       makeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`prefix=${nix.builtins.placeholder("out")}`),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "find $out/lib -name \\*debug\\* -delete\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.and.org/ustr/",
         description: "Micro String API for C language",
         mainProgram: "ustr-import",

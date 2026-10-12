@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["sha256", 31, 5]], [["FFLAGS", 67, 5]], [["igraph", 86, 15]], [["isILP64", 84, 5], ["tests", 85, 5]], [["homepage", 91, 5], ["changelog", 92, 5], ["description", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 98, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["nativeCheckInputs", 51, 3], ["checkInputs", 52, 3], ["doCheck", 60, 3], ["enableParallelChecking", 61, 3], ["env", 63, 3], ["cmakeFlags", 70, 3], ["passthru", 83, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, gfortran: false, blas: false, lapack: false, eigen: false, useMpi: true, mpi: false, mpiCheckPhaseHook: false, igraph: false, useAccel: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["FFLAGS", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["igraph", 86, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["isILP64", 84, 5], ["tests", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 91, 5], ["changelog", 92, 5], ["description", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 98, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["nativeCheckInputs", 51, 3], ["checkInputs", 52, 3], ["doCheck", 60, 3], ["enableParallelChecking", 61, 3], ["env", 63, 3], ["cmakeFlags", 70, 3], ["passthru", 83, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(useMpi) || nix.asBool(!nix.asBool(nix.sel(blas, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ar/arpack/package.nix:20:1");
   nix.assert_((!nix.asBool(useAccel) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ar/arpack/package.nix:21:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`arpack${nix.app(nix.sel(lib, "optionalString"), useMpi, "-mpi")}`),
       version: "3.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "opencollab",
           repo: "arpack-ng",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(useMpi) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), nix.thunk(() => nix.sel(gfortran, "cc")))),
       doCheck: true,
       enableParallelChecking: false,
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), useAccel, nix.thunk(() => ({ [nix.POS]: pos$2, FFLAGS: "-ff2c -fno-second-underscore" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), useAccel, nix.thunk(() => ({ [nix.POS]: $pos[1], FFLAGS: "-ff2c -fno-second-underscore" })))),
       cmakeFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_SHARED_LIBS", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "hasSharedLibraries")))),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "EIGEN", true)),
@@ -61,12 +56,12 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-DBLA_VENDOR=${(nix.asBool(useAccel) ? "Apple" : "Generic")}`),
         ])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         isILP64: nix.thunk(() => (nix.asBool(!nix.asBool(useAccel)) && nix.asBool(nix.sel(blas, "isILP64")))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, igraph: igraph })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], igraph: igraph })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/opencollab/arpack-ng",
         changelog: nix.thunk(() => nix.str`https://github.com/opencollab/arpack-ng/blob/${nix.sel(finalAttrs, "version")}/CHANGES`),
         description: "Collection of Fortran77 subroutines to solve large scale eigenvalue problems",

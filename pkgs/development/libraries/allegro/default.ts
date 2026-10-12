@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 31, 5], ["sha256", 32, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["hardeningDisable", 64, 3], ["cmakeFlags", 66, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, texinfo: false, libxext: false, xorgproto: false, libx11: false, libxpm: false, libxt: false, libxcursor: false, "alsa-lib": false, cmake: false, "pkg-config": false, zlib: false, libpng: false, libvorbis: false, libxxf86dga: false, libxxf86misc: false, libxxf86vm: false, openal: false, libGLU: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["hardeningDisable", 64, 3], ["cmakeFlags", 66, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "allegro";
       const version = "4.4.3.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/liballeg/allegro5/releases/download/${version}/allegro-${version}.tar.gz`),
           sha256: "1m6lz35nk07dli26kkwz3wa50jsrxs1kb6w1nj14a911l34xn6gc",
         }))));
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const hardeningDisable = nix.thunk(() => ["format"]);
       const cmakeFlags = nix.thunk(() => ["-DCMAKE_SKIP_RPATH=ON", "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Game programming library",
         homepage: "https://liballeg.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "giftware")),
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

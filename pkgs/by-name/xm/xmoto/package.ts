@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["NIX_CFLAGS_COMPILE", 69, 7]], [["description", 77, 5], ["mainProgram", 78, 5], ["longDescription", 79, 5], ["homepage", 83, 5], ["maintainers", 84, 5], ["platforms", 88, 5], ["license", 89, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["env", 69, 3], ["preFixup", 71, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gettext: false, makeWrapper: false, bzip2: false, curl: false, libjpeg: false, libxml2: false, xz: false, lua: false, ode: false, libGL: false, libGLU: false, libpng: false, "pkg-config": false, SDL2: false, SDL2_mixer: false, SDL2_net: false, SDL2_ttf: false, sqlite: false, libxdg_basedir: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 69, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 77, 5], ["mainProgram", 78, 5], ["longDescription", 79, 5], ["homepage", 83, 5], ["maintainers", 84, 5], ["platforms", 88, 5], ["license", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["env", 69, 3], ["preFixup", 71, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xmoto";
       const version = "0.6.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xmoto",
           repo: "xmoto",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -65,12 +62,12 @@ export default nix.lambda((args) => (() => {
         zlib,
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL2)}/include/SDL2`),
       }));
       const preFixup = "wrapProgram \"$out/bin/xmoto\" \\\n  --prefix XDG_DATA_DIRS : \"$out/share/\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Challenging 2D motocross platform game, where physics play an important role",
         mainProgram: "xmoto",
         longDescription: "X-Moto is a challenging 2D motocross platform game, where physics plays an all important role in the gameplay.\nYou need to control your bike to its limits, if you want to have a chance to finish the most difficult challenges.\n",
@@ -86,7 +83,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

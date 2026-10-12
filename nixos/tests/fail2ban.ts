@@ -2,45 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fail2ban.nix", [[["enable", 8, 25]], [["enable", 7, 7], ["bantime-increment", 8, 7]], [["enable", 10, 22]], [["fail2ban", 6, 14], ["openssh", 10, 14]], [["enable", 11, 25]], [["nftables", 11, 16]], [["services", 6, 5], ["networking", 11, 5]], [["systemPackages", 15, 17]], [["environment", 15, 5]], [["machine", 5, 9], ["client", 14, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fail2ban.nix", [["enable", 8, 25]]);
-const pos$2 = nix.positions(here + "/fail2ban.nix", [["enable", 7, 7], ["bantime-increment", 8, 7]]);
-const pos$3 = nix.positions(here + "/fail2ban.nix", [["enable", 10, 22]]);
-const pos$4 = nix.positions(here + "/fail2ban.nix", [["fail2ban", 6, 14], ["openssh", 10, 14]]);
-const pos$5 = nix.positions(here + "/fail2ban.nix", [["enable", 11, 25]]);
-const pos$6 = nix.positions(here + "/fail2ban.nix", [["nftables", 11, 16]]);
-const pos$7 = nix.positions(here + "/fail2ban.nix", [["services", 6, 5], ["networking", 11, 5]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/fail2ban.nix", [["systemPackages", 15, 17]]);
-const pos$9 = nix.positions(here + "/fail2ban.nix", [["environment", 15, 5]]);
-const pos$10 = nix.positions(here + "/fail2ban.nix", [["machine", 5, 9], ["client", 14, 9]]);
-const pos$11 = nix.positions(here + "/fail2ban.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "fail2ban",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             fail2ban: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
-              "bantime-increment": nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+              "bantime-increment": nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
             })),
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            nftables: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+            [nix.POS]: $pos[5],
+            nftables: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
           })),
         };
       })(), formals$2),
@@ -48,9 +38,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "sshpass")),
               nix.thunk(() => nix.sel(pkgs_1, "netcat")),

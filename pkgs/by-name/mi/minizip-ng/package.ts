@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["NIX_CFLAGS_COMPILE", 54, 7]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 71, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["cmakeFlags", 40, 3], ["env", 54, 3], ["doCheck", 56, 3], ["checkInputs", 57, 3], ["enableParallelChecking", 58, 3], ["strictDeps", 60, 3], ["__structuredAttrs", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gtest: false, "pkg-config": false, zlib: false, bzip2: false, xz: false, zstd: false, openssl: false, enableCompat: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["cmakeFlags", 40, 3], ["env", 54, 3], ["doCheck", 56, 3], ["checkInputs", 57, 3], ["enableParallelChecking", 58, 3], ["strictDeps", 60, 3], ["__structuredAttrs", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const enableCompat = nix.argOr($, "enableCompat", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.add("minizip-ng", nix.app(nix.sel(lib, "optionalString"), enableCompat, "-compat"))),
       version: "4.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zlib-ng",
           repo: "minizip-ng",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "MZ_COMPAT", enableCompat)),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "MZ_PKCRYPT", false))])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-register")),
       })),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fork of the popular zip manipulation library found in the zlib distribution",
         homepage: "https://github.com/zlib-ng/minizip-ng",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

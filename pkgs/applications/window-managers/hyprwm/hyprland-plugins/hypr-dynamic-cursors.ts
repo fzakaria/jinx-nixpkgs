@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hypr-dynamic-cursors.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["extraArgs", 30, 47]], [["updateScript", 30, 12]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5]], [["pluginName", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontUseCmakeConfigure", 19, 3], ["installPhase", 21, 3], ["passthru", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, mkHyprlandPlugin: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hypr-dynamic-cursors.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/hypr-dynamic-cursors.nix", [["extraArgs", 30, 47]]);
-const pos$3 = nix.positions(here + "/hypr-dynamic-cursors.nix", [["updateScript", 30, 12]]);
-const pos$4 = nix.positions(here + "/hypr-dynamic-cursors.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5]]);
-const pos$5 = nix.positions(here + "/hypr-dynamic-cursors.nix", [["pluginName", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontUseCmakeConfigure", 19, 3], ["installPhase", 21, 3], ["passthru", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(mkHyprlandPlugin, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pluginName: "hypr-dynamic-cursors",
       version: "0-unstable-2026-07-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "VirtCode",
           repo: "hypr-dynamic-cursors",
           rev: "f5ba36c7622098b53bf62ddb8ddf03b914abbdf8",
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\nmv out/dynamic-cursors.so $out/lib/libhypr-dynamic-cursors.so\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Plugin to make your Hyprland cursor more realistic",
         homepage: "https://github.com/VirtCode/hypr-dynamic-cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

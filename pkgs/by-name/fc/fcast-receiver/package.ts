@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 30, 7]], [["name", 34, 7], ["desktopName", 35, 7], ["genericName", 36, 7], ["exec", 37, 7], ["icon", 38, 7], ["comment", 39, 7]], [["description", 58, 5], ["longDescription", 59, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 24, 3], ["makeCacheWritable", 26, 3], ["npmDepsHash", 28, 3], ["env", 30, 3], ["desktopItems", 32, 3], ["nativeBuildInputs", 43, 3], ["postInstall", 49, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitLab: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, electron: false, rsync: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 34, 7], ["desktopName", 35, 7], ["genericName", 36, 7], ["exec", 37, 7], ["icon", 38, 7], ["comment", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["longDescription", 59, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 24, 3], ["makeCacheWritable", 26, 3], ["npmDepsHash", 28, 3], ["env", 30, 3], ["desktopItems", 32, 3], ["nativeBuildInputs", 43, 3], ["postInstall", 49, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fcast-receiver";
       const version = "2.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.futo.org",
           owner: "videostreaming",
           repo: "fcast",
@@ -33,10 +29,10 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/receivers/electron`);
       const makeCacheWritable = true;
       const npmDepsHash = "sha256-EgNpKOjpv7QMsmcVGEpU81UIi/z4vA1S8xXmespx6Ew=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fcast-receiver",
             desktopName: "FCast Receiver",
             genericName: "Media Streaming Receiver",
@@ -53,7 +49,7 @@ makeWrapper ${electron}/bin/electron $out/bin/fcast-receiver \\
   --add-flags $out/lib/node_modules/fcast-receiver/dist/bundle.js
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "FCast Receiver, an open-source media streaming receiver",
         longDescription: "FCast Receiver is a receiver for an open-source media streaming protocol, FCast, an alternative to Chromecast and AirPlay.\n",
         homepage: "https://fcast.org/",
@@ -66,7 +62,7 @@ makeWrapper ${electron}/bin/electron $out/bin/fcast-receiver \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["mainProgram", 43, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["nativeBuildInputs", 18, 3], ["buildPhase", 20, 3], ["installPhase", 28, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["mainProgram", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["nativeBuildInputs", 18, 3], ["buildPhase", 20, 3], ["installPhase", 28, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rustc = nix.arg($, "rustc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ternimal",
       version: "0.1.0-unstable-2017-12-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "p-e-w",
           repo: "ternimal",
           rev: "e7953b4f80e514899e0920f0e36bb3141b685122",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nrustc -O $src/ternimal.rs\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp ternimal $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simulate a lifeform in the terminal",
         homepage: "https://github.com/p-e-w/ternimal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

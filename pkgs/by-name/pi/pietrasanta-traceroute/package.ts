@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["updateScript", 19, 12]], [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["mainProgram", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["broken", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["passthru", 19, 3], ["buildInputs", 21, 3], ["makeFlags", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, unstableGitUpdater: false, stdenv: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 19, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["mainProgram", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["broken", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["passthru", 19, 3], ["buildInputs", 21, 3], ["makeFlags", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,24 +13,24 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pietrasanta-traceroute",
       version: "0.0.5-unstable-2024-09-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "catchpoint",
           repo: "Pietrasanta-traceroute",
           rev: "e4a5cf94dccd646e03b9b75a762e9b014e3a3128",
           hash: "sha256-5FbuITewgSh6UFUU1vttkokk8uZ2IrzkDwsCuWJPKlM=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       buildInputs: nix.thunk(() => [openssl]),
       makeFlags: nix.thunk(() => ["prefix=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "ECN-aware version of traceroute",
         longDescription: "An enhanced version of Dmitry Butskoy's traceroute, developed by Catchpoint.\n- Support for \"TCP InSession\": opens a TCP connection with the destination and sends TCP probes with\n  increasing TTL values, to prevent false packet loss introduced by firewalls, and ensure packets\n  follow a single flow, akin to a normal TCP session.\n- Similar QUIC-based traceroute.\n- Enhanced ToS (DSCP/ECN) field report.\n",
         homepage: "https://github.com/catchpoint/Pietrasanta-traceroute/",

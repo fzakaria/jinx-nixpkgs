@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]], [["ENV", 25, 5], ["GREP", 26, 5], ["SED", 27, 5], ["PREFIX", 28, 5]], [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 49, 5], ["platforms", 50, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["env", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, libuv: false, "coreutils-full": false, "pkg-config": false, gnugrep: false, gnused: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ENV", 25, 5], ["GREP", 26, 5], ["SED", 27, 5], ["PREFIX", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 49, 5], ["platforms", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["env", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const gnused = nix.arg($, "gnused");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dps8m",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dps8m",
           repo: "dps8m",
           rev: nix.thunk(() => nix.str`R${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ENV: nix.thunk(() => nix.str`${coreutils_full}/bin/env`),
         GREP: nix.thunk(() => nix.str`${gnugrep}/bin/grep`),
         SED: nix.thunk(() => nix.str`${gnused}/bin/sed`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [coreutils_full, pkg_config]),
       buildInputs: nix.thunk(() => [libuv]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GE / Honeywell / Bull DPS-8/M mainframe simulator",
         homepage: "https://gitlab.com/dps8m/dps8m",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/dps8m/dps8m/-/wikis/DPS8M-${nix.sel(finalAttrs, "src", "rev")}-Release-Notes`),

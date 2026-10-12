@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 52, 13], ["repo", 53, 13], ["tag", 54, 13], ["hash", 55, 13]], [["version", 50, 11], ["src", 51, 11], ["vendorHash", 57, 11]], [["buildGoModule", 45, 5]], [["name", 66, 11], ["version", 67, 23], ["rev", 68, 27]], [["sources", 63, 5], ["packages", 76, 5]], [["license", 97, 14]], [["outputHash", 89, 9], ["outputHashMode", 90, 9], ["nativeBuildInputs", 91, 9], ["meta", 97, 9]], [["owner", 121, 5], ["repo", 122, 5], ["tag", 123, 5], ["hash", 124, 5]], [["pname", 128, 26], ["version", 128, 32], ["src", 128, 40], ["pnpm", 129, 13], ["fetcherVersion", 130, 5], ["hash", 131, 5]], [["SHARP_FORCE_GLOBAL_LIBVIPS", 170, 7], ["ESBUILD_BINARY_PATH", 171, 7], ["npm_config_nodedir", 173, 7], ["PYTHONDONTWRITEBYTECODE", 175, 7]], [["immich", 240, 28], ["immich-vectorchord-reindex", 240, 35]], [["immich", 244, 7]], [["updateScript", 237, 5], ["tests", 239, 5], ["machine-learning", 243, 5], ["geodata", 248, 7], ["pnpm", 249, 7]], [["changelog", 254, 5], ["description", 255, 5], ["homepage", 256, 5], ["license", 257, 5], ["maintainers", 261, 5], ["platforms", 268, 5], ["mainProgram", 269, 5]], [["pname", 114, 3], ["version", 115, 3], ["__structuredAttrs", 117, 3], ["strictDeps", 118, 3], ["src", 120, 3], ["pnpmDeps", 127, 3], ["postPatch", 134, 3], ["nativeBuildInputs", 139, 3], ["buildInputs", 151, 3], ["env", 170, 3], ["buildPhase", 177, 3], ["installPhase", 185, 3], ["passthru", 236, 3], ["meta", 253, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_11: false, python3: false, nodejs: false, "node-gyp": false, runCommand: false, "nix-update-script": false, nixosTests: false, "immich-machine-learning": false, "pkg-config": false, makeWrapper: false, binaryen: false, curl: false, cacert: false, "extism-js": false, unzip: false, cairo: false, exiftool: false, giflib: false, "jellyfin-ffmpeg": false, imagemagick: false, libjpeg: false, libpng: false, libraw: false, libheif: false, librsvg: false, pango: false, perl: false, pixman: false, runtimeShellPackage: false, vips: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 52, 13], ["repo", 53, 13], ["tag", 54, 13], ["hash", 55, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 50, 11], ["src", 51, 11], ["vendorHash", 57, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildGoModule", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 66, 11], ["version", 67, 23], ["rev", 68, 27]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sources", 63, 5], ["packages", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["license", 97, 14]]);
-const pos$7 = nix.positions(here + "/package.nix", [["outputHash", 89, 9], ["outputHashMode", 90, 9], ["nativeBuildInputs", 91, 9], ["meta", 97, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 121, 5], ["repo", 122, 5], ["tag", 123, 5], ["hash", 124, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 128, 26], ["version", 128, 32], ["src", 128, 40], ["pnpm", 129, 13], ["fetcherVersion", 130, 5], ["hash", 131, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["SHARP_FORCE_GLOBAL_LIBVIPS", 170, 7], ["ESBUILD_BINARY_PATH", 171, 7], ["npm_config_nodedir", 173, 7], ["PYTHONDONTWRITEBYTECODE", 175, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["immich", 240, 28], ["immich-vectorchord-reindex", 240, 35]]);
-const pos$12 = nix.positions(here + "/package.nix", [["immich", 244, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["updateScript", 237, 5], ["tests", 239, 5], ["machine-learning", 243, 5], ["geodata", 248, 7], ["pnpm", 249, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["changelog", 254, 5], ["description", 255, 5], ["homepage", 256, 5], ["license", 257, 5], ["maintainers", 261, 5], ["platforms", 268, 5], ["mainProgram", 269, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 114, 3], ["version", 115, 3], ["__structuredAttrs", 117, 3], ["strictDeps", 118, 3], ["src", 120, 3], ["pnpmDeps", 127, 3], ["postPatch", 134, 3], ["nativeBuildInputs", 139, 3], ["buildInputs", 151, 3], ["env", 170, 3], ["buildPhase", 177, 3], ["installPhase", 185, 3], ["passthru", 236, 3], ["meta", 253, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,26 +45,26 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const pnpm = pnpm_11;
   const esbuild$ = nix.thunk(() => nix.app(nix.sel(buildPackages, "esbuild", "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       buildGoModule: (args_1) => nix.app(nix.sel(buildPackages, "buildGoModule"), nix.thunk(() => nix.update(args_1, (() => {
           const version = "0.28.2";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "evanw",
               repo: "esbuild",
               tag: nix.thunk(() => nix.str`v${version}`),
               hash: "sha256-I1u+9U5Oj/KzxSjCxwyitwSuDKimatkbC3R2OtaUsfM=",
             }))));
           const vendorHash = "sha256-+BfxCyg0KkDQpHt/wycy/8CTG6YBA/VJvJFhhzUnSiQ=";
-          return { [nix.POS]: pos$2, version, src, vendorHash };
+          return { [nix.POS]: $pos[1], version, src, vendorHash };
         })()))),
     }))));
   const buildLock = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     sources: nix.thunk(() => nix.builtins.map((p) => (() => {
         const from = nix.thunk(() => nix.sel(p, "src"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: nix.thunk(() => nix.sel(p, "pname")),
         version: nix.thunk(() => nix.attr(p, "version")),
         rev: nix.thunk(() => nix.attr(from, "rev")),
@@ -90,12 +76,12 @@ export default nix.lambda((args) => (() => {
     const timestamp = "20260911002105";
     const date = nix.thunk(() => nix.add(nix.str`${nix.app(nix.sel(lib, "substring"), 0n, 4n, timestamp)}-${nix.app(nix.sel(lib, "substring"), 4n, 2n, timestamp)}-${nix.app(nix.sel(lib, "substring"), 6n, 2n, timestamp)}T`, nix.str`${nix.app(nix.sel(lib, "substring"), 8n, 2n, timestamp)}:${nix.app(nix.sel(lib, "substring"), 10n, 2n, timestamp)}:${nix.app(nix.sel(lib, "substring"), 12n, 2n, timestamp)}Z`));
     return nix.app(runCommand, "immich-geodata", nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         outputHash: "sha256-otk0VysLd9qG24JLar4r0CohqJG5ESUkBb3FCvWBUg0=",
         outputHashMode: "recursive",
         nativeBuildInputs: nix.thunk(() => [cacert, curl, unzip]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-40")),
         })),
       })), nix.thunk(() => nix.str`mkdir $out
@@ -112,20 +98,20 @@ echo "${date}" > $out/geodata-date.txt
 `));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "immich",
       version: "3.3.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           owner: "immich-app",
           repo: "immich",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-DvuOqejdqIKaNCViUUmvNK77WqyeG01ui68NykUiEN8=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -161,7 +147,7 @@ echo "${date}" > $out/geodata-date.txt
         runtimeShellPackage,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         SHARP_FORCE_GLOBAL_LIBVIPS: 1n,
         ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), esbuild$)),
         npm_config_nodedir: nodejs,
@@ -212,22 +198,22 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), nodejs)}' "$out/bin/server" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           immich: nix.thunk(() => nix.attr(nixosTests, "immich")),
           "immich-vectorchord-reindex": nix.thunk(() => nix.attr(nixosTests, "immich-vectorchord-reindex")),
         })),
         "machine-learning": nix.thunk(() => nix.app(nix.sel(immich_machine_learning, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             immich: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         geodata: geodata,
         pnpm: pnpm,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         changelog: nix.thunk(() => nix.str`https://github.com/immich-app/immich/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Self-hosted photo and video backup solution",
         homepage: "https://immich.app/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["name", 29, 7], ["desktopName", 30, 7], ["comment", 31, 7], ["exec", 32, 7], ["icon", 33, 7], ["categories", 34, 7]], [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["sourceProvenance", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["desktopItems", 27, 3], ["installPhase", 41, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, copyDesktopItems: false, makeDesktopItem: false, unzip: false, jdk21: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["desktopName", 30, 7], ["comment", 31, 7], ["exec", 32, 7], ["icon", 33, 7], ["categories", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["sourceProvenance", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["desktopItems", 27, 3], ["installPhase", 41, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const jdk21 = nix.arg($, "jdk21");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "diylc",
       version: "6.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/bancika/diy-layout-creator/releases/download/v${nix.sel(finalAttrs, "version")}/diylc-${nix.sel(finalAttrs, "version")}-universal.zip`),
           hash: "sha256-ZHGsxQJ6NE8YmQyGnHavhxzgp/6J3z/0XY0Duch9boU=",
         })))),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, unzip, makeBinaryWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "diylc",
             desktopName: "DIY Layout Creator",
             comment: "Multi platform circuit layout and schematic drawing tool",
@@ -59,7 +56,7 @@ makeWrapper $out/app/diylc/run.sh $out/bin/diylc
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Multi platform circuit layout and schematic drawing tool",
         mainProgram: "diylc",
         homepage: "https://bancika.github.io/diy-layout-creator",

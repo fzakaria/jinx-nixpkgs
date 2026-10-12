@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["updateScript", 28, 12]], [["description", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5], ["license", 36, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["configureFlags", 26, 3], ["passthru", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "nix-update-script": false, pam: false, xmlsec: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 28, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5], ["license", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["configureFlags", 26, 3], ["passthru", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,22 +15,22 @@ export default nix.lambda((args) => (() => {
   const xmlsec = nix.arg($, "xmlsec");
   const securityDependency = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(xmlsec) : nix.force(pam)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "oath-toolkit",
       version: "2.6.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/oath-toolkit/oath-toolkit-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ix2jZXWfEkm+V6gq7G4Qf3tX3HfYE/ltwKr4FiTyiXE=",
         })))),
       buildInputs: nix.thunk(() => [securityDependency]),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--disable-pam"]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Components for building one-time password authentication systems",
         homepage: "https://www.nongnu.org/oath-toolkit/",
         maintainers: nix.thunk(() => (() => {

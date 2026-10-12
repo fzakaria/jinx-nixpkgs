@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5], ["stripRoot", 20, 5]], [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["CGO_ENABLED", 42, 7]], [["updateScript", 70, 12]], [["changelog", 73, 5], ["description", 74, 5], ["downloadPage", 75, 5], ["longDescription", 76, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 89, 5]], [["pname", 25, 3], ["vendorHash", 26, 11], ["version", 26, 22], ["src", 28, 3], ["postUnpack", 35, 3], ["env", 42, 3], ["ldflags", 44, 3], ["subPackages", 50, 3], ["nativeBuildInputs", 52, 3], ["nativeCheckInputs", 56, 3], ["doInstallCheck", 58, 3], ["installCheckPhase", 59, 3], ["postInstall", 63, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, fetchzip: false, installShellFiles: false, lib: false, stdenv: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5], ["stripRoot", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 42, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 70, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 73, 5], ["description", 74, 5], ["downloadPage", 75, 5], ["longDescription", 76, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 89, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["vendorHash", 26, 11], ["version", 26, 22], ["src", 28, 3], ["postUnpack", 35, 3], ["env", 42, 3], ["ldflags", 44, 3], ["subPackages", 50, 3], ["nativeBuildInputs", 52, 3], ["nativeCheckInputs", 56, 3], ["doInstallCheck", 58, 3], ["installCheckPhase", 59, 3], ["postInstall", 63, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const vendorHash = "sha256-riIU2ZsUgoNKtDQrzns+T9STZbq89GuOvBh0GG7o1KU=";
   const manifestsHash = "sha256-S67U39zCqSokMgsG2yUsQUCrqp9Pmd3kdVeEmRcp0E0=";
   const manifests = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/fluxcd/flux2/releases/download/v${version}/manifests.tar.gz`),
       hash: manifestsHash,
       stripRoot: false,
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash_1 = vendorHash;
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "fluxcd",
           repo: "flux2",
           rev: nix.thunk(() => nix.str`v${version_1}`),
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
 # disable tests that require network access
 rm source/cmd/flux/create_secret_git_test.go
 `);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: 0n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], CGO_ENABLED: 0n }));
       const ldflags = nix.thunk(() => ["-s", "-w", nix.thunk(() => nix.str`-X main.VERSION=${version_1}`)]);
       const subPackages = nix.thunk(() => ["cmd/flux"]);
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
@@ -54,9 +49,9 @@ rm source/cmd/flux/create_secret_git_test.go
       const installCheckPhase = nix.thunk(() => nix.str`$out/bin/flux --version | grep ${version_1} > /dev/null
 `);
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for shell in bash fish zsh; do\n  installShellCompletion --cmd flux \\\n    --$shell <($out/bin/flux completion $shell)\ndone\n"));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/fluxcd/flux2/releases/tag/v${version_1}`),
         description: "Open and extensible continuous delivery solution for Kubernetes",
         downloadPage: "https://github.com/fluxcd/flux2/",
@@ -75,7 +70,7 @@ rm source/cmd/flux/create_secret_git_test.go
         mainProgram: "flux",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         vendorHash: vendorHash_1,
         version: version_1,

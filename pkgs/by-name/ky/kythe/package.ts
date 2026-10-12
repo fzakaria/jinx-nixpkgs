@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 53, 5], ["sourceProvenance", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["doCheck", 20, 3], ["dontBuild", 22, 3], ["installPhase", 24, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, binutils: false, fetchurl: false, ncurses5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 53, 5], ["sourceProvenance", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["doCheck", 20, 3], ["dontBuild", 22, 3], ["installPhase", 24, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses5 = nix.arg($, "ncurses5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.0.76",
       pname: "kythe",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/kythe/kythe/releases/download/v${nix.sel(finalAttrs, "version")}/kythe-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-7qQw91Y9uAXJnk0aQnymDXrvAc7HZpmGUpz+LCYpY1Y=",
         })))),
@@ -39,7 +37,7 @@ cp -R ./ $out
 ln -s $out/tools $out/bin
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pluggable, (mostly) language-agnostic ecosystem for building tools that work with code",
         longDescription: "The Kythe project was founded to provide and support tools and standards\n  that encourage interoperability among programs that manipulate source\n  code. At a high level, the main goal of Kythe is to provide a standard,\n  language-agnostic interchange mechanism, allowing tools that operate on\n  source code — including build systems, compilers, interpreters, static\n  analyses, editors, code-review applications, and more — to share\n  information with each other smoothly.  ",
         homepage: "https://kythe.io/",

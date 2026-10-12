@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["CXXFLAGS", 28, 7]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["env", 28, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 34, 3], ["doInstallCheck", 38, 3], ["installPhase", 40, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, hidapi: false, udevCheckHook: false, profile: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["env", 28, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 34, 3], ["doInstallCheck", 38, 3], ["installPhase", 40, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const profile = nix.argOr($, "profile", () => "/etc/g810-led/profile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "g810-led",
       version: "0.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MatMoul",
           repo: "g810-led",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
   --replace "/usr" $out \\
   --replace "/etc/g810-led/profile" "${profile}"
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-include cstdint" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-include cstdint" })),
       buildInputs: nix.thunk(() => [hidapi]),
       nativeBuildInputs: nix.thunk(() => [udevCheckHook]),
       doInstallCheck: true,
       installPhase: "runHook preInstall\n\ninstall -D bin/g810-led $out/bin/g810-led\n\n# See https://github.com/MatMoul/g810-led#compatible-keyboards-\nfor keyboard in {g213,g410,g413,g512,g513,g610,g815,g910,gpro}; do\n  ln -s \\./g810-led $out/bin/$keyboard-led\ndone\n\ninstall -D udev/g810-led.rules $out/etc/udev/rules.d/90-g810-led.rules\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Linux LED controller for some Logitech G Keyboards",
         homepage: "https://github.com/MatMoul/g810-led",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

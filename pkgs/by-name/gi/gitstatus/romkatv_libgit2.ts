@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/romkatv_libgit2.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["pname", 9, 3], ["src", 11, 3], ["patches", 18, 3], ["cmakeFlags", 20, 3], ["doCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, libgit2: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/romkatv_libgit2.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/romkatv_libgit2.nix", [["pname", 9, 3], ["src", 11, 3], ["patches", 18, 3], ["cmakeFlags", 20, 3], ["doCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libgit2 = nix.arg($, "libgit2");
   return nix.app(nix.sel(libgit2, "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "romkatv_libgit2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "romkatv",
           repo: "libgit2",
           rev: "tag-2ecf33948a4df9ef45a66c68b8ef24a5e60eaac6",

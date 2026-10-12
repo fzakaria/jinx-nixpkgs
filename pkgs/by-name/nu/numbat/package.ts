@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["NUMBAT_SYSTEM_MODULE_PATH", 23, 7]], [["updateScript", 53, 12]], [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 67, 5], ["mainProgram", 71, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["env", 23, 3], ["postInstall", 25, 3], ["preCheck", 43, 3], ["nativeInstallCheckInputs", 50, 3], ["doInstallCheck", 51, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, tzdata: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NUMBAT_SYSTEM_MODULE_PATH", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 67, 5], ["mainProgram", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["env", 23, 3], ["postInstall", 25, 3], ["preCheck", 43, 3], ["nativeInstallCheckInputs", 50, 3], ["doInstallCheck", 51, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "numbat",
       version: "1.24.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sharkdp",
           repo: "numbat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Lz5S4GT3cUaeKj7js0E6XSwkg3LnGiVplKzTlN54td8=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NUMBAT_SYSTEM_MODULE_PATH: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/numbat/modules`),
       })),
       postInstall: "mkdir -p $out/share/numbat\ncp -r $src/numbat/modules $out/share/numbat/\n\nmkdir -p $out/share/applications\ncp $src/assets/numbat.desktop $out/share/applications\n\nfor size in 16 22 24 32 48 64 128 256 512; do\n  dims=\"${size}x${size}\"\n  dest=$out/share/icons/hicolor/${dims}/apps\n  mkdir -p $dest\n  cp $src/assets/numbat-${dims}.png ${dest}/numbat.png\ndone\n\nmkdir -p $out/share/icons/hicolor/scalable/apps\ncp $src/assets/numbat.svg $out/share/icons/hicolor/scalable/apps\n",
@@ -42,11 +38,11 @@ export TZDIR=${tzdata}/share/zoneinfo
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "High precision scientific calculator with full support for physical units",
         longDescription: "A statically typed programming language for scientific computations\nwith first class support for physical dimensions and units\n",
         homepage: "https://numbat.dev",

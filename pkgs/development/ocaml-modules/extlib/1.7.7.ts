@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/1.7.7.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 26], ["maintainers", 41, 5], ["broken", 42, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["strictDeps", 30, 3], ["createFindlibDestdir", 32, 3], ["makeFlags", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, ocaml: false, findlib: false, cppo: false, minimal: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/1.7.7.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/1.7.7.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 26], ["maintainers", 41, 5], ["broken", 42, 5]]);
-const pos$3 = nix.positions(here + "/1.7.7.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["strictDeps", 30, 3], ["createFindlibDestdir", 32, 3], ["makeFlags", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-extlib`);
       const version = "1.7.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ygrek.org/p/release/ocaml-extlib/extlib-${version}.tar.gz`),
           sha256: "1sxmzc1mx3kg62j8kbk0dxkx8mkf1rn70h542cjzrziflznap0s1",
         }))));
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ygrek/ocaml-extlib",
         description: "Enhancements to the OCaml Standard Library modules",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,12 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["name", 82, 9], ["exec", 83, 9], ["comment", 84, 9], ["desktopName", 85, 9], ["genericName", 86, 9], ["categories", 87, 9], ["icon", 88, 9], ["startupWMClass", 89, 9]], [["mainProgram", 243, 9]], [["desktopItem", 96, 15], ["vmoptsIDE", 96, 27], ["vmoptsFile", 96, 37], ["buildInputs", 98, 7], ["nativeBuildInputs", 126, 7], ["postPatch", 135, 7], ["installPhase", 176, 7], ["preFixup", 236, 7], ["preferLocalBuild", 240, 7], ["meta", 242, 7]], [["excludeDrvArgNames", 51, 11], ["constructDrv", 53, 3], ["extendDrvArgs", 55, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, "at-spi2-atk": false, "at-spi2-core": false, atk: false, autoPatchelfHook: false, cairo: false, coreutils: false, cups: false, dbus: false, e2fsprogs: false, fontconfig: false, git: false, glibcLocales: false, gnugrep: false, lib: false, libGL: false, libgbm: false, libnotify: false, libsecret: false, libx11: false, libxcb: false, libxcomposite: false, libxdamage: false, libxext: false, libxfixes: false, libxkbcommon: false, libxrandr: false, makeDesktopItem: false, makeWrapper: false, nspr: false, nss: false, pango: false, patchelf: false, python3: false, stdenv: false, udev: false, unzip: false, which: false, writeText: false, vmopts: true, excludeDrvArgNames: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, product: false, productShort: true, wmClass: false, jdk: false, "jetbrains-libdbm": false, fsnotifier: false, extraLdPath: true, extraWrapperArgs: true, buildInputs: true, nativeBuildInputs: true, meta: true, postPatch: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/linux.nix", [["name", 82, 9], ["exec", 83, 9], ["comment", 84, 9], ["desktopName", 85, 9], ["genericName", 86, 9], ["categories", 87, 9], ["icon", 88, 9], ["startupWMClass", 89, 9]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["mainProgram", 243, 9]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["desktopItem", 96, 15], ["vmoptsIDE", 96, 27], ["vmoptsFile", 96, 37], ["buildInputs", 98, 7], ["nativeBuildInputs", 126, 7], ["postPatch", 135, 7], ["installPhase", 176, 7], ["preFixup", 236, 7], ["preferLocalBuild", 240, 7], ["meta", 242, 7]]);
-const pos$4 = nix.positions(here + "/linux.nix", [["excludeDrvArgNames", 51, 11], ["constructDrv", 53, 3], ["extendDrvArgs", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
   const vmopts = nix.argOr($, "vmopts", () => null);
   const excludeDrvArgNames = nix.arg($, "excludeDrvArgNames");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       excludeDrvArgNames: excludeDrvArgNames,
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
         const hiName = nix.thunk(() => nix.app(nix.sel(lib, "toUpper"), productShort));
         const vmoptsName = nix.thunk(() => nix.add(nix.add(loName, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "is64bit")), "64")), ".vmoptions"));
         const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             comment: nix.thunk(() => nix.app(nix.sel(lib, "trim"), nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), "\n", " ", nix.thunk(() => nix.sel(finalAttrs, "meta", "longDescription")))))),
@@ -88,7 +85,7 @@ export default nix.lambda((args) => (() => {
         const vmoptsIDE = nix.thunk(() => (nix.asBool(nix.eq(hiName, "WEBSTORM")) ? "WEBIDE" : nix.force(hiName)));
         const vmoptsFile = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(vmopts, null)), nix.thunk(() => nix.app(writeText, vmoptsName, vmopts))));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           desktopItem: desktopItem,
           vmoptsIDE: vmoptsIDE,
           vmoptsFile: vmoptsFile,
@@ -202,7 +199,7 @@ runHook postInstall
           preFixup: nix.thunk(() => nix.str`addAutoPatchelfSearchPath "${nix.sel(jdk, "home")}/lib"
 `),
           preferLocalBuild: nix.thunk(() => !nix.asBool(nix.selOr(finalAttrs, () => true, "meta", "license", "free"))),
-          meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$2, mainProgram: pname })),
+          meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[1], mainProgram: pname })),
         };
       })(), formals$2),
     })));

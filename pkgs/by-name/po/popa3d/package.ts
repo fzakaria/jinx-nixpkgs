@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["homepage", 46, 5], ["description", 47, 5], ["mainProgram", 48, 5], ["platforms", 49, 5], ["license", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["enableParallelBuilding", 27, 3], ["makeFlags", 29, 3], ["buildInputs", 34, 3], ["nativeInstallCheckInputs", 39, 3], ["doInstallCheck", 42, 3], ["versionCheckProgramArg", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openssl: false, libxcrypt: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["description", 47, 5], ["mainProgram", 48, 5], ["platforms", 49, 5], ["license", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["enableParallelBuilding", 27, 3], ["makeFlags", 29, 3], ["buildInputs", 34, 3], ["nativeInstallCheckInputs", 39, 3], ["doInstallCheck", 42, 3], ["versionCheckProgramArg", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "popa3d",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.openwall.com/popa3d/popa3d-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-A7hT2vnyQm/RjUENM76C7zofCcFQ0spNIhRiTU5jiLw=",
         })))),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgramArg: "-V",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.openwall.com/popa3d/",
         description: "Tiny POP3 daemon with security as the primary goal",
         mainProgram: "popa3d",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]], [["OPENSSL_NO_VENDOR", 28, 7]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["cargoHash", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 24, 3], ["env", 28, 3], ["checkFlags", 31, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, "pkg-config": false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["cargoHash", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 24, 3], ["env", 28, 3], ["checkFlags", 31, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rustfinity",
       version: "0.4.9",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-0xEVYHvVOugfE4mQxYt+U7AsejOxm/SnDV8HsmcZxBs=",
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-Zc3m+hTotgCqBguUB/KM4BtGsdD4W5MR/ZBg2X/0nNk=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: 1n })),
       checkFlags: nix.thunk(() => nix.builtins.map((t) => nix.str`--skip=${t}`, nix.thunk(() => [
           "challenge::tests::test_challenge_exists",
           "crates_io::tests::test_get_latest_version",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
           "download::tests::download_file::test_renames_starter",
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI for Rustfinity challenges solving",
         homepage: "https://github.com/rustfinity/rustfinity/tree/main/crates/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

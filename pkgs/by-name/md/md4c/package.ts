@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["homepage", 35, 5], ["description", 36, 5], ["longDescription", 37, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["nativeBuildInputs", 27, 3], ["strictDeps", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 35, 5], ["description", 36, 5], ["longDescription", 37, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["nativeBuildInputs", 27, 3], ["strictDeps", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "md4c",
       version: "0.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mity",
           repo: "md4c",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mity/md4c",
         description: "Markdown parser made in C",
         longDescription: "MD4C is Markdown parser implementation in C, with the following features:\n\n- Compliance: Generally, MD4C aims to be compliant to the latest version\n  of CommonMark specification. Currently, we are fully compliant to\n  CommonMark 0.30.\n- Extensions: MD4C supports some commonly requested and accepted\n  extensions. See below.\n- Performance: MD4C is very fast.\n- Compactness: MD4C parser is implemented in one source file and one\n  header file. There are no dependencies other than standard C library.\n- Embedding: MD4C parser is easy to reuse in other projects, its API is\n  very straightforward: There is actually just one function, md_parse().\n- Push model: MD4C parses the complete document and calls few callback\n  functions provided by the application to inform it about a start/end of\n  every block, a start/end of every span, and with any textual contents.\n- Portability: MD4C builds and works on Windows and POSIX-compliant\n  OSes. (It should be simple to make it run also on most other platforms,\n  at least as long as the platform provides C standard library, including\n  a heap memory management.)\n- Encoding: MD4C by default expects UTF-8 encoding of the input\n  document. But it can be compiled to recognize ASCII-only control\n  characters (i.e. to disable all Unicode-specific code), or (on Windows)\n  to expect UTF-16 (i.e. what is on Windows commonly called just\n  \"Unicode\"). See more details below.\n- Permissive license: MD4C is available under the MIT license.\n",

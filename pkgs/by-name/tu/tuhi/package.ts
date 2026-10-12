@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 20, 3], ["src", 22, 3], ["dontWrapGApps", 29, 3], ["preFixup", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["nativeCheckInputs", 47, 3], ["propagatedBuildInputs", 51, 3], ["strictDeps", 59, 3], ["preConfigure", 60, 3], ["postFixup", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, "pkg-config": false, python3Packages: false, meson: false, ninja: false, "appstream-glib": false, "desktop-file-utils": false, glib: false, gtk3: false, "gobject-introspection": false, wrapGAppsHook3: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 20, 3], ["src", 22, 3], ["dontWrapGApps", 29, 3], ["preFixup", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["nativeCheckInputs", 47, 3], ["propagatedBuildInputs", 51, 3], ["strictDeps", 59, 3], ["preConfigure", 60, 3], ["postFixup", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tuhi",
       version: "0.6",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tuhiproject",
           repo: "tuhi",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "substituteInPlace meson_install.sh \\\n  --replace \"/usr/bin/env sh\" \"sh\"\n",
       postFixup: "wrapPythonProgramsIn $out/libexec \"$out ${pythonPath[*]}\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "DBus daemon to access Wacom SmartPad devices",
         mainProgram: "tuhi",
         homepage: "https://github.com/tuhiproject/tuhi",

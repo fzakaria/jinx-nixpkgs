@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 56, 5], ["description", 57, 5], ["changelog", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["license", 61, 5], ["mainProgram", 62, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["strictDeps", 21, 3], ["dontStrip", 22, 3], ["buildPhase", 24, 3], ["installPhase", 32, 3], ["postPatch", 40, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, sbcl: false, installStandardLibrary: true, installConcurrency: true, installThorn: true, installLogicLab: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["changelog", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["license", 61, 5], ["mainProgram", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["strictDeps", 21, 3], ["dontStrip", 22, 3], ["buildPhase", 24, 3], ["installPhase", 32, 3], ["postPatch", 40, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const installThorn = nix.argOr($, "installThorn", () => true);
   const installLogicLab = nix.argOr($, "installLogicLab", () => true);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "shen-sbcl",
       version: "41.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://shenlanguage.org/Download/S${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-hgO/g0XefSXn5pjiV5LzGmoZ8nsqmZcyZpK6nbcE0es=",
         })))),
@@ -45,7 +43,7 @@ substituteInPlace Lib/install.shen \\
   --replace-fail '(y-or-n? "install Logic Lab?")' '${nix.app(nix.sel(lib, "boolToString"), installLogicLab)}'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://shenlanguage.org",
         description: "Port of Shen running on Steel Bank Common Lisp",
         changelog: "https://shenlanguage.org/download.html#kernel",

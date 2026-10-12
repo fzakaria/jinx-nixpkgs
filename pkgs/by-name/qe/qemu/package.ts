@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 146, 5], ["hash", 147, 5]], [["url", 277, 7], ["sha256", 278, 7], ["revert", 279, 7]], [["doCheck", 431, 9]], [["qemu-tests", 430, 7], ["qemu-utils-builds", 433, 7]], [["url", 437, 7], ["rev-prefix", 438, 7], ["ignoredVersions", 439, 7]], [["qemu-system-i386", 428, 5], ["tests", 429, 5], ["updateScript", 435, 5]], [["homepage", 449, 7], ["description", 450, 7], ["license", 451, 7], ["maintainers", 452, 7], ["teams", 453, 7], ["platforms", 454, 7]], [["mainProgram", 459, 7]], [["platforms", 463, 7], ["description", 471, 7]], [["pname", 136, 3], ["version", 143, 3], ["src", 145, 3], ["depsBuildBuild", 150, 3], ["nativeBuildInputs", 155, 3], ["buildInputs", 186, 3], ["dontUseMesonConfigure", 255, 3], ["dontUseNinjaBuild", 256, 3], ["dontUseNinjaCheck", 257, 3], ["dontUseNinjaInstall", 258, 3], ["dontAddStaticConfigureFlags", 259, 3], ["enableParallelBuilding", 260, 3], ["outputs", 262, 3], ["separateDebugInfo", 263, 3], ["patches", 265, 3], ["postPatch", 290, 3], ["preConfigure", 296, 3], ["configureFlags", 315, 3], ["dontWrapGApps", 355, 3], ["dontStrip", 361, 3], ["postFixup", 363, 3], ["doCheck", 388, 3], ["nativeCheckInputs", 389, 3], ["preCheck", 394, 3], ["postInstall", 423, 3], ["passthru", 427, 3], ["requiredSystemFeatures", 444, 3], ["meta", 446, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, python3Packages: false, zlib: false, "pkg-config": false, glib: false, buildPackages: false, pixman: false, vde2: false, "alsa-lib": false, flex: false, bison: false, lzo: false, snappy: false, libaio: false, libtasn1: false, gnutls: false, curl: false, dtc: false, ninja: false, meson: false, perl: false, makeWrapper: false, removeReferencesTo: false, attr: false, libcap: false, libcap_ng: false, socat: false, libslirp: false, libcbor: false, darwin: false, "apple-sdk_15": false, guestAgentSupport: true, numaSupport: true, numactl: false, seccompSupport: true, libseccomp: false, alsaSupport: true, pulseSupport: true, libpulseaudio: false, pipewireSupport: true, pipewire: false, sdlSupport: true, SDL2: false, SDL2_image: false, jackSupport: true, libjack2: false, gtkSupport: true, gtk3: false, gettext: false, vte: false, wrapGAppsHook3: false, vncSupport: true, libjpeg: false, libpng: false, smartcardSupport: true, libcacard: false, spiceSupport: true, spice: false, "spice-protocol": false, ncursesSupport: true, ncurses: false, usbredirSupport: true, usbredir: false, xenSupport: true, xen: false, cephSupport: true, ceph: false, openGLSupport: true, libgbm: false, libepoxy: false, libdrm: false, rutabagaSupport: true, rutabaga_gfx: false, virglSupport: true, virglrenderer: false, libiscsiSupport: true, libiscsi: false, smbdSupport: true, samba: false, tpmSupport: true, uringSupport: true, liburing: false, fuseSupport: true, fuse3: false, canokeySupport: true, "canokey-qemu": false, u2fEmuSupport: true, "libu2f-emu": false, capstoneSupport: true, capstone: false, valgrindSupport: true, "valgrind-light": false, brlttySupport: true, brltty: false, pluginsSupport: true, enableDocs: true, enableTools: true, enableBlobs: true, hostCpuOnly: true, hostCpuTargets: true, nixosTestRunner: true, toolsOnly: true, userOnly: true, minimal: true, gitUpdater: false, "qemu-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 146, 5], ["hash", 147, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 277, 7], ["sha256", 278, 7], ["revert", 279, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["doCheck", 431, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["qemu-tests", 430, 7], ["qemu-utils-builds", 433, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 437, 7], ["rev-prefix", 438, 7], ["ignoredVersions", 439, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["qemu-system-i386", 428, 5], ["tests", 429, 5], ["updateScript", 435, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 449, 7], ["description", 450, 7], ["license", 451, 7], ["maintainers", 452, 7], ["teams", 453, 7], ["platforms", 454, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["mainProgram", 459, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["platforms", 463, 7], ["description", 471, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 136, 3], ["version", 143, 3], ["src", 145, 3], ["depsBuildBuild", 150, 3], ["nativeBuildInputs", 155, 3], ["buildInputs", 186, 3], ["dontUseMesonConfigure", 255, 3], ["dontUseNinjaBuild", 256, 3], ["dontUseNinjaCheck", 257, 3], ["dontUseNinjaInstall", 258, 3], ["dontAddStaticConfigureFlags", 259, 3], ["enableParallelBuilding", 260, 3], ["outputs", 262, 3], ["separateDebugInfo", 263, 3], ["patches", 265, 3], ["postPatch", 290, 3], ["preConfigure", 296, 3], ["configureFlags", 315, 3], ["dontWrapGApps", 355, 3], ["dontStrip", 361, 3], ["postFixup", 363, 3], ["doCheck", 388, 3], ["nativeCheckInputs", 389, 3], ["preCheck", 394, 3], ["postInstall", 423, 3], ["passthru", 427, 3], ["requiredSystemFeatures", 444, 3], ["meta", 446, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -133,11 +124,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(xenSupport) || nix.asBool(nix.eq(hostCpuTargets, ["i386-softmmu"])))), "Xen should not use any other QEMU architecture other than i386."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/qe/qemu/package.nix:127:1");
   const hexagonSupport = nix.thunk(() => (nix.asBool(nix.eq(hostCpuTargets, null)) || nix.asBool(nix.app(nix.sel(lib, "elem"), "hexagon", hostCpuTargets))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add("qemu", nix.app(nix.sel(lib, "optionalString"), xenSupport, "-xen")), nix.app(nix.sel(lib, "optionalString"), hostCpuOnly, "-host-cpu-only")), nix.app(nix.sel(lib, "optionalString"), nixosTestRunner, "-for-vm-tests")), nix.app(nix.sel(lib, "optionalString"), toolsOnly, "-utils")), nix.app(nix.sel(lib, "optionalString"), userOnly, "-user"))),
       version: "11.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.qemu.org/qemu-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-B5/7/4pxEbvIkCIQfLq/O7/WFNX8nXzGdZkRlqyhJII=",
         })))),
@@ -172,7 +163,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-qemu-ga.patch"),
         nix.path(here, "./skip-macos-icon.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/qemu-project/qemu/-/commit/3e4546d5bd38a1e98d4bd2de48631abf0398a3a2.diff",
             sha256: "sha256-oC+bRjEHixv1QEFO9XAm4HHOwoiT+NkhknKGPydnZ5E=",
             revert: true,
@@ -204,15 +195,15 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.asBool(minimal)) && nix.asBool(!nix.asBool(xenSupport)))), nix.thunk(() => nix.str`ln -s $out/bin/qemu-system-${nix.sel(stdenv, "hostPlatform", "qemuArch")} $out/bin/qemu-kvm
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "qemu-system-i386": "bin/qemu-system-i386",
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(toolsOnly)), nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            "qemu-tests": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ [nix.POS]: pos$3, doCheck: true }))),
+            [nix.POS]: $pos[3],
+            "qemu-tests": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ [nix.POS]: $pos[2], doCheck: true }))),
             "qemu-utils-builds": qemu_utils,
           })))),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://gitlab.com/qemu-project/qemu.git",
             "rev-prefix": "v",
             ignoredVersions: "(alpha|beta|rc).*",
@@ -220,7 +211,7 @@ export default nix.lambda((args) => (() => {
       })),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://www.qemu.org/",
         description: "Generic and open source machine emulator and virtualizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -233,8 +224,8 @@ export default nix.lambda((args) => (() => {
           const w_2 = nix.withScope(nix.thunk(() => nix.sel(lib, "systems", "inspect")), null);
           return nix.app(nix.lookup(w_2, "patternLogicalAnd"), nix.thunk(() => nix.sel(nix.lookup(w_2, "patterns"), "is64bit")), nix.thunk(() => nix.sel(nix.lookup(w_2, "patterns"), "isUnix")));
         })()),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(toolsOnly)) && nix.asBool(!nix.asBool(userOnly)))), nix.thunk(() => ({ [nix.POS]: pos$8, mainProgram: "qemu-kvm" }))), nix.app(nix.sel(lib, "optionalAttrs"), userOnly, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(toolsOnly)) && nix.asBool(!nix.asBool(userOnly)))), nix.thunk(() => ({ [nix.POS]: $pos[7], mainProgram: "qemu-kvm" }))), nix.app(nix.sel(lib, "optionalAttrs"), userOnly, nix.thunk(() => ({
+          [nix.POS]: $pos[8],
           platforms: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "systems", "inspect")), null);
             return nix.app(nix.lookup(w_1, "patternLogicalAnd"), nix.thunk(() => nix.sel(nix.lookup(w_1, "patterns"), "is64bit")), nix.thunk(() => [

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["name", 21, 7], ["url", 22, 7], ["hash", 23, 7]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["mainProgram", 38, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["nativeBuildInputs", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, perl: false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 21, 7], ["url", 22, 7], ["hash", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["mainProgram", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["nativeBuildInputs", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "halibut",
       version: "1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.chiark.greenend.org.uk/~sgtatham/halibut/halibut-${nix.sel(finalAttrs, "version")}/halibut-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0ciikn878vivs4ayvwvr63nnhpcg12m8023xv514zxqpdxlzg85a",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-charset-cmakelists.patch",
             url: "https://git.tartarus.org/?p=simon/halibut.git;a=blobdiff_plain;f=charset/CMakeLists.txt;h=4613cb4d02959db051dd82b25d6bfd82a50455d7;hp=06eae7703d3e52aa50d5309624ec93a7684f73d8;hb=570407a40bdde2a9bb50c16aa47711202ade8923;hpb=ce14e373b7e6532c0dfa1908fe6030c5667cf79a",
             hash: "sha256-YdLxbXc3C2UxWp0CUzvmJ8mgzqaWJ5Br4VfRU7YjBYE=",
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake, perl]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Documentation production system for software manuals",
         homepage: "https://www.chiark.greenend.org.uk/~sgtatham/halibut/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

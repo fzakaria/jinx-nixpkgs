@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 23, 7]], [["name", 71, 7], ["exec", 72, 7], ["icon", 73, 7], ["desktopName", 74, 7], ["comment", 75, 7], ["categories", 76, 7], ["mimeTypes", 81, 7], ["terminal", 82, 7]], [["updateScript", 86, 12]], [["changelog", 89, 5], ["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 96, 29]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["env", 23, 3], ["npmDepsHash", 25, 3], ["nativeBuildInputs", 27, 3], ["postBuild", 29, 3], ["patches", 42, 3], ["installPhase", 44, 3], ["desktopItems", 69, 3], ["passthru", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, buildNpmPackage: false, makeDesktopItem: false, copyDesktopItems: false, electron: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 71, 7], ["exec", 72, 7], ["icon", 73, 7], ["desktopName", 74, 7], ["comment", 75, 7], ["categories", 76, 7], ["mimeTypes", 81, 7], ["terminal", 82, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 86, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 89, 5], ["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 96, 29]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["env", 23, 3], ["npmDepsHash", 25, 3], ["nativeBuildInputs", 27, 3], ["postBuild", 29, 3], ["patches", 42, 3], ["installPhase", 44, 3], ["desktopItems", 69, 3], ["passthru", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +19,13 @@ export default nix.lambda((args) => (() => {
       const pname = "caprine";
       const version = "2.61.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sindresorhus",
           repo: "caprine",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-hBGsqOqKMHNy2SNw1kHCQq1lPDd2S36L5pdKgD2O8FA=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const npmDepsHash = "sha256-FgOHuMMUX92VHF6hdznoi7bhO/27t6+l038kmpqjctQ=";
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems]);
       const postBuild = nix.thunk(() => nix.str`electron_dist="$(mktemp -d)"
@@ -65,7 +60,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "caprine",
             exec: "caprine %U",
             icon: "caprine",
@@ -77,13 +72,13 @@ runHook postInstall
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/sindresorhus/caprine/releases/tag/${nix.sel(src, "rev")}`),
         description: "Elegant Facebook Messenger desktop app",
         homepage: "https://github.com/sindresorhus/caprine",
@@ -96,7 +91,7 @@ runHook postInstall
       };
       })());
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]], [["name", 72, 7], ["exec", 73, 7], ["icon", 74, 7], ["desktopName", 75, 7], ["categories", 76, 7], ["comment", 79, 7]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5], ["platforms", 91, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 30, 3], ["selfContainedBuild", 32, 3], ["dotnet-sdk", 34, 3], ["dotnet-runtime", 35, 3], ["projectFile", 36, 3], ["nugetDeps", 40, 3], ["executables", 41, 3], ["nativeBuildInputs", 46, 3], ["runtimeDeps", 48, 3], ["enableParallelBuilding", 61, 3], ["dotnetFlags", 62, 3], ["postInstall", 66, 3], ["desktopItems", 70, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false, makeDesktopItem: false, copyDesktopItems: false, libx11: false, glew: false, libGL: false, libice: false, libsm: false, libxcursor: false, libxext: false, libxi: false, libxrandr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 72, 7], ["exec", 73, 7], ["icon", 74, 7], ["desktopName", 75, 7], ["categories", 76, 7], ["comment", 79, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5], ["platforms", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 30, 3], ["selfContainedBuild", 32, 3], ["dotnet-sdk", 34, 3], ["dotnet-runtime", 35, 3], ["projectFile", 36, 3], ["nugetDeps", 40, 3], ["executables", 41, 3], ["nativeBuildInputs", 46, 3], ["runtimeDeps", 48, 3], ["enableParallelBuilding", 61, 3], ["dotnetFlags", 62, 3], ["postInstall", 66, 3], ["desktopItems", 70, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libxrandr = nix.arg($, "libxrandr");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "Tkmm",
       version: "2.0.0-beta3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TKMM-Team",
           repo: "Tkmm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -D distribution/appimage/tkmm.svg $out/share/icons/hicolor/scalable/apps/tkmm.svg\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Tears of the Kingdom Mod Manager",
             exec: "Tkmm",
             icon: "tkmm",
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tears of the Kingdom Mod Manager, a mod merger and manager for TotK",
         homepage: "https://tkmm.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

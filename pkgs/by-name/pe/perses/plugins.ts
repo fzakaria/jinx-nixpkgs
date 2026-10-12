@@ -2,216 +2,186 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/plugins.nix", [["version", 5, 5], ["url", 6, 5], ["hash", 7, 5]]);
-const pos$2 = nix.positions(here + "/plugins.nix", [["version", 10, 5], ["url", 11, 5], ["hash", 12, 5]]);
-const pos$3 = nix.positions(here + "/plugins.nix", [["version", 15, 5], ["url", 16, 5], ["hash", 17, 5]]);
-const pos$4 = nix.positions(here + "/plugins.nix", [["version", 20, 5], ["url", 21, 5], ["hash", 22, 5]]);
-const pos$5 = nix.positions(here + "/plugins.nix", [["version", 25, 5], ["url", 26, 5], ["hash", 27, 5]]);
-const pos$6 = nix.positions(here + "/plugins.nix", [["version", 30, 5], ["url", 31, 5], ["hash", 32, 5]]);
-const pos$7 = nix.positions(here + "/plugins.nix", [["version", 35, 5], ["url", 36, 5], ["hash", 37, 5]]);
-const pos$8 = nix.positions(here + "/plugins.nix", [["version", 40, 5], ["url", 41, 5], ["hash", 42, 5]]);
-const pos$9 = nix.positions(here + "/plugins.nix", [["version", 45, 5], ["url", 46, 5], ["hash", 47, 5]]);
-const pos$10 = nix.positions(here + "/plugins.nix", [["version", 50, 5], ["url", 51, 5], ["hash", 52, 5]]);
-const pos$11 = nix.positions(here + "/plugins.nix", [["version", 55, 5], ["url", 56, 5], ["hash", 57, 5]]);
-const pos$12 = nix.positions(here + "/plugins.nix", [["version", 60, 5], ["url", 61, 5], ["hash", 62, 5]]);
-const pos$13 = nix.positions(here + "/plugins.nix", [["version", 65, 5], ["url", 66, 5], ["hash", 67, 5]]);
-const pos$14 = nix.positions(here + "/plugins.nix", [["version", 70, 5], ["url", 71, 5], ["hash", 72, 5]]);
-const pos$15 = nix.positions(here + "/plugins.nix", [["version", 75, 5], ["url", 76, 5], ["hash", 77, 5]]);
-const pos$16 = nix.positions(here + "/plugins.nix", [["version", 80, 5], ["url", 81, 5], ["hash", 82, 5]]);
-const pos$17 = nix.positions(here + "/plugins.nix", [["version", 85, 5], ["url", 86, 5], ["hash", 87, 5]]);
-const pos$18 = nix.positions(here + "/plugins.nix", [["version", 90, 5], ["url", 91, 5], ["hash", 92, 5]]);
-const pos$19 = nix.positions(here + "/plugins.nix", [["version", 95, 5], ["url", 96, 5], ["hash", 97, 5]]);
-const pos$20 = nix.positions(here + "/plugins.nix", [["version", 100, 5], ["url", 101, 5], ["hash", 102, 5]]);
-const pos$21 = nix.positions(here + "/plugins.nix", [["version", 105, 5], ["url", 106, 5], ["hash", 107, 5]]);
-const pos$22 = nix.positions(here + "/plugins.nix", [["version", 110, 5], ["url", 111, 5], ["hash", 112, 5]]);
-const pos$23 = nix.positions(here + "/plugins.nix", [["version", 115, 5], ["url", 116, 5], ["hash", 117, 5]]);
-const pos$24 = nix.positions(here + "/plugins.nix", [["version", 120, 5], ["url", 121, 5], ["hash", 122, 5]]);
-const pos$25 = nix.positions(here + "/plugins.nix", [["version", 125, 5], ["url", 126, 5], ["hash", 127, 5]]);
-const pos$26 = nix.positions(here + "/plugins.nix", [["version", 130, 5], ["url", 131, 5], ["hash", 132, 5]]);
-const pos$27 = nix.positions(here + "/plugins.nix", [["version", 135, 5], ["url", 136, 5], ["hash", 137, 5]]);
-const pos$28 = nix.positions(here + "/plugins.nix", [["version", 140, 5], ["url", 141, 5], ["hash", 142, 5]]);
-const pos$29 = nix.positions(here + "/plugins.nix", [["version", 145, 5], ["url", 146, 5], ["hash", 147, 5]]);
-const pos$30 = nix.positions(here + "/plugins.nix", [["version", 150, 5], ["url", 151, 5], ["hash", 152, 5]]);
-const pos$31 = nix.positions(here + "/plugins.nix", [["AlertManager", 4, 3], ["BarChart", 9, 3], ["ClickHouse", 14, 3], ["DatasourceVariable", 19, 3], ["FlameChart", 24, 3], ["GaugeChart", 29, 3], ["GreptimeDB", 34, 3], ["HistogramChart", 39, 3], ["HeatMapChart", 44, 3], ["Jaeger", 49, 3], ["LogExplorer", 54, 3], ["LogsTable", 59, 3], ["Loki", 64, 3], ["Markdown", 69, 3], ["OpenSearch", 74, 3], ["PieChart", 79, 3], ["Prometheus", 84, 3], ["Pyroscope", 89, 3], ["ScatterChart", 94, 3], ["Splunk", 99, 3], ["StatChart", 104, 3], ["StaticListVariable", 109, 3], ["StatusHistoryChart", 114, 3], ["Table", 119, 3], ["Tempo", 124, 3], ["TimeSeriesChart", 129, 3], ["TimeSeriesTable", 134, 3], ["TraceTable", 139, 3], ["TracingGanttChart", 144, 3], ["VictoriaLogs", 149, 3]]);
+const $pos = nix.positions(here + "/plugins.nix", [[["version", 5, 5], ["url", 6, 5], ["hash", 7, 5]], [["version", 10, 5], ["url", 11, 5], ["hash", 12, 5]], [["version", 15, 5], ["url", 16, 5], ["hash", 17, 5]], [["version", 20, 5], ["url", 21, 5], ["hash", 22, 5]], [["version", 25, 5], ["url", 26, 5], ["hash", 27, 5]], [["version", 30, 5], ["url", 31, 5], ["hash", 32, 5]], [["version", 35, 5], ["url", 36, 5], ["hash", 37, 5]], [["version", 40, 5], ["url", 41, 5], ["hash", 42, 5]], [["version", 45, 5], ["url", 46, 5], ["hash", 47, 5]], [["version", 50, 5], ["url", 51, 5], ["hash", 52, 5]], [["version", 55, 5], ["url", 56, 5], ["hash", 57, 5]], [["version", 60, 5], ["url", 61, 5], ["hash", 62, 5]], [["version", 65, 5], ["url", 66, 5], ["hash", 67, 5]], [["version", 70, 5], ["url", 71, 5], ["hash", 72, 5]], [["version", 75, 5], ["url", 76, 5], ["hash", 77, 5]], [["version", 80, 5], ["url", 81, 5], ["hash", 82, 5]], [["version", 85, 5], ["url", 86, 5], ["hash", 87, 5]], [["version", 90, 5], ["url", 91, 5], ["hash", 92, 5]], [["version", 95, 5], ["url", 96, 5], ["hash", 97, 5]], [["version", 100, 5], ["url", 101, 5], ["hash", 102, 5]], [["version", 105, 5], ["url", 106, 5], ["hash", 107, 5]], [["version", 110, 5], ["url", 111, 5], ["hash", 112, 5]], [["version", 115, 5], ["url", 116, 5], ["hash", 117, 5]], [["version", 120, 5], ["url", 121, 5], ["hash", 122, 5]], [["version", 125, 5], ["url", 126, 5], ["hash", 127, 5]], [["version", 130, 5], ["url", 131, 5], ["hash", 132, 5]], [["version", 135, 5], ["url", 136, 5], ["hash", 137, 5]], [["version", 140, 5], ["url", 141, 5], ["hash", 142, 5]], [["version", 145, 5], ["url", 146, 5], ["hash", 147, 5]], [["version", 150, 5], ["url", 151, 5], ["hash", 152, 5]], [["AlertManager", 4, 3], ["BarChart", 9, 3], ["ClickHouse", 14, 3], ["DatasourceVariable", 19, 3], ["FlameChart", 24, 3], ["GaugeChart", 29, 3], ["GreptimeDB", 34, 3], ["HistogramChart", 39, 3], ["HeatMapChart", 44, 3], ["Jaeger", 49, 3], ["LogExplorer", 54, 3], ["LogsTable", 59, 3], ["Loki", 64, 3], ["Markdown", 69, 3], ["OpenSearch", 74, 3], ["PieChart", 79, 3], ["Prometheus", 84, 3], ["Pyroscope", 89, 3], ["ScatterChart", 94, 3], ["Splunk", 99, 3], ["StatChart", 104, 3], ["StaticListVariable", 109, 3], ["StatusHistoryChart", 114, 3], ["Table", 119, 3], ["Tempo", 124, 3], ["TimeSeriesChart", 129, 3], ["TimeSeriesTable", 134, 3], ["TraceTable", 139, 3], ["TracingGanttChart", 144, 3], ["VictoriaLogs", 149, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$31,
+  [nix.POS]: $pos[30],
   AlertManager: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "0.1.1",
     url: "https://github.com/perses/plugins/releases/download/alertmanager/v0.1.1/AlertManager-0.1.1.tar.gz",
     hash: "sha256-7zzDQJB6bRzEcfLjjsmnERXR8KeJd7b5BMweNff0zj0=",
   })),
   BarChart: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "0.13.0",
     url: "https://github.com/perses/plugins/releases/download/barchart/v0.13.0/BarChart-0.13.0.tar.gz",
     hash: "sha256-iG39mqhYmbmH5uK8GJfkR2+EBfrN8vLfbl5Aurla5YU=",
   })),
   ClickHouse: nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     version: "0.6.0",
     url: "https://github.com/perses/plugins/releases/download/clickhouse/v0.6.0/ClickHouse-0.6.0.tar.gz",
     hash: "sha256-bdrlzZUeOqZLcBctVBGNbd465Wf0NeFGSO2SljWYqMU=",
   })),
   DatasourceVariable: nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     version: "0.6.0",
     url: "https://github.com/perses/plugins/releases/download/datasourcevariable/v0.6.0/DatasourceVariable-0.6.0.tar.gz",
     hash: "sha256-4tfqhkxHUdsjPrpBXefzaCOg02/7pOUICdB0i9yio+A=",
   })),
   FlameChart: nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     version: "0.6.0",
     url: "https://github.com/perses/plugins/releases/download/flamechart/v0.6.0/FlameChart-0.6.0.tar.gz",
     hash: "sha256-oLn4QNzmqDGG7iJHMV4/DVEDTqg6gSXeFMgM+pC3wQg=",
   })),
   GaugeChart: nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     version: "0.13.0",
     url: "https://github.com/perses/plugins/releases/download/gaugechart/v0.13.0/GaugeChart-0.13.0.tar.gz",
     hash: "sha256-dLt7YQOrgZ98THRcDtaw5aGuV+1PHtmA5ZEwGfEVC/w=",
   })),
   GreptimeDB: nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     version: "0.1.0",
     url: "https://github.com/perses/plugins/releases/download/greptimedb/v0.1.0/GreptimeDB-0.1.0.tar.gz",
     hash: "sha256-f8B8z/G8ekE0LDRZ+VxoAqNDBlXE73SF8n6Fx/uT8po=",
   })),
   HistogramChart: nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     version: "0.12.0",
     url: "https://github.com/perses/plugins/releases/download/histogramchart/v0.12.0/HistogramChart-0.12.0.tar.gz",
     hash: "sha256-vrAjaUh2QiVxhUguheFakoJSc1vmOX0jFQQdPsHOjtg=",
   })),
   HeatMapChart: nix.thunk(() => ({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     version: "0.5.0",
     url: "https://github.com/perses/plugins/releases/download/heatmapchart/v0.5.0/HeatMapChart-0.5.0.tar.gz",
     hash: "sha256-+rtiCv/cCDfmGFQtqBNucGIdQQ6B9jvLqpK4NJKNM6g=",
   })),
   Jaeger: nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     version: "0.1.0",
     url: "https://github.com/perses/plugins/releases/download/jaeger/v0.1.0/Jaeger-0.1.0.tar.gz",
     hash: "sha256-7kGw+z7U82+bArVSLoQSZ0LcAQtY37CUeu+XtugQg6M=",
   })),
   LogExplorer: nix.thunk(() => ({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     version: "0.1.0",
     url: "https://github.com/perses/plugins/releases/download/logexplorer/v0.1.0/LogExplorer-0.1.0.tar.gz",
     hash: "sha256-Xp//kSu+SYUzoYsiQaQvt7Q4kDKs+15frxUfjnLVftc=",
   })),
   LogsTable: nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     version: "0.3.0",
     url: "https://github.com/perses/plugins/releases/download/logstable/v0.3.0/LogsTable-0.3.0.tar.gz",
     hash: "sha256-ExO8yO4ctCbpg5MorVdD02J+JPnw/ixjU9XVIN5T8HU=",
   })),
   Loki: nix.thunk(() => ({
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     version: "0.6.0",
     url: "https://github.com/perses/plugins/releases/download/loki/v0.6.0/Loki-0.6.0.tar.gz",
     hash: "sha256-tJCOrHGItR+eu6tOCz/Fg69OfAtJbZ40rrjFVeRfszk=",
   })),
   Markdown: nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     version: "0.12.0",
     url: "https://github.com/perses/plugins/releases/download/markdown/v0.12.0/Markdown-0.12.0.tar.gz",
     hash: "sha256-X+sk4gWcnAqGjH3bcCrmYmTzIst/L56/3z3AXTsW/w4=",
   })),
   OpenSearch: nix.thunk(() => ({
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     version: "0.1.0",
     url: "https://github.com/perses/plugins/releases/download/opensearch/v0.1.0/OpenSearch-0.1.0.tar.gz",
     hash: "sha256-g4cRoY4PquvYPnY+WZRwoFAaAVCtf6FvA7bMsEJqx7w=",
   })),
   PieChart: nix.thunk(() => ({
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     version: "0.14.0",
     url: "https://github.com/perses/plugins/releases/download/piechart/v0.14.0/PieChart-0.14.0.tar.gz",
     hash: "sha256-RcWFFv6q0RT+ZeJmmCXvuYU8CnbkPGPzfABhjRqm/k0=",
   })),
   Prometheus: nix.thunk(() => ({
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     version: "0.58.0",
     url: "https://github.com/perses/plugins/releases/download/prometheus/v0.58.0/Prometheus-0.58.0.tar.gz",
     hash: "sha256-PoBB6OXYuZAJK8TTrgyEZEQNWflLzyeHSABc3CR7LtI=",
   })),
   Pyroscope: nix.thunk(() => ({
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     version: "0.6.0",
     url: "https://github.com/perses/plugins/releases/download/pyroscope/v0.6.0/Pyroscope-0.6.0.tar.gz",
     hash: "sha256-rClLLmwGYrggEteGjog8Fd66BgaQ11ktHxeHghIwAfA=",
   })),
   ScatterChart: nix.thunk(() => ({
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     version: "0.11.0",
     url: "https://github.com/perses/plugins/releases/download/scatterchart/v0.11.0/ScatterChart-0.11.0.tar.gz",
     hash: "sha256-isr/WfNFGcdraWrW9Kg35CSL/0ZV6CGzAaFaRTODKzk=",
   })),
   Splunk: nix.thunk(() => ({
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     version: "0.1.0",
     url: "https://github.com/perses/plugins/releases/download/splunk/v0.1.0/Splunk-0.1.0.tar.gz",
     hash: "sha256-/8TkrRRe5cOPQs/4PMEGKxe37sgZitai38XyIxF7nro=",
   })),
   StatChart: nix.thunk(() => ({
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     version: "0.13.0",
     url: "https://github.com/perses/plugins/releases/download/statchart/v0.13.0/StatChart-0.13.0.tar.gz",
     hash: "sha256-Z01LGlZe2dtDrwxpsodCmZOw/q6x6kmZDOaHT0Hc1Ag=",
   })),
   StaticListVariable: nix.thunk(() => ({
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     version: "0.9.0",
     url: "https://github.com/perses/plugins/releases/download/staticlistvariable/v0.9.0/StaticListVariable-0.9.0.tar.gz",
     hash: "sha256-Nuz+4H6du3EuqtvpwL8jlQdi+XdaOy+80jpXAX+8aCY=",
   })),
   StatusHistoryChart: nix.thunk(() => ({
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     version: "0.13.0",
     url: "https://github.com/perses/plugins/releases/download/statushistorychart/v0.13.0/StatusHistoryChart-0.13.0.tar.gz",
     hash: "sha256-tfeftp5uhRdnyBNnB7GnI5yDvqHA1tVxlserwNUHnsk=",
   })),
   Table: nix.thunk(() => ({
-    [nix.POS]: pos$24,
+    [nix.POS]: $pos[23],
     version: "0.13.0",
     url: "https://github.com/perses/plugins/releases/download/table/v0.13.0/Table-0.13.0.tar.gz",
     hash: "sha256-nid+7vVuYfXM4AbLayF4zU0/01WEMYd/KHs0Z80hQWY=",
   })),
   Tempo: nix.thunk(() => ({
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     version: "0.59.0",
     url: "https://github.com/perses/plugins/releases/download/tempo/v0.59.0/Tempo-0.59.0.tar.gz",
     hash: "sha256-okzYr88YfGEBT7t8dAV3OGO0FoczwAQf8cGpAOp9QW0=",
   })),
   TimeSeriesChart: nix.thunk(() => ({
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     version: "0.13.0",
     url: "https://github.com/perses/plugins/releases/download/timeserieschart/v0.13.0/TimeSeriesChart-0.13.0.tar.gz",
     hash: "sha256-rBBDxjk8YB/8+DYC/xV/SiLzjd98SlwRiLVRRrYxHxc=",
   })),
   TimeSeriesTable: nix.thunk(() => ({
-    [nix.POS]: pos$27,
+    [nix.POS]: $pos[26],
     version: "0.12.0",
     url: "https://github.com/perses/plugins/releases/download/timeseriestable/v0.12.0/TimeSeriesTable-0.12.0.tar.gz",
     hash: "sha256-LqJivOI43XCPa0UiB3Gx8z7fYDfkWWhI3aiH+MXSf84=",
   })),
   TraceTable: nix.thunk(() => ({
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     version: "0.11.0",
     url: "https://github.com/perses/plugins/releases/download/tracetable/v0.11.0/TraceTable-0.11.0.tar.gz",
     hash: "sha256-+PoMiGfKTDamGQjo3sXQgBkW6XKTe1tTrSBBUCR6xFA=",
   })),
   TracingGanttChart: nix.thunk(() => ({
-    [nix.POS]: pos$29,
+    [nix.POS]: $pos[28],
     version: "0.13.0",
     url: "https://github.com/perses/plugins/releases/download/tracingganttchart/v0.13.0/TracingGanttChart-0.13.0.tar.gz",
     hash: "sha256-x4C8gcx1/78hZAB5L3HDFdrqiIdCeJUtZoiR7W7WtmY=",
   })),
   VictoriaLogs: nix.thunk(() => ({
-    [nix.POS]: pos$30,
+    [nix.POS]: $pos[29],
     version: "0.4.0",
     url: "https://github.com/perses/plugins/releases/download/victorialogs/v0.4.0/VictoriaLogs-0.4.0.tar.gz",
     hash: "sha256-6vrKywgno5p0lWRuIikBDHunEa2yR2K4bylLv9I47S8=",

@@ -2,129 +2,27 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-repart.nix", [[["system", 4, 33], ["config", 4, 40]], [["system", 7, 49], ["pkgs", 7, 56]], [["device", 55, 11], ["fsType", 56, 11]], [["/", 54, 9]], [["useDefaultFilesystems", 52, 22], ["fileSystems", 53, 22]], [["config", 67, 17], ["pkgs", 67, 24], ["lib", 67, 29], ["format", 70, 9], ["bootSize", 72, 9], ["additionalSpace", 73, 9], ["partitionTableType", 76, 9], ["installBootLoader", 79, 9], ["copyChannel", 81, 9]], [["diskImage", 66, 20]], [["build", 66, 14]], [["virtualisation", 52, 7], ["system", 66, 7]], [["maintainers", 88, 10]], [["enable", 97, 36]], [["enable", 95, 29], ["repart", 97, 29]], [["systemd", 95, 21]], [["initrd", 95, 14]], [["Type", 100, 13]], [["10-root", 99, 11]], [["partitions", 98, 24]], [["repart", 98, 17]], [["imports", 93, 9], ["boot", 95, 9], ["systemd", 98, 9]], [["machine", 90, 11]], [["machine", 108, 42]], [["name", 87, 5], ["meta", 88, 5], ["nodes", 90, 5], ["testScript", 105, 5]], [["maintainers", 119, 10]], [["enable", 140, 36], ["extraArgs", 141, 36]], [["enable", 131, 29], ["repart", 140, 29]], [["device", 136, 13], ["crypttabExtraOpts", 137, 13]], [["created-crypt", 135, 11]], [["devices", 134, 26]], [["systemd", 131, 21], ["availableKernelModules", 133, 21], ["luks", 134, 21]], [["initrd", 131, 14]], [["Type", 146, 13]], [["Type", 149, 13], ["Label", 150, 13], ["Format", 151, 13], ["Encrypt", 152, 13]], [["10-root", 145, 11], ["10-crypt", 148, 11]], [["partitions", 144, 24]], [["repart", 144, 17]], [["enable", 155, 28]], [["device", 158, 13], ["fsType", 159, 13]], [["/var", 157, 11]], [["tpm", 155, 24], ["fileSystems", 156, 24]], [["imports", 129, 9], ["boot", 131, 9], ["systemd", 144, 9], ["virtualisation", 155, 9]], [["machine", 121, 11]], [["machine", 168, 27], ["sizeDiff", 169, 11]], [["name", 118, 5], ["meta", 119, 5], ["nodes", 121, 5], ["testScript", 164, 5]], [["maintainers", 183, 10]], [["Type", 193, 13]], [["10-root", 192, 11]], [["enable", 190, 24], ["partitions", 191, 24]], [["repart", 190, 17]], [["imports", 188, 9], ["systemd", 190, 9]], [["machine", 185, 11]], [["machine", 201, 42]], [["name", 182, 5], ["meta", 183, 5], ["nodes", 185, 5], ["testScript", 198, 5]], [["maintainers", 212, 10]], [["device", 226, 13], ["fsType", 227, 13]], [["device", 230, 13], ["fsType", 231, 13]], [["/", 225, 11], ["/nix/store", 229, 11]], [["useDefaultFilesystems", 222, 24], ["mountHostNixStore", 223, 24], ["fileSystems", 224, 24]], [["config", 242, 19], ["pkgs", 242, 26], ["lib", 242, 31], ["onlyNixStore", 243, 11], ["format", 244, 11], ["bootSize", 245, 11], ["additionalSpace", 246, 11], ["partitionTableType", 247, 11], ["installBootLoader", 248, 11], ["copyChannel", 249, 11]], [["diskImage", 241, 22]], [["build", 241, 16]], [["enable", 254, 36], ["device", 255, 36]], [["enable", 252, 29], ["repart", 254, 29]], [["systemd", 252, 21]], [["initrd", 252, 14]], [["Type", 258, 13], ["Label", 259, 13], ["Format", 260, 13]], [["10-root", 257, 11]], [["partitions", 256, 24]], [["repart", 256, 17]], [["virtualisation", 222, 9], ["system", 241, 9], ["boot", 252, 9], ["systemd", 256, 9]], [["machine", 214, 11]], [["machine", 268, 42]], [["name", 211, 5], ["meta", 212, 5], ["nodes", 214, 5], ["testScript", 265, 5]], [["maintainers", 279, 10]], [["enable", 288, 15]], [["OVMF", 289, 15]], [["device", 293, 15], ["fsType", 294, 15]], [["/state", 292, 13]], [["useEFIBoot", 287, 11], ["tpm", 288, 11], ["efi", 289, 11], ["useDefaultFilesystems", 290, 11], ["fileSystems", 291, 11]], [["enable", 300, 31]], [["systemd-boot", 300, 18]], [["before", 308, 39]], [["before", 311, 55]], [["systemd-repart", 308, 24], ["systemd-factory-reset-complete", 311, 24]], [["enable", 315, 17], ["extraArgs", 316, 17]], [["enable", 304, 15], ["services", 308, 15], ["repart", 314, 15]], [["device", 323, 17], ["crypttabExtraOpts", 324, 17]], [["state", 322, 15]], [["devices", 321, 18]], [["systemd", 303, 13], ["luks", 321, 13]], [["loader", 300, 11], ["initrd", 302, 11]], [["Type", 331, 20]], [["Type", 332, 21]], [["Type", 334, 13], ["Label", 335, 13], ["Format", 336, 13], ["Encrypt", 337, 13], ["SizeMinBytes", 338, 13], ["SizeMaxBytes", 339, 13], ["FactoryReset", 340, 13]], [["10-esp", 331, 11], ["20-root", 332, 11], ["30-state", 333, 11]], [["partitions", 330, 24]], [["enable", 346, 55]], [["systemd-factory-reset-reboot", 346, 26]], [["repart", 330, 17], ["services", 346, 17]], [["imports", 284, 9], ["virtualisation", 286, 9], ["boot", 299, 9], ["systemd", 330, 9]], [["machine", 281, 11]], [["machine", 354, 27], ["sizeDiff", 355, 11]], [["name", 278, 5], ["meta", 279, 5], ["nodes", 281, 5], ["testScript", 349, 5]], [["basic", 86, 3], ["encrypt-tpm2", 117, 3], ["after-initrd", 181, 3], ["create-root", 210, 3], ["factory-reset", 277, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/systemd-repart.nix", [["system", 4, 33], ["config", 4, 40]]);
-const pos$2 = nix.positions(here + "/systemd-repart.nix", [["system", 7, 49], ["pkgs", 7, 56]]);
 const formals$2 = { args: { machine: false, sizeDiff: true }, ellipsis: false };
 const formals$3 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/systemd-repart.nix", [["device", 55, 11], ["fsType", 56, 11]]);
-const pos$4 = nix.positions(here + "/systemd-repart.nix", [["/", 54, 9]]);
-const pos$5 = nix.positions(here + "/systemd-repart.nix", [["useDefaultFilesystems", 52, 22], ["fileSystems", 53, 22]]);
-const pos$6 = nix.positions(here + "/systemd-repart.nix", [["config", 67, 17], ["pkgs", 67, 24], ["lib", 67, 29], ["format", 70, 9], ["bootSize", 72, 9], ["additionalSpace", 73, 9], ["partitionTableType", 76, 9], ["installBootLoader", 79, 9], ["copyChannel", 81, 9]]);
-const pos$7 = nix.positions(here + "/systemd-repart.nix", [["diskImage", 66, 20]]);
-const pos$8 = nix.positions(here + "/systemd-repart.nix", [["build", 66, 14]]);
-const pos$9 = nix.positions(here + "/systemd-repart.nix", [["virtualisation", 52, 7], ["system", 66, 7]]);
-const pos$10 = nix.positions(here + "/systemd-repart.nix", [["maintainers", 88, 10]]);
 const formals$4 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/systemd-repart.nix", [["enable", 97, 36]]);
-const pos$12 = nix.positions(here + "/systemd-repart.nix", [["enable", 95, 29], ["repart", 97, 29]]);
-const pos$13 = nix.positions(here + "/systemd-repart.nix", [["systemd", 95, 21]]);
-const pos$14 = nix.positions(here + "/systemd-repart.nix", [["initrd", 95, 14]]);
-const pos$15 = nix.positions(here + "/systemd-repart.nix", [["Type", 100, 13]]);
-const pos$16 = nix.positions(here + "/systemd-repart.nix", [["10-root", 99, 11]]);
-const pos$17 = nix.positions(here + "/systemd-repart.nix", [["partitions", 98, 24]]);
-const pos$18 = nix.positions(here + "/systemd-repart.nix", [["repart", 98, 17]]);
-const pos$19 = nix.positions(here + "/systemd-repart.nix", [["imports", 93, 9], ["boot", 95, 9], ["systemd", 98, 9]]);
-const pos$20 = nix.positions(here + "/systemd-repart.nix", [["machine", 90, 11]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$21 = nix.positions(here + "/systemd-repart.nix", [["machine", 108, 42]]);
-const pos$22 = nix.positions(here + "/systemd-repart.nix", [["name", 87, 5], ["meta", 88, 5], ["nodes", 90, 5], ["testScript", 105, 5]]);
-const pos$23 = nix.positions(here + "/systemd-repart.nix", [["maintainers", 119, 10]]);
 const formals$6 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$24 = nix.positions(here + "/systemd-repart.nix", [["enable", 140, 36], ["extraArgs", 141, 36]]);
-const pos$25 = nix.positions(here + "/systemd-repart.nix", [["enable", 131, 29], ["repart", 140, 29]]);
-const pos$26 = nix.positions(here + "/systemd-repart.nix", [["device", 136, 13], ["crypttabExtraOpts", 137, 13]]);
-const pos$27 = nix.positions(here + "/systemd-repart.nix", [["created-crypt", 135, 11]]);
-const pos$28 = nix.positions(here + "/systemd-repart.nix", [["devices", 134, 26]]);
-const pos$29 = nix.positions(here + "/systemd-repart.nix", [["systemd", 131, 21], ["availableKernelModules", 133, 21], ["luks", 134, 21]]);
-const pos$30 = nix.positions(here + "/systemd-repart.nix", [["initrd", 131, 14]]);
-const pos$31 = nix.positions(here + "/systemd-repart.nix", [["Type", 146, 13]]);
-const pos$32 = nix.positions(here + "/systemd-repart.nix", [["Type", 149, 13], ["Label", 150, 13], ["Format", 151, 13], ["Encrypt", 152, 13]]);
-const pos$33 = nix.positions(here + "/systemd-repart.nix", [["10-root", 145, 11], ["10-crypt", 148, 11]]);
-const pos$34 = nix.positions(here + "/systemd-repart.nix", [["partitions", 144, 24]]);
-const pos$35 = nix.positions(here + "/systemd-repart.nix", [["repart", 144, 17]]);
-const pos$36 = nix.positions(here + "/systemd-repart.nix", [["enable", 155, 28]]);
-const pos$37 = nix.positions(here + "/systemd-repart.nix", [["device", 158, 13], ["fsType", 159, 13]]);
-const pos$38 = nix.positions(here + "/systemd-repart.nix", [["/var", 157, 11]]);
-const pos$39 = nix.positions(here + "/systemd-repart.nix", [["tpm", 155, 24], ["fileSystems", 156, 24]]);
-const pos$40 = nix.positions(here + "/systemd-repart.nix", [["imports", 129, 9], ["boot", 131, 9], ["systemd", 144, 9], ["virtualisation", 155, 9]]);
-const pos$41 = nix.positions(here + "/systemd-repart.nix", [["machine", 121, 11]]);
 const formals$7 = { args: { nodes: false }, ellipsis: true };
-const pos$42 = nix.positions(here + "/systemd-repart.nix", [["machine", 168, 27], ["sizeDiff", 169, 11]]);
-const pos$43 = nix.positions(here + "/systemd-repart.nix", [["name", 118, 5], ["meta", 119, 5], ["nodes", 121, 5], ["testScript", 164, 5]]);
-const pos$44 = nix.positions(here + "/systemd-repart.nix", [["maintainers", 183, 10]]);
 const formals$8 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$45 = nix.positions(here + "/systemd-repart.nix", [["Type", 193, 13]]);
-const pos$46 = nix.positions(here + "/systemd-repart.nix", [["10-root", 192, 11]]);
-const pos$47 = nix.positions(here + "/systemd-repart.nix", [["enable", 190, 24], ["partitions", 191, 24]]);
-const pos$48 = nix.positions(here + "/systemd-repart.nix", [["repart", 190, 17]]);
-const pos$49 = nix.positions(here + "/systemd-repart.nix", [["imports", 188, 9], ["systemd", 190, 9]]);
-const pos$50 = nix.positions(here + "/systemd-repart.nix", [["machine", 185, 11]]);
 const formals$9 = { args: { nodes: false }, ellipsis: true };
-const pos$51 = nix.positions(here + "/systemd-repart.nix", [["machine", 201, 42]]);
-const pos$52 = nix.positions(here + "/systemd-repart.nix", [["name", 182, 5], ["meta", 183, 5], ["nodes", 185, 5], ["testScript", 198, 5]]);
-const pos$53 = nix.positions(here + "/systemd-repart.nix", [["maintainers", 212, 10]]);
 const formals$10 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$54 = nix.positions(here + "/systemd-repart.nix", [["device", 226, 13], ["fsType", 227, 13]]);
-const pos$55 = nix.positions(here + "/systemd-repart.nix", [["device", 230, 13], ["fsType", 231, 13]]);
-const pos$56 = nix.positions(here + "/systemd-repart.nix", [["/", 225, 11], ["/nix/store", 229, 11]]);
-const pos$57 = nix.positions(here + "/systemd-repart.nix", [["useDefaultFilesystems", 222, 24], ["mountHostNixStore", 223, 24], ["fileSystems", 224, 24]]);
-const pos$58 = nix.positions(here + "/systemd-repart.nix", [["config", 242, 19], ["pkgs", 242, 26], ["lib", 242, 31], ["onlyNixStore", 243, 11], ["format", 244, 11], ["bootSize", 245, 11], ["additionalSpace", 246, 11], ["partitionTableType", 247, 11], ["installBootLoader", 248, 11], ["copyChannel", 249, 11]]);
-const pos$59 = nix.positions(here + "/systemd-repart.nix", [["diskImage", 241, 22]]);
-const pos$60 = nix.positions(here + "/systemd-repart.nix", [["build", 241, 16]]);
-const pos$61 = nix.positions(here + "/systemd-repart.nix", [["enable", 254, 36], ["device", 255, 36]]);
-const pos$62 = nix.positions(here + "/systemd-repart.nix", [["enable", 252, 29], ["repart", 254, 29]]);
-const pos$63 = nix.positions(here + "/systemd-repart.nix", [["systemd", 252, 21]]);
-const pos$64 = nix.positions(here + "/systemd-repart.nix", [["initrd", 252, 14]]);
-const pos$65 = nix.positions(here + "/systemd-repart.nix", [["Type", 258, 13], ["Label", 259, 13], ["Format", 260, 13]]);
-const pos$66 = nix.positions(here + "/systemd-repart.nix", [["10-root", 257, 11]]);
-const pos$67 = nix.positions(here + "/systemd-repart.nix", [["partitions", 256, 24]]);
-const pos$68 = nix.positions(here + "/systemd-repart.nix", [["repart", 256, 17]]);
-const pos$69 = nix.positions(here + "/systemd-repart.nix", [["virtualisation", 222, 9], ["system", 241, 9], ["boot", 252, 9], ["systemd", 256, 9]]);
-const pos$70 = nix.positions(here + "/systemd-repart.nix", [["machine", 214, 11]]);
 const formals$11 = { args: { nodes: false }, ellipsis: true };
-const pos$71 = nix.positions(here + "/systemd-repart.nix", [["machine", 268, 42]]);
-const pos$72 = nix.positions(here + "/systemd-repart.nix", [["name", 211, 5], ["meta", 212, 5], ["nodes", 214, 5], ["testScript", 265, 5]]);
-const pos$73 = nix.positions(here + "/systemd-repart.nix", [["maintainers", 279, 10]]);
 const formals$12 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$74 = nix.positions(here + "/systemd-repart.nix", [["enable", 288, 15]]);
-const pos$75 = nix.positions(here + "/systemd-repart.nix", [["OVMF", 289, 15]]);
-const pos$76 = nix.positions(here + "/systemd-repart.nix", [["device", 293, 15], ["fsType", 294, 15]]);
-const pos$77 = nix.positions(here + "/systemd-repart.nix", [["/state", 292, 13]]);
-const pos$78 = nix.positions(here + "/systemd-repart.nix", [["useEFIBoot", 287, 11], ["tpm", 288, 11], ["efi", 289, 11], ["useDefaultFilesystems", 290, 11], ["fileSystems", 291, 11]]);
-const pos$79 = nix.positions(here + "/systemd-repart.nix", [["enable", 300, 31]]);
-const pos$80 = nix.positions(here + "/systemd-repart.nix", [["systemd-boot", 300, 18]]);
-const pos$81 = nix.positions(here + "/systemd-repart.nix", [["before", 308, 39]]);
-const pos$82 = nix.positions(here + "/systemd-repart.nix", [["before", 311, 55]]);
-const pos$83 = nix.positions(here + "/systemd-repart.nix", [["systemd-repart", 308, 24], ["systemd-factory-reset-complete", 311, 24]]);
-const pos$84 = nix.positions(here + "/systemd-repart.nix", [["enable", 315, 17], ["extraArgs", 316, 17]]);
-const pos$85 = nix.positions(here + "/systemd-repart.nix", [["enable", 304, 15], ["services", 308, 15], ["repart", 314, 15]]);
-const pos$86 = nix.positions(here + "/systemd-repart.nix", [["device", 323, 17], ["crypttabExtraOpts", 324, 17]]);
-const pos$87 = nix.positions(here + "/systemd-repart.nix", [["state", 322, 15]]);
-const pos$88 = nix.positions(here + "/systemd-repart.nix", [["devices", 321, 18]]);
-const pos$89 = nix.positions(here + "/systemd-repart.nix", [["systemd", 303, 13], ["luks", 321, 13]]);
-const pos$90 = nix.positions(here + "/systemd-repart.nix", [["loader", 300, 11], ["initrd", 302, 11]]);
-const pos$91 = nix.positions(here + "/systemd-repart.nix", [["Type", 331, 20]]);
-const pos$92 = nix.positions(here + "/systemd-repart.nix", [["Type", 332, 21]]);
-const pos$93 = nix.positions(here + "/systemd-repart.nix", [["Type", 334, 13], ["Label", 335, 13], ["Format", 336, 13], ["Encrypt", 337, 13], ["SizeMinBytes", 338, 13], ["SizeMaxBytes", 339, 13], ["FactoryReset", 340, 13]]);
-const pos$94 = nix.positions(here + "/systemd-repart.nix", [["10-esp", 331, 11], ["20-root", 332, 11], ["30-state", 333, 11]]);
-const pos$95 = nix.positions(here + "/systemd-repart.nix", [["partitions", 330, 24]]);
-const pos$96 = nix.positions(here + "/systemd-repart.nix", [["enable", 346, 55]]);
-const pos$97 = nix.positions(here + "/systemd-repart.nix", [["systemd-factory-reset-reboot", 346, 26]]);
-const pos$98 = nix.positions(here + "/systemd-repart.nix", [["repart", 330, 17], ["services", 346, 17]]);
-const pos$99 = nix.positions(here + "/systemd-repart.nix", [["imports", 284, 9], ["virtualisation", 286, 9], ["boot", 299, 9], ["systemd", 330, 9]]);
-const pos$100 = nix.positions(here + "/systemd-repart.nix", [["machine", 281, 11]]);
 const formals$13 = { args: { nodes: false }, ellipsis: true };
-const pos$101 = nix.positions(here + "/systemd-repart.nix", [["machine", 354, 27], ["sizeDiff", 355, 11]]);
-const pos$102 = nix.positions(here + "/systemd-repart.nix", [["name", 278, 5], ["meta", 279, 5], ["nodes", 281, 5], ["testScript", 349, 5]]);
-const pos$103 = nix.positions(here + "/systemd-repart.nix", [["basic", 86, 3], ["encrypt-tpm2", 117, 3], ["after-initrd", 181, 3], ["create-root", 210, 3], ["factory-reset", 277, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const useDiskImage = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
@@ -158,21 +56,21 @@ os.environ['NIX_DISK_IMAGE'] = tmp_disk_image.name
     const pkgs_1 = nix.arg($_1, "pkgs");
     const lib = nix.arg($_1, "lib");
     return {
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         useDefaultFilesystems: false,
         fileSystems: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          "/": nix.thunk(() => ({ [nix.POS]: pos$3, device: "/dev/vda2", fsType: "ext4" })),
+          [nix.POS]: $pos[3],
+          "/": nix.thunk(() => ({ [nix.POS]: $pos[2], device: "/dev/vda2", fsType: "ext4" })),
         })),
       })),
       system: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         build: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           diskImage: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../lib/make-disk-image.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               config: config_1,
               pkgs: pkgs_1,
               lib: lib,
@@ -188,44 +86,44 @@ os.environ['NIX_DISK_IMAGE'] = tmp_disk_image.name
     };
   })(), formals$3);
   return {
-    [nix.POS]: pos$103,
+    [nix.POS]: $pos[102],
     basic: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         name: "systemd-repart",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "nikstur"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$4);
             const config_1 = nix.arg($_1, "config");
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               imports: nix.thunk(() => [common]),
               boot: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 initrd: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     enable: true,
-                    repart: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
+                    repart: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true })),
                   })),
                 })),
               })),
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 repart: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   partitions: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
-                    "10-root": nix.thunk(() => ({ [nix.POS]: pos$15, Type: "linux-generic" })),
+                    [nix.POS]: $pos[15],
+                    "10-root": nix.thunk(() => ({ [nix.POS]: $pos[14], Type: "linux-generic" })),
                   })),
                 })),
               })),
@@ -235,7 +133,7 @@ os.environ['NIX_DISK_IMAGE'] = tmp_disk_image.name
         testScript: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$5);
           const nodes = nix.arg($_1, "nodes");
-          return nix.str`${nix.app(useDiskImage, nix.thunk(() => ({ [nix.POS]: pos$21, machine: nix.thunk(() => nix.attr(nodes, "machine")) })))}
+          return nix.str`${nix.app(useDiskImage, nix.thunk(() => ({ [nix.POS]: $pos[20], machine: nix.thunk(() => nix.attr(nodes, "machine")) })))}
 
 machine.start()
 machine.wait_for_unit("multi-user.target")
@@ -245,45 +143,45 @@ machine.succeed("journalctl --boot --grep 'Growing existing partition 1.' --iden
         })(), formals$5),
       })))),
     "encrypt-tpm2": nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         name: "systemd-repart-encrypt-tpm2",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "flokli"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$6);
             const config_1 = nix.arg($_1, "config");
             const pkgs_1 = nix.arg($_1, "pkgs");
             const lib = nix.arg($_1, "lib");
             return {
-              [nix.POS]: pos$40,
+              [nix.POS]: $pos[39],
               imports: nix.thunk(() => [common]),
               boot: nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 initrd: nix.thunk(() => ({
-                  [nix.POS]: pos$29,
+                  [nix.POS]: $pos[28],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$25,
+                    [nix.POS]: $pos[24],
                     enable: true,
                     repart: nix.thunk(() => ({
-                      [nix.POS]: pos$24,
+                      [nix.POS]: $pos[23],
                       enable: true,
                       extraArgs: nix.thunk(() => ["--tpm2-pcrs=7"]),
                     })),
                   })),
                   availableKernelModules: nix.thunk(() => ["dm_crypt"]),
                   luks: nix.thunk(() => ({
-                    [nix.POS]: pos$28,
+                    [nix.POS]: $pos[27],
                     devices: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-                        [nix.POS]: pos$27,
+                        [nix.POS]: $pos[26],
                         "created-crypt": nix.thunk(() => ({
-                          [nix.POS]: pos$26,
+                          [nix.POS]: $pos[25],
                           device: "/dev/disk/by-partlabel/created-crypt",
                           crypttabExtraOpts: nix.thunk(() => ["tpm2-device=auto"]),
                         })),
@@ -292,14 +190,14 @@ machine.succeed("journalctl --boot --grep 'Growing existing partition 1.' --iden
                 })),
               })),
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 repart: nix.thunk(() => ({
-                  [nix.POS]: pos$34,
+                  [nix.POS]: $pos[33],
                   partitions: nix.thunk(() => ({
-                    [nix.POS]: pos$33,
-                    "10-root": nix.thunk(() => ({ [nix.POS]: pos$31, Type: "linux-generic" })),
+                    [nix.POS]: $pos[32],
+                    "10-root": nix.thunk(() => ({ [nix.POS]: $pos[30], Type: "linux-generic" })),
                     "10-crypt": nix.thunk(() => ({
-                      [nix.POS]: pos$32,
+                      [nix.POS]: $pos[31],
                       Type: "var",
                       Label: "created-crypt",
                       Format: "ext4",
@@ -309,11 +207,11 @@ machine.succeed("journalctl --boot --grep 'Growing existing partition 1.' --iden
                 })),
               })),
               virtualisation: nix.thunk(() => ({
-                [nix.POS]: pos$39,
-                tpm: nix.thunk(() => ({ [nix.POS]: pos$36, enable: true })),
+                [nix.POS]: $pos[38],
+                tpm: nix.thunk(() => ({ [nix.POS]: $pos[35], enable: true })),
                 fileSystems: nix.thunk(() => ({
-                  [nix.POS]: pos$38,
-                  "/var": nix.thunk(() => ({ [nix.POS]: pos$37, device: "/dev/mapper/created-crypt", fsType: "ext4" })),
+                  [nix.POS]: $pos[37],
+                  "/var": nix.thunk(() => ({ [nix.POS]: $pos[36], device: "/dev/mapper/created-crypt", fsType: "ext4" })),
                 })),
               })),
             };
@@ -323,7 +221,7 @@ machine.succeed("journalctl --boot --grep 'Growing existing partition 1.' --iden
           const $_1 = nix.formals(args_1, formals$7);
           const nodes = nix.arg($_1, "nodes");
           return nix.str`${nix.app(useDiskImage, nix.thunk(() => ({
-              [nix.POS]: pos$42,
+              [nix.POS]: $pos[41],
               machine: nix.thunk(() => nix.attr(nodes, "machine")),
               sizeDiff: "+100M",
             })))}
@@ -338,32 +236,32 @@ assert "/dev/mapper/created-crypt" in machine.succeed("mount")
         })(), formals$7),
       })))),
     "after-initrd": nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$52,
+        [nix.POS]: $pos[51],
         name: "systemd-repart-after-initrd",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$44,
+          [nix.POS]: $pos[43],
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "nikstur"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$50,
+          [nix.POS]: $pos[49],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$8);
             const config_1 = nix.arg($_1, "config");
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              [nix.POS]: pos$49,
+              [nix.POS]: $pos[48],
               imports: nix.thunk(() => [common]),
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$48,
+                [nix.POS]: $pos[47],
                 repart: nix.thunk(() => ({
-                  [nix.POS]: pos$47,
+                  [nix.POS]: $pos[46],
                   enable: true,
                   partitions: nix.thunk(() => ({
-                    [nix.POS]: pos$46,
-                    "10-root": nix.thunk(() => ({ [nix.POS]: pos$45, Type: "linux-generic" })),
+                    [nix.POS]: $pos[45],
+                    "10-root": nix.thunk(() => ({ [nix.POS]: $pos[44], Type: "linux-generic" })),
                   })),
                 })),
               })),
@@ -373,7 +271,7 @@ assert "/dev/mapper/created-crypt" in machine.succeed("mount")
         testScript: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$9);
           const nodes = nix.arg($_1, "nodes");
-          return nix.str`${nix.app(useDiskImage, nix.thunk(() => ({ [nix.POS]: pos$51, machine: nix.thunk(() => nix.attr(nodes, "machine")) })))}
+          return nix.str`${nix.app(useDiskImage, nix.thunk(() => ({ [nix.POS]: $pos[50], machine: nix.thunk(() => nix.attr(nodes, "machine")) })))}
 
 machine.start()
 machine.wait_for_unit("multi-user.target")
@@ -383,44 +281,44 @@ machine.succeed("journalctl --grep 'Growing existing partition 1.' --identifier 
         })(), formals$9),
       })))),
     "create-root": nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$72,
+        [nix.POS]: $pos[71],
         name: "systemd-repart-create-root",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$53,
+          [nix.POS]: $pos[52],
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "nikstur"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$70,
+          [nix.POS]: $pos[69],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$10);
             const config_1 = nix.arg($_1, "config");
             const lib = nix.arg($_1, "lib");
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              [nix.POS]: pos$69,
+              [nix.POS]: $pos[68],
               virtualisation: nix.thunk(() => ({
-                [nix.POS]: pos$57,
+                [nix.POS]: $pos[56],
                 useDefaultFilesystems: false,
                 mountHostNixStore: false,
                 fileSystems: nix.thunk(() => ({
-                  [nix.POS]: pos$56,
+                  [nix.POS]: $pos[55],
                   "/": nix.thunk(() => ({
-                    [nix.POS]: pos$54,
+                    [nix.POS]: $pos[53],
                     device: "/dev/disk/by-partlabel/created-root",
                     fsType: "ext4",
                   })),
-                  "/nix/store": nix.thunk(() => ({ [nix.POS]: pos$55, device: "/dev/vda2", fsType: "ext4" })),
+                  "/nix/store": nix.thunk(() => ({ [nix.POS]: $pos[54], device: "/dev/vda2", fsType: "ext4" })),
                 })),
               })),
               system: nix.thunk(() => ({
-                [nix.POS]: pos$60,
+                [nix.POS]: $pos[59],
                 build: nix.thunk(() => ({
-                  [nix.POS]: pos$59,
+                  [nix.POS]: $pos[58],
                   diskImage: nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "../lib/make-disk-image.nix"), nix.thunk(() => ({
-                      [nix.POS]: pos$58,
+                      [nix.POS]: $pos[57],
                       config: config_1,
                       pkgs: pkgs_1,
                       lib: lib,
@@ -435,23 +333,23 @@ machine.succeed("journalctl --grep 'Growing existing partition 1.' --identifier 
                 })),
               })),
               boot: nix.thunk(() => ({
-                [nix.POS]: pos$64,
+                [nix.POS]: $pos[63],
                 initrd: nix.thunk(() => ({
-                  [nix.POS]: pos$63,
+                  [nix.POS]: $pos[62],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$62,
+                    [nix.POS]: $pos[61],
                     enable: true,
-                    repart: nix.thunk(() => ({ [nix.POS]: pos$61, enable: true, device: "/dev/vda" })),
+                    repart: nix.thunk(() => ({ [nix.POS]: $pos[60], enable: true, device: "/dev/vda" })),
                   })),
                 })),
               })),
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$68,
+                [nix.POS]: $pos[67],
                 repart: nix.thunk(() => ({
-                  [nix.POS]: pos$67,
+                  [nix.POS]: $pos[66],
                   partitions: nix.thunk(() => ({
-                    [nix.POS]: pos$66,
-                    "10-root": nix.thunk(() => ({ [nix.POS]: pos$65, Type: "root", Label: "created-root", Format: "ext4" })),
+                    [nix.POS]: $pos[65],
+                    "10-root": nix.thunk(() => ({ [nix.POS]: $pos[64], Type: "root", Label: "created-root", Format: "ext4" })),
                   })),
                 })),
               })),
@@ -461,7 +359,7 @@ machine.succeed("journalctl --grep 'Growing existing partition 1.' --identifier 
         testScript: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$11);
           const nodes = nix.arg($_1, "nodes");
-          return nix.str`${nix.app(useDiskImage, nix.thunk(() => ({ [nix.POS]: pos$71, machine: nix.thunk(() => nix.attr(nodes, "machine")) })))}
+          return nix.str`${nix.app(useDiskImage, nix.thunk(() => ({ [nix.POS]: $pos[70], machine: nix.thunk(() => nix.attr(nodes, "machine")) })))}
 
 machine.start()
 machine.wait_for_unit("multi-user.target")
@@ -471,69 +369,69 @@ machine.succeed("journalctl --boot --grep 'Adding new partition 2 to partition t
         })(), formals$11),
       })))),
     "factory-reset": nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$102,
+        [nix.POS]: $pos[101],
         name: "systemd-repart-factory-reset",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$73,
+          [nix.POS]: $pos[72],
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.lookup(w_1, "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "willibutz"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$100,
+          [nix.POS]: $pos[99],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$12);
             const pkgs_1 = nix.arg($_1, "pkgs");
             const lib = nix.arg($_1, "lib");
             return {
-              [nix.POS]: pos$99,
+              [nix.POS]: $pos[98],
               imports: nix.thunk(() => [common]),
               virtualisation: nix.thunk(() => ({
-                [nix.POS]: pos$78,
+                [nix.POS]: $pos[77],
                 useEFIBoot: true,
-                tpm: nix.thunk(() => ({ [nix.POS]: pos$74, enable: true })),
-                efi: nix.thunk(() => ({ [nix.POS]: pos$75, OVMF: nix.thunk(() => nix.sel(pkgs_1, "OVMFFull")) })),
+                tpm: nix.thunk(() => ({ [nix.POS]: $pos[73], enable: true })),
+                efi: nix.thunk(() => ({ [nix.POS]: $pos[74], OVMF: nix.thunk(() => nix.sel(pkgs_1, "OVMFFull")) })),
                 useDefaultFilesystems: false,
                 fileSystems: nix.thunk(() => ({
-                  [nix.POS]: pos$77,
-                  "/state": nix.thunk(() => ({ [nix.POS]: pos$76, device: "/dev/mapper/state", fsType: "ext4" })),
+                  [nix.POS]: $pos[76],
+                  "/state": nix.thunk(() => ({ [nix.POS]: $pos[75], device: "/dev/mapper/state", fsType: "ext4" })),
                 })),
               })),
               boot: nix.thunk(() => ({
-                [nix.POS]: pos$90,
+                [nix.POS]: $pos[89],
                 loader: nix.thunk(() => ({
-                  [nix.POS]: pos$80,
-                  "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$79, enable: true })),
+                  [nix.POS]: $pos[79],
+                  "systemd-boot": nix.thunk(() => ({ [nix.POS]: $pos[78], enable: true })),
                 })),
                 initrd: nix.thunk(() => ({
-                  [nix.POS]: pos$89,
+                  [nix.POS]: $pos[88],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$85,
+                    [nix.POS]: $pos[84],
                     enable: true,
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$83,
+                      [nix.POS]: $pos[82],
                       "systemd-repart": nix.thunk(() => ({
-                        [nix.POS]: pos$81,
+                        [nix.POS]: $pos[80],
                         before: nix.thunk(() => ["systemd-cryptsetup@state.service"]),
                       })),
                       "systemd-factory-reset-complete": nix.thunk(() => ({
-                        [nix.POS]: pos$82,
+                        [nix.POS]: $pos[81],
                         before: nix.thunk(() => ["systemd-cryptsetup@state.service"]),
                       })),
                     })),
                     repart: nix.thunk(() => ({
-                      [nix.POS]: pos$84,
+                      [nix.POS]: $pos[83],
                       enable: true,
                       extraArgs: nix.thunk(() => ["--tpm2-pcrs=platform-code"]),
                     })),
                   })),
                   luks: nix.thunk(() => ({
-                    [nix.POS]: pos$88,
+                    [nix.POS]: $pos[87],
                     devices: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-                        [nix.POS]: pos$87,
+                        [nix.POS]: $pos[86],
                         state: nix.thunk(() => ({
-                          [nix.POS]: pos$86,
+                          [nix.POS]: $pos[85],
                           device: "/dev/disk/by-partlabel/state",
                           crypttabExtraOpts: nix.thunk(() => ["tpm2-device=auto"]),
                         })),
@@ -542,15 +440,15 @@ machine.succeed("journalctl --boot --grep 'Adding new partition 2 to partition t
                 })),
               })),
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$98,
+                [nix.POS]: $pos[97],
                 repart: nix.thunk(() => ({
-                  [nix.POS]: pos$95,
+                  [nix.POS]: $pos[94],
                   partitions: nix.thunk(() => ({
-                    [nix.POS]: pos$94,
-                    "10-esp": nix.thunk(() => ({ [nix.POS]: pos$91, Type: "esp" })),
-                    "20-root": nix.thunk(() => ({ [nix.POS]: pos$92, Type: "linux-generic" })),
+                    [nix.POS]: $pos[93],
+                    "10-esp": nix.thunk(() => ({ [nix.POS]: $pos[90], Type: "esp" })),
+                    "20-root": nix.thunk(() => ({ [nix.POS]: $pos[91], Type: "linux-generic" })),
                     "30-state": nix.thunk(() => ({
-                      [nix.POS]: pos$93,
+                      [nix.POS]: $pos[92],
                       Type: "linux-generic",
                       Label: "state",
                       Format: "ext4",
@@ -562,8 +460,8 @@ machine.succeed("journalctl --boot --grep 'Adding new partition 2 to partition t
                   })),
                 })),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$97,
-                  "systemd-factory-reset-reboot": nix.thunk(() => ({ [nix.POS]: pos$96, enable: false })),
+                  [nix.POS]: $pos[96],
+                  "systemd-factory-reset-reboot": nix.thunk(() => ({ [nix.POS]: $pos[95], enable: false })),
                 })),
               })),
             };
@@ -573,7 +471,7 @@ machine.succeed("journalctl --boot --grep 'Adding new partition 2 to partition t
           const $_1 = nix.formals(args_1, formals$13);
           const nodes = nix.arg($_1, "nodes");
           return nix.str`${nix.app(useDiskImage, nix.thunk(() => ({
-              [nix.POS]: pos$101,
+              [nix.POS]: $pos[100],
               machine: nix.thunk(() => nix.attr(nodes, "machine")),
               sizeDiff: "+64M",
             })))}

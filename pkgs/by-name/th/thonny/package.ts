@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["name", 30, 7], ["exec", 31, 7], ["icon", 32, 7], ["desktopName", 33, 7], ["comment", 34, 7], ["categories", 35, 7]], [["description", 78, 5], ["longDescription", 79, 5], ["homepage", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["mainProgram", 88, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["desktopItems", 28, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["preFixup", 63, 3], ["postInstall", 68, 3], ["doCheck", 73, 3], ["pythonImportsCheck", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, makeDesktopItem: false, copyDesktopItems: false, desktopToDarwinBundle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 7], ["exec", 31, 7], ["icon", 32, 7], ["desktopName", 33, 7], ["comment", 34, 7], ["categories", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 78, 5], ["longDescription", 79, 5], ["homepage", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["mainProgram", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["desktopItems", 28, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["preFixup", 63, 3], ["postInstall", 68, 3], ["doCheck", 73, 3], ["pythonImportsCheck", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "thonny",
       version: "4.1.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "thonny",
           repo: "thonny",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([copyDesktopItems], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), desktopToDarwinBundle))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Thonny",
             exec: "thonny",
             icon: "thonny",
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["thonny"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python IDE for beginners",
         longDescription: "Thonny is a Python IDE for beginners. It supports different ways\nof stepping through the code, step-by-step expression\nevaluation, detailed visualization of the call stack and a mode\nfor explaining the concepts of references and heap.\n",
         homepage: "https://www.thonny.org/",

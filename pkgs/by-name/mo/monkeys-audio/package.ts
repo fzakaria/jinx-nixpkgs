@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5], ["stripRoot", 15, 5]], [["description", 23, 5], ["platforms", 24, 5], ["mainProgram", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5], ["stripRoot", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["platforms", 24, 5], ["mainProgram", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "13.27",
       pname: "monkeys-audio",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://monkeysaudio.com/files/MAC_${nix.builtins.concatStringsSep("", nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), ".", nix.thunk(() => nix.sel(finalAttrs, "version")))))}_SDK.zip`),
           hash: "sha256-qFEqRyxZLkxM5d5ttwb/YVBL6H+Iy2L8q/eTy0vBSAg=",
           stripRoot: false,
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "APE codec and decompressor",
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);

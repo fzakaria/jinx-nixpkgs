@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["fetchSubmodules", 33, 5], ["leaveDotGit", 34, 5], ["hash", 35, 5], ["postFetch", 36, 5]], [["name", 86, 7], ["url", 88, 7], ["decode", 89, 7], ["stripLen", 90, 7], ["extraPrefix", 91, 7], ["hash", 92, 7]], [["url", 97, 7], ["stripLen", 98, 7], ["extraPrefix", 99, 7], ["hash", 100, 7]], [["aiohttp", 159, 11], ["alive-progress", 160, 11], ["ast-serialize", 161, 11], ["colorama", 162, 11], ["coloredlogs", 163, 11], ["click", 164, 11], ["cryptography", 165, 11], ["debugpy", 166, 11], ["diskcache", 167, 11], ["googleapis-common-protos", 168, 11], ["ipython", 169, 11], ["jinja2", 170, 11], ["json5", 171, 11], ["jsonschema", 172, 11], ["lark", 173, 11], ["mobly", 174, 11], ["mypy", 175, 11], ["mypy-protobuf", 176, 11], ["packaging", 177, 11], ["parameterized", 178, 11], ["pkgconfig", 179, 11], ["prompt-toolkit", 180, 11], ["protobuf", 181, 11], ["psutil", 182, 11], ["ptpython", 183, 11], ["pyfakefs", 184, 11], ["pyelftools", 185, 11], ["pygments", 186, 11], ["pykwalify", 187, 11], ["pyperclip", 188, 11], ["pyserial", 189, 11], ["python-daemon", 190, 11], ["python-path", 191, 11], ["pyyaml", 192, 11], ["requests", 193, 11], ["six", 194, 11], ["sphinx", 195, 11], ["sphinx-argparse", 196, 11], ["sphinx-design", 197, 11], ["tabulate", 198, 11], ["tomli", 199, 11], ["tornado", 200, 11], ["types-pyyaml", 201, 11], ["types-requests", 202, 11], ["watchdog", 203, 11], ["websockets", 204, 11]], [["dep", 209, 17], ["key", 210, 9]], [["startSet", 213, 9], ["operator", 214, 9]], [["PIP_NO_INDEX", 153, 7], ["PIP_FIND_LINKS", 154, 7]], [["description", 257, 5], ["homepage", 258, 5], ["changelog", 259, 5], ["license", 260, 5], ["teams", 261, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["propagatedBuildInputs", 77, 3], ["patches", 83, 3], ["postPatch", 104, 3], ["env", 153, 3], ["gnFlags", 222, 3], ["preBuild", 241, 3], ["ninjaFlags", 246, 3], ["installPhase", 248, 3], ["meta", 256, 3]]]);
 const formals$1 = { args: { build: false, "clang-tools": false, click: false, fetchFromGitHub: false, fetchpatch: false, glib: false, gn: false, jinja2: false, lark: false, lib: false, libnl: false, ninja: false, openssl: false, "pip-tools": false, "pkg-config": false, pkgconfig: false, python: false, "python-path": false, setuptools: false, stdenv: false, "zap-chip": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["fetchSubmodules", 33, 5], ["leaveDotGit", 34, 5], ["hash", 35, 5], ["postFetch", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 86, 7], ["url", 88, 7], ["decode", 89, 7], ["stripLen", 90, 7], ["extraPrefix", 91, 7], ["hash", 92, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 97, 7], ["stripLen", 98, 7], ["extraPrefix", 99, 7], ["hash", 100, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["aiohttp", 159, 11], ["alive-progress", 160, 11], ["ast-serialize", 161, 11], ["colorama", 162, 11], ["coloredlogs", 163, 11], ["click", 164, 11], ["cryptography", 165, 11], ["debugpy", 166, 11], ["diskcache", 167, 11], ["googleapis-common-protos", 168, 11], ["ipython", 169, 11], ["jinja2", 170, 11], ["json5", 171, 11], ["jsonschema", 172, 11], ["lark", 173, 11], ["mobly", 174, 11], ["mypy", 175, 11], ["mypy-protobuf", 176, 11], ["packaging", 177, 11], ["parameterized", 178, 11], ["pkgconfig", 179, 11], ["prompt-toolkit", 180, 11], ["protobuf", 181, 11], ["psutil", 182, 11], ["ptpython", 183, 11], ["pyfakefs", 184, 11], ["pyelftools", 185, 11], ["pygments", 186, 11], ["pykwalify", 187, 11], ["pyperclip", 188, 11], ["pyserial", 189, 11], ["python-daemon", 190, 11], ["python-path", 191, 11], ["pyyaml", 192, 11], ["requests", 193, 11], ["six", 194, 11], ["sphinx", 195, 11], ["sphinx-argparse", 196, 11], ["sphinx-design", 197, 11], ["tabulate", 198, 11], ["tomli", 199, 11], ["tornado", 200, 11], ["types-pyyaml", 201, 11], ["types-requests", 202, 11], ["watchdog", 203, 11], ["websockets", 204, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["dep", 209, 17], ["key", 210, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["startSet", 213, 9], ["operator", 214, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["PIP_NO_INDEX", 153, 7], ["PIP_FIND_LINKS", 154, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 257, 5], ["homepage", 258, 5], ["changelog", 259, 5], ["license", 260, 5], ["teams", 261, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["propagatedBuildInputs", 77, 3], ["patches", 83, 3], ["postPatch", 104, 3], ["env", 153, 3], ["gnFlags", 222, 3], ["preBuild", 241, 3], ["ninjaFlags", 246, 3], ["installPhase", 248, 3], ["meta", 256, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "home-assistant-chip-wheels";
       const version = "2025.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "home-assistant-libs",
           repo: "chip-wheels",
           tag: version,
@@ -85,7 +77,7 @@ rm -rf .git/
       const propagatedBuildInputs = nix.thunk(() => [openssl, glib, libnl]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "pw_protobuf_compiler-Create-a-new-includes.txt-for-each-toolchain.patch",
             url: "https://pigweed.googlesource.com/pigweed/pigweed/+/b66729b90fcb9df2ee4818f6d4fff59385cdbc80^!?format=TEXT",
             decode: "base64 -d",
@@ -94,7 +86,7 @@ rm -rf .git/
             hash: "sha256-6ss3j8j69w7EMio9mFP/EL2oPqQ2sLh67eWsJjHdDa8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/project-chip/connectedhomeip/commit/78c6a7e15658f66658eb9f780e1a0c0c176a67d7.patch",
             stripLen: 1n,
             extraPrefix: "connectedhomeip/",
@@ -134,13 +126,13 @@ substituteInPlace scripts/tests/requirements.txt \\
   --replace-fail '-e \${PW_PROJECT_ROOT}/scripts/py_matter_yamltests' ""
 `);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         PIP_NO_INDEX: "1",
         PIP_FIND_LINKS: nix.thunk(() => (() => {
           const dependencies = nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(python, "pythonOnBuildForHost", "pkgs"));
               return {
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               aiohttp: nix.thunk(() => nix.attr(from, "aiohttp")),
               "alive-progress": nix.thunk(() => nix.attr(from, "alive-progress")),
               "ast-serialize": nix.thunk(() => nix.attr(from, "ast-serialize")),
@@ -190,9 +182,9 @@ substituteInPlace scripts/tests/requirements.txt \\
             };
             })())));
           const filterNull = (list) => nix.app(nix.sel(lib, "filter"), (dep) => !nix.eq(dep, null), list);
-          const toItem = (dep) => ({ [nix.POS]: pos$5, dep: dep, key: nix.thunk(() => nix.sel(dep, "name")) });
+          const toItem = (dep) => ({ [nix.POS]: $pos[4], dep: dep, key: nix.thunk(() => nix.sel(dep, "name")) });
           const saturatedDependencies = nix.thunk(() => nix.app(nix.sel(lib, "genericClosure"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               startSet: nix.thunk(() => nix.builtins.map(toItem, nix.thunk(() => nix.app(filterNull, dependencies)))),
               operator: (item) => nix.builtins.map(toItem, nix.thunk(() => nix.app(filterNull, nix.thunk(() => nix.selOr(nix.sel(item, "dep"), () => [], "propagatedBuildInputs"))))),
             }))));
@@ -221,7 +213,7 @@ substituteInPlace scripts/tests/requirements.txt \\
       const ninjaFlags = nix.thunk(() => ["chip-repl"]);
       const installPhase = "runHook preInstall\n\ncp -r controller/python $out\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Python wheels for APIs and tools related to CHIP",
         homepage: "https://github.com/home-assistant-libs/chip-wheels",
         changelog: nix.thunk(() => nix.str`https://github.com/home-assistant-libs/chip-wheels/releases/tag/${nix.sel(src, "tag")}`),
@@ -229,7 +221,7 @@ substituteInPlace scripts/tests/requirements.txt \\
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "home-assistant"))]),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         src,

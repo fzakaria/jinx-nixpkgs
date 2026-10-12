@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 32, 5], ["hash", 33, 5]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 45, 3], ["pytestFlags", 50, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, numpy: false, pandas: false, scipy: false, xmltodict: false, pytestCheckHook: false, "pytest-benchmark": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 45, 3], ["pytestFlags", 50, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pytest_benchmark = nix.arg($, "pytest-benchmark");
   const version = "1.4.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "motmetrics",
       version: nix.thunk(() => nix.str`${version}-unstable-2025-01-14`),
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cheind",
           repo: "py-motmetrics",
           rev: "c199b3e853d589af4b6a7d88f5bcc8b8802fc434",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--benchmark-disable"]),
       pythonImportsCheck: nix.thunk(() => ["motmetrics"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Benchmark multiple object trackers (MOT) in Python",
         homepage: "https://github.com/cheind/py-motmetrics",
         changelog: nix.thunk(() => nix.str`https://github.com/cheind/py-motmetrics/releases/tag/v${version}`),

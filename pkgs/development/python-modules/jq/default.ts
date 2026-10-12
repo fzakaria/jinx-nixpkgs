@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["JQPY_USE_SYSTEM_LIBS", 23, 7]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["env", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["preBuild", 32, 3], ["nativeCheckInputs", 36, 3], ["disabledTests", 38, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cython: false, fetchFromGitHub: false, jq: false, oniguruma: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["JQPY_USE_SYSTEM_LIBS", 23, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["env", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["preBuild", 32, 3], ["nativeCheckInputs", 36, 3], ["disabledTests", 38, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +19,13 @@ export default nix.lambda((args) => (() => {
       const version = "1.12.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mwilliamson",
           repo: "jq.py",
           tag: version,
           hash: "sha256-glWEqoS+QaoIiBJu9DXd+VvhPnWOgRT4VaYfMpjbR5g=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, JQPY_USE_SYSTEM_LIBS: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], JQPY_USE_SYSTEM_LIBS: 1n }));
       const nativeBuildInputs = nix.thunk(() => [cython]);
       const buildInputs = nix.thunk(() => [jq, oniguruma]);
       const preBuild = "cython jq.pyx\n";
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["jq"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python bindings for jq, the flexible JSON processor",
         homepage: "https://github.com/mwilliamson/jq.py",
         changelog: nix.thunk(() => nix.str`https://github.com/mwilliamson/jq.py/blob/${version}/CHANGELOG.rst`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["full", 81, 5], ["magic", 82, 5], ["manim", 85, 5], ["manimgl", 88, 5], ["pyqt6", 92, 5], ["pyqt6-full", 95, 5], ["pyside6", 96, 5], ["pyside6-full", 99, 5], ["sphinx-directive", 100, 5]], [["changelog", 110, 5], ["description", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5]], [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["build-system", 49, 3], ["pythonRelaxDeps", 54, 3], ["pythonRemoveDeps", 57, 3], ["dependencies", 61, 3], ["optional-dependencies", 80, 3], ["pythonImportsCheck", 105, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "hatch-fancy-pypi-readme": false, ffmpeg: false, beautifulsoup4: false, click: false, "click-default-group": false, jinja2: false, lxml: false, numpy: false, pillow: false, pydantic: false, "pydantic-extra-types": false, "python-pptx": false, qtpy: false, requests: false, rich: false, rtoml: false, tqdm: false, ipython: false, manim: false, manimgl: false, setuptools: false, pyqt6: false, pyside6: false, docutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["full", 81, 5], ["magic", 82, 5], ["manim", 85, 5], ["manimgl", 88, 5], ["pyqt6", 92, 5], ["pyqt6-full", 95, 5], ["pyside6", 96, 5], ["pyside6-full", 99, 5], ["sphinx-directive", 100, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 110, 5], ["description", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["build-system", 49, 3], ["pythonRelaxDeps", 54, 3], ["pythonRemoveDeps", 57, 3], ["dependencies", 61, 3], ["optional-dependencies", 80, 3], ["pythonImportsCheck", 105, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jeertmans",
           repo: "manim-slides",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
         tqdm,
       ]);
       const optional_dependencies = nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           full: nix.thunk(() => nix.concat(nix.sel(self, "magic"), nix.concat(nix.sel(self, "manim"), nix.sel(self, "sphinx-directive")))),
           magic: nix.thunk(() => nix.concat(nix.sel(self, "manim"), [ipython])),
           manim: nix.thunk(() => [manim]),
@@ -84,7 +81,7 @@ export default nix.lambda((args) => (() => {
         })));
       const pythonImportsCheck = nix.thunk(() => ["manim_slides"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/jeertmans/manim-slides/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Tool for live presentations using manim",
         homepage: "https://github.com/jeertmans/manim-slides",
@@ -93,7 +90,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bpeetz"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

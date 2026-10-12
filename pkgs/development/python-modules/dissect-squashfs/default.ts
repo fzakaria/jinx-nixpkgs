@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["full", 37, 5]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 31, 3], ["optional-dependencies", 36, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "dissect-cstruct": false, "dissect-util": false, fetchFromGitHub: false, lz4: false, "python-lzo": false, setuptools: false, "setuptools-scm": false, zstandard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["full", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 31, 3], ["optional-dependencies", 36, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dissect-squashfs",
       version: "1.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fox-it",
           repo: "dissect.squashfs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,10 +31,10 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [dissect_cstruct, dissect_util]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, full: nix.thunk(() => [lz4, python_lzo, zstandard]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], full: nix.thunk(() => [lz4, python_lzo, zstandard]) })),
       pythonImportsCheck: nix.thunk(() => ["dissect.squashfs"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Dissect module implementing a parser for the SquashFS file system",
         homepage: "https://github.com/fox-it/dissect.squashfs",
         changelog: nix.thunk(() => nix.str`https://github.com/fox-it/dissect.squashfs/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

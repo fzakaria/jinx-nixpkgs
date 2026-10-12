@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["PREFIX", 21, 7]], [["homepage", 24, 35], ["description", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5], ["mainProgram", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["env", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PREFIX", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 24, 35], ["description", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5], ["mainProgram", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["env", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,22 +12,22 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pick",
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mptre",
           repo: "pick",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "8cgt5KpLfnLwhucn4DQYC/7ot1u24ahJxWG+/1SL584=",
         })))),
       buildInputs: nix.thunk(() => [ncurses]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Fuzzy text selection utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

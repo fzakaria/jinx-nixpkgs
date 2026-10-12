@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 77, 7], ["url", 78, 7], ["sha256", 79, 7]], [["name", 82, 7], ["url", 83, 7], ["sha256", 84, 7]], [["name", 87, 7], ["url", 88, 7], ["sha256", 89, 7]], [["name", 92, 7], ["url", 93, 7], ["sha256", 94, 7]], [["name", 97, 7], ["url", 98, 7], ["sha256", 99, 7]], [["owner", 107, 5], ["repo", 108, 5], ["tag", 109, 5], ["hash", 110, 5]], [["url", 120, 7], ["hash", 121, 7]], [["url", 124, 7], ["hash", 125, 7]], [["depsAlsoForPycolmap", 221, 5], ["updateScript", 222, 5]], [["description", 226, 5], ["longDescription", 227, 5], ["mainProgram", 231, 5], ["homepage", 232, 5], ["downloadPage", 233, 5], ["changelog", 234, 5], ["license", 235, 5], ["platforms", 236, 5], ["maintainers", 237, 5]], [["version", 104, 3], ["pname", 105, 3], ["src", 106, 3], ["__structuredAttrs", 113, 3], ["strictDeps", 114, 3], ["patches", 116, 3], ["cmakeFlags", 129, 3], ["buildInputs", 147, 3], ["nativeBuildInputs", 169, 3], ["doCheck", 179, 3], ["checkFlags", 182, 3], ["preCheck", 186, 3], ["passthru", 220, 3], ["meta", 225, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchurl: false, fetchpatch: false, "nix-update-script": false, cmake: false, boost: false, "ceres-solver": false, eigen: false, openimageio: false, glog: false, libGLU: false, glew: false, flann: false, cgal: false, gmp: false, mpfr: false, suitesparse: false, onnxruntime: false, poselib: false, lz4: false, autoAddDriverRunpath: false, config: false, stdenv: false, qt5: false, libsm: false, cudaSupport: true, cudaCapabilities: true, cudaPackages: false, casparSupport: true, faiss: false, sqlite: false, llvmPackages: false, gtest: false, curl: false, enableTests: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 77, 7], ["url", 78, 7], ["sha256", 79, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 82, 7], ["url", 83, 7], ["sha256", 84, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 87, 7], ["url", 88, 7], ["sha256", 89, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 92, 7], ["url", 93, 7], ["sha256", 94, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 97, 7], ["url", 98, 7], ["sha256", 99, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 107, 5], ["repo", 108, 5], ["tag", 109, 5], ["hash", 110, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 120, 7], ["hash", 121, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 124, 7], ["hash", 125, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["depsAlsoForPycolmap", 221, 5], ["updateScript", 222, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 226, 5], ["longDescription", 227, 5], ["mainProgram", 231, 5], ["homepage", 232, 5], ["downloadPage", 233, 5], ["changelog", 234, 5], ["license", 235, 5], ["platforms", 236, 5], ["maintainers", 237, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["version", 104, 3], ["pname", 105, 3], ["src", 106, 3], ["__structuredAttrs", 113, 3], ["strictDeps", 114, 3], ["patches", 116, 3], ["cmakeFlags", 129, 3], ["buildInputs", 147, 3], ["nativeBuildInputs", 169, 3], ["doCheck", 179, 3], ["checkFlags", 182, 3], ["preCheck", 186, 3], ["passthru", 220, 3], ["meta", 225, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -81,42 +71,42 @@ export default nix.lambda((args) => (() => {
     ])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv$, "cc", "isClang")), nix.thunk(() => nix.sel(llvmPackages, "openmp"))))));
   const modelsForTesting = nix.thunk(() => [
     nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "aliked-n16rot.onnx",
       url: "https://github.com/colmap/colmap/releases/download/3.13.0/aliked-n16rot.onnx",
       sha256: "39c423d0a6f03d39ec89d3d1d61853765c2fb6a8b8381376c703e5758778a547",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "aliked-n32.onnx",
       url: "https://github.com/colmap/colmap/releases/download/3.13.0/aliked-n32.onnx",
       sha256: "a077728a02d2de1a775c66df6de8cfeb7c6b51ca57572c64c680131c988c8b3c",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "aliked-lightglue.onnx",
       url: "https://github.com/colmap/colmap/releases/download/3.13.0/aliked-lightglue.onnx",
       sha256: "b9a5de7204648b18a8cf5dcac819f9d30de1a5961ef03756803c8b86c2dceb8d",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "bruteforce-matcher.onnx",
       url: "https://github.com/colmap/colmap/releases/download/3.13.0/bruteforce-matcher.onnx",
       sha256: "3c1282f96d83f5ffc861a873298d08bbe5219f59af59223f5ceab5c41a182a47",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "sift-lightglue.onnx",
       url: "https://github.com/colmap/colmap/releases/download/3.13.0/sift-lightglue.onnx",
       sha256: "e0500228472b43f92b3d36881a09b3310d3b058b56187b246cc7b9ab6429096e",
     })),
   ]);
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       version: "4.1.1",
       pname: "colmap",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           owner: "colmap",
           repo: "colmap",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -126,12 +116,12 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv$, "hostPlatform", "isAarch64")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               url: "https://github.com/colmap/colmap/commit/e13294e43baae6cf7f4e3ec05a19060e0b230a72.patch",
               hash: "sha256-hoIjWdrOlXeT78X+g3YCDWaWnmQMzHVQNkdpx5vXpGk=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               url: "https://github.com/colmap/colmap/commit/6c5c59f96f9e819bcc57267ef48b193d77707fe0.patch",
               hash: "sha256-2dAhy3sgxF2SXPAYE/EV1hd61dm05vJ5JJXEjQxEKWM=",
             })))),
@@ -181,12 +171,12 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (model) => nix.str`ln -s ${
 `);
         })()))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         depsAlsoForPycolmap: depsAlsoForPycolmap,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Structure-From-Motion and Multi-View Stereo pipeline",
         longDescription: "COLMAP is a general-purpose Structure-from-Motion (SfM) and Multi-View Stereo (MVS) pipeline\nwith a graphical and command-line interface.\n",
         mainProgram: "colmap",

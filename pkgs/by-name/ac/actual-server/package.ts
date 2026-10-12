@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs", 17, 48]], [["name", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 32, 5], ["hash", 33, 5]], [["nodejs", 47, 56]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 60, 5], ["NODE_JQ_SKIP_INSTALL_BINARY", 61, 5], ["SHARP_IGNORE_GLOBAL_LIBVIPS", 62, 5]], [["src", 114, 26], ["missingHashes", 114, 30], ["hash", 115, 5]], [["offlineCache", 150, 26], ["env", 150, 39], ["translations", 151, 13], ["tests", 152, 5], ["updateScript", 153, 5]], [["changelog", 157, 5], ["description", 158, 5], ["homepage", 159, 5], ["mainProgram", 160, 5], ["license", 161, 5], ["platforms", 162, 5], ["maintainers", 163, 5]], [["srcs", 38, 3], ["sourceRoot", 42, 3], ["nativeBuildInputs", 44, 3], ["env", 59, 3], ["__darwinAllowLocalNetworking", 65, 3], ["postPatch", 67, 3], ["buildPhase", 95, 3], ["missingHashes", 112, 3], ["offlineCache", 113, 3], ["pname", 118, 3], ["version", 119, 11], ["src", 119, 19], ["installPhase", 121, 3], ["passthru", 149, 3], ["meta", 156, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cctools: false, fetchFromGitHub: false, git: false, jq: false, makeBinaryWrapper: false, nodejs_24: false, python3: false, xcbuild: false, "yarn-berry_4": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs", 17, 48]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nodejs", 47, 56]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 60, 5], ["NODE_JQ_SKIP_INSTALL_BINARY", 61, 5], ["SHARP_IGNORE_GLOBAL_LIBVIPS", 62, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["src", 114, 26], ["missingHashes", 114, 30], ["hash", 115, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["offlineCache", 150, 26], ["env", 150, 39], ["translations", 151, 13], ["tests", 152, 5], ["updateScript", 153, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["changelog", 157, 5], ["description", 158, 5], ["homepage", 159, 5], ["mainProgram", 160, 5], ["license", 161, 5], ["platforms", 162, 5], ["maintainers", 163, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["srcs", 38, 3], ["sourceRoot", 42, 3], ["nativeBuildInputs", 44, 3], ["env", 59, 3], ["__darwinAllowLocalNetworking", 65, 3], ["postPatch", 67, 3], ["buildPhase", 95, 3], ["missingHashes", 112, 3], ["offlineCache", 113, 3], ["pname", 118, 3], ["version", 119, 11], ["src", 119, 19], ["installPhase", 121, 3], ["passthru", 149, 3], ["meta", 156, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,10 +20,10 @@ export default nix.lambda((args) => (() => {
   const yarn_berry_4 = nix.arg($, "yarn-berry_4");
   const nixosTests = nix.arg($, "nixosTests");
   const nodejs = nodejs_24;
-  const yarn_berry = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs }))));
+  const yarn_berry = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], nodejs: nodejs }))));
   const version = "26.10.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "actualbudget-actual-source",
       owner: "actualbudget",
       repo: "actual",
@@ -39,7 +31,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-jBh6mrYVVX7dNz5rv/VO766ezIuwBmXbtRSKgUOkahc=",
     }))));
   const translations = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "actualbudget-translations-source",
       owner: "actualbudget",
       repo: "translations",
@@ -47,19 +39,19 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-e/NN5u4h5m5sO/xPLC9oO0Q5tXH+Irm3lmUheVdf+N0=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       srcs: nix.thunk(() => [src, translations]),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/`),
       nativeBuildInputs: nix.thunk(() => nix.concat([
         yarn_berry,
         nodejs,
-        nix.thunk(() => nix.app(nix.sel(yarn_berry, "yarnBerryConfigHook", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, nodejs: nodejs })))),
+        nix.thunk(() => nix.app(nix.sel(yarn_berry, "yarnBerryConfigHook", "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], nodejs: nodejs })))),
         nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "setuptools"))])),
         makeBinaryWrapper,
         git,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools, xcbuild])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         NODE_JQ_SKIP_INSTALL_BINARY: "true",
         SHARP_IGNORE_GLOBAL_LIBVIPS: "1",
@@ -94,7 +86,7 @@ cat <<< $(${nix.app(nix.sel(lib, "getExe"), jq)} '.dependenciesMeta."sharp".buil
       buildPhase: "runHook preBuild\n\nexport HOME=$(mktemp -d)\n\n# lage hashes source files via `git ls-tree HEAD`, so it needs a repo with\n# at least one commit.\ngit -c init.defaultBranch=main init -q\ngit add -A\ngit -c user.email=nix@localhost -c user.name=nix commit -q --allow-empty -m \"snapshot\"\n\nyarn build:server\nyarn workspace @actual-app/sync-server build\n\nrunHook postBuild\n",
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-NYjJeQWeDsLsEme/gIkZzgwWaqpQNSfLeYgZHaPTuH8=",
@@ -129,7 +121,7 @@ makeBinaryWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} "$out/bin/actual-se
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         offlineCache: nix.thunk(() => nix.attr(finalAttrs, "offlineCache")),
         env: nix.thunk(() => nix.attr(finalAttrs, "env")),
         translations: translations,
@@ -137,7 +129,7 @@ runHook postInstall
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: "https://actualbudget.org/docs/releases",
         description: "Super fast privacy-focused app for managing your finances",
         homepage: "https://actualbudget.org/",

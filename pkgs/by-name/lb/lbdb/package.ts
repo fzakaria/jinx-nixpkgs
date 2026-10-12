@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["sha256", 35, 5]], [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 68, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["buildInputs", 38, 3], ["configureFlags", 48, 3], ["patches", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, "bsd-finger": false, withAbook: true, abook: false, withGnupg: true, gnupg: false, withGoobook: true, goobook: false, withKhard: true, khard: false, withMu: true, mu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["sha256", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["buildInputs", 38, 3], ["configureFlags", 48, 3], ["patches", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +32,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lbdb",
       version: "0.57",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.spinnaker.de/lbdb/download/lbdb-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-IS/i5A317T5Ulrxegh5LBoOmyVI7iIXn6HtjS8+SOog=",
         })))),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optional"), withAbook, "--with-abook"), nix.concat(nix.app(nix.sel(lib, "optional"), withGnupg, "--with-gpg"), nix.concat(nix.app(nix.sel(lib, "optional"), withGoobook, "--with-goobook"), nix.concat(nix.app(nix.sel(lib, "optional"), withKhard, "--with-khard"), nix.app(nix.sel(lib, "optional"), withMu, "--with-mu"))))))),
       patches: nix.thunk(() => [nix.path(here, "./add-methods-to-rc.patch")]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.spinnaker.de/lbdb/",
         description: "Little Brother's Database",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

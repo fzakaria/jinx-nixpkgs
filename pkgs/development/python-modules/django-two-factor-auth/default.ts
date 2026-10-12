@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["call", 45, 5], ["sms", 46, 5], ["webauthn", 47, 5], ["phonenumbers", 54, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["pythonRelaxDeps", 31, 3], ["dependencies", 36, 3], ["optional-dependencies", 44, 3], ["doCheck", 61, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, django: false, "django-formtools": false, "django-otp": false, "django-phonenumber-field": false, fetchFromGitHub: false, phonenumbers: false, pydantic: false, qrcode: false, "setuptools-scm": false, twilio: false, webauthn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["call", 45, 5], ["sms", 46, 5], ["webauthn", 47, 5], ["phonenumbers", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["pythonRelaxDeps", 31, 3], ["dependencies", 36, 3], ["optional-dependencies", 44, 3], ["doCheck", 61, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.18.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jazzband",
           repo: "django-two-factor-auth",
           tag: version,
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["django-phonenumber-field", "qrcode"]);
       const dependencies = nix.thunk(() => [django, django_formtools, django_otp, django_phonenumber_field, qrcode]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         call: nix.thunk(() => [twilio]),
         sms: nix.thunk(() => [twilio]),
         webauthn: nix.thunk(() => [pydantic, webauthn]),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["two_factor"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Complete Two-Factor Authentication for Django",
         homepage: "https://github.com/jazzband/django-two-factor-auth",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-two-factor-auth/releases/tag/${nix.sel(src, "tag")}`),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

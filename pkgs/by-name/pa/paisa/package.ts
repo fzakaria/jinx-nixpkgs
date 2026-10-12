@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs", 23, 49]], [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["pname", 40, 5], ["version", 41, 26], ["src", 41, 34], ["npmDepsHash", 43, 5], ["npmFlags", 49, 5], ["buildInputs", 51, 5], ["nativeBuildInputs", 64, 5], ["postBuild", 70, 5]], [["CGO_ENABLED", 76, 7]], [["paisa", 93, 28]], [["frontend", 91, 26], ["tests", 92, 5]], [["homepage", 98, 5], ["changelog", 99, 5], ["description", 100, 5], ["license", 101, 5], ["mainProgram", 102, 5], ["maintainers", 103, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["subPackages", 36, 3], ["vendorHash", 38, 3], ["frontend", 39, 3], ["env", 76, 3], ["doCheck", 78, 3], ["doInstallCheck", 80, 3], ["nativeInstallCheckInputs", 81, 3], ["versionCheckProgramArg", 84, 3], ["preBuild", 86, 3], ["passthru", 90, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, buildNpmPackage: false, fetchFromGitHub: false, nodejs_22: false, versionCheckHook: false, "node-gyp": false, python3: false, "pkg-config": false, cairo: false, giflib: false, libjpeg: false, libpng: false, librsvg: false, pango: false, pixman: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs", 23, 49]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 5], ["version", 41, 26], ["src", 41, 34], ["npmDepsHash", 43, 5], ["npmFlags", 49, 5], ["buildInputs", 51, 5], ["nativeBuildInputs", 64, 5], ["postBuild", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 76, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["paisa", 93, 28]]);
-const pos$6 = nix.positions(here + "/package.nix", [["frontend", 91, 26], ["tests", 92, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 98, 5], ["changelog", 99, 5], ["description", 100, 5], ["license", 101, 5], ["mainProgram", 102, 5], ["maintainers", 103, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["subPackages", 36, 3], ["vendorHash", 38, 3], ["frontend", 39, 3], ["env", 76, 3], ["doCheck", 78, 3], ["doInstallCheck", 80, 3], ["nativeInstallCheckInputs", 81, 3], ["versionCheckProgramArg", 84, 3], ["preBuild", 86, 3], ["passthru", 90, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const pixman = nix.arg($, "pixman");
   const nixosTests = nix.arg($, "nixosTests");
-  const buildNpmPackage$ = nix.thunk(() => nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs_22 }))));
+  const buildNpmPackage$ = nix.thunk(() => nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], nodejs: nodejs_22 }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "paisa",
       version: "0.7.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ananthakumaran",
           repo: "paisa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +40,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["."]),
       vendorHash: "sha256-5jrxI+zSKbopGs5GmGVyqQcMHNZJbCsiFEH/LPXWxpk=",
       frontend: nix.thunk(() => nix.app(buildNpmPackage$, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "paisa-frontend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -64,7 +57,7 @@ export default nix.lambda((args) => (() => {
           ]),
           postBuild: "mkdir -p $out/web/\ncp -r web/static $out/web/\n",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], CGO_ENABLED: 1n })),
       doCheck: true,
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
@@ -72,12 +65,12 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`cp -r ${nix.sel(finalAttrs, "frontend")}/web/static ./web
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         frontend: nix.thunk(() => nix.attr(finalAttrs, "frontend")),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, paisa: nix.thunk(() => nix.attr(nixosTests, "paisa")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[4], paisa: nix.thunk(() => nix.attr(nixosTests, "paisa")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://paisa.fyi/",
         changelog: nix.thunk(() => nix.str`https://github.com/ananthakumaran/paisa/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Personal finance manager, building on top of the ledger double entry accounting tool",

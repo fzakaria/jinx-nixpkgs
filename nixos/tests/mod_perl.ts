@@ -2,51 +2,42 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mod_perl.nix", [[["maintainers", 6, 5]], [["extraConfig", 47, 15]], [["/modperl", 46, 23]], [["extraConfig", 43, 13], ["locations", 46, 13]], [["modperl", 20, 22]], [["enable", 18, 9], ["adminAddr", 19, 9], ["virtualHosts", 20, 9], ["enablePerl", 53, 9]], [["httpd", 17, 16]], [["services", 17, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 56, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mod_perl.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/mod_perl.nix", [["extraConfig", 47, 15]]);
-const pos$3 = nix.positions(here + "/mod_perl.nix", [["/modperl", 46, 23]]);
-const pos$4 = nix.positions(here + "/mod_perl.nix", [["extraConfig", 43, 13], ["locations", 46, 13]]);
-const pos$5 = nix.positions(here + "/mod_perl.nix", [["modperl", 20, 22]]);
-const pos$6 = nix.positions(here + "/mod_perl.nix", [["enable", 18, 9], ["adminAddr", 19, 9], ["virtualHosts", 20, 9], ["enablePerl", 53, 9]]);
-const pos$7 = nix.positions(here + "/mod_perl.nix", [["httpd", 17, 16]]);
-const pos$8 = nix.positions(here + "/mod_perl.nix", [["services", 17, 7]]);
-const pos$9 = nix.positions(here + "/mod_perl.nix", [["machine", 9, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$10 = nix.positions(here + "/mod_perl.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "mod_perl",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "sgo"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             httpd: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               adminAddr: "admin@localhost",
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 modperl: nix.thunk(() => (() => {
                   const inc = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeTextDir"), "ModPerlTest.pm", "package ModPerlTest;\nuse strict;\nuse Apache2::RequestRec ();\nuse Apache2::RequestIO ();\nuse Apache2::Const -compile => qw(OK);\nsub handler {\n  my $r = shift;\n  $r->content_type('text/plain');\n  print \"Hello mod_perl!\\n\";\n  return Apache2::Const::OK;\n}\n1;\n"));
                   const startup = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeScript"), "startup.pl", nix.thunk(() => nix.str`use lib "${inc}",
@@ -57,13 +48,13 @@ export default nix.lambda((args) => (() => {
 1;
 `)));
                   return {
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     extraConfig: nix.thunk(() => nix.str`PerlRequire ${startup}
 `),
                     locations: nix.thunk(() => ({
-                      [nix.POS]: pos$3,
+                      [nix.POS]: $pos[2],
                       "/modperl": nix.thunk(() => ({
-                        [nix.POS]: pos$2,
+                        [nix.POS]: $pos[1],
                         extraConfig: "SetHandler perl-script\nPerlResponseHandler ModPerlTest\n",
                       })),
                     })),

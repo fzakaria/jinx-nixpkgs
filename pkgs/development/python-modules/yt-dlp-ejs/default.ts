@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 29, 7], ["version", 30, 7], ["src", 31, 7], ["pnpm", 32, 7], ["fetcherVersion", 34, 5], ["hash", 35, 5]], [["changelog", 52, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 60, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["pnpmDeps", 27, 3], ["build-system", 38, 3], ["nativeBuildInputs", 43, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, nodejs: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_10: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 29, 7], ["version", 30, 7], ["src", 31, 7], ["pnpm", 32, 7], ["fetcherVersion", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 52, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["pnpmDeps", 27, 3], ["build-system", 38, 3], ["nativeBuildInputs", 43, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yt-dlp",
           repo: "ejs",
           tag: version,
           hash: "sha256-+tOA9sPk0BGJHFQCoAC8y5Bz3UcjgIPDQ8WDPkRlW5k=",
         }))));
       const pnpmDeps = nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [nodejs, pnpmConfigHook, pnpm]);
       const pythonImportsCheck = nix.thunk(() => ["yt_dlp_ejs"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/yt-dlp/ejs/releases/tag/${version}`),
         description: "External JavaScript for yt-dlp supporting many runtimes",
         homepage: "https://github.com/yt-dlp/ejs/",
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,41 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/birdwatcher.nix", [[["systemPackages", 8, 19]], [["enable", 10, 9], ["config", 11, 9]], [["enable", 37, 9], ["settings", 38, 9]], [["bird", 9, 16], ["birdwatcher", 36, 16]], [["environment", 8, 7], ["services", 9, 7]], [["host1", 5, 9]], [["name", 4, 3], ["nodes", 5, 3], ["testScript", 77, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/birdwatcher.nix", [["systemPackages", 8, 19]]);
-const pos$2 = nix.positions(here + "/birdwatcher.nix", [["enable", 10, 9], ["config", 11, 9]]);
-const pos$3 = nix.positions(here + "/birdwatcher.nix", [["enable", 37, 9], ["settings", 38, 9]]);
-const pos$4 = nix.positions(here + "/birdwatcher.nix", [["bird", 9, 16], ["birdwatcher", 36, 16]]);
-const pos$5 = nix.positions(here + "/birdwatcher.nix", [["environment", 8, 7], ["services", 9, 7]]);
-const pos$6 = nix.positions(here + "/birdwatcher.nix", [["host1", 5, 9]]);
-const pos$7 = nix.positions(here + "/birdwatcher.nix", [["name", 4, 3], ["nodes", 5, 3], ["testScript", 77, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$7,
+  [nix.POS]: $pos[6],
   name: "birdwatcher",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     host1: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "jq"))];
           })()),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           bird: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             enable: true,
             config: "log syslog all;\n\ndebug protocols all;\n\nrouter id 10.0.0.1;\n\nprotocol device {\n}\n\nprotocol kernel kernel4 {\n  ipv4 {\n    import none;\n    export all;\n  };\n}\n\nprotocol kernel kernel6 {\n  ipv6 {\n    import none;\n    export all;\n  };\n}\n",
           })),
           birdwatcher: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             settings: nix.thunk(() => nix.str`[server]
 allow_from = []

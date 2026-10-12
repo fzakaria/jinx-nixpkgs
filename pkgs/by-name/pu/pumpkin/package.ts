@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]], [["extraArgs", 32, 40]], [["nixos", 34, 7]], [["updateScript", 32, 5], ["tests", 33, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 46, 5], ["platforms", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["cargoHash", 22, 3], ["cargoBuildFlags", 24, 3], ["doCheck", 29, 3], ["passthru", 31, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 32, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nixos", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 32, 5], ["tests", 33, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 46, 5], ["platforms", 47, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["cargoHash", 22, 3], ["cargoBuildFlags", 24, 3], ["doCheck", 29, 3], ["passthru", 31, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pumpkin",
       version: "0.1.0-unstable-2026-07-25",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Pumpkin-MC",
           repo: "Pumpkin",
           rev: "0dfaf5d213e9bc281defa8315945160eddbc7f47",
@@ -34,12 +29,12 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["--package", "pumpkin"]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "pumpkin")) })),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], nixos: nix.thunk(() => nix.sel(nixosTests, "pumpkin")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Minecraft server built entirely in Rust, focused on performance, compatibility and configurability",
         homepage: "https://pumpkinmc.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

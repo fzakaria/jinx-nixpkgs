@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["url", 20, 7], ["extraPrefix", 21, 7], ["stripLen", 22, 7], ["hash", 23, 7]], [["CXXFLAGS", 36, 5]], [["homepage", 42, 5], ["description", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["license", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["enableParallelBuilding", 33, 3], ["env", 35, 3], ["hardeningDisable", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 7], ["extraPrefix", 21, 7], ["stripLen", 22, 7], ["hash", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CXXFLAGS", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["license", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["enableParallelBuilding", 33, 3], ["env", 35, 3], ["hardeningDisable", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "coinmp",
       version: "1.8.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.coin-or.org/download/source/CoinMP/CoinMP-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-NFn7DMvdOTQnRGhDOJhKxMwVP7BDT0yujPdL1nSQo40=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/coin-or/Cgl/commit/57d8c71cd50dc27a89eaeb4672499bca55f1fd72.patch",
             extraPrefix: "Cgl/",
             stripLen: 1n,
@@ -37,10 +33,10 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-use-static_cast-for-static-cast-fixes-319.patch"),
       ]),
       enableParallelBuilding: true,
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$3, CXXFLAGS: "-std=c++14" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: $pos[2], CXXFLAGS: "-std=c++14" })))),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://projects.coin-or.org/CoinMP/",
         description: "COIN-OR lightweight API for COIN-OR libraries CLP, CBC, and CGL",
         maintainers: nix.thunk(() => (() => {

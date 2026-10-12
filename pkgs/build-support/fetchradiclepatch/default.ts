@@ -2,10 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nativeBuildInputs", 20, 7], ["rev", 21, 7], ["leaveDotGit", 22, 7], ["postFetch", 23, 7]], [["revision", 40, 13]]]);
 const formals$1 = { args: { fetchFromRadicle: false, jq: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { revision: false, postFetch: true, nativeBuildInputs: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 20, 7], ["rev", 21, 7], ["leaveDotGit", 22, 7], ["postFetch", 23, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["revision", 40, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
       nix.assert_((nix.asBool((nix.asBool(!nix.asBool(nix.has(args_2, "rev"))) && nix.asBool(!nix.asBool(nix.has(args_2, "tag"))))) || nix.asBool(nix.builtins.throw("fetchRadiclePatch does not accept `rev` or `tag` arguments."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/fetchradiclepatch/default.nix:15:3");
       return nix.update(nix.app(fetchFromRadicle, nix.thunk(() => nix.update({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           nativeBuildInputs: nix.thunk(() => nix.concat([jq], nativeBuildInputs)),
           rev: revision,
           leaveDotGit: true,
@@ -31,7 +30,7 @@ rm -r $out
 mv patch $out
 ${postFetch}
 `),
-        }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["revision", "postFetch", "nativeBuildInputs", "leaveDotGit"]))))), { [nix.POS]: pos$2, revision: revision });
+        }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["revision", "postFetch", "nativeBuildInputs", "leaveDotGit"]))))), { [nix.POS]: $pos[1], revision: revision });
     })(), formals$2));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

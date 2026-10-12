@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["format", 18, 3], ["dontBuild", 20, 3], ["dependencies", 22, 3], ["pythonImportsCheck", 27, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchurl: false, numpy: false, torch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["format", 18, 3], ["dontBuild", 20, 3], ["dependencies", 22, 3], ["pythonImportsCheck", 27, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nvidia-dlprof-pytorch-nvtx";
       const version = "1.8.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pypi.nvidia.com/nvidia-dlprof-pytorch-nvtx/nvidia_dlprof_pytorch_nvtx-${version}-py3-none-any.whl`),
           hash: "sha256-IHVCXnkVy3lXw22ISpeMdt5T7UZSzHp8sbWGF/emwGw=",
         }))));
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy, torch]);
       const pythonImportsCheck = nix.thunk(() => ["nvidia_dlprof_pytorch_nvtx"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "NVIDIA DLProf Pytorch NVTX markers",
         homepage: "https://docs.nvidia.com/deeplearning/frameworks/dlprof-user-guide/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

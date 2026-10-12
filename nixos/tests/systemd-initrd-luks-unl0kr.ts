@@ -2,37 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [[["maintainers", 16, 5], ["broken", 17, 5]], [["options", 34, 14]], [["emptyDiskImages", 27, 9], ["useBootLoader", 31, 9], ["mountHostNixStore", 32, 9], ["useEFIBoot", 33, 9], ["qemu", 34, 9]], [["enable", 38, 32]], [["systemd-boot", 38, 19]], [["enable", 52, 11], ["emergencyAccess", 53, 11], ["storePaths", 55, 11]], [["backend", 61, 21]], [["general", 61, 13]], [["enable", 58, 11], ["settings", 60, 11]], [["systemd", 51, 9], ["unl0kr", 57, 9]], [["loader", 38, 12], ["kernelParams", 40, 12], ["initrd", 50, 12]], [["systemPackages", 44, 19]], [["initrdBackdoor", 69, 17]], [["device", 72, 21]], [["device", 73, 22]], [["cryptroot", 72, 11], ["cryptroot2", 73, 11]], [["devices", 70, 26]], [["luks", 70, 21]], [["initrd", 70, 14]], [["device", 78, 11], ["fsType", 79, 11]], [["/cryptroot2", 77, 36]], [["rootDevice", 75, 24], ["fileSystems", 77, 24]], [["testing", 69, 9], ["boot", 70, 9], ["virtualisation", 75, 9]], [["configuration", 68, 32]], [["boot-luks", 68, 22]], [["virtualisation", 26, 7], ["boot", 38, 7], ["environment", 44, 7], ["specialisation", 68, 7]], [["machine", 23, 9]], [["name", 14, 3], ["meta", 15, 3], ["nodes", 23, 3], ["testScript", 84, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["maintainers", 16, 5], ["broken", 17, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["options", 34, 14]]);
-const pos$3 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["emptyDiskImages", 27, 9], ["useBootLoader", 31, 9], ["mountHostNixStore", 32, 9], ["useEFIBoot", 33, 9], ["qemu", 34, 9]]);
-const pos$4 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["enable", 38, 32]]);
-const pos$5 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["systemd-boot", 38, 19]]);
-const pos$6 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["enable", 52, 11], ["emergencyAccess", 53, 11], ["storePaths", 55, 11]]);
-const pos$7 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["backend", 61, 21]]);
-const pos$8 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["general", 61, 13]]);
-const pos$9 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["enable", 58, 11], ["settings", 60, 11]]);
-const pos$10 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["systemd", 51, 9], ["unl0kr", 57, 9]]);
-const pos$11 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["loader", 38, 12], ["kernelParams", 40, 12], ["initrd", 50, 12]]);
-const pos$12 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["systemPackages", 44, 19]]);
-const pos$13 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["initrdBackdoor", 69, 17]]);
-const pos$14 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["device", 72, 21]]);
-const pos$15 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["device", 73, 22]]);
-const pos$16 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["cryptroot", 72, 11], ["cryptroot2", 73, 11]]);
-const pos$17 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["devices", 70, 26]]);
-const pos$18 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["luks", 70, 21]]);
-const pos$19 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["initrd", 70, 14]]);
-const pos$20 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["device", 78, 11], ["fsType", 79, 11]]);
-const pos$21 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["/cryptroot2", 77, 36]]);
-const pos$22 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["rootDevice", 75, 24], ["fileSystems", 77, 24]]);
-const pos$23 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["testing", 69, 9], ["boot", 70, 9], ["virtualisation", 75, 9]]);
-const pos$24 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["configuration", 68, 32]]);
-const pos$25 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["boot-luks", 68, 22]]);
-const pos$26 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["virtualisation", 26, 7], ["boot", 38, 7], ["environment", 44, 7], ["specialisation", 68, 7]]);
-const pos$27 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["machine", 23, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$28 = nix.positions(here + "/systemd-initrd-luks-unl0kr.nix", [["name", 14, 3], ["meta", 15, 3], ["nodes", 23, 3], ["testScript", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,87 +22,87 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return {
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     name: "systemd-initrd-luks-unl0kr",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: [],
       broken: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             emptyDiskImages: nix.thunk(() => [512n, 512n]),
             useBootLoader: true,
             mountHostNixStore: true,
             useEFIBoot: true,
-            qemu: nix.thunk(() => ({ [nix.POS]: pos$2, options: nix.thunk(() => ["-vga virtio"]) })),
+            qemu: nix.thunk(() => ({ [nix.POS]: $pos[1], options: nix.thunk(() => ["-vga virtio"]) })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+              [nix.POS]: $pos[4],
+              "systemd-boot": nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
             })),
             kernelParams: nix.thunk(() => ["rd.systemd.debug_shell"]),
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 enable: true,
                 emergencyAccess: true,
                 storePaths: debugPackages,
               })),
               unl0kr: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 enable: true,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
-                  general: nix.thunk(() => ({ [nix.POS]: pos$7, backend: "drm" })),
+                  [nix.POS]: $pos[7],
+                  general: nix.thunk(() => ({ [nix.POS]: $pos[6], backend: "drm" })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs_1, null);
               return nix.concat([nix.thunk(() => nix.lookup(w_1, "cryptsetup"))], debugPackages);
             })()),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             "boot-luks": nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$23,
-                testing: nix.thunk(() => ({ [nix.POS]: pos$13, initrdBackdoor: true })),
+                [nix.POS]: $pos[22],
+                testing: nix.thunk(() => ({ [nix.POS]: $pos[12], initrdBackdoor: true })),
                 boot: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   initrd: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
+                    [nix.POS]: $pos[17],
                     luks: nix.thunk(() => ({
-                      [nix.POS]: pos$17,
+                      [nix.POS]: $pos[16],
                       devices: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-                          [nix.POS]: pos$16,
-                          cryptroot: nix.thunk(() => ({ [nix.POS]: pos$14, device: "/dev/vdb" })),
-                          cryptroot2: nix.thunk(() => ({ [nix.POS]: pos$15, device: "/dev/vdc" })),
+                          [nix.POS]: $pos[15],
+                          cryptroot: nix.thunk(() => ({ [nix.POS]: $pos[13], device: "/dev/vdb" })),
+                          cryptroot2: nix.thunk(() => ({ [nix.POS]: $pos[14], device: "/dev/vdc" })),
                         })))),
                     })),
                   })),
                 })),
                 virtualisation: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   rootDevice: "/dev/mapper/cryptroot",
                   fileSystems: nix.thunk(() => ({
-                    [nix.POS]: pos$21,
-                    "/cryptroot2": nix.thunk(() => ({ [nix.POS]: pos$20, device: "/dev/mapper/cryptroot2", fsType: "auto" })),
+                    [nix.POS]: $pos[20],
+                    "/cryptroot2": nix.thunk(() => ({ [nix.POS]: $pos[19], device: "/dev/mapper/cryptroot2", fsType: "auto" })),
                   })),
                 })),
               })),

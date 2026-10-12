@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 5], ["version", 18, 5], ["sha256", 19, 5], ["description", 20, 5], ["maintainers", 21, 5]], [["description", 24, 8], ["platforms", 25, 8]], [["pname", 12, 3], ["version", 13, 3], ["sha256", 14, 3], ["manpages", 16, 3], ["meta", 24, 3], ["outputs", 27, 3], ["buildInputs", 33, 3], ["configureFlags", 39, 3], ["postConfigure", 61, 3], ["postInstall", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, skawarePackages: false, targetPackages: false, skalibs: false, execline: false, s6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 5], ["sha256", 19, 5], ["description", 20, 5], ["maintainers", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 24, 8], ["platforms", 25, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["sha256", 14, 3], ["manpages", 16, 3], ["meta", 24, 3], ["outputs", 27, 3], ["buildInputs", 33, 3], ["configureFlags", 39, 3], ["postConfigure", 61, 3], ["postInstall", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const execline = nix.arg($, "execline");
   const s6 = nix.arg($, "s6");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "s6-rc",
       version: "0.7.0.0",
       sha256: "sha256-v1uM4NpaTucNZCuBi2HZkWp6m2SkV1lfOIET5UoYhog=",
       manpages: nix.thunk(() => nix.app(nix.sel(skawarePackages, "buildManPages"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "s6-rc-man-pages",
           version: "0.6.0.0.1",
           sha256: "sha256-zHkh5H0/nXsLjHJE9PT+2ga8gK1evm4ktheMqqNV1hQ=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "qyliss"))]),
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Service manager for s6-based systems",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),

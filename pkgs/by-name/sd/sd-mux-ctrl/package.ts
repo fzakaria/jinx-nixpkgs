@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["prePatch", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["postInstall", 40, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, cmake: false, "pkg-config": false, installShellFiles: false, libftdi1: false, popt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["prePatch", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["postInstall", 40, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libftdi1 = nix.arg($, "libftdi1");
   const popt = nix.arg($, "popt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sd-mux-ctrl-unstable",
       version: "2020-02-17",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.tizen.org/tools/testlab/sd-mux",
           rev: "9dd189d973da64e033a0c5c2adb3d94b23153d94",
           hash: "sha256-b0uoxVPfSrqNt0wJoQho9jlpQQUjofgFm93P+UNFtDs=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libftdi1, popt]),
       postInstall: "install -D -m 644 ../doc/man/sd-mux-ctrl.1 $out/share/man/man1/sd-mux-ctrl.1\ninstallShellCompletion --cmd sd-mux-ctrl \\\n  --bash ../etc/bash_completion.d/sd-mux-ctrl\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for controlling multiple sd-mux devices",
         homepage: "https://git.tizen.org/cgit/tools/testlab/sd-mux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

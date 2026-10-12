@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["disabled", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 48, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aioresponses: false, buildPythonPackage: false, fetchFromGitHub: false, orjson: false, pyotp: false, "pytest-aiohttp": false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, pythonOlder: false, segno: false, setuptools: false, trustme: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["disabled", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 48, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const trustme = nix.arg($, "trustme");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aiounifi",
       version: "96",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.13")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kane610",
           repo: "aiounifi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["aiounifi"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for communicating with Unifi Controller API",
         homepage: "https://github.com/Kane610/aiounifi",
         changelog: nix.thunk(() => nix.str`https://github.com/Kane610/aiounifi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

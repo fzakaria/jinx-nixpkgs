@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["NIX_CFLAGS_COMPILE", 27, 11]], [["env", 26, 9]], [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["NIX_LDFLAGS", 53, 5], ["OPENSSL_NO_VENDOR", 58, 5]], [["description", 103, 5], ["mainProgram", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 113, 5]], [["__structuredAttrs", 35, 3], ["buildNoDefaultFeatures", 37, 11], ["pname", 39, 3], ["version", 40, 3], ["cargoHash", 41, 3], ["src", 43, 3], ["env", 50, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 66, 3], ["buildFeatures", 71, 3], ["postInstall", 76, 3], ["cargoTestFlags", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { buildFeatures: true, buildNoDefaultFeatures: true, buildPackages: false, dbus: false, fetchFromGitHub: false, installManPages: true, installShellCompletions: true, installShellFiles: false, lib: false, openssl: false, "pkg-config": false, rustPlatform: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 27, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["env", 26, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 53, 5], ["OPENSSL_NO_VENDOR", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 103, 5], ["mainProgram", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 113, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["__structuredAttrs", 35, 3], ["buildNoDefaultFeatures", 37, 11], ["pname", 39, 3], ["version", 40, 3], ["cargoHash", 41, 3], ["src", 43, 3], ["env", 50, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 66, 3], ["buildFeatures", 71, 3], ["postInstall", 76, 3], ["cargoTestFlags", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,28 +23,28 @@ export default nix.lambda((args) => (() => {
   const nativeTls = nix.thunk(() => nix.builtins.elem("native-tls", buildFeatures));
   const notify = nix.thunk(() => nix.builtins.elem("notify", buildFeatures));
   const dbus$ = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) ? nix.app(nix.sel(dbus, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.selOr(old, () => "", "env", "NIX_CFLAGS_COMPILE"), " -mno-outline-atomics")),
       })),
     })) : nix.force(dbus)));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       __structuredAttrs: true,
       buildNoDefaultFeatures: buildNoDefaultFeatures,
       pname: "ortie",
       version: "2.1.0",
       cargoHash: "sha256-ZAW+Coyv1DVmF2HWr7CmFMtQT9hNaS+1koWoZCJ+Wsc=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "pimalaya",
           repo: "ortie",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-5KRXPIDYBfF/2fNnrJur8WdfLYvgtJWlTWA7YD8yYWg=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(notify) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))))), nix.thunk(() => nix.add(nix.add("-rpath ", nix.app(nix.sel(lib, "getLib"), dbus$)), "/lib")))),
         OPENSSL_NO_VENDOR: 1n,
       })),
@@ -65,7 +60,7 @@ ${exe} completions -d "$out"/share/completions bash elvish fish powershell zsh
       })()),
       cargoTestFlags: nix.thunk(() => ["--bins"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CLI to manage OAuth 2.0 tokens",
         mainProgram: "ortie",
         homepage: "https://github.com/pimalaya/ortie",

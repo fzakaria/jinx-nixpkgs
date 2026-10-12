@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["libName", 46, 5], ["updateScript", 47, 5]], [["homepage", 51, 5], ["description", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["license", 55, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 32, 3], ["outputs", 34, 3], ["installPhase", 39, 3], ["passthru", 45, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, overrideCC: false, buildPackages: false, "stdenv'": true, fetchFromGitHub: false, cmake: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["libName", 46, 5], ["updateScript", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["license", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 32, 3], ["outputs", 34, 3], ["installPhase", 39, 3], ["passthru", 45, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv$, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libcxxrt",
       version: "4.0.10-unstable-2025-02-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libcxxrt",
           repo: "libcxxrt",
           rev: "a6f71cbc3a1e1b8b9df241e081fa0ffdcde96249",
@@ -37,12 +34,12 @@ cp ../src/cxxabi.h $dev/include
 cp lib/libcxxrt${nix.sel(stdenv$, "hostPlatform", "extensions", "library")} $out/lib
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         libName: "cxxrt",
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/libcxxrt/libcxxrt",
         description: "Implementation of the Code Sourcery C++ ABI",
         maintainers: nix.thunk(() => (() => {

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["pkg-config", 68, 18]], [["tests", 68, 12]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["mainProgram", 77, 5], ["pkgConfigModules", 78, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 26, 3], ["patches", 31, 3], ["postPatch", 33, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["configureFlags", 54, 3], ["installFlags", 61, 3], ["enableParallelBuilding", 63, 3], ["enableParallelChecking", 64, 3], ["doCheck", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, testers: false, autoreconfHook: false, "pkg-config": false, glib: false, dbus: false, ell: false, systemd: false, bluez: false, "mobile-broadband-provider-info": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 68, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 68, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["mainProgram", 77, 5], ["pkgConfigModules", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 26, 3], ["patches", 31, 3], ["postPatch", 33, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["configureFlags", 54, 3], ["installFlags", 61, 3], ["enableParallelBuilding", 63, 3], ["enableParallelChecking", 64, 3], ["doCheck", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const mobile_broadband_provider_info = nix.arg($, "mobile-broadband-provider-info");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ofono",
       version: "2.19",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/network/ofono/ofono.git/snapshot/ofono-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-OFoEl4Ve5DCNYsDfQpO26tZQTUz1192v0oECsXvHTG8=",
         })))),
@@ -50,14 +46,14 @@ export default nix.lambda((args) => (() => {
       enableParallelChecking: false,
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Infrastructure for building mobile telephony (GSM/UMTS) applications",
         homepage: "https://git.kernel.org/pub/scm/network/ofono/ofono.git",
         changelog: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/network/ofono/ofono.git/plain/ChangeLog?h=${nix.sel(finalAttrs, "version")}`),

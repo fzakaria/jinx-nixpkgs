@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["pname", 44, 13], ["version", 44, 19], ["src", 44, 27], ["hash", 45, 5]], [["description", 116, 5], ["longDescription", 117, 5], ["homepage", 124, 5], ["license", 125, 5], ["maintainers", 130, 5], ["mainProgram", 135, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["cargoDeps", 43, 3], ["nativeBuildInputs", 48, 3], ["nativeCheckInputs", 57, 3], ["buildInputs", 61, 3], ["postPatch", 87, 3], ["cmakeFlags", 92, 3], ["doCheck", 98, 3], ["checkTarget", 99, 3], ["postInstall", 101, 3], ["preFixup", 110, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cargo: false, cmake: false, ninja: false, "pkg-config": false, rustPlatform: false, rustc: false, curl: false, freetype: false, libGLU: false, libnotify: false, libogg: false, libx11: false, opusfile: false, python3: false, SDL2: false, sqlite: false, wavpack: false, ffmpeg: false, x264: false, "vulkan-headers": false, "vulkan-loader": false, glslang: false, "spirv-tools": false, gtest: false, buildClient: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 44, 13], ["version", 44, 19], ["src", 44, 27], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 116, 5], ["longDescription", 117, 5], ["homepage", 124, 5], ["license", 125, 5], ["maintainers", 130, 5], ["mainProgram", 135, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["cargoDeps", 43, 3], ["nativeBuildInputs", 48, 3], ["nativeCheckInputs", 57, 3], ["buildInputs", 61, 3], ["postPatch", 87, 3], ["cmakeFlags", 92, 3], ["doCheck", 98, 3], ["checkTarget", 99, 3], ["postInstall", 101, 3], ["preFixup", 110, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,14 +39,14 @@ export default nix.lambda((args) => (() => {
       const pname = "ddnet";
       const version = "20.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ddnet",
           repo: "ddnet",
           tag: version,
           hash: "sha256-C9N0l8wdPduHGHDWtHiTFc634r/6Qz3fT+G963V6iso=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -88,7 +85,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(buildClient)), "# DDNet's CMakeLists.txt automatically installs .desktop\n# shortcuts and icons for the client, even if the client\n# is not supposed to be built\nrm -rf $out/share/applications\nrm -rf $out/share/icons\nrm -rf $out/share/metainfo\n"));
       const preFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(buildClient))), "# Upstream links against <prefix>/lib while it installs this library in <prefix>/lib/ddnet\ninstall_name_tool -change \"$out/lib/libsteam_api.dylib\" \"$out/lib/ddnet/libsteam_api.dylib\" \"$out/bin/DDNet\"\n"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Teeworlds modification with a unique cooperative gameplay",
         longDescription: "DDraceNetwork (DDNet) is an actively maintained version of DDRace,\na Teeworlds modification with a unique cooperative gameplay.\nHelp each other play through custom maps with up to 64 players,\ncompete against the best in international tournaments,\ndesign your own maps, or run your own server.\n",
         homepage: "https://ddnet.org",
@@ -111,7 +108,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: nix.thunk(() => nix.str`DDNet${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(buildClient)), "-Server")}`),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,19 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/docker-container.nix", [[["object", 12, 5], ["symlink", 13, 5]], [["source", 29, 9], ["target", 30, 9]], [["contents", 27, 5], ["extraArgs", 33, 5], ["storeContents", 36, 5], ["extraCommands", 42, 5]], [["tarball", 26, 16], ["installBootLoader", 84, 16]], [["build", 26, 10]], [["isContainer", 52, 8]], [["DefaultDependencies", 56, 7], ["ConditionPathExists", 57, 7]], [["Type", 70, 7], ["RemainAfterExit", 71, 7]], [["description", 54, 5], ["unitConfig", 55, 5], ["wantedBy", 59, 5], ["before", 60, 5], ["after", 66, 5], ["conflicts", 67, 5], ["restartIfChanged", 68, 5], ["serviceConfig", 69, 5], ["script", 73, 5]], [["register-nix-paths", 53, 20]], [["services", 53, 11]], [["imports", 19, 3], ["system", 26, 3], ["boot", 52, 3], ["systemd", 53, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/docker-container.nix", [["object", 12, 5], ["symlink", 13, 5]]);
-const pos$2 = nix.positions(here + "/docker-container.nix", [["source", 29, 9], ["target", 30, 9]]);
-const pos$3 = nix.positions(here + "/docker-container.nix", [["contents", 27, 5], ["extraArgs", 33, 5], ["storeContents", 36, 5], ["extraCommands", 42, 5]]);
-const pos$4 = nix.positions(here + "/docker-container.nix", [["tarball", 26, 16], ["installBootLoader", 84, 16]]);
-const pos$5 = nix.positions(here + "/docker-container.nix", [["build", 26, 10]]);
-const pos$6 = nix.positions(here + "/docker-container.nix", [["isContainer", 52, 8]]);
-const pos$7 = nix.positions(here + "/docker-container.nix", [["DefaultDependencies", 56, 7], ["ConditionPathExists", 57, 7]]);
-const pos$8 = nix.positions(here + "/docker-container.nix", [["Type", 70, 7], ["RemainAfterExit", 71, 7]]);
-const pos$9 = nix.positions(here + "/docker-container.nix", [["description", 54, 5], ["unitConfig", 55, 5], ["wantedBy", 59, 5], ["before", 60, 5], ["after", 66, 5], ["conflicts", 67, 5], ["restartIfChanged", 68, 5], ["serviceConfig", 69, 5], ["script", 73, 5]]);
-const pos$10 = nix.positions(here + "/docker-container.nix", [["register-nix-paths", 53, 20]]);
-const pos$11 = nix.positions(here + "/docker-container.nix", [["services", 53, 11]]);
-const pos$12 = nix.positions(here + "/docker-container.nix", [["imports", 19, 3], ["system", 26, 3], ["boot", 52, 3], ["systemd", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,23 +11,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const writeScript = nix.thunk(() => nix.attr(pkgs, "writeScript"));
-  const pkgs2storeContents = nix.thunk(() => nix.app(nix.builtins.map, (x) => ({ [nix.POS]: pos$1, object: x, symlink: "none" })));
+  const pkgs2storeContents = nix.thunk(() => nix.app(nix.builtins.map, (x) => ({ [nix.POS]: $pos[0], object: x, symlink: "none" })));
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     imports: nix.thunk(() => [
       nix.path(here, "../installer/cd-dvd/channel.nix"),
       nix.path(here, "./minimal.nix"),
       nix.path(here, "./clone-config.nix"),
     ]),
     system: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       build: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tarball: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../../lib/make-system-tarball.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             contents: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 source: nix.thunk(() => nix.str`${nix.sel(config, "system", "build", "toplevel")}/.`),
                 target: "./",
               })),
@@ -57,16 +46,16 @@ export default nix.lambda((args) => (() => {
 `))),
       })),
     })),
-    boot: nix.thunk(() => ({ [nix.POS]: pos$6, isContainer: true })),
+    boot: nix.thunk(() => ({ [nix.POS]: $pos[5], isContainer: true })),
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         "register-nix-paths": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           description: "Register Nix Store Paths",
           unitConfig: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             DefaultDependencies: false,
             ConditionPathExists: "/nix-path-registration",
           })),
@@ -80,7 +69,7 @@ export default nix.lambda((args) => (() => {
           after: nix.thunk(() => ["local-fs.target"]),
           conflicts: nix.thunk(() => ["shutdown.target"]),
           restartIfChanged: false,
-          serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$8, Type: "oneshot", RemainAfterExit: true })),
+          serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[7], Type: "oneshot", RemainAfterExit: true })),
           script: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(config, "nix", "package", "out")), "nix-store")} --load-db < /nix-path-registration
 rm /nix-path-registration
 

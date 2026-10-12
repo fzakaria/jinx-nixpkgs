@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 29, 5], ["version", 30, 13], ["hash", 31, 5]], [["pemicro", 47, 5]], [["pythonImportsCheck", 63, 7], ["doCheck", 65, 7]], [["pytest", 62, 5]], [["tests", 61, 12]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 28, 3], ["build-system", 34, 3], ["pythonRelaxDeps", 38, 3], ["dependencies", 42, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 52, 3], ["doCheck", 59, 3], ["passthru", 61, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, pyocd: false, "pyocd-pemicro": false, spsdk: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false, "spsdk-pyocd": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 29, 5], ["version", 30, 13], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pemicro", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pythonImportsCheck", 63, 7], ["doCheck", 65, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pytest", 62, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 61, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 28, 3], ["build-system", 34, 3], ["pythonRelaxDeps", 38, 3], ["dependencies", 42, 3], ["optional-dependencies", 46, 3], ["nativeCheckInputs", 52, 3], ["doCheck", 59, 3], ["passthru", 61, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "spsdk_pyocd",
           version: version,
           hash: "sha256-jvzXu6z9oo2oGoiDgCWWcU3yX/PuWm56MJzIcMWCgTM=",
@@ -36,22 +30,22 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const pythonRelaxDeps = nix.thunk(() => ["pyocd"]);
       const dependencies = nix.thunk(() => [pyocd]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, pemicro: nix.thunk(() => [pyocd_pemicro]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], pemicro: nix.thunk(() => [pyocd_pemicro]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, spsdk, writableTmpDirAsHomeHook]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pytest: nix.thunk(() => nix.app(nix.sel(spsdk_pyocd, "overridePythonAttrs"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pythonImportsCheck: nix.thunk(() => ["spsdk_pyocd"]),
               doCheck: true,
             })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Debugger probe plugin for SPSDK",
         homepage: "https://pypi.org/project/spsdk-pyocd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -61,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

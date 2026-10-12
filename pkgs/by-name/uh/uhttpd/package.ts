@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["NIX_LDFLAGS", 46, 7]], [["branch", 54, 5], ["hardcodeZeroVersion", 55, 5]], [["updateScript", 53, 12]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["cmakeFlags", 40, 3], ["env", 46, 3], ["postInstall", 48, 3], ["passthru", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, cmake: false, "pkg-config": false, lua5_1: false, json_c: false, libubox: false, ubus: false, libxcrypt: false, unstableGitUpdater: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["branch", 54, 5], ["hardcodeZeroVersion", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["cmakeFlags", 40, 3], ["env", 46, 3], ["postInstall", 48, 3], ["passthru", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "uhttpd",
       version: "0-unstable-2025-12-24",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.openwrt.org/project/uhttpd.git",
           rev: "506e24987b97fbc866005bfb71316bd63601a1ef",
           hash: "sha256-x5hbbEcyxWhCjjqiHvAxvI1eHewqRlXuAGqXNw+c4sA=",
@@ -37,14 +32,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, makeWrapper]),
       buildInputs: nix.thunk(() => [lua5_1, json_c, libubox, ubus, libxcrypt]),
       cmakeFlags: nix.thunk(() => ["-DUCODE_SUPPORT=off", "-DTLS_SUPPORT=on", "-DLUA_SUPPORT=on"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lcrypt" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-lcrypt" })),
       postInstall: "wrapProgram $out/bin/uhttpd \\\n  --prefix LD_LIBRARY_PATH : $out/lib/uhttpd\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, branch: "master", hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], branch: "master", hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tiny HTTP server from OpenWrt project",
         homepage: "https://openwrt.org/docs/guide-user/services/webserver/uhttpd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

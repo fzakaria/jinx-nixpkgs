@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 11, 5], ["publisher", 12, 5], ["version", 13, 5], ["hash", 14, 5]], [["description", 26, 5], ["downloadPage", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["mktplcRef", 10, 3], ["nativeBuildInputs", 16, 3], ["postInstall", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, plantuml: false, jq: false, moreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 11, 5], ["publisher", 12, 5], ["version", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 26, 5], ["downloadPage", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 10, 3], ["nativeBuildInputs", 16, 3], ["postInstall", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "plantuml",
         publisher: "jebbs",
         version: "2.18.1",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
 jq '.contributes.configuration.properties."plantuml.java".default = "${plantuml}/bin/plantuml"' package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Visual Studio Code extension for supporting Rich PlantUML",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml",
         homepage: "https://github.com/qjebbs/vscode-plantuml",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 10, 5], ["sha256", 11, 5]], [["description", 23, 5], ["homepage", 24, 5], ["license", 27, 5], ["platforms", 28, 5], ["maintainers", 29, 5], ["mainProgram", 30, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["unpackPhase", 13, 3], ["buildPhase", 16, 3], ["installPhase", 19, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 10, 5], ["sha256", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 27, 5], ["platforms", 28, 5], ["maintainers", 29, 5], ["mainProgram", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["unpackPhase", 13, 3], ["buildPhase", 16, 3], ["installPhase", 19, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jpegexiforient",
       version: "0-unstable-2002-02-17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://sylvana.net/jpegcrop/jpegexiforient.c",
           sha256: "1v0f42cvs0397g9v46p294ldgxwbp285npg6npgnlnvapk6nzh5s",
         })))),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "$CC -o jpegexiforient jpegexiforient.c\n",
       installPhase: "install -Dt $out/bin jpegexiforient\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utility program to get and set the Exif Orientation Tag",
         homepage: "http://sylvana.net/jpegcrop/exif_orientation.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

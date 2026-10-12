@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["extraArgs", 74, 5]], [["updateScript", 73, 12]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5], ["hydraPlatforms", 88, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["preConfigure", 38, 3], ["buildPhase", 59, 3], ["installPhase", 67, 3], ["passthru", 73, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false, "nix-update-script": false, python3: false, "jawiki-all-titles-in-ns0": false, "ibus-engines": false, "mozcdic-ut-jawiki": false, "mozcdic-ut-personal-names": false, "mozcdic-ut-place-names": false, "mozcdic-ut-sudachidict": false, dictionaries: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 73, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5], ["hydraPlatforms", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["preConfigure", 38, 3], ["buildPhase", 59, 3], ["installPhase", 67, 3], ["passthru", 73, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   ]);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => !nix.eq(dictionaries, [])), "merge-ut-dictionaries needs at least one dictionary."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/me/merge-ut-dictionaries/package.nix:23:1");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "merge-ut-dictionaries",
       version: "0-unstable-2024-10-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "utuhiro78",
           repo: "merge-ut-dictionaries",
           rev: "4e08ad0bc0e493a35e9408edf963a3e77257b4cf",
@@ -63,11 +59,11 @@ done
       buildPhase: "runHook preBuild\n\nbash make.sh\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dt $out mozcdic-ut.txt\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version", "branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version", "branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Mozc UT dictionaries are additional dictionaries for Mozc",
         homepage: "https://github.com/utuhiro78/merge-ut-dictionaries",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

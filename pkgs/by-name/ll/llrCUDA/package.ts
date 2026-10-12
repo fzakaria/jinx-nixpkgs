@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 19, 5]], [["NIX_LDFLAGS", 46, 5]], [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 69, 5], ["maintainers", 70, 5], ["license", 71, 5], ["sourceProvenance", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["enableParallelBuilding", 22, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["env", 45, 3], ["installPhase", 52, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { fetchzip: false, lib: false, gmp: false, cudaPackages: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 69, 5], ["maintainers", 70, 5], ["license", 71, 5], ["sourceProvenance", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["enableParallelBuilding", 22, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["env", 45, 3], ["installPhase", 52, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const backendStdenv = nix.thunk(() => nix.attr(cudaPackages, "backendStdenv"));
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "llrCUDA",
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://jpenne.free.fr/llr4/llrcuda${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}srcgpu12.zip`),
           hash: "sha256-/v89jsTKCpkmCMKp9nUf7VAnSobE8pDdwLw5n3Hz9dw=",
         })))),
@@ -40,7 +37,7 @@ substituteInPlace Makefile \\
         nix.thunk(() => nix.sel(cudaPackages, "cccl")),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
             nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), gmp)}/lib`),
             nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib`),
@@ -48,7 +45,7 @@ substituteInPlace Makefile \\
       })),
       installPhase: "runHook preInstall\n\ninstall -Dm755 dllrCUDA $out/bin/llrCUDA\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GPU version of the LLR program",
         longDescription: "Primality proving program for numbers of the form N = k*b^n +/- 1, (k < b^n),\nor numbers which can be rewritten in this form, like\nGaussian-Mersenne norms or b^n-b^m +/- 1 with n>m (new feature).\nThe identity Phi(3,-X) = X^2-X+1 is now used with X=b^n to search for\nGeneralized Unique Primes.\n",
         homepage: "http://jpenne.free.fr/index2.html",

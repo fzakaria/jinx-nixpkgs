@@ -2,58 +2,52 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/snipe-it.nix", [[["maintainers", 18, 8]], [["createLocally", 30, 20]], [["name", 36, 18], ["address", 37, 18]], [["address", 38, 21]], [["driver", 32, 13], ["encryption", 33, 13], ["host", 34, 13], ["port", 35, 13], ["from", 36, 13], ["replyTo", 38, 13], ["user", 39, 13], ["passwordFile", 40, 13]], [["enable", 25, 11], ["appKeyFile", 26, 11], ["hostName", 29, 11], ["database", 30, 11], ["mail", 31, 11]], [["snipe-it", 24, 18]], [["services", 24, 9]], [["snipeit", 21, 5]], [["shouldSucceed", 106, 30]], [["name", 16, 3], ["meta", 18, 3], ["nodes", 20, 3], ["testScript", 46, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/snipe-it.nix", [["maintainers", 18, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/snipe-it.nix", [["createLocally", 30, 20]]);
-const pos$3 = nix.positions(here + "/snipe-it.nix", [["name", 36, 18], ["address", 37, 18]]);
-const pos$4 = nix.positions(here + "/snipe-it.nix", [["address", 38, 21]]);
-const pos$5 = nix.positions(here + "/snipe-it.nix", [["driver", 32, 13], ["encryption", 33, 13], ["host", 34, 13], ["port", 35, 13], ["from", 36, 13], ["replyTo", 38, 13], ["user", 39, 13], ["passwordFile", 40, 13]]);
-const pos$6 = nix.positions(here + "/snipe-it.nix", [["enable", 25, 11], ["appKeyFile", 26, 11], ["hostName", 29, 11], ["database", 30, 11], ["mail", 31, 11]]);
-const pos$7 = nix.positions(here + "/snipe-it.nix", [["snipe-it", 24, 18]]);
-const pos$8 = nix.positions(here + "/snipe-it.nix", [["services", 24, 9]]);
-const pos$9 = nix.positions(here + "/snipe-it.nix", [["snipeit", 21, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
 const formals$4 = { args: { shouldSucceed: true }, ellipsis: false };
-const pos$10 = nix.positions(here + "/snipe-it.nix", [["shouldSucceed", 106, 30]]);
-const pos$11 = nix.positions(here + "/snipe-it.nix", [["name", 16, 3], ["meta", 18, 3], ["nodes", 20, 3], ["testScript", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const siteName = "NixOS Snipe-IT Test Instance";
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "snipe-it",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "yayayayaka"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       snipeit: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             "snipe-it": nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               appKeyFile: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "snipe-it-app-key", "uTqGUN5GUmUrh/zSAYmhyzRk62pnpXICyXv9eeITI8k=")))),
               hostName: "localhost",
-              database: nix.thunk(() => ({ [nix.POS]: pos$2, createLocally: true })),
+              database: nix.thunk(() => ({ [nix.POS]: $pos[1], createLocally: true })),
               mail: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 driver: "smtp",
                 encryption: "tls",
                 host: "localhost",
                 port: 1025n,
-                from: nix.thunk(() => ({ [nix.POS]: pos$3, name: "Snipe-IT NixOS test", address: "snipe-it@localhost" })),
-                replyTo: nix.thunk(() => ({ [nix.POS]: pos$4, address: "snipe-it@localhost" })),
+                from: nix.thunk(() => ({
+                  [nix.POS]: $pos[2],
+                  name: "Snipe-IT NixOS test",
+                  address: "snipe-it@localhost",
+                })),
+                replyTo: nix.thunk(() => ({ [nix.POS]: $pos[3], address: "snipe-it@localhost" })),
                 user: "snipe-it@localhost",
                 passwordFile: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "snipe-it-mail-pass", "a-secure-mail-password")))),
               })),
@@ -115,7 +109,7 @@ with subtest("Test Backup and restore"):
     snipeit.succeed("snipe-it migrate:fresh --force")
 
     # Login page should disappear
-    ${nix.app(checkLoginPage, nix.thunk(() => ({ [nix.POS]: pos$10, shouldSucceed: false })))}
+    ${nix.app(checkLoginPage, nix.thunk(() => ({ [nix.POS]: $pos[9], shouldSucceed: false })))}
 
     # Restore the state
     snipeit.succeed(

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["xwayland-satellite", 48, 7]], [["SHADERC_LIB_DIR", 83, 7]], [["package", 125, 47]], [["testVersion", 125, 11]], [["tests", 125, 5], ["updateScript", 127, 5]], [["description", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["maintainers", 137, 5], ["platforms", 141, 5], ["broken", 142, 5], ["mainProgram", 143, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["patches", 46, 3], ["cargoHash", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 60, 3], ["env", 83, 3], ["postPatch", 85, 3], ["buildNoDefaultFeatures", 94, 3], ["buildFeatures", 95, 3], ["postInstall", 103, 3], ["preFixup", 110, 3], ["passthru", 124, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, autoPatchelfHook: false, dav1d: false, dbus: false, fetchFromGitHub: false, lib: false, libinput: false, libx11: false, libxcursor: false, libxext: false, libxrandr: false, libxcb: false, libxi: false, libxkbcommon: false, "nix-update-script": false, openssl: false, openvr: false, "openxr-loader": false, pipewire: false, "pkg-config": false, procps: false, pulseaudio: false, replaceVars: false, rustPlatform: false, shaderc: false, stdenv: false, testers: false, "vulkan-loader": false, wayland: false, wayvr: false, "xwayland-satellite": false, withOpenVR: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["xwayland-satellite", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["SHADERC_LIB_DIR", 83, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 125, 47]]);
-const pos$5 = nix.positions(here + "/package.nix", [["testVersion", 125, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 125, 5], ["updateScript", 127, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["maintainers", 137, 5], ["platforms", 141, 5], ["broken", 142, 5], ["mainProgram", 143, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["patches", 46, 3], ["cargoHash", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 60, 3], ["env", 83, 3], ["postPatch", 85, 3], ["buildNoDefaultFeatures", 94, 3], ["buildFeatures", 95, 3], ["postInstall", 103, 3], ["preFixup", 110, 3], ["passthru", 124, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const xwayland_satellite = nix.arg($, "xwayland-satellite");
   const withOpenVR = nix.argOr($, "withOpenVR", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "wayvr",
       version: "26.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wayvr-org",
           repo: "wayvr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-system-xwayland-satellite.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "xwayland-satellite": nix.thunk(() => nix.app(nix.sel(lib, "getExe"), xwayland_satellite)),
           })))),
       ]),
@@ -88,7 +81,7 @@ export default nix.lambda((args) => (() => {
         vulkan_loader,
       ], nix.app(nix.sel(lib, "optionals"), withOpenVR, nix.thunk(() => [openvr])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         SHADERC_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), shaderc)}/lib`),
       })),
       postPatch: nix.thunk(() => nix.str`substituteAllInPlace dash-frontend/src/util/pactl_wrapper.rs \\
@@ -103,15 +96,15 @@ substituteInPlace dash-frontend/src/util/steam_utils.rs \\
       postInstall: "install -D wayvr/wayvr.desktop -t $out/share/applications\ninstall -D wayvr/wayvr.svg -t $out/share/icons/hicolor/scalable/apps\n\nrm $out/bin/prost_build\n",
       preFixup: "patchelf \\\n  --add-needed libwayland-client.so.0 \\\n  --add-needed libwayland-cursor.so.0 \\\n  --add-needed libwayland-egl.so.1 \\\n  --add-needed libX11.so.6 \\\n  --add-needed libxcb.so.1 \\\n  --add-needed libXcursor.so.1 \\\n  --add-needed libXi.so.6 \\\n  --add-needed libvulkan.so.1 \\\n  --add-needed libxkbcommon.so.0 \\\n  $out/bin/uidev\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          testVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: wayvr })))),
+          [nix.POS]: $pos[4],
+          testVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[3], package: wayvr })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Your way to enjoy VR on Linux! Access your Wayland/X11 desktop from SteamVR/Monado (OpenVR+OpenXR support)",
         homepage: "https://github.com/wayvr-org/wayvr",
         license: nix.thunk(() => (() => {

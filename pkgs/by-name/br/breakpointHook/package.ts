@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["broken", 27, 5], ["license", 28, 5]], [["attach", 31, 5], ["bashInteractive", 35, 5]], [["attach", 38, 80]], [["attach", 39, 90]], [["can-attach-valid-id", 38, 5], ["cannot-attach-invalid-id", 39, 5]], [["tests", 37, 12]], [["name", 25, 3], ["meta", 26, 3], ["substitutions", 30, 3], ["passthru", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, callPackage: false, bashInteractive: false, makeSetupHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["broken", 27, 5], ["license", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["attach", 31, 5], ["bashInteractive", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["attach", 38, 80]]);
-const pos$4 = nix.positions(here + "/package.nix", [["attach", 39, 90]]);
-const pos$5 = nix.positions(here + "/package.nix", [["can-attach-valid-id", 38, 5], ["cannot-attach-invalid-id", 39, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 37, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 25, 3], ["meta", 26, 3], ["substitutions", 30, 3], ["passthru", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,24 +21,24 @@ export default nix.lambda((args) => (() => {
 exec bash ${nix.path(here, "./attach.sh")} "$@"
 `)));
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "breakpoint-hook",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         broken: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "buildPlatform", "isLinux"))),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         attach: nix.thunk(() => nix.str`${attach}/bin/attach`),
         bashInteractive: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), bashInteractive)),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          "can-attach-valid-id": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-can-attach-valid-id.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, attach: attach })))),
-          "cannot-attach-invalid-id": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-cannot-attach-invalid-id.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, attach: attach })))),
+          [nix.POS]: $pos[4],
+          "can-attach-valid-id": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-can-attach-valid-id.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], attach: attach })))),
+          "cannot-attach-invalid-id": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-cannot-attach-invalid-id.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], attach: attach })))),
         })),
       })),
     })), nix.path(here, "./breakpoint-hook.sh"));

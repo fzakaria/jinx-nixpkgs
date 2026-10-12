@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5], ["fetchSubmodules", 39, 5]], [["type", 44, 7], ["name", 45, 7], ["desktopName", 46, 7], ["comment", 47, 7], ["icon", 48, 7], ["exec", 49, 7], ["categories", 50, 7]], [["NIX_LDFLAGS", 120, 7]], [["description", 132, 5], ["homepage", 133, 5], ["mainProgram", 134, 5], ["platforms", 135, 5], ["license", 136, 5], ["maintainers", 137, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["desktopItems", 42, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 65, 3], ["cmakeFlags", 84, 3], ["postPatch", 89, 3], ["strictDeps", 94, 3], ["preBuild", 96, 3], ["installPhase", 100, 3], ["env", 120, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, cmake: false, "pkg-config": false, "alsa-lib": false, copyDesktopItems: false, makeDesktopItem: false, libx11: false, libxcomposite: false, libxcursor: false, libxinerama: false, libxrandr: false, libxtst: false, libxdmcp: false, libxext: false, xvfb: false, freetype: false, fontconfig: false, expat: false, libGL: false, libjack2: false, curl: false, ninja: false, writableTmpDirAsHomeHook: false, enableVST2: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5], ["fetchSubmodules", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["type", 44, 7], ["name", 45, 7], ["desktopName", 46, 7], ["comment", 47, 7], ["icon", 48, 7], ["exec", 49, 7], ["categories", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 120, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 132, 5], ["homepage", 133, 5], ["mainProgram", 134, 5], ["platforms", 135, 5], ["license", 136, 5], ["maintainers", 137, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["desktopItems", 42, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 65, 3], ["cmakeFlags", 84, 3], ["postPatch", 89, 3], ["strictDeps", 94, 3], ["preBuild", 96, 3], ["installPhase", 100, 3], ["env", 120, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const enableVST2 = nix.argOr($, "enableVST2", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "socalabs-rp2a03",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FigBug",
           repo: "RP2A03",
           rev: "dd90863aed05afe110a5302b5eff4b5144f28d4c",
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             type: "Application",
             name: "socalabs-rp2a03",
             desktopName: "Socalabs RP2A03",
@@ -105,7 +101,7 @@ install -Dm444 $src/plugin/Resources/logo.png $out/share/pixmaps/RP2A03.png
 runHook postInstall
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-lX11",
             "-lXext",
@@ -118,7 +114,7 @@ runHook postInstall
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Socalabs NES Ricoh 2A03 Emulation Plugin",
         homepage: "https://socalabs.com/synths/rp2a03/",
         mainProgram: "RP2A03",

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["url", 34, 5], ["hash", 35, 5]], [["url", 39, 5], ["hash", 40, 5]], [["url", 44, 5], ["hash", 45, 5]], [["url", 49, 5], ["hash", 50, 5]], [["url", 62, 5], ["hash", 63, 5]], [["NIX_LDFLAGS", 117, 7]], [["description", 150, 5], ["longDescription", 151, 5], ["homepage", 170, 5], ["license", 171, 5], ["maintainers", 172, 5], ["platforms", 173, 5]], [["pname", 55, 3], ["version", 56, 3], ["strictDeps", 58, 3], ["__structuredAttrs", 59, 3], ["src", 61, 3], ["postPatch", 66, 3], ["nativeBuildInputs", 91, 3], ["buildInputs", 99, 3], ["cmakeFlags", 110, 3], ["env", 117, 3], ["postInstall", 119, 3], ["qtWrapperArgs", 125, 3], ["postFixup", 145, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gnutls: false, guile_1_8: false, xmodmap: false, which: false, freetype: false, libjpeg: false, sqlite: false, texliveSmall: true, aspell: true, git: true, python3: true, cmake: false, "pkg-config": false, "xdg-utils": false, qt6: false, ghostscriptX: true, extraFonts: true, chineseFonts: true, japaneseFonts: true, koreanFonts: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 39, 5], ["hash", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 44, 5], ["hash", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 49, 5], ["hash", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 62, 5], ["hash", 63, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 117, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 150, 5], ["longDescription", 151, 5], ["homepage", 170, 5], ["license", 171, 5], ["maintainers", 172, 5], ["platforms", 173, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 3], ["strictDeps", 58, 3], ["__structuredAttrs", 59, 3], ["src", 61, 3], ["postPatch", 66, 3], ["nativeBuildInputs", 91, 3], ["buildInputs", 99, 3], ["cmakeFlags", 110, 3], ["env", 117, 3], ["postInstall", 119, 3], ["qtWrapperArgs", 125, 3], ["postFixup", 145, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,38 +31,38 @@ export default nix.lambda((args) => (() => {
   const japaneseFonts = nix.argOr($, "japaneseFonts", () => false);
   const koreanFonts = nix.argOr($, "koreanFonts", () => false);
   const extraFontsSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://www.texmacs.org/Download/ftp/fonts/TeXmacs-extra-fonts-1.0-noarch.tar.gz",
       hash: "sha256-ZxobwAjIuZpxF7v3QsLa4UTA5+Sq0rWg8smX1Kp81EM=",
     }))));
   const fullFontsSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://www.texmacs.org/Download/ftp/fonts/TeXmacs-windows-fonts-1.0-noarch.tar.gz",
       hash: "sha256-Tui4RR7Hd7MxQTvYFcEKBGro6L+uyuIp6HueevGVv/s=",
     }))));
   const chineseFontsSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://www.texmacs.org/Download/ftp/fonts/TeXmacs-chinese-fonts.tar.gz",
       hash: "sha256-1wnVlFpFjJAjGlVaEm7/TTGO+6isFlFyV9rV0rXE+Xo=",
     }))));
   const japaneseFontsSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: "https://www.texmacs.org/Download/ftp/fonts/TeXmacs-japanese-fonts.tar.gz",
       hash: "sha256-VgbBe+wwVrgCLzcj8qepeSx11bqcxR5MS2W+o/T+xrY=",
     }))));
   const koreanFontsSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       url: "https://www.texmacs.org/Download/ftp/fonts/TeXmacs-korean-fonts.tar.gz",
       hash: "sha256-EBZ3BCOcTufzvfJzptLupkCRBwSdK0qqXXJUXE95XR0=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "texmacs",
       version: "2.1.5",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: nix.thunk(() => nix.str`https://www.texmacs.org/Download/ftp/tmftp/source/TeXmacs-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-s6EnvbqOeQELI5KRQVy+NDEzNSHiRHeoFLWG4bQCc2A=",
         })))),
@@ -100,7 +92,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "TEXMACS_GUI", "Qt6"))], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INSTALL_PREFIX", "./TeXmacs.app/Contents/Resources")),
         ])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$7, NIX_LDFLAGS: "-lz" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[6], NIX_LDFLAGS: "-lz" })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv TeXmacs.app $out/Applications/\nmakeWrapper $out/Applications/TeXmacs.app/Contents/MacOS/TeXmacs $out/bin/texmacs\n")),
       qtWrapperArgs: nix.thunk(() => nix.concat([
         "--suffix",
@@ -114,7 +106,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "wrapQtApp $out/bin/texmacs\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "WYSIWYW editing platform with special features for scientists",
         longDescription: "GNU TeXmacs is a free wysiwyw (what you see is what you want)\nediting platform with special features for scientists.  The software\naims to provide a unified and user friendly framework for editing\nstructured documents with different types of content (text,\ngraphics, mathematics, interactive content, etc.).  The rendering\nengine uses high-quality typesetting algorithms so as to produce\nprofessionally looking documents, which can either be printed out or\npresented from a laptop.\n\nThe software includes a text editor with support for mathematical\nformulas, a small technical picture editor and a tool for making\npresentations from a laptop.  Moreover, TeXmacs can be used as an\ninterface for many external systems for computer algebra, numerical\nanalysis, statistics, etc.  New presentation styles can be written\nby the user and new features can be added to the editor using the\nScheme extension language.  A native spreadsheet and tools for\ncollaborative authoring are planned for later.\n",
         homepage: "http://texmacs.org/",

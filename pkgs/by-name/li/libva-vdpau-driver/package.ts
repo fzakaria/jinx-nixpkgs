@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["url", 24, 7], ["sha256", 25, 7]], [["url", 28, 7], ["sha256", 29, 7]], [["url", 32, 7], ["sha256", 33, 7]], [["url", 36, 7], ["sha256", 37, 7]], [["url", 40, 7], ["sha256", 41, 7]], [["url", 44, 7], ["sha256", 45, 7]], [["homepage", 62, 5], ["license", 63, 5], ["description", 64, 5], ["platforms", 65, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 50, 3], ["postPatch", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, libvdpau: false, libGLU: false, libGL: false, libva: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["sha256", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 28, 7], ["sha256", 29, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 32, 7], ["sha256", 33, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 36, 7], ["sha256", 37, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 40, 7], ["sha256", 41, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 44, 7], ["sha256", 45, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["license", 63, 5], ["description", 64, 5], ["platforms", 65, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 50, 3], ["postPatch", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,42 +17,42 @@ export default nix.lambda((args) => (() => {
   const libva = nix.arg($, "libva");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "libva-vdpau-driver",
       version: "0.7.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.freedesktop.org/software/vaapi/releases/libva-vdpau-driver/libva-vdpau-driver-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1fcvgshzyc50yb8qqm6v6wn23ghimay23ci0p8sm8gxcy211jp0m",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://src.fedoraproject.org/rpms/libva-vdpau-driver/raw/0ad71107e28a60ea453ac70e895cf64342bd58d0/f/libva-vdpau-driver-0.7.4-glext-85.patch",
             sha256: "0f0v7cl7kna3jcfnxw48b9mfl0hpacw72df9vym96sa2206vqlb0",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://src.fedoraproject.org/rpms/libva-vdpau-driver/raw/0ad71107e28a60ea453ac70e895cf64342bd58d0/f/libva-vdpau-driver-0.7.4-drop-h264-api.patch",
             sha256: "0q5w83jbf4qqmhwf54h906pzxgvhqv7g2vrkw7jzgnrxhhj9sj60",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://src.fedoraproject.org/rpms/libva-vdpau-driver/raw/0ad71107e28a60ea453ac70e895cf64342bd58d0/f/libva-vdpau-driver-0.7.4-fix_type.patch",
             sha256: "0s5dk6aa4sm0iyicnf2fwfsrqbvr58nbp77mhjg5bvwlar7znqv7",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://src.fedoraproject.org/rpms/libva-vdpau-driver/raw/0ad71107e28a60ea453ac70e895cf64342bd58d0/f/sigfpe-crash.patch",
             sha256: "15snqf60ib0xb3cnav5b2r55qv8lv2fa4p6jwxajh8wbvqpw0ibz",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://src.fedoraproject.org/rpms/libva-vdpau-driver/raw/0ad71107e28a60ea453ac70e895cf64342bd58d0/f/implement-vaquerysurfaceattributes.patch",
             sha256: "1dapx3bqqblw6l2iqqw1yff6qifam8q4m2rq343kwb3dqhy2ymy5",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://github.com/gentoo/gentoo/raw/34d5cc6fcf1d76c1c2833cb534717246c221214c/x11-libs/libva-vdpau-driver/files/libva-vdpau-driver-0.7.4-include-linux-videodev2.h.patch",
             sha256: "1m4is6lk580mppsx2mvdv1xifj6gvx724si4qynsm9qrdfdc9fby",
           })))),
@@ -69,7 +61,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libvdpau, libGLU, libGL, libva]),
       postPatch: "sed -i -e \"s,LIBVA_DRIVERS_PATH=.*,LIBVA_DRIVERS_PATH=$out/lib/dri,\" configure\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://cgit.freedesktop.org/vaapi/vdpau-driver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         description: "VDPAU driver for the VAAPI library",

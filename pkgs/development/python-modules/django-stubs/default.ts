@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["compatible-mypy", 48, 5], ["oracle", 49, 5], ["redis", 50, 5]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 56, 3], ["disabledTests", 61, 3], ["disabledTestPaths", 66, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "django-stubs-ext": false, django: false, fetchFromGitHub: false, "uv-build": false, redis: false, mypy: false, oracledb: false, pytestCheckHook: false, "types-pytz": false, "types-pyyaml": false, "types-redis": false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["compatible-mypy", 48, 5], ["oracle", 49, 5], ["redis", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 56, 3], ["disabledTests", 61, 3], ["disabledTestPaths", 66, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.2.9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "typeddjango",
           repo: "django-stubs",
           tag: version,
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [uv_build]);
       const dependencies = nix.thunk(() => [django, django_stubs_ext, types_pytz, types_pyyaml, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "compatible-mypy": nix.thunk(() => [mypy]),
         oracle: nix.thunk(() => [oracledb]),
         redis: nix.thunk(() => [redis, types_redis]),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/typecheck/", "ext/tests/typecheck/"]);
       const pythonImportsCheck = nix.thunk(() => ["django-stubs"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "PEP-484 stubs for Django",
         homepage: "https://github.com/typeddjango/django-stubs",
         changelog: nix.thunk(() => nix.str`https://github.com/typeddjango/django-stubs/releases/tag/${nix.sel(src, "tag")}`),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

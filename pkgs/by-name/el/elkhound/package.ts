@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["sourceRoot", 29, 3], ["nativeBuildInputs", 31, 3], ["cmakeFlags", 38, 3], ["installPhase", 40, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, bison: false, cmake: false, flex: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["sourceRoot", 29, 3], ["nativeBuildInputs", 31, 3], ["cmakeFlags", 38, 3], ["installPhase", 40, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "elkhound",
       version: "0-unstable-2020-04-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "WeiDUorg",
           repo: "elkhound",
           rev: "a7eb4bb2151c00cc080613a770d37560f62a285c",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-Wno-dev"]),
       installPhase: "runHook preInstall\n\ninstall -Dm555 -t $out/bin ast/astgen elkhound/elkhound\nfor d in ast elkhound smbase; do\n  install -Dm444 -t $out/lib $d/*.a\n  install -Dm444 -t $out/include/$d $src/src/$d/*.h\ndone\ninstall -Dm444 -t $out/share/doc/elkhound $src/src/elkhound/*.txt\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Parser generator which emits GLR parsers, either in OCaml or C++",
         homepage: "https://scottmcpeak.com/elkhound/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

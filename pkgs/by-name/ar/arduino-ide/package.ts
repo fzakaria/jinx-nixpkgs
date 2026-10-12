@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["pname", 17, 54], ["version", 17, 60], ["src", 17, 68]], [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["mainProgram", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]], [["pname", 20, 11], ["version", 20, 17], ["src", 20, 25], ["extraInstallCommands", 22, 3], ["extraPkgs", 28, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { appimageTools: false, fetchurl: false, lib: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 17, 54], ["version", 17, 60], ["src", 17, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["mainProgram", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 11], ["version", 20, 17], ["src", 20, 25], ["extraInstallCommands", 22, 3], ["extraPkgs", 28, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const pname = "arduino-ide";
   const version = "2.3.10";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/arduino/arduino-ide/releases/download/${version}/arduino-ide_${version}_Linux_64bit.AppImage`),
       hash: "sha256-echZChdEwiDXLL7Q6pHG4qf0WUKSaZsvszZOvXE81WY=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -36,7 +33,7 @@ substituteInPlace $out/share/applications/arduino-ide.desktop --replace-fail 'Ex
         nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "pyserial"))])),
       ],
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open-source electronics prototyping platform",
         homepage: "https://www.arduino.cc/en/software",
         changelog: nix.thunk(() => nix.str`https://github.com/arduino/arduino-ide/releases/tag/${version}`),

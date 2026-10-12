@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]], [["$lib", 60, 9], ["$XRANDR", 61, 9]], [["$aFlag", 68, 9], ["$dFlag", 69, 9], ["$eFlag", 70, 9], ["$mFlag", 71, 9], ["$nFlag", 72, 9], ["$oFlag", 73, 9], ["$sFlag", 74, 9], ["$OFlag", 75, 9], ["$SFlag", 76, 9], ["$pFlag", 77, 9], ["$iFlag", 78, 9], ["$xFlag", 79, 9], ["$is_flag", 80, 9]], [["scripts", 46, 7], ["interpreter", 50, 7], ["inputs", 51, 7], ["fix", 59, 7], ["keep", 63, 7]], [["mons", 45, 5]], [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 97, 5], ["mainProgram", 98, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 38, 3], ["solutions", 44, 3], ["nativeBuildInputs", 85, 3], ["makeFlags", 87, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, bash: false, coreutils: false, fetchFromGitHub: false, gawk: false, gnugrep: false, gnused: false, help2man: false, resholve: false, xrandr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["$lib", 60, 9], ["$XRANDR", 61, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["$aFlag", 68, 9], ["$dFlag", 69, 9], ["$eFlag", 70, 9], ["$mFlag", 71, 9], ["$nFlag", 72, 9], ["$oFlag", 73, 9], ["$sFlag", 74, 9], ["$OFlag", 75, 9], ["$SFlag", 76, 9], ["$pFlag", 77, 9], ["$iFlag", 78, 9], ["$xFlag", 79, 9], ["$is_flag", 80, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["scripts", 46, 7], ["interpreter", 50, 7], ["inputs", 51, 7], ["fix", 59, 7], ["keep", 63, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mons", 45, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 97, 5], ["mainProgram", 98, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 38, 3], ["solutions", 44, 3], ["nativeBuildInputs", 85, 3], ["makeFlags", 87, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const resholve = nix.arg($, "resholve");
   const xrandr = nix.arg($, "xrandr");
   return nix.app(nix.sel(resholve, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "mons",
       version: "0.8.2-unstable-2020-03-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Ventto",
           repo: "mons",
           rev: "375bbba3aa700c8b3b33645a7fb70605c8b0ff0c",
@@ -37,19 +31,19 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace mons.sh \\\n  --replace \"lib='%LIBDIR%/liblist.sh'\" \"\" \\\n  --replace '[ ! -r \"$lib\" ] && { \"$lib: library not found.\"; exit 1; }' \"\"\n",
       solutions: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mons: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           scripts: nix.thunk(() => ["bin/mons", "lib/libshlist/liblist.sh"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/sh`),
           inputs: nix.thunk(() => [bash, coreutils, gawk, gnugrep, gnused, xrandr]),
           fix: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             $lib: nix.thunk(() => ["lib/libshlist/liblist.sh"]),
             $XRANDR: nix.thunk(() => ["xrandr"]),
           })),
           keep: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             $aFlag: true,
             $dFlag: true,
             $eFlag: true,
@@ -69,7 +63,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [help2man]),
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)", "PREFIX="]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "POSIX Shell script to quickly manage 2-monitors display",
         homepage: "https://github.com/Ventto/mons.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

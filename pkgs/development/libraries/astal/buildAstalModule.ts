@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/buildAstalModule.nix", [[["homepage", 66, 11], ["license", 67, 11], ["platforms", 68, 11]], [["pname", 41, 9], ["version", 42, 26], ["__structuredAttrs", 44, 9], ["strictDeps", 45, 9], ["src", 47, 9], ["sourceRoot", 49, 9], ["nativeBuildInputs", 51, 9], ["buildInputs", 63, 9], ["meta", 65, 9]]]);
 const formals$1 = { args: { lib: false, stdenv: false, source: false, glib: false, wrapGAppsHook3: false, "gobject-introspection": false, meson: false, "pkg-config": false, ninja: false, vala: false, wayland: false, "wayland-scanner": false, python3: false }, ellipsis: false };
 const formals$2 = { args: { name: false, sourceRoot: true, nativeBuildInputs: true, buildInputs: true, "website-path": true, meta: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/buildAstalModule.nix", [["homepage", 66, 11], ["license", 67, 11], ["platforms", 68, 11]]);
-const pos$2 = nix.positions(here + "/buildAstalModule.nix", [["pname", 41, 9], ["version", 42, 26], ["__structuredAttrs", 44, 9], ["strictDeps", 45, 9], ["src", 47, 9], ["sourceRoot", 49, 9], ["nativeBuildInputs", 51, 9], ["buildInputs", 63, 9], ["meta", 65, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +39,7 @@ export default nix.lambda((args) => (() => {
     const website_path = nix.argOr($_1, "website-path", () => nix.force(name));
     const meta = nix.argOr($_1, "meta", () => ({}));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(nix.app(cleanArgs, args_2), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: nix.thunk(() => nix.str`astal-${name}`),
         version: nix.thunk(() => nix.attr(source, "version")),
         __structuredAttrs: true,
@@ -60,7 +59,7 @@ export default nix.lambda((args) => (() => {
         ])),
         buildInputs: nix.thunk(() => nix.concat([glib], buildInputs)),
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           homepage: nix.thunk(() => nix.str`https://aylur.github.io/astal/guide/libraries/${website_path}`),
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
           platforms: nix.thunk(() => ["aarch64-linux", "x86_64-linux"]),

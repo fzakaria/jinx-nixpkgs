@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 46, 3], ["disabledTests", 54, 3], ["disabledTestPaths", 62, 3], ["pythonImportsCheck", 67, 3], ["__darwinAllowLocalNetworking", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aresponses: false, backoff: false, beautifulsoup4: false, buildPythonPackage: false, certifi: false, docutils: false, fetchFromGitHub: false, "poetry-core": false, "pytest-aiohttp": false, "pytest-asyncio": false, pytestCheckHook: false, pytz: false, "types-pytz": false, voluptuous: false, websockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 46, 3], ["disabledTests", 54, 3], ["disabledTestPaths", 62, 3], ["pythonImportsCheck", 67, 3], ["__darwinAllowLocalNetworking", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const voluptuous = nix.arg($, "voluptuous");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "simplisafe-python",
       version: "2026.09.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bachya",
           repo: "simplisafe-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["simplipy"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library the SimpliSafe API",
         homepage: "https://simplisafe-python.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/bachya/simplisafe-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
